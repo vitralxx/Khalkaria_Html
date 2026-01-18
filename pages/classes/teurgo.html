@@ -1,0 +1,1516 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teurgo - Khalkaria RPG</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400&family=UnifrakturMaguntia&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/style.css">
+    <style>
+        :root {
+            --ramo-academico: #3b82f6;
+            --ramo-academico-dark: #1e3a5f;
+            --ramo-receptaculo: #a855f7;
+            --ramo-receptaculo-dark: #4c1d95;
+            --ramo-arauto: #f59e0b;
+            --ramo-arauto-dark: #78350f;
+        }
+
+        /* HERO SECTION - Imagem em destaque */
+        .class-hero {
+            position: relative;
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: linear-gradient(135deg, rgba(20,15,10,0.95), rgba(30,25,20,0.9));
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            overflow: hidden;
+            text-align: center;
+        }
+        .class-hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--gold), var(--gold-light), var(--gold));
+        }
+        .class-title {
+            font-family: var(--font-gothic);
+            font-size: 4rem;
+            color: var(--gold);
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.8), 0 0 30px rgba(212,175,55,0.3);
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+        .hero-image {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto 2rem;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 3px solid var(--gold-dark);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.6), 0 0 30px rgba(212,175,55,0.15);
+        }
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: left;
+        }
+        .hero-tagline {
+            font-size: 1.1rem;
+            font-style: italic;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            line-height: 1.7;
+            border-left: 3px solid var(--gold-dark);
+            padding-left: 1rem;
+        }
+        .hero-desc {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        /* QUICK STATS */
+        .quick-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        .stat-card {
+            background: rgba(0,0,0,0.4);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1rem;
+            text-align: center;
+        }
+        .stat-card .label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+        .stat-card .value {
+            font-size: 1.1rem;
+            color: var(--gold);
+            font-weight: 600;
+            margin-top: 0.25rem;
+        }
+
+        /* FORMULAS */
+        .formula-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        .formula-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1rem;
+        }
+        .formula-card h4 {
+            color: var(--gold);
+            font-family: var(--font-heading);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+        .formula-card code {
+            display: block;
+            background: var(--bg-tertiary);
+            padding: 0.5rem;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            color: var(--gold-light);
+        }
+
+        /* SECTION TITLES */
+        .section-divider {
+            display: flex;
+            align-items: center;
+            margin: 3rem 0 2rem;
+            gap: 1rem;
+        }
+        .section-divider h2 {
+            font-family: var(--font-gothic);
+            font-size: 2rem;
+            color: var(--gold);
+            white-space: nowrap;
+        }
+        .section-divider::after {
+            content: '';
+            flex: 1;
+            height: 2px;
+            background: linear-gradient(90deg, var(--gold-dark), transparent);
+        }
+
+        /* PROGRESSION TABLE */
+        .progression-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+        }
+        .progression-table th,
+        .progression-table td {
+            padding: 1rem;
+            border: 1px solid var(--border-color);
+            text-align: left;
+        }
+        .progression-table th {
+            background: var(--bg-tertiary);
+            color: var(--gold);
+            font-family: var(--font-heading);
+            font-size: 0.9rem;
+        }
+        .progression-table td {
+            background: var(--bg-card);
+            color: var(--text-secondary);
+        }
+        .level-badge {
+            display: inline-block;
+            background: var(--gold-dark);
+            color: var(--bg-primary);
+            font-weight: 700;
+            width: 32px;
+            height: 32px;
+            line-height: 32px;
+            text-align: center;
+            border-radius: 50%;
+        }
+
+        /* TECHNIQUES TABLE */
+        .technique-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            font-size: 0.95rem;
+        }
+        .technique-table th {
+            background: var(--bg-tertiary);
+            color: var(--gold);
+            font-family: var(--font-heading);
+            padding: 0.75rem;
+            text-align: left;
+            border: 1px solid var(--border-color);
+        }
+        .technique-table td {
+            padding: 0.75rem;
+            border: 1px solid var(--border-color);
+            background: var(--bg-card);
+            color: var(--text-secondary);
+            vertical-align: top;
+        }
+        .technique-table tr:hover td {
+            background: rgba(212,175,55,0.05);
+        }
+        .technique-name {
+            color: var(--gold-light);
+            font-weight: 600;
+        }
+        .technique-cost {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+        .technique-action {
+            font-size: 0.8rem;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            background: var(--bg-tertiary);
+            color: var(--text-muted);
+        }
+
+        /* ESCOLAS BOX */
+        .escolas-box {
+            background: linear-gradient(135deg, rgba(168,85,247,0.1), rgba(59,130,246,0.05));
+            border: 2px solid var(--ramo-receptaculo);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+        .escolas-box h3 {
+            color: var(--ramo-receptaculo);
+            font-family: var(--font-heading);
+            margin-bottom: 1rem;
+        }
+        .escolas-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+        .escola-item {
+            background: rgba(0,0,0,0.3);
+            border-radius: 8px;
+            padding: 0.75rem;
+            border-left: 3px solid var(--gold-dark);
+        }
+        .escola-item strong {
+            color: var(--gold-light);
+            display: block;
+            margin-bottom: 0.25rem;
+        }
+        .escola-item span {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* RAMOS INTRO */
+        .ramos-intro {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .ramos-intro p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+        .ramos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        .ramo-card {
+            background: var(--bg-card);
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.3s;
+        }
+        .ramo-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        }
+        .ramo-card.academico { border-color: var(--ramo-academico); }
+        .ramo-card.receptaculo { border-color: var(--ramo-receptaculo); }
+        .ramo-card.arauto { border-color: var(--ramo-arauto); }
+        .ramo-card h3 {
+            font-family: var(--font-heading);
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+        .ramo-card.academico h3 { color: var(--ramo-academico); }
+        .ramo-card.receptaculo h3 { color: var(--ramo-receptaculo); }
+        .ramo-card.arauto h3 { color: var(--ramo-arauto); }
+        .ramo-card .subtitle {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+        }
+        .ramo-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* MARCAS */
+        .marca-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
+            overflow: hidden;
+        }
+        .marca-header {
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .marca-header.academico { background: linear-gradient(135deg, var(--ramo-academico-dark), transparent); }
+        .marca-header.receptaculo { background: linear-gradient(135deg, var(--ramo-receptaculo-dark), transparent); }
+        .marca-header.arauto { background: linear-gradient(135deg, var(--ramo-arauto-dark), transparent); }
+        .marca-header h4 {
+            font-family: var(--font-heading);
+            font-size: 1.1rem;
+            margin-bottom: 0.25rem;
+        }
+        .marca-header.academico h4 { color: var(--ramo-academico); }
+        .marca-header.receptaculo h4 { color: var(--ramo-receptaculo); }
+        .marca-header.arauto h4 { color: var(--ramo-arauto); }
+        .marca-header .quote {
+            font-style: italic;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+        .marca-body {
+            padding: 1.5rem;
+        }
+        .marca-body p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+        .marca-effect {
+            background: var(--bg-tertiary);
+            border-left: 3px solid var(--gold-dark);
+            padding: 0.75rem 1rem;
+            margin-bottom: 0.5rem;
+            border-radius: 0 8px 8px 0;
+        }
+        .marca-effect p {
+            margin: 0;
+            font-size: 0.9rem;
+        }
+
+        /* TIER SECTIONS */
+        .tier-section {
+            margin: 2rem 0;
+        }
+        .tier-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--gold-dark);
+        }
+        .tier-header h3 {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            color: var(--gold);
+        }
+        .tier-badge {
+            background: var(--gold-dark);
+            color: var(--bg-primary);
+            font-weight: 700;
+            padding: 0.25rem 0.75rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+        }
+
+        /* TECHNIQUE CARDS */
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.5rem;
+        }
+        .tech-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        .tech-card-header {
+            padding: 1rem 1.25rem;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .tech-card-header.academico { background: linear-gradient(135deg, var(--ramo-academico-dark), transparent); }
+        .tech-card-header.receptaculo { background: linear-gradient(135deg, var(--ramo-receptaculo-dark), transparent); }
+        .tech-card-header.arauto { background: linear-gradient(135deg, var(--ramo-arauto-dark), transparent); }
+        .tech-card-header h4 {
+            font-family: var(--font-heading);
+            font-size: 1rem;
+        }
+        .tech-card-header.academico h4 { color: var(--ramo-academico); }
+        .tech-card-header.receptaculo h4 { color: var(--ramo-receptaculo); }
+        .tech-card-header.arauto h4 { color: var(--ramo-arauto); }
+        .tech-card-header .cost {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            background: rgba(0,0,0,0.3);
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+        }
+        .tech-card-body {
+            padding: 1.25rem;
+        }
+        .tech-card-body p, .tech-card-body li {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-bottom: 0.5rem;
+        }
+        .tech-card-body ul {
+            margin: 0.5rem 0;
+            padding-left: 1.25rem;
+        }
+
+        /* PATRONO CARDS */
+        .patrono-card {
+            background: var(--bg-card);
+            border: 2px solid var(--gold-dark);
+            border-radius: 12px;
+            margin: 1rem 0;
+            overflow: hidden;
+        }
+        .patrono-header {
+            background: linear-gradient(135deg, rgba(212,175,55,0.2), transparent);
+            padding: 1rem 1.25rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .patrono-header h5 {
+            color: var(--gold);
+            font-family: var(--font-heading);
+            font-size: 1.1rem;
+            margin: 0;
+        }
+        .patrono-body {
+            padding: 1.25rem;
+        }
+        .patrono-body p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-bottom: 0.75rem;
+        }
+        .patrono-section {
+            margin: 1rem 0;
+        }
+        .patrono-section h6 {
+            color: var(--gold-light);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+        .patrono-section ul {
+            padding-left: 1.25rem;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+        .patrono-section li {
+            margin-bottom: 0.25rem;
+        }
+
+        /* SER INVOCADO */
+        .ser-card {
+            background: rgba(0,0,0,0.2);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 0.5rem 0;
+        }
+        .ser-card h6 {
+            color: var(--gold-light);
+            font-family: var(--font-heading);
+            margin-bottom: 0.5rem;
+        }
+        .ser-stats {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+        .ser-stats span {
+            font-size: 0.8rem;
+            background: var(--bg-tertiary);
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            color: var(--text-muted);
+        }
+
+        /* ULTIMATE CARDS */
+        .ultimate-card {
+            background: linear-gradient(135deg, rgba(212,175,55,0.1), var(--bg-card));
+            border: 2px solid var(--gold);
+            border-radius: 16px;
+            margin: 1.5rem 0;
+            overflow: hidden;
+        }
+        .ultimate-header {
+            padding: 1.25rem 1.5rem;
+            border-bottom: 1px solid var(--gold-dark);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .ultimate-header.academico { background: linear-gradient(135deg, var(--ramo-academico-dark), transparent); }
+        .ultimate-header.receptaculo { background: linear-gradient(135deg, var(--ramo-receptaculo-dark), transparent); }
+        .ultimate-header.arauto { background: linear-gradient(135deg, var(--ramo-arauto-dark), transparent); }
+        .ultimate-header h4 {
+            font-family: var(--font-heading);
+            font-size: 1.3rem;
+        }
+        .ultimate-header.academico h4 { color: var(--ramo-academico); }
+        .ultimate-header.receptaculo h4 { color: var(--ramo-receptaculo); }
+        .ultimate-header.arauto h4 { color: var(--ramo-arauto); }
+        .ultimate-badge {
+            background: var(--gold);
+            color: var(--bg-primary);
+            font-weight: 700;
+            padding: 0.25rem 0.75rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+        }
+        .ultimate-quote {
+            font-style: italic;
+            color: var(--gold-light);
+            padding: 1rem 1.5rem;
+            background: rgba(0,0,0,0.2);
+            border-left: 3px solid var(--gold);
+        }
+        .ultimate-body {
+            padding: 1.5rem;
+        }
+        .ultimate-body h5 {
+            color: var(--gold);
+            font-family: var(--font-heading);
+            margin: 1rem 0 0.5rem;
+        }
+        .ultimate-body p, .ultimate-body li {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+        .ultimate-body ul {
+            margin: 0.5rem 0;
+            padding-left: 1.25rem;
+        }
+        .ultimate-cost {
+            background: rgba(139,0,0,0.2);
+            border: 1px solid rgba(220,38,38,0.3);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-top: 1rem;
+        }
+        .ultimate-cost h5 {
+            color: #ef4444;
+        }
+
+        /* SUB-ABILITY */
+        .sub-ability {
+            background: rgba(0,0,0,0.2);
+            border-left: 2px solid var(--gold-dark);
+            padding: 0.75rem;
+            margin: 0.5rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .sub-ability strong {
+            color: var(--gold-light);
+        }
+
+        /* NAVIGATION */
+        .class-nav {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
+        }
+        .class-nav a {
+            color: var(--gold);
+            text-decoration: none;
+            padding: 0.75rem 1.5rem;
+            border: 1px solid var(--gold-dark);
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+        .class-nav a:hover {
+            background: var(--gold-dark);
+            color: var(--bg-primary);
+        }
+    
+        .techniques-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+        .technique-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1rem;
+            transition: all 0.3s;
+        }
+        .technique-card:hover {
+            border-color: var(--gold-dark);
+            transform: translateY(-2px);
+        }
+        .technique-card h4 {
+            color: var(--gold);
+            font-family: var(--font-heading);
+            font-size: 1rem;
+            margin-bottom: 0.25rem;
+        }
+        .technique-card .tech-meta {
+            display: block;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+        }
+        .technique-card p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.5;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <button class="menu-toggle">☰ Menu</button>
+    <div class="app-container">
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <a href="../../index.html" class="sidebar-logo">Khalkaria</a>
+                <div class="sidebar-subtitle">Sistema de Regras</div>
+                <div class="sidebar-ornament"><span>◆</span></div>
+            </div>
+            <div class="nav-section">
+                <div class="nav-section-title">Fundamentos</div>
+                <a href="../../index.html" class="nav-link">🏠 Início</a>
+                <a href="../sistema.html" class="nav-link">📜 Sistema Base</a>
+                <a href="../condicoes.html" class="nav-link">⚡ Condições</a>
+            </div>
+            <div class="nav-section">
+                <div class="nav-section-title">Criação de Personagem</div>
+                <a href="../criacao.html" class="nav-link">🎭 Criação</a>
+                <a href="../racas.html" class="nav-link">👤 Raças</a>
+                <a href="../classes.html" class="nav-link">⚔️ Classes</a>
+                <a href="../origens.html" class="nav-link">📜 Origens</a>
+                <a href="../limiar.html" class="nav-link">🌟 O Limiar</a>
+            </div>
+            <div class="nav-section">
+                <div class="nav-section-title">Classes</div>
+                <a href="espadachim.html" class="nav-link nav-link-sub">⚔️ Espadachim</a>
+                <a href="monge.html" class="nav-link nav-link-sub">👊 Monge</a>
+                <a href="batedor.html" class="nav-link nav-link-sub">🏹 Batedor</a>
+                <a href="alquimista.html" class="nav-link nav-link-sub">⚗️ Alquimista</a>
+                <a href="teurgo.html" class="nav-link nav-link-sub active">✨ Teurgo</a>
+                <a href="artilheiro.html" class="nav-link nav-link-sub">💥 Artilheiro</a>
+                <a href="brutalista.html" class="nav-link nav-link-sub">🪓 Brutalista</a>
+            </div>
+        </nav>
+        
+        <main class="main-content">
+            <!-- HERO SECTION -->
+            <section class="class-hero">
+                <h1 class="class-title">Teurgo</h1>
+                <div class="hero-image">
+                    <img src="../../images/teurgo.png" alt="Teurgo">
+                </div>
+                <div class="hero-content">
+                    <p class="hero-tagline">
+                        "Enquanto outros confiam no aço e na carne, você aprendeu a ouvir o sussurro do outro lado. As forças primordiais fluem através de você - não porque você as comanda, mas porque elas permitem que você as canalize."
+                    </p>
+                    <p class="hero-desc">
+                        A verdade é que ninguém sabe de onde vem o poder que você manipula. Os textos antigos falam de deuses, de planos além da percepção mortal, de uma Grande Árvore que conecta todos os mundos. O Éter que você manipula cobra seu preço. Cada conjuração é um diálogo com algo que você não compreende.
+                    </p>
+                    
+                    <div class="quick-stats">
+                        <div class="stat-card">
+                            <div class="label">Atributos</div>
+                            <div class="value">Int, Sab, Con</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="label">CD</div>
+                            <div class="value">10 + Int + Sab</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="label">Estilo</div>
+                            <div class="value">Conjuração Versátil</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TREINAMENTO -->
+            <div class="section-divider">
+                <h2>⚔️ Treinamento</h2>
+            </div>
+            
+            <div class="ramos-intro">
+                <p><strong>Você começa treinado em:</strong> Armas Místicas, Místico, Conhecimento</p>
+                <p><strong>Escolha (1 + Mod. Inteligência) perícias:</strong> Religião, Vontade, Percepção, Medicina, Investigação</p>
+            </div>
+
+            <!-- STATUS -->
+            <div class="section-divider">
+                <h2>📊 Status Iniciais</h2>
+            </div>
+
+            <div class="formula-grid">
+                <div class="formula-card">
+                    <h4>❤️ Saúde</h4>
+                    <code>(1 × Nível) + (Mod.CON × Nível × 2)</code>
+                </div>
+                <div class="formula-card">
+                    <h4>⚡ Stamina</h4>
+                    <code>(2 × Nível) + ([Mod.FOR+Mod.DES/2] × Nível × 3)</code>
+                </div>
+                <div class="formula-card">
+                    <h4>✨ Éter</h4>
+                    <code>(3 × Nível) + ([Mod.INT+Mod.SAB/2] × Nível × 6)</code>
+                </div>
+                <div class="formula-card">
+                    <h4>🛡️ Evasão Ativa</h4>
+                    <code>10 + Mod.Des + Prof.Defender + 1d10</code>
+                </div>
+                <div class="formula-card">
+                    <h4>🛡️ Evasão Passiva</h4>
+                    <code>10 + Mod.Destreza</code>
+                </div>
+            </div>
+
+            <!-- PROGRESSÃO -->
+            <div class="section-divider">
+                <h2>📈 Progressão</h2>
+            </div>
+
+            <table class="progression-table">
+                <thead>
+                    <tr>
+                        <th>Nível</th>
+                        <th>Conteúdo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="level-badge">1</span></td>
+                        <td>3 Técnicas, 2 Escolas do Primórdio</td>
+                    </tr>
+                    <tr>
+                        <td><span class="level-badge">2</span></td>
+                        <td>4 Técnicas, Técnica de Ramo (Tier 1)</td>
+                    </tr>
+                    <tr>
+                        <td><span class="level-badge">3</span></td>
+                        <td>5 Técnicas, 1 Marca, 3 Escolas do Primórdio</td>
+                    </tr>
+                    <tr>
+                        <td><span class="level-badge">4</span></td>
+                        <td>6 Técnicas, Técnica de Ramo (Tier 1, 2), 2 Marcas</td>
+                    </tr>
+                    <tr>
+                        <td><span class="level-badge">5</span></td>
+                        <td>7 Técnicas, Técnica de Ramo (Tier 1, 2 e 3), 3 Marcas, 5 Escolas do Primórdio</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- ESCOLAS DO PRIMÓRDIO -->
+            <div class="section-divider">
+                <h2>📚 Escolas do Primórdio</h2>
+            </div>
+
+            <div class="escolas-box">
+                <h3>✨ Escolas do Primórdio</h3>
+                <p style="color: var(--text-secondary); margin-bottom: 1rem;">
+                    O Teurgo não domina toda a magia - ele se especializa em <strong>Escolas</strong> que representam diferentes manifestações das forças primordiais. Cada escola requer um <strong>Foco</strong> específico para ser conjurada.
+                </p>
+                <p style="color: var(--gold-light); margin-bottom: 1rem;">
+                    <strong>Você estudou 2 Escolas, +1 no nível 3 e +2 no nível 5</strong>
+                </p>
+                <div class="escolas-grid">
+                    <div class="escola-item">
+                        <strong>🛡️ Abjuração</strong>
+                        <span>Proteção, banimento, anulação.</span>
+                    </div>
+                    <div class="escola-item">
+                        <strong>💥 Destruição</strong>
+                        <span>Dano, destruição, elementos.</span>
+                    </div>
+                    <div class="escola-item">
+                        <strong>📖 Conhecimento</strong>
+                        <span>Adivinhação, detecção, comunicação.</span>
+                    </div>
+                    <div class="escola-item">
+                        <strong>🔄 Alteração</strong>
+                        <span>Transformação, manipulação, enganação.</span>
+                    </div>
+                    <div class="escola-item">
+                        <strong>🌟 Primordial</strong>
+                        <span>Magia selvagem e bruta. <em>(Requer nível 5)</em></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TÉCNICAS -->
+            <div class="section-divider">
+                <h2>⚡ Técnicas</h2>
+            </div>
+
+            <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">
+                Toda classe possui técnicas, você pode reatribuí-las livremente ao realizar um descanso longo. <strong>Você possui 3 Técnicas + Nível.</strong>
+            </p>
+
+            <div class="techniques-grid">
+                <div class="technique-card">
+                    <h4>Éter Residual</h4>
+                    <span class="tech-meta">Passiva</span>
+                    <p>Ao conjurar uma magia contida e seu custo final for 1, adicione uma modulação grátis.</p>
+                </div>
+                <div class="technique-card">
+                    <h4>Reserva Oculta</h4>
+                    <span class="tech-meta">Passiva</span>
+                    <p>Ao chegar a 0 de Éter, pode conjurar magias pagando em Saúde (2:1). 2 Saúde = 1 Éter.</p>
+                </div>
+                <div class="technique-card">
+                    <h4>Foco Duplo</h4>
+                    <span class="tech-meta">Passiva</span>
+                    <p>Você pode empunhar dois focos ao mesmo tempo, alternando escolas sem trocar de equipamento.</p>
+                </div>
+                <div class="technique-card">
+                    <h4>Força Primordial</h4>
+                    <span class="tech-meta">Passiva</span>
+                    <p>Suas magias de dano ignoram 1 de Ae. Adicionalmente, causam 1 de dano Primordial adicional.</p>
+                </div>
+                <div class="technique-card">
+                    <h4>Transbordar Controlado</h4>
+                    <span class="tech-meta">Passiva</span>
+                    <p>Ao usar intensidade Transbordante, rola Vontade com +2.</p>
+                </div>
+                <div class="technique-card">
+                    <h4>Linguagem Primordial</h4>
+                    <span class="tech-meta">Passiva</span>
+                    <p>Você consegue entender de maneira básica e leiga a linguagem primordial.</p>
+                </div>
+                <div class="technique-card">
+                    <h4>Encadeamento</h4>
+                    <span class="tech-meta">Passiva • 3 Stamina</span>
+                    <p>Ao conjurar uma magia, pode conjurar outra se puder pagar pelas ações. A segunda custa Éter adicional = número de ações dela.</p>
+                </div>
+                <div class="technique-card">
+                    <h4>Respiração Primordial</h4>
+                    <span class="tech-meta">5 Minutos</span>
+                    <p>Você medita brevemente, recuperando 1d4 Éter. Máx. 1x/Descanso Curto.</p>
+                </div>
+                <div class="technique-card">
+                    <h4>Imbuir Magia</h4>
+                    <span class="tech-meta">1 Minuto • 5 Stamina</span>
+                    <p>Pode preparar uma magia em um objeto, designando um gatilho (impacto, proximidade, ativação remota). Ativa como reação.</p>
+                </div>
+                <div class="technique-card">
+                    <h4>Canalização Eficiente</h4>
+                    <span class="tech-meta">Ação Livre • 2 Stamina</span>
+                    <p>Reduza o custo de uma magia em 1 Éter.</p>
+                </div>
+                <div class="technique-card">
+                    <h4>Sentir Magia</h4>
+                    <span class="tech-meta">1 Ação • 2 Stamina</span>
+                    <p>Você sente a presença de magia ou efeitos primordiais em até 9m. Não consegue diagnosticar características, apenas fica ciente.</p>
+                </div>
+                <div class="technique-card">
+                    <h4>Conjuração Furtiva</h4>
+                    <span class="tech-meta">1 Ação • 2 Stamina</span>
+                    <p>Pode conjurar magias de forma silenciosa. Role Furtividade vs Percepção/Místico. Se o alvo receber dano ele percebe a magia.</p>
+                </div>
+                <div class="technique-card">
+                    <h4>Marca do Primórdio</h4>
+                    <span class="tech-meta">1 Ação • 3 Stamina</span>
+                    <p>Ao acertar com magia de dano, pode marcar o alvo. Vontade CD 15 ou magias de dano recebem +2 contra ele. Rola novamente a cada turno.</p>
+                </div>
+                <div class="technique-card">
+                    <h4>Concentração</h4>
+                    <span class="tech-meta">+1 Ação • 3 Stamina</span>
+                    <p>Pode canalizar magia com 1 ação adicional. Adiciona +1 dado de dano ou uma modulação grátis.</p>
+                </div>
+                <div class="technique-card">
+                    <h4>Barreira Instintiva</h4>
+                    <span class="tech-meta">Reação • 1-5 Éter</span>
+                    <p>Ao ser atacado, antes do resultado, pode gastar Éter como reação para reduzir dano. 1 Éter = 1d4. Máx. = Nível.</p>
+                </div>
+            </div>
+
+            <!-- RAMOS -->
+            <div class="section-divider">
+                <h2>🌿 Ramos</h2>
+            </div>
+
+            <div class="ramos-intro">
+                <p>Os ramos são caminhos, características únicas do seu personagem. Diferente das técnicas, são <strong>irreversíveis</strong>.</p>
+                <p><strong>Marcas de Ramo:</strong> Que construiu ao longo da sua vida, moldando sua PERSONALIDADE.</p>
+                <p><strong>Técnicas de Ramo:</strong> Que aprendeu ao longo do seu treinamento definindo seu ESTILO DE AGIR.</p>
+                <p style="margin-bottom: 0;">É extremamente aceitável que você <strong>misture os 3 ramos</strong>. Ao longo da criação você escolherá: <strong>3 Marcas</strong> e <strong>6 Técnicas de Ramo</strong> (3 por Tier).</p>
+            </div>
+
+            <div class="ramos-grid">
+                <div class="ramo-card academico">
+                    <h3>📖 Ramo do Acadêmico</h3>
+                    <div class="subtitle">Conhecimento e Equilíbrio Mental</div>
+                    <p>A magia nunca foi mistério para você - foi problema a ser resolvido. Enquanto outros temem o desconhecido, você o disseca, cataloga e domina. Cada fenômeno tem uma explicação. Cada força segue regras.</p>
+                </div>
+                <div class="ramo-card receptaculo">
+                    <h3>🌀 Ramo do Receptáculo</h3>
+                    <div class="subtitle">Natureza Mística e Caótica</div>
+                    <p>Você não escolheu a magia. Ela escolheu você. Desde jovem, as forças primordiais sussurram no limite da sua percepção. Você aprendeu a se abrir, a se esvaziar, a deixar que o outro lado flua através de você.</p>
+                </div>
+                <div class="ramo-card arauto">
+                    <h3>🔱 Ramo do Arauto</h3>
+                    <div class="subtitle">Rituais Prolongados e Pactos</div>
+                    <p>O poder verdadeiro não é tomado - é negociado. Através de rituais meticulosos, círculos perfeitamente traçados e palavras pronunciadas na ordem exata, você firma acordos com forças que outros nem sabem que existem.</p>
+                </div>
+            </div>
+
+            <!-- MARCAS DE RAMO -->
+            <div class="section-divider">
+                <h2>🔥 Marcas de Ramo</h2>
+            </div>
+
+            <!-- Marcas do Acadêmico -->
+            <h3 style="color: var(--ramo-academico); font-family: var(--font-heading); margin: 2rem 0 1rem;">📖 Marcas do Acadêmico</h3>
+
+            <div class="marca-card">
+                <div class="marca-header academico">
+                    <h4>O Duelista</h4>
+                    <div class="quote">"O duelo arcano é xadrez. Você sempre pensa três jogadas à frente."</div>
+                </div>
+                <div class="marca-body">
+                    <div class="marca-effect">
+                        <p>Você tem <strong>+2 em Místico, Vontade e Reflexo</strong> contra outros Teurgos ou criaturas que conjuram magias.</p>
+                    </div>
+                    <div class="marca-effect">
+                        <p>Ao acertar um Teurgo ou conjurador com uma magia de dano, você <strong>rouba 1d6 de Éter</strong> dele.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="marca-card">
+                <div class="marca-header academico">
+                    <h4>Colecionador de Teoremas</h4>
+                    <div class="quote">"Cada magia estudada é uma peça do quebra-cabeça. Você está montando o mapa do universo."</div>
+                </div>
+                <div class="marca-body">
+                    <div class="marca-effect">
+                        <p>Para cada 5 magias diferentes que você presenciou sendo conjuradas e anotou em seu grimório, ganha <strong>+1 permanente em Místico</strong>. Ao chegar em +5, essa habilidade fica supérflua.</p>
+                    </div>
+                    <div class="marca-effect">
+                        <p>Ao suceder em um teste de Místico para identificar corretamente uma magia (escola, nível e efeito), recupera <strong>1 de Stamina</strong>.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Marcas do Receptáculo -->
+            <h3 style="color: var(--ramo-receptaculo); font-family: var(--font-heading); margin: 2rem 0 1rem;">🌀 Marcas do Receptáculo</h3>
+
+            <div class="marca-card">
+                <div class="marca-header receptaculo">
+                    <h4>Cicatrizes do Fluxo</h4>
+                    <div class="quote">"O poder que corre nas suas veias deixa marcas permanentes."</div>
+                </div>
+                <div class="marca-body">
+                    <div class="marca-effect">
+                        <p>Para cada 5 magias que você conjurou com Intensidade Transbordante com sucesso, ganha <strong>+1 permanente em Vontade</strong>. Ao chegar em +5, essa habilidade fica supérflua.</p>
+                    </div>
+                    <div class="marca-effect">
+                        <p>Ao falhar no teste de Vontade de uma magia Transbordante, você ainda conjura a magia porém na versão contida, e recupera <strong>1 de Stamina</strong>.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="marca-card">
+                <div class="marca-header receptaculo">
+                    <h4>Casca Rachada</h4>
+                    <div class="quote">"Às vezes, o melhor a se fazer é deixar transbordar..."</div>
+                </div>
+                <div class="marca-body">
+                    <div class="marca-effect">
+                        <p>Você pode ficar <em>Oco</em> como uma ação. Isso significa que você perde todo seu Éter, que fica em 0.</p>
+                    </div>
+                    <div class="marca-effect">
+                        <p>Ao estar <em>Oco</em>, seu limite máximo de Éter negativo <strong>dobra</strong>, além disso, você tem <strong>+2 de Vontade</strong> enquanto nessa condição.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Marcas do Arauto -->
+            <h3 style="color: var(--ramo-arauto); font-family: var(--font-heading); margin: 2rem 0 1rem;">🔱 Marcas do Arauto</h3>
+
+            <div class="marca-card">
+                <div class="marca-header arauto">
+                    <h4>Devoto</h4>
+                    <div class="quote">"Sua fé no pacto é absoluta. Seu patrono recompensa devoção."</div>
+                </div>
+                <div class="marca-body">
+                    <p><em>Requer Arauto Tier 1</em></p>
+                    <div class="marca-effect">
+                        <p>Para cada 3 vezes que você cumpriu uma exigência do Preço do Pacto do seu Patrono, ganha <strong>+1 permanente em Místico</strong>. Ao chegar em +5, essa habilidade fica supérflua.</p>
+                    </div>
+                    <div class="marca-effect">
+                        <p>Adicionalmente, você ganha <strong>50% mais da recompensa</strong> ao cumprir uma barganha primordial.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="marca-card">
+                <div class="marca-header arauto">
+                    <h4>Porta-Voz</h4>
+                    <div class="quote">"Você não fala com entidades. Você fala POR elas."</div>
+                </div>
+                <div class="marca-body">
+                    <div class="marca-effect">
+                        <p>Você pode servir como canal de comunicação para seu Patrono - ele pode falar através de você (com sua permissão).</p>
+                    </div>
+                    <div class="marca-effect">
+                        <p><strong>+2 em Interação Social (Intimidação)</strong> quando invoca o nome/autoridade do seu Patrono.</p>
+                    </div>
+                    <div class="marca-effect">
+                        <p><strong>1x/descanso longo:</strong> Pode fazer uma pergunta direta ao seu Patrono.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TÉCNICAS DE RAMO - TIER 1 -->
+            <div class="section-divider">
+                <h2>⚡ Técnicas de Ramo</h2>
+            </div>
+
+            <div class="tier-section">
+                <div class="tier-header">
+                    <h3>Tier 1</h3>
+                    <span class="tier-badge">Nível 2+</span>
+                </div>
+
+                <h4 style="color: var(--ramo-academico); margin: 1.5rem 0 1rem;">📖 Acadêmico</h4>
+                <div class="tech-grid">
+                    <div class="tech-card">
+                        <div class="tech-card-header academico">
+                            <h4>Grimório Arcano</h4>
+                            <span class="cost">Passiva</span>
+                        </div>
+                        <div class="tech-card-body">
+                            <p>Você possui um livro onde armazena grande parte do seu conhecimento arcano.</p>
+                            <ul>
+                                <li>Escolha <strong>3+Mod.Int</strong> magias em escolas que você é especializado e +1 para cada nível subsequente.</li>
+                                <li>Só pode escolher magias iguais ou abaixo do seu nível.</li>
+                                <li>Pode estudar e reordenar suas magias em um descanso longo.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="tech-card">
+                        <div class="tech-card-header academico">
+                            <h4>Tese Arcana</h4>
+                            <span class="cost">Passiva, 4 Stamina</span>
+                        </div>
+                        <div class="tech-card-body">
+                            <p>Escolha uma magia que você conhece. Ela se torna sua <strong>Tese</strong>. Pode trocar em um descanso longo.</p>
+                            <ul>
+                                <li><strong>Com 4 Stamina:</strong> Modulação grátis e intensidade +1 nível.</li>
+                                <li><strong>Sem Stamina:</strong> Custa -1 Éter.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="tech-card">
+                        <div class="tech-card-header academico">
+                            <h4>Recuperação Primordial</h4>
+                            <span class="cost">3 Ações, X Stamina</span>
+                        </div>
+                        <div class="tech-card-body">
+                            <p>Você gasta 3 ações para revitalizar sua relação com as forças materializantes.</p>
+                            <p>Você compra pontos de Éter gastando pontos de Stamina, com uma proporção de <strong>2:1</strong>. (2 Stamina = 1 Éter)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h4 style="color: var(--ramo-receptaculo); margin: 1.5rem 0 1rem;">🌀 Receptáculo</h4>
+                <div class="tech-grid">
+                    <div class="tech-card">
+                        <div class="tech-card-header receptaculo">
+                            <h4>Canalizador Inato</h4>
+                            <span class="cost">Passiva</span>
+                        </div>
+                        <div class="tech-card-body">
+                            <p>Você possui magias gravadas em sua essência.</p>
+                            <ul>
+                                <li>Escolha <strong>2+Mod.Sab</strong> magias em escolas especializadas +1/nível.</li>
+                                <li>Essas magias são <strong>permanentes</strong> e não podem ser trocadas.</li>
+                                <li>Ao conjurar magia com intensidade Forçada, custo adicional é +1 (invés de +2).</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="tech-card">
+                        <div class="tech-card-header receptaculo">
+                            <h4>Natureza Caótica</h4>
+                            <span class="cost">Passiva</span>
+                        </div>
+                        <div class="tech-card-body">
+                            <p>Ao conjurar qualquer magia, <strong>role 1d6</strong>:</p>
+                            <ul>
+                                <li><strong>1:</strong> Perde +1d4 Éter e magia perde 1 de intensidade. Se contida, falha.</li>
+                                <li><strong>2-5:</strong> A magia é canalizada normalmente.</li>
+                                <li><strong>6:</strong> Magia ganha +1 de intensidade ou +1 dado de efeito/+50% duração.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="tech-card">
+                        <div class="tech-card-header receptaculo">
+                            <h4>Canalização Visceral</h4>
+                            <span class="cost">Passiva</span>
+                        </div>
+                        <div class="tech-card-body">
+                            <p>Pode conjurar qualquer magia <strong>sem o Foco apropriado</strong>, mas ao fazer isso:</p>
+                            <ul>
+                                <li>Recebe dano Primordial em Saúde igual ao <strong>nível da magia × 2</strong></li>
+                                <li>Este dano não pode ser reduzido por Armaduras ou Resistências</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <h4 style="color: var(--ramo-arauto); margin: 1.5rem 0 1rem;">🔱 Arauto</h4>
+                <div class="tech-grid">
+                    <div class="tech-card">
+                        <div class="tech-card-header arauto">
+                            <h4>Patrono Primordial</h4>
+                            <span class="cost">Passiva</span>
+                        </div>
+                        <div class="tech-card-body">
+                            <p><em>"Você firmou um pacto com algo além da compreensão mortal."</em></p>
+                            <p>Escolha uma entidade primordial como seu Patrono. Esta escolha é <strong>permanente</strong>.</p>
+                            
+                            <div class="patrono-card">
+                                <div class="patrono-header"><h5>🌳 A Grande Árvore</h5></div>
+                                <div class="patrono-body">
+                                    <div class="patrono-section">
+                                        <h6>✅ Benefícios:</h6>
+                                        <ul>
+                                            <li>Magias de alteração sempre têm intensidade +1</li>
+                                            <li>1x/descanso longo: beber Seiva, recupera 1d6 Éter e remove condição mental</li>
+                                            <li>Sente presença de seres malignos e usuários de seiva em 18m</li>
+                                        </ul>
+                                    </div>
+                                    <div class="patrono-section">
+                                        <h6>⚠️ Preço do Pacto:</h6>
+                                        <ul>
+                                            <li>Defenda a Grande Árvore de quem quer destruí-la</li>
+                                            <li>Propague os benefícios do uso de Seiva</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="patrono-card">
+                                <div class="patrono-header"><h5>⛓️ O Trancafiado</h5></div>
+                                <div class="patrono-body">
+                                    <div class="patrono-section">
+                                        <h6>✅ Benefícios:</h6>
+                                        <ul>
+                                            <li>Magias de destruição causam +2 dano base</li>
+                                            <li>1x/descanso longo: dano dobrado, mas recebe metade em Primordial</li>
+                                            <li>Pode ver e falar com mortos de até 1 hora atrás</li>
+                                        </ul>
+                                    </div>
+                                    <div class="patrono-section">
+                                        <h6>⚠️ Preço do Pacto:</h6>
+                                        <ul>
+                                            <li>Tente descobrir informações sobre o abismo</li>
+                                            <li>Mate almas pecadoras e espalhe a causa</li>
+                                            <li>Se oponha a todos os deuses</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="patrono-card">
+                                <div class="patrono-header"><h5>🚪 O Limiar</h5></div>
+                                <div class="patrono-body">
+                                    <div class="patrono-section">
+                                        <h6>✅ Benefícios:</h6>
+                                        <ul>
+                                            <li>Magias de abjuração custam -1 Éter</li>
+                                            <li>1x/descanso longo: anule completamente uma magia ≤ seu nível</li>
+                                            <li>Sabe quando algo cruza entre planos em 30m</li>
+                                        </ul>
+                                    </div>
+                                    <div class="patrono-section">
+                                        <h6>⚠️ Preço do Pacto:</h6>
+                                        <ul>
+                                            <li>Não permita canalização desnecessária de magia</li>
+                                            <li>Puna quem exponha o plano místico</li>
+                                            <li>Proteja o plano místico a todo custo</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tech-card">
+                        <div class="tech-card-header arauto">
+                            <h4>Magias Pactuadas</h4>
+                            <span class="cost">Passiva</span>
+                        </div>
+                        <div class="tech-card-body">
+                            <p>Você negociou com seres primordiais. Eles fornecem uma fração de sua essência, por um custo:</p>
+                            <ul>
+                                <li>Escolha <strong>1+Mod.Int</strong> magias +1/nível em escolas especializadas.</li>
+                                <li>Trocar requer ritual de 1 hora e pagamento (componentes, Sins, sacrifício).</li>
+                                <li>Magia Pactuada em Intensidade Contida custa <strong>0 de Éter</strong>.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="tech-card">
+                        <div class="tech-card-header arauto">
+                            <h4>Barganha Primordial</h4>
+                            <span class="cost">1 Ação</span>
+                        </div>
+                        <div class="tech-card-body">
+                            <p><strong>1x/descanso longo:</strong> Invoque as forças primordiais e proponha uma barganha:</p>
+                            <p><strong>Você pede:</strong> Recuperar 1d6 Éter, modulação grátis, informação oculta, outro benefício...</p>
+                            <p><strong>As forças pedem:</strong> Perda de Saúde/Stamina/Éter, componente, tarefa futura, outro preço...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TIER 2 -->
+            <div class="tier-section">
+                <div class="tier-header">
+                    <h3>Tier 2</h3>
+                    <span class="tier-badge">Nível 4+</span>
+                </div>
+
+                <h4 style="color: var(--ramo-academico); margin: 1.5rem 0 1rem;">📖 Acadêmico</h4>
+                <div class="tech-grid">
+                    <div class="tech-card">
+                        <div class="tech-card-header academico">
+                            <h4>Maestria Arcana</h4>
+                            <span class="cost">Passiva</span>
+                        </div>
+                        <div class="tech-card-body">
+                            <p>Escolha uma escola do primórdio que você é especializado. Você se torna <strong>mestre</strong> nela. Magias desta escola:</p>
+                            <ul>
+                                <li>Custam <strong>-1 Éter</strong></li>
+                                <li>Modulações dessa escola custam <strong>-1 Éter</strong></li>
+                            </ul>
+                            <p>Pode trocar a escola escolhida em um descanso longo.</p>
+                        </div>
+                    </div>
+                    <div class="tech-card">
+                        <div class="tech-card-header academico">
+                            <h4>Eterno Aprendiz</h4>
+                            <span class="cost">Reação, 5 Stamina</span>
+                        </div>
+                        <div class="tech-card-body">
+                            <p>Ao presenciar uma magia sendo conjurada, pode estudá-la rapidamente:</p>
+                            <ul>
+                                <li>Sabe exatamente qual magia é, sua intensidade e modulações</li>
+                                <li>Ganha <strong>+2</strong> em testes de resistência ou para dissipar</li>
+                                <li>Se especializado na escola, pode tentar aprendê-la em descanso longo (Místico CD 15 + Nível × 2)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <h4 style="color: var(--ramo-receptaculo); margin: 1.5rem 0 1rem;">🌀 Receptáculo</h4>
+                <div class="tech-grid">
+                    <div class="tech-card">
+                        <div class="tech-card-header receptaculo">
+                            <h4>Surto Primordial</h4>
+                            <span class="cost">Ação Livre, 2 Stamina</span>
+                        </div>
+                        <div class="tech-card-body">
+                            <p>Declare antes de conjurar uma magia:</p>
+                            <ul>
+                                <li>A magia é canalizada com intensidade <strong>Transbordante sem custo adicional</strong> de Éter.</li>
+                                <li>Porém, o teste de Vontade é <strong>CD 18</strong> (ao invés de 15).</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="tech-card">
+                        <div class="tech-card-header receptaculo">
+                            <h4>Êxtase Destrutivo</h4>
+                            <span class="cost">Passiva</span>
+                        </div>
+                        <div class="tech-card-body">
+                            <p><strong>Ao ter 50% de Éter ou abaixo:</strong></p>
+                            <ul>
+                                <li>Destruição: +1d6 dano</li>
+                                <li>Abjuração: +50% efeito ou duração</li>
+                                <li>Alteração: +1 alvo ou +50% duração</li>
+                                <li>Conhecimento: +50% alcance ou 1 modulação grátis</li>
+                            </ul>
+                            <p><strong>Ao ter 0 de Éter ou abaixo:</strong> Efeitos dobrados!</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h4 style="color: var(--ramo-arauto); margin: 1.5rem 0 1rem;">🔱 Arauto</h4>
+                <div class="tech-grid">
+                    <div class="tech-card">
+                        <div class="tech-card-header arauto">
+                            <h4>Ritual</h4>
+                            <span class="cost">10 minutos, 5 Stamina</span>
+                        </div>
+                        <div class="tech-card-body">
+                            <p>Você pode ritualizar uma magia, aumentando:</p>
+                            <ul>
+                                <li><strong>Duração:</strong> 1 hora (independente da original)</li>
+                                <li><strong>Alvos:</strong> Todos presentes no ritual</li>
+                            </ul>
+                            <p>Dura 1 hora ou até você estar <em>Oco</em> ou <em>Morrendo</em>. Apenas 1 Ritual por vez.</p>
+                        </div>
+                    </div>
+                    <div class="tech-card">
+                        <div class="tech-card-header arauto">
+                            <h4>Invocar Ser</h4>
+                            <span class="cost">2 Ações, 3 Stamina</span>
+                        </div>
+                        <div class="tech-card-body">
+                            <p>Você invoca uma criatura mística que te obedece. Se possui patrono, escolha a criatura respectiva dele:</p>
+                            <div class="ser-card">
+                                <h6>🌳 Grutto (Grande Árvore)</h6>
+                                <div class="ser-stats">
+                                    <span>HP: 15+(nível×2)</span>
+                                    <span>Evasão: 12+Int</span>
+                                    <span>Dano: 1d6+Int Primordial</span>
+                                </div>
+                                <p style="font-size: 0.8rem; margin: 0;">Seiva Dourada: 1d10+Int Biológico em 3m</p>
+                            </div>
+                            <div class="ser-card">
+                                <h6>⛓️ Mortto (Trancafiado)</h6>
+                                <div class="ser-stats">
+                                    <span>HP: 10+(nível×2)</span>
+                                    <span>Evasão: 10+Int</span>
+                                    <span>Dano: 1d8+Int Primordial</span>
+                                </div>
+                                <p style="font-size: 0.8rem; margin: 0;">Atormentar: +1 dano contra alvo (Vontade)</p>
+                            </div>
+                            <div class="ser-card">
+                                <h6>🚪 Terro (Limiar)</h6>
+                                <div class="ser-stats">
+                                    <span>HP: 20+(nível×2)</span>
+                                    <span>Evasão: 14+Int</span>
+                                    <span>Dano: 1d4+Int Primordial</span>
+                                </div>
+                                <p style="font-size: 0.8rem; margin: 0;">Chamar Atenção: Força alvo a atacá-lo</p>
+                            </div>
+                            <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.5rem;">O Ser age no seu turno com 2 ações. Dura 10 min. Ao ser destruído: 1d4 dano Primordial em você.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TIER 3 - ULTIMATES -->
+            <div class="tier-section">
+                <div class="tier-header">
+                    <h3>Tier 3 — Ultimates</h3>
+                    <span class="tier-badge">Nível 5 • 1x/Dia</span>
+                </div>
+
+                <!-- Teorema Absoluto -->
+                <div class="ultimate-card">
+                    <div class="ultimate-header academico">
+                        <h4>📖 Teorema Absoluto</h4>
+                        <div>
+                            <span class="ultimate-badge">ULTIMATE</span>
+                            <span style="margin-left: 0.5rem; color: var(--text-muted); font-size: 0.85rem;">X Ações, 5 Stamina</span>
+                        </div>
+                    </div>
+                    <div class="ultimate-quote">"O místico, eu conheço-o melhor que eu mesmo."</div>
+                    <div class="ultimate-body">
+                        <p>Você atinge a compreensão perfeita das forças primordiais. Por um breve momento, você não apenas entende a magia - você a <strong>controla absolutamente</strong>.</p>
+                        
+                        <div class="sub-ability">
+                            <strong>Conjuração Impecável</strong> (1 Ação)<br>
+                            Sua próxima magia: Intensidade Transbordante sem custo/teste, todas as modulações custam 0, dano/cura máximos, alvos rolam com desvantagem.
+                        </div>
+                        <div class="sub-ability">
+                            <strong>Anulação Suprema</strong> (Reação)<br>
+                            Escolha uma magia sendo conjurada: efeito completamente anulado (qualquer nível), efeitos constantes suprimidos por 1 hora, criaturas invocadas banidas, conjurador fica <em>Desorientado</em>.
+                        </div>
+                        <div class="sub-ability">
+                            <strong>Roubo Arcano</strong> (Reação)<br>
+                            Escolha uma magia sendo conjurada: você canaliza exatamente a mesma magia como reação. Escolha novos alvos, intensidade e modulações.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Receptáculo Perfeito -->
+                <div class="ultimate-card">
+                    <div class="ultimate-header receptaculo">
+                        <h4>🌀 Receptáculo Perfeito</h4>
+                        <div>
+                            <span class="ultimate-badge">ULTIMATE</span>
+                            <span style="margin-left: 0.5rem; color: var(--text-muted); font-size: 0.85rem;">3 Ações, 5 Stamina</span>
+                        </div>
+                    </div>
+                    <div class="ultimate-quote">"Eu sou o portal. A ponte. O Receptáculo Perfeito."</div>
+                    <div class="ultimate-body">
+                        <p>Você se abre completamente para as forças do outro lado. Por um momento, você é um canal puro para o primórdio. <strong>Duração: 3 rodadas.</strong></p>
+                        
+                        <h5>✨ Energia Pura</h5>
+                        <ul>
+                            <li>Todas as suas magias têm <strong>intensidade +1</strong></li>
+                            <li>Nova intensidade: <strong>Transbordante+</strong> (+1 dado de efeito além do normal)</li>
+                        </ul>
+
+                        <h5>♾️ Canalização Infinita</h5>
+                        <ul>
+                            <li>Ao conjurar uma magia, conjure outra de graça com intensidade Normal</li>
+                            <li>Pode conjurar magias mesmo estando <em>Oco</em></li>
+                        </ul>
+
+                        <h5>⚡ Receptáculo Instável</h5>
+                        <p>No início de cada turno, role 1d6: 1-2 = perde 1d6 Éter; 3-6 = consegue conter a magia.</p>
+                        
+                        <div class="ultimate-cost">
+                            <h5>💀 O Custo</h5>
+                            <p>Ao ativar: perca imediatamente <strong>2d6 de Éter</strong>.</p>
+                            <p>Ao fim: Se <em>Oco</em>, role Vontade CD 15. Falha = 2d8+5 dano Primordial. Se entrar em <em>Morrendo</em>: <strong>morte instantânea + explosão 4d10+15 Primordial em 9m</strong>. Sucesso = <em>Exausto</em> até fim do combate.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Manifestação do Patrono -->
+                <div class="ultimate-card">
+                    <div class="ultimate-header arauto">
+                        <h4>🔱 Manifestação do Patrono</h4>
+                        <div>
+                            <span class="ultimate-badge">ULTIMATE</span>
+                            <span style="margin-left: 0.5rem; color: var(--text-muted); font-size: 0.85rem;">3 Ações, 5 Stamina</span>
+                        </div>
+                    </div>
+                    <div class="ultimate-quote">"O Pacto final está selado. Presenciem, meu patrono."</div>
+                    <div class="ultimate-body">
+                        <p>Você invoca uma fração verdadeira do seu patrono. O mundo treme enquanto seu patrono se materializa.</p>
+
+                        <div class="patrono-card">
+                            <div class="patrono-header"><h5>🌳 A Grande Árvore</h5></div>
+                            <div class="patrono-body">
+                                <p><strong>Área:</strong> 12m raio | <strong>Duração:</strong> 3 Rodadas</p>
+                                <p><strong>Instantâneo:</strong> Aliados curados 3d8+Int, condições removidas. Inimigos: Fortitude CD 18 ou <em>Enraizados</em> + <em>Envenenados</em>.</p>
+                                <p><strong>Contínuo:</strong> Aliados regeneram 1d8/turno, +2 em todos os testes. Inimigos: terreno difícil, -2 em todos os testes.</p>
+                            </div>
+                        </div>
+
+                        <div class="patrono-card">
+                            <div class="patrono-header"><h5>⛓️ O Trancafiado</h5></div>
+                            <div class="patrono-body">
+                                <p><strong>Área:</strong> 18m visão | <strong>Duração:</strong> Instantâneo + 3 rodadas</p>
+                                <p><strong>Instantâneo:</strong> 4d10+Int dano Primordial. Criaturas a 0 HP têm almas arrastadas (não ressuscitam). Vontade CD 18 ou <em>Amedrontados</em>.</p>
+                                <p><strong>Contínuo:</strong> Escolha 1 criatura/turno: Reflexo CD 15 ou <em>Enraizada</em> + 2d6 Primordial/turno.</p>
+                            </div>
+                        </div>
+
+                        <div class="patrono-card">
+                            <div class="patrono-header"><h5>🚪 O Limiar</h5></div>
+                            <div class="patrono-body">
+                                <p><strong>Área:</strong> 12m raio | <strong>Duração:</strong> 1 Rodada</p>
+                                <p><strong>Instantâneo:</strong> Todas as magias ativas anuladas, criaturas invocadas banidas permanentemente, ninguém (exceto aliados) pode conjurar por 2 rodadas. Até 3 criaturas: Vontade CD 20 ou <em>Banidas</em> (1 min ou permanente em falha crítica).</p>
+                                <p><strong>Contínuo:</strong> Criaturas escolhidas devem passar Vontade CD 20 para conjurar até fim do combate.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="ultimate-cost">
+                            <h5>💀 O Preço</h5>
+                            <p>Cada patrono exige algo específico após a manifestação. Ignorar resulta na perda gradual dos poderes.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- NAVEGAÇÃO -->
+            <div class="class-nav">
+                <a href="alquimista.html">← Alquimista</a>
+                <a href="../classes.html">Todas as Classes</a>
+                <a href="artilheiro.html">Artilheiro →</a>
+            </div>
+        </main>
+    </div>
+    <script src="../../js/main.js"></script>
+</body>
+</html>

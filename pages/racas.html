@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Raças - Khalkaria RPG</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400&family=UnifrakturMaguntia&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .racas-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        .raca-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: block;
+        }
+        .raca-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--gold);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        .raca-image {
+            width: 100%;
+            height: 240px;
+            background: var(--bg-tertiary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            border-bottom: 1px solid var(--border-color);
+            position: relative;
+            overflow: hidden;
+        }
+        .raca-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 45%;
+        }
+        .raca-image img[alt="Humano"] { object-position: left 50%; }
+        .raca-image img[alt="Anão"] { object-position: center 45%; }
+        .raca-image img[alt="Dryad"] { object-position: center 45%; }
+        .raca-image img[alt="Gruto"] { object-position: center 55%; }
+        .raca-image img[alt="Corrompido"] { object-position: center 40%; }
+        .raca-image img[alt="Autômato"] { object-position: center 38%; }
+        .raca-image img[alt="Inseto"] { object-position: center 45%; }
+        .raca-image .placeholder {
+            opacity: 0.5;
+        }
+        .raca-content {
+            padding: 1.25rem;
+        }
+        .raca-card h3 {
+            font-family: var(--font-heading);
+            color: var(--gold);
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+        .raca-card .tagline {
+            color: var(--text-muted);
+            font-style: italic;
+            font-size: 0.9rem;
+            margin-bottom: 0.75rem;
+        }
+        .raca-stats {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-top: 0.75rem;
+        }
+        .raca-stat {
+            background: var(--bg-tertiary);
+            padding: 0.25rem 0.6rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+        .raca-stat.positive { color: #4ade80; }
+        .raca-stat.negative { color: #f87171; }
+        .raca-variants {
+            margin-top: 0.75rem;
+            padding-top: 0.75rem;
+            border-top: 1px solid var(--border-color);
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+        .raca-variants strong {
+            color: var(--gold-light);
+        }
+    </style>
+</head>
+<body>
+    <button class="menu-toggle">☰ Menu</button>
+    
+    <div class="app-container">
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <a href="../index.html" class="sidebar-logo">Khalkaria</a>
+                <div class="sidebar-subtitle">Sistema de Regras</div>
+                <div class="sidebar-ornament"><span>◆</span></div>
+            </div>
+            <div class="nav-section">
+                <div class="nav-section-title">Fundamentos</div>
+                <a href="../index.html" class="nav-link">🏠 Início</a>
+                <a href="sistema.html" class="nav-link">📜 Sistema Base</a>
+                <a href="condicoes.html" class="nav-link">⚡ Condições</a>
+            </div>
+            <div class="nav-section">
+                <div class="nav-section-title">Criação de Personagem</div>
+                <a href="criacao.html" class="nav-link">🎭 Criação</a>
+                <a href="racas.html" class="nav-link active">👤 Raças</a>
+                <a href="classes.html" class="nav-link">⚔️ Classes</a>
+                <a href="origens.html" class="nav-link">📜 Origens</a>
+                <a href="limiar.html" class="nav-link">🌟 O Limiar</a>
+            </div>
+            <div class="nav-section">
+                <div class="nav-section-title">Classes</div>
+                <a href="classes/espadachim.html" class="nav-link nav-link-sub">⚔️ Espadachim</a>
+                <a href="classes/monge.html" class="nav-link nav-link-sub">👊 Monge</a>
+                <a href="classes/batedor.html" class="nav-link nav-link-sub">🏹 Batedor</a>
+                <a href="classes/alquimista.html" class="nav-link nav-link-sub">⚗️ Alquimista</a>
+                <a href="classes/teurgo.html" class="nav-link nav-link-sub">✨ Teurgo</a>
+                <a href="classes/artilheiro.html" class="nav-link nav-link-sub">💥 Artilheiro</a>
+                <a href="classes/brutalista.html" class="nav-link nav-link-sub">🪓 Brutalista</a>
+            </div>
+        </nav>
+        
+        <main class="main-content">
+            <h1>👤 Raças<span class="ornament">◆ ◆ ◆</span></h1>
+            
+            <p style="text-align: center; color: var(--text-secondary); max-width: 700px; margin: 0 auto 2rem auto;">
+                Escolha sua ancestralidade. Cada raça oferece atributos, perícias e características únicas 
+                que moldam a natureza fundamental do seu personagem.
+            </p>
+            
+            <div class="racas-grid">
+                <!-- HUMANO -->
+                <a href="racas/humano.html" class="raca-card">
+                    <div class="raca-image">
+                        <img src="../images/racas/humano.png" alt="Humano">
+                    </div>
+                    <div class="raca-content">
+                        <h3>Humano</h3>
+                        <p class="tagline">Adaptáveis, numerosos e determinados.</p>
+                        <div class="raca-stats">
+                            <span class="raca-stat positive">+1 em dois atributos</span>
+                            <span class="raca-stat">9m mov.</span>
+                        </div>
+                        <div class="raca-variants">
+                            <strong>Estilos:</strong> Simples, Estudioso, Rebelde, Popular
+                        </div>
+                    </div>
+                </a>
+                
+                <!-- ANÃO -->
+                <a href="racas/anao.html" class="raca-card">
+                    <div class="raca-image">
+                        <img src="../images/racas/anao.png" alt="Anão">
+                    </div>
+                    <div class="raca-content">
+                        <h3>Anão</h3>
+                        <p class="tagline">Robustos e inflexíveis como a rocha.</p>
+                        <div class="raca-stats">
+                            <span class="raca-stat positive">+2 Con</span>
+                            <span class="raca-stat negative">-1 Des</span>
+                            <span class="raca-stat">7,5m mov.</span>
+                        </div>
+                        <div class="raca-variants">
+                            <strong>Clãs:</strong> Krichama, Caxon
+                        </div>
+                    </div>
+                </a>
+                
+                <!-- DRYAD -->
+                <a href="racas/dryad.html" class="raca-card">
+                    <div class="raca-image">
+                        <img src="../images/racas/dryad.png" alt="Dryad">
+                    </div>
+                    <div class="raca-content">
+                        <h3>Dryad</h3>
+                        <p class="tagline">Árvore e carne entrelaçadas.</p>
+                        <div class="raca-stats">
+                            <span class="raca-stat positive">+2 Des/Con</span>
+                            <span class="raca-stat negative">-1 Sab</span>
+                            <span class="raca-stat">10,5m mov.</span>
+                        </div>
+                        <div class="raca-variants">
+                            <strong>Subespécies:</strong> Florescura, Cascaferro
+                        </div>
+                    </div>
+                </a>
+                
+                <!-- GRUTO -->
+                <a href="racas/gruto.html" class="raca-card">
+                    <div class="raca-image">
+                        <img src="../images/racas/gruto.png" alt="Gruto">
+                    </div>
+                    <div class="raca-content">
+                        <h3>Gruto</h3>
+                        <p class="tagline">Humanoides reptilianos ancestrais.</p>
+                        <div class="raca-stats">
+                            <span class="raca-stat positive">+2 For/Con</span>
+                            <span class="raca-stat negative">-1 Int</span>
+                            <span class="raca-stat">9m mov.</span>
+                        </div>
+                        <div class="raca-variants">
+                            <strong>Linhagens:</strong> Rokhan, Skal'ri
+                        </div>
+                    </div>
+                </a>
+                
+                <!-- CORROMPIDO -->
+                <a href="racas/corrompido.html" class="raca-card">
+                    <div class="raca-image">
+                        <img src="../images/racas/corrompido.png" alt="Corrompido">
+                    </div>
+                    <div class="raca-content">
+                        <h3>Corrompido</h3>
+                        <p class="tagline">Marcados pelas forças primordiais.</p>
+                        <div class="raca-stats">
+                            <span class="raca-stat positive">+2 Int/Sab</span>
+                            <span class="raca-stat negative">-1 Con</span>
+                            <span class="raca-stat">9m mov.</span>
+                        </div>
+                        <div class="raca-variants">
+                            <strong>Graus:</strong> Tocado, Alterado, Consumido
+                        </div>
+                    </div>
+                </a>
+                
+                <!-- AUTÔMATO -->
+                <a href="racas/automato.html" class="raca-card">
+                    <div class="raca-image">
+                        <img src="../images/racas/automato.png" alt="Autômato">
+                    </div>
+                    <div class="raca-content">
+                        <h3>Autômato</h3>
+                        <p class="tagline">Seres antigos de tecnologia esquecida.</p>
+                        <div class="raca-stats">
+                            <span class="raca-stat positive">+2 Int</span>
+                            <span class="raca-stat negative">-1 Sab</span>
+                            <span class="raca-stat">9m mov.</span>
+                        </div>
+                        <div class="raca-variants">
+                            <strong>Sistema:</strong> Tecnologias Tier 1-5
+                        </div>
+                    </div>
+                </a>
+                
+                <!-- INSETO -->
+                <a href="racas/inseto.html" class="raca-card">
+                    <div class="raca-image">
+                        <img src="../images/racas/inseto.png" alt="Inseto">
+                    </div>
+                    <div class="raca-content">
+                        <h3>Inseto</h3>
+                        <p class="tagline">Insetos humanoides inteligentes.</p>
+                        <div class="raca-stats">
+                            <span class="raca-stat">Varia por subespécie</span>
+                        </div>
+                        <div class="raca-variants">
+                            <strong>Subespécies:</strong> Besouro, Louva-a-Deus, Barata
+                        </div>
+                    </div>
+                </a>
+            </div>
+            
+            <div style="text-align: center; margin-top: 2rem;">
+                <a href="criacao.html" class="keyword-link">← Voltar para Criação</a>
+            </div>
+            
+        </main>
+    </div>
+    
+    <script src="../js/main.js"></script>
+</body>
+</html>

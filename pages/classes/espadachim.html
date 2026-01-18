@@ -1,0 +1,1172 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Espadachim - Khalkaria RPG</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400&family=UnifrakturMaguntia&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/style.css">
+    <style>
+        :root {
+            --ramo-guarda: #4a9eff;
+            --ramo-guarda-dark: #1e3a5f;
+            --ramo-oprimido: #ff4a4a;
+            --ramo-oprimido-dark: #5f1e1e;
+            --ramo-exilado: #a855f7;
+            --ramo-exilado-dark: #4a1e5f;
+        }
+
+        /* HERO SECTION - Imagem em destaque */
+        .class-hero {
+            position: relative;
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: linear-gradient(135deg, rgba(20,15,10,0.95), rgba(30,25,20,0.9));
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            overflow: hidden;
+            text-align: center;
+        }
+        .class-hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--gold), var(--gold-light), var(--gold));
+        }
+        .class-title {
+            font-family: var(--font-gothic);
+            font-size: 4rem;
+            color: var(--gold);
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.8), 0 0 30px rgba(212,175,55,0.3);
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+        .hero-image {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto 2rem;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 3px solid var(--gold-dark);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.6), 0 0 30px rgba(212,175,55,0.15);
+        }
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: left;
+        }
+        .hero-tagline {
+            font-size: 1.1rem;
+            font-style: italic;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            line-height: 1.7;
+            border-left: 3px solid var(--gold-dark);
+            padding-left: 1rem;
+        }
+        .hero-desc {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        /* QUICK STATS */
+        .quick-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        .stat-card {
+            background: rgba(0,0,0,0.4);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1rem;
+            text-align: center;
+        }
+        .stat-card .label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+        .stat-card .value {
+            font-size: 1.1rem;
+            color: var(--gold);
+            font-weight: 600;
+            margin-top: 0.25rem;
+        }
+
+        /* FORMULAS */
+        .formula-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        .formula-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1rem;
+        }
+        .formula-card h4 {
+            color: var(--gold);
+            font-family: var(--font-heading);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+        .formula-card code {
+            display: block;
+            background: var(--bg-tertiary);
+            padding: 0.5rem;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            color: var(--gold-light);
+        }
+
+        /* SECTION TITLES */
+        .section-divider {
+            display: flex;
+            align-items: center;
+            margin: 3rem 0 2rem;
+            gap: 1rem;
+        }
+        .section-divider h2 {
+            font-family: var(--font-gothic);
+            font-size: 2rem;
+            color: var(--gold);
+            white-space: nowrap;
+        }
+        .section-divider::after {
+            content: '';
+            flex: 1;
+            height: 2px;
+            background: linear-gradient(90deg, var(--gold-dark), transparent);
+        }
+
+        /* PROGRESSION TABLE */
+        .progression-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            background: var(--bg-card);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        .progression-table th {
+            background: linear-gradient(135deg, var(--gold-dark), rgba(212,175,55,0.3));
+            color: var(--gold-light);
+            padding: 1rem;
+            text-align: left;
+            font-family: var(--font-heading);
+        }
+        .progression-table td {
+            padding: 1rem;
+            border-bottom: 1px solid var(--border-color);
+            color: var(--text-secondary);
+        }
+        .progression-table tr:hover td {
+            background: rgba(212,175,55,0.05);
+        }
+        .progression-table .level {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--gold);
+            width: 60px;
+            text-align: center;
+        }
+
+        /* PROFICIENCY BOX */
+        .proficiency-box {
+            background: linear-gradient(135deg, rgba(212,175,55,0.1), transparent);
+            border: 2px solid var(--gold-dark);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+        .proficiency-box h3 {
+            color: var(--gold);
+            font-family: var(--font-heading);
+            margin-bottom: 1rem;
+        }
+        .proficiency-box p {
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        /* TECHNIQUES GRID */
+        .techniques-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 1rem;
+        }
+        .technique-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1rem;
+            transition: all 0.3s;
+        }
+        .technique-card:hover {
+            border-color: var(--gold-dark);
+            transform: translateY(-2px);
+        }
+        .technique-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 0.5rem;
+        }
+        .technique-header h4 {
+            color: var(--gold);
+            font-family: var(--font-heading);
+            font-size: 1rem;
+        }
+        .technique-cost {
+            display: flex;
+            gap: 0.5rem;
+        }
+        .technique-cost span {
+            font-size: 0.75rem;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            background: var(--bg-tertiary);
+            color: var(--text-muted);
+        }
+        .technique-cost .stamina { background: #2d4a2d; color: #7dcc7d; }
+        .technique-cost .action { background: #4a4a2d; color: #cccc7d; }
+        .technique-card p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        /* RAMOS SECTION */
+        .ramos-container {
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+            margin-top: 2rem;
+        }
+        .ramo-section {
+            background: var(--bg-secondary);
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+        }
+        .ramo-header {
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .ramo-header::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 4px;
+        }
+        .ramo-guarda .ramo-header { background: linear-gradient(135deg, var(--ramo-guarda-dark), transparent); }
+        .ramo-guarda .ramo-header::before { background: var(--ramo-guarda); }
+        .ramo-oprimido .ramo-header { background: linear-gradient(135deg, var(--ramo-oprimido-dark), transparent); }
+        .ramo-oprimido .ramo-header::before { background: var(--ramo-oprimido); }
+        .ramo-exilado .ramo-header { background: linear-gradient(135deg, var(--ramo-exilado-dark), transparent); }
+        .ramo-exilado .ramo-header::before { background: var(--ramo-exilado); }
+        
+        .ramo-header h3 {
+            font-family: var(--font-gothic);
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+        .ramo-guarda .ramo-header h3 { color: var(--ramo-guarda); }
+        .ramo-oprimido .ramo-header h3 { color: var(--ramo-oprimido); }
+        .ramo-exilado .ramo-header h3 { color: var(--ramo-exilado); }
+        
+        .ramo-header p {
+            color: var(--text-muted);
+            font-style: italic;
+            line-height: 1.6;
+            max-width: 800px;
+        }
+        .ramo-body {
+            padding: 2rem;
+        }
+
+        /* MARCAS */
+        .marcas-section {
+            margin-bottom: 2rem;
+        }
+        .marcas-section h4 {
+            font-family: var(--font-heading);
+            color: var(--gold);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+        .marcas-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+        }
+        .marca-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1.25rem;
+        }
+        .marca-card h5 {
+            font-family: var(--font-heading);
+            margin-bottom: 0.25rem;
+        }
+        .ramo-guarda .marca-card h5 { color: var(--ramo-guarda); }
+        .ramo-oprimido .marca-card h5 { color: var(--ramo-oprimido); }
+        .ramo-exilado .marca-card h5 { color: var(--ramo-exilado); }
+        .marca-card .flavor {
+            font-style: italic;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            margin-bottom: 0.75rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .marca-card p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+        .marca-card ul {
+            margin: 0;
+            padding-left: 1.25rem;
+        }
+        .marca-card li {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 0.25rem;
+        }
+
+        /* TIER SYSTEM */
+        .tier-section {
+            margin-top: 1.5rem;
+        }
+        .tier-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        .tier-badge {
+            font-family: var(--font-heading);
+            font-size: 0.9rem;
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-weight: 600;
+        }
+        .ramo-guarda .tier-badge { background: var(--ramo-guarda-dark); color: var(--ramo-guarda); border: 1px solid var(--ramo-guarda); }
+        .ramo-oprimido .tier-badge { background: var(--ramo-oprimido-dark); color: var(--ramo-oprimido); border: 1px solid var(--ramo-oprimido); }
+        .ramo-exilado .tier-badge { background: var(--ramo-exilado-dark); color: var(--ramo-exilado); border: 1px solid var(--ramo-exilado); }
+        .tier-line {
+            flex: 1;
+            height: 1px;
+        }
+        .ramo-guarda .tier-line { background: linear-gradient(90deg, var(--ramo-guarda), transparent); }
+        .ramo-oprimido .tier-line { background: linear-gradient(90deg, var(--ramo-oprimido), transparent); }
+        .ramo-exilado .tier-line { background: linear-gradient(90deg, var(--ramo-exilado), transparent); }
+        
+        .tier-techniques {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1rem;
+        }
+        .tier-technique {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1rem;
+            transition: all 0.3s;
+        }
+        .tier-technique:hover {
+            transform: translateY(-2px);
+        }
+        .ramo-guarda .tier-technique:hover { border-color: var(--ramo-guarda); box-shadow: 0 4px 20px rgba(74,158,255,0.2); }
+        .ramo-oprimido .tier-technique:hover { border-color: var(--ramo-oprimido); box-shadow: 0 4px 20px rgba(255,74,74,0.2); }
+        .ramo-exilado .tier-technique:hover { border-color: var(--ramo-exilado); box-shadow: 0 4px 20px rgba(168,85,247,0.2); }
+        
+        .tier-technique h5 {
+            font-family: var(--font-heading);
+            font-size: 1rem;
+            margin-bottom: 0.25rem;
+        }
+        .ramo-guarda .tier-technique h5 { color: var(--ramo-guarda); }
+        .ramo-oprimido .tier-technique h5 { color: var(--ramo-oprimido); }
+        .ramo-exilado .tier-technique h5 { color: var(--ramo-exilado); }
+        .tier-technique .meta {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+        }
+        .tier-technique p {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            line-height: 1.5;
+        }
+        .tier-technique ul {
+            margin: 0.5rem 0 0;
+            padding-left: 1.25rem;
+        }
+        .tier-technique li {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            margin-bottom: 0.25rem;
+        }
+
+        /* ULTIMATE */
+        .ultimate-card {
+            background: linear-gradient(135deg, rgba(0,0,0,0.6), var(--bg-card));
+            border: 2px solid;
+            border-radius: 12px;
+            padding: 1.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .ramo-guarda .ultimate-card { border-color: var(--ramo-guarda); }
+        .ramo-oprimido .ultimate-card { border-color: var(--ramo-oprimido); }
+        .ramo-exilado .ultimate-card { border-color: var(--ramo-exilado); }
+        .ultimate-card::before {
+            content: 'ULTIMATE';
+            position: absolute;
+            top: 0; right: 0;
+            padding: 0.25rem 1rem;
+            font-size: 0.7rem;
+            font-weight: bold;
+            letter-spacing: 0.1em;
+            border-radius: 0 0 0 8px;
+        }
+        .ramo-guarda .ultimate-card::before { background: var(--ramo-guarda); color: #000; }
+        .ramo-oprimido .ultimate-card::before { background: var(--ramo-oprimido); color: #000; }
+        .ramo-exilado .ultimate-card::before { background: var(--ramo-exilado); color: #000; }
+        .ultimate-card h5 {
+            font-family: var(--font-gothic);
+            font-size: 1.3rem;
+            margin-bottom: 0.25rem;
+        }
+        .ramo-guarda .ultimate-card h5 { color: var(--ramo-guarda); }
+        .ramo-oprimido .ultimate-card h5 { color: var(--ramo-oprimido); }
+        .ramo-exilado .ultimate-card h5 { color: var(--ramo-exilado); }
+        .ultimate-card .quote {
+            font-style: italic;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+            padding-left: 1rem;
+            border-left: 2px solid;
+        }
+        .ramo-guarda .ultimate-card .quote { border-color: var(--ramo-guarda); }
+        .ramo-oprimido .ultimate-card .quote { border-color: var(--ramo-oprimido); }
+        .ramo-exilado .ultimate-card .quote { border-color: var(--ramo-exilado); }
+        .ultimate-card .effect-list {
+            background: rgba(0,0,0,0.3);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-top: 1rem;
+        }
+        .ultimate-card .effect-list ul {
+            margin: 0;
+            padding-left: 1.25rem;
+        }
+        .ultimate-card .effect-list li {
+            color: var(--text-secondary);
+            margin-bottom: 0.35rem;
+        }
+        .ultimate-cost {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border-color);
+        }
+        .ultimate-cost h6 {
+            color: #ff6b6b;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+        .ultimate-cost p {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+    
+        .class-nav {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
+        }
+        .class-nav a {
+            color: var(--gold);
+            text-decoration: none;
+            padding: 0.75rem 1.5rem;
+            border: 1px solid var(--gold-dark);
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+        .class-nav a:hover {
+            background: var(--gold-dark);
+            color: var(--bg-primary);
+        }
+    </style>
+</head>
+<body>
+    <button class="menu-toggle">☰ Menu</button>
+    <div class="app-container">
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <a href="../../index.html" class="sidebar-logo">Khalkaria</a>
+                <div class="sidebar-subtitle">Sistema de Regras</div>
+                <div class="sidebar-ornament"><span>◆</span></div>
+            </div>
+            <div class="nav-section">
+                <div class="nav-section-title">Fundamentos</div>
+                <a href="../../index.html" class="nav-link">🏠 Início</a>
+                <a href="../sistema.html" class="nav-link">📜 Sistema Base</a>
+                <a href="../condicoes.html" class="nav-link">⚡ Condições</a>
+            </div>
+            <div class="nav-section">
+                <div class="nav-section-title">Criação de Personagem</div>
+                <a href="../criacao.html" class="nav-link">🎭 Criação</a>
+                <a href="../racas.html" class="nav-link">👤 Raças</a>
+                <a href="../classes.html" class="nav-link">⚔️ Classes</a>
+                <a href="../origens.html" class="nav-link">📜 Origens</a>
+                <a href="../limiar.html" class="nav-link">🌟 O Limiar</a>
+            </div>
+            <div class="nav-section">
+                <div class="nav-section-title">Classes</div>
+                <a href="espadachim.html" class="nav-link nav-link-sub active">⚔️ Espadachim</a>
+                <a href="monge.html" class="nav-link nav-link-sub">👊 Monge</a>
+                <a href="batedor.html" class="nav-link nav-link-sub">🏹 Batedor</a>
+                <a href="alquimista.html" class="nav-link nav-link-sub">⚗️ Alquimista</a>
+                <a href="teurgo.html" class="nav-link nav-link-sub">✨ Teurgo</a>
+                <a href="artilheiro.html" class="nav-link nav-link-sub">💥 Artilheiro</a>
+                <a href="brutalista.html" class="nav-link nav-link-sub">🪓 Brutalista</a>
+            </div>
+        </nav>
+        
+        <main class="main-content">
+            <!-- HERO SECTION -->
+            <section class="class-hero">
+                <h1 class="class-title">Espadachim</h1>
+                <div class="hero-image">
+                    <img src="../../images/espadachim.png" alt="Espadachim">
+                </div>
+                <div class="hero-content">
+                    <p class="hero-tagline">
+                        "Desde o início, ela sempre esteve lá. Sua espada — fiel, silenciosa, letal — te conhece melhor que qualquer pessoa neste mundo brutal. Vocês sangraram juntos, mataram juntos, sobreviveram juntos."
+                    </p>
+                    <p class="hero-desc">
+                        Você aprendeu a ser paciente. Observar. Respirar. Esperar o momento exato em que a guarda baixa, em que o peso muda para o pé errado. Seu corpo é sua arma tanto quanto o aço em suas mãos.
+                    </p>
+                    
+                    <div class="quick-stats">
+                        <div class="stat-card">
+                            <div class="label">Atributos</div>
+                            <div class="value">Des, For, Con</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="label">CD</div>
+                            <div class="value">10 + Des/For + Con</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="label">Estilo</div>
+                            <div class="value">Combate Acima de Tudo</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TREINAMENTO -->
+            <div class="proficiency-box">
+                <h3>⚔️ Proficiência com Espadas</h3>
+                <p>Ao utilizar espadas, o espadachim sempre ataca com <strong>1 ação</strong>, independente do custo da arma equipada.</p>
+                <p>Você <strong>ignora 5 Armadura (Ar)</strong> em ataques com espada e ignora resistência a dano Cortante.</p>
+            </div>
+
+            <div class="formula-grid">
+                <div class="formula-card">
+                    <h4>❤️ Saúde</h4>
+                    <code>(2 × Nível) + (Mod.CON × Nível × 4)</code>
+                </div>
+                <div class="formula-card">
+                    <h4>⚡ Stamina</h4>
+                    <code>(3 × Nível) + ([For+Des/2] × Nível × 5)</code>
+                </div>
+                <div class="formula-card">
+                    <h4>💫 Éter</h4>
+                    <code>(1 × Nível) + ([Int+Sab/2] × Nível × 2)</code>
+                </div>
+                <div class="formula-card">
+                    <h4>🛡️ Evasão Ativa</h4>
+                    <code>14 + Mod.Des + Prof.Defender + 1d10</code>
+                </div>
+            </div>
+
+            <!-- PROGRESSÃO -->
+            <div class="section-divider">
+                <h2>📈 Progressão</h2>
+            </div>
+
+            <table class="progression-table">
+                <tr>
+                    <th>Nível</th>
+                    <th>Técnicas</th>
+                    <th>Técnicas de Ramo</th>
+                    <th>Marcas</th>
+                </tr>
+                <tr>
+                    <td class="level">1</td>
+                    <td>3 Técnicas</td>
+                    <td>—</td>
+                    <td>—</td>
+                </tr>
+                <tr>
+                    <td class="level">2</td>
+                    <td>4 Técnicas</td>
+                    <td>Tier 1</td>
+                    <td>—</td>
+                </tr>
+                <tr>
+                    <td class="level">3</td>
+                    <td>5 Técnicas</td>
+                    <td>Tier 1</td>
+                    <td>1 Marca</td>
+                </tr>
+                <tr>
+                    <td class="level">4</td>
+                    <td>6 Técnicas</td>
+                    <td>Tier 1, 2</td>
+                    <td>2 Marcas</td>
+                </tr>
+                <tr>
+                    <td class="level">5</td>
+                    <td>7 Técnicas</td>
+                    <td>Tier 1, 2, 3</td>
+                    <td>3 Marcas</td>
+                </tr>
+            </table>
+
+            <div class="content-card" style="margin-top: 1rem;">
+                <h4 style="color: var(--gold); margin-bottom: 0.5rem;">Treinamentos Iniciais</h4>
+                <p style="color: var(--text-secondary);">Armas Marciais, Ataque, Defesa</p>
+                <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.5rem;">
+                    + Escolha (1 + Mod.Int) dentre: Movimento, Fortitude, Sobrevivência, Intimidar, Reflexos
+                </p>
+            </div>
+
+            <!-- TÉCNICAS GERAIS -->
+            <div class="section-divider">
+                <h2>⚔️ Técnicas Gerais</h2>
+            </div>
+
+            <p style="color: var(--text-muted); margin-bottom: 1.5rem;">
+                Você possui <strong>3 + Nível</strong> técnicas. Podem ser reatribuídas em descanso longo.
+            </p>
+
+            <div class="techniques-grid">
+                <div class="technique-card">
+                    <div class="technique-header">
+                        <h4>Leitura de Batalha</h4>
+                        <div class="technique-cost"><span class="action">Passiva</span></div>
+                    </div>
+                    <p>Quando um inimigo repetir a mesma ação 2x, ganhe +1 Defender/Atacar contra ele. Acumula até +5.</p>
+                </div>
+
+                <div class="technique-card">
+                    <div class="technique-header">
+                        <h4>Peso do Fracasso</h4>
+                        <div class="technique-cost"><span class="action">Passiva</span></div>
+                    </div>
+                    <p>Ao atacar inimigo que errou ataque no turno dele: +2 Atacar e +1d6 dano se acertar.</p>
+                </div>
+
+                <div class="technique-card">
+                    <div class="technique-header">
+                        <h4>Limiar da Morte</h4>
+                        <div class="technique-cost"><span class="action">Passiva</span></div>
+                    </div>
+                    <p>Ao causar dano, próximo ataque contra o mesmo alvo tem +1 dano cumulativo (Max. +3).</p>
+                </div>
+
+                <div class="technique-card">
+                    <div class="technique-header">
+                        <h4>Pedra de Amolar</h4>
+                        <div class="technique-cost"><span class="action">Descanso Curto</span></div>
+                    </div>
+                    <p>Amole sua espada para +1d4 dano Cortante no próximo combate.</p>
+                </div>
+
+                <div class="technique-card">
+                    <div class="technique-header">
+                        <h4>Respiro do Espadachim</h4>
+                        <div class="technique-cost"><span class="action">1 Ação</span></div>
+                    </div>
+                    <p>Recupera Stamina = Mod.Con e +1 Defender até próximo turno. (1x/turno)</p>
+                </div>
+
+                <div class="technique-card">
+                    <div class="technique-header">
+                        <h4>Lâmina Rápida</h4>
+                        <div class="technique-cost">
+                            <span class="stamina">2 Stamina</span>
+                            <span class="action">1 Ação</span>
+                        </div>
+                    </div>
+                    <p>Próximo ataque não pode receber retaliação.</p>
+                </div>
+
+                <div class="technique-card">
+                    <div class="technique-header">
+                        <h4>Corte Diagonal</h4>
+                        <div class="technique-cost">
+                            <span class="stamina">2 Stamina</span>
+                            <span class="action">1 Ação</span>
+                        </div>
+                    </div>
+                    <p>Ignora 1 Evasão do alvo. Se Exposto, ignora +1 adicional.</p>
+                </div>
+
+                <div class="technique-card">
+                    <div class="technique-header">
+                        <h4>x1</h4>
+                        <div class="technique-cost">
+                            <span class="stamina">3 Stamina</span>
+                            <span class="action">2 Ações</span>
+                        </div>
+                    </div>
+                    <p>Foca em um alvo: +1 Atacar, +1 Defender, +1d4 Dano contra ele até fim do combate.</p>
+                </div>
+
+                <div class="technique-card">
+                    <div class="technique-header">
+                        <h4>Oportunista</h4>
+                        <div class="technique-cost">
+                            <span class="stamina">3 Stamina</span>
+                            <span class="action">1 Ação</span>
+                        </div>
+                    </div>
+                    <p>Se 1º ataque acertar, reduz penalidade do 2º ataque para -2 (em vez de -5).</p>
+                </div>
+
+                <div class="technique-card">
+                    <div class="technique-header">
+                        <h4>Quebrar Postura</h4>
+                        <div class="technique-cost">
+                            <span class="stamina">3 Stamina</span>
+                            <span class="action">1 Ação</span>
+                        </div>
+                    </div>
+                    <p>Se acertar, alvo faz teste de Atacar (CD sua) ou perde reação.</p>
+                </div>
+
+                <div class="technique-card">
+                    <div class="technique-header">
+                        <h4>Ponto Fraco</h4>
+                        <div class="technique-cost">
+                            <span class="stamina">3 Stamina</span>
+                            <span class="action">Passiva</span>
+                        </div>
+                    </div>
+                    <p>Ao atacar inimigo Exposto e rolar crítico: mantém Exposto como ação livre.</p>
+                </div>
+
+                <div class="technique-card">
+                    <div class="technique-header">
+                        <h4>Passo Afiado</h4>
+                        <div class="technique-cost">
+                            <span class="stamina">2 Stamina</span>
+                            <span class="action">Reação</span>
+                        </div>
+                    </div>
+                    <p>Quando inimigo errar você: mova 1,5m sem ataque de oportunidade.</p>
+                </div>
+
+                <div class="technique-card">
+                    <div class="technique-header">
+                        <h4>Corta-Luz</h4>
+                        <div class="technique-cost">
+                            <span class="stamina">3 Stamina</span>
+                            <span class="action">Reação</span>
+                        </div>
+                    </div>
+                    <p>Quando errar ataque: faça segundo ataque com -2.</p>
+                </div>
+
+                <div class="technique-card">
+                    <div class="technique-header">
+                        <h4>Bilhete de Entrada</h4>
+                        <div class="technique-cost">
+                            <span class="stamina">3 Stamina</span>
+                            <span class="action">Reação</span>
+                        </div>
+                    </div>
+                    <p>Quando inimigo entrar no alcance: ataque imediato com -2.</p>
+                </div>
+
+                <div class="technique-card">
+                    <div class="technique-header">
+                        <h4>Brecha</h4>
+                        <div class="technique-cost">
+                            <span class="stamina">5 Stamina</span>
+                            <span class="action">1 Ação</span>
+                        </div>
+                    </div>
+                    <p>Ao acertar alvo não Exposto: aplica Exposto. Se já Exposto: adiciona Sangramento 1. (1x/turno)</p>
+                </div>
+            </div>
+
+            <!-- RAMOS -->
+            <div class="section-divider">
+                <h2>🌳 Ramos do Espadachim</h2>
+            </div>
+
+            <p style="color: var(--text-muted); margin-bottom: 1rem;">
+                Os ramos são caminhos irreversíveis que definem seu personagem. Você escolhe <strong>3 Marcas</strong> e <strong>6 Técnicas de Ramo</strong> (2 por Tier) ao longo da progressão. É aceitável misturar os 3 ramos.
+            </p>
+
+            <div class="ramos-container">
+                <!-- GUARDA-LÂMINA -->
+                <div class="ramo-section ramo-guarda">
+                    <div class="ramo-header">
+                        <h3>🛡️ Ramo do Guarda-Lâmina</h3>
+                        <p>Você jurou um voto que transcende meras palavras — sua lâmina permanece embainhada até que o sangue precise ser derramado. Sua filosofia é simples: observe, aguarde, e quando a lâmina finalmente cantar, que seja o último som que seu inimigo ouvirá.</p>
+                    </div>
+                    <div class="ramo-body">
+                        <!-- MARCAS -->
+                        <div class="marcas-section">
+                            <h4>⚜️ Marcas do Guarda-Lâmina</h4>
+                            <div class="marcas-grid">
+                                <div class="marca-card">
+                                    <h5>Disciplina</h5>
+                                    <p class="flavor">"Você é frio e age apenas quando necessário."</p>
+                                    <p>Você é friamente disciplinado e segue um conjunto de valores difíceis de quebrar.</p>
+                                    <ul>
+                                        <li>Seu <strong>primeiro ataque</strong> em qualquer combate é sempre um <strong>crítico</strong>.</li>
+                                        <li>Se ele errar, seu segundo ataque tem <strong>vantagem</strong>.</li>
+                                    </ul>
+                                </div>
+                                <div class="marca-card">
+                                    <h5>Caça Fardos</h5>
+                                    <p class="flavor">"Você busca criaturas indignas, e as assassina com prazer."</p>
+                                    <p>Você é naturalmente benevolente e busca punir criaturas bestiais/monstruosas.</p>
+                                    <ul>
+                                        <li>Ao assassinar uma criatura maligna (definido pelo mestre) ganha <strong>+1 Stamina máxima</strong>.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- TIER 1 -->
+                        <div class="tier-section">
+                            <div class="tier-header">
+                                <span class="tier-badge">TIER 1</span>
+                                <div class="tier-line"></div>
+                            </div>
+                            <div class="tier-techniques">
+                                <div class="tier-technique">
+                                    <h5>Bloquear e Contra-Atacar</h5>
+                                    <p class="meta">Ação Livre · 3 Stamina</p>
+                                    <p>Ao defender com sucesso, retalie com +1 dado de Dano Cortante. Se acertar, alvo fica <em>Desorientado</em>.</p>
+                                </div>
+                                <div class="tier-technique">
+                                    <h5>Intocável</h5>
+                                    <p class="meta">Passiva</p>
+                                    <p>Enquanto não tiver atacado nesta rodada, você ganha <strong>+5 Defender</strong>.</p>
+                                </div>
+                                <div class="tier-technique">
+                                    <h5>Guardar a Lâmina</h5>
+                                    <p class="meta">1 Ação · 2 Stamina</p>
+                                    <p>Até próximo turno: +2 Defender. Sua primeira retaliação não gasta reação.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- TIER 2 -->
+                        <div class="tier-section">
+                            <div class="tier-header">
+                                <span class="tier-badge">TIER 2</span>
+                                <div class="tier-line"></div>
+                            </div>
+                            <div class="tier-techniques">
+                                <div class="tier-technique">
+                                    <h5>Pulso Forte</h5>
+                                    <p class="meta">Passiva</p>
+                                    <p>Sua primeira retaliação em cada rodada recebe: <strong>+3 Atacar</strong> e <strong>+1d8 Dano Cortante</strong>.</p>
+                                </div>
+                                <div class="tier-technique">
+                                    <h5>Vai e Volta</h5>
+                                    <p class="meta">Ação Livre · 2 Stamina</p>
+                                    <p>Ao estar sem reação e ser atacado, pode retaliar com -2.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- TIER 3 - ULTIMATE -->
+                        <div class="tier-section">
+                            <div class="tier-header">
+                                <span class="tier-badge">TIER 3</span>
+                                <div class="tier-line"></div>
+                            </div>
+                            <div class="ultimate-card">
+                                <h5>Sentença Final</h5>
+                                <p class="meta">1 Ação · 5 Stamina · 1x/Dia</p>
+                                <p class="quote">"A morte chega para todos os pecadores"</p>
+                                <p>Escolha 1 inimigo que já tenha te atacado. Até o fim do combate:</p>
+                                <div class="effect-list">
+                                    <ul>
+                                        <li>+20 Saúde temporária e +10 Stamina temporária</li>
+                                        <li>+1 Reação por Turno e +2 Defender</li>
+                                        <li>+2d6 dano Elemental ao Retaliar (1x/rodada)</li>
+                                        <li>Ao te atacar: retalie como ação livre. Falha crítica do inimigo = retaliação crítica</li>
+                                        <li><strong>Punição de Aço (3 Ações):</strong> Em 6m, ataque cada alvo que atacou nesta rodada</li>
+                                        <li><strong>Proteção Ofensiva (Reação):</strong> Aliado atacado em 3m → retalie o atacante</li>
+                                    </ul>
+                                </div>
+                                <div class="ultimate-cost">
+                                    <h6>⚠️ O Custo</h6>
+                                    <p>Sua espada foi danificada. Esse poder todo, não é seu.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- OPRIMIDO -->
+                <div class="ramo-section ramo-oprimido">
+                    <div class="ramo-header">
+                        <h3>💢 Ramo do Oprimido</h3>
+                        <p>Você cresceu sob o peso do desprezo alheio. Cada insulto, cada olhar de desdém alimentou a brasa que agora arde como forja em seu peito. Sua lâmina não conhece contenção — ela existe para fazer seus opressores provarem o gosto do próprio sangue.</p>
+                    </div>
+                    <div class="ramo-body">
+                        <!-- MARCAS -->
+                        <div class="marcas-section">
+                            <h4>⚜️ Marcas do Oprimido</h4>
+                            <div class="marcas-grid">
+                                <div class="marca-card">
+                                    <h5>Nostalgia</h5>
+                                    <p class="flavor">"Como eles ousam ter te desrespeitado?"</p>
+                                    <p>Você é rancoroso em seu cerne, guarda mais mágoas do que deveria.</p>
+                                    <ul>
+                                        <li>Ao sofrer dano, adiciona <strong>+1 dado</strong> na primeira rolagem de dano. (ex.: 1d6 → 2d6). Perde ao atacar. Não stackável.</li>
+                                    </ul>
+                                </div>
+                                <div class="marca-card">
+                                    <h5>Vingança</h5>
+                                    <p class="flavor">"Raiva. Prazer para você."</p>
+                                    <p>Você não consegue se controlar em não se vingar quando é desrespeitado.</p>
+                                    <ul>
+                                        <li>Ao ser atingido: próximo ataque contra o mesmo alvo tem <strong>+2 Atacar</strong> e <strong>ignora 2 Evasão</strong>.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- TIER 1 -->
+                        <div class="tier-section">
+                            <div class="tier-header">
+                                <span class="tier-badge">TIER 1</span>
+                                <div class="tier-line"></div>
+                            </div>
+                            <div class="tier-techniques">
+                                <div class="tier-technique">
+                                    <h5>Fúria do Verme</h5>
+                                    <p class="meta">Passiva</p>
+                                    <p>Ao acertar corpo a corpo: +1 dano no próximo ataque. Acumula até +3, reseta se errar ou não atacar.</p>
+                                </div>
+                                <div class="tier-technique">
+                                    <h5>Adrenalina Sanguínea</h5>
+                                    <p class="meta">Reação · 3 Stamina</p>
+                                    <p>Ao matar um inimigo, você ganha <strong>3 ações</strong> como reação.</p>
+                                </div>
+                                <div class="tier-technique">
+                                    <h5>Bárbaro</h5>
+                                    <p class="meta">1 Ação · 3 Stamina</p>
+                                    <p>Perde reação, mas ataques corpo a corpo causam <strong>+1d4 dano</strong> nesta rodada.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- TIER 2 -->
+                        <div class="tier-section">
+                            <div class="tier-header">
+                                <span class="tier-badge">TIER 2</span>
+                                <div class="tier-line"></div>
+                            </div>
+                            <div class="tier-techniques">
+                                <div class="tier-technique">
+                                    <h5>Masoquista</h5>
+                                    <p class="meta">1 Ação · 5 Stamina</p>
+                                    <p>Com menos da metade da vida, enfureça-se: <strong>+1 dado de Dano</strong> em todos ataques, <strong>+2 Atacar</strong> contra alvos machucados.</p>
+                                </div>
+                                <div class="tier-technique">
+                                    <h5>Massacre</h5>
+                                    <p class="meta">2 Ações · 5 Stamina</p>
+                                    <p>2 ataques corpo a corpo. Se ambos acertarem: <strong>+2d6 Cortante</strong> e <strong>Sangramento 1</strong>. Executar = recupera Stamina (Mod.Con).</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- TIER 3 - ULTIMATE -->
+                        <div class="tier-section">
+                            <div class="tier-header">
+                                <span class="tier-badge">TIER 3</span>
+                                <div class="tier-line"></div>
+                            </div>
+                            <div class="ultimate-card">
+                                <h5>Cicatrizes</h5>
+                                <p class="meta">1 Ação · 5 Stamina · 1x/Dia</p>
+                                <p class="quote">"A dor nunca foi sua inimiga. Mas sim, sua arma."</p>
+                                <p>Ativável com menos da metade da vida:</p>
+                                <div class="effect-list">
+                                    <ul>
+                                        <li>+20 Saúde temporária e +10 Stamina temporária</li>
+                                        <li>Você ignora toda a Armadura (Ar) do alvo</li>
+                                        <li>Ao acertar, inflige Sangramento 1</li>
+                                        <li>Ao matar com esta habilidade: +1 dado de Dano até fim do combate (Max. +2 dados)</li>
+                                    </ul>
+                                </div>
+                                <div class="ultimate-cost">
+                                    <h6>⚠️ O Custo</h6>
+                                    <p>Ao final de cada turno, recebe 1d6 de dano Primordial.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- EXILADO BÊBADO -->
+                <div class="ramo-section ramo-exilado">
+                    <div class="ramo-header">
+                        <h3>🍺 Ramo do Exilado Bêbado</h3>
+                        <p>A sociedade nunca soube o que fazer com você. O álcool, ironicamente, tornou-se sua âncora: onde outros perdem controle, você encontra clareza. Sua lâmina dança com uma imprevisibilidade calculada, cada movimento aparentemente descuidado escondendo uma precisão mortal.</p>
+                    </div>
+                    <div class="ramo-body">
+                        <!-- MARCAS -->
+                        <div class="marcas-section">
+                            <h4>⚜️ Marcas do Exilado Bêbado</h4>
+                            <div class="marcas-grid">
+                                <div class="marca-card">
+                                    <h5>Coragem Líquida</h5>
+                                    <p class="flavor">"Seu corpo tropeça, sua lâmina não… Ou talvez"</p>
+                                    <p>Você fica corajoso ao estar Bêbado e estranhamente sem vergonha.</p>
+                                    <ul>
+                                        <li>1x/rodada: se errar ataque, pode <strong>rolar novamente</strong>. Se errar de novo, fica <em>Exposto</em>.</li>
+                                    </ul>
+                                </div>
+                                <div class="marca-card">
+                                    <h5>Blefe do Bêbado</h5>
+                                    <p class="flavor">"Você consegue extrapolar todos os limites e, às vezes, sair impune."</p>
+                                    <p>Você nunca admite seu vício e possui um sério problema com mentiras.</p>
+                                    <ul>
+                                        <li>Ao rolar crítico, escolha: <strong>Role +1d20</strong> (11-20: +1 dado ao crítico, <11: fica Exposto) OU <strong>Recupere 2 Stamina</strong> e mova 1,5m sem oportunidades.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- TIER 1 -->
+                        <div class="tier-section">
+                            <div class="tier-header">
+                                <span class="tier-badge">TIER 1</span>
+                                <div class="tier-line"></div>
+                            </div>
+                            <div class="tier-techniques">
+                                <div class="tier-technique">
+                                    <h5>Golpe Torto</h5>
+                                    <p class="meta">1 Ação · 3 Stamina</p>
+                                    <p>Próximo ataque: <strong>+2 Atacar</strong>, se acertar <strong>+1d6 dano</strong>. Se errar, fica <em>Exposto</em>.</p>
+                                </div>
+                                <div class="tier-technique">
+                                    <h5>Beber até Cair</h5>
+                                    <p class="meta">1 Ação · 1 Item:Álcool</p>
+                                    <p>Ganhe condição <em>Bêbado</em>. Enquanto bêbado: <strong>+2 Evasão</strong> e <strong>+2 Atacar</strong>.</p>
+                                </div>
+                                <div class="tier-technique">
+                                    <h5>Sorte do Bêbado</h5>
+                                    <p class="meta">Passiva</p>
+                                    <p>Enquanto <em>Bêbado</em>: rolar <strong>19 natural = 20</strong>.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- TIER 2 -->
+                        <div class="tier-section">
+                            <div class="tier-header">
+                                <span class="tier-badge">TIER 2</span>
+                                <div class="tier-line"></div>
+                            </div>
+                            <div class="tier-techniques">
+                                <div class="tier-technique">
+                                    <h5>Trêbado</h5>
+                                    <p class="meta">1 Ação · 2 Stamina</p>
+                                    <p>Enquanto bêbado, antes de atacar role 1d6:</p>
+                                    <ul>
+                                        <li><strong>1-2:</strong> -1 Atacar, mas +1 dado de Dano se acertar</li>
+                                        <li><strong>3-4:</strong> Nada acontece</li>
+                                        <li><strong>5-6:</strong> +2 Atacar, mas se errar fica Exposto</li>
+                                    </ul>
+                                </div>
+                                <div class="tier-technique">
+                                    <h5>Destino Incerto</h5>
+                                    <p class="meta">Passiva</p>
+                                    <p>Ao rolar 18, 19 ou 20: recupere 1 Stamina e próximo ataque ganha +1 dado de Dano.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- TIER 3 - ULTIMATE -->
+                        <div class="tier-section">
+                            <div class="tier-header">
+                                <span class="tier-badge">TIER 3</span>
+                                <div class="tier-line"></div>
+                            </div>
+                            <div class="ultimate-card">
+                                <h5>Epifania</h5>
+                                <p class="meta">1 Ação · 5 Stamina · 1x/Dia</p>
+                                <p class="quote">"O corpo cambaleia, mas o destino tropeça junto"</p>
+                                <p>Até o fim do combate:</p>
+                                <div class="effect-list">
+                                    <ul>
+                                        <li>+20 Saúde temporária e +10 Stamina temporária</li>
+                                        <li>Ao acertar: recupere Saúde = metade do dano</li>
+                                        <li>+1 dado de Dano. 18-20 = crítico</li>
+                                        <li><strong>Toda rodada role 1d6:</strong></li>
+                                        <li>1 → Dobro de dano recebido E causado</li>
+                                        <li>2 → +5 Atacar</li>
+                                        <li>3 → +5 Defender</li>
+                                        <li>4 → +3 Evasão</li>
+                                        <li>5 → Ataques aplicam Exposto</li>
+                                        <li>6 → Rerole qualquer teste como ação livre (1x/teste)</li>
+                                    </ul>
+                                </div>
+                                <div class="ultimate-cost">
+                                    <h6>⚠️ O Custo</h6>
+                                    <p>Ao errar ataque, role 1d6: 1-2 fica Exposto, 3-6 nada acontece.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="class-nav">
+                <a href="brutalista.html">← Brutalista</a>
+                <a href="../classes.html">Todas as Classes</a>
+                <a href="monge.html">Monge →</a>
+            </div>
+        </main>
+    </div>
+    <script src="../../js/main.js"></script>
+</body>
+</html>

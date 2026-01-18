@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Khalkaria RPG - Sistema de Regras</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400&family=UnifrakturMaguntia&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Splash Screen -->
+    <div class="splash-screen">
+        <div class="splash-logo">Khalkaria</div>
+        <div class="splash-subtitle">Sistema de RPG</div>
+        <div class="splash-ornament">◆ ◆ ◆</div>
+        <div class="splash-enter">Clique para Entrar</div>
+    </div>
+
+    <button class="menu-toggle">☰ Menu</button>
+    
+    <div class="app-container">
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <a href="index.html" class="sidebar-logo">Khalkaria</a>
+                <div class="sidebar-subtitle">Sistema de Regras</div>
+                <div class="sidebar-ornament"><span>◆</span></div>
+            </div>
+            <div class="nav-section">
+                <div class="nav-section-title">Fundamentos</div>
+                <a href="index.html" class="nav-link active">🏠 Início</a>
+                <a href="pages/sistema.html" class="nav-link">📜 Sistema Base</a>
+                <a href="pages/condicoes.html" class="nav-link">⚡ Condições</a>
+            </div>
+            <div class="nav-section">
+                <div class="nav-section-title">Criação de Personagem</div>
+                <a href="pages/criacao.html" class="nav-link">🎭 Criação</a>
+                <a href="pages/racas.html" class="nav-link">👤 Raças</a>
+                <a href="pages/classes.html" class="nav-link">⚔️ Classes</a>
+                <a href="pages/origens.html" class="nav-link">📜 Origens</a>
+                <a href="pages/limiar.html" class="nav-link">🌟 O Limiar</a>
+            </div>
+            <div class="nav-section">
+                <div class="nav-section-title">Classes</div>
+                <a href="pages/classes/espadachim.html" class="nav-link nav-link-sub">⚔️ Espadachim</a>
+                <a href="pages/classes/monge.html" class="nav-link nav-link-sub">👊 Monge</a>
+                <a href="pages/classes/batedor.html" class="nav-link nav-link-sub">🏹 Batedor</a>
+                <a href="pages/classes/alquimista.html" class="nav-link nav-link-sub">⚗️ Alquimista</a>
+                <a href="pages/classes/teurgo.html" class="nav-link nav-link-sub">✨ Teurgo</a>
+                <a href="pages/classes/artilheiro.html" class="nav-link nav-link-sub">💥 Artilheiro</a>
+                <a href="pages/classes/brutalista.html" class="nav-link nav-link-sub">🪓 Brutalista</a>
+            </div>
+        </nav>
+        
+        <main class="main-content">
+            <!-- Hero Section -->
+            <div class="index-hero">
+                <h1>Khalkaria</h1>
+                <p class="subtitle">Sistema de RPG de Mesa</p>
+            </div>
+            
+            <div class="separator-ornament"><span>✦</span></div>
+            
+            <!-- Quick Navigation -->
+            <h2>📚 Navegação Rápida</h2>
+            
+            <div class="index-nav-grid">
+                <a href="pages/sistema.html" class="index-nav-card">
+                    <div class="icon">📜</div>
+                    <h3>Sistema Base</h3>
+                    <p>Atributos, Perícias, Combate, Armas, Magias e Progressão</p>
+                </a>
+                
+                <a href="pages/racas.html" class="index-nav-card">
+                    <div class="icon">👤</div>
+                    <h3>Raças</h3>
+                    <p>Humano, Anão, Autômato, Gruto, Inseto, Dryad, Corrompido</p>
+                </a>
+                
+                <a href="pages/classes.html" class="index-nav-card">
+                    <div class="icon">⚔️</div>
+                    <h3>Classes</h3>
+                    <p>Espadachim, Batedor, Brutalista, Teurgo, Alquimista, Monge, Artilheiro</p>
+                </a>
+                
+                <a href="pages/origens.html" class="index-nav-card">
+                    <div class="icon">🎭</div>
+                    <h3>Origens</h3>
+                    <p>15 origens que definem o passado do seu personagem</p>
+                </a>
+                
+                <a href="pages/limiar.html" class="index-nav-card">
+                    <div class="icon">🌟</div>
+                    <h3>O Limiar</h3>
+                    <p>Sistema de progressão e customização com Pontos do Limiar e O Abismo</p>
+                </a>
+                
+                <a href="pages/condicoes.html" class="index-nav-card">
+                    <div class="icon">⚡</div>
+                    <h3>Condições</h3>
+                    <p>Estados de combate, condições mentais, físicas e exaustão</p>
+                </a>
+            </div>
+            
+            <div class="separator-ornament"><span>✦</span></div>
+            
+            <!-- Criação de Personagem -->
+            <h2>🎲 Criação de Personagem</h2>
+            
+            <div class="card">
+                <ol>
+                    <li><strong>Role Atributos:</strong> Role 4d6, retire o pior e anote o valor. Faça isso 5 vezes e distribua entre Força, Destreza, Constituição, Inteligência e Sabedoria (8-20)</li>
+                    <li><strong>Escolha sua Raça:</strong> Cada raça fornece bônus de atributo, perícias e características únicas</li>
+                    <li><strong>Escolha sua Classe:</strong> Define seus Status, Técnicas, Ramos e estilo de combate</li>
+                    <li><strong>Escolha sua Origem:</strong> Define seu passado, perícias e equipamento inicial</li>
+                    <li><strong>Finalize:</strong> Calcule Status, escolha Técnicas e Marcas de Ramo</li>
+                </ol>
+            </div>
+            
+            <!-- Status Universais -->
+            <h2>❤️ Status Universais</h2>
+            
+            <div class="status-grid">
+                <div class="status-box health">
+                    <h4>Saúde</h4>
+                    <p>Condição física. Ao reduzir a 0 ou menos, você recebe a condição <em>Morrendo</em>.</p>
+                </div>
+                <div class="status-box stamina">
+                    <h4>Stamina</h4>
+                    <p>Vigor perante o cansaço. Perícias e habilidades utilizam Stamina. Ao reduzir a 0, fica <em>Exaurido</em>.</p>
+                </div>
+                <div class="status-box ether">
+                    <h4>Éter</h4>
+                    <p>Energia primordial e sanidade. Ao reduzir a 0 ou menos fica <em>Oco</em>.</p>
+                </div>
+            </div>
+            
+            <div class="separator-ornament"><span>✦</span></div>
+            
+            <!-- Classes Resumo -->
+            <h2>⚔️ Classes</h2>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Classe</th>
+                        <th>Recurso Principal</th>
+                        <th>Estilo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><a href="pages/classes/espadachim.html">Espadachim</a></td>
+                        <td>Stamina</td>
+                        <td>Combate com espadas, timing, retaliação</td>
+                    </tr>
+                    <tr>
+                        <td><a href="pages/classes/batedor.html">Batedor</a></td>
+                        <td>Stamina</td>
+                        <td>Exploração, furtividade, reconhecimento</td>
+                    </tr>
+                    <tr>
+                        <td><a href="pages/classes/brutalista.html">Brutalista</a></td>
+                        <td>Saúde</td>
+                        <td>Tanque, linha de frente, presença intimidadora</td>
+                    </tr>
+                    <tr>
+                        <td><a href="pages/classes/teurgo.html">Teurgo</a></td>
+                        <td>Éter</td>
+                        <td>Magia, escolas primordiais, conjuração</td>
+                    </tr>
+                    <tr>
+                        <td><a href="pages/classes/alquimista.html">Alquimista</a></td>
+                        <td>Reagentes</td>
+                        <td>Preparação química, suporte, crafting</td>
+                    </tr>
+                    <tr>
+                        <td><a href="pages/classes/monge.html">Monge</a></td>
+                        <td>Fluxo</td>
+                        <td>Combate desarmado, mobilidade, anti-magia</td>
+                    </tr>
+                    <tr>
+                        <td><a href="pages/classes/artilheiro.html">Artilheiro</a></td>
+                        <td>Concentração</td>
+                        <td>Combate à distância, precisão, controle</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div class="separator-ornament"><span>✦</span></div>
+            
+            <!-- Progressão -->
+            <h2>📈 Progressão de Nível</h2>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nível</th>
+                        <th>XP</th>
+                        <th>Benefícios</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>—</td>
+                        <td>3 Técnicas de Classe, Características de Raça, 1 Habilidade de Origem</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>150</td>
+                        <td>4 Técnicas, Técnicas Tier 1 de Classe, +3 Pontos do Limiar</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>400</td>
+                        <td>5 Técnicas, 1 Marca de Classe, +3 Pontos do Limiar</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>1000</td>
+                        <td>6 Técnicas, Técnicas Tier 2, 2 Marcas, +3 Pontos do Limiar</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>2000</td>
+                        <td>7 Técnicas, Técnicas Tier 3 (Ultimates), 3 Marcas, +3 Pontos do Limiar</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div class="separator-ornament"><span>✦</span></div>
+            
+            <!-- Links Rápidos -->
+            <h2>🔗 Acesso Rápido</h2>
+            
+            <h3>Raças</h3>
+            <div class="quick-links">
+                <a href="pages/racas.html#humano" class="quick-link">Humano</a>
+                <a href="pages/racas.html#anao" class="quick-link">Anão</a>
+                <a href="pages/racas.html#automato" class="quick-link">Autômato</a>
+                <a href="pages/racas.html#gruto" class="quick-link">Gruto</a>
+                <a href="pages/racas.html#inseto" class="quick-link">Inseto</a>
+                <a href="pages/racas.html#dryad" class="quick-link">Dryad</a>
+                <a href="pages/racas.html#corrompido" class="quick-link">Corrompido</a>
+            </div>
+            
+            <h3>Classes</h3>
+            <div class="quick-links">
+                <a href="pages/classes/espadachim.html" class="quick-link">⚔️ Espadachim</a>
+                <a href="pages/classes/batedor.html" class="quick-link">🏹 Batedor</a>
+                <a href="pages/classes/brutalista.html" class="quick-link">🪓 Brutalista</a>
+                <a href="pages/classes/teurgo.html" class="quick-link">🔮 Teurgo</a>
+                <a href="pages/classes/alquimista.html" class="quick-link">🧪 Alquimista</a>
+                <a href="pages/classes/monge.html" class="quick-link">👊 Monge</a>
+                <a href="pages/classes/artilheiro.html" class="quick-link">🔫 Artilheiro</a>
+            </div>
+            
+            <h3>Origens</h3>
+            <div class="quick-links">
+                <a href="pages/origens.html#academico" class="quick-link">Acadêmico</a>
+                <a href="pages/origens.html#acolito" class="quick-link">Acolito</a>
+                <a href="pages/origens.html#soldado" class="quick-link">Soldado</a>
+                <a href="pages/origens.html#criminoso" class="quick-link">Criminoso</a>
+                <a href="pages/origens.html#nobre" class="quick-link">Nobre</a>
+                <a href="pages/origens.html#mercador" class="quick-link">Mercador</a>
+                <a href="pages/origens.html#andarilho" class="quick-link">Andarilho</a>
+                <a href="pages/origens.html#exilado" class="quick-link">Exilado</a>
+                <a href="pages/origens.html#cacador" class="quick-link">Caçador</a>
+                <a href="pages/origens.html#escravo" class="quick-link">Escravo</a>
+                <a href="pages/origens.html#cultista" class="quick-link">Cultista</a>
+                <a href="pages/origens.html#marinheiro" class="quick-link">Marinheiro</a>
+                <a href="pages/origens.html#refugiado" class="quick-link">Refugiado</a>
+                <a href="pages/origens.html#vidente" class="quick-link">Vidente</a>
+                <a href="pages/origens.html#amaldicoado" class="quick-link">Amaldiçoado</a>
+            </div>
+            
+        </main>
+    </div>
+    
+    <script src="js/main.js"></script>
+</body>
+</html>

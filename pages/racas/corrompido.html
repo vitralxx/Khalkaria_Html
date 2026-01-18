@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Corrompido - Khalkaria RPG</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400&family=UnifrakturMaguntia&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/style.css">
+    <style>
+        .raca-header{display:grid;grid-template-columns:300px 1fr;gap:2rem;margin-bottom:2rem}
+        @media(max-width:800px){.raca-header{grid-template-columns:1fr}}
+        .raca-image-container{background:var(--bg-tertiary);border:1px solid var(--border-color);border-radius:12px;height:400px;display:flex;align-items:center;justify-content:center;color:var(--text-muted);overflow:hidden}
+        .raca-image-container img{width:100%;height:100%;object-fit:cover;object-position:center 20%}
+        .raca-info h1{font-family:var(--font-gothic);font-size:2.5rem;color:var(--gold);margin-bottom:0.5rem}
+        .raca-tagline{font-style:italic;color:var(--text-muted);font-size:1.1rem;margin-bottom:1rem}
+        .stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:1rem;margin:1.5rem 0}
+        .stat-box{background:var(--bg-tertiary);border:1px solid var(--border-color);border-radius:8px;padding:1rem;text-align:center}
+        .stat-box .label{font-size:0.8rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.05em}
+        .stat-box .value{font-size:1.1rem;color:var(--gold);font-weight:600;margin-top:0.25rem}
+        .trait-card{background:var(--bg-card);border:1px solid var(--border-color);border-left:4px solid var(--gold-dark);border-radius:0 8px 8px 0;padding:1.25rem;margin-bottom:1rem}
+        .trait-card h4{color:var(--gold);font-family:var(--font-heading);margin-bottom:0.5rem}
+        .trait-card p,.trait-card li{color:var(--text-secondary);margin:0.25rem 0}
+        .variant-section{background:var(--bg-secondary);border:1px solid var(--border-color);border-radius:12px;padding:1.5rem;margin-top:2rem}
+        .variant-section h3{color:var(--gold);font-family:var(--font-heading);margin-bottom:1rem;padding-bottom:0.5rem;border-bottom:1px solid var(--border-color)}
+        .variant-card{background:var(--bg-card);border:1px solid var(--border-color);border-radius:8px;padding:1.25rem;margin-bottom:1rem}
+        .variant-card:last-child{margin-bottom:0}
+        .variant-card h4{color:var(--gold-light);font-family:var(--font-heading);margin-bottom:0.5rem}
+        .variant-card p{color:var(--text-muted);font-style:italic;margin-bottom:0.75rem;font-size:0.95rem}
+        .variant-card ul{margin:0;padding-left:1.25rem}
+        .variant-card li{color:var(--text-secondary);margin-bottom:0.35rem}
+        .physical-data{display:flex;gap:2rem;flex-wrap:wrap;margin-top:1rem;padding-top:1rem;border-top:1px solid var(--border-color);font-size:0.9rem;color:var(--text-muted)}
+        .physical-data span strong{color:var(--text-secondary)}
+        .nav-racas{display:flex;justify-content:space-between;margin-top:2rem;padding-top:1rem;border-top:1px solid var(--border-color)}
+        .nav-racas a{color:var(--gold);text-decoration:none}
+        .section-title{color:var(--gold);font-family:var(--font-heading);margin:1.5rem 0 1rem 0}
+        .grau-number{display:inline-block;background:linear-gradient(135deg, #4a1942, #1a1a2e);color:#c084fc;width:28px;height:28px;border-radius:50%;text-align:center;line-height:28px;font-weight:bold;margin-right:0.5rem}
+        .warning-box{background:linear-gradient(135deg, rgba(139, 0, 0, 0.15), rgba(74, 25, 66, 0.15));border:1px solid #6b2d5c;border-radius:8px;padding:1rem;margin-top:0.75rem;color:#c77dff;font-size:0.9rem}
+    </style>
+</head>
+<body>
+    <button class="menu-toggle">☰ Menu</button>
+    <div class="app-container">
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <a href="../../index.html" class="sidebar-logo">Khalkaria</a>
+                <div class="sidebar-subtitle">Sistema de Regras</div>
+                <div class="sidebar-ornament"><span>◆</span></div>
+            </div>
+            <div class="nav-section">
+                <div class="nav-section-title">Fundamentos</div>
+                <a href="../../index.html" class="nav-link">🏠 Início</a>
+                <a href="../sistema.html" class="nav-link">📜 Sistema Base</a>
+                <a href="../condicoes.html" class="nav-link">⚡ Condições</a>
+            </div>
+            <div class="nav-section">
+                <div class="nav-section-title">Criação de Personagem</div>
+                <a href="../criacao.html" class="nav-link">🎭 Criação</a>
+                <a href="../racas.html" class="nav-link active">👤 Raças</a>
+                <a href="../classes.html" class="nav-link">⚔️ Classes</a>
+                <a href="../origens.html" class="nav-link">📜 Origens</a>
+                <a href="../limiar.html" class="nav-link">🌟 O Limiar</a>
+            </div>
+            <div class="nav-section">
+                <div class="nav-section-title">Classes</div>
+                <a href="../classes/espadachim.html" class="nav-link nav-link-sub">⚔️ Espadachim</a>
+                <a href="../classes/monge.html" class="nav-link nav-link-sub">👊 Monge</a>
+                <a href="../classes/batedor.html" class="nav-link nav-link-sub">🏹 Batedor</a>
+                <a href="../classes/alquimista.html" class="nav-link nav-link-sub">⚗️ Alquimista</a>
+                <a href="../classes/teurgo.html" class="nav-link nav-link-sub">✨ Teurgo</a>
+                <a href="../classes/artilheiro.html" class="nav-link nav-link-sub">💥 Artilheiro</a>
+                <a href="../classes/brutalista.html" class="nav-link nav-link-sub">🪓 Brutalista</a>
+            </div>
+        </nav>
+        
+        <main class="main-content">
+            <div class="raca-header">
+                <div class="raca-image-container">
+                    <img src="../../images/racas/corrompido.png" alt="Corrompido">
+                </div>
+                <div class="raca-info">
+                    <h1>Corrompido</h1>
+                    <p class="raca-tagline">Marcados pelas forças primordiais. A corrupção não é doença — é transformação.</p>
+                    
+                    <p>Eles carregam fragmentos do plano místico em seus corpos. Veias que brilham sutilmente, olhos que refletem cores impossíveis, sussurros constantes no limite da audição. São temidos por muitos, estudados por Teurgos, e caçados por alguns.</p>
+                    
+                    <div class="stats-grid">
+                        <div class="stat-box">
+                            <div class="label">Atributos</div>
+                            <div class="value">+2 Int/Sab, -1 Con</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="label">Alternativo</div>
+                            <div class="value">+1 Int/Sab, -2 Físico</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="label">Movimento</div>
+                            <div class="value">9 metros</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="label">Idiomas</div>
+                            <div class="value">Comum</div>
+                        </div>
+                    </div>
+                    
+                    <div class="physical-data">
+                        <span><strong>Vida:</strong> 50 anos</span>
+                        <span><strong>Altura:</strong> 1,50m - 1,90m</span>
+                        <span><strong>Peso:</strong> 60kg - 95kg</span>
+                    </div>
+                </div>
+            </div>
+            
+            <h3 class="section-title">Perícias de Raça</h3>
+            <div class="content-card">
+                <p>Vontade ou Místico</p>
+            </div>
+            
+            <h3 class="section-title">Características de Raça</h3>
+            
+            <div class="trait-card">
+                <h4>Ser Primordial</h4>
+                <p>Você pode sentir a presença das Forças Primordiais (Magias) em até 9m.</p>
+            </div>
+            
+            <div class="trait-card">
+                <h4>Receptáculo Natural</h4>
+                <ul>
+                    <li>Você pode conjurar duas magias de nível 1 sem um foco designado.</li>
+                    <li>Ao fazer isso, rola Vontade (CD 12), recebendo 1d4 de dano mental em caso de falha.</li>
+                    <li>Escolha-as dentre as listas de magia nível 1.</li>
+                </ul>
+            </div>
+            
+            <div class="trait-card">
+                <h4>Sussurros <span style="color: var(--text-muted); font-size: 0.9rem;">(1x/Descanso Curto)</span></h4>
+                <ul>
+                    <li>Você constantemente ouve fragmentos do plano místico e pode tentar estabelecer uma conversa com essas forças.</li>
+                    <li>Role um teste de Vontade (CD 15), se suceder você sustenta uma conversa de até 30 segundos com as vozes da sua cabeça.</li>
+                    <li>Se falhar, perde 1d4 de Éter.</li>
+                </ul>
+            </div>
+            
+            <div class="trait-card">
+                <h4>Natureza Dúbia</h4>
+                <ul>
+                    <li>Você possui -2 em testes de interação social (exceto intimidação) com seres humanoides que desconfiem de você.</li>
+                    <li>Emana misticidade naturalmente, sendo facilmente percebido por magias que detectem isso.</li>
+                </ul>
+            </div>
+            
+            <h3 class="section-title">Relações Sociais</h3>
+            <div class="content-card">
+                <p>Os corrompidos são universalmente vistos com desconfiança. Alguns corrompidos abraçam sua natureza, buscando mais poder. Outros lutam contra ela, tentando permanecer humanos. Muitos simplesmente tentam sobreviver em um mundo que não os quer.</p>
+            </div>
+            
+            <div class="variant-section">
+                <h3>Graus de Corrupção</h3>
+                <p style="color: var(--text-muted); margin-bottom: 1rem;">Corrompidos diferem no quanto as forças primordiais os transformaram. <strong>Ao selecionar graus mais altos, você recebe todos os benefícios de graus anteriores.</strong></p>
+                
+                <div class="variant-card">
+                    <h4><span class="grau-number">1</span> Tocado</h4>
+                    <p>A marca está lá, mas ainda é sutil. Olhos que brilham no escuro, veias que pulsam levemente, sonhos estranhos.</p>
+                    <ul>
+                        <li>Pode conjurar magias com 1 modulação grátis da respectiva escola da magia. Usos (1+Mod. Sabedoria)/Descanso Longo.</li>
+                    </ul>
+                </div>
+                
+                <div class="variant-card">
+                    <h4><span class="grau-number">2</span> Alterado</h4>
+                    <p>A transformação é visível. Pele com padrões estranhos, voz que ecoa sutilmente, olhos que brilham anormalmente.</p>
+                    <ul>
+                        <li>+3 Éter máximo</li>
+                        <li>Ao canalizar magias, pode materializá-las com intensidade <em>Forçada</em> com +1 éter (Ao invés de +2)</li>
+                        <li>Descansa com uma comodidade de descanso a menos. (Descanso Bom → Descanso Normal)</li>
+                    </ul>
+                </div>
+                
+                <div class="variant-card">
+                    <h4><span class="grau-number">3</span> Consumido</h4>
+                    <p>Você é mais primordial que mortal. Seu corpo mal contém o que você se tornou. Você parece mais um alienígena do que uma criatura humanoide.</p>
+                    <ul>
+                        <li>+5 Éter máximo (Não soma ao anterior)</li>
+                        <li>Ao canalizar magias, pode materializá-las com intensidade <em>Transbordante</em> sem rolar o teste de Vontade.</li>
+                        <li>-5 em Interação Social (exceto intimidação) com seres não corrompidos.</li>
+                    </ul>
+                    <div class="warning-box">
+                        ⚠️ Essa energia não pertence ao plano em que você está. Você é <strong>vulnerável a todos os tipos de dano</strong>, mas tem <strong>Armadura Específica (Primordial e Místico) 5</strong>.
+                    </div>
+                </div>
+            </div>
+            
+            <div class="nav-racas">
+                <a href="gruto.html">← Anterior: Gruto</a>
+                <a href="automato.html">Próxima: Autômato →</a>
+            </div>
+        </main>
+    </div>
+    <script src="../../js/main.js"></script>
+</body>
+</html>

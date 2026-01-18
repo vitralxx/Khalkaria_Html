@@ -1,0 +1,1744 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alquimista - Khalkaria RPG</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400&family=UnifrakturMaguntia&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/style.css">
+    <style>
+        :root {
+            --ramo-artificer: #8b5cf6;
+            --ramo-artificer-dark: #4c1d95;
+            --ramo-bombardeiro: #ef4444;
+            --ramo-bombardeiro-dark: #7f1d1d;
+            --ramo-boticario: #22c55e;
+            --ramo-boticario-dark: #14532d;
+        }
+
+        /* HERO SECTION - Imagem em destaque */
+        .class-hero {
+            position: relative;
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: linear-gradient(135deg, rgba(20,15,10,0.95), rgba(30,25,20,0.9));
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            overflow: hidden;
+            text-align: center;
+        }
+        .class-hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--gold), var(--gold-light), var(--gold));
+        }
+        .class-title {
+            font-family: var(--font-gothic);
+            font-size: 4rem;
+            color: var(--gold);
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.8), 0 0 30px rgba(212,175,55,0.3);
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+        .hero-image {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto 2rem;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 3px solid var(--gold-dark);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.6), 0 0 30px rgba(212,175,55,0.15);
+        }
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: left;
+        }
+        .hero-tagline {
+            font-size: 1.1rem;
+            font-style: italic;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            line-height: 1.7;
+            border-left: 3px solid var(--gold-dark);
+            padding-left: 1rem;
+        }
+        .hero-desc {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+        .hero-image {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 3px solid var(--gold-dark);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.6), 0 0 30px rgba(212,175,55,0.15);
+            aspect-ratio: 16 / 9;
+        }
+        .hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            background: var(--bg-tertiary);
+        }
+
+        /* QUICK STATS */
+        .quick-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        .stat-card {
+            background: rgba(0,0,0,0.4);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1rem;
+            text-align: center;
+        }
+        .stat-card .label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+        .stat-card .value {
+            font-size: 1.1rem;
+            color: var(--gold);
+            font-weight: 600;
+            margin-top: 0.25rem;
+        }
+
+        /* FORMULAS */
+        .formula-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        .formula-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1rem;
+        }
+        .formula-card h4 {
+            color: var(--gold);
+            font-family: var(--font-heading);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+        .formula-card code {
+            display: block;
+            background: var(--bg-tertiary);
+            padding: 0.5rem;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            color: var(--gold-light);
+        }
+
+        /* SECTION TITLES */
+        .section-divider {
+            display: flex;
+            align-items: center;
+            margin: 3rem 0 2rem;
+            gap: 1rem;
+        }
+        .section-divider h2 {
+            font-family: var(--font-gothic);
+            font-size: 2rem;
+            color: var(--gold);
+            white-space: nowrap;
+        }
+        .section-divider::after {
+            content: '';
+            flex: 1;
+            height: 2px;
+            background: linear-gradient(90deg, var(--gold-dark), transparent);
+        }
+
+        /* PROGRESSION TABLE */
+        .progression-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+        }
+        .progression-table th,
+        .progression-table td {
+            padding: 1rem;
+            border: 1px solid var(--border-color);
+            text-align: left;
+        }
+        .progression-table th {
+            background: var(--bg-tertiary);
+            color: var(--gold);
+            font-family: var(--font-heading);
+            font-size: 0.9rem;
+        }
+        .progression-table td {
+            background: var(--bg-card);
+            color: var(--text-secondary);
+        }
+        .level-badge {
+            display: inline-block;
+            background: var(--gold-dark);
+            color: var(--bg-primary);
+            font-weight: 700;
+            width: 32px;
+            height: 32px;
+            line-height: 32px;
+            text-align: center;
+            border-radius: 50%;
+        }
+
+        /* TECHNIQUES TABLE */
+        .technique-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            font-size: 0.95rem;
+        }
+        .technique-table th {
+            background: var(--bg-tertiary);
+            color: var(--gold);
+            font-family: var(--font-heading);
+            padding: 0.75rem;
+            text-align: left;
+            border: 1px solid var(--border-color);
+        }
+        .technique-table td {
+            padding: 0.75rem;
+            border: 1px solid var(--border-color);
+            background: var(--bg-card);
+            color: var(--text-secondary);
+            vertical-align: top;
+        }
+        .technique-table tr:hover td {
+            background: rgba(212,175,55,0.05);
+        }
+        .technique-name {
+            color: var(--gold-light);
+            font-weight: 600;
+        }
+        .technique-cost {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+        .technique-action {
+            font-size: 0.8rem;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            background: var(--bg-tertiary);
+            color: var(--text-muted);
+        }
+
+        /* REAGENTES BOX */
+        .reagentes-box {
+            background: linear-gradient(135deg, rgba(139,92,246,0.1), rgba(34,197,94,0.05));
+            border: 2px solid var(--ramo-artificer);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+        .reagentes-box h3 {
+            color: var(--ramo-artificer);
+            font-family: var(--font-heading);
+            margin-bottom: 1rem;
+        }
+        .reagentes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        .reagentes-item {
+            background: rgba(0,0,0,0.3);
+            border-radius: 8px;
+            padding: 0.75rem;
+        }
+        .reagentes-item strong {
+            color: var(--gold-light);
+        }
+
+        /* RAMOS INTRO */
+        .ramos-intro {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .ramos-intro p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+        .ramos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        .ramo-card {
+            background: var(--bg-card);
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.3s;
+        }
+        .ramo-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        }
+        .ramo-card.artificer { border-color: var(--ramo-artificer); }
+        .ramo-card.bombardeiro { border-color: var(--ramo-bombardeiro); }
+        .ramo-card.boticario { border-color: var(--ramo-boticario); }
+        .ramo-card h3 {
+            font-family: var(--font-heading);
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+        .ramo-card.artificer h3 { color: var(--ramo-artificer); }
+        .ramo-card.bombardeiro h3 { color: var(--ramo-bombardeiro); }
+        .ramo-card.boticario h3 { color: var(--ramo-boticario); }
+        .ramo-card .subtitle {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+        }
+        .ramo-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* MARCAS */
+        .marca-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
+            overflow: hidden;
+        }
+        .marca-header {
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .marca-header.artificer { background: linear-gradient(135deg, var(--ramo-artificer-dark), transparent); }
+        .marca-header.bombardeiro { background: linear-gradient(135deg, var(--ramo-bombardeiro-dark), transparent); }
+        .marca-header.boticario { background: linear-gradient(135deg, var(--ramo-boticario-dark), transparent); }
+        .marca-header h4 {
+            font-family: var(--font-heading);
+            font-size: 1.1rem;
+            margin-bottom: 0.25rem;
+        }
+        .marca-header.artificer h4 { color: var(--ramo-artificer); }
+        .marca-header.bombardeiro h4 { color: var(--ramo-bombardeiro); }
+        .marca-header.boticario h4 { color: var(--ramo-boticario); }
+        .marca-header .quote {
+            font-style: italic;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+        .marca-body {
+            padding: 1.5rem;
+        }
+        .marca-body p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+        .marca-effect {
+            background: var(--bg-tertiary);
+            border-left: 3px solid var(--gold-dark);
+            padding: 0.75rem 1rem;
+            margin-bottom: 0.5rem;
+            border-radius: 0 8px 8px 0;
+        }
+        .marca-effect p {
+            margin: 0;
+            font-size: 0.9rem;
+        }
+
+        /* TIER SECTIONS */
+        .tier-section {
+            margin: 2rem 0;
+        }
+        .tier-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--gold-dark);
+        }
+        .tier-header h3 {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            color: var(--gold);
+        }
+        .tier-badge {
+            background: var(--gold-dark);
+            color: var(--bg-primary);
+            font-weight: 700;
+            padding: 0.25rem 0.75rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+        }
+
+        /* TECHNIQUE CARDS */
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.5rem;
+        }
+        .tech-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        .tech-card-header {
+            padding: 1rem 1.25rem;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .tech-card-header.artificer { background: linear-gradient(135deg, var(--ramo-artificer-dark), transparent); }
+        .tech-card-header.bombardeiro { background: linear-gradient(135deg, var(--ramo-bombardeiro-dark), transparent); }
+        .tech-card-header.boticario { background: linear-gradient(135deg, var(--ramo-boticario-dark), transparent); }
+        .tech-card-header h4 {
+            font-family: var(--font-heading);
+            font-size: 1rem;
+        }
+        .tech-card-header.artificer h4 { color: var(--ramo-artificer); }
+        .tech-card-header.bombardeiro h4 { color: var(--ramo-bombardeiro); }
+        .tech-card-header.boticario h4 { color: var(--ramo-boticario); }
+        .tech-card-header .cost {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            background: rgba(0,0,0,0.3);
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+        }
+        .tech-card-body {
+            padding: 1.25rem;
+        }
+        .tech-card-body p, .tech-card-body li {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-bottom: 0.5rem;
+        }
+        .tech-card-body ul {
+            margin: 0.5rem 0;
+            padding-left: 1.25rem;
+        }
+
+        /* ULTIMATE CARDS */
+        .ultimate-card {
+            background: linear-gradient(135deg, rgba(212,175,55,0.1), var(--bg-card));
+            border: 2px solid var(--gold);
+            border-radius: 16px;
+            margin: 1.5rem 0;
+            overflow: hidden;
+        }
+        .ultimate-header {
+            padding: 1.25rem 1.5rem;
+            border-bottom: 1px solid var(--gold-dark);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .ultimate-header.artificer { background: linear-gradient(135deg, var(--ramo-artificer-dark), transparent); }
+        .ultimate-header.bombardeiro { background: linear-gradient(135deg, var(--ramo-bombardeiro-dark), transparent); }
+        .ultimate-header.boticario { background: linear-gradient(135deg, var(--ramo-boticario-dark), transparent); }
+        .ultimate-header h4 {
+            font-family: var(--font-heading);
+            font-size: 1.3rem;
+        }
+        .ultimate-header.artificer h4 { color: var(--ramo-artificer); }
+        .ultimate-header.bombardeiro h4 { color: var(--ramo-bombardeiro); }
+        .ultimate-header.boticario h4 { color: var(--ramo-boticario); }
+        .ultimate-badge {
+            background: var(--gold);
+            color: var(--bg-primary);
+            font-weight: 700;
+            padding: 0.25rem 0.75rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+        }
+        .ultimate-quote {
+            font-style: italic;
+            color: var(--gold-light);
+            padding: 1rem 1.5rem;
+            background: rgba(0,0,0,0.2);
+            border-left: 3px solid var(--gold);
+        }
+        .ultimate-body {
+            padding: 1.5rem;
+        }
+        .ultimate-body h5 {
+            color: var(--gold);
+            font-family: var(--font-heading);
+            margin: 1rem 0 0.5rem;
+        }
+        .ultimate-body p, .ultimate-body li {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+        .ultimate-body ul {
+            margin: 0.5rem 0;
+            padding-left: 1.25rem;
+        }
+        .ultimate-cost {
+            background: rgba(139,0,0,0.2);
+            border: 1px solid rgba(220,38,38,0.3);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-top: 1rem;
+        }
+        .ultimate-cost h5 {
+            color: #ef4444;
+        }
+
+        /* ALCHEMY TABLE */
+        .alchemy-section {
+            margin: 2rem 0;
+        }
+        .alchemy-level {
+            margin-bottom: 2rem;
+        }
+        .alchemy-level-header {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px 8px 0 0;
+            padding: 1rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .alchemy-level-header h4 {
+            color: var(--gold);
+            font-family: var(--font-heading);
+            margin: 0;
+        }
+        .alchemy-level-header .cd-range {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+        .alchemy-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.85rem;
+        }
+        .alchemy-table th {
+            background: var(--bg-card);
+            color: var(--gold);
+            font-family: var(--font-heading);
+            padding: 0.6rem;
+            text-align: left;
+            border: 1px solid var(--border-color);
+            font-weight: 500;
+        }
+        .alchemy-table td {
+            padding: 0.5rem 0.6rem;
+            border: 1px solid var(--border-color);
+            background: var(--bg-card);
+            color: var(--text-secondary);
+            vertical-align: top;
+        }
+        .alchemy-table tr:hover td {
+            background: rgba(212,175,55,0.03);
+        }
+        .alchemy-table .item-name {
+            color: var(--gold-light);
+            font-weight: 600;
+            white-space: nowrap;
+        }
+        .alchemy-table .category-row td {
+            background: var(--bg-tertiary);
+            color: var(--text-muted);
+            font-family: var(--font-heading);
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            padding: 0.4rem 0.6rem;
+        }
+        .alchemy-table .reagent-col, .alchemy-table .cd-col {
+            text-align: center;
+            width: 60px;
+        }
+
+        /* CONSTRUCTO STATS */
+        .constructo-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 0.5rem;
+            margin: 0.5rem 0;
+            padding: 0.75rem;
+            background: rgba(0,0,0,0.2);
+            border-radius: 8px;
+        }
+        .constructo-stats span {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+        .constructo-stats span strong {
+            color: var(--gold-light);
+        }
+
+        /* NAVIGATION */
+        .class-nav {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
+        }
+        .class-nav a {
+            color: var(--gold);
+            text-decoration: none;
+            padding: 0.75rem 1.5rem;
+            border: 1px solid var(--gold-dark);
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+        .class-nav a:hover {
+            background: var(--gold-dark);
+            color: var(--bg-primary);
+        }
+    
+        .techniques-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+        .technique-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1rem;
+            transition: all 0.3s;
+        }
+        .technique-card:hover {
+            border-color: var(--gold-dark);
+            transform: translateY(-2px);
+        }
+        .technique-card h4 {
+            color: var(--gold);
+            font-family: var(--font-heading);
+            font-size: 1rem;
+            margin-bottom: 0.25rem;
+        }
+        .technique-card .tech-meta {
+            display: block;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+        }
+        .technique-card p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.5;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <button class="menu-toggle">☰ Menu</button>
+    <div class="app-container">
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <a href="../../index.html" class="sidebar-logo">Khalkaria</a>
+                <div class="sidebar-subtitle">Sistema de Regras</div>
+                <div class="sidebar-ornament"><span>◆</span></div>
+            </div>
+            <div class="nav-section">
+                <div class="nav-section-title">Fundamentos</div>
+                <a href="../../index.html" class="nav-link">🏠 Início</a>
+                <a href="../sistema.html" class="nav-link">📜 Sistema Base</a>
+                <a href="../condicoes.html" class="nav-link">⚡ Condições</a>
+            </div>
+            <div class="nav-section">
+                <div class="nav-section-title">Criação de Personagem</div>
+                <a href="../criacao.html" class="nav-link">🎭 Criação</a>
+                <a href="../racas.html" class="nav-link">👤 Raças</a>
+                <a href="../classes.html" class="nav-link">⚔️ Classes</a>
+                <a href="../origens.html" class="nav-link">📜 Origens</a>
+                <a href="../limiar.html" class="nav-link">🌟 O Limiar</a>
+            </div>
+            <div class="nav-section">
+                <div class="nav-section-title">Classes</div>
+                <a href="espadachim.html" class="nav-link nav-link-sub">⚔️ Espadachim</a>
+                <a href="monge.html" class="nav-link nav-link-sub">👊 Monge</a>
+                <a href="batedor.html" class="nav-link nav-link-sub">🏹 Batedor</a>
+                <a href="alquimista.html" class="nav-link nav-link-sub active">⚗️ Alquimista</a>
+                <a href="teurgo.html" class="nav-link nav-link-sub">✨ Teurgo</a>
+                <a href="artilheiro.html" class="nav-link nav-link-sub">💥 Artilheiro</a>
+                <a href="brutalista.html" class="nav-link nav-link-sub">🪓 Brutalista</a>
+            </div>
+        </nav>
+        
+        <main class="main-content">
+            <!-- HERO SECTION -->
+            <section class="class-hero">
+                <h1 class="class-title">Alquimista</h1>
+                <div class="hero-image">
+                    <img src="../../images/alquimista.png" alt="Alquimista">
+                </div>
+                <div class="hero-content">
+                    <p class="hero-tagline">
+                        "O mundo é uma oficina. Cada planta esconde uma cura, cada mineral guarda uma explosão, cada substância espera ser transformada."
+                    </p>
+                    <p class="hero-desc">
+                        Suas mãos carregam cicatrizes de experimentos. Seu avental conta histórias de explosões "controladas". Seu olhar disseca qualquer objeto, calculando o que pode extrair dele. Para você, não existe lixo - apenas matéria-prima esperando propósito.
+                    </p>
+                    
+                    <div class="quick-stats">
+                        <div class="stat-card">
+                            <div class="label">Atributos</div>
+                            <div class="value">Int, Des, Sab</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="label">CD</div>
+                            <div class="value">10 + Int + Des</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="label">Estilo</div>
+                            <div class="value">Suporte e Crafting</div>
+                        </div>
+                    </div>
+            </section>
+
+            <!-- TREINAMENTO -->
+            <div class="section-divider">
+                <h2>⚔️ Treinamento</h2>
+            </div>
+            
+            <div class="ramos-intro">
+                <p><strong>Você começa treinado em:</strong> Ofício (Alquimia), Conhecimento</p>
+                <p><strong>Escolha (1 + Mod. Inteligência) perícias:</strong> Ofício (Alquimia), Investigação, Sobrevivência, Místico, Medicina</p>
+            </div>
+
+            <!-- STATUS -->
+            <div class="section-divider">
+                <h2>📊 Status Iniciais</h2>
+            </div>
+
+            <div class="formula-grid">
+                <div class="formula-card">
+                    <h4>❤️ Saúde</h4>
+                    <code>(1 × Nível) + (Mod.CON × Nível × 2)</code>
+                </div>
+                <div class="formula-card">
+                    <h4>⚡ Stamina</h4>
+                    <code>(3 × Nível) + ([Mod.FOR+Mod.DES/2] × Nível × 6)</code>
+                </div>
+                <div class="formula-card">
+                    <h4>✨ Éter</h4>
+                    <code>(2 × Nível) + ([Mod.INT+Mod.SAB/2] × Nível × 3)</code>
+                </div>
+                <div class="formula-card">
+                    <h4>🛡️ Evasão Ativa</h4>
+                    <code>12 + Mod.Des + Prof.Defender + 1d10</code>
+                </div>
+                <div class="formula-card">
+                    <h4>🛡️ Evasão Passiva</h4>
+                    <code>12 + Mod.Destreza</code>
+                </div>
+            </div>
+
+            <!-- PROGRESSÃO -->
+            <div class="section-divider">
+                <h2>📈 Progressão</h2>
+            </div>
+
+            <table class="progression-table">
+                <thead>
+                    <tr>
+                        <th>Nível</th>
+                        <th>Conteúdo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="level-badge">1</span></td>
+                        <td>3 Técnicas</td>
+                    </tr>
+                    <tr>
+                        <td><span class="level-badge">2</span></td>
+                        <td>4 Técnicas, Técnica de Ramo (Tier 1)</td>
+                    </tr>
+                    <tr>
+                        <td><span class="level-badge">3</span></td>
+                        <td>5 Técnicas, 1 Marca</td>
+                    </tr>
+                    <tr>
+                        <td><span class="level-badge">4</span></td>
+                        <td>6 Técnicas, Técnica de Ramo (Tier 1, 2), 2 Marcas</td>
+                    </tr>
+                    <tr>
+                        <td><span class="level-badge">5</span></td>
+                        <td>7 Técnicas, Técnica de Ramo (Tier 1, 2 e 3), 3 Marcas</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- REAGENTES -->
+            <div class="section-divider">
+                <h2>🧪 Bolsa de Reagentes</h2>
+            </div>
+
+            <div class="reagentes-box">
+                <h3>🧪 Sistema de Reagentes</h3>
+                <p style="color: var(--text-secondary); margin-bottom: 1rem;">
+                    Você possui uma Bolsa de Reagentes que representa seus materiais alquímicos, componentes e suprimentos de crafting.
+                </p>
+                
+                <div class="reagentes-grid">
+                    <div class="reagentes-item">
+                        <strong>📦 Máximo:</strong><br>
+                        <span style="color: var(--text-secondary);">(Nível × 3) + Mod.Inteligência</span>
+                    </div>
+                    <div class="reagentes-item">
+                        <strong>🌙 Descanso Longo:</strong><br>
+                        <span style="color: var(--text-secondary);">Recupera todos os reagentes (com acesso a suprimentos ou natureza)</span>
+                    </div>
+                    <div class="reagentes-item">
+                        <strong>☀️ Descanso Curto:</strong><br>
+                        <span style="color: var(--text-secondary);">Buscar Reagentes: 1d4+Nível</span>
+                    </div>
+                </div>
+
+                <div style="margin-top: 1.5rem; padding: 1rem; background: rgba(0,0,0,0.3); border-radius: 8px;">
+                    <p style="color: var(--gold); font-family: var(--font-heading); margin-bottom: 0.5rem;">📋 Regras de Criação:</p>
+                    <ul style="color: var(--text-secondary); margin: 0; padding-left: 1.25rem; font-size: 0.9rem;">
+                        <li><strong>Tempo Padrão:</strong> 10 minutos</li>
+                        <li><strong>Criação em Lote:</strong> Criando com 10 minutos, pode criar múltiplos itens de uma vez</li>
+                        <li><strong>Durabilidade:</strong> Itens duram até o próximo descanso longo</li>
+                        <li><strong>Desmanche:</strong> Pode reverter itens produzidos por você, recuperando reagentes</li>
+                        <li><strong>Teste de Alquimia:</strong> Role Ofício (Alquimia) contra o CD do item; falha = perde reagentes</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- TÉCNICAS -->
+            <div class="section-divider">
+                <h2>⚡ Técnicas</h2>
+            </div>
+
+            <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">
+                Toda classe possui técnicas, você pode reatribuí-las livremente ao realizar um descanso longo. <strong>Você possui 3 Técnicas + Nível.</strong>
+            </p>
+
+            <div class="techniques-grid">
+                <div class="technique-card">
+                    <h4>Alquimia Rápida</h4>
+                    <span class="tech-meta">1 Min • 2 Stamina</span>
+                    <p>Crie um item alquímico em 1 minuto ao invés de 10 minutos.</p>
+                </div>
+                <div class="technique-card">
+                    <h4>Produção em Massa</h4>
+                    <span class="tech-meta">1 Ação • 5 Stamina/Item</span>
+                    <p>Ao criar um item alquímico, pode gastar 5 de Stamina para criar +1 desse mesmo item sem reagentes adicionais.</p>
+                </div>
+                <div class="technique-card">
+                    <h4>Alquimia de Combate</h4>
+                    <span class="tech-meta">1 Ação • 2 Stamina</span>
+                    <p>Crie um item alquímico rapidamente como 1 ação, porém com custo adicional de +2 Reagentes.</p>
+                </div>
+                <div class="technique-card">
+                    <h4>Forçar Invenção</h4>
+                    <span class="tech-meta">1 Ação • 3 Stamina</span>
+                    <p>Ao falhar um teste de Ofício (Alquimia), pode rolar novamente. Em caso de segunda falha sua invenção explode (1d6+Mod.Int dano Elemental).</p>
+                </div>
+                <div class="technique-card">
+                    <h4>Arremessador</h4>
+                    <span class="tech-meta">1 Ação • 2 Stamina</span>
+                    <p>Pode rolar Atacar com +1 Treinamento ao arremessar objetos. Alcance +3m.</p>
+                </div>
+                <div class="technique-card">
+                    <h4>Economista</h4>
+                    <span class="tech-meta">1 Ação • 2 Stamina</span>
+                    <p>Ao criar um item alquímico, você gasta -1 Reagente (mínimo 1).</p>
+                </div>
+                <div class="technique-card">
+                    <h4>Conserva</h4>
+                    <span class="tech-meta">1 Ação • 2 Stamina</span>
+                    <p>Ao criar um item alquímico, você pode criá-lo de forma que não estrague em descansos longos.</p>
+                </div>
+                <div class="technique-card">
+                    <h4>Ferramentas Improvisadas</h4>
+                    <span class="tech-meta">1 Ação • 2 Stamina</span>
+                    <p>Manipule fechaduras, desarme armadilhas e outras ações mecânicas com ferramentas improvisadas. Role Ofício (Alquimia) com +1 Treinamento.</p>
+                </div>
+                <div class="technique-card">
+                    <h4>Concentrar-se</h4>
+                    <span class="tech-meta">Passiva</span>
+                    <p>Ao criar itens alquímicos em 10 minutos (tempo padrão), a CD de todos os itens reduz em -2.</p>
+                </div>
+                <div class="technique-card">
+                    <h4>Sucateador</h4>
+                    <span class="tech-meta">Passiva</span>
+                    <p>Ao Buscar Reagentes como ação de descanso curto, recupere 2d4+Nível. Ao finalizar combate, recupere reagentes = nível.</p>
+                </div>
+                <div class="technique-card">
+                    <h4>Estoque Oculto</h4>
+                    <span class="tech-meta">Passiva</span>
+                    <p>Dobra (2×) seu Mod.Inteligência ao calcular reagentes máximos: (Nível × 3) + (2 × Mod.Int)</p>
+                </div>
+                <div class="technique-card">
+                    <h4>Resistência Química</h4>
+                    <span class="tech-meta">Passiva</span>
+                    <p>Você tem Vantagem em testes de resistência contra venenos, doenças e efeitos ácidos/tóxicos.</p>
+                </div>
+                <div class="technique-card">
+                    <h4>Link Remoto</h4>
+                    <span class="tech-meta">Passiva</span>
+                    <p>Você pode ativar seus itens alquímicos de até 30 metros de distância deles.</p>
+                </div>
+                <div class="technique-card">
+                    <h4>Poções Granada</h4>
+                    <span class="tech-meta">Passiva</span>
+                    <p>Suas poções podem ser arremessadas e ao acertar agem como se o alvo tivesse consumido ela.</p>
+                </div>
+                <div class="technique-card">
+                    <h4>Óleo Grosso</h4>
+                    <span class="tech-meta">Passiva</span>
+                    <p>Seus óleos duram +2 ataques ao serem aplicados em uma arma.</p>
+                </div>
+            </div>
+
+            <!-- TABELA DE ITENS ALQUÍMICOS -->
+            <div class="section-divider">
+                <h2>📜 Itens Alquímicos</h2>
+            </div>
+
+            <!-- NÍVEL 1 -->
+            <div class="alchemy-section">
+                <div class="alchemy-level">
+                    <div class="alchemy-level-header">
+                        <h4>🧪 Nível 1</h4>
+                        <span class="cd-range">CD 8-10</span>
+                    </div>
+                    <table class="alchemy-table">
+                        <thead>
+                            <tr>
+                                <th>Item</th>
+                                <th>Efeito</th>
+                                <th class="reagent-col">Reag.</th>
+                                <th class="cd-col">CD</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="category-row"><td colspan="4">Ofensivos</td></tr>
+                            <tr>
+                                <td class="item-name">Bomba de Luz</td>
+                                <td>Arremesso 9m. Flash 6m raio. Reflexo ou <em>Cego</em> 1 rodada.</td>
+                                <td class="reagent-col">1</td>
+                                <td class="cd-col">8</td>
+                            </tr>
+                            <tr>
+                                <td class="item-name">Pó de Espirro</td>
+                                <td>Arremesso 3m. Fortitude ou <em>Desorientado</em> 1 rodada.</td>
+                                <td class="reagent-col">1</td>
+                                <td class="cd-col">8</td>
+                            </tr>
+                            <tr>
+                                <td class="item-name">Fogo Alquímico</td>
+                                <td>Arremesso 9m. 2d6 Fogo área 1,5m. Reflexo p/ metade. Queima +1d6 próxima rodada.</td>
+                                <td class="reagent-col">2</td>
+                                <td class="cd-col">10</td>
+                            </tr>
+                            <tr>
+                                <td class="item-name">Ácido Corrosivo</td>
+                                <td>Arremesso 9m. 2d8 Ácido, 1 alvo. Ignora 2 de Armadura Específica.</td>
+                                <td class="reagent-col">2</td>
+                                <td class="cd-col">10</td>
+                            </tr>
+                            <tr>
+                                <td class="item-name">Frasco Congelante</td>
+                                <td>Arremesso 9m. 2d6 Frio área 1,5m. Superfície fica <em>Escorregadia</em> 1 min.</td>
+                                <td class="reagent-col">2</td>
+                                <td class="cd-col">10</td>
+                            </tr>
+                            <tr class="category-row"><td colspan="4">Curativos</td></tr>
+                            <tr>
+                                <td class="item-name">Sal Revigorante</td>
+                                <td>Acorda <em>Inconsciente</em> (não com 0 HP). Remove <em>Atordoado</em>, <em>Adormecido</em>.</td>
+                                <td class="reagent-col">1</td>
+                                <td class="cd-col">8</td>
+                            </tr>
+                            <tr>
+                                <td class="item-name">Bálsamo Estabilizador</td>
+                                <td>Criatura <em>Morrendo</em> fica estável e ganha 1 HP após 1 minuto.</td>
+                                <td class="reagent-col">2</td>
+                                <td class="cd-col">8</td>
+                            </tr>
+                            <tr>
+                                <td class="item-name">Poção de Cura Menor</td>
+                                <td>Recupera 2d4+Int de Saúde.</td>
+                                <td class="reagent-col">2</td>
+                                <td class="cd-col">10</td>
+                            </tr>
+                            <tr>
+                                <td class="item-name">Poção de Vigor</td>
+                                <td>Recupera 1d6 de Stamina.</td>
+                                <td class="reagent-col">2</td>
+                                <td class="cd-col">10</td>
+                            </tr>
+                            <tr>
+                                <td class="item-name">Antídoto Simples</td>
+                                <td>Remove <em>Envenenamento</em> de venenos não-mágicos.</td>
+                                <td class="reagent-col">2</td>
+                                <td class="cd-col">10</td>
+                            </tr>
+                            <tr class="category-row"><td colspan="4">Utilidades</td></tr>
+                            <tr>
+                                <td class="item-name">Bastão de Luz</td>
+                                <td>Luz brilhante 6m + fraca 6m. Dura 4 horas.</td>
+                                <td class="reagent-col">1</td>
+                                <td class="cd-col">8</td>
+                            </tr>
+                            <tr>
+                                <td class="item-name">Tinta Invisível</td>
+                                <td>Só aparece com calor ou reagente específico.</td>
+                                <td class="reagent-col">1</td>
+                                <td class="cd-col">8</td>
+                            </tr>
+                            <tr>
+                                <td class="item-name">Pó Revelador</td>
+                                <td>Revela magia remanescente utilizada a menos de 1 hora.</td>
+                                <td class="reagent-col">1</td>
+                                <td class="cd-col">8</td>
+                            </tr>
+                            <tr>
+                                <td class="item-name">Fumaça Densa</td>
+                                <td>Nuvem 4,5m raio. Obscurecimento total por 1 min.</td>
+                                <td class="reagent-col">2</td>
+                                <td class="cd-col">10</td>
+                            </tr>
+                            <tr>
+                                <td class="item-name">Catalisador Térmico</td>
+                                <td>Mantém temperatura fixa em recipiente por 24h (0° até 100°).</td>
+                                <td class="reagent-col">1</td>
+                                <td class="cd-col">10</td>
+                            </tr>
+                            <tr class="category-row"><td colspan="4">Venenos</td></tr>
+                            <tr>
+                                <td class="item-name">Veneno Fraco</td>
+                                <td>Arma: próximos 3 ataques, +1d4 Biológico. Fortitude ou <em>Enjoado</em> 1 min.</td>
+                                <td class="reagent-col">2</td>
+                                <td class="cd-col">10</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- NÍVEL 2 -->
+                <div class="alchemy-level">
+                    <div class="alchemy-level-header">
+                        <h4>🧪 Nível 2</h4>
+                        <span class="cd-range">CD 12-14</span>
+                    </div>
+                    <table class="alchemy-table">
+                        <thead>
+                            <tr>
+                                <th>Item</th>
+                                <th>Efeito</th>
+                                <th class="reagent-col">Reag.</th>
+                                <th class="cd-col">CD</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="category-row"><td colspan="4">Ofensivos</td></tr>
+                            <tr>
+                                <td class="item-name">Bomba de Concussão</td>
+                                <td>Arremesso 9m. 1d6 Contundente em 3m raio. Fortitude ou <em>Surdo</em> 1 min.</td>
+                                <td class="reagent-col">2</td>
+                                <td class="cd-col">12</td>
+                            </tr>
+                            <tr>
+                                <td class="item-name">Granada Tóxica</td>
+                                <td>Arremesso 9m. Nuvem 3m por 2 rodadas. 1d8 Veneno/turno + Fortitude ou <em>Enjoado</em>.</td>
+                                <td class="reagent-col">3</td>
+                                <td class="cd-col">12</td>
+                            </tr>
+                            <tr>
+                                <td class="item-name">Bola de Eletricidade</td>
+                                <td>Arremesso 9m. 2d6 Elétrico. Armadura metálica: +1d6 e <em>Atordoado</em> 1 rodada (Fort. nega).</td>
+                                <td class="reagent-col">3</td>
+                                <td class="cd-col">12</td>
+                            </tr>
+                            <tr>
+                                <td class="item-name">Pó Explosivo</td>
+                                <td>Espalhar em 3m. Detona com fogo/impacto: 3d6 Fogo. Pode ser armadilha.</td>
+                                <td class="reagent-col">3</td>
+                                <td class="cd-col">14</td>
+                            </tr>
+                            <tr>
+                                <td class="item-name">Tinta de Cegueira</td>
+                                <td>Arremesso 4,5m. Reflexo ou <em>Cego</em> 2 rodadas.</td>
+                                <td class="reagent-col">2</td>
+                                <td class="cd-col">12</td>
+                            </tr>
+                            <tr class="category-row"><td colspan="4">Curativos</td></tr>
+                            <tr>
+                                <td class="item-name">Poção de Cura Moderada</td>
+                                <td>Recupera 3d6+Int de Saúde.</td>
+                                <td class="reagent-col">4</td>
+                                <td class="cd-col">12</td>
+                            </tr>
+                            <tr>
+                                <td class="item-name">Emplastro de Regeneração</td>
+                                <td>Aplicar em ferimento. Recupera 1d4 Saúde/turno por 3 rodadas.</td>
+                                <td class="reagent-col">3</td>
+                                <td class="cd-col">12</td>
+                            </tr>
+                            <tr>
+                                <td class="item-name">Antídoto Universal</td>
+                                <td>Remove <em>Envenenado</em>, <em>Enjoado</em> ou doença não-mágica.</td>
+                                <td class="reagent-col">3</td>
+                                <td class="cd-col">14</td>
+                            </tr>
+                            <tr>
+                                <td class="item-name">Tônico Anti-Exaustão</td>
+                                <td>Remove 1 nível de <em>Exaustão</em>. 1x por descanso longo por criatura.</td>
+                                <td class="reagent-col">3</td>
+                                <td class="cd-col">14</td>
+                            </tr>
+                            <tr class="category-row"><td colspan="4">Elixires e Óleos</td></tr>
+                            <tr>
+                                <td class="item-name">Elixir de Força</td>
+                                <td>+2 testes de Força, +2 dano corpo a corpo. Duração 10 min.</td>
+                                <td class="reagent-col">3</td>
+                                <td class="cd-col">12</td>
+                            </tr>
+                            <tr>
+                                <td class="item-name">Elixir de Agilidade</td>
+                                <td>+2 testes de Destreza, +1,5m Movimento. Duração 10 min.</td>
+                                <td class="reagent-col">3</td>
+                                <td class="cd-col">12</td>
+                            </tr>
+                            <tr>
+                                <td class="item-name">Elixir de Resistência</td>
+                                <td>+2 Fortitude, +5 Saúde temporária. Duração 10 min.</td>
+                                <td class="reagent-col">3</td>
+                                <td class="cd-col">12</td>
+                            </tr>
+                            <tr>
+                                <td class="item-name">Óleo Flamejante</td>
+                                <td>Arma: próximos 3 ataques +1d6 Fogo. Duração 1 min.</td>
+                                <td class="reagent-col">2</td>
+                                <td class="cd-col">12</td>
+                            </tr>
+                            <tr>
+                                <td class="item-name">Óleo Congelante</td>
+                                <td>Arma: próximos 3 ataques +1d6 Frio. Crítico = <em>Lento 1</em> 1 rodada.</td>
+                                <td class="reagent-col">2</td>
+                                <td class="cd-col">12</td>
+                            </tr>
+                            <tr>
+                                <td class="item-name">Óleo Corrosivo</td>
+                                <td>Arma: próximos 3 ataques ignoram 3 Armadura. Duração 1 min.</td>
+                                <td class="reagent-col">2</td>
+                                <td class="cd-col">12</td>
+                            </tr>
+                            <tr>
+                                <td class="item-name">Couro Líquido</td>
+                                <td>+2 Armadura (Ar) Natural. Duração 10 min.</td>
+                                <td class="reagent-col">3</td>
+                                <td class="cd-col">14</td>
+                            </tr>
+                            <tr class="category-row"><td colspan="4">Utilidades</td></tr>
+                            <tr>
+                                <td class="item-name">Detector de Magia</td>
+                                <td>Frasco brilha azul a menos de 3m de magia/éter. Dura 1 hora.</td>
+                                <td class="reagent-col">2</td>
+                                <td class="cd-col">12</td>
+                            </tr>
+                            <tr>
+                                <td class="item-name">Cola Universal</td>
+                                <td>Gruda superfícies (Força CD 20 separa). Pode <em>Enraizar</em> (Fort. nega).</td>
+                                <td class="reagent-col">2</td>
+                                <td class="cd-col">12</td>
+                            </tr>
+                            <tr>
+                                <td class="item-name">Solvente Universal</td>
+                                <td>Dissolve cola, resina, adesivo. Remove <em>Enraizado</em> por cola.</td>
+                                <td class="reagent-col">2</td>
+                                <td class="cd-col">12</td>
+                            </tr>
+                            <tr>
+                                <td class="item-name">Marcador Rastreável</td>
+                                <td>Líquido invisível. Você detecta a até 100m por 24h.</td>
+                                <td class="reagent-col">2</td>
+                                <td class="cd-col">12</td>
+                            </tr>
+                            <tr>
+                                <td class="item-name">Água-Régia</td>
+                                <td>Dissolve metal não-mágico. Abre qualquer fechadura mundana em 3 min.</td>
+                                <td class="reagent-col">3</td>
+                                <td class="cd-col">14</td>
+                            </tr>
+                            <tr>
+                                <td class="item-name">Corda Líquida</td>
+                                <td>Enrijece em 6 seg. Vira corda 9m (200kg). Dura 1 hora.</td>
+                                <td class="reagent-col">2</td>
+                                <td class="cd-col">12</td>
+                            </tr>
+                            <tr>
+                                <td class="item-name">Espuma Seladora</td>
+                                <td>Sela buracos até 50cm, cria cobertura improvisada.</td>
+                                <td class="reagent-col">2</td>
+                                <td class="cd-col">12</td>
+                            </tr>
+                            <tr class="category-row"><td colspan="4">Venenos</td></tr>
+                            <tr>
+                                <td class="item-name">Veneno Padrão</td>
+                                <td>3 ataques. +1d6 Biológico. Fortitude ou <em>Envenenado</em> 1 min.</td>
+                                <td class="reagent-col">3</td>
+                                <td class="cd-col">12</td>
+                            </tr>
+                            <tr>
+                                <td class="item-name">Sonífero</td>
+                                <td>Ingerido/inalado. Vontade ou <em>Adormecido</em> 1 hora. Dano acorda.</td>
+                                <td class="reagent-col">3</td>
+                                <td class="cd-col">14</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- NÍVEL 3 e 4+ (resumidos por espaço) -->
+                <div class="ramos-intro" style="margin-top: 2rem;">
+                    <p style="text-align: center; margin: 0;"><strong>📜 Itens de Nível 3, 4 e 5:</strong> A tabela completa inclui dezenas de itens adicionais como Napalm Alquímico, Bomba de Plasma, Elixir da Fênix, Bomba do Vazio e outros itens lendários. Consulte o documento completo do sistema para a lista detalhada.</p>
+                </div>
+            </div>
+
+            <!-- RAMOS -->
+            <div class="section-divider">
+                <h2>🌿 Ramos</h2>
+            </div>
+
+            <div class="ramos-intro">
+                <p>Os ramos são caminhos, características únicas do seu personagem. Diferente das técnicas, são <strong>irreversíveis</strong>.</p>
+                <p><strong>Marcas de Ramo:</strong> Que construiu ao longo da sua vida, moldando sua PERSONALIDADE.</p>
+                <p><strong>Técnicas de Ramo:</strong> Que aprendeu ao longo do seu treinamento definindo seu ESTILO DE AGIR.</p>
+                <p style="margin-bottom: 0;">É extremamente aceitável que você <strong>misture os 3 ramos</strong>. Ao longo da criação você escolherá: <strong>3 Marcas</strong> e <strong>6 Técnicas de Ramo</strong> (3 no Tier 1, 2 no Tier 2 e 1 no Tier 3).</p>
+            </div>
+
+            <div class="ramos-grid">
+                <div class="ramo-card artificer">
+                    <h3>⚙️ Ramo do Artificer</h3>
+                    <div class="subtitle">Utilidade e Infusão Mágica</div>
+                    <p>Você cruzou a fronteira entre alquimia e arcanismo. Éter não é apenas combustível - é um ingrediente. Suas criações brilham com runas, seus itens pensam, suas invenções desafiam as leis naturais.</p>
+                </div>
+                <div class="ramo-card bombardeiro">
+                    <h3>💣 Ramo do Bombardeiro</h3>
+                    <div class="subtitle">Combate e Toxinas</div>
+                    <p>Você dominou a arte da destruição química. Seus frascos brilham com cores que prometem dor. Seu sorriso aparece quando algo explode. Você cria para um único propósito: aniquilação eficiente.</p>
+                </div>
+                <div class="ramo-card boticario">
+                    <h3>💊 Ramo do Boticário</h3>
+                    <div class="subtitle">Cura e Abjuração</div>
+                    <p>Você é a linha entre a vida e a morte do seu grupo. Suas poções fecham feridas que magia não alcança, seus elixires transformam covardes em heróis. Onde o Bombardeiro traz destruição, você traz esperança.</p>
+                </div>
+            </div>
+
+            <!-- MARCAS DE RAMO -->
+            <div class="section-divider">
+                <h2>🔥 Marcas de Ramo</h2>
+            </div>
+
+            <!-- Marcas do Artificer -->
+            <h3 style="color: var(--ramo-artificer); font-family: var(--font-heading); margin: 2rem 0 1rem;">⚙️ Marcas do Artificer</h3>
+
+            <div class="marca-card">
+                <div class="marca-header artificer">
+                    <h4>Pai de Pet</h4>
+                    <div class="quote">"Meus constructos morreriam por mim e, ao serem reconstruídos, morreriam de novo!"</div>
+                </div>
+                <div class="marca-body">
+                    <p>Você tem um certo afeto pelos seus constructos… afeto até demais.</p>
+                    <div class="marca-effect">
+                        <p>Toda vez que um constructo seu sobreviver a um combate, ganha <strong>+1 permanente em Místico</strong>. Ao chegar em +5, essa habilidade fica supérflua.</p>
+                    </div>
+                    <div class="marca-effect">
+                        <p>Efeitos e buffs aplicados em você também afetam seu constructo ativo (e vice-versa). Ao recuperar Stamina ou Éter, o constructo recupera Saúde.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="marca-card">
+                <div class="marca-header artificer">
+                    <h4>Sobrecarga</h4>
+                    <div class="quote">"O frasco aguenta… Provavelmente."</div>
+                </div>
+                <div class="marca-body">
+                    <p>Você sente prazer em tirar o máximo de suas invenções, mesmo quando isso significa sobrecarregá-las.</p>
+                    <div class="marca-effect">
+                        <p>Ao usar um Cartucho Arcano, você pode gastar <strong>+2 Reagentes</strong> para conjurar a magia com um dos seguintes efeitos: <strong>Potência</strong> (intensidade Forçada) ou <strong>Modificar</strong> (1 modulação grátis da escola).</p>
+                    </div>
+                    <div class="marca-effect">
+                        <p>Ao tirar 1 em testes de Místico criando cartuchos, ele explode em você causando <strong>1d6 de Dano de Força</strong> e você perde <strong>2d4 de Éter</strong>.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Marcas do Bombardeiro -->
+            <h3 style="color: var(--ramo-bombardeiro); font-family: var(--font-heading); margin: 2rem 0 1rem;">💣 Marcas do Bombardeiro</h3>
+
+            <div class="marca-card">
+                <div class="marca-header bombardeiro">
+                    <h4>Piromaníaco</h4>
+                    <div class="quote">"Cada explosão me ensina a fazer outra maior."</div>
+                </div>
+                <div class="marca-body">
+                    <p>Você sente prazer em explodir objetos ou criaturas e vê-los queimar.</p>
+                    <div class="marca-effect">
+                        <p>Para cada 10 criaturas que você derrotou com itens alquímicos, ganha <strong>+1 permanente em Atacar</strong>. Ao chegar em +5, essa habilidade fica supérflua.</p>
+                    </div>
+                    <div class="marca-effect">
+                        <p>Ao derrotar uma criatura com um item alquímico, recupera <strong>1 Reagente</strong>.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="marca-card">
+                <div class="marca-header bombardeiro">
+                    <h4>Preciosismo</h4>
+                    <div class="quote">"Minhas invenções, extremamente calibradas."</div>
+                </div>
+                <div class="marca-body">
+                    <p>Você tem um certo afeto com cada invenção sua… afeto até demais.</p>
+                    <div class="marca-effect">
+                        <p><strong>1x/descanso longo:</strong> Você pode causar o <strong>dano máximo</strong> de um item alquímico que você criou e arremessou.</p>
+                    </div>
+                    <div class="marca-effect">
+                        <p>Itens alquímicos que você cria têm <strong>+2 CD</strong> nos testes de resistência.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Marcas do Boticário -->
+            <h3 style="color: var(--ramo-boticario); font-family: var(--font-heading); margin: 2rem 0 1rem;">💊 Marcas do Boticário</h3>
+
+            <div class="marca-card">
+                <div class="marca-header boticario">
+                    <h4>Curandeiro Incansável</h4>
+                    <div class="quote">"Ninguém morre no meu turno."</div>
+                </div>
+                <div class="marca-body">
+                    <p>Você tem um senso de dever em curar criaturas.</p>
+                    <div class="marca-effect">
+                        <p>Para cada 5 criaturas que você retirou a condição <em>Morrendo</em>, ganha <strong>+1 permanente em Medicina</strong>. Ao chegar em +5, essa habilidade fica supérflua.</p>
+                    </div>
+                    <div class="marca-effect">
+                        <p>Ao curar uma criatura que estava com 0 de Saúde e remover a condição <em>Morrendo</em>, ela também recupera <strong>1d4 de Stamina</strong>.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="marca-card">
+                <div class="marca-header boticario">
+                    <h4>Mixologista</h4>
+                    <div class="quote">"Uma poção é boa. Duas poções juntas? Arte."</div>
+                </div>
+                <div class="marca-body">
+                    <p>Você sente prazer em consumir e apreciar substâncias e combinações de substâncias novas.</p>
+                    <div class="marca-effect">
+                        <p>Você pode combinar <strong>2 poções ou elixires de buff diferentes</strong> em um único frasco (custo +2 Reagentes). O consumidor recebe ambos os efeitos. Você não pode combinar poções/elixires iguais.</p>
+                    </div>
+                    <div class="marca-effect">
+                        <p>Aliados que consumirem suas misturas também recuperam <strong>1d4 de Stamina</strong>.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TÉCNICAS DE RAMO - TIER 1 -->
+            <div class="section-divider">
+                <h2>⚡ Técnicas de Ramo</h2>
+            </div>
+
+            <div class="tier-section">
+                <div class="tier-header">
+                    <h3>Tier 1</h3>
+                    <span class="tier-badge">Nível 2+</span>
+                </div>
+
+                <h4 style="color: var(--ramo-artificer); margin: 1.5rem 0 1rem;">⚙️ Artificer</h4>
+                <div class="tech-grid">
+                    <div class="tech-card">
+                        <div class="tech-card-header artificer">
+                            <h4>Sintonia Arcana</h4>
+                            <span class="cost">Passiva</span>
+                        </div>
+                        <div class="tech-card-body">
+                            <ul>
+                                <li>Você se torna Treinado em <em>Místico</em>. Se já for Treinado, se torna Experiente.</li>
+                                <li>Pode usar Éter como substituto de Reagentes na proporção <strong>2:1</strong>.</li>
+                                <li>Seu Éter máximo aumenta em <strong>+Mod.Inteligência</strong>.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="tech-card">
+                        <div class="tech-card-header artificer">
+                            <h4>Cartucho Arcano</h4>
+                            <span class="cost">Passiva</span>
+                        </div>
+                        <div class="tech-card-body">
+                            <p>Você desenvolveu um método de aprisionar magias em recipientes alquímicos.</p>
+                            <ul>
+                                <li><strong>Tempo:</strong> 10 min (item alquímico)</li>
+                                <li><strong>Custo:</strong> (Nível da Magia × 2) Reagentes</li>
+                                <li><strong>Magias:</strong> 1 + Mod.Int no nível 1, +1/nível</li>
+                                <li><strong>CD:</strong> 10 + (2 × Nível da Magia)</li>
+                                <li><strong>Limite:</strong> (Nível + Mod.Int) cartuchos</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="tech-card">
+                        <div class="tech-card-header artificer">
+                            <h4>Constructo Menor</h4>
+                            <span class="cost">3 Ações, 3 Éter + 4 Reagentes</span>
+                        </div>
+                        <div class="tech-card-body">
+                            <p>Você cria um pequeno constructo alquímico (Minúsculo) que dura até o próximo descanso longo ou até ser destruído.</p>
+                            <div class="constructo-stats">
+                                <span><strong>10 HP</strong></span>
+                                <span><strong>Evasão 12</strong></span>
+                                <span><strong>Mov 9m</strong></span>
+                                <span><strong>2 Ações</strong></span>
+                            </div>
+                            <p>O constructo pode: Atacar (1d6+Mod.Int), Carregar (5 Equip./20 Bug.), Espionar (100m telepático), Entregar itens (reação), Detonar (2d6 Elemental em 3m).</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h4 style="color: var(--ramo-bombardeiro); margin: 1.5rem 0 1rem;">💣 Bombardeiro</h4>
+                <div class="tech-grid">
+                    <div class="tech-card">
+                        <div class="tech-card-header bombardeiro">
+                            <h4>Bombardeiro</h4>
+                            <span class="cost">Passiva</span>
+                        </div>
+                        <div class="tech-card-body">
+                            <ul>
+                                <li>Você se torna Treinado em <em>Atacar</em>. Se já for Treinado, se torna Experiente.</li>
+                                <li>Seus itens alquímicos ofensivos são fabricados com <strong>+1d6 de dano</strong>.</li>
+                                <li>Itens Ofensivos, Óleos e Venenos custam <strong>-1 reagentes</strong> e tem <strong>-2 CD</strong>.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="tech-card">
+                        <div class="tech-card-header bombardeiro">
+                            <h4>Toxinas Potentes</h4>
+                            <span class="cost">1 Ação, 3 Stamina</span>
+                        </div>
+                        <div class="tech-card-body">
+                            <p>Ao uso, infunda óleo em uma arma já infundida por um veneno ou vice versa. Você aplica os <strong>2 bônus de dano e efeitos</strong> de cada substância ao ataque.</p>
+                        </div>
+                    </div>
+                    <div class="tech-card">
+                        <div class="tech-card-header bombardeiro">
+                            <h4>Enxurrada de Alquímicos</h4>
+                            <span class="cost">2 Ações, 5 Stamina</span>
+                        </div>
+                        <div class="tech-card-body">
+                            <p>Você arremessa até <strong>3 itens alquímicos ofensivos simultaneamente</strong>, cada item pode atingir um alvo diferente ou o mesmo alvo, rolando Atacar para cada arremesso. Você deve ter os itens preparados de antemão.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h4 style="color: var(--ramo-boticario); margin: 1.5rem 0 1rem;">💊 Boticário</h4>
+                <div class="tech-grid">
+                    <div class="tech-card">
+                        <div class="tech-card-header boticario">
+                            <h4>Anatomista</h4>
+                            <span class="cost">Passiva</span>
+                        </div>
+                        <div class="tech-card-body">
+                            <ul>
+                                <li>Você se torna Treinado em <em>Medicina</em>. Se já for Treinado, se torna Experiente.</li>
+                                <li>Poções de cura que você cria curam <strong>+2d4 adicional</strong>.</li>
+                                <li>Itens Curativos e Elixires custam <strong>-1 Reagentes</strong> e tem <strong>-2 CD</strong>.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="tech-card">
+                        <div class="tech-card-header boticario">
+                            <h4>Elixir Especial</h4>
+                            <span class="cost">1 Ação, 3 Stamina, 3 Reagentes</span>
+                        </div>
+                        <div class="tech-card-body">
+                            <p>Você prepara e administra um elixir especial entre você e seus aliados à distância de toque, pagando 1 reagente por alvo. Escolha um efeito (1 min):</p>
+                            <ul>
+                                <li><strong>Vigor:</strong> +2 em Atacar e +1d6 de dano</li>
+                                <li><strong>Proteção:</strong> +2 em Defender e +2 Armadura (Ar) natural</li>
+                                <li><strong>Velocidade:</strong> +3m Movimento e não causa ataques de oportunidade</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="tech-card">
+                        <div class="tech-card-header boticario">
+                            <h4>Tônico Cruel</h4>
+                            <span class="cost">1 Ação, 3 Stamina</span>
+                        </div>
+                        <div class="tech-card-body">
+                            <p>Escolha uma criatura em até 9m. Ela deve fazer um teste de <strong>Fortitude</strong>:</p>
+                            <ul>
+                                <li><strong>Letargia:</strong> -2 em Atacar e Defender</li>
+                                <li><strong>Fraqueza:</strong> -3m de Movimento e sem Reações</li>
+                                <li><strong>Vulnerabilidade:</strong> -2 Armadura e Desvantagem em Fortitude</li>
+                            </ul>
+                            <p>Duração 1 rodada. Se falhar, não pode usar contra a mesma criatura neste combate.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TIER 2 -->
+            <div class="tier-section">
+                <div class="tier-header">
+                    <h3>Tier 2</h3>
+                    <span class="tier-badge">Nível 4+</span>
+                </div>
+
+                <h4 style="color: var(--ramo-artificer); margin: 1.5rem 0 1rem;">⚙️ Artificer</h4>
+                <div class="tech-grid">
+                    <div class="tech-card">
+                        <div class="tech-card-header artificer">
+                            <h4>Runas de Proteção</h4>
+                            <span class="cost">1 Ação, 2 Éter</span>
+                        </div>
+                        <div class="tech-card-body">
+                            <p>Você inscreve runas protetoras em uma criatura ou objeto tocado. Dura 1 hora ou até ser consumido.</p>
+                            <p>A criatura pode ativar as runas como <strong>Reação</strong> quando sofrer dano:</p>
+                            <ul>
+                                <li><strong>Absorção:</strong> Reduz o dano em 2d8+Mod.Int</li>
+                                <li><strong>Retaliação:</strong> O atacante sofre 1d8 de dano Místico</li>
+                            </ul>
+                            <p>Máximo de Runas ativas: Mod.Inteligência</p>
+                        </div>
+                    </div>
+                    <div class="tech-card">
+                        <div class="tech-card-header artificer">
+                            <h4>Constructo de Combate</h4>
+                            <span class="cost">3 Ações, 5 Éter + 6 Reagentes</span>
+                        </div>
+                        <div class="tech-card-body">
+                            <p>Você cria um constructo aprimorado (Pequeno) que dura até o próximo descanso longo.</p>
+                            <div class="constructo-stats">
+                                <span><strong>25 HP</strong></span>
+                                <span><strong>Evasão 14</strong></span>
+                                <span><strong>Ar 2</strong></span>
+                                <span><strong>Mov 9m</strong></span>
+                                <span><strong>3 Ações</strong></span>
+                            </div>
+                            <p>O constructo pode: Atacar (2d6+Mod.Int Elemental), Escudo (+2 Defender aliado), Carregar (10 Equip./30 Bug.), Reparar (1d8 HP a si, 2x/curto), Espionar (200m), Detonar (4d6 Elemental em 4,5m).</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h4 style="color: var(--ramo-bombardeiro); margin: 1.5rem 0 1rem;">💣 Bombardeiro</h4>
+                <div class="tech-grid">
+                    <div class="tech-card">
+                        <div class="tech-card-header bombardeiro">
+                            <h4>Mestre dos Elementos</h4>
+                            <span class="cost">Passiva</span>
+                        </div>
+                        <div class="tech-card-body">
+                            <ul>
+                                <li>Seus itens que causam dano Elemental ou Biológico <strong>ignoram Ae (Armadura Específica) e Resistências</strong>.</li>
+                                <li>Suas bombas e granadas possuem o alcance de explosão aumentado em <strong>1,5m</strong>.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="tech-card">
+                        <div class="tech-card-header bombardeiro">
+                            <h4>Zona da Morte</h4>
+                            <span class="cost">2 Ações, 4 Stamina, 3 Reagentes</span>
+                        </div>
+                        <div class="tech-card-body">
+                            <p>Você prepara uma área de <strong>4,5m de raio</strong> em até 9m com substâncias:</p>
+                            <ul>
+                                <li>Criaturas que entram ou começam o turno sofrem <strong>2d6 de dano</strong> (Elemental ou Biológico)</li>
+                                <li><strong>Detonar</strong> (1 Ação): 4d6 de dano, Reflexo p/ metade, dissipa a zona</li>
+                            </ul>
+                            <p>Dura 3 turnos ou até detonar. Apenas 1 zona ativa por vez.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h4 style="color: var(--ramo-boticario); margin: 1.5rem 0 1rem;">💊 Boticário</h4>
+                <div class="tech-grid">
+                    <div class="tech-card">
+                        <div class="tech-card-header boticario">
+                            <h4>Transfusão Vital</h4>
+                            <span class="cost">2 Ações, 3 Stamina</span>
+                        </div>
+                        <div class="tech-card-body">
+                            <p>Você aprendeu a manipular a vitalidade. Escolha uma das ações:</p>
+                            <ul>
+                                <li>Cura uma criatura em toque em <strong>2d6+Mod.Int</strong>, porém você perde <strong>1d6 de Saúde</strong>.</li>
+                                <li>Ataca com uma seringa de toxinas (2d8+Mod.Int). Ao acertar, você recupera Saúde igual ao dano causado.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="tech-card">
+                        <div class="tech-card-header boticario">
+                            <h4>Gás Especial</h4>
+                            <span class="cost">2 Ações, 3 Stamina, 4 Reagentes</span>
+                        </div>
+                        <div class="tech-card-body">
+                            <p>Você ativa ejetores de gás que inundam um raio de <strong>4,5m</strong> em volta de você. A nuvem se move com você.</p>
+                            <ul>
+                                <li><strong>Sem Máscara:</strong> Fortitude ou <em>Enjoados</em>. Se já enjoado: 2d6+Mod.Int de dano Biológico.</li>
+                                <li><strong>Com Máscara:</strong> Recupera 1d6+Mod.Int de Saúde/turno.</li>
+                            </ul>
+                            <p>Pague a Stamina novamente toda rodada para manter.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TIER 3 - ULTIMATES -->
+            <div class="tier-section">
+                <div class="tier-header">
+                    <h3>Tier 3 — Ultimates</h3>
+                    <span class="tier-badge">Nível 5 • 1x/Dia</span>
+                </div>
+
+                <!-- Titã -->
+                <div class="ultimate-card">
+                    <div class="ultimate-header artificer">
+                        <h4>⚙️ Titã</h4>
+                        <div>
+                            <span class="ultimate-badge">ULTIMATE</span>
+                            <span style="margin-left: 0.5rem; color: var(--text-muted); font-size: 0.85rem;">3 Ações, 8 Éter + 10 Reagentes</span>
+                        </div>
+                    </div>
+                    <div class="ultimate-quote">"Levante-se, minha criação."</div>
+                    <div class="ultimate-body">
+                        <p>Você invoca um constructo colossal (Grande) que dura até o fim do combate ou até ser destruído.</p>
+                        <div class="constructo-stats">
+                            <span><strong>50 HP</strong></span>
+                            <span><strong>Evasão 14</strong></span>
+                            <span><strong>Ar 5</strong></span>
+                            <span><strong>Mov 6m</strong></span>
+                            <span><strong>4 Ações</strong></span>
+                        </div>
+                        <p><strong>Habilidades:</strong></p>
+                        <ul>
+                            <li><strong>Esmagar</strong> (2 Ações): alcance 3m, 4d10+Mod.Int Contundente. Fortitude ou <em>Caído</em>.</li>
+                            <li><strong>Rajada Arcana</strong> (1 Ação): linha 12m, 3d8 Elemental, Reflexo p/ metade.</li>
+                            <li><strong>Escudo</strong> (1 Ação): aliados em 4,5m +3 Defender até próximo turno.</li>
+                            <li><strong>Investida</strong> (3 Ações): avança 12m em linha. Fortitude ou 3d10 Contundente + <em>Caído</em> + empurrado 3m.</li>
+                        </ul>
+                        <div class="ultimate-cost">
+                            <h5>💀 O Custo</h5>
+                            <ul>
+                                <li>Você não pode usar Éter para nenhum outro propósito enquanto o Titã existir.</li>
+                                <li>Se o Titã for destruído por um inimigo, você sofre <strong>2d6 de dano Psíquico</strong> e ganha <em>Exaustão 1</em>.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Apocalipse Alquímico -->
+                <div class="ultimate-card">
+                    <div class="ultimate-header bombardeiro">
+                        <h4>💣 Apocalipse Alquímico</h4>
+                        <div>
+                            <span class="ultimate-badge">ULTIMATE</span>
+                            <span style="margin-left: 0.5rem; color: var(--text-muted); font-size: 0.85rem;">3 Ações, 6 Stamina + 8 Reagentes</span>
+                        </div>
+                    </div>
+                    <div class="ultimate-quote">"Quando uma explosão não é suficiente, use todas."</div>
+                    <div class="ultimate-body">
+                        <p>Você libera todo seu arsenal em uma devastação total. Escolha um ponto em até <strong>18m</strong>. Uma sequência de explosões atinge uma área de <strong>9m de raio</strong>.</p>
+                        <ul>
+                            <li>Todas as criaturas sofrem <strong>8d6 de dano</strong> (escolha 2 tipos: Fogo, Frio, Elétrico, Ácido ou Veneno).</li>
+                            <li>Reflexos para metade do dano.</li>
+                            <li>Criaturas que falharem ficam <em>Cegas</em>, <em>Surdas</em> e <em>Caídas</em> por 1 rodada.</li>
+                            <li>A área fica coberta de substâncias voláteis por 1 minuto (2d6 dano + efeitos por tipo).</li>
+                        </ul>
+                        <div class="ultimate-cost">
+                            <h5>💀 O Custo</h5>
+                            <ul>
+                                <li>Você perde <strong>2d8+Mod.Int de Éter</strong>.</li>
+                                <li>Você deve suceder em Vontade (CD 20) ou fica <em>Paralisado</em> por 1 turno apreciando a explosão.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Metamorfose -->
+                <div class="ultimate-card">
+                    <div class="ultimate-header boticario">
+                        <h4>💊 Metamorfose</h4>
+                        <div>
+                            <span class="ultimate-badge">ULTIMATE</span>
+                            <span style="margin-left: 0.5rem; color: var(--text-muted); font-size: 0.85rem;">2 Ações, 5 Stamina + 6 Reagentes</span>
+                        </div>
+                    </div>
+                    <div class="ultimate-quote">"A guerra marca qualquer um."</div>
+                    <div class="ultimate-body">
+                        <p>Você administra um mutagênico intenso que transforma radicalmente uma criatura. Escolha um aliado ou inimigo a distância de toque (pode ser você). Duração: <strong>1 minuto</strong>.</p>
+                        
+                        <h5>✅ Aliado (Transformação):</h5>
+                        <ul>
+                            <li>Tamanho aumenta em 2 Categorias</li>
+                            <li>+6 Força, +4 Constituição, -2 Inteligência</li>
+                            <li>+20 Saúde Temporária, +10 Stamina Temporária</li>
+                            <li>+2d6 de dano em ataques corpo a corpo</li>
+                            <li>Resistência a dano Ordinário</li>
+                        </ul>
+
+                        <h5>❌ Inimigo (Vontade CD 20+Int):</h5>
+                        <ul>
+                            <li>Tamanho diminui em 2 Categorias</li>
+                            <li>-6 Força, -4 Constituição, +2 Inteligência</li>
+                            <li>-20 Saúde Máxima</li>
+                            <li>-2d6 de dano em ataques corpo a corpo</li>
+                            <li>Vulnerabilidade a dano Ordinário</li>
+                            <li><em>Sucesso no teste: nega todos os efeitos, mas sofre 4d6 de dano Biológico</em></li>
+                        </ul>
+                        
+                        <div class="ultimate-cost">
+                            <h5>💀 O Custo</h5>
+                            <p>Ao final da transformação, criaturas aliadas ficam <em>Inconscientes</em> e ganham <em>Exaustão 2</em>.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- NAVEGAÇÃO -->
+            <div class="class-nav">
+                <a href="batedor.html">← Batedor</a>
+                <a href="../classes.html">Todas as Classes</a>
+                <a href="teurgo.html">Teurgo →</a>
+            </div>
+        </main>
+    </div>
+    <script src="../../js/main.js"></script>
+</body>
+</html>
