@@ -1,0 +1,3264 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-lt-installed="true"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>✨ Magias - Khalkaria RPG</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com/">
+  <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+  <link href="%E2%9C%A8%20Magias%20-%20Khalkaria%20RPG_files/css2.css" rel="stylesheet">
+  <style>
+    /* ============================================================
+       KHALKARIA SITE — MAGIAS PAGE
+       Extends the site's core aesthetic with an arcane theme
+    ============================================================ */
+    :root {
+      --bg-deep:      #0a0a0f;
+      --bg-panel:     #111118;
+      --bg-card:      #16161f;
+      --bg-hover:     #1e1e2a;
+      --border:       #2a2a3a;
+      --border-glow:  #4a3a6a;
+
+      --gold:         #c9a84c;
+      --gold-dim:     #8a6e30;
+      --gold-bright:  #e8c96a;
+
+      --arcane-1:     #9b59b6;   /* destruction — violet */
+      --arcane-2:     #2980b9;   /* abjuration  — sapphire */
+      --arcane-3:     #27ae60;   /* alteration  — emerald */
+      --arcane-4:     #c0392b;   /* knowledge   — crimson */
+      --arcane-primal:#e67e22;   /* primordial  — ember */
+
+      --text-bright:  #f0ead8;
+      --text-body:    #c8bfa0;
+      --text-muted:   #7a7060;
+
+      --lvl1: #e74c3c;
+      --lvl2: #e67e22;
+      --lvl3: #3498db;
+      --lvl4: #9b59b6;
+
+      --nav-width: 260px;
+      --radius: 6px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg-deep);
+      color: var(--text-body);
+      font-family: 'Crimson Pro', Georgia, serif;
+      font-size: 17px;
+      line-height: 1.7;
+      min-height: 100vh;
+      display: flex;
+    }
+
+    /* ── NAV SIDEBAR ─────────────────────────────────── */
+    #nav-toggle {
+      display: none;
+      position: fixed;
+      top: 14px; left: 14px;
+      z-index: 1000;
+      background: var(--bg-panel);
+      border: 1px solid var(--border);
+      color: var(--gold);
+      font-size: 20px;
+      padding: 6px 12px;
+      cursor: pointer;
+      border-radius: var(--radius);
+    }
+
+    nav {
+      width: var(--nav-width);
+      min-width: var(--nav-width);
+      background: var(--bg-panel);
+      border-right: 1px solid var(--border);
+      padding: 24px 0 40px;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow-y: auto;
+      scrollbar-width: thin;
+      scrollbar-color: var(--border) transparent;
+      z-index: 900;
+      flex-shrink: 0;
+    }
+
+    nav .nav-logo {
+      display: block;
+      text-align: center;
+      font-family: 'Cinzel', serif;
+      font-size: 18px;
+      color: var(--gold);
+      text-decoration: none;
+      padding: 0 16px 20px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 16px;
+      letter-spacing: 2px;
+    }
+
+    nav .nav-section-title {
+      font-family: 'Cinzel', serif;
+      font-size: 9px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      padding: 14px 20px 4px;
+    }
+
+    nav .nav-divider {
+      text-align: center;
+      color: var(--gold-dim);
+      font-size: 11px;
+      letter-spacing: 6px;
+      padding: 6px 0 10px;
+    }
+
+    nav a {
+      display: block;
+      padding: 5px 20px;
+      color: var(--text-body);
+      text-decoration: none;
+      font-size: 14px;
+      transition: color .15s, background .15s;
+      border-left: 2px solid transparent;
+    }
+
+    nav a:hover {
+      color: var(--gold);
+      background: var(--bg-hover);
+      border-left-color: var(--gold-dim);
+    }
+
+    /* ── MAIN CONTENT ────────────────────────────────── */
+    main {
+      flex: 1;
+      padding: 40px 48px 80px;
+      max-width: 960px;
+    }
+
+    /* ── PAGE HEADER ─────────────────────────────────── */
+    .page-header {
+      text-align: center;
+      margin-bottom: 48px;
+      padding-bottom: 28px;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+    }
+
+    .page-header::before {
+      content: '';
+      display: block;
+      width: 200px;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--gold), transparent);
+      margin: 0 auto 20px;
+    }
+
+    .page-header h1 {
+      font-family: 'Cinzel', serif;
+      font-size: 36px;
+      color: var(--gold-bright);
+      letter-spacing: 3px;
+      text-shadow: 0 0 40px rgba(201,168,76,.25);
+      margin-bottom: 8px;
+    }
+
+    .page-header .ornament {
+      color: var(--gold-dim);
+      letter-spacing: 10px;
+      font-size: 14px;
+      display: block;
+      margin-bottom: 14px;
+    }
+
+    .page-header p {
+      color: var(--text-muted);
+      font-style: italic;
+      font-size: 16px;
+    }
+
+    /* ── RUNE FLOATING DECORATION ────────────────────── */
+    .arcane-runes {
+      text-align: center;
+      color: var(--gold-dim);
+      letter-spacing: 12px;
+      font-size: 22px;
+      opacity: 0.35;
+      margin-bottom: 6px;
+    }
+
+    /* ── QUICK NAV ───────────────────────────────────── */
+    .quick-nav {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px 24px;
+      margin-bottom: 40px;
+    }
+
+    .quick-nav h2 {
+      font-family: 'Cinzel', serif;
+      font-size: 12px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold-dim);
+      margin-bottom: 14px;
+    }
+
+    .quick-nav-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 8px;
+    }
+
+    .quick-nav a {
+      display: block;
+      padding: 8px 14px;
+      border-radius: 4px;
+      font-size: 14px;
+      text-decoration: none;
+      border: 1px solid var(--border);
+      transition: all .2s;
+      white-space: nowrap;
+    }
+
+    .quick-nav a.lvl1 { color: var(--lvl1); border-color: rgba(231,76,60,.25); }
+    .quick-nav a.lvl1:hover { background: rgba(231,76,60,.1); border-color: var(--lvl1); }
+    .quick-nav a.lvl2 { color: var(--lvl2); border-color: rgba(230,126,34,.25); }
+    .quick-nav a.lvl2:hover { background: rgba(230,126,34,.1); border-color: var(--lvl2); }
+    .quick-nav a.lvl3 { color: var(--lvl3); border-color: rgba(52,152,219,.25); }
+    .quick-nav a.lvl3:hover { background: rgba(52,152,219,.1); border-color: var(--lvl3); }
+    .quick-nav a.lvl4 { color: var(--lvl4); border-color: rgba(155,89,182,.25); }
+    .quick-nav a.lvl4:hover { background: rgba(155,89,182,.1); border-color: var(--lvl4); }
+
+    /* ── SECTION BLOCKS ──────────────────────────────── */
+    section {
+      margin-bottom: 52px;
+    }
+
+    .section-anchor {
+      display: block;
+      height: 0;
+      visibility: hidden;
+      margin-top: -80px;
+      padding-top: 80px;
+    }
+
+    /* ── RULE BLOCK ──────────────────────────────────── */
+    .rule-block {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px 28px;
+      margin-bottom: 28px;
+    }
+
+    .rule-block h2 {
+      font-family: 'Cinzel', serif;
+      font-size: 20px;
+      color: var(--gold);
+      margin-bottom: 16px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .callout {
+      background: rgba(201,168,76,.06);
+      border-left: 3px solid var(--gold-dim);
+      border-radius: 0 4px 4px 0;
+      padding: 12px 16px;
+      margin: 16px 0;
+      font-size: 15px;
+      color: var(--text-body);
+    }
+
+    .callout strong { color: var(--gold); }
+
+    /* ── LEVEL HEADER ────────────────────────────────── */
+    .level-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin: 48px 0 20px;
+    }
+
+    .level-badge {
+      font-family: 'Cinzel', serif;
+      font-size: 13px;
+      letter-spacing: 2px;
+      padding: 5px 18px;
+      border-radius: 20px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .level-badge.l1 { background: rgba(231,76,60,.15); color: var(--lvl1); border: 1px solid rgba(231,76,60,.4); }
+    .level-badge.l2 { background: rgba(230,126,34,.15); color: var(--lvl2); border: 1px solid rgba(230,126,34,.4); }
+    .level-badge.l3 { background: rgba(52,152,219,.15); color: var(--lvl3); border: 1px solid rgba(52,152,219,.4); }
+    .level-badge.l4 { background: rgba(155,89,182,.15); color: var(--lvl4); border: 1px solid rgba(155,89,182,.4); }
+
+    .level-header h2 {
+      font-family: 'Cinzel', serif;
+      font-size: 22px;
+      color: var(--text-bright);
+    }
+
+    .level-line {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(to right, var(--border), transparent);
+    }
+
+    /* ── LEVEL 4 WARNING ─────────────────────────────── */
+    .primordial-warning {
+      background: rgba(155,89,182,.08);
+      border: 1px solid rgba(155,89,182,.35);
+      border-radius: var(--radius);
+      padding: 14px 20px;
+      margin-bottom: 24px;
+      color: #bb99dd;
+      font-size: 15px;
+    }
+
+    .primordial-warning strong { color: var(--lvl4); }
+
+    /* ── SCHOOL GROUP ────────────────────────────────── */
+    .school-group {
+      margin-bottom: 32px;
+    }
+
+    .school-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 16px;
+      border-radius: var(--radius) var(--radius) 0 0;
+      font-family: 'Cinzel', serif;
+      font-size: 14px;
+      letter-spacing: 1px;
+      cursor: pointer;
+      user-select: none;
+      border: 1px solid;
+      transition: filter .2s;
+    }
+
+    .school-header:hover { filter: brightness(1.1); }
+
+    .school-header.destruicao   { background: rgba(155,89,182,.12); border-color: rgba(155,89,182,.35); color: #bb88ee; }
+    .school-header.abjuracao    { background: rgba(41,128,185,.12); border-color: rgba(41,128,185,.35); color: #88bbee; }
+    .school-header.alteracao    { background: rgba(39,174,96,.12);  border-color: rgba(39,174,96,.35);  color: #88dd99; }
+    .school-header.conhecimento { background: rgba(192,57,43,.12);  border-color: rgba(192,57,43,.35);  color: #ee8877; }
+
+    .school-header .toggle-icon {
+      margin-left: auto;
+      font-size: 12px;
+      opacity: .6;
+      transition: transform .25s;
+    }
+
+    .school-body {
+      border: 1px solid var(--border);
+      border-top: none;
+      border-radius: 0 0 var(--radius) var(--radius);
+      overflow: hidden;
+    }
+
+    /* ── SPELL CARD ──────────────────────────────────── */
+    .spell-card {
+      border-bottom: 1px solid var(--border);
+    }
+
+    .spell-card:last-child { border-bottom: none; }
+
+    .spell-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 18px;
+      background: var(--bg-card);
+      cursor: pointer;
+      transition: background .15s;
+    }
+
+    .spell-header:hover { background: var(--bg-hover); }
+
+    .spell-header .spell-dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: var(--gold-dim);
+      flex-shrink: 0;
+    }
+
+    .spell-header h4 {
+      font-family: 'Cinzel', serif;
+      font-size: 15px;
+      color: var(--text-bright);
+      font-weight: 600;
+      flex: 1;
+    }
+
+    .spell-header .spell-toggle {
+      font-size: 12px;
+      color: var(--text-muted);
+      transition: transform .25s;
+    }
+
+    .spell-body {
+      padding: 16px 18px 20px 36px;
+      background: var(--bg-deep);
+      display: none;
+    }
+
+    .spell-body.open { display: block; }
+
+    .spell-desc {
+      font-size: 16px;
+      color: var(--text-body);
+      margin-top: 14px;
+      line-height: 1.75;
+      font-style: italic;
+    }
+
+    .spell-desc strong { color: var(--gold); font-style: normal; }
+    .spell-desc em { color: #bb99dd; font-style: italic; }
+
+    /* ── SPELL TABLE ─────────────────────────────────── */
+    .spell-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14.5px;
+      margin-bottom: 2px;
+    }
+
+    .spell-table th {
+      background: rgba(201,168,76,.08);
+      color: var(--gold-dim);
+      font-family: 'Cinzel', serif;
+      font-size: 11px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 8px 12px;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .spell-table td {
+      padding: 7px 12px;
+      border-bottom: 1px solid rgba(42,42,58,.6);
+      color: var(--text-body);
+      vertical-align: top;
+    }
+
+    .spell-table tr:last-child td { border-bottom: none; }
+
+    .spell-table td:first-child {
+      color: var(--text-muted);
+      font-style: italic;
+      white-space: nowrap;
+      min-width: 120px;
+    }
+
+    .spell-table td:last-child {
+      text-align: center;
+      color: var(--text-muted);
+      width: 40px;
+    }
+
+    .mod-yes { color: #88dd99 !important; }
+    .mod-no  { color: var(--text-muted) !important; }
+
+    /* ── TRADE-OFF TAG ───────────────────────────────── */
+    .tradeoff-tag {
+      display: inline-block;
+      background: rgba(155,89,182,.15);
+      border: 1px solid rgba(155,89,182,.35);
+      color: #cc99ee;
+      font-size: 12px;
+      font-family: 'Cinzel', serif;
+      letter-spacing: 1px;
+      padding: 2px 10px;
+      border-radius: 3px;
+      margin-bottom: 8px;
+    }
+
+    /* ── GENERAL TABLES ──────────────────────────────── */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+      font-size: 15px;
+    }
+
+    thead th {
+      background: rgba(201,168,76,.08);
+      color: var(--gold-dim);
+      font-family: 'Cinzel', serif;
+      font-size: 11px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 10px 14px;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+
+    tbody td {
+      padding: 8px 14px;
+      border-bottom: 1px solid rgba(42,42,58,.7);
+      color: var(--text-body);
+    }
+
+    tbody tr:last-child td { border-bottom: none; }
+    tbody tr:hover td { background: rgba(255,255,255,.02); }
+
+    /* ── MODULATION TABLE ────────────────────────────── */
+    .mod-block {
+      margin: 16px 0;
+    }
+
+    .mod-block-title {
+      font-family: 'Cinzel', serif;
+      font-size: 13px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 8px 14px;
+      margin-bottom: -1px;
+      border-radius: 4px 4px 0 0;
+      border: 1px solid;
+    }
+
+    .mod-block-title.d { color: #bb88ee; border-color: rgba(155,89,182,.4); background: rgba(155,89,182,.08); }
+    .mod-block-title.a { color: #88bbee; border-color: rgba(41,128,185,.4);  background: rgba(41,128,185,.08); }
+    .mod-block-title.al{ color: #88dd99; border-color: rgba(39,174,96,.4);   background: rgba(39,174,96,.08);  }
+    .mod-block-title.c { color: #ee8877; border-color: rgba(192,57,43,.4);   background: rgba(192,57,43,.08);  }
+
+    /* ── HR / DIVIDER ────────────────────────────────── */
+    hr {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 40px 0;
+    }
+
+    .ornament-divider {
+      text-align: center;
+      color: var(--gold-dim);
+      letter-spacing: 12px;
+      font-size: 14px;
+      margin: 36px 0 32px;
+      opacity: .5;
+    }
+
+    /* ── HEADINGS ────────────────────────────────────── */
+    h2.section-title {
+      font-family: 'Cinzel', serif;
+      font-size: 20px;
+      color: var(--gold);
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    h3 {
+      font-family: 'Cinzel', serif;
+      font-size: 16px;
+      color: var(--text-bright);
+      margin: 20px 0 10px;
+    }
+
+    p { margin-bottom: 12px; }
+
+    strong { color: var(--text-bright); }
+    em     { color: #bb99dd; }
+
+    code {
+      font-family: monospace;
+      background: rgba(255,255,255,.06);
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-size: 14px;
+      color: var(--gold);
+    }
+
+    /* ── BACK LINK ───────────────────────────────────── */
+    .back-link {
+      display: inline-block;
+      color: var(--gold-dim);
+      text-decoration: none;
+      font-size: 14px;
+      margin-top: 40px;
+      border: 1px solid var(--border);
+      padding: 8px 18px;
+      border-radius: var(--radius);
+      transition: all .2s;
+    }
+
+    .back-link:hover {
+      color: var(--gold);
+      border-color: var(--gold-dim);
+      background: var(--bg-hover);
+    }
+
+    /* ── SCROLL TO TOP ───────────────────────────────── */
+    .scroll-top {
+      display: block;
+      text-align: right;
+      color: var(--gold-dim);
+      font-size: 12px;
+      letter-spacing: 2px;
+      margin-top: 48px;
+      text-decoration: none;
+    }
+
+    .scroll-top:hover { color: var(--gold); }
+
+    /* ── INTENSITY TABLE (special colors) ────────────── */
+    .intensity-row-contida  td { color: #88aacc; }
+    .intensity-row-normal   td { color: var(--text-body); }
+    .intensity-row-forcada  td { color: #aacc88; }
+    .intensity-row-trans    td { color: #cc88aa; }
+
+    /* ── RESPONSIVE ──────────────────────────────────── */
+    @media (max-width: 900px) {
+      #nav-toggle { display: block; }
+      nav { position: fixed; left: -260px; top: 0; transition: left .3s; }
+      nav.open { left: 0; box-shadow: 4px 0 30px rgba(0,0,0,.6); }
+      main { padding: 20px 18px 60px; margin-left: 0; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════ NAVIGATION ════ -->
+<button id="nav-toggle" onclick="document.querySelector('nav').classList.toggle('open')">☰ Menu</button>
+
+<nav>
+  <a href="file:///C:/Users/vvmixboy/index.html" class="nav-logo">Khalkaria</a>
+
+  <div class="nav-section-title">Sistema de Regras</div>
+  <div class="nav-divider">◆</div>
+  <div class="nav-section-title">Fundamentos</div>
+  <a href="file:///C:/Users/vvmixboy/index.html">🏠 Início</a>
+  <a href="file:///C:/Users/vvmixboy/Downloads/sistema.html">📜 Sistema Base</a>
+  <a href="file:///C:/Users/vvmixboy/Downloads/condicoes.html">⚡ Condições</a>
+
+  <div class="nav-section-title">Criação de Personagem</div>
+  <a href="file:///C:/Users/vvmixboy/Downloads/criacao.html">🎭 Criação</a>
+  <a href="file:///C:/Users/vvmixboy/Downloads/racas.html">👤 Raças</a>
+  <a href="file:///C:/Users/vvmixboy/Downloads/classes.html">⚔️ Classes</a>
+  <a href="file:///C:/Users/vvmixboy/Downloads/origens.html">📜 Origens</a>
+  <a href="file:///C:/Users/vvmixboy/Downloads/limiar.html">🌟 O Limiar</a>
+
+  <div class="nav-section-title">Classes</div>
+  <a href="file:///C:/Users/vvmixboy/Downloads/classes/espadachim.html">⚔️ Espadachim</a>
+  <a href="file:///C:/Users/vvmixboy/Downloads/classes/monge.html">👊 Monge</a>
+  <a href="file:///C:/Users/vvmixboy/Downloads/classes/batedor.html">🏹 Batedor</a>
+  <a href="file:///C:/Users/vvmixboy/Downloads/classes/alquimista.html">⚗️ Alquimista</a>
+  <a href="file:///C:/Users/vvmixboy/Downloads/classes/teurgo.html">✨ Teurgo</a>
+  <a href="file:///C:/Users/vvmixboy/Downloads/classes/artilheiro.html">💥 Artilheiro</a>
+  <a href="file:///C:/Users/vvmixboy/Downloads/classes/brutalista.html">🪓 Brutalista</a>
+</nav>
+
+<!-- ═══════════════════════════════════════ MAIN ══════════ -->
+<main>
+
+  <!-- ── PAGE HEADER ── -->
+  <div class="page-header">
+    <div class="arcane-runes">✦ ✧ ✦ ✧ ✦</div>
+    <h1>✨ Magias</h1>
+    <span class="ornament">◆ ◆ ◆</span>
+    <p>As forças primordiais catalogadas e descritas para os iniciados nas artes místicas.</p>
+  </div>
+
+  <!-- ── QUICK NAV ── -->
+  <div class="quick-nav">
+    <h2>📋 Navegação Rápida</h2>
+    <div class="quick-nav-grid">
+      <a href="#regras" class="lvl1">📖 Regras de Magia</a>
+      <a href="#custo-base" class="lvl1">💠 Custo Base</a>
+      <a href="#intensidade" class="lvl1">🔥 Intensidade</a>
+      <a href="#modulacoes" class="lvl1">🔧 Modulações</a>
+      <a href="#nivel1" class="lvl1">🔴 Nível 1</a>
+      <a href="#nivel2" class="lvl2">🟠 Nível 2</a>
+      <a href="#nivel3" class="lvl3">🔵 Nível 3</a>
+      <a href="#nivel4" class="lvl4">🟣 Nível 4</a>
+    </div>
+  </div>
+
+  <!-- ══════════════════════ REGRAS DE MAGIA ════════════════ -->
+  <span id="regras" class="section-anchor"></span>
+  <section>
+    <div class="rule-block">
+      <h2>📖 Regras de Magia</h2>
+      <p>A maioria do mundo não conhece as forças primordiais — energias que materializam o plano místico no plano material. Apenas <strong>Teurgos</strong> e pessoas expostas a esses fenômenos sabem que o mundo é rico em energia mística.</p>
+      <p>Conjurar magias <strong>não é trivial</strong>. Para tal, você precisa:</p>
+      <ol style="margin: 12px 0 12px 24px; line-height: 2.1;">
+        <li>Ser ao menos <strong>Treinado</strong> em Místico.</li>
+        <li>Ter <strong>aprendido</strong> os procedimentos da magia específica (fornecida por classe, raça ou origem).</li>
+        <li>Empunhar um <strong>Foco</strong> da escola correspondente.</li>
+      </ol>
+      <div class="callout">
+        <strong>⚠️</strong> Você só pode manipular <strong>1 Foco por vez</strong>. Para mudar de escola, você deve primeiro equipar o foco apropriado.
+      </div>
+      <p>Acertar um inimigo com uma magia usa a perícia <strong>Místico</strong> como base, salvo indicação contrária na descrição.</p>
+    </div>
+
+    <!-- CUSTO BASE -->
+    <span id="custo-base" class="section-anchor"></span>
+    <div class="rule-block">
+      <h2>💠 Custo Base por Nível</h2>
+      <table>
+        <thead><tr><th>Nível</th><th>Custo de Éter</th><th>Requisito</th></tr></thead>
+        <tbody>
+          <tr><td>Nível 1</td><td>2 Éter</td><td>—</td></tr>
+          <tr><td>Nível 2</td><td>4 Éter</td><td>—</td></tr>
+          <tr><td>Nível 3</td><td>6 Éter</td><td>—</td></tr>
+          <tr><td>Nível 4</td><td>8 Éter</td><td>Foco Primordial</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- INTENSIDADE -->
+    <span id="intensidade" class="section-anchor"></span>
+    <div class="rule-block">
+      <h2>🔥 Intensidade</h2>
+      <p>Ao conjurar qualquer magia, escolha a <strong>intensidade</strong> antes de gastar o Éter:</p>
+      <table>
+        <thead><tr><th>Intensidade</th><th>Custo de Éter</th><th>Efeito</th></tr></thead>
+        <tbody>
+          <tr class="intensity-row-contida"><td>Contida</td><td>−2 Éter</td><td>Efeito Reduzido</td></tr>
+          <tr class="intensity-row-normal"> <td>Normal</td><td>Custo Base</td><td>—</td></tr>
+          <tr class="intensity-row-forcada"><td>Forçada</td><td>+2 Éter</td><td>Efeito Ampliado</td></tr>
+          <tr class="intensity-row-trans">  <td>Transbordante</td><td>+4 Éter</td><td>Efeito Máximo + Risco (Vontade CD 15 ou falha: perde o dobro de Éter)</td></tr>
+        </tbody>
+      </table>
+
+      <h3>📊 Efeito por Intensidade</h3>
+      <p style="font-size:14px;color:var(--text-muted);margin-bottom:8px;">As barras nas descrições indicam valores em ordem: <strong>Contida / Normal / Forçada / Transbordante</strong></p>
+      <table>
+        <thead><tr><th>Característica</th><th>Contida</th><th>Normal</th><th>Forçada</th><th>Transbordante</th></tr></thead>
+        <tbody>
+          <tr><td>Dano</td><td>−1 dado</td><td>Base</td><td>+1 dado</td><td>+2 dados</td></tr>
+          <tr><td>Cura</td><td>−1 dado</td><td>Base</td><td>+1 dado</td><td>+2 dados</td></tr>
+          <tr><td>Buff/Debuff</td><td>Metade da duração</td><td>Base</td><td>Dobro da duração</td><td>Dobro + 2× intensidade</td></tr>
+          <tr><td>Área</td><td>Metade da área</td><td>Base</td><td>+50% raio</td><td>Dobro do raio</td></tr>
+          <tr><td>Alcance</td><td>Metade do alcance</td><td>Base</td><td>+50% alcance</td><td>Dobro do alcance</td></tr>
+          <tr><td>Conhecimento</td><td>Informação Vaga</td><td>Base</td><td>Informação Detalhada</td><td>Informação Completa</td></tr>
+          <tr><td>Invocação</td><td>Criatura Fraca</td><td>Base</td><td>Criatura Forte</td><td>Criatura Forte + Duração</td></tr>
+          <tr><td>Teste de Resistência</td><td>−2 CD</td><td>Base</td><td>+2 CD</td><td>+4 CD</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- MODULAÇÕES -->
+    <span id="modulacoes" class="section-anchor"></span>
+    <div class="rule-block">
+      <h2>🔧 Modulações por Escola</h2>
+
+      <div class="mod-block">
+        <div class="mod-block-title d">⚔️ Destruição</div>
+        <table><thead><tr><th>Modulação</th><th>Custo</th><th>Efeito</th></tr></thead>
+        <tbody>
+          <tr><td>Fragmentar</td><td>+2 Éter</td><td>Atinge +1 alvo, mas reduz o dano à metade</td></tr>
+          <tr><td>Alterar</td><td>+3 Éter</td><td>Altera o tipo de dano</td></tr>
+          <tr><td>Carregar</td><td>+3 Éter</td><td>Ignora 2 de Evasão do alvo</td></tr>
+          <tr><td>Marcar</td><td>+3 Éter</td><td>O alvo fica <em>Exposto</em> ao acertar</td></tr>
+        </tbody></table>
+      </div>
+
+      <div class="mod-block">
+        <div class="mod-block-title a">🛡️ Abjuração</div>
+        <table><thead><tr><th>Modulação</th><th>Custo</th><th>Efeito</th></tr></thead>
+        <tbody>
+          <tr><td>Ancorar</td><td>+2 Éter</td><td>Efeito não pode ser <em>Dissipado</em></td></tr>
+          <tr><td>Socializar</td><td>+3 Éter</td><td>Efeito afeta +1 alvo</td></tr>
+          <tr><td>Refletir</td><td>+3 Éter</td><td>Ao bloquear dano, redireciona metade ao agressor</td></tr>
+          <tr><td>Acelerar</td><td>+5 Éter</td><td>Diminui custo de ação em 1 (3→2→1→Reação→Ação Livre)</td></tr>
+        </tbody></table>
+      </div>
+
+      <div class="mod-block">
+        <div class="mod-block-title al">🌀 Alteração</div>
+        <table><thead><tr><th>Modulação</th><th>Custo</th><th>Efeito</th></tr></thead>
+        <tbody>
+          <tr><td>Insistir</td><td>+2 Éter</td><td>Efeito dura o dobro</td></tr>
+          <tr><td>Inversão</td><td>+2 Éter</td><td>Inverte o efeito da magia</td></tr>
+          <tr><td>Contagiar</td><td>+3 Éter</td><td>Efeito afeta +1 alvo</td></tr>
+          <tr><td>Seleção</td><td>+3 Éter</td><td>Remove criaturas da área de efeito à escolha</td></tr>
+        </tbody></table>
+      </div>
+
+      <div class="mod-block">
+        <div class="mod-block-title c">🔮 Conhecimento</div>
+        <table><thead><tr><th>Modulação</th><th>Custo</th><th>Efeito</th></tr></thead>
+        <tbody>
+          <tr><td>Compartilhar</td><td>+1 Éter</td><td>Aliados também se informam</td></tr>
+          <tr><td>Exigência</td><td>+2 Éter</td><td>Informação mais específica</td></tr>
+          <tr><td>Expandir</td><td>+2 Éter</td><td>Abrange o dobro da área</td></tr>
+          <tr><td>Gravar</td><td>+3 Éter</td><td>Grava a informação na sua mente ou em um objeto</td></tr>
+        </tbody></table>
+      </div>
+    </div>
+  </section>
+
+  <div class="ornament-divider">✦ ✧ ✦ ✧ ✦ ✧ ✦</div>
+  <p style="font-size:13px;color:var(--text-muted);text-align:center;margin-bottom:12px;">
+    ✅ = Modificável por intensidade &nbsp;|&nbsp; ❎ = Valor fixo
+  </p>
+
+  <!-- ══════════════════════ NÍVEL 1 ════════════════════════ -->
+  <span id="nivel1" class="section-anchor"></span>
+  <div class="level-header">
+    <span class="level-badge l1">🔴 NÍVEL 1</span>
+    <h2>Magias de Primeiro Nível</h2>
+    <div class="level-line"></div>
+  </div>
+
+  <!-- N1 — DESTRUIÇÃO -->
+  <div class="school-group">
+    <div class="school-header destruicao" onclick="toggleSchool(this)">
+      ⚔️ Destruição
+      <span class="toggle-icon">▼</span>
+    </div>
+    <div class="school-body">
+
+      <!-- Dardo Arcano -->
+      <div class="spell-card">
+        <div class="spell-header" onclick="toggleSpell(this)">
+          <span class="spell-dot"></span>
+          <h4>🔹 Dardo Arcano</h4>
+          <span class="spell-toggle">▶</span>
+        </div>
+        <div class="spell-body">
+          <table class="spell-table">
+            <thead><tr><th>Característica</th><th>Valor</th><th>Mod</th></tr></thead>
+            <tbody>
+              <tr><td>Ação</td><td>2 Ações</td><td class="mod-no">❎</td></tr>
+              <tr><td>Alcance</td><td>4,5 / 9 / 13,5 / 18 m</td><td class="mod-yes">✅</td></tr>
+              <tr><td>Dano</td><td>1d4 / 2d4 / 3d4 / 4d4 Radiante, Trovejante ou Necrótico</td><td class="mod-yes">✅</td></tr>
+            </tbody>
+          </table>
+          <p class="spell-desc">Você lança um dardo mágico que acerta 
+automaticamente e não pode ser bloqueado por cobertura. Escolha entre um
+ entre os 3 tipos de dano Místicos.</p>
+        </div>
+      </div>
+
+      <!-- Onda Gravitacional -->
+      <div class="spell-card">
+        <div class="spell-header" onclick="toggleSpell(this)">
+          <span class="spell-dot"></span>
+          <h4>🔹 Onda Gravitacional</h4>
+          <span class="spell-toggle">▶</span>
+        </div>
+        <div class="spell-body">
+          <table class="spell-table">
+            <thead><tr><th>Característica</th><th>Valor</th><th>Mod</th></tr></thead>
+            <tbody>
+              <tr><td>Ação</td><td>3 Ações</td><td class="mod-no">❎</td></tr>
+              <tr><td>Alcance</td><td>Pessoal</td><td class="mod-no">❎</td></tr>
+              <tr><td>Área</td><td>Retângulo de 6 m a partir de você</td><td class="mod-no">❎</td></tr>
+              <tr><td>Dano</td><td>1d6 / 2d6 / 3d6 / 4d6 Trovejante</td><td class="mod-yes">✅</td></tr>
+              <tr><td>Resistência</td><td>Fortitude ou empurrado 0 / 1,5 / 3 / 4,5 m</td><td class="mod-yes">✅</td></tr>
+            </tbody>
+          </table>
+          <p class="spell-desc">Você conjura uma explosão gravitacional 
+em um retângulo de 6 m a partir de você. Criaturas afetadas pela magia 
+devem fazer um teste de <em>Fortitude</em> ou são empurradas m para longe de vocês.</p>
+        </div>
+      </div>
+
+      <!-- Incinerar Área -->
+      <div class="spell-card">
+        <div class="spell-header" onclick="toggleSpell(this)">
+          <span class="spell-dot"></span>
+          <h4>🔹 Incinerar Área</h4>
+          <span class="spell-toggle">▶</span>
+        </div>
+        <div class="spell-body">
+          <table class="spell-table">
+            <thead><tr><th>Característica</th><th>Valor</th><th>Mod</th></tr></thead>
+            <tbody>
+              <tr><td>Ação</td><td>3 Ações</td><td class="mod-no">❎</td></tr>
+              <tr><td>Alcance</td><td>6 m</td><td class="mod-no">❎</td></tr>
+              <tr><td>Área</td><td>1,5 / 3 / 4,5 / 6 m de Raio</td><td class="mod-yes">✅</td></tr>
+              <tr><td>Dano</td><td>1d6 / 2d6 / 3d6 / 4d6 Fogo</td><td class="mod-yes">✅</td></tr>
+              <tr><td>Resistência</td><td>Reflexos: metade ou <em>Em Chamas</em> • dano completo</td><td class="mod-yes">✅</td></tr>
+            </tbody>
+          </table>
+          <p class="spell-desc">Você incinera uma área circular causando
+ dano de Fogo a todos que estiverem na área. Criaturas devem realizar um
+ teste de reflexos(Contra sua CD) para receber metade do dano ou ficam <em>em chamas</em> e recebem o dano completo.</p>
+        </div>
+      </div>
+
+      <!-- Toque Gélido -->
+      <div class="spell-card">
+        <div class="spell-header" onclick="toggleSpell(this)">
+          <span class="spell-dot"></span>
+          <h4>🔹 Toque Gélido</h4>
+          <span class="spell-toggle">▶</span>
+        </div>
+        <div class="spell-body">
+          <table class="spell-table">
+            <thead><tr><th>Característica</th><th>Valor</th><th>Mod</th></tr></thead>
+            <tbody>
+              <tr><td>Ação</td><td>2 Ações</td><td class="mod-no">❎</td></tr>
+              <tr><td>Alcance</td><td>Toque / Toque / 3 m / 4,5 m</td><td class="mod-yes">✅</td></tr>
+              <tr><td>Dano</td><td>1d8 / 2d8 / 3d8 / 4d8 Frio</td><td class="mod-yes">✅</td></tr>
+            </tbody>
+          </table>
+          <p class="spell-desc">Você transfere de um simples toque um 
+frio mórbido. Faça um teste de Místico contra a Evasão do alvo, em caso 
+de acerto o alvo recebe dano de frio e fica <em>Lento 1.</em></p>
+        </div>
+      </div>
+
+      <!-- Raio Elétrico -->
+      <div class="spell-card">
+        <div class="spell-header" onclick="toggleSpell(this)">
+          <span class="spell-dot"></span>
+          <h4>🔹 Raio Elétrico</h4>
+          <span class="spell-toggle">▶</span>
+        </div>
+        <div class="spell-body">
+          <table class="spell-table">
+            <thead><tr><th>Característica</th><th>Valor</th><th>Mod</th></tr></thead>
+            <tbody>
+              <tr><td>Ação</td><td>2 Ações</td><td class="mod-no">❎</td></tr>
+              <tr><td>Alcance</td><td>4,5 / 9 / 13,5 / 18 m</td><td class="mod-yes">✅</td></tr>
+              <tr><td>Alvos</td><td>1 / 2 / 3 / 4 criaturas em até 0 / 1,5 / 3 / 4,5 m entre si</td><td class="mod-yes">✅</td></tr>
+              <tr><td>Dano</td><td>1d4 / 2d4 / 3d4 / 4d4 Elétrico</td><td class="mod-yes">✅</td></tr>
+            </tbody>
+          </table>
+          <p class="spell-desc">Você conjura um raio elétrico que salta 
+em entre inimigos próximos. Os alvos devem estar separados por no máximo
+ 0 / 1,5 / 3 / 4,5 m.</p>
+        </div>
+      </div>
+
+    </div><!-- /school-body destruicao n1 -->
+  </div>
+
+  <!-- N1 — ABJURAÇÃO -->
+  <div class="school-group">
+    <div class="school-header abjuracao" onclick="toggleSchool(this)">
+      🛡️ Abjuração
+      <span class="toggle-icon">▼</span>
+    </div>
+    <div class="school-body">
+
+      <!-- Escudo Telecinético -->
+      <div class="spell-card">
+        <div class="spell-header" onclick="toggleSpell(this)">
+          <span class="spell-dot"></span>
+          <h4>🔹 Escudo Telecinético</h4>
+          <span class="spell-toggle">▶</span>
+        </div>
+        <div class="spell-body">
+          <table class="spell-table">
+            <thead><tr><th>Característica</th><th>Valor</th><th>Mod</th></tr></thead>
+            <tbody>
+              <tr><td>Ação</td><td>Reação</td><td class="mod-no">❎</td></tr>
+              <tr><td>Gatilho</td><td>Você é alvo de um ataque</td><td class="mod-no">❎</td></tr>
+              <tr><td>Efeito</td><td>+2 / +5 / +7 / +10 Evasão até o próximo turno</td><td class="mod-yes">✅</td></tr>
+            </tbody>
+          </table>
+          <p class="spell-desc">Você movimenta telepaticamente diversos objetos em volta de você para se defender contra um ataque eminente. Você tem mais <strong>Evasão</strong> até o seu próximo turno.</p>
+        </div>
+      </div>
+
+      <!-- Solo Sagrado -->
+      <div class="spell-card">
+        <div class="spell-header" onclick="toggleSpell(this)">
+          <span class="spell-dot"></span>
+          <h4>🔹 Solo Sagrado</h4>
+          <span class="spell-toggle">▶</span>
+        </div>
+        <div class="spell-body">
+          <table class="spell-table">
+            <thead><tr><th>Característica</th><th>Valor</th><th>Mod</th></tr></thead>
+            <tbody>
+              <tr><td>Ação</td><td>1 Ação</td><td class="mod-no">❎</td></tr>
+              <tr><td>Alcance</td><td>Pessoal</td><td class="mod-no">❎</td></tr>
+              <tr><td>Raio</td><td>1,5 / 3 / 4,5 / 6 m</td><td class="mod-yes">✅</td></tr>
+              <tr><td>Duração</td><td>3 / 3 / 4 / 5 Rodadas</td><td class="mod-yes">✅</td></tr>
+              <tr><td>Efeito</td><td>Aliados na área: +1 / +2 / +3 / +4 Evasão</td><td class="mod-yes">✅</td></tr>
+            </tbody>
+          </table>
+          <p class="spell-desc">Você cria uma superfície sagrada circular centrada em você que confunde inimigos.</p>
+        </div>
+      </div>
+
+      <!-- Armadura do Oblívio -->
+      <div class="spell-card">
+        <div class="spell-header" onclick="toggleSpell(this)">
+          <span class="spell-dot"></span>
+          <h4>🔹 Armadura do Oblívio</h4>
+          <span class="spell-toggle">▶</span>
+        </div>
+        <div class="spell-body">
+          <table class="spell-table">
+            <thead><tr><th>Característica</th><th>Valor</th><th>Mod</th></tr></thead>
+            <tbody>
+              <tr><td>Ação</td><td>1 Ação</td><td class="mod-no">❎</td></tr>
+              <tr><td>Alcance</td><td>Toque / Toque / 3 / 4,5 m</td><td class="mod-yes">✅</td></tr>
+              <tr><td>Alvo</td><td>1 Criatura</td><td class="mod-no">❎</td></tr>
+              <tr><td>Efeito</td><td>Ae (dano escolhido): 2 / 5 / 7 / 10 até fim da cena</td><td class="mod-yes">✅</td></tr>
+            </tbody>
+          </table>
+          <p class="spell-desc">Você lapida magicamente uma armadura que
+ resiste perfeitamente a um elemento específico. Ao usar, escolha um 
+tipo de dano Atípico, o alvo recebe 5 <strong>Ae</strong> desse tipo de dano até o fim da cena.</p>
+        </div>
+      </div>
+
+      <!-- Santuário Menor -->
+      <div class="spell-card">
+        <div class="spell-header" onclick="toggleSpell(this)">
+          <span class="spell-dot"></span>
+          <h4>🔹 Santuário Menor</h4>
+          <span class="spell-toggle">▶</span>
+        </div>
+        <div class="spell-body">
+          <table class="spell-table">
+            <thead><tr><th>Característica</th><th>Valor</th><th>Mod</th></tr></thead>
+            <tbody>
+              <tr><td>Ação</td><td>2 Ações</td><td class="mod-no">❎</td></tr>
+              <tr><td>Alcance</td><td>Toque / 3 / 6 m</td><td class="mod-yes">✅</td></tr>
+              <tr><td>Alvo</td><td>1 / 2 / 3 Criatura(s)</td><td class="mod-yes">✅</td></tr>
+              <tr><td>Efeito</td><td>Alvo(s) imune a dano por 3 rodadas</td><td class="mod-no">❎</td></tr>
+            </tbody>
+          </table>
+          <p class="spell-desc">Você fornece uma aura divina a um alvo 
+que o previne de tomar qualquer tipo de dano por 3 rodadas. Criaturas 
+que tentarem causar dano ao alvo afetado devem antes passar em um teste 
+de Vontade ou erram o ataque/não causam dano. Caso o alvo afetado ataque
+ alguém durante esse período a magia se dissipa. Após o uso, o alvo não 
+pode receber os benefícios dessa magia até o próximo descanso longo. 
+Essa magia só pode ser canalizada na <strong>intensidade:</strong> <em>Normal</em> ou acima.</p>
+        </div>
+      </div>
+
+      <!-- Purificação Mística -->
+      <div class="spell-card">
+        <div class="spell-header" onclick="toggleSpell(this)">
+          <span class="spell-dot"></span>
+          <h4>🔹 Purificação Mística</h4>
+          <span class="spell-toggle">▶</span>
+        </div>
+        <div class="spell-body">
+          <table class="spell-table">
+            <thead><tr><th>Característica</th><th>Valor</th><th>Mod</th></tr></thead>
+            <tbody>
+              <tr><td>Ação</td><td>1 Ação</td><td class="mod-no">❎</td></tr>
+              <tr><td>Alcance</td><td>1,5 / 1,5 / 3 / 6 m</td><td class="mod-yes">✅</td></tr>
+              <tr><td>Alvo</td><td>1 / 2 / 3 / 4 Criatura(s)</td><td class="mod-yes">✅</td></tr>
+              <tr><td>Efeito</td><td>Remove: Enfeitiçado, Enjoado, Amedrontado, Atordoado, Adormecido, Paralisado, Desorientado, Confuso e Em Chamas</td><td class="mod-no">❎</td></tr>
+            </tbody>
+          </table>
+          <p class="spell-desc">Energia purificadora mística remove mazelas de uma ou mais criaturas.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- N1 — ALTERAÇÃO -->
+  <div class="school-group">
+    <div class="school-header alteracao" onclick="toggleSchool(this)">
+      🌀 Alteração
+      <span class="toggle-icon">▼</span>
+    </div>
+    <div class="school-body">
+
+      <!-- Mão Mágica -->
+      <div class="spell-card">
+        <div class="spell-header" onclick="toggleSpell(this)">
+          <span class="spell-dot"></span>
+          <h4>🔹 Mão Mágica</h4>
+          <span class="spell-toggle">▶</span>
+        </div>
+        <div class="spell-body">
+          <table class="spell-table">
+            <thead><tr><th>Característica</th><th>Valor</th><th>Mod</th></tr></thead>
+            <tbody>
+              <tr><td>Ação</td><td>1 Ação</td><td class="mod-no">❎</td></tr>
+              <tr><td>Alcance</td><td>9 m</td><td class="mod-no">❎</td></tr>
+              <tr><td>Invocada</td><td>Mão espectral — 1 Saúde, 0 Evasão, dura 10 min</td><td class="mod-no">❎</td></tr>
+            </tbody>
+          </table>
+          <p class="spell-desc">Você cria uma mão espectral que pode 
+manipular objetos leves (até 1 kg), abrir portas, puxar alavancas, etc. A
+ mão não pode atacar e some em 10 minutos. Movimentar a mão em um 
+combate, gasta 1 ação, interagir com qualquer coisa também custa 1 ação.
+ Essa magia só pode ser canalizada na <strong>Intensidade:</strong> <em>Normal</em></p>
+        </div>
+      </div>
+
+      <!-- Estimulante Místico -->
+      <div class="spell-card">
+        <div class="spell-header" onclick="toggleSpell(this)">
+          <span class="spell-dot"></span>
+          <h4>🔹 Estimulante Místico</h4>
+          <span class="spell-toggle">▶</span>
+        </div>
+        <div class="spell-body">
+          <table class="spell-table">
+            <thead><tr><th>Característica</th><th>Valor</th><th>Mod</th></tr></thead>
+            <tbody>
+              <tr><td>Ação</td><td>2 Ações</td><td class="mod-no">❎</td></tr>
+              <tr><td>Alcance</td><td>Toque / 3 / 4,5 / 6 m</td><td class="mod-yes">✅</td></tr>
+              <tr><td>Alvo</td><td>1 Criatura</td><td class="mod-no">❎</td></tr>
+              <tr><td>Duração</td><td>1 Rodada</td><td class="mod-no">❎</td></tr>
+              <tr><td>Efeito</td><td>+0 / +1 / +1 / +2 dado de dano; +2 / +2 / +4 / +6 em ataques</td><td class="mod-yes">✅</td></tr>
+            </tbody>
+          </table>
+          <p class="spell-desc">Você aplica um estimulante em uma 
+criatura que aumenta a circulação sanguínea, enrijece a musculatura e 
+aumenta a produção energética do corpo.</p>
+        </div>
+      </div>
+
+      <!-- Disfarce Ilusório -->
+      <div class="spell-card">
+        <div class="spell-header" onclick="toggleSpell(this)">
+          <span class="spell-dot"></span>
+          <h4>🔹 Disfarce Ilusório</h4>
+          <span class="spell-toggle">▶</span>
+        </div>
+        <div class="spell-body">
+          <table class="spell-table">
+            <thead><tr><th>Característica</th><th>Valor</th><th>Mod</th></tr></thead>
+            <tbody>
+              <tr><td>Ação</td><td>3 Ações</td><td class="mod-no">❎</td></tr>
+              <tr><td>Alcance</td><td>Toque</td><td class="mod-no">❎</td></tr>
+              <tr><td>Alvo</td><td>1 / 2 / 3 / 4 Criaturas</td><td class="mod-yes">✅</td></tr>
+              <tr><td>Duração</td><td>15 / 30 / 45 / 60 Minutos</td><td class="mod-yes">✅</td></tr>
+            </tbody>
+          </table>
+          <p class="spell-desc">Você muda a aparência física (altura 
+±30cm, peso, rosto, voz, roupas) de uma criatura a distância de toque. 
+Não altera tato nem cheiro. Criaturas que interagirem podem fazer 
+Percepção vs sua CD para perceber a ilusão.</p>
+        </div>
+      </div>
+
+      <!-- Queda Suave -->
+      <div class="spell-card">
+        <div class="spell-header" onclick="toggleSpell(this)">
+          <span class="spell-dot"></span>
+          <h4>🔹 Queda Suave</h4>
+          <span class="spell-toggle">▶</span>
+        </div>
+        <div class="spell-body">
+          <table class="spell-table">
+            <thead><tr><th>Característica</th><th>Valor</th><th>Mod</th></tr></thead>
+            <tbody>
+              <tr><td>Ação</td><td>2 Ações</td><td class="mod-no">❎</td></tr>
+              <tr><td>Alcance</td><td>Toque / 3 / 4,5 / 6 m</td><td class="mod-yes">✅</td></tr>
+              <tr><td>Alvo</td><td>2 / 3 / 4 / 5 Criaturas</td><td class="mod-yes">✅</td></tr>
+              <tr><td>Efeito</td><td>Imunidade a dano de queda de até 15 / 30 / 45 / 60 m</td><td class="mod-yes">✅</td></tr>
+            </tbody>
+          </table>
+          <p class="spell-desc">Você oferece poder místico que faz até 3 criaturas planarem no ar, negando dano de queda de até 30 m de altura.</p>
+        </div>
+      </div>
+
+      <!-- Maldição do Peso -->
+      <div class="spell-card">
+        <div class="spell-header" onclick="toggleSpell(this)">
+          <span class="spell-dot"></span>
+          <h4>🔹 Maldição do Peso</h4>
+          <span class="spell-toggle">▶</span>
+        </div>
+        <div class="spell-body">
+          <table class="spell-table">
+            <thead><tr><th>Característica</th><th>Valor</th><th>Mod</th></tr></thead>
+            <tbody>
+              <tr><td>Ação</td><td>2 Ações</td><td class="mod-no">❎</td></tr>
+              <tr><td>Alcance</td><td>4,5 / 9 / 13,5 / 18 m</td><td class="mod-yes">✅</td></tr>
+              <tr><td>Alvo</td><td>1 / 1 / 2 / 2 Criatura(s)</td><td class="mod-no">❎</td></tr>
+              <tr><td>Efeito</td><td><em>Confuso</em> / <em>Lento 1</em> / <em>Lento 2</em> / <em>Lento 3</em> por 1d4 rodadas</td><td class="mod-yes">✅</td></tr>
+              <tr><td>Resistência</td><td>Vontade ou recebe o efeito</td><td class="mod-yes">✅</td></tr>
+            </tbody>
+          </table>
+          <p class="spell-desc">Você amaldiçoa uma criatura adicionando peso ilusório caso ela falhe em um teste de <strong>Vontade</strong> contra sua cd.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- N1 — CONHECIMENTO -->
+  <div class="school-group">
+    <div class="school-header conhecimento" onclick="toggleSchool(this)">
+      🔮 Conhecimento
+      <span class="toggle-icon">▼</span>
+    </div>
+    <div class="school-body">
+
+      <!-- Detectar Magia -->
+      <div class="spell-card">
+        <div class="spell-header" onclick="toggleSpell(this)">
+          <span class="spell-dot"></span>
+          <h4>🔹 Detectar Magia</h4>
+          <span class="spell-toggle">▶</span>
+        </div>
+        <div class="spell-body">
+          <table class="spell-table">
+            <thead><tr><th>Característica</th><th>Valor</th><th>Mod</th></tr></thead>
+            <tbody>
+              <tr><td>Ação</td><td>1 Ação</td><td class="mod-no">❎</td></tr>
+              <tr><td>Alcance</td><td>Pessoal</td><td class="mod-no">❎</td></tr>
+              <tr><td>Efeito</td><td>Enxerga fontes de magia em até 15 / 30 / 45 / 60 m</td><td class="mod-yes">✅</td></tr>
+              <tr><td>Duração</td><td>5 / 10 / 15 / 20 Minutos</td><td class="mod-yes">✅</td></tr>
+            </tbody>
+          </table>
+          <p class="spell-desc">Você encanta a si mesmo para sentir a presença de energia mística através de seus olhos.</p>
+        </div>
+      </div>
+
+      <!-- Alarme -->
+      <div class="spell-card">
+        <div class="spell-header" onclick="toggleSpell(this)">
+          <span class="spell-dot"></span>
+          <h4>🔹 Alarme</h4>
+          <span class="spell-toggle">▶</span>
+        </div>
+        <div class="spell-body">
+          <table class="spell-table">
+            <thead><tr><th>Característica</th><th>Valor</th><th>Mod</th></tr></thead>
+            <tbody>
+              <tr><td>Ação</td><td>3 Ações</td><td class="mod-no">❎</td></tr>
+              <tr><td>Alcance</td><td>Toque</td><td class="mod-no">❎</td></tr>
+              <tr><td>Área</td><td>1,5 / 3 / 4,5 / 6 m Raio</td><td class="mod-yes">✅</td></tr>
+              <tr><td>Duração</td><td>12 h / 1 / 2 / 3 Dias</td><td class="mod-yes">✅</td></tr>
+            </tbody>
+          </table>
+          <p class="spell-desc">Você planta um alarme sobre uma 
+superfície que abrange uma área de 1,5 m de raio. Qualquer criatura que 
+passar sobre o alarme o ativa alertando o conjurador da magia. Criaturas
+ que identificarem o alarme podem desarmá-lo ao passar em um teste de 
+Místico contra seu CD.</p>
+        </div>
+      </div>
+
+      <!-- Mensagem -->
+      <div class="spell-card">
+        <div class="spell-header" onclick="toggleSpell(this)">
+          <span class="spell-dot"></span>
+          <h4>🔹 Mensagem</h4>
+          <span class="spell-toggle">▶</span>
+        </div>
+        <div class="spell-body">
+          <table class="spell-table">
+            <thead><tr><th>Característica</th><th>Valor</th><th>Mod</th></tr></thead>
+            <tbody>
+              <tr><td>Ação</td><td>1 Ação</td><td class="mod-no">❎</td></tr>
+              <tr><td>Alcance</td><td>18 / 36 / 54 / 72 m</td><td class="mod-yes">✅</td></tr>
+              <tr><td>Alvo(s)</td><td>1 / 1 / 2 / 3 Criatura(s)</td><td class="mod-yes">✅</td></tr>
+            </tbody>
+          </table>
+          <p class="spell-desc">Você sussurra uma mensagem que só o alvo ouve. Barreiras sólidas grossas bloqueiam a magia.</p>
+        </div>
+      </div>
+
+      <!-- Língua Mística -->
+      <div class="spell-card">
+        <div class="spell-header" onclick="toggleSpell(this)">
+          <span class="spell-dot"></span>
+          <h4>🔹 Língua Mística</h4>
+          <span class="spell-toggle">▶</span>
+        </div>
+        <div class="spell-body">
+          <table class="spell-table">
+            <thead><tr><th>Característica</th><th>Valor</th><th>Mod</th></tr></thead>
+            <tbody>
+              <tr><td>Ação</td><td>1 Ação</td><td class="mod-no">❎</td></tr>
+              <tr><td>Alcance</td><td>Toque</td><td class="mod-no">❎</td></tr>
+              <tr><td>Alvo</td><td>Objeto ou 1 Criatura</td><td class="mod-no">❎</td></tr>
+            </tbody>
+          </table>
+          <p class="spell-desc">Você profere a habilidade a você e mais 
+uma criatura a falar uma língua mística onde vocês duas conseguem se 
+entender independente da língua original que falarem. Ao utilizar em 
+textos, você o traduz para a língua comum entendendo o idioma. Esta 
+magia só pode ser conjurada na intensidade <strong>Normal</strong>.</p>
+        </div>
+      </div>
+
+      <!-- Entender Ser -->
+      <div class="spell-card">
+        <div class="spell-header" onclick="toggleSpell(this)">
+          <span class="spell-dot"></span>
+          <h4>🔹 Entender Ser</h4>
+          <span class="spell-toggle">▶</span>
+        </div>
+        <div class="spell-body">
+          <table class="spell-table">
+            <thead><tr><th>Característica</th><th>Valor</th><th>Mod</th></tr></thead>
+            <tbody>
+              <tr><td>Ação</td><td>1 Ação</td><td class="mod-no">❎</td></tr>
+              <tr><td>Alcance</td><td>Toque</td><td class="mod-no">❎</td></tr>
+              <tr><td>Alvo</td><td>1 Criatura</td><td class="mod-no">❎</td></tr>
+              <tr><td>Resist.</td><td>Vontade ou Informações</td><td class="mod-no">❎</td></tr>
+              <tr><td>Efeito</td><td>Revela: Ar, Ae, Resistências, Vulnerabilidades, Tipo, CD e Saúde Máxima</td><td class="mod-no">❎</td></tr>
+            </tbody>
+          </table>
+          <p class="spell-desc">Você é informado misticamente sobre as 
+propriedades de uma criatura em especifico caso ela, antes, falhe em um 
+teste de vontade contra a sua CD. Essa magia só pode ser canalizada na <strong>Intensidade:</strong> <em>Normal</em></p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══════════════════════ NÍVEL 2 ════════════════════════ -->
+  <span id="nivel2" class="section-anchor"></span>
+  <div class="level-header">
+    <span class="level-badge l2">🟠 NÍVEL 2</span>
+    <h2>Magias de Segundo Nível</h2>
+    <div class="level-line"></div>
+  </div>
+
+  <!-- N2 — DESTRUIÇÃO -->
+  <div class="school-group">
+    <div class="school-header destruicao" onclick="toggleSchool(this)">
+      ⚔️ Destruição
+      <span class="toggle-icon">▼</span>
+    </div>
+    <div class="school-body">
+
+      <!-- Lança de Gelo -->
+      <div class="spell-card">
+        <div class="spell-header" onclick="toggleSpell(this)">
+          <span class="spell-dot"></span>
+          <h4>🔹 Lança de Gelo</h4>
+          <span class="spell-toggle">▶</span>
+        </div>
+        <div class="spell-body">
+          <table class="spell-table">
+            <thead><tr><th>Característica</th><th>Valor</th><th>Mod</th></tr></thead>
+            <tbody>
+              <tr><td>Ação</td><td>3 Ações</td><td class="mod-no">❎</td></tr>
+              <tr><td>Alcance</td><td>9 / 18 / 27 / 36 m</td><td class="mod-yes">✅</td></tr>
+              <tr><td>Alvo</td><td>1 Criatura</td><td class="mod-no">❎</td></tr>
+              <tr><td>Dano</td><td>2d8 / 3d8 / 4d8 / 5d8 Frio</td><td class="mod-yes">✅</td></tr>
+              <tr><td>Resistência</td><td>Reflexos ou <em>Lento 1</em> por 1 rodada</td><td class="mod-yes">✅</td></tr>
+            </tbody>
+          </table>
+          <p class="spell-desc">Você conjura uma lança de gelo cristalino que atravessa o ar em direção a um alvo. Faça um teste de <strong>Místico,</strong>
+ contra a evasão do alvo. O alvo pode bloquear esse ataque se tiver 
+reação. Ao acertar, o alvo recebe 3d8 de dano de Frio. Adicionalmente, 
+Teste de <strong>Reflexos</strong> ou fica <em>Lento 1</em> por 1 rodada.</p>
+        </div>
+      </div>
+
+      <!-- Verdades Dolorosas -->
+      <div class="spell-card">
+        <div class="spell-header" onclick="toggleSpell(this)">
+          <span class="spell-dot"></span>
+          <h4>🔹 Verdades Dolorosas</h4>
+          <span class="spell-toggle">▶</span>
+        </div>
+        <div class="spell-body">
+          <table class="spell-table">
+            <thead><tr><th>Característica</th><th>Valor</th><th>Mod</th></tr></thead>
+            <tbody>
+              <tr><td>Ação</td><td>2 Ações</td><td class="mod-no">❎</td></tr>
+              <tr><td>Alcance</td><td>4,5 / 9 / 13,5 / 18 m</td><td class="mod-yes">✅</td></tr>
+              <tr><td>Alvo</td><td>1 Criatura</td><td class="mod-no">❎</td></tr>
+              <tr><td>Dano</td><td>1d6 / 2d6 / 3d6 / 4d6 Psíquico</td><td class="mod-yes">✅</td></tr>
+              <tr><td>Resistência</td><td>Vontade ou 2d6 Psíquico e <em>Atordoado</em></td><td class="mod-yes">✅</td></tr>
+            </tbody>
+          </table>
+          <p class="spell-desc">Você revela verdades místicas a uma 
+criatura que tenha sentimentos e emoções. A criatura deve fazer um teste
+ de Vontade ou recebe 2d6 de dano Psíquico e fica <em>Atordoada</em>.</p>
+        </div>
+      </div>
+
+      <!-- Caveiras Explosivas -->
+      <div class="spell-card">
+        <div class="spell-header" onclick="toggleSpell(this)">
+          <span class="spell-dot"></span>
+          <h4>🔹 Caveiras Explosivas</h4>
+          <span class="spell-toggle">▶</span>
+        </div>
+        <div class="spell-body">
+          <table class="spell-table">
+            <thead><tr><th>Característica</th><th>Valor</th><th>Mod</th></tr></thead>
+            <tbody>
+              <tr><td>Ação</td><td>3 Ações</td><td class="mod-no">❎</td></tr>
+              <tr><td>Alcance</td><td>4,5 / 9 / 13,5 / 18 m</td><td class="mod-yes">✅</td></tr>
+              <tr><td>Área</td><td>Raio de 1,5 m por caveira</td><td class="mod-no">❎</td></tr>
+              <tr><td>Dano</td><td>1d6 / 2d6 / 3d6 / 4d6 Fogo — 2 Ataques independentes</td><td class="mod-yes">✅</td></tr>
+              <tr><td>Resistência</td><td>Reflexos para metade do dano ou <em>Em Chamas</em></td><td class="mod-yes">✅</td></tr>
+            </tbody>
+          </table>
+          <p class="spell-desc">Das suas mangas, você conjura 2 caveiras
+ explosivas que explodem independentemente uma da outra em uma área de 
+1,5 m cada, causando 2d6 de dano de Fogo. <strong>Reflexos para metade do dano</strong> ou <em>Em chamas</em>.</p>
+        </div>
+      </div>
+
+      <!-- Invocar Tempestade -->
+      <div class="spell-card">
+        <div class="spell-header" onclick="toggleSpell(this)">
+          <span class="spell-dot"></span>
+          <h4>🔹 Invocar Tempestade</h4>
+          <span class="spell-toggle">▶</span>
+        </div>
+        <div class="spell-body">
+          <table class="spell-table">
+            <thead><tr><th>Característica</th><th>Valor</th><th>Mod</th></tr></thead>
+            <tbody>
+              <tr><td>Ação</td><td>3 Ações</td><td class="mod-no">❎</td></tr>
+              <tr><td>Alcance</td><td>4,5 / 9 / 13,5 / 18 m</td><td class="mod-yes">✅</td></tr>
+              <tr><td>Área</td><td>36 / 54 / 72 m circular</td><td class="mod-yes">✅</td></tr>
+              <tr><td>Dano</td><td>3d6 / 4d6 / 5d6 / 6d6 Elétrico</td><td class="mod-yes">✅</td></tr>
+              <tr><td>Raios p/Rodada</td><td>2 / 3 / 4 / 5</td><td class="mod-yes">✅</td></tr>
+              <tr><td>Duração</td><td>3 / 4 / 5 Rodadas</td><td class="mod-yes">✅</td></tr>
+              <tr><td>Efeito</td><td>Fortitude ou <em>Atordoado</em></td><td class="mod-no">❎</td></tr>
+            </tbody>
+          </table>
+          <p class="spell-desc">Você invoca uma tempestade trovejante em
+ uma área de 36 m por 3 rodadas, no inicio de cada rodada, todas as 
+criaturas dentro dessa área devem rolar um d20, as 3 criaturas que 
+rolarem mais baixo são acertadas por um raio que causa 4d6 de dano 
+Elétrico. As criaturas afetadas devem rolar <strong>Fortitude</strong> ou ficam <em>Atordoadas.</em></p>
+        </div>
+      </div>
+
+      <!-- Ventania Bizarra -->
+      <div class="spell-card">
+        <div class="spell-header" onclick="toggleSpell(this)">
+          <span class="spell-dot"></span>
+          <h4>🔹 Ventania Bizarra</h4>
+          <span class="spell-toggle">▶</span>
+        </div>
+        <div class="spell-body">
+          <table class="spell-table">
+            <thead><tr><th>Característica</th><th>Valor</th><th>Mod</th></tr></thead>
+            <tbody>
+              <tr><td>Ação</td><td>2 Ações</td><td class="mod-no">❎</td></tr>
+              <tr><td>Alcance</td><td>4,5 / 9 / 13,5 / 18 m</td><td class="mod-yes">✅</td></tr>
+              <tr><td>Área</td><td>1,5 / 3 / 4,5 / 6 m</td><td class="mod-yes">✅</td></tr>
+              <tr><td>Dano</td><td>1d8 / 2d8 / 3d8 / 4d8 Força</td><td class="mod-yes">✅</td></tr>
+              <tr><td>Resistência</td><td>Fortitude ou dano + <em>Sangramento 1</em></td><td class="mod-yes">✅</td></tr>
+            </tbody>
+          </table>
+          <p class="spell-desc">Você canaliza ventos extremamente fortes
+ em uma área de 4,5 m em até 9 m, criaturas que estiverem dentro dessa 
+área devem fazer um teste de Fortitude ou recebem 2d8 de dano de Força e
+ ganham <em>Sangramento 1</em>.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- N2 — ABJURAÇÃO -->
+  <div class="school-group">
+    <div class="school-header abjuracao" onclick="toggleSchool(this)">
+      🛡️ Abjuração
+      <span class="toggle-icon">▼</span>
+    </div>
+    <div class="school-body">
+
+      <!-- Barreira de Energia -->
+      <div class="spell-card">
+        <div class="spell-header" onclick="toggleSpell(this)">
+          <span class="spell-dot"></span>
+          <h4>🔹 Barreira de Energia</h4>
+          <span class="spell-toggle">▶</span>
+        </div>
+        <div class="spell-body">
+          <table class="spell-table">
+            <thead><tr><th>Característica</th><th>Valor</th><th>Mod</th></tr></thead>
+            <tbody>
+              <tr><td>Ação</td><td>3 Ações</td><td class="mod-no">❎</td></tr>
+              <tr><td>Alcance</td><td>Pessoal</td><td class="mod-no">❎</td></tr>
+              <tr><td>Área</td><td>1,5 / 3 / 4,5 / 6 m Raio</td><td class="mod-yes">✅</td></tr>
+              <tr><td>Saúde da Barreira</td><td>25 / 50 / 75 / 100 — impenetrável até quebrar</td><td class="mod-yes">✅</td></tr>
+            </tbody>
+          </table>
+          <p class="spell-desc">Você conjura uma proteção de energia de 3
+ m de raio em formato esférico ao seu redor. A barreira possui 50 de 
+Saúde e é impenetrável por criaturas até quebrar. Ela resiste igualmente
+ a todos os tipos de dano, dano Primordial causa o dobro de dano à 
+barreira.</p>
+        </div>
+      </div>
+
+      <!-- Telepatia -->
+      <div class="spell-card">
+        <div class="spell-header" onclick="toggleSpell(this)">
+          <span class="spell-dot"></span>
+          <h4>🔹 Telepatia</h4>
+          <span class="spell-toggle">▶</span>
+        </div>
+        <div class="spell-body">
+          <table class="spell-table">
+            <thead><tr><th>Característica</th><th>Valor</th><th>Mod</th></tr></thead>
+            <tbody>
+              <tr><td>Ação</td><td>2 Ações</td><td class="mod-no">❎</td></tr>
+              <tr><td>Alcance</td><td>Toque</td><td class="mod-no">❎</td></tr>
+              <tr><td>Distância</td><td>18 / 36 / 54 / 72 m</td><td class="mod-yes">✅</td></tr>
+              <tr><td>Alvo</td><td>1 / 2 / 4 / 6 Criaturas</td><td class="mod-yes">✅</td></tr>
+              <tr><td>Duração</td><td>15 min / 30 min / 45 min / 1 hora</td><td class="mod-yes">✅</td></tr>
+            </tbody>
+          </table>
+          <p class="spell-desc">Você conecta sua mente com a de outra 
+criatura podendo se comunicar telepaticamente a até 36 m. Os afetados 
+pela magia não conseguem ler os pensamentos uns dos outros apenas falar e
+ ouvir-se entre sí remotamente. As criaturas não precisam falar o mesmo 
+idioma para se comunicar sob o efeito dessa magia.</p>
+        </div>
+      </div>
+
+      <!-- Dissipar Magia -->
+      <div class="spell-card">
+        <div class="spell-header" onclick="toggleSpell(this)">
+          <span class="spell-dot"></span>
+          <h4>🔹 Dissipar Magia</h4>
+          <span class="spell-toggle">▶</span>
+        </div>
+        <div class="spell-body">
+          <table class="spell-table">
+            <thead><tr><th>Característica</th><th>Valor</th><th>Mod</th></tr></thead>
+            <tbody>
+              <tr><td>Ação</td><td>2 Ações</td><td class="mod-no">❎</td></tr>
+              <tr><td>Alcance</td><td>9 m</td><td class="mod-no">❎</td></tr>
+              <tr><td>Alvo</td><td>1 efeito mágico ou Criatura</td><td class="mod-no">❎</td></tr>
+              <tr><td>Efeito</td><td>Encerra magias de Nível 2 ou menor automaticamente</td><td class="mod-no">❎</td></tr>
+            </tbody>
+          </table>
+          <p class="spell-desc">Você canaliza energia para 
+desestabilizar e encerrar efeitos mágicos. Escolha um efeito mágico 
+ativo ou uma criatura sob efeito de magia. Magias de nível 2 ou menor 
+são automaticamente dissipadas. Para magias de nível superior, faça um 
+teste de Místico com CD 20 + nível da magia. Você só pode canalizar essa
+ magia na <strong>Intensidade:</strong> <em>Normal</em></p>
+        </div>
+      </div>
+
+      <!-- Aumentar / Diminuir Criatura -->
+      <div class="spell-card">
+        <div class="spell-header" onclick="toggleSpell(this)">
+          <span class="spell-dot"></span>
+          <h4>🔹 Aumentar / Diminuir Criatura</h4>
+          <span class="spell-toggle">▶</span>
+        </div>
+        <div class="spell-body">
+          <table class="spell-table">
+            <thead><tr><th>Característica</th><th>Valor</th><th>Mod</th></tr></thead>
+            <tbody>
+              <tr><td>Ação</td><td>2 Ações</td><td class="mod-no">❎</td></tr>
+              <tr><td>Alcance</td><td>9 m</td><td class="mod-no">❎</td></tr>
+              <tr><td>Alvo</td><td>1 Criatura</td><td class="mod-no">❎</td></tr>
+              <tr><td>Efeito</td><td>+1 ou −1 categoria de tamanho</td><td class="mod-no">❎</td></tr>
+              <tr><td>Duração</td><td>3 Rodadas</td><td class="mod-no">❎</td></tr>
+              <tr><td>Resistência</td><td>Vontade ou Afetado (se não voluntário)</td><td class="mod-no">❎</td></tr>
+            </tbody>
+          </table>
+          <p class="spell-desc">Você canaliza uma energia transformadora
+ que aumenta ou diminui uma criatura em até 9 m. A criatura 
+aumenta/diminui em 1 categoria de peso. Caso o alvo não seja voluntário 
+ele deve fazer um teste de resistência de <strong>Vontade</strong> ou diminui/aumenta. Esta magia pode ser canalizada apenas na <strong>Intensidade:</strong> Normal</p>
+        </div>
+      </div>
+
+      <!-- Personificar Elemento -->
+      <div class="spell-card">
+        <div class="spell-header" onclick="toggleSpell(this)">
+          <span class="spell-dot"></span>
+          <h4>🔹 Personificar Elemento</h4>
+          <span class="spell-toggle">▶</span>
+        </div>
+        <div class="spell-body">
+          <table class="spell-table">
+            <thead><tr><th>Característica</th><th>Valor</th><th>Mod</th></tr></thead>
+            <tbody>
+              <tr><td>Ação</td><td>2 Ações</td><td class="mod-no">❎</td></tr>
+              <tr><td>Alcance</td><td>Toque / Toque / 3 / 6 m</td><td class="mod-yes">✅</td></tr>
+              <tr><td>Alvo</td><td>1 Criatura</td><td class="mod-no">❎</td></tr>
+              <tr><td>Efeito</td><td>Resistência a 1 tipo de dano; atacantes corpo a corpo recebem 1d4 / 1d6 / 2d6 / 3d6 desse tipo</td><td class="mod-yes">✅</td></tr>
+            </tbody>
+          </table>
+          <p class="spell-desc">Você transforma as características 
+físicas de um alvo pareando-as a um tipo de dano garantindo-a 
+Resistência a esse tipo de dano e atacantes recebem 1d6 de dano desse 
+mesmo tipo de dano.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- N2 — ALTERAÇÃO -->
+  <div class="school-group">
+    <div class="school-header alteracao" onclick="toggleSchool(this)">
+      🌀 Alteração
+      <span class="toggle-icon">▼</span>
+    </div>
+    <div class="school-body">
+
+      <!-- Pele de Pedra -->
+      <div class="spell-card">
+        <div class="spell-header" onclick="toggleSpell(this)">
+          <span class="spell-dot"></span>
+          <h4>🔹 Pele de Pedra</h4>
+          <span class="spell-toggle">▶</span>
+        </div>
+        <div class="spell-body">
+          <table class="spell-table">
+            <thead><tr><th>Característica</th><th>Valor</th><th>Mod</th></tr></thead>
+            <tbody>
+              <tr><td>Ação</td><td>1 Ação</td><td class="mod-no">❎</td></tr>
+              <tr><td>Alcance</td><td>Toque / Toque / 3 / 4,5 m</td><td class="mod-yes">✅</td></tr>
+              <tr><td>Alvo</td><td>1 Criatura</td><td class="mod-no">❎</td></tr>
+              <tr><td>Duração</td><td>3 / 3 / 4 / 5 Rodadas</td><td class="mod-yes">✅</td></tr>
+              <tr><td>Efeito</td><td>Ae (Ordinário): 2 / 5 / 7 / 10</td><td class="mod-yes">✅</td></tr>
+            </tbody>
+          </table>
+          <p class="spell-desc">Você altera a composição da pele de uma 
+criatura, enrijecendo-a em camadas de uma substância parecida com pedra 
+porosa. A criatura ganha Armadura Específica contra dano Ordinário 
+(Cortante, Contundente e Perfurante) pelo tempo da duração. O efeito é 
+visível, a pele toma uma coloração acinzentada e textura granular.</p>
+        </div>
+      </div>
+
+      <!-- Confundir Sentidos -->
+      <div class="spell-card">
+        <div class="spell-header" onclick="toggleSpell(this)">
+          <span class="spell-dot"></span>
+          <h4>🔹 Confundir Sentidos</h4>
+          <span class="spell-toggle">▶</span>
+        </div>
+        <div class="spell-body">
+          <table class="spell-table">
+            <thead><tr><th>Característica</th><th>Valor</th><th>Mod</th></tr></thead>
+            <tbody>
+              <tr><td>Ação</td><td>1 Ação</td><td class="mod-no">❎</td></tr>
+              <tr><td>Alcance</td><td>4,5 / 9 / 13,5 / 18 m</td><td class="mod-yes">✅</td></tr>
+              <tr><td>Alvo</td><td>1 Criatura</td><td class="mod-no">❎</td></tr>
+              <tr><td>Duração</td><td>Teste de Vontade ao fim de todo turno</td><td class="mod-no">❎</td></tr>
+              <tr><td>Resistência</td><td>Vontade ou Afetado</td><td class="mod-yes">✅</td></tr>
+              <tr><td>Efeito</td><td>Percepção e Iniciativa: rola duas vezes (pior); −1 / −2 / −3 / −4 em ataques à distância</td><td class="mod-yes">✅</td></tr>
+            </tbody>
+          </table>
+          <p class="spell-desc">Você embaralha as informações sensoriais
+ que chegam ao cérebro do alvo — sons vêm de direções erradas, 
+distâncias parecem maiores ou menores do que são, rostos se confundem. O
+ alvo não perde a consciência nem fica Atordoado, mas sua percepção do 
+ambiente é profundamente distorcida. Em combate, isso se traduz em 
+dificuldade para localizar alvos à distância e reagir a perigos. Fora de
+ combate, pode afetar completamente a leitura de um ambiente. Útil para 
+desorientar perseguidores ou criar oportunidades de fuga.</p>
+        </div>
+      </div>
+
+      <!-- Translocação Arcana -->
+      <div class="spell-card">
+        <div class="spell-header" onclick="toggleSpell(this)">
+          <span class="spell-dot"></span>
+          <h4>🔹 Translocação Arcana</h4>
+          <span class="spell-toggle">▶</span>
+        </div>
+        <div class="spell-body">
+          <table class="spell-table">
+            <thead><tr><th>Característica</th><th>Valor</th><th>Mod</th></tr></thead>
+            <tbody>
+              <tr><td>Ação</td><td>1 Ação</td><td class="mod-no">❎</td></tr>
+              <tr><td>Alcance</td><td>Pessoal</td><td class="mod-no">❎</td></tr>
+              <tr><td>Efeito</td><td>Teletransporte para um ponto visível em até 9 m</td><td class="mod-yes">✅</td></tr>
+            </tbody>
+          </table>
+          <p class="spell-desc">Você dissolve brevemente sua forma 
+física e a reconstrói em outro ponto dentro do alcance que você consiga 
+ver diretamente. O teleporte é instantâneo e silencioso — sem luz, som 
+ou rastro. Não pode ser usado para atravessar barreiras sólidas, apenas 
+para saltar distâncias. Pode ser usado para sair de um Agarrão sem 
+precisar disputar Movimento, desde que o ponto de destino esteja dentro 
+do alcance. Esta magia pode ser canalizada apenas na <strong>Intensidade:</strong> Normal</p>
+        </div>
+      </div>
+
+      <!-- Transfigurar Arma -->
+      <div class="spell-card">
+        <div class="spell-header" onclick="toggleSpell(this)">
+          <span class="spell-dot"></span>
+          <h4>🔹 Transfigurar Arma</h4>
+          <span class="spell-toggle">▶</span>
+        </div>
+        <div class="spell-body">
+          <table class="spell-table">
+            <thead><tr><th>Característica</th><th>Valor</th><th>Mod</th></tr></thead>
+            <tbody>
+              <tr><td>Ação</td><td>1 Ação</td><td class="mod-no">❎</td></tr>
+              <tr><td>Alcance</td><td>Toque</td><td class="mod-no">❎</td></tr>
+              <tr><td>Alvo</td><td>1 Arma</td><td class="mod-no">❎</td></tr>
+              <tr><td>Duração</td><td>1 / 1 / 2 / 3 Ataque(s)</td><td class="mod-yes">✅</td></tr>
+              <tr><td>Efeito</td><td>Muda tipo de dano para Atípico escolhido + 1d4 / 1d6 / 1d8 / 1d10 adicional</td><td class="mod-yes">✅</td></tr>
+            </tbody>
+          </table>
+          <p class="spell-desc">Você reescreve a natureza do dano de uma
+ arma, impregnando-a com energia mística de um elemento escolhido no 
+momento da conjuração. A arma mantém seu dado base e atributo normal, 
+mas seu tipo de dano muda completamente para o tipo Atípico escolhido 
+(Fogo, Frio, Elétrico, Veneno, Ácido, Psíquico, Radiante, Trovejante ou 
+Necrótico) e causa dado extra desse mesmo tipo. Útil contra criaturas 
+com Resistência ou Vulnerabilidade a tipos específicos. O efeito é 
+visível — a arma emite luz, fumaça ou outro sinal visual do elemento.</p>
+        </div>
+      </div>
+
+      <!-- Enraizar -->
+      <div class="spell-card">
+        <div class="spell-header" onclick="toggleSpell(this)">
+          <span class="spell-dot"></span>
+          <h4>🔹 Enraizar</h4>
+          <span class="spell-toggle">▶</span>
+        </div>
+        <div class="spell-body">
+          <table class="spell-table">
+            <thead><tr><th>Característica</th><th>Valor</th><th>Mod</th></tr></thead>
+            <tbody>
+              <tr><td>Ação</td><td>2 Ações</td><td class="mod-no">❎</td></tr>
+              <tr><td>Alcance</td><td>4,5 / 9 / 13,5 / 18 m</td><td class="mod-yes">✅</td></tr>
+              <tr><td>Alvo</td><td>1 / 1 / 2 / 2 Criatura(s)</td><td class="mod-yes">✅</td></tr>
+              <tr><td>Resistência</td><td>Fortitude ou <em>Enraizado</em></td><td class="mod-yes">✅</td></tr>
+            </tbody>
+          </table>
+          <p class="spell-desc">Você altera a densidade gravitacional ao
+ redor dos pés de uma criatura, fazendo-o(s) colar ao chão como se 
+fosse(m) parte dele. O alvo fica Enraizado pelo tempo da duração, não 
+pode se mover voluntariamente, mas ainda pode agir normalmente. A cada 
+rodada, pode gastar 2 ações para refazer o teste de Fortitude e tentar 
+se soltar. Criaturas que voam ou não tocam o chão são imunes a esta 
+magia.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- N2 — CONHECIMENTO -->
+  <div class="school-group">
+    <div class="school-header conhecimento" onclick="toggleSchool(this)">
+      🔮 Conhecimento
+      <span class="toggle-icon">▼</span>
+    </div>
+    <div class="school-body">
+
+      <!-- Sussurro do Ambiente -->
+      <div class="spell-card">
+        <div class="spell-header" onclick="toggleSpell(this)">
+          <span class="spell-dot"></span>
+          <h4>🔹 Sussurro do Ambiente</h4>
+          <span class="spell-toggle">▶</span>
+        </div>
+        <div class="spell-body">
+          <table class="spell-table">
+            <thead><tr><th>Característica</th><th>Valor</th><th>Mod</th></tr></thead>
+            <tbody>
+              <tr><td>Ação</td><td>3 Ações</td><td class="mod-no">❎</td></tr>
+              <tr><td>Alcance</td><td>Pessoal</td><td class="mod-no">❎</td></tr>
+              <tr><td>Área</td><td>4,5 / 9 / 13,5 / 18 m Raio</td><td class="mod-yes">✅</td></tr>
+              <tr><td>Efeito</td><td>Você obtém um mapa mental preciso de tudo na área: criaturas, objetos, passagens, portas; mesmo atrás de paredes.</td><td class="mod-yes">✅</td></tr>
+              <tr><td>Duração</td><td>5 / 10 / 15 / 20 Minutos</td><td class="mod-yes">✅</td></tr>
+            </tbody>
+          </table>
+          <p class="spell-desc">Você encanta a si mesmo para sentir a presença de energia mística em uma área de até 30 m através de seus olhos.</p>
+        </div>
+      </div>
+
+      <!-- Pânico -->
+      <div class="spell-card">
+        <div class="spell-header" onclick="toggleSpell(this)">
+          <span class="spell-dot"></span>
+          <h4>🔹 Pânico</h4>
+          <span class="spell-toggle">▶</span>
+        </div>
+        <div class="spell-body">
+          <table class="spell-table">
+            <thead><tr><th>Característica</th><th>Valor</th><th>Mod</th></tr></thead>
+            <tbody>
+              <tr><td>Ação</td><td>1 Ação</td><td class="mod-no">❎</td></tr>
+              <tr><td>Alcance</td><td>4,5 / 9 / 13,5 / 18 m</td><td class="mod-yes">✅</td></tr>
+              <tr><td>Resist.</td><td>Vontade ou Amedrontado</td><td class="mod-no">❎</td></tr>
+              <tr><td>Duração</td><td>1 / 1 / 2 / 3 Rodadas</td><td class="mod-yes">✅</td></tr>
+              <tr><td>Efeito</td><td>Alvo fica Amedrontado de você pelo tempo da duração.</td><td class="mod-no">❎</td></tr>
+            </tbody>
+          </table>
+          <p class="spell-desc">Você planta um clarão de terror puro 
+diretamente na mente do alvo — não uma ilusão, mas uma sobrecarga de 
+sinais de ameaça que o sistema nervoso não consegue ignorar. O alvo fica
+ Amedrontado de você: tem desvantagem em testes realizados enquanto 
+puder te ver e tenta se afastar. A condição não é uma ilusão e portanto 
+não é removida por Purificação Mística — apenas pelo tempo ou por 
+Dissipar Magia. Criaturas sem capacidade emocional (construtos, 
+mortos-vivos sem Éter) são imunes.</p>
+        </div>
+      </div>
+
+      <!-- História do Éter -->
+      <div class="spell-card">
+        <div class="spell-header" onclick="toggleSpell(this)">
+          <span class="spell-dot"></span>
+          <h4>🔹 História do Éter</h4>
+          <span class="spell-toggle">▶</span>
+        </div>
+        <div class="spell-body">
+          <table class="spell-table">
+            <thead><tr><th>Característica</th><th>Valor</th><th>Mod</th></tr></thead>
+            <tbody>
+              <tr><td>Ação</td><td>1 Minuto</td><td class="mod-no">❎</td></tr>
+              <tr><td>Alcance</td><td>Toque</td><td class="mod-no">❎</td></tr>
+              <tr><td>Alvo</td><td>1 Objeto ou Criatura</td><td class="mod-yes">✅</td></tr>
+              <tr><td>Efeito</td><td>Revela: nome, propriedades mágicas, escola de origem, cursos ativos e — em objetos — como usar corretamente.</td><td class="mod-yes">✅</td></tr>
+            </tbody>
+          </table>
+          <p class="spell-desc">Você sintoniza sua percepção mística com
+ um objeto ou criatura pelo toque, lendo o padrão de Éter impregnado 
+nele. Em objetos mágicos, revela nome, escola de magia, efeitos, 
+condições de ativação e quaisquer maldições presentes. Em criaturas, 
+revela escola de magia que as criou ou afeta atualmente, condições 
+ativas e tipo de criatura. Na intensidade Contida, revela apenas se o 
+alvo é mágico ou não. Em Normal revela tudo acima. Em Forçada e 
+Transbordante, revela também a história de uso recente do objeto 
+(últimas 24h / 7 dias). Esta magia só pode ser conjurada fora de 
+combate.</p>
+        </div>
+      </div>
+
+      <!-- Empréstimo Natural -->
+      <div class="spell-card">
+        <div class="spell-header" onclick="toggleSpell(this)">
+          <span class="spell-dot"></span>
+          <h4>🔹 Empréstimo Natural</h4>
+          <span class="spell-toggle">▶</span>
+        </div>
+        <div class="spell-body">
+          <table class="spell-table">
+            <thead><tr><th>Característica</th><th>Valor</th><th>Mod</th></tr></thead>
+            <tbody>
+              <tr><td>Ação</td><td>1 Ação</td><td class="mod-no">❎</td></tr>
+              <tr><td>Alcance</td><td>Pessoal</td><td class="mod-no">❎</td></tr>
+              <tr><td>Duração</td><td>5 / 10 / 15 / 30 Minutos</td><td class="mod-yes">✅</td></tr>
+              <tr><td>Efeito</td><td>Escolha 1 efeito: Córnea dos Grutos
+ (enxerga no escuro até 18 m e ignora penalidades de névoa/fumaça), 
+Orelha dos Anões (ouve sussurros a até 30 m e percebe mentiras por 
+variação vocal) ou Antenas Sensoriais Insectoides (rastreia criaturas 
+pelos feromônios, vantagem em Percepção baseada em odor).</td><td class="mod-no">❎</td></tr>
+            </tbody>
+          </table>
+          <p class="spell-desc">Você amplia drasticamente um único 
+sentido, sobrecarregando-o com energia mística. Escolha qual sentido 
+aprimorar ao conjurar, o bônus se aplica apenas ao sentido escolhido. O 
+efeito colateral é proporcional: com visão ampliada, luz intensa causa 
+Cego por 1 rodada; com audição ampliada, sons muito altos (como Invocar 
+Tempestade) causam Atordoado por 1 rodada; com olfato ampliado, odores 
+muito fortes causam Enjoado por 1 rodada.</p>
+        </div>
+      </div>
+
+      <!-- Impulso Instintivo -->
+      <div class="spell-card">
+        <div class="spell-header" onclick="toggleSpell(this)">
+          <span class="spell-dot"></span>
+          <h4>🔹 Impulso Instintivo</h4>
+          <span class="spell-toggle">▶</span>
+        </div>
+        <div class="spell-body">
+          <table class="spell-table">
+            <thead><tr><th>Característica</th><th>Valor</th><th>Mod</th></tr></thead>
+            <tbody>
+              <tr><td>Ação</td><td>2 Ações</td><td class="mod-no">❎</td></tr>
+              <tr><td>Alcance</td><td>9 m</td><td class="mod-no">❎</td></tr>
+              <tr><td>Alvo</td><td>1 Criatura</td><td class="mod-no">❎</td></tr>
+              <tr><td>Efeito</td><td>Você planta um comando simples (1 frase) na mente do alvo. Ele acredita que o pensamento é seu.</td><td class="mod-no">❎</td></tr>
+              <tr><td>Resist.</td><td>Vontade ou Afetado</td><td class="mod-no">❎</td></tr>
+            </tbody>
+          </table>
+          <p class="spell-desc">Você injeta um pensamento ou impulso 
+simples diretamente na mente do alvo — uma frase curta, uma emoção ou 
+uma instrução básica ("corra", "solte a arma", "confie nele"). O alvo 
+não sabe que foi influenciado: percebe o pensamento como próprio. 
+Comandos que coloquem o alvo em perigo direto ou que contradigam seus 
+instintos mais básicos permitem um novo teste de Vontade imediatamente. O
+ alvo pode agir contra o comando se tiver motivação forte o suficiente. 
+Essa magia pode ser canalizada apenas na <strong>Intensidade:</strong> <em>Normal</em></p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══════════════════════ NÍVEL 3 ════════════════════════ -->
+  <span id="nivel3" class="section-anchor"></span>
+  <div class="level-header">
+    <span class="level-badge l3">🔵 NÍVEL 3</span>
+    <h2>Magias de Terceiro Nível</h2>
+    <div class="level-line"></div>
+  </div>
+
+  <!-- N3 — DESTRUIÇÃO -->
+  <div class="school-group">
+    <div class="school-header destruicao" onclick="toggleSchool(this)">
+      ⚔️ Destruição
+      <span class="toggle-icon">▼</span>
+    </div>
+    <div class="school-body">
+
+      <!-- Pestilência -->
+      <div class="spell-card">
+        <div class="spell-header" onclick="toggleSpell(this)">
+          <span class="spell-dot"></span>
+          <h4>🔹 Pestilência</h4>
+          <span class="spell-toggle">▶</span>
+        </div>
+        <div class="spell-body">
+          <table class="spell-table">
+            <thead><tr><th>Característica</th><th>Valor</th><th>Mod</th></tr></thead>
+            <tbody>
+              <tr><td>Ação</td><td>2 Ações</td><td class="mod-no">❎</td></tr>
+              <tr><td>Alcance</td><td>3 / 6 / 9 / 13,5 m</td><td class="mod-yes">✅</td></tr>
+              <tr><td>Alvo</td><td>1 Criatura</td><td class="mod-no">❎</td></tr>
+              <tr><td>Dano</td><td>1d8 / 2d8 / 3d8 / 4d8 Necrótico</td><td class="mod-yes">✅</td></tr>
+              <tr><td>Resistência</td><td>Vontade ou Afetado</td><td class="mod-yes">✅</td></tr>
+            </tbody>
+          </table>
+          <p class="spell-desc">Você propaga uma Pestilência mística que
+ corrompe e fere qualquer ser afetado a cada turno. Escolha um alvo que 
+você possa ver, o alvo deve realizar um teste de vontade contra a sua CD
+ ou recebe 2d6 de dano Necrótico. Qualquer criatura que receber dano 
+desta magia transmite a Pestilência para a criatura mais próxima em até 9
+ m. Criaturas que sucederem no teste ficam imunes a Pestilência até o 
+fim do combate.</p>
+        </div>
+      </div>
+
+      <!-- Limiar Perfurante -->
+      <div class="spell-card">
+        <div class="spell-header" onclick="toggleSpell(this)">
+          <span class="spell-dot"></span>
+          <h4>🔹 Limiar Perfurante</h4>
+          <span class="spell-toggle">▶</span>
+        </div>
+        <div class="spell-body">
+          <table class="spell-table">
+            <thead><tr><th>Característica</th><th>Valor</th><th>Mod</th></tr></thead>
+            <tbody>
+              <tr><td>Ação</td><td>2 Ações</td><td class="mod-no">❎</td></tr>
+              <tr><td>Alcance</td><td>4,5 / 9 / 13,5 / 18 m</td><td class="mod-yes">✅</td></tr>
+              <tr><td>Alvo</td><td>1 Criatura</td><td class="mod-no">❎</td></tr>
+              <tr><td>Dano</td><td>2d8 / 3d8 / 4d8 / 5d8 Místico</td><td class="mod-yes">✅</td></tr>
+              <tr><td>Resistência</td><td>Fortitude ou <em>Exposto</em></td><td class="mod-no">❎</td></tr>
+            </tbody>
+          </table>
+          <p class="spell-desc">Você conjura um feixe místico que 
+penetra/ignora as defesas de um alvo(Armadura(Ar) e Armadura 
+Específica(Ae)) causando 3d8 de dano Místico. Ao acerto, o alvo deve 
+suceder em um teste de <strong>Fortitude</strong> ou fica <em>Exposto.</em></p>
+        </div>
+      </div>
+
+      <!-- Fragmento Estelar -->
+      <div class="spell-card">
+        <div class="spell-header" onclick="toggleSpell(this)">
+          <span class="spell-dot"></span>
+          <h4>🔹 Fragmento Estelar</h4>
+          <span class="spell-toggle">▶</span>
+        </div>
+        <div class="spell-body">
+          <table class="spell-table">
+            <thead><tr><th>Característica</th><th>Valor</th><th>Mod</th></tr></thead>
+            <tbody>
+              <tr><td>Ação</td><td>3 Ações</td><td class="mod-no">❎</td></tr>
+              <tr><td>Alcance</td><td>1,5 / 3 / 6 / 9 m</td><td class="mod-yes">✅</td></tr>
+              <tr><td>Área</td><td>1,5 / 3 / 6 / 9 m Raio</td><td class="mod-yes">✅</td></tr>
+              <tr><td>Dano</td><td>1d6 / 2d6 / 6d6 / 10d6 Radiante (dividido entre todos na área)</td><td class="mod-yes">✅</td></tr>
+              <tr><td>Resistência</td><td>Reflexos para metade</td><td class="mod-no">❎</td></tr>
+            </tbody>
+          </table>
+          <p class="spell-desc">Você precipita um fragmento estelar 
+sobre uma área, o dano total é dividido entre todos os inimigos dentro 
+do raio. Inimigos afetados devem suceder em um teste de reflexos para 
+receber metade do dano. Ao ser canalizada com intensidade: 
+Transbordante, ao executar um alvo, como ação livre, pode transferir o 
+dano sobrepujante do alvo executado a outros alvos na área imediata da 
+canalização.</p>
+        </div>
+      </div>
+
+      <!-- Disparo Veloz -->
+      <div class="spell-card">
+        <div class="spell-header" onclick="toggleSpell(this)">
+          <span class="spell-dot"></span>
+          <h4>🔹 Disparo Veloz</h4>
+          <span class="spell-toggle">▶</span>
+        </div>
+        <div class="spell-body">
+          <table class="spell-table">
+            <thead><tr><th>Característica</th><th>Valor</th><th>Mod</th></tr></thead>
+            <tbody>
+              <tr><td>Ação</td><td>1 Ação</td><td class="mod-no">❎</td></tr>
+              <tr><td>Alcance</td><td>4,5 m</td><td class="mod-no">❎</td></tr>
+              <tr><td>Alvo</td><td>1 Alvo</td><td class="mod-no">❎</td></tr>
+              <tr><td>Dano</td><td>1d10 Místico</td><td class="mod-no">❎</td></tr>
+            </tbody>
+          </table>
+          <p class="spell-desc">Você instintivamente conjura um projetil
+ mágico simples. Caso você acerte o alvo, você recupera metade do éter 
+gasto nessa canalização. Essa magia só pode ser canalizada na <strong>Intensidade:</strong> <em>Normal</em></p>
+        </div>
+      </div>
+
+      <!-- Reversão Umbral -->
+      <div class="spell-card">
+        <div class="spell-header" onclick="toggleSpell(this)">
+          <span class="spell-dot"></span>
+          <h4>🔹 Reversão Umbral</h4>
+          <span class="spell-toggle">▶</span>
+        </div>
+        <div class="spell-body">
+          <table class="spell-table">
+            <thead><tr><th>Característica</th><th>Valor</th><th>Mod</th></tr></thead>
+            <tbody>
+              <tr><td>Ação</td><td>3 Ações</td><td class="mod-no">❎</td></tr>
+              <tr><td>Alcance</td><td>Pessoal</td><td class="mod-no">❎</td></tr>
+              <tr><td>Efeito</td><td>Reflete TODO o dano recebido como dano Místico durante 1 rodada.</td><td class="mod-no">❎</td></tr>
+            </tbody>
+          </table>
+          <p class="spell-desc">Requisito: Deve canalizar com intensidade: Transbordante.<br>Você só pode utilizar essa magia uma vez por dia.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- N3 — ABJURAÇÃO -->
+  <div class="school-group">
+    <div class="school-header abjuracao" onclick="toggleSchool(this)">
+      🛡️ Abjuração
+      <span class="toggle-icon">▼</span>
+    </div>
+    <div class="school-body">
+
+      <!-- Contramedida -->
+      <div class="spell-card">
+        <div class="spell-header" onclick="toggleSpell(this)">
+          <span class="spell-dot"></span>
+          <h4>🔹 Contramedida</h4>
+          <span class="spell-toggle">▶</span>
+        </div>
+        <div class="spell-body">
+          <table class="spell-table">
+            <thead><tr><th>Característica</th><th>Valor</th><th>Mod</th></tr></thead>
+            <tbody>
+              <tr><td>Ação</td><td>Reação</td><td class="mod-no">❎</td></tr>
+              <tr><td>Alcance</td><td>9 / 13,5 / 18 m</td><td class="mod-yes">✅</td></tr>
+              <tr><td>Efeito</td><td>Cancela a conjuração de uma magia</td><td class="mod-no">❎</td></tr>
+              <tr><td>Resistência</td><td>Místico vs. Místico</td><td class="mod-no">❎</td></tr>
+            </tbody>
+          </table>
+          <p class="spell-desc">Ao detectar a canalização de energia 
+mística próxima, você lança uma interferência que tenta suprimir a 
+conjuração antes que ela se complete. Faça um teste de Místico disputado
+ contra o conjurador alvo. Se vencer, a magia falha e o conjurador perde
+ o Éter gasto. Se perder por 10 ou mais (falha crítica), você perde 2 
+Éter adicionais pela interferência falha. Diferente de Dissipar Magia, 
+esta magia atua no momento da conjuração. Essa magia só pode ser 
+canalizada na <strong>Intensidade:</strong> <em>Normal</em> ou acima.</p>
+        </div>
+      </div>
+
+      <!-- Ruído Anti-Magia -->
+      <div class="spell-card">
+        <div class="spell-header" onclick="toggleSpell(this)">
+          <span class="spell-dot"></span>
+          <h4>🔹 Ruído Anti-Magia</h4>
+          <span class="spell-toggle">▶</span>
+        </div>
+        <div class="spell-body">
+          <table class="spell-table">
+            <thead><tr><th>Característica</th><th>Valor</th><th>Mod</th></tr></thead>
+            <tbody>
+              <tr><td>Ação</td><td>2 Ações</td><td class="mod-no">❎</td></tr>
+              <tr><td>Alcance</td><td>4,5 / 9 / 13,5 / 18 m</td><td class="mod-no">❎</td></tr>
+              <tr><td>Raio</td><td>1,5 / 3 / 4,5 / 6 m</td><td class="mod-yes">✅</td></tr>
+              <tr><td>Duração</td><td>3 Rodadas</td><td class="mod-no">❎</td></tr>
+              <tr><td>Efeito</td><td>Conjurar na área: Vontade vs. CD ou magia falha e Éter é perdido</td><td class="mod-no">❎</td></tr>
+            </tbody>
+          </table>
+          <p class="spell-desc">Você cria uma zona de interferência 
+mística que torna a conjuração incerta e perigosa. Toda criatura que 
+tentar conjurar uma magia de qualquer nível dentro da área deve primeiro
+ fazer um teste de Vontade contra a sua CD — em falha, a magia não sai e
+ o Éter é desperdiçado. Você mesmo é afetado pela zona: planeje antes de
+ ativá-la. A área é invisível, visível apenas a quem tiver Detectar 
+Magia ativo.</p>
+        </div>
+      </div>
+
+      <!-- Armadura de Espinhos -->
+      <div class="spell-card">
+        <div class="spell-header" onclick="toggleSpell(this)">
+          <span class="spell-dot"></span>
+          <h4>🔹 Armadura de Espinhos</h4>
+          <span class="spell-toggle">▶</span>
+        </div>
+        <div class="spell-body">
+          <table class="spell-table">
+            <thead><tr><th>Característica</th><th>Valor</th><th>Mod</th></tr></thead>
+            <tbody>
+              <tr><td>Ação</td><td>1 Ação</td><td class="mod-no">❎</td></tr>
+              <tr><td>Alcance</td><td>Toque / Toque / 3 / 6 m</td><td class="mod-yes">✅</td></tr>
+              <tr><td>Alvo</td><td>1 Criatura</td><td class="mod-no">❎</td></tr>
+              <tr><td>Dano</td><td>1d6 / 2d6 / 3d6 / 4d6 Perfurante ao atacante corpo a corpo</td><td class="mod-no">❎</td></tr>
+              <tr><td>Duração</td><td>Magia Sustentada (pague Éter a cada turno)</td><td class="mod-no">❎</td></tr>
+            </tbody>
+          </table>
+          <p class="spell-desc">Você reveste uma criatura com uma camada
+ de energia abjurante reativa. Toda vez que ela for atingida por um 
+ataque corpo a corpo, o atacante recebe dano Perfurante automaticamente,
+ sem possibilidade de esquiva. O dano ocorre mesmo que o atacante use a 
+reação de Defender. Ataques à distância ou magias não ativam o efeito.</p>
+        </div>
+      </div>
+
+      <!-- Refúgio dos Perdidos -->
+      <div class="spell-card">
+        <div class="spell-header" onclick="toggleSpell(this)">
+          <span class="spell-dot"></span>
+          <h4>🔹 Refúgio dos Perdidos</h4>
+          <span class="spell-toggle">▶</span>
+        </div>
+        <div class="spell-body">
+          <table class="spell-table">
+            <thead><tr><th>Característica</th><th>Valor</th><th>Mod</th></tr></thead>
+            <tbody>
+              <tr><td>Ação</td><td>3 Ações</td><td class="mod-no">❎</td></tr>
+              <tr><td>Alcance</td><td>Pessoal</td><td class="mod-no">❎</td></tr>
+              <tr><td>Área</td><td>3 / 4,5 / 6 / 9 m Raio</td><td class="mod-no">❎</td></tr>
+              <tr><td>Efeito</td><td>Ae (Todos): 3 / 5 / 7 / 10; +1 / +2 / +3 / +4 em todos os testes de Resistência</td><td class="mod-no">❎</td></tr>
+              <tr><td>Duração</td><td>Magia Sustentada (pague Éter a cada rodada)</td><td class="mod-no">❎</td></tr>
+            </tbody>
+          </table>
+          <p class="spell-desc">Você ergue uma cúpula de energia 
+protetora ao seu redor. Aliados dentro do raio recebem armadura 
+específica contra todos os tipos de dano e bônus em todos os testes de 
+Resistência (Fortitude, Vontade, Reflexos) enquanto permanecerem na 
+área. A cúpula se move com você.</p>
+        </div>
+      </div>
+
+      <!-- Laço da União -->
+      <div class="spell-card">
+        <div class="spell-header" onclick="toggleSpell(this)">
+          <span class="spell-dot"></span>
+          <h4>🔹 Laço da União</h4>
+          <span class="spell-toggle">▶</span>
+        </div>
+        <div class="spell-body">
+          <table class="spell-table">
+            <thead><tr><th>Característica</th><th>Valor</th><th>Mod</th></tr></thead>
+            <tbody>
+              <tr><td>Ação</td><td>2 Ações</td><td class="mod-no">❎</td></tr>
+              <tr><td>Alcance</td><td>Toque / 3 / 4,5 / 6 m</td><td class="mod-yes">✅</td></tr>
+              <tr><td>Alvo</td><td>2 / 2 / 3 / 4 Criaturas</td><td class="mod-yes">✅</td></tr>
+              <tr><td>Resist.</td><td>Vontade ou Laçado</td><td class="mod-no">❎</td></tr>
+              <tr><td>Efeito</td><td>Dano recebido dividido igualmente entre os laçados (mín. 1, arredondado para cima)</td><td class="mod-no">❎</td></tr>
+            </tbody>
+          </table>
+          <p class="spell-desc">Você cria um vínculo abjurante entre 
+criaturas voluntárias. Todo dano recebido por qualquer uma delas é 
+dividido igualmente entre todos os participantes do laço — arredondado 
+para cima para o alvo original. Criaturas não voluntárias devem suceder 
+em um teste de vontade contra sua CD para se livrar da magia, em caso de
+ falha o alvo rola novamente no final de cada um de seus turnos.. Se um 
+participante cair Inconsciente ou sair do alcance máximo da magia, o 
+laço se rompe imediatamente para todos.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- N3 — ALTERAÇÃO -->
+  <div class="school-group">
+    <div class="school-header alteracao" onclick="toggleSchool(this)">
+      🌀 Alteração
+      <span class="toggle-icon">▼</span>
+    </div>
+    <div class="school-body">
+
+      <!-- Transferir Condição -->
+      <div class="spell-card">
+        <div class="spell-header" onclick="toggleSpell(this)">
+          <span class="spell-dot"></span>
+          <h4>🔹 Transferir Condição</h4>
+          <span class="spell-toggle">▶</span>
+        </div>
+        <div class="spell-body">
+          <table class="spell-table">
+            <thead><tr><th>Característica</th><th>Valor</th><th>Mod</th></tr></thead>
+            <tbody>
+              <tr><td>Ação</td><td>1 Ação</td><td class="mod-no">❎</td></tr>
+              <tr><td>Alcance</td><td>Toque (Origem); 4,5 / 9 / 13,5 / 18 m (Destino)</td><td class="mod-yes">✅</td></tr>
+              <tr><td>Alvo</td><td>1 Criatura (Origem) + 1 Criatura (Destino)</td><td class="mod-no">❎</td></tr>
+              <tr><td>Resistência</td><td>Vontade (destino) por condição</td><td class="mod-no">❎</td></tr>
+              <tr><td>Efeito</td><td>Move (até) 1 / 1 / 2 / 3 condição(ões) da origem ao destino</td><td class="mod-yes">✅</td></tr>
+            </tbody>
+          </table>
+          <p class="spell-desc">Você extrai misticamente uma condição 
+negativa de uma criatura e a implanta em outra. Escolha quais condições 
+transferir (não funciona com condições permanentes como Petrificado por 
+causa não mágica). O alvo de destino pode fazer Vontade contra a sua CD 
+para resistir a cada condição individualmente. A criatura de origem 
+perde a condição imediatamente, independente do resultado do alvo de 
+destino. Pode ser usada ofensivamente transferindo condições entre 
+inimigos.</p>
+        </div>
+      </div>
+
+      <!-- Absorver Contusão -->
+      <div class="spell-card">
+        <div class="spell-header" onclick="toggleSpell(this)">
+          <span class="spell-dot"></span>
+          <h4>🔹 Absorver Contusão</h4>
+          <span class="spell-toggle">▶</span>
+        </div>
+        <div class="spell-body">
+          <table class="spell-table">
+            <thead><tr><th>Característica</th><th>Valor</th><th>Mod</th></tr></thead>
+            <tbody>
+              <tr><td>Ação</td><td>Reação</td><td class="mod-no">❎</td></tr>
+              <tr><td>Gatilho</td><td>Você ou aliado em alcance é atingido</td><td class="mod-no">❎</td></tr>
+              <tr><td>Alcance</td><td>Pessoal / 3 / 4,5 / 6 m</td><td class="mod-yes">✅</td></tr>
+              <tr><td>Efeito</td><td>Reduz dano em 1d10 / 2d10 / 3d10 / 4d10; dano absorvido armazenado como carga mística</td><td class="mod-yes">✅</td></tr>
+            </tbody>
+          </table>
+          <p class="spell-desc">Você altera a densidade do tecido 
+místico ao redor do alvo para comprimir e absorver a força de um impacto
+ iminente. O dano não absorvido é aplicado normalmente. O dano absorvido
+ fica armazenado como uma carga mística no próprio alvo — que pode 
+gastá-la como ação livre no próximo turno para liberar o impacto como 
+dano Contundente em uma criatura a distância de toque. A carga some ao 
+fim do turno seguinte se não for usada.</p>
+        </div>
+      </div>
+
+      <!-- Pele de Camaleão -->
+      <div class="spell-card">
+        <div class="spell-header" onclick="toggleSpell(this)">
+          <span class="spell-dot"></span>
+          <h4>🔹 Pele de Camaleão</h4>
+          <span class="spell-toggle">▶</span>
+        </div>
+        <div class="spell-body">
+          <table class="spell-table">
+            <thead><tr><th>Característica</th><th>Valor</th><th>Mod</th></tr></thead>
+            <tbody>
+              <tr><td>Ação</td><td>2 Ações</td><td class="mod-no">❎</td></tr>
+              <tr><td>Alcance</td><td>Toque / Toque / 3 / 4,5 m</td><td class="mod-no">❎</td></tr>
+              <tr><td>Alvo</td><td>1 / 1 / 1 / 2 Alvos</td><td class="mod-yes">✅</td></tr>
+              <tr><td>Duração</td><td>Até o fim do combate</td><td class="mod-no">❎</td></tr>
+              <tr><td>Efeito</td><td>+7 / +15 / +22 / +30 Evasão e +2 / +5 / +7 / +10 Furtividade; perde 3 / 5 / 8 / 10 Evasão a cada ataque esquivado.</td><td class="mod-yes">✅</td></tr>
+            </tbody>
+          </table>
+          <p class="spell-desc">Você reconfigura a pele de uma criatura 
+fazendo-a ficar translucida. A criatura ganha +15 de evasão e +5 de 
+furtividade. A cada ataque esquivado, o alvo perde 5 de evasão. Ao 
+receber dano ou ao ser reduzido a 0 de evasão adicional a magia se 
+dissipa.</p>
+        </div>
+      </div>
+
+      <!-- Xadrez -->
+      <div class="spell-card">
+        <div class="spell-header" onclick="toggleSpell(this)">
+          <span class="spell-dot"></span>
+          <h4>🔹 Xadrez</h4>
+          <span class="spell-toggle">▶</span>
+        </div>
+        <div class="spell-body">
+          <table class="spell-table">
+            <thead><tr><th>Característica</th><th>Valor</th><th>Mod</th></tr></thead>
+            <tbody>
+              <tr><td>Ação</td><td>2 Ações</td><td class="mod-no">❎</td></tr>
+              <tr><td>Alcance</td><td>9 m</td><td class="mod-yes">✅</td></tr>
+              <tr><td>Alvo</td><td>2 Criaturas</td><td class="mod-no">❎</td></tr>
+              <tr><td>Efeito</td><td>As duas criaturas trocam de posição instantaneamente</td><td class="mod-no">❎</td></tr>
+              <tr><td>Resistência</td><td>Vontade ou Teletransportado (alvos não voluntários)</td><td class="mod-no">❎</td></tr>
+            </tbody>
+          </table>
+          <p class="spell-desc">Você entrelaça as posições de duas 
+criaturas no espaço, fazendo-as trocarem de lugar num piscar de olhos. 
+Ambas aparecem no exato ponto onde a outra estava. Criaturas voluntárias
+ não têm direito a resistência. Para uso ofensivo, o alvo não voluntário
+ faz Vontade. Criaturas que estejam Agarradas ou Enraizadas são imunes. 
+Esta magia pode ser canalizada apenas na <strong>Intensidade:</strong> <em>Normal</em></p>
+        </div>
+      </div>
+
+      <!-- Plasmar Terreno -->
+      <div class="spell-card">
+        <div class="spell-header" onclick="toggleSpell(this)">
+          <span class="spell-dot"></span>
+          <h4>🔹 Plasmar Terreno</h4>
+          <span class="spell-toggle">▶</span>
+        </div>
+        <div class="spell-body">
+          <table class="spell-table">
+            <thead><tr><th>Característica</th><th>Valor</th><th>Mod</th></tr></thead>
+            <tbody>
+              <tr><td>Ação</td><td>3 Ações</td><td class="mod-no">❎</td></tr>
+              <tr><td>Alcance</td><td>4,5 / 9 / 13,5 / 18 m</td><td class="mod-yes">✅</td></tr>
+              <tr><td>Área</td><td>1,5 / 3 / 4,5 / 6 m Raio</td><td class="mod-no">❎</td></tr>
+            </tbody>
+          </table>
+          <p class="spell-desc">Você canaliza a escola da Alteração no 
+ambiente físico, moldando pedra, terra, areia, madeira morta ou qualquer
+ material inorgânico como se fosse argila. Pode criar paredes de até 1,5
+ m de altura, abrir valas, tampar passagens, nivelar terreno ou criar 
+cobertura improvisada. O terreno alterado é permanente, a magia não 
+precisa ser mantida. Não afeta materiais trabalhados com magia, 
+criaturas vivas, tecido ou osso. O Mestre tem palavra final sobre o que 
+pode ser moldado no contexto da cena.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- N3 — CONHECIMENTO -->
+  <div class="school-group">
+    <div class="school-header conhecimento" onclick="toggleSchool(this)">
+      🔮 Conhecimento
+      <span class="toggle-icon">▼</span>
+    </div>
+    <div class="school-body">
+
+      <!-- Purgatório -->
+      <div class="spell-card">
+        <div class="spell-header" onclick="toggleSpell(this)">
+          <span class="spell-dot"></span>
+          <h4>🔹 Purgatório</h4>
+          <span class="spell-toggle">▶</span>
+        </div>
+        <div class="spell-body">
+          <table class="spell-table">
+            <thead><tr><th>Característica</th><th>Valor</th><th>Mod</th></tr></thead>
+            <tbody>
+              <tr><td>Ação</td><td>1 minuto</td><td class="mod-no">❎</td></tr>
+              <tr><td>Alcance</td><td>Toque</td><td class="mod-no">❎</td></tr>
+              <tr><td>Alvo</td><td>1 cadáver morto há no máximo 1h / 6h / 24h / 7 dias</td><td class="mod-yes">✅</td></tr>
+              <tr><td>Efeito</td><td>Você faz 2 / 3 / 4 / 5 perguntas. O morto responde com o que sabia em vida.</td><td class="mod-yes">✅</td></tr>
+              <tr><td>Duração</td><td>2 / 3 / 4 / 5 Perguntas</td><td class="mod-yes">✅</td></tr>
+            </tbody>
+          </table>
+          <p class="spell-desc">Você sintoniza seu Éter com os 
+resquícios de consciência ainda presos no cadáver, forçando-os a 
+responder perguntas. O morto só sabe o que sabia em vida, não tem acesso
+ a eventos posteriores à sua morte. As respostas são honestas mas podem 
+ser incompletas: o morto não é obrigado a elaborar além do que foi 
+perguntado. Criaturas que morreram com Éter 0 (Ocas) não possuem 
+resquícios suficientes, a magia falha. Na intensidade Contida, o morto 
+só responde sim ou não.</p>
+        </div>
+      </div>
+
+      <!-- Projeção Astral -->
+      <div class="spell-card">
+        <div class="spell-header" onclick="toggleSpell(this)">
+          <span class="spell-dot"></span>
+          <h4>🔹 Projeção Astral</h4>
+          <span class="spell-toggle">▶</span>
+        </div>
+        <div class="spell-body">
+          <table class="spell-table">
+            <thead><tr><th>Característica</th><th>Valor</th><th>Mod</th></tr></thead>
+            <tbody>
+              <tr><td>Ação</td><td>5 minutos</td><td class="mod-no">❎</td></tr>
+              <tr><td>Alcance</td><td>Pessoal</td><td class="mod-no">❎</td></tr>
+              <tr><td>Área</td><td>18 / 36 / 54 / 72 m Raio</td><td class="mod-yes">✅</td></tr>
+              <tr><td>Duração</td><td>5 / 10 / 15 / 30 Min</td><td class="mod-yes">✅</td></tr>
+              <tr><td>Efeito</td><td>Você projeta sua consciência. Corpo
+ fica inconsciente e vulnerável. Projeção pode se mover até 36 m do 
+corpo, atravessa paredes e é invisível a olho nu.</td><td class="mod-no">❎</td></tr>
+            </tbody>
+          </table>
+          <p class="spell-desc">Você separa sua consciência do corpo 
+físico, enviando-a para explorar o ambiente. A projeção é invisível e 
+intangível, não pode interagir com objetos físicos nem ser atacada por 
+meios comuns, mas pode ser detectada por Detectar Magia e outras tipos 
+de detecção mistíca. Enquanto projetado, seu corpo fica completamente 
+vulnerável no local onde foi deixado: Evasão 0, não pode agir. Ao 
+retornar ou ter a concentração quebrada (seu corpo sofrer dano), você 
+volta imediatamente. Na intensidade Contida, a projeção não atravessa 
+paredes e é visivel como um espectro translúcido.</p>
+        </div>
+      </div>
+
+      <!-- Sinapsia Coletiva -->
+      <div class="spell-card">
+        <div class="spell-header" onclick="toggleSpell(this)">
+          <span class="spell-dot"></span>
+          <h4>🔹 Sinapsia Coletiva</h4>
+          <span class="spell-toggle">▶</span>
+        </div>
+        <div class="spell-body">
+          <table class="spell-table">
+            <thead><tr><th>Característica</th><th>Valor</th><th>Mod</th></tr></thead>
+            <tbody>
+              <tr><td>Ação</td><td>3 Ações</td><td class="mod-no">❎</td></tr>
+              <tr><td>Alcance</td><td>Toque</td><td class="mod-no">❎</td></tr>
+              <tr><td>Alvo</td><td>2 / 3 / 4 / 5 Criaturas voluntárias</td><td class="mod-yes">✅</td></tr>
+              <tr><td>Duração</td><td>Magia Sustentada. Regra Especial: 
+→Em combate: pague o mesmo éter do custo da conjuração da magia todo 
+turno; →Fora de combate: Pague éter equivalente ao custo de conjuração 
+da magia a cada 30 minutos. (Pague todo o custo antes, escolhendo por 
+quanto tempo gostaria de utilizar a magia)</td><td class="mod-no">❎</td></tr>
+              <tr><td>Efeito</td><td>Alvos compartilham campo de visão, 
+percepção e comunicação telepática. Dano Psíquico recebido por 1 
+participante: todos levam o dano Psíquico.</td><td class="mod-no">❎</td></tr>
+            </tbody>
+          </table>
+          <p class="spell-desc">Você entrelaça as consciências dos 
+participantes em uma rede perceptiva compartilhada. Cada criatura na 
+rede enxerga, ouve e sente o que qualquer outra está sentindo, em 
+combate, isso significa que flanquear ou surpreender o grupo se torna 
+extremamente difícil. Ataques de oportunidade podem ser realizados com 
+base na percepção de um aliado, não apenas da própria. Magia Sustentada:
+ a cada rodada ativa, pague os éter no seu turno. Fora de combate, pague
+ o custo da magia a cada 30 minutos em uso; Conjurar outra magia 
+sustentada, ser atordoado ou estar incapaz de ativamente se concentrar 
+imediatamente dissipa a magia.</p>
+        </div>
+      </div>
+
+      <!-- Caco Esquecido -->
+      <div class="spell-card">
+        <div class="spell-header" onclick="toggleSpell(this)">
+          <span class="spell-dot"></span>
+          <h4>🔹 Caco Esquecido</h4>
+          <span class="spell-toggle">▶</span>
+        </div>
+        <div class="spell-body">
+          <table class="spell-table">
+            <thead><tr><th>Característica</th><th>Valor</th><th>Mod</th></tr></thead>
+            <tbody>
+              <tr><td>Ação</td><td>3 Ações</td><td class="mod-no">❎</td></tr>
+              <tr><td>Alcance</td><td>Toque / Toque / 3 m / 6 m</td><td class="mod-yes">✅</td></tr>
+              <tr><td>Alvo</td><td>1 Criatura</td><td class="mod-no">❎</td></tr>
+              <tr><td>Duração</td><td>Permanente até remoção mística</td><td class="mod-no">❎</td></tr>
+              <tr><td>Resistência</td><td>Vontade ou Afetado</td><td class="mod-yes">✅</td></tr>
+              <tr><td>Efeito</td><td>Planta uma memória falsa detalhada. O alvo a trata como real e age de acordo.</td><td class="mod-no">❎</td></tr>
+            </tbody>
+          </table>
+          <p class="spell-desc">Você não apenas planta um impulso como 
+Voz na Mente, você constrói uma memória completa: imagens, sons, emoções
+ e contexto. O alvo acredita integralmente que viveu aquela experiência.
+ A memória plantada deve ser plausível dentro da vida do alvo, o Mestre 
+pode recusar memórias impossíveis. O alvo pode fazer um novo teste de 
+Vontade se a memória entrar em conflito direto com algo que ele observe 
+com seus próprios olhos. Detectar Magia ou Dissipar Magia revelam e 
+removem a memória. Na intensidade Contida, a memória é vaga e emocional;
+ na Transbordante, é tão detalhada que resiste a evidências contrárias 
+por tempo dobrado.</p>
+        </div>
+      </div>
+
+      <!-- Dádiva de Kha -->
+      <div class="spell-card">
+        <div class="spell-header" onclick="toggleSpell(this)">
+          <span class="spell-dot"></span>
+          <h4>🔹 Dádiva de Kha</h4>
+          <span class="spell-toggle">▶</span>
+        </div>
+        <div class="spell-body">
+          <table class="spell-table">
+            <thead><tr><th>Característica</th><th>Valor</th><th>Mod</th></tr></thead>
+            <tbody>
+              <tr><td>Ação</td><td>3 Ações</td><td class="mod-no">❎</td></tr>
+              <tr><td>Alcance</td><td>Pessoal</td><td class="mod-no">❎</td></tr>
+              <tr><td>Intensidade</td><td>Apenas Transbordante</td><td class="mod-no">❎</td></tr>
+              <tr><td>Efeito</td><td>Você assume que seu personagem 
+conhece uma informação que ele não deveria saber. Escolha uma informação
+ que você(jogador) sabe, seu personagem, agora, também sabe dela.</td><td class="mod-no">❎</td></tr>
+              <tr><td>Risco</td><td>Falha no teste de Vontade (Transbordante): você perde grande parte da sua memória, recuperando-a gradualmente ao longo do tempo.</td><td class="mod-no">❎</td></tr>
+            </tbody>
+          </table>
+          <p class="spell-desc">Você derrama todo o seu potencial arcano
+ em uma súplica profana ao deus primordial Kha. Aquele que teceu o 
+universo com as próprias mãos e cujos olhos enxergam além do véu do 
+tempo. Por um instante terrível e sagrado, sua alma toca a mente de Kha e
+ você <em>sente o que não deveria ser sentido</em>: uma verdade 
+arrancada do tecido da realidade, um conhecimento que não pertence a 
+você, que jamais pertenceria a nenhum ser mortal. Isso não é visão. Não é
+ profecia. É uma violação. Essa magia só pode ser canalizada na <strong>Intensidade:</strong> <em>Transbordante; </em>Caso
+ você falhe no teste de vontade da canalização você perde grande parte 
+de sua memória, recuperando-as ao longo de uma semana.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══════════════════════ NÍVEL 4 ════════════════════════ -->
+  <span id="nivel4" class="section-anchor"></span>
+  <div class="level-header">
+    <span class="level-badge l4">🟣 NÍVEL 4</span>
+    <h2>Magias de Quarto Nível</h2>
+    <div class="level-line"></div>
+  </div>
+
+  <div class="primordial-warning">
+    ⚠️ Requer <strong>Foco Primordial</strong>. Todo dano dessas magias é <strong>Primordial</strong> — True Damage, ignora toda Armadura e Armadura Específica. Contudo, pode custar caro.
+  </div>
+
+  <!-- N4 — DESTRUIÇÃO -->
+  <div class="school-group">
+    <div class="school-header destruicao" onclick="toggleSchool(this)">
+      ⚔️ Destruição
+      <span class="toggle-icon">▼</span>
+    </div>
+    <div class="school-body">
+
+      <!-- Fissura da Alma -->
+      <div class="spell-card">
+        <div class="spell-header" onclick="toggleSpell(this)">
+          <span class="spell-dot"></span>
+          <h4>🔹 Fissura da Alma</h4>
+          <span class="spell-toggle">▶</span>
+        </div>
+        <div class="spell-body">
+          <span class="tradeoff-tag">⚠️ TRADE-OFF</span>
+          <table class="spell-table">
+            <thead><tr><th>Característica</th><th>Valor</th><th>Mod</th></tr></thead>
+            <tbody>
+              <tr><td>Ação</td><td>6 Ações (2 Rodadas)</td><td class="mod-no">❎</td></tr>
+              <tr><td>Alcance</td><td>18 m</td><td class="mod-no">❎</td></tr>
+              <tr><td>Alvo</td><td>1 Criatura</td><td class="mod-no">❎</td></tr>
+              <tr><td>Intensidade</td><td>Apenas Transbordante</td><td class="mod-no">❎</td></tr>
+              <tr><td>Dano</td><td>Primordial igual a 66,6% da Saúde Máxima atual do alvo</td><td class="mod-no">❎</td></tr>
+              <tr><td>Trade-off</td><td>O conjurador também sofre dano Primordial igual a 33,3% da Saúde Máxima DO ALVO.</td><td class="mod-no">❎</td></tr>
+            </tbody>
+          </table>
+          <p class="spell-desc">Você rasga diretamente a alma do alvo, 
+um ato tão violento e primordial que exige concentração absoluta ao 
+longo de duas rodadas inteiras. Gaste as 3 ações do seu primeiro turno 
+iniciando a canalização. Se você receber qualquer dano antes de gastar 
+as 3 ações do turno seguinte para completá-la, a conjuração é cancelada e
+ todo o Éter gasto é perdido. A ruptura da alma é mútua: ao completar a 
+canalização, você também sente o fragmento que arranca — o dano 
+refletido não pode ser reduzido por nenhum meio. Essa magia só pode ser 
+canalizada na <strong>Intensidade:</strong> <em>Transbordante.</em></p>
+        </div>
+      </div>
+
+      <!-- Pestilência Primordial -->
+      <div class="spell-card">
+        <div class="spell-header" onclick="toggleSpell(this)">
+          <span class="spell-dot"></span>
+          <h4>🔹 Pestilência Primordial</h4>
+          <span class="spell-toggle">▶</span>
+        </div>
+        <div class="spell-body">
+          <span class="tradeoff-tag">⚠️ TRADE-OFF</span>
+          <table class="spell-table">
+            <thead><tr><th>Característica</th><th>Valor</th><th>Mod</th></tr></thead>
+            <tbody>
+              <tr><td>Ação</td><td>3 Ações</td><td class="mod-no">❎</td></tr>
+              <tr><td>Alcance</td><td>18 m</td><td class="mod-no">❎</td></tr>
+              <tr><td>Alvo</td><td>1 Criatura (sem teste de resistência)</td><td class="mod-no">❎</td></tr>
+              <tr><td>Dano Inicial</td><td>1d8 Primordial</td><td class="mod-no">❎</td></tr>
+              <tr><td>Progressão</td><td>A cada turno sem passar no teste de Vontade: +1 dado ao dano do turno seguinte (1d8 → 2d8 → 3d8…)</td><td class="mod-no">❎</td></tr>
+              <tr><td>Contágio</td><td>Ao receber dano da Pestilência, criaturas adjacentes em até 9 m.</td><td class="mod-no">❎</td></tr>
+              <tr><td>Resistência</td><td>Vontade no início do turno 
+para se curar. Sucesso remove a Pestilência daquela criatura. Primeira 
+criatura não pode resistir no primeiro turno.</td><td class="mod-no">❎</td></tr>
+              <tr><td>Trade-off</td><td>O conjurador não pode cancelar a
+ magia voluntariamente. Ela só se dissipa quando não houver mais alvos 
+para infectar. A cada rodada em que a magia estiver ativa, o conjurador 
+ganha Desnutrido +1 (cumulativo).</td><td class="mod-no">❎</td></tr>
+            </tbody>
+          </table>
+          <p class="spell-desc">Você libera uma praga primordial que não
+ pode ser detida por vontade do conjurador, apenas pela extinção ou 
+triunfo de todos os seus hospedeiros. A criatura inicial é infectada 
+automaticamente, sem direito a resistência. Toda vez que uma criatura 
+infectada sofrer dano da Pestilência, ela transmite a doença a todas as 
+criaturas adjacentes em até 9 m, também sem teste de resistência. A cada
+ turno que uma criatura passa sem se curar (falhando no teste de 
+Vontade), o dano que ela recebe no próximo turno aumenta em 1 dado. Não 
+existe limite máximo. A Desnutrição do conjurador acumula 
+indefinidamente enquanto a praga viver, curar criaturas ou matar os 
+hospedeiros é a única forma de encerrá-la.</p>
+        </div>
+      </div>
+
+      <!-- Eco do Apocalipse -->
+      <div class="spell-card">
+        <div class="spell-header" onclick="toggleSpell(this)">
+          <span class="spell-dot"></span>
+          <h4>🔹 Eco do Apocalipse</h4>
+          <span class="spell-toggle">▶</span>
+        </div>
+        <div class="spell-body">
+          <span class="tradeoff-tag">⚠️ TRADE-OFF</span>
+          <table class="spell-table">
+            <thead><tr><th>Característica</th><th>Valor</th><th>Mod</th></tr></thead>
+            <tbody>
+              <tr><td>Ação</td><td>2 Ações</td><td class="mod-no">❎</td></tr>
+              <tr><td>Alcance</td><td>Pessoal · Aura 6 m</td><td class="mod-no">❎</td></tr>
+              <tr><td>Duração</td><td>Magia Sustentada</td><td class="mod-no">❎</td></tr>
+              <tr><td>Dano (Aura)</td><td>4d10 Primordial automático para toda criatura que iniciar o turno na aura</td><td class="mod-no">❎</td></tr>
+              <tr><td>Custo por Rodada</td><td>O conjurador perde 1d10 de Éter atual no início de cada turno (além do custo de sustentar a magia)</td><td class="mod-no">❎</td></tr>
+              <tr><td>Trade-off</td><td>Ao chegar a Éter 0 enquanto 
+sustenta esta magia, o conjurador fica Oco imediatamente e a aura 
+explode causando 8d10 Primordial em raio 6 m (inclui o próprio 
+conjurador).</td><td class="mod-no">❎</td></tr>
+            </tbody>
+          </table>
+          <p class="spell-desc">Você canaliza um fragmento da destruição
+ que existia antes do universo ser criado. Uma aura de energia 
+apocalíptica se expande ao seu redor, devastando tudo que respirar 
+dentro dela. Sustentar o Eco não é gratuito — a cada rodada, o primórdio
+ cobra diretamente do seu Éter atual, indo além do custo normal de 
+sustentação. Se o seu Éter chegar a 0 enquanto a aura estiver ativa, o 
+colapso é violento e inevitável. Magia Sustentada: a cada rodada ativa, 
+pague os éter no seu turno; conjurar outra magia sustentada, ser 
+atordoado ou estar incapaz de ativamente se concentrar imediatamente 
+dissipa a magia.</p>
+        </div>
+      </div>
+
+      <!-- Cometa do Mártir -->
+      <div class="spell-card">
+        <div class="spell-header" onclick="toggleSpell(this)">
+          <span class="spell-dot"></span>
+          <h4>🔹 Cometa do Mártir</h4>
+          <span class="spell-toggle">▶</span>
+        </div>
+        <div class="spell-body">
+          <span class="tradeoff-tag">⚠️ TRADE-OFF</span>
+          <table class="spell-table">
+            <thead><tr><th>Característica</th><th>Valor</th><th>Mod</th></tr></thead>
+            <tbody>
+              <tr><td>Ação</td><td>3 Ações</td><td class="mod-no">❎</td></tr>
+              <tr><td>Alcance</td><td>Pessoal</td><td class="mod-no">❎</td></tr>
+              <tr><td>Área</td><td>Raio 12 m</td><td class="mod-no">❎</td></tr>
+              <tr><td>Intensidade</td><td>Apenas Transbordante</td><td class="mod-no">❎</td></tr>
+              <tr><td>Dano</td><td>12d12 Primordial a todos na área (incluindo o conjurador)</td><td class="mod-no">❎</td></tr>
+              <tr><td>Resistência</td><td>Reflexos para metade (inimigos). O conjurador não tem direito a resistência.</td><td class="mod-no">❎</td></tr>
+              <tr><td>Requisito</td><td>O conjurador deve estar dentro da área de impacto ao conjurar.</td><td class="mod-no">❎</td></tr>
+              <tr><td>Trade-off</td><td>O conjurador recebe o dano 
+integral, sem possibilidade de resistência ou redução. Ao sobreviver, 
+fica com Exausto 3 e Éter Máximo −1d6 permanente.</td><td class="mod-no">❎</td></tr>
+            </tbody>
+          </table>
+          <p class="spell-desc">Você não aponta o cometa para longe. 
+Você o chama sobre si mesmo. Um fragmento de estrela primordial despenca
+ do firmamento diretamente sobre o ponto onde você está e tudo ao seu 
+redor é consumido pelo impacto. Não há outra forma de conjurar esta 
+magia: o conjurador deve estar no epicentro. Inimigos na área podem 
+tentar esquivar; você não. O cometa reconhece seu invocador e o devora 
+com indiferença absoluta. Apenas um mártir tem coragem, ou desespero, 
+suficiente para usá-la. Essa magia só pode ser canalizada na <strong>Intensidade:</strong> <em>Transbordante.</em></p>
+        </div>
+      </div>
+
+      <!-- Tempestade Primordial -->
+      <div class="spell-card">
+        <div class="spell-header" onclick="toggleSpell(this)">
+          <span class="spell-dot"></span>
+          <h4>🔹 Tempestade Primordial</h4>
+          <span class="spell-toggle">▶</span>
+        </div>
+        <div class="spell-body">
+          <span class="tradeoff-tag">⚠️ TRADE-OFF</span>
+          <table class="spell-table">
+            <thead><tr><th>Característica</th><th>Valor</th><th>Mod</th></tr></thead>
+            <tbody>
+              <tr><td>Ação</td><td>3 Ações</td><td class="mod-no">❎</td></tr>
+              <tr><td>Alcance</td><td>30 m</td><td class="mod-no">❎</td></tr>
+              <tr><td>Área</td><td>72 m circular</td><td class="mod-no">❎</td></tr>
+              <tr><td>Dano</td><td>6d10 Primordial por raio (1 raio por rodada, alvo escolhido pelo conjurador)</td><td class="mod-no">❎</td></tr>
+              <tr><td>Duração</td><td>Magia Sustentada</td><td class="mod-no">❎</td></tr>
+              <tr><td>Efeito</td><td>Fortitude ou <em>Atordoado</em> por 1 rodada</td><td class="mod-no">❎</td></tr>
+              <tr><td>Trade-off</td><td>A cada rodada sustentada, o 
+conjurador fica Surdo por 1 rodada (o trovão primordial é ensurdecedor).
+ Ao encerrar a magia, fica Surdo permanentemente por 1d4 dias.</td><td class="mod-no">❎</td></tr>
+            </tbody>
+          </table>
+          <p class="spell-desc">Você invoca uma tempestade de trovões 
+primordiais de magnitude catastrófica. Diferente de Invocar Tempestade, 
+você escolhe o alvo dos raios, o primórdio obedece com precisão 
+cirúrgica. Cada raio causa dano Primordial (True Damage), ignorando toda
+ armadura. Criaturas atingidas devem fazer Fortitude ou ficam 
+Atordoadas. O preço é o silêncio: o som que você está invocando é tão 
+absoluto que gradualmente destrói sua própria audição enquanto a magia 
+está ativa. Magia Sustentada: a cada rodada ativa, pague os éter no seu 
+turno; conjurar outra magia sustentada, ser atordoado ou estar incapaz 
+de ativamente se concentrar imediatamente dissipa a magia.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- N4 — ABJURAÇÃO -->
+  <div class="school-group">
+    <div class="school-header abjuracao" onclick="toggleSchool(this)">
+      🛡️ Abjuração
+      <span class="toggle-icon">▼</span>
+    </div>
+    <div class="school-body">
+
+      <!-- Armadura de Kha -->
+      <div class="spell-card">
+        <div class="spell-header" onclick="toggleSpell(this)">
+          <span class="spell-dot"></span>
+          <h4>🔹 Armadura de Kha</h4>
+          <span class="spell-toggle">▶</span>
+        </div>
+        <div class="spell-body">
+          <span class="tradeoff-tag">⚠️ TRADE-OFF</span>
+          <table class="spell-table">
+            <thead><tr><th>Característica</th><th>Valor</th><th>Mod</th></tr></thead>
+            <tbody>
+              <tr><td>Ação</td><td>2 Ações</td><td class="mod-no">❎</td></tr>
+              <tr><td>Alcance</td><td>Pessoal</td><td class="mod-no">❎</td></tr>
+              <tr><td>Duração</td><td>1 Rodada</td><td class="mod-no">❎</td></tr>
+              <tr><td>Efeito</td><td>Imunidade a dano Ordinário, Elementar e Místico. Magias N3 ou menor lançadas contra você falham automaticamente.</td><td class="mod-no">❎</td></tr>
+              <tr><td>Trade-Off</td><td>Perde 8 de Éter Máximo.</td><td class="mod-no">❎</td></tr>
+            </tbody>
+          </table>
+          <p class="spell-desc">Você veste uma armadura tecida com o 
+mesmo primórdio que formou a realidade. Por 3 rodadas você é quase 
+impenetrável: imune a qualquer dano que não seja Primordial. Magias de 
+qualquer conjurador até N3 se dissipam antes de te tocar. O preço é 
+proporcional à graça recebida: Kha nunca protege de graça. Ao fim da 
+duração, parte do seu Éter Máximo é cobrado permanentemente. Invocar 
+esta proteção duas vezes sem realizar um descanso longo, é uma ofensa ao
+ deus, ele retira o privilégio da escola inteira por 7 dias.</p>
+        </div>
+      </div>
+
+      <!-- Exílio Existencial -->
+      <div class="spell-card">
+        <div class="spell-header" onclick="toggleSpell(this)">
+          <span class="spell-dot"></span>
+          <h4>🔹 Exílio Existencial</h4>
+          <span class="spell-toggle">▶</span>
+        </div>
+        <div class="spell-body">
+          <span class="tradeoff-tag">⚠️ TRADE-OFF</span>
+          <table class="spell-table">
+            <thead><tr><th>Característica</th><th>Valor</th><th>Mod</th></tr></thead>
+            <tbody>
+              <tr><td>Alcance</td><td>9 m</td><td class="mod-no">❎</td></tr>
+              <tr><td>Alvo</td><td>1 Alvo</td><td class="mod-no">❎</td></tr>
+              <tr><td>Duração</td><td>3 Rodadas</td><td class="mod-no">❎</td></tr>
+              <tr><td>Resist.</td><td>Vontade ou Banido</td><td class="mod-no">❎</td></tr>
+              <tr><td>Intensidade</td><td>Apenas Transbordante</td><td class="mod-no">❎</td></tr>
+              <tr><td>Trade-off</td><td>O conjurador passa os próximos 3
+ dias "partido" entre os planos, fisicamente presente mas mentalmente 
+ausente. Perde 1 ação por turno e rola Vontade com desvantagem durante 
+esse período.</td><td class="mod-no">❎</td></tr>
+            </tbody>
+          </table>
+          <p class="spell-desc">Você não apenas bane uma criatura, você a
+ rasga de todos os planos que ela poderia alcançar, condenando-a a um 
+plano inominável onde não há retorno por meios convencionais. O alvo 
+simplesmente deixa de existir neste plano, e em qualquer outro que 
+pudesse reclamá-lo por 3 rodadas. Em caso de sucesso no teste, a energia
+ do exílio se reflete parcialmente como 4d8 de dano Primordial maciço. O
+ custo para o conjurador é existencial: criar uma ruptura tão absoluta 
+entre planos deixa sua própria consciência instável por dias. Perde 1 
+ação por turno e rola Vontade com desvantagem durante esse período. Essa
+ magia só pode ser canalizada na <strong>Intensidade:</strong> <em>Transbordante.</em></p>
+        </div>
+      </div>
+
+      <!-- Selo do Oblívio -->
+      <div class="spell-card">
+        <div class="spell-header" onclick="toggleSpell(this)">
+          <span class="spell-dot"></span>
+          <h4>🔹 Selo do Oblívio</h4>
+          <span class="spell-toggle">▶</span>
+        </div>
+        <div class="spell-body">
+          <span class="tradeoff-tag">⚠️ TRADE-OFF</span>
+          <table class="spell-table">
+            <thead><tr><th>Característica</th><th>Valor</th><th>Mod</th></tr></thead>
+            <tbody>
+              <tr><td>Ação</td><td>1 Ação</td><td class="mod-no">❎</td></tr>
+              <tr><td>Alvo</td><td>1 Criatura ou Objeto</td><td class="mod-no">❎</td></tr>
+              <tr><td>Alcance</td><td>Toque</td><td class="mod-no">❎</td></tr>
+              <tr><td>Resistência</td><td>Vontade ou Selado</td><td class="mod-no">❎</td></tr>
+              <tr><td>Trade-off</td><td>Você perde permanentemente até a magia ser dissipada 2 pontos do seu atributo principal(Inteligência ou Sabedoria)</td><td class="mod-no">❎</td></tr>
+            </tbody>
+          </table>
+          <p class="spell-desc">Você imprime um lacre primordial sobre a
+ alma de uma criatura, condenando-a ao oblívio eterno. Quando ela 
+morrer, não há ressurreição, não há Palavra de Retorno, não há ritual 
+que a traga de volta, você a prende em um recipiente mágico a sua 
+escolha. Sua alma simplesmente é desfeita no tecido do universo e 
+transposta para um recipiente mágico. Se você morre, a criatura 
+instantaneamente se liberta. O preço de aprisionar tal criatura é a 
+força de vontade que você sustenta para manter a criatura presa, você 
+perde permanentemente(ou até a criatura se libertar) 2 pontos do seu 
+atributo principal(Inteligência ou Sabedoria). Magia não distingue 
+aliado de inimigo, ela apenas usa o canal que você criou. Você também 
+pode utilizar essa magia em recipientes ou portas, criando magicamente 
+uma única chave que desfaz a magia. Caso utilizado em recipientes ou 
+portas, é quase impossível de dissipar essa magia, o CD para tal feito 
+seria seu CD + 20. Você também perde pontos de atributo para objetos.</p>
+        </div>
+      </div>
+
+      <!-- Reversão Primordial -->
+      <div class="spell-card">
+        <div class="spell-header" onclick="toggleSpell(this)">
+          <span class="spell-dot"></span>
+          <h4>🔹 Reversão Primordial</h4>
+          <span class="spell-toggle">▶</span>
+        </div>
+        <div class="spell-body">
+          <span class="tradeoff-tag">⚠️ TRADE-OFF</span>
+          <table class="spell-table">
+            <thead><tr><th>Característica</th><th>Valor</th><th>Mod</th></tr></thead>
+            <tbody>
+              <tr><td>Ações</td><td>3 ações</td><td class="mod-no">❎</td></tr>
+              <tr><td>Alvo</td><td>Pessoal</td><td class="mod-no">❎</td></tr>
+              <tr><td>Intensidade</td><td>Apenas Transbordante</td><td class="mod-no">❎</td></tr>
+              <tr><td>Trade-off</td><td>No início do seu próximo turno, você recebe todo o dano negado, duplicado, como dano Primordial. O universo cobra com juros.</td><td class="mod-no">❎</td></tr>
+            </tbody>
+          </table>
+          <p class="spell-desc">Durante a próxima rodada você dobra o 
+tecido da realidade ao redor de si mesmo por um instante, fazendo com 
+que toda força destrutiva direcionada a você seja revertida em sua 
+origem como energia Primordial pura. O efeito é absoluto, nenhuma fonte 
+de dano é excluída. Porém, a conservação primordial é imutável: a 
+energia não desaparece, ela é adiada. No início do seu turno seguinte, 
+tudo retorna sobre você, duplicado. Usar isso com planejamento pode 
+virar batalhas. Usar sem planejamento é suicídio. Essa magia só pode ser
+ canalizada na <strong>Intensidade:</strong> <em>Transbordante.</em></p>
+        </div>
+      </div>
+
+      <!-- Vytália -->
+      <div class="spell-card">
+        <div class="spell-header" onclick="toggleSpell(this)">
+          <span class="spell-dot"></span>
+          <h4>🔹 Vytália</h4>
+          <span class="spell-toggle">▶</span>
+        </div>
+        <div class="spell-body">
+          <span class="tradeoff-tag">⚠️ TRADE-OFF</span>
+          <table class="spell-table">
+            <thead><tr><th>Característica</th><th>Valor</th><th>Mod</th></tr></thead>
+            <tbody>
+              <tr><td>Ação</td><td>1 Ação</td><td class="mod-no">❎</td></tr>
+              <tr><td>Alvo(s)</td><td>1 / 2 / 3 Criatura(s)</td><td class="mod-yes">✅</td></tr>
+              <tr><td>Alcance</td><td>6 / 9 / 13,5 m</td><td class="mod-yes">✅</td></tr>
+              <tr><td>Cura</td><td>33,3% / 50% / 66,6% da Saúde Máxima do Alvo</td><td class="mod-yes">✅</td></tr>
+              <tr><td>Intensidade</td><td>Normal ou Acima</td><td class="mod-no">❎</td></tr>
+              <tr><td>Trade-off</td><td>O conjurador perde 1 / 2 / 3 de Éter Máximo permanentemente.</td><td class="mod-yes">✅</td></tr>
+            </tbody>
+          </table>
+          <p class="spell-desc">Você não cura, você implora. O nome de 
+Vytália, deusa da vida, é pronunciado não como uma oração, mas como uma 
+dívida assumida em voz alta. A energia vital que flui para o alvo não 
+vem do Éter ao redor: vem da capacidade máxima do seu próprio 
+reservatório místico, arrancada para sempre. Vytália ouve. Vytália 
+cobre. E Vytália cobra. Cada uso desta magia é uma pequena morte do que 
+você poderia ter sido.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- N4 — ALTERAÇÃO -->
+  <div class="school-group">
+    <div class="school-header alteracao" onclick="toggleSchool(this)">
+      🌀 Alteração
+      <span class="toggle-icon">▼</span>
+    </div>
+    <div class="school-body">
+
+      <!-- Aprendiz Caótico -->
+      <div class="spell-card">
+        <div class="spell-header" onclick="toggleSpell(this)">
+          <span class="spell-dot"></span>
+          <h4>🔹 Aprendiz Caótico</h4>
+          <span class="spell-toggle">▶</span>
+        </div>
+        <div class="spell-body">
+          <span class="tradeoff-tag">⚠️ TRADE-OFF</span>
+          <table class="spell-table">
+            <thead><tr><th>Característica</th><th>Valor</th><th>Mod</th></tr></thead>
+            <tbody>
+              <tr><td>Ação</td><td>3 Ações</td><td class="mod-no">❎</td></tr>
+              <tr><td>Alcance</td><td>Pessoal</td><td class="mod-no">❎</td></tr>
+              <tr><td>Alvo</td><td>Pessoal</td><td class="mod-no">❎</td></tr>
+              <tr><td>Duração</td><td>Magia Sustentada</td><td class="mod-no">❎</td></tr>
+              <tr><td>Efeito</td><td>Cria uma Réplica com 50% das suas estatísticas.</td><td class="mod-no">❎</td></tr>
+              <tr><td>Trade-Off</td><td>Enquanto a Réplica vive, seu 
+Éter Máximo é partido ao meio: metade cada. Se a Réplica a qualquer 
+momento chegar a 0 de Saúde: você recebe 3d10 Primordial e fica 
+Atordoado por 1 rodada. Para encerrar essa magia, faça um teste de 
+vontade contra seu próprio CD, caso falhe essa magia deixa de ser 
+Sustentada, a Réplica se torna independente e só pode ser dissipada ao 
+chegar a 0 de Saúde.</td><td class="mod-no">❎</td></tr>
+            </tbody>
+          </table>
+          <p class="spell-desc">Cria uma Réplica de você com 50% das 
+suas estatísticas, todos os seus conhecimentos de magia e autonomia para
+ agir. A Réplica obedece comandos simples mas age por conta própria se 
+ignorada. Compartilha seu Éter Máximo dividido ao meio enquanto ativa.<br>A
+ Alteração primordial não cria ilusões — cria substância. Sua Réplica é 
+você, mas menor. Ela pensa como você, lembra como você, e se ressente de
+ existir como você. Enquanto ela vive, seu Éter Máximo é partido ao 
+meio: metade cada. Quando a Réplica morre, você sente. Magia Sustentada:
+ a cada rodada ativa, pague os éter no seu turno; conjurar outra magia 
+sustentada, ser atordoado ou estar incapaz de ativamente se concentrar 
+imediatamente dissipa a magia.</p>
+        </div>
+      </div>
+
+      <!-- Fusão de Corpos -->
+      <div class="spell-card">
+        <div class="spell-header" onclick="toggleSpell(this)">
+          <span class="spell-dot"></span>
+          <h4>🔹 Fusão de Corpos</h4>
+          <span class="spell-toggle">▶</span>
+        </div>
+        <div class="spell-body">
+          <table class="spell-table">
+            <thead><tr><th>Característica</th><th>Valor</th><th>Mod</th></tr></thead>
+            <tbody>
+              <tr><td>Ações</td><td>3 Ações</td><td class="mod-no">❎</td></tr>
+              <tr><td>Gatilho</td><td>Você ou aliado em alcance é atingido</td><td class="mod-no">❎</td></tr>
+              <tr><td>Alcance</td><td>Pessoal / 3 / 4,5 / 6 m</td><td class="mod-yes">✅</td></tr>
+              <tr><td>Efeito</td><td>Reduz dano em 1d10 / 2d10 / 3d10 / 4d10; dano absorvido armazenado como carga mística</td><td class="mod-yes">✅</td></tr>
+            </tbody>
+          </table>
+          <p class="spell-desc">Você altera a densidade do tecido 
+místico ao redor do alvo para comprimir e absorver a força de um impacto
+ iminente. O dano não absorvido é aplicado normalmente. O dano absorvido
+ fica armazenado como uma carga mística no próprio alvo — que pode 
+gastá-la como ação livre no próximo turno para liberar o impacto como 
+dano Contundente em uma criatura a distância de toque. A carga some ao 
+fim do turno seguinte se não for usada.</p>
+        </div>
+      </div>
+
+      <!-- Pele de Camaleão (N4) -->
+      <div class="spell-card">
+        <div class="spell-header" onclick="toggleSpell(this)">
+          <span class="spell-dot"></span>
+          <h4>🔹 Pele de Camaleão</h4>
+          <span class="spell-toggle">▶</span>
+        </div>
+        <div class="spell-body">
+          <table class="spell-table">
+            <thead><tr><th>Característica</th><th>Valor</th><th>Mod</th></tr></thead>
+            <tbody>
+              <tr><td>Ação</td><td>2 Ações</td><td class="mod-no">❎</td></tr>
+              <tr><td>Alcance</td><td>Toque / Toque / 3 / 4,5 m</td><td class="mod-no">❎</td></tr>
+              <tr><td>Alvo</td><td>1 / 1 / 1 / 2 Alvos</td><td class="mod-yes">✅</td></tr>
+              <tr><td>Duração</td><td>Até o fim do combate</td><td class="mod-no">❎</td></tr>
+              <tr><td>Efeito</td><td>+7 / +15 / +22 / +30 Evasão e +2 / +5 / +7 / +10 Furtividade; perde 3 / 5 / 8 / 10 Evasão a cada ataque esquivado.</td><td class="mod-yes">✅</td></tr>
+            </tbody>
+          </table>
+          <p class="spell-desc">Você reconfigura a pele de uma criatura 
+fazendo-a ficar translucida. A criatura ganha +15 de evasão e +5 de 
+furtividade. A cada ataque esquivado, o alvo perde 5 de evasão. Ao 
+receber dano ou ao ser reduzido a 0 de evasão adicional a magia se 
+dissipa.</p>
+        </div>
+      </div>
+
+      <!-- Xadrez (N4) -->
+      <div class="spell-card">
+        <div class="spell-header" onclick="toggleSpell(this)">
+          <span class="spell-dot"></span>
+          <h4>🔹 Xadrez</h4>
+          <span class="spell-toggle">▶</span>
+        </div>
+        <div class="spell-body">
+          <table class="spell-table">
+            <thead><tr><th>Característica</th><th>Valor</th><th>Mod</th></tr></thead>
+            <tbody>
+              <tr><td>Ação</td><td>2 Ações</td><td class="mod-no">❎</td></tr>
+              <tr><td>Alcance</td><td>9 m</td><td class="mod-yes">✅</td></tr>
+              <tr><td>Alvo</td><td>2 Criaturas</td><td class="mod-no">❎</td></tr>
+              <tr><td>Efeito</td><td>As duas criaturas trocam de posição instantaneamente</td><td class="mod-no">❎</td></tr>
+              <tr><td>Resistência</td><td>Vontade ou Teletransportado (alvos não voluntários)</td><td class="mod-no">❎</td></tr>
+            </tbody>
+          </table>
+          <p class="spell-desc">Você entrelaça as posições de duas 
+criaturas no espaço, fazendo-as trocarem de lugar num piscar de olhos. 
+Ambas aparecem no exato ponto onde a outra estava. Criaturas voluntárias
+ não têm direito a resistência. Para uso ofensivo, o alvo não voluntário
+ faz Vontade. Criaturas que estejam Agarradas ou Enraizadas são imunes. 
+Esta magia pode ser canalizada apenas na <strong>Intensidade:</strong> <em>Normal</em></p>
+        </div>
+      </div>
+
+      <!-- Plasmar Terreno (N4) -->
+      <div class="spell-card">
+        <div class="spell-header" onclick="toggleSpell(this)">
+          <span class="spell-dot"></span>
+          <h4>🔹 Plasmar Terreno</h4>
+          <span class="spell-toggle">▶</span>
+        </div>
+        <div class="spell-body">
+          <table class="spell-table">
+            <thead><tr><th>Característica</th><th>Valor</th><th>Mod</th></tr></thead>
+            <tbody>
+              <tr><td>Ação</td><td>3 Ações</td><td class="mod-no">❎</td></tr>
+              <tr><td>Alcance</td><td>4,5 / 9 / 13,5 / 18 m</td><td class="mod-yes">✅</td></tr>
+              <tr><td>Área</td><td>1,5 / 3 / 4,5 / 6 m Raio</td><td class="mod-no">❎</td></tr>
+            </tbody>
+          </table>
+          <p class="spell-desc">Você canaliza a escola da Alteração no 
+ambiente físico, moldando pedra, terra, areia, madeira morta ou qualquer
+ material inorgânico como se fosse argila. Pode criar paredes de até 1,5
+ m de altura, abrir valas, tampar passagens, nivelar terreno ou criar 
+cobertura improvisada. O terreno alterado é permanente, a magia não 
+precisa ser mantida. Não afeta materiais trabalhados com magia, 
+criaturas vivas, tecido ou osso. O Mestre tem palavra final sobre o que 
+pode ser moldado no contexto da cena.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- N4 — CONHECIMENTO -->
+  <div class="school-group">
+    <div class="school-header conhecimento" onclick="toggleSchool(this)">
+      🔮 Conhecimento
+      <span class="toggle-icon">▼</span>
+    </div>
+    <div class="school-body">
+
+      <!-- Purgatório (N4) -->
+      <div class="spell-card">
+        <div class="spell-header" onclick="toggleSpell(this)">
+          <span class="spell-dot"></span>
+          <h4>🔹 Purgatório</h4>
+          <span class="spell-toggle">▶</span>
+        </div>
+        <div class="spell-body">
+          <table class="spell-table">
+            <thead><tr><th>Característica</th><th>Valor</th><th>Mod</th></tr></thead>
+            <tbody>
+              <tr><td>Ação</td><td>1 minuto</td><td class="mod-no">❎</td></tr>
+              <tr><td>Alcance</td><td>Toque</td><td class="mod-no">❎</td></tr>
+              <tr><td>Alvo</td><td>1 cadáver morto há no máximo 1h / 6h / 24h / 7 dias</td><td class="mod-yes">✅</td></tr>
+              <tr><td>Efeito</td><td>Você faz 2 / 3 / 4 / 5 perguntas. O morto responde com o que sabia em vida.</td><td class="mod-yes">✅</td></tr>
+              <tr><td>Duração</td><td>2 / 3 / 4 / 5 Perguntas</td><td class="mod-yes">✅</td></tr>
+            </tbody>
+          </table>
+          <p class="spell-desc">Você sintoniza seu Éter com os 
+resquícios de consciência ainda presos no cadáver, forçando-os a 
+responder perguntas. O morto só sabe o que sabia em vida, não tem acesso
+ a eventos posteriores à sua morte. As respostas são honestas mas podem 
+ser incompletas: o morto não é obrigado a elaborar além do que foi 
+perguntado. Criaturas que morreram com Éter 0 (Ocas) não possuem 
+resquícios suficientes, a magia falha. Na intensidade Contida, o morto 
+só responde sim ou não.</p>
+        </div>
+      </div>
+
+      <!-- Projeção Astral (N4) -->
+      <div class="spell-card">
+        <div class="spell-header" onclick="toggleSpell(this)">
+          <span class="spell-dot"></span>
+          <h4>🔹 Projeção Astral</h4>
+          <span class="spell-toggle">▶</span>
+        </div>
+        <div class="spell-body">
+          <table class="spell-table">
+            <thead><tr><th>Característica</th><th>Valor</th><th>Mod</th></tr></thead>
+            <tbody>
+              <tr><td>Ação</td><td>5 minutos</td><td class="mod-no">❎</td></tr>
+              <tr><td>Alcance</td><td>Pessoal</td><td class="mod-no">❎</td></tr>
+              <tr><td>Área</td><td>18 / 36 / 54 / 72 m Raio</td><td class="mod-yes">✅</td></tr>
+              <tr><td>Duração</td><td>5 / 10 / 15 / 30 Min</td><td class="mod-yes">✅</td></tr>
+              <tr><td>Efeito</td><td>Você projeta sua consciência. Corpo
+ fica inconsciente e vulnerável. Projeção pode se mover até 36 m do 
+corpo, atravessa paredes e é invisível a olho nu.</td><td class="mod-no">❎</td></tr>
+            </tbody>
+          </table>
+          <p class="spell-desc">Você separa sua consciência do corpo 
+físico, enviando-a para explorar o ambiente. A projeção é invisível e 
+intangível, não pode interagir com objetos físicos nem ser atacada por 
+meios comuns, mas pode ser detectada por Detectar Magia e outras tipos 
+de detecção mistíca. Enquanto projetado, seu corpo fica completamente 
+vulnerável no local onde foi deixado: Evasão 0, não pode agir. Ao 
+retornar ou ter a concentração quebrada (seu corpo sofrer dano), você 
+volta imediatamente. Na intensidade Contida, a projeção não atravessa 
+paredes e é visivel como um espectro translúcido.</p>
+        </div>
+      </div>
+
+      <!-- Sinapsia Coletiva (N4) -->
+      <div class="spell-card">
+        <div class="spell-header" onclick="toggleSpell(this)">
+          <span class="spell-dot"></span>
+          <h4>🔹 Sinapsia Coletiva</h4>
+          <span class="spell-toggle">▶</span>
+        </div>
+        <div class="spell-body">
+          <table class="spell-table">
+            <thead><tr><th>Característica</th><th>Valor</th><th>Mod</th></tr></thead>
+            <tbody>
+              <tr><td>Ação</td><td>3 Ações</td><td class="mod-no">❎</td></tr>
+              <tr><td>Alcance</td><td>Toque</td><td class="mod-no">❎</td></tr>
+              <tr><td>Alvo</td><td>2 / 3 / 4 / 5 Criaturas voluntárias</td><td class="mod-yes">✅</td></tr>
+              <tr><td>Duração</td><td>Magia Sustentada. Regra Especial: 
+→Em combate: pague o mesmo éter do custo da conjuração da magia todo 
+turno; →Fora de combate: Pague éter equivalente ao custo de conjuração 
+da magia a cada 30 minutos. (Pague todo o custo antes, escolhendo por 
+quanto tempo gostaria de utilizar a magia)</td><td class="mod-no">❎</td></tr>
+              <tr><td>Efeito</td><td>Alvos compartilham campo de visão, 
+percepção e comunicação telepática. Dano Psíquico recebido por 1 
+participante: todos levam o dano Psíquico.</td><td class="mod-no">❎</td></tr>
+            </tbody>
+          </table>
+          <p class="spell-desc">Você entrelaça as consciências dos 
+participantes em uma rede perceptiva compartilhada. Cada criatura na 
+rede enxerga, ouve e sente o que qualquer outra está sentindo, em 
+combate, isso significa que flanquear ou surpreender o grupo se torna 
+extremamente difícil. Ataques de oportunidade podem ser realizados com 
+base na percepção de um aliado, não apenas da própria. Magia Sustentada:
+ a cada rodada ativa, pague os éter no seu turno. Fora de combate, pague
+ o custo da magia a cada 30 minutos em uso; Conjurar outra magia 
+sustentada, ser atordoado ou estar incapaz de ativamente se concentrar 
+imediatamente dissipa a magia.</p>
+        </div>
+      </div>
+
+      <!-- Caco Esquecido (N4) -->
+      <div class="spell-card">
+        <div class="spell-header" onclick="toggleSpell(this)">
+          <span class="spell-dot"></span>
+          <h4>🔹 Caco Esquecido</h4>
+          <span class="spell-toggle">▶</span>
+        </div>
+        <div class="spell-body">
+          <table class="spell-table">
+            <thead><tr><th>Característica</th><th>Valor</th><th>Mod</th></tr></thead>
+            <tbody>
+              <tr><td>Ação</td><td>3 Ações</td><td class="mod-no">❎</td></tr>
+              <tr><td>Alcance</td><td>Toque / Toque / 3 m / 6 m</td><td class="mod-yes">✅</td></tr>
+              <tr><td>Alvo</td><td>1 Criatura</td><td class="mod-no">❎</td></tr>
+              <tr><td>Duração</td><td>Permanente até remoção mística</td><td class="mod-no">❎</td></tr>
+              <tr><td>Resistência</td><td>Vontade ou Afetado</td><td class="mod-yes">✅</td></tr>
+              <tr><td>Efeito</td><td>Planta uma memória falsa detalhada. O alvo a trata como real e age de acordo.</td><td class="mod-no">❎</td></tr>
+            </tbody>
+          </table>
+          <p class="spell-desc">Você não apenas planta um impulso como 
+Voz na Mente, você constrói uma memória completa: imagens, sons, emoções
+ e contexto. O alvo acredita integralmente que viveu aquela experiência.
+ A memória plantada deve ser plausível dentro da vida do alvo, o Mestre 
+pode recusar memórias impossíveis. O alvo pode fazer um novo teste de 
+Vontade se a memória entrar em conflito direto com algo que ele observe 
+com seus próprios olhos. Detectar Magia ou Dissipar Magia revelam e 
+removem a memória. Na intensidade Contida, a memória é vaga e emocional;
+ na Transbordante, é tão detalhada que resiste a evidências contrárias 
+por tempo dobrado.</p>
+        </div>
+      </div>
+
+      <!-- Dádiva de Kha (N4) -->
+      <div class="spell-card">
+        <div class="spell-header" onclick="toggleSpell(this)">
+          <span class="spell-dot"></span>
+          <h4>🔹 Dádiva de Kha</h4>
+          <span class="spell-toggle">▶</span>
+        </div>
+        <div class="spell-body">
+          <span class="tradeoff-tag">⚠️ TRADE-OFF</span>
+          <table class="spell-table">
+            <thead><tr><th>Característica</th><th>Valor</th><th>Mod</th></tr></thead>
+            <tbody>
+              <tr><td>Ação</td><td>3 Ações</td><td class="mod-no">❎</td></tr>
+              <tr><td>Alcance</td><td>Pessoal</td><td class="mod-no">❎</td></tr>
+              <tr><td>Intensidade</td><td>Apenas Transbordante</td><td class="mod-no">❎</td></tr>
+              <tr><td>Efeito</td><td>Você assume que seu personagem 
+conhece uma informação que ele não deveria saber. Escolha uma informação
+ que você(jogador) sabe, seu personagem, agora, também sabe dela.</td><td class="mod-no">❎</td></tr>
+              <tr><td>Risco</td><td>Falha no teste de Vontade (Transbordante): você perde grande parte da sua memória, recuperando-a gradualmente ao longo do tempo.</td><td class="mod-no">❎</td></tr>
+            </tbody>
+          </table>
+          <p class="spell-desc">Você derrama todo o seu potencial arcano
+ em uma súplica profana ao deus primordial Kha. Aquele que teceu o 
+universo com as próprias mãos e cujos olhos enxergam além do véu do 
+tempo. Por um instante terrível e sagrado, sua alma toca a mente de Kha e
+ você <em>sente o que não deveria ser sentido</em>: uma verdade 
+arrancada do tecido da realidade, um conhecimento que não pertence a 
+você, que jamais pertenceria a nenhum ser mortal. Isso não é visão. Não é
+ profecia. É uma violação. Essa magia só pode ser canalizada na <strong>Intensidade:</strong> <em>Transbordante; </em>Caso
+ você falhe no teste de vontade da canalização você perde grande parte 
+de sua memória, recuperando-as ao longo de uma semana.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ── FOOTER ── -->
+  <hr>
+  <a href="file:///C:/Users/vvmixboy/Downloads/sistema.html" class="back-link">← Voltar ao Sistema Base</a>
+  <a href="#" class="scroll-top">↑ Topo</a>
+
+</main>
+
+<script>
+  function toggleSpell(header) {
+    const body = header.nextElementSibling;
+    const icon = header.querySelector('.spell-toggle');
+    const isOpen = body.classList.contains('open');
+    body.classList.toggle('open', !isOpen);
+    icon.textContent = isOpen ? '▶' : '▼';
+    icon.style.transform = isOpen ? '' : 'rotate(0deg)';
+  }
+
+  function toggleSchool(header) {
+    const body = header.nextElementSibling;
+    const icon = header.querySelector('.toggle-icon');
+    const isOpen = body.style.display !== 'none';
+    body.style.display = isOpen ? 'none' : 'block';
+    icon.style.transform = isOpen ? 'rotate(-90deg)' : '';
+  }
+
+  // Close nav on outside click (mobile)
+  document.addEventListener('click', function(e) {
+    const nav = document.querySelector('nav');
+    const toggle = document.getElementById('nav-toggle');
+    if (nav.classList.contains('open') && !nav.contains(e.target) && e.target !== toggle) {
+      nav.classList.remove('open');
+    }
+  });
+</script>
+
+
+
+</body></html>
