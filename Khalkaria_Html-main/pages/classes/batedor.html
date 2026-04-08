@@ -1,0 +1,1374 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Batedor - Khalkaria RPG</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400&family=UnifrakturMaguntia&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/style.css">
+    <style>
+        :root {
+            --ramo-cartografo: #3b82f6;
+            --ramo-cartografo-dark: #1e3a5f;
+            --ramo-semnome: #6b7280;
+            --ramo-semnome-dark: #374151;
+            --ramo-trambiqueiro: #f59e0b;
+            --ramo-trambiqueiro-dark: #78350f;
+        }
+
+        /* HERO SECTION - Imagem em destaque */
+        .class-hero {
+            position: relative;
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: linear-gradient(135deg, rgba(20,15,10,0.95), rgba(30,25,20,0.9));
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            overflow: hidden;
+            text-align: center;
+        }
+        .class-hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--gold), var(--gold-light), var(--gold));
+        }
+        .class-title {
+            font-family: var(--font-gothic);
+            font-size: 4rem;
+            color: var(--gold);
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.8), 0 0 30px rgba(212,175,55,0.3);
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+        .hero-image {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto 2rem;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 3px solid var(--gold-dark);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.6), 0 0 30px rgba(212,175,55,0.15);
+        }
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: left;
+        }
+        .hero-tagline {
+            font-size: 1.1rem;
+            font-style: italic;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            line-height: 1.7;
+            border-left: 3px solid var(--gold-dark);
+            padding-left: 1rem;
+        }
+        .hero-desc {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+        .hero-image {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 3px solid var(--gold-dark);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.6), 0 0 30px rgba(212,175,55,0.15);
+            aspect-ratio: 16 / 9;
+        }
+        .hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            background: var(--bg-tertiary);
+        }
+
+        /* QUICK STATS */
+        .quick-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        .stat-card {
+            background: rgba(0,0,0,0.4);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1rem;
+            text-align: center;
+        }
+        .stat-card .label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+        .stat-card .value {
+            font-size: 1.1rem;
+            color: var(--gold);
+            font-weight: 600;
+            margin-top: 0.25rem;
+        }
+
+        /* FORMULAS */
+        .formula-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        .formula-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1rem;
+        }
+        .formula-card h4 {
+            color: var(--gold);
+            font-family: var(--font-heading);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+        .formula-card code {
+            display: block;
+            background: var(--bg-tertiary);
+            padding: 0.5rem;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            color: var(--gold-light);
+        }
+
+        /* SECTION TITLES */
+        .section-divider {
+            display: flex;
+            align-items: center;
+            margin: 3rem 0 2rem;
+            gap: 1rem;
+        }
+        .section-divider h2 {
+            font-family: var(--font-gothic);
+            font-size: 2rem;
+            color: var(--gold);
+            white-space: nowrap;
+        }
+        .section-divider::after {
+            content: '';
+            flex: 1;
+            height: 2px;
+            background: linear-gradient(90deg, var(--gold-dark), transparent);
+        }
+
+        /* PROGRESSION TABLE */
+        .progression-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+        }
+        .progression-table th,
+        .progression-table td {
+            padding: 1rem;
+            border: 1px solid var(--border-color);
+            text-align: left;
+        }
+        .progression-table th {
+            background: var(--bg-tertiary);
+            color: var(--gold);
+            font-family: var(--font-heading);
+            font-size: 0.9rem;
+        }
+        .progression-table td {
+            background: var(--bg-card);
+            color: var(--text-secondary);
+        }
+        .progression-table tr:hover td {
+            background: rgba(212,175,55,0.05);
+        }
+        .level-badge {
+            display: inline-block;
+            background: var(--gold-dark);
+            color: var(--bg-primary);
+            font-weight: 700;
+            width: 32px;
+            height: 32px;
+            line-height: 32px;
+            text-align: center;
+            border-radius: 50%;
+        }
+
+        /* TECHNIQUES TABLE */
+        .technique-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            font-size: 0.95rem;
+        }
+        .technique-table th {
+            background: var(--bg-tertiary);
+            color: var(--gold);
+            font-family: var(--font-heading);
+            padding: 0.75rem;
+            text-align: left;
+            border: 1px solid var(--border-color);
+        }
+        .technique-table td {
+            padding: 0.75rem;
+            border: 1px solid var(--border-color);
+            background: var(--bg-card);
+            color: var(--text-secondary);
+            vertical-align: top;
+        }
+        .technique-table tr:hover td {
+            background: rgba(212,175,55,0.05);
+        }
+        .technique-name {
+            color: var(--gold-light);
+            font-weight: 600;
+        }
+        .technique-cost {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+        .technique-action {
+            font-size: 0.8rem;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            background: var(--bg-tertiary);
+            color: var(--text-muted);
+        }
+
+        /* RAMOS INTRO */
+        .ramos-intro {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .ramos-intro p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+        .ramos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        .ramo-card {
+            background: var(--bg-card);
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.3s;
+        }
+        .ramo-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        }
+        .ramo-card.cartografo { border-color: var(--ramo-cartografo); }
+        .ramo-card.semnome { border-color: var(--ramo-semnome); }
+        .ramo-card.trambiqueiro { border-color: var(--ramo-trambiqueiro); }
+        .ramo-card h3 {
+            font-family: var(--font-heading);
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+        .ramo-card.cartografo h3 { color: var(--ramo-cartografo); }
+        .ramo-card.semnome h3 { color: var(--ramo-semnome); }
+        .ramo-card.trambiqueiro h3 { color: var(--ramo-trambiqueiro); }
+        .ramo-card .subtitle {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+        }
+        .ramo-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* MARCAS */
+        .marca-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
+            overflow: hidden;
+        }
+        .marca-header {
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .marca-header.cartografo { background: linear-gradient(135deg, var(--ramo-cartografo-dark), transparent); }
+        .marca-header.semnome { background: linear-gradient(135deg, var(--ramo-semnome-dark), transparent); }
+        .marca-header.trambiqueiro { background: linear-gradient(135deg, var(--ramo-trambiqueiro-dark), transparent); }
+        .marca-header h4 {
+            font-family: var(--font-heading);
+            font-size: 1.1rem;
+            margin-bottom: 0.25rem;
+        }
+        .marca-header.cartografo h4 { color: var(--ramo-cartografo); }
+        .marca-header.semnome h4 { color: var(--ramo-semnome); }
+        .marca-header.trambiqueiro h4 { color: var(--ramo-trambiqueiro); }
+        .marca-header .quote {
+            font-style: italic;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+        .marca-body {
+            padding: 1.5rem;
+        }
+        .marca-body p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+        .marca-effect {
+            background: var(--bg-tertiary);
+            border-left: 3px solid var(--gold-dark);
+            padding: 0.75rem 1rem;
+            margin-bottom: 0.5rem;
+            border-radius: 0 8px 8px 0;
+        }
+        .marca-effect p {
+            margin: 0;
+            font-size: 0.9rem;
+        }
+
+        /* TIER SECTIONS */
+        .tier-section {
+            margin: 2rem 0;
+        }
+        .tier-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--gold-dark);
+        }
+        .tier-header h3 {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            color: var(--gold);
+        }
+        .tier-badge {
+            background: var(--gold-dark);
+            color: var(--bg-primary);
+            font-weight: 700;
+            padding: 0.25rem 0.75rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+        }
+
+        /* TECHNIQUE CARDS */
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.5rem;
+        }
+        .tech-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        .tech-card-header {
+            padding: 1rem 1.25rem;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .tech-card-header.cartografo { background: linear-gradient(135deg, var(--ramo-cartografo-dark), transparent); }
+        .tech-card-header.semnome { background: linear-gradient(135deg, var(--ramo-semnome-dark), transparent); }
+        .tech-card-header.trambiqueiro { background: linear-gradient(135deg, var(--ramo-trambiqueiro-dark), transparent); }
+        .tech-card-header h4 {
+            font-family: var(--font-heading);
+            font-size: 1rem;
+        }
+        .tech-card-header.cartografo h4 { color: var(--ramo-cartografo); }
+        .tech-card-header.semnome h4 { color: var(--ramo-semnome); }
+        .tech-card-header.trambiqueiro h4 { color: var(--ramo-trambiqueiro); }
+        .tech-card-header .cost {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            background: rgba(0,0,0,0.3);
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+        }
+        .tech-card-body {
+            padding: 1.25rem;
+        }
+        .tech-card-body p, .tech-card-body li {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-bottom: 0.5rem;
+        }
+        .tech-card-body ul {
+            margin: 0.5rem 0;
+            padding-left: 1.25rem;
+        }
+
+        /* SUB-ABILITY */
+        .sub-ability {
+            background: rgba(0,0,0,0.2);
+            border-left: 2px solid var(--gold-dark);
+            padding: 0.75rem;
+            margin: 0.5rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .sub-ability strong {
+            color: var(--gold-light);
+        }
+
+        /* ULTIMATE CARDS */
+        .ultimate-card {
+            background: linear-gradient(135deg, rgba(212,175,55,0.1), var(--bg-card));
+            border: 2px solid var(--gold);
+            border-radius: 16px;
+            margin: 1.5rem 0;
+            overflow: hidden;
+        }
+        .ultimate-header {
+            padding: 1.25rem 1.5rem;
+            border-bottom: 1px solid var(--gold-dark);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .ultimate-header.cartografo { background: linear-gradient(135deg, var(--ramo-cartografo-dark), transparent); }
+        .ultimate-header.semnome { background: linear-gradient(135deg, var(--ramo-semnome-dark), transparent); }
+        .ultimate-header.trambiqueiro { background: linear-gradient(135deg, var(--ramo-trambiqueiro-dark), transparent); }
+        .ultimate-header h4 {
+            font-family: var(--font-heading);
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .ultimate-header.cartografo h4 { color: var(--ramo-cartografo); }
+        .ultimate-header.semnome h4 { color: var(--ramo-semnome); }
+        .ultimate-header.trambiqueiro h4 { color: var(--ramo-trambiqueiro); }
+        .ultimate-badge {
+            background: var(--gold);
+            color: var(--bg-primary);
+            font-weight: 700;
+            padding: 0.25rem 0.75rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+        }
+        .ultimate-quote {
+            font-style: italic;
+            color: var(--gold-light);
+            padding: 1rem 1.5rem;
+            background: rgba(0,0,0,0.2);
+            border-left: 3px solid var(--gold);
+        }
+        .ultimate-body {
+            padding: 1.5rem;
+        }
+        .ultimate-body h5 {
+            color: var(--gold);
+            font-family: var(--font-heading);
+            margin: 1rem 0 0.5rem;
+        }
+        .ultimate-body p, .ultimate-body li {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+        .ultimate-body ul {
+            margin: 0.5rem 0;
+            padding-left: 1.25rem;
+        }
+        .ultimate-cost {
+            background: rgba(139,0,0,0.2);
+            border: 1px solid rgba(220,38,38,0.3);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-top: 1rem;
+        }
+        .ultimate-cost h5 {
+            color: #ef4444;
+        }
+
+        /* D100 TABLE */
+        .d100-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+            font-size: 0.85rem;
+        }
+        .d100-table th, .d100-table td {
+            padding: 0.5rem;
+            border: 1px solid var(--border-color);
+            text-align: left;
+        }
+        .d100-table th {
+            background: var(--bg-tertiary);
+            color: var(--gold);
+        }
+        .d100-table td {
+            background: var(--bg-card);
+            color: var(--text-secondary);
+        }
+        .d100-table .roll {
+            color: var(--gold-light);
+            font-weight: 600;
+            width: 80px;
+        }
+
+        /* NAVIGATION */
+        .class-nav {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
+        }
+        .class-nav a {
+            color: var(--gold);
+            text-decoration: none;
+            padding: 0.75rem 1.5rem;
+            border: 1px solid var(--gold-dark);
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+        .class-nav a:hover {
+            background: var(--gold-dark);
+            color: var(--bg-primary);
+        }
+    
+        .techniques-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+        .technique-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1rem;
+            transition: all 0.3s;
+        }
+        .technique-card:hover {
+            border-color: var(--gold-dark);
+            transform: translateY(-2px);
+        }
+        .technique-card h4 {
+            color: var(--gold);
+            font-family: var(--font-heading);
+            font-size: 1rem;
+            margin-bottom: 0.25rem;
+        }
+        .technique-card .tech-meta {
+            display: block;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+        }
+        .technique-card p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.5;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <button class="menu-toggle">☰ Menu</button>
+    <div class="app-container">
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <a href="../../index.html" class="sidebar-logo">Khalkaria</a>
+                <div class="sidebar-subtitle">Sistema de Regras</div>
+                <div class="sidebar-ornament"><span>◆</span></div>
+            </div>
+            <div class="nav-section">
+                <div class="nav-section-title">Fundamentos</div>
+                <a href="../../index.html" class="nav-link">🏠 Início</a>
+                <a href="../sistema.html" class="nav-link">📜 Sistema Base</a>
+                <a href="../condicoes.html" class="nav-link">⚡ Condições</a>
+                <a href="../magias.html" class="nav-link">✨ Magias</a>
+
+            </div>
+            <div class="nav-section">
+                <div class="nav-section-title">Criação de Personagem</div>
+                <a href="../criacao.html" class="nav-link">🎭 Criação</a>
+                <a href="../racas.html" class="nav-link">👤 Raças</a>
+                <a href="../classes.html" class="nav-link">⚔️ Classes</a>
+                <a href="../origens.html" class="nav-link">📜 Origens</a>
+                <a href="../limiar.html" class="nav-link">🌟 O Limiar</a>
+            </div>
+            <div class="nav-section">
+                <div class="nav-section-title">Classes</div>
+                <a href="espadachim.html" class="nav-link nav-link-sub">⚔️ Espadachim</a>
+                <a href="monge.html" class="nav-link nav-link-sub">👊 Monge</a>
+                <a href="batedor.html" class="nav-link nav-link-sub active">🏹 Batedor</a>
+                <a href="alquimista.html" class="nav-link nav-link-sub">⚗️ Alquimista</a>
+                <a href="teurgo.html" class="nav-link nav-link-sub">✨ Teurgo</a>
+                <a href="artilheiro.html" class="nav-link nav-link-sub">💥 Artilheiro</a>
+                <a href="brutalista.html" class="nav-link nav-link-sub">🪓 Brutalista</a>
+            </div>
+        </nav>
+        
+        <main class="main-content">
+            <!-- HERO SECTION -->
+            <section class="class-hero">
+                <h1 class="class-title">Batedor</h1>
+                <div class="hero-image">
+                    <img src="../../images/batedor.png" alt="Batedor">
+                </div>
+                <div class="hero-content">
+                    <p class="hero-tagline">
+                        "Desde pequeno, você era curioso… curioso demais para o gosto dos adultos. Onde outros enxergavam perigo, você enxergava caminhos."
+                    </p>
+                    <p class="hero-desc">
+                        Onde todos recuavam, você avançava — não por coragem ingênua, mas por um instinto silencioso que sempre te guiou através da mata fechada, dos becos tortuosos e dos territórios proibidos.
+                    </p>
+                    
+                    <div class="quick-stats">
+                        <div class="stat-card">
+                            <div class="label">Atributos</div>
+                            <div class="value">Des, Sab, Int</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="label">CD</div>
+                            <div class="value">10 + Des + Sab</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="label">Estilo</div>
+                            <div class="value">Exploração e Furtividade</div>
+                        </div>
+                    </div>
+            </section>
+
+            <!-- TREINAMENTO -->
+            <div class="section-divider">
+                <h2>⚔️ Treinamento</h2>
+            </div>
+            
+            <div class="ramos-intro">
+                <p><strong>Você começa treinado em:</strong> Armas à Distância, Sobrevivência, Percepção</p>
+                <p><strong>Escolha (1 + Mod. Inteligência) perícias:</strong> Crime, Religião, Iniciativa, Medicina, Furtividade</p>
+            </div>
+
+            <!-- STATUS -->
+            <div class="section-divider">
+                <h2>📊 Status Iniciais</h2>
+            </div>
+
+            <div class="formula-grid">
+                <div class="formula-card">
+                    <h4>❤️ Saúde</h4>
+                    <code>(1 × Nível) + (Mod.CON × Nível × 3)</code>
+                </div>
+                <div class="formula-card">
+                    <h4>⚡ Stamina</h4>
+                    <code>(3 × Nível) + ([Mod.FOR+Mod.DES/2] × Nível × 5)</code>
+                </div>
+                <div class="formula-card">
+                    <h4>✨ Éter</h4>
+                    <code>(2 × Nível) + ([Mod.INT+Mod.SAB/2] × Nível × 3)</code>
+                </div>
+                <div class="formula-card">
+                    <h4>🛡️ Evasão Ativa</h4>
+                    <code>12 + Mod.Des + Prof.Defender + 1d10</code>
+                </div>
+                <div class="formula-card">
+                    <h4>🛡️ Evasão Passiva</h4>
+                    <code>12 + Mod.Destreza</code>
+                </div>
+            </div>
+
+            <!-- PROGRESSÃO -->
+            <div class="section-divider">
+                <h2>📈 Progressão</h2>
+            </div>
+
+            <table class="progression-table">
+                <thead>
+                    <tr>
+                        <th>Nível</th>
+                        <th>Conteúdo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="level-badge">1</span></td>
+                        <td>3 Técnicas</td>
+                    </tr>
+                    <tr>
+                        <td><span class="level-badge">2</span></td>
+                        <td>4 Técnicas, Técnica de Ramo (Tier 1)</td>
+                    </tr>
+                    <tr>
+                        <td><span class="level-badge">3</span></td>
+                        <td>5 Técnicas, 1 Marca</td>
+                    </tr>
+                    <tr>
+                        <td><span class="level-badge">4</span></td>
+                        <td>6 Técnicas, Técnica de Ramo (Tier 1, 2), 2 Marcas</td>
+                    </tr>
+                    <tr>
+                        <td><span class="level-badge">5</span></td>
+                        <td>7 Técnicas, Técnica de Ramo (Tier 1, 2 e 3), 3 Marcas</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- TÉCNICAS -->
+            <div class="section-divider">
+                <h2>⚡ Técnicas</h2>
+            </div>
+
+            <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">
+                Toda classe possui técnicas, você pode reatribuí-las livremente ao realizar um descanso longo. <strong>Você possui 3 Técnicas + Nível.</strong>
+            </p>
+
+            <div class="techniques-grid">
+                <div class="technique-card">
+                    <h4>Atento</h4>
+                    <span class="tech-meta">Passiva</span>
+                    <p>Você é imune a condição <em>Desprevenido</em>.</p>
+                </div>
+                <div class="technique-card">
+                    <h4>Passo Ciente</h4>
+                    <span class="tech-meta">Passiva</span>
+                    <p>Você não ativa armadilhas de quaisquer tipo e ignora terreno difícil.</p>
+                </div>
+                <div class="technique-card">
+                    <h4>Caçador</h4>
+                    <span class="tech-meta">Passiva</span>
+                    <p>Você consegue distinguir peso, número da pegada, velocidade e direção de criaturas vendo rastros passivamente.</p>
+                </div>
+                <div class="technique-card">
+                    <h4>Líder</h4>
+                    <span class="tech-meta">Passiva</span>
+                    <p>Você memoriza caminhos e traça trajetos eficientes. +1 ao sucesso do grupo em jornadas já percorridas. +5 em <em>Sobrevivência</em> em jornadas.</p>
+                </div>
+                <div class="technique-card">
+                    <h4>Terreno Ideal</h4>
+                    <span class="tech-meta">Passiva/1 Ação • 3 Stamina</span>
+                    <p>Adapta-se a um ambiente recebendo: +2 em Sobrevivência e Percepção. Pode gastar 1 ação para rolar com vantagem. <strong>Terrenos:</strong> Urbano, Natural, Naval, Subterrâneo. Escolha 1 no nível 1, 2 no nível 3 e 3 no nível 5.</p>
+                </div>
+                <div class="technique-card">
+                    <h4>Língua Prateada</h4>
+                    <span class="tech-meta">1 Ação • 2 Stamina</span>
+                    <p>Treinado em Interação Social(Convencimento). Ao suceder em teste contra comerciante, garante 25% de desconto em um item.</p>
+                </div>
+                <div class="technique-card">
+                    <h4>Oportunista</h4>
+                    <span class="tech-meta">1 Ação • 2 Stamina</span>
+                    <p>Seu próximo ataque causa +1d8 de dano se o alvo estiver <em>Desprevenido</em>.</p>
+                </div>
+                <div class="technique-card">
+                    <h4>Curioso</h4>
+                    <span class="tech-meta">1 Ação • 2 Stamina</span>
+                    <p>Ao realizar um teste de <em>Percepção</em> ou <em>Investigação</em> adicione 1d4+Destreza.</p>
+                </div>
+                <div class="technique-card">
+                    <h4>Emboscada</h4>
+                    <span class="tech-meta">10 Minutos • 5 Stamina</span>
+                    <p>Prepara local com armadilhas e distrações (Sobrevivência ou Furtividade). Se inimigo falhar em Percepção contra seu teste: você e aliados recebem +2 em Atacar durante todo o combate e inimigos ficam <em>Desprevenidos</em> na primeira rodada.</p>
+                </div>
+                <div class="technique-card">
+                    <h4>Armadilha Tática</h4>
+                    <span class="tech-meta">1 Ação • 3 Stamina</span>
+                    <p>Configura armadilha no chão (Furtividade ou Sobrevivência). Inimigo que passar deve superar com Percepção ou recebe 2d6+Mod.Des de dano Perfurante e fica <em>Enraizado</em> por 1 rodada.</p>
+                </div>
+                <div class="technique-card">
+                    <h4>Mãos Rápidas</h4>
+                    <span class="tech-meta">Reação • 2 Stamina</span>
+                    <p>Reduz penalidade por ataques consecutivos em -2 durante esse turno (de -5 para -3 e -10 para -8).</p>
+                </div>
+                <div class="technique-card">
+                    <h4>Sigiloso</h4>
+                    <span class="tech-meta">Reação • 3 Stamina</span>
+                    <p>Ao atacar estando furtivo, pode gastar reação para continuar furtivo ao suceder em Furtividade contra Percepção do alvo.</p>
+                </div>
+                <div class="technique-card">
+                    <h4>Fantasma</h4>
+                    <span class="tech-meta">Reação • 3 Stamina</span>
+                    <p>Ao ser atacado pode rolar sua <em>Defesa</em> como se fosse sua <em>Furtividade</em>. Sua rolagem de Furtividade se torna sua evasão.</p>
+                </div>
+                <div class="technique-card">
+                    <h4>Saque</h4>
+                    <span class="tech-meta">Reação</span>
+                    <p>Ao eliminar uma criatura, pode saqueá-la, ganhando 1d4 + (Nível × 2) de Dinheiro.</p>
+                </div>
+                <div class="technique-card">
+                    <h4>Ocultar-se</h4>
+                    <span class="tech-meta">1 Ação • 2 Stamina</span>
+                    <p>Ao estar fora da linha de visão de todas as criaturas, pode se esconder com 1 ação ao invés de 2.</p>
+                </div>
+            </div>
+
+            <!-- RAMOS -->
+            <div class="section-divider">
+                <h2>🌿 Ramos</h2>
+            </div>
+
+            <div class="ramos-intro">
+                <p>Os ramos são caminhos, características únicas do seu personagem. Diferente das técnicas, são <strong>irreversíveis</strong>.</p>
+                <p><strong>Marcas de Ramo:</strong> Que construiu ao longo da sua vida, moldando sua PERSONALIDADE.</p>
+                <p><strong>Técnicas de Ramo:</strong> Que aprendeu ao longo do seu treinamento definindo seu ESTILO DE AGIR.</p>
+                <p style="margin-bottom: 0;">É extremamente aceitável que você <strong>misture os 3 ramos</strong>. Ao longo da criação você escolherá: <strong>3 Marcas</strong> e <strong>6 Técnicas de Ramo</strong> (3 por Tier).</p>
+            </div>
+
+            <div class="ramos-grid">
+                <div class="ramo-card cartografo">
+                    <h3>🗺️ Ramo do Cartógrafo</h3>
+                    <div class="subtitle">Exploração e Sobrevivência</div>
+                    <p>Estar em um local desconhecido é o que te cativa e mapeá-lo é como você expressa sua arte. Você vive pela emoção de descobrir coisas novas e suas aventuras te trouxeram ensinamentos de sobrevivência valiosos.</p>
+                </div>
+                <div class="ramo-card trambiqueiro">
+                    <h3>💰 Ramo do Trambiqueiro</h3>
+                    <div class="subtitle">Dinheiro e Interação Social</div>
+                    <p>Viajar o mundo custa caro e você faz questão de pagar esse preço. Ao longo de suas aventuras você sempre esteve de olho em bugigangas compráveis, a lábia de comerciante veio naturalmente após isso.</p>
+                </div>
+                <div class="ramo-card semnome">
+                    <h3>🗡️ Ramo do Sem-Nome</h3>
+                    <div class="subtitle">Furtividade e Assassinato</div>
+                    <p>Ninguém lembra do seu rosto e é assim como você prefere. O capuz caiu sobre sua cabeça pela primeira vez para se proteger do sol, mas, com o tempo, tornou-se algo maior: um abrigo, um disfarce, uma segunda pele.</p>
+                </div>
+            </div>
+
+            <!-- MARCAS DE RAMO -->
+            <div class="section-divider">
+                <h2>🔥 Marcas de Ramo</h2>
+            </div>
+
+            <!-- Marcas do Cartógrafo -->
+            <h3 style="color: var(--ramo-cartografo); font-family: var(--font-heading); margin: 2rem 0 1rem;">🗺️ Marcas do Cartógrafo</h3>
+
+            <div class="marca-card">
+                <div class="marca-header cartografo">
+                    <h4>Colecionador de Horizontes</h4>
+                    <div class="quote">"Cada paisagem nova te renova por dentro e relembra sua aspiração."</div>
+                </div>
+                <div class="marca-body">
+                    <p>Você anseia por novos lugares e busca ativamente explorar o desconhecido.</p>
+                    <div class="marca-effect">
+                        <p>Ao mapear um lugar significativo pela primeira vez (Cidade, Ruína, Bioma…), recupera <strong>2 de Stamina</strong> e ganha <strong>1 de Stamina máxima</strong>.</p>
+                    </div>
+                    <div class="marca-effect">
+                        <p>O lugar deve possuir características únicas que você nunca mapeou antes. Por exemplo: o subúrbio de uma cidade e a área rural dessa mesma cidade, apesar de terem paisagens diferentes, contam como um único lugar por serem próximos e possuírem elementos geográficos parecidos.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="marca-card">
+                <div class="marca-header cartografo">
+                    <h4>Cicatrizes da Jornada</h4>
+                    <div class="quote">"Cada ferida conta uma história. Cada história te ensinou a sobreviver."</div>
+                </div>
+                <div class="marca-body">
+                    <p>Você possui cicatrizes que reforçam suas histórias de viagem.</p>
+                    <div class="marca-effect">
+                        <p>Para cada Jornada de Hostilidade 10+ que você completou, ganha <strong>+1 permanente em Sobrevivência</strong>. Ao chegar em +5, essa habilidade fica supérflua.</p>
+                    </div>
+                    <div class="marca-effect">
+                        <p>Ao falhar em um teste de Sobrevivência, pode escolher perder <strong>2d6 de Stamina</strong> para transformar em sucesso.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Marcas do Sem-Nome -->
+            <h3 style="color: var(--ramo-semnome); font-family: var(--font-heading); margin: 2rem 0 1rem;">🗡️ Marcas do Sem-Nome</h3>
+
+            <div class="marca-card">
+                <div class="marca-header semnome">
+                    <h4>Coleção de Últimos Suspiros</h4>
+                    <div class="quote">"Você se lembra de cada um. Não dos rostos - dos sons que fizeram ao partir."</div>
+                </div>
+                <div class="marca-body">
+                    <p>Você sente prazer em assassinar criaturas sem que elas te reconheçam.</p>
+                    <div class="marca-effect">
+                        <p>Para cada 5 criaturas que você matou enquanto estava <em>Escondido</em>, ganha <strong>+1 permanente em Furtividade</strong>. Ao chegar em +5, essa habilidade fica supérflua.</p>
+                    </div>
+                    <div class="marca-effect">
+                        <p>Ao matar uma criatura sem ser detectado, recupera <strong>1 de Stamina</strong>.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="marca-card">
+                <div class="marca-header semnome">
+                    <h4>Sussurro Final</h4>
+                    <div class="quote">"O sussurro final é sempre o mais verdadeiro."</div>
+                </div>
+                <div class="marca-body">
+                    <p>Você sabe interrogar pessoas como ninguém.</p>
+                    <div class="marca-effect">
+                        <p>Você fica treinado em <strong>Interação Social (Convencimento)</strong>.</p>
+                    </div>
+                    <div class="marca-effect">
+                        <p>Ao matar uma criatura em combate corpo a corpo, pode fazer uma pergunta que ela responde com verdade antes de morrer. A resposta é breve (uma frase) e literal.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Marcas do Trambiqueiro -->
+            <h3 style="color: var(--ramo-trambiqueiro); font-family: var(--font-heading); margin: 2rem 0 1rem;">💰 Marcas do Trambiqueiro</h3>
+
+            <div class="marca-card">
+                <div class="marca-header trambiqueiro">
+                    <h4>Homem de Negócios</h4>
+                    <div class="quote">"Moedas acabam. Favores rendem juros eternos."</div>
+                </div>
+                <div class="marca-body">
+                    <p>Você possui um instinto natural para negócios.</p>
+                    <div class="marca-effect">
+                        <p>Para cada 5 negociações bem-sucedidas que resultaram em vantagem significativa, ganha <strong>+1 permanente em Interação Social (Convencimento)</strong>. Ao chegar em +5, essa habilidade fica supérflua.</p>
+                    </div>
+                    <div class="marca-effect">
+                        <p>Ao ajudar alguém de forma significativa, pode declarar que a pessoa <strong>"te deve uma"</strong>. O mestre registra. Você pode cobrar depois.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="marca-card">
+                <div class="marca-header trambiqueiro">
+                    <h4>O Palpite</h4>
+                    <div class="quote">"Você nem sempre acerta, mas eles não sabem disso."</div>
+                </div>
+                <div class="marca-body">
+                    <div class="marca-effect">
+                        <p>Ao passar ao menos 1 minuto analisando uma criatura, pode diagnosticar um <strong>segredo</strong> dela. Esse segredo possui <strong>50% de chance de ser verdade</strong> e você não sabe disso.</p>
+                    </div>
+                    <div class="marca-effect">
+                        <p>Ao rolar um teste de Interação Social (qualquer) contra ela pode utilizar esse segredo como ferramenta: caso seja verdade você rola com <strong>vantagem</strong>, caso seja mentira você rola com <strong>desvantagem</strong>.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TÉCNICAS DE RAMO - TIER 1 -->
+            <div class="section-divider">
+                <h2>⚡ Técnicas de Ramo</h2>
+            </div>
+
+            <div class="tier-section">
+                <div class="tier-header">
+                    <h3>Tier 1</h3>
+                    <span class="tier-badge">Nível 2+</span>
+                </div>
+
+                <h4 style="color: var(--ramo-cartografo); margin: 1.5rem 0 1rem;">🗺️ Cartógrafo</h4>
+                <div class="tech-grid">
+                    <div class="tech-card">
+                        <div class="tech-card-header cartografo">
+                            <h4>Desenhar Mapa de Exploração</h4>
+                            <span class="cost">Descanso Curto, 5 Stamina</span>
+                        </div>
+                        <div class="tech-card-body">
+                            <p>Você pode mapear locais previamente transitados, até um tamanho máximo de até <strong>1 quilômetro quadrado</strong>. Recebendo os seguintes benefícios ao estar neste local:</p>
+                            <ul>
+                                <li>Tem conhecimento geral da geografia da área. <strong>+2 em testes de jornada</strong>.</li>
+                                <li><strong>+2 Percepção</strong> e <strong>Sobrevivência</strong></li>
+                                <li>Ao descansar na natureza pode indicar locais ideais para descanso, recebendo <strong>+5</strong> no teste de Sobrevivência de descanso longo.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="tech-card">
+                        <div class="tech-card-header cartografo">
+                            <h4>Artista Apaixonado</h4>
+                            <span class="cost">Passiva</span>
+                        </div>
+                        <div class="tech-card-body">
+                            <p>Os mapas que você fabrica contam como <strong>mercadoria Incomum</strong>.</p>
+                        </div>
+                    </div>
+                    <div class="tech-card">
+                        <div class="tech-card-header cartografo">
+                            <h4>Escapista</h4>
+                            <span class="cost">3 Ações, 5 Stamina</span>
+                        </div>
+                        <div class="tech-card-body">
+                            <p>Você nunca foi acostumado a batalhar, na verdade planejar uma rota de fuga é sua especialidade.</p>
+                            <p>Ao possuir um mapa da região em que está batalhando, pode fugir e guiar outros a fugirem do combate <strong>sem uma cena de perseguição</strong> ao suceder em um teste de Sobrevivência (CD 15).</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h4 style="color: var(--ramo-semnome); margin: 1.5rem 0 1rem;">🗡️ Sem-Nome</h4>
+                <div class="tech-grid">
+                    <div class="tech-card">
+                        <div class="tech-card-header semnome">
+                            <h4>Golpe Sombrio</h4>
+                            <span class="cost">1 Ação, 2 Stamina</span>
+                        </div>
+                        <div class="tech-card-body">
+                            <p>Enquanto estiver <em>Escondido</em>, seu próximo ataque:</p>
+                            <ul>
+                                <li>Ignora <strong>1 de Evasão</strong></li>
+                                <li><strong>+1d6 de Dano</strong></li>
+                                <li>Não pode ser retaliado</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="tech-card">
+                        <div class="tech-card-header semnome">
+                            <h4>Finta</h4>
+                            <span class="cost">1 Ação, 2 Stamina</span>
+                        </div>
+                        <div class="tech-card-body">
+                            <p>Escolha um alvo em até 1,5m: <strong>Enganação vs Percepção</strong>.</p>
+                            <p>Sucesso: alvo fica <em>Desorientado</em> por 1 rodada.</p>
+                        </div>
+                    </div>
+                    <div class="tech-card">
+                        <div class="tech-card-header semnome">
+                            <h4>Olhar de Brecha</h4>
+                            <span class="cost">Passiva</span>
+                        </div>
+                        <div class="tech-card-body">
+                            <p>Você detecta instantes onde inimigos abaixam guarda ou se distraem.</p>
+                            <ul>
+                                <li>Você recebe <strong>vantagem</strong> no primeiro teste de Furtividade do combate.</li>
+                                <li>Se já estiver escondido no primeiro turno de combate, recebe <strong>+2 em Iniciativa</strong>.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <h4 style="color: var(--ramo-trambiqueiro); margin: 1.5rem 0 1rem;">💰 Trambiqueiro</h4>
+                <div class="tech-grid">
+                    <div class="tech-card">
+                        <div class="tech-card-header trambiqueiro">
+                            <h4>Bens Diversos</h4>
+                            <span class="cost">1 Ação, 5 Stamina</span>
+                        </div>
+                        <div class="tech-card-body">
+                            <p>Você busca na sua mochila por um objeto que possa te ajudar na realização de um teste de perícia qualquer. <strong>Role d100:</strong></p>
+                            <table class="d100-table">
+                                <tr><td class="roll">1</td><td>Machuca sua mão (1d6 dano cortante). Como isso foi parar aí?</td></tr>
+                                <tr><td class="roll">2-19</td><td>Objeto qualquer, não ajuda em quase nada.</td></tr>
+                                <tr><td class="roll">20-39</td><td>Objeto utilizável, não tão adequado. <strong>+1 na perícia</strong>.</td></tr>
+                                <tr><td class="roll">40-59</td><td>Objeto conveniente. <strong>+2 na perícia</strong>.</td></tr>
+                                <tr><td class="roll">60-79</td><td>Objeto apropriado. <strong>+3 na perícia</strong>.</td></tr>
+                                <tr><td class="roll">80-99</td><td>Objeto quase perfeito. <strong>+5 na perícia</strong>.</td></tr>
+                                <tr><td class="roll">100</td><td>Objeto perfeito que soluciona e te faz <strong>suceder instantaneamente</strong>.</td></tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="tech-card">
+                        <div class="tech-card-header trambiqueiro">
+                            <h4>Agiota</h4>
+                            <span class="cost">3 Ações, 10 Stamina</span>
+                        </div>
+                        <div class="tech-card-body">
+                            <p>Você pode tentar convencer uma criatura que consiga te entender a aceitar um empréstimo (monetário ou de bens).</p>
+                            <p>Role <strong>Interação Social (Convencimento) vs Vontade</strong>. Se suceder, pode escolher quanto dinheiro oferece recebendo <strong>20% de lucro</strong> no dia seguinte.</p>
+                            <p>Se o alvo não conseguir pagar ele fica <em>Endividado</em>. Você possui <strong>+5</strong> em testes de Convencimento contra criaturas endividadas.</p>
+                        </div>
+                    </div>
+                    <div class="tech-card">
+                        <div class="tech-card-header trambiqueiro">
+                            <h4>Cara de Pau</h4>
+                            <span class="cost">1 Ação, 3 Stamina</span>
+                        </div>
+                        <div class="tech-card-body">
+                            <p>Você pode rolar <strong>Interação Social (Convencimento)</strong> com <strong>1 nível de treinamento a mais</strong>.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TIER 2 -->
+            <div class="tier-section">
+                <div class="tier-header">
+                    <h3>Tier 2</h3>
+                    <span class="tier-badge">Nível 4+</span>
+                </div>
+
+                <h4 style="color: var(--ramo-cartografo); margin: 1.5rem 0 1rem;">🗺️ Cartógrafo</h4>
+                <div class="tech-grid">
+                    <div class="tech-card">
+                        <div class="tech-card-header cartografo">
+                            <h4>Desenhar Mapa de Combate</h4>
+                            <span class="cost">5 Minutos, 3 Stamina</span>
+                        </div>
+                        <div class="tech-card-body">
+                            <p>Você desenha um mapa tático, analisando altitude, tipos de terreno e hostilidades em um espaço de até <strong>300 metros quadrados</strong>. Ao estar em um local mapeado por você:</p>
+                            <ul>
+                                <li>Você e seus aliados não podem ser <em>Desprevenidos</em></li>
+                            </ul>
+                            <div class="sub-ability">
+                                <strong>Coordenação</strong> (Reação, 3 Stamina)<br>
+                                Orienta você ou um aliado em até 9m que esteja prestes a rolar Movimento, Defender ou Atacar. <strong>+2 à rolagem</strong>.
+                            </div>
+                            <div class="sub-ability">
+                                <strong>Ponto Cego</strong> (1 Ação, 4 Stamina)<br>
+                                Expõe uma falha de posicionamento de um alvo que tenha se movido nesta rodada dentro do mapa. O alvo fica <em>Exposto</em>.
+                            </div>
+                            <div class="sub-ability">
+                                <strong>Reposicionar</strong> (1 Ação, 3 Stamina)<br>
+                                Escolha um aliado (pode ser você) em até 9m. Ele pode se mover até 4,5m como ação livre sem provocar ataques de oportunidade.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tech-card">
+                        <div class="tech-card-header cartografo">
+                            <h4>Mapa Mental</h4>
+                            <span class="cost">1 Ação, 2 Stamina</span>
+                        </div>
+                        <div class="tech-card-body">
+                            <p>Você mentaliza o esboço de um mapa tático, ganhando seus benefícios nesta rodada.</p>
+                            <p>No início de cada rodada após essa, faça um teste de <strong>Percepção (CD 15)</strong> para manter-se concentrado no mapa. Em caso de falha, você perde os benefícios.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h4 style="color: var(--ramo-semnome); margin: 1.5rem 0 1rem;">🗡️ Sem-Nome</h4>
+                <div class="tech-grid">
+                    <div class="tech-card">
+                        <div class="tech-card-header semnome">
+                            <h4>Cobra</h4>
+                            <span class="cost">Descanso Curto ou 1 Ação, 2 Stamina</span>
+                        </div>
+                        <div class="tech-card-body">
+                            <p>Pode criar venenos potentes e imbuir eles nas suas armas.</p>
+                            <ul>
+                                <li>Você pode criar até <strong>2 venenos por descanso curto</strong> e <strong>5 venenos por descanso longo</strong>. Gastando <strong>5 Sins</strong> por veneno.</li>
+                                <li>Você pode adicionar o veneno a uma arma ou munição com 1 ação.</li>
+                                <li>A criatura que entrar em contato com o veneno deve suceder em um teste de <strong>Fortitude</strong> ou ficar <em>Envenenada</em>.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="tech-card">
+                        <div class="tech-card-header semnome">
+                            <h4>Terror</h4>
+                            <span class="cost">Passiva</span>
+                        </div>
+                        <div class="tech-card-body">
+                            <p>Ao acertar um <strong>crítico</strong>, o alvo fica <em>Exposto</em>.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h4 style="color: var(--ramo-trambiqueiro); margin: 1.5rem 0 1rem;">💰 Trambiqueiro</h4>
+                <div class="tech-grid">
+                    <div class="tech-card">
+                        <div class="tech-card-header trambiqueiro">
+                            <h4>Conexões Duvidosas</h4>
+                            <span class="cost">1 Ação, 3 Stamina</span>
+                        </div>
+                        <div class="tech-card-body">
+                            <p>Você já ouviu falar de muita gente e possivelmente elas te devem algo, ou você que deve...</p>
+                            <p>Role <strong>Interação Social (Convencimento) CD 20</strong> (pode ser dificultado dependendo da localização). Só pode ser utilizado 1x por localização.</p>
+                            <table class="d100-table">
+                                <tr><td class="roll">Falha Crítica</td><td>O contato existe, mas te odeia. Ele ativamente trabalha contra você enquanto estiver na cidade.</td></tr>
+                                <tr><td class="roll">Falha</td><td>O contato existe, mas você deve algo a ele. Ele só ajuda se você quitar a dívida primeiro.</td></tr>
+                                <tr><td class="roll">Sucesso</td><td>O contato te deve um <strong>favor menor</strong>: informação local, desconto em compra, esconderijo por uma noite, ou apresentação a alguém.</td></tr>
+                                <tr><td class="roll">Sucesso Crítico</td><td>O contato te deve um <strong>favor maior</strong>: acesso a área restrita, item raro por preço justo, aliado temporário, ou perdão de dívida/crime menor.</td></tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="tech-card">
+                        <div class="tech-card-header trambiqueiro">
+                            <h4>Olho no Lance</h4>
+                            <span class="cost">Passiva ou 1 Ação, 3 Stamina</span>
+                        </div>
+                        <div class="tech-card-body">
+                            <p><strong>Passiva:</strong></p>
+                            <ul>
+                                <li>Você automaticamente sabe o valor de um item ao examiná-lo.</li>
+                                <li>Recebe <strong>20% a mais de Sins</strong> de todas as fontes (saque, venda). Não se aplica a itens repassados.</li>
+                            </ul>
+                            <p><strong>Revirar</strong> (1 Ação, máx. 1x/cena):</p>
+                            <p>Ao vasculhar uma sala que pode possuir itens valiosos, role <strong>Investigação (CD 15)</strong>:</p>
+                            <table class="d100-table">
+                                <tr><td class="roll">Falha Crítica</td><td>Ativa uma armadilha. Recebe 1 de dano e não encontra nada.</td></tr>
+                                <tr><td class="roll">Falha</td><td>Não encontra nada além do óbvio.</td></tr>
+                                <tr><td class="roll">Sucesso</td><td>Encontra algo de valor que outros ignorariam. <strong>2d10 Sins</strong> em itens vendáveis.</td></tr>
+                                <tr><td class="roll">Sucesso Crítico</td><td>Encontra um saco de <strong>Sins</strong>, contendo <strong>2d10 Sins</strong>.</td></tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TIER 3 - ULTIMATES -->
+            <div class="tier-section">
+                <div class="tier-header">
+                    <h3>Tier 3 — Ultimates</h3>
+                    <span class="tier-badge">Nível 5 • 1x/Dia</span>
+                </div>
+
+                <!-- Senhor das Linhas -->
+                <div class="ultimate-card">
+                    <div class="ultimate-header cartografo">
+                        <h4>🗺️ Senhor das Linhas</h4>
+                        <div>
+                            <span class="ultimate-badge">ULTIMATE</span>
+                            <span style="margin-left: 0.5rem; color: var(--text-muted); font-size: 0.85rem;">1 Ação, 5 Stamina</span>
+                        </div>
+                    </div>
+                    <div class="ultimate-quote">"Minha arte pode descobrir todos os segredos."</div>
+                    <div class="ultimate-body">
+                        <p>Você sente uma energia primordial emanar de sua caneta ao guiá-la por um papel, suas movimentações revelam informações extraordinárias. Você acabou de desenhar uma obra-prima.</p>
+                        
+                        <h5>👁️ Onisciência</h5>
+                        <p>Você sente um calafrio, quase que sobrenatural:</p>
+                        <ul>
+                            <li>Sua mão é guiada pelo mapa por uma força maior expondo a posição de <strong>todas as criaturas em até 60m</strong> (incluindo invisíveis, escondidas).</li>
+                            <li>Você sabe a <strong>intenção de movimento/ataque</strong> de cada criatura em 60m.</li>
+                            <li>Não pode ser flanqueado.</li>
+                        </ul>
+
+                        <h5>🎯 Comandante de Campo</h5>
+                        <p>Essa energia te faz raciocinar extremamente rápido:</p>
+                        <div class="sub-ability">
+                            <strong>"Ali!"</strong> (1 Ação) — Um aliado em até 12m pode se mover até 6m como reação, sem ataques de oportunidade.
+                        </div>
+                        <div class="sub-ability">
+                            <strong>"Abaixa"</strong> (1 Ação) — Um aliado em até 12m ganha <strong>+4 Evasão</strong> contra o próximo ataque que receber.
+                        </div>
+                        <div class="sub-ability">
+                            <strong>"Agora!"</strong> (2 Ações) — Todos os aliados em até 12m ganham <strong>+2 Atacar</strong> e <strong>+1d6 no próximo ataque</strong>.
+                        </div>
+
+                        <h5>✏️ Manipular Mapa</h5>
+                        <p>Esse mapa parece ter influência real em seus arredores. Ao usar qualquer habilidade abaixo, faça um teste de <strong>Vontade (CD 15)</strong>; ao falhar você perde 1d6 de Éter:</p>
+                        <div class="sub-ability">
+                            <strong>Criar Armadilha</strong> (1 Ação) — Declare um ponto em até 12m. A primeira criatura que pisar recebe <strong>3d6 dano</strong> e deve passar em Movimento ou fica <em>Enraizada</em> por 1 rodada.
+                        </div>
+                        <div class="sub-ability">
+                            <strong>Tremor Localizado</strong> (1 Ação) — Todos os inimigos em até 9m sentem o chão tremer. Devem passar em Movimento ou ficam <em>Desorientados</em>.
+                        </div>
+                        <div class="sub-ability">
+                            <strong>Fuga Instantânea</strong> (3 Ações) — Você descobre uma rota de fuga perfeita. Se ela não existir, o mapa esculpe um caminho à força para você e seus aliados fugirem.
+                        </div>
+                        
+                        <div class="ultimate-cost">
+                            <h5>💀 O Custo</h5>
+                            <ul>
+                                <li>Ao fim do combate, seu mapa da região é <strong>desintegrado</strong>, virando pó.</li>
+                                <li>Perca <strong>2d6 de Éter</strong>.</li>
+                                <li style="font-style: italic; color: var(--text-muted);">Você sente que roubou magia, de onde não devia.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Silêncio -->
+                <div class="ultimate-card">
+                    <div class="ultimate-header semnome">
+                        <h4>🗡️ Silêncio</h4>
+                        <div>
+                            <span class="ultimate-badge">ULTIMATE</span>
+                            <span style="margin-left: 0.5rem; color: var(--text-muted); font-size: 0.85rem;">1 Ação, 5 Stamina</span>
+                        </div>
+                    </div>
+                    <div class="ultimate-quote">"Eles morrerão antes de entender o que você é."</div>
+                    <div class="ultimate-body">
+                        <p>Escolha uma criatura em sua visão por rodada. Ela recebe <em>Marcada à Morte 1</em>. Essa condição <strong>acumula</strong> ao ser aplicada novamente:</p>
+                        <ul>
+                            <li>Você sabe a <strong>localização</strong> de todas as criaturas marcadas e a <strong>saúde exata</strong> delas.</li>
+                            <li>Você tem <strong>+1 em todos os testes</strong> contra criaturas Marcadas à Morte. (Acumulável)</li>
+                            <li>Seus ataques <strong>ignoram 1 de evasão</strong> contra criaturas Marcadas. (Acumulável)</li>
+                            <li>Você tem <strong>+1 dado de dano</strong> ao critar contra criatura Marcada. (Acumulável)</li>
+                            <li>Alvos marcados ficam <em>Expostos</em> (ainda remove a condição ao atacar).</li>
+                            <li>Ao acertar um <strong>ataque furtivo</strong>, o ataque automaticamente é <strong>crítico</strong>.</li>
+                        </ul>
+                        
+                        <div class="ultimate-cost">
+                            <h5>💀 O Custo</h5>
+                            <ul>
+                                <li>Você <strong>não pode critar</strong> contra alvos não marcados.</li>
+                                <li>Você fica <strong>obcecado</strong> por todos seus alvos marcados. Para desistir de matá-los, deve fazer um teste de Vontade (CD 20).</li>
+                                <li>Você perde <strong>1d6 de Éter</strong>.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Suborno Irrecusável -->
+                <div class="ultimate-card">
+                    <div class="ultimate-header trambiqueiro">
+                        <h4>💰 Suborno Irrecusável</h4>
+                        <div>
+                            <span class="ultimate-badge">ULTIMATE</span>
+                            <span style="margin-left: 0.5rem; color: var(--text-muted); font-size: 0.85rem;">2 Ações, 5 Stamina</span>
+                        </div>
+                    </div>
+                    <div class="ultimate-quote">"Vamos ser razoáveis aqui. Quanto vai custar pra você olhar pro outro lado?"</div>
+                    <div class="ultimate-body">
+                        <p>Escolha uma criatura inteligente que possa te entender e que não seja diretamente leal a algo maior que dinheiro (fanatismo religioso, amor verdadeiro, honra inabalável).</p>
+                        <p>Role <strong>Interação Social (Convencimento) +5 vs Vontade</strong> do alvo:</p>
+                        <table class="d100-table">
+                            <tr><td class="roll">Falha Crítica</td><td>O alvo fica enfurecido. <strong>+2 Atacar contra você</strong> até o fim do combate.</td></tr>
+                            <tr><td class="roll">Falha</td><td>O alvo hesita, ficando <em>Atordoado</em> por 1 rodada enquanto considera.</td></tr>
+                            <tr><td class="roll">Sucesso</td><td>O alvo <strong>muda de lado até o fim do combate/cena</strong>.</td></tr>
+                            <tr><td class="roll">Sucesso Crítico</td><td>O alvo <strong>muda de lado permanentemente</strong> (ou até você traí-lo). Ele luta por você, fornece informações, abre portas…</td></tr>
+                        </table>
+                        
+                        <div class="ultimate-cost">
+                            <h5>💀 O Custo</h5>
+                            <ul>
+                                <li>Se perceber que foi manipulada, a criatura tenta te atacar.</li>
+                                <li>Perca <strong>1d6 de Éter</strong>.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Esquemas -->
+                <div class="ultimate-card">
+                    <div class="ultimate-header trambiqueiro">
+                        <h4>💰 Esquemas</h4>
+                        <div>
+                            <span class="ultimate-badge">ULTIMATE</span>
+                            <span style="margin-left: 0.5rem; color: var(--text-muted); font-size: 0.85rem;">Ação Livre, 5 Stamina</span>
+                        </div>
+                    </div>
+                    <div class="ultimate-quote">"Ah, isso? Eu já tinha pensado nisso."</div>
+                    <div class="ultimate-body">
+                        <p>A qualquer momento você pode declarar uma <strong>preparação que fez previamente</strong>, antes da cena atual.</p>
+                        <p><strong>Exemplos:</strong></p>
+                        <ul>
+                            <li><em>"Eu já tinha subornado um dos guardas. Ele deixa a porta dos fundos aberta."</em></li>
+                            <li><em>"Eu escondi armas naquela sala ontem à noite."</em></li>
+                            <li><em>"Eu contratei mercenários. Eles chegam agora."</em></li>
+                        </ul>
+                        <p>Role um teste de <strong>Interação Social (Convencimento)</strong>, a CD varia dependendo da viabilidade da preparação proposta. Se suceder isso realmente aconteceu, se não algo do seu plano deu errado.</p>
+                        
+                        <div class="ultimate-cost">
+                            <h5>💀 O Custo</h5>
+                            <ul>
+                                <li style="font-style: italic; color: var(--text-muted);">Seus pecados estão sendo observados.</li>
+                                <li>Perca <strong>1d6 de Éter</strong>.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- NAVEGAÇÃO -->
+            <div class="class-nav">
+                <a href="monge.html">← Monge</a>
+                <a href="../classes.html">Todas as Classes</a>
+                <a href="alquimista.html">Alquimista →</a>
+            </div>
+        </main>
+    </div>
+    <script src="../../js/main.js"></script>
+</body>
+</html>

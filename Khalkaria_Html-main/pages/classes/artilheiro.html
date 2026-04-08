@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artilheiro - Khalkaria RPG</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400&family=UnifrakturMaguntia&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/style.css">
+    <style>
+        :root { --ramo-vendaval: #06b6d4; --ramo-vendaval-dark: #164e63; --ramo-polvora: #f97316; --ramo-polvora-dark: #7c2d12; --ramo-predador: #22c55e; --ramo-predador-dark: #14532d; }
+        .class-hero { position: relative; margin-bottom: 3rem; padding: 2rem; background: linear-gradient(135deg, rgba(20,15,10,0.95), rgba(30,25,20,0.9)); border: 1px solid var(--border-color); border-radius: 16px; overflow: hidden; text-align: center; }
+        .class-hero::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, var(--gold), var(--gold-light), var(--gold)); }
+        .class-title { font-family: var(--font-gothic); font-size: 4rem; color: var(--gold); margin-bottom: 1.5rem; text-shadow: 2px 2px 8px rgba(0,0,0,0.8), 0 0 30px rgba(212,175,55,0.3); }
+        .hero-image { position: relative; max-width: 900px; margin: 0 auto 2rem; border-radius: 12px; overflow: hidden; border: 3px solid var(--gold-dark); box-shadow: 0 10px 40px rgba(0,0,0,0.6); }
+        .hero-image img { width: 100%; height: auto; display: block; }
+        .hero-content { max-width: 800px; margin: 0 auto; text-align: left; }
+        .hero-tagline { font-size: 1.1rem; font-style: italic; color: var(--text-secondary); margin-bottom: 1rem; line-height: 1.7; border-left: 3px solid var(--gold-dark); padding-left: 1rem; }
+        .hero-desc { color: var(--text-secondary); line-height: 1.7; margin-bottom: 1.5rem; }
+        .quick-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; margin-top: 1.5rem; }
+        .stat-card { background: rgba(0,0,0,0.4); border: 1px solid var(--border-color); border-radius: 8px; padding: 1rem; text-align: center; }
+        .stat-card .label { font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; }
+        .stat-card .value { font-size: 1.1rem; color: var(--gold); font-weight: 600; margin-top: 0.25rem; }
+        .formula-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin: 2rem 0; }
+        .formula-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 8px; padding: 1rem; }
+        .formula-card h4 { color: var(--gold); font-family: var(--font-heading); font-size: 0.9rem; margin-bottom: 0.5rem; }
+        .formula-card code { display: block; background: var(--bg-tertiary); padding: 0.5rem; border-radius: 4px; font-size: 0.85rem; color: var(--gold-light); }
+        .section-divider { display: flex; align-items: center; margin: 3rem 0 2rem; gap: 1rem; }
+        .section-divider h2 { font-family: var(--font-gothic); font-size: 2rem; color: var(--gold); white-space: nowrap; }
+        .section-divider::after { content: ''; flex: 1; height: 2px; background: linear-gradient(90deg, var(--gold-dark), transparent); }
+        .progression-table, .technique-table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; }
+        .progression-table th, .progression-table td, .technique-table th, .technique-table td { padding: 0.75rem; border: 1px solid var(--border-color); text-align: left; }
+        .progression-table th, .technique-table th { background: var(--bg-tertiary); color: var(--gold); font-family: var(--font-heading); }
+        .progression-table td, .technique-table td { background: var(--bg-card); color: var(--text-secondary); vertical-align: top; }
+        .level-badge { display: inline-block; background: var(--gold-dark); color: var(--bg-primary); font-weight: 700; width: 32px; height: 32px; line-height: 32px; text-align: center; border-radius: 50%; }
+        .technique-name { color: var(--gold-light); font-weight: 600; }
+        .concentracao-box { background: linear-gradient(135deg, rgba(249,115,22,0.1), rgba(6,182,212,0.05)); border: 2px solid var(--ramo-polvora); border-radius: 12px; padding: 1.5rem; margin: 2rem 0; }
+        .concentracao-box h3 { color: var(--ramo-polvora); font-family: var(--font-heading); margin-bottom: 1rem; }
+        .concentracao-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; }
+        .concentracao-item { background: rgba(0,0,0,0.3); border-radius: 8px; padding: 1rem; }
+        .concentracao-item h4 { font-size: 0.95rem; margin-bottom: 0.5rem; }
+        .concentracao-item ul { margin: 0; padding-left: 1.25rem; font-size: 0.9rem; color: var(--text-secondary); }
+        .conc-gain { color: #22c55e; }
+        .conc-lose { color: #ef4444; }
+        .ramos-intro { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem; }
+        .ramos-intro p { color: var(--text-secondary); line-height: 1.7; margin-bottom: 1rem; }
+        .ramos-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin: 2rem 0; }
+        .ramo-card { background: var(--bg-card); border: 2px solid var(--border-color); border-radius: 12px; padding: 1.5rem; transition: all 0.3s; }
+        .ramo-card:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(0,0,0,0.3); }
+        .ramo-card.vendaval { border-color: var(--ramo-vendaval); }
+        .ramo-card.polvora { border-color: var(--ramo-polvora); }
+        .ramo-card.predador { border-color: var(--ramo-predador); }
+        .ramo-card h3 { font-family: var(--font-heading); font-size: 1.3rem; margin-bottom: 0.5rem; }
+        .ramo-card.vendaval h3 { color: var(--ramo-vendaval); }
+        .ramo-card.polvora h3 { color: var(--ramo-polvora); }
+        .ramo-card.predador h3 { color: var(--ramo-predador); }
+        .ramo-card .subtitle { color: var(--text-muted); font-size: 0.85rem; margin-bottom: 1rem; }
+        .ramo-card p { color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6; }
+        .marca-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; margin-bottom: 1.5rem; overflow: hidden; }
+        .marca-header { padding: 1rem 1.5rem; border-bottom: 1px solid var(--border-color); }
+        .marca-header.vendaval { background: linear-gradient(135deg, var(--ramo-vendaval-dark), transparent); }
+        .marca-header.polvora { background: linear-gradient(135deg, var(--ramo-polvora-dark), transparent); }
+        .marca-header.predador { background: linear-gradient(135deg, var(--ramo-predador-dark), transparent); }
+        .marca-header h4 { font-family: var(--font-heading); font-size: 1.1rem; margin-bottom: 0.25rem; }
+        .marca-header.vendaval h4 { color: var(--ramo-vendaval); }
+        .marca-header.polvora h4 { color: var(--ramo-polvora); }
+        .marca-header.predador h4 { color: var(--ramo-predador); }
+        .marca-header .quote { font-style: italic; color: var(--text-muted); font-size: 0.9rem; }
+        .marca-body { padding: 1.5rem; }
+        .marca-body p { color: var(--text-secondary); line-height: 1.7; margin-bottom: 1rem; }
+        .marca-effect { background: var(--bg-tertiary); border-left: 3px solid var(--gold-dark); padding: 0.75rem 1rem; margin-bottom: 0.5rem; border-radius: 0 8px 8px 0; }
+        .marca-effect p { margin: 0; font-size: 0.9rem; }
+        .tier-section { margin: 2rem 0; }
+        .tier-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; padding-bottom: 0.5rem; border-bottom: 2px solid var(--gold-dark); }
+        .tier-header h3 { font-family: var(--font-heading); font-size: 1.5rem; color: var(--gold); }
+        .tier-badge { background: var(--gold-dark); color: var(--bg-primary); font-weight: 700; padding: 0.25rem 0.75rem; border-radius: 4px; font-size: 0.8rem; }
+        .tech-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; }
+        .tech-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; overflow: hidden; }
+        .tech-card-header { padding: 1rem 1.25rem; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center; }
+        .tech-card-header.vendaval { background: linear-gradient(135deg, var(--ramo-vendaval-dark), transparent); }
+        .tech-card-header.polvora { background: linear-gradient(135deg, var(--ramo-polvora-dark), transparent); }
+        .tech-card-header.predador { background: linear-gradient(135deg, var(--ramo-predador-dark), transparent); }
+        .tech-card-header h4 { font-family: var(--font-heading); font-size: 1rem; }
+        .tech-card-header.vendaval h4 { color: var(--ramo-vendaval); }
+        .tech-card-header.polvora h4 { color: var(--ramo-polvora); }
+        .tech-card-header.predador h4 { color: var(--ramo-predador); }
+        .tech-card-header .cost { font-size: 0.8rem; color: var(--text-muted); background: rgba(0,0,0,0.3); padding: 0.25rem 0.5rem; border-radius: 4px; }
+        .tech-card-body { padding: 1.25rem; }
+        .tech-card-body p, .tech-card-body li { color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6; margin-bottom: 0.5rem; }
+        .tech-card-body ul { margin: 0.5rem 0; padding-left: 1.25rem; }
+        .ultimate-card { background: linear-gradient(135deg, rgba(212,175,55,0.1), var(--bg-card)); border: 2px solid var(--gold); border-radius: 16px; margin: 1.5rem 0; overflow: hidden; }
+        .ultimate-header { padding: 1.25rem 1.5rem; border-bottom: 1px solid var(--gold-dark); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+        .ultimate-header.vendaval { background: linear-gradient(135deg, var(--ramo-vendaval-dark), transparent); }
+        .ultimate-header.polvora { background: linear-gradient(135deg, var(--ramo-polvora-dark), transparent); }
+        .ultimate-header.predador { background: linear-gradient(135deg, var(--ramo-predador-dark), transparent); }
+        .ultimate-header h4 { font-family: var(--font-heading); font-size: 1.3rem; }
+        .ultimate-header.vendaval h4 { color: var(--ramo-vendaval); }
+        .ultimate-header.polvora h4 { color: var(--ramo-polvora); }
+        .ultimate-header.predador h4 { color: var(--ramo-predador); }
+        .ultimate-badge { background: var(--gold); color: var(--bg-primary); font-weight: 700; padding: 0.25rem 0.75rem; border-radius: 4px; font-size: 0.75rem; }
+        .ultimate-quote { font-style: italic; color: var(--gold-light); padding: 1rem 1.5rem; background: rgba(0,0,0,0.2); border-left: 3px solid var(--gold); }
+        .ultimate-body { padding: 1.5rem; }
+        .ultimate-body p, .ultimate-body li { color: var(--text-secondary); font-size: 0.95rem; line-height: 1.7; }
+        .ultimate-body ul { margin: 0.5rem 0; padding-left: 1.25rem; }
+        .ultimate-cost { background: rgba(139,0,0,0.2); border: 1px solid rgba(220,38,38,0.3); border-radius: 8px; padding: 1rem; margin-top: 1rem; }
+        .ultimate-cost h5 { color: #ef4444; font-family: var(--font-heading); margin-bottom: 0.5rem; }
+        .class-nav { display: flex; justify-content: space-between; margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border-color); }
+        .class-nav a { color: var(--gold); text-decoration: none; padding: 0.75rem 1.5rem; border: 1px solid var(--gold-dark); border-radius: 8px; transition: all 0.3s; }
+        .class-nav a:hover { background: var(--gold-dark); color: var(--bg-primary); }
+        .techniques-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
+        .technique-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 8px; padding: 1rem; transition: all 0.3s; }
+        .technique-card:hover { border-color: var(--gold-dark); transform: translateY(-2px); }
+        .technique-card h4 { color: var(--gold); font-family: var(--font-heading); font-size: 1rem; margin-bottom: 0.25rem; }
+        .technique-card .tech-meta { display: block; font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.5rem; }
+        .technique-card p { color: var(--text-secondary); font-size: 0.9rem; line-height: 1.5; margin: 0; }
+    </style>
+</head>
+<body>
+    <button class="menu-toggle">☰ Menu</button>
+    <div class="app-container">
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <a href="../../index.html" class="sidebar-logo">Khalkaria</a>
+                <div class="sidebar-subtitle">Sistema de Regras</div>
+                <div class="sidebar-ornament"><span>◆</span></div>
+            </div>
+            <div class="nav-section">
+                <div class="nav-section-title">Fundamentos</div>
+                <a href="../../index.html" class="nav-link">🏠 Início</a>
+                <a href="../sistema.html" class="nav-link">📜 Sistema Base</a>
+                <a href="../condicoes.html" class="nav-link">⚡ Condições</a>
+                <a href="../magias.html" class="nav-link">✨ Magias</a>
+
+            </div>
+            <div class="nav-section">
+                <div class="nav-section-title">Criação de Personagem</div>
+                <a href="../criacao.html" class="nav-link">🎭 Criação</a>
+                <a href="../racas.html" class="nav-link">👤 Raças</a>
+                <a href="../classes.html" class="nav-link">⚔️ Classes</a>
+                <a href="../origens.html" class="nav-link">📜 Origens</a>
+                <a href="../limiar.html" class="nav-link">🌟 O Limiar</a>
+            </div>
+            <div class="nav-section">
+                <div class="nav-section-title">Classes</div>
+                <a href="espadachim.html" class="nav-link nav-link-sub">⚔️ Espadachim</a>
+                <a href="monge.html" class="nav-link nav-link-sub">👊 Monge</a>
+                <a href="batedor.html" class="nav-link nav-link-sub">🏹 Batedor</a>
+                <a href="alquimista.html" class="nav-link nav-link-sub">⚗️ Alquimista</a>
+                <a href="teurgo.html" class="nav-link nav-link-sub">✨ Teurgo</a>
+                <a href="artilheiro.html" class="nav-link nav-link-sub active">💥 Artilheiro</a>
+                <a href="brutalista.html" class="nav-link nav-link-sub">🪓 Brutalista</a>
+            </div>
+        </nav>
+        
+        <main class="main-content">
+            <section class="class-hero">
+                <h1 class="class-title">Artilheiro</h1>
+                <div class="hero-image"><img src="../../images/artilheiro.png" alt="Artilheiro"></div>
+                <div class="hero-content">
+                    <p class="hero-tagline">"Enquanto outros guerreiros precisam sentir o hálito do inimigo para derrotá-lo, você aprendeu que a verdadeira maestria está na distância. Seu alvo cai antes de perceber que estava em perigo."</p>
+                    <p class="hero-desc">Artilheiros não são covardes que fogem do combate. São predadores pacientes que escolhem o momento perfeito para atacar. Cada tiro é calculado, cada posição é estratégica, cada munição é preciosa.</p>
+                    <div class="quick-stats">
+                        <div class="stat-card"><div class="label">Atributos</div><div class="value">Des, Sab, Int/Con</div></div>
+                        <div class="stat-card"><div class="label">CD</div><div class="value">10 + Des + Sab</div></div>
+                        <div class="stat-card"><div class="label">Estilo</div><div class="value">Dano à Distância</div></div>
+                    </div>
+                </div>
+            </section>
+
+            <div class="section-divider"><h2>⚔️ Treinamento</h2></div>
+            <div class="ramos-intro">
+                <p><strong>Você começa treinado em:</strong> Armas à Distância, Atacar, Percepção</p>
+                <p><strong>Escolha (1 + Mod.Int) perícias:</strong> Furtividade, Iniciativa, Ofício (Municiador), Investigação, Movimento</p>
+            </div>
+
+            <div class="section-divider"><h2>📊 Status Iniciais</h2></div>
+            <div class="formula-grid">
+                <div class="formula-card"><h4>❤️ Saúde</h4><code>(1 × Nível) + (Mod.CON × Nível × 2)</code></div>
+                <div class="formula-card"><h4>⚡ Stamina</h4><code>(3 × Nível) + ([Mod.FOR+Mod.DES/2] × Nível × 6)</code></div>
+                <div class="formula-card"><h4>✨ Éter</h4><code>(2 × Nível) + ([Mod.INT+Mod.SAB/2] × Nível × 3)</code></div>
+                <div class="formula-card"><h4>🛡️ Evasão Ativa</h4><code>11 + Mod.Des + Prof.Defender + 1d10</code></div>
+                <div class="formula-card"><h4>🛡️ Evasão Passiva</h4><code>11 + Mod.Destreza</code></div>
+            </div>
+
+            <div class="section-divider"><h2>📈 Progressão</h2></div>
+            <table class="progression-table">
+                <thead><tr><th>Nível</th><th>Conteúdo</th></tr></thead>
+                <tbody>
+                    <tr><td><span class="level-badge">1</span></td><td>3 Técnicas</td></tr>
+                    <tr><td><span class="level-badge">2</span></td><td>4 Técnicas, Técnica de Ramo (Tier 1)</td></tr>
+                    <tr><td><span class="level-badge">3</span></td><td>5 Técnicas, 1 Marca</td></tr>
+                    <tr><td><span class="level-badge">4</span></td><td>6 Técnicas, Técnica de Ramo (Tier 1, 2), 2 Marcas</td></tr>
+                    <tr><td><span class="level-badge">5</span></td><td>7 Técnicas, Técnica de Ramo (Tier 1, 2 e 3), 3 Marcas</td></tr>
+                </tbody>
+            </table>
+
+            <div class="section-divider"><h2>🎯 Concentração</h2></div>
+            <div class="concentracao-box">
+                <h3>🎯 Sistema de Concentração</h3>
+                <p style="color: var(--text-secondary); margin-bottom: 1rem;">Seus disparos ficam precisos à medida que você se concentra nos pontos fracos dos seus inimigos. <strong>Sempre adicione sua Concentração à sua rolagem de ataque!</strong></p>
+                <p style="color: var(--gold-light); margin-bottom: 1.5rem;"><strong>Concentração Máxima: 3 + Mod. Sabedoria</strong> • Começa todo combate com 0.</p>
+                <div class="concentracao-grid">
+                    <div class="concentracao-item">
+                        <h4 class="conc-gain">✅ Ganhando Concentração</h4>
+                        <ul><li><strong>Atacar:</strong> Acertar → +1 | Crítico → +2</li><li><strong>Mirar:</strong> Gastar 1 ação mirando → +2</li><li><strong>Ficar Parado:</strong> Não se mover no turno → +1</li></ul>
+                    </div>
+                    <div class="concentracao-item">
+                        <h4 class="conc-lose">❌ Perdendo Concentração</h4>
+                        <ul><li><strong>Ser Atacado:</strong> Receber dano → -1</li><li><strong>Se Mover:</strong> Usar 1 ação para mover → -1</li><li><strong>Condição:</strong> Falhar teste de resistência → -2</li><li><strong>Morte:</strong> Aliado cair <em>Morrendo</em> → -3</li></ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-divider"><h2>⚡ Técnicas</h2></div>
+            <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">Você possui <strong>3 Técnicas + Nível</strong>. Pode reatribuí-las em descanso longo.</p>
+            <div class="techniques-grid">
+                <div class="technique-card">
+                    <h4>Respiração Controlada</h4>
+                    <span class="tech-meta">Passiva</span>
+                    <p>Não perde Concentração ao receber dano à distância (apenas corpo a corpo).</p>
+                </div>
+                <div class="technique-card">
+                    <h4>Frieza</h4>
+                    <span class="tech-meta">Passiva</span>
+                    <p>Enquanto tiver 3+ Concentração, tem Vantagem em testes de resistência.</p>
+                </div>
+                <div class="technique-card">
+                    <h4>Balas de Ferro</h4>
+                    <span class="tech-meta">Passiva</span>
+                    <p>Ataques críticos reduzem 3 de Armadura (Ar/Ae) do alvo.</p>
+                </div>
+                <div class="technique-card">
+                    <h4>Artesão de Munição</h4>
+                    <span class="tech-meta">Passiva</span>
+                    <p>Durante descanso, pode criar 1 munição sem testes.</p>
+                </div>
+                <div class="technique-card">
+                    <h4>Olho do Atirador</h4>
+                    <span class="tech-meta">Passiva</span>
+                    <p>Pode atirar em criaturas que não enxerga com -2 (ao invés de Desvantagem).</p>
+                </div>
+                <div class="technique-card">
+                    <h4>Sentidos Aguçados</h4>
+                    <span class="tech-meta">1 Ação • 2 Stamina</span>
+                    <p>Role Percepção com +1 treinamento. Não pode ser Desprevenido por criaturas que você vê.</p>
+                </div>
+                <div class="technique-card">
+                    <h4>Batida Tática</h4>
+                    <span class="tech-meta">1 Ação • 2 Stamina</span>
+                    <p>Pode se mover sem perder Concentração e sem provocar ataques de oportunidade.</p>
+                </div>
+                <div class="technique-card">
+                    <h4>Tiro Camuflado</h4>
+                    <span class="tech-meta">1 Ação • 3 Stamina</span>
+                    <p>Deve estar escondido. Próximo ataque é crítico ao acertar.</p>
+                </div>
+                <div class="technique-card">
+                    <h4>Tiro Imobilizador</h4>
+                    <span class="tech-meta">1 Ação • 2 Stamina, 1 Conc.</span>
+                    <p>Seu próximo ataque a distância causa Lento 1 se o alvo falhar em Fortitude.</p>
+                </div>
+                <div class="technique-card">
+                    <h4>Tiro Duplo</h4>
+                    <span class="tech-meta">1 Ação • 3 Stamina, 2 Conc.</span>
+                    <p>Próximo ataque não tem penalidade de multi-ataque.</p>
+                </div>
+                <div class="technique-card">
+                    <h4>Tiro Preciso</h4>
+                    <span class="tech-meta">1 Ação • 2 Stamina, 2 Conc.</span>
+                    <p>Próximo ataque à distância tem +2 Atacar e +1d6 de dano.</p>
+                </div>
+                <div class="technique-card">
+                    <h4>Foco Absoluto</h4>
+                    <span class="tech-meta">1 Ação • 3 Stamina, 5 Conc.</span>
+                    <p>Próximo ataque tem Vantagem e Margem de Ameaça +1.</p>
+                </div>
+                <div class="technique-card">
+                    <h4>Tiro na Cabeça</h4>
+                    <span class="tech-meta">2 Ações • 3 Stamina, X Conc.</span>
+                    <p>Próximo ataque causa +1d6 de dano por ponto de Concentração gasto.</p>
+                </div>
+                <div class="technique-card">
+                    <h4>Ponto Vital</h4>
+                    <span class="tech-meta">Reação • 3 Stamina, 3 Conc.</span>
+                    <p>Ao acertar crítico, adiciona +2d6 de dano.</p>
+                </div>
+                <div class="technique-card">
+                    <h4>Tiro de Reflexo</h4>
+                    <span class="tech-meta">Reação • 3 Stamina, 5 Conc.</span>
+                    <p>Quando inimigo se mover no seu alcance, pode atacá-lo como reação.</p>
+                </div>
+            </div>
+
+            <div class="section-divider"><h2>🌿 Ramos</h2></div>
+            <div class="ramos-intro"><p>Os ramos são caminhos <strong>irreversíveis</strong>. Você escolherá: <strong>3 Marcas</strong> e <strong>6 Técnicas de Ramo</strong> (3 Tier 1, 2 Tier 2 e 1 Tier 3).</p></div>
+            <div class="ramos-grid">
+                <div class="ramo-card vendaval"><h3>🌀 Ramo do Vendaval</h3><div class="subtitle">Adagas de Arremesso e Agilidade</div><p>Você não arremessa facas - você desencadeia um vendaval de aço que corta, perfura e silencia antes que o grito escape.</p></div>
+                <div class="ramo-card polvora"><h3>🔥 Ramo da Pólvora</h3><div class="subtitle">Armas de Fogo e Dano</div><p>O poder absoluto de transformar vida em silêncio com um aperto de dedo. Alguns temem o barulho - você aprendeu a amá-lo.</p></div>
+                <div class="ramo-card predador"><h3>🏹 Ramo do Predador</h3><div class="subtitle">Flechas e Furtividade</div><p>A caça não é sobre força - é sobre espera. A presa nunca sabe que está sendo caçada até que a flecha já tenha deixado o arco.</p></div>
+            </div>
+
+            <div class="section-divider"><h2>🔥 Marcas de Ramo</h2></div>
+            
+            <h3 style="color: var(--ramo-vendaval); font-family: var(--font-heading); margin: 2rem 0 1rem;">🌀 Marcas do Vendaval</h3>
+            <div class="marca-card"><div class="marca-header vendaval"><h4>Inquieto</h4><div class="quote">"Você sempre está andando, correndo, fugindo."</div></div><div class="marca-body"><div class="marca-effect"><p>Para cada combate que você é o primeiro a jogar, ganha <strong>+1 permanente em Iniciativa</strong> (máx +5).</p></div><div class="marca-effect"><p>Ao rolar maior Iniciativa do combate, ganha <strong>+2 Concentração</strong> no início do primeiro turno.</p></div></div></div>
+            <div class="marca-card"><div class="marca-header vendaval"><h4>Colecionador de Lâminas</h4><div class="quote">"Cada faca tem uma história. Cada história tem um corpo."</div></div><div class="marca-body"><div class="marca-effect"><p>Pode gastar 5 minutos após um combate recuperando <strong>1 Conjunto de Arremesso</strong>.</p></div><div class="marca-effect"><p>Pode batizar uma Arma de Arremesso em descanso longo. Ganha <strong>+1 ao atacar</strong> com ela.</p></div></div></div>
+
+            <h3 style="color: var(--ramo-polvora); font-family: var(--font-heading); margin: 2rem 0 1rem;">🔥 Marcas da Pólvora</h3>
+            <div class="marca-card"><div class="marca-header polvora"><h4>Vício de Poder</h4><div class="quote">"O cheiro de pólvora queimada. O zumbido nos ouvidos. Nada se compara."</div></div><div class="marca-body"><div class="marca-effect"><p>Para cada 5 criaturas mortas com armas à distância, ganha <strong>+1 permanente em Atacar</strong> (máx +5).</p></div><div class="marca-effect"><p>Se acertar crítico com arma à distância, recupera <strong>1 de Stamina</strong>.</p></div><div class="marca-effect"><p>Ao passar 24 horas sem disparar, fica <em>irritado</em>: -1 em testes sociais até disparar.</p></div></div></div>
+            <div class="marca-card"><div class="marca-header polvora"><h4>Conhecedor de Armas de Fogo</h4><div class="quote">"Armas de fogo acabaram de emergir como tecnologia de ponta."</div></div><div class="marca-body"><div class="marca-effect"><p>Você tem <strong>+2 em testes de Vontade</strong>.</p></div><div class="marca-effect"><p>Você conhece contatos que vendem armas de fogo e munições especiais em cada lugar do mundo.</p></div></div></div>
+
+            <h3 style="color: var(--ramo-predador); font-family: var(--font-heading); margin: 2rem 0 1rem;">🏹 Marcas do Predador</h3>
+            <div class="marca-card"><div class="marca-header predador"><h4>Paciência Inabalável</h4><div class="quote">"Você esperou dias por um único tiro. Esperaria semanas se necessário."</div></div><div class="marca-body"><div class="marca-effect"><p>Para cada 5 combates com 6+ Concentração, ganha <strong>+1 permanente em Percepção</strong> (máx +5).</p></div><div class="marca-effect"><p>Ao ficar imóvel 1 turno inteiro, ganha <strong>Vantagem</strong> no próximo ataque à distância.</p></div><div class="marca-effect"><p>Você tem <strong>+2 em testes de Sobrevivência</strong>.</p></div></div></div>
+            <div class="marca-card"><div class="marca-header predador"><h4>Marca no Alvo</h4><div class="quote">"Você não esquece um rosto. Especialmente os que você ainda não acertou."</div></div><div class="marca-body"><div class="marca-effect"><p>Ao <strong>errar</strong> um ataque, pode marcar o alvo mentalmente. Ganha <strong>+1 Atacar cumulativo</strong> (máx +3) até acertá-lo.</p></div><div class="marca-effect"><p>Se uma criatura marcada fugir, você sabe a <strong>direção geral</strong> (até 1km).</p></div><div class="marca-effect"><p>Você tem <strong>+2 em Investigação</strong> para encontrar informações sobre alvos marcados.</p></div></div></div>
+
+            <div class="section-divider"><h2>⚡ Técnicas de Ramo</h2></div>
+            <div class="tier-section">
+                <div class="tier-header"><h3>Tier 1</h3><span class="tier-badge">Nível 2+</span></div>
+                
+                <h4 style="color: var(--ramo-vendaval); margin: 1.5rem 0 1rem;">🌀 Vendaval</h4>
+                <div class="tech-grid">
+                    <div class="tech-card"><div class="tech-card-header vendaval"><h4>Mãos Velozes</h4><span class="cost">Passiva</span></div><div class="tech-card-body"><p>+1 Treinamento em Atacar. Com Armas de Arremesso:</p><ul><li>Sacar como ação livre</li><li>Multi-ataque -2 (ao invés de -5)</li><li>2+ ataques no mesmo turno/alvo: +1d6 Perfurante</li></ul><p>Fabrica Conjuntos de Arremesso em descansos.</p></div></div>
+                    <div class="tech-card"><div class="tech-card-header vendaval"><h4>Passo do Vento</h4><span class="cost">Passiva</span></div><div class="tech-card-body"><ul><li>Mover-se não perde mais Concentração</li><li>Ao acertar: move 1,5m como ação livre</li><li>Adiciona Concentração à Evasão</li></ul></div></div>
+                    <div class="tech-card"><div class="tech-card-header vendaval"><h4>Vendaval de Aço</h4><span class="cost">2 Ações, 3 Stamina</span></div><div class="tech-card-body"><p>Faça <strong>3 Ataques</strong> sem penalidade de multi-ataque.</p><p>Se 2+ acertarem mesmo alvo: <em>Sangramento 1</em>.</p></div></div>
+                </div>
+
+                <h4 style="color: var(--ramo-polvora); margin: 1.5rem 0 1rem;">🔥 Pólvora</h4>
+                <div class="tech-grid">
+                    <div class="tech-card"><div class="tech-card-header polvora"><h4>Mão de Ferro</h4><span class="cost">Passiva</span></div><div class="tech-card-body"><p>+1 Treinamento em Atacar. Com Armas de Fogo:</p><ul><li>+2 de dano Perfurante</li><li>Ignora 2 de Armadura (Ar)</li></ul><p>Fabrica Munições de Fogo em descansos.</p></div></div>
+                    <div class="tech-card"><div class="tech-card-header polvora"><h4>Presença da Pólvora</h4><span class="cost">Passiva</span></div><div class="tech-card-body"><p>+1 Treinamento em Intimidação.</p><p>Ao acertar com arma de fogo, criaturas em 3m do alvo (exceto o alvo): Vontade ou <em>Amedrontadas</em> 1 rodada.</p><p>Com 5+ Concentração: afeta o alvo também.</p></div></div>
+                    <div class="tech-card"><div class="tech-card-header polvora"><h4>Rajada de Tiros</h4><span class="cost">1 Ação, 3 Stamina</span></div><div class="tech-card-body"><p><strong>2 Ataques</strong> sem penalidade em até 2 alvos com 3m entre si.</p><p>Se 2 acertarem mesmo alvo: Fortitude ou <em>Atordoado</em>.</p></div></div>
+                </div>
+
+                <h4 style="color: var(--ramo-predador); margin: 1.5rem 0 1rem;">🏹 Predador</h4>
+                <div class="tech-grid">
+                    <div class="tech-card"><div class="tech-card-header predador"><h4>Olho do Arqueiro</h4><span class="cost">Passiva</span></div><div class="tech-card-body"><p>+1 Treinamento em Atacar. Com Arcos/Bestas:</p><ul><li>Alcance +6m</li><li>Ao mirar: próximo ataque +2 Atacar</li></ul><p>Fabrica Flechas/Virotes em descansos.</p></div></div>
+                    <div class="tech-card"><div class="tech-card-header predador"><h4>Flechas do Predador</h4><span class="cost">Passiva</span></div><div class="tech-card-body"><p>Escolha o tipo de flecha ao atacar:</p><ul><li><strong>Perfurante:</strong> Ignora 3 Ar adicional</li><li><strong>Farpada:</strong> <em>Sangramento 1</em></li><li><strong>Explosão:</strong> Empurra 1,5m</li><li><strong>Incendiária:</strong> +1d4 Fogo</li></ul></div></div>
+                    <div class="tech-card"><div class="tech-card-header predador"><h4>Tiro Carregado</h4><span class="cost">1-3 Ações, 2 Stamina</span></div><div class="tech-card-body"><ul><li>1 Ação: +1d6 Perfurante</li><li>2 Ações: +2d6 Perfurante</li><li>3 Ações: +3d6 Perfurante, Crítico +1</li></ul><p>Ganha +1 Concentração por ação gasta.</p></div></div>
+                </div>
+            </div>
+
+            <div class="tier-section">
+                <div class="tier-header"><h3>Tier 2</h3><span class="tier-badge">Nível 4+</span></div>
+                
+                <h4 style="color: var(--ramo-vendaval); margin: 1.5rem 0 1rem;">🌀 Vendaval</h4>
+                <div class="tech-grid">
+                    <div class="tech-card"><div class="tech-card-header vendaval"><h4>Projétil Envenenado</h4><span class="cost">Passiva</span></div><div class="tech-card-body"><p>Durante descanso curto, aplica veneno em até <strong>5 munições</strong>.</p><p>Ao acertar: Fortitude ou <em>Envenenado</em> 2 rodadas. Com 5+ Conc: Desvantagem no teste.</p></div></div>
+                    <div class="tech-card"><div class="tech-card-header vendaval"><h4>Dança da Morte</h4><span class="cost">1 Ação, 4 Stamina, 3 Conc.</span></div><div class="tech-card-body"><p>Até próximo turno: quando criatura se mover no alcance, faça 1 Ataque à Distância como ação livre (gasta reação).</p><p>Se acertar 3+: recupera <strong>2 Concentração</strong>.</p></div></div>
+                </div>
+
+                <h4 style="color: var(--ramo-polvora); margin: 1.5rem 0 1rem;">🔥 Pólvora</h4>
+                <div class="tech-grid">
+                    <div class="tech-card"><div class="tech-card-header polvora"><h4>Munição Especial</h4><span class="cost">1 Ação, 2 Stamina</span></div><div class="tech-card-body"><p>Fabrica munições especiais (uso único):</p><ul><li><strong>Explosiva:</strong> Criaturas em 1,5m sofrem dano</li><li><strong>Perfurante:</strong> Ignora toda armadura</li><li><strong>Atordoante:</strong> Fortitude ou <em>Atordoado</em></li><li><strong>Incendiária:</strong> Alvo fica <em>Em Chamas</em></li></ul></div></div>
+                    <div class="tech-card"><div class="tech-card-header polvora"><h4>Execução</h4><span class="cost">1 Ação, 4 Stamina, 5 Conc.</span></div><div class="tech-card-body"><p>Próximo ataque: <strong>+4 Atacar</strong>.</p><p>Se alvo &lt;50% HP: +2d6 Perfurante.</p><p>Se alvo &lt;25% HP: crítico automático.</p><p>Se matar: +3 Concentração.</p></div></div>
+                </div>
+
+                <h4 style="color: var(--ramo-predador); margin: 1.5rem 0 1rem;">🏹 Predador</h4>
+                <div class="tech-grid">
+                    <div class="tech-card"><div class="tech-card-header predador"><h4>Olhar Revelador</h4><span class="cost">Passiva</span></div><div class="tech-card-body"><p>Ao acertar a mesma criatura 2x, revela: Saúde aproximada, Resistências/Vulnerabilidades, Evasão.</p><p>Ataques contra alvos revelados: <strong>+1d6 Perfurante</strong>.</p></div></div>
+                    <div class="tech-card"><div class="tech-card-header predador"><h4>Dois Cordeiros</h4><span class="cost">2 Ações, 4 Stamina, 4 Conc.</span></div><div class="tech-card-body"><p>Dispara em linha reta de até <strong>12m</strong>.</p><p>Atinge todas as criaturas na linha. Faça Atacar contra cada alvo.</p><p>A cada alvo atingido, o próximo toma <strong>-2 dano</strong>.</p></div></div>
+                </div>
+            </div>
+
+            <div class="tier-section">
+                <div class="tier-header"><h3>Tier 3 — Ultimates</h3><span class="tier-badge">Nível 5 • 1x/Dia</span></div>
+
+                <div class="ultimate-card">
+                    <div class="ultimate-header vendaval"><h4>🌀 Tempestade de Aço</h4><div><span class="ultimate-badge">ULTIMATE</span><span style="margin-left:0.5rem;color:var(--text-muted);font-size:0.85rem;">3 Ações, 6 Stamina, 5 Conc.</span></div></div>
+                    <div class="ultimate-quote">"Vendaval de lâminas."</div>
+                    <div class="ultimate-body">
+                        <p>Desencadeia uma rajada implacável em <strong>raio 6m</strong> até 12m de distância.</p>
+                        <ul><li>1 ataque contra cada criatura na área</li><li>Atingidos: Fortitude ou <em>Sangrando 2</em> e <em>Lento 1</em> por 2 rodadas</li><li>Para cada 2 criaturas atingidas: <strong>+1 ataque adicional</strong></li></ul>
+                        <div class="ultimate-cost"><h5>💀 O Custo</h5><ul><li>Perde toda Concentração</li><li>Gasta 1 munição</li><li>Perde 1d6 de Éter</li></ul></div>
+                    </div>
+                </div>
+
+                <div class="ultimate-card">
+                    <div class="ultimate-header polvora"><h4>🔥 Canhão</h4><div><span class="ultimate-badge">ULTIMATE</span><span style="margin-left:0.5rem;color:var(--text-muted);font-size:0.85rem;">2 Ações, 5 Stamina, 5 Conc.</span></div></div>
+                    <div class="ultimate-quote">"Quando tudo falha, puxe o gatilho mais forte."</div>
+                    <div class="ultimate-body">
+                        <p>Disparo devastador com <strong>+6 Atacar</strong>.</p>
+                        <ul><li>Dano: base + <strong>5d6</strong> + Concentração atual em d6s de Perfurante</li><li>Alvo e criaturas em 3m: Fortitude ou <em>Atordoados</em> e <em>Surdos</em></li><li>Se matar: criaturas em 9m devem passar em Vontade ou ficam <em>Amedrontadas</em></li><li>Barulho audível até <strong>1km</strong></li></ul>
+                        <div class="ultimate-cost"><h5>💀 O Custo</h5><ul><li>Perde toda Concentração</li><li>Arma inutilizável até descanso longo</li><li>Perde 1d6 de Éter</li></ul></div>
+                    </div>
+                </div>
+
+                <div class="ultimate-card">
+                    <div class="ultimate-header predador"><h4>🏹 Tiro Predador</h4><div><span class="ultimate-badge">ULTIMATE</span><span style="margin-left:0.5rem;color:var(--text-muted);font-size:0.85rem;">3 Ações, 5 Stamina, 5 Conc.</span></div></div>
+                    <div class="ultimate-quote">"Você pode fugir, mas não pode se esconder."</div>
+                    <div class="ultimate-body">
+                        <p>Disparo que transcende a precisão mortal:</p>
+                        <ul><li><strong>Alcance ilimitado</strong> (desde que saiba onde está o alvo)</li><li>Ignora cobertura, Ar, Ae e Resistência</li><li><strong>Crítico automático</strong> se acertar</li></ul>
+                        <p>Alvo deve passar em Fortitude ou sofre (sua escolha):</p>
+                        <ul><li><strong>Execução:</strong> Se &lt;30% HP, morre instantaneamente</li><li><strong>Incapacitar:</strong> <em>Paralisado</em> 2 rodadas</li><li><strong>Marcar:</strong> Permanentemente marcado, você sempre sabe sua localização e tem +4 Atacar</li></ul>
+                        <div class="ultimate-cost"><h5>💀 O Custo</h5><ul><li>Perde toda Concentração</li><li>Fica <em>Exausto 1</em></li><li>Perde 1d6 de Éter</li></ul></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="class-nav">
+                <a href="teurgo.html">← Teurgo</a>
+                <a href="../classes.html">Todas as Classes</a>
+                <a href="brutalista.html">Brutalista →</a>
+            </div>
+        </main>
+    </div>
+    <script src="../../js/main.js"></script>
+</body>
+</html>

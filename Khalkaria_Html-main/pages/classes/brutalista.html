@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brutalista - Khalkaria RPG</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400&family=UnifrakturMaguntia&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/style.css">
+    <style>
+        :root {
+            --ramo-colosso: #3b82f6;
+            --ramo-colosso-dark: #1e3a5f;
+            --ramo-berserker: #ef4444;
+            --ramo-berserker-dark: #7f1d1d;
+            --ramo-general: #a855f7;
+            --ramo-general-dark: #581c87;
+        }
+
+        .class-hero {
+            position: relative;
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: linear-gradient(135deg, rgba(20,15,10,0.95), rgba(30,25,20,0.9));
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            overflow: hidden;
+            text-align: center;
+        }
+        .class-hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--gold), var(--gold-light), var(--gold));
+        }
+        .class-title {
+            font-family: var(--font-gothic);
+            font-size: 4rem;
+            color: var(--gold);
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.8), 0 0 30px rgba(212,175,55,0.3);
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+        .hero-image {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto 2rem;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 3px solid var(--gold-dark);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.6), 0 0 30px rgba(212,175,55,0.15);
+        }
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: left;
+        }
+        .hero-tagline {
+            font-size: 1.1rem;
+            font-style: italic;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            line-height: 1.7;
+            border-left: 3px solid var(--gold-dark);
+            padding-left: 1rem;
+        }
+        .hero-desc {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+        .quick-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        .stat-card {
+            background: rgba(0,0,0,0.4);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1rem;
+            text-align: center;
+        }
+        .stat-card .label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+        .stat-card .value {
+            font-size: 1.1rem;
+            color: var(--gold);
+            font-weight: 600;
+            margin-top: 0.25rem;
+        }
+        .formula-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        .formula-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1rem;
+        }
+        .formula-card h4 {
+            color: var(--gold);
+            font-family: var(--font-heading);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+        .formula-card code {
+            display: block;
+            background: var(--bg-tertiary);
+            padding: 0.5rem;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            color: var(--gold-light);
+        }
+        .section-divider {
+            display: flex;
+            align-items: center;
+            margin: 3rem 0 2rem;
+            gap: 1rem;
+        }
+        .section-divider h2 {
+            font-family: var(--font-gothic);
+            font-size: 2rem;
+            color: var(--gold);
+            white-space: nowrap;
+        }
+        .section-divider::after {
+            content: '';
+            flex: 1;
+            height: 2px;
+            background: linear-gradient(90deg, var(--gold-dark), transparent);
+        }
+        .progression-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+        }
+        .progression-table th,
+        .progression-table td {
+            padding: 1rem;
+            border: 1px solid var(--border-color);
+            text-align: left;
+        }
+        .progression-table th {
+            background: var(--bg-tertiary);
+            color: var(--gold);
+            font-family: var(--font-heading);
+            font-size: 0.9rem;
+        }
+        .progression-table td {
+            background: var(--bg-card);
+            color: var(--text-secondary);
+        }
+        .level-badge {
+            display: inline-block;
+            background: var(--gold-dark);
+            color: var(--bg-primary);
+            font-weight: 700;
+            width: 32px;
+            height: 32px;
+            line-height: 32px;
+            text-align: center;
+            border-radius: 50%;
+        }
+        .technique-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            font-size: 0.95rem;
+        }
+        .technique-table th {
+            background: var(--bg-tertiary);
+            color: var(--gold);
+            font-family: var(--font-heading);
+            padding: 0.75rem;
+            text-align: left;
+            border: 1px solid var(--border-color);
+        }
+        .technique-table td {
+            padding: 0.75rem;
+            border: 1px solid var(--border-color);
+            background: var(--bg-card);
+            color: var(--text-secondary);
+            vertical-align: top;
+        }
+        .technique-table tr:hover td {
+            background: rgba(212,175,55,0.05);
+        }
+        .technique-name {
+            color: var(--gold-light);
+            font-weight: 600;
+        }
+        .technique-cost {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+        .technique-action {
+            font-size: 0.8rem;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            background: var(--bg-tertiary);
+            color: var(--text-muted);
+        }
+        .ramos-intro {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .ramos-intro p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+        .ramos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        .ramo-card {
+            background: var(--bg-card);
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.3s;
+        }
+        .ramo-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        }
+        .ramo-card.colosso { border-color: var(--ramo-colosso); }
+        .ramo-card.berserker { border-color: var(--ramo-berserker); }
+        .ramo-card.general { border-color: var(--ramo-general); }
+        .ramo-card h3 {
+            font-family: var(--font-heading);
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+        .ramo-card.colosso h3 { color: var(--ramo-colosso); }
+        .ramo-card.berserker h3 { color: var(--ramo-berserker); }
+        .ramo-card.general h3 { color: var(--ramo-general); }
+        .ramo-card .subtitle {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+        }
+        .ramo-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        .marca-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
+            overflow: hidden;
+        }
+        .marca-header {
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .marca-header.colosso { background: linear-gradient(135deg, var(--ramo-colosso-dark), transparent); }
+        .marca-header.berserker { background: linear-gradient(135deg, var(--ramo-berserker-dark), transparent); }
+        .marca-header.general { background: linear-gradient(135deg, var(--ramo-general-dark), transparent); }
+        .marca-header h4 {
+            font-family: var(--font-heading);
+            font-size: 1.1rem;
+            margin-bottom: 0.25rem;
+        }
+        .marca-header.colosso h4 { color: var(--ramo-colosso); }
+        .marca-header.berserker h4 { color: var(--ramo-berserker); }
+        .marca-header.general h4 { color: var(--ramo-general); }
+        .marca-header .quote {
+            font-style: italic;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+        .marca-body {
+            padding: 1.5rem;
+        }
+        .marca-body p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+        .marca-effect {
+            background: var(--bg-tertiary);
+            border-left: 3px solid var(--gold-dark);
+            padding: 0.75rem 1rem;
+            margin-bottom: 0.5rem;
+            border-radius: 0 8px 8px 0;
+        }
+        .marca-effect p {
+            margin: 0;
+            font-size: 0.9rem;
+        }
+        .tier-section {
+            margin: 2rem 0;
+        }
+        .tier-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--gold-dark);
+        }
+        .tier-header h3 {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            color: var(--gold);
+        }
+        .tier-badge {
+            background: var(--gold-dark);
+            color: var(--bg-primary);
+            font-weight: 700;
+            padding: 0.25rem 0.75rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+        }
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.5rem;
+        }
+        .tech-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        .tech-card-header {
+            padding: 1rem 1.25rem;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .tech-card-header.colosso { background: linear-gradient(135deg, var(--ramo-colosso-dark), transparent); }
+        .tech-card-header.berserker { background: linear-gradient(135deg, var(--ramo-berserker-dark), transparent); }
+        .tech-card-header.general { background: linear-gradient(135deg, var(--ramo-general-dark), transparent); }
+        .tech-card-header h4 {
+            font-family: var(--font-heading);
+            font-size: 1rem;
+        }
+        .tech-card-header.colosso h4 { color: var(--ramo-colosso); }
+        .tech-card-header.berserker h4 { color: var(--ramo-berserker); }
+        .tech-card-header.general h4 { color: var(--ramo-general); }
+        .tech-card-header .cost {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            background: rgba(0,0,0,0.3);
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+        }
+        .tech-card-body {
+            padding: 1.25rem;
+        }
+        .tech-card-body p, .tech-card-body li {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-bottom: 0.5rem;
+        }
+        .tech-card-body ul {
+            margin: 0.5rem 0;
+            padding-left: 1.25rem;
+        }
+        .ultimate-card {
+            background: linear-gradient(135deg, rgba(212,175,55,0.1), var(--bg-card));
+            border: 2px solid var(--gold);
+            border-radius: 16px;
+            margin: 1.5rem 0;
+            overflow: hidden;
+        }
+        .ultimate-header {
+            padding: 1.25rem 1.5rem;
+            border-bottom: 1px solid var(--gold-dark);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .ultimate-header.colosso { background: linear-gradient(135deg, var(--ramo-colosso-dark), transparent); }
+        .ultimate-header.berserker { background: linear-gradient(135deg, var(--ramo-berserker-dark), transparent); }
+        .ultimate-header.general { background: linear-gradient(135deg, var(--ramo-general-dark), transparent); }
+        .ultimate-header h4 {
+            font-family: var(--font-heading);
+            font-size: 1.3rem;
+        }
+        .ultimate-header.colosso h4 { color: var(--ramo-colosso); }
+        .ultimate-header.berserker h4 { color: var(--ramo-berserker); }
+        .ultimate-header.general h4 { color: var(--ramo-general); }
+        .ultimate-badge {
+            background: var(--gold);
+            color: var(--bg-primary);
+            font-weight: 700;
+            padding: 0.25rem 0.75rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+        }
+        .ultimate-quote {
+            font-style: italic;
+            color: var(--gold-light);
+            padding: 1rem 1.5rem;
+            background: rgba(0,0,0,0.2);
+            border-left: 3px solid var(--gold);
+        }
+        .ultimate-body {
+            padding: 1.5rem;
+        }
+        .ultimate-body h5 {
+            color: var(--gold);
+            font-family: var(--font-heading);
+            margin: 1rem 0 0.5rem;
+        }
+        .ultimate-body p, .ultimate-body li {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+        .ultimate-body ul {
+            margin: 0.5rem 0;
+            padding-left: 1.25rem;
+        }
+        .ultimate-cost {
+            background: rgba(139,0,0,0.2);
+            border: 1px solid rgba(220,38,38,0.3);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-top: 1rem;
+        }
+        .ultimate-cost h5 {
+            color: #ef4444;
+        }
+        .frenesi-box {
+            background: linear-gradient(135deg, rgba(239,68,68,0.1), rgba(127,29,29,0.05));
+            border: 2px solid var(--ramo-berserker);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+        }
+        .frenesi-box h4 {
+            color: var(--ramo-berserker);
+            font-family: var(--font-heading);
+            margin-bottom: 0.5rem;
+        }
+        .frenesi-box p, .frenesi-box li {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        .formacao-box {
+            background: rgba(0,0,0,0.3);
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 0.5rem 0;
+        }
+        .formacao-box h5 {
+            color: var(--ramo-general);
+            font-size: 0.95rem;
+            margin-bottom: 0.5rem;
+        }
+        .class-nav {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
+        }
+        .class-nav a {
+            color: var(--gold);
+            text-decoration: none;
+            padding: 0.75rem 1.5rem;
+            border: 1px solid var(--gold-dark);
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+        .class-nav a:hover {
+            background: var(--gold-dark);
+            color: var(--bg-primary);
+        }
+    
+        .techniques-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+        .technique-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1rem;
+            transition: all 0.3s;
+        }
+        .technique-card:hover {
+            border-color: var(--gold-dark);
+            transform: translateY(-2px);
+        }
+        .technique-card h4 {
+            color: var(--gold);
+            font-family: var(--font-heading);
+            font-size: 1rem;
+            margin-bottom: 0.25rem;
+        }
+        .technique-card .tech-meta {
+            display: block;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+        }
+        .technique-card p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.5;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <button class="menu-toggle">☰ Menu</button>
+    <div class="app-container">
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <a href="../../index.html" class="sidebar-logo">Khalkaria</a>
+                <div class="sidebar-subtitle">Sistema de Regras</div>
+                <div class="sidebar-ornament"><span>◆</span></div>
+            </div>
+            <div class="nav-section">
+                <div class="nav-section-title">Fundamentos</div>
+                <a href="../../index.html" class="nav-link">🏠 Início</a>
+                <a href="../sistema.html" class="nav-link">📜 Sistema Base</a>
+                <a href="../condicoes.html" class="nav-link">⚡ Condições</a>
+                <a href="../magias.html" class="nav-link">✨ Magias</a>
+
+            </div>
+            <div class="nav-section">
+                <div class="nav-section-title">Criação de Personagem</div>
+                <a href="../criacao.html" class="nav-link">🎭 Criação</a>
+                <a href="../racas.html" class="nav-link">👤 Raças</a>
+                <a href="../classes.html" class="nav-link">⚔️ Classes</a>
+                <a href="../origens.html" class="nav-link">📜 Origens</a>
+                <a href="../limiar.html" class="nav-link">🌟 O Limiar</a>
+            </div>
+            <div class="nav-section">
+                <div class="nav-section-title">Classes</div>
+                <a href="espadachim.html" class="nav-link nav-link-sub">⚔️ Espadachim</a>
+                <a href="monge.html" class="nav-link nav-link-sub">👊 Monge</a>
+                <a href="batedor.html" class="nav-link nav-link-sub">🏹 Batedor</a>
+                <a href="alquimista.html" class="nav-link nav-link-sub">⚗️ Alquimista</a>
+                <a href="teurgo.html" class="nav-link nav-link-sub">✨ Teurgo</a>
+                <a href="artilheiro.html" class="nav-link nav-link-sub">💥 Artilheiro</a>
+                <a href="brutalista.html" class="nav-link nav-link-sub active">🪓 Brutalista</a>
+            </div>
+        </nav>
+        
+        <main class="main-content">
+            <section class="class-hero">
+                <h1 class="class-title">Brutalista</h1>
+                <div class="hero-image">
+                    <img src="../../images/brutalista.png" alt="Brutalista">
+                </div>
+                <div class="hero-content">
+                    <p class="hero-tagline">
+                        "Alguns nasceram para a guerra. Você é um deles. Seu corpo é sua arma. Sua resistência é sua armadura. Sua fúria é o que te mantém de pé quando outros já teriam caído."
+                    </p>
+                    <p class="hero-desc">
+                        Não importa se foi nos campos de batalha das guerras territoriais, ou nas ruas brutais onde só os fortes sobrevivem - você aprendeu que a melhor defesa é fazer o inimigo ter medo de atacar. Cicatrizes contam histórias. As suas contam uma biblioteca inteira.
+                    </p>
+                    <div class="quick-stats">
+                        <div class="stat-card">
+                            <div class="label">Atributos</div>
+                            <div class="value">For, Con, Des</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="label">CD</div>
+                            <div class="value">10 + For + Con</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="label">Estilo</div>
+                            <div class="value">Tanque e Corpo a Corpo</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <div class="section-divider"><h2>⚔️ Treinamento</h2></div>
+            <div class="ramos-intro">
+                <p><strong>Você começa treinado em:</strong> Fortitude, Atacar</p>
+                <p><strong>Escolha (1 + Mod. Inteligência) perícias:</strong> Defender, Movimento, Iniciativa, Interação Social (Intimidação), Medicina</p>
+            </div>
+
+            <div class="section-divider"><h2>📊 Status Iniciais</h2></div>
+            <div class="formula-grid">
+                <div class="formula-card">
+                    <h4>❤️ Saúde</h4>
+                    <code>(3 × Nível) + (Mod.CON × Nível × 6)</code>
+                </div>
+                <div class="formula-card">
+                    <h4>⚡ Stamina</h4>
+                    <code>(2 × Nível) + ([Mod.FOR+Mod.DES/2] × Nível × 3)</code>
+                </div>
+                <div class="formula-card">
+                    <h4>✨ Éter</h4>
+                    <code>(1 × Nível) + ([Mod.INT+Mod.SAB/2] × Nível × 2)</code>
+                </div>
+                <div class="formula-card">
+                    <h4>🛡️ Evasão Ativa</h4>
+                    <code>14 + Mod.Des + Prof.Defender + 1d10</code>
+                </div>
+                <div class="formula-card">
+                    <h4>🛡️ Evasão Passiva</h4>
+                    <code>14 + Mod.Destreza</code>
+                </div>
+            </div>
+
+            <div class="section-divider"><h2>📈 Progressão</h2></div>
+            <table class="progression-table">
+                <thead><tr><th>Nível</th><th>Conteúdo</th></tr></thead>
+                <tbody>
+                    <tr><td><span class="level-badge">1</span></td><td>3 Técnicas</td></tr>
+                    <tr><td><span class="level-badge">2</span></td><td>4 Técnicas, Técnica de Ramo (Tier 1)</td></tr>
+                    <tr><td><span class="level-badge">3</span></td><td>5 Técnicas, 1 Marca</td></tr>
+                    <tr><td><span class="level-badge">4</span></td><td>6 Técnicas, Técnica de Ramo (Tier 1, 2), 2 Marcas</td></tr>
+                    <tr><td><span class="level-badge">5</span></td><td>7 Técnicas, Técnica de Ramo (Tier 1, 2 e 3), 3 Marcas</td></tr>
+                </tbody>
+            </table>
+
+            <div class="section-divider"><h2>⚡ Técnicas</h2></div>
+            <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">Toda classe possui técnicas, você pode reatribuí-las livremente ao realizar um descanso longo. <strong>Você possui 3 Técnicas + Nível.</strong></p>
+            <div class="techniques-grid">
+                <div class="technique-card">
+                    <h4>Bruto</h4>
+                    <span class="tech-meta">Passiva</span>
+                    <p>Seus ataques corpo a corpo ignoram 2 de Armadura.</p>
+                </div>
+                <div class="technique-card">
+                    <h4>Ímpeto de Sangue</h4>
+                    <span class="tech-meta">Passiva</span>
+                    <p>Ao derrubar um inimigo a 0 de Saúde, seu próximo ataque neste turno tem +2 Atacar e +1d6 de dano.</p>
+                </div>
+                <div class="technique-card">
+                    <h4>Finalizar</h4>
+                    <span class="tech-meta">Passiva</span>
+                    <p>Ao causar dano, a criatura morre instantaneamente se estiver com Saúde ≤ seu Mod. Força.</p>
+                </div>
+                <div class="technique-card">
+                    <h4>Inabalável</h4>
+                    <span class="tech-meta">Passiva</span>
+                    <p>Você tem Vantagem em testes de Fortitude ou Movimento ao ser movido contra sua vontade.</p>
+                </div>
+                <div class="technique-card">
+                    <h4>Agarrão</h4>
+                    <span class="tech-meta">Passiva</span>
+                    <p>+2 em testes de Movimento ao realizar Agarrar. Alvos agarrados recebem 1d6+Mod.For de dano ao sofrer ataques.</p>
+                </div>
+                <div class="technique-card">
+                    <h4>Casca Grossa</h4>
+                    <span class="tech-meta">Passiva</span>
+                    <p>Você tem Armadura (Ar) natural equivalente ao seu Mod. Fortitude.</p>
+                </div>
+                <div class="technique-card">
+                    <h4>Empurrão</h4>
+                    <span class="tech-meta">Passiva</span>
+                    <p>Ao empurrar um alvo com sucesso, ele recebe 1d6 de dano por cada 3m empurrado. +2d6 se colidir com obstáculo.</p>
+                </div>
+                <div class="technique-card">
+                    <h4>Destruir</h4>
+                    <span class="tech-meta">Ação Livre • 2+ Stamina</span>
+                    <p>Ao acertar ataque corpo a corpo, adicione +1d6 de dano por 2 Stamina gastos. Máximo = Nível.</p>
+                </div>
+                <div class="technique-card">
+                    <h4>Ranger os Dentes</h4>
+                    <span class="tech-meta">Reação • 2+ Stamina</span>
+                    <p>Ao receber dano, reduza em 1d6 por 2 Stamina gastos. Máximo = Nível.</p>
+                </div>
+                <div class="technique-card">
+                    <h4>Provocar</h4>
+                    <span class="tech-meta">1 Ação • 2 Stamina</span>
+                    <p>Escolha um inimigo em até 9m que possa te ouvir. Vontade ou deve te atacar no próximo turno.</p>
+                </div>
+                <div class="technique-card">
+                    <h4>Hoje Não</h4>
+                    <span class="tech-meta">1 Ação • 2 Stamina</span>
+                    <p>1x/descanso longo: ao ser reduzido a 25% HP ou menos, recupere 2d8+Mod.Con de Saúde.</p>
+                </div>
+                <div class="technique-card">
+                    <h4>Gancho</h4>
+                    <span class="tech-meta">1 Ação • 3 Stamina</span>
+                    <p>Seu próximo ataque corpo a corpo <em>Atordoa</em> o alvo se ele falhar em Fortitude.</p>
+                </div>
+                <div class="technique-card">
+                    <h4>O Próximo</h4>
+                    <span class="tech-meta">1 Ação • 3 Stamina</span>
+                    <p>Escolha um alvo visível: +2 Atacar contra ele até fim do combate. Ao errar, +1 Atacar cumulativo (max +3). Se morrer, pode trocar o alvo por 2 Stamina.</p>
+                </div>
+                <div class="technique-card">
+                    <h4>Golpe Desconcertado</h4>
+                    <span class="tech-meta">1 Ação • 3 Stamina</span>
+                    <p>Declare antes de atacar: Vantagem no próximo ataque. Se errar, fica <em>Exposto</em> até seu próximo turno.</p>
+                </div>
+                <div class="technique-card">
+                    <h4>Investida</h4>
+                    <span class="tech-meta">2 Ações • 3 Stamina</span>
+                    <p>Investir em linha reta (4,5m-9m). Alvos no caminho: Fortitude ou 1d6+Mod.For de dano e ficam <em>Caídos</em>.</p>
+                </div>
+            </div>
+
+            <div class="section-divider"><h2>🌿 Ramos</h2></div>
+            <div class="ramos-intro">
+                <p>Os ramos são caminhos, características únicas do seu personagem. Diferente das técnicas, são <strong>irreversíveis</strong>.</p>
+                <p><strong>Marcas de Ramo:</strong> Que construiu ao longo da sua vida, moldando sua PERSONALIDADE.</p>
+                <p><strong>Técnicas de Ramo:</strong> Que aprendeu ao longo do seu treinamento definindo seu ESTILO DE AGIR.</p>
+                <p style="margin-bottom: 0;">É extremamente aceitável que você <strong>misture os 3 ramos</strong>. Ao longo da criação você escolherá: <strong>3 Marcas</strong> e <strong>6 Técnicas de Ramo</strong> (3 no Tier 1, 2 no Tier 2 e 1 no Tier 3).</p>
+            </div>
+            <div class="ramos-grid">
+                <div class="ramo-card colosso"><h3>🛡️ Ramo do Colosso</h3><div class="subtitle">Tanque e Protetor</div><p>Você não aprendeu a desviar de golpes - aprendeu a recebê-los e continuar de pé. Onde outros veem perigo, você vê seu propósito. Seu corpo é a muralha que separa seus aliados da morte.</p></div>
+                <div class="ramo-card berserker"><h3>🔥 Ramo do Berserker</h3><div class="subtitle">Dano e Fúria</div><p>A primeira vez que você sentiu a fúria, achou que ia morrer. O sangue fervendo, a visão vermelha, o mundo reduzido a um único pensamento: destruir. A raiva não é sua fraqueza - é seu combustível.</p></div>
+                <div class="ramo-card general"><h3>👑 Ramo do General</h3><div class="subtitle">Utilidade e Tática</div><p>Guerras não são vencidas pelo mais forte - são vencidas pelo mais preparado. Força bruta é ferramenta, não estratégia. O verdadeiro guerreiro lê o combate como outros leem livros.</p></div>
+            </div>
+
+            <div class="section-divider"><h2>🔥 Marcas de Ramo</h2></div>
+            <h3 style="color: var(--ramo-colosso); font-family: var(--font-heading); margin: 2rem 0 1rem;">🛡️ Marcas do Colosso</h3>
+            <div class="marca-card"><div class="marca-header colosso"><h4>Cicatrizes de Ferro</h4><div class="quote">"Cada golpe que você recebe te ensina a receber o próximo melhor."</div></div><div class="marca-body"><div class="marca-effect"><p>Para cada 5 combates ganhos ao longo de sua vida, você ganha <strong>+1 Fortitude permanente</strong>. Ao chegar em +5, essa habilidade fica supérflua.</p></div><div class="marca-effect"><p>Ao receber dano protegendo um aliado, você ganha <strong>+1 de Stamina</strong>.</p></div></div></div>
+            <div class="marca-card"><div class="marca-header colosso"><h4>Imortal</h4><div class="quote">"Cada ferida conta uma história. Cada história te ensinou a sobreviver."</div></div><div class="marca-body"><div class="marca-effect"><p>Enquanto estiver com <strong>metade ou menos da vida</strong>: +2 Armadura (Ar) Natural.</p></div><div class="marca-effect"><p>Ao ser reduzido a 0 de Saúde, pode escolher <strong>não morrer</strong> como ação livre voltando a 1 de Saúde. Ao fazer isso, você ganha +1 de <em>Exaustão</em>.</p></div></div></div>
+
+            <h3 style="color: var(--ramo-berserker); font-family: var(--font-heading); margin: 2rem 0 1rem;">🔥 Marcas do Berserker</h3>
+            <div class="marca-card"><div class="marca-header berserker"><h4>Contador de Corpos</h4><div class="quote">"Você não lembra dos rostos. Só do número."</div></div><div class="marca-body"><div class="marca-effect"><p>Para cada 10 criaturas que você matou, ganha <strong>+1 permanente em Atacar</strong>. Ao chegar em +5, essa habilidade fica supérflua.</p></div><div class="marca-effect"><p>Ao matar uma criatura <em>brutalmente</em>, você ganha <strong>+1 de Stamina</strong> e perde 1 de Éter.</p></div></div></div>
+            <div class="marca-card"><div class="marca-header berserker"><h4>Vício em Sangue</h4><div class="quote">"Sangue, presente em nosso nascimento e morte."</div></div><div class="marca-body"><div class="marca-effect"><p>Ao acertar um ataque corpo a corpo, seu próximo ataque tem <strong>+1 Atacar cumulativo</strong> (máx +3). Ao errar, o bônus é reduzido a 0.</p></div><div class="marca-effect"><p>Ao estar com +3 em Atacar, seus acertos críticos causam <strong>+1d10 de dano adicional</strong>.</p></div></div></div>
+
+            <h3 style="color: var(--ramo-general); font-family: var(--font-heading); margin: 2rem 0 1rem;">👑 Marcas do General</h3>
+            <div class="marca-card"><div class="marca-header general"><h4>Olhos do Estrategista</h4><div class="quote">"Você não vê pessoas. Vê peças em um tabuleiro."</div></div><div class="marca-body"><div class="marca-effect"><p>Para cada combate vencido onde você usou Comando Tático ou Leitura de Combate pelo menos uma vez, você ganha <strong>+1 permanente em Percepção</strong>. Ao chegar em +5, essa habilidade fica supérflua.</p></div><div class="marca-effect"><p>Combates vencidos onde nenhum aliado caiu <em>Morrendo</em> recuperam <strong>1d6 de Stamina</strong> a todos os aliados.</p></div></div></div>
+            <div class="marca-card"><div class="marca-header general"><h4>Plano do General</h4><div class="quote">"Um bom General é aquele que sempre tem um plano, até quando o primeiro dá errado."</div></div><div class="marca-body"><div class="marca-effect"><p>Você pode elaborar um <strong>plano de combate</strong> e designar um objetivo. Se a condição ocorrer conforme o plano, você e aliados em até 9m ganham UMA recompensa: Vantagem em um teste, +4 Iniciativa, ou inimigos ficam <em>Expostos</em> por 1 rodada.</p></div></div></div>
+
+            <div class="section-divider"><h2>⚡ Técnicas de Ramo</h2></div>
+            <div class="tier-section">
+                <div class="tier-header"><h3>Tier 1</h3><span class="tier-badge">Nível 2+</span></div>
+                <h4 style="color: var(--ramo-colosso); margin: 1.5rem 0 1rem;">🛡️ Colosso</h4>
+                <div class="tech-grid">
+                    <div class="tech-card"><div class="tech-card-header colosso"><h4>Muralha Viva</h4><span class="cost">Passiva</span></div><div class="tech-card-body"><p>Você se torna <strong>Treinado em Defender</strong>. Se já for Treinado, se torna Experiente.</p><p>O treinamento da sua perícia Defender aumenta de <strong>3 em 3</strong> (ao invés de 2 em 2).</p></div></div>
+                    <div class="tech-card"><div class="tech-card-header colosso"><h4>Guardião</h4><span class="cost">Passiva</span></div><div class="tech-card-body"><p>Quando um aliado adjacente (até 1,5m) for atacado, você pode usar sua reação para <strong>se tornar o alvo do ataque</strong>.</p><p>Você pode usar Defender normalmente contra esse ataque.</p></div></div>
+                    <div class="tech-card"><div class="tech-card-header colosso"><h4>Postura Defensiva</h4><span class="cost">1 Ação, 3 Stamina</span></div><div class="tech-card-body"><p>Até o início do próximo turno: <strong>+2 Defender</strong>, <strong>+2 Ar Natural</strong>, não pode ser Derrubado ou Empurrado.</p><p><strong>Porém:</strong> Não pode se mover e -2 em Atacar.</p></div></div>
+                </div>
+                <h4 style="color: var(--ramo-berserker); margin: 1.5rem 0 1rem;">🔥 Berserker</h4>
+                <div class="tech-grid">
+                    <div class="tech-card"><div class="tech-card-header berserker"><h4>Fúria Sanguinária</h4><span class="cost">Passiva</span></div><div class="tech-card-body"><p>Você se torna <strong>Treinado em Atacar</strong>. Se já for Treinado, se torna Experiente.</p><p>Dano adicional por saúde perdida: Abaixo de 75%: +1 | Abaixo de 50%: +3 | Abaixo de 25%: +5</p></div></div>
+                    <div class="tech-card"><div class="tech-card-header berserker"><h4>Frenesi</h4><span class="cost">3 Ações, 3 Stamina</span></div><div class="tech-card-body"><p>Entra em Frenesi até fim do combate: <strong>+2 Atacar</strong>, <strong>+1 dado de dano</strong>, Resistência a Dano Ordinário.</p><p><strong>Porém:</strong> Não pode Defender, fica descontrolado, deve atacar toda rodada. 1x/descanso longo (2x no nível 3).</p></div></div>
+                    <div class="tech-card"><div class="tech-card-header berserker"><h4>Retaliação Selvagem</h4><span class="cost">Reação</span></div><div class="tech-card-body"><p>Ao Retaliar: <strong>+2 Atacar</strong> e <strong>+1d6 dano</strong>.</p><p>Se abaixo de 50% HP: <strong>+4 Atacar</strong> e <strong>+2d6 dano</strong>.</p></div></div>
+                </div>
+                <h4 style="color: var(--ramo-general); margin: 1.5rem 0 1rem;">👑 General</h4>
+                <div class="tech-grid">
+                    <div class="tech-card"><div class="tech-card-header general"><h4>Veterano de Guerra</h4><span class="cost">Passiva</span></div><div class="tech-card-body"><p>Você se torna <strong>Treinado em Iniciativa</strong>. Não pode ser <em>Desprevenido</em>.</p><p>No primeiro turno de qualquer combate, você e aliados em até 9m têm <strong>+2 em Iniciativa</strong>.</p></div></div>
+                    <div class="tech-card"><div class="tech-card-header general"><h4>Comando Tático</h4><span class="cost">1 Ação, 2 Stamina</span></div><div class="tech-card-body"><p>Aliado em até 9m pode como reação: <strong>Atacar</strong> (+2), <strong>Mover</strong> (sem oportunidade), ou <strong>Defender</strong> (+4). Máximo 2x/rodada.</p></div></div>
+                    <div class="tech-card"><div class="tech-card-header general"><h4>Leitura de Combate</h4><span class="cost">1 Ação, 2 Stamina</span></div><div class="tech-card-body"><p>Role Percepção vs Enganação de uma criatura. <strong>Sucesso:</strong> Descubra saúde, próxima ação, ou fraqueza tática (+2 Atacar). <strong>Falha:</strong> Não pode usar contra ela neste combate.</p></div></div>
+                </div>
+            </div>
+
+            <div class="tier-section">
+                <div class="tier-header"><h3>Tier 2</h3><span class="tier-badge">Nível 4+</span></div>
+                <h4 style="color: var(--ramo-colosso); margin: 1.5rem 0 1rem;">🛡️ Colosso</h4>
+                <div class="tech-grid">
+                    <div class="tech-card"><div class="tech-card-header colosso"><h4>Fortaleza de Aço</h4><span class="cost">Reação, 2 Stamina</span></div><div class="tech-card-body"><p>Reduza dano recebido em <strong>1d8+Mod.Con</strong>. Em Postura Defensiva: <strong>2d8+Mod.Con</strong>.</p><p>Usos por combate: Mod. Constituição (mínimo 1).</p></div></div>
+                    <div class="tech-card"><div class="tech-card-header colosso"><h4>Resistência Adaptável</h4><span class="cost">Passiva / 3 Stamina</span></div><div class="tech-card-body"><p>Você possui <strong>5 Armadura Específica (Ae)</strong> de um tipo escolhido.</p><p>Ao receber dano de tipo diferente, pode gastar 3 Stamina para trocar instantaneamente.</p></div></div>
+                </div>
+                <h4 style="color: var(--ramo-berserker); margin: 1.5rem 0 1rem;">🔥 Berserker</h4>
+                <div class="tech-grid">
+                    <div class="tech-card"><div class="tech-card-header berserker"><h4>Epifania Sanguínea</h4><span class="cost">Passiva</span></div><div class="tech-card-body"><p>Ao matar criatura: recupera <strong>1d6+Mod.Con HP</strong>. Ao sofrer crítico: próximo ataque causa <strong>+1d10</strong>.</p><p><strong>Em Frenesi:</strong> Esses bônus dobram.</p></div></div>
+                    <div class="tech-card"><div class="tech-card-header berserker"><h4>Ignorar Dor</h4><span class="cost">Reação, 3 Stamina</span></div><div class="tech-card-body"><p>Quando dano te deixaria Inconsciente: permaneça com 1 HP. Ganha <strong>+4 Atacar</strong> e <strong>+2d6 dano</strong> até fim do próximo turno. 1x/descanso longo.</p></div></div>
+                </div>
+                <h4 style="color: var(--ramo-general); margin: 1.5rem 0 1rem;">👑 General</h4>
+                <div class="tech-grid">
+                    <div class="tech-card"><div class="tech-card-header general"><h4>Formação de Combate</h4><span class="cost">2 Ações, 3 Stamina</span></div><div class="tech-card-body"><p><strong>Precisão:</strong> 2+: +2 Atacar | 3+: +1 Atacar | 4+: +1,5m Movimento | 5+: Acerto dá +2 Atacar ao próximo aliado</p><p><strong>Degolar:</strong> 2+: +1 Dano | 3+: +1d6 | 4+: +1d6 | 5+: Execução dá 1 ação grátis</p></div></div>
+                    <div class="tech-card"><div class="tech-card-header general"><h4>O Experiente</h4><span class="cost">Passiva</span></div><div class="tech-card-body"><p>1º ataque recebido de criatura: +2 Defender. Após ser atacado, <strong>aprende ela</strong>: +1 Atacar/Defender cumulativo (max +3).</p><p>1x/turno ao acertar: +1d6 dano, Desarmar, ou -2 no próximo ataque dela.</p></div></div>
+                </div>
+            </div>
+
+            <div class="tier-section">
+                <div class="tier-header"><h3>Tier 3 — Ultimates</h3><span class="tier-badge">Nível 5 • 1x/Dia</span></div>
+                <div class="ultimate-card">
+                    <div class="ultimate-header colosso"><h4>🛡️ A Última Parede</h4><div><span class="ultimate-badge">ULTIMATE</span><span style="margin-left: 0.5rem; color: var(--text-muted); font-size: 0.85rem;">3 Ações, 5 Stamina</span></div></div>
+                    <div class="ultimate-quote">"Enquanto estiver vivo, Eu Não Cairei."</div>
+                    <div class="ultimate-body">
+                        <p>Runas douradas surgem em sua armadura. Por <strong>1 minuto</strong>: aumenta tamanho, não pode ser movido, Armadura dobra, Resistência a todos os danos, Guardião funciona em 4,5m como ação livre, aliados em 4,5m ganham +4 Defender e +2 Resistência. 1x/combate pode redirecionar dano fatal de aliado (até 9m) para você.</p>
+                        <div class="ultimate-cost"><h5>💀 O Custo</h5><p>Não pode atacar durante o efeito. Ao acabar, ganha <em>Exaustão 1</em>.</p></div>
+                    </div>
+                </div>
+                <div class="ultimate-card">
+                    <div class="ultimate-header berserker"><h4>🔥 Despertar A Besta</h4><div><span class="ultimate-badge">ULTIMATE</span><span style="margin-left: 0.5rem; color: var(--text-muted); font-size: 0.85rem;">1 Ação, 5 Stamina</span></div></div>
+                    <div class="ultimate-quote">"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHHHH"</div>
+                    <div class="ultimate-body">
+                        <p><strong>Pré-requisito:</strong> Abaixo de 25% HP. Por <strong>3 rodadas</strong>: +3d6 dano, Vantagem em ataques, movimento dobra, imune a Amedrontado/Enfeitiçado/Atordoado/Inconsciente, dano fatal te deixa com 1 HP. Ao matar: 2d10 HP, move 4,5m e ataca como ação livre.</p>
+                        <div class="ultimate-cost"><h5>💀 O Custo</h5><p>Ao final das 3 rodadas, cai <strong>Inconsciente automaticamente</strong> por 1 minuto.</p></div>
+                    </div>
+                </div>
+                <div class="ultimate-card">
+                    <div class="ultimate-header general"><h4>👑 Campo de Batalha</h4><div><span class="ultimate-badge">ULTIMATE</span><span style="margin-left: 0.5rem; color: var(--text-muted); font-size: 0.85rem;">3 Ações, 5 Stamina</span></div></div>
+                    <div class="ultimate-quote">"A guerra, marca qualquer um."</div>
+                    <div class="ultimate-body">
+                        <p>Aliados em até <strong>18m</strong> por <strong>1 minuto</strong>: +3 Atacar/Defender/Resistência, imunes a Amedrontado/Enfeitiçado, recuperam 2d6 HP e 1d6 Stamina. Podem mover como ação livre sem oportunidade. <strong>Insistir:</strong> 1x cada aliado repete ataque errado. <strong>Passo Final:</strong> 1x sua reação faz todos atacarem o mesmo alvo. Comando Tático fica grátis.</p>
+                        <div class="ultimate-cost"><h5>💀 O Custo</h5><p>Cada vez que aliado afetado sofrer dano, você perde <strong>1 de Éter</strong>.</p></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="class-nav">
+                <a href="artilheiro.html">← Artilheiro</a>
+                <a href="../classes.html">Todas as Classes</a>
+                <a href="espadachim.html">Espadachim →</a>
+            </div>
+        </main>
+    </div>
+    <script src="../../js/main.js"></script>
+</body>
+</html>

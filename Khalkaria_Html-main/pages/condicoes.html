@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Condições - Khalkaria RPG</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400&family=UnifrakturMaguntia&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .condicao-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1.25rem;
+            margin-bottom: 1rem;
+            border-left: 4px solid var(--gold-dark);
+            scroll-margin-top: 80px;
+        }
+        .condicao-card h4 {
+            color: var(--gold);
+            font-family: var(--font-heading);
+            margin: 0 0 0.5rem 0;
+            font-size: 1.15rem;
+        }
+        .condicao-card p, .condicao-card li {
+            margin: 0.3rem 0;
+            color: var(--text-secondary);
+        }
+        .condicao-card ul {
+            margin: 0.5rem 0;
+            padding-left: 1.25rem;
+        }
+        .condicao-card .formula {
+            background: var(--bg-tertiary);
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            font-family: monospace;
+            margin: 0.5rem 0;
+            text-align: center;
+            color: var(--gold-light);
+        }
+        .cat-critico .condicao-card { border-left-color: #f87171; }
+        .cat-combate .condicao-card { border-left-color: #fbbf24; }
+        .cat-movimento .condicao-card { border-left-color: #60a5fa; }
+        .cat-mental .condicao-card { border-left-color: #c084fc; }
+        .cat-fisico .condicao-card { border-left-color: #4ade80; }
+        .cat-sensorial .condicao-card { border-left-color: #2dd4bf; }
+        
+        .condicoes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <button class="menu-toggle">☰ Menu</button>
+    
+    <div class="app-container">
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <a href="../index.html" class="sidebar-logo">Khalkaria</a>
+                <div class="sidebar-subtitle">Sistema de Regras</div>
+                <div class="sidebar-ornament"><span>◆</span></div>
+            </div>
+            <div class="nav-section">
+                <div class="nav-section-title">Fundamentos</div>
+                <a href="../index.html" class="nav-link">🏠 Início</a>
+                <a href="sistema.html" class="nav-link">📜 Sistema Base</a>
+                <a href="condicoes.html" class="nav-link active">⚡ Condições</a>
+                <a href="magias.html" class="nav-link">✨ Magias</a>
+            </div>
+            <div class="nav-section">
+                <div class="nav-section-title">Criação de Personagem</div>
+                <a href="criacao.html" class="nav-link">🎭 Criação</a>
+                <a href="racas.html" class="nav-link">👤 Raças</a>
+                <a href="classes.html" class="nav-link">⚔️ Classes</a>
+                <a href="origens.html" class="nav-link">📜 Origens</a>
+                <a href="limiar.html" class="nav-link">🌟 O Limiar</a>
+            </div>
+            <div class="nav-section">
+                <div class="nav-section-title">Classes</div>
+                <a href="classes/espadachim.html" class="nav-link nav-link-sub">⚔️ Espadachim</a>
+                <a href="classes/monge.html" class="nav-link nav-link-sub">👊 Monge</a>
+                <a href="classes/batedor.html" class="nav-link nav-link-sub">🏹 Batedor</a>
+                <a href="classes/alquimista.html" class="nav-link nav-link-sub">⚗️ Alquimista</a>
+                <a href="classes/teurgo.html" class="nav-link nav-link-sub">✨ Teurgo</a>
+                <a href="classes/artilheiro.html" class="nav-link nav-link-sub">💥 Artilheiro</a>
+                <a href="classes/brutalista.html" class="nav-link nav-link-sub">🪓 Brutalista</a>
+            </div>
+        </nav>
+        
+        <main class="main-content">
+            <h1>⚡ Condições<span class="ornament">◆ ◆ ◆</span></h1>
+            
+            <!-- ÍNDICE -->
+            <div class="sistema-index" id="indice">
+                <h2>📋 Navegação Rápida</h2>
+                <div class="index-grid">
+                    <div class="index-category">
+                        <div class="index-category-title"><span class="cat-icon">💀</span> Críticas</div>
+                        <div class="index-links">
+                            <a href="#morrendo">Morrendo</a>
+                            <a href="#inconsciente">Inconsciente</a>
+                            <a href="#exaurido">Exaurido</a>
+                            <a href="#oco">Oco</a>
+                            <a href="#exaustao">Exaustão 1-5</a>
+                            <a href="#desnutrido">Desnutrido X</a>
+                        </div>
+                    </div>
+                    <div class="index-category">
+                        <div class="index-category-title"><span class="cat-icon">⚔️</span> Combate</div>
+                        <div class="index-links">
+                            <a href="#exposto">Exposto</a>
+                            <a href="#sangramento">Sangramento X</a>
+                            <a href="#atordoado">Atordoado</a>
+                            <a href="#desorientado">Desorientado</a>
+                            <a href="#caido">Caído</a>
+                            <a href="#desprevenido">Desprevenido</a>
+                        </div>
+                    </div>
+                    <div class="index-category">
+                        <div class="index-category-title"><span class="cat-icon">🦶</span> Movimento</div>
+                        <div class="index-links">
+                            <a href="#sobrepeso-leve">Sobrepeso Leve</a>
+                            <a href="#sobrepeso-extremo">Sobrepeso Extremo</a>
+                            <a href="#lento">Lento X</a>
+                            <a href="#enraizado">Enraizado</a>
+                        </div>
+                    </div>
+                    <div class="index-category">
+                        <div class="index-category-title"><span class="cat-icon">🧠</span> Mentais</div>
+                        <div class="index-links">
+                            <a href="#confuso">Confuso</a>
+                            <a href="#amedrontado">Amedrontado</a>
+                            <a href="#enfeiticado">Enfeitiçado</a>
+                            <a href="#embriagado">Embriagado</a>
+                        </div>
+                    </div>
+                    <div class="index-category">
+                        <div class="index-category-title"><span class="cat-icon">🩸</span> Físicas</div>
+                        <div class="index-links">
+                            <a href="#envenenamento">Envenenamento</a>
+                            <a href="#em-chamas">Em Chamas</a>
+                            <a href="#enjoado">Enjoado</a>
+                            <a href="#paralisado">Paralisado</a>
+                            <a href="#adormecido">Adormecido</a>
+                        </div>
+                    </div>
+                    <div class="index-category">
+                        <div class="index-category-title"><span class="cat-icon">👁️</span> Sensoriais</div>
+                        <div class="index-links">
+                            <a href="#cego">Cego</a>
+                            <a href="#surdo">Surdo</a>
+                            <a href="#invisivel">Invisível</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- ===================== CONDIÇÕES CRÍTICAS ===================== -->
+            <section class="category-section cat-critico" id="criticas">
+                <div class="category-header">
+                    <div class="category-icon" style="background: linear-gradient(135deg, #3a1a1a, #1f0d0d); color: #f87171;">💀</div>
+                    <h2>Condições Críticas</h2>
+                </div>
+                
+                <div class="condicoes-grid">
+                    <div class="condicao-card" id="morrendo">
+                        <h4>Morrendo</h4>
+                        <ul>
+                            <li>Você está <a href="#inconsciente" class="keyword-link">Inconsciente</a>.</li>
+                            <li>Você recebe 10% da sua vida máxima de dano biológico por rodada, ao ultrapassar metade da sua vida máxima em negativos, você morre.</li>
+                        </ul>
+                        <div class="formula">Dano/Rodada = Vida Máxima × 0.1</div>
+                        <p>Um aliado pode gastar 2 ações para rolar um teste de <em>Medicina</em> (CD 20) para estabilizar você, negando o dano por rodada até você remover essa condição, ou ser atacado novamente.</p>
+                        <p><strong>Para remover:</strong> Você deve ser curado de modo que sua vida fique positiva.</p>
+                    </div>
+                    
+                    <div class="condicao-card" id="inconsciente">
+                        <h4>Inconsciente</h4>
+                        <ul>
+                            <li>Você perde o controle do seu corpo e está desmaiado.</li>
+                            <li>Qualquer teste de resistência é instantaneamente fracassado.</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="condicao-card" id="exaurido">
+                        <h4>Exaurido</h4>
+                        <p>Você está com 0 de Stamina, completamente exausto.</p>
+                        <ul>
+                            <li>Você não pode rolar perícias, encerra ao realizar qualquer tipo de descanso.</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="condicao-card" id="oco">
+                        <h4>Oco</h4>
+                        <p>Você está vazio por dentro, se manter motivado é um desafio e seus pensamentos estão desconexos da realidade.</p>
+                        <ul>
+                            <li>A cada perícia falha, você reduz 5 de Éter. Ao alcançar metade do seu éter máximo nos negativos, você perde seu personagem, que se torna do mestre.</li>
+                            <li>Você não consegue canalizar magias.</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="condicao-card" id="exaustao">
+                        <h4>Exaustão 1-5</h4>
+                        <p>Você está exausto, ações rotineiras se tornam cada vez mais difíceis.</p>
+                        <ul>
+                            <li><strong>Exaustão 1:</strong> Você tem desvantagem em testes físicos (Força, Destreza ou Constituição)</li>
+                            <li><strong>Exaustão 2:</strong> Você causa metade do seu dano total em todos seus ataques.</li>
+                            <li><strong>Exaustão 3:</strong> Você tem desvantagem em todos os testes e seu movimento é cortado pela metade.</li>
+                            <li><strong>Exaustão 4:</strong> Atributos reduzidos pela metade e seu movimento é zerado.</li>
+                            <li><strong>Exaustão 5:</strong> Morte.</li>
+                        </ul>
+                        <p>Ao realizar um descanso longo, você diminui 1 de exaustão.</p>
+                    </div>
+                    
+                    <div class="condicao-card" id="desnutrido">
+                        <h4>Desnutrido X</h4>
+                        <p>Você está faminto.</p>
+                        <ul>
+                            <li>Você tem desvantagem em testes físicos (Força, Destreza ou Constituição)</li>
+                            <li>Você gasta o dobro de Stamina para tudo.</li>
+                            <li>Você perde 10 × X de Saúde máxima.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- ===================== CONDIÇÕES DE COMBATE ===================== -->
+            <section class="category-section cat-combate" id="combate">
+                <div class="category-header">
+                    <div class="category-icon" style="background: linear-gradient(135deg, #3a2a1a, #1f150d); color: #fbbf24;">⚔️</div>
+                    <h2>Condições de Combate</h2>
+                </div>
+                
+                <div class="condicoes-grid">
+                    <div class="condicao-card" id="exposto">
+                        <h4>Exposto</h4>
+                        <ul>
+                            <li>O primeiro ataque que acertar essa criatura é crítico. Remove ao acertar.</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="condicao-card" id="sangramento">
+                        <h4>Sangramento X</h4>
+                        <ul>
+                            <li>Se o alvo puder sangrar, qualquer ataque contra ele causa +1d4 de dano Biológico.</li>
+                            <li>Ao acertar um ataque em um alvo com essa condição, ela reduz em 1.</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="condicao-card" id="atordoado">
+                        <h4>Atordoado</h4>
+                        <ul>
+                            <li>-2 Ações e Evasão até a próxima rodada.</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="condicao-card" id="desorientado">
+                        <h4>Desorientado</h4>
+                        <ul>
+                            <li>O alvo recebe -2 ao Atacar e -2 ao Defender.</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="condicao-card" id="caido">
+                        <h4>Caído</h4>
+                        <ul>
+                            <li>Você está prostrado e seu movimento se torna 1,5 m.</li>
+                            <li>Ao ser atacado, não pode retaliar e defende com -2.</li>
+                            <li>Encerra ao gastar 1 ação para se levantar.</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="condicao-card" id="desprevenido">
+                        <h4>Desprevenido</h4>
+                        <ul>
+                            <li>Você foi pego de surpresa e não pode reagir a ataques.</li>
+                            <li>Além disso, você também está <a href="#exposto" class="keyword-link">Exposto</a>.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- ===================== CONDIÇÕES DE MOVIMENTO ===================== -->
+            <section class="category-section cat-movimento" id="movimento">
+                <div class="category-header">
+                    <div class="category-icon" style="background: linear-gradient(135deg, #1a2a3a, #0d151f); color: #60a5fa;">🦶</div>
+                    <h2>Condições de Movimento</h2>
+                </div>
+                
+                <div class="condicoes-grid">
+                    <div class="condicao-card" id="sobrepeso-leve">
+                        <h4>Sobrepeso Leve</h4>
+                        <ul>
+                            <li>Movimento diminuído para a metade.</li>
+                            <li>-2 em perícias com Força, Destreza ou Constituição como atributo base.</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="condicao-card" id="sobrepeso-extremo">
+                        <h4>Sobrepeso Extremo</h4>
+                        <ul>
+                            <li>Você tem 1,5 m de Movimento.</li>
+                            <li>Desvantagem em perícias com Força, Destreza ou Constituição como atributo base.</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="condicao-card" id="lento">
+                        <h4>Lento X</h4>
+                        <p>Você está lento.</p>
+                        <ul>
+                            <li>-3 m Movimento</li>
+                            <li>-1 Ação.</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="condicao-card" id="enraizado">
+                        <h4>Enraizado</h4>
+                        <ul>
+                            <li>Movimento reduzido a 0 metros.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- ===================== CONDIÇÕES MENTAIS ===================== -->
+            <section class="category-section cat-mental" id="mentais">
+                <div class="category-header">
+                    <div class="category-icon" style="background: linear-gradient(135deg, #2a1a3a, #150d1f); color: #c084fc;">🧠</div>
+                    <h2>Condições Mentais</h2>
+                </div>
+                
+                <div class="condicoes-grid">
+                    <div class="condicao-card" id="confuso">
+                        <h4>Confuso</h4>
+                        <p>Você perde algumas memórias recentes e tem dificuldade pra assimilar a situação.</p>
+                        <ul>
+                            <li>-1 Ação</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="condicao-card" id="amedrontado">
+                        <h4>Amedrontado</h4>
+                        <p>Você está completamente aterrorizado. E tenta escapar o mais rápido possível.</p>
+                        <ul>
+                            <li>Gaste seu turno correndo da criatura/objeto que te colocou nessa condição da forma mais eficiente possível.</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="condicao-card" id="enfeiticado">
+                        <h4>Enfeitiçado</h4>
+                        <p>Você está enfeitiçado em algo ou alguém.</p>
+                        <ul>
+                            <li>Você não pode atacar quem te enfeitiçou até se livrar dessa condição.</li>
+                            <li>Tem -5 em testes de interação social (Qualquer) contra a criatura que te enfeitiçou.</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="condicao-card" id="embriagado">
+                        <h4>Embriagado</h4>
+                        <p>Você está bêbado.</p>
+                        <ul>
+                            <li>Ao rolar um 2 natural em qualquer teste, considere como uma falha crítica.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- ===================== CONDIÇÕES FÍSICAS ===================== -->
+            <section class="category-section cat-fisico" id="fisicas">
+                <div class="category-header">
+                    <div class="category-icon" style="background: linear-gradient(135deg, #1a3a1a, #0d1f0d); color: #4ade80;">🩸</div>
+                    <h2>Condições Físicas</h2>
+                </div>
+                
+                <div class="condicoes-grid">
+                    <div class="condicao-card" id="envenenamento">
+                        <h4>Envenenamento</h4>
+                        <ul>
+                            <li>-2 em todos os testes que utilizam: Força, Constituição ou Destreza como atributo base.</li>
+                            <li>1d6 de dano Biológico por rodada até o fim do efeito.</li>
+                            <li>Acaba ao suceder em um teste de Fortitude CD(20) ou utilizar um <em>Antídoto</em>.</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="condicao-card" id="em-chamas">
+                        <h4>Em Chamas</h4>
+                        <p>Você está em chamas!</p>
+                        <ul>
+                            <li>1d6 de dano elemental (fogo) no início de cada turno, até apagar o fogo com 1 ação.</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="condicao-card" id="enjoado">
+                        <h4>Enjoado</h4>
+                        <ul>
+                            <li>-5 em Fortitude.</li>
+                            <li>-2 Evasão</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="condicao-card" id="paralisado">
+                        <h4>Paralisado</h4>
+                        <p>Você está imóvel e não consegue controlar seu corpo.</p>
+                        <ul>
+                            <li>Você fica <a href="#exposto" class="keyword-link">Exposto</a> e não pode realizar nenhuma ação nem reação.</li>
+                            <li>Qualquer teste de resistência é instantaneamente fracassado.</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="condicao-card" id="adormecido">
+                        <h4>Adormecido</h4>
+                        <p>Você está em sono profundo.</p>
+                        <ul>
+                            <li>Você fica <a href="#exposto" class="keyword-link">Exposto</a> e <a href="#inconsciente" class="keyword-link">Inconsciente</a> até acordar.</li>
+                            <li>Você não pode fazer nada até acordar.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- ===================== CONDIÇÕES SENSORIAIS ===================== -->
+            <section class="category-section cat-sensorial" id="sensoriais">
+                <div class="category-header">
+                    <div class="category-icon" style="background: linear-gradient(135deg, #1a3a3a, #0d1f1f); color: #2dd4bf;">👁️</div>
+                    <h2>Condições Sensoriais</h2>
+                </div>
+                
+                <div class="condicoes-grid">
+                    <div class="condicao-card" id="cego">
+                        <h4>Cego</h4>
+                        <ul>
+                            <li>Você está cego e tem -5 em percepção e desvantagem em ataques.</li>
+                            <li>Além disso, você falha automaticamente em todos os testes que dependem da sua visão.</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="condicao-card" id="surdo">
+                        <h4>Surdo</h4>
+                        <ul>
+                            <li>Você está surdo e tem -2 em percepção.</li>
+                            <li>Além disso, você falha automaticamente em todos os testes que dependam da sua audição.</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="condicao-card" id="invisivel">
+                        <h4>Invisível</h4>
+                        <p>Você está invisível.</p>
+                        <ul>
+                            <li>Passa instantaneamente em testes de Furtividade, caso a criatura não veja invisibilidade.</li>
+                            <li>+5 Defender e Atacar contra criaturas que não te veem.</li>
+                            <li>Atacar ou receber dano remove essa condição.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- VOLTAR -->
+            <div style="text-align: center; margin-top: 2rem;">
+                <a href="sistema.html" class="keyword-link">← Voltar ao Sistema Base</a>
+            </div>
+            
+        </main>
+    </div>
+    
+    <button class="back-to-top" id="backToTop" title="Voltar ao topo">↑</button>
+    
+    <script src="../js/main.js"></script>
+    <script>
+        const backToTop = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => {
+            backToTop.classList.toggle('visible', window.scrollY > 500);
+        });
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+    </script>
+</body>
+</html>
