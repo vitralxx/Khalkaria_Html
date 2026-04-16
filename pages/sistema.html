@@ -25,7 +25,1776 @@
                 <a href="sistema.html" class="nav-link active">📜 Sistema Base</a>
                 <a href="condicoes.html" class="nav-link">⚡ Condições</a>
                 <a href="magias.html" class="nav-link">✨ Magias</a>
-
+            </div>
+            <div class="nav-section">
+                <div class="nav-section-title">Criação de Personagem</div>
+                <a href="criacao.html" class="nav-link">🎭 Criação</a>
+                <a href="racas.html" class="nav-link">👤 Raças</a>
+                <a href="classes.html" class="nav-link">⚔️ Classes</a>
+                <a href="origens.html" class="nav-link">📜 Origens</a>
+                <a href="limiar.html" class="nav-link">🌟 O Limiar</a>
+            </div>
+            <div class="nav-section">
+                <div class="nav-section-title">Classes</div>
+                <a href="classes/espadachim.html" class="nav-link nav-link-sub">⚔️ Espadachim</a>
+                <a href="classes/monge.html" class="nav-link nav-link-sub">👊 Monge</a>
+                <a href="classes/batedor.html" class="nav-link nav-link-sub">🏹 Batedor</a>
+                <a href="classes/alquimista.html" class="nav-link nav-link-sub">⚗️ Alquimista</a>
+                <a href="classes/teurgo.html" class="nav-link nav-link-sub">✨ Teurgo</a>
+                <a href="classes/artilheiro.html" class="nav-link nav-link-sub">💥 Artilheiro</a>
+                <a href="classes/brutalista.html" class="nav-link nav-link-sub">🪓 Brutalista</a>
+            </div>
+        </nav>
+        
+        <main class="main-content">
+            <!-- TÍTULO ACIMA DA IMAGEM -->
+            <div class="sistema-title-above">Sistema de Regras</div>
+            
+            <!-- HEADER COM IMAGEM -->
+            <div class="sistema-header">
+                <img src="../images/khalkaria_header.png" alt="Khalkaria - Sistema de RPG">
+            </div>
+            
+            <!-- ÍNDICE DE NAVEGAÇÃO -->
+            <div class="sistema-index" id="indice">
+                <h2>📋 Índice de Navegação</h2>
+                <div class="index-grid">
+                    <div class="index-category">
+                        <div class="index-category-title"><span class="cat-icon">📜</span> Fundamentos</div>
+                        <div class="index-links">
+                            <a href="#atributos">Atributos Iniciais</a>
+                            <a href="#status">Status</a>
+                            <a href="#pericias">Perícias</a>
+                            <a href="#proficiencia">Proficiência/Treinamento</a>
+                            <a href="#criticos">Críticos e Falhas</a>
+                        </div>
+                    </div>
+                    <div class="index-category">
+                        <div class="index-category-title"><span class="cat-icon">⚔️</span> Combate</div>
+                        <div class="index-links">
+                            <a href="#sua-rodada">Sua Rodada</a>
+                            <a href="#atacando">Atacando & Retaliação</a>
+                            <a href="#dano-defesa">Dano e Defesa</a>
+                            <a href="#tipos-dano">Tipos de Dano</a>
+                            <a href="#manobras">Manobras</a>
+                        </div>
+                    </div>
+                    <div class="index-category">
+                        <div class="index-category-title"><span class="cat-icon">🗡️</span> Equipamento</div>
+                        <div class="index-links">
+                            <a href="#armas">Armas</a>
+                            <a href="#nivel-armas">Nível de Armas</a>
+                            <a href="#municao">Munição</a>
+                            <a href="#inventario">Inventário e Peso</a>
+                            <a href="#dinheiro">Dinheiro</a>
+                        </div>
+                    </div>
+                    <div class="index-category">
+                        <div class="index-category-title"><span class="cat-icon">🗺️</span> Exploração</div>
+                        <div class="index-links">
+                            <a href="#jornada">Jornada</a>
+                            <a href="#superficies">Superfícies</a>
+                            <a href="#furtividade">Furtividade</a>
+                            <a href="#perseguicao">Perseguição</a>
+                            <a href="#fuga">Fuga</a>
+                        </div>
+                    </div>
+                    <div class="index-category">
+                        <div class="index-category-title"><span class="cat-icon">🏕️</span> Sobrevivência</div>
+                        <div class="index-links">
+                            <a href="#descanso">Descanso</a>
+                            <a href="#necessidades">Necessidades</a>
+                            <a href="#tamanho">Tamanho</a>
+                            <a href="#idiomas">Idiomas</a>
+                        </div>
+                    </div>
+                    <div class="index-category">
+                        <div class="index-category-title"><span class="cat-icon">📈</span> Progressão</div>
+                        <div class="index-links">
+                            <a href="#progressao-jogador">Progressão do Jogador</a>
+                            <a href="#xp-dc">XP e DC</a>
+                        </div>
+                    </div>
+                    <div class="index-category">
+                        <div class="index-category-title"><span class="cat-icon">✨</span> Magia</div>
+                        <div class="index-links">
+                            <a href="#magia-intro">Introdução à Magia</a>
+                            <a href="#custo-base">Custo Base</a>
+                            <a href="#intensidade">Intensidade</a>
+                            <a href="#modulacoes">Modulações</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- ================================================================
+                 CATEGORIA: FUNDAMENTOS
+                 ================================================================ -->
+            <section class="category-section cat-fundamentos" id="fundamentos">
+                <div class="category-header">
+                    <div class="category-icon">📜</div>
+                    <h2>Fundamentos</h2>
+                </div>
+                
+                <!-- ATRIBUTOS INICIAIS -->
+                <div class="subsection" id="atributos">
+                    <h3>Atributos Iniciais</h3>
+                    <div class="content-card">
+                        <p>Todos os atributos variam de <strong>8 a 18</strong>:</p>
+                        <ul>
+                            <li><strong>Força</strong> 8-18</li>
+                            <li><strong>Destreza</strong> 8-18</li>
+                            <li><strong>Constituição</strong> 8-18</li>
+                            <li><strong>Inteligência</strong> 8-18</li>
+                            <li><strong>Sabedoria</strong> 8-18</li>
+                        </ul>
+                        
+                        <div class="rule-box">
+                            <p><strong>Criação de Personagem:</strong></p>
+                            <ol>
+                                <li>Role 4d6, retire o pior e anote o valor. Faça isso 5 vezes, e distribua os valores dentre seus atributos.</li>
+                                <li>Escolha sua raça, classe e origem, nesta ordem.</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- STATUS -->
+                <div class="subsection" id="status">
+                    <h3>Status</h3>
+                    <div class="content-card">
+                        <p>Sua classe determina os valores dentre estes 3 status universais:</p>
+                        
+                        <div class="status-list">
+                            <div class="status-item status-saude">
+                                <strong>Saúde:</strong>
+                                <span>Condição física. Ao reduzir a 0 ou menos, você recebe a condição <a href="condicoes.html#morrendo" class="keyword-link">Morrendo</a>.</span>
+                            </div>
+                            <div class="status-item status-stamina">
+                                <strong>Stamina:</strong>
+                                <span>Vigor perante o cansaço eminente. Perícias e habilidades utilizam Stamina. Ao reduzir a 0, fica <a href="condicoes.html#exaurido" class="keyword-link">Exaurido</a>.</span>
+                            </div>
+                            <div class="status-item status-eter">
+                                <strong>Éter:</strong>
+                                <span>Energia primordial que todo ser tem. Define sua sanidade e energia espiritual. Ao reduzir a 0 ou menos fica <a href="condicoes.html#oco" class="keyword-link">Oco</a>.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- PERÍCIAS -->
+                <div class="subsection" id="pericias">
+                    <h3>Perícias</h3>
+                    <div class="content-card">
+                        <p><strong>Em ordem de regra, quase todas as rolagens utilizam o d20.</strong></p>
+                        
+                        <table class="sistema-table">
+                            <thead>
+                                <tr>
+                                    <th>Perícia</th>
+                                    <th>Descrição</th>
+                                    <th>Dado + Mod.</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Atacar</strong></td>
+                                    <td>Define sua habilidade de acertar um alvo de maneira destrutiva.</td>
+                                    <td><code>1d20+Força</code></td>
+                                </tr>
+                                <tr id="defender">
+                                    <td><strong>Defender</strong></td>
+                                    <td>Define sua habilidade de evasão/resistência a ataques.</td>
+                                    <td><code>1d10+(Destreza ou Constituição)</code></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Movimento</strong></td>
+                                    <td>Define quão bem você consegue movimentar o seu corpo tanto de maneira bruta como de maneira ágil.</td>
+                                    <td><code>1d20+(Força ou Destreza)</code></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Fortitude</strong></td>
+                                    <td>Define sua habilidade de superar condições físicas como cansaço, envenenamento…</td>
+                                    <td><code>1d20+Constituição</code></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Vontade</strong></td>
+                                    <td>Define o controle e poder sobre sua mente.</td>
+                                    <td><code>1d20+Sabedoria</code></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Reflexos</strong></td>
+                                    <td>Define sua habilidade de reação e de desviar de ameaças.</td>
+                                    <td><code>1d20+Destreza</code></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Percepção</strong></td>
+                                    <td>Define sua habilidade de perceber seus arredores ou detalhes.</td>
+                                    <td><code>1d20+Sabedoria</code></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Sobrevivência</strong></td>
+                                    <td>Define quão bem você lida com a natureza.</td>
+                                    <td><code>1d20+Sabedoria</code></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Furtividade</strong></td>
+                                    <td>Define quão bem você consegue se ocultar da percepção dos outros.</td>
+                                    <td><code>1d20+Destreza</code></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Crime</strong></td>
+                                    <td>Define quão bem você consegue furtar criaturas, arrombar portas ou destruir evidências.</td>
+                                    <td><code>1d20+Destreza</code></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Iniciativa</strong></td>
+                                    <td>Define sua velocidade de discernimento e decisão perante o perigo eminente.</td>
+                                    <td><code>1d20+Destreza</code></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Conhecimento</strong></td>
+                                    <td>Define seu repertório intelectual e habilidade lógica.</td>
+                                    <td><code>1d20+Inteligência</code></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Medicina</strong></td>
+                                    <td>Define seus conhecimentos médicos.</td>
+                                    <td><code>1d20+Inteligência</code></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Investigação</strong></td>
+                                    <td>Define sua habilidade de vasculhar e encontrar coisas.</td>
+                                    <td><code>1d20+Inteligência</code></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Religião</strong></td>
+                                    <td>Define seus conhecimentos sobre religião.</td>
+                                    <td><code>1d20+Sabedoria</code></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Místico</strong></td>
+                                    <td>Define seu conhecimento e poder perante as forças primordiais.</td>
+                                    <td><code>1d20+Inteligência</code></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Ofício(X)</strong></td>
+                                    <td>Esse teste pode ser usado para realizar testes específicos de profissão, como forjar algo, artesanato ou outros testes que exigem uma especialização bastante específica. Você não pode usar esse teste sem tê-lo treinado.</td>
+                                    <td><code>1d20+X</code></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        
+                        <h4>Interação Social</h4>
+                        <p>Interação social possui 5 ramos. Você não tem proficiência em Interação Social, mas em cada uma das suas vertentes. Ou seja, você pode ser treinado em Intimidação, mas não Convencimento.</p>
+                        
+                        <table class="sistema-table">
+                            <thead>
+                                <tr>
+                                    <th>Vertente</th>
+                                    <th>Atributo</th>
+                                    <th>Descrição</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Convencimento</strong></td>
+                                    <td><code>Des ou Int</code></td>
+                                    <td>Habilidade de diplomacia/persuasão contra uma criatura</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Intimidação</strong></td>
+                                    <td><code>Con ou For</code></td>
+                                    <td>Habilidade de infligir medo/respeito em uma criatura</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Intuição</strong></td>
+                                    <td><code>Sabedoria</code></td>
+                                    <td>Habilidade de ler as intenções/sentimentos de uma criatura</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Enganação</strong></td>
+                                    <td><code>Des ou Int</code></td>
+                                    <td>Habilidade de enganar uma criatura</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Motivar</strong></td>
+                                    <td><code>Sabedoria</code></td>
+                                    <td>Habilidade de mudar os sentimentos de uma criatura</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <!-- PROFICIÊNCIA/TREINAMENTO -->
+                <div class="subsection" id="proficiencia">
+                    <h3>Proficiência/Treinamento</h3>
+                    <div class="content-card">
+                        <p>Ao rolar uma perícia soma-se seu nível de proficiência nela, variando entre:</p>
+                        
+                        <div class="prof-scale">
+                            <div class="prof-item"><span class="bonus">+0</span> Leigo</div>
+                            <span class="prof-arrow">→</span>
+                            <div class="prof-item"><span class="bonus">+2</span> Treinado</div>
+                            <span class="prof-arrow">→</span>
+                            <div class="prof-item"><span class="bonus">+4</span> Experiente</div>
+                            <span class="prof-arrow">→</span>
+                            <div class="prof-item"><span class="bonus">+6</span> Mestre</div>
+                            <span class="prof-arrow">→</span>
+                            <div class="prof-item"><span class="bonus">+8</span> Lendário</div>
+                        </div>
+                        
+                        <p>Proficiência é ganha progressivamente por sua classe.</p>
+                        
+                        <div class="rule-box">
+                            <p>Você nunca receberá uma habilidade que diga "Experiente em Atacar", por exemplo. Mas ao possuir duas habilidades que te fornecem "Treinado em Atacar" você se torna experiente nesta.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- CRÍTICOS E FALHAS -->
+                <div class="subsection" id="criticos">
+                    <h3>Críticos e Falhas</h3>
+                    <div class="content-card">
+                        <p><strong style="color: var(--gold);">Crítico:</strong> Se tirar 20 no dado ou, ao rolar, ultrapassar o CD (<em>Classe de Dificuldade</em>) por 10 ou mais, você críta.</p>
+                        
+                        <p><strong style="color: var(--accent-red);">Falha Crítica:</strong> Se tirar 1 no dado ou, ao rolar, você ficar abaixo do CD por 10 ou menos, você falha criticamente.</p>
+                        
+                        <div class="warning-box">
+                            <p>Falhas Críticas em qualquer perícia reduzem -1 de <a href="#status" class="keyword-link">Stamina</a>.</p>
+                        </div>
+                        
+                        <div class="rule-box">
+                            <p>Isso representa o cansaço após se esforçar para suceder em uma tarefa difícil. Você sempre pode escolher falhar em qualquer teste exigido, preservando sua Stamina.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- ================================================================
+                 CATEGORIA: COMBATE
+                 ================================================================ -->
+            <section class="category-section cat-combate" id="combate">
+                <div class="category-header">
+                    <div class="category-icon">⚔️</div>
+                    <h2>Combate</h2>
+                </div>
+                
+                <p>Iniciando um combate todos rolam a perícia <em>Iniciativa</em>, ordenando quem joga primeiro.</p>
+                
+                <!-- SUA RODADA -->
+                <div class="subsection" id="sua-rodada">
+                    <h3>Sua Rodada</h3>
+                    <div class="content-card">
+                        <p>Você possui <strong>3 ações</strong> e <strong>1 reação</strong> por turno, alguns exemplos dentre as listadas abaixo:</p>
+                        
+                        <ul>
+                            <li><strong>Mover</strong> (1 ação) — Max. 1 vez por turno</li>
+                            <li><strong>Acelerar</strong> (1 ação) → +3 m de movimento nesta rodada.</li>
+                            <li><strong>Atacar</strong> (Depende da arma) — Ataques consecutivos somam −5 a cada ataque no mesmo turno.</li>
+                            <li><strong>Defender</strong> (1 ação) → +2 <a href="#defender" class="keyword-link">Defender</a> até seu próximo turno.</li>
+                            <li><strong>Defender fora do seu turno</strong> (Reação) → Soma 1d10+mod. Destreza a sua <a href="#evasao" class="keyword-link">evasão</a>.</li>
+                            <li><strong>Conjurar magia simples</strong> (1 ação)</li>
+                            <li><strong>Conjurar magia complexa</strong> (2-3 ações)</li>
+                            <li><strong>Habilidade Específica</strong> (1–3 ações)</li>
+                            <li><strong>Outro</strong> (1-3 ações) — dependendo de sua dificuldade ou demora para executar</li>
+                            <li>Reações servem para regras/habilidades específicas</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- ATACANDO -->
+                <div class="subsection" id="atacando">
+                    <h3>Atacando & Retaliação</h3>
+                    <div class="content-card">
+                        <div class="warning-box">
+                            <p>Ao atacar alguém você sempre se coloca em risco, sendo potencialmente <strong>Retaliado</strong>, tenha isso em mente.</p>
+                        </div>
+                        
+                        <ol>
+                            <li>Role a perícia <em>Atacar</em>. Se seu alvo ainda tiver uma reação, ele possui 2 opções (rolar a perícia: Atacar ou Defender):
+                                <ul>
+                                    <li><strong>Atacar (Retaliar):</strong> O alvo tenta te <em>retaliar</em>: Caso o alvo ultrapasse seu valor, ele te ataca com a arma que estiver empunhando, também recebendo seu dano.
+                                        <ul>
+                                            <li>Caso ele acerte criticamente, ele nega seu dano, ainda sim, te retaliando.</li>
+                                            <li>Caso ele falhe criticamente, seu ataque contra ele é crítico.</li>
+                                        </ul>
+                                    </li>
+                                    <li><strong>Defender:</strong> O alvo tenta se defender: O alvo adiciona a rolagem da perícia <em>Defender</em> a sua <em>evasão</em>. Caso o atacante role abaixo da <em>evasão</em> do alvo, o alvo esquiva/bloqueia.</li>
+                                </ul>
+                            </li>
+                        </ol>
+                        
+                        <div class="rule-box">
+                            <p>Enquanto estiver sendo alvo dos seus ataques durante o seu turno, a criatura pode escolher reagir (Atacar ou Defender) a cada um deles. Ao final do seu turno, ela considera a reação gasta e não pode mais usá-la até o início do próximo.</p>
+                        </div>
+                        
+                        <p><strong>Em caso de empate, o atacante sempre ganha.</strong></p>
+                        
+                        <h4>Ataques de Oportunidade</h4>
+                        <p>Ao estar a 1,5 m de uma criatura e se afastar dela, ela pode gastar sua reação para realizar um ataque de oportunidade contra você.</p>
+                    </div>
+                </div>
+                
+                <!-- DANO E DEFESA -->
+                <div class="subsection" id="dano-defesa">
+                    <h3>Dano e Defesa</h3>
+                    <div class="two-columns">
+                        <div class="content-card">
+                            <h4>Dano</h4>
+                            <p><strong>Dano</strong> = Dano da arma + Mod. Atributo</p>
+                            <p><strong>Dano Crítico</strong> = Role o dobro de dados + Mod. Atributo</p>
+                            
+                            <ul>
+                                <li><strong>Corpo a Corpo Pesado</strong> = +Mod. Força
+                                    <br><small>O acerto usa a perícia <em>atacar</em>, dano dá +Mod. de Força.</small></li>
+                                <li><strong>Corpo a Corpo Leve</strong> = +Mod. Destreza
+                                    <br><small>O acerto usa a perícia <em>atacar</em>, dano dá +Mod. de Destreza.</small></li>
+                                <li><strong>À Distância</strong> = +Mod. Destreza
+                                    <br><small>O acerto usa a perícia <em>atacar</em>, mas pode ser rolada com destreza.</small></li>
+                                <li><strong>Armas Místicas</strong> = +Mod. Inteligência/Sabedoria</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="content-card">
+                            <h4>Defesa</h4>
+                            <p id="evasao"><strong>Evasão</strong> = Determinada pela sua classe, define se você desvia/resiste do dano</p>
+                            <p><strong>Armadura (Ar)</strong> = Reduz dano <em>ordinário</em> em uma constante fixa, dependendo da armadura</p>
+                            
+                            <h4>Resistência, Vulnerabilidade e Armadura Específica (Ae)</h4>
+                            <ul>
+                                <li><strong>Resistência</strong> a um dano específico o reduz sempre a metade.</li>
+                                <li><strong>Vulnerabilidade</strong> a um dano específico sempre o dobra.</li>
+                                <li><strong>Armadura Específica</strong> pode ser fornecida por diversos meios e nem sempre representa uma proteção física. Sempre é especializada em resistir a um tipo e uma quantidade de dano específico.<br>
+                                    <code>Ae(Tipo de dano, Quant. de resist.)</code><br>
+                                    <small>Ex.: Ae(Místico, 2), ao receber 10 de dano místico, receba apenas 8.</small></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- TIPOS DE DANO -->
+                <div class="subsection" id="tipos-dano">
+                    <h3>Tipos de Dano</h3>
+                    <div class="damage-grid">
+                        <div class="damage-category damage-ordinario">
+                            <h5>Ordinário</h5>
+                            <ul>
+                                <li>Cortante</li>
+                                <li>Contundente</li>
+                                <li>Perfurante</li>
+                            </ul>
+                        </div>
+                        <div class="damage-category damage-elemental">
+                            <h5>Elemental</h5>
+                            <ul>
+                                <li>Fogo</li>
+                                <li>Frio</li>
+                                <li>Elétrico</li>
+                            </ul>
+                        </div>
+                        <div class="damage-category damage-biologico">
+                            <h5>Biológico</h5>
+                            <ul>
+                                <li>Veneno</li>
+                                <li>Ácido</li>
+                                <li>Psíquico</li>
+                            </ul>
+                        </div>
+                        <div class="damage-category damage-mistico">
+                            <h5>Místico</h5>
+                            <ul>
+                                <li>Radiante</li>
+                                <li>Trovejante</li>
+                                <li>Necrótico</li>
+                                <li>Força</li>
+                                <li>Primordial</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- MANOBRAS -->
+                <div class="subsection" id="manobras">
+                    <h3>Manobras</h3>
+                    <div class="content-card">
+                        <p>Ao batalhar você pode querer fazer certas manobras de combate:</p>
+                        
+                        <table class="sistema-table">
+                            <thead>
+                                <tr>
+                                    <th>Manobra</th>
+                                    <th>Mecânica</th>
+                                    <th>Efeito</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Empurrar</strong></td>
+                                    <td><code>Movimento × Fortitude</code></td>
+                                    <td>Se ganhar você empurra o alvo até 3 m + 1,5 m para cada 5 pontos sobrepujantes. Ao empurrar com sucesso, o alvo fica <a href="condicoes.html#caido" class="keyword-link">Caído</a>.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Desarmar</strong></td>
+                                    <td><code>Movimento × Movimento</code></td>
+                                    <td>Se ganhar você derruba a arma do alvo no chão.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Agarrar</strong></td>
+                                    <td><code>Movimento × Movimento</code></td>
+                                    <td>Se ganhar você domina o alvo com no mínimo 1 mão. Atacar contra o alvo possui +2 e o alvo recebe -2 ao Atacar. O alvo fica <a href="condicoes.html#enraizado" class="keyword-link">Enraizado</a> até se livrar do agarrão.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- ================================================================
+                 CATEGORIA: EQUIPAMENTO
+                 ================================================================ -->
+            <section class="category-section cat-equipamento" id="equipamento">
+                <div class="category-header">
+                    <div class="category-icon">🗡️</div>
+                    <h2>Equipamento</h2>
+                </div>
+                
+                <!-- ARMAS -->
+                <div class="subsection" id="armas">
+                    <h3>Armas</h3>
+                    <div class="content-card">
+                        <p>São <strong>altamente interpretativas</strong>, nesse sistema você pode criar a arma que quiser e usar os status da categoria que mais se aproxima a ela. Cada tipo de arma possui 5 características principais:</p>
+                        
+                        <ul>
+                            <li><strong>Dado Base</strong></li>
+                            <li><strong>Atributo</strong></li>
+                            <li><strong>Tipo de dano</strong></li>
+                            <li><strong>Efeito</strong></li>
+                            <li><strong>Ações</strong></li>
+                            <li><strong>Requisito</strong> — Utilizar uma arma sem os requisitos apropriados, nega seu efeito e provê <em>desvantagem</em> ao atacar.</li>
+                        </ul>
+                        
+                        <h4>Armas Leves <small style="color: var(--text-muted);">— Requisito: Destreza ≥ 12</small></h4>
+                        <div style="overflow-x: auto;">
+                        <table class="sistema-table">
+                            <thead>
+                                <tr>
+                                    <th>Tipo</th>
+                                    <th>Dado</th>
+                                    <th>Atrib.</th>
+                                    <th>Dano</th>
+                                    <th>Efeito</th>
+                                    <th>Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Leve Cortante</td>
+                                    <td>1d6</td>
+                                    <td>Des</td>
+                                    <td>Cortante</td>
+                                    <td>+1 de dano para cada ataque sucessivo na mesma rodada contra o mesmo alvo.</td>
+                                    <td>Atacar(1), Arremessar(1)</td>
+                                </tr>
+                                <tr>
+                                    <td>Leve Perfurante</td>
+                                    <td>1d4</td>
+                                    <td>Des</td>
+                                    <td>Perfurante</td>
+                                    <td>Ignora 1 de <em>Evasão</em>.</td>
+                                    <td>Atacar(1), Arremessar(1)</td>
+                                </tr>
+                                <tr>
+                                    <td>Leve Contundente</td>
+                                    <td>1d6</td>
+                                    <td>Des</td>
+                                    <td>Contundente</td>
+                                    <td>-1 <em>Atacar</em> ao alvo se acertá-lo duas vezes na mesma rodada.</td>
+                                    <td>Atacar(1)</td>
+                                </tr>
+                                <tr>
+                                    <td>Leve Ágil</td>
+                                    <td>1d4</td>
+                                    <td>Des</td>
+                                    <td>Contextual</td>
+                                    <td>+1 Atacar se você tiver se movido neste turno.</td>
+                                    <td>Atacar(1)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        </div>
+                        
+                        <h4>Armas Pesadas <small style="color: var(--text-muted);">— Requisito: Força ≥ 12</small></h4>
+                        <div style="overflow-x: auto;">
+                        <table class="sistema-table">
+                            <thead>
+                                <tr>
+                                    <th>Tipo</th>
+                                    <th>Dado</th>
+                                    <th>Atrib.</th>
+                                    <th>Dano</th>
+                                    <th>Efeito</th>
+                                    <th>Ações</th>
+                                    <th>Req. Extra</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Pesada Cortante</td>
+                                    <td>1d12</td>
+                                    <td>For</td>
+                                    <td>Cortante</td>
+                                    <td>Aplica <a href="condicoes.html#sangramento" class="keyword-link">Sangramento 1</a> no Crítico</td>
+                                    <td>Atacar(2)</td>
+                                    <td>—</td>
+                                </tr>
+                                <tr>
+                                    <td>Pesada Perfurante</td>
+                                    <td>1d8</td>
+                                    <td>For</td>
+                                    <td>Perfurante</td>
+                                    <td>Ignora 2 de <em>Evasão</em>.</td>
+                                    <td>Atacar(2)</td>
+                                    <td>—</td>
+                                </tr>
+                                <tr>
+                                    <td>Pesada Contundente</td>
+                                    <td>1d10</td>
+                                    <td>For</td>
+                                    <td>Contundente</td>
+                                    <td>Aplica <a href="condicoes.html#desorientado" class="keyword-link">Desorientado</a> no Crítico.</td>
+                                    <td>Atacar(2)</td>
+                                    <td>—</td>
+                                </tr>
+                                <tr>
+                                    <td>Pesada Brutal</td>
+                                    <td>2d6</td>
+                                    <td>For</td>
+                                    <td>Contextual</td>
+                                    <td>Ao rolar 2 dados iguais → +1d6.</td>
+                                    <td>Atacar(3)</td>
+                                    <td>Força ≥ 14</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        </div>
+                        
+                        <h4>Armas Marciais <small style="color: var(--text-muted);">— Requisito: Treinado em Armas Marciais</small></h4>
+                        <div style="overflow-x: auto;">
+                        <table class="sistema-table">
+                            <thead>
+                                <tr>
+                                    <th>Tipo</th>
+                                    <th>Dado</th>
+                                    <th>Atrib.</th>
+                                    <th>Dano</th>
+                                    <th>Efeito</th>
+                                    <th>Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Marcial Versátil</td>
+                                    <td>1d8</td>
+                                    <td>Des</td>
+                                    <td>Contundente</td>
+                                    <td>—</td>
+                                    <td>Atacar(1)</td>
+                                </tr>
+                                <tr>
+                                    <td>Marcial Precisa</td>
+                                    <td>1d8</td>
+                                    <td>Des</td>
+                                    <td>Cortante</td>
+                                    <td>Crítico de 8 (ao em vez de 10).</td>
+                                    <td>Atacar(2)</td>
+                                </tr>
+                                <tr>
+                                    <td>Marcial Pesada</td>
+                                    <td>1d10</td>
+                                    <td>For</td>
+                                    <td>Contundente</td>
+                                    <td>Ao acertar, pode empurrar o alvo 1,5 m.</td>
+                                    <td>Atacar(2)</td>
+                                </tr>
+                                <tr>
+                                    <td>Marcial Longa</td>
+                                    <td>1d6</td>
+                                    <td>For</td>
+                                    <td>Perfurante</td>
+                                    <td>Alcance +1,5 m.</td>
+                                    <td>Atacar(1)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        </div>
+                        
+                        <h4>Armas à Distância <small style="color: var(--text-muted);">— Requisito: Treinamento à Distância</small></h4>
+                        <div style="overflow-x: auto;">
+                        <table class="sistema-table">
+                            <thead>
+                                <tr>
+                                    <th>Tipo</th>
+                                    <th>Dado</th>
+                                    <th>Atrib.</th>
+                                    <th>Dano</th>
+                                    <th>Efeito</th>
+                                    <th>Ações</th>
+                                    <th>Req. Extra</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Distância Simples</td>
+                                    <td>1d6</td>
+                                    <td>Des</td>
+                                    <td>Perfurante</td>
+                                    <td>+1 Atacar se não tiver se movido nesta rodada. 18 m distância</td>
+                                    <td>Atacar(1)</td>
+                                    <td>—</td>
+                                </tr>
+                                <tr>
+                                    <td>Distância Pesada</td>
+                                    <td>1d10</td>
+                                    <td>Des</td>
+                                    <td>Perfurante</td>
+                                    <td>Crítico de 8 (ao em vez de 10), 18 m Distância</td>
+                                    <td>Atacar(2)</td>
+                                    <td>—</td>
+                                </tr>
+                                <tr>
+                                    <td>Arremesso</td>
+                                    <td>1d4</td>
+                                    <td>Des</td>
+                                    <td>Perfurante</td>
+                                    <td>Se estiver a &lt;3 m do alvo, +1d4 Dano, 9 m Distância</td>
+                                    <td>Arremessar(1)</td>
+                                    <td>Destreza ≥ 14</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        </div>
+                        
+                        <h4>Armas Místicas <small style="color: var(--text-muted);">— Requisito: Treinamento Armas Místicas</small></h4>
+                        <div style="overflow-x: auto;">
+                        <table class="sistema-table">
+                            <thead>
+                                <tr>
+                                    <th>Tipo</th>
+                                    <th>Efeito</th>
+                                    <th>Requisito Extra</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Foco de Abjuração</td>
+                                    <td>Ao ser empunhado, permite castar magias de Abjuração</td>
+                                    <td>—</td>
+                                </tr>
+                                <tr>
+                                    <td>Foco de Destruição</td>
+                                    <td>Ao ser empunhado, permite castar magias de Destruição.</td>
+                                    <td>—</td>
+                                </tr>
+                                <tr>
+                                    <td>Foco de Conhecimento</td>
+                                    <td>Ao ser empunhado, permite castar magias de Conhecimento.</td>
+                                    <td>—</td>
+                                </tr>
+                                <tr>
+                                    <td>Foco de Alteração</td>
+                                    <td>Ao ser empunhado, permite castar magias de Alteração.</td>
+                                    <td>—</td>
+                                </tr>
+                                <tr>
+                                    <td>Foco Primordial</td>
+                                    <td>Ao ser empunhado, permite castar magias Primordiais.</td>
+                                    <td><em>Experiente</em> em Místico</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- NÍVEL DE ARMAS -->
+                <div class="subsection" id="nivel-armas">
+                    <h3>Nível de Armas</h3>
+                    <div class="content-card">
+                        <table class="sistema-table">
+                            <thead>
+                                <tr>
+                                    <th>Nível</th>
+                                    <th>Bônus de Dano</th>
+                                    <th>Bônus ao Atacar</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>+1</strong></td>
+                                    <td>+1 dado de dano</td>
+                                    <td>+1 ao atacar</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>+2</strong></td>
+                                    <td>+2 dados de dano</td>
+                                    <td>+2 ao atacar</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>+3</strong></td>
+                                    <td>+3 dados de dano</td>
+                                    <td>+3 ao atacar</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <!-- MUNIÇÃO -->
+                <div class="subsection" id="municao">
+                    <h3>Munição de Armas</h3>
+                    <div class="content-card">
+                        <p>Armas a distância requerem <strong>1 munição</strong> para serem usadas pelo combate inteiro.</p>
+                        <p>A munição é descontada por cena e pode ser fabricada por artesãos.</p>
+                        
+                        <h4>Tipos de Munição:</h4>
+                        <ul>
+                            <li><strong>Distância Simples:</strong> Flecha e Virote</li>
+                            <li><strong>Distância Pesada:</strong> Munição de Fogo</li>
+                            <li><strong>Arremesso:</strong> Conjunto de Arremesso</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- INVENTÁRIO E PESO -->
+                <div class="subsection" id="inventario">
+                    <h3>Inventário e Peso</h3>
+                    <div class="content-card">
+                        <p>Existem 2 categorias de item: <strong>Equipamentos</strong> e <strong>Bugigangas</strong>. Equipamentos como Espadas, Machados, Arcos, Peitorais, escudos… pesam bastante enquanto Bugigangas (todo o resto) pesam geralmente menos.</p>
+                        
+                        <ul>
+                            <li>Você pode carregar um total de <strong>2+Mod. Força (Min. 1)</strong> Equipamentos, itens equipados não contam.</li>
+                            <li>Você pode carregar um total de <strong>10+Mod. Força (Min. 1)</strong> Bugigangas, munições (Flechas e etc) contam como 1 bugiganga.</li>
+                            <li>Itens leves contam como 1 bugiganga a cada 10 unidades.</li>
+                            <li>Moedas (Sins) não pesam.</li>
+                            <li>Mochilas podem aumentar seu limite de peso.</li>
+                        </ul>
+                        
+                        <h4>Penalidades por Sobrepeso:</h4>
+                        <table class="sistema-table">
+                            <thead>
+                                <tr>
+                                    <th>Condição</th>
+                                    <th>Penalidade</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Acima do peso máximo, porém menos que o dobro</td>
+                                    <td>Condição: <a href="condicoes.html#sobrepeso-leve" class="keyword-link">Sobrepeso Leve</a></td>
+                                </tr>
+                                <tr>
+                                    <td>Igual ou mais que o dobro do peso máximo</td>
+                                    <td>Condição: <a href="condicoes.html#sobrepeso-extremo" class="keyword-link">Sobrepeso Extremo</a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <!-- DINHEIRO -->
+                <div class="subsection" id="dinheiro">
+                    <h3>Dinheiro</h3>
+                    <div class="content-card">
+                        <p>As criaturas de Khalkaria oferecem serviços a troco de diferentes moedas de troca. Porém a moeda mais comum são os <strong><em>Sins</em></strong>.</p>
+                        
+                        <p>Os jogadores podem obter <em>Sins</em> das mais diversas formas. Uma delas sendo vendendo itens, dessa maneira, todo item possui um valor, listado a seguir:</p>
+                        
+                        <table class="sistema-table">
+                            <thead>
+                                <tr>
+                                    <th>Tipo de Item</th>
+                                    <th>Sins</th>
+                                    <th>Descrição</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Lixo</strong></td>
+                                    <td>1d8+1</td>
+                                    <td>O item basicamente não tem utilidade e dificilmente pode ser vendido.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Ordinário</strong></td>
+                                    <td>2d10</td>
+                                    <td>O item é comumente vendido por mercantes locais, porém não é considerado valioso.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Incomum</strong></td>
+                                    <td>5d6+15</td>
+                                    <td>O item é vendido raramente por mercantes, e possui um uso útil ou visual interessante.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Exótico</strong></td>
+                                    <td>6d10+40</td>
+                                    <td>O item é uma raridade, podendo ser um artefato histórico ou fabricado por um artesão extremamente habilidoso.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Luxária</strong></td>
+                                    <td>6d12+80</td>
+                                    <td>O item é único no mundo e possui usos transcendentais, muitas vezes criado por um deus ou utilizado por uma lenda viva.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- ================================================================
+                 CATEGORIA: EXPLORAÇÃO
+                 ================================================================ -->
+            <section class="category-section cat-exploracao" id="exploracao">
+                <div class="category-header">
+                    <div class="category-icon">🗺️</div>
+                    <h2>Exploração</h2>
+                </div>
+                
+                <!-- JORNADA -->
+                <div class="subsection" id="jornada">
+                    <h3>Jornada</h3>
+                    <div class="content-card">
+                        <p>Em algum momento, o grupo precisará se aventurar em território desconhecido, seja pela natureza ou não, o grupo deve evitar as ameaças do trajeto e transitar corretamente pela direção esperada.</p>
+                        
+                        <p>Cada trajeto varia em um nível de <strong>Hostilidade</strong> dentre 0, 5, 10, 15, 20. Que dificulta a jornada.</p>
+                        
+                        <table class="sistema-table">
+                            <thead>
+                                <tr>
+                                    <th>Hostilidade</th>
+                                    <th>Descrição</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td><strong>0</strong></td><td>Locais já conhecidos e sem ameaças presentes.</td></tr>
+                                <tr><td><strong>5</strong></td><td>Locais conhecidos porém com ameaças notáveis.</td></tr>
+                                <tr><td><strong>10</strong></td><td>Locais desconhecidos com ou sem ameaças.</td></tr>
+                                <tr><td><strong>15</strong></td><td>Locais temidos, hostis e dificultosos.</td></tr>
+                                <tr><td><strong>20</strong></td><td>Locais extremamente mortais.</td></tr>
+                            </tbody>
+                        </table>
+                        
+                        <h4>Ações de Jornada</h4>
+                        <p>Cada membro do grupo deve escolher uma das ações a seguir para contribuir ao sucesso da equipe:</p>
+                        
+                        <table class="sistema-table">
+                            <thead>
+                                <tr>
+                                    <th>Ação</th>
+                                    <th>Perícia</th>
+                                    <th>Efeito</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Guiar</strong> <small>(Max 1)</small></td>
+                                    <td>Sobrevivência (CD 15)</td>
+                                    <td>Ao suceder soma +2 ao sucesso do grupo e +1 para cada 5 pontos sobrepujantes.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Motivar</strong></td>
+                                    <td>Interação Social: Motivar (CD 15)</td>
+                                    <td>Ao suceder soma +1 ao sucesso do grupo e +1 para cada 5 pontos sobrepujantes.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Vigiar</strong></td>
+                                    <td>Percepção (CD 15)</td>
+                                    <td>Ao suceder soma +1 ao sucesso do grupo e +1 para cada 5 pontos sobrepujantes.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Outros…</strong></td>
+                                    <td>Perícia apropriada (CD 15)</td>
+                                    <td>Se a ação for apropriada, ao suceder soma +1 ao sucesso do grupo e +1 para cada 5 pontos sobrepujantes.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        
+                        <div class="rule-box">
+                            <p>Ao acumular <code>3+(hostilidade/5)</code> pontos o grupo alcança o ponto destino sem complicações.</p>
+                        </div>
+                        
+                        <h4>Consequências de Falha</h4>
+                        <p>Ao falhar em acumular os pontos necessários, o grupo rola 1d100:</p>
+                        
+                        <table class="sistema-table">
+                            <thead>
+                                <tr>
+                                    <th>d100</th>
+                                    <th>Consequência</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>1</td><td>Cada integrante do grupo perde 2d6+Hostilidade de Saúde e Stamina</td></tr>
+                                <tr><td>2-19</td><td>Cada integrante do grupo perde 1d8+Hostilidade de Saúde e Stamina</td></tr>
+                                <tr><td>20-39</td><td>Cada integrante do grupo perde 1d6+Hostilidade de Saúde e Stamina</td></tr>
+                                <tr><td>40-59</td><td>Cada integrante do grupo perde 1d4+Hostilidade de Stamina</td></tr>
+                                <tr><td>60-79</td><td>Cada integrante do grupo perde 1d3+Hostilidade de Stamina</td></tr>
+                                <tr><td>80-99</td><td>Cada integrante do grupo perde Hostilidade de Stamina</td></tr>
+                                <tr><td>100</td><td>O grupo evita todas as ameaças e consequências do fracasso.</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <!-- SUPERFÍCIES -->
+                <div class="subsection" id="superficies">
+                    <h3>Superfícies</h3>
+                    <div class="content-card">
+                        <p>Diferentes superfícies causam diferentes efeitos ao serem caminhadas sobre:</p>
+                        
+                        <table class="sistema-table">
+                            <thead>
+                                <tr>
+                                    <th>Superfície</th>
+                                    <th>Efeito</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Terreno Difícil</strong></td>
+                                    <td>Custa o dobro de movimento para se movimentar.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Escorregadia</strong></td>
+                                    <td>A cada 3 m, faça um teste de <em>Reflexo</em> (CD 15), em caso de falha você fica <a href="condicoes.html#caido" class="keyword-link">Caído</a>.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Em Chamas</strong></td>
+                                    <td>A cada 3 m, faça um teste de <em>Fortitude</em> (CD 15), em caso de falha você fica <a href="condicoes.html#em-chamas" class="keyword-link">Em Chamas</a>.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Grama Alta</strong></td>
+                                    <td>Você tem vantagem em testes de <em>Furtividade</em> enquanto nessa superfície.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Molhado</strong></td>
+                                    <td>Enquanto nessa superfície você está vulnerável a dano Elemental (Eletricidade).</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <!-- FURTIVIDADE -->
+                <div class="subsection" id="furtividade">
+                    <h3>Furtividade</h3>
+                    <div class="content-card">
+                        <p>Você pode tentar se esconder da percepção de outras criaturas, se não estiver diretamente no campo de visão dela, rolando a perícia de <em>Furtividade</em> com <strong>3 ações</strong>.</p>
+                        
+                        <p>Se a criatura está ciente da sua presença ou ativamente te procurando, você não pode se esconder enquanto estiver em seu campo de visão. Caso não esteja, você disputa <code>Furtividade × Percepção</code>.</p>
+                        
+                        <p>Caso já esteja escondido mas esteja no campo de visão de uma criatura ela disputa contra você toda rodada até te perceber ou você sair de seu campo de visão.</p>
+                        
+                        <div class="rule-box">
+                            <p>Enquanto escondido, qualquer ataque contra uma criatura que não te percebeu conta como se o alvo estivesse <a href="condicoes.html#desprevenido" class="keyword-link">Desprevenido</a>. Ao realizar um ataque, você imediatamente se revela ao alvo.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- PERSEGUIÇÃO -->
+                <div class="subsection" id="perseguicao">
+                    <h3>Perseguição</h3>
+                    <div class="content-card">
+                        <p>Ao estar sendo perseguido, cada integrante do grupo deve rolar testes de <em>Movimento</em> (CD 15) até obter <strong>3 Sucessos</strong> ou <strong>3 Fracassos</strong>, Fugindo ou Sendo alcançado, respectivamente.</p>
+                        
+                        <h4>Ações durante Perseguição</h4>
+                        <p>Além dos testes, os jogadores podem realizar ações que afetam a perseguição no geral:</p>
+                        
+                        <table class="sistema-table">
+                            <thead>
+                                <tr>
+                                    <th>Ação</th>
+                                    <th>Descrição</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Ganhar Tempo</strong></td>
+                                    <td>Você falha de propósito para remover 1 falha de todos os seus aliados.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Esconder-se</strong></td>
+                                    <td>Você pode optar por se esconder, fazendo um teste de <em>Furtividade</em> contra a <em>Percepção</em> das criaturas que estão te perseguindo. Em caso de falha, você imediatamente fracassa.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Esforçar-se</strong></td>
+                                    <td>Você corre o mais rápido que consegue, mesmo se isso significa se machucar. Role o seu próximo teste com vantagem, porém reduza 1d4+1 de Saúde e Stamina.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Outros…</strong></td>
+                                    <td>Outras ações podem ser improvisadas se criativas o suficiente.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <!-- FUGA -->
+                <div class="subsection" id="fuga">
+                    <h3>Fuga</h3>
+                    <div class="content-card">
+                        <p>Ao se encontrarem numa situação complicada o grupo pode tentar fugir do combate. Ao fazerem isso, inicia-se uma cena de <strong>Perseguição</strong>.</p>
+                    </div>
+                </div>
+                
+                <!-- FÉ E SANIDADE -->
+                <div class="subsection" id="fe-sanidade">
+                    <h3>Fé e Sanidade</h3>
+                    <div class="content-card">
+                        <p>Sua fé caminha junto da sua sanidade.</p>
+                        <p>Ao se deparar com cenas: <strong>Tristes</strong>, <strong>Aterrorizantes</strong> ou <strong>Sobrenaturais</strong>, pode ser exigido um teste de <em>Vontade</em>, em caso de falha, reduzindo seu <a href="#status" class="keyword-link">Éter</a> proporcionalmente à intensidade da cena.</p>
+                        <p>Lançar magias também reduz seu éter.</p>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- ================================================================
+                 CATEGORIA: SOBREVIVÊNCIA
+                 ================================================================ -->
+            <section class="category-section cat-sobrevivencia" id="sobrevivencia">
+                <div class="category-header">
+                    <div class="category-icon">🏕️</div>
+                    <h2>Sobrevivência</h2>
+                </div>
+                
+                <!-- DESCANSO -->
+                <div class="subsection" id="descanso">
+                    <h3>Descanso</h3>
+                    <div class="content-card">
+                        <p>Alguma hora, o grupo precisará recuperar suas forças, podendo descansar em tavernas, acampamentos ou nas ruas de uma cidade.</p>
+                        <p>O grupo pode fazer até <strong>dois descansos curtos</strong> e <strong>um descanso longo</strong> que finaliza o dia.</p>
+                        
+                        <h4>Descanso Longo <small style="color: var(--text-muted);">(Max. 1 por dia)</small></h4>
+                        <p>O grupo dorme por no mínimo <strong>8 horas</strong>, e recupera <strong>Xd8 de 2 Status</strong> a escolha de cada jogador, sendo X o nível de comodidade do descanso.</p>
+                        
+                        <div class="warning-box">
+                            <p>É necessário uma fonte de luz e alimento para cada Jogador. Quem não se alimenta, não se recupera.</p>
+                        </div>
+                        
+                        <table class="sistema-table">
+                            <thead>
+                                <tr>
+                                    <th>Nível</th>
+                                    <th>Tipo de Descanso</th>
+                                    <th>Recuperação</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>1</td><td>Descanso Precário</td><td>1d8</td></tr>
+                                <tr><td>2</td><td>Descanso Ruim</td><td>2d8</td></tr>
+                                <tr><td>3</td><td>Descanso Normal</td><td>3d8</td></tr>
+                                <tr><td>4</td><td>Descanso Bom</td><td>4d8</td></tr>
+                                <tr><td>5</td><td>Descanso Luxuoso</td><td>5d8</td></tr>
+                            </tbody>
+                        </table>
+                        
+                        <h4>Perigo</h4>
+                        <p>Ao estarem em ambiente hostil (natureza, perto de inimigos…), o grupo pode ser emboscado enquanto descansa, iniciando um combate <a href="condicoes.html#desprevenido" class="keyword-link">desprevenidos</a>.</p>
+                        <p>Algum membro do grupo pode <strong>ficar de vigia</strong>, alertando o grupo caso sejam emboscados, retirando a penalidade <em>desprevenido</em>.</p>
+                        
+                        <h4>Descanso ao Ar Livre</h4>
+                        <p>Ao descansarem em um ambiente ao ar livre, o grupo pode improvisar um acampamento. Para isso, todos rolam a perícia <em>Sobrevivência</em> e escolhem o maior resultado do grupo.</p>
+                        
+                        <table class="sistema-table">
+                            <thead>
+                                <tr>
+                                    <th>Sobrevivência</th>
+                                    <th>Tipo de Descanso</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>&lt;15</td><td>Descanso Precário</td></tr>
+                                <tr><td>15-19</td><td>Descanso Ruim</td></tr>
+                                <tr><td>20-24</td><td>Descanso Normal</td></tr>
+                                <tr><td>25-29</td><td>Descanso Bom</td></tr>
+                                <tr><td>30≥</td><td>Descanso Luxuoso</td></tr>
+                            </tbody>
+                        </table>
+                        
+                        <h4>Descanso Curto <small style="color: var(--text-muted);">(Max. 2 por dia)</small></h4>
+                        <p>O grupo descansa por no mínimo <strong>30 minutos</strong> em um lugar seguro, e recupera <strong>2d6 de 2 Status</strong> a escolha de cada jogador.</p>
+                        
+                        <p>Cada jogador pode optar por fazer uma ação diferente enquanto descansa, ao suceder na perícia respectiva, ganhando o benefício da ação:</p>
+                        
+                        <table class="sistema-table">
+                            <thead>
+                                <tr>
+                                    <th>Ação</th>
+                                    <th>Perícia</th>
+                                    <th>Benefício</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Tratar Ferimentos</strong></td>
+                                    <td>Medicina (CD 15)</td>
+                                    <td>Você passa seu tempo de descanso fechando suas feridas, +1d6 Saúde.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Meditar</strong></td>
+                                    <td>Vontade (CD 15)</td>
+                                    <td>Você tenta relaxar e espairecer a mente, +1d6 Éter.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Relaxar</strong></td>
+                                    <td>—</td>
+                                    <td>Você descansa e se preserva pras próximas horas, +1d6 Stamina.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Comer Refeição</strong></td>
+                                    <td>Requer Item: <em>Comida</em></td>
+                                    <td>Você se alimenta recuperando suas forças, +2d6 de qualquer status.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Outros…</strong></td>
+                                    <td>—</td>
+                                    <td>Ações criativas a critério do mestre.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <!-- NECESSIDADES -->
+                <div class="subsection" id="necessidades">
+                    <h3>Necessidades de Sobrevivência</h3>
+                    <div class="content-card">
+                        <p>O grupo precisa se alimentar e beber água ao menos <strong>1 vez por dia</strong> para não ficarem <a href="condicoes.html#desnutrido" class="keyword-link">Desnutridos 1</a>. A cada noite sem comer, a <em>desnutrição</em> aumenta em 1 reduzindo sua saúde máxima em 10. Ao chegar a 0 você morre.</p>
+                        
+                        <p>O alimento padrão de Khalkaria são as <strong>Comidas</strong> consumidas em descansos longos. Porém, se você se alimentar em uma taverna antes do descanso longo, por exemplo, não precisa comer no descanso longo.</p>
+                        
+                        <div class="warning-box">
+                            <p>Além disso, o grupo pode passar até 1 dia sem descansar. Passar o dia sem descansar pela segunda vez, faz todos os jogadores ficarem <a href="condicoes.html#exausto" class="keyword-link">Exaustos 1</a> e assim por diante.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- TAMANHO -->
+                <div class="subsection" id="tamanho">
+                    <h3>Tamanho</h3>
+                    <div class="content-card">
+                        <p>Criaturas podem ter tamanhos diferentes, e isso modifica certas interações.</p>
+                        
+                        <div class="prof-scale" style="justify-content: center; margin: 1rem 0;">
+                            <div class="prof-item">Miúdo</div>
+                            <span class="prof-arrow">→</span>
+                            <div class="prof-item">Pequeno</div>
+                            <span class="prof-arrow">→</span>
+                            <div class="prof-item">Médio</div>
+                            <span class="prof-arrow">→</span>
+                            <div class="prof-item">Grande</div>
+                            <span class="prof-arrow">→</span>
+                            <div class="prof-item">Gigantesco</div>
+                        </div>
+                        
+                        <p>Testes físicos disputados contra uma criatura de tamanho maior que você são mais difíceis. A tabela a seguir leva em conta que você é a criatura da coluna oeste disputando contra a coluna horizontal.</p>
+                        
+                        <div style="overflow-x: auto;">
+                        <table class="sistema-table">
+                            <thead>
+                                <tr>
+                                    <th>Você ↓ / Oponente →</th>
+                                    <th>Miúdo</th>
+                                    <th>Pequeno</th>
+                                    <th>Médio</th>
+                                    <th>Grande</th>
+                                    <th>Gigantesco</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td><strong>Miúdo</strong></td><td>0</td><td>-2</td><td>-4</td><td>-6</td><td>-8</td></tr>
+                                <tr><td><strong>Pequeno</strong></td><td>+2</td><td>0</td><td>-2</td><td>-4</td><td>-6</td></tr>
+                                <tr><td><strong>Médio</strong></td><td>+4</td><td>+2</td><td>0</td><td>-2</td><td>-4</td></tr>
+                                <tr><td><strong>Grande</strong></td><td>+6</td><td>+4</td><td>+2</td><td>0</td><td>-2</td></tr>
+                                <tr><td><strong>Gigantesco</strong></td><td>+8</td><td>+6</td><td>+4</td><td>+2</td><td>0</td></tr>
+                            </tbody>
+                        </table>
+                        </div>
+                        
+                        <h4>Ataque Natural</h4>
+                        <p>Toda criatura possui um dano corpo a corpo natural ele é calculado da seguinte maneira:</p>
+                        
+                        <table class="sistema-table">
+                            <thead>
+                                <tr>
+                                    <th>Tamanho</th>
+                                    <th>Soco</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>Miúdo</td><td>Mod. Força</td></tr>
+                                <tr><td>Pequeno</td><td>1d3+Mod. Força</td></tr>
+                                <tr><td>Médio</td><td>1d4+Mod. Força</td></tr>
+                                <tr><td>Grande</td><td>1d6+Mod. Força</td></tr>
+                                <tr><td>Gigantesco</td><td>1d8+Mod. Força</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <!-- IDIOMAS -->
+                <div class="subsection" id="idiomas">
+                    <h3>Idiomas</h3>
+                    <div class="content-card">
+                        <p>Em Khalkaria existem diversos idiomas e sub idiomas. Mas para simplificação, apenas 5 idiomas existem.</p>
+                        
+                        <table class="sistema-table">
+                            <thead>
+                                <tr>
+                                    <th>Idioma</th>
+                                    <th>Descrição</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td><strong>Comum</strong></td><td>Idioma padrão internacional</td></tr>
+                                <tr><td><strong>Skalia</strong></td><td>Idioma dos Répteis, protegido pela raça</td></tr>
+                                <tr><td><strong>Khazadun</strong></td><td>Idioma dos Anões, impossível de falar sem cordas vocais anãs.</td></tr>
+                                <tr><td><strong>Natural</strong></td><td>Idioma dos Animais, Bestas e Dryads</td></tr>
+                                <tr><td><strong>Abissal</strong></td><td>Idioma Primordial</td></tr>
+                                <tr><td><strong>Esquecido</strong></td><td>Idioma Extinto de Criaturas Antigas</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- ================================================================
+                 CATEGORIA: PROGRESSÃO
+                 ================================================================ -->
+            <section class="category-section cat-progressao" id="progressao">
+                <div class="category-header">
+                    <div class="category-icon">📈</div>
+                    <h2>Progressão</h2>
+                </div>
+                
+                <!-- PROGRESSÃO DO JOGADOR -->
+                <div class="subsection" id="progressao-jogador">
+                    <h3>Progressão do Jogador</h3>
+                    <div class="content-card">
+                        <p>Os jogadores ganham benefícios principalmente de 4 eixos:</p>
+                        
+                        <ol>
+                            <li><strong>Classe</strong></li>
+                            <li><strong>Raça</strong></li>
+                            <li><strong>Origem</strong></li>
+                            <li><strong><a href="limiar.html" class="keyword-link">O Limiar</a></strong></li>
+                        </ol>
+                        
+                        <p>A tabela a seguir mostra exatamente os benefícios que o jogador ganha em cada nível:</p>
+                        
+                        <table class="sistema-table">
+                            <thead>
+                                <tr>
+                                    <th>Nível</th>
+                                    <th>Benefícios</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>1</strong></td>
+                                    <td>3 Técnicas de Classe, Características de Raça e 1 Habilidade de Origem</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>2</strong></td>
+                                    <td>4 Técnicas de Classe, Técnicas Tier 1 de Classe, +3 Pontos do Limiar</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>3</strong></td>
+                                    <td>5 Técnicas de Classe, 1 Marca de Classe, +3 Pontos do Limiar</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>4</strong></td>
+                                    <td>6 Técnicas de Classe, Técnicas Tier 2 de Classe, 2 Marcas de Classe, +3 Pontos do Limiar</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>5</strong></td>
+                                    <td>7 Técnicas de Classe, Técnicas Tier 3 de Classe, 3 Marcas de Classe, +3 Pontos do Limiar</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <!-- XP E DC -->
+                <div class="subsection" id="xp-dc">
+                    <h3>XP e DC</h3>
+                    <div class="content-card">
+                        <p>A progressão de nível é definida pelo seu XP, que pode ser conquistado ao vencer combates, desvendar enigmas e ao alcançarem pontos definidos pelo mestre.</p>
+                        
+                        <p>O XP de cada jogador pode diferir ao se dividirem e se submeterem a situações diferentes, já que XP não é universalmente dividido automaticamente.</p>
+                        
+                        <p>A dificuldade da criatura (DC) define o XP ganho ao matá-la. Naturalmente, para definir o XP ganho em um combate, basta somar o XP de cada criatura morta.</p>
+                        
+                        <div class="two-columns">
+                            <div>
+                                <h4>XP por Dificuldade de Criatura</h4>
+                                <table class="sistema-table">
+                                    <thead>
+                                        <tr>
+                                            <th>DC</th>
+                                            <th>XP</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr><td>1/4</td><td>2</td></tr>
+                                        <tr><td>1/2</td><td>5</td></tr>
+                                        <tr><td>1</td><td>10</td></tr>
+                                        <tr><td>2</td><td>25</td></tr>
+                                        <tr><td>3</td><td>50</td></tr>
+                                        <tr><td>4</td><td>100</td></tr>
+                                        <tr><td>5</td><td>200</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div>
+                                <h4>XP Necessário por Nível</h4>
+                                <table class="sistema-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Nível</th>
+                                            <th>XP Necessário</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr><td>1</td><td>—</td></tr>
+                                        <tr><td>2</td><td>150</td></tr>
+                                        <tr><td>3</td><td>400</td></tr>
+                                        <tr><td>4</td><td>1000</td></tr>
+                                        <tr><td>5</td><td>2000</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- ================================================================
+                 CATEGORIA: MAGIA
+                 ================================================================ -->
+            <section class="category-section cat-magia" id="magia">
+                <div class="category-header">
+                    <div class="category-icon">✨</div>
+                    <h2>Magia</h2>
+                </div>
+                
+                <!-- INTRODUÇÃO À MAGIA -->
+                <div class="subsection" id="magia-intro">
+                    <h3>Introdução à Magia</h3>
+                    <div class="content-card">
+                        <p>Majoritária parte do mundo não conhece as forças primordiais, forças que materializam energias do plano místico ao plano material, porém Teurgos e pessoas que foram expostas a esses fenômenos sabem que o mundo é diverso e rico de energia mística.</p>
+                        
+                        <p>A conjuração de magias não é algo trivial, primeiramente você deve ter conhecimento básico do místico, sendo ao menos <strong>treinado</strong> para realizar tais rituais. Além disso, você precisa ter aprendido os procedimentos para realizar a conjuração de uma magia específica.</p>
+                        
+                        <p>Por fim você precisa de um <strong>Foco apropriado</strong> da escola da magia em questão para finalmente conjurá-la. Ao Conjurar magias, as forças primordiais afetam seu mental e exigem uma troca da sua sanidade para materializar o místico.</p>
+                        
+                        <div class="rule-box">
+                            <p>Acertar um inimigo com uma magia qualquer utiliza a perícia <strong>Místico</strong> como base, a não ser que seja descrito o contrário.</p>
+                        </div>
+                        
+                        <p>Você só pode manipular <strong>1 Foco por vez</strong>, isso significa que para canalizar magias de outra escola você, antes, deve equipar o foco apropriado.</p>
+                        
+                        <p>Ao conjurar, você deve especificar as forças primordiais o que elas devem materializar, definindo também o custo da magia. Ou seja, escolhendo a <strong>intensidade</strong> e a <strong>modulação</strong> da magia.</p>
+                        
+                        <p style="text-align: center; margin-top: 1.5rem;">
+                            <a href="magias.html" class="keyword-link" style="font-size: 1.1rem;">📖 Ver Lista Completa de Magias →</a>
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- CUSTO BASE -->
+                <div class="subsection" id="custo-base">
+                    <h3>Custo Base</h3>
+                    <div class="content-card">
+                        <table class="sistema-table">
+                            <thead>
+                                <tr>
+                                    <th>Nível da Magia</th>
+                                    <th>Custo de Éter</th>
+                                    <th>Requisito</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>Magias Nível 1</td><td>2 Éter</td><td>—</td></tr>
+                                <tr><td>Magias Nível 2</td><td>4 Éter</td><td>—</td></tr>
+                                <tr><td>Magias Nível 3</td><td>6 Éter</td><td>—</td></tr>
+                                <tr><td>Magias Nível 4</td><td>8 Éter</td><td>Requer Foco Primordial</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <!-- INTENSIDADE -->
+                <div class="subsection" id="intensidade">
+                    <h3>Intensidade</h3>
+                    <div class="content-card">
+                        <p>Ao conjurar qualquer magia, escolha a intensidade da conjuração:</p>
+                        
+                        <div class="intensidade-grid">
+                            <div class="intensidade-item int-contida">
+                                <strong>Contida</strong>
+                                <span>-2 Éter</span>
+                                <small>Efeito Reduzido</small>
+                            </div>
+                            <div class="intensidade-item int-normal">
+                                <strong>Normal</strong>
+                                <span>Custo Base</span>
+                                <small>—</small>
+                            </div>
+                            <div class="intensidade-item int-forcada">
+                                <strong>Forçada</strong>
+                                <span>+2 Éter</span>
+                                <small>Efeito Ampliado</small>
+                            </div>
+                            <div class="intensidade-item int-transb">
+                                <strong>Transbordante</strong>
+                                <span>+4 Éter</span>
+                                <small>Efeito Máximo + Risco</small>
+                            </div>
+                        </div>
+                        
+                        <div class="warning-box">
+                            <p><strong>Transbordante:</strong> Vontade CD 15 ou falha no cast e perde o dobro de éter utilizado.</p>
+                        </div>
+                        
+                        <h4>Efeito reduzido/ampliado/máximo</h4>
+                        <p>Na descrição de cada magia encontra-se as características que são alteradas dependendo da intensidade da canalização.</p>
+                        
+                        <div style="overflow-x: auto;">
+                        <table class="sistema-table">
+                            <thead>
+                                <tr>
+                                    <th>Tipo</th>
+                                    <th>Contida</th>
+                                    <th>Normal</th>
+                                    <th>Ampliado</th>
+                                    <th>Transbordante</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Dano</strong></td>
+                                    <td>-1 dado</td>
+                                    <td>Base</td>
+                                    <td>+1 dado</td>
+                                    <td>+2 dados</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Cura</strong></td>
+                                    <td>-1 dado</td>
+                                    <td>Base</td>
+                                    <td>+1 dado</td>
+                                    <td>+2 dados</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Buff/Debuff</strong></td>
+                                    <td>Metade da duração</td>
+                                    <td>Base</td>
+                                    <td>Dobro de duração</td>
+                                    <td>Dobro de duração + 2x Intensidade</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Área</strong></td>
+                                    <td>Metade da Área</td>
+                                    <td>Base</td>
+                                    <td>+50% raio</td>
+                                    <td>Dobro do raio</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Alcance</strong></td>
+                                    <td>Metade do Alcance</td>
+                                    <td>Base</td>
+                                    <td>+50% alcance</td>
+                                    <td>Dobro do alcance</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Conhecimento</strong></td>
+                                    <td>Informação Vaga</td>
+                                    <td>Base</td>
+                                    <td>Informação Detalhada</td>
+                                    <td>Informação Completa</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Invocação</strong></td>
+                                    <td>Criatura Fraca</td>
+                                    <td>Base</td>
+                                    <td>Criatura Forte</td>
+                                    <td>Criatura Forte + Duração</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Teste de Resistência</strong></td>
+                                    <td>-2 CD</td>
+                                    <td>Base</td>
+                                    <td>+2 CD</td>
+                                    <td>+4 CD</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- MODULAÇÕES -->
+                <div class="subsection" id="modulacoes">
+                    <h3>Modulações</h3>
+                    <div class="content-card">
+                        <p>Além da intensidade da magia, você aprendeu através do conhecimento das escolas do primórdio, adicionar efeitos fixos a elas, esses efeitos são chamados de <strong>modulações</strong>:</p>
+                        
+                        <h4 style="color: #f87171;">Destruição</h4>
+                        <table class="sistema-table">
+                            <thead>
+                                <tr>
+                                    <th>Modulação</th>
+                                    <th>Custo</th>
+                                    <th>Efeito</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Fragmentar</strong></td>
+                                    <td>+2 Éter</td>
+                                    <td>Atinge +1 alvo. Porém reduz o dano à metade.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Alterar</strong></td>
+                                    <td>+3 Éter</td>
+                                    <td>Altera o tipo de dano.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Carregar</strong></td>
+                                    <td>+3 Éter</td>
+                                    <td>Ignora 2 de <em>Evasão</em> do alvo.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Marcar</strong></td>
+                                    <td>+3 Éter</td>
+                                    <td>O alvo fica <a href="condicoes.html#exposto" class="keyword-link">Exposto</a> ao acertar.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        
+                        <h4 style="color: #60a5fa;">Abjuração</h4>
+                        <table class="sistema-table">
+                            <thead>
+                                <tr>
+                                    <th>Modulação</th>
+                                    <th>Custo</th>
+                                    <th>Efeito</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Ancorar</strong></td>
+                                    <td>+2 Éter</td>
+                                    <td>Efeito não pode ser <em>Dissipado</em>.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Socializar</strong></td>
+                                    <td>+3 Éter</td>
+                                    <td>Efeito afeta +1 alvo.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Refletir</strong></td>
+                                    <td>+3 Éter</td>
+                                    <td>Ao bloquear dano, redireciona metade do dano ao agressor.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Acelerar</strong></td>
+                                    <td>+5 Éter</td>
+                                    <td>Diminui o custo de ação em 1. (3→2→1→Reação→Ação Livre)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        
+                        <h4 style="color: #4ade80;">Alteração</h4>
+                        <table class="sistema-table">
+                            <thead>
+                                <tr>
+                                    <th>Modulação</th>
+                                    <th>Custo</th>
+                                    <th>Efeito</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Insistir</strong></td>
+                                    <td>+2 Éter</td>
+                                    <td>Efeito dura o dobro.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Inversão</strong></td>
+                                    <td>+2 Éter</td>
+                                    <td>Inverte o efeito da magia.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Contagiar</strong></td>
+                                    <td>+3 Éter</td>
+                                    <td>Efeito afeta +1 alvo.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Seleção</strong></td>
+                                    <td>+3 Éter</td>
+                                    <td>Remove criaturas da área de efeito à escolha.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        
+                        <h4 style="color: #c084fc;">Conhecimento</h4>
+                        <table class="sistema-table">
+                            <thead>
+                                <tr>
+                                    <th>Modulação</th>
+                                    <th>Custo</th>
+                                    <th>Efeito</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Compartilhar</strong></td>
+                                    <td>+1 Éter</td>
+                                    <td>Aliados também se informam.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Exigência</strong></td>
+                                    <td>+2 Éter</td>
+                                    <td>Informação mais específica.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Expandir</strong></td>
+                                    <td>+2 Éter</td>
+                                    <td>Abrange o dobro da área.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Gravar</strong></td>
+                                    <td>+3 Éter</td>
+                                    <td>Grava a informação na sua mente ou em um objeto qualquer.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- SEPARADOR FINAL -->
+            <div class="separator-ornament" style="text-align: center; margin: 3rem 0; color: var(--gold); opacity: 0.5;">
+                <span>◆ ◆ ◆</span>
+            </div>
+            
+            <!-- LINKS RÁPIDOS -->
+            <div class="content-card" style="text-align: center;">
+                <h3 style="color: var(--gold); margin-bottom: 1rem;">Próximos Passos</h3>
+                <p>
+                    <a href="condicoes.html" class="keyword-link" style="margin: 0 1rem;">⚡ Condições</a>
                     <a href="racas.html" class="keyword-link" style="margin: 0 1rem;">👤 Raças</a>
                     <a href="classes.html" class="keyword-link" style="margin: 0 1rem;">⚔️ Classes</a>
                     <a href="origens.html" class="keyword-link" style="margin: 0 1rem;">🎭 Origens</a>
