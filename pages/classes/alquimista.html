@@ -720,7 +720,7 @@
                         </div>
                         <div class="stat-card">
                             <div class="label">CD</div>
-                            <div class="value">10 + Int + Des</div>
+                            <div class="value">10 + Mod. Inteligência + Mod. Destreza</div>
                         </div>
                         <div class="stat-card">
                             <div class="label">Estilo</div>
@@ -763,7 +763,7 @@
                 </div>
                 <div class="formula-card">
                     <h4>🛡️ Evasão Passiva</h4>
-                    <code>12 + Mod.Destreza</code>
+                    <code>12 + Mod. Destreza</code>
                 </div>
             </div>
 
@@ -1229,10 +1229,389 @@
                     </table>
                 </div>
 
-                <!-- NÍVEL 3 e 4+ (resumidos por espaço) -->
-                <div class="ramos-intro" style="margin-top: 2rem;">
-                    <p style="text-align: center; margin: 0;"><strong>📜 Itens de Nível 3, 4 e 5:</strong> A tabela completa inclui dezenas de itens adicionais como Napalm Alquímico, Bomba de Plasma, Elixir da Fênix, Bomba do Vazio e outros itens lendários. Consulte o documento completo do sistema para a lista detalhada.</p>
-                </div>
+                    <div class="alchemy-level-header">
+                        <h4>🧪 Nível 3</h4>
+                        <span class="cd-range">CD 16-18</span>
+                    </div>
+                    <table class="alchemy-table">
+                        <thead>
+                            <tr>
+                                <th>Item</th>
+                                <th>Efeito</th>
+                                <th class="reagent-col">Reag.</th>
+                                <th class="cd-col">CD</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="category-row"><td colspan="4">Ofensivos</td></tr>
+                            <tr>
+                                <td class="item-name">Napalm Alquímico</td>
+                                <td>Arremesso 9m. 3d6 Fogo em área 3m, Reflexo para metade. Queima <strong>2d6/turno por 3 rodadas</strong>. Água não apaga.</td>
+                                <td class="reagent-col">4</td>
+                                <td class="cd-col">16</td>
+                            </tr>
+                            <tr>
+                                <td class="item-name">Bomba de Fragmentação</td>
+                                <td>Arremesso 9m. 4d6 Perfurante em 4,5m raio. Reflexo para metade.</td>
+                                <td class="reagent-col">4</td>
+                                <td class="cd-col">16</td>
+                            </tr>
+                            <tr>
+                                <td class="item-name">Gás Necrótico</td>
+                                <td>Nuvem 6m raio. 2d8 Necrótico/turno. Cura que criaturas na área receberiam é reduzida pela metade. Dura 3 rodadas.</td>
+                                <td class="reagent-col">5</td>
+                                <td class="cd-col">16</td>
+                            </tr>
+                            <tr>
+                                <td class="item-name">Bomba de Vácuo</td>
+                                <td>Arremesso 9m. 2d10 Força em 3m. Criaturas são puxadas 3m para o centro. Fortitude nega puxão.</td>
+                                <td class="reagent-col">5</td>
+                                <td class="cd-col">18</td>
+                            </tr>
+                            <tr>
+                                <td class="item-name">Carga de Implosão</td>
+                                <td>Colocar em estrutura/objeto. Destrói até 3m³ de material não-mágico. 6d6 em criaturas adjacentes.</td>
+                                <td class="reagent-col">6</td>
+                                <td class="cd-col">18</td>
+                            </tr>
+                            <tr>
+                                <td class="item-name">Frasco do Raio</td>
+                                <td>Arremesso 9m. 3d8 Elétrico. Salta para até 2 alvos adicionais em 3m (2d8 cada).</td>
+                                <td class="reagent-col">4</td>
+                                <td class="cd-col">16</td>
+                            </tr>
+                            <tr class="category-row"><td colspan="4">Curativo</td></tr>
+                            <tr>
+                                <td class="item-name">Poção de Cura Maior</td>
+                                <td>Recupera <strong>4d8+Int</strong> de Saúde.</td>
+                                <td class="reagent-col">6</td>
+                                <td class="cd-col">16</td>
+                            </tr>
+                            <tr>
+                                <td class="item-name">Elixir de Restauração</td>
+                                <td>Remove <em>Cego</em>, <em>Surdo</em>, <em>Paralisado</em> ou <em>Atordoado</em>.</td>
+                                <td class="reagent-col">5</td>
+                                <td class="cd-col">16</td>
+                            </tr>
+                            <tr>
+                                <td class="item-name">Adrenalina de Campo</td>
+                                <td>Criatura inconsciente acorda com metade da Saúde máxima instantaneamente. Fica Exausto 1 após 1 hora.</td>
+                                <td class="reagent-col">4</td>
+                                <td class="cd-col">16</td>
+                            </tr>
+                            <tr>
+                                <td class="item-name">Poção de Vigor Maior</td>
+                                <td>Recupera 2d6 de Stamina.</td>
+                                <td class="reagent-col">6</td>
+                                <td class="cd-col">18</td>
+                            </tr>
+                            <tr class="category-row"><td colspan="4">Elixir e Óleo (CD 16-18)</td></tr>
+                            <tr>
+                                <td class="item-name">Elixir do Crescimento</td>
+                                <td>+1 categoria de tamanho. +1d4 dano, +2 For, -2 Des, +1,5m alcance. Duração 1 min.</td>
+                                <td class="reagent-col">5</td>
+                                <td class="cd-col">16</td>
+                            </tr>
+                            <tr>
+                                <td class="item-name">Elixir do Encolhimento</td>
+                                <td>-1 categoria de tamanho. +2 Furtividade, +2 Des, -2 For. Passa em frestas. Duração 1 min.</td>
+                                <td class="reagent-col">5</td>
+                                <td class="cd-col">16</td>
+                            </tr>
+                            <tr>
+                                <td class="item-name">Extrato de Velocidade</td>
+                                <td>+1 Ação por turno. Duração 3 turnos. Exausto 1 após efeito.</td>
+                                <td class="reagent-col">6</td>
+                                <td class="cd-col">18</td>
+                            </tr>
+                            <tr>
+                                <td class="item-name">Mutagênico Menor</td>
+                                <td>Escolha: +4 For/-2 Int OU +4 Des/-2 For OU +4 Con/-2 Sab. Duração 10 min.</td>
+                                <td class="reagent-col">5</td>
+                                <td class="cd-col">16</td>
+                            </tr>
+                            <tr>
+                                <td class="item-name">Elixir da Visão Verdadeira</td>
+                                <td>Vê através de ilusões, escuridão mágica, invisibilidade em 9m. Duração 1 min.</td>
+                                <td class="reagent-col">5</td>
+                                <td class="cd-col">18</td>
+                            </tr>
+                            <tr>
+                                <td class="item-name">Elixir Aranha</td>
+                                <td>Escala superfícies como aranha. Mãos livres não necessárias.</td>
+                                <td class="reagent-col">4</td>
+                                <td class="cd-col">16</td>
+                            </tr>
+                            <tr>
+                                <td class="item-name">Óleo do Caçador</td>
+                                <td>Arma: +2 Atacar e +2d6 dano contra uma criatura. Duração 1 hora.</td>
+                                <td class="reagent-col">4</td>
+                                <td class="cd-col">16</td>
+                            </tr>
+                            <tr class="category-row"><td colspan="4">Utilidades</td></tr>
+                            <tr>
+                                <td class="item-name">Elixir das Guelras</td>
+                                <td>Respira debaixo d'água. Duração 30 min.</td>
+                                <td class="reagent-col">4</td>
+                                <td class="cd-col">16</td>
+                            </tr>
+                            <tr>
+                                <td class="item-name">Tintura Fantasma</td>
+                                <td>Translúcido. +4 Furtividade. Atacar cancela. Duração 1 min.</td>
+                                <td class="reagent-col">4</td>
+                                <td class="cd-col">16</td>
+                            </tr>
+                            <tr>
+                                <td class="item-name">Bomba de Éter</td>
+                                <td>Arremesso 9m. Drena 1d6 Éter em 3m. Você recupera metade.</td>
+                                <td class="reagent-col">5</td>
+                                <td class="cd-col">18</td>
+                            </tr>
+                            <tr>
+                                <td class="item-name">Elixir das Línguas</td>
+                                <td>Entende e fala qualquer idioma. Duração 1 hora.</td>
+                                <td class="reagent-col">4</td>
+                                <td class="cd-col">16</td>
+                            </tr>
+                            <tr>
+                                <td class="item-name">Sangue Falso</td>
+                                <td>Pode se fingir de morto. Medicina CD 18 para perceber. Duração 1 hora.</td>
+                                <td class="reagent-col">3</td>
+                                <td class="cd-col">16</td>
+                            </tr>
+                            <tr>
+                                <td class="item-name">Ácido Dimensional</td>
+                                <td>Corrói barreiras mágicas, campos de força. Anula 1 efeito de barreira.</td>
+                                <td class="reagent-col">6</td>
+                                <td class="cd-col">18</td>
+                            </tr>
+                            <tr class="category-row"><td colspan="4">Venenos</td></tr>
+                            <tr>
+                                <td class="item-name">Veneno Paralisante</td>
+                                <td>1 ataque. Fortitude ou <em>Paralisado</em> 2 rodadas. Duração 1 min.</td>
+                                <td class="reagent-col">5</td>
+                                <td class="cd-col">16</td>
+                            </tr>
+                            <tr>
+                                <td class="item-name">Soro da Verdade</td>
+                                <td>Ingerido. Vontade ou não pode mentir por 10 min.</td>
+                                <td class="reagent-col">5</td>
+                                <td class="cd-col">16</td>
+                            </tr>
+                            <tr>
+                                <td class="item-name">Veneno Hemorrágico</td>
+                                <td>3 ataques. +2d6 Biológico. Alvo sangra 1d6/turno por 3 rodadas (Medicina estanca).</td>
+                                <td class="reagent-col">5</td>
+                                <td class="cd-col">16</td>
+                            </tr>
+                            <tr>
+                                <td class="item-name">Toxina Mental</td>
+                                <td>1 ataque. Vontade ou <em>Confuso</em> por 1 minuto.</td>
+                                <td class="reagent-col">5</td>
+                                <td class="cd-col">18</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="alchemy-level-header">
+                        <h4>🧪 Nível 4</h4>
+                        <span class="cd-range">CD 20-22</span>
+                    </div>
+                    <table class="alchemy-table">
+                        <thead>
+                            <tr>
+                                <th>Item</th>
+                                <th>Efeito</th>
+                                <th class="reagent-col">Reag.</th>
+                                <th class="cd-col">CD</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="category-row"><td colspan="4">Ofensivos</td></tr>
+                            <tr>
+                                <td class="item-name">Bomba de Plasma</td>
+                                <td>Arremesso 12m. 6d6 Fogo + 6d6 Elétrico em 6m raio. Reflexo para metade. Ignora Resistência a Fogo.</td>
+                                <td class="reagent-col">8</td>
+                                <td class="cd-col">20</td>
+                            </tr>
+                            <tr>
+                                <td class="item-name">Praga Alquímica</td>
+                                <td>Arremesso 9m. Fortitude ou 3d8 Biológico em 4,5m. Criaturas afetadas <strong>espalham</strong> a praga (1d8/turno) ao tocar outros por 1 min.</td>
+                                <td class="reagent-col">8</td>
+                                <td class="cd-col">20</td>
+                            </tr>
+                            <tr>
+                                <td class="item-name">Bomba Gravitacional</td>
+                                <td>Arremesso 9m. Cria zona de gravidade intensa 6m raio por 3 rodadas. Criaturas: <strong>Movimento reduzido pela metade</strong>, -4 Reflexo, voar impossível, 2d6 Contundente/turno.</td>
+                                <td class="reagent-col">10</td>
+                                <td class="cd-col">22</td>
+                            </tr>
+                            <tr>
+                                <td class="item-name">Fogo Negro</td>
+                                <td>Arremesso 9m. 4d10 Fogo + 4d10 Necrótico em 3m. Reflexo para metade. Chamas negras. Cura é impossível na área por 1 min.</td>
+                                <td class="reagent-col">10</td>
+                                <td class="cd-col">22</td>
+                            </tr>
+                            <tr>
+                                <td class="item-name">Dissolução Total</td>
+                                <td>Aplicar em criatura/objeto. 8d6 Biológico. Ignora toda Armadura. Desintegra matéria morta.</td>
+                                <td class="reagent-col">8</td>
+                                <td class="cd-col">20</td>
+                            </tr>
+                            <tr class="category-row"><td colspan="4">Curativos</td></tr>
+                            <tr>
+                                <td class="item-name">Poção de Cura Suprema</td>
+                                <td>Recupera 6d8+Int de Saúde + remove 1 condição à escolha.</td>
+                                <td class="reagent-col">10</td>
+                                <td class="cd-col">20</td>
+                            </tr>
+                            <tr>
+                                <td class="item-name">Poção de Vigor Suprema</td>
+                                <td>Recupera 3d8 de Stamina + remove todas as condições (Incluindo Mágicas).</td>
+                                <td class="reagent-col">10</td>
+                                <td class="cd-col">20</td>
+                            </tr>
+                            <tr>
+                                <td class="item-name">Elixir da Fênix</td>
+                                <td>Criatura morta há menos de 1 minuto <strong>ressuscita</strong> com 1 HP.</td>
+                                <td class="reagent-col">12</td>
+                                <td class="cd-col">22</td>
+                            </tr>
+                            <tr>
+                                <td class="item-name">Regeneração Alquímica</td>
+                                <td>Regenera membro perdido há até 1 hora em 24 horas. Requer repouso.</td>
+                                <td class="reagent-col">8</td>
+                                <td class="cd-col">20</td>
+                            </tr>
+                            <tr class="category-row"><td colspan="4">Elixir e Óleo</td></tr>
+                            <tr>
+                                <td class="item-name">Mutagênico Maior</td>
+                                <td>+6 em um Atributo, -2 em dois outros. Transformação física visível. Duração 1 Hora.</td>
+                                <td class="reagent-col">8</td>
+                                <td class="cd-col">20</td>
+                            </tr>
+                            <tr>
+                                <td class="item-name">Elixir da Perfeição</td>
+                                <td>+2 em Todos os atributos. Duração 10 min.</td>
+                                <td class="reagent-col">10</td>
+                                <td class="cd-col">22</td>
+                            </tr>
+                            <tr>
+                                <td class="item-name">Elixir da Forma Bestial</td>
+                                <td>Transforma em besta de CR igual ao seu nível. Mantém mente. Duração 3 turnos.</td>
+                                <td class="reagent-col">8</td>
+                                <td class="cd-col">20</td>
+                            </tr>
+                            <tr>
+                                <td class="item-name">Sangue do Dragão</td>
+                                <td>Resistência a <strong>todo dano elemental</strong>. Sopro 1x (4d6 elemento à escolha, cone 9m). Duração 1 hora.</td>
+                                <td class="reagent-col">12</td>
+                                <td class="cd-col">22</td>
+                            </tr>
+                            <tr>
+                                <td class="item-name">Soro da Guerra</td>
+                                <td>+2 Atacar, +2 Defender, +2d6 dano, +3m Movimento, Vantagem em Fortitude.</td>
+                                <td class="reagent-col">8</td>
+                                <td class="cd-col">22</td>
+                            </tr>
+                            <tr class="category-row"><td colspan="4">Utilidades</td></tr>
+                            <tr>
+                                <td class="item-name">Essência Etérea</td>
+                                <td>Torna-se Incorpóreo por 1 minuto. Atravessa paredes. Não pode interagir fisicamente.</td>
+                                <td class="reagent-col">8</td>
+                                <td class="cd-col">20</td>
+                            </tr>
+                            <tr>
+                                <td class="item-name">Poção da Invisibilidade</td>
+                                <td><em>Invisível</em> por 10 min. Atacar, receber dano ou conjurar cancela.</td>
+                                <td class="reagent-col">8</td>
+                                <td class="cd-col">20</td>
+                            </tr>
+                            <tr>
+                                <td class="item-name">Bomba Temporal</td>
+                                <td>Área 6m. Criaturas afetadas: <em>Lentidão 2</em> (1 Ação/turno, -6 m movimento, sem reação, -4 Reflexo) por 3 rodadas. Vontade nega.</td>
+                                <td class="reagent-col">12</td>
+                                <td class="cd-col">22</td>
+                            </tr>
+                            <tr>
+                                <td class="item-name">Extrato de Clarividência</td>
+                                <td>Vê e ouve local que você conhece a até 1km por 10 min.</td>
+                                <td class="reagent-col">6</td>
+                                <td class="cd-col">20</td>
+                            </tr>
+                            <tr>
+                                <td class="item-name">Tinta do Destino</td>
+                                <td>Escreva um evento simples. 50% chance de acontecer nas próximas 24h. Mestre rola os dados.</td>
+                                <td class="reagent-col">10</td>
+                                <td class="cd-col">22</td>
+                            </tr>
+                            <tr class="category-row"><td colspan="4">Venenos</td></tr>
+                            <tr>
+                                <td class="item-name">Veneno Letal</td>
+                                <td>1 ataque. 6d6 Biológico. Fortitude ou +6d6 e Inconsciente. Duração 1 min.</td>
+                                <td class="reagent-col">8</td>
+                                <td class="cd-col">20</td>
+                            </tr>
+                            <tr>
+                                <td class="item-name">Veneno da Alma</td>
+                                <td>1 ataque. 4d6 Necrótico. Vontade ou <strong>Éter máximo reduzido pela metade</strong> por 24h. Duração 1 min.</td>
+                                <td class="reagent-col">10</td>
+                                <td class="cd-col">22</td>
+                            </tr>
+                            <tr>
+                                <td class="item-name">Paralisia Total</td>
+                                <td>1 ataque. Fortitude ou <em>Paralisado</em> por 1 hora. Duração 1 min.</td>
+                                <td class="reagent-col">8</td>
+                                <td class="cd-col">20</td>
+                            </tr>
+                            <tr>
+                                <td class="item-name">Amnésia Líquida</td>
+                                <td>Ingerido. Vontade ou perde memórias das últimas 24h.</td>
+                                <td class="reagent-col">6</td>
+                                <td class="cd-col">20</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="alchemy-level-header">
+                        <h4>🧪 Nível 5</h4>
+                        <span class="cd-range">CD 24+</span>
+                    </div>
+                    <table class="alchemy-table">
+                        <thead>
+                            <tr>
+                                <th>Item</th>
+                                <th>Efeito</th>
+                                <th class="reagent-col">Reag.</th>
+                                <th class="cd-col">CD</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="category-row"><td colspan="4">Lendários</td></tr>
+                            <tr>
+                                <td class="item-name">Elixir da Imortalidade</td>
+                                <td>Não envelhece por 10 anos. Revive 1x se morrer nesse período (1 HP). Requer <em>Coração da Árvore</em>.</td>
+                                <td class="reagent-col">15</td>
+                                <td class="cd-col">24</td>
+                            </tr>
+                            <tr>
+                                <td class="item-name">Bomba do Vazio</td>
+                                <td>10d10 Força em 9m raio. Reflexos ou Morte Instantânea no centro da bomba. Tudo é empurrado <strong>para o centro</strong> e comprimido. Requer <em>Grilhões do Abismo</em>.</td>
+                                <td class="reagent-col">15</td>
+                                <td class="cd-col">24</td>
+                            </tr>
+                            <tr>
+                                <td class="item-name">Soro do Homúnculo</td>
+                                <td>Ao injetar transforma em servo alquímico (CR 2) leal pra sempre. Requer <em>Sangue Primordial</em>.</td>
+                                <td class="reagent-col">15</td>
+                                <td class="cd-col">24</td>
+                            </tr>
+                            <tr>
+                                <td class="item-name">Lágrimas do Tempo</td>
+                                <td>Reverte objeto/criatura/local ao estado de até 1000 anos atrás. 1 uso. Requer <em>Areia Temporal</em>.</td>
+                                <td class="reagent-col">20</td>
+                                <td class="cd-col">26</td>
+                            </tr>
+                        </tbody>
+                    </table>
             </div>
 
             <!-- RAMOS -->

@@ -594,7 +594,7 @@
                         </div>
                         <div class="stat-card">
                             <div class="label">CD</div>
-                            <div class="value">10 + For + Con</div>
+                            <div class="value">10 + Força + Constituição</div>
                         </div>
                         <div class="stat-card">
                             <div class="label">Estilo</div>
@@ -630,7 +630,7 @@
                 </div>
                 <div class="formula-card">
                     <h4>🛡️ Evasão Passiva</h4>
-                    <code>14 + Mod.Destreza</code>
+                    <code>14 + Mod. Destreza</code>
                 </div>
             </div>
 
@@ -662,7 +662,7 @@
                 <div class="technique-card">
                     <h4>Finalizar</h4>
                     <span class="tech-meta">Passiva</span>
-                    <p>Ao causar dano, a criatura morre instantaneamente se estiver com Saúde ≤ seu Mod. Força.</p>
+                    <p>Ao causar dano em uma criatura, ela instantaneamente morre se estiver com Saúde igual ou menor que sua Brutalidade.</p>
                 </div>
                 <div class="technique-card">
                     <h4>Inabalável</h4>
@@ -723,6 +723,31 @@
                     <h4>Investida</h4>
                     <span class="tech-meta">2 Ações • 3 Stamina</span>
                     <p>Investir em linha reta (4,5m-9m). Alvos no caminho: Fortitude ou 1d6+Mod.For de dano e ficam <em>Caídos</em>.</p>
+                </div>
+            </div>
+
+            
+            <!-- BRUTALIDADE -->
+            <div class="section-divider">
+                <h2>⚡ Brutalidade</h2>
+            </div>
+            <div class="fluxo-box" style="background:var(--bg-card);border:1px solid var(--border-color);border-radius:8px;padding:20px 24px;margin-bottom:28px;">
+                <p style="font-style:italic;color:var(--text-secondary);margin-bottom:16px;"><em>Cada golpe que você recebe te deixa mais determinado. A dor não te enfraquece - te transforma em fúria pura.</em><br>A <strong>Brutalidade</strong> representa sua resiliência e raiva acumuladas.</p>
+                <p>Você ganha <strong>Brutalidade</strong> da seguinte maneira:</p>
+                <ul style="margin:8px 0 16px 20px;line-height:2.2;">
+                    <li><strong>Dano:</strong> Ao receber 5+ Dano de uma única fonte → +1 Brutalidade</li>
+                </ul>
+                <p><strong><u>Efeito Passivo:</u></strong></p>
+                <ul style="margin:4px 0 12px 20px;line-height:2;">
+                    <li>Seus ataques causam +1 de dano por ponto de <strong>Brutalidade</strong> acumulado.</li>
+                </ul>
+                <p><strong><u>Gasto Ativo:</u></strong></p>
+                <ul style="margin:4px 0 12px 20px;line-height:2;">
+                    <li>Você pode gastar toda sua <strong>Brutalidade</strong> para recuperar <em><strong>x</strong>d4 Stamina</em>, sendo <em><strong>x</strong></em> igual ao seus pontos de <strong>Brutalidade</strong>.</li>
+                </ul>
+                <div style="display:flex;gap:24px;flex-wrap:wrap;margin-top:8px;">
+                    <div style="background:var(--bg-tertiary);border-radius:6px;padding:8px 16px;font-family:var(--font-heading);font-size:13px;color:var(--gold-dark);">Máximo: 5 Brutalidade</div>
+                    <div style="background:var(--bg-tertiary);border-radius:6px;padding:8px 16px;font-family:var(--font-heading);font-size:13px;color:var(--text-muted);">Você perde toda sua brutalidade ao fim do combate.</div>
                 </div>
             </div>
 

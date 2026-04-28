@@ -650,7 +650,7 @@
                         </div>
                         <div class="stat-card">
                             <div class="label">CD</div>
-                            <div class="value">10 + Des + Sab</div>
+                            <div class="value">10 + Mod. Destreza + Mod. Sabedoria</div>
                         </div>
                         <div class="stat-card">
                             <div class="label">Estilo</div>
@@ -693,7 +693,7 @@
                 </div>
                 <div class="formula-card">
                     <h4>🛡️ Evasão Passiva</h4>
-                    <code>12 + Mod.Destreza</code>
+                    <code>12 + Mod. Destreza</code>
                 </div>
             </div>
 
@@ -746,7 +746,7 @@
                 <div class="technique-card">
                     <h4>Atento</h4>
                     <span class="tech-meta">Passiva</span>
-                    <p>Você é imune a condição <em>Desprevenido</em>.</p>
+                    <p>Ao receber a condição <em>Desprevenido</em>, role um teste de Sobrevivência ou Furtividade  contra a CD do inimigo, caso suceda você não está <em>Desprevenido</em>.</p>
                 </div>
                 <div class="technique-card">
                     <h4>Passo Ciente</h4>
@@ -818,6 +818,49 @@
                     <span class="tech-meta">1 Ação • 2 Stamina</span>
                     <p>Ao estar fora da linha de visão de todas as criaturas, pode se esconder com 1 ação ao invés de 2.</p>
                 </div>
+            </div>
+
+
+            <!-- INSTINTO -->
+            <div class="section-divider">
+                <h2>🎯 Instinto</h2>
+            </div>
+            <div class="fluxo-box" style="background:var(--bg-card);border:1px solid var(--border-color);border-radius:8px;padding:20px 24px;margin-bottom:28px;">
+                <ul style="margin:0 0 12px 20px;line-height:2.2;">
+                    <li>Você começa cenas de exploração ou cenas de combate com 0 de <strong>Instinto</strong>, <em>contudo</em>, se estiver em uma cena de exploração e começar um combate pode sustentar seu <strong>Instinto</strong>.</li>
+                </ul>
+                <p>Você <u>ganha</u> <strong>Instinto</strong> das seguintes maneiras:</p>
+                <ul style="margin:4px 0 12px 20px;line-height:2.2;">
+                    <li><strong>Perícia:</strong> Ao suceder em qualquer perícia → +1 Instinto : Máx. 1x por rodada, Máx. 1x/perícia a cada cena</li>
+                    <li><strong>Acerto:</strong> Ao acertar qualquer inimigo → +1 Instinto, Crítico → +2 : Máx 1x/rodada</li>
+                    <li><strong>Esquiva:</strong> Ao esquivar de qualquer ataque → +1 Instinto : Máx 1x/Rodada</li>
+                </ul>
+                <p>Você <u>perde</u> TODO seu <strong>Instinto</strong> das seguintes maneiras:</p>
+                <ul style="margin:4px 0 16px 20px;line-height:2.2;">
+                    <li><strong>Dano:</strong> Ao receber dano maior que metade da sua vida máxima de qualquer fonte → =0 Instinto</li>
+                    <li><strong>Condição:</strong> Ao ficar Atordoado, Desorientado ou Desprevenido → =0 Instinto</li>
+                    <li><strong>Perícia:</strong> Ao falhar criticamente em qualquer perícia → =0 Instinto</li>
+                    <li><strong>Tempo:</strong> Ao ficar 10 minutos sem ganhar instinto → =0 Instinto</li>
+                </ul>
+                <p>Você pode utilizar seu Instinto para ganhar os seguintes benefícios:</p>
+                <table style="width:100%;border-collapse:collapse;margin:12px 0;font-size:14px;">
+                    <thead>
+                        <tr style="background:rgba(212,175,55,.07);">
+                            <th style="padding:8px 12px;text-align:left;border-bottom:1px solid var(--border-color);color:var(--gold-dark);font-family:var(--font-heading);font-size:11px;letter-spacing:1px;">Hab. de Instinto</th>
+                            <th style="padding:8px 12px;text-align:center;border-bottom:1px solid var(--border-color);color:var(--gold-dark);font-family:var(--font-heading);font-size:11px;letter-spacing:1px;">Custo</th>
+                            <th style="padding:8px 12px;text-align:left;border-bottom:1px solid var(--border-color);color:var(--gold-dark);font-family:var(--font-heading);font-size:11px;letter-spacing:1px;">Descrição</th>
+                            <th style="padding:8px 12px;text-align:center;border-bottom:1px solid var(--border-color);color:var(--gold-dark);font-family:var(--font-heading);font-size:11px;letter-spacing:1px;">Ação</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td style="padding:6px 12px;border-bottom:1px solid rgba(42,42,53,.5);">Pressentimento</td><td style="padding:6px 12px;text-align:center;border-bottom:1px solid rgba(42,42,53,.5);">X</td><td style="padding:6px 12px;border-bottom:1px solid rgba(42,42,53,.5);">Adicione +X a qualquer perícia ao menos treinada.</td><td style="padding:6px 12px;text-align:center;border-bottom:1px solid rgba(42,42,53,.5);">Ação Livre</td></tr>
+                        <tr><td style="padding:6px 12px;border-bottom:1px solid rgba(42,42,53,.5);">Sexto Sentido</td><td style="padding:6px 12px;text-align:center;border-bottom:1px solid rgba(42,42,53,.5);">2</td><td style="padding:6px 12px;border-bottom:1px solid rgba(42,42,53,.5);">Adicione +2 à sua evasão durante esse turno.</td><td style="padding:6px 12px;text-align:center;border-bottom:1px solid rgba(42,42,53,.5);">Ação Livre</td></tr>
+                        <tr><td style="padding:6px 12px;border-bottom:1px solid rgba(42,42,53,.5);">Segundo Fôlego</td><td style="padding:6px 12px;text-align:center;border-bottom:1px solid rgba(42,42,53,.5);">3</td><td style="padding:6px 12px;border-bottom:1px solid rgba(42,42,53,.5);">Você pode rolar novamente sua Iniciativa e usar o novo resultado (se preferir).</td><td style="padding:6px 12px;text-align:center;border-bottom:1px solid rgba(42,42,53,.5);">Ação Livre</td></tr>
+                        <tr><td style="padding:6px 12px;border-bottom:1px solid rgba(42,42,53,.5);">Golpe Instinto</td><td style="padding:6px 12px;text-align:center;border-bottom:1px solid rgba(42,42,53,.5);">4</td><td style="padding:6px 12px;border-bottom:1px solid rgba(42,42,53,.5);">Reduz a margem de crítico do seu próximo ataque em 3 (17-20).</td><td style="padding:6px 12px;text-align:center;border-bottom:1px solid rgba(42,42,53,.5);">1 Ação</td></tr>
+                        <tr><td style="padding:6px 12px;">Instinto Reativo</td><td style="padding:6px 12px;text-align:center;">5</td><td style="padding:6px 12px;">Você pode usar sua Reação mesmo que já a tenha gastado nesta rodada.</td><td style="padding:6px 12px;text-align:center;">Ação Livre</td></tr>
+                    </tbody>
+                </table>
+                <div style="background:var(--bg-tertiary);border-radius:6px;padding:8px 16px;display:inline-block;font-family:var(--font-heading);font-size:13px;color:var(--gold-dark);margin-top:4px;">Máximo: 5 Instinto</div>
             </div>
 
             <!-- RAMOS -->
