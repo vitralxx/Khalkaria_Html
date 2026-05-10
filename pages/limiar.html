@@ -521,7 +521,131 @@
             .transition-text h2 { font-size: 1.8rem; }
             .limiar-grid, .abismo-grid { grid-template-columns: 1fr; }
         }
-    </style>
+    
+        /* ═══ CATALOG DE CARTAS ═══ */
+        .mechanics-card {
+            background: linear-gradient(135deg, rgba(157,78,221,0.08), rgba(76,201,240,0.05));
+            border: 1px solid rgba(157,78,221,0.25);
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 1.5rem 0;
+        }
+        .mechanics-card h2 {
+            font-family: var(--font-heading);
+            color: var(--limiar-gold);
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+        }
+        .mechanics-card p { color: var(--text-secondary); line-height: 1.7; margin-bottom: 0.6rem; }
+        .mechanics-card strong { color: var(--limiar-gold); }
+        .mechanics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+        .mechanics-item {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 8px;
+            padding: 1rem;
+            text-align: center;
+        }
+        .mechanics-item .mi-num {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            color: var(--limiar-gold);
+            line-height: 1;
+        }
+        .mechanics-item .mi-label { font-size: 0.8rem; color: var(--text-muted); margin-top: 0.3rem; }
+        .cost-list { list-style: none; padding: 0; margin: 0.8rem 0; }
+        .cost-list li {
+            display: flex; align-items: center; gap: 0.6rem;
+            padding: 0.4rem 0; border-bottom: 1px solid rgba(255,255,255,0.05);
+            color: var(--text-secondary); font-size: 0.9rem;
+        }
+        .cost-list li:last-child { border-bottom: none; }
+        .cost-badge {
+            background: rgba(157,78,221,0.2); border: 1px solid rgba(157,78,221,0.4);
+            color: var(--limiar-purple); border-radius: 4px;
+            padding: 2px 8px; font-size: 0.78rem; font-family: var(--font-heading);
+            white-space: nowrap; flex-shrink: 0;
+        }
+        .cost-badge.free { background: rgba(39,174,96,0.2); border-color: rgba(39,174,96,0.4); color: #27ae60; }
+        .catalog-nav {
+            display: flex; flex-wrap: wrap; gap: 0.5rem;
+            margin: 1.5rem 0;
+        }
+        .catalog-nav a {
+            display: inline-flex; align-items: center; gap: 0.4rem;
+            padding: 0.4rem 0.9rem; border-radius: 20px;
+            font-size: 0.82rem; text-decoration: none; font-family: var(--font-heading);
+            border: 1px solid; transition: all 0.2s;
+        }
+        .catalog-nav a.nav-universal { color:#3498db; border-color:rgba(52,152,219,0.35); }
+        .catalog-nav a.nav-forca    { color:#e74c3c; border-color:rgba(231,76,60,0.35); }
+        .catalog-nav a.nav-destreza { color:#27ae60; border-color:rgba(39,174,96,0.35); }
+        .catalog-nav a.nav-con      { color:#95a5a6; border-color:rgba(149,165,166,0.35); }
+        .catalog-nav a.nav-int      { color:#9b59b6; border-color:rgba(155,89,182,0.35); }
+        .catalog-nav a.nav-sab      { color:#f39c12; border-color:rgba(243,156,18,0.35); }
+        .catalog-nav a.nav-rara     { color:#ffd700; border-color:rgba(255,215,0,0.45); }
+        .catalog-nav a:hover { background: rgba(255,255,255,0.06); transform: translateY(-1px); }
+        .catalog-section { margin: 2.5rem 0; }
+        .catalog-section-header {
+            display: flex; align-items: center; gap: 1rem;
+            padding: 0.9rem 1.2rem; border-radius: 10px 10px 0 0;
+            border: 1px solid; border-bottom: none;
+        }
+        .catalog-section-icon { font-size: 1.8rem; flex-shrink: 0; }
+        .catalog-section-title { font-family: var(--font-heading); font-size: 1.2rem; margin: 0; }
+        .catalog-section-desc { font-size: 0.82rem; color: var(--text-muted); margin: 0.2rem 0 0; }
+        .catalog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+            gap: 1px;
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 0 0 10px 10px;
+            overflow: hidden;
+            background: rgba(255,255,255,0.03);
+        }
+        .catalog-card {
+            padding: 1rem;
+            background: rgba(10,8,18,0.7);
+            display: flex; flex-direction: column; gap: 0.4rem;
+            transition: background 0.15s, transform 0.15s;
+            cursor: default;
+        }
+        .catalog-card:hover { background: rgba(255,255,255,0.05); transform: translateY(-1px); }
+        .catalog-card-icon { font-size: 1.2rem; line-height: 1; }
+        .catalog-card-req {
+            font-size: 0.7rem; font-family: var(--font-heading);
+            letter-spacing: 0.08em; color: var(--text-muted);
+            text-transform: uppercase;
+        }
+        .catalog-card-name {
+            font-family: var(--font-heading); font-size: 0.92rem;
+            font-weight: 600; line-height: 1.2;
+        }
+        .catalog-card-effect { font-size: 0.82rem; color: var(--text-secondary); line-height: 1.45; flex: 1; }
+        /* Category-specific card name colors */
+        .cat-universal .catalog-card-name { color: #3498db; }
+        .cat-forca     .catalog-card-name { color: #e74c3c; }
+        .cat-destreza  .catalog-card-name { color: #27ae60; }
+        .cat-con       .catalog-card-name { color: #95a5a6; }
+        .cat-int       .catalog-card-name { color: #9b59b6; }
+        .cat-sab       .catalog-card-name { color: #f39c12; }
+        .cat-rara      .catalog-card-name { color: #ffd700; }
+        .cat-rara { background: rgba(10,8,4,0.85) !important; }
+        .cat-rara:hover { background: rgba(255,215,0,0.06) !important; }
+        @media (max-width: 768px) {
+            .catalog-grid { grid-template-columns: 1fr 1fr; }
+            .mechanics-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 480px) {
+            .catalog-grid { grid-template-columns: 1fr; }
+        }
+
+        </style>
 </head>
 <body>
     <!-- Efeitos de corrupção -->
@@ -590,389 +714,817 @@
                 <div class="limiar-header">
                     <div class="mystical-particles">
                         <div class="particle"></div>
-                        <div class="particle"></div>
-                        <div class="particle"></div>
-                        <div class="particle"></div>
-                        <div class="particle"></div>
-                        <div class="particle"></div>
-                        <div class="particle"></div>
-                        <div class="particle"></div>
-                        <div class="particle"></div>
-                    </div>
-                    <h1>O Limiar</h1>
-                    <p class="limiar-subtitle">O Limiar oferece poder, você aceita?</p>
+                <!-- NOVA SEÇÃO: MECÂNICA DO LIMIAR -->
+                <div class="mechanics-card" style="margin-top:0;">
+                    <h2>🎴 A Cada Nível (2, 3, 4, 5)</h2>
+                    <p>Quando você avança de nível, duas coisas acontecem:</p>
+                    <p><strong>1. Bênção Imediata dos Atributos:</strong> Você recebe +2 pontos de atributo instantaneamente. Distribua esses 2 pontos como quiser entre seus atributos (FOR, DES, CON, INT, SAB).</p>
+                    <p><strong>2. Revelação das Cartas do Limiar:</strong> O Limiar se abre. <strong>4 cartas</strong> aparecem diante de você, sorteadas com base nos seus atributos atuais. Uma <strong>5ª carta especial (+2 Atributo Adicional)</strong> também aparece.</p>
                 </div>
-                
-                <div class="content-card" style="text-align: center; background: linear-gradient(135deg, rgba(157, 78, 221, 0.1), rgba(76, 201, 240, 0.05)); border-color: rgba(157, 78, 221, 0.3);">
-                    <p>Você pode receber qualquer dos benefícios seguintes se puder pagar por <strong style="color: var(--limiar-gold);">Pontos do Limiar</strong>.</p>
-                    <p style="color: var(--limiar-purple);">Ao gastar esses pontos, eles são permanentemente perdidos.</p>
+
+                <div class="mechanics-card">
+                    <h2>🃏 Escolhendo Suas Cartas</h2>
+                    <p>Você recebe <strong>4 Pontos do Limiar</strong> a cada nível.</p>
+                    <ul class="cost-list">
+                        <li><span class="cost-badge free">GRÁTIS</span> 1ª carta — escolhida livremente</li>
+                        <li><span class="cost-badge">2 pts</span> 2ª carta</li>
+                        <li><span class="cost-badge">3 pts</span> 3ª carta</li>
+                        <li><span class="cost-badge">4 pts</span> 4ª carta</li>
+                        <li><span class="cost-badge">2 pts</span> 5ª carta (+2 Atributo Adicional)</li>
+                    </ul>
+                    <p style="font-size:0.85rem;color:var(--text-muted);">Pontos não gastos são guardados para os próximos níveis. Cartas não escolhidas podem retornar no próximo nível.</p>
                 </div>
-                
-                <!-- BENEFÍCIOS PASSIVOS -->
-                <h3 class="section-title">
-                    <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-                    Benefícios Passivos
-                </h3>
-                
-                <div class="limiar-grid">
-                    <!-- +1 Atributo -->
-                    <div class="limiar-card">
-                        <div class="limiar-card-header">
-                            <div class="limiar-icon">
-                                <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm1 15h-2v-2h2zm0-4h-2V7h2z"/></svg>
-                            </div>
-                            <div>
-                                <h4 class="limiar-card-title">+1 Ponto de Atributo</h4>
-                                <span class="limiar-card-cost">1 Ponto</span>
-                            </div>
+
+                <div class="mechanics-card">
+                    <h2>📊 Progressão Total (Nível 5)</h2>
+                    <div class="mechanics-grid">
+                        <div class="mechanics-item">
+                            <div class="mi-num">+8</div>
+                            <div class="mi-label">Pontos de Atributo garantidos</div>
                         </div>
-                        <p class="limiar-card-desc">Aumente um atributo em +1 (Máximo 20).</p>
-                    </div>
-                    
-                    <!-- Treinamento -->
-                    <div class="limiar-card">
-                        <div class="limiar-card-header">
-                            <div class="limiar-icon">
-                                <svg viewBox="0 0 24 24"><path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3z"/><path d="M12 16l-6-3.27v3.52l6 3.75 6-3.75v-3.52L12 16z"/></svg>
-                            </div>
-                            <div>
-                                <h4 class="limiar-card-title">Treinamento</h4>
-                                <span class="limiar-card-cost">1 Ponto</span>
-                            </div>
+                        <div class="mechanics-item">
+                            <div class="mi-num">16</div>
+                            <div class="mi-label">Pontos do Limiar totais</div>
                         </div>
-                        <p class="limiar-card-desc">Treinamento em Perícia ou Armas (Qualquer).</p>
-                    </div>
-                    
-                    <!-- +10 Saúde -->
-                    <div class="limiar-card">
-                        <div class="limiar-card-header">
-                            <div class="limiar-icon">
-                                <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
-                            </div>
-                            <div>
-                                <h4 class="limiar-card-title">+10 Saúde Máxima</h4>
-                                <span class="limiar-card-cost">2 Pontos</span>
-                            </div>
+                        <div class="mechanics-item">
+                            <div class="mi-num">4–8</div>
+                            <div class="mi-label">Cartas do Limiar escolhidas</div>
                         </div>
-                        <p class="limiar-card-desc">Aumente sua Saúde Máxima permanentemente.</p>
-                    </div>
-                    
-                    <!-- +10 Stamina -->
-                    <div class="limiar-card">
-                        <div class="limiar-card-header">
-                            <div class="limiar-icon">
-                                <svg viewBox="0 0 24 24"><path d="M13 2.05v2.02c3.95.49 7 3.85 7 7.93 0 3.21-1.92 6-4.72 7.28L13 17v5h5l-1.22-1.22C19.91 19.07 22 15.76 22 12c0-5.18-3.95-9.45-9-9.95zM11 2.05C5.94 2.55 2 6.81 2 12c0 3.76 2.09 7.07 5.22 8.78L6 22h5v-5l-2.28 2.28C5.92 18 4 15.21 4 12c0-4.08 3.05-7.44 7-7.93V2.05z"/></svg>
-                            </div>
-                            <div>
-                                <h4 class="limiar-card-title">+10 Stamina Máxima</h4>
-                                <span class="limiar-card-cost">2 Pontos</span>
-                            </div>
+                        <div class="mechanics-item">
+                            <div class="mi-num">107</div>
+                            <div class="mi-label">Cartas no catálogo total</div>
                         </div>
-                        <p class="limiar-card-desc">Aumente sua Stamina Máxima permanentemente.</p>
-                    </div>
-                    
-                    <!-- +10 Éter -->
-                    <div class="limiar-card">
-                        <div class="limiar-card-header">
-                            <div class="limiar-icon">
-                                <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
-                            </div>
-                            <div>
-                                <h4 class="limiar-card-title">+10 Éter Máximo</h4>
-                                <span class="limiar-card-cost">2 Pontos</span>
-                            </div>
-                        </div>
-                        <p class="limiar-card-desc">Aumente seu Éter Máximo permanentemente.</p>
-                    </div>
-                    
-                    <!-- +1 Evasão -->
-                    <div class="limiar-card">
-                        <div class="limiar-card-header">
-                            <div class="limiar-icon">
-                                <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/></svg>
-                            </div>
-                            <div>
-                                <h4 class="limiar-card-title">+1 Evasão</h4>
-                                <span class="limiar-card-cost">2 Pontos</span>
-                            </div>
-                        </div>
-                        <p class="limiar-card-desc">Aumente sua Evasão base permanentemente.</p>
-                    </div>
-                    
-                    <!-- +1,5 Movimento -->
-                    <div class="limiar-card">
-                        <div class="limiar-card-header">
-                            <div class="limiar-icon">
-                                <svg viewBox="0 0 24 24"><path d="M13.49 5.48c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm-3.6 13.9l1-4.4 2.1 2v6h2v-7.5l-2.1-2 .6-3c1.3 1.5 3.3 2.5 5.5 2.5v-2c-1.9 0-3.5-1-4.3-2.4l-1-1.6c-.4-.6-1-1-1.7-1-.3 0-.5.1-.8.1l-5.2 2.2v4.7h2v-3.4l1.8-.7-1.6 8.1-4.9-1-.4 2 7 1.4z"/></svg>
-                            </div>
-                            <div>
-                                <h4 class="limiar-card-title">+1,5m Movimento</h4>
-                                <span class="limiar-card-cost">2 Pontos</span>
-                            </div>
-                        </div>
-                        <p class="limiar-card-desc">Aumente seu Movimento base permanentemente.</p>
-                    </div>
-                    
-                    <!-- +1 Técnica -->
-                    <div class="limiar-card">
-                        <div class="limiar-card-header">
-                            <div class="limiar-icon">
-                                <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
-                            </div>
-                            <div>
-                                <h4 class="limiar-card-title">+1 Espaço de Técnica</h4>
-                                <span class="limiar-card-cost">3 Pontos</span>
-                            </div>
-                        </div>
-                        <p class="limiar-card-desc">+1 Espaço de Técnica Geral de Classe.</p>
-                    </div>
-                    
-                    <!-- Ar ou Ae -->
-                    <div class="limiar-card">
-                        <div class="limiar-card-header">
-                            <div class="limiar-icon">
-                                <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/><circle cx="12" cy="12" r="5"/></svg>
-                            </div>
-                            <div>
-                                <h4 class="limiar-card-title">Ar ou Ae 3</h4>
-                                <span class="limiar-card-cost">3 Pontos</span>
-                            </div>
-                        </div>
-                        <p class="limiar-card-desc">Armadura ou Armadura Específica 3 a um tipo de dano a sua escolha.</p>
-                    </div>
-                    
-                    <!-- +2 CD -->
-                    <div class="limiar-card">
-                        <div class="limiar-card-header">
-                            <div class="limiar-icon">
-                                <svg viewBox="0 0 24 24"><path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"/></svg>
-                            </div>
-                            <div>
-                                <h4 class="limiar-card-title">+2 CD de Classe</h4>
-                                <span class="limiar-card-cost">3 Pontos</span>
-                            </div>
-                        </div>
-                        <p class="limiar-card-desc">Aumente a Classe de Dificuldade das suas habilidades.</p>
-                    </div>
-                    
-                    <!-- Visão no Escuro -->
-                    <div class="limiar-card">
-                        <div class="limiar-card-header">
-                            <div class="limiar-icon">
-                                <svg viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
-                            </div>
-                            <div>
-                                <h4 class="limiar-card-title">Visão no Escuro</h4>
-                                <span class="limiar-card-cost">4 Pontos</span>
-                            </div>
-                        </div>
-                        <p class="limiar-card-desc">Você pode enxergar perfeitamente na escuridão.</p>
-                    </div>
-                    
-                    <!-- Imune a Condição -->
-                    <div class="limiar-card">
-                        <div class="limiar-card-header">
-                            <div class="limiar-icon">
-                                <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zM4 12c0-4.42 3.58-8 8-8 1.85 0 3.55.63 4.9 1.69L5.69 16.9C4.63 15.55 4 13.85 4 12zm8 8c-1.85 0-3.55-.63-4.9-1.69L18.31 7.1C19.37 8.45 20 10.15 20 12c0 4.42-3.58 8-8 8z"/></svg>
-                            </div>
-                            <div>
-                                <h4 class="limiar-card-title">Imune a Condição</h4>
-                                <span class="limiar-card-cost">5 Pontos</span>
-                            </div>
-                        </div>
-                        <p class="limiar-card-desc">Imune a uma Condição a sua escolha. (Exceto: Morrendo, Oco, Exaurido, Sobrepeso, Desnutrido e Exausto)</p>
-                    </div>
-                    
-                    <!-- +1 Tamanho -->
-                    <div class="limiar-card">
-                        <div class="limiar-card-header">
-                            <div class="limiar-icon">
-                                <svg viewBox="0 0 24 24"><path d="M19 12h-2v3h-3v2h5v-5zM7 9h3V7H5v5h2V9zm14-6H3c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16.01H3V4.99h18v14.02z"/></svg>
-                            </div>
-                            <div>
-                                <h4 class="limiar-card-title">+1 Categoria de Tamanho</h4>
-                                <span class="limiar-card-cost">6 Pontos</span>
-                            </div>
-                        </div>
-                        <p class="limiar-card-desc">Aumente sua categoria de tamanho permanentemente.</p>
                     </div>
                 </div>
-                
-                <!-- BENEFÍCIOS ATIVOS -->
-                <h3 class="section-title">
-                    <svg viewBox="0 0 24 24"><path d="M7 2v11h3v9l7-12h-4l4-8z"/></svg>
-                    Benefícios Ativos
-                </h3>
-                
-                <div class="limiar-grid">
-                    <!-- Surto Vital -->
-                    <div class="limiar-card">
-                        <div class="limiar-card-header">
-                            <div class="limiar-icon">
-                                <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
-                            </div>
-                            <div>
-                                <h4 class="limiar-card-title">Surto Vital</h4>
-                                <span class="limiar-card-cost">2 Pontos</span>
-                            </div>
-                        </div>
-                        <p class="limiar-card-desc">1x/Descanso Longo, Recupere 2d8 Saúde como 1 ação.</p>
-                    </div>
-                    
-                    <!-- Fôlego Extra -->
-                    <div class="limiar-card">
-                        <div class="limiar-card-header">
-                            <div class="limiar-icon">
-                                <svg viewBox="0 0 24 24"><path d="M12 4C7 4 2.73 7.11 1 11.5 2.73 15.89 7 19 12 19s9.27-3.11 11-7.5C21.27 7.11 17 4 12 4zm0 12.5c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5z"/></svg>
-                            </div>
-                            <div>
-                                <h4 class="limiar-card-title">Fôlego Extra</h4>
-                                <span class="limiar-card-cost">2 Pontos</span>
-                            </div>
-                        </div>
-                        <p class="limiar-card-desc">1x/Descanso Longo, Recupere 2d6 Stamina como 1 ação.</p>
-                    </div>
-                    
-                    <!-- Reserva Espiritual -->
-                    <div class="limiar-card">
-                        <div class="limiar-card-header">
-                            <div class="limiar-icon">
-                                <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/><path d="M12 6v6l4 2"/></svg>
-                            </div>
-                            <div>
-                                <h4 class="limiar-card-title">Reserva Espiritual</h4>
-                                <span class="limiar-card-cost">2 Pontos</span>
-                            </div>
-                        </div>
-                        <p class="limiar-card-desc">1x/Descanso Longo, Recupere 2d4 Éter como 1 ação.</p>
-                    </div>
-                    
-                    <!-- Passo da Sombra -->
-                    <div class="limiar-card">
-                        <div class="limiar-card-header">
-                            <div class="limiar-icon">
-                                <svg viewBox="0 0 24 24"><path d="M20.5 6c-2.61.7-5.67 1-8.5 1s-5.89-.3-8.5-1L3 8c1.86.5 4 .83 6 1v13h2v-6h2v6h2V9c2-.17 4.14-.5 6-1l-.5-2z"/></svg>
-                            </div>
-                            <div>
-                                <h4 class="limiar-card-title">Passo da Sombra</h4>
-                                <span class="limiar-card-cost">2 Pontos</span>
-                            </div>
-                        </div>
-                        <p class="limiar-card-desc">1x/Descanso Curto, teletransporte até 4,5m como 1 ação, em um espaço em penumbra ou escuridão.</p>
-                    </div>
-                    
-                    <!-- Sorte -->
-                    <div class="limiar-card">
-                        <div class="limiar-card-header">
-                            <div class="limiar-icon">
-                                <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM7.5 18c-.83 0-1.5-.67-1.5-1.5S6.67 15 7.5 15s1.5.67 1.5 1.5S8.33 18 7.5 18zm0-9C6.67 9 6 8.33 6 7.5S6.67 6 7.5 6 9 6.67 9 7.5 8.33 9 7.5 9zm4.5 4.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm4.5 4.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm0-9c-.83 0-1.5-.67-1.5-1.5S15.67 6 16.5 6s1.5.67 1.5 1.5S17.33 9 16.5 9z"/></svg>
-                            </div>
-                            <div>
-                                <h4 class="limiar-card-title">Sorte</h4>
-                                <span class="limiar-card-cost">2 Pontos</span>
-                            </div>
-                        </div>
-                        <p class="limiar-card-desc">1x/Descanso Longo, rerole um teste falho.</p>
-                    </div>
-                    
-                    <!-- Esquiva Instintiva -->
-                    <div class="limiar-card">
-                        <div class="limiar-card-header">
-                            <div class="limiar-icon">
-                                <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/></svg>
-                            </div>
-                            <div>
-                                <h4 class="limiar-card-title">Esquiva Instintiva</h4>
-                                <span class="limiar-card-cost">3 Pontos</span>
-                            </div>
-                        </div>
-                        <p class="limiar-card-desc">1x/Descanso Longo, pode, como ação livre, ganhar 1 Reação.</p>
-                    </div>
-                    
-                    <!-- Enrijecer -->
-                    <div class="limiar-card">
-                        <div class="limiar-card-header">
-                            <div class="limiar-icon">
-                                <svg viewBox="0 0 24 24"><path d="M7 2v11h3v9l7-12h-4l4-8z"/></svg>
-                            </div>
-                            <div>
-                                <h4 class="limiar-card-title">Enrijecer</h4>
-                                <span class="limiar-card-cost">3 Pontos</span>
-                            </div>
-                        </div>
-                        <p class="limiar-card-desc">1x/Descanso Longo, pode, como ação livre, adicionar 2d6 de Dano Místico (a sua escolha) a um ataque.</p>
-                    </div>
-                    
-                    <!-- Percepção Mística -->
-                    <div class="limiar-card">
-                        <div class="limiar-card-header">
-                            <div class="limiar-icon">
-                                <svg viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5z"/><circle cx="12" cy="12" r="2.5"/></svg>
-                            </div>
-                            <div>
-                                <h4 class="limiar-card-title">Percepção Mística</h4>
-                                <span class="limiar-card-cost">3 Pontos</span>
-                            </div>
-                        </div>
-                        <p class="limiar-card-desc">1x/Descanso Longo, como ação livre, enxergue criaturas invisíveis e ignore ilusões por 1 minuto.</p>
-                    </div>
-                    
-                    <!-- Petrificar -->
-                    <div class="limiar-card">
-                        <div class="limiar-card-header">
-                            <div class="limiar-icon">
-                                <svg viewBox="0 0 24 24"><path d="M17.66 8L12 2.35 6.34 8C4.78 9.56 4 11.64 4 13.64s.78 4.11 2.34 5.67 3.61 2.35 5.66 2.35 4.1-.79 5.66-2.35S20 15.64 20 13.64 19.22 9.56 17.66 8zM6 14c.01-2 .62-3.27 1.76-4.4L12 5.27l4.24 4.38C17.38 10.77 17.99 12 18 14H6z"/></svg>
-                            </div>
-                            <div>
-                                <h4 class="limiar-card-title">Petrificar</h4>
-                                <span class="limiar-card-cost">4 Pontos</span>
-                            </div>
-                        </div>
-                        <p class="limiar-card-desc">1x/Descanso Longo, como 1 ação, ganhe Resistência a todo tipo de dano (Exceto Primordial) até o início do seu próximo turno.</p>
-                    </div>
-                    
-                    <!-- Enganar a Morte -->
-                    <div class="limiar-card">
-                        <div class="limiar-card-header">
-                            <div class="limiar-icon">
-                                <svg viewBox="0 0 24 24"><path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm3.59-13L12 10.59 8.41 7 7 8.41 10.59 12 7 15.59 8.41 17 12 13.41 15.59 17 17 15.59 13.41 12 17 8.41z"/></svg>
-                            </div>
-                            <div>
-                                <h4 class="limiar-card-title">Enganar a Morte</h4>
-                                <span class="limiar-card-cost">4 Pontos</span>
-                            </div>
-                        </div>
-                        <p class="limiar-card-desc">1x/Descanso Longo, ao cair a 0 Saúde você fica com 1 de Saúde em vez disso.</p>
-                    </div>
-                    
-                    <!-- Forma Etérea -->
-                    <div class="limiar-card">
-                        <div class="limiar-card-header">
-                            <div class="limiar-icon">
-                                <svg viewBox="0 0 24 24"><path d="M20.5 6c-2.61.7-5.67 1-8.5 1s-5.89-.3-8.5-1L3 8c1.86.5 4 .83 6 1v13h2v-6h2v6h2V9c2-.17 4.14-.5 6-1l-.5-2z" opacity="0.5"/><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>
-                            </div>
-                            <div>
-                                <h4 class="limiar-card-title">Forma Etérea</h4>
-                                <span class="limiar-card-cost">4 Pontos</span>
-                            </div>
-                        </div>
-                        <p class="limiar-card-desc">1x/Descanso Longo, como 1 ação, torne-se incorpóreo por 1 minuto. (Atravessa objetos, imune a dano ordinário)</p>
-                    </div>
-                    
-                    <!-- O Impossível -->
-                    <div class="limiar-card" style="border-color: var(--limiar-gold); background: linear-gradient(135deg, rgba(255, 215, 0, 0.15), rgba(157, 78, 221, 0.1));">
-                        <div class="limiar-card-header">
-                            <div class="limiar-icon" style="background: linear-gradient(135deg, var(--limiar-gold), var(--limiar-purple));">
-                                <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-                            </div>
-                            <div>
-                                <h4 class="limiar-card-title" style="color: var(--limiar-gold);">O Impossível</h4>
-                                <span class="limiar-card-cost">12 Pontos</span>
-                            </div>
-                        </div>
-                        <p class="limiar-card-desc">Você é imune a dano Primordial.</p>
+
+                <div class="mechanics-card">
+                    <h2>🎲 Como as Cartas São Sorteadas</h2>
+                    <p>Um atributo é considerado <strong>alto</strong> quando está em <strong>14 ou mais</strong>. Cada carta possui requisitos diferentes.</p>
+                    <p>O Mestre identifica quais atributos você tem altos e sorteia:</p>
+                    <ul class="cost-list">
+                        <li><span class="cost-badge">2–3 cartas</span> dos pools de atributos altos do personagem</li>
+                        <li><span class="cost-badge">1–2 cartas</span> do pool universal (sem requisito)</li>
+                        <li><span class="cost-badge free">sempre</span> +2 Atributo Adicional (custa 2 pts)</li>
+                    </ul>
+                </div>
+
+                <!-- CATÁLOGO -->
+                <div class="section-divider" style="margin: 2rem 0 1rem;">
+                    <h2 style="font-family:var(--font-heading);color:var(--limiar-gold);font-size:1.5rem;text-align:center;">
+                        📖 Catálogo de Cartas do Limiar
+                    </h2>
+                    <p style="text-align:center;color:var(--text-muted);font-size:0.85rem;">107 cartas em 7 categorias</p>
+                </div>
+
+                <nav class="catalog-nav" aria-label="Navegar por categoria">
+                    <a href="#cat-universal" class="nav-universal">🌍 Universais (10)</a>
+                    <a href="#cat-forca"     class="nav-forca">💪 Força (12)</a>
+                    <a href="#cat-destreza"  class="nav-destreza">🎯 Destreza (12)</a>
+                    <a href="#cat-con"       class="nav-con">🛡️ Constituição (12)</a>
+                    <a href="#cat-int"       class="nav-int">📚 Inteligência (12)</a>
+                    <a href="#cat-sab"       class="nav-sab">🔮 Sabedoria (12)</a>
+                    <a href="#cat-rara"      class="nav-rara">⭐ Raras (37)</a>
+                </nav>
+
+
+            <!-- 🌍 CARTAS UNIVERSAIS -->
+            <div class="catalog-section cat-section-universal" id="cat-universal">
+                <div class="catalog-section-header" style="border-color:rgba(52,152,219,0.3);background:rgba(52,152,219,0.15);">
+                    <span class="catalog-section-icon">🌍</span>
+                    <div>
+                        <h3 class="catalog-section-title" style="color:var(--limiar-blue);">🌍 Cartas Universais</h3>
+                        <p class="catalog-section-desc">Aparecem para todos os personagens, independente dos atributos.</p>
                     </div>
                 </div>
+                <div class="catalog-grid">
+        <div class="catalog-card cat-universal">
+            <div class="catalog-card-icon">🌍</div>
+            
+            <div class="catalog-card-name">Alma Resiliente</div>
+            <div class="catalog-card-effect">Aumente 1 nível de treinamento em Fortitude, Vontade e Reflexos</div>
+        </div>
+        <div class="catalog-card cat-universal">
+            <div class="catalog-card-icon">🌍</div>
+            
+            <div class="catalog-card-name">Pernas Incansáveis</div>
+            <div class="catalog-card-effect">+4,5m de movimento permanente</div>
+        </div>
+        <div class="catalog-card cat-universal">
+            <div class="catalog-card-icon">🌍</div>
+            
+            <div class="catalog-card-name">Treinamento Focado</div>
+            <div class="catalog-card-effect">Escolha 1 perícia. Aumente 1 nível de treinamento nela</div>
+        </div>
+        <div class="catalog-card cat-universal">
+            <div class="catalog-card-icon">🌍</div>
+            
+            <div class="catalog-card-name">Reservas Profundas</div>
+            <div class="catalog-card-effect">+10 Stamina máxima permanente</div>
+        </div>
+        <div class="catalog-card cat-universal">
+            <div class="catalog-card-icon">🌍</div>
+            
+            <div class="catalog-card-name">Poço Arcano</div>
+            <div class="catalog-card-effect">+10 Éter máximo permanente</div>
+        </div>
+        <div class="catalog-card cat-universal">
+            <div class="catalog-card-icon">🌍</div>
+            
+            <div class="catalog-card-name">Sangue Espesso</div>
+            <div class="catalog-card-effect">+2d12+6 Saúde máxima permanente</div>
+        </div>
+        <div class="catalog-card cat-universal">
+            <div class="catalog-card-icon">🌍</div>
+            
+            <div class="catalog-card-name">Olhos de Águia</div>
+            <div class="catalog-card-effect">Aumente 1 nível de treinamento em Percepção</div>
+        </div>
+        <div class="catalog-card cat-universal">
+            <div class="catalog-card-icon">🌍</div>
+            
+            <div class="catalog-card-name">Reflexos Aguçados</div>
+            <div class="catalog-card-effect">Aumente 2 níveis de treinamento em Iniciativa</div>
+        </div>
+        <div class="catalog-card cat-universal">
+            <div class="catalog-card-icon">🌍</div>
+            
+            <div class="catalog-card-name">Marca do Guerreiro</div>
+            <div class="catalog-card-effect">Aumente 1 nível de treinamento em Atacar</div>
+        </div>
+        <div class="catalog-card cat-universal">
+            <div class="catalog-card-icon">🌍</div>
+            
+            <div class="catalog-card-name">Postura de Ferro</div>
+            <div class="catalog-card-effect">Aumente 1 nível de treinamento em Defender</div>
+        </div>
+                </div>
+            </div>
+            <!-- 💪 CARTAS DE FORÇA -->
+            <div class="catalog-section cat-section-forca" id="cat-forca">
+                <div class="catalog-section-header" style="border-color:rgba(231,76,60,0.35);background:rgba(231,76,60,0.12);">
+                    <span class="catalog-section-icon">💪</span>
+                    <div>
+                        <h3 class="catalog-section-title" style="color:#e74c3c;">💪 Cartas de Força</h3>
+                        <p class="catalog-section-desc">Requisito: FOR 14+</p>
+                    </div>
+                </div>
+                <div class="catalog-grid">
+        <div class="catalog-card cat-forca">
+            <div class="catalog-card-icon">💪</div>
+            <div class="catalog-card-req">FOR 14+</div>
+            <div class="catalog-card-name">Músculos de Ogro</div>
+            <div class="catalog-card-effect">Seus ataques corpo a corpo causam +3 de dano permanente</div>
+        </div>
+        <div class="catalog-card cat-forca">
+            <div class="catalog-card-icon">💪</div>
+            <div class="catalog-card-req">FOR 14+</div>
+            <div class="catalog-card-name">Ossos Densos</div>
+            <div class="catalog-card-effect">Seus ataques corpo a corpo ignoram 4 de Armadura</div>
+        </div>
+        <div class="catalog-card cat-forca">
+            <div class="catalog-card-icon">💪</div>
+            <div class="catalog-card-req">FOR 14+</div>
+            <div class="catalog-card-name">Punhos de Martelo</div>
+            <div class="catalog-card-effect">Ao acertar crítico corpo a corpo, cause +3d6 de dano adicional</div>
+        </div>
+        <div class="catalog-card cat-forca">
+            <div class="catalog-card-icon">💪</div>
+            <div class="catalog-card-req">FOR 14+</div>
+            <div class="catalog-card-name">Garras de Aço</div>
+            <div class="catalog-card-effect">Seus ataques desarmados causam 1d10 + FOR de dano (ao invés de 1d4)</div>
+        </div>
+        <div class="catalog-card cat-forca">
+            <div class="catalog-card-icon">💪</div>
+            <div class="catalog-card-req">FOR 14+</div>
+            <div class="catalog-card-name">Carregador Nato</div>
+            <div class="catalog-card-effect">Você ignora sobrepeso leve</div>
+        </div>
+        <div class="catalog-card cat-forca">
+            <div class="catalog-card-icon">💪</div>
+            <div class="catalog-card-req">FOR 14+</div>
+            <div class="catalog-card-name">Sangue Fervente</div>
+            <div class="catalog-card-effect">Ao reduzir criatura a 0 Saúde corpo a corpo, seu próximo ataque neste turno causa +2d6 de dano</div>
+        </div>
+        <div class="catalog-card cat-forca">
+            <div class="catalog-card-icon">💪</div>
+            <div class="catalog-card-req">FOR 14+</div>
+            <div class="catalog-card-name">Arremesso Brutal</div>
+            <div class="catalog-card-effect">Você pode arremessar armas corpo a corpo até 18m causando dano normal + 1d8</div>
+        </div>
+        <div class="catalog-card cat-forca">
+            <div class="catalog-card-icon">💪</div>
+            <div class="catalog-card-req">FOR 14+</div>
+            <div class="catalog-card-name">Agarrão do Predador</div>
+            <div class="catalog-card-effect">+5 em manobras de Agarrar. Criaturas agarradas recebem 2d6 de dano por turno</div>
+        </div>
+        <div class="catalog-card cat-forca">
+            <div class="catalog-card-icon">💪</div>
+            <div class="catalog-card-req">FOR 14+</div>
+            <div class="catalog-card-name">Impacto Sísmico</div>
+            <div class="catalog-card-effect">Ao empurrar com sucesso, empurre +4,5m adicionais e cause 3d6 de dano</div>
+        </div>
+        <div class="catalog-card cat-forca">
+            <div class="catalog-card-icon">💪</div>
+            <div class="catalog-card-req">FOR 14+</div>
+            <div class="catalog-card-name">Fúria Encarnada</div>
+            <div class="catalog-card-effect">Enquanto abaixo de 50% Saúde, +4 em Atacar corpo a corpo</div>
+        </div>
+        <div class="catalog-card cat-forca">
+            <div class="catalog-card-icon">💪</div>
+            <div class="catalog-card-req">FOR 14+</div>
+            <div class="catalog-card-name">Presença Aterradora</div>
+            <div class="catalog-card-effect">Aumente 2 níveis de treinamento em Intimidação. Criaturas Médias ou menores têm -3 em Vontade contra sua intimidação</div>
+        </div>
+        <div class="catalog-card cat-forca">
+            <div class="catalog-card-icon">💪</div>
+            <div class="catalog-card-req">FOR 14+</div>
+            <div class="catalog-card-name">Quebra-Escudos</div>
+            <div class="catalog-card-effect">Ao acertar crítico em criaturas de nível igual ou menor que o seu, destrua 1 item que estejam segurando ou vestindo</div>
+        </div>
+                </div>
+            </div>
+            <!-- 🎯 CARTAS DE DESTREZA -->
+            <div class="catalog-section cat-section-destreza" id="cat-destreza">
+                <div class="catalog-section-header" style="border-color:rgba(39,174,96,0.35);background:rgba(39,174,96,0.12);">
+                    <span class="catalog-section-icon">🎯</span>
+                    <div>
+                        <h3 class="catalog-section-title" style="color:#27ae60;">🎯 Cartas de Destreza</h3>
+                        <p class="catalog-section-desc">Requisito: DES 14+</p>
+                    </div>
+                </div>
+                <div class="catalog-grid">
+        <div class="catalog-card cat-destreza">
+            <div class="catalog-card-icon">🎯</div>
+            <div class="catalog-card-req">DES 14+</div>
+            <div class="catalog-card-name">Lâmina Fantasma</div>
+            <div class="catalog-card-effect">Você acerta críticos em 18-19-20 no d20 (ao invés de apenas 20)</div>
+        </div>
+        <div class="catalog-card cat-destreza">
+            <div class="catalog-card-icon">🎯</div>
+            <div class="catalog-card-req">DES 14+</div>
+            <div class="catalog-card-name">Sombra Dançante</div>
+            <div class="catalog-card-effect">+2 Evasão permanente</div>
+        </div>
+        <div class="catalog-card cat-destreza">
+            <div class="catalog-card-icon">🎯</div>
+            <div class="catalog-card-req">DES 14+</div>
+            <div class="catalog-card-name">Reflexos de Serpente</div>
+            <div class="catalog-card-effect">1x/combate: Force um ataque que te acertaria a errar automaticamente (declarado após a rolagem)</div>
+        </div>
+        <div class="catalog-card cat-destreza">
+            <div class="catalog-card-icon">🎯</div>
+            <div class="catalog-card-req">DES 14+</div>
+            <div class="catalog-card-name">Passos do Vento</div>
+            <div class="catalog-card-effect">Seu movimento aumenta +6m. Você não provoca ataques de oportunidade</div>
+        </div>
+        <div class="catalog-card cat-destreza">
+            <div class="catalog-card-icon">🎯</div>
+            <div class="catalog-card-req">DES 14+</div>
+            <div class="catalog-card-name">Sequência Mortal</div>
+            <div class="catalog-card-effect">Após realizar um ataque, adicione +2 ao seu Atacar pelo resto dessa rodada (acumulativo, máx. +6)</div>
+        </div>
+        <div class="catalog-card cat-destreza">
+            <div class="catalog-card-icon">🎯</div>
+            <div class="catalog-card-req">DES 14+</div>
+            <div class="catalog-card-name">Olhos de Predador</div>
+            <div class="catalog-card-effect">+3 em Atacar com armas à distância. Ignore desvantagem por cobertura parcial ou leve</div>
+        </div>
+        <div class="catalog-card cat-destreza">
+            <div class="catalog-card-icon">🎯</div>
+            <div class="catalog-card-req">DES 14+</div>
+            <div class="catalog-card-name">Dedos de Ladrão</div>
+            <div class="catalog-card-effect">Aumente 2 níveis de treinamento em Crime. Você pode furtar objetos de alvos em combate como ação livre</div>
+        </div>
+        <div class="catalog-card cat-destreza">
+            <div class="catalog-card-icon">🎯</div>
+            <div class="catalog-card-req">DES 14+</div>
+            <div class="catalog-card-name">Rapino</div>
+            <div class="catalog-card-effect">Você não sofre dano de queda de qualquer altura. Sempre cai de pé</div>
+        </div>
+        <div class="catalog-card cat-destreza">
+            <div class="catalog-card-icon">🎯</div>
+            <div class="catalog-card-req">DES 14+</div>
+            <div class="catalog-card-name">Corpo Escorregadio</div>
+            <div class="catalog-card-effect">+4 em testes para escapar de Agarrões, amarras ou restrições físicas</div>
+        </div>
+        <div class="catalog-card cat-destreza">
+            <div class="catalog-card-icon">🎯</div>
+            <div class="catalog-card-req">DES 14+</div>
+            <div class="catalog-card-name">Furtividade Absoluta</div>
+            <div class="catalog-card-effect">Aumente 2 níveis de treinamento em Furtividade. Você pode se esconder mesmo sendo observado se houver sombras ou cobertura leve</div>
+        </div>
+        <div class="catalog-card cat-destreza">
+            <div class="catalog-card-icon">🎯</div>
+            <div class="catalog-card-req">DES 14+</div>
+            <div class="catalog-card-name">Rajada Implacável</div>
+            <div class="catalog-card-effect">Recarregar é ação livre. Você pode gastar 3 ações para atacar 3 vezes à distância no mesmo turno com PMA</div>
+        </div>
+        <div class="catalog-card cat-destreza">
+            <div class="catalog-card-icon">🎯</div>
+            <div class="catalog-card-req">DES 14+</div>
+            <div class="catalog-card-name">Esquiva Sobrenatural</div>
+            <div class="catalog-card-effect">Ao usar sua reação para Defender, adicione +3 à sua Evasão</div>
+        </div>
+                </div>
+            </div>
+            <!-- 🛡️ CARTAS DE CONSTITUIÇÃO -->
+            <div class="catalog-section cat-section-con" id="cat-con">
+                <div class="catalog-section-header" style="border-color:rgba(149,165,166,0.35);background:rgba(149,165,166,0.12);">
+                    <span class="catalog-section-icon">🛡️</span>
+                    <div>
+                        <h3 class="catalog-section-title" style="color:#95a5a6;">🛡️ Cartas de Constituição</h3>
+                        <p class="catalog-section-desc">Requisito: CON 14+</p>
+                    </div>
+                </div>
+                <div class="catalog-grid">
+        <div class="catalog-card cat-con">
+            <div class="catalog-card-icon">🛡️</div>
+            <div class="catalog-card-req">CON 14+</div>
+            <div class="catalog-card-name">Carne de Pedra</div>
+            <div class="catalog-card-effect">Reduza todo dano recebido em 5 (mínimo 1)</div>
+        </div>
+        <div class="catalog-card cat-con">
+            <div class="catalog-card-icon">🛡️</div>
+            <div class="catalog-card-req">CON 14+</div>
+            <div class="catalog-card-name">Coração Imortal</div>
+            <div class="catalog-card-effect">1x/campanha: Ao ser reduzido a 0 Saúde, volte com 50% da Saúde máxima automaticamente</div>
+        </div>
+        <div class="catalog-card cat-con">
+            <div class="catalog-card-icon">🛡️</div>
+            <div class="catalog-card-req">CON 14+</div>
+            <div class="catalog-card-name">Sangue Regenerador</div>
+            <div class="catalog-card-effect">Recupere 3 Saúde por rodada durante combate (no início do seu turno)</div>
+        </div>
+        <div class="catalog-card cat-con">
+            <div class="catalog-card-icon">🛡️</div>
+            <div class="catalog-card-req">CON 14+</div>
+            <div class="catalog-card-name">Pulmões Titânicos</div>
+            <div class="catalog-card-effect">+3d12+8 Saúde máxima permanente</div>
+        </div>
+        <div class="catalog-card cat-con">
+            <div class="catalog-card-icon">🛡️</div>
+            <div class="catalog-card-req">CON 14+</div>
+            <div class="catalog-card-name">Ossos Inquebráveis</div>
+            <div class="catalog-card-effect">Você não pode ser Derrubado ou Empurrado contra sua vontade. Aumente 2 níveis de treinamento em Fortitude</div>
+        </div>
+        <div class="catalog-card cat-con">
+            <div class="catalog-card-icon">🛡️</div>
+            <div class="catalog-card-req">CON 14+</div>
+            <div class="catalog-card-name">Resistência Arcana</div>
+            <div class="catalog-card-effect">Escolha 1 tipo de dano atípico. Você tem Resistência a ele</div>
+        </div>
+        <div class="catalog-card cat-con">
+            <div class="catalog-card-icon">🛡️</div>
+            <div class="catalog-card-req">CON 14+</div>
+            <div class="catalog-card-name">Cicatrização Acelerada</div>
+            <div class="catalog-card-effect">Descansos curtos curam 2x mais Saúde. Descansos longos curam completamente</div>
+        </div>
+        <div class="catalog-card cat-con">
+            <div class="catalog-card-icon">🛡️</div>
+            <div class="catalog-card-req">CON 14+</div>
+            <div class="catalog-card-name">Pacto Sanguinário</div>
+            <div class="catalog-card-effect">1x/dia: Recupere toda sua Stamina como ação livre, mas sacrifique 1/3 do que recuperou como Saúde</div>
+        </div>
+        <div class="catalog-card cat-con">
+            <div class="catalog-card-icon">🛡️</div>
+            <div class="catalog-card-req">CON 14+</div>
+            <div class="catalog-card-name">Guardião Teimoso</div>
+            <div class="catalog-card-effect">Ao estar em 0 Saúde, você perde apenas 5% da Saúde máxima por rodada (ao invés de 10%)</div>
+        </div>
+        <div class="catalog-card cat-con">
+            <div class="catalog-card-icon">🛡️</div>
+            <div class="catalog-card-req">CON 14+</div>
+            <div class="catalog-card-name">Fígado de Ferro</div>
+            <div class="catalog-card-effect">Imune a Veneno, Doença e condição Envenenado. Aumente 2 níveis de treinamento em Fortitude</div>
+        </div>
+        <div class="catalog-card cat-con">
+            <div class="catalog-card-icon">🛡️</div>
+            <div class="catalog-card-req">CON 14+</div>
+            <div class="catalog-card-name">Barreira Reativa</div>
+            <div class="catalog-card-effect">Ao rolar Defender como reação a um ataque, ganhe Ar(10) contra esse ataque específico</div>
+        </div>
+        <div class="catalog-card cat-con">
+            <div class="catalog-card-icon">🛡️</div>
+            <div class="catalog-card-req">CON 14+</div>
+            <div class="catalog-card-name">Resiliência Brutal</div>
+            <div class="catalog-card-effect">Ao receber dano que o deixaria com 25% ou menos de Saúde, reduza esse dano em 50% (1x/combate)</div>
+        </div>
+                </div>
+            </div>
+            <!-- 📚 CARTAS DE INTELIGÊNCIA -->
+            <div class="catalog-section cat-section-int" id="cat-int">
+                <div class="catalog-section-header" style="border-color:rgba(155,89,182,0.35);background:rgba(155,89,182,0.12);">
+                    <span class="catalog-section-icon">📚</span>
+                    <div>
+                        <h3 class="catalog-section-title" style="color:#9b59b6;">📚 Cartas de Inteligência</h3>
+                        <p class="catalog-section-desc">Requisito: INT 14+</p>
+                    </div>
+                </div>
+                <div class="catalog-grid">
+        <div class="catalog-card cat-int">
+            <div class="catalog-card-icon">📚</div>
+            <div class="catalog-card-req">INT 14+</div>
+            <div class="catalog-card-name">Mente Tática</div>
+            <div class="catalog-card-effect">Você e aliados em 12m ganham +4 em Iniciativa permanente</div>
+        </div>
+        <div class="catalog-card cat-int">
+            <div class="catalog-card-icon">📚</div>
+            <div class="catalog-card-req">INT 14+</div>
+            <div class="catalog-card-name">Olhos Analíticos</div>
+            <div class="catalog-card-effect">1x/combate (1 ação): Descubra Evasão exata, Saúde atual, resistências, vulnerabilidades e 1 habilidade especial de 1 criatura visível</div>
+        </div>
+        <div class="catalog-card cat-int">
+            <div class="catalog-card-icon">📚</div>
+            <div class="catalog-card-req">INT 14+</div>
+            <div class="catalog-card-name">Cérebro Enciclopédico</div>
+            <div class="catalog-card-effect">Aumente 2 níveis de treinamento em Conhecimento. Você pode fazer testes de Conhecimento sobre qualquer tópico</div>
+        </div>
+        <div class="catalog-card cat-int">
+            <div class="catalog-card-icon">📚</div>
+            <div class="catalog-card-req">INT 14+</div>
+            <div class="catalog-card-name">Comandante de Guerra</div>
+            <div class="catalog-card-effect">1x/rodada (1 ação): Um aliado em 12m ataca imediatamente como reação com +2 em Atacar</div>
+        </div>
+        <div class="catalog-card cat-int">
+            <div class="catalog-card-icon">📚</div>
+            <div class="catalog-card-req">INT 14+</div>
+            <div class="catalog-card-name">Contra-Mágica Instintiva</div>
+            <div class="catalog-card-effect">Ao ver magia sendo castada, role Conhecimento CD 15. Sucesso: você sabe o que faz E pode gastar sua reação para dar +3 em Resistência ao alvo dela</div>
+        </div>
+        <div class="catalog-card cat-int">
+            <div class="catalog-card-icon">📚</div>
+            <div class="catalog-card-req">INT 14+</div>
+            <div class="catalog-card-name">Decifrador Universal</div>
+            <div class="catalog-card-effect">Aumente 2 níveis de treinamento em Investigação. Você pode ler qualquer idioma escrito após 1 minuto de estudo</div>
+        </div>
+        <div class="catalog-card cat-int">
+            <div class="catalog-card-icon">📚</div>
+            <div class="catalog-card-req">INT 14+</div>
+            <div class="catalog-card-name">Memória Absoluta</div>
+            <div class="catalog-card-effect">Você lembra perfeitamente de tudo. Aumente 2 níveis de treinamento em Investigação. Você nunca esquece rostos, nomes ou informações</div>
+        </div>
+        <div class="catalog-card cat-int">
+            <div class="catalog-card-icon">📚</div>
+            <div class="catalog-card-req">INT 14+</div>
+            <div class="catalog-card-name">Mestre Tático</div>
+            <div class="catalog-card-effect">Aliados em 9m ganham +2 em Atacar e +2 em Defender enquanto você estiver consciente e puder vê-los</div>
+        </div>
+        <div class="catalog-card cat-int">
+            <div class="catalog-card-icon">📚</div>
+            <div class="catalog-card-req">INT 14+</div>
+            <div class="catalog-card-name">Explorador de Fraquezas</div>
+            <div class="catalog-card-effect">Após observar criatura por 1 rodada, seus ataques contra ela ignoram 3 de Armadura e causam +1d6 de dano</div>
+        </div>
+        <div class="catalog-card cat-int">
+            <div class="catalog-card-icon">📚</div>
+            <div class="catalog-card-req">INT 14+</div>
+            <div class="catalog-card-name">Estratégia Perfeita</div>
+            <div class="catalog-card-effect">1x/combate (ação livre): Você pode reorganizar a ordem de Iniciativa de todos os aliados como desejar</div>
+        </div>
+        <div class="catalog-card cat-int">
+            <div class="catalog-card-icon">📚</div>
+            <div class="catalog-card-req">INT 14+</div>
+            <div class="catalog-card-name">Bibliotecário de Combate</div>
+            <div class="catalog-card-effect">Ao fazer teste de Conhecimento para identificar criatura/magia/efeito, você pode compartilhar essa informação com aliados em 12m como ação livre, dando +2 em testes contra o alvo</div>
+        </div>
+        <div class="catalog-card cat-int">
+            <div class="catalog-card-icon">📚</div>
+            <div class="catalog-card-req">INT 14+</div>
+            <div class="catalog-card-name">Adaptação Cognitiva</div>
+            <div class="catalog-card-effect">Após sofrer um efeito (magia, habilidade, armadilha), você tem +3 em testes de Resistência contra o mesmo efeito pelo resto do combate</div>
+        </div>
+                </div>
+            </div>
+            <!-- 🔮 CARTAS DE SABEDORIA -->
+            <div class="catalog-section cat-section-sab" id="cat-sab">
+                <div class="catalog-section-header" style="border-color:rgba(243,156,18,0.35);background:rgba(243,156,18,0.12);">
+                    <span class="catalog-section-icon">🔮</span>
+                    <div>
+                        <h3 class="catalog-section-title" style="color:#f39c12;">🔮 Cartas de Sabedoria</h3>
+                        <p class="catalog-section-desc">Requisito: SAB 14+</p>
+                    </div>
+                </div>
+                <div class="catalog-grid">
+        <div class="catalog-card cat-sab">
+            <div class="catalog-card-icon">🔮</div>
+            <div class="catalog-card-req">SAB 14+</div>
+            <div class="catalog-card-name">Olhos do Oráculo</div>
+            <div class="catalog-card-effect">Você não pode ser Desprevenido. Aumente 2 níveis de treinamento em Percepção. Você pode ver criaturas invisíveis como silhuetas borradas</div>
+        </div>
+        <div class="catalog-card cat-sab">
+            <div class="catalog-card-icon">🔮</div>
+            <div class="catalog-card-req">SAB 14+</div>
+            <div class="catalog-card-name">Premonição de Batalha</div>
+            <div class="catalog-card-effect">1x/sessão: Você pode escolher substituir sua Iniciativa por 30 E dar +3 em Iniciativa para todos os aliados em 12m</div>
+        </div>
+        <div class="catalog-card cat-sab">
+            <div class="catalog-card-icon">🔮</div>
+            <div class="catalog-card-req">SAB 14+</div>
+            <div class="catalog-card-name">Empatia Transcendental</div>
+            <div class="catalog-card-effect">Aumente 2 níveis de treinamento em Intuição. Você pode sentir emoções e detectar mentiras automaticamente</div>
+        </div>
+        <div class="catalog-card cat-sab">
+            <div class="catalog-card-icon">🔮</div>
+            <div class="catalog-card-req">SAB 14+</div>
+            <div class="catalog-card-name">Rastreador Sobrenatural</div>
+            <div class="catalog-card-effect">Aumente 2 níveis de treinamento em Sobrevivência. Você pode rastrear qualquer criatura por até 7 dias</div>
+        </div>
+        <div class="catalog-card cat-sab">
+            <div class="catalog-card-icon">🔮</div>
+            <div class="catalog-card-req">SAB 14+</div>
+            <div class="catalog-card-name">Mãos Abençoadas</div>
+            <div class="catalog-card-effect">Como uma ação, toque aliados e role Medicina CD 12. Sucesso: cure 3d6+SAB de Saúde. Até 3 aliados por descanso longo</div>
+        </div>
+        <div class="catalog-card cat-sab">
+            <div class="catalog-card-icon">🔮</div>
+            <div class="catalog-card-req">SAB 14+</div>
+            <div class="catalog-card-name">Comunhão Primordial</div>
+            <div class="catalog-card-effect">Você fala a Língua Natural. Você pode pedir 1 favor pequeno a criaturas naturais 1x/dia</div>
+        </div>
+        <div class="catalog-card cat-sab">
+            <div class="catalog-card-icon">🔮</div>
+            <div class="catalog-card-req">SAB 14+</div>
+            <div class="catalog-card-name">Sexto Sentido</div>
+            <div class="catalog-card-effect">1x/combate (reação): Ao você ou aliado em 9m ser alvo de ataque, você pode fazer o atacante rerolar com desvantagem</div>
+        </div>
+        <div class="catalog-card cat-sab">
+            <div class="catalog-card-icon">🔮</div>
+            <div class="catalog-card-req">SAB 14+</div>
+            <div class="catalog-card-name">Guardião da Natureza</div>
+            <div class="catalog-card-effect">Escolha 2 tipos de terreno. Neles, você e aliados em 9m têm +3 em Percepção, Sobrevivência, Furtividade e Movimento</div>
+        </div>
+        <div class="catalog-card cat-sab">
+            <div class="catalog-card-icon">🔮</div>
+            <div class="catalog-card-req">SAB 14+</div>
+            <div class="catalog-card-name">Instinto do Predador</div>
+            <div class="catalog-card-effect">Ao rolar Iniciativa, você pode declarar 1 criatura como Presa. Você tem +3 em Atacar, +2 em Defender e +1d6 de dano contra ela</div>
+        </div>
+        <div class="catalog-card cat-sab">
+            <div class="catalog-card-icon">🔮</div>
+            <div class="catalog-card-req">SAB 14+</div>
+            <div class="catalog-card-name">Meditação Transcendental</div>
+            <div class="catalog-card-effect">Você ganha novo tipo de ação: Meditação Transcendental (30min). Recupere 2d6 Stamina e 2d6 Éter</div>
+        </div>
+        <div class="catalog-card cat-sab">
+            <div class="catalog-card-icon">🔮</div>
+            <div class="catalog-card-req">SAB 14+</div>
+            <div class="catalog-card-name">Vidente</div>
+            <div class="catalog-card-effect">1x/sessão: Faça 1 pergunta sim/não ao Mestre sobre algo que acontecerá nos próximos 10 minutos. Ele responde honestamente</div>
+        </div>
+        <div class="catalog-card cat-sab">
+            <div class="catalog-card-icon">🔮</div>
+            <div class="catalog-card-req">SAB 14+</div>
+            <div class="catalog-card-name">Santuário Espiritual</div>
+            <div class="catalog-card-effect">Aliados em 9m de você têm +3 em todos os testes de Resistência e são imunes a Amedrontado e Enfeitiçado enquanto você estiver consciente</div>
+        </div>
+                </div>
+            </div>
+            <!-- ⭐ CARTAS RARAS -->
+            <div class="catalog-section cat-section-rara" id="cat-rara">
+                <div class="catalog-section-header" style="border-color:rgba(255,215,0,0.45);background:rgba(255,215,0,0.08);">
+                    <span class="catalog-section-icon">⭐</span>
+                    <div>
+                        <h3 class="catalog-section-title" style="color:#ffd700;">⭐ Cartas Raras</h3>
+                        <p class="catalog-section-desc">Requisitos múltiplos — builds específicas</p>
+                    </div>
+                </div>
+                <div class="catalog-grid">
+        <div class="catalog-card cat-rara">
+            <div class="catalog-card-icon">⭐</div>
+            <div class="catalog-card-req">FOR 16+, CON 16+</div>
+            <div class="catalog-card-name">Titã de Carne e Aço</div>
+            <div class="catalog-card-effect">Resistência a todo Dano Ordinário. Seus ataques corpo a corpo causam +2d6 de dano adicional. Você aumenta 1 categoria de tamanho</div>
+        </div>
+        <div class="catalog-card cat-rara">
+            <div class="catalog-card-icon">⭐</div>
+            <div class="catalog-card-req">FOR 14+, CON 16+</div>
+            <div class="catalog-card-name">Berserker Imortal</div>
+            <div class="catalog-card-effect">Enquanto com 25% ou menos de Saúde: Resistência a todo dano E causa o dobro de dano em ataques corpo a corpo</div>
+        </div>
+        <div class="catalog-card cat-rara">
+            <div class="catalog-card-icon">⭐</div>
+            <div class="catalog-card-req">FOR 14+, SAB 14+</div>
+            <div class="catalog-card-name">Punhos do Abismo</div>
+            <div class="catalog-card-effect">Seus ataques desarmados causam 2d10 + FOR + SAB de dano Necrótico. Você cura metade do dano causado por ataques desarmados</div>
+        </div>
+        <div class="catalog-card cat-rara">
+            <div class="catalog-card-icon">⭐</div>
+            <div class="catalog-card-req">FOR 14+, DES 14+</div>
+            <div class="catalog-card-name">Carnificina</div>
+            <div class="catalog-card-effect">Ao matar criatura com ataque corpo a corpo, você pode atacar outra criatura adjacente imediatamente (sem PMA). Acumulativo. Críticos corpo a corpo curam 2d6 Saúde</div>
+        </div>
+        <div class="catalog-card cat-rara">
+            <div class="catalog-card-icon">⭐</div>
+            <div class="catalog-card-req">FOR 16+, INT 14+</div>
+            <div class="catalog-card-name">Carrasco</div>
+            <div class="catalog-card-effect">Seus críticos corpo a corpo matam instantaneamente criaturas com menos de 25% de Saúde caso elas falhem em um teste de Fortitude (CD = seu CD de classe)</div>
+        </div>
+        <div class="catalog-card cat-rara">
+            <div class="catalog-card-icon">⭐</div>
+            <div class="catalog-card-req">FOR 20+</div>
+            <div class="catalog-card-name">Colossus Primordial</div>
+            <div class="catalog-card-effect">Você aumenta 2 categorias de tamanho. Ataques contra criaturas menores causam +4d6 e ignoram toda Armadura. +10 Armadura natural</div>
+        </div>
+        <div class="catalog-card cat-rara">
+            <div class="catalog-card-icon">⭐</div>
+            <div class="catalog-card-req">FOR 20+, CON 16+</div>
+            <div class="catalog-card-name">Encarnação da Destruição</div>
+            <div class="catalog-card-effect">Seus ataques corpo a corpo causam dano em área de 1,5m de raio. Crítico causa onda de choque 6m. +5 Armadura permanente</div>
+        </div>
+        <div class="catalog-card cat-rara">
+            <div class="catalog-card-icon">⭐</div>
+            <div class="catalog-card-req">FOR 20+, SAB 14+</div>
+            <div class="catalog-card-name">Punho Divino</div>
+            <div class="catalog-card-effect">Ataques desarmados causam 3d12 + FOR + SAB de dano Radiante. Dobro de dano contra mortos-vivos e demoníacos. 1x/dia: 10d12 Radiante</div>
+        </div>
+        <div class="catalog-card cat-rara">
+            <div class="catalog-card-icon">⭐</div>
+            <div class="catalog-card-req">DES 16+, SAB 14+</div>
+            <div class="catalog-card-name">Assassino Fantasma</div>
+            <div class="catalog-card-effect">Críticos em ataques furtivos podem matar instantaneamente criaturas de nível igual ou inferior ao seu com menos de 50% de Saúde</div>
+        </div>
+        <div class="catalog-card cat-rara">
+            <div class="catalog-card-icon">⭐</div>
+            <div class="catalog-card-req">DES 20+, INT 14+</div>
+            <div class="catalog-card-name">Lâminas Dançantes</div>
+            <div class="catalog-card-effect">Ao empunhar duas armas de uma mão, você pode atacar com ambas usando apenas 1 ação. Ambos os ataques usam a mesma penalidade de multi-ataque</div>
+        </div>
+        <div class="catalog-card cat-rara">
+            <div class="catalog-card-icon">⭐</div>
+            <div class="catalog-card-req">DES 20+</div>
+            <div class="catalog-card-name">Velocista Umbral</div>
+            <div class="catalog-card-effect">Você ganha permanentemente +1 Ação por rodada. Ao realizar Disparada, você duplica seu movimento</div>
+        </div>
+        <div class="catalog-card cat-rara">
+            <div class="catalog-card-icon">⭐</div>
+            <div class="catalog-card-req">DES 16+, INT 14+</div>
+            <div class="catalog-card-name">Mestre dos Mil Cortes</div>
+            <div class="catalog-card-effect">Ao atacar uma criatura adjacente, você também ataca todas as outras criaturas adjacentes a você simultaneamente com a mesma rolagem</div>
+        </div>
+        <div class="catalog-card cat-rara">
+            <div class="catalog-card-icon">⭐</div>
+            <div class="catalog-card-req">DES 18+, SAB 18+</div>
+            <div class="catalog-card-name">Predador Supremo</div>
+            <div class="catalog-card-effect">Você acerta críticos em 16-17-18-19-20 no d20. +1 nível de treinamento em Iniciativa. +2d6 de dano contra alvos que ainda não agiram nesta rodada</div>
+        </div>
+        <div class="catalog-card cat-rara">
+            <div class="catalog-card-icon">⭐</div>
+            <div class="catalog-card-req">CON 20+, SAB 14+</div>
+            <div class="catalog-card-name">Fênix Imortal</div>
+            <div class="catalog-card-effect">3x/campanha: Ao morrer, você revive com 50% de Saúde máxima após 1 rodada. Ao reviver, explode em chamas sagradas causando 4d12 Radiante em 6m</div>
+        </div>
+        <div class="catalog-card cat-rara">
+            <div class="catalog-card-icon">⭐</div>
+            <div class="catalog-card-req">CON 18+, INT 14+</div>
+            <div class="catalog-card-name">Pele Mística Adaptativa</div>
+            <div class="catalog-card-effect">Toda vez que terminar um combate no qual recebeu dano de diferentes tipos, você ganha permanentemente +2 Ae contra cada tipo de dano recebido. Máximo Ae(20)</div>
+        </div>
+        <div class="catalog-card cat-rara">
+            <div class="catalog-card-icon">⭐</div>
+            <div class="catalog-card-req">CON 16+, FOR 14+</div>
+            <div class="catalog-card-name">Escamas de Dragão</div>
+            <div class="catalog-card-effect">+3 Armadura permanente. Toda vez que é atingido corpo a corpo, o atacante recebe 2d8 de dano elemental (escolha ao pegar a carta)</div>
+        </div>
+        <div class="catalog-card cat-rara">
+            <div class="catalog-card-icon">⭐</div>
+            <div class="catalog-card-req">CON 18+</div>
+            <div class="catalog-card-name">Organismo Mutagênico</div>
+            <div class="catalog-card-effect">Você regenera 10 Saúde por rodada. Membros perdidos regeneram em 1 dia. Imune a Veneno, Doença e Necrótico</div>
+        </div>
+        <div class="catalog-card cat-rara">
+            <div class="catalog-card-icon">⭐</div>
+            <div class="catalog-card-req">INT 16+, DES 14+ (Teurgo)</div>
+            <div class="catalog-card-name">Duas Mangas</div>
+            <div class="catalog-card-effect">Reduza o custo de ação de qualquer magia em 1 (mínimo 1 ação), pagando 5 Éter adicionais. +10 Éter máximo permanente</div>
+        </div>
+        <div class="catalog-card cat-rara">
+            <div class="catalog-card-icon">⭐</div>
+            <div class="catalog-card-req">INT 18+, SAB 18+</div>
+            <div class="catalog-card-name">O Mestre</div>
+            <div class="catalog-card-effect">Todas as perícias nas quais você possui qualquer nível de treinamento melhoram para Treinamento Lendário. Perícias não treinadas sempre têm vantagem</div>
+        </div>
+        <div class="catalog-card cat-rara">
+            <div class="catalog-card-icon">⭐</div>
+            <div class="catalog-card-req">INT 16+, DES 14+</div>
+            <div class="catalog-card-name">Modo Análise</div>
+            <div class="catalog-card-effect">Após observar qualquer criatura por 1 rodada, você a marca. Você e seus aliados ignoram toda a Armadura e Resistências dela. +2d6 de dano em marcadas</div>
+        </div>
+        <div class="catalog-card cat-rara">
+            <div class="catalog-card-icon">⭐</div>
+            <div class="catalog-card-req">INT 18+, SAB 18+</div>
+            <div class="catalog-card-name">Arquiteto do Destino</div>
+            <div class="catalog-card-effect">1x/campanha: Rejogue qualquer evento que aconteceu nos últimos 10 minutos. Você e seus aliados lembram das duas versões da realidade</div>
+        </div>
+        <div class="catalog-card cat-rara">
+            <div class="catalog-card-icon">⭐</div>
+            <div class="catalog-card-req">INT 18+, CON 14+</div>
+            <div class="catalog-card-name">Contra-Mago Supremo</div>
+            <div class="catalog-card-effect">Você pode dissipar magias instantaneamente como reação (sem teste necessário). 3x/dia. Você absorve metade do Éter gasto na magia dissipada</div>
+        </div>
+        <div class="catalog-card cat-rara">
+            <div class="catalog-card-icon">⭐</div>
+            <div class="catalog-card-req">INT 20+</div>
+            <div class="catalog-card-name">Cérebro Transcendente</div>
+            <div class="catalog-card-effect">Você pode usar Inteligência no lugar de qualquer atributo para qualquer teste. Cada nível de treinamento em Conhecimento, Investigação e Medicina concede +4 ao invés de +2. +1 nível de treinamento em todas as perícias</div>
+        </div>
+        <div class="catalog-card cat-rara">
+            <div class="catalog-card-icon">⭐</div>
+            <div class="catalog-card-req">INT 20+, DES 14+</div>
+            <div class="catalog-card-name">Mestre Arcano Supremo</div>
+            <div class="catalog-card-effect">Você pode castar 2 magias por turno. Todas as magias que você casta têm +5 CD</div>
+        </div>
+        <div class="catalog-card cat-rara">
+            <div class="catalog-card-icon">⭐</div>
+            <div class="catalog-card-req">INT 20+, SAB 14+</div>
+            <div class="catalog-card-name">Grande Éter</div>
+            <div class="catalog-card-effect">Seu Éter máximo é dobrado. Ao castar magias de dano, você pode gastar Éter adicional para aumentar o dano em +1 por ponto de Éter adicional gasto</div>
+        </div>
+        <div class="catalog-card cat-rara">
+            <div class="catalog-card-icon">⭐</div>
+            <div class="catalog-card-req">SAB 18+</div>
+            <div class="catalog-card-name">Olhar Dimensional</div>
+            <div class="catalog-card-effect">Comunicação telepática com qualquer criatura em até 9m. 1x/rodada como ação livre: Olhar do Abismo (2d6 Primordial), Olhar do Místico (Paralisada), ou Olhar da Matéria (Empurre 1,5m). Custa 5 Stamina cada</div>
+        </div>
+        <div class="catalog-card cat-rara">
+            <div class="catalog-card-icon">⭐</div>
+            <div class="catalog-card-req">SAB 16+</div>
+            <div class="catalog-card-name">Súdito da Loucura</div>
+            <div class="catalog-card-effect">Com menos de 25% do seu Éter máximo, você tem vantagem em TODAS as rolagens. Pode gastar 3 ações para reduzir seu Éter para 25%. 1x/rodada: teletransporte em até 9m como ação livre</div>
+        </div>
+        <div class="catalog-card cat-rara">
+            <div class="catalog-card-icon">⭐</div>
+            <div class="catalog-card-req">SAB 16+, INT 14+</div>
+            <div class="catalog-card-name">Olhos que Veem Tudo</div>
+            <div class="catalog-card-effect">Você pode ver através de paredes em até 60m. Vê invisíveis, escondidos e etéreos. Detecta automaticamente mentiras, ilusões, disfarces e magias. Ninguém pode te surpreender</div>
+        </div>
+        <div class="catalog-card cat-rara">
+            <div class="catalog-card-icon">⭐</div>
+            <div class="catalog-card-req">SAB 20+, CON 16+</div>
+            <div class="catalog-card-name">Guardião Eterno da Vida</div>
+            <div class="catalog-card-effect">Aliados em 18m de você não podem morrer através da condição Morrendo. Quando um aliado está caído, você pode matar o inimigo que o derrubou para instantaneamente revivê-lo com 50% de Saúde</div>
+        </div>
+        <div class="catalog-card cat-rara">
+            <div class="catalog-card-icon">⭐</div>
+            <div class="catalog-card-req">SAB 20+, CON 14+</div>
+            <div class="catalog-card-name">Santuário Intocável</div>
+            <div class="catalog-card-effect">Emana uma aura de 9m. Aliados dentro dela têm +5 em todas Resistências e Ae(10) contra todo Dano Atípico, e são imunes a condições mentais</div>
+        </div>
+        <div class="catalog-card cat-rara">
+            <div class="catalog-card-icon">⭐</div>
+            <div class="catalog-card-req">FOR 18+, DES 18+, CON 18+</div>
+            <div class="catalog-card-name">Deus da Guerra</div>
+            <div class="catalog-card-effect">+5 em Atacar, +5 em Defender e +5 Evasão permanentes. Resistência a todo tipo de dano. Críticos em 17-18-19-20 no d20</div>
+        </div>
+        <div class="catalog-card cat-rara">
+            <div class="catalog-card-icon">⭐</div>
+            <div class="catalog-card-req">INT 18+, SAB 18+, DES 16+</div>
+            <div class="catalog-card-name">Mente Onisciente</div>
+            <div class="catalog-card-effect">Você sabe instantaneamente tudo sobre criaturas em 30m (Saúde, habilidades, intenções, fraquezas). Você sempre age primeiro em combate (como se tivesse tirado 35 em Iniciativa)</div>
+        </div>
+        <div class="catalog-card cat-rara">
+            <div class="catalog-card-icon">⭐</div>
+            <div class="catalog-card-req">FOR 16+, CON 18+, SAB 14+</div>
+            <div class="catalog-card-name">Tanque Absoluto</div>
+            <div class="catalog-card-effect">Você reduz todo dano recebido em 10 (mínimo 1). Você não pode ser movido, controlado mentalmente ou afetado por condições contra sua vontade</div>
+        </div>
+        <div class="catalog-card cat-rara">
+            <div class="catalog-card-icon">⭐</div>
+            <div class="catalog-card-req">FOR 16+, DES 18+, SAB 16+</div>
+            <div class="catalog-card-name">Artista Marcial Supremo</div>
+            <div class="catalog-card-effect">Ataques desarmados causam 2d12 + FOR + DES de dano. Ao ser atacado corpo a corpo, você pode contra-atacar automaticamente (sem gastar reação). +2 Ações por rodada</div>
+        </div>
+        <div class="catalog-card cat-rara">
+            <div class="catalog-card-icon">⭐</div>
+            <div class="catalog-card-req">FOR 18+, INT 16+, CON 16+</div>
+            <div class="catalog-card-name">Destruidor de Mundos</div>
+            <div class="catalog-card-effect">1x/campanha: Seu próximo ataque causa 20d12 de dano Primordial em área de 18m. Você fica Exausto por 1 dia após usar</div>
+        </div>
+        <div class="catalog-card cat-rara">
+            <div class="catalog-card-icon">⭐</div>
+            <div class="catalog-card-req">CON 18+, SAB 18+, INT 18+</div>
+            <div class="catalog-card-name">Imortal Relutante</div>
+            <div class="catalog-card-effect">Você não pode morrer permanentemente. Ao morrer, você revive após 1d4 dias em um local seguro e perde 1 nível. Ao chegar a nível 0, você morre definitivamente</div>
+        </div>
+        <div class="catalog-card cat-rara">
+            <div class="catalog-card-icon">⭐</div>
+            <div class="catalog-card-req">INT 16+, SAB 14+</div>
+            <div class="catalog-card-name">Devorador de Almas</div>
+            <div class="catalog-card-effect">Ao matar uma criatura inteligente, você pode absorver 1 habilidade especial dela permanentemente (máximo 3 habilidades acumuladas). Você pode descartar habilidades antigas para absorver novas</div>
+        </div>
+        <div class="catalog-card cat-rara">
+            <div class="catalog-card-icon">⭐</div>
+            <div class="catalog-card-req">INT 16+, DES 14+</div>
+            <div class="catalog-card-name">Senhor do Tempo</div>
+            <div class="catalog-card-effect">1x/combate: Você pode repetir seu turno inteiro imediatamente após terminá-lo. Você não recupera recursos já gastos, mas pode fazer ações diferentes</div>
+        </div>
+        <div class="catalog-card cat-rara">
+            <div class="catalog-card-icon">⭐</div>
+            <div class="catalog-card-req">FOR 16+, DES 16+, INT 16+</div>
+            <div class="catalog-card-name">Avatar do Caos</div>
+            <div class="catalog-card-effect">Todos os seus testes de d20 usam 2d20 e você escolhe qual resultado usar. Se tirar 1 em ambos: Falha Crítica e você perde esta carta. Se tirar 20 em ambos: Sucesso Primordial</div>
+        </div>
+                </div>
+            </div>
             </section>
             
             <!-- ============================================
