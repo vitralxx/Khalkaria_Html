@@ -738,15 +738,15 @@
             <div class="formula-grid">
                 <div class="formula-card">
                     <h4>❤️ Saúde</h4>
-                    <code>(1 × Nível) + (Mod.CON × Nível × 2)</code>
+                    <code>(2 × Nível) + (Mod.CON × Nível × 3)</code>
                 </div>
                 <div class="formula-card">
                     <h4>⚡ Stamina</h4>
-                    <code>(2 × Nível) + ([Mod.FOR+Mod.DES/2] × Nível × 3)</code>
+                    <code>(2 × Nível) + (Mod.FOR OU Mod.DES × Nível × 3)</code>
                 </div>
                 <div class="formula-card">
                     <h4>✨ Éter</h4>
-                    <code>(3 × Nível) + ([Mod.INT+Mod.SAB/2] × Nível × 6)</code>
+                    <code>(3 × Nível) + (Mod.INT OU Mod.SAB × Nível × 7)</code>
                 </div>
                 <div class="formula-card">
                     <h4>🛡️ Evasão Ativa</h4>
@@ -807,6 +807,7 @@
                 <p style="color: var(--gold-light); margin-bottom: 1rem;">
                     <strong>Você estudou 2 Escolas, +1 no nível 3 e +2 no nível 5</strong>
                 </p>
+                <p>Escolha 1+MOD. INT ou SAB, magias de nível 1 no primeiro nível.</p>
                 <div class="escolas-grid">
                     <div class="escola-item">
                         <strong>🛡️ Abjuração</strong>
@@ -844,7 +845,7 @@
                 <div class="technique-card">
                     <h4>Éter Residual</h4>
                     <span class="tech-meta">Passiva</span>
-                    <p>Ao conjurar uma magia contida e seu custo final for 1, adicione uma modulação grátis.</p>
+                    <p>Ao conjurar uma magia contida e seu custo final for ≤1, adicione uma modulação grátis.</p>
                 </div>
                 <div class="technique-card">
                     <h4>Reserva Oculta</h4>
@@ -913,8 +914,8 @@
                 </div>
                 <div class="technique-card">
                     <h4>Barreira Instintiva</h4>
-                    <span class="tech-meta">Reação • 1-5 Éter</span>
-                    <p>Ao ser atacado, antes do resultado, pode gastar Éter como reação para reduzir dano. 1 Éter = 1d4. Máx. = Nível.</p>
+                    <span class="tech-meta">Ação Livre • 1-5 Éter</span>
+                    <p>Ao receber dano, pode gastar Éter como ação livre para reduzir dano. 1 Éter = 1d4 de dano reduzido, 2 Éter = 2d4 de dano reduzido… (Max. Éter gasto = Nível)</p>
                 </div>
             </div>
 
@@ -1078,7 +1079,7 @@
                             <p>Você possui um livro onde armazena grande parte do seu conhecimento arcano.</p>
                             <ul>
                                 <li>Escolha <strong>3+Mod.Int</strong> magias em escolas que você é especializado e +1 para cada nível subsequente.</li>
-                                <li>Só pode escolher magias iguais ou abaixo do seu nível.</li>
+                                <li>Só pode escolher magias iguais ou abaixo do seu (nível - 1).</li>
                                 <li>Pode estudar e reordenar suas magias em um descanso longo.</li>
                             </ul>
                         </div>
@@ -1118,7 +1119,7 @@
                         <div class="tech-card-body">
                             <p>Você possui magias gravadas em sua essência.</p>
                             <ul>
-                                <li>Escolha <strong>2+Mod.Sab</strong> magias em escolas especializadas +1/nível.</li>
+                                <li>Escolha <strong>2+Mod. Sabedoria</strong> magias em escolas que você é especializado e +1 para cada nível subsequente. Você só pode escolher magias iguais ou abaixo do seu <strong>(nível - 1)</strong>.</li>
                                 <li>Essas magias são <strong>permanentes</strong> e não podem ser trocadas.</li>
                                 <li>Ao conjurar magia com intensidade Forçada, custo adicional é +1 (invés de +2).</li>
                             </ul>
@@ -1238,7 +1239,7 @@
                         <div class="tech-card-body">
                             <p>Você negociou com seres primordiais. Eles fornecem uma fração de sua essência, por um custo:</p>
                             <ul>
-                                <li>Escolha <strong>1+Mod.Int</strong> magias +1/nível em escolas especializadas.</li>
+                                <li>Escolha <strong>1+Mod. Inteligência</strong> magias em escolas que você é especializado e +1 para cada nível subsequente. Você só pode escolher magias iguais ou abaixo do seu <strong>(nível - 1)</strong>.</li>
                                 <li>Trocar requer ritual de 1 hora e pagamento (componentes, Sins, sacrifício).</li>
                                 <li>Magia Pactuada em Intensidade Contida custa <strong>0 de Éter</strong>.</li>
                             </ul>
