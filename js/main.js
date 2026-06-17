@@ -4,14 +4,18 @@
 document.addEventListener('DOMContentLoaded', function() {
     const splash = document.querySelector('.splash-screen');
     if (splash) {
-        splash.addEventListener('click', function() {
+        // One-time: se já viu a entrada, esconde imediatamente sem animar
+        if (localStorage.getItem('khalkaria_splash_seen')) {
             splash.classList.add('hidden');
-        });
-        
-        // Auto-hide after 3 seconds if not clicked
-        setTimeout(() => {
-            splash.classList.add('hidden');
-        }, 5000);
+            splash.style.display = 'none';
+        } else {
+            const dismiss = function() {
+                splash.classList.add('hidden');
+                try { localStorage.setItem('khalkaria_splash_seen', '1'); } catch (e) {}
+            };
+            splash.addEventListener('click', dismiss);
+            setTimeout(dismiss, 5000);
+        }
     }
     
     // Mobile Menu Toggle
