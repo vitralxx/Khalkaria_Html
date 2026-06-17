@@ -82,11 +82,13 @@
                 <a href="#acolito">Acólito</a>
                 <a href="#amaldicoado">Amaldiçoado</a>
                 <a href="#andarilho">Andarilho</a>
+                <a href="#artesao">Artesão</a>
                 <a href="#cacador">Caçador</a>
                 <a href="#criminoso">Criminoso</a>
                 <a href="#cultista">Cultista</a>
                 <a href="#escravo">Escravo</a>
                 <a href="#exilado">Exilado</a>
+                <a href="#ferreiro">Ferreiro</a>
                 <a href="#marinheiro">Marinheiro</a>
                 <a href="#mercador">Mercador</a>
                 <a href="#nobre">Nobre</a>
@@ -105,7 +107,7 @@
                     </div>
                 </div>
                 <div class="origem-body">
-                    <p class="origem-desc">Você passou anos estudando. História, alquimia, política, bestas, ruínas — o conhecimento era seu refúgio e sua arma. Mas em Khalkaria, saber demais é perigoso.</p>
+                    <p class="origem-desc">Você passou anos estudando. História, alquimia, política, bestas, ruínas — o conhecimento era seu refúgio e sua arma. Mas em Khalkaria, saber demais é perigoso. Cada resposta abria dez perguntas novas, cada descoberta revelava camadas mais profundas de escuridão. Agora o mundo te chama para fora das bibliotecas, para aplicar o que aprendeu. Sua mente é afiada. Você sabe coisas que outros nem imaginam que existem. A única questão é se o que você sabe vai te salvar — ou te condenar.</p>
                     <div class="origem-grid">
                         <div class="origem-section">
                             <h4>🎯 Perícia</h4>
@@ -115,17 +117,123 @@
                             <h4>🎒 Itens Iniciais</h4>
                             <ul>
                                 <li>Roupas de Acadêmico</li>
-                                <li>1 Arma Leve ou Mística</li>
-                                <li>1 Livro de Estudos</li>
-                                <li>1 Pena e Tinta</li>
-                                <li>10 Velas</li>
-                                <li>1 Comida</li>
+                                <li>1 Arma Leve ou Mística (1 Equipamento)</li>
+                                <li>1 Livro de Estudos (1 Bugiganga)</li>
+                                <li>1 Tinta + Pena (1 Bugiganga)</li>
+                                <li>10 Vela de Sebo (1 Bugiganga)</li>
+                                <li>1 Comida (1 Bugiganga)</li>
                             </ul>
                         </div>
                     </div>
                     <div class="habilidade-box">
                         <h4>✨ Letrado</h4>
                         <p>Você sabe ler e escrever em 2 idiomas adicionais além do comum. Pode identificar línguas quando escutada ou lida por você.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FERREIRO -->
+            <div class="origem-card" id="ferreiro">
+                <div class="origem-header" onclick="this.parentElement.classList.toggle('active')">
+                    <h3><span class="icon">⚒️</span> Ferreiro</h3>
+                    <div style="display:flex;align-items:center;gap:1rem">
+                        <span class="origem-sins">💰 2d6+10</span>
+                        <span class="toggle-icon">▼</span>
+                    </div>
+                </div>
+                <div class="origem-body">
+                    <p class="origem-desc">O calor da forja nunca cessou. O fogo escolheu você como artista. Você aprendeu a ler o metal pela cor, a domar o ferro a marteladas, a transformar minério bruto em lâmina e escudo. Numa terra que devora os despreparados, você é a mão que arma os sobreviventes e sabe que toda matéria um dia pode virar arma.</p>
+                    <div class="origem-grid">
+                        <div class="origem-section">
+                            <h4>🎯 Perícia</h4>
+                            <p>Ofício(Ferraria)</p>
+                        </div>
+                        <div class="origem-section">
+                            <h4>🎒 Itens Iniciais</h4>
+                            <ul>
+                                <li>Roupas Básicas</li>
+                                <li>1 Arma genérica qualquer, exceto focos mágicos. (1 Equipamento)</li>
+                                <li>1 Kit de Ferramentas Básico (1 Bugiganga)</li>
+                                <li>2 Barras de Ferro (1 Bugiganga)</li>
+                                <li>1 Couro de Caça (1 Bugiganga)</li>
+                                <li>1 Comida (1 Bugiganga)</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="habilidade-box">
+                        <h4>✨ A Forja</h4>
+                        <p>Você fabrica equipamentos com -1 ingrediente base (min. 1). A cada vez que você fabricar um item de raridade que nunca havia fabricado antes, ganhe 1 nível de treinamento na perícia Ofício(Ferraria). Em um descanso curto, você pode fabricar o item: Pedra de Amolar com 1 barra de ferro.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ARTESÃO -->
+            <div class="origem-card" id="artesao">
+                <div class="origem-header" onclick="this.parentElement.classList.toggle('active')">
+                    <h3><span class="icon">🔧</span> Artesão</h3>
+                    <div style="display:flex;align-items:center;gap:1rem">
+                        <span class="origem-sins">💰 2d6+10</span>
+                        <span class="toggle-icon">▼</span>
+                    </div>
+                </div>
+                <div class="origem-body">
+                    <p class="origem-desc">Couro, madeira, tecido, engrenagem, em suas mãos, tudo vira algo útil. Você não forja lâminas, mas constrói o que mantém um grupo vivo: a bolsa que carrega o saque, a corda que salva da queda, o mecanismo que abre as portas certas. Onde outros veem lixo, você vê possibilidade.</p>
+                    <div class="origem-grid">
+                        <div class="origem-section">
+                            <h4>🎯 Perícia</h4>
+                            <p>Ofício(Engenharia)</p>
+                        </div>
+                        <div class="origem-section">
+                            <h4>🎒 Itens Iniciais</h4>
+                            <ul>
+                                <li>Roupas Básicas</li>
+                                <li>1 Arma leve ou À Distância (1 Equipamento)</li>
+                                <li>1 Ferramentas de Artesão (1 Bugiganga)</li>
+                                <li>1 Bolsa de Couro (1 Bugiganga)</li>
+                                <li>2 Peças Mecânicas (1 Bugiganga)</li>
+                                <li>1 Tecido Resistente (1 Bugiganga)</li>
+                                <li>1 Comida (1 Bugiganga)</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="habilidade-box">
+                        <h4>✨ A Forja</h4>
+                        <p>Você fabrica bugigangas com -1 ingrediente base (min. 1). A cada vez que você fabricar um item de raridade que nunca havia fabricado antes, ganhe 1 nível de treinamento na perícia Ofício(Engenharia). Você pode fabricar itens em descansos curtos, com um aumento de +2 na CD de fabricação.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- EXILADO -->
+            <div class="origem-card" id="exilado">
+                <div class="origem-header" onclick="this.parentElement.classList.toggle('active')">
+                    <h3><span class="icon">🔭</span> Exilado</h3>
+                    <div style="display:flex;align-items:center;gap:1rem">
+                        <span class="origem-sins">💰 1d6</span>
+                        <span class="toggle-icon">▼</span>
+                    </div>
+                </div>
+                <div class="origem-body">
+                    <p class="origem-desc">Algo te expulsou. Um crime, uma traição, uma verdade que não deveria ter descoberto. Você deixou tudo para trás — nome, lar, identidade — e sumiu nas bordas do mapa. Cada fogueira solitária é um lembrete do que você perdeu. Cada pegada apagada é uma oração para que o passado não te alcance. Você sobreviveu até aqui. Mas em Khalkaria, o exílio nunca é permanente. Cedo ou tarde, o que você fugiu vem cobrar.</p>
+                    <div class="origem-grid">
+                        <div class="origem-section">
+                            <h4>🎯 Perícia</h4>
+                            <p>Sobrevivência</p>
+                        </div>
+                        <div class="origem-section">
+                            <h4>🎒 Itens Iniciais</h4>
+                            <ul>
+                                <li>Manto Surrado (1 Equipamento)</li>
+                                <li>1 Arma Leve, Pesada, à Distância ou Mística (1 Equipamento)</li>
+                                <li>1 Mochila Reforçada (1 Bugiganga) — Quando equipada, +3 Espaços de Bugiganga e +1 de Equipamento</li>
+                                <li>1 Cantil (1 Bugiganga)</li>
+                                <li>1 Kit de Ferramentas Básico (1 Bugiganga)</li>
+                                <li>2 Comidas (2 Bugigangas)</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="habilidade-box">
+                        <h4>✨ Nômade</h4>
+                        <p>Você aprendeu a tirar o máximo de proveito dos seus descansos. Ao descansar, sua qualidade de descanso é de sempre +1. Adicionalmente, você rola testes de Jornada com +2.</p>
                     </div>
                 </div>
             </div>
@@ -140,57 +248,26 @@
                     </div>
                 </div>
                 <div class="origem-body">
-                    <p class="origem-desc">Você cresceu nos templos. Aprendeu os rituais, os dogmas, os gestos sagrados. Mas também viu o que não deveria — sussurros entre sacerdotes, símbolos escondidos, rituais que não combinavam com os sermões.</p>
+                    <p class="origem-desc">Você cresceu nos templos. Aprendeu os rituais, os dogmas, os gestos sagrados. Mas também viu o que não deveria — sussurros entre sacerdotes, símbolos escondidos, rituais que não combinavam com os sermões. Sua fé já foi inabalável. Agora carrega rachaduras que você não sabe se quer consertar. Não importa. O treinamento ficou. Você sabe como templos funcionam, como fiéis pensam, e que nem tudo que é divino é bom. O mundo lá fora é brutal. Mas você aprendeu que sobreviver exige mais que espada — exige algo em que se apoiar, mesmo que esse algo esteja quebrado.</p>
                     <div class="origem-grid">
                         <div class="origem-section">
-                            <h4>🎯 Perícias</h4>
-                            <p>Místico, Armas Marciais</p>
+                            <h4>🎯 Treinamento</h4>
+                            <p>Religião, Armas Marciais</p>
                         </div>
                         <div class="origem-section">
                             <h4>🎒 Itens Iniciais</h4>
                             <ul>
-                                <li>Vestes Religiosas</li>
-                                <li>1 Arma Leve, Pesada, Marcial ou Mística</li>
-                                <li>1 Livro de Orações</li>
-                                <li>5 Incensos</li>
-                                <li>1 Comida</li>
+                                <li>Vestes Religiosas (1 Equipamento)</li>
+                                <li>1 Arma Leve, Pesada, Marcial ou Mística (1 Equipamento)</li>
+                                <li>1 Livro de Orações (1 Bugiganga)</li>
+                                <li>5 Incensos (1 Bugiganga)</li>
+                                <li>1 Comida (1 Bugiganga)</li>
                             </ul>
                         </div>
                     </div>
                     <div class="habilidade-box">
                         <h4>✨ Palavra de Fé</h4>
-                        <p>Você pode passar 10 minutos orientando e motivando criaturas. Se a criatura estiver afetada por alguma condição/maldição, exige um teste de resistência para se livrar do efeito. Adicionalmente, ela recupera 1d6+4 Éter.</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- AMALDIÇOADO -->
-            <div class="origem-card" id="amaldicoado">
-                <div class="origem-header" onclick="this.parentElement.classList.toggle('active')">
-                    <h3><span class="icon">🔮</span> Amaldiçoado</h3>
-                    <div style="display:flex;align-items:center;gap:1rem">
-                        <span class="origem-sins">💰 1d6</span>
-                        <span class="toggle-icon">▼</span>
-                    </div>
-                </div>
-                <div class="origem-body">
-                    <p class="origem-desc">Você não tem memórias de infância. Não tem pais, não tem lar, não tem origem que faça sentido. O que você tem são marcas que não deveriam estar na sua pele, sonhos que não parecem seus, e sussurros que ninguém mais ouve.</p>
-                    <div class="origem-grid">
-                        <div class="origem-section">
-                            <h4>🎯 Perícia</h4>
-                            <p>Místico</p>
-                        </div>
-                        <div class="origem-section">
-                            <h4>🎒 Itens Iniciais</h4>
-                            <ul>
-                                <li>Trapos Velhos</li>
-                                <li>1 Bilhete Rasgado com seu Nome</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="habilidade-box">
-                        <h4>✨ Local</h4>
-                        <p>Você não lembra de muita coisa. Na verdade não lembra de nada. Mas sabe, você precisa ir até um certo local. Suas respostas lhe esperam lá.</p>
+                        <p>Você pode passar 10 minutos orientando e motivando criaturas. Se a criatura estiver afetada por alguma condição/maldição, exige um teste de resistência para se livrar do efeito. Adicionalmente, ela recupera 1d6+4 Éter. A criatura afetada não pode se beneficiar dessa habilidade até o seu próximo descanso longo.</p>
                     </div>
                 </div>
             </div>
@@ -198,68 +275,34 @@
             <!-- ANDARILHO -->
             <div class="origem-card" id="andarilho">
                 <div class="origem-header" onclick="this.parentElement.classList.toggle('active')">
-                    <h3><span class="icon">🥾</span> Andarilho</h3>
+                    <h3><span class="icon">🚶</span> Andarilho</h3>
                     <div style="display:flex;align-items:center;gap:1rem">
                         <span class="origem-sins">💰 2d6+5</span>
                         <span class="toggle-icon">▼</span>
                     </div>
                 </div>
                 <div class="origem-body">
-                    <p class="origem-desc">Você não tem lar. Você tem direções. Cada estrada é um convite, cada cidade um capítulo, cada rosto novo uma história que talvez você conte em outra taverna, em outra terra.</p>
+                    <p class="origem-desc">Você não tem lar. Você tem direções. Cada estrada é um convite, cada cidade um capítulo, cada rosto novo uma história que talvez você conte em outra taverna, em outra terra. Alguns te chamam de livre. Alguns te chamam de fugitivo. Talvez sejam a mesma coisa. Você aprendeu que ficar tempo demais em um lugar traz problemas — perguntas surgem, rostos te reconhecem, o passado alcança. Então você anda. Sempre. Viu mais do mundo do que a maioria verá em dez vidas. E ainda não sabe se está fugindo de algo ou procurando algo. Só sabe que parar nunca parece certo.</p>
                     <div class="origem-grid">
                         <div class="origem-section">
-                            <h4>🎯 Perícia</h4>
-                            <p>Sobrevivência ou Percepção</p>
+                            <h4>🎯 Treinamento</h4>
+                            <p>Sobrevivência ou Percepção, À Distância</p>
                         </div>
                         <div class="origem-section">
                             <h4>🎒 Itens Iniciais</h4>
                             <ul>
-                                <li>Manto Surrado</li>
-                                <li>1 Arma Leve ou à Distância</li>
-                                <li>1 Mochila de Viagem (+10 Bugigangas)</li>
-                                <li>1 Mapa da sua rota</li>
-                                <li>1 Instrumento simples ou Jogo de cartas</li>
-                                <li>3 Comidas</li>
+                                <li>Manto Surrado (1 Equipamento)</li>
+                                <li>1 Arma Leve ou à Distância (1 Equipamento)</li>
+                                <li>1 Mochila Reforçada (1 Bugiganga) — Quando equipada, +3 Espaços de Bugiganga e +1 de Equipamento</li>
+                                <li>1 Mapa da sua rota (1 Bugiganga)</li>
+                                <li>1 Instrumento simples ou Jogo de cartas (1 Bugiganga)</li>
+                                <li>3 Comidas (3 Bugigangas)</li>
                             </ul>
                         </div>
                     </div>
                     <div class="habilidade-box">
                         <h4>✨ Estradas Sem Fim</h4>
-                        <p>Você é familiar a jornadas longas. Ao guiar expedições, pode gastar 3 Stamina para reduzir a hostilidade da jornada em -5.</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- CAÇADOR -->
-            <div class="origem-card" id="cacador">
-                <div class="origem-header" onclick="this.parentElement.classList.toggle('active')">
-                    <h3><span class="icon">🏹</span> Caçador</h3>
-                    <div style="display:flex;align-items:center;gap:1rem">
-                        <span class="origem-sins">💰 3d6+4</span>
-                        <span class="toggle-icon">▼</span>
-                    </div>
-                </div>
-                <div class="origem-body">
-                    <p class="origem-desc">Existe a presa e o predador, e você aprendeu isso cedo como regra de sobrevivência. Rastrear é ler sinais mínimos do mundo, emboscar é ter paciência e controle.</p>
-                    <div class="origem-grid">
-                        <div class="origem-section">
-                            <h4>🎯 Perícia</h4>
-                            <p>Sobrevivência</p>
-                        </div>
-                        <div class="origem-section">
-                            <h4>🎒 Itens Iniciais</h4>
-                            <ul>
-                                <li>Vestes Robustas</li>
-                                <li>1 Arma Simples</li>
-                                <li>1 Arma à Distância</li>
-                                <li>1 Mochila de Viagem (+10 Bugigangas)</li>
-                                <li>1 Comida</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="habilidade-box">
-                        <h4>✨ Caçar</h4>
-                        <p>Você pode caçar animais em descansos longos. Role Sobrevivência: 15 ou mais você encontra 2 Comidas e 1 item incomum vendável.</p>
+                        <p>Você é excepcionalmente resistente ao cansaço, +10 Stamina Máxima. Você é familiar a jornadas longas. Ao guiar expedições, pode gastar 3 Stamina para reduzir a hostilidade da jornada em -5.</p>
                     </div>
                 </div>
             </div>
@@ -267,33 +310,33 @@
             <!-- CRIMINOSO -->
             <div class="origem-card" id="criminoso">
                 <div class="origem-header" onclick="this.parentElement.classList.toggle('active')">
-                    <h3><span class="icon">🗡️</span> Criminoso</h3>
+                    <h3><span class="icon">💸</span> Criminoso</h3>
                     <div style="display:flex;align-items:center;gap:1rem">
                         <span class="origem-sins">💰 4d6</span>
                         <span class="toggle-icon">▼</span>
                     </div>
                 </div>
                 <div class="origem-body">
-                    <p class="origem-desc">Você não nasceu criminoso. O mundo te fez um. Quando as regras só protegem quem tem ouro, quebrar as regras vira sobrevivência.</p>
+                    <p class="origem-desc">Você não nasceu criminoso. O mundo te fez um. Quando as regras só protegem quem tem ouro, quebrar as regras vira sobrevivência. Você roubou, enganou, talvez pior. Cada crime deixou algo para trás — uma cicatriz, uma dívida, um rosto que te visita nos sonhos. Houve um primeiro crime, um momento em que voltar ainda era possível. Esse momento passou. Agora você conhece o submundo como outros conhecem suas casas. Sabe onde encontrar o que não deveria ser encontrado. E sabe que o passado não te persegue — ele caminha do seu lado, esperando a hora de cobrar.</p>
                     <div class="origem-grid">
                         <div class="origem-section">
-                            <h4>🎯 Perícia</h4>
+                            <h4>🎯 Treinamento</h4>
                             <p>Furtividade ou Crime</p>
                         </div>
                         <div class="origem-section">
                             <h4>🎒 Itens Iniciais</h4>
                             <ul>
-                                <li>Roupas Discretas</li>
-                                <li>1 Arma Leve ou à Distância</li>
-                                <li>1 Gazua ou Ferramentas para Armadilhas</li>
-                                <li>1 Corda de 15m</li>
-                                <li>1 Comida</li>
+                                <li>Roupas Discretas (1 Equipamento)</li>
+                                <li>1 Arma Leve ou à Distância (1 Equipamento)</li>
+                                <li>1 Kit de Crime (1 Bugiganga)</li>
+                                <li>1 Corda Reforçada (15m) (1 Bugiganga)</li>
+                                <li>1 Comida (1 Bugiganga)</li>
                             </ul>
                         </div>
                     </div>
                     <div class="habilidade-box">
                         <h4>✨ Ilegal</h4>
-                        <p>Gaste 3 Stamina para realizar testes de Crime com um treinamento a mais. Adicionalmente, gaste 1d4 horas para encontrar um contato criminal que pode fornecer informações, esconderijo ou itens ilegais.</p>
+                        <p>Você extrai o melhor de suas chances, ao acertar um ataque critico, adicione Sangramento 1 ao alvo. Você pode gastar 2 de Stamina para realizar testes de Crime com um treinamento a mais. Adicionalmente, você pode gastar 1d4 horas para encontrar um contato criminal que pode te fornecer informações, esconderijo ou itens ilegais.</p>
                     </div>
                 </div>
             </div>
@@ -301,102 +344,136 @@
             <!-- CULTISTA -->
             <div class="origem-card" id="cultista">
                 <div class="origem-header" onclick="this.parentElement.classList.toggle('active')">
-                    <h3><span class="icon">👁️</span> Cultista</h3>
+                    <h3><span class="icon">👥</span> Cultista</h3>
                     <div style="display:flex;align-items:center;gap:1rem">
                         <span class="origem-sins">💰 2d6</span>
                         <span class="toggle-icon">▼</span>
                     </div>
                 </div>
                 <div class="origem-body">
-                    <p class="origem-desc">Houve promessas. Poder, conhecimento, respostas para perguntas que te consumiam. O culto parecia ter tudo isso. E tinha — junto com coisas que você não esperava.</p>
+                    <p class="origem-desc">Houve promessas. Poder, conhecimento, respostas para perguntas que te consumiam. O culto parecia ter tudo isso. E tinha — junto com coisas que você não esperava. Rituais que exigiam mais do que velas e palavras. Verdades que você queria desaprender. Rostos que sumiram depois de certas noites. Você saiu. Ou acha que saiu. Os símbolos ainda estão na sua pele, as vozes ainda sussurram quando você está cansado, e às vezes você faz os gestos sem perceber. O culto não te deixou. Talvez nunca deixe.</p>
                     <div class="origem-grid">
                         <div class="origem-section">
-                            <h4>🎯 Perícia</h4>
+                            <h4>🎯 Treinamento</h4>
                             <p>Religião ou Místico</p>
                         </div>
                         <div class="origem-section">
                             <h4>🎒 Itens Iniciais</h4>
                             <ul>
-                                <li>Manto com Capuz</li>
-                                <li>1 Arma Leve ou Mística</li>
-                                <li>1 Símbolo do seu antigo culto</li>
-                                <li>3 Velas Negras</li>
-                                <li>1 Comida</li>
+                                <li>Manto com Capuz (1 Equipamento)</li>
+                                <li>1 Arma Leve ou Mística (1 Equipamento)</li>
+                                <li>1 Pergaminho de Conhecimento nvl 1 à escolha (1 Bugiganga)</li>
+                                <li>1 Símbolo do seu antigo culto (1 Bugiganga)</li>
+                                <li>3 Velas Negras (1 Bugiganga)</li>
+                                <li>1 Comida (1 Bugiganga)</li>
                             </ul>
                         </div>
                     </div>
                     <div class="habilidade-box">
                         <h4>✨ Segredos Proibidos</h4>
-                        <p>Você tem facilidade em identificar outros cultistas, símbolos e rituais. 1x/descanso longo, gaste 3 Stamina para rolar Místico ou Religião com um nível de treinamento a mais.</p>
+                        <p>Você conhece 2 magias de nível 1 de qualquer escola, porém deve canalizá-las através de um foco. Uma vez por descanso longo, você pode gastar 3 Stamina para rolar um teste de Místico ou Religião com um nível de treinamento a mais. Adicionalmente, você tem facilidade em identificar outros cultistas, símbolos e rituais.</p>
                     </div>
                 </div>
             </div>
 
-            <!-- ESCRAVO -->
-            <div class="origem-card" id="escravo">
+            <!-- SOLDADO -->
+            <div class="origem-card" id="soldado">
                 <div class="origem-header" onclick="this.parentElement.classList.toggle('active')">
-                    <h3><span class="icon">⛓️</span> Escravo</h3>
+                    <h3><span class="icon">🪖</span> Soldado</h3>
                     <div style="display:flex;align-items:center;gap:1rem">
-                        <span class="origem-sins">💰 1d4</span>
+                        <span class="origem-sins">💰 2d6+10</span>
                         <span class="toggle-icon">▼</span>
                     </div>
                 </div>
                 <div class="origem-body">
-                    <p class="origem-desc">Você foi propriedade. Um nome em um registro, uma ferramenta com pulso. O mundo diz que você é igual aos outros agora. Seu corpo ainda carrega as marcas que dizem o contrário.</p>
+                    <p class="origem-desc">Você vestiu a farda, seguiu as ordens, marchou quando mandaram marchar. Havia honra nisso — ou pelo menos era o que diziam. Disciplina, camaradagem, propósito. Você aprendeu a lutar em formação, a confiar no soldado ao seu lado, a matar sem hesitar quando necessário. A guerra te moldou em algo mais duro, mais eficiente, mais difícil de quebrar. Mas a guerra terminou para o mundo, junto com seu ganha-pão. Agora, cada barulho alto é uma emboscada, cada sombra esconde inimigos, cada sono é interrompido por memórias que você queria enterrar. Você sobreviveu. Agora está tentando descobrir se valeu a pena.</p>
                     <div class="origem-grid">
                         <div class="origem-section">
-                            <h4>🎯 Perícia</h4>
-                            <p>Movimento ou Defender</p>
+                            <h4>🎯 Treinamento</h4>
+                            <p>Fortitude ou Vontade</p>
                         </div>
                         <div class="origem-section">
                             <h4>🎒 Itens Iniciais</h4>
                             <ul>
-                                <li>Roupas Simples</li>
-                                <li>1 Arma Leve</li>
-                                <li>1 Arma Pesada</li>
-                                <li>1 Mochila</li>
-                                <li>3 Comidas</li>
+                                <li>Roupas Básicas (1 Equipamento)</li>
+                                <li>1 Arma Leve, Pesada ou à Distância (1 Equipamento)</li>
+                                <li>1 Armadura de Couro (1 Equipamento) — Armadura(Ar) 2</li>
+                                <li>1 Símbolo do seu antigo batalhão (1 Bugiganga)</li>
+                                <li>2 Comidas (2 Bugigangas)</li>
                             </ul>
                         </div>
                     </div>
                     <div class="habilidade-box">
-                        <h4>✨ Liberdade</h4>
-                        <p>Você tem vantagem em quaisquer testes de resistência que te restrinjam, movimentem contra sua vontade ou façam fazer algo contra sua vontade.</p>
+                        <h4>✨ Veterano</h4>
+                        <p>Você não quebra facilmente. Você tem vantagem em testes de resistência contra condições mentais. Além disso, você tem reputação militar básica.</p>
                     </div>
                 </div>
             </div>
 
-            <!-- EXILADO -->
-            <div class="origem-card" id="exilado">
+            <!-- REFUGIADO -->
+            <div class="origem-card" id="refugiado">
                 <div class="origem-header" onclick="this.parentElement.classList.toggle('active')">
-                    <h3><span class="icon">🌑</span> Exilado</h3>
+                    <h3><span class="icon">💥</span> Refugiado</h3>
                     <div style="display:flex;align-items:center;gap:1rem">
-                        <span class="origem-sins">💰 1d6</span>
+                        <span class="origem-sins">💰 2d6</span>
                         <span class="toggle-icon">▼</span>
                     </div>
                 </div>
                 <div class="origem-body">
-                    <p class="origem-desc">Algo te expulsou. Um crime, uma traição, uma verdade que não deveria ter descoberto. Você deixou tudo para trás — nome, lar, identidade — e sumiu nas bordas do mapa.</p>
+                    <p class="origem-desc">Você já teve um lar. Teve rua, vizinhos, cheiro de comida e barulho de mercado. Um dia, tudo virou fumaça. Desde então, você carrega o hábito de olhar duas vezes para cada porta de saída e dormir com metade do corpo pronto pra correr. Seu corpo aprendeu a viver com pouco, sua mente aprendeu a não se apegar a nada que pegue fogo.</p>
                     <div class="origem-grid">
                         <div class="origem-section">
-                            <h4>🎯 Perícia</h4>
-                            <p>Sobrevivência</p>
+                            <h4>🎯 Treinamento</h4>
+                            <p>Percepção ou Movimento</p>
                         </div>
                         <div class="origem-section">
                             <h4>🎒 Itens Iniciais</h4>
                             <ul>
-                                <li>Manto Surrado</li>
-                                <li>1 Arma Leve, Pesada, à Distância ou Mística</li>
-                                <li>1 Mochila de Viagem (+10 Bugigangas)</li>
-                                <li>1 Cantil</li>
-                                <li>1 Faca de Sobrevivência</li>
-                                <li>2 Comidas</li>
+                                <li>Trapos Velhos (1 Equipamento)</li>
+                                <li>1 Arma Leve ou à Distância (1 Equipamento)</li>
+                                <li>1 Item da sua cidade original (1 Bugiganga)</li>
+                                <li>2 Comida (2 Bugigangas)</li>
                             </ul>
                         </div>
                     </div>
                     <div class="habilidade-box">
-                        <h4>✨ Nômade</h4>
-                        <p>Você aprendeu a tirar o máximo de proveito dos seus descansos. Ao descansar, sua qualidade de descanso é sempre +1.</p>
+                        <h4>✨ Fugaz</h4>
+                        <p>Você tem facilidade para escapar de perigos. Uma vez por descanso longo, você pode gastar 3 Stamina para realizar um teste de Reflexo com um nível de treinamento a mais. Adicionalmente, Você começa cenas de perseguição com 1 sucesso.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MERCADOR -->
+            <div class="origem-card" id="mercador">
+                <div class="origem-header" onclick="this.parentElement.classList.toggle('active')">
+                    <h3><span class="icon">🪙</span> Mercador</h3>
+                    <div style="display:flex;align-items:center;gap:1rem">
+                        <span class="origem-sins">💰 4d6+15</span>
+                        <span class="toggle-icon">▼</span>
+                    </div>
+                </div>
+                <div class="origem-body">
+                    <p class="origem-desc">Rotas comerciais não se fazem em segurança. Você viajou entre cidades, atravessou fronteiras hostis, negociou com pessoas que outros não ousariam olhar nos olhos. Cada viagem era um risco, cada negócio uma aposta. Você aprendeu a ler pessoas tão bem quanto lê contratos — talvez melhor. O sorriso, a hesitação, o suor nas mãos. Tudo conta uma história. Tudo tem um preço. E você sempre soube calcular se o risco valia o retorno.</p>
+                    <div class="origem-grid">
+                        <div class="origem-section">
+                            <h4>🎯 Treinamento</h4>
+                            <p>Interação Social(Convencimento)</p>
+                        </div>
+                        <div class="origem-section">
+                            <h4>🎒 Itens Iniciais</h4>
+                            <ul>
+                                <li>Roupas de Qualidade (1 Equipamento)</li>
+                                <li>1 Arma Leve ou Mística (1 Equipamento)</li>
+                                <li>1 Livro de Anotações (1 Bugiganga)</li>
+                                <li>1 Tinta + Pena (1 Bugiganga)</li>
+                                <li>1 Mochila Reforçada (1 Bugiganga) — Quando equipada, +3 Espaços de Bugiganga e +1 de Equipamento</li>
+                                <li>2 Comidas (2 Bugiganga)</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="habilidade-box">
+                        <h4>✨ Negociador</h4>
+                        <p>Você vende itens 10% mais caro e compra 10% mais barato.</p>
                     </div>
                 </div>
             </div>
@@ -411,62 +488,27 @@
                     </div>
                 </div>
                 <div class="origem-body">
-                    <p class="origem-desc">Você viveu no balanço das ondas, dormiu com o cheiro de sal, e aprendeu que o mar não perdoa erros. Tempestades, monstros marinhos, motins — você viu de tudo e ainda está aqui.</p>
+                    <p class="origem-desc">Você viveu no balanço das ondas, dormiu com o cheiro de sal, e aprendeu que o mar não perdoa erros. Tempestades, monstros marinhos, motins — você viu de tudo e ainda está aqui. A terra firme parece estranha agora. Parada demais. Segura demais. Mas você aprendeu coisas no mar que a maioria nunca aprenderá: ler o clima antes dele virar, confiar na tripulação ou morrer sozinho, e nunca, jamais, subestimar o que está abaixo da superfície.</p>
                     <div class="origem-grid">
                         <div class="origem-section">
-                            <h4>🎯 Perícia</h4>
+                            <h4>🎯 Treinamento</h4>
                             <p>Movimento</p>
                         </div>
                         <div class="origem-section">
                             <h4>🎒 Itens Iniciais</h4>
                             <ul>
-                                <li>Roupa de Marinheiro</li>
-                                <li>1 Arma Leve ou à Distância</li>
-                                <li>1 Luneta</li>
-                                <li>1 Garrafa de Rum</li>
-                                <li>1 Corda de 15m</li>
-                                <li>2 Comidas</li>
+                                <li>Roupa de Marinheiro (1 Equipamento)</li>
+                                <li>1 Arma Leve ou à Distância (1 Equipamento)</li>
+                                <li>1 Luneta (1 Bugiganga)</li>
+                                <li>1 Garrafa de Rum Forte (1 Bugiganga)</li>
+                                <li>1 Corda Reforçada (15m) (1 Bugiganga)</li>
+                                <li>2 Comidas (2 Bugiganga)</li>
                             </ul>
                         </div>
                     </div>
                     <div class="habilidade-box">
                         <h4>✨ Lobo do Mar</h4>
-                        <p>Você sabe navegar, dar nós e ler o clima. +2 em testes dentro de embarcações. Marinheiros te aceitam como igual. Você não enjoa em barcos e pode prender a respiração pelo dobro do tempo normal.</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- MERCADOR -->
-            <div class="origem-card" id="mercador">
-                <div class="origem-header" onclick="this.parentElement.classList.toggle('active')">
-                    <h3><span class="icon">💰</span> Mercador</h3>
-                    <div style="display:flex;align-items:center;gap:1rem">
-                        <span class="origem-sins">💰 4d6+15</span>
-                        <span class="toggle-icon">▼</span>
-                    </div>
-                </div>
-                <div class="origem-body">
-                    <p class="origem-desc">Rotas comerciais não se fazem em segurança. Você viajou entre cidades, atravessou fronteiras hostis, negociou com pessoas que outros não ousariam olhar nos olhos.</p>
-                    <div class="origem-grid">
-                        <div class="origem-section">
-                            <h4>🎯 Perícia</h4>
-                            <p>Interação Social (Convencimento)</p>
-                        </div>
-                        <div class="origem-section">
-                            <h4>🎒 Itens Iniciais</h4>
-                            <ul>
-                                <li>Roupas de Qualidade</li>
-                                <li>1 Arma Leve ou Mística</li>
-                                <li>1 Livro de Anotações</li>
-                                <li>1 Pena e Tinta</li>
-                                <li>1 Mochila de Viagem (+10 Bugigangas)</li>
-                                <li>2 Comidas</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="habilidade-box">
-                        <h4>✨ Negociador</h4>
-                        <p>Você vende itens 10% mais caro e compra 10% mais barato.</p>
+                        <p>Você sabe navegar, dar nós e ler o clima. Tem +2 em testes dentro de embarcações. Marinheiros te aceitam como igual. Você não enjoa em barcos e pode prender a respiração pelo dobro do tempo normal.</p>
                     </div>
                 </div>
             </div>
@@ -474,100 +516,33 @@
             <!-- NOBRE -->
             <div class="origem-card" id="nobre">
                 <div class="origem-header" onclick="this.parentElement.classList.toggle('active')">
-                    <h3><span class="icon">👑</span> Nobre</h3>
+                    <h3><span class="icon">🏰</span> Nobre</h3>
                     <div style="display:flex;align-items:center;gap:1rem">
                         <span class="origem-sins">💰 2d6+5</span>
                         <span class="toggle-icon">▼</span>
                     </div>
                 </div>
                 <div class="origem-body">
-                    <p class="origem-desc">Você nasceu em berço de ouro, aprendeu etiqueta antes de andar, e conheceu o poder antes de entendê-lo. Depois, perdeu tudo. O título virou peso, o nome virou piada.</p>
+                    <p class="origem-desc">Você nasceu em berço de ouro, aprendeu etiqueta antes de andar, e conheceu o poder antes de entendê-lo. Depois, perdeu tudo. Guerra, traição, dívidas, escândalo — não importa o motivo. O que importa é que o título virou peso, o nome virou piada, e os antigos aliados viraram desconhecidos. Mas o treinamento ficou. Você ainda sabe como falar com lordes, como se portar em cortes, como identificar quem realmente manda em uma sala. O mundo te tirou tudo, menos o que está na sua cabeça. E isso, por enquanto, é suficiente.</p>
                     <div class="origem-grid">
                         <div class="origem-section">
-                            <h4>🎯 Perícia</h4>
-                            <p>Interação Social (Intuição) ou Conhecimento</p>
+                            <h4>🎯 Treinamento</h4>
+                            <p>Interação Social(Intuição) ou Conhecimento</p>
                         </div>
                         <div class="origem-section">
                             <h4>🎒 Itens Iniciais</h4>
                             <ul>
-                                <li>Roupas Finas</li>
-                                <li>1 Arma Leve</li>
-                                <li>1 Relógio de Mão</li>
-                                <li>1 Anel de Família</li>
-                                <li>1 Comida</li>
+                                <li>Roupas Finas (1 Equipamento)</li>
+                                <li>1 Arma Leve (1 Equipamento)</li>
+                                <li>1 Relógio de Sol Portátil (1 Bugiganga)</li>
+                                <li>1 Anel de Família (1 Bugiganga)</li>
+                                <li>1 Comida (1 Bugiganga)</li>
                             </ul>
                         </div>
                     </div>
                     <div class="habilidade-box">
-                        <h4>✨ Linhagem Famosa</h4>
-                        <p>Você possui renome notável que pode utilizar para ser tratado como um nobre. +2 em interações sociais com outros nobres.</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- REFUGIADO -->
-            <div class="origem-card" id="refugiado">
-                <div class="origem-header" onclick="this.parentElement.classList.toggle('active')">
-                    <h3><span class="icon">🏚️</span> Refugiado</h3>
-                    <div style="display:flex;align-items:center;gap:1rem">
-                        <span class="origem-sins">💰 2d6</span>
-                        <span class="toggle-icon">▼</span>
-                    </div>
-                </div>
-                <div class="origem-body">
-                    <p class="origem-desc">Você já teve um lar. Teve rua, vizinhos, cheiro de comida e barulho de mercado. Um dia, tudo virou fumaça. Seu corpo aprendeu a viver com pouco, sua mente aprendeu a não se apegar a nada que pegue fogo.</p>
-                    <div class="origem-grid">
-                        <div class="origem-section">
-                            <h4>🎯 Perícia</h4>
-                            <p>Percepção ou Movimento</p>
-                        </div>
-                        <div class="origem-section">
-                            <h4>🎒 Itens Iniciais</h4>
-                            <ul>
-                                <li>Trapos Velhos</li>
-                                <li>1 Arma Leve ou à Distância</li>
-                                <li>1 Item da sua cidade original</li>
-                                <li>2 Comidas</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="habilidade-box">
-                        <h4>✨ Fugaz</h4>
-                        <p>Você tem facilidade para escapar de perigos. 1x/descanso longo, gaste 3 Stamina para rolar Reflexo com um nível de treinamento a mais. Você começa cenas de perseguição com 1 sucesso.</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- SOLDADO -->
-            <div class="origem-card" id="soldado">
-                <div class="origem-header" onclick="this.parentElement.classList.toggle('active')">
-                    <h3><span class="icon">⚔️</span> Soldado</h3>
-                    <div style="display:flex;align-items:center;gap:1rem">
-                        <span class="origem-sins">💰 2d6+10</span>
-                        <span class="toggle-icon">▼</span>
-                    </div>
-                </div>
-                <div class="origem-body">
-                    <p class="origem-desc">Você vestiu a farda, seguiu as ordens, marchou quando mandaram marchar. A guerra te moldou em algo mais duro, mais eficiente, mais difícil de quebrar.</p>
-                    <div class="origem-grid">
-                        <div class="origem-section">
-                            <h4>🎯 Perícia</h4>
-                            <p>Fortitude ou Vontade</p>
-                        </div>
-                        <div class="origem-section">
-                            <h4>🎒 Itens Iniciais</h4>
-                            <ul>
-                                <li>Roupas Básicas</li>
-                                <li>1 Arma Leve, Pesada ou à Distância</li>
-                                <li>1 Armadura de Couro (+1 Ar)</li>
-                                <li>1 Símbolo do seu antigo batalhão</li>
-                                <li>2 Comidas</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="habilidade-box">
-                        <h4>✨ Veterano</h4>
-                        <p>Você não quebra facilmente. Vantagem em testes de resistência contra condições mentais. Além disso, você tem reputação militar básica.</p>
+                        <h4>✨ Educação Privilegiada</h4>
+                        <p>Escolha uma perícia e um idioma, você ganha um nível de treinamento na perícia e conhece a língua.</p>
                     </div>
                 </div>
             </div>
@@ -575,28 +550,28 @@
             <!-- VIDENTE -->
             <div class="origem-card" id="vidente">
                 <div class="origem-header" onclick="this.parentElement.classList.toggle('active')">
-                    <h3><span class="icon">🔮</span> Vidente</h3>
+                    <h3><span class="icon">👁️</span> Vidente</h3>
                     <div style="display:flex;align-items:center;gap:1rem">
                         <span class="origem-sins">💰 1d6+4</span>
                         <span class="toggle-icon">▼</span>
                     </div>
                 </div>
                 <div class="origem-body">
-                    <p class="origem-desc">As visões começaram sem aviso. Fragmentos de futuros possíveis, ecos de passados esquecidos, imagens que não fazem sentido até ser tarde demais. Você não pediu por isso.</p>
+                    <p class="origem-desc">As visões começaram sem aviso. Sempre que você dorme elas surgem. Fragmentos de futuros possíveis, ecos de passados esquecidos, imagens que não fazem sentido até ser tarde demais. Você não pediu por isso. Não sabe de onde vem. Alguns te chamam de abençoado, outros de amaldiçoado — você só sabe que não consegue parar. As visões vêm quando querem, mostram o que querem, e te deixam com mais perguntas do que respostas. O futuro é um rio turvo. Você apenas vê pedaços da correnteza.</p>
                     <div class="origem-grid">
                         <div class="origem-section">
-                            <h4>🎯 Perícia</h4>
-                            <p>Interação Social (Intuição)</p>
+                            <h4>🎯 Treinamento</h4>
+                            <p>Interação Social(Intuição)</p>
                         </div>
                         <div class="origem-section">
                             <h4>🎒 Itens Iniciais</h4>
                             <ul>
-                                <li>Manto com Capuz</li>
-                                <li>1 Arma Leve</li>
-                                <li>1 Diário</li>
-                                <li>1 Pena e Tinta</li>
-                                <li>1 Venda</li>
-                                <li>1 Comida</li>
+                                <li>Manto com Capuz (1 Equipamento)</li>
+                                <li>1 Arma Leve (1 Equipamento)</li>
+                                <li>1 Diário (1 Bugiganga)</li>
+                                <li>1 Tinta + Pena (1 Bugiganga)</li>
+                                <li>1 Venda (1 Bugiganga)</li>
+                                <li>1 Comida (1 Bugiganga)</li>
                             </ul>
                         </div>
                     </div>
@@ -607,11 +582,105 @@
                 </div>
             </div>
 
-            <div style="text-align:center;margin-top:2rem">
-                <a href="criacao.html" class="keyword-link">← Voltar para Criação</a>
+            <!-- AMALDIÇOADO -->
+            <div class="origem-card" id="amaldicoado">
+                <div class="origem-header" onclick="this.parentElement.classList.toggle('active')">
+                    <h3><span class="icon">👻</span> Amaldiçoado</h3>
+                    <div style="display:flex;align-items:center;gap:1rem">
+                        <span class="origem-sins">💰 1d6</span>
+                        <span class="toggle-icon">▼</span>
+                    </div>
+                </div>
+                <div class="origem-body">
+                    <p class="origem-desc">Você não tem memórias de infância. Não tem pais, não tem lar, não tem origem que faça sentido. O que você tem são marcas que não deveriam estar na sua pele, sonhos que não parecem seus, e sussurros que ninguém mais ouve. Algo está errado com você — sempre esteve. Seu sangue queima às vezes, sem motivo. Estranhos te olham como se te reconhecessem. Símbolos que você nunca viu parecem familiares. Você não sabe o que aconteceu, não sabe o que você é. Só sabe que as respostas existem em algum lugar. E que talvez você não queira encontrá-las.</p>
+                    <div class="origem-grid">
+                        <div class="origem-section">
+                            <h4>🎯 Treinamento</h4>
+                            <p>Místico</p>
+                        </div>
+                        <div class="origem-section">
+                            <h4>🎒 Itens Iniciais</h4>
+                            <ul>
+                                <li>Trapos Velhos (1 Equipamento)</li>
+                                <li>1 Bilhete Rasgado com seu Nome (1 Bugiganga)</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="habilidade-box">
+                        <h4>✨ Local</h4>
+                        <p>Você não lembra de muita coisa. Na verdade não lembra de nada. Mas sabe, você precisa ir até um certo local. Suas respostas lhe esperam lá.</p>
+                    </div>
+                </div>
             </div>
-        </main>
-    </div>
+
+            <!-- ESCRAVO -->
+            <div class="origem-card" id="escravo">
+                <div class="origem-header" onclick="this.parentElement.classList.toggle('active')">
+                    <h3><span class="icon">⛓️</span> Escravo</h3>
+                    <div style="display:flex;align-items:center;gap:1rem">
+                        <span class="origem-sins">💰 1d4</span>
+                        <span class="toggle-icon">▼</span>
+                    </div>
+                </div>
+                <div class="origem-body">
+                    <p class="origem-desc">Você foi propriedade. Um nome em um registro, uma ferramenta com pulso, algo a ser comprado, vendido e usado. Não importa como começou — dívida, nascimento, captura. O que importa é que você aprendeu a sobreviver sob o chicote, a ler mestres antes que a raiva deles estourasse, a esconder força atrás de obediência. Agora você é livre. Comprou sua liberdade, fugiu, ou seu dono simplesmente morreu. O mundo diz que você é igual aos outros agora. Seu corpo ainda carrega as marcas que dizem o contrário. Mas você sabe algo que os livres não sabem: nada que vier pode ser pior do que o que já passou.</p>
+                    <div class="origem-grid">
+                        <div class="origem-section">
+                            <h4>🎯 Treinamento</h4>
+                            <p>Movimento ou Defender</p>
+                        </div>
+                        <div class="origem-section">
+                            <h4>🎒 Itens Iniciais</h4>
+                            <ul>
+                                <li>Roupas Simples (1 Equipamento)</li>
+                                <li>1 Arma Leve (1 Equipamento)</li>
+                                <li>1 Arma Pesada (1 Equipamento)</li>
+                                <li>1 Bolsa de Couro (1 Bugiganga) — Quando equipada, +2 Espaços de Bugiganga</li>
+                                <li>3 Comidas (3 Bugigangas)</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="habilidade-box">
+                        <h4>✨ Liberdade</h4>
+                        <p>Você tem vantagem em quaisquer testes de resistência que te restrinjam, movimente contra sua vontade ou faça fazer algo contra sua vontade.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CAÇADOR -->
+            <div class="origem-card" id="cacador">
+                <div class="origem-header" onclick="this.parentElement.classList.toggle('active')">
+                    <h3><span class="icon">🎣</span> Caçador</h3>
+                    <div style="display:flex;align-items:center;gap:1rem">
+                        <span class="origem-sins">💰 3d6+4</span>
+                        <span class="toggle-icon">▼</span>
+                    </div>
+                </div>
+                <div class="origem-body">
+                    <p class="origem-desc">Existe a presa e o predador, e você aprendeu isso cedo como regra de sobrevivência. Guiado por mentores, chefes ou pela solidão, você caçou para viver, vender couro e garantir carne, entendendo que a caça vai muito além do tiro: rastrear é ler sinais mínimos do mundo, emboscar é ter paciência e controle, e esfolar é ter estômago para a parte crua do ofício. Com o tempo, você deixou de ver isso como violência vazia e passou a se reconhecer como agente do ciclo natural, alguém que sabe ouvir o vento, medir o risco, escolher o momento e seguir a trilha até o fim.</p>
+                    <div class="origem-grid">
+                        <div class="origem-section">
+                            <h4>🎯 Treinamento</h4>
+                            <p>Sobrevivência</p>
+                        </div>
+                        <div class="origem-section">
+                            <h4>🎒 Itens Iniciais</h4>
+                            <ul>
+                                <li>Vestes Robustas (1 Equipamento)</li>
+                                <li>1 Arma Simples (1 Equipamento)</li>
+                                <li>1 Arma à Distância (1 Equipamento)</li>
+                                <li>1 Mochila Reforçada (1 Bugiganga) — Quando equipada, +3 Espaços de Bugiganga e +1 de Equipamento</li>
+                                <li>1 Comida (1 Bugiganga)</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="habilidade-box">
+                        <h4>✨ Caçar</h4>
+                        <p>Você pode caçar animais em descansos longos. Ao fazer isso, role um teste de sobrevivência: 15 ou mais você encontra 2 Comidas e 1 item incomum vendável.</p>
+                    </div>
+                </div>
+            </div>
+
     <script src="../js/main.js"></script>
 </body>
 </html>
