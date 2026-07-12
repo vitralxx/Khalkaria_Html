@@ -86,8 +86,11 @@
                             <a href="#armas">Armas</a>
                             <a href="#nivel-armas">Nível de Armas</a>
                             <a href="#municao">Munição</a>
+                            <a href="#equipamentos">Equipamentos</a>
                             <a href="#inventario">Inventário e Peso</a>
                             <a href="#dinheiro">Dinheiro</a>
+                            <a href="#bazar-sistema">O Bazar</a>
+                            <a href="#crafting">Crafting</a>
                         </div>
                     </div>
                     <div class="index-category">
@@ -98,13 +101,13 @@
                             <a href="#furtividade">Furtividade</a>
                             <a href="#perseguicao">Perseguição</a>
                             <a href="#fuga">Fuga</a>
+                            <a href="#khan-sins">Khan Sins</a>
                         </div>
                     </div>
                     <div class="index-category">
                         <div class="index-category-title"><span class="cat-icon">🏕️</span> Sobrevivência</div>
                         <div class="index-links">
                             <a href="#descanso">Descanso</a>
-                            <a href="#crafting">Crafting</a>
                             <a href="#necessidades">Necessidades</a>
                             <a href="#tamanho">Tamanho</a>
                             <a href="#idiomas">Idiomas</a>
@@ -471,6 +474,13 @@
                                 <li><strong>Armadura Específica</strong> pode ser fornecida por diversos meios e nem sempre representa uma proteção física. Sempre é especializada em resistir a um tipo e uma quantidade de dano específico.<br>
                                     <code>Ae(Tipo de dano, Quant. de resist.)</code><br>
                                     <small>Ex.: Ae(Místico, 2), ao receber 10 de dano místico, receba apenas 8.</small></li>
+                                <li><strong>Armaduras Pesadas e Leves</strong><br>
+                                    Os itens de armadura equipáveis são subdivididos em dois grupos:
+                                    <ul>
+                                        <li><strong>Armadura Pesada</strong> — Você pode equipar apenas 1 Armadura pesada, ela geralmente define seu traje e arquétipo.</li>
+                                        <li><strong>Armadura Leve</strong> — Você pode equipar até 2 Armaduras Leves, elas geralmente proveem Ae e Passivas diversas.</li>
+                                    </ul>
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -869,7 +879,19 @@
                     </div>
                 </div>
                 
-                <!-- INVENTÁRIO E PESO -->
+                <!-- EQUIPAMENTOS -->
+                <div class="subsection" id="equipamentos">
+                    <h3>Equipamentos</h3>
+                    <div class="content-card">
+                        <p>Os itens que são classificados como equipamentos são subdivididos em 2 categorias: Pesados e Leves</p>
+                        <ul>
+                            <li><strong>Equipamentos Pesados</strong> — São normalmente, sets de armadura que provêm Armadura e as vezes armadura específica. Você só pode equipar <strong>1 item</strong> deste tipo.</li>
+                            <li><strong>Equipamentos Leves</strong> — Peças de armadura que podem prover diversos efeitos, você pode equipar no máximo <strong>2 itens</strong> deste tipo.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                                <!-- INVENTÁRIO E PESO -->
                 <div class="subsection" id="inventario">
                     <h3>Inventário e Peso</h3>
                     <div class="content-card">
@@ -956,7 +978,62 @@
                         </table>
                     </div>
                 </div>
-            </section>
+<!-- O BAZAR -->
+                <div class="subsection" id="bazar-sistema">
+                    <h3>O Bazar</h3>
+                    <div class="content-card">
+                        <p>O Bazar é o grande compêndio de itens de Khalkaria — armas, armaduras, consumíveis, relíquias e bugigangas. Todas estão listadas no site do Rpg com sistema de busca e mais detalhes.</p>
+                        <h4>Todo o compêndio é dividido em 9 categorias e 5 raridades:</h4>
+                        <table>
+                            <thead>
+                                <tr><th>Categoria</th><th>Definição</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td><strong>Arma</strong></td><td>Armas são itens equipáveis e utilizadas para causar dano. Toda arma possui um tipo, listado na tabela de armas, definindo seus dados de dano e passivas únicas genéricas. As armas genéricas e algumas armas únicas podem ser fabricadas através da perícia Ofício(Ferraria).</td></tr>
+                                <tr><td><strong>Armadura</strong></td><td>Armaduras são itens equipáveis separados em 2 grupos: Armaduras Pesadas e Armaduras Leves. Você pode equipar até 1 armadura pesada, geralmente oferecem Ar e habilidades únicas. Você pode equipar até 2 armaduras leves, geralmente oferece Ae e passivas diversas. Algumas podem ser fabricadas através da perícia Ofício(Ferraria).</td></tr>
+                                <tr><td><strong>Escudo</strong></td><td>Escudos são itens off-hand que podem ser equipados junto de qualquer arma. Ao utilizar sua reação para se defender, o escudo provê um aumento na perícia Defender. Alguns podem ser fabricados através da perícia Ofício(Ferraria).</td></tr>
+                                <tr><td><strong>Consumível</strong></td><td>Consumíveis são itens utilizáveis que geralmente são gastos após o uso. Alguns podem ser fabricados através da perícia Ofício(Engenharia), a maioria pode ser fabricado pelo Ofício(Alquimia).</td></tr>
+                                <tr><td><strong>Munição</strong></td><td>Munições são itens requisitos de armas à distância, gastos a cada cena de combate, para funcionarem adequadamente. Utilizar uma munição especial no combate, concede seu efeito durante todo o combate em cada ataque da arma à distância. Algumas podem ser fabricadas através da perícia Ofício(Engenharia).</td></tr>
+                                <tr><td><strong>Bugiganga</strong></td><td>Bugigangas são itens que divergem entre prover passivas únicas, equipamentos de uso contínuo narrativo e é definida como a categoria de itens variados. Algumas podem ser fabricadas através da perícia Ofício(Engenharia) e alguns pela perícia Ofício(Alquimia).</td></tr>
+                                <tr><td><strong>Item Mágico</strong></td><td>Itens mágicos são itens sintonizáveis que provem passivas únicas. Você pode equipar e se beneficiar de até 3 itens mágicos, alteráveis a cada descanso longo. Itens mágicos não podem ser fabricados.</td></tr>
+                                <tr><td><strong>Material</strong></td><td>Os materiais são os ingredientes de fabricação de todos os itens fabricáveis através da perícia Ofício. Podem ser encontrados, comprados e sucateados. Sucatear qualquer item fabricável, concede metade dos seus ingredientes.</td></tr>
+                                <tr><td><strong>Lixo</strong></td><td>A categoria lixo é destinada para itens sem uso, exceto para venda conforme a regra das raridades.</td></tr>
+                            </tbody>
+                        </table>
+                        <table>
+                            <thead>
+                                <tr><th>Raridades</th><th>Sins</th><th>Cd de Fabricação</th><th>Nvl. Necessário para Fabricação</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td><strong>Lixo</strong></td><td>1d8+1</td><td>—</td><td>—</td></tr>
+                                <tr><td><strong>Ordinário</strong></td><td>2d10</td><td>10</td><td>1</td></tr>
+                                <tr><td><strong>Incomum</strong></td><td>5d6+15</td><td>13</td><td>2</td></tr>
+                                <tr><td><strong>Exótico</strong></td><td>6d10+40</td><td>16</td><td>3</td></tr>
+                                <tr><td><strong>Luxária</strong></td><td>6d12+80</td><td>20</td><td>4</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- SISTEMA DE CRAFTING -->
+                <div class="subsection" id="crafting">
+                    <h3>Sistema de Crafting</h3>
+                    <div class="content-card">
+                        <p>Caso possua ao menos 1 nível de treinamento nas perícias: <strong>Ofício(Ferraria)</strong> ou <strong>Ofício(Engenharia)</strong>, qualquer jogador, ao fazer um descanso longo, pode optar por tentar construir UM Item do Bazar que seja igual ou inferior ao seu nível em relação a Raridade do Item. Ao realizar tal tarefa, o jogador rola a perícia de Ofício(Ferraria) para equipamentos e Ofício(Engenharia) para itens, relacionando o resultado com a CD de Criação do Item e utilizando quaisquer ingredientes. Caso suceda, o jogador constrói o item e descarta os ingredientes, caso contrário, perde os ingredientes.</p>
+                        <ul>
+                            <li><strong>Itens Craftáveis:</strong>
+                                <ul>
+                                    <li>Nível 1 = Ordinário</li>
+                                    <li>Nível 2 = Incomum</li>
+                                    <li>Nível 3 = Exótico</li>
+                                    <li>Nível 4 = Luxaria</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                                    </section>
             
             <!-- ================================================================
                  CATEGORIA: EXPLORAÇÃO
@@ -1163,7 +1240,36 @@
                         <p>Lançar magias também reduz seu éter.</p>
                     </div>
                 </div>
-            </section>
+<!-- KHAN SINS -->
+                <div class="subsection" id="khan-sins">
+                    <h3>Khan Sins</h3>
+                    <div class="content-card">
+                        <p>Pelos ermos de Khalkaria, Khan Sins é um jogo de apostas muito popular entre os locais e povos antigos de Kharavel.</p>
+                        <ul>
+                            <li>O jogador primeiro, escolhe com quantos Sins entrar, limitado pelo teto de Sins da mesa.</li>
+                            <li>O jogador rola 1d20 + Proficiência na perícia da mesa.</li>
+                            <li>Cada mesa possui uma perícia base, quanto mais rara/exótica a perícia, maior o Multiplicador Base da mesa.</li>
+                            <li>Se a mesa for fixa, o jogador compara o resultado com a CD da mesa.</li>
+                            <li>Se a mesa for dinâmica, o jogador compara o resultado com a rolagem d20 da mesa.</li>
+                            <li>Se o jogador suceder, ele multiplica seu Buy-In pelo Multiplicador Base da mesa.</li>
+                            <li>Se o jogador perder, ele perde todo o buy in.</li>
+                        </ul>
+                        <p>O jogador, assim como a mesa, pode escolher roubar, realizando um teste de crime comparado a um teste de percepção da outra parte. Se suceder, o ladrão instantaneamente ganha. Caso a mesa roube, o player utiliza percepção passiva como CD.</p>
+                        <table>
+                            <thead>
+                                <tr><th>Tier</th><th>CD Vitória</th><th>Perícias + Mult.</th><th>Mult. Buy-In</th><th>Crime</th><th>Percepção</th><th>Teto Buy-In</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td><strong>Rua</strong></td><td>12 ou 1d20+2</td><td>Reflexos (+0.5), Percepção (+0), Movimento (+0), Furtividade (+1)</td><td>x1.5</td><td>+2</td><td>+5</td><td>25</td></tr>
+                                <tr><td><strong>Taverna</strong></td><td>15 ou 1d20+5</td><td>Sobrevivência (+0.5), Investigação (+0.5), Conhecimento (+0.5), Fortitude (+1), Iniciativa (+1)</td><td>x2</td><td>+5</td><td>+10</td><td>50</td></tr>
+                                <tr><td><strong>Khan</strong></td><td>20 ou 1d20+10</td><td>Vontade (+1), Místico (+1), Crime (+1), Religião (+2), Ofício (+2), Medicina (+2)</td><td>x3</td><td>+10</td><td>+15</td><td>Sem Teto</td></tr>
+                            </tbody>
+                        </table>
+                        <p>Note, cada mesa através de Kharavel pode modificar/adicionar certas exceções ou adições nas regras de Khan Sins. Nunca se sabe o que tem por aí.</p>
+                    </div>
+                </div>
+
+                                        </section>
             
             <!-- ================================================================
                  CATEGORIA: SOBREVIVÊNCIA
@@ -1277,24 +1383,6 @@
                     </div>
                 </div>
                 
-                <!-- SISTEMA DE CRAFTING -->
-                <div class="subsection" id="crafting">
-                    <h3>Sistema de Crafting</h3>
-                    <div class="content-card">
-                        <p>Caso possua ao menos 1 nível de treinamento nas perícias: <strong>Ofício(Ferraria)</strong> ou <strong>Ofício(Engenharia)</strong>, qualquer jogador, ao fazer um descanso longo, pode optar por tentar construir UM Item do Bazar que seja igual ou inferior ao seu nível em relação a Raridade do Item. Ao realizar tal tarefa, o jogador rola a perícia de Ofício(Ferraria) para equipamentos e Ofício(Engenharia) para itens, relacionando o resultado com a CD de Criação do Item e utilizando quaisquer ingredientes. Caso suceda, o jogador constrói o item e descarta os ingredientes, caso contrário, perde os ingredientes.</p>
-                        <ul>
-                            <li><strong>Itens Craftáveis:</strong>
-                                <ul>
-                                    <li>Nível 1 = Ordinário</li>
-                                    <li>Nível 2 = Incomum</li>
-                                    <li>Nível 3 = Exótico</li>
-                                    <li>Nível 4 = Luxaria</li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-
                 <!-- NECESSIDADES -->
                 <div class="subsection" id="necessidades">
                     <h3>Necessidades de Sobrevivência</h3>
