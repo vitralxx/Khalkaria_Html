@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # Gerador do Bazar Khalkaria -> pages/bazar.html
 # Uso: python3 gerar_bazar.py [caminho_csv] [caminho_saida_html]
-import csv, json, sys, os
+import csv, json, sys, os, re, unicodedata
 
 CSV = sys.argv[1] if len(sys.argv) > 1 else 'Bazar_Khalkaria_v25.csv'
 OUT = sys.argv[2] if len(sys.argv) > 2 else 'site_v24/Khalkaria_Html-main/pages/bazar.html'
@@ -247,9 +247,32 @@ HTML = '''<!DOCTYPE html>
             <div class="no-results" id="noresults" style="display:none;">Nenhum item encontrado com esses filtros.</div>
         </main>
     </div>''' + JS + '''
+    <script src="../js/ficha.js"></script>
 </body>
 </html>'''
 
 os.makedirs(os.path.dirname(OUT), exist_ok=True)
 open(OUT,'w',encoding='utf-8').write(HTML)
 print('bazar.html gerado:', len(items), 'itens ->', OUT)
+
+# --- data/bazar.json para a Ficha Interativa (mesma fonte: o CSV) ---
+# Projeção alinhada ao $defs/item de data/ficha.schema.json + id slug determinístico.
+# NÃO altera o data_json embutido no bazar.html.
+def _slug(nome):
+    s = unicodedata.normalize('NFKD', nome).encode('ascii', 'ignore').decode()
+    return 'item-' + re.sub(r'[^a-z0-9]+', '-', s.lower()).strip('-')
+
+FICHA_KEYS = ('nome', 'categoria', 'raridade', 'efeito', 'valor', 'obtencao', 'craft', 'ingredientes')
+_seen = {}
+bazar_json = []
+for it in items:
+    sid = _slug(it['nome'])
+    _seen[sid] = _seen.get(sid, 0) + 1
+    if _seen[sid] > 1:
+        sid = f'{sid}-{_seen[sid]}'   # desambigua nomes repetidos no catálogo
+    bazar_json.append({'id': sid, **{k: it[k] for k in FICHA_KEYS}})
+
+BJSON = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(OUT))), 'data', 'bazar.json')
+os.makedirs(os.path.dirname(BJSON), exist_ok=True)
+json.dump(bazar_json, open(BJSON, 'w', encoding='utf-8'), ensure_ascii=False, indent=2)
+print('bazar.json gerado:', len(bazar_json), 'itens ->', BJSON)

@@ -1,5 +1,19 @@
 // Khalkaria RPG - Main JavaScript
 
+// Carrega a Ficha Interativa (js/ficha.js), resolvida relativa a este script.
+// Assim a ficha aparece em todas as páginas sem editar cada HTML.
+(function () {
+  try {
+    var here = (document.currentScript && document.currentScript.src) ||
+      (function () { var ss = document.querySelectorAll('script[src*="js/main.js"]'); return ss.length ? ss[ss.length - 1].src : ''; })();
+    if (!here) return;
+    window.KF_ROOT = new URL('../', here).href;
+    var f = document.createElement('script');
+    f.src = new URL('ficha.js', here).href;
+    document.head.appendChild(f);
+  } catch (e) {}
+})();
+
 // Splash Screen
 document.addEventListener('DOMContentLoaded', function() {
     const splash = document.querySelector('.splash-screen');
