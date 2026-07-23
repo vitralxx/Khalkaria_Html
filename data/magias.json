@@ -145,7 +145,7 @@
           },
           {
             "caracteristica": "Dano",
-            "valor": "1d4 / 2d4 / 3d4 / 4d4 Elétrico",
+            "valor": "1d6 / 2d6 / 3d6 / 4d6 Elétrico",
             "mod": true
           }
         ],
@@ -354,12 +354,12 @@
           },
           {
             "caracteristica": "Duração",
-            "valor": "Próximos 3 ataques",
+            "valor": "Próximos 1 / 2 / 3 / 3 ataques",
             "mod": false
           },
           {
             "caracteristica": "Efeito",
-            "valor": "+0 / +1 / +1 / +2 dado de dano; +2 / +2 / +2 / +4 em ataques",
+            "valor": "+0 / +1 / +1 / +2 dado de dano; +2 / +2 / +3 / +4 em ataques",
             "mod": true
           }
         ],
@@ -705,7 +705,7 @@
           },
           {
             "caracteristica": "Dano",
-            "valor": "1d6 / 2d6 / 3d6 / 4d6 Fogo — 2 Ataques independentes",
+            "valor": "1d4 / 1d6 / 2d6 / 3d6 Fogo — 2 Ataques independentes",
             "mod": true
           },
           {
@@ -745,12 +745,12 @@
           },
           {
             "caracteristica": "Raios p/Rodada",
-            "valor": "2 / 3 / 4 / 5",
+            "valor": "1 / 2 / 3 / 4",
             "mod": true
           },
           {
             "caracteristica": "Duração",
-            "valor": "3 / 4 / 5 Rodadas",
+            "valor": "1 / 2 / 3 Rodadas",
             "mod": true
           },
           {
@@ -785,12 +785,12 @@
           },
           {
             "caracteristica": "Dano",
-            "valor": "1d8 / 2d8 / 3d8 / 4d8 Força",
+            "valor": "1d10 / 2d10 / 3d10 / 4d10 Força",
             "mod": true
           },
           {
             "caracteristica": "Resistência",
-            "valor": "Fortitude ou dano + <em>Sangramento 1</em>",
+            "valor": "Fortitude ou dano + <em>Sangramento 1</em>. Sucesso = metade do dano.",
             "mod": true
           }
         ],
@@ -1360,7 +1360,7 @@
           },
           {
             "caracteristica": "Dano",
-            "valor": "2d8 / 3d8 / 4d8 / 5d8 Místico",
+            "valor": "2d10 / 3d10 / 4d10 / 5d10 Místico",
             "mod": true
           },
           {
@@ -1420,7 +1420,7 @@
           },
           {
             "caracteristica": "Alcance",
-            "valor": "4,5 m",
+            "valor": "9 m",
             "mod": false
           },
           {
@@ -1430,7 +1430,7 @@
           },
           {
             "caracteristica": "Dano",
-            "valor": "1d10 Místico",
+            "valor": "1d12 Místico",
             "mod": false
           }
         ],
