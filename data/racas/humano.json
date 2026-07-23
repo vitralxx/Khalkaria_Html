@@ -1,0 +1,45 @@
+{
+  "source": "racas/humano",
+  "cards": [
+    {
+      "id": "humano-persistencia-humana",
+      "tag": "div",
+      "tipo": "trait-card",
+      "opentag": "<div class=\"trait-card\">",
+      "nome": "Persistência Humana",
+      "corpo": "\n                <h4>Persistência Humana</h4>\n                <p>Humanos são persistentes, ao falhar em um teste qualquer pode rolar 1d4 e somar ao teste. (Usos: 1+mod. Sabedoria/descanso longo)</p>\n            "
+    },
+    {
+      "id": "humano-simples",
+      "tag": "div",
+      "tipo": "variant-card",
+      "opentag": "<div class=\"variant-card\">",
+      "nome": "Simples",
+      "corpo": "\n                    <h4>Simples</h4>\n                    <ul>\n                        <li>Treinado em <em>Sobrevivência</em>.</li>\n                        <li>Descansa com +1 nível de comodidade.</li>\n                    </ul>\n                "
+    },
+    {
+      "id": "humano-estudioso",
+      "tag": "div",
+      "tipo": "variant-card",
+      "opentag": "<div class=\"variant-card\">",
+      "nome": "Estudioso",
+      "corpo": "\n                    <h4>Estudioso</h4>\n                    <ul>\n                        <li>Treinado em <em>Conhecimento</em>.</li>\n                        <li>1 vez por descanso longo pode dar uma <em>Hipótese</em> ao falhar em um teste de conhecimento. Ganhando parcialmente a informação.</li>\n                    </ul>\n                "
+    },
+    {
+      "id": "humano-rebelde",
+      "tag": "div",
+      "tipo": "variant-card",
+      "opentag": "<div class=\"variant-card\">",
+      "nome": "Rebelde",
+      "corpo": "\n                    <h4>Rebelde</h4>\n                    <ul>\n                        <li>Treinado em <em>Movimento</em> ou <em>Interação Social(Intimidação)</em>.</li>\n                        <li>1 vez por descanso longo, ao falhar em atacar, pode somar 1d4 ao teste.</li>\n                    </ul>\n                "
+    },
+    {
+      "id": "humano-popular",
+      "tag": "div",
+      "tipo": "variant-card",
+      "opentag": "<div class=\"variant-card\">",
+      "nome": "Popular",
+      "corpo": "\n                    <h4>Popular</h4>\n                    <ul>\n                        <li>Treinado em 1 <em>Interação Social(Qualquer)</em>.</li>\n                        <li>Uma vez por descanso longo, pode rolar Interação Social com vantagem.</li>\n                    </ul>\n                "
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "source": "racas/gruto",
+  "cards": [
+    {
+      "id": "gruto-olhos-reptilianos",
+      "tag": "div",
+      "tipo": "trait-card",
+      "opentag": "<div class=\"trait-card\">",
+      "nome": "Olhos Reptilianos",
+      "corpo": "\n                <h4>Olhos Reptilianos</h4>\n                <p>Você enxerga no escuro com perfeita clareza.</p>\n            "
+    },
+    {
+      "id": "gruto-lingua-bifurcada",
+      "tag": "div",
+      "tipo": "trait-card",
+      "opentag": "<div class=\"trait-card\">",
+      "nome": "Língua Bifurcada",
+      "corpo": "\n                <h4>Língua Bifurcada</h4>\n                <ul>\n                    <li>Tem vantagem nas perícias de Movimento, Crime, Intimidação e Sobrevivência contra Dryads e outras Criaturas Predáveis, adicionalmente é <strong>Imune a Envenenamento</strong>.</li>\n                </ul>\n            "
+    },
+    {
+      "id": "gruto-troca-de-pele",
+      "tag": "div",
+      "tipo": "trait-card",
+      "opentag": "<div class=\"trait-card\">",
+      "nome": "Troca de Pele",
+      "corpo": "\n                <h4>Troca de Pele</h4>\n                <p>Troca de pele frequentemente, recuperando +1d6 de saúde em descansos longos.</p>\n            "
+    },
+    {
+      "id": "gruto-rokhan",
+      "tag": "div",
+      "tipo": "variant-card",
+      "opentag": "<div class=\"variant-card\">",
+      "nome": "Rokhan",
+      "corpo": "\n                    <h4>Rokhan</h4>\n                    <p>Você tem escamas que agem como uma armadura natural e é naturalmente forte.</p>\n                    <ul>\n                        <li>Você possui +10 Saúde máxima.</li>\n                        <li>1 Armadura (Ar)</li>\n                        <li>Treinado em Fortitude <em>ou</em> Interação Social (Intimidação)</li>\n                    </ul>\n                    <div class=\"variant-physical\">\n                        <strong>Vida:</strong> 70-110 anos · <strong>Altura:</strong> 1,50m - 2,00m · <strong>Peso:</strong> 100kg - 160kg\n                    </div>\n                "
+    },
+    {
+      "id": "gruto-skal-ri",
+      "tag": "div",
+      "tipo": "variant-card",
+      "opentag": "<div class=\"variant-card\">",
+      "nome": "Skal'ri",
+      "corpo": "\n                    <h4>Skal'ri</h4>\n                    <p>Você é esguio, possui escamas finas e é desproporcionalmente alto.</p>\n                    <ul>\n                        <li>Você possui +5 Éter máximo.</li>\n                        <li>+1,5m movimento</li>\n                        <li>Treinado em Vontade <em>ou</em> Interação Social (Enganação)</li>\n                    </ul>\n                    <div class=\"variant-physical\">\n                        <strong>Vida:</strong> 120-180 anos · <strong>Altura:</strong> 1,70m - 2,50m · <strong>Peso:</strong> 70kg - 120kg\n                    </div>\n                "
+    }
+  ]
+}

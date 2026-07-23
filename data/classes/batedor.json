@@ -1,0 +1,245 @@
+{
+  "classe": "batedor",
+  "cards": [
+    {
+      "id": "batedor-atento",
+      "tipo": "technique-card",
+      "nome": "Atento",
+      "corpo": "\n                    <h4>Atento</h4>\n                    <span class=\"tech-meta\">Passiva</span>\n                    <p>Ao receber a condição <em>Desprevenido</em>, role um teste de Sobrevivência ou Furtividade  contra a CD do inimigo, caso suceda você não está <em>Desprevenido</em>.</p>\n                "
+    },
+    {
+      "id": "batedor-passo-ciente",
+      "tipo": "technique-card",
+      "nome": "Passo Ciente",
+      "corpo": "\n                    <h4>Passo Ciente</h4>\n                    <span class=\"tech-meta\">Passiva</span>\n                    <p>Você não ativa armadilhas de quaisquer tipo e ignora terreno difícil.</p>\n                "
+    },
+    {
+      "id": "batedor-cacador",
+      "tipo": "technique-card",
+      "nome": "Caçador",
+      "corpo": "\n                    <h4>Caçador</h4>\n                    <span class=\"tech-meta\">Passiva</span>\n                    <p>Você consegue distinguir peso, número da pegada, velocidade e direção de criaturas vendo rastros passivamente.</p>\n                "
+    },
+    {
+      "id": "batedor-lider",
+      "tipo": "technique-card",
+      "nome": "Líder",
+      "corpo": "\n                    <h4>Líder</h4>\n                    <span class=\"tech-meta\">Passiva</span>\n                    <p>Você memoriza caminhos e traça trajetos eficientes. +1 ao sucesso do grupo em jornadas já percorridas. +5 em <em>Sobrevivência</em> em jornadas.</p>\n                "
+    },
+    {
+      "id": "batedor-terreno-ideal",
+      "tipo": "technique-card",
+      "nome": "Terreno Ideal",
+      "corpo": "\n                    <h4>Terreno Ideal</h4>\n                    <span class=\"tech-meta\">Passiva/1 Ação • 3 Stamina</span>\n                    <p>Adapta-se a um ambiente recebendo: +2 em Sobrevivência e Percepção. Pode gastar 1 ação para rolar com vantagem. <strong>Terrenos:</strong> Urbano, Natural, Naval, Subterrâneo. Escolha 1 no nível 1, 2 no nível 3 e 3 no nível 5.</p>\n                "
+    },
+    {
+      "id": "batedor-lingua-prateada",
+      "tipo": "technique-card",
+      "nome": "Língua Prateada",
+      "corpo": "\n                    <h4>Língua Prateada</h4>\n                    <span class=\"tech-meta\">1 Ação • 2 Stamina</span>\n                    <p>Treinado em Interação Social(Convencimento). Ao suceder em teste contra comerciante, garante 25% de desconto em um item.</p>\n                "
+    },
+    {
+      "id": "batedor-oportunista",
+      "tipo": "technique-card",
+      "nome": "Oportunista",
+      "corpo": "\n                    <h4>Oportunista</h4>\n                    <span class=\"tech-meta\">1 Ação • 2 Stamina</span>\n                    <p>Seu próximo ataque causa +1d8 de dano se o alvo estiver <em>Desprevenido</em>.</p>\n                "
+    },
+    {
+      "id": "batedor-curioso",
+      "tipo": "technique-card",
+      "nome": "Curioso",
+      "corpo": "\n                    <h4>Curioso</h4>\n                    <span class=\"tech-meta\">1 Ação • 2 Stamina</span>\n                    <p>Ao realizar um teste de <em>Percepção</em> ou <em>Investigação</em> adicione 1d4+Destreza.</p>\n                "
+    },
+    {
+      "id": "batedor-emboscada",
+      "tipo": "technique-card",
+      "nome": "Emboscada",
+      "corpo": "\n                    <h4>Emboscada</h4>\n                    <span class=\"tech-meta\">10 Minutos • 5 Stamina</span>\n                    <p>Prepara local com armadilhas e distrações (Sobrevivência ou Furtividade). Se inimigo falhar em Percepção contra seu teste: você e aliados recebem +2 em Atacar durante todo o combate e inimigos ficam <em>Desprevenidos</em> na primeira rodada.</p>\n                "
+    },
+    {
+      "id": "batedor-armadilha-tatica",
+      "tipo": "technique-card",
+      "nome": "Armadilha Tática",
+      "corpo": "\n                    <h4>Armadilha Tática</h4>\n                    <span class=\"tech-meta\">1 Ação • 3 Stamina</span>\n                    <p>Configura armadilha no chão (Furtividade ou Sobrevivência). Inimigo que passar deve superar com Percepção ou recebe 2d6+Mod.Des de dano Perfurante e fica <em>Enraizado</em> por 1 rodada.</p>\n                "
+    },
+    {
+      "id": "batedor-maos-rapidas",
+      "tipo": "technique-card",
+      "nome": "Mãos Rápidas",
+      "corpo": "\n                    <h4>Mãos Rápidas</h4>\n                    <span class=\"tech-meta\">Reação • 2 Stamina</span>\n                    <p>Reduz penalidade por ataques consecutivos em -2 durante esse turno (de -5 para -3 e -10 para -8).</p>\n                "
+    },
+    {
+      "id": "batedor-sigiloso",
+      "tipo": "technique-card",
+      "nome": "Sigiloso",
+      "corpo": "\n                    <h4>Sigiloso</h4>\n                    <span class=\"tech-meta\">Reação • 3 Stamina</span>\n                    <p>Ao atacar estando furtivo, pode gastar reação para continuar furtivo ao suceder em Furtividade contra Percepção do alvo.</p>\n                "
+    },
+    {
+      "id": "batedor-fantasma",
+      "tipo": "technique-card",
+      "nome": "Fantasma",
+      "corpo": "\n                    <h4>Fantasma</h4>\n                    <span class=\"tech-meta\">Reação • 3 Stamina</span>\n                    <p>Ao ser atacado pode rolar sua <em>Defesa</em> como se fosse sua <em>Furtividade</em>. Sua rolagem de Furtividade se torna sua evasão.</p>\n                "
+    },
+    {
+      "id": "batedor-saque",
+      "tipo": "technique-card",
+      "nome": "Saque",
+      "corpo": "\n                    <h4>Saque</h4>\n                    <span class=\"tech-meta\">Reação</span>\n                    <p>Ao eliminar uma criatura, pode saqueá-la, ganhando 1d4 + (Nível × 2) de Dinheiro.</p>\n                "
+    },
+    {
+      "id": "batedor-ocultar-se",
+      "tipo": "technique-card",
+      "nome": "Ocultar-se",
+      "corpo": "\n                    <h4>Ocultar-se</h4>\n                    <span class=\"tech-meta\">1 Ação • 2 Stamina</span>\n                    <p>Ao estar fora da linha de visão de todas as criaturas, pode se esconder com 1 ação ao invés de 2.</p>\n                "
+    },
+    {
+      "id": "batedor-colecionador-de-horizontes",
+      "tipo": "marca-card",
+      "nome": "Colecionador de Horizontes",
+      "corpo": "\n                <div class=\"marca-header cartografo\">\n                    <h4>Colecionador de Horizontes</h4>\n                    <div class=\"quote\">\"Cada paisagem nova te renova por dentro e relembra sua aspiração.\"</div>\n                </div>\n                <div class=\"marca-body\">\n                    <p>Você anseia por novos lugares e busca ativamente explorar o desconhecido.</p>\n                    <div class=\"marca-effect\">\n                        <p>Ao mapear um lugar significativo pela primeira vez (Cidade, Ruína, Bioma…), recupera <strong>2 de Stamina</strong> e ganha <strong>1 de Stamina máxima</strong>.</p>\n                    </div>\n                    <div class=\"marca-effect\">\n                        <p>O lugar deve possuir características únicas que você nunca mapeou antes. Por exemplo: o subúrbio de uma cidade e a área rural dessa mesma cidade, apesar de terem paisagens diferentes, contam como um único lugar por serem próximos e possuírem elementos geográficos parecidos.</p>\n                    </div>\n                </div>\n            "
+    },
+    {
+      "id": "batedor-cicatrizes-da-jornada",
+      "tipo": "marca-card",
+      "nome": "Cicatrizes da Jornada",
+      "corpo": "\n                <div class=\"marca-header cartografo\">\n                    <h4>Cicatrizes da Jornada</h4>\n                    <div class=\"quote\">\"Cada ferida conta uma história. Cada história te ensinou a sobreviver.\"</div>\n                </div>\n                <div class=\"marca-body\">\n                    <p>Você possui cicatrizes que reforçam suas histórias de viagem.</p>\n                    <div class=\"marca-effect\">\n                        <p>Para cada Jornada de Hostilidade 10+ que você completou, ganha <strong>+1 permanente em Sobrevivência</strong>. Ao chegar em +5, essa habilidade fica supérflua.</p>\n                    </div>\n                    <div class=\"marca-effect\">\n                        <p>Ao falhar em um teste de Sobrevivência, pode escolher perder <strong>2d6 de Stamina</strong> para transformar em sucesso.</p>\n                    </div>\n                </div>\n            "
+    },
+    {
+      "id": "batedor-colecao-de-ultimos-suspiros",
+      "tipo": "marca-card",
+      "nome": "Coleção de Últimos Suspiros",
+      "corpo": "\n                <div class=\"marca-header semnome\">\n                    <h4>Coleção de Últimos Suspiros</h4>\n                    <div class=\"quote\">\"Você se lembra de cada um. Não dos rostos - dos sons que fizeram ao partir.\"</div>\n                </div>\n                <div class=\"marca-body\">\n                    <p>Você sente prazer em assassinar criaturas sem que elas te reconheçam.</p>\n                    <div class=\"marca-effect\">\n                        <p>Para cada 5 criaturas que você matou enquanto estava <em>Escondido</em>, ganha <strong>+1 permanente em Furtividade</strong>. Ao chegar em +5, essa habilidade fica supérflua.</p>\n                    </div>\n                    <div class=\"marca-effect\">\n                        <p>Ao matar uma criatura sem ser detectado, recupera <strong>1 de Stamina</strong>.</p>\n                    </div>\n                </div>\n            "
+    },
+    {
+      "id": "batedor-sussurro-final",
+      "tipo": "marca-card",
+      "nome": "Sussurro Final",
+      "corpo": "\n                <div class=\"marca-header semnome\">\n                    <h4>Sussurro Final</h4>\n                    <div class=\"quote\">\"O sussurro final é sempre o mais verdadeiro.\"</div>\n                </div>\n                <div class=\"marca-body\">\n                    <p>Você sabe interrogar pessoas como ninguém.</p>\n                    <div class=\"marca-effect\">\n                        <p>Você fica treinado em <strong>Interação Social (Convencimento)</strong>.</p>\n                    </div>\n                    <div class=\"marca-effect\">\n                        <p>Ao matar uma criatura em combate corpo a corpo, pode fazer uma pergunta que ela responde com verdade antes de morrer. A resposta é breve (uma frase) e literal.</p>\n                    </div>\n                </div>\n            "
+    },
+    {
+      "id": "batedor-homem-de-negocios",
+      "tipo": "marca-card",
+      "nome": "Homem de Negócios",
+      "corpo": "\n                <div class=\"marca-header trambiqueiro\">\n                    <h4>Homem de Negócios</h4>\n                    <div class=\"quote\">\"Moedas acabam. Favores rendem juros eternos.\"</div>\n                </div>\n                <div class=\"marca-body\">\n                    <p>Você possui um instinto natural para negócios.</p>\n                    <div class=\"marca-effect\">\n                        <p>Para cada 5 negociações bem-sucedidas que resultaram em vantagem significativa, ganha <strong>+1 permanente em Interação Social (Convencimento)</strong>. Ao chegar em +5, essa habilidade fica supérflua.</p>\n                    </div>\n                    <div class=\"marca-effect\">\n                        <p>Ao ajudar alguém de forma significativa, pode declarar que a pessoa <strong>\"te deve uma\"</strong>. O mestre registra. Você pode cobrar depois.</p>\n                    </div>\n                </div>\n            "
+    },
+    {
+      "id": "batedor-o-palpite",
+      "tipo": "marca-card",
+      "nome": "O Palpite",
+      "corpo": "\n                <div class=\"marca-header trambiqueiro\">\n                    <h4>O Palpite</h4>\n                    <div class=\"quote\">\"Você nem sempre acerta, mas eles não sabem disso.\"</div>\n                </div>\n                <div class=\"marca-body\">\n                    <div class=\"marca-effect\">\n                        <p>Ao passar ao menos 1 minuto analisando uma criatura, pode diagnosticar um <strong>segredo</strong> dela. Esse segredo possui <strong>50% de chance de ser verdade</strong> e você não sabe disso.</p>\n                    </div>\n                    <div class=\"marca-effect\">\n                        <p>Ao rolar um teste de Interação Social (qualquer) contra ela pode utilizar esse segredo como ferramenta: caso seja verdade você rola com <strong>vantagem</strong>, caso seja mentira você rola com <strong>desvantagem</strong>.</p>\n                    </div>\n                </div>\n            "
+    },
+    {
+      "id": "batedor-desenhar-mapa-de-exploracao",
+      "tipo": "tech-card",
+      "nome": "Desenhar Mapa de Exploração",
+      "corpo": "\n                        <div class=\"tech-card-header cartografo\">\n                            <h4>Desenhar Mapa de Exploração</h4>\n                            <span class=\"cost\">Descanso Curto, 5 Stamina</span>\n                        </div>\n                        <div class=\"tech-card-body\">\n                            <p>Você pode mapear locais previamente transitados, até um tamanho máximo de até <strong>1 quilômetro quadrado</strong>. Recebendo os seguintes benefícios ao estar neste local:</p>\n                            <ul>\n                                <li>Tem conhecimento geral da geografia da área. <strong>+2 em testes de jornada</strong>.</li>\n                                <li><strong>+2 Percepção</strong> e <strong>Sobrevivência</strong></li>\n                                <li>Ao descansar na natureza pode indicar locais ideais para descanso, recebendo <strong>+5</strong> no teste de Sobrevivência de descanso longo.</li>\n                            </ul>\n                        </div>\n                    "
+    },
+    {
+      "id": "batedor-artista-apaixonado",
+      "tipo": "tech-card",
+      "nome": "Artista Apaixonado",
+      "corpo": "\n                        <div class=\"tech-card-header cartografo\">\n                            <h4>Artista Apaixonado</h4>\n                            <span class=\"cost\">Passiva</span>\n                        </div>\n                        <div class=\"tech-card-body\">\n                            <p>Os mapas que você fabrica contam como <strong>mercadoria Incomum</strong>.</p>\n                        </div>\n                    "
+    },
+    {
+      "id": "batedor-escapista",
+      "tipo": "tech-card",
+      "nome": "Escapista",
+      "corpo": "\n                        <div class=\"tech-card-header cartografo\">\n                            <h4>Escapista</h4>\n                            <span class=\"cost\">3 Ações, 5 Stamina</span>\n                        </div>\n                        <div class=\"tech-card-body\">\n                            <p>Você nunca foi acostumado a batalhar, na verdade planejar uma rota de fuga é sua especialidade.</p>\n                            <p>Ao possuir um mapa da região em que está batalhando, pode fugir e guiar outros a fugirem do combate <strong>sem uma cena de perseguição</strong> ao suceder em um teste de Sobrevivência (CD 15).</p>\n                        </div>\n                    "
+    },
+    {
+      "id": "batedor-golpe-sombrio",
+      "tipo": "tech-card",
+      "nome": "Golpe Sombrio",
+      "corpo": "\n                        <div class=\"tech-card-header semnome\">\n                            <h4>Golpe Sombrio</h4>\n                            <span class=\"cost\">1 Ação, 2 Stamina</span>\n                        </div>\n                        <div class=\"tech-card-body\">\n                            <p>Enquanto estiver <em>Escondido</em>, seu próximo ataque:</p>\n                            <ul>\n                                <li>Ignora <strong>1 de Evasão</strong></li>\n                                <li><strong>+1d6 de Dano</strong></li>\n                                <li>Não pode ser retaliado</li>\n                            </ul>\n                        </div>\n                    "
+    },
+    {
+      "id": "batedor-finta",
+      "tipo": "tech-card",
+      "nome": "Finta",
+      "corpo": "\n                        <div class=\"tech-card-header semnome\">\n                            <h4>Finta</h4>\n                            <span class=\"cost\">1 Ação, 2 Stamina</span>\n                        </div>\n                        <div class=\"tech-card-body\">\n                            <p>Escolha um alvo em até 1,5m: <strong>Enganação vs Percepção</strong>.</p>\n                            <p>Sucesso: alvo fica <em>Desorientado</em> por 1 rodada.</p>\n                        </div>\n                    "
+    },
+    {
+      "id": "batedor-olhar-de-brecha",
+      "tipo": "tech-card",
+      "nome": "Olhar de Brecha",
+      "corpo": "\n                        <div class=\"tech-card-header semnome\">\n                            <h4>Olhar de Brecha</h4>\n                            <span class=\"cost\">Passiva</span>\n                        </div>\n                        <div class=\"tech-card-body\">\n                            <p>Você detecta instantes onde inimigos abaixam guarda ou se distraem.</p>\n                            <ul>\n                                <li>Você recebe <strong>vantagem</strong> no primeiro teste de Furtividade do combate.</li>\n                                <li>Se já estiver escondido no primeiro turno de combate, recebe <strong>+2 em Iniciativa</strong>.</li>\n                            </ul>\n                        </div>\n                    "
+    },
+    {
+      "id": "batedor-bens-diversos",
+      "tipo": "tech-card",
+      "nome": "Bens Diversos",
+      "corpo": "\n                        <div class=\"tech-card-header trambiqueiro\">\n                            <h4>Bens Diversos</h4>\n                            <span class=\"cost\">1 Ação, 5 Stamina</span>\n                        </div>\n                        <div class=\"tech-card-body\">\n                            <p>Você busca na sua mochila por um objeto que possa te ajudar na realização de um teste de perícia qualquer. <strong>Role d100:</strong></p>\n                            <table class=\"d100-table\">\n                                <tr><td class=\"roll\">1</td><td>Machuca sua mão (1d6 dano cortante). Como isso foi parar aí?</td></tr>\n                                <tr><td class=\"roll\">2-19</td><td>Objeto qualquer, não ajuda em quase nada.</td></tr>\n                                <tr><td class=\"roll\">20-39</td><td>Objeto utilizável, não tão adequado. <strong>+1 na perícia</strong>.</td></tr>\n                                <tr><td class=\"roll\">40-59</td><td>Objeto conveniente. <strong>+2 na perícia</strong>.</td></tr>\n                                <tr><td class=\"roll\">60-79</td><td>Objeto apropriado. <strong>+3 na perícia</strong>.</td></tr>\n                                <tr><td class=\"roll\">80-99</td><td>Objeto quase perfeito. <strong>+5 na perícia</strong>.</td></tr>\n                                <tr><td class=\"roll\">100</td><td>Objeto perfeito que soluciona e te faz <strong>suceder instantaneamente</strong>.</td></tr>\n                            </table>\n                        </div>\n                    "
+    },
+    {
+      "id": "batedor-agiota",
+      "tipo": "tech-card",
+      "nome": "Agiota",
+      "corpo": "\n                        <div class=\"tech-card-header trambiqueiro\">\n                            <h4>Agiota</h4>\n                            <span class=\"cost\">3 Ações, 10 Stamina</span>\n                        </div>\n                        <div class=\"tech-card-body\">\n                            <p>Você pode tentar convencer uma criatura que consiga te entender a aceitar um empréstimo (monetário ou de bens).</p>\n                            <p>Role <strong>Interação Social (Convencimento) vs Vontade</strong>. Se suceder, pode escolher quanto dinheiro oferece recebendo <strong>20% de lucro</strong> no dia seguinte.</p>\n                            <p>Se o alvo não conseguir pagar ele fica <em>Endividado</em>. Você possui <strong>+5</strong> em testes de Convencimento contra criaturas endividadas.</p>\n                        </div>\n                    "
+    },
+    {
+      "id": "batedor-cara-de-pau",
+      "tipo": "tech-card",
+      "nome": "Cara de Pau",
+      "corpo": "\n                        <div class=\"tech-card-header trambiqueiro\">\n                            <h4>Cara de Pau</h4>\n                            <span class=\"cost\">1 Ação, 3 Stamina</span>\n                        </div>\n                        <div class=\"tech-card-body\">\n                            <p>Você pode rolar <strong>Interação Social (Convencimento)</strong> com <strong>1 nível de treinamento a mais</strong>.</p>\n                        </div>\n                    "
+    },
+    {
+      "id": "batedor-desenhar-mapa-de-combate",
+      "tipo": "tech-card",
+      "nome": "Desenhar Mapa de Combate",
+      "corpo": "\n                        <div class=\"tech-card-header cartografo\">\n                            <h4>Desenhar Mapa de Combate</h4>\n                            <span class=\"cost\">5 Minutos, 3 Stamina</span>\n                        </div>\n                        <div class=\"tech-card-body\">\n                            <p>Você desenha um mapa tático, analisando altitude, tipos de terreno e hostilidades em um espaço de até <strong>300 metros quadrados</strong>. Ao estar em um local mapeado por você:</p>\n                            <ul>\n                                <li>Você e seus aliados não podem ser <em>Desprevenidos</em></li>\n                            </ul>\n                            <div class=\"sub-ability\">\n                                <strong>Coordenação</strong> (Reação, 3 Stamina)<br>\n                                Orienta você ou um aliado em até 9m que esteja prestes a rolar Movimento, Defender ou Atacar. <strong>+2 à rolagem</strong>.\n                            </div>\n                            <div class=\"sub-ability\">\n                                <strong>Ponto Cego</strong> (1 Ação, 4 Stamina)<br>\n                                Expõe uma falha de posicionamento de um alvo que tenha se movido nesta rodada dentro do mapa. O alvo fica <em>Exposto</em>.\n                            </div>\n                            <div class=\"sub-ability\">\n                                <strong>Reposicionar</strong> (1 Ação, 3 Stamina)<br>\n                                Escolha um aliado (pode ser você) em até 9m. Ele pode se mover até 4,5m como ação livre sem provocar ataques de oportunidade.\n                            </div>\n                        </div>\n                    "
+    },
+    {
+      "id": "batedor-mapa-mental",
+      "tipo": "tech-card",
+      "nome": "Mapa Mental",
+      "corpo": "\n                        <div class=\"tech-card-header cartografo\">\n                            <h4>Mapa Mental</h4>\n                            <span class=\"cost\">1 Ação, 2 Stamina</span>\n                        </div>\n                        <div class=\"tech-card-body\">\n                            <p>Você mentaliza o esboço de um mapa tático, ganhando seus benefícios nesta rodada.</p>\n                            <p>No início de cada rodada após essa, faça um teste de <strong>Percepção (CD 15)</strong> para manter-se concentrado no mapa. Em caso de falha, você perde os benefícios.</p>\n                        </div>\n                    "
+    },
+    {
+      "id": "batedor-cobra",
+      "tipo": "tech-card",
+      "nome": "Cobra",
+      "corpo": "\n                        <div class=\"tech-card-header semnome\">\n                            <h4>Cobra</h4>\n                            <span class=\"cost\">Descanso Curto ou 1 Ação, 2 Stamina</span>\n                        </div>\n                        <div class=\"tech-card-body\">\n                            <p>Pode criar venenos potentes e imbuir eles nas suas armas.</p>\n                            <ul>\n                                <li>Você pode criar até <strong>2 venenos por descanso curto</strong> e <strong>5 venenos por descanso longo</strong>. Gastando <strong>5 Sins</strong> por veneno.</li>\n                                <li>Você pode adicionar o veneno a uma arma ou munição com 1 ação.</li>\n                                <li>A criatura que entrar em contato com o veneno deve suceder em um teste de <strong>Fortitude</strong> ou ficar <em>Envenenada</em>.</li>\n                            </ul>\n                        </div>\n                    "
+    },
+    {
+      "id": "batedor-terror",
+      "tipo": "tech-card",
+      "nome": "Terror",
+      "corpo": "\n                        <div class=\"tech-card-header semnome\">\n                            <h4>Terror</h4>\n                            <span class=\"cost\">Passiva</span>\n                        </div>\n                        <div class=\"tech-card-body\">\n                            <p>Ao acertar um <strong>crítico</strong>, o alvo fica <em>Exposto</em>.</p>\n                        </div>\n                    "
+    },
+    {
+      "id": "batedor-conexoes-duvidosas",
+      "tipo": "tech-card",
+      "nome": "Conexões Duvidosas",
+      "corpo": "\n                        <div class=\"tech-card-header trambiqueiro\">\n                            <h4>Conexões Duvidosas</h4>\n                            <span class=\"cost\">1 Ação, 3 Stamina</span>\n                        </div>\n                        <div class=\"tech-card-body\">\n                            <p>Você já ouviu falar de muita gente e possivelmente elas te devem algo, ou você que deve...</p>\n                            <p>Role <strong>Interação Social (Convencimento) CD 20</strong> (pode ser dificultado dependendo da localização). Só pode ser utilizado 1x por localização.</p>\n                            <table class=\"d100-table\">\n                                <tr><td class=\"roll\">Falha Crítica</td><td>O contato existe, mas te odeia. Ele ativamente trabalha contra você enquanto estiver na cidade.</td></tr>\n                                <tr><td class=\"roll\">Falha</td><td>O contato existe, mas você deve algo a ele. Ele só ajuda se você quitar a dívida primeiro.</td></tr>\n                                <tr><td class=\"roll\">Sucesso</td><td>O contato te deve um <strong>favor menor</strong>: informação local, desconto em compra, esconderijo por uma noite, ou apresentação a alguém.</td></tr>\n                                <tr><td class=\"roll\">Sucesso Crítico</td><td>O contato te deve um <strong>favor maior</strong>: acesso a área restrita, item raro por preço justo, aliado temporário, ou perdão de dívida/crime menor.</td></tr>\n                            </table>\n                        </div>\n                    "
+    },
+    {
+      "id": "batedor-olho-no-lance",
+      "tipo": "tech-card",
+      "nome": "Olho no Lance",
+      "corpo": "\n                        <div class=\"tech-card-header trambiqueiro\">\n                            <h4>Olho no Lance</h4>\n                            <span class=\"cost\">Passiva ou 1 Ação, 3 Stamina</span>\n                        </div>\n                        <div class=\"tech-card-body\">\n                            <p><strong>Passiva:</strong></p>\n                            <ul>\n                                <li>Você automaticamente sabe o valor de um item ao examiná-lo.</li>\n                                <li>Recebe <strong>20% a mais de Sins</strong> de todas as fontes (saque, venda). Não se aplica a itens repassados.</li>\n                            </ul>\n                            <p><strong>Revirar</strong> (1 Ação, máx. 1x/cena):</p>\n                            <p>Ao vasculhar uma sala que pode possuir itens valiosos, role <strong>Investigação (CD 15)</strong>:</p>\n                            <table class=\"d100-table\">\n                                <tr><td class=\"roll\">Falha Crítica</td><td>Ativa uma armadilha. Recebe 1 de dano e não encontra nada.</td></tr>\n                                <tr><td class=\"roll\">Falha</td><td>Não encontra nada além do óbvio.</td></tr>\n                                <tr><td class=\"roll\">Sucesso</td><td>Encontra algo de valor que outros ignorariam. <strong>2d10 Sins</strong> em itens vendáveis.</td></tr>\n                                <tr><td class=\"roll\">Sucesso Crítico</td><td>Encontra um saco de <strong>Sins</strong>, contendo <strong>2d10 Sins</strong>.</td></tr>\n                            </table>\n                        </div>\n                    "
+    },
+    {
+      "id": "batedor-senhor-das-linhas",
+      "tipo": "ultimate-card",
+      "nome": "🗺️ Senhor das Linhas",
+      "corpo": "\n                    <div class=\"ultimate-header cartografo\">\n                        <h4>🗺️ Senhor das Linhas</h4>\n                        <div>\n                            <span class=\"ultimate-badge\">ULTIMATE</span>\n                            <span style=\"margin-left: 0.5rem; color: var(--text-muted); font-size: 0.85rem;\">1 Ação, 5 Stamina</span>\n                        </div>\n                    </div>\n                    <div class=\"ultimate-quote\">\"Minha arte pode descobrir todos os segredos.\"</div>\n                    <div class=\"ultimate-body\">\n                        <p>Você sente uma energia primordial emanar de sua caneta ao guiá-la por um papel, suas movimentações revelam informações extraordinárias. Você acabou de desenhar uma obra-prima.</p>\n                        \n                        <h5>👁️ Onisciência</h5>\n                        <p>Você sente um calafrio, quase que sobrenatural:</p>\n                        <ul>\n                            <li>Sua mão é guiada pelo mapa por uma força maior expondo a posição de <strong>todas as criaturas em até 60m</strong> (incluindo invisíveis, escondidas).</li>\n                            <li>Você sabe a <strong>intenção de movimento/ataque</strong> de cada criatura em 60m.</li>\n                            <li>Não pode ser flanqueado.</li>\n                        </ul>\n\n                        <h5>🎯 Comandante de Campo</h5>\n                        <p>Essa energia te faz raciocinar extremamente rápido:</p>\n                        <div class=\"sub-ability\">\n                            <strong>\"Ali!\"</strong> (1 Ação) — Um aliado em até 12m pode se mover até 6m como reação, sem ataques de oportunidade.\n                        </div>\n                        <div class=\"sub-ability\">\n                            <strong>\"Abaixa\"</strong> (1 Ação) — Um aliado em até 12m ganha <strong>+4 Evasão</strong> contra o próximo ataque que receber.\n                        </div>\n                        <div class=\"sub-ability\">\n                            <strong>\"Agora!\"</strong> (2 Ações) — Todos os aliados em até 12m ganham <strong>+2 Atacar</strong> e <strong>+1d6 no próximo ataque</strong>.\n                        </div>\n\n                        <h5>✏️ Manipular Mapa</h5>\n                        <p>Esse mapa parece ter influência real em seus arredores. Ao usar qualquer habilidade abaixo, faça um teste de <strong>Vontade (CD 15)</strong>; ao falhar você perde 1d6 de Éter:</p>\n                        <div class=\"sub-ability\">\n                            <strong>Criar Armadilha</strong> (1 Ação) — Declare um ponto em até 12m. A primeira criatura que pisar recebe <strong>3d6 dano</strong> e deve passar em Movimento ou fica <em>Enraizada</em> por 1 rodada.\n                        </div>\n                        <div class=\"sub-ability\">\n                            <strong>Tremor Localizado</strong> (1 Ação) — Todos os inimigos em até 9m sentem o chão tremer. Devem passar em Movimento ou ficam <em>Desorientados</em>.\n                        </div>\n                        <div class=\"sub-ability\">\n                            <strong>Fuga Instantânea</strong> (3 Ações) — Você descobre uma rota de fuga perfeita. Se ela não existir, o mapa esculpe um caminho à força para você e seus aliados fugirem.\n                        </div>\n                        \n                        <div class=\"ultimate-cost\">\n                            <h5>💀 O Custo</h5>\n                            <ul>\n                                <li>Ao fim do combate, seu mapa da região é <strong>desintegrado</strong>, virando pó.</li>\n                                <li>Perca <strong>2d6 de Éter</strong>.</li>\n                                <li style=\"font-style: italic; color: var(--text-muted);\">Você sente que roubou magia, de onde não devia.</li>\n                            </ul>\n                        </div>\n                    </div>\n                "
+    },
+    {
+      "id": "batedor-silencio",
+      "tipo": "ultimate-card",
+      "nome": "🗡️ Silêncio",
+      "corpo": "\n                    <div class=\"ultimate-header semnome\">\n                        <h4>🗡️ Silêncio</h4>\n                        <div>\n                            <span class=\"ultimate-badge\">ULTIMATE</span>\n                            <span style=\"margin-left: 0.5rem; color: var(--text-muted); font-size: 0.85rem;\">1 Ação, 5 Stamina</span>\n                        </div>\n                    </div>\n                    <div class=\"ultimate-quote\">\"Eles morrerão antes de entender o que você é.\"</div>\n                    <div class=\"ultimate-body\">\n                        <p>Escolha uma criatura em sua visão por rodada. Ela recebe <em>Marcada à Morte 1</em>. Essa condição <strong>acumula</strong> ao ser aplicada novamente:</p>\n                        <ul>\n                            <li>Você sabe a <strong>localização</strong> de todas as criaturas marcadas e a <strong>saúde exata</strong> delas.</li>\n                            <li>Você tem <strong>+1 em todos os testes</strong> contra criaturas Marcadas à Morte. (Acumulável)</li>\n                            <li>Seus ataques <strong>ignoram 1 de evasão</strong> contra criaturas Marcadas. (Acumulável)</li>\n                            <li>Você tem <strong>+1 dado de dano</strong> ao critar contra criatura Marcada. (Acumulável)</li>\n                            <li>Alvos marcados ficam <em>Expostos</em> (ainda remove a condição ao atacar).</li>\n                            <li>Ao acertar um <strong>ataque furtivo</strong>, o ataque automaticamente é <strong>crítico</strong>.</li>\n                        </ul>\n                        \n                        <div class=\"ultimate-cost\">\n                            <h5>💀 O Custo</h5>\n                            <ul>\n                                <li>Você <strong>não pode critar</strong> contra alvos não marcados.</li>\n                                <li>Você fica <strong>obcecado</strong> por todos seus alvos marcados. Para desistir de matá-los, deve fazer um teste de Vontade (CD 20).</li>\n                                <li>Você perde <strong>1d6 de Éter</strong>.</li>\n                            </ul>\n                        </div>\n                    </div>\n                "
+    },
+    {
+      "id": "batedor-suborno-irrecusavel",
+      "tipo": "ultimate-card",
+      "nome": "💰 Suborno Irrecusável",
+      "corpo": "\n                    <div class=\"ultimate-header trambiqueiro\">\n                        <h4>💰 Suborno Irrecusável</h4>\n                        <div>\n                            <span class=\"ultimate-badge\">ULTIMATE</span>\n                            <span style=\"margin-left: 0.5rem; color: var(--text-muted); font-size: 0.85rem;\">2 Ações, 5 Stamina</span>\n                        </div>\n                    </div>\n                    <div class=\"ultimate-quote\">\"Vamos ser razoáveis aqui. Quanto vai custar pra você olhar pro outro lado?\"</div>\n                    <div class=\"ultimate-body\">\n                        <p>Escolha uma criatura inteligente que possa te entender e que não seja diretamente leal a algo maior que dinheiro (fanatismo religioso, amor verdadeiro, honra inabalável).</p>\n                        <p>Role <strong>Interação Social (Convencimento) +5 vs Vontade</strong> do alvo:</p>\n                        <table class=\"d100-table\">\n                            <tr><td class=\"roll\">Falha Crítica</td><td>O alvo fica enfurecido. <strong>+2 Atacar contra você</strong> até o fim do combate.</td></tr>\n                            <tr><td class=\"roll\">Falha</td><td>O alvo hesita, ficando <em>Atordoado</em> por 1 rodada enquanto considera.</td></tr>\n                            <tr><td class=\"roll\">Sucesso</td><td>O alvo <strong>muda de lado até o fim do combate/cena</strong>.</td></tr>\n                            <tr><td class=\"roll\">Sucesso Crítico</td><td>O alvo <strong>muda de lado permanentemente</strong> (ou até você traí-lo). Ele luta por você, fornece informações, abre portas…</td></tr>\n                        </table>\n                        \n                        <div class=\"ultimate-cost\">\n                            <h5>💀 O Custo</h5>\n                            <ul>\n                                <li>Se perceber que foi manipulada, a criatura tenta te atacar.</li>\n                                <li>Perca <strong>1d6 de Éter</strong>.</li>\n                            </ul>\n                        </div>\n                    </div>\n                "
+    },
+    {
+      "id": "batedor-esquemas",
+      "tipo": "ultimate-card",
+      "nome": "💰 Esquemas",
+      "corpo": "\n                    <div class=\"ultimate-header trambiqueiro\">\n                        <h4>💰 Esquemas</h4>\n                        <div>\n                            <span class=\"ultimate-badge\">ULTIMATE</span>\n                            <span style=\"margin-left: 0.5rem; color: var(--text-muted); font-size: 0.85rem;\">Ação Livre, 5 Stamina</span>\n                        </div>\n                    </div>\n                    <div class=\"ultimate-quote\">\"Ah, isso? Eu já tinha pensado nisso.\"</div>\n                    <div class=\"ultimate-body\">\n                        <p>A qualquer momento você pode declarar uma <strong>preparação que fez previamente</strong>, antes da cena atual.</p>\n                        <p><strong>Exemplos:</strong></p>\n                        <ul>\n                            <li><em>\"Eu já tinha subornado um dos guardas. Ele deixa a porta dos fundos aberta.\"</em></li>\n                            <li><em>\"Eu escondi armas naquela sala ontem à noite.\"</em></li>\n                            <li><em>\"Eu contratei mercenários. Eles chegam agora.\"</em></li>\n                        </ul>\n                        <p>Role um teste de <strong>Interação Social (Convencimento)</strong>, a CD varia dependendo da viabilidade da preparação proposta. Se suceder isso realmente aconteceu, se não algo do seu plano deu errado.</p>\n                        \n                        <div class=\"ultimate-cost\">\n                            <h5>💀 O Custo</h5>\n                            <ul>\n                                <li style=\"font-style: italic; color: var(--text-muted);\">Seus pecados estão sendo observados.</li>\n                                <li>Perca <strong>1d6 de Éter</strong>.</li>\n                            </ul>\n                        </div>\n                    </div>\n                "
+    }
+  ]
+}

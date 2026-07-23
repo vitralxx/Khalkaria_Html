@@ -1,0 +1,239 @@
+{
+  "classe": "teurgo",
+  "cards": [
+    {
+      "id": "teurgo-eter-residual",
+      "tipo": "technique-card",
+      "nome": "Éter Residual",
+      "corpo": "\n                    <h4>Éter Residual</h4>\n                    <span class=\"tech-meta\">Passiva</span>\n                    <p>Ao conjurar uma magia contida e seu custo final for ≤1, adicione uma modulação grátis.</p>\n                "
+    },
+    {
+      "id": "teurgo-reserva-oculta",
+      "tipo": "technique-card",
+      "nome": "Reserva Oculta",
+      "corpo": "\n                    <h4>Reserva Oculta</h4>\n                    <span class=\"tech-meta\">Passiva</span>\n                    <p>Ao chegar a 0 de Éter, pode conjurar magias pagando em Saúde (2:1). 2 Saúde = 1 Éter.</p>\n                "
+    },
+    {
+      "id": "teurgo-foco-duplo",
+      "tipo": "technique-card",
+      "nome": "Foco Duplo",
+      "corpo": "\n                    <h4>Foco Duplo</h4>\n                    <span class=\"tech-meta\">Passiva</span>\n                    <p>Você pode empunhar dois focos ao mesmo tempo, alternando escolas sem trocar de equipamento.</p>\n                "
+    },
+    {
+      "id": "teurgo-forca-primordial",
+      "tipo": "technique-card",
+      "nome": "Força Primordial",
+      "corpo": "\n                    <h4>Força Primordial</h4>\n                    <span class=\"tech-meta\">Passiva</span>\n                    <p>Suas magias de dano ignoram 1 de Ae. Adicionalmente, causam 1 de dano Primordial adicional.</p>\n                "
+    },
+    {
+      "id": "teurgo-transbordar-controlado",
+      "tipo": "technique-card",
+      "nome": "Transbordar Controlado",
+      "corpo": "\n                    <h4>Transbordar Controlado</h4>\n                    <span class=\"tech-meta\">Passiva</span>\n                    <p>Ao usar intensidade Transbordante, rola Vontade com +2.</p>\n                "
+    },
+    {
+      "id": "teurgo-linguagem-estranha",
+      "tipo": "technique-card",
+      "nome": "Linguagem Estranha",
+      "corpo": "\n                    <h4>Linguagem Estranha</h4>\n                    <span class=\"tech-meta\">Passiva</span>\n                    <p>Você consegue entender de maneira básica e leiga, o idioma Abissal.</p>\n                "
+    },
+    {
+      "id": "teurgo-encadeamento",
+      "tipo": "technique-card",
+      "nome": "Encadeamento",
+      "corpo": "\n                    <h4>Encadeamento</h4>\n                    <span class=\"tech-meta\">Passiva • 3 Stamina</span>\n                    <p>Ao conjurar uma magia, pode conjurar outra se puder pagar pelas ações. A segunda custa Éter adicional = número de ações dela.</p>\n                "
+    },
+    {
+      "id": "teurgo-respiracao-primordial",
+      "tipo": "technique-card",
+      "nome": "Respiração Primordial",
+      "corpo": "\n                    <h4>Respiração Primordial</h4>\n                    <span class=\"tech-meta\">5 Minutos</span>\n                    <p>Você medita brevemente, restaurando suas forças. Recuperando (nível)d4 Éter. Máx. 1x/Descanso Curto.</p>\n                "
+    },
+    {
+      "id": "teurgo-imbuir-magia",
+      "tipo": "technique-card",
+      "nome": "Imbuir Magia",
+      "corpo": "\n                    <h4>Imbuir Magia</h4>\n                    <span class=\"tech-meta\">1 Minuto • 5 Stamina</span>\n                    <p>Pode preparar uma magia em um objeto, designando um gatilho (impacto, proximidade, ativação remota). Ativa como reação.</p>\n                "
+    },
+    {
+      "id": "teurgo-canalizacao-eficiente",
+      "tipo": "technique-card",
+      "nome": "Canalização Eficiente",
+      "corpo": "\n                    <h4>Canalização Eficiente</h4>\n                    <span class=\"tech-meta\">Ação Livre • 2 Stamina</span>\n                    <p>Reduza o custo de uma magia em 1 Éter.</p>\n                "
+    },
+    {
+      "id": "teurgo-sentir-magia",
+      "tipo": "technique-card",
+      "nome": "Sentir Magia",
+      "corpo": "\n                    <h4>Sentir Magia</h4>\n                    <span class=\"tech-meta\">1 Ação • 2 Stamina</span>\n                    <p>Você sente a presença de magia ou efeitos primordiais em até 9m. Não consegue diagnosticar características, apenas fica ciente.</p>\n                "
+    },
+    {
+      "id": "teurgo-conjuracao-furtiva",
+      "tipo": "technique-card",
+      "nome": "Conjuração Furtiva",
+      "corpo": "\n                    <h4>Conjuração Furtiva</h4>\n                    <span class=\"tech-meta\">1 Ação • 2 Stamina</span>\n                    <p>Pode conjurar magias de forma silenciosa. Role Furtividade vs Percepção/Místico. Se o alvo receber dano ele percebe a magia.</p>\n                "
+    },
+    {
+      "id": "teurgo-marca-do-primordio",
+      "tipo": "technique-card",
+      "nome": "Marca do Primórdio",
+      "corpo": "\n                    <h4>Marca do Primórdio</h4>\n                    <span class=\"tech-meta\">1 Ação • 3 Stamina</span>\n                    <p>Ao acertar com magia de dano, pode marcar o alvo. Vontade CD 15 ou magias de dano recebem +2 contra ele. Rola novamente a cada turno.</p>\n                "
+    },
+    {
+      "id": "teurgo-concentracao",
+      "tipo": "technique-card",
+      "nome": "Concentração",
+      "corpo": "\n                    <h4>Concentração</h4>\n                    <span class=\"tech-meta\">+1 Ação • 3 Stamina</span>\n                    <p>Pode canalizar magia com 1 ação adicional. Adiciona +1 dado de dano ou uma modulação grátis.</p>\n                "
+    },
+    {
+      "id": "teurgo-barreira-instintiva",
+      "tipo": "technique-card",
+      "nome": "Barreira Instintiva",
+      "corpo": "\n                    <h4>Barreira Instintiva</h4>\n                    <span class=\"tech-meta\">Ação Livre • 1-5 Éter</span>\n                    <p>Ao receber dano, pode gastar Éter como ação livre para reduzir dano. 1 Éter = 1d4 de dano reduzido, 2 Éter = 2d4 de dano reduzido… (Max. Éter gasto = Nível)</p>\n                "
+    },
+    {
+      "id": "teurgo-o-duelista",
+      "tipo": "marca-card",
+      "nome": "O Duelista",
+      "corpo": "\n                <div class=\"marca-header academico\">\n                    <h4>O Duelista</h4>\n                    <div class=\"quote\">\"O duelo arcano é xadrez. Você sempre pensa três jogadas à frente.\"</div>\n                </div>\n                <div class=\"marca-body\">\n                    <div class=\"marca-effect\">\n                        <p>Você tem <strong>+2 em Místico, Vontade e Reflexo</strong> contra outros Teurgos ou criaturas que conjuram magias.</p>\n                    </div>\n                    <div class=\"marca-effect\">\n                        <p>Ao acertar um Teurgo ou conjurador com uma magia de dano, você <strong>rouba 1d6 de Éter</strong> dele.</p>\n                    </div>\n                </div>\n            "
+    },
+    {
+      "id": "teurgo-colecionador-de-teoremas",
+      "tipo": "marca-card",
+      "nome": "Colecionador de Teoremas",
+      "corpo": "\n                <div class=\"marca-header academico\">\n                    <h4>Colecionador de Teoremas</h4>\n                    <div class=\"quote\">\"Cada magia estudada é uma peça do quebra-cabeça. Você está montando o mapa do universo.\"</div>\n                </div>\n                <div class=\"marca-body\">\n                    <div class=\"marca-effect\">\n                        <p>Para cada 5 magias diferentes que você presenciou sendo conjuradas e anotou em seu grimório, ganha <strong>+1 permanente em Místico</strong>. Ao chegar em +5, essa habilidade fica supérflua.</p>\n                    </div>\n                    <div class=\"marca-effect\">\n                        <p>Ao suceder em um teste de Místico para identificar corretamente uma magia (escola, nível e efeito), recupera <strong>1 de Stamina</strong>.</p>\n                    </div>\n                </div>\n            "
+    },
+    {
+      "id": "teurgo-cicatrizes-do-fluxo",
+      "tipo": "marca-card",
+      "nome": "Cicatrizes do Fluxo",
+      "corpo": "\n                <div class=\"marca-header receptaculo\">\n                    <h4>Cicatrizes do Fluxo</h4>\n                    <div class=\"quote\">\"O poder que corre nas suas veias deixa marcas permanentes.\"</div>\n                </div>\n                <div class=\"marca-body\">\n                    <div class=\"marca-effect\">\n                        <p>Para cada 5 magias que você conjurou com Intensidade Transbordante com sucesso, ganha <strong>+1 permanente em Vontade</strong>. Ao chegar em +5, essa habilidade fica supérflua.</p>\n                    </div>\n                    <div class=\"marca-effect\">\n                        <p>Ao falhar no teste de Vontade de uma magia Transbordante, você ainda conjura a magia porém na versão contida, e recupera <strong>1 de Stamina</strong>.</p>\n                    </div>\n                </div>\n            "
+    },
+    {
+      "id": "teurgo-casca-rachada",
+      "tipo": "marca-card",
+      "nome": "Casca Rachada",
+      "corpo": "\n                <div class=\"marca-header receptaculo\">\n                    <h4>Casca Rachada</h4>\n                    <div class=\"quote\">\"Às vezes, o melhor a se fazer é deixar transbordar...\"</div>\n                </div>\n                <div class=\"marca-body\">\n                    <div class=\"marca-effect\">\n                        <p>Você pode ficar <em>Oco</em> como uma ação. Isso significa que você perde todo seu Éter, que fica em 0.</p>\n                    </div>\n                    <div class=\"marca-effect\">\n                        <p>Ao estar <em>Oco</em>, seu limite máximo de Éter negativo <strong>dobra</strong>, além disso, você tem <strong>+2 de Vontade</strong> enquanto nessa condição.</p>\n                    </div>\n                </div>\n            "
+    },
+    {
+      "id": "teurgo-devoto",
+      "tipo": "marca-card",
+      "nome": "Devoto",
+      "corpo": "\n                <div class=\"marca-header arauto\">\n                    <h4>Devoto</h4>\n                    <div class=\"quote\">\"Sua fé no pacto é absoluta. Seu patrono recompensa devoção.\"</div>\n                </div>\n                <div class=\"marca-body\">\n                    <p><em>Requer Arauto Tier 1</em></p>\n                    <div class=\"marca-effect\">\n                        <p>Para cada 3 vezes que você cumpriu uma exigência do Preço do Pacto do seu Patrono, ganha <strong>+1 permanente em Místico</strong>. Ao chegar em +5, essa habilidade fica supérflua.</p>\n                    </div>\n                    <div class=\"marca-effect\">\n                        <p>Adicionalmente, você ganha <strong>50% mais da recompensa</strong> ao cumprir uma barganha primordial.</p>\n                    </div>\n                </div>\n            "
+    },
+    {
+      "id": "teurgo-porta-voz",
+      "tipo": "marca-card",
+      "nome": "Porta-Voz",
+      "corpo": "\n                <div class=\"marca-header arauto\">\n                    <h4>Porta-Voz</h4>\n                    <div class=\"quote\">\"Você não fala com entidades. Você fala POR elas.\"</div>\n                </div>\n                <div class=\"marca-body\">\n                    <div class=\"marca-effect\">\n                        <p>Você pode servir como canal de comunicação para seu Patrono - ele pode falar através de você (com sua permissão).</p>\n                    </div>\n                    <div class=\"marca-effect\">\n                        <p><strong>+2 em Interação Social (Intimidação)</strong> quando invoca o nome/autoridade do seu Patrono.</p>\n                    </div>\n                    <div class=\"marca-effect\">\n                        <p><strong>1x/descanso longo:</strong> Pode fazer uma pergunta direta ao seu Patrono.</p>\n                    </div>\n                </div>\n            "
+    },
+    {
+      "id": "teurgo-grimorio-arcano",
+      "tipo": "tech-card",
+      "nome": "Grimório Arcano",
+      "corpo": "\n                        <div class=\"tech-card-header academico\">\n                            <h4>Grimório Arcano</h4>\n                            <span class=\"cost\">Passiva</span>\n                        </div>\n                        <div class=\"tech-card-body\">\n                            <p>Você possui um livro onde armazena grande parte do seu conhecimento arcano.</p>\n                            <ul>\n                                <li>Escolha <strong>3+Mod.Int</strong> magias em escolas que você é especializado e +1 para cada nível subsequente.</li>\n                                <li>Só pode escolher magias iguais ou abaixo do seu (nível - 1).</li>\n                                <li>Pode estudar e reordenar suas magias em um descanso longo.</li>\n                            </ul>\n                        </div>\n                    "
+    },
+    {
+      "id": "teurgo-tese-arcana",
+      "tipo": "tech-card",
+      "nome": "Tese Arcana",
+      "corpo": "\n                        <div class=\"tech-card-header academico\">\n                            <h4>Tese Arcana</h4>\n                            <span class=\"cost\">Passiva, 4 Stamina</span>\n                        </div>\n                        <div class=\"tech-card-body\">\n                            <p>Escolha uma magia que você conhece. Ela se torna sua <strong>Tese</strong>. Pode trocar em um descanso longo.</p>\n                            <ul>\n                                <li><strong>Com 4 Stamina:</strong> Modulação grátis e intensidade +1 nível.</li>\n                                <li><strong>Sem Stamina:</strong> Custa -1 Éter.</li>\n                            </ul>\n                        </div>\n                    "
+    },
+    {
+      "id": "teurgo-recuperacao-primordial",
+      "tipo": "tech-card",
+      "nome": "Recuperação Primordial",
+      "corpo": "\n                        <div class=\"tech-card-header academico\">\n                            <h4>Recuperação Primordial</h4>\n                            <span class=\"cost\">3 Ações, X Stamina</span>\n                        </div>\n                        <div class=\"tech-card-body\">\n                            <p>Você gasta 3 ações para revitalizar sua relação com as forças materializantes.</p>\n                            <p>Você compra pontos de Éter gastando pontos de Stamina, com uma proporção de <strong>2:1</strong>. (2 Stamina = 1 Éter)</p>\n                        </div>\n                    "
+    },
+    {
+      "id": "teurgo-canalizador-inato",
+      "tipo": "tech-card",
+      "nome": "Canalizador Inato",
+      "corpo": "\n                        <div class=\"tech-card-header receptaculo\">\n                            <h4>Canalizador Inato</h4>\n                            <span class=\"cost\">Passiva</span>\n                        </div>\n                        <div class=\"tech-card-body\">\n                            <p>Você possui magias gravadas em sua essência.</p>\n                            <ul>\n                                <li>Escolha <strong>2+Mod. Sabedoria</strong> magias em escolas que você é especializado e +1 para cada nível subsequente. Você só pode escolher magias iguais ou abaixo do seu <strong>(nível - 1)</strong>.</li>\n                                <li>Essas magias são <strong>permanentes</strong> e não podem ser trocadas.</li>\n                                <li>Ao conjurar magia com intensidade Forçada, custo adicional é +1 (invés de +2).</li>\n                            </ul>\n                        </div>\n                    "
+    },
+    {
+      "id": "teurgo-natureza-caotica",
+      "tipo": "tech-card",
+      "nome": "Natureza Caótica",
+      "corpo": "\n                        <div class=\"tech-card-header receptaculo\">\n                            <h4>Natureza Caótica</h4>\n                            <span class=\"cost\">Passiva</span>\n                        </div>\n                        <div class=\"tech-card-body\">\n                            <p>Ao conjurar qualquer magia, <strong>role 1d6</strong>:</p>\n                            <ul>\n                                <li><strong>1:</strong> Perde +1d4 Éter e magia perde 1 de intensidade. Se contida, falha.</li>\n                                <li><strong>2-5:</strong> A magia é canalizada normalmente.</li>\n                                <li><strong>6:</strong> Magia ganha +1 de intensidade ou +1 dado de efeito/+50% duração.</li>\n                            </ul>\n                        </div>\n                    "
+    },
+    {
+      "id": "teurgo-canalizacao-visceral",
+      "tipo": "tech-card",
+      "nome": "Canalização Visceral",
+      "corpo": "\n                        <div class=\"tech-card-header receptaculo\">\n                            <h4>Canalização Visceral</h4>\n                            <span class=\"cost\">Passiva</span>\n                        </div>\n                        <div class=\"tech-card-body\">\n                            <p>Pode conjurar qualquer magia <strong>sem o Foco apropriado</strong>, mas ao fazer isso:</p>\n                            <ul>\n                                <li>Recebe dano Primordial em Saúde igual ao <strong>nível da magia × 2</strong></li>\n                                <li>Este dano não pode ser reduzido por Armaduras ou Resistências</li>\n                            </ul>\n                        </div>\n                    "
+    },
+    {
+      "id": "teurgo-patrono-primordial",
+      "tipo": "tech-card",
+      "nome": "Patrono Primordial",
+      "corpo": "\n                        <div class=\"tech-card-header arauto\">\n                            <h4>Patrono Primordial</h4>\n                            <span class=\"cost\">Passiva</span>\n                        </div>\n                        <div class=\"tech-card-body\">\n                            <p><em>\"Você firmou um pacto com algo além da compreensão mortal.\"</em></p>\n                            <p>Escolha uma entidade primordial como seu Patrono. Esta escolha é <strong>permanente</strong>.</p>\n                            \n                            <div class=\"patrono-card\">\n                                <div class=\"patrono-header\"><h5>🌳 A Grande Árvore</h5></div>\n                                <div class=\"patrono-body\">\n                                    <div class=\"patrono-section\">\n                                        <h6>✅ Benefícios:</h6>\n                                        <ul>\n                                            <li>Magias de alteração sempre têm intensidade +1</li>\n                                            <li>1x/descanso longo: beber Seiva, recupera 1d6 Éter e remove condição mental</li>\n                                            <li>Sente presença de seres malignos e usuários de seiva em 18m</li>\n                                        </ul>\n                                    </div>\n                                    <div class=\"patrono-section\">\n                                        <h6>⚠️ Preço do Pacto:</h6>\n                                        <ul>\n                                            <li>Defenda a Grande Árvore de quem quer destruí-la</li>\n                                            <li>Propague os benefícios do uso de Seiva</li>\n                                        </ul>\n                                    </div>\n                                </div>\n                            </div>\n\n                            <div class=\"patrono-card\">\n                                <div class=\"patrono-header\"><h5>⛓️ O Trancafiado</h5></div>\n                                <div class=\"patrono-body\">\n                                    <div class=\"patrono-section\">\n                                        <h6>✅ Benefícios:</h6>\n                                        <ul>\n                                            <li>Magias de destruição causam +2 dano base</li>\n                                            <li>1x/descanso longo: dano dobrado, mas recebe metade em Primordial</li>\n                                            <li>Pode ver e falar com mortos de até 1 hora atrás</li>\n                                        </ul>\n                                    </div>\n                                    <div class=\"patrono-section\">\n                                        <h6>⚠️ Preço do Pacto:</h6>\n                                        <ul>\n                                            <li>Tente descobrir informações sobre o abismo</li>\n                                            <li>Mate almas pecadoras e espalhe a causa</li>\n                                            <li>Se oponha a todos os deuses</li>\n                                        </ul>\n                                    </div>\n                                </div>\n                            </div>\n\n                            <div class=\"patrono-card\">\n                                <div class=\"patrono-header\"><h5>🚪 O Limiar</h5></div>\n                                <div class=\"patrono-body\">\n                                    <div class=\"patrono-section\">\n                                        <h6>✅ Benefícios:</h6>\n                                        <ul>\n                                            <li>Magias de abjuração custam -1 Éter</li>\n                                            <li>1x/descanso longo: anule completamente uma magia ≤ seu nível</li>\n                                            <li>Sabe quando algo cruza entre planos em 30m</li>\n                                        </ul>\n                                    </div>\n                                    <div class=\"patrono-section\">\n                                        <h6>⚠️ Preço do Pacto:</h6>\n                                        <ul>\n                                            <li>Não permita canalização desnecessária de magia</li>\n                                            <li>Puna quem exponha o plano místico</li>\n                                            <li>Proteja o plano místico a todo custo</li>\n                                        </ul>\n                                    </div>\n                                </div>\n                            </div>\n                        </div>\n                    "
+    },
+    {
+      "id": "teurgo-magias-pactuadas",
+      "tipo": "tech-card",
+      "nome": "Magias Pactuadas",
+      "corpo": "\n                        <div class=\"tech-card-header arauto\">\n                            <h4>Magias Pactuadas</h4>\n                            <span class=\"cost\">Passiva</span>\n                        </div>\n                        <div class=\"tech-card-body\">\n                            <p>Você negociou com seres primordiais. Eles fornecem uma fração de sua essência, por um custo:</p>\n                            <ul>\n                                <li>Escolha <strong>1+Mod. Inteligência</strong> magias em escolas que você é especializado e +1 para cada nível subsequente. Você só pode escolher magias iguais ou abaixo do seu <strong>(nível - 1)</strong>.</li>\n                                <li>Trocar requer ritual de 1 hora e pagamento (componentes, Sins, sacrifício).</li>\n                                <li>Magia Pactuada em Intensidade Contida custa <strong>0 de Éter</strong>.</li>\n                            </ul>\n                        </div>\n                    "
+    },
+    {
+      "id": "teurgo-barganha-primordial",
+      "tipo": "tech-card",
+      "nome": "Barganha Primordial",
+      "corpo": "\n                        <div class=\"tech-card-header arauto\">\n                            <h4>Barganha Primordial</h4>\n                            <span class=\"cost\">1 Ação</span>\n                        </div>\n                        <div class=\"tech-card-body\">\n                            <p><strong>1x/descanso longo:</strong> Invoque as forças primordiais e proponha uma barganha:</p>\n                            <p><strong>Você pede:</strong> Recuperar 1d6 Éter, modulação grátis, informação oculta, outro benefício...</p>\n                            <p><strong>As forças pedem:</strong> Perda de Saúde/Stamina/Éter, componente, tarefa futura, outro preço...</p>\n                        </div>\n                    "
+    },
+    {
+      "id": "teurgo-maestria-arcana",
+      "tipo": "tech-card",
+      "nome": "Maestria Arcana",
+      "corpo": "\n                        <div class=\"tech-card-header academico\">\n                            <h4>Maestria Arcana</h4>\n                            <span class=\"cost\">Passiva</span>\n                        </div>\n                        <div class=\"tech-card-body\">\n                            <p>Escolha uma escola do primórdio que você é especializado. Você se torna <strong>mestre</strong> nela. Magias desta escola:</p>\n                            <ul>\n                                <li>Custam <strong>-1 Éter</strong></li>\n                                <li>Modulações dessa escola custam <strong>-1 Éter</strong></li>\n                            </ul>\n                            <p>Pode trocar a escola escolhida em um descanso longo.</p>\n                        </div>\n                    "
+    },
+    {
+      "id": "teurgo-eterno-aprendiz",
+      "tipo": "tech-card",
+      "nome": "Eterno Aprendiz",
+      "corpo": "\n                        <div class=\"tech-card-header academico\">\n                            <h4>Eterno Aprendiz</h4>\n                            <span class=\"cost\">Reação, 5 Stamina</span>\n                        </div>\n                        <div class=\"tech-card-body\">\n                            <p>Ao presenciar uma magia sendo conjurada, pode estudá-la rapidamente:</p>\n                            <ul>\n                                <li>Sabe exatamente qual magia é, sua intensidade e modulações</li>\n                                <li>Ganha <strong>+2</strong> em testes de resistência ou para dissipar</li>\n                                <li>Se especializado na escola, pode tentar aprendê-la em descanso longo (Místico CD 15 + Nível × 2)</li>\n                            </ul>\n                        </div>\n                    "
+    },
+    {
+      "id": "teurgo-surto-primordial",
+      "tipo": "tech-card",
+      "nome": "Surto Primordial",
+      "corpo": "\n                        <div class=\"tech-card-header receptaculo\">\n                            <h4>Surto Primordial</h4>\n                            <span class=\"cost\">Ação Livre, 2 Stamina</span>\n                        </div>\n                        <div class=\"tech-card-body\">\n                            <p>Declare antes de conjurar uma magia:</p>\n                            <ul>\n                                <li>A magia é canalizada com intensidade <strong>Transbordante sem custo adicional</strong> de Éter.</li>\n                                <li>Porém, o teste de Vontade é <strong>CD 18</strong> (ao invés de 15).</li>\n                            </ul>\n                        </div>\n                    "
+    },
+    {
+      "id": "teurgo-extase-destrutivo",
+      "tipo": "tech-card",
+      "nome": "Êxtase Destrutivo",
+      "corpo": "\n                        <div class=\"tech-card-header receptaculo\">\n                            <h4>Êxtase Destrutivo</h4>\n                            <span class=\"cost\">Passiva</span>\n                        </div>\n                        <div class=\"tech-card-body\">\n                            <p><strong>Ao ter 50% de Éter ou abaixo:</strong></p>\n                            <ul>\n                                <li>Destruição: +1d6 dano</li>\n                                <li>Abjuração: +50% efeito ou duração</li>\n                                <li>Alteração: +1 alvo ou +50% duração</li>\n                                <li>Conhecimento: +50% alcance ou 1 modulação grátis</li>\n                            </ul>\n                            <p><strong>Ao ter 0 de Éter ou abaixo:</strong> Efeitos dobrados!</p>\n                        </div>\n                    "
+    },
+    {
+      "id": "teurgo-ritual",
+      "tipo": "tech-card",
+      "nome": "Ritual",
+      "corpo": "\n                        <div class=\"tech-card-header arauto\">\n                            <h4>Ritual</h4>\n                            <span class=\"cost\">10 minutos, 5 Stamina</span>\n                        </div>\n                        <div class=\"tech-card-body\">\n                            <p>Você pode ritualizar uma magia, aumentando:</p>\n                            <ul>\n                                <li><strong>Duração:</strong> 1 hora (independente da original)</li>\n                                <li><strong>Alvos:</strong> Todos presentes no ritual</li>\n                            </ul>\n                            <p>Dura 1 hora ou até você estar <em>Oco</em> ou <em>Morrendo</em>. Apenas 1 Ritual por vez.</p>\n                        </div>\n                    "
+    },
+    {
+      "id": "teurgo-invocar-ser",
+      "tipo": "tech-card",
+      "nome": "Invocar Ser",
+      "corpo": "\n                        <div class=\"tech-card-header arauto\">\n                            <h4>Invocar Ser</h4>\n                            <span class=\"cost\">2 Ações, 3 Stamina</span>\n                        </div>\n                        <div class=\"tech-card-body\">\n                            <p>Você invoca uma criatura mística que te obedece. Se possui patrono, escolha a criatura respectiva dele:</p>\n                            <div class=\"ser-card\">\n                                <h6>🌳 Grutto (Grande Árvore)</h6>\n                                <div class=\"ser-stats\">\n                                    <span>HP: 15+(nível×2)</span>\n                                    <span>Evasão: 12+Int</span>\n                                    <span>Dano: 1d6+Int Primordial</span>\n                                </div>\n                                <p style=\"font-size: 0.8rem; margin: 0;\">Seiva Dourada: 1d10+Int Biológico em 3m</p>\n                            </div>\n                            <div class=\"ser-card\">\n                                <h6>⛓️ Mortto (Trancafiado)</h6>\n                                <div class=\"ser-stats\">\n                                    <span>HP: 10+(nível×2)</span>\n                                    <span>Evasão: 10+Int</span>\n                                    <span>Dano: 1d8+Int Primordial</span>\n                                </div>\n                                <p style=\"font-size: 0.8rem; margin: 0;\">Atormentar: +1 dano contra alvo (Vontade)</p>\n                            </div>\n                            <div class=\"ser-card\">\n                                <h6>🚪 Terro (Limiar)</h6>\n                                <div class=\"ser-stats\">\n                                    <span>HP: 20+(nível×2)</span>\n                                    <span>Evasão: 14+Int</span>\n                                    <span>Dano: 1d4+Int Primordial</span>\n                                </div>\n                                <p style=\"font-size: 0.8rem; margin: 0;\">Chamar Atenção: Força alvo a atacá-lo</p>\n                            </div>\n                            <div class=\"ser-card\">\n                                <h6>✨ Crikko (Genérico)</h6>\n                                <div class=\"ser-stats\">\n                                    <span>HP: 10+(nível×2)</span>\n                                    <span>Evasão: 10+Int</span>\n                                    <span>Dano: 1d6+Int Primordial</span>\n                                </div>\n                                <p style=\"font-size: 0.8rem; margin: 0;\">Movimento: 7,5 m. Um ser místico pequeno aleatório aparece.</p>\n                            </div>\n                            <p style=\"font-size: 0.85rem; color: var(--text-muted); margin-top: 0.5rem;\">O Ser age no seu turno com 2 ações. Dura 10 min. Ao ser destruído: 1d4 dano Primordial em você.</p>\n                        </div>\n                    "
+    },
+    {
+      "id": "teurgo-teorema-absoluto",
+      "tipo": "ultimate-card",
+      "nome": "📖 Teorema Absoluto",
+      "corpo": "\n                    <div class=\"ultimate-header academico\">\n                        <h4>📖 Teorema Absoluto</h4>\n                        <div>\n                            <span class=\"ultimate-badge\">ULTIMATE</span>\n                            <span style=\"margin-left: 0.5rem; color: var(--text-muted); font-size: 0.85rem;\">X Ações, 5 Stamina</span>\n                        </div>\n                    </div>\n                    <div class=\"ultimate-quote\">\"O místico, eu conheço-o melhor que eu mesmo.\"</div>\n                    <div class=\"ultimate-body\">\n                        <p>Você atinge a compreensão perfeita das forças primordiais. Por um breve momento, você não apenas entende a magia - você a <strong>controla absolutamente</strong>.</p>\n                        \n                        <div class=\"sub-ability\">\n                            <strong>Conjuração Impecável</strong> (1 Ação)<br>\n                            Sua próxima magia: Intensidade Transbordante sem custo/teste, todas as modulações custam 0, dano/cura máximos, alvos rolam com desvantagem.\n                        </div>\n                        <div class=\"sub-ability\">\n                            <strong>Anulação Suprema</strong> (Reação)<br>\n                            Escolha uma magia sendo conjurada: efeito completamente anulado (qualquer nível), efeitos constantes suprimidos por 1 hora, criaturas invocadas banidas, conjurador fica <em>Desorientado</em>.\n                        </div>\n                        <div class=\"sub-ability\">\n                            <strong>Roubo Arcano</strong> (Reação)<br>\n                            Escolha uma magia sendo conjurada: você canaliza exatamente a mesma magia como reação. Escolha novos alvos, intensidade e modulações.\n                        </div>\n                    </div>\n                "
+    },
+    {
+      "id": "teurgo-receptaculo-perfeito",
+      "tipo": "ultimate-card",
+      "nome": "🌀 Receptáculo Perfeito",
+      "corpo": "\n                    <div class=\"ultimate-header receptaculo\">\n                        <h4>🌀 Receptáculo Perfeito</h4>\n                        <div>\n                            <span class=\"ultimate-badge\">ULTIMATE</span>\n                            <span style=\"margin-left: 0.5rem; color: var(--text-muted); font-size: 0.85rem;\">3 Ações, 5 Stamina</span>\n                        </div>\n                    </div>\n                    <div class=\"ultimate-quote\">\"Eu sou o portal. A ponte. O Receptáculo Perfeito.\"</div>\n                    <div class=\"ultimate-body\">\n                        <p>Você se abre completamente para as forças do outro lado. Por um momento, você é um canal puro para o primórdio. <strong>Duração: 3 rodadas.</strong></p>\n                        \n                        <h5>✨ Energia Pura</h5>\n                        <ul>\n                            <li>Todas as suas magias têm <strong>intensidade +1</strong></li>\n                            <li>Nova intensidade: <strong>Transbordante+</strong> (+1 dado de efeito além do normal)</li>\n                        </ul>\n\n                        <h5>♾️ Canalização Infinita</h5>\n                        <ul>\n                            <li>Ao conjurar uma magia, conjure outra de graça com intensidade Normal</li>\n                            <li>Pode conjurar magias mesmo estando <em>Oco</em></li>\n                        </ul>\n\n                        <h5>⚡ Receptáculo Instável</h5>\n                        <p>No início de cada turno, role 1d6: 1-2 = perde 1d6 Éter; 3-6 = consegue conter a magia.</p>\n                        \n                        <div class=\"ultimate-cost\">\n                            <h5>💀 O Custo</h5>\n                            <p>Ao ativar: perca imediatamente <strong>2d6 de Éter</strong>.</p>\n                            <p>Ao fim: Se <em>Oco</em>, role Vontade CD 15. Falha = 2d8+5 dano Primordial. Se entrar em <em>Morrendo</em>: <strong>morte instantânea + explosão 4d10+15 Primordial em 9m</strong>. Sucesso = <em>Exausto</em> até fim do combate.</p>\n                        </div>\n                    </div>\n                "
+    },
+    {
+      "id": "teurgo-manifestacao-do-patrono",
+      "tipo": "ultimate-card",
+      "nome": "🔱 Manifestação do Patrono",
+      "corpo": "\n                    <div class=\"ultimate-header arauto\">\n                        <h4>🔱 Manifestação do Patrono</h4>\n                        <div>\n                            <span class=\"ultimate-badge\">ULTIMATE</span>\n                            <span style=\"margin-left: 0.5rem; color: var(--text-muted); font-size: 0.85rem;\">3 Ações, 5 Stamina</span>\n                        </div>\n                    </div>\n                    <div class=\"ultimate-quote\">\"O Pacto final está selado. Presenciem, meu patrono.\"</div>\n                    <div class=\"ultimate-body\">\n                        <p>Você invoca uma fração verdadeira do seu patrono. O mundo treme enquanto seu patrono se materializa.</p>\n\n                        <div class=\"patrono-card\">\n                            <div class=\"patrono-header\"><h5>🌳 A Grande Árvore</h5></div>\n                            <div class=\"patrono-body\">\n                                <p><strong>Área:</strong> 12m raio | <strong>Duração:</strong> 3 Rodadas</p>\n                                <p><strong>Instantâneo:</strong> Aliados curados 3d8+Int, condições removidas. Inimigos: Fortitude CD 18 ou <em>Enraizados</em> + <em>Envenenados</em>.</p>\n                                <p><strong>Contínuo:</strong> Aliados regeneram 1d8/turno, +2 em todos os testes. Inimigos: terreno difícil, -2 em todos os testes.</p>\n                            </div>\n                        </div>\n\n                        <div class=\"patrono-card\">\n                            <div class=\"patrono-header\"><h5>⛓️ O Trancafiado</h5></div>\n                            <div class=\"patrono-body\">\n                                <p><strong>Área:</strong> 18m visão | <strong>Duração:</strong> Instantâneo + 3 rodadas</p>\n                                <p><strong>Instantâneo:</strong> 4d10+Int dano Primordial. Criaturas a 0 HP têm almas arrastadas (não ressuscitam). Vontade CD 18 ou <em>Amedrontados</em>.</p>\n                                <p><strong>Contínuo:</strong> Escolha 1 criatura/turno: Reflexo CD 15 ou <em>Enraizada</em> + 2d6 Primordial/turno.</p>\n                            </div>\n                        </div>\n\n                        <div class=\"patrono-card\">\n                            <div class=\"patrono-header\"><h5>🚪 O Limiar</h5></div>\n                            <div class=\"patrono-body\">\n                                <p><strong>Área:</strong> 12m raio | <strong>Duração:</strong> 1 Rodada</p>\n                                <p><strong>Instantâneo:</strong> Todas as magias ativas anuladas, criaturas invocadas banidas permanentemente, ninguém (exceto aliados) pode conjurar por 2 rodadas. Até 3 criaturas: Vontade CD 20 ou <em>Banidas</em> (1 min ou permanente em falha crítica).</p>\n                                <p><strong>Contínuo:</strong> Criaturas escolhidas devem passar Vontade CD 20 para conjurar até fim do combate.</p>\n                            </div>\n                        </div>\n                        \n                        <div class=\"ultimate-cost\">\n                            <h5>💀 O Preço</h5>\n                            <p>Cada patrono exige algo específico após a manifestação. Ignorar resulta na perda gradual dos poderes.</p>\n                        </div>\n                    </div>\n                "
+    }
+  ]
+}

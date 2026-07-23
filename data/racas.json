@@ -1,0 +1,61 @@
+{
+  "source": "racas",
+  "cards": [
+    {
+      "id": "raca-humano",
+      "tag": "a",
+      "tipo": "raca-card",
+      "opentag": "<a href=\"racas/humano.html\" class=\"raca-card\">",
+      "nome": "Humano",
+      "corpo": "\n                    <div class=\"raca-image\">\n                        <img src=\"../images/racas/humano.png\" alt=\"Humano\">\n                    </div>\n                    <div class=\"raca-content\">\n                        <h3>Humano</h3>\n                        <p class=\"tagline\">Adaptáveis, numerosos e determinados.</p>\n                        <div class=\"raca-stats\">\n                            <span class=\"raca-stat positive\">+1 em dois atributos</span>\n                            <span class=\"raca-stat\">9m mov.</span>\n                        </div>\n                        <div class=\"raca-variants\">\n                            <strong>Estilos:</strong> Simples, Estudioso, Rebelde, Popular\n                        </div>\n                    </div>\n                "
+    },
+    {
+      "id": "raca-anao",
+      "tag": "a",
+      "tipo": "raca-card",
+      "opentag": "<a href=\"racas/anao.html\" class=\"raca-card\">",
+      "nome": "Anão",
+      "corpo": "\n                    <div class=\"raca-image\">\n                        <img src=\"../images/racas/anao.png\" alt=\"Anão\">\n                    </div>\n                    <div class=\"raca-content\">\n                        <h3>Anão</h3>\n                        <p class=\"tagline\">Robustos e inflexíveis como a rocha.</p>\n                        <div class=\"raca-stats\">\n                            <span class=\"raca-stat positive\">+2 Con</span>\n                            <span class=\"raca-stat negative\">-1 Des</span>\n                            <span class=\"raca-stat\">7,5m mov.</span>\n                        </div>\n                        <div class=\"raca-variants\">\n                            <strong>Clãs:</strong> Krichama, Caxon\n                        </div>\n                    </div>\n                "
+    },
+    {
+      "id": "raca-dryad",
+      "tag": "a",
+      "tipo": "raca-card",
+      "opentag": "<a href=\"racas/dryad.html\" class=\"raca-card\">",
+      "nome": "Dryad",
+      "corpo": "\n                    <div class=\"raca-image\">\n                        <img src=\"../images/racas/dryad.png\" alt=\"Dryad\">\n                    </div>\n                    <div class=\"raca-content\">\n                        <h3>Dryad</h3>\n                        <p class=\"tagline\">Árvore e carne entrelaçadas.</p>\n                        <div class=\"raca-stats\">\n                            <span class=\"raca-stat positive\">+2 Des/Con</span>\n                            <span class=\"raca-stat negative\">-1 Sab</span>\n                            <span class=\"raca-stat\">10,5m mov.</span>\n                        </div>\n                        <div class=\"raca-variants\">\n                            <strong>Subespécies:</strong> Florescura, Cascaferro\n                        </div>\n                    </div>\n                "
+    },
+    {
+      "id": "raca-gruto",
+      "tag": "a",
+      "tipo": "raca-card",
+      "opentag": "<a href=\"racas/gruto.html\" class=\"raca-card\">",
+      "nome": "Gruto",
+      "corpo": "\n                    <div class=\"raca-image\">\n                        <img src=\"../images/racas/gruto.png\" alt=\"Gruto\">\n                    </div>\n                    <div class=\"raca-content\">\n                        <h3>Gruto</h3>\n                        <p class=\"tagline\">Humanoides reptilianos ancestrais.</p>\n                        <div class=\"raca-stats\">\n                            <span class=\"raca-stat positive\">+2 For/Con</span>\n                            <span class=\"raca-stat negative\">-1 Int</span>\n                            <span class=\"raca-stat\">9m mov.</span>\n                        </div>\n                        <div class=\"raca-variants\">\n                            <strong>Linhagens:</strong> Rokhan, Skal'ri\n                        </div>\n                    </div>\n                "
+    },
+    {
+      "id": "raca-corrompido",
+      "tag": "a",
+      "tipo": "raca-card",
+      "opentag": "<a href=\"racas/corrompido.html\" class=\"raca-card\">",
+      "nome": "Corrompido",
+      "corpo": "\n                    <div class=\"raca-image\">\n                        <img src=\"../images/racas/corrompido.png\" alt=\"Corrompido\">\n                    </div>\n                    <div class=\"raca-content\">\n                        <h3>Corrompido</h3>\n                        <p class=\"tagline\">Marcados pelas forças primordiais.</p>\n                        <div class=\"raca-stats\">\n                            <span class=\"raca-stat positive\">+2 Int/Sab</span>\n                            <span class=\"raca-stat negative\">-1 Con</span>\n                            <span class=\"raca-stat\">9m mov.</span>\n                        </div>\n                        <div class=\"raca-variants\">\n                            <strong>Graus:</strong> Tocado, Alterado, Consumido\n                        </div>\n                    </div>\n                "
+    },
+    {
+      "id": "raca-automato",
+      "tag": "a",
+      "tipo": "raca-card",
+      "opentag": "<a href=\"racas/automato.html\" class=\"raca-card\">",
+      "nome": "Autômato",
+      "corpo": "\n                    <div class=\"raca-image\">\n                        <img src=\"../images/racas/automato.png\" alt=\"Autômato\">\n                    </div>\n                    <div class=\"raca-content\">\n                        <h3>Autômato</h3>\n                        <p class=\"tagline\">Seres antigos de tecnologia esquecida.</p>\n                        <div class=\"raca-stats\">\n                            <span class=\"raca-stat positive\">+2 Int</span>\n                            <span class=\"raca-stat negative\">-1 Sab</span>\n                            <span class=\"raca-stat\">9m mov.</span>\n                        </div>\n                        <div class=\"raca-variants\">\n                            <strong>Sistema:</strong> Tecnologias Tier 1-5\n                        </div>\n                    </div>\n                "
+    },
+    {
+      "id": "raca-inseto",
+      "tag": "a",
+      "tipo": "raca-card",
+      "opentag": "<a href=\"racas/inseto.html\" class=\"raca-card\">",
+      "nome": "Inseto",
+      "corpo": "\n                    <div class=\"raca-image\">\n                        <img src=\"../images/racas/inseto.png\" alt=\"Inseto\">\n                    </div>\n                    <div class=\"raca-content\">\n                        <h3>Inseto</h3>\n                        <p class=\"tagline\">Insetos humanoides inteligentes.</p>\n                        <div class=\"raca-stats\">\n                            <span class=\"raca-stat\">Varia por subespécie</span>\n                        </div>\n                        <div class=\"raca-variants\">\n                            <strong>Subespécies:</strong> Besouro, Louva-a-Deus, Barata\n                        </div>\n                    </div>\n                "
+    }
+  ]
+}

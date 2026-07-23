@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Condições - Khalkaria RPG</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400&family=UnifrakturMaguntia&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .condicao-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1.25rem;
+            margin-bottom: 1rem;
+            border-left: 4px solid var(--gold-dark);
+            scroll-margin-top: 80px;
+        }
+        .condicao-card h4 {
+            color: var(--gold);
+            font-family: var(--font-heading);
+            margin: 0 0 0.5rem 0;
+            font-size: 1.15rem;
+        }
+        .condicao-card p, .condicao-card li {
+            margin: 0.3rem 0;
+            color: var(--text-secondary);
+        }
+        .condicao-card ul {
+            margin: 0.5rem 0;
+            padding-left: 1.25rem;
+        }
+        .condicao-card .formula {
+            background: var(--bg-tertiary);
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            font-family: monospace;
+            margin: 0.5rem 0;
+            text-align: center;
+            color: var(--gold-light);
+        }
+        .cat-critico .condicao-card { border-left-color: #f87171; }
+        .cat-combate .condicao-card { border-left-color: #fbbf24; }
+        .cat-movimento .condicao-card { border-left-color: #60a5fa; }
+        .cat-mental .condicao-card { border-left-color: #c084fc; }
+        .cat-fisico .condicao-card { border-left-color: #4ade80; }
+        .cat-sensorial .condicao-card { border-left-color: #2dd4bf; }
+        
+        .condicoes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <button class="menu-toggle">☰ Menu</button>
+    
+    <div class="app-container">
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <a href="../index.html" class="sidebar-logo">Khalkaria</a>
+                <div class="sidebar-subtitle">Sistema de Regras</div>
+                <div class="sidebar-ornament"><span>◆</span></div>
+            </div>
+            <div class="nav-section">
+                <div class="nav-section-title">Fundamentos</div>
+                <a href="../index.html" class="nav-link">🏠 Início</a>
+                <a href="sistema.html" class="nav-link">📜 Sistema Base</a>
+                <a href="condicoes.html" class="nav-link active">⚡ Condições</a>
+                <a href="magias.html" class="nav-link">✨ Magias</a>
+                <a href="bazar.html" class="nav-link">💰 O Bazar</a>
+            </div>
+            <div class="nav-section">
+                <div class="nav-section-title">Criação de Personagem</div>
+                <a href="criacao.html" class="nav-link">🎭 Criação</a>
+                <a href="racas.html" class="nav-link">👤 Raças</a>
+                <a href="classes.html" class="nav-link">⚔️ Classes</a>
+                <a href="origens.html" class="nav-link">📜 Origens</a>
+                <a href="limiar.html" class="nav-link">🌟 O Limiar</a>
+            </div>
+            <div class="nav-section">
+                <div class="nav-section-title">Classes</div>
+                <a href="classes/espadachim.html" class="nav-link nav-link-sub">⚔️ Espadachim</a>
+                <a href="classes/monge.html" class="nav-link nav-link-sub">👊 Monge</a>
+                <a href="classes/batedor.html" class="nav-link nav-link-sub">🏹 Batedor</a>
+                <a href="classes/alquimista.html" class="nav-link nav-link-sub">⚗️ Alquimista</a>
+                <a href="classes/teurgo.html" class="nav-link nav-link-sub">✨ Teurgo</a>
+                <a href="classes/artilheiro.html" class="nav-link nav-link-sub">💥 Artilheiro</a>
+                <a href="classes/brutalista.html" class="nav-link nav-link-sub">🪓 Brutalista</a>
+            </div>
+        </nav>
+        
+        <main class="main-content">
+            <h1>⚡ Condições<span class="ornament">◆ ◆ ◆</span></h1>
+            
+            <!-- ÍNDICE -->
+            <div class="sistema-index" id="indice">
+                <h2>📋 Navegação Rápida</h2>
+                <div class="index-grid">
+                    <div class="index-category">
+                        <div class="index-category-title"><span class="cat-icon">💀</span> Críticas</div>
+                        <div class="index-links">
+                            <a href="#morrendo">Morrendo</a>
+                            <a href="#inconsciente">Inconsciente</a>
+                            <a href="#exaurido">Exaurido</a>
+                            <a href="#oco">Oco</a>
+                            <a href="#exaustao">Exaustão 1-5</a>
+                            <a href="#desnutrido">Desnutrido X</a>
+                        </div>
+                    </div>
+                    <div class="index-category">
+                        <div class="index-category-title"><span class="cat-icon">⚔️</span> Combate</div>
+                        <div class="index-links">
+                            <a href="#exposto">Exposto</a>
+                            <a href="#sangramento">Sangramento X</a>
+                            <a href="#atordoado">Atordoado</a>
+                            <a href="#desorientado">Desorientado</a>
+                            <a href="#caido">Caído</a>
+                            <a href="#desprevenido">Desprevenido</a>
+                        </div>
+                    </div>
+                    <div class="index-category">
+                        <div class="index-category-title"><span class="cat-icon">🦶</span> Movimento</div>
+                        <div class="index-links">
+                            <a href="#sobrepeso-leve">Sobrepeso Leve</a>
+                            <a href="#sobrepeso-extremo">Sobrepeso Extremo</a>
+                            <a href="#lento">Lento X</a>
+                            <a href="#enraizado">Enraizado</a>
+                        </div>
+                    </div>
+                    <div class="index-category">
+                        <div class="index-category-title"><span class="cat-icon">🧠</span> Mentais</div>
+                        <div class="index-links">
+                            <a href="#confuso">Confuso</a>
+                            <a href="#amedrontado">Amedrontado</a>
+                            <a href="#enfeiticado">Enfeitiçado</a>
+                            <a href="#embriagado">Embriagado</a>
+                        </div>
+                    </div>
+                    <div class="index-category">
+                        <div class="index-category-title"><span class="cat-icon">🩸</span> Físicas</div>
+                        <div class="index-links">
+                            <a href="#envenenamento">Envenenamento</a>
+                            <a href="#em-chamas">Em Chamas</a>
+                            <a href="#enjoado">Enjoado</a>
+                            <a href="#paralisado">Paralisado</a>
+                            <a href="#adormecido">Adormecido</a>
+                        </div>
+                    </div>
+                    <div class="index-category">
+                        <div class="index-category-title"><span class="cat-icon">👁️</span> Sensoriais</div>
+                        <div class="index-links">
+                            <a href="#cego">Cego</a>
+                            <a href="#surdo">Surdo</a>
+                            <a href="#invisivel">Invisível</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- ===================== CONDIÇÕES CRÍTICAS ===================== -->
+            <section class="category-section cat-critico" id="criticas">
+                <div class="category-header">
+                    <div class="category-icon" style="background: linear-gradient(135deg, #3a1a1a, #1f0d0d); color: #f87171;">💀</div>
+                    <h2>Condições Críticas</h2>
+                </div>
+                
+                <div class="condicoes-grid">
+                    {{CAT_criticas}}
+                </div>
+            </section>
+            
+            <!-- ===================== CONDIÇÕES DE COMBATE ===================== -->
+            <section class="category-section cat-combate" id="combate">
+                <div class="category-header">
+                    <div class="category-icon" style="background: linear-gradient(135deg, #3a2a1a, #1f150d); color: #fbbf24;">⚔️</div>
+                    <h2>Condições de Combate</h2>
+                </div>
+                
+                <div class="condicoes-grid">
+                    {{CAT_combate}}
+                </div>
+            </section>
+            
+            <!-- ===================== CONDIÇÕES DE MOVIMENTO ===================== -->
+            <section class="category-section cat-movimento" id="movimento">
+                <div class="category-header">
+                    <div class="category-icon" style="background: linear-gradient(135deg, #1a2a3a, #0d151f); color: #60a5fa;">🦶</div>
+                    <h2>Condições de Movimento</h2>
+                </div>
+                
+                <div class="condicoes-grid">
+                    {{CAT_movimento}}
+                </div>
+            </section>
+            
+            <!-- ===================== CONDIÇÕES MENTAIS ===================== -->
+            <section class="category-section cat-mental" id="mentais">
+                <div class="category-header">
+                    <div class="category-icon" style="background: linear-gradient(135deg, #2a1a3a, #150d1f); color: #c084fc;">🧠</div>
+                    <h2>Condições Mentais</h2>
+                </div>
+                
+                <div class="condicoes-grid">
+                    {{CAT_mentais}}
+                </div>
+            </section>
+            
+            <!-- ===================== CONDIÇÕES FÍSICAS ===================== -->
+            <section class="category-section cat-fisico" id="fisicas">
+                <div class="category-header">
+                    <div class="category-icon" style="background: linear-gradient(135deg, #1a3a1a, #0d1f0d); color: #4ade80;">🩸</div>
+                    <h2>Condições Físicas</h2>
+                </div>
+                
+                <div class="condicoes-grid">
+                    {{CAT_fisicas}}
+                </div>
+            </section>
+            
+            <!-- ===================== CONDIÇÕES SENSORIAIS ===================== -->
+            <section class="category-section cat-sensorial" id="sensoriais">
+                <div class="category-header">
+                    <div class="category-icon" style="background: linear-gradient(135deg, #1a3a3a, #0d1f1f); color: #2dd4bf;">👁️</div>
+                    <h2>Condições Sensoriais</h2>
+                </div>
+                
+                <div class="condicoes-grid">
+                    {{CAT_sensoriais}}
+                </div>
+            </section>
+            
+            <!-- VOLTAR -->
+            <div style="text-align: center; margin-top: 2rem;">
+                <a href="sistema.html" class="keyword-link">← Voltar ao Sistema Base</a>
+            </div>
+            
+        </main>
+    </div>
+    
+    <button class="back-to-top" id="backToTop" title="Voltar ao topo">↑</button>
+    
+    <script src="../js/main.js"></script>
+    <script>
+        const backToTop = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => {
+            backToTop.classList.toggle('visible', window.scrollY > 500);
+        });
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+    </script>
+    <script src="../js/utils.js"></script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+{
+  "source": "racas/inseto",
+  "cards": [
+    {
+      "id": "inseto-garras-naturais",
+      "tag": "div",
+      "tipo": "trait-card",
+      "opentag": "<div class=\"trait-card\">",
+      "nome": "Garras Naturais",
+      "corpo": "\n                <h4>Garras Naturais</h4>\n                <p>Você pode escalar paredes, desde que use todos os seus membros.</p>\n            "
+    },
+    {
+      "id": "inseto-antena-sensorial",
+      "tag": "div",
+      "tipo": "trait-card",
+      "opentag": "<div class=\"trait-card\">",
+      "nome": "Antena Sensorial",
+      "corpo": "\n                <h4>Antena Sensorial</h4>\n                <p>Pode se comunicar com outros insetos remotamente.</p>\n            "
+    },
+    {
+      "id": "inseto-segregado",
+      "tag": "div",
+      "tipo": "trait-card",
+      "opentag": "<div class=\"trait-card\">",
+      "nome": "Segregado",
+      "corpo": "\n                <h4>Segregado</h4>\n                <p>Você sofre -2 em testes de interação social (exceto intimidação) com todas as raças a não ser insetos.</p>\n            "
+    },
+    {
+      "id": "inseto-besouro",
+      "tag": "div",
+      "tipo": "subspecie-card",
+      "opentag": "<div class=\"subspecie-card\">",
+      "nome": "🪲 Besouro",
+      "corpo": "\n                    <h4>🪲 Besouro</h4>\n                    <div class=\"subspecie-stats\">\n                        <div class=\"subspecie-stat\">\n                            <div class=\"label\">Atributos</div>\n                            <div class=\"value\">+2 Con, -1 Int</div>\n                        </div>\n                        <div class=\"subspecie-stat\">\n                            <div class=\"label\">Movimento</div>\n                            <div class=\"value\">7,5m</div>\n                        </div>\n                        <div class=\"subspecie-stat\">\n                            <div class=\"label\">Perícia</div>\n                            <div class=\"value\">Fortitude ou Defender</div>\n                        </div>\n                    </div>\n                    <div class=\"subspecie-traits\">\n                        <h5>Características de Subespécie</h5>\n                        <ul>\n                            <li>2 Armadura (Ar)</li>\n                            <li>Escolha um tipo de dano atípico (Exceto: Força e Primordial), você possui Ar(3). Pode alterar o tipo de dano em descansos curtos.</li>\n                            <li>Manobras de Combate possuem +2 Movimento.</li>\n                            <li>É naturalmente amigo de outros besouros.</li>\n                        </ul>\n                    </div>\n                    <div class=\"subspecie-physical\">\n                        <strong>Vida:</strong> 50-80 anos · <strong>Altura:</strong> 1,60m - 2,40m · <strong>Peso:</strong> 80kg - 120kg\n                    </div>\n                "
+    },
+    {
+      "id": "inseto-louva-a-deus",
+      "tag": "div",
+      "tipo": "subspecie-card",
+      "opentag": "<div class=\"subspecie-card\">",
+      "nome": "🦗 Louva-a-Deus",
+      "corpo": "\n                    <h4>🦗 Louva-a-Deus</h4>\n                    <div class=\"subspecie-stats\">\n                        <div class=\"subspecie-stat\">\n                            <div class=\"label\">Atributos</div>\n                            <div class=\"value\">+2 Sab, -1 Con</div>\n                        </div>\n                        <div class=\"subspecie-stat\">\n                            <div class=\"label\">Movimento</div>\n                            <div class=\"value\">9m</div>\n                        </div>\n                        <div class=\"subspecie-stat\">\n                            <div class=\"label\">Perícia</div>\n                            <div class=\"value\">Vontade ou Iniciativa</div>\n                        </div>\n                    </div>\n                    <div class=\"subspecie-traits\">\n                        <h5>Características de Subespécie</h5>\n                        <ul>\n                            <li>Você enxerga perfeitamente no escuro.</li>\n                            <li>Você pode voar até 1,5m por rodada.</li>\n                            <li>Pode atacar com suas garras 1 vez por combate, causando 1d6+Destreza de dano perfurante. Esse ataque nunca tem penalidade de múltiplos ataques.</li>\n                            <li>É naturalmente amigo de outros Louva-a-Deuses.</li>\n                        </ul>\n                    </div>\n                    <div class=\"subspecie-physical\">\n                        <strong>Vida:</strong> 80-120 anos · <strong>Altura:</strong> 1,40m - 2,20m · <strong>Peso:</strong> 50kg - 80kg\n                    </div>\n                "
+    },
+    {
+      "id": "inseto-barata",
+      "tag": "div",
+      "tipo": "subspecie-card",
+      "opentag": "<div class=\"subspecie-card\">",
+      "nome": "🪳 Barata",
+      "corpo": "\n                    <h4>🪳 Barata</h4>\n                    <div class=\"subspecie-stats\">\n                        <div class=\"subspecie-stat\">\n                            <div class=\"label\">Atributos</div>\n                            <div class=\"value\">+2 Des, -1 Sab</div>\n                        </div>\n                        <div class=\"subspecie-stat\">\n                            <div class=\"label\">Movimento</div>\n                            <div class=\"value\">10,5m</div>\n                        </div>\n                        <div class=\"subspecie-stat\">\n                            <div class=\"label\">Perícia</div>\n                            <div class=\"value\">Furtividade ou Crime</div>\n                        </div>\n                    </div>\n                    <div class=\"subspecie-traits\">\n                        <h5>Características de Subespécie</h5>\n                        <ul>\n                            <li>Ao ficar com 0 de vida, recupera 1 de vida. (1x/Descanso Longo)</li>\n                            <li>Recupera 1d4 de vida por rodada se estiver escondido.</li>\n                            <li>Usa 2 ações (em vez de 3) para se esconder.</li>\n                            <li>Você é imune a Envenenamento.</li>\n                        </ul>\n                    </div>\n                    <div class=\"subspecie-physical\">\n                        <strong>Vida:</strong> 100-140 anos · <strong>Altura:</strong> 1,40m - 2,00m · <strong>Peso:</strong> 40kg - 90kg\n                    </div>\n                "
+    }
+  ]
+}

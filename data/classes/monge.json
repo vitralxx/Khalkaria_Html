@@ -1,0 +1,239 @@
+{
+  "classe": "monge",
+  "cards": [
+    {
+      "id": "monge-punhos-de-ferro",
+      "tipo": "technique-card",
+      "nome": "Punhos de Ferro",
+      "corpo": "\n                    <h4>Punhos de Ferro</h4>\n                    <span class=\"tech-meta\">Passiva</span>\n                    <p>Seus ataques desarmados causam 1d8 de dano (ao invés de 1d4).</p>\n                "
+    },
+    {
+      "id": "monge-evasivo",
+      "tipo": "technique-card",
+      "nome": "Evasivo",
+      "corpo": "\n                    <h4>Evasivo</h4>\n                    <span class=\"tech-meta\">Passiva • 1 Fluxo</span>\n                    <p>Adicione seu Fluxo a sua evasão, tanto ativa quanto passiva.</p>\n                "
+    },
+    {
+      "id": "monge-passo-do-vento",
+      "tipo": "technique-card",
+      "nome": "Passo do Vento",
+      "corpo": "\n                    <h4>Passo do Vento</h4>\n                    <span class=\"tech-meta\">Passiva • 2 Fluxo</span>\n                    <p>Você não provoca ataques de oportunidade.</p>\n                "
+    },
+    {
+      "id": "monge-palma-pura",
+      "tipo": "technique-card",
+      "nome": "Palma Pura",
+      "corpo": "\n                    <h4>Palma Pura</h4>\n                    <span class=\"tech-meta\">Passiva • 3 Fluxo</span>\n                    <p>Seus ataques desarmados ignoram Armadura (Ar).</p>\n                "
+    },
+    {
+      "id": "monge-respiracao-do-monge",
+      "tipo": "technique-card",
+      "nome": "Respiração do Monge",
+      "corpo": "\n                    <h4>Respiração do Monge</h4>\n                    <span class=\"tech-meta\">Passiva • 3 Fluxo</span>\n                    <p>Recupera (Nível)d4 de Stamina toda rodada que não atacar ninguém. Só funciona em combate.</p>\n                "
+    },
+    {
+      "id": "monge-explosao",
+      "tipo": "technique-card",
+      "nome": "Explosão",
+      "corpo": "\n                    <h4>Explosão</h4>\n                    <span class=\"tech-meta\">Passiva • 4 Fluxo</span>\n                    <p>Seu movimento é dobrado.</p>\n                "
+    },
+    {
+      "id": "monge-silencio-interior",
+      "tipo": "technique-card",
+      "nome": "Silêncio Interior",
+      "corpo": "\n                    <h4>Silêncio Interior</h4>\n                    <span class=\"tech-meta\">Passiva • 5 Fluxo</span>\n                    <p>Você tem vantagem em todos testes de resistência.</p>\n                "
+    },
+    {
+      "id": "monge-andar-nas-paredes",
+      "tipo": "technique-card",
+      "nome": "Andar nas Paredes",
+      "corpo": "\n                    <h4>Andar nas Paredes</h4>\n                    <span class=\"tech-meta\">Passiva • 5 Fluxo</span>\n                    <p>Você pode se mover em superfícies verticais como se fosse chão. Se terminar o turno na parede, cai.</p>\n                "
+    },
+    {
+      "id": "monge-quebrar-guarda",
+      "tipo": "technique-card",
+      "nome": "Quebrar Guarda",
+      "corpo": "\n                    <h4>Quebrar Guarda</h4>\n                    <span class=\"tech-meta\">Passiva • 5 Fluxo</span>\n                    <p>Seu primeiro ataque gasta a reação do seu alvo. Ou seja, ele só pode defender ao seu primeiro golpe.</p>\n                "
+    },
+    {
+      "id": "monge-golpe-sequencial",
+      "tipo": "technique-card",
+      "nome": "Golpe Sequencial",
+      "corpo": "\n                    <h4>Golpe Sequencial</h4>\n                    <span class=\"tech-meta\">Ação Livre • 2 Stamina, 1 Fluxo</span>\n                    <p>Ao acertar um ataque desarmado, pode fazer outro ataque imediatamente contra o mesmo alvo (Sem penalidade de multi-ataque).</p>\n                "
+    },
+    {
+      "id": "monge-danca-do-monge",
+      "tipo": "technique-card",
+      "nome": "Dança do Monge",
+      "corpo": "\n                    <h4>Dança do Monge</h4>\n                    <span class=\"tech-meta\">2 Ações • 4 Stamina, 3 Fluxo</span>\n                    <p>Faça 3 ataques desarmados contra um ou mais alvos em alcance.</p>\n                "
+    },
+    {
+      "id": "monge-purificar",
+      "tipo": "technique-card",
+      "nome": "Purificar",
+      "corpo": "\n                    <h4>Purificar</h4>\n                    <span class=\"tech-meta\">1 Ação • 4 Stamina</span>\n                    <p>Remova uma condição mágica ou não-mágica de si mesmo ou de uma criatura tocada.</p>\n                "
+    },
+    {
+      "id": "monge-golpe-das-mazelas",
+      "tipo": "technique-card",
+      "nome": "Golpe das Mazelas",
+      "corpo": "\n                    <h4>Golpe das Mazelas</h4>\n                    <span class=\"tech-meta\">1 Ação • 3 Stamina</span>\n                    <p>Ao acertar um ataque desarmado, o alvo deve fazer Fortitude (CD 10 + Mod. Des) ou fica <em>Atordoado</em> até o fim do seu próximo turno.</p>\n                "
+    },
+    {
+      "id": "monge-queda-suave",
+      "tipo": "technique-card",
+      "nome": "Queda Suave",
+      "corpo": "\n                    <h4>Queda Suave</h4>\n                    <span class=\"tech-meta\">2 Ações ou Reação • 5 Stamina</span>\n                    <p>Você e até 5 criaturas a distância de toque não tomam dano de queda de até 30m por 1 minuto, após isso reduz o dano em 5 × Nível. Pode usar só em você como reação ao receber dano de queda.</p>\n                "
+    },
+    {
+      "id": "monge-apanhar-projetil",
+      "tipo": "technique-card",
+      "nome": "Apanhar Projétil",
+      "corpo": "\n                    <h4>Apanhar Projétil</h4>\n                    <span class=\"tech-meta\">Reação</span>\n                    <p>Ao ser atingido por um ataque à distância, reduza o dano em (Nível)d10 + Mod.Des. Se reduzir a 0, você pegou o projétil. Pode arremessar de volta ao atacante em um mesmo movimento.</p>\n                "
+    },
+    {
+      "id": "monge-busca-pela-perfeicao",
+      "tipo": "marca-card",
+      "nome": "Busca Pela Perfeição",
+      "corpo": "\n                <div class=\"marca-header punho\">\n                    <h4>Busca Pela Perfeição</h4>\n                    <div class=\"quote\">\"Você treina enquanto outros dormem. Treina enquanto outros comem. Treina enquanto outros vivem.\"</div>\n                </div>\n                <div class=\"marca-body\">\n                    <p>Você é obcecado com a perfeição técnica. Você se critica constantemente e tem dificuldade em aceitar \"bom o suficiente\".</p>\n                    <div class=\"marca-effect\">\n                        <p>Para cada 5 combates onde você acertou +3 ataques no mesmo turno, você ganha <strong>+1 permanentemente em Atacar</strong>. Ao chegar em +5, essa habilidade fica supérflua.</p>\n                    </div>\n                    <div class=\"marca-effect\">\n                        <p>Ao errar 2 ataques consecutivos, o próximo possui <strong>Vantagem</strong>.</p>\n                    </div>\n                </div>\n            "
+    },
+    {
+      "id": "monge-codigo-do-monge",
+      "tipo": "marca-card",
+      "nome": "Código do Monge",
+      "corpo": "\n                <div class=\"marca-header punho\">\n                    <h4>Código do Monge</h4>\n                    <div class=\"quote\">\"Há honra no combate. Sem ela, somos apenas animais.\"</div>\n                </div>\n                <div class=\"marca-body\">\n                    <p>Você segue um código rígido de conduta marcial. Quebrar seu código te causa tormento.</p>\n                    <div class=\"marca-effect\">\n                        <p>Ao derrotar um inimigo onde apenas você causou dano a ele e apenas ele causou dano a você, você recupera <strong>5 Stamina e 1 Éter</strong>.</p>\n                    </div>\n                    <div class=\"marca-effect\">\n                        <p>Você tem <strong>+2 em testes de Vontade</strong> que te fazem agir contra sua índole.</p>\n                    </div>\n                    <div class=\"marca-effect\">\n                        <p>Se você quebrar seu código, você perde <strong>2 de Éter</strong> e tem <strong>-2 Atacar</strong> até o próximo descanso curto. Exemplos de quebra: atacar um alvo indefeso, inconsciente ou inocente; assassinar criaturas humanoides sem necessidade.</p>\n                    </div>\n                </div>\n            "
+    },
+    {
+      "id": "monge-apatico",
+      "tipo": "marca-card",
+      "nome": "Apático",
+      "corpo": "\n                <div class=\"marca-header vazio\">\n                    <h4>Apático</h4>\n                    <div class=\"quote\">\"Você não sente mais. Não realmente. As emoções são ecos distantes de uma vida passada.\"</div>\n                </div>\n                <div class=\"marca-body\">\n                    <p>O contato com o Vazio corroeu suas emoções. Você raramente demonstra alegria, tristeza ou raiva.</p>\n                    <div class=\"marca-effect\">\n                        <p>Para cada 5 criaturas que você deixou <em>Amedrontada</em>, ganha <strong>+1 permanente em Vontade</strong>. Ao chegar em +5, essa habilidade fica supérflua.</p>\n                    </div>\n                    <div class=\"marca-effect\">\n                        <p>Você é <strong>imune a condições causadas por emoções</strong> (Enfeitiçado e Amedrontado).</p>\n                    </div>\n                </div>\n            "
+    },
+    {
+      "id": "monge-sussurros-constantes",
+      "tipo": "marca-card",
+      "nome": "Sussurros Constantes",
+      "corpo": "\n                <div class=\"marca-header vazio\">\n                    <h4>Sussurros Constantes</h4>\n                    <div class=\"quote\">\"Ele fala com você. Nos sonhos. Nas sombras. No silêncio entre batimentos do coração.\"</div>\n                </div>\n                <div class=\"marca-body\">\n                    <p>Algo do Abismo notou você e agora sussurra em sua mente. Você nunca sabe quando está pensando sozinho ou sendo guiado.</p>\n                    <div class=\"marca-effect\">\n                        <p><strong>1x/descanso longo:</strong> Você pode \"consultar o Abismo\" - o Mestre te dá uma informação críptica mas útil sobre a situação atual.</p>\n                    </div>\n                    <div class=\"marca-effect\">\n                        <p>Ao ficar com 0 de Éter, ao invés de ficar <em>Oco</em>, você pode aceitar um <strong>Pacto Sombrio</strong>: recupere metade do seu Éter máximo, mas o Mestre escolhe uma consequência.</p>\n                    </div>\n                    <div class=\"marca-effect\">\n                        <p>Você tem <strong>Vantagem em Místico</strong> para identificar criaturas ou magia relacionadas ao Abismo.</p>\n                    </div>\n                </div>\n            "
+    },
+    {
+      "id": "monge-irmao-da-floresta",
+      "tipo": "marca-card",
+      "nome": "Irmão da Floresta",
+      "corpo": "\n                <div class=\"marca-header naturalista\">\n                    <h4>Irmão da Floresta</h4>\n                    <div class=\"quote\">\"Você prefere a companhia de animais. Eles não mentem. Não traem. Não julgam.\"</div>\n                </div>\n                <div class=\"marca-body\">\n                    <p>Você formou uma conexão profunda com o mundo animal. Sente-se desconfortável em cidades, ansioso em multidões humanas.</p>\n                    <div class=\"marca-effect\">\n                        <p>Para cada 5 vezes que você invocar um Companheiro Primal, você ganha <strong>+1 permanente em Sobrevivência</strong>. Ao chegar em +5, essa habilidade fica supérflua.</p>\n                    </div>\n                    <div class=\"marca-effect\">\n                        <p>Animais não-hostis <strong>não te atacam</strong> a menos que provocados. Você pode se aproximar de bestas selvagens sem teste.</p>\n                    </div>\n                    <div class=\"marca-effect\">\n                        <p>Quando algum Companheiro Primal morre, você entra em <strong>Luto Selvagem</strong>: +2 Atacar e +1d6 dano por 2 rodadas.</p>\n                    </div>\n                </div>\n            "
+    },
+    {
+      "id": "monge-ciclo-da-vida",
+      "tipo": "marca-card",
+      "nome": "Ciclo da Vida",
+      "corpo": "\n                <div class=\"marca-header naturalista\">\n                    <h4>Ciclo da Vida</h4>\n                    <div class=\"quote\">\"Morte não é o fim. É transformação. Você entende isso melhor que qualquer um.\"</div>\n                </div>\n                <div class=\"marca-body\">\n                    <p>Você compreende o ciclo natural de vida e morte. Para você, tudo retorna à natureza eventualmente.</p>\n                    <div class=\"marca-effect\">\n                        <p>Ao estar adjacente a uma criatura que morreu neste turno, você instintivamente absorve sua energia vital, recuperando <strong>1d6 de Saúde ou 1d4 de Stamina</strong>.</p>\n                    </div>\n                    <div class=\"marca-effect\">\n                        <p>Você pode realizar um ritual de 1 minuto em uma criatura morta para devolvê-la à natureza, você ganha <strong>1 de Éter</strong> ao fazê-lo.</p>\n                    </div>\n                    <div class=\"marca-effect\">\n                        <p>Você tem <strong>+2 em Medicina</strong>.</p>\n                    </div>\n                </div>\n            "
+    },
+    {
+      "id": "monge-punho-perfeito",
+      "tipo": "tech-card",
+      "nome": "Punho Perfeito",
+      "corpo": "\n                        <div class=\"tech-card-header punho\">\n                            <h4>Punho Perfeito</h4>\n                            <span class=\"cost\">Passiva</span>\n                        </div>\n                        <div class=\"tech-card-body\">\n                            <ul>\n                                <li>Você se torna Treinado em Atacar. Se já for Treinado, se torna Experiente e assim por diante.</li>\n                                <li>Seus ataques desarmados causam <strong>+1d6 de dano</strong>.</li>\n                                <li>Ao acertar dois ataques desarmados no mesmo turno contra o mesmo alvo, o terceiro ataque neste turno tem <strong>Vantagem</strong>.</li>\n                            </ul>\n                        </div>\n                    "
+    },
+    {
+      "id": "monge-fluxo-marcial",
+      "tipo": "tech-card",
+      "nome": "Fluxo Marcial",
+      "corpo": "\n                        <div class=\"tech-card-header punho\">\n                            <h4>Fluxo Marcial</h4>\n                            <span class=\"cost\">Passiva</span>\n                        </div>\n                        <div class=\"tech-card-body\">\n                            <ul>\n                                <li>Ao atingir 5 de Fluxo, você pode gastar <strong>3 Stamina</strong> para fazer um ataque desarmado adicional como Ação Livre, porém você perde 3 de Fluxo.</li>\n                                <li>Você ganha <strong>+1 Fluxo adicional</strong> ao acertar um ataque desarmado.</li>\n                            </ul>\n                        </div>\n                    "
+    },
+    {
+      "id": "monge-cadeia-de-golpes",
+      "tipo": "tech-card",
+      "nome": "Cadeia de Golpes",
+      "corpo": "\n                        <div class=\"tech-card-header punho\">\n                            <h4>Cadeia de Golpes</h4>\n                            <span class=\"cost\">Passiva</span>\n                        </div>\n                        <div class=\"tech-card-body\">\n                            <ul>\n                                <li>Ao derrubar uma criatura a 0 Saúde com um ataque desarmado, você pode imediatamente se mover até <strong>3m</strong> e fazer outro ataque desarmado contra um alvo diferente como Ação Livre.</li>\n                                <li>Esse efeito pode encadear até seu <strong>(Mod. Destreza) vezes por turno</strong>.</li>\n                            </ul>\n                        </div>\n                    "
+    },
+    {
+      "id": "monge-toque-da-dor",
+      "tipo": "tech-card",
+      "nome": "Toque da Dor",
+      "corpo": "\n                        <div class=\"tech-card-header vazio\">\n                            <h4>Toque da Dor</h4>\n                            <span class=\"cost\">Passiva</span>\n                        </div>\n                        <div class=\"tech-card-body\">\n                            <ul>\n                                <li>Você se torna Treinado em <em>Místico</em>. Se já for Treinado, se torna Experiente e assim por diante.</li>\n                                <li>Seus ataques desarmados causam <strong>dano Mental</strong> ao invés de Contundente (você pode trocar entre os dois tipos em um descanso curto).</li>\n                                <li>Você cura <strong>1 de Saúde</strong> ao acertar um ataque corpo a corpo desarmado.</li>\n                            </ul>\n                        </div>\n                    "
+    },
+    {
+      "id": "monge-fluxo-invertido",
+      "tipo": "tech-card",
+      "nome": "Fluxo Invertido",
+      "corpo": "\n                        <div class=\"tech-card-header vazio\">\n                            <h4>Fluxo Invertido</h4>\n                            <span class=\"cost\">Passiva</span>\n                        </div>\n                        <div class=\"tech-card-body\">\n                            <p>Você ganha fluxo de formas diferentes:</p>\n                            <ul>\n                                <li>+1 Fluxo ao receber dano</li>\n                                <li>+2 Fluxo ao falhar em teste de resistência</li>\n                                <li>+3 Fluxo ao ver um aliado cair para 0 Saúde</li>\n                            </ul>\n                            <p>Ao atingir 5 de Fluxo, você emana uma <strong>aura de 1,5m</strong>: Inimigos que começam o turno na aura sofrem 1d6 de dano Mental e devem suceder em Vontade (CD 10+Mod.Sab+Mod.Des) ou ficam <em>Desorientados</em>.</p>\n                        </div>\n                    "
+    },
+    {
+      "id": "monge-forma-do-vazio",
+      "tipo": "tech-card",
+      "nome": "Forma do Vazio",
+      "corpo": "\n                        <div class=\"tech-card-header vazio\">\n                            <h4>Forma do Vazio</h4>\n                            <span class=\"cost\">1 Ação, 3 Stamina, 5 Fluxo</span>\n                        </div>\n                        <div class=\"tech-card-body\">\n                            <p>Até o início do seu próximo turno:</p>\n                            <ul>\n                                <li><strong>Parcialmente Intangível:</strong> Ataques físicos tem 50% de chance de falhar contra você (1d10 → &lt;5 = Acerta).</li>\n                                <li>Você pode se mover através de criaturas e objetos finos (Até 10cm). Se terminar o turno dentro de outro corpo é expulso e recebe 2d6 de dano de Força.</li>\n                                <li>Você recebe <strong>+5 em testes de furtividade</strong>.</li>\n                            </ul>\n                            <p>Ao sair da forma, criaturas em até 1,5m devem fazer Vontade (CD 10+Mod.Sab+Mod.Des) ou ficam <em>Desorientados</em>.</p>\n                        </div>\n                    "
+    },
+    {
+      "id": "monge-comunhao-selvagem",
+      "tipo": "tech-card",
+      "nome": "Comunhão Selvagem",
+      "corpo": "\n                        <div class=\"tech-card-header naturalista\">\n                            <h4>Comunhão Selvagem</h4>\n                            <span class=\"cost\">Passiva</span>\n                        </div>\n                        <div class=\"tech-card-body\">\n                            <ul>\n                                <li>Você se torna Treinado em <em>Sobrevivência</em>. Se já for Treinado, se torna Experiente e assim por diante.</li>\n                                <li>Você pode se comunicar telepaticamente com animais em até <strong>30m</strong>.</li>\n                                <li>Ao estar em ambiente natural você tem <strong>+2 na perícia Atacar</strong>.</li>\n                            </ul>\n                        </div>\n                    "
+    },
+    {
+      "id": "monge-companheiro-primal",
+      "tipo": "tech-card",
+      "nome": "Companheiro Primal",
+      "corpo": "\n                        <div class=\"tech-card-header naturalista\">\n                            <h4>Companheiro Primal</h4>\n                            <span class=\"cost\">2 Ações, 5 Stamina</span>\n                        </div>\n                        <div class=\"tech-card-body\">\n                            <p>Você invoca um espírito animal menor que se manifesta como um Companheiro Primal. Ele dura até o fim do combate ou até ser destruído.</p>\n                            <div class=\"companion-grid\">\n                                <div class=\"companion-card\">\n                                    <h5>🐺 Lobo</h5>\n                                    <div class=\"companion-stats\">\n                                        <span>Médio</span><span>15 HP</span><span>Evasão 13</span><span>Mov 12m</span>\n                                    </div>\n                                    <p>Ataque: 1d8+Des (Cortante). Ao acertar, o alvo fica <em>Marcado</em> (você tem +2 Atacar contra ele).</p>\n                                </div>\n                                <div class=\"companion-card\">\n                                    <h5>🐻 Urso</h5>\n                                    <div class=\"companion-stats\">\n                                        <span>Médio</span><span>25 HP</span><span>Evasão 11</span><span>Mov 9m</span><span>Ar 2</span>\n                                    </div>\n                                    <p>Ataque: 1d10+For (Cortante). Pode usar Reação para interceptar ataques contra você (1,5m), o urso recebe o dano.</p>\n                                </div>\n                                <div class=\"companion-card\">\n                                    <h5>🦅 Falcão</h5>\n                                    <div class=\"companion-stats\">\n                                        <span>Pequeno</span><span>10 HP</span><span>Evasão 15</span><span>Mov 18m (voo)</span>\n                                    </div>\n                                    <p>Ataque: 1d6+Des (Perfurante). Você vê através dos olhos dele. Ataques causam <em>Sangramento 1</em>.</p>\n                                </div>\n                            </div>\n                            <p style=\"margin-top: 1rem; font-size: 0.85rem;\">O Companheiro age no seu turno, tem 2 Ações, evasão passiva permanente e usa seu bônus de Atacar. Só pode ter 1 ativo por vez. Ao ser destruído, fica indisponível até o próximo descanso curto.</p>\n                        </div>\n                    "
+    },
+    {
+      "id": "monge-fluxo-da-natureza",
+      "tipo": "tech-card",
+      "nome": "Fluxo da Natureza",
+      "corpo": "\n                        <div class=\"tech-card-header naturalista\">\n                            <h4>Fluxo da Natureza</h4>\n                            <span class=\"cost\">Passiva</span>\n                        </div>\n                        <div class=\"tech-card-body\">\n                            <ul>\n                                <li>Ao começar seu turno adjacente ao seu Companheiro Primal, ambos recuperam <strong>1d4 de Saúde</strong>.</li>\n                                <li>Quando seu Companheiro acerta um ataque, você ganha <strong>+1 Fluxo</strong>.</li>\n                                <li>Seu companheiro causa <strong>dano adicional no ataque igual ao seu Fluxo</strong>.</li>\n                            </ul>\n                        </div>\n                    "
+    },
+    {
+      "id": "monge-precisao-letal",
+      "tipo": "tech-card",
+      "nome": "Precisão Letal",
+      "corpo": "\n                        <div class=\"tech-card-header punho\">\n                            <h4>Precisão Letal</h4>\n                            <span class=\"cost\">Passiva</span>\n                        </div>\n                        <div class=\"tech-card-body\">\n                            <p>Seus ataques desarmados tem <strong>crítico em 19-20</strong>.</p>\n                            <p>No crítico, teste de Vontade (CD 15+Mod.Sab) ou escolha um dos efeitos:</p>\n                            <ul>\n                                <li><strong>Atordoar:</strong> Alvo fica <em>Atordoado</em>.</li>\n                                <li><strong>Sangrar:</strong> Alvo recebe <em>Sangramento 2</em>.</li>\n                                <li><strong>Derrubar:</strong> Alvo fica <em>Caído</em>.</li>\n                            </ul>\n                        </div>\n                    "
+    },
+    {
+      "id": "monge-concentracao-do-mestre",
+      "tipo": "tech-card",
+      "nome": "Concentração do Mestre",
+      "corpo": "\n                        <div class=\"tech-card-header punho\">\n                            <h4>Concentração do Mestre</h4>\n                            <span class=\"cost\">Passiva</span>\n                        </div>\n                        <div class=\"tech-card-body\">\n                            <ul>\n                                <li>Seu fluxo só reseta após <strong>2 rodadas</strong> sem ganhar fluxo.</li>\n                                <li>Ao receber dano, pode negar a perda de fluxo uma quantidade de vezes igual ao seu <strong>Mod. de Sabedoria</strong>.</li>\n                            </ul>\n                        </div>\n                    "
+    },
+    {
+      "id": "monge-o-terror",
+      "tipo": "tech-card",
+      "nome": "O Terror",
+      "corpo": "\n                        <div class=\"tech-card-header vazio\">\n                            <h4>O Terror</h4>\n                            <span class=\"cost\">1 Ação, 2 Stamina</span>\n                        </div>\n                        <div class=\"tech-card-body\">\n                            <ul>\n                                <li>Ao acertar um ataque, pode exigir um teste de Vontade (CD 10+Mod.Sab+Mod.Des) ou o alvo fica <em>Amedrontado</em>.</li>\n                                <li>A cada criatura amedrontada no seu campo de visão, você ganha <strong>1 de fluxo permanente</strong> (que não pode ser perdido) até a criatura se livrar dessa condição.</li>\n                                <li>Ao atacar uma criatura <em>Amedrontada</em>, o ataque causa <strong>+1d8 de dano Mental</strong>.</li>\n                            </ul>\n                        </div>\n                    "
+    },
+    {
+      "id": "monge-portal-do-abismo",
+      "tipo": "tech-card",
+      "nome": "Portal do Abismo",
+      "corpo": "\n                        <div class=\"tech-card-header vazio\">\n                            <h4>Portal do Abismo</h4>\n                            <span class=\"cost\">2 Ações, 4 Stamina, 3 Fluxo</span>\n                        </div>\n                        <div class=\"tech-card-body\">\n                            <ul>\n                                <li>Crie um portal com ponto de entrada de onde você está, até qualquer lugar em até <strong>15m</strong>.</li>\n                                <li>Você e aliados se teletransportam normalmente entre os portais.</li>\n                                <li>Inimigos que se teletransportarem devem suceder em Vontade (CD 10+Mod.Sab+Mod.Des) ou sofrem <strong>2d6 de Dano Mental</strong> e ficam <em>Amedrontados</em>.</li>\n                                <li>O portal dura <strong>3 Rodadas</strong>. Você pode ter apenas 1 portal ativo por vez.</li>\n                            </ul>\n                        </div>\n                    "
+    },
+    {
+      "id": "monge-companheiro-primal-ii",
+      "tipo": "tech-card",
+      "nome": "Companheiro Primal II",
+      "corpo": "\n                        <div class=\"tech-card-header naturalista\">\n                            <h4>Companheiro Primal II</h4>\n                            <span class=\"cost\">Passiva</span>\n                        </div>\n                        <div class=\"tech-card-body\">\n                            <p>Você invoca um espírito animal <strong>maior</strong> que se manifesta como um companheiro primal.</p>\n                            <div class=\"companion-grid\">\n                                <div class=\"companion-card\">\n                                    <h5>🐺 Lobo Sanguíneo</h5>\n                                    <div class=\"companion-stats\">\n                                        <span>Médio</span><span>25 HP</span><span>Evasão 15</span><span>Mov 12m</span>\n                                    </div>\n                                    <p>Ataque: Mod.Des+2, Dano: 2d6+Des (Cortante). Ao acertar, o alvo fica <em>Exposto</em>.</p>\n                                </div>\n                                <div class=\"companion-card\">\n                                    <h5>🐻 Urso Colossal</h5>\n                                    <div class=\"companion-stats\">\n                                        <span>Grande</span><span>35 HP</span><span>Evasão 13</span><span>Mov 9m</span><span>Ar 3</span>\n                                    </div>\n                                    <p>Ataque: Mod.For+2, Dano: 1d12+For (Cortante). Ao você ser atacado enquanto o urso estiver a 1,5m de você e do atacante, ele pode retaliar como ação livre.</p>\n                                </div>\n                                <div class=\"companion-card\">\n                                    <h5>🦅 Falcão Veloz</h5>\n                                    <div class=\"companion-stats\">\n                                        <span>Pequeno</span><span>20 HP</span><span>Evasão 17</span><span>Mov 18m (voo)</span>\n                                    </div>\n                                    <p>Ataque: Mod.Des+2, Dano: 1d10+Des (Perfurante). Você vê através dos olhos dele. Ao atacar, aplica <em>Lento 1</em>.</p>\n                                </div>\n                            </div>\n                            <p style=\"margin-top: 1rem; font-size: 0.85rem;\">Só pode ter 1 Companheiro Primal maior ativo por vez. Pode invocar 1 companheiro primal menor simultaneamente.</p>\n                        </div>\n                    "
+    },
+    {
+      "id": "monge-totem-eterno",
+      "tipo": "tech-card",
+      "nome": "Totem Eterno",
+      "corpo": "\n                        <div class=\"tech-card-header naturalista\">\n                            <h4>Totem Eterno</h4>\n                            <span class=\"cost\">2 Ações, 5 Stamina</span>\n                        </div>\n                        <div class=\"tech-card-body\">\n                            <p>Você invoca um totem natural de <strong>9m de raio</strong> que dura 3 rodadas. O totem instiga a força da natureza a proteger seus aliados e atrapalhar seus inimigos:</p>\n                            <ul>\n                                <li>Aliados nesta área recuperam <strong>1d4+Mod.Sab Saúde</strong> por rodada.</li>\n                                <li>Inimigos nesta área devem suceder em Fortitude (CD 10+Mod.Sab+Mod.Des) ou ficam <em>Paralisados</em> até sucederem no final de cada um de seus turnos ou o totem acabar.</li>\n                            </ul>\n                        </div>\n                    "
+    },
+    {
+      "id": "monge-transcendencia",
+      "tipo": "ultimate-card",
+      "nome": "🥊 Transcendência",
+      "corpo": "\n                    <div class=\"ultimate-header punho\">\n                        <h4>🥊 Transcendência</h4>\n                        <div>\n                            <span class=\"ultimate-badge\">ULTIMATE</span>\n                            <span style=\"margin-left: 0.5rem; color: var(--text-muted); font-size: 0.85rem;\">3 Ações, 5 Stamina, 5 Fluxo</span>\n                        </div>\n                    </div>\n                    <div class=\"ultimate-quote\">\"Foco. Disciplina. Coragem!\"</div>\n                    <div class=\"ultimate-body\">\n                        <h5>⚡ Ativação</h5>\n                        <p>Você energiza todo seu corpo e mente, entrando em um estado de epifania por <strong>5 Rodadas</strong>:</p>\n                        <ul>\n                            <li>Você ganha <strong>+1 Ação por rodada</strong>.</li>\n                            <li>Você possui <strong>5 de Fluxo Permanente</strong>.</li>\n                            <li>Você <strong>não gasta Stamina</strong> até o fim da ultimate.</li>\n                            <li>A cada ataque que você acerta, pode se mover <strong>1,5m como ação livre</strong> sem causar ataques de oportunidade.</li>\n                        </ul>\n                        <div class=\"ultimate-cost\">\n                            <h5>💀 O Custo</h5>\n                            <p>Após 5 Turnos, fica <em>Exausto 1</em>, <em>Exaurido</em> e perde <strong>1d6 de Éter</strong>.</p>\n                        </div>\n                    </div>\n                "
+    },
+    {
+      "id": "monge-insurgencia",
+      "tipo": "ultimate-card",
+      "nome": "🌑 Insurgência",
+      "corpo": "\n                    <div class=\"ultimate-header vazio\">\n                        <h4>🌑 Insurgência</h4>\n                        <div>\n                            <span class=\"ultimate-badge\">ULTIMATE</span>\n                            <span style=\"margin-left: 0.5rem; color: var(--text-muted); font-size: 0.85rem;\">1 Ação, 5 Stamina, 5 Fluxo</span>\n                        </div>\n                    </div>\n                    <div class=\"ultimate-quote\">\"O Vazio dentro de mim é o que assusta você.\"</div>\n                    <div class=\"ultimate-body\">\n                        <h5>⚡ Ativação</h5>\n                        <p>Você está completamente vazio por dentro, ágil e fantasmagórico. Por <strong>3 rodadas</strong>:</p>\n                        <ul>\n                            <li>As técnicas <strong>\"Forma do Vazio\"</strong> e <strong>\"O Terror\"</strong> ficam ativas permanentemente.</li>\n                            <li>Todas as criaturas em até 12m devem suceder em Vontade (CD 10+Mod.Des+Mod.Sab) ou ficam <em>Amedrontadas</em>.</li>\n                            <li>Pode atravessar <strong>qualquer superfície</strong>.</li>\n                            <li>Todos seus ataques causam <strong>+2d8 de dano Mental</strong> e Ignoram Armadura/Resistência.</li>\n                            <li>Imune a <em>Amedrontado</em>, <em>Confuso</em> e <em>Enfeitiçado</em>.</li>\n                            <li>Teletransporta a até <strong>4,5m como ação livre</strong> (1x/Turno).</li>\n                        </ul>\n                        <div class=\"ultimate-cost\">\n                            <h5>💀 O Custo</h5>\n                            <p>Você perde todo seu fluxo e <strong>1d6 de Éter</strong>.</p>\n                            <p style=\"font-style: italic; color: var(--text-muted);\">Ele… te chama.</p>\n                        </div>\n                    </div>\n                "
+    },
+    {
+      "id": "monge-fusao-primal",
+      "tipo": "ultimate-card",
+      "nome": "🌿 Fusão Primal",
+      "corpo": "\n                    <div class=\"ultimate-header naturalista\">\n                        <h4>🌿 Fusão Primal</h4>\n                        <div>\n                            <span class=\"ultimate-badge\">ULTIMATE</span>\n                            <span style=\"margin-left: 0.5rem; color: var(--text-muted); font-size: 0.85rem;\">2 Ações, 5 Stamina, 5 Fluxo</span>\n                        </div>\n                    </div>\n                    <div class=\"ultimate-quote\">\"A ira da Floresta corre em minhas veias.\"</div>\n                    <div class=\"ultimate-body\">\n                        <h5>⚡ Ativação</h5>\n                        <p>Você se funde com um companheiro primal por <strong>5 rodadas</strong>. Você ganha traços desse animal e seus principais trunfos:</p>\n                        \n                        <div class=\"companion-grid\" style=\"margin: 1rem 0;\">\n                            <div class=\"companion-card\">\n                                <h5>🐺 Lobo</h5>\n                                <p><strong>Saúde:</strong> +25 temporária</p>\n                                <p><strong>Ataque:</strong> +3, +(2d6+Des) Cortante</p>\n                                <p><strong>Evasão:</strong> +2</p>\n                                <p><strong>Movimento:</strong> 12m</p>\n                                <p><strong>Efeito:</strong> Alvo fica <em>Exposto</em> por 1 rodada. Ao atacar alvo exposto, ganha <em>Sangramento 1</em>.</p>\n                                <p><strong>Habilidade:</strong> Ao cercar um inimigo com ao menos 3 aliados (incluindo você), você tem vantagem em ataques.</p>\n                            </div>\n                            <div class=\"companion-card\">\n                                <h5>🐻 Urso</h5>\n                                <p><strong>Saúde:</strong> +35 temporária, 3 Ar</p>\n                                <p><strong>Ataque:</strong> +2, +(1d12+For) Cortante</p>\n                                <p><strong>Evasão:</strong> +1</p>\n                                <p><strong>Movimento:</strong> 9m</p>\n                                <p><strong>Efeito:</strong> Alvo fica <em>Atordoado</em> por 1 rodada. Ao atacar alvo atordoado, +2d12 de dano Cortante.</p>\n                                <p><strong>Habilidade:</strong> Você não pode ser movido contra sua vontade. Se escolher retaliar um ataque, você automaticamente acerta.</p>\n                            </div>\n                            <div class=\"companion-card\">\n                                <h5>🦅 Falcão</h5>\n                                <p><strong>Saúde:</strong> +20 temporária</p>\n                                <p><strong>Ataque:</strong> +1, +(1d10+Des) Perfurante</p>\n                                <p><strong>Evasão:</strong> +3</p>\n                                <p><strong>Movimento:</strong> 18m Voo, pode se mover como ação livre</p>\n                                <p><strong>Efeito:</strong> Alvo fica <em>Lento 1</em> por 1 rodada. Ao atacar alvo Lento X, você tem +X Atacar e Dano.</p>\n                                <p><strong>Habilidade:</strong> Com 3 ações, você pode tentar agarrar um alvo e soltá-lo dos céus, causando <strong>4d12 de dano de Força</strong>.</p>\n                            </div>\n                        </div>\n                        \n                        <div class=\"ultimate-cost\">\n                            <h5>💀 O Custo</h5>\n                            <ul>\n                                <li>Ao cair para 0 de Saúde, você instantaneamente se transforma de volta e cai <em>Morrendo</em>.</li>\n                                <li>Se você tiver mais de um companheiro primal ativo, ele se transforma em sua versão menor quando você se funde.</li>\n                                <li>Ao fim da transformação, você perde todo seu fluxo, fica <em>Atordoado</em> por 1 rodada e perde <strong>1d6 de Éter</strong>.</li>\n                            </ul>\n                        </div>\n                    </div>\n                "
+    }
+  ]
+}

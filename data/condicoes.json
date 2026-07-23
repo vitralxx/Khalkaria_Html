@@ -1,0 +1,174 @@
+{
+  "categorias": [
+    {
+      "id": "criticas",
+      "cards": [
+        {
+          "id": "morrendo",
+          "nome": "Morrendo",
+          "corpo": "<ul>\n                            <li>Você está <a href=\"#inconsciente\" class=\"keyword-link\">Inconsciente</a>.</li>\n                            <li>Você recebe 10% da sua vida máxima de dano biológico por rodada, ao ultrapassar metade da sua vida máxima em negativos, você morre.</li>\n                        </ul>\n                        <div class=\"formula\">Dano/Rodada = Vida Máxima × 0.1</div>\n                        <p>Um aliado pode gastar 2 ações para rolar um teste de <em>Medicina</em> (CD 20) para estabilizar você, negando o dano por rodada até você remover essa condição, ou ser atacado novamente.</p>\n                        <p><strong>Para remover:</strong> Você deve ser curado de modo que sua vida fique positiva.</p>"
+        },
+        {
+          "id": "inconsciente",
+          "nome": "Inconsciente",
+          "corpo": "<ul>\n                            <li>Você perde o controle do seu corpo e está desmaiado.</li>\n                            <li>Qualquer teste de resistência é instantaneamente fracassado.</li>\n                        </ul>"
+        },
+        {
+          "id": "exaurido",
+          "nome": "Exaurido",
+          "corpo": "<p>Você está com 0 de Stamina, completamente exausto.</p>\n                        <ul>\n                            <li>Você não pode rolar perícias, encerra ao realizar qualquer tipo de descanso.</li>\n                        </ul>"
+        },
+        {
+          "id": "oco",
+          "nome": "Oco",
+          "corpo": "<p>Você está vazio por dentro, se manter motivado é um desafio e seus pensamentos estão desconexos da realidade.</p>\n                        <ul>\n                            <li>A cada perícia falha, você reduz 5 de Éter. Ao alcançar metade do seu éter máximo nos negativos, você perde seu personagem, que se torna do mestre.</li>\n                            <li>Você não consegue canalizar magias.</li>\n                        </ul>"
+        },
+        {
+          "id": "exaustao",
+          "nome": "Exaustão 1-5",
+          "corpo": "<p>Você está exausto, ações rotineiras se tornam cada vez mais difíceis.</p>\n                        <ul>\n                            <li><strong>Exaustão 1:</strong> Você tem desvantagem em testes físicos (Força, Destreza ou Constituição)</li>\n                            <li><strong>Exaustão 2:</strong> Você causa metade do seu dano total em todos seus ataques.</li>\n                            <li><strong>Exaustão 3:</strong> Você tem desvantagem em todos os testes e seu movimento é cortado pela metade.</li>\n                            <li><strong>Exaustão 4:</strong> Atributos reduzidos pela metade e seu movimento é zerado.</li>\n                            <li><strong>Exaustão 5:</strong> Morte.</li>\n                        </ul>\n                        <p>Ao realizar um descanso longo, você diminui 1 de exaustão.</p>"
+        },
+        {
+          "id": "desnutrido",
+          "nome": "Desnutrido X",
+          "corpo": "<p>Você está faminto.</p>\n                        <ul>\n                            <li>Você tem desvantagem em testes físicos (Força, Destreza ou Constituição)</li>\n                            <li>Você gasta o dobro de Stamina para tudo.</li>\n                            <li>Você perde 10 × X de Saúde máxima.</li>\n                        </ul>"
+        }
+      ]
+    },
+    {
+      "id": "combate",
+      "cards": [
+        {
+          "id": "exposto",
+          "nome": "Exposto",
+          "corpo": "<ul>\n                            <li>O primeiro ataque que acertar essa criatura é crítico. Remove ao acertar.</li>\n                        </ul>"
+        },
+        {
+          "id": "sangramento",
+          "nome": "Sangramento X",
+          "corpo": "<ul>\n                            <li>Se o alvo puder sangrar, qualquer ataque contra ele causa +1d4 de dano Biológico.</li>\n                            <li>Ao acertar um ataque em um alvo com essa condição, ela reduz em 1.</li>\n                        </ul>"
+        },
+        {
+          "id": "atordoado",
+          "nome": "Atordoado",
+          "corpo": "<ul>\n                            <li>-2 Ações e Evasão até a próxima rodada.</li>\n                        </ul>"
+        },
+        {
+          "id": "desorientado",
+          "nome": "Desorientado",
+          "corpo": "<ul>\n                            <li>O alvo recebe -2 ao Atacar e -2 ao Defender.</li>\n                        </ul>"
+        },
+        {
+          "id": "caido",
+          "nome": "Caído",
+          "corpo": "<ul>\n                            <li>Você está prostrado e seu movimento se torna 1,5 m.</li>\n                            <li>Ao ser atacado, não pode retaliar e defende com -2.</li>\n                            <li>Encerra ao gastar 1 ação para se levantar.</li>\n                        </ul>"
+        },
+        {
+          "id": "desprevenido",
+          "nome": "Desprevenido",
+          "corpo": "<ul>\n                            <li>Você foi pego de surpresa e não pode reagir a ataques.</li>\n                            <li>Além disso, você também está <a href=\"#exposto\" class=\"keyword-link\">Exposto</a>.</li>\n                        </ul>"
+        }
+      ]
+    },
+    {
+      "id": "movimento",
+      "cards": [
+        {
+          "id": "sobrepeso-leve",
+          "nome": "Sobrepeso Leve",
+          "corpo": "<ul>\n                            <li>Movimento diminuído para a metade.</li>\n                            <li>-2 em perícias com Força, Destreza ou Constituição como atributo base.</li>\n                        </ul>"
+        },
+        {
+          "id": "sobrepeso-extremo",
+          "nome": "Sobrepeso Extremo",
+          "corpo": "<ul>\n                            <li>Você tem 1,5 m de Movimento.</li>\n                            <li>Desvantagem em perícias com Força, Destreza ou Constituição como atributo base.</li>\n                        </ul>"
+        },
+        {
+          "id": "lento",
+          "nome": "Lento X",
+          "corpo": "<p>Você está lento.</p>\n                        <ul>\n                            <li>-3 m Movimento</li>\n                            <li>-1 Ação.</li>\n                        </ul>"
+        },
+        {
+          "id": "enraizado",
+          "nome": "Enraizado",
+          "corpo": "<ul>\n                            <li>Movimento reduzido a 0 metros.</li>\n                        </ul>"
+        }
+      ]
+    },
+    {
+      "id": "mentais",
+      "cards": [
+        {
+          "id": "confuso",
+          "nome": "Confuso",
+          "corpo": "<p>Você perde algumas memórias recentes e tem dificuldade pra assimilar a situação.</p>\n                        <ul>\n                            <li>-1 Ação</li>\n                        </ul>"
+        },
+        {
+          "id": "amedrontado",
+          "nome": "Amedrontado",
+          "corpo": "<p>Você está completamente aterrorizado. E tenta escapar o mais rápido possível.</p>\n                        <ul>\n                            <li>Gaste seu turno correndo da criatura/objeto que te colocou nessa condição da forma mais eficiente possível.</li>\n                        </ul>"
+        },
+        {
+          "id": "enfeiticado",
+          "nome": "Enfeitiçado",
+          "corpo": "<p>Você está enfeitiçado em algo ou alguém.</p>\n                        <ul>\n                            <li>Você não pode atacar quem te enfeitiçou até se livrar dessa condição.</li>\n                            <li>Tem -5 em testes de interação social (Qualquer) contra a criatura que te enfeitiçou.</li>\n                        </ul>"
+        },
+        {
+          "id": "embriagado",
+          "nome": "Embriagado",
+          "corpo": "<p>Você está bêbado.</p>\n                        <ul>\n                            <li>Ao rolar um 2 natural em qualquer teste, considere como uma falha crítica.</li>\n                        </ul>"
+        }
+      ]
+    },
+    {
+      "id": "fisicas",
+      "cards": [
+        {
+          "id": "envenenamento",
+          "nome": "Envenenamento",
+          "corpo": "<ul>\n                            <li>-2 em todos os testes que utilizam: Força, Constituição ou Destreza como atributo base.</li>\n                            <li>1d6 de dano Biológico por rodada até o fim do efeito.</li>\n                            <li>Acaba ao suceder em um teste de Fortitude CD(20) ou utilizar um <em>Antídoto</em>.</li>\n                        </ul>"
+        },
+        {
+          "id": "em-chamas",
+          "nome": "Em Chamas",
+          "corpo": "<p>Você está em chamas!</p>\n                        <ul>\n                            <li>1d6 de dano elemental (fogo) no início de cada turno, até apagar o fogo com 1 ação.</li>\n                        </ul>"
+        },
+        {
+          "id": "enjoado",
+          "nome": "Enjoado",
+          "corpo": "<ul>\n                            <li>-5 em Fortitude.</li>\n                            <li>-2 Evasão</li>\n                        </ul>"
+        },
+        {
+          "id": "paralisado",
+          "nome": "Paralisado",
+          "corpo": "<p>Você está imóvel e não consegue controlar seu corpo.</p>\n                        <ul>\n                            <li>Você fica <a href=\"#exposto\" class=\"keyword-link\">Exposto</a> e não pode realizar nenhuma ação nem reação.</li>\n                            <li>Qualquer teste de resistência é instantaneamente fracassado.</li>\n                        </ul>"
+        },
+        {
+          "id": "adormecido",
+          "nome": "Adormecido",
+          "corpo": "<p>Você está em sono profundo.</p>\n                        <ul>\n                            <li>Você fica <a href=\"#exposto\" class=\"keyword-link\">Exposto</a> e <a href=\"#inconsciente\" class=\"keyword-link\">Inconsciente</a> até acordar.</li>\n                            <li>Você não pode fazer nada até acordar.</li>\n                        </ul>"
+        }
+      ]
+    },
+    {
+      "id": "sensoriais",
+      "cards": [
+        {
+          "id": "cego",
+          "nome": "Cego",
+          "corpo": "<ul>\n                            <li>Você está cego e tem -5 em percepção e desvantagem em ataques.</li>\n                            <li>Além disso, você falha automaticamente em todos os testes que dependem da sua visão.</li>\n                        </ul>"
+        },
+        {
+          "id": "surdo",
+          "nome": "Surdo",
+          "corpo": "<ul>\n                            <li>Você está surdo e tem -2 em percepção.</li>\n                            <li>Além disso, você falha automaticamente em todos os testes que dependam da sua audição.</li>\n                        </ul>"
+        },
+        {
+          "id": "invisivel",
+          "nome": "Invisível",
+          "corpo": "<p>Você está invisível.</p>\n                        <ul>\n                            <li>Passa instantaneamente em testes de Furtividade, caso a criatura não veja invisibilidade.</li>\n                            <li>+5 Defender e Atacar contra criaturas que não te veem.</li>\n                            <li>Atacar ou receber dano remove essa condição.</li>\n                        </ul>"
+        }
+      ]
+    }
+  ]
+}

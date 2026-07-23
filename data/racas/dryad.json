@@ -1,0 +1,45 @@
+{
+  "source": "racas/dryad",
+  "cards": [
+    {
+      "id": "dryad-pele-de-casca",
+      "tag": "div",
+      "tipo": "trait-card",
+      "opentag": "<div class=\"trait-card\">",
+      "nome": "Pele de Casca",
+      "corpo": "\n                <h4>Pele de Casca</h4>\n                <p>Você recebe 2 de Armadura (Ar) Natural.</p>\n            "
+    },
+    {
+      "id": "dryad-essencia-da-folha",
+      "tag": "div",
+      "tipo": "trait-card",
+      "opentag": "<div class=\"trait-card\">",
+      "nome": "Essência da Folha",
+      "corpo": "\n                <h4>Essência da Folha</h4>\n                <p>Ao estar em combate, você recupera 1d4 de Saúde por turno se estiver exposto ao sol.</p>\n            "
+    },
+    {
+      "id": "dryad-amado",
+      "tag": "div",
+      "tipo": "trait-card",
+      "opentag": "<div class=\"trait-card\">",
+      "nome": "Amado",
+      "corpo": "\n                <h4>Amado</h4>\n                <ul>\n                    <li>Como 1 ação, uma criatura em até 9m deve fazer um teste de Vontade contra sua CD ou fica <em>Enfeitiçada</em>.</li>\n                    <li>A criatura fica enfeitiçada até passar no teste de Vontade ou você atacar ela.</li>\n                    <li>Você tem +2 em interação social contra criaturas que gostam de você.</li>\n                </ul>\n            "
+    },
+    {
+      "id": "dryad-florescura",
+      "tag": "div",
+      "tipo": "variant-card",
+      "opentag": "<div class=\"variant-card\">",
+      "nome": "Florescura",
+      "corpo": "\n                    <h4>Florescura</h4>\n                    <p>Guardiões da magia antiga. Você segue o legado dos seus ancestrais, louvando as forças primordiais a todo custo.</p>\n                    <ul>\n                        <li>Você é treinado em Místico.</li>\n                        <li>Você pode conjurar uma ilusão menor naturalmente como 2 ações, sem foco. (um som baixo, cheiro fraco ou uma luz pequena)</li>\n                        <li>Escolha 1 magia de nível 1, você pode usá-la sem um foco.</li>\n                    </ul>\n                "
+    },
+    {
+      "id": "dryad-cascaferro",
+      "tag": "div",
+      "tipo": "variant-card",
+      "opentag": "<div class=\"variant-card\">",
+      "nome": "Cascaferro",
+      "corpo": "\n                    <h4>Cascaferro</h4>\n                    <p>Protetores da fauna selvagem. Desde pequeno, você aprendeu a proteger os menores e necessitados.</p>\n                    <ul>\n                        <li>Você é treinado em Movimento.</li>\n                        <li>+1 Armadura (Ar) Natural e +1 Evasão.</li>\n                        <li>Animais são naturalmente amigáveis em relação a você.</li>\n                    </ul>\n                "
+    }
+  ]
+}

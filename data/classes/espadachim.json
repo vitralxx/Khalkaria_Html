@@ -1,0 +1,239 @@
+{
+  "classe": "espadachim",
+  "cards": [
+    {
+      "id": "espadachim-leitura-de-batalha",
+      "tipo": "technique-card",
+      "nome": "Leitura de Batalha",
+      "corpo": "\n                    <div class=\"technique-header\">\n                        <h4>Leitura de Batalha</h4>\n                        <div class=\"technique-cost\"><span class=\"action\">Passiva</span></div>\n                    </div>\n                    <p>Quando um inimigo repetir a mesma ação 2x, ganhe +1 Defender/Atacar contra ele. Acumula até +5.</p>\n                "
+    },
+    {
+      "id": "espadachim-peso-do-fracasso",
+      "tipo": "technique-card",
+      "nome": "Peso do Fracasso",
+      "corpo": "\n                    <div class=\"technique-header\">\n                        <h4>Peso do Fracasso</h4>\n                        <div class=\"technique-cost\"><span class=\"action\">Passiva</span></div>\n                    </div>\n                    <p>Ao atacar inimigo que errou ataque no turno dele: +2 Atacar e +1d6 dano se acertar.</p>\n                "
+    },
+    {
+      "id": "espadachim-limiar-da-morte",
+      "tipo": "technique-card",
+      "nome": "Limiar da Morte",
+      "corpo": "\n                    <div class=\"technique-header\">\n                        <h4>Limiar da Morte</h4>\n                        <div class=\"technique-cost\"><span class=\"action\">Passiva</span></div>\n                    </div>\n                    <p>Ao causar dano, próximo ataque contra o mesmo alvo tem +1 dano cumulativo (Max. +3).</p>\n                "
+    },
+    {
+      "id": "espadachim-pedra-de-amolar",
+      "tipo": "technique-card",
+      "nome": "Pedra de Amolar",
+      "corpo": "\n                    <div class=\"technique-header\">\n                        <h4>Pedra de Amolar</h4>\n                        <div class=\"technique-cost\"><span class=\"action\">Descanso Curto</span></div>\n                    </div>\n                    <p>Amole sua espada para +1d4 dano Cortante no próximo combate.</p>\n                "
+    },
+    {
+      "id": "espadachim-respiro-do-espadachim",
+      "tipo": "technique-card",
+      "nome": "Respiro do Espadachim",
+      "corpo": "\n                    <div class=\"technique-header\">\n                        <h4>Respiro do Espadachim</h4>\n                        <div class=\"technique-cost\"><span class=\"action\">1 Ação</span></div>\n                    </div>\n                    <p>Recupera Stamina = Mod.Con e +1 Defender até próximo turno. (1x/turno)</p>\n                "
+    },
+    {
+      "id": "espadachim-lamina-rapida",
+      "tipo": "technique-card",
+      "nome": "Lâmina Rápida",
+      "corpo": "\n                    <div class=\"technique-header\">\n                        <h4>Lâmina Rápida</h4>\n                        <div class=\"technique-cost\">\n                            <span class=\"stamina\">2 Stamina</span>\n                            <span class=\"action\">1 Ação</span>\n                        </div>\n                    </div>\n                    <p>Próximo ataque não pode receber retaliação.</p>\n                "
+    },
+    {
+      "id": "espadachim-corte-diagonal",
+      "tipo": "technique-card",
+      "nome": "Corte Diagonal",
+      "corpo": "\n                    <div class=\"technique-header\">\n                        <h4>Corte Diagonal</h4>\n                        <div class=\"technique-cost\">\n                            <span class=\"stamina\">2 Stamina</span>\n                            <span class=\"action\">1 Ação</span>\n                        </div>\n                    </div>\n                    <p>Ignora 1 Evasão do alvo. Se Exposto, ignora +1 adicional.</p>\n                "
+    },
+    {
+      "id": "espadachim-x1",
+      "tipo": "technique-card",
+      "nome": "x1",
+      "corpo": "\n                    <div class=\"technique-header\">\n                        <h4>x1</h4>\n                        <div class=\"technique-cost\">\n                            <span class=\"stamina\">3 Stamina</span>\n                            <span class=\"action\">2 Ações</span>\n                        </div>\n                    </div>\n                    <p>Foca em um alvo: +1 Atacar, +1 Defender, +1d4 Dano contra ele até fim do combate.</p>\n                "
+    },
+    {
+      "id": "espadachim-oportunista",
+      "tipo": "technique-card",
+      "nome": "Oportunista",
+      "corpo": "\n                    <div class=\"technique-header\">\n                        <h4>Oportunista</h4>\n                        <div class=\"technique-cost\">\n                            <span class=\"stamina\">3 Stamina</span>\n                            <span class=\"action\">1 Ação</span>\n                        </div>\n                    </div>\n                    <p>Se 1º ataque acertar, reduz penalidade do 2º ataque para -2 (em vez de -5).</p>\n                "
+    },
+    {
+      "id": "espadachim-quebrar-postura",
+      "tipo": "technique-card",
+      "nome": "Quebrar Postura",
+      "corpo": "\n                    <div class=\"technique-header\">\n                        <h4>Quebrar Postura</h4>\n                        <div class=\"technique-cost\">\n                            <span class=\"stamina\">3 Stamina</span>\n                            <span class=\"action\">1 Ação</span>\n                        </div>\n                    </div>\n                    <p>Se acertar, alvo faz teste de Atacar (CD sua) ou perde reação.</p>\n                "
+    },
+    {
+      "id": "espadachim-ponto-fraco",
+      "tipo": "technique-card",
+      "nome": "Ponto Fraco",
+      "corpo": "\n                    <div class=\"technique-header\">\n                        <h4>Ponto Fraco</h4>\n                        <div class=\"technique-cost\">\n                            <span class=\"stamina\">3 Stamina</span>\n                            <span class=\"action\">Passiva</span>\n                        </div>\n                    </div>\n                    <p>Ao atacar inimigo Exposto e rolar crítico: mantém Exposto como ação livre.</p>\n                "
+    },
+    {
+      "id": "espadachim-passo-afiado",
+      "tipo": "technique-card",
+      "nome": "Passo Afiado",
+      "corpo": "\n                    <div class=\"technique-header\">\n                        <h4>Passo Afiado</h4>\n                        <div class=\"technique-cost\">\n                            <span class=\"stamina\">2 Stamina</span>\n                            <span class=\"action\">Reação</span>\n                        </div>\n                    </div>\n                    <p>Quando inimigo errar você: mova 1,5m sem ataque de oportunidade.</p>\n                "
+    },
+    {
+      "id": "espadachim-corta-luz",
+      "tipo": "technique-card",
+      "nome": "Corta-Luz",
+      "corpo": "\n                    <div class=\"technique-header\">\n                        <h4>Corta-Luz</h4>\n                        <div class=\"technique-cost\">\n                            <span class=\"stamina\">3 Stamina</span>\n                            <span class=\"action\">Reação</span>\n                        </div>\n                    </div>\n                    <p>Quando errar ataque: faça segundo ataque com -2.</p>\n                "
+    },
+    {
+      "id": "espadachim-bilhete-de-entrada",
+      "tipo": "technique-card",
+      "nome": "Bilhete de Entrada",
+      "corpo": "\n                    <div class=\"technique-header\">\n                        <h4>Bilhete de Entrada</h4>\n                        <div class=\"technique-cost\">\n                            <span class=\"stamina\">3 Stamina</span>\n                            <span class=\"action\">Reação</span>\n                        </div>\n                    </div>\n                    <p>Quando inimigo entrar no alcance: ataque imediato com -2.</p>\n                "
+    },
+    {
+      "id": "espadachim-brecha",
+      "tipo": "technique-card",
+      "nome": "Brecha",
+      "corpo": "\n                    <div class=\"technique-header\">\n                        <h4>Brecha</h4>\n                        <div class=\"technique-cost\">\n                            <span class=\"stamina\">5 Stamina</span>\n                            <span class=\"action\">1 Ação</span>\n                        </div>\n                    </div>\n                    <p>Ao acertar alvo não Exposto: aplica Exposto. Se já Exposto: adiciona Sangramento 1. (1x/turno)</p>\n                "
+    },
+    {
+      "id": "espadachim-disciplina",
+      "tipo": "marca-card",
+      "nome": "Disciplina",
+      "corpo": "\n                                    <h5>Disciplina</h5>\n                                    <p class=\"flavor\">\"Você é frio e age apenas quando necessário.\"</p>\n                                    <p>Você é friamente disciplinado e segue um conjunto de valores difíceis de quebrar.</p>\n                                    <ul>\n                                        <li>Seu <strong>primeiro ataque</strong> em qualquer combate é sempre um <strong>crítico</strong>.</li>\n                                        <li>Se ele errar, seu segundo ataque tem <strong>vantagem</strong>.</li>\n                                    </ul>\n                                "
+    },
+    {
+      "id": "espadachim-caca-fardos",
+      "tipo": "marca-card",
+      "nome": "Caça Fardos",
+      "corpo": "\n                                    <h5>Caça Fardos</h5>\n                                    <p class=\"flavor\">\"Você busca criaturas indignas, e as assassina com prazer.\"</p>\n                                    <p>Você é naturalmente benevolente e busca punir criaturas bestiais/monstruosas.</p>\n                                    <ul>\n                                        <li>Ao assassinar uma criatura maligna (definido pelo mestre) ganha <strong>+1 Stamina máxima</strong>.</li>\n                                    </ul>\n                                "
+    },
+    {
+      "id": "espadachim-bloquear-e-contra-atacar",
+      "tipo": "tier-technique",
+      "nome": "Bloquear e Contra-Atacar",
+      "corpo": "\n                                    <h5>Bloquear e Contra-Atacar</h5>\n                                    <p class=\"meta\">Ação Livre · 3 Stamina</p>\n                                    <p>Ao defender com sucesso, retalie com +1 dado de Dano Cortante. Se acertar, alvo fica <em>Desorientado</em>.</p>\n                                "
+    },
+    {
+      "id": "espadachim-intocavel",
+      "tipo": "tier-technique",
+      "nome": "Intocável",
+      "corpo": "\n                                    <h5>Intocável</h5>\n                                    <p class=\"meta\">Passiva</p>\n                                    <p>Enquanto não tiver atacado nesta rodada, você ganha <strong>+5 Defender</strong>.</p>\n                                "
+    },
+    {
+      "id": "espadachim-guardar-a-lamina",
+      "tipo": "tier-technique",
+      "nome": "Guardar a Lâmina",
+      "corpo": "\n                                    <h5>Guardar a Lâmina</h5>\n                                    <p class=\"meta\">1 Ação · 2 Stamina</p>\n                                    <p>Até próximo turno: +2 Defender. Sua primeira retaliação não gasta reação.</p>\n                                "
+    },
+    {
+      "id": "espadachim-pulso-forte",
+      "tipo": "tier-technique",
+      "nome": "Pulso Forte",
+      "corpo": "\n                                    <h5>Pulso Forte</h5>\n                                    <p class=\"meta\">Passiva</p>\n                                    <p>Sua primeira retaliação em cada rodada recebe: <strong>+3 Atacar</strong> e <strong>+1d8 Dano Cortante</strong>.</p>\n                                "
+    },
+    {
+      "id": "espadachim-vai-e-volta",
+      "tipo": "tier-technique",
+      "nome": "Vai e Volta",
+      "corpo": "\n                                    <h5>Vai e Volta</h5>\n                                    <p class=\"meta\">Ação Livre · 2 Stamina</p>\n                                    <p>Ao estar sem reação e ser atacado, pode retaliar com -2.</p>\n                                "
+    },
+    {
+      "id": "espadachim-sentenca-final",
+      "tipo": "ultimate-card",
+      "nome": "Sentença Final",
+      "corpo": "\n                                <h5>Sentença Final</h5>\n                                <p class=\"meta\">1 Ação · 5 Stamina · 1x/Dia</p>\n                                <p class=\"quote\">\"A morte chega para todos os pecadores\"</p>\n                                <p>Escolha 1 inimigo que já tenha te atacado. Até o fim do combate:</p>\n                                <div class=\"effect-list\">\n                                    <ul>\n                                        <li>+20 Saúde temporária e +10 Stamina temporária</li>\n                                        <li>+1 Reação por Turno e +2 Defender</li>\n                                        <li>+2d6 dano Elemental ao Retaliar (1x/rodada)</li>\n                                        <li>Ao te atacar: retalie como ação livre. Falha crítica do inimigo = retaliação crítica</li>\n                                        <li><strong>Punição de Aço (3 Ações):</strong> Em 6m, ataque cada alvo que atacou nesta rodada</li>\n                                        <li><strong>Proteção Ofensiva (Reação):</strong> Aliado atacado em 3m → retalie o atacante</li>\n                                    </ul>\n                                </div>\n                                <div class=\"ultimate-cost\">\n                                    <h6>⚠️ O Custo</h6>\n                                    <p>Sua espada foi danificada. Esse poder todo, não é seu.</p>\n                                </div>\n                            "
+    },
+    {
+      "id": "espadachim-nostalgia",
+      "tipo": "marca-card",
+      "nome": "Nostalgia",
+      "corpo": "\n                                    <h5>Nostalgia</h5>\n                                    <p class=\"flavor\">\"Como eles ousam ter te desrespeitado?\"</p>\n                                    <p>Você é rancoroso em seu cerne, guarda mais mágoas do que deveria.</p>\n                                    <ul>\n                                        <li>Ao sofrer dano, adiciona <strong>+1 dado</strong> na primeira rolagem de dano. (ex.: 1d6 → 2d6). Perde ao atacar. Não stackável.</li>\n                                    </ul>\n                                "
+    },
+    {
+      "id": "espadachim-vinganca",
+      "tipo": "marca-card",
+      "nome": "Vingança",
+      "corpo": "\n                                    <h5>Vingança</h5>\n                                    <p class=\"flavor\">\"Raiva. Prazer para você.\"</p>\n                                    <p>Você não consegue se controlar em não se vingar quando é desrespeitado.</p>\n                                    <ul>\n                                        <li>Ao ser atingido: próximo ataque contra o mesmo alvo tem <strong>+2 Atacar</strong> e <strong>ignora 2 Evasão</strong>.</li>\n                                    </ul>\n                                "
+    },
+    {
+      "id": "espadachim-furia-do-verme",
+      "tipo": "tier-technique",
+      "nome": "Fúria do Verme",
+      "corpo": "\n                                    <h5>Fúria do Verme</h5>\n                                    <p class=\"meta\">Passiva</p>\n                                    <p>Ao acertar corpo a corpo: +1 dano no próximo ataque. Acumula até +3, reseta se errar ou não atacar.</p>\n                                "
+    },
+    {
+      "id": "espadachim-adrenalina-sanguinea",
+      "tipo": "tier-technique",
+      "nome": "Adrenalina Sanguínea",
+      "corpo": "\n                                    <h5>Adrenalina Sanguínea</h5>\n                                    <p class=\"meta\">Reação · 3 Stamina</p>\n                                    <p>Ao matar um inimigo, você ganha <strong>3 ações</strong> como reação.</p>\n                                "
+    },
+    {
+      "id": "espadachim-barbaro",
+      "tipo": "tier-technique",
+      "nome": "Bárbaro",
+      "corpo": "\n                                    <h5>Bárbaro</h5>\n                                    <p class=\"meta\">1 Ação · 3 Stamina</p>\n                                    <p>Perde reação, mas ataques corpo a corpo causam <strong>+1d4 dano</strong> nesta rodada.</p>\n                                "
+    },
+    {
+      "id": "espadachim-masoquista",
+      "tipo": "tier-technique",
+      "nome": "Masoquista",
+      "corpo": "\n                                    <h5>Masoquista</h5>\n                                    <p class=\"meta\">1 Ação · 5 Stamina</p>\n                                    <p>Com menos da metade da vida, enfureça-se: <strong>+1 dado de Dano</strong> em todos ataques, <strong>+2 Atacar</strong> contra alvos machucados.</p>\n                                "
+    },
+    {
+      "id": "espadachim-massacre",
+      "tipo": "tier-technique",
+      "nome": "Massacre",
+      "corpo": "\n                                    <h5>Massacre</h5>\n                                    <p class=\"meta\">2 Ações · 5 Stamina</p>\n                                    <p>2 ataques corpo a corpo. Se ambos acertarem: <strong>+2d6 Cortante</strong> e <strong>Sangramento 1</strong>. Executar = recupera Stamina (Mod.Con).</p>\n                                "
+    },
+    {
+      "id": "espadachim-cicatrizes",
+      "tipo": "ultimate-card",
+      "nome": "Cicatrizes",
+      "corpo": "\n                                <h5>Cicatrizes</h5>\n                                <p class=\"meta\">1 Ação · 5 Stamina · 1x/Dia</p>\n                                <p class=\"quote\">\"A dor nunca foi sua inimiga. Mas sim, sua arma.\"</p>\n                                <p>Ativável com menos da metade da vida:</p>\n                                <div class=\"effect-list\">\n                                    <ul>\n                                        <li>+20 Saúde temporária e +10 Stamina temporária</li>\n                                        <li>Você ignora toda a Armadura (Ar) do alvo</li>\n                                        <li>Ao acertar, inflige Sangramento 1</li>\n                                        <li>Ao matar com esta habilidade: +1 dado de Dano até fim do combate (Max. +2 dados)</li>\n                                    </ul>\n                                </div>\n                                <div class=\"ultimate-cost\">\n                                    <h6>⚠️ O Custo</h6>\n                                    <p>Ao final de cada turno, recebe 1d6 de dano Primordial.</p>\n                                </div>\n                            "
+    },
+    {
+      "id": "espadachim-coragem-liquida",
+      "tipo": "marca-card",
+      "nome": "Coragem Líquida",
+      "corpo": "\n                                    <h5>Coragem Líquida</h5>\n                                    <p class=\"flavor\">\"Seu corpo tropeça, sua lâmina não… Ou talvez\"</p>\n                                    <p>Você fica corajoso ao estar Bêbado e estranhamente sem vergonha.</p>\n                                    <ul>\n                                        <li>1x/rodada: se errar ataque, pode <strong>rolar novamente</strong>. Se errar de novo, fica <em>Exposto</em>.</li>\n                                    </ul>\n                                "
+    },
+    {
+      "id": "espadachim-blefe-do-bebado",
+      "tipo": "marca-card",
+      "nome": "Blefe do Bêbado",
+      "corpo": "\n                                    <h5>Blefe do Bêbado</h5>\n                                    <p class=\"flavor\">\"Você consegue extrapolar todos os limites e, às vezes, sair impune.\"</p>\n                                    <p>Você nunca admite seu vício e possui um sério problema com mentiras.</p>\n                                    <ul>\n                                        <li>Ao rolar crítico, escolha: <strong>Role +1d20</strong> (11-20: +1 dado ao crítico, <11: fica Exposto) OU <strong>Recupere 2 Stamina</strong> e mova 1,5m sem oportunidades.</li>\n                                    </ul>\n                                "
+    },
+    {
+      "id": "espadachim-golpe-torto",
+      "tipo": "tier-technique",
+      "nome": "Golpe Torto",
+      "corpo": "\n                                    <h5>Golpe Torto</h5>\n                                    <p class=\"meta\">1 Ação · 3 Stamina</p>\n                                    <p>Próximo ataque: <strong>+2 Atacar</strong>, se acertar <strong>+1d6 dano</strong>. Se errar, fica <em>Exposto</em>.</p>\n                                "
+    },
+    {
+      "id": "espadachim-beber-ate-cair",
+      "tipo": "tier-technique",
+      "nome": "Beber até Cair",
+      "corpo": "\n                                    <h5>Beber até Cair</h5>\n                                    <p class=\"meta\">1 Ação · 1 Item:Álcool</p>\n                                    <p>Ganhe condição <em>Bêbado</em>. Enquanto bêbado: <strong>+2 Evasão</strong> e <strong>+2 Atacar</strong>.</p>\n                                "
+    },
+    {
+      "id": "espadachim-sorte-do-bebado",
+      "tipo": "tier-technique",
+      "nome": "Sorte do Bêbado",
+      "corpo": "\n                                    <h5>Sorte do Bêbado</h5>\n                                    <p class=\"meta\">Passiva</p>\n                                    <p>Enquanto <em>Bêbado</em>: rolar <strong>19 natural = 20</strong>.</p>\n                                "
+    },
+    {
+      "id": "espadachim-trebado",
+      "tipo": "tier-technique",
+      "nome": "Trêbado",
+      "corpo": "\n                                    <h5>Trêbado</h5>\n                                    <p class=\"meta\">1 Ação · 2 Stamina</p>\n                                    <p>Enquanto bêbado, antes de atacar role 1d6:</p>\n                                    <ul>\n                                        <li><strong>1-2:</strong> -1 Atacar, mas +1 dado de Dano se acertar</li>\n                                        <li><strong>3-4:</strong> Nada acontece</li>\n                                        <li><strong>5-6:</strong> +2 Atacar, mas se errar fica Exposto</li>\n                                    </ul>\n                                "
+    },
+    {
+      "id": "espadachim-destino-incerto",
+      "tipo": "tier-technique",
+      "nome": "Destino Incerto",
+      "corpo": "\n                                    <h5>Destino Incerto</h5>\n                                    <p class=\"meta\">Passiva</p>\n                                    <p>Ao rolar 18, 19 ou 20: recupere 1 Stamina e próximo ataque ganha +1 dado de Dano.</p>\n                                "
+    },
+    {
+      "id": "espadachim-epifania",
+      "tipo": "ultimate-card",
+      "nome": "Epifania",
+      "corpo": "\n                                <h5>Epifania</h5>\n                                <p class=\"meta\">1 Ação · 5 Stamina · 1x/Dia</p>\n                                <p class=\"quote\">\"O corpo cambaleia, mas o destino tropeça junto\"</p>\n                                <p>Até o fim do combate:</p>\n                                <div class=\"effect-list\">\n                                    <ul>\n                                        <li>+20 Saúde temporária e +10 Stamina temporária</li>\n                                        <li>Ao acertar: recupere Saúde = metade do dano</li>\n                                        <li>+1 dado de Dano. 18-20 = crítico</li>\n                                        <li><strong>Toda rodada role 1d6:</strong></li>\n                                        <li>1 → Dobro de dano recebido E causado</li>\n                                        <li>2 → +5 Atacar</li>\n                                        <li>3 → +5 Defender</li>\n                                        <li>4 → +3 Evasão</li>\n                                        <li>5 → Ataques aplicam Exposto</li>\n                                        <li>6 → Rerole qualquer teste como ação livre (1x/teste)</li>\n                                    </ul>\n                                </div>\n                                <div class=\"ultimate-cost\">\n                                    <h6>⚠️ O Custo</h6>\n                                    <p>Ao errar ataque, role 1d6: 1-2 fica Exposto, 3-6 nada acontece.</p>\n                                </div>\n                            "
+    }
+  ]
+}

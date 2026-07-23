@@ -1,0 +1,2035 @@
+{
+  "catalogo": [
+    {
+      "id": "universal",
+      "cards": [
+        {
+          "id": "limiar-alma-resiliente",
+          "nome": "Alma Resiliente",
+          "ordem": [
+            "icon",
+            "name",
+            "effect"
+          ],
+          "icon": "🌍",
+          "effect": "Aumente 1 nível de treinamento em Fortitude, Vontade e Reflexos"
+        },
+        {
+          "id": "limiar-pernas-incansaveis",
+          "nome": "Pernas Incansáveis",
+          "ordem": [
+            "icon",
+            "name",
+            "effect"
+          ],
+          "icon": "🌍",
+          "effect": "+4,5m de movimento permanente"
+        },
+        {
+          "id": "limiar-treinamento-focado",
+          "nome": "Treinamento Focado",
+          "ordem": [
+            "icon",
+            "name",
+            "effect"
+          ],
+          "icon": "🌍",
+          "effect": "Escolha 2 perícias. Aumente 1 nível de treinamento nelas. (Essa carta sempre está no pool universal)"
+        },
+        {
+          "id": "limiar-reservas-profundas",
+          "nome": "Reservas Profundas",
+          "ordem": [
+            "icon",
+            "name",
+            "effect"
+          ],
+          "icon": "🌍",
+          "effect": "+10 Stamina máxima permanente"
+        },
+        {
+          "id": "limiar-poco-arcano",
+          "nome": "Poço Arcano",
+          "ordem": [
+            "icon",
+            "name",
+            "effect"
+          ],
+          "icon": "🌍",
+          "effect": "+10 Éter máximo permanente"
+        },
+        {
+          "id": "limiar-sangue-espesso",
+          "nome": "Sangue Espesso",
+          "ordem": [
+            "icon",
+            "name",
+            "effect"
+          ],
+          "icon": "🌍",
+          "effect": "+2d10+5 Saúde máxima permanente"
+        },
+        {
+          "id": "limiar-olhos-de-aguia",
+          "nome": "Olhos de Águia",
+          "ordem": [
+            "icon",
+            "name",
+            "effect"
+          ],
+          "icon": "🌍",
+          "effect": "Aumente 2 níveis de treinamento em Percepção"
+        },
+        {
+          "id": "limiar-reflexos-agucados",
+          "nome": "Reflexos Aguçados",
+          "ordem": [
+            "icon",
+            "name",
+            "effect"
+          ],
+          "icon": "🌍",
+          "effect": "Aumente 2 níveis de treinamento em Iniciativa"
+        },
+        {
+          "id": "limiar-marca-do-guerreiro",
+          "nome": "Marca do Guerreiro",
+          "ordem": [
+            "icon",
+            "name",
+            "effect"
+          ],
+          "icon": "🌍",
+          "effect": "Aumente 1 nível de treinamento em Atacar"
+        },
+        {
+          "id": "limiar-postura-de-ferro",
+          "nome": "Postura de Ferro",
+          "ordem": [
+            "icon",
+            "name",
+            "effect"
+          ],
+          "icon": "🌍",
+          "effect": "Aumente 1 nível de treinamento em Defender"
+        }
+      ]
+    },
+    {
+      "id": "forca",
+      "cards": [
+        {
+          "id": "limiar-musculos-de-ogro",
+          "nome": "Músculos de Ogro",
+          "ordem": [
+            "icon",
+            "req",
+            "name",
+            "effect"
+          ],
+          "icon": "💪",
+          "req": "FOR 14+",
+          "effect": "Seus ataques corpo a corpo causam +5 de dano permanente"
+        },
+        {
+          "id": "limiar-ossos-densos",
+          "nome": "Ossos Densos",
+          "ordem": [
+            "icon",
+            "req",
+            "name",
+            "effect"
+          ],
+          "icon": "💪",
+          "req": "FOR 14+",
+          "effect": "Seus ataques corpo a corpo críticos reduzem 1 de Armadura do inimigo"
+        },
+        {
+          "id": "limiar-pontos-vitais",
+          "nome": "Pontos Vitais",
+          "ordem": [
+            "icon",
+            "req",
+            "name",
+            "effect"
+          ],
+          "icon": "💪",
+          "req": "FOR 14+",
+          "effect": "Ao acertar crítico corpo a corpo, cause +2d6 de dano adicional"
+        },
+        {
+          "id": "limiar-garras-de-aco",
+          "nome": "Garras de Aço",
+          "ordem": [
+            "icon",
+            "req",
+            "name",
+            "effect"
+          ],
+          "icon": "💪",
+          "req": "FOR 14+",
+          "effect": "Seus ataques desarmados causam 1d12 + FOR de dano (ao invés de 1d4)"
+        },
+        {
+          "id": "limiar-coluna-de-tita",
+          "nome": "Coluna de Titã",
+          "ordem": [
+            "icon",
+            "req",
+            "name",
+            "effect"
+          ],
+          "icon": "💪",
+          "req": "FOR 14+",
+          "effect": "Aumente +1 ponto de força. Adicionalmente, Você ignora sobrepeso leve"
+        },
+        {
+          "id": "limiar-sangue-fervente",
+          "nome": "Sangue Fervente",
+          "ordem": [
+            "icon",
+            "req",
+            "name",
+            "effect"
+          ],
+          "icon": "💪",
+          "req": "FOR 14+",
+          "effect": "Ao reduzir criatura a 0 Saúde corpo a corpo, seu próximo ataque neste turno causa +2d6 de dano"
+        },
+        {
+          "id": "limiar-arremesso-brutal",
+          "nome": "Arremesso Brutal",
+          "ordem": [
+            "icon",
+            "req",
+            "name",
+            "effect"
+          ],
+          "icon": "💪",
+          "req": "FOR 14+",
+          "effect": "Você pode arremessar armas corpo a corpo até 18m causando dano normal + 1d8"
+        },
+        {
+          "id": "limiar-lutador-de-rua",
+          "nome": "Lutador de Rua",
+          "ordem": [
+            "icon",
+            "req",
+            "name",
+            "effect"
+          ],
+          "icon": "💪",
+          "req": "FOR 14+",
+          "effect": "+5 em manobras de Agarrar. Criaturas agarradas recebem 2d6 de dano por turno e pode agarrar criaturas de um tamanho acima que o seu."
+        },
+        {
+          "id": "limiar-impacto-sismico",
+          "nome": "Impacto Sísmico",
+          "ordem": [
+            "icon",
+            "req",
+            "name",
+            "effect"
+          ],
+          "icon": "💪",
+          "req": "FOR 14+",
+          "effect": "Ao empurrar com sucesso, empurre +4,5m adicionais e cause 3d6 de dano caso o alvo colida com qualquer obstáculo"
+        },
+        {
+          "id": "limiar-limiar-da-morte",
+          "nome": "Limiar da Morte",
+          "ordem": [
+            "icon",
+            "req",
+            "name",
+            "effect"
+          ],
+          "icon": "💪",
+          "req": "FOR 14+",
+          "effect": "Enquanto abaixo de 50% Saúde, +3 em Atacar e Defender corpo a corpo"
+        },
+        {
+          "id": "limiar-presenca-aterradora",
+          "nome": "Presença Aterradora",
+          "ordem": [
+            "icon",
+            "req",
+            "name",
+            "effect"
+          ],
+          "icon": "💪",
+          "req": "FOR 14+",
+          "effect": "Aumente 2 níveis de treinamento em Intimidação. Criaturas Médias ou menores têm -3 em Vontade contra sua intimidação"
+        },
+        {
+          "id": "limiar-quebra-escudos",
+          "nome": "Quebra-Escudos",
+          "ordem": [
+            "icon",
+            "req",
+            "name",
+            "effect"
+          ],
+          "icon": "💪",
+          "req": "FOR 14+",
+          "effect": "Ao acertar crítico em criaturas de nível igual ou menor que o seu, destrua 1 item que estejam segurando ou vestindo (escudo, arma, armadura)"
+        }
+      ]
+    },
+    {
+      "id": "destreza",
+      "cards": [
+        {
+          "id": "limiar-lamina-fantasma",
+          "nome": "Lâmina Fantasma",
+          "ordem": [
+            "icon",
+            "req",
+            "name",
+            "effect"
+          ],
+          "icon": "🎯",
+          "req": "DES 14+",
+          "effect": "Você acerta críticos em 19-20 no d20 (ao invés de apenas 20). Se já possui margem de ameaça aumentada, aumente em +1."
+        },
+        {
+          "id": "limiar-sombra-dancante",
+          "nome": "Sombra Dançante",
+          "ordem": [
+            "icon",
+            "req",
+            "name",
+            "effect"
+          ],
+          "icon": "🎯",
+          "req": "DES 14+",
+          "effect": "Você entende a dança da batalha. +2 Evasão permanente"
+        },
+        {
+          "id": "limiar-reflexos-de-serpente",
+          "nome": "Reflexos de Serpente",
+          "ordem": [
+            "icon",
+            "req",
+            "name",
+            "effect"
+          ],
+          "icon": "🎯",
+          "req": "DES 14+",
+          "effect": "1x/combate: Force um ataque que te acertaria a causar metade do dano (pode ser declarado após a rolagem)"
+        },
+        {
+          "id": "limiar-passos-do-vento",
+          "nome": "Passos do Vento",
+          "ordem": [
+            "icon",
+            "req",
+            "name",
+            "effect"
+          ],
+          "icon": "🎯",
+          "req": "DES 14+",
+          "effect": "Seu movimento aumenta em +4,5m. Você não provoca ataques de oportunidade. Adicionalmente, saltar custa 1 ação"
+        },
+        {
+          "id": "limiar-paciencia",
+          "nome": "Paciência",
+          "ordem": [
+            "icon",
+            "req",
+            "name",
+            "effect"
+          ],
+          "icon": "🎯",
+          "req": "DES 14+",
+          "effect": "Os primeiros golpes são apenas para distrair. Após realizar um ataque, adicione +2 ao seu Atacar pelo resto dessa rodada (acumulativo, máx. +6)"
+        },
+        {
+          "id": "limiar-artilharia",
+          "nome": "Artilharia",
+          "ordem": [
+            "icon",
+            "req",
+            "name",
+            "effect"
+          ],
+          "icon": "🎯",
+          "req": "DES 14+",
+          "effect": "+2 em Atacar com armas à distância. Críticos de armas à distância, removem 1 de armadura do alvo até o fim do combate. Adicionalmente, Ignore desvantagem por cobertura parcial ou leve."
+        },
+        {
+          "id": "limiar-dedos-de-ladrao",
+          "nome": "Dedos de Ladrão",
+          "ordem": [
+            "icon",
+            "req",
+            "name",
+            "effect"
+          ],
+          "icon": "🎯",
+          "req": "DES 14+",
+          "effect": "Aumente 2 níveis de treinamento em Crime. Você pode furtar objetos de alvos em combate como ação livre, desde que não estejam os utilizando. Adicionalmente, ao estar em combate, você sempre tem vantagem em Crime."
+        },
+        {
+          "id": "limiar-rapino",
+          "nome": "Rapino",
+          "ordem": [
+            "icon",
+            "req",
+            "name",
+            "effect"
+          ],
+          "icon": "🎯",
+          "req": "DES 14+",
+          "effect": "Aumente 2 níveis de treinamento em Enganação. Você não sofre dano de queda de altura inferior a 100 metros e Sempre cai de pé nessas circunstâncias."
+        },
+        {
+          "id": "limiar-corpo-escorregadio",
+          "nome": "Corpo Escorregadio",
+          "ordem": [
+            "icon",
+            "req",
+            "name",
+            "effect"
+          ],
+          "icon": "🎯",
+          "req": "DES 14+",
+          "effect": "Aumente 2 níveis de treinamento em Reflexos. +3 em testes para escapar de Agarrões, amarras ou restrições físicas não místicas. Adicionalmente, você pode usar sua reação para somar sua pericia Defender em qualquer teste de Reflexos."
+        },
+        {
+          "id": "limiar-sombras",
+          "nome": "Sombras",
+          "ordem": [
+            "icon",
+            "req",
+            "name",
+            "effect"
+          ],
+          "icon": "🎯",
+          "req": "DES 14+",
+          "effect": "Aumente 2 níveis de treinamento em Furtividade. Você pode se esconder mesmo sendo observado se houver sombras ou cobertura leve. Adicionalmente, você gasta -1 ação para se esconder (min. 1)"
+        },
+        {
+          "id": "limiar-terceiro-olho",
+          "nome": "Terceiro Olho",
+          "ordem": [
+            "icon",
+            "req",
+            "name",
+            "effect"
+          ],
+          "icon": "🎯",
+          "req": "DES 14+",
+          "effect": "Ao acertar dois ataques a distância na mesma criatura, você pode realizar outro como ação livre na mesma criatura."
+        },
+        {
+          "id": "limiar-esquiva-abissal",
+          "nome": "Esquiva Abissal",
+          "ordem": [
+            "icon",
+            "req",
+            "name",
+            "effect"
+          ],
+          "icon": "🎯",
+          "req": "DES 14+",
+          "effect": "Seu dado da perícia Defender se torna um 3d6 (Ao invés de d12). Adicionalmente, você pode gastar 15 de Stamina como ação livre para recuperar sua reação. 1x/combate"
+        }
+      ]
+    },
+    {
+      "id": "con",
+      "cards": [
+        {
+          "id": "limiar-carne-de-pedra",
+          "nome": "Carne de Pedra",
+          "ordem": [
+            "icon",
+            "req",
+            "name",
+            "effect"
+          ],
+          "icon": "🛡️",
+          "req": "CON 14+",
+          "effect": "Reduza todo dano recebido em 5 (mínimo 1)"
+        },
+        {
+          "id": "limiar-coracao-imortal",
+          "nome": "Coração Imortal",
+          "ordem": [
+            "icon",
+            "req",
+            "name",
+            "effect"
+          ],
+          "icon": "🛡️",
+          "req": "CON 14+",
+          "effect": "1x/campanha: Ao ser reduzido a 0 Saúde, volte com 50% da Saúde máxima automaticamente"
+        },
+        {
+          "id": "limiar-sangue-regenerador",
+          "nome": "Sangue Regenerador",
+          "ordem": [
+            "icon",
+            "req",
+            "name",
+            "effect"
+          ],
+          "icon": "🛡️",
+          "req": "CON 14+",
+          "effect": "Recupere 3 Saúde por rodada durante combate (no início do seu turno)"
+        },
+        {
+          "id": "limiar-pulmoes-titanicos",
+          "nome": "Pulmões Titânicos",
+          "ordem": [
+            "icon",
+            "req",
+            "name",
+            "effect"
+          ],
+          "icon": "🛡️",
+          "req": "CON 14+",
+          "effect": "+3d12+8 Saúde máxima permanente"
+        },
+        {
+          "id": "limiar-coracao-da-dor",
+          "nome": "Coração da Dor",
+          "ordem": [
+            "icon",
+            "req",
+            "name",
+            "effect"
+          ],
+          "icon": "🛡️",
+          "req": "CON 14+",
+          "effect": "Aumente 2 níveis de treinamento em Fortitude. Você pode reagir a ataques eminentes com uma nova reação, Aceitar a Dor: role um teste de Fortitude, caso o dano seja inferior ao seu teste, ignore o dano."
+        },
+        {
+          "id": "limiar-resistencia-arcana",
+          "nome": "Resistência Arcana",
+          "ordem": [
+            "icon",
+            "req",
+            "name",
+            "effect"
+          ],
+          "icon": "🛡️",
+          "req": "CON 14+",
+          "effect": "Escolha 1 tipo de dano atípico (Fogo, Gelo, Ácido, Elétrico, Trovejante, Veneno, Necrótico, Psíquico, Radiante). Você tem Resistência a ele. Adicionalmente, ganhe 2 de armadura específica em todos os outros tipos de dano."
+        },
+        {
+          "id": "limiar-cicatrizacao-acelerada",
+          "nome": "Cicatrização Acelerada",
+          "ordem": [
+            "icon",
+            "req",
+            "name",
+            "effect"
+          ],
+          "icon": "🛡️",
+          "req": "CON 14+",
+          "effect": "Descansos curtos curam 2x mais Saúde. Descansos longos sempre curam completamente. Adicionalmente, recebe +1d4 de cura de todas outras fontes, a não ser descansos."
+        },
+        {
+          "id": "limiar-pacto-sanguinario",
+          "nome": "Pacto Sanguinário",
+          "ordem": [
+            "icon",
+            "req",
+            "name",
+            "effect"
+          ],
+          "icon": "🛡️",
+          "req": "CON 14+",
+          "effect": "1x/dia: Recupere metade de sua Stamina como ação livre, mas sacrifique saúde atual equivalente a metade da sua saúde máxima."
+        },
+        {
+          "id": "limiar-guardiao-teimoso",
+          "nome": "Guardião Teimoso",
+          "ordem": [
+            "icon",
+            "req",
+            "name",
+            "effect"
+          ],
+          "icon": "🛡️",
+          "req": "CON 14+",
+          "effect": "Ao estar em 0 Saúde, você perde apenas 5% da Saúde máxima por rodada (ao invés de 10%). Adicionalmente, testes de medicina para lhe salvar da mortes tem cd 10. (Ao invés de 20)"
+        },
+        {
+          "id": "limiar-barbaro",
+          "nome": "Bárbaro",
+          "ordem": [
+            "icon",
+            "req",
+            "name",
+            "effect"
+          ],
+          "icon": "🛡️",
+          "req": "CON 14+",
+          "effect": "Aumente +2 pontos de atributo em Força e Constituição, porém, reduza -2 pontos de atributo em Inteligência e Sabedoria"
+        },
+        {
+          "id": "limiar-escamas-reativas",
+          "nome": "Escamas Reativas",
+          "ordem": [
+            "icon",
+            "req",
+            "name",
+            "effect"
+          ],
+          "icon": "🛡️",
+          "req": "CON 14+",
+          "effect": "Você ganha escamas reativas que se adaptam rapidamente ao serem atacadas. Provendo 10 de Ae ao último tipo de dano atípico que você recebeu APÓS o ataque."
+        },
+        {
+          "id": "limiar-corpo-duro",
+          "nome": "Corpo Duro",
+          "ordem": [
+            "icon",
+            "req",
+            "name",
+            "effect"
+          ],
+          "icon": "🛡️",
+          "req": "CON 14+",
+          "effect": "Qualquer ataque contra você causa 1 de dano de força instantaneamente ao atacante. Adicionalmente, ganhe +1 de comodidade em todos os descansos longos permanentemente."
+        }
+      ]
+    },
+    {
+      "id": "int",
+      "cards": [
+        {
+          "id": "limiar-mente-tatica",
+          "nome": "Mente Tática",
+          "ordem": [
+            "icon",
+            "req",
+            "name",
+            "effect"
+          ],
+          "icon": "📚",
+          "req": "INT 14+",
+          "effect": "Ao rolar qualquer perícia, você pode pagar 5 de Stamina para aumentar 1 nível de treinamento nela. (Acumulativo)"
+        },
+        {
+          "id": "limiar-olhos-analiticos",
+          "nome": "Olhos Analíticos",
+          "ordem": [
+            "icon",
+            "req",
+            "name",
+            "effect"
+          ],
+          "icon": "📚",
+          "req": "INT 14+",
+          "effect": "1x/combate (1 ação): Descubra Evasão exata, Saúde atual, resistências, vulnerabilidades e 1 habilidade especial de 1 criatura visível"
+        },
+        {
+          "id": "limiar-cerebro-enciclopedico",
+          "nome": "Cérebro Enciclopédico",
+          "ordem": [
+            "icon",
+            "req",
+            "name",
+            "effect"
+          ],
+          "icon": "📚",
+          "req": "INT 14+",
+          "effect": "Aumente 2 níveis de treinamento em Conhecimento. Adicionalmente, Você pode fazer testes de Conhecimento sobre qualquer tópico"
+        },
+        {
+          "id": "limiar-comandante-de-guerra",
+          "nome": "Comandante de Guerra",
+          "ordem": [
+            "icon",
+            "req",
+            "name",
+            "effect"
+          ],
+          "icon": "📚",
+          "req": "INT 14+",
+          "effect": "Aumente 2 níveis de treinamento em Motivar. Adicionalmente, 1x/rodada (1 ação): Um aliado em 9m ataca imediatamente como reação com +2 em Atacar."
+        },
+        {
+          "id": "limiar-contra-magica-instintiva",
+          "nome": "Contra-Mágica Instintiva",
+          "ordem": [
+            "icon",
+            "req",
+            "name",
+            "effect"
+          ],
+          "icon": "📚",
+          "req": "INT 14+",
+          "effect": "Ao ver magia sendo castada, role Conhecimento CD 15. Sucesso: você sabe exatamente o que faz E pode gastar sua reação para dar +5 em Resistência ao alvo dela. Adicionalmente, aumente sua CD de classe em +2"
+        },
+        {
+          "id": "limiar-decifrador-universal",
+          "nome": "Decifrador Universal",
+          "ordem": [
+            "icon",
+            "req",
+            "name",
+            "effect"
+          ],
+          "icon": "📚",
+          "req": "INT 14+",
+          "effect": "Aumente 2 níveis de treinamento em Investigação. Você pode ler QUALQUER idioma escrito após 1 minuto de estudo"
+        },
+        {
+          "id": "limiar-memoria-absoluta",
+          "nome": "Memória Absoluta",
+          "ordem": [
+            "icon",
+            "req",
+            "name",
+            "effect"
+          ],
+          "icon": "📚",
+          "req": "INT 14+",
+          "effect": "Você lembra perfeitamente de tudo. Aumente +1 ponto de atributo em inteligência. Você nunca esquece rostos, nomes ou informações, podendo perguntar ao mestre qualquer coisa que vivenciou a partir de agora."
+        },
+        {
+          "id": "limiar-felizardo",
+          "nome": "Felizardo",
+          "ordem": [
+            "icon",
+            "req",
+            "name",
+            "effect"
+          ],
+          "icon": "📚",
+          "req": "INT 14+",
+          "effect": "Você recebe +15% de Sins de todas as fontes. Adicionalmente, ao rolar d100's quando saquear uma criatura morta POR VOCÊ, sempre some +10 ao dado"
+        },
+        {
+          "id": "limiar-bestiario",
+          "nome": "Bestiário",
+          "ordem": [
+            "icon",
+            "req",
+            "name",
+            "effect"
+          ],
+          "icon": "📚",
+          "req": "INT 14+",
+          "effect": "Ao combater uma criatura já conhecida, os ataques contra ela ignoram 3 de Armadura, causam +1d6 de dano e possuem +2 Atacar a todos os aliados em até 18 m de você."
+        },
+        {
+          "id": "limiar-equilibrio-eterico",
+          "nome": "Equilíbrio Éterico",
+          "ordem": [
+            "icon",
+            "req",
+            "name",
+            "effect"
+          ],
+          "icon": "📚",
+          "req": "INT 14+",
+          "effect": "Ao estar com 100% de éter, você ganha +1 nível de treinamento em todas as perícias. Adicionalmente, ao estar com 100% de éter, stamina e saúde você tem vantagem em todas as perícias."
+        },
+        {
+          "id": "limiar-estudo-intenso",
+          "nome": "Estudo Intenso",
+          "ordem": [
+            "icon",
+            "req",
+            "name",
+            "effect"
+          ],
+          "icon": "📚",
+          "req": "INT 14+",
+          "effect": "Adicione +2 ao seu CD de classe. Adicionalmente, escolha uma perícia, aumente 1 nível de treinamento nela."
+        },
+        {
+          "id": "limiar-campeao-de-vidro",
+          "nome": "Campeão de Vidro",
+          "ordem": [
+            "icon",
+            "req",
+            "name",
+            "effect"
+          ],
+          "icon": "📚",
+          "req": "INT 14+",
+          "effect": "Você acumula dano a cada combate em que você não perde saúde. +1 de dano de Força por combate sem perder saúde. Ao perder qualquer saúde, você perde 10 pontos de dano acumulados nessa carta instantaneamente."
+        }
+      ]
+    },
+    {
+      "id": "sab",
+      "cards": [
+        {
+          "id": "limiar-olhos-do-oraculo",
+          "nome": "Olhos do Oráculo",
+          "ordem": [
+            "icon",
+            "req",
+            "name",
+            "effect"
+          ],
+          "icon": "🔮",
+          "req": "SAB 14+",
+          "effect": "Você não pode ser Desprevenido. Aumente 2 níveis de treinamento em Percepção. Você pode ver criaturas invisíveis como silhuetas borradas"
+        },
+        {
+          "id": "limiar-premonicao-de-batalha",
+          "nome": "Premonição de Batalha",
+          "ordem": [
+            "icon",
+            "req",
+            "name",
+            "effect"
+          ],
+          "icon": "🔮",
+          "req": "SAB 14+",
+          "effect": "1x/sessão: Você pode escolher substituir sua Iniciativa por 30 E dar +2 em Iniciativa para todos os aliados em 12m"
+        },
+        {
+          "id": "limiar-empatia-transcendental",
+          "nome": "Empatia Transcendental",
+          "ordem": [
+            "icon",
+            "req",
+            "name",
+            "effect"
+          ],
+          "icon": "🔮",
+          "req": "SAB 14+",
+          "effect": "Aumente 2 níveis de treinamento em Intuição. Você pode sentir emoções ocultas e detectar se alguém esta mentindo automaticamente. Adicionalmente, você pode realizar testes de Intuição para qualquer interação"
+        },
+        {
+          "id": "limiar-rastreador-sobrenatural",
+          "nome": "Rastreador Sobrenatural",
+          "ordem": [
+            "icon",
+            "req",
+            "name",
+            "effect"
+          ],
+          "icon": "🔮",
+          "req": "SAB 14+",
+          "effect": "Aumente 2 níveis de treinamento em Sobrevivência. Você pode rastrear qualquer criatura por até 7 dias. Você sabe direção e distância aproximada de alvos que você já rastreou"
+        },
+        {
+          "id": "limiar-maos-abencoadas",
+          "nome": "Mãos Abençoadas",
+          "ordem": [
+            "icon",
+            "req",
+            "name",
+            "effect"
+          ],
+          "icon": "🔮",
+          "req": "SAB 14+",
+          "effect": "Como uma ação, você pode tocar aliados e realizar teste de Medicina CD 12. Sucesso: cure 3d6+SAB de Saúde. Você pode fazer isso em até 3 aliados por descanso longo"
+        },
+        {
+          "id": "limiar-comunhao-primordial",
+          "nome": "Comunhão Primordial",
+          "ordem": [
+            "icon",
+            "req",
+            "name",
+            "effect"
+          ],
+          "icon": "🔮",
+          "req": "SAB 14+",
+          "effect": "Você fala a Língua Natural. Você pode pedir 1 favor pequeno a criaturas naturais 1x/dia (elas cooperam se não for perigoso)"
+        },
+        {
+          "id": "limiar-sexto-sentido",
+          "nome": "Sexto Sentido",
+          "ordem": [
+            "icon",
+            "req",
+            "name",
+            "effect"
+          ],
+          "icon": "🔮",
+          "req": "SAB 14+",
+          "effect": "1x/combate (reação): Ao você ou aliado em 9m ser alvo de ataque, você pode fazer o atacante rerolar com desvantagem"
+        },
+        {
+          "id": "limiar-guardiao-da-natureza",
+          "nome": "Guardião da Natureza",
+          "ordem": [
+            "icon",
+            "req",
+            "name",
+            "effect"
+          ],
+          "icon": "🔮",
+          "req": "SAB 14+",
+          "effect": "Escolha 2 tipos de terreno (Floresta, Montanha, Deserto, Urbano, Subterrâneo, Naval). Neles, você e aliados em 9m têm +3 em Percepção, Sobrevivência, Furtividade e Movimento"
+        },
+        {
+          "id": "limiar-instinto-do-predador",
+          "nome": "Instinto do Predador",
+          "ordem": [
+            "icon",
+            "req",
+            "name",
+            "effect"
+          ],
+          "icon": "🔮",
+          "req": "SAB 14+",
+          "effect": "Ao rolar Iniciativa, você pode declarar 1 criatura como \"Presa\". Você tem +3 em Atacar, +2 em Defender e +1d6 de dano contra ela. Você pode trocar de presa como ação livre"
+        },
+        {
+          "id": "limiar-meditacao-transcendental",
+          "nome": "Meditação Transcendental",
+          "ordem": [
+            "icon",
+            "req",
+            "name",
+            "effect"
+          ],
+          "icon": "🔮",
+          "req": "SAB 14+",
+          "effect": "Você ganha novo tipo de ação: Meditação Transcendental (30min). Recupere 2d6 Stamina e 2d6 Éter"
+        },
+        {
+          "id": "limiar-vidente",
+          "nome": "Vidente",
+          "ordem": [
+            "icon",
+            "req",
+            "name",
+            "effect"
+          ],
+          "icon": "🔮",
+          "req": "SAB 14+",
+          "effect": "1x/sessão: Faça 1 pergunta \"sim/não\" ao Mestre sobre algo que acontecerá nos próximos 10 minutos. Ele responde honestamente. Você pode usar a resposta para se preparar"
+        },
+        {
+          "id": "limiar-santuario-espiritual",
+          "nome": "Santuário Espiritual",
+          "ordem": [
+            "icon",
+            "req",
+            "name",
+            "effect"
+          ],
+          "icon": "🔮",
+          "req": "SAB 14+",
+          "effect": "Aliados em 9m de você têm +3 em todos os testes de Resistência (Fortitude, Vontade, Reflexos) e são imunes a Amedrontado e Enfeitiçado enquanto você estiver consciente"
+        }
+      ]
+    },
+    {
+      "id": "rara",
+      "cards": [
+        {
+          "id": "limiar-carne-e-aco",
+          "nome": "Carne e Aço",
+          "ordem": [
+            "icon",
+            "req",
+            "name"
+          ],
+          "icon": "⭐",
+          "req": "FOR 16+, CON 16+"
+        },
+        {
+          "id": "limiar-berserker-imortal",
+          "nome": "Berserker Imortal",
+          "ordem": [
+            "icon",
+            "req",
+            "name"
+          ],
+          "icon": "⭐",
+          "req": "FOR 14+, CON 16+"
+        },
+        {
+          "id": "limiar-punhos-do-abismo",
+          "nome": "Punhos do Abismo",
+          "ordem": [
+            "icon",
+            "req",
+            "name"
+          ],
+          "icon": "⭐",
+          "req": "FOR 14+, SAB 14+"
+        },
+        {
+          "id": "limiar-carnificina",
+          "nome": "Carnificina",
+          "ordem": [
+            "icon",
+            "req",
+            "name"
+          ],
+          "icon": "⭐",
+          "req": "FOR 14+, DES 14+"
+        },
+        {
+          "id": "limiar-carrasco",
+          "nome": "Carrasco",
+          "ordem": [
+            "icon",
+            "req",
+            "name"
+          ],
+          "icon": "⭐",
+          "req": "FOR 16+, INT 14+"
+        },
+        {
+          "id": "limiar-colossus-primordial",
+          "nome": "Colossus Primordial",
+          "ordem": [
+            "icon",
+            "req",
+            "name"
+          ],
+          "icon": "⭐",
+          "req": "FOR 20+"
+        },
+        {
+          "id": "limiar-devastador-de-enxames",
+          "nome": "Devastador de Enxames",
+          "ordem": [
+            "icon",
+            "req",
+            "name"
+          ],
+          "icon": "⭐",
+          "req": "FOR 20+, CON 16+"
+        },
+        {
+          "id": "limiar-lenda-monge",
+          "nome": "Lenda Monge",
+          "ordem": [
+            "icon",
+            "req",
+            "name"
+          ],
+          "icon": "⭐",
+          "req": "FOR 20+, SAB 14+"
+        },
+        {
+          "id": "limiar-assassino-fantasma",
+          "nome": "Assassino Fantasma",
+          "ordem": [
+            "icon",
+            "req",
+            "name"
+          ],
+          "icon": "⭐",
+          "req": "DES 16+, SAB 14+"
+        },
+        {
+          "id": "limiar-laminas-dancantes",
+          "nome": "Lâminas Dançantes",
+          "ordem": [
+            "icon",
+            "req",
+            "name"
+          ],
+          "icon": "⭐",
+          "req": "DES 18+, INT 14+"
+        },
+        {
+          "id": "limiar-velocista-umbral",
+          "nome": "Velocista Umbral",
+          "ordem": [
+            "icon",
+            "req",
+            "name"
+          ],
+          "icon": "⭐",
+          "req": "DES 20+"
+        },
+        {
+          "id": "limiar-mestre-dos-mil-cortes",
+          "nome": "Mestre dos Mil Cortes",
+          "ordem": [
+            "icon",
+            "req",
+            "name"
+          ],
+          "icon": "⭐",
+          "req": "DES 16+, INT 14+"
+        },
+        {
+          "id": "limiar-predador-supremo",
+          "nome": "Predador Supremo",
+          "ordem": [
+            "icon",
+            "req",
+            "name"
+          ],
+          "icon": "⭐",
+          "req": "DES 18+, SAB 18+"
+        },
+        {
+          "id": "limiar-fenix-imortal",
+          "nome": "Fênix Imortal",
+          "ordem": [
+            "icon",
+            "req",
+            "name"
+          ],
+          "icon": "⭐",
+          "req": "CON 18+, SAB 14+"
+        },
+        {
+          "id": "limiar-pele-mistica-adaptativa",
+          "nome": "Pele Mística Adaptativa",
+          "ordem": [
+            "icon",
+            "req",
+            "name"
+          ],
+          "icon": "⭐",
+          "req": "CON 20+, INT 14+"
+        },
+        {
+          "id": "limiar-escamas-de-dragao",
+          "nome": "Escamas de Dragão",
+          "ordem": [
+            "icon",
+            "req",
+            "name"
+          ],
+          "icon": "⭐",
+          "req": "CON 18+, FOR 14+"
+        },
+        {
+          "id": "limiar-organismo-mutagenico",
+          "nome": "Organismo Mutagênico",
+          "ordem": [
+            "icon",
+            "req",
+            "name"
+          ],
+          "icon": "⭐",
+          "req": "CON 16+"
+        },
+        {
+          "id": "limiar-duas-mangas",
+          "nome": "Duas Mangas",
+          "ordem": [
+            "icon",
+            "req",
+            "name"
+          ],
+          "icon": "⭐",
+          "req": "INT 16+, DES 14+ (Teurgo apenas)"
+        },
+        {
+          "id": "limiar-o-mestre",
+          "nome": "O Mestre",
+          "ordem": [
+            "icon",
+            "req",
+            "name"
+          ],
+          "icon": "⭐",
+          "req": "INT 18+, SAB 18+"
+        },
+        {
+          "id": "limiar-modo-analise",
+          "nome": "Modo Análise",
+          "ordem": [
+            "icon",
+            "req",
+            "name"
+          ],
+          "icon": "⭐",
+          "req": "INT 16+, DES 14+"
+        },
+        {
+          "id": "limiar-senhor-do-tempo",
+          "nome": "Senhor do Tempo",
+          "ordem": [
+            "icon",
+            "req",
+            "name"
+          ],
+          "icon": "⭐",
+          "req": "INT 16+, DES 14+"
+        },
+        {
+          "id": "limiar-arquiteto-do-destino",
+          "nome": "Arquiteto do Destino",
+          "ordem": [
+            "icon",
+            "req",
+            "name"
+          ],
+          "icon": "⭐",
+          "req": "INT 18+, SAB 18+"
+        },
+        {
+          "id": "limiar-contra-teurgo-supremo",
+          "nome": "Contra-Teurgo Supremo",
+          "ordem": [
+            "icon",
+            "req",
+            "name"
+          ],
+          "icon": "⭐",
+          "req": "INT 18+, CON 14+"
+        },
+        {
+          "id": "limiar-cerebro-transcendente",
+          "nome": "Cérebro Transcendente",
+          "ordem": [
+            "icon",
+            "req",
+            "name"
+          ],
+          "icon": "⭐",
+          "req": "INT 20+"
+        },
+        {
+          "id": "limiar-mestre-teurgo-supremo",
+          "nome": "Mestre Teurgo Supremo",
+          "ordem": [
+            "icon",
+            "req",
+            "name"
+          ],
+          "icon": "⭐",
+          "req": "INT 22+, DES 14+ (Teurgo apenas)"
+        },
+        {
+          "id": "limiar-grande-eter",
+          "nome": "Grande Éter",
+          "ordem": [
+            "icon",
+            "req",
+            "name"
+          ],
+          "icon": "⭐",
+          "req": "INT 20+, SAB 14+"
+        },
+        {
+          "id": "limiar-olhar-dimensional",
+          "nome": "Olhar Dimensional",
+          "ordem": [
+            "icon",
+            "req",
+            "name"
+          ],
+          "icon": "⭐",
+          "req": "SAB 18+"
+        },
+        {
+          "id": "limiar-sudito-da-loucura",
+          "nome": "Súdito da Loucura",
+          "ordem": [
+            "icon",
+            "req",
+            "name"
+          ],
+          "icon": "⭐",
+          "req": "SAB 16+"
+        },
+        {
+          "id": "limiar-devorador-de-almas",
+          "nome": "Devorador de Almas",
+          "ordem": [
+            "icon",
+            "req",
+            "name"
+          ],
+          "icon": "⭐",
+          "req": "INT 16+, SAB 14+"
+        },
+        {
+          "id": "limiar-olhos-de-veluria",
+          "nome": "Olhos de Velúria",
+          "ordem": [
+            "icon",
+            "req",
+            "name"
+          ],
+          "icon": "⭐",
+          "req": "SAB 16+, INT 14+"
+        },
+        {
+          "id": "limiar-guardiao-eterno-da-vida",
+          "nome": "Guardião Eterno da Vida",
+          "ordem": [
+            "icon",
+            "req",
+            "name"
+          ],
+          "icon": "⭐",
+          "req": "SAB 20+, CON 16+"
+        },
+        {
+          "id": "limiar-santuario-intocavel",
+          "nome": "Santuário Intocável",
+          "ordem": [
+            "icon",
+            "req",
+            "name"
+          ],
+          "icon": "⭐",
+          "req": "SAB 18+, CON 14+"
+        },
+        {
+          "id": "limiar-deus-da-guerra",
+          "nome": "Deus da Guerra",
+          "ordem": [
+            "icon",
+            "req",
+            "name"
+          ],
+          "icon": "⭐",
+          "req": "FOR 18+, DES 18+, CON 18+"
+        },
+        {
+          "id": "limiar-onisciencia-de-kha",
+          "nome": "Onisciência de Kha",
+          "ordem": [
+            "icon",
+            "req",
+            "name"
+          ],
+          "icon": "⭐",
+          "req": "INT 18+, SAB 18+, DES 16+"
+        },
+        {
+          "id": "limiar-tanque-absoluto",
+          "nome": "Tanque Absoluto",
+          "ordem": [
+            "icon",
+            "req",
+            "name"
+          ],
+          "icon": "⭐",
+          "req": "FOR 16+, CON 16+, SAB 14+"
+        },
+        {
+          "id": "limiar-artista-marcial-supremo",
+          "nome": "Artista Marcial Supremo",
+          "ordem": [
+            "icon",
+            "req",
+            "name"
+          ],
+          "icon": "⭐",
+          "req": "FOR 16+, DES 18+, SAB 16+"
+        },
+        {
+          "id": "limiar-destruidor-de-mundos",
+          "nome": "Destruidor de Mundos",
+          "ordem": [
+            "icon",
+            "req",
+            "name"
+          ],
+          "icon": "⭐",
+          "req": "FOR 18+, INT 16+, CON 16+"
+        },
+        {
+          "id": "limiar-imortal-relutante",
+          "nome": "Imortal Relutante",
+          "ordem": [
+            "icon",
+            "req",
+            "name"
+          ],
+          "icon": "⭐",
+          "req": "CON 18+, SAB 18+, INT 18+"
+        },
+        {
+          "id": "limiar-avatar-do-caos",
+          "nome": "Avatar do Caos",
+          "ordem": [
+            "icon",
+            "req",
+            "name"
+          ],
+          "icon": "⭐",
+          "req": "FOR 16+, DES 16+, INT 16+"
+        },
+        {
+          "id": "limiar-furia-titanica",
+          "nome": "Fúria Titânica",
+          "ordem": [
+            "icon",
+            "req",
+            "name"
+          ],
+          "icon": "⭐",
+          "req": "FOR 20+, CON 18+"
+        },
+        {
+          "id": "limiar-investida-cataclismica",
+          "nome": "Investida Cataclísmica",
+          "ordem": [
+            "icon",
+            "req",
+            "name"
+          ],
+          "icon": "⭐",
+          "req": "FOR 22+, CON 16+"
+        },
+        {
+          "id": "limiar-pele-de-basalto",
+          "nome": "Pele de Basalto",
+          "ordem": [
+            "icon",
+            "req",
+            "name"
+          ],
+          "icon": "⭐",
+          "req": "FOR 16+, CON 20+"
+        },
+        {
+          "id": "limiar-esmagador-de-linhas",
+          "nome": "Esmagador de Linhas",
+          "ordem": [
+            "icon",
+            "req",
+            "name"
+          ],
+          "icon": "⭐",
+          "req": "FOR 18+, CON 16+"
+        },
+        {
+          "id": "limiar-estocada-perfeita",
+          "nome": "Estocada Perfeita",
+          "ordem": [
+            "icon",
+            "req",
+            "name"
+          ],
+          "icon": "⭐",
+          "req": "DES 20+, INT 14+"
+        },
+        {
+          "id": "limiar-sangria-precisa",
+          "nome": "Sangria Precisa",
+          "ordem": [
+            "icon",
+            "req",
+            "name"
+          ],
+          "icon": "⭐",
+          "req": "DES 18+, INT 16+"
+        },
+        {
+          "id": "limiar-muralha-de-aco",
+          "nome": "Muralha de Aço",
+          "ordem": [
+            "icon",
+            "req",
+            "name"
+          ],
+          "icon": "⭐",
+          "req": "DES 18+, CON 16+"
+        },
+        {
+          "id": "limiar-duelista-fantasma",
+          "nome": "Duelista Fantasma",
+          "ordem": [
+            "icon",
+            "req",
+            "name"
+          ],
+          "icon": "⭐",
+          "req": "DES 22+, INT 16+"
+        },
+        {
+          "id": "limiar-contra-golpe-encadeado",
+          "nome": "Contra-Golpe Encadeado",
+          "ordem": [
+            "icon",
+            "req",
+            "name"
+          ],
+          "icon": "⭐",
+          "req": "DES 20+, CON 14+"
+        },
+        {
+          "id": "limiar-chuva-de-flechas",
+          "nome": "Chuva de Flechas",
+          "ordem": [
+            "icon",
+            "req",
+            "name"
+          ],
+          "icon": "⭐",
+          "req": "DES 20+, SAB 14+"
+        },
+        {
+          "id": "limiar-tiro-executor",
+          "nome": "Tiro Executor",
+          "ordem": [
+            "icon",
+            "req",
+            "name"
+          ],
+          "icon": "⭐",
+          "req": "DES 18+, SAB 16+"
+        },
+        {
+          "id": "limiar-marca-de-caca-eterica",
+          "nome": "Marca de Caça Etérica",
+          "ordem": [
+            "icon",
+            "req",
+            "name"
+          ],
+          "icon": "⭐",
+          "req": "DES 16+, SAB 16+"
+        },
+        {
+          "id": "limiar-predador-das-sombras",
+          "nome": "Predador das Sombras",
+          "ordem": [
+            "icon",
+            "req",
+            "name"
+          ],
+          "icon": "⭐",
+          "req": "DES 18+, SAB 18+"
+        },
+        {
+          "id": "limiar-rajada-perfeita",
+          "nome": "Rajada Perfeita",
+          "ordem": [
+            "icon",
+            "req",
+            "name"
+          ],
+          "icon": "⭐",
+          "req": "DES 20+, SAB 18+"
+        },
+        {
+          "id": "limiar-corrente-elemental",
+          "nome": "Corrente Elemental",
+          "ordem": [
+            "icon",
+            "req",
+            "name"
+          ],
+          "icon": "⭐",
+          "req": "SAB 20+, CON 16+"
+        },
+        {
+          "id": "limiar-ritmo-incansavel",
+          "nome": "Ritmo Incansável",
+          "ordem": [
+            "icon",
+            "req",
+            "name"
+          ],
+          "icon": "⭐",
+          "req": "SAB 18+, DES 16+"
+        },
+        {
+          "id": "limiar-bombardeio-arcano",
+          "nome": "Bombardeio Arcano",
+          "ordem": [
+            "icon",
+            "req",
+            "name"
+          ],
+          "icon": "⭐",
+          "req": "INT 20+, SAB 14+"
+        },
+        {
+          "id": "limiar-lamina-eterea",
+          "nome": "Lâmina Etérea",
+          "ordem": [
+            "icon",
+            "req",
+            "name"
+          ],
+          "icon": "⭐",
+          "req": "INT 18+, DES 16+"
+        },
+        {
+          "id": "limiar-aniquilacao-teurgica",
+          "nome": "Aniquilação Teúrgica",
+          "ordem": [
+            "icon",
+            "req",
+            "name"
+          ],
+          "icon": "⭐",
+          "req": "INT 22+, SAB 18+"
+        },
+        {
+          "id": "limiar-fenda-dimensional",
+          "nome": "Fenda Dimensional",
+          "ordem": [
+            "icon",
+            "req",
+            "name"
+          ],
+          "icon": "⭐",
+          "req": "INT 18+, SAB 16+"
+        }
+      ]
+    }
+  ],
+  "abismo": {
+    "dores": [
+      {
+        "id": "abismo-estabanado",
+        "nome": "Estabanado",
+        "cardAttrs": "",
+        "tituloAttrs": "",
+        "custo": "+1 Dor",
+        "tipo": "gain",
+        "iconAttrs": "",
+        "iconeSvg": "<svg viewBox=\"0 0 24 24\"><path d=\"M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z\"/></svg>",
+        "desc": "Você é naturalmente desligado, sempre possui a condição <em>Desorientado</em>."
+      },
+      {
+        "id": "abismo-gulao",
+        "nome": "Gulão",
+        "cardAttrs": "",
+        "tituloAttrs": "",
+        "custo": "+1 Dor",
+        "tipo": "gain",
+        "iconAttrs": "",
+        "iconeSvg": "<svg viewBox=\"0 0 24 24\"><path d=\"M11 9H9V2H7v7H5V2H3v7c0 2.12 1.66 3.84 3.75 3.97V22h2.5v-9.03C11.34 12.84 13 11.12 13 9V2h-2v7zm5-3v8h2.5v8H21V2c-2.76 0-5 2.24-5 4z\"/></svg>",
+        "desc": "Você é gordo. Precisa do dobro de comida para sobreviver. Gasta 2 Comidas para descansar."
+      },
+      {
+        "id": "abismo-bagunceiro",
+        "nome": "Bagunceiro",
+        "cardAttrs": "",
+        "tituloAttrs": "",
+        "custo": "+1 Dor",
+        "tipo": "gain",
+        "iconAttrs": "",
+        "iconeSvg": "<svg viewBox=\"0 0 24 24\"><path d=\"M20 6h-8l-2-2H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2z\"/></svg>",
+        "desc": "Você é uma zona. Você pode carregar 50% menos bugigangas e equipamentos."
+      },
+      {
+        "id": "abismo-orgulhoso",
+        "nome": "Orgulhoso",
+        "cardAttrs": "",
+        "tituloAttrs": "",
+        "custo": "+2 Dor",
+        "tipo": "gain",
+        "iconAttrs": "",
+        "iconeSvg": "<svg viewBox=\"0 0 24 24\"><path d=\"M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z\"/><path d=\"M13 7h-2v5.41l4.29 4.3 1.42-1.42L13 11.59z\"/></svg>",
+        "desc": "Você é corajoso ou apenas orgulhoso. Você não pode fugir de combates."
+      },
+      {
+        "id": "abismo-timido",
+        "nome": "Tímido",
+        "cardAttrs": "",
+        "tituloAttrs": "",
+        "custo": "+2 Dor",
+        "tipo": "gain",
+        "iconAttrs": "",
+        "iconeSvg": "<svg viewBox=\"0 0 24 24\"><path d=\"M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z\"/></svg>",
+        "desc": "Você é introvertido e tem dificuldade em se enturmar. -5 em todas as interações sociais."
+      },
+      {
+        "id": "abismo-perdedor",
+        "nome": "Perdedor",
+        "cardAttrs": "",
+        "tituloAttrs": "",
+        "custo": "+2 Dor",
+        "tipo": "gain",
+        "iconAttrs": "",
+        "iconeSvg": "<svg viewBox=\"0 0 24 24\"><path d=\"M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM7.5 18c-.83 0-1.5-.67-1.5-1.5S6.67 15 7.5 15s1.5.67 1.5 1.5S8.33 18 7.5 18zm0-9C6.67 9 6 8.33 6 7.5S6.67 6 7.5 6 9 6.67 9 7.5 8.33 9 7.5 9zm4.5 4.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z\"/></svg>",
+        "desc": "Você tem azar, nasceu pra perder. Você falha criticamente em 1-2 na rolagem natural."
+      },
+      {
+        "id": "abismo-mente-fraca",
+        "nome": "Mente Fraca",
+        "cardAttrs": "",
+        "tituloAttrs": "",
+        "custo": "+3 Dor",
+        "tipo": "gain",
+        "iconAttrs": "",
+        "iconeSvg": "<svg viewBox=\"0 0 24 24\"><path d=\"M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.59-8-8 0-1.85.63-3.55 1.69-4.9L16.9 18.31C15.55 19.37 13.85 20 12 20zm6.31-3.1L7.1 5.69C8.45 4.63 10.15 4 12 4c4.42 0 8 3.59 8 8 0 1.85-.63 3.55-1.69 4.9z\"/></svg>",
+        "desc": "Você é perturbado, inseguro. +100% gasto de Éter global."
+      },
+      {
+        "id": "abismo-murcho",
+        "nome": "Murcho",
+        "cardAttrs": "",
+        "tituloAttrs": "",
+        "custo": "+3 Dor",
+        "tipo": "gain",
+        "iconAttrs": "",
+        "iconeSvg": "<svg viewBox=\"0 0 24 24\"><path d=\"M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-5-9h10v2H7z\"/></svg>",
+        "desc": "Você é frágil, magrelo, sem constituição. -4 nos atributos Força e Constituição."
+      },
+      {
+        "id": "abismo-obvio",
+        "nome": "Óbvio",
+        "cardAttrs": "",
+        "tituloAttrs": "",
+        "custo": "+3 Dor",
+        "tipo": "gain",
+        "iconAttrs": "",
+        "iconeSvg": "<svg viewBox=\"0 0 24 24\"><path d=\"M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5z\"/></svg>",
+        "desc": "Você é muito fácil de acertar, não faz esforço algum para se defender. -5 Evasão."
+      },
+      {
+        "id": "abismo-memoria-ruim",
+        "nome": "Memória Ruim",
+        "cardAttrs": "",
+        "tituloAttrs": "",
+        "custo": "+4 Dor",
+        "tipo": "gain",
+        "iconAttrs": "",
+        "iconeSvg": "<svg viewBox=\"0 0 24 24\"><path d=\"M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H8c0-2.21 1.79-4 4-4s4 1.79 4 4c0 .88-.36 1.68-.93 2.25z\"/></svg>",
+        "desc": "Você esquece de tudo. Escolha 2 perícias que você é treinado, você perde o treinamento nelas."
+      },
+      {
+        "id": "abismo-sangue-caro",
+        "nome": "Sangue Caro",
+        "cardAttrs": "",
+        "tituloAttrs": "",
+        "custo": "+4 Dor",
+        "tipo": "gain",
+        "iconAttrs": "",
+        "iconeSvg": "<svg viewBox=\"0 0 24 24\"><path d=\"M12 2c-5.33 4.55-8 8.48-8 11.8 0 4.98 3.8 8.2 8 8.2s8-3.22 8-8.2c0-3.32-2.67-7.25-8-11.8z\"/></svg>",
+        "desc": "Você é mesquinho e mimado. Você recupera 50% menos de Saúde de todas as fontes."
+      },
+      {
+        "id": "abismo-perdido",
+        "nome": "Perdido",
+        "cardAttrs": "",
+        "tituloAttrs": "",
+        "custo": "+4 Dor",
+        "tipo": "gain",
+        "iconAttrs": "",
+        "iconeSvg": "<svg viewBox=\"0 0 24 24\"><path d=\"M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z\"/></svg>",
+        "desc": "Você não consegue se orientar direito. Não pode ajudar em jornadas e aumenta os pontos de sucesso necessários em +1."
+      },
+      {
+        "id": "abismo-sem-membro",
+        "nome": "Sem Membro",
+        "cardAttrs": "",
+        "tituloAttrs": "",
+        "custo": "+5 Dor",
+        "tipo": "gain",
+        "iconAttrs": "",
+        "iconeSvg": "<svg viewBox=\"0 0 24 24\"><path d=\"M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5 11H7v-2h10v2z\"/></svg>",
+        "desc": "<strong>Braço:</strong> -4 Des e For, não pode usar armas de duas mãos nem à distância.<br><strong>Perna:</strong> -6 Des, -50% Movimento, não pode usar Acelerar."
+      },
+      {
+        "id": "abismo-cego",
+        "nome": "Cego",
+        "cardAttrs": "",
+        "tituloAttrs": "",
+        "custo": "+5 Dor",
+        "tipo": "gain",
+        "iconAttrs": "",
+        "iconeSvg": "<svg viewBox=\"0 0 24 24\"><path d=\"M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5z\"/><path d=\"M2 4l18 16\" stroke=\"currentColor\" stroke-width=\"2\"/></svg>",
+        "desc": "Você nasceu ou se tornou cego. Você tem permanentemente a condição <em>Cego</em>."
+      },
+      {
+        "id": "abismo-gringo",
+        "nome": "Gringo",
+        "cardAttrs": "",
+        "tituloAttrs": "",
+        "custo": "+5 Dor",
+        "tipo": "gain",
+        "iconAttrs": "",
+        "iconeSvg": "<svg viewBox=\"0 0 24 24\"><path d=\"M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z\"/></svg>",
+        "desc": "Você não nasceu para negociações. +100% Sins gastos ao comprar itens. Deve comprar seus próprios itens."
+      },
+      {
+        "id": "abismo-burro",
+        "nome": "Burro",
+        "cardAttrs": "",
+        "tituloAttrs": "",
+        "custo": "+6 Dor",
+        "tipo": "gain",
+        "iconAttrs": "",
+        "iconeSvg": "<svg viewBox=\"0 0 24 24\"><path d=\"M12 3L1 9l4 2.18v6L12 21l7-3.82v-6l2-1.09V17h2V9L12 3z\"/></svg>",
+        "desc": "Você não raciocina nem aprende direito. -50% Xp de todas as fontes."
+      },
+      {
+        "id": "abismo-sacrificio-vivo",
+        "nome": "Sacrifício Vivo",
+        "cardAttrs": "",
+        "tituloAttrs": "",
+        "custo": "+6 Dor",
+        "tipo": "gain",
+        "iconAttrs": "",
+        "iconeSvg": "<svg viewBox=\"0 0 24 24\"><path d=\"M12 2L4 5v6.09c0 5.05 3.41 9.76 8 10.91 4.59-1.15 8-5.86 8-10.91V5l-8-3zm-1.06 13.54L7.4 12l1.41-1.41 2.12 2.12 4.24-4.24 1.41 1.41-5.64 5.66z\"/></svg>",
+        "desc": "Você escapou de um ritual de sacrifício, onde você era a oferenda. 50% menos de Saúde e Éter máximos."
+      },
+      {
+        "id": "abismo-exigente",
+        "nome": "Exigente",
+        "cardAttrs": "",
+        "tituloAttrs": "",
+        "custo": "+6 Dor",
+        "tipo": "gain",
+        "iconAttrs": "",
+        "iconeSvg": "<svg viewBox=\"0 0 24 24\"><path d=\"M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z\"/></svg>",
+        "desc": "Você não suporta falhar. Ao falhar qualquer teste, -1 Stamina e Éter. Falhar criticamente, -1 Stamina e Éter Máximos."
+      }
+    ],
+    "beneficios": [
+      {
+        "id": "abismo-olhos-da-noite",
+        "nome": "Olhos da Noite",
+        "cardAttrs": "",
+        "tituloAttrs": "style=\"color: #4ade80;\"",
+        "custo": "1 Dor",
+        "tipo": "spend",
+        "iconAttrs": "",
+        "iconeSvg": "<svg viewBox=\"0 0 24 24\"><path d=\"M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5z\"/></svg>",
+        "desc": "Você enxerga perfeitamente no escuro até 18m."
+      },
+      {
+        "id": "abismo-pele-morta",
+        "nome": "Pele Morta",
+        "cardAttrs": "",
+        "tituloAttrs": "style=\"color: #4ade80;\"",
+        "custo": "2 Dor",
+        "tipo": "spend",
+        "iconAttrs": "",
+        "iconeSvg": "<svg viewBox=\"0 0 24 24\"><path d=\"M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z\"/></svg>",
+        "desc": "Você não sangra e é incombustível. Imune a <em>Sangramento</em> e <em>Em Chamas</em>."
+      },
+      {
+        "id": "abismo-olhar-do-vazio",
+        "nome": "Olhar do Vazio",
+        "cardAttrs": "",
+        "tituloAttrs": "style=\"color: #4ade80;\"",
+        "custo": "1 Dor",
+        "tipo": "spend",
+        "iconAttrs": "",
+        "iconeSvg": "<svg viewBox=\"0 0 24 24\"><path d=\"M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5z\"/><circle cx=\"12\" cy=\"12\" r=\"2\"/></svg>",
+        "desc": "Força uma criatura que te veja a contemplar o vazio, Vontade contra seu CD ou fica <em>Paralisada</em> por 1 rodada. (1x/Descanso Longo)"
+      },
+      {
+        "id": "abismo-bencao-de-poder",
+        "nome": "Benção de Poder",
+        "cardAttrs": "",
+        "tituloAttrs": "style=\"color: #4ade80;\"",
+        "custo": "2 Dor",
+        "tipo": "spend",
+        "iconAttrs": "",
+        "iconeSvg": "<svg viewBox=\"0 0 24 24\"><path d=\"M12 2L2 7l10 5 10-5-10-5z\"/></svg>",
+        "desc": "Você ganha uma benção física ou mental. +1 Ponto de Atributo."
+      },
+      {
+        "id": "abismo-mestre-das-masmorras",
+        "nome": "Mestre das Masmorras",
+        "cardAttrs": "",
+        "tituloAttrs": "style=\"color: #4ade80;\"",
+        "custo": "2 Dor",
+        "tipo": "spend",
+        "iconAttrs": "",
+        "iconeSvg": "<svg viewBox=\"0 0 24 24\"><path d=\"M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z\"/></svg>",
+        "desc": "Sinta a presença de criaturas vivas em 30m através de paredes. Sempre sabe se um local está completamente saqueado."
+      },
+      {
+        "id": "abismo-assustador",
+        "nome": "Assustador",
+        "cardAttrs": "",
+        "tituloAttrs": "style=\"color: #4ade80;\"",
+        "custo": "2 Dor",
+        "tipo": "spend",
+        "iconAttrs": "",
+        "iconeSvg": "<svg viewBox=\"0 0 24 24\"><path d=\"M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-4-8c.79 0 1.5-.71 1.5-1.5S8.79 9 8 9s-1.5.71-1.5 1.5S7.21 11 8 11zm8 0c.79 0 1.5-.71 1.5-1.5S16.79 9 16 9s-1.5.71-1.5 1.5.71 1.5 1.5 1.5zm-4 4c2.21 0 4-1.79 4-4h-8c0 2.21 1.79 4 4 4z\"/></svg>",
+        "desc": "Ao ser atacado, o inimigo deve suceder Vontade contra seu CD ou fica <em>Amedrontado</em> por 1 rodada."
+      },
+      {
+        "id": "abismo-saciado",
+        "nome": "Saciado",
+        "cardAttrs": "",
+        "tituloAttrs": "style=\"color: #4ade80;\"",
+        "custo": "3 Dor",
+        "tipo": "spend",
+        "iconAttrs": "",
+        "iconeSvg": "<svg viewBox=\"0 0 24 24\"><path d=\"M11 9H9V2H7v7H5V2H3v7c0 2.12 1.66 3.84 3.75 3.97V22h2.5v-9.03C11.34 12.84 13 11.12 13 9V2h-2v7z\"/></svg>",
+        "desc": "Você não precisa comer ou beber. (Mas ainda consegue, relutantemente)"
+      },
+      {
+        "id": "abismo-sussurrador",
+        "nome": "Sussurrador",
+        "cardAttrs": "",
+        "tituloAttrs": "style=\"color: #4ade80;\"",
+        "custo": "3 Dor",
+        "tipo": "spend",
+        "iconAttrs": "",
+        "iconeSvg": "<svg viewBox=\"0 0 24 24\"><path d=\"M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z\"/></svg>",
+        "desc": "Você pode se comunicar telepaticamente com qualquer criatura que veja em até 9m."
+      },
+      {
+        "id": "abismo-devorador-de-almas",
+        "nome": "Devorador de Almas",
+        "cardAttrs": "",
+        "tituloAttrs": "style=\"color: #4ade80;\"",
+        "custo": "3 Dor",
+        "tipo": "spend",
+        "iconAttrs": "",
+        "iconeSvg": "<svg viewBox=\"0 0 24 24\"><path d=\"M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z\" opacity=\"0.5\"/><path d=\"M12 6c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6z\"/></svg>",
+        "desc": "Ao tocar uma criatura morta, absorva um fragmento de conhecimento: ganhe 1 nível de Treinamento temporário em 1 perícia que ela tinha por 24h."
+      },
+      {
+        "id": "abismo-translocacao",
+        "nome": "Translocação",
+        "cardAttrs": "",
+        "tituloAttrs": "style=\"color: #4ade80;\"",
+        "custo": "3 Dor",
+        "tipo": "spend",
+        "iconAttrs": "",
+        "iconeSvg": "<svg viewBox=\"0 0 24 24\"><path d=\"M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z\"/></svg>",
+        "desc": "Você pode se teletransportar em até 9m como 1 ação. 1x/Descanso Longo"
+      },
+      {
+        "id": "abismo-frio",
+        "nome": "Frio",
+        "cardAttrs": "",
+        "tituloAttrs": "style=\"color: #4ade80;\"",
+        "custo": "3 Dor",
+        "tipo": "spend",
+        "iconAttrs": "",
+        "iconeSvg": "<svg viewBox=\"0 0 24 24\"><path d=\"M22 11h-4.17l3.24-3.24-1.41-1.42L15 11h-2V9l4.66-4.66-1.42-1.41L13 6.17V2h-2v4.17L7.76 2.93 6.34 4.34 11 9v2H9L4.34 6.34 2.93 7.76 6.17 11H2v2h4.17l-3.24 3.24 1.41 1.42L9 13h2v2l-4.66 4.66 1.42 1.41L11 17.83V22h2v-4.17l3.24 3.24 1.42-1.41L13 15v-2h2l4.66 4.66 1.41-1.42L17.83 13H22z\"/></svg>",
+        "desc": "Seus ataques causam +1d6 de dano de Frio. Criaturas acertadas têm -1,5m de movimento até o fim do próximo turno delas."
+      },
+      {
+        "id": "abismo-canibal",
+        "nome": "Canibal",
+        "cardAttrs": "",
+        "tituloAttrs": "style=\"color: #4ade80;\"",
+        "custo": "3 Dor",
+        "tipo": "spend",
+        "iconAttrs": "",
+        "iconeSvg": "<svg viewBox=\"0 0 24 24\"><path d=\"M11 9H9V2H7v7H5V2H3v7c0 2.12 1.66 3.84 3.75 3.97V22h2.5v-9.03C11.34 12.84 13 11.12 13 9V2h-2v7zm5-3v8h2.5v8H21V2c-2.76 0-5 2.24-5 4z\"/></svg>",
+        "desc": "Você recupera 2d6 Saúde ao comer carne de criaturas que acabou de matar e consegue ver memórias da vida desta criatura."
+      },
+      {
+        "id": "abismo-guardiao-da-morte",
+        "nome": "Guardião da Morte",
+        "cardAttrs": "",
+        "tituloAttrs": "style=\"color: #4ade80;\"",
+        "custo": "3 Dor",
+        "tipo": "spend",
+        "iconAttrs": "",
+        "iconeSvg": "<svg viewBox=\"0 0 24 24\"><path d=\"M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z\"/></svg>",
+        "desc": "Quando um aliado em 9m seria reduzido a 0 Saúde, use sua reação para transferir o dano para você. 1x/descanso longo."
+      },
+      {
+        "id": "abismo-devorador-de-magos",
+        "nome": "Devorador de Magos",
+        "cardAttrs": "",
+        "tituloAttrs": "style=\"color: #4ade80;\"",
+        "custo": "4 Dor",
+        "tipo": "spend",
+        "iconAttrs": "",
+        "iconeSvg": "<svg viewBox=\"0 0 24 24\"><path d=\"M7 2v11h3v9l7-12h-4l4-8z\"/></svg>",
+        "desc": "Ao matar uma criatura mágica, absorva sua essência (1 ação). Ganhe acesso a 1 magia que ela conhecia por 1 dia. Conjure sem foco designado."
+      },
+      {
+        "id": "abismo-dom-da-ressurreicao",
+        "nome": "Dom da Ressurreição",
+        "cardAttrs": "",
+        "tituloAttrs": "style=\"color: #4ade80;\"",
+        "custo": "4 Dor",
+        "tipo": "spend",
+        "iconAttrs": "",
+        "iconeSvg": "<svg viewBox=\"0 0 24 24\"><path d=\"M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z\"/></svg>",
+        "desc": "Ao morrer, você revive uma vez e perde 10 de Saúde ou Stamina máxima. Revive após 1d4 horas, com memórias fragmentadas e desorientado."
+      },
+      {
+        "id": "abismo-senhor-das-sombras",
+        "nome": "Senhor das Sombras",
+        "cardAttrs": "",
+        "tituloAttrs": "style=\"color: #4ade80;\"",
+        "custo": "4 Dor",
+        "tipo": "spend",
+        "iconAttrs": "",
+        "iconeSvg": "<svg viewBox=\"0 0 24 24\"><path d=\"M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-2.98 0-5.4-2.42-5.4-5.4 0-1.81.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1z\"/></svg>",
+        "desc": "Você fica invisível em penumbra ou escuridão. Pode se esconder como ação livre nessas condições."
+      },
+      {
+        "id": "abismo-pacto-macabro",
+        "nome": "Pacto Macabro",
+        "cardAttrs": "",
+        "tituloAttrs": "style=\"color: #4ade80;\"",
+        "custo": "4 Dor",
+        "tipo": "spend",
+        "iconAttrs": "",
+        "iconeSvg": "<svg viewBox=\"0 0 24 24\"><path d=\"M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z\"/></svg>",
+        "desc": "Você pode gastar Saúde no lugar de Stamina ou Éter para qualquer técnica ou magia. (1 Saúde = 1 Stamina ou Éter)"
+      },
+      {
+        "id": "abismo-lenda-viva",
+        "nome": "Lenda Viva",
+        "cardAttrs": "style=\"border-color: #fbbf24;\"",
+        "tituloAttrs": "style=\"color: #fbbf24;\"",
+        "custo": "6 Dor",
+        "tipo": "spend",
+        "iconAttrs": "style=\"background: linear-gradient(135deg, #92400e, #4a1942);\"",
+        "iconeSvg": "<svg viewBox=\"0 0 24 24\"><path d=\"M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z\"/></svg>",
+        "desc": "Você é extremamente ágil e perspicaz. Nasceu para se aventurar. Possui +1 Ação por rodada. Somando 4 ações totais."
+      },
+      {
+        "id": "abismo-mente-fragmentada",
+        "nome": "Mente Fragmentada",
+        "cardAttrs": "style=\"border-color: #fbbf24;\"",
+        "tituloAttrs": "style=\"color: #fbbf24;\"",
+        "custo": "6 Dor",
+        "tipo": "spend",
+        "iconAttrs": "style=\"background: linear-gradient(135deg, #92400e, #4a1942);\"",
+        "iconeSvg": "<svg viewBox=\"0 0 24 24\"><path d=\"M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z\"/><path d=\"M12 6v6l4 2\"/></svg>",
+        "desc": "Você tem duas consciências. Você ocasionalmente ouve a \"outra voz\" disputando com você. Ao conjurar 1 magia, pode conjurar outra como ação livre."
+      },
+      {
+        "id": "abismo-avatar-do-vazio",
+        "nome": "Avatar do Vazio",
+        "cardAttrs": "style=\"border-color: #fbbf24;\"",
+        "tituloAttrs": "style=\"color: #fbbf24;\"",
+        "custo": "6 Dor",
+        "tipo": "spend",
+        "iconAttrs": "style=\"background: linear-gradient(135deg, #92400e, #4a1942);\"",
+        "iconeSvg": "<svg viewBox=\"0 0 24 24\"><path d=\"M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z\"/></svg>",
+        "desc": "Sua alma é parcialmente vazia. Ganhe resistência a todos os tipos de dano (exceto Radiante e Primordial), imunidade a condições físicas."
+      },
+      {
+        "id": "abismo-esquiva-lendaria",
+        "nome": "Esquiva Lendária",
+        "cardAttrs": "style=\"border-color: #fbbf24;\"",
+        "tituloAttrs": "style=\"color: #fbbf24;\"",
+        "custo": "6 Dor",
+        "tipo": "spend",
+        "iconAttrs": "style=\"background: linear-gradient(135deg, #92400e, #4a1942);\"",
+        "iconeSvg": "<svg viewBox=\"0 0 24 24\"><path d=\"M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z\"/></svg>",
+        "desc": "Você é extremamente habilidoso em evadir ataques. Você ganha +5 Evasão e +1 Reação Máxima."
+      },
+      {
+        "id": "abismo-clone-odioso",
+        "nome": "Clone Odioso",
+        "cardAttrs": "style=\"border-color: #f87171; background: linear-gradient(135deg, rgba(139, 0, 0, 0.3), rgba(74, 25, 66, 0.3));\"",
+        "tituloAttrs": "style=\"color: #f87171;\"",
+        "custo": "7 Dor",
+        "tipo": "spend",
+        "iconAttrs": "style=\"background: linear-gradient(135deg, #8b0000, #4a1942);\"",
+        "iconeSvg": "<svg viewBox=\"0 0 24 24\"><path d=\"M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z\"/></svg>",
+        "desc": "Você tem um clone quase exatamente igual que compartilha pensamentos. Pode teletransportar para ele como 3 ações. Ele possui faíscas de independência."
+      },
+      {
+        "id": "abismo-desejo-sombrio",
+        "nome": "Desejo Sombrio",
+        "cardAttrs": "style=\"border-color: #f87171; background: linear-gradient(135deg, rgba(139, 0, 0, 0.4), rgba(74, 25, 66, 0.4));\"",
+        "tituloAttrs": "style=\"color: #f87171;\"",
+        "custo": "8 Dor",
+        "tipo": "spend",
+        "iconAttrs": "style=\"background: linear-gradient(135deg, #8b0000, #4a1942);\"",
+        "iconeSvg": "<svg viewBox=\"0 0 24 24\"><path d=\"M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z\"/></svg>",
+        "desc": "Conjure qualquer magia de nível 1-5 (mesmo que não saiba) ou altere um evento recente retroativamente. O Mestre decide as consequências. <strong>1x/Campanha.</strong>"
+      }
+    ]
+  }
+}

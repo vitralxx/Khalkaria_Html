@@ -1,0 +1,239 @@
+{
+  "classe": "alquimista",
+  "cards": [
+    {
+      "id": "alquimista-alquimia-rapida",
+      "tipo": "technique-card",
+      "nome": "Alquimia Rápida",
+      "corpo": "\n                    <h4>Alquimia Rápida</h4>\n                    <span class=\"tech-meta\">1 Min • 2 Stamina</span>\n                    <p>Crie um item alquímico em 1 minuto ao invés de 10 minutos.</p>\n                "
+    },
+    {
+      "id": "alquimista-producao-em-massa",
+      "tipo": "technique-card",
+      "nome": "Produção em Massa",
+      "corpo": "\n                    <h4>Produção em Massa</h4>\n                    <span class=\"tech-meta\">1 Ação • 5 Stamina/Item</span>\n                    <p>Ao criar um item alquímico, pode gastar 5 de Stamina para criar +1 desse mesmo item sem reagentes adicionais.</p>\n                "
+    },
+    {
+      "id": "alquimista-alquimia-de-combate",
+      "tipo": "technique-card",
+      "nome": "Alquimia de Combate",
+      "corpo": "\n                    <h4>Alquimia de Combate</h4>\n                    <span class=\"tech-meta\">1 Ação • 2 Stamina</span>\n                    <p>Crie um item alquímico rapidamente como 1 ação, porém com custo adicional de +2 Reagentes.</p>\n                "
+    },
+    {
+      "id": "alquimista-forcar-invencao",
+      "tipo": "technique-card",
+      "nome": "Forçar Invenção",
+      "corpo": "\n                    <h4>Forçar Invenção</h4>\n                    <span class=\"tech-meta\">1 Ação • 3 Stamina</span>\n                    <p>Ao falhar um teste de Ofício (Alquimia), pode rolar novamente. Em caso de segunda falha sua invenção explode (1d6+Mod.Int dano Elemental).</p>\n                "
+    },
+    {
+      "id": "alquimista-arremessador",
+      "tipo": "technique-card",
+      "nome": "Arremessador",
+      "corpo": "\n                    <h4>Arremessador</h4>\n                    <span class=\"tech-meta\">1 Ação • 2 Stamina</span>\n                    <p>Pode rolar Atacar com +1 Treinamento ao arremessar objetos. Alcance +3m.</p>\n                "
+    },
+    {
+      "id": "alquimista-economista",
+      "tipo": "technique-card",
+      "nome": "Economista",
+      "corpo": "\n                    <h4>Economista</h4>\n                    <span class=\"tech-meta\">1 Ação • 2 Stamina</span>\n                    <p>Ao criar um item alquímico, você gasta -1 Reagente (mínimo 1).</p>\n                "
+    },
+    {
+      "id": "alquimista-conserva",
+      "tipo": "technique-card",
+      "nome": "Conserva",
+      "corpo": "\n                    <h4>Conserva</h4>\n                    <span class=\"tech-meta\">1 Ação • 2 Stamina</span>\n                    <p>Ao criar um item alquímico, você pode criá-lo de forma que não estrague em descansos longos.</p>\n                "
+    },
+    {
+      "id": "alquimista-ferramentas-improvisadas",
+      "tipo": "technique-card",
+      "nome": "Ferramentas Improvisadas",
+      "corpo": "\n                    <h4>Ferramentas Improvisadas</h4>\n                    <span class=\"tech-meta\">1 Ação • 2 Stamina</span>\n                    <p>Manipule fechaduras, desarme armadilhas e outras ações mecânicas com ferramentas improvisadas. Role Ofício (Alquimia) com +1 Treinamento.</p>\n                "
+    },
+    {
+      "id": "alquimista-concentrar-se",
+      "tipo": "technique-card",
+      "nome": "Concentrar-se",
+      "corpo": "\n                    <h4>Concentrar-se</h4>\n                    <span class=\"tech-meta\">Passiva</span>\n                    <p>Ao criar itens alquímicos em 10 minutos (tempo padrão), a CD de todos os itens reduz em -2.</p>\n                "
+    },
+    {
+      "id": "alquimista-sucateador",
+      "tipo": "technique-card",
+      "nome": "Sucateador",
+      "corpo": "\n                    <h4>Sucateador</h4>\n                    <span class=\"tech-meta\">Passiva</span>\n                    <p>Ao Buscar Reagentes como ação de descanso curto, recupere 2d4+Nível. Ao finalizar combate, recupere reagentes = nível.</p>\n                "
+    },
+    {
+      "id": "alquimista-estoque-oculto",
+      "tipo": "technique-card",
+      "nome": "Estoque Oculto",
+      "corpo": "\n                    <h4>Estoque Oculto</h4>\n                    <span class=\"tech-meta\">Passiva</span>\n                    <p>Dobra (2×) seu Mod.Inteligência ao calcular reagentes máximos: (Nível × 3) + (2 × Mod.Int)</p>\n                "
+    },
+    {
+      "id": "alquimista-resistencia-quimica",
+      "tipo": "technique-card",
+      "nome": "Resistência Química",
+      "corpo": "\n                    <h4>Resistência Química</h4>\n                    <span class=\"tech-meta\">Passiva</span>\n                    <p>Você tem Vantagem em testes de resistência contra venenos, doenças e efeitos ácidos/tóxicos.</p>\n                "
+    },
+    {
+      "id": "alquimista-link-remoto",
+      "tipo": "technique-card",
+      "nome": "Link Remoto",
+      "corpo": "\n                    <h4>Link Remoto</h4>\n                    <span class=\"tech-meta\">Passiva</span>\n                    <p>Você pode ativar seus itens alquímicos de até 30 metros de distância deles.</p>\n                "
+    },
+    {
+      "id": "alquimista-pocoes-granada",
+      "tipo": "technique-card",
+      "nome": "Poções Granada",
+      "corpo": "\n                    <h4>Poções Granada</h4>\n                    <span class=\"tech-meta\">Passiva</span>\n                    <p>Suas poções podem ser arremessadas e ao acertar agem como se o alvo tivesse consumido ela.</p>\n                "
+    },
+    {
+      "id": "alquimista-oleo-grosso",
+      "tipo": "technique-card",
+      "nome": "Óleo Grosso",
+      "corpo": "\n                    <h4>Óleo Grosso</h4>\n                    <span class=\"tech-meta\">Passiva</span>\n                    <p>Seus óleos duram +2 ataques ao serem aplicados em uma arma.</p>\n                "
+    },
+    {
+      "id": "alquimista-pai-de-pet",
+      "tipo": "marca-card",
+      "nome": "Pai de Pet",
+      "corpo": "\n                <div class=\"marca-header artificer\">\n                    <h4>Pai de Pet</h4>\n                    <div class=\"quote\">\"Meus constructos morreriam por mim e, ao serem reconstruídos, morreriam de novo!\"</div>\n                </div>\n                <div class=\"marca-body\">\n                    <p>Você tem um certo afeto pelos seus constructos… afeto até demais.</p>\n                    <div class=\"marca-effect\">\n                        <p>Toda vez que um constructo seu sobreviver a um combate, ganha <strong>+1 permanente em Místico</strong>. Ao chegar em +5, essa habilidade fica supérflua.</p>\n                    </div>\n                    <div class=\"marca-effect\">\n                        <p>Efeitos e buffs aplicados em você também afetam seu constructo ativo (e vice-versa). Ao recuperar Stamina ou Éter, o constructo recupera Saúde.</p>\n                    </div>\n                </div>\n            "
+    },
+    {
+      "id": "alquimista-sobrecarga",
+      "tipo": "marca-card",
+      "nome": "Sobrecarga",
+      "corpo": "\n                <div class=\"marca-header artificer\">\n                    <h4>Sobrecarga</h4>\n                    <div class=\"quote\">\"O frasco aguenta… Provavelmente.\"</div>\n                </div>\n                <div class=\"marca-body\">\n                    <p>Você sente prazer em tirar o máximo de suas invenções, mesmo quando isso significa sobrecarregá-las.</p>\n                    <div class=\"marca-effect\">\n                        <p>Ao usar um Cartucho Arcano, você pode gastar <strong>+2 Reagentes</strong> para conjurar a magia com um dos seguintes efeitos: <strong>Potência</strong> (intensidade Forçada) ou <strong>Modificar</strong> (1 modulação grátis da escola).</p>\n                    </div>\n                    <div class=\"marca-effect\">\n                        <p>Ao tirar 1 em testes de Místico criando cartuchos, ele explode em você causando <strong>1d6 de Dano de Força</strong> e você perde <strong>2d4 de Éter</strong>.</p>\n                    </div>\n                </div>\n            "
+    },
+    {
+      "id": "alquimista-piromaniaco",
+      "tipo": "marca-card",
+      "nome": "Piromaníaco",
+      "corpo": "\n                <div class=\"marca-header bombardeiro\">\n                    <h4>Piromaníaco</h4>\n                    <div class=\"quote\">\"Cada explosão me ensina a fazer outra maior.\"</div>\n                </div>\n                <div class=\"marca-body\">\n                    <p>Você sente prazer em explodir objetos ou criaturas e vê-los queimar.</p>\n                    <div class=\"marca-effect\">\n                        <p>Para cada 10 criaturas que você derrotou com itens alquímicos, ganha <strong>+1 permanente em Atacar</strong>. Ao chegar em +5, essa habilidade fica supérflua.</p>\n                    </div>\n                    <div class=\"marca-effect\">\n                        <p>Ao derrotar uma criatura com um item alquímico, recupera <strong>1 Reagente</strong>.</p>\n                    </div>\n                </div>\n            "
+    },
+    {
+      "id": "alquimista-preciosismo",
+      "tipo": "marca-card",
+      "nome": "Preciosismo",
+      "corpo": "\n                <div class=\"marca-header bombardeiro\">\n                    <h4>Preciosismo</h4>\n                    <div class=\"quote\">\"Minhas invenções, extremamente calibradas.\"</div>\n                </div>\n                <div class=\"marca-body\">\n                    <p>Você tem um certo afeto com cada invenção sua… afeto até demais.</p>\n                    <div class=\"marca-effect\">\n                        <p><strong>1x/descanso longo:</strong> Você pode causar o <strong>dano máximo</strong> de um item alquímico que você criou e arremessou.</p>\n                    </div>\n                    <div class=\"marca-effect\">\n                        <p>Itens alquímicos que você cria têm <strong>+2 CD</strong> nos testes de resistência.</p>\n                    </div>\n                </div>\n            "
+    },
+    {
+      "id": "alquimista-curandeiro-incansavel",
+      "tipo": "marca-card",
+      "nome": "Curandeiro Incansável",
+      "corpo": "\n                <div class=\"marca-header boticario\">\n                    <h4>Curandeiro Incansável</h4>\n                    <div class=\"quote\">\"Ninguém morre no meu turno.\"</div>\n                </div>\n                <div class=\"marca-body\">\n                    <p>Você tem um senso de dever em curar criaturas.</p>\n                    <div class=\"marca-effect\">\n                        <p>Para cada 5 criaturas que você retirou a condição <em>Morrendo</em>, ganha <strong>+1 permanente em Medicina</strong>. Ao chegar em +5, essa habilidade fica supérflua.</p>\n                    </div>\n                    <div class=\"marca-effect\">\n                        <p>Ao curar uma criatura que estava com 0 de Saúde e remover a condição <em>Morrendo</em>, ela também recupera <strong>1d4 de Stamina</strong>.</p>\n                    </div>\n                </div>\n            "
+    },
+    {
+      "id": "alquimista-mixologista",
+      "tipo": "marca-card",
+      "nome": "Mixologista",
+      "corpo": "\n                <div class=\"marca-header boticario\">\n                    <h4>Mixologista</h4>\n                    <div class=\"quote\">\"Uma poção é boa. Duas poções juntas? Arte.\"</div>\n                </div>\n                <div class=\"marca-body\">\n                    <p>Você sente prazer em consumir e apreciar substâncias e combinações de substâncias novas.</p>\n                    <div class=\"marca-effect\">\n                        <p>Você pode combinar <strong>2 poções ou elixires de buff diferentes</strong> em um único frasco (custo +2 Reagentes). O consumidor recebe ambos os efeitos. Você não pode combinar poções/elixires iguais.</p>\n                    </div>\n                    <div class=\"marca-effect\">\n                        <p>Aliados que consumirem suas misturas também recuperam <strong>1d4 de Stamina</strong>.</p>\n                    </div>\n                </div>\n            "
+    },
+    {
+      "id": "alquimista-sintonia-arcana",
+      "tipo": "tech-card",
+      "nome": "Sintonia Arcana",
+      "corpo": "\n                        <div class=\"tech-card-header artificer\">\n                            <h4>Sintonia Arcana</h4>\n                            <span class=\"cost\">Passiva</span>\n                        </div>\n                        <div class=\"tech-card-body\">\n                            <ul>\n                                <li>Você se torna Treinado em <em>Místico</em>. Se já for Treinado, se torna Experiente.</li>\n                                <li>Pode usar Éter como substituto de Reagentes na proporção <strong>2:1</strong>.</li>\n                                <li>Seu Éter máximo aumenta em <strong>+Mod.Inteligência</strong>.</li>\n                            </ul>\n                        </div>\n                    "
+    },
+    {
+      "id": "alquimista-cartucho-arcano",
+      "tipo": "tech-card",
+      "nome": "Cartucho Arcano",
+      "corpo": "\n                        <div class=\"tech-card-header artificer\">\n                            <h4>Cartucho Arcano</h4>\n                            <span class=\"cost\">Passiva</span>\n                        </div>\n                        <div class=\"tech-card-body\">\n                            <p>Você desenvolveu um método de aprisionar magias em recipientes alquímicos.</p>\n                            <ul>\n                                <li><strong>Tempo:</strong> 10 min (item alquímico)</li>\n                                <li><strong>Custo:</strong> (Nível da Magia × 2) Reagentes</li>\n                                <li><strong>Magias:</strong> 1 + Mod.Int no nível 1, +1/nível</li>\n                                <li><strong>CD:</strong> 10 + (2 × Nível da Magia)</li>\n                                <li><strong>Limite:</strong> (Nível + Mod.Int) cartuchos</li>\n                            </ul>\n                        </div>\n                    "
+    },
+    {
+      "id": "alquimista-constructo-menor",
+      "tipo": "tech-card",
+      "nome": "Constructo Menor",
+      "corpo": "\n                        <div class=\"tech-card-header artificer\">\n                            <h4>Constructo Menor</h4>\n                            <span class=\"cost\">3 Ações, 3 Éter + 4 Reagentes</span>\n                        </div>\n                        <div class=\"tech-card-body\">\n                            <p>Você cria um pequeno constructo alquímico (Minúsculo) que dura até o próximo descanso longo ou até ser destruído.</p>\n                            <div class=\"constructo-stats\">\n                                <span><strong>10 HP</strong></span>\n                                <span><strong>Evasão 12</strong></span>\n                                <span><strong>Mov 9m</strong></span>\n                                <span><strong>2 Ações</strong></span>\n                            </div>\n                            <p>O constructo pode: Atacar (1d6+Mod.Int), Carregar (5 Equip./20 Bug.), Espionar (100m telepático), Entregar itens (reação), Detonar (2d6 Elemental em 3m).</p>\n                        </div>\n                    "
+    },
+    {
+      "id": "alquimista-bombardeiro",
+      "tipo": "tech-card",
+      "nome": "Bombardeiro",
+      "corpo": "\n                        <div class=\"tech-card-header bombardeiro\">\n                            <h4>Bombardeiro</h4>\n                            <span class=\"cost\">Passiva</span>\n                        </div>\n                        <div class=\"tech-card-body\">\n                            <ul>\n                                <li>Você se torna Treinado em <em>Atacar</em>. Se já for Treinado, se torna Experiente.</li>\n                                <li>Seus itens alquímicos ofensivos são fabricados com <strong>+1d6 de dano</strong>.</li>\n                                <li>Itens Ofensivos, Óleos e Venenos custam <strong>-1 reagentes</strong> e tem <strong>-2 CD</strong>.</li>\n                            </ul>\n                        </div>\n                    "
+    },
+    {
+      "id": "alquimista-toxinas-potentes",
+      "tipo": "tech-card",
+      "nome": "Toxinas Potentes",
+      "corpo": "\n                        <div class=\"tech-card-header bombardeiro\">\n                            <h4>Toxinas Potentes</h4>\n                            <span class=\"cost\">1 Ação, 3 Stamina</span>\n                        </div>\n                        <div class=\"tech-card-body\">\n                            <p>Ao uso, infunda óleo em uma arma já infundida por um veneno ou vice versa. Você aplica os <strong>2 bônus de dano e efeitos</strong> de cada substância ao ataque.</p>\n                        </div>\n                    "
+    },
+    {
+      "id": "alquimista-enxurrada-de-alquimicos",
+      "tipo": "tech-card",
+      "nome": "Enxurrada de Alquímicos",
+      "corpo": "\n                        <div class=\"tech-card-header bombardeiro\">\n                            <h4>Enxurrada de Alquímicos</h4>\n                            <span class=\"cost\">2 Ações, 5 Stamina</span>\n                        </div>\n                        <div class=\"tech-card-body\">\n                            <p>Você arremessa até <strong>3 itens alquímicos ofensivos simultaneamente</strong>, cada item pode atingir um alvo diferente ou o mesmo alvo, rolando Atacar para cada arremesso. Você deve ter os itens preparados de antemão.</p>\n                        </div>\n                    "
+    },
+    {
+      "id": "alquimista-anatomista",
+      "tipo": "tech-card",
+      "nome": "Anatomista",
+      "corpo": "\n                        <div class=\"tech-card-header boticario\">\n                            <h4>Anatomista</h4>\n                            <span class=\"cost\">Passiva</span>\n                        </div>\n                        <div class=\"tech-card-body\">\n                            <ul>\n                                <li>Você se torna Treinado em <em>Medicina</em>. Se já for Treinado, se torna Experiente.</li>\n                                <li>Poções de cura que você cria curam <strong>+2d4 adicional</strong>.</li>\n                                <li>Itens Curativos e Elixires custam <strong>-1 Reagentes</strong> e tem <strong>-2 CD</strong>.</li>\n                            </ul>\n                        </div>\n                    "
+    },
+    {
+      "id": "alquimista-elixir-especial",
+      "tipo": "tech-card",
+      "nome": "Elixir Especial",
+      "corpo": "\n                        <div class=\"tech-card-header boticario\">\n                            <h4>Elixir Especial</h4>\n                            <span class=\"cost\">1 Ação, 3 Stamina, 3 Reagentes</span>\n                        </div>\n                        <div class=\"tech-card-body\">\n                            <p>Você prepara e administra um elixir especial entre você e seus aliados à distância de toque, pagando 1 reagente por alvo. Escolha um efeito (1 min):</p>\n                            <ul>\n                                <li><strong>Vigor:</strong> +2 em Atacar e +1d6 de dano</li>\n                                <li><strong>Proteção:</strong> +2 em Defender e +2 Armadura (Ar) natural</li>\n                                <li><strong>Velocidade:</strong> +3m Movimento e não causa ataques de oportunidade</li>\n                            </ul>\n                        </div>\n                    "
+    },
+    {
+      "id": "alquimista-tonico-cruel",
+      "tipo": "tech-card",
+      "nome": "Tônico Cruel",
+      "corpo": "\n                        <div class=\"tech-card-header boticario\">\n                            <h4>Tônico Cruel</h4>\n                            <span class=\"cost\">1 Ação, 3 Stamina</span>\n                        </div>\n                        <div class=\"tech-card-body\">\n                            <p>Escolha uma criatura em até 9m. Ela deve fazer um teste de <strong>Fortitude</strong>:</p>\n                            <ul>\n                                <li><strong>Letargia:</strong> -2 em Atacar e Defender</li>\n                                <li><strong>Fraqueza:</strong> -3m de Movimento e sem Reações</li>\n                                <li><strong>Vulnerabilidade:</strong> -2 Armadura e Desvantagem em Fortitude</li>\n                            </ul>\n                            <p>Duração 1 rodada. Se falhar, não pode usar contra a mesma criatura neste combate.</p>\n                        </div>\n                    "
+    },
+    {
+      "id": "alquimista-runas-de-protecao",
+      "tipo": "tech-card",
+      "nome": "Runas de Proteção",
+      "corpo": "\n                        <div class=\"tech-card-header artificer\">\n                            <h4>Runas de Proteção</h4>\n                            <span class=\"cost\">1 Ação, 2 Éter</span>\n                        </div>\n                        <div class=\"tech-card-body\">\n                            <p>Você inscreve runas protetoras em uma criatura ou objeto tocado. Dura 1 hora ou até ser consumido.</p>\n                            <p>A criatura pode ativar as runas como <strong>Reação</strong> quando sofrer dano:</p>\n                            <ul>\n                                <li><strong>Absorção:</strong> Reduz o dano em 2d8+Mod.Int</li>\n                                <li><strong>Retaliação:</strong> O atacante sofre 1d8 de dano Místico</li>\n                            </ul>\n                            <p>Máximo de Runas ativas: Mod.Inteligência</p>\n                        </div>\n                    "
+    },
+    {
+      "id": "alquimista-constructo-de-combate",
+      "tipo": "tech-card",
+      "nome": "Constructo de Combate",
+      "corpo": "\n                        <div class=\"tech-card-header artificer\">\n                            <h4>Constructo de Combate</h4>\n                            <span class=\"cost\">3 Ações, 5 Éter + 6 Reagentes</span>\n                        </div>\n                        <div class=\"tech-card-body\">\n                            <p>Você cria um constructo aprimorado (Pequeno) que dura até o próximo descanso longo.</p>\n                            <div class=\"constructo-stats\">\n                                <span><strong>25 HP</strong></span>\n                                <span><strong>Evasão 14</strong></span>\n                                <span><strong>Ar 2</strong></span>\n                                <span><strong>Mov 9m</strong></span>\n                                <span><strong>3 Ações</strong></span>\n                            </div>\n                            <p>O constructo pode: Atacar (2d6+Mod.Int Elemental), Escudo (+2 Defender aliado), Carregar (10 Equip./30 Bug.), Reparar (1d8 HP a si, 2x/curto), Espionar (200m), Detonar (4d6 Elemental em 4,5m).</p>\n                        </div>\n                    "
+    },
+    {
+      "id": "alquimista-mestre-dos-elementos",
+      "tipo": "tech-card",
+      "nome": "Mestre dos Elementos",
+      "corpo": "\n                        <div class=\"tech-card-header bombardeiro\">\n                            <h4>Mestre dos Elementos</h4>\n                            <span class=\"cost\">Passiva</span>\n                        </div>\n                        <div class=\"tech-card-body\">\n                            <ul>\n                                <li>Seus itens que causam dano Elemental ou Biológico <strong>ignoram Ae (Armadura Específica) e Resistências</strong>.</li>\n                                <li>Suas bombas e granadas possuem o alcance de explosão aumentado em <strong>1,5m</strong>.</li>\n                            </ul>\n                        </div>\n                    "
+    },
+    {
+      "id": "alquimista-zona-da-morte",
+      "tipo": "tech-card",
+      "nome": "Zona da Morte",
+      "corpo": "\n                        <div class=\"tech-card-header bombardeiro\">\n                            <h4>Zona da Morte</h4>\n                            <span class=\"cost\">2 Ações, 4 Stamina, 3 Reagentes</span>\n                        </div>\n                        <div class=\"tech-card-body\">\n                            <p>Você prepara uma área de <strong>4,5m de raio</strong> em até 9m com substâncias:</p>\n                            <ul>\n                                <li>Criaturas que entram ou começam o turno sofrem <strong>2d6 de dano</strong> (Elemental ou Biológico)</li>\n                                <li><strong>Detonar</strong> (1 Ação): 4d6 de dano, Reflexo p/ metade, dissipa a zona</li>\n                            </ul>\n                            <p>Dura 3 turnos ou até detonar. Apenas 1 zona ativa por vez.</p>\n                        </div>\n                    "
+    },
+    {
+      "id": "alquimista-transfusao-vital",
+      "tipo": "tech-card",
+      "nome": "Transfusão Vital",
+      "corpo": "\n                        <div class=\"tech-card-header boticario\">\n                            <h4>Transfusão Vital</h4>\n                            <span class=\"cost\">2 Ações, 3 Stamina</span>\n                        </div>\n                        <div class=\"tech-card-body\">\n                            <p>Você aprendeu a manipular a vitalidade. Escolha uma das ações:</p>\n                            <ul>\n                                <li>Cura uma criatura em toque em <strong>2d6+Mod.Int</strong>, porém você perde <strong>1d6 de Saúde</strong>.</li>\n                                <li>Ataca com uma seringa de toxinas (2d8+Mod.Int). Ao acertar, você recupera Saúde igual ao dano causado.</li>\n                            </ul>\n                        </div>\n                    "
+    },
+    {
+      "id": "alquimista-gas-especial",
+      "tipo": "tech-card",
+      "nome": "Gás Especial",
+      "corpo": "\n                        <div class=\"tech-card-header boticario\">\n                            <h4>Gás Especial</h4>\n                            <span class=\"cost\">2 Ações, 3 Stamina, 4 Reagentes</span>\n                        </div>\n                        <div class=\"tech-card-body\">\n                            <p>Você ativa ejetores de gás que inundam um raio de <strong>4,5m</strong> em volta de você. A nuvem se move com você.</p>\n                            <ul>\n                                <li><strong>Sem Máscara:</strong> Fortitude ou <em>Enjoados</em>. Se já enjoado: 2d6+Mod.Int de dano Biológico.</li>\n                                <li><strong>Com Máscara:</strong> Recupera 1d6+Mod.Int de Saúde/turno.</li>\n                            </ul>\n                            <p>Pague a Stamina novamente toda rodada para manter.</p>\n                        </div>\n                    "
+    },
+    {
+      "id": "alquimista-tita",
+      "tipo": "ultimate-card",
+      "nome": "⚙️ Titã",
+      "corpo": "\n                    <div class=\"ultimate-header artificer\">\n                        <h4>⚙️ Titã</h4>\n                        <div>\n                            <span class=\"ultimate-badge\">ULTIMATE</span>\n                            <span style=\"margin-left: 0.5rem; color: var(--text-muted); font-size: 0.85rem;\">3 Ações, 8 Éter + 10 Reagentes</span>\n                        </div>\n                    </div>\n                    <div class=\"ultimate-quote\">\"Levante-se, minha criação.\"</div>\n                    <div class=\"ultimate-body\">\n                        <p>Você invoca um constructo colossal (Grande) que dura até o fim do combate ou até ser destruído.</p>\n                        <div class=\"constructo-stats\">\n                            <span><strong>50 HP</strong></span>\n                            <span><strong>Evasão 14</strong></span>\n                            <span><strong>Ar 5</strong></span>\n                            <span><strong>Mov 6m</strong></span>\n                            <span><strong>4 Ações</strong></span>\n                        </div>\n                        <p><strong>Habilidades:</strong></p>\n                        <ul>\n                            <li><strong>Esmagar</strong> (2 Ações): alcance 3m, 4d10+Mod.Int Contundente. Fortitude ou <em>Caído</em>.</li>\n                            <li><strong>Rajada Arcana</strong> (1 Ação): linha 12m, 3d8 Elemental, Reflexo p/ metade.</li>\n                            <li><strong>Escudo</strong> (1 Ação): aliados em 4,5m +3 Defender até próximo turno.</li>\n                            <li><strong>Investida</strong> (3 Ações): avança 12m em linha. Fortitude ou 3d10 Contundente + <em>Caído</em> + empurrado 3m.</li>\n                        </ul>\n                        <div class=\"ultimate-cost\">\n                            <h5>💀 O Custo</h5>\n                            <ul>\n                                <li>Você não pode usar Éter para nenhum outro propósito enquanto o Titã existir.</li>\n                                <li>Se o Titã for destruído por um inimigo, você sofre <strong>2d6 de dano Psíquico</strong> e ganha <em>Exaustão 1</em>.</li>\n                            </ul>\n                        </div>\n                    </div>\n                "
+    },
+    {
+      "id": "alquimista-apocalipse-alquimico",
+      "tipo": "ultimate-card",
+      "nome": "💣 Apocalipse Alquímico",
+      "corpo": "\n                    <div class=\"ultimate-header bombardeiro\">\n                        <h4>💣 Apocalipse Alquímico</h4>\n                        <div>\n                            <span class=\"ultimate-badge\">ULTIMATE</span>\n                            <span style=\"margin-left: 0.5rem; color: var(--text-muted); font-size: 0.85rem;\">3 Ações, 6 Stamina + 8 Reagentes</span>\n                        </div>\n                    </div>\n                    <div class=\"ultimate-quote\">\"Quando uma explosão não é suficiente, use todas.\"</div>\n                    <div class=\"ultimate-body\">\n                        <p>Você libera todo seu arsenal em uma devastação total. Escolha um ponto em até <strong>18m</strong>. Uma sequência de explosões atinge uma área de <strong>9m de raio</strong>.</p>\n                        <ul>\n                            <li>Todas as criaturas sofrem <strong>8d6 de dano</strong> (escolha 2 tipos: Fogo, Frio, Elétrico, Ácido ou Veneno).</li>\n                            <li>Reflexos para metade do dano.</li>\n                            <li>Criaturas que falharem ficam <em>Cegas</em>, <em>Surdas</em> e <em>Caídas</em> por 1 rodada.</li>\n                            <li>A área fica coberta de substâncias voláteis por 1 minuto (2d6 dano + efeitos por tipo).</li>\n                        </ul>\n                        <div class=\"ultimate-cost\">\n                            <h5>💀 O Custo</h5>\n                            <ul>\n                                <li>Você perde <strong>2d8+Mod.Int de Éter</strong>.</li>\n                                <li>Você deve suceder em Vontade (CD 20) ou fica <em>Paralisado</em> por 1 turno apreciando a explosão.</li>\n                            </ul>\n                        </div>\n                    </div>\n                "
+    },
+    {
+      "id": "alquimista-metamorfose",
+      "tipo": "ultimate-card",
+      "nome": "💊 Metamorfose",
+      "corpo": "\n                    <div class=\"ultimate-header boticario\">\n                        <h4>💊 Metamorfose</h4>\n                        <div>\n                            <span class=\"ultimate-badge\">ULTIMATE</span>\n                            <span style=\"margin-left: 0.5rem; color: var(--text-muted); font-size: 0.85rem;\">2 Ações, 5 Stamina + 6 Reagentes</span>\n                        </div>\n                    </div>\n                    <div class=\"ultimate-quote\">\"A guerra marca qualquer um.\"</div>\n                    <div class=\"ultimate-body\">\n                        <p>Você administra um mutagênico intenso que transforma radicalmente uma criatura. Escolha um aliado ou inimigo a distância de toque (pode ser você). Duração: <strong>1 minuto</strong>.</p>\n                        \n                        <h5>✅ Aliado (Transformação):</h5>\n                        <ul>\n                            <li>Tamanho aumenta em 2 Categorias</li>\n                            <li>+6 Força, +4 Constituição, -2 Inteligência</li>\n                            <li>+20 Saúde Temporária, +10 Stamina Temporária</li>\n                            <li>+2d6 de dano em ataques corpo a corpo</li>\n                            <li>Resistência a dano Ordinário</li>\n                        </ul>\n\n                        <h5>❌ Inimigo (Vontade CD 20+Int):</h5>\n                        <ul>\n                            <li>Tamanho diminui em 2 Categorias</li>\n                            <li>-6 Força, -4 Constituição, +2 Inteligência</li>\n                            <li>-20 Saúde Máxima</li>\n                            <li>-2d6 de dano em ataques corpo a corpo</li>\n                            <li>Vulnerabilidade a dano Ordinário</li>\n                            <li><em>Sucesso no teste: nega todos os efeitos, mas sofre 4d6 de dano Biológico</em></li>\n                        </ul>\n                        \n                        <div class=\"ultimate-cost\">\n                            <h5>💀 O Custo</h5>\n                            <p>Ao final da transformação, criaturas aliadas ficam <em>Inconscientes</em> e ganham <em>Exaustão 2</em>.</p>\n                        </div>\n                    </div>\n                "
+    }
+  ]
+}

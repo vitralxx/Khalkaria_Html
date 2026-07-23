@@ -1,0 +1,2817 @@
+{
+  "nivel1": {
+    "destruicao": [
+      {
+        "id": "magia-dardo-arcano",
+        "nome": "Dardo Arcano",
+        "escola": "destruicao",
+        "nivel": 1,
+        "custoBase": 2,
+        "stats": [
+          {
+            "caracteristica": "Ação",
+            "valor": "2 Ações",
+            "mod": false
+          },
+          {
+            "caracteristica": "Alcance",
+            "valor": "4,5 / 9 / 13,5 / 18 m",
+            "mod": true
+          },
+          {
+            "caracteristica": "Dano",
+            "valor": "1d4 / 2d4 / 3d4 / 4d4 Radiante, Trovejante ou Necrótico",
+            "mod": true
+          }
+        ],
+        "descricao": "Você lança um dardo mágico que acerta automaticamente e não pode ser bloqueado por cobertura. Escolha entre um entre os 3 tipos de dano Místicos."
+      },
+      {
+        "id": "magia-onda-gravitacional",
+        "nome": "Onda Gravitacional",
+        "escola": "destruicao",
+        "nivel": 1,
+        "custoBase": 2,
+        "stats": [
+          {
+            "caracteristica": "Ação",
+            "valor": "3 Ações",
+            "mod": false
+          },
+          {
+            "caracteristica": "Alcance",
+            "valor": "Pessoal",
+            "mod": false
+          },
+          {
+            "caracteristica": "Área",
+            "valor": "Retângulo de 6 m a partir de você",
+            "mod": false
+          },
+          {
+            "caracteristica": "Dano",
+            "valor": "1d6 / 2d6 / 3d6 / 4d6 Trovejante",
+            "mod": true
+          },
+          {
+            "caracteristica": "Resistência",
+            "valor": "Fortitude ou empurrado 0 / 1,5 / 3 / 4,5 m",
+            "mod": true
+          }
+        ],
+        "descricao": "Você conjura uma explosão gravitacional em um retângulo de 6 m a partir de você. Criaturas afetadas devem fazer um teste de <em>Fortitude</em> ou são empurradas para longe de você."
+      },
+      {
+        "id": "magia-incinerar-area",
+        "nome": "Incinerar Área",
+        "escola": "destruicao",
+        "nivel": 1,
+        "custoBase": 2,
+        "stats": [
+          {
+            "caracteristica": "Ação",
+            "valor": "3 Ações",
+            "mod": false
+          },
+          {
+            "caracteristica": "Alcance",
+            "valor": "6 m",
+            "mod": false
+          },
+          {
+            "caracteristica": "Área",
+            "valor": "1,5 / 3 / 4,5 / 6 m de Raio",
+            "mod": true
+          },
+          {
+            "caracteristica": "Dano",
+            "valor": "1d6 / 2d6 / 3d6 / 4d6 Fogo",
+            "mod": true
+          },
+          {
+            "caracteristica": "Resistência",
+            "valor": "Reflexos: metade ou <em>Em Chamas</em> • dano completo",
+            "mod": true
+          }
+        ],
+        "descricao": "Você incinera uma área circular causando dano de Fogo a todos que estiverem na área. Criaturas devem realizar um teste de reflexos (contra sua CD) para receber metade do dano ou ficam <em>em chamas</em> e recebem o dano completo."
+      },
+      {
+        "id": "magia-toque-gelido",
+        "nome": "Toque Gélido",
+        "escola": "destruicao",
+        "nivel": 1,
+        "custoBase": 2,
+        "stats": [
+          {
+            "caracteristica": "Ação",
+            "valor": "2 Ações",
+            "mod": false
+          },
+          {
+            "caracteristica": "Alcance",
+            "valor": "Toque / Toque / 3 m / 4,5 m",
+            "mod": true
+          },
+          {
+            "caracteristica": "Dano",
+            "valor": "1d8 / 2d8 / 3d8 / 4d8 Frio",
+            "mod": true
+          }
+        ],
+        "descricao": "Você transfere de um simples toque um frio mórbido. Faça um teste de Místico contra a Evasão do alvo, em caso de acerto o alvo recebe dano de frio e fica <em>Lento 1.</em>"
+      },
+      {
+        "id": "magia-raio-eletrico",
+        "nome": "Raio Elétrico",
+        "escola": "destruicao",
+        "nivel": 1,
+        "custoBase": 2,
+        "stats": [
+          {
+            "caracteristica": "Ação",
+            "valor": "2 Ações",
+            "mod": false
+          },
+          {
+            "caracteristica": "Alcance",
+            "valor": "4,5 / 9 / 13,5 / 18 m",
+            "mod": true
+          },
+          {
+            "caracteristica": "Alvos",
+            "valor": "1 / 2 / 3 / 4 criaturas em até 0 / 1,5 / 3 / 4,5 m entre si",
+            "mod": true
+          },
+          {
+            "caracteristica": "Dano",
+            "valor": "1d4 / 2d4 / 3d4 / 4d4 Elétrico",
+            "mod": true
+          }
+        ],
+        "descricao": "Você conjura um raio elétrico que salta entre inimigos próximos. Os alvos devem estar separados por no máximo 0 / 1,5 / 3 / 4,5 m."
+      }
+    ],
+    "abjuracao": [
+      {
+        "id": "magia-escudo-telecinetico",
+        "nome": "Escudo Telecinético",
+        "escola": "abjuracao",
+        "nivel": 1,
+        "custoBase": 2,
+        "stats": [
+          {
+            "caracteristica": "Ação",
+            "valor": "Reação",
+            "mod": false
+          },
+          {
+            "caracteristica": "Gatilho",
+            "valor": "Você é alvo de um ataque",
+            "mod": false
+          },
+          {
+            "caracteristica": "Efeito",
+            "valor": "+2 / +5 / +7 / +10 Evasão até o próximo turno",
+            "mod": true
+          }
+        ],
+        "descricao": "Você movimenta telepaticamente diversos objetos em volta de você para se defender. Você tem mais <strong>Evasão</strong> até o seu próximo turno."
+      },
+      {
+        "id": "magia-solo-sagrado",
+        "nome": "Solo Sagrado",
+        "escola": "abjuracao",
+        "nivel": 1,
+        "custoBase": 2,
+        "stats": [
+          {
+            "caracteristica": "Ação",
+            "valor": "1 Ação",
+            "mod": false
+          },
+          {
+            "caracteristica": "Alcance",
+            "valor": "Pessoal",
+            "mod": false
+          },
+          {
+            "caracteristica": "Raio",
+            "valor": "1,5 / 3 / 4,5 / 6 m",
+            "mod": true
+          },
+          {
+            "caracteristica": "Duração",
+            "valor": "3 / 3 / 4 / 5 Rodadas",
+            "mod": true
+          },
+          {
+            "caracteristica": "Efeito",
+            "valor": "Aliados na área: +1 / +2 / +3 / +4 Evasão",
+            "mod": true
+          }
+        ],
+        "descricao": "Você cria uma superfície sagrada circular centrada em você que confunde inimigos."
+      },
+      {
+        "id": "magia-armadura-do-oblivio",
+        "nome": "Armadura do Oblívio",
+        "escola": "abjuracao",
+        "nivel": 1,
+        "custoBase": 2,
+        "stats": [
+          {
+            "caracteristica": "Ação",
+            "valor": "1 Ação",
+            "mod": false
+          },
+          {
+            "caracteristica": "Alcance",
+            "valor": "Toque / Toque / 3 / 4,5 m",
+            "mod": true
+          },
+          {
+            "caracteristica": "Alvo",
+            "valor": "1 Criatura",
+            "mod": false
+          },
+          {
+            "caracteristica": "Efeito",
+            "valor": "Ae (dano escolhido): 2 / 5 / 7 / 10 até fim da cena",
+            "mod": true
+          }
+        ],
+        "descricao": "Você lapida magicamente uma armadura que resiste perfeitamente a um elemento específico. Ao usar, escolha um tipo de dano Atípico, o alvo recebe <strong>Ae</strong> desse tipo de dano até o fim da cena."
+      },
+      {
+        "id": "magia-santuario-menor",
+        "nome": "Santuário Menor",
+        "escola": "abjuracao",
+        "nivel": 1,
+        "custoBase": 2,
+        "stats": [
+          {
+            "caracteristica": "Ação",
+            "valor": "2 Ações",
+            "mod": false
+          },
+          {
+            "caracteristica": "Alcance",
+            "valor": "Toque / Toque / 3 / 6 m",
+            "mod": true
+          },
+          {
+            "caracteristica": "Alvo",
+            "valor": "1 / 2 / 3 Criatura(s)",
+            "mod": true
+          },
+          {
+            "caracteristica": "Efeito",
+            "valor": "Alvo(s) imune a dano por 3 rodadas",
+            "mod": false
+          }
+        ],
+        "descricao": "Você fornece uma aura divina a um alvo que o previne de tomar qualquer tipo de dano por 3 rodadas. Criaturas que tentarem causar dano devem passar em Vontade ou erram. Caso o alvo ataque a magia se dissipa. Após o uso, o alvo não pode receber os benefícios até o próximo descanso longo. Só pode ser canalizada na <strong>intensidade:</strong> <em>Normal</em> ou acima."
+      },
+      {
+        "id": "magia-purificacao-mistica",
+        "nome": "Purificação Mística",
+        "escola": "abjuracao",
+        "nivel": 1,
+        "custoBase": 2,
+        "stats": [
+          {
+            "caracteristica": "Ação",
+            "valor": "1 Ação",
+            "mod": false
+          },
+          {
+            "caracteristica": "Alcance",
+            "valor": "1,5 / 1,5 / 3 / 6 m",
+            "mod": true
+          },
+          {
+            "caracteristica": "Alvo",
+            "valor": "1 / 2 / 3 / 4 Criatura(s)",
+            "mod": true
+          },
+          {
+            "caracteristica": "Efeito",
+            "valor": "Remove: Enfeitiçado, Enjoado, Amedrontado, Atordoado, Adormecido, Paralisado, Desorientado, Confuso e Em Chamas",
+            "mod": false
+          }
+        ],
+        "descricao": "Energia purificadora mística remove mazelas de uma ou mais criaturas."
+      }
+    ],
+    "alteracao": [
+      {
+        "id": "magia-mao-magica",
+        "nome": "Mão Mágica",
+        "escola": "alteracao",
+        "nivel": 1,
+        "custoBase": 2,
+        "stats": [
+          {
+            "caracteristica": "Ação",
+            "valor": "1 Ação",
+            "mod": false
+          },
+          {
+            "caracteristica": "Alcance",
+            "valor": "9 m",
+            "mod": false
+          },
+          {
+            "caracteristica": "Invocada",
+            "valor": "Mão espectral — 1 Saúde, 0 Evasão, dura 10 min",
+            "mod": false
+          }
+        ],
+        "descricao": "Você cria uma mão espectral que pode manipular objetos leves (até 1 kg), abrir portas, puxar alavancas, etc. A mão não pode atacar e some em 10 minutos. Movimentar a mão em combate gasta 1 ação, interagir também custa 1 ação. Só pode ser canalizada na <strong>Intensidade:</strong> <em>Normal</em>"
+      },
+      {
+        "id": "magia-estimulante-mistico",
+        "nome": "Estimulante Místico",
+        "escola": "alteracao",
+        "nivel": 1,
+        "custoBase": 2,
+        "stats": [
+          {
+            "caracteristica": "Ação",
+            "valor": "2 Ações",
+            "mod": false
+          },
+          {
+            "caracteristica": "Alcance",
+            "valor": "Toque / 3 / 4,5 / 6 m",
+            "mod": true
+          },
+          {
+            "caracteristica": "Alvo",
+            "valor": "1 Criatura",
+            "mod": false
+          },
+          {
+            "caracteristica": "Duração",
+            "valor": "Próximos 3 ataques",
+            "mod": false
+          },
+          {
+            "caracteristica": "Efeito",
+            "valor": "+0 / +1 / +1 / +2 dado de dano; +2 / +2 / +2 / +4 em ataques",
+            "mod": true
+          }
+        ],
+        "descricao": "Você aplica um estimulante em uma criatura que aumenta a circulação sanguínea, enrijece a musculatura e aumenta a produção energética do corpo."
+      },
+      {
+        "id": "magia-disfarce-ilusorio",
+        "nome": "Disfarce Ilusório",
+        "escola": "alteracao",
+        "nivel": 1,
+        "custoBase": 2,
+        "stats": [
+          {
+            "caracteristica": "Ação",
+            "valor": "3 Ações",
+            "mod": false
+          },
+          {
+            "caracteristica": "Alcance",
+            "valor": "Toque",
+            "mod": false
+          },
+          {
+            "caracteristica": "Alvo",
+            "valor": "1 / 2 / 3 / 4 Criaturas",
+            "mod": true
+          },
+          {
+            "caracteristica": "Duração",
+            "valor": "15 / 30 / 45 / 60 Minutos",
+            "mod": true
+          }
+        ],
+        "descricao": "Você muda a aparência física (altura ±30cm, peso, rosto, voz, roupas) de uma criatura a distância de toque. Não altera tato nem cheiro. Criaturas que interagirem podem fazer Percepção vs sua CD para perceber a ilusão."
+      },
+      {
+        "id": "magia-queda-suave",
+        "nome": "Queda Suave",
+        "escola": "alteracao",
+        "nivel": 1,
+        "custoBase": 2,
+        "stats": [
+          {
+            "caracteristica": "Ação",
+            "valor": "2 Ações",
+            "mod": false
+          },
+          {
+            "caracteristica": "Alcance",
+            "valor": "Toque / 3 / 4,5 / 6 m",
+            "mod": true
+          },
+          {
+            "caracteristica": "Alvo",
+            "valor": "2 / 3 / 4 / 5 Criaturas",
+            "mod": true
+          },
+          {
+            "caracteristica": "Efeito",
+            "valor": "Imunidade a dano de queda de até 15 / 30 / 45 / 60 m",
+            "mod": true
+          }
+        ],
+        "descricao": "Você oferece poder místico que faz até 3 criaturas planarem no ar, negando dano de queda de até 30 m de altura."
+      },
+      {
+        "id": "magia-maldicao-do-peso",
+        "nome": "Maldição do Peso",
+        "escola": "alteracao",
+        "nivel": 1,
+        "custoBase": 2,
+        "stats": [
+          {
+            "caracteristica": "Ação",
+            "valor": "2 Ações",
+            "mod": false
+          },
+          {
+            "caracteristica": "Alcance",
+            "valor": "4,5 / 9 / 13,5 / 18 m",
+            "mod": true
+          },
+          {
+            "caracteristica": "Alvo",
+            "valor": "1 / 1 / 2 / 2 Criatura(s)",
+            "mod": false
+          },
+          {
+            "caracteristica": "Efeito",
+            "valor": "<em>Confuso</em> / <em>Lento 1</em> / <em>Lento 2</em> / <em>Lento 3</em> por 1d4 rodadas",
+            "mod": true
+          },
+          {
+            "caracteristica": "Resistência",
+            "valor": "Vontade ou recebe o efeito",
+            "mod": true
+          }
+        ],
+        "descricao": "Você amaldiçoa uma criatura adicionando peso ilusório caso ela falhe em um teste de <strong>Vontade</strong> contra sua CD."
+      }
+    ],
+    "conhecimento": [
+      {
+        "id": "magia-detectar-magia",
+        "nome": "Detectar Magia",
+        "escola": "conhecimento",
+        "nivel": 1,
+        "custoBase": 2,
+        "stats": [
+          {
+            "caracteristica": "Ação",
+            "valor": "1 Ação",
+            "mod": false
+          },
+          {
+            "caracteristica": "Alcance",
+            "valor": "Pessoal",
+            "mod": false
+          },
+          {
+            "caracteristica": "Efeito",
+            "valor": "Enxerga fontes de magia em até 15 / 30 / 45 / 60 m",
+            "mod": true
+          },
+          {
+            "caracteristica": "Duração",
+            "valor": "5 / 10 / 15 / 20 Minutos",
+            "mod": true
+          }
+        ],
+        "descricao": "Você encanta a si mesmo para sentir a presença de energia mística através de seus olhos."
+      },
+      {
+        "id": "magia-alarme",
+        "nome": "Alarme",
+        "escola": "conhecimento",
+        "nivel": 1,
+        "custoBase": 2,
+        "stats": [
+          {
+            "caracteristica": "Ação",
+            "valor": "3 Ações",
+            "mod": false
+          },
+          {
+            "caracteristica": "Alcance",
+            "valor": "Toque",
+            "mod": false
+          },
+          {
+            "caracteristica": "Área",
+            "valor": "1,5 / 3 / 4,5 / 6 m Raio",
+            "mod": true
+          },
+          {
+            "caracteristica": "Duração",
+            "valor": "12 h / 1 / 2 / 3 Dias",
+            "mod": true
+          }
+        ],
+        "descricao": "Você planta um alarme sobre uma superfície que abrange uma área de 1,5 m de raio. Qualquer criatura que passar sobre o alarme o ativa alertando o conjurador. Criaturas que identificarem o alarme podem desarmá-lo ao passar em um teste de Místico contra seu CD."
+      },
+      {
+        "id": "magia-mensagem",
+        "nome": "Mensagem",
+        "escola": "conhecimento",
+        "nivel": 1,
+        "custoBase": 2,
+        "stats": [
+          {
+            "caracteristica": "Ação",
+            "valor": "1 Ação",
+            "mod": false
+          },
+          {
+            "caracteristica": "Alcance",
+            "valor": "18 / 36 / 54 / 72 m",
+            "mod": true
+          },
+          {
+            "caracteristica": "Alvo(s)",
+            "valor": "1 / 1 / 2 / 3 Criatura(s)",
+            "mod": true
+          }
+        ],
+        "descricao": "Você sussurra uma mensagem que só o alvo ouve. Barreiras sólidas grossas bloqueiam a magia."
+      },
+      {
+        "id": "magia-lingua-mistica",
+        "nome": "Língua Mística",
+        "escola": "conhecimento",
+        "nivel": 1,
+        "custoBase": 2,
+        "stats": [
+          {
+            "caracteristica": "Ação",
+            "valor": "1 Ação",
+            "mod": false
+          },
+          {
+            "caracteristica": "Alcance",
+            "valor": "Toque",
+            "mod": false
+          },
+          {
+            "caracteristica": "Alvo",
+            "valor": "Objeto ou 1 Criatura",
+            "mod": false
+          }
+        ],
+        "descricao": "Você profere a habilidade a você e mais uma criatura a falar uma língua mística onde vocês duas conseguem se entender independente da língua original. Ao utilizar em textos, você o traduz para a língua comum. Esta magia só pode ser conjurada na intensidade <strong>Normal</strong>."
+      },
+      {
+        "id": "magia-entender-ser",
+        "nome": "Entender Ser",
+        "escola": "conhecimento",
+        "nivel": 1,
+        "custoBase": 2,
+        "stats": [
+          {
+            "caracteristica": "Ação",
+            "valor": "1 Ação",
+            "mod": false
+          },
+          {
+            "caracteristica": "Alcance",
+            "valor": "Toque",
+            "mod": false
+          },
+          {
+            "caracteristica": "Alvo",
+            "valor": "1 Criatura",
+            "mod": false
+          },
+          {
+            "caracteristica": "Resist.",
+            "valor": "Vontade ou Informações",
+            "mod": false
+          },
+          {
+            "caracteristica": "Efeito",
+            "valor": "Revela: Ar, Ae, Resistências, Vulnerabilidades, Tipo, CD e Saúde Máxima",
+            "mod": false
+          }
+        ],
+        "descricao": "Você é informado misticamente sobre as propriedades de uma criatura em específico caso ela falhe em um teste de vontade contra a sua CD. Só pode ser canalizada na <strong>Intensidade:</strong> <em>Normal</em>"
+      }
+    ]
+  },
+  "nivel2": {
+    "destruicao": [
+      {
+        "id": "magia-lanca-de-gelo",
+        "nome": "Lança de Gelo",
+        "escola": "destruicao",
+        "nivel": 2,
+        "custoBase": 4,
+        "stats": [
+          {
+            "caracteristica": "Ação",
+            "valor": "3 Ações",
+            "mod": false
+          },
+          {
+            "caracteristica": "Alcance",
+            "valor": "9 / 18 / 27 / 36 m",
+            "mod": true
+          },
+          {
+            "caracteristica": "Alvo",
+            "valor": "1 Criatura",
+            "mod": false
+          },
+          {
+            "caracteristica": "Dano",
+            "valor": "2d8 / 3d8 / 4d8 / 5d8 Frio",
+            "mod": true
+          },
+          {
+            "caracteristica": "Resistência",
+            "valor": "Reflexos ou <em>Lento 1</em> por 1 rodada",
+            "mod": true
+          }
+        ],
+        "descricao": "Você conjura uma lança de gelo cristalino que atravessa o ar. Faça um teste de <strong>Místico</strong> contra a evasão do alvo — ele pode bloquear com reação. Ao acertar, o alvo recebe dano de Frio. Adicionalmente, Reflexos ou fica <em>Lento 1</em> por 1 rodada."
+      },
+      {
+        "id": "magia-verdades-dolorosas",
+        "nome": "Verdades Dolorosas",
+        "escola": "destruicao",
+        "nivel": 2,
+        "custoBase": 4,
+        "stats": [
+          {
+            "caracteristica": "Ação",
+            "valor": "2 Ações",
+            "mod": false
+          },
+          {
+            "caracteristica": "Alcance",
+            "valor": "4,5 / 9 / 13,5 / 18 m",
+            "mod": true
+          },
+          {
+            "caracteristica": "Alvo",
+            "valor": "1 Criatura",
+            "mod": false
+          },
+          {
+            "caracteristica": "Dano",
+            "valor": "1d6 / 2d6 / 3d6 / 4d6 Psíquico",
+            "mod": true
+          },
+          {
+            "caracteristica": "Resistência",
+            "valor": "Vontade ou 2d6 Psíquico e <em>Atordoado</em>",
+            "mod": true
+          }
+        ],
+        "descricao": "Você revela verdades místicas a uma criatura que tenha sentimentos e emoções. A criatura deve fazer um teste de Vontade ou recebe 2d6 de dano Psíquico e fica <em>Atordoada</em>."
+      },
+      {
+        "id": "magia-caveiras-explosivas",
+        "nome": "Caveiras Explosivas",
+        "escola": "destruicao",
+        "nivel": 2,
+        "custoBase": 4,
+        "stats": [
+          {
+            "caracteristica": "Ação",
+            "valor": "3 Ações",
+            "mod": false
+          },
+          {
+            "caracteristica": "Alcance",
+            "valor": "4,5 / 9 / 13,5 / 18 m",
+            "mod": true
+          },
+          {
+            "caracteristica": "Área",
+            "valor": "Raio de 1,5 m por caveira",
+            "mod": false
+          },
+          {
+            "caracteristica": "Dano",
+            "valor": "1d6 / 2d6 / 3d6 / 4d6 Fogo — 2 Ataques independentes",
+            "mod": true
+          },
+          {
+            "caracteristica": "Resistência",
+            "valor": "Reflexos para metade do dano ou <em>Em Chamas</em>",
+            "mod": true
+          }
+        ],
+        "descricao": "Das suas mangas, você conjura 2 caveiras explosivas que explodem independentemente em uma área de 1,5 m cada. <strong>Reflexos para metade do dano</strong> ou <em>Em chamas</em>."
+      },
+      {
+        "id": "magia-invocar-tempestade",
+        "nome": "Invocar Tempestade",
+        "escola": "destruicao",
+        "nivel": 2,
+        "custoBase": 4,
+        "stats": [
+          {
+            "caracteristica": "Ação",
+            "valor": "3 Ações",
+            "mod": false
+          },
+          {
+            "caracteristica": "Alcance",
+            "valor": "4,5 / 9 / 13,5 / 18 m",
+            "mod": true
+          },
+          {
+            "caracteristica": "Área",
+            "valor": "36 / 54 / 72 m circular",
+            "mod": true
+          },
+          {
+            "caracteristica": "Dano",
+            "valor": "3d6 / 4d6 / 5d6 / 6d6 Elétrico",
+            "mod": true
+          },
+          {
+            "caracteristica": "Raios p/Rodada",
+            "valor": "2 / 3 / 4 / 5",
+            "mod": true
+          },
+          {
+            "caracteristica": "Duração",
+            "valor": "3 / 4 / 5 Rodadas",
+            "mod": true
+          },
+          {
+            "caracteristica": "Efeito",
+            "valor": "Fortitude ou <em>Atordoado</em>",
+            "mod": false
+          }
+        ],
+        "descricao": "Você invoca uma tempestade trovejante. No início de cada rodada, todas as criaturas dentro da área rolam 1d20; as que rolarem mais baixo são acertadas por raios. As criaturas afetadas devem rolar <strong>Fortitude</strong> ou ficam <em>Atordoadas.</em>"
+      },
+      {
+        "id": "magia-ventania-bizarra",
+        "nome": "Ventania Bizarra",
+        "escola": "destruicao",
+        "nivel": 2,
+        "custoBase": 4,
+        "stats": [
+          {
+            "caracteristica": "Ação",
+            "valor": "2 Ações",
+            "mod": false
+          },
+          {
+            "caracteristica": "Alcance",
+            "valor": "4,5 / 9 / 13,5 / 18 m",
+            "mod": true
+          },
+          {
+            "caracteristica": "Área",
+            "valor": "1,5 / 3 / 4,5 / 6 m",
+            "mod": true
+          },
+          {
+            "caracteristica": "Dano",
+            "valor": "1d8 / 2d8 / 3d8 / 4d8 Força",
+            "mod": true
+          },
+          {
+            "caracteristica": "Resistência",
+            "valor": "Fortitude ou dano + <em>Sangramento 1</em>",
+            "mod": true
+          }
+        ],
+        "descricao": "Você canaliza ventos extremamente fortes. Criaturas dentro da área devem fazer Fortitude ou recebem dano de Força e ganham <em>Sangramento 1</em>."
+      }
+    ],
+    "abjuracao": [
+      {
+        "id": "magia-barreira-de-energia",
+        "nome": "Barreira de Energia",
+        "escola": "abjuracao",
+        "nivel": 2,
+        "custoBase": 4,
+        "stats": [
+          {
+            "caracteristica": "Ação",
+            "valor": "3 Ações",
+            "mod": false
+          },
+          {
+            "caracteristica": "Alcance",
+            "valor": "Pessoal",
+            "mod": false
+          },
+          {
+            "caracteristica": "Área",
+            "valor": "1,5 / 3 / 4,5 / 6 m Raio",
+            "mod": true
+          },
+          {
+            "caracteristica": "Saúde da Barreira",
+            "valor": "25 / 50 / 75 / 100 — impenetrável até quebrar",
+            "mod": true
+          }
+        ],
+        "descricao": "Você conjura uma proteção de energia em formato esférico ao seu redor. A barreira é impenetrável por criaturas até quebrar. Resiste igualmente a todos os tipos de dano; dano Primordial causa o dobro de dano à barreira."
+      },
+      {
+        "id": "magia-telepatia",
+        "nome": "Telepatia",
+        "escola": "abjuracao",
+        "nivel": 2,
+        "custoBase": 4,
+        "stats": [
+          {
+            "caracteristica": "Ação",
+            "valor": "2 Ações",
+            "mod": false
+          },
+          {
+            "caracteristica": "Alcance",
+            "valor": "Toque",
+            "mod": false
+          },
+          {
+            "caracteristica": "Distância",
+            "valor": "18 / 36 / 54 / 72 m",
+            "mod": true
+          },
+          {
+            "caracteristica": "Alvo",
+            "valor": "1 / 2 / 4 / 6 Criaturas",
+            "mod": true
+          },
+          {
+            "caracteristica": "Duração",
+            "valor": "15 min / 30 min / 45 min / 1 hora",
+            "mod": true
+          }
+        ],
+        "descricao": "Você conecta sua mente com a de outra criatura podendo se comunicar telepaticamente. Os afetados não conseguem ler pensamentos uns dos outros, apenas falar e ouvir-se remotamente. As criaturas não precisam falar o mesmo idioma."
+      },
+      {
+        "id": "magia-dissipar-magia",
+        "nome": "Dissipar Magia",
+        "escola": "abjuracao",
+        "nivel": 2,
+        "custoBase": 4,
+        "stats": [
+          {
+            "caracteristica": "Ação",
+            "valor": "2 Ações",
+            "mod": false
+          },
+          {
+            "caracteristica": "Alcance",
+            "valor": "9 m",
+            "mod": false
+          },
+          {
+            "caracteristica": "Alvo",
+            "valor": "1 efeito mágico ou Criatura",
+            "mod": false
+          },
+          {
+            "caracteristica": "Efeito",
+            "valor": "Encerra magias de Nível 2 ou menor automaticamente",
+            "mod": false
+          }
+        ],
+        "descricao": "Magias de nível 2 ou menor são automaticamente dissipadas. Para magias de nível superior, faça um teste de Místico com CD 20 + nível da magia. Só pode ser canalizada na <strong>Intensidade:</strong> <em>Normal</em>"
+      },
+      {
+        "id": "magia-aumentar-diminuir-criatura",
+        "nome": "Aumentar / Diminuir Criatura",
+        "escola": "abjuracao",
+        "nivel": 2,
+        "custoBase": 4,
+        "stats": [
+          {
+            "caracteristica": "Ação",
+            "valor": "2 Ações",
+            "mod": false
+          },
+          {
+            "caracteristica": "Alcance",
+            "valor": "9 m",
+            "mod": false
+          },
+          {
+            "caracteristica": "Alvo",
+            "valor": "1 Criatura",
+            "mod": false
+          },
+          {
+            "caracteristica": "Efeito",
+            "valor": "+1 ou −1 categoria de tamanho",
+            "mod": false
+          },
+          {
+            "caracteristica": "Duração",
+            "valor": "3 Rodadas",
+            "mod": false
+          },
+          {
+            "caracteristica": "Resistência",
+            "valor": "Vontade ou Afetado (se não voluntário)",
+            "mod": false
+          }
+        ],
+        "descricao": "Você canaliza uma energia transformadora que aumenta ou diminui uma criatura em 1 categoria de peso. Alvo não voluntário deve fazer <strong>Vontade</strong> ou é afetado. Só pode ser canalizada na <strong>Intensidade:</strong> Normal"
+      },
+      {
+        "id": "magia-personificar-elemento",
+        "nome": "Personificar Elemento",
+        "escola": "abjuracao",
+        "nivel": 2,
+        "custoBase": 4,
+        "stats": [
+          {
+            "caracteristica": "Ação",
+            "valor": "2 Ações",
+            "mod": false
+          },
+          {
+            "caracteristica": "Alcance",
+            "valor": "Toque / Toque / 3 / 6 m",
+            "mod": true
+          },
+          {
+            "caracteristica": "Alvo",
+            "valor": "1 Criatura",
+            "mod": false
+          },
+          {
+            "caracteristica": "Efeito",
+            "valor": "Resistência a 1 tipo de dano; atacantes corpo a corpo recebem 1d4 / 1d6 / 2d6 / 3d6 desse tipo",
+            "mod": true
+          }
+        ],
+        "descricao": "Você transforma as características físicas de um alvo pareando-as a um tipo de dano, garantindo Resistência a esse tipo e fazendo atacantes receberem o mesmo dano de volta."
+      }
+    ],
+    "alteracao": [
+      {
+        "id": "magia-pele-de-pedra",
+        "nome": "Pele de Pedra",
+        "escola": "alteracao",
+        "nivel": 2,
+        "custoBase": 4,
+        "stats": [
+          {
+            "caracteristica": "Ação",
+            "valor": "1 Ação",
+            "mod": false
+          },
+          {
+            "caracteristica": "Alcance",
+            "valor": "Toque / Toque / 3 / 4,5 m",
+            "mod": true
+          },
+          {
+            "caracteristica": "Alvo",
+            "valor": "1 Criatura",
+            "mod": false
+          },
+          {
+            "caracteristica": "Duração",
+            "valor": "3 / 3 / 4 / 5 Rodadas",
+            "mod": true
+          },
+          {
+            "caracteristica": "Efeito",
+            "valor": "Ae (Ordinário): 2 / 5 / 7 / 10",
+            "mod": true
+          }
+        ],
+        "descricao": "Você altera a composição da pele de uma criatura, enrijecendo-a em camadas de uma substância parecida com pedra porosa. A criatura ganha Armadura Específica contra dano Ordinário. A pele toma uma coloração acinzentada e textura granular."
+      },
+      {
+        "id": "magia-confundir-sentidos",
+        "nome": "Confundir Sentidos",
+        "escola": "alteracao",
+        "nivel": 2,
+        "custoBase": 4,
+        "stats": [
+          {
+            "caracteristica": "Ação",
+            "valor": "1 Ação",
+            "mod": false
+          },
+          {
+            "caracteristica": "Alcance",
+            "valor": "4,5 / 9 / 13,5 / 18 m",
+            "mod": true
+          },
+          {
+            "caracteristica": "Alvo",
+            "valor": "1 Criatura",
+            "mod": false
+          },
+          {
+            "caracteristica": "Duração",
+            "valor": "Teste de Vontade ao fim de todo turno",
+            "mod": false
+          },
+          {
+            "caracteristica": "Resistência",
+            "valor": "Vontade ou Afetado",
+            "mod": true
+          },
+          {
+            "caracteristica": "Efeito",
+            "valor": "Percepção e Iniciativa: rola duas vezes (pior); −1 / −2 / −3 / −4 em ataques à distância",
+            "mod": true
+          }
+        ],
+        "descricao": "Você embaralha as informações sensoriais — sons vêm de direções erradas, distâncias parecem distorcidas. Útil para desorientar perseguidores ou criar oportunidades de fuga."
+      },
+      {
+        "id": "magia-translocacao-arcana",
+        "nome": "Translocação Arcana",
+        "escola": "alteracao",
+        "nivel": 2,
+        "custoBase": 4,
+        "stats": [
+          {
+            "caracteristica": "Ação",
+            "valor": "1 Ação",
+            "mod": false
+          },
+          {
+            "caracteristica": "Alcance",
+            "valor": "Pessoal",
+            "mod": false
+          },
+          {
+            "caracteristica": "Efeito",
+            "valor": "Teletransporte para um ponto visível em até 9 m",
+            "mod": true
+          }
+        ],
+        "descricao": "Você dissolve brevemente sua forma física e a reconstrói em outro ponto dentro do alcance que você consiga ver. Instantâneo e silencioso. Não atravessa barreiras sólidas. Pode sair de um Agarrão sem disputar Movimento. Só pode ser canalizada na <strong>Intensidade:</strong> Normal"
+      },
+      {
+        "id": "magia-transfigurar-arma",
+        "nome": "Transfigurar Arma",
+        "escola": "alteracao",
+        "nivel": 2,
+        "custoBase": 4,
+        "stats": [
+          {
+            "caracteristica": "Ação",
+            "valor": "1 Ação",
+            "mod": false
+          },
+          {
+            "caracteristica": "Alcance",
+            "valor": "Toque",
+            "mod": false
+          },
+          {
+            "caracteristica": "Alvo",
+            "valor": "1 Arma",
+            "mod": false
+          },
+          {
+            "caracteristica": "Duração",
+            "valor": "1 / 1 / 2 / 3 Ataque(s)",
+            "mod": true
+          },
+          {
+            "caracteristica": "Efeito",
+            "valor": "Muda tipo de dano para Atípico escolhido + 1d4 / 1d6 / 1d8 / 1d10 adicional",
+            "mod": true
+          }
+        ],
+        "descricao": "Você reescreve a natureza do dano de uma arma, impregnando-a com energia mística de um elemento escolhido. A arma mantém seu dado base mas seu tipo de dano muda completamente para o tipo Atípico escolhido e causa dado extra desse mesmo tipo."
+      },
+      {
+        "id": "magia-enraizar",
+        "nome": "Enraizar",
+        "escola": "alteracao",
+        "nivel": 2,
+        "custoBase": 4,
+        "stats": [
+          {
+            "caracteristica": "Ação",
+            "valor": "2 Ações",
+            "mod": false
+          },
+          {
+            "caracteristica": "Alcance",
+            "valor": "4,5 / 9 / 13,5 / 18 m",
+            "mod": true
+          },
+          {
+            "caracteristica": "Alvo",
+            "valor": "1 / 1 / 2 / 2 Criatura(s)",
+            "mod": true
+          },
+          {
+            "caracteristica": "Resistência",
+            "valor": "Fortitude ou <em>Enraizado</em>",
+            "mod": true
+          }
+        ],
+        "descricao": "Você altera a densidade gravitacional ao redor dos pés de uma criatura, fazendo-os colar ao chão. O alvo fica Enraizado, não pode se mover voluntariamente, mas ainda pode agir. A cada rodada pode gastar 2 ações para refazer Fortitude e tentar se soltar. Criaturas que voam são imunes."
+      }
+    ],
+    "conhecimento": [
+      {
+        "id": "magia-sussurro-do-ambiente",
+        "nome": "Sussurro do Ambiente",
+        "escola": "conhecimento",
+        "nivel": 2,
+        "custoBase": 4,
+        "stats": [
+          {
+            "caracteristica": "Ação",
+            "valor": "3 Ações",
+            "mod": false
+          },
+          {
+            "caracteristica": "Alcance",
+            "valor": "Pessoal",
+            "mod": false
+          },
+          {
+            "caracteristica": "Área",
+            "valor": "4,5 / 9 / 13,5 / 18 m Raio",
+            "mod": true
+          },
+          {
+            "caracteristica": "Efeito",
+            "valor": "Você obtém um mapa mental preciso de tudo na área: criaturas, objetos, passagens, portas; mesmo atrás de paredes.",
+            "mod": true
+          },
+          {
+            "caracteristica": "Duração",
+            "valor": "5 / 10 / 15 / 20 Minutos",
+            "mod": true
+          }
+        ],
+        "descricao": "Você encanta a si mesmo para sentir a presença de energia mística em uma área, obtendo um mapa mental preciso de tudo dentro dela, mesmo atrás de paredes."
+      },
+      {
+        "id": "magia-panico",
+        "nome": "Pânico",
+        "escola": "conhecimento",
+        "nivel": 2,
+        "custoBase": 4,
+        "stats": [
+          {
+            "caracteristica": "Ação",
+            "valor": "1 Ação",
+            "mod": false
+          },
+          {
+            "caracteristica": "Alcance",
+            "valor": "4,5 / 9 / 13,5 / 18 m",
+            "mod": true
+          },
+          {
+            "caracteristica": "Resist.",
+            "valor": "Vontade ou Amedrontado",
+            "mod": false
+          },
+          {
+            "caracteristica": "Duração",
+            "valor": "1 / 1 / 2 / 3 Rodadas",
+            "mod": true
+          },
+          {
+            "caracteristica": "Efeito",
+            "valor": "Alvo fica Amedrontado de você pelo tempo da duração.",
+            "mod": false
+          }
+        ],
+        "descricao": "Você planta um clarão de terror puro diretamente na mente do alvo — uma sobrecarga de sinais de ameaça que o sistema nervoso não consegue ignorar. Não é ilusão, portanto não é removida por Purificação Mística. Criaturas sem capacidade emocional são imunes."
+      },
+      {
+        "id": "magia-historia-do-eter",
+        "nome": "História do Éter",
+        "escola": "conhecimento",
+        "nivel": 2,
+        "custoBase": 4,
+        "stats": [
+          {
+            "caracteristica": "Ação",
+            "valor": "1 Minuto",
+            "mod": false
+          },
+          {
+            "caracteristica": "Alcance",
+            "valor": "Toque",
+            "mod": false
+          },
+          {
+            "caracteristica": "Alvo",
+            "valor": "1 Objeto ou Criatura",
+            "mod": true
+          },
+          {
+            "caracteristica": "Efeito",
+            "valor": "Revela: nome, propriedades mágicas, escola de origem, cursos ativos e — em objetos — como usar corretamente.",
+            "mod": true
+          }
+        ],
+        "descricao": "Em Contida, revela apenas se o alvo é mágico. Em Normal revela tudo. Em Forçada/Transbordante revela também a história de uso recente do objeto (últimas 24h / 7 dias). Só pode ser conjurada fora de combate."
+      },
+      {
+        "id": "magia-emprestimo-natural",
+        "nome": "Empréstimo Natural",
+        "escola": "conhecimento",
+        "nivel": 2,
+        "custoBase": 4,
+        "stats": [
+          {
+            "caracteristica": "Ação",
+            "valor": "1 Ação",
+            "mod": false
+          },
+          {
+            "caracteristica": "Alcance",
+            "valor": "Pessoal",
+            "mod": false
+          },
+          {
+            "caracteristica": "Duração",
+            "valor": "5 / 10 / 15 / 30 Minutos",
+            "mod": true
+          },
+          {
+            "caracteristica": "Efeito",
+            "valor": "Escolha 1 efeito: Córnea dos Grutos (enxerga no escuro até 18 m e ignora penalidades de névoa/fumaça), Orelha dos Anões (ouve sussurros a até 30 m e percebe mentiras por variação vocal) ou Antenas Sensoriais Insectoides (rastreia criaturas pelos feromônios, vantagem em Percepção baseada em odor).",
+            "mod": false
+          }
+        ],
+        "descricao": "Você amplia drasticamente um único sentido. O efeito colateral é proporcional: com visão ampliada, luz intensa causa Cego; com audição ampliada, sons muito altos causam Atordoado; com olfato ampliado, odores fortes causam Enjoado — sempre por 1 rodada."
+      },
+      {
+        "id": "magia-impulso-instintivo",
+        "nome": "Impulso Instintivo",
+        "escola": "conhecimento",
+        "nivel": 2,
+        "custoBase": 4,
+        "stats": [
+          {
+            "caracteristica": "Ação",
+            "valor": "2 Ações",
+            "mod": false
+          },
+          {
+            "caracteristica": "Alcance",
+            "valor": "9 m",
+            "mod": false
+          },
+          {
+            "caracteristica": "Alvo",
+            "valor": "1 Criatura",
+            "mod": false
+          },
+          {
+            "caracteristica": "Efeito",
+            "valor": "Você planta um comando simples (1 frase) na mente do alvo. Ele acredita que o pensamento é seu.",
+            "mod": false
+          },
+          {
+            "caracteristica": "Resist.",
+            "valor": "Vontade ou Afetado",
+            "mod": false
+          }
+        ],
+        "descricao": "Você injeta um pensamento ou impulso simples na mente do alvo (\"corra\", \"solte a arma\", \"confie nele\"). O alvo não sabe que foi influenciado. Comandos que coloquem o alvo em perigo direto permitem novo teste de Vontade. Só pode ser canalizada na <strong>Intensidade:</strong> <em>Normal</em>"
+      }
+    ]
+  },
+  "nivel3": {
+    "destruicao": [
+      {
+        "id": "magia-pestilencia",
+        "nome": "Pestilência",
+        "escola": "destruicao",
+        "nivel": 3,
+        "custoBase": 6,
+        "stats": [
+          {
+            "caracteristica": "Ação",
+            "valor": "2 Ações",
+            "mod": false
+          },
+          {
+            "caracteristica": "Alcance",
+            "valor": "3 / 6 / 9 / 13,5 m",
+            "mod": true
+          },
+          {
+            "caracteristica": "Alvo",
+            "valor": "1 Criatura",
+            "mod": false
+          },
+          {
+            "caracteristica": "Dano",
+            "valor": "1d8 / 2d8 / 3d8 / 4d8 Necrótico",
+            "mod": true
+          },
+          {
+            "caracteristica": "Resistência",
+            "valor": "Vontade ou Afetado",
+            "mod": true
+          }
+        ],
+        "descricao": "Você propaga uma Pestilência mística que corrompe e fere qualquer ser afetado a cada turno. Qualquer criatura que receber dano desta magia transmite a Pestilência para a criatura mais próxima em até 9 m. Criaturas que sucederem no teste ficam imunes até o fim do combate."
+      },
+      {
+        "id": "magia-limiar-perfurante",
+        "nome": "Limiar Perfurante",
+        "escola": "destruicao",
+        "nivel": 3,
+        "custoBase": 6,
+        "stats": [
+          {
+            "caracteristica": "Ação",
+            "valor": "2 Ações",
+            "mod": false
+          },
+          {
+            "caracteristica": "Alcance",
+            "valor": "4,5 / 9 / 13,5 / 18 m",
+            "mod": true
+          },
+          {
+            "caracteristica": "Alvo",
+            "valor": "1 Criatura",
+            "mod": false
+          },
+          {
+            "caracteristica": "Dano",
+            "valor": "2d8 / 3d8 / 4d8 / 5d8 Místico",
+            "mod": true
+          },
+          {
+            "caracteristica": "Resistência",
+            "valor": "Fortitude ou <em>Exposto</em>",
+            "mod": false
+          }
+        ],
+        "descricao": "Você conjura um feixe místico que penetra/ignora as defesas de um alvo (Armadura e Ae) causando dano Místico. Ao acerto, o alvo deve suceder em <strong>Fortitude</strong> ou fica <em>Exposto.</em>"
+      },
+      {
+        "id": "magia-fragmento-estelar",
+        "nome": "Fragmento Estelar",
+        "escola": "destruicao",
+        "nivel": 3,
+        "custoBase": 6,
+        "stats": [
+          {
+            "caracteristica": "Ação",
+            "valor": "3 Ações",
+            "mod": false
+          },
+          {
+            "caracteristica": "Alcance",
+            "valor": "1,5 / 3 / 6 / 9 m",
+            "mod": true
+          },
+          {
+            "caracteristica": "Área",
+            "valor": "1,5 / 3 / 6 / 9 m Raio",
+            "mod": true
+          },
+          {
+            "caracteristica": "Dano",
+            "valor": "1d6 / 2d6 / 6d6 / 10d6 Radiante (dividido entre todos na área)",
+            "mod": true
+          },
+          {
+            "caracteristica": "Resistência",
+            "valor": "Reflexos para metade",
+            "mod": false
+          }
+        ],
+        "descricao": "Você precipita um fragmento estelar sobre uma área, o dano total é dividido entre todos os inimigos dentro do raio. Na intensidade Transbordante, ao executar um alvo, pode transferir o dano sobrepujante a outros alvos na área como ação livre."
+      },
+      {
+        "id": "magia-disparo-veloz",
+        "nome": "Disparo Veloz",
+        "escola": "destruicao",
+        "nivel": 3,
+        "custoBase": 6,
+        "stats": [
+          {
+            "caracteristica": "Ação",
+            "valor": "1 Ação",
+            "mod": false
+          },
+          {
+            "caracteristica": "Alcance",
+            "valor": "4,5 m",
+            "mod": false
+          },
+          {
+            "caracteristica": "Alvo",
+            "valor": "1 Alvo",
+            "mod": false
+          },
+          {
+            "caracteristica": "Dano",
+            "valor": "1d10 Místico",
+            "mod": false
+          }
+        ],
+        "descricao": "Você instintivamente conjura um projetil mágico simples. Caso você acerte o alvo, você recupera metade do éter gasto nessa canalização. Só pode ser canalizada na <strong>Intensidade:</strong> <em>Normal</em>"
+      },
+      {
+        "id": "magia-reversao-umbral",
+        "nome": "Reversão Umbral",
+        "escola": "destruicao",
+        "nivel": 3,
+        "custoBase": 6,
+        "stats": [
+          {
+            "caracteristica": "Ação",
+            "valor": "3 Ações",
+            "mod": false
+          },
+          {
+            "caracteristica": "Alcance",
+            "valor": "Pessoal",
+            "mod": false
+          },
+          {
+            "caracteristica": "Efeito",
+            "valor": "Reflete TODO o dano recebido como dano Místico durante 1 rodada.",
+            "mod": false
+          }
+        ],
+        "descricao": "Requisito: Deve canalizar com intensidade Transbordante. Você só pode utilizar essa magia uma vez por dia."
+      }
+    ],
+    "abjuracao": [
+      {
+        "id": "magia-contramedida",
+        "nome": "Contramedida",
+        "escola": "abjuracao",
+        "nivel": 3,
+        "custoBase": 6,
+        "stats": [
+          {
+            "caracteristica": "Ação",
+            "valor": "Reação",
+            "mod": false
+          },
+          {
+            "caracteristica": "Alcance",
+            "valor": "9 / 13,5 / 18 m",
+            "mod": true
+          },
+          {
+            "caracteristica": "Efeito",
+            "valor": "Cancela a conjuração de uma magia",
+            "mod": false
+          },
+          {
+            "caracteristica": "Resistência",
+            "valor": "Místico vs. Místico",
+            "mod": false
+          }
+        ],
+        "descricao": "Ao detectar a canalização de energia mística próxima, você lança uma interferência que tenta suprimir a conjuração antes que ela se complete. Se vencer, a magia falha e o conjurador perde o Éter gasto. Se perder por 10 ou mais, você perde 2 Éter adicionais. Só pode ser canalizada na <strong>Intensidade:</strong> <em>Normal</em> ou acima."
+      },
+      {
+        "id": "magia-ruido-anti-magia",
+        "nome": "Ruído Anti-Magia",
+        "escola": "abjuracao",
+        "nivel": 3,
+        "custoBase": 6,
+        "stats": [
+          {
+            "caracteristica": "Ação",
+            "valor": "2 Ações",
+            "mod": false
+          },
+          {
+            "caracteristica": "Alcance",
+            "valor": "4,5 / 9 / 13,5 / 18 m",
+            "mod": false
+          },
+          {
+            "caracteristica": "Raio",
+            "valor": "1,5 / 3 / 4,5 / 6 m",
+            "mod": true
+          },
+          {
+            "caracteristica": "Duração",
+            "valor": "3 Rodadas",
+            "mod": false
+          },
+          {
+            "caracteristica": "Efeito",
+            "valor": "Conjurar na área: Vontade vs. CD ou magia falha e Éter é perdido",
+            "mod": false
+          }
+        ],
+        "descricao": "Você cria uma zona de interferência mística. Toda criatura que tentar conjurar dentro da área deve fazer Vontade contra sua CD — em falha, a magia não sai e o Éter é desperdiçado. Você mesmo é afetado pela zona. A área é invisível, visível apenas a quem tiver Detectar Magia ativo."
+      },
+      {
+        "id": "magia-armadura-de-espinhos",
+        "nome": "Armadura de Espinhos",
+        "escola": "abjuracao",
+        "nivel": 3,
+        "custoBase": 6,
+        "stats": [
+          {
+            "caracteristica": "Ação",
+            "valor": "1 Ação",
+            "mod": false
+          },
+          {
+            "caracteristica": "Alcance",
+            "valor": "Toque / Toque / 3 / 6 m",
+            "mod": true
+          },
+          {
+            "caracteristica": "Alvo",
+            "valor": "1 Criatura",
+            "mod": false
+          },
+          {
+            "caracteristica": "Dano",
+            "valor": "1d6 / 2d6 / 3d6 / 4d6 Perfurante ao atacante corpo a corpo",
+            "mod": false
+          },
+          {
+            "caracteristica": "Duração",
+            "valor": "Magia Sustentada (pague Éter a cada turno)",
+            "mod": false
+          }
+        ],
+        "descricao": "Você reveste uma criatura com energia abjurante reativa. Toda vez que ela for atingida por um ataque corpo a corpo, o atacante recebe dano Perfurante automaticamente, sem possibilidade de esquiva. Ataques à distância ou magias não ativam o efeito."
+      },
+      {
+        "id": "magia-refugio-dos-perdidos",
+        "nome": "Refúgio dos Perdidos",
+        "escola": "abjuracao",
+        "nivel": 3,
+        "custoBase": 6,
+        "stats": [
+          {
+            "caracteristica": "Ação",
+            "valor": "3 Ações",
+            "mod": false
+          },
+          {
+            "caracteristica": "Alcance",
+            "valor": "Pessoal",
+            "mod": false
+          },
+          {
+            "caracteristica": "Área",
+            "valor": "3 / 4,5 / 6 / 9 m Raio",
+            "mod": false
+          },
+          {
+            "caracteristica": "Efeito",
+            "valor": "Ae (Todos): 3 / 5 / 7 / 10; +1 / +2 / +3 / +4 em todos os testes de Resistência",
+            "mod": false
+          },
+          {
+            "caracteristica": "Duração",
+            "valor": "Magia Sustentada (pague Éter a cada rodada)",
+            "mod": false
+          }
+        ],
+        "descricao": "Você ergue uma cúpula de energia protetora ao seu redor. Aliados dentro do raio recebem armadura específica contra todos os tipos de dano e bônus em todos os testes de Resistência (Fortitude, Vontade, Reflexos). A cúpula se move com você."
+      },
+      {
+        "id": "magia-laco-da-uniao",
+        "nome": "Laço da União",
+        "escola": "abjuracao",
+        "nivel": 3,
+        "custoBase": 6,
+        "stats": [
+          {
+            "caracteristica": "Ação",
+            "valor": "2 Ações",
+            "mod": false
+          },
+          {
+            "caracteristica": "Alcance",
+            "valor": "Toque / 3 / 4,5 / 6 m",
+            "mod": true
+          },
+          {
+            "caracteristica": "Alvo",
+            "valor": "2 / 2 / 3 / 4 Criaturas",
+            "mod": true
+          },
+          {
+            "caracteristica": "Resist.",
+            "valor": "Vontade ou Laçado",
+            "mod": false
+          },
+          {
+            "caracteristica": "Efeito",
+            "valor": "Dano recebido dividido igualmente entre os laçados (mín. 1, arredondado para cima)",
+            "mod": false
+          }
+        ],
+        "descricao": "Você cria um vínculo abjurante entre criaturas voluntárias. Todo dano recebido por qualquer uma é dividido igualmente entre todos. Criaturas não voluntárias devem fazer Vontade a cada turno para se livrar. Se um participante cair Inconsciente ou sair do alcance, o laço se rompe para todos."
+      }
+    ],
+    "alteracao": [
+      {
+        "id": "magia-transferir-condicao",
+        "nome": "Transferir Condição",
+        "escola": "alteracao",
+        "nivel": 3,
+        "custoBase": 6,
+        "stats": [
+          {
+            "caracteristica": "Ação",
+            "valor": "1 Ação",
+            "mod": false
+          },
+          {
+            "caracteristica": "Alcance",
+            "valor": "Toque (Origem); 4,5 / 9 / 13,5 / 18 m (Destino)",
+            "mod": true
+          },
+          {
+            "caracteristica": "Alvo",
+            "valor": "1 Criatura (Origem) + 1 Criatura (Destino)",
+            "mod": false
+          },
+          {
+            "caracteristica": "Resistência",
+            "valor": "Vontade (destino) por condição",
+            "mod": false
+          },
+          {
+            "caracteristica": "Efeito",
+            "valor": "Move (até) 1 / 1 / 2 / 3 condição(ões) da origem ao destino",
+            "mod": true
+          }
+        ],
+        "descricao": "Você extrai misticamente uma condição negativa de uma criatura e a implanta em outra. A criatura de origem perde a condição imediatamente. Pode ser usada ofensivamente transferindo condições entre inimigos."
+      },
+      {
+        "id": "magia-absorver-contusao",
+        "nome": "Absorver Contusão",
+        "escola": "alteracao",
+        "nivel": 3,
+        "custoBase": 6,
+        "stats": [
+          {
+            "caracteristica": "Ação",
+            "valor": "Reação",
+            "mod": false
+          },
+          {
+            "caracteristica": "Gatilho",
+            "valor": "Você ou aliado em alcance é atingido",
+            "mod": false
+          },
+          {
+            "caracteristica": "Alcance",
+            "valor": "Pessoal / 3 / 4,5 / 6 m",
+            "mod": true
+          },
+          {
+            "caracteristica": "Efeito",
+            "valor": "Reduz dano em 1d10 / 2d10 / 3d10 / 4d10; dano absorvido armazenado como carga mística",
+            "mod": true
+          }
+        ],
+        "descricao": "Você altera a densidade do tecido místico para comprimir e absorver a força de um impacto. O dano absorvido fica armazenado como carga mística — pode ser gasta como ação livre no próximo turno para liberar como dano Contundente em uma criatura a distância de toque. A carga some ao fim do turno seguinte se não usada."
+      },
+      {
+        "id": "magia-pele-de-camaleao",
+        "nome": "Pele de Camaleão",
+        "escola": "alteracao",
+        "nivel": 3,
+        "custoBase": 6,
+        "stats": [
+          {
+            "caracteristica": "Ação",
+            "valor": "2 Ações",
+            "mod": false
+          },
+          {
+            "caracteristica": "Alcance",
+            "valor": "Toque / Toque / 3 / 4,5 m",
+            "mod": false
+          },
+          {
+            "caracteristica": "Alvo",
+            "valor": "1 / 1 / 1 / 2 Alvos",
+            "mod": true
+          },
+          {
+            "caracteristica": "Duração",
+            "valor": "Até o fim do combate",
+            "mod": false
+          },
+          {
+            "caracteristica": "Efeito",
+            "valor": "+7 / +15 / +22 / +30 Evasão e +2 / +5 / +7 / +10 Furtividade; perde 3 / 5 / 8 / 10 Evasão a cada ataque esquivado.",
+            "mod": true
+          }
+        ],
+        "descricao": "Você reconfigura a pele de uma criatura fazendo-a ficar translúcida. A cada ataque esquivado, o alvo perde Evasão. Ao receber dano ou ao ser reduzido a 0 de evasão adicional a magia se dissipa."
+      },
+      {
+        "id": "magia-xadrez",
+        "nome": "Xadrez",
+        "escola": "alteracao",
+        "nivel": 3,
+        "custoBase": 6,
+        "stats": [
+          {
+            "caracteristica": "Ação",
+            "valor": "2 Ações",
+            "mod": false
+          },
+          {
+            "caracteristica": "Alcance",
+            "valor": "9 m",
+            "mod": true
+          },
+          {
+            "caracteristica": "Alvo",
+            "valor": "2 Criaturas",
+            "mod": false
+          },
+          {
+            "caracteristica": "Efeito",
+            "valor": "As duas criaturas trocam de posição instantaneamente",
+            "mod": false
+          },
+          {
+            "caracteristica": "Resistência",
+            "valor": "Vontade ou Teletransportado (alvos não voluntários)",
+            "mod": false
+          }
+        ],
+        "descricao": "Você entrelaça as posições de duas criaturas no espaço, fazendo-as trocarem de lugar num piscar de olhos. Criaturas Agarradas ou Enraizadas são imunes. Só pode ser canalizada na <strong>Intensidade:</strong> <em>Normal</em>"
+      },
+      {
+        "id": "magia-plasmar-terreno",
+        "nome": "Plasmar Terreno",
+        "escola": "alteracao",
+        "nivel": 3,
+        "custoBase": 6,
+        "stats": [
+          {
+            "caracteristica": "Ação",
+            "valor": "3 Ações",
+            "mod": false
+          },
+          {
+            "caracteristica": "Alcance",
+            "valor": "4,5 / 9 / 13,5 / 18 m",
+            "mod": true
+          },
+          {
+            "caracteristica": "Área",
+            "valor": "1,5 / 3 / 4,5 / 6 m Raio",
+            "mod": false
+          }
+        ],
+        "descricao": "Você molda pedra, terra, areia, madeira morta ou qualquer material inorgânico como se fosse argila. Pode criar paredes de até 1,5 m de altura, abrir valas, tampar passagens ou criar cobertura improvisada. O terreno alterado é permanente. Não afeta materiais trabalhados com magia, criaturas vivas, tecido ou osso."
+      }
+    ],
+    "conhecimento": [
+      {
+        "id": "magia-purgatorio",
+        "nome": "Purgatório",
+        "escola": "conhecimento",
+        "nivel": 3,
+        "custoBase": 6,
+        "stats": [
+          {
+            "caracteristica": "Ação",
+            "valor": "1 minuto",
+            "mod": false
+          },
+          {
+            "caracteristica": "Alcance",
+            "valor": "Toque",
+            "mod": false
+          },
+          {
+            "caracteristica": "Alvo",
+            "valor": "1 cadáver morto há no máximo 1h / 6h / 24h / 7 dias",
+            "mod": true
+          },
+          {
+            "caracteristica": "Efeito",
+            "valor": "Você faz 2 / 3 / 4 / 5 perguntas. O morto responde com o que sabia em vida.",
+            "mod": true
+          },
+          {
+            "caracteristica": "Duração",
+            "valor": "2 / 3 / 4 / 5 Perguntas",
+            "mod": true
+          }
+        ],
+        "descricao": "Você sintoniza seu Éter com os resquícios de consciência ainda presos no cadáver, forçando-os a responder perguntas. O morto só sabe o que sabia em vida. Criaturas que morreram com Éter 0 (Ocas) não possuem resquícios, a magia falha. Na intensidade Contida, o morto só responde sim ou não."
+      },
+      {
+        "id": "magia-projecao-astral",
+        "nome": "Projeção Astral",
+        "escola": "conhecimento",
+        "nivel": 3,
+        "custoBase": 6,
+        "stats": [
+          {
+            "caracteristica": "Ação",
+            "valor": "5 minutos",
+            "mod": false
+          },
+          {
+            "caracteristica": "Alcance",
+            "valor": "Pessoal",
+            "mod": false
+          },
+          {
+            "caracteristica": "Área",
+            "valor": "18 / 36 / 54 / 72 m Raio",
+            "mod": true
+          },
+          {
+            "caracteristica": "Duração",
+            "valor": "5 / 10 / 15 / 30 Min",
+            "mod": true
+          },
+          {
+            "caracteristica": "Efeito",
+            "valor": "Você projeta sua consciência. Corpo fica inconsciente e vulnerável. Projeção pode se mover até 36 m do corpo, atravessa paredes e é invisível a olho nu.",
+            "mod": false
+          }
+        ],
+        "descricao": "Você separa sua consciência do corpo físico. A projeção é invisível e intangível, mas pode ser detectada por Detectar Magia. Enquanto projetado, seu corpo fica com Evasão 0 e não pode agir. Na intensidade Contida, a projeção não atravessa paredes e é visível como um espectro translúcido."
+      },
+      {
+        "id": "magia-sinapsia-coletiva",
+        "nome": "Sinapsia Coletiva",
+        "escola": "conhecimento",
+        "nivel": 3,
+        "custoBase": 6,
+        "stats": [
+          {
+            "caracteristica": "Ação",
+            "valor": "3 Ações",
+            "mod": false
+          },
+          {
+            "caracteristica": "Alcance",
+            "valor": "Toque",
+            "mod": false
+          },
+          {
+            "caracteristica": "Alvo",
+            "valor": "2 / 3 / 4 / 5 Criaturas voluntárias",
+            "mod": true
+          },
+          {
+            "caracteristica": "Duração",
+            "valor": "Magia Sustentada. Regra Especial: →Em combate: pague o mesmo éter do custo da conjuração da magia todo turno; →Fora de combate: Pague éter equivalente ao custo de conjuração da magia a cada 30 minutos. (Pague todo o custo antes, escolhendo por quanto tempo gostaria de utilizar a magia)",
+            "mod": false
+          },
+          {
+            "caracteristica": "Efeito",
+            "valor": "Alvos compartilham campo de visão, percepção e comunicação telepática. Dano Psíquico recebido por 1 participante: todos levam o dano Psíquico.",
+            "mod": false
+          }
+        ],
+        "descricao": "Você entrelaça as consciências dos participantes em uma rede perceptiva compartilhada. Flanquear ou surpreender o grupo se torna extremamente difícil. Ataques de oportunidade podem ser realizados com base na percepção de um aliado."
+      },
+      {
+        "id": "magia-caco-esquecido",
+        "nome": "Caco Esquecido",
+        "escola": "conhecimento",
+        "nivel": 3,
+        "custoBase": 6,
+        "stats": [
+          {
+            "caracteristica": "Ação",
+            "valor": "3 Ações",
+            "mod": false
+          },
+          {
+            "caracteristica": "Alcance",
+            "valor": "Toque / Toque / 3 m / 6 m",
+            "mod": true
+          },
+          {
+            "caracteristica": "Alvo",
+            "valor": "1 Criatura",
+            "mod": false
+          },
+          {
+            "caracteristica": "Duração",
+            "valor": "Permanente até remoção mística",
+            "mod": false
+          },
+          {
+            "caracteristica": "Resistência",
+            "valor": "Vontade ou Afetado",
+            "mod": true
+          },
+          {
+            "caracteristica": "Efeito",
+            "valor": "Planta uma memória falsa detalhada. O alvo a trata como real e age de acordo.",
+            "mod": false
+          }
+        ],
+        "descricao": "Você constrói uma memória completa: imagens, sons, emoções e contexto. O alvo acredita integralmente que viveu aquela experiência. O alvo pode fazer novo teste de Vontade se a memória entrar em conflito com algo que observe. Detectar Magia ou Dissipar Magia revelam e removem a memória."
+      },
+      {
+        "id": "magia-confissao-do-eter",
+        "nome": "Confissão do Éter",
+        "escola": "conhecimento",
+        "nivel": 3,
+        "custoBase": 6,
+        "stats": [
+          {
+            "caracteristica": "Ação",
+            "valor": "5 minutos",
+            "mod": false
+          },
+          {
+            "caracteristica": "Alcance",
+            "valor": "Pessoal",
+            "mod": false
+          },
+          {
+            "caracteristica": "Intensidade",
+            "valor": "Transbordante",
+            "mod": false
+          },
+          {
+            "caracteristica": "Efeito",
+            "valor": "Você faz uma pergunta factual sobre o plano material atual, localização de um objeto, nome de quem planejou um crime, estrutura de um local que você nunca visitou. O Éter responde com a verdade absoluta, sem interpretação.",
+            "mod": false
+          }
+        ],
+        "descricao": "Você faz uma pergunta factual sobre o plano material atual, localização de um objeto, nome de quem planejou um crime, estrutura de um local que você nunca visitou. O Éter responde com a verdade absoluta, sem interpretação. A resposta é sempre factual e curta. A cada uso, há 1-em-6 de chance (role 1d6) da resposta ser falsa.<br>A cada uso consecutivo dessa magia no mesmo dia, a margem de falha no 1d6 aumenta em 1."
+      }
+    ]
+  },
+  "nivel4": {
+    "destruicao": [
+      {
+        "id": "magia-fissura-da-alma",
+        "nome": "Fissura da Alma",
+        "escola": "destruicao",
+        "nivel": 4,
+        "custoBase": 8,
+        "stats": [
+          {
+            "caracteristica": "Ação",
+            "valor": "6 Ações (2 Rodadas)",
+            "mod": false
+          },
+          {
+            "caracteristica": "Alcance",
+            "valor": "18 m",
+            "mod": false
+          },
+          {
+            "caracteristica": "Alvo",
+            "valor": "1 Criatura",
+            "mod": false
+          },
+          {
+            "caracteristica": "Intensidade",
+            "valor": "Apenas Transbordante",
+            "mod": false
+          },
+          {
+            "caracteristica": "Dano",
+            "valor": "Primordial igual a 66,6% da Saúde Máxima atual do alvo",
+            "mod": false
+          },
+          {
+            "caracteristica": "Trade-off",
+            "valor": "O conjurador também sofre dano Primordial igual a 33,3% da Saúde Máxima DO ALVO.",
+            "mod": false
+          }
+        ],
+        "descricao": "Você rasga diretamente a alma do alvo, exigindo concentração absoluta ao longo de duas rodadas inteiras. Se você receber qualquer dano antes de completar a conjuração, ela é cancelada e todo o Éter gasto é perdido. O dano refletido não pode ser reduzido por nenhum meio. Só pode ser canalizada na <strong>Intensidade:</strong> <em>Transbordante.</em>",
+        "tradeoff": true
+      },
+      {
+        "id": "magia-pestilencia-primordial",
+        "nome": "Pestilência Primordial",
+        "escola": "destruicao",
+        "nivel": 4,
+        "custoBase": 8,
+        "stats": [
+          {
+            "caracteristica": "Ação",
+            "valor": "3 Ações",
+            "mod": false
+          },
+          {
+            "caracteristica": "Alcance",
+            "valor": "18 m",
+            "mod": false
+          },
+          {
+            "caracteristica": "Alvo",
+            "valor": "1 Criatura (sem teste de resistência)",
+            "mod": false
+          },
+          {
+            "caracteristica": "Dano Inicial",
+            "valor": "1d8 Primordial",
+            "mod": false
+          },
+          {
+            "caracteristica": "Progressão",
+            "valor": "A cada turno sem passar no teste de Vontade: +1 dado ao dano do turno seguinte (1d8 → 2d8 → 3d8…)",
+            "mod": false
+          },
+          {
+            "caracteristica": "Contágio",
+            "valor": "Ao receber dano da Pestilência, criaturas adjacentes em até 9 m.",
+            "mod": false
+          },
+          {
+            "caracteristica": "Resistência",
+            "valor": "Vontade no início do turno para se curar. Sucesso remove a Pestilência daquela criatura. Primeira criatura não pode resistir no primeiro turno.",
+            "mod": false
+          },
+          {
+            "caracteristica": "Trade-off",
+            "valor": "O conjurador não pode cancelar a magia voluntariamente. A cada rodada em que a magia estiver ativa, o conjurador ganha Desnutrido +1 (cumulativo).",
+            "mod": false
+          }
+        ],
+        "descricao": "Você libera uma praga primordial que não pode ser detida por vontade do conjurador. A criatura inicial é infectada automaticamente. Toda criatura infectada transmite a doença a adjacentes em até 9 m ao sofrer dano. Não existe limite máximo de dados. A Desnutrição do conjurador acumula indefinidamente enquanto a praga viver.",
+        "tradeoff": true
+      },
+      {
+        "id": "magia-eco-do-apocalipse",
+        "nome": "Eco do Apocalipse",
+        "escola": "destruicao",
+        "nivel": 4,
+        "custoBase": 8,
+        "stats": [
+          {
+            "caracteristica": "Ação",
+            "valor": "2 Ações",
+            "mod": false
+          },
+          {
+            "caracteristica": "Alcance",
+            "valor": "Pessoal · Aura 6 m",
+            "mod": false
+          },
+          {
+            "caracteristica": "Duração",
+            "valor": "Magia Sustentada",
+            "mod": false
+          },
+          {
+            "caracteristica": "Dano (Aura)",
+            "valor": "4d10 Primordial automático para toda criatura que iniciar o turno na aura",
+            "mod": false
+          },
+          {
+            "caracteristica": "Custo por Rodada",
+            "valor": "O conjurador perde 1d10 de Éter atual no início de cada turno (além do custo de sustentar a magia)",
+            "mod": false
+          },
+          {
+            "caracteristica": "Trade-off",
+            "valor": "Ao chegar a Éter 0 enquanto sustenta esta magia, o conjurador fica Oco imediatamente e a aura explode causando 8d10 Primordial em raio 6 m (inclui o próprio conjurador).",
+            "mod": false
+          }
+        ],
+        "descricao": "Você canaliza um fragmento da destruição que existia antes do universo ser criado. Uma aura de energia apocalíptica se expande ao seu redor, devastando tudo que respirar dentro dela. Se o seu Éter chegar a 0 enquanto a aura estiver ativa, o colapso é violento e inevitável.",
+        "tradeoff": true
+      },
+      {
+        "id": "magia-cometa-do-martir",
+        "nome": "Cometa do Mártir",
+        "escola": "destruicao",
+        "nivel": 4,
+        "custoBase": 8,
+        "stats": [
+          {
+            "caracteristica": "Ação",
+            "valor": "3 Ações",
+            "mod": false
+          },
+          {
+            "caracteristica": "Alcance",
+            "valor": "Pessoal",
+            "mod": false
+          },
+          {
+            "caracteristica": "Área",
+            "valor": "Raio 12 m",
+            "mod": false
+          },
+          {
+            "caracteristica": "Intensidade",
+            "valor": "Apenas Transbordante",
+            "mod": false
+          },
+          {
+            "caracteristica": "Dano",
+            "valor": "12d12 Primordial a todos na área (incluindo o conjurador)",
+            "mod": false
+          },
+          {
+            "caracteristica": "Resistência",
+            "valor": "Reflexos para metade (inimigos). O conjurador não tem direito a resistência.",
+            "mod": false
+          },
+          {
+            "caracteristica": "Requisito",
+            "valor": "O conjurador deve estar dentro da área de impacto ao conjurar.",
+            "mod": false
+          },
+          {
+            "caracteristica": "Trade-off",
+            "valor": "O conjurador recebe o dano integral, sem possibilidade de resistência ou redução. Ao sobreviver, fica com Exausto 3 e Éter Máximo −1d6 permanente.",
+            "mod": false
+          }
+        ],
+        "descricao": "Você não aponta o cometa para longe. Você o chama sobre si mesmo. Um fragmento de estrela primordial despenca diretamente sobre o ponto onde você está. Inimigos na área podem tentar esquivar; você não. O cometa reconhece seu invocador e o devora com indiferença absoluta. Só pode ser canalizada na <strong>Intensidade:</strong> <em>Transbordante.</em>",
+        "tradeoff": true
+      },
+      {
+        "id": "magia-tempestade-primordial",
+        "nome": "Tempestade Primordial",
+        "escola": "destruicao",
+        "nivel": 4,
+        "custoBase": 8,
+        "stats": [
+          {
+            "caracteristica": "Ação",
+            "valor": "3 Ações",
+            "mod": false
+          },
+          {
+            "caracteristica": "Alcance",
+            "valor": "30 m",
+            "mod": false
+          },
+          {
+            "caracteristica": "Área",
+            "valor": "72 m circular",
+            "mod": false
+          },
+          {
+            "caracteristica": "Dano",
+            "valor": "6d10 Primordial por raio (1 raio por rodada, alvo escolhido pelo conjurador)",
+            "mod": false
+          },
+          {
+            "caracteristica": "Duração",
+            "valor": "Magia Sustentada",
+            "mod": false
+          },
+          {
+            "caracteristica": "Efeito",
+            "valor": "Fortitude ou <em>Atordoado</em> por 1 rodada",
+            "mod": false
+          },
+          {
+            "caracteristica": "Trade-off",
+            "valor": "A cada rodada sustentada, o conjurador fica Surdo por 1 rodada (o trovão primordial é ensurdecedor). Ao encerrar a magia, fica Surdo permanentemente por 1d4 dias.",
+            "mod": false
+          }
+        ],
+        "descricao": "Você invoca uma tempestade de trovões primordiais de magnitude catastrófica. Diferente de Invocar Tempestade, você escolhe o alvo dos raios com precisão cirúrgica. O preço é o silêncio: o som que você está invocando gradualmente destrói sua própria audição enquanto a magia está ativa.",
+        "tradeoff": true
+      }
+    ],
+    "abjuracao": [
+      {
+        "id": "magia-armadura-de-kha",
+        "nome": "Armadura de Kha",
+        "escola": "abjuracao",
+        "nivel": 4,
+        "custoBase": 8,
+        "stats": [
+          {
+            "caracteristica": "Ação",
+            "valor": "2 Ações",
+            "mod": false
+          },
+          {
+            "caracteristica": "Alcance",
+            "valor": "Pessoal",
+            "mod": false
+          },
+          {
+            "caracteristica": "Duração",
+            "valor": "1 Rodada",
+            "mod": false
+          },
+          {
+            "caracteristica": "Efeito",
+            "valor": "Imunidade a dano Ordinário, Elementar e Místico. Magias N3 ou menor lançadas contra você falham automaticamente.",
+            "mod": false
+          },
+          {
+            "caracteristica": "Trade-Off",
+            "valor": "Perde 8 de Éter Máximo.",
+            "mod": false
+          }
+        ],
+        "descricao": "Você veste uma armadura tecida com o mesmo primórdio que formou a realidade. Você é quase impenetrável: imune a qualquer dano que não seja Primordial. Ao fim da duração, parte do seu Éter Máximo é cobrado permanentemente. Invocar esta proteção duas vezes sem descanso longo é uma ofensa ao deus, que retira o privilégio da escola inteira por 7 dias.",
+        "tradeoff": true
+      },
+      {
+        "id": "magia-exilio-existencial",
+        "nome": "Exílio Existencial",
+        "escola": "abjuracao",
+        "nivel": 4,
+        "custoBase": 8,
+        "stats": [
+          {
+            "caracteristica": "Alcance",
+            "valor": "9 m",
+            "mod": false
+          },
+          {
+            "caracteristica": "Alvo",
+            "valor": "1 Alvo",
+            "mod": false
+          },
+          {
+            "caracteristica": "Duração",
+            "valor": "3 Rodadas",
+            "mod": false
+          },
+          {
+            "caracteristica": "Resist.",
+            "valor": "Vontade ou Banido",
+            "mod": false
+          },
+          {
+            "caracteristica": "Intensidade",
+            "valor": "Apenas Transbordante",
+            "mod": false
+          },
+          {
+            "caracteristica": "Trade-off",
+            "valor": "O conjurador passa os próximos 3 dias \"partido\" entre os planos. Perde 1 ação por turno e rola Vontade com desvantagem durante esse período.",
+            "mod": false
+          }
+        ],
+        "descricao": "Você rasga a criatura de todos os planos que ela poderia alcançar, condenando-a a um plano inominável por 3 rodadas. Em caso de sucesso no teste, a energia do exílio se reflete como 4d8 de dano Primordial. Criar uma ruptura tão absoluta deixa sua própria consciência instável por dias. Só pode ser canalizada na <strong>Intensidade:</strong> <em>Transbordante.</em>",
+        "tradeoff": true
+      },
+      {
+        "id": "magia-selo-do-oblivio",
+        "nome": "Selo do Oblívio",
+        "escola": "abjuracao",
+        "nivel": 4,
+        "custoBase": 8,
+        "stats": [
+          {
+            "caracteristica": "Ação",
+            "valor": "1 Ação",
+            "mod": false
+          },
+          {
+            "caracteristica": "Alvo",
+            "valor": "1 Criatura ou Objeto",
+            "mod": false
+          },
+          {
+            "caracteristica": "Alcance",
+            "valor": "Toque",
+            "mod": false
+          },
+          {
+            "caracteristica": "Resistência",
+            "valor": "Vontade ou Selado",
+            "mod": false
+          },
+          {
+            "caracteristica": "Trade-off",
+            "valor": "Você perde permanentemente até a magia ser dissipada 2 pontos do seu atributo principal(Inteligência ou Sabedoria)",
+            "mod": false
+          }
+        ],
+        "descricao": "Você imprime um lacre primordial sobre a alma de uma criatura, condenando-a ao oblívio eterno. Quando ela morrer, não há ressurreição possível — sua alma é aprisionada em um recipiente mágico a sua escolha. Se você morre, a criatura instantaneamente se liberta. Ao usar em recipientes ou portas, cria uma chave mágica que desfaz a magia; o CD para dissipar é seu CD + 20.",
+        "tradeoff": true
+      },
+      {
+        "id": "magia-reversao-primordial",
+        "nome": "Reversão Primordial",
+        "escola": "abjuracao",
+        "nivel": 4,
+        "custoBase": 8,
+        "stats": [
+          {
+            "caracteristica": "Ações",
+            "valor": "3 ações",
+            "mod": false
+          },
+          {
+            "caracteristica": "Alvo",
+            "valor": "Pessoal",
+            "mod": false
+          },
+          {
+            "caracteristica": "Intensidade",
+            "valor": "Apenas Transbordante",
+            "mod": false
+          },
+          {
+            "caracteristica": "Trade-off",
+            "valor": "No início do seu próximo turno, você recebe todo o dano negado, duplicado, como dano Primordial. O universo cobra com juros.",
+            "mod": false
+          }
+        ],
+        "descricao": "Durante a próxima rodada você dobra o tecido da realidade ao redor de si mesmo, fazendo com que toda força destrutiva direcionada a você seja revertida em sua origem. O efeito é absoluto, nenhuma fonte de dano é excluída. No início do seu turno seguinte, tudo retorna sobre você, duplicado. Usar isso com planejamento pode virar batalhas. Usar sem planejamento é suicídio. Só pode ser canalizada na <strong>Intensidade:</strong> <em>Transbordante.</em>",
+        "tradeoff": true
+      },
+      {
+        "id": "magia-vytalia",
+        "nome": "Vytália",
+        "escola": "abjuracao",
+        "nivel": 4,
+        "custoBase": 8,
+        "stats": [
+          {
+            "caracteristica": "Ação",
+            "valor": "1 Ação",
+            "mod": false
+          },
+          {
+            "caracteristica": "Alvo(s)",
+            "valor": "1 / 2 / 3 Criatura(s)",
+            "mod": true
+          },
+          {
+            "caracteristica": "Alcance",
+            "valor": "6 / 9 / 13,5 m",
+            "mod": true
+          },
+          {
+            "caracteristica": "Cura",
+            "valor": "33,3% / 50% / 66,6% da Saúde Máxima do Alvo",
+            "mod": true
+          },
+          {
+            "caracteristica": "Intensidade",
+            "valor": "Normal ou Acima",
+            "mod": false
+          },
+          {
+            "caracteristica": "Trade-off",
+            "valor": "O conjurador perde 1 / 2 / 3 de Éter Máximo permanentemente.",
+            "mod": true
+          }
+        ],
+        "descricao": "Você não cura, você implora. O nome de Vytália, deusa da vida, é pronunciado não como uma oração, mas como uma dívida assumida em voz alta. A energia vital que flui para o alvo vem da capacidade máxima do seu próprio reservatório místico, arrancada para sempre. Vytália ouve. Vytália cobre. E Vytália cobra.",
+        "tradeoff": true
+      }
+    ],
+    "alteracao": [
+      {
+        "id": "magia-aprendiz-caotico",
+        "nome": "Aprendiz Caótico",
+        "escola": "alteracao",
+        "nivel": 4,
+        "custoBase": 8,
+        "stats": [
+          {
+            "caracteristica": "Ação",
+            "valor": "3 Ações",
+            "mod": false
+          },
+          {
+            "caracteristica": "Alcance",
+            "valor": "Pessoal",
+            "mod": false
+          },
+          {
+            "caracteristica": "Alvo",
+            "valor": "Pessoal",
+            "mod": false
+          },
+          {
+            "caracteristica": "Duração",
+            "valor": "Magia Sustentada",
+            "mod": false
+          },
+          {
+            "caracteristica": "Efeito",
+            "valor": "Cria uma Réplica com 50% das suas estatísticas.",
+            "mod": false
+          },
+          {
+            "caracteristica": "Trade-Off",
+            "valor": "Enquanto a Réplica vive, seu Éter Máximo é partido ao meio: metade cada. Se a Réplica a qualquer momento chegar a 0 de Saúde: você recebe 3d10 Primordial e fica Atordoado por 1 rodada. Para encerrar, faça Vontade vs seu próprio CD — em falha, a Réplica se torna independente e só pode ser dissipada ao chegar a 0 de Saúde.",
+            "mod": false
+          }
+        ],
+        "descricao": "Cria uma Réplica de você com 50% das suas estatísticas, todos os seus conhecimentos de magia e autonomia para agir. A Réplica obedece comandos simples mas age por conta própria se ignorada. A Alteração primordial não cria ilusões — cria substância. Quando a Réplica morre, você sente.",
+        "tradeoff": true
+      },
+      {
+        "id": "magia-fusao-de-corpos",
+        "nome": "Fusão de Corpos",
+        "escola": "alteracao",
+        "nivel": 4,
+        "custoBase": 8,
+        "stats": [
+          {
+            "caracteristica": "Ações",
+            "valor": "3 Ações",
+            "mod": false
+          },
+          {
+            "caracteristica": "Alvo",
+            "valor": "2 Criaturas Voluntárias",
+            "mod": false
+          },
+          {
+            "caracteristica": "Alcance",
+            "valor": "Toque (Ambos)",
+            "mod": false
+          },
+          {
+            "caracteristica": "Duração",
+            "valor": "Até 1 hora",
+            "mod": false
+          },
+          {
+            "caracteristica": "Efeito",
+            "valor": "As duas criaturas se tornam um único ser: Status soma dos dois, ações soma dos dois, ataques e magias de ambas disponíveis. Fusão ocupa o espaço da maior criatura. Ambas partilham todas as pericias (maiores entre as duas).",
+            "mod": false
+          },
+          {
+            "caracteristica": "Trade-Off",
+            "valor": "Ao se separar (voluntário ou forçado): ambas as criaturas recebem 2d10 Primordial. Se uma das consciências internas quiser permanecer fundida e a outra não, a separação causa 4d10 Primordial em ambas. A magia não pode ser dissipada externamente, apenas interrompida pelas próprias criaturas.",
+            "mod": false
+          }
+        ],
+        "descricao": "Você apaga a fronteira entre dois seres. O que emerge não é nenhum dos dois — é outra coisa, com memórias dobradas e uma só voz. A fusão é voluntária, mas dissolvê-la não é simples: exige o consentimento de ambas as consciências dentro do corpo único.",
+        "tradeoff": true
+      },
+      {
+        "id": "magia-acme",
+        "nome": "Acme",
+        "escola": "alteracao",
+        "nivel": 4,
+        "custoBase": 8,
+        "stats": [
+          {
+            "caracteristica": "Ação",
+            "valor": "Reação",
+            "mod": false
+          },
+          {
+            "caracteristica": "Alvo",
+            "valor": "Pessoal",
+            "mod": false
+          },
+          {
+            "caracteristica": "Intensidade",
+            "valor": "Transbordante",
+            "mod": false
+          },
+          {
+            "caracteristica": "Efeito",
+            "valor": "Você rebobina instantaneamente 6 segundos no tempo, retornando para a posição inicial do seu turno. Com os exatos status, ações e situação de combate.",
+            "mod": false
+          },
+          {
+            "caracteristica": "Trade-Off",
+            "valor": "A confusão é grande. Para os outros você nem se moveu, porém você acaba de viajar na linha do tempo, mesmo que apenas 6 segundos, é o suficiente pra bagunçar sua cabeça. Você fica <em>Exposto</em>. Se você já estiver Exposto, seu corpo e mente não aguentam a viagem, você recebe 4d10 de dano Primordial.",
+            "mod": false
+          }
+        ],
+        "descricao": "Por um instante que nenhuma outra criatura percebe, você recua pela linha do tempo e reaparece exatamente onde estava no início do seu turno: mesma posição, mesmo Éter, mesmas ações, mesmas condições. Essa magia não pode receber nenhuma modulação.",
+        "tradeoff": true
+      },
+      {
+        "id": "magia-apoteose-genetica",
+        "nome": "Apoteose Genética",
+        "escola": "alteracao",
+        "nivel": 4,
+        "custoBase": 8,
+        "stats": [
+          {
+            "caracteristica": "Ação",
+            "valor": "1 Descanso Longo",
+            "mod": false
+          },
+          {
+            "caracteristica": "Alcance",
+            "valor": "Toque",
+            "mod": false
+          },
+          {
+            "caracteristica": "Alvo",
+            "valor": "1 Criatura voluntária",
+            "mod": false
+          },
+          {
+            "caracteristica": "Duração",
+            "valor": "Permanente",
+            "mod": false
+          },
+          {
+            "caracteristica": "Intensidade",
+            "valor": "Transbordante",
+            "mod": false
+          },
+          {
+            "caracteristica": "Efeito",
+            "valor": "A criatura recebe permanentemente: +20 HP Máximo, +4 em todos os testes Físicos, +1d6 em dano corpo a corpo. Imunidade a Amedrontado. Aparência muda visivelmente — traços mais bestiais, olhos escuros, veias luminosas.",
+            "mod": false
+          },
+          {
+            "caracteristica": "Trade-Off",
+            "valor": "Permanente e irreversível: A criatura afetada ganha os seguintes debuffs do Abismo: <strong>Mente Fraca</strong> e <strong>Orgulhoso</strong>.",
+            "mod": false
+          }
+        ],
+        "descricao": "Você acelera o processo evolutivo de um ser em centenas de gerações. O que a criatura poderia ter sido em décadas de evolução, acontece em segundos. O corpo aceita. A alma precisa aprender a caber no novo recipiente.",
+        "tradeoff": true
+      },
+      {
+        "id": "magia-julgamento-de-kha",
+        "nome": "Julgamento de Kha",
+        "escola": "alteracao",
+        "nivel": 4,
+        "custoBase": 8,
+        "stats": [
+          {
+            "caracteristica": "Ação",
+            "valor": "1 Ação",
+            "mod": false
+          },
+          {
+            "caracteristica": "Alcance",
+            "valor": "9 m",
+            "mod": false
+          },
+          {
+            "caracteristica": "Alvo",
+            "valor": "1 Criatura",
+            "mod": false
+          },
+          {
+            "caracteristica": "Resist.",
+            "valor": "Vontade ou Afetado",
+            "mod": false
+          },
+          {
+            "caracteristica": "Duração",
+            "valor": "1 Rodada",
+            "mod": false
+          },
+          {
+            "caracteristica": "Efeito",
+            "valor": "Você arranca a alma do alvo e a materializa em sua frente com 50% da saúde máxima do alvo, caso a alma seja abatida em uma rodada, todo o dano acumulado na alma é redirecionado ao alvo como dano Primordial.",
+            "mod": false
+          },
+          {
+            "caracteristica": "Trade-Off",
+            "valor": "O conjurador é o único responsável pela alma enquanto ela existir. Se a alma retornar ao corpo, o conjurador sofre 2d10 Primordial. Além disso, enquanto a alma está materializada, o conjurador não pode usar outras magias de Alteração.",
+            "mod": false
+          }
+        ],
+        "descricao": "Você arranca a alma do alvo e a materializa a 1,5 m de você. A alma é uma entidade separada com 50% da Saúde Máxima do alvo original. Enquanto a alma existir, todo dano que ela recebe é acumulado como dano Primordial. Se a alma for destruída, o alvo inicialmente afetado recebe todo o dano acumulado instantaneamente e fica <strong>Atordoado</strong> por 1 rodada. Caso a alma não seja abatida ela retorna ao alvo e a magia falha.",
+        "tradeoff": true
+      }
+    ],
+    "conhecimento": [
+      {
+        "id": "magia-necropsia-primordial",
+        "nome": "Necropsia Primordial",
+        "escola": "conhecimento",
+        "nivel": 4,
+        "custoBase": 8,
+        "stats": [
+          {
+            "caracteristica": "Ação",
+            "valor": "10 minutos",
+            "mod": false
+          },
+          {
+            "caracteristica": "Alcance",
+            "valor": "Toque",
+            "mod": false
+          },
+          {
+            "caracteristica": "Alvo",
+            "valor": "1 Cadáver",
+            "mod": false
+          },
+          {
+            "caracteristica": "Intensidade",
+            "valor": "Transbordante",
+            "mod": false
+          },
+          {
+            "caracteristica": "Efeito",
+            "valor": "Você extrai do cadáver: toda a sua história de vida relevante, seus segredos, suas motivações, quem o matou e como, o estado emocional nos últimos momentos, e qualquer informação que ele carregava na mente ao morrer. Funciona mesmo em criaturas mortas há anos, desde que o cadáver esteja razoavelmente intacto.",
+            "mod": false
+          },
+          {
+            "caracteristica": "Trade-Off",
+            "valor": "Após a leitura, você carrega fragmentos emocionais do morto: sonhos com sua vida, respostas emocionais que não são suas, tomada de decisão influenciada por como ele pensava. O Mestre pode usar isso narrativamente a qualquer momento durante o período.",
+            "mod": false
+          }
+        ],
+        "descricao": "Os mortos não falam. Mas o Éter que eles deixam para trás — esse grita. Cada vida é uma impressão no tecido do mundo, e um conjurador primordial sabe lê-la como se fosse texto. Funciona mesmo em criaturas mortas há anos, desde que o cadáver esteja razoavelmente intacto.",
+        "tradeoff": true
+      },
+      {
+        "id": "magia-olhos-de-malkhor",
+        "nome": "Olhos de Malkhor",
+        "escola": "conhecimento",
+        "nivel": 4,
+        "custoBase": 8,
+        "stats": [
+          {
+            "caracteristica": "Ação",
+            "valor": "3 Ações",
+            "mod": false
+          },
+          {
+            "caracteristica": "Alcance",
+            "valor": "Pessoal",
+            "mod": false
+          },
+          {
+            "caracteristica": "Alvo",
+            "valor": "Pessoal",
+            "mod": false
+          },
+          {
+            "caracteristica": "Duração",
+            "valor": "3 Rodadas",
+            "mod": false
+          },
+          {
+            "caracteristica": "Intensidade",
+            "valor": "Transbordante",
+            "mod": false
+          },
+          {
+            "caracteristica": "Efeito",
+            "valor": "Por 3 rodadas, você enxerga os pontos de fraqueza absoluta de tudo: a rachadura estrutural que derruba uma parede com um toque, o ponto exato no corpo de uma criatura onde um golpe causa dano máximo. Seus ataques e magias causam o dano máximo possível dos dados durante esse período. Certas estruturas físicas podem ser destruídas com ações únicas.",
+            "mod": false
+          },
+          {
+            "caracteristica": "Trade-Off",
+            "valor": "Após o uso da magia, você fica <em>Cego</em> por 3 rodadas. Seus olhos sobrecarregam e precisam desaprender o que viram.",
+            "mod": false
+          }
+        ],
+        "descricao": "Você empresta um mísero fragmento do poder de Malkhor, o deus do Pecado. Toda entidade possui uma fraqueza e seus olhos a revelam. Por 3 rodadas, você enxerga os pontos de fraqueza absoluta de tudo: a rachadura estrutural que derruba uma parede com um toque, o ponto exato no corpo de uma criatura onde um golpe causa dano máximo. Seus ataques e magias causam o dano máximo possível dos dados durante esse período. Certas estruturas físicas podem ser destruídas com ações únicas.",
+        "tradeoff": true
+      },
+      {
+        "id": "magia-tecido-de-vytalia",
+        "nome": "Tecido de Vytália",
+        "escola": "conhecimento",
+        "nivel": 4,
+        "custoBase": 8,
+        "stats": [
+          {
+            "caracteristica": "Ação",
+            "valor": "5 Minutos",
+            "mod": false
+          },
+          {
+            "caracteristica": "Alcance",
+            "valor": "Pessoal",
+            "mod": false
+          },
+          {
+            "caracteristica": "Alvo",
+            "valor": "Pessoal",
+            "mod": false
+          },
+          {
+            "caracteristica": "Intensidade",
+            "valor": "Transbordante",
+            "mod": false
+          },
+          {
+            "caracteristica": "Efeito",
+            "valor": "Você submete um nome ou descrição de uma criatura. Vytália responde com: se a criatura ainda vive, onde está seu fio de vida no tecido do mundo, se alguma vez recebeu ou deu cura primordial, e se morta, quando e como faleceu. Funciona em qualquer criatura que já existiu, sem limite temporal.",
+            "mod": false
+          },
+          {
+            "caracteristica": "Trade-Off",
+            "valor": "Vytália cobra o favor de forma imprevisível. Nas próximas 24h, ela pode exigir uma ação de você, curar alguém que você não escolheria curar, proteger uma vida que não vale a pena para você. Se você recusar o pedido, perde permanentemente o acesso a esta magia e sofre 4d10 Primordial como punição divina. A deusa da vida não aceita ser usada sem reciprocidade.",
+            "mod": false
+          }
+        ],
+        "descricao": "Vytália guarda cada vida que passou por suas mãos como uma deusa cuida de seu rebanho. Acessar esse arquivo não é uma busca, é uma intrusão. Você não foi convidado. E ela sempre sabe quando alguém entra sem permissão.",
+        "tradeoff": true
+      },
+      {
+        "id": "magia-possessao-carnal",
+        "nome": "Possessão Carnal",
+        "escola": "conhecimento",
+        "nivel": 4,
+        "custoBase": 8,
+        "stats": [
+          {
+            "caracteristica": "Ação",
+            "valor": "3 Ações",
+            "mod": false
+          },
+          {
+            "caracteristica": "Alcance",
+            "valor": "Toque",
+            "mod": false
+          },
+          {
+            "caracteristica": "Intensidade",
+            "valor": "Apenas Transbordante",
+            "mod": false
+          },
+          {
+            "caracteristica": "Resist.",
+            "valor": "Vontade ou Possuído",
+            "mod": false
+          },
+          {
+            "caracteristica": "Efeito",
+            "valor": "Você transfere sua consciência para o corpo do alvo e o controla completamente por 3 rodadas. Sua consciência original volta ao seu corpo ao fim da duração. A consciência do alvo é deslocada para um plano atemporal durante o período, ela não age, não sente e não percebe o tempo passar. Enquanto possuído, você pode usar todas as habilidades, ataques e magias do alvo normalmente.",
+            "mod": false
+          },
+          {
+            "caracteristica": "Trade-Off",
+            "valor": "A magia não pode ser encerrada antecipadamente por nenhum meio — nem pelo conjurador, nem por Dissipar Magia, nem por Contramedida. As 3 rodadas correm até o fim. Se o corpo possuído morrer durante esse período, sua consciência se dissolve junto com ele: seu corpo original cai inerte imediatamente, tornando-se <strong>sem vida</strong>. Não morto, sem vida. Ressurreição normal não funciona.",
+            "mod": false
+          }
+        ],
+        "descricao": "Você não invade. Você substitui. Num ato de violência mística sem precedente, sua consciência abandona seu próprio corpo e se instala na carne de outro ser, empurrando a alma original para um plano atemporal suspenso, onde ela não age, não sente, não envelhece. Apenas espera.",
+        "tradeoff": true
+      },
+      {
+        "id": "magia-dadiva-de-kha",
+        "nome": "Dádiva de Kha",
+        "escola": "conhecimento",
+        "nivel": 4,
+        "custoBase": 8,
+        "stats": [
+          {
+            "caracteristica": "Ação",
+            "valor": "3 Ações",
+            "mod": false
+          },
+          {
+            "caracteristica": "Alcance",
+            "valor": "Pessoal",
+            "mod": false
+          },
+          {
+            "caracteristica": "Intensidade",
+            "valor": "Apenas Transbordante",
+            "mod": false
+          },
+          {
+            "caracteristica": "Efeito",
+            "valor": "Você assume que seu personagem conhece uma informação que ele não deveria saber. Escolha uma informação que você(jogador) sabe, seu personagem, agora, também sabe dela.",
+            "mod": false
+          },
+          {
+            "caracteristica": "Trade-Off",
+            "valor": "Falha no teste de Vontade (Transbordante): você perde grande parte da sua memória, recuperando-a gradualmente ao longo do tempo.",
+            "mod": false
+          }
+        ],
+        "descricao": "Você derrama todo o seu potencial arcano em uma súplica profana ao deus primordial Kha. Por um instante terrível e sagrado, sua alma toca a mente de Kha e você <em>sente o que não deveria ser sentido</em>: uma verdade arrancada do tecido da realidade. Isso não é visão. Não é profecia. É uma violação. Só pode ser canalizada na <strong>Intensidade:</strong> <em>Transbordante.</em>",
+        "tradeoff": true
+      }
+    ]
+  }
+}

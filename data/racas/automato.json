@@ -1,0 +1,157 @@
+{
+  "source": "racas/automato",
+  "cards": [
+    {
+      "id": "automato-corpo-mecanico",
+      "tag": "div",
+      "tipo": "trait-card",
+      "opentag": "<div class=\"trait-card\">",
+      "nome": "Corpo Mecânico",
+      "corpo": "\n                <h4>Corpo Mecânico</h4>\n                <ul>\n                    <li>Você é <strong>imune</strong> a efeitos biológicos: Sangramento, Envenenamento, doenças.</li>\n                    <li>É <strong>vulnerável (2x dano)</strong> a dano elemental.</li>\n                    <li>Se alimenta de sucata.</li>\n                </ul>\n            "
+    },
+    {
+      "id": "automato-automanutencao",
+      "tag": "div",
+      "tipo": "trait-card",
+      "opentag": "<div class=\"trait-card\">",
+      "nome": "Automanutenção",
+      "corpo": "\n                <h4>Automanutenção</h4>\n                <p>Possui mecanismo de automanutenção (cura ao descansar), mas para cura maior deve ser consertado com item <em>Kit de Manutenção</em>.</p>\n            "
+    },
+    {
+      "id": "automato-visao-termica",
+      "tag": "div",
+      "tipo": "tech-card",
+      "opentag": "<div class=\"tech-card\">",
+      "nome": "Visão Térmica",
+      "corpo": "\n                    <div><h5>Visão Térmica</h5><p class=\"desc\">Você consegue ver em um mapa de calor naturalmente.</p></div>\n                    <div class=\"effect\">Treinado em Percepção e pode ver no escuro parcialmente.</div>\n                    <div class=\"price\">Não comprável</div>\n                "
+    },
+    {
+      "id": "automato-acabamento-refinado",
+      "tag": "div",
+      "tipo": "tech-card",
+      "opentag": "<div class=\"tech-card\">",
+      "nome": "Acabamento Refinado",
+      "corpo": "\n                    <div><h5>Acabamento Refinado</h5><p class=\"desc\">Você não produz barulho algum em suas dobras, ventoinhas e pegadas.</p></div>\n                    <div class=\"effect\">Treinado em Furtividade.</div>\n                    <div class=\"price\">Não comprável</div>\n                "
+    },
+    {
+      "id": "automato-acesso-a-biblioteca-automata",
+      "tag": "div",
+      "tipo": "tech-card",
+      "opentag": "<div class=\"tech-card\">",
+      "nome": "Acesso à Biblioteca Autômata",
+      "corpo": "\n                    <div><h5>Acesso à Biblioteca Autômata</h5><p class=\"desc\">Banco de dados público dos autômatos.</p></div>\n                    <div class=\"effect\">Treinado em Conhecimento.</div>\n                    <div class=\"price\">Não comprável</div>\n                "
+    },
+    {
+      "id": "automato-sensor-de-proximidade",
+      "tag": "div",
+      "tipo": "tech-card",
+      "opentag": "<div class=\"tech-card\">",
+      "nome": "Sensor de Proximidade",
+      "corpo": "\n                    <div><h5>Sensor de Proximidade</h5><p class=\"desc\">Detecta mudanças no ar e vibrações.</p></div>\n                    <div class=\"effect\">Não pode ser surpreendido.</div>\n                    <div class=\"price\">Incomum</div>\n                "
+    },
+    {
+      "id": "automato-fibra-de-carbono",
+      "tag": "div",
+      "tipo": "tech-card",
+      "opentag": "<div class=\"tech-card\">",
+      "nome": "Fibra de Carbono",
+      "corpo": "\n                    <div><h5>Fibra de Carbono</h5><p class=\"desc\">Exoesqueleto fabricado com fibra de carbono.</p></div>\n                    <div class=\"effect\">+1 Evasão.</div>\n                    <div class=\"price\">Incomum</div>\n                "
+    },
+    {
+      "id": "automato-suspensoes-lubrificadas",
+      "tag": "div",
+      "tipo": "tech-card",
+      "opentag": "<div class=\"tech-card\">",
+      "nome": "Suspensões Lubrificadas",
+      "corpo": "\n                    <div><h5>Suspensões Lubrificadas</h5><p class=\"desc\">Incrivelmente aerodinâmico e eficiente ao correr.</p></div>\n                    <div class=\"effect\">+3m de movimento.</div>\n                    <div class=\"price\">Incomum</div>\n                "
+    },
+    {
+      "id": "automato-sistema-de-reconhecimento-de-ameacas",
+      "tag": "div",
+      "tipo": "tech-card",
+      "opentag": "<div class=\"tech-card\">",
+      "nome": "Sistema de Reconhecimento de Ameaças",
+      "corpo": "\n                    <div><h5>Sistema de Reconhecimento de Ameaças</h5><p class=\"desc\">Algoritmo de análise de movimentos inimigos.</p></div>\n                    <div class=\"effect\">+1 ao atacar criaturas hostis. Pode rolar Atacar com Inteligência.</div>\n                    <div class=\"price\">Exótico</div>\n                "
+    },
+    {
+      "id": "automato-nucleo-duplo",
+      "tag": "div",
+      "tipo": "tech-card",
+      "opentag": "<div class=\"tech-card\">",
+      "nome": "Núcleo-Duplo",
+      "corpo": "\n                    <div><h5>Núcleo-Duplo</h5><p class=\"desc\">Núcleo de energia substituto.</p></div>\n                    <div class=\"effect\">Ao ser reduzido a 0 vida, fica com 1. Quebra ao usar, conserto CD 15 por descanso longo.</div>\n                    <div class=\"price\">Exótico</div>\n                "
+    },
+    {
+      "id": "automato-braco-balistico",
+      "tag": "div",
+      "tipo": "tech-card",
+      "opentag": "<div class=\"tech-card\">",
+      "nome": "Braço Balístico",
+      "corpo": "\n                    <div><h5>Braço Balístico</h5><p class=\"desc\">Mecanismo de disparo oculto no antebraço.</p></div>\n                    <div class=\"effect\">Arma a distância simples integrada. Não pode ser desarmado. Recarrega com Munição de Fogo.</div>\n                    <div class=\"price\">Exótico</div>\n                "
+    },
+    {
+      "id": "automato-lamina-retratil",
+      "tag": "div",
+      "tipo": "tech-card",
+      "opentag": "<div class=\"tech-card\">",
+      "nome": "Lâmina Retrátil",
+      "corpo": "\n                    <div><h5>Lâmina Retrátil</h5><p class=\"desc\">Lâmina afiada emerge do pulso.</p></div>\n                    <div class=\"effect\">Arma marcial leve +1 integrada no antebraço. Pega com ação livre.</div>\n                    <div class=\"price\">Luxária</div>\n                "
+    },
+    {
+      "id": "automato-capacitores-de-energia",
+      "tag": "div",
+      "tipo": "tech-card",
+      "opentag": "<div class=\"tech-card\">",
+      "nome": "Capacitores de Energia",
+      "corpo": "\n                    <div><h5>Capacitores de Energia</h5><p class=\"desc\">Reserva energética para adrenalina.</p></div>\n                    <div class=\"effect\">Sobrecarrega (1 ação): +1d6 dano por 3 rodadas. Ao final, recebe 2d6 dano Elemental.</div>\n                    <div class=\"price\">Luxária</div>\n                "
+    },
+    {
+      "id": "automato-auto-reparador",
+      "tag": "div",
+      "tipo": "tech-card",
+      "opentag": "<div class=\"tech-card\">",
+      "nome": "Auto-Reparador",
+      "corpo": "\n                    <div><h5>Auto-Reparador</h5><p class=\"desc\">Órgão-biônico que aproveita sucata.</p></div>\n                    <div class=\"effect\">Cria 1 Kit de Manutenção por descanso longo.</div>\n                    <div class=\"price\">Luxária</div>\n                "
+    },
+    {
+      "id": "automato-lendas-mecanicas",
+      "tag": "div",
+      "tipo": "tech-card",
+      "opentag": "<div class=\"tech-card\">",
+      "nome": "Lendas Mecânicas",
+      "corpo": "\n                    <div><h5>Lendas Mecânicas</h5><p class=\"desc\">Você conhece lendas sobre tecnologias poderosíssimas, porém nem sabe por onde começar a procurar.</p></div>\n                    <div class=\"effect\">n/a</div>\n                    <div class=\"price\">n/a</div>\n                "
+    },
+    {
+      "id": "automato-modulo-de-linguagem",
+      "tag": "div",
+      "tipo": "tech-card",
+      "opentag": "<div class=\"tech-card\">",
+      "nome": "Módulo de Linguagem",
+      "corpo": "\n                    <div><h5>Módulo de Linguagem</h5><p class=\"desc\">Tremenda quantidade de informação linguística.</p></div>\n                    <div class=\"effect\">Você entende todas as línguas (mas não necessariamente sabe falar elas).</div>\n                    <div class=\"price\">Não comprável</div>\n                "
+    },
+    {
+      "id": "automato-scanner-de-condicao",
+      "tag": "div",
+      "tipo": "tech-card",
+      "opentag": "<div class=\"tech-card\">",
+      "nome": "Scanner de Condição",
+      "corpo": "\n                    <div><h5>Scanner de Condição</h5><p class=\"desc\">Lentes que avaliam criaturas.</p></div>\n                    <div class=\"effect\">Observar (1 Ação): descobre saúde %, evasão e habilidades já usadas.</div>\n                    <div class=\"price\">Não comprável</div>\n                "
+    },
+    {
+      "id": "automato-backup",
+      "tag": "div",
+      "tipo": "tech-card",
+      "opentag": "<div class=\"tech-card\">",
+      "nome": "Backup",
+      "corpo": "\n                    <div><h5>Backup</h5><p class=\"desc\">Caixa preta com visor pequeno.</p></div>\n                    <div class=\"effect\">Registra todas as memórias. Ao morrer, pode ser importada em um novo corpo de Autômato.</div>\n                    <div class=\"price\">Não comprável</div>\n                "
+    },
+    {
+      "id": "automato-achar-tecnologias-em-lojas",
+      "tag": "div",
+      "tipo": "rule-box",
+      "opentag": "<div class=\"rule-box\">",
+      "nome": "🎲 Achar Tecnologias em Lojas",
+      "corpo": "\n                <h4>🎲 Achar Tecnologias em Lojas</h4>\n                <p style=\"color: var(--text-muted); font-size: 0.9rem;\">Role d100 ao entrar em uma loja que possa ter tecnologias:</p>\n                <table class=\"d100-table\">\n                    <tr><th>d100</th><th>Resultado</th></tr>\n                    <tr><td>1-79</td><td>O vendedor não possui nada.</td></tr>\n                    <tr><td>80-89</td><td>Encontra 1 tecnologia. Role 1d12.</td></tr>\n                    <tr><td>90-99</td><td>Encontra 2 tecnologias. Role 2d12.</td></tr>\n                    <tr><td>100</td><td>Encontra 3 tecnologias. Role 3d12.</td></tr>\n                </table>\n                <p style=\"color: var(--text-muted); font-size: 0.85rem; margin-top: 0.5rem;\">O d12 determina qual tecnologia a partir do Tier 1. Resultados repetidos são rerolados.</p>\n            "
+    }
+  ]
+}

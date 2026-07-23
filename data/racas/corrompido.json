@@ -1,0 +1,61 @@
+{
+  "source": "racas/corrompido",
+  "cards": [
+    {
+      "id": "corrompido-ser-primordial",
+      "tag": "div",
+      "tipo": "trait-card",
+      "opentag": "<div class=\"trait-card\">",
+      "nome": "Ser Primordial",
+      "corpo": "\n                <h4>Ser Primordial</h4>\n                <p>Você pode sentir a presença das Forças Primordiais (Magias) em até 9m.</p>\n            "
+    },
+    {
+      "id": "corrompido-receptaculo-natural",
+      "tag": "div",
+      "tipo": "trait-card",
+      "opentag": "<div class=\"trait-card\">",
+      "nome": "Receptáculo Natural",
+      "corpo": "\n                <h4>Receptáculo Natural</h4>\n                <ul>\n                    <li>Você pode conjurar duas magias de nível 1 sem um foco designado.</li>\n                    <li>Ao fazer isso, rola Vontade (CD 12), recebendo 1d4 de dano mental em caso de falha.</li>\n                    <li>Escolha-as dentre as listas de magia nível 1.</li>\n                </ul>\n            "
+    },
+    {
+      "id": "corrompido-sussurros-1x-descanso-curto",
+      "tag": "div",
+      "tipo": "trait-card",
+      "opentag": "<div class=\"trait-card\">",
+      "nome": "Sussurros (1x/Descanso Curto)",
+      "corpo": "\n                <h4>Sussurros <span style=\"color: var(--text-muted); font-size: 0.9rem;\">(1x/Descanso Curto)</span></h4>\n                <ul>\n                    <li>Você constantemente ouve fragmentos do plano místico e pode tentar estabelecer uma conversa com essas forças.</li>\n                    <li>Role um teste de Vontade (CD 15), se suceder você sustenta uma conversa de até 30 segundos com as vozes da sua cabeça.</li>\n                    <li>Se falhar, perde 1d4 de Éter.</li>\n                </ul>\n            "
+    },
+    {
+      "id": "corrompido-natureza-dubia",
+      "tag": "div",
+      "tipo": "trait-card",
+      "opentag": "<div class=\"trait-card\">",
+      "nome": "Natureza Dúbia",
+      "corpo": "\n                <h4>Natureza Dúbia</h4>\n                <ul>\n                    <li>Você possui -2 em testes de interação social (exceto intimidação) com seres humanoides que desconfiem de você.</li>\n                    <li>Emana misticidade naturalmente, sendo facilmente percebido por magias que detectem isso.</li>\n                </ul>\n            "
+    },
+    {
+      "id": "corrompido-1-tocado",
+      "tag": "div",
+      "tipo": "variant-card",
+      "opentag": "<div class=\"variant-card\">",
+      "nome": "1 Tocado",
+      "corpo": "\n                    <h4><span class=\"grau-number\">1</span> Tocado</h4>\n                    <p>A marca está lá, mas ainda é sutil. Olhos que brilham no escuro, veias que pulsam levemente, sonhos estranhos.</p>\n                    <ul>\n                        <li>Uma vez por descanso longo, ao concentrar-se por 5 minutos você pode restaurar misticamente (Nível)d8 de Stamina ou Éter.</li>\n                    </ul>\n                "
+    },
+    {
+      "id": "corrompido-2-alterado",
+      "tag": "div",
+      "tipo": "variant-card",
+      "opentag": "<div class=\"variant-card\">",
+      "nome": "2 Alterado",
+      "corpo": "\n                    <h4><span class=\"grau-number\">2</span> Alterado</h4>\n                    <p>A transformação é visível. Pele com padrões estranhos, voz que ecoa sutilmente, olhos que brilham anormalmente.</p>\n                    <ul>\n                        <li>+3 Éter máximo</li>\n                        <li>Pode conjurar magias com 1 modulação grátis da respectiva escola da magia. Usos (1+Mod. Sabedoria)/Descanso Longo.</li>\n                        <li>Ao canalizar magias, pode materializá-las com intensidade <em>Forçada</em> com +1 éter (Ao invés de +2)</li>\n                        <li>Descansa com uma comodidade de descanso a menos. (Descanso Bom → Descanso Normal)</li>\n                    </ul>\n                "
+    },
+    {
+      "id": "corrompido-3-consumido",
+      "tag": "div",
+      "tipo": "variant-card",
+      "opentag": "<div class=\"variant-card\">",
+      "nome": "3 Consumido",
+      "corpo": "\n                    <h4><span class=\"grau-number\">3</span> Consumido</h4>\n                    <p>Você é mais primordial que mortal. Seu corpo mal contém o que você se tornou. Você parece mais um alienígena do que uma criatura humanoide.</p>\n                    <ul>\n                        <li>+5 Éter máximo (Não soma ao anterior)</li>\n                        <li>Ao canalizar magias, pode materializá-las com intensidade <em>Transbordante</em> sem rolar o teste de Vontade.</li>\n                        <li>-5 em Interação Social (exceto intimidação) com seres não corrompidos.</li>\n                    </ul>\n                    <div class=\"warning-box\">\n                        ⚠️ Essa energia não pertence ao plano em que você está. Você é <strong>vulnerável a todos os tipos de dano</strong>, mas tem <strong>Armadura Específica (Primordial e Místico) 5</strong>.\n                    </div>\n                "
+    }
+  ]
+}
