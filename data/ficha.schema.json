@@ -1,0 +1,321 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://vitralxx.github.io/Khalkaria_Html/data/ficha.schema.json",
+  "title": "Ficha de Personagem Khalkaria",
+  "description": "Ficha nativa (superset) do jogador. O Export para o Bestiário Khalkaria é uma projeção 'type:npc' derivada deste objeto (ver x-bestiary). Campos derivados NÃO são fonte da verdade: calculados em runtime a partir de atributos/perícias/inventário.",
+  "type": "object",
+  "required": ["schemaVersion", "meta", "atributos", "pericias", "recursos"],
+  "additionalProperties": true,
+
+  "x-bestiary": {
+    "_doc": "Mapa ficha->Bestiário v10 (pack de criação v8). Export gera {type:'npc', ...}. Import tolerante: chaves desconhecidas são ignoradas.",
+    "type": "npc",
+    "meta.nome": "name", "meta.raca": "race", "meta.classe": "npc_class", "meta.nivel": "level",
+    "atributos.for": "strength", "atributos.des": "dexterity", "atributos.con": "constitution",
+    "atributos.int": "intelligence", "atributos.sab": "wisdom",
+    "recursos.saude.max": "health_max", "recursos.stamina.max": "stamina_max", "recursos.eter.max": "ether_max",
+    "derivados.evasao": "evasion", "derivados.movimento": "movement", "derivados.armadura": "armor",
+    "resistencias[R]": "resistances (CSV)", "resistencias[I]": "immunities (CSV)",
+    "grimorio+tecnicas": "abilities[]", "inventario.armas": "weapons[]",
+    "descartado": ["inventario (não-armas)", "sins", "cartasLimiar", "lore"]
+  },
+
+  "properties": {
+    "schemaVersion": { "type": "string", "const": "1.0" },
+
+    "meta": {
+      "type": "object",
+      "required": ["nome"],
+      "additionalProperties": true,
+      "properties": {
+        "id": { "type": "string", "description": "uuid local, gerado no cliente" },
+        "nome": { "type": "string" },
+        "jogador": { "type": "string" },
+        "nivel": { "type": "integer", "minimum": 1, "maximum": 5, "default": 1 },
+        "xp": { "type": "integer", "minimum": 0, "default": 0 },
+        "raca": { "type": "string" },
+        "variante": { "type": "string" },
+        "classe": { "type": "string" },
+        "ramo": { "type": "string" },
+        "origem": { "type": "string" }
+      }
+    },
+
+    "atributos": {
+      "type": "object",
+      "description": "Base 8-18. Modificador = (valor - 10) / 2, arredondado para baixo (derivado).",
+      "required": ["for", "des", "con", "int", "sab"],
+      "additionalProperties": false,
+      "properties": {
+        "for": { "type": "integer", "minimum": 1, "maximum": 30, "default": 10 },
+        "des": { "type": "integer", "minimum": 1, "maximum": 30, "default": 10 },
+        "con": { "type": "integer", "minimum": 1, "maximum": 30, "default": 10 },
+        "int": { "type": "integer", "minimum": 1, "maximum": 30, "default": 10 },
+        "sab": { "type": "integer", "minimum": 1, "maximum": 30, "default": 10 }
+      }
+    },
+
+    "pericias": {
+      "type": "object",
+      "description": "22 perícias canônicas. Valor = nível de treinamento (0 Leigo / 2 Treinado / 4 Experiente / 6 Mestre / 8 Lendário). Chaves em slug PT; mapeiam 1:1 para prof_* do Bestiário.",
+      "additionalProperties": false,
+      "properties": {
+        "atacar":       { "type": "integer", "enum": [0, 2, 4, 6, 8], "default": 0, "x-prof": "prof_attack" },
+        "defender":     { "type": "integer", "enum": [0, 2, 4, 6, 8], "default": 0, "x-prof": "prof_defend" },
+        "movimento":    { "type": "integer", "enum": [0, 2, 4, 6, 8], "default": 0, "x-prof": "prof_movement" },
+        "fortitude":    { "type": "integer", "enum": [0, 2, 4, 6, 8], "default": 0, "x-prof": "prof_fortitude", "x-attr": "con" },
+        "vontade":      { "type": "integer", "enum": [0, 2, 4, 6, 8], "default": 0, "x-prof": "prof_will", "x-attr": "sab" },
+        "reflexos":     { "type": "integer", "enum": [0, 2, 4, 6, 8], "default": 0, "x-prof": "prof_reflexes", "x-attr": "des" },
+        "percepcao":    { "type": "integer", "enum": [0, 2, 4, 6, 8], "default": 0, "x-prof": "prof_perception", "x-attr": "sab" },
+        "sobrevivencia":{ "type": "integer", "enum": [0, 2, 4, 6, 8], "default": 0, "x-prof": "prof_survival", "x-attr": "sab" },
+        "furtividade":  { "type": "integer", "enum": [0, 2, 4, 6, 8], "default": 0, "x-prof": "prof_stealth", "x-attr": "des" },
+        "crime":        { "type": "integer", "enum": [0, 2, 4, 6, 8], "default": 0, "x-prof": "prof_crime", "x-attr": "des" },
+        "iniciativa":   { "type": "integer", "enum": [0, 2, 4, 6, 8], "default": 0, "x-prof": "prof_initiative", "x-attr": "des" },
+        "conhecimento": { "type": "integer", "enum": [0, 2, 4, 6, 8], "default": 0, "x-prof": "prof_knowledge", "x-attr": "int" },
+        "medicina":     { "type": "integer", "enum": [0, 2, 4, 6, 8], "default": 0, "x-prof": "prof_medicine", "x-attr": "int" },
+        "investigacao": { "type": "integer", "enum": [0, 2, 4, 6, 8], "default": 0, "x-prof": "prof_investigation", "x-attr": "int" },
+        "religiao":     { "type": "integer", "enum": [0, 2, 4, 6, 8], "default": 0, "x-prof": "prof_religion", "x-attr": "int" },
+        "mistico":      { "type": "integer", "enum": [0, 2, 4, 6, 8], "default": 0, "x-prof": "prof_mystic", "x-attr": "int" },
+        "convencimento":{ "type": "integer", "enum": [0, 2, 4, 6, 8], "default": 0, "x-prof": "prof_persuasion", "x-attr": "melhor(des,int)" },
+        "intimidacao":  { "type": "integer", "enum": [0, 2, 4, 6, 8], "default": 0, "x-prof": "prof_intimidation", "x-attr": "melhor(con,for)" },
+        "intuicao":     { "type": "integer", "enum": [0, 2, 4, 6, 8], "default": 0, "x-prof": "prof_insight", "x-attr": "sab" },
+        "enganacao":    { "type": "integer", "enum": [0, 2, 4, 6, 8], "default": 0, "x-prof": "prof_deception", "x-attr": "melhor(des,int)" },
+        "motivar":      { "type": "integer", "enum": [0, 2, 4, 6, 8], "default": 0, "x-prof": "prof_motivate", "x-attr": "sab" },
+        "oficio":       { "type": "integer", "enum": [0, 2, 4, 6, 8], "default": 0, "x-prof": "prof_craft", "x-attr": "oficioAttr" }
+      }
+    },
+
+    "oficioAttr": {
+      "type": "string",
+      "description": "Atributo do Ofício(X). Exporta para craft_attr.",
+      "enum": ["for", "des", "con", "int", "sab"],
+      "default": "int",
+      "x-bestiary-map": { "for": "strength", "des": "dexterity", "con": "constitution", "int": "intelligence", "sab": "wisdom" }
+    },
+
+    "recursos": {
+      "type": "object",
+      "description": "atual = estado de jogo; max = capacidade (exporta *_max). recursoClasse é específico (ex.: FLUXO no Monge).",
+      "additionalProperties": false,
+      "properties": {
+        "saude":   { "$ref": "#/$defs/recurso" },
+        "stamina": { "$ref": "#/$defs/recurso" },
+        "eter":    { "$ref": "#/$defs/recurso" },
+        "recursoClasse": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "nome": { "type": "string", "description": "ex.: FLUXO" },
+            "atual": { "type": "integer", "default": 0 },
+            "max": { "type": "integer", "default": 0 }
+          }
+        }
+      }
+    },
+
+    "resistencias": {
+      "type": "object",
+      "description": "12 tipos de dano. R = Resistência, I = Imunidade. Export: nomes com R -> resistances (CSV), com I -> immunities (CSV).",
+      "additionalProperties": false,
+      "propertyNames": {
+        "enum": ["ordinario", "fogo", "frio", "eletrico", "veneno", "acido", "psiquico", "forca", "radiante", "trovejante", "necrotico", "primordial"]
+      },
+      "patternProperties": {
+        "^.*$": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "R": { "type": "boolean", "default": false },
+            "I": { "type": "boolean", "default": false }
+          }
+        }
+      }
+    },
+
+    "inventario": {
+      "type": "object",
+      "description": "Slots: equipamentos = 2 + Mod.FOR; bugigangas = 10 + Mod.FOR (derivado, com alerta de Sobrepeso). Munição: 20 un = 1 slot. Sins não pesam. Aquisição NUNCA travada por moeda.",
+      "additionalProperties": false,
+      "properties": {
+        "sins": { "type": "integer", "minimum": 0, "default": 0, "description": "Contador livre. Moeda do universo. Não deriva de atributo." },
+        "equipamentos": { "type": "array", "items": { "$ref": "#/$defs/item" } },
+        "bugigangas":   { "type": "array", "items": { "$ref": "#/$defs/item" } },
+        "materiais":    { "type": "array", "items": { "$ref": "#/$defs/item" } },
+        "armas":        { "type": "array", "items": { "$ref": "#/$defs/arma" }, "description": "Exportadas para weapons[] do Bestiário." }
+      }
+    },
+
+    "tecnicas": {
+      "type": "object",
+      "description": "Todas exportam para abilities[] do Bestiário.",
+      "additionalProperties": false,
+      "properties": {
+        "gerais":   { "type": "array", "items": { "$ref": "#/$defs/tecnica" } },
+        "ramo":     { "type": "array", "items": { "$ref": "#/$defs/tecnica" } },
+        "diversas": { "type": "array", "items": { "$ref": "#/$defs/tecnica" } },
+        "marcas":   { "type": "array", "items": { "$ref": "#/$defs/marca" } }
+      }
+    },
+
+    "grimorio": {
+      "type": "object",
+      "description": "Magias conhecidas por nível. Exportam para abilities[] do Bestiário.",
+      "additionalProperties": false,
+      "properties": {
+        "nivel1": { "type": "array", "items": { "$ref": "#/$defs/magia" } },
+        "nivel2": { "type": "array", "items": { "$ref": "#/$defs/magia" } },
+        "nivel3": { "type": "array", "items": { "$ref": "#/$defs/magia" } },
+        "nivel4": { "type": "array", "items": { "$ref": "#/$defs/magia" } }
+      }
+    },
+
+    "cartasLimiar": {
+      "type": "array",
+      "description": "Só-ficha. Sem sorteio: adicionadas por DnD/botão. Descartadas no export Bestiário.",
+      "items": { "$ref": "#/$defs/cartaLimiar" }
+    },
+
+    "lore": {
+      "type": "object",
+      "description": "Texto livre. Só-ficha.",
+      "additionalProperties": false,
+      "properties": {
+        "historia": { "type": "string" },
+        "outros": { "type": "string" }
+      }
+    },
+
+    "derivados": {
+      "type": "object",
+      "description": "CACHE opcional. NÃO é fonte da verdade — recalculado no load. Persistido só para conveniência/debug.",
+      "additionalProperties": true,
+      "properties": {
+        "modificadores": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "for": { "type": "integer" }, "des": { "type": "integer" }, "con": { "type": "integer" },
+            "int": { "type": "integer" }, "sab": { "type": "integer" }
+          }
+        },
+        "evasao": { "type": "integer" },
+        "cd": { "type": "integer" },
+        "movimento": { "type": "number" },
+        "armadura": { "type": "integer" },
+        "slots": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "equipamentosMax": { "type": "integer" },
+            "bugigangasMax": { "type": "integer" },
+            "sobrepeso": { "type": "string", "enum": ["nenhum", "leve", "extremo"] }
+          }
+        }
+      }
+    }
+  },
+
+  "$defs": {
+    "recurso": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "atual": { "type": "integer", "default": 0 },
+        "max": { "type": "integer", "default": 0 }
+      }
+    },
+
+    "entidadeBase": {
+      "type": "object",
+      "required": ["id", "nome"],
+      "properties": {
+        "id": { "type": "string", "description": "slug determinístico da fonte (ex.: magia-lanca-de-gelo). Se ausente na origem, derivado do nome." },
+        "nome": { "type": "string" },
+        "fonte": { "type": "string", "description": "página/arquivo de origem, para rastreio" }
+      }
+    },
+
+    "item": {
+      "description": "Snapshot alinhado ao data/bazar.json (pipeline do Pedro). Preço é informativo.",
+      "allOf": [{ "$ref": "#/$defs/entidadeBase" }],
+      "properties": {
+        "categoria": { "type": "string" },
+        "raridade": { "type": "string" },
+        "efeito": { "type": "string" },
+        "valor": { "type": "string", "description": "Valor (Sins), informativo. Ex.: '6d10+40'." },
+        "obtencao": { "type": "string" },
+        "craft": { "type": "string" },
+        "ingredientes": { "type": "string" },
+        "qtd": { "type": "integer", "minimum": 1, "default": 1 },
+        "slotPeso": { "type": "number", "description": "peso em slots; munição = 20un/slot" }
+      }
+    },
+
+    "arma": {
+      "description": "Item de combate; exporta para weapons[] do Bestiário (o app reescala por level).",
+      "allOf": [{ "$ref": "#/$defs/entidadeBase" }],
+      "properties": {
+        "category": { "type": "string", "description": "categoria do catálogo, ex.: 'Pesada Cortante'" },
+        "level": { "type": "string", "enum": ["0", "1", "2", "3"], "default": "0" },
+        "dado": { "type": "string", "description": "dado base, ex.: '1d12'" },
+        "atributo": { "type": "string", "enum": ["Força", "Destreza"] },
+        "dano": { "type": "string", "description": "tipo de dano" },
+        "acoes": { "type": "string", "description": "ex.: 'Atacar(2)'" },
+        "efeito": { "type": "string" },
+        "mystic": { "type": "boolean", "default": false, "description": "true p/ focos (sem dano/acerto)" }
+      }
+    },
+
+    "magia": {
+      "description": "Extraída de magias.json. Export -> abilities[] (nome, descricao->description, custo->ether_cost, stats->damage/save).",
+      "allOf": [{ "$ref": "#/$defs/entidadeBase" }],
+      "properties": {
+        "escola": { "type": "string", "enum": ["destruicao", "abjuracao", "alteracao", "conhecimento"] },
+        "nivel": { "type": "integer", "minimum": 1, "maximum": 4 },
+        "custoBase": { "type": "integer", "description": "2/4/6/8 conforme nível" },
+        "stats": {
+          "type": "array",
+          "description": "Linhas da tabela: Ação, Alcance, Alvo, Dano, Resistência, etc.",
+          "items": {
+            "type": "object",
+            "required": ["caracteristica", "valor"],
+            "properties": {
+              "caracteristica": { "type": "string" },
+              "valor": { "type": "string" },
+              "mod": { "type": "boolean", "description": "aplica Mod (✅/❎)" }
+            }
+          }
+        },
+        "descricao": { "type": "string" },
+        "intensidadeLock": { "type": "string", "description": "se a magia trava intensidade (ex.: 'Normal')" }
+      }
+    },
+
+    "tecnica": {
+      "description": "Extraída das páginas de classe. Export -> abilities[].",
+      "allOf": [{ "$ref": "#/$defs/entidadeBase" }],
+      "properties": {
+        "tipo": { "type": "string", "enum": ["geral", "ramo", "diversa", "ultimate"] },
+        "tier": { "type": "integer", "minimum": 1, "maximum": 3 },
+        "custo": { "type": "string", "description": "ex.: 'Passiva', 'Descanso Curto', '2 Ações + 3 Stamina'" },
+        "descricao": { "type": "string" }
+      }
+    },
+
+    "marca": {
+      "allOf": [{ "$ref": "#/$defs/entidadeBase" }],
+      "properties": {
+        "descricao": { "type": "string" }
+      }
+    },
+
+    "cartaLimiar": {
+      "allOf": [{ "$ref": "#/$defs/entidadeBase" }],
+      "properties": {
+        "categoria": { "type": "string", "enum": ["universal", "forca", "destreza", "constituicao", "inteligencia", "sabedoria", "rara"] },
+        "custoReq": { "type": "string", "description": "custo/requisito exibido no card" },
+        "efeito": { "type": "string" }
+      }
+    }
+  }
+}
