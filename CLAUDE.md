@@ -159,7 +159,7 @@ Sistema → Magias → Condições → Limiar → 7 Classes → 7 Raças → Ori
 
 - **Notion:** `notion-fetch` por UUID é mais confiável que por URL. Contar linhas direto do conteúdo — blocos de resumo ficam desatualizados (ex.: "Raras: 60" quando o catálogo tem 59).
 - **Imagens:** URLs S3 do Notion expiram em ~1h e o sandbox bloqueia download. **Nunca tentar baixar** — o Pedro substitui `images/*.png` manualmente.
-- **O Limiar:** **170 cartas** (sincronizado com o Notion em 2026-07-23). Catálogo 129 = Universais 10 + FOR/DES/CON/INT/SAB 12 cada (60) + **Raras 59**. Abismo = 18 Dores + 23 Benefícios. Página Notion `2df6e3a4-01d9-80d9-bb75-efaa489c176c` é autoritativa (tabelas inline, **não** o bloco de resumo — que diz "Total 130 / Raras 60", desatualizado). Site exibe raras como ícone+requisito+nome (sem efeito) — decisão de design existente. Cartas raras devem usar **apenas recursos universais** (Stamina, Éter, HP, Reações, Ações, CD de classe) — nunca recursos travados por classe como FLUXO.
+- **O Limiar:** **170 cartas** (sincronizado com o Notion em 2026-07-23). Catálogo 129 = Universais 10 + FOR/DES/CON/INT/SAB 12 cada (60) + **Raras 59**. Abismo = 18 Dores + 23 Benefícios. Página Notion viva `3a66e3a4-01d9-806d-b1f8-d6975255f676` (sob "Sistema Khalkaria") é autoritativa — a UUID antiga `2df6e3a4-…` está **deletada** no Notion (conteúdo idêntico). Tabelas inline, **não** o bloco de resumo — que diz "Total 130 / Raras 60", desatualizado). Site exibe raras como ícone+requisito+nome (sem efeito) — decisão de design existente. Cartas raras devem usar **apenas recursos universais** (Stamina, Éter, HP, Reações, Ações, CD de classe) — nunca recursos travados por classe como FLUXO.
 
 ---
 
