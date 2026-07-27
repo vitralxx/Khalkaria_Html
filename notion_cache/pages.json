@@ -1,0 +1,23 @@
+{
+  "_doc": "Manifesto de páginas do Notion (árvore VERDADEIRA 2b76…, não o backup 5296 em 'Outros'). slug -> uuid. Usado por sync_notion.py e pela rotina de sincronização.",
+  "sistema":              "2b76e3a401d980c0ab7bc27a342f4ee1",
+  "criacao":              "3a66e3a401d9806681b8f403c4700b11",
+  "magias":               "3a66e3a401d98097a5d4e316154f9fcb",
+  "condicoes":            "3a66e3a401d9803f8862ea52ceef0b25",
+  "limiar":               "3a66e3a401d9806db1f8d6975255f676",
+  "origens":              "3a66e3a401d9808aa877f7e7cb77002a",
+  "classes/espadachim":   "8506e3a401d9837b88a501bad1e66368",
+  "classes/monge":        "0876e3a401d98388a48d8136e92563bc",
+  "classes/batedor":      "8706e3a401d9823a91fd81f689a6fbe7",
+  "classes/alquimista":   "eac6e3a401d982d595b181020562ec8e",
+  "classes/teurgo":       "caa6e3a401d98330bae281511750d407",
+  "classes/artilheiro":   "d896e3a401d983f38cc78196ad7491b4",
+  "classes/brutalista":   "a2c6e3a401d982f187320168cbb2e7d8",
+  "racas/humano":         "07a6e3a401d98339bd6d819dea28568f",
+  "racas/anao":           "f5a6e3a401d982b2a1f38123743db4be",
+  "racas/dryad":          "3b16e3a401d982648d9b812e2efd6947",
+  "racas/gruto":          "9696e3a401d983b4b6e48199671689f4",
+  "racas/corrompido":     "e6d6e3a401d983b592a581e5565d059b",
+  "racas/automato":       "80c6e3a401d98398b2ff0126a7c983b9",
+  "racas/inseto":         "f6d6e3a401d9839591dd814cdefa153b"
+}
