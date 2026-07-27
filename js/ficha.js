@@ -518,6 +518,29 @@
       });
     });
     decorarBazar();
+    decorarCorrupcao();
+  }
+
+  // linhas das tabelas de Corrupção/Adversidade (raça Corrompido) -> arrastáveis
+  function decorarCorrupcao() {
+    document.querySelectorAll('.corr-table tr').forEach(function (tr) {
+      if (tr.getAttribute('data-kf')) return;
+      var tds = tr.querySelectorAll('td');
+      if (tds.length < 2) return; // pula o cabeçalho (th)
+      var nome = textoLimpo(tds[0]);
+      if (!nome) return;
+      tr.setAttribute('data-kf', '1');
+      var bloco = tr.closest('.corr-block');
+      var tipo = (bloco && bloco.classList.contains('adv')) ? 'adversidade' : 'corrupção';
+      var custo = tds[2] ? textoLimpo(tds[2]) : '';
+      var ent = { id: slug(nome, tipo + '-'), tipo: tipo,
+        nome: nome + (custo ? ' (' + custo + ')' : ''), descricao: textoLimpo(tds[1]) };
+      tds[0].appendChild(el('span', { class: 'kf-addbtn', title: 'Adicionar à ficha',
+        onclick: function (e) { e.stopPropagation(); e.preventDefault(); addEntidade('tecnicas', ent); } }, ['+ ficha']));
+      tr.setAttribute('draggable', 'true'); tr.classList.add('kf-draggable');
+      tr.addEventListener('dragstart', function (e) {
+        e.dataTransfer.setData('text/plain', JSON.stringify(Object.assign({ _campo: 'tecnicas' }, ent))); });
+    });
   }
 
   // itens do Bazar (bazar.html) — renderizados dinamicamente: .item-card[data-n]
