@@ -23,7 +23,7 @@
       "tipo": "variant-card",
       "opentag": "<div class=\"variant-card\">",
       "nome": "Estudioso",
-      "corpo": "\n                    <h4>Estudioso</h4>\n                    <ul>\n                        <li>Treinado em <em>Conhecimento</em>.</li>\n                        <li>1 vez por descanso longo pode dar uma <em>Hipótese</em> ao falhar em um teste de conhecimento. Ganhando parcialmente a informação.</li>\n                    </ul>\n                "
+      "corpo": "\n                    <h4>Estudioso</h4>\n                    <ul>\n                        <li>Treinado em <em>Conhecimento</em>.</li>\n                        <li>+1 idioma conhecido qualquer.</li>\n                        <li>1 vez por descanso longo pode dar uma <em>Hipótese</em> ao falhar em um teste de conhecimento. Ganhando parcialmente a informação.</li>\n                    </ul>\n                "
     },
     {
       "id": "humano-rebelde",

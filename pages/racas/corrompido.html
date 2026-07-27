@@ -37,6 +37,28 @@
         .section-title{color:var(--gold);font-family:var(--font-heading);margin:1.5rem 0 1rem 0}
         .grau-number{display:inline-block;background:linear-gradient(135deg, #4a1942, #1a1a2e);color:#c084fc;width:28px;height:28px;border-radius:50%;text-align:center;line-height:28px;font-weight:bold;margin-right:0.5rem}
         .warning-box{background:linear-gradient(135deg, rgba(139, 0, 0, 0.15), rgba(74, 25, 66, 0.15));border:1px solid #6b2d5c;border-radius:8px;padding:1rem;margin-top:0.75rem;color:#c77dff;font-size:0.9rem}
+        .corrupcao-intro{color:var(--text-secondary);margin-bottom:1.25rem;line-height:1.6}
+        .corr-max{border-collapse:collapse;margin:0 0 1.5rem;font-size:0.9rem}
+        .corr-max th,.corr-max td{border:1px solid var(--border-color);padding:0.4rem 1.1rem;text-align:center}
+        .corr-max th{background:rgba(192,132,252,0.1);color:#c084fc;font-family:var(--font-heading);font-size:0.75rem;letter-spacing:0.05em;text-transform:uppercase}
+        .corr-max td:first-child{color:var(--text-muted)}
+        .corr-max td:last-child{color:#c084fc;font-weight:600}
+        .corr-block{margin-bottom:1.75rem}
+        .corr-block-title{display:flex;align-items:center;gap:0.6rem;font-family:var(--font-heading);font-size:1.05rem;margin-bottom:0.75rem}
+        .corr-block-title .dot{width:10px;height:10px;border-radius:50%}
+        .corr-block.poder .corr-block-title{color:#c084fc}
+        .corr-block.poder .corr-block-title .dot{background:#c084fc}
+        .corr-block.adv .corr-block-title{color:#e06c75}
+        .corr-block.adv .corr-block-title .dot{background:#e06c75}
+        .corr-table{width:100%;border-collapse:collapse;font-size:0.9rem}
+        .corr-table th{text-align:left;padding:0.5rem 0.75rem;font-family:var(--font-heading);font-size:0.72rem;letter-spacing:0.06em;text-transform:uppercase;color:var(--text-muted);border-bottom:1px solid var(--border-color)}
+        .corr-table th:last-child,.corr-table td:last-child{text-align:center;white-space:nowrap;width:70px}
+        .corr-table td{padding:0.55rem 0.75rem;border-bottom:1px solid rgba(42,42,53,0.6);color:var(--text-secondary);vertical-align:top}
+        .corr-table td:first-child{color:var(--gold-light);font-weight:600;white-space:nowrap}
+        .corr-table tr:last-child td{border-bottom:none}
+        .corr-cost{display:inline-block;min-width:2.2rem;padding:0.1rem 0.5rem;border-radius:4px;font-weight:700;font-size:0.85rem}
+        .corr-cost.minus{background:rgba(192,132,252,0.15);color:#c084fc;border:1px solid rgba(192,132,252,0.35)}
+        .corr-cost.plus{background:rgba(224,108,117,0.13);color:#e06c75;border:1px solid rgba(224,108,117,0.35)}
     </style>
 </head>
 <body>
@@ -84,18 +106,18 @@
                 </div>
                 <div class="raca-info">
                     <h1>Corrompido</h1>
-                    <p class="raca-tagline">Marcados pelas forças primordiais. A corrupção não é doença — é transformação.</p>
+                    <p class="raca-tagline">Marcados pelo éter. A corrupção não é doença — é transformação.</p>
                     
                     <p>Eles carregam fragmentos do plano místico em seus corpos. Veias que brilham sutilmente, olhos que refletem cores impossíveis, sussurros constantes no limite da audição. São temidos por muitos, estudados por Teurgos, e caçados por alguns.</p>
                     
                     <div class="stats-grid">
                         <div class="stat-box">
                             <div class="label">Atributos</div>
-                            <div class="value">+2 Inteligência ou Sabedoria, -1 Constituição</div>
+                            <div class="value">+2 Inteligência ou Sabedoria, -1 Constituição ou Força</div>
                         </div>
                         <div class="stat-box">
                             <div class="label">Alternativo</div>
-                            <div class="value">+1 Destreza, +1 Sabedoria ou Inteligência, -1 Constituição</div>
+                            <div class="value">+2 Destreza, -1 Constituição ou Força</div>
                         </div>
                         <div class="stat-box">
                             <div class="label">Movimento</div>
@@ -159,39 +181,60 @@
             </div>
             
             <div class="variant-section">
-                <h3>Graus de Corrupção</h3>
-                <p style="color: var(--text-muted); margin-bottom: 1rem;">Corrompidos diferem no quanto as forças primordiais os transformaram. <strong>Ao selecionar graus mais altos, você recebe todos os benefícios de graus anteriores.</strong></p>
-                
-                <div class="variant-card">
-                    <h4><span class="grau-number">1</span> Tocado</h4>
-                    <p>A marca está lá, mas ainda é sutil. Olhos que brilham no escuro, veias que pulsam levemente, sonhos estranhos.</p>
-                    <ul>
-                        <li>Uma vez por descanso longo, ao concentrar-se por 5 minutos você pode restaurar misticamente (Nível)d8 de Stamina ou Éter.</li>
-                    </ul>
+                <h3>A Corrupção</h3>
+                <p class="corrupcao-intro">Corrompidos diferem no quanto as forças primordiais os transformaram. Equilibre os pontos para que sempre fiquem positivos ou iguais a 0. Você pode gastar um máximo de pontos de corrupção equivalente ao indicado na tabela abaixo. Corrupções Negativas são permanentes — pegou, e ela está permanentemente marcada no seu corpo. Contudo, corrupções positivas podem ser reorganizadas em um descanso longo.</p>
+
+                <table class="corr-max">
+                    <tr><th>Nível</th><th>Máximo de Corrupção</th></tr>
+                    <tr><td>1</td><td>2</td></tr>
+                    <tr><td>2</td><td>5</td></tr>
+                    <tr><td>3</td><td>9</td></tr>
+                    <tr><td>4</td><td>14</td></tr>
+                    <tr><td>5</td><td>20</td></tr>
+                </table>
+
+                <div class="corr-block poder">
+                    <div class="corr-block-title"><span class="dot"></span>Corrupções — poderes (reorganizáveis em descanso longo)</div>
+                    <table class="corr-table">
+                        <tr><th>Corrupção</th><th>Efeito</th><th>Custo</th></tr>
+                        <tr><td>Pele Morta</td><td>+5 Éter Máximo. +5 Stamina Máxima.</td><td><span class="corr-cost minus">-1</span></td></tr>
+                        <tr><td>Carne Protetora</td><td>Agressores recebem 1d4 de dano Necrótico ao te acertarem.</td><td><span class="corr-cost minus">-1</span></td></tr>
+                        <tr><td>Sede Etérica</td><td>Ao reduzir uma criatura a 0 de Saúde, recupere 1d4 de Éter ou Stamina.</td><td><span class="corr-cost minus">-1</span></td></tr>
+                        <tr><td>Premonição Etérica</td><td>+1 Evasão. Seu dado da perícia Defender se torna um 2d6, ao invés de 1d10.</td><td><span class="corr-cost minus">-2</span></td></tr>
+                        <tr><td>Reservatório de Éter</td><td>1x/Descanso curto, concentrando-se por 5 min. Você restaura (Nível)d8 de Stamina e Éter.</td><td><span class="corr-cost minus">-2</span></td></tr>
+                        <tr><td>Receptáculo Menor</td><td>Pode conjurar magias com 1 modulação grátis da respectiva escola da magia. Usos (1+Mod. Sabedoria)/Descanso Longo.</td><td><span class="corr-cost minus">-2</span></td></tr>
+                        <tr><td>Chama de Éter</td><td>Ataques desarmados causam +1d6 de dano Necrótico.</td><td><span class="corr-cost minus">-2</span></td></tr>
+                        <tr><td>Morto</td><td>Você não precisa respirar para sobreviver. Adicionalmente, ao ser reduzido a 0 de saúde, fica com 1 de saúde 1x/descanso longo.</td><td><span class="corr-cost minus">-2</span></td></tr>
+                        <tr><td>Escola Visceral</td><td>Escolha uma escola de magia: magias dessa escola custam -2 éter e modulações custam -2 de éter (mín. 1).</td><td><span class="corr-cost minus">-3</span></td></tr>
+                        <tr><td>Receptáculo Maior</td><td>Pode conjurar magias na intensidade <em>Transbordante</em> sem rolar Vontade.</td><td><span class="corr-cost minus">-3</span></td></tr>
+                        <tr><td>Vigor Místico</td><td>Você recebe +5 Saúde por nível.</td><td><span class="corr-cost minus">-3</span></td></tr>
+                        <tr><td>Asas do Monarca</td><td>Você desenvolve asas necróticas, feitas de uma combinação de éter e da sua pele necrosada. 1 ação, 3 m de voo.</td><td><span class="corr-cost minus">-3</span></td></tr>
+                        <tr><td>Braço Necrosado</td><td>Alcance corpo a corpo +1,5 m. Adicionalmente, você tem vantagem na manobra de agarrar.</td><td><span class="corr-cost minus">-3</span></td></tr>
+                        <tr><td>Sangue de Éter</td><td>Você pode gastar éter na proporção 2:1 para ganhar stamina. Adicionalmente, +10 Éter máximo.</td><td><span class="corr-cost minus">-4</span></td></tr>
+                        <tr><td>Coringa</td><td>Você pode canalizar Disfarce Ilusório passivamente com duração infinita. Ao estar sob o efeito dessa magia você perde penalidades na perícia interação social oriundas da corrupção.</td><td><span class="corr-cost minus">-5</span></td></tr>
+                    </table>
                 </div>
-                
-                <div class="variant-card">
-                    <h4><span class="grau-number">2</span> Alterado</h4>
-                    <p>A transformação é visível. Pele com padrões estranhos, voz que ecoa sutilmente, olhos que brilham anormalmente.</p>
-                    <ul>
-                        <li>+3 Éter máximo</li>
-                        <li>Pode conjurar magias com 1 modulação grátis da respectiva escola da magia. Usos (1+Mod. Sabedoria)/Descanso Longo.</li>
-                        <li>Ao canalizar magias, pode materializá-las com intensidade <em>Forçada</em> com +1 éter (Ao invés de +2)</li>
-                        <li>Descansa com uma comodidade de descanso a menos. (Descanso Bom → Descanso Normal)</li>
-                    </ul>
-                </div>
-                
-                <div class="variant-card">
-                    <h4><span class="grau-number">3</span> Consumido</h4>
-                    <p>Você é mais primordial que mortal. Seu corpo mal contém o que você se tornou. Você parece mais um alienígena do que uma criatura humanoide.</p>
-                    <ul>
-                        <li>+5 Éter máximo (Não soma ao anterior)</li>
-                        <li>Ao canalizar magias, pode materializá-las com intensidade <em>Transbordante</em> sem rolar o teste de Vontade.</li>
-                        <li>-5 em Interação Social (exceto intimidação) com seres não corrompidos.</li>
-                    </ul>
-                    <div class="warning-box">
-                        ⚠️ Essa energia não pertence ao plano em que você está. Você é <strong>vulnerável a todos os tipos de dano</strong>, mas tem <strong>Armadura Específica (Primordial e Místico) 5</strong>.
-                    </div>
+
+                <div class="corr-block adv">
+                    <div class="corr-block-title"><span class="dot"></span>Adversidades — permanentes (concedem pontos)</div>
+                    <table class="corr-table">
+                        <tr><th>Adversidade</th><th>Efeito</th><th>Custo</th></tr>
+                        <tr><td>Éter Chamativo</td><td>Qualquer criatura que tenha o mínimo domínio sobre o éter percebe sua presença em 30 m sem testes.</td><td><span class="corr-cost plus">+1</span></td></tr>
+                        <tr><td>Fome Bizarra</td><td>Exige 2 Comidas para Descanso Longo, ou fica <em>Desnutrido</em>.</td><td><span class="corr-cost plus">+1</span></td></tr>
+                        <tr><td>Pele Fraca</td><td>-1 Constituição.</td><td><span class="corr-cost plus">+1</span></td></tr>
+                        <tr><td>Mente Fraca</td><td>-1 Sabedoria.</td><td><span class="corr-cost plus">+1</span></td></tr>
+                        <tr><td>Passo Trêmulo</td><td>Movimento reduzido em -3 m.</td><td><span class="corr-cost plus">+1</span></td></tr>
+                        <tr><td>Difusão de Éter</td><td>-10 Éter máximo.</td><td><span class="corr-cost plus">+1</span></td></tr>
+                        <tr><td>Sono Perturbado</td><td>-1 Comodidade de Descanso.</td><td><span class="corr-cost plus">+2</span></td></tr>
+                        <tr><td>Peso Morto</td><td>Em testes de jornada, não pode contribuir; além disso, aumenta a hostilidade da jornada em 5.</td><td><span class="corr-cost plus">+2</span></td></tr>
+                        <tr><td>Sussurros Intensos</td><td>Você tem desvantagem em Percepção.</td><td><span class="corr-cost plus">+2</span></td></tr>
+                        <tr><td>Metabolismo Anormal</td><td>Você não se beneficia de consumíveis como poções e elixires; no entanto, ainda consegue utilizar pergaminhos.</td><td><span class="corr-cost plus">+3</span></td></tr>
+                        <tr><td>A Criatura</td><td>-2 em Interação Social (exceto Intimidação). Adicionalmente, itens são 50% mais caros para você; se comerciantes te perceberem com o resto do grupo, todo o grupo fica com o aumento do preço.</td><td><span class="corr-cost plus">+3</span></td></tr>
+                        <tr><td>As Vozes</td><td>Ao rolar 1 natural em qualquer dado, perde 2d4+nível de éter.</td><td><span class="corr-cost plus">+3</span></td></tr>
+                        <tr><td>Aberração Social</td><td>-5 em Interação Social (exceto Intimidação). Adicionalmente, você está sendo ativamente caçado por uma facção de Kharavel.</td><td><span class="corr-cost plus">+4</span></td></tr>
+                        <tr><td>Pele Morta</td><td>Você é vulnerável a todos os tipos de dano não místicos, mas tem Armadura Específica (Místico, 5), exceto Força e Primordial.</td><td><span class="corr-cost plus">+5</span></td></tr>
+                        <tr><td>Cicatrização Efêmera</td><td>Ao recuperar saúde de qualquer fonte, recupere apenas metade.</td><td><span class="corr-cost plus">+5</span></td></tr>
+                    </table>
                 </div>
             </div>
             

@@ -15,7 +15,7 @@
       "tipo": "trait-card",
       "opentag": "<div class=\"trait-card\">",
       "nome": "Automanutenção",
-      "corpo": "\n                <h4>Automanutenção</h4>\n                <p>Possui mecanismo de automanutenção (cura ao descansar), mas para cura maior deve ser consertado com item <em>Kit de Manutenção</em>.</p>\n            "
+      "corpo": "\n                <h4>Automanutenção</h4>\n                <p>Possui mecanismo de automanutenção (cura ao descansar), mas para cura maior deve ser consertado com item <em>Kit de Manutenção</em>. Poções e Elixires não funcionam em você.</p>\n            "
     },
     {
       "id": "automato-visao-termica",
@@ -103,7 +103,7 @@
       "tipo": "tech-card",
       "opentag": "<div class=\"tech-card\">",
       "nome": "Capacitores de Energia",
-      "corpo": "\n                    <div><h5>Capacitores de Energia</h5><p class=\"desc\">Reserva energética para adrenalina.</p></div>\n                    <div class=\"effect\">Sobrecarrega (1 ação): +1d6 dano por 3 rodadas. Ao final, recebe 2d6 dano Elemental.</div>\n                    <div class=\"price\">Luxária</div>\n                "
+      "corpo": "\n                    <div><h5>Capacitores de Energia</h5><p class=\"desc\">Reserva energética para adrenalina.</p></div>\n                    <div class=\"effect\">Sobrecarrega (1 ação): +1d6 dano por 3 rodadas. Ao final, recebe 2d4 dano Elemental.</div>\n                    <div class=\"price\">Luxária</div>\n                "
     },
     {
       "id": "automato-auto-reparador",
