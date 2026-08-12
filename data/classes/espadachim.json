@@ -95,25 +95,25 @@
       "id": "espadachim-disciplina",
       "tipo": "marca-card",
       "nome": "Disciplina",
-      "corpo": "\n                                    <h5>Disciplina</h5>\n                                    <p class=\"flavor\">\"Você é frio e age apenas quando necessário.\"</p>\n                                    <p>Você é friamente disciplinado e segue um conjunto de valores difíceis de quebrar.</p>\n                                    <ul>\n                                        <li>Seu <strong>primeiro ataque</strong> em qualquer combate é sempre um <strong>crítico</strong>.</li>\n                                        <li>Se ele errar, seu segundo ataque tem <strong>vantagem</strong>.</li>\n                                    </ul>\n                                "
+      "corpo": "\n                                    <h5>Disciplina</h5>\n                                    <p class=\"flavor\">\"Você é frio e age apenas quando necessário.\"</p>\n                                    <p>Você é friamente disciplinado e segue um conjunto de valores difíceis de quebrar.</p>\n                                    <ul>\n                                        <li>Para cada 5 combates onde a Marca do Duelo te atacou antes de você atacá-la, você ganha <strong>+1 permanente em Vontade</strong>. (Máx. +5)</li>\n                                        <li>Na primeira vez em cada combate que você sofre um ataque antes de ter atacado, recupere Stamina igual ao seu Mod. Constituição.</li>\n                                    </ul>\n                                "
     },
     {
       "id": "espadachim-caca-fardos",
       "tipo": "marca-card",
       "nome": "Caça Fardos",
-      "corpo": "\n                                    <h5>Caça Fardos</h5>\n                                    <p class=\"flavor\">\"Você busca criaturas indignas, e as assassina com prazer.\"</p>\n                                    <p>Você é naturalmente benevolente e busca punir criaturas bestiais/monstruosas.</p>\n                                    <ul>\n                                        <li>Ao assassinar uma criatura maligna (definido pelo mestre) ganha <strong>+1 Stamina máxima</strong>.</li>\n                                    </ul>\n                                "
+      "corpo": "\n                                    <h5>Caça Fardos</h5>\n                                    <p class=\"flavor\">\"Você busca criaturas indignas, e as assassina com prazer.\"</p>\n                                    <p>Você é naturalmente benevolente e busca punir criaturas bestiais/monstruosas.</p>\n                                    <ul>\n                                        <li>Para cada 5 criaturas monstruosas ou malignas que você matou, você ganha <strong>+1 permanente em Sobrevivência</strong>. (Máx. +5)</li>\n                                        <li>Você consegue localizar a <strong>Marca do Duelo</strong> em qualquer situação, mesmo que ela esteja Invisível ou escondida.</li>\n                                    </ul>\n                                "
     },
     {
       "id": "espadachim-bloquear-e-contra-atacar",
       "tipo": "tier-technique",
-      "nome": "Bloquear e Contra-Atacar",
-      "corpo": "\n                                    <h5>Bloquear e Contra-Atacar</h5>\n                                    <p class=\"meta\">Ação Livre · 3 Stamina</p>\n                                    <p>Ao defender com sucesso, retalie com +1 dado de Dano Cortante. Se acertar, alvo fica <em>Desorientado</em>.</p>\n                                "
+      "nome": "Parry Perfeito",
+      "corpo": "\n                                    <h5>Parry Perfeito</h5>\n                                    <p class=\"meta\">Ação Livre · 3 Stamina</p>\n                                    <p>Ao defender um ataque da <strong>Marca do Duelo</strong> com sucesso, <strong>Retalie</strong> como Ação Livre.</p>\n                                "
     },
     {
       "id": "espadachim-intocavel",
       "tipo": "tier-technique",
-      "nome": "Intocável",
-      "corpo": "\n                                    <h5>Intocável</h5>\n                                    <p class=\"meta\">Passiva</p>\n                                    <p>Enquanto não tiver atacado nesta rodada, você ganha <strong>+5 Defender</strong>.</p>\n                                "
+      "nome": "Duelista Intocável",
+      "corpo": "\n                                    <h5>Duelista Intocável</h5>\n                                    <p class=\"meta\">Passiva</p>\n                                    <p>Você se torna <em>Treinado</em> em <strong>Defender</strong> (se já for, <em>Experiente</em>, e assim por diante).</p>\n                                    <ul>\n                                        <li>Enquanto não tiver realizado ataques nesta rodada, você ganha <strong>+5 em testes de Defender</strong>.</li>\n                                        <li>Você ignora todo Ar (Armadura) ao <strong>Retaliar</strong>.</li>\n                                    </ul>\n                                "
     },
     {
       "id": "espadachim-guardar-a-lamina",
@@ -124,80 +124,80 @@
     {
       "id": "espadachim-pulso-forte",
       "tipo": "tier-technique",
-      "nome": "Pulso Forte",
-      "corpo": "\n                                    <h5>Pulso Forte</h5>\n                                    <p class=\"meta\">Passiva</p>\n                                    <p>Sua primeira retaliação em cada rodada recebe: <strong>+3 Atacar</strong> e <strong>+1d8 Dano Cortante</strong>.</p>\n                                "
+      "nome": "Contra-guarda",
+      "corpo": "\n                                    <h5>Contra-guarda</h5>\n                                    <p class=\"meta\">Passiva</p>\n                                    <p>Se você não realizou nenhum ataque no seu turno, sua próxima retaliação contra a <strong>Marca do Duelo</strong> causa <strong>dano crítico</strong>.</p>\n                                "
     },
     {
       "id": "espadachim-vai-e-volta",
       "tipo": "tier-technique",
-      "nome": "Vai e Volta",
-      "corpo": "\n                                    <h5>Vai e Volta</h5>\n                                    <p class=\"meta\">Ação Livre · 2 Stamina</p>\n                                    <p>Ao estar sem reação e ser atacado, pode retaliar com -2.</p>\n                                "
+      "nome": "Inimigo Mortal",
+      "corpo": "\n                                    <h5>Inimigo Mortal</h5>\n                                    <p class=\"meta\">1 Ação · 5 Stamina</p>\n                                    <p>Até o início do seu próximo turno, você pode retaliar a <strong>Marca do Duelo</strong> até <strong>2 vezes</strong> sem gastar reação.</p>\n                                "
     },
     {
       "id": "espadachim-sentenca-final",
       "tipo": "ultimate-card",
       "nome": "Sentença Final",
-      "corpo": "\n                                <h5>Sentença Final</h5>\n                                <p class=\"meta\">1 Ação · 5 Stamina · 1x/Dia</p>\n                                <p class=\"quote\">\"A morte chega para todos os pecadores\"</p>\n                                <p>Escolha 1 inimigo que já tenha te atacado. Até o fim do combate:</p>\n                                <div class=\"effect-list\">\n                                    <ul>\n                                        <li>+20 Saúde temporária e +10 Stamina temporária</li>\n                                        <li>+1 Reação por Turno e +2 Defender</li>\n                                        <li>+2d6 dano Elemental ao Retaliar (1x/rodada)</li>\n                                        <li>Ao te atacar: retalie como ação livre. Falha crítica do inimigo = retaliação crítica</li>\n                                        <li><strong>Punição de Aço (3 Ações):</strong> Em 6m, ataque cada alvo que atacou nesta rodada</li>\n                                        <li><strong>Proteção Ofensiva (Reação):</strong> Aliado atacado em 3m → retalie o atacante</li>\n                                    </ul>\n                                </div>\n                                <div class=\"ultimate-cost\">\n                                    <h6>⚠️ O Custo</h6>\n                                    <p>Sua espada foi danificada. Esse poder todo, não é seu.</p>\n                                </div>\n                            "
+      "corpo": "\n                                <h5>Sentença Final</h5>\n                                <p class=\"meta\">1 Ação · 10 Stamina · 1x/Dia</p>\n                                <p class=\"quote\">\"A morte chega para todos os pecadores\"</p>\n                                <p>Escolha 1 inimigo que esteja com a Marca do Duelo:</p>\n                                <div class=\"effect-list\">\n                                    <ul>\n                                        <li>Você e a <strong>Marca do Duelo</strong> são arrancados do campo de batalha para <em>o Plano Místico</em> até a morte de um dos dois.</li>\n                                        <li>Enquanto neste plano, suas <strong>retaliações</strong> não gastam reação.</li>\n                                    </ul>\n                                </div>\n                                <div class=\"ultimate-cost\">\n                                    <h6>⚠️ O Custo</h6>\n                                    <p>Sua espada foi danificada. Perca 2d10 de Éter. A <em>Trama</em> decidiu o seu destino.</p>\n                                </div>\n                            "
     },
     {
       "id": "espadachim-nostalgia",
       "tipo": "marca-card",
       "nome": "Nostalgia",
-      "corpo": "\n                                    <h5>Nostalgia</h5>\n                                    <p class=\"flavor\">\"Como eles ousam ter te desrespeitado?\"</p>\n                                    <p>Você é rancoroso em seu cerne, guarda mais mágoas do que deveria.</p>\n                                    <ul>\n                                        <li>Ao sofrer dano, adiciona <strong>+1 dado</strong> na primeira rolagem de dano. (ex.: 1d6 → 2d6). Perde ao atacar. Não stackável.</li>\n                                    </ul>\n                                "
+      "corpo": "\n                                    <h5>Nostalgia</h5>\n                                    <p class=\"flavor\">\"Como eles ousam ter te desrespeitado?\"</p>\n                                    <p>Você é rancoroso em seu cerne, guarda mais mágoas do que deveria.</p>\n                                    <ul>\n                                        <li>Para cada 5 criaturas que te causaram dano e que você matou, você ganha <strong>+1 permanente em Intimidar</strong>. (Máx. +5)</li>\n                                        <li>Ao sofrer dano de uma criatura enquanto não tiver uma <strong>Marca do Duelo</strong> ativa, ela recebe a Marca automaticamente. Adicionalmente, ao sofrer dano de uma criatura, pode adicionar a Marca do Duelo a ela como reação.</li>\n                                    </ul>\n                                "
     },
     {
       "id": "espadachim-vinganca",
       "tipo": "marca-card",
       "nome": "Vingança",
-      "corpo": "\n                                    <h5>Vingança</h5>\n                                    <p class=\"flavor\">\"Raiva. Prazer para você.\"</p>\n                                    <p>Você não consegue se controlar em não se vingar quando é desrespeitado.</p>\n                                    <ul>\n                                        <li>Ao ser atingido: próximo ataque contra o mesmo alvo tem <strong>+2 Atacar</strong> e <strong>ignora 2 Evasão</strong>.</li>\n                                    </ul>\n                                "
+      "corpo": "\n                                    <h5>Vingança</h5>\n                                    <p class=\"flavor\">\"Raiva. O único prazer que nunca te traiu.\"</p>\n                                    <p>Você não consegue se controlar em não se vingar quando é desrespeitado.</p>\n                                    <ul>\n                                        <li>Para cada 5 combates que você terminou com menos da metade da Saúde, você ganha <strong>+1 permanente em Fortitude</strong>. (Máx. +5)</li>\n                                        <li>Ao ser reduzido a menos de 25% da Saúde, seus ataques causam <strong>+2d6 de dano Cortante</strong> até o fim do combate.</li>\n                                    </ul>\n                                "
     },
     {
       "id": "espadachim-furia-do-verme",
       "tipo": "tier-technique",
       "nome": "Fúria do Verme",
-      "corpo": "\n                                    <h5>Fúria do Verme</h5>\n                                    <p class=\"meta\">Passiva</p>\n                                    <p>Você se torna Treinado em Atacar (se já for, Experiente, e assim por diante). Seus ataques corpo a corpo causam +1d6 de dano Cortante. No fim do seu turno, se você atacou, recebe 1d4 de dano Primordial (não reduzível).</p>\n                                "
+      "corpo": "\n                                    <h5>Fúria do Verme</h5>\n                                    <p class=\"meta\">Passiva</p>\n                                    <p>Você se torna <em>Treinado</em> em <strong>Atacar</strong> (se já for, <em>Experiente</em>, e assim por diante).</p>\n                                    <ul>\n                                        <li>Seus ataques corpo a corpo causam <strong>+1d6 de dano Cortante</strong>.</li>\n                                        <li>No fim do seu turno, se você atacou, recebe 1d4 de dano Primordial (não reduzível).</li>\n                                    </ul>\n                                "
     },
     {
       "id": "espadachim-adrenalina-sanguinea",
       "tipo": "tier-technique",
       "nome": "Adrenalina Sanguínea",
-      "corpo": "\n                                    <h5>Adrenalina Sanguínea</h5>\n                                    <p class=\"meta\">Reação · 3 Stamina</p>\n                                    <p>Quando a Marca do Duelo for morta por você: ganhe 1 Ação e recupere (Nível)d6 de Saúde.</p>\n                                "
+      "corpo": "\n                                    <h5>Adrenalina Sanguínea</h5>\n                                    <p class=\"meta\">Passiva</p>\n                                    <p>Quando a <strong>Marca do Duelo</strong> for morta por você:</p>\n                                    <ul>\n                                        <li>Ganhe <strong>1 Ação</strong>.</li>\n                                        <li>Recupere <strong>(Nível)d6 de Saúde</strong>.</li>\n                                    </ul>\n                                "
     },
     {
       "id": "espadachim-barbaro",
       "tipo": "tier-technique",
-      "nome": "Bárbaro",
-      "corpo": "\n                                    <h5>Bárbaro</h5>\n                                    <p class=\"meta\">1 Ação · 3 Stamina</p>\n                                    <p>Perde reação, mas ataques corpo a corpo causam <strong>+1d4 dano</strong> nesta rodada.</p>\n                                "
+      "nome": "Sangue por Aço",
+      "corpo": "\n                                    <h5>Sangue por Aço</h5>\n                                    <p class=\"meta\">Ação Livre</p>\n                                    <p>Você pode pagar Saúde no lugar de Stamina em qualquer técnica, na proporção <strong>2 Saúde = 1 Stamina</strong>.</p>\n                                "
     },
     {
       "id": "espadachim-masoquista",
       "tipo": "tier-technique",
-      "nome": "Masoquista",
-      "corpo": "\n                                    <h5>Masoquista</h5>\n                                    <p class=\"meta\">1 Ação · 5 Stamina</p>\n                                    <p>Com menos da metade da vida, enfureça-se: <strong>+1 dado de Dano</strong> em todos ataques, <strong>+2 Atacar</strong> contra alvos machucados.</p>\n                                "
+      "nome": "Carne Rasgada",
+      "corpo": "\n                                    <h5>Carne Rasgada</h5>\n                                    <p class=\"meta\">Passiva</p>\n                                    <p>Ao estar com menos da metade da vida, você ganha:</p>\n                                    <ul>\n                                        <li>Seus ataques contra a <strong>Marca do Duelo</strong> causam <strong>+2d6 de dano Cortante</strong>.</li>\n                                        <li>Você tem <em>resistência</em> a dano <strong>Ordinário</strong> contra a Marca do Duelo.</li>\n                                    </ul>\n                                "
     },
     {
       "id": "espadachim-massacre",
       "tipo": "tier-technique",
       "nome": "Massacre",
-      "corpo": "\n                                    <h5>Massacre</h5>\n                                    <p class=\"meta\">2 Ações · 5 Stamina</p>\n                                    <p>2 ataques corpo a corpo. Se ambos acertarem: <strong>+2d6 Cortante</strong> e <strong>Sangramento 1</strong>. Executar = recupera Stamina (Mod.Con).</p>\n                                "
+      "corpo": "\n                                    <h5>Massacre</h5>\n                                    <p class=\"meta\">1 Ação · 5 Stamina</p>\n                                    <p>Faça 2 ataques corpo a corpo contra a <strong>Marca do Duelo</strong>. Se ambos acertarem:</p>\n                                    <ul>\n                                        <li>+2d6 de dano Cortante.</li>\n                                        <li>O alvo recebe <em>Sangramento 1</em>.</li>\n                                    </ul>\n                                "
     },
     {
       "id": "espadachim-cicatrizes",
       "tipo": "ultimate-card",
       "nome": "Cicatrizes",
-      "corpo": "\n                                <h5>Cicatrizes</h5>\n                                <p class=\"meta\">1 Ação · 5 Stamina · 1x/Dia</p>\n                                <p class=\"quote\">\"A dor nunca foi sua inimiga. Mas sim, sua arma.\"</p>\n                                <p>Ativável com menos da metade da vida:</p>\n                                <div class=\"effect-list\">\n                                    <ul>\n                                        <li>+20 Saúde temporária e +10 Stamina temporária</li>\n                                        <li>Você ignora toda a Armadura (Ar) do alvo</li>\n                                        <li>Ao acertar, inflige Sangramento 1</li>\n                                        <li>Ao matar com esta habilidade: +1 dado de Dano até fim do combate (Max. +2 dados)</li>\n                                    </ul>\n                                </div>\n                                <div class=\"ultimate-cost\">\n                                    <h6>⚠️ O Custo</h6>\n                                    <p>Ao final de cada turno, recebe 1d6 de dano Primordial.</p>\n                                </div>\n                            "
+      "corpo": "\n                                <h5>Cicatrizes</h5>\n                                <p class=\"meta\">1 Ação · 10 Stamina · 1x/Dia</p>\n                                <p class=\"quote\">\"A dor nunca foi sua inimiga. Mas sim, sua arma.\"</p>\n                                <p>Você entra em um estado epifânico onde se desprende das amarras da dor por completo:</p>\n                                <div class=\"effect-list\">\n                                    <ul>\n                                        <li>Durante 3 rodadas você não pode ser reduzido abaixo de <strong>1 de Saúde</strong>.</li>\n                                    </ul>\n                                </div>\n                                <div class=\"ultimate-cost\">\n                                    <h6>⚠️ O Custo</h6>\n                                    <p>Anote todo dano que receber nesse estado. Ao fim das 3 rodadas, você o recebe como dano <strong>Primordial</strong>. A <em>Trama</em> decidiu o seu destino.</p>\n                                </div>\n                            "
     },
     {
       "id": "espadachim-coragem-liquida",
       "tipo": "marca-card",
       "nome": "Coragem Líquida",
-      "corpo": "\n                                    <h5>Coragem Líquida</h5>\n                                    <p class=\"flavor\">\"Seu corpo tropeça, sua lâmina não… Ou talvez\"</p>\n                                    <p>Você fica corajoso ao estar Bêbado e estranhamente sem vergonha.</p>\n                                    <ul>\n                                        <li>1x/rodada: se errar ataque, pode <strong>rolar novamente</strong>. Se errar de novo, fica <em>Exposto</em>.</li>\n                                    </ul>\n                                "
+      "corpo": "\n                                    <h5>Coragem Líquida</h5>\n                                    <p class=\"flavor\">\"Seu corpo tropeça, sua lâmina não… Ou talvez\"</p>\n                                    <p>Você fica corajoso ao estar Bêbado e estranhamente sem vergonha.</p>\n                                    <ul>\n                                        <li>Para cada 5 combates que você saiu vitorioso e esteve sob a condição <em>Bêbado</em>, você ganha <strong>+1 permanente em Movimento</strong>. (Máx. +5)</li>\n                                        <li>Uma vez por rodada, se você errar um ataque, pode rolar novamente como ação livre. Porém, se errar de novo, fica <em>Exposto</em>.</li>\n                                    </ul>\n                                "
     },
     {
       "id": "espadachim-blefe-do-bebado",
       "tipo": "marca-card",
       "nome": "Blefe do Bêbado",
-      "corpo": "\n                                    <h5>Blefe do Bêbado</h5>\n                                    <p class=\"flavor\">\"Você consegue extrapolar todos os limites e, às vezes, sair impune.\"</p>\n                                    <p>Você nunca admite seu vício e possui um sério problema com mentiras.</p>\n                                    <ul>\n                                        <li>Ao rolar crítico, escolha: <strong>Role +1d20</strong> (11-20: +1 dado ao crítico, <11: fica Exposto) OU <strong>Recupere 2 Stamina</strong> e mova 1,5m sem oportunidades.</li>\n                                    </ul>\n                                "
+      "corpo": "\n                                    <h5>Blefe do Bêbado</h5>\n                                    <p class=\"flavor\">\"Você consegue extrapolar todos os limites e, às vezes, sair impune com isso.\"</p>\n                                    <p>Você nunca admite seu vício em bebidas e possui um sério problema com mentiras.</p>\n                                    <ul>\n                                        <li>Para cada 5 mentiras que você fez alguém acreditar, você ganha <strong>+1 permanente em Enganação</strong>. (Máx. +5)</li>\n                                        <li>Sempre que suceder em um teste de Enganação, recupere Mod. Constituição de Stamina.</li>\n                                    </ul>\n                                "
     },
     {
       "id": "espadachim-golpe-torto",
@@ -215,25 +215,25 @@
       "id": "espadachim-sorte-do-bebado",
       "tipo": "tier-technique",
       "nome": "Sorte do Bêbado",
-      "corpo": "\n                                    <h5>Sorte do Bêbado</h5>\n                                    <p class=\"meta\">Passiva</p>\n                                    <p>Enquanto <em>Bêbado</em>: rolar <strong>19 natural = 20</strong>.</p>\n                                "
+      "corpo": "\n                                    <h5>Sorte do Bêbado</h5>\n                                    <p class=\"meta\">Passiva</p>\n                                    <p>Você se torna <em>Treinado</em> em <strong>Qualquer Perícia</strong> à sua escolha (se já for, <em>Experiente</em>, e assim por diante). Enquanto Bêbado:</p>\n                                    <ul>\n                                        <li>Margem de crítico +1 em TODAS as rolagens.</li>\n                                        <li>+2 Atacar.</li>\n                                        <li>+2 Evasão.</li>\n                                        <li>Desvantagem em testes de resistência (Reflexos, Fortitude e Vontade).</li>\n                                    </ul>\n                                "
     },
     {
       "id": "espadachim-trebado",
       "tipo": "tier-technique",
       "nome": "Trêbado",
-      "corpo": "\n                                    <h5>Trêbado</h5>\n                                    <p class=\"meta\">1 Ação · 2 Stamina</p>\n                                    <p>Enquanto bêbado, antes de atacar role 1d6:</p>\n                                    <ul>\n                                        <li><strong>1-2:</strong> -1 Atacar, mas +1 dado de Dano se acertar</li>\n                                        <li><strong>3-4:</strong> Nada acontece</li>\n                                        <li><strong>5-6:</strong> +2 Atacar, mas se errar fica Exposto</li>\n                                    </ul>\n                                "
+      "corpo": "\n                                    <h5>Trêbado</h5>\n                                    <p class=\"meta\">Ação Livre · 5 Stamina</p>\n                                    <p>Imediatamente após rolar um dado, você pode gastar <strong>5 de Stamina</strong> como ação livre para rolar novamente esse mesmo teste de perícia. <em>(3x/descanso longo)</em></p>\n                                "
     },
     {
       "id": "espadachim-destino-incerto",
       "tipo": "tier-technique",
-      "nome": "Destino Incerto",
-      "corpo": "\n                                    <h5>Destino Incerto</h5>\n                                    <p class=\"meta\">Passiva</p>\n                                    <p>Ao rolar 18, 19 ou 20: recupere 1 Stamina e próximo ataque ganha +1 dado de Dano.</p>\n                                "
+      "nome": "Dobrar a Aposta",
+      "corpo": "\n                                    <h5>Dobrar a Aposta</h5>\n                                    <p class=\"meta\">Ação Livre · 3 Stamina</p>\n                                    <p>Declare antes de atacar a <strong>Marca do Duelo</strong>:</p>\n                                    <ul>\n                                        <li>Se <strong>acertar</strong>: +4d6 de dano Cortante.</li>\n                                        <li>Se <strong>errar</strong>: receba 2d6 de dano Primordial e fique <em>Exposto</em>.</li>\n                                    </ul>\n                                "
     },
     {
       "id": "espadachim-epifania",
       "tipo": "ultimate-card",
       "nome": "Epifania",
-      "corpo": "\n                                <h5>Epifania</h5>\n                                <p class=\"meta\">1 Ação · 5 Stamina · 1x/Dia</p>\n                                <p class=\"quote\">\"O corpo cambaleia, mas o destino tropeça junto\"</p>\n                                <p>Até o fim do combate:</p>\n                                <div class=\"effect-list\">\n                                    <ul>\n                                        <li>+20 Saúde temporária e +10 Stamina temporária</li>\n                                        <li>Ao acertar: recupere Saúde = metade do dano</li>\n                                        <li>+1 dado de Dano. 18-20 = crítico</li>\n                                        <li><strong>Toda rodada role 1d6:</strong></li>\n                                        <li>1 → Dobro de dano recebido E causado</li>\n                                        <li>2 → +5 Atacar</li>\n                                        <li>3 → +5 Defender</li>\n                                        <li>4 → +3 Evasão</li>\n                                        <li>5 → Ataques aplicam Exposto</li>\n                                        <li>6 → Rerole qualquer teste como ação livre (1x/teste)</li>\n                                    </ul>\n                                </div>\n                                <div class=\"ultimate-cost\">\n                                    <h6>⚠️ O Custo</h6>\n                                    <p>Ao errar ataque, role 1d6: 1-2 fica Exposto, 3-6 nada acontece.</p>\n                                </div>\n                            "
+      "corpo": "\n                                <h5>Epifania</h5>\n                                <p class=\"meta\">1 Ação · 5 Stamina · 1x/Dia</p>\n                                <p class=\"quote\">\"O corpo cambaleia, mas o destino tropeça junto\"</p>\n                                <p>A bebida que antes te embebedava agora lhe concede vidência sobre o futuro:</p>\n                                <div class=\"effect-list\">\n                                    <ul>\n                                        <li>Role 6d20 abertamente na mesa. Durante os próximos 10 minutos, toda rolagem sua usa esses dados à sua escolha.</li>\n                                    </ul>\n                                </div>\n                                <div class=\"ultimate-cost\">\n                                    <h6>⚠️ O Custo</h6>\n                                    <p>Você bebeu todo seu álcool. Perca 2d10 de Éter. A <em>Trama</em> decidiu o seu destino.</p>\n                                </div>\n                            "
     }
   ]
 }
