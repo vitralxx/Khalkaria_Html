@@ -90,6 +90,7 @@
                             <a href="#inventario">Inventário e Peso</a>
                             <a href="#dinheiro">Dinheiro</a>
                             <a href="#bazar-sistema">O Bazar</a>
+                            <a href="#comerciantes">Comerciantes</a>
                             <a href="#crafting">Crafting</a>
                         </div>
                     </div>
@@ -157,7 +158,7 @@
                         <div class="rule-box">
                             <p><strong>Criação de Personagem:</strong></p>
                             <ol>
-                                <li>Role 4d6, retire o pior e anote o valor. Faça isso 5 vezes, e distribua os valores dentre seus atributos.</li>
+                                <li>Role 4d6, retire o pior, some e anote o valor. Faça isso 5 vezes, e distribua os valores dentre seus atributos. Você pode retirar 1 ponto de um atributo e adicionar a outro.</li>
                                 <li>Escolha sua raça, classe e origem, nesta ordem.</li>
                             </ol>
                         </div>
@@ -205,12 +206,12 @@
                                 <tr>
                                     <td><strong>Atacar</strong></td>
                                     <td>Define sua habilidade de acertar um alvo de maneira destrutiva.</td>
-                                    <td><code>1d20+Força</code></td>
+                                    <td><code>1d20+(Força ou Destreza)</code></td>
                                 </tr>
                                 <tr id="defender">
                                     <td><strong>Defender</strong></td>
                                     <td>Define sua habilidade de evasão/resistência a ataques.</td>
-                                    <td><code>1d10+(Destreza ou Constituição)</code></td>
+                                    <td><code>1d6 / 1d8 / 1d10 / 1d12 / 2d8</code> <small>(o dado escala com o treinamento — ver abaixo)</small></td>
                                 </tr>
                                 <tr>
                                     <td><strong>Movimento</strong></td>
@@ -355,24 +356,29 @@
                         <div class="rule-box">
                             <p>Você nunca receberá uma habilidade que diga "Experiente em Atacar", por exemplo. Mas ao possuir duas habilidades que te fornecem "Treinado em Atacar" você se torna experiente nesta.</p>
                         </div>
+
+                        <h4 style="margin-top:1.5rem;">Defender <small style="color: var(--text-muted);">— regra especial</small></h4>
+                        <p>A perícia <strong>Defender</strong> possui uma regra que nenhuma outra tem: seus treinamentos aumentam o <em>tipo de dado</em> da rolagem em vez de adicionarem modificadores. Em <em>Leigo</em> ela usa 1d6, e os treinamentos posteriores elevam o dado progressivamente.</p>
+                        <div style="overflow-x: auto;">
+                        <table class="sistema-table">
+                            <thead>
+                                <tr><th>Leigo</th><th>Treinado</th><th>Experiente</th><th>Mestre</th><th>Lendário</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>1d6</td><td>1d8</td><td>1d10</td><td>1d12</td><td>2d8</td></tr>
+                            </tbody>
+                        </table>
+                        </div>
                     </div>
                 </div>
-                
+
                 <!-- CRÍTICOS E FALHAS -->
                 <div class="subsection" id="criticos">
                     <h3>Críticos e Falhas</h3>
                     <div class="content-card">
-                        <p><strong style="color: var(--gold);">Crítico:</strong> Se tirar 20 no dado ou, ao rolar, ultrapassar o CD (<em>Classe de Dificuldade</em>) por 10 ou mais, você críta.</p>
-                        
-                        <p><strong style="color: var(--accent-red);">Falha Crítica:</strong> Se tirar 1 no dado ou, ao rolar, você ficar abaixo do CD por 10 ou mais, você falha criticamente.</p>
-                        
-                        <div class="warning-box">
-                            <p>Falhas Críticas em qualquer perícia reduzem -1 de <a href="#status" class="keyword-link">Stamina</a>.</p>
-                        </div>
-                        
-                        <div class="rule-box">
-                            <p>Isso representa o cansaço após se esforçar para suceder em uma tarefa difícil. Você sempre pode escolher falhar em qualquer teste exigido, preservando sua Stamina.</p>
-                        </div>
+                        <p><strong style="color: var(--gold);">Crítico:</strong> Se tirar 20 no dado você críta.</p>
+
+                        <p><strong style="color: var(--accent-red);">Falha Crítica:</strong> Se tirar 1 no dado você falha criticamente.</p>
                     </div>
                 </div>
             </section>
@@ -606,15 +612,15 @@
                                     <td>1d6</td>
                                     <td>Des</td>
                                     <td>Cortante</td>
-                                    <td>+1 de dano para cada ataque sucessivo na mesma rodada contra o mesmo alvo.</td>
+                                    <td>Dilacerar</td>
                                     <td>Atacar(1), Arremessar(1)</td>
                                 </tr>
                                 <tr>
                                     <td>Leve Perfurante</td>
-                                    <td>1d4</td>
+                                    <td>1d6</td>
                                     <td>Des</td>
                                     <td>Perfurante</td>
-                                    <td>Ignora 1 de <em>Evasão</em>.</td>
+                                    <td>Alcançar</td>
                                     <td>Atacar(1), Arremessar(1)</td>
                                 </tr>
                                 <tr>
@@ -622,15 +628,15 @@
                                     <td>1d6</td>
                                     <td>Des</td>
                                     <td>Contundente</td>
-                                    <td>-1 <em>Atacar</em> ao alvo se acertá-lo duas vezes na mesma rodada.</td>
+                                    <td>Desorientar</td>
                                     <td>Atacar(1)</td>
                                 </tr>
                                 <tr>
                                     <td>Leve Ágil</td>
-                                    <td>1d4</td>
+                                    <td>1d8</td>
                                     <td>Des</td>
                                     <td>Contextual</td>
-                                    <td>+1 Atacar se você tiver se movido neste turno.</td>
+                                    <td>Executar <small>(Des ≥ 14)</small></td>
                                     <td>Atacar(1)</td>
                                 </tr>
                             </tbody>
@@ -654,37 +660,37 @@
                             <tbody>
                                 <tr>
                                     <td>Pesada Cortante</td>
-                                    <td>1d12</td>
+                                    <td>2d10</td>
                                     <td>For</td>
                                     <td>Cortante</td>
-                                    <td>Aplica <a href="condicoes.html#sangramento" class="keyword-link">Sangramento 1</a> no Crítico</td>
+                                    <td>Dilacerar</td>
                                     <td>Atacar(2)</td>
                                     <td>—</td>
                                 </tr>
                                 <tr>
                                     <td>Pesada Perfurante</td>
-                                    <td>1d8</td>
+                                    <td>2d10</td>
                                     <td>For</td>
                                     <td>Perfurante</td>
-                                    <td>Ignora 2 de <em>Evasão</em>.</td>
+                                    <td>Alcançar</td>
                                     <td>Atacar(2)</td>
                                     <td>—</td>
                                 </tr>
                                 <tr>
                                     <td>Pesada Contundente</td>
-                                    <td>1d10</td>
+                                    <td>2d10</td>
                                     <td>For</td>
                                     <td>Contundente</td>
-                                    <td>Aplica <a href="condicoes.html#desorientado" class="keyword-link">Desorientado</a> no Crítico.</td>
+                                    <td>Desorientar</td>
                                     <td>Atacar(2)</td>
                                     <td>—</td>
                                 </tr>
                                 <tr>
                                     <td>Pesada Brutal</td>
-                                    <td>2d6</td>
+                                    <td>3d10</td>
                                     <td>For</td>
                                     <td>Contextual</td>
-                                    <td>Ao rolar 2 dados iguais → +1d6.</td>
+                                    <td>Executar</td>
                                     <td>Atacar(3)</td>
                                     <td>Força ≥ 14</td>
                                 </tr>
@@ -710,32 +716,32 @@
                                     <td>Marcial Versátil</td>
                                     <td>1d8</td>
                                     <td>Des</td>
-                                    <td>Contundente</td>
-                                    <td>—</td>
+                                    <td>Contextual</td>
+                                    <td>Dilacerar</td>
                                     <td>Atacar(1)</td>
                                 </tr>
                                 <tr>
                                     <td>Marcial Precisa</td>
-                                    <td>1d8</td>
+                                    <td>2d12</td>
                                     <td>Des</td>
                                     <td>Cortante</td>
-                                    <td>Critico de 9 (Ao em vez de 10).</td>
+                                    <td>Executar</td>
                                     <td>Atacar(2)</td>
                                 </tr>
                                 <tr>
                                     <td>Marcial Pesada</td>
-                                    <td>1d10</td>
+                                    <td>2d12</td>
                                     <td>For</td>
                                     <td>Contundente</td>
-                                    <td>Ao acertar, pode empurrar o alvo 1,5 m.</td>
+                                    <td>Desorientar</td>
                                     <td>Atacar(2)</td>
                                 </tr>
                                 <tr>
                                     <td>Marcial Longa</td>
-                                    <td>1d6</td>
+                                    <td>1d8</td>
                                     <td>For</td>
                                     <td>Perfurante</td>
-                                    <td>Alcance +1,5 m.</td>
+                                    <td>Alcançar</td>
                                     <td>Atacar(1)</td>
                                 </tr>
                             </tbody>
@@ -759,29 +765,29 @@
                             <tbody>
                                 <tr>
                                     <td>Distância Simples</td>
-                                    <td>1d6</td>
+                                    <td>1d8</td>
                                     <td>Des</td>
                                     <td>Perfurante</td>
-                                    <td>+1 Atacar se não tiver se movido nesta rodada. 18 m distância</td>
+                                    <td>Dilacerar <small>· 18 m</small></td>
                                     <td>Atacar(1)</td>
                                     <td>—</td>
                                 </tr>
                                 <tr>
                                     <td>Distância Pesada</td>
-                                    <td>1d10</td>
+                                    <td>2d10</td>
                                     <td>Des</td>
                                     <td>Perfurante</td>
-                                    <td>Crítico de 8 (ao em vez de 10), 18 m Distância</td>
+                                    <td>Executar <small>· 18 m</small></td>
                                     <td>Atacar(2)</td>
                                     <td>—</td>
                                 </tr>
                                 <tr>
                                     <td>Arremesso</td>
-                                    <td>1d4</td>
+                                    <td>1d8</td>
                                     <td>Des</td>
-                                    <td>Perfurante</td>
-                                    <td>Se estiver a &lt;3 m do alvo, +1d4 Dano, 9 m Distância</td>
-                                    <td>Arremessar(1)</td>
+                                    <td>Contextual</td>
+                                    <td>Dilacerar <small>· 9 m</small></td>
+                                    <td>Atacar(1)</td>
                                     <td>Destreza ≥ 14</td>
                                 </tr>
                             </tbody>
@@ -827,9 +833,24 @@
                             </tbody>
                         </table>
                         </div>
+                        <h4 style="margin-top:1.5rem;">Efeitos</h4>
+                        <p>Toda arma possui um efeito, ativável ao gastar Stamina:</p>
+                        <div style="overflow-x: auto;">
+                        <table class="sistema-table">
+                            <thead>
+                                <tr><th>Efeito</th><th>Descrição</th><th>Custo Stamina</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td><strong>Dilacerar</strong></td><td>Seu próximo ataque aplica <a href="condicoes.html#sangramento" class="keyword-link">Sangramento 1</a> no acerto.</td><td>2</td></tr>
+                                <tr><td><strong>Alcançar</strong></td><td>Seu próximo ataque tem +1,5 m de Alcance e não pode ser retaliado.</td><td>2</td></tr>
+                                <tr><td><strong>Desorientar</strong></td><td>Seu próximo ataque aplica <a href="condicoes.html#desorientado" class="keyword-link">Desorientado</a> no acerto.</td><td>2</td></tr>
+                                <tr><td><strong>Executar</strong></td><td>Seu próximo ataque tem +1 dado de dano.</td><td>3</td></tr>
+                            </tbody>
+                        </table>
+                        </div>
                     </div>
                 </div>
-                
+
                 <!-- NÍVEL DE ARMAS -->
                 <div class="subsection" id="nivel-armas">
                     <h3>Nível de Armas</h3>
@@ -860,9 +881,24 @@
                                 </tr>
                             </tbody>
                         </table>
+                        <h4 style="margin-top:1.5rem;">Focos <small style="color: var(--text-muted);">— aprimoramento do Foco de escola</small></h4>
+                        <table class="sistema-table">
+                            <thead>
+                                <tr>
+                                    <th>Nível</th>
+                                    <th>Bônus Místico</th>
+                                    <th>Éter Máximo</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td><strong>+1</strong></td><td>+1 Místico</td><td>+5 Éter máximo</td></tr>
+                                <tr><td><strong>+2</strong></td><td>+2 Místico</td><td>+10 Éter máximo</td></tr>
+                                <tr><td><strong>+3</strong></td><td>+3 Místico</td><td>+15 Éter máximo</td></tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
-                
+
                 <!-- MUNIÇÃO -->
                 <div class="subsection" id="municao">
                     <h3>Munição de Armas</h3>
@@ -946,32 +982,27 @@
                             <tbody>
                                 <tr>
                                     <td><strong>Lixo</strong></td>
-                                    <td>1d8+1</td>
+                                    <td>1d8+2</td>
                                     <td>O item basicamente não tem utilidade e dificilmente pode ser vendido.</td>
                                 </tr>
                                 <tr>
                                     <td><strong>Ordinário</strong></td>
-                                    <td>2d10</td>
+                                    <td>2d10+10</td>
                                     <td>O item é comumente vendido por mercantes locais, porém não é considerado valioso.</td>
                                 </tr>
                                 <tr>
                                     <td><strong>Incomum</strong></td>
-                                    <td>5d6+15</td>
+                                    <td>4d10+45</td>
                                     <td>O item é vendido raramente por mercantes, e possui um uso útil ou visual interessante.</td>
                                 </tr>
                                 <tr>
                                     <td><strong>Exótico</strong></td>
-                                    <td>6d10+40</td>
+                                    <td>5d12+180</td>
                                     <td>O item é uma raridade, podendo ser um artefato histórico ou fabricado por um artesão extremamente habilidoso.</td>
                                 </tr>
                                 <tr>
-                                    <td><strong>Luxaria</strong></td>
-                                    <td>6d12+80</td>
-                                    <td>O item é único no mundo e possui usos transcendentais, muitas vezes criado por um deus ou utilizado por uma lenda viva.</td>
-                                </tr>
-                                <tr>
                                     <td><strong>Luxária</strong></td>
-                                    <td>6d12+80</td>
+                                    <td>6d20+620</td>
                                     <td>O item é único no mundo e possui usos transcendentais, muitas vezes criado por um deus ou utilizado por uma lenda viva.</td>
                                 </tr>
                             </tbody>
@@ -1005,13 +1036,39 @@
                                 <tr><th>Raridades</th><th>Sins</th><th>Cd de Fabricação</th><th>Nvl. Necessário para Fabricação</th></tr>
                             </thead>
                             <tbody>
-                                <tr><td><strong>Lixo</strong></td><td>1d8+1</td><td>—</td><td>—</td></tr>
-                                <tr><td><strong>Ordinário</strong></td><td>2d10</td><td>10</td><td>1</td></tr>
-                                <tr><td><strong>Incomum</strong></td><td>5d6+15</td><td>13</td><td>2</td></tr>
-                                <tr><td><strong>Exótico</strong></td><td>6d10+40</td><td>16</td><td>3</td></tr>
-                                <tr><td><strong>Luxária</strong></td><td>6d12+80</td><td>20</td><td>4</td></tr>
+                                <tr><td><strong>Lixo</strong></td><td>1d8+2</td><td>—</td><td>—</td></tr>
+                                <tr><td><strong>Ordinário</strong></td><td>2d10+10</td><td>10</td><td>1</td></tr>
+                                <tr><td><strong>Incomum</strong></td><td>4d10+45</td><td>13</td><td>2</td></tr>
+                                <tr><td><strong>Exótico</strong></td><td>5d12+180</td><td>16</td><td>3</td></tr>
+                                <tr><td><strong>Luxária</strong></td><td>6d20+620</td><td>20</td><td>4</td></tr>
                             </tbody>
                         </table>
+                    </div>
+                </div>
+
+                <!-- COMERCIANTES -->
+                <div class="subsection" id="comerciantes">
+                    <h3>Comerciantes</h3>
+                    <div class="content-card">
+                        <p>Cada comerciante possui um nível que define seu estoque de Sins, a frequência de reposição, a porcentagem paga ao comprar seus itens e o custo para evoluir de nível.</p>
+                        <div style="overflow-x: auto;">
+                        <table class="sistema-table">
+                            <thead>
+                                <tr>
+                                    <th>Nível do Comerciante</th>
+                                    <th>Sins no Estoque</th>
+                                    <th>Reposição</th>
+                                    <th>Porcentagem de Venda</th>
+                                    <th>Custo para subir de Nível</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td><strong>1</strong></td><td>100</td><td>Diária</td><td>50%</td><td>250 Sins</td></tr>
+                                <tr><td><strong>2</strong></td><td>250</td><td>2 Dias</td><td>66%</td><td>500 Sins</td></tr>
+                                <tr><td><strong>3</strong></td><td>500</td><td>3 Dias</td><td>75%</td><td>—</td></tr>
+                            </tbody>
+                        </table>
+                        </div>
                     </div>
                 </div>
 
@@ -1238,6 +1295,18 @@
                         <p>Sua fé caminha junto da sua sanidade.</p>
                         <p>Ao se deparar com cenas: <strong>Tristes</strong>, <strong>Aterrorizantes</strong> ou <strong>Sobrenaturais</strong>, pode ser exigido um teste de <em>Vontade</em>, em caso de falha, reduzindo seu <a href="#status" class="keyword-link">Éter</a> proporcionalmente à intensidade da cena.</p>
                         <p>Lançar magias também reduz seu éter.</p>
+                        <p>Observar um aliado morrer, instantaneamente, exige um teste de <em>Vontade</em> (CD 20) ou perde <strong>2d6+3</strong> de Éter.</p>
+                    </div>
+                </div>
+
+                <!-- ESTRESSE -->
+                <div class="subsection" id="estresse">
+                    <h3>Estresse</h3>
+                    <div class="content-card">
+                        <p>Nem todo grupo é perfeito. Na verdade, a maioria não é. Combate entre jogadores pode acontecer e acarreta em estresse desnecessário para o grupo.</p>
+                        <p>Atacar um aliado de maneira direta, mesmo que não acerte, faz com que os dois agentes — tanto o agressor quanto o alvo — ganhem <strong>+1 de estresse</strong>.</p>
+                        <p>Descansar libera estresse: descansos curtos liberam 1 de estresse; descansos longos liberam todo o seu estresse de uma única vez.</p>
+                        <p>Cada ponto de estresse, ao ser removido, te faz perder <strong>1d6 de Stamina e Éter</strong>.</p>
                     </div>
                 </div>
 <!-- KHAN SINS -->
@@ -1499,13 +1568,14 @@
                 <div class="subsection" id="progressao-jogador">
                     <h3>Progressão do Jogador</h3>
                     <div class="content-card">
-                        <p>Os jogadores ganham benefícios principalmente de 4 eixos:</p>
+                        <p>Os jogadores ganham benefícios principalmente de 5 eixos:</p>
                         
                         <ol>
                             <li><strong>Classe</strong></li>
                             <li><strong>Raça</strong></li>
                             <li><strong>Origem</strong></li>
                             <li><strong><a href="limiar.html" class="keyword-link">O Limiar</a></strong></li>
+                            <li><strong><a href="bazar.html" class="keyword-link">O Bazar</a></strong></li>
                         </ol>
                         
                         <p>A tabela a seguir mostra exatamente os benefícios que o jogador ganha em cada nível:</p>
@@ -1520,23 +1590,23 @@
                             <tbody>
                                 <tr>
                                     <td><strong>1</strong></td>
-                                    <td>3 Técnicas de Classe, Características de Raça e 1 Habilidade de Origem</td>
+                                    <td>4 Técnicas de Classe, Características de Raça e 1 Habilidade de Origem</td>
                                 </tr>
                                 <tr>
                                     <td><strong>2</strong></td>
-                                    <td>4 Técnicas de Classe, Técnicas Tier 1 de Classe, +3 Pontos do Limiar</td>
+                                    <td>5 Técnicas de Classe, Técnicas Tier 1 de Classe, +4 Pontos do Limiar</td>
                                 </tr>
                                 <tr>
                                     <td><strong>3</strong></td>
-                                    <td>5 Técnicas de Classe, 1 Marca de Classe, +3 Pontos do Limiar</td>
+                                    <td>6 Técnicas de Classe, 1 Marca de Classe, +4 Pontos do Limiar</td>
                                 </tr>
                                 <tr>
                                     <td><strong>4</strong></td>
-                                    <td>6 Técnicas de Classe, Técnicas Tier 2 de Classe, 2 Marcas de Classe, +3 Pontos do Limiar</td>
+                                    <td>7 Técnicas de Classe, Técnicas Tier 2 de Classe, 2 Marcas de Classe, +4 Pontos do Limiar</td>
                                 </tr>
                                 <tr>
                                     <td><strong>5</strong></td>
-                                    <td>7 Técnicas de Classe, Técnicas Tier 3 de Classe, 3 Marcas de Classe, +3 Pontos do Limiar</td>
+                                    <td>8 Técnicas de Classe, Técnicas Tier 3 de Classe, 3 Marcas de Classe, +4 Pontos do Limiar</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -1795,7 +1865,7 @@
                                 </tr>
                                 <tr>
                                     <td><strong>Marcar</strong></td>
-                                    <td>+3 Éter</td>
+                                    <td>+5 Éter</td>
                                     <td>O alvo fica <a href="condicoes.html#exposto" class="keyword-link">Exposto</a> ao acertar.</td>
                                 </tr>
                             </tbody>

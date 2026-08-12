@@ -23,7 +23,7 @@
             "effect"
           ],
           "icon": "🌍",
-          "effect": "+4,5m de movimento permanente"
+          "effect": "+3m de movimento permanente. Adicionalmente, Acelerar ganha +1,5 m."
         },
         {
           "id": "limiar-treinamento-focado",
@@ -128,7 +128,7 @@
             "effect"
           ],
           "icon": "💪",
-          "req": "FOR 14+",
+          "req": "FOR 16+",
           "effect": "Seus ataques corpo a corpo causam +5 de dano permanente"
         },
         {
@@ -141,7 +141,7 @@
             "effect"
           ],
           "icon": "💪",
-          "req": "FOR 14+",
+          "req": "FOR 16+",
           "effect": "Seus ataques corpo a corpo críticos reduzem 1 de Armadura do inimigo"
         },
         {
@@ -154,7 +154,7 @@
             "effect"
           ],
           "icon": "💪",
-          "req": "FOR 14+",
+          "req": "FOR 16+",
           "effect": "Ao acertar crítico corpo a corpo, cause +2d6 de dano adicional"
         },
         {
@@ -167,7 +167,7 @@
             "effect"
           ],
           "icon": "💪",
-          "req": "FOR 14+",
+          "req": "FOR 16+",
           "effect": "Seus ataques desarmados causam 1d12 + FOR de dano (ao invés de 1d4)"
         },
         {
@@ -180,7 +180,7 @@
             "effect"
           ],
           "icon": "💪",
-          "req": "FOR 14+",
+          "req": "FOR 16+",
           "effect": "Aumente +1 ponto de força. Adicionalmente, Você ignora sobrepeso leve"
         },
         {
@@ -193,7 +193,7 @@
             "effect"
           ],
           "icon": "💪",
-          "req": "FOR 14+",
+          "req": "FOR 16+",
           "effect": "Ao reduzir criatura a 0 Saúde corpo a corpo, seu próximo ataque neste turno causa +2d6 de dano"
         },
         {
@@ -206,7 +206,7 @@
             "effect"
           ],
           "icon": "💪",
-          "req": "FOR 14+",
+          "req": "FOR 16+",
           "effect": "Você pode arremessar armas corpo a corpo até 18m causando dano normal + 1d8"
         },
         {
@@ -219,7 +219,7 @@
             "effect"
           ],
           "icon": "💪",
-          "req": "FOR 14+",
+          "req": "FOR 16+",
           "effect": "+5 em manobras de Agarrar. Criaturas agarradas recebem 2d6 de dano por turno e pode agarrar criaturas de um tamanho acima que o seu."
         },
         {
@@ -232,7 +232,7 @@
             "effect"
           ],
           "icon": "💪",
-          "req": "FOR 14+",
+          "req": "FOR 16+",
           "effect": "Ao empurrar com sucesso, empurre +4,5m adicionais e cause 3d6 de dano caso o alvo colida com qualquer obstáculo"
         },
         {
@@ -245,7 +245,7 @@
             "effect"
           ],
           "icon": "💪",
-          "req": "FOR 14+",
+          "req": "FOR 16+",
           "effect": "Enquanto abaixo de 50% Saúde, +3 em Atacar e Defender corpo a corpo"
         },
         {
@@ -258,7 +258,7 @@
             "effect"
           ],
           "icon": "💪",
-          "req": "FOR 14+",
+          "req": "FOR 16+",
           "effect": "Aumente 2 níveis de treinamento em Intimidação. Criaturas Médias ou menores têm -3 em Vontade contra sua intimidação"
         },
         {
@@ -271,7 +271,7 @@
             "effect"
           ],
           "icon": "💪",
-          "req": "FOR 14+",
+          "req": "FOR 16+",
           "effect": "Ao acertar crítico em criaturas de nível igual ou menor que o seu, destrua 1 item que estejam segurando ou vestindo (escudo, arma, armadura)"
         }
       ]
@@ -289,7 +289,7 @@
             "effect"
           ],
           "icon": "🎯",
-          "req": "DES 14+",
+          "req": "DES 16+",
           "effect": "Você acerta críticos em 19-20 no d20 (ao invés de apenas 20). Se já possui margem de ameaça aumentada, aumente em +1."
         },
         {
@@ -302,8 +302,8 @@
             "effect"
           ],
           "icon": "🎯",
-          "req": "DES 14+",
-          "effect": "Você entende a dança da batalha. +2 Evasão permanente"
+          "req": "DES 16+",
+          "effect": "Você entende a dança da batalha. +1 Evasão permanente, +1 nível de treinamento em Defender"
         },
         {
           "id": "limiar-reflexos-de-serpente",
@@ -315,7 +315,7 @@
             "effect"
           ],
           "icon": "🎯",
-          "req": "DES 14+",
+          "req": "DES 16+",
           "effect": "1x/combate: Force um ataque que te acertaria a causar metade do dano (pode ser declarado após a rolagem)"
         },
         {
@@ -328,8 +328,8 @@
             "effect"
           ],
           "icon": "🎯",
-          "req": "DES 14+",
-          "effect": "Seu movimento aumenta em +4,5m. Você não provoca ataques de oportunidade. Adicionalmente, saltar custa 1 ação"
+          "req": "DES 16+",
+          "effect": "Seu movimento aumenta em +3 m. Você não provoca ataques de oportunidade. Adicionalmente, saltar custa 1 ação"
         },
         {
           "id": "limiar-paciencia",
@@ -341,7 +341,7 @@
             "effect"
           ],
           "icon": "🎯",
-          "req": "DES 14+",
+          "req": "DES 16+",
           "effect": "Os primeiros golpes são apenas para distrair. Após realizar um ataque, adicione +2 ao seu Atacar pelo resto dessa rodada (acumulativo, máx. +6)"
         },
         {
@@ -354,7 +354,7 @@
             "effect"
           ],
           "icon": "🎯",
-          "req": "DES 14+",
+          "req": "DES 16+",
           "effect": "+2 em Atacar com armas à distância. Críticos de armas à distância, removem 1 de armadura do alvo até o fim do combate. Adicionalmente, Ignore desvantagem por cobertura parcial ou leve."
         },
         {
@@ -367,7 +367,7 @@
             "effect"
           ],
           "icon": "🎯",
-          "req": "DES 14+",
+          "req": "DES 16+",
           "effect": "Aumente 2 níveis de treinamento em Crime. Você pode furtar objetos de alvos em combate como ação livre, desde que não estejam os utilizando. Adicionalmente, ao estar em combate, você sempre tem vantagem em Crime."
         },
         {
@@ -380,7 +380,7 @@
             "effect"
           ],
           "icon": "🎯",
-          "req": "DES 14+",
+          "req": "DES 16+",
           "effect": "Aumente 2 níveis de treinamento em Enganação. Você não sofre dano de queda de altura inferior a 100 metros e Sempre cai de pé nessas circunstâncias."
         },
         {
@@ -393,7 +393,7 @@
             "effect"
           ],
           "icon": "🎯",
-          "req": "DES 14+",
+          "req": "DES 16+",
           "effect": "Aumente 2 níveis de treinamento em Reflexos. +3 em testes para escapar de Agarrões, amarras ou restrições físicas não místicas. Adicionalmente, você pode usar sua reação para somar sua pericia Defender em qualquer teste de Reflexos."
         },
         {
@@ -406,7 +406,7 @@
             "effect"
           ],
           "icon": "🎯",
-          "req": "DES 14+",
+          "req": "DES 16+",
           "effect": "Aumente 2 níveis de treinamento em Furtividade. Você pode se esconder mesmo sendo observado se houver sombras ou cobertura leve. Adicionalmente, você gasta -1 ação para se esconder (min. 1)"
         },
         {
@@ -419,7 +419,7 @@
             "effect"
           ],
           "icon": "🎯",
-          "req": "DES 14+",
+          "req": "DES 16+",
           "effect": "Ao acertar dois ataques a distância na mesma criatura, você pode realizar outro como ação livre na mesma criatura."
         },
         {
@@ -432,8 +432,8 @@
             "effect"
           ],
           "icon": "🎯",
-          "req": "DES 14+",
-          "effect": "Seu dado da perícia Defender se torna um 3d6 (Ao invés de d12). Adicionalmente, você pode gastar 15 de Stamina como ação livre para recuperar sua reação. 1x/combate"
+          "req": "DES 16+",
+          "effect": "+1 nível de treinamento em Defender. Você pode gastar 10 de Stamina como ação livre para recuperar sua reação. 1x/curto"
         }
       ]
     },
@@ -450,7 +450,7 @@
             "effect"
           ],
           "icon": "🛡️",
-          "req": "CON 14+",
+          "req": "CON 16+",
           "effect": "Reduza todo dano recebido em 5 (mínimo 1)"
         },
         {
@@ -463,7 +463,7 @@
             "effect"
           ],
           "icon": "🛡️",
-          "req": "CON 14+",
+          "req": "CON 16+",
           "effect": "1x/campanha: Ao ser reduzido a 0 Saúde, volte com 50% da Saúde máxima automaticamente"
         },
         {
@@ -476,7 +476,7 @@
             "effect"
           ],
           "icon": "🛡️",
-          "req": "CON 14+",
+          "req": "CON 16+",
           "effect": "Recupere 3 Saúde por rodada durante combate (no início do seu turno)"
         },
         {
@@ -489,7 +489,7 @@
             "effect"
           ],
           "icon": "🛡️",
-          "req": "CON 14+",
+          "req": "CON 16+",
           "effect": "+3d12+8 Saúde máxima permanente"
         },
         {
@@ -502,7 +502,7 @@
             "effect"
           ],
           "icon": "🛡️",
-          "req": "CON 14+",
+          "req": "CON 16+",
           "effect": "Aumente 2 níveis de treinamento em Fortitude. Você pode reagir a ataques eminentes com uma nova reação, Aceitar a Dor: role um teste de Fortitude, caso o dano seja inferior ao seu teste, ignore o dano."
         },
         {
@@ -515,7 +515,7 @@
             "effect"
           ],
           "icon": "🛡️",
-          "req": "CON 14+",
+          "req": "CON 16+",
           "effect": "Escolha 1 tipo de dano atípico (Fogo, Gelo, Ácido, Elétrico, Trovejante, Veneno, Necrótico, Psíquico, Radiante). Você tem Resistência a ele. Adicionalmente, ganhe 2 de armadura específica em todos os outros tipos de dano."
         },
         {
@@ -528,7 +528,7 @@
             "effect"
           ],
           "icon": "🛡️",
-          "req": "CON 14+",
+          "req": "CON 16+",
           "effect": "Descansos curtos curam 2x mais Saúde. Descansos longos sempre curam completamente. Adicionalmente, recebe +1d4 de cura de todas outras fontes, a não ser descansos."
         },
         {
@@ -541,7 +541,7 @@
             "effect"
           ],
           "icon": "🛡️",
-          "req": "CON 14+",
+          "req": "CON 16+",
           "effect": "1x/dia: Recupere metade de sua Stamina como ação livre, mas sacrifique saúde atual equivalente a metade da sua saúde máxima."
         },
         {
@@ -554,7 +554,7 @@
             "effect"
           ],
           "icon": "🛡️",
-          "req": "CON 14+",
+          "req": "CON 16+",
           "effect": "Ao estar em 0 Saúde, você perde apenas 5% da Saúde máxima por rodada (ao invés de 10%). Adicionalmente, testes de medicina para lhe salvar da mortes tem cd 10. (Ao invés de 20)"
         },
         {
@@ -567,8 +567,8 @@
             "effect"
           ],
           "icon": "🛡️",
-          "req": "CON 14+",
-          "effect": "Aumente +2 pontos de atributo em Força e Constituição, porém, reduza -2 pontos de atributo em Inteligência e Sabedoria"
+          "req": "CON 16+",
+          "effect": "Aumente +1 ponto de atributo em Força e Constituição, porém, reduza -1 ponto de atributo em Inteligência e Sabedoria"
         },
         {
           "id": "limiar-escamas-reativas",
@@ -580,7 +580,7 @@
             "effect"
           ],
           "icon": "🛡️",
-          "req": "CON 14+",
+          "req": "CON 16+",
           "effect": "Você ganha escamas reativas que se adaptam rapidamente ao serem atacadas. Provendo 10 de Ae ao último tipo de dano atípico que você recebeu APÓS o ataque."
         },
         {
@@ -593,7 +593,7 @@
             "effect"
           ],
           "icon": "🛡️",
-          "req": "CON 14+",
+          "req": "CON 16+",
           "effect": "Qualquer ataque contra você causa 1 de dano de força instantaneamente ao atacante. Adicionalmente, ganhe +1 de comodidade em todos os descansos longos permanentemente."
         }
       ]
@@ -611,7 +611,7 @@
             "effect"
           ],
           "icon": "📚",
-          "req": "INT 14+",
+          "req": "INT 16+",
           "effect": "Ao rolar qualquer perícia, você pode pagar 5 de Stamina para aumentar 1 nível de treinamento nela. (Acumulativo)"
         },
         {
@@ -624,7 +624,7 @@
             "effect"
           ],
           "icon": "📚",
-          "req": "INT 14+",
+          "req": "INT 16+",
           "effect": "1x/combate (1 ação): Descubra Evasão exata, Saúde atual, resistências, vulnerabilidades e 1 habilidade especial de 1 criatura visível"
         },
         {
@@ -637,7 +637,7 @@
             "effect"
           ],
           "icon": "📚",
-          "req": "INT 14+",
+          "req": "INT 16+",
           "effect": "Aumente 2 níveis de treinamento em Conhecimento. Adicionalmente, Você pode fazer testes de Conhecimento sobre qualquer tópico"
         },
         {
@@ -650,7 +650,7 @@
             "effect"
           ],
           "icon": "📚",
-          "req": "INT 14+",
+          "req": "INT 16+",
           "effect": "Aumente 2 níveis de treinamento em Motivar. Adicionalmente, 1x/rodada (1 ação): Um aliado em 9m ataca imediatamente como reação com +2 em Atacar."
         },
         {
@@ -663,7 +663,7 @@
             "effect"
           ],
           "icon": "📚",
-          "req": "INT 14+",
+          "req": "INT 16+",
           "effect": "Ao ver magia sendo castada, role Conhecimento CD 15. Sucesso: você sabe exatamente o que faz E pode gastar sua reação para dar +5 em Resistência ao alvo dela. Adicionalmente, aumente sua CD de classe em +2"
         },
         {
@@ -676,7 +676,7 @@
             "effect"
           ],
           "icon": "📚",
-          "req": "INT 14+",
+          "req": "INT 16+",
           "effect": "Aumente 2 níveis de treinamento em Investigação. Você pode ler QUALQUER idioma escrito após 1 minuto de estudo"
         },
         {
@@ -689,7 +689,7 @@
             "effect"
           ],
           "icon": "📚",
-          "req": "INT 14+",
+          "req": "INT 16+",
           "effect": "Você lembra perfeitamente de tudo. Aumente +1 ponto de atributo em inteligência. Você nunca esquece rostos, nomes ou informações, podendo perguntar ao mestre qualquer coisa que vivenciou a partir de agora."
         },
         {
@@ -702,8 +702,8 @@
             "effect"
           ],
           "icon": "📚",
-          "req": "INT 14+",
-          "effect": "Você recebe +15% de Sins de todas as fontes. Adicionalmente, ao rolar d100's quando saquear uma criatura morta POR VOCÊ, sempre some +10 ao dado"
+          "req": "INT 16+",
+          "effect": "Você recebe +10% de Sins de todas as fontes. Adicionalmente, ao rolar d100's quando saquear uma criatura morta POR VOCÊ, sempre some +10 ao dado"
         },
         {
           "id": "limiar-bestiario",
@@ -715,7 +715,7 @@
             "effect"
           ],
           "icon": "📚",
-          "req": "INT 14+",
+          "req": "INT 16+",
           "effect": "Ao combater uma criatura já conhecida, os ataques contra ela ignoram 3 de Armadura, causam +1d6 de dano e possuem +2 Atacar a todos os aliados em até 18 m de você."
         },
         {
@@ -728,7 +728,7 @@
             "effect"
           ],
           "icon": "📚",
-          "req": "INT 14+",
+          "req": "INT 16+",
           "effect": "Ao estar com 100% de éter, você ganha +1 nível de treinamento em todas as perícias. Adicionalmente, ao estar com 100% de éter, stamina e saúde você tem vantagem em todas as perícias."
         },
         {
@@ -741,7 +741,7 @@
             "effect"
           ],
           "icon": "📚",
-          "req": "INT 14+",
+          "req": "INT 16+",
           "effect": "Adicione +2 ao seu CD de classe. Adicionalmente, escolha uma perícia, aumente 1 nível de treinamento nela."
         },
         {
@@ -754,8 +754,8 @@
             "effect"
           ],
           "icon": "📚",
-          "req": "INT 14+",
-          "effect": "Você acumula dano a cada combate em que você não perde saúde. +1 de dano de Força por combate sem perder saúde. Ao perder qualquer saúde, você perde 10 pontos de dano acumulados nessa carta instantaneamente."
+          "req": "INT 16+",
+          "effect": "Você acumula dano a cada combate em que você não perde saúde. +1 de dano de Força por combate sem perder saúde. Ao perder qualquer saúde, você perde 5 pontos de dano acumulados nessa carta instantaneamente."
         }
       ]
     },
@@ -772,7 +772,7 @@
             "effect"
           ],
           "icon": "🔮",
-          "req": "SAB 14+",
+          "req": "SAB 16+",
           "effect": "Você não pode ser Desprevenido. Aumente 2 níveis de treinamento em Percepção. Você pode ver criaturas invisíveis como silhuetas borradas"
         },
         {
@@ -785,7 +785,7 @@
             "effect"
           ],
           "icon": "🔮",
-          "req": "SAB 14+",
+          "req": "SAB 16+",
           "effect": "1x/sessão: Você pode escolher substituir sua Iniciativa por 30 E dar +2 em Iniciativa para todos os aliados em 12m"
         },
         {
@@ -798,7 +798,7 @@
             "effect"
           ],
           "icon": "🔮",
-          "req": "SAB 14+",
+          "req": "SAB 16+",
           "effect": "Aumente 2 níveis de treinamento em Intuição. Você pode sentir emoções ocultas e detectar se alguém esta mentindo automaticamente. Adicionalmente, você pode realizar testes de Intuição para qualquer interação"
         },
         {
@@ -811,7 +811,7 @@
             "effect"
           ],
           "icon": "🔮",
-          "req": "SAB 14+",
+          "req": "SAB 16+",
           "effect": "Aumente 2 níveis de treinamento em Sobrevivência. Você pode rastrear qualquer criatura por até 7 dias. Você sabe direção e distância aproximada de alvos que você já rastreou"
         },
         {
@@ -824,7 +824,7 @@
             "effect"
           ],
           "icon": "🔮",
-          "req": "SAB 14+",
+          "req": "SAB 16+",
           "effect": "Como uma ação, você pode tocar aliados e realizar teste de Medicina CD 12. Sucesso: cure 3d6+SAB de Saúde. Você pode fazer isso em até 3 aliados por descanso longo"
         },
         {
@@ -837,7 +837,7 @@
             "effect"
           ],
           "icon": "🔮",
-          "req": "SAB 14+",
+          "req": "SAB 16+",
           "effect": "Você fala a Língua Natural. Você pode pedir 1 favor pequeno a criaturas naturais 1x/dia (elas cooperam se não for perigoso)"
         },
         {
@@ -850,7 +850,7 @@
             "effect"
           ],
           "icon": "🔮",
-          "req": "SAB 14+",
+          "req": "SAB 16+",
           "effect": "1x/combate (reação): Ao você ou aliado em 9m ser alvo de ataque, você pode fazer o atacante rerolar com desvantagem"
         },
         {
@@ -863,7 +863,7 @@
             "effect"
           ],
           "icon": "🔮",
-          "req": "SAB 14+",
+          "req": "SAB 16+",
           "effect": "Escolha 2 tipos de terreno (Floresta, Montanha, Deserto, Urbano, Subterrâneo, Naval). Neles, você e aliados em 9m têm +3 em Percepção, Sobrevivência, Furtividade e Movimento"
         },
         {
@@ -876,7 +876,7 @@
             "effect"
           ],
           "icon": "🔮",
-          "req": "SAB 14+",
+          "req": "SAB 16+",
           "effect": "Ao rolar Iniciativa, você pode declarar 1 criatura como \"Presa\". Você tem +3 em Atacar, +2 em Defender e +1d6 de dano contra ela. Você pode trocar de presa como ação livre"
         },
         {
@@ -889,7 +889,7 @@
             "effect"
           ],
           "icon": "🔮",
-          "req": "SAB 14+",
+          "req": "SAB 16+",
           "effect": "Você ganha novo tipo de ação: Meditação Transcendental (30min). Recupere 2d6 Stamina e 2d6 Éter"
         },
         {
@@ -902,7 +902,7 @@
             "effect"
           ],
           "icon": "🔮",
-          "req": "SAB 14+",
+          "req": "SAB 16+",
           "effect": "1x/sessão: Faça 1 pergunta \"sim/não\" ao Mestre sobre algo que acontecerá nos próximos 10 minutos. Ele responde honestamente. Você pode usar a resposta para se preparar"
         },
         {
@@ -915,7 +915,7 @@
             "effect"
           ],
           "icon": "🔮",
-          "req": "SAB 14+",
+          "req": "SAB 16+",
           "effect": "Aliados em 9m de você têm +3 em todos os testes de Resistência (Fortitude, Vontade, Reflexos) e são imunes a Amedrontado e Enfeitiçado enquanto você estiver consciente"
         }
       ]
@@ -932,7 +932,7 @@
             "name"
           ],
           "icon": "⭐",
-          "req": "FOR 16+, CON 16+"
+          "req": "FOR 18+, CON 18+"
         },
         {
           "id": "limiar-berserker-imortal",
@@ -943,7 +943,7 @@
             "name"
           ],
           "icon": "⭐",
-          "req": "FOR 14+, CON 16+"
+          "req": "FOR 16+, CON 16+"
         },
         {
           "id": "limiar-punhos-do-abismo",
@@ -954,7 +954,7 @@
             "name"
           ],
           "icon": "⭐",
-          "req": "FOR 14+, SAB 14+"
+          "req": "DES 20+, SAB 14+"
         },
         {
           "id": "limiar-carnificina",
@@ -965,7 +965,7 @@
             "name"
           ],
           "icon": "⭐",
-          "req": "FOR 14+, DES 14+"
+          "req": "FOR 18+, DES 16+"
         },
         {
           "id": "limiar-carrasco",
@@ -976,7 +976,7 @@
             "name"
           ],
           "icon": "⭐",
-          "req": "FOR 16+, INT 14+"
+          "req": "FOR 18+, INT 16+"
         },
         {
           "id": "limiar-colossus-primordial",
@@ -987,7 +987,7 @@
             "name"
           ],
           "icon": "⭐",
-          "req": "FOR 20+"
+          "req": "FOR 22+"
         },
         {
           "id": "limiar-devastador-de-enxames",
@@ -1020,7 +1020,7 @@
             "name"
           ],
           "icon": "⭐",
-          "req": "DES 16+, SAB 14+"
+          "req": "DES 22+, INT 16+"
         },
         {
           "id": "limiar-laminas-dancantes",
@@ -1031,7 +1031,7 @@
             "name"
           ],
           "icon": "⭐",
-          "req": "DES 18+, INT 14+"
+          "req": "DES 22+, INT 16+"
         },
         {
           "id": "limiar-velocista-umbral",
@@ -1042,7 +1042,7 @@
             "name"
           ],
           "icon": "⭐",
-          "req": "DES 20+"
+          "req": "DES 24+"
         },
         {
           "id": "limiar-mestre-dos-mil-cortes",
@@ -1053,7 +1053,7 @@
             "name"
           ],
           "icon": "⭐",
-          "req": "DES 16+, INT 14+"
+          "req": "DES 20+, INT 14+"
         },
         {
           "id": "limiar-predador-supremo",
@@ -1075,7 +1075,7 @@
             "name"
           ],
           "icon": "⭐",
-          "req": "CON 18+, SAB 14+"
+          "req": "CON 18+, SAB 16+"
         },
         {
           "id": "limiar-pele-mistica-adaptativa",
@@ -1086,7 +1086,7 @@
             "name"
           ],
           "icon": "⭐",
-          "req": "CON 20+, INT 14+"
+          "req": "CON 20+, INT 16+"
         },
         {
           "id": "limiar-escamas-de-dragao",
@@ -1097,7 +1097,7 @@
             "name"
           ],
           "icon": "⭐",
-          "req": "CON 18+, FOR 14+"
+          "req": "CON 20+, FOR 16+"
         },
         {
           "id": "limiar-organismo-mutagenico",
@@ -1108,7 +1108,7 @@
             "name"
           ],
           "icon": "⭐",
-          "req": "CON 16+"
+          "req": "CON 22+"
         },
         {
           "id": "limiar-duas-mangas",
@@ -1119,7 +1119,7 @@
             "name"
           ],
           "icon": "⭐",
-          "req": "INT 16+, DES 14+ (Teurgo apenas)"
+          "req": "INT 22+, DES 16+ (Teurgo apenas)"
         },
         {
           "id": "limiar-o-mestre",
@@ -1130,7 +1130,7 @@
             "name"
           ],
           "icon": "⭐",
-          "req": "INT 18+, SAB 18+"
+          "req": "INT 20+, SAB 20+"
         },
         {
           "id": "limiar-modo-analise",
@@ -1141,7 +1141,7 @@
             "name"
           ],
           "icon": "⭐",
-          "req": "INT 16+, DES 14+"
+          "req": "INT 20+, DES 16+"
         },
         {
           "id": "limiar-senhor-do-tempo",
@@ -1152,7 +1152,7 @@
             "name"
           ],
           "icon": "⭐",
-          "req": "INT 16+, DES 14+"
+          "req": "INT 18+, DES 18+"
         },
         {
           "id": "limiar-arquiteto-do-destino",
@@ -1174,7 +1174,7 @@
             "name"
           ],
           "icon": "⭐",
-          "req": "INT 18+, CON 14+"
+          "req": "INT 20+, CON 16+"
         },
         {
           "id": "limiar-cerebro-transcendente",
@@ -1185,7 +1185,7 @@
             "name"
           ],
           "icon": "⭐",
-          "req": "INT 20+"
+          "req": "INT 22+"
         },
         {
           "id": "limiar-mestre-teurgo-supremo",
@@ -1196,7 +1196,7 @@
             "name"
           ],
           "icon": "⭐",
-          "req": "INT 22+, DES 14+ (Teurgo apenas)"
+          "req": "INT 22+ (Teurgo apenas)"
         },
         {
           "id": "limiar-grande-eter",
@@ -1207,7 +1207,7 @@
             "name"
           ],
           "icon": "⭐",
-          "req": "INT 20+, SAB 14+"
+          "req": "INT 22+, SAB 18+"
         },
         {
           "id": "limiar-olhar-dimensional",
@@ -1218,7 +1218,7 @@
             "name"
           ],
           "icon": "⭐",
-          "req": "SAB 18+"
+          "req": "SAB 20+"
         },
         {
           "id": "limiar-sudito-da-loucura",
@@ -1229,7 +1229,7 @@
             "name"
           ],
           "icon": "⭐",
-          "req": "SAB 16+"
+          "req": "SAB 18+"
         },
         {
           "id": "limiar-devorador-de-almas",
@@ -1240,7 +1240,7 @@
             "name"
           ],
           "icon": "⭐",
-          "req": "INT 16+, SAB 14+"
+          "req": "INT 16+, SAB 16+"
         },
         {
           "id": "limiar-olhos-de-veluria",
@@ -1251,7 +1251,7 @@
             "name"
           ],
           "icon": "⭐",
-          "req": "SAB 16+, INT 14+"
+          "req": "SAB 18+, INT 16+"
         },
         {
           "id": "limiar-guardiao-eterno-da-vida",
@@ -1306,7 +1306,7 @@
             "name"
           ],
           "icon": "⭐",
-          "req": "FOR 16+, CON 16+, SAB 14+"
+          "req": "FOR 16+, CON 16+, SAB 16+"
         },
         {
           "id": "limiar-artista-marcial-supremo",
@@ -1317,7 +1317,7 @@
             "name"
           ],
           "icon": "⭐",
-          "req": "FOR 16+, DES 18+, SAB 16+"
+          "req": "CON 14+, DES 20+, SAB 20+"
         },
         {
           "id": "limiar-destruidor-de-mundos",
@@ -1328,7 +1328,7 @@
             "name"
           ],
           "icon": "⭐",
-          "req": "FOR 18+, INT 16+, CON 16+"
+          "req": "FOR 22+, INT 14+, CON 16+"
         },
         {
           "id": "limiar-imortal-relutante",

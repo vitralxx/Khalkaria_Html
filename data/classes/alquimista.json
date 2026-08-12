@@ -23,7 +23,7 @@
       "id": "alquimista-forcar-invencao",
       "tipo": "technique-card",
       "nome": "Forçar Invenção",
-      "corpo": "\n                    <h4>Forçar Invenção</h4>\n                    <span class=\"tech-meta\">1 Ação • 3 Stamina</span>\n                    <p>Ao falhar um teste de Ofício (Alquimia), pode rolar novamente. Em caso de segunda falha sua invenção explode (1d6+Mod.Int dano Elemental).</p>\n                "
+      "corpo": "\n                    <h4>Forçar Invenção</h4>\n                    <span class=\"tech-meta\">Reação • 3 Stamina</span>\n                    <p>Ao falhar um teste de Ofício (Alquimia), pode rolar novamente. Em caso de segunda falha sua invenção explode (1d6+Mod.Int dano Elemental).</p>\n                "
     },
     {
       "id": "alquimista-arremessador",
@@ -41,7 +41,7 @@
       "id": "alquimista-conserva",
       "tipo": "technique-card",
       "nome": "Conserva",
-      "corpo": "\n                    <h4>Conserva</h4>\n                    <span class=\"tech-meta\">1 Ação • 2 Stamina</span>\n                    <p>Ao criar um item alquímico, você pode criá-lo de forma que não estrague em descansos longos.</p>\n                "
+      "corpo": "\n                    <h4>Conserva</h4>\n                    <span class=\"tech-meta\">1 Min • 5 Stamina</span>\n                    <p>Ao criar um item alquímico, você pode criá-lo de forma que não estrague em descansos longos.</p>\n                "
     },
     {
       "id": "alquimista-ferramentas-improvisadas",

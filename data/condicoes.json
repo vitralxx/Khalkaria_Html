@@ -114,9 +114,9 @@
           "corpo": "<p>Você está enfeitiçado em algo ou alguém.</p>\n                        <ul>\n                            <li>Você não pode atacar quem te enfeitiçou até se livrar dessa condição.</li>\n                            <li>Tem -5 em testes de interação social (Qualquer) contra a criatura que te enfeitiçou.</li>\n                        </ul>"
         },
         {
-          "id": "embriagado",
-          "nome": "Embriagado",
-          "corpo": "<p>Você está bêbado.</p>\n                        <ul>\n                            <li>Ao rolar um 2 natural em qualquer teste, considere como uma falha crítica.</li>\n                        </ul>"
+          "id": "bebado",
+          "nome": "Bêbado",
+          "corpo": "<p>Você está bêbado.</p>\n                        <ul>\n                            <li>Ao rolar um 2 natural em qualquer teste, considere como uma falha crítica.</li><li>Você tem -2 em Atacar, Defender, Movimento, Reflexos, Fortitude e Vontade.</li>\n                        </ul>"
         }
       ]
     },

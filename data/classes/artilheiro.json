@@ -143,7 +143,7 @@
       "id": "artilheiro-vendaval-de-aco",
       "tipo": "tech-card",
       "nome": "Vendaval de Aço",
-      "corpo": "<div class=\"tech-card-header vendaval\"><h4>Vendaval de Aço</h4><span class=\"cost\">2 Ações, 3 Stamina</span></div><div class=\"tech-card-body\"><p>Faça <strong>3 Ataques</strong> sem penalidade de multi-ataque.</p><p>Se 2+ acertarem mesmo alvo: <em>Sangramento 1</em>.</p></div>"
+      "corpo": "<div class=\"tech-card-header vendaval\"><h4>Vendaval de Aço</h4><span class=\"cost\">2 Ações, 5 Stamina</span></div><div class=\"tech-card-body\"><p>Faça <strong>3 Ataques</strong> sem penalidade de multi-ataque.</p><p>Se 2+ acertarem mesmo alvo: <em>Sangramento 1</em>.</p></div>"
     },
     {
       "id": "artilheiro-mao-de-ferro",

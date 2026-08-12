@@ -17,7 +17,7 @@
       "id": "monge-passo-do-vento",
       "tipo": "technique-card",
       "nome": "Passo do Vento",
-      "corpo": "\n                    <h4>Passo do Vento</h4>\n                    <span class=\"tech-meta\">Passiva • 2 Fluxo</span>\n                    <p>Você não provoca ataques de oportunidade.</p>\n                "
+      "corpo": "\n                    <h4>Passo do Vento</h4>\n                    <span class=\"tech-meta\">Passiva • 3 Fluxo</span>\n                    <p>Você não provoca ataques de oportunidade.</p>\n                "
     },
     {
       "id": "monge-palma-pura",
@@ -59,13 +59,13 @@
       "id": "monge-golpe-sequencial",
       "tipo": "technique-card",
       "nome": "Golpe Sequencial",
-      "corpo": "\n                    <h4>Golpe Sequencial</h4>\n                    <span class=\"tech-meta\">Ação Livre • 2 Stamina, 1 Fluxo</span>\n                    <p>Ao acertar um ataque desarmado, pode fazer outro ataque imediatamente contra o mesmo alvo (Sem penalidade de multi-ataque).</p>\n                "
+      "corpo": "\n                    <h4>Golpe Sequencial</h4>\n                    <span class=\"tech-meta\">Ação Livre • 5 Stamina, 1 Fluxo</span>\n                    <p>Ao acertar um ataque desarmado, pode fazer outro ataque imediatamente contra o mesmo alvo (Sem penalidade de multi-ataque).</p>\n                "
     },
     {
       "id": "monge-danca-do-monge",
       "tipo": "technique-card",
       "nome": "Dança do Monge",
-      "corpo": "\n                    <h4>Dança do Monge</h4>\n                    <span class=\"tech-meta\">2 Ações • 4 Stamina, 3 Fluxo</span>\n                    <p>Faça 3 ataques desarmados contra um ou mais alvos em alcance.</p>\n                "
+      "corpo": "\n                    <h4>Dança do Monge</h4>\n                    <span class=\"tech-meta\">1 Ação • 5 Stamina, 3 Fluxo</span>\n                    <p>Faça 3 ataques desarmados contra um ou mais alvos em alcance. (1x/rodada)</p>\n                "
     },
     {
       "id": "monge-purificar",
@@ -137,13 +137,13 @@
       "id": "monge-fluxo-marcial",
       "tipo": "tech-card",
       "nome": "Fluxo Marcial",
-      "corpo": "\n                        <div class=\"tech-card-header punho\">\n                            <h4>Fluxo Marcial</h4>\n                            <span class=\"cost\">Passiva</span>\n                        </div>\n                        <div class=\"tech-card-body\">\n                            <ul>\n                                <li>Ao atingir 5 de Fluxo, você pode gastar <strong>3 Stamina</strong> para fazer um ataque desarmado adicional como Ação Livre, porém você perde 3 de Fluxo.</li>\n                                <li>Você ganha <strong>+1 Fluxo adicional</strong> ao acertar um ataque desarmado.</li>\n                            </ul>\n                        </div>\n                    "
+      "corpo": "\n                        <div class=\"tech-card-header punho\">\n                            <h4>Fluxo Marcial</h4>\n                            <span class=\"cost\">Passiva</span>\n                        </div>\n                        <div class=\"tech-card-body\">\n                            <ul>\n                                <li>Ao acertar dois ataques desarmados no mesmo turno contra o mesmo alvo, o terceiro ataque neste turno tem <strong>vantagem</strong>.</li>\n                                <li>Você ganha <strong>+1 Fluxo adicional</strong> ao acertar um ataque desarmado.</li>\n                            </ul>\n                        </div>\n                    "
     },
     {
       "id": "monge-cadeia-de-golpes",
       "tipo": "tech-card",
       "nome": "Cadeia de Golpes",
-      "corpo": "\n                        <div class=\"tech-card-header punho\">\n                            <h4>Cadeia de Golpes</h4>\n                            <span class=\"cost\">Passiva</span>\n                        </div>\n                        <div class=\"tech-card-body\">\n                            <ul>\n                                <li>Ao derrubar uma criatura a 0 Saúde com um ataque desarmado, você pode imediatamente se mover até <strong>3m</strong> e fazer outro ataque desarmado contra um alvo diferente como Ação Livre.</li>\n                                <li>Esse efeito pode encadear até seu <strong>(Mod. Destreza) vezes por turno</strong>.</li>\n                            </ul>\n                        </div>\n                    "
+      "corpo": "\n                        <div class=\"tech-card-header punho\">\n                            <h4>Cadeia de Golpes</h4>\n                            <span class=\"cost\">Passiva</span>\n                        </div>\n                        <div class=\"tech-card-body\">\n                            <ul>\n                                <li>Ao derrubar uma criatura a 0 Saúde com um ataque desarmado, você pode gastar <strong>3 Stamina</strong> para imediatamente se mover até <strong>3m</strong> e fazer outro ataque desarmado contra um alvo diferente como Ação Livre.</li>\n                                <li>Esse efeito pode encadear até seu <strong>(Mod. Destreza) vezes por turno</strong>.</li>\n                            </ul>\n                        </div>\n                    "
     },
     {
       "id": "monge-toque-da-dor",
@@ -179,7 +179,7 @@
       "id": "monge-fluxo-da-natureza",
       "tipo": "tech-card",
       "nome": "Fluxo da Natureza",
-      "corpo": "\n                        <div class=\"tech-card-header naturalista\">\n                            <h4>Fluxo da Natureza</h4>\n                            <span class=\"cost\">Passiva</span>\n                        </div>\n                        <div class=\"tech-card-body\">\n                            <ul>\n                                <li>Ao começar seu turno adjacente ao seu Companheiro Primal, ambos recuperam <strong>1d4 de Saúde</strong>.</li>\n                                <li>Quando seu Companheiro acerta um ataque, você ganha <strong>+1 Fluxo</strong>.</li>\n                                <li>Seu companheiro causa <strong>dano adicional no ataque igual ao seu Fluxo</strong>.</li>\n                            </ul>\n                        </div>\n                    "
+      "corpo": "\n                        <div class=\"tech-card-header naturalista\">\n                            <h4>Fluxo da Natureza</h4>\n                            <span class=\"cost\">Passiva</span>\n                        </div>\n                        <div class=\"tech-card-body\">\n                            <ul>\n                                <li>Seu Companheiro Primal compartilha de efeitos aplicados a você por itens e magias.</li>\n                                <li>Quando seu Companheiro acerta um ataque, você ganha <strong>+1 Fluxo</strong>.</li>\n                                <li>Seu companheiro causa <strong>dano adicional no ataque igual ao seu Fluxo</strong>.</li>\n                            </ul>\n                        </div>\n                    "
     },
     {
       "id": "monge-precisao-letal",

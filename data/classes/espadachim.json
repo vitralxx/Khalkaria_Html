@@ -5,19 +5,19 @@
       "id": "espadachim-leitura-de-batalha",
       "tipo": "technique-card",
       "nome": "Leitura de Batalha",
-      "corpo": "\n                    <div class=\"technique-header\">\n                        <h4>Leitura de Batalha</h4>\n                        <div class=\"technique-cost\"><span class=\"action\">Passiva</span></div>\n                    </div>\n                    <p>Quando um inimigo repetir a mesma ação 2x, ganhe +1 Defender/Atacar contra ele. Acumula até +5.</p>\n                "
+      "corpo": "\n                    <div class=\"technique-header\">\n                        <h4>Leitura de Batalha</h4>\n                        <div class=\"technique-cost\"><span class=\"action\">Passiva</span></div>\n                    </div>\n                    <p>Ao atacar um inimigo com a Marca do Duelo, você tem +3 Atacar.</p>\n                "
     },
     {
       "id": "espadachim-peso-do-fracasso",
       "tipo": "technique-card",
       "nome": "Peso do Fracasso",
-      "corpo": "\n                    <div class=\"technique-header\">\n                        <h4>Peso do Fracasso</h4>\n                        <div class=\"technique-cost\"><span class=\"action\">Passiva</span></div>\n                    </div>\n                    <p>Ao atacar inimigo que errou ataque no turno dele: +2 Atacar e +1d6 dano se acertar.</p>\n                "
+      "corpo": "\n                    <div class=\"technique-header\">\n                        <h4>Peso do Fracasso</h4>\n                        <div class=\"technique-cost\"><span class=\"action\">Passiva</span></div>\n                    </div>\n                    <p>Retaliar um inimigo com a Marca do Duelo causa +(Nível)d6 de dano Cortante.</p>\n                "
     },
     {
       "id": "espadachim-limiar-da-morte",
       "tipo": "technique-card",
       "nome": "Limiar da Morte",
-      "corpo": "\n                    <div class=\"technique-header\">\n                        <h4>Limiar da Morte</h4>\n                        <div class=\"technique-cost\"><span class=\"action\">Passiva</span></div>\n                    </div>\n                    <p>Ao causar dano, próximo ataque contra o mesmo alvo tem +1 dano cumulativo (Max. +3).</p>\n                "
+      "corpo": "\n                    <div class=\"technique-header\">\n                        <h4>Limiar da Morte</h4>\n                        <div class=\"technique-cost\"><span class=\"action\">Passiva</span></div>\n                    </div>\n                    <p>Ao estar com ≤ 50% de Saúde, seus ataques contra a Marca do Duelo causam +2d6 de dano Cortante.</p>\n                "
     },
     {
       "id": "espadachim-pedra-de-amolar",
@@ -29,43 +29,43 @@
       "id": "espadachim-respiro-do-espadachim",
       "tipo": "technique-card",
       "nome": "Respiro do Espadachim",
-      "corpo": "\n                    <div class=\"technique-header\">\n                        <h4>Respiro do Espadachim</h4>\n                        <div class=\"technique-cost\"><span class=\"action\">1 Ação</span></div>\n                    </div>\n                    <p>Recupera Stamina = Mod.Con e +1 Defender até próximo turno. (1x/turno)</p>\n                "
+      "corpo": "\n                    <div class=\"technique-header\">\n                        <h4>Respiro do Espadachim</h4>\n                        <div class=\"technique-cost\"><span class=\"action\">1 Ação</span></div>\n                    </div>\n                    <p>Recupera Stamina = Mod.Con +1d4 e recebe +2 Defender até o início do próximo turno. (1x/turno)</p>\n                "
     },
     {
       "id": "espadachim-lamina-rapida",
       "tipo": "technique-card",
       "nome": "Lâmina Rápida",
-      "corpo": "\n                    <div class=\"technique-header\">\n                        <h4>Lâmina Rápida</h4>\n                        <div class=\"technique-cost\">\n                            <span class=\"stamina\">2 Stamina</span>\n                            <span class=\"action\">1 Ação</span>\n                        </div>\n                    </div>\n                    <p>Próximo ataque não pode receber retaliação.</p>\n                "
+      "corpo": "\n                    <div class=\"technique-header\">\n                        <h4>Lâmina Rápida</h4>\n                        <div class=\"technique-cost\">\n                            <span class=\"stamina\">5 Stamina</span>\n                            <span class=\"action\">1 Ação</span>\n                        </div>\n                    </div>\n                    <p>Ataque duas vezes como 1 ação. Esses ataques não podem receber retaliação.</p>\n                "
     },
     {
       "id": "espadachim-corte-diagonal",
       "tipo": "technique-card",
       "nome": "Corte Diagonal",
-      "corpo": "\n                    <div class=\"technique-header\">\n                        <h4>Corte Diagonal</h4>\n                        <div class=\"technique-cost\">\n                            <span class=\"stamina\">2 Stamina</span>\n                            <span class=\"action\">1 Ação</span>\n                        </div>\n                    </div>\n                    <p>Ignora 1 Evasão do alvo. Se Exposto, ignora +1 adicional.</p>\n                "
+      "corpo": "\n                    <div class=\"technique-header\">\n                        <h4>Corte Diagonal</h4>\n                        <div class=\"technique-cost\">\n                            <span class=\"stamina\">3 Stamina</span>\n                            <span class=\"action\">Ação Livre</span>\n                        </div>\n                    </div>\n                    <p>Seu próximo ataque tem +2 no acerto. Se acertar um inimigo com a Marca do Duelo, adiciona Sangramento 1.</p>\n                "
     },
     {
       "id": "espadachim-x1",
       "tipo": "technique-card",
       "nome": "x1",
-      "corpo": "\n                    <div class=\"technique-header\">\n                        <h4>x1</h4>\n                        <div class=\"technique-cost\">\n                            <span class=\"stamina\">3 Stamina</span>\n                            <span class=\"action\">2 Ações</span>\n                        </div>\n                    </div>\n                    <p>Foca em um alvo: +1 Atacar, +1 Defender, +1d4 Dano contra ele até fim do combate.</p>\n                "
+      "corpo": "\n                    <div class=\"technique-header\">\n                        <h4>x1</h4>\n                        <div class=\"technique-cost\">\n                            <span class=\"stamina\">5 Stamina</span>\n                            <span class=\"action\">2 Ações</span>\n                        </div>\n                    </div>\n                    <p>Foca em um alvo com a Marca do Duelo em até 9m. Enquanto ele estiver isolado (ao menos 1,5m de outros inimigos): +1d10 de dano Cortante e Vantagem ao Atacar contra ele. Ao trocar o alvo da Marca, você perde os efeitos e precisa usar a técnica novamente.</p>\n                "
     },
     {
       "id": "espadachim-oportunista",
       "tipo": "technique-card",
       "nome": "Oportunista",
-      "corpo": "\n                    <div class=\"technique-header\">\n                        <h4>Oportunista</h4>\n                        <div class=\"technique-cost\">\n                            <span class=\"stamina\">3 Stamina</span>\n                            <span class=\"action\">1 Ação</span>\n                        </div>\n                    </div>\n                    <p>Se 1º ataque acertar, reduz penalidade do 2º ataque para -2 (em vez de -5).</p>\n                "
+      "corpo": "\n                    <div class=\"technique-header\">\n                        <h4>Oportunista</h4>\n                        <div class=\"technique-cost\">\n                            <span class=\"stamina\">5 Stamina</span>\n                            <span class=\"action\">Ação Livre</span>\n                        </div>\n                    </div>\n                    <p>Você pode, como ação livre, reduzir a PMA para -3 (ao invés de -5) nesta rodada.</p>\n                "
     },
     {
       "id": "espadachim-quebrar-postura",
       "tipo": "technique-card",
       "nome": "Quebrar Postura",
-      "corpo": "\n                    <div class=\"technique-header\">\n                        <h4>Quebrar Postura</h4>\n                        <div class=\"technique-cost\">\n                            <span class=\"stamina\">3 Stamina</span>\n                            <span class=\"action\">1 Ação</span>\n                        </div>\n                    </div>\n                    <p>Se acertar, alvo faz teste de Atacar (CD sua) ou perde reação.</p>\n                "
+      "corpo": "\n                    <div class=\"technique-header\">\n                        <h4>Quebrar Postura</h4>\n                        <div class=\"technique-cost\">\n                            <span class=\"stamina\">3 Stamina</span>\n                            <span class=\"action\">Ação Livre</span>\n                        </div>\n                    </div>\n                    <p>Ao acertar um alvo com a Marca do Duelo, ele perde sua reação até o fim da rodada. Ele ainda pode bloquear ou retaliar, mas perde a reação em seguida se for acertado.</p>\n                "
     },
     {
       "id": "espadachim-ponto-fraco",
       "tipo": "technique-card",
       "nome": "Ponto Fraco",
-      "corpo": "\n                    <div class=\"technique-header\">\n                        <h4>Ponto Fraco</h4>\n                        <div class=\"technique-cost\">\n                            <span class=\"stamina\">3 Stamina</span>\n                            <span class=\"action\">Passiva</span>\n                        </div>\n                    </div>\n                    <p>Ao atacar inimigo Exposto e rolar crítico: mantém Exposto como ação livre.</p>\n                "
+      "corpo": "\n                    <div class=\"technique-header\">\n                        <h4>Ponto Fraco</h4>\n                        <div class=\"technique-cost\">\n                            <span class=\"stamina\">5 Stamina</span>\n                            <span class=\"action\">Passiva</span>\n                        </div>\n                    </div>\n                    <p>Ao atacar um inimigo Exposto, você pode, como ação livre, gastar 5 de Stamina para manter a condição no inimigo, mesmo após atacar.</p>\n                "
     },
     {
       "id": "espadachim-passo-afiado",
@@ -83,7 +83,7 @@
       "id": "espadachim-bilhete-de-entrada",
       "tipo": "technique-card",
       "nome": "Bilhete de Entrada",
-      "corpo": "\n                    <div class=\"technique-header\">\n                        <h4>Bilhete de Entrada</h4>\n                        <div class=\"technique-cost\">\n                            <span class=\"stamina\">3 Stamina</span>\n                            <span class=\"action\">Reação</span>\n                        </div>\n                    </div>\n                    <p>Quando inimigo entrar no alcance: ataque imediato com -2.</p>\n                "
+      "corpo": "\n                    <div class=\"technique-header\">\n                        <h4>Bilhete de Entrada</h4>\n                        <div class=\"technique-cost\">\n                            <span class=\"stamina\">5 Stamina</span>\n                            <span class=\"action\">Reação</span>\n                        </div>\n                    </div>\n                    <p>Quando um inimigo entrar no seu alcance, pode atacar imediatamente com -5.</p>\n                "
     },
     {
       "id": "espadachim-brecha",
@@ -155,13 +155,13 @@
       "id": "espadachim-furia-do-verme",
       "tipo": "tier-technique",
       "nome": "Fúria do Verme",
-      "corpo": "\n                                    <h5>Fúria do Verme</h5>\n                                    <p class=\"meta\">Passiva</p>\n                                    <p>Ao acertar corpo a corpo: +1 dano no próximo ataque. Acumula até +3, reseta se errar ou não atacar.</p>\n                                "
+      "corpo": "\n                                    <h5>Fúria do Verme</h5>\n                                    <p class=\"meta\">Passiva</p>\n                                    <p>Você se torna Treinado em Atacar (se já for, Experiente, e assim por diante). Seus ataques corpo a corpo causam +1d6 de dano Cortante. No fim do seu turno, se você atacou, recebe 1d4 de dano Primordial (não reduzível).</p>\n                                "
     },
     {
       "id": "espadachim-adrenalina-sanguinea",
       "tipo": "tier-technique",
       "nome": "Adrenalina Sanguínea",
-      "corpo": "\n                                    <h5>Adrenalina Sanguínea</h5>\n                                    <p class=\"meta\">Reação · 3 Stamina</p>\n                                    <p>Ao matar um inimigo, você ganha <strong>3 ações</strong> como reação.</p>\n                                "
+      "corpo": "\n                                    <h5>Adrenalina Sanguínea</h5>\n                                    <p class=\"meta\">Reação · 3 Stamina</p>\n                                    <p>Quando a Marca do Duelo for morta por você: ganhe 1 Ação e recupere (Nível)d6 de Saúde.</p>\n                                "
     },
     {
       "id": "espadachim-barbaro",
@@ -203,7 +203,7 @@
       "id": "espadachim-golpe-torto",
       "tipo": "tier-technique",
       "nome": "Golpe Torto",
-      "corpo": "\n                                    <h5>Golpe Torto</h5>\n                                    <p class=\"meta\">1 Ação · 3 Stamina</p>\n                                    <p>Próximo ataque: <strong>+2 Atacar</strong>, se acertar <strong>+1d6 dano</strong>. Se errar, fica <em>Exposto</em>.</p>\n                                "
+      "corpo": "\n                                    <h5>Golpe Torto</h5>\n                                    <p class=\"meta\">1 Ação · 3 Stamina</p>\n                                    <p>Próximo ataque: <strong>+2 Atacar</strong>, se acertar <strong>+3d6 dano Cortante</strong>. Se errar, fica <em>Exposto</em>.</p>\n                                "
     },
     {
       "id": "espadachim-beber-ate-cair",

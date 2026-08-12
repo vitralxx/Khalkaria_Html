@@ -77,7 +77,7 @@
       "id": "teurgo-marca-do-primordio",
       "tipo": "technique-card",
       "nome": "Marca do Primórdio",
-      "corpo": "\n                    <h4>Marca do Primórdio</h4>\n                    <span class=\"tech-meta\">1 Ação • 3 Stamina</span>\n                    <p>Ao acertar com magia de dano, pode marcar o alvo. Vontade CD 15 ou magias de dano recebem +2 contra ele. Rola novamente a cada turno.</p>\n                "
+      "corpo": "\n                    <h4>Marca do Primórdio</h4>\n                    <span class=\"tech-meta\">1 Ação • 3 Stamina</span>\n                    <p>Ao acertar com magia de dano, pode marcar o alvo. Vontade contra sua CD ou magias de dano recebem +1 dado de dano contra ele. Rola novamente a cada turno.</p>\n                "
     },
     {
       "id": "teurgo-concentracao",

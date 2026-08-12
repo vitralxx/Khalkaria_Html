@@ -593,26 +593,41 @@
             <!-- TREINAMENTO -->
             <div class="proficiency-box">
                 <h3>⚔️ Proficiência com Espadas</h3>
-                <p>Ao utilizar espadas, o espadachim sempre ataca com <strong>1 ação</strong>, independente do custo da arma equipada.</p>
                 <p>Você ignora Ar (Armadura) em ataques com espada igual ao seu nível, adicionalmente você ignora resistência a dano Cortante a partir do nível 3.</p>
+            </div>
+
+            <!-- MARCA DO DUELO -->
+            <div class="proficiency-box">
+                <h3>🎯 Marca do Duelo</h3>
+                <p>O Espadachim é o mestre duelista, mantendo foco unitário em um único alvo antes de partir para o próximo. Ele marca o próximo alvo que pretende assassinar. Você pode manter <strong>1 Marca do Duelo</strong> ativa:</p>
+                <ul>
+                    <li>Marque uma criatura que você possa ver com <strong>1 ação</strong>, em até <strong>9 m</strong>.</li>
+                    <li>Contra o alvo marcado você tem <strong>+1 Atacar e +1 Defender</strong>. No nível 3, <strong>+2 Atacar e +2 Defender</strong>. No nível 5, <strong>+3 Atacar e +3 Defender</strong>.</li>
+                    <li>Se o alvo marcado morrer, você pode marcar um novo alvo como <strong>reação</strong> imediatamente.</li>
+                    <li>Você só pode ter uma Marca ativa.</li>
+                </ul>
             </div>
 
             <div class="formula-grid">
                 <div class="formula-card">
                     <h4>❤️ Saúde</h4>
-                    <code>(3 × Nível) + (Mod.CON × Nível × 4)</code>
+                    <code>10 + (6 × Nível) + (Mod.CON × Nível)</code>
                 </div>
                 <div class="formula-card">
                     <h4>⚡ Stamina</h4>
-                    <code>(3 × Nível) + ([Mod.FOR OU Mod.DES] × Nível × 5)</code>
+                    <code>8 + (6 × Nível) + ([Mod.FOR OU Mod.DES] × Nível)</code>
                 </div>
                 <div class="formula-card">
                     <h4>💫 Éter</h4>
-                    <code>(2 × Nível) + ([Mod.INT OU Mod.SAB] × Nível × 3)</code>
+                    <code>6 + (3 × Nível) + ([Mod.INT OU Mod.SAB] × Nível)</code>
                 </div>
                 <div class="formula-card">
                     <h4>🛡️ Evasão Ativa</h4>
-                    <code>14 + Mod.Des + Prof.Defender + 1d10</code>
+                    <code>10 + Mod.Des + Prof.Defender</code>
+                </div>
+                <div class="formula-card">
+                    <h4>🛡️ Evasão Passiva</h4>
+                    <code>10 + Mod. Destreza</code>
                 </div>
             </div>
 

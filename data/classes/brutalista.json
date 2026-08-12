@@ -65,7 +65,7 @@
       "id": "brutalista-hoje-nao",
       "tipo": "technique-card",
       "nome": "Hoje Não",
-      "corpo": "\n                    <h4>Hoje Não</h4>\n                    <span class=\"tech-meta\">1 Ação • 2 Stamina</span>\n                    <p>1x/descanso longo: ao ser reduzido a 25% HP ou menos, recupere 2d8+Mod.Con de Saúde.</p>\n                "
+      "corpo": "\n                    <h4>Hoje Não</h4>\n                    <span class=\"tech-meta\">1 Ação</span>\n                    <p>1x/descanso longo: ao ser reduzido a 25% HP ou menos, recupere 2d8+Mod.Con de Saúde e 1d8+Mod.For de Stamina.</p>\n                "
     },
     {
       "id": "brutalista-gancho",

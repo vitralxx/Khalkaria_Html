@@ -2061,7 +2061,7 @@
           },
           {
             "caracteristica": "Trade-off",
-            "valor": "O conjurador não pode cancelar a magia voluntariamente. A cada rodada em que a magia estiver ativa, o conjurador ganha Desnutrido +1 (cumulativo).",
+            "valor": "O conjurador não pode cancelar a magia voluntariamente. Ela só se dissipa quando não houver mais alvos para infectar. A cada rodada em que a magia estiver ativa, o conjurador ganha Desnutrido +1 (cumulativo).",
             "mod": false
           }
         ],
@@ -2278,7 +2278,7 @@
           },
           {
             "caracteristica": "Trade-off",
-            "valor": "O conjurador passa os próximos 3 dias \"partido\" entre os planos. Perde 1 ação por turno e rola Vontade com desvantagem durante esse período.",
+            "valor": "O conjurador passa os próximos 3 dias \"partido\" entre os planos, fisicamente presente mas mentalmente ausente. Perde 1 ação por turno e rola Vontade com desvantagem durante esse período.",
             "mod": false
           }
         ],
@@ -2723,7 +2723,7 @@
           },
           {
             "caracteristica": "Efeito",
-            "valor": "Você submete um nome ou descrição de uma criatura. Vytália responde com: se a criatura ainda vive, onde está seu fio de vida no tecido do mundo, se alguma vez recebeu ou deu cura primordial, e se morta, quando e como faleceu. Funciona em qualquer criatura que já existiu, sem limite temporal.",
+            "valor": "Você submete um nome ou descrição de uma criatura. Vytália responde com: se a criatura ainda vive, onde está seu fio de vida no tecido do mundo, e se morta, quando e como faleceu. Funciona em qualquer criatura que já existiu, sem limite temporal.",
             "mod": false
           },
           {

@@ -593,26 +593,41 @@
             <!-- TREINAMENTO -->
             <div class="proficiency-box">
                 <h3>⚔️ Proficiência com Espadas</h3>
-                <p>Ao utilizar espadas, o espadachim sempre ataca com <strong>1 ação</strong>, independente do custo da arma equipada.</p>
                 <p>Você ignora Ar (Armadura) em ataques com espada igual ao seu nível, adicionalmente você ignora resistência a dano Cortante a partir do nível 3.</p>
+            </div>
+
+            <!-- MARCA DO DUELO -->
+            <div class="proficiency-box">
+                <h3>🎯 Marca do Duelo</h3>
+                <p>O Espadachim é o mestre duelista, mantendo foco unitário em um único alvo antes de partir para o próximo. Ele marca o próximo alvo que pretende assassinar. Você pode manter <strong>1 Marca do Duelo</strong> ativa:</p>
+                <ul>
+                    <li>Marque uma criatura que você possa ver com <strong>1 ação</strong>, em até <strong>9 m</strong>.</li>
+                    <li>Contra o alvo marcado você tem <strong>+1 Atacar e +1 Defender</strong>. No nível 3, <strong>+2 Atacar e +2 Defender</strong>. No nível 5, <strong>+3 Atacar e +3 Defender</strong>.</li>
+                    <li>Se o alvo marcado morrer, você pode marcar um novo alvo como <strong>reação</strong> imediatamente.</li>
+                    <li>Você só pode ter uma Marca ativa.</li>
+                </ul>
             </div>
 
             <div class="formula-grid">
                 <div class="formula-card">
                     <h4>❤️ Saúde</h4>
-                    <code>(3 × Nível) + (Mod.CON × Nível × 4)</code>
+                    <code>10 + (6 × Nível) + (Mod.CON × Nível)</code>
                 </div>
                 <div class="formula-card">
                     <h4>⚡ Stamina</h4>
-                    <code>(3 × Nível) + ([Mod.FOR OU Mod.DES] × Nível × 5)</code>
+                    <code>8 + (6 × Nível) + ([Mod.FOR OU Mod.DES] × Nível)</code>
                 </div>
                 <div class="formula-card">
                     <h4>💫 Éter</h4>
-                    <code>(2 × Nível) + ([Mod.INT OU Mod.SAB] × Nível × 3)</code>
+                    <code>6 + (3 × Nível) + ([Mod.INT OU Mod.SAB] × Nível)</code>
                 </div>
                 <div class="formula-card">
                     <h4>🛡️ Evasão Ativa</h4>
-                    <code>14 + Mod.Des + Prof.Defender + 1d10</code>
+                    <code>10 + Mod.Des + Prof.Defender</code>
+                </div>
+                <div class="formula-card">
+                    <h4>🛡️ Evasão Passiva</h4>
+                    <code>10 + Mod. Destreza</code>
                 </div>
             </div>
 
@@ -683,7 +698,7 @@
                         <h4>Leitura de Batalha</h4>
                         <div class="technique-cost"><span class="action">Passiva</span></div>
                     </div>
-                    <p>Quando um inimigo repetir a mesma ação 2x, ganhe +1 Defender/Atacar contra ele. Acumula até +5.</p>
+                    <p>Ao atacar um inimigo com a Marca do Duelo, você tem +3 Atacar.</p>
                 </div>
 
                 <div class="technique-card">
@@ -691,7 +706,7 @@
                         <h4>Peso do Fracasso</h4>
                         <div class="technique-cost"><span class="action">Passiva</span></div>
                     </div>
-                    <p>Ao atacar inimigo que errou ataque no turno dele: +2 Atacar e +1d6 dano se acertar.</p>
+                    <p>Retaliar um inimigo com a Marca do Duelo causa +(Nível)d6 de dano Cortante.</p>
                 </div>
 
                 <div class="technique-card">
@@ -699,7 +714,7 @@
                         <h4>Limiar da Morte</h4>
                         <div class="technique-cost"><span class="action">Passiva</span></div>
                     </div>
-                    <p>Ao causar dano, próximo ataque contra o mesmo alvo tem +1 dano cumulativo (Max. +3).</p>
+                    <p>Ao estar com ≤ 50% de Saúde, seus ataques contra a Marca do Duelo causam +2d6 de dano Cortante.</p>
                 </div>
 
                 <div class="technique-card">
@@ -715,51 +730,51 @@
                         <h4>Respiro do Espadachim</h4>
                         <div class="technique-cost"><span class="action">1 Ação</span></div>
                     </div>
-                    <p>Recupera Stamina = Mod.Con e +1 Defender até próximo turno. (1x/turno)</p>
+                    <p>Recupera Stamina = Mod.Con +1d4 e recebe +2 Defender até o início do próximo turno. (1x/turno)</p>
                 </div>
 
                 <div class="technique-card">
                     <div class="technique-header">
                         <h4>Lâmina Rápida</h4>
                         <div class="technique-cost">
-                            <span class="stamina">2 Stamina</span>
+                            <span class="stamina">5 Stamina</span>
                             <span class="action">1 Ação</span>
                         </div>
                     </div>
-                    <p>Próximo ataque não pode receber retaliação.</p>
+                    <p>Ataque duas vezes como 1 ação. Esses ataques não podem receber retaliação.</p>
                 </div>
 
                 <div class="technique-card">
                     <div class="technique-header">
                         <h4>Corte Diagonal</h4>
                         <div class="technique-cost">
-                            <span class="stamina">2 Stamina</span>
-                            <span class="action">1 Ação</span>
+                            <span class="stamina">3 Stamina</span>
+                            <span class="action">Ação Livre</span>
                         </div>
                     </div>
-                    <p>Ignora 1 Evasão do alvo. Se Exposto, ignora +1 adicional.</p>
+                    <p>Seu próximo ataque tem +2 no acerto. Se acertar um inimigo com a Marca do Duelo, adiciona Sangramento 1.</p>
                 </div>
 
                 <div class="technique-card">
                     <div class="technique-header">
                         <h4>x1</h4>
                         <div class="technique-cost">
-                            <span class="stamina">3 Stamina</span>
+                            <span class="stamina">5 Stamina</span>
                             <span class="action">2 Ações</span>
                         </div>
                     </div>
-                    <p>Foca em um alvo: +1 Atacar, +1 Defender, +1d4 Dano contra ele até fim do combate.</p>
+                    <p>Foca em um alvo com a Marca do Duelo em até 9m. Enquanto ele estiver isolado (ao menos 1,5m de outros inimigos): +1d10 de dano Cortante e Vantagem ao Atacar contra ele. Ao trocar o alvo da Marca, você perde os efeitos e precisa usar a técnica novamente.</p>
                 </div>
 
                 <div class="technique-card">
                     <div class="technique-header">
                         <h4>Oportunista</h4>
                         <div class="technique-cost">
-                            <span class="stamina">3 Stamina</span>
-                            <span class="action">1 Ação</span>
+                            <span class="stamina">5 Stamina</span>
+                            <span class="action">Ação Livre</span>
                         </div>
                     </div>
-                    <p>Se 1º ataque acertar, reduz penalidade do 2º ataque para -2 (em vez de -5).</p>
+                    <p>Você pode, como ação livre, reduzir a PMA para -3 (ao invés de -5) nesta rodada.</p>
                 </div>
 
                 <div class="technique-card">
@@ -767,21 +782,21 @@
                         <h4>Quebrar Postura</h4>
                         <div class="technique-cost">
                             <span class="stamina">3 Stamina</span>
-                            <span class="action">1 Ação</span>
+                            <span class="action">Ação Livre</span>
                         </div>
                     </div>
-                    <p>Se acertar, alvo faz teste de Atacar (CD sua) ou perde reação.</p>
+                    <p>Ao acertar um alvo com a Marca do Duelo, ele perde sua reação até o fim da rodada. Ele ainda pode bloquear ou retaliar, mas perde a reação em seguida se for acertado.</p>
                 </div>
 
                 <div class="technique-card">
                     <div class="technique-header">
                         <h4>Ponto Fraco</h4>
                         <div class="technique-cost">
-                            <span class="stamina">3 Stamina</span>
+                            <span class="stamina">5 Stamina</span>
                             <span class="action">Passiva</span>
                         </div>
                     </div>
-                    <p>Ao atacar inimigo Exposto e rolar crítico: mantém Exposto como ação livre.</p>
+                    <p>Ao atacar um inimigo Exposto, você pode, como ação livre, gastar 5 de Stamina para manter a condição no inimigo, mesmo após atacar.</p>
                 </div>
 
                 <div class="technique-card">
@@ -810,11 +825,11 @@
                     <div class="technique-header">
                         <h4>Bilhete de Entrada</h4>
                         <div class="technique-cost">
-                            <span class="stamina">3 Stamina</span>
+                            <span class="stamina">5 Stamina</span>
                             <span class="action">Reação</span>
                         </div>
                     </div>
-                    <p>Quando inimigo entrar no alcance: ataque imediato com -2.</p>
+                    <p>Quando um inimigo entrar no seu alcance, pode atacar imediatamente com -5.</p>
                 </div>
 
                 <div class="technique-card">
@@ -985,12 +1000,12 @@
                                 <div class="tier-technique">
                                     <h5>Fúria do Verme</h5>
                                     <p class="meta">Passiva</p>
-                                    <p>Ao acertar corpo a corpo: +1 dano no próximo ataque. Acumula até +3, reseta se errar ou não atacar.</p>
+                                    <p>Você se torna Treinado em Atacar (se já for, Experiente, e assim por diante). Seus ataques corpo a corpo causam +1d6 de dano Cortante. No fim do seu turno, se você atacou, recebe 1d4 de dano Primordial (não reduzível).</p>
                                 </div>
                                 <div class="tier-technique">
                                     <h5>Adrenalina Sanguínea</h5>
                                     <p class="meta">Reação · 3 Stamina</p>
-                                    <p>Ao matar um inimigo, você ganha <strong>3 ações</strong> como reação.</p>
+                                    <p>Quando a Marca do Duelo for morta por você: ganhe 1 Ação e recupere (Nível)d6 de Saúde.</p>
                                 </div>
                                 <div class="tier-technique">
                                     <h5>Bárbaro</h5>
@@ -1088,7 +1103,7 @@
                                 <div class="tier-technique">
                                     <h5>Golpe Torto</h5>
                                     <p class="meta">1 Ação · 3 Stamina</p>
-                                    <p>Próximo ataque: <strong>+2 Atacar</strong>, se acertar <strong>+1d6 dano</strong>. Se errar, fica <em>Exposto</em>.</p>
+                                    <p>Próximo ataque: <strong>+2 Atacar</strong>, se acertar <strong>+3d6 dano Cortante</strong>. Se errar, fica <em>Exposto</em>.</p>
                                 </div>
                                 <div class="tier-technique">
                                     <h5>Beber até Cair</h5>
