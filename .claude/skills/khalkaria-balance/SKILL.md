@@ -224,6 +224,11 @@ Detalhe e proveniência em `references/05-classes.md` e `references/07-limiar.md
 | **Buff de +3 para a party inteira** | **ULTIMATE**, 3 Ações + 5 Stamina, 1×/dia |
 | **1 Éter** | ≈ 2,5 de dano prevenido · **2 Saúde = 1 Stamina** |
 
+🔑 **Itens não cobram Stamina (D10).** O custo de um item é o preço de aquisição em Sins e
+ingredientes. A alavanca de balanceamento de um item é **raridade + frequência**
+(1x/combate, 1x/descanso longo), nunca custo de recurso por uso. Os efeitos de arma
+(Dilacerar/Executar/…) custam Stamina porque são regra do sistema, não do item.
+
 **Gramática do sistema: todo poder alto tem contrapartida escrita.** Frenesi não defende. Golpe
 Torto expõe. Magias de nível 4 cobram atributo ou Éter máximo permanente. O único buff de dano puro
 em raridade Luxária (Capacitores do Autômato) causa dano de retorno.

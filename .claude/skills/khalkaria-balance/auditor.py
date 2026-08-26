@@ -198,6 +198,73 @@ def cmd_aplicar(dry=True):
             csv.writer(f).writerows(rows)
         print(f"\n✅ CSV reescrito: {len(mud)} armas atualizadas.")
 
+
+# ---- Focos Místicos --------------------------------------------------------
+# Requisito da família Místicas (Notion): INT >= 12. Foco Primordial: Experiente
+# em Místico (é o gate das magias de nível 4). Escala: +N Místico, +5N Éter máx.
+FOCO_EFEITOS = {   # efeitos únicos aprovados pelo Pedro (lote 2)
+ 'Foco da Égide':      'Ao conjurar uma magia de Abjuração, remova 1 condição do alvo como ação livre.',
+ 'Foco do Estilhaço':  'Suas magias de Destruição de alvo único causam +1d6 de dano de Força a alvos adjacentes.',
+ 'Foco da Premonição': 'Como reação, 1x por combate: força uma criatura a repetir um teste de ataque ou '
+                       'resistência contra você, ficando com o pior resultado.',
+ 'Foco do Baluarte':   'Com 3 ações, você pode canalizar uma barreira mística em formato de domo impenetrável '
+                       'com 3 m de raio. A barreira não pode ser destruída por meios materiais, apenas sob seu '
+                       'comando ao gastar 1 ação para dissipá-la. A barreira dura 3 rodadas, porém você deve '
+                       'sustentá-la em cada uma dessas rodadas gastando 3 ações, ou ao final do seu turno em que '
+                       'você negligenciou esse custo, ela se dissipa imediatamente.',
+ 'Foco do Demiurgo':   'Como 1 ação, você pode manipular terreno como se estivesse canalizando a magia Plasmar '
+                       'Terreno. Esse efeito não gasta Éter, porém você pode utilizá-lo apenas 3x/Descanso Longo.',
+ 'Foco do Inquebrável':'Como reação, você recupera 2d10+Mod. Constituição de Saúde, 2d8+Mod. Destreza de Stamina '
+                       'e 2d6+Mod. Inteligência ou Sabedoria de Éter e, se quiser, imediatamente se teletransporta '
+                       'a até 9 m. 1x/Descanso Longo.',
+}
+
+def foco_canonico(nome, efeito):
+    """Normaliza a descrição de um foco: escola, escala, requisito, efeito único."""
+    esc = re.search(r'Foco Místico \(([^)]+)\)', efeito)
+    if not esc: return efeito
+    escola = esc.group(1)
+    prim = (escola == 'Primordial')
+    mis = re.search(r'\+(\d) Místico', efeito)
+    nivel = int(mis.group(1)) if mis else 0
+    if prim: nivel = 3                      # focos Primordiais são lategame nv5 = +3 (D-lote2 #5)
+    abre = (f"Foco Místico (Primordial). Permite canalizar magias Primordiais "
+            f"(todas as magias de nível 4)." if prim else
+            f"Foco Místico ({escola}). Permite canalizar magias da escola de {escola}.")
+    escala = (f"+{nivel} Místico, +{5*nivel} Éter máximo." if nivel else "Sem bônus.")
+    prof = 'Experiente' if prim else 'Treinado'
+    req = f"Requisito: Inteligência ≥ 12 e {prof} em Místico."
+    partes = [abre, escala, req]
+    # efeito único: o aprovado, senão preserva o que já existe
+    if nome in FOCO_EFEITOS:
+        partes.append(FOCO_EFEITOS[nome])
+    else:
+        resto = efeito
+        for pat in [r'Foco Místico \([^)]+\)\.', r'Permite canalizar magias[^.]*\.',
+                    r'\+\d Místico, \+\d+ Éter máximo\.', r'Sem bônus\.',
+                    r'Requer Treinado em Místico\.', r'Requisito:[^.]*\.']:
+            resto = re.sub(pat, '', resto)
+        resto = re.sub(r'\s+', ' ', resto).strip()
+        if resto: partes.append(resto)
+    return ' '.join(partes)
+
+def cmd_focos(dry=True):
+    rows = list(csv.reader(open(CSV, encoding='utf-8')))
+    hdr = {i for i,r in enumerate(rows) if r[1] == 'Categoria'}
+    mud = []
+    for i,r in enumerate(rows):
+        if i in hdr or r[1] != 'Arma' or 'Foco Místico' not in r[3]: continue
+        novo = foco_canonico(r[0], r[3])
+        if novo != r[3]: mud.append((i, r[0], r[3], novo))
+    print(f"{'[DRY-RUN] ' if dry else ''}focos a alterar: {len(mud)}")
+    for i,n,a,b in mud:
+        print(f"\n  {n}\n   - {a}\n   + {b}")
+    if not dry:
+        for i,n,a,b in mud: rows[i][3] = b
+        with open(CSV, 'w', encoding='utf-8', newline='') as f:
+            csv.writer(f).writerows(rows)
+        print(f"\n✅ {len(mud)} focos atualizados.")
+
 # ---------------------------------------------------------------- comandos --
 def cmd_dump(cat=None, familia=None, raridade=None):
     rows = load()
@@ -383,6 +450,7 @@ if __name__ == '__main__':
     elif cmd == 'cobertura': cmd_cobertura()
     elif cmd == 'lote1':     cmd_lote1()
     elif cmd == 'aplicar':   cmd_aplicar(dry='--go' not in a)
+    elif cmd == 'focos':     cmd_focos(dry='--go' not in a)
     elif cmd == 'dpr':
         d, ac = a[1], int(a[2]); mod = int(a[3]) if len(a) > 3 else 3
         print(f"{d} / Atacar({ac}) / mod +{mod}  →  D={media_dado(d):.1f}  DPR={dpr(d,ac,mod):.2f}")

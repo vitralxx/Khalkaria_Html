@@ -71,3 +71,32 @@ Arma (genéricas → focos → únicas) → Munição → Escudo → Armadura �
 Bugiganga → Lixo. **Material: não tocar.**
 Protocolo: lotes de ~12–15 itens; imprimo Nome | Raridade | Descrição EXATA; Pedro opina em lista
 numerada; **correção num item se aplica à família inteira**.
+
+---
+
+## D10 — 🔑 Itens não cobram Stamina
+"Geralmente, eu não cobro Stamina em itens, pelo custo de Sins ou ingredientes."
+→ **O custo de um item é o preço de aquisição (Sins/ingredientes), não recurso por uso.**
+Exceção que não é exceção: os **efeitos de arma** (Dilacerar/Alcançar/Desorientar 2, Executar 3)
+custam Stamina porque são **regra do sistema**, não do item.
+→ Ao precificar item, a alavanca é **raridade + frequência de uso** (1x/combate, 1x/descanso longo),
+nunca "gasta N Stamina".
+
+## D11 — Teto de dano por acerto é permissível no topo
+Sobre o Martelo de Mundarak (Pesada Brutal +3, 5d12+3, máx. 63 / 126 no crítico):
+"Essa arma é o ápice do poder por ataque individual, Pesada Brutal +3 com arma única Luxária,
+é permissível que ela seja poderosa." → **Não tratar como bug.**
+
+## D12 — Focos Primordiais são +3 por natureza
+"Os focos primordiais são lategame lvl 5 apenas, então não faz sentido serem menor que Luxária,
+então naturalmente são armas +3." → Não existe Primordial +1/+2. Correto por design.
+
+## Lotes concluídos
+- **Lote 1 (15 armas genéricas base → 118 armas):** aplicado. 53 reescritas, 35 já corretas.
+  15/15 chassis conformes ao Notion.
+- **Lote 2 (30 focos místicos):** aplicado. Normalizados para
+  `Foco Místico (Escola). Permite canalizar... +N Místico, +5N Éter máximo.
+  Requisito: Inteligência ≥ 12 e {Treinado|Experiente} em Místico. <efeito único>`
+  Correções: Primordiais passam a exigir **Experiente**; Véu de Velúria +20 → **+15 Éter**;
+  6 efeitos únicos reescritos pelo Pedro (Égide, Estilhaço, Premonição, Baluarte, Demiurgo,
+  Inquebrável).
