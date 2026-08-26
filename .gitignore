@@ -1,2 +1,4 @@
 notion_cache/*
 !notion_cache/pages.json
+__pycache__/
+*.pyc
