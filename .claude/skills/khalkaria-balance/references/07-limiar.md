@@ -56,6 +56,14 @@ Como atributos começam em 8–18, requisitos de 20+ exigem crescimento — são
 **Regra do CLAUDE.md §9: cartas raras usam apenas recursos universais** (Stamina, Éter, HP, Reações,
 Ações, CD de classe), nunca recursos travados por classe como FLUXO. **A mesma regra vale para itens.**
 
+## 🔑 Intenção de design (D8 — Pedro)
+"As cartas raras, principalmente as de requisitos mais específicos e difíceis, são muito fortes.
+**Mas esse é o design, poder absurdo.**"
+→ **Carta rara forte não é bug.** É o teto legítimo do sistema. O que permanece verdadeiro é que
+um **item comprável e acumulável** não deve igualar uma carta travada atrás de atributo 16–24+,
+porque o item não paga o mesmo gate. Compare sempre *com o gate*, não só com o efeito.
+Todas as cartas e seus custos em pontos **estão no Notion**.
+
 ## Como usar o Limiar ao julgar um item
 1. **Um item não deveria superar uma carta universal sem custo.** Carta universal é um dos 16 pontos
    da campanha inteira; um item é comprável e acumulável.

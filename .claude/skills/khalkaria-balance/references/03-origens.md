@@ -48,7 +48,7 @@ de arco narrativo; um Luxária é um artefato de campanha.
 | **Vidente** | Intuição | *Vidência* — informação do dia seguinte ao dormir; 🔑 **não pode ficar *Desprevenido* enquanto consciente** — imunidade permanente a uma condição Classe S. |
 | **Amaldiçoado** | Místico | *Local* — puramente narrativo (gancho de campanha). **Sem valor mecânico.** |
 | **Escravo** | Movimento ou Defender | *Liberdade* — vantagem em resistir a restrição/movimento forçado/coerção. |
-| **Caçador** | Sobrevivência | *Caçar* — descanso longo, Sobrevivência ≥ 15 → 2 Comidas + **1 item incomum vendável** (≈67 Sins/dia). 🔑 **Torneira de renda repetível — é o maior gerador de Sins do sistema.** |
+| **Caçador** | Sobrevivência | *Caçar* — 🆕 **reformulado (D7)**: gasta a **ação de descanso longo**, Sobrevivência CD 15 → **1d4 Comida + 1d4 Couro de Caça** (material Ordinário, craftável e vendável). Não é mais renda líquida direta. |
 
 ## Padrões que a régua precisa conhecer
 1. **"Gastar Stamina para rolar com +1 nível de treinamento"** aparece em 4 origens
@@ -58,5 +58,5 @@ de arco narrativo; um Luxária é um artefato de campanha.
 2. **Origem pode destravar categoria de arma** (Acólito → Marciais; Andarilho → À Distância) e
    **conjuração** (Cultista → 2 magias nv1). Não assuma que só a classe abre esses portões.
 3. **Imunidade a condição** (Vidente vs. Desprevenido) é o teto do que uma origem entrega em defesa.
-4. **Renda repetível** (Caçador) existe e já pressiona a economia. Itens do Bazar que gerem Sins
-   por descanso competem com isso e devem ser lidos contra ele.
+4. **Renda repetível** (Caçador) foi reformulada (D7) e agora custa a ação de descanso e entrega
+   **material**, não Sins. Itens do Bazar que gerem recurso por descanso competem com isso.

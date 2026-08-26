@@ -100,6 +100,60 @@ def nivel_arma(nome):
     m = re.search(r'\+(\d)\s*$', nome)
     return int(m.group(1)) if m else 0
 
+
+# ---- Gerador de descrição canônica -----------------------------------------
+ALCANCE = {'Distância Simples':'18 m','Distância Pesada':'18 m','Arremesso':'9 m'}
+MUNICAO = {'Distância Simples':'Flecha ou Virote','Distância Pesada':'Munição de Fogo',
+           'Arremesso':'Conjunto de Arremesso'}
+ARREMESSAVEL = {'Leve Cortante','Leve Perfurante','Leve Contundente'}
+DANO_CTX = 'Cortante, Perfurante ou Contundente'
+ATTR_EXT = {'DES':'Destreza','FOR':'Força'}
+
+def descricao_canonica(ch, nivel=0, payload=''):
+    """Monta a descrição canônica de uma arma a partir do chassi do Notion.
+    payload = texto exclusivo da arma única (ex.: '+ 1d4 Fogo. Crítico: ...')."""
+    dado, attr, dano, ef, ac, req = ARMAS_CANON[ch]
+    n, f = re.fullmatch(r'(\d+)d(\d+)', dado).groups()
+    dado_n = f"{int(n)+nivel}d{f}"
+    dano_txt = DANO_CTX if dano == 'Contextual' else dano
+    nome = f"{ch} +{nivel}" if nivel else ch
+    partes = [f"{nome}. {dado_n} {dano_txt} ({ATTR_EXT[attr]})."]
+    if nivel: partes.append(f"+{nivel} em Atacar.")
+    acoes = f"Atacar({ac})" + (", Arremessar(1)" if ch in ARREMESSAVEL else "")
+    partes.append(acoes + ".")
+    if ch in ALCANCE: partes.append(f"Alcance {ALCANCE[ch]}.")
+    req_txt = req.replace('>=', '≥').replace('DES','Destreza').replace('FOR','Força')
+    partes.append(f"Requisito: {req_txt}.")
+    if ch in MUNICAO:
+        partes.append(f"Consome 1 munição ({MUNICAO[ch]}) por cena de combate.")
+    if payload: partes.append(payload.strip())
+    custo, txt = EFEITOS[ef]
+    partes.append(f"Efeito: {ef} ({custo}): {txt}.")
+    if ch in MARCIAIS: partes.append("1x/turno não custa Stamina.")
+    return ' '.join(partes)
+
+def cmd_lote1():
+    rows = {r['Nome']: r for r in load()}
+    print("LOTE 1 — 15 ARMAS GENÉRICAS BASE\n" + "="*78)
+    for ch,(dado,attr,dano,ef,ac,req) in ARMAS_CANON.items():
+        nome = f"Arma {ch}"
+        r = rows.get(nome)
+        atual = r['Efeito'] if r else '(item ausente do CSV)'
+        rar = r['Raridade'] if r else '—'
+        val = r['Valor (Sins)'] if r else '—'
+        novo = descricao_canonica(ch)
+        igual = (atual == novo)
+        print(f"\n### {nome}  |  {rar}  |  {val} Sins   {'✅ já correto' if igual else '🔴 desatualizado'}")
+        print(f"  ATUAL : {atual}")
+        if not igual:
+            print(f"  CANON : {novo}")
+            dc = dpr(dado, ac)
+            md = re.search(r'(\d+d\d+)', atual); ma = re.search(r'Atacar\((\d)\)', atual)
+            if md and ma:
+                da = dpr(md.group(1), int(ma.group(1)))
+                if abs(da-dc) > 0.01:
+                    print(f"  DPR   : {da:.2f} → {dc:.2f}  ({(dc/da-1)*100:+.0f}%)")
+
 # ---------------------------------------------------------------- comandos --
 def cmd_dump(cat=None, familia=None, raridade=None):
     rows = load()
@@ -283,6 +337,7 @@ if __name__ == '__main__':
     elif cmd == 'travas':    cmd_travas()
     elif cmd == 'economia':  cmd_economia()
     elif cmd == 'cobertura': cmd_cobertura()
+    elif cmd == 'lote1':     cmd_lote1()
     elif cmd == 'dpr':
         d, ac = a[1], int(a[2]); mod = int(a[3]) if len(a) > 3 else 3
         print(f"{d} / Atacar({ac}) / mod +{mod}  →  D={media_dado(d):.1f}  DPR={dpr(d,ac,mod):.2f}")

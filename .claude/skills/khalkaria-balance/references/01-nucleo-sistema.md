@@ -109,8 +109,8 @@ Requisito não atendido → **nega o efeito da arma E dá desvantagem ao atacar*
 | Foco de Abjuração/Destruição/Conhecimento/Alteração | — | — | — | permite castar a escola | — | — |
 | Foco Primordial | — | — | — | permite castar magias Primordiais (**nível 4**) | — | Experiente em Místico |
 
-🔴 O Notion **não tem coluna de Alcance**. Os valores 18 m / 18 m / 9 m do briefing não estão no
-Notion — precisam ser confirmados pelo Pedro antes de virar base de cálculo.
+✅ **Alcance confirmado canônico pelo Pedro (D3):** Distância Simples 18 m · Distância Pesada 18 m ·
+Arremesso 9 m. (A tabela do Notion não tem essa coluna; o Pedro confirmou os valores.)
 
 ### Efeitos de arma (ação livre, gasta Stamina, aplica ao próximo ataque)
 | Efeito | Descrição | Stamina |
@@ -157,7 +157,7 @@ Sucatear devolve **metade** dos ingredientes.
 
 Comerciantes: Sucateiro(compra tudo) · Fornecedor(Materiais) · Artesão(Bugigangas) ·
 Ferreiro(Equipamentos) · Boticário(Consumíveis) · Artificer(Itens Mágicos).
-Nível 1/2/3 → estoque 100/250/500 Sins, venda a 50%/66%/75%.
+Nível 1/2/3 → **estoque 250/500/1000 Sins** (D6), **reposição 1 dia fixa** (D6), venda a 50%/66%/75%.
 
 ## Descanso
 - **Longo (1×/dia):** 8 h, recupera **Xd8 de 2 status à escolha**, X = comodidade 1–5
