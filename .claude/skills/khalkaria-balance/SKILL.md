@@ -39,6 +39,36 @@ numerada; **correção apontada em um ponto se aplica globalmente**, não parcia
 **Teste combinações o tempo todo** — é o que jogadores fazem. Ao avaliar um item, pergunte
 ativamente: qual classe, raça, origem e carta do Limiar transformam isto em algo degenerado?
 
+## Ferramenta — `auditor.py` (use isto, não olhômetro)
+
+O CSV do Bazar tem 582 itens e o **cabeçalho está na última linha**. Nunca revise a olho:
+toda extração e comparação passa pelo auditor, que carrega o cânone do Notion embutido.
+
+```bash
+cd .claude/skills/khalkaria-balance
+
+python3 auditor.py armas                  # chassis do CSV x tabela canônica + impacto no DPR
+python3 auditor.py dump Arma --familia única   # Nome | Raridade | Descrição EXATA (fluxo de revisão)
+python3 auditor.py dump Consumível --raridade Luxária
+python3 auditor.py familias               # famílias/tags/craft por categoria
+python3 auditor.py precos                 # Valor(Sins) x faixa da raridade
+python3 auditor.py travas                 # varre ação extra, anula-PMA, margem de crítico, Ar alto…
+python3 auditor.py economia               # simula o loop de Sins e o payback de comerciante
+python3 auditor.py cobertura              # itens sem gancho de arquétipo de classe
+python3 auditor.py dpr 2d10 2             # DPR de um chassi qualquer
+```
+
+`dump` é o comando do fluxo de revisão com o Pedro: ele imprime **Nome, Raridade e a descrição
+verbatim**, que é exatamente o que o Pedro opina antes de reinserir no CSV.
+
+**Fatos que o auditor já estabeleceu (não re-derive):**
+- **0 de 582 itens** têm preço fora da faixa da raridade. **A raridade é a única alavanca de preço
+  do Bazar** — "o preço combina com o valor" é sempre a pergunta "a raridade está certa".
+- A categoria **Arma tem 3 famílias**: 60 genéricas (craftáveis), 58 únicas (não-craftáveis),
+  e **30 Focos Místicos** — que não têm dado de dano e não entram no modelo de DPR.
+- **5 dos 15 chassis divergem do Notion** e **21 armas marciais** não declaram a cláusula
+  "1×/turno sem gastar Stamina" que é a razão de ser da família.
+
 ## Fundamentos
 
 - Atributos FOR/DES/CON/INT/SAB, 8–18. Mod = (attr − 10)/2. **Sem Carisma.**
@@ -123,7 +153,7 @@ Idem **Dilacerar**: Sangramento faz *qualquer* ataque contra o alvo causar +1d4.
 
 **LEVES** — req. DES ≥ 12 · **PESADAS** — req. FOR ≥ 12 · **MARCIAIS** — req. Treinado em Armas
 Marciais, todas aplicam seu efeito **1×/turno sem gastar Stamina** · **À DISTÂNCIA** — req.
-Treinamento à Distância, consomem munição.
+Treinamento à Distância, gastam **1 munição por cena de combate** (não por disparo).
 
 | Arma | Dado | Attr | Dano | Efeito | Ações | Req. extra |
 |---|---|---|---|---|---|---|

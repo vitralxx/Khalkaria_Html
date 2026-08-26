@@ -4,16 +4,18 @@ Levantadas na construção da régua (Notion, repo e CSV v26 cruzados em 2026-08
 
 ## A. Notion × briefing do Pedro
 
-### A1. 🔴 Munição — duas regras incompatíveis
-- **Notion (Sistema → Armas):** "Armas à distância requerem **1 munição para serem usadas pelo
-  combate inteiro**. A munição é descontada **por combate**." E em O Bazar: munição especial
-  "concede seu efeito **durante todo o combate, em cada ataque**".
-- **Notion (Inventário):** "munições (Flechas e etc) contam como **1 bugiganga**".
-- **CLAUDE.md e briefing:** "**20 munições = 1 slot**", "consomem munição" (por tiro, implícito).
+### A1. ✅ Munição — RESOLVIDA (confirmado pelo Pedro, 2026-08-26)
+**O Notion está certo e é a regra vigente:** gasta-se **1 munição do tipo da arma por cena de
+combate**, não por disparo. Munições do Bazar **adicionam efeito à arma** (ataque em área, mais
+dano por disparo) e esse efeito **vale o combate inteiro**.
+O "20 munições = 1 slot" do CLAUDE.md está errado; o Notion diz que munição conta como
+**1 bugiganga**. → Corrigir o CLAUDE.md.
 
-**Impacto:** se munição é por combate, munição especial é um **buff de cena inteira por 1 unidade** —
-ordem de grandeza mais forte do que um consumível por tiro, e muda a precificação das 23 munições
-do Bazar. **Precisa de decisão antes de revisar a categoria Munição.**
+**Consequência de precificação:** uma munição Incomum+ é um **buff de cena por 1 unidade**.
+Ela não deve ser precificada como consumível de uso único — deve ser precificada contra
+*efeitos de arma* (Dilacerar/Alcançar/Desorientar custam 2 Stamina **por ataque**; Executar 3).
+Uma munição que replique um efeito de arma pelo combate inteiro substitui ~3 ativações de
+Stamina por turno de uso. **É a categoria com maior risco de estar subprecificada.**
 
 ### A2. 🔴 Alcance das armas à distância não existe no Notion
 O briefing usa Distância Simples 18 m, Distância Pesada 18 m, Arremesso 9 m.
