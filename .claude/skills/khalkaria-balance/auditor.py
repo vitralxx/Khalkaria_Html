@@ -103,7 +103,8 @@ def nivel_arma(nome):
 
 # ---- Gerador de descrição canônica -----------------------------------------
 ALCANCE = {'Distância Simples':'18 m','Distância Pesada':'18 m','Arremesso':'9 m'}
-MUNICAO = {'Distância Simples':'Flecha ou Virote','Distância Pesada':'Munição de Fogo',
+# nomes exatos dos 3 itens-base da categoria Munição no CSV (1 por arma)
+MUNICAO = {'Distância Simples':'Virotes/Flechas','Distância Pesada':'Munição de Fogo',
            'Arremesso':'Conjunto de Arremesso'}
 ARREMESSAVEL = {'Leve Cortante','Leve Perfurante','Leve Contundente'}
 DANO_CTX = 'Cortante, Perfurante ou Contundente'
@@ -153,6 +154,49 @@ def cmd_lote1():
                 da = dpr(md.group(1), int(ma.group(1)))
                 if abs(da-dc) > 0.01:
                     print(f"  DPR   : {da:.2f} → {dc:.2f}  ({(dc/da-1)*100:+.0f}%)")
+
+
+def partes_arma(efeito):
+    """Extrai (chassi, nivel, payload_unico) da descrição atual de uma arma."""
+    ch = chassi(efeito)
+    if ch is None: return None, 0, ''
+    m = re.match(re.escape(ch) + r'\s*(?:\+(\d))?\.', efeito)
+    nivel = int(m.group(1)) if (m and m.group(1)) else 0
+    # payload = o que estiver entre o fim da frase "Requisito: ..." e "Efeito:"
+    mr = re.search(r'Requisito:[^.]*\.', efeito)
+    me = re.search(r'Efeito:', efeito)
+    payload = ''
+    if mr and me and me.start() > mr.end():
+        payload = efeito[mr.end():me.start()].strip()
+        # descarta o que o gerador reinsere sozinho
+        payload = re.sub(r'Alcance \d+[,\d]* m\.', '', payload)
+        payload = re.sub(r'Consome 1 munição \([^)]*\) por cena de combate\.', '', payload)
+        payload = re.sub(r'1x/turno não custa Stamina\.', '', payload)
+        payload = re.sub(r'\s+', ' ', payload).strip()
+    return ch, nivel, payload
+
+def cmd_aplicar(dry=True):
+    """Reescreve a coluna Efeito de todas as armas com chassi, a partir do cânone."""
+    rows = list(csv.reader(open(CSV, encoding='utf-8')))
+    hdr = {i for i,r in enumerate(rows) if r[1] == 'Categoria'}
+    mud, mantidos, pulados = [], 0, 0
+    for i,r in enumerate(rows):
+        if i in hdr or r[1] != 'Arma': continue
+        ch, nivel, payload = partes_arma(r[3])
+        if ch is None: pulados += 1; continue
+        novo = descricao_canonica(ch, nivel, payload)
+        if novo != r[3]: mud.append((i, r[0], r[3], novo))
+        else: mantidos += 1
+    print(f"{'[DRY-RUN] ' if dry else ''}armas a alterar: {len(mud)} | já corretas: {mantidos} | "
+          f"sem chassi (focos): {pulados}")
+    for i,n,a,b in mud[:6]:
+        print(f"\n  {n}\n   - {a}\n   + {b}")
+    if len(mud) > 6: print(f"\n  ... +{len(mud)-6} outras")
+    if not dry:
+        for i,n,a,b in mud: rows[i][3] = b
+        with open(CSV, 'w', encoding='utf-8', newline='') as f:
+            csv.writer(f).writerows(rows)
+        print(f"\n✅ CSV reescrito: {len(mud)} armas atualizadas.")
 
 # ---------------------------------------------------------------- comandos --
 def cmd_dump(cat=None, familia=None, raridade=None):
@@ -338,6 +382,7 @@ if __name__ == '__main__':
     elif cmd == 'economia':  cmd_economia()
     elif cmd == 'cobertura': cmd_cobertura()
     elif cmd == 'lote1':     cmd_lote1()
+    elif cmd == 'aplicar':   cmd_aplicar(dry='--go' not in a)
     elif cmd == 'dpr':
         d, ac = a[1], int(a[2]); mod = int(a[3]) if len(a) > 3 else 3
         print(f"{d} / Atacar({ac}) / mod +{mod}  →  D={media_dado(d):.1f}  DPR={dpr(d,ac,mod):.2f}")
