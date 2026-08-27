@@ -149,3 +149,9 @@ Nome descreve **a arma**, o payload descreve o efeito. Evitar nomes que só repi
 Novas: Lâmina Corrosiva · Agulha do Vazio · Maça do Ecoante · Punhal de Mármore ·
 Manoplas Elétricas · Martelo do Juízo · Badalo de Kharavel · Florete Instável ·
 Lâmina do Duelista · Fio Dissonante · Fragmento Primordial.
+
+## D18 — Fragmento Primordial fica sem trava (aprovado)
+"Vamos deixar a Leve Ágil como está, é pra ser muito forte. Fragmento do Primórdio, que é o plano
+onde os deuses vivem."
+→ DPR 24,75 com exposição 0 permanente é o teto deliberado do sistema. **Não é bug.**
+A lore sustenta: arma feita do plano divino não paga o imposto de retaliação do plano material.
