@@ -122,3 +122,30 @@ Dilacerar (Sangramento) → hemorragia, corte, corrosão de armadura ·
 Alcançar (sem retaliação) → negação de reação e de Evasão Ativa ·
 Desorientar (−2 Atacar/Defender, buff de party) → concussão, som, área ·
 Executar (+1 dado) → duelo, aposta, multiplicador.
+
+## D16 — 🔑 Toda condição aplicada por item deve declarar quando expira
+"Existem condições que descrevem precisamente quando elas expiram. Sangramento sai com ataque,
+Envenenamento expira ao suceder Fortitude. **Algumas condições não seguem esse padrão!** Lento por
+exemplo não tem condição de expiração. E nem Surdo. Então explicite quando essa condição expira."
+→ Ao escrever item que aplica condição, **sempre** incluir a expiração no texto do item.
+Padrão adotado: `até o fim da próxima rodada` (alinhado com *Atordoado*, a única condição
+temporizada do cânone).
+
+### 🔴 16 condições do Notion não têm regra de expiração
+`Desorientado` · `Lento X` · `Confuso` · `Enjoado` · `Cego` · `Surdo` · `Enraizado` ·
+`Amedrontado` · `Bêbado` · `Paralisado` · `Inconsciente` · `Desprevenido` · `Oco` ·
+`Desnutrido X` · `Sobrepeso Leve` · `Sobrepeso Extremo`
+**A mais grave é `Desorientado`** — é um dos 4 efeitos de arma canônicos (Desorientar, 2 Stamina)
+e não diz quanto dura. Toda arma Contundente do Bazar depende disso.
+**Pendente de decisão do Pedro no nível de sistema, não do Bazar.**
+
+## D17 — Estilo de nomenclatura (aprendido nas correções do lote 3)
+O Pedro renomeia para o **objeto físico correto**, não para o efeito:
+Espada→Adaga/Cimitarra/Foice Curta conforme o chassi ser leve; Estilete→Raízes; Faca→Adagas Duplas.
+Nome descreve **a arma**, o payload descreve o efeito. Evitar nomes que só repitam o elemento.
+
+## Lote 3 (LEVES) — CONCLUÍDO
+9 armas revisadas + **11 criadas**. Os 4 chassis leves estão em 2/2/1.
+Novas: Lâmina Corrosiva · Agulha do Vazio · Maça do Ecoante · Punhal de Mármore ·
+Manoplas Elétricas · Martelo do Juízo · Badalo de Kharavel · Florete Instável ·
+Lâmina do Duelista · Fio Dissonante · Fragmento Primordial.
