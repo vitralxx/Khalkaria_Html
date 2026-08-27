@@ -125,7 +125,8 @@ def descricao_canonica(ch, nivel=0, payload=''):
     if ch in ALCANCE: partes.append(f"Alcance {ALCANCE[ch]}.")
     req_txt = req.replace('>=', '≥').replace('DES','Destreza').replace('FOR','Força')
     partes.append(f"Requisito: {req_txt}.")
-    if ch in MUNICAO:
+    # armas cujo payload já nega o consumo (ex.: Shuriken Retornante) não levam a cláusula
+    if ch in MUNICAO and 'não consome munição' not in payload.lower():
         partes.append(f"Consome 1 munição ({MUNICAO[ch]}) por cena de combate.")
     if payload: partes.append(payload.strip())
     custo, txt = EFEITOS[ef]
