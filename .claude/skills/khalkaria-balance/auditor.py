@@ -211,7 +211,8 @@ FOCO_EFEITOS = {   # efeitos únicos aprovados pelo Pedro (lote 2)
                        'com 3 m de raio. A barreira não pode ser destruída por meios materiais, apenas sob seu '
                        'comando ao gastar 1 ação para dissipá-la. A barreira dura 3 rodadas, porém você deve '
                        'sustentá-la em cada uma dessas rodadas gastando 3 ações, ou ao final do seu turno em que '
-                       'você negligenciou esse custo, ela se dissipa imediatamente.',
+                       'você negligenciou esse custo, ela se dissipa imediatamente. A barreira bloqueia movimento, '
+                       'ataques e magias em ambos os sentidos.',
  'Foco do Demiurgo':   'Como 1 ação, você pode manipular terreno como se estivesse canalizando a magia Plasmar '
                        'Terreno. Esse efeito não gasta Éter, porém você pode utilizá-lo apenas 3x/Descanso Longo.',
  'Foco do Inquebrável':'Como reação, você recupera 2d10+Mod. Constituição de Saúde, 2d8+Mod. Destreza de Stamina '
