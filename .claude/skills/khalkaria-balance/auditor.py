@@ -267,6 +267,38 @@ def cmd_focos(dry=True):
             csv.writer(f).writerows(rows)
         print(f"\n✅ {len(mud)} focos atualizados.")
 
+
+# ---- Lacunas de armas únicas ----------------------------------------------
+META = {'Incomum': 2, 'Exótico': 2, 'Luxária': 1}   # alvo por chassi (D13)
+FAMILIA = {'Leve':'LEVES','Pesada':'PESADAS','Marcial':'MARCIAIS','Distância':'À DISTÂNCIA',
+           'Arremesso':'À DISTÂNCIA'}
+
+def cmd_lacunas():
+    u = [r for r in load() if r['Categoria']=='Arma' and familia_arma(r['Nome'])=='única'
+         and 'Foco Místico' not in r['Efeito']]
+    por = collections.defaultdict(lambda: collections.Counter())
+    nomes = collections.defaultdict(list)
+    for r in u:
+        ch = chassi(r['Efeito'])
+        if ch: por[ch][r['Raridade']] += 1; nomes[(ch,r['Raridade'])].append(r['Nome'])
+    print(f"{'CHASSI':22} {'FAMÍLIA':12} {'Inc':>7} {'Exó':>7} {'Lux':>7} {'FALTAM':>7}")
+    tot_falta = 0
+    for ch in ARMAS_CANON:
+        fam = FAMILIA[ch.split()[0]]
+        cel, falta = [], 0
+        for rar, alvo in META.items():
+            tem = por[ch][rar]; d = alvo - tem
+            falta += max(0, d)
+            cel.append(f"{tem}/{alvo}" + ('' if d <= 0 else ' 🔴'))
+        tot_falta += falta
+        print(f"{ch:22} {fam:12} {cel[0]:>7} {cel[1]:>7} {cel[2]:>7} {falta:>7}")
+    print(f"\nTotal de armas únicas hoje: {len(u)} · alvo: {len(ARMAS_CANON)*5} · "
+          f"**a criar: {tot_falta}**")
+    for fam in ['LEVES','PESADAS','MARCIAIS','À DISTÂNCIA']:
+        chs = [c for c in ARMAS_CANON if FAMILIA[c.split()[0]] == fam]
+        f = sum(max(0, META[r] - por[c][r]) for c in chs for r in META)
+        print(f"   {fam:14} faltam {f}")
+
 # ---------------------------------------------------------------- comandos --
 def cmd_dump(cat=None, familia=None, raridade=None):
     rows = load()
@@ -453,6 +485,7 @@ if __name__ == '__main__':
     elif cmd == 'lote1':     cmd_lote1()
     elif cmd == 'aplicar':   cmd_aplicar(dry='--go' not in a)
     elif cmd == 'focos':     cmd_focos(dry='--go' not in a)
+    elif cmd == 'lacunas':   cmd_lacunas()
     elif cmd == 'dpr':
         d, ac = a[1], int(a[2]); mod = int(a[3]) if len(a) > 3 else 3
         print(f"{d} / Atacar({ac}) / mod +{mod}  →  D={media_dado(d):.1f}  DPR={dpr(d,ac,mod):.2f}")

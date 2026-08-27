@@ -100,3 +100,25 @@ então naturalmente são armas +3." → Não existe Primordial +1/+2. Correto po
   Correções: Primordiais passam a exigir **Experiente**; Véu de Velúria +20 → **+15 Éter**;
   6 efeitos únicos reescritos pelo Pedro (Égide, Estilhaço, Premonição, Baluarte, Demiurgo,
   Inquebrável).
+
+## D13 — Cobertura obrigatória de armas únicas 🆕
+"Lacunas são inaceitáveis, vamos fazer questão de que todos os tipos de armas únicas tenham a
+mesma quantidade em cada raridade: **Incomum 2, Exótico 2, Luxária 1**."
+→ 15 chassis × 5 = **75 armas únicas**. Hoje existem 28. **Faltam 47.**
+
+## D14 — Escada de payload por raridade (derivada do estilo do Pedro) 🆕
+Normalizada por ele no lote 3 (LEVES):
+| Raridade | Dado extra | Forma do efeito |
+|---|---|---|
+| **Incomum** | **+1d4** | `Crítico: <teste> ou <condição>` |
+| **Exótico** | **+1d6** | efeito elaborado (condicional, escolha, dreno, respingo) |
+| **Luxária** | **+1d8** | `Como 1 ação/reação, <efeito>, 3x/Descanso Longo` |
+Gatilho padrão é **Crítico**, não "Ao acertar" (~7× mais frequente — foi corrigido na Lança Venenosa).
+Frequência substitui custo de recurso (ver D10: itens não cobram Stamina).
+
+## D15 — Identidade de chassi orienta o payload da arma única 🆕
+O efeito único deve amplificar o **efeito de arma do chassi**, não fugir dele:
+Dilacerar (Sangramento) → hemorragia, corte, corrosão de armadura ·
+Alcançar (sem retaliação) → negação de reação e de Evasão Ativa ·
+Desorientar (−2 Atacar/Defender, buff de party) → concussão, som, área ·
+Executar (+1 dado) → duelo, aposta, multiplicador.
