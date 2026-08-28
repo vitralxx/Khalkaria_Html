@@ -167,9 +167,9 @@ como se fosse um recurso na ficha ou no export do Bestiário.
 
 ## D20 — 🔴 Evasão passiva é 10 + Mod.DES em TODAS as classes
 "A evasão passiva em todas as classes é 10 + Mod. Des."
-🔴 **CONFLITO COM O REPO:** `pages/classes/*.html` lista bases diferentes —
-Espadachim 10 · Batedor 12 · Brutalista 10 · Teurgo 10 · **Monge 15** · Alquimista 12 · Artilheiro 11.
-**Se o Pedro está certo, o repo está desatualizado e precisa ser corrigido contra o Notion.**
+✅ **RESOLVIDO a favor do Notion.** O repo (`pages/classes/*.html`) lista 10/12/10/10/15/12/11,
+mas está **desatualizado**: "o site tem um agente que escaneia o Notion e cola lá, mas desatualiza
+depois de patches". O Notion manda. Corrigir as 7 páginas numa passada de sync futura.
 **Consequência:** invalida a análise A.2 e A.7 da Régua v0.2 — não existe "dispersão de Evasão
 por classe" nem outlier do Monge. A dispersão vem só do investimento em DES.
 **Pendente: confirmar contra o Notion e corrigir o repo.**
