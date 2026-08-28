@@ -155,3 +155,50 @@ Lâmina do Duelista · Fio Dissonante · Fragmento Primordial.
 onde os deuses vivem."
 → DPR 24,75 com exposição 0 permanente é o teto deliberado do sistema. **Não é bug.**
 A lore sustenta: arma feita do plano divino não paga o imposto de retaliação do plano material.
+
+---
+
+## D19 — 🔴 CORREÇÃO: Vitalidade/Vigor/Ressonância são COEFICIENTES, não status
+"Os 3 status reais do sistema são: **Saúde, Stamina e Éter**. Vitalidade, Vigor e Ressonância
+apenas aumentam o fator de aumento nas classes."
+→ "6 Vitalidade" = o coeficiente 6 em `Saúde = 10 + (6 × Nv) + (Mod.CON × Nv)`.
+→ **Resolve a pergunta C.1 da Régua v0.2**: não é renomeação global. Nunca escrever "Vitalidade"
+como se fosse um recurso na ficha ou no export do Bestiário.
+
+## D20 — 🔴 Evasão passiva é 10 + Mod.DES em TODAS as classes
+"A evasão passiva em todas as classes é 10 + Mod. Des."
+🔴 **CONFLITO COM O REPO:** `pages/classes/*.html` lista bases diferentes —
+Espadachim 10 · Batedor 12 · Brutalista 10 · Teurgo 10 · **Monge 15** · Alquimista 12 · Artilheiro 11.
+**Se o Pedro está certo, o repo está desatualizado e precisa ser corrigido contra o Notion.**
+**Consequência:** invalida a análise A.2 e A.7 da Régua v0.2 — não existe "dispersão de Evasão
+por classe" nem outlier do Monge. A dispersão vem só do investimento em DES.
+**Pendente: confirmar contra o Notion e corrigir o repo.**
+
+## D21 — Primeira técnica de nível 1 do ramo concede os treinamentos
+"Geralmente a 1ª técnica nível 1 concede esses treinamentos."
+→ Categoria de arma e perícia de ramo entram como técnica, não como linha da classe base.
+
+## D22 — "Margem de ameaça" vira terminologia oficial
+"Nunca escrevi no Notion, porém já tinha me conformado com esse nome pois é o mesmo usado no
+Tormenta20. Vamos mantê-lo como norma: **'+1 margem de ameaça' significa aumentar a margem do
+crítico no dado em 1**." → Escrever `+N margem de ameaça`, não "crítico em 19-20".
+**Pendente: registrar no Notion.**
+
+## D23 — Escada de rider das PESADAS (confirmada por cálculo)
+Um rider incide nos acertos; arma de 1 ação acerta ~1,75× mais que uma de 2. Paridade em DPR:
+`LEVE +1d4 ≈ PESADA +1d8` · `LEVE +1d6 ≈ PESADA +1d12` · `LEVE +1d8 ≈ PESADA +2d8`
+→ **PESADAS: Incomum +1d8 · Exótico +1d12 · Luxária +2d8.** Confirmado pelo Pedro.
+Exceção permitida: **rider de um degrau acima em troca de `1x/alvo`** (Machado da Fúria: +2d8 1x/alvo).
+
+## D24 — Vampiro: decisões do Pedro
+- **Corrente Sanguínea** (final): Sangue = Saúde temporária acima do máximo, teto `5 + (3 × Nível)`.
+  Técnicas custam Sangue; sem Sangue, paga com Saúde real **sem perda de conversão** —
+  "recurso de classe do Vampiro deve ser explicitamente mais forte que uma técnica do Espadachim".
+  **Pode transformar Sangue em Saúde como 1 ação**, e ao fim do combate converte o Sangue restante.
+- **Sede de Sangue** (característica 2, renomeada de "Presas" porque 2 ramos são à distância):
+  1×/turno, ao acertar contra criatura **viva** sob *Sangramento*, absorve `1d6 + Mod.CON` de Sangue.
+  Ao reduzir criatura viva a 0 de Saúde, absorve `Nível + Mod.CON`.
+- **Ramos:** **A Sombra** (Treinamento à Distância + Furtividade; furtividade/mobilidade/sangramento) ·
+  **O Carmesim** (Treinamento em Movimento; amplificar arma + corpo a corpo) ·
+  **O Hemomante** (Treinamento em Místico + Armas Místicas; sangue amplifica magia e substitui Éter).
+- Status: 6 Saúde / 5 Stamina / 4 Éter por nível = 15 ✅ · CD 10 + Mod.FOR|DES + Mod.INT.
