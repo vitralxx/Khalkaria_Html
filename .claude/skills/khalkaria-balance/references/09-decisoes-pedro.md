@@ -202,3 +202,16 @@ Exceção permitida: **rider de um degrau acima em troca de `1x/alvo`** (Machado
   **O Carmesim** (Treinamento em Movimento; amplificar arma + corpo a corpo) ·
   **O Hemomante** (Treinamento em Místico + Armas Místicas; sangue amplifica magia e substitui Éter).
 - Status: 6 Saúde / 5 Stamina / 4 Éter por nível = 15 ✅ · CD 10 + Mod.FOR|DES + Mod.INT.
+
+## Lote 4 (PESADAS) — CONCLUÍDO
+9 revisadas + **11 criadas**. Os 4 chassis pesados em 2/2/1.
+Novas: Machado Dentado · Guilhotina do Ocaso · Lança de Raízes · Alabarda Farpada ·
+Alabarda Impostora · Lança do Trespasse · Lança do Horizonte Primordial ·
+Sino Místico de Revavena · Machado de Duas Cabeças · Marreta Desfragmentadora · Executor de Ossos.
+
+**Padrão de habilidade ativa por família (descoberto no desenho):**
+- **Pesadas** gastam 2 das 3 ações → **sobra 1 ação** → habilidade Luxária pode custar `1 ação`.
+- **Leves** gastam as 3 ações em ataques → habilidade Luxária precisa ser `ação livre`.
+- **Pesada Brutal** consome o turno inteiro → só efeitos **passivos ou no acerto**, nunca ativos.
+
+**Progresso geral: 50 de 75 armas únicas. Faltam 25** — MARCIAIS 15, À DISTÂNCIA 10.
