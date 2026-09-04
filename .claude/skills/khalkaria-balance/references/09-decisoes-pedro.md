@@ -215,3 +215,17 @@ Sino Místico de Revavena · Machado de Duas Cabeças · Marreta Desfragmentador
 - **Pesada Brutal** consome o turno inteiro → só efeitos **passivos ou no acerto**, nunca ativos.
 
 **Progresso geral: 50 de 75 armas únicas. Faltam 25** — MARCIAIS 15, À DISTÂNCIA 10.
+
+## D25 — MARCIAIS têm DUAS escadas de rider (oficial)
+Os 4 chassis marciais não compartilham custo de ação, e o rider incide nos **acertos**:
+| Chassi | Ações | Escada |
+|---|---|---|
+| Marcial **Pesada** · **Longa** | Atacar(2) | **Incomum +1d8 · Exótico +1d12 · Luxária +2d8** |
+| Marcial **Precisa** · **Versátil** | Atacar(1) | **Incomum +1d4 · Exótico +1d6 · Luxária +1d8** |
+Aplicado nas existentes: Lança de Casca-Seiva +1d4→+1d8 · Grilhões de Osh'Kar +2d6→+2d8 ·
+Lâmina de Vytália +1d12→**+1d8** · Bastão de Karmath +1d10→**+1d6**. (Lâmina de Hyven já estava certa.)
+
+**Orçamento de ação por família — regra de desenho:**
+Leves e Marcial Precisa/Versátil gastam as 3 ações atacando → habilidade ativa só como **ação livre**.
+Pesadas e Marcial Pesada/Longa sobra 1 ação → habilidade pode custar **1 ação**.
+Pesada Brutal consome o turno → só **passivo ou no acerto**.
