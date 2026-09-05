@@ -1,0 +1,12 @@
+# 📊 Análise: Modulações de Magias (3656e3a401d9818a8ecaeb97ee89838b) — Outros — 🟢 Pronto — ed. 2026-06-04
+Contexto: 4 modulações por escola; avalia % de magias que se beneficiam.
+Totais: Destruição 18 (5/5/4/4) — mas lista 20 nomes; Abjuração 17 (5/5/5/2); Alteração 19 (5/5/5/4); Conhecimento 17 (5/5/5/2).
+DESTRUIÇÃO: Fragmentar (+3, +1 alvo, metade dano) 9/18=50%; Alterar (+3, altera tipo) 14/18=78% (inútil em N4 Primordial); Carregar (+3, ignora 2 Evasão/+2 CD) 100%; Marcar (+5, alvo Exposto) 15/18=83%.
+Magias citadas Destruição: Dardo Arcano, Toque Gélido, Onda Gravitacional, Incinerar Área, Raio Elétrico, Lança de Gelo, Verdades Dolorosas, Caveiras Explosivas, Invocar Tempestade, Ventania Bizarra, Pestilência, Limiar Perfurante, Fragmento Estelar, Disparo Veloz, Reversão Umbral, Fissura da Alma, Pestilência Primordial, Eco do Apocalipse, Cometa do Mártir, Tempestade Primordial.
+ABJURAÇÃO: Ancorar (+2, não Dissipado) 11/17=65%; Refletir (+3, bloqueia/redireciona metade) 7/17=41%; Socializar (+4, +1 alvo) 9/17=53%; Acelerar (+5, −1 ação) 13/17=76%.
+Magias citadas Abjuração: Escudo Telecinético, Solo Sagrado, Armadura do Oblívio, Santuário Menor, Purificação Mística, Barreira de Energia, Telepatia, Dissipar Magia, Aumentar/Diminuir, Personificar Elemento, Contramedida, Ruído Anti-Magia, Armadura de Espinhos, Refúgio dos Perdidos, Laço da União, Armadura de Kha, Exílio Existencial. (nota interna: "Absorver Contusão (N3 Alteração, se existir aqui)")
+ALTERAÇÃO: Inversão (+2) 6/19=32%; Seleção (+3, remove criaturas da área) 3/19=16%; Contagiar (+4, +1 alvo) 15/19=79%; Insistir (+5, dobra duração) 12/19=63%.
+Magias citadas: Maldição do Peso, Mão Mágica, Estimulante Místico, Disfarce Ilusório, Queda Suave, Pele de Pedra, Confundir Sentidos, Translocação Arcana, Transfigurar Arma, Enraizar, Transferir Condição, Absorver Contusão, Pele de Camaleão, Xadrez, Plasmar Terreno.
+CONHECIMENTO: Compartilhar (+1) 12/17=71%; Exigência (+2) 100%; Expandir (+2, dobra área) 4/17=24%; Gravar (+3) 100%. Citadas: Pânico, Impulso Instintivo, Detectar Magia, Alarme, Sussurro do Ambiente, Projeção Astral.
+RECOMENDAÇÕES: Substituir Seleção→Alcançar (+2, dobra alcance); Expandir→Persistir (+2, informação persiste); Inversão→Prolongar (+2, +50% duração). Ajustar custos: Acelerar +5→+3; Insistir +5→+3; Contagiar +4→+3; Socializar +4→+3. "Nível 4 já é caro (8 base), +5 = 13 total."
+Conclusão: "Sistema precisa de rebalanceamento em 6 modulações (3 substituir + 3 ajustar custo)." (lista 4 ajustes de custo, não 3)

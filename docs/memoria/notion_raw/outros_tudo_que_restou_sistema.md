@@ -1,0 +1,3 @@
+# ⚙️ O Sistema (efa5fd6ca072434eae3d0437ca9b0496) — Outros/Rpg/Tudo que restou — ed. 2024-11-20
+Sistema DIFERENTE de Khalkaria (setting "Tudo que restou": Tudo vs Nada). 3 atributos: Fervor, Tenor, Conexão (1–3 iniciais). Recursos: Saúde=(F×10)+[(N−1)×5], Empenho=(T×10)+(N×5), Pureza=(C×10)+[(N−1)×5]. Perícias: Movimento, Conexão, Conhecimento, Primeiros Socorros, Social, Furtividade, Iniciativa, Intuição, Percepção, Sobrevivência, Investigação. Ataque = Movimento vs Movimento com "Retalhar". Mantras, Lanterna de Lotus, moeda Dentes de Lobo (DL). Filhas: Passos de criação de Personagem 9d6b3b34…, Cólera 1e99c42c…, Sapiência 1bb21a84…, Sacrifício a Escuridão 3bd97bea….
+Conclusão: precursor/outro jogo; não é Khalkaria. Não aprofundado.

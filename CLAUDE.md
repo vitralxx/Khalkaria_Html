@@ -20,14 +20,17 @@ Publicado em GitHub Pages: `vitralxx.github.io/Khalkaria_Html/`.
 - **Atributos (5):** FOR, DES, CON, INT, SAB (8–18). Modificador = (Atributo − 10) / 2. **Não existe Carisma.**
 - **Perícias (22, canônicas):** Atacar, Defender, Movimento, Fortitude, Vontade, Reflexos, Percepção, Sobrevivência, Furtividade, Crime, Iniciativa, Conhecimento, Medicina, Investigação, Religião, Místico, Convencimento, Intimidação, Intuição, Enganação, Motivar, Ofício(X). Fonte da verdade: ficha física. Mapeiam **1:1** com as colunas `prof_*` do Bestiário (ver §5).
 - **Proficiência de perícia:** escala de 4 níveis — +2 / +4 / +6 / +8 (não é binária).
-- **Recursos:** Saúde, Stamina (todas as classes), Éter (conjuradores), Recurso de Classe específico (ex.: FLUXO no Monge).
+- **Recursos:** Saúde, Stamina (todas as classes), Éter (conjuradores), Recurso de Classe específico (ex.: FLUXO no Monge, Concentração no Artilheiro). Base 10/8/6 + multiplicador de classe por nível.
+- **Evasão:** 10 + Mod.DES em todas as classes (passiva); ativa = + treinamento em Defender. Defender usa dado (1d6/1d8/1d10/1d12/2d8), não a escala +2..+8.
 - **Derivados:** Movimento, Evasão, CD.
-- **Inventário:** Equipamentos = 2 + Mod.FOR slots · Bugigangas = 10 + Mod.FOR. Munição: 20 unidades = 1 slot. Moedas não pesam. Condições de excesso: *Sobrepeso Leve* / *Sobrepeso Extremo*.
-- **Magia:** 4 níveis. Custo base 2/4/6/8 Éter. Intensidades: Contida (−2) / Normal / Forçada (+2) / Transbordante (+4). Exige Treinado em Místico + Foco da escola. Escolas: Destruição, Abjuração, Alteração, Conhecimento.
-- **Resistências:** 12 tipos de dano — Ordinário, Fogo, Frio, Elétrico, Veneno, Ácido, Psíquico, Força, Radiante, Trovejante, Necrótico, Primordial. Cada um com Resistência (R) e Imunidade (I).
+- **Inventário:** Equipamentos = 2 + Mod.FOR slots (mín. 1) · Bugigangas = 10 + Mod.FOR (mín. 1). **Munição: 1 unidade gasta por combate inteiro**; sem munição não usa arma à distância; munições ocupam 1 bugiganga. Moedas não pesam. Condições de excesso: *Sobrepeso Leve* / *Sobrepeso Extremo*.
+- **Magia:** 4 níveis (nível 0 = ~20 truques sem custo, **a criar** pelo Pedro). Custo base 2/4/6/8 Éter. Intensidades: Contida (−2) / Normal / Forçada (+2) / Transbordante (+4). Exige Treinado em Místico + Foco da escola. **5 escolas:** Destruição, Abjuração, Alteração, Conhecimento, **Primordial** (nível 5, Foco Primordial). **1 magia por turno** (exceção: Disparo Veloz). Tabela do Notion manda sobre a descrição.
+- **Resistências:** 12 tipos de dano em 4 categorias — Ordinário (subtipos Cortante/Perfurante/Contundente); Elementais: Fogo, Frio, Elétrico; Biológicos: Veneno, Ácido, Psíquico; Místicos: Radiante, Trovejante, Necrótico, Força (gravidade/deuses), Primordial (energia do Primórdio, raríssima). "Gelo" na raiz do Notion é erro. Cada um com Resistência (R) e Imunidade (I).
 - **Classes (7):** Espadachim, Batedor, Brutalista, Teurgo, Monge, Alquimista, Artilheiro.
-- **Raças (7):** Humano, Anão, Dryad, Autômato, Gruto, Inseto, Corrompido.
+- **Raças (7 públicas + 1 secreta):** Humano, Anão, Dryad, Autômato, Gruto, Inseto, Corrompido. **Lobisomem** existe no Notion mas é raça secreta de 1 jogador — **não entra no site**. Grutos são reptilianos. Dryad = metade humano, metade qualquer animal à escolha. Anões: sobrenome Krichama (ferreiros) ou Caxon (engenheiros).
 - **Origens:** 17.
+- **Idiomas (6):** Comum, Skalia (grutos), Khazadun (anões), Natural, Abissal (criaturas do Abismo), Criptografado (ex-"Esquecido"; autômatos).
+- **Técnicas de ramo:** 3 no Tier 1 (nível 2), 2 no Tier 2 (nível 4), 1 Ultimate no Tier 3 (nível 5). Texto "3 por Tier" em algumas classes é erro.
 - **CR:** CR 2 = equilíbrio para 5 jogadores de nível 2. CR 4 = risco de TPK. Campanha roda níveis 1–5.
 - **Sins:** moeda do universo. Contador editável na ficha — **não** é stat derivado, não deriva de atributo. Não trava aquisição de item.
 
@@ -157,9 +160,34 @@ Sistema → Magias → Condições → Limiar → 7 Classes → 7 Raças → Ori
 
 ## 9. Notas operacionais
 
+- **Obsidian:** o plugin Local REST API roda no PC do Pedro; este ambiente remoto **não** o alcança. O vault é a pasta `obsidian/Khalkaria/` versionada no repo.
+
 - **Notion:** `notion-fetch` por UUID é mais confiável que por URL. Contar linhas direto do conteúdo — blocos de resumo ficam desatualizados (ex.: "Raras: 60" quando o catálogo tem 59).
 - **Imagens:** URLs S3 do Notion expiram em ~1h e o sandbox bloqueia download. **Nunca tentar baixar** — o Pedro substitui `images/*.png` manualmente.
-- **O Limiar:** **170 cartas** (sincronizado com o Notion em 2026-07-23). Catálogo 129 = Universais 10 + FOR/DES/CON/INT/SAB 12 cada (60) + **Raras 59**. Abismo = 18 Dores + 23 Benefícios. Página Notion viva `3a66e3a4-01d9-806d-b1f8-d6975255f676` (sob "Sistema Khalkaria") é autoritativa — a UUID antiga `2df6e3a4-…` está **deletada** no Notion (conteúdo idêntico). Tabelas inline, **não** o bloco de resumo — que diz "Total 130 / Raras 60", desatualizado). Site exibe raras como ícone+requisito+nome (sem efeito) — decisão de design existente. Cartas raras devem usar **apenas recursos universais** (Stamina, Éter, HP, Reações, Ações, CD de classe) — nunca recursos travados por classe como FLUXO.
+- **O Limiar:** **168 cartas** no Notion (2026-09-04). Catálogo 127 = Universais **8** + FOR/DES/CON/INT/SAB 12 cada (60) + Raras 59. Abismo = 18 Dores + 23 Benefícios (**será refeito** pelo Pedro; jogadores ainda não chegaram lá). Página viva `3a66e3a4-01d9-806d-b1f8-d6975255f676`. Bloco-resumo desatualizado ("130 / Universais 10 / Raras 60") — contar tabelas inline. A cada nível: 5 cartas + "+2 atributo"; 5–11 cartas ao nível 5. Site: raras só ícone+requisito+nome — **intencional** (jogadores não veem efeito). Site tinha 2 universais inexistentes no Notion ("Marca do Guerreiro", "Postura de Ferro") — Notion vence. Cartas raras usam apenas recursos universais — nunca FLUXO/Concentração.
+- **Site é sempre complemento do Notion.** Em qualquer divergência, Notion vence; nunca "corrigir" o Notion a partir do site.
+- **Bazar `Lore/Notas`:** escrito por IA, **não-canônico** até validação item a item. Já falsos: "Bastão de Karmath vs Teurgos". "Não funciona acima da Marca 4" é item de Vytália, não de Karmath.
+- **Memória do agente:** `docs/memoria/` — `VARREDURA_NOTION_2026-09-04.md` (relatório), `digests/A..F` (por ramo), `notion_raw/` (páginas brutas), `respostas_pedro_2026-09-05.md` (**cânone dito pelo Pedro — tem precedência sobre o Notion**), `fidelidade_notion_vs_pedro_2026-09-05.md`, `mapas/`. Ler os digests antes de refazer qualquer varredura.
+- **Vault Obsidian:** `obsidian/Khalkaria/` — pasta de `.md` com wikilinks; Pedro abre como vault local. Convenções em `obsidian/Khalkaria/_meta/CONVENCOES.md`. Toda página nova de lore nasce lá E no Notion.
+- **Correções no Notion:** typos, frases truncadas, contagens e grafias (lista C) podem ser aplicadas direto, **sempre registradas em `docs/memoria/log_notion.md`** (antes → depois, página, data). Em dúvida: comentário no Notion, não edição.
+
+---
+
+## 9b. Lore — cânone confirmado pelo Pedro (2026-09-05)
+
+**Toda a lore é privada (GM).** O site não publica lore.
+
+- **Panteão (cargos, não pessoas):** Kha (deus supremo; o original foi **sequestrado**; o cargo pode ser ocupado por mortal que agrade os 5), Vytália (deusa das criaturas/seres; povoou os planos), Malkhor (Pecado; criou a Vhelor; "não é o deus do mal"), Velúria (magia; dona do plano Místico; criou o **Éter** e **o Limiar**; tece o **tempo**), Mundarak (mundo; criou o **espaço** e o plano material), **Karmath — deusa** da justiça (mortais a veem como homem implacável, erro deles), Osh'Kar (morte; preso no **Abismo** só no plano material). Deuses atuais nunca foram mortais.
+- **Planos:** Primórdio/Plano Primordial (dos deuses; atemporal e binário; estar nele torna qualquer um deus), Místico (Éter), Material (de Mundarak), Plano dos Mortos. **Oblívio = proposto, não canônico.**
+- **Éter/Limiar:** todo ser tem Éter; ele é a chave que abre ponte Místico→Material e puxa mais Éter do que gasta. O Limiar (cria de Velúria) media a passagem, barra aplanares e impede sucção excessiva. "Forças materializantes" = termo antigo para isso. Origem do Éter no plano Místico: **não criada**.
+- **Kharavel:** continente-aposta entre Vytália e Malkhor. A **Vhelor** (Grande Árvore) tem no cerne **o Sonhador**: casulo com 1 criatura; quanto mais maligna, mais a árvore cresce e mais viciosas as substâncias. Coração puro entregue = destrói a árvore de dentro. Sonhador atual = **Sinikko original**. **Lena Skarv** (Dryad, 15) = plano secreto Vytália+Karmath, coração puro, filha adotiva de **Alvak Krichama** (anão ferreiro; filha morreu na travessia de Volkrest; executou 2 soldados Serafélia para salvá-la).
+- **Sessão 0 (−27 anos):** equipe **desfloreio** (Vorn Drekar, Klaus von Aldric, Sinikko Kiriam, Runa Skorn, Azgar Sandgale — 1 por continente, intencional) contratada por Kirkushav Drekar (Império de Ferro) para destruir a Vhelor. Bilhete de Sevic é de 1 dia antes da chegada de Kirkushav. Karma (escrava, bênção de Karmath) lê o passado de Sinikko, profetiza que em 27 anos Revavena derrota Khaskavel e a Vhelor, e desaparece misticamente. Rastas fugiram e fundaram **Revavena do zero**. Sinikko vira o Sonhador; Malkhor cria um **clone** que governa Khaskavel, corta laços com o Império e quer contaminar Kharavel com seiva.
+- **Sinikko** não é filho de Kirkushav (Vorn é); nasceu nos esgotos, subiu a representante gruto e imperador de Khaskavel — as 3 versões são fases. Kirkushav o treinou como sucessor e desistiu ("populista"). Kirkushav planejava matar os Sandgale; Terk (pai de Azgar) matou o Batedor.
+- **Kheyos:** teurgo **mortal** (não semideus), conhece a política dos deuses, quer proteger o plano material da ingenuidade divina. Laboratório = "Casa Isolada" no SE de Khaskavel.
+- **Khaskavel** nasceu diarquia (família de Sinikko + outra, descartada). **Anões:** Krichama ferreiros, Caxon engenheiros; Jairo (castelo) ≠ Alvak (cidade).
+- **True ending da campanha 1:** derrotar o clone → brecha de Karma → 1 jogador entra no Primórdio e enfrenta Malkhor. Vitória = vira o novo deus do Pecado. Derrota = alma pertence a Malkhor.
+- **Grafia oficial:** Vytália · Vanguarda Serafélia · Império de Ferro · Vanguarda do Ferro · Runa Skorn · Luxária · Acólito · Exaustão · Sangramento · Envenenamento · Castelo de Kirkushav · Etérico.
+- **Método do Pedro:** geografia → regiões de facções → história. Ler os mapas (`docs/memoria/mapas/`) antes de escrever lore.
 
 ---
 
@@ -172,3 +200,6 @@ Sistema → Magias → Condições → Limiar → 7 Classes → 7 Raças → Ori
 - Não implementar sorteio de cartas do Limiar.
 - Não reescrever texto narrativo do Pedro em bloco — edições narrativas são cirúrgicas e preservam vocabulário e imagens originais.
 - Não usar `localStorage` como único meio de persistência sem oferecer Export/Import.
+- Não publicar lore no site (toda a lore é privada do GM).
+- Não publicar a raça Lobisomem no site.
+- Não confiar na coluna `Lore/Notas` do Bazar como cânone.
