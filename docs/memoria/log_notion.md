@@ -1,8 +1,8 @@
 # Log de alterações no Notion
 
-Formato: página → cada edição com **antes** / **depois**, motivo e status. Comentários deixados no Notion listados ao final de cada página. Autorização: Pedro, respostas D1/D4 (2026-09-05).
+Formato: página → cada edição com **antes** / **depois**, motivo e status (✅ aplicado · ⛔ não aplicado). 💬 = comentário deixado no Notion. Autorização: Pedro, respostas D1/D4 (2026-09-05).
 
-## 2026-09-05 — lote 1 (correções aprovadas nas respostas A/B/C)
+## 2026-09-05/06 — lote 1 (correções aprovadas nas respostas A/B/C)
 
 ### Karmath  
 `39e6e3a401d981bab6e3d23fadefe734`
@@ -41,7 +41,7 @@ Formato: página → cada edição com **antes** / **depois**, motivo e status. 
   antes: `ao deus do mundo para com que o mesmo criasse`  
   depois: `ao deus do mundo para que o mesmo criasse`  
   obs: O trecho fornecido dizia 'com o deus do mundo para com que...', mas a página tem 'pediu ao deus do mundo para com que...'. O alvo do typo ('para com que') é único na página e a intenção é inequívoca; apliquei a remoção mínima do 'com' sem tocar em 'ao deus do mundo'.
-- 💬 comentário (criado — discussion_id 3d26e3a4-01d9-8189-8509-001ca281d73a,): [Claude 2026-09-05] Pedro (2026-09-05): Karmath é deusa; Primórdio = plano dos deuses, atemporal e binário; Velúria criou o Éter e o Limiar e tece o tempo, Mundarak criou o espaço. Sugiro adicionar estes pontos a esta página.
+- 💬 (criado — discussion_id 3d26e3a4-01d9-8189-8509-001): [Claude 2026-09-05] Pedro (2026-09-05): Karmath é deusa; Primórdio = plano dos deuses, atemporal e binário; Velúria criou o Éter e o Limiar e tece o tempo, Mundarak criou o espaço. Sugiro adicionar estes pontos a esta página.
 
 ### Kheyos  
 `33e6e3a401d9819789c0da0fcde2f114`
@@ -49,7 +49,7 @@ Formato: página → cada edição com **antes** / **depois**, motivo e status. 
   antes: `## Filho Semideus de Karmath`  
   depois: `## Teurgo mortal`  
   obs: Única ocorrência na página (heading H2). Nenhuma outra menção a 'semideus' no corpo; o parágrafo inicial já diz 'Kheyos é um teurgo'. Refetch confirmou novo texto presente e antigo ausente. A motivação abaixo do heading ('Deseja destruir a grande árvore...') não foi alterada — reescrita deixada para
-- 💬 comentário (criado (discussion_id 3d26e3a4-01d9-81ee-9bb2-001c4df94673, ): [Claude 2026-09-05] Pedro (2026-09-05): Kheyos NÃO é filho de Karmath; é um teurgo mortal, um dos únicos seres de Khalkaria com conhecimento significativo da política de confronto dos deuses; sua obsessão é proteger o plano material da inconsequência e ingenui
+- 💬 (criado (discussion_id 3d26e3a4-01d9-81ee-9bb2-001c): [Claude 2026-09-05] Pedro (2026-09-05): Kheyos NÃO é filho de Karmath; é um teurgo mortal, um dos únicos seres de Khalkaria com conhecimento significativo da política de confronto dos deuses; sua obsessão é proteger o plano material da inconsequência e ingenui
 
 ### A Grande Árvore  
 `33e6e3a401d9813b8a60f1f9669803be`
@@ -117,7 +117,7 @@ Formato: página → cada edição com **antes** / **depois**, motivo e status. 
   antes: `Seratélia`  
   depois: `Serafélia`  
   obs: Sem ocorrência na página Lena Skarv (existe apenas na página Alvak Krichama).
-- 💬 comentário (criado (discussion_id 3d26e3a4-01d9-81f8-9a94-001c2b15e7b5)): [Claude 2026-09-05] Pedro (2026-09-05): Lena foi resgatada por Alvak enquanto fugia de 2 soldados da Vanguarda Serafélia, que ele executou; Lena é produto de um plano secreto entre Vytália e Karmath após Velúria deixar escapar a fraqueza da árvore. Incorporar 
+- 💬 (criado (discussion_id 3d26e3a4-01d9-81f8-9a94-001c): [Claude 2026-09-05] Pedro (2026-09-05): Lena foi resgatada por Alvak enquanto fugia de 2 soldados da Vanguarda Serafélia, que ele executou; Lena é produto de um plano secreto entre Vytália e Karmath após Velúria deixar escapar a fraqueza da árvore. Incorporar 
 
 ### Kirkushav Drekar  
 `33e6e3a401d98131815efc830056e2e3`
@@ -141,7 +141,7 @@ Formato: página → cada edição com **antes** / **depois**, motivo e status. 
   antes: `Kirkushav protegeu o mesmo, criando-o como o próprio filho.`  
   depois: `Kirkushav protegeu o mesmo, criando-o como o próprio filho (Sinikko não é seu filho — Vorn Drekar é; Kirkushav o treinou como potencial sucessor e desistiu ao vê-lo político populista).`  
   obs: A10. Parêntese inserido antes do ponto final. Não alteradas as frases correlatas em 'Após a Sessão 0' ('que Kirkushav havia criado como filho' / 'perdeu o filho que mais admirou') — fora do trecho indicado; sinalizar se Pedro quiser estender a nota.
-- 💬 comentário (criado (discussion 3d26e3a4-01d9-8140-b40b-001c1f4c6637; anc): [Claude 2026-09-05] Pedro (2026-09-05): Kirkushav planejava assassinar a família Sandgale por ter sobrevivido a Ossyria, para onde ele mandava exilados morrerem; o Batedor foi morto por Terk Sandgale, e Kirkushav manipula Azgar dizendo que o Batedor vinha libe
+- 💬 (criado (discussion 3d26e3a4-01d9-8140-b40b-001c1f4): [Claude 2026-09-05] Pedro (2026-09-05): Kirkushav planejava assassinar a família Sandgale por ter sobrevivido a Ossyria, para onde ele mandava exilados morrerem; o Batedor foi morto por Terk Sandgale, e Kirkushav manipula Azgar dizendo que o Batedor vinha libe
 
 ### vistaluz-vanguarda (Vistaluz · A Vanguarda Serafélia · Iluminado (old) · O Rei de Khaskavel)  
 `Vistaluz=33e6e3a401d98192ba6deb2cbe5bcc42; A Vanguarda Serafélia=33e6e3a401d98104845ddaafa86b57b2; Iluminado (old)=33e6e3a401d981d8a9ead434576e2aaf; O Rei de Khaskavel=33e6e3a401d9814aa2a2c3d7ef3875a7`
@@ -165,7 +165,7 @@ Formato: página → cada edição com **antes** / **depois**, motivo e status. 
   antes: `fazem parte da Vanguarda Seratélia.`  
   depois: `fazem parte da Vanguarda Serafélia.`  
   obs: Iluminado (old) (33e6e3a401d981d8a9ead434576e2aaf). Refetch confirmou.
-- 💬 comentário (nao_aplicado: página 'Culto de Khaskavel (old)' existe no ra): [Claude 2026-09-05] Pedro (2026-09-05): Khaskavel nasceu como diarquia de 2 famílias (a de Sinikko e outra, descartada). 'Os dois reis' é histórico. Página marcada old — arquivar?
+- 💬 (nao_aplicado: página 'Culto de Khaskavel (old)' ex): [Claude 2026-09-05] Pedro (2026-09-05): Khaskavel nasceu como diarquia de 2 famílias (a de Sinikko e outra, descartada). 'Os dois reis' é histórico. Página marcada old — arquivar?
 
 ### O Império de Ferro (ex-"O Império do Ferro")  
 `33e6e3a401d981269fc0f19d9fe66772`
@@ -244,8 +244,8 @@ Formato: página → cada edição com **antes** / **depois**, motivo e status. 
   antes: `Xp e Dc`  
   depois: `Xp e Dc`  
   obs: Sem edição por instrução (título de seção mantido).
-- 💬 comentário (aplicado — comment 3d26e3a4-01d9-81ce-b792-001d32740a07, dis): [Claude 2026-09-05] Pedro (2026-09-05): munição = 1 unidade gasta por combate inteiro; sem munição não se usa arma à distância no combate; munições ocupam 1 bugiganga. Vale unificar o texto de Munição e Inventário.
-- 💬 comentário (aplicado — comment 3d26e3a4-01d9-81d3-b5b0-001d1709ab1f, dis): [Claude 2026-09-05] Pedro (2026-09-05): regra geral = 1 magia canalizada por turno; Disparo Veloz é a exceção. Falta escrever a regra aqui. Também: magias de nível 0 (truques sem Éter) serão criadas.
+- 💬 (aplicado — comment 3d26e3a4-01d9-81ce-b792-001d327): [Claude 2026-09-05] Pedro (2026-09-05): munição = 1 unidade gasta por combate inteiro; sem munição não se usa arma à distância no combate; munições ocupam 1 bugiganga. Vale unificar o texto de Munição e Inventário.
+- 💬 (aplicado — comment 3d26e3a4-01d9-81d3-b5b0-001d170): [Claude 2026-09-05] Pedro (2026-09-05): regra geral = 1 magia canalizada por turno; Disparo Veloz é a exceção. Falta escrever a regra aqui. Também: magias de nível 0 (truques sem Éter) serão criadas.
 
 ### O Limiar  
 `3a66e3a4-01d9-806d-b1f8-d6975255f676`
@@ -295,11 +295,216 @@ Formato: página → cada edição com **antes** / **depois**, motivo e status. 
   antes: `<td>Gasto de Dor</td><td>Nome</td><td>Penalidade</td>`  
   depois: `<td>Gasto de Dor</td><td>Nome</td><td>Benefício</td>`  
   obs: Havia 2 ocorrências de '<td>Penalidade</td>'; usei o contexto 'Gasto de Dor' para atingir só a tabela de Benefícios. A tabela 'Ganho de Dor' mantém 'Penalidade' (correto).
-- 💬 comentário (criado (discussion 3d26e3a4-01d9-81a9-b503-001cac99448d)): [Claude 2026-09-05] Frase truncada: 'você pode usar sua reação para Defender some sua perícia Defender à Evasão do aliado' — completar.
-- 💬 comentário (criado (discussion 3d26e3a4-01d9-81d6-a169-001cc1dbddc2)): [Claude 2026-09-05] Nome duplicado com o Benefício do Abismo 'Devorador de Almas' — Pedro disse que o Abismo será refeito; renomear um dos dois?
-- 💬 comentário (criado (discussion 3d26e3a4-01d9-81f7-afb6-001c01d10706). Ob): [Claude 2026-09-05] Requisito dos pools diverge: resumo/texto '14 ou mais' vs cabeçalho das colunas '16+'. Qual vale?
+- 💬 (criado (discussion 3d26e3a4-01d9-81a9-b503-001cac9): [Claude 2026-09-05] Frase truncada: 'você pode usar sua reação para Defender some sua perícia Defender à Evasão do aliado' — completar.
+- 💬 (criado (discussion 3d26e3a4-01d9-81d6-a169-001cc1d): [Claude 2026-09-05] Nome duplicado com o Benefício do Abismo 'Devorador de Almas' — Pedro disse que o Abismo será refeito; renomear um dos dois?
+- 💬 (criado (discussion 3d26e3a4-01d9-81f7-afb6-001c01d): [Claude 2026-09-05] Requisito dos pools diverge: resumo/texto '14 ou mais' vs cabeçalho das colunas '16+'. Qual vale?
+
+### classes-ramos (Espadachim, Batedor, Teurgo)  
+`Espadachim 8506e3a401d9837b88a501bad1e66368 · Batedor 8706e3a401d9823a91fd81f689a6fbe7 · Teurgo caa6e3a401d98330bae281511750d407`
+- ✅ **correção factual do Pedro (B11)**  
+  antes: `- 6 Técnicas de Ramo, 3 por Tier`  
+  depois: `- 6 Técnicas de Ramo: 3 no Tier 1 (nível 2), 2 no Tier 2 (nível 4) e 1 Ultimate no Tier 3 (nível 5)`  
+  obs: Espadachim (8506e3a4…) — 1 ocorrência, refetch confirmado.
+- ✅ **correção factual do Pedro (B11)**  
+  antes: `- 6 Técnicas de Ramo, 3 por Tier`  
+  depois: `- 6 Técnicas de Ramo: 3 no Tier 1 (nível 2), 2 no Tier 2 (nível 4) e 1 Ultimate no Tier 3 (nível 5)`  
+  obs: Batedor (8706e3a4…) — 1 ocorrência, refetch confirmado.
+- ✅ **correção factual do Pedro (B11)**  
+  antes: `- 6 Técnicas de Ramo, 3 por Tier`  
+  depois: `- 6 Técnicas de Ramo: 3 no Tier 1 (nível 2), 2 no Tier 2 (nível 4) e 1 Ultimate no Tier 3 (nível 5)`  
+  obs: Teurgo (caa6e3a4…) — 1 ocorrência, refetch confirmado.
+- ✅ **correção factual do Pedro (B16)**  
+  antes: `Você começa treinado em: - Armas Marciais - Ataque - Defesa`  
+  depois: `Você começa treinado em: - Armas Marciais - Atacar - Defender`  
+  obs: Espadachim, seção Treinamento. 'Retaliação e Defesa' no nome do ramo Guarda-Lâmina mantido (não é nome de perícia).
+- ✅ **correção factual do Pedro (B16)**  
+  antes: `- Intimidar (lista de perícias opcionais)`  
+  depois: `- Intimidação`  
+  obs: Espadachim, seção Treinamento.
+- ✅ **correção factual do Pedro (B16)**  
+  antes: `você ganha +1 permanentemente em **Intimidar**`  
+  depois: `você ganha +1 permanentemente em **Intimidação**`  
+  obs: Espadachim, Marca Nostalgia (Oprimido) — nome de perícia.
+- ✅ **correção factual do Pedro (B16)**  
+  antes: `Interação Social(Convencimento) / Interação social(Convencimento) / interação social(Convencimento)`  
+  depois: `Convencimento`  
+  obs: Batedor — 11 ocorrências substituídas (replace_all): Língua Prateada ×2, Sussurro Final, Homem de Negócios, Conexões Duvidosas, Agiota ×2, Cara de Pau, Suborno Irrecusável, Esquemas. Refetch: zero ocorrências restantes de 'Social(Convencimento)'.
+- ⛔ **correção factual do Pedro (B16)**  
+  antes: `teste de interação social(qualquer)`  
+  depois: `(sem alteração)`  
+  obs: Batedor, Marca O Palpite: 'interação social(qualquer)' não é nome de uma perícia específica — designa qualquer perícia social. Sem substituição óbvia; decisão do Pedro.
+- ⛔ **correção factual do Pedro (B16)**  
+  antes: `+2 em interação social(Intimidação)`  
+  depois: `(sem alteração)`  
+  obs: Teurgo, Marca Porta-Voz (Arauto). Mesmo padrão B16, mas fora da lista de edições solicitadas (só Espadachim/Batedor). Sugiro aplicar '→ Intimidação' em rodada futura.
+- ✅ **correção factual do Pedro (B10)**  
+  antes: `Ao chegar a 0 de Éter, pode conjurar magias pagando em Saúde. (2:1) Ou seja, 2 Saúde = 1 Éter.`  
+  depois: `Ao chegar a 0 de Éter, pode conjurar magias pagando em Saúde. (2:1) Ou seja, 2 Saúde = 1 Éter. A restrição da condição Oco (não canalizar) não se aplica enquanto você pagar magias com Saúde por esta técnica.`  
+  obs: Teurgo, técnica Reserva Oculta (tabela de Técnicas). Refetch confirmado.
+- 💬 (criado (Batedor, Marca Homem de Negócios; discussi): [Claude 2026-09-05] Frase truncada: 'Você possui um disturbio de mat' — completar.
+- 💬 (criado (Teurgo, Tese Arcana; discussion 3d36e3a4-0): [Claude 2026-09-05] Custo diz 2 e 4 Stamina na mesma técnica — Pedro vai ajustar.
+- 💬 (criado (Teurgo, Escolas do Primórdio; discussion 3): [Claude 2026-09-05] Nível 1 conhece 1+Mod magias; Tier 1 dá Grimório 3+Mod / Canalizador 2+Mod / Pactuadas 1+Mod — somam ou substituem? (E8)
+
+### classes-outras (Brutalista, Monge, Alquimista, Artilheiro)  
+`a2c6e3a401d982f187320168cbb2e7d8 (Brutalista); 0876e3a401d98388a48d8136e92563bc (Monge); eac6e3a401d982d595b181020562ec8e (Alquimista); d896e3a401d983f38cc78196ad7491b4 (Artilheiro)`
+- ✅ **correção factual do Pedro (B11)**  
+  antes: `[Brutalista] 6 Técnicas de Ramo, 3 no Tier, 2 no Tier 2 e 1 no Tier 3`  
+  depois: `6 Técnicas de Ramo, 3 no Tier 1 (nível 2), 2 no Tier 2 (nível 4) e 1 Ultimate no Tier 3 (nível 5)`
+- ✅ **correção factual do Pedro (B16)**  
+  antes: `[Brutalista] - Interação Social(Intimidação)`  
+  depois: `- Intimidação`  
+  obs: lista de perícias opcionais do Treinamento
+- ✅ **correção factual do Pedro (B11)**  
+  antes: `[Monge] 6 Técnicas de Ramo, 3 no Tier, 2 no Tier 2 e 1 no Tier 3`  
+  depois: `6 Técnicas de Ramo, 3 no Tier 1 (nível 2), 2 no Tier 2 (nível 4) e 1 Ultimate no Tier 3 (nível 5)`
+- ✅ **grafia oficial (Pedro C)**  
+  antes: `[Monge, Transcendência Ultimate] Após 5 Turnos, fica *Exausto 1,* *Exaurido* e perde 1d6 de éter.`  
+  depois: `Após 5 Turnos, recebe *Exaustão 1*, fica *Exaurido* e perde 1d6 de éter.`  
+  obs: verbo ajustado para 'recebe' por concordância com o nome da condição; 'fica Exaurido' mantido
+- ✅ **correção factual do Pedro (B11)**  
+  antes: `[Alquimista] 6 Técnicas de Ramo, 3 no Tier, 2 no Tier 2 e 1 no Tier 3`  
+  depois: `6 Técnicas de Ramo, 3 no Tier 1 (nível 2), 2 no Tier 2 (nível 4) e 1 Ultimate no Tier 3 (nível 5)`
+- ✅ **correção factual do Pedro (B12)**  
+  antes: `[Alquimista, Bomba Temporal] *Lentidão 2*`  
+  depois: `*Lento 2*`
+- ✅ **grafia oficial (Pedro C)**  
+  antes: `[Alquimista, Adrenalina de Campo] Fica Exausto 1 após 1 hora.`  
+  depois: `Recebe Exaustão 1 após 1 hora.`
+- ✅ **grafia oficial (Pedro C)**  
+  antes: `[Alquimista, Extrato de Velocidade] Exausto 1 após efeito.`  
+  depois: `Exaustão 1 após efeito.`
+- ✅ **grafia oficial (Pedro C)**  
+  antes: `[Alquimista, Antídoto Universal] Remove *Envenenado*, *Enjoado *ou doença não-mágica.`  
+  depois: `Remove *Envenenamento*, *Enjoado *ou doença não-mágica.`  
+  obs: nome de condição (item remove a condição); Antídoto Simples já usava 'Envenenamento'
+- ✅ **grafia oficial (Pedro C)**  
+  antes: `[Alquimista, Veneno Padrão] Fortitude ou *Envenenado *1 min.`  
+  depois: `Fortitude ou *Envenenamento *1 min.`
+- ✅ **grafia oficial (Pedro C)**  
+  antes: `[Alquimista, Apocalipse Alquímico] se falharem em Fortitude ficam *Envenenados*.`  
+  depois: `se falharem em Fortitude recebem *Envenenamento*.`
+- ✅ **correção factual do Pedro (B11)**  
+  antes: `[Artilheiro] 6 Técnicas de Ramo, 3 no Tier, 2 no Tier 2 e 1 no Tier 3`  
+  depois: `6 Técnicas de Ramo, 3 no Tier 1 (nível 2), 2 no Tier 2 (nível 4) e 1 Ultimate no Tier 3 (nível 5)`
+- ✅ **correção factual do Pedro (B9)**  
+  antes: `[Artilheiro, Execução] Você recebe 2d6 de dano perfurante se o alvo estiver com menos de 50% de Saúde Adicionalmente,`  
+  depois: `O alvo recebe 2d6 de dano perfurante adicional se estiver com menos de 50% de Saúde. Adicionalmente,`  
+  obs: ponto final que faltava antes de 'Adicionalmente' incluído
+- ✅ **grafia oficial (Pedro C)**  
+  antes: `[Artilheiro, Tempestade de Aço] ficam *Sangrando 2* e *Lento 1*`  
+  depois: `ficam *Sangramento 2* e *Lento 1*`
+- ✅ **grafia oficial (Pedro C)**  
+  antes: `[Artilheiro, Tiro Predador] Você fica *Exausto 1.*`  
+  depois: `Você recebe *Exaustão 1.*`
+- ✅ **grafia oficial (Pedro C)**  
+  antes: `[Artilheiro, Projétil Envenenado] ou fica *Envenenado* por **2 rodadas**.`  
+  depois: `ou recebe *Envenenamento* por **2 rodadas**.`  
+  obs: nome da técnica 'Projétil Envenenado' e 'munição envenenada' são adjetivos — mantidos
+- ⛔ **correção factual do Pedro (B16)**  
+  antes: `[Monge/Alquimista/Artilheiro] Interação Social(Intimidação|Convencimento)`  
+  depois: `—`  
+  obs: trecho não existe nessas 3 páginas; só ocorria no Brutalista
+- ⛔ **grafia oficial (Pedro C)**  
+  antes: `[Brutalista/Monge] Sangrando / Envenenado como condição`  
+  depois: `—`  
+  obs: nenhuma ocorrência; ambas as páginas já usam 'Sangramento' e 'Exaustão' no restante do texto
+- 💬 (criado (discussion 3d36e3a4-01d9-810c-8cc3-001cffb): [Claude 2026-09-05] Existem duas técnicas chamadas 'Transcendência' (geral, Ação Livre; e Ultimate do Punho). Pedro acredita haver só uma — renomear qual? (E2)
+- 💬 (criado (discussion 3d36e3a4-01d9-8185-ad2c-001c08f): [Claude 2026-09-05] Concentração do Mestre: menciona perda de Fluxo ao receber dano, mas a regra base diz que Fluxo não se perde de outra forma.
+- 💬 (criado (discussion 3d36e3a4-01d9-81cc-9a95-001c086): [Claude 2026-09-05] Tónico Cruel: 'Em caso de falha' aparece duas vezes; a segunda deveria ser 'sucesso'?
+- 💬 (criado (discussion 3d36e3a4-01d9-81a1-b44a-001c3fb): [Claude 2026-09-05] Ignorar Dor: 'ao invés de 1' sem referente.
+
+### Roteiro (Sessões / Sessão 0) + Sevic (NPC)  
+`33e6e3a401d9819796c9dfb2263e215d (Roteiro); 39e6e3a401d981cdbd37cd863742b4f8 (Sevic)`
+- ✅ **grafia oficial (Pedro C)**  
+  antes: `Hadran é membro da Vanguarda de Ferro e permanecerá`  
+  depois: `Hadran é membro da Vanguarda do Ferro e permanecerá`  
+  obs: Roteiro, seção Hadran Vorgil. Refetch confirmou.
+- ✅ **grafia oficial (Pedro C)**  
+  antes: `Os dois se conhecem da vanguarda de ferro.`  
+  depois: `Os dois se conhecem da Vanguarda do Ferro.`  
+  obs: Roteiro, mesma seção — segunda ocorrência (minúscula) não listada explicitamente no pedido, mas é a mesma grafia oficial C4; aplicada também.
+- ✅ **grafia oficial (Pedro C)**  
+  antes: `Inconsciente acorda com 50% de Saúde. Fica Exausto 1.`  
+  depois: `Inconsciente acorda com 50% de Saúde. Recebe Exaustão 1.`  
+  obs: Roteiro, Pátio > Tenda 1 > Adrenalina de Campo. Contexto é efeito mecânico de item (nível 1 da condição), não adjetivo narrativo.
+- ✅ **correção factual do Pedro (A8)**  
+  antes: `O relógio da Sessão 0 começa a correr no instante em que os PCs leem o papel.`  
+  depois: `O relógio da Sessão 0 começa a correr no instante em que os PCs leem o papel (o bilhete foi escrito no dia anterior à chegada de Kirkushav; quando os PCs o recebem, Kirkushav já está no castelo e partirá ao pôr do sol — `  
+  obs: Página Sevic, Ganchos Narrativos item 2. Observação: os trechos 'chega a Kharavel amanhã' (bilhete) e 'chega ao castelo no dia seguinte ao bilhete' (Conexões) permanecem como estão — coerentes com a nova nota, não foram alterados.
+- 💬 (criado (discussion 3d36e3a4-01d9-8142-9193-001cf0f): [Claude 2026-09-05] Pedro (2026-09-05): Jairo Krichama é o ferreiro do castelo (≠ Alvak, ferreiro de Khaskavel). Anões: Krichama = ferreiros, Caxon = engenheiros. A equipe se chama 'desfloreio'; cada um dos 5 vem de um continente — Vorn e Sinikko ambos de Volk
+
+### Gruto / Acólito / Refugiado / Mercador / Nobre / Vidente / Template - Ficha de Personagem / Corrompido (lote racas-origens-template)  
+`9696e3a401d983b4b6e48199671689f4 (Gruto); e6d6e3a401d983b592a581e5565d059b (Corrompido); ee96e3a401d98310ad5581d3c14301db (Acólito); b236e3a401d9833a99778127942ab31d (Refugiado); 98d6e3a401d9831386fc01d118567160 (Mercador); e7a6e3a401d98247b3ba01084195cb30 (Nobre); a706e3a401d983a2981d81eb96e0ce19 (Vidente); 4e66e3a401d9832b97b4017bc00ff2c2 (Template Ficha)`
+- ✅ **typo**  
+  antes: `**Expectativa de Vida: 7**0-110 anos`  
+  depois: `**Expectativa de Vida: **70-110 anos`  
+  obs: Gruto, linhagem Rokhan. Negrito realinhado ao rótulo, como nas demais linhas de Dados Físicos. Refetch confirmou.
+- ✅ **grafia oficial (Pedro C7)**  
+  antes: `Acolito (título da página)`  
+  depois: `Acólito`  
+  obs: Única ocorrência era o título (update_properties). Corpo da página não contém a palavra; a página-índice Origens reflete o novo título automaticamente.
+- ✅ **correção factual do Pedro (B16)**  
+  antes: `um teste de *Reflexo* com um nível de treinamento a mais`  
+  depois: `um teste de *Reflexos* com um nível de treinamento a mais`  
+  obs: Refugiado, habilidade Fugaz. Única ocorrência de 'Reflexo' como perícia nas 17 origens.
+- ✅ **correção factual do Pedro (B16)**  
+  antes: `- Interação Social(Convencimento)`  
+  depois: `- Convencimento`  
+  obs: Mercador, Treinamento.
+- ✅ **correção factual do Pedro (B16)**  
+  antes: `- Interação Social(Intuição) ou Conhecimento`  
+  depois: `- Intuição ou Conhecimento`  
+  obs: Nobre, Treinamento.
+- ✅ **correção factual do Pedro (B16)**  
+  antes: `- Interação Social(Intuição)`  
+  depois: `- Intuição`  
+  obs: Vidente, Treinamento.
+- ✅ **correção factual do Pedro (B16)**  
+  antes: `**Conhecer (Des/Int)**`  
+  depois: `**Convencimento**`  
+  obs: Template Ficha, tabela Perícias Sociais. Alucinação de IA; atributo (Des/Int) removido porque não se aplica a Convencimento — divergência de atributos registrada em comentário.
+- ✅ **correção factual do Pedro (B16)**  
+  antes: `**Intimidar (For/Sab)**`  
+  depois: `**Intimidação (For/Sab)**`  
+  obs: Template Ficha. Só o nome foi renomeado; atributo mantido e sinalizado em comentário.
+- ✅ **correção factual do Pedro (B16)**  
+  antes: `**Enganar (Des/Int)**`  
+  depois: `**Enganação (Des/Int)**`  
+  obs: Template Ficha. Só o nome foi renomeado.
+- ✅ **correção factual do Pedro (B16)**  
+  antes: `**Ofícios**`  
+  depois: `**Ofício(X)**`  
+  obs: Template Ficha, última linha da tabela de perícias.
+- ⛔ **correção factual do Pedro (B8)**  
+  antes: `nível 0 (Corrompido, Receptáculo Natural)`  
+  depois: `(inalterado)`  
+  obs: Instrução explícita: não alterar. Só comentário.
+- ⛔ **correção factual do Pedro (B16)**  
+  antes: `Interação Social(Intimidação) / Interação Social(Enganação) (Gruto, linhagens Rokhan/Skal'ri)`  
+  depois: `(inalterado)`  
+  obs: Fora da lista de edições (a regra B16 foi pedida só para Origens). Mesmo padrão — candidato a lote futuro. Idem '**Peso: 6**0kg' no Corrompido (mesmo typo de negrito do Gruto).
+- 💬 (criado (discussion 3d36e3a4-01d9-8129-bc4d-001c82f): [Claude 2026-09-05] Há duas corrupções chamadas 'Pele Morta' (Corrupção −1: +5 Éter/+5 Stamina; Adversidade +4: vulnerável a não-místico). Pedro acredita haver só uma — renomear qual? (E2)
+- 💬 (criado (discussion 3d36e3a4-01d9-817a-a803-001c93d): [Claude 2026-09-05] 'duas magias de nível 0' — Pedro vai criar ~20 truques nível 0; enquanto não existirem, o texto aponta para nível 1.
+- 💬 (criado (discussion 3d36e3a4-01d9-8109-abbe-001c785): [Claude 2026-09-05] Atributos das perícias divergem da raiz (Intimidar For/Sab × raiz Con ou For; Defender Des/Con × raiz usa dado). Agrupamento 'Perícias Sociais' inclui Iniciativa/Medicina — revisar.
 
 ## Pendências manuais (Pedro)
 - **Sistema Khalkaria (raiz)**: a API do Notion recusa qualquer edição nesta página (`validation_error 400: /icons/money_yellow.svg is not a supported Notion icon` — um callout com ícone legado bloqueia o update via MCP). Aplicar à mão: "Elemental (Fogo ; Frio ; Gelo)" → "(Fogo ; Frio ; Elétrico)"; "apenas 5 idiomas" → "6 idiomas"; "Esquecido — Idioma extinto de criaturas antigas" → "Criptografado — idioma dos autômatos (Comum criptografado; todos os registros autômatos)"; "Luxaria" → "Luxária" (2×). Alternativa: trocar o ícone do callout amarelo (Dinheiro) por um emoji e eu reaplico.
 - **Castelo em Ruínas / Hadran**: "Castelo das Nações" aparece só como nome histórico; "Castelo de Kirkushav" (nome oficial, C9) não tem onde entrar sem criar texto — deixado como está.
-- **4 páginas não processadas por limite de sessão** (relançadas em 2026-09-06): Espadachim/Batedor/Teurgo (ramos, perícias, Reserva Oculta), Brutalista/Monge/Alquimista/Artilheiro, Corrompido/Gruto/Origens/Template, Roteiro/Sevic.
+
+### Não aplicadas (detalhe)
+- **Lena Skarv** — `Por 25 anos Alvak cuidou da Dryad` — Trecho não existe na página Lena Skarv — está na página Alvak Krichama (33e6e3a401d98103af5ef241c6512d02), fora do escopo desta tarefa. Idem 'Após 25 anos, em uma caminhada rotineira' e a 2ª 'há 25 anos' da seção 'A Mani
+- **Lena Skarv** — `Seratélia` — Sem ocorrência na página Lena Skarv (existe apenas na página Alvak Krichama).
+- **Castelo em Ruínas + Hadran Vorgil** — `originalmente conhecida como o "Castelo das Nações"` — Página Castelo em Ruínas: não há lista de nomes/aliases; 'Castelo das Nações' aparece só como nome histórico na frase introdutória. Inserir 'Castelo de Kirkushav' exigiria criar texto novo — sem lugar natural, não editad
+- **Castelo em Ruínas + Hadran Vorgil** — `estava no Castelo das Nações há 27 anos` — Página Hadran Vorgil: menção narrativa ao nome histórico, mantida conforme instrução; sem lista de aliases na página.
+- **Sistema Khalkaria (raiz)** — `Elemental (Fogo ; Frio ; Gelo)` — Trecho localizado (1 ocorrência, tabela de tipos de dano). Notion API retornou validation_error 400 em toda chamada update_content nesta página: '/icons/money_yellow.svg is not a supported Notion icon' — o ícone do callo
+- **Sistema Khalkaria (raiz)** — `apenas 5 idiomas existem` — Trecho localizado (1 ocorrência; a lista já tem 6 itens). Bloqueado pelo mesmo validation_error do ícone /icons/money_yellow.svg.
+- **Sistema Khalkaria (raiz)** — `**Esquecido**
+		- Idioma Extinto de Criaturas Antigas` — Trecho localizado (1 ocorrência, formatação da lista preservada na substituição preparada). Bloqueado pelo mesmo validation_error do ícone /icons/money_yellow.svg. Skalia = 'Idioma dos Répteis, protegido pela raça' — man
+- **Sistema Khalkaria (raiz)** — `Luxaria` — 2 ocorrências: 'Nível 4 = Luxaria' (SISTEMA DE CRAFTING) e '<td>Luxaria</td>' (tabela de raridade/valor no callout money_yellow). A tabela de CD por raridade já usa 'Luxária'. Bloqueado pelo mesmo validation_error do íco
+- **Sistema Khalkaria (raiz)** — `Xp e Dc` — Sem edição por instrução (título de seção mantido).
+- **classes-ramos (Espadachim, Batedor, Teurgo)** — `teste de interação social(qualquer)` — Batedor, Marca O Palpite: 'interação social(qualquer)' não é nome de uma perícia específica — designa qualquer perícia social. Sem substituição óbvia; decisão do Pedro.
+- **classes-ramos (Espadachim, Batedor, Teurgo)** — `+2 em interação social(Intimidação)` — Teurgo, Marca Porta-Voz (Arauto). Mesmo padrão B16, mas fora da lista de edições solicitadas (só Espadachim/Batedor). Sugiro aplicar '→ Intimidação' em rodada futura.
+- **classes-outras (Brutalista, Monge, Alquimista, Artilheiro)** — `[Monge/Alquimista/Artilheiro] Interação Social(Intimidação|Convencimen` — trecho não existe nessas 3 páginas; só ocorria no Brutalista
+- **classes-outras (Brutalista, Monge, Alquimista, Artilheiro)** — `[Brutalista/Monge] Sangrando / Envenenado como condição` — nenhuma ocorrência; ambas as páginas já usam 'Sangramento' e 'Exaustão' no restante do texto
+- **Gruto / Acólito / Refugiado / Mercador / Nobre / Vidente / Template - Ficha de Personagem / Corrompido (lote racas-origens-template)** — `nível 0 (Corrompido, Receptáculo Natural)` — Instrução explícita: não alterar. Só comentário.
+- **Gruto / Acólito / Refugiado / Mercador / Nobre / Vidente / Template - Ficha de Personagem / Corrompido (lote racas-origens-template)** — `Interação Social(Intimidação) / Interação Social(Enganação) (Gruto, li` — Fora da lista de edições (a regra B16 foi pedida só para Origens). Mesmo padrão — candidato a lote futuro. Idem '**Peso: 6**0kg' no Corrompido (mesmo typo de negrito do Gruto).
