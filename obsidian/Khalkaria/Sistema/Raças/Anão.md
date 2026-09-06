@@ -54,7 +54,7 @@ tags: [khalkaria/sistema, khalkaria/sistema/racas]
 - **A11 (integral):** "Todos os anões tem 2 sobrenomes possiveis, Krichama ou Caxon. Os krichama geralmente são ferreiros e os Caxon engenheiros. Jairo é o ferreiro do castelo de kirkushav. Alvak é o ferreiro da cidade de Khaskavel." → Jairo ≠ Alvak; ambos Krichama, ambos anões.
 - **A6:** Alvak "é imigrante de Volkrest, império de ferro, sua filha morreu na travessia para Kharavel" — anão Krichama; executou 2 soldados da [[Vanguarda Serafélia]] para salvar [[Lena Skarv]].
 - **B3:** Khazadun "Idioma dos anões, para falar exige cordas vocais anãs" — outras raças podem no máximo entender (ex.: Lena Skarv "Khazadun (só entende)").
-- **B1:** "Ae 5 a dano de Fogo" (Krichama) usa a categoria Elemental/Fogo dos 12 tipos ([[Tipos de Dano]]); "Ar 3 Natural" = armadura natural ([[Dano Ataque e Defesa]]).
+- **B1:** "Ae 5 a dano de Fogo" (Krichama) usa a categoria Elemental/Fogo dos 12 tipos ([[Tipos de Dano]]); "Ar 3 Natural" = armadura natural ([[Dano, Ataque e Defesa]]).
 
 ## Relações
 - **Origem** → não declarada no Notion; presença confirmada em [[Volkrest]] / [[Império de Ferro]] (Alvak e Jairo imigrantes) e em [[Kharavel]] ([[Minas dos Krichama]], [[Costas Rochosas]])

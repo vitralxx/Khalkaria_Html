@@ -40,7 +40,7 @@ tags: [khalkaria/continentes/ossyria]
 - **Morto aqui** → o Batedor de Kirkushav (por Terk)
 - **Fenômeno** → tempestade de areia sobrenatural ("desejava expurgar toda a vida")
 - **Rota marítima** → [[Volkrest]] (Azgar à deriva de canoa é resgatado por navio imperial)
-- **Classe/regra ligada** → [[Sobrevivência Fé e Estresse]], [[Jornada]] (Nômade de Azgar)
+- **Classe/regra ligada** → [[Sobrevivência, Fé e Estresse]], [[Jornada]] (Nômade de Azgar)
 
 ## Linha do tempo
 - **Atemporal:** "erro brutal dos deuses" — criação/ruína não datada.

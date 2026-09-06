@@ -1,3 +1,13 @@
+---
+tipo: moc
+status: canon-pedro
+spoiler: gm
+era: atemporal
+aliases: [Convenções, Contrato do vault]
+fonte_notion: pedro-2026-09-05
+ultima_sync: 2026-09-06
+tags: [khalkaria/meta]
+---
 # Convenções do vault Khalkaria
 
 Vault = esta pasta (`obsidian/Khalkaria/`). Abrir no Obsidian como vault. Fonte da verdade: **respostas do Pedro** (`docs/memoria/respostas_pedro_2026-09-05.md`) > **Notion** (`docs/memoria/notion_raw/`) > site. Nunca inventar lore; lacunas viram "Pendências".
@@ -51,3 +61,8 @@ tags: [khalkaria/<pasta-em-minusculas>]
 - Nada de conteúdo do Bazar `Lore/Notas` (não-canônico).
 - Lobisomem: nota existe, `spoiler: gm`, marcada "raça secreta".
 - Site (`pages/`, `data/`) não é fonte.
+
+
+## Relações
+- **Governa** → [[Khalkaria]] e todas as notas do vault
+- **Complementa** → [[Log de Sincronização]], [[Perguntas Abertas]]
