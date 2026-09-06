@@ -76,7 +76,7 @@ tags: [khalkaria/continentes/kharavel/seres/npcs]
 - **Vigiado por** → [[Hadran Vorgil]] (espião de Kirkushav)
 - **Destino** → [[O Sonhador]] em [[A Vhelor]] ([[Câmaras de Provação]], dragão de raízes) · sonhos acessíveis via [[Casca de Raiz]]
 - **Cópia** → [[Sinikko Kiriam (clone)]] (criação de [[Malkhor]])
-- **Salvação possível** → substituição por [[Lena Skarv]] (coração puro) · [[Campanha 1 — Arco (GM)]]
+- **Salvação possível** → substituição por [[Lena Skarv]] (coração puro) · [[Campanha 1 — Arco]]
 - **Eventos** → [[Sessão 0]] · [[Linha do Tempo]]
 
 ## Linha do tempo

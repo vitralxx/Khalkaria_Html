@@ -40,7 +40,7 @@ tags: [khalkaria/continentes/kharavel/faccoes]
 - **Contraponto de** → [[Khaskavel]] · [[Revavena]] · [[A Vhelor]]
 - **Participaram (?)** → queda do [[Castelo de Kirkushav]] com os [[Rastas]]
 - **Ameaça vizinha** → [[Cultos de Osh'Kar]] (*"Sumiços inexplicados em vilarejos remotos"*)
-- **Papel narrativo** → Direcionamento da campanha ([[Campanha 1 — Arco (GM)]])
+- **Papel narrativo** → Direcionamento da campanha ([[Campanha 1 — Arco]])
 - **Continente** → [[Kharavel]]
 
 ## Linha do tempo

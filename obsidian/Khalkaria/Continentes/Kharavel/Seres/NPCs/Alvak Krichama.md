@@ -59,7 +59,7 @@ tags: [khalkaria/continentes/kharavel/seres/npcs]
 - **Odeia / usa** → [[A Vhelor]] (old: repudia a árvore; usa [[Folhas Amarelas]] como combustível; marcas de seringa → [[Seiva]]? [[Marca da Vhelor]]?)
 - **Vende** → armas e armaduras comuns; melhora de nível ([[O Bazar]])
 - **Homônimo distinto** → [[Jairo Krichama]] (castelo)
-- **Eventos** → [[Sessão 0]] (visita de Sinikko à ferraria, A6) · [[Campanha 1 — Arco (GM)]]
+- **Eventos** → [[Sessão 0]] (visita de Sinikko à ferraria, A6) · [[Campanha 1 — Arco]]
 
 ## Linha do tempo
 - **≈ −27:** imigra de Volkrest; filha morre na travessia (A6); recebe residência de Sinikko em Khaskavel.

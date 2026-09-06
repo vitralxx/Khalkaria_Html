@@ -61,7 +61,7 @@ tags: [khalkaria/continentes/kharavel/seres/npcs]
 - **Espiona (talvez)** → base do castelo via rede de [[Tev Kossar]]
 - **Ferramentas** → [[A Vhelor]] · [[Seiva]] · [[Folhas Amarelas]] · [[Marca da Vhelor]] · magia ([[Teurgo]])
 - **Irmão de criação** → clone de [[Vorn Drekar]] (boss regional, criação de Malkhor)
-- **Endgame** → [[Campanha 1 — Arco (GM)]] · [[Primórdio]] · brecha de [[Karma]]
+- **Endgame** → [[Campanha 1 — Arco]] · [[Primórdio]] · brecha de [[Karma]]
 
 ## Linha do tempo
 - **−27** (Sessão 0): os 5 "morrem" na Árvore; Malkhor gera o clone, que *"retorna da árvore"* e assume Khaskavel.

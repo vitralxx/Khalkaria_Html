@@ -90,7 +90,7 @@ Três magias proibidas levam o nome de Kha — **Armadura de Kha** ([[Abjuraçã
 - **Profecia da sucessão em** → [[Templo da Profecia]]
 - **Ordenou a criação de** → [[Volkrest]] (e das principais espécies: [[Humano]], [[Gruto]], [[Autômato]], [[Inseto]] "se originaram majoritariamente daqui")
 - **Criador de** → [[Khalkaria]] ("Kha original, o criador de Khalkaria")
-- **Doutrina "cada um dos 5 é essencial"** → dilema de [[A Vhelor]] e true ending de [[Campanha 1 — Arco (GM)]]
+- **Doutrina "cada um dos 5 é essencial"** → dilema de [[A Vhelor]] e true ending de [[Campanha 1 — Arco]]
 - **Busca do original é prioridade de** → [[Velúria]]
 - **Invocado nas magias de nível 4** → [[Regras de Magia]] · [[Abjuração]] (Armadura de Kha) · [[Alteração]] (Julgamento de Kha) · [[Conhecimento]] (Dádiva de Kha)
 - **Relação não mapeada com** → [[O Limiar]] (pendência do Notion; pelo A2 o Limiar é cria de Velúria, não de Kha)

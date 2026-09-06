@@ -60,7 +60,7 @@ tags: [khalkaria/continentes/kharavel/seres/npcs]
 - **Inimiga de** → [[Khaskavel]] · [[Sinikko Kiriam (clone)]] · [[Culto de Malkhor]] · [[Vanguarda Serafélia]] · usuários de [[Seiva]] · [[Malkhor]]
 - **Alvo provável de** → [[Hadran Vorgil]] (ordem de [[Kirkushav Drekar]]: matar "uma escrava por conspiração") — inferência
 - **Peça paralela de Karmath** → [[Lena Skarv]] (com [[Vytália]])
-- **Chave do true ending** → brecha para o [[Primórdio]] · [[Campanha 1 — Arco (GM)]] · [[Templo da Profecia]] (profecia do mortal que agrada os deuses)
+- **Chave do true ending** → brecha para o [[Primórdio]] · [[Campanha 1 — Arco]] · [[Templo da Profecia]] (profecia do mortal que agrada os deuses)
 - **Vista de dentro por** → [[Mira Vesnal]] (*"revolução paranóica"*)
 - **Eventos** → [[Linha do Tempo]]
 

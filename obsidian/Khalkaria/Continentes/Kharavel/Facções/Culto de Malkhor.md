@@ -82,7 +82,7 @@ tags: [khalkaria/continentes/kharavel/faccoes]
 - **Vítimas / ex-membros** → [[Tev Kossar]] (ex-operário) · [[Yenev Vesnal]] (cooptado, desaparecido)
 - **Antecessor** → "Culto de Khaskavel (old)" (mesma organização, antes do clone)
 - **Origem ligada** → [[Corrompido]]? (não — corrupção da árvore é distinta da dos Hax; ver [[Os Hax]])
-- **Endgame** → [[Campanha 1 — Arco (GM)]] · [[Primórdio]]
+- **Endgame** → [[Campanha 1 — Arco]] · [[Primórdio]]
 
 ## Linha do tempo
 - **≈ −32 → −27:** existe como "Culto de Khaskavel", narcotráfico lucrativo em harmonia com *"os dois reis da cidade"*; líderes já louvam o deus do pecado em segredo.

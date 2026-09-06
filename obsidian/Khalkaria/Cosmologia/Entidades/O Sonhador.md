@@ -62,7 +62,7 @@ tags: [khalkaria/cosmologia, khalkaria/cosmologia/entidades]
 - **Canal onírico** → [[Casca de Raiz]] (sonhos do Sonhador; portadores permanentes)
 - **Guardião da câmara** → "dragão de raízes" ([[Sessão 0]])
 - **Testemunhas / vítimas** → [[Equipe desfloreio]] ([[Vorn Drekar]], [[Klaus von Aldric]], [[Runa Skorn]], [[Azgar Sandgale]] "mortos" pela árvore)
-- **Alternativa ao sacrifício** → profecia do [[Templo da Profecia]] / true ending no [[Primórdio]] ([[Campanha 1 — Arco (GM)]])
+- **Alternativa ao sacrifício** → profecia do [[Templo da Profecia]] / true ending no [[Primórdio]] ([[Campanha 1 — Arco]])
 - **Purificação divina rara** → "um futuro Sonhador puro" remove [[Marca da Vhelor]]
 - **Nomeado pelos locais de** → [[Kharavel]] ("chamado pelos locais de O Sonhador")
 

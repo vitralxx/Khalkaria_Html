@@ -21,7 +21,7 @@ Continentes/                         Continentes.md (MOC)
   Kharavel/                          Kharavel.md (MOC) · Regiões/ (9) · Locais/ (cidades, templo, castelo, abismo, oásis, sublocais de Khaskavel)
                                      · Facções/ · Seres/NPCs/ · A Vhelor/ (árvore, substâncias, Marca, Câmaras)
   Volkrest/  Mordval/  Aether/  Ossyria/
-Campanha/                            Linha do Tempo · Sessão 0 · Equipe desfloreio (MOC) · Personagens/ (5 PJs) · Campanha 1 — Arco (GM)
+Campanha/                            Linha do Tempo · Sessão 0 · Equipe desfloreio (MOC) · Personagens/ (5 PJs) · Campanha 1 — Arco
 Sistema/                             Sistema.md (MOC) · Regras/ · Magia/ · Classes/ · Raças/ · Origens/ · Condições.md · O Limiar (cartas).md
 ```
 

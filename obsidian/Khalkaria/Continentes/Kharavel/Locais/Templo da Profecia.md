@@ -44,7 +44,7 @@ Página [[Lena Skarv]]: *"O verdadeiro **true ending** da campanha (a profecia d
 - **Profecia sobre** → [[Kha]] · [[A Plenitude]] · [[Primórdio]] (onde o mortal se torna deus, A2)
 - **Oferendas ligam a** → [[Seiva]] (frascos amarelos para Malkhor) · [[Sins]] · [[Regras de Magia]] / [[Abjuração]] (pergaminhos e Foco de Abjuração para Velúria) · [[Império de Ferro]] e [[Khaskavel]] (mapa para Mundarak)
 - **Caminho alternativo ao sacrifício de** → [[Lena Skarv]] ([[O Sonhador]])
-- **Desfecho** → true ending da [[Campanha 1 — Arco (GM)]]: enfrentar [[Malkhor]] no Primórdio (A16)
+- **Desfecho** → true ending da [[Campanha 1 — Arco]]: enfrentar [[Malkhor]] no Primórdio (A16)
 
 ## Linha do tempo
 - **−27** (Sessão 0): já em ruínas no mapa antigo (centro-oeste, na floresta).

@@ -68,7 +68,7 @@ Catálogo (contagem programática 2026-09-04): Universais **8** · FOR/DES/CON/I
 - **Barra** → aplanares (criaturas de fora do Místico); **limita** → [[Teurgo]]s que sugam demais
 - **Expande a geração de** → [[Éter]] (A14)
 - **Termo antigo** → "forças materializantes" ([[Sinikko Kiriam (original)]], [[Kheyos]])
-- **Provê poderes a quem se alinha a** → [[Vytália]] (a mando de Velúria) → jogadores da [[Campanha 1 — Arco (GM)]] / [[Equipe desfloreio]]
+- **Provê poderes a quem se alinha a** → [[Vytália]] (a mando de Velúria) → jogadores da [[Campanha 1 — Arco]] / [[Equipe desfloreio]]
 - **Catálogo de bênçãos** → [[O Limiar (cartas)]] (168 cartas; raras: Olhos de Velúria, Onisciencia de Mundarak, Comunhão, Colossus Primordial…)
 - **Cartas de corrupção rivais** → "O Abismo" em [[O Limiar (cartas)]] ([[Osh'Kar]]; a refazer)
 - **Patrono de** → [[Teurgo]] (Arauto): invocação **Terro**, Ultimate "Guardião do Portão"

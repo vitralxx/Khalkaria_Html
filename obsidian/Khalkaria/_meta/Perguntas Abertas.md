@@ -78,9 +78,52 @@ Cada item precisa de decisão do Pedro. E1–E15 vieram do cruzamento Notion × 
 - **E59** Nenhuma das 9 regiões de Kharavel tem valor de Hostilidade para a regra de Jornada.
 - **E60** Em B3 você escreveu 'um dos mais raros de Khaskavel' e 'só existem no continente de Khalkaria' — leia-se Kharavel e Khalkaria? Confirmar.
 - **E61** Terminologia: Dc (Notion) × CR (CLAUDE.md e Bestiário). Padronizar.
+- **E62** Monge: o Notion tem DUAS 'Transcendência' (técnica geral Ação Livre e Ultimate do Punho), mas em B7 você disse que só há uma. A fonte contradiz — qual mantém o nome?
+- **E63** Marcas das 7 classes dão '+1 permanente' em perícia até +5, mas a escala canônica é +2/+4/+6/+8. Como os dois se somam?
+- **E64** Espadachim: ultimates custam 10 Stamina (Sentença Final, Cicatrizes) contra 5–6 em todas as outras classes. Intencional?
+- **E65** Batedor: o ramo Trambiqueiro tem 2 ultimates; os outros 20 ramos têm 1.
+- **E66** Batedor: completar a frase truncada de Homem de Negócios ('Você possui um disturbio de mat').
+- **E67** Batedor/Artilheiro: Ocultar-se diz '1 ação ao invés de 2' e Tiro Camuflado exige 'estar escondido', mas o Sistema define esconder-se com 3 ações e 'Escondido' não é condição.
+- **E68** Brutalista: Ignorar Dor 'recupera 2d6 ao invés de 1' — o efeito base não recupera 1, mantém em 1 de Saúde. Reescrever.
+- **E69** Brutalista: Casca Grossa dá Armadura = Mod.CON; com CON 8 fica negativa. Piso em 0?
+- **E70** Teurgo: Tese Arcana custa 2 ou 4 Stamina (ficou 'depois eu ajusto').
+- **E71** Teurgo (reformulando a pergunta que não ficou clara): no nível 1 o Teurgo conhece 1+Mod magias. No nível 2 os ramos dão Grimório 3+Mod.INT, Canalizador Inato 2+Mod.SAB, Pactuadas 1+Mod.INT. Esses números SOMAM às magias iniciais ou passam a ser o total conhecido?
+- **E72** Teurgo: quem é 'O Trancafiado'? É Osh'Kar (cuja figura material está presa no Abismo, B3) ou uma segunda entidade selada no mesmo lugar?
+- **E73** Teurgo: 'dano Biológico' do Grutto (Seiva Dourada) sem subtipo — Veneno, Ácido ou Psíquico?
+- **E74** Monge: a regra base diz 'não pode perder fluxo de nenhuma outra forma', mas Concentração do Mestre nega 'a perda de fluxo ao receber dano' — pressupõe uma regra que não existe.
+- **E75** Monge: Companheiro Primal II é rotulado '(Passiva)' embora seja invocação (T1 custa 2 Ações + 5 Stamina).
+- **E76** Alquimista: Tónico Cruel repete 'em caso de falha' duas vezes — a segunda deveria ser 'sucesso'.
+- **E77** Alquimista: Sucateador '(Ao invés de 1d4)' contra a regra base '1d4+Nível'.
+- **E78** Alquimista: Ofício(Alquimia) é treinamento inicial e reaparece na lista de escolha de perícias.
+- **E79** Alquimista: 'dano Elemental'/'Biológico'/'Místico' sem subtipo em Forçar Invenção, Constructo Detonar, Rajada Arcana, Zona da Morte e Runas de Proteção — B1 exige um dos 12 tipos.
+- **E80** Alquimista: Soro do Homúnculo cria servo CR 2 (encontro equilibrado para 5 jogadores de nível 2) como item de nível 5. Intencional?
+- **E81** Alquimista: as 92 fórmulas do catálogo alquímico se sobrepõem ao CSV do Bazar (nomes e preços)?
+- **E82** Artilheiro: 'munição especial 3 = 1 bugiganga' não tem par na regra geral, mesmo após B2.
+- **E83** Ficha interativa: a Evasão precisa aceitar bônus condicionais variáveis (Monge Evasivo +Fluxo, Artilheiro Passo do Vento +Concentração, Sorte do Bêbado +2). Campo manual ou cálculo?
+- **E84** Origens: 'A Forja' é o nome da habilidade do Ferreiro E do Artesão, com efeitos diferentes. Renomear uma?
+- **E85** Ferreiro/Artesão: 'ganhe 1 nível de treinamento por raridade nunca fabricada' não tem teto contra a escala de 4 níveis.
+- **E86** Artesão × Escravo: a Bolsa de Couro declara '+2 Espaços de Bugiganga' só no Escravo. O efeito é do item ou da origem?
+- **E87** Acólito: Palavra de Fé não nomeia resistência nem CD; devolver 1d6+4 Éter a outra criatura no nível 1 supera a Respiração Primordial do Teurgo.
+- **E88** Acadêmico/Nobre: os idiomas concedidos são escritos, mas Khazadun 'exige cordas vocais anãs'. Ler e escrever sem falar é permitido? Um não-anão pode escolhê-lo?
+- **E89** Andarilho: +10 Stamina máxima de origem supera a progressão de nível de várias classes. Intencional?
+- **E90** Criminoso: 'Ilegal' é a única habilidade de origem com efeito de combate (Sangramento 1 no crítico) e 'itens ilegais' não é categoria do Bazar.
+- **E91** Cultista: entrega 2 magias de nível 1 a qualquer classe. Um Brutalista Cultista canaliza sem ser Treinado em Místico? 'Qualquer escola' inclui Primordial?
+- **E92** Criminoso/Cultista/Refugiado: '+1 nível de treinamento por X Stamina' sem teto contra a escala +2/+4/+6/+8.
+- **E93** Soldado: 'condições mentais' não é categoria formal; 'reputação militar básica' não tem efeito mecânico; qual guerra 'terminou para o mundo'?
+- **E94** Refugiado: 'começa cenas de perseguição com 1 sucesso' exige regra de perseguição com contagem de sucessos, que não existe.
+- **E95** Marinheiro: 'dobro do tempo normal' de apneia pressupõe um tempo-base inexistente; não há regras navais, apesar de 3 origens dependerem de embarcações.
+- **E96** Nobre: Educação Privilegiada não restringe a perícia — pode apontar para Atacar ou Defender.
+- **E97** Vidente: imunidade permanente a Desprevenido duplica 'Atento' do Batedor e anula emboscadas; Vidência não tem limite nem CD; a fonte da visão (Velúria? Karmath? O Limiar?) está indefinida.
+- **E98** Amaldiçoado: única origem sem arma inicial; 'Local' não tem efeito mecânico; e 'o certo local' nunca foi definido (candidato natural: o segredo do sumiço de Kha).
+- **E99** Escravo/Caçador: começam com 3 Equipamentos, estourando o limite 2+Mod.FOR com Força baixa — Sobrepeso já na criação. Intencional?
+- **E100** Escravo: 'Liberdade' dá vantagem em três famílias de resistência ao mesmo tempo — provavelmente a habilidade de origem mais forte em combate.
+- **E101** Caçador: 'Arma Simples' é uma categoria que nenhuma outra origem usa; e caçar 1d4 Comidas + 1d4 Couro por descanso longo, sem risco, resolve a economia de comida do grupo.
+- **E102** A origem 'Caçador' colide com a técnica geral 'Caçador' do Batedor — desambiguar em âncoras e IDs.
+- **E103** Índices do Notion: Classes e Origens estão 🟡 'Em desenvolvimento' com todas as 24 subpáginas 🟢 Pronto. Atualizar?
 
 ## Pendências operacionais
 
 - **Mapas**: depositar os 3 PNGs em `docs/memoria/mapas/` com os nomes do LEIA-ME (Kharavel campanha, Khaskavel Sessão 0, Kharavel Sessão 0).
 - **Notion — página raiz Sistema Khalkaria**: bloqueada para edição via API (ícone legado `money_yellow.svg` num callout). 5 correções pendentes de aplicação manual — ver `docs/memoria/log_notion.md`.
+- **Notion — lote 2 de correções de redação** (autorizado por D1, pendente de execução): '3 por Tier' → '3 no Tier 1' nas 7 classes; Execução do Artilheiro 'Você recebe 2d6' → 'o alvo recebe'; Reserva Oculta citando a exceção a Oco; 'Acolito'→'Acólito'; 'Exausto N'→'Exaustão N'; 'Sangrando N'→'Sangramento N'; 'Envenenado'→'Envenenamento'; 'Interação Social(X)'→perícia individual; 'Reflexo'→'Reflexos'; 'Ataque/Defesa'→'Atacar/Defender'; 'Intimidar'→'Intimidação'; 'Sussuros'→'Sussurros'; 'Ápatico'→'Apático'; 'Vicio'→'Vício'; Escravo '- 3 Comidas' colado na linha da Bolsa de Couro.
 - **Obsidian Local REST API**: roda no PC do Pedro; este ambiente remoto não alcança. O vault vive no repo e é sincronizado por git.

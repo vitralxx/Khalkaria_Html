@@ -61,7 +61,7 @@ Prosa de magias que descrevem o Primórdio (regras mecânicas ficam em Sistema):
 - **"Seres primordiais" / patronos** → [[A Vhelor]], "O Trancafiado" (ver [[Osh'Kar]]), [[O Limiar]] ([[Teurgo]], ramo Arauto)
 - **Portal aberto por** → derrota de [[Sinikko Kiriam (clone)]] ("essência de Malkhor")
 - **Brecha aberta por** → [[Karma]] (A16)
-- **Palco do true ending** → [[Campanha 1 — Arco (GM)]]: um jogador × [[Malkhor]]
+- **Palco do true ending** → [[Campanha 1 — Arco]]: um jogador × [[Malkhor]]
 - **Diviniza** → qualquer mortal/entidade que nele esteja → mecanismo da profecia do [[Templo da Profecia]] ("o maior entre eles")
 - **Era em que o cosmos era "santuário perfeito"** → [[A Plenitude]] (não é o mesmo conceito; ver conflito 3)
 

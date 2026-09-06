@@ -90,7 +90,7 @@ tags: [khalkaria/cosmologia, khalkaria/cosmologia/deuses]
 - **Substâncias** → [[Seiva]], [[Casca de Raiz]], [[Folhas Amarelas]], [[Marca da Vhelor]]
 - **Adorado sem saber como "A Mãe"** → [[A Embrenha]]; como deusa viva "Vhelorna / Vhel-Mãe" → [[Vilarejo Skarv]]
 - **Estátua / placa "Pecador" danificada** → [[Templo da Profecia]] (corpo distorcido, sem face, dois chifres pretos; oferendas: adagas, Seiva, [[Sins]])
-- **Enfrentado no** → [[Primórdio]] (true ending, [[Campanha 1 — Arco (GM)]]; brecha aberta por [[Karma]])
+- **Enfrentado no** → [[Primórdio]] (true ending, [[Campanha 1 — Arco]]; brecha aberta por [[Karma]])
 - **Invocado na magia de nível 4** → [[Regras de Magia]] · [[Conhecimento]] (Olhos de Malkhor)
 - **Patrono indireto de** → [[Teurgo]] (pacto "A Grande Árvore")
 - **Sem conflito formal com** → [[Cultos de Osh'Kar]] ("Não há aliança formal. Em alguns casos podem até entrar em conflito")

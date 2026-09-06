@@ -52,7 +52,7 @@ tags: [khalkaria/cosmologia, khalkaria/cosmologia/entidades]
 ## Relações
 - **Era mantida por** → [[Kha]] (original); **encerrada pelo** → sequestro divino
 - **Requer os 5 cargos** → [[Vytália]], [[Malkhor]], [[Velúria]], [[Mundarak]], [[Karmath]] ("cada um dos 5 é essencial")
-- **Cargo substituível por mortal** → true ending de [[Campanha 1 — Arco (GM)]] no [[Primórdio]]; profecia do [[Templo da Profecia]]
+- **Cargo substituível por mortal** → true ending de [[Campanha 1 — Arco]] no [[Primórdio]]; profecia do [[Templo da Profecia]]
 - **Sonho de retorno de** → [[Vytália]] (motivo da aposta de [[Kharavel]])
 - **Ameaçada pela cruzada de** → [[Vytália]] (pág. Malkhor/Mundarak) — "acreditando estar restaurando-o"
 - **Defendida estrategicamente por** → [[Velúria]]

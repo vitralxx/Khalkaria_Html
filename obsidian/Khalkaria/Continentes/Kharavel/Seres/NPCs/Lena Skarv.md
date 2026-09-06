@@ -48,7 +48,7 @@ tags: [khalkaria/continentes/kharavel/seres/npcs]
 - **Permitida na cidade por** → [[Sinikko Kiriam (original)]] (A6 — ver pendência)
 - **Órfã pelo ataque de** → [[Sinikko Kiriam (clone)]] / [[Vanguarda Serafélia]] · perseguida por 2 soldados Serafélia (A6)
 - **Destino possível** → [[O Sonhador]] em [[A Vhelor]] (substituir o [[Sinikko Kiriam (original)]])
-- **Alternativa** → [[Templo da Profecia]] · [[Kha]] (novo Kha-mortal) · [[Campanha 1 — Arco (GM)]]
+- **Alternativa** → [[Templo da Profecia]] · [[Kha]] (novo Kha-mortal) · [[Campanha 1 — Arco]]
 - **Ameaças** → [[Hadran Vorgil]] (sequestro, gancho) · [[Culto de Malkhor]] · [[Malkhor]]
 - **Classe potencial** → feiticeira ([[Teurgo]]) no grupo dos PJs
 - **Deusas envolvidas** → [[Vytália]] · [[Karmath]] · [[Velúria]]
