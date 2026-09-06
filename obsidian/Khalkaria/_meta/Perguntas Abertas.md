@@ -56,6 +56,28 @@ Cada item precisa de decisão do Pedro. E1–E15 vieram do cruzamento Notion × 
 - **E37** Idade de Sinikko em −27 nunca foi escrita. Situação de Kheyos e da Casa Isolada no ano 0 também não.
 - **E38** Sevic sobreviveu à Sessão 0? A5 diz que ele foi interrogado, mas não se o Bilhete chegou a Karma.
 - **E39** Alvak 'se firmou em Khaskavel há 27 anos', exatamente o ano da Sessão 0 — ele chegou antes da expedição?
+- **E40** Fórmula do modificador ((Atr−10)/2) e da Evasão (10+Mod.DES) não existem em NENHUMA página do Notion, embora site e Bestiário as usem. Confirmar e escrever no Notion.
+- **E41** Primordial é uma 5ª escola a povoar, apenas o Foco que destrava o nível 4, ou nome coletivo das 4 escolas? Não há lista de magias Primordiais no Notion.
+- **E42** Peso da munição no inventário (o consumo já está resolvido por B2): 'munições = 1 bugiganga' × 'itens leves, 1 bugiganga a cada 10' × '20 = 1 slot'.
+- **E43** 'Biológico' e 'Místico' são categorias, mas Sangramento/Envenenamento/Morrendo e algumas cartas os usam como TIPO de dano. Escolher um tipo ou formalizar Armadura Específica de categoria.
+- **E44** Requisito dos pools de atributo do Limiar: 14+ (resumo e regra de sorteio) ou 16+ (cabeçalho das colunas)?
+- **E45** Mix do sorteio do Limiar: '1-2 universal + 1-3 atributo + 1 rara' soma 3–6, não as 5 cartas confirmadas em B5. Qual o mix exato?
+- **E46** Duplicata 'Devorador de Almas' (Rara × Benefício do Abismo) — renomear qual? (B7 tratou só Pele Morta e Transcendência.)
+- **E47** 9 cartas raras exigem um atributo 14+ apesar do cabeçalho 'múltiplos atributos altos' e dos pools 16+. Intencional?
+- **E48** Convencimento e Enganação usam DESTREZA (não existe Carisma): intencional ou resquício?
+- **E49** Magias 'Apenas Transbordante' (9 das 20 de nível 4): o risco do Transbordante (Vontade CD 15, falha perde o dobro = −24 Éter) se aplica a elas?
+- **E50** Sins iniciais não constam em nenhuma página de Sistema (CLAUDE.md diz mediana 12). Vêm só das Origens?
+- **E51** Fé e Sanidade não tem escala: 'reduz Éter proporcionalmente à intensidade da cena' é o único critério e só o aliado morto tem valor (2d6+3). Criar tabela por intensidade?
+- **E52** Khan Sins: como o '+Mult.' das perícias entra na conta e o que é 'percepção passiva', nunca definida.
+- **E53** Raridade do comerciante (Comum/Médio/Raro) não mapeia nas 5 raridades de item (Lixo → Luxária).
+- **E54** Ofício(Alquimia) aparece nas categorias do Bazar mas a regra de crafting só cita Ferraria e Engenharia.
+- **E55** Condição 'Lento X': o texto dá −3 m e −1 Ação fixos; o que X representa e se empilha não está escrito (cartas usam Lento 1/2/3).
+- **E56** Condição 'Descontrolado X': título diz 'ataca o aliado mais próximo', corpo diz 'a criatura mais próxima'.
+- **E57** Manobra Agarrar não define o teste para escapar, embora magias o pressuponham.
+- **E58** Fissura da Alma custa '6 Ações (2 Rodadas)' mas não existe regra geral de conjuração multi-rodada.
+- **E59** Nenhuma das 9 regiões de Kharavel tem valor de Hostilidade para a regra de Jornada.
+- **E60** Em B3 você escreveu 'um dos mais raros de Khaskavel' e 'só existem no continente de Khalkaria' — leia-se Kharavel e Khalkaria? Confirmar.
+- **E61** Terminologia: Dc (Notion) × CR (CLAUDE.md e Bestiário). Padronizar.
 
 ## Pendências operacionais
 
