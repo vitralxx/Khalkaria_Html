@@ -5,7 +5,7 @@ spoiler: gm
 era: sessao0
 continente: Kharavel
 aliases: ["o teurgo de Khaskavel", "O Teurgo Solitário", "Filho Semideus de Karmath", "mentor de Klaus"]
-fonte_notion: [33e6e3a401d9819789c0da0fcde2f114, 33e6e3a401d9819796c9dfb2263e215d, 35f6e3a401d98145a5c7e2a8d24a1f7b, 3696e3a401d98127a568c856497d9ce6, pedro-2026-09-05]
+fonte_notion: [33e6e3a401d9819789c0da0fcde2f114, 33e6e3a401d9819796c9dfb2263e215d, 33e6e3a401d9810ca145d41242d235b0, 3696e3a401d98127a568c856497d9ce6, pedro-2026-09-05]
 ultima_sync: 2026-09-05
 tags: [khalkaria/continentes/kharavel/seres/npcs]
 ---

@@ -5,7 +5,7 @@ spoiler: gm
 era: sessao0
 continente: Kharavel
 aliases: ["Kirkushav", "o Soberano", "Soberano do Império de Ferro", "General-Imperador", "o General"]
-fonte_notion: [33e6e3a401d98131815efc830056e2e3, 33e6e3a401d9819796c9dfb2263e215d, 3696e3a401d98161a014d3747e46b42b, 36d6e3a401d9817792d8ef277f93f46a, 33e6e3a401d98172bcefef2453ce1564, 3656e3a401d9812d9e52dd9d4af50d1e, 37a6e3a401d981ba9ba3d6c83a8380a1, pedro-2026-09-05]
+fonte_notion: [33e6e3a401d98131815efc830056e2e3, 33e6e3a401d9819796c9dfb2263e215d, 3696e3a401d98161a014d3747e46b42b, 36d6e3a401d9817792d8ef277f93f46a, 33e6e3a401d98172bcefef2453ce1564, 33e6e3a401d981b99d17e52ca1383748, 33e6e3a401d9814caa28c26a3a66e84c, pedro-2026-09-05]
 ultima_sync: 2026-09-05
 tags: [khalkaria/continentes/kharavel/seres/npcs]
 ---
