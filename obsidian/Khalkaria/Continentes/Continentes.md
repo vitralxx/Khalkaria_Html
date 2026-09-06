@@ -11,6 +11,7 @@ tags: [khalkaria/continentes]
 # Continentes
 
 **Resumo.** O planeta [[Khalkaria]] tem **5 continentes** na página "Continentes" do Notion (🟡 Em desenvolvimento, ed. 2026-05-23), numerados na ordem em que o Pedro os pensa: **1. [[Kharavel]]** (continente da campanha, aposta entre [[Vytália]] e [[Malkhor]]), **2. [[Volkrest]]** (berço de humanos, grutos, autômatos e insetos; sede do [[Império de Ferro]]), **3. [[Mordval]]** (continente fragmentado pelo cometa; piratas e colônias), **4. [[Aether]]** (continente da magia, presente de [[Kha]] a [[Velúria]]; [[Hyven]] e [[Os Hax]]) e **5. [[Ossyria]]** (o erro brutal dos deuses; terra de exílio da [[Família Sandgale]]). A [[Equipe desfloreio]] da [[Sessão 0]] foi montada, intencionalmente, com **um integrante de cada continente** (A15).
+- [[Ilou Skorn]] — dragão autômato de Hyven morto pelos Hax; origem do nome de [[Runa Skorn]]
 
 ## Cânone (Notion)
 > **Continentes** — Status: 🟡 Em desenvolvimento

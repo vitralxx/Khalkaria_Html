@@ -76,6 +76,12 @@ Cada classe define Saúde/Stamina/Éter, Evasão, recurso próprio (FLUXO no Mon
 
 [[Origens]] — histórico do personagem: Sins iniciais, treinamentos, itens e uma habilidade.
 
+
+### As 17 origens
+[[Acadêmico]] · [[Ferreiro]] · [[Artesão]] · [[Exilado]] · [[Acólito]] · [[Andarilho]] · [[Criminoso]] · [[Cultista]] · [[Soldado]] · [[Refugiado]] · [[Mercador]] · [[Marinheiro]] · [[Nobre]] · [[Vidente]] · [[Amaldiçoado]] · [[Escravo]] · [[Caçador]]
+
+Índice de raças: [[Raças]]
+
 ## Relações
 - **Jogado em** → [[Kharavel]], planeta [[Khalkaria]]
 - **Cosmologia por trás da magia** → [[Éter]], [[O Limiar]], [[Plano Místico]], [[Primórdio]], [[Velúria]]

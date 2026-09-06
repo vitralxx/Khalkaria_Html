@@ -82,6 +82,12 @@ Dificuldade 1 = mais segura, 9 = mais letal. Vizinhança **inferida** da descri�
 2. **Khaskavel — Sessão 0 (−27):** ver [[Khaskavel]].
 3. **Kharavel — Sessão 0 (−27):** sem legenda; Khaskavel clara e limpa; castelo no centro junto a lago turquesa; templo em ruínas na floresta centro-oeste; cabanas Skarv a O/SO; **sudoeste com cachoeiras e vegetação tropical** (onde hoje é o Deserto do Abismo); **nordeste = planície vazia** (Revavena não existe); **ilha florestada no sudeste**.
 
+### Também em Kharavel
+- [[Embrenhos]] — povo pobre da [[A Embrenha]] — viciados, sãos e cultistas menores
+- [[Iluminados]] — facção de Khaskavel (página marcada *old* no Notion)
+- [[Povos Diversos do Sul]] — comunidades do sul que ignoram a tentação da Vhelor
+- [[Lorrain Kiriam]] — teurga, mãe de [[Sinikko Kiriam (original)]], morta nos esgotos
+
 ## Relações
 - **Criado por** → [[Mundarak]] (a pedido de [[Vytália]])
 - **Aposta entre** → [[Vytália]] × [[Malkhor]]
