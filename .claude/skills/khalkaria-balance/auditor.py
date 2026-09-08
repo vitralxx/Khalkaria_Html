@@ -299,6 +299,45 @@ def cmd_lacunas():
         f = sum(max(0, META[r] - por[c][r]) for c in chs for r in META)
         print(f"   {fam:14} faltam {f}")
 
+
+def cmd_novidades():
+    """Gera references/10-novidades-bazar.md a partir do CSV + novidades.json."""
+    import json as _j
+    nv = _j.load(open(os.path.join(BASE,'references','novidades.json'), encoding='utf-8'))
+    rows = {r['Nome']: r for r in load()}
+    ordem = ['Incomum','Exótico','Luxária']
+    out = ["# Bazar de Khalkaria — O que há de novo",
+           "",
+           "Armas únicas criadas na revisão do Bazar. Cada chassi de arma passou a ter",
+           "**2 Incomuns, 2 Exóticos e 1 Luxária** — antes havia chassis inteiros sem nenhuma arma única.",
+           ""]
+    tot = 0
+    for fam in ['LEVES','PESADAS','MARCIAIS']:
+        nomes = nv.get(fam, [])
+        out += [f"## {fam} — {len(nomes)} armas novas", ""]
+        tot += len(nomes)
+        grupo = {}
+        for n in nomes:
+            r = rows.get(n)
+            if not r: out.append(f"- ⚠️ `{n}` não encontrada no CSV"); continue
+            grupo.setdefault(chassi(r['Efeito']) or '?', []).append(r)
+        for ch in sorted(grupo):
+            out.append(f"### {ch}")
+            for r in sorted(grupo[ch], key=lambda x: ordem.index(x['Raridade'])):
+                _, _, pl = partes_arma(r['Efeito'])
+                out.append(f"- **{r['Nome']}** · *{r['Raridade']}* · {r['Valor (Sins)']} Sins")
+                out.append(f"  - {pl}")
+            out.append("")
+    ren = nv.get('_renomeadas', {})
+    if ren:
+        out += [f"## Renomeadas ({len(ren)})", ""]
+        for a, b in ren.items(): out.append(f"- {a} → **{b}**")
+        out.append("")
+    out += [f"---", f"", f"**Total: {tot} armas novas.** Bazar em {len(rows)} itens."]
+    caminho = os.path.join(BASE,'references','10-novidades-bazar.md')
+    open(caminho,'w',encoding='utf-8').write('\n'.join(out) + '\n')
+    print(f"gerado: {caminho} ({tot} armas novas)")
+
 # ---------------------------------------------------------------- comandos --
 def cmd_dump(cat=None, familia=None, raridade=None):
     rows = load()
@@ -486,6 +525,7 @@ if __name__ == '__main__':
     elif cmd == 'aplicar':   cmd_aplicar(dry='--go' not in a)
     elif cmd == 'focos':     cmd_focos(dry='--go' not in a)
     elif cmd == 'lacunas':   cmd_lacunas()
+    elif cmd == 'novidades': cmd_novidades()
     elif cmd == 'dpr':
         d, ac = a[1], int(a[2]); mod = int(a[3]) if len(a) > 3 else 3
         print(f"{d} / Atacar({ac}) / mod +{mod}  →  D={media_dado(d):.1f}  DPR={dpr(d,ac,mod):.2f}")

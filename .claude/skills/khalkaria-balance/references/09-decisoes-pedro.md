@@ -229,3 +229,29 @@ Lâmina de Vytália +1d12→**+1d8** · Bastão de Karmath +1d10→**+1d6**. (L�
 Leves e Marcial Precisa/Versátil gastam as 3 ações atacando → habilidade ativa só como **ação livre**.
 Pesadas e Marcial Pesada/Longa sobra 1 ação → habilidade pode custar **1 ação**.
 Pesada Brutal consome o turno → só **passivo ou no acerto**.
+
+## D26 — Marcial Precisa é exceção 2/2/2 (aprovado)
+O *Fragmento do Oblívio* subiu para Luxária, criando duas Luxárias no chassi ao lado da
+*Lâmina de Vytália*. O Pedro escolheu a opção **(a)**: aceitar 2 Incomuns / 2 Exóticos /
+**2 Luxárias** como exceção declarada. É o chassi duelista — o das lâminas lendárias.
+Entrou o **Bordão Contra-Tempo** como 2º Exótico.
+
+**Nota de design do Fragmento do Oblívio:** ele é uma *peça de build*, não um upgrade de números.
+P(acertar 3 ataques) = **2,1% na PMA padrão** (+1,32 DPR, quase inerte), mas **21,6% com PMA
+anulada** (+13,61 DPR, +55%). Só acorda nas mãos de quem construiu redução de PMA.
+Lore que sustenta: o Oblívio é um plano que nem os deuses acessam — por isso o dano é **Força**,
+não Primordial (que vem do Primórdio, onde os deuses habitam).
+
+## D27 — Linha Kali (a definir)
+Material exclusivo de Khalkaria: branco como ferro, brilha amarelo sob a luz, **extremamente leve
+e afiado**, tema de aplicar **Exposto**.
+Decidido: **1 arma de Kali por chassi (15), todas Exóticas, cada uma brincando com Exposto de um
+jeito ligado ao efeito do chassi. A frequência do Exposto depende do chassi.**
+⚠️ **Aviso de calibração:** *Exposto* transforma o próximo acerto em crítico, e crítico dobra os
+dados. Uma aplicação vale **+14 (4d6) a +32,5 (5d12)** de dano — com DPR de referência de 18–25 no
+nível 5, **um Exposto por turno mais que dobra qualquer arma**. Sugestão temática que se
+autobalanceia: Kali **desce um degrau de dado** em troca do acesso ao Exposto (leve = menos massa).
+
+## Lote 5 (MARCIAIS) — CONCLUÍDO
+16 armas criadas. Os 4 chassis marciais fechados (Precisa em 2/2/2 por exceção).
+**66 de 75 armas únicas. Faltam 10, todas à distância.**
