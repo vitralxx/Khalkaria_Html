@@ -61,7 +61,7 @@ Há vinte e sete anos a floresta já estava aqui, com o [[Vilarejo Skarv]] intei
 1. A floresta já estava corrompida há vinte e sete anos? Ela aparece nos registros da época, mas nada ali fala de corrupção.
 2. As descrições da região divergem entre *"oeste / sudoeste"* e oeste/centro-oeste descendo até o oásis. As duas cabem no mesmo desenho, mas o sudoeste propriamente dito já é o [[Deserto do Abismo]].
 3. Onde vivem os [[Xkamur]]? Sendo rivais históricos dos [[Skarv]], o bosque ou o sul são os candidatos naturais — mas ninguém os situou no mapa.
-4. Quando exatamente [[Lena Skarv]] atravessou este bosque fugindo: ela tem quinze anos e teria sido salva aos treze, mas a mesma cena é contada como acontecendo na época da [[Sessão 0]], vinte e sete anos antes ([[Perguntas Abertas]] E18).
+4. Por onde exatamente [[Lena Skarv]] atravessou este bosque fugindo dos soldados, dois anos antes da [[Sessão 0]], quando tinha seis anos.
 5. As linhas exatas de fronteira ainda não foram traçadas ([[Perguntas Abertas]] E14).
 
 ## Procedência

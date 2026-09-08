@@ -45,6 +45,9 @@ Enquanto isso, mantém a máquina: ataques recorrentes ao [[Vilarejo Skarv]] na 
 
 ## O culto
 
+> Siniko é o mais próximo de um representante do deus do pecado e é lider do Culto de Khaskavel utilizando a Grande Árvore como sua principal fonte de poder.
+
+
 > O líder do Culto é **Sinikko Kiriam (clone)**, a criação direta de Malkhor gerada dentro da Grande Árvore após a Sessão 0. [...] Comanda Khaskavel oficialmente como imperador e o culto extra-oficialmente como sumo-sacerdote.
 > Sinikko clone não tem interesse genuíno em organizar o culto rigidamente — o caos serve a Malkhor.
 

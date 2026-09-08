@@ -34,7 +34,7 @@ Cada item precisa de decisão do Pedro. E1–E15 vieram do cruzamento Notion × 
 
 - **E16** Vorn e Sinikko vêm ambos de Volkrest, mas a equipe desfloreio tem 1 integrante por continente (A15). Sinikko representa Kharavel, como imperador de Khaskavel?
 - **E17** Idade de Kharavel: 'descoberto há poucos séculos' (pág. Kharavel) × 'aparentemente recém-formado / mais novo continente' (Roteiro) × Khaskavel com 5 anos em −27. Séculos ou décadas?
-- **E18** **Crítico** — Lena e Alvak: A6 coloca Lena na ferraria já na Sessão 0 (−27), mas Lena tem 15 anos hoje e o Notion diz que foi resgatada há 2 anos, aos 13. A cena de Sinikko vendo a garota na ferraria acontece em −27 ou é outra cena, depois?
+- **E18** ✅ **Resolvida (2026-09-07)** — Lena e Alvak: dryads vivem mais que humanos. Lena tem 35 anos na campanha, 8 na Sessão 0 e 6 no resgate, dois anos antes da expedição. A cena na ferraria é a da Sessão 0, com ela aos 8. Duas consequências novas: a chegada de Alvak a Khaskavel precisa recuar (ele já estava lá há 29 anos para encontrá-la) e o ataque ao Vilarejo Skarv passa a ser ordem do **Sinikko original**, não do clone — ver E104.
 - **E19** Klaus, Runa e Azgar morreram de fato em −27? Existe 'clone de Vorn' (gancho na página de Hadran), como o clone de Sinikko?
 - **E20** Terk Sandgale está vivo? Qual crime levou os Sandgale ao exílio em Ossyria?
 - **E21** Ossyria: a tempestade de areia sobrenatural e o 'erro brutal dos deuses' — quais deuses, qual erro? Tem ligação com Osh'Kar?
@@ -120,6 +120,8 @@ Cada item precisa de decisão do Pedro. E1–E15 vieram do cruzamento Notion × 
 - **E101** Caçador: 'Arma Simples' é uma categoria que nenhuma outra origem usa; e caçar 1d4 Comidas + 1d4 Couro por descanso longo, sem risco, resolve a economia de comida do grupo.
 - **E102** A origem 'Caçador' colide com a técnica geral 'Caçador' do Batedor — desambiguar em âncoras e IDs.
 - **E103** Índices do Notion: Classes e Origens estão 🟡 'Em desenvolvimento' com todas as 24 subpáginas 🟢 Pronto. Atualizar?
+- **E104** Alvak chegou a Khaskavel quantos anos antes da campanha? Os registros dizem 27, mas ele já estava na cidade há 29 para encontrar Lena na floresta. O número precisa recuar — 34? 40?
+- **E105** Se o resgate de Lena foi dois anos antes da Sessão 0, quem ordenou o ataque ao Vilarejo Skarv foi o **Sinikko original**, não o clone. Isso muda o retrato dele: promovia a homogenia enquanto ainda governava, ao mesmo tempo em que autorizava a dryad a viver na cidade. Confirma?
 
 ## Pendências operacionais
 

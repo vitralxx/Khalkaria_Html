@@ -64,8 +64,7 @@ Preços, categorias e a mecânica de melhoria estão em [[O Bazar]] e em [[Dinhe
 
 ## Linha do tempo
 - **−27:** Alvak *"se firmou em khaskavel a 27 anos"*; na [[Sessão 0]], Sinikko vai à ferraria e vê a menina.
-- **−2:** o resgate de Lena, aos treze anos, segundo os registros da cidade — incompatível com a data acima (ver Pontas soltas).
-- **0** (campanha): Lena, quinze anos, vive aqui sob proteção de Alvak.
+- **0** (campanha): Lena, trinta e cinco anos, vive aqui sob proteção de Alvak.
 
 ## Pontas soltas
 1. **Quando Lena chegou — a contradição central desta casa.** Se Sinikko a vê na ferraria na [[Sessão 0]], Lena está aqui há vinte e sete anos e teria hoje cerca de quarenta, ou não envelhece, como [[Karma]]. Os registros da cidade dizem outra coisa: resgatada há dois anos, aos treze, com quinze hoje; e a página de Alvak se contradiz sozinha, dizendo tanto *"Após 25 anos"* quanto *"há 25 anos"*. ([[Perguntas Abertas]] E18.)

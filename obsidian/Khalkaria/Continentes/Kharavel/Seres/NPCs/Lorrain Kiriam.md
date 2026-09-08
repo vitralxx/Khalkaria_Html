@@ -29,6 +29,8 @@ Ser gruta já bastava para fechar portas naquele império; ser gruta e feiticeir
 
 > A relação entre os dois era, mágica. Sinikko lembra dos olhos dela, do sorriso, do calor. Vai lembrar até o último dia.
 
+Uma redação anterior da mesma passagem trocava a última qualidade: *"Sinikko ainda lembra os olhos dela, do sorriso, do amor. Vai lembrar até o último dia."*
+
 Foi ela quem ensinou o filho a atravessar a ponte entre o [[Plano Místico]] e o [[Plano Material]] — o que todo teurgo faz com o [[Éter]] que carrega no corpo, e que naquela época ainda se chamava por outro nome (ver [[Regras de Magia]]).
 
 ## A morte

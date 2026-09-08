@@ -47,6 +47,9 @@ Nesse período o soberano também o instruiu como quem prepara herdeiro — pol�
 
 ## Imperador de Khaskavel
 
+> Designado por Kirkushav Drekar como imperador de Khaskavel, escolhido por suas habilidades de diplomacia e estratégia. Operou alguns anos administrando a cidade e a expansão da colônia.
+
+
 > Khaskavel é governada por Sinikko Kiriam desde seus 5 anos de desenvolvimento. Sinikko, apesar do posicionamento do império do ferro, sempre tentou fazer a vida de todos serem melhor, porém, isso é impossível enquanto você é uma colônia.
 > Kharavel sempre resistiu perante o colonialismo.
 

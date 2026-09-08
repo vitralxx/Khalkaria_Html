@@ -104,7 +104,7 @@ Ele sabia com o que estava lidando: *"A grande árvore por natureza é divina, e
 
 Há duas saídas conhecidas para a maldição de Kharavel, e as duas passam por dentro.
 
-A primeira é o casulo. [[Lena Skarv]] é a única criatura de coração verdadeiramente puro do continente — *"produto de um plano secreto entre Vytália e Karmath, após Velúria deixar escapar que descobriu através da trama como derrotar a árvore"*. Entregá-la ao Sonhador decompõe a Vhelor de dentro para fora, e custa a vida de uma menina de quinze anos.
+A primeira é o casulo. [[Lena Skarv]] é a única criatura de coração verdadeiramente puro do continente — *"produto de um plano secreto entre Vytália e Karmath, após Velúria deixar escapar que descobriu através da trama como derrotar a árvore"*. Entregá-la ao Sonhador decompõe a Vhelor de dentro para fora, e custa a vida de uma dryad de trinta e cinco anos, que era menina de oito quando a expedição entrou na árvore.
 
 A segunda é matar a raiz do problema um plano acima: derrotar o [[Sinikko Kiriam (clone)|clone]] abre a brecha que [[Karma]] guarda, e por ela um dos aventureiros entra no [[Primórdio]] para enfrentar [[Malkhor]]. Quem vence assume o cargo de deus do Pecado; quem perde entrega a alma a ele — ver [[Campanha 1 — Arco]].
 
