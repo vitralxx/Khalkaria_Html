@@ -1,40 +1,47 @@
 ---
 tipo: local
-status: rascunho-notion
+status: rascunho
 spoiler: gm
 era: campanha
 continente: Kharavel
 aliases: ["castelo do sul", "castelo em ruínas do sudeste"]
 fonte_notion: 37b6e3a401d98125880bcd6e07e58000
-ultima_sync: 2026-09-05
+ultima_sync: 2026-09-07
 tags: [khalkaria/continentes/kharavel/locais]
 ---
 # Castelo do Sul
 
-**Resumo.** Castelo em ruínas no sudeste de [[Kharavel]], no [[Ermo das Cinzas]] (CR 4-5). O Notion só o cita como *"Contém o castelo do sul"*; o mapa da campanha o desenha como ruína em terreno cinza. **Não é** o [[Castelo de Kirkushav]] (o "Castelo em Ruínas" do centro, base dos PJs). Nada mais está escrito.
+**Resumo.** Uma ruína de castelo no sudeste de [[Kharavel]], em pé no meio do [[Ermo das Cinzas]]. É a única coisa assinalada naquela terra morta, e a única coisa que se sabe dela é que existe: ninguém escreveu quem a ergueu, contra o quê, nem quando caiu.
 
-## Cânone (Notion)
-Página Ermo das Cinzas (🟠, ed. 2026-06-10): *"**Posição:** Sudeste. Contém o castelo do sul. Terra desolada coberta de cinzas. Pouca vida, muito perigo."*
+## Onde fica
+No canto sudeste do continente, na região que as cartas desenham em terreno cinza:
 
-## Segundo o Pedro (2026-09-05)
-Nenhuma menção.
-### Mapas
-- **Campanha (0):** *"Ermo das Cinzas: sudeste; terreno cinza; castelo em ruínas ('castelo do sul')."*
-- **Sessão 0 (−27):** o mapa antigo descreve *"ilha florestada no sudeste"*; nenhum castelo no sudeste é mencionado na descrição.
+> **Posição:** Sudeste. Contém o castelo do sul. Terra desolada coberta de cinzas. Pouca vida, muito perigo.
+
+É região de ameaças à altura de aventureiros veteranos (**CR 4-5**) — a segunda mais letal do continente, atrás só do [[Deserto do Abismo]]; sobre atravessá-la, ver [[Jornada]]. Faz vizinhança com as [[Costas Rochosas]] ao norte, a [[Cordilheira Cristalina]] e as [[Terras Livres]] a oeste, e o mar a sul e a leste.
+
+Não é o [[Castelo de Kirkushav]], que fica no centro do continente e é o outro castelo arruinado de Kharavel — este não tem dono, nem história, nem moradores registrados.
+
+## O que se sabe
+Nada além do desenho: uma ruína no cinza. As cartas do continente de vinte e sete anos atrás não descrevem a terra firme do sudeste — mostram apenas a ilha florestada ao largo —, de modo que nem se sabe se o castelo já estava lá, e em que estado, quando a [[Equipe desfloreio]] partiu contra a árvore.
 
 ## Relações
 - **Fica em** → [[Ermo das Cinzas]], [[Kharavel]] (sudeste)
-- **Não confundir com** → [[Castelo de Kirkushav]] (centro, [[Bacia Acidentada]])
-- **Vizinho de** → [[Costas Rochosas]] · [[Cordilheira Cristalina]] · [[Terras Livres]]
-- **Hipóteses não afirmadas** → obra do [[Império de Ferro]]? de povos nativos ([[Xkamur]]? Povos do Sul)? ligado aos [[Cultos de Osh'Kar]] (*"locais remotos"*)?
+- **Não confundir com** → [[Castelo de Kirkushav]], no centro, na [[Bacia Acidentada]]
+- **Vizinhança** → [[Costas Rochosas]] · [[Cordilheira Cristalina]] · [[Terras Livres]]
+- **Ao largo, na mesma direção** → a ilha florestada do sudeste, provável destino dos [[Skarv]] realocados
+- **Suspeitos de o terem erguido, nenhum confirmado** → [[Império de Ferro]] · povos nativos ([[Xkamur]], [[Povos Diversos do Sul]]) · [[Cultos de Osh'Kar]], que operam em *"locais remotos"*
 
 ## Linha do tempo
-- **0** (campanha): ruína no mapa. Data de construção e de queda desconhecidas.
+- **0** (campanha): ruína de pé, sem ocupação registrada, no meio do ermo.
 
-## Conflitos e pendências
-1. **Quem construiu, quando, por que está em ruínas e o que causou as cinzas do Ermo** — nada escrito. **Pendência.**
-2. Existia em −27? A descrição do mapa antigo não o cita. Confirmar com o PNG (E14).
-3. Relação com o Castelo de Kirkushav ("Castelo das Nações" — plural: havia mais de um castelo planejado?). Não afirmar.
+## Pontas soltas
+1. **Quem construiu, quando e por quê**, e o que o derrubou. Nada disso foi escrito.
+2. **O que queimou o [[Ermo das Cinzas]]** e se o castelo caiu junto.
+3. **Já existia há vinte e sete anos?** A descrição das cartas antigas não o menciona; confirmar quando os desenhos originais estiverem à mão ([[Perguntas Abertas]] E14).
+4. **O plural do outro nome.** O castelo do centro se chamava "Castelo das Nações" — havia mais de um castelo planejado, e este é um deles? Não se afirma.
 
-## Fonte
-- Notion: Ermo das Cinzas `37b6e3a401d98125880bcd6e07e58000` · Raw: `notion_raw/lore_kharavel_locais_regioes.md` · Mapas: `mapas/LEIA-ME_mapas.md` §1, §3 · Digest `E_lore.md` §2
+## Procedência
+- Notion — *Ermo das Cinzas* `37b6e3a401d98125880bcd6e07e58000` (🟠, ed. 2026-06-10), única página que o cita
+- Mapas de Kharavel, campanha e Sessão 0 — `docs/memoria/mapas/LEIA-ME_mapas.md` §1 e §3
+- Digest `docs/memoria/digests/E_lore.md` §2 · bruto em `docs/memoria/notion_raw/lore_kharavel_locais_regioes.md`

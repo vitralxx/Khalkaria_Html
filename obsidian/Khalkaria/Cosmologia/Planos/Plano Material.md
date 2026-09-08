@@ -5,81 +5,90 @@ spoiler: gm
 era: atemporal
 aliases: [plano material, plano material de Mundarak, o mundo, Khalkaria (planeta)]
 fonte_notion: [33e6e3a401d9817f9470e140120b1c22, 2e66e3a401d9806cba24f41572810b80, 33e6e3a401d981c39158ccebacdd2224, 33e6e3a401d9817fa7a8c67c898343e2, 33e6e3a401d9813c9065fb6377553748, 33e6e3a401d98122b4cdead58587b6b6, 3a66e3a401d98097a5d4e316154f9fcb, pedro-2026-09-05]
-ultima_sync: 2026-09-05
+ultima_sync: 2026-09-07
 tags: [khalkaria/cosmologia, khalkaria/cosmologia/planos]
 ---
 
 # Plano Material
 
-**Resumo.** O Plano Material é o plano de [[Mundarak]] — "o plano material de **Mundarak**" — o mundo físico onde fica o planeta [[Khalkaria]] e seus cinco continentes ([[Kharavel]], [[Volkrest]], [[Mordval]], [[Aether]], [[Ossyria]]). Mundarak criou o **espaço**; [[Velúria]] teceu o **tempo**; juntos formaram os planos além do [[Primórdio]] (A2). É aqui que os deuses "concedem bênçãos a centenas de criaturas" na tentativa de remendar o sequestro de [[Kha]], onde a figura material de [[Osh'Kar]] está presa ([[O Abismo]]) e para onde os [[Teurgo]]s puxam [[Éter]] do [[Plano Místico]] através de [[O Limiar]]. Segundo o Pedro, os mortais deste plano leem [[Karmath]] errado (como homem implacável) e [[Kheyos]] quer protegê-lo "da inconsequência e ingenuidade dos deuses" (A7). O [[Oblívio]], se existir, seria um plano acessível só às criaturas.
+O Plano Material é o plano de [[Mundarak]] — o mundo físico onde fica o planeta [[Khalkaria]] e seus cinco continentes: [[Kharavel]], [[Volkrest]], [[Mordval]], [[Aether]] e [[Ossyria]]. Mundarak criou o **espaço**; [[Velúria]] teceu o **tempo**; juntos formaram os planos além do [[Primórdio]]. É aqui que os deuses concedem bênçãos a centenas de criaturas na tentativa de remendar o sequestro de [[Kha]], aqui que a figura material de [[Osh'Kar]] está presa em [[O Abismo]], e para cá que os [[Teurgo]]s puxam [[Éter]] do [[Plano Místico]] atravessando [[O Limiar]]. É também o plano cujos habitantes leem [[Karmath]] errado, e o plano que [[Kheyos]] jurou proteger "da inconsequência e ingenuidade dos deuses".
 
-## Cânone (Notion)
+## O tabuleiro
 
-### Página Deuses
 > Os deuses, agora tentam remendar esse sequestro divino até a recuperação do original **Kha** concedendo bênçãos a centenas de criaturas no plano material de **Mundarak**.
 > **Mundarak** permanece à parte do conflito, dedicado apenas à criação contínua de matéria. Não toma lado entre seus irmãos. Terras criadas por ele são livres para que os outros deuses operem.
 
-### Lore Khalkaria — raiz (frase truncada)
+Os deuses têm poder de aparecer nele quando quiserem:
+
 > Os deuses de Khalkaria possuem as seguintes características:
 > - Podem se materializar em qualquer lugar de Khalkaria como qualquer.
 
-### Continentes
+A frase ficou pela metade. Na prática, os cinco preferem agir por interpostas mãos: [[Karmath]] não se manifesta, [[Velúria]] age pelo [[O Limiar]], [[Malkhor]] fala pela [[A Vhelor]].
+
+## Os continentes
+
+> [1. Kharavel] O continente nem sempre existiu no planeta, se consolidando como uma provação dos Deuses à natureza humana.
 > [2. Volkrest] Volkrest é um enorme continente. Humanos, Grutos, Autômatos e Insetos se originaram majoritariamente daqui, migrando pra outros continentes conforme o passar dos séculos. Kha, pessoalmente ordenou a criação do grande continente de Volkrest para o deus da Terra.
 > [3. Mordval] O continente fragmentado. Mordval foi atingido por um cometa no primórdio de Khalkaria. Parece que energias de outros planetas e deuses invadiram o planeta através deste fenômeno.
 > [4. Aether] O continente da deusa da magia. Um presente de Kha a Velúria.
 > [5. Ossyria] O erro brutal dos deuses, carcaças e um deserto árido dominam este continente. Aqui a morte corre solta e não há civilizações estáveis.
-> [1. Kharavel] O continente nem sempre existiu no planeta, se consolidando como uma provação dos Deuses à natureza humana.
 
-### Magias / Sistema — materialização
+Todas as criaturas que os habitam vieram de [[Vytália]], encarregada por [[Kha]] de povoar os planos.
+
+## Onde a magia chega
+
+O Éter que um corpo carrega abre a ponte, e o que atravessa o [[O Limiar|Limiar]] se materializa aqui:
+
 > forças que materializam energias do plano místico ao plano material
-> [Regras de Magia] Você faz uma pergunta factual sobre o plano material atual […] O Éter responde com a verdade absoluta, sem interpretação.
 
-### Teurgo — patrono "O Limiar"
-> Entre o plano material e o plano místico existe um portão. E no portão existe um guardião.
-> [Ultimate] Falha: A criatura é *Banida* para o espaço entre planos por até 1 minuto.
+> [Conhecimento] Você faz uma pergunta factual sobre o plano material atual […] O Éter responde com a verdade absoluta, sem interpretação.
 
-## Segundo o Pedro (2026-09-05)
-- **A1:** Karmath "é mal interpretada pelas criaturas do plano material como uma figura masculina e implacável. […] Ela frequentemente abençoa mortais para alcançar certos objetivos no plano material, que é de mundarak."
-- **A2:** "Velúria foi encarregada por Kha […] à tecer a trama do tempo, conjuntamente com o Mundarak que criou o espaço, juntos formando os planos além do Plano Primordial ou o Primórdio". "Teurgos, utilizam do éter que é uma substância mágica capaz de romper a barreira do limiar e trazer essa energia para o plano material."
-- **A3:** "Kha a encarregou [Vytália] de povoar os planos, toda criatura/entidade oriunda dela."
-- **A7:** Kheyos "é uma das únicas criaturas de Khalkaria que possui conhecimento significativo sobre a política de confronto dos deuses, essa é a obcessão dele, proteger o seu próprio plano da inconsequência e ingenuidade dos deuses."
-- **A14:** "Todo ser possui uma certa quantidade de éter em seu corpo, você pode utilizá-lo para canalizar pontes entre o plano místico e o material".
-- **A16:** "Em caso de derrota, o corpo material do jogador morre, enquanto a alma do jogador agora pertence a malkhor".
-- **B3:** "enquanto preso no plano material, osh'kar fica limitado no plano material, nos outros planos ele ainda é livre. […] Potencialmente essa nova energia abissal pode corromper outros pedaços do planeta".
-- **Síntese:** plano de Mundarak (espaço/matéria); tabuleiro livre para os outros deuses; povoado por Vytália; alvo de bênçãos; prisão material de Osh'Kar; destino do Éter canalizado; plano que Kheyos jura proteger.
+Entre um plano e outro existe ainda o "espaço entre planos", para onde vai quem é *Banido* — ver [[Regras de Magia]], [[Condições]] e [[Teurgo]].
+
+## O plano visto de dentro
+
+Os mortais daqui interpretam [[Karmath]] como uma figura masculina e implacável, e erram. As cinco estátuas do [[Templo da Profecia]] são exatamente isso: a visão que este plano tem dos deuses, não os deuses.
+
+[[Kheyos]] é uma das únicas criaturas de Khalkaria com conhecimento significativo da política de confronto divino, e sua obsessão é proteger o próprio plano da inconsequência e da ingenuidade dos deuses.
+
+## O que ameaça o plano hoje
+
+- A contaminação da [[A Vhelor]]: o plano do [[Sinikko Kiriam (clone)|clone]] é infectar [[Kharavel]] inteira com uma grande chuva de [[Seiva]].
+- A energia abissal que escapa de [[O Abismo]], capaz de corromper outros pedaços do planeta.
+- As almas que não atravessam mais para o [[Plano dos Mortos]] e se acumulam no [[Deserto do Abismo]].
+- As "energias de outros planetas e deuses" que entraram pelo cometa de [[Mordval]].
 
 ## Relações
-- **Dono / criador (espaço, matéria)** → [[Mundarak]]
+- **Dono e criador (espaço, matéria)** → [[Mundarak]]
 - **Tempo tecido por** → [[Velúria]]
 - **Tecido além de** → [[Primórdio]]
-- **Povoado por** → [[Vytália]] (todas as raças: [[Humano]], [[Anão]], [[Dryad]], [[Autômato]], [[Gruto]], [[Inseto]], [[Corrompido]], [[Lobisomem]])
-- **Contém** → [[Khalkaria]] (planeta): [[Kharavel]], [[Volkrest]], [[Mordval]], [[Aether]], [[Ossyria]]
-- **Recebe Éter de** → [[Plano Místico]] via [[O Limiar]] ([[Éter]], [[Teurgo]]s)
-- **Prisão material de** → [[Osh'Kar]] em [[O Abismo]]; **portal para** → [[Plano dos Mortos]] (Notion)
-- **Alvo das bênçãos de** → [[Kha]]'s cinco: [[Vytália]], [[Malkhor]], [[Velúria]], [[Karmath]], [[Mundarak]]
-- **Deuses podem se materializar em qualquer lugar** → (raiz, frase truncada)
-- **Protegido por** → [[Kheyos]] (contra a "ingenuidade dos deuses")
-- **Lê Karmath errado** → [[Karmath]] (A1); estátuas do [[Templo da Profecia]] são a visão mortal dos deuses
-- **Energias externas** → cometa de [[Mordval]] ("outros planetas e deuses"); "erro brutal dos deuses" em [[Ossyria]]
-- **Contaminação em curso** → [[A Vhelor]] / [[Seiva]] (plano do clone: "chuva de Seiva" sobre Kharavel); energia abissal (B3)
+- **Povoado por** → [[Vytália]] ([[Humano]], [[Anão]], [[Dryad]], [[Autômato]], [[Gruto]], [[Inseto]], [[Corrompido]], [[Lobisomem]])
+- **Contém** → o planeta [[Khalkaria]]: [[Kharavel]], [[Volkrest]], [[Mordval]], [[Aether]], [[Ossyria]]
+- **Recebe Éter do** → [[Plano Místico]], via [[O Limiar]] ([[Éter]], [[Teurgo]]s)
+- **Prisão material de** → [[Osh'Kar]], em [[O Abismo]]; **portal para** → [[Plano dos Mortos]]
+- **Alvo das bênçãos dos cinco** → [[Vytália]], [[Malkhor]], [[Velúria]], [[Karmath]], [[Mundarak]]
+- **Lê [[Karmath]] errado** → e as estátuas do [[Templo da Profecia]] registram esse erro
+- **Protegido por** → [[Kheyos]] (contra a ingenuidade dos deuses)
+- **Feridas de origem divina** → o cometa de [[Mordval]]; "o erro brutal dos deuses" em [[Ossyria]]
+- **Contaminações em curso** → [[Seiva]] / [[A Vhelor]]; energia abissal
 - **Plano proposto fora do alcance dos deuses** → [[Oblívio]]
 
 ## Linha do tempo
-- **Atemporal:** Mundarak cria o espaço; Kha ordena [[Volkrest]]; Vytália povoa; Aether é dado a Velúria.
-- **"Primórdio de Khalkaria":** cometa atinge [[Mordval]].
-- **Sumiço de Kha:** [[Osh'Kar]] é preso aqui; deuses passam a abençoar "centenas de criaturas".
-- **"Há poucos séculos":** [[Kharavel]] é descoberto ("nem sempre existiu no planeta").
-- **−27 → 0:** corrupção de Khaskavel; Abismo revelado? (E5).
+- **Atemporal:** [[Mundarak]] cria o espaço; [[Kha]] ordena [[Volkrest]]; [[Vytália]] povoa; [[Aether]] é dado a [[Velúria]].
+- **No começo do planeta:** o cometa atinge [[Mordval]].
+- **Queda da Plenitude:** [[Osh'Kar]] é preso aqui; os deuses passam a abençoar "centenas de criaturas".
+- **Há poucos séculos:** [[Kharavel]] é descoberto — "o continente nem sempre existiu no planeta".
+- **−27 → 0:** a corrupção de [[Khaskavel]]; o Abismo talvez revelado ([[Perguntas Abertas|E5]]).
 
-## Conflitos e pendências
-1. **Frase truncada da raiz** ("Podem se materializar em qualquer lugar de Khalkaria como qualquer.") — completar no Notion (D1). Contradiz "Karmath não se manifesta diretamente"? Poder ≠ prática; registrado só para leitura.
-2. **Nomenclatura da raiz** ("deus da terra, deus do pecado, deusa das criaturas") → Mundarak/Malkhor/Vytália (A3: "Sim"). Pendente no Notion.
-3. **Éter em todo ser** (A14) × mecânica: só conjuradores têm recurso Éter na ficha. Lore diz "todo ser possui"; regra não modela isso. **P17.**
-4. **Outros planetas e deuses** ([[Mordval]]) — existem panteões fora de Khalkaria? **P18.**
-5. **"Espaço entre planos"** (Ultimate do Teurgo, condição Banido) — é um lugar cosmológico ou só mecânica? Não definido.
-6. **"Khalkaria" = planeta ou universo?** Raiz/Volkrest usam como mundo; Pedro (A2) fala em "universo e cosmos". O vault trata [[Khalkaria]] como planeta/mundo e o cosmos como conjunto de planos.
+## Pontas soltas
+1. **A frase truncada** sobre os deuses poderem se materializar em qualquer lugar nunca foi terminada — e convive mal com [[Karmath]], que "não se manifesta diretamente". Poder não é prática, mas o limite não está escrito.
+2. **Todo ser tem [[Éter]]**, mas a ficha só o conta em quem conjura.
+3. **Existem outros planetas e outros panteões?** As "energias de outros planetas e deuses" do cometa de [[Mordval]] sugerem que sim, e nada confirma.
+4. **O "espaço entre planos"** para onde vai quem é *Banido* é um lugar de fato, ou apenas um efeito?
+5. **Khalkaria é planeta ou universo?** As páginas antigas usam o nome como mundo; o mestre fala em "universo e cosmos". Este vault trata [[Khalkaria]] como o planeta e o cosmos como o conjunto dos planos.
 
-## Fonte
+## Procedência
 - Notion: Deuses `33e6e3a401d9817f9470e140120b1c22` · Lore raiz `2e66e3a401d9806cba24f41572810b80` · Continentes `33e6e3a401d981c39158ccebacdd2224` · 2. Volkrest `33e6e3a401d9817fa7a8c67c898343e2` · 3. Mordval `33e6e3a401d9813c9065fb6377553748` · 5. Ossyria `33e6e3a401d98122b4cdead58587b6b6` · 1. Kharavel `33e6e3a401d981eeaecaf08dd1b33d29` · Magias `3a66e3a401d98097a5d4e316154f9fcb` · Teurgo `caa6e3a401d98330bae281511750d407`
-- Raw: `docs/memoria/notion_raw/lore_kharavel_seres_filhas.md`, `lore_root.md`, `lore_continentes.md`, `lore_volkrest.md`, `lore_mordval.md`, `lore_ossyria.md`, `lore_kharavel.md`, `magias.md`, `classe_teurgo.md`
-- Digest: `docs/memoria/digests/E_lore.md` §1, §2 · Respostas: A1, A2, A3, A7, A14, A16, B3
+- Respostas do mestre (2026-09-05): A1, A2, A3, A7, A14, A16, B3
+- Memória do repositório: `docs/memoria/notion_raw/lore_kharavel_seres_filhas.md`, `lore_root.md`, `lore_continentes.md`, `lore_volkrest.md`, `lore_mordval.md`, `lore_ossyria.md`, `lore_kharavel.md`, `magias.md`, `classe_teurgo.md` · digest `E_lore.md` §1, §2
+- Correções pendentes nas páginas de origem: completar a frase truncada da raiz e nomear "deus da terra", "deus do pecado" e "deusa das criaturas" como [[Mundarak]], [[Malkhor]] e [[Vytália]]

@@ -11,47 +11,58 @@ tags: [khalkaria/sistema, khalkaria/sistema/regras]
 
 # Idiomas
 
-**Resumo.** São **6 idiomas** em [[Khalkaria]]: **Comum** (padrão internacional), **Skalia** (dos [[Gruto|grutos]], protegido pela raça), **Khazadun** (dos [[Anão|anões]], impossível de falar sem cordas vocais anãs), **Natural** (animais, bestas e [[Dryad|dryads]]), **Abissal** (nascido entre as criaturas de [[O Abismo]]) e **Criptografado** (ex-"Esquecido", a linguagem cifrada dos [[Autômato|autômatos]]). O Notion ainda diz "apenas 5 idiomas existem" e lista 6 — erro conhecido.
+**Resumo.** São **6 idiomas** em [[Khalkaria]]: **Comum** (padrão internacional), **Skalia** (dos [[Gruto|grutos]], protegido pela raça), **Khazadun** (dos [[Anão|anões]], impossível de falar sem cordas vocais anãs), **Natural** (animais, bestas e [[Dryad|dryads]]), **Abissal** (nascido entre as criaturas de [[O Abismo]]) e **Criptografado** (a linguagem cifrada dos [[Autômato|autômatos]]).
 
-## Cânone (Notion)
+## Os seis idiomas
 
-> Em Khalkaria existem diversos idiomas e sub idiomas. Mas para simplificação, apenas 5 idiomas existem.
-> - **Comum** — Idioma padrão internacional
-> - **Skalia** — Idioma dos Répteis, protegido pela raça
-> - **Khazadun** — Idioma dos Anões, impossível de falar sem cordas vocais anãs.
-> - **Natural** — Idioma dos Animais, Bestas e Dryads
-> - **Abissal** — Idioma raro entendido por poucos, geralmente teurgos pesquisadores
-> - **Esquecido** — Idioma Extinto de Criaturas Antigas
-
-## Segundo o Pedro (2026-09-05)
-
-**B3 (integral):**
-> Idiomas são: Comum, Skalia(Idioma dos grutos protegido pela raça), Khazadun(Idioma dos anões, para falar exige cordas vocais anãs), Natura(Idioma dos animais, dryads e bestas), Abissal(Isso aqui nunca teve muito fundamento, vou elaborar agora: o abismo é uma região de Kharavel que aprisiona a figura material do deus da morte Osh'kar, enquanto preso no plano material, osh'kar fica limitado no plano material, nos outros planos ele ainda é livre. Inicialmente eu conectei o abismo diretamente com o Plano dos Mortos, sendo uma "representação" do plano dos mortos no plano material. Porém, hoje eu acho que faz muito mais sentido a região do abismo ter sido corrompida pelos deuses com criaturas perigosas para nenhum mortal conseguir libertar osh'kar. Eu diria que velúria junto com vytália teriam orquestrado essa aberração de região, naturalmente as criaturas abissais começaram a se comunicar entre sí, e assim veio o idioma abissal, um dos mais raros de Khaskavel já que ele só existem no continente de Khalkaria. Potencialmente essa nova energia abissal pode corromper outros pedaços do planeta como terraria a corrupção do terraria) e O idioma Esquecido, que vai virar o idioma Criptografado(Idioma extinto dos autômatos desde que eles começaram criptografar a linguagem comum para preservação da facção automata, todos os registros e conhecimentos automatos são comunicados nessa língua)
-
-Consolidando:
+Existem em Khalkaria diversos idiomas e sub-idiomas; para efeito de regra, seis contam.
 
 | Idioma | Falantes | Origem |
 |---|---|---|
-| **Comum** | Todos | Padrão internacional |
-| **Skalia** | [[Gruto|Grutos]] | Protegido pela raça (a raiz diz "Idioma dos Répteis": grutos **são** os reptilianos) |
-| **Khazadun** | [[Anão|Anões]] | Exige cordas vocais anãs para ser falado |
-| **Natural** | Animais, bestas e [[Dryad|dryads]] | Também grafado "Natura" pelo Pedro |
-| **Abissal** | Criaturas de [[O Abismo]] | Surgiu entre as criaturas com que [[Velúria]] e [[Vytália]] corromperam a região para manter [[Osh'Kar]] preso |
-| **Criptografado** | [[Autômato|Autômatos]] | Antes chamado **Esquecido**; cifra da linguagem comum criada para preservar a facção autômata — todos os registros e conhecimentos autômatos usam essa língua |
+| **Comum** | Todos | Padrão internacional. |
+| **Skalia** | [[Gruto|Grutos]] | Língua dos reptilianos, protegida pela raça. |
+| **Khazadun** | [[Anão|Anões]] | Exige cordas vocais anãs para ser falado. |
+| **Natural** | Animais, bestas e [[Dryad|dryads]] | A língua do mundo vivo. |
+| **Abissal** | Criaturas de [[O Abismo]] | Nasceu entre as aberrações que [[Velúria]] e [[Vytália]] plantaram na região para manter [[Osh'Kar]] preso; um dos idiomas mais raros de [[Kharavel]] e só existente neste continente. Fora dele, entendido por pouquíssimos — em geral teurgos pesquisadores. |
+| **Criptografado** | [[Autômato|Autômatos]] | Cifra da linguagem comum, criada para preservar a facção autômata. |
+
+### Abissal
+
+A língua é filha da prisão. A cratera do [[Deserto do Abismo]] guarda a figura material do deus da morte, e as deusas encheram a região de criaturas perigosas justamente para que mortal nenhum chegasse até ele; as criaturas começaram a se comunicar entre si e daí veio o Abissal. A energia abissal que as sustenta pode, com o tempo, corromper outros pedaços do planeta — e a língua junto.
+
+### Criptografado
+
+> Idioma extinto dos autômatos desde que eles começaram criptografar a linguagem comum para preservação da facção automata, todos os registros e conhecimentos automatos são comunicados nessa língua
+
+Todo arquivo autômato, toda memória preservada da facção, está escrito assim.
+
+## Nomes antigos
+
+- **Esquecido** era o nome anterior do **Criptografado**, descrito então como "idioma extinto de criaturas antigas".
+- **"Idioma dos Répteis"** é como Skalia aparecia; os reptilianos de Khalkaria são os [[Gruto|grutos]].
+- **Natura** e **Natural** são a mesma língua; a grafia usada aqui é **Natural**.
+
+## Como se aprende
+
+Idiomas vêm de raça e origem — [[Acadêmico]] e [[Nobre]] concedem línguas escritas — e podem ser abertos por magia: *Língua Mística* ([[Conhecimento]]) e as cartas *Decifrador Universal* e *Comunhão* ([[O Limiar (cartas)]]).
 
 ## Relações
 - **Faz parte de** → [[Sistema]]
 - **Skalia** → [[Gruto]] · **Khazadun** → [[Anão]] · **Natural** → [[Dryad]] · **Criptografado** → [[Autômato]]
-- **Abissal** → [[O Abismo]], [[Osh'Kar]], [[Velúria]], [[Vytália]], [[Plano dos Mortos]]
-- **Idioma aprendido por magia** → [[Conhecimento]] (Língua Mística), [[O Limiar (cartas)]] (Decifrador Universal, Comunhão)
-- **Falado em** → [[Kharavel]] (o Abissal só existe neste continente)
+- **Abissal** → [[O Abismo]], [[Deserto do Abismo]], [[Osh'Kar]], [[Velúria]], [[Vytália]], [[Plano dos Mortos]]
+- **Concedidos por** → [[Origens]] ([[Acadêmico]], [[Nobre]]), [[Raças]]
+- **Abertos por magia** → [[Conhecimento]], [[O Limiar (cartas)]]
+- **Falados em** → [[Kharavel]] (o Abissal só existe neste continente), [[Khaskavel]]
 
-## Conflitos e pendências
-- **"apenas 5 idiomas existem"** e a lista tem **6** — erro de contagem no Notion, corrigir para 6.
-- **"Esquecido" → "Criptografado"**: renomeação decidida pelo Pedro (B3) ainda **não aplicada no Notion**.
-- **"Idioma dos Répteis"**: não existe raça "Réptil" entre as 8; o Pedro atribuiu Skalia aos **grutos** (que são reptilianos). Corrigir a descrição no Notion.
-- **"um dos mais raros de Khaskavel"** e "só existem no continente de Khalkaria" (B3): trocas de nome — leia-se raro em **[[Khalkaria]]** e existente só no continente de **[[Kharavel]]**. Confirmar com o Pedro.
-- **[[Autômato|Autômatos]] sem idioma** na página de Raças, apesar de Criptografado ser deles. Corrigir na nota da raça.
+## Pontas soltas
+- **Natura ou Natural?** As duas grafias circulam para a língua dos animais. [[Perguntas Abertas]] E7.
+- **"Um dos mais raros de Khaskavel" e "só existem no continente de Khalkaria"** — leia-se raro em **Khalkaria** e existente só no continente de **[[Kharavel]]**; falta confirmação. [[Perguntas Abertas]] E60.
+- **Autômatos sem idioma declarado** na página da raça, apesar de o Criptografado ser deles — corrigir em [[Autômato]].
+- **Khazadun escrito por não-anões:** [[Acadêmico]] e [[Nobre]] concedem idiomas escritos, mas falar Khazadun exige cordas vocais anãs. Ler e escrever sem falar é permitido? [[Perguntas Abertas]] E88.
 
-## Fonte
-Notion `2b76e3a401d980c0ab7bc27a342f4ee1` (Idioma). Raw: `docs/memoria/notion_raw/sistema_root.md`. Digest: `A_sistema.md` §1.18, §3.1. Resposta do Pedro **B3**.
+## Procedência
+- Notion `2b76e3a401d980c0ab7bc27a342f4ee1` — Idioma (lista antiga de 6 entradas sob a frase "apenas 5 idiomas existem").
+- Respostas do mestre 2026-09-05: **B3** — lista definitiva, origem do Abissal e renomeação de "Esquecido" para "Criptografado". O trecho integral sobre o Abismo está preservado em [[Deserto do Abismo]] e [[O Abismo]].
+- `docs/memoria/notion_raw/sistema_root.md`; digest `A_sistema.md` §1.18, §3.1.
+- Correções pendentes na fonte: contagem "apenas 5 idiomas"; "Esquecido" → "Criptografado"; "Idioma dos Répteis" → grutos.
+- Revisão de redação: 2026-09-07.

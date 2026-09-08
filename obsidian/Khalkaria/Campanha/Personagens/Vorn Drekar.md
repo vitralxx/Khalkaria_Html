@@ -1,19 +1,20 @@
 ---
-tipo: pj
+tipo: pc
 status: canon-pedro
 spoiler: gm
 era: sessao0
 continente: Volkrest
 aliases: ["Vorn", "Punho de Sangue", "o filho de Kirkushav", "o filho ilegítimo"]
 fonte_notion: [33e6e3a401d981b99d17e52ca1383748, 3656e3a401d98006aeaefd2e24f25cd2, 33e6e3a401d9819796c9dfb2263e215d, 36d6e3a401d9817792d8ef277f93f46a, pedro-2026-09-05]
-ultima_sync: 2026-09-05
+ultima_sync: 2026-09-07
 tags: [khalkaria/campanha, khalkaria/campanha/personagens]
 ---
 # Vorn Drekar
 
-**Resumo.** "Punho de Sangue". [[Humano]] de [[Volkrest]], [[Brutalista]], Origem Soldado. **Filho de sangue de [[Kirkushav Drekar]]** (A10) — nascido *"num quartel empoeirado de um feudo sem nome"*, criado pela mãe **Vick Drekar**, que morreu quando o **clã das Baratas** arrasou o feudo (Vorn tinha 10 anos). Encontrou o pai numa taverna, conheceu a aldeia mineradora que viraria o [[Império de Ferro]] e executou a expansão imperial *"com a mesma frieza com que deslizava as manoplas nas mãos"*. Entrou na [[Vanguarda do Ferro]] *"como filho ilegítimo bruto demais"* (Hadran); irmão de armas de [[Hadran Vorgil]]. Representa Volkrest na [[Equipe desfloreio]]. Sente **alegria** na batalha. "Morreu" n'[[A Vhelor]] na [[Sessão 0]]; [[Hadran Vorgil]] tem como gancho um *"clone de Vorn (criação de Malkhor)"*.
+**Resumo.** "Punho de Sangue". [[Humano]] de [[Volkrest]], [[Brutalista]] de Origem Soldado e **filho de sangue de [[Kirkushav Drekar]]** — o único que o Soberano realmente teve. Nasceu *"num quartel empoeirado de um feudo sem nome"* e foi criado sozinho por **Vick Drekar**, morta na frente dele quando o **clã das Baratas** arrasou o feudo; Vorn tinha dez anos. Encontrou o pai por acaso numa taverna, foi levado à aldeia mineradora que viraria o [[Império de Ferro]] e passou a vida executando a expansão imperial *"com a mesma frieza com que deslizava as manoplas nas mãos"*. Entrou na [[Vanguarda do Ferro]] *"como filho ilegítimo bruto demais"* e ali fez irmão de armas [[Hadran Vorgil]]. O que ele sente em combate não é ódio nem vingança: é **alegria**. Personagem de jogador (**PC**) da [[Sessão 0]] e a voz de Volkrest na [[Equipe desfloreio]]; *"morreu"* n'[[A Vhelor]], e um boato de clone sobreviveu a ele.
 
-## Cânone (Notion) — História (página PJ, 🟡, ed. 2026-07-17, verbatim)
+## História
+
 > **Vorn Drekar — Punho de Sangue**
 > Vorn Drekar nasceu num quartel empoeirado de um feudo sem nome, filho de uma mulher que carregou tudo sozinha e de um pai que havia desaparecido há um bom tempo. Vick Drekar não reclamava. Criou o filho com o que havia — pouco conforto, muita rotina, e a dureza natural de quem aprendeu que o mundo não faz favores. Foi nesse lugar que Vorn começou a treinar e defender sua família. Não por disciplina, não por obrigação. Por necessidade de algo que ainda não sabia nomear.
 > Aprendeu cedo uma verdade que a maioria prefere não admitir em voz alta: a violência funciona. Por mais sermões que se pregue sobre honra e virtude, são os punhos que abrem portas. Então Vorn treinou. Treinou até sangrar. Porque descobriu que a dor havia se transformado em outra coisa. Um sentimento de prazer ao ver sangue. A emoção da batalha silenciava suas inseguranças.
@@ -32,59 +33,69 @@ tags: [khalkaria/campanha, khalkaria/campanha/personagens]
 > Lá dentro, naquele lugar fundo que aprendeu a esconder de todos — de Kirkushav, dos soldados, de qualquer um que olhasse por tempo demais — algo desperta. Não é raiva. Não é sede de vingança. É algo mais simples e mais perturbador do que qualquer um desses dois.
 > É alegria.
 
-Nota do Notion: *"História na ficha = versão anterior (diferenças: 'pai que nunca apareceu'; 'viu sua mãe cair'; 'Outras pessoas precisam acreditar em algo para entrar em combate — ele apenas precisa que comecem.' etc.)"*
+A versão guardada na própria folha de personagem é anterior e diverge em detalhes: o pai *"nunca apareceu"* em vez de ter desaparecido; ele *"viu sua mãe cair"* em vez de morrer brutalmente; e há uma frase que a versão nova perdeu — *"Outras pessoas precisam acreditar em algo para entrar em combate — ele apenas precisa que comecem."*
 
-### Na Sessão 0
-- Chantagem de Kirkushav: *"Vorn, nunca hesitei em lhe colocar na linha de frente, posso considerar achar outro alguém para isso, já que você não parece interessado?"*
-- [[Hadran Vorgil]] *"deseja acompanhar Vorn até a cidade para realizar sua primeira missão [...] Os dois se conhecem da vanguarda de ferro."*
-- Hadran (NPC, 27 anos depois): *"viu Vorn Drekar entrar pra Vanguarda como filho ilegítimo bruto demais"*; *"Vorn treinado pela Vanguarda — fraternidade"*. Gancho: *"clone de Vorn (criação de Malkhor)"*.
+## O filho
 
-## Ficha resumida — ⚠️ DESATUALIZADA (B17: *"Tudo desatualizado, pode atualizar"*)
-Fonte: 📜 Ficha Vorn Drekar (1) `3656e3a401d98006aeaefd2e24f25cd2`, 🟢, template 13/05/2026.
-- Humano · Brutalista · Soldado · **Nível 4** · XP 0 · Limiar: 1
+Kirkushav Drekar teve um filho, e é Vorn. Nenhum outro: o gruto que a corte imperial chamava de filho adotivo foi apenas um sucessor treinado e descartado. A relação entre pai e filho de sangue nunca chegou a virar afeto declarado — foi construída sobre pão, abrigo e um olhar não explicado —, e o Soberano gastou o filho onde gastaria qualquer soldado: na linha de frente, sempre.
+
+Na [[Vanguarda do Ferro]], onde [[Hadran Vorgil]] o conheceu, ele entrou *"como filho ilegítimo bruto demais"*, e o vínculo que ficou dessa época é de fraternidade de tropa, não de sangue.
+
+## Na mesa redonda
+
+Na [[Sessão 0]], a chantagem que cabe a Vorn é a mais curta de todas, porque é a única que não precisa de ameaça — basta a possibilidade de ser dispensado:
+
+> Vorn, nunca hesitei em lhe colocar na linha de frente, posso considerar achar outro alguém para isso, já que você não parece interessado?
+
+[[Hadran Vorgil]] *"deseja acompanhar Vorn até a cidade para realizar sua primeira missão"* e pede educadamente para viajar junto — *"Os dois se conhecem da vanguarda de ferro."*
+
+## Depois da árvore
+
+Vorn "morre" nas [[Câmaras de Provação]] com os outros quatro, e o pai jamais menciona sua perda ao lamentar a expedição. Vinte e sete anos depois, o irmão de armas que ficou em [[Kharavel]] carrega uma suspeita que a campanha pode cobrar: um *"clone de Vorn"*, criação de [[Malkhor]] — o mesmo tratamento que a árvore deu a [[Sinikko Kiriam (clone)|Sinikko]].
+
+## Ficha
+
+> **Observação de mesa.** A folha está congelada no nível 4 e sua tabela de perícias ainda traz linhas herdadas de versões antigas — inclusive uma perícia que nunca existiu. O mestre já autorizou refazê-la. Serve como retrato do personagem no dia da expedição.
+
+- [[Humano]] · [[Brutalista]] · Soldado · **Nível 4** · XP 0 · Limiar: 1
 - **Atributos:** FOR 22 (+6) · DES 16 (+3) · CON 18 (+4) · INT 10 (0) · SAB 10 (0)
-- **Perícias:** Atacar +6 (*"6+5(Contador de Corpos)+5(Mod. Força) = 16"*) · Defender +2 · Movimento +4 · Fortitude +2 · Vontade — (Vantagem) · Reflexos +2 · Iniciativa +2 · Intimidar +6. A tabela lista "Conhecer (Des/Int)", "Enganar", "Ofícios" (perícias legadas — B16: Conhecer = alucinação; Intimidar = [[Atributos e Perícias|Intimidação]]).
+- **Perícias:** Atacar +6 (*"6+5 (Contador de Corpos) +5 (Mod. Força) = 16"*) · Defender +2 · Movimento +4 · Fortitude +2 · Vontade — (Vantagem) · Reflexos +2 · Iniciativa +2 · Intimidação +6. A tabela ainda lista "Conhecer (Des/Int)" — que não é perícia do sistema —, além de "Enganar" e "Ofícios" com os nomes antigos ([[Atributos e Perícias]])
 - **Recursos:** Saúde 108/108 · Stamina 44/44 · Éter 8/8 · Evasão Passiva 16, Ativa 18+1d10
-- **Armadura:** Ordinário 18; Ácido/Fogo/Gelo/Elétrico/Trovejante/Veneno/Necrótico/Radiante/Psíquico 5; Força —; Primordial — ("Gelo" = Frio, B1)
+- **Armadura:** Ordinário 18; Ácido, Fogo, Frio, Elétrico, Trovejante, Veneno, Necrótico, Radiante e Psíquico 5; Força e Primordial sem valor ([[Tipos de Dano]])
 - **Equipamentos:** Manoplas de Ferro +2 — *"Arma Pesada Brutal, 4d6+5+2(Bruto)+5(Músculos de Ogro, Crit=Desorientado, +4 ao Atacar(2). (Limiar): se saúde < 25%: causa o dobro de dano em ataques corpo a corpo."* · Armadura do Carrasco — *"+5 Armadura, +5 Ae(5, Todos.. Exceto: Força e Primordial)"*
 - **Bugigangas:** Soro da Guerra ×1 · Poção de Vigor Maior ×1
 - **Técnicas Gerais:** Bruto · Casca Grossa · Destruir · Hoje Não · Gancho · Golpe Desconcertado
-- **Ramo T1:** Fúria Sanguinária · Frenesi · Retaliação Selvagem · **T2:** Epifania Sanguínea · Ignorar Dor
+- **Ramo, Tier 1:** Fúria Sanguinária · Frenesi · Retaliação Selvagem — **Tier 2:** Epifania Sanguínea · Ignorar Dor
 - **Diversas:** Persistência Humana (Estilo de Vida Rebelde) · Veterano
-- **Marcas:** Contador de Corpos (50 Criaturas) · Vício em Sangue
-- **Cartas do [[O Limiar (cartas)|Limiar]]:** Músculos de Ogro · Aumento de atributo +2 · Bárbaro · Berserker Imortal · Colossus Primordial · Pulmões Titânicos (+32)
-Texto integral das técnicas: [[Brutalista]]; raw `sessao_os5_vorn.md`.
+- **Marcas:** Contador de Corpos (50 criaturas) · Vício em Sangue
+- **Cartas d'[[O Limiar (cartas)|O Limiar]]:** Músculos de Ogro · Aumento de atributo +2 · Bárbaro · Berserker Imortal · Colossus Primordial · Pulmões Titânicos (+32)
 
-## Segundo o Pedro (2026-09-05)
-- **A10 (verbatim):** *"Sinikko Kiriam NÃO é filho de kirkushav drekar, Vorn Drekar é."*
-- **A15:** Vorn é o integrante de [[Volkrest]] na Equipe desfloreio.
-- **A5:** listado entre os players da Sessão 0.
-- **B17:** ficha desatualizada — autorizado atualizar.
-- **B1:** "Gelo" na ficha → **Frio**.
-- **B16:** "Conhecer (Des/Int)" na ficha é alucinação de IA; "Intimidar" = Intimidação.
+Texto integral das técnicas em [[Brutalista]].
 
 ## Relações
-- **Pai** → [[Kirkushav Drekar]]; **mãe** → Vick Drekar (morta pelo clã das Baratas)
-- **Nação** → [[Império de Ferro]] ([[Volkrest]]); **tropa** → [[Vanguarda do Ferro]]
+- **Pai** → [[Kirkushav Drekar]]; **mãe** → Vick Drekar, morta pelo clã das Baratas
+- **Nação** → [[Império de Ferro]], em [[Volkrest]]; **tropa** → [[Vanguarda do Ferro]]
 - **Irmão de armas** → [[Hadran Vorgil]]
-- **Equipe** → [[Equipe desfloreio]] ([[Sessão 0]]) com [[Klaus von Aldric]], [[Sinikko Kiriam (PJ)]], [[Runa Skorn]], [[Azgar Sandgale]]
-- **Raça / Classe / Origem** → [[Humano]] · [[Brutalista]] · Soldado ([[Origens]])
-- **Inimigo da infância** → clã das Baratas
-- **Destino** → "morto" n'[[A Vhelor]]; possível clone de [[Malkhor]] (gancho de Hadran)
+- **Equipe** → [[Equipe desfloreio]] ([[Sessão 0]]), com [[Klaus von Aldric]], [[Sinikko Kiriam (PC)|Sinikko Kiriam]], [[Runa Skorn]] e [[Azgar Sandgale]]
+- **Raça · Classe · Origem** → [[Humano]] · [[Brutalista]] · Soldado ([[Origens]])
+- **Inimigo da infância** → o clã das Baratas
+- **Destino** → *"morto"* n'[[A Vhelor]]; possível clone criado por [[Malkhor]]
 - **Cartas** → [[O Limiar (cartas)]]
 
 ## Linha do tempo
-- **Vorn aos 10:** clã das Baratas destrói o feudo; Vick morre; reencontro com Kirkushav; aldeia mineradora.
-- **Juventude/adulto:** executa a expansão do Império; entra na Vanguarda do Ferro; comanda seus homens.
-- **−27** ([[Sessão 0]]): convocado; Hadran o acompanha a Khaskavel; entra n'A Vhelor; "morre".
-- **0:** gancho — clone de Vorn criado por Malkhor (Hadran).
+- **Aos dez anos:** o clã das Baratas arrasa o feudo e mata Vick Drekar; a fuga; o reencontro com o pai na taverna; a aldeia mineradora.
+- **Juventude e vida adulta:** executa a expansão do Império vila por vila; entra na [[Vanguarda do Ferro]]; comanda seus próprios homens.
+- **`C−27`** ([[Sessão 0]]): convocado; [[Hadran Vorgil]] o acompanha a [[Khaskavel]]; entra n'[[A Vhelor]] e "morre".
+- **`C`:** o boato do clone de Vorn corre na boca de Hadran.
 
-## Conflitos e pendências
-1. **"Vick Drekar"** — mãe leva o sobrenome do pai ausente (digest F inc. 10). Erro ou casamento? Pergunta menor.
-2. **Kirkushav "Sente que perdeu o filho que mais admirou"** (pág. Kirkushav) refere-se a Sinikko, não a Vorn, seu filho real que também morreu ali. Contradição com A10 — corrigir página Kirkushav.
-3. **Clone de Vorn** — só como gancho na página Hadran. Existe? Pergunta nova.
-4. **Ficha:** versão da história na ficha ≠ página; perícias legadas; "Gelo". Tudo autorizado a corrigir (B17).
+## Pontas soltas
+1. **Quem é o clã das Baratas?** Insetos ou bandidos — o nome não decide. E **Vick Drekar** carrega o sobrenome de um pai ausente, o que ou é casamento não contado, ou é erro. ([[Perguntas Abertas]] E28)
+2. **O clone de Vorn existe?** Só há o gancho na boca de [[Hadran Vorgil]]; nada confirma que [[Malkhor]] fez com ele o que fez com Sinikko. ([[Perguntas Abertas]] E19)
+3. **O luto que não o menciona.** [[Kirkushav Drekar]] *"Sente que perdeu o filho que mais admirou"*, e a frase, escrita a respeito de Sinikko, ignora que o filho de verdade morreu na mesma câmara. Pendente de acerto nos registros.
+4. **A ficha** precisa perder as perícias legadas e ganhar a versão atual da história. ([[Perguntas Abertas]] E32)
 
-## Fonte
-- Notion: PJ `33e6e3a401d981b99d17e52ca1383748`; Ficha `3656e3a401d98006aeaefd2e24f25cd2`; Roteiro; Hadran `36d6e3a401d9817792d8ef277f93f46a`.
-- Raw: `sessao_os5_vorn.md`, `sessao_roteiro.md`, `sessao_npcs_relacionados.md`; digest F §2.
+## Procedência
+- Notion — página de PC *Vorn Drekar* `33e6e3a401d981b99d17e52ca1383748` (🟡, ed. 2026-07-17) · *📜 Ficha Vorn Drekar (1)* `3656e3a401d98006aeaefd2e24f25cd2` (🟢) · *Roteiro da Sessão 0* `33e6e3a401d9819796c9dfb2263e215d` · *Hadran Vorgil* `36d6e3a401d9817792d8ef277f93f46a`
+- Mestre, 2026-09-05 — A10 (*"Sinikko Kiriam NÃO é filho de kirkushav drekar, Vorn Drekar é."*) · A15 (Vorn representa Volkrest) · A5 (listado entre os cinco da Sessão 0) · B1 ("Gelo" → Frio) · B16 ("Conhecer" não existe; "Intimidar" → Intimidação) · B17 (autorização para refazer a ficha)
+- Digest `docs/memoria/digests/F_sessoes_outros.md` §2, incidente 10
+- Brutos em `docs/memoria/notion_raw/sessao_os5_vorn.md`, `sessao_roteiro.md`, `sessao_npcs_relacionados.md`

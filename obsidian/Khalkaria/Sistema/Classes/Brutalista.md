@@ -1,25 +1,23 @@
 ---
 tipo: classe
-status: canon-notion
+status: canon-pedro
 spoiler: publico
 era: atemporal
 aliases: [Brutalista, Bruto]
-fonte_notion: [a2c6e3a401d982f187320168cbb2e7d8, 3a66e3a401d9809b8eceec1f30be9fd2]
+fonte_notion: [a2c6e3a401d982f187320168cbb2e7d8, 3a66e3a401d9809b8eceec1f30be9fd2, pedro-2026-09-05]
 ultima_sync: 2026-09-05
 tags: [khalkaria/sistema, khalkaria/sistema/classes]
 ---
 
 # Brutalista
 
-**Resumo.** Classe de corpo a corpo pesado, tanque e utilidade (👊, Notion 🟢 Pronto, ed. 2026-08-05). Maior progressão de Saúde do sistema (`+8/nível`) e a menor de Stamina (`+4/nível`). Recurso de classe = **Brutalidade** (0–5), que sobe ao *receber* dano (5+ de uma única fonte) e converte sofrimento em dano e Stamina; zera ao fim do combate. Perfil do índice: Combate ★★★★★ · Controle ★☆☆☆☆ · Exploração ★★☆☆☆ · Místico ★☆☆☆☆ · Tecnologia ★☆☆☆☆.
+**Resumo.** Classe de corpo a corpo pesado, tanque e utilidade (👊). Tem a maior progressão de Saúde do sistema (`+8/nível`) e a menor de Stamina (`+4/nível`). Recurso de classe = **Brutalidade** (0–5), que sobe ao *receber* dano — 5 ou mais de uma única fonte — e converte sofrimento em dano e Stamina; zera ao fim do combate. **Perfil:** Combate ★★★★★ · Controle ★☆☆☆☆ · Exploração ★★☆☆☆ · Místico ★☆☆☆☆ · Tecnologia ★☆☆☆☆.
 
-## Cânone (Notion)
-
-### Prosa de abertura
+## O chamado
 > Alguns nasceram para a guerra. Você é um deles. Não importa se foi nos campos de batalha das guerras territoriais, ou nas ruas brutais onde só os fortes sobrevivem — você aprendeu que a melhor defesa é fazer o inimigo ter medo de atacar. Seu corpo é sua arma. Sua resistência é sua armadura. Sua fúria é o que te mantém de pé quando outros já teriam caído. Cicatrizes contam histórias. As suas contam uma biblioteca inteira.
 > Sua genética é própria para o combate, você exaura medo apenas pelo seu tamanho e músculos.
 
-### Progressão
+## Progressão
 | Level | Conteúdo |
 |---|---|
 | 1 | 4 Técnicas |
@@ -28,22 +26,22 @@ tags: [khalkaria/sistema, khalkaria/sistema/classes]
 | 4 | 7 Técnicas, Técnica de Ramo(Tier 1, 2), 2 Marcas |
 | 5 | 8 Técnicas, Técnica de Ramo(Tier 1, 2 e 3), 3 Marcas |
 
-### Status iniciais
+## Status iniciais
 - **Saúde:** `10 + (8 × Nível) + (Mod.CON × Nível)`
 - **Stamina:** `8 + (4 × Nível) + (Mod.FOR OU Mod.DES × Nível)`
 - **Éter:** `6 + (3 × Nível) + (Mod.INT OU Mod.SAB × Nível)`
 - **Evasão Ativa (Reação):** 10 + Mod. Destreza + Treinamento em *Defender*
 - **Evasão Passiva (Sem reação):** 10 + Mod. Destreza
 
-### Treinamento
+## Treinamento
 Você começa treinado em: **Fortitude, Atacar**
-Além disso, você pode escolher **(1 + Mod. Inteligência)** Perícias para ser treinado dentre as seguintes: Defender, Movimento, Iniciativa, Interação Social(Intimidação), Medicina
+Além disso, você pode escolher **(1 + Mod. Inteligência)** Perícias para ser treinado dentre as seguintes: Defender, Movimento, Iniciativa, Intimidação, Medicina
 
 - **Atributos Recomendados:** Força, Constituição e Destreza
 - **Play Style:** Corpo a Corpo Pesado, Tanque e Utilidade.
 - **CD:** 10 + Força + Constituição
 
-### Brutalidade (recurso de classe)
+## Brutalidade (recurso de classe)
 > *Cada golpe que você recebe te deixa mais determinado. A dor não te enfraquece — te transforma em fúria pura.* A **Brutalidade** representa sua resiliência e raiva acumuladas.
 
 - **Ganho:** *Dano* — Ao receber 5+ Dano de uma única fonte → **+1 Brutalidade**
@@ -51,7 +49,7 @@ Além disso, você pode escolher **(1 + Mod. Inteligência)** Perícias para ser
 - **Gasto Ativo:** Você pode gastar toda sua **Brutalidade** para recuperar **xd4 Stamina**, sendo **x** igual aos seus pontos de **Brutalidade**.
 - **Máximo: 5 Brutalidade.** Você perde toda sua Brutalidade ao fim do combate.
 
-### Técnicas gerais
+## Técnicas gerais
 > Você possui **3 Técnicas + Nível**, reatribuíveis em descanso longo.
 
 | Técnica | Descrição | Custo | Ação |
@@ -72,14 +70,14 @@ Além disso, você pode escolher **(1 + Mod. Inteligência)** Perícias para ser
 | Golpe Desconcertado | Você utiliza toda sua força em um golpe forte e amplo porém desconcertado. Declare antes de atacar, você tem vantagem no próximo ataque. Se errar o golpe, você fica exposto até o seu próximo turno. | 3 Stamina | 1 Ação |
 | Investida | Pode investir em uma linha reta de no mínimo 4,5 m até 9 m. Alvos no caminho devem suceder em um teste de *Fortitude* ou recebem (Nível)d6+Mod. Força e ficam *Caídos*. | 3 Stamina | 2 Ações |
 
-### Ramos
-> Ao longo da criação do seu personagem você escolherá: 3 Marcas; **6 Técnicas de Ramo, 3 no Tier [1], 2 no Tier 2 e 1 no Tier 3**.
+## Os três ramos
+Ao longo da criação do personagem escolhem-se **3 Marcas** e **6 Técnicas de Ramo**: 3 no Tier 1, 2 no Tier 2 e 1 Ultimate no Tier 3, destravadas respectivamente nos níveis 2, 4 e 5.
 
 - **Ramo do Colosso** (azul — Tanque e Protetor) — *Você não aprendeu a desviar de golpes — aprendeu a recebê-los e continuar de pé. Onde outros veem perigo, você vê seu propósito. Seu corpo é a muralha que separa seus aliados da morte, e cada cicatriz é prova de que essa muralha nunca caiu.*
 - **Ramo do Berserker** (vermelho — Dano e Fúria) — *A primeira vez que você sentiu a fúria, achou que ia morrer. O sangue fervendo, a visão vermelha, o mundo reduzido a um único pensamento: destruir. Você não morreu. Seus inimigos morreram. Agora você entende. A raiva não é sua fraqueza — é seu combustível.*
 - **Ramo do General** (verde — Utilidade e Tática) — *Guerras não são vencidas pelo mais forte — são vencidas pelo mais preparado. Você aprendeu isso nos campos de batalha, nos becos, nas arenas. Força bruta é ferramenta, não estratégia. O verdadeiro guerreiro lê o combate como outros leem livros.*
 
-### Marcas de Ramo
+## Marcas de Ramo
 **Marcas do Colosso**
 - **Cicatrizes de Ferro** — *"Cada golpe que você recebe te ensina a receber o próximo melhor."* Você sente prazer em sentir dor e busca isso ativamente.
   - Para cada 5 combates ganhos ao longo de sua vida, você ganha +1 *Fortitude* permanente. Ao chegar em +5, essa habilidade fica supérflua.
@@ -105,7 +103,7 @@ Além disso, você pode escolher **(1 + Mod. Inteligência)** Perícias para ser
   - Você pode elaborar um plano de combate e designar um objetivo a ser alcançado, como por exemplo: *"O goblin morrerá no primeiro turno por mim."* *"Irei distrair os guardas para o ladino alcançar a porta."* *"Iremos explodir a ponte enquanto os inimigos passam por ela."*
   - Se a condição designada ocorrer de maneira fiel ao seu plano, você e aliados em até 9 m ganham UMA das três recompensas: Vantagem em um teste de sua escolha até o fim do combate; +4 Iniciativa; Os inimigos ficam *expostos* por 1 rodada.
 
-### Técnicas de Ramo — Tier 1 (nível 2)
+## Técnicas de Ramo — Tier 1 (nível 2)
 **Colosso**
 - **Muralha Viva** (Passiva) — Você se torna Treinado em *Defender*. Se já for Treinado, se torna Experiente e assim por diante. O treinamento da sua perícia *Defender* aumenta de 3 em 3 (Ao invés de 2 em 2).
 - **Guardião** (Passiva) — Quando um aliado adjacente (até 1,5 m) for atacado, você pode usar sua reação para se tornar o alvo do ataque. Você pode usar Defender normalmente contra esse ataque.
@@ -121,7 +119,7 @@ Além disso, você pode escolher **(1 + Mod. Inteligência)** Perícias para ser
 - **Comando Tático** (1 Ação, 2 Stamina) — Escolha um aliado em até 9 m que possa te ouvir e ver. Ele pode imediatamente realizar uma das seguintes ações como reação: **Atacar:** O aliado faz um ataque com +2 Atacar contra uma criatura em seu alcance. **Mover:** O aliado se move até seu movimento sem provocar ataques de oportunidade. **Defender:** O aliado ganha +4 em Defender até o início do próximo turno dele. Você pode usar Comando Tático no máximo 2 vezes por rodada.
 - **Leitura de Combate** (1 Ação, 2 Stamina) — Escolha uma criatura que você possa ver. Role Percepção contra Enganação dela. Em caso de sucesso, você descobre uma das seguintes informações (sua escolha): Saúde aproximada (acima de 75%, 50-75%, 25-50%, abaixo de 25%); Próxima ação provável (atacar, defender, fugir, conjurar); Fraqueza tática (+2 Atacar contra ela até o fim do seu próximo turno para você e aliados que você informar). Em caso de falha, você não pode usar esta habilidade contra a mesma criatura neste combate.
 
-### Técnicas de Ramo — Tier 2 (nível 4)
+## Técnicas de Ramo — Tier 2 (nível 4)
 **Colosso**
 - **Fortaleza de Aço** (Reação, 2 Stamina) — Quando você receberia dano, você pode usar sua reação para reduzir esse dano em 1d8 + Mod. Constituição. Se você estiver em Postura Defensiva, a redução aumenta para 2d8 + Mod. Constituição. Você pode usar esta habilidade um número de vezes igual ao seu Mod. de Constituição (mínimo 1) por combate.
 - **Resistência Adaptável** (Passiva, 3 Stamina) — Você possui 5 Armadura Específica(Ae) de um tipo de dano escolhido por você. Ao receber dano específico diferente do protegido pela sua Ae, pode gastar 3 de Stamina como uma ação livre para trocar o tipo de dano da Ae para o tipo de dano que foi atacado instantaneamente. Adicionalmente, você pode trocar a resistência da Ae em um descanso curto livremente.
@@ -137,7 +135,7 @@ Além disso, você pode escolher **(1 + Mod. Inteligência)** Perícias para ser
   - A formação dura até qualquer aliado ser removido do alcance, quebrando a formação por completo, ou até o fim do combate.
 - **O Experiente** (Passiva) — Na primeira vez que uma criatura te ataca em um combate, você tem +2 Defender contra esse ataque. Após ser atacado por uma criatura (acertando ou errando), você aprende ela: Você ganha +1 Atacar e +1 Defender permanente contra essa criatura pelo resto do combate. Este bônus é cumulativo até +3 (após 3 ataques recebidos dela). Uma vez por turno, quando você acertar um ataque contra uma criatura que você aprendeu, você pode escolher um dos seguintes efeitos: **Ponto Vital:** +1d6 de dano; **Desarmar:** A criatura solta um objeto que esteja segurando (Manobra de Desarmar grátis); **Desestabilizar:** -2 no próximo ataque da criatura.
 
-### Técnicas de Ramo — Tier 3 · Ultimates (nível 5)
+## Técnicas de Ramo — Tier 3 · Ultimates (nível 5)
 > O Tier 3 provê Ultimates, que só podem ser utilizadas 1 vez por dia.
 
 **Colosso** — *"Enquanto estiver vivo, Eu Não Cairei."*
@@ -159,35 +157,30 @@ Além disso, você pode escolher **(1 + Mod. Inteligência)** Perícias para ser
   - **Coordenação de Guerra:** Pode se mover como uma ação livre e não causa ataques de oportunidade. Todos os aliados ganham a seguinte habilidade: **Insistir:** Uma vez durante o efeito, cada aliado pode repetir um ataque que errou (ação livre). Você ganha a seguinte habilidade: **Passo Final:** Uma vez durante o efeito, você pode usar sua reação para fazer todos os aliados afetados atacarem simultaneamente o mesmo alvo. Se você tiver, Comando Tático passa a não custar Stamina.
   - **O Custo:** A cada vez que um aliado afetado por essa habilidade sofrer dano, você perde 1 de Éter. Isso representa a visão de um general vendo seu exército sofrer.
 
-## Segundo o Pedro (2026-09-05)
-- **B11:** ramos = **3 Tier 1 · 2 Tier 2 · 1 ultimate Tier 3**, nos níveis **2, 4 e 5**. O texto do Brutalista ("3 no Tier, 2 no Tier 2 e 1 no Tier 3") só omite o "1" — a contagem já está correta.
-- **B16:** "Interação Social(Intimidação)" → **[[Atributos e Perícias|Intimidação]]**; "Ataque/Defesa" → Atacar/Defender.
-- **B12:** *provocado(s)* (A Última Parede, Provocar) "foi criada especificamente para uso unitário nessa técnica… depois fazemos a revisão nas condições" — não é condição canônica ainda.
-- **B1:** "Resistência a *Dano Ordinário*" (Frenesi) cobre os subtipos **Cortante, Perfurante e Contundente**; a Ae de Resistência Adaptável pode apontar para qualquer um dos 12 tipos.
+A *resistência a dano Ordinário* concedida pelo Frenesi vale para os três subtipos — Cortante, Perfurante e Contundente — enquanto a Armadura Específica de *Resistência Adaptável* pode apontar para qualquer um dos doze tipos de dano ([[Tipos de Dano]]).
 
 ## Relações
-- **Pertence a** → [[Sistema]]
+- **Pertence a** → [[Sistema]] · [[Progressão]] · [[Criação de Personagem]]
 - **Recurso de classe** → Brutalidade (0–5; ganha ao receber 5+ de dano; zera ao fim do combate)
-- **Recursos gerais** → Saúde (maior progressão do sistema, +8/nível) · Stamina (menor, +4/nível) · [[Éter]]
+- **Recursos gerais** → Saúde, a maior progressão do sistema (+8/nível) · Stamina, a menor (+4/nível) · [[Éter]]
 - **Ramos** → Colosso (tanque/protetor) · Berserker (dano/fúria) · General (utilidade/tática)
 - **Perícias iniciais** → [[Atributos e Perícias|Fortitude]], [[Atributos e Perícias|Atacar]]; escolhe entre [[Atributos e Perícias|Defender]], [[Atributos e Perícias|Movimento]], [[Atributos e Perícias|Iniciativa]], [[Atributos e Perícias|Intimidação]], [[Atributos e Perícias|Medicina]]
+- **Regras tocadas** → [[Manobras e Tamanho]] (Agarrar, Empurrar, Desarmar, aumento de tamanho) · [[Dano, Ataque e Defesa]] (Armadura Ar e Armadura Específica Ae) · [[Tipos de Dano]] · [[Combate]] · [[Descanso]]
 - **Condições que usa** → [[Condições|Atordoado]], [[Condições|Caído]], [[Condições|Exposto]], [[Condições|Exaustão]], [[Condições|Inconsciente]], [[Condições|Amedrontado]], [[Condições|Enfeitiçado]], [[Condições|Morrendo]]
-- **Regras tocadas** → Manobras (Agarrar, Empurrar, Desarmar) · Armadura (Ar) e Armadura Específica (Ae) · Tamanho
-- **Colisões de nome** → *Ponto Vital* (opção de O Experiente) também é técnica do [[Artilheiro]] · epígrafe de *Imortal* repete a de *Cicatrizes da Jornada* ([[Batedor]])
-- **PJ que a usa** → nenhum dos 5 da [[Equipe desfloreio]]
+- **Nomes compartilhados** → *Ponto Vital*, opção de *O Experiente*, também é técnica do [[Artilheiro]] · a epígrafe de *Imortal* repete a de *Cicatrizes da Jornada* ([[Batedor]]) e a de *Campo de Batalha* repete a de *Metamorfose* ([[Alquimista]])
+- **PC que a usa** → nenhum dos cinco da [[Equipe desfloreio]]
 
-## Conflitos e pendências
-1. **Ignorar Dor** — "você recupera 2d6 de Saúde, **ao invés de 1**": o efeito base não recupera 1, ele mantém o personagem *em* 1 de Saúde. Reescrever para "ao invés de ficar com 1 de Saúde". **Pendência aberta.** (Digest B §9)
-2. **CD sem "Mod."** — "10 + Força + Constituição" × demais classes "10 + Mod. X + Mod. Y". Assumir modificadores. (Digest B §13)
-3. **Perícias legadas** — "Interação Social(Intimidação)" → Intimidação (B16); corrigir no Notion.
-4. **Condição *provocado*** não existe em Condições (Provocar, A Última Parede). B12 adia a padronização.
-5. **Contador de Corpos** usa "para cada **10** criaturas" enquanto quase todas as Marcas do sistema usam "cada 5" — intencional? (Digest B §21)
-6. **Epígrafe duplicada** — *Imortal* e *Cicatrizes da Jornada* ([[Batedor]]) compartilham "Cada ferida conta uma história…"; *Campo de Batalha* e *Metamorfose* ([[Alquimista]]) compartilham "A guerra, marca qualquer um." (Digest B §17)
-7. **"Ramos: 3 no Tier"** — falta o "1" na frase do Notion; corrigir para "3 no Tier 1".
-8. **Marcas com "+1 permanente"** até +5 × escala canônica de perícia +2/+4/+6/+8. **Pendência aberta (comum às 7 classes).**
-9. **Casca Grossa** dá Ar = Mod. Constituição; com CON 8 (mod −1) a armadura fica negativa. Piso em 0? **Pendência aberta (nova).**
+## Pontas soltas
+- **Ignorar Dor promete recuperar "2d6 ao invés de 1".** O efeito base não recupera 1 de Saúde: ele mantém o personagem *em* 1 de Saúde, o que torna a comparação impossível de ler. [[Perguntas Abertas]] E68.
+- **Casca Grossa pode dar armadura negativa.** A Armadura natural iguala o Mod. Constituição; com Constituição 8 o valor fica em −1. Existe piso em 0? [[Perguntas Abertas]] E69.
+- **CD escrita sem "Mod."** — a fórmula aparece como "10 + Força + Constituição", enquanto as demais classes escrevem "10 + Mod. X + Mod. Y". A leitura assumida é a de modificadores.
+- **A condição *provocado*** aparece em *Provocar* e em *A Última Parede*, mas não tem entrada em [[Condições]]; nasceu para uso único nessas técnicas e espera a revisão geral das condições.
+- **Contador de Corpos exige "cada 10 criaturas"**, enquanto quase todas as Marcas do sistema contam de cinco em cinco. Intencional?
+- **Marcas que dão "+1 permanente"** até +5 convivem com a escala de treinamento de quatro degraus, +2/+4/+6/+8 ([[Atributos e Perícias]]). [[Perguntas Abertas]] E63.
 
-## Fonte
-- Notion: Brutalista `a2c6e3a401d982f187320168cbb2e7d8` (ed. 2026-08-05, 🟢 Pronto) · Classes `3a66e3a401d9809b8eceec1f30be9fd2`
-- Raw: `docs/memoria/notion_raw/classe_brutalista.md`, `classe_index.md`
-- Digest: `docs/memoria/digests/B_classes.md` §3, INCONSISTÊNCIAS 1, 9, 13, 14, 17, 18, 21 · Respostas: B1, B11, B12, B16
+## Procedência
+- Notion `a2c6e3a401d982f187320168cbb2e7d8` — Brutalista (ed. 2026-08-05, 🟢 Pronto); índice de Classes `3a66e3a401d9809b8eceec1f30be9fd2`.
+- Respostas do mestre 2026-09-05: **B11** (ramos 3/2/1 nos níveis 2/4/5 — a contagem desta classe já estava certa, faltava só o "1" na frase) · **B16** ("Interação Social(Intimidação)" → Intimidação; Ataque/Defesa → Atacar/Defender) · **B12** (*provocado* criada para uso unitário; revisão adiada) · **B1** (Ordinário reúne Cortante, Perfurante e Contundente; a Ae pode apontar para qualquer um dos doze tipos).
+- `docs/memoria/notion_raw/classe_brutalista.md`, `classe_index.md`; digest `B_classes.md` §3, inconsistências 1, 9, 13, 14, 17, 18, 21.
+- Correções pendentes na fonte: "3 no Tier" sem o "1"; nomes legados de perícia.
+- Revisão de redação: 2026-09-07.

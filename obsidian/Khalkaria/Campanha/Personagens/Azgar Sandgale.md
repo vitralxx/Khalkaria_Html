@@ -1,19 +1,20 @@
 ---
-tipo: pj
+tipo: pc
 status: canon-pedro
 spoiler: gm
 era: sessao0
 continente: Ossyria
 aliases: ["Azgar", "Apenas Azgar", "o cangaceiro", "o exilado de Ossyria"]
 fonte_notion: [33e6e3a401d9814caa28c26a3a66e84c, 37a6e3a401d980a193bde996278a535a, 33e6e3a401d9819796c9dfb2263e215d, pedro-2026-09-05]
-ultima_sync: 2026-09-05
+ultima_sync: 2026-09-07
 tags: [khalkaria/campanha, khalkaria/campanha/personagens]
 ---
 # Azgar Sandgale
 
-**Resumo.** [[Humano]] nascido em [[Ossyria]], criado pelo pai [[Terk Sandgale]] — exilado do [[Império de Ferro]] — como caçador do continente mais letal de [[Khalkaria]] ([[Família Sandgale]]). Seu dogma: *"tornar Ossyria um continente habitável para seres melhores do que os que ali vagavam."* Viu Terk matar um volkrestiano de broche (o Batedor de Kirkushav, A9), ouviu a confissão do exílio, perdeu o pai numa **tempestade de areia sobrenatural** e foi à deriva de canoa até ser resgatado por um navio imperial: *"Meu nome é Azgar. Apenas Azgar."* Ascendeu no Império escondendo a origem; [[Kirkushav Drekar]] — *"O homem responsável pelo exílio da família Sandgale"* — ofereceu *"o esquecimento total do passado"* pela missão em [[Kharavel]] e o acusa de ter matado o Batedor (manipulação deliberada, A9). [[Artilheiro]] (arremesso), Origem Exilado. Representa Ossyria na [[Equipe desfloreio]].
+**Resumo.** [[Humano]] nascido em [[Ossyria]] e criado pelo pai, [[Terk Sandgale]], exilado do [[Império de Ferro]], como caçador do continente mais letal de [[Khalkaria]] ([[Família Sandgale]]). Escolheu cedo o próprio dogma: *"tornar Ossyria um continente habitável para seres melhores do que os que ali vagavam."* Viu o pai matar um volkrestiano de broche, ouviu dele a confissão do exílio, perdeu-o numa **tempestade de areia grande demais para ser obra da natureza** e foi à deriva numa canoa até um navio imperial recolhê-lo — onde deu o nome que o protegeria: *"Meu nome é Azgar. Apenas Azgar."* Subiu no Império escondendo a origem, até que [[Kirkushav Drekar]], *"o homem responsável pelo exílio da família Sandgale"*, comprou seus serviços com *"o esquecimento total do passado"* e o mandou a [[Kharavel]]. [[Artilheiro]] de arremesso, Origem Exilado, personagem de jogador (**PC**) da [[Sessão 0]] e a voz de Ossyria dentro da [[Equipe desfloreio]].
 
-## Cânone (Notion) — História (página PJ, 🟢 Pronto, ed. 2026-06-09, verbatim)
+## História
+
 > Azgar Sandgale nasceu em Ossyria, o continente mais temido de Khalkaria. Aqui a morte corre solta e não há civilizações estáveis — aberrações e profanidades fazem dessas terras algo próximo do inabitável. Ainda assim, há aqueles que desafiam esse lugar. Um deles era seu pai.
 > Terk Sandgale era um caçador implacável. Escondia do pequeno Azgar as verdadeiras dimensões do horror que habitava Ossyria, mas o ensinava todos os dias como sobreviver sozinho nela. Ganhava a vida por meio de caçadas que nenhum humano em sã consciência ousaria realizar, e sempre voltava para casa. Dizia ao filho que esse era o único jeito de existir neste planeta — e Azgar o admirava como poucos filhos admiram seus pais. Ao longo dos anos, Terk revelou de forma fria e cuidadosa as profanidades que habitavam a terra em que viviam. Foi nesse momento que Azgar escolheu seu dogma: tornar Ossyria um continente habitável para seres melhores do que os que ali vagavam. Treinou sem parar, caçou com e sem a ajuda do pai, sobreviveu dias sozinho sem o conforto de ninguém. Na idade adulta, já liderava as caçadas e sustentava o abrigo ao lado de Terk. O velho era realizado — via o filho lutar bravamente e sabia que dificilmente Khalkaria o quebraria.
 > Em certo dia, ao retornar de uma caçada longa e exaustiva, Azgar se deparou com seu pai conversando com um homem misterioso. Em toda sua vida em Ossyria, raramente havia visto outra criatura que não fosse uma aberração. A conversa era acalorada — o desconhecido exigia algo que Terk não estava disposto a ceder. O passado nebuloso do pai dificultava a leitura da situação, e a tensão escalava a cada troca de palavras, até o momento em que Terk atravessou uma lâmina pelo pescoço do homem. Era perigo. Os dois Sandgale sabiam disso.
@@ -28,58 +29,68 @@ tags: [khalkaria/campanha, khalkaria/campanha/personagens]
 > Azgar não é tolo. Sabia que a informação sobre sua origem em Ossyria poderia acabar com tudo que havia construído. Aceitou — mesmo sabendo que um acordo com aquele homem nunca seria simples.
 > Arruma seus pertences e segue viagem.
 
-### Na Sessão 0
-- Chantagem: *"Azgar, nós dois conhecemos seu passado, mas isso pode mudar rapidamente. Basta me desobedecer para ver tudo que construiu desabar e todos que conheceu te odiarem. Ah, tem também aquele ente querido que você procura, não é? Matou meu Batedor friamente, mesmo que ele estivesse anunciando a liberdade de vocês dois… Não pense que me esqueci disso."*
+## O Batedor
 
-## Ficha resumida — ⚠️ DESATUALIZADA (B17) — recursos em branco
-Fonte: 📜 Ficha - Azgar Sandgale `37a6e3a401d980a193bde996278a535a`, 🟢, "Template {datetime}", ed. 2026-07-18.
-- Humano · Artilheiro · Exilado · **Nível 4** · XP 0 · Movimento 9 m · CD/Sins/Evasão vazios · Idiomas: [[Comum]]
+O homem de broche que Terk degolou era o Batedor de [[Kirkushav Drekar]], e não estava ali por acaso:
+
+> Kirkushav planejava assassinar a família Sandgale, já que eles conseguiram o impossível, sobreviver em Ossyria. Kirkushav fazia questão de mandar exilados para lá, que acabavam morrendo com a própria hostilidade da região, no entanto, o batedor de Kirkushav foi derrotado por eles e Kirkushav agora tenta manipular Azgar dizendo que o Batedor era designado a retorna-los a civilização de volkrest. Quem realmente matou o batedor, foi o pai de Azgar, Terk.
+
+[[Ossyria]] é a sentença de morte que o Soberano assina sem sujar as mãos, e os Sandgale foram os únicos a devolver o golpe. Toda a compaixão da audiência — o homem enviado para libertá-los, que nunca voltou — é encenação montada sobre um assassinato frustrado. Azgar carrega uma culpa que não é dele por um crime que não houve.
+
+## Na mesa redonda
+
+Na [[Sessão 0]], quando o grupo hesita, é essa culpa que Kirkushav puxa:
+
+> Azgar, nós dois conhecemos seu passado, mas isso pode mudar rapidamente. Basta me desobedecer para ver tudo que construiu desabar e todos que conheceu te odiarem. Ah, tem também aquele ente querido que você procura, não é? Matou meu Batedor friamente, mesmo que ele estivesse anunciando a liberdade de vocês dois… Não pense que me esqueci disso.
+
+O *"ente querido"* é Terk, que Azgar disse estar morto e nunca deixou de procurar.
+
+## Ficha
+
+> **Observação de mesa.** A folha está congelada no nível 4 e não acompanhou as revisões de regras posteriores: os recursos ficaram em branco, a contagem de cartas não fecha e algumas perícias ainda usam nomes antigos. O mestre já autorizou refazê-la. Vale como retrato do personagem no dia da expedição, não como folha de jogo.
+
+- [[Humano]] · [[Artilheiro]] · Exilado · **Nível 4** · XP 0 · Movimento 9 m · CD, [[Sins]] e Evasão em branco · Idioma: [[Comum]]
 - **Atributos:** FOR 10 (0) · DES 22 (+6) · CON 12 (+1) · INT 10 (0) · SAB 19 (+4)
-- **Perícias:** Atacar +6 · Movimento +2 · Vontade — (*"+5"*) · Percepção +2 · Iniciativa +4 (*"+5"*) · Intimidar +2
-- **Recursos:** Saúde/Stamina/Éter — **TODOS VAZIOS**. Armadura: vazio.
+- **Perícias:** Atacar +6 · Movimento +2 · Vontade — (*"+5"*) · Percepção +2 · Iniciativa +4 (*"+5"*) · Intimidação +2
+- **Recursos:** Saúde, Stamina e Éter **em branco**; Armadura em branco. Recurso de classe: Concentração ([[Artilheiro]])
 - **Equipamentos:** Adagas do Cangaceiro +2 (3d4+Des, +5 Atacar, 1 Ação) ×1
-- **Bugigangas:** Mochila Reforçada · Cantil · Kit de Ferramentas Básico · Comida ×2 · Conjuntos de Arremesso ×3 (munição: 1 unidade por combate — B2)
-- **Técnicas Gerais:** Concentração (recurso de classe; máx 3+Mod.SAB) · Frieza · Balas de Ferro · Batida Tática · Foco Absoluto · Tiro na Cabeça · Ponto Vital · Tiro de Reflexo
-- **Ramo T1:** Mãos Velozes · Passo do Vento · Vendaval de Aço · **T2:** Projétil Envenenado · Dança da Morte
-- **Diversas:** Nômade · Persistência Humana · Estilo de Vida: Rebelde
+- **Bugigangas:** Mochila Reforçada · Cantil · Kit de Ferramentas Básico · Comida ×2 · Conjuntos de Arremesso ×3 ([[Armas e Munição]])
+- **Técnicas Gerais:** Concentração · Frieza · Balas de Ferro · Batida Tática · Foco Absoluto · Tiro na Cabeça · Ponto Vital · Tiro de Reflexo
+- **Ramo, Tier 1:** Mãos Velozes · Passo do Vento · Vendaval de Aço — **Tier 2:** Projétil Envenenado · Dança da Morte
+- **Diversas:** Nômade ([[Jornada]]) · Persistência Humana · Estilo de Vida: Rebelde
 - **Marcas:** Colecionador de Lâminas · Inquieto (+5 iniciativa)
-- **Cartas do [[O Limiar (cartas)|Limiar]]** (8 declaradas, 7 listadas): +2 Atributo (+2 Destreza) · +2 Atributo (+1 DES, +1 SAB) · Lâmina Fantasma · Terceiro Olho · Velocista Umbral · Predador Supremo · Pulmões Titânicos (+40 hp)
-- **História e Grimório:** vazios na ficha.
-Texto integral: [[Artilheiro]], raw `sessao_os5_azgar.md`.
+- **Cartas d'[[O Limiar (cartas)|O Limiar]]** — a folha declara oito e lista sete: +2 Atributo (+2 Destreza) · +2 Atributo (+1 DES, +1 SAB) · Lâmina Fantasma · Terceiro Olho · Velocista Umbral · Predador Supremo · Pulmões Titânicos (+40 hp)
+- **História e Grimório:** em branco
 
-## Segundo o Pedro (2026-09-05)
-- **A9 (verbatim):** *"Kirkushav planejava assassinar a família Sandgale, já que eles conseguiram o impossível, sobreviver em Ossyria. Kirkushav fazia questão de mandar exilados para lá, que acabavam morrendo com a própria hostilidade da região, no entanto, o batedor de Kirkushav foi derrotado por eles e Kirkushav agora tenta manipular Azgar dizendo que o Batedor era designado a retorna-los a civilização de volkrest. Quem realmente matou o batedor, foi o pai de Azgar, Terk."*
-- **A15:** Azgar é o integrante de [[Ossyria]].
-- **B9:** Concentração do Artilheiro (máx 3+Mod.SAB, técnicas custam 5, Marca 6+) é intencional; *"execução é o inimigo"*.
-- **B2:** *"Munições são gastas por combate, 1 unidade por combate inteiro"* — os Conjuntos de Arremesso seguem essa regra.
-- **B17:** ficha desatualizada; recursos vazios a preencher. **B16:** "Intimidar" = Intimidação.
+Texto integral das técnicas em [[Artilheiro]].
 
 ## Relações
-- **Origem** → [[Ossyria]]; **família** → [[Família Sandgale]]; **pai** → [[Terk Sandgale]] (desaparecido)
-- **Exilado por / alvo de** → [[Kirkushav Drekar]] ([[Império de Ferro]]) — plano de assassinato (A9)
-- **Matou (segundo Kirkushav)** → o Batedor de Kirkushav — na verdade morto por Terk
-- **Chegou a** → [[Volkrest]] (navio imperial; tripulação de [[Humano]]s, [[Gruto]]s e [[Anão|Anões]])
-- **Equipe** → [[Equipe desfloreio]] ([[Sessão 0]]) com [[Vorn Drekar]], [[Klaus von Aldric]], [[Sinikko Kiriam (PJ)]], [[Runa Skorn]]
-- **Raça / Classe / Origem** → [[Humano]] · [[Artilheiro]] · Exilado ([[Origens]])
-- **Recurso de classe** → Concentração; **munição** → [[Armas e Munição]]
-- **Regras de viagem** → [[Jornada]] (Nômade)
-- **Frase-eco** → *"um peão que aguarda o momento certo ainda pode mudar o jogo"* (mesma imagem de [[Sinikko Kiriam (PJ)]])
-- **Destino** → "morto" n'[[A Vhelor]]
+- **Origem** → [[Ossyria]]; **família** → [[Família Sandgale]]; **pai** → [[Terk Sandgale]], desaparecido na tempestade
+- **Marcado para morrer por** → [[Kirkushav Drekar]] ([[Império de Ferro]]), que planejava exterminar os Sandgale
+- **Acusado de matar** → o Batedor de Kirkushav — obra de Terk, não dele
+- **Resgatado por** → um navio imperial de [[Humano]]s, [[Gruto]]s e [[Anão|anões]], rumo a [[Volkrest]]
+- **Equipe** → [[Equipe desfloreio]] ([[Sessão 0]]), com [[Vorn Drekar]], [[Klaus von Aldric]], [[Sinikko Kiriam (PC)|Sinikko Kiriam]] e [[Runa Skorn]]
+- **Raça · Classe · Origem** → [[Humano]] · [[Artilheiro]] · Exilado ([[Origens]])
+- **Regras que o definem em jogo** → [[Artilheiro]] (Concentração) · [[Armas e Munição]] · [[Jornada]]
+- **Eco de frase** → *"um peão que aguarda o momento certo ainda pode mudar o jogo"*, a mesma imagem que [[Sinikko Kiriam (PC)|Sinikko]] usa
+- **Destino** → *"morto"* n'[[A Vhelor]]
 
 ## Linha do tempo
-- **Bebê (antes de −32):** levado a Ossyria por Terk exilado.
-- **Infância/juventude:** treino; caçadas; dogma.
-- **Pouco antes de −27:** Terk mata o Batedor; confissão; tempestade; Terk some; canoa; navio imperial; ascensão no Império; audiência com Kirkushav.
-- **−27** ([[Sessão 0]]): chantagem do Batedor; entra n'A Vhelor; "morre".
-- **0:** destino de Terk em aberto.
+- **Ainda bebê:** [[Terk Sandgale]] é exilado e o leva consigo para [[Ossyria]].
+- **Infância e juventude:** o treinamento diário, as caçadas, o dogma.
+- **Pouco antes de `C−27`:** Terk mata o Batedor e confessa o exílio; vem a tempestade; Terk desaparece; a canoa, o navio, a ascensão no Império e a audiência com Kirkushav.
+- **`C−27`** ([[Sessão 0]]): a chantagem do Batedor na mesa redonda; entra n'[[A Vhelor]] e "morre".
+- **`C`:** o paradeiro de Terk continua sem resposta.
 
-## Conflitos e pendências
-1. **Digest F inc. 2** (quem matou o Batedor) — **resolvido A9**: manipulação de Kirkushav.
-2. **Terk vivo?** Não respondido. Pergunta nova.
-3. **Crime de Terk** (*"penitência apenas minha"*) — não escrito. Pergunta nova.
-4. **Ficha:** recursos vazios; história vazia; "8 cartas" mas 7 listadas; Intimidar → Intimidação. B17 autoriza atualizar.
-5. **Idiomas:** só Comum — plausível (Ossyria isolada); a confirmar.
+## Pontas soltas
+1. **Terk está vivo?** Ele sumiu, não morreu — e nem o filho nem o Império sabem o que a tempestade deixou de pé. ([[Perguntas Abertas]] E20)
+2. **Qual foi o crime de Terk?** Ele fala de *"penitência apenas minha"* e nunca diz o que fez para ser despejado em Ossyria. ([[Perguntas Abertas]] E20)
+3. **A tempestade de areia** *"grande demais para ser obra da natureza"* — obra de quem, e ligada a quê? ([[Perguntas Abertas]] E21)
+4. **Um só idioma.** Azgar fala apenas [[Comum]], o que é plausível para quem cresceu isolado em Ossyria, mas nunca foi confirmado como escolha.
+5. **A ficha** precisa de recursos calculados, história preenchida e da oitava carta que a contagem promete. ([[Perguntas Abertas]] E32)
 
-## Fonte
-- Notion: PJ `33e6e3a401d9814caa28c26a3a66e84c`; Ficha `37a6e3a401d980a193bde996278a535a`; Roteiro.
-- Raw: `sessao_os5_azgar.md`, `sessao_roteiro.md`; digest F §2, inc. 2, 19; `respostas_pedro_2026-09-05.md` A9.
+## Procedência
+- Notion — página de PC *Azgar Sandgale* `33e6e3a401d9814caa28c26a3a66e84c` (🟢, ed. 2026-06-09) · *📜 Ficha - Azgar Sandgale* `37a6e3a401d980a193bde996278a535a` (🟢, ed. 2026-07-18) · *Roteiro da Sessão 0* `33e6e3a401d9819796c9dfb2263e215d`
+- Mestre, 2026-09-05 — A9 (o plano contra os Sandgale e a mentira sobre o Batedor, verbatim acima) · A15 (Azgar representa Ossyria) · B9 (a Concentração do Artilheiro é dura de propósito — registrado em [[Artilheiro]]) · B2 (munição por combate — registrado em [[Armas e Munição]]) · B16 ("Intimidar" → Intimidação) · B17 (autorização para refazer a ficha)
+- Digest `docs/memoria/digests/F_sessoes_outros.md` §2, incidentes 2 e 19
+- Bruto em `docs/memoria/notion_raw/sessao_os5_azgar.md`

@@ -4,69 +4,102 @@ status: canon-pedro
 spoiler: gm
 era: campanha
 continente: Kharavel
-aliases: ["Lena", "a Dryad de Alvak", "o coração puro", "a Sonhadora pura"]
-fonte_notion: [3696e3a401d981969032ea2fcf0b406e, 33e6e3a401d98103af5ef241c6512d02, 33e6e3a401d981f68258f6a0be896c08, 33e6e3a401d98126bae4e981b581487f, 33f6e3a401d980dd982ad39fcba2ed4e, pedro-2026-09-05]
-ultima_sync: 2026-09-05
+aliases: ["Lena", "a Dryad de Alvak", "a filha do ferreiro", "o coração puro", "a Sonhadora pura"]
+fonte_notion: [3696e3a401d981969032ea2fcf0b406e, 33e6e3a401d98103af5ef241c6512d02, 33e6e3a401d981f68258f6a0be896c08, 33e6e3a401d98126bae4e981b581487f, 33f6e3a401d980dd982ad39fcba2ed4e, pedro-2026-09-05, pedro-2026-09-07]
+ultima_sync: 2026-09-07
 tags: [khalkaria/continentes/kharavel/seres/npcs]
 ---
 # Lena Skarv
 
-**Resumo.** [[Dryad]] jovem do povo [[Skarv]], **15 anos**, *"a única criatura de Kharavel que possui um coração puro"* (A6). Vive em [[Khaskavel]] sob proteção do ferreiro [[Alvak Krichama]], que a trata como filha, escondendo a natureza Dryad. É a **kryptonita** de [[A Vhelor]]: um [[O Sonhador|Sonhador]] de coração verdadeiramente puro decompõe a árvore de dentro para fora — entregá-la é *"a solução óbvia que funciona com preço alto demais"*. Segundo o Pedro (A6), ela é *"produto de um plano secreto entre [[Vytália]] e [[Karmath]], após [[Velúria]] deixar escapar que descobriu através da trama como derrotar a árvore"* (o Notion atribui o plano a Velúria). Resgatada por Alvak enquanto fugia de dois soldados da [[Vanguarda Serafélia]], que ele executou. *"Quieta, observadora, com uma serenidade incomum."*
+**Resumo.** [[Dryad]] do povo [[Skarv]], **trinta e cinco anos**, e *"a única criatura de Kharavel que possui um coração puro"*. Sobreviveu ao ataque que apagou sua gente do [[Vilarejo Skarv]], correu sozinha pela floresta com dois soldados da [[Vanguarda Serafélia]] atrás e foi salva aos seis anos por [[Alvak Krichama]], que a criou como filha em [[Arrma Boua]] e a esconde no meio de [[Khaskavel]], cidade que despreza os nativos. Não é acidente: Lena é *"produto de um plano secreto entre [[Vytália]] e [[Karmath]]"*, forjado depois que [[Velúria]] deixou escapar como se derrota [[A Vhelor]]. Um [[O Sonhador|Sonhador]] de coração verdadeiramente puro não dá pecado nenhum à árvore, e a árvore morre de fome por dentro — o que faz de Lena a única chave conhecida da maldição de [[Kharavel]], e a *"solução óbvia que funciona com preço alto demais"*.
 
-## Cânone (Notion)
+## A conta dos anos
 
-### Página Lena Skarv (🟡, ed. 2026-05-23)
-> **Plano de Velúria** — A pureza de Lena não é acidental. Velúria, a deusa da magia, abençoou Lena estrategicamente com magia purificadora extremamente forte — provavelmente ainda quando era criança no Vilarejo Skarv, antes mesmo do ataque que a deixou órfã. Lena é peça meticulosamente colocada por Velúria no tabuleiro de Kharavel.
-> A intenção de Velúria com Lena: usá-la como instrumento para destruir a Grande Árvore. Como a Árvore se sustenta do sangue de seu Sonhador, decompô-la por inanição requer que alguém de coração genuinamente puro entre nela e assuma o papel — alguém que a Árvore não consiga extrair pecado. Lena, abençoada com pureza, é candidata ideal.
-> Há indícios de que Velúria também manipulou o destino de Alvak: aquela "caminhada rotineira" há 25 anos talvez tenha sido sutilmente guiada para que ele encontrasse Lena ferida na floresta. Sabendo do luto pela filha biológica perdida, Velúria pode ter usado o ferreiro como cuidador acidental do plano — uma cola emocional que prenderia Lena em segurança até a hora certa.
-> Lena pode ser feiticeira no grupo dos PCs, com resiliência moderada (não morre fácil, mas pode morrer). Sua presença coloca os jogadores em dilema crescente: conforme aprendem sobre o plano de Velúria e veem a Grande Árvore continuar corrompendo, percebem que entregar Lena à Árvore pode ser a única solução para salvar o continente. Alvak se oporá ferozmente — e essa oposição pode despertar nele poder de Karmath (deusa da justiça) contra a manipulação que Velúria exerceu sobre sua vida.
-> O verdadeiro **true ending** da campanha (a profecia do novo Kha-mortal no Templo da Profecia) deve permanecer extremamente velado, oferecido como alternativa real apenas a jogadores muito atentos. O sacrifício de Lena é a "solução óbvia que funciona com preço alto demais" — a profecia é a saída elegante que poucos descobrirão.
-> Lena é uma Dryad jovem, atualmente com 15 anos de idade. Sobrevivente do ataque ao Vilarejo Skarv ordenado por Sinikko (clone) durante a campanha de homogenia de Khaskavel. Fugiu sozinha pela floresta após o ataque e foi encontrada por Alvak Krichama, o ferreiro, durante uma caminhada rotineira há 2 anos. Tinha 13 anos quando foi resgatada.
-> Desde então vive sob proteção de Alvak, que a tratou como filha em substituição à própria filha biológica perdida no Império de Ferro antes da imigração. A relação entre os dois é o vínculo emocional mais forte da vida atual de Alvak.
-> **Aparência** — Dryad de pequena estatura, traços jovens. Como Dryad, carrega características naturais da raça — galhadas pequenas, conexão instintiva com a natureza, capacidade de falar o idioma Natural.
-> **Personalidade** — Marcada pela perda mas não destruída por ela. Quieta, observadora, com uma serenidade incomum para alguém da idade dela e do que viveu. Demonstra afeto profundo por Alvak e curiosidade pelo mundo apesar das circunstâncias.
-> **Status na Campanha** — No início da campanha principal, Lena vive em Khaskavel sob proteção de Alvak. Esconde sua natureza Dryad o melhor que pode, dado o ambiente hostil da cidade contra povos nativos.
-> Lena é peça central de um dos arcos narrativos principais da campanha — detalhes adicionais sobre seu papel estratégico estão em seção separada.
+Dryads vivem mais que humanos, e a de Alvak já não é criança nenhuma. Na campanha Lena tem **trinta e cinco anos**; tinha **oito** na [[Sessão 0]], quando [[Sinikko Kiriam (original)|Sinikko]] a viu pela primeira vez na forja; tinha **seis** quando Alvak a tirou da floresta, dois anos antes daquela expedição. São vinte e nove anos debaixo do mesmo teto.
 
-### Direcionamento §4 · O Sonhador
+Os registros mais antigos da cidade contam outra aritmética — quinze anos hoje, treze no resgate, dois anos de convivência — e é dela que vem o hábito de tratá-la como menina. A idade acima é a que vale; onde os registros dizem *"jovem"*, leia-se jovem para uma dryad.
+
+## O coração puro
+
 > A kryptonita da grande árvore é um sonhador com coração verdadeiramente puro, pois assim não há pecado para se extrair do prisioneiro.
 > Um sonhador de coração perfeitamente puro é o único jeito de decompor a árvore, de dentro pra fora.
 
-### Hadran Vorgil (gancho 3)
-> Hadran pode cruzar a linha em algum ponto da campanha — abandonar a base, sequestrar Lena ou Lázlo, atacar PCs que se oponham ao seu plano.
+O casulo no cerne da [[A Vhelor]] abriga sempre uma criatura, e quanto mais maligna ela for, mais a árvore engorda com seus pecados e mais viciosas ficam as substâncias que escorrem dela. Entregar um coração limpo àquele casulo é cortar a comida:
 
-## Segundo o Pedro (2026-09-05)
-- **A6 (verbatim, trecho):** *"Um certo dia, caminhando na floresta ele avista uma Dryad, do vilarejo Skarv, fugir de 2 Soldados da Vanguarda Serafélia, em um estado de extase raivosa, Alvak determina-se a salvar a garota, e combate os 2 guardas, executando-os logo em seguida. Alvak leva Lena até "Arrma Boua" e os dois aceitam viver conjuntamente. Na sessão, sinikko vai até a ferraria e avista a garota, Alvak explica a situação pro imperador, que se solidariza pela perda da filha e permite que uma indigena viva em sua cidade imperialista. Lena, é a única criatura de Kharavel que possui um coração puro, ela é produto de um plano secreto entre Vytália e Karmath, após Velúria deixar escapar que descobriu através da trama como derrotar a árvore. O Sonhador, é um cásulo no cerne da árvore que sempre abriga 1 criatura. Quanto mais maligna a criatura, mais a árvore se alimenta dos seus pecados e cresce mais rápido e suas substâncias ficam mais viciosas e corruptíveis. Entregar uma criatura com coração verdadeiramente puro, destroi a árvore de dentro para fora, libertando Kharavel da maldição."*
-- **A12:** Dryad = *"metade humano e metade qualquer animal à sua escolha"* — o animal de Lena não está escrito ("galhadas pequenas" sugere cervídeo, como [[Yu]]).
-- **A16:** o true ending é o expurgo de Malkhor via o [[Primórdio]] — a saída "elegante" que evita o sacrifício de Lena passa por [[Karma]] e pelo [[Templo da Profecia]].
-- **A18:** itens de Vytália *"exigem que o usuário não tenha sido corrompido pela árvore"* — Lena, sem [[Marca da Vhelor]], é usuária ideal.
+> Entregar uma criatura com coração verdadeiramente puro, destroi a árvore de dentro para fora, libertando Kharavel da maldição.
+
+A pureza de Lena foi posta nela de propósito. Duas deusas armaram o plano quando souberam o que a terceira havia descoberto:
+
+> Lena, é a única criatura de Kharavel que possui um coração puro, ela é produto de um plano secreto entre Vytália e Karmath, após Velúria deixar escapar que descobriu através da trama como derrotar a árvore.
+
+Nos registros de Khaskavel a autoria é de [[Velúria]] sozinha, que a teria abençoado *"com magia purificadora extremamente forte — provavelmente ainda quando era criança no Vilarejo Skarv, antes mesmo do ataque que a deixou órfã"*, e que também teria guiado a caminhada de Alvak *"para que ele encontrasse Lena ferida na floresta"*, usando o ferreiro como *"uma cola emocional que prenderia Lena em segurança até a hora certa"*. A intenção descrita ali é a mesma; a autoria é de Vytália e Karmath.
+
+## Do vilarejo à forja
+
+> Sobrevivente do ataque ao Vilarejo Skarv [...] Fugiu sozinha pela floresta após o ataque e foi encontrada por Alvak Krichama, o ferreiro, durante uma caminhada rotineira.
+
+> Um certo dia, caminhando na floresta ele avista uma Dryad, do vilarejo Skarv, fugir de 2 Soldados da Vanguarda Serafélia, em um estado de extase raivosa, Alvak determina-se a salvar a garota, e combate os 2 guardas, executando-os logo em seguida. Alvak leva Lena até "Arrma Boua" e os dois aceitam viver conjuntamente.
+
+Dois anos depois, o imperador em pessoa entra na ferraria e dá de cara com ela:
+
+> Na sessão, sinikko vai até a ferraria e avista a garota, Alvak explica a situação pro imperador, que se solidariza pela perda da filha e permite que uma indigena viva em sua cidade imperialista.
+
+## Como ela é
+
+> Dryad de pequena estatura, traços jovens. Como Dryad, carrega características naturais da raça — galhadas pequenas, conexão instintiva com a natureza, capacidade de falar o idioma Natural.
+
+> Marcada pela perda mas não destruída por ela. Quieta, observadora, com uma serenidade incomum para alguém da idade dela e do que viveu. Demonstra afeto profundo por Alvak e curiosidade pelo mundo apesar das circunstâncias.
+
+Sendo dryad metade humana e metade de um animal à escolha, as galhadas apontam para cervídeo — a mesma linhagem de [[Yu]], a metade-cerva que lidera os Skarv. Fala [[Natural]], a língua dos animais e das dryads, o que em Khaskavel é confissão de origem.
+
+## Escondida na cidade errada
+
+> No início da campanha principal, Lena vive em Khaskavel sob proteção de Alvak. Esconde sua natureza Dryad o melhor que pode, dado o ambiente hostil da cidade contra povos nativos.
+
+Vive no ponto exato onde os planos se cruzam: dentro da capital do [[Culto de Malkhor]], sob o teto do homem que arma a guarnição que matou sua gente, a poucas horas da árvore que só ela pode matar.
+
+## O que se faz com ela
+
+Lena pode andar com o grupo — *"pode ser feiticeira no grupo dos PCs, com resiliência moderada (não morre fácil, mas pode morrer)"* — e é justamente a convivência que transforma o plano divino em tortura:
+
+> Sua presença coloca os jogadores em dilema crescente: conforme aprendem sobre o plano [...] e veem a Grande Árvore continuar corrompendo, percebem que entregar Lena à Árvore pode ser a única solução para salvar o continente. Alvak se oporá ferozmente.
+
+> O sacrifício de Lena é a "solução óbvia que funciona com preço alto demais" — a profecia é a saída elegante que poucos descobrirão.
+
+A saída elegante é o segredo do [[Templo da Profecia]]: derrotar o [[Sinikko Kiriam (clone)|clone]], atravessar a brecha aberta por [[Karma]] e expurgar [[Malkhor]] no [[Primórdio]] — ver [[Campanha 1 — Arco]]. Enquanto isso, sendo criatura sem [[Marca da Vhelor]], Lena é a portadora ideal dos artefatos de [[Vytália]], que *"exigem que o usuário não tenha sido corrompido pela árvore"*.
 
 ## Relações
-- **Raça / povo** → [[Dryad]] · [[Skarv]] ([[Vilarejo Skarv]]) · idioma [[Natural]]
-- **Pai adotivo** → [[Alvak Krichama]] · **casa** → [[Arrma Boua]], [[Khaskavel]]
-- **Criada pelo plano de** → [[Vytália]] + [[Karmath]] (A6) — Notion: [[Velúria]] ("magia purificadora")
-- **Permitida na cidade por** → [[Sinikko Kiriam (original)]] (A6 — ver pendência)
-- **Órfã pelo ataque de** → [[Sinikko Kiriam (clone)]] / [[Vanguarda Serafélia]] · perseguida por 2 soldados Serafélia (A6)
-- **Destino possível** → [[O Sonhador]] em [[A Vhelor]] (substituir o [[Sinikko Kiriam (original)]])
-- **Alternativa** → [[Templo da Profecia]] · [[Kha]] (novo Kha-mortal) · [[Campanha 1 — Arco]]
-- **Ameaças** → [[Hadran Vorgil]] (sequestro, gancho) · [[Culto de Malkhor]] · [[Malkhor]]
-- **Classe potencial** → feiticeira ([[Teurgo]]) no grupo dos PJs
-- **Deusas envolvidas** → [[Vytália]] · [[Karmath]] · [[Velúria]]
+- **Raça e povo** → [[Dryad]] · [[Skarv]] · natural do [[Vilarejo Skarv]] · fala [[Natural]]
+- **Pai adotivo** → [[Alvak Krichama]] · **casa** → [[Arrma Boua]], em [[Khaskavel]]
+- **Criada pelo plano de** → [[Vytália]] e [[Karmath]]; nos registros da cidade, de [[Velúria]]
+- **Tolerada na cidade por** → [[Sinikko Kiriam (original)]]
+- **Órfã por** → um ataque ao [[Vilarejo Skarv]] · perseguida por dois soldados da [[Vanguarda Serafélia]]
+- **Líder do seu povo** → [[Yu]] (relação pessoal entre as duas nunca escrita)
+- **Destino possível** → [[O Sonhador]] dentro da [[A Vhelor]], no lugar de [[Sinikko Kiriam (original)]]
+- **Alternativa ao sacrifício** → [[Templo da Profecia]] · [[Kha]] · [[Karma]] · [[Primórdio]] · [[Campanha 1 — Arco]]
+- **Ameaças** → [[Sinikko Kiriam (clone)]] e o [[Culto de Malkhor]] · [[Hadran Vorgil]], que pode sequestrá-la · [[Malkhor]]
+- **Portadora ideal de** → artefatos de [[Vytália]] (sem [[Marca da Vhelor]])
+- **Papel possível na mesa** → feiticeira ([[Teurgo]]) junto ao grupo
+- **Eventos** → [[Sessão 0]] · [[Linha do Tempo]]
 
 ## Linha do tempo
-- **−15:** nasce no Vilarejo Skarv (se tem 15 no ano 0).
-- **Infância:** abençoada (Notion: por Velúria; A6: plano Vytália+Karmath).
-- **−2 (Notion):** ataque ao vilarejo → foge → resgatada por Alvak aos 13. **A6 situa a chegada a Arrma Boua "na sessão"** — ver pendência 1.
-- **0** (campanha): 15 anos, em Khaskavel, escondida.
+- **−35:** nasce no [[Vilarejo Skarv]].
+- **Infância:** recebe a bênção que a torna de coração puro.
+- **−29:** o ataque ao vilarejo; foge sozinha pela floresta e é salva por [[Alvak Krichama]], aos seis anos, de dois soldados da [[Vanguarda Serafélia]].
+- **−27** ([[Sessão 0]]): aos oito, é vista pelo imperador na forja e autorizada a viver em [[Khaskavel]].
+- **0** (campanha): trinta e cinco anos, escondida na cidade, sob proteção de Alvak.
 
-## Conflitos e pendências
-1. **Cronologia (nova):** Notion — 15 anos, resgatada há 2 anos aos 13; Alvak — *"há 25 anos"* / *"Por 25 anos"*; **A6** — *"Na sessão, sinikko vai até a ferraria e avista a garota"* (Sessão 0 = −27?). Três datas incompatíveis. **Pergunta ao Pedro:** quando Lena chegou a Arrma Boua e que idade tem no ano 0? A cena com Sinikko é da Sessão 0 ou de uma sessão futura?
-2. **Quem a perseguia:** ataque ao vilarejo (Lena) · 2 grutos selvagens (Alvak) · **2 soldados Serafélia (A6)**. Pedro prevalece; ambas as páginas pendentes.
-3. **Autor do plano:** Velúria (Notion) × **Vytália + Karmath (A6)**. Pedro prevalece; a página inteira "Plano de Velúria" precisa ser reescrita, e o gancho "Karmath contra Velúria" perde sentido (Karmath é co-autora). **E-fidelidade A6.**
-4. **"seção separada"** sobre o papel estratégico — não encontrada no Notion; provavelmente é a própria seção "Plano de Velúria".
-5. **Animal da Dryad** (A12) não escrito; "galhadas pequenas" (Notion) sugere cervo.
-6. Sem ficha (Notion sugere *"resiliência moderada"*).
+## Pontas soltas
+1. **Quem ordenou o ataque que a deixou órfã.** Os registros o atribuem ao [[Sinikko Kiriam (clone)|clone]], *"durante a campanha de homogenia de Khaskavel"* — mas o clone só existe depois da [[Sessão 0]], e o ataque é anterior a ela. O mandante teria de ser o [[Sinikko Kiriam (original)|original]], o mesmo imperador que depois a acolhe. ([[Perguntas Abertas]] E18, agora restrita a este ponto.)
+2. **Que animal é a metade dela.** Dryad é metade humano e metade um animal à escolha; o de Lena nunca foi dito, e *"galhadas pequenas"* é o único indício.
+3. **A "seção separada"** que os registros prometem sobre o papel estratégico dela nunca apareceu — é, ao que tudo indica, a própria passagem sobre o plano das deusas.
+4. **O que acontece com ela se o grupo escolher a saída elegante.** O expurgo de [[Malkhor]] poupa Lena, mas ninguém escreveu o que sobra da [[A Vhelor]] nem do casulo depois disso. ([[Perguntas Abertas]] E34.)
+5. **Ela sabe?** Nada foi escrito sobre Lena ter consciência da própria pureza, do plano das deusas ou do que se espera dela.
+6. **Descrições que ainda a tratam como criança** — *"pequena estatura"*, *"traços jovens"*, *"serenidade incomum para alguém da idade dela"* — vêm da contagem antiga de quinze anos. Continuam válidas como retrato de uma dryad jovem, mas convém não lê-las como retrato de uma menina.
 
-## Fonte
-- Notion: Lena `3696e3a401d981969032ea2fcf0b406e` · Alvak `33e6e3a401d98103af5ef241c6512d02` · Vilarejo Skarv `33e6e3a401d981f68258f6a0be896c08` · O Sonhador `33e6e3a401d98126bae4e981b581487f` · Direcionamento `33e6e3a401d98190a21ae6c430acbc38` · Templo `33f6e3a401d980dd982ad39fcba2ed4e`
-- Raw: `notion_raw/lore_kharavel_npcs.md`, `lore_kharavel_sonhador.md`, `lore_kharavel_direcionamento.md` · Pedro A6, A12, A16, A18 · Fidelidade A6 · Digest `E_lore.md` §6 item 11
+## Procedência
+- Notion — *Lena Skarv* `3696e3a401d981969032ea2fcf0b406e` (🟡, ed. 2026-05-23) · *Alvak Krichama* `33e6e3a401d98103af5ef241c6512d02` · *Vilarejo Skarv* `33e6e3a401d981f68258f6a0be896c08` · *O Sonhador* `33e6e3a401d98126bae4e981b581487f` · *Direcionamento* `33e6e3a401d98190a21ae6c430acbc38` §4 · *Templo da Profecia* `33f6e3a401d980dd982ad39fcba2ed4e` · *Hadran Vorgil* (gancho de sequestro)
+- Mestre, 2026-09-05 — A6 (o coração puro, o plano de Vytália e Karmath, o resgate, verbatim) · A12 (dryad = metade humano, metade animal) · A16 (o true ending como alternativa ao sacrifício) · A18 (artefatos de Vytália exigem usuário não corrompido)
+- Mestre, 2026-09-07 — **correção de idade**: dryads vivem mais que humanos; Lena tem trinta e cinco anos na campanha, oito na Sessão 0 e seis no resgate, dois anos antes da expedição. Substitui "quinze anos", "resgatada há dois anos" e "tinha treze anos"
+- Relatório de fidelidade 2026-09-05 (A6) · digest `docs/memoria/digests/E_lore.md` §6 item 11
+- Brutos em `docs/memoria/notion_raw/lore_kharavel_npcs.md`, `lore_kharavel_sonhador.md`, `lore_kharavel_direcionamento.md`

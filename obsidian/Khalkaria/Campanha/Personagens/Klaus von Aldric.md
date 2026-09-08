@@ -1,19 +1,20 @@
 ---
-tipo: pj
+tipo: pc
 status: canon-notion
 spoiler: gm
 era: sessao0
 continente: Mordval
 aliases: ["Klaus", "A Maldição Justa", "o monge amaldiçoado", "o justiceiro"]
 fonte_notion: [33e6e3a401d9810ca145d41242d235b0, 35f6e3a401d9802b9ac3cf1307281197, 33e6e3a401d9819796c9dfb2263e215d, 3696e3a401d98127a568c856497d9ce6, pedro-2026-09-05]
-ultima_sync: 2026-09-05
+ultima_sync: 2026-09-07
 tags: [khalkaria/campanha, khalkaria/campanha/personagens]
 ---
 # Klaus von Aldric
 
-**Resumo.** "A Maldição Justa". Nascido lavrador na periferia de [[Mordval]], aliciado ainda adolescente para um monastério de [[Aether]] e transformado pelos rituais de [[Os Hax]] num [[Corrompido]] soldado. Tocou um artefato divino e *"acordou"*: carrega uma **compulsão física de justiça** que *"seu próprio corpo agora obedece antes da mente decidir"*. Fugiu, foi orientado por [[Kheyos]] (também corrompido), voltou a Mordval e encontrou os pais mortos pelos Hax; foi a [[Volkrest]] atrás de Kheyos, foi preso como justiceiro e comprado por [[Kirkushav Drekar]] com liberdade e informações. [[Monge]] (Punho), Origem Escravo. Representa Mordval na [[Equipe desfloreio]]. "Morreu" n'[[A Vhelor]] na [[Sessão 0]].
+**Resumo.** "A Maldição Justa". Nasceu lavrador na periferia de [[Mordval]], num aglomerado de ilhas que ninguém se deu ao trabalho de nomear; foi aliciado ainda adolescente para um monastério de [[Aether]] e transformado pelos rituais de [[Os Hax]] num [[Corrompido]], soldado de um exército de que quase não se lembra. Numa missão de transporte tocou um artefato divino e *"acordou"*: desde então carrega uma compulsão física de justiça, uma lei *"que seu próprio corpo agora obedece antes da mente decidir"*. Fugiu, foi orientado na estrada por [[Kheyos]] — também corrompido —, voltou a Mordval e encontrou os pais assassinados pelos Hax, e seguiu para [[Volkrest]] atrás do único homem em quem confiava. Preso na capital por defender os fracos, foi comprado por [[Kirkushav Drekar]] com liberdade, migalhas de passado e a promessa de ajuda para achar Kheyos. [[Monge]] do ramo Punho, Origem Escravo, personagem de jogador (**PC**) da [[Sessão 0]] e a voz de Mordval na [[Equipe desfloreio]]. *"Morreu"* n'[[A Vhelor]].
 
-## Cânone (Notion) — História (página PJ, 🟡, ed. 2026-07-17, verbatim)
+## História
+
 > **Klaus von Aldric — A Maldição Justa**
 > Klaus von Aldric cresceu na periferia de Mordval, num aglomerado de ilhas que o resto do continente fragmentado nem se daria ao trabalho de nomear. Família de aldeões, subsistência, lavoura — uma vida honesta e completamente errada para um garoto com a alma de Klaus. Desde cedo compensava a monotonia escapando de canoa quase toda noite para tavernas e vilas de outras ilhas, conhecendo estranhos e novas penínsulas. Não era imprudência, era necessidade. Tinha um jeito de se enturmar que a maioria nunca desenvolve: sabia ouvir, sabia falar na hora certa, sabia fazer qualquer desconhecido se sentir como velho conhecido.
 > Numa dessas noites, um homem carismático o abordou com uma proposta simples — recuperar um objeto num monastério abandonado no continente de Aether. A viagem era longa, mas o pagamento era justo, risco zero, trabalho rápido. O homem conhecia detalhes demais sobre Klaus, alegava conhecer sua mãe e descreveu detalhes sobre sua vida que nenhum estranho conseguiria. Naquele momento isso pareceu reconfortante. Sem pensar muito, Klaus fechou o acordo e seguiu junto de uma embarcação paga pelo desconhecido até o monastério oculto. Passou por maus bocados em sua jornada, enfrentou o frio, a fome e até mesmo rivalidades que teve que superar. Chegando lá, ficou impressionado com a arquitetura e grandiosidade do templo, como um menino que gosta de aventuras ficaria. A felicidade rapidamente revelou ser seu maior erro após ser emboscado por criaturas horripilantes humanoides de pele corrompida. Klaus havia sido abduzido para servir o monastério, sendo mais uma vítima do clã Hax.
@@ -30,61 +31,69 @@ tags: [khalkaria/campanha, khalkaria/campanha/personagens]
 > Klaus chegou a Volkrest como homem sem passado, porém, determinado a encontrar Kheyos. No império de ferro, arrumava problemas com pessoas perigosas, a cidade da injustiça provocava o justiceiro a todo momento — exatamente o tipo de perfil que chama atenção demais. Após diversas batalhas protegendo os fracos explorados da capital, Klaus foi preso pela guarda da cidade. Seu nome, de boca a boca, chegou aos ouvidos de Kirkushav Drekar, o Soberano do Império do Ferro. O General-Imperador não é homem de desperdiçar recursos, e Klaus conhece certas estruturas por dentro de um jeito que poucos conseguem. A proposta foi direta: se aventurar em Kharavel com outras quatro almas em busca de um objetivo em comum. Em troca, sua liberdade, talvez algumas informações sobre seu passado e ajuda para encontrar Kheyos.
 > Para um homem tão perdido quanto Klaus, é uma oferta difícil de recusar.
 
-Nota do Notion: *"História na ficha = versão anterior; termina 'Em troca, sua liberdade — e talvez algumas informações sobre seu passado.' (sem 'ajuda para encontrar Kheyos')."*
+A versão guardada na própria folha de personagem é anterior e mais curta: termina em *"Em troca, sua liberdade — e talvez algumas informações sobre seu passado."*, sem a promessa de ajuda para encontrar Kheyos.
 
-### Na Sessão 0
-- Chantagem: *"Klaus, você é um criminoso, uma aberração de caos. O ato de um imperador absolver todos os crimes de um prisioneiro corrompido é simplesmente um milagre. Nós firmamos um acordo, mas me diga, sua liberdade é menos valiosa do que seu ego?"*
-- Hadran: *"viu Klaus von Aldric chegar amarrado"*.
-- Ironia do roteiro: Kirkushav aponta a equipe para o laboratório de um teurgo em [[Khaskavel]] ([[Casa Isolada]]) — o teurgo é [[Kheyos]], exatamente quem Klaus procura.
+## O homem que o encontrou na estrada
 
-## Ficha resumida — ⚠️ DESATUALIZADA (B17)
-Fonte: 📜 Ficha Klaus von Aldric `35f6e3a401d9802b9ac3cf1307281197`, 🟢, template 13/05/2026, ed. 2026-07-24.
-- Corrompido · Monge · Escravo · **Nível 4** · XP 0 · Limiar: 12
+[[Kheyos]] é a única figura estável na vida de Klaus, e o que ele é importa para o resto do mundo: um teurgo **mortal**, não semideus, corrompido como o próprio Klaus, que *"quer proteger o seu próprio plano da inconsequência e ingenuidade dos deuses"*. A preocupação obsessiva com o [[Império de Ferro]] que Klaus lembra dele — *"a nação mais sanguinária e por isso mais poderosa de Khalkaria"* — é a mesma agenda vista de perto.
+
+A explicação que ele dá sobre o artefato é a única teologia que Klaus tem: *"artefatos imbuídos pelos próprios deuses, que ao encontrarem as pessoas certas não as mudam, mas amplificam o que sempre esteve lá"*. Qual deus imbuiu aquele objeto, ninguém disse.
+
+## Na mesa redonda
+
+[[Hadran Vorgil]], que estava no castelo, *"viu Klaus von Aldric chegar amarrado"*. Quando o grupo hesita, [[Kirkushav Drekar]] lembra a Klaus quem paga sua liberdade:
+
+> Klaus, você é um criminoso, uma aberração de caos. O ato de um imperador absolver todos os crimes de um prisioneiro corrompido é simplesmente um milagre. Nós firmamos um acordo, mas me diga, sua liberdade é menos valiosa do que seu ego?
+
+A ironia da missão é que ninguém precisa contá-la a Klaus: o Soberano manda a equipe procurar informações com *"um teurgo"* que instalou laboratório numa das casas mais remotas de [[Khaskavel]] — a [[Casa Isolada]]. O teurgo é [[Kheyos]], exatamente o homem que ele atravessou dois continentes para achar.
+
+## Ficha
+
+> **Observação de mesa.** A folha está congelada no nível 4 e traz efeitos e nomes de versões antigas das regras. O mestre já autorizou refazê-la. Serve como retrato do personagem no dia da expedição.
+
+- [[Corrompido]] · [[Monge]] · Escravo · **Nível 4** · XP 0 · Limiar: 12
 - **Atributos:** FOR 10 (0) · DES 22 (+6) · CON 14 (+2) · INT 12 (+1) · SAB 16 (+3)
-- **Perícias:** Atacar +4 (*"+4+5 (Busca pela Perfeição)= 9"*) · Movimento +4 · Vontade +4 (*"+5 (Ápatico)"*) · Místico +2 · Convencer −2 · Intuição −2 · Enganar −2 · Motivar −2
-- **Recursos:** Saúde 32/32 · Stamina 112/112 · Éter 28/28 · Evasão Passiva 22, Ativa 22+3d6
-- **Armadura:** Ordinário/Ácido/Fogo/Gelo/Elétrico/Veneno/Psíquico = Vulnerável; Trovejante/Necrótico/Radiante/Força/Primordial = 5
+- **Perícias:** Atacar +4 (*"+4+5 (Busca pela Perfeição) = 9"*) · Movimento +4 · Vontade +4 (*"+5 (Ápatico)"*) · Místico +2 · Convencimento −2 · Intuição −2 · Enganação −2 · Motivar −2
+- **Recursos:** Saúde 32/32 · Stamina 112/112 · Éter 28/28 · Evasão Passiva 22, Ativa 22+3d6. Recurso de classe: FLUXO ([[Monge]])
+- **Armadura:** Ordinário, Ácido, Fogo, Frio, Elétrico, Veneno e Psíquico = Vulnerável; Trovejante, Necrótico, Radiante, Força e Primordial = 5 ([[Tipos de Dano]])
 - **Equipamentos:** Punhos do Limiar — *"3d12+1d6+7, Margem 18-20, Necrótico, ignora resist."*
 - **Técnicas Gerais:** Evasivo · Andar nas Paredes · Quebrar Guarda · Golpe Sequencial · Silêncio Interior · Purificar · Golpe das Mazelas
-- **Ramo T1 (Punho):** Punho Perfeito · Fluxo Marcial · Cadeia de Golpes · **T2:** Precisão Letal · Concentração do Mestre
-- **Diversas:** Liberdade · Ser Primordial · Receptáculo Natural (Santuário Menor, Estimulante Místico) · Sussurros · Natureza Dúbia · Grau de Corrupção(3)
-- **Marcas:** Busca Pela Perfeição (25 combates) · Ápatico (25 Criaturas)
-- **Magias:** N1 Estimulante Místico, Santuário, Onda gravitacional, Entender Ser · N2 Invocar Tempestade, Translocação Arcana
-- **Cartas do [[O Limiar (cartas)|Limiar]]:** Esquiva Abissal · Lâmina Fantasma · Sombra Dançante · Pontos Vitais · Lenda Monge · Velocista Umbral
-Divergências já mapeadas (digest F inc. 14–16): Esquiva Abissal *"3d6 em vez de d12"* × Limiar vivo *"+1 Nível de Treinamento em Defender… 1x/Curto"*; "Grau de Corrupção(3)" não existe na raça [[Corrompido]] viva (pontos de corrupção por nível); Punhos do Limiar +7 não fecha com DES+6/SAB+3. Texto integral: [[Monge]], raw `sessao_os5_klaus.md`.
+- **Ramo Punho, Tier 1:** Punho Perfeito · Fluxo Marcial · Cadeia de Golpes — **Tier 2:** Precisão Letal · Concentração do Mestre
+- **Diversas:** Liberdade · Ser Primordial · Receptáculo Natural (Santuário Menor, Estimulante Místico) · Sussurros · Natureza Dúbia · Grau de Corrupção (3)
+- **Marcas:** Busca Pela Perfeição (25 combates) · Ápatico (25 criaturas)
+- **Magias:** nível 1 — Estimulante Místico, Santuário, Onda Gravitacional, Entender Ser · nível 2 — Invocar Tempestade, Translocação Arcana
+- **Cartas d'[[O Limiar (cartas)|O Limiar]]:** Esquiva Abissal · Lâmina Fantasma · Sombra Dançante · Pontos Vitais · Lenda Monge · Velocista Umbral
 
-## Segundo o Pedro (2026-09-05)
-- **A15:** Klaus é o integrante de [[Mordval]].
-- **A7:** [[Kheyos]] é **mortal**, teurgo, não semideus de Karmath; *"proteger o seu próprio plano da inconsequência e ingenuidade dos deuses"* — coerente com o Kheyos que Klaus conhece (*"preocupação com o império de ferro"*).
-- **B17:** ficha desatualizada; **B8:** magias de nível 0 a criar tornam Receptáculo Natural coerente; **B16:** "Convencer/Enganar" → Convencimento/Enganação; **B1:** "Gelo" → Frio.
-- **A16:** Klaus "morreu" na árvore; status posterior não dito.
+Texto integral das técnicas em [[Monge]].
 
 ## Relações
-- **Origem** → [[Mordval]] (ilhas sem nome); pais assassinados por [[Os Hax]]
-- **Transformado por** → [[Os Hax]] ([[Aether]]) → raça [[Corrompido]]
-- **Despertado por** → artefato divino (*"imbuídos pelos próprios deuses"*; deus não dito)
-- **Mentor** → [[Kheyos]] (corrompido; laboratório na [[Casa Isolada]] em Khaskavel em −27)
-- **Preso e recrutado por** → [[Kirkushav Drekar]] ([[Império de Ferro]], [[Volkrest]])
-- **Equipe** → [[Equipe desfloreio]] ([[Sessão 0]]) com [[Vorn Drekar]], [[Sinikko Kiriam (PJ)]], [[Runa Skorn]], [[Azgar Sandgale]]
-- **Raça / Classe / Origem** → [[Corrompido]] · [[Monge]] · Escravo ([[Origens]])
-- **Recurso de classe** → FLUXO; magias de [[Alteração]]/[[Conhecimento]]/[[Destruição]] via Receptáculo Natural ([[Regras de Magia]])
-- **Ligado a** → [[O Limiar]] (Punhos do Limiar; cartas), [[Plano Místico]] (corrupção)
-- **Destino** → "morto" n'[[A Vhelor]]
+- **Origem** → [[Mordval]], nas ilhas sem nome; pais assassinados por [[Os Hax]]
+- **Transformado por** → [[Os Hax]], em [[Aether]] → raça [[Corrompido]]
+- **Despertado por** → um artefato *"imbuído pelos próprios deuses"*, de deus não nomeado
+- **Mentor** → [[Kheyos]], corrompido como ele, dono da [[Casa Isolada]] em [[Khaskavel]]
+- **Preso e recrutado por** → [[Kirkushav Drekar]] ([[Império de Ferro]], em [[Volkrest]])
+- **Equipe** → [[Equipe desfloreio]] ([[Sessão 0]]), com [[Vorn Drekar]], [[Sinikko Kiriam (PC)|Sinikko Kiriam]], [[Runa Skorn]] e [[Azgar Sandgale]]
+- **Raça · Classe · Origem** → [[Corrompido]] · [[Monge]] · Escravo ([[Origens]])
+- **Regras que o definem em jogo** → [[Monge]] (FLUXO) · [[Regras de Magia]] · [[Alteração]], [[Conhecimento]], [[Destruição]]
+- **Ligado a** → [[O Limiar]] (as cartas e os Punhos que levam o nome dele) · [[Plano Místico]] (a corrupção que carrega)
+- **Destino** → *"morto"* n'[[A Vhelor]]
 
 ## Linha do tempo
-- **Infância:** lavoura em Mordval; canoa noturna.
-- **Adolescência:** aliciado; viagem a Aether; cativeiro Hax; rituais; soldado Hax; desperta; sabotagem; fuga.
-- **Depois:** encontra Kheyos em Aether; volta a Mordval; pais mortos *"há um bom tempo"*; parte para Volkrest.
-- **Antes de −27:** justiceiro na capital; preso; proposta de Kirkushav.
-- **−27** ([[Sessão 0]]): chega *"amarrado"* ao castelo; entra n'A Vhelor; "morre".
+- **Infância:** a lavoura em [[Mordval]] e as fugas de canoa à noite.
+- **Adolescência:** aliciado; viagem a [[Aether]]; cativeiro dos Hax; os rituais; anos como soldado; o artefato; a sabotagem silenciosa; a fuga.
+- **Depois:** encontra [[Kheyos]] na estrada; volta a Mordval e acha os pais mortos *"há um bom tempo"*; parte para [[Volkrest]].
+- **Antes de `C−27`:** justiceiro na capital do Império; preso; a proposta do Soberano.
+- **`C−27`** ([[Sessão 0]]): chega *"amarrado"* ao [[Castelo de Kirkushav]]; entra n'[[A Vhelor]] e "morre".
 
-## Conflitos e pendências
-1. **Qual deus imbuiu o artefato** que despertou Klaus ("A Maldição Justa" sugere [[Karmath]])? Não escrito. Pergunta nova.
-2. **Kheyos: o culto que o formou em Aether são os Hax?** (ver [[Os Hax]]). Pergunta nova.
-3. **Klaus, Runa e Azgar após −27** — mortos de fato? Não escrito. Pergunta nova (compartilhada em [[Equipe desfloreio]]).
-4. **Ficha:** Esquiva Abissal, Grau de Corrupção, Punhos do Limiar, perícias legadas, "Gelo" — tudo a atualizar (B17).
-5. **Idade** nunca declarada (adolescente no cativeiro; adulto em −27).
+## Pontas soltas
+1. **Qual deus imbuiu o artefato** que o despertou? O apelido "A Maldição Justa" aponta para [[Karmath]], mas nada foi dito. ([[Perguntas Abertas]] E22)
+2. **O culto que formou [[Kheyos]] em [[Aether]] são os Hax?** Se forem, mentor e algoz de Klaus vêm da mesma casa. ([[Perguntas Abertas]] E23)
+3. **Klaus morreu de fato** em `C−27`? O destino dos quatro que não viraram Sonhador nunca foi escrito. ([[Perguntas Abertas]] E19)
+4. **A idade** nunca foi declarada — adolescente no cativeiro, adulto na expedição.
+5. **A ficha** ainda carrega efeitos que não batem com as regras vivas: a Esquiva Abissal rolando *"3d6 em vez de d12"* contra a carta atual, que dá nível de treinamento em Defender; um *"Grau de Corrupção (3)"* que a raça [[Corrompido]] não tem mais (hoje são pontos de corrupção por nível); e o +7 dos Punhos do Limiar, que não fecha com DES +6 e SAB +3. Receptáculo Natural, além disso, pressupõe truques sem custo de Éter que ainda não existem ([[Regras de Magia]]). ([[Perguntas Abertas]] E32)
 
-## Fonte
-- Notion: PJ `33e6e3a401d9810ca145d41242d235b0`; Ficha `35f6e3a401d9802b9ac3cf1307281197`; Roteiro; Os Hax `3696e3a401d98127a568c856497d9ce6`.
-- Raw: `sessao_os5_klaus.md`, `lore_aether_os_hax.md`; digest F §2, inc. 11, 14–16.
+## Procedência
+- Notion — página de PC *Klaus von Aldric* `33e6e3a401d9810ca145d41242d235b0` (🟡, ed. 2026-07-17) · *📜 Ficha Klaus von Aldric* `35f6e3a401d9802b9ac3cf1307281197` (🟢, ed. 2026-07-24) · *Roteiro da Sessão 0* `33e6e3a401d9819796c9dfb2263e215d` · *Os Hax* `3696e3a401d98127a568c856497d9ce6`
+- Mestre, 2026-09-05 — A15 (Klaus representa Mordval) · A7 (Kheyos é teurgo mortal, com agenda contra a ingenuidade dos deuses) · A16 (Klaus "morre" na árvore; nada além disso foi dito) · B8 (as magias de nível 0 a criar) · B1 ("Gelo" → Frio) · B16 ("Convencer/Enganar" → Convencimento/Enganação) · B17 (autorização para refazer a ficha)
+- Digest `docs/memoria/digests/F_sessoes_outros.md` §2, incidentes 11 e 14–16
+- Brutos em `docs/memoria/notion_raw/sessao_os5_klaus.md`, `lore_aether_os_hax.md`

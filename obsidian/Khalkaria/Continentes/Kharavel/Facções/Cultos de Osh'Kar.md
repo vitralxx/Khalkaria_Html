@@ -1,85 +1,88 @@
 ---
 tipo: faccao
-status: rascunho-notion
+status: rascunho
 spoiler: gm
 era: campanha
 continente: Kharavel
 aliases: ["Culto de Osh'Kar", "cultistas de Osh'Kar", "células de Osh'Kar"]
 fonte_notion: [3696e3a401d98125a280d7b0bf485494, 3696e3a401d9814f8e0dfa4c6b50b850, 33e6e3a401d9817f9470e140120b1c22, 36d6e3a401d9818d9cddefbdd4015aad, 36d6e3a401d9817792d8ef277f93f46a, pedro-2026-09-05]
-ultima_sync: 2026-09-05
+ultima_sync: 2026-09-07
 tags: [khalkaria/continentes/kharavel/faccoes]
 ---
 # Cultos de Osh'Kar
 
-**Resumo.** Não é uma organização, mas **múltiplas células independentes** (5–20 membros) espalhadas por [[Kharavel]], frequentemente sem se conhecerem, dedicadas a [[Osh'Kar]], o deus da morte preso em [[O Abismo]], no sudoeste do continente. Objetivo central: **libertar Osh'Kar** por **rituais de sacrifício** — almas oferecidas ao Abismo o alimentariam até romper as barreiras dos outros deuses. A origem **Amaldiçoado** são mortais que escaparam desses rituais ([[Lázlo]] é o NPC de contingência). Sem aliança com o [[Culto de Malkhor]], às vezes em conflito. Página 🟠 Rascunho; nenhuma célula ou NPC nomeado. Segundo o Pedro (B3), o Abismo foi corrompido por [[Velúria]] e [[Vytália]] com criaturas perigosas para que nenhum mortal libertasse Osh'Kar — o que torna a missão dos cultos ainda mais suicida.
+**Resumo.** Não são uma organização: são muitas células pequenas, de cinco a vinte pessoas, escondidas em porões e em lugares remotos de [[Kharavel]], quase sempre sem saber umas das outras. Todas servem [[Osh'Kar]], o deus da morte cuja figura material está presa n'[[O Abismo]], no sul do continente, e todas querem a mesma coisa: soltá-lo. O método é o sacrifício — almas oferecidas ao Abismo que, acreditam, alimentam o deus até que ele rompa as barreiras impostas pelos outros deuses. Quem escapa de um desses rituais fica marcado para sempre e sai de lá [[Amaldiçoado]], sabendo instintivamente onde o Abismo fica. Com o [[Culto de Malkhor]] não há aliança e às vezes há sangue: um lado precisa dos mortais vivos e corruptos, o outro precisa deles mortos. E a missão é mais desesperada do que qualquer cultista imagina, porque a própria região do Abismo foi transformada em armadilha divina justamente para que nenhum mortal chegue lá.
 
-## Cânone (Notion)
+## O que querem
 
-### Página Cultos de Osh'Kar (🟠 Rascunho, ed. 2026-05-23)
-> *Este conteúdo é rascunho inicial. Boa parte dos detalhes precisa de refinamento ou confirmação.*
 > Grupos religiosos dedicados a Osh'Kar, o deus da morte preso no Abismo no sul de Kharavel. Diferentemente do Culto de Malkhor, não se trata de uma organização única, mas de **múltiplas células independentes** espalhadas pelo continente, frequentemente sem conhecimento umas das outras.
 >
 > **Objetivos** — O objetivo central da maioria dos cultos é **libertar Osh'Kar do Abismo**. Acreditam que sua libertação restaurará algo na metafísica da morte que está desequilibrado desde sua prisão — algumas células pregam isso como restauração da "ordem natural", outras simplesmente buscam favor divino direto.
 > O método principal: **rituais de sacrifício**. Almas oferecidas ao Abismo alimentam Osh'Kar, supostamente fortalecendo-o o suficiente para que ele eventualmente rompa as barreiras impostas pelos outros deuses.
-> *Rascunho:* a questão de se essas almas realmente chegam a Osh'Kar ou se apenas se somam ao acervo já preso no portal é ambivalente. Cultos diferentes podem ter teologias contraditórias sobre isso.
->
+
+Se essas almas de fato chegam a Osh'Kar ou se apenas engrossam o acervo já preso no portal é matéria de fé, não de certeza — células diferentes sustentam teologias contraditórias sobre isso, e nenhuma tem como verificar.
+
+## Quem sabe o que serve
+
 > **Conhecimento dos Cultistas**
 > - **Cultistas de cargo baixo:** majoritariamente não entendem exatamente o que servem. Podem acreditar que servem "o senhor da morte", "a verdade oculta", ou apenas obedecem promessas de poder pessoal.
 > - **Cultistas de cargo alto:** alguns sabem explicitamente que servem Osh'Kar e tentam libertá-lo. Podem incluir indivíduos com experiência direta com a presença divina próxima ao Abismo, ou ex-acadêmicos que descobriram a verdade histórica do aprisionamento.
->
+
+## Como se organizam
+
 > **Estrutura** — Células pequenas (5-20 membros tipicamente), geralmente em locais remotos ou em porões discretos de cidades. Não há hierarquia continental coordenada. Cada célula opera autonomamente, com seus próprios rituais e lideranças.
 > Isso torna o culto **difícil de erradicar mas também difícil de coordenar**. PCs podem desmantelar células locais sem afetar a operação do conjunto.
->
-> **Conexão com Amaldiçoados** — A origem **Amaldiçoado** representa mortais que escaparam de rituais de sacrifício pra Osh'Kar. Carregam marcas, sonhos e sussurros que não entendem, e sabem instintivamente da localização do Abismo. PCs Amaldiçoados têm ligação direta e ameaçadora com esses cultos.
->
+
+## A prisão que eles querem abrir
+
+A história que os cargos altos perseguem começa no sumiço de [[Kha]]: sem o deus supremo, o panteão rachou, e Osh'Kar *"entregou-se ao prazer de devorar almas"* até ser contido pelos outros deuses e preso no Abismo. A prisão vale só para o [[Plano Material]] — nos outros planos ele continua livre —, e a região que o segura não é acidente geográfico: foi *"corrompida pelos deuses com criaturas perigosas para nenhum mortal conseguir libertar osh'kar"*, obra atribuída a [[Velúria]] junto com [[Vytália]]. Das criaturas que passaram a se comunicar entre si naquele lugar nasceu o idioma [[Abissal]] — a única língua em que, em tese, se poderia negociar com o que mora lá.
+
+O acesso é pior ainda. O que se vê de fora é [[O Oásis]], e o oásis é ilusão: só se desfaz para quem escala o pico mais alto da [[Cordilheira Cristalina]]. Como as células que falam do *"senhor que aguarda no oásis"* pretendem atravessar isso é assunto que nenhuma delas escreveu.
+
+## Os que escaparam
+
+A origem [[Amaldiçoado]] é exatamente isto: mortais que sobreviveram a um ritual de sacrifício a Osh'Kar. *"Carregam marcas, sonhos e sussurros que não entendem, e sabem instintivamente da localização do Abismo."* Um Amaldiçoado que cruze com a célula da qual escapou traz de volta memórias parciais — e a célula reconhece a marca antes de reconhecer o rosto. [[Lázlo]] é o exemplo vivo: cicatriz angular no peito, sonhos com o oásis, o dedo apontando para o sudoeste quando o medo aperta, e a certeza de que *"os sussurros que ele ouve são do deus preso o reconhecendo como um dos seus"*.
+
+## Quem mais quer Osh'Kar solto
+
+Com o [[Culto de Malkhor]] não há pacto:
+
 > **Conexão com o Culto de Malkhor** — Não há aliança formal. Em alguns casos podem até entrar em conflito — cultistas de Malkhor querem manter os mortais corruptos e ativos, enquanto cultistas de Osh'Kar precisam matar os mortais para alimentar Osh'Kar.
->
-> **Ganchos Narrativos**
+
+Fora dos cultos há um aliado inesperado. [[Hadran Vorgil]] odeia [[A Vhelor]] o bastante para negociar com a morte: *"se descobrir que existe um deus preso no continente capaz de destruir a Árvore, Hadran consideraria libertar Osh'Kar como opção aceitável"*, e *"pode tentar libertar Osh'Kar sozinho ou se aliar com células de cultistas"*.
+
+## Ganchos de campanha
+
 > - Sumiços inexplicados em vilarejos remotos podem ser obra de células próximas.
 > - Cemitérios profanados, rituais interrompidos por outros cultistas, sussurros em tavernas sobre "o senhor que aguarda no oásis".
 > - Um cultista de cargo alto descoberto pelos PCs pode revelar localização real do Abismo e parte da verdade sobre Osh'Kar.
 > - Amaldiçoados encontrando suas próprias células de origem, com memórias parciais retornando.
->
-> **Pontos a Desenvolver**
-> - Nomes das principais células e suas localizações.
-> - Existe alguma célula maior, talvez próxima ao Abismo, que centraliza os rituais mais poderosos?
-> - O culto tem estética visual e rituística própria? Simbologia? Idiomas usados?
-> - Algum NPC nomeado que represente esse culto em algum lugar específico de Kharavel.
-
-### Menções em outras páginas
-- Facções: *"**Cultos de Osh'Kar** — células independentes espalhadas, tentam libertar o deus da morte do Abismo via rituais de sacrifício."*
-- Deuses (Osh'Kar): *"Cultos a Osh'Kar operam em segredo, tentando libertá-lo através de rituais de sacrifício."*
-- Hadran Vorgil: *"Se descobrir que existe um deus preso no continente capaz de destruir a Árvore, Hadran consideraria libertar Osh'Kar como opção aceitável."* / *"Pode tentar libertar Osh'Kar sozinho ou se aliar com células de cultistas."*
-- Lázlo: *"Os sussurros que ele ouve são do deus preso o reconhecendo como um dos seus."* Cicatriz angular no peito; sonhos com o oásis; aponta para o sudoeste sob stress.
-
-## Segundo o Pedro (2026-09-05)
-- **B3 (verbatim, trecho):** *"o abismo é uma região de Kharavel que aprisiona a figura material do deus da morte Osh'Kar, enquanto preso no plano material, osh'kar fica limitado no plano material, nos outros planos ele ainda é livre. [...] hoje eu acho que faz muito mais sentido a região do abismo ter sido corrompida pelos deuses com criaturas perigosas para nenhum mortal conseguir libertar osh'kar. Eu diria que velúria junto com vytália teriam orquestrado essa aberração de região, naturalmente as criaturas abissais começaram a se comunicar entre sí, e assim veio o idioma abissal"*. Implicação: os cultos, se souberem, podem usar o idioma [[Abissal]]; a região é defesa divina contra eles.
-- **B5:** o acesso ao Abismo exige *"escalar o pico mais alto da cordilheira cristalina [...] para desativarem a ilusão"* do [[O Oásis]] — os cultos que chegam ao "senhor que aguarda no oásis" precisariam desse caminho, ou de outro não escrito.
-- **A16:** o conflito dos deuses vem *"do sumiço do Kha"* — a prisão de Osh'Kar (página Deuses: *"após o sumiço de Kha, entregou-se ao prazer de devorar almas"*) é parte desse conflito.
 
 ## Relações
-- **Deus servido** → [[Osh'Kar]] (preso só no [[Plano Material]], B3)
-- **Alvo geográfico** → [[O Abismo]] · [[O Oásis]] (ilusão) · [[Deserto do Abismo]] · [[Cordilheira Cristalina]] (chave da ilusão, B5)
-- **Carcereiros divinos** → [[Velúria]] · [[Vytália]] (B3) · demais deuses (linchamento, pág. Deuses)
-- **Plano relacionado** → [[Plano dos Mortos]] (almas presas antes do portal)
-- **Origem derivada** → [[Amaldiçoado]] (origem de personagem) → [[Lázlo]] (contingência)
-- **Aliado potencial perigoso** → [[Hadran Vorgil]] (libertar Osh'Kar para destruir [[A Vhelor]])
-- **Sem aliança / conflito** → [[Culto de Malkhor]]
-- **Idioma provável** → [[Abissal]] (criaturas abissais, B3)
+- **Deus servido** → [[Osh'Kar]], preso apenas no [[Plano Material]]
+- **Alvo geográfico** → [[O Abismo]] · [[O Oásis]] (a ilusão que o esconde) · [[Deserto do Abismo]] · [[Cordilheira Cristalina]] (a chave da ilusão)
+- **Carcereiros** → [[Velúria]] e [[Vytália]], que corromperam a região; e o restante do panteão, que o prendeu
+- **Plano relacionado** → [[Plano dos Mortos]] · almas retidas no portal
+- **Origem derivada** → [[Amaldiçoado]] → [[Lázlo]]
+- **Aliado perigoso** → [[Hadran Vorgil]], que libertaria Osh'Kar para matar [[A Vhelor]]
+- **Sem aliança, conflito ocasional** → [[Culto de Malkhor]]
+- **Idioma provável** → [[Abissal]]
 - **Continente** → [[Kharavel]]
 
 ## Linha do tempo
-- **Atemporal / pré-história:** sumiço de [[Kha]] → Osh'Kar devora almas → linchado e preso no Abismo (pág. Deuses).
-- **0** (campanha): células ativas; Lázlo (se ativo) escapou de um ritual ≈ −1; os PJs ainda não chegaram ao Abismo (B5: *"os jogadores nem estão perto"*).
+- **Antes da história escrita:** [[Kha]] desaparece; Osh'Kar se entrega a devorar almas; o panteão o contém e o prende no Abismo, e [[Velúria]] e [[Vytália]] envenenam a região ao redor.
+- **0** (campanha): as células estão ativas e dispersas; [[Lázlo]], se estiver em jogo, escapou de um ritual há cerca de um ano; ninguém chegou perto do Abismo — *"os jogadores nem estão perto"*.
 
-## Conflitos e pendências
-1. **Tudo é rascunho** (🟠): sem célula, líder, NPC, simbologia ou localização nomeada. Os "Pontos a Desenvolver" do Notion continuam abertos.
-2. **Almas chegam a Osh'Kar ou ficam no portal?** — o próprio Notion marca como ambivalente.
-3. **B3 muda a natureza do Abismo** (de "representação do Plano dos Mortos" para "região corrompida por Velúria+Vytália"): a página dos cultos e a de Osh'Kar ainda descrevem a versão antiga. Pendente de reescrita no Notion.
-4. **"o senhor que aguarda no oásis"** — os cultistas conhecem o Oásis como fachada? Como atravessam a ilusão sem a Cordilheira (B5)? Não escrito.
-5. **Abismo (cartas do Limiar) "será refeito"** (B5): o "Devorador de Almas" duplicado (B7) e as Dores/Benefícios do Abismo podem redefinir o que esses cultos oferecem. Ver [[O Limiar (cartas)]].
-6. **Nome:** singular "Culto de Osh'Kar" (pág. Deuses) × plural "Cultos de Osh'Kar" (Facções). Vault usa o plural, com alias.
+## Pontas soltas
+1. **Nenhuma célula tem nome, lugar ou líder.** Faltam também a simbologia, a estética ritual, os idiomas que usam nos ritos e qualquer NPC que represente os cultos em algum ponto do mapa.
+2. **Existe uma célula-mãe?** Alguma congregação maior, talvez junto ao Abismo, centralizando os rituais mais poderosos — ou o culto é só poeira espalhada?
+3. **As almas chegam a Osh'Kar?** A dúvida é do próprio mundo: nem os cultistas sabem se alimentam o deus ou apenas o portal.
+4. **Como atravessam a ilusão.** Se conhecem o oásis como fachada, alguém precisa ter subido a [[Cordilheira Cristalina]] — e ninguém registrou quem.
+5. **O que o Abismo oferece.** As Dores e Benefícios do Abismo em [[O Limiar (cartas)]] ainda vão ser refeitos, e são eles que definem o que essas células prometem a quem entra ([[Perguntas Abertas]] E46).
+6. **Nome.** Fala-se tanto em "Culto de Osh'Kar", no singular, quanto em "Cultos", no plural; como não há organização única, o plural é a forma correta.
 
-## Fonte
-- Notion: Cultos de Osh'Kar `3696e3a401d98125a280d7b0bf485494` · Facções `3696e3a401d9814f8e0dfa4c6b50b850` · Deuses `33e6e3a401d9817f9470e140120b1c22` · Lázlo `36d6e3a401d9818d9cddefbdd4015aad` · Hadran `36d6e3a401d9817792d8ef277f93f46a`
-- Raw: `notion_raw/lore_kharavel_faccoes_filhas.md`, `lore_kharavel_seres_filhas.md`, `lore_kharavel_npcs.md` · Pedro B3, B5, A16 · Digest `E_lore.md` §2 (Facções)
+## Procedência
+- Notion — *Cultos de Osh'Kar* `3696e3a401d98125a280d7b0bf485494` (🟠 rascunho, 2026-05-23; traz seção "Pontos a Desenvolver") · *Facções* `3696e3a401d9814f8e0dfa4c6b50b850` · *Deuses* `33e6e3a401d9817f9470e140120b1c22` · *Lázlo* `36d6e3a401d9818d9cddefbdd4015aad` · *Hadran Vorgil* `36d6e3a401d9817792d8ef277f93f46a`
+- Mestre, 2026-09-05 — B3 (o Abismo prende só a figura material; Velúria e Vytália corromperam a região; origem do idioma Abissal) · B5 (a ilusão do Oásis e o pico da Cordilheira Cristalina; o grupo ainda está longe) · A16 (o conflito divino nasce do sumiço de Kha)
+- Brutos em `docs/memoria/notion_raw/lore_kharavel_faccoes_filhas.md`, `lore_kharavel_seres_filhas.md`, `lore_kharavel_npcs.md` · digest `docs/memoria/digests/E_lore.md` §2
+- As páginas do Abismo e de Osh'Kar ainda descrevem a versão antiga (o Abismo como representação do Plano dos Mortos) e estão pendentes de reescrita.

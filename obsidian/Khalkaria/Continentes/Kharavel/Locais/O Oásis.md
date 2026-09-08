@@ -6,50 +6,57 @@ era: campanha
 continente: Kharavel
 aliases: ["Oásis", "o oásis ilusório", "o senhor que aguarda no oásis"]
 fonte_notion: [3696e3a401d981aeb840ece0726fbf97, 37b6e3a401d9817ca984f3eca3a11688, 36d6e3a401d9818d9cddefbdd4015aad]
-ultima_sync: 2026-09-05
+ultima_sync: 2026-09-07
 tags: [khalkaria/continentes/kharavel/locais]
 ---
 # O Oásis
 
-**Resumo.** A ilusão que esconde [[O Abismo]]: uma *"magia ilusória poderosa"* faz a região aparecer como *"um oásis aprazível em meio ao deserto"*, atraindo viajantes sedentos para a morte. No mapa da campanha está rotulado na fronteira norte do [[Deserto do Abismo]], onde o [[Bosque Corrompido]] termina. Segundo o Pedro (B5), a ilusão só é desativada quando se escala o pico mais alto da [[Cordilheira Cristalina]]. [[Lázlo]] sonha com ele todas as noites.
+**Resumo.** Água limpa e palmeiras no meio do deserto mais letal de [[Kharavel]] — e nada disso existe. O Oásis é a ilusão que cobre a entrada d'[[O Abismo]], no limite norte do [[Deserto do Abismo]], onde o [[Bosque Corrompido]] acaba. Atrai o viajante sedento para o pior lugar do continente, e não se desfaz de perto: só quando alguém escala o pico mais alto da [[Cordilheira Cristalina]].
 
-## Cânone (Notion)
-Página O Abismo (🟡):
+## A miragem
 > Sua entrada é disfarçada por uma magia ilusória poderosa que faz a região aparecer como um oásis aprazível em meio ao deserto — atração enganosa para viajantes desavisados e sedentos.
-> Fantasmas e espíritos errantes aparecem mesmo distantes do oásis ilusório.
+
 > A ilusão do oásis engana viajantes normais; quem persiste na região costuma sucumbir à desidratação ou aos espíritos antes mesmo de descobrir a verdade.
 
-Página Deserto do Abismo (🟠): *"A região mais letal do continente — disfarçada de oásis para atrair os incautos."*
-Página Deuses: Osh'Kar *"aprisionado no Abismo, localizado em Kharavel, disfarçado por magia ilusória como um oásis no deserto ao sul do continente."*
-Página [[Lázlo]]: *"**Sonhos recorrentes:** um oásis em meio a deserto, palmeiras balançando, água espelhada. Às vezes acorda chorando. Às vezes acorda em êxtase. Nunca lembra detalhe."*
-Página [[Cultos de Osh'Kar]] (ganchos): *"sussurros em tavernas sobre 'o senhor que aguarda no oásis'."*
-Página [[Mundarak]]: *"O Abismo fica em Kharavel, disfarçado como oásis."*
+> Fantasmas e espíritos errantes aparecem mesmo distantes do oásis ilusório.
 
-## Segundo o Pedro (2026-09-05)
-- **B5 (verbatim):** *"no inicio da sessão ela é protegida por uma ilusão de oásis, os jogadores antes devem escalar o pico mais alto da cordilheira cristalina, região de montanhas do mapa para desativarem a ilusão."*
-### Mapas
-- **Campanha (0):** *"Bosque Corrompido [...] desce até O Oásis (limite norte do Deserto do Abismo)"*; *"'O Oásis' na fronteira norte (ilusão que esconde o Abismo)"*.
-- **Sessão 0 (−27):** *"sudoeste = cachoeiras e vegetação tropical"* — possivelmente a ilusão vista em escala de mapa (E5).
+O [[Deserto do Abismo]] inteiro é *"a região mais letal do continente — disfarçada de oásis para atrair os incautos"*, e [[Osh'Kar]] está *"aprisionado no Abismo, localizado em Kharavel, disfarçado por magia ilusória como um oásis no deserto ao sul do continente."*
+
+Nas cartas da campanha o nome aparece marcado na fronteira norte do deserto, ali onde o [[Bosque Corrompido]] desce e termina — como se fosse um ponto, um lugar a que se chega, e não um véu estendido sobre uma região inteira.
+
+## Como se desfaz
+> os jogadores antes devem escalar o pico mais alto da cordilheira cristalina, região de montanhas do mapa para desativarem a ilusão.
+
+De baixo, portanto, não há o que fazer: a água continuará parecendo água. É preciso ganhar altura do outro lado do continente, nas montanhas do centro-sul, e olhar daí.
+
+## Nos sonhos e nos sussurros
+O oásis chega às pessoas antes de elas chegarem a ele. [[Lázlo]], que sobreviveu a um ritual e não guarda memória dele, tem
+
+> **Sonhos recorrentes:** um oásis em meio a deserto, palmeiras balançando, água espelhada. Às vezes acorda chorando. Às vezes acorda em êxtase. Nunca lembra detalhe.
+
+Nas tavernas, quem serve [[Osh'Kar]] sem saber o que serve fala em *"o senhor que aguarda no oásis"*.
 
 ## Relações
-- **Fica em** → [[Deserto do Abismo]] (fronteira norte), [[Kharavel]]; encosta no [[Bosque Corrompido]]
-- **Esconde** → [[O Abismo]] / [[Osh'Kar]]
-- **Desativado por** → escalar o pico mais alto da [[Cordilheira Cristalina]] (B5)
-- **Autor provável da ilusão** → os deuses que aprisionaram Osh'Kar; B3 nomeia [[Velúria]] + [[Vytália]] para a corrupção da região (ilusão não atribuída explicitamente)
-- **Aparece nos sonhos de** → [[Lázlo]] ([[Amaldiçoado]])
-- **Citado por** → [[Cultos de Osh'Kar]] ("o senhor que aguarda no oásis")
-- **Contraparte** → [[Câmaras de Provação]] (a outra "porta" divina de Kharavel, na [[A Vhelor]])
+- **Fica em** → [[Deserto do Abismo]], na fronteira norte; encosta no [[Bosque Corrompido]], [[Kharavel]]
+- **Esconde** → [[O Abismo]] e [[Osh'Kar]]
+- **Se desfaz de** → o pico mais alto da [[Cordilheira Cristalina]]
+- **Quem a lançou** → os deuses que aprisionaram Osh'Kar; a corrupção da região é obra de [[Velúria]] e [[Vytália]], mas a ilusão nunca foi atribuída a ninguém em particular
+- **Aparece nos sonhos de** → [[Lázlo]], e por tabela dos [[Amaldiçoado|Amaldiçoados]]
+- **Invocado por** → [[Cultos de Osh'Kar]]
+- **A outra porta divina do continente** → [[Câmaras de Provação]], na [[A Vhelor]]
 
 ## Linha do tempo
-- **−27** (Sessão 0): mapa antigo mostra o sudoeste verde e com cachoeiras.
-- **0** (campanha): rótulo "O Oásis" na fronteira do deserto; ilusão ativa até a Cordilheira ser escalada.
+- **−27** ([[Sessão 0]]): as cartas da época mostram o sudoeste verde, com cachoeiras e vegetação tropical.
+- **0** (campanha): "O Oásis" marcado na fronteira do deserto; a ilusão de pé até que se escale a Cordilheira.
 
-## Conflitos e pendências
-1. **Quem lançou a ilusão** — Notion diz apenas "magia ilusória poderosa"; B3 atribui a corrupção da região a Velúria + Vytália, sem falar da ilusão. Não afirmar autoria.
-2. **Como** o pico da Cordilheira desativa a ilusão (visão do alto? artefato? ritual?) — não escrito. **Pendência nova** (também em [[Cordilheira Cristalina]]).
-3. **E5 (aberta):** o mapa de −27 mostra vegetação tropical em todo o sudoeste — a ilusão cobre a região inteira, ou o deserto surgiu depois?
-4. **Escala:** o Notion chama de ilusão *"da região"*; o mapa marca "O Oásis" como um ponto na fronteira norte. Ponto de entrada ou região inteira?
+## Pontas soltas
+1. **Quem lançou a ilusão.** Sabe-se quem corrompeu a região; da miragem em si ninguém reivindicou autoria.
+2. **Como o alto da [[Cordilheira Cristalina]] a desliga** — vista de cima, artefato no pico, ritual? Não escrito; a mesma dúvida consta em [[Cordilheira Cristalina]].
+3. **A cratera não aparece nas cartas antigas**, e o sudoeste inteiro era verde: o véu cobria a região toda, ou o deserto veio depois? ([[Perguntas Abertas]] E5.)
+4. **Ponto ou região?** Os registros falam da ilusão como cobertura da região; as cartas marcam "O Oásis" como um ponto na fronteira norte.
 
-## Fonte
-- Notion: O Abismo `3696e3a401d981aeb840ece0726fbf97` · Deserto do Abismo `37b6e3a401d9817ca984f3eca3a11688` · Lázlo `36d6e3a401d9818d9cddefbdd4015aad` · Cultos de Osh'Kar `3696e3a401d98125a280d7b0bf485494`
-- Raw: `notion_raw/lore_kharavel_locais_regioes.md`, `lore_kharavel_npcs.md`, `lore_kharavel_faccoes_filhas.md` · Mapas: `mapas/LEIA-ME_mapas.md` §1, §3 · Pedro B5 · Fidelidade E5
+## Procedência
+- Notion — *O Abismo* `3696e3a401d981aeb840ece0726fbf97` · *Deserto do Abismo* `37b6e3a401d9817ca984f3eca3a11688` (🟠) · *Lázlo* `36d6e3a401d9818d9cddefbdd4015aad` · *Cultos de Osh'Kar* `3696e3a401d98125a280d7b0bf485494` · *Deuses* `33e6e3a401d9817f9470e140120b1c22` · *Mundarak* `39e6e3a401d981e3a7fdc5b89aa8146b`
+- Mestre, 2026-09-05 — B5 (a ilusão e o pico da Cordilheira, verbatim) · B3 (corrupção da região por Velúria e Vytália)
+- Mapas de Kharavel, campanha e Sessão 0 — `docs/memoria/mapas/LEIA-ME_mapas.md` §1 e §3
+- Relatório de fidelidade 2026-09-05 (E5) · brutos em `docs/memoria/notion_raw/lore_kharavel_locais_regioes.md`, `lore_kharavel_npcs.md`, `lore_kharavel_faccoes_filhas.md`

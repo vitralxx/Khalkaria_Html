@@ -1,21 +1,20 @@
 ---
 tipo: regra
-status: canon-notion
+status: canon-pedro
 spoiler: publico
 era: atemporal
 aliases: [Cartas do Limiar, Catálogo do Limiar, Pontos do Limiar, Cartas Universais, Cartas Raras, O Abismo, Dores, Dor]
 fonte_notion: 3a66e3a401d9806db1f8d6975255f676
-ultima_sync: 2026-09-05
+ultima_sync: 2026-09-07
 tags: [khalkaria/sistema]
 ---
 
 # O Limiar (cartas)
 
-**Resumo.** Catálogo mecânico das bênçãos que [[O Limiar]] oferece aos jogadores a cada nível — as regras de sorteio, os **Pontos do Limiar** e as **168 cartas** contadas no Notion em 2026-09-04: **127 no catálogo** (Universais **8** + FOR/DES/CON/INT/SAB **12 cada** + Raras **59**) e **41 em "O Abismo"** (18 Dores + 23 Benefícios). Na ficção, o Limiar é "um evento político": bênçãos de [[Velúria]] entregues para que os jogadores cumpram os objetivos dela (B5). O bloco de resumo do Notion ("130 / Universais 10 / Raras 60") está **desatualizado** — vale a contagem das tabelas.
+**Resumo.** O catálogo das bênçãos que [[O Limiar]] estende a cada personagem que sobe de nível: como a mão é oferecida, o que são os **Pontos do Limiar** e as **168 cartas** hoje escritas — **127 no catálogo** (Universais **8**, um pool de **12** para cada atributo e **59** Raras) e **41** guardadas em [[O Abismo]] (18 Dores e 23 Benefícios). As cartas do catálogo são dádivas; as do Abismo são trocas — pedaços de si em troca de poder.
 
-## Cânone (Notion)
+## A oferta
 
-### Prosa de abertura
 > *Entre a mortalidade e o divino, existe uma porta. Você presencia o Limiar.*
 >
 > Há algo além da técnica marcial, além do estudo arcano, além da força bruta. Existe um **limiar** — um momento onde o universo reconhece sua existência e oferece dádivas. Alguns chamam de destino. Outros, de sorte. Você sabe a verdade: **você está sendo observado**.
@@ -26,7 +25,14 @@ tags: [khalkaria/sistema]
 >
 > E você escolhe quem se tornará.
 
-### 🎴 A Cada Nível (2, 3, 4, 5)
+## O Limiar na campanha
+
+O Limiar não é sorte nem destino: é política divina. [[Velúria]] paga adiantado para que os aventureiros cumpram os objetivos dela com mais eficiência, e cobra o preço em dependência.
+
+> O limiar é um evento político dentro da campanha, é literalmente o Limiar concedendo bênçãos para os jogadores cumprirem certos objetivos mais efetivamente da deus Velúria. Então, o limiar toda vez que os jogadores sobem de nível, aparece pelo seu portal e oferece 5 cartas de poder além de uma carta que sempre aparece "+2 atributo", quanto mais atributos você tem, mais cartas raras você potencialmente tira do baralho, então esperar para gastar seus pontos do limiar geralmente é melhor, por isso a variabilidade de 5-11 cartas no nível 5. O Abismo oferece corrupções em troca de poder, ainda não criei porque os jogadores nem estão perto de se encontrarem com essa região, já que no inicio da sessão ela é protegida por uma ilusão de oásis, os jogadores antes devem escalar o pico mais alto da cordilheira cristalina, região de montanhas do mapa para desativarem a ilusão.
+
+## A cada nível (2, 3, 4, 5)
+
 > Quando você avança de nível, duas coisas acontecem:
 >
 > **1. Bênção Imediata dos Atributos**
@@ -38,7 +44,10 @@ tags: [khalkaria/sistema]
 > - O Limiar se abre. 5 **cartas** aparecem diante de você, sorteadas com base nos seus atributos atuais.
 > - Adicionalmente, uma 6**ª carta especial** também aparece: **+2 Atributo Adicional**.
 
-### Escolhendo Suas Cartas
+São **5 cartas reveladas** mais a sexta que sempre comparece, **+2 Atributo** — onde o texto ainda fala em "as 4 cartas", é resíduo de uma versão anterior da oferta.
+
+## Escolhendo as cartas
+
 > Você recebe **4 Pontos do Limiar** neste nível.
 > **Você escolhe 1 carta GRATUITAMENTE** dentre as 5 reveladas.
 > **Cartas adicionais custam Pontos do Limiar:**
@@ -52,13 +61,17 @@ tags: [khalkaria/sistema]
 > **Cartas não escolhidas podem retornar** — o Limiar as oferece novamente caso você não as escolha.
 > Você pode QUEIMAR uma carta de cada mão oferecida, ela nunca retornará.
 
-### Progressão Total
+## Progressão até o nível 5
+
 > Ao alcançar o **Nível 5**, você terá:
 > - **+8 pontos de atributo** garantidos (2 por nível × 4 níveis)
 > - **16 Pontos do Limiar** totais (4 por nível × 4 níveis)
 > - **8-11 Cartas do Limiar** escolhidas (dependendo de como gastou os pontos)
 
-### 🎲 Como as Cartas São Sorteadas
+A faixa real ao nível 5 é de **5 a 11 cartas**: quem gasta os Pontos do Limiar assim que os recebe termina na ponta baixa; quem guarda compra mãos maiores mais tarde.
+
+## Como as cartas são sorteadas
+
 > As cartas que aparecem para você **dependem dos seus atributos atuais**.
 >
 > **Atributo "Alto"** — Geralmente, um atributo é considerado alto quando está em **14 ou mais**. Porém, é importante lembrar que cada carta possui requisitos DIFERENTES uma das outras.
@@ -69,6 +82,8 @@ tags: [khalkaria/sistema]
 > - 1 carta rara
 >
 > **6ª Carta Especial:** A carta **+2 Atributo** sempre aparece, mas custa **2 Pontos do Limiar** porque você já recebeu +2 atributos gratuitamente neste nível.
+
+Quanto mais alto o atributo, mais fundo o baralho: atributos altos puxam cartas raras para a mão oferecida. É essa a razão de guardar Pontos do Limiar render mais do que gastá-los cedo.
 
 ---
 
@@ -190,7 +205,9 @@ tags: [khalkaria/sistema]
 
 > *Requisitos: Múltiplos atributos altos* — Estas cartas são extremamente poderosas e exigem builds específicas para serem acessadas.
 
-No site do RPG as raras aparecem **só com ícone, requisito e nome** — os jogadores não veem o efeito. Isso é **intencional** (B6).
+No material que os jogadores consultam, as raras aparecem **só com ícone, requisito e nome** — o efeito fica escondido, e isso é intencional: a carta rara é uma promessa antes de ser um número.
+
+Toda carta rara se apoia apenas em recursos que qualquer personagem tem — Saúde, Stamina, [[Éter]], ações, reações e o CD de classe. Nenhuma delas usa FLUXO, Concentração ou outro recurso preso a uma única classe.
 
 | Carta | Requisito | Efeito |
 |---|---|---|
@@ -256,15 +273,15 @@ No site do RPG as raras aparecem **só com ícone, requisito e nome** — os jog
 
 ---
 
-## O Abismo (41 cartas) — **será refeito** (B5)
+## O Abismo (41 cartas)
 
 > Você pode entregar pedaços de si mesmo em troca de poder.
 > Você machuca sua alma em troco de poder?
 > Respeite os custos. Pegue o que quiser.
 
-Mecânica: a tabela da esquerda tem cabeçalho `Ganho de Dor | Nome | Penalidade` (você **ganha** Dor ao pegar a carta) e a da direita `Gasto de Dor | Nome | Penalidade` (você **gasta** Dor). As Dores somam **63 pontos** disponíveis; os Benefícios custam **86** no total — é impossível pegar tudo. Não há mais nenhuma regra escrita de Dor.
+As Dores dão pontos e os Benefícios os consomem: tomar uma carta da primeira tabela **ganha** Dor, tomar uma da segunda **gasta** Dor. As Dores somam **63 pontos** disponíveis e os Benefícios custam **86** no total — é impossível levar tudo. Nenhuma outra regra de Dor foi escrita.
 
-O Abismo fica na região do [[Deserto do Abismo]], escondido por uma **ilusão de oásis** ([[O Oásis]]); para desativá-la os jogadores precisam escalar o pico mais alto da [[Cordilheira Cristalina]] (B5).
+O Abismo fica na região do [[Deserto do Abismo]], escondido por uma **ilusão de oásis** ([[O Oásis]]); para desativá-la é preciso escalar o pico mais alto da [[Cordilheira Cristalina]]. A região inteira **será refeita** — as 41 cartas abaixo são provisórias, e os jogadores ainda estão longe dela.
 
 ### Dores (18) — coluna "Ganho de Dor"
 
@@ -317,27 +334,14 @@ O Abismo fica na região do [[Deserto do Abismo]], escondido por uma **ilusão d
 | 7 | **Clone Odioso** | Você tem um clone quase exatamente igual a você que compartilha pensamentos, sensações, personalidade, tecnicas e conhecimento. Você pode teletransportar como 3 ações para ele a qualquer momento. E pode controlá-lo livremente. Ele é extremamente igual a você, porem possui faíscas de independência e individualidade. |
 | 8 | **Desejo Sombrio** | Você pode conjurar qualquer magia de nível 1-5 (mesmo que não saiba) ou alterar um evento recente (até 1 minuto atrás) retroativamente. O Mestre decide as consequências. Usar isso pode atrair atenção indesejada. 1x/Campanha. |
 
-### 📊 Resumo do Notion (desatualizado)
-> **Total de Cartas:** 130 — Universais: 10 cartas · Força: 12 cartas (FOR 14+) · Destreza: 12 (DES 14+) · Constituição: 12 (CON 14+) · Inteligência: 12 (INT 14+) · Sabedoria: 12 (SAB 14+) · **Raras: 60 cartas** (requisitos múltiplos)
+## Cartas que não existem
 
-Contagem real das tabelas (parse programático, 2026-09-04): **8 · 12 · 12 · 12 · 12 · 12 · 59 = 127**, mais **41** do Abismo = **168**.
+Circulam nomes que nunca entraram no baralho, herdados de versões antigas do material de consulta:
 
-## Segundo o Pedro (2026-09-05)
-
-**B5 (integral):**
-> O limiar é um evento político dentro da campanha, é literalmente o Limiar concedendo bênçãos para os jogadores cumprirem certos objetivos mais efetivamente da deus Velúria. Então, o limiar toda vez que os jogadores sobem de nível, aparece pelo seu portal e oferece 5 cartas de poder além de uma carta que sempre aparece "+2 atributo", quanto mais atributos você tem, mais cartas raras você potencialmente tira do baralho, então esperar para gastar seus pontos do limiar geralmente é melhor, por isso a variabilidade de 5-11 cartas no nível 5. O Abismo oferece corrupções em troca de poder, ainda não criei porque os jogadores nem estão perto de se encontrarem com essa região, já que no inicio da sessão ela é protegida por uma ilusão de oásis, os jogadores antes devem escalar o pico mais alto da cordilheira cristalina, região de montanhas do mapa para desativarem a ilusão.
-
-- **São 5 cartas reveladas + a carta "+2 atributo"** (não 4). O título "Sorteio das 4 Cartas" está errado.
-- **A faixa correta ao nível 5 é 5–11 cartas**, não "8-11".
-- **Quanto mais alto o atributo, mais raras entram no baralho** — guardar Pontos do Limiar costuma ser melhor.
-- **O Abismo será refeito por inteiro**; as 41 cartas atuais são provisórias.
-
-**B6:** *"Site html sempre estará desatualizado em relação ao notion, inclusive as cartas raras nem possuem descrição no notion para os jogadores e isso é intencional. Sempre escolha o notion quando tirar dados, o site é complemento view pros jogadores."*
-- Logo: **Marca do Guerreiro** e **Postura de Ferro** (universais que só existem no site) **não são canônicas**; valem **Garras de Éter** (não "Garras de Aço"), **Comunhão** (não "Comunhão Primordial") e **Onisciencia de Mundarak** com INT 20+ / SAB 20+ / DES 16+ (não "Onisciência de Kha" 18+/18+).
-
-**B7:** *"O abismo vai mudar completamente no futuro, pele morta só tem 1 vez no corrompido, transcendência só tem 1 vez também."* — sobre as duplicatas suspeitas em [[Corrompido]] e [[Monge]]; a duplicata **"Devorador de Almas"** (uma Rara e um Benefício do Abismo) permanece.
-
-**Regra de design (CLAUDE.md):** cartas raras usam **apenas recursos universais** (Saúde, Stamina, [[Éter]], ações, reações, "CD de classe") — **nunca** FLUXO, Concentração ou outro recurso travado por classe. Verificado por regex nas 59 raras: nenhuma ocorrência.
+- **Marca do Guerreiro** e **Postura de Ferro** não são cartas universais — as universais são **8**, e nenhuma delas tem esses nomes.
+- A carta de Força chama-se **Garras de Éter**, não "Garras de Aço".
+- A carta de Sabedoria chama-se **Comunhão**, não "Comunhão Primordial".
+- A rara chama-se **Onisciencia de Mundarak** e pede INT 20+, SAB 20+ e DES 16+ — não "Onisciência de Kha" com 18+/18+.
 
 ## Relações
 - **Entidade** → [[O Limiar]] (cria de [[Velúria]], guardiã do [[Plano Místico]])
@@ -347,26 +351,30 @@ Contagem real das tabelas (parse programático, 2026-09-04): **8 · 12 · 12 · 
 - **O Abismo** → [[O Abismo]], [[Deserto do Abismo]], [[O Oásis]], [[Cordilheira Cristalina]], [[Osh'Kar]]
 - **Entidades citadas nas cartas** → [[Velúria]] (Olhos de Velúria), [[Mundarak]] (Onisciencia de Mundarak), [[Primórdio]] ("escolas do Primórdio" em Duas Mangas e Mestre Teurgo Supremo), Língua Natural ([[Idiomas]])
 - **Interage com magia** → [[Regras de Magia]], [[Primordial]]
+- **Cartas nas mãos dos personagens de jogador** → [[Equipe desfloreio]]
 
-## Conflitos e pendências
-- **Bloco-resumo desatualizado:** "130 / Universais 10 / Raras 60" × tabelas com **127** (8 / 12×5 / 59). Corrigir no Notion.
-- **Requisito dos pools: 14+ ou 16+?** O resumo e o texto de sorteio dizem "14 ou mais"; os cabeçalhos das colunas dizem "*Requisito: FOR 16+*", "DES 16+", "CON 16+", "INT 16+", "SAB 16+". Três valores em conflito.
-- **"5 cartas" × "Sorteio das 4 Cartas".** Resolvido por **B5**: são **5**. Corrigir o título no Notion. O mix "1-2 universal + 1-3 atributo + 1 rara" soma 3–6, não 5.
-- **"8-11 cartas" ao nível 5** — resolvido por **B5**: a faixa é **5–11**. Corrigir no Notion.
-- **Duplicata de nome:** **Devorador de Almas** existe como Rara (INT 16+, SAB 16+ — absorve habilidade especial permanentemente) **e** como Benefício do Abismo (Gasto 3 — treinamento temporário por 24 h). Efeitos distintos, mesmo nome. Renomear um deles.
-- **Regras do Abismo inexistentes:** como se ganha/gasta Dor, se há limite, em que nível se pode pegar. **B5** confirma que a região inteira **será refeita**.
-- **Cabeçalho errado:** a 3ª coluna da tabela de Benefícios do Abismo diz "Penalidade" — o conteúdo é benefício.
-- **Formato de requisito fora do padrão:** "Arquiteto do Destino" → `22 SAB+`; "Mestre Teurgo Supremo" → `INT 22+, 18 SAB, 16 DES+`. Padrão é `ATR NN+`.
-- **9 raras com componente 14+** apesar de "Múltiplos atributos altos" e dos pools exigirem 16+: Punhos do Abismo, Mestre dos Mil Cortes, Santuário Intocável, Artista Marcial Supremo, Destruidor de Mundos, Estocada Perfeita, Contra-Golpe Encadeado, Chuva de Flechas, Bombardeio Arcano. Intencional?
-- **Tipos de dano fora da lista canônica:** "Resistência Arcana", "Escamas de Dragão" e "Corrente Elemental" oferecem **Gelo**; o Benefício "Frio" usa **Frio**. Por **B1**, o tipo é **Frio** ([[Tipos de Dano]]).
-- **Garras de Éter:** o nome diz Éter, o efeito é físico ("1d10 + SAB de dano Cortante") e escala com **Sabedoria** numa carta de **Força**.
-- **Desejo Sombrio:** "conjurar qualquer magia de nível **1-5**" — o sistema tem **4** níveis ([[Regras de Magia]]).
+## Pontas soltas
+- **Contagem antiga ainda circulando.** Um bloco de resumo anuncia "**Total de Cartas:** 130 — Universais: 10 cartas · Força: 12 cartas (FOR 14+) · Destreza: 12 (DES 14+) · Constituição: 12 (CON 14+) · Inteligência: 12 (INT 14+) · Sabedoria: 12 (SAB 14+) · **Raras: 60 cartas** (requisitos múltiplos)". As tabelas trazem **8 · 12 · 12 · 12 · 12 · 12 = 127**, mais **41** do Abismo = **168**. Corrigir na fonte.
+- **Requisito dos pools: 14+ ou 16+?** O resumo e a regra de sorteio dizem "14 ou mais"; os cabeçalhos das colunas dizem 16+. [[Perguntas Abertas]] E44.
+- **O mix do sorteio não fecha 5.** "1-2 universal + 1-3 atributo + 1 rara" soma de 3 a 6 cartas, e a mão é de 5. [[Perguntas Abertas]] E45.
+- **Duplicata de nome.** **Devorador de Almas** existe como Rara (INT 16+, SAB 16+ — absorve uma habilidade especial permanentemente) **e** como Benefício do Abismo (Gasto 3 — treinamento temporário por 24 h). Efeitos distintos, mesmo nome; um deles precisa ser renomeado. [[Perguntas Abertas]] E46.
+- **Regras de Dor inexistentes:** como se ganha e se gasta Dor fora da tabela, se há limite, em que nível se pode descer ao Abismo. A região será refeita por inteiro.
+- **Cabeçalho errado:** a terceira coluna da tabela de Benefícios do Abismo se chama "Penalidade" quando o conteúdo é benefício.
+- **Requisitos fora do padrão:** "Arquiteto do Destino" traz `22 SAB+` e "Mestre Teurgo Supremo" traz `INT 22+, 18 SAB, 16 DES+`. O padrão é `ATR NN+`.
+- **Nove raras pedem um atributo 14+** apesar do cabeçalho "múltiplos atributos altos" e dos pools em 16+: Punhos do Abismo, Mestre dos Mil Cortes, Santuário Intocável, Artista Marcial Supremo, Destruidor de Mundos, Estocada Perfeita, Contra-Golpe Encadeado, Chuva de Flechas, Bombardeio Arcano. Intencional? [[Perguntas Abertas]] E47.
+- **Tipos de dano fora da lista canônica:** "Resistência Arcana", "Escamas de Dragão" e "Corrente Elemental" oferecem **Gelo**, enquanto o Benefício "Frio" usa o nome certo. O tipo é **Frio** ([[Tipos de Dano]]).
+- **Garras de Éter:** o nome invoca Éter, o efeito é físico ("1d10 + SAB de dano Cortante") e escala com **Sabedoria** numa carta do pool de **Força**.
+- **Desejo Sombrio:** promete "conjurar qualquer magia de nível 1-5" quando a magia tem **4** níveis ([[Regras de Magia]]).
 - **Muralha de Aço:** frase truncada — "você pode usar sua reação para Defender some sua perícia Defender à Evasão do aliado".
-- **Sexto Sentido:** "1x/Descanso Longo):" — parêntese desbalanceado.
-- **Bárbaro:** carta do pool de CON que altera **4** atributos (+1 FOR/CON, −1 INT/SAB); interação com "Coluna de Titã" e "Memória Absoluta" (+1 atributo) não definida.
-- **Typos do Notion:** "Sussurador" (→ Sussurrador), "Ressureição" (→ Ressurreição), "Onisciencia" (→ Onisciência). Grafia oficial de "Etérico" confirmada em **C10** (o site escreve "Éterico", errado).
-- **Ênfase inconsistente:** ~20 cartas sem negrito no nome no Notion (Lutador de Rua, Limiar da Morte, Paciência, Artilharia, Sombras, Terceiro Olho, Coração da Dor, Bárbaro, Corpo Duro, Felizardo, Bestiário, Equilíbrio Etérico, Estudo Intenso, Lenda Monge, Onisciencia de Mundarak e todo o Abismo exceto Estabanado) — sugere adições posteriores.
+- **Sexto Sentido:** parêntese desbalanceado em "1x/Descanso Longo):".
+- **Bárbaro:** carta do pool de Constituição que mexe em **quatro** atributos (+1 FOR/CON, −1 INT/SAB); a interação com "Coluna de Titã" e "Memória Absoluta", que também dão +1 ponto de atributo, não está definida.
+- **Grafias a corrigir na fonte:** "Sussurador" (→ Sussurrador), "Ressureição" (→ Ressurreição), "Onisciencia" (→ Onisciência).
+- **Ênfase inconsistente:** cerca de 20 cartas estão sem negrito no nome — Lutador de Rua, Limiar da Morte, Paciência, Artilharia, Sombras, Terceiro Olho, Coração da Dor, Bárbaro, Corpo Duro, Felizardo, Bestiário, Equilíbrio Etérico, Estudo Intenso, Lenda Monge, Onisciencia de Mundarak e todo o Abismo exceto Estabanado — sinal de que foram acrescentadas depois.
 
-## Fonte
-Notion `3a66e3a401d9806db1f8d6975255f676` (🃏 O Limiar, 🟢 Pronto, last_edited 2026-08-05, sem subpáginas). Raw: `docs/memoria/notion_raw/limiar.md`. Digest: `docs/memoria/digests/D_limiar.md` (contagem programática, set-diff contra o site, inconsistências 1–17). Respostas do Pedro **B5**, **B6**, **B7**.
-
+## Procedência
+- Notion `3a66e3a401d9806db1f8d6975255f676` (🃏 O Limiar, 🟢 Pronto, last_edited 2026-08-05, sem subpáginas).
+- Contagem das tabelas conferida linha a linha em 2026-09-04: 8 · 12 · 12 · 12 · 12 · 12 · 59 = 127, mais 41 do Abismo = 168.
+- Respostas do mestre 2026-09-05: **B5** (o Limiar como evento político, 5 cartas + "+2 atributo", faixa 5–11, o Abismo a refazer e a ilusão de oásis — citada na íntegra acima); **B6** — *"Site html sempre estará desatualizado em relação ao notion, inclusive as cartas raras nem possuem descrição no notion para os jogadores e isso é intencional. Sempre escolha o notion quando tirar dados, o site é complemento view pros jogadores."*; **B7** — *"O abismo vai mudar completamente no futuro, pele morta só tem 1 vez no corrompido, transcendência só tem 1 vez também."* (sobre as duplicatas de [[Corrompido]] e [[Monge]]; a duplicata "Devorador de Almas" permanece em aberto); **C10** confirma a grafia **Etérico**.
+- Regra de design registrada em `CLAUDE.md`: raras só usam recursos universais — conferido nas 59 raras, sem exceção.
+- Raw: `docs/memoria/notion_raw/limiar.md`. Digest: `docs/memoria/digests/D_limiar.md` (contagem, comparação com o material publicado, inconsistências 1–17).
+- Revisão de redação: 2026-09-07.

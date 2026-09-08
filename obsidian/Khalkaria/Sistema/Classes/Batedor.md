@@ -1,24 +1,22 @@
 ---
 tipo: classe
-status: canon-notion
+status: canon-pedro
 spoiler: publico
 era: atemporal
 aliases: [Batedor, Explorador, Ranger]
-fonte_notion: [8706e3a401d9823a91fd81f689a6fbe7, 3a66e3a401d9809b8eceec1f30be9fd2]
+fonte_notion: [8706e3a401d9823a91fd81f689a6fbe7, 3a66e3a401d9809b8eceec1f30be9fd2, pedro-2026-09-05]
 ultima_sync: 2026-09-05
 tags: [khalkaria/sistema, khalkaria/sistema/classes]
 ---
 
 # Batedor
 
-**Resumo.** Classe de exploração, controle de terreno e furtividade (🧭, Notion 🟢 Pronto, ed. 2026-08-12). Recurso de classe = **Instinto** (0–5), acumulado ao suceder em perícias, acertar e esquivar, e zerado por dano pesado, condições debilitantes, falha em perícia ou 10 minutos de inércia. Único a começar treinado em Armas à Distância + Sobrevivência + Percepção. Perfil do índice: Combate ★★☆☆☆ · Controle ★★★★☆ · Exploração ★★★★★ · Místico ★☆☆☆☆ · Tecnologia ★☆☆☆☆.
+**Resumo.** Classe de exploração, controle de terreno e furtividade (🧭). Recurso de classe = **Instinto** (0–5), acumulado ao suceder em perícias, acertar e esquivar, e zerado por dano pesado, condições debilitantes, falha em perícia ou dez minutos de inércia. Único a começar treinado em Armas à Distância, Sobrevivência e Percepção ao mesmo tempo. **Perfil:** Combate ★★☆☆☆ · Controle ★★★★☆ · Exploração ★★★★★ · Místico ★☆☆☆☆ · Tecnologia ★☆☆☆☆.
 
-## Cânone (Notion)
-
-### Prosa de abertura
+## O chamado
 > Desde pequeno, você era curioso… curioso demais para o gosto dos adultos. Onde outros enxergavam perigo, você enxergava caminhos. Onde todos recuavam, você avançava — não por coragem ingênua, mas por um instinto silencioso que sempre te guiou através da mata fechada, dos becos tortuosos e dos territórios proibidos.
 
-### Progressão
+## Progressão
 | Level | Conteúdo |
 |---|---|
 | 1 | 4 Técnicas |
@@ -27,14 +25,14 @@ tags: [khalkaria/sistema, khalkaria/sistema/classes]
 | 4 | 7 Técnicas, Técnica de Ramo(Tier 1, 2), 2 Marcas |
 | 5 | 8 Técnicas, Técnica de Ramo(Tier 1, 2 e 3), 3 Marcas |
 
-### Status iniciais
+## Status iniciais
 - **Saúde:** `10 + (4 × Nível) + (Mod.CON × Nível)`
 - **Stamina:** `8 + (7 × Nível) + (Mod.FOR OU Mod.DES × Nível)`
 - **Éter:** `6 + (4 × Nível) + (Mod.INT OU Mod.SAB × Nível)`
 - **Evasão Ativa (Reação):** 10 + Mod. Destreza + Treinamento em *Defender*
 - **Evasão Passiva (Sem reação):** 10 + Mod. Destreza
 
-### Treinamento
+## Treinamento
 Você começa treinado em: **Armas à Distância, Sobrevivência, Percepção**
 Além disso, você pode escolher **(1 + Mod. Inteligência)** Perícias para ser treinado dentre as seguintes: Crime, Religião, Iniciativa, Medicina, Furtividade
 
@@ -42,7 +40,9 @@ Além disso, você pode escolher **(1 + Mod. Inteligência)** Perícias para ser
 - **Play Style:** Exploração, Controle de Terreno e Furtividade
 - **CD:** 10 + Mod. Destreza + Mod. Sabedoria
 
-### Instinto (recurso de classe)
+Por começar treinado em Armas à Distância, o Batedor depende da economia de munição descrita em [[Armas e Munição]] — uma unidade cobre o combate inteiro, e sem munição a arma à distância não pode ser usada.
+
+## Instinto (recurso de classe)
 > **Instinto** é a manifestação mecânica da sua atenção aguçada e experiência como explorador. Quanto mais você observa, investiga e interage com o ambiente, mais afiado fica seu sexto sentido — até o momento onde você age antes mesmo do perigo se manifestar.
 
 - Você começa cenas de exploração ou cenas de combate com **0 de Instinto**, *contudo*, se estiver em uma cena de exploração e começar um combate pode sustentar seu **Instinto**.
@@ -66,7 +66,7 @@ Além disso, você pode escolher **(1 + Mod. Inteligência)** Perícias para ser
 
 **Máximo: 5 Instinto**
 
-### Técnicas gerais
+## Técnicas gerais
 > Você possui **3 Técnicas + Nível**, reatribuíveis em descanso longo.
 
 | Técnica | Descrição | Custo | Ação |
@@ -76,7 +76,7 @@ Além disso, você pode escolher **(1 + Mod. Inteligência)** Perícias para ser
 | Caçador | Você consegue distinguir peso, número da pegada, velocidade e direção de criaturas vendo rastros passivamente. | n/a | Passiva |
 | Líder | Você possui a habilidade de memorizar caminhos e traçar trajetos eficientes. Você soma naturalmente +1 ao sucesso do grupo em jornadas já percorridas. Adicionalmente, ao rolar *Sobrevivência* em jornadas possui +5. | n/a | Passiva |
 | Terreno Ideal | Você tem facilidade em se adaptar a um ambiente, e enquanto estiver nele recebe os seguintes benefícios: +2 em testes de Sobrevivência; +2 em testes de Percepção; Pode gastar uma ação para rolar estes testes com vantagem. Terrenos: (Urbano, Natural, Naval, Subterrâneo) Pode escolher 1 no nível 1, 2 no nível 3 e 3 no nível 5. | 3 Stamina | Passiva ou 1 Ação |
-| Língua Prateada | Treinado em Interação Social(Convencimento). Adicionalmente, ao suceder em um teste de *Interação Social(Convencimento)* contra um comerciante garante 25% de desconto em um item. | 2 Stamina | 1 Ação |
+| Língua Prateada | Treinado em Convencimento. Adicionalmente, ao suceder em um teste de *Convencimento* contra um comerciante garante 25% de desconto em um item. | 2 Stamina | 1 Ação |
 | Oportunista | Seu próximo ataque causa +1d8 de dano se o alvo estiver *Desprevenido*. | 2 Stamina | 1 Ação |
 | Curioso | Ao realizar um teste de *Percepção* ou *Investigação* adicione 1d4+Destreza. | 2 Stamina | 1 Ação |
 | Emboscada | Pode preparar um local previamente com armadilhas e distrações rolando um teste de *Sobrevivência* ou *Furtividade*: Ao lutar em um ambiente preparado, se o inimigo falhar em um teste de *percepção* contra seu teste, você e seus aliados recebem +2 em Atacar durante todo o combate e os inimigos ficam Desprevenidos na primeira rodada do combate. | 5 Stamina | 10 Minutos |
@@ -87,14 +87,14 @@ Além disso, você pode escolher **(1 + Mod. Inteligência)** Perícias para ser
 | Saque | Ao eliminar uma criatura, pode saqueá-la, ganhando 1d4 + (Nível * 2) de Sins. | n/a | Reação |
 | Ocultar-se | Ao estar fora da linha de visão de todas as criaturas da cena, pode se esconder com 1 ação ao em vez de 2. | 2 Stamina | 1 Ação |
 
-### Ramos
-> Ao longo da criação do seu personagem você escolherá: 3 Marcas; 6 Técnicas de Ramo (3 no Tier 1, 2 no Tier 2, 1 no Tier 3 — ver Conflitos).
+## Os três ramos
+Ao longo da criação do personagem escolhem-se **3 Marcas** e **6 Técnicas de Ramo**: 3 no Tier 1, 2 no Tier 2 e 1 Ultimate no Tier 3, destravadas respectivamente nos níveis 2, 4 e 5.
 
 - **Ramo do Cartógrafo** (azul — Exploração e Sobrevivência) — *Estar em um local desconhecido é o que te cativa e mapeá-lo é como você expressa sua arte. Você vive pela emoção de descobrir coisas novas e suas aventuras te trouxeram ensinamentos de sobrevivência valiosos.*
 - **Ramo do Trambiqueiro** (verde — Dinheiro e Interação Social) — *Viajar o mundo custa caro e você faz questão de pagar esse preço. Ao longo de suas aventuras você sempre esteve de olho em bugigangas compráveis, a lábia de comerciante, veio naturalmente após isso.*
 - **Ramo do Sem-Nome** (vermelho — Furtividade e Assassinato) — *Ninguém lembra do seu rosto e é assim como você prefere. O capuz caiu sobre sua cabeça pela primeira vez para se proteger do sol, mas, com o tempo, tornou-se algo maior: um abrigo, um disfarce, uma segunda pele.*
 
-### Marcas de Ramo
+## Marcas de Ramo
 **Marcas do Cartógrafo**
 - **Colecionador de Horizontes** — *"Cada paisagem nova te renova por dentro e relembra sua aspiração."* Você anseia por novos lugares e busca ativamente explorar o desconhecido.
   - Ao mapear um lugar significativo pela primeira vez (Cidade, Ruína, Bioma…) Recupera 2 de Stamina e ganha 1 de Stamina máxima.
@@ -108,18 +108,18 @@ Além disso, você pode escolher **(1 + Mod. Inteligência)** Perícias para ser
   - Para cada 5 criaturas que você matou enquanto estava *Escondido*, ganha +1 permanente em Furtividade. Ao chegar em +5, essa habilidade fica supérflua.
   - Ao matar uma criatura sem ser detectado, recupera 1 de Stamina.
 - **Sussurro Final** — *"O sussurro final é sempre o mais verdadeiro."* Você sabe interrogar pessoas como ninguém.
-  - Você fica treinado em Interação social(Convencimento).
+  - Você fica treinado em Convencimento.
   - Ao matar uma criatura em combate corpo a corpo, pode fazer uma pergunta que ela responde com verdade antes de morrer. A resposta é breve (uma frase) e literal.
 
 **Marcas do Trambiqueiro**
-- **Homem de Negócios** — *"Moedas acabam. Favores rendem juros eternos."* Você possui um distúrbio de mat… **[frase truncada no Notion]**
-  - Para cada 5 negociações bem-sucedidas que resultaram em vantagem significativa, ganha +1 permanente em Interação Social(Convencimento). Ao chegar em +5, essa habilidade fica supérflua.
+- **Homem de Negócios** — *"Moedas acabam. Favores rendem juros eternos."* Você possui um distúrbio de mat… *(a frase termina assim na fonte — ver Pontas soltas.)*
+  - Para cada 5 negociações bem-sucedidas que resultaram em vantagem significativa, ganha +1 permanente em Convencimento. Ao chegar em +5, essa habilidade fica supérflua.
   - Ao ajudar alguém de forma significativa, pode declarar que a pessoa "te deve uma". O mestre registra. Você pode cobrar depois.
 - **O Palpite** — *"Você nem sempre acerta, mas eles não sabem disso."*
   - Ao passar ao menos 1 minuto analisando uma criatura, pode diagnosticar um segredo dela. Esse segredo possui 50% de chance de ser verdade e você não sabe disso.
   - Ao rolar um teste de interação social(qualquer) contra ela pode utilizar esse segredo como ferramenta, caso seja verdade você rola o teste com vantagem, caso seja mentira você rola com desvantagem.
 
-### Técnicas de Ramo — Tier 1 (nível 2)
+## Técnicas de Ramo — Tier 1 (nível 2)
 **Cartógrafo**
 - **Desenhar Mapa de Exploração** (Descanso Curto, 5 Stamina) — Desenhe um *Mapa de Exploração*. Você pode mapear locais previamente transitados, até um tamanho máximo de até 1 quilômetro quadrado. O *Mapa de Exploração* é um item de raridade **Incomum**. Ao estar com o *item: Mapa de Exploração* você recebe os seguintes benefícios ao estar no local do mapa: Tem conhecimento geral da geografia da área; +5 em *Sobrevivência* enquanto na região do mapa.
 - **Artista Apaixonado** (Passiva) — Os mapas que você fabrica contam como mercadoria Incomum.
@@ -132,10 +132,10 @@ Além disso, você pode escolher **(1 + Mod. Inteligência)** Perícias para ser
 
 **Trambiqueiro**
 - **Bens Diversos** (1 Ação, 5 Stamina) — Você busca na sua mochila por um objeto que possa te ajudar na realização de um teste de perícia qualquer, role um d100: **1:** Você machuca sua mão recebendo 1d6 de dano cortante ao tentar buscar na sua mochila. Como isso foi parar aí? · **2-19:** objeto qualquer, não ajuda em quase nada. · **20-39:** +1 na perícia. · **40-59:** +2 na perícia. · **60-79:** +3 na perícia. · **80-99:** +5 na perícia. · **100:** objeto perfeito que soluciona e te faz suceder instantaneamente na perícia.
-- **Agiota** (3 Ações, 10 Stamina) — Você pode tentar convencer uma criatura que consiga te entender a aceitar um empréstimo (monetário ou de bens), voltando para cobrá-la 1 dia depois. Ao escolher um alvo, você rola *Interação Social(Convencimento)* vs *Vontade*, caso suceda você pode escolher quanto dinheiro oferece a criatura recebendo 20% de lucro no dia seguinte se o alvo possuir o dinheiro. Caso o alvo não consiga pagar ele fica *Endividado*. Você possui +5 em testes de Interação Social(Convencimento) contra criaturas endividadas e estas são muito mais suscetíveis a seguirem suas ordens ao falharem em testes de Vontade contra você em uma tentativa de quitarem suas dívidas.
-- **Cara de Pau** (1 Ação, 3 Stamina) — Você pode rolar *Interação Social(Convencimento)* com 1 nível de treinamento a mais.
+- **Agiota** (3 Ações, 10 Stamina) — Você pode tentar convencer uma criatura que consiga te entender a aceitar um empréstimo (monetário ou de bens), voltando para cobrá-la 1 dia depois. Ao escolher um alvo, você rola *Convencimento* vs *Vontade*, caso suceda você pode escolher quanto dinheiro oferece a criatura recebendo 20% de lucro no dia seguinte se o alvo possuir o dinheiro. Caso o alvo não consiga pagar ele fica *Endividado*. Você possui +5 em testes de Convencimento contra criaturas endividadas e estas são muito mais suscetíveis a seguirem suas ordens ao falharem em testes de Vontade contra você em uma tentativa de quitarem suas dívidas.
+- **Cara de Pau** (1 Ação, 3 Stamina) — Você pode rolar *Convencimento* com 1 nível de treinamento a mais.
 
-### Técnicas de Ramo — Tier 2 (nível 4)
+## Técnicas de Ramo — Tier 2 (nível 4)
 **Cartógrafo**
 - **Desenhar Mapa de Combate** (5 Minutos, 3 Stamina) — Você desenha um mapa tático, analisando altitude, tipos de terreno e hostilidades em um espaço de até 300 metros quadrados. Ao estar em um local mapeado por você:
   - Você e seus aliados não podem ser *Desprevenidos*
@@ -149,7 +149,7 @@ Além disso, você pode escolher **(1 + Mod. Inteligência)** Perícias para ser
 - **Terror** (Passiva) — Ao acertar um crítico, o alvo fica *Exposto.*
 
 **Trambiqueiro**
-- **Conexões Duvidosas** (1 Ação, 3 Stamina) — Você já ouviu falar de muita gente e possivelmente elas te devem algo, ou você que deve… Role um teste de *interação social(Convencimento)* CD 20, porém pode ser dificultado dependendo da localização. Só pode ser utilizado 1 vez por localização, porém pode ser usado em diferentes áreas em uma cidade grande.
+- **Conexões Duvidosas** (1 Ação, 3 Stamina) — Você já ouviu falar de muita gente e possivelmente elas te devem algo, ou você que deve… Role um teste de *Convencimento* CD 20, porém pode ser dificultado dependendo da localização. Só pode ser utilizado 1 vez por localização, porém pode ser usado em diferentes áreas em uma cidade grande.
   - **Falha crítica:** O contato existe, mas te odeia. Ele ativamente trabalha contra você enquanto estiver na cidade.
   - **Falha:** O contato existe, mas você deve algo a ele. Ele só ajuda se você quitar a dívida primeiro (favor, dinheiro ou serviço).
   - **Sucesso:** O contato existe e te deve um favor menor: informação local, desconto em uma compra, esconderijo por uma noite, ou apresentação a alguém importante.
@@ -158,7 +158,7 @@ Além disso, você pode escolher **(1 + Mod. Inteligência)** Perícias para ser
   - **Passiva:** Você automaticamente sabe o valor de um item ao examiná-lo. Recebe 20% a mais de **Sins** de todas as fontes. Ou seja, quando saquear 10 **Sins**, recebe 12. Quando vender um item por 300 **Sins** recebe 360 **Sins**. Isso não se aplica a itens já saqueados e repassados a você, apenas quando estiver vasculhando. Por exemplo, não faz sentido alguém te entregar 10 Sins e você magicamente receber 12.
   - **Ação:** *Revirar* (máx. 1x/cena) — Ao vasculhar uma sala que pode possuir itens valiosos, pode revirá-la com mais cuidado. Role investigação (CD 15): **Falha Crítica:** Ativa uma armadilha. Recebe 1 de dano e não encontra nada. **Falha:** Não encontra nada além do óbvio. **Sucesso:** Encontra algo de valor que outros ignorariam. 2d10 **Sins** em itens vendáveis. **Sucesso Crítico:** Encontra um saco de **Sins**, contendo 2d10 **Sins**.
 
-### Técnicas de Ramo — Tier 3 · Ultimates (nível 5)
+## Técnicas de Ramo — Tier 3 · Ultimates (nível 5)
 > O Tier 3 provê ultimates, que só podem ser utilizadas 1 vez por dia.
 
 **Cartógrafo** — Requisito: deve ter ao menos Cartógrafo Tier 1 ou 2. *"Minha arte, pode descobrir todos os segredos."*
@@ -188,7 +188,7 @@ Além disso, você pode escolher **(1 + Mod. Inteligência)** Perícias para ser
 
 **Trambiqueiro** — *"Todo mundo tem um preço."*
 - **Suborno Irrecusável** (2 Ações, 5 Stamina, Ultimate) — *"Vamos ser razoáveis aqui. Quanto vai custar pra você olhar pro outro lado?"*
-  - Escolha uma criatura inteligente que possa te entender e que não seja diretamente leal a algo maior que dinheiro (fanatismo religioso, amor verdadeiro, honra inabalável). Role *Interação Social(Convencimento)* com +5 vs Vontade do alvo:
+  - Escolha uma criatura inteligente que possa te entender e que não seja diretamente leal a algo maior que dinheiro (fanatismo religioso, amor verdadeiro, honra inabalável). Role *Convencimento* com +5 vs Vontade do alvo:
     - **Falha Crítica:** O alvo fica enfurecido com a tentativa. +2 Atacar contra você até o fim do combate.
     - **Falha:** O alvo hesita, ficando *Atordoado* por 1 rodada enquanto considera a proposta.
     - **Sucesso:** O alvo muda de lado até o fim do combate/cena.
@@ -196,40 +196,34 @@ Além disso, você pode escolher **(1 + Mod. Inteligência)** Perícias para ser
   - **O Custo:** Se perceber que foi manipulada, a criatura tenta te atacar. Perca 1d6 de Éter.
 - **Esquemas** (Ação Livre, 5 Stamina, Ultimate) — *"Ah, isso? Eu já tinha pensado nisso."*
   - A qualquer momento você pode declarar uma preparação que fez e preparou previamente, antes da cena atual. Exemplo: *"Eu já tinha subornado um dos guardas. Ele deixa a porta dos fundos aberta."* / *"Eu escondi armas naquela sala ontem à noite."* / *"Eu contratei mercenários. Eles chegam agora."*
-  - Role um teste de *Interação Social(Convencimento)*, a CD varia dependendo da viabilidade da preparação proposta. Se suceder isso realmente aconteceu, se não algo do seu plano deu errado.
+  - Role um teste de *Convencimento*, a CD varia dependendo da viabilidade da preparação proposta. Se suceder isso realmente aconteceu, se não algo do seu plano deu errado.
   - **O Custo:** Seus pecados estão sendo observados. Perca 1d6 de Éter.
 
-## Segundo o Pedro (2026-09-05)
-- **B11:** ramos são **3 técnicas Tier 1 · 2 Tier 2 · 1 ultimate Tier 3**, desbloqueadas nos níveis **2, 4 e 5**. O texto "6 Técnicas de Ramo, 3 por Tier" está errado.
-- **B16:** *"Interação social(x) era a norma para referenciar as perícias sociais, mas hoje foram individualizadas; interação social hoje só se refere ao grupo das perícias de interação."* → ler **Interação Social(Convencimento) = [[Atributos e Perícias|Convencimento]]**.
-- **B12:** *Endividado* e *Escondido* "foram criadas especificamente para uso unitário nessas técnicas… depois fazemos a revisão nas condições" — não são condições canônicas ainda.
-- **B2:** munição — "1 unidade por combate inteiro, daí você pode seguir atirando até o fim do combate. Sem munição você não pode usar armas à distância durante todo o combate." Relevante porque o Batedor começa treinado em **Armas à Distância**.
-- **A5/A9:** [[Azgar Sandgale]] é o Batedor da [[Equipe desfloreio]]; o "Batedor de [[Kirkushav Drekar]]" morto em [[Ossyria]] foi derrotado por **[[Terk Sandgale]]**, não por Azgar.
-
 ## Relações
-- **Pertence a** → [[Sistema]]
+- **Pertence a** → [[Sistema]] · [[Progressão]] · [[Criação de Personagem]]
 - **Recurso de classe** → Instinto (0–5)
 - **Recursos gerais** → Saúde · Stamina · [[Éter]]
 - **Ramos** → Cartógrafo (exploração/sobrevivência) · Trambiqueiro (dinheiro/interação social) · Sem-Nome (furtividade/assassinato)
 - **Perícias iniciais** → Armas à Distância, [[Atributos e Perícias|Sobrevivência]], [[Atributos e Perícias|Percepção]]; escolhe entre [[Atributos e Perícias|Crime]], [[Atributos e Perícias|Religião]], [[Atributos e Perícias|Iniciativa]], [[Atributos e Perícias|Medicina]], [[Atributos e Perícias|Furtividade]]
-- **Economia** → [[Sins]] (Saque, Olho no Lance, Agiota, Cobra) · [[O Bazar]]
+- **Regras tocadas** → [[Jornada]] (Líder, Cicatrizes da Jornada e o valor de Hostilidade) · [[Superfícies e Furtividade]] (Ocultar-se, Sigiloso) · [[Armas e Munição]] · [[Descanso]]
+- **Economia** → [[Sins]] em Saque, Olho no Lance, Agiota e Cobra · [[O Bazar]] · [[Dinheiro e Comerciantes]]
 - **Condições que usa** → [[Condições|Desprevenido]], [[Condições|Exposto]], [[Condições|Enraizado]], [[Condições|Desorientado]], [[Condições|Atordoado]], [[Condições|Envenenamento]]
-- **PJ que a usa** → [[Azgar Sandgale]] (Batedor da [[Equipe desfloreio]], de [[Ossyria]])
-- **Colisões de nome** → *Oportunista* (também no [[Espadachim]]) · *Terror* (também no [[Monge]], como "O Terror")
-- **Regra de jornada** → Líder e Cicatrizes da Jornada dependem da regra de **Jornada** e do valor de Hostilidade ([[Sistema]])
+- **Nomes compartilhados** → *Oportunista* também existe no [[Espadachim]] · *Terror* ecoa *O Terror* do [[Monge]]
+- **Homônimo fora da classe** → o "Batedor" a serviço de [[Kirkushav Drekar]], morto em [[Ossyria]] por Terk Sandgale ([[Família Sandgale]]), é um cargo de batedor imperial e não um praticante desta classe
+- **PC que a usa** → nenhum dos cinco da [[Equipe desfloreio]]; [[Azgar Sandgale]], o explorador do grupo, é [[Artilheiro]] de arremesso
 
-## Conflitos e pendências
-1. **Trambiqueiro tem 2 ultimates** (Suborno Irrecusável + Esquemas); todos os outros 20 ramos do sistema têm 1. Erro ou escolha? **Pendência aberta.** (Digest B §15)
-2. **Homem de Negócios**: frase truncada no Notion — *"Você possui um disturbio de mat"*. Completar. **Pendência aberta.** (Digest B §16)
-3. **Ocultar-se**: "esconder com 1 ação ao em vez de **2**" × Sistema/Furtividade, que define esconder-se com **3 ações**. Qual é a base? **Pendência aberta.** (Digest B §25)
-4. **Perícias legadas** "Interação Social(Convencimento)" → Convencimento (B16); corrigir no Notion.
-5. **"6 Técnicas de Ramo, 3 por Tier"** × Progressão 3/2/1 — resolvido por B11; corrigir no Notion.
-6. **Condições sem definição canônica**: *Endividado* (Agiota), *Escondido* (Golpe Sombrio, Coleção de Últimos Suspiros), *Marcada à Morte X* (definida inline só na ultimate Silêncio). B12 adia a revisão.
-7. **Cicatrizes da Jornada** repete verbatim a epígrafe de *Imortal* ([[Brutalista]]): "Cada ferida conta uma história. Cada história te ensinou a sobreviver." Copiar-colar? (Digest B §17)
-8. **Marcas com "+1 permanente"** até +5 × escala canônica de perícia +2/+4/+6/+8. Como se somam? **Pendência aberta (mesma do [[Espadachim]]).**
-9. **Progressão em linha única** no Notion (tabela achatada) — formatação, não conteúdo.
+## Pontas soltas
+- **O Trambiqueiro tem duas ultimates.** *Suborno Irrecusável* e *Esquemas* dividem o Tier 3 do ramo, enquanto os outros vinte ramos do sistema têm uma só. [[Perguntas Abertas]] E65.
+- **Homem de Negócios está truncada.** A descrição da Marca para em *"Você possui um distúrbio de mat…"* e nunca é completada. [[Perguntas Abertas]] E66.
+- **Quantas ações custa esconder-se?** *Ocultar-se* promete fazê-lo "com 1 ação ao em vez de 2", mas [[Superfícies e Furtividade]] define esconder-se em 3 ações. [[Perguntas Abertas]] E67.
+- **Estados sem entrada em [[Condições]].** *Endividado* (Agiota), *Escondido* (Golpe Sombrio, Coleção de Últimos Suspiros) e *Marcada à Morte X* (definida apenas dentro de *Silêncio*) nasceram para uso único nessas técnicas; a revisão geral das condições ainda vai acontecer.
+- **Marcas que dão "+1 permanente"** até +5 convivem com a escala de treinamento de quatro degraus, +2/+4/+6/+8 ([[Atributos e Perícias]]). [[Perguntas Abertas]] E63.
+- **Epígrafe repetida.** *Cicatrizes da Jornada* usa a mesma frase de *Imortal*, do [[Brutalista]]: "Cada ferida conta uma história. Cada história te ensinou a sobreviver."
 
-## Fonte
-- Notion: Batedor `8706e3a401d9823a91fd81f689a6fbe7` (ed. 2026-08-12, 🟢 Pronto) · Classes `3a66e3a401d9809b8eceec1f30be9fd2`
-- Raw: `docs/memoria/notion_raw/classe_batedor.md`, `classe_index.md`
-- Digest: `docs/memoria/digests/B_classes.md` §2, INCONSISTÊNCIAS 14, 15, 16, 17, 18, 21, 25 · Respostas: A5, A9, B2, B11, B12, B16
+## Procedência
+- Notion `8706e3a401d9823a91fd81f689a6fbe7` — Batedor (ed. 2026-08-12, 🟢 Pronto); índice de Classes `3a66e3a401d9809b8eceec1f30be9fd2`.
+- Respostas do mestre 2026-09-05: **B11** (ramos 3/2/1 nos níveis 2/4/5) · **B16** ("Interação Social(x)" era a norma antiga; as perícias sociais foram individualizadas, logo Interação Social(Convencimento) = Convencimento) · **B12** (*Endividado* e *Escondido* criadas para uso unitário; revisão adiada) · **B2** (munição: 1 unidade por combate inteiro) · **A5/A9** (o Batedor de Kirkushav foi morto por Terk Sandgale, não por Azgar).
+- `docs/memoria/notion_raw/classe_batedor.md`, `classe_index.md`; digest `B_classes.md` §2, inconsistências 14, 15, 16, 17, 18, 21, 25.
+- Correções pendentes na fonte: frase "6 Técnicas de Ramo, 3 por Tier"; nomes legados "Interação Social(Convencimento)"; tabela de Progressão achatada em linha única (formatação).
+- Correção aplicada nesta revisão: a classe de [[Azgar Sandgale]] é [[Artilheiro]] — a versão anterior desta nota o listava como Batedor por confusão com o cargo de batedor imperial de Kirkushav.
+- Revisão de redação: 2026-09-07.

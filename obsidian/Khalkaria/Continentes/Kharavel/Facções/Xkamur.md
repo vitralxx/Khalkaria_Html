@@ -1,55 +1,47 @@
 ---
 tipo: faccao
-status: rascunho-notion
+status: rascunho
 spoiler: gm
 era: campanha
 continente: Kharavel
 aliases: ["os Xkamur", "povo Xkamur"]
-fonte_notion: [3696e3a401d98184af09dd6a4082e11a, 3696e3a401d9814f8e0dfa4c6b50b850, 33e6e3a401d981f68258f6a0be896c08]
-ultima_sync: 2026-09-05
+fonte_notion: [3696e3a401d98184af09dd6a4082e11a, 3696e3a401d9814f8e0dfa4c6b50b850, 33e6e3a401d981f68258f6a0be896c08, pedro-2026-09-05]
+ultima_sync: 2026-09-07
 tags: [khalkaria/continentes/kharavel/faccoes]
 ---
 # Xkamur
 
-**Resumo.** Povo nativo de [[Kharavel]], **rivais históricos dos [[Skarv]]**. Ao contrário deles, *"detestam completamente a Árvore e tudo que dela emana"* — rejeitam qualquer contato com a [[Seiva]] ou derivados de [[A Vhelor]]. Página 🔴 Stub: sem localização, cultura, idioma ou NPC. *"Já possuem algumas fichas de inimigos no bestiario"* (app Bestiário Khalkaria). Candidatos naturais a "povos nativos" que ajudaram os [[Rastas]] a tomar o [[Castelo de Kirkushav]] e a aliados de [[Revavena]] contra a Árvore — mas nada disso está escrito.
+**Resumo.** Povo nativo de [[Kharavel]] e rival histórico dos [[Skarv]]. A rivalidade tem uma causa clara: onde os Skarv fizeram da [[Seiva]] um ofício sagrado, os Xkamur *"detestam completamente a Árvore e tudo que dela emana"* e recusam qualquer contato com a seiva ou com o que dela deriva. São a recusa mais pura que [[A Vhelor]] encontrou no continente — e, por isso, os candidatos naturais tanto aos "povos nativos" que ajudaram os [[Rastas]] a derrubar o [[Castelo de Kirkushav]] quanto a aliados de quem queira matar a Árvore. Fora isso, quase nada deles foi escrito: não têm território no mapa, nem idioma, nem organização, nem um único nome próprio.
 
-## Cânone (Notion)
+## O que se sabe
 
-### Página Xkamur (🔴 Stub, ed. 2026-05-23)
-> *Esta página é placeholder. Conteúdo a desenvolver.*
 > Povo nativo de Kharavel, rivais históricos dos Skarv. Diferentemente dos Skarv, que faziam uso técnico-místico da seiva da Grande Árvore, os Xkamur **detestam completamente a Árvore e tudo que dela emana**. Rejeitam qualquer contato com seiva ou substantcias derivadas.
-> Já possuem algumas fichas de inimigos no bestiario.
-> **A Desenvolver** — Localização no mapa / Características culturais (aparência, organização social, idioma) / História da rivalidade com os Skarv / Relação atual com Khaskavel — aliados naturais contra a Árvore? / Como reagem aos PCs (especialmente se carregarem seiva) / NPCs nomeados
 
-### Facções (🟡, 2026-07-15)
-> **Xkamur** — rivais históricos dos Skarv, detestam completamente a Árvore.
+Visto do lado dos Skarv, são a norma e não a exceção: *"a postura geral dos povos nativos de Kharavel"* é de oposição à Árvore, e é o uso pragmático dos Skarv que destoa — *"esse uso pragmático os distingue de outros povos nativos como os Xkamur, rivais históricos dos Skarv, que detestam a árvore por completo e rejeitam qualquer contato com a seiva."*
 
-### Vilarejo Skarv
-> Esse uso pragmático os distingue de outros povos nativos como os **Xkamur**, rivais históricos dos Skarv, que detestam a árvore por completo e rejeitam qualquer contato com a seiva.
-> Apesar da postura geral dos povos nativos de Kharavel ser de oposição à Grande Árvore e suas substâncias [...]
+## O que a recusa lhes rende
 
-## Segundo o Pedro (2026-09-05)
-Nenhuma menção direta. Contexto: **A17** — método do Pedro é *"definir regiões de facções dai escrever a história do continente"*; os Xkamur ainda não têm região no mapa. **A18**: itens de [[Vytália]] exigem não ter [[Marca da Vhelor]] — um povo que rejeita a árvore é o perfil de quem os usa.
+Um povo que nunca tocou na seiva é um povo sem [[Marca da Vhelor]] — e os artefatos de [[Vytália]] *"exigem que o usuário não tenha sido corrompido pela árvore"*. Se existem mãos em Kharavel capazes de empunhar as armas da deusa das criaturas, são as dos Xkamur. Pela mesma razão são inimigo natural do [[Culto de Malkhor]], que não tem nada a oferecer a quem recusa a tentação, e aliados possíveis de [[Hadran Vorgil]], que quer a Árvore morta.
 
 ## Relações
 - **Rivais históricos** → [[Skarv]] / [[Vilarejo Skarv]]
 - **Odeiam** → [[A Vhelor]] · [[Seiva]] · [[Folhas Amarelas]] · [[Casca de Raiz]]
-- **Inimigos prováveis** → [[Culto de Malkhor]] · [[Khaskavel]] (colônia) — relação "a desenvolver"
-- **Aliados potenciais** → [[Revavena]] / [[Rastas]] ("povos nativos" na queda do [[Castelo de Kirkushav]] — não confirmado) · [[Hadran Vorgil]] (quer destruir a Árvore)
-- **Contexto** → Povos Diversos do Sul · [[Kuriam]] (não ligado no Notion)
-- **Fichas** → Bestiário Khalkaria (fichas de inimigos existentes; nomes não listados no Notion)
-- **Deusa criadora** → [[Vytália]] (todo ser é dela, A3)
+- **Inimigos prováveis** → [[Culto de Malkhor]] · [[Khaskavel]], a colônia
+- **Aliados possíveis** → [[Rastas]] / [[Revavena]], nos "povos nativos" que tomaram o [[Castelo de Kirkushav]] · [[Hadran Vorgil]]
+- **Contexto** → [[Povos Diversos do Sul]] · [[Kuriam]], no sul, sem ligação escrita com eles
+- **Deusa criadora** → [[Vytália]], de quem todo ser é criatura
 - **Continente** → [[Kharavel]]
 
 ## Linha do tempo
-- **0** (campanha): existem; posição e estado desconhecidos.
+- **0** (campanha): existem, e é tudo o que se pode afirmar — posição e estado desconhecidos.
 
-## Conflitos e pendências
-1. **Stub total:** localização, raça (Dryads? outra raça?), idioma, organização, NPCs — tudo "A Desenvolver". Pendência do Notion.
-2. **Fichas no Bestiário:** quais? Cruzar o SQLite do app Bestiário para listar criaturas Xkamur e citá-las aqui.
-3. **"Povos nativos" que atacaram o castelo** (pág. Castelo em Ruínas) — Xkamur? Skarv? Não nomeados.
-4. **Relação com Kuriam e o "sul sábio"** (Direcionamento §3) — os Xkamur são um dos "povos ao sul"? Não escrito.
+## Pontas soltas
+1. **Tudo está por escrever:** localização no mapa, aparência, organização social, idioma, a história da rivalidade com os [[Skarv]], a relação atual com [[Khaskavel]], como reagem a forasteiros que carreguem seiva, e qualquer nome próprio. Enquanto não tiverem região desenhada, não têm história.
+2. **Já são inimigos à mesa.** Existem fichas de criaturas Xkamur prontas para uso, e nenhuma delas foi nomeada aqui — faltam esses nomes, que são os primeiros Xkamur com rosto que o mundo terá.
+3. **Quem tomou o castelo.** Os "povos nativos" que atacaram as ruínas ao lado dos [[Rastas]] nunca foram identificados: Xkamur, [[Skarv]] ou outros.
+4. **São do sul?** A promessa de um sul *"simples, porém sábio"* combina com eles, mas a posição dos Xkamur nunca foi fixada — não se deve assumir.
 
-## Fonte
-- Notion: Xkamur `3696e3a401d98184af09dd6a4082e11a` · Facções `3696e3a401d9814f8e0dfa4c6b50b850` · Vilarejo Skarv `33e6e3a401d981f68258f6a0be896c08`
-- Raw: `notion_raw/lore_kharavel_faccoes_filhas.md`, `lore_kharavel_faccoes.md`, `lore_kharavel_cidades.md` · Digest `E_lore.md` §2, §3 (🔴 Stub)
+## Procedência
+- Notion — *Xkamur* `3696e3a401d98184af09dd6a4082e11a` (🔴 placeholder, 2026-05-23; traz a lista "A Desenvolver", recolhida acima em Pontas soltas, e a observação de que já existem fichas de inimigos no bestiário) · *Facções* `3696e3a401d9814f8e0dfa4c6b50b850` · *Vilarejo Skarv* `33e6e3a401d981f68258f6a0be896c08`
+- Mestre, 2026-09-05 — A17 (a geografia vem antes: sem região de facção no mapa, não há história a escrever) · A18 (os itens de Vytália exigem usuário não corrompido pela Árvore) · A3 (toda criatura é obra de Vytália)
+- Brutos em `docs/memoria/notion_raw/lore_kharavel_faccoes_filhas.md`, `lore_kharavel_faccoes.md`, `lore_kharavel_cidades.md` · digest `docs/memoria/digests/E_lore.md` §2, §3

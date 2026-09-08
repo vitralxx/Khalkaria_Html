@@ -13,15 +13,15 @@ tags: [khalkaria/sistema, khalkaria/sistema/regras]
 
 **Resumo.** Três manobras padronizadas resolvem o corpo a corpo não-letal — **Empurrar**, **Desarmar** e **Agarrar** — todas por disputa de perícia. O **tamanho** (Miúdo → Gigantesco) modifica testes físicos disputados em **±2 por degrau** de diferença e define o dado do soco desarmado.
 
-## Cânone (Notion)
+## Manobras
 
-### Manobras
 > Ao batalhar você pode querer fazer certas manobras de combate:
 > - **Empurrar** — Você tenta empurrar um alvo, disputando *Movimento* X *Fortitude*, se ganhar você empurra o alvo até 3 m + 1,5 m para cada 5 pontos sobrepujantes. Ao empurrar com sucesso, o alvo fica caído.
 > - **Desarmar** — Você tenta desarmar um alvo, disputando *Movimento* X *Movimento*, se ganhar você derruba a arma do alvo no chão.
 > - **Agarrar** — Você tenta agarrar um alvo, disputando *Movimento* X *Movimento*, se ganhar você domina o alvo com no mínimo 1 mão, Atacar contra o alvo possui +2 e o alvo recebe -2 ao Atacar e o alvo fica *enraizado* até se livrar do agarrão.
 
-### Tamanho
+## Tamanho
+
 > Criaturas podem ter tamanhos diferentes, e isso modifica certas interações.
 > Miúdo→Pequeno→Médio→Grande→Gigantesco
 > Testes físicos disputados contra uma criatura de tamanho maior que você são mais difíceis:
@@ -35,7 +35,7 @@ tags: [khalkaria/sistema, khalkaria/sistema/regras]
 | Grande | +6 | +4 | +2 | 0 | -2 |
 | Gigantesco | +8 | +6 | +4 | +2 | 0 |
 
-**Ataque Natural**
+## Ataque natural
 
 | Tamanho | Soco |
 |---|---|
@@ -48,13 +48,16 @@ tags: [khalkaria/sistema, khalkaria/sistema/regras]
 ## Relações
 - **Faz parte de** → [[Sistema]]
 - **Usado em** → [[Combate]]
+- **Usa** → [[Atributos e Perícias]] (Movimento, Fortitude, Atacar)
 - **Aplica** → [[Condições]] (*Caído*, *Enraizado*)
 - **Soco desarmado escala com** → [[Monge]] e cartas de [[O Limiar (cartas)]] (Garras de Éter, Lenda Monge, Artista Marcial Supremo)
 - **Tamanho alterado por magia** → [[Abjuração]] (Aumentar / Diminuir Criatura), [[O Limiar (cartas)]] (Colossus Primordial)
 
-## Conflitos e pendências
-- **Agarrar não define como se livrar.** A magia *Translocação Arcana* ("sai de Agarrão") e a carta *Corpo Escorregadio* ("+3 em testes para escapar de Agarrões") pressupõem um teste de escape que a regra não descreve.
-- **Empurrar** aplica *caído* automaticamente no sucesso; a magia *Onda Gravitacional* empurra sem derrubar. Conferir se a condição é exclusiva da manobra.
+## Pontas soltas
+- **Agarrar não define como se livrar.** A magia *Translocação Arcana* ("sai de Agarrão") e a carta *Corpo Escorregadio* ("+3 em testes para escapar de Agarrões") pressupõem um teste de escape que a manobra não descreve. [[Perguntas Abertas]] E57.
+- **Empurrar derruba sempre?** A manobra aplica *Caído* automaticamente no sucesso, mas a magia *Onda Gravitacional* empurra sem derrubar — falta dizer se a condição é exclusiva da manobra.
 
-## Fonte
-Notion `2b76e3a401d980c0ab7bc27a342f4ee1` (Manobras; Tamanho). Raw: `docs/memoria/notion_raw/sistema_root.md`. Digest: `A_sistema.md` §1.8–1.9.
+## Procedência
+- Notion `2b76e3a401d980c0ab7bc27a342f4ee1` — Manobras; Tamanho.
+- `docs/memoria/notion_raw/sistema_root.md`; digest `A_sistema.md` §1.8–1.9.
+- Revisão de redação: 2026-09-07.

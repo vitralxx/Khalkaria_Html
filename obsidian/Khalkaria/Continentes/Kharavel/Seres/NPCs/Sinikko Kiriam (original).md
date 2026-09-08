@@ -6,96 +6,109 @@ era: sessao0
 continente: Kharavel
 aliases: ["Sinikko original", "o Sonhador atual", "Imperador de Khaskavel (−27)", "O Rei de Khaskavel", "representante dos grutos"]
 fonte_notion: [33e6e3a401d9813d8cf5d8d8e6c3fddc, 33e6e3a401d98172bcefef2453ce1564, 33e6e3a401d9814aa2a2c3d7ef3875a7, 33e6e3a401d98131815efc830056e2e3, 33e6e3a401d98126bae4e981b581487f, 33e6e3a401d9819796c9dfb2263e215d, 33e6e3a401d98103af5ef241c6512d02, pedro-2026-09-05]
-ultima_sync: 2026-09-05
+ultima_sync: 2026-09-07
 tags: [khalkaria/continentes/kharavel/seres/npcs]
 ---
 # Sinikko Kiriam (original)
 
-**Resumo.** O **verdadeiro** Sinikko Kiriam: [[Gruto]] teurgo nascido nos esgotos do [[Império de Ferro]], filho de [[Lorrain Kiriam]]; líder da resistência gruta aos 16, representante oficial da raça, "refém dourado" de [[Kirkushav Drekar]] e, por fim, **imperador de [[Khaskavel]]** por delegação — segundo o Pedro (A10), *"as 3 versões são fases"* da mesma vida, e ele **não** é filho de Kirkushav. Vivia a contradição de libertar grutos operando uma colônia escravista (B18). Na [[Sessão 0]] é um dos 5 da [[Equipe desfloreio]] (ficha em [[Sinikko Kiriam (PJ)]]): interroga [[Karma]], que lê seu passado, profetiza a queda de Khaskavel em 27 anos e desaparece em seus braços (A5); dentro de [[A Vhelor]] é corrompido e se torna **[[O Sonhador]] atual** — seu pecado alimenta a árvore. [[Malkhor]] gera o [[Sinikko Kiriam (clone)]] que governa Khaskavel hoje.
+**Resumo.** O Sinikko verdadeiro: [[Gruto]] [[Teurgo|teurgo]] nascido nos esgotos do [[Império de Ferro]], filho de [[Lorrain Kiriam]], líder da resistência gruta aos dezesseis anos, representante oficial da raça, refém dourado de [[Kirkushav Drekar]] e, por fim, imperador de [[Khaskavel]] por delegação. Gruto de periferia, tribuno e nobre colonial são a mesma vida em três tempos, não três pessoas — e nenhuma delas é filha de Kirkushav. Governou preso na contradição de ser o libertador do próprio povo enquanto operava uma colônia escravista. Na [[Sessão 0]] entra na [[A Vhelor]] com os outros quatro e não sai: é corrompido lá dentro e assume o casulo como [[O Sonhador]] atual, alimentando com o próprio pecado a árvore que fora mandado destruir. [[Malkhor]] devolve à cidade uma cópia dele, o [[Sinikko Kiriam (clone)]], que governa Khaskavel até hoje.
 
-## Cânone (Notion)
+## Os esgotos
 
-### Página Sinikko Kiriam — NPC (🟡, ed. 2026-07-03)
-> **Passado** — Sinikko sempre possuiu conexão com as forças materializantes, era membro de uma família de grutos renda relativamente alta no império de ferro, que proporcionou estudos adequados ao jovem. Participou de diversas atividades de revolta contra o governo vigente, demonstrando habilidades de estratégia e organização acima da média.
-> **Esclarecimento — Sinikko Original e Sinikko Clone** — A figura conhecida como "Sinikko Kiriam" em Kharavel hoje é, na verdade, uma criação direta de Malkhor — um clone do Sinikko original, gerado dentro da Grande Árvore.
-> - **Antes da sessão 0:** Sinikko original foi designado por Kirkushav Drekar como imperador de Khaskavel, escolhido por suas habilidades de diplomacia e estratégia. Operou alguns anos administrando a cidade e a expansão da colônia.
-> - **Sessão 0 (27 anos antes do início da campanha):** Sinikko é convocado por Kirkushav junto a outros 4 escolhidos para se aventurar dentro da Grande Árvore, com objetivo de descobrir suas fraquezas e destruí-la.
-> - **Após sessão 0:** Os 5 escolhidos entram na árvore. Sinikko é corrompido pela árvore ao tentar destruí-la sob ordem direta de Kirkushav, tornando-se o Sonhador atual do continente. Os outros 4 também são "mortos" pela árvore.
+> Ser gruto já bastava para fechar portas. Ser gruto *e* feiticeiro era uma combinação que fazia as pessoas se afastarem como se ele fosse uma chama prestes a sair de controle. No coração sombrio do Império do Ferro [...] Havia, no máximo, o que o Império destinava a todos os grutos: os esgotos. Foi ali embaixo que ele cresceu — entre túneis, água parada e um povo inteiro empurrado para onde a cidade não precisasse enxergá-lo.
 
-### O Rei de Khaskavel (Povos, sem Status, 2026-04-10)
+> Mas mesmo no escuro há quem carregue luz. Lorrain Kiriam, sua mãe, era teurga — e enxergava no filho o que ninguém mais se dava ao trabalho de olhar: um receptáculo. Poder bruto correndo nas veias, esperando forma.
+
+> Ela morreu quando ele tinha dez anos — quando humanos desceram aos esgotos. Não vieram negociar. Vieram lembrar aos grutos qual era o lugar deles. Lorrain ficou entre os invasores e os seus.
+
+Desde sempre teve *"conexão com as forças materializantes"* — nome antigo do [[O Limiar|Limiar]] e do [[Éter]], que todo ser carrega e que o teurgo aprende a atravessar (ver [[Regras de Magia]]).
+
+Há registros que o descrevem de outro jeito: *"membro de uma família de grutos renda relativamente alta no império de ferro, que proporcionou estudos adequados ao jovem. Participou de diversas atividades de revolta contra o governo vigente, demonstrando habilidades de estratégia e organização acima da média"* — e a ficha de mesa lhe dá origem [[Nobre]]. Não são versões rivais: *"por isso nobre e renda alta, mas no passado era pobre e vivia nos esgotos"*. A riqueza é o fim da história, não o começo.
+
+## A resistência
+
+> Aos dezesseis anos, era um prodígio sem mestre [...] Então ele apareceu. Curou os feridos. Contrabandeou o que era necessário. Matou quando precisou. [...] Quando Sinikko falava, os esgotos inteiros escutavam. E quando ele começou a organizar a resistência, os esgotos inteiros marcharam.
+
+> O Império entrou em guerra além de suas fronteiras [...] Foi então que Sinikko orquestrou o que ninguém esperava: a tomada de um antigo bairro fundado pelos grutos. [...] Não era protesto. Era xeque: um Império lutando lá fora não sobrevive a uma segunda frente dentro dos próprios muros, e Sinikko fez questão de que Kirkushav Drekar entendesse isso com todas as letras.
+
+> Kirkushav Drekar não era homem de se impressionar facilmente. Mas Sinikko entrou naquela sala como se houvesse crescido para aquele momento, e falou das injustiças sofridas pelos grutos com a voz de quem não pede favor — *apresenta termos*. Melhorias de vida para os grutos. Direitos iguais. Ou o bairro continuaria tomado [...] Kirkushav ouviu. E cedeu — não por justiça, mas por aritmética.
+
+## O refém dourado
+
+> A resposta veio disfarçada de honra: Kirkushav trouxe Sinikko para dentro do governo. Cargos, audiências, presença na corte — e, a cada degrau subido, um degrau a mais de distância dos esgotos. [...] afastar o líder da fonte de sua força, transformar o rebelde em refém, mantê-lo perto o suficiente para ser útil e longe o suficiente para ser inofensivo.
+
+Nesse período o soberano também o instruiu como quem prepara herdeiro — política, combate e a história de [[Khalkaria]] —, até desistir: o aluno *"não conseguia deixar de ser um político populista à ser um aristocrata sem alma"*. O último degrau foi um oceano:
+
+> A última ordem foi a mais cruel: chefe de estado de uma colônia no mais novo continente, Kharavel. Uma cidade pequena, distante, fraturada — onde cada grupo enxerga o outro como inimigo e a divisão já virou parte da cultura. O Soberano a entregou nas mãos de Sinikko como quem entrega uma faca e aponta a direção. *Resolva.*
+
+> Sinikko odiou. Um oceano inteiro entre ele e seu povo — cada instinto gritava que atravessá-lo era abandonar os que confiaram, trair a memória de Lorrain, entregar a Kirkushav exatamente o que ele sempre quis: os esgotos sem seu líder. Mas recusar era pior.
+
+> O papel oficial de Sinikko é trazer triunfo para todos. Mas [...] ele não pode garantir nada. A promessa arrancada de Kirkushav existe enquanto for conveniente ao homem que a assinou.
+
+## Imperador de Khaskavel
+
 > Khaskavel é governada por Sinikko Kiriam desde seus 5 anos de desenvolvimento. Sinikko, apesar do posicionamento do império do ferro, sempre tentou fazer a vida de todos serem melhor, porém, isso é impossível enquanto você é uma colônia.
 > Kharavel sempre resistiu perante o colonialismo.
 
-### Página PJ "Sinikko Kiriam" (Sessão 0 / Os 5 escolhidos, 🟡, ed. 2026-07-18) — versão 3, trechos
-> Ser gruto já bastava para fechar portas. Ser gruto *e* feiticeiro era uma combinação que fazia as pessoas se afastarem como se ele fosse uma chama prestes a sair de controle. No coração sombrio do Império do Ferro [...] Havia, no máximo, o que o Império destinava a todos os grutos: os esgotos. Foi ali embaixo que ele cresceu — entre túneis, água parada e um povo inteiro empurrado para onde a cidade não precisasse enxergá-lo.
-> Mas mesmo no escuro há quem carregue luz. Lorrain Kiriam, sua mãe, era teurga — e enxergava no filho o que ninguém mais se dava ao trabalho de olhar: um receptáculo. Poder bruto correndo nas veias, esperando forma.
-> Ela morreu quando ele tinha dez anos — quando humanos desceram aos esgotos. Não vieram negociar. Vieram lembrar aos grutos qual era o lugar deles. Lorrain ficou entre os invasores e os seus.
-> Aos dezesseis anos, era um prodígio sem mestre [...] Então ele apareceu. Curou os feridos. Contrabandeou o que era necessário. Matou quando precisou. [...] Quando Sinikko falava, os esgotos inteiros escutavam. E quando ele começou a organizar a resistência, os esgotos inteiros marcharam.
-> O Império entrou em guerra além de suas fronteiras [...] Foi então que Sinikko orquestrou o que ninguém esperava: a tomada de um antigo bairro fundado pelos grutos. [...] Não era protesto. Era xeque: um Império lutando lá fora não sobrevive a uma segunda frente dentro dos próprios muros, e Sinikko fez questão de que Kirkushav Drekar entendesse isso com todas as letras.
-> Kirkushav Drekar não era homem de se impressionar facilmente. Mas Sinikko entrou naquela sala como se houvesse crescido para aquele momento, e falou das injustiças sofridas pelos grutos com a voz de quem não pede favor — *apresenta termos*. Melhorias de vida para os grutos. Direitos iguais. Ou o bairro continuaria tomado [...] Kirkushav ouviu. E cedeu — não por justiça, mas por aritmética.
-> A resposta veio disfarçada de honra: Kirkushav trouxe Sinikko para dentro do governo. Cargos, audiências, presença na corte — e, a cada degrau subido, um degrau a mais de distância dos esgotos. [...] afastar o líder da fonte de sua força, transformar o rebelde em refém, mantê-lo perto o suficiente para ser útil e longe o suficiente para ser inofensivo.
-> A última ordem foi a mais cruel: chefe de estado de uma colônia no mais novo continente, Kharavel. Uma cidade pequena, distante, fraturada — onde cada grupo enxerga o outro como inimigo e a divisão já virou parte da cultura. O Soberano a entregou nas mãos de Sinikko como quem entrega uma faca e aponta a direção. *Resolva.*
-> Sinikko odiou. Um oceano inteiro entre ele e seu povo — cada instinto gritava que atravessá-lo era abandonar os que confiaram, trair a memória de Lorrain, entregar a Kirkushav exatamente o que ele sempre quis: os esgotos sem seu líder. Mas recusar era pior.
-> O papel oficial de Sinikko é trazer triunfo para todos. Mas [...] ele não pode garantir nada. A promessa arrancada de Kirkushav existe enquanto for conveniente ao homem que a assinou.
-(v1 chama os grutos dos esgotos de **"os Exilados"**, *"grutos criminosos, descartados pela cidade"*; nome removido na v3.)
+A cidade que ele recebeu nasceu como diarquia de duas famílias, a dele e outra que se perdeu no caminho. E o cargo era uma armadilha moral:
 
-### Kirkushav Drekar
-> Kirkushav conheceu Sinikko a partir dos movimentos de resistência dos grutos, onde Sinikko liderava a logística e planejamento dos atos. Ao perceber o talento de Sinikko kiriam para mobilizar e gerenciar pessoas, Kirkushav protegeu o mesmo, criando-o como o próprio filho.
+> Na verdade Sinikko estava nessa contradição, manter-se no poder político do império de ferro era obedecer as ordens de kirkushav e operar uma colonia que praticava a escravidão, um povo pelo o outro, ele não tinha muitas opções.
 
-### Roteiro da Sessão 0
-> Sinikko Kiriam, você é o imperador da própria Khaskavel, designado pelo seu comandante, Soberano do Império de Ferro, que traça uma história antiga com você.
-> "Sinikko, eu lhe ordenei a remoção dessa planta e mesmo assim eu tive que vir até essa escória de terra indigna para resolver os seus deveres."
-> "Sinikko, como era a vida do seu povo nos esgotos do império de ferro? Eu me submeti a proteger uma raça de predadores [...] os grutos não são tão inteligentes quanto você. Se quiser garantir a segurança deles, repense nas suas escolhas."
-> Ao fim, Kirkushav dá um mapa do continente feito por um cartógrafo do império nas mãos de Sinikko.
-> [Arco planejado] Dentro da árvore, os jogadores enfrentarão diversas câmaras até chegar à câmara do sonhador, onde enfrentarão o dragão de raízes e morrerão. Sinikko Kiriam ocupa o cargo de próximo sonhador.
+O saldo dessa contradição está espalhado pelo continente. Deu casa a [[Alvak Krichama]] em troca de armas para a [[Vanguarda Serafélia]], e depois, comovido pela perda da filha do ferreiro, deixou uma criança dryad viver *"em sua cidade imperialista"*. Ao mesmo tempo, subestimou [[Yu]] e travou com os [[Skarv]] a guerra cultural que empurraria o povo dela para o mar. Governava de [[Vistaluz]], acima da [[A Embrenha]], com a guarnição de [[Ka'ur Zotama]] às ordens.
 
-### Outras menções
-- Alvak Krichama: *"humilde residência concedida por Sinikko Kiriam em troca de fabricar armamentos para a vanguarda Seratélia."*
-- Vilarejo Skarv: *"Sua lider, Yu, uma metade-cerva altamente habilidosa, era subestimada por Sinikko."*
-- Karma: *"Sinikko Kiriam / Khaskavel — inimigo de origem."*
-- Hadran: *"viu Sinikko Kiriam como o promissor diplomata que Kirkushav adotou como filho"*.
-- Casca de Raiz (Substâncias): quem a come *"sonha os sonhos do Sonhador"* → sonhos de Sinikko.
+## A Sessão 0
 
-## Segundo o Pedro (2026-09-05)
-- **A10 (verbatim):** *"Sinikko nasceu como gruto de periferia, batalhou muito para ganhar condições de desenvolvimento pessoa, sua mãe foi peça central nisso. Seu desenvolvimento e desdobramento político alavancaram sua vida até ser representante oficial da raça gruta no império de ferro, logo após foi designado como imperador de uma cidade em um continente distante, por isso nobre e renda alta, mas no passado era pobre e vivia nos esgotos. Sinikko Kiriam NÃO é filho de kirkushav drekar, Vorn Drekar é. Sinikko foi ensinado os meios da política, combate e a história de khalkaria por kirkushav, como se fosse um potencial sucessor, porém essa ideia de kirkushav rapidamente desandou já que sinikko não conseguia deixar de ser um político populista à ser um aristocrata sem alma."*
-- **B18 (verbatim):** *"Na verdade Sinikko estava nessa contradição, manter-se no poder político do império de ferro era obedecer as ordens de kirkushav e operar uma colonia que praticava a escravidão, um povo pelo o outro, ele não tinha muitas opções."*
-- **A5 (verbatim, trecho):** *"sinikko que era imperador de Khaskavel sobre delegação de Kirkushav, descobriu que Karma era a lider de um novo grupo que planejava movimentos revolucionários, os Rastas. Chegando em Khaskavel, a equipe não perdeu tempo em interroga-la, subestimando uma sublime escrava, sinikko leva ela para uma conversa a sós, e por algum motivo (Benção de Karmath) ela conhece todo o passado de Sinikko e utiliza isso para manipula-lo. Ela faz questão de informá-lo de uma profecia, em 27 anos, Revavena a cidade da salvação iria erguer-se e derrotar Khaskavel e a Vhelor, libertando Kharavel do Pecado. Logo em seguida, ela pede um abraço a Sinikko e enquanto repousa sobre o corpo reptiliano de Sinikko ela desaparece misticamente"*.
-- **A6:** *"Na sessão, sinikko vai até a ferraria e avista a garota, Alvak explica a situação pro imperador, que se solidariza pela perda da filha e permite que uma indigena viva em sua cidade imperialista."* · *"Khaskavel era uma Diarquia de 2 famílias, de sinikko e outra que descartei."* · *"Sonhador atual = Sinikko original"* (via O Sonhador: *"Quanto mais maligna a criatura, mais a árvore se alimenta dos seus pecados"*).
-- **A14:** *"forças materializantes"* = termo antigo para [[O Limiar]] e [[Éter]].
+Convocado por Kirkushav com outros quatro *"para se aventurar dentro da Grande Árvore, com objetivo de descobrir suas fraquezas e destruí-la"*, ouve na cara a ameaça mais precisa que o soberano tinha para ele — a segurança dos grutos — e recebe das mãos dele o mapa do continente. Antes de partir, a expedição interroga uma escrava:
+
+> sinikko que era imperador de Khaskavel sobre delegação de Kirkushav, descobriu que Karma era a lider de um novo grupo que planejava movimentos revolucionários, os Rastas. Chegando em Khaskavel, a equipe não perdeu tempo em interroga-la, subestimando uma sublime escrava, sinikko leva ela para uma conversa a sós, e por algum motivo (Benção de Karmath) ela conhece todo o passado de Sinikko e utiliza isso para manipula-lo. Ela faz questão de informá-lo de uma profecia, em 27 anos, Revavena a cidade da salvação iria erguer-se e derrotar Khaskavel e a Vhelor, libertando Kharavel do Pecado. Logo em seguida, ela pede um abraço a Sinikko e enquanto repousa sobre o corpo reptiliano de Sinikko ela desaparece misticamente
+
+Duas coisas o alcançam no mesmo dia: uma menina dryad na forja de [[Arrma Boua]], que ele decide poupar, e uma profecia que lhe dá vinte e sete anos de prazo. Ele entra na árvore assim mesmo.
+
+## O Sonhador
+
+> Os 5 escolhidos entram na árvore. Sinikko é corrompido pela árvore ao tentar destruí-la sob ordem direta de Kirkushav, tornando-se o Sonhador atual do continente. Os outros 4 também são "mortos" pela árvore.
+
+O plano da expedição previa exatamente isso: atravessar as [[Câmaras de Provação]] até *"a câmara do sonhador, onde enfrentarão o dragão de raízes e morrerão. Sinikko Kiriam ocupa o cargo de próximo sonhador."*
+
+O casulo no cerne da [[A Vhelor]] abriga sempre uma criatura, e quanto mais maligna ela for, mais a árvore engorda com seus pecados e mais viciosas ficam suas substâncias. Sinikko é essa criatura há vinte e sete anos: dorme, e Kharavel apodrece no ritmo dos seus sonhos. Quem mastiga [[Casca de Raiz]] *"sonha os sonhos do Sonhador"* — sonha, portanto, os dele. Só um coração verdadeiramente puro pode tomar-lhe o lugar e matar a árvore de fome; a candidata é a mesma menina que ele poupou, [[Lena Skarv]].
 
 ## Relações
-- **Raça / classe** → [[Gruto]] · [[Teurgo]] (escolas [[Destruição]], [[Conhecimento]], [[Alteração]] — ficha do PJ)
-- **Mãe** → [[Lorrain Kiriam]] · **família** → uma das duas famílias da diarquia de Khaskavel (A6)
-- **Mentor / patrão / não-pai** → [[Kirkushav Drekar]] (A10)
-- **Povo** → grutos dos esgotos de [[Volkrest]] / [[Império de Ferro]] ("os Exilados", v1) · idioma [[Skalia]]
-- **Governou** → [[Khaskavel]] ([[Vistaluz]], palácio) via [[Vanguarda Serafélia]] ([[Ka'ur Zotama]])
-- **Colegas na Sessão 0** → [[Equipe desfloreio]]: [[Vorn Drekar]], [[Klaus von Aldric]], [[Runa Skorn]], [[Azgar Sandgale]] · ficha → [[Sinikko Kiriam (PJ)]]
-- **Interrogou / foi lido por** → [[Karma]] (bênção de [[Karmath]]; profecia) · [[Sevic]]
-- **Inimigo de** → [[Rastas]] · [[Skarv]] / [[Yu]] (subestimou-a)
-- **Protegeu** → [[Alvak Krichama]] (residência) · [[Lena Skarv]] (permitiu a indígena — A6, ver pendência 3)
-- **Vigiado por** → [[Hadran Vorgil]] (espião de Kirkushav)
-- **Destino** → [[O Sonhador]] em [[A Vhelor]] ([[Câmaras de Provação]], dragão de raízes) · sonhos acessíveis via [[Casca de Raiz]]
-- **Cópia** → [[Sinikko Kiriam (clone)]] (criação de [[Malkhor]])
-- **Salvação possível** → substituição por [[Lena Skarv]] (coração puro) · [[Campanha 1 — Arco]]
+- **Raça e classe** → [[Gruto]] · [[Teurgo]], das escolas [[Destruição]], [[Conhecimento]] e [[Alteração]] · fala [[Skalia]]
+- **Mãe** → [[Lorrain Kiriam]], teurga morta nos esgotos
+- **Mestre, patrão e não-pai** → [[Kirkushav Drekar]]
+- **Povo** → os grutos dos esgotos de [[Volkrest]], chamados *"os Exilados"* nos registros mais antigos
+- **Governou** → [[Khaskavel]] de [[Vistaluz]], com a [[Vanguarda Serafélia]] de [[Ka'ur Zotama]]
+- **Companheiros de expedição** → [[Equipe desfloreio]]: [[Vorn Drekar]], [[Klaus von Aldric]], [[Runa Skorn]], [[Azgar Sandgale]]
+- **Ficha de mesa** → [[Sinikko Kiriam (PJ)|Sinikko Kiriam, personagem de jogador]]
+- **Interrogou e foi lido por** → [[Karma]], abençoada por [[Karmath]] · também interrogou [[Sevic]]
+- **Protegeu** → [[Alvak Krichama]] e, por causa dele, [[Lena Skarv]]
+- **Inimigos** → [[Rastas]] · [[Skarv]] e [[Yu]], que subestimou
+- **Vigiado por** → [[Hadran Vorgil]], espião de Kirkushav
+- **Tornou-se** → [[O Sonhador]] dentro da [[A Vhelor]], além das [[Câmaras de Provação]]
+- **Copiado por** → [[Malkhor]], em [[Sinikko Kiriam (clone)]]
+- **Pode ser substituído por** → [[Lena Skarv]], coração puro · ver [[Campanha 1 — Arco]]
 - **Eventos** → [[Sessão 0]] · [[Linha do Tempo]]
 
 ## Linha do tempo
-- **Infância:** esgotos do Império; Lorrain morre quando ele tem 10 anos.
-- **16 anos:** lidera a resistência gruta; toma o bairro; chantageia Kirkushav; vira representante oficial dos grutos; entra no governo como "refém dourado"; treinado como sucessor potencial (A10).
-- **≈ −32:** designado imperador de Khaskavel (*"desde seus 5 anos de desenvolvimento"* na Sessão 0).
-- **−27** (Sessão 0): mesa redonda; recebe o mapa; interroga Sevic e Karma; profecia; permite Lena em Khaskavel (A6 — ver pendência); entra na Vhelor; **torna-se o Sonhador**.
-- **−27 → 0:** sonha, inconsciente porém presente; seu pecado nutre a árvore; o clone governa em seu nome.
-- **0** (campanha): ainda é o Sonhador. Idade não escrita.
+- **Infância:** os esgotos do [[Império de Ferro]]; [[Lorrain Kiriam]] morre quando ele tem dez anos.
+- **Aos dezesseis:** lidera a resistência, toma o bairro gruto, arranca termos de [[Kirkushav Drekar]] e vira representante oficial da raça; é levado para dentro do governo e treinado como sucessor até o soberano desistir dele.
+- **≈ −32:** designado imperador de [[Khaskavel]], colônia que ele governará *"desde seus 5 anos de desenvolvimento"*.
+- **−29 a −27:** dá casa a [[Alvak Krichama]]; guerra cultural com os [[Skarv]] de [[Yu]].
+- **−27** ([[Sessão 0]]): recebe o mapa de Kirkushav; interroga [[Sevic]] e [[Karma]]; ouve a profecia dos vinte e sete anos; vê a menina dryad na forja e a autoriza a ficar; entra na [[A Vhelor]] e vira [[O Sonhador]].
+- **−27 → 0:** dorme no casulo; seu pecado alimenta a árvore; a cópia governa em seu nome.
+- **0** (campanha): ainda é o Sonhador.
 
-## Conflitos e pendências
-1. **Origem** (esgotos × "renda relativamente alta" × Origem Nobre × "criado como filho") — **resolvido por A10**: fases da mesma vida; não é filho. Página NPC e "O Rei de Khaskavel" pendentes de correção no Notion.
-2. **"O Rei de Khaskavel"** mistura original (*"sempre tentou fazer a vida de todos serem melhor"*) e clone (*"líder do Culto de Khaskavel e principal antagonista"*). Precisa distinguir (fidelidade A10).
-3. **Cena Alvak–Lena (A6):** *"Na sessão, sinikko vai até a ferraria e avista a garota"* — se "a sessão" é a Sessão 0 (−27), Lena teria sido resgatada antes de −27, incompatível com *"15 anos"* / *"há 2 anos"* (Notion). **Nova pergunta ao Pedro:** a cena é da Sessão 0 com o original, ou de uma sessão futura? Qual é a idade de Lena?
-4. **Escravidão × libertador** — B18 resolve como contradição vivida. Não escrito no Notion.
-5. **"os Exilados"** (v1) — nome da facção gruta sumiu na v3 e colide com a Origem "Exilado". Manter?
-6. **Idade de Sinikko** nunca escrita (nem em −27 nem em 0).
-7. **Grafia** "Siniko" (NPC) → Sinikko.
+## Pontas soltas
+1. **Os registros ainda o confundem com a cópia.** A página que descreve *"O Rei de Khaskavel"* mistura o homem que *"sempre tentou fazer a vida de todos serem melhor"* com o *"líder do Culto de Khaskavel e principal antagonista"* — duas criaturas diferentes na mesma entrada.
+2. **A diarquia.** Khaskavel nasceu governada por duas famílias e hoje só se fala da dele. Registrar a segunda como história encerrada ou apagá-la de vez? ([[Perguntas Abertas]] E9.)
+3. **A idade dele** nunca foi escrita, nem na Sessão 0 nem agora — e "agora", para quem dorme dentro de uma árvore, talvez nem conte. ([[Perguntas Abertas]] E37.)
+4. **"Os Exilados"**, nome dos grutos dos esgotos na primeira versão da sua história, sumiu nas seguintes e colide com a origem [[Exilado]]. Recuperar ou aposentar? ([[Perguntas Abertas]] E33.)
+5. **Ele representa qual continente** na equipe de um integrante por continente, se nasceu em [[Volkrest]] como [[Vorn Drekar]]? ([[Perguntas Abertas]] E1 e E16.)
+6. **O que sobra dele.** Nunca se escreveu se o Sonhador tem consciência, se pode ser acordado, se reconheceria alguém — nem o que acontece com ele caso outro coração ocupe o casulo.
+7. **Grafia** "Siniko" nos registros, onde se lê Sinikko.
 
-## Fonte
-- Notion: Sinikko NPC `33e6e3a401d9813d8cf5d8d8e6c3fddc` · Sinikko PJ `33e6e3a401d98172bcefef2453ce1564` · O Rei de Khaskavel `33e6e3a401d9814aa2a2c3d7ef3875a7` · Kirkushav `33e6e3a401d98131815efc830056e2e3` · O Sonhador `33e6e3a401d98126bae4e981b581487f` · Roteiro `33e6e3a401d9819796c9dfb2263e215d`
-- Raw: `notion_raw/lore_kharavel_npcs.md`, `sessao_npc_sinikko_lore.md`, `lore_mention_sinikko_sessao0.md`, `sessao_os5_sinikko.md`, `lore_kharavel_khaskavel_folhas.md`, `sessao_roteiro.md` · Pedro A5, A6, A10, A14, B18 · Digest `E_lore.md` §6 itens 14–15 · `F_sessoes_outros.md` §2, §6 itens 3, 7, 12
+## Procedência
+- Notion — *Sinikko Kiriam (NPC)* `33e6e3a401d9813d8cf5d8d8e6c3fddc` (🟡, ed. 2026-07-03) · *Sinikko Kiriam* (página de PC, Os 5 escolhidos) `33e6e3a401d98172bcefef2453ce1564` (🟡, ed. 2026-07-18, versões 1 e 3) · *O Rei de Khaskavel* `33e6e3a401d9814aa2a2c3d7ef3875a7` · *Kirkushav Drekar* `33e6e3a401d98131815efc830056e2e3` · *O Sonhador* `33e6e3a401d98126bae4e981b581487f` · *Roteiro da Sessão 0* `33e6e3a401d9819796c9dfb2263e215d` · *Alvak Krichama* `33e6e3a401d98103af5ef241c6512d02` · *Vilarejo Skarv* · *Casca de Raiz* (Substâncias)
+- Mestre, 2026-09-05 — A5 (o interrogatório de Karma e a profecia, verbatim) · A6 (a cena na ferraria; a diarquia de duas famílias; o Sonhador atual é o Sinikko original) · A10 (as três versões são fases; não é filho de Kirkushav, verbatim) · A14 ("forças materializantes" = Limiar e Éter) · B18 (a contradição do poder colonial, verbatim)
+- Digests `docs/memoria/digests/E_lore.md` §6 itens 14–15 e `F_sessoes_outros.md` §2, §6 itens 3, 7, 12
+- Brutos em `docs/memoria/notion_raw/lore_kharavel_npcs.md`, `sessao_npc_sinikko_lore.md`, `lore_mention_sinikko_sessao0.md`, `sessao_os5_sinikko.md`, `lore_kharavel_khaskavel_folhas.md`, `sessao_roteiro.md`

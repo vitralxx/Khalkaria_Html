@@ -4,43 +4,54 @@ status: canon-notion
 spoiler: publico
 era: atemporal
 aliases: [Amaldiçoado, Amaldicoado, Amaldiçoada, Sem Memória]
-fonte_notion: [1056e3a401d9836ab1e901e614e5d3d4, 3a66e3a401d9808aa877f7e7cb77002a]
+fonte_notion: [1056e3a401d9836ab1e901e614e5d3d4, 3a66e3a401d9808aa877f7e7cb77002a, pedro-2026-09-05]
 ultima_sync: 2026-09-05
 tags: [khalkaria/sistema, khalkaria/sistema/origens]
 ---
 
 # Amaldiçoado
 
-**Resumo.** 👻 Origem de amnésia e marca. Treina [[Atributos e Perícias|Místico]] e concede *Local*: o personagem **não lembra de nada**, mas sabe que precisa chegar a um certo lugar, onde estão suas respostas. É a origem mais espartana do sistema — **nenhuma arma**, dois itens no total (Trapos Velhos e um bilhete rasgado com o próprio nome) e 1d6 [[Sins]]. Toda a origem é um gancho de mestre.
+**Resumo.** 👻 A origem de quem acorda sem passado e com marcas que não pediu. Treina [[Atributos e Perícias|Místico]] e deixa *Local*: nenhuma lembrança, e ainda assim a certeza de que existe um lugar onde estão as respostas. É a mais despojada de todas — **nenhuma arma**, dois pertences ao todo (trapos e um bilhete rasgado com o próprio nome) e 1d6 [[Sins]]. Tudo nela é gancho.
 
-## Cânone (Notion)
+## A vida antes
+
 > Você não tem memórias de infância. Não tem pais, não tem lar, não tem origem que faça sentido. O que você tem são marcas que não deveriam estar na sua pele, sonhos que não parecem seus, e sussurros que ninguém mais ouve. Algo está errado com você — sempre esteve. Seu sangue queima às vezes, sem motivo. Estranhos te olham como se te reconhecessem. Símbolos que você nunca viu parecem familiares. Você não sabe o que aconteceu, não sabe o que você é. Só sabe que as respostas existem em algum lugar. E que talvez você não queira encontrá-las.
 
-- **Treinamento:** Místico
-- **Local:** Você não lembra de muita coisa. Na verdade não lembra de nada. Mas sabe, você precisa ir até um certo local. Suas respostas lhe esperam lá.
-- **Itens Iniciais:** Trapos Velhos (1 Equipamento) · 1 Bilhete Rasgado com seu Nome (1 Bugiganga)
-- **Sins:** 1d6
+## O que fica
 
-## Segundo o Pedro (2026-09-05)
-- **A16:** *"Todas as páginas de lore devem ser privadas; o segredo final de Khalkaria é a descoberta do conflito entre os deuses por conta do sumiço do [[Kha]]."* → esta origem é o vetor mais direto para plantar esse segredo em um personagem jogador.
-- **A6:** [[Lena Skarv]] *"é produto de um plano secreto entre [[Vytália]] e [[Karmath]]"* — existe precedente canônico de criatura marcada de nascença sem saber por quê.
-- **A5:** [[Karma]] *"eu ainda não tenho a backstory 100% dela de quando era criança"* — outro NPC de passado deliberadamente em aberto.
-- **B3:** [[O Abismo]], a corrupção abissal e [[Osh'Kar]] preso no [[Plano Material]] são fontes disponíveis para "sangue que queima" e "sussurros que ninguém mais ouve".
+- **Treinamento:** [[Atributos e Perícias|Místico]]
+- ***Local*:** Você não lembra de muita coisa. Na verdade não lembra de nada. Mas sabe, você precisa ir até um certo local. Suas respostas lhe esperam lá.
+- **Itens iniciais:** Trapos Velhos (1 Equipamento) · 1 Bilhete Rasgado com seu Nome (1 Bugiganga)
+- **[[Sins]]:** 1d6
+
+Sem arma inicial, o amaldiçoado depende do que comprar em [[O Bazar]] ou do que a classe lhe der — e 1d6 [[Sins]] não compram quase nada.
+
+## A marca e o Local
+
+Ser marcado sem explicação não é anomalia em Khalkaria: é procedimento divino. [[Karmath]] *"frequentemente abençoa mortais para alcançar certos objetivos no plano material"*, e [[Lena Skarv]] é a prova viva disso — nasceu como peça de um plano combinado entre [[Vytália]] e Karmath, com um coração puro destinado a um propósito que ela não escolheu. [[Karma]] é outro caso de infância deliberadamente apagada, e sua bênção só se revelou quando o mundo precisou dela.
+
+O sangue que queima e os sussurros que ninguém mais ouve também têm fonte plausível do outro lado da moral: [[O Abismo]], a corrupção que dele escorre e [[Osh'Kar]], preso ali apenas enquanto se está no [[Plano Material]]. Marcas de origem conhecida existem — é o que define os [[Corrompido|Corrompidos]]. O amaldiçoado é o mesmo fenômeno sem a certidão.
+
+O "certo local" nunca foi nomeado. Candidatos naturais na geografia atual: [[O Abismo]], [[A Vhelor]], o [[Templo da Profecia]], a [[Casa Isolada]] de [[Kheyos]] e as [[Câmaras de Provação]].
+
+> [!warning] Segredo de mesa
+> Esta é a via mais direta para plantar o segredo final de Khalkaria — o conflito entre os deuses aberto pelo sumiço de [[Kha]] — dentro de um personagem de jogador desde a criação. O amaldiçoado carrega a resposta na pele sem saber lê-la.
 
 ## Relações
-- **Pertence a** → [[Origens]] · [[Sistema]]
+- **Pertence a** → [[Origens]] · [[Sistema]] · usada em [[Criação de Personagem]]
 - **Perícia** → [[Atributos e Perícias|Místico]]
-- **Candidatos a "o Local"** → [[O Abismo]] · [[A Vhelor]] · [[Templo da Profecia]] · [[Casa Isolada]] ([[Kheyos]]) · [[Câmaras de Provação]]
-- **Cosmologia** → [[Kha]] (o sumiço) · [[Malkhor]] (Pecado) · [[Osh'Kar]] · [[Marca da Vhelor]]
+- **Candidatos a "o Local"** → [[O Abismo]] · [[A Vhelor]] · [[Templo da Profecia]] · [[Casa Isolada]] · [[Câmaras de Provação]]
+- **Cosmologia** → [[Kha]] · [[Malkhor]] · [[Osh'Kar]] · [[Karmath]] · [[Vytália]] · [[Marca da Vhelor]]
+- **Precedentes de marca sem explicação** → [[Lena Skarv]] · [[Karma]]
 - **Raça vizinha** → [[Corrompido]] (marcas na pele com causa conhecida)
-- **Origem vizinha** → [[Vidente]] (recebe informação sem pedir) · [[Refugiado]] (perdeu o lar, mas lembra dele)
-- **Economia** → 1d6 [[Sins]] · sem arma inicial · [[O Bazar]]
+- **Origens vizinhas** → [[Vidente]] (recebe informação sem pedir) · [[Refugiado]] (perdeu o lar, mas lembra dele)
+- **Economia** → 1d6 [[Sins]], sem arma inicial · [[O Bazar]]
 
-## Conflitos e pendências
-1. **Única origem sem arma inicial** — um Amaldiçoado [[Espadachim]] começa sem espada. Intencional (o gancho paga o preço) ou lacuna? **Pendência aberta (nova).**
-2. ***Local* não tem efeito mecânico** — é 100% gancho narrativo, ao contrário das outras 16 habilidades. Registrado como escolha de design; confirmar com o Pedro se deve ganhar mecânica. **Pendência aberta.**
-3. **O "certo local" não está definido** em lugar nenhum do Notion — cada mesa inventa. Com **A16** em vista, seria natural amarrá-lo ao segredo dos deuses. **Pendência aberta (nova).**
+## Pontas soltas
+- **Sem arma, sem mecânica, sem destino.** É a única origem que não entrega arma alguma — um amaldiçoado [[Espadachim]] começa desarmado; *Local* é a única habilidade de origem sem qualquer efeito de regra; e o lugar para onde ela aponta não existe escrito em parte nenhuma. As três coisas podem ser o preço deliberado do gancho ou uma lacuna. [[Perguntas Abertas|E98]].
 
-## Fonte
-- Notion: Amaldiçoado `1056e3a401d9836ab1e901e614e5d3d4` · Origens `3a66e3a401d9808aa877f7e7cb77002a`
-- Raw: `docs/memoria/notion_raw/origens.md` · Digest: `C_racas_origens.md` §2 · Respostas: A5, A6, A16, B3
+## Procedência
+- Notion `1056e3a401d9836ab1e901e614e5d3d4` — Amaldiçoado 👻 (🟢, ed. 2026-07-23); índice de Origens `3a66e3a401d9808aa877f7e7cb77002a`.
+- `docs/memoria/notion_raw/origens.md`; digest `C_racas_origens.md` §2.
+- Respostas do mestre 2026-09-05: **A16** (segredo final) · **A6** (Lena Skarv, plano Vytália + Karmath) · **A5** (infância de Karma em aberto) · **B3** (Abismo, corrupção abissal, Osh'Kar preso no Plano Material) · **A1** (Karmath abençoa mortais).
+- Revisão de redação: 2026-09-07.

@@ -1,6 +1,6 @@
 ---
 tipo: regra
-status: canon-notion
+status: canon-pedro
 spoiler: publico
 era: atemporal
 aliases: [Perícias, Atributos, Proficiência, Treinamento, Defender, Ofício, Status, Saúde, Stamina]
@@ -11,41 +11,43 @@ tags: [khalkaria/sistema, khalkaria/sistema/regras]
 
 # Atributos e Perícias
 
-**Resumo.** Khalkaria tem **5 atributos** (Força, Destreza, Constituição, Inteligência, Sabedoria; 8–18) — **não existe Carisma**. Quase toda rolagem é 1d20 + Mod. do atributo + **proficiência** na perícia, numa escala de cinco degraus (**+0 Leigo → +2 Treinado → +4 Experiente → +6 Mestre → +8 Lendário**). São **22 perícias**, e a perícia **Defender** é a única exceção do sistema: o treinamento aumenta o *dado* (1d6 → 2d8) em vez de somar modificador. Todo personagem carrega ainda 3 status universais definidos pela classe: **Saúde**, **Stamina** e **[[Éter]]**.
+**Resumo.** Khalkaria tem **5 atributos** (Força, Destreza, Constituição, Inteligência, Sabedoria; 8–18) — **não existe Carisma**. Quase toda rolagem é 1d20 + Mod. do atributo + **proficiência** na perícia, numa escala de cinco degraus (**+0 Leigo → +2 Treinado → +4 Experiente → +6 Mestre → +8 Lendário**). São **22 perícias**, e **Defender** é a única exceção do sistema: o treinamento aumenta o *dado* (1d6 → 2d8) em vez de somar modificador. Todo personagem carrega ainda três status universais definidos pela classe: **Saúde**, **Stamina** e **[[Éter]]**.
 
-## Cânone (Notion)
+## Atributos
 
-### Atributos Iniciais
 > - Força 8-18
 > - Destreza 8-18
 > - Constituição 8-18
 > - Inteligência 8-18
 > - Sabedoria 8-18
->
-> Criação de Personagem:
-> 1. Role 4d6, retire o pior, some e anote o valor. Faça isso 5 vezes, e distribua os valores dentre seus atributos. Você pode retirar 1 ponto de um atributo e adicionar a outro.
-> 2. Escolha sua raça, classe e origem, nesta ordem.
 
-### Status
+Os valores são rolados na abertura da ficha e a raça, a classe e a origem entram depois — o passo a passo está em [[Criação de Personagem]]. De cada atributo sai o **modificador** que soma em todas as rolagens; a fórmula praticada é `(Atributo − 10) / 2`, ainda não escrita em nenhuma página de regra (ver Pontas soltas).
+
+## Status
+
 > Sua classe determina os valores dentre estes 3 status universais:
 > - **Saúde:** Condição física. Ao reduzir a 0 ou menos, você recebe a condição *Morrendo.*
 > - **Stamina:** Vigor perante o cansaço eminente. Pericias e habilidades utilizam Stamina. Ao reduzir a 0, fica *Exaurido*.
 > - **Éter:** Energia primordial que todo ser tem. Define sua sanidade e energia espiritual. Ao reduzir a 0 ou menos fica *Oco.*
 
-Os três estados terminais estão descritos em [[Condições]]. O Recurso de Classe específico (FLUXO do [[Monge]], Concentração do [[Artilheiro]] etc.) não aparece na raiz do Notion — vive nas páginas de [[Espadachim|classe]].
+Os três estados terminais estão descritos em [[Condições]]. Além destes, cada classe pode ter um **Recurso de Classe** próprio — o FLUXO do [[Monge]], a Concentração do [[Artilheiro]] — descrito na página da classe, não aqui.
 
-### Perícias
+## Rolagens
+
 > **Em ordem de regra, quase todas as rolagens utilizam o d20.**
 > **Crítico**: Se tirar 20 no dado você críta.
 > **Falha Crítica**: Se tirar 1 no dado você falha criticamente.
 
-> ### Proficiência/Treinamento
+## Proficiência
+
 > Ao rolar uma perícia soma-se seu nível de proficiência nela, variando entre:
 > **+0 Leigo → +2 Treinado → +4 Experiente → +6 Mestre → +8 Lendário**
 > Proficiência é ganha progressivamente por sua classe, raça, cartas do Limiar ou Npcs.
 > Você nunca recebera uma habilidade que diga "Experiente em Atacar". Mas ao possuir duas habilidades que te fornecem "Treinado em Atacar" você se torna experiente nesta.
 
-**Lista de Perícias (22):**
+As fontes de proficiência são, portanto, a classe, a raça, as cartas de [[O Limiar]] e o ensino de NPCs — o ganho por nível está em [[Progressão]].
+
+## As 22 perícias
 
 | Perícia | Descrição | Dado + Mod. Atributo |
 |---|---|---|
@@ -72,34 +74,64 @@ Os três estados terminais estão descritos em [[Condições]]. O Recurso de Cla
 | Motivar | Habilidade de mudar os sentimentos de uma criatura | 1d20+Sabedoria |
 | Ofício(X) | Esse teste pode ser usado para realizar testes específicos de profissão, como forjar algo, artesanato ou outros testes que exigem uma especialização bastante específica. Você não pode usar esse teste sem tê-lo treinado. | 1d20+X |
 
-### Defender (regra especial)
+**Convencimento, Intimidação, Intuição, Enganação e Motivar** formam o grupo das perícias de **interação social** — o termo nomeia o grupo, nunca uma perícia isolada.
+
+## Defender
+
 > A perícia defender possui uma regra especial que nenhuma outra perícia tem. Seus treinamentos aumentam o seu tipo de dado ao rolar a perícia progressivamente. Então, na proficiência ***Leigo*** a perícia utiliza um 1d6, porém treinamentos posteriores aumentam o dado da perícia em vez de adicionarem modificadores.
 
 | Leigo | Treinado | Experiente | Mestre | Lendário |
 |---|---|---|---|---|
 | 1d6 | 1d8 | 1d10 | 1d12 | 2d8 |
 
-## Segundo o Pedro (2026-09-05)
-- **B16** — perícias legadas são erro de transcrição, não perícias distintas: *"Conhecer é alucinação de ia, intimidar é sinonimo de intmimidação e enganar de enganação. Interação social(x) era a norma para referenciar as pericias sociais, mas hoje foram individualizadas, interação social hoje só se refere ao grupo das pericias de interação. Reflexo = Reflexos. Tem que levar em consideração o contexto para você não substituir errado, mas onde está bem óbvio que é alucinação ou type, pode trocar."* → a lista canônica é a das 22 acima; "Conhecer", "Intimidar", "Enganar", "Reflexo", "Interação Social(X)" e "Ofícios" do Template de Ficha são grafias antigas.
+Como o dado entra na defesa está em [[Dano, Ataque e Defesa]] (Evasão ativa) e [[Combate]] (reação).
+
+## Grafias antigas
+
+Fichas e páginas velhas ainda trazem nomes que não são perícias distintas, apenas escritas antigas das 22 acima:
+
+| Grafia antiga | Perícia |
+|---|---|
+| Conhecer | Convencimento |
+| Intimidar | Intimidação |
+| Enganar | Enganação |
+| Reflexo | Reflexos |
+| Ofícios | Ofício(X) |
+| Interação Social(X) | a perícia social específica — "interação social" hoje só nomeia o grupo |
+
+A ficha impressa também anota atributos que divergem das regras acima; onde houver conflito, valem as regras:
+
+| Na ficha | Nas regras |
+|---|---|
+| Atacar (For) | Atacar (Força **ou** Destreza) |
+| Defender (Des/Con), com colunas +2/+4/+6/+8 | Defender rola dado (1d6 → 2d8), sem modificador |
+| Movimento (For/Des) | Movimento (Força ou Destreza) — iguais |
+| Conhecer (Des/Int) | Convencimento (Destreza ou Inteligência) |
+| Intimidar (For/Sab) | Intimidação (Constituição ou Força) |
+| Enganar (Des/Int) | Enganação (Destreza ou Inteligência) |
 
 ## Relações
 - **Faz parte de** → [[Sistema]]
 - **Alimenta** → [[Progressão]] (proficiência ganha por nível), [[Combate]], [[Dano, Ataque e Defesa]]
 - **Fonte de proficiência** → classe, raça, [[O Limiar (cartas)]], NPCs
 - **Perícia Místico é requisito de** → [[Regras de Magia]]
-- **Ofício(X) é requisito de** → [[O Bazar]] (crafting)
+- **Ofício(X) é requisito de** → [[O Bazar]] (fabricação)
 - **Estados terminais em** → [[Condições]] (*Morrendo*, *Exaurido*, *Oco*)
 - **Éter é o recurso descrito em** → [[Éter]]
-- **Usado na ficha** → [[Criação de Personagem]]
+- **Preenchida na ficha** → [[Criação de Personagem]]
+- **Testada em viagem** → [[Jornada]] · **em fuga** → [[Superfícies e Furtividade]] · **em aposta** → [[Khan Sins]]
 
-## Conflitos e pendências
-- **Fórmula do modificador não existe no Notion.** Nem a raiz "Sistema Khalkaria" nem o Template de Ficha trazem `(Atributo − 10) / 2`; o valor é usado em todo o site e no Bestiário. Pergunta em [[Perguntas Abertas]] — confirmar a fórmula oficial.
-- **Evasão.** A raiz diz apenas "Evasão — Determinada pela sua classe"; o site e o Bestiário usam `10 + Mod. DES`. Registrado em [[Dano, Ataque e Defesa]].
-- **Template de Ficha × raiz (nomes e atributos).** Template: "Conhecer (Des/Int)", "Intimidar (For/Sab)", "Enganar (Des/Int)", "Reflexo", "Ofícios"; raiz: Convencimento, Intimidação (Con/For), Enganação, Reflexos, Ofício(X). Resolvido por **B16** a favor da raiz — mas o Template no Notion ainda não foi corrigido.
-- **Template agrupa errado.** Iniciativa, Conhecimento, Medicina, Investigação, Religião e Místico aparecem sob "Perícias Sociais" no Template. Deveriam ser Exploração/Conhecimento.
-- **Atacar.** Raiz: "Força ou Destreza"; Template: "Atacar (For)". Raiz vence (B6).
-- **Defender no Template** aparece com colunas +2/+4/+6/+8 (escala de modificador), contradizendo a regra do dado 1d6→2d8. Raiz vence.
-- **Convencimento e Enganação com Destreza** (em vez de Carisma, que não existe): o Pedro não respondeu se é intencional. Pendência.
+## Pontas soltas
+- **A fórmula do modificador nunca foi escrita.** `(Atributo − 10) / 2` é o que se usa na prática, mas nenhuma página de regra a registra. [[Perguntas Abertas]] E40.
+- **Evasão.** As regras dizem apenas "Evasão — Determinada pela sua classe"; na prática vale `10 + Mod. Destreza` para todas as classes. Registrado em [[Dano, Ataque e Defesa]]. [[Perguntas Abertas]] E40.
+- **Convencimento e Enganação usam Destreza** — herança de um sistema sem Carisma ou escolha deliberada? [[Perguntas Abertas]] E48.
+- **Agrupamento das perícias na ficha.** Iniciativa, Conhecimento, Medicina, Investigação, Religião e Místico aparecem sob "Perícias Sociais"; pertencem a exploração e conhecimento.
+- **Marcas de classe** dão "+1 permanente" em perícia até +5, escala que não bate com os degraus +2/+4/+6/+8. [[Perguntas Abertas]] E63.
 
-## Fonte
-Notion `2b76e3a401d980c0ab7bc27a342f4ee1` (Sistema Khalkaria — Atributos Iniciais, Status, Perícias) e `4e66e3a401d9832b97b4017bc00ff2c2` (Template - Ficha de Personagem). Raw: `docs/memoria/notion_raw/sistema_root.md`, `template_ficha_de_personagem.md`. Digest: `docs/memoria/digests/A_sistema.md` §1.1–1.3, §3.3–3.5.
+## Procedência
+- Notion `2b76e3a401d980c0ab7bc27a342f4ee1` — Sistema Khalkaria: Atributos Iniciais, Status, Perícias, Proficiência, Defender.
+- Notion `4e66e3a401d9832b97b4017bc00ff2c2` — Template - Ficha de Personagem (grafias antigas, agrupamento).
+- Respostas do mestre 2026-09-05: **B6** (Atacar por Força ou Destreza), **B16** (grafias antigas e uso de "interação social").
+- `docs/memoria/notion_raw/sistema_root.md`, `template_ficha_de_personagem.md`; digest `A_sistema.md` §1.1–1.3, §3.3–3.5.
+- Correções pendentes na fonte: nomes e agrupamento de perícias no Template de Ficha.
+- Revisão de redação: 2026-09-07.

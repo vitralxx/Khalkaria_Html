@@ -5,7 +5,7 @@ spoiler: gm
 era: atemporal
 aliases: [Khalkaria (planeta), Universo Khalkaria]
 fonte_notion: pedro-2026-09-05
-ultima_sync: 2026-09-06
+ultima_sync: 2026-09-07
 tags: [khalkaria/raiz]
 ---
 # Khalkaria
@@ -37,9 +37,29 @@ tags: [khalkaria/raiz]
 |---|---|---|---|
 | [[Vorn Drekar]] | Humano · Brutalista | Soldado | [[Volkrest]] |
 | [[Klaus von Aldric]] | Corrompido · Monge | Escravo | [[Mordval]] |
-| [[Sinikko Kiriam (PJ)]] | Gruto · Teurgo | Nobre | [[Volkrest]] (esgotos) |
+| [[Sinikko Kiriam (PC)|Sinikko Kiriam]] | Gruto · Teurgo | Nobre | [[Volkrest]] (esgotos) |
 | [[Runa Skorn]] | Dryad · Alquimista | Acadêmico | [[Aether]] |
 | [[Azgar Sandgale]] | Humano · Artilheiro | Exilado | [[Ossyria]] |
 
-## Como usar este vault
-Cada nota traz **Cânone (Notion)** (texto da fonte, verbatim ou quase), **Segundo o Pedro** (o que ele definiu em 2026-09-05, que prevalece), **Relações** (o que alimenta o grafo) e **Conflitos e pendências**. Divergências não resolvidas viram entradas em [[Perguntas Abertas]]. Convenções de escrita em [[CONVENCOES]].
+## Como ler estas notas
+Cada nota abre com um resumo de um parágrafo, segue em seções próprias do assunto — *História*, *Natureza*, *Geografia*, *Governo*, *Doutrina* — e fecha com **Relações**, **Pontas soltas** e **Procedência**. A prosa do mestre aparece em citação, palavra por palavra. O que ainda não foi decidido vira entrada numerada em [[Perguntas Abertas]]; o contrato de escrita está em [[CONVENCOES]].
+
+Lore e regra vivem separadas: uma nota de personagem cita a arma que ele carrega e linka a regra; uma nota de regra cita quem a usa e linka a pessoa.
+
+## Relações
+- **Continente da campanha** → [[Kharavel]]
+- **Demais continentes** → [[Volkrest]] · [[Mordval]] · [[Aether]] · [[Ossyria]]
+- **Cosmologia** → [[Cosmologia]], [[Primórdio]], [[Plano Místico]], [[Plano Material]], [[Plano dos Mortos]], [[Éter]], [[A Plenitude]]
+- **Objeto da aposta** → [[A Vhelor]], [[O Sonhador]]
+- **Regras do jogo** → [[Sistema]]
+- **Fio narrativo em curso** → [[Campanha 1 — Arco]], [[Sessão 0]], [[Linha do Tempo]]
+
+## Pontas soltas
+- **Um integrante por continente.** [[Vorn Drekar]] e [[Sinikko Kiriam (PC)|Sinikko]] vêm ambos de [[Volkrest]]; se a intenção era um agente por continente, Sinikko representaria [[Kharavel]] como imperador de [[Khaskavel]]. [[Perguntas Abertas]] E1, E16.
+- **O fim da campanha.** A ordem entre a profecia de [[Karma]], [[Lena Skarv]] no casulo e o expurgo não está fechada, nem o destino da [[A Vhelor|Vhelor]] caso um personagem de jogador assuma o cargo de deus do Pecado. [[Perguntas Abertas]] E34.
+- A lista completa do que aguarda decisão está em [[Perguntas Abertas]].
+
+## Procedência
+- Cânone do mestre, 2026-09-05 (panteão, planos, a aposta de Kharavel, a Vhelor e o Sonhador, Sessão 0, true ending).
+- Mapas de referência em `docs/memoria/mapas/`.
+- Revisão de redação: 2026-09-07.

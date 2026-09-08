@@ -1,6 +1,6 @@
 ---
 tipo: regra
-status: canon-notion
+status: canon-pedro
 spoiler: publico
 era: atemporal
 aliases: [Rodada, Turno, Ações, Reação, Retaliação, Retaliar, Ataque de oportunidade]
@@ -13,11 +13,12 @@ tags: [khalkaria/sistema, khalkaria/sistema/regras]
 
 **Resumo.** O combate abre com um teste de **Iniciativa**. Cada personagem tem **3 ações e 1 reação por turno**. A assinatura do sistema é a **retaliação**: atacar alguém que ainda tem reação é se expor — o alvo escolhe **Atacar** (revidar) ou **Defender** (somar o dado de Defender à Evasão). Ataques consecutivos no mesmo turno acumulam **−5** cada.
 
-## Cânone (Notion)
+## Iniciativa
 
 > Iniciando um combate todos rolam a perícia *Iniciativa*, ordenando quem joga primeiro.
 
-### Sua Rodada
+## Sua rodada
+
 > Você possui 3 ações e uma reação por turno, alguns exemplos dentre as listadas abaixo:
 > - *Mover* (1 ação) (Max. 1 Vez por turno)
 > - *Pular* (2 Ações) → Pula 1/3 do seu Movimento
@@ -30,7 +31,8 @@ tags: [khalkaria/sistema, khalkaria/sistema/regras]
 > - *Outro* (1-3 ações), dependendo de sua dificuldade ou demora para executar
 > - Reações servem para regras/habilidades específicas
 
-### Atacando
+## Atacar e retaliar
+
 > Ao atacar alguém você sempre se coloca em risco, sendo potencialmente *Retaliado*, tenha isso em mente.
 > 1. Role a perícia *Atacar*. Se seu alvo ainda tiver uma reação, ele possui 2 opções: Rolar a perícia **Atacar** ou **Defender** →
 >     1. **Atacar:** O alvo tenta te *retaliar*: Caso o alvo ultrapasse seu valor, ele te ataca com a arma que estiver empunhando, também recebendo seu dano.
@@ -42,12 +44,19 @@ tags: [khalkaria/sistema, khalkaria/sistema/regras]
 > Enquanto estiver sendo alvo dos seus ataques durante o seu turno, a criatura pode escolher reagir (Atacar ou Defender) a cada um deles. Ao final do seu turno, ela considera a reação gasta e não pode mais usá-la até o início do próximo.
 > Em caso de empate, o atacante sempre ganha.
 
-### Ataques de oportunidade
+O cálculo do dano, da Evasão e das reduções está em [[Dano, Ataque e Defesa]]; as manobras não-letais em [[Manobras e Tamanho]].
+
+## Ataques de oportunidade
+
 > Ao estar a 1,5 m de uma criatura e se afastar dela, ela pode gastar sua reação para realizar um ataque de oportunidade contra você.
 
-## Segundo o Pedro (2026-09-05)
-- **B4** — **1 magia por turno**: *"Normalmente, você só pode canalizar 1 magia por turno, o disparo veloz é possivelmente a única magia do sistema que ignora isso."* A raiz lista "Conjurar magia (1-3 ações)" sem citar esse limite; o limite é canônico e pertence também a esta seção. Ver [[Regras de Magia]].
-- **B2** — sem munição não se usa arma à distância **durante todo o combate**; 1 unidade cobre o combate inteiro. Ver [[Armas e Munição]].
+## Conjurar em combate
+
+Canaliza-se **uma magia por turno** — o *Disparo Veloz* é possivelmente a única magia do sistema que ignora esse limite. O custo em ações, o custo de [[Éter]] e as intensidades estão em [[Regras de Magia]].
+
+## Munição
+
+Uma unidade de munição cobre o **combate inteiro**; sem munição, a arma à distância não funciona durante todo o combate. Detalhes em [[Armas e Munição]].
 
 ## Relações
 - **Faz parte de** → [[Sistema]]
@@ -55,12 +64,18 @@ tags: [khalkaria/sistema, khalkaria/sistema/regras]
 - **Detalha dano e defesa em** → [[Dano, Ataque e Defesa]]
 - **Manobras em** → [[Manobras e Tamanho]]
 - **Aplica** → [[Condições]] (*Desprevenido*, *Caído*, *Exposto*…)
-- **Custo de ação de magia em** → [[Regras de Magia]]
+- **Armas e efeitos por Stamina** → [[Armas e Munição]]
+- **Conjuração** → [[Regras de Magia]]
 - **Fuga do combate** → [[Superfícies e Furtividade]] (Perseguição)
+- **Terreno da cena** → [[Superfícies e Furtividade]]
 
-## Conflitos e pendências
-- **Limite de 1 magia por turno não está escrito na raiz nem em [[Regras de Magia]]** — só aparece como exceção em *Disparo Veloz* ("ignora a regra de 1 cast por turno"). Resolvido por **B4**; falta escrever a regra no Notion.
-- **"Defender (1 ação) → +2 Defender"** é o único bônus numérico fixo numa perícia que rola dado — conferir se soma ao dado ou à Evasão.
+## Pontas soltas
+- **"Defender (1 ação) → +2 Defender"** é o único bônus numérico fixo numa perícia que rola dado: soma ao resultado do dado ou direto à Evasão?
+- **O limite de uma magia por turno** vale como regra geral, mas nas páginas de magia ele só aparece como exceção do *Disparo Veloz* ("ignora a regra de 1 cast por turno").
 
-## Fonte
-Notion `2b76e3a401d980c0ab7bc27a342f4ee1` (Combate). Raw: `docs/memoria/notion_raw/sistema_root.md`. Digest: `A_sistema.md` §1.6.
+## Procedência
+- Notion `2b76e3a401d980c0ab7bc27a342f4ee1` — Combate: Sua Rodada, Atacando, Ataques de oportunidade.
+- Respostas do mestre 2026-09-05: **B4** (1 magia por turno; exceção do Disparo Veloz), **B2** (munição por combate).
+- `docs/memoria/notion_raw/sistema_root.md`; digest `A_sistema.md` §1.6.
+- Correção pendente na fonte: escrever o limite de 1 magia por turno nas regras de magia.
+- Revisão de redação: 2026-09-07.

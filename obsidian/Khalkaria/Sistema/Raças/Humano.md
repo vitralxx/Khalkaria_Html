@@ -11,65 +11,89 @@ tags: [khalkaria/sistema, khalkaria/sistema/racas]
 
 # Humano
 
-**Resumo.** Raça jogável de [[Khalkaria]] (página Notion 🟡 Em desenvolvimento, ed. 2026-07-26). Adaptáveis, numerosos e determinados: dominam o mundo "não por força, mas por insistência". Originários majoritariamente de [[Volkrest]], onde formam o núcleo do [[Império de Ferro]]. Falam [[Comum]]. Mecanicamente, a raça mais flexível: +1 em dois atributos ou +2 SAB, um **Estilo de Vida** à escolha e a característica **Persistência Humana**. Têm repulsa histórica a [[Gruto]]s e [[Inseto]]s.
+**Resumo.** Adaptáveis, numerosos e determinados, os humanos dominam [[Khalkaria]] não pela força, e sim pela insistência. Saíram de [[Volkrest]] — onde formam o núcleo do [[Império de Ferro]] — e hoje sobrevivem em qualquer canto do mundo. Falam [[Comum]]. São a raça mais flexível na ficha: dois atributos à escolha, um **Estilo de Vida** que traduz a vida que o personagem levou, e a teimosia de **Persistência Humana**. Carregam também a herança feia da própria expansão: repulsa declarada a [[Gruto|grutos]] e [[Inseto|insetos]].
 
-## Cânone (Notion)
+## Natureza
 
-### Descrição
 > Os humanos são adaptáveis, numerosos e determinados. Grandes cidades, vilas remotas e desertos longínquos: eles sobrevivem em qualquer lugar.
 > Por isso dominam o mundo — não por força, mas por insistência.
 
-### Ficha racial
-- **Atributos:** +1 em dois atributos. — Ou — +2 Sabedoria
-- **Movimento:** 9 metros
-- **Perícias de Raça:** 1 Interação Social(Qualquer) · +1 Qualquer
-- **Dados Físicos:** Expectativa de Vida: 60-100 anos · Altura: 1,40m - 2,00m · Peso: 40kg - 120kg
-- **Idioma:** [[Comum]]
+## Entre os povos
 
-### Características de Raça
-- **Persistência Humana:** Humanos são persistentes, ao falhar em um teste qualquer, como ação livre, pode rolar 1d4 e somar ao teste. (Usos: 1+mod. Sabedoria/descanso longo)
-
-### Relações Sociais
 > Os humanos são bastante sociais e bem vistos no geral. Porém, possuem repulsa a Grutos e Insetoides, carregando estigmas sustentados por batalhas históricas de superioridade de raça.
 
-### Estilo de Vida
+Essas "batalhas históricas" têm um vencedor com nome. [[Kirkushav Drekar]] resume a guerra que fundou o [[Império de Ferro]] em uma frase só:
+
+> Banhados de sangue, vencemos os insetos. Forjamos nosso ferro. Erguemos nossos castelos. Hoje, Volkrest é do Império de Ferro
+
+Com os grutos, o Império dispensou a guerra e preferiu a arquitetura da humilhação:
+
+> No Império do Ferro, ser gruto era sentença. […] Enquanto a cidade erguia suas torres para o céu, empurrava os grutos para baixo dela: para os esgotos
+
+Foi assim que morreu [[Lorrain Kiriam]], mãe de [[Sinikko Kiriam (original)]], *"quando humanos desceram aos esgotos. Não vieram negociar. Vieram lembrar aos grutos qual era o lugar deles."*
+
+Em [[Kharavel]], a mesma postura viaja junto com os colonos: os povos nativos — [[Skarv]], [[Xkamur]], [[Povos Diversos do Sul]] — recebem de [[Khaskavel]] o tratamento que os grutos receberam em casa.
+
+Os humanos também são presa. [[Os Hax]], em [[Aether]], preferem justamente os jovens:
+
+> Humanos jovens, frequentemente adolescentes, abduzidos com promessas falsas (como aconteceu com Klaus von Aldric)
+
+O que volta desses rituais já não é humano: é [[Corrompido]]. [[Klaus von Aldric]] é o caso documentado.
+
+> [!warning] Segredo de mesa
+> *"Os lobisomens não nascem monstros, nascem como humanos."* Um [[Lobisomem]] em forma humana é indistinguível de um humano comum — o segredo se mantém diante dos outros jogadores.
+
+## De Volkrest para o mundo
+
+> Volkrest é um enorme continente. Humanos, Grutos, Autômatos e Insetos se originaram majoritariamente daqui, migrando pra outros continentes conforme o passar dos séculos.
+
+O [[Império de Ferro]] é a nação-núcleo dessa expansão, e [[Khaskavel]], em [[Kharavel]], sua colônia mais distante.
+
+## Ficha racial
+
+- **Atributos:** +1 em dois atributos — ou — +2 Sabedoria
+- **Movimento:** 9 metros
+- **Perícias de raça:** 1 perícia de interação à escolha (Convencimento, Intimidação, Intuição, Enganação ou Motivar) · +1 perícia qualquer — ver [[Atributos e Perícias]]
+- **Dados físicos:** expectativa de vida 60–100 anos · altura 1,40 m – 2,00 m · peso 40 kg – 120 kg
+- **Idioma:** [[Comum]]
+
+**Persistência Humana.** Humanos são persistentes: ao falhar em um teste qualquer, como ação livre, pode rolar 1d4 e somar ao teste. Usos: 1 + Mod. Sabedoria por descanso longo ([[Descanso]]).
+
+## Estilo de Vida
+
 > Humanos são seres extremamente flexíveis, se adaptando as suas vivências. Escolha um dos estilos de vida abaixo:
+
 - **Simples:** Treinado em *Sobrevivência.* · Descansa com +1 nível de comodidade.
 - **Estudioso:** Treinado em *Conhecimento* · +1 idioma conhecido qualquer. · 1 vez por descanso longo pode dar uma *Hipótese* ao falhar em um teste de conhecimento. Ganhando parcialmente a informação.
-- **Rebelde:** Treinado em *Movimento* ou *Interação Social(Intimidação)* · 1 vez por descanso longo, ao falhar em atacar, pode somar 1d4 ao teste.
-- **Popular:** Treinado em 1 *Interação Social(Qualquer).* · Uma vez por descanso longo, pode rolar Interação Social com vantagem.
+- **Rebelde:** Treinado em *Movimento* ou *Intimidação* · 1 vez por descanso longo, ao falhar em atacar, pode somar 1d4 ao teste.
+- **Popular:** Treinado em 1 perícia de interação à escolha. · Uma vez por descanso longo, pode rolar uma perícia de interação com vantagem.
 
-### Lore racial (outras páginas do Notion)
-- **Origem por continente** (pág. 2. Volkrest): *"Volkrest é um enorme continente. Humanos, Grutos, Autômatos e Insetos se originaram majoritariamente daqui, migrando pra outros continentes conforme o passar dos séculos."*
-- **Guerra contra os insetos** (fala de [[Kirkushav Drekar]], pág. Império do Ferro): *"Banhados de sangue, vencemos os insetos. Forjamos nosso ferro. Erguemos nossos castelos. Hoje, Volkrest é do Império de Ferro"* — é a "batalha histórica de superioridade de raça" mais explícita do cânone.
-- **Opressão dos grutos no Império** (pág. Sinikko Kiriam, Sessão 0): *"No Império do Ferro, ser gruto era sentença. […] Enquanto a cidade erguia suas torres para o céu, empurrava os grutos para baixo dela: para os esgotos"*; a mãe de Sinikko, [[Lorrain Kiriam]], morreu *"quando humanos desceram aos esgotos. Não vieram negociar. Vieram lembrar aos grutos qual era o lugar deles."*
-- **[[Os Hax]]** (Aether) abduzem *"Humanos jovens, frequentemente adolescentes, abduzidos com promessas falsas (como aconteceu com Klaus von Aldric)"* e os transformam em [[Corrompido]]s.
-- **[[Lobisomem]]**: *"Os lobisomens não nascem monstros, nascem como humanos."* (spoiler GM — raça secreta.)
-- **Nomes Aleatórios** (pág. @Nomes Aleatórios, 20 nomes): Gareth Ironhold, Mira Ashvale, Torvald Grimstone, Elara Nightwind, Darius Blackthorn, Kara Steelbrook, Viktor von Raven, Lyssa Ember, Roderick Coldmarch, Astrid Wolfheart, Magnus Stormridge, Celeste Darkwater, Theron Shadowmere, Isolde Frostgale, Bram Ironwood…
+O idioma extra do Estudioso sai da lista fechada de [[Idiomas]] — [[Skalia]], [[Khazadun]], [[Natural]], [[Abissal]] ou [[Criptografado]] —, com a ressalva de que Khazadun exige cordas vocais anãs para ser falado.
 
-## Segundo o Pedro (2026-09-05)
-- **B16:** "Interação social(x) era a norma para referenciar as perícias sociais, mas hoje foram individualizadas, interação social hoje só se refere ao grupo das perícias de interação." → "1 Interação Social(Qualquer)" = uma perícia entre Convencimento, Intimidação, Intuição, Enganação, Motivar (ver [[Atributos e Perícias]]).
-- **B3:** idiomas canônicos são 6 — humanos falam [[Comum]] por padrão; o Estilo Estudioso dá "+1 idioma conhecido qualquer" (entre [[Skalia]], [[Khazadun]], [[Natural]], [[Abissal]], [[Criptografado]]; Khazadun "exige cordas vocais anãs" para falar).
-- **A13:** o jogador Lobisomem "se apresenta como humano" — para a mesa, ele é humano até a lua cheia.
+## Nomes
+
+Da lista de vinte nomes humanos:
+
+Gareth Ironhold · Mira Ashvale · Torvald Grimstone · Elara Nightwind · Darius Blackthorn · Kara Steelbrook · Viktor von Raven · Lyssa Ember · Roderick Coldmarch · Astrid Wolfheart · Magnus Stormridge · Celeste Darkwater · Theron Shadowmere · Isolde Frostgale · Bram Ironwood…
 
 ## Relações
-- **Origem majoritária** → [[Volkrest]] (migraram para os demais continentes)
-- **Nação-núcleo** → [[Império de Ferro]] (soberano [[Kirkushav Drekar]]); colônia → [[Khaskavel]] em [[Kharavel]]
-- **Idioma** → [[Comum]]
-- **Repulsa histórica a** → [[Gruto]] (esgotos do Império; Sessão 0) e [[Inseto]] ("vencemos os insetos")
-- **Hostil aos povos nativos de Kharavel** → [[Skarv]], [[Xkamur]], [[Povos Diversos do Sul]]
-- **Vítimas de** → [[Os Hax]] (abdução → [[Corrompido]]); caso [[Klaus von Aldric]]
-- **Disfarce de** → [[Lobisomem]] (raça secreta, A13)
-- **Exemplos** → [[Kirkushav Drekar]], [[Vorn Drekar]], [[Klaus von Aldric]] (antes da corrupção), [[Hadran Vorgil]], [[Mira Vesnal]], [[Yenev Vesnal]], [[Alvak Krichama]] não (anão)
-- **Perícias sociais** → [[Atributos e Perícias]] · **Descanso/comodidade** → [[Descanso]] · **Idiomas** → [[Idiomas]]
-- **Escolha na criação** → [[Criação de Personagem]] (raça → classe → origem) · lista de raças → [[Origens]]
+- **Berço** → [[Volkrest]]; migraram para todos os continentes
+- **Nação-núcleo** → [[Império de Ferro]] (soberano [[Kirkushav Drekar]]); colônia → [[Khaskavel]], em [[Kharavel]]
+- **Idioma** → [[Comum]] ([[Idiomas]])
+- **Repulsa histórica a** → [[Gruto]] (os esgotos do Império) e [[Inseto]] (a guerra fundadora)
+- **Hostis aos povos nativos de Kharavel** → [[Skarv]], [[Xkamur]], [[Povos Diversos do Sul]]
+- **Presas de** → [[Os Hax]] (abdução e ritual → [[Corrompido]]); caso [[Klaus von Aldric]]
+- **Confundidos com** → [[Lobisomem]] (forma humana idêntica)
+- **Exemplos** → [[Kirkushav Drekar]], [[Vorn Drekar]], [[Klaus von Aldric]] (antes do ritual), [[Hadran Vorgil]], [[Mira Vesnal]], [[Yenev Vesnal]]
+- **Regras tocadas** → [[Atributos e Perícias]] (perícias de interação) · [[Descanso]] (comodidade, usos por descanso longo) · [[Idiomas]] · [[Criação de Personagem]]
 
-## Conflitos e pendências
-1. **Redundância Popular × Perícias de Raça** (digest C §4.10): a raça já dá "1 Interação Social(Qualquer)" e o Estilo Popular dá de novo "Treinado em 1 Interação Social(Qualquer)". Acumula (2 perícias sociais) ou é redundância? **Nova pendência.**
-2. **Nomenclatura legada** "Interação Social(Intimidação)" → Intimidação (B16, aceito como sinônimo).
-3. Nenhum evento datado; "batalhas históricas de superioridade de raça" não têm nome nem data no Notion.
+## Pontas soltas
+- **A perícia social conta duas vezes?** A raça já concede uma perícia de interação à escolha e o Estilo **Popular** concede outra. Somam duas perícias sociais ou é a mesma escrita duas vezes?
+- **A guerra contra os insetos não tem nome nem data.** É o único evento histórico racial explícito do cânone humano e ainda não entrou na [[Linha do Tempo]].
 
-## Fonte
-- Notion: Humano `07a6e3a401d98339bd6d819dea28568f` · Raças `3a66e3a401d980318836edcfa11c8a24` · 2. Volkrest `33e6e3a401d9817fa7a8c67c898343e2` · @Nomes Aleatórios `33e6e3a401d981d09cadf2397f4a8856`
-- Raw: `docs/memoria/notion_raw/raca_humano.md`, `lore_volkrest.md`, `lore_kharavel_npcs.md`, `sessao_os5_sinikko.md`
-- Digest: `docs/memoria/digests/C_racas_origens.md` §1 · Respostas: B3, B16, A13
+## Procedência
+- Notion `07a6e3a401d98339bd6d819dea28568f` — Humano (🟡 Em desenvolvimento, ed. 2026-07-26); índice de Raças `3a66e3a401d980318836edcfa11c8a24`; 2. Volkrest `33e6e3a401d9817fa7a8c67c898343e2`; @Nomes Aleatórios `33e6e3a401d981d09cadf2397f4a8856`.
+- Respostas do mestre 2026-09-05: **B16** (as perícias sociais foram individualizadas; "Interação Social(X)" é nomenclatura legada) · **B3** (os seis idiomas; Khazadun exige cordas vocais anãs) · **A13** (o jogador lobisomem se apresenta como humano).
+- `docs/memoria/notion_raw/raca_humano.md`, `lore_volkrest.md`, `lore_kharavel_npcs.md`, `sessao_os5_sinikko.md`; digest `C_racas_origens.md` §1.
+- Correções pendentes na fonte: "Interação Social(Intimidação)" → Intimidação; "Interação Social(Qualquer)" → perícia de interação à escolha.
+- Revisão de redação: 2026-09-07.

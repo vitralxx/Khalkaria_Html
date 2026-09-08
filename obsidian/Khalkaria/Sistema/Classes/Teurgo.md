@@ -1,26 +1,24 @@
 ---
 tipo: classe
-status: canon-notion
+status: canon-pedro
 spoiler: publico
 era: atemporal
 aliases: [Teurgo, Teurgos, Conjurador, Feiticeiro]
-fonte_notion: [caa6e3a401d98330bae281511750d407, 3a66e3a401d9809b8eceec1f30be9fd2]
+fonte_notion: [caa6e3a401d98330bae281511750d407, 3a66e3a401d9809b8eceec1f30be9fd2, pedro-2026-09-05]
 ultima_sync: 2026-09-05
 tags: [khalkaria/sistema, khalkaria/sistema/classes]
 ---
 
 # Teurgo
 
-**Resumo.** Única classe conjuradora do sistema (🪄, Notion 🟢 Pronto, ed. 2026-08-05). Maior progressão de [[Éter]] (`+9/nível`) e a menor de Saúde (`+3/nível`). Não tem um "recurso de classe" separado: seu recurso **é** o Éter, gasto para abrir a ponte do [[Plano Místico]] para o [[Plano Material]] através de [[O Limiar]]. Especializa-se em **Escolas do Primórdio** — 2 no nível 1, 3 no nível 3, 5 no nível 5 — cada uma exigindo um **Foco** próprio. Perfil do índice: Combate ★★☆☆☆ · Controle ★★★☆☆ · Exploração ★★☆☆☆ · Místico ★★★★★ · Tecnologia ★★☆☆☆.
+**Resumo.** Única classe conjuradora do sistema (🪄). Tem a maior progressão de [[Éter]] (`+9/nível`) e a menor de Saúde (`+3/nível`). Não possui recurso de classe separado: seu recurso **é** o Éter, gasto para abrir a ponte do [[Plano Místico]] ao [[Plano Material]] através de [[O Limiar]]. Especializa-se em **Escolas do Primórdio** — duas no nível 1, três no nível 3, cinco no nível 5 — cada uma exigindo o Foco correspondente. **Perfil:** Combate ★★☆☆☆ · Controle ★★★☆☆ · Exploração ★★☆☆☆ · Místico ★★★★★ · Tecnologia ★★☆☆☆.
 
-## Cânone (Notion)
-
-### Prosa de abertura
+## O chamado
 > Enquanto outros confiam no aço e na carne, você aprendeu a ouvir o sussurro do outro lado. As forças primordiais fluem através de você — não porque você as comanda, mas porque elas *permitem* que você as canalize. Alguns chamam isso de magia. Outros, de loucura. Você chama de estudo.
 > A verdade é que ninguém sabe de onde vem o poder que você manipula. Os textos antigos falam de deuses, de planos além da percepção mortal, de uma Grande Árvore que conecta todos os mundos. Você leu esses textos. Você questionou cada linha. E quanto mais aprende, mais percebe que as respostas geram apenas mais perguntas.
 > O Éter que você manipula cobra seu preço. Cada conjuração é um diálogo com algo que você não compreende — e que talvez não devesse compreender. Mas você continua. Porque o conhecimento, mesmo o proibido, é a única luz na escuridão.
 
-### Progressão
+## Progressão
 | Level | Conteúdo |
 |---|---|
 | 1 | 4 Técnicas, 2 Escolas do Primórdio |
@@ -29,14 +27,14 @@ tags: [khalkaria/sistema, khalkaria/sistema/classes]
 | 4 | 7 Técnicas, Técnica de Ramo(Tier 1, 2), 2 Marcas |
 | 5 | 8 Técnicas, Técnica de Ramo(Tier 1, 2 e 3), 3 Marcas, 5 Escolas do Primórdio |
 
-### Status iniciais
+## Status iniciais
 - **Saúde:** `10 + (3 × Nível) + (Mod.CON × Nível)`
 - **Stamina:** `8 + (3 × Nível) + (Mod.FOR OU Mod.DES × Nível)`
 - **Éter:** `6 + (9 × Nível) + (Mod.INT OU Mod.SAB × Nível)`
 - **Evasão Ativa (Reação):** 10 + Mod. Destreza + Treinamento em *Defender*
 - **Evasão Passiva (Sem reação):** 10 + Mod. Destreza
 
-### Treinamento
+## Treinamento
 Você começa treinado em: **Armas Místicas, Místico, Conhecimento**
 Além disso, você pode escolher **(1 + Mod. Inteligência)** Perícias para ser treinado dentre as seguintes: Religião, Vontade, Percepção, Medicina, Investigação
 
@@ -44,7 +42,12 @@ Além disso, você pode escolher **(1 + Mod. Inteligência)** Perícias para ser
 - **Play Style:** Contato com as Forças Primordiais, Conjuração Versátil e Combate a Distância.
 - **CD:** 10 + Mod. Inteligência + Mod. Sabedoria
 
-### Escolas do Primórdio
+## De onde vem o poder
+Todo ser carrega alguma quantidade de [[Éter]] no corpo. O Éter age como chave para o [[Plano Místico]]: ao ser gasto, ele chama de volta mais Éter do que foi consumido, e é essa corrente que atravessa a fronteira entre os planos. [[O Limiar]] — entidade que [[Velúria]] criou para mediar a extração — regula a passagem e impede que um teurgo sugue o plano místico além da conta. A deusa é dona do místico, criou o Éter e criou o Limiar; o que as técnicas antigas chamam de "forças materializantes" é exatamente esse par, Limiar e Éter.
+
+O dano **Primordial**, cobrado no preço de quase toda técnica cara desta classe, é energia vazada do [[Primórdio]]: o tipo mais raro e mais poderoso do sistema, a substância que sustenta o universo ([[Tipos de Dano]]).
+
+## Escolas do Primórdio
 > O Teurgo não domina toda a magia — ele se especializa em **Escolas** que representam diferentes manifestações das forças primordiais. Cada escola requer um **Foco** específico para ser conjurada.
 > Você estudou 2 Escolas, +1 no nível 3 e +2 no nível 5.
 > Escolha 1+MOD. INT ou SAB magias de nível 1 no primeiro nível.
@@ -57,7 +60,9 @@ Além disso, você pode escolher **(1 + Mod. Inteligência)** Perícias para ser
 | [[Alteração]] | Transformação, manipulação, enganação. |
 | [[Primordial]] | Magia selvagem e bruta, intenção incompreendida. (Requer nível 5) |
 
-### Técnicas gerais
+Os Focos que habilitam cada escola estão catalogados em [[Armas e Munição]]; as intensidades, modulações e custos de conjuração, em [[Regras de Magia]]. Quando a tabela de uma magia e o texto da sua descrição divergirem, vale a tabela. Conjura-se **uma magia por turno** — *Disparo Veloz* é possivelmente a única magia do sistema que escapa dessa trava, o que na prática limita *Encadeamento*, *Canalização Infinita* e *Teorema Absoluto*. O nível 1 do Teurgo é magro por desenho: as cerca de vinte magias de **nível 0**, truques que não custam Éter, ainda estão por escrever.
+
+## Técnicas gerais
 > Você possui **3 Técnicas + Nível**, reatribuíveis em descanso longo.
 
 | Técnica | Descrição | Custo | Ação |
@@ -78,17 +83,21 @@ Além disso, você pode escolher **(1 + Mod. Inteligência)** Perícias para ser
 | Concentração | Pode canalizar uma magia com 1 ação adicional, adiciona +1 dado de dano ou uma modulação grátis. | 3 Stamina | +1 Ação |
 | Barreira Instintiva | Ao receber dano, pode gastar Éter como ação livre para reduzir dano. 1 Éter = 1d4 de dano reduzido, 2 Éter = 2d4 de dano reduzido… (Max. Éter gasto = Nível) | 1-5 Éter | Ação Livre |
 
-### Ramos
-> 3 Marcas; 6 Técnicas de Ramo (3 no Tier 1, 2 no Tier 2, 1 no Tier 3 — ver Conflitos).
+**Reserva Oculta e a condição [[Condições|Oco]].** Chegar a 0 de Éter deixa o teurgo *Oco*, e um teurgo Oco não canaliza. A exceção aberta por Reserva Oculta vale **apenas enquanto ele paga com Saúde**, na proporção de 2 para 1: fora dessa troca, a proibição da condição continua valendo.
+
+**Linguagem Estranha.** O idioma [[Idiomas|Abissal]] nasceu entre as criaturas de [[O Abismo]], a região de [[Kharavel]] que aprisiona a figura material de [[Osh'Kar]]; isoladas ali, elas passaram a se comunicar entre si e formaram a língua.
+
+## Os três ramos
+Ao longo da criação do personagem escolhem-se **3 Marcas** e **6 Técnicas de Ramo**: 3 no Tier 1, 2 no Tier 2 e 1 Ultimate no Tier 3, destravadas respectivamente nos níveis 2, 4 e 5.
 
 - **Ramo do Acadêmico** (azul — Conhecimento e Equilíbrio mental) — *A magia nunca foi mistério para você — foi problema a ser resolvido. Enquanto outros temem o desconhecido, você o disseca, cataloga e domina. Cada fenômeno tem uma explicação. Cada força segue regras. Seus grimórios estão cheios de anotações, teoremas e correções. O que chamam de milagre, você chama de ciência ainda não compreendida.*
 - **Ramo do Receptáculo** (verde — Natureza mística e caótica) — *Você não escolheu a magia. Ela escolheu você. Desde jovem, as forças primordiais sussurram no limite da sua percepção — vozes sem forma, visões sem contexto, poder sem explicação. Você aprendeu a se abrir, a se esvaziar, a deixar que o outro lado flua através de você. É perigoso. É intoxicante. E você não consegue mais parar.*
 - **Ramo do Arauto** (vermelho — Rituais prolongados e pactos) — *O poder verdadeiro não é tomado — é negociado. Você entendeu isso cedo. Através de rituais meticulosos, círculos perfeitamente traçados e palavras pronunciadas na ordem exata, você firma acordos com forças que outros nem sabem que existem. Cada pacto tem um preço. Cada cerimônia deixa uma marca. Mas o que você recebe em troca… vale cada cicatriz.*
 
-### Marcas de Ramo
+## Marcas de Ramo
 **Marcas do Acadêmico**
 - **O Duelista** — *"O duelo arcano é xadrez. Você sempre pensa três jogadas à frente."*
-  - Você tem +2 em Místico, Vontade e Reflexo contra outros Teurgos ou criaturas que conjuram magias.
+  - Você tem +2 em Místico, Vontade e Reflexos contra outros Teurgos ou criaturas que conjuram magias.
   - Ao acertar um Teurgo ou conjurador com uma magia de dano, você rouba 1d6 de Éter dele.
 - **Colecionador de Teoremas** — *"Cada magia estudada é uma peça do quebra-cabeça. Você está montando o mapa do universo."*
   - Para cada 5 magias diferentes que você presenciou sendo conjuradas e anotou em seu grimório, ganha +1 permanente em Místico. Ao chegar em +5, essa habilidade fica supérflua.
@@ -108,13 +117,13 @@ Além disso, você pode escolher **(1 + Mod. Inteligência)** Perícias para ser
   - Adicionalmente, você ganha 50% mais da recompensa ao cumprir uma barganha primordial.
 - **Porta-Voz** — *"Você não fala com entidades. Você fala POR elas."*
   - Você pode servir como canal de comunicação para seu Patrono — ele pode falar através de você (com sua permissão).
-  - +2 em interação social(Intimidação) quando invoca o nome/autoridade do seu Patrono.
+  - +2 em Intimidação quando invoca o nome/autoridade do seu Patrono.
   - Uma vez por descanso longo: Pode fazer uma pergunta direta ao seu Patrono.
 
-### Técnicas de Ramo — Tier 1 (nível 2)
+## Técnicas de Ramo — Tier 1 (nível 2)
 **Acadêmico**
 - **Grimório Arcano** (Passiva) — Você possui um livro onde armazena grande parte do seu conhecimento arcano, lá estão seus estudos junto com suas magias conhecidas. Escolha **3+Mod. Inteligência** magias em escolas que você é especializado e +1 para cada nível subsequente. Você só pode escolher magias iguais ou abaixo do seu (nível − 1). Você pode estudar e reordenar suas magias em um descanso longo.
-- **Tese Arcana** (Passiva, 4 Stamina) — Escolha uma magia que você conhece. Ela se torna sua Tese. Você pode trocar a magia escolhida em um descanso longo. Ao canalizar essa magia, escolha entre gastar 2 de Stamina ou não: Ao gastar 4 de Stamina, essa magia possui uma modulação grátis e sua intensidade é de 1 nível acima. Ao castar sem gastar 4 de Stamina, ela custa −1 Éter. **[custo contraditório no Notion — ver Conflitos]**
+- **Tese Arcana** (Passiva, 4 Stamina) — Escolha uma magia que você conhece. Ela se torna sua Tese. Você pode trocar a magia escolhida em um descanso longo. Ao canalizar essa magia, escolha entre gastar 2 de Stamina ou não: Ao gastar 4 de Stamina, essa magia possui uma modulação grátis e sua intensidade é de 1 nível acima. Ao castar sem gastar 4 de Stamina, ela custa −1 Éter. *(O cabeçalho pede 4 de Stamina e o corpo oferece a escolha de gastar 2 — ver Pontas soltas.)*
 - **Recuperação Primordial** (3 Ações, x Stamina) — Você gasta 3 ações para revitalizar sua relação com as **forças materializantes**. Você compra pontos de Éter gastando pontos de Stamina, com uma proporção de 2:1. Ou seja, 2 de Stamina = 1 Éter.
 
 **Receptáculo**
@@ -136,7 +145,9 @@ Além disso, você pode escolher **(1 + Mod. Inteligência)** Perícias para ser
 - **Magias Pactuadas** (Passiva) — Você negociou com seres primordiais temidos por outros, eles te fornecem uma fração de sua essência, por um custo: Escolha **1+Mod. Inteligência** magias em escolas que você é especializado e +1 para cada nível subsequente. Você só pode escolher magias iguais ou abaixo do seu (nível − 1). Para trocar ou adquirir uma nova magia pactuada: Requer um ritual de ao menos 1 hora. Requer pagamento de preço (definido pelo seu pacto): Componentes raros, Sins, Sacrifício, Acordos. Ao conjurar uma Magia Pactuada em Intensidade Contida, o custo é 0 de Éter (ao invés de 1).
 - **Barganha Primordial** (1 Ação) — Uma vez por descanso longo, pode invocar as forças primordiais e propor uma barganha: Declare o que você quer: Recuperar 1d6 de Éter / Próxima magia ganha uma modulação grátis / Uma informação sobre algo místico/oculto / Outro benefício… As forças declaram um preço pelo seu pedido: Perda de Saúde, Stamina ou Éter / Componente material ou Sins / Tarefa a ser cumprida futuramente / Outro preço…
 
-### Técnicas de Ramo — Tier 2 (nível 4)
+Os três patronos são entidades do mundo, não abstrações: **A Grande Árvore** é [[A Vhelor]], cuja [[Seiva]] o pacto manda propagar; **O Limiar** é a própria entidade guardiã criada por [[Velúria]]; e **O Trancafiado** é o que dorme acorrentado em [[O Abismo]] (ver Pontas soltas).
+
+## Técnicas de Ramo — Tier 2 (nível 4)
 **Acadêmico**
 - **Maestria Arcana** (Passiva) — Escolha uma escola do primórdio que você é especializado. Você se torna mestre nela. Magias desta escola: Custam −1 Éter. O custo de Éter das modulações dessa escola é reduzido em 1. Pode trocar a escola escolhida em um descanso longo.
 - **Eterno Aprendiz** (Reação, 5 Stamina) — Ao presenciar uma magia sendo conjurada por outra criatura, pode estudá-la rapidamente, aprendendo-a posteriormente. Ao estudar a magia você sabe exatamente qual magia é, sua intensidade e modulações. Ganha +2 em testes de resistência ou para dissipar a magia. Se você for especializado na escola dessa magia, anote ela. Em um descanso longo você pode tentar aprendê-la, rolando um teste de místico (CD 15 + Nível da Magia × 2). Você só pode aprender 1 magia por descanso longo.
@@ -160,7 +171,7 @@ Além disso, você pode escolher **(1 + Mod. Inteligência)** Perícias para ser
 
 > O Ser age no seu turno ao seu comando, porém possui apenas 2 ações. Se Movimentar, Atacar ou Utilizar uma Habilidade gasta 1 ação. O Ser dura 10 minutos, até você dispensá-lo ou ser destruído, e após isso é dissipado. Você pode invocar 1 ser no nível 4 e 2 seres no nível 5. **Ao ser destruído, você recebe 1d4 de dano Primordial.**
 
-### Técnicas de Ramo — Tier 3 · Ultimates (nível 5)
+## Técnicas de Ramo — Tier 3 · Ultimates (nível 5)
 > O Tier 3 provê ultimates, que só podem ser utilizadas 1 vez por dia.
 
 **Acadêmico** — *"O místico, eu conheço-o melhor que eu mesmo."*
@@ -184,46 +195,33 @@ Além disso, você pode escolher **(1 + Mod. Inteligência)** Perícias para ser
   - **O Limiar** — *O Guardião do Portão se manifesta. Uma figura impossível de luz e sombra surge, e por um momento, as leis da magia são reescritas.* **Área:** 12 m de raio centrado em você. **Duração:** 1 Rodada. **Efeitos Instantâneos:** Todas as magias ativas na área são anuladas instantaneamente, sem exceção; Todas as criaturas invocadas ou conjuradas na área são banidas permanentemente; Nenhuma criatura na área (a não ser você e aliados) pode conjurar magias por 2 rodadas; Escolha até 3 criaturas na área. Cada uma deve passar em Vontade CD 20: *Falha:* A criatura é *Banida* para o espaço entre planos por até 1 minuto. *Falha Crítica:* A criatura é *Banida* permanentemente. **Efeitos Contínuos:** Até o fim do combate, as criaturas escolhidas ao canalizar magias devem suceder em um teste de vontade (CD 20) ou falhar na canalização. **O Preço:** O Limiar exige que você o auxilie em breve, ajudando-o a equilibrar o plano místico. A localização de um portal para o plano místico é sussurrada nos seus ouvidos. Ao negar seu destino, seus poderes vão se esvaindo.
   - **Genérico** — *Para Teurgos sem Patrono definido. O primórdio puro se manifesta — caótico, devastador, imprevisível.* **Área:** 12 m de raio centrado em você. **Duração:** Instantâneo + efeito caótico. **Efeitos Instantâneos:** Explosão de energia primordial: Todas as criaturas na área (exceto você) recebem 4d8 + Mod. Inteligência de dano Primordial, *Fortitude* CD 15 reduz à metade. **Efeito Caótico (1d6):** 1. **Distorção Temporal:** Você ganha 2 ações adicionais neste turno. 2. **Drenagem:** Você recupera Éter igual a metade do dano total causado. 3. **Instabilidade:** A área se torna terreno difícil por 1 minuto (1d6 dano Primordial para quem entrar). 4. **Ressonância:** Sua próxima magia é automaticamente Transbordante sem custo. 5. **Colapso:** Todas as criaturas na área ficam *Cegas* e *Surdas* por 1 rodada. 6. **Tiro no Pé:** O efeito também te atinge — você recebe metade do dano causado, mas recupera toda sua Stamina.
 
-## Segundo o Pedro (2026-09-05)
-- **B10:** *"É verdade, essa técnica deveria citar que a regra de não canalização de [[Condições|Oco]] não se aplica, porém só quando canalizando com saúde."* → **Reserva Oculta abre exceção à condição Oco exclusivamente enquanto o Teurgo paga com Saúde (2:1).** Redação a corrigir no Notion.
-- **B10 (Tese Arcana):** *"Tese arcana é uma técnica de ramo esquisita, depois eu ajusto."* → o conflito 2 vs 4 Stamina fica **em aberto por decisão do Pedro**.
-- **B11:** ramos = **3 Tier 1 · 2 Tier 2 · 1 ultimate Tier 3** (níveis 2/4/5); o "3 por Tier" do Notion está errado.
-- **B4:** *"Normalmente, você só pode canalizar 1 magia por turno; o disparo veloz é possivelmente a única magia do sistema que ignora isso."* → limita Encadeamento, Canalização Infinita e Teorema Absoluto na prática de mesa.
-- **B8:** *"Eu criarei +20 magias nvl 0 que atuarão como truques que não custam éter pros teurgos nvl 1, que atualmente não têm magias."* → o nível 1 do Teurgo hoje é magro por design conhecido; nível 0 **a criar**.
-- **B13:** *"Tabela do notion manda sempre"* — em qualquer divergência entre a tabela de uma magia e sua descrição, vale a tabela ([[Regras de Magia]]).
-- **A2 (Velúria):** *"A deusa [[Velúria]] é dona do plano místico, criou o éter e o limiar. […] Teurgos utilizam do éter que é uma substância mágica capaz de romper a barreira do limiar e trazer essa energia para o plano material."*
-- **A14 ("forças materializantes"):** *"Essa é a definição antiga para o Limiar e o Éter."* → onde as técnicas dizem "forças materializantes" (Recuperação Primordial, Canalizador Inato), leia-se **[[O Limiar]] + [[Éter]]**. *"Todo ser possui uma certa quantidade de éter em seu corpo… O éter age como uma chave para o plano místico, chamando sempre mais éter do que o que foi gasto… O limiar é uma entidade criada por Velúria para agir como mediador nessa extração… ele não permite que um teurgo sugue excessivamente o plano místico por éter."*
-- **B1:** dano **Primordial** = *"energia vazada do Plano Primordial ou o Primórdio, extremamente rara e a mais poderosa, é a substância que constitui a sustentação do universo"* — é o tipo que quase toda técnica de custo do Teurgo usa.
-- **B3 (Abissal):** *"o abismo é uma região de Kharavel que aprisiona a figura material do deus da morte [[Osh'Kar]] […] naturalmente as criaturas abissais começaram a se comunicar entre si, e assim veio o idioma abissal"* — contexto de *Linguagem Estranha* e do patrono **O Trancafiado**.
-- **B16:** "interação social(Intimidação)" (Porta-Voz) → [[Atributos e Perícias|Intimidação]].
-
 ## Relações
-- **Pertence a** → [[Sistema]]
-- **Recurso central** → [[Éter]] (maior progressão do sistema, +9/nível) · Saúde e Stamina mínimas
-- **Escolas** → [[Destruição]] · [[Abjuração]] · [[Alteração]] · [[Conhecimento]] · [[Primordial]] (requer nível 5) — regras em [[Regras de Magia]]
-- **Cosmologia** → canaliza do [[Plano Místico]] para o [[Plano Material]] através de [[O Limiar]]; Éter e Limiar são criações de [[Velúria]] (A2); dano Primordial vaza do [[Primórdio]] (B1)
-- **Patronos possíveis (Arauto)** → **A Grande Árvore** = [[A Vhelor]] (bebe [[Seiva]]) · **O Trancafiado** = entidade selada em [[O Abismo]] (ver Conflitos) · **O Limiar** = [[O Limiar]]
+- **Pertence a** → [[Sistema]] · [[Progressão]] · [[Criação de Personagem]]
+- **Recurso central** → [[Éter]], a maior progressão do sistema (+9/nível), com Saúde e Stamina mínimas
+- **Escolas** → [[Destruição]] · [[Abjuração]] · [[Alteração]] · [[Conhecimento]] · [[Primordial]] (requer nível 5) — conjuração em [[Regras de Magia]], Focos em [[Armas e Munição]]
+- **Cosmologia** → canaliza do [[Plano Místico]] para o [[Plano Material]] através de [[O Limiar]]; Éter e Limiar são criações de [[Velúria]]; o dano Primordial vaza do [[Primórdio]]
+- **Patronos possíveis (Arauto)** → **A Grande Árvore** = [[A Vhelor]], com sua [[Seiva]] · **O Trancafiado**, selado em [[O Abismo]] · **O Limiar**
 - **Ramos** → Acadêmico (conhecimento/equilíbrio) · Receptáculo (natureza caótica) · Arauto (rituais/pactos)
 - **Perícias iniciais** → Armas Místicas, [[Atributos e Perícias|Místico]], [[Atributos e Perícias|Conhecimento]]; escolhe entre [[Atributos e Perícias|Religião]], [[Atributos e Perícias|Vontade]], [[Atributos e Perícias|Percepção]], [[Atributos e Perícias|Medicina]], [[Atributos e Perícias|Investigação]]
-- **Idiomas** → entende [[Abissal]] de forma leiga (Linguagem Estranha)
+- **Idiomas** → entende [[Idiomas|Abissal]] de forma leiga, por *Linguagem Estranha*
 - **Condições que usa** → [[Condições|Oco]], [[Condições|Exaustão]], [[Condições|Morrendo]], [[Condições|Enraizado]], [[Condições|Envenenamento]], [[Condições|Amedrontado]], [[Condições|Cego]], [[Condições|Surdo]], [[Condições|Desorientado]]
-- **NPCs teurgos** → [[Kheyos]] (teurgo mortal, A7) · [[Lorrain Kiriam]] (mãe de [[Sinikko Kiriam (original)]]) · [[Sinikko Kiriam (PJ)]]
-- **Raça com afinidade** → [[Gruto]] linhagem Skal'ri (+5 Éter máximo)
-- **Economia** → [[Sins]] (preço de Magias Pactuadas e Barganha Primordial) · [[O Bazar]] (Focos)
+- **Teurgos conhecidos** → [[Kheyos]], teurgo mortal · [[Lorrain Kiriam]], mãe de [[Sinikko Kiriam (original)]] · [[Sinikko Kiriam (PC)]]
+- **Raça com afinidade** → [[Gruto]], linhagem Skal'ri, com +5 de Éter máximo
+- **Economia** → [[Sins]] no preço das Magias Pactuadas e da Barganha Primordial · [[O Bazar]], onde se compram os Focos
 
-## Conflitos e pendências
-1. **Reserva Oculta × condição *Oco*** — "Ao chegar a 0 de Éter, pode conjurar magias pagando em Saúde" × Oco: "Você não consegue canalizar magias". **Resolvido por B10**: a exceção vale, **mas só ao pagar com Saúde**. Falta escrever isso no Notion. (Digest B §8)
-2. **Tese Arcana — 2 ou 4 Stamina?** Cabeçalho "Passiva, 4 Stamina", corpo "escolha entre gastar **2** de Stamina ou não: Ao gastar **4** de Stamina…". Pedro (B10): *"depois eu ajusto"* — **pendência aberta, decisão do Pedro**. (Digest B §7)
-3. **Listas de magias conhecidas somam ou substituem?** Nível 1 dá "1+Mod. INT ou SAB magias de nível 1"; Grimório Arcano (T1) dá "3+Mod. INT", Canalizador Inato "2+Mod. SAB", Magias Pactuadas "1+Mod. INT". Pedro respondeu *"Não entendi a última pergunta"* (B10) — **pendência aberta, reformular a pergunta**. (Digest B §20)
-4. **"6 Técnicas de Ramo, 3 por Tier"** × Progressão 3/2/1 — resolvido por B11; corrigir no Notion. (Digest B §1)
-5. **Quem é O Trancafiado?** O texto diz "algo mais antigo… estava lá antes das almas chegarem" e "odeia os Deuses que o trancaram". Pedro (B3) diz que [[O Abismo]] aprisiona a **figura material de [[Osh'Kar]]**, orquestrada por [[Velúria]] e [[Vytália]]. São a mesma entidade, ou o Trancafiado é uma segunda coisa selada no mesmo lugar? **Pendência aberta (nova).**
-6. **Condição *Banida/Banido*** (Manifestação do Patrono — O Limiar) não existe em [[Condições]]; magias.md usa "Vontade ou Banido" 1x, também sem definição. B12 adia a padronização.
-7. **Escola Primordial** existe (5 escolas, a 5ª requer nível 5) e o `CLAUDE.md` §2 já foi atualizado; a lista antiga de 4 escolas está obsoleta, não o Notion. (Digest B §19)
-8. **Marcas com "+1 permanente"** até +5 × escala canônica de perícia +2/+4/+6/+8; **Devoto** ainda usa contador "cada 3" em vez de "cada 5". (Digest B §21)
-9. **Magia Sustentada** — Pedro (B4): *"normalmente está descrito a quantidade de éter que você gasta por turno para continuar canalizando a magia, mas é um pouco old essas definições."* Afeta Ritual e Imbuir Magia. **Pendência aberta.**
-10. **"Dano Biológico" sem subtipo** (Seiva Dourada do Grutto) — B1 define Biológicos como Veneno/Ácido/Psíquico; qual deles? **Pendência aberta (nova).**
+## Pontas soltas
+- **Tese Arcana custa 2 ou 4 de Stamina?** O cabeçalho diz 4, o corpo oferece a escolha de gastar 2 e depois cobra 4 pelo bônus. A técnica está marcada para ajuste. [[Perguntas Abertas]] E70.
+- **As listas de magias somam ou substituem?** O nível 1 dá "1+Mod. INT ou SAB" magias; *Grimório Arcano* dá "3+Mod. INT", *Canalizador Inato* "2+Mod. SAB" e *Magias Pactuadas* "1+Mod. INT". Esses números se acumulam ao inicial ou passam a ser o total conhecido? [[Perguntas Abertas]] E71.
+- **Quem é O Trancafiado?** O texto do patrono fala de "algo mais antigo… que estava lá antes das almas chegarem" e que odeia "os Deuses que o trancaram", enquanto [[O Abismo]] é descrito como a prisão da figura material de [[Osh'Kar]]. São a mesma entidade ou há uma segunda coisa selada no mesmo lugar? [[Perguntas Abertas]] E72.
+- **Dano Biológico sem subtipo.** A *Seiva Dourada* do Grutto causa "dano Biológico", mas a categoria reúne Veneno, Ácido e Psíquico ([[Tipos de Dano]]); falta escolher qual. [[Perguntas Abertas]] E73.
+- **A escola [[Primordial]] não tem lista de magias.** Ela existe como quinta escola, exige nível 5 e Foco Primordial, mas nenhuma magia primordial foi escrita ainda. [[Perguntas Abertas]] E41.
+- **Magia sustentada.** *Ritual* e *Imbuir Magia* dependem da regra de manter uma magia canalizada turno a turno, que segue com a redação antiga em [[Regras de Magia]] e precisa ser refeita.
+- **A condição *Banida*** aparece em *Manifestação do Patrono* (O Limiar) e uma vez no catálogo de magias, sem entrada em [[Condições]].
+- **Marcas que dão "+1 permanente"** até +5 convivem com a escala de treinamento de quatro degraus, +2/+4/+6/+8 ([[Atributos e Perícias]]); e *Devoto* ainda conta de três em três, não de cinco em cinco. [[Perguntas Abertas]] E63.
 
-## Fonte
-- Notion: Teurgo `caa6e3a401d98330bae281511750d407` (ed. 2026-08-05, 🟢 Pronto) · Classes `3a66e3a401d9809b8eceec1f30be9fd2`
-- Raw: `docs/memoria/notion_raw/classe_teurgo.md`, `classe_index.md`, `magias.md`, `condicoes.md`
-- Digest: `docs/memoria/digests/B_classes.md` §4, INCONSISTÊNCIAS 1, 7, 8, 19, 20, 21 · Respostas: A2, A7, A14, B1, B3, B4, B8, B10, B11, B12, B13, B16
+## Procedência
+- Notion `caa6e3a401d98330bae281511750d407` — Teurgo (ed. 2026-08-05, 🟢 Pronto); índice de Classes `3a66e3a401d9809b8eceec1f30be9fd2`.
+- Respostas do mestre 2026-09-05: **B10** (Reserva Oculta abre exceção a *Oco* só ao pagar com Saúde; Tese Arcana "depois eu ajusto") · **B11** (ramos 3/2/1 nos níveis 2/4/5) · **B4** (uma magia por turno; Disparo Veloz como possível exceção única) · **B8** (mais de vinte magias de nível 0, truques sem custo de Éter, ainda a criar) · **B13** ("tabela do notion manda sempre") · **B1** (dano Primordial = energia vazada do Primórdio) · **B3** (Abismo, Osh'Kar e a origem do idioma Abissal) · **B16** ("interação social(Intimidação)" → Intimidação) · **A2** (Velúria é dona do plano místico e criou o Éter e o Limiar) · **A14** ("forças materializantes" é a definição antiga de Limiar + Éter; o Éter chama mais Éter do que gasta e o Limiar medeia a extração).
+- `docs/memoria/notion_raw/classe_teurgo.md`, `classe_index.md`, `magias.md`, `condicoes.md`; digest `B_classes.md` §4, inconsistências 1, 7, 8, 19, 20, 21.
+- Correções pendentes na fonte: escrever a exceção de Reserva Oculta; frase "6 Técnicas de Ramo, 3 por Tier"; nome legado "interação social(Intimidação)".
+- Revisão de redação: 2026-09-07.

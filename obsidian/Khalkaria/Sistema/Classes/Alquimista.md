@@ -1,25 +1,23 @@
 ---
 tipo: classe
-status: canon-notion
+status: canon-pedro
 spoiler: publico
 era: atemporal
 aliases: [Alquimista, Alquimistas, Artificer]
-fonte_notion: [eac6e3a401d982d595b181020562ec8e, 3a66e3a401d9809b8eceec1f30be9fd2]
+fonte_notion: [eac6e3a401d982d595b181020562ec8e, 3a66e3a401d9809b8eceec1f30be9fd2, pedro-2026-09-05]
 ultima_sync: 2026-09-05
 tags: [khalkaria/sistema, khalkaria/sistema/classes]
 ---
 
 # Alquimista
 
-**Resumo.** Classe de suporte, utilidade, preparação e crafting (🧪, Notion 🟢 Pronto, ed. 2026-08-05). Recurso de classe = **Bolsa de Reagentes** (`Nível × 3 + Mod.INT`), gasta para fabricar itens do catálogo alquímico de **92 itens** em 5 níveis de CD. Única classe com um catálogo de itens próprio embutido nas regras. Perfil do índice: Combate ★★★☆☆ · Controle ★★★☆☆ · Exploração ★★☆☆☆ · Místico ★★★★☆ · Tecnologia ★★★★★ (o maior do sistema).
+**Resumo.** Classe de suporte, utilidade, preparação e fabricação (🧪). Recurso de classe = **Bolsa de Reagentes** (`Nível × 3 + Mod.INT`), gasta para fabricar itens do catálogo alquímico de **92 fórmulas** distribuídas em cinco níveis de dificuldade. É a única classe com um catálogo de itens próprio embutido nas regras. **Perfil:** Combate ★★★☆☆ · Controle ★★★☆☆ · Exploração ★★☆☆☆ · Místico ★★★★☆ · Tecnologia ★★★★★, o maior do sistema.
 
-## Cânone (Notion)
-
-### Prosa de abertura
+## O chamado
 > O mundo é uma oficina. Cada planta esconde uma cura, cada mineral guarda uma explosão, cada substância espera ser transformada. Enquanto outros veem ingredientes, você vê possibilidades infinitas.
 > Suas mãos carregam cicatrizes de experimentos. Seu avental conta histórias de explosões "controladas". Seu olhar disseca qualquer objeto, calculando o que pode extrair dele. Para você, não existe lixo — apenas matéria-prima esperando propósito.
 
-### Progressão
+## Progressão
 | Level | Conteúdo |
 |---|---|
 | 1 | 4 Técnicas |
@@ -28,14 +26,14 @@ tags: [khalkaria/sistema, khalkaria/sistema/classes]
 | 4 | 7 Técnicas, Técnica de Ramo(Tier 1, 2), 2 Marcas |
 | 5 | 8 Técnicas, Técnica de Ramo(Tier 1, 2 e 3), 3 Marcas |
 
-### Status iniciais
+## Status iniciais
 - **Saúde:** `10 + (4 × Nível) + (Mod.CON × Nível)`
 - **Stamina:** `8 + (6 × Nível) + (Mod.FOR OU Mod.DES × Nível)`
 - **Éter:** `6 + (5 × Nível) + (Mod.INT OU Mod.SAB × Nível)`
 - **Evasão Ativa (Reação):** 10 + Mod. Destreza + Treinamento em *Defender*
 - **Evasão Passiva (Sem reação):** 10 + Mod. Destreza
 
-### Treinamento
+## Treinamento
 Você começa treinado em: **Ofício(Alquimia), Conhecimento**
 Além disso, você pode escolher **(1 + Mod. Inteligência)** Perícias para ser treinado dentre as seguintes: Ofício(Alquimia), Ofício(Engenharia), Ofício(Ferraria), Místico, Medicina
 
@@ -43,7 +41,9 @@ Além disso, você pode escolher **(1 + Mod. Inteligência)** Perícias para ser
 - **Play Style:** Suporte, Utilidade, Preparação e Crafting
 - **CD:** 10 + Mod. Inteligência + Mod. Destreza
 
-### Bolsa de Reagentes (recurso de classe)
+Ofício é a vigésima segunda perícia e leva sempre uma especialidade entre parênteses, com atributo variável ([[Atributos e Perícias]]); as regras de fabricação, raridade e preço de mercado estão em [[O Bazar]].
+
+## Bolsa de Reagentes (recurso de classe)
 > Você possui uma Bolsa de Reagentes que representa seus materiais alquímicos, componentes e suprimentos de crafting.
 
 - **Reagentes Máximos:** `(Nível × 3) + Mod. Inteligência`
@@ -58,7 +58,7 @@ Além disso, você pode escolher **(1 + Mod. Inteligência)** Perícias para ser
   - **Desmanche:** Você pode reverter itens produzidos por você, ganhando seus reagentes de volta.
   - **Teste de Alquimia:** Ao criar qualquer item, role um teste de Ofício(Alquimia); ao suceder o CD do item escolhido você o fabrica com sucesso. Em caso de falha, você perde os reagentes e não cria o item.
 
-### Técnicas gerais
+## Técnicas gerais
 > Você possui **3 Técnicas + Nível**, reatribuíveis em descanso longo.
 
 | Técnica | Descrição | Custo | Ação |
@@ -79,7 +79,7 @@ Além disso, você pode escolher **(1 + Mod. Inteligência)** Perícias para ser
 | Poções Granada | Suas poções podem ser arremessadas e ao acertar agem como se o alvo tivesse consumido ela. | — | Passiva |
 | Óleo Grosso | Seus óleos duram +2 ataques ao serem aplicados em uma arma. | — | Passiva |
 
-### Tabela de itens alquímicos
+## Catálogo alquímico
 > Catálogo completo (92 itens). "Reag." = custo em Reagentes.
 
 **Nível 1 (CD 8-10)**
@@ -202,14 +202,14 @@ Além disso, você pode escolher **(1 + Mod. Inteligência)** Perícias para ser
 | Soro do Homúnculo | Ao injetar transforma em servo alquímico (CR 2) leal pra sempre. Requer ***Sangue Primordial***. | 15 | 24 |
 | Lágrimas do Tempo | Reverte objeto/criatura/local ao estado de até 1000 anos atrás. 1 uso. Requer ***Areia Temporal***. | 20 | 26 |
 
-### Ramos
-> Ao longo da criação do seu personagem você escolherá: 3 Marcas; **6 Técnicas de Ramo, 3 no Tier [1], 2 no Tier 2 e 1 no Tier 3**.
+## Os três ramos
+Ao longo da criação do personagem escolhem-se **3 Marcas** e **6 Técnicas de Ramo**: 3 no Tier 1, 2 no Tier 2 e 1 Ultimate no Tier 3, destravadas respectivamente nos níveis 2, 4 e 5.
 
 - **Ramo do Artificer** (azul — Utilidade e Infusão mágica) — *Você cruzou a fronteira entre alquimia e misticidade. Onde outros veem limite, você vê oportunidade. Éter não é apenas combustível — é um ingrediente. Suas criações brilham com runas, seus itens pensam, suas invenções desafiam as leis naturais. Você não é apenas um alquimista; é um inventor que dobra a realidade.*
 - **Ramo do Bombardeiro** (vermelho — Combate e Toxinas) — *Você dominou a arte da destruição química. Seus frascos brilham com cores que prometem dor. Seu sorriso aparece quando algo explode. Enquanto outros alquimistas criam para curar ou construir, você cria para um único propósito: aniquilação eficiente.*
 - **Ramo do Boticário** (verde — Cura e Abjuração) — *Você é a linha entre a vida e a morte das criaturas. Suas poções fecham feridas que magia não alcança, seus elixires transformam covardes em heróis, seus tônicos enfraquecem gigantes. Você traz esperança — e ocasionalmente, a ruína silenciosa dos inimigos através de debilitações precisas.*
 
-### Marcas de Ramo
+## Marcas de Ramo
 **Marcas do Artificer**
 - **Pai de Pet** — *"Meus constructos, morreriam por mim e, ao serem reconstruídos, morreriam de novo!"* Você tem um certo afeto pelos seus constructos… afeto até demais.
   - Toda vez que um constructo seu sobreviver a um combate, ganha +1 permanente em Místico. Ao chegar em +5, essa habilidade fica supérflua.
@@ -234,7 +234,7 @@ Além disso, você pode escolher **(1 + Mod. Inteligência)** Perícias para ser
   - Você pode combinar 2 poções ou elixires de buff diferentes em um único frasco (custo +2 Reagentes). O consumidor recebe ambos os efeitos. Você não pode combinar poções ou elixires iguais.
   - Aliados que consumirem suas misturas também recuperam 1d4 de Stamina.
 
-### Técnicas de Ramo — Tier 1 (nível 2)
+## Técnicas de Ramo — Tier 1 (nível 2)
 **Artificer**
 - **Sintonia Arcana** (Passiva) — Você se torna Treinado em *Místico*. Se já for Treinado, se torna Experiente e assim por diante. Você pode usar Éter como substituto de Reagentes na proporção 2:1 ao criar itens alquímicos. Seu Éter máximo aumenta em +Mod. Inteligência.
 - **Cartucho Arcano** (Passiva) — Você desenvolveu um método de aprisionar magias em recipientes alquímicos. **Novo Item Alquímico: Cartucho Arcano.** *Tempo de Criação:* 10 min, age como craft de item alquímico. *Custo de Criação:* (Nível da Magia × 2) Reagentes. *Magias Disponíveis:* Você conhece 1 magia + Mod. Inteligência (mín. 1) do seu (nível−1) ou menor; após isso você ganha +1 magia por nível. *CD da criação:* Você rola Místico ao criar Cartuchos Arcanos; o CD da criação é 10 + (2 × Nível da Magia). *Usar Cartucho:* Qualquer criatura pode conjurar a magia infundida no cartucho, porém usa seus atributos como base dos CDs e ataques da magia, respeitando também o custo de ações da magia. *Limite:* Você pode sustentar até (Nível + Mod. Inteligência) cartuchos ao mesmo tempo. Perdem seus efeitos após um descanso longo.
@@ -248,9 +248,9 @@ Além disso, você pode escolher **(1 + Mod. Inteligência)** Perícias para ser
 **Boticário**
 - **Anatomista** (Passiva) — Você se torna Treinado em *Medicina*. Se já for Treinado, se torna Experiente e assim por diante. Poções de cura que você cria curam +2d4 adicional. Os itens Curativos e Elixires custam -1 Reagente e têm -2 CD para serem fabricados.
 - **Elixir Especial** (1 Ação, 3 Stamina, 3 Reagentes) — Você prepara e administra um elixir especial entre você e seus aliados à distância de toque, pagando 1 reagente por alvo. Escolha um dos 3 efeitos que todos recebem por 1 minuto: **Vigor:** +2 em Atacar e +1d6 de dano em Ataques. **Proteção:** +2 em Defender e +2 Armadura(Ar) natural. **Velocidade:** +3 m Movimento e não causa ataques de oportunidade.
-- **Tónico Cruel** (1 Ação, 3 Stamina) — Escolha uma criatura em até 9 m. Ela deve fazer um teste de Fortitude: Em caso de falha, escolha um efeito que dura por 1 rodada: **Letargia:** -2 em Atacar e Defender. **Fraqueza:** -3 m de Movimento e não pode usar Reações. **Vulnerabilidade:** Perde 2 de Armadura e tem Desvantagem em Fortitude. *Em caso de falha, você não pode usar esta habilidade contra a mesma criatura neste combate.* **[segunda "falha" provavelmente é "sucesso" — ver Conflitos]**
+- **Tónico Cruel** (1 Ação, 3 Stamina) — Escolha uma criatura em até 9 m. Ela deve fazer um teste de Fortitude: Em caso de falha, escolha um efeito que dura por 1 rodada: **Letargia:** -2 em Atacar e Defender. **Fraqueza:** -3 m de Movimento e não pode usar Reações. **Vulnerabilidade:** Perde 2 de Armadura e tem Desvantagem em Fortitude. *Em caso de falha, você não pode usar esta habilidade contra a mesma criatura neste combate.* *(a segunda condição repete "falha" onde tudo indica que deveria dizer "sucesso" — ver Pontas soltas)*
 
-### Técnicas de Ramo — Tier 2 (nível 4)
+## Técnicas de Ramo — Tier 2 (nível 4)
 **Artificer**
 - **Runas de Proteção** (1 Ação, 2 Éter) — Você inscreve runas protetoras em uma criatura ou objeto tocado. Dura 1 hora ou até ser consumido. A criatura protegida pode ativar as runas como Reação quando sofrer dano: **Absorção:** Reduz o dano em 2d8+Mod. Inteligência. **Retaliação:** O atacante sofre 1d8 de dano Místico. Você pode manter um total igual ao seu Mod. de Inteligência de Runas ativas simultaneamente.
 - **Constructo de Combate** (3 Ações, 5 Éter + 6 Reagentes) — Você cria um constructo alquímico aprimorado (Pequeno) que dura até o próximo descanso longo ou até ser destruído. **Estatísticas:** 25 Saúde, Evasão 14, Armadura(Ar) 2, Movimento 9 m, 3 ações por turno (pode voar ou escalar). O Constructo pode: *Atacar:* 1 ação, 1d20+Mod. Inteligência + SEU treinamento em *Atacar*, Dano 2d6+Mod. Inteligência Elemental (escolha o tipo ao criar). *Escudo:* 1 ação, um aliado à distância de toque ganha +2 Defender até o início do próximo turno do constructo. *Carregar:* Até 10 Equipamentos e 30 Bugigangas. *Reparar:* 1 Ação, cura 1d8 Saúde a si (Máx. 2x por descanso curto). *Espionar e Reportar* telepaticamente o que vê/ouve em até 200 m. *Detonar:* 3 Ações, explode causando 4d6 de dano Elemental em 4,5 m de raio, Reflexo para metade. Você só pode ter 1 constructo ativo por vez. Ao ser destruído, você pode saquear 3 reagentes do Constructo de Combate.
@@ -263,7 +263,7 @@ Além disso, você pode escolher **(1 + Mod. Inteligência)** Perícias para ser
 - **Transfusão Vital** (2 Ações, 3 Stamina) — Você aprendeu a manipular a vitalidade entre você e outras criaturas. Ao utilizar, escolha uma das ações a seguir: Cura uma criatura em alcance de toque em 2d6+Mod. Int, porém você perde 1d6 de Saúde. Ou: você ataca uma criatura com uma seringa de toxinas, causando 2d8+Mod. Int; ao acertar, injeta a seringa de volta em você recuperando Saúde igual ao dano causado.
 - **Gás Especial** (2 Ações, 3 Stamina, 4 Reagentes) — Você ativa ejetores de gás que inundam um raio de 4,5 m em volta de você de um Gás Especial. Você possui uma máscara que filtra as substâncias danosas e pode prover a qualquer criatura uma cópia dessa máscara: *Criaturas sem Máscara de Filtro:* Criaturas que começam o turno ou entram na área devem fazer um teste de Fortitude ou ficam *Enjoadas* até saírem da área; se a criatura já estiver enjoada, ela recebe 2d6+Mod. Int de dano Biológico. *Criaturas com Máscara de Filtro:* Criaturas que começam o turno ou entram na área recuperam 1d6+Mod. Inteligência de Saúde por turno enquanto estiverem na área. A nuvem se move com você e você pode manter essa técnica ativa contanto que pague a Stamina novamente toda rodada enquanto o Gás estiver ativo.
 
-### Técnicas de Ramo — Tier 3 · Ultimates (nível 5)
+## Técnicas de Ramo — Tier 3 · Ultimates (nível 5)
 > O Tier 3 provê Ultimates, que só podem ser utilizadas 1 vez por dia.
 
 **Artificer** — *"Levante-se, minha criação."*
@@ -280,41 +280,35 @@ Além disso, você pode escolher **(1 + Mod. Inteligência)** Perícias para ser
   - **Inimigo** (Teste de Vontade CD 20+Int; Transformação por 1 Minuto): Tamanho diminui em 2 Categorias. -6 Força, -4 Constituição, +2 Inteligência. -20 Saúde Máxima. -2d6 de dano em ataques corpo a corpo. Vulnerabilidade a dano Ordinário. Sucesso no teste de Vontade nega todos os efeitos anteriores, mas sofre 4d6 de dano Biológico.
   - **O Custo:** Ao final da transformação, criaturas aliadas ficam *inconscientes* e ganham *Exaustão 2*.
 
-## Segundo o Pedro (2026-09-05)
-- **B11:** ramos = **3 Tier 1 · 2 Tier 2 · 1 ultimate Tier 3**, nos níveis 2/4/5. A frase do Alquimista só omite o "1" em "3 no Tier".
-- **B1 (tipos de dano):** Ordinários (Cortante, Perfurante, Contundente) · Elementais (**Fogo, Frio, Elétrico**) · Biológicos (**Veneno, Ácido, Psíquico**) · Místicos (Radiante, Trovejante, Necrótico, **Força**, **Primordial**). *"Dano de força é gravidade geralmente e oriundo dos deuses. Dano primordial é energia vazada do Primórdio."* → o catálogo do Alquimista usa quase todos os 12; "dano Elemental"/"Biológico" **sem subtipo** (Forçar Invenção, Constructo Detonar, Rajada Arcana, Zona da Morte) e "dano Místico" (Runas de Proteção) ficam pendentes de subtipo.
-- **B12:** *Incorpóreo* (Essência Etérea) e *Lentidão 2* (Bomba Temporal) — *"Lentidão 2 se refere a lento 2; as outras condições foram criadas especificamente para uso unitário nessas técnicas… Depois fazemos a revisão nas condições."*
-- **B16:** *"Interação Social(x)… hoje foram individualizadas"*; **Ofício(X)** continua canônica (é a 22ª perícia, com atributo variável).
-- **A18 (Bazar):** *"alguns itens criados/abençoados por [[Vytália]] exigem que o usuário não tenha sido corrompido pela árvore"* — a coluna Lore/Notas do Bazar **não é cânone**; nada dela entra neste catálogo.
 
 ## Relações
-- **Pertence a** → [[Sistema]]
+- **Pertence a** → [[Sistema]] · [[Progressão]] · [[Criação de Personagem]]
 - **Recurso de classe** → Bolsa de Reagentes (`Nível×3 + Mod.INT`)
-- **Recursos gerais** → Saúde · Stamina · [[Éter]] (Artificer converte Éter em Reagentes 2:1)
+- **Recursos gerais** → Saúde · Stamina · [[Éter]], que o Artificer converte em Reagentes na proporção 2:1
 - **Ramos** → Artificer (utilidade/infusão mágica) · Bombardeiro (combate/toxinas) · Boticário (cura/abjuração)
-- **Perícias iniciais** → [[Atributos e Perícias|Ofício(Alquimia)]], [[Atributos e Perícias|Conhecimento]]; escolhe entre Ofício(Alquimia), Ofício(Engenharia), Ofício(Ferraria), [[Atributos e Perícias|Místico]], [[Atributos e Perícias|Medicina]]
-- **Cruza com a magia** → Cartucho Arcano aprisiona magias das escolas ([[Regras de Magia]], [[Destruição]], [[Abjuração]], [[Alteração]], [[Conhecimento]]) e usa intensidades/modulações
-- **Materiais lendários (nível 5)** → *Coração da Árvore* ([[A Vhelor]]) · *Grilhões do Abismo* ([[O Abismo]]) · *Sangue Primordial* ([[Primórdio]]) · *Areia Temporal* (a trama do tempo de [[Velúria]])
+- **Perícias iniciais** → [[Atributos e Perícias|Ofício]](Alquimia), [[Atributos e Perícias|Conhecimento]]; escolhe entre Ofício(Alquimia), Ofício(Engenharia), Ofício(Ferraria), [[Atributos e Perícias|Místico]], [[Atributos e Perícias|Medicina]]
+- **Cruza com a magia** → o Cartucho Arcano aprisiona magias das escolas ([[Regras de Magia]], [[Destruição]], [[Abjuração]], [[Alteração]], [[Conhecimento]]) e herda suas intensidades e modulações
+- **Regras tocadas** → [[O Bazar]] (fabricação, raridade, preços) · [[Descanso]] (Buscar Reagentes, criação em lote) · [[Tipos de Dano]] · [[Manobras e Tamanho]] (categorias de tamanho dos elixires e do Titã) · [[Dano, Ataque e Defesa]]
+- **Materiais lendários do nível 5** → *Coração da Árvore*, de [[A Vhelor]] · *Grilhões do Abismo*, de [[O Abismo]] · *Sangue Primordial*, do [[Primórdio]] · *Areia Temporal*, da trama do tempo de [[Velúria]]
 - **Constructos** → Constructo Menor · Constructo de Combate · Titã
 - **Condições que usa** → [[Condições|Cego]], [[Condições|Surdo]], [[Condições|Desorientado]], [[Condições|Atordoado]], [[Condições|Adormecido]], [[Condições|Enjoado]], [[Condições|Envenenamento]], [[Condições|Paralisado]], [[Condições|Confuso]], [[Condições|Caído]], [[Condições|Lento]], [[Condições|Em Chamas]], [[Condições|Enraizado]], [[Condições|Invisível]], [[Condições|Inconsciente]], [[Condições|Morrendo]], [[Condições|Exaustão]]
-- **Economia** → [[O Bazar]] (reagentes e itens comprados) · [[Sins]]
-- **Colisão de nome** → epígrafe de *Metamorfose* repete a de *Campo de Batalha* ([[Brutalista]])
-- **PJ que a usa** → nenhum dos 5 da [[Equipe desfloreio]]
+- **Economia** → [[Sins]] e [[Dinheiro e Comerciantes]]; reagentes e insumos comprados em [[O Bazar]]
+- **Epígrafe compartilhada** → *Metamorfose* repete "A guerra, marca qualquer um.", de *Campo de Batalha* ([[Brutalista]])
+- **PC que a usa** → nenhum dos cinco da [[Equipe desfloreio]]
 
-## Conflitos e pendências
-1. **Tónico Cruel** — "**Em caso de falha**, escolha um efeito… **Em caso de falha**, você não pode usar esta habilidade contra a mesma criatura neste combate." A segunda deveria ser **sucesso** (cf. Leitura de Combate do [[Brutalista]]). **Pendência aberta.** (Digest B §6)
-2. **Sucateador** — "recupere 2d4+Nível **(Ao invés de 1d4)**" × regra base "**1d4+Nível**". O parêntese está incompleto. **Pendência aberta.** (Digest B §10)
-3. **Treinamento redundante** — já treinado em *Ofício(Alquimia)*, que reaparece na lista de escolha de (1+Mod.INT) perícias. Remover da lista ou permitir subir de nível? **Pendência aberta.** (Digest B §11)
-4. **"Dano Elemental" e "Biológico" sem subtipo** (Forçar Invenção, Constructo — Detonar, Rajada Arcana, Zona da Morte) e **"dano Místico"** (Runas de Proteção) — B1 exige um dos 12 tipos nomeados. **Pendência aberta.** (Digest B §26)
-5. **Condições sem definição canônica** — *Incorpóreo* (Essência Etérea) e *Lentidão 2* (Bomba Temporal, definida inline como "1 Ação/turno, -6 m movimento, sem reação, -4 Reflexo" ≠ *Lento X* canônico "-3 m, -1 Ação"). B12 adia a revisão.
-6. **Grafias legadas no catálogo** — *Envenenado* → **Envenenamento** (Antídoto Universal, Veneno Padrão, Apocalipse Alquímico; o Antídoto Simples já usa o nome certo); *Exausto 1* → **Exaustão 1** (Adrenalina de Campo, Extrato de Velocidade). (lista C / D1)
-7. **Epígrafe duplicada** — *Metamorfose* e *Campo de Batalha* ([[Brutalista]]) compartilham "A guerra, marca qualquer um." (Digest B §17)
-8. **Marcas com "+1 permanente"** até +5 × escala canônica de perícia +2/+4/+6/+8; **Piromaníaco** usa contador "cada 10" e **Sobrecarga/Preciosismo/Mixologista** não têm contador. (Digest B §21)
-9. **"3 no Tier"** — falta o "1" na frase de Ramos; corrigir (B11).
-10. **Soro do Homúnculo** cria um servo **CR 2** — no balanceamento canônico CR 2 é "equilíbrio para 5 jogadores de nível 2", ou seja, um item de nível 5 entrega um aliado de força de encontro inteiro. Intencional? **Pendência aberta (nova).**
-11. **Catálogo × [[O Bazar]]** — 92 itens alquímicos coexistem com o CSV do Bazar mantido pelo Pedro. Há sobreposição de nomes/preços? **Pendência aberta (nova).**
+## Pontas soltas
+- **Tónico Cruel diz "falha" duas vezes.** A segunda ocorrência descreve o caso em que a habilidade fica travada contra a mesma criatura, o que só faz sentido se o alvo tiver **sucedido** no teste — como acontece em *Leitura de Combate*, do [[Brutalista]]. [[Perguntas Abertas]] E76.
+- **Sucateador contradiz a regra base.** A técnica manda recuperar "2d4+Nível (Ao invés de 1d4)", mas a Bolsa de Reagentes já concede **1d4+Nível**; o parêntese está incompleto. [[Perguntas Abertas]] E77.
+- **Ofício(Alquimia) aparece duas vezes.** É treinamento inicial garantido e reaparece na lista de escolha das (1+Mod.INT) perícias. Sai da lista, ou a escolha serve para subir de degrau? [[Perguntas Abertas]] E78.
+- **Dano sem subtipo.** *Forçar Invenção*, o Detonar dos constructos, a *Rajada Arcana* do Titã e a *Zona da Morte* falam em dano "Elemental" ou "Biológico", e as *Runas de Proteção* em dano "Místico" — mas essas são categorias, e cada uma reúne três ou mais dos doze tipos nomeados ([[Tipos de Dano]]). [[Perguntas Abertas]] E79.
+- **O Soro do Homúnculo entrega um servo CR 2.** No balanceamento canônico, CR 2 é o encontro equilibrado para cinco jogadores de nível 2 — ou seja, um item lendário dá um aliado com força de encontro inteiro. Intencional? [[Perguntas Abertas]] E80.
+- **O catálogo convive com [[O Bazar]].** As 92 fórmulas podem repetir nomes e preços de itens já catalogados no Bazar. [[Perguntas Abertas]] E81.
+- **Estados sem entrada em [[Condições]].** *Incorpóreo* (Essência Etérea) e *Lentidão 2* (Bomba Temporal) nasceram para uso único; "Lentidão 2" quer dizer *Lento 2*, mas a definição embutida na Bomba Temporal — 1 ação por turno, −6 m de movimento, sem reação, −4 Reflexos — não bate com o *Lento X* canônico, de −3 m e −1 ação.
+- **Marcas que dão "+1 permanente"** até +5 convivem com a escala de treinamento de quatro degraus, +2/+4/+6/+8 ([[Atributos e Perícias]]); *Piromaníaco* ainda conta de dez em dez, e *Sobrecarga*, *Preciosismo* e *Mixologista* não têm contador nenhum. [[Perguntas Abertas]] E63.
 
-## Fonte
-- Notion: Alquimista `eac6e3a401d982d595b181020562ec8e` (ed. 2026-08-05, 🟢 Pronto) · Classes `3a66e3a401d9809b8eceec1f30be9fd2`
-- Raw: `docs/memoria/notion_raw/classe_alquimista.md`, `classe_index.md`
-- Digest: `docs/memoria/digests/B_classes.md` §6, INCONSISTÊNCIAS 1, 6, 10, 11, 17, 21, 26 · Respostas: A18, B1, B11, B12, B16
+## Procedência
+- Notion `eac6e3a401d982d595b181020562ec8e` — Alquimista (ed. 2026-08-05, 🟢 Pronto); índice de Classes `3a66e3a401d9809b8eceec1f30be9fd2`.
+- Respostas do mestre 2026-09-05: **B11** (ramos 3/2/1 nos níveis 2/4/5) · **B1** (as quatro categorias e os doze tipos de dano; "dano de força é gravidade geralmente e oriundo dos deuses, dano primordial é energia vazada do Primórdio") · **B12** (*Incorpóreo* criada para uso unitário; "Lentidão 2 se refere a lento 2") · **B16** (as perícias sociais foram individualizadas; Ofício(X) segue canônica, com atributo variável) · **A18** (a coluna de notas do Bazar não é canônica e nada dela entra neste catálogo).
+- `docs/memoria/notion_raw/classe_alquimista.md`, `classe_index.md`; digest `B_classes.md` §6, inconsistências 1, 6, 10, 11, 17, 21, 26.
+- Correções pendentes na fonte: "3 no Tier" sem o "1"; grafias legadas no catálogo — *Envenenado* → Envenenamento (Antídoto Universal, Veneno Padrão, Apocalipse Alquímico; o Antídoto Simples já usa o nome certo) e *Exausto 1* → Exaustão 1 (Adrenalina de Campo, Extrato de Velocidade), preservadas aqui como estão na fonte.
+- Revisão de redação: 2026-09-07.

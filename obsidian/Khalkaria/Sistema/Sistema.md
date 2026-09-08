@@ -5,13 +5,13 @@ spoiler: publico
 era: atemporal
 aliases: [Sistema Khalkaria, Regras, RPG Khalkaria]
 fonte_notion: 2b76e3a401d980c0ab7bc27a342f4ee1
-ultima_sync: 2026-09-05
+ultima_sync: 2026-09-07
 tags: [khalkaria/sistema, khalkaria/moc]
 ---
 
 # Sistema
 
-**Resumo.** MOC do **Sistema Khalkaria** — o RPG de dark fantasy jogado no continente de [[Kharavel]]. Cinco atributos (FOR, DES, CON, INT, SAB; **sem Carisma**), 22 perícias com proficiência em quatro degraus (+2 / +4 / +6 / +8), três recursos universais (Saúde, Stamina, [[Éter]]) mais um recurso de classe, **7 classes**, **8 raças** (uma secreta), **17 origens**, **80 magias** em 4 níveis e **168 cartas** do [[O Limiar]]. A campanha roda do **nível 1 ao 5**. Este é o único ramo do vault que é **público** — toda a lore é privada do GM.
+**Resumo.** Índice do **Sistema Khalkaria** — o RPG de dark fantasy jogado no continente de [[Kharavel]]. Cinco atributos (FOR, DES, CON, INT, SAB; **sem Carisma**), 22 perícias com proficiência em quatro degraus (+2 / +4 / +6 / +8), três recursos universais (Saúde, Stamina, [[Éter]]) mais um recurso de classe, **7 classes**, **8 raças** (uma secreta), **17 origens**, **80 magias** em 4 níveis e **168 cartas** do [[O Limiar]]. A campanha roda do **nível 1 ao 5**. Este é o único ramo do vault que é **público** — toda a lore é privada do mestre.
 
 ## Como o sistema se monta
 
@@ -24,9 +24,9 @@ tags: [khalkaria/sistema, khalkaria/moc]
 7. **Conjurar** → [[Regras de Magia]] e as escolas
 8. **Receber bênçãos** → [[O Limiar (cartas)]]
 
-## Regras (17 notas)
+## As regras
 
-| Nota | O que cobre |
+| Regra | O que cobre |
 |---|---|
 | [[Atributos e Perícias]] | 5 atributos, 3 status, d20, proficiência +0/+2/+4/+6/+8, as 22 perícias, o dado especial de Defender |
 | [[Progressão]] | 5 eixos, tabela de níveis 1–5, XP e Dc |
@@ -49,7 +49,7 @@ tags: [khalkaria/sistema, khalkaria/moc]
 ## Condições e Limiar
 
 - [[Condições]] — as **29 condições** do sistema, do *Exposto* ao *Oco*.
-- [[O Limiar (cartas)]] — regras de sorteio, Pontos do Limiar e as **168 cartas** (127 no catálogo + 41 em O Abismo, que **será refeito**).
+- [[O Limiar (cartas)]] — as regras da oferta, os Pontos do Limiar e as **168 cartas** (127 no catálogo + 41 em [[O Abismo]], que será refeito).
 
 ## Magia
 
@@ -60,47 +60,48 @@ tags: [khalkaria/sistema, khalkaria/moc]
 - [[Conhecimento]] — 20 magias de informação, comunicação e verdade.
 - [[Primordial]] — o Foco que destrava o **nível 4** das quatro escolas; e o tipo de dano vazado do [[Primórdio]].
 
-**Nível 0 ainda não existe:** o Pedro vai criar ≈20 truques sem custo de Éter para o [[Teurgo]] de nível 1 (B8).
+Um **nível 0** está previsto e ainda não foi escrito: cerca de vinte truques sem custo de [[Éter]], para dar o que fazer ao [[Teurgo]] de nível 1.
 
 ## Classes (7)
 
 [[Espadachim]] · [[Batedor]] · [[Brutalista]] · [[Teurgo]] · [[Monge]] · [[Alquimista]] · [[Artilheiro]]
 
-Cada classe define Saúde/Stamina/Éter, Evasão, recurso próprio (FLUXO no Monge, Concentração no Artilheiro), ramos e marcas. Ramos: **3 técnicas no Tier 1 (nível 2), 2 no Tier 2 (nível 4), 1 Ultimate no Tier 3 (nível 5)** (B11).
+Cada classe define Saúde/Stamina/Éter, Evasão, recurso próprio (FLUXO no [[Monge]], Concentração no [[Artilheiro]]), ramos e marcas. Cada ramo entrega **3 técnicas no Tier 1 (nível 2), 2 no Tier 2 (nível 4) e 1 Ultimate no Tier 3 (nível 5)**.
 
 ## Raças (8)
 
-[[Humano]] · [[Anão]] · [[Dryad]] · [[Autômato]] · [[Gruto]] · [[Inseto]] · [[Corrompido]] — e [[Lobisomem]], **raça secreta de um jogador só, fora do site** (A13).
+[[Humano]] · [[Anão]] · [[Dryad]] · [[Autômato]] · [[Gruto]] · [[Inseto]] · [[Corrompido]] — e [[Lobisomem]], **raça secreta de um jogador só**, que não aparece no material de consulta dos jogadores.
+
+Índice: [[Raças]]
 
 ## Origens (17)
 
 [[Origens]] — histórico do personagem: Sins iniciais, treinamentos, itens e uma habilidade.
 
-
-### As 17 origens
 [[Acadêmico]] · [[Ferreiro]] · [[Artesão]] · [[Exilado]] · [[Acólito]] · [[Andarilho]] · [[Criminoso]] · [[Cultista]] · [[Soldado]] · [[Refugiado]] · [[Mercador]] · [[Marinheiro]] · [[Nobre]] · [[Vidente]] · [[Amaldiçoado]] · [[Escravo]] · [[Caçador]]
-
-Índice de raças: [[Raças]]
 
 ## Relações
 - **Jogado em** → [[Kharavel]], planeta [[Khalkaria]]
 - **Cosmologia por trás da magia** → [[Éter]], [[O Limiar]], [[Plano Místico]], [[Primórdio]], [[Velúria]]
-- **Publicado em** → site do RPG (`vitralxx.github.io/Khalkaria_Html/`) — o site é **complemento** do Notion; em qualquer divergência o Notion vence (B6)
-- **Exportado para** → app **Bestiário Khalkaria** (Flask + SQLite), contrato `type: "npc"` com colunas `prof_*`
-- **Personagens jogáveis** → [[Equipe desfloreio]] (fichas desatualizadas, B17)
+- **Personagens de jogador construídos com estas regras** → [[Equipe desfloreio]]
 
-## Conflitos e pendências
-- **Fórmula do modificador** `(Atributo − 10) / 2` e **Evasão** `10 + Mod. DES` são usadas em todo o site e no Bestiário mas **não estão escritas em nenhuma página do Notion**.
-- **Primordial: escola ou camada?** Ver [[Primordial]].
-- **"Gelo" × "Frio"** na raiz e no Template de Ficha — corrigir para **Frio** (B1).
-- **"apenas 5 idiomas existem"** com 6 listados; **"Esquecido" → "Criptografado"** ainda não aplicado no Notion (B3).
-- **Bloco-resumo do Limiar** desatualizado ("130 / 10 / 60" × 127 real) e "8-11 cartas" × **5–11** (B5).
-- **O Abismo será refeito** por inteiro (B5).
-- **Nível 0 de magia a criar** (B8).
-- **Revisão geral das condições** pendente (B12).
-- **Página "Criação de Personagem" do Notion está vazia** (🟡) e o **Template de Ficha** ainda usa perícias com nomes antigos (B16).
+## Pontas soltas
+- **Modificador e Evasão sem página.** `(Atributo − 10) / 2` e `10 + Mod. DES` são usados em toda a mesa, no material dos jogadores e na exportação de fichas, mas não estão escritos em nenhuma página da fonte. [[Perguntas Abertas]] E40.
+- **Primordial: escola ou camada?** Ver [[Primordial]]. [[Perguntas Abertas]] E41.
+- **"Gelo" × "Frio".** O tipo canônico é **Frio**; "Gelo" ainda aparece na raiz e no template de ficha. Ver [[Tipos de Dano]].
+- **Seis idiomas listados sob a frase "apenas 5 idiomas existem"**, e o antigo "Esquecido" ainda não virou **Criptografado** na fonte. Ver [[Idiomas]].
+- **Contagem do Limiar.** Um resumo antigo anuncia 130 cartas onde as tabelas trazem 127, e uma faixa de "8-11 cartas" onde a correta é 5–11. Ver [[O Limiar (cartas)]]. [[Perguntas Abertas]] E44, E45.
+- **[[O Abismo]] será refeito por inteiro** — suas 41 cartas são provisórias.
+- **Nível 0 de magia a criar** (≈20 truques sem custo de Éter).
+- **Revisão geral das [[Condições]]** pendente.
+- **[[Criação de Personagem]]** está vazia na fonte e o template de ficha ainda usa nomes antigos de perícia.
+- **Fichas dos cinco personagens de jogador** da [[Equipe desfloreio]] estão desatualizadas em relação às regras atuais. [[Perguntas Abertas]] E32.
 
 Lista completa em [[Perguntas Abertas]].
 
-## Fonte
-Notion `2b76e3a401d980c0ab7bc27a342f4ee1` (Sistema Khalkaria — página raiz, 🟡 Em desenvolvimento, fetch 2026-08-27) e suas 7 subpáginas: Criação de Personagem, Classes, Raças, Origens, Condições, Magias, O Limiar. Raw: `docs/memoria/notion_raw/`. Digests: `A_sistema.md`, `B_classes.md`, `C_racas_origens.md`, `D_limiar.md`.
+## Procedência
+- Notion `2b76e3a401d980c0ab7bc27a342f4ee1` (Sistema Khalkaria — página raiz, 🟡 Em desenvolvimento, fetch 2026-08-27) e suas 7 subpáginas: Criação de Personagem, Classes, Raças, Origens, Condições, Magias, O Limiar.
+- Respostas do mestre 2026-09-05: **A13** (Lobisomem secreto, fora do material público), **B6** (o site é complemento; a fonte vence), **B8** (nível 0 a criar), **B11** (3 técnicas no Tier 1), **B17** (fichas dos PCs desatualizadas).
+- Raw: `docs/memoria/notion_raw/`. Digests: `A_sistema.md`, `B_classes.md`, `C_racas_origens.md`, `D_limiar.md`.
+- Publicado como site de consulta dos jogadores (`vitralxx.github.io/Khalkaria_Html/`) e exportado para o app **Bestiário Khalkaria** (contrato `type: "npc"`, colunas `prof_*`).
+- Revisão de redação: 2026-09-07.

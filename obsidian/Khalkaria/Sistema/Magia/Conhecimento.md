@@ -4,7 +4,7 @@ status: canon-notion
 spoiler: publico
 era: atemporal
 aliases: [Escola de Conhecimento, Foco de Conhecimento, Magias de Conhecimento]
-fonte_notion: [3a66e3a401d98097a5d4e316154f9fcb, 2b76e3a401d980c0ab7bc27a342f4ee1]
+fonte_notion: [3a66e3a401d98097a5d4e316154f9fcb, 2b76e3a401d980c0ab7bc27a342f4ee1, pedro-2026-09-05]
 ultima_sync: 2026-09-05
 tags: [khalkaria/sistema, khalkaria/sistema/magia]
 ---
@@ -13,9 +13,11 @@ tags: [khalkaria/sistema, khalkaria/sistema/magia]
 
 **Resumo.** A escola da **informação**: detectar, comunicar, ler, lembrar, interrogar mortos e arrancar verdade. É a única cuja intensidade escala em qualidade de informação (Vaga → Base → Detalhada → Completa). Exige **Foco de Conhecimento** ([[Armas e Munição]]) e, no nível 4, **Foco Primordial** ([[Primordial]]). Seu nível 4 é o mais explicitamente divino do sistema: *Dádiva de [[Kha]]*, *Olhos de [[Malkhor]]*, *Tecido de [[Vytália]]*.
 
-## Cânone (Notion)
+## Como ler estas tabelas
 
-### Modulações da escola
+As barras indicam, em ordem: **Contida / Normal / Forçada / Transbordante**. Na coluna *Mod*, ✅ = modificável por intensidade e ❎ = valor fixo. Onde a tabela e a descrição de uma magia se contradizem, **vale a tabela**. As regras gerais — custo por nível, intensidade, magia sustentada, uma magia por turno — estão em [[Regras de Magia]].
+
+## Modulações da escola
 
 | Modulação | Custo | Efeito |
 |---|---|---|
@@ -24,11 +26,9 @@ tags: [khalkaria/sistema, khalkaria/sistema/magia]
 | Projetar | +2 Éter | A informação é projetada como ilusão visual/auditiva que outros podem ver/ouvir |
 | Gravar | +3 Éter | Grava a informação na sua mente ou em um objeto qualquer. |
 
-> Legenda das tabelas de magia: ✅ = Modificável por intensidade | ❎ = Valor fixo. As barras indicam, em ordem: **Contida / Normal / Forçada / Transbordante**.
+## Nível 1 — 5 magias
 
-### Nível 1 — 5 magias
-
-#### Detectar Magia
+### Detectar Magia
 
 | Característica | Valor | Mod |
 |---|---|---|
@@ -39,7 +39,7 @@ tags: [khalkaria/sistema, khalkaria/sistema/magia]
 
 > Você encanta a si mesmo para sentir a presença de energia mística através de seus olhos.
 
-#### Alarme
+### Alarme
 
 | Característica | Valor | Mod |
 |---|---|---|
@@ -50,7 +50,7 @@ tags: [khalkaria/sistema, khalkaria/sistema/magia]
 
 > Você planta um alarme sobre uma superfície que abrange uma área de 1,5 m de raio. Qualquer criatura que passar sobre o alarme o ativa alertando o conjurador da magia. Criaturas que identificarem o alarme podem desarmá-lo ao passar em um teste de Místico contra seu CD.
 
-#### Mensagem
+### Mensagem
 
 | Característica | Valor | Mod |
 |---|---|---|
@@ -60,7 +60,7 @@ tags: [khalkaria/sistema, khalkaria/sistema/magia]
 
 > Você sussurra uma mensagem que só o alvo ouve. Barreiras sólidas grossas bloqueiam a magia.
 
-#### Língua Mística
+### Língua Mística
 
 | Característica | Valor | Mod |
 |---|---|---|
@@ -70,7 +70,7 @@ tags: [khalkaria/sistema, khalkaria/sistema/magia]
 
 > Você profere a habilidade a você e mais uma criatura a falar uma língua mística onde vocês duas conseguem se entender independente da língua original que falarem. Ao utilizar em textos, você o traduz para a língua comum entendendo o idioma. Esta magia só pode ser conjurada na intensidade **Normal**.
 
-#### Entender Ser
+### Entender Ser
 
 | Característica | Valor | Mod |
 |---|---|---|
@@ -82,9 +82,9 @@ tags: [khalkaria/sistema, khalkaria/sistema/magia]
 
 > Você é informado misticamente sobre as propriedades de uma criatura em especifico caso ela, antes, falhe em um teste de vontade contra a sua CD. Essa magia só pode ser canalizada na **Intensidade:***Normal*
 
-### Nível 2 — 5 magias
+## Nível 2 — 5 magias
 
-#### Sussurro do Ambiente
+### Sussurro do Ambiente
 
 | Característica | Valor | Mod |
 |---|---|---|
@@ -96,7 +96,7 @@ tags: [khalkaria/sistema, khalkaria/sistema/magia]
 
 > Você encanta a si mesmo para sentir a presença de energia mística em uma área de até 30 m através de seus olhos.
 
-#### Pânico
+### Pânico
 
 | Característica | Valor | Mod |
 |---|---|---|
@@ -108,7 +108,7 @@ tags: [khalkaria/sistema, khalkaria/sistema/magia]
 
 > Você planta um clarão de terror puro diretamente na mente do alvo — não uma ilusão, mas uma sobrecarga de sinais de ameaça que o sistema nervoso não consegue ignorar. O alvo fica Amedrontado de você: tem desvantagem em testes realizados enquanto puder te ver e tenta se afastar. A condição não é uma ilusão e portanto não é removida por Purificação Mística — apenas pelo tempo ou por Dissipar Magia. Criaturas sem capacidade emocional (construtos, mortos-vivos sem Éter) são imunes.
 
-#### História do Éter
+### História do Éter
 
 | Característica | Valor | Mod |
 |---|---|---|
@@ -119,7 +119,7 @@ tags: [khalkaria/sistema, khalkaria/sistema/magia]
 
 > Você sintoniza sua percepção mística com um objeto ou criatura pelo toque, lendo o padrão de Éter impregnado nele. Em objetos mágicos, revela nome, escola de magia, efeitos, condições de ativação e quaisquer maldições presentes. Em criaturas, revela escola de magia que as criou ou afeta atualmente, condições ativas e tipo de criatura. Na intensidade Contida, revela apenas se o alvo é mágico ou não. Em Normal revela tudo acima. Em Forçada e Transbordante, revela também a história de uso recente do objeto (últimas 24h / 7 dias). Esta magia só pode ser conjurada fora de combate.
 
-#### Empréstimo Natural
+### Empréstimo Natural
 
 | Característica | Valor | Mod |
 |---|---|---|
@@ -130,7 +130,7 @@ tags: [khalkaria/sistema, khalkaria/sistema/magia]
 
 > Você amplia drasticamente um único sentido, sobrecarregando-o com energia mística. Escolha qual sentido aprimorar ao conjurar, o bônus se aplica apenas ao sentido escolhido. O efeito colateral é proporcional: com visão ampliada, luz intensa causa Cego por 1 rodada; com audição ampliada, sons muito altos (como Invocar Tempestade) causam Atordoado por 1 rodada; com olfato ampliado, odores muito fortes causam Enjoado por 1 rodada.
 
-#### Impulso Instintivo
+### Impulso Instintivo
 
 | Característica | Valor | Mod |
 |---|---|---|
@@ -142,9 +142,9 @@ tags: [khalkaria/sistema, khalkaria/sistema/magia]
 
 > Você injeta um pensamento ou impulso simples diretamente na mente do alvo — uma frase curta, uma emoção ou uma instrução básica ("corra", "solte a arma", "confie nele"). O alvo não sabe que foi influenciado: percebe o pensamento como próprio. Comandos que coloquem o alvo em perigo direto ou que contradigam seus instintos mais básicos permitem um novo teste de Vontade imediatamente. O alvo pode agir contra o comando se tiver motivação forte o suficiente. Essa magia pode ser canalizada apenas na **Intensidade:***Normal*
 
-### Nível 3 — 5 magias
+## Nível 3 — 5 magias
 
-#### Purgatório
+### Purgatório
 
 | Característica | Valor | Mod |
 |---|---|---|
@@ -156,7 +156,7 @@ tags: [khalkaria/sistema, khalkaria/sistema/magia]
 
 > Você sintoniza seu Éter com os resquícios de consciência ainda presos no cadáver, forçando-os a responder perguntas. O morto só sabe o que sabia em vida, não tem acesso a eventos posteriores à sua morte. As respostas são honestas mas podem ser incompletas: o morto não é obrigado a elaborar além do que foi perguntado. Criaturas que morreram com Éter 0 (Ocas) não possuem resquícios suficientes, a magia falha. Na intensidade Contida, o morto só responde sim ou não.
 
-#### Projeção Astral
+### Projeção Astral
 
 | Característica | Valor | Mod |
 |---|---|---|
@@ -168,7 +168,7 @@ tags: [khalkaria/sistema, khalkaria/sistema/magia]
 
 > Você separa sua consciência do corpo físico, enviando-a para explorar o ambiente. A projeção é invisível e intangível, não pode interagir com objetos físicos nem ser atacada por meios comuns, mas pode ser detectada por Detectar Magia e outras tipos de detecção mistíca. Enquanto projetado, seu corpo fica completamente vulnerável no local onde foi deixado: Evasão 0, não pode agir. Ao retornar ou ter a concentração quebrada (seu corpo sofrer dano), você volta imediatamente. Na intensidade Contida, a projeção não atravessa paredes e é visivel como um espectro translúcido.
 
-#### Sinapsia Coletiva
+### Sinapsia Coletiva
 
 | Característica | Valor | Mod |
 |---|---|---|
@@ -180,7 +180,7 @@ tags: [khalkaria/sistema, khalkaria/sistema/magia]
 
 > Você entrelaça as consciências dos participantes em uma rede perceptiva compartilhada. Cada criatura na rede enxerga, ouve e sente o que qualquer outra está sentindo, em combate, isso significa que flanquear ou surpreender o grupo se torna extremamente difícil. Ataques de oportunidade podem ser realizados com base na percepção de um aliado, não apenas da própria. Magia Sustentada: a cada rodada ativa, pague os éter no seu turno. Fora de combate, pague o custo da magia a cada 30 minutos em uso; Conjurar outra magia sustentada, ser atordoado ou estar incapaz de ativamente se concentrar imediatamente dissipa a magia.
 
-#### Caco Esquecido
+### Caco Esquecido
 
 | Característica | Valor | Mod |
 |---|---|---|
@@ -193,7 +193,7 @@ tags: [khalkaria/sistema, khalkaria/sistema/magia]
 
 > Você não apenas planta um impulso como Voz na Mente, você constrói uma memória completa: imagens, sons, emoções e contexto. O alvo acredita integralmente que viveu aquela experiência. A memória plantada deve ser plausível dentro da vida do alvo, o Mestre pode recusar memórias impossíveis. O alvo pode fazer um novo teste de Vontade se a memória entrar em conflito direto com algo que ele observe com seus próprios olhos. Detectar Magia ou Dissipar Magia revelam e removem a memória. Na intensidade Contida, a memória é vaga e emocional; na Transbordante, é tão detalhada que resiste a evidências contrárias por tempo dobrado.
 
-#### Confissão do Éter
+### Confissão do Éter
 
 | Característica | Valor | Mod |
 |---|---|---|
@@ -204,9 +204,9 @@ tags: [khalkaria/sistema, khalkaria/sistema/magia]
 
 > Você faz uma pergunta factual sobre o plano material atual, localização de um objeto, nome de quem planejou um crime, estrutura de um local que você nunca visitou. O Éter responde com a verdade absoluta, sem interpretação. A resposta é sempre factual e curta. A cada uso, há 1-em-6 de chance (role 1d6) da resposta ser falsa. A cada uso consecutivo dessa magia no mesmo dia, a margem de falha no 1d6 aumenta em 1.
 
-### Nível 4 — 5 magias — requer **Foco Primordial** (ver [[Primordial]])
+## Nível 4 — 5 magias — requer **Foco Primordial** (ver [[Primordial]])
 
-#### Dádiva de Kha
+### Dádiva de Kha
 
 | Característica | Valor | Mod |
 |---|---|---|
@@ -218,7 +218,7 @@ tags: [khalkaria/sistema, khalkaria/sistema/magia]
 
 > Você derrama todo o seu potencial arcano em uma súplica profana ao deus primordial Kha. Aquele que teceu o universo com as próprias mãos e cujos olhos enxergam além do véu do tempo. Por um instante terrível e sagrado, sua alma toca a mente de Kha e você *sente o que não deveria ser sentido*: uma verdade arrancada do tecido da realidade, um conhecimento que não pertence a você, que jamais pertenceria a nenhum ser mortal. Isso não é visão. Não é profecia. É uma violação. Essa magia só pode ser canalizada na **Intensidade:***Transbordante; *Caso você falhe no teste de vontade da canalização você perde grande parte de sua memória, recuperando-as ao longo de uma semana.
 
-#### Necropsia Primordial
+### Necropsia Primordial
 
 | Característica | Valor | Mod |
 |---|---|---|
@@ -231,7 +231,7 @@ tags: [khalkaria/sistema, khalkaria/sistema/magia]
 
 > Você extrai do cadáver: toda a sua história de vida relevante, seus segredos, suas motivações, quem o matou e como, o estado emocional nos últimos momentos, e qualquer informação que ele carregava na mente ao morrer. Funciona mesmo em criaturas mortas há anos, desde que o cadáver esteja razoavelmente intacto. Os mortos não falam. Mas o Éter que eles deixam para trás — esse grita. Cada vida é uma impressão no tecido do mundo, e um conjurador primordial sabe lê-la como se fosse texto.
 
-#### Olhos de Malkhor
+### Olhos de Malkhor
 
 | Característica | Valor | Mod |
 |---|---|---|
@@ -245,7 +245,7 @@ tags: [khalkaria/sistema, khalkaria/sistema/magia]
 
 > Você empresta um mísero fragmento do poder de Malkhor, o deus do Pecado. Toda entidade possui uma fraqueza e seus olhos a revelam. Por 3 rodadas, você enxerga os pontos de fraqueza absoluta de tudo: a rachadura estrutural que derruba uma parede com um toque, o ponto exato no corpo de uma criatura onde um golpe causa dano máximo. Seus ataques e magias causam o dano máximo possível dos dados durante esse período. Certas estruturas físicas podem ser destruídas com ações únicas.
 
-#### Tecido de Vytália
+### Tecido de Vytália
 
 | Característica | Valor | Mod |
 |---|---|---|
@@ -258,7 +258,7 @@ tags: [khalkaria/sistema, khalkaria/sistema/magia]
 
 > Você submete um nome ou descrição de uma criatura. Vytália responde com: se a criatura ainda vive, onde está seu fio de vida no tecido do mundo, e se morta, quando e como faleceu. Funciona em qualquer criatura que já existiu, sem limite temporal. Vytália guarda cada vida que passou por suas mãos como uma deusa cuida de seu rebanho. Acessar esse arquivo não é uma busca, é uma intrusão. Você não foi convidado. E ela sempre sabe quando alguém entra sem permissão.
 
-#### Possessão Carnal
+### Possessão Carnal
 
 | Característica | Valor | Mod |
 |---|---|---|
@@ -271,13 +271,6 @@ tags: [khalkaria/sistema, khalkaria/sistema/magia]
 
 > Você não invade. Você substitui. Num ato de violência mística sem precedente, sua consciência abandona seu próprio corpo e se instala na carne de outro ser, empurrando a alma original para um plano atemporal suspenso, onde ela não age, não sente, não envelhece. Apenas espera.
 
-## Segundo o Pedro (2026-09-05)
-- **B13** — *"Tabela do notion manda sempre."* Onde a tabela de stats e a descrição divergirem, vale a **tabela**.
-- **B4** — só se canaliza **1 magia por turno**; *Disparo Veloz* ([[Destruição]] N3) é a exceção. "Magia Sustentada" = pagar Éter por turno; as definições atuais são antigas.
-- **B8** — as **magias de nível 0** (≈20 truques sem custo de Éter) ainda **serão criadas**; hoje o [[Teurgo]] de nível 1 não tem truques.
-- **B14** — as descrições longas em estilo diferente ficam como estão: *"acho que pode deixar, eu revisei as descrições."*
-- **B1** — os tipos de dano citados seguem a lista definitiva de [[Tipos de Dano]] (12 tipos; "Gelo" = **Frio**).
-
 ## Relações
 - **Faz parte de** → [[Regras de Magia]], [[Sistema]]
 - **Foco** → Foco de Conhecimento; nível 4 exige Foco Primordial ([[Armas e Munição]], [[Primordial]])
@@ -287,14 +280,18 @@ tags: [khalkaria/sistema, khalkaria/sistema/magia]
 - **Aplica** → [[Condições]] (*Amedrontado*, *Cego*, *Atordoado*, *Enjoado*)
 - **Custa** → [[Éter]]
 
-## Conflitos e pendências
-- **Sussurro do Ambiente (N2):** a **descrição é cópia de Detectar Magia** ("sentir a presença de energia mística em uma área de até 30 m através de seus olhos") e não corresponde nem ao Efeito (mapa mental) nem à Área da tabela (4,5 / 9 / 13,5 / 18 m). Tabela manda (B13).
-- **Pânico (N2):** afirma que *Amedrontado* "tem desvantagem em testes realizados enquanto puder te ver" — a condição em [[Condições]] **não** tem desvantagem.
-- **Sinapsia Coletiva (N3):** é a única magia que define Magia Sustentada por escrito ("pague o mesmo éter do custo da conjuração da magia todo turno; fora de combate, a cada 30 minutos") — deveria ser regra geral ([[Regras de Magia]], B4).
-- **Purgatório (N3):** "Ocos falham" — interação com a condição *Oco* que não está descrita em [[Condições]].
-- **Possessão Carnal (N4):** deixa o corpo "**sem vida**. Não morto, sem vida" — estado inexistente em [[Condições]] (B12: efeito unitário).
-- **Confissão do Éter (N3):** "1-em-6 de chance (role 1d6) da resposta ser falsa, +1 por uso consecutivo no dia" — a magia é Transbordante-only mas mantém a linha de intensidade.
-- **Estilo:** as descrições de N2–N3 desta escola e de [[Alteração]] são muito mais longas e em voz diferente do resto (suspeita de geração por IA). O Pedro decidiu **manter** (B14).
+## Pontas soltas
+- **Sussurro do Ambiente (N2):** a descrição é **cópia da de Detectar Magia** ("sentir a presença de energia mística em uma área de até 30 m através de seus olhos") e não corresponde nem ao Efeito da tabela (mapa mental) nem à Área (4,5 / 9 / 13,5 / 18 m). Vale a tabela; a descrição precisa ser reescrita.
+- **Pânico (N2):** afirma que *Amedrontado* "tem desvantagem em testes realizados enquanto puder te ver" — a condição, em [[Condições]], **não** traz desvantagem.
+- **Caco Esquecido (N3):** compara-se a **"Voz na Mente"**, que não existe em nenhuma parte do sistema. O efeito descrito é exatamente o de *Impulso Instintivo* (N2 desta escola) — provável nome antigo, a confirmar.
+- **Sinapsia Coletiva (N3):** é a única magia que define Magia Sustentada por escrito ("pague o mesmo éter do custo da conjuração da magia todo turno; fora de combate, a cada 30 minutos") — deveria ser regra geral em [[Regras de Magia]].
+- **Purgatório (N3):** falha em quem morreu Oco, mas a interação com a condição *Oco* não está descrita em [[Condições]].
+- **Confissão do Éter (N3):** é Transbordante-only e mesmo assim mantém a linha de intensidade; a margem de erro cresce 1 por uso consecutivo no mesmo dia, sem teto.
+- **Possessão Carnal (N4):** deixa o corpo "**sem vida**. Não morto, sem vida" — um estado que não existe em [[Condições]].
+- **Estilo das descrições:** as de nível 2 e 3 desta escola e de [[Alteração]] são bem mais longas e em voz diferente do resto do sistema. Foram revisadas e mantidas.
 
-## Fonte
-Notion `3a66e3a401d98097a5d4e316154f9fcb` (Magias, 🟢 Pronto, fetch 2026-07-23) — seção 🔮 Conhecimento dos níveis 1 a 4; modulações também em `2b76e3a401d980c0ab7bc27a342f4ee1` (Sistema Khalkaria → Magias). Raw: `docs/memoria/notion_raw/magias.md`. Digest: `A_sistema.md` §1.20–1.21, §3.
+## Procedência
+- Notion `3a66e3a401d98097a5d4e316154f9fcb` (Magias, 🟢 Pronto, fetch 2026-07-23) — seção 🔮 Conhecimento dos níveis 1 a 4; modulações também em `2b76e3a401d980c0ab7bc27a342f4ee1` (Sistema Khalkaria → Magias).
+- Respostas do mestre 2026-09-05: **B13** (a tabela vence a descrição), **B4** (1 magia por turno, *Disparo Veloz* como exceção, magia sustentada = Éter por turno), **B8** (nível 0 a criar), **B14** (as descrições longas foram revisadas e ficam como estão), **B12** (condições são efeito unitário), **B1** (os doze tipos de dano).
+- `docs/memoria/notion_raw/magias.md`; digest `A_sistema.md` §1.20–1.21, §3.
+- Revisão de redação: 2026-09-07.

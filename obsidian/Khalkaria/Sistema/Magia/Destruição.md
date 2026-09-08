@@ -4,7 +4,7 @@ status: canon-notion
 spoiler: publico
 era: atemporal
 aliases: [Escola de Destruição, Foco de Destruição, Magias de Destruição]
-fonte_notion: [3a66e3a401d98097a5d4e316154f9fcb, 2b76e3a401d980c0ab7bc27a342f4ee1]
+fonte_notion: [3a66e3a401d98097a5d4e316154f9fcb, 2b76e3a401d980c0ab7bc27a342f4ee1, pedro-2026-09-05]
 ultima_sync: 2026-09-05
 tags: [khalkaria/sistema, khalkaria/sistema/magia]
 ---
@@ -13,9 +13,11 @@ tags: [khalkaria/sistema, khalkaria/sistema/magia]
 
 **Resumo.** A escola do dano direto. Suas 20 magias cobrem os quatro níveis e quase todos os [[Tipos de Dano|tipos de dano]] atípicos — Radiante, Trovejante, Necrótico, Fogo, Frio, Elétrico, Psíquico, Força e, no nível 4, **Primordial**. Exige **Foco de Destruição** ([[Armas e Munição]]) e, no nível 4, **Foco Primordial** ([[Primordial]]). Suas modulações compram alvos extras, troca de tipo de dano, penetração de Evasão e a condição *Exposto*.
 
-## Cânone (Notion)
+## Como ler estas tabelas
 
-### Modulações da escola
+As barras indicam, em ordem: **Contida / Normal / Forçada / Transbordante**. Na coluna *Mod*, ✅ = modificável por intensidade e ❎ = valor fixo. Onde a tabela e a descrição de uma magia se contradizem, **vale a tabela**. Os tipos de dano citados são os doze de [[Tipos de Dano]]. As regras gerais — custo por nível, intensidade, magia sustentada, uma magia por turno — estão em [[Regras de Magia]].
+
+## Modulações da escola
 
 | Modulação | Custo | Efeito |
 |---|---|---|
@@ -24,11 +26,9 @@ tags: [khalkaria/sistema, khalkaria/sistema/magia]
 | Carregar | +3 Éter | Ignora 2 de Evasão do alvo/Adicione +2 a CD |
 | Marcar | +5 Éter | O alvo fica *Exposto* ao acertar. |
 
-> Legenda das tabelas de magia: ✅ = Modificável por intensidade | ❎ = Valor fixo. As barras indicam, em ordem: **Contida / Normal / Forçada / Transbordante**.
+## Nível 1 — 5 magias
 
-### Nível 1 — 5 magias
-
-#### Dardo Arcano
+### Dardo Arcano
 
 | Característica | Valor | Mod |
 |---|---|---|
@@ -38,7 +38,7 @@ tags: [khalkaria/sistema, khalkaria/sistema/magia]
 
 > Você lança um dardo mágico que acerta automaticamente e não pode ser bloqueado por cobertura. Escolha entre um entre os 3 tipos de dano Místicos.
 
-#### Onda Gravitacional
+### Onda Gravitacional
 
 | Característica | Valor | Mod |
 |---|---|---|
@@ -50,7 +50,7 @@ tags: [khalkaria/sistema, khalkaria/sistema/magia]
 
 > Você conjura uma explosão gravitacional em um retângulo de 6 m a partir de você. Criaturas afetadas pela magia devem fazer um teste de *Fortitude* ou são empurradas m para longe de vocês.
 
-#### Incinerar Área
+### Incinerar Área
 
 | Característica | Valor | Mod |
 |---|---|---|
@@ -62,7 +62,7 @@ tags: [khalkaria/sistema, khalkaria/sistema/magia]
 
 > Você incinera uma área circular causando dano de Fogo a todos que estiverem na área. Criaturas devem realizar um teste de reflexos(Contra sua CD) para receber metade do dano ou ficam *em chamas* e recebem o dano completo.
 
-#### Toque Gélido
+### Toque Gélido
 
 | Característica | Valor | Mod |
 |---|---|---|
@@ -72,7 +72,7 @@ tags: [khalkaria/sistema, khalkaria/sistema/magia]
 
 > Você transfere de um simples toque um frio mórbido. Faça um teste de Místico contra a Evasão do alvo, em caso de acerto o alvo recebe dano de frio e fica *Lento 1.*
 
-#### Raio Elétrico
+### Raio Elétrico
 
 | Característica | Valor | Mod |
 |---|---|---|
@@ -83,9 +83,9 @@ tags: [khalkaria/sistema, khalkaria/sistema/magia]
 
 > Você conjura um raio elétrico que salta em entre inimigos próximos. Os alvos devem estar separados por no máximo 0 / 1,5 / 3 / 4,5 m.
 
-### Nível 2 — 5 magias
+## Nível 2 — 5 magias
 
-#### Lança de Gelo
+### Lança de Gelo
 
 | Característica | Valor | Mod |
 |---|---|---|
@@ -97,7 +97,7 @@ tags: [khalkaria/sistema, khalkaria/sistema/magia]
 
 > Você conjura uma lança de gelo cristalino que atravessa o ar em direção a um alvo. Faça um teste de **Místico,** contra a evasão do alvo. O alvo pode bloquear esse ataque se tiver reação. Ao acertar, o alvo recebe 3d8 de dano de Frio. Adicionalmente, Teste de **Reflexos** ou fica *Lento 1* por 1 rodada.
 
-#### Verdades Dolorosas
+### Verdades Dolorosas
 
 | Característica | Valor | Mod |
 |---|---|---|
@@ -109,7 +109,7 @@ tags: [khalkaria/sistema, khalkaria/sistema/magia]
 
 > Você revela verdades místicas a uma criatura que tenha sentimentos e emoções. A criatura deve fazer um teste de Vontade ou recebe 2d6 de dano Psíquico e fica *Atordoada*.
 
-#### Caveiras Explosivas
+### Caveiras Explosivas
 
 | Característica | Valor | Mod |
 |---|---|---|
@@ -121,7 +121,7 @@ tags: [khalkaria/sistema, khalkaria/sistema/magia]
 
 > Das suas mangas, você conjura 2 caveiras explosivas que explodem independentemente uma da outra em uma área de 1,5 m cada, causando 2d6 de dano de Fogo. **Reflexos para metade do dano** ou *Em chamas*.
 
-#### Invocar Tempestade
+### Invocar Tempestade
 
 | Característica | Valor | Mod |
 |---|---|---|
@@ -135,7 +135,7 @@ tags: [khalkaria/sistema, khalkaria/sistema/magia]
 
 > Você invoca uma tempestade trovejante em uma área de 36 m por 3 rodadas, no inicio de cada rodada, todas as criaturas dentro dessa área devem rolar um d20, as 3 criaturas que rolarem mais baixo são acertadas por um raio que causa 4d6 de dano Elétrico. As criaturas afetadas devem rolar **Fortitude** ou ficam *Atordoadas.*
 
-#### Ventania Bizarra
+### Ventania Bizarra
 
 | Característica | Valor | Mod |
 |---|---|---|
@@ -147,9 +147,9 @@ tags: [khalkaria/sistema, khalkaria/sistema/magia]
 
 > Você canaliza ventos extremamente fortes em uma área de 4,5 m em até 9 m, criaturas que estiverem dentro dessa área devem fazer um teste de Fortitude ou recebem 2d8 de dano de Força e ganham *Sangramento 1*. Sucesso = Metade do dano.
 
-### Nível 3 — 5 magias
+## Nível 3 — 5 magias
 
-#### Pestilência
+### Pestilência
 
 | Característica | Valor | Mod |
 |---|---|---|
@@ -161,7 +161,7 @@ tags: [khalkaria/sistema, khalkaria/sistema/magia]
 
 > Você propaga uma Pestilência mística que corrompe e fere qualquer ser afetado no inicio de cada um de seus turnos. Escolha um alvo que você possa ver, o alvo deve realizar um teste de vontade contra a sua CD ou recebe 2d8 de dano Necrótico no inicio do turno dela. Qualquer criatura que receber dano desta magia transmite a Pestilência para a criatura mais próxima em até 9 m.
 
-#### Limiar Perfurante
+### Limiar Perfurante
 
 | Característica | Valor | Mod |
 |---|---|---|
@@ -173,7 +173,7 @@ tags: [khalkaria/sistema, khalkaria/sistema/magia]
 
 > Você conjura um feixe místico que penetra/ignora as defesas de um alvo(Armadura(Ar) e Armadura Específica(Ae)) causando 3d10 de dano Místico. Ao acerto, o alvo deve suceder em um teste de **Fortitude** ou fica *Exposto.*
 
-#### Fragmento Estelar
+### Fragmento Estelar
 
 | Característica | Valor | Mod |
 |---|---|---|
@@ -184,7 +184,7 @@ tags: [khalkaria/sistema, khalkaria/sistema/magia]
 
 > Você precipita um fragmento estelar sobre uma área, o dano total é dividido entre todos os inimigos dentro do raio. Ao ser canalizada com intensidade: Transbordante, ao executar um alvo, como ação livre, pode transferir o dano sobrepujante do alvo executado a outros alvos na área imediata da canalização.
 
-#### Disparo Veloz
+### Disparo Veloz
 
 | Característica | Valor | Mod |
 |---|---|---|
@@ -195,7 +195,9 @@ tags: [khalkaria/sistema, khalkaria/sistema/magia]
 
 > Você instintivamente conjura um projétil mágico simples. Caso você acerte o alvo, você recupera metade do éter gasto nessa canalização. Essa magia ignora a regra de 1 cast por turno, podendo ser canalizada varias vezes. Essa magia só pode ser canalizada na **Intensidade:***Normal*
 
-#### Reversão Umbral
+É a única exceção conhecida à regra de uma magia por turno ([[Regras de Magia]]).
+
+### Reversão Umbral
 
 | Característica | Valor | Mod |
 |---|---|---|
@@ -205,9 +207,9 @@ tags: [khalkaria/sistema, khalkaria/sistema/magia]
 
 > Requisito: Deve canalizar com intensidade: Transbordante. Você só pode utilizar essa magia uma vez por combate.
 
-### Nível 4 — 5 magias — requer **Foco Primordial** (ver [[Primordial]])
+## Nível 4 — 5 magias — requer **Foco Primordial** (ver [[Primordial]])
 
-#### Fissura da Alma
+### Fissura da Alma
 
 | Característica | Valor | Mod |
 |---|---|---|
@@ -220,7 +222,7 @@ tags: [khalkaria/sistema, khalkaria/sistema/magia]
 
 > Você rasga diretamente a alma do alvo, um ato tão violento e primordial que exige concentração absoluta ao longo de duas rodadas inteiras. Gaste as 3 ações do seu primeiro turno iniciando a canalização. Se você receber qualquer dano antes de gastar as 3 ações do turno seguinte para completá-la, a conjuração é cancelada e todo o Éter gasto é perdido. A ruptura da alma é mútua: ao completar a canalização, você também sente o fragmento que arranca — o dano refletido não pode ser reduzido por nenhum meio. Essa magia só pode ser canalizada na **Intensidade:** *Transbordante.*
 
-#### Pestilência Primordial
+### Pestilência Primordial
 
 | Característica | Valor | Mod |
 |---|---|---|
@@ -235,7 +237,7 @@ tags: [khalkaria/sistema, khalkaria/sistema/magia]
 
 > Você libera uma praga primordial que não pode ser detida por vontade do conjurador, apenas pela extinção ou triunfo de todos os seus hospedeiros. A criatura inicial é infectada automaticamente, sem direito a resistência. Toda vez que uma criatura infectada sofrer dano da Pestilência, ela transmite a doença a todas as criaturas adjacentes em até 9 m, também sem teste de resistência. A cada turno que uma criatura passa sem se curar (falhando no teste de Vontade), o dano que ela recebe no próximo turno aumenta em 1 dado. Não existe limite máximo. A Desnutrição do conjurador acumula indefinidamente enquanto a praga viver, curar criaturas ou matar os hospedeiros é a única forma de encerrá-la.
 
-#### Eco do Apocalipse
+### Eco do Apocalipse
 
 | Característica | Valor | Mod |
 |---|---|---|
@@ -248,7 +250,7 @@ tags: [khalkaria/sistema, khalkaria/sistema/magia]
 
 > Você canaliza um fragmento da destruição que existia antes do universo ser criado. Uma aura de energia apocalíptica se expande ao seu redor, devastando tudo que respirar dentro dela. Sustentar o Eco não é gratuito — a cada rodada, o primórdio cobra diretamente do seu Éter atual, indo além do custo normal de sustentação. Se o seu Éter chegar a 0 enquanto a aura estiver ativa, o colapso é violento e inevitável. Magia Sustentada: a cada rodada ativa, pague os éter no seu turno; conjurar outra magia sustentada, ser atordoado ou estar incapaz de ativamente se concentrar imediatamente dissipa a magia.
 
-#### Cometa do Mártir
+### Cometa do Mártir
 
 | Característica | Valor | Mod |
 |---|---|---|
@@ -263,7 +265,7 @@ tags: [khalkaria/sistema, khalkaria/sistema/magia]
 
 > Você não aponta o cometa para longe. Você o chama sobre si mesmo. Um fragmento de estrela primordial despenca do firmamento diretamente sobre o ponto onde você está e tudo ao seu redor é consumido pelo impacto. Não há outra forma de conjurar esta magia: o conjurador deve estar no epicentro. Inimigos na área podem tentar esquivar; você não. O cometa reconhece seu invocador e o devora com indiferença absoluta. Apenas um mártir tem coragem, ou desespero, suficiente para usá-la. Essa magia só pode ser canalizada na **Intensidade:** *Transbordante.*
 
-#### Tempestade Primordial
+### Tempestade Primordial
 
 | Característica | Valor | Mod |
 |---|---|---|
@@ -277,13 +279,6 @@ tags: [khalkaria/sistema, khalkaria/sistema/magia]
 
 > Você invoca uma tempestade de trovões primordiais de magnitude catastrófica. Diferente de Invocar Tempestade, você escolhe o alvo dos raios, o primórdio obedece com precisão cirúrgica. Cada raio causa dano Primordial (True Damage), ignorando toda armadura. Criaturas atingidas devem fazer Fortitude ou ficam Atordoadas. O preço é o silêncio: o som que você está invocando é tão absoluto que gradualmente destrói sua própria audição enquanto a magia está ativa. Magia Sustentada: a cada rodada ativa, pague os éter no seu turno; conjurar outra magia sustentada, ser atordoado ou estar incapaz de ativamente se concentrar imediatamente dissipa a magia.
 
-## Segundo o Pedro (2026-09-05)
-- **B13** — *"Tabela do notion manda sempre."* Onde a tabela de stats e a descrição divergirem, vale a **tabela**.
-- **B4** — só se canaliza **1 magia por turno**; *Disparo Veloz* ([[Destruição]] N3) é a exceção. "Magia Sustentada" = pagar Éter por turno; as definições atuais são antigas.
-- **B8** — as **magias de nível 0** (≈20 truques sem custo de Éter) ainda **serão criadas**; hoje o [[Teurgo]] de nível 1 não tem truques.
-- **B14** — as descrições longas em estilo diferente ficam como estão: *"acho que pode deixar, eu revisei as descrições."*
-- **B1** — os tipos de dano citados seguem a lista definitiva de [[Tipos de Dano]] (12 tipos; "Gelo" = **Frio**).
-
 ## Relações
 - **Faz parte de** → [[Regras de Magia]], [[Sistema]]
 - **Foco** → Foco de Destruição; nível 4 exige Foco Primordial ([[Armas e Munição]], [[Primordial]])
@@ -291,17 +286,21 @@ tags: [khalkaria/sistema, khalkaria/sistema/magia]
 - **Dano Primordial vem do** → [[Primórdio]]
 - **Custa** → [[Éter]]
 - **Conjurada por** → [[Teurgo]]
-- **Exceção de ritmo** → *Disparo Veloz* ignora a regra de 1 magia por turno ([[Combate]], B4)
+- **Exceção de ritmo** → *Disparo Veloz* ignora a regra de 1 magia por turno ([[Combate]], [[Regras de Magia]])
 
-## Conflitos e pendências
-- **Onda Gravitacional (N1):** a descrição diz "são empurradas m para longe de vocês" — **número ausente**; a tabela dá 0 / 1,5 / 3 / 4,5 m (tabela manda, B13).
-- **Caveiras Explosivas (N2):** tabela de dano 1d4 / 1d6 / 2d6 / 3d6 (Normal = 1d6) × descrição "causando 2d6 de dano de Fogo". Tabela manda (B13).
-- **Invocar Tempestade (N2):** tabela "Raios p/ Rodada 1 / 2 / 3 / 4" × descrição "as 3 criaturas que rolarem mais baixo são acertadas"; Área e Duração vêm com 3 valores. Tabela manda (B13).
-- **Ventania Bizarra (N2):** tabela 1d10 / 2d10 / 3d10 / 4d10 de Força e área 1,5 / 3 / 4,5 / 6 m × descrição "2d8 de dano de Força" numa "área de 4,5 m em até 9 m". Tabela manda (B13).
-- **Fragmento Estelar (N3):** progressão 1d6 / 2d6 / 6d6 / 10d6 **viola** a tabela de intensidade (−1 / Base / +1 / +2 dados) de [[Regras de Magia]].
-- **Disparo Veloz (N3):** "ignora a regra de 1 cast por turno" — a regra não estava escrita em lugar nenhum. Confirmada por **B4**, falta redigir no Notion.
-- **Limiar Perfurante (N3) e Disparo Veloz (N3)** causam "dano Místico": **Místico é categoria**, não tipo ([[Tipos de Dano]]).
-- **Reversão Umbral (N3):** "requer Transbordante" mas não traz linha Intensidade na tabela como as demais.
+## Pontas soltas
+- **Onda Gravitacional (N1):** a descrição diz "são empurradas m para longe de vocês" — **falta o número**; a tabela dá 0 / 1,5 / 3 / 4,5 m, e é ela que vale.
+- **Caveiras Explosivas (N2):** tabela de dano 1d4 / 1d6 / 2d6 / 3d6 (Normal = 1d6) contra a descrição "causando 2d6 de dano de Fogo". Vale a tabela.
+- **Invocar Tempestade (N2):** tabela "Raios p/ Rodada 1 / 2 / 3 / 4" contra a descrição "as 3 criaturas que rolarem mais baixo são acertadas"; Área e Duração vêm com três valores em vez de quatro. Vale a tabela.
+- **Ventania Bizarra (N2):** tabela 1d10 / 2d10 / 3d10 / 4d10 de Força e área 1,5 / 3 / 4,5 / 6 m contra a descrição "2d8 de dano de Força" numa "área de 4,5 m em até 9 m". Vale a tabela.
+- **Fragmento Estelar (N3):** a progressão 1d6 / 2d6 / 6d6 / 10d6 **viola** a régua de intensidade (−1 / Base / +1 / +2 dados) de [[Regras de Magia]].
+- **Disparo Veloz (N3):** "ignora a regra de 1 cast por turno" — a regra que ele ignora não está escrita em nenhuma página do sistema. Está confirmada, falta redigi-la.
+- **Limiar Perfurante (N3) e Disparo Veloz (N3)** causam "dano Místico", mas Místico é **categoria**, não tipo ([[Tipos de Dano]]). [[Perguntas Abertas]] E43.
+- **Reversão Umbral (N3):** exige Transbordante, mas não traz linha de Intensidade na tabela como as demais.
+- **Fissura da Alma (N4):** "6 Ações (2 Rodadas)" sem regra geral de conjuração multi-rodada. [[Perguntas Abertas]] E58.
 
-## Fonte
-Notion `3a66e3a401d98097a5d4e316154f9fcb` (Magias, 🟢 Pronto, fetch 2026-07-23) — seção ⚔️ Destruição dos níveis 1 a 4; modulações também em `2b76e3a401d980c0ab7bc27a342f4ee1` (Sistema Khalkaria → Magias). Raw: `docs/memoria/notion_raw/magias.md`. Digest: `A_sistema.md` §1.20–1.21, §3.
+## Procedência
+- Notion `3a66e3a401d98097a5d4e316154f9fcb` (Magias, 🟢 Pronto, fetch 2026-07-23) — seção ⚔️ Destruição dos níveis 1 a 4; modulações também em `2b76e3a401d980c0ab7bc27a342f4ee1` (Sistema Khalkaria → Magias).
+- Respostas do mestre 2026-09-05: **B13** (a tabela vence a descrição), **B4** (1 magia por turno, *Disparo Veloz* como exceção, magia sustentada = Éter por turno), **B8** (nível 0 a criar), **B14** (as descrições longas foram revisadas e ficam como estão), **B1** (os doze tipos de dano; "Gelo" = Frio).
+- `docs/memoria/notion_raw/magias.md`; digest `A_sistema.md` §1.20–1.21, §3.
+- Revisão de redação: 2026-09-07.

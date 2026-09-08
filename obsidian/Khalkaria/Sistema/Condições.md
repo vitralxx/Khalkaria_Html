@@ -1,19 +1,19 @@
 ---
 tipo: regra
-status: canon-notion
+status: canon-pedro
 spoiler: publico
 era: atemporal
 aliases: [Condição, Condições, Exposto, Sangramento, Lento, Bêbado, Atordoado, Adormecido, Paralisado, Desorientado, Confuso, Enjoado, Envenenamento, Em Chamas, Caído, Enraizado, Desprevenido, Amedrontado, Descontrolado, Enfeitiçado, Exaustão, Cego, Surdo, Invisível, Desnutrido, Inconsciente, Morrendo, Exaurido, Oco, Sobrepeso Leve, Sobrepeso Extremo]
 fonte_notion: 3a66e3a401d9803f8862ea52ceef0b25
-ultima_sync: 2026-09-05
-tags: [khalkaria/sistema]
+ultima_sync: 2026-09-07
+tags: [khalkaria/sistema, khalkaria/sistema/regras]
 ---
 
 # Condições
 
-**Resumo.** **29 condições** (28 títulos, contando *Sobrepeso Leve* e *Extremo* separadamente) — o vocabulário de estados do sistema. Três delas são os **estados terminais dos recursos**: *Morrendo* (Saúde ≤ 0), *Exaurido* (Stamina = 0) e *Oco* ([[Éter]] ≤ 0). Texto verbatim do Notion.
+**Resumo.** As **29 condições** do sistema (28 títulos, contando *Sobrepeso Leve* e *Extremo* separadamente) — o vocabulário com que se descreve o estado de um corpo, de uma mente e de uma alma em [[Kharavel]], do *Exposto* ao *Oco*. Três delas são os **estados terminais dos recursos**: *Morrendo* quando a Saúde chega a zero, *Exaurido* quando a Stamina acaba e *Oco* quando o [[Éter]] se esgota.
 
-## Cânone (Notion)
+## O catálogo
 
 ### Sobrepeso
 - **Leve**
@@ -142,12 +142,21 @@ Você está vazio por dentro, se manter motivado é um desafio e seus pensamento
 - A cada perícia falha, você reduz 5 de Éter. Ao alcançar metade do seu éter máximo nos negativos, você perde seu personagem, que se torna do mestre.
 - Você não consegue canalizar magias.
 
-## Segundo o Pedro (2026-09-05)
+## Nomes oficiais
 
-- **C8 — grafia oficial:** **Exaustão** (não "Exausto"), **Sangramento** (não "Sangrando"), **Envenenamento** (não "Envenenado").
-- **B12 (integral):** *"Lentidão 2 se refere a lento 2, as outras condições foram criadas especificamente para uso unitário nessas técnicas, talvez seja um erro não padronizar tudo em condições, mas como varias delas apenas 1 técnica usa não vi tanta necessidade. Depois fazemos a revisão nas condições."*
-  → **Marcado, Endividado, Irritado, Provocado, Banido, Escondido, Petrificado, Incorpóreo, Luto Selvagem, Pacto Sombrio** não são condições do sistema: são efeitos locais de uma técnica só. **"Lentidão 2" = *Lento 2***. Revisão geral das condições fica pendente.
-- **B14** — as descrições longas de magias que citam condições inexistentes ficam como estão: *"acho que pode deixar, eu revisei as descrições."*
+**Exaustão** (não "Exausto"), **Sangramento** (não "Sangrando") e **Envenenamento** (não "Envenenado"). Onde uma técnica ou magia usar o nome antigo, vale o oficial: *Cometa do Mártir* diz "Exausto 3" e *Aniquilação Teúrgica* diz "Exausto 1" — leia-se **Exaustão 3** e **Exaustão 1**.
+
+## O que não é condição
+
+Nem todo estado nomeado em uma técnica virou condição do sistema. Vários existem para uso de uma única técnica e não têm entrada própria:
+
+> Lentidão 2 se refere a lento 2, as outras condições foram criadas especificamente para uso unitário nessas técnicas, talvez seja um erro não padronizar tudo em condições, mas como varias delas apenas 1 técnica usa não vi tanta necessidade. Depois fazemos a revisão nas condições.
+
+Assim, **Marcado, Endividado, Irritado, Provocado, Banido, Escondido, Petrificado, Incorpóreo, Luto Selvagem** e **Pacto Sombrio** são efeitos locais de uma técnica só, não condições. **"Lentidão 2" quer dizer *Lento 2***. Uma revisão geral das condições está prevista.
+
+As descrições longas de magias que citam condições inexistentes ficam como estão:
+
+> acho que pode deixar, eu revisei as descrições.
 
 ## Relações
 - **Faz parte de** → [[Sistema]]
@@ -157,14 +166,16 @@ Você está vazio por dentro, se manter motivado é um desafio e seus pensamento
 - **Imunidades e aplicações em cartas** → [[O Limiar (cartas)]]
 - **Tipos de dano citados** → [[Tipos de Dano]]
 
-## Conflitos e pendências
-- **"Dano Biológico" como tipo.** *Sangramento X*, *Envenenamento* e *Morrendo* causam "dano Biológico", mas **Biológico é categoria** de [[Tipos de Dano]] (Veneno/Ácido/Psíquico). Escolher tipo ou formalizar categoria.
-- **Lento X:** o texto dá −3 m e −1 Ação **fixos**; o que o X representa (e se empilha) não está escrito. Cartas e magias usam *Lento 1/2/3*.
-- **Descontrolado X:** o título diz "ataca o aliado mais próximo"; o corpo diz "a criatura mais próxima". Divergência interna.
-- **Condições referenciadas e inexistentes:** *Petrificado* (Transferir Condição, Caco Esquecido), *Banido* (Exílio Existencial, Ultimate do Limiar), *Selado* (Selo do Oblívio), *Laçado* (Laço da União), *Possuído* (Possessão Carnal), *"sem vida"* (Possessão Carnal), *Vulnerável* (superfície Molhado), *Escondido*. Resolvido por **B12** como efeitos unitários; revisão pendente.
-- **Amedrontado:** a magia *Pânico* afirma que o alvo "tem desvantagem em testes realizados enquanto puder te ver" — a condição **não** tem desvantagem, só "gaste seu turno correndo".
-- **Exaustão nas magias:** *Cometa do Mártir* diz "Exausto 3" e *Aniquilação Teúrgica* "Exausto 1" — leia-se **Exaustão 3 / Exaustão 1**.
-- **Sobrepeso não tem título próprio** por nível na página; as duas variantes vivem sob um mesmo cabeçalho.
+## Pontas soltas
+- **"Dano Biológico" como tipo.** *Sangramento X*, *Envenenamento* e *Morrendo* causam "dano Biológico", mas Biológico é **categoria** — Veneno, Ácido e Psíquico são os tipos ([[Tipos de Dano]]). Escolher um tipo ou formalizar a categoria. [[Perguntas Abertas]] E43.
+- **Lento X.** O texto dá −3 m e −1 Ação **fixos**; o que o X representa, e se empilha, não está escrito. Cartas e magias usam *Lento 1/2/3*. [[Perguntas Abertas]] E55.
+- **Descontrolado X.** A abertura diz "ataca o aliado mais próximo"; a regra diz "a criatura mais próxima". [[Perguntas Abertas]] E56.
+- **Estados citados que não existem como condição:** *Petrificado* (Transferir Condição, Caco Esquecido), *Banido* (Exílio Existencial, Ultimate do Limiar), *Selado* (Selo do Oblívio), *Laçado* (Laço da União), *Possuído* e *"sem vida"* (Possessão Carnal), *Vulnerável* (superfície Molhado), *Escondido*. Tratados como efeitos de técnica única; a revisão geral segue pendente.
+- **Amedrontado × Pânico.** A magia *Pânico* afirma que o alvo "tem desvantagem em testes realizados enquanto puder te ver", mas a condição só obriga a gastar o turno correndo.
+- **Sobrepeso sem título próprio.** As duas variantes vivem sob um mesmo cabeçalho, sem entrada individual.
 
-## Fonte
-Notion `3a66e3a401d9803f8862ea52ceef0b25` (Condições, 🟢 Pronto, editado 2026-08-24). Raw: `docs/memoria/notion_raw/condicoes.md`. Digest: `A_sistema.md` §1.22, §3.14–3.15. Respostas do Pedro **B12**, **B14**, **C8**.
+## Procedência
+- Notion `3a66e3a401d9803f8862ea52ceef0b25` (Condições, 🟢 Pronto, editado 2026-08-24).
+- Respostas do mestre 2026-09-05: **B12** (condições de uso unitário; "Lentidão 2" = *Lento 2*; revisão futura — citada na íntegra acima), **B14** (descrições de magia ficam como estão), **C8** (grafia oficial Exaustão / Sangramento / Envenenamento).
+- Raw: `docs/memoria/notion_raw/condicoes.md`. Digest: `A_sistema.md` §1.22, §3.14–3.15.
+- Revisão de redação: 2026-09-07.

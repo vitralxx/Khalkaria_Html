@@ -4,7 +4,7 @@ status: canon-notion
 spoiler: publico
 era: atemporal
 aliases: [Escola de Alteração, Foco de Alteração, Magias de Alteração]
-fonte_notion: [3a66e3a401d98097a5d4e316154f9fcb, 2b76e3a401d980c0ab7bc27a342f4ee1]
+fonte_notion: [3a66e3a401d98097a5d4e316154f9fcb, 2b76e3a401d980c0ab7bc27a342f4ee1, pedro-2026-09-05]
 ultima_sync: 2026-09-05
 tags: [khalkaria/sistema, khalkaria/sistema/magia]
 ---
@@ -13,9 +13,11 @@ tags: [khalkaria/sistema, khalkaria/sistema/magia]
 
 **Resumo.** A escola que **muda o que já existe** — corpo, matéria, posição, condição e até o próprio turno. Vai do utilitário (Mão Mágica, Queda Suave) ao ontológico (Fusão de Corpos, Acme, Julgamento de [[Kha]]). Exige **Foco de Alteração** ([[Armas e Munição]]) e, no nível 4, **Foco Primordial** ([[Primordial]]). Suas modulações dobram duração, dobram alcance, contagiam alvos ou **invertem** o efeito da magia.
 
-## Cânone (Notion)
+## Como ler estas tabelas
 
-### Modulações da escola
+As barras indicam, em ordem: **Contida / Normal / Forçada / Transbordante**. Na coluna *Mod*, ✅ = modificável por intensidade e ❎ = valor fixo. Onde a tabela e a descrição de uma magia se contradizem, **vale a tabela**. As regras gerais — custo por nível, intensidade, magia sustentada, uma magia por turno — estão em [[Regras de Magia]].
+
+## Modulações da escola
 
 | Modulação | Custo | Efeito |
 |---|---|---|
@@ -24,11 +26,9 @@ tags: [khalkaria/sistema, khalkaria/sistema/magia]
 | Contagiar | +3 Éter | Efeito afeta +1 alvo. |
 | Alcançar | +3 Éter | Dobra o alcance da magia |
 
-> Legenda das tabelas de magia: ✅ = Modificável por intensidade | ❎ = Valor fixo. As barras indicam, em ordem: **Contida / Normal / Forçada / Transbordante**.
+## Nível 1 — 5 magias
 
-### Nível 1 — 5 magias
-
-#### Mão Mágica
+### Mão Mágica
 
 | Característica | Valor | Mod |
 |---|---|---|
@@ -38,7 +38,7 @@ tags: [khalkaria/sistema, khalkaria/sistema/magia]
 
 > Você cria uma mão espectral que pode manipular objetos leves (até 1 kg), abrir portas, puxar alavancas, etc. A mão não pode atacar e some em 10 minutos. Movimentar a mão em um combate, gasta 1 ação, interagir com qualquer coisa também custa 1 ação. Essa magia só pode ser canalizada na **Intensidade:***Normal*
 
-#### Estimulante Místico
+### Estimulante Místico
 
 | Característica | Valor | Mod |
 |---|---|---|
@@ -50,7 +50,7 @@ tags: [khalkaria/sistema, khalkaria/sistema/magia]
 
 > Você aplica um estimulante em uma criatura que aumenta a circulação sanguínea, enrijece a musculatura e aumenta a produção energética do corpo. O estimulante cessa ao alvo ter atacado 3 vezes.
 
-#### Disfarce Ilusório
+### Disfarce Ilusório
 
 | Característica | Valor | Mod |
 |---|---|---|
@@ -61,7 +61,7 @@ tags: [khalkaria/sistema, khalkaria/sistema/magia]
 
 > Você muda a aparência física (altura ±30cm, peso, rosto, voz, roupas) de uma criatura a distância de toque. Não altera tato nem cheiro. Criaturas que interagirem podem fazer Percepção vs sua CD para perceber a ilusão.
 
-#### Queda Suave
+### Queda Suave
 
 | Característica | Valor | Mod |
 |---|---|---|
@@ -72,7 +72,7 @@ tags: [khalkaria/sistema, khalkaria/sistema/magia]
 
 > Você oferece poder místico que faz até 3 criaturas planarem no ar, negando dano de queda de até 30 m de altura.
 
-#### Maldição do Peso
+### Maldição do Peso
 
 | Característica | Valor | Mod |
 |---|---|---|
@@ -84,9 +84,9 @@ tags: [khalkaria/sistema, khalkaria/sistema/magia]
 
 > Você amaldiçoa uma criatura adicionando peso ilusório caso ela falhe em um teste de **Vontade** contra sua cd.
 
-### Nível 2 — 5 magias
+## Nível 2 — 5 magias
 
-#### Pele de Pedra
+### Pele de Pedra
 
 | Característica | Valor | Mod |
 |---|---|---|
@@ -98,7 +98,7 @@ tags: [khalkaria/sistema, khalkaria/sistema/magia]
 
 > Você altera a composição da pele de uma criatura, enrijecendo-a em camadas de uma substância parecida com pedra porosa. A criatura ganha Armadura Específica contra dano Ordinário (Cortante, Contundente e Perfurante) pelo tempo da duração. O efeito é visível, a pele toma uma coloração acinzentada e textura granular.
 
-#### Confundir Sentidos
+### Confundir Sentidos
 
 | Característica | Valor | Mod |
 |---|---|---|
@@ -111,7 +111,7 @@ tags: [khalkaria/sistema, khalkaria/sistema/magia]
 
 > Você embaralha as informações sensoriais que chegam ao cérebro do alvo — sons vêm de direções erradas, distâncias parecem maiores ou menores do que são, rostos se confundem. O alvo não perde a consciência nem fica Atordoado, mas sua percepção do ambiente é profundamente distorcida. Em combate, isso se traduz em dificuldade para localizar alvos à distância e reagir a perigos. Fora de combate, pode afetar completamente a leitura de um ambiente. Útil para desorientar perseguidores ou criar oportunidades de fuga.
 
-#### Translocação Arcana
+### Translocação Arcana
 
 | Característica | Valor | Mod |
 |---|---|---|
@@ -121,7 +121,7 @@ tags: [khalkaria/sistema, khalkaria/sistema/magia]
 
 > Você dissolve brevemente sua forma física e a reconstrói em outro ponto dentro do alcance que você consiga ver diretamente. O teleporte é instantâneo e silencioso — sem luz, som ou rastro. Não pode ser usado para atravessar barreiras sólidas, apenas para saltar distâncias. Pode ser usado para sair de um Agarrão sem precisar disputar Movimento, desde que o ponto de destino esteja dentro do alcance. Esta magia pode ser canalizada apenas na **Intensidade:**Normal
 
-#### Transfigurar Arma
+### Transfigurar Arma
 
 | Característica | Valor | Mod |
 |---|---|---|
@@ -133,7 +133,7 @@ tags: [khalkaria/sistema, khalkaria/sistema/magia]
 
 > Você reescreve a natureza do dano de uma arma, impregnando-a com energia mística de um elemento escolhido no momento da conjuração. A arma mantém seu dado base e atributo normal, mas seu tipo de dano muda completamente para o tipo Atípico escolhido (Fogo, Frio, Elétrico, Veneno, Ácido, Psíquico, Radiante, Trovejante ou Necrótico) e causa dado extra desse mesmo tipo. Útil contra criaturas com Resistência ou Vulnerabilidade a tipos específicos. O efeito é visível — a arma emite luz, fumaça ou outro sinal visual do elemento.
 
-#### Enraizar
+### Enraizar
 
 | Característica | Valor | Mod |
 |---|---|---|
@@ -144,9 +144,9 @@ tags: [khalkaria/sistema, khalkaria/sistema/magia]
 
 > Você altera a densidade gravitacional ao redor dos pés de uma criatura, fazendo-o(s) colar ao chão como se fosse(m) parte dele. O alvo fica Enraizado pelo tempo da duração, não pode se mover voluntariamente, mas ainda pode agir normalmente. A cada rodada, pode gastar 2 ações para refazer o teste de Fortitude e tentar se soltar. Criaturas que voam ou não tocam o chão são imunes a esta magia.
 
-### Nível 3 — 5 magias
+## Nível 3 — 5 magias
 
-#### Transferir Condição
+### Transferir Condição
 
 | Característica | Valor | Mod |
 |---|---|---|
@@ -158,7 +158,7 @@ tags: [khalkaria/sistema, khalkaria/sistema/magia]
 
 > Você extrai misticamente uma condição negativa de uma criatura e a implanta em outra. Escolha quais condições transferir (não funciona com condições permanentes como Petrificado por causa não mágica). O alvo de destino pode fazer Vontade contra a sua CD para resistir a cada condição individualmente. A criatura de origem perde a condição imediatamente, independente do resultado do alvo de destino. Pode ser usada ofensivamente transferindo condições entre inimigos.
 
-#### Absorver Contusão
+### Absorver Contusão
 
 | Característica | Valor | Mod |
 |---|---|---|
@@ -169,7 +169,7 @@ tags: [khalkaria/sistema, khalkaria/sistema/magia]
 
 > Você altera a densidade do tecido místico ao redor do alvo para comprimir e absorver a força de um impacto iminente. O dano não absorvido é aplicado normalmente. O dano absorvido fica armazenado como uma carga mística no próprio alvo — que pode gastá-la como ação livre no próximo turno para liberar o impacto como dano Contundente em uma criatura a distância de toque. A carga some ao fim do turno seguinte se não for usada.
 
-#### Pele de Camaleão
+### Pele de Camaleão
 
 | Característica | Valor | Mod |
 |---|---|---|
@@ -181,7 +181,7 @@ tags: [khalkaria/sistema, khalkaria/sistema/magia]
 
 > Você reconfigura a pele de uma criatura fazendo-a ficar translucida. A criatura ganha +15 de evasão e +5 de furtividade. A cada ataque esquivado, o alvo perde 5 de evasão. Ao receber dano ou ao ser reduzido a 0 de evasão adicional a magia se dissipa.
 
-#### Xadrez
+### Xadrez
 
 | Característica | Valor | Mod |
 |---|---|---|
@@ -193,7 +193,7 @@ tags: [khalkaria/sistema, khalkaria/sistema/magia]
 
 > Você entrelaça as posições de duas criaturas no espaço, fazendo-as trocarem de lugar num piscar de olhos. Ambas aparecem no exato ponto onde a outra estava. Criaturas voluntárias não têm direito a resistência. Para uso ofensivo, o alvo não voluntário faz Vontade. Criaturas que estejam Agarradas ou Enraizadas são imunes. Esta magia pode ser canalizada apenas na **Intensidade:***Normal*
 
-#### Plasmar Terreno
+### Plasmar Terreno
 
 | Característica | Valor | Mod |
 |---|---|---|
@@ -203,9 +203,9 @@ tags: [khalkaria/sistema, khalkaria/sistema/magia]
 
 > Você canaliza a escola da Alteração no ambiente físico, moldando pedra, terra, areia, madeira morta ou qualquer material inorgânico como se fosse argila. Pode criar paredes de até 1,5 m de altura, abrir valas, tampar passagens, nivelar terreno ou criar cobertura improvisada. O terreno alterado é permanente, a magia não precisa ser mantida. Não afeta materiais trabalhados com magia, criaturas vivas, tecido ou osso. O Mestre tem palavra final sobre o que pode ser moldado no contexto da cena.
 
-### Nível 4 — 5 magias — requer **Foco Primordial** (ver [[Primordial]])
+## Nível 4 — 5 magias — requer **Foco Primordial** (ver [[Primordial]])
 
-#### Aprendiz Caótico
+### Aprendiz Caótico
 
 | Característica | Valor | Mod |
 |---|---|---|
@@ -218,7 +218,7 @@ tags: [khalkaria/sistema, khalkaria/sistema/magia]
 
 > Cria uma Réplica de você com 50% das suas estatísticas, todos os seus conhecimentos de magia e autonomia para agir. A Réplica obedece comandos simples mas age por conta própria se ignorada. Compartilha seu Éter Máximo dividido ao meio enquanto ativa. A Alteração primordial não cria ilusões — cria substância. Sua Réplica é você, mas menor. Ela pensa como você, lembra como você, e se ressente de existir como você. Enquanto ela vive, seu Éter Máximo é partido ao meio: metade cada. Quando a Réplica morre, você sente. Magia Sustentada: a cada rodada ativa, pague os éter no seu turno; conjurar outra magia sustentada, ser atordoado ou estar incapaz de ativamente se concentrar imediatamente dissipa a magia.
 
-#### Fusão de Corpos
+### Fusão de Corpos
 
 | Característica | Valor | Mod |
 |---|---|---|
@@ -231,7 +231,7 @@ tags: [khalkaria/sistema, khalkaria/sistema/magia]
 
 > Você apaga a fronteira entre dois seres. O que emerge não é nenhum dos dois — é outra coisa, com memórias dobradas e uma só voz. A fusão é voluntária, mas dissolvê-la não é simples: exige o consentimento de ambas as consciências dentro do corpo único.
 
-#### Acme
+### Acme
 
 | Característica | Valor | Mod |
 |---|---|---|
@@ -243,7 +243,7 @@ tags: [khalkaria/sistema, khalkaria/sistema/magia]
 
 > Por um instante que nenhuma outra criatura percebe, você recua pela linha do tempo e reaparece exatamente onde estava no início do seu turno: mesma posição, mesmo Éter, mesmas ações, mesmas condições. Essa magia não pode receber nenhuma modulação.
 
-#### Apoteose Genética
+### Apoteose Genética
 
 | Característica | Valor | Mod |
 |---|---|---|
@@ -257,7 +257,7 @@ tags: [khalkaria/sistema, khalkaria/sistema/magia]
 
 > Você acelera o processo evolutivo de um ser em centenas de gerações. O que a criatura poderia ter sido em décadas de evolução, acontece em segundos. O corpo aceita. A alma precisa aprender a caber no novo recipiente.
 
-#### Julgamento de Kha
+### Julgamento de Kha
 
 | Característica | Valor | Mod |
 |---|---|---|
@@ -271,31 +271,27 @@ tags: [khalkaria/sistema, khalkaria/sistema/magia]
 
 > Você arranca a alma do alvo e a materializa a 1,5 m de você. A alma é uma entidade separada com 50% da Saúde Máxima do alvo original. Enquanto a alma existir, todo dano que ela recebe é acumulado como dano Primordial. Se a alma for destruída, o alvo inicialmente afetado recebe todo o dano acumulado instantaneamente e fica **Atordoado **por 1 rodada. Caso a alma não seja abatida ela retorna ao alvo e a magia falha.
 
-## Segundo o Pedro (2026-09-05)
-- **B13** — *"Tabela do notion manda sempre."* Onde a tabela de stats e a descrição divergirem, vale a **tabela**.
-- **B4** — só se canaliza **1 magia por turno**; *Disparo Veloz* ([[Destruição]] N3) é a exceção. "Magia Sustentada" = pagar Éter por turno; as definições atuais são antigas.
-- **B8** — as **magias de nível 0** (≈20 truques sem custo de Éter) ainda **serão criadas**; hoje o [[Teurgo]] de nível 1 não tem truques.
-- **B14** — as descrições longas em estilo diferente ficam como estão: *"acho que pode deixar, eu revisei as descrições."*
-- **B1** — os tipos de dano citados seguem a lista definitiva de [[Tipos de Dano]] (12 tipos; "Gelo" = **Frio**).
-
 ## Relações
 - **Faz parte de** → [[Regras de Magia]], [[Sistema]]
 - **Foco** → Foco de Alteração; nível 4 exige Foco Primordial ([[Armas e Munição]], [[Primordial]])
 - **Move e remove** → [[Condições]] (Transferir Condição), aplica *Confuso*, *Lento*, *Enraizado*, *Exposto*, *Atordoado*
 - **Altera** → tamanho ([[Manobras e Tamanho]]), tipo de dano da arma ([[Armas e Munição]], [[Tipos de Dano]])
 - **Deus invocado** → [[Kha]] (Julgamento de Kha)
-- **Debuffs citados do** → [[O Abismo]] (Apoteose Genética: **Mente Fraca** e **Orgulhoso**, ambas Dores reais em [[O Limiar (cartas)]])
+- **Marcas citadas do** → [[O Abismo]] (Apoteose Genética: **Mente Fraca** e **Orgulhoso**, ambas Dores reais em [[O Limiar (cartas)]])
 - **Custa** → [[Éter]]
 
-## Conflitos e pendências
-- **Estimulante Místico (N1):** tabela Duração "1 / 2 / 3 / 3 ataques" (Normal = 2) × descrição "O estimulante cessa ao alvo ter atacado 3 vezes". Tabela manda (B13).
-- **Maldição do Peso (N1):** linha Alvo "1 / 1 / 2 / 2" marcada ❎ (valor fixo) apesar de trazer quatro valores — legenda inconsistente.
-- **Xadrez (N3):** Alcance "9 m" marcado ✅ (modificável) sendo valor único; *Pele de Camaleão* tem Alcance marcado ❎ com quatro valores.
-- **Caco Esquecido (N3):** referencia **"Voz na Mente"**, que **não existe** no sistema, e a condição *Petrificado*, inexistente em [[Condições]] (B12: efeito unitário). O Pedro manteve as descrições (B14).
-- **Transferir Condição (N3):** também cita *Petrificado*.
-- **Apoteose Genética (N4):** usa "+20 HP Máximo" — nomenclatura "HP" em vez de **Saúde**.
-- **Acme (N4):** "sem modulação" e "rebobina 6 s" — única magia que mede tempo em segundos.
-- **Aprendiz Caótico / Fusão de Corpos / Julgamento de Kha (N4):** são Sustentadas ou de duração longa sem custo por turno especificado ([[Regras de Magia]] → Magia Sustentada).
+## Pontas soltas
+- **Estimulante Místico (N1):** tabela Duração "1 / 2 / 3 / 3 ataques" (Normal = 2) contra a descrição "O estimulante cessa ao alvo ter atacado 3 vezes". Vale a tabela.
+- **Maldição do Peso (N1):** a linha Alvo "1 / 1 / 2 / 2" está marcada ❎ (valor fixo) apesar de trazer quatro valores — legenda inconsistente.
+- **Xadrez (N3):** Alcance "9 m" marcado ✅ (modificável) sendo valor único; em *Pele de Camaleão*, o Alcance é marcado ❎ com quatro valores.
+- **Transferir Condição (N3):** cita a condição *Petrificado*, que não consta em [[Condições]].
+- **Apoteose Genética (N4):** escreve "+20 HP Máximo" — a nomenclatura do sistema é **Saúde**, não "HP".
+- **Acme (N4):** não aceita nenhuma modulação e "rebobina 6 segundos" — é a única magia que mede tempo em segundos.
+- **Aprendiz Caótico / Fusão de Corpos / Julgamento de Kha (N4):** são sustentadas ou de duração longa sem custo por turno especificado. Ver [[Regras de Magia]] → Magia Sustentada.
+- **Estilo das descrições:** as de nível 2 e 3 desta escola e de [[Conhecimento]] são bem mais longas e em voz diferente do resto do sistema. Foram revisadas e mantidas.
 
-## Fonte
-Notion `3a66e3a401d98097a5d4e316154f9fcb` (Magias, 🟢 Pronto, fetch 2026-07-23) — seção 🌀 Alteração dos níveis 1 a 4; modulações também em `2b76e3a401d980c0ab7bc27a342f4ee1` (Sistema Khalkaria → Magias). Raw: `docs/memoria/notion_raw/magias.md`. Digest: `A_sistema.md` §1.20–1.21, §3.
+## Procedência
+- Notion `3a66e3a401d98097a5d4e316154f9fcb` (Magias, 🟢 Pronto, fetch 2026-07-23) — seção 🌀 Alteração dos níveis 1 a 4; modulações também em `2b76e3a401d980c0ab7bc27a342f4ee1` (Sistema Khalkaria → Magias).
+- Respostas do mestre 2026-09-05: **B13** (a tabela vence a descrição), **B4** (1 magia por turno, *Disparo Veloz* como exceção, magia sustentada = Éter por turno), **B8** (nível 0 a criar), **B14** (as descrições longas foram revisadas e ficam como estão), **B12** (condições são efeito unitário), **B1** (os doze tipos de dano).
+- `docs/memoria/notion_raw/magias.md`; digest `A_sistema.md` §1.20–1.21, §3.
+- Revisão de redação: 2026-09-07.

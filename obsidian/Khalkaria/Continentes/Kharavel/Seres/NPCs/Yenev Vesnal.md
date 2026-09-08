@@ -11,53 +11,58 @@ tags: [khalkaria/continentes/kharavel/seres/npcs]
 ---
 # Yenev Vesnal
 
-**Resumo.** Filho de [[Mira Vesnal]], revavenano, *"a alegria da vida dela"*. Aos **20 anos** foi *"convencido por traficantes de seiva a viajar para [[Khaskavel]] buscando trabalho na fábrica — a história oficial era de bons salários"*; era a *"1ª geração em que jovens revavenanos eram cooptados desse jeito"*. Sumiu poucos meses depois; as cartas pararam. Se vivo, tem ≈ **30 anos** no ano 0. Não tem página própria: existe só como ausência — o motor da busca de Mira, a pergunta que ela faz a [[Tev Kossar]], a projeção sobre [[Lázlo]]. O Notion prevê três finais: vivo e transformado, morto há anos, ou *"algo não-humano — corrompido pela seiva ou pior"*.
+**Resumo.** Filho único de [[Mira Vesnal]] e *"a alegria da vida dela"*. Nascido em [[Revavena]], foi convencido aos vinte anos por traficantes de [[Seiva]] a atravessar o continente até a fábrica de [[Khaskavel]], atrás dos bons salários que a história oficial prometia; era a primeira geração de jovens revavenanos cooptada assim. Sumiu poucos meses depois e as cartas pararam. Se estiver vivo, tem cerca de trinta anos na campanha. Não há dele descrição, retrato nem túmulo: Yenev existe no continente como ausência — o motor das sete viagens da mãe, a pergunta que ela repete a [[Tev Kossar]], e o rosto que ela tenta não enxergar em [[Lázlo]].
 
-## Cânone (Notion)
+## O que se sabe dele
 
-### Página Mira Vesnal (🟡, ed. 2026-05-28)
 > Casou-se cedo, teve um filho — **Yenev Vesnal** — que foi a alegria da vida dela.
 > Quando Yenev tinha 20 anos, foi convencido por traficantes de seiva a viajar para Khaskavel buscando trabalho na fábrica — a história oficial era de bons salários. Era 1ª geração em que jovens revavenanos eram cooptados desse jeito. Mira tentou impedir; não conseguiu.
-> Yenev sumiu poucos meses depois. As cartas pararam de chegar. Mira viajou pra Khaskavel sete vezes ao longo de uma década. Cada vez voltou sem ele. Falou com viciados, com capatazes, com funcionários da fábrica que faziam vista grossa, com gente que dizia ter visto alguém parecido em alguma esquina da Embrenha. Nada conclusivo.
+> Yenev sumiu poucos meses depois. As cartas pararam de chegar.
+
+## A busca
+
+> Mira viajou pra Khaskavel sete vezes ao longo de uma década. Cada vez voltou sem ele. Falou com viciados, com capatazes, com funcionários da fábrica que faziam vista grossa, com gente que dizia ter visto alguém parecido em alguma esquina da Embrenha. Nada conclusivo.
 > Há dois anos desistiu de buscar Yenev ativamente. Aceitou que ele provavelmente está morto ou perdido sem volta.
-> **Gancho 1 — A busca por Yenev.** A qualquer momento da campanha, um PC pode encontrar referência a Yenev Vesnal — num livro de registros da fábrica, num cadáver anônimo, num viciado que reconhece o nome. Mira vai querer ir junto investigar. Subarco emocional poderoso, pode terminar bem (encontram ele vivo, transformado), mal (morto há anos), ou ambiguo (se tornou algo não-humano — corrompido pela seiva ou pior).
-> **Tev Kossar:** Tev veio da fábrica de seiva. Mira pergunta a ele sobre Yenev sempre que há oportunidade [...]
-> **Lázlo (se ativo):** [...] Pode ser que Mira projete traços de Yenev sobre ele — ou pior, descubra que Lázlo de fato lembra de Yenev de algum jeito.
 
-### Página Tev Kossar
-> **Mira Vesnal:** ela pergunta sobre Yenev. Tev nunca conheceu ninguém com esse nome na fábrica, mas tenta lembrar pra ela cada vez. Talvez um dia lembre de algo.
-> [Histórico de Tev na fábrica] Aos poucos foi notando coisas estranhas: trabalhadores sumindo sem explicação, salões trancados aos quais ele não podia entrar [...]
+Nas ruínas do [[Castelo de Kirkushav]] a busca continua por outros meios. [[Tev Kossar]], que trabalhou na mesma fábrica, é interrogado com delicadeza a cada oportunidade:
 
-### Página Lázlo
-> **Mira Vesnal:** cuidadora de fato. Lázlo provoca nela projeções do filho perdido Yenev — reconhece e tenta não ceder.
+> Tev nunca conheceu ninguém com esse nome na fábrica, mas tenta lembrar pra ela cada vez. Talvez um dia lembre de algo.
 
-### Castelo em Ruínas
-> **Mira Vesnal** — curandeira de Revavena [...] Veio em luto silencioso pelo filho perdido em Khaskavel.
+E [[Lázlo]], o rapaz sem memória que a mãe cuidou por dias, virou a tela onde a ausência se projeta:
 
-## Segundo o Pedro (2026-09-05)
-Nenhuma menção direta. Contexto: **A6** — as substâncias ficam *"mais viciosas e corruptíveis"* quanto mais maligno o Sonhador; **Marca 7** da [[Marca da Vhelor]] é *"Sucumbência, vira NPC"* — destino plausível de um operário viciado (não afirmado).
+> cuidadora de fato. Lázlo provoca nela projeções do filho perdido Yenev — reconhece e tenta não ceder.
+
+O luto tem nome nas ruínas: Mira *"veio em luto silencioso pelo filho perdido em Khaskavel."*
+
+## Os três finais possíveis
+
+> A qualquer momento da campanha, um PC pode encontrar referência a Yenev Vesnal — num livro de registros da fábrica, num cadáver anônimo, num viciado que reconhece o nome. Mira vai querer ir junto investigar. Subarco emocional poderoso, pode terminar bem (encontram ele vivo, transformado), mal (morto há anos), ou ambiguo (se tornou algo não-humano — corrompido pela seiva ou pior).
+
+O que ele encontrou na fábrica é o mesmo que Tev encontrou depois: *"trabalhadores sumindo sem explicação, salões trancados aos quais ele não podia entrar"*. Um operário viciado que não some por acaso tem destinos conhecidos no continente — a [[Marca da Vhelor]] tem uma sétima marca, a sucumbência, em que a pessoa deixa de se pertencer, e a [[Seiva]] fica mais viciosa e mais corruptível conforme [[O Sonhador]] se torna mais maligno. Nada disso foi afirmado sobre ele; é o campo em que a resposta vai cair.
 
 ## Relações
-- **Mãe** → [[Mira Vesnal]] · **pai** → não nomeado (Mira *"casou-se cedo"*)
+- **Mãe** → [[Mira Vesnal]] · **pai** → não nomeado; ela *"casou-se cedo"*
 - **Natural de** → [[Revavena]]
-- **Cooptado por** → traficantes de [[Seiva]] → fábrica do [[Culto de Malkhor]] em [[Khaskavel]] ([[A Embrenha]])
-- **Contemporâneo na fábrica (≈)** → [[Tev Kossar]] (entrou aos 22, ≈ −8; nunca ouviu o nome)
-- **Trabalhadores que sumiam** → ganchos de Tev (*"salões trancados"*, rituais) — possível destino
-- **Projeção** → [[Lázlo]] (*"de fato lembra de Yenev de algum jeito"*?)
-- **Possíveis destinos** → viciado ([[Embrenhos]]) · morto · [[Marca da Vhelor]] 7 / *"algo não-humano"* · vítima de ritual ([[Cultos de Osh'Kar]]? — não afirmado)
+- **Levado por** → traficantes de [[Seiva]], até a fábrica do [[Culto de Malkhor]] em [[Khaskavel]] / [[A Embrenha]]
+- **Quase contemporâneo na fábrica** → [[Tev Kossar]], que entrou aos vinte e dois e nunca ouviu o nome dele
+- **Projetado sobre** → [[Lázlo]]
+- **Destinos possíveis** → viciado entre os [[Embrenhos]] · morto · sucumbido à [[Marca da Vhelor]] · vítima dos salões trancados da fábrica
+- **Eventos** → [[Linha do Tempo]]
 
 ## Linha do tempo
-- **≈ −30:** nasce em Revavena (20 anos em ≈ −10; Mira tinha ≈ 10? — ver pendência).
-- **≈ −10:** vai a Khaskavel trabalhar na fábrica; some meses depois.
-- **−10 → −2:** Mira o procura sete vezes.
-- **0** (campanha): desaparecido; ≈ 30 anos se vivo.
+- **≈ −30:** nasce em [[Revavena]].
+- **≈ −10:** parte para a fábrica de [[Khaskavel]]; some poucos meses depois.
+- **−10 a −2:** a mãe o procura sete vezes.
+- **0** (campanha): desaparecido há cerca de uma década; teria trinta anos.
 
-## Conflitos e pendências
-1. **Aritmética:** Mira tem 40; Yenev tinha 20 quando partiu, e Mira o procurou por *"uma década"* até desistir *"há dois anos"* → Yenev partiu em ≈ −12 e nasceu em ≈ −32, quando Mira teria ≈ 8 anos. Mesmo com *"casou-se cedo"*, não fecha. Ou a década foi menor, ou as idades precisam de ajuste. **Pendência para o Pedro.**
-2. **Destino** deliberadamente aberto (três finais). Sem página própria no Notion.
-3. **Tev "nunca conheceu ninguém com esse nome"** — Yenev pode ter usado outro nome, ou sumido antes de Tev entrar (≈ −8). Compatível.
-4. Sem raça explícita (humano, filho de humana), classe, aparência.
+## Pontas soltas
+1. **As idades não fecham.** [[Mira Vesnal]] nasceu em −40; Yenev tinha vinte anos ao partir e foi procurado por uma década até ela desistir há dois anos, o que o faz nascer por volta de −30 e a torna mãe aos dez. Uma das duas idades precisa mudar. ([[Perguntas Abertas]] E35.)
+2. **O destino está deliberadamente em aberto** — vivo e transformado, morto há anos, ou algo que já não é humano. Escolher um fecha o subarco inteiro da mãe.
+3. **[[Tev Kossar]] nunca ouviu o nome.** Ou Yenev usava outro, ou sumiu antes de Tev entrar na fábrica. As duas leituras cabem.
+4. **Ninguém o descreveu.** Raça (humano, por filiação), rosto, ofício antes da viagem — nada existe além do nome.
 
-## Fonte
-- Notion: Mira `36d6e3a401d981fb97bceeec037e614d` · Tev `36d6e3a401d9811daf94f8854d6d01ee` · Lázlo `36d6e3a401d9818d9cddefbdd4015aad` · Castelo em Ruínas `3696e3a401d98161a014d3747e46b42b`
-- Raw: `notion_raw/lore_kharavel_npcs.md`, `lore_kharavel_locais_regioes.md` · Digest `E_lore.md` §5 (Yenev Vesnal)
+## Procedência
+- Notion — *Mira Vesnal* `36d6e3a401d981fb97bceeec037e614d` · *Tev Kossar* `36d6e3a401d9811daf94f8854d6d01ee` · *Lázlo* `36d6e3a401d9818d9cddefbdd4015aad` · *Castelo em Ruínas* `3696e3a401d98161a014d3747e46b42b`
+- Mestre, 2026-09-05 — A6 (as substâncias se tornam mais viciosas conforme o Sonhador); nenhuma menção direta a Yenev
+- Digest `docs/memoria/digests/E_lore.md` §5
+- Brutos em `docs/memoria/notion_raw/lore_kharavel_npcs.md`, `lore_kharavel_locais_regioes.md`
