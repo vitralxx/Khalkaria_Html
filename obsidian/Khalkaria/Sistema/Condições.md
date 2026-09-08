@@ -148,15 +148,9 @@ Você está vazio por dentro, se manter motivado é um desafio e seus pensamento
 
 ## O que não é condição
 
-Nem todo estado nomeado em uma técnica virou condição do sistema. Vários existem para uso de uma única técnica e não têm entrada própria:
+Nem todo estado nomeado em uma técnica virou condição do sistema. Vários nasceram para uso de uma única técnica e não têm entrada própria: **Marcado, Endividado, Irritado, Provocado, Banido, Escondido, Petrificado, Incorpóreo, Luto Selvagem** e **Pacto Sombrio** são efeitos locais, não condições — quem os aplica também os define, e fora daquela técnica eles não existem. **"Lentidão 2" quer dizer *Lento 2***, e nada mais.
 
-> Lentidão 2 se refere a lento 2, as outras condições foram criadas especificamente para uso unitário nessas técnicas, talvez seja um erro não padronizar tudo em condições, mas como varias delas apenas 1 técnica usa não vi tanta necessidade. Depois fazemos a revisão nas condições.
-
-Assim, **Marcado, Endividado, Irritado, Provocado, Banido, Escondido, Petrificado, Incorpóreo, Luto Selvagem** e **Pacto Sombrio** são efeitos locais de uma técnica só, não condições. **"Lentidão 2" quer dizer *Lento 2***. Uma revisão geral das condições está prevista.
-
-As descrições longas de magias que citam condições inexistentes ficam como estão:
-
-> acho que pode deixar, eu revisei as descrições.
+Padronizar todos eles como condições é uma reforma prevista, ainda não feita; enquanto ela não vem, as descrições de magia que citam estados sem entrada no catálogo valem como estão escritas.
 
 ## Relações
 - **Faz parte de** → [[Sistema]]
@@ -176,6 +170,6 @@ As descrições longas de magias que citam condições inexistentes ficam como e
 
 ## Procedência
 - Notion `3a66e3a401d9803f8862ea52ceef0b25` (Condições, 🟢 Pronto, editado 2026-08-24).
-- Respostas do mestre 2026-09-05: **B12** (condições de uso unitário; "Lentidão 2" = *Lento 2*; revisão futura — citada na íntegra acima), **B14** (descrições de magia ficam como estão), **C8** (grafia oficial Exaustão / Sangramento / Envenenamento).
+- Respostas do mestre 2026-09-05: **B12** — *"Lentidão 2 se refere a lento 2, as outras condições foram criadas especificamente para uso unitário nessas técnicas, talvez seja um erro não padronizar tudo em condições, mas como varias delas apenas 1 técnica usa não vi tanta necessidade. Depois fazemos a revisão nas condições."*; **B14** — *"acho que pode deixar, eu revisei as descrições."* (sobre as descrições de magia que citam condições inexistentes); **C8** (grafia oficial Exaustão / Sangramento / Envenenamento).
 - Raw: `docs/memoria/notion_raw/condicoes.md`. Digest: `A_sistema.md` §1.22, §3.14–3.15.
-- Revisão de redação: 2026-09-07.
+- Revisão de redação: 2026-09-07, 2026-09-08.

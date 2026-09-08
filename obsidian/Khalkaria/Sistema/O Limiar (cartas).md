@@ -29,7 +29,9 @@ tags: [khalkaria/sistema]
 
 O Limiar não é sorte nem destino: é política divina. [[Velúria]] paga adiantado para que os aventureiros cumpram os objetivos dela com mais eficiência, e cobra o preço em dependência.
 
-> O limiar é um evento político dentro da campanha, é literalmente o Limiar concedendo bênçãos para os jogadores cumprirem certos objetivos mais efetivamente da deus Velúria. Então, o limiar toda vez que os jogadores sobem de nível, aparece pelo seu portal e oferece 5 cartas de poder além de uma carta que sempre aparece "+2 atributo", quanto mais atributos você tem, mais cartas raras você potencialmente tira do baralho, então esperar para gastar seus pontos do limiar geralmente é melhor, por isso a variabilidade de 5-11 cartas no nível 5. O Abismo oferece corrupções em troca de poder, ainda não criei porque os jogadores nem estão perto de se encontrarem com essa região, já que no inicio da sessão ela é protegida por uma ilusão de oásis, os jogadores antes devem escalar o pico mais alto da cordilheira cristalina, região de montanhas do mapa para desativarem a ilusão.
+A cada nível conquistado o Limiar abre o próprio portal e estende **5 cartas de poder**, mais a carta que nunca falta — **+2 Atributo**. Quanto mais alto o atributo de quem recebe a oferta, mais fundo o Limiar vai buscar no baralho, e mais cartas raras chegam à mão; por isso guardar Pontos do Limiar rende mais do que gastá-los cedo, e por isso a conta ao nível 5 varia entre 5 e 11 cartas.
+
+[[O Abismo]] é a outra face da mesma porta: em vez de dádiva, corrupção em troca de poder. Ninguém chega lá cedo — a região está selada por uma **ilusão de oásis**, e só se desfaz para quem escalar o pico mais alto da [[Cordilheira Cristalina]].
 
 ## A cada nível (2, 3, 4, 5)
 
@@ -354,7 +356,7 @@ Circulam nomes que nunca entraram no baralho, herdados de versões antigas do ma
 - **Cartas nas mãos dos personagens de jogador** → [[Equipe desfloreio]]
 
 ## Pontas soltas
-- **Contagem antiga ainda circulando.** Um bloco de resumo anuncia "**Total de Cartas:** 130 — Universais: 10 cartas · Força: 12 cartas (FOR 14+) · Destreza: 12 (DES 14+) · Constituição: 12 (CON 14+) · Inteligência: 12 (INT 14+) · Sabedoria: 12 (SAB 14+) · **Raras: 60 cartas** (requisitos múltiplos)". As tabelas trazem **8 · 12 · 12 · 12 · 12 · 12 = 127**, mais **41** do Abismo = **168**. Corrigir na fonte.
+- **Contagem antiga ainda circulando.** Um bloco de resumo anuncia "**Total de Cartas:** 130 — Universais: 10 cartas · Força: 12 cartas (FOR 14+) · Destreza: 12 (DES 14+) · Constituição: 12 (CON 14+) · Inteligência: 12 (INT 14+) · Sabedoria: 12 (SAB 14+) · **Raras: 60 cartas** (requisitos múltiplos)". As tabelas trazem **8 · 12 · 12 · 12 · 12 · 12 · 59 = 127**, mais **41** do Abismo = **168**.
 - **Requisito dos pools: 14+ ou 16+?** O resumo e a regra de sorteio dizem "14 ou mais"; os cabeçalhos das colunas dizem 16+. [[Perguntas Abertas]] E44.
 - **O mix do sorteio não fecha 5.** "1-2 universal + 1-3 atributo + 1 rara" soma de 3 a 6 cartas, e a mão é de 5. [[Perguntas Abertas]] E45.
 - **Duplicata de nome.** **Devorador de Almas** existe como Rara (INT 16+, SAB 16+ — absorve uma habilidade especial permanentemente) **e** como Benefício do Abismo (Gasto 3 — treinamento temporário por 24 h). Efeitos distintos, mesmo nome; um deles precisa ser renomeado. [[Perguntas Abertas]] E46.
@@ -368,13 +370,13 @@ Circulam nomes que nunca entraram no baralho, herdados de versões antigas do ma
 - **Muralha de Aço:** frase truncada — "você pode usar sua reação para Defender some sua perícia Defender à Evasão do aliado".
 - **Sexto Sentido:** parêntese desbalanceado em "1x/Descanso Longo):".
 - **Bárbaro:** carta do pool de Constituição que mexe em **quatro** atributos (+1 FOR/CON, −1 INT/SAB); a interação com "Coluna de Titã" e "Memória Absoluta", que também dão +1 ponto de atributo, não está definida.
-- **Grafias a corrigir na fonte:** "Sussurador" (→ Sussurrador), "Ressureição" (→ Ressurreição), "Onisciencia" (→ Onisciência).
+- **Grafias a corrigir:** "Sussurador" (→ Sussurrador), "Ressureição" (→ Ressurreição), "Onisciencia" (→ Onisciência).
 - **Ênfase inconsistente:** cerca de 20 cartas estão sem negrito no nome — Lutador de Rua, Limiar da Morte, Paciência, Artilharia, Sombras, Terceiro Olho, Coração da Dor, Bárbaro, Corpo Duro, Felizardo, Bestiário, Equilíbrio Etérico, Estudo Intenso, Lenda Monge, Onisciencia de Mundarak e todo o Abismo exceto Estabanado — sinal de que foram acrescentadas depois.
 
 ## Procedência
 - Notion `3a66e3a401d9806db1f8d6975255f676` (🃏 O Limiar, 🟢 Pronto, last_edited 2026-08-05, sem subpáginas).
 - Contagem das tabelas conferida linha a linha em 2026-09-04: 8 · 12 · 12 · 12 · 12 · 12 · 59 = 127, mais 41 do Abismo = 168.
-- Respostas do mestre 2026-09-05: **B5** (o Limiar como evento político, 5 cartas + "+2 atributo", faixa 5–11, o Abismo a refazer e a ilusão de oásis — citada na íntegra acima); **B6** — *"Site html sempre estará desatualizado em relação ao notion, inclusive as cartas raras nem possuem descrição no notion para os jogadores e isso é intencional. Sempre escolha o notion quando tirar dados, o site é complemento view pros jogadores."*; **B7** — *"O abismo vai mudar completamente no futuro, pele morta só tem 1 vez no corrompido, transcendência só tem 1 vez também."* (sobre as duplicatas de [[Corrompido]] e [[Monge]]; a duplicata "Devorador de Almas" permanece em aberto); **C10** confirma a grafia **Etérico**.
+- Respostas do mestre 2026-09-05: **B5** — *"O limiar é um evento político dentro da campanha, é literalmente o Limiar concedendo bênçãos para os jogadores cumprirem certos objetivos mais efetivamente da deus Velúria. Então, o limiar toda vez que os jogadores sobem de nível, aparece pelo seu portal e oferece 5 cartas de poder além de uma carta que sempre aparece \"+2 atributo\", quanto mais atributos você tem, mais cartas raras você potencialmente tira do baralho, então esperar para gastar seus pontos do limiar geralmente é melhor, por isso a variabilidade de 5-11 cartas no nível 5. O Abismo oferece corrupções em troca de poder, ainda não criei porque os jogadores nem estão perto de se encontrarem com essa região, já que no inicio da sessão ela é protegida por uma ilusão de oásis, os jogadores antes devem escalar o pico mais alto da cordilheira cristalina, região de montanhas do mapa para desativarem a ilusão."*; **B6** — *"Site html sempre estará desatualizado em relação ao notion, inclusive as cartas raras nem possuem descrição no notion para os jogadores e isso é intencional. Sempre escolha o notion quando tirar dados, o site é complemento view pros jogadores."*; **B7** — *"O abismo vai mudar completamente no futuro, pele morta só tem 1 vez no corrompido, transcendência só tem 1 vez também."* (sobre as duplicatas de [[Corrompido]] e [[Monge]]; a duplicata "Devorador de Almas" permanece em aberto); **C10** confirma a grafia **Etérico**.
 - Regra de design registrada em `CLAUDE.md`: raras só usam recursos universais — conferido nas 59 raras, sem exceção.
 - Raw: `docs/memoria/notion_raw/limiar.md`. Digest: `docs/memoria/digests/D_limiar.md` (contagem, comparação com o material publicado, inconsistências 1–17).
-- Revisão de redação: 2026-09-07.
+- Revisão de redação: 2026-09-07, 2026-09-08.

@@ -86,15 +86,15 @@ Cada classe define Saúde/Stamina/Éter, Evasão, recurso próprio (FLUXO no [[M
 - **Personagens de jogador construídos com estas regras** → [[Equipe desfloreio]]
 
 ## Pontas soltas
-- **Modificador e Evasão sem página.** `(Atributo − 10) / 2` e `10 + Mod. DES` são usados em toda a mesa, no material dos jogadores e na exportação de fichas, mas não estão escritos em nenhuma página da fonte. [[Perguntas Abertas]] E40.
+- **Modificador e Evasão sem página.** `(Atributo − 10) / 2` e `10 + Mod. DES` são usados em toda a mesa, no material dos jogadores e na exportação de fichas, mas não têm página de regra que os enuncie. [[Perguntas Abertas]] E40.
 - **Primordial: escola ou camada?** Ver [[Primordial]]. [[Perguntas Abertas]] E41.
 - **"Gelo" × "Frio".** O tipo canônico é **Frio**; "Gelo" ainda aparece na raiz e no template de ficha. Ver [[Tipos de Dano]].
-- **Seis idiomas listados sob a frase "apenas 5 idiomas existem"**, e o antigo "Esquecido" ainda não virou **Criptografado** na fonte. Ver [[Idiomas]].
+- **Seis idiomas listados sob a frase "apenas 5 idiomas existem"**, e o antigo "Esquecido" ainda não foi rebatizado **Criptografado** em toda parte. Ver [[Idiomas]].
 - **Contagem do Limiar.** Um resumo antigo anuncia 130 cartas onde as tabelas trazem 127, e uma faixa de "8-11 cartas" onde a correta é 5–11. Ver [[O Limiar (cartas)]]. [[Perguntas Abertas]] E44, E45.
 - **[[O Abismo]] será refeito por inteiro** — suas 41 cartas são provisórias.
 - **Nível 0 de magia a criar** (≈20 truques sem custo de Éter).
 - **Revisão geral das [[Condições]]** pendente.
-- **[[Criação de Personagem]]** está vazia na fonte e o template de ficha ainda usa nomes antigos de perícia.
+- **[[Criação de Personagem]]** ainda não foi escrita, e o template de ficha usa nomes antigos de perícia.
 - **Fichas dos cinco personagens de jogador** da [[Equipe desfloreio]] estão desatualizadas em relação às regras atuais. [[Perguntas Abertas]] E32.
 
 Lista completa em [[Perguntas Abertas]].
@@ -104,4 +104,4 @@ Lista completa em [[Perguntas Abertas]].
 - Respostas do mestre 2026-09-05: **A13** (Lobisomem secreto, fora do material público), **B6** (o site é complemento; a fonte vence), **B8** (nível 0 a criar), **B11** (3 técnicas no Tier 1), **B17** (fichas dos PCs desatualizadas).
 - Raw: `docs/memoria/notion_raw/`. Digests: `A_sistema.md`, `B_classes.md`, `C_racas_origens.md`, `D_limiar.md`.
 - Publicado como site de consulta dos jogadores (`vitralxx.github.io/Khalkaria_Html/`) e exportado para o app **Bestiário Khalkaria** (contrato `type: "npc"`, colunas `prof_*`).
-- Revisão de redação: 2026-09-07.
+- Revisão de redação: 2026-09-07, 2026-09-08.
