@@ -72,7 +72,7 @@ E há a pergunta que o epíteto levanta sozinho: *"se Karma é agente sem saber 
 - **Lidera** → [[Rastas]] (os Esperançosos) · **funda e governa** → [[Revavena]], no [[Cinturão Silencioso]]
 - **Braço direito e "irmão"** → [[Sevic]], que herda a cidade se ela morrer
 - **Escrava de** → [[Khaskavel]], sob [[Sinikko Kiriam (original)]]
-- **Leu e manipulou** → [[Sinikko Kiriam (PJ)|Sinikko Kiriam]], na [[Sessão 0]]; a profecia que lhe deu mira em [[Khaskavel]] e n'[[A Vhelor]]
+- **Leu e manipulou** → [[Sinikko Kiriam (PC)|Sinikko Kiriam]], na [[Sessão 0]]; a profecia que lhe deu mira em [[Khaskavel]] e n'[[A Vhelor]]
 - **Marcada para morrer por** → [[Hadran Vorgil]], por ordem de [[Kirkushav Drekar]]
 - **Inimigos** → [[Malkhor]] · [[Culto de Malkhor]] · [[Sinikko Kiriam (clone)]] · [[Vanguarda Serafélia]] · quem usa [[Seiva]]
 - **Outra peça da mesma deusa** → [[Lena Skarv]], criada por [[Vytália]] e [[Karmath]] em segredo

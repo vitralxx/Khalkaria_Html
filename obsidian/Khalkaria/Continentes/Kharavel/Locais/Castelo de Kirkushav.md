@@ -74,7 +74,7 @@ Hadran *"conhece passagens secretas e pontos cegos"* do lugar — é o último h
 - **Guarnição original** → [[Vanguarda do Ferro]], com [[Hadran Vorgil]]
 - **Ferreiro do castelo** → [[Jairo Krichama]] ([[Anão]] do clã Krichama)
 - **Prisioneiro em −27** → [[Sevic]] ([[Rastas]]), autor do bilhete a [[Karma]]
-- **Ponto de partida de** → [[Sessão 0]] / [[Equipe desfloreio]]: [[Sinikko Kiriam (PJ)|Sinikko Kiriam]] · [[Vorn Drekar]] · [[Klaus von Aldric]] · [[Runa Skorn]] · [[Azgar Sandgale]]
+- **Ponto de partida de** → [[Sessão 0]] / [[Equipe desfloreio]]: [[Sinikko Kiriam (PC)|Sinikko Kiriam]] · [[Vorn Drekar]] · [[Klaus von Aldric]] · [[Runa Skorn]] · [[Azgar Sandgale]]
 - **Erguido para ligar a** → [[Khaskavel]] e o interior do continente
 - **Comandado no intervalo por** → [[Sinikko Kiriam (clone)]]
 - **Tomado por** → revolucionários de [[Revavena]] e povos nativos

@@ -94,7 +94,7 @@ Pelo caminho tomaram também o castelo de onde tudo começou: *"há alguns anos 
 - **Nascem em** → [[Khaskavel]] (−27) · **fundam** → [[Revavena]], do zero, no [[Cinturão Silencioso]]
 - **Inimigos** → [[Khaskavel]] · [[Vanguarda Serafélia]] · [[Sinikko Kiriam (original)]] na Sessão 0 · [[Sinikko Kiriam (clone)]] hoje · [[Culto de Malkhor]] · [[A Vhelor]] · quem quer que use [[Seiva]]
 - **Aliados na queda do castelo** → povos nativos não nomeados ([[Xkamur]]? [[Skarv]]? [[Povos Diversos do Sul]]?) → [[Castelo de Kirkushav]]
-- **Primeiro contato com** → [[Equipe desfloreio]]: [[Sinikko Kiriam (PJ)|Sinikko Kiriam]] · [[Vorn Drekar]] · [[Klaus von Aldric]] · [[Runa Skorn]] · [[Azgar Sandgale]]
+- **Primeiro contato com** → [[Equipe desfloreio]]: [[Sinikko Kiriam (PC)|Sinikko Kiriam]] · [[Vorn Drekar]] · [[Klaus von Aldric]] · [[Runa Skorn]] · [[Azgar Sandgale]]
 - **Ameaça direta na Sessão 0** → [[Hadran Vorgil]], com ordem secreta de [[Kirkushav Drekar]] para o *"assassinato de uma escrava por conspiração à colonia"*
 - **Os que ficaram** → [[Embrenhos]], e a *"facção escrava que se opunha a libertação"*
 - **Crítica interna** → [[Mira Vesnal]]

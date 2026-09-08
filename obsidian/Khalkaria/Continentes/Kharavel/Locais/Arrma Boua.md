@@ -56,7 +56,7 @@ Preços, categorias e a mecânica de melhoria estão em [[O Bazar]] e em [[Dinhe
 - **Mora aqui** → [[Lena Skarv]] ([[Dryad]] escondida)
 - **Casa concedida por** → [[Sinikko Kiriam (original)]]
 - **Arma** → [[Vanguarda Serafélia]]
-- **Visitada por** → [[Equipe desfloreio]] e [[Sinikko Kiriam (PJ)|Sinikko Kiriam]] na [[Sessão 0]]
+- **Visitada por** → [[Equipe desfloreio]] e [[Sinikko Kiriam (PC)|Sinikko Kiriam]] na [[Sessão 0]]
 - **Combustível insólito** → [[Folhas Amarelas]]
 - **Ferreiro irmão de ofício** → [[Jairo Krichama]], no [[Castelo de Kirkushav]]
 - **Planos divinos que passam por esta casa** → [[Vytália]] e [[Karmath]] (o coração puro de Lena) · [[Karmath]] (o que Alvak pode se tornar)

@@ -44,7 +44,7 @@ Há vinte e sete anos o lago era turquesa e o castelo ainda estava em obras, cer
 - **Ferreiro do castelo** → [[Jairo Krichama]]
 
 ## Linha do tempo
-- **−27** ([[Sessão 0]]): mesa redonda de [[Kirkushav Drekar]] no castelo em construção, com [[Vorn Drekar]], [[Klaus von Aldric]], [[Sinikko Kiriam (PJ)|Sinikko Kiriam]], [[Runa Skorn]] e [[Azgar Sandgale]]; [[Sevic]], o escravo, preso e interrogado ali.
+- **−27** ([[Sessão 0]]): mesa redonda de [[Kirkushav Drekar]] no castelo em construção, com [[Vorn Drekar]], [[Klaus von Aldric]], [[Sinikko Kiriam (PC)|Sinikko Kiriam]], [[Runa Skorn]] e [[Azgar Sandgale]]; [[Sevic]], o escravo, preso e interrogado ali.
 - **Intervalo:** base imperial sob o clone; ataque e queda do castelo, *"há alguns anos"* antes da campanha.
 - **−1:** [[Lázlo]] é encontrado no planalto central.
 - **0** (campanha): acampamento principal dos personagens de jogador.

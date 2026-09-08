@@ -4,7 +4,7 @@ status: canon-pedro
 spoiler: gm
 era: sessao0
 continente: Volkrest
-aliases: ["Sinikko Kiriam (PJ)", "Sinikko (PC)", "Sinikko Kiriam (Sessão 0)", "Siniko", "o imperador de Khaskavel", "o gruto dos esgotos", "A Corrente Dourada"]
+aliases: ["Sinikko Kiriam (PC)", "Sinikko (PC)", "Sinikko Kiriam (Sessão 0)", "Siniko", "o imperador de Khaskavel", "o gruto dos esgotos", "A Corrente Dourada"]
 fonte_notion: [33e6e3a401d98172bcefef2453ce1564, 3676e3a401d980babe07d418ffd1c9a2, 33e6e3a401d9819796c9dfb2263e215d, 33e6e3a401d9813d8cf5d8d8e6c3fddc, 33e6e3a401d98131815efc830056e2e3, pedro-2026-09-05]
 ultima_sync: 2026-09-07
 tags: [khalkaria/campanha, khalkaria/campanha/personagens]

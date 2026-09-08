@@ -65,7 +65,7 @@ O interior não é totalmente desconhecido em [[Kharavel]], porque vaza pelos so
 - **Termina em** → a câmara de [[O Sonhador]] (o casulo no cerne)
 - **Guardião final** → o dragão de raízes
 - **Porta aberta por** → um teurgo muito poderoso, não nomeado
-- **Atravessadas por** → [[Equipe desfloreio]]: [[Sinikko Kiriam (PJ)|Sinikko Kiriam]] · [[Vorn Drekar]] · [[Klaus von Aldric]] · [[Runa Skorn]] · [[Azgar Sandgale]], na [[Sessão 0]]
+- **Atravessadas por** → [[Equipe desfloreio]]: [[Sinikko Kiriam (PC)|Sinikko Kiriam]] · [[Vorn Drekar]] · [[Klaus von Aldric]] · [[Runa Skorn]] · [[Azgar Sandgale]], na [[Sessão 0]]
 - **Devolveram** → [[Sinikko Kiriam (clone)]] · o clone de [[Vorn Drekar]]
 - **Invadidas por ordem de** → [[Kirkushav Drekar]]
 - **Via alternativa pela copa** → [[Folhas Amarelas]], [[Os Colhedores]]

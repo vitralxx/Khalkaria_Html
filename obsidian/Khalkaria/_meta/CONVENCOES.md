@@ -25,7 +25,7 @@ Quando a nota precisa marcar que algo veio do mestre e não do texto antigo, esc
 
 **Lore não explica regra.** Uma nota de personagem nunca descreve o consumo de munição, custo de Éter ou escala de perícia — ela **linka** para [[Armas e Munição]], [[Regras de Magia]], [[Atributos e Perícias]]. O inverso também vale: nota de regra não conta história, só cita e linka.
 
-**Nomenclatura:** **PC** (personagem de jogador) e **NPC**. Nunca "PJ".
+**Nomenclatura:** **PC** (personagem de jogador) e **NPC**. Nunca a sigla portuguesa antiga.
 
 ## Estrutura de pastas
 ```

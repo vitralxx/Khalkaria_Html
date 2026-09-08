@@ -94,7 +94,7 @@ O "assunto pessoal de Kirkushav" só se abre para quem insistir (Convencimento C
 - **Serviu** → [[Vanguarda do Ferro]] · [[Kirkushav Drekar]] · [[Império de Ferro]]
 - **Espião do soberano sobre** → [[Sinikko Kiriam (original)]], na gerência de [[Khaskavel]]
 - **Irmão de armas** → [[Vorn Drekar]] · **reconhecerá o rosto dele** no clone que [[Malkhor]] fez
-- **Viu chegar ao castelo** → [[Klaus von Aldric]] (amarrado) · [[Sinikko Kiriam (PJ)|Sinikko Kiriam]] · toda a [[Equipe desfloreio]]
+- **Viu chegar ao castelo** → [[Klaus von Aldric]] (amarrado) · [[Sinikko Kiriam (PC)|Sinikko Kiriam]] · toda a [[Equipe desfloreio]]
 - **Serviu sem saber a** → [[Sinikko Kiriam (clone)]], até a queda do castelo
 - **Mora em / defendeu** → [[Castelo de Kirkushav]], na [[Bacia Acidentada]] — hoje a base dos jogadores
 - **Convive com** → [[Mira Vesnal]] · [[Tev Kossar]] · [[Lázlo]], que ele encontrou no planalto

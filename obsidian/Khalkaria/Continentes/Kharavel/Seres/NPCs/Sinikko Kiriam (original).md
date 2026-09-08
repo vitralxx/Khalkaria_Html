@@ -79,7 +79,7 @@ O casulo no cerne da [[A Vhelor]] abriga sempre uma criatura, e quanto mais mali
 - **Povo** → os grutos dos esgotos de [[Volkrest]], chamados *"os Exilados"* nos registros mais antigos
 - **Governou** → [[Khaskavel]] de [[Vistaluz]], com a [[Vanguarda Serafélia]] de [[Ka'ur Zotama]]
 - **Companheiros de expedição** → [[Equipe desfloreio]]: [[Vorn Drekar]], [[Klaus von Aldric]], [[Runa Skorn]], [[Azgar Sandgale]]
-- **Ficha de mesa** → [[Sinikko Kiriam (PJ)|Sinikko Kiriam, personagem de jogador]]
+- **Ficha de mesa** → [[Sinikko Kiriam (PC)|Sinikko Kiriam, personagem de jogador]]
 - **Interrogou e foi lido por** → [[Karma]], abençoada por [[Karmath]] · também interrogou [[Sevic]]
 - **Protegeu** → [[Alvak Krichama]] e, por causa dele, [[Lena Skarv]]
 - **Inimigos** → [[Rastas]] · [[Skarv]] e [[Yu]], que subestimou

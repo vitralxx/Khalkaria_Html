@@ -90,7 +90,7 @@ Ele nunca soube que o Sinikko que ficou com a cidade não era Sinikko, e o clone
 - **Tropa pessoal** → [[Vanguarda do Ferro]], de [[Hadran Vorgil]] · **guarnição da colônia** → [[Vanguarda Serafélia]]
 - **Filho** → [[Vorn Drekar]], ilegítimo
 - **Pupilo, nunca filho** → [[Sinikko Kiriam (original)]], sucessor descartado por populismo
-- **Convocou e chantageou** → [[Equipe desfloreio]]: [[Sinikko Kiriam (PJ)|Sinikko Kiriam]], [[Vorn Drekar]], [[Klaus von Aldric]], [[Runa Skorn]], [[Azgar Sandgale]]
+- **Convocou e chantageou** → [[Equipe desfloreio]]: [[Sinikko Kiriam (PC)|Sinikko Kiriam]], [[Vorn Drekar]], [[Klaus von Aldric]], [[Runa Skorn]], [[Azgar Sandgale]]
 - **Queria morta** → a [[Família Sandgale]]: [[Terk Sandgale]] e [[Azgar Sandgale]], sobreviventes de [[Ossyria]]
 - **Ordenou a** → [[Hadran Vorgil]] a morte de uma escrava e a espionagem do imperador da colônia
 - **Cedeu casa a** → [[Kheyos]], na [[Casa Isolada]], apesar de abominar magia

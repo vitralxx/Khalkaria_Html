@@ -114,7 +114,7 @@ O desfecho da primeira campanha é o expurgo de [[Malkhor]]. Derrotado o [[Sinik
 - **A árvore e o que sai dela** → [[A Vhelor]] · [[O Sonhador]] · [[Seiva]] · [[Casca de Raiz]] · [[Folhas Amarelas]] · [[Marca da Vhelor]] · [[Câmaras de Provação]] · [[Os Colhedores]]
 - **Facções** → [[Culto de Malkhor]] · [[Cultos de Osh'Kar]] · [[Rastas]] · [[Vanguarda Serafélia]] · [[Vanguarda do Ferro]] · [[Império de Ferro]] · [[Skarv]] · [[Xkamur]] · [[Povos Diversos do Sul]] · [[Embrenhos]] · [[Iluminados]]
 - **Pessoas** → [[Kirkushav Drekar]] · [[Sinikko Kiriam (original)]] · [[Sinikko Kiriam (clone)]] · [[Alvak Krichama]] · [[Lena Skarv]] · [[Yu]] · [[Ka'ur Zotama]] · [[Kheyos]] · [[Hadran Vorgil]] · [[Mira Vesnal]] · [[Yenev Vesnal]] · [[Tev Kossar]] · [[Lázlo]] · [[Karma]] · [[Sevic]] · [[Jairo Krichama]] · [[Lorrain Kiriam]]
-- **Equipe desfloreio** → [[Equipe desfloreio]]: [[Vorn Drekar]] · [[Klaus von Aldric]] · [[Sinikko Kiriam (PJ)]] · [[Runa Skorn]] · [[Azgar Sandgale]] — um de cada continente do mundo, escolha deliberada para apresentar todos eles
+- **Equipe desfloreio** → [[Equipe desfloreio]]: [[Vorn Drekar]] · [[Klaus von Aldric]] · [[Sinikko Kiriam (PC)]] · [[Runa Skorn]] · [[Azgar Sandgale]] — um de cada continente do mundo, escolha deliberada para apresentar todos eles
 - **Eventos** → [[Sessão 0]] · [[Campanha 1 — Arco]] · [[Linha do Tempo]]
 - **Idioma nascido aqui** → [[Abissal]]
 - **Origem ligada ao Abismo** → [[Amaldiçoado]]
@@ -132,7 +132,7 @@ O desfecho da primeira campanha é o expurgo de [[Malkhor]]. Derrotado o [[Sinik
 2. **Que idade tem a descoberta.** Kharavel é dito *"descoberto há poucos séculos"* e já *"casa de raças de diversos lugares do planeta"*, mas também *"aparentemente recém-formado"*, com o Império sendo *"os primeiros a descobrir essa nova terra"* e [[Khaskavel]] com cinco anos na [[Sessão 0]] — e ainda assim *"os povos locais, que não são poucos"*, já resistiam. Séculos ou décadas? E quem chegou antes do Império: [[Skarv]], [[Xkamur]], os "primeiros povos que ruíram"? ([[Perguntas Abertas]] E17.)
 3. **Revavena cega pela árvore.** O desígnio da campanha diz que Khaskavel *e* [[Revavena]] estão *"completamente cegos pelo domínio d'A Grande Árvore"*, mas Revavena rejeita a árvore por princípio, chamando-a de A Praga. A leitura provável é que estejam cegos pelo conflito em torno dela, não por devoção a ela.
 4. **A região de [[Khaskavel]].** A divisão em nove regiões não cobre a cidade; pelo desenho ela fica entre o [[Emaranhado de Raízes]], a leste, e o [[Bosque Corrompido]], ao sul. Falta decidir se pertence a alguma.
-5. **A equipe de um por continente.** [[Vorn Drekar]] e [[Sinikko Kiriam (PJ)|Sinikko]] vêm ambos de [[Volkrest]], e ninguém representa Kharavel — a menos que Sinikko o represente, como imperador de Khaskavel ([[Perguntas Abertas]] E1 e E16).
+5. **A equipe de um por continente.** [[Vorn Drekar]] e [[Sinikko Kiriam (PC)|Sinikko]] vêm ambos de [[Volkrest]], e ninguém representa Kharavel — a menos que Sinikko o represente, como imperador de Khaskavel ([[Perguntas Abertas]] E1 e E16).
 6. **O sudoeste verde.** Cachoeiras e mata onde hoje há deserto: a região mudou em vinte e sete anos ou o que se registrava era a ilusão em escala regional? ([[Perguntas Abertas]] E5.)
 7. **A ilha florestada do sudeste** é o destino da realocação [[Skarv]]? ([[Perguntas Abertas]] E6.)
 8. **As fronteiras entre as nove regiões** foram deduzidas do desenho geral e ainda não têm traçado definido ([[Perguntas Abertas]] E14).

@@ -32,7 +32,7 @@ tags: [khalkaria/sistema, khalkaria/sistema/origens]
 - **Perícias** → [[Atributos e Perícias|Intuição]] ou [[Atributos e Perícias|Conhecimento]] (+1 à escolha)
 - **Idiomas** → 1 à escolha entre [[Comum]], [[Skalia]], [[Khazadun]], [[Natural]], [[Abissal]], [[Criptografado]]
 - **Casas nobres canônicas** → [[Kirkushav Drekar|Drekar]] ([[Império de Ferro]]) · [[Sinikko Kiriam (original)|Kiriam]] ([[Khaskavel]]) · [[Família Sandgale]] ([[Ossyria]])
-- **PJs com a origem** → [[Sinikko Kiriam (PJ)]] (ficha) · [[Vorn Drekar]] (por nascimento)
+- **PCs com a origem** → [[Sinikko Kiriam (PC)]] (ficha) · [[Vorn Drekar]] (por nascimento)
 - **Lugares** → [[Castelo de Kirkushav]] · [[Castelo do Sul]] · [[Khaskavel]]
 - **Economia** → 2d6+5 [[Sins]] · [[O Bazar]]
 

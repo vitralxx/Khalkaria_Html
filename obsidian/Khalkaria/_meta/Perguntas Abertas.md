@@ -50,7 +50,7 @@ Cada item precisa de decisão do Pedro. E1–E15 vieram do cruzamento Notion × 
 - **E31** Existe mapa-múndi com as posições relativas dos 5 continentes? (Azgar vai de canoa de Ossyria até um navio rumo a Volkrest.)
 - **E32** Fichas: cartas do Limiar declaram 8 mas listam 6 (Sinikko, Runa) ou 7 (Azgar). Quais faltam? Éter 375 de Sinikko confere?
 - **E33** Facção 'os Exilados' (grutos dos esgotos, versão 1 de Sinikko): manter o nome apesar de colidir com a Origem Exilado? Arquivar as versões 1 e 2 da história no Notion?
-- **E34** True ending: Notion diz 'os jogadores são transportados' × A16 diz 'um dos jogadores'; portal pela essência de Malkhor × brecha desbloqueada por Karma. Qual a ordem entre a profecia de Karma, Lena no casulo e o expurgo? O que acontece com a Vhelor se um PJ vira deus do Pecado?
+- **E34** True ending: Notion diz 'os jogadores são transportados' × A16 diz 'um dos jogadores'; portal pela essência de Malkhor × brecha desbloqueada por Karma. Qual a ordem entre a profecia de Karma, Lena no casulo e o expurgo? O que acontece com a Vhelor se um PC vira deus do Pecado?
 - **E35** Yenev × Mira: Yenev tem ~20 anos ao sumir (~−10), logo nasce ~−30; Mira nasce em −40, o que a faria mãe aos 10. Alguma idade está errada.
 - **E36** Data da queda do Castelo de Kirkushav (só 'há alguns anos'; Tev chega às ruínas em −3) e da fundação/tomada de Kuriam.
 - **E37** Idade de Sinikko em −27 nunca foi escrita. Situação de Kheyos e da Casa Isolada no ano 0 também não.

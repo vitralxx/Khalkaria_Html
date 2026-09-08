@@ -70,7 +70,7 @@ Os guardas cumprem o que Sevic os ouviu combinar. Se o papel não passa às mão
 - **Raça e reconstrução** → [[Humano]] (a confirmar) · [[Batedor]] · origens [[Andarilho]] ou [[Criminoso]]
 - **Escravo de** → [[Khaskavel]], sob [[Sinikko Kiriam (original)]] e o [[Império de Ferro]]
 - **Preso em** → [[Castelo de Kirkushav]], na cela do pátio, sob um guarda sem nome
-- **Interrogado pela** → [[Equipe desfloreio]]: [[Sinikko Kiriam (PJ)|Sinikko Kiriam]], [[Vorn Drekar]], [[Klaus von Aldric]], [[Runa Skorn]], [[Azgar Sandgale]]
+- **Interrogado pela** → [[Equipe desfloreio]]: [[Sinikko Kiriam (PC)|Sinikko Kiriam]], [[Vorn Drekar]], [[Klaus von Aldric]], [[Runa Skorn]], [[Azgar Sandgale]]
 - **Anuncia** → a chegada de [[Kirkushav Drekar]] e o plano da Vanguarda para o castelo
 - **Também no castelo naquela noite** → [[Hadran Vorgil]] · [[Jairo Krichama]]
 - **Ameaçado de execução por** → guardas da [[Vanguarda do Ferro]]

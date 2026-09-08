@@ -1,9 +1,11 @@
 # Mapas de Kharavel — descrição (imagens ainda não versionadas)
 
-Pedro enviou 3 mapas em 2026-09-05 como imagem inline no chat. Os PNGs **não** chegaram como arquivo; Pedro deve depositá-los aqui:
-- `kharavel_campanha.png` — Kharavel, 27 anos depois da Sessão 0 (mapa da campanha inteira)
-- `khaskavel_sessao0.png` — Khaskavel, 27 anos antes (Sessão 0 ocorre aqui)
-- `kharavel_sessao0.png` — Kharavel, 27 anos antes
+Os três mapas estão versionados nesta pasta (enviados pelo Pedro em 2026-09-06, formato `.webp`):
+- `kharavel_campanha.webp` — Kharavel, 27 anos depois da Sessão 0 (mapa usado na campanha inteira)
+- `khaskavel_sessao0.webp` — Khaskavel, 27 anos antes (a Sessão 0 ocorre aqui)
+- `kharavel_sessao0.webp` — Kharavel, 27 anos antes
+
+A descrição abaixo foi feita lendo as imagens e é o que as notas de região e local usam como referência de posição.
 
 ## 1. Kharavel — campanha (27 anos depois)
 Legenda de 9 regiões (cores): Emaranhado de Raízes (magenta) · Bosque Corrompido (vermelho) · Cinturão Silencioso (ciano) · Bacia Acidentada (branco) · Deserto do Abismo (roxo) · Terras Livres (amarelo) · Cordilheira Cristalina (azul) · Costas Rochosas (verde) · Ermo das Cinzas (preto).
