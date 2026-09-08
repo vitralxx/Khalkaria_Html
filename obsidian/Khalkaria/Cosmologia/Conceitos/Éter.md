@@ -93,5 +93,5 @@ A exposição constante à substância corrompe: é assim que nascem [[Corrompid
 ## Procedência
 - Notion: Magias `3a66e3a401d98097a5d4e316154f9fcb` · Sistema raiz `2b76e3a401d980c0ab7bc27a342f4ee1` · Teurgo `caa6e3a401d98330bae281511750d407` · O Limiar (lore) `3416e3a401d9802fa419f94e4c7cfbe7` · 2. Volkrest `33e6e3a401d9817fa7a8c67c898343e2` · 4. Aether `33e6e3a401d9812bab36f280892bf817` · Kheyos `33e6e3a401d9819789c0da0fcde2f114` · O Limiar (cartas) `3a66e3a401d9806db1f8d6975255f676`
 - Respostas do mestre (2026-09-05): A2, A14, B1, B4, B8, C10 (grafia **Etérico**) · (2026-09-07): o Éter é substância, não entidade
-- Memória do repositório: `docs/memoria/notion_raw/magias.md`, `sistema_root.md`, `classe_teurgo.md`, `lore_kharavel_seres_filhas.md`, `lore_volkrest.md`, `lore_aether.md`, `lore_kharavel_npcs.md`, `limiar.md` · digests `A_sistema.md`, `E_lore.md` §1, `D_limiar.md` §4
+- Memória do repositório: `docs/memoria/notion_raw/magias.md`, `sistema_root.md`, `classe_teurgo.md`, `lore_kharavel_seres_filhas.md`, `lore_volkrest.md`, `lore_aether.md`, `lore_kharavel_npcs.md`, `limiar.md` · levantamento A_sistema.md`, `E_lore.md` §1, `D_limiar.md` §4
 - Correções pendentes: grafia "Éterico" fora do vault → **Etérico**

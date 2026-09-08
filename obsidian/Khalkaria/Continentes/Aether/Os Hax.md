@@ -87,4 +87,4 @@ São o fio que costura [[Mordval]] e [[Aether]] na apresentação do mundo: dois
 ## Procedência
 - Notion: Os Hax `3696e3a401d98127a568c856497d9ce6` (🟡 Em desenvolvimento, ed. 2026-05-23, filha de 4. Aether) · Klaus von Aldric `33e6e3a401d9810ca145d41242d235b0` · Runa Skorn `33e6e3a401d981f2ae5fd3a12244a204`
 - Respostas do mestre (2026-09-05): A15 (os Hax são o fio que liga Mordval e Aether na apresentação dos continentes), A7 (Kheyos é mortal; a origem de sua corrupção não está escrita), B7 e B8 (a raça Corrompido tem regras próprias; os Hax são sua origem narrativa acelerada), C5 (grafia **Runa Skorn** — a página escreve "Runas Skorn" e "dragao autômato"; corrigir no Notion, junto da lista de presas que repete dryads e meio-cervos)
-- Memória do repositório: `docs/memoria/notion_raw/lore_aether_os_hax.md`, `sessao_os5_klaus.md`, `sessao_os5_runa.md`; digest `E_lore.md` §2.4
+- Memória do repositório: `docs/memoria/notion_raw/lore_aether_os_hax.md`, `sessao_os5_klaus.md`, `sessao_os5_runa.md`; levantamento E_lore.md` §2.4

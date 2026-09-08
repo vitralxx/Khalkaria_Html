@@ -40,4 +40,4 @@ Nenhum evento. O plano ainda não entrou na história do mundo.
 ## Procedência
 - Notion: Magias `3a66e3a401d98097a5d4e316154f9fcb` (Armadura do Oblívio, Selo do Oblívio) — o Oblívio não aparece em nenhuma página da árvore de lore
 - Respostas do mestre (2026-09-05): A4
-- Memória do repositório: `docs/memoria/notion_raw/magias.md` · digest `E_lore.md` §1, §4, §7
+- Memória do repositório: `docs/memoria/notion_raw/magias.md` · levantamento E_lore.md` §1, §4, §7

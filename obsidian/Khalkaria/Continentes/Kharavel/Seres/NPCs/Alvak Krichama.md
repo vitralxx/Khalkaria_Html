@@ -105,5 +105,5 @@ Quando descobrir que o luto pela primeira filha foi usado como isca e a vida int
 - Mestre, 2026-09-05 — A6 (história de Alvak e Lena, verbatim; o plano é de Vytália e Karmath) · A11 (Krichama ferreiros, Caxon engenheiros; Alvak na cidade, Jairo no castelo) · A18 (rivalidade Karmath × Malkhor)
 - Mestre, 2026-09-07 — idade de Lena corrigida: trinta e cinco anos na campanha, oito na Sessão 0, seis no resgate; dryads vivem mais que humanos. Substitui as contagens de "25 anos" e "dois anos após o resgate"
 - Mapa de Khaskavel na Sessão 0 — `docs/memoria/mapas/LEIA-ME_mapas.md` §2
-- Relatório de fidelidade 2026-09-05 (A6, A11, E12) · digest `docs/memoria/digests/E_lore.md` §6 itens 10 e 11
+- Relatório de fidelidade 2026-09-05 (A6, A11, E12) · `docs/memoria/digests/E_lore.md` §6 itens 10 e 11
 - Brutos em `docs/memoria/notion_raw/lore_kharavel_npcs.md`, `lore_kharavel_khaskavel_folhas.md`, `lore_kharavel_quest.md`, `raca_anao.md`

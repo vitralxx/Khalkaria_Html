@@ -49,7 +49,7 @@ Há também o exílio sem título. Os [[Rastas]] que fugiram de [[Khaskavel]] e 
 
 ## Procedência
 - Notion `6906e3a401d982208d1e01353e11a7d2` — Exilado 🔭 (🟢, ed. 2026-07-23); índice de Origens `3a66e3a401d9808aa877f7e7cb77002a`.
-- `docs/memoria/notion_raw/origens.md`; digest `C_racas_origens.md` §2.
+- `docs/memoria/notion_raw/origens.md`; levantamento C_racas_origens.md` §2.
 - Respostas do mestre 2026-09-05: **A9** (Kirkushav exilava para Ossyria; o Batedor derrotado pelos Sandgale) · **A5** (os Rastas fundam Revavena do zero).
 - Correção de redação aplicada aqui: cabeçalho "Perícia Treinada" → "Treinamento", como nas outras dezesseis.
 - Revisão de redação: 2026-09-08.

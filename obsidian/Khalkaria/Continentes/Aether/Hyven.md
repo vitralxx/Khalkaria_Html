@@ -66,4 +66,4 @@ Os autômatos falam o [[Idiomas|Criptografado]]: *"Idioma extinto dos autômatos
 ## Procedência
 - Notion: 4. Aether `33e6e3a401d9812bab36f280892bf817`, seção Hyven (🟡) · Runa Skorn `33e6e3a401d981f2ae5fd3a12244a204`
 - Respostas do mestre (2026-09-05): B3 (o idioma dos autômatos é o Criptografado), A12 (Dryad = metade humano e metade animal à escolha; Runa é meia-cabra)
-- Memória do repositório: `docs/memoria/notion_raw/lore_aether.md`, `sessao_os5_runa.md`; digests `E_lore.md` §2.4, `F` §2
+- Memória do repositório: `docs/memoria/notion_raw/lore_aether.md`, `sessao_os5_runa.md`; levantamento E_lore.md` §2.4, `F` §2

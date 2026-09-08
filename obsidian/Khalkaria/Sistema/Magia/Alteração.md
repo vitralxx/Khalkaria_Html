@@ -293,5 +293,5 @@ As barras indicam, em ordem: **Contida / Normal / Forçada / Transbordante**. Na
 ## Procedência
 - Notion `3a66e3a401d98097a5d4e316154f9fcb` (Magias, 🟢 Pronto, fetch 2026-07-23) — seção 🌀 Alteração dos níveis 1 a 4; modulações também em `2b76e3a401d980c0ab7bc27a342f4ee1` (Sistema Khalkaria → Magias).
 - Respostas do mestre 2026-09-05: **B13** (a tabela vence a descrição), **B4** (1 magia por turno, *Disparo Veloz* como exceção, magia sustentada = Éter por turno), **B8** (nível 0 a criar), **B14** (as descrições longas foram revisadas e ficam como estão), **B12** (condições são efeito unitário), **B1** (os doze tipos de dano).
-- `docs/memoria/notion_raw/magias.md`; digest `A_sistema.md` §1.20–1.21, §3.
+- `docs/memoria/notion_raw/magias.md`; levantamento A_sistema.md` §1.20–1.21, §3.
 - Revisão de redação: 2026-09-07.

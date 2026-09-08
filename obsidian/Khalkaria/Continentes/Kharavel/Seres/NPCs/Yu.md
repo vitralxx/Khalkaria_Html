@@ -59,5 +59,5 @@ Nem todos couberam no plano: houve *"refugiados Skarv que passavam pela cidade"*
 ## Procedência
 - Notion — *Vilarejo Skarv* `33e6e3a401d981f68258f6a0be896c08` (🟡, ed. 2026-06-09), única página em que Yu aparece · *Os Hax* `3696e3a401d98127a568c856497d9ce6` · *Mira Vesnal* (refugiados Skarv em Revavena)
 - Mestre, 2026-09-05 — A12 (dryad = metade humano, metade animal à escolha) · A6 (Lena é a dryad do vilarejo, peça do plano de Vytália e Karmath) · B3 (o idioma Natural é dos animais, dryads e bestas)
-- Digest `docs/memoria/digests/E_lore.md` §2 e §5
+- `docs/memoria/digests/E_lore.md` §2 e §5
 - Brutos em `docs/memoria/notion_raw/lore_kharavel_cidades.md`, `lore_aether_os_hax.md`

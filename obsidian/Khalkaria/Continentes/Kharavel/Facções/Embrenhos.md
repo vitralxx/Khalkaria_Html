@@ -80,4 +80,4 @@ A cidade em que estão não é mais a cidade contra a qual os Rastas se rebelara
 ## Procedência
 - Notion — *Embrenhos* `33e6e3a401d981569024f9883fc59c05` (sem status, 2026-04-10) · *A Embrenha* `33e6e3a401d981eab0aeea427fd9f01e` · *Khaskavel* `33e6e3a401d981e39c8fe9df2e5a7f4d` (nomenclatura da árvore) · *Kuriam* `33e6e3a401d981ad83d7fe8266cc6630` · *Rastas* `39e6e3a401d9816e9861c60d9a86d1b9` · *Tev Kossar* `36d6e3a401d9811daf94f8854d6d01ee`
 - Mestre, 2026-09-05 — A5 (os escravos que ficaram e se transformaram junto com a cidade) · A6 (a Árvore se alimenta dos pecados) · B18 (o clone abandona os grutos)
-- Brutos em `docs/memoria/notion_raw/lore_kharavel_khaskavel_folhas.md`, `lore_kharavel_cidades.md`, `lore_kharavel_faccoes_filhas.md`, `lore_kharavel_npcs.md` · digest `docs/memoria/digests/E_lore.md` §2
+- Brutos em `docs/memoria/notion_raw/lore_kharavel_khaskavel_folhas.md`, `lore_kharavel_cidades.md`, `lore_kharavel_faccoes_filhas.md`, `lore_kharavel_npcs.md` · `docs/memoria/digests/E_lore.md` §2

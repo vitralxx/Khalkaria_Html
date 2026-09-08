@@ -192,6 +192,6 @@ O dano **Perfurante** que domina o arsenal da classe é subtipo do Ordinário, e
 ## Procedência
 - Notion `d896e3a401d983f38cc78196ad7491b4` — Artilheiro (ed. 2026-08-05, 🟢 Pronto); índice de Classes `3a66e3a401d9809b8eceec1f30be9fd2`.
 - Respostas do mestre 2026-09-05: **B9** — *"Intencional, execução é o inimigo."* — o teto de Concentração `3 + Mod.SAB` é deliberado, e em *Execução* quem recebe os 2d6 perfurantes é o alvo, não o atirador (a fonte escreve "Você recebe") · **B2** (munição: 1 unidade por combate inteiro) · **B11** (ramos 3/2/1 nos níveis 2/4/5) · **B12** (*Marcado*, *irritado* e *Escondido* criadas para uso unitário) · **B1** (Perfurante é Ordinário; Fogo é Elemental) · **B16** ("Reflexo" → Reflexos, "Intimidar" → Intimidação) · **A11** (os anões Caxon são os engenheiros).
-- `docs/memoria/notion_raw/classe_artilheiro.md`, `classe_index.md`; digest `B_classes.md` §7, inconsistências 1, 4, 5, 18, 21, 23.
+- `docs/memoria/notion_raw/classe_artilheiro.md`, `classe_index.md`; levantamento B_classes.md` §7, inconsistências 1, 4, 5, 18, 21, 23.
 - Correções pendentes na fonte: a frase "Você recebe 2d6" em *Execução* (aqui já corrigida para "O alvo recebe", conforme B9); "3 no Tier" sem o "1"; grafias legadas *Sangrando 2* e *Exausto 1*, que deveriam ler-se **Sangramento 2** e **Exaustão 1** ([[Condições]]) e foram preservadas como estão na fonte. O typo *Vicio* → Vício já está normalizado.
 - Revisão de redação: 2026-09-07.

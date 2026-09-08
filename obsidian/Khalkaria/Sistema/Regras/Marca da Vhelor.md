@@ -7,7 +7,7 @@ continente: Kharavel
 aliases: ["Marcas da Vhelor", "Marca", "marca dourada angular", "Sucumbência"]
 fonte_notion: [33e6e3a401d981ef841aefa20793d48d, pedro-2026-09-05]
 ultima_sync: 2026-09-07
-tags: [khalkaria/continentes/kharavel/a-vhelor]
+tags: [khalkaria/sistema, khalkaria/sistema/regras]
 ---
 # Marca da Vhelor
 
@@ -22,10 +22,10 @@ tags: [khalkaria/continentes/kharavel/a-vhelor]
 | Marcas | Penalidade acumulada |
 |---|---|
 | 1 | Marca dourada angular surge na pele (cosmética, mas **detectável por cultistas**, que reconhecem os seus). Sonhos ocasionais com a Vhelor. |
-| 2 | −10 Éter máximo permanente. Todo amanhecer: teste de Vontade (CD crescente) ou sente compulsão de consumir mais. |
-| 3 | **Vício estabelecido.** Sem consumir 1 folha por semana, entra em abstinência: −2 em todas as rolagens e condição Desorientado até consumir. |
+| 2 | −10 de [[Éter]] máximo permanente ([[Regras de Magia]]). Todo amanhecer: teste de Vontade ([[Atributos e Perícias]]) com CD crescente ou sente compulsão de consumir mais. |
+| 3 | **Vício estabelecido.** Sem consumir 1 folha por semana, entra em abstinência: −2 em todas as rolagens e [[Condições|Desorientado]] até consumir. |
 | 4 | Pele clareia visivelmente, perdendo cor até um branco doentio. Olhos perdem foco. −5 em interações sociais (não-corrompidos sentem repulsa instintiva). Ouve sussurros constantes da Vhelor. |
-| 5 | Em situações de stress ou combate: teste de Vontade ou fica *descontrolado* e age com agressividade pecaminosa involuntária por 1 rodada (ataca o aliado mais próximo, comete crueldade gratuita). |
+| 5 | Em situações de stress ou combate: teste de Vontade ([[Atributos e Perícias]]) ou fica *descontrolado* e age com agressividade pecaminosa involuntária por 1 rodada (ataca o aliado mais próximo, comete crueldade gratuita). |
 | 6 | **Quase-não-retorno.** O GM ganha o direito de ditar 1 ação pecaminosa do personagem por sessão. O personagem sente lucidamente que está se perdendo — e não consegue parar. |
 | 7 | **Sucumbência.** O personagem vira NPC sob controle do GM: uma criatura corrompida da Vhelor, agente involuntário de Malkhor. O jogador perde o personagem — que pode reaparecer como mini-boss depois. |
 
@@ -81,4 +81,5 @@ A palidez do quarto degrau não é exclusiva das folhas: é *"a assinatura visua
 ## Procedência
 - Notion: Substâncias da Grande Árvore `33e6e3a401d981ef841aefa20793d48d` · Lázlo `36d6e3a401d9818d9cddefbdd4015aad`
 - Respostas do mestre (2026-09-05): A18, B12, B17
-- Memória do repositório: `docs/memoria/notion_raw/lore_kharavel_substancias.md` · digest `E_lore.md` §2 · regra do repositório sobre a coluna de notas do catálogo do Bazar (não canônica)
+- Memória do repositório: `docs/memoria/notion_raw/lore_kharavel_substancias.md` · levantamento E_lore.md` §2 · regra do repositório sobre a coluna de notas do catálogo do Bazar (não canônica)
+- Nota realocada de `Continentes/Kharavel/A Vhelor/` para `Sistema/Regras/` em 2026-09-08: é regra, não lore.

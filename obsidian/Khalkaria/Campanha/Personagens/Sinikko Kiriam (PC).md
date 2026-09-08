@@ -130,7 +130,7 @@ Texto integral das técnicas em [[Teurgo]]; as magias, em [[Regras de Magia]].
 ## Pontas soltas
 1. **Dois volkrestianos numa equipe de cinco continentes.** Sinikko e [[Vorn Drekar]] vêm do mesmo lugar; se Sinikko representa [[Kharavel]] por ser imperador de Khaskavel, isso nunca foi dito com todas as letras. ([[Perguntas Abertas]] E1, E16)
 2. **"Os Exilados"** — a facção de grutos criminosos da primeira versão da história perdeu o nome nas versões seguintes, e o nome colide com a Origem Exilado de [[Azgar Sandgale]]. Manter, renomear ou arquivar? ([[Perguntas Abertas]] E33)
-3. **Éter 375 no nível 4.** A soma pressupõe Grande Éter dobrando o total, Duas Mangas somando dez e o Canalizador por cima; ainda assim é uma ordem de grandeza que destoa de tudo. ([[Perguntas Abertas]] E32)
+3. **O total de Éter declarado no nível 4** só fecha somando Grande Éter, Duas Mangas e o Canalizador — e ainda assim é uma ordem de grandeza que destoa de tudo que as regras preveem ([[Regras de Magia]], [[Progressão]]). O número está na ficha. ([[Perguntas Abertas]] E32)
 4. **As duas cartas que faltam** — a folha declara oito e lista seis. ([[Perguntas Abertas]] E32)
 5. **A idade dele nunca foi escrita**, nem a data em que foi nomeado imperador; e a capital do Império onde tudo isso aconteceu continua sem nome. ([[Perguntas Abertas]] E27, E37)
 6. **Ele era maligno o bastante?** A árvore cresce à medida da maldade de quem sonha, e vinte e sete anos bastaram para que a Vhelor chegasse ao ponto em que está. Um político populista que passou a vida protegendo os seus é matéria-prima estranha para isso — ver [[O Sonhador]].
@@ -139,5 +139,5 @@ Texto integral das técnicas em [[Teurgo]]; as magias, em [[Regras de Magia]].
 - Notion — página de PC *Sinikko Kiriam* `33e6e3a401d98172bcefef2453ce1564` (🟡, ed. 2026-07-18; três versões da história) · *📜 Ficha - Sinikko Kiriam* `3676e3a401d980babe07d418ffd1c9a2` (🟢) · *Roteiro da Sessão 0* `33e6e3a401d9819796c9dfb2263e215d` · *Sinikko Kiriam* (NPC, lore) `33e6e3a401d9813d8cf5d8d8e6c3fddc` · *Kirkushav Drekar* `33e6e3a401d98131815efc830056e2e3`
 - Mestre, 2026-09-05 — A10 (as três fases; não é filho de Kirkushav; o sucessor descartado, verbatim acima) · B18 (a contradição de governar uma colônia escravista, verbatim acima) · A5 (Karma lê seu passado e profetiza) · A6 (a cena da Arrma Boua) · A14 (*"sempre possuiu conexão com as forças materializantes"*) · A15 e E1 (o continente que ele representa) · B13 (a tabela manda sobre a descrição das magias) · B16 ("Conhecer" e "Enganar" são nomes legados) · B17 (autorização para refazer a ficha)
 - A corrigir nos registros: as páginas de Kirkushav e do NPC Sinikko ainda dizem que ele foi criado como filho
-- Digest `docs/memoria/digests/F_sessoes_outros.md` §2, incidentes 3, 7, 12 e 18
+- `docs/memoria/digests/F_sessoes_outros.md` §2, incidentes 3, 7, 12 e 18
 - Brutos em `docs/memoria/notion_raw/sessao_os5_sinikko.md`, `lore_mention_sinikko_sessao0.md`, `sessao_npc_sinikko_lore.md`

@@ -49,7 +49,7 @@ Nem toda fuga é da capital. [[Tev Kossar]] saiu d'[[A Embrenha]] depois da fáb
 
 ## Procedência
 - Notion `b236e3a401d9833a99778127942ab31d` — Refugiado 💥 (🟢, ed. 2026-07-23); índice de Origens `3a66e3a401d9808aa877f7e7cb77002a`.
-- `docs/memoria/notion_raw/origens.md`; digest `C_racas_origens.md` §2, §4.12.
+- `docs/memoria/notion_raw/origens.md`; levantamento C_racas_origens.md` §2, §4.12.
 - Respostas do mestre 2026-09-05: **A5** (Revavena abriga os desafortunados; quem ficou por medo e a facção escrava que se transformou com a cidade) · **B16** ("Reflexo" = Reflexos).
 - Correções de redação aplicadas aqui: "Reflexo" → **Reflexos**; "2 Comida" → plural. As correções seguem pendentes na fonte (lote 2).
 - Revisão de redação: 2026-09-08.

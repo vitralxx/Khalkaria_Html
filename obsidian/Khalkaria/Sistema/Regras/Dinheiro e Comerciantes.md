@@ -74,5 +74,5 @@ O degrau máximo escreve-se **Luxária** ([[O Bazar]]).
 ## Procedência
 - Notion `2b76e3a401d980c0ab7bc27a342f4ee1` — Dinheiro; Comerciantes.
 - Respostas do mestre 2026-09-05: **A18** (notas de ambientação do catálogo não são cânone), **C6** (grafia Luxária). Sins como contador livre, sem trava de aquisição: decisão de projeto da ficha interativa, `CLAUDE.md` §5.
-- `docs/memoria/notion_raw/sistema_root.md`; digest `A_sistema.md` §1.13.
+- `docs/memoria/notion_raw/sistema_root.md`; levantamento A_sistema.md` §1.13.
 - Revisão de redação: 2026-09-07.

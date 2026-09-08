@@ -69,5 +69,5 @@ O que se perde na estrada volta no acampamento — ver [[Descanso]], cuja comodi
 - Notion `2b76e3a401d980c0ab7bc27a342f4ee1` — Jornada.
 - Respostas do mestre 2026-09-05: **B16** ("Interação Social(Motivar)" é a perícia Motivar), **A17** (a geografia é escrita antes da história; a distância entre as coisas é parte da narrativa).
 - Mapas de Kharavel: `docs/memoria/mapas/`.
-- `docs/memoria/notion_raw/sistema_root.md`; digest `A_sistema.md` §1.16.
+- `docs/memoria/notion_raw/sistema_root.md`; levantamento A_sistema.md` §1.16.
 - Revisão de redação: 2026-09-07.

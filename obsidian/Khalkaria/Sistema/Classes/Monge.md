@@ -218,6 +218,6 @@ O Abismo que o Vazio encara é [[O Abismo]], a região de [[Kharavel]] onde est�
 ## Procedência
 - Notion `0876e3a401d98388a48d8136e92563bc` — Monge (ed. 2026-08-05, 🟢 Pronto); índice de Classes `3a66e3a401d9809b8eceec1f30be9fd2`.
 - Respostas do mestre 2026-09-05: **B7** ("transcendência só tem 1 vez também", em contradição com a fonte) · **B11** (ramos 3/2/1 nos níveis 2/4/5) · **B12** (*Marcado*, *Luto Selvagem*, *Pacto Sombrio* e *Parcialmente Intangível* criadas para uso unitário; "Lentidão 2 se refere a lento 2") · **B1** (Necrótico e Força são místicos — "dano de força é gravidade geralmente e oriundo dos deuses"; Contundente é Ordinário) · **B3** (O Abismo como prisão da figura material de Osh'Kar) · **B5** (o Abismo será refeito) · **B16** ("Reflexo" → Reflexos).
-- `docs/memoria/notion_raw/classe_monge.md`, `classe_index.md`; digest `B_classes.md` §5, inconsistências 1, 2, 3, 12, 18, 21.
+- `docs/memoria/notion_raw/classe_monge.md`, `classe_index.md`; levantamento B_classes.md` §5, inconsistências 1, 2, 3, 12, 18, 21.
 - Correções pendentes na fonte: "3 no Tier" sem o "1"; grafia legada *Exausto 1*, que deveria ler-se **Exaustão 1** ([[Condições]]) e foi preservada aqui como está na fonte. Os typos *Sussuros* → Sussurros e *Ápatico* → Apático já estão normalizados.
 - Revisão de redação: 2026-09-07.

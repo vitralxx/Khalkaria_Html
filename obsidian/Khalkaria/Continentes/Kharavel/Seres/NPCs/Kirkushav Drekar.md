@@ -121,5 +121,5 @@ Ele nunca soube que o Sinikko que ficou com a cidade não era Sinikko, e o clone
 - Notion — *Kirkushav Drekar* `33e6e3a401d98131815efc830056e2e3` (🟡, ed. 2026-07-23) · *Roteiro da Sessão 0* `33e6e3a401d9819796c9dfb2263e215d` (🟡, ed. 2026-07-24) · *Castelo em Ruínas* `3696e3a401d98161a014d3747e46b42b` · *Hadran Vorgil* `36d6e3a401d9817792d8ef277f93f46a` · *Sinikko Kiriam* (página de PC) `33e6e3a401d98172bcefef2453ce1564` · *Sevic* `33e6e3a401d981b99d17e52ca1383748` · *Azgar Sandgale* `33e6e3a401d9814caa28c26a3a66e84c` · páginas de PC de Vorn, Klaus e Runa
 - Mestre, 2026-09-05 — A5 (contratante da equipe desfloreio; Sinikko imperador por delegação) · A8 (o bilhete é de um dia antes da chegada) · A9 (o plano contra os Sandgale e a mentira sobre o Batedor, verbatim) · A10 (não é pai de Sinikko; o sucessor descartado, verbatim) · A11 (Jairo é o ferreiro do castelo) · B18 (o clone corta relações com o Império)
 - Grafias a corrigir nos registros: "Império do Ferro" e "Vanguarda Seratélia" (correções C2 e C3)
-- Digests `docs/memoria/digests/E_lore.md` §2 e `F_sessoes_outros.md` §1, §3, §6 itens 1–3
+- `docs/memoria/digests/E_lore.md` §2 e `F_sessoes_outros.md` §1, §3, §6 itens 1–3
 - Brutos em `docs/memoria/notion_raw/lore_kharavel_npcs.md`, `sessao_npc_kirkushav.md`, `sessao_roteiro.md`, `sessao_os5_*.md`, `sessao_npcs_relacionados.md`

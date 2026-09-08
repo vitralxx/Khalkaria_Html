@@ -48,6 +48,28 @@ tags: [khalkaria/sistema, khalkaria/sistema/regras]
 
 A tentativa consome a ação de descanso do jogador — ver [[Descanso]].
 
+## Itens das tendas da Sessão 0
+
+Quinze itens vendidos a **70 Sins** cada nas três tendas improvisadas do pátio do [[Castelo de Kirkushav]], na [[Sessão 0]]. As fichas são as do dia da sessão e trazem grafias antigas de condição e de tipo de dano ([[Condições]], [[Tipos de Dano]]); a raridade de cada um ainda não foi fixada nas cinco faixas acima.
+
+| Tenda | Item | Efeito |
+|---|---|---|
+| 1 — Mercador [[Alquimista]] | Mutagênico Menor | +4 em um atributo, −2 em outro. Dura 10 min. |
+| | Bomba de Vácuo | 2d10 Força em 3m. Puxa alvos 3m para o centro. |
+| | Adrenalina de Campo | Inconsciente acorda com 50% de Saúde. Fica Exausto 1. |
+| | Poção de Cura Moderada | Recupera 3d6+Int de Saúde. Consumível. |
+| | Óleo do Caçador | +2 Atacar, +2d6 dano contra 1 criatura escolhida. Dura 1h. |
+| 2 — Mercador Engenheiro | Arpéu Mecânico | Braço mecânico de mola. 1x por combate: como reação, agarra um alvo em 4,5m e o puxa para perto de você (Movimento CD 14 para resistir). |
+| | Regulador Temporal | Dispositivo de corda. Ao ativar (1 ação), emite pulso que concede +1 Ação ao portador na próxima rodada. Recarrega em descanso longo. |
+| | Kit de Trauma | 3x por descanso longo: estabiliza um Morrendo e cura 2d6 + remove 1 condição física. |
+| | Botas Aracnídeas | Escala qualquer superfície (inclusive teto) à velocidade normal por 10 min, 2x por descanso longo. |
+| | Torreta Portátil | Monta em 1 ação. Dispara automático no início do seu turno: 2d6 Perfurante no inimigo mais próximo em 12m. 15 de Saúde. Dura a cena. |
+| 3 — Mercador [[Teurgo]] | Capa de Deslocamento | 1x por descanso longo: Como reação, um ataque contra você erra automaticamente. |
+| | Cinturão do Colosso | +2 Força. Conta como +1 categoria de tamanho para manobras. |
+| | Olho do Tirano | Ao reduzir um inimigo a 0 de Saúde, seu próximo ataque causa dano máximo nos dados. 1x por descanso longo. |
+| | Capa do Salto | Triplica a distância de salto. 1x por descanso longo: cai de qualquer altura sem dano e em pé. |
+| | Anel do Último Suspiro | 1x por descanso longo: ao cair a 0 de Saúde, fica com 1 de Saúde em vez de Morrendo. |
+
 ## O que vale e o que não vale no catálogo
 
 Cada item do catálogo publicado traz uma coluna de notas de ambientação. **Essas notas não são cânone** até serem validadas item a item; já se sabe que duas são falsas:
@@ -65,6 +87,7 @@ Preço, raridade, categoria e requisitos do catálogo continuam valendo; só a c
 - **Fabricação exige** → [[Atributos e Perícias]] (Ofício) e [[Descanso]] (descanso longo)
 - **Armaduras e escudos entram em** → [[Dano, Ataque e Defesa]]
 - **Comida e cura** → [[Sobrevivência, Fé e Estresse]]
+- **Itens de mesa** → as tendas da [[Sessão 0]]
 - **Fabricado por** → [[Alvak Krichama]], [[Jairo Krichama]], [[Alquimista]], [[Artilheiro]]
 
 ## Pontas soltas
@@ -76,6 +99,6 @@ Preço, raridade, categoria e requisitos do catálogo continuam valendo; só a c
 - Notion `2b76e3a401d980c0ab7bc27a342f4ee1` — O Bazar: categorias, raridades, Sistema de Crafting.
 - Respostas do mestre 2026-09-05: **A18** (notas de ambientação do catálogo não são cânone; casos do Bastão de Karmath e da Marca 4), **C6** (grafia **Luxária**).
 - Catálogo publicado: `Bazar_Khalkaria_v25.csv` → `pages/bazar.html` (mantido pelo mestre, fora do escopo dos agentes).
-- `docs/memoria/notion_raw/sistema_root.md`; digest `A_sistema.md` §1.12, §3.23.
+- `docs/memoria/notion_raw/sistema_root.md`; levantamento A_sistema.md` §1.12, §3.23.
 - Correção pendente na fonte: "Luxaria" → "Luxária" na tabela de venda e na lista de fabricáveis.
 - Revisão de redação: 2026-09-07.

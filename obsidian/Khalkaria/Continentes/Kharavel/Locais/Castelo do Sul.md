@@ -44,4 +44,4 @@ Nada além do desenho: uma ruína no cinza. As cartas do continente de vinte e s
 ## Procedência
 - Notion — *Ermo das Cinzas* `37b6e3a401d98125880bcd6e07e58000` (🟠, ed. 2026-06-10), única página que o cita
 - Mapas de Kharavel, campanha e Sessão 0 — `docs/memoria/mapas/LEIA-ME_mapas.md` §1 e §3
-- Digest `docs/memoria/digests/E_lore.md` §2 · bruto em `docs/memoria/notion_raw/lore_kharavel_locais_regioes.md`
+- `docs/memoria/digests/E_lore.md` §2 · bruto em `docs/memoria/notion_raw/lore_kharavel_locais_regioes.md`

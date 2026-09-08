@@ -59,4 +59,4 @@ Há vinte e sete anos, planície sem assentamento algum. Hoje, [[Revavena]] cons
 - Notion — *Karmath* `39e6e3a401d981bab6e3d23fadefe734` · *Revavena* `33e6e3a401d981619f07d156693b051f`
 - Mestre, 2026-09-05 — A5 (fuga dos Rastas e fundação de Revavena do zero; profecia de Karma)
 - Mapas de Kharavel, campanha e Sessão 0 — `docs/memoria/mapas/LEIA-ME_mapas.md`
-- Digest `docs/memoria/digests/E_lore.md` §2
+- `docs/memoria/digests/E_lore.md` §2

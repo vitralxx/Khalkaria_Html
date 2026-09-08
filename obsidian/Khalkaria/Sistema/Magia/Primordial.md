@@ -94,5 +94,5 @@ Duas cartas raras de [[O Limiar (cartas)]] usam a mesma expressão:
 - Notion `3a66e3a401d98097a5d4e316154f9fcb` (Magias — Nível 4 e Regras de Magia), `2b76e3a401d980c0ab7bc27a342f4ee1` (Sistema Khalkaria — Armas: Foco Primordial; Magias: "escolas do primórdio") e `3a66e3a401d9806db1f8d6975255f676` (O Limiar — cartas Duas Mangas e Mestre Teurgo Supremo).
 - Respostas do mestre 2026-09-05: **B1** (natureza do dano Primordial), **A2** e **A4** (o Primórdio como plano dos deuses, atemporal e binário), **B8** (nível 0 a criar), **B13** (a tabela vence a descrição).
 - A leitura "Primordial (nível 5, Foco Primordial)" vem do protocolo de trabalho `CLAUDE.md`, não do Notion.
-- `docs/memoria/notion_raw/magias.md`, `sistema_root.md`, `limiar.md`; digests `A_sistema.md` §1.10, §1.20–1.21 e `D_limiar.md` §6.
+- `docs/memoria/notion_raw/magias.md`, `sistema_root.md`, `limiar.md`; levantamento A_sistema.md` §1.10, §1.20–1.21 e `D_limiar.md` §6.
 - Revisão de redação: 2026-09-07.

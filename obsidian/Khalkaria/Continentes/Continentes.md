@@ -63,4 +63,4 @@ Volkrest é o berço declarado de [[Humano]]s, [[Gruto]]s, [[Autômato]]s e [[In
 ## Procedência
 - Notion: Continentes `33e6e3a401d981c39158ccebacdd2224` (🟡 Em desenvolvimento, ed. 2026-05-23), com as cinco filhas numeradas 1–5 na ordem acima. Só Kharavel tem árvore profunda de subpáginas; Volkrest tem uma filha (O Império do Ferro), Aether tem uma (Os Hax) e uma seção inline (Hyven); Mordval e Ossyria são um parágrafo cada (🟠 Rascunho).
 - Respostas do mestre (2026-09-05): A15 (um integrante por continente, intencional), A16 (toda a lore é privada — nada desta pasta vai para o site), A17 (*"eu geralmente tendo a pensar geograficamente antes de tudo, definir regiões de facções dai escrever a história do continente"* — método de criação a seguir em todo continente; Ul'Nir e Xa'Lor são de outra campanha e devem ser ignorados; ler os mapas em `docs/memoria/mapas/` antes de escrever geografia).
-- Memória do repositório: `docs/memoria/notion_raw/lore_continentes.md`; digest `E_lore.md` §2.
+- Memória do repositório: `docs/memoria/notion_raw/lore_continentes.md`; levantamento E_lore.md` §2.

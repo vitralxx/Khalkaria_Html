@@ -101,5 +101,5 @@ O ramo Arauto do [[Teurgo]] oferece um patrono que quase certamente é ele — m
 ## Procedência
 - Notion: Osh'Kar `3416e3a401d980bea207e73d726ec1bc` · Deuses `33e6e3a401d9817f9470e140120b1c22` · O Abismo `3696e3a401d981aeb840ece0726fbf97` · Cultos de Osh'Kar `3696e3a401d98125a280d7b0bf485494` · Deserto do Abismo `37b6e3a401d9817ca984f3eca3a11688` · Hadran Vorgil `36d6e3a401d9817792d8ef277f93f46a` · Lázlo `36d6e3a401d9818d9cddefbdd4015aad` · Origem Amaldiçoado `1056e3a401d9836ab1e901e614e5d3d4` · Teurgo `caa6e3a401d98330bae281511750d407`
 - Respostas do mestre (2026-09-05): B3, B5, B7
-- Memória do repositório: `docs/memoria/notion_raw/lore_kharavel_deuses_paginas.md`, `lore_kharavel_seres_filhas.md`, `lore_kharavel_locais_regioes.md`, `lore_kharavel_faccoes_filhas.md`, `lore_kharavel_npcs.md`, `origens.md`, `classe_teurgo.md` · digests `E_lore.md` §1, §6 · `D_limiar.md` (Abismo)
+- Memória do repositório: `docs/memoria/notion_raw/lore_kharavel_deuses_paginas.md`, `lore_kharavel_seres_filhas.md`, `lore_kharavel_locais_regioes.md`, `lore_kharavel_faccoes_filhas.md`, `lore_kharavel_npcs.md`, `origens.md`, `classe_teurgo.md` · levantamento E_lore.md` §1, §6 · `D_limiar.md` (Abismo)
 - Correções pendentes nas páginas de origem: a natureza do Abismo (Deuses, Osh'Kar, O Abismo) depois do abandono da ideia de "representação do Plano dos Mortos"

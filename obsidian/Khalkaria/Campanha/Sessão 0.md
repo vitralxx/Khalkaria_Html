@@ -99,27 +99,13 @@ A última acusação é falsa e o Soberano sabe: quem matou o Batedor foi [[Terk
 > - 3 tendas improvisadas de venda.
 > - Servos transferindo recursos da carroça de Kirkushav até o interior do castelo.
 
-Três tendas, todos os itens a **70 [[Sins]]**:
+Três tendas improvisadas, todos os itens a **70 [[Sins]]**:
 
-| Tenda | Item | Efeito |
-|---|---|---|
-| 1 — Mercador [[Alquimista]] | Mutagênico Menor | +4 em um atributo, −2 em outro. Dura 10 min. |
-| | Bomba de Vácuo | 2d10 Força em 3m. Puxa alvos 3m para o centro. |
-| | Adrenalina de Campo | Inconsciente acorda com 50% de Saúde. Fica Exausto 1. |
-| | Poção de Cura Moderada | Recupera 3d6+Int de Saúde. Consumível. |
-| | Óleo do Caçador | +2 Atacar, +2d6 dano contra 1 criatura escolhida. Dura 1h. |
-| 2 — Mercador Engenheiro | Arpéu Mecânico | Braço mecânico de mola. 1x por combate: como reação, agarra um alvo em 4,5m e o puxa para perto de você (Movimento CD 14 para resistir). |
-| | Regulador Temporal | Dispositivo de corda. Ao ativar (1 ação), emite pulso que concede +1 Ação ao portador na próxima rodada. Recarrega em descanso longo. |
-| | Kit de Trauma | 3x por descanso longo: estabiliza um Morrendo e cura 2d6 + remove 1 condição física. |
-| | Botas Aracnídeas | Escala qualquer superfície (inclusive teto) à velocidade normal por 10 min, 2x por descanso longo. |
-| | Torreta Portátil | Monta em 1 ação. Dispara automático no início do seu turno: 2d6 Perfurante no inimigo mais próximo em 12m. 15 de Saúde. Dura a cena. |
-| 3 — Mercador [[Teurgo]] | Capa de Deslocamento | 1x por descanso longo: Como reação, um ataque contra você erra automaticamente. |
-| | Cinturão do Colosso | +2 Força. Conta como +1 categoria de tamanho para manobras. |
-| | Olho do Tirano | Ao reduzir um inimigo a 0 de Saúde, seu próximo ataque causa dano máximo nos dados. 1x por descanso longo. |
-| | Capa do Salto | Triplica a distância de salto. 1x por descanso longo: cai de qualquer altura sem dano e em pé. |
-| | Anel do Último Suspiro | 1x por descanso longo: ao cair a 0 de Saúde, fica com 1 de Saúde em vez de Morrendo. |
+- **Mercador [[Alquimista]]** — Mutagênico Menor · Bomba de Vácuo · Adrenalina de Campo · Poção de Cura Moderada · Óleo do Caçador
+- **Mercador Engenheiro** — Arpéu Mecânico · Regulador Temporal · Kit de Trauma · Botas Aracnídeas · Torreta Portátil
+- **Mercador [[Teurgo]]** — Capa de Deslocamento · Cinturão do Colosso · Olho do Tirano · Capa do Salto · Anel do Último Suspiro
 
-As fichas dos itens são as do dia da sessão: os efeitos citam condições e tipos de dano pelos nomes antigos ([[Condições|Exaustão]], [[Tipos de Dano|Perfurante]] e [[O Bazar|raridade]] têm hoje grafia própria).
+Efeitos, custos e raridade em [[O Bazar]]. As fichas usadas no dia da sessão trazem nomes antigos de condição e de dano ([[Condições]], [[Tipos de Dano]]).
 
 ## A prisão
 
@@ -183,5 +169,5 @@ O que sai de lá não é o que entrou: [[Sinikko Kiriam (original)|Sinikko]] ocu
 - Notion — *Sessão 0* `33e6e3a401d98175a7ccc9b79197bdf4` · *Roteiro da Sessão 0* `33e6e3a401d9819796c9dfb2263e215d` · *Os 5 escolhidos* `33e6e3a401d981ca971ec20d99f37233` · *Sevic* `39e6e3a401d981cdbd37cd863742b4f8`
 - Mestre, 2026-09-05 — A5 (interrogatório de Karma, profecia, fuga dos Rastas) · A6 (Lena na Arrma Boua) · A8 (o bilhete é de um dia antes da chegada) · A9 (a mentira sobre o Batedor) · A10 (Sinikko treinado como sucessor, não filho) · A11 (Jairo × Alvak) · A15 (um integrante por continente) · A16 (o desfecho é segredo de mesa)
 - A corrigir nos registros: a frase *"O relógio da Sessão 0 começa a correr no instante em que os PCs leem o papel"* na página de Sevic (o bilhete é da véspera); grafias antigas nas fichas das tendas ("Exausto 1" → Exaustão 1; "Perfurante" listado fora dos Ordinários)
-- Digests `docs/memoria/digests/F_sessoes_outros.md` §1, §4, §6
+- `docs/memoria/digests/F_sessoes_outros.md` §1, §4, §6
 - Brutos em `docs/memoria/notion_raw/sessao_roteiro.md`, `sessao_sessoes_index.md`, `sessao_npcs_relacionados.md`

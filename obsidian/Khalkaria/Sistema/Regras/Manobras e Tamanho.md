@@ -59,5 +59,5 @@ tags: [khalkaria/sistema, khalkaria/sistema/regras]
 
 ## Procedência
 - Notion `2b76e3a401d980c0ab7bc27a342f4ee1` — Manobras; Tamanho.
-- `docs/memoria/notion_raw/sistema_root.md`; digest `A_sistema.md` §1.8–1.9.
+- `docs/memoria/notion_raw/sistema_root.md`; levantamento A_sistema.md` §1.8–1.9.
 - Revisão de redação: 2026-09-07.

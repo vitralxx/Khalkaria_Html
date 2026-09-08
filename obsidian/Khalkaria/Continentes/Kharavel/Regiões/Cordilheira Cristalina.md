@@ -60,4 +60,4 @@ As montanhas já estavam aqui vinte e sete anos atrás, no centro-sul do contine
 - Notion — *Cordilheira Cristalina* `37b6e3a401d98170bcdadabd058821ac` (🟠 rascunho, 2026-06-10)
 - Mestre, 2026-09-05 — B5 (a escalada do pico desativa a ilusão do oásis, citada verbatim acima)
 - Mapas de Kharavel, campanha e Sessão 0 — `docs/memoria/mapas/LEIA-ME_mapas.md`
-- Digest `docs/memoria/digests/E_lore.md` §2
+- `docs/memoria/digests/E_lore.md` §2

@@ -76,5 +76,5 @@ A campanha atual nasce do buraco que eles abriram. As fichas dos cinco continuam
 ## Procedência
 - Notion — *Sessão 0* `33e6e3a401d98175a7ccc9b79197bdf4` · *Os 5 escolhidos* `33e6e3a401d981ca971ec20d99f37233` · páginas de PC de Vorn `33e6e3a401d981b99d17e52ca1383748`, Klaus `33e6e3a401d9810ca145d41242d235b0`, Sinikko `33e6e3a401d98172bcefef2453ce1564`, Runa `33e6e3a401d981f2ae5fd3a12244a204` e Azgar `33e6e3a401d9814caa28c26a3a66e84c`
 - Mestre, 2026-09-05 — A15 (um por continente, intencional, verbatim acima) · A5 (a equipe contratada por Kirkushav; os cinco nomes) · A10 (Vorn é o filho; Sinikko, sucessor descartado) · A6 e A16 (o casulo, o Sonhador, o clone, o desfecho) · A12 (Runa é Dryad) · B17 (*"Tudo desatualizado, pode atualizar"* — as cinco fichas)
-- Digest `docs/memoria/digests/F_sessoes_outros.md` §2 · relatório `docs/memoria/fidelidade_notion_vs_pedro_2026-09-05.md` (A15, E1)
+- `docs/memoria/digests/F_sessoes_outros.md` §2 · relatório `docs/memoria/fidelidade_notion_vs_pedro_2026-09-05.md` (A15, E1)
 - Brutos em `docs/memoria/notion_raw/sessao_sessoes_index.md`, `sessao_os5_*.md`

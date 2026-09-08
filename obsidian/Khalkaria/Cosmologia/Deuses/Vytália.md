@@ -114,5 +114,5 @@ Duas magias de nível 4 pedem por ela: *Vytália* ([[Abjuração]]) e *Tecido de
 ## Procedência
 - Notion: Vytália `39e6e3a401d9813dbd3cf924ae613a9a` · Deuses `33e6e3a401d9817f9470e140120b1c22` · Templo da Profecia `33f6e3a401d980dd982ad39fcba2ed4e` · A Grande Árvore `33e6e3a401d9813b8a60f1f9669803be` · 2. Volkrest `33e6e3a401d9817fa7a8c67c898343e2` · Lore raiz `2e66e3a401d9806cba24f41572810b80` · O Limiar (lore) `3416e3a401d9802fa419f94e4c7cfbe7` · Magias `3a66e3a401d98097a5d4e316154f9fcb`
 - Respostas do mestre (2026-09-05): A3, A6, A18, B3, C1 (grafia **Vytália**)
-- Memória do repositório: `docs/memoria/notion_raw/lore_kharavel_deuses_paginas.md`, `lore_kharavel_seres_filhas.md`, `lore_kharavel_locais_regioes.md`, `lore_kharavel_grande_arvore.md`, `lore_root.md`, `lore_volkrest.md`, `lore_kharavel_npcs.md`, `magias.md` · digest `E_lore.md` §1, §6
+- Memória do repositório: `docs/memoria/notion_raw/lore_kharavel_deuses_paginas.md`, `lore_kharavel_seres_filhas.md`, `lore_kharavel_locais_regioes.md`, `lore_kharavel_grande_arvore.md`, `lore_root.md`, `lore_volkrest.md`, `lore_kharavel_npcs.md`, `magias.md` · levantamento E_lore.md` §1, §6
 - Correções pendentes nas páginas de origem: grafia "Vytalia" (Deuses, O Limiar); autoria do plano de Lena (Lena Skarv, Alvak Krichama, Substâncias)

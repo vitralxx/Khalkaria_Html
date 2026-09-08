@@ -56,7 +56,7 @@ Em [[Kharavel]] a fé tem endereço e exército: a [[Igreja Serafélia]] e a [[V
 
 ## Procedência
 - Notion `ee96e3a401d98310ad5581d3c14301db` — grafado "Acolito" na origem (🟢, ed. 2026-07-23); índice de Origens `3a66e3a401d9808aa877f7e7cb77002a`.
-- `docs/memoria/notion_raw/origens.md`; digest `C_racas_origens.md` §2, §4.13.
+- `docs/memoria/notion_raw/origens.md`; levantamento C_racas_origens.md` §2, §4.13.
 - Respostas do mestre 2026-09-05: **C7** (grafia oficial **Acólito**) · **A1** (mortais leem Karmath como homem implacável — erro deles) · **A18** (Karmath × Malkhor, citação) · **A16** (segredo final).
 - Correção de grafia pendente de aplicação no Notion: "Acolito" → "Acólito" (lote 2 de correções de redação).
 - Revisão de redação: 2026-09-07.

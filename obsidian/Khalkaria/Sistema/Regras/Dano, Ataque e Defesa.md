@@ -62,5 +62,5 @@ O que é ordinário, o que é atípico e quais são os doze tipos está em [[Tip
 ## Procedência
 - Notion `2b76e3a401d980c0ab7bc27a342f4ee1` — Dano, Ataque e Defesa.
 - Respostas do mestre 2026-09-05: **B1** (os 12 tipos de dano em 4 categorias; "Gelo" é erro).
-- `docs/memoria/notion_raw/sistema_root.md`; digest `A_sistema.md` §1.7, §3.24.
+- `docs/memoria/notion_raw/sistema_root.md`; levantamento A_sistema.md` §1.7, §3.24.
 - Revisão de redação: 2026-09-07.

@@ -55,5 +55,5 @@ Houve pelo menos uma vez em que o sul saiu da vida simples e pegou em armas: o c
 ## Procedência
 - Notion — *Facções* `3696e3a401d9814f8e0dfa4c6b50b850` (🟡, 2026-07-15; entrada "Povos Diversos do Sul — ainda não mapeados", e "Grupos Independentes — outros grupos a desenvolver conforme a campanha avança") · *Direcionamento* `33e6e3a401d98190a21ae6c430acbc38` (🟢, 2026-05-24) · *Kuriam* `33e6e3a401d981ad83d7fe8266cc6630` · *Castelo em Ruínas* `3696e3a401d98161a014d3747e46b42b`
 - Mestre, 2026-09-05 — A17 (a geografia vem antes: regiões de facção primeiro, história depois; o sul ainda não passou por essa etapa) · B5 (o pico da Cordilheira Cristalina desfaz a ilusão do Oásis)
-- Brutos em `docs/memoria/notion_raw/lore_kharavel_faccoes.md`, `lore_kharavel_direcionamento.md`, `lore_kharavel_cidades.md`, `lore_kharavel_locais_regioes.md`, `sessao_roteiro.md` · digest `docs/memoria/digests/E_lore.md` §2
+- Brutos em `docs/memoria/notion_raw/lore_kharavel_faccoes.md`, `lore_kharavel_direcionamento.md`, `lore_kharavel_cidades.md`, `lore_kharavel_locais_regioes.md`, `sessao_roteiro.md` · `docs/memoria/digests/E_lore.md` §2
 - Quando os povos do sul ganharem nome, cada um pede nota própria e esta passa a índice.

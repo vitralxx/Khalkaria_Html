@@ -181,6 +181,6 @@ A *resistência a dano Ordinário* concedida pelo Frenesi vale para os três sub
 ## Procedência
 - Notion `a2c6e3a401d982f187320168cbb2e7d8` — Brutalista (ed. 2026-08-05, 🟢 Pronto); índice de Classes `3a66e3a401d9809b8eceec1f30be9fd2`.
 - Respostas do mestre 2026-09-05: **B11** (ramos 3/2/1 nos níveis 2/4/5 — a contagem desta classe já estava certa, faltava só o "1" na frase) · **B16** ("Interação Social(Intimidação)" → Intimidação; Ataque/Defesa → Atacar/Defender) · **B12** (*provocado* criada para uso unitário; revisão adiada) · **B1** (Ordinário reúne Cortante, Perfurante e Contundente; a Ae pode apontar para qualquer um dos doze tipos).
-- `docs/memoria/notion_raw/classe_brutalista.md`, `classe_index.md`; digest `B_classes.md` §3, inconsistências 1, 9, 13, 14, 17, 18, 21.
+- `docs/memoria/notion_raw/classe_brutalista.md`, `classe_index.md`; levantamento B_classes.md` §3, inconsistências 1, 9, 13, 14, 17, 18, 21.
 - Correções pendentes na fonte: "3 no Tier" sem o "1"; nomes legados de perícia.
 - Revisão de redação: 2026-09-07.

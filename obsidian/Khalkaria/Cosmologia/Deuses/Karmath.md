@@ -115,5 +115,5 @@ Na [[Sessão 0]], por obra dessa bênção, Karma conhece todo o passado de [[Si
 ## Procedência
 - Notion: Karmath `39e6e3a401d981bab6e3d23fadefe734` · Deuses `33e6e3a401d9817f9470e140120b1c22` · Templo da Profecia `33f6e3a401d980dd982ad39fcba2ed4e` · 2. Volkrest `33e6e3a401d9817fa7a8c67c898343e2` · Karma `39e6e3a401d98199a0bbf981a89abc2d` · Alvak Krichama `33e6e3a401d98103af5ef241c6512d02` · Lena Skarv `3696e3a401d981969032ea2fcf0b406e` · Kheyos `33e6e3a401d9819789c0da0fcde2f114` · Rastas `39e6e3a401d9816e9861c60d9a86d1b9`
 - Respostas do mestre (2026-09-05): A1 (é **deusa**), A5, A6, A7 (Kheyos é mortal), A16, A18
-- Memória do repositório: `docs/memoria/notion_raw/lore_kharavel_deuses_paginas.md`, `lore_kharavel_seres_filhas.md`, `lore_kharavel_locais_regioes.md`, `lore_volkrest.md`, `lore_kharavel_npcs.md`, `lore_kharavel_faccoes_filhas.md` · digest `E_lore.md` §1, §6
+- Memória do repositório: `docs/memoria/notion_raw/lore_kharavel_deuses_paginas.md`, `lore_kharavel_seres_filhas.md`, `lore_kharavel_locais_regioes.md`, `lore_volkrest.md`, `lore_kharavel_npcs.md`, `lore_kharavel_faccoes_filhas.md` · levantamento E_lore.md` §1, §6
 - Correções pendentes nas páginas de origem: "O deus da justiça" na lista de Deuses e em Volkrest; "Filho Semideus de Karmath" na página de [[Kheyos]]; a nuance da rivalidade com Malkhor nas páginas de Kha e Malkhor

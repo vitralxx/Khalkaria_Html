@@ -94,6 +94,6 @@ Gareth Ironhold · Mira Ashvale · Torvald Grimstone · Elara Nightwind · Dariu
 ## Procedência
 - Notion `07a6e3a401d98339bd6d819dea28568f` — Humano (🟡 Em desenvolvimento, ed. 2026-07-26); índice de Raças `3a66e3a401d980318836edcfa11c8a24`; 2. Volkrest `33e6e3a401d9817fa7a8c67c898343e2`; @Nomes Aleatórios `33e6e3a401d981d09cadf2397f4a8856`.
 - Respostas do mestre 2026-09-05: **B16** (as perícias sociais foram individualizadas; "Interação Social(X)" é nomenclatura legada) · **B3** (os seis idiomas; Khazadun exige cordas vocais anãs) · **A13** (o jogador lobisomem se apresenta como humano).
-- `docs/memoria/notion_raw/raca_humano.md`, `lore_volkrest.md`, `lore_kharavel_npcs.md`, `sessao_os5_sinikko.md`; digest `C_racas_origens.md` §1.
+- `docs/memoria/notion_raw/raca_humano.md`, `lore_volkrest.md`, `lore_kharavel_npcs.md`, `sessao_os5_sinikko.md`; levantamento C_racas_origens.md` §1.
 - Correções pendentes na fonte: "Interação Social(Intimidação)" → Intimidação; "Interação Social(Qualquer)" → perícia de interação à escolha.
 - Revisão de redação: 2026-09-07.

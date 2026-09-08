@@ -69,4 +69,4 @@ Do outro lado do mundo, em Khaskavel, Mordval é sinônimo de liberdade possíve
 ## Procedência
 - Notion: 3. Mordval `33e6e3a401d9813c9065fb6377553748` (🟠 Rascunho, ed. 2026-05-23) · Klaus von Aldric `33e6e3a401d9810ca145d41242d235b0` · Os Hax `3696e3a401d98127a568c856497d9ce6`
 - Respostas do mestre (2026-09-05): A15 (Mordval é o continente que Klaus apresenta), A4 e B1 (o *primórdio* da página é uso comum da palavra, não o plano; sem ligação declarada com o dano Primordial), A17 (a ilha Ul'Nir / Xa'Lor é de outra campanha e não pertence a Mordval)
-- Memória do repositório: `docs/memoria/notion_raw/lore_mordval.md`, `sessao_os5_klaus.md`, `lore_aether_os_hax.md`; digest `E_lore.md` §2.3
+- Memória do repositório: `docs/memoria/notion_raw/lore_mordval.md`, `sessao_os5_klaus.md`, `lore_aether_os_hax.md`; levantamento E_lore.md` §2.3

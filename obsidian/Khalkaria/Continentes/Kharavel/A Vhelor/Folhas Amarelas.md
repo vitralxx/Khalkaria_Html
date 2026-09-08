@@ -99,4 +99,4 @@ Quem acumula Marcas perde acesso ao que vem do outro lado da aposta:
 ## Procedência
 - Notion: Substâncias da Grande Árvore `33e6e3a401d981ef841aefa20793d48d` · Arrma Boua (arquivada) `33e6e3a401d98163beb4f770516bb0e8` · Roteiro da Sessão 0 `33e6e3a401d9819796c9dfb2263e215d`
 - Respostas do mestre (2026-09-05): A6, A18, C6
-- Memória do repositório: `docs/memoria/notion_raw/lore_kharavel_substancias.md`, `lore_kharavel_khaskavel_folhas.md`, `sessao_roteiro.md` · digest `E_lore.md` §2
+- Memória do repositório: `docs/memoria/notion_raw/lore_kharavel_substancias.md`, `lore_kharavel_khaskavel_folhas.md`, `sessao_roteiro.md` · levantamento E_lore.md` §2

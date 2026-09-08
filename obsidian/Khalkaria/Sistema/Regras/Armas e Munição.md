@@ -98,6 +98,6 @@ A regra em vigor: **uma unidade é gasta por combate inteiro** — pago o custo,
 ## Procedência
 - Notion `2b76e3a401d980c0ab7bc27a342f4ee1` — Armas; Efeitos; Nível de Armas; Munição de Armas.
 - Respostas do mestre 2026-09-05: **B2** — "Munições são gastas por combate, 1 unidade por combate inteiro […] Sem munição você não pode usar armas à distância durante todo o combate."
-- `docs/memoria/notion_raw/sistema_root.md`; digest `A_sistema.md` §1.10, §3.6.
+- `docs/memoria/notion_raw/sistema_root.md`; levantamento A_sistema.md` §1.10, §3.6.
 - Correção pendente na fonte: sintaxe quebrada do requisito do Foco Primordial (`*Experiente*>`).
 - Revisão de redação: 2026-09-07.

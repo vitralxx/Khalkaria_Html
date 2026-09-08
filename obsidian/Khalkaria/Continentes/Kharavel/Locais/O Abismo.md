@@ -96,5 +96,5 @@ Dois moradores das ruínas do [[Castelo de Kirkushav]] chegariam lá por caminho
 - Notion — *O Abismo* `3696e3a401d981aeb840ece0726fbf97` (🟡, ed. 2026-05-23) · *Osh'Kar* `3416e3a401d980bea207e73d726ec1bc` (🟠, ed. 2026-06-09) · *Deuses* `33e6e3a401d9817f9470e140120b1c22` (ed. 2026-09-04) · *Cultos de Osh'Kar* `3696e3a401d98125a280d7b0bf485494` (🟠) · *Mundarak* `39e6e3a401d981e3a7fdc5b89aa8146b` · *Lázlo* `36d6e3a401d9818d9cddefbdd4015aad` · *Hadran Vorgil* `36d6e3a401d9817792d8ef277f93f46a`
 - Mestre, 2026-09-05 — B3 (a prisão material, a corrupção por Velúria e Vytália, o nascimento do Abissal; verbatim) · B5 (a ilusão e o pico da Cordilheira; as corrupções ainda não criadas) · B7 (as cartas do Abismo serão refeitas)
 - Mapas de Kharavel, campanha e Sessão 0 — `docs/memoria/mapas/LEIA-ME_mapas.md`
-- Relatório de fidelidade 2026-09-05 (B3, E5) · digest `docs/memoria/digests/E_lore.md` §2 e §6 item 18
+- Relatório de fidelidade 2026-09-05 (B3, E5) · `docs/memoria/digests/E_lore.md` §2 e §6 item 18
 - Brutos em `docs/memoria/notion_raw/lore_kharavel_locais_regioes.md`, `lore_kharavel_deuses_paginas.md`, `lore_kharavel_seres_filhas.md`, `lore_kharavel_faccoes_filhas.md`, `lore_kharavel_npcs.md`

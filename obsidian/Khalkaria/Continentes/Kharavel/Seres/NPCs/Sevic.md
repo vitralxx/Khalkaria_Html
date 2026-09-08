@@ -97,5 +97,5 @@ Os guardas cumprem o que Sevic os ouviu combinar. Se o papel não passa às mão
 - Notion — *Sevic* `39e6e3a401d981cdbd37cd863742b4f8` (🟡, ed. 2026-07-15; a seção *O Bilhete* dessa página é o "documento do escravo" — não existe arquivo separado) · *Rastas* `39e6e3a401d9816e9861c60d9a86d1b9` · *Karma* `39e6e3a401d98199a0bbf981a89abc2d` · *Roteiro da Sessão 0* `33e6e3a401d9819796c9dfb2263e215d`
 - Mestre, 2026-09-05 — A8 (o bilhete é de um dia antes de Kirkushav chegar; ao chegar, ele anuncia a partida noturna e dá o prazo) · A5 (o interrogatório de Sevic e a descoberta dos Rastas, verbatim; Revavena fundada do zero)
 - Correção pendente na página de origem: o segundo gancho ainda diz que *"o relógio da Sessão 0 começa a correr no instante em que os PCs leem o papel"*, redação anterior à datação de A8
-- Relatório de fidelidade 2026-09-05 (A8) · digest `docs/memoria/digests/F_sessoes_outros.md` §0, §4 e §6 item 1
+- Relatório de fidelidade 2026-09-05 (A8) · `docs/memoria/digests/F_sessoes_outros.md` §0, §4 e §6 item 1
 - Brutos em `docs/memoria/notion_raw/lore_kharavel_npcs.md`, `sessao_npcs_relacionados.md`, `sessao_roteiro.md`, `lore_kharavel_faccoes_filhas.md`

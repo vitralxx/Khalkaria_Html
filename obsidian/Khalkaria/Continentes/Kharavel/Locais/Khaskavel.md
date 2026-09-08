@@ -127,5 +127,5 @@ Quem ainda vive nela vive escondido ou de passagem: [[Alvak Krichama]] mantém a
 - Notion, pendência editorial: as três páginas "(old)" desta cidade — *Arrma Boua (Forja) (old)*, *Culto de Khaskavel (old)*, *Iluminado (old)* — não tiveram arquivamento decidido em A6
 - Mestre, 2026-09-05 — A5 (fuga dos Rastas, escravos que ficaram, profecia de Karma) · A6 (diarquia; Lena na cidade) · A10 (Sinikko designado imperador) · A11 (Alvak é o ferreiro da cidade) · A16 (o clone e o desfecho verdadeiro) · B18 (a contradição de Sinikko e o rompimento do clone com o Império) · B3 · C2 (grafia Serafélia)
 - Mapas de Khaskavel e de Kharavel — `docs/memoria/mapas/LEIA-ME_mapas.md` §1 a §3
-- Digest `docs/memoria/digests/E_lore.md` §2 e §6 (itens 10, 13, 14, 15)
+- `docs/memoria/digests/E_lore.md` §2 e §6 (itens 10, 13, 14, 15)
 - Brutos em `docs/memoria/notion_raw/lore_kharavel_cidades.md`, `lore_kharavel_khaskavel_filhas.md`, `lore_kharavel_khaskavel_folhas.md`, `lore_kharavel_faccoes_filhas.md`, `lore_kharavel_npcs.md`, `sessao_roteiro.md`

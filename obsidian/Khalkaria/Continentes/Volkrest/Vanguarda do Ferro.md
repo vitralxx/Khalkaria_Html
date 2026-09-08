@@ -78,4 +78,4 @@ A leitura corrente é que ele fala da Serafélia, o futuro ponto de controle da 
 ## Procedência
 - Notion: Roteiro da Sessão 0 `33e6e3a401d9819796c9dfb2263e215d` · Hadran Vorgil `36d6e3a401d9817792d8ef277f93f46a` (🟡) e sua ficha CR 2 `3776e3a401d9813193def007042f0e34` · Castelo em Ruínas `3696e3a401d9814f8e0dfa4c6b50b850`
 - Respostas do mestre (2026-09-05): C4 (grafia oficial **Vanguarda do Ferro**; as fontes escrevem "de Ferro"), A6 (os executados por Alvak eram da Vanguarda Serafélia), A10 (Vorn é filho de Kirkushav, o que sustenta a fraternidade Vorn–Hadran)
-- Memória do repositório: `docs/memoria/notion_raw/sessao_roteiro.md`, `sessao_npcs_relacionados.md`, `lore_kharavel_npcs.md`; digest `F` §3, inc. 4–5
+- Memória do repositório: `docs/memoria/notion_raw/sessao_roteiro.md`, `sessao_npcs_relacionados.md`, `lore_kharavel_npcs.md`; levantamento F–5

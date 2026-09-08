@@ -49,7 +49,7 @@ Em terra, o ofício tem endereço: [[O Porto de Khaskavel]] e as [[Costas Rochos
 
 ## Procedência
 - Notion `6e56e3a401d9828f84d001ba75ff61c4` — Marinheiro ⚓ (🟢, ed. 2026-07-23); índice de Origens `3a66e3a401d9808aa877f7e7cb77002a`.
-- `docs/memoria/notion_raw/origens.md`; digest `C_racas_origens.md` §2.
+- `docs/memoria/notion_raw/origens.md`; levantamento C_racas_origens.md` §2.
 - Respostas do mestre 2026-09-05: **A6** (a filha de Alvak morre na travessia de Volkrest) · **A9** (Kirkushav exilava para Ossyria; tripulação imperial de humanos, grutos e anões) · **A15** (cada um dos cinco veio de um continente).
 - Correção de redação aplicada aqui: "2 Comidas (2 Bugiganga)" → plural. A correção segue pendente na fonte (lote 2).
 - Revisão de redação: 2026-09-08.

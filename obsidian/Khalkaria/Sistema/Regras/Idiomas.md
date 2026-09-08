@@ -63,6 +63,6 @@ Idiomas vêm de raça e origem — [[Acadêmico]] e [[Nobre]] concedem línguas 
 ## Procedência
 - Notion `2b76e3a401d980c0ab7bc27a342f4ee1` — Idioma (lista antiga de 6 entradas sob a frase "apenas 5 idiomas existem").
 - Respostas do mestre 2026-09-05: **B3** — lista definitiva, origem do Abissal e renomeação de "Esquecido" para "Criptografado". O trecho integral sobre o Abismo está preservado em [[Deserto do Abismo]] e [[O Abismo]].
-- `docs/memoria/notion_raw/sistema_root.md`; digest `A_sistema.md` §1.18, §3.1.
+- `docs/memoria/notion_raw/sistema_root.md`; levantamento A_sistema.md` §1.18, §3.1.
 - Correções pendentes na fonte: contagem "apenas 5 idiomas"; "Esquecido" → "Criptografado"; "Idioma dos Répteis" → grutos.
 - Revisão de redação: 2026-09-07.

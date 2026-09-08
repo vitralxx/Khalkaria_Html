@@ -44,4 +44,4 @@ Foi por aí que [[Kirkushav Drekar]] a pegou: alegou ter um *"avistamento recent
 
 ## Procedência
 - Notion: Runa Skorn `33e6e3a401d981f2ae5fd3a12244a204` · Os Hax `3696e3a401d98127a568c856497d9ce6`
-- Memória do repositório: `docs/memoria/notion_raw/sessao_os5_runa.md`; digest `F` §2
+- Memória do repositório: `docs/memoria/notion_raw/sessao_os5_runa.md`; levantamento F

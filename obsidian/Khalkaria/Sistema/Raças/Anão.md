@@ -70,11 +70,7 @@ Quem não nasceu anão pode, no máximo, entender: [[Lena Skarv]] compreende a l
 
 As [[Costas Rochosas]] *"Contém as Minas dos Krichama"* — a presença anã mais antiga registrada no continente. Os demais chegaram com o Império: a tripulação dos navios de [[Volkrest]] é *"composta de humanos, grutos e anões"*.
 
-[[Alvak Krichama]] veio nesses navios, *"ferreiro imigrante de Volkrest… filha biológica que morreu ainda no Império de Ferro"* — a travessia para Kharavel matou a filha. Em [[Khaskavel]] ele montou a forja [[Arrma Boua]], e foi ele quem executou dois soldados da [[Vanguarda Serafélia]] para salvar [[Lena Skarv]], hoje sua filha adotiva. Uma descrição antiga da forja o retrata assim:
-
-> um anão careca vestindo trajes de ferreiro, uma barba trançada porém desarrumada, seu corpo é cheio de cicatrizes e tatuagens, ele está completamente sujo de carvão.
-
-[[Jairo Krichama]] fez o mesmo caminho e parou antes: é o ferreiro do [[Castelo de Kirkushav]], "veio do império", e forja dois itens Exóticos. São dois anões distintos do mesmo clã — não se confundem.
+Os Krichama de Kharavel são dois, e não se confundem: [[Alvak Krichama]] tem a forja [[Arrma Boua]] em [[Khaskavel]]; [[Jairo Krichama]] bate ferro no [[Castelo de Kirkushav]]. As histórias de cada um estão em suas notas.
 
 ## Nomes
 
@@ -98,6 +94,6 @@ As [[Costas Rochosas]] *"Contém as Minas dos Krichama"* — a presença anã ma
 ## Procedência
 - Notion `f5a6e3a401d982b2a1f38123743db4be` — Anão (🟡 Em desenvolvimento, ed. 2026-08-28); índice de Raças `3a66e3a401d980318836edcfa11c8a24`; @Nomes Aleatórios `33e6e3a401d981d09cadf2397f4a8856`; Alvak Krichama `33e6e3a401d98103af5ef241c6512d02`; Roteiro da [[Sessão 0]] (Jairo) e página de Azgar Sandgale (a tripulação imperial).
 - Respostas do mestre 2026-09-05: **A11** — *"Todos os anões tem 2 sobrenomes possiveis, Krichama ou Caxon. Os krichama geralmente são ferreiros e os Caxon engenheiros. Jairo é o ferreiro do castelo de kirkushav. Alvak é o ferreiro da cidade de Khaskavel."* · **A6** (Alvak é imigrante de Volkrest, perdeu a filha na travessia e executou dois soldados da Vanguarda Serafélia para salvar Lena) · **B3** (Khazadun exige cordas vocais anãs; Lena só entende) · **B1** (Fogo é Elemental; "Ar Natural" é armadura natural).
-- `docs/memoria/notion_raw/raca_anao.md`, `lore_kharavel_npcs.md`, `lore_kharavel_khaskavel_folhas.md`, `lore_kharavel_locais_regioes.md`, `sessao_roteiro.md`, `sistema_root.md`; digest `C_racas_origens.md` §1, §4.15.
+- `docs/memoria/notion_raw/raca_anao.md`, `lore_kharavel_npcs.md`, `lore_kharavel_khaskavel_folhas.md`, `lore_kharavel_locais_regioes.md`, `sessao_roteiro.md`, `sistema_root.md`; levantamento C_racas_origens.md` §1, §4.15.
 - Correções pendentes na fonte: padronizar a grafia de Armadura(Ar) / Ae entre raças.
 - Revisão de redação: 2026-09-07.

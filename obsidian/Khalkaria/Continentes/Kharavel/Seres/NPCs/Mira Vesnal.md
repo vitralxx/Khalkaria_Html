@@ -98,5 +98,5 @@ Com [[Tev Kossar]], que trabalhou na mesma fábrica, ela pergunta *"sempre que h
 ## Procedência
 - Notion — *Mira Vesnal* `36d6e3a401d981fb97bceeec037e614d` (🟡, ed. 2026-05-28) · *Castelo em Ruínas* `3696e3a401d98161a014d3747e46b42b` · *A Grande Árvore* `33e6e3a401d9813b8a60f1f9669803be` (nomenclatura)
 - Mestre, 2026-09-05 — A5 (Revavena fundada do zero em −27 pelos Rastas) · A6 (as substâncias se tornam mais viciosas conforme o Sonhador) · C7 (grafia *Acólito*)
-- Digest `docs/memoria/digests/E_lore.md` §2 e §5
+- `docs/memoria/digests/E_lore.md` §2 e §5
 - Brutos em `docs/memoria/notion_raw/lore_kharavel_npcs.md`, `lore_kharavel_locais_regioes.md`, `lore_kharavel_grande_arvore.md`

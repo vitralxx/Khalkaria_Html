@@ -71,6 +71,6 @@ Nem todos foram para a ilha: houve *"refugiados Skarv que passavam pela cidade"*
 - Notion — *Vilarejo Skarv* `33e6e3a401d981f68258f6a0be896c08` (🟡, ed. 2026-06-09) · *Lena Skarv* `3696e3a401d981969032ea2fcf0b406e` · *Alvak Krichama* `33e6e3a401d98103af5ef241c6512d02` · *Mira Vesnal* `36d6e3a401d981fb97bceeec037e614d` · *Facções de Kharavel* `3696e3a401d9814f8e0dfa4c6b50b850`
 - Mestre, 2026-09-05 — A6 (a dryad do vilarejo perseguida por dois soldados da Vanguarda) · A12 (dryad = metade humano, metade animal à escolha)
 - Mapas de Kharavel, campanha e Sessão 0 — `docs/memoria/mapas/LEIA-ME_mapas.md` §1 e §3
-- Relatório de fidelidade 2026-09-05 (A6, E6) · digest `docs/memoria/digests/E_lore.md` §6 item 21
+- Relatório de fidelidade 2026-09-05 (A6, E6) · `docs/memoria/digests/E_lore.md` §6 item 21
 - Notion, pendência editorial: a página *Facções de Kharavel* aponta o vilarejo para *Locais > Vilarejo Skarv*, mas ele está catalogado em *Locais > Cidades*
 - Brutos em `docs/memoria/notion_raw/lore_kharavel_cidades.md`, `lore_kharavel_npcs.md`, `lore_kharavel_faccoes.md`

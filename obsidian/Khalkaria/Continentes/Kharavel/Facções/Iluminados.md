@@ -77,4 +77,4 @@ A elite de Vistaluz é mais velha que o senhor a quem serve hoje. Khaskavel come
 ## Procedência
 - Notion — *Iluminado (old)* `33e6e3a401d981d8a9ead434576e2aaf` (sem status, 2026-04-10; uma linha, transcrita na íntegra) · *Vistaluz* `33e6e3a401d98192ba6deb2cbe5bcc42` · *Khaskavel* `33e6e3a401d981e39c8fe9df2e5a7f4d` (nomenclatura da árvore) · *Culto de Malkhor* `3696e3a401d981a0b2e3f42c3fa846e6` · *Substâncias / Folhas Amarelas* `33e6e3a401d981ef841aefa20793d48d`
 - Mestre, 2026-09-05 — A6 (a diarquia de duas famílias) · B18 (o clone rompe com o Império) · C6 (grafia da raridade: Luxária)
-- Brutos em `docs/memoria/notion_raw/lore_kharavel_khaskavel_folhas.md`, `lore_kharavel_cidades.md`, `lore_kharavel_faccoes_filhas.md`, `lore_kharavel_substancias.md` · digest `docs/memoria/digests/E_lore.md` §2, §3
+- Brutos em `docs/memoria/notion_raw/lore_kharavel_khaskavel_folhas.md`, `lore_kharavel_cidades.md`, `lore_kharavel_faccoes_filhas.md`, `lore_kharavel_substancias.md` · `docs/memoria/digests/E_lore.md` §2, §3

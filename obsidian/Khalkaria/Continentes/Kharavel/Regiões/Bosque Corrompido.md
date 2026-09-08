@@ -69,4 +69,4 @@ Há vinte e sete anos a floresta já estava aqui, com o [[Vilarejo Skarv]] intei
 - Notion — *Alvak Krichama* `33e6e3a401d98103af5ef241c6512d02` · *Lena Skarv* `3696e3a401d981969032ea2fcf0b406e` · *Vilarejo Skarv* `33e6e3a401d981f68258f6a0be896c08`
 - Mestre, 2026-09-05 — A6 (a fuga de Lena e a execução dos dois soldados)
 - Mapas de Kharavel, campanha e Sessão 0 — `docs/memoria/mapas/LEIA-ME_mapas.md`
-- Digest `docs/memoria/digests/E_lore.md` §2
+- `docs/memoria/digests/E_lore.md` §2

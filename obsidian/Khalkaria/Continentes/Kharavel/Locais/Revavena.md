@@ -89,5 +89,5 @@ Continua fora do alcance de Khaskavel — *"Revavena e o resto de Kharavel conti
 - Notion — *Revavena* `33e6e3a401d981619f07d156693b051f` (🟡, ed. 2026-06-09) · *Rastas* `39e6e3a401d9816e9861c60d9a86d1b9` (🟡, ed. 2026-07-15) · *Karmath* `39e6e3a401d981bab6e3d23fadefe734` (🟠) · *Karma* `39e6e3a401d98199a0bbf981a89abc2d` · *Mira Vesnal* `36d6e3a401d981fb97bceeec037e614d` · *Sinikko Kiriam (NPC)* `33e6e3a401d9813d8cf5d8d8e6c3fddc` · *O Direcionamento* `33e6e3a401d98190a21ae6c430acbc38`
 - Mestre, 2026-09-05 — A5 (fundação do zero, verbatim; a profecia de Karma) · A1 (Karmath, deusa que abençoa mortais) · A16 (a brecha de Karma e o desfecho verdadeiro)
 - Mapas de Kharavel, campanha e Sessão 0 — `docs/memoria/mapas/LEIA-ME_mapas.md` §1 e §3
-- Relatório de fidelidade 2026-09-05 (A5, E10) · digest `docs/memoria/digests/E_lore.md` §2 e §6 (itens 13 e 25)
+- Relatório de fidelidade 2026-09-05 (A5, E10) · `docs/memoria/digests/E_lore.md` §2 e §6 (itens 13 e 25)
 - Brutos em `docs/memoria/notion_raw/lore_kharavel_cidades.md`, `lore_kharavel_faccoes_filhas.md`, `lore_kharavel_deuses_paginas.md`, `lore_kharavel_npcs.md`

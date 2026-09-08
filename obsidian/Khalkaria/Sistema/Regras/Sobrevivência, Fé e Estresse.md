@@ -52,6 +52,6 @@ A condição é *Exaustão 1*, *Exaustão 2* e assim por diante ([[Condições]]
 
 ## Procedência
 - Notion `2b76e3a401d980c0ab7bc27a342f4ee1` — Necessidades de Sobrevivência; Fé e Sanidade; Estresse.
-- `docs/memoria/notion_raw/sistema_root.md`; digest `A_sistema.md` §1.15.
+- `docs/memoria/notion_raw/sistema_root.md`; levantamento A_sistema.md` §1.15.
 - Correção pendente na fonte: "Exaustos N" → "Exaustão N".
 - Revisão de redação: 2026-09-07.

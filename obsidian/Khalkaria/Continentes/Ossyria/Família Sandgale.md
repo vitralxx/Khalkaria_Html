@@ -4,7 +4,7 @@ status: canon-pedro
 spoiler: gm
 era: pre-sessao0
 continente: Ossyria
-aliases: ["Sandgale", "os Sandgale", "Sandgales", "Terk Sandgale", "os exilados de Ossyria"]
+aliases: ["Sandgale", "os Sandgale", "Sandgales", "os exilados de Ossyria"]
 fonte_notion: [33e6e3a401d9814caa28c26a3a66e84c, 33e6e3a401d9819796c9dfb2263e215d, pedro-2026-09-05]
 ultima_sync: 2026-09-07
 tags: [khalkaria/continentes/ossyria]
@@ -53,11 +53,11 @@ A acusação é uma alavanca deliberada: culpa falsa somada à esperança de ree
 ## Relações
 - **Vivem em** → [[Ossyria]]
 - **Exilados por** → [[Império de Ferro]] / [[Kirkushav Drekar]], *"O homem responsável pelo exílio"*
-- **Membros** → Terk Sandgale, o pai caçador; [[Azgar Sandgale]], o filho ([[Artilheiro]], origem [[Exilado]])
+- **Membros** → [[Terk Sandgale]], o pai caçador; [[Azgar Sandgale]], o filho ([[Artilheiro]], origem [[Exilado]])
 - **Mataram** → o Batedor de Kirkushav, volkrestiano de broche, enviado para assassiná-los
 - **Alvo de** → um plano de assassinato do próprio Soberano
 - **Segredo explorado contra Azgar** → sua origem em Ossyria, e o *"esquecimento total do passado"* prometido em troca da missão
-- **Ente querido procurado** → Terk
+- **Ente querido procurado** → [[Terk Sandgale]]
 
 ## Linha do tempo
 - **Antes de C−32:** Terk é exilado com Azgar ainda bebê; sobrevive; ergue casa e abrigo.
@@ -75,4 +75,4 @@ A acusação é uma alavanca deliberada: culpa falsa somada à esperança de ree
 ## Procedência
 - Notion: Azgar Sandgale `33e6e3a401d9814caa28c26a3a66e84c` · Roteiro da Sessão 0 `33e6e3a401d9819796c9dfb2263e215d`
 - Resposta do mestre (2026-09-05): A9, citada acima na íntegra — o plano de assassinato, o Batedor morto por Terk e a manipulação intencional de Azgar
-- Memória do repositório: `docs/memoria/notion_raw/sessao_os5_azgar.md`, `sessao_roteiro.md`; digest `F` §2, inc. 2
+- Memória do repositório: `docs/memoria/notion_raw/sessao_os5_azgar.md`, `sessao_roteiro.md`; levantamento F

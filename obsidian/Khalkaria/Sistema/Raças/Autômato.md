@@ -27,9 +27,7 @@ O corpo é máquina, e a máquina tem consequências: nada de doença, sangue ou
 
 > Civilização autômata de tecnologia mística altamente avançada, localizada em parte remota de Aether. Aceita poucos forasteiros e prioriza engenharia mística — combinação de artefatos mecânicos com canalização do plano místico.
 
-Foi [[Hyven]] que adotou [[Runa Skorn]] — encontrada na estrada por um batedor autômato, aceita como Hyveniana por engenhosidade e presenteada, mais tarde, com um chifre robótico para substituir o que [[Os Hax]] arrancaram.
-
-Da mesma linhagem mecânica vêm os **dragões autômatos**, *"rarísssimo, praticamente extinto"*. Runa encontrou um preso havia muito tempo, com um nome rabiscado na carcaça: [[Ilou Skorn]]. Do cristal azul dele nasceu **Ilou Jr.**, *"um autômato companheiro altamente avançado, movido a uma única fonte de energia"*. [[Kirkushav Drekar]] guarda notícia de um "avistamento recente de Skorn".
+A civilização é [[Hyven]], em [[Aether]], e ela adota forasteiros por engenhosidade — foi assim com [[Runa Skorn]]. Da mesma linhagem mecânica vêm os **dragões autômatos**, *"rarísssimo, praticamente extinto"* — ver [[Ilou Skorn]].
 
 ## A língua cifrada
 
@@ -121,6 +119,6 @@ Unit-7 Cogwheel · Brass Sentinel · Axis Gearspark · Volt Mechanisms · Cipher
 ## Procedência
 - Notion `80c6e3a401d98398b2ff0126a7c983b9` — Autômato (🟡 Em desenvolvimento, ed. 2026-07-24); índice de Raças `3a66e3a401d980318836edcfa11c8a24`; 4. Aether `33e6e3a401d9812bab36f280892bf817`; 2. Volkrest `33e6e3a401d9817fa7a8c67c898343e2`; @Nomes Aleatórios `33e6e3a401d981d09cadf2397f4a8856`.
 - Respostas do mestre 2026-09-05: **B3** — *"O idioma Esquecido, que vai virar o idioma Criptografado(Idioma extinto dos autômatos desde que eles começaram criptografar a linguagem comum para preservação da facção automata, todos os registros e conhecimentos automatos são comunicados nessa língua)"* · **B1** (Fogo, Frio e Elétrico são os Elementais; "dano de força" é místico; Cortante é Ordinário) · **B2** (munição gasta por combate, coerente com o Braço Balístico) · **C6** (grafia **Luxária**).
-- `docs/memoria/notion_raw/raca_automato.md`, `lore_aether.md`, `lore_volkrest.md`, `sessao_os5_runa.md`, `sistema_root.md`; digest `C_racas_origens.md` §1, §4.6–4.8.
+- `docs/memoria/notion_raw/raca_automato.md`, `lore_aether.md`, `lore_volkrest.md`, `sessao_os5_runa.md`, `sistema_root.md`; levantamento C_racas_origens.md` §1, §4.6–4.8.
 - Correções pendentes na fonte: declarar o idioma na ficha racial; grafias "Luxaria" → Luxária, "Modulo" → Módulo, "maquina" → máquina; subtipos de dano por escrito nas tecnologias.
 - Revisão de redação: 2026-09-07.

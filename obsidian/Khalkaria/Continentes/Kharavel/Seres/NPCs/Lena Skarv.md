@@ -101,5 +101,5 @@ A saída elegante é o segredo do [[Templo da Profecia]]: derrotar o [[Sinikko K
 - Notion — *Lena Skarv* `3696e3a401d981969032ea2fcf0b406e` (🟡, ed. 2026-05-23) · *Alvak Krichama* `33e6e3a401d98103af5ef241c6512d02` · *Vilarejo Skarv* `33e6e3a401d981f68258f6a0be896c08` · *O Sonhador* `33e6e3a401d98126bae4e981b581487f` · *Direcionamento* `33e6e3a401d98190a21ae6c430acbc38` §4 · *Templo da Profecia* `33f6e3a401d980dd982ad39fcba2ed4e` · *Hadran Vorgil* (gancho de sequestro)
 - Mestre, 2026-09-05 — A6 (o coração puro, o plano de Vytália e Karmath, o resgate, verbatim) · A12 (dryad = metade humano, metade animal) · A16 (o true ending como alternativa ao sacrifício) · A18 (artefatos de Vytália exigem usuário não corrompido)
 - Mestre, 2026-09-07 — **correção de idade**: dryads vivem mais que humanos; Lena tem trinta e cinco anos na campanha, oito na Sessão 0 e seis no resgate, dois anos antes da expedição. Substitui "quinze anos", "resgatada há dois anos" e "tinha treze anos"
-- Relatório de fidelidade 2026-09-05 (A6) · digest `docs/memoria/digests/E_lore.md` §6 item 11
+- Relatório de fidelidade 2026-09-05 (A6) · `docs/memoria/digests/E_lore.md` §6 item 11
 - Brutos em `docs/memoria/notion_raw/lore_kharavel_npcs.md`, `lore_kharavel_sonhador.md`, `lore_kharavel_direcionamento.md`

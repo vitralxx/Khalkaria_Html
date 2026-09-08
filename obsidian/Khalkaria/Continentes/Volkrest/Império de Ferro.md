@@ -119,4 +119,4 @@ O clone *"cortou relações com o Império de Ferro"*. Na prática o Império pe
 - Resposta do mestre (2026-09-07): a ascensão do Império só foi possível depois da Queda da Plenitude — um império brutal e imperialista não teria espaço no mundo anterior
 - Grafias corrigidas ao citar: "Vanguarda Seratélia" (página de Kirkushav) = [[Vanguarda Serafélia]]
 - Correção pendente no Notion: a página de Kirkushav afirma que ele adotou Sinikko como filho — contraria A10 e deve ser reescrita como treinamento de sucessor e refém político
-- Memória do repositório: `docs/memoria/notion_raw/lore_volkrest_imperio_do_ferro.md`, `sessao_npc_kirkushav.md`, `sessao_roteiro.md`, `sessao_os5_*.md`; digests `E_lore.md` §2.2, `F` §1–3
+- Memória do repositório: `docs/memoria/notion_raw/lore_volkrest_imperio_do_ferro.md`, `sessao_npc_kirkushav.md`, `sessao_roteiro.md`, `sessao_os5_*.md`; levantamento E_lore.md` §2.2, `F` §1–3

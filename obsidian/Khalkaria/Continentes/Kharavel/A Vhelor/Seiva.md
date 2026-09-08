@@ -110,4 +110,4 @@ O [[Sinikko Kiriam (clone)]] recebeu uma ordem e fez dela um projeto continental
 ## Procedência
 - Notion: Substâncias da Grande Árvore `33e6e3a401d981ef841aefa20793d48d` · Culto de Malkhor `3696e3a401d981a0b2e3f42c3fa846e6` · Culto de Khaskavel (arquivada) `33e6e3a401d98110a854d7bdd14fa685` · Roteiro da Sessão 0 `33e6e3a401d9819796c9dfb2263e215d` · Sinikko Kiriam `33e6e3a401d9813d8cf5d8d8e6c3fddc` · Vilarejo Skarv `33e6e3a401d981f68258f6a0be896c08` · Templo da Profecia `33f6e3a401d980dd982ad39fcba2ed4e` · páginas de NPCs (Mira, Tev, Hadran, Karma)
 - Respostas do mestre (2026-09-05): A5, A6, A18, B18
-- Memória do repositório: `docs/memoria/notion_raw/lore_kharavel_substancias.md`, `lore_kharavel_faccoes_filhas.md`, `lore_kharavel_khaskavel_folhas.md`, `sessao_roteiro.md`, `lore_kharavel_npcs.md` · digest `E_lore.md` §2
+- Memória do repositório: `docs/memoria/notion_raw/lore_kharavel_substancias.md`, `lore_kharavel_faccoes_filhas.md`, `lore_kharavel_khaskavel_folhas.md`, `sessao_roteiro.md`, `lore_kharavel_npcs.md` · levantamento E_lore.md` §2

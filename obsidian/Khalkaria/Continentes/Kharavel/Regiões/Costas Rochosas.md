@@ -63,4 +63,4 @@ As minas já apareciam no leste vinte e sete anos atrás e continuam aparecendo 
 - Notion — raça *Anão* (`docs/memoria/notion_raw/raca_anao.md`) · *@Nomes Aleatórios* `33e6e3a401d981d09cadf2397f4a8856` · *Templo da Profecia* `33f6e3a401d980dd982ad39fcba2ed4e`
 - Mestre, 2026-09-05 — A11 (Krichama × Caxon; Jairo e Alvak), citado verbatim acima
 - Mapas de Kharavel, campanha e Sessão 0 — `docs/memoria/mapas/LEIA-ME_mapas.md`
-- Digest `docs/memoria/digests/E_lore.md` §2
+- `docs/memoria/digests/E_lore.md` §2

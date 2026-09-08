@@ -66,4 +66,4 @@ Nem toda alma segue o caminho previsto. São arrastadas para [[O Abismo]] por qu
 ## Procedência
 - Notion: Deuses `33e6e3a401d9817f9470e140120b1c22` · Osh'Kar `3416e3a401d980bea207e73d726ec1bc` · O Abismo `3696e3a401d981aeb840ece0726fbf97` · Cultos de Osh'Kar `3696e3a401d98125a280d7b0bf485494` · Teurgo `caa6e3a401d98330bae281511750d407` · Magias `3a66e3a401d98097a5d4e316154f9fcb`
 - Respostas do mestre (2026-09-05): A2, A16, B3
-- Memória do repositório: `docs/memoria/notion_raw/lore_kharavel_seres_filhas.md`, `lore_kharavel_deuses_paginas.md`, `lore_kharavel_locais_regioes.md`, `lore_kharavel_faccoes_filhas.md`, `classe_teurgo.md`, `magias.md` · digest `E_lore.md` §1, §6
+- Memória do repositório: `docs/memoria/notion_raw/lore_kharavel_seres_filhas.md`, `lore_kharavel_deuses_paginas.md`, `lore_kharavel_locais_regioes.md`, `lore_kharavel_faccoes_filhas.md`, `classe_teurgo.md`, `magias.md` · levantamento E_lore.md` §1, §6

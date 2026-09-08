@@ -36,11 +36,7 @@ Os [[Dryad|dryads]] são presa, não vizinhos: olham-nos *"com interesse gastron
 
 > Ser gruto já bastava para fechar portas. Ser gruto e feiticeiro era uma combinação que fazia as pessoas se afastarem como se ele fosse uma chama prestes a sair de controle.
 
-Foi desse fundo que [[Sinikko Kiriam (original)]] subiu: nasceu gruto de periferia, teve na mãe, [[Lorrain Kiriam]], a peça central da própria ascensão, tomou *"um antigo bairro fundado pelos grutos"* e negociou com o soberano nos termos mais duros que um oprimido consegue arrancar — *"Oportunidades justas para os grutos. Em troca, Sinikko como representante oficial da raça."* Depois veio a designação de imperador de uma cidade num continente distante: [[Khaskavel]].
-
-A contradição estava embutida no acordo. Manter-se no poder político do Império era obedecer a [[Kirkushav Drekar]] e operar uma colônia escravagista — um povo pelo outro. O [[Sinikko Kiriam (clone)]] que [[Malkhor]] pôs no lugar dele resolveu a contradição pelo abandono: cortou relações com o Império e deixou de se importar com os grutos. É descrito como um *"Gruto alto de olhos verdes e cabelos brancos"*.
-
-Quando [[Karma]] leu o passado do imperador, foi sobre o corpo reptiliano dele que ela repousou antes de desaparecer ([[Sessão 0]]).
+O gruto mais alto que a raça já colocou na política do [[Império de Ferro]] saiu exatamente desse fundo: [[Sinikko Kiriam (original)]] nasceu de periferia e negociou representação oficial para os seus — a história está na nota dele.
 
 ## Grutos em Kharavel
 
@@ -85,7 +81,7 @@ Vexor Skaleth · Sythera Coldblood · Draxus Fangscale · Nyssara Venomheart · 
 ## Relações
 - **Berço** → [[Volkrest]]; oprimidos pelo [[Império de Ferro]] (os esgotos)
 - **Idiomas** → [[Comum]], [[Skalia]] ([[Idiomas]])
-- **Representante da raça e imperador** → [[Sinikko Kiriam (original)]], jogado na [[Sessão 0]] como [[Sinikko Kiriam (PC)]]; o impostor → [[Sinikko Kiriam (clone)]], que abandonou os grutos
+- **Representante da raça e imperador** → [[Sinikko Kiriam (original)]], jogado na [[Sessão 0]] como [[Sinikko Kiriam (PC)]]; quem governa [[Khaskavel]] hoje → [[Sinikko Kiriam (clone)|o imperador atual]], que se afastou dos grutos
 - **Mãe de Sinikko** → [[Lorrain Kiriam]], teurga morta por humanos nos esgotos
 - **Em Kharavel** → [[Khaskavel]], [[A Embrenha]] ([[Embrenhos]]); [[Tev Kossar]]
 - **Predam** → [[Dryad]]
@@ -102,7 +98,7 @@ Vexor Skaleth · Sythera Coldblood · Draxus Fangscale · Nyssara Venomheart · 
 
 ## Procedência
 - Notion `9696e3a401d983b4b6e48199671689f4` — Gruto (🟡 Em desenvolvimento, ed. 2026-07-23); índice de Raças `3a66e3a401d980318836edcfa11c8a24`; 2. Volkrest `33e6e3a401d9817fa7a8c67c898343e2`; páginas de Sinikko, Kirkushav e Azgar Sandgale na [[Sessão 0]]; @Nomes Aleatórios `33e6e3a401d981d09cadf2397f4a8856`.
-- Respostas do mestre 2026-09-05: **A10** (a ascensão de Sinikko dos esgotos a representante da raça e a imperador; ele não é filho de Kirkushav) · **B18** (a contradição política e o corte de relações pelo clone) · **A5** (Karma repousa sobre o corpo reptiliano de Sinikko) · **A6** (quem perseguia Lena era a Vanguarda Serafélia) · **B3** (Skalia protegido pela raça) · **B16** (Intimidação e Enganação como perícias próprias).
-- `docs/memoria/notion_raw/raca_gruto.md`, `lore_volkrest.md`, `sessao_os5_sinikko.md`, `sessao_npc_kirkushav.md`, `sessao_npcs_relacionados.md`, `lore_kharavel_npcs.md`, `sistema_root.md`; digest `C_racas_origens.md` §1, §4.14.
+- Respostas do mestre 2026-09-05: **A10** (a ascensão de Sinikko dos esgotos a representante da raça e a imperador; ele não é filho de Kirkushav) · **B18** (a contradição política e o afastamento posterior do Império) · **A5** (Karma repousa sobre o corpo reptiliano de Sinikko) · **A6** (quem perseguia Lena era a Vanguarda Serafélia) · **B3** (Skalia protegido pela raça) · **B16** (Intimidação e Enganação como perícias próprias).
+- `docs/memoria/notion_raw/raca_gruto.md`, `lore_volkrest.md`, `sessao_os5_sinikko.md`, `sessao_npc_kirkushav.md`, `sessao_npcs_relacionados.md`, `lore_kharavel_npcs.md`, `sistema_root.md`; levantamento C_racas_origens.md` §1, §4.14.
 - Correções pendentes na fonte: "7 0-110" na expectativa de vida Rokhan; "Interação Social(Intimidação)" e "(Enganação)" → perícias individuais.
 - Revisão de redação: 2026-09-07.

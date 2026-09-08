@@ -80,4 +80,4 @@ O que Azgar carrega dali é um dogma: *"tornar Ossyria um continente habitável 
 ## Procedência
 - Notion: 5. Ossyria `33e6e3a401d98122b4cdead58587b6b6` (🟠 Rascunho, ed. 2026-05-23) · Azgar Sandgale `33e6e3a401d9814caa28c26a3a66e84c`
 - Respostas do mestre (2026-09-05): A9 (Ossyria como destino de exílio do Império; o Batedor foi morto por Terk e Kirkushav manipula Azgar com isso), A15 (Ossyria é o continente que Azgar apresenta)
-- Memória do repositório: `docs/memoria/notion_raw/lore_ossyria.md`, `sessao_os5_azgar.md`; digests `E_lore.md` §2.5, `F` §2
+- Memória do repositório: `docs/memoria/notion_raw/lore_ossyria.md`, `sessao_os5_azgar.md`; levantamento E_lore.md` §2.5, `F` §2

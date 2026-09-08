@@ -48,4 +48,4 @@ Que a mina leve o nome dos ferreiros, e não o dos engenheiros de túneis, é um
 - Notion — *Costas Rochosas* `37b6e3a401d9814bac9ce9b49d0693a7` (🟠, ed. 2026-06-10), única página que as cita · *Cordilheira Cristalina* · *Templo da Profecia* `33f6e3a401d980dd982ad39fcba2ed4e` · raça *Anão* (`docs/memoria/notion_raw/raca_anao.md`)
 - Mestre, 2026-09-05 — A11 (os dois sobrenomes anões e seus ofícios)
 - Mapas de Kharavel, campanha e Sessão 0 — `docs/memoria/mapas/LEIA-ME_mapas.md` §1 e §3
-- Digest `docs/memoria/digests/E_lore.md` §2 · bruto em `docs/memoria/notion_raw/lore_kharavel_locais_regioes.md`
+- `docs/memoria/digests/E_lore.md` §2 · bruto em `docs/memoria/notion_raw/lore_kharavel_locais_regioes.md`

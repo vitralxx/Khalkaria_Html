@@ -88,5 +88,5 @@ Com [[Mira Vesnal]] há a pergunta que volta sempre: ela procura [[Yenev Vesnal]
 ## Procedência
 - Notion — *Tev Kossar* `36d6e3a401d9811daf94f8854d6d01ee` (🟡, ed. 2026-07-20) · *Castelo em Ruínas* `3696e3a401d98161a014d3747e46b42b`
 - Mestre, 2026-09-05 — B18 (o clone rompeu com o Império e abandonou os grutos) · B3 (Skalia é protegido pela raça)
-- Digest `docs/memoria/digests/E_lore.md` §2 e §5
+- `docs/memoria/digests/E_lore.md` §2 e §5
 - Brutos em `docs/memoria/notion_raw/lore_kharavel_npcs.md`, `lore_kharavel_locais_regioes.md`

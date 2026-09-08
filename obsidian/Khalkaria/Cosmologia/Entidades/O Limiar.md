@@ -84,5 +84,5 @@ O que a mesa vê é um evento político: sempre que os jogadores sobem de nível
 ## Procedência
 - Notion: O Limiar (lore) `3416e3a401d9802fa419f94e4c7cfbe7` · O Limiar (cartas) `3a66e3a401d9806db1f8d6975255f676` · Deuses `33e6e3a401d9817f9470e140120b1c22` · Velúria `39e6e3a401d98159b906e2033370e5c1` · Teurgo `caa6e3a401d98330bae281511750d407` · Sinikko Kiriam `33e6e3a401d9813d8cf5d8d8e6c3fddc` · Kheyos `33e6e3a401d9819789c0da0fcde2f114` · Sistema raiz `2b76e3a401d980c0ab7bc27a342f4ee1`
 - Respostas do mestre (2026-09-05): A2, A14, B5, B6
-- Memória do repositório: `docs/memoria/notion_raw/lore_kharavel_seres_filhas.md`, `lore_kharavel_deuses_paginas.md`, `limiar.md`, `classe_teurgo.md`, `lore_kharavel_npcs.md`, `sistema_root.md` · digests `E_lore.md` §1, §6, §7 · `D_limiar.md` §1–3
+- Memória do repositório: `docs/memoria/notion_raw/lore_kharavel_seres_filhas.md`, `lore_kharavel_deuses_paginas.md`, `limiar.md`, `classe_teurgo.md`, `lore_kharavel_npcs.md`, `sistema_root.md` · levantamento E_lore.md` §1, §6, §7 · `D_limiar.md` §1–3
 - Correções pendentes nas páginas de origem: "sob comando do Limiar" (Deuses, Velúria); frase truncada "com intuito de"; título "4 Cartas" e bloco-resumo de contagens desatualizados no catálogo

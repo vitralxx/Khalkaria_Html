@@ -155,5 +155,5 @@ Ver [[Primordial]].
 ## Procedência
 - Notion `3a66e3a401d98097a5d4e316154f9fcb` (Magias — Regras de Magia, Intensidade, Modulações, cabeçalho do Nível 4) e `2b76e3a401d980c0ab7bc27a342f4ee1` (Sistema Khalkaria → Magias: requisitos, régua de intensidade com "Ampliado", modulações).
 - Respostas do mestre 2026-09-05: **B4** (1 magia por turno, *Disparo Veloz* como exceção, Magia Sustentada = Éter por turno, definições antigas), **B8** (≈20 truques de nível 0 sem custo, a criar), **B13** (a tabela vence a descrição), **B14** (as descrições longas foram revisadas e ficam como estão), **B15** (a página "Análise de Modulações" está descartada — as modulações já foram reformuladas), **A2** e **A14** (Éter, ponte Místico→Material, papel do Limiar).
-- `docs/memoria/notion_raw/magias.md`, `sistema_root.md`; digest `A_sistema.md` §1.20, §3.16–3.22.
+- `docs/memoria/notion_raw/magias.md`, `sistema_root.md`; levantamento A_sistema.md` §1.20, §3.16–3.22.
 - Revisão de redação: 2026-09-07.

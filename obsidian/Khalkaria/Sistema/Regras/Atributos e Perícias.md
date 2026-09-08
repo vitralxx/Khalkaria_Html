@@ -132,6 +132,6 @@ A ficha impressa também anota atributos que divergem das regras acima; onde hou
 - Notion `2b76e3a401d980c0ab7bc27a342f4ee1` — Sistema Khalkaria: Atributos Iniciais, Status, Perícias, Proficiência, Defender.
 - Notion `4e66e3a401d9832b97b4017bc00ff2c2` — Template - Ficha de Personagem (grafias antigas, agrupamento).
 - Respostas do mestre 2026-09-05: **B6** (Atacar por Força ou Destreza), **B16** (grafias antigas e uso de "interação social").
-- `docs/memoria/notion_raw/sistema_root.md`, `template_ficha_de_personagem.md`; digest `A_sistema.md` §1.1–1.3, §3.3–3.5.
+- `docs/memoria/notion_raw/sistema_root.md`, `template_ficha_de_personagem.md`; levantamento A_sistema.md` §1.1–1.3, §3.3–3.5.
 - Correções pendentes na fonte: nomes e agrupamento de perícias no Template de Ficha.
 - Revisão de redação: 2026-09-07.

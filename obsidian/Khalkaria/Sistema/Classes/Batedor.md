@@ -223,7 +223,7 @@ Ao longo da criação do personagem escolhem-se **3 Marcas** e **6 Técnicas de 
 ## Procedência
 - Notion `8706e3a401d9823a91fd81f689a6fbe7` — Batedor (ed. 2026-08-12, 🟢 Pronto); índice de Classes `3a66e3a401d9809b8eceec1f30be9fd2`.
 - Respostas do mestre 2026-09-05: **B11** (ramos 3/2/1 nos níveis 2/4/5) · **B16** ("Interação Social(x)" era a norma antiga; as perícias sociais foram individualizadas, logo Interação Social(Convencimento) = Convencimento) · **B12** (*Endividado* e *Escondido* criadas para uso unitário; revisão adiada) · **B2** (munição: 1 unidade por combate inteiro) · **A5/A9** (o Batedor de Kirkushav foi morto por Terk Sandgale, não por Azgar).
-- `docs/memoria/notion_raw/classe_batedor.md`, `classe_index.md`; digest `B_classes.md` §2, inconsistências 14, 15, 16, 17, 18, 21, 25.
+- `docs/memoria/notion_raw/classe_batedor.md`, `classe_index.md`; levantamento B_classes.md` §2, inconsistências 14, 15, 16, 17, 18, 21, 25.
 - Correções pendentes na fonte: frase "6 Técnicas de Ramo, 3 por Tier"; nomes legados "Interação Social(Convencimento)"; tabela de Progressão achatada em linha única (formatação).
 - Correção aplicada nesta revisão: a classe de [[Azgar Sandgale]] é [[Artilheiro]] — a versão anterior desta nota o listava como Batedor por confusão com o cargo de batedor imperial de Kirkushav.
 - Revisão de redação: 2026-09-07.

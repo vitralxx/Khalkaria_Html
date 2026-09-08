@@ -64,5 +64,5 @@ O que ele encontrou na fábrica é o mesmo que Tev encontrou depois: *"trabalhad
 ## Procedência
 - Notion — *Mira Vesnal* `36d6e3a401d981fb97bceeec037e614d` · *Tev Kossar* `36d6e3a401d9811daf94f8854d6d01ee` · *Lázlo* `36d6e3a401d9818d9cddefbdd4015aad` · *Castelo em Ruínas* `3696e3a401d98161a014d3747e46b42b`
 - Mestre, 2026-09-05 — A6 (as substâncias se tornam mais viciosas conforme o Sonhador); nenhuma menção direta a Yenev
-- Digest `docs/memoria/digests/E_lore.md` §5
+- `docs/memoria/digests/E_lore.md` §5
 - Brutos em `docs/memoria/notion_raw/lore_kharavel_npcs.md`, `lore_kharavel_locais_regioes.md`

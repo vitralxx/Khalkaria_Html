@@ -66,5 +66,5 @@ A cópia que [[Malkhor]] fez do filho herdou aparência e algumas memórias — 
 - Notion — *Sinikko Kiriam* (página de PC, Sessões / Sessão 0 / Os 5 escolhidos) `33e6e3a401d98172bcefef2453ce1564` (🟡, ed. 2026-07-18), versões 1 e 3. É a única página em que Lorrain existe
 - Mestre, 2026-09-05 — A10 (*"sua mãe foi peça central nisso"*) · A14 (todo ser possui Éter; o teurgo canaliza pontes entre os planos)
 - Nota arquivada entre os NPCs de Kharavel embora Lorrain nunca tenha pisado no continente; se o vault ganhar uma pasta de seres de [[Volkrest]], é para lá que ela vai
-- Digest `docs/memoria/digests/F_sessoes_outros.md` §2 e §5
+- `docs/memoria/digests/F_sessoes_outros.md` §2 e §5
 - Brutos em `docs/memoria/notion_raw/sessao_os5_sinikko.md`, `lore_mention_sinikko_sessao0.md`

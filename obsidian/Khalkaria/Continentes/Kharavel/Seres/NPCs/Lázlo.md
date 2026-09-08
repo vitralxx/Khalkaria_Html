@@ -101,5 +101,5 @@ As perícias em que ele ajuda estão em [[Atributos e Perícias]]. Dos quatro mo
 ## Procedência
 - Notion — *Lázlo* `36d6e3a401d9818d9cddefbdd4015aad` (🟠 rascunho, ed. 2026-07-15) · *Castelo em Ruínas* `3696e3a401d98161a014d3747e46b42b` · *Cultos de Osh'Kar* `3696e3a401d98125a280d7b0bf485494` · *A Grande Árvore* `33e6e3a401d9813b8a60f1f9669803be`
 - Mestre, 2026-09-05 — B3 (o Abismo como prisão de Osh'Kar, corrompido pelos deuses; nascimento do idioma abissal) · B5 (a ilusão do Oásis só cai do pico da Cordilheira Cristalina) · A16 (o conflito divino começa com o sumiço de Kha)
-- Digest `docs/memoria/digests/E_lore.md` §2 e §5
+- `docs/memoria/digests/E_lore.md` §2 e §5
 - Brutos em `docs/memoria/notion_raw/lore_kharavel_npcs.md`, `lore_kharavel_locais_regioes.md`, `lore_kharavel_faccoes_filhas.md`, `lore_kharavel_grande_arvore.md`

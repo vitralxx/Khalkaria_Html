@@ -95,5 +95,5 @@ Os clãs [[Anão|anões]] estão entre os caçadores mais implacáveis.
 - Notion `3c66e3a401d980019c48edd3b1f44452` — Lobisomem (🟡 Em desenvolvimento, ed. 2026-08-28); índice de Raças `3a66e3a401d980318836edcfa11c8a24`. É a única página de raça que existe apenas na árvore viva, sem correspondência no backup 5296.
 - Respostas do mestre 2026-09-05: **A13** — *"Um dos meus jogadores queria muito ser um lobisomem, porém essa raça não existia, estou omitindo essa raça secreta dos outros jogadores já que é mais interessante esse jogador se apresentar como humano e na lua cheia expor seu segredo. Lua cheia de 2 em 2 dias é intencional para balancear o sistema. Então, não entra no site por agora."* · **B1** (Radiante e Ordinário entre os doze tipos) · **B3** (Natural é a língua dos animais, dryads e bestas) · **C8** (grafias Exaustão e Sangramento).
 - Decisão de publicação: a raça não vai para o site enquanto o segredo durar (`CLAUDE.md` §2 lista 7 raças públicas + 1 secreta).
-- `docs/memoria/notion_raw/raca_lobisomem.md`; digest `C_racas_origens.md` §1, §4.3–4.5, §6.
+- `docs/memoria/notion_raw/raca_lobisomem.md`; levantamento C_racas_origens.md` §1, §4.3–4.5, §6.
 - Revisão de redação: 2026-09-07.

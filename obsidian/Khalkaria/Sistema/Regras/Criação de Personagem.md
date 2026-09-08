@@ -72,6 +72,6 @@ Os cinco últimos grupos aparecem todos sob o rótulo "Perícias Sociais" na fic
 - Notion `3a66e3a401d9806681b8f403c4700b11` (Criação de Personagem — página que hoje só aponta para a ficha), `4e66e3a401d9832b97b4017bc00ff2c2` (Template - Ficha de Personagem), `2b76e3a401d980c0ab7bc27a342f4ee1` (Atributos Iniciais).
 - Respostas do mestre 2026-09-05: **B16** (grafias antigas de perícia), **B5** (5–11 cartas ao nível 5), **B8** ("Eu criarei +20 magias nvl 0 que atuaram como truques que não custam éter pros teurgos nvl 1, que atualmente não tem magias."), **B1** ("Gelo" → "Frio" na linha de armadura), **B11** (3 / 2 / 1 técnicas de ramo).
 - Mapeamento da ficha para o app Bestiário (exportação como `type: "npc"`, colunas `prof_*`): `CLAUDE.md` §5.
-- `docs/memoria/notion_raw/criacao_de_personagem.md`, `template_ficha_de_personagem.md`, `sistema_root.md`; digest `A_sistema.md` §1.23.
+- `docs/memoria/notion_raw/criacao_de_personagem.md`, `template_ficha_de_personagem.md`, `sistema_root.md`; levantamento A_sistema.md` §1.23.
 - Correções pendentes na fonte: passo a passo ausente da página de Criação de Personagem; nomes e agrupamento de perícias e "Gelo" na ficha.
 - Revisão de redação: 2026-09-07.

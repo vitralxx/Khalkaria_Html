@@ -51,7 +51,7 @@ O arquétipo levado às últimas consequências é [[Kheyos]] — teurgo mortal 
 
 ## Procedência
 - Notion `3ea6e3a401d98354ba6601d1b1c28b03` — Acadêmico 📚 (🟢, ed. 2026-07-23); índice de Origens `3a66e3a401d9808aa877f7e7cb77002a`.
-- `docs/memoria/notion_raw/origens.md`; digest `C_racas_origens.md` §2.
+- `docs/memoria/notion_raw/origens.md`; levantamento C_racas_origens.md` §2.
 - Respostas do mestre 2026-09-05: **B3** (Khazadun exige cordas vocais anãs) · **B16** (perícias sociais individualizadas) · **A16** (o segredo final é o sumiço de Kha).
 - Correção de redação aplicada aqui: cabeçalho "Pericia Treinada" → "Treinamento", como nas outras dezesseis.
 - Revisão de redação: 2026-09-07.

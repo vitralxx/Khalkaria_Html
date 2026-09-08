@@ -67,5 +67,5 @@ O teste da superfície Escorregadia é a perícia **Reflexos**, e o dano a que a
 ## Procedência
 - Notion `2b76e3a401d980c0ab7bc27a342f4ee1` — Superfícies; Furtividade; Fuga; Perseguição.
 - Respostas do mestre 2026-09-05: **B16** ("Reflexo" é Reflexos), **B1** ("Elemental(Eletricidade)" é o tipo Elétrico).
-- `docs/memoria/notion_raw/sistema_root.md`; digest `A_sistema.md` §1.17, §4.13.
+- `docs/memoria/notion_raw/sistema_root.md`; levantamento A_sistema.md` §1.17, §4.13.
 - Revisão de redação: 2026-09-07.

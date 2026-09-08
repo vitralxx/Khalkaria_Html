@@ -44,16 +44,16 @@ O [[Templo da Profecia]] existe por causa disso.
 - **Condição negada** → [[Condições|Desprevenido]]
 - **Cosmologia** → [[Velúria]] (a trama do tempo) · [[Kha]] · [[Karmath]] (bênçãos a mortais) · [[Primórdio]] (atemporal) · [[Plano Místico]] · [[O Limiar]]
 - **Profecia canônica** → [[Karma]] (os 27 anos) · [[Revavena]] · [[Templo da Profecia]]
-- **Sinergia de classe** → [[Batedor]] (*Atento* também nega Desprevenido) · [[Teurgo]], escola [[Conhecimento]] (adivinhação)
+- **Sinergia de classe** → [[Batedor]] (o Instinto do ramo; *Atento* também nega Desprevenido, e *Emboscada* é o que a origem esvazia) · [[Teurgo]], escola [[Conhecimento]] (adivinhação)
 - **Origem vizinha** → [[Amaldiçoado]] (o outro lado da marca que ninguém pediu)
 - **Economia** → 1d6+4 [[Sins]] · [[O Bazar]]
 
 ## Pontas soltas
-- **A visão não tem forma.** *Vidência* não tem limite, CD nem formato — "informações aleatórias" a cada noite é carga integral de mestre, sem rolagem. A imunidade permanente a *Desprevenido* duplica *Atento* do [[Batedor]] e esvazia emboscadas, inclusive as do próprio Batedor. E a fonte da visão nunca foi decidida: [[Velúria]], [[Karmath]] ou [[O Limiar]]? [[Perguntas Abertas|E97]].
+- **A visão não tem forma.** *Vidência* não tem limite, CD nem formato — "informações aleatórias" a cada noite é carga integral de mestre, sem rolagem. A imunidade permanente a *Desprevenido* duplica *Atento* do [[Batedor]] e esvazia emboscadas, inclusive a técnica *Emboscada* do próprio Batedor. E a fonte da visão nunca foi decidida: [[Velúria]], [[Karmath]] ou [[O Limiar]]? [[Perguntas Abertas|E97]].
 
 ## Procedência
 - Notion `a706e3a401d983a2981d81eb96e0ce19` — Vidente 👁️ (🟢, ed. 2026-07-23); índice de Origens `3a66e3a401d9808aa877f7e7cb77002a`.
-- `docs/memoria/notion_raw/origens.md`; digest `C_racas_origens.md` §2, §4.12.
+- `docs/memoria/notion_raw/origens.md`; levantamento C_racas_origens.md` §2, §4.12.
 - Respostas do mestre 2026-09-05: **A2** (Velúria tece a trama do tempo por encargo de Kha) · **A5** (a profecia dos 27 anos e o desaparecimento de Karma) · **A1** (Karmath abençoa mortais) · **B16** ("Interação Social(Intuição)" → Intuição).
 - Correção de redação aplicada aqui: "Interação Social(Intuição)" → **Intuição**. A correção segue pendente na fonte (lote 2).
 - Revisão de redação: 2026-09-08.

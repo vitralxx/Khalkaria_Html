@@ -90,4 +90,4 @@ Uma das bênçãos raras do Limiar, a *Onisciencia de [[Mundarak]]*, permite "se
 ## Procedência
 - Notion: Deuses `33e6e3a401d9817f9470e140120b1c22` · Kha `39e6e3a401d981c9ac33cd19df507993` · Templo da Profecia `33f6e3a401d980dd982ad39fcba2ed4e` · A Grande Árvore `33e6e3a401d9813b8a60f1f9669803be` · O Abismo `3696e3a401d981aeb840ece0726fbf97` · Malkhor `39e6e3a401d981eb87fecedc94f35b37` · Mundarak `39e6e3a401d981e3a7fdc5b89aa8146b` · O Limiar (cartas) `3a66e3a401d9806db1f8d6975255f676`
 - Respostas do mestre (2026-09-05): A2, A16 · (2026-09-07): a Plenitude é fenômeno cosmológico; a Queda é o marco zero e abriu espaço para impérios brutais
-- Memória do repositório: `docs/memoria/notion_raw/lore_kharavel_seres_filhas.md`, `lore_kharavel_deuses_paginas.md`, `lore_kharavel_locais_regioes.md`, `lore_kharavel_grande_arvore.md`, `limiar.md` · digests `E_lore.md` §1, `D_limiar.md` §4
+- Memória do repositório: `docs/memoria/notion_raw/lore_kharavel_seres_filhas.md`, `lore_kharavel_deuses_paginas.md`, `lore_kharavel_locais_regioes.md`, `lore_kharavel_grande_arvore.md`, `limiar.md` · levantamento E_lore.md` §1, `D_limiar.md` §4

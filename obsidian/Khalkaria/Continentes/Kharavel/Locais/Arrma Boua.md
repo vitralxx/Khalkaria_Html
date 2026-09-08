@@ -80,5 +80,5 @@ Preços, categorias e a mecânica de melhoria estão em [[O Bazar]] e em [[Dinhe
 - Notion — *Arrma Boua (Forja) (old)* `33e6e3a401d98163beb4f770516bb0e8` (🔴 stub, 2026-05-24, marcada como localização deprecada) · *Alvak Krichama* `33e6e3a401d98103af5ef241c6512d02` (🟡, 2026-05-24) · *Quest — Alvak, o ferreiro* `33e6e3a401d981819212fc8fb29ab6cc` (🔴 stub, vazia) · *Lena Skarv* `3696e3a401d981969032ea2fcf0b406e`
 - Mestre, 2026-09-05 — A6 (história de Alvak e Lena, verbatim) · A11 (Krichama ferreiros, Caxon engenheiros)
 - Mapa de Khaskavel na Sessão 0 — `docs/memoria/mapas/LEIA-ME_mapas.md` §2
-- Relatório de fidelidade 2026-09-05 (A6, E12) · digest `docs/memoria/digests/E_lore.md` §6 itens 10 e 11
+- Relatório de fidelidade 2026-09-05 (A6, E12) · `docs/memoria/digests/E_lore.md` §6 itens 10 e 11
 - Brutos em `docs/memoria/notion_raw/lore_kharavel_khaskavel_folhas.md`, `lore_kharavel_npcs.md`, `lore_kharavel_quest.md`

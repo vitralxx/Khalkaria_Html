@@ -90,5 +90,5 @@ Texto integral das técnicas em [[Alquimista]].
 - Notion — página de PC *Runa Skorn* `33e6e3a401d981f2ae5fd3a12244a204` (🟢, ed. 2026-06-09) · *📜 Ficha - Runa Skorn* `37a6e3a401d980189fead42d06ab3520` (🟢) · *Roteiro da Sessão 0* `33e6e3a401d9819796c9dfb2263e215d` · *4. Aether* `33e6e3a401d9812bab36f280892bf817`
 - Mestre, 2026-09-05 — A12 (*"Runa é uma Dryad. Hoje no sistema, escolher dryad significa que você é metade humano e metade qualquer animal à sua escolha."*) · A15 (Runa representa Aether) · B3 (Khazadun exige cordas vocais anãs para ser falado) · B17 (autorização para refazer a ficha) · C5 (a grafia é **Runa Skorn**)
 - A corrigir nos registros: "Runas Skorn" na página d'[[Os Hax]]; a descrição de [[Dryad]] no Notion ainda não incorpora a metade animal à escolha
-- Digest `docs/memoria/digests/F_sessoes_outros.md` §2, incidentes 8, 17 e 19
+- `docs/memoria/digests/F_sessoes_outros.md` §2, incidentes 8, 17 e 19
 - Brutos em `docs/memoria/notion_raw/sessao_os5_runa.md`, `lore_aether.md`, `lore_aether_os_hax.md`

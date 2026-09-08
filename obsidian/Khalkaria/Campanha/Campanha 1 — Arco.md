@@ -119,5 +119,5 @@ O mecanismo é a própria natureza do [[Primórdio]]: *"Estar no Plano Primordia
 ## Procedência
 - Notion — *Direcionamento* (Kharavel) `33e6e3a401d98190a21ae6c430acbc38` · *Sinikko Kiriam* (NPC, lore) `33e6e3a401d9813d8cf5d8d8e6c3fddc` · *O Limiar* (sistema) `3a66e3a401d980a4ac2fcba79a2a8b6d`
 - Mestre, 2026-09-05 — A16 (o true ending, verbatim) · A2 (o Primórdio torna deus quem entra) · A6 (o coração puro; o gancho de Alvak) · A3 e A18 (Vytália e Karmath contra Malkhor) · A7 (Kheyos mortal) · A4 (Oblívio não é canônico e fica fora do arco) · B5 (O Limiar como evento político) · B18 (o objetivo do clone)
-- Digests `docs/memoria/digests/E_lore.md` §2.1 (item 25) e `F_sessoes_outros.md` §3
+- `docs/memoria/digests/E_lore.md` §2.1 (item 25) e `F_sessoes_outros.md` §3
 - Brutos em `docs/memoria/notion_raw/lore_kharavel_direcionamento.md`, `sessao_npc_sinikko_lore.md`, `lore_kharavel_npcs.md`

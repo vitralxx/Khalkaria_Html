@@ -114,4 +114,4 @@ Três magias de nível 4 levam o nome de Kha — *Armadura de Kha* ([[Abjuraçã
 ## Procedência
 - Notion: Kha `39e6e3a401d981c9ac33cd19df507993` · Deuses `33e6e3a401d9817f9470e140120b1c22` · Templo da Profecia `33f6e3a401d980dd982ad39fcba2ed4e` · 2. Volkrest `33e6e3a401d9817fa7a8c67c898343e2` · 4. Aether `33e6e3a401d9812bab36f280892bf817` · A Grande Árvore `33e6e3a401d9813b8a60f1f9669803be` · Magias `3a66e3a401d98097a5d4e316154f9fcb`
 - Respostas do mestre (2026-09-05): A2, A3, A4, A16
-- Memória do repositório: `docs/memoria/notion_raw/lore_kharavel_deuses_paginas.md`, `lore_kharavel_seres_filhas.md`, `lore_kharavel_locais_regioes.md`, `lore_volkrest.md`, `lore_aether.md`, `lore_kharavel_grande_arvore.md`, `magias.md` · digest `E_lore.md` §1
+- Memória do repositório: `docs/memoria/notion_raw/lore_kharavel_deuses_paginas.md`, `lore_kharavel_seres_filhas.md`, `lore_kharavel_locais_regioes.md`, `lore_volkrest.md`, `lore_aether.md`, `lore_kharavel_grande_arvore.md`, `magias.md` · levantamento E_lore.md` §1

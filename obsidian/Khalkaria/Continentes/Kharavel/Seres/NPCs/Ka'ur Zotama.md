@@ -51,5 +51,5 @@ Acima dele há um imperador que não é quem diz ser; abaixo, uma guarnição qu
 ## Procedência
 - Notion — *A Vanguarda Seratélia* `33e6e3a401d98104845ddaafa86b57b2` (Khaskavel / Povos, sem status, 2026-04-10), citada integralmente. É a única fonte que menciona Ka'ur Zotama
 - Mestre, 2026-09-05 — sem menção direta. Contexto: correção C2 (grafia Serafélia) · B18 (o clone rompeu com o Império, e a guarnição responde a Khaskavel) · A6 (os dois soldados da Vanguarda executados por [[Alvak Krichama]] eram subordinados dele)
-- Digest `docs/memoria/digests/E_lore.md` §2 e §5
+- `docs/memoria/digests/E_lore.md` §2 e §5
 - Bruto em `docs/memoria/notion_raw/lore_kharavel_khaskavel_folhas.md`

@@ -44,4 +44,4 @@ Um povo que nunca tocou na seiva é um povo sem [[Marca da Vhelor]] — e os art
 ## Procedência
 - Notion — *Xkamur* `3696e3a401d98184af09dd6a4082e11a` (🔴 placeholder, 2026-05-23; traz a lista "A Desenvolver", recolhida acima em Pontas soltas, e a observação de que já existem fichas de inimigos no bestiário) · *Facções* `3696e3a401d9814f8e0dfa4c6b50b850` · *Vilarejo Skarv* `33e6e3a401d981f68258f6a0be896c08`
 - Mestre, 2026-09-05 — A17 (a geografia vem antes: sem região de facção no mapa, não há história a escrever) · A18 (os itens de Vytália exigem usuário não corrompido pela Árvore) · A3 (toda criatura é obra de Vytália)
-- Brutos em `docs/memoria/notion_raw/lore_kharavel_faccoes_filhas.md`, `lore_kharavel_faccoes.md`, `lore_kharavel_cidades.md` · digest `docs/memoria/digests/E_lore.md` §2, §3
+- Brutos em `docs/memoria/notion_raw/lore_kharavel_faccoes_filhas.md`, `lore_kharavel_faccoes.md`, `lore_kharavel_cidades.md` · `docs/memoria/digests/E_lore.md` §2, §3

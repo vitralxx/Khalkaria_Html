@@ -92,5 +92,5 @@ Texto integral das técnicas em [[Artilheiro]].
 ## Procedência
 - Notion — página de PC *Azgar Sandgale* `33e6e3a401d9814caa28c26a3a66e84c` (🟢, ed. 2026-06-09) · *📜 Ficha - Azgar Sandgale* `37a6e3a401d980a193bde996278a535a` (🟢, ed. 2026-07-18) · *Roteiro da Sessão 0* `33e6e3a401d9819796c9dfb2263e215d`
 - Mestre, 2026-09-05 — A9 (o plano contra os Sandgale e a mentira sobre o Batedor, verbatim acima) · A15 (Azgar representa Ossyria) · B9 (a Concentração do Artilheiro é dura de propósito — registrado em [[Artilheiro]]) · B2 (munição por combate — registrado em [[Armas e Munição]]) · B16 ("Intimidar" → Intimidação) · B17 (autorização para refazer a ficha)
-- Digest `docs/memoria/digests/F_sessoes_outros.md` §2, incidentes 2 e 19
+- `docs/memoria/digests/F_sessoes_outros.md` §2, incidentes 2 e 19
 - Bruto em `docs/memoria/notion_raw/sessao_os5_azgar.md`

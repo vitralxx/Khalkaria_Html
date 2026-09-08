@@ -222,6 +222,6 @@ Os três patronos são entidades do mundo, não abstrações: **A Grande Árvore
 ## Procedência
 - Notion `caa6e3a401d98330bae281511750d407` — Teurgo (ed. 2026-08-05, 🟢 Pronto); índice de Classes `3a66e3a401d9809b8eceec1f30be9fd2`.
 - Respostas do mestre 2026-09-05: **B10** (Reserva Oculta abre exceção a *Oco* só ao pagar com Saúde; Tese Arcana "depois eu ajusto") · **B11** (ramos 3/2/1 nos níveis 2/4/5) · **B4** (uma magia por turno; Disparo Veloz como possível exceção única) · **B8** (mais de vinte magias de nível 0, truques sem custo de Éter, ainda a criar) · **B13** ("tabela do notion manda sempre") · **B1** (dano Primordial = energia vazada do Primórdio) · **B3** (Abismo, Osh'Kar e a origem do idioma Abissal) · **B16** ("interação social(Intimidação)" → Intimidação) · **A2** (Velúria é dona do plano místico e criou o Éter e o Limiar) · **A14** ("forças materializantes" é a definição antiga de Limiar + Éter; o Éter chama mais Éter do que gasta e o Limiar medeia a extração).
-- `docs/memoria/notion_raw/classe_teurgo.md`, `classe_index.md`, `magias.md`, `condicoes.md`; digest `B_classes.md` §4, inconsistências 1, 7, 8, 19, 20, 21.
+- `docs/memoria/notion_raw/classe_teurgo.md`, `classe_index.md`, `magias.md`, `condicoes.md`; levantamento B_classes.md` §4, inconsistências 1, 7, 8, 19, 20, 21.
 - Correções pendentes na fonte: escrever a exceção de Reserva Oculta; frase "6 Técnicas de Ramo, 3 por Tier"; nome legado "interação social(Intimidação)".
 - Revisão de redação: 2026-09-07.

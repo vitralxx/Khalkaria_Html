@@ -79,4 +79,4 @@ O [[Vilarejo Skarv]] fica na costa oeste do [[Bosque Corrompido]]. Nas cartas de
 - Notion — *Vilarejo Skarv* `33e6e3a401d981f68258f6a0be896c08` (🟡, 2026-06-09; descreve o povo e o lugar) · *Facções* `3696e3a401d9814f8e0dfa4c6b50b850` · *Lena Skarv* `3696e3a401d981969032ea2fcf0b406e` · *Alvak Krichama* `33e6e3a401d98103af5ef241c6512d02` · *Mira Vesnal* `36d6e3a401d981fb97bceeec037e614d` · *Os Hax* `3696e3a401d98127a568c856497d9ce6`
 - Mestre, 2026-09-05 — A6 (Alvak salva a dryad dos dois soldados; Lena, coração puro, plano de Vytália e Karmath) · A12 (dryad é metade humano e metade qualquer animal à escolha) · B3 (o idioma Natural é dos animais, dryads e bestas)
 - Mapas — `docs/memoria/mapas/LEIA-ME_mapas.md` §1 (campanha) e §3 (Sessão 0)
-- Brutos em `docs/memoria/notion_raw/lore_kharavel_cidades.md`, `lore_kharavel_faccoes.md`, `lore_kharavel_npcs.md`, `lore_aether_os_hax.md`, `sessao_roteiro.md` · digest `docs/memoria/digests/E_lore.md` §2
+- Brutos em `docs/memoria/notion_raw/lore_kharavel_cidades.md`, `lore_kharavel_faccoes.md`, `lore_kharavel_npcs.md`, `lore_aether_os_hax.md`, `sessao_roteiro.md` · `docs/memoria/digests/E_lore.md` §2

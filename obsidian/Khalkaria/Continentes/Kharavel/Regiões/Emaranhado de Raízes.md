@@ -66,4 +66,4 @@ As raízes já cobriam o norte vinte e sete anos atrás e já entravam em [[Khas
 - Notion — *Emaranhado de Raízes* `37b6e3a401d98152a2c6ce1513040a71` (🟠 rascunho, 2026-06-10)
 - Notion — *Substâncias* `33e6e3a401d981ef841aefa20793d48d` (Casca de Raiz, Seiva, Folhas Amarelas) · *Roteiro da Sessão 0* `33e6e3a401d9819796c9dfb2263e215d` (fala de Kirkushav; a porta da árvore) · *O Sonhador* `33e6e3a401d98126bae4e981b581487f`
 - Mapas de Kharavel e de Khaskavel, campanha e Sessão 0 — `docs/memoria/mapas/LEIA-ME_mapas.md` §1–3
-- Digest `docs/memoria/digests/E_lore.md` §2
+- `docs/memoria/digests/E_lore.md` §2

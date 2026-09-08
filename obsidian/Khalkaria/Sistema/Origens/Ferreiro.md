@@ -54,7 +54,7 @@ A travessia cobrou de Alvak a filha, e o que ele fez com o luto é a imagem mais
 
 ## Procedência
 - Notion `e016e3a401d983d1a2d981773bc4aff2` — Ferreiro ⚒️ (🟢, ed. 2026-07-23); índice de Origens `3a66e3a401d9808aa877f7e7cb77002a`.
-- `docs/memoria/notion_raw/origens.md`; digest `C_racas_origens.md` §2, §4.13.
+- `docs/memoria/notion_raw/origens.md`; levantamento C_racas_origens.md` §2, §4.13.
 - Respostas do mestre 2026-09-05: **A11** (Krichama ferreiros, Caxon engenheiros; Jairo no castelo, Alvak na cidade) · **A6** (Alvak perde a filha na travessia de Volkrest e segue forjando).
 - Correções de redação aplicadas aqui: cabeçalho "Perícia Treinada" → "Treinamento"; "1 Comida (1 Bugigangas)" → singular. As correções seguem pendentes na fonte (lote 2).
 - Revisão de redação: 2026-09-08.

@@ -64,5 +64,5 @@ Porque o soberano do [[Império de Ferro]] quer o que a violência não dá: a f
 - Notion — *Roteiro da Sessão 0* `33e6e3a401d9819796c9dfb2263e215d` · *Kheyos* `33e6e3a401d9819789c0da0fcde2f114` (🟠, ed. 2026-05-24) · *Kirkushav Drekar* `33e6e3a401d98131815efc830056e2e3` · *Klaus von Aldric* (página de PC)
 - Mestre, 2026-09-05 — A7 (Kheyos mortal, verbatim) · A14 ("forças materializantes" = Limiar e Éter)
 - Mapa de Khaskavel na Sessão 0 — `docs/memoria/mapas/LEIA-ME_mapas.md` §2
-- Relatório de fidelidade 2026-09-05 (A7) · digest `docs/memoria/digests/E_lore.md` §6 item 16
+- Relatório de fidelidade 2026-09-05 (A7) · `docs/memoria/digests/E_lore.md` §6 item 16
 - Brutos em `docs/memoria/notion_raw/sessao_roteiro.md`, `lore_kharavel_npcs.md`, `sessao_npcs_relacionados.md`, `sessao_os5_klaus.md`

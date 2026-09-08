@@ -48,7 +48,7 @@ O que se conta sobre a mercadoria também não é confiável. As notas que circu
 
 ## Procedência
 - Notion `98d6e3a401d9831386fc01d118567160` — Mercador 🪙 (🟢, ed. 2026-07-23); índice de Origens `3a66e3a401d9808aa877f7e7cb77002a`.
-- `docs/memoria/notion_raw/origens.md`; digest `C_racas_origens.md` §2, §4.12.
+- `docs/memoria/notion_raw/origens.md`; levantamento C_racas_origens.md` §2, §4.12.
 - Respostas do mestre 2026-09-05: **B16** ("Interação Social(Convencimento)" → Convencimento) · **A18** (a coluna Lore/Notas do Bazar não é canônica até validação item a item) · **A5** (recursos e pessoas migram de Khaskavel para Revavena).
 - Correção de redação aplicada aqui: "Interação Social(Convencimento)" → **Convencimento**. A correção segue pendente na fonte (lote 2).
 - Revisão de redação: 2026-09-08.

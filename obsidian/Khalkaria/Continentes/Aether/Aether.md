@@ -76,4 +76,4 @@ Aether, o continente, e [[Éter]], a energia que corre em todo ser, não são a 
 ## Procedência
 - Notion: 4. Aether `33e6e3a401d9812bab36f280892bf817` (🟡 Em desenvolvimento, ed. 2026-05-24; seção inline Hyven, filha Os Hax) · Os Hax `3696e3a401d98127a568c856497d9ce6` · Runa Skorn `33e6e3a401d981f2ae5fd3a12244a204` · Klaus von Aldric `33e6e3a401d9810ca145d41242d235b0` · Kheyos `33e6e3a401d9819789c0da0fcde2f114`
 - Respostas do mestre (2026-09-05): A2 (Velúria, dona do Plano Místico, criadora do Éter e do Limiar, a mais sábia), A14 (o mecanismo de extração do Éter e o papel do Limiar), A15 (Aether é o continente que Runa apresenta), A7 (Kheyos é mortal e teurgo; o culto que o formou não é nomeado), B3 (o idioma dos autômatos é o Criptografado)
-- Memória do repositório: `docs/memoria/notion_raw/lore_aether.md`, `lore_aether_os_hax.md`, `sessao_os5_runa.md`, `sessao_os5_klaus.md`; digest `E_lore.md` §2.4
+- Memória do repositório: `docs/memoria/notion_raw/lore_aether.md`, `lore_aether_os_hax.md`, `sessao_os5_runa.md`, `sessao_os5_klaus.md`; levantamento E_lore.md` §2.4

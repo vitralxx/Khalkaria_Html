@@ -72,5 +72,5 @@ O outro caminho é entregar [[Lena Skarv]] ao casulo de [[O Sonhador]]. Este tem
 - Notion — *Templo da Profecia* `33f6e3a401d980dd982ad39fcba2ed4e` (🟢 pronto, ed. 2026-05-23) · *Lena Skarv* `3696e3a401d981969032ea2fcf0b406e` · *Deuses* `33e6e3a401d9817f9470e140120b1c22`
 - Mestre, 2026-09-05 — A1 (Karmath é deusa; a figura masculina é erro dos mortais) · A2 (o Primórdio torna deus quem nele pisa; os deuses atuais nunca foram mortais) · A16 (os deuses são cargos; o desfecho verdadeiro)
 - Mapas de Kharavel, campanha e Sessão 0 — `docs/memoria/mapas/LEIA-ME_mapas.md` §1 e §3
-- Relatório de fidelidade 2026-09-05 (E13) · digest `docs/memoria/digests/E_lore.md` §2 e §6 item 3
+- Relatório de fidelidade 2026-09-05 (E13) · `docs/memoria/digests/E_lore.md` §2 e §6 item 3
 - Brutos em `docs/memoria/notion_raw/lore_kharavel_locais_regioes.md`, `lore_kharavel_npcs.md`, `lore_kharavel_seres_filhas.md`

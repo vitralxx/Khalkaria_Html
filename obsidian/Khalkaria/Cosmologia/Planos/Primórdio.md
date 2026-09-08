@@ -84,5 +84,5 @@ Aqui "primórdio" significa apenas *o começo*, e não o plano.
 ## Procedência
 - Notion: Sinikko Kiriam `33e6e3a401d9813d8cf5d8d8e6c3fddc` · Magias `3a66e3a401d98097a5d4e316154f9fcb` · Teurgo `caa6e3a401d98330bae281511750d407` · 3. Mordval `33e6e3a401d9813c9065fb6377553748` · Sistema raiz `2b76e3a401d980c0ab7bc27a342f4ee1`
 - Respostas do mestre (2026-09-05): A2, A4, A16, B1
-- Memória do repositório: `docs/memoria/notion_raw/lore_kharavel_npcs.md`, `magias.md`, `classe_teurgo.md`, `sistema_root.md`, `lore_mordval.md` · digest `E_lore.md` §1, §4
+- Memória do repositório: `docs/memoria/notion_raw/lore_kharavel_npcs.md`, `magias.md`, `classe_teurgo.md`, `sistema_root.md`, `lore_mordval.md` · levantamento E_lore.md` §1, §4
 - Correções pendentes nas páginas de origem: nomear o "plano dos deuses" como Primórdio e ajustar quantos jogadores entram (página de Sinikko Kiriam)

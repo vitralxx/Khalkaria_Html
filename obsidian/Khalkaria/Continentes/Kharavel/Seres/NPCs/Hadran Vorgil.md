@@ -67,7 +67,7 @@ Na noite da [[Sessão 0]] Hadran tem vinte e oito anos e está na ferraria do ca
 > Hadran quer acompanhar Vorn até a cidade para resolver assuntos pessoais de Kirkushav. (Missão Muito Importante) Convencimento(CD 15): Kirkushav ordenou a Hadran o assassinato de uma escrava por conspiração à colonia.
 > Que tal um duelo? Hadran desafia algum jogador para um duelo valendo 100 sins.
 
-O "assunto pessoal de Kirkushav" só se abre para quem insistir (Convencimento CD 15 — ver [[Atributos e Perícias]]): uma escrava de [[Khaskavel]] acusada de conspirar contra a colônia, marcada para morrer pela mão dele. Nenhum nome é dito; a única escrava conspirando contra a colônia naquele ano é [[Karma]]. O duelo por cem Sins é o convite dele para medir os recém-chegados.
+O "assunto pessoal de Kirkushav" só se abre para quem insistir, num teste de Convencimento difícil ([[Atributos e Perícias]]): uma escrava de [[Khaskavel]] acusada de conspirar contra a colônia, marcada para morrer pela mão dele. Nenhum nome é dito; a única escrava conspirando contra a colônia naquele ano é [[Karma]]. O duelo por cem Sins é o convite dele para medir os recém-chegados.
 
 ## O que ainda pode acontecer
 
@@ -126,5 +126,5 @@ O "assunto pessoal de Kirkushav" só se abre para quem insistir (Convencimento C
 ## Procedência
 - Notion — *Hadran Vorgil* `36d6e3a401d9817792d8ef277f93f46a` (🟡, ed. 2026-06-06) · *Ficha de Combate — Hadran Vorgil (CR 2)* `3776e3a401d9813193def007042f0e34` (🗡️, 2026-06-06) · *Roteiro da Sessão 0* `33e6e3a401d9819796c9dfb2263e215d` · *Castelo em Ruínas* `3696e3a401d98161a014d3747e46b42b`
 - Mestre, 2026-09-05 — A5 (Karma como a escrava conspiradora, e o interrogatório da Sessão 0) · A10 (Sinikko nunca foi adotado por Kirkushav) · B3 (o Abismo corrompido por Velúria e Vytália contra a libertação de Osh'Kar) · B16 (as perícias da ficha) · C4 e C9 (grafia *Vanguarda do Ferro*; *Castelo das Nações* como nome antigo)
-- Digests `docs/memoria/digests/E_lore.md` §6 item 22 e §7 p.16 · `F_sessoes_outros.md` §3 e §6 item 4
+- `docs/memoria/digests/E_lore.md` §6 item 22 e §7 p.16 · `F_sessoes_outros.md` §3 e §6 item 4
 - Brutos em `docs/memoria/notion_raw/lore_kharavel_npcs.md`, `lore_kharavel_hadran_ficha.md`, `sessao_roteiro.md`, `sessao_npcs_relacionados.md`

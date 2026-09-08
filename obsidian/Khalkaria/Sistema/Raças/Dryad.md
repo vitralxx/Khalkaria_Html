@@ -32,9 +32,9 @@ O desprezo gruto é apetite: os répteis olham dryads *"com interesse gastronôm
 
 > O povo Skarv é primariamente composto de Dryads e Animais domesticados. Possuem grande conhecimento do místico
 
-Lidera-os [[Yu]], *"uma metade-cerva altamente habilidosa"*. Os [[Skarv]] cultuam [[A Vhelor]] pelos nomes de **A Vhelorna** e **A Vhel-Mãe** e dão à [[Seiva]] um uso técnico-místico que ninguém mais domina. O [[Vilarejo Skarv]] foi atacado pela [[Vanguarda Serafélia]] a mando do [[Sinikko Kiriam (clone)]].
+Lidera-os [[Yu]], *"uma metade-cerva altamente habilidosa"*. Os [[Skarv]] cultuam [[A Vhelor]] pelos nomes de **A Vhelorna** e **A Vhel-Mãe** e dão à [[Seiva]] um uso técnico-místico que ninguém mais domina. O [[Vilarejo Skarv]] foi atacado pela [[Vanguarda Serafélia]] a mando do [[Sinikko Kiriam (clone)|imperador de Khaskavel]].
 
-[[Lena Skarv]] veio dali: dryad de quinze anos, *"a única criatura de Kharavel que possui um coração puro"*, produto de um plano secreto entre [[Vytália]] e [[Karmath]]. Fugia de dois soldados da Vanguarda Serafélia quando [[Alvak Krichama]] os executou e a adotou.
+Do [[Vilarejo Skarv]] veio [[Lena Skarv]], a dryad adotada pelo ferreiro [[Alvak Krichama]] em [[Khaskavel]] — dryad que esconde a própria natureza numa cidade hostil a nativos.
 
 ## A imagem de Vytália
 
@@ -91,7 +91,7 @@ A segunda estátua do [[Templo da Profecia]] é dryad:
 - **Capturados por** → [[Os Hax]] (pela conexão com o místico)
 - **Deusa que tem a forma deles** → [[Vytália]] ([[Templo da Profecia]])
 - **Veneram (Skarv)** → [[A Vhelor]] como A Vhelorna e A Vhel-Mãe; manejam [[Seiva]]
-- **Atacados por** → [[Vanguarda Serafélia]], a mando do [[Sinikko Kiriam (clone)]]
+- **Atacados por** → [[Vanguarda Serafélia]], a mando do [[Sinikko Kiriam (clone)|imperador de Khaskavel]]
 - **Protegida por** → [[Alvak Krichama]] (adotou [[Lena Skarv]])
 - **Exemplos** → [[Yu]], [[Lena Skarv]], [[Runa Skorn]]
 - **Condição aplicada** → [[Condições|Enfeitiçada]]
@@ -106,6 +106,6 @@ A segunda estátua do [[Templo da Profecia]] é dryad:
 ## Procedência
 - Notion `3b16e3a401d982648d9b812e2efd6947` — Dryad (🟡 Em desenvolvimento, ed. 2026-07-24); índice de Raças `3a66e3a401d980318836edcfa11c8a24`; Vilarejo Skarv `36d6e3a401d981fb97bceeec037e614d`; Lena Skarv `3696e3a401d981969032ea2fcf0b406e`; Templo da Profecia `33f6e3a401d980dd982ad39fcba2ed4e`; @Nomes Aleatórios `33e6e3a401d981d09cadf2397f4a8856`.
 - Respostas do mestre 2026-09-05: **A12** — *"Runa é uma Dryad. Hoje no sistema, escolher dryad significa que você é metade humano e metade qualquer animal à sua escolha."* · **A6** (Lena, coração puro, plano de Vytália e Karmath; salva de dois soldados da Vanguarda Serafélia) · **B3** (Natural é a língua dos animais, dryads e bestas) · **B16** (perícias de interação individualizadas).
-- `docs/memoria/notion_raw/raca_dryad.md`, `lore_kharavel_cidades.md`, `lore_kharavel_npcs.md`, `lore_aether_os_hax.md`, `sessao_os5_runa.md`, `sistema_root.md`; digest `C_racas_origens.md` §1, §4.11.
+- `docs/memoria/notion_raw/raca_dryad.md`, `lore_kharavel_cidades.md`, `lore_kharavel_npcs.md`, `lore_aether_os_hax.md`, `sessao_os5_runa.md`, `sistema_root.md`; levantamento C_racas_origens.md` §1, §4.11.
 - Correções pendentes na fonte: atualizar a descrição de casca e seiva para a forma meio-animal; "2 grutos selvagens" no resgate de Lena; grafia "Florescrua" na lista de nomes; "interação social(qualquer)".
 - Revisão de redação: 2026-09-07.

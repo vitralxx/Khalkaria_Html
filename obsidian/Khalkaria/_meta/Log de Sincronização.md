@@ -11,7 +11,7 @@ tags: [khalkaria/meta]
 # Log de Sincronização
 
 ## 2026-09-06 — carga inicial do vault
-**Origem:** varredura completa do Notion em 2026-09-04 (`docs/memoria/notion_raw/`, 60 páginas; digests A–F) + respostas do Pedro de 2026-09-05 (`docs/memoria/respostas_pedro_2026-09-05.md`), que **prevalecem** sobre o Notion + os 3 mapas (`docs/memoria/mapas/`).
+**Origem:** varredura completa do Notion em 2026-09-04 (`docs/memoria/notion_raw/`, 60 páginas; levantamento A–F) + respostas do Pedro de 2026-09-05 (`docs/memoria/respostas_pedro_2026-09-05.md`), que **prevalecem** sobre o Notion + os 3 mapas (`docs/memoria/mapas/`).
 
 **Verificação por conjunto** (método do CLAUDE.md §6): 168/168 cartas do Limiar, 80/80 magias verbatim, 28/28 condições, 17/17 origens, 8 raças, 7 classes, 9 regiões, 7 deuses, 5 continentes.
 

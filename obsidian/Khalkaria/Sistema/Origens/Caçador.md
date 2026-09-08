@@ -51,6 +51,6 @@ Caçar animais em Kharavel também nunca é um ato inteiramente neutro. Um [[Dry
 
 ## Procedência
 - Notion `b8f6e3a401d9823884ac812414e85095` — Caçador 🎣 (🟢, ed. 2026-08-26, a mais recente das dezessete); índice de Origens `3a66e3a401d9808aa877f7e7cb77002a`.
-- `docs/memoria/notion_raw/origens.md`; digest `C_racas_origens.md` §2.
+- `docs/memoria/notion_raw/origens.md`; levantamento C_racas_origens.md` §2.
 - Respostas do mestre 2026-09-05: **A12** (Dryad é metade humano, metade animal à escolha) · **A17** (geografia antes de tudo) · **B2** (consumo de munição, registrado em [[Armas e Munição]]).
 - Revisão de redação: 2026-09-07.

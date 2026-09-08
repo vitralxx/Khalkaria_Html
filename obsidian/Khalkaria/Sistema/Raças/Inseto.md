@@ -95,6 +95,6 @@ Chitin Mandalore · Vespa Thornwing · Scarab Dustshell · Mantis Razorclaw · C
 ## Procedência
 - Notion `f6d6e3a401d9839591dd814cdefa153b` — Inseto (🟡 Em desenvolvimento, ed. 2026-07-24); índice de Raças `3a66e3a401d980318836edcfa11c8a24`; O Império do Ferro `33e6e3a401d981269fc0f19d9fe66772`; 2. Volkrest `33e6e3a401d9817fa7a8c67c898343e2`; @Nomes Aleatórios `33e6e3a401d981d09cadf2397f4a8856`.
 - Respostas do mestre 2026-09-05: **B1** (os doze tipos de dano e a leitura de "atípico") · **B3** (Natural é a língua dos animais, dryads e bestas, falada também pelos insetos) · **B16** (Intimidação como perícia própria).
-- `docs/memoria/notion_raw/raca_inseto.md`, `lore_volkrest.md`, `lore_volkrest_imperio_do_ferro.md`, `raca_humano.md`; digest `C_racas_origens.md` §1, §4.6, §4.9.
+- `docs/memoria/notion_raw/raca_inseto.md`, `lore_volkrest.md`, `lore_volkrest_imperio_do_ferro.md`, `raca_humano.md`; levantamento C_racas_origens.md` §1, §4.6, §4.9.
 - Correções pendentes na fonte: "interação social(intimidação)" → Intimidação; subtipos de dano por escrito nas características de subespécie.
 - Revisão de redação: 2026-09-07.

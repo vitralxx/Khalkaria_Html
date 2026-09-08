@@ -75,4 +75,4 @@ Quando outro ocupar o casulo, o canal muda de dono. Se for [[Lena Skarv]], quem 
 ## Procedência
 - Notion: Substâncias da Grande Árvore `33e6e3a401d981ef841aefa20793d48d` · O Sonhador `33e6e3a401d98126bae4e981b581487f`
 - Respostas do mestre (2026-09-05): A6, A10
-- Memória do repositório: `docs/memoria/notion_raw/lore_kharavel_substancias.md`, `lore_kharavel_sonhador.md` · digest `E_lore.md` §2
+- Memória do repositório: `docs/memoria/notion_raw/lore_kharavel_substancias.md`, `lore_kharavel_sonhador.md` · levantamento E_lore.md` §2

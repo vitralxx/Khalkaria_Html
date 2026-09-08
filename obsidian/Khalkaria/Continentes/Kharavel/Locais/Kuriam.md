@@ -47,4 +47,4 @@ As [[Terras Livres]] são *"terras não dominadas por nenhuma facção — relat
 - Notion — *Kuriam* `33e6e3a401d981ad83d7fe8266cc6630` (🟡, ed. 2026-05-24) · *Facções de Kharavel* `3696e3a401d9814f8e0dfa4c6b50b850` · *Terras Livres* `37b6e3a401d9811c8bcddbff184cacee` · *O Direcionamento* `33e6e3a401d98190a21ae6c430acbc38`
 - Mestre, 2026-09-05 — B18 (o clone rompe com o Império; a Vanguarda responde a Khaskavel)
 - Mapas de Kharavel, campanha e Sessão 0 — `docs/memoria/mapas/LEIA-ME_mapas.md` §1
-- Digest `docs/memoria/digests/E_lore.md` §2 · brutos em `docs/memoria/notion_raw/lore_kharavel_cidades.md`, `lore_kharavel_faccoes.md`, `lore_kharavel_locais_regioes.md`
+- `docs/memoria/digests/E_lore.md` §2 · brutos em `docs/memoria/notion_raw/lore_kharavel_cidades.md`, `lore_kharavel_faccoes.md`, `lore_kharavel_locais_regioes.md`

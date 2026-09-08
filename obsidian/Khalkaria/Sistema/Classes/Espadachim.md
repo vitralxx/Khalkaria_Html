@@ -210,6 +210,6 @@ O "plano impossível" de *Sentença Final* é o [[Plano Místico]], domínio de 
 ## Procedência
 - Notion `8506e3a401d9837b88a501bad1e66368` — Espadachim (ed. 2026-08-11, 🟢 Pronto); índice de Classes `3a66e3a401d9809b8eceec1f30be9fd2`.
 - Respostas do mestre 2026-09-05: **B11** (ramos 3/2/1 nos níveis 2/4/5 — o texto "6 Técnicas de Ramo, 3 por Tier" da fonte está errado) · **B16** (Ataque → Atacar, Defesa → Defender, Intimidar → Intimidação; Reflexo → Reflexos) · **B1** (Cortante é subtipo de Ordinário; Primordial é energia vazada do Primórdio) · **A2/A14** (Velúria é dona do Plano Místico e tece a trama do tempo).
-- `docs/memoria/notion_raw/classe_espadachim.md`, `classe_index.md`; digest `B_classes.md` §1, inconsistências 1, 13, 14, 18, 21, 24.
+- `docs/memoria/notion_raw/classe_espadachim.md`, `classe_index.md`; levantamento B_classes.md` §1, inconsistências 1, 13, 14, 18, 21, 24.
 - Correções pendentes na fonte: frase "6 Técnicas de Ramo, 3 por Tier"; nomes legados de perícia (Ataque, Defesa, Intimidar).
 - Revisão de redação: 2026-09-07.

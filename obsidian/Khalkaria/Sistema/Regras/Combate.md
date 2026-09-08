@@ -76,6 +76,6 @@ Uma unidade de munição cobre o **combate inteiro**; sem munição, a arma à d
 ## Procedência
 - Notion `2b76e3a401d980c0ab7bc27a342f4ee1` — Combate: Sua Rodada, Atacando, Ataques de oportunidade.
 - Respostas do mestre 2026-09-05: **B4** (1 magia por turno; exceção do Disparo Veloz), **B2** (munição por combate).
-- `docs/memoria/notion_raw/sistema_root.md`; digest `A_sistema.md` §1.6.
+- `docs/memoria/notion_raw/sistema_root.md`; levantamento A_sistema.md` §1.6.
 - Correção pendente na fonte: escrever o limite de 1 magia por turno nas regras de magia.
 - Revisão de redação: 2026-09-07.

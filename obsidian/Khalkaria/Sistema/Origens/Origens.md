@@ -75,7 +75,7 @@ Algumas têm lastro direto na campanha. [[Karma]] e [[Sevic]] entram na [[Sessã
 
 ## Procedência
 - Notion `3a66e3a401d9808aa877f7e7cb77002a` — índice de Origens (🟡 Em desenvolvimento, ed. 2026-07-23) com as 17 subpáginas 🟢 Pronto. O índice está atrasado em relação às filhas: [[Perguntas Abertas|E103]].
-- `docs/memoria/notion_raw/origens.md` (texto integral das 17); digest `C_racas_origens.md` §2, §3, §4.12-13, §6.
+- `docs/memoria/notion_raw/origens.md` (texto integral das 17); levantamento C_racas_origens.md` §2, §3, §4.12-13, §6.
 - Respostas do mestre 2026-09-05: **B16** (perícias sociais individualizadas; Reflexo = Reflexos) · **C7** (grafia oficial **Acólito**; a fonte escreve "Acolito") · **A10** (a origem retrata a fase da vida, não o nascimento — caso Sinikko) · **A5** e **B18** (Karma e Sevic entram na Sessão 0 como escravos).
 - Correções de redação aplicadas nas 17 notas e pendentes na fonte (lote 2): "Interação Social(Convencimento)" → Convencimento, "Interação Social(Intuição)" → Intuição, "Reflexo" → Reflexos; cabeçalho "Pericia Treinada" → "Treinamento"; plurais de Comida/Bugiganga; a linha das Comidas colada na da Bolsa de Couro no Escravo; "Acolito" → "Acólito".
 - Revisão de redação: 2026-09-08.

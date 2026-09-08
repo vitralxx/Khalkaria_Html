@@ -49,11 +49,11 @@ A nobreza de Kharavel tem raiz declarada: [[Khaskavel]] *"nasceu como uma diarqu
 ## Pontas soltas
 - **Bônus sem cerca.** *Educação Privilegiada* não restringe a perícia — pode apontar para Atacar ou Defender, que são as duas perícias de combate. [[Perguntas Abertas|E96]].
 - **Falar o que não se pode falar.** O idioma concedido inclui o [[Khazadun]], que exige cordas vocais anãs para ser pronunciado. Um nobre não-[[Anão]] pode escolhê-lo — e se puder, lê e escreve sem nunca falar? Mesma dúvida do [[Acadêmico]]. [[Perguntas Abertas|E88]].
-- **Rico na ficção, mediano na bolsa.** 2d6+5 [[Sins]] é menos da metade do que rende o [[Mercador]]; provavelmente é o preço da queda, mas nunca foi dito.
+- **Rico na ficção, mediano na bolsa.** 2d6+5 [[Sins]] é menos da metade do que rende o [[Mercador]] (4d6+15); provavelmente é o preço da queda, mas nunca foi dito.
 
 ## Procedência
 - Notion `e7a6e3a401d98247b3ba01084195cb30` — Nobre 🏰 (🟢, ed. 2026-07-23); índice de Origens `3a66e3a401d9808aa877f7e7cb77002a`.
-- `docs/memoria/notion_raw/origens.md`; digest `C_racas_origens.md` §2, §4.12.
+- `docs/memoria/notion_raw/origens.md`; levantamento C_racas_origens.md` §2, §4.12.
 - Respostas do mestre 2026-09-05: **A10** (Sinikko nasceu nos esgotos e tem ficha de Nobre; a origem retrata a fase atual; o treino de sucessor que desandou) · **A6** (Khaskavel nasceu diarquia de duas famílias) · **A9** (Vorn Drekar é o filho verdadeiro de Kirkushav) · **B3** (Khazadun exige cordas vocais anãs) · **B16** ("Interação Social(Intuição)" → Intuição).
 - Correção de redação aplicada aqui: "Interação Social(Intuição)" → **Intuição**. A correção segue pendente na fonte (lote 2).
 - Revisão de redação: 2026-09-08.

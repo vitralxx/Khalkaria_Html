@@ -79,5 +79,5 @@ Nas cartas da cidade o lugar aparece como **O Teurgo Solitário**, além do rio,
 - Notion — *Kheyos* `33e6e3a401d9819789c0da0fcde2f114` (🟠 rascunho, ed. 2026-05-24, citada integralmente) · *Roteiro da Sessão 0* `33e6e3a401d9819796c9dfb2263e215d` · *Klaus von Aldric* (página de PC, Os 5 escolhidos) `33e6e3a401d9810ca145d41242d235b0` · *Os Hax* `3696e3a401d98127a568c856497d9ce6`
 - Mestre, 2026-09-05 — A7 (Kheyos é mortal, não é filho de Karmath, e a obsessão dele, verbatim) · A14 ("forças materializantes" = Limiar e Éter) · A16 (o segredo final de Khalkaria é o conflito dos deuses pelo sumiço de Kha)
 - Mapa de Khaskavel na Sessão 0 — `docs/memoria/mapas/LEIA-ME_mapas.md` §2, onde a casa aparece como *"O Teurgo Solitário 'Casa Isolada'"*
-- Relatório de fidelidade 2026-09-05 (A7) · digest `docs/memoria/digests/E_lore.md` §6 item 16 e §7 pergunta 9
+- Relatório de fidelidade 2026-09-05 (A7) · `docs/memoria/digests/E_lore.md` §6 item 16 e §7 pergunta 9
 - Brutos em `docs/memoria/notion_raw/lore_kharavel_npcs.md`, `sessao_npcs_relacionados.md`, `sessao_roteiro.md`, `sessao_os5_klaus.md`, `lore_aether_os_hax.md`

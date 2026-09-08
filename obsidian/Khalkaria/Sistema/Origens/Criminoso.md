@@ -48,7 +48,7 @@ Em [[Kharavel]], "contato criminal" tem tradução direta: [[Karma]] e [[Sevic]]
 
 ## Procedência
 - Notion `dff6e3a401d983e39558013b95f2ca1d` — Criminoso 💸 (🟢, ed. 2026-07-23); índice de Origens `3a66e3a401d9808aa877f7e7cb77002a`.
-- `docs/memoria/notion_raw/origens.md`; digest `C_racas_origens.md` §2.
+- `docs/memoria/notion_raw/origens.md`; levantamento C_racas_origens.md` §2.
 - Respostas do mestre 2026-09-05: **A10** (Sinikko nasceu gruto de periferia e vivia nos esgotos) · **A5** (Karma e Sevic entram como escravos e conspiram pelos Rastas).
 - Correção de fato aplicada aqui: a nota anterior chamava esta de "segunda origem mais rica"; pela média de rolagem, o segundo lugar é do [[Acadêmico]] (3d6+10) — 4d6 é a rolagem mais volátil, não a segunda maior.
 - Revisão de redação: 2026-09-07.

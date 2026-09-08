@@ -59,4 +59,4 @@ Há vinte e sete anos o lago era turquesa e o castelo ainda estava em obras, cer
 - Notion — *Castelo em Ruínas* `3696e3a401d98161a014d3747e46b42b` · *Lázlo* `36d6e3a401d9818d9cddefbdd4015aad`
 - Mestre, 2026-09-05 — A5 (Sevic preso no castelo; início da Sessão 0)
 - Mapas de Kharavel, campanha e Sessão 0 — `docs/memoria/mapas/LEIA-ME_mapas.md`
-- Digest `docs/memoria/digests/E_lore.md` §2 · roteiro da Sessão 0 em `digests/F_sessoes_outros.md`
+- `docs/memoria/digests/E_lore.md` §2 · roteiro da Sessão 0 em `digests/F_sessoes_outros.md`

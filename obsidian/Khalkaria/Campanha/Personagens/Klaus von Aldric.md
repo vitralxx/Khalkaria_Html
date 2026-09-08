@@ -90,10 +90,10 @@ Texto integral das técnicas em [[Monge]].
 2. **O culto que formou [[Kheyos]] em [[Aether]] são os Hax?** Se forem, mentor e algoz de Klaus vêm da mesma casa. ([[Perguntas Abertas]] E23)
 3. **Klaus morreu de fato** em `C−27`? O destino dos quatro que não viraram Sonhador nunca foi escrito. ([[Perguntas Abertas]] E19)
 4. **A idade** nunca foi declarada — adolescente no cativeiro, adulto na expedição.
-5. **A ficha** ainda carrega efeitos que não batem com as regras vivas: a Esquiva Abissal rolando *"3d6 em vez de d12"* contra a carta atual, que dá nível de treinamento em Defender; um *"Grau de Corrupção (3)"* que a raça [[Corrompido]] não tem mais (hoje são pontos de corrupção por nível); e o +7 dos Punhos do Limiar, que não fecha com DES +6 e SAB +3. Receptáculo Natural, além disso, pressupõe truques sem custo de Éter que ainda não existem ([[Regras de Magia]]). ([[Perguntas Abertas]] E32)
+5. **A ficha** ainda carrega efeitos que não batem com as regras vivas: a Esquiva Abissal usa uma rolagem que a carta atual substituiu por nível de treinamento em Defender ([[O Limiar (cartas)]], [[Dano, Ataque e Defesa]]); o "Grau de Corrupção" foi trocado por pontos de corrupção por nível ([[Corrompido]]); e o bônus dos Punhos do Limiar não fecha com os atributos declarados ([[Atributos e Perícias]]). Receptáculo Natural, além disso, pressupõe truques sem custo de Éter que ainda não existem ([[Regras de Magia]]). ([[Perguntas Abertas]] E32)
 
 ## Procedência
 - Notion — página de PC *Klaus von Aldric* `33e6e3a401d9810ca145d41242d235b0` (🟡, ed. 2026-07-17) · *📜 Ficha Klaus von Aldric* `35f6e3a401d9802b9ac3cf1307281197` (🟢, ed. 2026-07-24) · *Roteiro da Sessão 0* `33e6e3a401d9819796c9dfb2263e215d` · *Os Hax* `3696e3a401d98127a568c856497d9ce6`
 - Mestre, 2026-09-05 — A15 (Klaus representa Mordval) · A7 (Kheyos é teurgo mortal, com agenda contra a ingenuidade dos deuses) · A16 (Klaus "morre" na árvore; nada além disso foi dito) · B8 (as magias de nível 0 a criar) · B1 ("Gelo" → Frio) · B16 ("Convencer/Enganar" → Convencimento/Enganação) · B17 (autorização para refazer a ficha)
-- Digest `docs/memoria/digests/F_sessoes_outros.md` §2, incidentes 11 e 14–16
+- `docs/memoria/digests/F_sessoes_outros.md` §2, incidentes 11 e 14–16
 - Brutos em `docs/memoria/notion_raw/sessao_os5_klaus.md`, `lore_aether_os_hax.md`

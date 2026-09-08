@@ -54,7 +54,7 @@ A tecnologia também está em movimento. As armas de fogo acabaram de emergir co
 
 ## Procedência
 - Notion `3476e3a401d9833780b081628d425d58` — Artesão 🔧 (🟢, ed. 2026-07-23); índice de Origens `3a66e3a401d9808aa877f7e7cb77002a`.
-- `docs/memoria/notion_raw/origens.md`; digest `C_racas_origens.md` §2, §4.13.
+- `docs/memoria/notion_raw/origens.md`; levantamento C_racas_origens.md` §2, §4.13.
 - Resposta do mestre 2026-09-05: **A11** (Krichama ferreiros, Caxon engenheiros).
 - Correções de redação aplicadas aqui: cabeçalho "Pericia Treinada" → "Treinamento"; "1 Comida (1 Bugigangas)" → singular. A correção do plural segue pendente no Notion (lote 2).
 - Revisão de redação: 2026-09-07.

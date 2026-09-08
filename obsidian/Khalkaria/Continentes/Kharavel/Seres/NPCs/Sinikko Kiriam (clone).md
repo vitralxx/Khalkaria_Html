@@ -89,5 +89,5 @@ Nos registros a passagem é descrita de outro jeito — *"a essência de Malkhor
 ## Procedência
 - Notion — *Sinikko Kiriam (NPC)* `33e6e3a401d9813d8cf5d8d8e6c3fddc` (🟡, ed. 2026-07-03) · *Culto de Malkhor* `3696e3a401d981a0b2e3f42c3fa846e6` · *O Rei de Khaskavel* `33e6e3a401d9814aa2a2c3d7ef3875a7` · *Kirkushav Drekar* `33e6e3a401d98131815efc830056e2e3` · *Vilarejo Skarv* `33e6e3a401d981f68258f6a0be896c08` · *Castelo em Ruínas* `3696e3a401d98161a014d3747e46b42b` · *Substâncias* `33e6e3a401d981ef841aefa20793d48d` · *Hadran Vorgil* e *Tev Kossar* (ganchos)
 - Mestre, 2026-09-05 — B18 (o clone corta relações e adota a contaminação como objetivo, verbatim) · A16 (o true ending, verbatim) · A4 (o plano dos deuses é o Primórdio) · A5 (a profecia de Karma tem o clone como alvo) · A6 (o ciclo de pecado que alimenta a árvore)
-- Digest `docs/memoria/digests/E_lore.md` §2 e §6 itens 14–15
+- `docs/memoria/digests/E_lore.md` §2 e §6 itens 14–15
 - Brutos em `docs/memoria/notion_raw/lore_kharavel_npcs.md`, `sessao_npc_sinikko_lore.md`, `lore_kharavel_faccoes_filhas.md`, `lore_kharavel_khaskavel_folhas.md`, `lore_kharavel_cidades.md`

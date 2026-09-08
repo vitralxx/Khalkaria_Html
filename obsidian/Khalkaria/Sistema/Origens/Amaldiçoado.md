@@ -52,6 +52,6 @@ O "certo local" nunca foi nomeado. Candidatos naturais na geografia atual: [[O A
 
 ## Procedência
 - Notion `1056e3a401d9836ab1e901e614e5d3d4` — Amaldiçoado 👻 (🟢, ed. 2026-07-23); índice de Origens `3a66e3a401d9808aa877f7e7cb77002a`.
-- `docs/memoria/notion_raw/origens.md`; digest `C_racas_origens.md` §2.
+- `docs/memoria/notion_raw/origens.md`; levantamento C_racas_origens.md` §2.
 - Respostas do mestre 2026-09-05: **A16** (segredo final) · **A6** (Lena Skarv, plano Vytália + Karmath) · **A5** (infância de Karma em aberto) · **B3** (Abismo, corrupção abissal, Osh'Kar preso no Plano Material) · **A1** (Karmath abençoa mortais).
 - Revisão de redação: 2026-09-07.

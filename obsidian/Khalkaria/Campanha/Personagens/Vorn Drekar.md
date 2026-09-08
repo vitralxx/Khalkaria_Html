@@ -97,5 +97,5 @@ Texto integral das técnicas em [[Brutalista]].
 ## Procedência
 - Notion — página de PC *Vorn Drekar* `33e6e3a401d981b99d17e52ca1383748` (🟡, ed. 2026-07-17) · *📜 Ficha Vorn Drekar (1)* `3656e3a401d98006aeaefd2e24f25cd2` (🟢) · *Roteiro da Sessão 0* `33e6e3a401d9819796c9dfb2263e215d` · *Hadran Vorgil* `36d6e3a401d9817792d8ef277f93f46a`
 - Mestre, 2026-09-05 — A10 (*"Sinikko Kiriam NÃO é filho de kirkushav drekar, Vorn Drekar é."*) · A15 (Vorn representa Volkrest) · A5 (listado entre os cinco da Sessão 0) · B1 ("Gelo" → Frio) · B16 ("Conhecer" não existe; "Intimidar" → Intimidação) · B17 (autorização para refazer a ficha)
-- Digest `docs/memoria/digests/F_sessoes_outros.md` §2, incidente 10
+- `docs/memoria/digests/F_sessoes_outros.md` §2, incidente 10
 - Brutos em `docs/memoria/notion_raw/sessao_os5_vorn.md`, `sessao_roteiro.md`, `sessao_npcs_relacionados.md`

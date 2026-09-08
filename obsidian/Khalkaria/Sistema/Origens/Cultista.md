@@ -52,7 +52,7 @@ Foi entre gente assim que o cultista aprendeu a canalizar. As magias que ele car
 
 ## Procedência
 - Notion `1966e3a401d9832eb27501929f11322f` — Cultista 👥 (🟢, ed. 2026-07-23); índice de Origens `3a66e3a401d9808aa877f7e7cb77002a`.
-- `docs/memoria/notion_raw/origens.md`; digest `C_racas_origens.md` §2.
+- `docs/memoria/notion_raw/origens.md`; levantamento C_racas_origens.md` §2.
 - Respostas do mestre 2026-09-05: **A16** e **A18** (cultos canônicos; Malkhor não é o deus do mal e criou A Vhelor; o segredo final é o sumiço de Kha) · **B3** (Osh'Kar preso no Abismo apenas no Plano Material) · **B4** (uma magia canalizada por turno) · **B8** (as ~20 magias de nível 0 ainda não existem).
 - Correção de redação aplicada aqui: "1 Comida (1 Bugigangas)" → singular. A correção segue pendente na fonte (lote 2).
 - Revisão de redação: 2026-09-08.

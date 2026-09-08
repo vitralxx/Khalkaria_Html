@@ -72,4 +72,4 @@ As cinco escolas — [[Destruição]], [[Abjuração]], [[Alteração]], [[Conhe
 ## Procedência
 - Notion: O Limiar (lore) `3416e3a401d9802fa419f94e4c7cfbe7` · Deuses `33e6e3a401d9817f9470e140120b1c22` · Os Hax `3696e3a401d98127a568c856497d9ce6` · 4. Aether `33e6e3a401d9812bab36f280892bf817` · Magias `3a66e3a401d98097a5d4e316154f9fcb` · Teurgo `caa6e3a401d98330bae281511750d407` · Sistema raiz `2b76e3a401d980c0ab7bc27a342f4ee1`
 - Respostas do mestre (2026-09-05): A2, A14
-- Memória do repositório: `docs/memoria/notion_raw/lore_kharavel_seres_filhas.md`, `lore_aether_os_hax.md`, `lore_aether.md`, `magias.md`, `classe_teurgo.md`, `sistema_root.md` · digests `E_lore.md` §1, `A_sistema.md`
+- Memória do repositório: `docs/memoria/notion_raw/lore_kharavel_seres_filhas.md`, `lore_aether_os_hax.md`, `lore_aether.md`, `magias.md`, `classe_teurgo.md`, `sistema_root.md` · levantamento E_lore.md` §1, `A_sistema.md`

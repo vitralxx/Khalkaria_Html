@@ -43,11 +43,11 @@ Acima da tropa, o exército é ferramenta política. [[Kirkushav Drekar]] mantin
 - **Economia** → 2d6+10 [[Sins]] · [[O Bazar]]
 
 ## Pontas soltas
-- **"Condições mentais" não é categoria.** [[Condições]] não agrupa as condições assim; o [[Monge]] fala em "condições causadas por emoções (Enfeitiçado e Amedrontado)" e o [[Teurgo]] fala em "condições mentais" sem listar. Também faltam efeito mecânico para "reputação militar básica" e um nome para a guerra que "terminou para o mundo" — nenhum conflito nomeado aparece nas origens. [[Perguntas Abertas|E93]].
+- **"Condições mentais" não é categoria.** [[Condições]] não agrupa as condições assim; o *Apático* do [[Monge]] fala em "condições causadas por emoções (Enfeitiçado e Amedrontado)" e a *Manifestação do Patrono* do [[Teurgo]] fala em "condições mentais" sem listar. Também faltam efeito mecânico para "reputação militar básica" e um nome para a guerra que "terminou para o mundo" — nenhum conflito nomeado aparece nas origens. [[Perguntas Abertas|E93]].
 - **A guerra e a [[Linha do Tempo]].** Enquanto a guerra não tiver data, um soldado não sabe de que ano vem.
 
 ## Procedência
 - Notion `3d06e3a401d98271b1fc014575ee631c` — Soldado 🪖 (🟢, ed. 2026-07-23); índice de Origens `3a66e3a401d9808aa877f7e7cb77002a`.
-- `docs/memoria/notion_raw/origens.md`; digest `C_racas_origens.md` §2, §3.
+- `docs/memoria/notion_raw/origens.md`; levantamento C_racas_origens.md` §2, §3.
 - Respostas do mestre 2026-09-05: **A6** (os perseguidores de Lena eram da Vanguarda Serafélia; Alvak os executa) · **A9** (o Batedor de Kirkushav e o plano contra os Sandgale) · **A15** (a Vanguarda do Ferro é a força militar de Volkrest).
 - Revisão de redação: 2026-09-08.

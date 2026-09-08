@@ -309,6 +309,6 @@ Ao longo da criação do personagem escolhem-se **3 Marcas** e **6 Técnicas de 
 ## Procedência
 - Notion `eac6e3a401d982d595b181020562ec8e` — Alquimista (ed. 2026-08-05, 🟢 Pronto); índice de Classes `3a66e3a401d9809b8eceec1f30be9fd2`.
 - Respostas do mestre 2026-09-05: **B11** (ramos 3/2/1 nos níveis 2/4/5) · **B1** (as quatro categorias e os doze tipos de dano; "dano de força é gravidade geralmente e oriundo dos deuses, dano primordial é energia vazada do Primórdio") · **B12** (*Incorpóreo* criada para uso unitário; "Lentidão 2 se refere a lento 2") · **B16** (as perícias sociais foram individualizadas; Ofício(X) segue canônica, com atributo variável) · **A18** (a coluna de notas do Bazar não é canônica e nada dela entra neste catálogo).
-- `docs/memoria/notion_raw/classe_alquimista.md`, `classe_index.md`; digest `B_classes.md` §6, inconsistências 1, 6, 10, 11, 17, 21, 26.
+- `docs/memoria/notion_raw/classe_alquimista.md`, `classe_index.md`; levantamento B_classes.md` §6, inconsistências 1, 6, 10, 11, 17, 21, 26.
 - Correções pendentes na fonte: "3 no Tier" sem o "1"; grafias legadas no catálogo — *Envenenado* → Envenenamento (Antídoto Universal, Veneno Padrão, Apocalipse Alquímico; o Antídoto Simples já usa o nome certo) e *Exausto 1* → Exaustão 1 (Adrenalina de Campo, Extrato de Velocidade), preservadas aqui como estão na fonte.
 - Revisão de redação: 2026-09-07.

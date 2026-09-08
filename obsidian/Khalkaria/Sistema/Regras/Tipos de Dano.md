@@ -53,6 +53,6 @@ Ar contra Ordinário, Ae(Tipo, Quant.) contra o resto, Resistência pela metade 
 ## Procedência
 - Respostas do mestre 2026-09-05: **B1** — lista definitiva dos 12 tipos em 4 categorias, natureza de Força e Primordial, "Gelo" como erro.
 - Notion `2b76e3a401d980c0ab7bc27a342f4ee1` (tabela antiga: Ordinário / Atípico / Outros, com "Fogo ; Frio ; Gelo" e sem Elétrico) e `4e66e3a401d9832b97b4017bc00ff2c2` (linha de armadura da ficha: Ordinário · Ácido · Fogo · Gelo · Elétrico · Trovejante · Veneno · Necrótico · Radiante · Psíquico · Força · Primordial).
-- `docs/memoria/notion_raw/sistema_root.md`, `template_ficha_de_personagem.md`; digest `A_sistema.md` §1.7, §3.2, §3.24.
+- `docs/memoria/notion_raw/sistema_root.md`, `template_ficha_de_personagem.md`; levantamento A_sistema.md` §1.7, §3.2, §3.24.
 - Correções pendentes na fonte: "Gelo" → "Frio" na tabela de tipos, na ficha e nas cartas do Limiar.
 - Revisão de redação: 2026-09-07.

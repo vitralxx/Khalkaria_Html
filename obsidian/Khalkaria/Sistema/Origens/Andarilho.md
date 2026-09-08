@@ -49,6 +49,6 @@ O que um andarilho vê é o mapa de cinco terras: [[Volkrest]], [[Mordval]], [[A
 
 ## Procedência
 - Notion `4426e3a401d983a483a601a962a41e6b` — Andarilho 🚶 (🟢, ed. 2026-07-23); índice de Origens `3a66e3a401d9808aa877f7e7cb77002a`.
-- `docs/memoria/notion_raw/origens.md`; digest `C_racas_origens.md` §2.
+- `docs/memoria/notion_raw/origens.md`; levantamento C_racas_origens.md` §2.
 - Respostas do mestre 2026-09-05: **A15** (um integrante da Equipe desfloreio por continente, intencional) · **A2** (só O Limiar media a passagem entre planos) · **B16** (nomenclatura de perícias).
 - Revisão de redação: 2026-09-07.

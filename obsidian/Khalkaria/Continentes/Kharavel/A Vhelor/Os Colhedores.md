@@ -74,4 +74,4 @@ Todo Colhedor que ceda à tentação de comer o que colhe passa a acumular [[Mar
 ## Procedência
 - Notion: Substâncias da Grande Árvore `33e6e3a401d981ef841aefa20793d48d` · A Grande Árvore `33e6e3a401d9813b8a60f1f9669803be`
 - Respostas do mestre (2026-09-05): A6, A18, C6 (contexto; não há menção direta aos Colhedores)
-- Memória do repositório: `docs/memoria/notion_raw/lore_kharavel_substancias.md`, `lore_kharavel_grande_arvore.md` · digest `E_lore.md` §2
+- Memória do repositório: `docs/memoria/notion_raw/lore_kharavel_substancias.md`, `lore_kharavel_grande_arvore.md` · levantamento E_lore.md` §2

@@ -60,5 +60,5 @@ O castelo à volta ainda é obra:
 - Notion — *Roteiro da Sessão 0* `33e6e3a401d9819796c9dfb2263e215d` (🟡, ed. 2026-07-24), cenas *Ferraria* e *Pátio* · *Anão* (Raças), clã Krichama
 - Mestre, 2026-09-05 — A11, verbatim: *"Todos os anões tem 2 sobrenomes possiveis, Krichama ou Caxon. Os krichama geralmente são ferreiros e os Caxon engenheiros. Jairo é o ferreiro do castelo de kirkushav. Alvak é o ferreiro da cidade de Khaskavel, vou te anexar o mapa do continente nesse prompt, entenda a distância das coisas como parte importante da criação da narrativa."*
 - Mapas do continente — `docs/memoria/mapas/LEIA-ME_mapas.md`
-- Relatório de fidelidade 2026-09-05 (A11) · digest `docs/memoria/digests/F_sessoes_outros.md` §1, §3 e §6 itens 6 e 20
+- Relatório de fidelidade 2026-09-05 (A11) · `docs/memoria/digests/F_sessoes_outros.md` §1, §3 e §6 itens 6 e 20
 - Brutos em `docs/memoria/notion_raw/sessao_roteiro.md`, `raca_anao.md`, `sessao_npcs_relacionados.md`

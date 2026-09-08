@@ -61,7 +61,7 @@ Um liberto de Kharavel, portanto, carrega uma escolha atrás de si: fugiu com os
 
 ## Procedência
 - Notion `4856e3a401d98323b70901d8093e16a1` — Escravo ⛓️ (🟢, ed. 2026-07-23); índice de Origens `3a66e3a401d9808aa877f7e7cb77002a`.
-- `docs/memoria/notion_raw/origens.md`; digest `C_racas_origens.md` §2, §4.13.
+- `docs/memoria/notion_raw/origens.md`; levantamento C_racas_origens.md` §2, §4.13.
 - Respostas do mestre 2026-09-05: **A5** (Sevic no Castelo de Kirkushav, Karma líder dos Rastas, a fuga para Revavena, a facção escrava que ficou) · **B18** (a contradição de Sinikko) · **A16** (o desfecho pleno da campanha).
 - Correção de formatação aplicada aqui: "- 3 Comidas" estava colado na linha da Bolsa de Couro; separado. A correção segue pendente na fonte (lote 2).
 - Revisão de redação: 2026-09-08.

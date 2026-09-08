@@ -133,6 +133,6 @@ Malachar von Nox · Erebus Voidborn · Nethys Shadowblight · Vexis von Darkmoor
 ## Procedência
 - Notion `e6d6e3a401d983b592a581e5565d059b` — Corrompido (🟡 Em desenvolvimento, ed. 2026-08-28); índice de Raças `3a66e3a401d980318836edcfa11c8a24`; Os Hax `3696e3a401d98127a568c856497d9ce6`; Kheyos `33e6e3a401d9819789c0da0fcde2f114`; @Nomes Aleatórios `33e6e3a401d981d09cadf2397f4a8856`.
 - Respostas do mestre 2026-09-05: **B7** (*"pele morta só tem 1 vez no corrompido"*) · **B8** (as ~20 magias de nível 0, truques sem custo de Éter, ainda serão criadas) · **B1** (leitura dos doze tipos de dano) · **A14** (*"Todo ser possui uma certa quantidade de éter em seu corpo"*) · **B16** (perícias de interação individualizadas).
-- `docs/memoria/notion_raw/raca_corrompido.md`, `lore_aether_os_hax.md`, `lore_kharavel_npcs.md`, `lore_kharavel_substancias.md`, `lore_kharavel_faccoes_filhas.md`; digest `C_racas_origens.md` §1, §4.1–4.2; relatório de fidelidade E2.
+- `docs/memoria/notion_raw/raca_corrompido.md`, `lore_aether_os_hax.md`, `lore_kharavel_npcs.md`, `lore_kharavel_substancias.md`, `lore_kharavel_faccoes_filhas.md`; levantamento C_racas_origens.md` §1, §4.1–4.2; relatório de fidelidade E2.
 - Correções pendentes na fonte: duplicata "Pele Morta"; "interação social(Qualquer)" → perícias individuais; subtipos de dano por escrito.
 - Revisão de redação: 2026-09-07.

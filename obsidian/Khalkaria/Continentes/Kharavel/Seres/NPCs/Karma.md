@@ -98,5 +98,5 @@ E há a pergunta que o epíteto levanta sozinho: *"se Karma é agente sem saber 
 ## Procedência
 - Notion — *Karma* `39e6e3a401d98199a0bbf981a89abc2d` (🟡, ed. 2026-07-15; a advertência dessa página de que *"Karmath ainda não tem página em Deuses"* está desatualizada) · *Rastas* `39e6e3a401d9816e9861c60d9a86d1b9` · *Karmath* `39e6e3a401d981bab6e3d23fadefe734` (🟠) · *Sevic* `39e6e3a401d981cdbd37cd863742b4f8` · *Roteiro da Sessão 0* `33e6e3a401d9819796c9dfb2263e215d`
 - Mestre, 2026-09-05 — A5 (o interrogatório, a profecia e o desaparecimento, verbatim; Revavena fundada do zero) · A1 (Karmath abençoa mortais para alcançar objetivos no plano material) · A6 (Lena como plano secreto de Vytália e Karmath) · A16 (a brecha para o Primórdio) · A18 (rivalidade Karmath × Malkhor)
-- Relatório de fidelidade 2026-09-05 (A1, A5, E10) · digests `docs/memoria/digests/E_lore.md` §2 e §6 item 3 · `F_sessoes_outros.md` §3
+- Relatório de fidelidade 2026-09-05 (A1, A5, E10) · `docs/memoria/digests/E_lore.md` §2 e §6 item 3 · `F_sessoes_outros.md` §3
 - Brutos em `docs/memoria/notion_raw/lore_kharavel_npcs.md`, `sessao_npcs_relacionados.md`, `lore_kharavel_deuses_paginas.md`, `sessao_roteiro.md`

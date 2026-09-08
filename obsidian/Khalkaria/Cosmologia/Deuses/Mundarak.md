@@ -84,5 +84,5 @@ Entre as bênçãos raras do Limiar existe a *Onisciencia de Mundarak*: quem a r
 ## Procedência
 - Notion: Mundarak `39e6e3a401d981e3a7fdc5b89aa8146b` · Deuses `33e6e3a401d9817f9470e140120b1c22` · Templo da Profecia `33f6e3a401d980dd982ad39fcba2ed4e` · Lore raiz `2e66e3a401d9806cba24f41572810b80` · 2. Volkrest `33e6e3a401d9817fa7a8c67c898343e2` · O Limiar (cartas) `3a66e3a401d9806db1f8d6975255f676`
 - Respostas do mestre (2026-09-05): A1, A2, A3, B6
-- Memória do repositório: `docs/memoria/notion_raw/lore_kharavel_deuses_paginas.md`, `lore_kharavel_seres_filhas.md`, `lore_kharavel_locais_regioes.md`, `lore_root.md`, `lore_volkrest.md`, `lore_mordval.md`, `lore_ossyria.md`, `limiar.md` · digests `E_lore.md` §1, §6 · `D_limiar.md` §6
+- Memória do repositório: `docs/memoria/notion_raw/lore_kharavel_deuses_paginas.md`, `lore_kharavel_seres_filhas.md`, `lore_kharavel_locais_regioes.md`, `lore_root.md`, `lore_volkrest.md`, `lore_mordval.md`, `lore_ossyria.md`, `limiar.md` · levantamento E_lore.md` §1, §6 · `D_limiar.md` §6
 - Correções pendentes: nomear "deus da terra" como Mundarak na raiz da lore e em Volkrest; a carta de onisciência publicada fora do vault traz nome e requisitos errados ("Onisciência de Kha")

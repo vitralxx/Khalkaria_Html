@@ -86,4 +86,4 @@ Vinte e sete anos atrás, o sudoeste de Kharavel era verde: cachoeiras e vegeta�
 - Notion — *Deserto do Abismo* `37b6e3a401d9817ca984f3eca3a11688` (🟠 rascunho, 2026-06-10) · *O Abismo* `3696e3a401d981aeb840ece0726fbf97` · *Lázlo* `36d6e3a401d9818d9cddefbdd4015aad` · *Castelo em Ruínas* `3696e3a401d98161a014d3747e46b42b`
 - Mestre, 2026-09-05 — B3 (origem da região, citada verbatim acima; substitui duas leituras antigas: a de que o Abismo era uma "representação do Plano dos Mortos" no plano material, e a de que a corrupção da região vinha da presença do próprio Osh'Kar), B5 (ilusão do oásis, escalada da cordilheira, corrupções ainda por criar) e B7 (a seção do Abismo em O Limiar será refeita por inteiro)
 - Mapas de Kharavel, campanha e Sessão 0 — `docs/memoria/mapas/LEIA-ME_mapas.md`
-- Relatório de fidelidade E5 · Digest `docs/memoria/digests/E_lore.md` §2
+- Relatório de fidelidade E5 · `docs/memoria/digests/E_lore.md` §2

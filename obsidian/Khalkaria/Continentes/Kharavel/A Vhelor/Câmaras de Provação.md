@@ -89,4 +89,4 @@ O interior não é totalmente desconhecido em [[Kharavel]], porque vaza pelos so
 ## Procedência
 - Notion: A Grande Árvore `33e6e3a401d9813b8a60f1f9669803be` · Roteiro da Sessão 0 `33e6e3a401d9819796c9dfb2263e215d` · Substâncias da Grande Árvore `33e6e3a401d981ef841aefa20793d48d` · Sinikko Kiriam `33e6e3a401d9813d8cf5d8d8e6c3fddc` · Hadran Vorgil `36d6e3a401d9817792d8ef277f93f46a` · índice de Sessões
 - Respostas do mestre: A5, A6, A8 (2026-09-05); confirmação de 2026-09-07 de que as Câmaras existem e estão descritas, com salas adaptativas, e de que a escalada externa é alternativa a elas
-- Memória do repositório: `docs/memoria/notion_raw/lore_kharavel_grande_arvore.md`, `sessao_roteiro.md`, `sessao_sessoes_index.md`, `lore_kharavel_substancias.md`, `lore_kharavel_npcs.md` · digests `E_lore.md` §2, `F_sessoes_outros.md`
+- Memória do repositório: `docs/memoria/notion_raw/lore_kharavel_grande_arvore.md`, `sessao_roteiro.md`, `sessao_sessoes_index.md`, `lore_kharavel_substancias.md`, `lore_kharavel_npcs.md` · levantamento E_lore.md` §2, `F_sessoes_outros.md`

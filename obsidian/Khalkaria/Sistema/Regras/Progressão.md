@@ -77,6 +77,6 @@ Como referência de mesa: **Dc 2** é o encontro equilibrado para cinco jogadore
 ## Procedência
 - Notion `2b76e3a401d980c0ab7bc27a342f4ee1` — Progressão do Jogador; Xp e Dc.
 - Respostas do mestre 2026-09-05: **B11** (3 / 2 / 1 técnicas de ramo nos níveis 2, 4 e 5), **B5** (5 cartas + "+2 atributo" por nível; 5–11 ao nível 5).
-- `docs/memoria/notion_raw/sistema_root.md`; digest `A_sistema.md` §1.4–1.5.
+- `docs/memoria/notion_raw/sistema_root.md`; levantamento A_sistema.md` §1.4–1.5.
 - Correções pendentes na fonte: "3 por Tier" → "3 no Tier 1" nas sete classes.
 - Revisão de redação: 2026-09-07.

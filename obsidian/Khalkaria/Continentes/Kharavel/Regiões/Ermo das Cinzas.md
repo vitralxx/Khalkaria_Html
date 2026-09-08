@@ -50,4 +50,4 @@ Do sudeste continental de vinte e sete anos atrás não sobrou registro algum: a
 ## Procedência
 - Notion — *Ermo das Cinzas* `37b6e3a401d98125880bcd6e07e58000` (🟠 rascunho, 2026-06-10)
 - Mapas de Kharavel, campanha e Sessão 0 — `docs/memoria/mapas/LEIA-ME_mapas.md`
-- Digest `docs/memoria/digests/E_lore.md` §2
+- `docs/memoria/digests/E_lore.md` §2

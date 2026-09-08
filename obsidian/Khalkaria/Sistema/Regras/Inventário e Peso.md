@@ -58,5 +58,5 @@ O que cada armadura oferece — Ar, Ae e passivas — está em [[Dano, Ataque e 
 ## Procedência
 - Notion `2b76e3a401d980c0ab7bc27a342f4ee1` — Inventario e Peso; Equipamentos.
 - Respostas do mestre 2026-09-05: **B2** (consumo de munição por combate, separado do peso).
-- `docs/memoria/notion_raw/sistema_root.md`; digest `A_sistema.md` §1.11, §1.13, §3.6.
+- `docs/memoria/notion_raw/sistema_root.md`; levantamento A_sistema.md` §1.11, §1.13, §3.6.
 - Revisão de redação: 2026-09-07.

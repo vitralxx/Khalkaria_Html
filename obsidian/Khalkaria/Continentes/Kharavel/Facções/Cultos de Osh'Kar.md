@@ -84,5 +84,5 @@ Fora dos cultos há um aliado inesperado. [[Hadran Vorgil]] odeia [[A Vhelor]] o
 ## Procedência
 - Notion — *Cultos de Osh'Kar* `3696e3a401d98125a280d7b0bf485494` (🟠 rascunho, 2026-05-23; traz seção "Pontos a Desenvolver") · *Facções* `3696e3a401d9814f8e0dfa4c6b50b850` · *Deuses* `33e6e3a401d9817f9470e140120b1c22` · *Lázlo* `36d6e3a401d9818d9cddefbdd4015aad` · *Hadran Vorgil* `36d6e3a401d9817792d8ef277f93f46a`
 - Mestre, 2026-09-05 — B3 (o Abismo prende só a figura material; Velúria e Vytália corromperam a região; origem do idioma Abissal) · B5 (a ilusão do Oásis e o pico da Cordilheira Cristalina; o grupo ainda está longe) · A16 (o conflito divino nasce do sumiço de Kha)
-- Brutos em `docs/memoria/notion_raw/lore_kharavel_faccoes_filhas.md`, `lore_kharavel_seres_filhas.md`, `lore_kharavel_npcs.md` · digest `docs/memoria/digests/E_lore.md` §2
+- Brutos em `docs/memoria/notion_raw/lore_kharavel_faccoes_filhas.md`, `lore_kharavel_seres_filhas.md`, `lore_kharavel_npcs.md` · `docs/memoria/digests/E_lore.md` §2
 - As páginas do Abismo e de Osh'Kar ainda descrevem a versão antiga (o Abismo como representação do Plano dos Mortos) e estão pendentes de reescrita.

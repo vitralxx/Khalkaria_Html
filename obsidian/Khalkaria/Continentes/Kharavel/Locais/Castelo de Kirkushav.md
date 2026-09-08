@@ -105,5 +105,5 @@ Hadran *"conhece passagens secretas e pontos cegos"* do lugar — é o último h
 - Notion — *Castelo em Ruínas* `3696e3a401d98161a014d3747e46b42b` (🟡, ed. 2026-05-27) · *Roteiro da Sessão 0* `33e6e3a401d9819796c9dfb2263e215d` (🟡, ed. 2026-07-24) · *Sevic* `39e6e3a401d981cdbd37cd863742b4f8` · *Hadran Vorgil* `36d6e3a401d9817792d8ef277f93f46a` · *Lázlo* `36d6e3a401d9818d9cddefbdd4015aad` · *Rastas* `39e6e3a401d9816e9861c60d9a86d1b9`
 - Mestre, 2026-09-05 — A5 (Sevic preso e interrogado no castelo) · A8 (o bilhete é de um dia antes da chegada) · A11 (Jairo no castelo, Alvak na cidade) · C9 (grafia oficial do nome)
 - Mapas de Kharavel, campanha e Sessão 0 — `docs/memoria/mapas/LEIA-ME_mapas.md` §1 e §3
-- Digest `docs/memoria/digests/E_lore.md` §2 e §6 (itens 6 e 20)
+- `docs/memoria/digests/E_lore.md` §2 e §6 (itens 6 e 20)
 - Brutos em `docs/memoria/notion_raw/lore_kharavel_locais_regioes.md`, `sessao_roteiro.md`, `lore_kharavel_npcs.md`, `lore_kharavel_faccoes_filhas.md`

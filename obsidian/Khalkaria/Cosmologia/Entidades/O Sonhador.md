@@ -93,4 +93,4 @@ Um Sonhador puro é também uma das raríssimas formas de reverter a [[Marca da 
 ## Procedência
 - Notion: O Sonhador `33e6e3a401d98126bae4e981b581487f` · A Grande Árvore `33e6e3a401d9813b8a60f1f9669803be` · Direcionamento `33e6e3a401d98190a21ae6c430acbc38` · Substâncias `33e6e3a401d981ef841aefa20793d48d` · Sinikko Kiriam `33e6e3a401d9813d8cf5d8d8e6c3fddc` · Lena Skarv `3696e3a401d981969032ea2fcf0b406e` · Roteiro da Sessão 0
 - Respostas do mestre (2026-09-05): A6, A10, A16, B18
-- Memória do repositório: `docs/memoria/notion_raw/lore_kharavel_sonhador.md`, `lore_kharavel_grande_arvore.md`, `lore_kharavel_direcionamento.md`, `lore_kharavel_substancias.md`, `lore_kharavel_npcs.md`, `sessao_roteiro.md` · digest `E_lore.md` §2, §5
+- Memória do repositório: `docs/memoria/notion_raw/lore_kharavel_sonhador.md`, `lore_kharavel_grande_arvore.md`, `lore_kharavel_direcionamento.md`, `lore_kharavel_substancias.md`, `lore_kharavel_npcs.md`, `sessao_roteiro.md` · levantamento E_lore.md` §2, §5
