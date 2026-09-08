@@ -4,40 +4,52 @@ status: canon-notion
 spoiler: publico
 era: atemporal
 aliases: [Exilado, Exilada, Banido]
-fonte_notion: [6906e3a401d982208d1e01353e11a7d2, 3a66e3a401d9808aa877f7e7cb77002a]
+fonte_notion: [6906e3a401d982208d1e01353e11a7d2, 3a66e3a401d9808aa877f7e7cb77002a, pedro-2026-09-05]
 ultima_sync: 2026-09-05
 tags: [khalkaria/sistema, khalkaria/sistema/origens]
 ---
 
 # Exilado
 
-**Resumo.** 🔭 Origem de fuga e sobrevivência nas bordas do mapa. Treina [[Atributos e Perícias|Sobrevivência]] e concede *Nômade*: **qualidade de descanso sempre +1** e **+2 em testes de [[Jornada]]**. Uma das duas origens mais pobres (1d6 [[Sins]]) e a que mais carrega gancho de mestre — o passado sempre volta.
+**Resumo.** 🔭 A origem de quem foi expulso e aprendeu a viver nas bordas do mapa. Treina [[Atributos e Perícias|Sobrevivência]] e deixa *Nômade*: qualidade de descanso sempre +1 e +2 nos testes de [[Jornada]] — o corpo tira mais de cada fogueira e a estrada custa menos. Uma das duas origens mais pobres (1d6 [[Sins]]) e a que mais carrega gancho: em Khalkaria o exílio nunca é permanente.
 
-## Cânone (Notion)
+## A vida antes
+
 > Algo te expulsou. Um crime, uma traição, uma verdade que não deveria ter descoberto. Você deixou tudo para trás — nome, lar, identidade — e sumiu nas bordas do mapa. Cada fogueira solitária é um lembrete do que você perdeu. Cada pegada apagada é uma oração para que o passado não te alcance. Você sobreviveu até aqui. Mas em Khalkaria, o exílio nunca é permanente. Cedo ou tarde, o que você fugiu vem cobrar.
 
-- **Perícia Treinada:** Sobrevivência
-- **Nômade:** Você aprendeu a tirar o máximo de proveito dos seus descansos. Ao descansar, sua qualidade de descanso é de sempre +1. Adicionalmente, você rola testes de Jornada com +2.
-- **Itens Iniciais:** Manto Surrado (1 Equipamento) · 1 Arma Leve, Pesada, à Distância ou Mística (1 Equipamento) · 1 Mochila Reforçada (1 Bugiganga) [Quando equipada, +3 Espaços de Bugiganga e +1 de Equipamento] · 1 Cantil (1 Bugiganga) · 1 Kit de Ferramentas Básico (1 Bugiganga) · 2 Comidas (2 Bugigangas)
-- **Sins:** 1d6
+## O que fica
 
-## Segundo o Pedro (2026-09-05)
-- **A9:** *"[[Kirkushav Drekar]] fazia questão de mandar exilados para [[Ossyria]], que acabavam morrendo com a própria hostilidade da região; no entanto, o batedor de Kirkushav foi derrotado por eles [os [[Família Sandgale|Sandgale]]]."* → no [[Império de Ferro]], "exilado" é uma sentença administrativa, e [[Ossyria]] é o destino. A [[Família Sandgale]] é a prova de que dá para sobreviver.
-- **A5:** os [[Rastas]] que fugiram de [[Khaskavel]] e fundaram [[Revavena]] *"do zero"* são exilados de fato, não de título.
+- **Treinamento:** [[Atributos e Perícias|Sobrevivência]]
+- ***Nômade*:** Você aprendeu a tirar o máximo de proveito dos seus descansos. Ao descansar, sua qualidade de descanso é de sempre +1. Adicionalmente, você rola testes de Jornada com +2.
+- **Itens iniciais:** Manto Surrado (1 Equipamento) · 1 Arma Leve, Pesada, à Distância ou Mística (1 Equipamento) · 1 Mochila Reforçada (1 Bugiganga) [Quando equipada, +3 Espaços de Bugiganga e +1 de Equipamento] · 1 Cantil (1 Bugiganga) · 1 Kit de Ferramentas Básico (1 Bugiganga) · 2 Comidas (2 Bugigangas)
+- **[[Sins]]:** 1d6
+
+A qualidade do descanso está em [[Descanso]]; o teste de estrada, em [[Jornada]]; e a Mochila Reforçada mexe direto nos limites de [[Inventário e Peso]].
+
+## Exílio como sentença
+
+No [[Império de Ferro]], "exilado" não é uma condição infeliz: é uma pena administrativa com destino escrito. [[Kirkushav Drekar]] fazia questão de mandar exilados para [[Ossyria]], que acabavam morrendo com a própria hostilidade da região — o continente fazia o trabalho que o carrasco não precisava fazer. Mas a sentença nem sempre pega: a [[Família Sandgale]] sobreviveu a Ossyria, e chegou a derrotar o Batedor que Kirkushav mandou atrás dela. [[Azgar Sandgale]] e [[Terk Sandgale]] são a prova de que o exílio imperial produz sobreviventes tão duros quanto a terra para onde foram jogados.
+
+Há também o exílio sem título. Os [[Rastas]] que fugiram de [[Khaskavel]] e ergueram [[Revavena]] do zero são exilados de fato: ninguém assinou a ordem, mas voltar significa morrer.
 
 ## Relações
-- **Pertence a** → [[Origens]] · [[Sistema]]
+- **Pertence a** → [[Origens]] · [[Sistema]] · usada em [[Criação de Personagem]]
 - **Perícia** → [[Atributos e Perícias|Sobrevivência]]
-- **Regras tocadas** → Descanso (qualidade +1) · [[Jornada]] (+2)
-- **Lugar de exílio canônico** → [[Ossyria]] (para onde o [[Império de Ferro]] manda exilados, A9)
-- **Personagens do arquétipo** → [[Azgar Sandgale]] · [[Terk Sandgale]] · os [[Rastas]] de [[Revavena]]
-- **Origens vizinhas** → [[Andarilho]] (também Sobrevivência + Mochila Reforçada) · [[Refugiado]] (perdeu o lar sem ter sido expulso)
-- **Economia** → 1d6 [[Sins]] (das mais pobres) · [[O Bazar]]
+- **Regras tocadas** → [[Descanso]] (qualidade +1) · [[Jornada]] (+2) · [[Inventário e Peso]] (Mochila Reforçada)
+- **Destino canônico do exílio** → [[Ossyria]], para onde o [[Império de Ferro]] mandava condenados
+- **Gente do arquétipo** → [[Azgar Sandgale]] · [[Terk Sandgale]] · [[Família Sandgale]] · os [[Rastas]] de [[Revavena]]
+- **Item recorrente** → Mochila Reforçada (também em [[Andarilho]], [[Mercador]], [[Caçador]])
+- **Origens vizinhas** → [[Andarilho]] (a mesma estrada por escolha) · [[Refugiado]] (perdeu o lar sem ter sido expulso) · [[Escravo]]
+- **Economia** → 1d6 [[Sins]], das mais pobres · [[O Bazar]]
 
-## Conflitos e pendências
-1. **"Qualidade de descanso +1"** — o termo precisa existir e ter escala nas regras de Descanso. Conferir contra [[Sistema]]. **Pendência aberta.**
-2. **Testes de Jornada** — [[Andarilho]] e [[Caçador]] mexem na mesma regra por outros meios (hostilidade, caça); confirmar que os três se somam sem quebrar a [[Jornada]].
+## Pontas soltas
+- **Qualidade de descanso.** *Nômade* soma +1 a uma escala que precisa existir e estar escrita em [[Descanso]] para significar alguma coisa.
+- **Três origens mexem na mesma estrada.** Exilado (+2 fixo), [[Andarilho]] (hostilidade) e [[Caçador]] (caça) alteram [[Jornada]] por vias diferentes; falta confirmar que se somam sem quebrar a regra — e nenhuma das nove regiões de Kharavel tem valor de Hostilidade declarado ([[Perguntas Abertas|E59]]).
+- **O nome colide com uma facção.** "Os Exilados", os grutos dos esgotos, dividem o nome com esta origem. [[Perguntas Abertas|E33]].
 
-## Fonte
-- Notion: Exilado `6906e3a401d982208d1e01353e11a7d2` · Origens `3a66e3a401d9808aa877f7e7cb77002a`
-- Raw: `docs/memoria/notion_raw/origens.md` · Digest: `C_racas_origens.md` §2 · Respostas: A5, A9
+## Procedência
+- Notion `6906e3a401d982208d1e01353e11a7d2` — Exilado 🔭 (🟢, ed. 2026-07-23); índice de Origens `3a66e3a401d9808aa877f7e7cb77002a`.
+- `docs/memoria/notion_raw/origens.md`; digest `C_racas_origens.md` §2.
+- Respostas do mestre 2026-09-05: **A9** (Kirkushav exilava para Ossyria; o Batedor derrotado pelos Sandgale) · **A5** (os Rastas fundam Revavena do zero).
+- Correção de redação aplicada aqui: cabeçalho "Perícia Treinada" → "Treinamento", como nas outras dezesseis.
+- Revisão de redação: 2026-09-08.
