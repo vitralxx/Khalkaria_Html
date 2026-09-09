@@ -13,6 +13,7 @@ Uso:
   python3 auditor.py travas          Varre violações de travas duras do sistema
   python3 auditor.py economia        Simula o loop de Sins (comerciantes, margens)
   python3 auditor.py cobertura       Quais itens não beneficiam nenhum arquétipo
+  python3 auditor.py ingredientes    Uso dos materiais: órfãos, subutilizados, cobertura de receita
 
 CSV: references/bazar-v26.csv (cabeçalho na ÚLTIMA linha).
 """
@@ -345,6 +346,45 @@ def cmd_novidades():
     open(caminho,'w',encoding='utf-8').write('\n'.join(out) + '\n')
     print(f"gerado: {caminho} ({tot} armas novas)")
 
+
+SPLIT_ING = re.compile(r'\s+(?:\+|e)\s+(?=\d+\s*x)')   # não quebra no "+N" do nome da arma
+
+def ingredientes_de(ing):
+    """Tokens de material de uma string de receita, sem quantidade."""
+    return [re.sub(r'^\d+\s*x\s*', '', p.strip())
+            for p in SPLIT_ING.split((ing or '').strip()) if p.strip()]
+
+def cmd_ingredientes():
+    """Mapa de uso dos materiais: quem consome o quê, órfãos e subutilizados."""
+    rows = load()
+    mats = {r['Nome']: r for r in rows if r['Categoria'] == 'Material'}
+    nomes = {r['Nome'] for r in rows}
+    uso = collections.Counter(); porcat = collections.defaultdict(collections.Counter)
+    tokens = collections.Counter(); receitas = 0
+    for r in rows:
+        if not (r['Ingredientes'] or '').strip(): continue
+        receitas += 1
+        for t in ingredientes_de(r['Ingredientes']):
+            tokens[t] += 1
+            if t in mats: uso[t] += 1; porcat[t][r['Categoria']] += 1
+    print(f"{receitas} receitas · {len(mats)} materiais · {len(tokens)} ingredientes distintos")
+    fora = [t for t in tokens if t not in nomes]
+    if fora: print(f"🔴 ingredientes que não existem no catálogo: {fora}")
+    for rar in ['Ordinário', 'Incomum', 'Exótico', 'Luxária']:
+        ms = sorted((m for m in mats if mats[m]['Raridade'] == rar), key=lambda m: -uso[m])
+        if not ms: continue
+        print(f"\n--- {rar}")
+        for n in ms:
+            c = uso[n]
+            f = '🔴 ÓRFÃO' if c == 0 else ('🟡 subutilizado' if c <= 2 else '')
+            print(f"  {n:<24}{c:>4}  {dict(porcat[n]) if c else ''} {f}")
+    print(f"\n--- cobertura de receita por categoria")
+    for cat, _ in collections.Counter(r['Categoria'] for r in rows).most_common():
+        it = [r for r in rows if r['Categoria'] == cat]
+        cr = [r for r in it if (r['Ingredientes'] or '').strip()]
+        tc = collections.Counter(r['Tipo de Craft'] for r in cr)
+        print(f"  {cat:<14}{len(cr):>4}/{len(it):<4}{100*len(cr)/len(it):>4.0f}%  {dict(tc)}")
+
 # ---------------------------------------------------------------- comandos --
 def cmd_dump(cat=None, familia=None, raridade=None):
     rows = load()
@@ -533,6 +573,7 @@ if __name__ == '__main__':
     elif cmd == 'focos':     cmd_focos(dry='--go' not in a)
     elif cmd == 'lacunas':   cmd_lacunas()
     elif cmd == 'novidades': cmd_novidades()
+    elif cmd == 'ingredientes': cmd_ingredientes()
     elif cmd == 'dpr':
         d, ac = a[1], int(a[2]); mod = int(a[3]) if len(a) > 3 else 3
         print(f"{d} / Atacar({ac}) / mod +{mod}  →  D={media_dado(d):.1f}  DPR={dpr(d,ac,mod):.2f}")
