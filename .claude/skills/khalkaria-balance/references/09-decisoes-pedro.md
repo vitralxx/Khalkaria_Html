@@ -285,3 +285,25 @@ Foi a única das 10 propostas que o Pedro não comentou. Apliquei como proposto:
 ## D28 — Dois "dissidentes" deliberados na família À Distância
 *Bacamarte de Cano Curto* e *Facas de Lançamento* **recompensam encurtar a distância**, ao contrário
 das outras oito. É a arma que contraria a identidade da própria família — mantido de propósito.
+
+## D29 — 🔑 PMA é contada POR ALVO em ataques multi-alvo
+"O PMA se aplica sim nesse ataque, porém no mesmo alvo. O PMA não carrega para diferentes alvos:
+em todo alvo ele reseta em −5 no segundo ataque."
+→ Aplicado ao *Fio do Oblívio*. Texto final:
+`A PMA é contada separadamente para cada alvo: o segundo ataque contra a mesma criatura sofre −5,
+o terceiro −10, e assim por diante; ao trocar de alvo a PMA zera.`
+
+**Razão do Pedro (vale como princípio de design geral):** montar Sangramento 2–3 é genuinamente
+difícil — **todo ataque que acerta remove 1 marca**, então não dá para subir de nível de Sangramento
+sem aplicar 2 marcas num único ataque. O setup pode ser amplificado por aliados **e sabotado por
+eles** (aliado que limpa Sangramento estraga o turno do Artilheiro). Proeza difícil merece dano absurdo.
+
+**Recalibração do Fio do Oblívio** (Arremesso +3: 4d8 + 1d8 + 3 = 25,5/acerto):
+| Cenário | PMA global (antes) | **PMA por alvo (oficial)** | Sem PMA |
+|---|---|---|---|
+| 2 alvos × Sang. 1 | 24 | **33** | 31 |
+| 4 alvos × Sang. 2 | 27 | **106** | 122 |
+| 4 alvos × Sang. 3 | 27 | **121** | 184 |
+| 6 alvos × Sang. 3 | 27 | **181** | 275 |
+A regra por alvo devolve ~90% do teto sem PMA no setup alto e quase não muda o setup baixo —
+exatamente a curva pedida: teto altíssimo, só alcançável com trabalho de party.
