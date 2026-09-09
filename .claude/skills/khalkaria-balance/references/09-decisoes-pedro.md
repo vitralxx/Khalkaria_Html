@@ -255,3 +255,33 @@ autobalanceia: Kali **desce um degrau de dado** em troca do acesso ao Exposto (l
 ## Lote 5 (MARCIAIS) — CONCLUÍDO
 16 armas criadas. Os 4 chassis marciais fechados (Precisa em 2/2/2 por exceção).
 **66 de 75 armas únicas. Faltam 10, todas à distância.**
+
+## Lote 6 (À DISTÂNCIA) — CONCLUÍDO
+10 armas criadas. **Os 15 chassis fechados. 76 armas únicas (75 do alvo + 1 da exceção 2/2/2
+da Marcial Precisa).** Bazar em 631 linhas.
+
+### ⚠️ Decisão que EU tomei no Fio do Oblívio — confirmar com o Pedro
+O texto original não declarava se a PMA se aplica aos ataques gerados, e o Notion exige que
+**todo texto de habilidade declare explicitamente se o PMA se aplica**. Deixar em branco era
+inaceitável, então **escrevi "A PMA se aplica normalmente a esses ataques"** — a leitura conservadora.
+A diferença é brutal (Arremesso +3, 4d8+1d8+3 = 25,5 por acerto):
+
+| Cenário | Ataques | **SEM PMA** | **COM PMA** |
+|---|---|---|---|
+| 2 alvos × Sangramento 1 | 2 | 31 | 24 |
+| 4 alvos × Sangramento 2 | 8 | **122** | 27 |
+| 4 alvos × Sangramento 3 | 12 | **184** | 27 |
+| 6 alvos × Sangramento 3 | 18 | **275** | 27 |
+
+Referência: DPR de PJ no nv5 ≈ 18–25; Saúde mediana de PJ no nv5 ≈ 55.
+Sem PMA, uma ação livre mata duas vezes a party inteira. Com PMA, o efeito satura em ~27 e vira
+um bom finalizador de área. **Se o Pedro quiser sem PMA, é trocar uma frase — mas aí precisa de
+teto de alvos.**
+
+### ⚠️ Bacamarte de Cano Curto entrou sem revisão
+Foi a única das 10 propostas que o Pedro não comentou. Apliquei como proposto:
+`+ 1d8 Perfurante. Ao acertar um alvo a 9 m ou menos, o ataque causa +1d8 de dano adicional.`
+
+## D28 — Dois "dissidentes" deliberados na família À Distância
+*Bacamarte de Cano Curto* e *Facas de Lançamento* **recompensam encurtar a distância**, ao contrário
+das outras oito. É a arma que contraria a identidade da própria família — mantido de propósito.

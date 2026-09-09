@@ -1,20 +1,67 @@
 {
   "_doc": "Itens NOVOS criados nesta revisão do Bazar. Alimenta o comando `auditor.py novidades`, que gera references/10-novidades-bazar.md a partir do CSV. Adicionar o nome aqui ao criar item novo.",
-  "LEVES": ["Lâmina Corrosiva","Agulha do Vazio","Maça do Ecoante","Punhal de Mármore",
-            "Manoplas Elétricas","Martelo do Juízo","Badalo de Kharavel","Florete Instável",
-            "Lâmina do Duelista","Fio Dissonante","Fragmento Primordial"],
-  "PESADAS": ["Machado Dentado","Guilhotina do Ocaso","Lança de Raízes","Alabarda Farpada",
-              "Alabarda Impostora","Lança do Trespasse","Lança do Horizonte Primordial",
-              "Sino Místico de Revavena","Machado de Duas Cabeças","Marreta Desfragmentadora",
-              "Executor de Ossos"],
-  "MARCIAIS": ["Malho de Casca-Raiz","Marreta Violenta","Martelo Grande do Carcereiro",
-               "Bordão da Sentença","Juízo Primordial","Lança Tectônica",
-               "Alabarda de Hyven Danificada","Guisarma","Sabre do Esgrimista",
-               "Glaive do Artista Marcial","Bordão Contra-Tempo","Fragmento do Oblívio",
-               "Garra Serrilhada","Gancho do Carniceiro","Foices Abissais","Ceifadora"],
+  "LEVES": [
+    "Lâmina Corrosiva",
+    "Agulha do Vazio",
+    "Maça do Ecoante",
+    "Punhal de Mármore",
+    "Manoplas Elétricas",
+    "Martelo do Juízo",
+    "Badalo de Kharavel",
+    "Florete Instável",
+    "Lâmina do Duelista",
+    "Fio Dissonante",
+    "Fragmento Primordial"
+  ],
+  "PESADAS": [
+    "Machado Dentado",
+    "Guilhotina do Ocaso",
+    "Lança de Raízes",
+    "Alabarda Farpada",
+    "Alabarda Impostora",
+    "Lança do Trespasse",
+    "Lança do Horizonte Primordial",
+    "Sino Místico de Revavena",
+    "Machado de Duas Cabeças",
+    "Marreta Desfragmentadora",
+    "Executor de Ossos"
+  ],
+  "MARCIAIS": [
+    "Malho de Casca-Raiz",
+    "Marreta Violenta",
+    "Martelo Grande do Carcereiro",
+    "Bordão da Sentença",
+    "Juízo Primordial",
+    "Lança Tectônica",
+    "Alabarda de Hyven Danificada",
+    "Guisarma",
+    "Sabre do Esgrimista",
+    "Glaive do Artista Marcial",
+    "Bordão Contra-Tempo",
+    "Fragmento do Oblívio",
+    "Garra Serrilhada",
+    "Gancho do Carniceiro",
+    "Foices Abissais",
+    "Ceifadora"
+  ],
   "_renomeadas": {
-    "Espada Flamejante": "Adaga Flamejante", "Espada do Caçador": "Cimitarra do Caçador",
-    "Lâmina Necrótica": "Foice Curta Necrótica", "Adaga Venenosa": "Lança Venenosa",
-    "Estilete do Sonhador": "Raízes do Sonhador", "Faca das Brasas": "Adagas Duplas"
-  }
+    "Espada Flamejante": "Adaga Flamejante",
+    "Espada do Caçador": "Cimitarra do Caçador",
+    "Lâmina Necrótica": "Foice Curta Necrótica",
+    "Adaga Venenosa": "Lança Venenosa",
+    "Estilete do Sonhador": "Raízes do Sonhador",
+    "Faca das Brasas": "Adagas Duplas"
+  },
+  "À DISTÂNCIA": [
+    "Arco de Caça",
+    "Arco do Enxame",
+    "Arco Prismático",
+    "Bacamarte de Cano Curto",
+    "Balestra do Assediador",
+    "Canhão de Mão",
+    "Expurgador Etérico de Hyven",
+    "Facas de Lançamento",
+    "Machadinhas Gêmeas Incandescentes",
+    "Fio do Oblívio"
+  ]
 }

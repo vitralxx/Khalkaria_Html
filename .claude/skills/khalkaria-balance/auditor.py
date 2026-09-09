@@ -312,7 +312,7 @@ def cmd_novidades():
            "**2 Incomuns, 2 Exóticos e 1 Luxária** — antes havia chassis inteiros sem nenhuma arma única.",
            ""]
     tot = 0
-    for fam in ['LEVES','PESADAS','MARCIAIS']:
+    for fam in ['LEVES','PESADAS','MARCIAIS','À DISTÂNCIA']:
         nomes = nv.get(fam, [])
         out += [f"## {fam} — {len(nomes)} armas novas", ""]
         tot += len(nomes)

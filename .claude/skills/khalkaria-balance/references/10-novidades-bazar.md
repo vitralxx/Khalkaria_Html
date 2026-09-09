@@ -109,6 +109,34 @@ Armas únicas criadas na revisão do Bazar. Cada chassi de arma passou a ter
 - **Ceifadora** · *Luxária* · 6d20+620 Sins
   - + 1d8 Cortante. Como ação livre, todas as criaturas em até 6 m sob Sangramento recebem 1d4 de dano Cortante por marca de Sangramento e a condição é reduzida em 1 em cada alvo, você recupera metade do dano causado como Saúde. 3x/Descanso Longo.
 
+## À DISTÂNCIA — 10 armas novas
+
+### Arremesso
+- **Facas de Lançamento** · *Incomum* · 4d10+45 Sins
+  - + 1d4 Cortante. Ao acertar um inimigo a até 3 m de você, cause +1d4 de dano Cortante. 1x/alvo por rodada.
+- **Machadinhas Gêmeas Incandescentes** · *Exótico* · 5d12+180 Sins
+  - + 1d6 Cortante. Ao acertar o mesmo alvo duas vezes no mesmo turno, o segundo ataque aplica Sangramento 2. Ao atingir um alvo sob Sangramento, exija um teste de Fortitude ou o alvo fica Em Chamas.
+- **Fio do Oblívio** · *Luxária* · 6d20+620 Sins
+  - + 1d8 Cortante. Na sua rodada, como ação livre, faça um ataque contra todas as criaturas em até 6 m para cada marca de Sangramento aplicada a elas. A PMA se aplica normalmente a esses ataques. 3x/Descanso Longo.
+
+### Distância Pesada
+- **Bacamarte de Cano Curto** · *Incomum* · 4d10+45 Sins
+  - + 1d8 Perfurante. Ao acertar um alvo a 9 m ou menos, o ataque causa +1d8 de dano adicional.
+- **Balestra do Assediador** · *Incomum* · 4d10+45 Sins
+  - + 1d8 Perfurante. Se você não se moveu neste turno, +1 margem de ameaça.
+- **Canhão de Mão** · *Exótico* · 5d12+180 Sins
+  - + 1d12 Perfurante. Com 1 ação, seu próximo ataque nesta rodada atinge todas as criaturas em uma linha de 9 m.
+- **Expurgador Etérico de Hyven** · *Luxária* · 6d20+620 Sins
+  - + 2d8 Força. Com 1 ação, seu próximo ataque nesta rodada ignora toda Armadura (Ar e Ae) e resistências. 3x/Descanso Longo.
+
+### Distância Simples
+- **Arco de Caça** · *Incomum* · 4d10+45 Sins
+  - + 1d4 Perfurante. Seus ataques contra criaturas a mais de 9 m de você causam +1d6 de dano Perfurante adicional.
+- **Arco do Enxame** · *Exótico* · 5d12+180 Sins
+  - + 1d6 Perfurante. Ao acertar ataques em três criaturas diferentes no mesmo turno, todas ficam sob Sangramento 1.
+- **Arco Prismático** · *Luxária* · 6d20+620 Sins
+  - + 1d8 Perfurante. Como ação livre, seu próximo ataque nesta rodada ignora cobertura e você pode alterar o tipo de dano dele livremente (exceto Força e Primordial). 3x/Descanso Longo.
+
 ## Renomeadas (6)
 
 - Espada Flamejante → **Adaga Flamejante**
@@ -120,4 +148,4 @@ Armas únicas criadas na revisão do Bazar. Cada chassi de arma passou a ter
 
 ---
 
-**Total: 38 armas novas.** Bazar em 620 itens.
+**Total: 48 armas novas.** Bazar em 630 itens.
