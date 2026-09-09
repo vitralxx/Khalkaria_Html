@@ -1,7 +1,8 @@
 # Bazar de Khalkaria — O que há de novo
 
 Armas únicas criadas na revisão do Bazar. Cada chassi de arma passou a ter
-**2 Incomuns, 2 Exóticos e 1 Luxária** — antes havia chassis inteiros sem nenhuma arma única.
+**2 Incomuns, 3 Exóticos e 1 Luxária** — antes havia chassis inteiros sem nenhuma arma única.
+O terceiro Exótico de cada chassi é a **linha Kali**, forjada no minério branco que reluz amarelo.
 
 ## LEVES — 11 armas novas
 
@@ -117,7 +118,7 @@ Armas únicas criadas na revisão do Bazar. Cada chassi de arma passou a ter
 - **Machadinhas Gêmeas Incandescentes** · *Exótico* · 5d12+180 Sins
   - + 1d6 Cortante. Ao acertar o mesmo alvo duas vezes no mesmo turno, o segundo ataque aplica Sangramento 2. Ao atingir um alvo sob Sangramento, exija um teste de Fortitude ou o alvo fica Em Chamas.
 - **Fio do Oblívio** · *Luxária* · 6d20+620 Sins
-  - + 1d8 Cortante. Na sua rodada, como ação livre, faça um ataque contra todas as criaturas em até 6 m para cada marca de Sangramento aplicada a elas. A PMA se aplica normalmente a esses ataques. 3x/Descanso Longo.
+  - + 1d8 Cortante. Na sua rodada, como ação livre, faça um ataque contra todas as criaturas em até 6 m para cada marca de Sangramento aplicada a elas. A PMA é contada separadamente para cada alvo: o segundo ataque contra a mesma criatura sofre −5, o terceiro −10, e assim por diante; ao trocar de alvo a PMA zera. 3x/Descanso Longo.
 
 ### Distância Pesada
 - **Bacamarte de Cano Curto** · *Incomum* · 4d10+45 Sins
@@ -137,6 +138,72 @@ Armas únicas criadas na revisão do Bazar. Cada chassi de arma passou a ter
 - **Arco Prismático** · *Luxária* · 6d20+620 Sins
   - + 1d8 Perfurante. Como ação livre, seu próximo ataque nesta rodada ignora cobertura e você pode alterar o tipo de dano dele livremente (exceto Força e Primordial). 3x/Descanso Longo.
 
+## KALI — 15 armas novas
+
+### Arremesso
+- **Dardos de Kali** · *Exótico* · 5d12+180 Sins
+  - +1 margem de ameaça. Crítico: o alvo e a criatura viva mais próxima dele em até 3 m ficam Expostos. Ao consumir Exposto com esta arma, o alvo sofre Sangramento 1.
+
+### Distância Pesada
+- **Balestra de Kali** · *Exótico* · 5d12+180 Sins
+  - +1 margem de ameaça. Crítico: o alvo fica Exposto. Como 1 ação, mire: o próximo ataque desta arma neste turno aplica Exposto ao alvo antes de resolver o acerto. 1x/combate.
+
+### Distância Simples
+- **Arco de Kali** · *Exótico* · 5d12+180 Sins
+  - +1 margem de ameaça. Crítico: o alvo fica Exposto. Enquanto o alvo estiver Exposto, seus ataques com esta arma ignoram cobertura e aplicam Sangramento 1 no acerto.
+
+### Leve Contundente
+- **Maça de Kali** · *Exótico* · 5d12+180 Sins
+  - +1 margem de ameaça. Crítico: o alvo fica Exposto e Confuso até o fim da próxima rodada.
+
+### Leve Cortante
+- **Adaga de Kali** · *Exótico* · 5d12+180 Sins
+  - +1 margem de ameaça. Crítico: o alvo fica Exposto. Seus ataques contra uma criatura Exposta aplicam Sangramento 1 no acerto.
+
+### Leve Perfurante
+- **Agulhão de Kali** · *Exótico* · 5d12+180 Sins
+  - +1 margem de ameaça. Crítico: o alvo fica Exposto. Ataques desta arma contra criatura Exposta não podem ser retaliados.
+
+### Leve Ágil
+- **Lasca de Kali** · *Exótico* · 5d12+180 Sins
+  - +1 margem de ameaça. Crítico: o alvo fica Exposto. Usar Executar contra criatura Exposta não gasta Stamina.
+
+### Marcial Longa
+- **Bordão de Kali** · *Exótico* · 5d12+180 Sins
+  - +1 margem de ameaça. Crítico: o alvo fica Exposto. Alcançar com esta arma concede +3 m de Alcance em vez de +1,5 m e deixa o alvo Exposto no acerto, 1x/combate.
+
+### Marcial Pesada
+- **Mangual de Kali** · *Exótico* · 5d12+180 Sins
+  - +1 margem de ameaça. Crítico: o alvo fica Exposto. Como 1 ação, gire a corrente: cada criatura em até 3 m deve passar em Reflexos contra sua CD ou ficar Exposta. 1x/combate.
+
+### Marcial Precisa
+- **Rapieira de Kali** · *Exótico* · 5d12+180 Sins
+  - +1 margem de ameaça. Crítico: o alvo fica Exposto. Enquanto houver apenas uma criatura em até 3 m de você, esta arma tem +1 margem de ameaça adicional.
+
+### Marcial Versátil
+- **Sabre de Kali** · *Exótico* · 5d12+180 Sins
+  - +1 margem de ameaça. Crítico: o alvo fica Exposto. Ao acertar criatura Exposta, você ignora resistência a dano ordinário.
+
+### Pesada Brutal
+- **Decepador de Kali** · *Exótico* · 5d12+180 Sins
+  - +1 margem de ameaça. Ao executar uma criatura, todas as criaturas em até 3 m do alvo ficam Expostas. Esta arma nunca consome Exposto: seus ataques só são críticos por margem de ameaça.
+
+### Pesada Contundente
+- **Malho de Kali** · *Exótico* · 5d12+180 Sins
+  - +1 margem de ameaça. Crítico: o alvo fica Exposto. Ao aplicar Desorientado o alvo também fica Exposto, 1x/combate.
+
+### Pesada Cortante
+- **Alabarda de Kali** · *Exótico* · 5d12+180 Sins
+  - +1 margem de ameaça. Crítico: o alvo fica Exposto. Ao acertar criatura Exposta, ela fica com Sangramento 1.
+
+### Pesada Perfurante
+- **Picareta de Kali** · *Exótico* · 5d12+180 Sins
+  - +1 margem de ameaça. Crítico: o alvo fica Exposto. Com 1 ação, seu próximo ataque tem +1 Multiplicador de Crítico.
+
+## Materiais novos (1)
+
+- **Kali** — Material Exótico novo. Ingrediente das 15 armas de Kali (Ferraria).
+
 ## Renomeadas (6)
 
 - Espada Flamejante → **Adaga Flamejante**
@@ -148,4 +215,4 @@ Armas únicas criadas na revisão do Bazar. Cada chassi de arma passou a ter
 
 ---
 
-**Total: 48 armas novas.** Bazar em 630 itens.
+**Total: 63 armas novas.** Bazar em 646 itens.

@@ -112,7 +112,9 @@ ATTR_EXT = {'DES':'Destreza','FOR':'Força'}
 
 def descricao_canonica(ch, nivel=0, payload=''):
     """Monta a descrição canônica de uma arma a partir do chassi do Notion.
-    payload = texto exclusivo da arma única (ex.: '+ 1d4 Fogo. Crítico: ...')."""
+    ORDEM CANÔNICA (D30, definida pelo Pedro): tipo+nível · dano · +N Atacar ·
+    ações · alcance/munição · efeito único · efeito do chassi · requisito.
+    payload = texto exclusivo da arma única (ex.: '+1 margem de ameaça. Crítico: ...')."""
     dado, attr, dano, ef, ac, req = ARMAS_CANON[ch]
     n, f = re.fullmatch(r'(\d+)d(\d+)', dado).groups()
     dado_n = f"{int(n)+nivel}d{f}"
@@ -123,8 +125,6 @@ def descricao_canonica(ch, nivel=0, payload=''):
     acoes = f"Atacar({ac})" + (", Arremessar(1)" if ch in ARREMESSAVEL else "")
     partes.append(acoes + ".")
     if ch in ALCANCE: partes.append(f"Alcance {ALCANCE[ch]}.")
-    req_txt = req.replace('>=', '≥').replace('DES','Destreza').replace('FOR','Força')
-    partes.append(f"Requisito: {req_txt}.")
     # armas cujo payload já nega o consumo (ex.: Shuriken Retornante) não levam a cláusula
     if ch in MUNICAO and 'não consome munição' not in payload.lower():
         partes.append(f"Consome 1 munição ({MUNICAO[ch]}) por cena de combate.")
@@ -132,7 +132,27 @@ def descricao_canonica(ch, nivel=0, payload=''):
     custo, txt = EFEITOS[ef]
     partes.append(f"Efeito: {ef} ({custo}): {txt}.")
     if ch in MARCIAIS: partes.append("1x/turno não custa Stamina.")
+    req_txt = req.replace('>=', '≥').replace('DES','Destreza').replace('FOR','Força')
+    partes.append(f"Requisito: {req_txt}.")
     return ' '.join(partes)
+
+def partes_arma(efeito):
+    """Extrai (chassi, nivel, payload_unico) de uma descrição de arma.
+    Independente da ordem dos campos: remove todos os fragmentos estruturais
+    conhecidos e o que sobra é o payload único."""
+    ch = chassi(efeito)
+    if ch is None: return None, 0, ''
+    m = re.match(re.escape(ch) + r'\s*(?:\+(\d))?\.', efeito)
+    nivel = int(m.group(1)) if (m and m.group(1)) else 0
+    t = efeito[:efeito.index('Efeito:')] if 'Efeito:' in efeito else efeito
+    t = re.sub(re.escape(ch) + r'\s*(?:\+\d)?\.\s*\d+d\d+[^.]*\.', '', t, count=1)
+    t = re.sub(r'\+\d em Atacar\.', '', t)
+    t = re.sub(r'Atacar\(\d\)(?:, Arremessar\(1\))?\.', '', t)
+    t = re.sub(r'Alcance \d+[,\d]* m\.', '', t)
+    t = re.sub(r'Consome 1 munição \([^)]*\) por cena de combate\.', '', t)
+    t = re.sub(r'1x/turno não custa Stamina\.', '', t)
+    t = re.sub(r'Requisito:[^.]*\.', '', t)
+    return ch, nivel, re.sub(r'\s+', ' ', t).strip()
 
 def cmd_lote1():
     rows = {r['Nome']: r for r in load()}
@@ -156,25 +176,6 @@ def cmd_lote1():
                 if abs(da-dc) > 0.01:
                     print(f"  DPR   : {da:.2f} → {dc:.2f}  ({(dc/da-1)*100:+.0f}%)")
 
-
-def partes_arma(efeito):
-    """Extrai (chassi, nivel, payload_unico) da descrição atual de uma arma."""
-    ch = chassi(efeito)
-    if ch is None: return None, 0, ''
-    m = re.match(re.escape(ch) + r'\s*(?:\+(\d))?\.', efeito)
-    nivel = int(m.group(1)) if (m and m.group(1)) else 0
-    # payload = o que estiver entre o fim da frase "Requisito: ..." e "Efeito:"
-    mr = re.search(r'Requisito:[^.]*\.', efeito)
-    me = re.search(r'Efeito:', efeito)
-    payload = ''
-    if mr and me and me.start() > mr.end():
-        payload = efeito[mr.end():me.start()].strip()
-        # descarta o que o gerador reinsere sozinho
-        payload = re.sub(r'Alcance \d+[,\d]* m\.', '', payload)
-        payload = re.sub(r'Consome 1 munição \([^)]*\) por cena de combate\.', '', payload)
-        payload = re.sub(r'1x/turno não custa Stamina\.', '', payload)
-        payload = re.sub(r'\s+', ' ', payload).strip()
-    return ch, nivel, payload
 
 def cmd_aplicar(dry=True):
     """Reescreve a coluna Efeito de todas as armas com chassi, a partir do cânone."""
@@ -294,7 +295,7 @@ def cmd_lacunas():
         print(f"{ch:22} {fam:12} {cel[0]:>7} {cel[1]:>7} {cel[2]:>7} {falta:>7}")
     print(f"\nTotal de armas únicas hoje: {len(u)} · alvo: {len(ARMAS_CANON)*5} · "
           f"**a criar: {tot_falta}**")
-    for fam in ['LEVES','PESADAS','MARCIAIS','À DISTÂNCIA']:
+    for fam in ['LEVES','PESADAS','MARCIAIS','À DISTÂNCIA','KALI']:
         chs = [c for c in ARMAS_CANON if FAMILIA[c.split()[0]] == fam]
         f = sum(max(0, META[r] - por[c][r]) for c in chs for r in META)
         print(f"   {fam:14} faltam {f}")
@@ -309,10 +310,11 @@ def cmd_novidades():
     out = ["# Bazar de Khalkaria — O que há de novo",
            "",
            "Armas únicas criadas na revisão do Bazar. Cada chassi de arma passou a ter",
-           "**2 Incomuns, 2 Exóticos e 1 Luxária** — antes havia chassis inteiros sem nenhuma arma única.",
+           "**2 Incomuns, 3 Exóticos e 1 Luxária** — antes havia chassis inteiros sem nenhuma arma única.",
+           "O terceiro Exótico de cada chassi é a **linha Kali**, forjada no minério branco que reluz amarelo.",
            ""]
     tot = 0
-    for fam in ['LEVES','PESADAS','MARCIAIS','À DISTÂNCIA']:
+    for fam in ['LEVES','PESADAS','MARCIAIS','À DISTÂNCIA','KALI']:
         nomes = nv.get(fam, [])
         out += [f"## {fam} — {len(nomes)} armas novas", ""]
         tot += len(nomes)
@@ -328,6 +330,11 @@ def cmd_novidades():
                 out.append(f"- **{r['Nome']}** · *{r['Raridade']}* · {r['Valor (Sins)']} Sins")
                 out.append(f"  - {pl}")
             out.append("")
+    mat = nv.get('_materiais', {})
+    if mat:
+        out += [f"## Materiais novos ({len(mat)})", ""]
+        for m, d in mat.items(): out.append(f"- **{m}** — {d}")
+        out.append("")
     ren = nv.get('_renomeadas', {})
     if ren:
         out += [f"## Renomeadas ({len(ren)})", ""]

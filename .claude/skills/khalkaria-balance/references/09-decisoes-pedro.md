@@ -307,3 +307,76 @@ eles** (aliado que limpa Sangramento estraga o turno do Artilheiro). Proeza dif�
 | 6 alvos × Sang. 3 | 27 | **181** | 275 |
 A regra por alvo devolve ~90% do teto sem PMA no setup alto e quase não muda o setup baixo —
 exatamente a curva pedida: teto altíssimo, só alcançável com trabalho de party.
+
+## D30 — 🔑 Ordem canônica dos campos na descrição de arma
+"Quando for botar na planilha do bazar, mantenha sempre essa ordem: tipo da arma e nível; dano e
+tipo de dano; modificador em atacar por conta do nível; ações da arma nesse esquema mesmo
+Atacar(1), Arremessar(1); efeitos de arma única; efeito do tipo de arma; requisitos."
+
+`{Chassi} +N. · {dado} {tipo} ({Attr}). · +N em Atacar. · Atacar(X), Arremessar(1). ·
+[Alcance X m.] · [Consome 1 munição (...).] · <PAYLOAD ÚNICO> · Efeito: {chassi} (custo): ... ·
+[1x/turno não custa Stamina.] · Requisito: ...`
+
+**Requisito passou a ser o ÚLTIMO campo** (antes vinha depois das ações).
+Aplicado globalmente: **136 armas reescritas** numa passada. `descricao_canonica()` gera nessa
+ordem e `partes_arma()` agora extrai o payload de forma independente de ordem.
+
+## D31 — 🆕 "Multiplicador de Crítico" é terminologia nova
+Introduzida pelo Pedro na *Picareta de Kali*: `+1 Multiplicador de Crítico`.
+Leitura: o crítico padrão dobra os dados; +1 multiplicador **triplica**.
+⚠️ **Pendente: registrar no Notion** (mesma situação de "margem de ameaça", D22).
+
+## D32 — Desorientado ganha duração de 1 turno
+"Vou definir a condição Desorientado com duração de 1 turno no Notion."
+→ **Fecha a lacuna mais grave da lista de 16 condições sem expiração (D16).** Itens que aplicam
+Desorientado não precisam mais declarar expiração no próprio texto.
+**Confuso continua sem regra de expiração** — a *Maça de Kali* declara "até o fim da próxima rodada".
+
+## D33 — Raridade Exótica não aplica Desorientado
+"Raridade exótica não faz sentido aplicar Desorientado, uma arma ordinária aplica essa condição."
+→ Régua de condição por raridade: **Desorientado é piso Ordinário** (é efeito de chassi).
+Payload Exótico precisa de condição de um degrau acima — **Confuso (−1 Ação)** é o substituto
+canônico. Vale para toda a revisão dali em diante, não só para as Kali.
+
+## D34 — Itens usam a CD do portador
+"Sim, é conforme que tudo utilize a CD do portador, algumas pequenas exceções de CD fixo."
+→ Padrão: `contra sua CD`. CD fixa (10–18) é exceção justificada, não o default.
+
+## Lote 7 (KALI) — CONCLUÍDO
+15 armas Exóticas + **1 material novo (Kali, Exótico)**. Bazar em **647 linhas**.
+Cobertura passa a **2 Incomum / 3 Exótico / 1 Luxária** em todos os 15 chassis
+(Marcial Precisa 2/3/2 pela exceção D26). **91 armas únicas.**
+
+**Regra da linha Kali (D27 fechada):**
+- **Sem rider de dano.** "Extremamente leve" = não acrescenta massa nem dado. O orçamento inteiro
+  do Exótico vai para o Exposto. Confirmado: *"Tá ótimo, não precisa de rider."*
+- **+1 margem de ameaça** em todas as 15. "Extremamente afiado."
+- Frequência do Exposto **inversamente proporcional ao nº de ataques do chassi**:
+  3 ataques → só o crítico · 1 ataque → crítico + 1 fonte controlável (1x/combate).
+- **Craftáveis:** Ferraria, `1x Arma <Chassi> +1 + 2x Kali` — a receita Exótica padrão com o
+  material trocado. Valor 5d12+180. Obtenção `Drop CR≥3, Loja`.
+
+| Chassi | Nome | Δ DPR vs Exótico padrão |
+|---|---|---|
+| Leve Cortante | Adaga de Kali | −2% |
+| Leve Perfurante | Agulhão de Kali | −2% |
+| Leve Contundente | Maça de Kali | −2% |
+| Leve Ágil | Lasca de Kali | +3% |
+| Pesada Cortante | Alabarda de Kali | +1% |
+| Pesada Perfurante | Picareta de Kali | +1% |
+| Pesada Contundente | Malho de Kali | +1% |
+| Pesada Brutal | Decepador de Kali | −6% (paga em valor de party) |
+| Marcial Pesada | Mangual de Kali | +4% |
+| Marcial Longa | Bordão de Kali | +4% |
+| Marcial Precisa | Rapieira de Kali | +3% |
+| Marcial Versátil | Sabre de Kali | +3% |
+| Distância Simples | Arco de Kali | −2% |
+| Distância Pesada | Balestra de Kali | +1% |
+| Arremesso | Dardos de Kali | +3% |
+
+**Média +0,6% · faixa −6% a +4%.** A linha inteira encosta no Exótico padrão sem passar.
+
+### ⚠️ Ambiguidade pendente — Decepador de Kali
+"Ao **executar** uma criatura" admite duas leituras: (a) ao usar o efeito **Executar** do chassi,
+ou (b) ao **reduzir a criatura a 0 de Saúde**. (a) dispara ~todo turno; (b) ~1x por combate.
+Escrito verbatim como o Pedro mandou. **Precisa de desempate.**
