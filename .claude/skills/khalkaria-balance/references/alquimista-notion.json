@@ -1,0 +1,477 @@
+{
+ "Bomba de Luz": {
+  "nivel": 1,
+  "reagentes": 1,
+  "cd": 8
+ },
+ "Pó de Espirro": {
+  "nivel": 1,
+  "reagentes": 1,
+  "cd": 8
+ },
+ "Fogo Alquímico": {
+  "nivel": 1,
+  "reagentes": 2,
+  "cd": 10
+ },
+ "Ácido Corrosivo": {
+  "nivel": 1,
+  "reagentes": 2,
+  "cd": 10
+ },
+ "Frasco Congelante": {
+  "nivel": 1,
+  "reagentes": 2,
+  "cd": 10
+ },
+ "Sal Revigorante": {
+  "nivel": 1,
+  "reagentes": 1,
+  "cd": 8
+ },
+ "Bálsamo Estabilizador": {
+  "nivel": 1,
+  "reagentes": 2,
+  "cd": 8
+ },
+ "Poção de Cura Menor": {
+  "nivel": 1,
+  "reagentes": 2,
+  "cd": 10
+ },
+ "Poção de Vigor": {
+  "nivel": 1,
+  "reagentes": 2,
+  "cd": 10
+ },
+ "Antídoto Simples": {
+  "nivel": 1,
+  "reagentes": 2,
+  "cd": 10
+ },
+ "Bastão de Luz": {
+  "nivel": 1,
+  "reagentes": 1,
+  "cd": 8
+ },
+ "Tinta Invisível": {
+  "nivel": 1,
+  "reagentes": 1,
+  "cd": 8
+ },
+ "Pó Revelador": {
+  "nivel": 1,
+  "reagentes": 1,
+  "cd": 8
+ },
+ "Fumaça Densa": {
+  "nivel": 1,
+  "reagentes": 2,
+  "cd": 10
+ },
+ "Catalisador Térmico": {
+  "nivel": 1,
+  "reagentes": 1,
+  "cd": 10
+ },
+ "Veneno Fraco": {
+  "nivel": 1,
+  "reagentes": 2,
+  "cd": 10
+ },
+ "Bomba de Concussão": {
+  "nivel": 2,
+  "reagentes": 2,
+  "cd": 12
+ },
+ "Granada Tóxica": {
+  "nivel": 2,
+  "reagentes": 3,
+  "cd": 12
+ },
+ "Bola de Eletricidade": {
+  "nivel": 2,
+  "reagentes": 3,
+  "cd": 12
+ },
+ "Pó Explosivo": {
+  "nivel": 2,
+  "reagentes": 3,
+  "cd": 14
+ },
+ "Tinta de Cegueira": {
+  "nivel": 2,
+  "reagentes": 2,
+  "cd": 12
+ },
+ "Poção de Cura Moderada": {
+  "nivel": 2,
+  "reagentes": 4,
+  "cd": 12
+ },
+ "Emplastro de Regeneração": {
+  "nivel": 2,
+  "reagentes": 3,
+  "cd": 12
+ },
+ "Antídoto Universal": {
+  "nivel": 2,
+  "reagentes": 3,
+  "cd": 14
+ },
+ "Tônico Anti-Exaustão": {
+  "nivel": 2,
+  "reagentes": 3,
+  "cd": 14
+ },
+ "Elixir de Força": {
+  "nivel": 2,
+  "reagentes": 3,
+  "cd": 12
+ },
+ "Elixir de Agilidade": {
+  "nivel": 2,
+  "reagentes": 3,
+  "cd": 12
+ },
+ "Elixir de Resistência": {
+  "nivel": 2,
+  "reagentes": 3,
+  "cd": 12
+ },
+ "Óleo Flamejante": {
+  "nivel": 2,
+  "reagentes": 2,
+  "cd": 12
+ },
+ "Óleo Congelante": {
+  "nivel": 2,
+  "reagentes": 2,
+  "cd": 12
+ },
+ "Óleo Corrosivo": {
+  "nivel": 2,
+  "reagentes": 2,
+  "cd": 12
+ },
+ "Couro Líquido": {
+  "nivel": 2,
+  "reagentes": 3,
+  "cd": 14
+ },
+ "Detector de Magia": {
+  "nivel": 2,
+  "reagentes": 2,
+  "cd": 12
+ },
+ "Cola Universal": {
+  "nivel": 2,
+  "reagentes": 2,
+  "cd": 12
+ },
+ "Solvente Universal": {
+  "nivel": 2,
+  "reagentes": 2,
+  "cd": 12
+ },
+ "Marcador Rastreável": {
+  "nivel": 2,
+  "reagentes": 2,
+  "cd": 12
+ },
+ "Água-Régia": {
+  "nivel": 2,
+  "reagentes": 3,
+  "cd": 14
+ },
+ "Corda Líquida": {
+  "nivel": 2,
+  "reagentes": 2,
+  "cd": 12
+ },
+ "Espuma Seladora": {
+  "nivel": 2,
+  "reagentes": 2,
+  "cd": 12
+ },
+ "Veneno Padrão": {
+  "nivel": 2,
+  "reagentes": 3,
+  "cd": 12
+ },
+ "Sonífero": {
+  "nivel": 2,
+  "reagentes": 3,
+  "cd": 14
+ },
+ "Napalm Alquímico": {
+  "nivel": 3,
+  "reagentes": 4,
+  "cd": 16
+ },
+ "Bomba de Fragmentação": {
+  "nivel": 3,
+  "reagentes": 4,
+  "cd": 16
+ },
+ "Gás Necrótico": {
+  "nivel": 3,
+  "reagentes": 5,
+  "cd": 16
+ },
+ "Bomba de Vácuo": {
+  "nivel": 3,
+  "reagentes": 5,
+  "cd": 18
+ },
+ "Carga de Implosão": {
+  "nivel": 3,
+  "reagentes": 6,
+  "cd": 18
+ },
+ "Frasco do Raio": {
+  "nivel": 3,
+  "reagentes": 4,
+  "cd": 16
+ },
+ "Poção de Cura Maior": {
+  "nivel": 3,
+  "reagentes": 6,
+  "cd": 16
+ },
+ "Elixir de Restauração": {
+  "nivel": 3,
+  "reagentes": 5,
+  "cd": 16
+ },
+ "Adrenalina de Campo": {
+  "nivel": 3,
+  "reagentes": 4,
+  "cd": 16
+ },
+ "Poção de Vigor Maior": {
+  "nivel": 3,
+  "reagentes": 6,
+  "cd": 18
+ },
+ "Elixir do Crescimento": {
+  "nivel": 3,
+  "reagentes": 5,
+  "cd": 16
+ },
+ "Elixir do Encolhimento": {
+  "nivel": 3,
+  "reagentes": 5,
+  "cd": 16
+ },
+ "Extrato de Velocidade": {
+  "nivel": 3,
+  "reagentes": 6,
+  "cd": 18
+ },
+ "Mutagênico Menor": {
+  "nivel": 3,
+  "reagentes": 5,
+  "cd": 16
+ },
+ "Elixir da Visão Verdadeira": {
+  "nivel": 3,
+  "reagentes": 5,
+  "cd": 18
+ },
+ "Elixir Aranha": {
+  "nivel": 3,
+  "reagentes": 4,
+  "cd": 16
+ },
+ "Óleo do Caçador": {
+  "nivel": 3,
+  "reagentes": 4,
+  "cd": 16
+ },
+ "Elixir das Guelras": {
+  "nivel": 3,
+  "reagentes": 4,
+  "cd": 16
+ },
+ "Tintura Fantasma": {
+  "nivel": 3,
+  "reagentes": 4,
+  "cd": 16
+ },
+ "Bomba de Éter": {
+  "nivel": 3,
+  "reagentes": 5,
+  "cd": 18
+ },
+ "Elixir das Línguas": {
+  "nivel": 3,
+  "reagentes": 4,
+  "cd": 16
+ },
+ "Sangue Falso": {
+  "nivel": 3,
+  "reagentes": 3,
+  "cd": 16
+ },
+ "Ácido Dimensional": {
+  "nivel": 3,
+  "reagentes": 6,
+  "cd": 18
+ },
+ "Veneno Paralisante": {
+  "nivel": 3,
+  "reagentes": 5,
+  "cd": 16
+ },
+ "Soro da Verdade": {
+  "nivel": 3,
+  "reagentes": 5,
+  "cd": 16
+ },
+ "Veneno Hemorrágico": {
+  "nivel": 3,
+  "reagentes": 5,
+  "cd": 16
+ },
+ "Toxina Mental": {
+  "nivel": 3,
+  "reagentes": 5,
+  "cd": 18
+ },
+ "Bomba de Plasma": {
+  "nivel": 4,
+  "reagentes": 8,
+  "cd": 20
+ },
+ "Praga Alquímica": {
+  "nivel": 4,
+  "reagentes": 8,
+  "cd": 20
+ },
+ "Bomba Gravitacional": {
+  "nivel": 4,
+  "reagentes": 10,
+  "cd": 22
+ },
+ "Fogo Negro": {
+  "nivel": 4,
+  "reagentes": 10,
+  "cd": 22
+ },
+ "Dissolução Total": {
+  "nivel": 4,
+  "reagentes": 8,
+  "cd": 20
+ },
+ "Poção de Cura Suprema": {
+  "nivel": 4,
+  "reagentes": 10,
+  "cd": 20
+ },
+ "Poção de Vigor Suprema": {
+  "nivel": 4,
+  "reagentes": 10,
+  "cd": 20
+ },
+ "Elixir da Fênix": {
+  "nivel": 4,
+  "reagentes": 12,
+  "cd": 22
+ },
+ "Regeneração Alquímica": {
+  "nivel": 4,
+  "reagentes": 8,
+  "cd": 20
+ },
+ "Mutagênico Maior": {
+  "nivel": 4,
+  "reagentes": 8,
+  "cd": 20
+ },
+ "Elixir da Perfeição": {
+  "nivel": 4,
+  "reagentes": 10,
+  "cd": 22
+ },
+ "Elixir da Forma Bestial": {
+  "nivel": 4,
+  "reagentes": 8,
+  "cd": 20
+ },
+ "Sangue do Dragão": {
+  "nivel": 4,
+  "reagentes": 12,
+  "cd": 22
+ },
+ "Soro da Guerra": {
+  "nivel": 4,
+  "reagentes": 8,
+  "cd": 22
+ },
+ "Essência Etérea": {
+  "nivel": 4,
+  "reagentes": 8,
+  "cd": 20
+ },
+ "Poção da Invisibilidade": {
+  "nivel": 4,
+  "reagentes": 8,
+  "cd": 20
+ },
+ "Bomba Temporal": {
+  "nivel": 4,
+  "reagentes": 12,
+  "cd": 22
+ },
+ "Extrato de Clarividência": {
+  "nivel": 4,
+  "reagentes": 6,
+  "cd": 20
+ },
+ "Tinta do Destino": {
+  "nivel": 4,
+  "reagentes": 10,
+  "cd": 22
+ },
+ "Veneno Letal": {
+  "nivel": 4,
+  "reagentes": 8,
+  "cd": 20
+ },
+ "Veneno da Alma": {
+  "nivel": 4,
+  "reagentes": 10,
+  "cd": 22
+ },
+ "Paralisia Total": {
+  "nivel": 4,
+  "reagentes": 8,
+  "cd": 20
+ },
+ "Amnésia Líquida": {
+  "nivel": 4,
+  "reagentes": 6,
+  "cd": 20
+ },
+ "Elixir da Imortalidade": {
+  "nivel": 5,
+  "reagentes": 15,
+  "cd": 24
+ },
+ "Núcleo Abissal": {
+  "nivel": 5,
+  "reagentes": 15,
+  "cd": 24
+ },
+ "Soro do Homúnculo": {
+  "nivel": 5,
+  "reagentes": 15,
+  "cd": 24
+ },
+ "Lágrimas do Tempo": {
+  "nivel": 5,
+  "reagentes": 20,
+  "cd": 26
+ }
+}
