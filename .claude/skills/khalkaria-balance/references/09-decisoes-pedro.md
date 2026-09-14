@@ -459,3 +459,46 @@ extra, máx. = Nível) permite **12 itens de 8196 Sins de mercadoria**, mas o bo
 "Ainda é alto… Vou apostar na sorte, pode deixar como está."
 ⚠️ **Vetor que fica aberto:** recuperação rápida de Stamina + investir em vários comerciantes.
 O custo migrou de reagentes para Stamina.
+
+## D41 — 🔴 CORREÇÃO: munição é PASSIVA e custa ZERO ações
+"A munição é um efeito passivo que perdura por todo combate. Ao iniciar o combate, o jogador
+escolhe o tipo de munição que vai utilizar até o fim do combate; todos os seus ataques então
+carregam esse efeito passivo."
+→ **Não existe 'ação que sobra' a ser gasta com munição.** Eu justifiquei duas propostas com esse
+raciocínio e estava errado. Consequência real:
+- **Conjunto Ricochete** concedia um ataque novo a cada erro, o combate inteiro. Numa arma de 3
+  ataques (erro 40/65/90%) são **1,95 erros por turno** → +1,17 acertos sobre os 1,20 da arma:
+  **dobrava a arma**. Corrigido para causar só o rider, 1x/turno.
+- **Munição Atómica** (ex-Munição do Cerco) dava área de 3 m em *todo* disparo: com 3 alvos,
+  127 de dano por combate, contra 42 da Bomba de Plasma (o Luxária mais forte do Alquimista).
+  Respingo reduzido para metade do dano adicional.
+
+**Regra de desenho:** ao precificar munição, o rider incide em **todos os acertos do combate**
+(1 ação → 6,0 acertos-equivalentes · 2 ações → 3,25). Nada de munição pode custar ação nem conceder
+ataque extra.
+
+## D42 — Escada de penetração de armadura
+"Incomum é no máximo 2~3 de penetração, Luxária ganha valor aí."
+`Incomum ignora 3 · Exótico ignora toda Armadura(Ar) · Luxária ignora Ar e Ae`
+Motivo: Ar no Bazar vai de 2 a 6 (mediana 5), então "ignora 5" no Incomum já zerava quase tudo.
+
+## D43 — Escada de rider de munição por custo de ação (paridade D23/D25)
+| Arma | acertos/combate | Incomum | Exótico | Luxária |
+|---|---|---|---|---|
+| Distância Simples · Arremesso (1 ação) | 6,00 | +1d4 | +1d6 | +2d6 |
+| Distância Pesada (2 ações) | 3,25 | **+1d8** | **+1d12** | **+2d12** |
+
+### Lote 9 (MUNIÇÃO) — CONCLUÍDO
+16 itens reescritos + **13 criados**. Cobertura fechada em **12 por tipo de arma**
+(1 Ordinário / 5 Incomum / 4 Exótico / 2 Luxária), **36 munições**.
+Renomes: Lança de Fogo → **Óleo Inflamável** · Munição de Prata Rúnica → **Munição de Kali** ·
+Munição do Cerco → **Munição Atómica** · Lascas de Gema → **Farinha de Trigo**.
+Munição Fragmentadora ganhou o rider que faltava (+1d12 Cortante).
+⚠️ **Falta a receita das 36** — depende da forma final decidida (ver abaixo).
+
+## D44 — Materiais: Prata e Lenha Seca removidas
+Kali assume o Exótico da família **Minerais** (Cobre · Ferro · Kali · Ouro).
+Lenha Seca sai: as escadas de madeira já cobrem o papel. **37 materiais.**
+**Fogo, Eletricidade e Éter continuam com esses nomes por decisão do Pedro** — são abstratos de
+propósito: "quem tem Éter e um foco vai poder usar literalmente 2 de Éter (status) para craftar um
+item"; uma fogueira provê Fogo. Podem ser comprados em frascos por quem não os gera.
