@@ -19,7 +19,7 @@ ROOT = os.path.dirname(TOOLS)
 
 # ordem: páginas independentes primeiro; nome -> script
 ALVOS = [
-    ('sistema',   None),                  # ainda sem pipeline JSON (HTML manual)
+    ('sistema',   'gerar_sistema.py'),
     ('magias',    'gerar_magias.py'),
     ('condicoes', 'gerar_condicoes.py'),
     ('limiar',    'gerar_limiar.py'),

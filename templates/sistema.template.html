@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema Base - Khalkaria RPG</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400&family=UnifrakturMaguntia&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <button class="menu-toggle">☰ Menu</button>
+    
+    <div class="app-container">
+        <!--SIDEBAR-->
+        
+        <main class="main-content">
+            <!-- TÍTULO ACIMA DA IMAGEM -->
+            <div class="sistema-title-above">Sistema de Regras</div>
+            
+            <!-- HEADER COM IMAGEM -->
+            <div class="sistema-header">
+                <img src="../images/khalkaria_header.png" alt="Khalkaria - Sistema de RPG">
+            </div>
+            
+            <!-- ÍNDICE DE NAVEGAÇÃO -->
+            <div class="sistema-index" id="indice">
+                <h2>📋 Índice de Navegação</h2>
+                <div class="index-grid">
+                    <div class="index-category">
+                        <div class="index-category-title"><span class="cat-icon">📜</span> Fundamentos</div>
+                        <div class="index-links">
+                            <a href="#atributos">Atributos Iniciais</a>
+                            <a href="#status">Status</a>
+                            <a href="#pericias">Perícias</a>
+                            <a href="#proficiencia">Proficiência/Treinamento</a>
+                            <a href="#criticos">Críticos e Falhas</a>
+                        </div>
+                    </div>
+                    <div class="index-category">
+                        <div class="index-category-title"><span class="cat-icon">⚔️</span> Combate</div>
+                        <div class="index-links">
+                            <a href="#sua-rodada">Sua Rodada</a>
+                            <a href="#atacando">Atacando & Retaliação</a>
+                            <a href="#dano-defesa">Dano e Defesa</a>
+                            <a href="#tipos-dano">Tipos de Dano</a>
+                            <a href="#manobras">Manobras</a>
+                        </div>
+                    </div>
+                    <div class="index-category">
+                        <div class="index-category-title"><span class="cat-icon">🗡️</span> Equipamento</div>
+                        <div class="index-links">
+                            <a href="#armas">Armas</a>
+                            <a href="#nivel-armas">Nível de Armas</a>
+                            <a href="#municao">Munição</a>
+                            <a href="#equipamentos">Equipamentos</a>
+                            <a href="#inventario">Inventário e Peso</a>
+                            <a href="#dinheiro">Dinheiro</a>
+                            <a href="#bazar-sistema">O Bazar</a>
+                            <a href="#comerciantes">Comerciantes</a>
+                            <a href="#crafting">Crafting</a>
+                        </div>
+                    </div>
+                    <div class="index-category">
+                        <div class="index-category-title"><span class="cat-icon">🗺️</span> Exploração</div>
+                        <div class="index-links">
+                            <a href="#jornada">Jornada</a>
+                            <a href="#superficies">Superfícies</a>
+                            <a href="#furtividade">Furtividade</a>
+                            <a href="#perseguicao">Perseguição</a>
+                            <a href="#fuga">Fuga</a>
+                            <a href="#khan-sins">Khan Sins</a>
+                        </div>
+                    </div>
+                    <div class="index-category">
+                        <div class="index-category-title"><span class="cat-icon">🏕️</span> Sobrevivência</div>
+                        <div class="index-links">
+                            <a href="#descanso">Descanso</a>
+                            <a href="#necessidades">Necessidades</a>
+                            <a href="#tamanho">Tamanho</a>
+                            <a href="#idiomas">Idiomas</a>
+                        </div>
+                    </div>
+                    <div class="index-category">
+                        <div class="index-category-title"><span class="cat-icon">📈</span> Progressão</div>
+                        <div class="index-links">
+                            <a href="#progressao-jogador">Progressão do Jogador</a>
+                            <a href="#xp-dc">XP e DC</a>
+                        </div>
+                    </div>
+                    <div class="index-category">
+                        <div class="index-category-title"><span class="cat-icon">✨</span> Magia</div>
+                        <div class="index-links">
+                            <a href="#magia-intro">Introdução à Magia</a>
+                            <a href="#custo-base">Custo Base</a>
+                            <a href="#intensidade">Intensidade</a>
+                            <a href="#modulacoes">Modulações</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- ================================================================
+                 CATEGORIA: FUNDAMENTOS
+                 ================================================================ -->
+            <section class="category-section cat-fundamentos" id="fundamentos">
+                <div class="category-header">
+                    <div class="category-icon">📜</div>
+                    <h2>Fundamentos</h2>
+                </div>{{CAT_fundamentos}}
+            </section>
+            
+            <!-- ================================================================
+                 CATEGORIA: COMBATE
+                 ================================================================ -->
+            <section class="category-section cat-combate" id="combate">
+                <div class="category-header">
+                    <div class="category-icon">⚔️</div>
+                    <h2>Combate</h2>
+                </div>{{CAT_combate}}
+            </section>
+            
+            <!-- ================================================================
+                 CATEGORIA: EQUIPAMENTO
+                 ================================================================ -->
+            <section class="category-section cat-equipamento" id="equipamento">
+                <div class="category-header">
+                    <div class="category-icon">🗡️</div>
+                    <h2>Equipamento</h2>
+                </div>{{CAT_equipamento}}
+
+                                    </section>
+            
+            <!-- ================================================================
+                 CATEGORIA: EXPLORAÇÃO
+                 ================================================================ -->
+            <section class="category-section cat-exploracao" id="exploracao">
+                <div class="category-header">
+                    <div class="category-icon">🗺️</div>
+                    <h2>Exploração</h2>
+                </div>{{CAT_exploracao}}
+
+                                        </section>
+            
+            <!-- ================================================================
+                 CATEGORIA: SOBREVIVÊNCIA
+                 ================================================================ -->
+            <section class="category-section cat-sobrevivencia" id="sobrevivencia">
+                <div class="category-header">
+                    <div class="category-icon">🏕️</div>
+                    <h2>Sobrevivência</h2>
+                </div>{{CAT_sobrevivencia}}
+            </section>
+            
+            <!-- ================================================================
+                 CATEGORIA: PROGRESSÃO
+                 ================================================================ -->
+            <section class="category-section cat-progressao" id="progressao">
+                <div class="category-header">
+                    <div class="category-icon">📈</div>
+                    <h2>Progressão</h2>
+                </div>{{CAT_progressao}}
+            </section>
+            
+            <!-- ================================================================
+                 CATEGORIA: MAGIA
+                 ================================================================ -->
+            <section class="category-section cat-magia" id="magia">
+                <div class="category-header">
+                    <div class="category-icon">✨</div>
+                    <h2>Magia</h2>
+                </div>{{CAT_magia}}
+            </section>
+            
+            <!-- SEPARADOR FINAL -->
+            <div class="separator-ornament" style="text-align: center; margin: 3rem 0; color: var(--gold); opacity: 0.5;">
+                <span>◆ ◆ ◆</span>
+            </div>
+            
+            <!-- LINKS RÁPIDOS -->
+            <div class="content-card" style="text-align: center;">
+                <h3 style="color: var(--gold); margin-bottom: 1rem;">Próximos Passos</h3>
+                <p>
+                    <a href="condicoes.html" class="keyword-link" style="margin: 0 1rem;">⚡ Condições</a>
+                    <a href="racas.html" class="keyword-link" style="margin: 0 1rem;">👤 Raças</a>
+                    <a href="classes.html" class="keyword-link" style="margin: 0 1rem;">⚔️ Classes</a>
+                    <a href="origens.html" class="keyword-link" style="margin: 0 1rem;">🎭 Origens</a>
+                    <a href="limiar.html" class="keyword-link" style="margin: 0 1rem;">🌟 O Limiar</a>
+                </p>
+            </div>
+            
+        </main>
+    </div>
+    
+    <!-- BOTÃO VOLTAR AO TOPO -->
+    <button class="back-to-top" id="backToTop" title="Voltar ao topo">↑</button>
+    
+    <script src="../js/main.js"></script>
+    <script>
+        // Botão Voltar ao Topo
+        const backToTop = document.getElementById('backToTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 500) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+        
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+        
+        // Smooth scroll para links de âncora
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+        
+        // Highlight da seção ativa no índice
+        const sections = document.querySelectorAll('.subsection, .category-section');
+        const indexLinks = document.querySelectorAll('.index-links a');
+        
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (scrollY >= sectionTop - 100) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            indexLinks.forEach(link => {
+                link.style.color = '';
+                if (link.getAttribute('href') === '#' + current) {
+                    link.style.color = 'var(--gold)';
+                }
+            });
+        });
+    </script>
+    <script src="../js/utils.js"></script>
+</body>
+</html>

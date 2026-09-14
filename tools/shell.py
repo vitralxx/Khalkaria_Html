@@ -80,7 +80,14 @@ def aplica_ancoras(html):
     m = RE_MAIN.search(html)
     if not m:
         return html
-    usados = set(re.findall(r'\bid="([^"]+)"', html))
+    # O id de h2/h3 pertence ao build: é sempre recalculado, nunca preservado.
+    # Se fosse preservado, uma página já construída congelaria ids de uma regra
+    # antiga enquanto as regeneradas usariam a nova — foi o que aconteceu com
+    # sistema.html antes de ele virar artefato. Nenhum h2/h3 do site tem id
+    # escrito à mão, então não há o que proteger.
+    corpo_main = RE_TITULO.sub(lambda t: re.sub(r'\s+id="[^"]*"', '', t.group(0), count=1),
+                               m.group(0))
+    usados = set(re.findall(r'\bid="([^"]+)"', html[:m.start()] + corpo_main + html[m.end():]))
     secao = ['']   # último h2 visto: dá escopo aos h3 ("Tier 1" -> "ramo-X-tier-1")
 
     def marca(t):
@@ -88,7 +95,7 @@ def aplica_ancoras(html):
         base = slugify(corpo)
         if tag == 'h2':
             secao[0] = base
-        if 'id=' in attrs or not base:
+        if not base:
             return t.group(0)
         if tag == 'h3' and secao[0] and not base.startswith(secao[0]):
             base = f'{secao[0]}-{base}'
@@ -99,7 +106,7 @@ def aplica_ancoras(html):
         usados.add(sl)
         return f'<{tag} id="{sl}"{attrs}>{corpo}</{tag}>'
 
-    return html[:m.start()] + RE_TITULO.sub(marca, m.group(0)) + html[m.end():]
+    return html[:m.start()] + RE_TITULO.sub(marca, corpo_main) + html[m.end():]
 
 
 RE_IMG = re.compile(r'(<img\b[^>]*\bsrc=")([^"]+\.(?:png|jpg|jpeg))(")', re.I)

@@ -29,7 +29,7 @@ VOID = {'area', 'base', 'br', 'col', 'embed', 'hr', 'img', 'input', 'link',
         'meta', 'param', 'source', 'track', 'wbr'}
 
 # páginas geradas por gerador -> script que as produz (para o round-trip)
-GERADORES = ['gerar_magias.py', 'gerar_condicoes.py', 'gerar_limiar.py',
+GERADORES = ['gerar_sistema.py', 'gerar_magias.py', 'gerar_condicoes.py', 'gerar_limiar.py',
              'gerar_classes.py', 'gerar_racas.py', 'gerar_origens.py']
 # o Bazar é mantido pelo Pedro fora deste fluxo (CLAUDE.md §3)
 FORA_ROUNDTRIP = {'pages/bazar.html'}
