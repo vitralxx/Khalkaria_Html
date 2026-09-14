@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400&family=UnifrakturMaguntia&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/classes.css">
     <style>
         :root {
             --ramo-colosso: #3b82f6;
@@ -16,24 +17,6 @@
             --ramo-berserker-dark: #7f1d1d;
             --ramo-general: #a855f7;
             --ramo-general-dark: #581c87;
-        }
-
-        .class-hero {
-            position: relative;
-            margin-bottom: 3rem;
-            padding: 2rem;
-            background: linear-gradient(135deg, rgba(20,15,10,0.95), rgba(30,25,20,0.9));
-            border: 1px solid var(--border-color);
-            border-radius: 16px;
-            overflow: hidden;
-            text-align: center;
-        }
-        .class-hero::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, var(--gold), var(--gold-light), var(--gold));
         }
         .class-title {
             font-family: var(--font-gothic);
@@ -44,107 +27,11 @@
             border-bottom: none;
             padding-bottom: 0;
         }
-        .hero-image {
-            position: relative;
-            max-width: 900px;
-            margin: 0 auto 2rem;
-            border-radius: 12px;
-            overflow: hidden;
-            border: 3px solid var(--gold-dark);
-            box-shadow: 0 10px 40px rgba(0,0,0,0.6), 0 0 30px rgba(212,175,55,0.15);
-        }
-        .hero-image img {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-        .hero-content {
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: left;
-        }
-        .hero-tagline {
-            font-size: 1.1rem;
-            font-style: italic;
-            color: var(--text-secondary);
-            margin-bottom: 1rem;
-            line-height: 1.7;
-            border-left: 3px solid var(--gold-dark);
-            padding-left: 1rem;
-        }
-        .hero-desc {
-            color: var(--text-secondary);
-            line-height: 1.7;
-            margin-bottom: 1.5rem;
-        }
-        .quick-stats {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 1rem;
-            margin-top: 1.5rem;
-        }
-        .stat-card {
-            background: rgba(0,0,0,0.4);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 1rem;
-            text-align: center;
-        }
         .stat-card .label {
             font-size: 0.75rem;
             color: var(--text-muted);
             text-transform: uppercase;
             letter-spacing: 0.1em;
-        }
-        .stat-card .value {
-            font-size: 1.1rem;
-            color: var(--gold);
-            font-weight: 600;
-            margin-top: 0.25rem;
-        }
-        .formula-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
-            margin: 2rem 0;
-        }
-        .formula-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 1rem;
-        }
-        .formula-card h4 {
-            color: var(--gold);
-            font-family: var(--font-heading);
-            font-size: 0.9rem;
-            margin-bottom: 0.5rem;
-        }
-        .formula-card code {
-            display: block;
-            background: var(--bg-tertiary);
-            padding: 0.5rem;
-            border-radius: 4px;
-            font-size: 0.85rem;
-            color: var(--gold-light);
-        }
-        .section-divider {
-            display: flex;
-            align-items: center;
-            margin: 3rem 0 2rem;
-            gap: 1rem;
-        }
-        .section-divider h2 {
-            font-family: var(--font-gothic);
-            font-size: 2rem;
-            color: var(--gold);
-            white-space: nowrap;
-        }
-        .section-divider::after {
-            content: '';
-            flex: 1;
-            height: 2px;
-            background: linear-gradient(90deg, var(--gold-dark), transparent);
         }
         .progression-table {
             width: 100%;
@@ -505,17 +392,6 @@
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 1rem;
             margin: 1.5rem 0;
-        }
-        .technique-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 1rem;
-            transition: all 0.3s;
-        }
-        .technique-card:hover {
-            border-color: var(--gold-dark);
-            transform: translateY(-2px);
         }
         .technique-card h4 {
             color: var(--gold);
