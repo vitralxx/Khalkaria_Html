@@ -35,27 +35,33 @@ Publicado em GitHub Pages: `vitralxx.github.io/Khalkaria_Html/`.
 
 ## 3. Arquitetura atual do repo
 
+Mapa completo e comandos: **`ARQUITETURA.md`**. Resumo:
+
 ```
-index.html
-css/style.css
-js/main.js          splash, menu mobile, smooth scroll, fade-in
-js/utils.js         sidebar direita: índice, recentes, busca no Bazar
-pages/*.html        sistema, magias, condicoes, limiar, origens, racas, classes, criacao, bazar
-pages/classes/*.html
-pages/racas/*.html
-images/*.png
-Bazar_Khalkaria_v25.csv + gerar_bazar.py  →  pages/bazar.html
+index.html                  landing (HTML manual)
+partials/sidebar.html       FONTE ÚNICA da navegação
+css/style.css               design system  |  css/classes.css, css/racas.css
+js/main.js  js/utils.js  js/ficha.js
+data/*.json                 conteúdo + data/Bazar_Khalkaria_v25.csv
+templates/*.template.html   scaffold com {{CAT_x}} / {{CARD_n}} / <!--SIDEBAR-->
+tools/build.py              fase 1 geradores + fase 2 shell + validação
+tools/validar.py            integridade estrutural (§6 automatizado)
+tools/sync_notion.py        motor de diff dos snapshots do Notion
+pages/*.html                ARTEFATO gerado
+images/*.png (fonte) -> *.webp (servido)
 ```
 
-**Problemas conhecidos:**
-- `<nav class="sidebar">` está duplicada em ~25 arquivos. Toda mudança de navegação exige editar todos.
-- `js/utils.js` gera IDs de seção em runtime por índice (`sec-0`, `sec-1`…). São **instáveis** e não existem no HTML servido. Devem ser substituídos por slugs determinísticos.
-- Imagens muito pesadas (`landing.png` 10,7 MB, `alquimista.png` 7,5 MB). Comprimir.
+**Um comando faz tudo:** `python tools/build.py`
 
-**Fora de escopo do agente:** `bazar.html`, `Bazar_Khalkaria_v25.csv`, `gerar_bazar.py` — mantidos pelo Pedro.
-*Exceção:* a seção "O Bazar" dentro da página **Sistema** do Notion **é** escopo e vai em `sistema.html`.
+**Fase 2 (`tools/shell.py`), aplicada a TODAS as páginas:** navegação a partir
+de `partials/sidebar.html`, `<img>` apontando para `.webp`, e id determinístico
+em cada h2/h3 (`id="custo-base-por-nivel"`, h3 com escopo do h2). O id de título
+pertence ao build e é sempre recalculado — não escrever id em h2/h3 à mão.
 
----
+**Fora de escopo do agente:** `bazar.html`, `data/Bazar_Khalkaria_v25.csv`,
+`tools/gerar_bazar.py` — mantidos pelo Pedro.
+*Exceção:* a seção "O Bazar" dentro da página **Sistema** do Notion **é** escopo
+e vai em `data/sistema.json`.
 
 ## 4. Migração em curso — Rota 1 (JSON como fonte)
 
@@ -76,6 +82,11 @@ Notion → data/*.json → gerador → pages/*.html
 - Todo conteúdo mecânico (magias, técnicas, condições, raças, origens, cartas do Limiar) vira JSON em `data/`.
 - IDs de âncora passam a ser derivados deterministicamente do dado (`id="magia-dardo-arcano"`), estáveis entre builds.
 - CSS/estrutura de página continuam em templates; só o conteúdo vem do JSON.
+
+**Estado:** 20 páginas migradas e fechando round-trip byte-a-byte (sistema,
+magias, condições, limiar, origens, 7 raças + índice, 7 classes). Restam
+`index.html`, `classes.html` e `criacao.html` como HTML manual — páginas de
+navegação, sem conteúdo canônico.
 
 **Por que:** buscar strings no HTML falha porque as tags ficam intercaladas no meio do texto. Em JSON a localização é exata (`magias.nivel1.destruicao[] where nome == "..."`). A migração torna a sincronização com o Notion **mais** confiável, não menos.
 
@@ -147,9 +158,10 @@ Sistema → Magias → Condições → Limiar → 7 Classes → 7 Raças → Ori
 
 ## 8. Entrega
 
-- Versionamento semântico. Última versão publicada: **v1.3**.
+- Versionamento semântico. Última versão publicada: **v1.4** (tag git).
 - No modelo antigo: zip completo `Khalkaria_Html-v{X.Y}.zip`, nunca patch parcial.
 - Trabalhando no repo local via Claude Code: commits atômicos, mensagem descritiva em PT-BR.
+- Antes de qualquer commit que toque HTML/CSS/JSON: `python tools/build.py` tem que passar.
 - Excluir sempre: `.DS_Store`, `__MACOSX/`, `old_ref/`.
 - Ao final de cada entrega: sumário conciso das mudanças + sinalizar divergências do Notion pendentes de decisão.
 
@@ -167,7 +179,8 @@ Sistema → Magias → Condições → Limiar → 7 Classes → 7 Raças → Ori
 
 - Não inventar conteúdo canônico nem preencher lacunas em silêncio.
 - Não editar HTML de conteúdo à mão após a migração para JSON.
-- Não usar IDs de âncora gerados por índice.
+- Não usar IDs de âncora gerados por índice, nem escrever id em h2/h3 à mão (é do build).
+- Não editar a `<nav class="sidebar">` dentro das páginas — só `partials/sidebar.html`.
 - Não travar aquisição de item do Bazar por dinheiro.
 - Não implementar sorteio de cartas do Limiar.
 - Não reescrever texto narrativo do Pedro em bloco — edições narrativas são cirúrgicas e preservam vocabulário e imagens originais.
