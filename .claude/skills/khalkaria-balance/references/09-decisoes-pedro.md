@@ -502,3 +502,42 @@ Lenha Seca sai: as escadas de madeira já cobrem o papel. **37 materiais.**
 **Fogo, Eletricidade e Éter continuam com esses nomes por decisão do Pedro** — são abstratos de
 propósito: "quem tem Éter e um foco vai poder usar literalmente 2 de Éter (status) para craftar um
 item"; uma fogueira provê Fogo. Podem ser comprados em frascos por quem não os gera.
+
+## D45 — Produção em Massa: extras não são vendáveis
+Escolhida a opção C entre quatro simuladas. Texto a acrescentar na técnica **no Notion**:
+> *Itens criados por Produção em Massa não podem ser vendidos.*
+
+**Por quê C e não preço:** o valor do item multiplica por **32** do Nv1 ao Nv4 enquanto o custo em
+reagentes só multiplica por **4** — o Alquimista sempre vai farmar o topo da tabela, e para achatar
+isso um item Nv4 teria que custar 64 reagentes contra um teto de Bolsa de 19. A ladeira é
+inescapável por preço; só trava dura resolve.
+
+| Opção | itens/descanso | mercadoria | a 50% | Δ |
+|---|---|---|---|---|
+| Hoje | 12 | 8196 | 4098 | — |
+| A · máx. extras = Nível − Nível do item | 4 | 2732 | 1366 | −67% |
+| B · Stamina do extra = 5 × Nível do item | 4 | 2732 | 1366 | −67% |
+| **C · extras não vendáveis** | **2 vendáveis (12 para a party)** | **1366** | **683** | **−83%** |
+
+C preserva a técnica inteira para o uso pretendido (armar o grupo) e mata só a impressora.
+Sobra ~1 item Luxária por dia de trabalho dedicado.
+⚠️ **Correção de análise minha:** eu havia dito que o bolso do comerciante (1000/dia) travava tudo.
+Não trava — são **6 categorias de comerciante**, então investir em vários leva o teto a ~6000/dia.
+Quem limita é a produção, e por isso o lever tem que estar na classe.
+
+## D46 — Munição: combate dura no máximo 5 turnos
+Confirmado pelo Pedro. Os valores por cena (6,0 acertos-equivalentes em arma de 1 ação, 3,25 em
+arma de 2 ações) são **teto**, não média. A escada D43 fica conservadora, o que é o lado certo de errar.
+
+## D47 — Apresentação: sempre mostrar o texto exato da planilha
+"Não gosto quando você resume o item sem de fato printar a tabela com texto exato da planilha;
+sempre que possível me mostre o estado do que você está falando para me contextualizar."
+→ **Nunca descrever um item sem imprimir a linha dele.** Vale para achado, proposta e correção.
+
+### Lote 10 (BUGIGANGA Ordinário) — parcial
+25 → 24 itens. **Manta Térmica removida** (duplicava o Saco de Dormir: ambas "elevam a qualidade de
+um descanso ao ar livre em 1 nível"). Todas as 24 receitas reescritas por tema — antes 13 itens
+compartilhavam `1x Peça Mecânica` e 9 compartilhavam `1x Tecido Resistente`, sem relação com o
+objeto. Razão de craft do tier Ordinário: **0,44 → 0,77**.
+Correções: `Engação` → `Enganação` (Selo Simples) · `Óleo Comum (frasco)` → `Óleo Comum` ·
+Bolsa de Couro ganhou "Não é empilhável e não ocupa espaço de bugiganga".
