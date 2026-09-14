@@ -19,6 +19,7 @@ Uso:
 Saída: exit 0 = tudo OK; exit 1 = há falhas.
 """
 import os, re, sys, glob, shutil, filecmp, subprocess, tempfile
+import shell
 from html.parser import HTMLParser
 
 TOOLS = os.path.dirname(os.path.abspath(__file__))
@@ -158,6 +159,7 @@ def checa_roundtrip():
             if r.returncode:
                 falhas.append(g)
                 print(f'  FALHA  {g}: {(r.stderr or "").strip()[:200]}')
+        shell.aplicar(tmp, verboso=False)   # fase 2 também no round-trip
         n_ok = divergiu = 0
         for f in sorted(glob.glob(os.path.join(tmp, 'pages', '**', '*.html'), recursive=True)):
             alvo = os.path.join(ROOT, os.path.relpath(f, tmp))

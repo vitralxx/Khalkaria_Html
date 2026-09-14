@@ -29,11 +29,13 @@
     } catch (e) {}
 
     // ---------- 2) Construir índice "Nesta página" ----------
-    var heads = main.querySelectorAll('h2, h3');
-    var indexItems = [];
-    heads.forEach(function (h, i) {
-      if (!h.id) h.id = 'sec-' + i;
-      indexItems.push({ id: h.id, txt: h.textContent.replace(/[◆✦✧]/g, '').trim(), lvl: h.tagName === 'H2' ? 2 : 3 });
+    // Os ids vêm do build (tools/shell.py), derivados do texto do título e
+    // estáveis entre builds. Títulos sem id ficam fora do índice — nada de
+    // inventar sec-N em runtime, que muda de alvo a cada reordenação.
+    var heads = [];
+    main.querySelectorAll('h2, h3').forEach(function (h) { if (h.id) heads.push(h); });
+    var indexItems = heads.map(function (h) {
+      return { id: h.id, txt: h.textContent.replace(/[◆✦✧]/g, '').trim(), lvl: h.tagName === 'H2' ? 2 : 3 };
     });
 
     // ---------- 3) Montar a sidebar direita ----------
@@ -64,7 +66,9 @@
     html += '<button class="rb-top" title="Voltar ao topo">↑ Topo</button>';
 
     aside.innerHTML = html;
-    document.querySelector('.app-container').appendChild(aside);
+    var container = document.querySelector('.app-container');
+    if (!container) return;
+    container.appendChild(aside);
 
     // Preencher recentes
     try {
@@ -77,9 +81,8 @@
         var a = document.createElement('a');
         a.className = 'rb-link';
         a.textContent = x.t;
-        a.href = toRoot + x.p.replace(/^.*\/Khalkaria_Html-main\//, '').replace(/^\//, '');
-        // fallback simples: usa caminho salvo relativo à raiz do site
-        a.href = (x.p.indexOf('/pages/') >= 0 ? toRoot + 'pages/' + x.u.split('/').pop() : toRoot + x.u.split('/').pop());
+        a.href = (x.p.indexOf('/pages/') >= 0 ? toRoot + 'pages/' + x.u.split('/').pop()
+                                              : toRoot + x.u.split('/').pop());
         recNav.appendChild(a);
       });
     } catch (e) {}

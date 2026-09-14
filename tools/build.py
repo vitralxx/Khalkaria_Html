@@ -12,6 +12,7 @@ Uso:
   python build.py magias racas # gera apenas os alvos indicados
 """
 import subprocess, sys, os
+import shell
 
 TOOLS = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(TOOLS)
@@ -30,7 +31,10 @@ BAZAR = ('bazar', 'gerar_bazar.py')
 
 
 def roda(script):
-    r = subprocess.run([sys.executable, os.path.join(TOOLS, script), ROOT],
+    # gerar_bazar.py tem outro contrato de CLI (csv, saida) e resolve a raiz
+    # sozinho; os demais recebem repo_root em argv[1].
+    argv = [] if script == 'gerar_bazar.py' else [ROOT]
+    r = subprocess.run([sys.executable, os.path.join(TOOLS, script)] + argv,
                        capture_output=True, text=True, encoding='utf-8')
     saida = (r.stdout or '') + (r.stderr or '')
     for l in saida.strip().splitlines():
@@ -59,6 +63,9 @@ def main():
         print(f'[>>] {nome}')
         if not roda(script):
             falhas.append(nome)
+
+    print('[>>] shell (navegação única + âncoras estáveis)')
+    shell.aplicar(ROOT)
 
     if falhas:
         raise SystemExit(f'\nFALHA na geração: {", ".join(falhas)}')
