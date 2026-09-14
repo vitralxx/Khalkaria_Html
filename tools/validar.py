@@ -21,7 +21,8 @@ Saída: exit 0 = tudo OK; exit 1 = há falhas.
 import os, re, sys, glob, shutil, filecmp, subprocess, tempfile
 from html.parser import HTMLParser
 
-ROOT = sys.argv[1] if len(sys.argv) > 1 and not sys.argv[1].startswith('--') else '.'
+TOOLS = os.path.dirname(os.path.abspath(__file__))
+ROOT = sys.argv[1] if len(sys.argv) > 1 and not sys.argv[1].startswith('--') else os.path.dirname(TOOLS)
 FLAGS = {a for a in sys.argv[1:] if a.startswith('--')}
 VOID = {'area', 'base', 'br', 'col', 'embed', 'hr', 'img', 'input', 'link',
         'meta', 'param', 'source', 'track', 'wbr'}
@@ -152,7 +153,7 @@ def checa_roundtrip():
         for d in ('pages/classes', 'pages/racas'):
             os.makedirs(os.path.join(tmp, d), exist_ok=True)
         for g in GERADORES:
-            r = subprocess.run([sys.executable, os.path.join(ROOT, g), tmp],
+            r = subprocess.run([sys.executable, os.path.join(TOOLS, g), tmp],
                                capture_output=True, text=True, encoding='utf-8')
             if r.returncode:
                 falhas.append(g)

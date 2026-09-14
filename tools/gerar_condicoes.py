@@ -4,9 +4,10 @@
 # Fonte da verdade = data/condicoes.json. NÃO editar pages/condicoes.html à mão.
 # Template: templates/condicoes.template.html (placeholders {{CAT_<id>}} por categoria).
 # Uso: python gerar_condicoes.py [repo_root]
-import json, sys
+import json, sys, os
 
-REPO = sys.argv[1] if len(sys.argv) > 1 else '.'
+RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+REPO = sys.argv[1] if len(sys.argv) > 1 else RAIZ
 TPL = f'{REPO}/templates/condicoes.template.html'
 JSON_SRC = f'{REPO}/data/condicoes.json'
 OUT = f'{REPO}/pages/condicoes.html'

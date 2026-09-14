@@ -6,9 +6,10 @@
 # externalizados como {opentag, corpo}; scaffold/prosa (content-card, stat-box) e o
 # índice ficam no template com placeholders {{CARD_n}}.
 # Uso: python gerar_racas.py [repo_root]
-import json, sys
+import json, sys, os
 
-REPO = sys.argv[1] if len(sys.argv) > 1 else '.'
+RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+REPO = sys.argv[1] if len(sys.argv) > 1 else RAIZ
 PAGES = ['racas'] + [f'racas/{r}' for r in
          ['humano', 'anao', 'dryad', 'gruto', 'corrompido', 'automato', 'inseto']]
 

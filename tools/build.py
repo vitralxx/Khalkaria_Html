@@ -13,7 +13,8 @@ Uso:
 """
 import subprocess, sys, os
 
-ROOT = os.path.dirname(os.path.abspath(__file__))
+TOOLS = os.path.dirname(os.path.abspath(__file__))
+ROOT = os.path.dirname(TOOLS)
 
 # ordem: páginas independentes primeiro; nome -> script
 ALVOS = [
@@ -29,7 +30,7 @@ BAZAR = ('bazar', 'gerar_bazar.py')
 
 
 def roda(script):
-    r = subprocess.run([sys.executable, os.path.join(ROOT, script), ROOT],
+    r = subprocess.run([sys.executable, os.path.join(TOOLS, script), ROOT],
                        capture_output=True, text=True, encoding='utf-8')
     saida = (r.stdout or '') + (r.stderr or '')
     for l in saida.strip().splitlines():
@@ -66,7 +67,7 @@ def main():
     if '--no-check' not in flags:
         print()
         sys.stdout.flush()   # garante ordem com a saída do subprocesso
-        r = subprocess.run([sys.executable, os.path.join(ROOT, 'validar.py'), ROOT])
+        r = subprocess.run([sys.executable, os.path.join(TOOLS, 'validar.py'), ROOT])
         raise SystemExit(r.returncode)
 
 

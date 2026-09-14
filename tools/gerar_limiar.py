@@ -5,9 +5,10 @@
 # Template: templates/limiar.template.html — placeholders {{CAT_<id>}} (7 seções de
 # catálogo) e {{DORES}}/{{BENEFICIOS}} (O Abismo).
 # Uso: python gerar_limiar.py [repo_root]
-import json, sys
+import json, sys, os
 
-REPO = sys.argv[1] if len(sys.argv) > 1 else '.'
+RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+REPO = sys.argv[1] if len(sys.argv) > 1 else RAIZ
 TPL = f'{REPO}/templates/limiar.template.html'
 JSON_SRC = f'{REPO}/data/limiar.json'
 OUT = f'{REPO}/pages/limiar.html'

@@ -1,3 +1,4 @@
+Nome,Categoria,Raridade,Efeito,Efeito_Jogador,Valor (Sins),Obtenção,Tipo de Craft,Ingredientes,Tags,Lore/Notas,Coluna 1,Coluna 2,Coluna 3,Coluna 4,Coluna 5,Coluna 6,Coluna 7,Coluna 8,Coluna 9,Coluna 10,Coluna 11,Coluna 12,Coluna 13,Coluna 14,Coluna 15,Coluna 16,Coluna 17,Coluna 18
 Anel do Último Suspiro,Item Mágico,Exótico,"1x por descanso longo: ao cair a 0 de Saúde, fica com 1 de Saúde em vez de Morrendo.",,6d10+40,Drop CR≥3,Não-craftável,,Utilidade,,,,,,,,,,,,,,,,,,,
 Espada do Caçador,Arma,Exótico,Leve Cortante +1. +2d6 contra Bestas. +1 de dano para cada ataque sucessivo na mesma rodada contra o mesmo alvo.,,6d10+40,"Drop CR≥3, Loja",Não-craftável,,,,,,,,,,,,,,,,,,,,,
 Napalm Alquímico,Consumível,Exótico,"Arremesso 9m. 3d6 Fogo em área 3m, Reflexo para metade. Queima 2d6/turno por 3 rodadas. Água não apaga.",,6d10+40,"Alquimista, Drop CR≥3",Alquimia,3x Reagente Alquímico (x1),"Arremesso, Ofensivo, Uso Único",,,,,,,,,,,,,,,,,,,
@@ -580,4 +581,3 @@ Pergaminho — Entender Ser,Consumível,Ordinário,"1 uso: conjura Entender Ser 
 Virotes/Flechas,Munição,Ordinário,[Distância Simples] Empilhável: pesa 1 bugiganga a cada 10 unidades.,,2d10,Loja,Engenharia,1x Peça Mecânica,Munição/Distância Simples,,,,,,,,,,,,,,,,,,,
 Munição de Fogo,Munição,Ordinário,[Distância Pesada] Empilhável: pesa 1 bugiganga a cada 10 unidades.,,2d10,"Drop CR≤2, Drop CR≥3, Loja",Engenharia,1x Peça Mecânica,Munição/Distância Pesada,,,,,,,,,,,,,,,,,,,
 Conjunto de Arremesso,Munição,Ordinário,[Arremesso] Facas e dardos de arremesso. Empilhável: pesa 1 bugiganga a cada 10 unidades.,,2d10,"Drop CR≤2, Loja",Engenharia,1x Peça Mecânica,Munição/Arremesso,,,,,,,,,,,,,,,,,,,
-Nome,Categoria,Raridade,Efeito,Efeito_Jogador,Valor (Sins),Obtenção,Tipo de Craft,Ingredientes,Tags,Lore/Notas,Coluna 1,Coluna 2,Coluna 3,Coluna 4,Coluna 5,Coluna 6,Coluna 7,Coluna 8,Coluna 9,Coluna 10,Coluna 11,Coluna 12,Coluna 13,Coluna 14,Coluna 15,Coluna 16,Coluna 17,Coluna 18

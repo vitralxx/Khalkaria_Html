@@ -3,8 +3,9 @@
 # Uso: python3 gerar_bazar.py [caminho_csv] [caminho_saida_html]
 import csv, json, sys, os, re, unicodedata
 
-CSV = sys.argv[1] if len(sys.argv) > 1 else 'Bazar_Khalkaria_v25.csv'
-OUT = sys.argv[2] if len(sys.argv) > 2 else 'site_v24/Khalkaria_Html-main/pages/bazar.html'
+RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+CSV = sys.argv[1] if len(sys.argv) > 1 else os.path.join(RAIZ, 'data', 'Bazar_Khalkaria_v25.csv')
+OUT = sys.argv[2] if len(sys.argv) > 2 else os.path.join(RAIZ, 'pages', 'bazar.html')
 
 rows = list(csv.DictReader(open(CSV, encoding='utf-8')))
 

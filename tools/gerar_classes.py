@@ -6,9 +6,10 @@
 # foi externalizado como {tipo, nome, corpo}; o template guarda todo o scaffold
 # (hero, stat/formula/progression, ramo/tier headers) com placeholders {{CARD_n}}.
 # Uso: python gerar_classes.py [repo_root] [classe]  (sem classe = todas)
-import json, sys
+import json, sys, os
 
-REPO = sys.argv[1] if len(sys.argv) > 1 else '.'
+RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+REPO = sys.argv[1] if len(sys.argv) > 1 else RAIZ
 ONE = sys.argv[2] if len(sys.argv) > 2 else None
 CLASSES = [ONE] if ONE else ['espadachim', 'monge', 'batedor', 'alquimista',
                              'teurgo', 'artilheiro', 'brutalista']

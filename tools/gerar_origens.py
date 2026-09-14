@@ -4,9 +4,10 @@
 # Fonte da verdade = data/origens.json. NÃO editar pages/origens.html à mão.
 # As 17 origem-card externalizadas como {opentag, corpo}; scaffold no template ({{CARD_n}}).
 # Uso: python gerar_origens.py [repo_root]
-import json, sys
+import json, sys, os
 
-REPO = sys.argv[1] if len(sys.argv) > 1 else '.'
+RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+REPO = sys.argv[1] if len(sys.argv) > 1 else RAIZ
 
 def main():
     tpl = open(f'{REPO}/templates/origens.template.html', encoding='utf-8').read()

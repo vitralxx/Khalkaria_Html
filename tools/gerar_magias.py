@@ -9,7 +9,8 @@
 # normalizada idêntica) — ver método §6 do CLAUDE.md.
 import json, sys, os
 
-REPO = sys.argv[1] if len(sys.argv) > 1 else '.'
+RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+REPO = sys.argv[1] if len(sys.argv) > 1 else RAIZ
 TPL = f'{REPO}/templates/magias.template.html'
 JSON_SRC = f'{REPO}/data/magias.json'
 OUT = f'{REPO}/pages/magias.html'
