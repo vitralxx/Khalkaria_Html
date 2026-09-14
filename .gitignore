@@ -1,2 +1,15 @@
+# Snapshots do Notion: só o manifesto é versionado (CLAUDE.md §9)
 notion_cache/*
 !notion_cache/pages.json
+
+# Ruído de sistema / empacotamento (CLAUDE.md §8)
+.DS_Store
+__MACOSX/
+old_ref/
+__pycache__/
+*.pyc
+
+# Dumps e referências de trabalho local (não fazem parte do site publicado)
+preview.txt
+site_v24/
+*.tmp

@@ -25,8 +25,15 @@ PAGES = {k: v for k, v in json.load(open(os.path.join(CACHE, 'pages.json'), enco
          if not k.startswith('_')}
 
 def path(slug, kind):
-    p = os.path.join(CACHE, slug.replace('/', '__') + f'.{kind}.md')
-    return p
+    """Caminho do snapshot. Layout canônico = subpasta (notion_cache/classes/monge.new.md).
+    Aceita o layout antigo achatado (classes__monge.new.md) se já existir em disco,
+    para não invalidar baselines gravados antes da padronização."""
+    sub = os.path.join(CACHE, *slug.split('/')) + f'.{kind}.md'
+    flat = os.path.join(CACHE, slug.replace('/', '__') + f'.{kind}.md')
+    if not os.path.exists(sub) and os.path.exists(flat):
+        return flat
+    os.makedirs(os.path.dirname(sub), exist_ok=True)
+    return sub
 
 def norm(t):
     """Normaliza p/ diff estável: remove timestamp do fetch e URLs de imagem S3
