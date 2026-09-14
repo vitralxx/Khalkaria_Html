@@ -10,6 +10,7 @@ Uso:
   python3 auditor.py dpr <dado> <acoes> [mod]   DPR pelo modelo canônico
   python3 auditor.py familias [cat]  Mapeia famílias dentro de cada categoria
   python3 auditor.py precos          Confere Valor(Sins) contra a faixa da raridade
+  python3 auditor.py craft           Razão custo-de-craft / valor do item em cada receita
   python3 auditor.py travas          Varre violações de travas duras do sistema
   python3 auditor.py economia        Simula o loop de Sins (comerciantes, margens)
   python3 auditor.py cobertura       Quais itens não beneficiam nenhum arquétipo
@@ -462,15 +463,63 @@ def cmd_familias(cat=None):
         craft = collections.Counter(r['Tipo de Craft'] for r in sub)
         print("   craft:", dict(craft))
 
+# Material vale UMA FAIXA ABAIXO do item da sua raridade (D35). É o que dá margem
+# ao craft sem quebrar a estética de usar material da mesma raridade do produto.
+FAIXA_ABAIXO = {'Ordinário':'Lixo','Incomum':'Ordinário','Exótico':'Incomum','Luxária':'Exótico'}
+
+def faixa_esperada(r):
+    rar = r['Raridade']
+    if r['Categoria'] == 'Material':
+        rar = FAIXA_ABAIXO.get(rar, rar)
+    return RARIDADE.get(rar, (None,))[0]
+
 def cmd_precos():
     rows = load(); bad = []
     for r in rows:
-        exp = RARIDADE.get(r['Raridade'], (None,))[0]
+        exp = faixa_esperada(r)
         v = (r['Valor (Sins)'] or '').strip()
         if exp and v != exp: bad.append((r['Nome'], r['Categoria'], r['Raridade'], v, exp))
     print(f"Itens cujo Valor(Sins) não bate com a faixa da raridade: {len(bad)} de {len(rows)}")
     for n,c,rar,v,e in bad[:25]: print(f"  {n[:42]:42} [{c}/{rar}] {v!r} != {e}")
     if len(bad) > 25: print(f"  ... +{len(bad)-25}")
+
+def cmd_craft():
+    """Razão custo-de-craft / valor-do-item em cada receita. Alvo do Pedro: ~0,75x."""
+    rows = load(); val = {}
+    for r in rows:
+        m = RARIDADE.get(FAIXA_ABAIXO[r['Raridade']] if r['Categoria']=='Material' else r['Raridade'])
+        if m: val[r['Nome']] = m[3]
+    por_rar = collections.defaultdict(list); sem_preco = collections.Counter()
+    for r in rows:
+        ing = (r['Ingredientes'] or '').strip()
+        if not ing or r['Raridade'] not in RARIDADE: continue
+        if 'Reagentes' in ing: continue          # Alquimia não usa Sins, usa pool de classe
+        custo = 0.0; marg = 0.0; ok = True
+        for p in SPLIT_ING.split(ing):
+            m = re.match(r'(\d+)\s*x\s*(.+)', p.strip())
+            if not m: ok = False; break
+            q, nome = int(m.group(1)), m.group(2).strip()
+            if nome not in val: sem_preco[nome] += 1; ok = False; break
+            custo += q * val[nome]
+            # custo MARGINAL = só os materiais; o item base o jogador já lootou
+            if not any(nome.startswith(c) for c in ('Arma ','Armadura','Escudo')):
+                marg += q * val[nome]
+        if ok: por_rar[r['Raridade']].append((custo / RARIDADE[r['Raridade']][3], r['Nome'], custo, marg / RARIDADE[r['Raridade']][3]))
+    print("razão TOTAL = comprando tudo · razão MARGINAL = já tendo o item base lootado\n")
+    print(f"{'RARIDADE':<12}{'receitas':>9}{'total':>8}{'marginal':>10}{'mín':>8}{'máx':>8}")
+    for rar in ['Ordinário','Incomum','Exótico','Luxária']:
+        g = por_rar.get(rar)
+        if not g: continue
+        rs = [x[0] for x in g]; ms = [x[3] for x in g]
+        print(f"{rar:<12}{len(g):>9}{sum(rs)/len(rs):>8.2f}{sum(ms)/len(ms):>10.2f}{min(rs):>8.2f}{max(rs):>8.2f}")
+    todos = [x for g in por_rar.values() for x in g]
+    if todos:
+        print(f"\ngeral: {len(todos)} receitas · total {sum(x[0] for x in todos)/len(todos):.2f}x"
+              f" · marginal {sum(x[3] for x in todos)/len(todos):.2f}x   (alvo do Pedro: 0,75x)")
+        piores = sorted(todos, reverse=True)[:5]
+        print("razão total mais alta (converter genérica -> única no MESMO tier):")
+        for ra,n,c,mg in piores: print(f"   {n[:38]:<38}total {ra:>5.2f}x · marginal {mg:>5.2f}x")
+    if sem_preco: print(f"\ningredientes sem preço conhecido: {dict(sem_preco)}")
 
 def cmd_travas():
     rows = load()
@@ -565,6 +614,7 @@ if __name__ == '__main__':
     elif cmd == 'armas':     cmd_armas()
     elif cmd == 'familias':  cmd_familias(a[1] if len(a) > 1 else None)
     elif cmd == 'precos':    cmd_precos()
+    elif cmd == 'craft':     cmd_craft()
     elif cmd == 'travas':    cmd_travas()
     elif cmd == 'economia':  cmd_economia()
     elif cmd == 'cobertura': cmd_cobertura()

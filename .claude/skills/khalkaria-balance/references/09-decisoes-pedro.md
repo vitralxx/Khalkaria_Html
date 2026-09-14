@@ -380,3 +380,82 @@ Cobertura passa a **2 Incomum / 3 Exótico / 1 Luxária** em todos os 15 chassis
 "Ao **executar** uma criatura" admite duas leituras: (a) ao usar o efeito **Executar** do chassi,
 ou (b) ao **reduzir a criatura a 0 de Saúde**. (a) dispara ~todo turno; (b) ~1x por combate.
 Escrito verbatim como o Pedro mandou. **Precisa de desempate.**
+
+## D35 — 🔑 Material vale UMA FAIXA ABAIXO do item da sua raridade
+Ideia do Pedro, e é melhor que a minha (que era usar material da raridade anterior):
+"Apenas os materiais podem ter o preço de uma raridade abaixo, assim podemos manter o crafting
+com os materiais equivalentes à raridade do item a ser craftado mantendo uma margem de lucro
+mínima, que dá viabilidade e valor pro craft."
+
+| Material | Raridade | Preço |
+|---|---|---|
+| Barra de Ferro, Reagente… | Ordinário | **1d8+2** (faixa Lixo) |
+| Aço Temperado, Engrenagem… | Incomum | **2d10+10** (faixa Ordinário) |
+| Liga Rúnica, Kali… | Exótico | **4d10+45** (faixa Incomum) |
+| Liga Primordial, Pele de Dragão… | Luxária | **5d12+180** (faixa Exótico) |
+
+**Preserva a estética:** arma Luxária de dano Primordial continua usando Energia Primordial
+(material Luxária). Os materiais do topo não ficam inúteis.
+**28 materiais reprecificados.** `auditor.py precos` aprendeu a regra (`FAIXA_ABAIXO`).
+Pedro vai adicionar **farm de material** (minerar minério, cortar madeira) — a margem real sobe
+mais ainda para quem obtém à mão.
+
+### Razão de craft alvo: 0,75x — como medir
+`auditor.py craft` reporta duas razões:
+- **total** = comprando tudo, item base incluído.
+- **marginal** = só os materiais, porque o item base o jogador normalmente **lootou**.
+A marginal é a que o jogador sente. Hoje: total 0,65x · marginal 0,47x em 163 receitas.
+Converter genérica→única no MESMO tier dá total 1,63x mas **marginal 0,63x** — o item base já
+custa 100% do alvo sozinho, então a razão total é inevitável e não é bug.
+
+## D36 — Ofício(Municiador) NÃO existe
+"Essa perícia não existe, é remanescência outdated do artilheiro, da época que o crafting não
+existia." → 🔴 **Corrigir `references/05-classes.md` linha 35**, que lista 4 ofícios canônicos.
+São **3**: Ferraria, Engenharia, Alquimia. Munição continua Engenharia.
+
+## D37 — Só Item Mágico é evolutivo do lado das Bugigangas
+"Bugigangas não são aditivas, cada uma serve para uma coisa; evoluí-la descarta a anterior.
+Consumíveis são gastos após o uso. Munição é consumida por cena."
+→ **Bugiganga, Consumível e Munição usam 3 materiais e NENHUM item base.**
+→ **Item Mágico é equipável com só 3 slots**, então o jogador prioriza raridade alta: é a única
+categoria de Bugigangas que pede progressão. ⚠️ Não foi criada pensando nisso — **pendente:
+definir os arquétipos de Item Mágico e encaixar uma progressão.**
+
+## D38 — Famílias de material (fechadas)
+**Ordinários (4):** Metal · Madeira · Couro · Tecido
+**Atípicos (4):** Mecânica · Gemas · Energias · Minerais
+Receita = `1 item base + 1 material ordinário + 1 material atípico` (ou 3 materiais, sem base).
+4×4 = 16 pares; com multiconjuntos de 2 entre 8 famílias = **36 combinações**, o que cobre o pior
+caso (35 itens Ordinários de Consumível). Nomes definidos pelo Pedro:
+- **Gemas:** Gema Bruta · Gema Refinada · Gema Mística · Gema Primordial
+- **Energias:** Fogo · Eletricidade · Éter · Energia Primordial
+  ("misticamente aprisionadas em frascos por teurgos e alquimistas para serem vendidas")
+- **Minerais:** Cobre · Ferro · Prata · Ouro (+ **Kali** como mineral de assinatura, fora da escada)
+⚠️ **Colisão de nome:** "Ferro" (Mineral Incomum) x "Barra de Ferro" (Metal Ordinário).
+
+## D39 — Alquimia: nível do item define a raridade no Bazar
+"Nível 1 da tabela do alquimista é Ordinário, seguindo progressivamente."
+`Nv1→Ordinário · Nv2→Incomum · Nv3→Exótico · Nv4→Luxária · Nv5→Luxária (travado por quest)`
+**Resolve os "5 níveis para 4 raridades":** o Nv5 não é uma quinta raridade, é Luxária com
+material de quest obrigatório.
+
+### Lote 8 (ALQUIMIA) — CONCLUÍDO
+O Bazar tinha uma **segunda cópia mais barata** da tabela do Alquimista: 70 itens nos dois lugares,
+**45 com contagem de reagente diferente** (o Bazar derivava de raridade 2/3/5, o Notion do design
+da classe 1→20). Corrigido:
+- **70 itens** sincronizados: raridade (25 mudaram), preço (25), reagentes (70), CD de craft (70).
+- **25 itens criados** — os 4 lendários de Nv5 + 21 que faltavam (o tier Nv4 quase inteiro).
+- **Cobertura Notion x Bazar: 95/95.** `Tipo de Craft` = Alquimia em todos.
+- Nova coluna **`CD de Craft`** (era `Coluna 1`, vazia).
+
+**Banda de reagente por nível (esboço do Pedro):** Nv1 1–3 · Nv2 2–4 · Nv3 4–6 · Nv4 8–12 · Nv5 15–20.
+⚠️ **3 itens do Notion estão fora da própria banda:** Sangue Falso (Nv3, 3) ·
+Extrato de Clarividência (Nv4, 6) · Amnésia Líquida (Nv4, 6).
+
+## D40 — Teto de farm do Alquimista: mantido por decisão
+Nv5, INT+4, DES+3 → 19 reagentes e 53 Stamina por descanso longo. Produção em Massa (5 Stamina/item
+extra, máx. = Nível) permite **12 itens de 8196 Sins de mercadoria**, mas o bolso do comerciante
+(D6: 250/500/1000/dia) trava a extração em **1000 Sins/dia**.
+"Ainda é alto… Vou apostar na sorte, pode deixar como está."
+⚠️ **Vetor que fica aberto:** recuperação rápida de Stamina + investir em vários comerciantes.
+O custo migrou de reagentes para Stamina.
