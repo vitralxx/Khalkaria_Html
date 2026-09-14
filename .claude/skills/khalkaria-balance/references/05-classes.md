@@ -32,7 +32,8 @@ Todas escolhem +(1 + Mod.INT) perícias de uma lista.
 vale desproporcionalmente para esses dois e é redundante para quem já tem.
 Outras fontes de acesso: **Acólito** e **Dryad Cascaferro** → Marciais; **Andarilho** → À Distância;
 **Anão** → Marciais **E** À Distância.
-Ofícios canônicos: Ferraria, Engenharia, Alquimia, **Municiador** (Artilheiro).
+Ofícios canônicos de craft: **Ferraria, Engenharia e Alquimia** (D36). *Municiador não existe* —
+era remanescência da época em que o crafting não existia e o Artilheiro fabricava a própria munição.
 
 ## 🔑 RÉGUA DE PREÇO — o que o sistema cobra por cada efeito
 Esta é a tabela mais importante para julgar item do Bazar. Todos os valores são canônicos.

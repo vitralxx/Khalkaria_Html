@@ -310,9 +310,9 @@
   "cd": 16
  },
  "Sangue Falso": {
-  "nivel": 3,
-  "reagentes": 3,
-  "cd": 16
+  "nivel": 1,
+  "reagentes": 2,
+  "cd": 10
  },
  "Ácido Dimensional": {
   "nivel": 3,
@@ -426,7 +426,7 @@
  },
  "Extrato de Clarividência": {
   "nivel": 4,
-  "reagentes": 6,
+  "reagentes": 8,
   "cd": 20
  },
  "Tinta do Destino": {
@@ -451,7 +451,7 @@
  },
  "Amnésia Líquida": {
   "nivel": 4,
-  "reagentes": 6,
+  "reagentes": 8,
   "cd": 20
  },
  "Elixir da Imortalidade": {
