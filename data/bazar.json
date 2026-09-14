@@ -6389,5 +6389,16 @@
     "obtencao": "Loja, Drop",
     "craft": "Ferraria",
     "ingredientes": "1x Liga Primordial"
+  },
+  {
+    "id": "item-kit-de-manutencao",
+    "nome": "Kit de Manutenção",
+    "categoria": "Consumível",
+    "raridade": "Incomum",
+    "efeito": "Kit de Manutenção de Autômatos. Recupera 4d6+Int de Saúde. Pode consertar invenções ou bugigangas.",
+    "valor": "5d6+15",
+    "obtencao": "Loja, Drop",
+    "craft": "Engenharia",
+    "ingredientes": "1x Fibra Sintética e 1x Aço Temperado"
   }
 ]
