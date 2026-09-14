@@ -12,7 +12,7 @@ Uso:
   python build.py magias racas # gera apenas os alvos indicados
 """
 import subprocess, sys, os
-import shell
+import shell, gerar_webp
 
 TOOLS = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(TOOLS)
@@ -64,7 +64,10 @@ def main():
         if not roda(script):
             falhas.append(nome)
 
-    print('[>>] shell (navegação única + âncoras estáveis)')
+    print('[>>] webp')
+    gerar_webp.gerar()
+
+    print('[>>] shell (navegação única + âncoras estáveis + webp)')
     shell.aplicar(ROOT)
 
     if falhas:

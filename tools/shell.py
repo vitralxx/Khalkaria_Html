@@ -11,7 +11,11 @@ reaplicar não muda o resultado.
      reescritos para o caminho relativo da página e .active na página atual.
      Fonte única: partials/sidebar.html. Não editar a nav dentro das páginas.
 
-  2. ÂNCORAS   — dá a cada <h2>/<h3> do .main-content um id derivado do texto
+  2. WEBP     — <img src="…png"> passa a apontar para o .webp gerado por
+     tools/gerar_webp.py, quando ele existe. Os templates seguem escrevendo
+     .png (a fonte que o Pedro substitui à mão).
+
+  3. ÂNCORAS   — dá a cada <h2>/<h3> do .main-content um id derivado do texto
      (slug estável: "Custo Base" -> id="custo-base"). Substitui os sec-0/sec-1
      que o js/utils.js inventava em runtime, que mudavam de alvo a cada
      reordenação e não existiam no HTML servido (CLAUDE.md §10).
@@ -98,6 +102,25 @@ def aplica_ancoras(html):
     return html[:m.start()] + RE_TITULO.sub(marca, m.group(0)) + html[m.end():]
 
 
+RE_IMG = re.compile(r'(<img\b[^>]*\bsrc=")([^"]+\.(?:png|jpg|jpeg))(")', re.I)
+
+
+def aplica_webp(html, pagina_rel):
+    """Aponta cada <img> para o .webp equivalente, quando ele existe.
+
+    Os templates continuam escrevendo .png (a fonte); a troca é de build. Se
+    uma imagem ainda não tem .webp gerado, o .png é mantido — nada quebra.
+    """
+    base = os.path.dirname(os.path.join(RAIZ, pagina_rel))
+
+    def troca(m):
+        webp = os.path.splitext(m.group(2))[0] + '.webp'
+        return m.group(1) + webp + m.group(3) if os.path.exists(
+            os.path.normpath(os.path.join(base, webp))) else m.group(0)
+
+    return RE_IMG.sub(troca, html)
+
+
 def paginas(raiz):
     fs = []
     for dirpath, _, nomes in os.walk(os.path.join(raiz, 'pages')):
@@ -114,7 +137,7 @@ def aplicar(raiz=RAIZ, verboso=True):
     for f in paginas(raiz):
         rel = os.path.relpath(f, raiz).replace(os.sep, '/')
         antes = open(f, encoding='utf-8', newline='').read()
-        depois = aplica_ancoras(aplica_sidebar(antes, rel, modelo))
+        depois = aplica_webp(aplica_ancoras(aplica_sidebar(antes, rel, modelo)), rel)
         if depois != antes:
             open(f, 'w', encoding='utf-8', newline='').write(depois)
             n_nav += 1
