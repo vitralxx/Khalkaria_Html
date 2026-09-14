@@ -520,6 +520,15 @@ def cmd_craft():
         print("razão total mais alta (converter genérica -> única no MESMO tier):")
         for ra,n,c,mg in piores: print(f"   {n[:38]:<38}total {ra:>5.2f}x · marginal {mg:>5.2f}x")
     if sem_preco: print(f"\ningredientes sem preço conhecido: {dict(sem_preco)}")
+    # receitas idênticas dentro da mesma categoria+raridade: é o que deixa o craft monótono
+    dup = collections.defaultdict(list)
+    for r in rows:
+        ing = (r['Ingredientes'] or '').strip()
+        if ing and 'Reagentes' not in ing: dup[(r['Categoria'], r['Raridade'], ing)].append(r['Nome'])
+    col = {k: v for k, v in dup.items() if len(v) > 1}
+    print(f"\nreceitas duplicadas (mesma categoria+raridade): {len(col)}")
+    for (c, rar, ing), ns in list(col.items())[:8]:
+        print(f"   [{c}/{rar}] {ing}  ->  {', '.join(ns)}")
 
 def cmd_travas():
     rows = load()
