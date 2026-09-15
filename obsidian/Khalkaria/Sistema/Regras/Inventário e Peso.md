@@ -50,10 +50,8 @@ O que cada armadura oferece — Ar, Ae e passivas — está em [[Dano, Ataque e 
 - **Armaduras equipadas** → [[Dano, Ataque e Defesa]]
 - **Registrado na ficha** → [[Criação de Personagem]]
 
-## Pontas soltas
-- **Quantas munições cabem num espaço?** "Munições contam como 1 bugiganga", "itens leves contam como 1 bugiganga a cada 10 unidades" e a contagem de 20 por espaço usada na ficha não se conciliam. [[Perguntas Abertas]] E42.
-- **Mochilas** aumentam o limite, mas nenhum valor é dado — depende de itens do [[O Bazar]].
-- **Origens que começam com 3 Equipamentos** ([[Escravo]], [[Caçador]]) estouram o limite `2 + Mod. Força` com Força baixa: o personagem nasce em Sobrepeso. [[Perguntas Abertas]] E99.
+## Em aberto
+E42 (peso da munição) · E99 (três Equipamentos na criação) · E503 (Sobrepeso com título próprio) · E556 (mochilas sem valor)
 
 ## Procedência
 - Notion `2b76e3a401d980c0ab7bc27a342f4ee1` — Inventario e Peso; Equipamentos.

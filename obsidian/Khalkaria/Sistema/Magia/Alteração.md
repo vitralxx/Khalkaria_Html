@@ -280,15 +280,8 @@ As barras indicam, em ordem: **Contida / Normal / Forçada / Transbordante**. Na
 - **Marcas citadas do** → [[O Abismo]] (Apoteose Genética: **Mente Fraca** e **Orgulhoso**, ambas Dores reais em [[O Limiar (cartas)]])
 - **Custa** → [[Éter]]
 
-## Pontas soltas
-- **Estimulante Místico (N1):** tabela Duração "1 / 2 / 3 / 3 ataques" (Normal = 2) contra a descrição "O estimulante cessa ao alvo ter atacado 3 vezes". Vale a tabela.
-- **Maldição do Peso (N1):** a linha Alvo "1 / 1 / 2 / 2" está marcada ❎ (valor fixo) apesar de trazer quatro valores — legenda inconsistente.
-- **Xadrez (N3):** Alcance "9 m" marcado ✅ (modificável) sendo valor único; em *Pele de Camaleão*, o Alcance é marcado ❎ com quatro valores.
-- **Transferir Condição (N3):** cita a condição *Petrificado*, que não consta em [[Condições]].
-- **Apoteose Genética (N4):** escreve "+20 HP Máximo" — a nomenclatura do sistema é **Saúde**, não "HP".
-- **Acme (N4):** não aceita nenhuma modulação e "rebobina 6 segundos" — é a única magia que mede tempo em segundos.
-- **Aprendiz Caótico / Fusão de Corpos / Julgamento de Kha (N4):** são sustentadas ou de duração longa sem custo por turno especificado. Ver [[Regras de Magia]] → Magia Sustentada.
-- **Estilo das descrições:** as de nível 2 e 3 desta escola e de [[Conhecimento]] são bem mais longas e em voz diferente do resto do sistema. Foram revisadas e mantidas.
+## Em aberto
+E500 (Petrificado sem condição) · E504 (tabela × descrição) · E507 (legenda ✅/❎) · E510 (Acme em segundos) · E511 (HP × Saúde) · E512 (magia sustentada)
 
 ## Procedência
 - Notion `3a66e3a401d98097a5d4e316154f9fcb` (Magias, 🟢 Pronto, fetch 2026-07-23) — seção 🌀 Alteração dos níveis 1 a 4; modulações também em `2b76e3a401d980c0ab7bc27a342f4ee1` (Sistema Khalkaria → Magias).

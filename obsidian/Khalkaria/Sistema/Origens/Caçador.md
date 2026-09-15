@@ -44,10 +44,8 @@ Caçar animais em Kharavel também nunca é um ato inteiramente neutro. Um [[Dry
 - **Origens vizinhas** → [[Exilado]] e [[Andarilho]] (as outras duas de Sobrevivência)
 - **Economia** → 3d6+4 [[Sins]] · [[O Bazar]]
 
-## Pontas soltas
-- **"Arma Simples".** Nenhuma outra origem usa essa categoria — as demais falam em Leve, Pesada, Marcial, À Distância ou Mística. E caçar 1d4 Comidas e 1d4 Couros por noite, sem custo nem risco, resolve sozinho a economia de comida do grupo inteiro. [[Perguntas Abertas|E101]].
-- **Três Equipamentos na criação.** Vestes e duas armas estouram o limite de quem tem Força baixa, e o personagem começa em Sobrepeso — mesmo caso do [[Escravo]]. [[Perguntas Abertas|E99]] · [[Inventário e Peso]].
-- **Dois "Caçador" no sistema.** A origem divide o nome com uma técnica geral do [[Batedor]]. Um dos dois precisa de desambiguação em índices e âncoras. [[Perguntas Abertas|E102]].
+## Em aberto
+E99 (três Equipamentos na criação) · E101 (Arma Simples) · E102 (dois Caçador)
 
 ## Procedência
 - Notion `b8f6e3a401d9823884ac812414e85095` — Caçador 🎣 (🟢, ed. 2026-08-26, a mais recente das dezessete); índice de Origens `3a66e3a401d9808aa877f7e7cb77002a`.

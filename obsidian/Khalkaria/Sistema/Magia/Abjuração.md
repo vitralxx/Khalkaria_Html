@@ -277,15 +277,8 @@ As barras indicam, em ordem: **Contida / Normal / Forçada / Transbordante**. Na
 - **Ramo Arauto do** → [[Teurgo]], patrono [[O Limiar]]
 - **Custa** → [[Éter]]
 
-## Pontas soltas
-- **Armadura de Kha (N4):** a tabela dá Duração "1 Rodada" e a descrição diz "Por 3 rodadas"; a tabela concede "Imunidade a dano Ordinário, Elementar e Místico" e a descrição, "imune a qualquer dano que não seja Primordial" — Biológico e Força ficam ambíguos. Vale a tabela.
-- **Três barras em vez de quatro.** *Santuário Menor* (N1), *Contramedida* (N3) e *Vytália* (N4) são "Normal ou acima": as três barras são **Normal / Forçada / Transbordante**, e **não** Contida / Normal / Forçada. Nestas não se repete o primeiro valor.
-- **Exílio Existencial (N4):** não tem linha "Ação"; e "Em caso de sucesso no teste, a energia do exílio se reflete parcialmente como 4d8 de dano Primordial maciço" não diz **sucesso de quem** nem **dano em quem**.
-- **Selo do Oblívio (N4):** cita "não há Palavra de Retorno" — **"Palavra de Retorno" não existe** em nenhuma parte do sistema. Também aplica a condição *Selado*, que não consta em [[Condições]].
-- **Aumentar / Diminuir Criatura (N2):** o Efeito fala em "categoria de tamanho" ([[Manobras e Tamanho]]) e a descrição, em "1 categoria de peso". Vale a tabela.
-- **Armadura de Espinhos (N3) × Refúgio dos Perdidos (N3):** a sustentação é descrita como "pague Éter a cada turno" numa e "a cada rodada" na outra, e a quantia nunca é dada. Ver [[Regras de Magia]] → Magia Sustentada.
-- **Legenda ✅/❎ inconsistente:** *Ruído Anti-Magia* traz Alcance "4,5 / 9 / 13,5 / 18" marcado ❎; *Armadura de Espinhos*, Dano "1d6…4d6" ❎; *Refúgio dos Perdidos*, Área e Efeito ❎ — quatro valores marcados como fixos.
-- **O Oblívio.** *Armadura do Oblívio* (N1) e *Selo do Oblívio* (N4) nomeiam o [[Oblívio]], que é um plano **proposto** e ainda não pisado — não canônico.
+## Em aberto
+E500 (Selado sem condição) · E504 (tabela × descrição) · E507 (legenda ✅/❎) · E508 (Exílio Existencial) · E512 (magia sustentada) · E516 (Palavra de Retorno) · E517 (Oblívio não canônico)
 
 ## Procedência
 - Notion `3a66e3a401d98097a5d4e316154f9fcb` (Magias, 🟢 Pronto, fetch 2026-07-23) — seção 🛡️ Abjuração dos níveis 1 a 4; modulações também em `2b76e3a401d980c0ab7bc27a342f4ee1` (Sistema Khalkaria → Magias).

@@ -112,7 +112,7 @@ Ao longo da criação do personagem escolhem-se **3 Marcas** e **6 Técnicas de 
   - Ao matar uma criatura em combate corpo a corpo, pode fazer uma pergunta que ela responde com verdade antes de morrer. A resposta é breve (uma frase) e literal.
 
 **Marcas do Trambiqueiro**
-- **Homem de Negócios** — *"Moedas acabam. Favores rendem juros eternos."* Você possui um distúrbio de mat… *(a frase termina assim na fonte — ver Pontas soltas.)*
+- **Homem de Negócios** — *"Moedas acabam. Favores rendem juros eternos."* Você possui um distúrbio de mat… *(a frase termina assim na fonte — E66.)*
   - Para cada 5 negociações bem-sucedidas que resultaram em vantagem significativa, ganha +1 permanente em Convencimento. Ao chegar em +5, essa habilidade fica supérflua.
   - Ao ajudar alguém de forma significativa, pode declarar que a pessoa "te deve uma". O mestre registra. Você pode cobrar depois.
 - **O Palpite** — *"Você nem sempre acerta, mas eles não sabem disso."*
@@ -212,13 +212,8 @@ Ao longo da criação do personagem escolhem-se **3 Marcas** e **6 Técnicas de 
 - **Homônimo fora da classe** → o "Batedor" a serviço de [[Kirkushav Drekar]], morto em [[Ossyria]] por Terk Sandgale ([[Família Sandgale]]), é um cargo de batedor imperial e não um praticante desta classe
 - **PC que a usa** → nenhum dos cinco da [[Equipe desfloreio]]; [[Azgar Sandgale]], o explorador do grupo, é [[Artilheiro]] de arremesso
 
-## Pontas soltas
-- **O Trambiqueiro tem duas ultimates.** *Suborno Irrecusável* e *Esquemas* dividem o Tier 3 do ramo, enquanto os outros vinte ramos do sistema têm uma só. [[Perguntas Abertas]] E65.
-- **Homem de Negócios está truncada.** A descrição da Marca para em *"Você possui um distúrbio de mat…"* e nunca é completada. [[Perguntas Abertas]] E66.
-- **Quantas ações custa esconder-se?** *Ocultar-se* promete fazê-lo "com 1 ação ao em vez de 2", mas [[Superfícies e Furtividade]] define esconder-se em 3 ações. [[Perguntas Abertas]] E67.
-- **Estados sem entrada em [[Condições]].** *Endividado* (Agiota), *Escondido* (Golpe Sombrio, Coleção de Últimos Suspiros) e *Marcada à Morte X* (definida apenas dentro de *Silêncio*) nasceram para uso único nessas técnicas; a revisão geral das condições ainda vai acontecer.
-- **Marcas que dão "+1 permanente"** até +5 convivem com a escala de treinamento de quatro degraus, +2/+4/+6/+8 ([[Atributos e Perícias]]). [[Perguntas Abertas]] E63.
-- **Epígrafe repetida.** *Cicatrizes da Jornada* usa a mesma frase de *Imortal*, do [[Brutalista]]: "Cada ferida conta uma história. Cada história te ensinou a sobreviver."
+## Em aberto
+E63 (Marcas +1 × degraus) · E65 (duas ultimates no Trambiqueiro) · E66 (Homem de Negócios truncada) · E67 (custo de esconder-se) · E500 (estados sem condição) · E531 (Oportunista e epígrafe repetida) · E565 (descontos empilhados)
 
 ## Procedência
 - Notion `8706e3a401d9823a91fd81f689a6fbe7` — Batedor (ed. 2026-08-12, 🟢 Pronto); índice de Classes `3a66e3a401d9809b8eceec1f30be9fd2`.

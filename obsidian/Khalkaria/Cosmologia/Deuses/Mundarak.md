@@ -13,7 +13,7 @@ tags: [khalkaria/cosmologia, khalkaria/cosmologia/deuses]
 
 > *Criador dos continentes e oceanos. Não toma lado.*
 
-Mundarak é o **Deus do Mundo** — criador dos continentes e oceanos, do **espaço** (enquanto [[Velúria]] tece o tempo) e dono do [[Plano Material]]. Não toma lado no conflito: ele faz o tabuleiro. A pedido de [[Vytália]] construiu [[Kharavel]] como mesa da aposta com [[Malkhor]] "sem apostar" e sem opinião sobre o resultado; a pedido de [[Kha]] moldou [[Volkrest]]. No [[Templo da Profecia]] é o **Escultor**: velho barbudo com cinzel e avental. É o deus menos desenvolvido do panteão — sem agentes, sem culto — e com um vínculo não esclarecido com [[O Abismo]], prisão de [[Osh'Kar]] cavada em terra dele.
+Mundarak é o **Deus do Mundo** — criador dos continentes e oceanos, do **espaço** (enquanto [[Velúria]] tece o tempo) e dono do [[Plano Material]]. Não toma lado no conflito: ele faz o tabuleiro. A pedido de [[Vytália]] construiu [[Kharavel]] como mesa da aposta com [[Malkhor]] "sem apostar" e sem opinião sobre o resultado; a pedido de [[Kha]] moldou [[Volkrest]]. No [[Templo da Profecia]] é o **Escultor**: velho barbudo com cinzel e avental. Não tem agentes nem culto formal — reza-se para a terra, não para ele —, e a prisão de [[Osh'Kar]] em [[O Abismo]] foi cavada em terra sua.
 
 ## Domínio
 
@@ -47,14 +47,13 @@ Fora do Templo ele quase não é rezado por nome — reza-se para a terra.
 
 ## A onisciência que leva seu nome
 
-Entre as bênçãos raras do Limiar existe a *Onisciencia de Mundarak*: quem a recebe sabe instantaneamente tudo sobre as criaturas ao redor, age sempre primeiro em combate e **sente a energia de qualquer local do planeta — entre elas Plenitude, Sangria e Brutal**. As três energias de local não estão descritas em nenhum outro lugar. Detalhes da carta em [[O Limiar (cartas)]].
+Entre as bênçãos raras do Limiar existe a *Onisciencia de Mundarak*: quem a recebe sabe instantaneamente tudo sobre as criaturas ao redor, age sempre primeiro em combate e **sente a energia de qualquer local do planeta — entre elas Plenitude, Sangria e Brutal**. Detalhes da carta em [[O Limiar (cartas)]].
 
 ## Ganchos para a mesa
 
 > 1. **O único neutro.** Em um panteão em guerra civil, o deus que não odeia ninguém é o único canal de negociação possível entre as facções.
-> 2. **Ele construiu o Abismo?** O Abismo fica em Kharavel, disfarçado como oásis. Terra é domínio de Mundarak. Ele participou do aprisionamento de Osh'Kar, ou emprestaram a terra dele sem pedir?
-> 3. **Neutralidade tem limite.** Se Vytália destruir Malkhor e quebrar a Plenitude, o mundo de Mundarak vai junto. Em algum ponto ele precisa se importar.
-> 4. **Sem culto.** Provavelmente o deus com menos clérigos e mais templos — gente reza para a terra, não para ele.
+> 2. **Neutralidade tem limite.** Se Vytália destruir Malkhor e quebrar a Plenitude, o mundo de Mundarak vai junto. Em algum ponto ele precisa se importar.
+> 3. **Sem culto.** Provavelmente o deus com menos clérigos e mais templos — gente reza para a terra, não para ele.
 
 ## Relações
 - **Encarregado por** → [[Kha]] (criou o espaço; ordenou [[Volkrest]])
@@ -72,14 +71,12 @@ Entre as bênçãos raras do Limiar existe a *Onisciencia de Mundarak*: quem a r
 ## Linha do tempo
 - **Atemporal:** cria o espaço com [[Velúria]] (tempo) → planos além do [[Primórdio]]; molda [[Volkrest]] sob ordem de [[Kha]].
 - **Criação de Kharavel** (data indefinida): atende [[Vytália]] e ergue o continente-aposta; "o continente nem sempre existiu no planeta".
-- **Queda da Plenitude → prisão de Osh'Kar:** [[O Abismo]] é aberto em terra dele, com participação não esclarecida.
+- **Queda da Plenitude → prisão de Osh'Kar:** [[O Abismo]] é aberto em terra dele.
 - **Campanha (ano 0):** "dedicado apenas à criação contínua de matéria".
 
-## Pontas soltas
-1. **Ele construiu o [[O Abismo]]?** A corrupção da região é atribuída a [[Velúria]] e [[Vytália]], sem citá-lo. Participou, consentiu, ou emprestaram a terra dele sem pedir?
-2. **As energias de local — Plenitude, Sangria, Brutal.** "Plenitude" aqui é a era perdida ([[A Plenitude]]) ou um tipo de energia geográfica homônima? Nada define as três.
-3. **Sem agentes, sem culto, sem presença narrativa** em [[Kharavel]]: falta pelo menos um gancho concreto para ele existir na mesa.
-4. **O "erro brutal dos deuses"** que arruinou [[Ossyria]] e o cometa que fragmentou [[Mordval]] ("energias de outros planetas e deuses invadiram o planeta") envolvem o criador dos continentes? Ninguém escreveu — e a pergunta puxa outra: existem outros planetas e outros panteões?
+## Em aberto
+
+E21 (o erro brutal dos deuses em Ossyria) · E26 (outros planetas e panteões) · E209 (símbolo e culto) · E211 (presença dele na mesa) · E212 (participou do Abismo?) · E215 (as energias de local)
 
 ## Procedência
 - Notion: Mundarak `39e6e3a401d981e3a7fdc5b89aa8146b` · Deuses `33e6e3a401d9817f9470e140120b1c22` · Templo da Profecia `33f6e3a401d980dd982ad39fcba2ed4e` · Lore raiz `2e66e3a401d9806cba24f41572810b80` · 2. Volkrest `33e6e3a401d9817fa7a8c67c898343e2` · O Limiar (cartas) `3a66e3a401d9806db1f8d6975255f676`

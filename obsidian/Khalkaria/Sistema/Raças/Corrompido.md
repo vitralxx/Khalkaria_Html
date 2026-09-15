@@ -103,7 +103,7 @@ Há ainda um caminho paralelo, que não é esta raça: quem bebe demais da [[Sei
 | Pele Morta † | Você é vulnerável a todos os tipos de dano não místicos, mas tem Armadura Específica(Místico, 5), exceto Força e Primordial. | +5 |
 | Cicatrização Efêmera | Ao recuperar saúde de qualquer fonte, recupere apenas metade. | +5 |
 
-† O nome **Pele Morta** aparece duas vezes, aqui e entre as Corrupções — só uma das duas deve existir. Ver *Pontas soltas*.
+† O nome **Pele Morta** aparece duas vezes, aqui e entre as Corrupções — só uma das duas deve existir (E2).
 
 Os tipos citados são os doze de [[Tipos de Dano]]: "não místicos" são os Ordinários, Elementais e Biológicos; Necrótico e Psíquico são Místicos; Força e Primordial ficam de fora da armadura. As demais regras tocadas estão em [[Regras de Magia]] (modulações, intensidade *Transbordante*), [[Descanso]], [[Jornada]] e [[Dinheiro e Comerciantes]].
 
@@ -124,11 +124,8 @@ Malachar von Nox · Erebus Voidborn · Nethys Shadowblight · Vexis von Darkmoor
 - **Condições** → [[Condições|Desnutrido]]
 - **Regras tocadas** → [[Jornada]] · [[Descanso]] · [[Dinheiro e Comerciantes]] · [[O Bazar]] e [[Alquimista]] (consumíveis) · [[Tipos de Dano]] · [[Dano, Ataque e Defesa]]
 
-## Pontas soltas
-- **"Pele Morta" existe duas vezes** — uma Corrupção de −1 e uma Adversidade de +5, efeitos opostos com o mesmo nome. Só uma deve sobreviver; qual fica e como se chama a outra ainda não foi decidido. [[Perguntas Abertas]] E2.
-- **As magias de nível 0 ainda não existem.** *Receptáculo Natural* conjura "nível 0" e manda escolher nas listas de nível 1; a camada de truques sem custo de Éter está por ser criada. Até lá vale a escolha na lista de nível 1.
-- **Que facção de [[Kharavel]] caça Aberrações Sociais?** [[Vanguarda Serafélia]]? [[Rastas]]? O texto só diz "uma facção".
-- **Quem alcança a quarta [[Marca da Vhelor]] vira Corrompido de raça?** A raça nasce, entre outras coisas, de "comunidades próximas à Grande Árvore", e os sintomas da Marca 4 são os mesmos — mas os dois sistemas correm separados.
+## Em aberto
+E2 (Pele Morta ×2) · E514 (nível 0) · E536 (facção que caça Aberrações) · E537 (Marca 4 × raça)
 
 ## Procedência
 - Notion `e6d6e3a401d983b592a581e5565d059b` — Corrompido (🟡 Em desenvolvimento, ed. 2026-08-28); índice de Raças `3a66e3a401d980318836edcfa11c8a24`; Os Hax `3696e3a401d98127a568c856497d9ce6`; Kheyos `33e6e3a401d9819789c0da0fcde2f114`; @Nomes Aleatórios `33e6e3a401d981d09cadf2397f4a8856`.

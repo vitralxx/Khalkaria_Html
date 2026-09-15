@@ -87,9 +87,8 @@ Gareth Ironhold · Mira Ashvale · Torvald Grimstone · Elara Nightwind · Dariu
 - **Exemplos** → [[Kirkushav Drekar]], [[Vorn Drekar]], [[Klaus von Aldric]] (antes do ritual), [[Hadran Vorgil]], [[Mira Vesnal]], [[Yenev Vesnal]]
 - **Regras tocadas** → [[Atributos e Perícias]] (perícias de interação) · [[Descanso]] (comodidade, usos por descanso longo) · [[Idiomas]] · [[Criação de Personagem]]
 
-## Pontas soltas
-- **A perícia social conta duas vezes?** A raça já concede uma perícia de interação à escolha e o Estilo **Popular** concede outra. Somam duas perícias sociais ou é a mesma escrita duas vezes?
-- **A guerra contra os insetos não tem nome nem data.** É o único evento histórico racial explícito do cânone humano e ainda não entrou na [[Linha do Tempo]].
+## Em aberto
+E543 (perícia social duplicada) · E544 (guerra sem nome nem data)
 
 ## Procedência
 - Notion `07a6e3a401d98339bd6d819dea28568f` — Humano (🟡 Em desenvolvimento, ed. 2026-07-26); índice de Raças `3a66e3a401d980318836edcfa11c8a24`; 2. Volkrest `33e6e3a401d9817fa7a8c67c898343e2`; @Nomes Aleatórios `33e6e3a401d981d09cadf2397f4a8856`.

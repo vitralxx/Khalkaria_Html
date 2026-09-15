@@ -96,12 +96,8 @@ A segunda estátua do [[Templo da Profecia]] é dryad:
 - **Exemplos** → [[Yu]], [[Lena Skarv]], [[Runa Skorn]]
 - **Condição aplicada** → [[Condições|Enfeitiçada]]
 
-## Pontas soltas
-- **A que linhagem pertence [[Lena Skarv]]?** Florescura ou Cascaferro nunca foi dito.
-- **Existem grutos selvagens no [[Emaranhado de Raízes]]?** O relato antigo do resgate de Lena falava em *"2 grutos selvagens que queriam sua carne"*; a versão canônica são dois soldados da [[Vanguarda Serafélia]]. Se havia grutos ferais na região, isso ainda não foi confirmado.
-- **De onde vieram os dryads?** Nenhum continente os reivindica como berço. [[Perguntas Abertas]] E30.
-- **Duas grafias para a mesma família:** Florescura e Florescrua. A forma usada aqui é **Florescura**.
-- **Peso mínimo de 30 kg** convive mal com "maior e mais forte que humanos comuns" e com 2,10 m de altura máxima.
+## Em aberto
+E30 (berço dos dryads) · E538 (linhagem de Lena) · E539 (Florescura ou Florescrua) · E540 (peso mínimo) · E541 (grutos ferais)
 
 ## Procedência
 - Notion `3b16e3a401d982648d9b812e2efd6947` — Dryad (🟡 Em desenvolvimento, ed. 2026-07-24); índice de Raças `3a66e3a401d980318836edcfa11c8a24`; Vilarejo Skarv `36d6e3a401d981fb97bceeec037e614d`; Lena Skarv `3696e3a401d981969032ea2fcf0b406e`; Templo da Profecia `33f6e3a401d980dd982ad39fcba2ed4e`; @Nomes Aleatórios `33e6e3a401d981d09cadf2397f4a8856`.

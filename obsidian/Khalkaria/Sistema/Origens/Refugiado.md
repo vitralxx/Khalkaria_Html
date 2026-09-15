@@ -43,9 +43,8 @@ Nem toda fuga é da capital. [[Tev Kossar]] saiu d'[[A Embrenha]] depois da fáb
 - **Origens vizinhas** → [[Exilado]] (expulso) · [[Escravo]] (possuído) · [[Amaldiçoado]] (sem memória do lar)
 - **Economia** → 2d6 [[Sins]] · [[O Bazar]]
 
-## Pontas soltas
-- **Perseguição não tem regra.** "Começa cenas de perseguição com 1 sucesso" exige uma regra de perseguição com contagem de sucessos, que não existe escrita. [[Perguntas Abertas|E94]].
-- **Comprar treinamento com fôlego.** Trocar 3 de Stamina por "um nível de treinamento a mais" aparece aqui, no [[Criminoso]] e no [[Cultista]], sempre sem teto contra a escala de quatro níveis. [[Perguntas Abertas|E92]].
+## Em aberto
+E92 (Stamina por treinamento) · E94 (perseguição)
 
 ## Procedência
 - Notion `b236e3a401d9833a99778127942ab31d` — Refugiado 💥 (🟢, ed. 2026-07-23); índice de Origens `3a66e3a401d9808aa877f7e7cb77002a`.

@@ -45,10 +45,8 @@ tags: [khalkaria/sistema, khalkaria/sistema/regras]
 - **Jogado em** → [[Kharavel]], sobretudo em tavernas — ver [[Taverna de Khaskavel]]
 - **Nome ecoa** → [[Malkhor]], o Pecado, e a moeda Sins
 
-## Pontas soltas
-- **O "+Mult." das perícias** (+0.5, +1, +2) não é explicado: soma ao Multiplicador Base da mesa, multiplica o Buy-In, ou entra na rolagem? [[Perguntas Abertas]] E52.
-- **"Percepção passiva"** serve de CD quando a mesa rouba, mas o sistema nunca define percepção passiva. [[Perguntas Abertas]] E52.
-- **De onde vem o nome.** Nada conta a origem de "Khan" nem se "Sins" ecoa deliberadamente o Pecado de [[Malkhor]].
+## Em aberto
+E52 (+Mult. e percepção passiva) · E558 (origem do nome)
 
 ## Procedência
 - Notion `2b76e3a401d980c0ab7bc27a342f4ee1` — Khan Sins.

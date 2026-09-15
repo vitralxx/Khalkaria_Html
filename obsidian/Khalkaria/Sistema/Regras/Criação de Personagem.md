@@ -62,11 +62,8 @@ Os cinco últimos grupos aparecem todos sob o rótulo "Perícias Sociais" na fic
 - **Evolui por** → [[Progressão]]
 - **Dinheiro anotado** → [[Dinheiro e Comerciantes]]
 
-## Pontas soltas
-- **Sins iniciais** não constam em nenhuma página de regra; provavelmente vêm da origem. [[Perguntas Abertas]] E50.
-- **Agrupamento das perícias.** Iniciativa, Conhecimento, Medicina, Investigação, Religião e Místico ainda aparecem sob "Perícias Sociais" na ficha impressa; pertencem a exploração e conhecimento.
-- **Magias de nível 0** ainda não existem — sem elas o [[Teurgo]] de nível 1 não tem o que conjurar. [[Perguntas Abertas]] E8, E71.
-- **Bônus condicionais de Evasão** (FLUXO, Concentração, cartas) precisam de lugar próprio na ficha: campo manual ou cálculo automático? [[Perguntas Abertas]] E83.
+## Em aberto
+E8 (magias iniciais do Teurgo) · E50 (Sins iniciais) · E71 (listas de magia somam ou substituem) · E83 (bônus condicionais de Evasão) · E514 (nível 0) · E551 (agrupamento das perícias)
 
 ## Procedência
 - Notion `3a66e3a401d9806681b8f403c4700b11` (Criação de Personagem — página que hoje só aponta para a ficha), `4e66e3a401d9832b97b4017bc00ff2c2` (Template - Ficha de Personagem), `2b76e3a401d980c0ab7bc27a342f4ee1` (Atributos Iniciais).

@@ -45,10 +45,8 @@ Foi entre gente assim que o cultista aprendeu a canalizar. As magias que ele car
 - **Sinergia de classe** → [[Teurgo]] ramo Arauto (pactos, patronos) · [[Monge]] ramo Vazio
 - **Economia** → 2d6 [[Sins]] · [[O Bazar]]
 
-## Pontas soltas
-- **Magia para quem não conjura.** A origem dá duas magias de nível 1 a **qualquer** classe. Um [[Brutalista]] cultista não é Treinado em Místico e tem Éter mínimo: consegue canalizar? E "qualquer escola" inclui a [[Primordial]], que o [[Teurgo]] só destrava no nível 5? [[Perguntas Abertas|E91]].
-- **Comprar treinamento com fôlego.** Trocar 3 de Stamina por "um nível de treinamento a mais" aparece aqui, no [[Criminoso]] e no [[Refugiado]], sempre sem teto contra a escala de quatro níveis. [[Perguntas Abertas|E92]].
-- **Truques ainda não escritos.** O nível 0 de magia — truques sem custo de [[Éter]] — não existe no compêndio, de modo que as duas magias desta origem custam Éter cheio desde o primeiro nível.
+## Em aberto
+E91 (magia para quem não conjura) · E92 (Stamina por treinamento) · E514 (nível 0)
 
 ## Procedência
 - Notion `1966e3a401d9832eb27501929f11322f` — Cultista 👥 (🟢, ed. 2026-07-23); índice de Origens `3a66e3a401d9808aa877f7e7cb77002a`.

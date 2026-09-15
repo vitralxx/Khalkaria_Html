@@ -64,7 +64,7 @@ Um Sonhador puro é também uma das raríssimas formas de reverter a [[Marca da 
 - **Mecanismo de** → [[A Vhelor]] (criação de [[Malkhor]]); fica além das [[Câmaras de Provação]]
 - **Alimenta com sangue e pecado** → o crescimento da árvore e o vício de [[Seiva]], [[Casca de Raiz]], [[Folhas Amarelas]] ([[Marca da Vhelor]])
 - **Ocupante atual (−27 → 0)** → [[Sinikko Kiriam (original)]]
-- **Ocupantes anteriores** → não nomeados ("os primeiros povos e civilizações a terem contato com a seiva ruiram")
+- **Ocupantes anteriores** → sem nome registrado ("os primeiros povos e civilizações a terem contato com a seiva ruiram")
 - **Cópia gerada a partir dele** → [[Sinikko Kiriam (clone)]]
 - **Fraqueza** → coração verdadeiramente puro → [[Lena Skarv]] (plano de [[Vytália]] e [[Karmath]]; fraqueza vazada por [[Velúria]])
 - **Defensor da candidata** → [[Alvak Krichama]] ("o vilão mais triste de lutar contra")
@@ -76,19 +76,16 @@ Um Sonhador puro é também uma das raríssimas formas de reverter a [[Marca da 
 - **Nomeado assim pelos moradores de** → [[Kharavel]]
 
 ## Linha do tempo
-- **Criação de Kharavel:** [[Malkhor]] planta a semente; a árvore floresce "inicialmente de uma pequena muda". O primeiro Sonhador não é nomeado.
+- **Criação de Kharavel:** [[Malkhor]] planta a semente; a árvore floresce "inicialmente de uma pequena muda".
 - **Antes de −27:** "os primeiros povos e civilizações a terem contato com a seiva ruiram".
 - **Sessão 0 (−27):** a [[Equipe desfloreio]] chega à câmara do sonhador; o dragão de raízes; [[Sinikko Kiriam (original)]] ocupa o cargo; [[Malkhor]] gera o clone.
 - **−27 → 0:** a árvore se alimenta de Sinikko; [[Khaskavel]] se dissolve em viciação; a [[Casca de Raiz]] canaliza os sonhos dele.
 - **Antes da campanha:** o plano de [[Vytália]] e [[Karmath]] produz [[Lena Skarv]].
 - **Campanha (ano 0):** o dilema entre entregar Lena e buscar a profecia.
 
-## Pontas soltas
-1. **Casulo ou raízes?** O prisioneiro é descrito como enraizado em meio às raízes e também como um casulo no cerne — compatível, mas a palavra "casulo" ainda não entrou nas páginas de origem.
-2. **Sinikko era maligno o bastante?** A árvore cresce na medida do pecado do prisioneiro, e o original é descrito como um populista bem-intencionado, sem muitas opções. Vinte e sete anos de explosão da Vhelor com um Sonhador de pecado moderado precisa de explicação — a menos que a escravidão colonial que ele sustentou já baste.
-3. **O que acontece com o Sonhador anterior** quando outro assume? A câmara comporta um só. Sinikko morre, é libertado, ou continua?
-4. **Quem armou o plano de [[Lena Skarv]]** — as páginas antigas dizem [[Velúria]]; o mestre diz [[Vytália]] e [[Karmath]].
-5. **O Sonhador conhece toda a história do continente** — é a maior fonte de lore acessível aos jogadores, pela [[Casca de Raiz]]; como usá-la na mesa ainda não está definido.
+## Em aberto
+
+E206 (quem armou o plano de Lena) · E236 (casulo ou raízes) · E237 (o pecado de Sinikko basta?) · E238 (o Sonhador anterior) · E239 (quanto entregar pelos sonhos)
 
 ## Procedência
 - Notion: O Sonhador `33e6e3a401d98126bae4e981b581487f` · A Grande Árvore `33e6e3a401d9813b8a60f1f9669803be` · Direcionamento `33e6e3a401d98190a21ae6c430acbc38` · Substâncias `33e6e3a401d981ef841aefa20793d48d` · Sinikko Kiriam `33e6e3a401d9813d8cf5d8d8e6c3fddc` · Lena Skarv `3696e3a401d981969032ea2fcf0b406e` · Roteiro da Sessão 0

@@ -59,10 +59,8 @@ O teste da superfície Escorregadia é a perícia **Reflexos**, e o dano a que a
 - **Terreno na viagem** → [[Jornada]]
 - **Cartas relacionadas** → [[O Limiar (cartas)]] (Sombras, Predador das Sombras, Senhor das Sombras)
 
-## Pontas soltas
-- **"Escondido" não é condição formalizada** em [[Condições]], embora seja um estado com efeito mecânico (faz o alvo contar como *Desprevenido*). Técnicas do [[Batedor]] e do [[Artilheiro]] falam em "estar escondido" e em esconder-se por 1 ou 2 ações, contra as 3 ações da regra geral. [[Perguntas Abertas]] E67.
-- **"Vulnerável" também não é condição**: a superfície Molhado a aplica sem definição própria; a mecânica vive em [[Dano, Ataque e Defesa]].
-- **A origem [[Refugiado]]** começa perseguições "com 1 sucesso", pressupondo a contagem desta cena — o encaixe nunca foi escrito. [[Perguntas Abertas]] E94.
+## Em aberto
+E67 (Escondido) · E94 (perseguição) · E500 (Vulnerável sem condição)
 
 ## Procedência
 - Notion `2b76e3a401d980c0ab7bc27a342f4ee1` — Superfícies; Furtividade; Fuga; Perseguição.

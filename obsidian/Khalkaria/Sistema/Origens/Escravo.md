@@ -54,10 +54,8 @@ Um liberto de Kharavel, portanto, carrega uma escolha atrás de si: fugiu com os
 - **Inventário** → [[Inventário e Peso]] · Bolsa de Couro (também no [[Artesão]])
 - **Economia** → 1d4 [[Sins]], a mais pobre do sistema · [[O Bazar]]
 
-## Pontas soltas
-- **Sobrepeso na criação.** Roupa e duas armas somam três Equipamentos; com Força baixa o personagem já nasce em *Sobrepeso* ([[Inventário e Peso]]). O [[Caçador]] tem o mesmo problema. [[Perguntas Abertas|E99]].
-- **A habilidade mais forte do lote.** *Liberdade* dá vantagem em três famílias de resistência ao mesmo tempo — restrição, movimento forçado e coerção. [[Perguntas Abertas|E100]].
-- **A Bolsa de Couro.** Aqui ela declara "+2 Espaços de Bugiganga"; no [[Artesão]] vem sem efeito escrito. O efeito é do item ou da origem? [[Perguntas Abertas|E86]].
+## Em aberto
+E86 (Bolsa de Couro) · E99 (sobrepeso na criação) · E100 (Liberdade)
 
 ## Procedência
 - Notion `4856e3a401d98323b70901d8093e16a1` — Escravo ⛓️ (🟢, ed. 2026-07-23); índice de Origens `3a66e3a401d9808aa877f7e7cb77002a`.

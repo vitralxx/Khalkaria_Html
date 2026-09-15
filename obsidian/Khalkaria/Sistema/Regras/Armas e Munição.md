@@ -90,10 +90,8 @@ A regra em vigor: **uma unidade é gasta por combate inteiro** — pago o custo,
 - **Aplica** → [[Condições]] (*Sangramento*, *Desorientado*)
 - **Forjadas por** → [[Alvak Krichama]], [[Jairo Krichama]] e demais ferreiros de [[Kharavel]]
 
-## Pontas soltas
-- **Estoque de munição.** O consumo está resolvido (1 por combate), o peso não: "munições contam como 1 bugiganga" convive com "itens leves contam como 1 bugiganga a cada 10 unidades" e com a contagem de 20 unidades por espaço usada na ficha. [[Perguntas Abertas]] E42.
-- **"Treinamento À Distância" e "Treinado em Armas Marciais"** não estão entre as 22 perícias ([[Atributos e Perícias]]) — são treinamentos avulsos sem página própria.
-- **Munição especial do [[Artilheiro]]** conta "3 = 1 bugiganga", proporção que a regra geral não prevê. [[Perguntas Abertas]] E82.
+## Em aberto
+E42 (peso da munição) · E82 (munição especial) · E550 (treinamentos de arma fora das 22)
 
 ## Procedência
 - Notion `2b76e3a401d980c0ab7bc27a342f4ee1` — Armas; Efeitos; Nível de Armas; Munição de Armas.

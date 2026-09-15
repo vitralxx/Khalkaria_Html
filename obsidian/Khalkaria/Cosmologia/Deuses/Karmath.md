@@ -82,7 +82,7 @@ Na [[Sessão 0]], por obra dessa bênção, Karma conhece todo o passado de [[Si
 - **Aliada de conveniência de** → [[Vytália]] ("querem coisas parecidas por motivos diferentes")
 - **Não está em guerra com** → [[Velúria]]; recebeu dela o vazamento da fraqueza da Árvore
 - **Abençoa mortais no plano de** → [[Mundarak]] ([[Plano Material]])
-- **Participou do linchamento de** → [[Osh'Kar]] (entre "os outros deuses"; sem detalhe próprio)
+- **Participou do linchamento de** → [[Osh'Kar]] (entre "os outros deuses")
 - **Agente direta** → [[Karma]] (Olhar da Justiça; líder dos [[Rastas]] e de [[Revavena]]; abre a brecha para o [[Primórdio]])
 - **Braço armado no continente** → [[Revavena]] / [[Rastas]] (justiça brutal contra usuários de [[Seiva]])
 - **Agente potencial** → [[Alvak Krichama]] ("boss-paladino"), em defesa de [[Lena Skarv]]
@@ -91,7 +91,7 @@ Na [[Sessão 0]], por obra dessa bênção, Karma conhece todo o passado de [[Si
 - **Lida errado pelos mortais do** → [[Plano Material]]
 - **Não é pai nem patrono de** → [[Kheyos]] (o teurgo é mortal, apesar do que dizem as páginas antigas)
 - **Inimiga de origem de** → [[Sinikko Kiriam (clone)]] e [[Khaskavel]], via [[Karma]]
-- **Não arma itens contra** → [[Teurgo]]s e demais súditos de [[Velúria]] (ver [[O Bazar]])
+- **Não arma itens contra** → [[Teurgo]]s e demais súditos de [[Velúria]]: o bastão dela que o [[O Bazar]] diz ser feito contra teurgos não é obra sua, e a bênção que deixa de funcionar acima da quarta Marca é de [[Vytália]]
 
 ## Linha do tempo
 - **Atemporal:** através dela [[Kha]] propaga pragas em [[Volkrest]] "de forma a pagar o preço dos pecados".
@@ -103,14 +103,9 @@ Na [[Sessão 0]], por obra dessa bênção, Karma conhece todo o passado de [[Si
 - **Campanha (ano 0):** presença mais forte em Revavena; possível despertar de [[Alvak Krichama]].
 - **Desfecho verdadeiro:** a brecha de Karma leva um jogador ao [[Primórdio]].
 
-## Pontas soltas
-1. **Os agentes sabem?** A regra diz que os agentes de Karmath não sabem que são agentes; [[Karma]] atua sabendo, entende as nuances da guerra divina e é chamada de agente direta. Ela é exceção consciente ou a regra? E quem são os outros?
-2. **Ela aceita que [[Malkhor]] é essencial?** As páginas do panteão dizem que "não aceita" e "ignora na prática"; o mestre diz que ela entende a necessidade dele e só não consegue negar a rivalidade.
-3. **Quem armou o plano de [[Lena Skarv]].** As páginas antigas atribuem tudo a [[Velúria]] e fazem [[Alvak Krichama]] despertar poder de Karmath **contra** a deusa da magia. Se Karmath é coautora do plano, ela estaria armando o defensor da própria peça — o gancho fica contraditório.
-4. **Preço da bênção de [[Karma]]** — "ninguém envelhece de graça" — e os limites exatos do Olhar da Justiça e do desaparecimento místico ([[Perguntas Abertas|E10]]).
-5. **Karmath e [[O Limiar]]:** sabe-se que ela não está em guerra com [[Velúria]], mas não se sabe se usa o Limiar de alguma forma.
-6. **Símbolo e culto** não definidos. A [[Igreja Serafélia]] em construção no mapa de [[Khaskavel]] é culto a qual deus? ([[Perguntas Abertas|E4]])
-7. **O que se diz dela no [[O Bazar]] não é confiável:** o "Bastão de Karmath contra teurgos" é falso; o Elixir da Expurgão feito por clérigos dela é plausível mas não confirmado; a bênção que deixa de funcionar acima da quarta Marca é de [[Vytália]].
+## Em aberto
+
+E4 (a quem serve a Igreja Serafélia) · E10 (preço da bênção de Karma) · E205 (ela aceita que Malkhor é essencial?) · E206 (quem armou o plano de Lena) · E207 (os agentes sabem?) · E208 (o Limiar e Karmath) · E209 (símbolo e culto) · E216 (o Elixir da Expurgão)
 
 ## Procedência
 - Notion: Karmath `39e6e3a401d981bab6e3d23fadefe734` · Deuses `33e6e3a401d9817f9470e140120b1c22` · Templo da Profecia `33f6e3a401d980dd982ad39fcba2ed4e` · 2. Volkrest `33e6e3a401d9817fa7a8c67c898343e2` · Karma `39e6e3a401d98199a0bbf981a89abc2d` · Alvak Krichama `33e6e3a401d98103af5ef241c6512d02` · Lena Skarv `3696e3a401d981969032ea2fcf0b406e` · Kheyos `33e6e3a401d9819789c0da0fcde2f114` · Rastas `39e6e3a401d9816e9861c60d9a86d1b9`

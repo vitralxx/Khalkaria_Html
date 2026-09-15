@@ -109,12 +109,8 @@ Unit-7 Cogwheel · Brass Sentinel · Axis Gearspark · Volt Mechanisms · Cipher
 - **Itens** → Kit de Manutenção, Munição de Fogo ([[O Bazar]], [[Armas e Munição]]); poções e elixires não funcionam ([[Alquimista]])
 - **Regras tocadas** → [[Descanso]] · [[Dano, Ataque e Defesa]] · [[Atributos e Perícias]] (Ofício(Engenharia)) · [[Combate]]
 
-## Pontas soltas
-- **O autômato jogável já nasce sabendo [[Criptografado]]?** A cifra é da espécie, mas a ficha racial não lista idioma nenhum — a lacuna precisa ser fechada na fonte.
-- **Quinze tecnologias e um d12.** A tabela tem quinze entradas mais reticências, e a busca em loja sorteia 1d12 "a partir do tier 1"; as três de quinto degrau são "Não Comprável". Como as duas regras se conciliam?
-- **A raridade da tecnologia oscila.** O texto diz que tecnologias são "itens Exóticos", mas a tabela também vende Incomum e [[Luxária]].
-- **Volkrest ou Aether?** A raça se originou majoritariamente em [[Volkrest]], mas a única civilização autômata com nome é [[Hyven]], em [[Aether]]. A migração não está contada. Ver [[Perguntas Abertas]] E30.
-- **O avistamento de Skorn** que [[Kirkushav Drekar]] conhece não tem lugar declarado, e não se sabe se [[Hyven]] tem notícia dos dragões autômatos. [[Perguntas Abertas]] E25.
+## Em aberto
+E25 (avistamento de Skorn) · E30 (Volkrest ou Aether) · E534 (idioma da raça) · E535 (tecnologias × 1d12 e raridade)
 
 ## Procedência
 - Notion `80c6e3a401d98398b2ff0126a7c983b9` — Autômato (🟡 Em desenvolvimento, ed. 2026-07-24); índice de Raças `3a66e3a401d980318836edcfa11c8a24`; 4. Aether `33e6e3a401d9812bab36f280892bf817`; 2. Volkrest `33e6e3a401d9817fa7a8c67c898343e2`; @Nomes Aleatórios `33e6e3a401d981d09cadf2397f4a8856`.

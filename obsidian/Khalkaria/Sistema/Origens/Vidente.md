@@ -48,8 +48,8 @@ O [[Templo da Profecia]] existe por causa disso.
 - **Origem vizinha** → [[Amaldiçoado]] (o outro lado da marca que ninguém pediu)
 - **Economia** → 1d6+4 [[Sins]] · [[O Bazar]]
 
-## Pontas soltas
-- **A visão não tem forma.** *Vidência* não tem limite, CD nem formato — "informações aleatórias" a cada noite é carga integral de mestre, sem rolagem. A imunidade permanente a *Desprevenido* duplica *Atento* do [[Batedor]] e esvazia emboscadas, inclusive a técnica *Emboscada* do próprio Batedor. E a fonte da visão nunca foi decidida: [[Velúria]], [[Karmath]] ou [[O Limiar]]? [[Perguntas Abertas|E97]].
+## Em aberto
+E97 (Vidência sem forma)
 
 ## Procedência
 - Notion `a706e3a401d983a2981d81eb96e0ce19` — Vidente 👁️ (🟢, ed. 2026-07-23); índice de Origens `3a66e3a401d9808aa877f7e7cb77002a`.

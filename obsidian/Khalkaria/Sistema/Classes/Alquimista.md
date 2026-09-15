@@ -248,7 +248,7 @@ Ao longo da criação do personagem escolhem-se **3 Marcas** e **6 Técnicas de 
 **Boticário**
 - **Anatomista** (Passiva) — Você se torna Treinado em *Medicina*. Se já for Treinado, se torna Experiente e assim por diante. Poções de cura que você cria curam +2d4 adicional. Os itens Curativos e Elixires custam -1 Reagente e têm -2 CD para serem fabricados.
 - **Elixir Especial** (1 Ação, 3 Stamina, 3 Reagentes) — Você prepara e administra um elixir especial entre você e seus aliados à distância de toque, pagando 1 reagente por alvo. Escolha um dos 3 efeitos que todos recebem por 1 minuto: **Vigor:** +2 em Atacar e +1d6 de dano em Ataques. **Proteção:** +2 em Defender e +2 Armadura(Ar) natural. **Velocidade:** +3 m Movimento e não causa ataques de oportunidade.
-- **Tónico Cruel** (1 Ação, 3 Stamina) — Escolha uma criatura em até 9 m. Ela deve fazer um teste de Fortitude: Em caso de falha, escolha um efeito que dura por 1 rodada: **Letargia:** -2 em Atacar e Defender. **Fraqueza:** -3 m de Movimento e não pode usar Reações. **Vulnerabilidade:** Perde 2 de Armadura e tem Desvantagem em Fortitude. *Em caso de falha, você não pode usar esta habilidade contra a mesma criatura neste combate.* *(a segunda condição repete "falha" onde tudo indica que deveria dizer "sucesso" — ver Pontas soltas)*
+- **Tónico Cruel** (1 Ação, 3 Stamina) — Escolha uma criatura em até 9 m. Ela deve fazer um teste de Fortitude: Em caso de falha, escolha um efeito que dura por 1 rodada: **Letargia:** -2 em Atacar e Defender. **Fraqueza:** -3 m de Movimento e não pode usar Reações. **Vulnerabilidade:** Perde 2 de Armadura e tem Desvantagem em Fortitude. *Em caso de falha, você não pode usar esta habilidade contra a mesma criatura neste combate.* *(a segunda condição repete "falha" onde tudo indica que deveria dizer "sucesso" — E76)*
 
 ## Técnicas de Ramo — Tier 2 (nível 4)
 **Artificer**
@@ -296,15 +296,8 @@ Ao longo da criação do personagem escolhem-se **3 Marcas** e **6 Técnicas de 
 - **Epígrafe compartilhada** → *Metamorfose* repete "A guerra, marca qualquer um.", de *Campo de Batalha* ([[Brutalista]])
 - **PC que a usa** → nenhum dos cinco da [[Equipe desfloreio]]
 
-## Pontas soltas
-- **Tónico Cruel diz "falha" duas vezes.** A segunda ocorrência descreve o caso em que a habilidade fica travada contra a mesma criatura, o que só faz sentido se o alvo tiver **sucedido** no teste — como acontece em *Leitura de Combate*, do [[Brutalista]]. [[Perguntas Abertas]] E76.
-- **Sucateador contradiz a regra base.** A técnica manda recuperar "2d4+Nível (Ao invés de 1d4)", mas a Bolsa de Reagentes já concede **1d4+Nível**; o parêntese está incompleto. [[Perguntas Abertas]] E77.
-- **Ofício(Alquimia) aparece duas vezes.** É treinamento inicial garantido e reaparece na lista de escolha das (1+Mod.INT) perícias. Sai da lista, ou a escolha serve para subir de degrau? [[Perguntas Abertas]] E78.
-- **Dano sem subtipo.** *Forçar Invenção*, o Detonar dos constructos, a *Rajada Arcana* do Titã e a *Zona da Morte* falam em dano "Elemental" ou "Biológico", e as *Runas de Proteção* em dano "Místico" — mas essas são categorias, e cada uma reúne três ou mais dos doze tipos nomeados ([[Tipos de Dano]]). [[Perguntas Abertas]] E79.
-- **O Soro do Homúnculo entrega um servo CR 2.** No balanceamento canônico, CR 2 é o encontro equilibrado para cinco jogadores de nível 2 — ou seja, um item lendário dá um aliado com força de encontro inteiro. Intencional? [[Perguntas Abertas]] E80.
-- **O catálogo convive com [[O Bazar]].** As 92 fórmulas podem repetir nomes e preços de itens já catalogados no Bazar. [[Perguntas Abertas]] E81.
-- **Estados sem entrada em [[Condições]].** *Incorpóreo* (Essência Etérea) e *Lentidão 2* (Bomba Temporal) nasceram para uso único; "Lentidão 2" quer dizer *Lento 2*, mas a definição embutida na Bomba Temporal — 1 ação por turno, −6 m de movimento, sem reação, −4 Reflexos — não bate com o *Lento X* canônico, de −3 m e −1 ação.
-- **Marcas que dão "+1 permanente"** até +5 convivem com a escala de treinamento de quatro degraus, +2/+4/+6/+8 ([[Atributos e Perícias]]); *Piromaníaco* ainda conta de dez em dez, e *Sobrecarga*, *Preciosismo* e *Mixologista* não têm contador nenhum. [[Perguntas Abertas]] E63.
+## Em aberto
+E63 (Marcas +1 × degraus) · E76 (Tónico Cruel: falha ou sucesso) · E77 (Sucateador × 1d4+Nível) · E78 (Ofício(Alquimia) duplicado) · E79 (dano sem subtipo) · E80 (Homúnculo CR 2) · E81 (92 fórmulas × Bazar) · E500 (estados sem condição) · E501 (Lentidão 2 × Lento X) · E548 (Radiante que não cicatriza)
 
 ## Procedência
 - Notion `eac6e3a401d982d595b181020562ec8e` — Alquimista (ed. 2026-08-05, 🟢 Pronto); índice de Classes `3a66e3a401d9809b8eceec1f30be9fd2`.

@@ -46,9 +46,8 @@ A condição é *Exaustão 1*, *Exaustão 2* e assim por diante ([[Condições]]
 - **Item Comida vem de** → [[O Bazar]]
 - **Custo de Éter da conjuração** → [[Regras de Magia]]
 
-## Pontas soltas
-- **Fé e sanidade não tem escala.** "Reduzindo seu Éter proporcionalmente à intensidade da cena" é o único critério, e só a morte de um aliado tem valor fixo (2d6+3). Falta uma tabela por intensidade. [[Perguntas Abertas]] E51.
-- **A "Fé" do título** não usa a perícia Religião nem os [[Cosmologia|deuses]] em lugar nenhum da regra: a mecânica inteira é de Éter.
+## Em aberto
+E51 (escala de Fé e sanidade) · E564 (a Fé do título)
 
 ## Procedência
 - Notion `2b76e3a401d980c0ab7bc27a342f4ee1` — Necessidades de Sobrevivência; Fé e Sanidade; Estresse.

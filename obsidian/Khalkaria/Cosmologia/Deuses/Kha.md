@@ -38,7 +38,6 @@ Existir dentro do [[Primórdio]] basta para divinizar quem quer que seja, e é p
 > **Kha**. É dito que antes de seu sumiço, o mundo era um santuário perfeito, época nomeada de *A Plenitude*, sem guerras e destinado à transcendência imaterial. O verdadeiro **Kha** é o escolhido para carregar tais poderes e apenas ele pode unificar os povos de Khalkaria em uma época permanente de paz. Os deuses, agora tentam remendar esse sequestro divino até a recuperação do original **Kha** concedendo bênçãos a centenas de criaturas no plano material de **Mundarak**.
 
 > **O Sequestro Divino** — O texto canônico usa uma palavra pesada: **sequestro divino.** Não foi morte, não foi renúncia, não foi ascensão. **Alguém ou algo levou um ser onipotente, onipresente e onisciente.** Os deuses agora tentam remendar isso até a recuperação do original.
-> ❓ **A pergunta central de Khalkaria:** o que é capaz de sequestrar um deus onipotente? A resposta define a escala real da campanha.
 
 > Com o sumiço de Kha original, os 5 deuses restantes divergem profundamente em como agir, sem o equilíbrio que ele exercia.
 > Era Kha original que mantinha os 5 em equilíbrio operante. Sem ele, cada um age conforme seus próprios ideais, criando o caos teológico atual de Khalkaria.
@@ -71,12 +70,13 @@ Três magias de nível 4 levam o nome de Kha — *Armadura de Kha* ([[Abjuraçã
 
 > [Julgamento de Kha] Você arranca a alma do alvo e a materializa a 1,5 m de você. […] Caso a alma não seja abatida ela retorna ao alvo e a magia falha.
 
+Nenhuma bênção de [[O Limiar]] leva o nome dele: a carta de onisciência é de [[Mundarak]].
+
 ## Ganchos para a mesa
 
-> 1. **Kha foi mortal.** Se o cargo pode cair em um mortal, pode cair em um PC. Esse é potencialmente o teto da campanha inteira.
+> 1. **O cargo pode cair em um mortal.** Se pode cair em um mortal, pode cair em um jogador. Esse é potencialmente o teto da campanha inteira.
 > 2. **Encontrar Kha é o objetivo real.** Velúria já sabe disso. A Árvore, Khaskavel, Revavena — tudo é ruído em cima da única questão que importa.
-> 3. **O Kha atual.** Existe alguém *agora* ocupando o cargo. Quem? Onde? Sabe que é substituto?
-> 4. **Osh'Kar quebrou depois do sumiço.** O aprisionamento do deus da morte é consequência direta da ausência de Kha. Quantas outras rachaduras ainda não apareceram?
+> 3. **Osh'Kar quebrou depois do sumiço.** O aprisionamento do deus da morte é consequência direta da ausência de Kha. Quantas outras rachaduras ainda não apareceram?
 
 ## Relações
 - **Cargo supremo do panteão** → [[Cosmologia]]
@@ -94,7 +94,7 @@ Três magias de nível 4 levam o nome de Kha — *Armadura de Kha* ([[Abjuraçã
 - **Doutrina "cada um dos 5 é essencial"** → dilema de [[A Vhelor]] e desfecho verdadeiro de [[Campanha 1 — Arco]]
 - **Busca do original é prioridade de** → [[Velúria]]
 - **Invocado nas magias de nível 4** → [[Regras de Magia]] · [[Abjuração]] (Armadura de Kha) · [[Alteração]] (Julgamento de Kha) · [[Conhecimento]] (Dádiva de Kha)
-- **Vínculo por mapear com** → [[O Limiar]] (que é cria de [[Velúria]], não dele)
+- **Guardião criado depois de seu sumiço** → [[O Limiar]] (cria de [[Velúria]])
 
 ## Linha do tempo
 - **Atemporal:** delega tempo, espaço e povoamento; ordena a criação de [[Volkrest]]; presenteia [[Velúria]] com [[Aether]].
@@ -102,14 +102,9 @@ Três magias de nível 4 levam o nome de Kha — *Armadura de Kha* ([[Abjuraçã
 - **Queda da Plenitude (marco zero):** o sequestro divino; [[Osh'Kar]] devora almas, é linchado e preso; [[Velúria]] cria [[O Limiar]] "logo após o desaparecimento de Kha"; os 5 passam a divergir e a abençoar mortais.
 - **Campanha, desfecho verdadeiro:** descoberta do conflito divino nascido do sumiço; pela brecha aberta por [[Karma]], um jogador pode enfrentar [[Malkhor]] no [[Primórdio]] e assumir o cargo de deus do Pecado.
 
-## Pontas soltas
-1. **O Kha atual existe?** O Templo e a página do deus dizem que o substituto "já foi um mortal" e que alguém ocupa o cargo agora; o mestre afirma que os deuses atuais nunca foram mortais. Ou o remendo não conta como "deus atual", ou o cargo está vago.
-2. **Quem — ou o quê — sequestrou um deus onipotente**, e há quanto tempo. Nada responde.
-3. **Kha e [[O Limiar]]:** não se sabe se ele conhecia ou ordenou a criação do guardião do Místico.
-4. **"Binário"** — o [[Primórdio]] é atemporal e binário; o termo nunca foi explicado.
-5. **Cronologia:** a aposta de [[Kharavel]] é anterior ou posterior ao sumiço? O conflito entre deuses só existe sem Kha, mas a Árvore já usa a Declaração como argumento.
-6. **O Templo não tem estátua de Kha nem de [[Osh'Kar]]** — se é apagamento deliberado ou desenho da fé, não está dito ([[Perguntas Abertas|E13]]).
-7. Nenhuma bênção do Limiar leva o nome de Kha: a carta de onisciência é de [[Mundarak]]; o nome "Onisciência de Kha" que circula fora do vault é erro.
+## Em aberto
+
+E13 (o Templo sem estátua dele) · E200 (o que o sequestrou) · E201 (o cargo está vago?) · E203 (a aposta veio antes ou depois) · E208 (ele conhecia o Limiar?) · E231 (o que é "binário")
 
 ## Procedência
 - Notion: Kha `39e6e3a401d981c9ac33cd19df507993` · Deuses `33e6e3a401d9817f9470e140120b1c22` · Templo da Profecia `33f6e3a401d980dd982ad39fcba2ed4e` · 2. Volkrest `33e6e3a401d9817fa7a8c67c898343e2` · 4. Aether `33e6e3a401d9812bab36f280892bf817` · A Grande Árvore `33e6e3a401d9813b8a60f1f9669803be` · Magias `3a66e3a401d98097a5d4e316154f9fcb`

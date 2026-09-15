@@ -11,7 +11,7 @@ tags: [khalkaria/cosmologia, khalkaria/cosmologia/planos]
 
 # Oblívio
 
-O Oblívio é **um plano ainda não firmado**: a ideia é ser um plano que **nem os deuses conhecem**, e ao qual **só as criaturas têm acesso**. Nenhuma história de Khalkaria o registra. O nome existe no mundo apenas como palavra — em duas magias de [[Abjuração]] —, e ali significa esquecimento e aniquilação da alma, não um lugar. Se um dia existir, será o único plano fora do alcance de [[Kha]] e dos cinco, inclusive de [[Velúria]] e [[Mundarak]], que teceram todos os outros além do [[Primórdio]].
+O Oblívio é **um plano proposto, ainda não firmado**: seria um plano que **nem os deuses conhecem**, e ao qual **só as criaturas têm acesso**. O nome existe no mundo apenas como palavra — em duas magias de [[Abjuração]] —, e ali significa esquecimento e aniquilação da alma, não um lugar. Se um dia existir, será o único plano fora do alcance de [[Kha]] e dos cinco, inclusive de [[Velúria]] e [[Mundarak]], que teceram todos os outros além do [[Primórdio]].
 
 ## A palavra no mundo
 
@@ -23,19 +23,17 @@ Perto disso corre ainda o *Exílio Existencial*, que condena a criatura "a um pl
 
 ## Relações
 - **Desconhecido de** → [[Kha]], [[Vytália]], [[Malkhor]], [[Velúria]], [[Mundarak]], [[Karmath]], [[Osh'Kar]]
-- **Acessível apenas a** → criaturas — categoria não especificada
+- **Acessível apenas a** → criaturas
 - **Fora do conjunto tecido além de** → [[Primórdio]] ([[Plano Místico]], [[Plano Material]], [[Plano dos Mortos]])
 - **Nome usado em** → *Armadura do Oblívio* e *Selo do Oblívio* ([[Abjuração]], [[Regras de Magia]])
 - **Sentido próximo em** → *Exílio Existencial* ([[Regras de Magia]], nível 4)
-- **Destino especulativo ligado a** → a "transcendência imaterial" de [[A Plenitude]]
 
 ## Linha do tempo
-Nenhum evento. O plano ainda não entrou na história do mundo.
+Nenhum evento registrado.
 
-## Pontas soltas
-1. **Firmar ou não.** Se firmado: quem o criou, se nem [[Velúria]] nem [[Mundarak]] o conhecem? E o que "criaturas" quer dizer — todos os seres de [[Vytália]], ou uma categoria específica: os mortos, os [[Corrompido]]s, as aberrações de [[Ossyria]]? Há relação com o "plano inominável" do *Exílio Existencial*?
-2. **Os nomes das magias** já usam a palavra. Se o plano não vier a existir, ficam como figura de linguagem — nada a fazer.
-3. **[[A Plenitude]]** era "destinada à transcendência imaterial". Um plano só de criaturas teria relação com essa transcendência? Pura especulação, e não deve sair daqui.
+## Em aberto
+
+E204 (o que é a transcendência imaterial) · E230 (firmar ou não o plano)
 
 ## Procedência
 - Notion: Magias `3a66e3a401d98097a5d4e316154f9fcb` (Armadura do Oblívio, Selo do Oblívio) — o Oblívio não aparece em nenhuma página da árvore de lore

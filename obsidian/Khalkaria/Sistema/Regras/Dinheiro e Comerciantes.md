@@ -66,10 +66,8 @@ O degrau máximo escreve-se **Luxária** ([[O Bazar]]).
 - **Ferreiros de Kharavel** → [[Alvak Krichama]] (cidade de [[Khaskavel]]), [[Jairo Krichama]] ([[Castelo de Kirkushav]])
 - **Anotado na ficha** → [[Criação de Personagem]]
 
-## Pontas soltas
-- **Quantos Sins um personagem começa?** Nenhuma página de regra diz; provavelmente sai da origem. [[Perguntas Abertas]] E50.
-- **A raridade do comerciante** (Comum / Médio / Raro) é uma escala própria que não mapeia nas cinco raridades de item (Lixo → Luxária). [[Perguntas Abertas]] E53.
-- **A grafia "Luxaria"** persiste na tabela de venda; a oficial é **Luxária**.
+## Em aberto
+E50 (Sins iniciais) · E53 (raridade do comerciante) · E528 (Luxaria → Luxária)
 
 ## Procedência
 - Notion `2b76e3a401d980c0ab7bc27a342f4ee1` — Dinheiro; Comerciantes.

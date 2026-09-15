@@ -355,23 +355,8 @@ Circulam nomes que nunca entraram no baralho, herdados de versões antigas do ma
 - **Interage com magia** → [[Regras de Magia]], [[Primordial]]
 - **Cartas nas mãos dos personagens de jogador** → [[Equipe desfloreio]]
 
-## Pontas soltas
-- **Contagem antiga ainda circulando.** Um bloco de resumo anuncia "**Total de Cartas:** 130 — Universais: 10 cartas · Força: 12 cartas (FOR 14+) · Destreza: 12 (DES 14+) · Constituição: 12 (CON 14+) · Inteligência: 12 (INT 14+) · Sabedoria: 12 (SAB 14+) · **Raras: 60 cartas** (requisitos múltiplos)". As tabelas trazem **8 · 12 · 12 · 12 · 12 · 12 · 59 = 127**, mais **41** do Abismo = **168**.
-- **Requisito dos pools: 14+ ou 16+?** O resumo e a regra de sorteio dizem "14 ou mais"; os cabeçalhos das colunas dizem 16+. [[Perguntas Abertas]] E44.
-- **O mix do sorteio não fecha 5.** "1-2 universal + 1-3 atributo + 1 rara" soma de 3 a 6 cartas, e a mão é de 5. [[Perguntas Abertas]] E45.
-- **Duplicata de nome.** **Devorador de Almas** existe como Rara (INT 16+, SAB 16+ — absorve uma habilidade especial permanentemente) **e** como Benefício do Abismo (Gasto 3 — treinamento temporário por 24 h). Efeitos distintos, mesmo nome; um deles precisa ser renomeado. [[Perguntas Abertas]] E46.
-- **Regras de Dor inexistentes:** como se ganha e se gasta Dor fora da tabela, se há limite, em que nível se pode descer ao Abismo. A região será refeita por inteiro.
-- **Cabeçalho errado:** a terceira coluna da tabela de Benefícios do Abismo se chama "Penalidade" quando o conteúdo é benefício.
-- **Requisitos fora do padrão:** "Arquiteto do Destino" traz `22 SAB+` e "Mestre Teurgo Supremo" traz `INT 22+, 18 SAB, 16 DES+`. O padrão é `ATR NN+`.
-- **Nove raras pedem um atributo 14+** apesar do cabeçalho "múltiplos atributos altos" e dos pools em 16+: Punhos do Abismo, Mestre dos Mil Cortes, Santuário Intocável, Artista Marcial Supremo, Destruidor de Mundos, Estocada Perfeita, Contra-Golpe Encadeado, Chuva de Flechas, Bombardeio Arcano. Intencional? [[Perguntas Abertas]] E47.
-- **Tipos de dano fora da lista canônica:** "Resistência Arcana", "Escamas de Dragão" e "Corrente Elemental" oferecem **Gelo**, enquanto o Benefício "Frio" usa o nome certo. O tipo é **Frio** ([[Tipos de Dano]]).
-- **Garras de Éter:** o nome invoca Éter, o efeito é físico ("1d10 + SAB de dano Cortante") e escala com **Sabedoria** numa carta do pool de **Força**.
-- **Desejo Sombrio:** promete "conjurar qualquer magia de nível 1-5" quando a magia tem **4** níveis ([[Regras de Magia]]).
-- **Muralha de Aço:** frase truncada — "você pode usar sua reação para Defender some sua perícia Defender à Evasão do aliado".
-- **Sexto Sentido:** parêntese desbalanceado em "1x/Descanso Longo):".
-- **Bárbaro:** carta do pool de Constituição que mexe em **quatro** atributos (+1 FOR/CON, −1 INT/SAB); a interação com "Coluna de Titã" e "Memória Absoluta", que também dão +1 ponto de atributo, não está definida.
-- **Grafias a corrigir:** "Sussurador" (→ Sussurrador), "Ressureição" (→ Ressurreição), "Onisciencia" (→ Onisciência).
-- **Ênfase inconsistente:** cerca de 20 cartas estão sem negrito no nome — Lutador de Rua, Limiar da Morte, Paciência, Artilharia, Sombras, Terceiro Olho, Coração da Dor, Bárbaro, Corpo Duro, Felizardo, Bestiário, Equilíbrio Etérico, Estudo Intenso, Lenda Monge, Onisciencia de Mundarak e todo o Abismo exceto Estabanado — sinal de que foram acrescentadas depois.
+## Em aberto
+E44 (pools 14+ ou 16+) · E45 (mix do sorteio) · E46 (Devorador de Almas ×2) · E47 (nove raras com 14+) · E500 (Banido sem condição) · E520 (nível 1-5 × 4 níveis) · E521 (contagem antiga) · E522 (regras de Dor e reescrita do Abismo) · E523 (cabeçalho Penalidade) · E524 (requisitos fora do padrão) · E525 (Gelo × Frio) · E526 (Garras de Éter) · E527 (Bárbaro e +1 atributo) · E528 (redação e grafias)
 
 ## Procedência
 - Notion `3a66e3a401d9806db1f8d6975255f676` (🃏 O Limiar, 🟢 Pronto, last_edited 2026-08-05, sem subpáginas).

@@ -42,9 +42,8 @@ Acima da tropa, o exército é ferramenta política. [[Kirkushav Drekar]] mantin
 - **Origem vizinha** → [[Acólito]] (também recebe treino marcial)
 - **Economia** → 2d6+10 [[Sins]] · [[O Bazar]]
 
-## Pontas soltas
-- **"Condições mentais" não é categoria.** [[Condições]] não agrupa as condições assim; o *Apático* do [[Monge]] fala em "condições causadas por emoções (Enfeitiçado e Amedrontado)" e a *Manifestação do Patrono* do [[Teurgo]] fala em "condições mentais" sem listar. Também faltam efeito mecânico para "reputação militar básica" e um nome para a guerra que "terminou para o mundo" — nenhum conflito nomeado aparece nas origens. [[Perguntas Abertas|E93]].
-- **A guerra e a [[Linha do Tempo]].** Enquanto a guerra não tiver data, um soldado não sabe de que ano vem.
+## Em aberto
+E93 (condições mentais) · E544 (guerra sem nome nem data)
 
 ## Procedência
 - Notion `3d06e3a401d98271b1fc014575ee631c` — Soldado 🪖 (🟢, ed. 2026-07-23); índice de Origens `3a66e3a401d9808aa877f7e7cb77002a`.

@@ -48,9 +48,8 @@ A travessia cobrou de Alvak a filha, e o que ele fez com o luto é a imagem mais
 - **Fabricação** → [[O Bazar]] · [[Descanso]] (curto)
 - **Economia** → 2d6+10 [[Sins]] · [[O Bazar]]
 
-## Pontas soltas
-- **Duas habilidades com o mesmo nome.** *A Forja* é o nome da habilidade do ferreiro **e** do [[Artesão]], com efeitos diferentes. Uma das duas precisa de nome próprio. [[Perguntas Abertas|E84]].
-- **Aprender sem teto.** Ganhar um nível de treinamento a cada raridade inédita fabricada não tem limite declarado contra a escala de quatro níveis. [[Perguntas Abertas|E85]].
+## Em aberto
+E84 (A Forja ×2) · E85 (aprender sem teto)
 
 ## Procedência
 - Notion `e016e3a401d983d1a2d981773bc4aff2` — Ferreiro ⚒️ (🟢, ed. 2026-07-23); índice de Origens `3a66e3a401d9808aa877f7e7cb77002a`.

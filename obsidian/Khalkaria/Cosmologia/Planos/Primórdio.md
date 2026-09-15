@@ -15,7 +15,7 @@ O Primórdio — ou Plano Primordial, a mesma coisa — é o **plano dos deuses*
 
 ## Natureza
 
-É atemporal e **binário** — o termo nunca foi explicado. Tempo e espaço não existem nele: foram tecidos fora, e é isso que separa o Primórdio de todo o resto do cosmos. Quem está dentro é deus, pela simples condição de estar.
+É atemporal e **binário**. Tempo e espaço não existem nele: foram tecidos fora, e é isso que separa o Primórdio de todo o resto do cosmos. Quem está dentro é deus, pela simples condição de estar.
 
 A energia que escapa dele é a matéria mais bruta que existe:
 
@@ -73,13 +73,9 @@ Aqui "primórdio" significa apenas *o começo*, e não o plano.
 - **Atemporal, por definição:** [[Kha]] delega; [[Velúria]] e [[Mundarak]] tecem tempo e espaço além dele.
 - **Desfecho verdadeiro:** clone derrotado → portal → um jogador entra → duelo com [[Malkhor]] → novo deus do Pecado, ou alma tomada.
 
-## Pontas soltas
-1. **"Binário"** — o plano é atemporal e binário, e o termo não é definido em lugar nenhum: dois estados? dois polos? verdadeiro e falso?
-2. **Divinização × deuses que nunca foram mortais.** A regra do Primórdio explica como um mortal vira deus, mas colide com as páginas que dizem que o [[Kha]] atual já foi mortal.
-3. **Quantos entram.** As páginas antigas dizem que os jogadores são transportados; o mestre diz que a brecha é para **um**.
-4. **Escala** — "cerne de funcionamento do cosmos inteiro": o Primórdio é do planeta [[Khalkaria]] ou de todo o cosmos, incluindo os "outros planetas e deuses" de que fala o cometa de [[Mordval]]?
-5. **Escola e plano com o mesmo nome** — falta esclarecer se as magias de nível 4 são primordiais por origem ou por escola ([[Perguntas Abertas|E41]]).
-6. **[[Osh'Kar]] está livre aqui?** Ele é livre "nos outros planos", mas ninguém disse se isso inclui o Primórdio.
+## Em aberto
+
+E34 (quantos jogadores entram) · E41 (Primordial: escola ou plano) · E201 (o cargo de Kha e os deuses que nunca foram mortais) · E220 (Osh'Kar está livre aqui?) · E231 (o que é "binário") · E232 (escala: planeta ou cosmos)
 
 ## Procedência
 - Notion: Sinikko Kiriam `33e6e3a401d9813d8cf5d8d8e6c3fddc` · Magias `3a66e3a401d98097a5d4e316154f9fcb` · Teurgo `caa6e3a401d98330bae281511750d407` · 3. Mordval `33e6e3a401d9813c9065fb6377553748` · Sistema raiz `2b76e3a401d980c0ab7bc27a342f4ee1`

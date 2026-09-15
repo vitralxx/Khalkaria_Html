@@ -200,12 +200,8 @@ O "plano impossível" de *Sentença Final* é o [[Plano Místico]], domínio de 
 - **Nome compartilhado** → *Oportunista* também existe no [[Batedor]], com efeito diferente
 - **PC que a usa** → nenhum dos cinco da [[Equipe desfloreio]] (ver [[Campanha 1 — Arco]])
 
-## Pontas soltas
-- **CD escrita sem "Mod."** — a fórmula aparece como "10 + (Destreza ou Força) + Constituição", enquanto as demais classes escrevem "10 + Mod. X + Mod. Y". A leitura assumida é a de modificadores; falta confirmação formal.
-- **Ultimates de 10 Stamina.** *Sentença Final* e *Cicatrizes* cobram 10 de Stamina; as ultimates de todas as outras classes custam 5 ou 6. Intencional? [[Perguntas Abertas]] E64.
-- **Marcas que dão "+1 permanente"** até +5 (*Disciplina*, *Caça Fardos*, *Nostalgia*, *Vingança*, *Coragem Líquida*, *Blefe do Bêbado*) convivem com a escala de treinamento de quatro degraus, +2/+4/+6/+8 ([[Atributos e Perícias]]). Como os dois se somam? [[Perguntas Abertas]] E63.
-- **Nome repetido entre classes.** *Oportunista* existe aqui e no [[Batedor]] com efeitos distintos; qualquer índice ou âncora precisa distinguir os dois pela classe.
-- **"Trêbado"** — a grafia parece trocadilho deliberado (*três* + *bêbado*) e não deve ser normalizada sem confirmação.
+## Em aberto
+E63 (Marcas +1 × degraus) · E64 (ultimates de 10 Stamina) · E529 (CD sem Mod.) · E531 (Oportunista em duas classes) · E532 (Trêbado é trocadilho?)
 
 ## Procedência
 - Notion `8506e3a401d9837b88a501bad1e66368` — Espadachim (ed. 2026-08-11, 🟢 Pronto); índice de Classes `3a66e3a401d9809b8eceec1f30be9fd2`.

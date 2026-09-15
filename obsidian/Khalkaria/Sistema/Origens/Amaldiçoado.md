@@ -32,7 +32,7 @@ Ser marcado sem explicação não é anomalia em Khalkaria: é procedimento divi
 
 O sangue que queima e os sussurros que ninguém mais ouve também têm fonte plausível do outro lado da moral: [[O Abismo]], a corrupção que dele escorre e [[Osh'Kar]], preso ali apenas enquanto se está no [[Plano Material]]. Marcas de origem conhecida existem — é o que define os [[Corrompido|Corrompidos]]. O amaldiçoado é o mesmo fenômeno sem a certidão.
 
-O "certo local" nunca foi nomeado. Candidatos naturais na geografia atual: [[O Abismo]], [[A Vhelor]], o [[Templo da Profecia]], a [[Casa Isolada]] de [[Kheyos]] e as [[Câmaras de Provação]].
+Candidatos naturais para o "certo local" na geografia atual: [[O Abismo]], [[A Vhelor]], o [[Templo da Profecia]], a [[Casa Isolada]] de [[Kheyos]] e as [[Câmaras de Provação]] (E98).
 
 > [!warning] Segredo de mesa
 > Esta é a via mais direta para plantar o segredo final de Khalkaria — o conflito entre os deuses aberto pelo sumiço de [[Kha]] — dentro de um personagem de jogador desde a criação. O amaldiçoado carrega a resposta na pele sem saber lê-la.
@@ -47,8 +47,8 @@ O "certo local" nunca foi nomeado. Candidatos naturais na geografia atual: [[O A
 - **Origens vizinhas** → [[Vidente]] (recebe informação sem pedir) · [[Refugiado]] (perdeu o lar, mas lembra dele)
 - **Economia** → 1d6 [[Sins]], sem arma inicial · [[O Bazar]]
 
-## Pontas soltas
-- **Sem arma, sem mecânica, sem destino.** É a única origem que não entrega arma alguma — um amaldiçoado [[Espadachim]] começa desarmado; *Local* é a única habilidade de origem sem qualquer efeito de regra; e o lugar para onde ela aponta não existe escrito em parte nenhuma. As três coisas podem ser o preço deliberado do gancho ou uma lacuna. [[Perguntas Abertas|E98]].
+## Em aberto
+E98 (sem arma, sem mecânica, sem destino)
 
 ## Procedência
 - Notion `1056e3a401d9836ab1e901e614e5d3d4` — Amaldiçoado 👻 (🟢, ed. 2026-07-23); índice de Origens `3a66e3a401d9808aa877f7e7cb77002a`.

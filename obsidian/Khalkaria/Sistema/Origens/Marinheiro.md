@@ -44,8 +44,8 @@ Em terra, o ofício tem endereço: [[O Porto de Khaskavel]] e as [[Costas Rochos
 - **Origens vizinhas** → [[Andarilho]] · [[Exilado]] (as três são de deslocamento)
 - **Economia** → 2d6+5 [[Sins]] · [[O Bazar]]
 
-## Pontas soltas
-- **O mar não tem regra escrita.** "+2 em testes dentro de embarcações" e "o dobro do tempo normal" de fôlego pressupõem um tratamento de veículo e um tempo-base de apneia que não existem — e três origens dependem de embarcações sem que haja seção de combate ou viagem naval. [[Perguntas Abertas|E95]].
+## Em aberto
+E95 (regras navais e apneia)
 
 ## Procedência
 - Notion `6e56e3a401d9828f84d001ba75ff61c4` — Marinheiro ⚓ (🟢, ed. 2026-07-23); índice de Origens `3a66e3a401d9808aa877f7e7cb77002a`.

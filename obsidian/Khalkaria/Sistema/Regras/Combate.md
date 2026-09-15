@@ -69,9 +69,8 @@ Uma unidade de munição cobre o **combate inteiro**; sem munição, a arma à d
 - **Fuga do combate** → [[Superfícies e Furtividade]] (Perseguição)
 - **Terreno da cena** → [[Superfícies e Furtividade]]
 
-## Pontas soltas
-- **"Defender (1 ação) → +2 Defender"** é o único bônus numérico fixo numa perícia que rola dado: soma ao resultado do dado ou direto à Evasão?
-- **O limite de uma magia por turno** vale como regra geral, mas nas páginas de magia ele só aparece como exceção do *Disparo Veloz* ("ignora a regra de 1 cast por turno").
+## Em aberto
+E513 (1 magia por turno) · E552 (+2 Defender: dado ou Evasão)
 
 ## Procedência
 - Notion `2b76e3a401d980c0ab7bc27a342f4ee1` — Combate: Sua Rodada, Atacando, Ataques de oportunidade.

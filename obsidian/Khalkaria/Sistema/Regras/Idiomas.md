@@ -54,11 +54,8 @@ Idiomas vêm de raça e origem — [[Acadêmico]] e [[Nobre]] concedem línguas 
 - **Abertos por magia** → [[Conhecimento]], [[O Limiar (cartas)]]
 - **Falados em** → [[Kharavel]] (o Abissal só existe neste continente), [[Khaskavel]]
 
-## Pontas soltas
-- **Natura ou Natural?** As duas grafias circulam para a língua dos animais. [[Perguntas Abertas]] E7.
-- **"Um dos mais raros de Khaskavel" e "só existem no continente de Khalkaria"** — leia-se raro em **Khalkaria** e existente só no continente de **[[Kharavel]]**; falta confirmação. [[Perguntas Abertas]] E60.
-- **Autômatos sem idioma declarado** na página da raça, apesar de o Criptografado ser deles — corrigir em [[Autômato]].
-- **Khazadun escrito por não-anões:** [[Acadêmico]] e [[Nobre]] concedem idiomas escritos, mas falar Khazadun exige cordas vocais anãs. Ler e escrever sem falar é permitido? [[Perguntas Abertas]] E88.
+## Em aberto
+E7 (Natura ou Natural) · E60 (raro em Khalkaria) · E88 (Khazadun escrito) · E534 (idioma do autômato) · E567 (seis idiomas e Criptografado)
 
 ## Procedência
 - Notion `2b76e3a401d980c0ab7bc27a342f4ee1` — Idioma (lista antiga de 6 entradas sob a frase "apenas 5 idiomas existem").

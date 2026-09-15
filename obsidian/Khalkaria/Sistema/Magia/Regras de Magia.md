@@ -116,7 +116,7 @@ O nível de treinamento em Místico está em [[Atributos e Perícias]]; os Focos
 
 **Uma magia por turno.** É a regra geral, e *Disparo Veloz* ([[Destruição]], nível 3) é possivelmente a única magia do sistema que a ignora — a própria descrição dela diz isso.
 
-**Magia Sustentada.** Algumas magias continuam ativas enquanto o conjurador as alimenta: paga-se Éter a cada turno para manter a canalização. Conjurar outra magia sustentada, ficar *Atordoado* ou perder a capacidade de se concentrar ativamente dissipa a magia na hora. A quantia por turno costuma vir escrita na própria magia — mas essas definições são antigas e ainda não foram uniformizadas (ver Pontas soltas). O custo em ações de cada conjuração está na tabela de cada magia; a economia de ações do turno, em [[Combate]].
+**Magia Sustentada.** Algumas magias continuam ativas enquanto o conjurador as alimenta: paga-se Éter a cada turno para manter a canalização. Conjurar outra magia sustentada, ficar *Atordoado* ou perder a capacidade de se concentrar ativamente dissipa a magia na hora. A quantia por turno costuma vir escrita na própria magia, com redações divergentes entre uma e outra (E512). O custo em ações de cada conjuração está na tabela de cada magia; a economia de ações do turno, em [[Combate]].
 
 ## Quando a tabela e a descrição divergem
 
@@ -144,13 +144,8 @@ Ver [[Primordial]].
 - **Grimório na ficha** → [[Criação de Personagem]]
 - **Cartas que alteram magia** → [[O Limiar (cartas)]] (Duas Mangas, Mestre Teurgo Supremo, Bombardeio Arcano, Olhos de Velúria)
 
-## Pontas soltas
-- **"Uma magia por turno" não está escrita em lugar nenhum do sistema** — só aparece como exceção, dentro de *Disparo Veloz*. A regra está confirmada, falta redigi-la na fonte.
-- **Magia Sustentada não tem regra geral.** Oito magias a usam e só algumas definem o custo por conta própria: *Sinapsia Coletiva* manda "pague o mesmo éter do custo da conjuração da magia todo turno"; *Armadura de Espinhos* diz "a cada turno" e *Refúgio dos Perdidos* "a cada rodada". O princípio (Éter por turno) está confirmado; a redação vigente é antiga e precisa ser unificada.
-- **Nível 0 ainda não existe** — os cerca de vinte truques sem custo estão previstos, não escritos.
-- **Risco do Transbordante nas magias "Apenas Transbordante"** (nove das vinte de nível 4): falta dizer se o teste de Vontade CD 15 e a perda em dobro do Éter também valem para elas. [[Perguntas Abertas]] E49.
-- **Nomenclatura da intensidade:** a régua da raiz do sistema chama de "Ampliado" o que a página de magias chama de "Forçada" (mesmos valores). A ordem das modulações de [[Abjuração]] também difere entre as duas listagens, com valores idênticos.
-- **Legenda ✅/❎ inconsistente** em várias linhas de magia: valores com quatro barras marcados como fixos e valores únicos marcados como modificáveis. Ver as Pontas soltas de cada escola.
+## Em aberto
+E49 (risco do Transbordante) · E507 (legenda ✅/❎) · E512 (magia sustentada) · E513 (1 magia por turno) · E514 (nível 0) · E515 (Ampliado × Forçada)
 
 ## Procedência
 - Notion `3a66e3a401d98097a5d4e316154f9fcb` (Magias — Regras de Magia, Intensidade, Modulações, cabeçalho do Nível 4) e `2b76e3a401d980c0ab7bc27a342f4ee1` (Sistema Khalkaria → Magias: requisitos, régua de intensidade com "Ampliado", modulações).

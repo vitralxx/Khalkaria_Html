@@ -87,9 +87,8 @@ Os Krichama de Kharavel são dois, e não se confundem: [[Alvak Krichama]] tem a
 - **Imunes a** → [[Condições|Envenenamento]]
 - **Regras tocadas** → [[Atributos e Perícias]] (Fortitude, Ofício) · [[O Bazar]] (fabricação de Equipamentos e Bugigangas) · [[Armas e Munição]] (armas marciais e à distância) · [[Descanso]] (4 horas) · [[Dano, Ataque e Defesa]] (Ar e Ae) · [[Tipos de Dano]] (Fogo)
 
-## Pontas soltas
-- **De onde vieram os anões?** [[Volkrest]] declara-se berço de humanos, grutos, autômatos e insetos; anões e [[Dryad|dryads]] ficaram sem continente de origem. [[Perguntas Abertas]] E30.
-- **A armadura natural tem três grafias.** "Ae 5 a dano de Fogo" e "Ar 3 Natural" aqui, "2 de Armadura(Ar) Natural" no [[Dryad]], "2 Armadura(ar)" no [[Inseto]] — o mesmo conceito escrito de três jeitos. Padronização pendente na fonte.
+## Em aberto
+E30 (berço dos anões) · E533 (Ae/Ar com três grafias)
 
 ## Procedência
 - Notion `f5a6e3a401d982b2a1f38123743db4be` — Anão (🟡 Em desenvolvimento, ed. 2026-08-28); índice de Raças `3a66e3a401d980318836edcfa11c8a24`; @Nomes Aleatórios `33e6e3a401d981d09cadf2397f4a8856`; Alvak Krichama `33e6e3a401d98103af5ef241c6512d02`; Roteiro da [[Sessão 0]] (Jairo) e página de Azgar Sandgale (a tripulação imperial).

@@ -42,9 +42,8 @@ Em [[Kharavel]], "contato criminal" tem tradução direta: [[Karma]] e [[Sevic]]
 - **Lugares** → [[Khaskavel]] · [[Império de Ferro]]
 - **Economia** → 4d6 [[Sins]] · [[O Bazar]]
 
-## Pontas soltas
-- **A única origem que bate.** *Ilegal* é a única habilidade de origem com efeito direto de combate (Sangramento no crítico), e "itens ilegais" não é uma categoria existente em [[O Bazar]]. [[Perguntas Abertas|E90]].
-- **Comprar treinamento com fôlego.** Trocar Stamina por "um treinamento a mais" aparece aqui, no [[Cultista]] e no [[Refugiado]], sempre sem teto contra a escala de quatro níveis. [[Perguntas Abertas|E92]].
+## Em aberto
+E90 (Ilegal em combate) · E92 (Stamina por treinamento)
 
 ## Procedência
 - Notion `dff6e3a401d983e39558013b95f2ca1d` — Criminoso 💸 (🟢, ed. 2026-07-23); índice de Origens `3a66e3a401d9808aa877f7e7cb77002a`.

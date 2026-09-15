@@ -21,7 +21,7 @@ tags: [khalkaria/sistema, khalkaria/sistema/regras]
 |---|---|---|
 | **Ordinários** | Cortante · Perfurante · Contundente | Reduzidos por **Ar** (Armadura). São os subtipos citados por cartas e magias como "Dano Ordinário (Contundente, Perfurante, Cortante)". |
 | **Elementais** | Fogo · Frio · Elétrico | — |
-| **Biológicos** | Veneno · Ácido · Psíquico | *Sangramento*, *Envenenamento* e *Morrendo* dizem causar "dano Biológico", usando a categoria como se fosse tipo (ver Pontas soltas). |
+| **Biológicos** | Veneno · Ácido · Psíquico | *Sangramento*, *Envenenamento* e *Morrendo* dizem causar "dano Biológico", usando a categoria como se fosse tipo (E43). |
 | **Místicos** | Radiante · Trovejante · Necrótico · **Força** · **Primordial** | Ver abaixo. |
 
 ## Força e Primordial
@@ -45,10 +45,8 @@ Ar contra Ordinário, Ae(Tipo, Quant.) contra o resto, Resistência pela metade 
 - **Resistências e imunidades na ficha** → [[Criação de Personagem]]
 - **Cartas que escolhem tipo de dano** → [[O Limiar (cartas)]] (Resistência Arcana, Escamas de Dragão, Corrente Elemental, Lenda Monge)
 
-## Pontas soltas
-- **Categoria usada como tipo.** *Sangramento X*, *Envenenamento* e *Morrendo* causam "dano Biológico"; *Limiar Perfurante* causa "2d10 Místico", *Disparo Veloz* "1d12 Místico" e *Reversão Umbral* "reflete como Místico" — e o próprio exemplo de armadura específica é `Ae(Místico, 2)`. Mas Biológico e Místico são **categorias**, não tipos: `Ae(Biológico, X)` e `Ae(Místico, X)` ficam sem alvo definido. Escolher um tipo ou formalizar Ae de categoria. [[Perguntas Abertas]] E43.
-- **Ae de subtipo ordinário.** Ordinário é bloco único reduzido por Ar, mas cartas dão "Resistência a Dano Ordinário (Contundente, Perfurante, Cortante)". Falta dizer se Ae aceita subtipo.
-- **Habilidades sem subtipo declarado** (Seiva Dourada do [[Teurgo]]; Forçar Invenção, Constructo Detonar, Rajada Arcana, Zona da Morte e Runas de Proteção do [[Alquimista]]) dizem só "Elemental", "Biológico" ou "Místico". [[Perguntas Abertas]] E73, E79.
+## Em aberto
+E43 (categoria usada como tipo) · E73 (Biológico sem subtipo) · E79 (dano sem subtipo) · E525 (Gelo × Frio) · E546 (dano atípico e perfurante) · E553 (Ae de subtipo ordinário)
 
 ## Procedência
 - Respostas do mestre 2026-09-05: **B1** — lista definitiva dos 12 tipos em 4 categorias, natureza de Força e Primordial, "Gelo" como erro.

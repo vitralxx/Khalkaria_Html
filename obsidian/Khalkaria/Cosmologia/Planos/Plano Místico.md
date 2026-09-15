@@ -11,7 +11,7 @@ tags: [khalkaria/cosmologia, khalkaria/cosmologia/planos]
 
 # Plano Místico
 
-O Plano Místico é o plano de [[Velúria]], "criadora do místico", e a fonte de toda a magia: nele é gerado o [[Éter]], que [[O Limiar]] — entidade guardiã do plano, cria da própria deusa — deixa passar de forma controlada para o [[Plano Material]]. Toda magia é isto: materializar energias do místico no material, por uma ponte aberta com o Éter do próprio corpo. Foi tecido, com os demais planos além do [[Primórdio]], por Velúria (o tempo) e [[Mundarak]] (o espaço). A exposição constante a ele corrompe — gera [[Corrompido]]s naturalmente, processo que [[Os Hax]] ritualizam. O que cria o Éter e onde, dentro do plano, ainda não existe.
+O Plano Místico é o plano de [[Velúria]], "criadora do místico", e a fonte de toda a magia: nele é gerado o [[Éter]], que [[O Limiar]] — entidade guardiã do plano, cria da própria deusa — deixa passar de forma controlada para o [[Plano Material]]. Toda magia é isto: materializar energias do místico no material, por uma ponte aberta com o Éter do próprio corpo. Foi tecido, com os demais planos além do [[Primórdio]], por Velúria (o tempo) e [[Mundarak]] (o espaço). A exposição constante a ele corrompe — gera [[Corrompido]]s naturalmente, processo que [[Os Hax]] ritualizam.
 
 ## Natureza
 
@@ -47,7 +47,7 @@ As cinco escolas — [[Destruição]], [[Abjuração]], [[Alteração]], [[Conhe
 ## Relações
 - **Dona e criadora** → [[Velúria]]
 - **Tecido além de** → [[Primórdio]] (com [[Plano Material]] e [[Plano dos Mortos]])
-- **Gera** → [[Éter]] (origem interna ainda não criada)
+- **Gera** → [[Éter]]
 - **Guardado por** → [[O Limiar]] (controla a passagem; barra aplanares; impede sucção excessiva)
 - **Conectado por pontes ao** → [[Plano Material]] (canalização dos [[Teurgo]]s; "forças materializantes" é o nome antigo)
 - **Corrompe por exposição** → [[Corrompido]] (ritualizado por [[Os Hax]] em [[Aether]] e [[Mordval]])
@@ -55,7 +55,7 @@ As cinco escolas — [[Destruição]], [[Abjuração]], [[Alteração]], [[Conhe
 - **Escolas de magia** → [[Destruição]], [[Abjuração]], [[Alteração]], [[Conhecimento]], [[Primordial]] ([[Regras de Magia]])
 - **Protegido pelo pacto do patrono** → [[Teurgo]] (ramo Arauto)
 - **Bênçãos concedidas a partir dele** → [[O Limiar (cartas)]]
-- **Plano onde [[Osh'Kar]] continua livre** → sim, como em todos os planos fora do material
+- **Plano onde [[Osh'Kar]] continua livre** → como em todos os planos fora do material
 - **Vista com clareza pelas bênçãos raras** → *Olhos de Velúria* e *Olhar do Místico*, em [[O Limiar (cartas)]]
 
 ## Linha do tempo
@@ -63,11 +63,9 @@ As cinco escolas — [[Destruição]], [[Abjuração]], [[Alteração]], [[Conhe
 - **Queda da Plenitude:** [[O Limiar]] é criado logo depois para guardá-lo.
 - **Campanha (níveis 2–5):** o Limiar abre portais aos jogadores a cada nível.
 
-## Pontas soltas
-1. **O que cria o [[Éter]] dentro do plano** — não existe ([[Perguntas Abertas|E15]]).
-2. **Antes do Limiar** — se ele nasceu depois do desaparecimento de [[Kha]], como o Éter passava ao material durante [[A Plenitude]]? Sem barreira alguma?
-3. **Mortais contam como aplanares?** Se contam, um teurgo nunca **entra** no Místico, só puxa Éter de lá — mas a manifestação plena do Limiar sussurra a localização de um portal para dentro.
-4. **Ninguém descreveu como é o plano por dentro.**
+## Em aberto
+
+E15 (o que cria o Éter) · E224 (o nome "forças primordiais") · E225 (como o Éter passava antes do Limiar) · E226 (mortais contam como aplanares?) · E229 (como é o plano por dentro)
 
 ## Procedência
 - Notion: O Limiar (lore) `3416e3a401d9802fa419f94e4c7cfbe7` · Deuses `33e6e3a401d9817f9470e140120b1c22` · Os Hax `3696e3a401d98127a568c856497d9ce6` · 4. Aether `33e6e3a401d9812bab36f280892bf817` · Magias `3a66e3a401d98097a5d4e316154f9fcb` · Teurgo `caa6e3a401d98330bae281511750d407` · Sistema raiz `2b76e3a401d980c0ab7bc27a342f4ee1`

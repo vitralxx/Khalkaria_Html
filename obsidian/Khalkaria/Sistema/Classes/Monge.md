@@ -150,7 +150,7 @@ O Abismo que o Vazio encara é [[O Abismo]], a região de [[Kharavel]] onde est�
 ## Técnicas de Ramo — Tier 2 (nível 4)
 **Punho**
 - **Precisão Letal** (Passiva) — Seus ataques desarmados têm crítico em 19-20. No crítico, teste de Vontade ou escolha um dos efeitos a seguir para aplicar no alvo: **Atordoar:** Alvo fica *Atordoado*. **Sangrar:** Alvo recebe *Sangramento 2*. **Derrubar:** Alvo fica *Caído*.
-- **Concentração do Mestre** (Passiva) — Seu fluxo só reseta após 2 rodadas sem ganhar fluxo. Ao receber dano, pode negar a perda de fluxo uma quantidade de vezes igual ao seu Mod. de Sabedoria por Descanso Longo. *(A segunda metade pressupõe uma perda de Fluxo por dano que a regra do recurso não prevê — ver Pontas soltas.)*
+- **Concentração do Mestre** (Passiva) — Seu fluxo só reseta após 2 rodadas sem ganhar fluxo. Ao receber dano, pode negar a perda de fluxo uma quantidade de vezes igual ao seu Mod. de Sabedoria por Descanso Longo. *(A segunda metade pressupõe uma perda de Fluxo por dano que a regra do recurso não prevê — E74.)*
 
 **Vazio**
 - **O Terror** (1 Ação, 2 Stamina) — Ao acertar um ataque, pode exigir um teste de Vontade ou o alvo fica *Amedrontado.* A cada criatura amedrontada no seu campo de visão, você ganha 1 de fluxo permanente (que não pode ser perdido), até a criatura se livrar dessa condição. Ao atacar uma criatura *Amedrontada*, o ataque causa +1d8 de dano Necrótico.
@@ -206,14 +206,8 @@ O Abismo que o Vazio encara é [[O Abismo]], a região de [[Kharavel]] onde est�
 - **Nomes compartilhados** → *Passo do Vento* também existe no [[Artilheiro]], com efeito diferente · *O Terror* ecoa *Terror* do [[Batedor]] · *Transcendência* aparece duas vezes dentro da própria classe
 - **PC que a usa** → nenhum dos cinco da [[Equipe desfloreio]]
 
-## Pontas soltas
-- **Duas Transcendências.** O nome cobre uma técnica geral (Ação Livre, 5 Stamina e 5 Saúde, ignora a PMA) e a Ultimate do Punho (3 Ações, 5 Stamina, 5 Fluxo). A palavra do mestre é que existe só uma; a fonte tem as duas. Qual delas fica com o nome? [[Perguntas Abertas]] E62 (e E2).
-- **Fluxo perdido por dano.** A regra do recurso afirma que "você não pode perder fluxo de nenhuma outra forma", mas *Concentração do Mestre* permite "negar a perda de fluxo" ao receber dano — uma perda que não existe. [[Perguntas Abertas]] E74.
-- **Companheiro Primal II está marcado como Passiva** embora seja uma invocação; o equivalente de Tier 1 custa 2 Ações e 5 Stamina. [[Perguntas Abertas]] E75.
-- **Evasão variável.** *Evasivo* soma o Fluxo (0 a 5) à Evasão ativa e à passiva, o que impede tratar a Evasão como valor fixo na ficha. [[Perguntas Abertas]] E83.
-- **Estados sem entrada em [[Condições]].** *Marcado* (Lobo), *Luto Selvagem* (Irmão da Floresta), *Pacto Sombrio* (Sussurros Constantes) e *Parcialmente Intangível* (Forma do Vazio) nasceram para uso único nessas técnicas e esperam a revisão geral das condições.
-- **O Vazio depende de uma lore em obra.** [[O Abismo]] será reescrito por inteiro, e todo o sabor do ramo — os sussurros, o portal, o "Ele… te chama" — pende dessa reescrita.
-- **Marcas que dão "+1 permanente"** até +5 convivem com a escala de treinamento de quatro degraus, +2/+4/+6/+8 ([[Atributos e Perícias]]). [[Perguntas Abertas]] E63.
+## Em aberto
+E2 (Transcendência ×2) · E62 (qual Transcendência fica) · E63 (Marcas +1 × degraus) · E74 (fluxo perdido por dano) · E75 (Companheiro Primal II passiva?) · E83 (Evasão variável) · E500 (estados sem condição) · E522 (Vazio depende do Abismo)
 
 ## Procedência
 - Notion `0876e3a401d98388a48d8136e92563bc` — Monge (ed. 2026-08-05, 🟢 Pronto); índice de Classes `3a66e3a401d9809b8eceec1f30be9fd2`.

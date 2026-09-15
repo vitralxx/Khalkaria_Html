@@ -37,7 +37,7 @@ tags: [khalkaria/sistema, khalkaria/sistema/regras]
 > - **Resistência e Vulnerabilidade:** Resistência a um dano específico o reduz sempre a metade. Vulnerabilidade a um dano específico sempre o dobra.
 > - **Armaduras Pesadas e Leves** — Você pode equipar apenas 1 Armadura pesada, ela geralmente define seu traje e arquétipo. Você pode equipar até 2 Armaduras Leves, elas geralmente proveem Ae e Passivas diversas.
 
-Na prática, a Evasão passiva de todas as classes é **10 + Mod. Destreza**, e o treinamento em Defender só entra pela Evasão ativa — a fórmula, porém, não está escrita em nenhuma página de regra (ver Pontas soltas).
+Na prática, a Evasão passiva de todas as classes é **10 + Mod. Destreza**, e o treinamento em Defender só entra pela Evasão ativa (E40).
 
 ## Tipos de dano
 
@@ -53,11 +53,8 @@ O que é ordinário, o que é atípico e quais são os doze tipos está em [[Tip
 - **Dano místico vem de** → [[Regras de Magia]]
 - **Resistências anotadas na ficha** → [[Criação de Personagem]]
 
-## Pontas soltas
-- **A fórmula da Evasão nunca foi escrita.** As regras dizem só "Determinada pela sua classe"; a prática é `10 + Mod. Destreza` para todas. [[Perguntas Abertas]] E40.
-- **Dano "Biológico" tratado como tipo.** *Sangramento*, *Envenenamento* e *Morrendo* ([[Condições]]) causam "dano Biológico", mas Biológico é **categoria** (Veneno, Ácido, Psíquico) — logo `Ae(Biológico, X)` não tem alvo definido. O mesmo vale para "Místico". [[Perguntas Abertas]] E43.
-- **Ae de subtipo ordinário.** Cartas e magias falam em resistência a "Dano Ordinário (Contundente, Perfurante, Cortante)", mas as regras tratam Ordinário como bloco único reduzido por Ar. Falta dizer se Ae aceita subtipo ordinário.
-- **Bônus condicionais de Evasão** (FLUXO do [[Monge]], Concentração do [[Artilheiro]], efeitos de carta) somam sobre a passiva sem limite escrito. [[Perguntas Abertas]] E83.
+## Em aberto
+E40 (fórmula da Evasão) · E43 (categoria usada como tipo) · E83 (bônus condicionais de Evasão) · E533 (Ae/Ar com três grafias) · E553 (Ae de subtipo ordinário)
 
 ## Procedência
 - Notion `2b76e3a401d980c0ab7bc27a342f4ee1` — Dano, Ataque e Defesa.

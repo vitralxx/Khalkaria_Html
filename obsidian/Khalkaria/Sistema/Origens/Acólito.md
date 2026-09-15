@@ -51,8 +51,8 @@ Em [[Kharavel]] a fé tem endereço e exército: a [[Igreja Serafélia]] e a [[V
 - **Comparação de recurso** → [[Teurgo]], técnica *Respiração Primordial*
 - **Economia** → 2d6 [[Sins]] · [[O Bazar]]
 
-## Pontas soltas
-- **Qual resistência?** *Palavra de Fé* pede "um teste de resistência" sem dizer qual — Fortitude, Vontade ou Reflexos — nem contra que CD. Devolver 1d6+4 de [[Éter]] a outra criatura no primeiro nível também supera a *Respiração Primordial* do [[Teurgo]], que é técnica de classe. [[Perguntas Abertas|E87]].
+## Em aberto
+E87 (Palavra de Fé sem resistência)
 
 ## Procedência
 - Notion `ee96e3a401d98310ad5581d3c14301db` — grafado "Acolito" na origem (🟢, ed. 2026-07-23); índice de Origens `3a66e3a401d9808aa877f7e7cb77002a`.

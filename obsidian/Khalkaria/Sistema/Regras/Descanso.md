@@ -58,9 +58,8 @@ O descanso longo também alivia **todo** o estresse acumulado e reduz **1 ponto 
 - **Emboscada durante o descanso** → [[Combate]]
 - **Cartas que alteram descanso** → [[O Limiar (cartas)]] (Cicatrização Acelerada, Corpo Duro, Meditação Transcendental)
 
-## Pontas soltas
-- **Ações do descanso longo.** A fabricação consome "sua ação de descanso", mas a única lista de ações escrita é a do descanso curto — falta dizer se o longo tem lista própria.
-- **Itens mágicos** são "alteráveis a cada descanso longo" ([[O Bazar]]) e a regra de descanso não repete a sintonização.
+## Em aberto
+E554 (ações do descanso longo) · E555 (qualidade do descanso)
 
 ## Procedência
 - Notion `2b76e3a401d980c0ab7bc27a342f4ee1` — Descanso: longo, ao ar livre, curto.

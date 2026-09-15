@@ -170,13 +170,8 @@ A *resistência a dano Ordinário* concedida pelo Frenesi vale para os três sub
 - **Nomes compartilhados** → *Ponto Vital*, opção de *O Experiente*, também é técnica do [[Artilheiro]] · a epígrafe de *Imortal* repete a de *Cicatrizes da Jornada* ([[Batedor]]) e a de *Campo de Batalha* repete a de *Metamorfose* ([[Alquimista]])
 - **PC que a usa** → nenhum dos cinco da [[Equipe desfloreio]]
 
-## Pontas soltas
-- **Ignorar Dor promete recuperar "2d6 ao invés de 1".** O efeito base não recupera 1 de Saúde: ele mantém o personagem *em* 1 de Saúde, o que torna a comparação impossível de ler. [[Perguntas Abertas]] E68.
-- **Casca Grossa pode dar armadura negativa.** A Armadura natural iguala o Mod. Constituição; com Constituição 8 o valor fica em −1. Existe piso em 0? [[Perguntas Abertas]] E69.
-- **CD escrita sem "Mod."** — a fórmula aparece como "10 + Força + Constituição", enquanto as demais classes escrevem "10 + Mod. X + Mod. Y". A leitura assumida é a de modificadores.
-- **A condição *provocado*** aparece em *Provocar* e em *A Última Parede*, mas não tem entrada em [[Condições]]; nasceu para uso único nessas técnicas e espera a revisão geral das condições.
-- **Contador de Corpos exige "cada 10 criaturas"**, enquanto quase todas as Marcas do sistema contam de cinco em cinco. Intencional?
-- **Marcas que dão "+1 permanente"** até +5 convivem com a escala de treinamento de quatro degraus, +2/+4/+6/+8 ([[Atributos e Perícias]]). [[Perguntas Abertas]] E63.
+## Em aberto
+E63 (Marcas +1 × degraus) · E68 (Ignorar Dor: 2d6 ao invés de 1) · E69 (Casca Grossa negativa) · E500 (provocado sem condição) · E529 (CD sem Mod.) · E530 (Contador de Corpos de 10 em 10) · E531 (epígrafe repetida)
 
 ## Procedência
 - Notion `a2c6e3a401d982f187320168cbb2e7d8` — Brutalista (ed. 2026-08-05, 🟢 Pronto); índice de Classes `3a66e3a401d9809b8eceec1f30be9fd2`.

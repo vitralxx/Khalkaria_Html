@@ -21,7 +21,7 @@ tags: [khalkaria/sistema, khalkaria/sistema/regras]
 > - Inteligência 8-18
 > - Sabedoria 8-18
 
-Os valores são rolados na abertura da ficha e a raça, a classe e a origem entram depois — o passo a passo está em [[Criação de Personagem]]. De cada atributo sai o **modificador** que soma em todas as rolagens; a fórmula praticada é `(Atributo − 10) / 2`, ainda não escrita em nenhuma página de regra (ver Pontas soltas).
+Os valores são rolados na abertura da ficha e a raça, a classe e a origem entram depois — o passo a passo está em [[Criação de Personagem]]. De cada atributo sai o **modificador** que soma em todas as rolagens; a fórmula praticada é `(Atributo − 10) / 2` (E40).
 
 ## Status
 
@@ -121,12 +121,8 @@ A ficha impressa também anota atributos que divergem das regras acima; onde hou
 - **Preenchida na ficha** → [[Criação de Personagem]]
 - **Testada em viagem** → [[Jornada]] · **em fuga** → [[Superfícies e Furtividade]] · **em aposta** → [[Khan Sins]]
 
-## Pontas soltas
-- **A fórmula do modificador nunca foi escrita.** `(Atributo − 10) / 2` é o que se usa na prática, mas nenhuma página de regra a registra. [[Perguntas Abertas]] E40.
-- **Evasão.** As regras dizem apenas "Evasão — Determinada pela sua classe"; na prática vale `10 + Mod. Destreza` para todas as classes. Registrado em [[Dano, Ataque e Defesa]]. [[Perguntas Abertas]] E40.
-- **Convencimento e Enganação usam Destreza** — herança de um sistema sem Carisma ou escolha deliberada? [[Perguntas Abertas]] E48.
-- **Agrupamento das perícias na ficha.** Iniciativa, Conhecimento, Medicina, Investigação, Religião e Místico aparecem sob "Perícias Sociais"; pertencem a exploração e conhecimento.
-- **Marcas de classe** dão "+1 permanente" em perícia até +5, escala que não bate com os degraus +2/+4/+6/+8. [[Perguntas Abertas]] E63.
+## Em aberto
+E40 (modificador e Evasão sem página) · E48 (Convencimento e Enganação em DES) · E63 (Marcas +1 × degraus) · E550 (treinamentos de arma fora das 22) · E551 (agrupamento das perícias)
 
 ## Procedência
 - Notion `2b76e3a401d980c0ab7bc27a342f4ee1` — Sistema Khalkaria: Atributos Iniciais, Status, Perícias, Proficiência, Defender.

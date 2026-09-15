@@ -43,9 +43,8 @@ O que um andarilho vê é o mapa de cinco terras: [[Volkrest]], [[Mordval]], [[A
 - **Origens vizinhas** → [[Exilado]] (também de Sobrevivência e mochila) · [[Marinheiro]] (o mesmo deslocamento, por água)
 - **Economia** → 2d6+5 [[Sins]] · [[O Bazar]]
 
-## Pontas soltas
-- **Fôlego grande demais.** +10 de Stamina máxima concedidos por origem superam a progressão de um nível inteiro de várias classes. [[Perguntas Abertas|E89]].
-- **Hostilidade de cada trecho.** Reduzir a hostilidade em −5 só significa algo quando cada região de [[Kharavel]] tiver o seu valor declarado; nenhuma das nove tem. [[Perguntas Abertas|E59]].
+## Em aberto
+E59 (hostilidade por região) · E89 (+10 Stamina)
 
 ## Procedência
 - Notion `4426e3a401d983a483a601a962a41e6b` — Andarilho 🚶 (🟢, ed. 2026-07-23); índice de Origens `3a66e3a401d9808aa877f7e7cb77002a`.

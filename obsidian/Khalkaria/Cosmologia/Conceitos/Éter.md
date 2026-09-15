@@ -11,7 +11,7 @@ tags: [khalkaria/cosmologia, khalkaria/cosmologia/conceitos]
 
 # Éter
 
-O Éter é a **substância mágica** criada por [[Velúria]] e gerada no [[Plano Místico]]. Não é criatura nem entidade: é matéria do mundo, e **todo ser possui uma certa quantidade de éter em seu corpo**. Funciona como **chave** — gasto por um [[Teurgo]], abre uma ponte entre o Místico e o Material e "chama sempre mais éter do que o que foi gasto para materializar-se como poder no plano material". [[O Limiar]] regula essa passagem: barra aplanares, impede a sucção excessiva e, no fundo, existe para expandir a geração do próprio Éter. "Forças materializantes" e "forças primordiais" são os nomes antigos desse mecanismo. O que cria o Éter, e onde dentro do Plano Místico, ainda não existe.
+O Éter é a **substância mágica** criada por [[Velúria]] e gerada no [[Plano Místico]]. Não é criatura nem entidade: é matéria do mundo, e **todo ser possui uma certa quantidade de éter em seu corpo**. Funciona como **chave** — gasto por um [[Teurgo]], abre uma ponte entre o Místico e o Material e "chama sempre mais éter do que o que foi gasto para materializar-se como poder no plano material". [[O Limiar]] regula essa passagem: barra aplanares, impede a sucção excessiva e, no fundo, existe para expandir a geração do próprio Éter. "Forças materializantes" e "forças primordiais" são os nomes antigos desse mecanismo.
 
 ## Natureza
 
@@ -65,7 +65,7 @@ A exposição constante à substância corrompe: é assim que nascem [[Corrompid
 
 ## Relações
 - **Criado por** → [[Velúria]]
-- **Gerado em** → [[Plano Místico]] (mecanismo interno ainda não criado)
+- **Gerado em** → [[Plano Místico]]
 - **Passagem regulada por** → [[O Limiar]] (barra aplanares; impede sucção; expande a geração)
 - **Materializa-se no** → [[Plano Material]] como magia ([[Destruição]], [[Abjuração]], [[Alteração]], [[Conhecimento]], [[Primordial]])
 - **Presente em** → todo ser, inclusive não-conjuradores
@@ -83,12 +83,9 @@ A exposição constante à substância corrompe: é assim que nascem [[Corrompid
 - **Queda da Plenitude:** [[O Limiar]] passa a mediar a passagem, criado logo depois.
 - **Campanha:** teurgos de primeiro nível ainda não têm magias — os truques de nível 0, que não custarão Éter, ainda serão escritos ([[Regras de Magia]]).
 
-## Pontas soltas
-1. **O que cria o Éter, e onde no [[Plano Místico]]** — não existe ([[Perguntas Abertas|E15]]).
-2. **Todo ser tem Éter, mas só conjuradores o contam.** A lore diz que a substância está em todos; a ficha só a modela em quem conjura, e a fé de uma origem religiosa a consome. Falta decidir se há Éter latente em todo mundo.
-3. **"Chama mais éter do que gasta"** convive com um reservatório finito que se esgota. É compatível se o excedente for o efeito materializado, e não retorno ao conjurador — mas isso não está escrito.
-4. **"Forças primordiais" × Primordial.** O texto das regras usa "primordial" para o mecanismo do Éter, que é do Místico; o dano Primordial é o que vaza do [[Primórdio]]. A ambiguidade de nome precisa de decisão antes de qualquer reescrita.
-5. **Éter é medida de sanidade?** "As forças primordiais afetam seu mental e exigem uma troca da sua sanidade"; a fé reduz Éter conforme a cena. Coerente com a lore, nunca formalizado ([[Perguntas Abertas|E51]]).
+## Em aberto
+
+E15 (o que cria o Éter) · E51 (Éter é medida de sanidade?) · E222 (Éter em não-conjuradores) · E223 (chama mais do que gasta) · E224 (o nome "forças primordiais")
 
 ## Procedência
 - Notion: Magias `3a66e3a401d98097a5d4e316154f9fcb` · Sistema raiz `2b76e3a401d980c0ab7bc27a342f4ee1` · Teurgo `caa6e3a401d98330bae281511750d407` · O Limiar (lore) `3416e3a401d9802fa419f94e4c7cfbe7` · 2. Volkrest `33e6e3a401d9817fa7a8c67c898343e2` · 4. Aether `33e6e3a401d9812bab36f280892bf817` · Kheyos `33e6e3a401d9819789c0da0fcde2f114` · O Limiar (cartas) `3a66e3a401d9806db1f8d6975255f676`

@@ -11,7 +11,7 @@ tags: [khalkaria/cosmologia, khalkaria/cosmologia/planos]
 
 # Plano dos Mortos
 
-O Plano dos Mortos é o destino das almas, protegido por [[Osh'Kar]] — "Protetor do Plano dos Mortos, ceifador das almas mortas". Desde que o deus da morte foi preso em [[O Abismo]], as almas dos mortos de [[Kharavel]] não chegam mais até ele: ficam **presas antes do portal**, acumuladas em quantidades enormes, e é isso que faz do [[Deserto do Abismo]] a região mais letal do continente. Foi tecido, como os demais planos além do [[Primórdio]], por [[Velúria]] e [[Mundarak]]. É o plano menos descrito do mundo: não há uma linha sobre como ele é por dentro.
+O Plano dos Mortos é o destino das almas, protegido por [[Osh'Kar]] — "Protetor do Plano dos Mortos, ceifador das almas mortas". Desde que o deus da morte foi preso em [[O Abismo]], as almas dos mortos de [[Kharavel]] não chegam mais até ele: ficam **presas antes do portal**, acumuladas em quantidades enormes, e é isso que faz do [[Deserto do Abismo]] a região mais letal do continente. Foi tecido, como os demais planos além do [[Primórdio]], por [[Velúria]] e [[Mundarak]].
 
 ## O ceifador ausente
 
@@ -20,7 +20,7 @@ O Plano dos Mortos é o destino das almas, protegido por [[Osh'Kar]] — "Protet
 
 > [Osh'Kar] Desde então as almas de seres mortos não são encaminhadas até o plano dos mortos, porém são impedidas pela falta de um ceifador no Abismo.
 
-Apenas a figura material do deus está presa; nos outros planos — este inclusive, presumivelmente — ele continua livre.
+Apenas a figura material do deus está presa; nos outros planos, este inclusive, ele continua livre.
 
 ## As almas que não atravessam
 
@@ -29,7 +29,7 @@ Apenas a figura material do deus está presa; nos outros planos — este inclusi
 > [Cultos de Osh'Kar] Acreditam que sua libertação restaurará algo na metafísica da morte que está desequilibrado desde sua prisão — algumas células pregam isso como restauração da "ordem natural" […]
 > *Rascunho:* a questão de se essas almas realmente chegam a Osh'Kar ou se apenas se somam ao acervo já preso no portal é ambivalente.
 
-A ideia antiga de que [[O Abismo]] fosse uma representação deste plano dentro do material foi abandonada: o Abismo é hoje uma região corrompida de propósito, e o que sobrou de canônico a respeito do portal é justamente o que ficou em aberto.
+A ideia antiga de que [[O Abismo]] fosse uma representação deste plano dentro do material foi abandonada: o Abismo é hoje uma região corrompida de propósito.
 
 ## Os desvios
 
@@ -56,12 +56,9 @@ Nem toda alma segue o caminho previsto. São arrastadas para [[O Abismo]] por qu
 - **Queda da Plenitude:** Osh'Kar devora almas, é preso; as almas de [[Kharavel]] passam a se acumular antes do portal.
 - **Campanha (ano 0):** "quase todas as almas dos mortos em Kharavel" presas no Abismo; os cultos tentam restaurar a metafísica da morte.
 
-## Pontas soltas
-1. **O portal ainda existe?** Ele é citado em três lugares, mas nasceu junto com a ideia — hoje descartada — de que o Abismo representava este plano. Se cair, falta dizer para onde vão as almas de [[Kharavel]].
-2. **E fora de Kharavel?** Se [[Osh'Kar]] é livre nos outros planos, ele ceifaria normalmente o resto de [[Khalkaria]]; só o continente é mencionado.
-3. **Quem guarda o plano agora** — ninguém disse se outro deus ou entidade assumiu a ceifa, como se fez com o cargo vago de [[Kha]].
-4. **Os sacrifícios chegam a ele?** Nem as próprias células sabem.
-5. **Ninguém descreveu o plano por dentro.** Não é conflito: é vazio.
+## Em aberto
+
+E217 (o portal ainda existe?) · E218 (quem ceifa fora de Kharavel) · E219 (os sacrifícios chegam a ele?) · E221 (como é o plano por dentro)
 
 ## Procedência
 - Notion: Deuses `33e6e3a401d9817f9470e140120b1c22` · Osh'Kar `3416e3a401d980bea207e73d726ec1bc` · O Abismo `3696e3a401d981aeb840ece0726fbf97` · Cultos de Osh'Kar `3696e3a401d98125a280d7b0bf485494` · Teurgo `caa6e3a401d98330bae281511750d407` · Magias `3a66e3a401d98097a5d4e316154f9fcb`

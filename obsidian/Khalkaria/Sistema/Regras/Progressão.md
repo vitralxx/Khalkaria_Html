@@ -69,10 +69,8 @@ Como referência de mesa: **Dc 2** é o encontro equilibrado para cinco jogadore
 - **Nível mínimo para fabricar** → [[O Bazar]]
 - **Registrada na ficha** → [[Criação de Personagem]]
 
-## Pontas soltas
-- **Dc ou CR?** As regras chamam de **Dc** ("dificuldade da criatura"); o bestiário e as anotações de mesa usam **CR**. Falta padronizar. [[Perguntas Abertas]] E61.
-- **"4 Técnicas de Classe" no nível 1** precisa ser conferido contra as sete páginas de classe.
-- **"6 técnicas de ramo, 3 por Tier"**, como algumas páginas de classe ainda dizem, contradiz a estrutura 3 / 2 / 1.
+## Em aberto
+E61 (Dc ou CR) · E563 (4 técnicas no nível 1)
 
 ## Procedência
 - Notion `2b76e3a401d980c0ab7bc27a342f4ee1` — Progressão do Jogador; Xp e Dc.

@@ -46,8 +46,8 @@ O arquétipo levado às últimas consequências é [[Kheyos]] — teurgo mortal 
 - **Figura do arquétipo** → [[Kheyos]]
 - **Origens vizinhas** → [[Nobre]] (a outra educação formal) · [[Cultista]] (o mesmo apetite por resposta, pela porta errada)
 
-## Pontas soltas
-- **Ler sem falar.** *Letrado* concede idiomas **escritos**, mas o [[Khazadun]] exige cordas vocais anãs para ser pronunciado. Um acadêmico não-[[Anão]] pode ler e escrever khazadun sem nunca conseguir falá-lo? Mesma dúvida do [[Nobre]] — [[Perguntas Abertas|E88]].
+## Em aberto
+E88 (Khazadun escrito)
 
 ## Procedência
 - Notion `3ea6e3a401d98354ba6601d1b1c28b03` — Acadêmico 📚 (🟢, ed. 2026-07-23); índice de Origens `3a66e3a401d9808aa877f7e7cb77002a`.

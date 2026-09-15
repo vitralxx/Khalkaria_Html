@@ -64,14 +64,8 @@ Algumas têm lastro direto na campanha. [[Karma]] e [[Sevic]] entram na [[Sessã
 - **Magia concedida** → [[Cultista]] (2 magias de nível 1, via Foco — [[Regras de Magia]])
 - **Origens com lastro na campanha** → [[Escravo]] ([[Karma]], [[Sevic]], [[Rastas]]) · [[Nobre]] ([[Sinikko Kiriam (original)]]) · [[Exilado]] ([[Família Sandgale]])
 
-## Pontas soltas
-- **Magia sem conjurador.** O [[Cultista]] entrega duas magias de nível 1 a qualquer classe, inclusive a quem não tem Éter nem Foco. [[Perguntas Abertas|E91]].
-- **Stamina comprando treinamento.** [[Criminoso]], [[Cultista]] e [[Refugiado]] usam a mesma troca, sem teto contra a escala de quatro níveis. [[Perguntas Abertas|E92]].
-- **Duas habilidades chamadas *A Forja*.** [[Ferreiro]] e [[Artesão]], efeitos diferentes. [[Perguntas Abertas|E84]] · o ganho de treinamento sem teto das duas é [[Perguntas Abertas|E85]].
-- **Sobrepeso na criação.** [[Escravo]] e [[Caçador]] partem com três Equipamentos, estourando o limite 2 + Mod.FOR quando a Força é baixa. [[Perguntas Abertas|E99]].
-- **+10 de Stamina máxima** no [[Andarilho]] é o maior bônus fixo de recurso concedido fora de classe e raça. [[Perguntas Abertas|E89]].
-- **Regras que as origens pressupõem e que não existem escritas:** qualidade de descanso ([[Exilado]]), hostilidade de [[Jornada]] ([[Andarilho]], [[Caçador]]), cenas de perseguição ([[Refugiado]], [[Perguntas Abertas|E94]]) e navegação ([[Marinheiro]], [[Perguntas Abertas|E95]]).
-- **Colisão de nomes.** A origem [[Caçador]] divide o nome com a técnica geral *Caçador* do [[Batedor]] ([[Perguntas Abertas|E102]]); "os Exilados", facção de grutos, divide o nome com o [[Exilado]] ([[Perguntas Abertas|E33]]).
+## Em aberto
+E33 (colisão de nomes) · E84 (A Forja ×2) · E85 (aprender sem teto) · E89 (+10 Stamina) · E91 (magia sem conjurador) · E92 (Stamina por treinamento) · E94 (perseguição) · E95 (regras navais) · E99 (sobrepeso na criação) · E102 (dois Caçador) · E555 (qualidade do descanso)
 
 ## Procedência
 - Notion `3a66e3a401d9808aa877f7e7cb77002a` — índice de Origens (🟡 Em desenvolvimento, ed. 2026-07-23) com as 17 subpáginas 🟢 Pronto. O índice está atrasado em relação às filhas: [[Perguntas Abertas|E103]].

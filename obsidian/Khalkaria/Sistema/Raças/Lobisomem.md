@@ -84,12 +84,8 @@ Os clãs [[Anão|anões]] estão entre os caçadores mais implacáveis.
 - **Magia** → não conjura transformado ([[Regras de Magia]]); a transformação drena 5 de [[Éter]]
 - **Regras tocadas** → [[Combate]] · [[Descanso]] · [[Armas e Munição]] (armas naturais) · [[Atributos e Perícias]]
 
-## Pontas soltas
-- **O ataque Sh'kar custa quanto?** *Garras e Presas Brutais* diz "2 ações para atacar" e "como 1 ação" na mesma frase.
-- **Que altura tem a Fera?** Os dados físicos falam em 1,80 m – 2,80 m transformado; o Ru'rak "cresce de 1,80 até 2,10 m" e o Sh'kar "ultrapassa os 2 metros".
-- **Quem é o lobisomem na mesa?** Nenhum dos cinco personagens da [[Sessão 0]] é lobisomem — a [[Equipe desfloreio]] reúne [[Humano|humano]], [[Corrompido|corrompido]], [[Gruto|gruto]], [[Dryad|dryad]] e a raça de [[Azgar Sandgale]], não declarada. O portador é da campanha atual.
-- **Dano Radiante que não cicatriza** — a interação com poções e elixires do [[Alquimista]] não está definida.
-- **Onde ficam os vilarejos?** A raça vive "longe o suficiente das cidades", mas nenhum continente ou região é nomeado.
+## Em aberto
+E547 (custo do Sh'kar e altura) · E548 (Radiante que não cicatriza) · E549 (onde ficam os vilarejos)
 
 ## Procedência
 - Notion `3c66e3a401d980019c48edd3b1f44452` — Lobisomem (🟡 Em desenvolvimento, ed. 2026-08-28); índice de Raças `3a66e3a401d980318836edcfa11c8a24`. É a única página de raça que existe apenas na árvore viva, sem correspondência no backup 5296.

@@ -280,15 +280,8 @@ As barras indicam, em ordem: **Contida / Normal / Forçada / Transbordante**. Na
 - **Aplica** → [[Condições]] (*Amedrontado*, *Cego*, *Atordoado*, *Enjoado*)
 - **Custa** → [[Éter]]
 
-## Pontas soltas
-- **Sussurro do Ambiente (N2):** a descrição é **cópia da de Detectar Magia** ("sentir a presença de energia mística em uma área de até 30 m através de seus olhos") e não corresponde nem ao Efeito da tabela (mapa mental) nem à Área (4,5 / 9 / 13,5 / 18 m). Vale a tabela; a descrição precisa ser reescrita.
-- **Pânico (N2):** afirma que *Amedrontado* "tem desvantagem em testes realizados enquanto puder te ver" — a condição, em [[Condições]], **não** traz desvantagem.
-- **Caco Esquecido (N3):** compara-se a **"Voz na Mente"**, que não existe em nenhuma parte do sistema. O efeito descrito é exatamente o de *Impulso Instintivo* (N2 desta escola) — provável nome antigo, a confirmar.
-- **Sinapsia Coletiva (N3):** é a única magia que define Magia Sustentada por escrito ("pague o mesmo éter do custo da conjuração da magia todo turno; fora de combate, a cada 30 minutos") — deveria ser regra geral em [[Regras de Magia]].
-- **Purgatório (N3):** falha em quem morreu Oco, mas a interação com a condição *Oco* não está descrita em [[Condições]].
-- **Confissão do Éter (N3):** é Transbordante-only e mesmo assim mantém a linha de intensidade; a margem de erro cresce 1 por uso consecutivo no mesmo dia, sem teto.
-- **Possessão Carnal (N4):** deixa o corpo "**sem vida**. Não morto, sem vida" — um estado que não existe em [[Condições]].
-- **Estilo das descrições:** as de nível 2 e 3 desta escola e de [[Alteração]] são bem mais longas e em voz diferente do resto do sistema. Foram revisadas e mantidas.
+## Em aberto
+E500 (sem vida, Petrificado) · E502 (Pânico × Amedrontado) · E504 (tabela × descrição) · E505 (Sussurro do Ambiente copiada) · E509 (Transbordante-only) · E512 (magia sustentada) · E516 (Voz na Mente) · E518 (Purgatório × Oco)
 
 ## Procedência
 - Notion `3a66e3a401d98097a5d4e316154f9fcb` (Magias, 🟢 Pronto, fetch 2026-07-23) — seção 🔮 Conhecimento dos níveis 1 a 4; modulações também em `2b76e3a401d980c0ab7bc27a342f4ee1` (Sistema Khalkaria → Magias).

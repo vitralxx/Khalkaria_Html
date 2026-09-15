@@ -86,11 +86,8 @@ Chitin Mandalore · Vespa Thornwing · Scarab Dustshell · Mantis Razorclaw · C
 - **Imunes a** → [[Condições|Envenenamento]] (Baratas)
 - **Regras tocadas** → [[Tipos de Dano]] · [[Dano, Ataque e Defesa]] · [[Manobras e Tamanho]] · [[Superfícies e Furtividade]] · [[Combate]] · [[Atributos e Perícias]]
 
-## Pontas soltas
-- **A raça sem corpo.** É a única sem bloco base de atributos, movimento e dados físicos — coerente com "bastante modulares", mas é intencional? Sem resposta, qualquer ficha ou página pública precisa escolher por conta própria.
-- **"Dano atípico"** dos Besouros e **"dano perfurante"** dos Louva-a-Deus precisam ser lidos contra os doze tipos: atípico é tudo que não é Ordinário, e perfurante é subtipo de Ordinário. Ver [[Tipos de Dano]].
-- **A guerra contra o Império não tem nome nem data** e ainda não entrou na [[Linha do Tempo]].
-- **O clã das Baratas é inseto ou bando de bandidos?** [[Perguntas Abertas]] E28.
+## Em aberto
+E28 (clã das Baratas) · E544 (guerra sem nome nem data) · E545 (sem bloco base) · E546 (dano atípico e perfurante)
 
 ## Procedência
 - Notion `f6d6e3a401d9839591dd814cdefa153b` — Inseto (🟡 Em desenvolvimento, ed. 2026-07-24); índice de Raças `3a66e3a401d980318836edcfa11c8a24`; O Império do Ferro `33e6e3a401d981269fc0f19d9fe66772`; 2. Volkrest `33e6e3a401d9817fa7a8c67c898343e2`; @Nomes Aleatórios `33e6e3a401d981d09cadf2397f4a8856`.

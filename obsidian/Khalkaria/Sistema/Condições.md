@@ -160,13 +160,8 @@ Padronizar todos eles como condições é uma reforma prevista, ainda não feita
 - **Imunidades e aplicações em cartas** → [[O Limiar (cartas)]]
 - **Tipos de dano citados** → [[Tipos de Dano]]
 
-## Pontas soltas
-- **"Dano Biológico" como tipo.** *Sangramento X*, *Envenenamento* e *Morrendo* causam "dano Biológico", mas Biológico é **categoria** — Veneno, Ácido e Psíquico são os tipos ([[Tipos de Dano]]). Escolher um tipo ou formalizar a categoria. [[Perguntas Abertas]] E43.
-- **Lento X.** O texto dá −3 m e −1 Ação **fixos**; o que o X representa, e se empilha, não está escrito. Cartas e magias usam *Lento 1/2/3*. [[Perguntas Abertas]] E55.
-- **Descontrolado X.** A abertura diz "ataca o aliado mais próximo"; a regra diz "a criatura mais próxima". [[Perguntas Abertas]] E56.
-- **Estados citados que não existem como condição:** *Petrificado* (Transferir Condição, Caco Esquecido), *Banido* (Exílio Existencial, Ultimate do Limiar), *Selado* (Selo do Oblívio), *Laçado* (Laço da União), *Possuído* e *"sem vida"* (Possessão Carnal), *Vulnerável* (superfície Molhado), *Escondido*. Tratados como efeitos de técnica única; a revisão geral segue pendente.
-- **Amedrontado × Pânico.** A magia *Pânico* afirma que o alvo "tem desvantagem em testes realizados enquanto puder te ver", mas a condição só obriga a gastar o turno correndo.
-- **Sobrepeso sem título próprio.** As duas variantes vivem sob um mesmo cabeçalho, sem entrada individual.
+## Em aberto
+E43 (categoria usada como tipo) · E55 (Lento X) · E56 (Descontrolado X) · E500 (estados sem entrada) · E501 (Lentidão 2 × Lento X) · E502 (Pânico × Amedrontado) · E503 (Sobrepeso com título próprio)
 
 ## Procedência
 - Notion `3a66e3a401d9803f8862ea52ceef0b25` (Condições, 🟢 Pronto, editado 2026-08-24).

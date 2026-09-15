@@ -34,7 +34,7 @@ O aprisionamento é consequência direta da ausência de [[Kha]]: foi a primeira
 
 O [[O Abismo|Abismo]] aprisiona a **figura material** do deus. Enquanto preso no [[Plano Material]] ele fica limitado a esse plano; nos outros continua livre. A ideia antiga de que o Abismo fosse uma representação do [[Plano dos Mortos]] dentro do plano material foi abandonada: hoje faz mais sentido que a região tenha sido **corrompida pelos deuses com criaturas perigosas**, para que nenhum mortal consiga libertá-lo. [[Velúria]] e [[Vytália]] teriam orquestrado a aberração; naturalmente, as criaturas abissais começaram a se comunicar entre si, e daí veio o idioma [[Abissal]] — um dos mais raros do continente, porque só existe ali. Essa energia abissal pode, no futuro, corromper outros pedaços do planeta.
 
-A ilusão do [[O Oásis]] só cai quando alguém escala o pico mais alto da [[Cordilheira Cristalina]] e a desativa. O Abismo oferece corrupções em troca de poder, ainda por escrever.
+A ilusão do [[O Oásis]] só cai quando alguém escala o pico mais alto da [[Cordilheira Cristalina]] e a desativa. O Abismo oferece corrupções em troca de poder — ver [[O Limiar (cartas)]].
 
 ## As almas acumuladas
 
@@ -55,7 +55,7 @@ A ilusão do [[O Oásis]] só cai quando alguém escala o pico mais alto da [[Co
 
 ## O Trancafiado
 
-O ramo Arauto do [[Teurgo]] oferece um patrono que quase certamente é ele — mas o texto nunca o nomeia:
+O ramo Arauto do [[Teurgo]] oferece como patrono uma entidade selada no fundo do mesmo Abismo:
 
 > **O Trancafiado** — No fundo do Abismo, onde as almas pecadoras são aprisionadas para a eternidade, algo mais antigo também foi selado. Ele não é uma alma - ele estava lá antes das almas chegarem. Os séculos o enlouqueceram, ou talvez ele sempre foi assim. Ele odeia sua prisão. Ele odeia os Deuses que o trancaram. E ele sussurra através das correntes para qualquer um que ouça.
 > Preço do Pacto: Que você tente ativamente descobrir informações sobre o abismo e como abri-lo. Que você mate almas pecadoras. Que você espalhe a causa do Trancafiado. Que você se oponha a todos os deuses.
@@ -63,7 +63,7 @@ O ramo Arauto do [[Teurgo]] oferece um patrono que quase certamente é ele — m
 
 ## Relações
 - **Degradou-se com a ausência de** → [[Kha]] (fim de [[A Plenitude]])
-- **Linchado e preso por** → [[Vytália]], [[Malkhor]], [[Velúria]], [[Karmath]], [[Mundarak]] ("os outros deuses"; participação individual não escrita)
+- **Linchado e preso por** → [[Vytália]], [[Malkhor]], [[Velúria]], [[Karmath]], [[Mundarak]] ("os outros deuses")
 - **Prisão da figura material** → [[O Abismo]], no [[Deserto do Abismo]], sob a ilusão de [[O Oásis]] ([[Kharavel]], terra de [[Mundarak]])
 - **Região-prisão orquestrada por** → [[Velúria]] e [[Vytália]]
 - **Ilusão desativada em** → [[Cordilheira Cristalina]] (pico mais alto)
@@ -76,7 +76,7 @@ O ramo Arauto do [[Teurgo]] oferece um patrono que quase certamente é ele — m
 - **Libertador em potencial** → [[Hadran Vorgil]] (por qualquer meio, contra [[A Vhelor]])
 - **Sem aliança formal com** → [[Culto de Malkhor]] ("Não há aliança formal. Em alguns casos podem até entrar em conflito")
 - **Patrono provável** → [[Teurgo]], ramo Arauto ("O Trancafiado")
-- **Corrupções em troca de poder** → cartas do Abismo em [[O Limiar (cartas)]]
+- **Corrupções em troca de poder** → cartas do Abismo em [[O Limiar (cartas)]] (a serem refeitas)
 - **Sem estátua em** → [[Templo da Profecia]]
 - **Energia abissal pode se espalhar por** → [[Khalkaria]]
 
@@ -88,15 +88,9 @@ O ramo Arauto do [[Teurgo]] oferece um patrono que quase certamente é ele — m
 - **Pouco antes da campanha:** [[Lázlo]] escapa de um ritual e é encontrado errante, longe do Abismo.
 - **Campanha (ano 0):** destino de estágio avançado; "tenta escapar a todo momento".
 
-## Pontas soltas
-1. **O portal ainda existe?** Com a ideia do Abismo como representação do [[Plano dos Mortos]] descartada, resta saber se o portal e as almas presas diante dele continuam de pé — e, se não, para onde vão as almas de [[Kharavel]] hoje.
-2. **Quem ceifa fora de Kharavel?** Se ele é livre nos outros planos, o acúmulo de almas seria só do continente; a mecânica disso nunca foi escrita.
-3. **Os sacrifícios chegam a ele?** As próprias células não sabem; a questão está registrada como ambivalente.
-4. **"O Trancafiado" é Osh'Kar?** O patrono está no fundo do Abismo, odeia os deuses que o trancaram e "estava lá antes das almas chegarem" — mas o texto fala de "algo mais antigo também selado" e nunca o nomeia ([[Perguntas Abertas|E72]]).
-5. **[[Mundarak]] participou?** A terra é dele; a orquestração atribuída a [[Velúria]] e [[Vytália]] é declaradamente tentativa.
-6. **O Templo não tem estátua dele** — apagado da fé por ter sido preso, ou nunca teve? ([[Perguntas Abertas|E13]])
-7. **O mapa antigo × o Abismo** — o sudoeste era cachoeiras e vegetação há 27 anos ([[Perguntas Abertas|E5]]).
-8. **As cartas do Abismo vão mudar por inteiro**; há ainda uma duplicata de nome entre uma carta rara e um benefício do Abismo ([[Perguntas Abertas|E46]]). Ver [[O Limiar (cartas)]].
+## Em aberto
+
+E5 (o mapa antigo × o Abismo) · E13 (o Templo sem estátua dele) · E46 (duplicata nas cartas do Abismo) · E72 ("O Trancafiado" é ele?) · E212 (Mundarak participou?) · E217 (o portal ainda existe?) · E218 (quem ceifa fora de Kharavel) · E219 (os sacrifícios chegam a ele?)
 
 ## Procedência
 - Notion: Osh'Kar `3416e3a401d980bea207e73d726ec1bc` · Deuses `33e6e3a401d9817f9470e140120b1c22` · O Abismo `3696e3a401d981aeb840ece0726fbf97` · Cultos de Osh'Kar `3696e3a401d98125a280d7b0bf485494` · Deserto do Abismo `37b6e3a401d9817ca984f3eca3a11688` · Hadran Vorgil `36d6e3a401d9817792d8ef277f93f46a` · Lázlo `36d6e3a401d9818d9cddefbdd4015aad` · Origem Amaldiçoado `1056e3a401d9836ab1e901e614e5d3d4` · Teurgo `caa6e3a401d98330bae281511750d407`

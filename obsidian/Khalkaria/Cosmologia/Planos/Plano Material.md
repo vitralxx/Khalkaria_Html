@@ -23,7 +23,7 @@ Os deuses têm poder de aparecer nele quando quiserem:
 > Os deuses de Khalkaria possuem as seguintes características:
 > - Podem se materializar em qualquer lugar de Khalkaria como qualquer.
 
-A frase ficou pela metade. Na prática, os cinco preferem agir por interpostas mãos: [[Karmath]] não se manifesta, [[Velúria]] age pelo [[O Limiar]], [[Malkhor]] fala pela [[A Vhelor]].
+Na prática, os cinco preferem agir por interpostas mãos: [[Karmath]] não se manifesta, [[Velúria]] age pelo [[O Limiar]], [[Malkhor]] fala pela [[A Vhelor]].
 
 ## Os continentes
 
@@ -33,7 +33,7 @@ A frase ficou pela metade. Na prática, os cinco preferem agir por interpostas m
 > [4. Aether] O continente da deusa da magia. Um presente de Kha a Velúria.
 > [5. Ossyria] O erro brutal dos deuses, carcaças e um deserto árido dominam este continente. Aqui a morte corre solta e não há civilizações estáveis.
 
-Todas as criaturas que os habitam vieram de [[Vytália]], encarregada por [[Kha]] de povoar os planos.
+Todas as criaturas que os habitam vieram de [[Vytália]], encarregada por [[Kha]] de povoar os planos. [[Khalkaria]] é o nome do planeta; o cosmos é o conjunto dos planos.
 
 ## Onde a magia chega
 
@@ -80,12 +80,9 @@ Os mortais daqui interpretam [[Karmath]] como uma figura masculina e implacável
 - **Há poucos séculos:** [[Kharavel]] é descoberto — "o continente nem sempre existiu no planeta".
 - **−27 → 0:** a corrupção de [[Khaskavel]]; o Abismo talvez revelado ([[Perguntas Abertas|E5]]).
 
-## Pontas soltas
-1. **A frase truncada** sobre os deuses poderem se materializar em qualquer lugar nunca foi terminada — e convive mal com [[Karmath]], que "não se manifesta diretamente". Poder não é prática, mas o limite não está escrito.
-2. **Todo ser tem [[Éter]]**, mas a ficha só o conta em quem conjura.
-3. **Existem outros planetas e outros panteões?** As "energias de outros planetas e deuses" do cometa de [[Mordval]] sugerem que sim, e nada confirma.
-4. **O "espaço entre planos"** para onde vai quem é *Banido* é um lugar de fato, ou apenas um efeito?
-5. **Khalkaria é planeta ou universo?** As páginas antigas usam o nome como mundo; o mestre fala em "universo e cosmos". Este vault trata [[Khalkaria]] como o planeta e o cosmos como o conjunto dos planos.
+## Em aberto
+
+E26 (outros planetas e panteões) · E222 (Éter em não-conjuradores) · E233 (limite da materialização dos deuses) · E234 (o espaço entre planos) · E235 (Khalkaria é planeta ou universo?)
 
 ## Procedência
 - Notion: Deuses `33e6e3a401d9817f9470e140120b1c22` · Lore raiz `2e66e3a401d9806cba24f41572810b80` · Continentes `33e6e3a401d981c39158ccebacdd2224` · 2. Volkrest `33e6e3a401d9817fa7a8c67c898343e2` · 3. Mordval `33e6e3a401d9813c9065fb6377553748` · 5. Ossyria `33e6e3a401d98122b4cdead58587b6b6` · 1. Kharavel `33e6e3a401d981eeaecaf08dd1b33d29` · Magias `3a66e3a401d98097a5d4e316154f9fcb` · Teurgo `caa6e3a401d98330bae281511750d407`

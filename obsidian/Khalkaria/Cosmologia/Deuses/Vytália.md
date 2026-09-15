@@ -104,12 +104,9 @@ Duas magias de nível 4 pedem por ela: *Vytália* ([[Abjuração]]) e *Tecido de
 - **Sessão 0 (−27):** a [[Equipe desfloreio]] tenta destruir a Árvore — executa a aposta dela sem saber; [[Sinikko Kiriam (original)]] vira o Sonhador.
 - **Campanha (ano 0):** "A mãe está perdendo": [[Khaskavel]] dissolvida em viciação.
 
-## Pontas soltas
-1. **Deusa da vida ou deusa dos seres?** As histórias da Árvore e as magias a chamam de deusa da vida; todo o resto, de deusa dos seres/criaturas. Falta decidir se o primeiro é epíteto popular ou erro a corrigir.
-2. **Quem armou o plano de [[Lena Skarv]].** As páginas de Lena e de [[Alvak Krichama]] atribuem tudo a [[Velúria]] — que teria abençoado a menina e manipulado o destino do anão. O mestre diz que o plano é de Vytália e [[Karmath]], e que Velúria apenas deixou escapar a descoberta. Falta saber se Velúria participa da execução ou só vazou.
-3. **[[Mundarak]] participou da corrupção do [[O Abismo]]?** A terra é dele; a orquestração atribuída a Vytália e Velúria é declaradamente tentativa.
-4. **Cronologia:** a aposta de [[Kharavel]] é anterior ou posterior à Queda da Plenitude.
-5. **Símbolo, culto e agentes mortais** não estão definidos. Os itens abençoados que recusam corrompidos são o único agente concreto até agora.
+## Em aberto
+
+E203 (a aposta veio antes ou depois da Queda) · E206 (quem armou o plano de Lena) · E209 (símbolo, culto e agentes) · E210 (deusa da vida ou dos seres?) · E212 (Mundarak participou do Abismo?)
 
 ## Procedência
 - Notion: Vytália `39e6e3a401d9813dbd3cf924ae613a9a` · Deuses `33e6e3a401d9817f9470e140120b1c22` · Templo da Profecia `33f6e3a401d980dd982ad39fcba2ed4e` · A Grande Árvore `33e6e3a401d9813b8a60f1f9669803be` · 2. Volkrest `33e6e3a401d9817fa7a8c67c898343e2` · Lore raiz `2e66e3a401d9806cba24f41572810b80` · O Limiar (lore) `3416e3a401d9802fa419f94e4c7cfbe7` · Magias `3a66e3a401d98097a5d4e316154f9fcb`

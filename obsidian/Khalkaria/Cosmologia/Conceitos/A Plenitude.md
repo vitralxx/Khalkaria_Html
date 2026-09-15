@@ -59,7 +59,7 @@ Deuses são cargos, e a Plenitude exige os cinco cargos ocupados — não os cin
 
 ## A energia chamada Plenitude
 
-Uma das bênçãos raras do Limiar, a *Onisciencia de [[Mundarak]]*, permite "sentir a energia de qualquer local do planeta, dentre elas: Plenitude, Sangria, Brutal". As três energias de local não estão descritas em nenhum outro lugar — ver [[O Limiar (cartas)]].
+Uma das bênçãos raras do Limiar, a *Onisciencia de [[Mundarak]]*, permite "sentir a energia de qualquer local do planeta, dentre elas: Plenitude, Sangria, Brutal" — ver [[O Limiar (cartas)]].
 
 ## Relações
 - **Estado mantido por** → [[Kha]] (original); **encerrado pelo** → sequestro divino
@@ -72,7 +72,7 @@ Uma das bênçãos raras do Limiar, a *Onisciencia de [[Mundarak]]*, permite "se
 - **Sua queda degradou** → [[Osh'Kar]] → [[O Abismo]]
 - **Sua queda abriu espaço para** → [[Império de Ferro]] e demais potências brutais do [[Plano Material]]
 - **Sua queda motivou** → a criação de [[O Limiar]] e as bênçãos a "centenas de criaturas"
-- **"Transcendência imaterial"** → destino prometido da era; relação apenas especulativa com [[Oblívio]]
+- **"Transcendência imaterial"** → destino prometido da era
 - **Energia de local homônima** → *Onisciencia de Mundarak*, em [[O Limiar (cartas)]]
 
 ## Linha do tempo
@@ -81,11 +81,9 @@ Uma das bênçãos raras do Limiar, a *Onisciencia de [[Mundarak]]*, permite "se
 - **Depois da Queda:** impérios crescem sem contrapeso; [[Kharavel]] é erguido como aposta e provação.
 - **Desfecho verdadeiro:** um mortal ocupa o cargo do Pecado e a Plenitude segue possível.
 
-## Pontas soltas
-1. **Cronologia** — a aposta de [[Kharavel]] é anterior ou posterior à Queda? "Guiar os seres **novamente** para A Plenitude" sugere posterior, e o conflito entre deuses só existe sem [[Kha]]; provável, não escrito.
-2. **"Plenitude" como energia de local** — é resíduo da era em certos lugares ou homônimo? Nada define Sangria e Brutal tampouco.
-3. **Há quanto tempo caiu** — nenhuma fonte diz se foram séculos ou milênios. [[Kharavel]] foi "descoberto há poucos séculos" e "nem sempre existiu", o que só dá um piso frouxo.
-4. **"Transcendência imaterial"** — o destino prometido pela era nunca foi definido.
+## Em aberto
+
+E202 (há quanto tempo caiu) · E203 (a aposta veio antes ou depois da Queda) · E204 (o que é a transcendência imaterial) · E215 (as energias de local)
 
 ## Procedência
 - Notion: Deuses `33e6e3a401d9817f9470e140120b1c22` · Kha `39e6e3a401d981c9ac33cd19df507993` · Templo da Profecia `33f6e3a401d980dd982ad39fcba2ed4e` · A Grande Árvore `33e6e3a401d9813b8a60f1f9669803be` · O Abismo `3696e3a401d981aeb840ece0726fbf97` · Malkhor `39e6e3a401d981eb87fecedc94f35b37` · Mundarak `39e6e3a401d981e3a7fdc5b89aa8146b` · O Limiar (cartas) `3a66e3a401d9806db1f8d6975255f676`

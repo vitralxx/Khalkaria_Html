@@ -101,12 +101,9 @@ Com [[Vytália]], teria orquestrado a corrupção da região que hoje aprisiona 
 - **Antes da campanha:** deixa escapar a fraqueza da Árvore → Vytália e [[Karmath]] geram [[Lena Skarv]].
 - **Campanha (níveis 2–5):** [[O Limiar]] aparece e oferece cartas aos jogadores.
 
-## Pontas soltas
-1. **Quem armou o plano de [[Lena Skarv]]** — as páginas antigas dizem que foi ela; o mestre diz que foi [[Vytália]] com [[Karmath]], depois do vazamento. Falta saber se Velúria participa da execução ou apenas deixou escapar a informação.
-2. **A frase truncada** da página do Limiar — "uma entidade cria por Velúria logo após o desaparecimento de Kha com intuito de" — nunca foi terminada; o propósito, hoje conhecido, é controlar a passagem do Éter, barrar aplanares, impedir sucção excessiva e expandir a geração.
-3. **[[Mundarak]] participou da corrupção do [[O Abismo]]?** A atribuição a Velúria e Vytália é declaradamente tentativa.
-4. **Símbolo e culto** não definidos. A [[Igreja Serafélia]] em construção no mapa de [[Khaskavel]] é culto a qual deus? ([[Perguntas Abertas|E4]])
-5. **O que cria o [[Éter]]** dentro do [[Plano Místico]] ainda não existe ([[Perguntas Abertas|E15]]).
+## Em aberto
+
+E4 (a quem serve a Igreja Serafélia) · E15 (o que cria o Éter) · E206 (quem armou o plano de Lena) · E209 (símbolo e culto) · E212 (Mundarak participou do Abismo?)
 
 ## Procedência
 - Notion: Velúria `39e6e3a401d98159b906e2033370e5c1` · Deuses `33e6e3a401d9817f9470e140120b1c22` · Templo da Profecia `33f6e3a401d980dd982ad39fcba2ed4e` · O Limiar (lore) `3416e3a401d9802fa419f94e4c7cfbe7` · 4. Aether `33e6e3a401d9812bab36f280892bf817` · 2. Volkrest `33e6e3a401d9817fa7a8c67c898343e2` · Lena Skarv `3696e3a401d981969032ea2fcf0b406e` · Alvak Krichama `33e6e3a401d98103af5ef241c6512d02` · Substâncias `33e6e3a401d981ef841aefa20793d48d` · Os Hax `3696e3a401d98127a568c856497d9ce6` · O Limiar (cartas) `3a66e3a401d9806db1f8d6975255f676`

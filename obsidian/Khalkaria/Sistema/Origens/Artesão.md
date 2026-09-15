@@ -47,10 +47,8 @@ A tecnologia também está em movimento. As armas de fogo acabaram de emergir co
 - **Economia** → 2d6+10 [[Sins]] · [[O Bazar]]
 - **Origens vizinhas** → [[Ferreiro]] · [[Mercador]] (o outro lado do balcão)
 
-## Pontas soltas
-- **Duas habilidades com o mesmo nome.** *A Forja* é o nome da habilidade do artesão **e** do [[Ferreiro]], com efeitos diferentes. Uma das duas precisa de nome próprio. [[Perguntas Abertas|E84]].
-- **Aprender sem teto.** Ganhar um nível de treinamento a cada raridade inédita fabricada não tem limite declarado contra a escala de quatro níveis. [[Perguntas Abertas|E85]].
-- **A Bolsa de Couro.** Aqui ela vem sem efeito escrito; no [[Escravo]] ela declara "+2 Espaços de Bugiganga". O efeito é do item ou da origem? [[Perguntas Abertas|E86]].
+## Em aberto
+E84 (A Forja ×2) · E85 (aprender sem teto) · E86 (Bolsa de Couro)
 
 ## Procedência
 - Notion `3476e3a401d9833780b081628d425d58` — Artesão 🔧 (🟢, ed. 2026-07-23); índice de Origens `3a66e3a401d9808aa877f7e7cb77002a`.

@@ -182,12 +182,8 @@ O dano **Perfurante** que domina o arsenal da classe é subtipo do Ordinário, e
 - **Nomes compartilhados** → *Passo do Vento* também existe no [[Monge]], com efeito diferente · *Ponto Vital* também é opção de *O Experiente*, no [[Brutalista]]
 - **PC que a usa** → [[Azgar Sandgale]], artilheiro de arremesso do ramo do Vendaval, da [[Equipe desfloreio]]
 
-## Pontas soltas
-- **Munição especial em bugigangas.** "3 munições especiais contam como 1 bugiganga" não tem par na regra geral de [[Inventário e Peso]], mesmo depois de a munição passar a ser gasta por combate. [[Perguntas Abertas]] E82.
-- **Estar escondido.** *Tiro Camuflado* exige "estar escondido", mas *Escondido* não é uma condição de [[Condições]] e esconder-se custa 3 ações em [[Superfícies e Furtividade]] — a mesma ambiguidade do *Ocultar-se* do [[Batedor]]. [[Perguntas Abertas]] E67.
-- **Evasão variável.** *Passo do Vento* soma a Concentração à Evasão, o que impede tratá-la como valor fixo na ficha, como acontece com o *Evasivo* do [[Monge]]. [[Perguntas Abertas]] E83.
-- **Estados sem entrada em [[Condições]].** *Marcado* (Marca no Alvo, Tiro Predador), *irritado* (Vício de Poder) e *Escondido* (Tiro Camuflado) nasceram para uso único nessas técnicas e esperam a revisão geral das condições.
-- **Marcas que dão "+1 permanente"** até +5 convivem com a escala de treinamento de quatro degraus, +2/+4/+6/+8 ([[Atributos e Perícias]]); e *Colecionador de Lâminas*, *Conhecedor de Armas de Fogo* e *Marca no Alvo* não têm contador nenhum. [[Perguntas Abertas]] E63.
+## Em aberto
+E63 (Marcas +1 × degraus) · E67 (Escondido) · E82 (munição especial em bugigangas) · E83 (Evasão variável) · E500 (estados sem condição)
 
 ## Procedência
 - Notion `d896e3a401d983f38cc78196ad7491b4` — Artilheiro (ed. 2026-08-05, 🟢 Pronto); índice de Classes `3a66e3a401d9809b8eceec1f30be9fd2`.

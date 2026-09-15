@@ -28,11 +28,11 @@ Sete deuses, quatro planos e uma ausência. [[Kha]], o supremo, foi **sequestrad
 - [[Plano Místico]] — de Velúria; onde o Éter é gerado, guardado pelo Limiar.
 - [[Plano Material]] — de Mundarak; onde a campanha acontece.
 - [[Plano dos Mortos]] — de Osh'Kar; as almas de [[Kharavel]] não chegam mais lá.
-- [[Oblívio]] — plano que nem os deuses conheceriam; ainda não tem existência firmada.
+- [[Oblívio]] — plano que nem os deuses conheceriam; proposto, ainda sem existência firmada.
 
 ## Entidades, substâncias e eras
 
-- [[O Limiar]] — criação de Velúria; media a passagem do Éter, barra aplanares, impede sucção excessiva.
+- [[O Limiar]] — criação e subordinado de Velúria; media a passagem do Éter, barra aplanares, impede sucção excessiva.
 - [[O Sonhador]] — casulo no cerne da Vhelor; abriga sempre uma criatura.
 - [[Éter]] — a substância que todo ser carrega; chave que abre a ponte do Místico para o Material.
 - [[A Plenitude]] — o estado do mundo antes da Queda; sua ruína é o marco zero do calendário.
@@ -47,11 +47,9 @@ Sete deuses, quatro planos e uma ausência. [[Kha]], o supremo, foi **sequestrad
 - **Regras que dependem do panteão** → [[Regras de Magia]], [[Tipos de Dano]], [[O Limiar (cartas)]]
 - **Parte de** → [[Khalkaria]]
 
-## Pontas soltas
+## Em aberto
 
-- A hierarquia entre [[Velúria]] e [[O Limiar]] está resolvida — ela o criou e o comanda —, mas páginas antigas ainda dizem o contrário.
-- O [[Oblívio]] segue proposto: se existir, é um plano fora do alcance dos próprios deuses.
-- Ninguém sabe o que cria o [[Éter]] dentro do [[Plano Místico]] ([[Perguntas Abertas|E15]]).
+E15 (o que cria o Éter) · E200 (o que sequestrou Kha) · E201 (o cargo de Kha está vago?) · E230 (o Oblívio é canônico?) · E235 (Khalkaria é planeta ou universo?)
 
 ## Procedência
 - Notion: Deuses `33e6e3a401d9817f9470e140120b1c22`

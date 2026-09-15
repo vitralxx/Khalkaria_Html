@@ -123,7 +123,7 @@ Ao longo da criação do personagem escolhem-se **3 Marcas** e **6 Técnicas de 
 ## Técnicas de Ramo — Tier 1 (nível 2)
 **Acadêmico**
 - **Grimório Arcano** (Passiva) — Você possui um livro onde armazena grande parte do seu conhecimento arcano, lá estão seus estudos junto com suas magias conhecidas. Escolha **3+Mod. Inteligência** magias em escolas que você é especializado e +1 para cada nível subsequente. Você só pode escolher magias iguais ou abaixo do seu (nível − 1). Você pode estudar e reordenar suas magias em um descanso longo.
-- **Tese Arcana** (Passiva, 4 Stamina) — Escolha uma magia que você conhece. Ela se torna sua Tese. Você pode trocar a magia escolhida em um descanso longo. Ao canalizar essa magia, escolha entre gastar 2 de Stamina ou não: Ao gastar 4 de Stamina, essa magia possui uma modulação grátis e sua intensidade é de 1 nível acima. Ao castar sem gastar 4 de Stamina, ela custa −1 Éter. *(O cabeçalho pede 4 de Stamina e o corpo oferece a escolha de gastar 2 — ver Pontas soltas.)*
+- **Tese Arcana** (Passiva, 4 Stamina) — Escolha uma magia que você conhece. Ela se torna sua Tese. Você pode trocar a magia escolhida em um descanso longo. Ao canalizar essa magia, escolha entre gastar 2 de Stamina ou não: Ao gastar 4 de Stamina, essa magia possui uma modulação grátis e sua intensidade é de 1 nível acima. Ao castar sem gastar 4 de Stamina, ela custa −1 Éter. *(O cabeçalho pede 4 de Stamina e o corpo oferece a escolha de gastar 2 — E70.)*
 - **Recuperação Primordial** (3 Ações, x Stamina) — Você gasta 3 ações para revitalizar sua relação com as **forças materializantes**. Você compra pontos de Éter gastando pontos de Stamina, com uma proporção de 2:1. Ou seja, 2 de Stamina = 1 Éter.
 
 **Receptáculo**
@@ -145,7 +145,7 @@ Ao longo da criação do personagem escolhem-se **3 Marcas** e **6 Técnicas de 
 - **Magias Pactuadas** (Passiva) — Você negociou com seres primordiais temidos por outros, eles te fornecem uma fração de sua essência, por um custo: Escolha **1+Mod. Inteligência** magias em escolas que você é especializado e +1 para cada nível subsequente. Você só pode escolher magias iguais ou abaixo do seu (nível − 1). Para trocar ou adquirir uma nova magia pactuada: Requer um ritual de ao menos 1 hora. Requer pagamento de preço (definido pelo seu pacto): Componentes raros, Sins, Sacrifício, Acordos. Ao conjurar uma Magia Pactuada em Intensidade Contida, o custo é 0 de Éter (ao invés de 1).
 - **Barganha Primordial** (1 Ação) — Uma vez por descanso longo, pode invocar as forças primordiais e propor uma barganha: Declare o que você quer: Recuperar 1d6 de Éter / Próxima magia ganha uma modulação grátis / Uma informação sobre algo místico/oculto / Outro benefício… As forças declaram um preço pelo seu pedido: Perda de Saúde, Stamina ou Éter / Componente material ou Sins / Tarefa a ser cumprida futuramente / Outro preço…
 
-Os três patronos são entidades do mundo, não abstrações: **A Grande Árvore** é [[A Vhelor]], cuja [[Seiva]] o pacto manda propagar; **O Limiar** é a própria entidade guardiã criada por [[Velúria]]; e **O Trancafiado** é o que dorme acorrentado em [[O Abismo]] (ver Pontas soltas).
+Os três patronos são entidades do mundo, não abstrações: **A Grande Árvore** é [[A Vhelor]], cuja [[Seiva]] o pacto manda propagar; **O Limiar** é a própria entidade guardiã criada por [[Velúria]]; e **O Trancafiado** é o que dorme acorrentado em [[O Abismo]] (E72).
 
 ## Técnicas de Ramo — Tier 2 (nível 4)
 **Acadêmico**
@@ -209,15 +209,8 @@ Os três patronos são entidades do mundo, não abstrações: **A Grande Árvore
 - **Raça com afinidade** → [[Gruto]], linhagem Skal'ri, com +5 de Éter máximo
 - **Economia** → [[Sins]] no preço das Magias Pactuadas e da Barganha Primordial · [[O Bazar]], onde se compram os Focos
 
-## Pontas soltas
-- **Tese Arcana custa 2 ou 4 de Stamina?** O cabeçalho diz 4, o corpo oferece a escolha de gastar 2 e depois cobra 4 pelo bônus. A técnica está marcada para ajuste. [[Perguntas Abertas]] E70.
-- **As listas de magias somam ou substituem?** O nível 1 dá "1+Mod. INT ou SAB" magias; *Grimório Arcano* dá "3+Mod. INT", *Canalizador Inato* "2+Mod. SAB" e *Magias Pactuadas* "1+Mod. INT". Esses números se acumulam ao inicial ou passam a ser o total conhecido? [[Perguntas Abertas]] E71.
-- **Quem é O Trancafiado?** O texto do patrono fala de "algo mais antigo… que estava lá antes das almas chegarem" e que odeia "os Deuses que o trancaram", enquanto [[O Abismo]] é descrito como a prisão da figura material de [[Osh'Kar]]. São a mesma entidade ou há uma segunda coisa selada no mesmo lugar? [[Perguntas Abertas]] E72.
-- **Dano Biológico sem subtipo.** A *Seiva Dourada* do Grutto causa "dano Biológico", mas a categoria reúne Veneno, Ácido e Psíquico ([[Tipos de Dano]]); falta escolher qual. [[Perguntas Abertas]] E73.
-- **A escola [[Primordial]] não tem lista de magias.** Ela existe como quinta escola, exige nível 5 e Foco Primordial, mas nenhuma magia primordial foi escrita ainda. [[Perguntas Abertas]] E41.
-- **Magia sustentada.** *Ritual* e *Imbuir Magia* dependem da regra de manter uma magia canalizada turno a turno, que segue com a redação antiga em [[Regras de Magia]] e precisa ser refeita.
-- **A condição *Banida*** aparece em *Manifestação do Patrono* (O Limiar) e uma vez no catálogo de magias, sem entrada em [[Condições]].
-- **Marcas que dão "+1 permanente"** até +5 convivem com a escala de treinamento de quatro degraus, +2/+4/+6/+8 ([[Atributos e Perícias]]); e *Devoto* ainda conta de três em três, não de cinco em cinco. [[Perguntas Abertas]] E63.
+## Em aberto
+E41 (Primordial: escola ou camada) · E63 (Marcas +1 × degraus) · E70 (Tese Arcana 2 ou 4 Stamina) · E71 (listas de magia somam ou substituem) · E72 (quem é O Trancafiado) · E73 (Biológico sem subtipo) · E500 (Banida sem condição) · E512 (magia sustentada)
 
 ## Procedência
 - Notion `caa6e3a401d98330bae281511750d407` — Teurgo (ed. 2026-08-05, 🟢 Pronto); índice de Classes `3a66e3a401d9809b8eceec1f30be9fd2`.

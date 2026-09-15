@@ -42,9 +42,8 @@ O que se conta sobre a mercadoria também não é confiável. As notas que circu
 - **Origem vizinha** → [[Nobre]] (dinheiro herdado × dinheiro girado) · [[Artesão]] (o outro lado do balcão)
 - **Inventário** → [[Inventário e Peso]]
 
-## Pontas soltas
-- **Descontos que se empilham.** *Negociador* (±10%), *Língua Prateada* do [[Batedor]] (−25%) e *Olho no Lance* (+20% de Sins) podem incidir sobre a mesma compra. Falta a ordem de aplicação e um teto.
-- **O catálogo manda.** Qualquer regra de preço precisa bater com o catálogo real de [[O Bazar]], que é mantido à parte destas notas.
+## Em aberto
+E565 (descontos empilhados) · E566 (Sins do Nobre × Mercador)
 
 ## Procedência
 - Notion `98d6e3a401d9831386fc01d118567160` — Mercador 🪙 (🟢, ed. 2026-07-23); índice de Origens `3a66e3a401d9808aa877f7e7cb77002a`.

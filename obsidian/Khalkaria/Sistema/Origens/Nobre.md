@@ -46,10 +46,8 @@ A nobreza de Kharavel tem raiz declarada: [[Khaskavel]] *"nasceu como uma diarqu
 - **Origem vizinha** → [[Acadêmico]] (a outra educação formal) · [[Mercador]] (dinheiro girado × dinheiro herdado)
 - **Economia** → 2d6+5 [[Sins]] · [[O Bazar]]
 
-## Pontas soltas
-- **Bônus sem cerca.** *Educação Privilegiada* não restringe a perícia — pode apontar para Atacar ou Defender, que são as duas perícias de combate. [[Perguntas Abertas|E96]].
-- **Falar o que não se pode falar.** O idioma concedido inclui o [[Khazadun]], que exige cordas vocais anãs para ser pronunciado. Um nobre não-[[Anão]] pode escolhê-lo — e se puder, lê e escreve sem nunca falar? Mesma dúvida do [[Acadêmico]]. [[Perguntas Abertas|E88]].
-- **Rico na ficção, mediano na bolsa.** 2d6+5 [[Sins]] é menos da metade do que rende o [[Mercador]] (4d6+15); provavelmente é o preço da queda, mas nunca foi dito.
+## Em aberto
+E88 (Khazadun falado) · E96 (Educação Privilegiada sem cerca) · E566 (Sins do Nobre × Mercador)
 
 ## Procedência
 - Notion `e7a6e3a401d98247b3ba01084195cb30` — Nobre 🏰 (🟢, ed. 2026-07-23); índice de Origens `3a66e3a401d9808aa877f7e7cb77002a`.

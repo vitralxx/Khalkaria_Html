@@ -20,7 +20,7 @@ O Limiar é a **entidade guardiã do [[Plano Místico]]**, criada por [[Velúria
 > O limiar é a entidade guardiã do plano Místico, na história proverá poderes aos jogadores enquanto eles se alinharem a vytalia, deusa dos seres, sob comando de velúria, a deusa da magia.
 > O Limiar é uma entidade cria por Velúria logo após o desaparecimento de Kha com intuito de
 
-A frase nunca foi terminada; o intuito, hoje sabido, é este: controlar a passagem do Éter do [[Plano Místico]] para os outros planos, barrar a entrada de aplanares em prol da preservação da geração de Éter, impedir que um teurgo sugue o plano excessivamente e, acima de tudo, **expandir a geração de Éter feita no Místico**. O Éter que todo ser carrega é a chave capaz de romper a barreira do Limiar e trazer essa energia para o [[Plano Material]] — ver [[Éter]].
+O intuito é este: controlar a passagem do Éter do [[Plano Místico]] para os outros planos, barrar a entrada de aplanares em prol da preservação da geração de Éter, impedir que um teurgo sugue o plano excessivamente e, acima de tudo, **expandir a geração de Éter feita no Místico**. O Éter que todo ser carrega é a chave capaz de romper a barreira do Limiar e trazer essa energia para o [[Plano Material]] — ver [[Éter]].
 
 Ele é criatura de [[Velúria]] e responde a ela. As páginas antigas dizem o contrário — que a deusa "age sob comando do Limiar" —, e é engano.
 
@@ -66,20 +66,15 @@ O que a mesa vê é um evento político: sempre que os jogadores sobem de nível
 - **Corrupções rivais oferecidas por** → [[O Abismo]] ([[Osh'Kar]]) — cartas a refazer
 - **Patrono de** → [[Teurgo]] (ramo Arauto): invocação **Terro**; manifestação plena "Guardião do Portão"
 - **Fronteira entre** → [[Plano Místico]] e [[Plano Material]]; o "espaço entre planos" para onde vai quem é *Banido* ([[Condições]])
-- **Vínculo por mapear com** → [[Kha]] e [[Karmath]]
-- **Nada tem a ver com** → [[Sins]] (os Pontos do Limiar não são moeda)
 
 ## Linha do tempo
 - **Queda da Plenitude:** criado por [[Velúria]] logo depois.
 - **Antes de −27:** [[Sinikko Kiriam (original)]] já tem conexão com as "forças materializantes".
 - **Campanha (níveis 2–5):** aparece pelo portal a cada nível e oferece suas cartas.
 
-## Pontas soltas
-1. **Antes dele, como o Éter passava?** Se nasceu depois do desaparecimento de [[Kha]], havia magia em [[A Plenitude]] sem barreira alguma — ou o Limiar foi feito para regular um problema que só existe sem Kha?
-2. **Ele tem forma própria?** A invocação é um cavaleiro de escudo chamado Terro, a manifestação plena é "uma figura impossível de luz e sombra", e as cartas falam de porta e portal. Terro é o Limiar ou um servo dele?
-3. **Mortais contam como aplanares?** Se contam, nenhum teurgo entra no Místico — só puxa Éter; mas a manifestação plena sussurra a localização de um portal para lá.
-4. **Segredo × generosidade:** o pacto exige punir quem exponha o Místico, e ao mesmo tempo o Limiar distribui cartas a cinco aventureiros. Coerente com "ele não julga, apenas oferece" — ou tensão? Ninguém escreveu.
-5. **Vínculo com [[Kha]] e com [[Karmath]]** nunca foi mapeado.
+## Em aberto
+
+E208 (vínculo com Kha e Karmath) · E225 (como o Éter passava antes dele) · E226 (mortais contam como aplanares?) · E227 (Terro é ele ou um servo?) · E228 (segredo × generosidade)
 
 ## Procedência
 - Notion: O Limiar (lore) `3416e3a401d9802fa419f94e4c7cfbe7` · O Limiar (cartas) `3a66e3a401d9806db1f8d6975255f676` · Deuses `33e6e3a401d9817f9470e140120b1c22` · Velúria `39e6e3a401d98159b906e2033370e5c1` · Teurgo `caa6e3a401d98330bae281511750d407` · Sinikko Kiriam `33e6e3a401d9813d8cf5d8d8e6c3fddc` · Kheyos `33e6e3a401d9819789c0da0fcde2f114` · Sistema raiz `2b76e3a401d980c0ab7bc27a342f4ee1`

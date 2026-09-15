@@ -42,10 +42,8 @@ Há também o exílio sem título. Os [[Rastas]] que fugiram de [[Khaskavel]] e 
 - **Origens vizinhas** → [[Andarilho]] (a mesma estrada por escolha) · [[Refugiado]] (perdeu o lar sem ter sido expulso) · [[Escravo]]
 - **Economia** → 1d6 [[Sins]], das mais pobres · [[O Bazar]]
 
-## Pontas soltas
-- **Qualidade de descanso.** *Nômade* soma +1 a uma escala que precisa existir e estar escrita em [[Descanso]] para significar alguma coisa.
-- **Três origens mexem na mesma estrada.** Exilado (+2 fixo), [[Andarilho]] (hostilidade) e [[Caçador]] (caça) alteram [[Jornada]] por vias diferentes; falta confirmar que se somam sem quebrar a regra — e nenhuma das nove regiões de Kharavel tem valor de Hostilidade declarado ([[Perguntas Abertas|E59]]).
-- **O nome colide com uma facção.** "Os Exilados", os grutos dos esgotos, dividem o nome com esta origem. [[Perguntas Abertas|E33]].
+## Em aberto
+E33 (colisão com a facção) · E59 (hostilidade por região) · E555 (qualidade do descanso)
 
 ## Procedência
 - Notion `6906e3a401d982208d1e01353e11a7d2` — Exilado 🔭 (🟢, ed. 2026-07-23); índice de Origens `3a66e3a401d9808aa877f7e7cb77002a`.

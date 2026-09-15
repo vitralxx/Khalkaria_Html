@@ -248,9 +248,215 @@ Cada item precisa de decisão do Pedro. E1–E15 vieram do cruzamento Notion × 
 
 - **E567** A raiz do Sistema lista seis idiomas sob a frase "apenas 5 idiomas existem", e "Esquecido" ainda não foi rebatizado **Criptografado** em toda parte. Corrigir a contagem e a grafia na fonte? — *afeta:* [[Sistema]], [[Idiomas]]
 
+## E300+ — Continentes
+
+Consolidação das dúvidas que estavam espalhadas pelas 72 notas de `Continentes/`. Números E1–E105 já existentes foram reaproveitados; o que é novo começa em **E300**.
+
+### Geografia e fronteiras
+
+- **E300** Onde fica a fábrica de seiva do [[Culto de Malkhor]] — [[A Embrenha]], a [[Mina de Khaskavel]], o prédio de chaminés do oeste da cidade — e ela é administrada dos escritórios de [[Vistaluz]]? — *afeta:* [[Culto de Malkhor]], [[A Embrenha]], [[Khaskavel]], [[Seiva]], [[Vistaluz]], [[Tev Kossar]], [[Mina de Khaskavel]]
+- **E301** A que região das nove [[Khaskavel]] pertence — [[Emaranhado de Raízes]], [[Bosque Corrompido]] ou nenhuma? — *afeta:* [[Kharavel]], [[Khaskavel]], [[Emaranhado de Raízes]]
+- **E302** Onde ficam os [[Xkamur]] no mapa — no sul, no [[Bosque Corrompido]] ou em outro lugar? — *afeta:* [[Xkamur]], [[Bosque Corrompido]], [[Povos Diversos do Sul]], [[Terras Livres]]
+- **E303** "[[O Oásis]]" é um ponto na fronteira norte do deserto ou o véu que cobre a região inteira? — *afeta:* [[O Oásis]], [[Deserto do Abismo]]
+- **E304** Em que ponto do [[Emaranhado de Raízes]] se abre a porta da [[A Vhelor|Vhelor]]? — *afeta:* [[Emaranhado de Raízes]], [[Câmaras de Provação]]
+- **E305** Até onde chegam as raízes expostas — todo o [[Emaranhado de Raízes]], os muros de [[Khaskavel]], o fundo da [[Mina de Khaskavel]] — e elas avançaram nos últimos vinte e sete anos? — *afeta:* [[Casca de Raiz]], [[Emaranhado de Raízes]], [[Mina de Khaskavel]]
+- **E306** O rio que corta [[Khaskavel]] e o lago central são da mesma bacia, e para onde desaguam as águas do centro? — *afeta:* [[Bacia Acidentada]]
+- **E307** Onde ardem as forjas seculares dos Krichama — em [[Volkrest]], de onde [[Alvak Krichama]] emigrou, ou nas [[Costas Rochosas]] — e o que liga o clã às minas do leste? — *afeta:* [[Costas Rochosas]], [[Minas dos Krichama]]
+- **E308** Quem opera as [[Minas dos Krichama]] hoje, o que se extrai delas e existe colônia anã em [[Kharavel]]? — *afeta:* [[Minas dos Krichama]], [[Costas Rochosas]]
+- **E309** Por que as minas do leste levam o nome dos Krichama, ferreiros, e não dos Caxon, engenheiros? — *afeta:* [[Minas dos Krichama]]
+- **E310** Quem extrai os cristais da [[Cordilheira Cristalina]], e há assentamento nas encostas? — *afeta:* [[Cordilheira Cristalina]]
+- **E311** Que criaturas guardam as alturas da [[Cordilheira Cristalina]] e a arrebentação das [[Costas Rochosas]]? — *afeta:* [[Cordilheira Cristalina]], [[Costas Rochosas]]
+- **E312** O que queimou o [[Ermo das Cinzas]], quando, e a região já era assim há vinte e sete anos? — *afeta:* [[Ermo das Cinzas]], [[Castelo do Sul]]
+- **E313** O [[Bosque Corrompido]] já estava corrompido há vinte e sete anos, e por onde [[Lena Skarv]] o atravessou na fuga? — *afeta:* [[Bosque Corrompido]]
+- **E314** Por que a influência da [[A Vhelor|Vhelor]] se abafa no [[Cinturão Silencioso]] — proximidade de [[Karmath]] e de [[Revavena]], propriedade do terreno, ou intenção divina? — *afeta:* [[Cinturão Silencioso]]
+- **E315** O [[Ermo das Cinzas]] é cinza ou preto nas cartas? — *afeta:* [[Ermo das Cinzas]], [[Kharavel]]
+- **E316** Quem criou [[Kharavel]]: o "deus da terra" das páginas antigas é [[Mundarak]], e a parte de [[Malkhor]] se resume a uma criação? — *afeta:* [[Kharavel]]
+
+### Cidades e assentamentos
+
+- **E317** O que se extrai da [[Mina de Khaskavel]] — minério, seiva das raízes ou ambos — e ela ainda opera, para quem? — *afeta:* [[Mina de Khaskavel]], [[Culto de Malkhor]]
+- **E318** Quem construiu o [[Castelo do Sul]], quando e para quê, o que o derrubou, e ele tem relação com o Castelo das Nações do centro? — *afeta:* [[Castelo do Sul]], [[Ermo das Cinzas]]
+- **E319** Em nome de quem o [[Castelo de Kirkushav]] seguiu servindo de base imperial, se o clone rompeu com o [[Império de Ferro]]? — *afeta:* [[Castelo de Kirkushav]], [[Império de Ferro]]
+- **E320** Quem atacou o [[Castelo de Kirkushav]] ao lado dos revolucionários revavenanos — [[Skarv]], [[Xkamur]], [[Povos Diversos do Sul]] — e o castelo já estava em ruínas antes do ataque? — *afeta:* [[Castelo de Kirkushav]], [[Xkamur]], [[Rastas]]
+- **E321** A obra da [[Igreja Serafélia]] terminou e ela sobreviveu ao apodrecimento da cidade, ou o rótulo do mapa é decoração de cartógrafo? — *afeta:* [[Igreja Serafélia]]
+- **E322** Quem é o taverneiro da [[Taverna de Khaskavel]], qual a clientela e que papel a casa tem na [[Sessão 0]]? — *afeta:* [[Taverna de Khaskavel]]
+- **E323** Qual o gentílico de [[Khaskavel]] — khaskavianos, khaskaveis ou khaskavelanos? — *afeta:* [[Khaskavel]]
+- **E324** "Desde seus 5 anos de desenvolvimento": cinco anos de cidade, ou [[Sinikko Kiriam (original)|Sinikko]] no poder a partir do quinto ano? — *afeta:* [[Khaskavel]]
+- **E325** Onde [[Sinikko Kiriam (original)|Sinikko]] falou a sós com [[Karma]], e onde ela desapareceu misticamente? — *afeta:* [[Khaskavel]]
+- **E326** O palácio de [[Revavena]] foi construído depois da fundação do zero, ou é resíduo da versão superada da cidade? — *afeta:* [[Revavena]], [[Rastas]], [[Cinturão Silencioso]]
+- **E327** [[Revavena]] defende "uma abordagem mais sustentável e inteligente" e ao mesmo tempo prega queimar a Praga — qual das duas é a política da cidade? — *afeta:* [[Revavena]]
+- **E328** [[Revavena]] "cega pelo domínio d'A Grande Árvore" é cega de ódio, e não de devoção? — *afeta:* [[Revavena]], [[Kharavel]]
+- **E329** Qual a descrição física, a população, a forma de governo e os demais nomes de [[Revavena]], além de [[Karma]], [[Sevic]] e [[Mira Vesnal]]? — *afeta:* [[Revavena]]
+- **E330** [[Kuriam]] é ponto ocupado dentro de região livre, e quem são os moradores e o comandante local da [[Vanguarda Serafélia]]? — *afeta:* [[Kuriam]], [[Terras Livres]]
+- **E331** Para onde [[Kuriam]] exporta lenha e peixe? — *afeta:* [[Kuriam]], [[Terras Livres]], [[O Porto de Khaskavel]]
+- **E332** Quem controla [[O Porto de Khaskavel]] depois do rompimento com o [[Império de Ferro]], e ele ainda opera? — *afeta:* [[O Porto de Khaskavel]]
+- **E333** [[Revavena]] e [[Kuriam]] têm porto próprio, e de onde partem os barcos clandestinos de [[Tev Kossar]]? — *afeta:* [[O Porto de Khaskavel]], [[Tev Kossar]], [[Revavena]], [[Kuriam]]
+- **E334** A [[Casa Isolada]] sobreviveu ao apodrecimento de [[Khaskavel]], e "Casa Isolada" é nome próprio ou descrição de cartógrafo? — *afeta:* [[Casa Isolada]]
+- **E335** As criaturas abandonadas nos esgotos de [[Vistaluz]] têm nome e ficha? — *afeta:* [[Vistaluz]]
+
+### Facções
+
+- **E336** Quem lidera os sãos da [[A Embrenha|Embrenha]], onde se reúnem, e há ligação entre eles e os contrabandistas de [[Tev Kossar]]? — *afeta:* [[Embrenhos]], [[A Embrenha]], [[Tev Kossar]]
+- **E337** O que foi feito dos oitenta Subjulgados que ficaram em [[Khaskavel]] — viraram os primeiros [[Embrenhos|embrenhos]], morreram, e quem eram? — *afeta:* [[Embrenhos]], [[Rastas]], [[Revavena]], [[A Embrenha]]
+- **E338** Quando e por que os renegados que fundaram [[Kuriam]] saíram da [[A Embrenha|Embrenha]], e como chegaram tão ao sul? — *afeta:* [[Embrenhos]], [[Kuriam]]
+- **E339** O [[Culto de Malkhor]] ainda exporta seiva ao resto do mundo, depois que o clone virou a mira para dentro de [[Kharavel]]? — *afeta:* [[Culto de Malkhor]], [[Seiva]]
+- **E340** Quem chefia a fábrica do [[Culto de Malkhor]] e que ritual acontece nos salões trancados? — *afeta:* [[Culto de Malkhor]], [[Tev Kossar]]
+- **E341** Alguma célula dos [[Cultos de Osh'Kar]] tem nome, líder, território e simbologia — e existe uma congregação-mãe junto ao [[O Abismo|Abismo]]? — *afeta:* [[Cultos de Osh'Kar]], [[O Abismo]]
+- **E342** As almas oferecidas nos ritos chegam a [[Osh'Kar]] ou apenas ao portal? — *afeta:* [[Cultos de Osh'Kar]]
+- **E343** Quem sabe que o cume da [[Cordilheira Cristalina]] desfaz a ilusão d'[[O Oásis]] — os cultistas, algum povo do sul? — *afeta:* [[Cultos de Osh'Kar]], [[Povos Diversos do Sul]], [[Cordilheira Cristalina]], [[O Oásis]]
+- **E344** "Iluminados" continua sendo o nome da elite de [[Vistaluz]]? — *afeta:* [[Iluminados]]
+- **E345** Quais nobres de [[Vistaluz]] têm nome, e a nobreza inteira carrega a [[Marca da Vhelor]]? — *afeta:* [[Iluminados]]
+- **E346** Quem são os [[Povos Diversos do Sul]] — nomes, vilas, raças, líderes, posição no mapa — e como convivem com a [[Vanguarda Serafélia]] instalada em [[Kuriam]]? — *afeta:* [[Povos Diversos do Sul]], [[Terras Livres]], [[Kuriam]]
+- **E347** [[Xkamur]]: aparência, organização social, idioma, a origem da rivalidade com os [[Skarv]], a relação atual com [[Khaskavel]] e os primeiros nomes próprios. — *afeta:* [[Xkamur]]
+- **E348** A [[Vanguarda Serafélia]] seguiu o clone inteira, rachou, ou parte voltou a [[Volkrest]]? — *afeta:* [[Vanguarda Serafélia]], [[Vistaluz]], [[Culto de Malkhor]]
+- **E349** [[Ka'ur Zotama]]: raça, idade, temperamento, desde quando é general e a quem é leal de fato. — *afeta:* [[Ka'ur Zotama]], [[Vanguarda Serafélia]]
+- **E350** A cultura [[Skarv]]: organização social, rituais, população e nomes próprios além de [[Yu]] e [[Lena Skarv]]. — *afeta:* [[Skarv]]
+- **E351** Os [[Skarv]] usam a seiva "sem venerar a árvore como deusa" e ao mesmo tempo a cultuam como deusa viva — qual das duas frases vale? — *afeta:* [[Skarv]], [[Vilarejo Skarv]]
+- **E352** Quem, entre os [[Rastas]], tem nome além de [[Karma]] e [[Sevic]] — e quem é o filho de Sevic? — *afeta:* [[Rastas]], [[Sevic]]
+- **E353** A desconfiança entre [[Hyven]] e os teurgos tradicionais de [[Aether]] é fato ou suposição? — *afeta:* [[Hyven]], [[Aether]]
+- **E354** O nome do continente [[Aether]] vem do [[Éter]] de [[Velúria]]? — *afeta:* [[Aether]]
+- **E355** [[Os Hax]] listam dryads e meio-cervos como presas distintas, embora meio-cervo seja [[Dryad|dryad]] — que diferença eles enxergam? — *afeta:* [[Os Hax]]
+- **E356** Quem aliciou [[Klaus von Aldric|Klaus]] em [[Mordval]], e era agente d'[[Os Hax]]? — *afeta:* [[Mordval]]
+- **E357** [[Khaskavel]] ainda consta como colônia do [[Império de Ferro]] depois do rompimento do clone? — *afeta:* [[Sinikko Kiriam (clone)]], [[Império de Ferro]]
+- **E358** Nenhuma região, ruína ou aberração de [[Ossyria]] tem nome — quais nomear primeiro? — *afeta:* [[Ossyria]]
+
+### Pessoas de Kharavel
+
+- **E359** [[Alvak Krichama]] tem marcas de seringa e queima [[Folhas Amarelas]] na fornalha: ele usa [[Seiva]] e carrega a [[Marca da Vhelor]], ou os dois detalhes são de versão descartada? — *afeta:* [[Alvak Krichama]], [[Arrma Boua]], [[Folhas Amarelas]], [[Seiva]]
+- **E360** Qual a idade de [[Alvak Krichama]] e quantos anos ele passou em [[Volkrest]] antes da travessia? — *afeta:* [[Alvak Krichama]]
+- **E361** Qual é a tarefa de [[Alvak Krichama]] que libera as melhorias compráveis da forja? — *afeta:* [[Alvak Krichama]], [[Arrma Boua]]
+- **E362** Quem guiou [[Alvak Krichama]] até a floresta onde achou [[Lena Skarv|Lena]] — [[Vytália]] ou [[Karmath]] —, se a bênção vingadora responderia a uma injustiça armada pela própria deusa? — *afeta:* [[Alvak Krichama]]
+- **E363** De que animal [[Lena Skarv]] é metade? — *afeta:* [[Lena Skarv]]
+- **E364** [[Lena Skarv]] sabe da própria pureza e do plano das deusas? — *afeta:* [[Lena Skarv]]
+- **E365** [[Lena Skarv]] e [[Karma]] servem à mesma deusa no mesmo continente — elas sabem uma da outra? — *afeta:* [[Karma]], [[Lena Skarv]]
+- **E366** [[Yu]] está viva, e onde — na travessia ou segurando o vilarejo? Qual a idade, a aparência e o parentesco dela com [[Lena Skarv]]? — *afeta:* [[Yu]], [[Vilarejo Skarv]], [[Skarv]]
+- **E367** Quantas memórias do original o [[Sinikko Kiriam (clone)|clone]] herdou: sabe da profecia, reconheceria [[Hadran Vorgil]], [[Alvak Krichama]] ou [[Lena Skarv]]? — *afeta:* [[Sinikko Kiriam (clone)]]
+- **E368** A chuva de seiva do clone: que magia, com que alcance, a partir de onde? — *afeta:* [[Sinikko Kiriam (clone)]]
+- **E369** O Sonhador tem consciência, pode ser acordado, reconheceria alguém — e o que resta dele se outro coração ocupar o casulo? — *afeta:* [[Sinikko Kiriam (original)]], [[A Vhelor]], [[Lena Skarv]]
+- **E370** Onde uma gruta dos esgotos aprendeu teurgia, e como a família Kiriam "de renda relativamente alta" se concilia com o subterrâneo? — *afeta:* [[Lorrain Kiriam]]
+- **E371** Quem desceu aos esgotos no dia em que [[Lorrain Kiriam]] morreu, e por ordem de quem? — *afeta:* [[Lorrain Kiriam]]
+- **E372** Qual o nome, a idade e a aparência do pai de [[Sinikko Kiriam (original)|Sinikko]]? — *afeta:* [[Lorrain Kiriam]]
+- **E373** Por que [[Hadran Vorgil]] saiu vivo da queda do castelo — acaso, ou alguém o poupou de propósito? — *afeta:* [[Hadran Vorgil]]
+- **E374** Como [[Hadran Vorgil]] passou de "bobão e carismático" a pragmático em vinte e sete anos? — *afeta:* [[Hadran Vorgil]], [[Vanguarda do Ferro]]
+- **E375** Qual a raça e a idade de [[Sevic]], e quem é o guarda desatento que deixou o bilhete sair do castelo? — *afeta:* [[Sevic]], [[Castelo de Kirkushav]]
+- **E376** "Irmã", no bilhete de [[Sevic]] a [[Karma]]: sangue ou facção? — *afeta:* [[Sevic]], [[Karma]]
+- **E377** O que foi feito de [[Jairo Krichama]] — morreu na queda do castelo, voltou ao Império ou saiu antes — e qual a raça, a idade e a aparência dele? — *afeta:* [[Jairo Krichama]]
+- **E378** Os "Itens Exóticos" de [[Jairo Krichama]] correspondem a que raridade d'[[O Bazar]]? — *afeta:* [[Jairo Krichama]]
+- **E379** Qual a idade e a aparência de [[Kheyos]], e o que ele descobriu sobre a árvore nos anos de estudo? — *afeta:* [[Kheyos]]
+- **E380** [[Kheyos]] "corrompido pelas forças materializantes": corrompido em que sentido, e com que relação com a raça [[Corrompido]]? — *afeta:* [[Kheyos]], [[Casa Isolada]]
+- **E381** Como [[Kheyos]] aprendeu a política dos deuses — pelo [[O Limiar|Limiar]] e por [[Velúria]]? — *afeta:* [[Kheyos]]
+- **E382** "Criando-o como o próprio filho": [[Kirkushav Drekar]] adotou [[Sinikko Kiriam (original)|Sinikko]], ou a corte contava assim o que era refém dourado? — *afeta:* [[Kirkushav Drekar]], [[Império de Ferro]]
+- **E383** [[Kirkushav Drekar]] reaparece na campanha? — *afeta:* [[Kirkushav Drekar]]
+- **E384** O bilhete de [[Sevic]] anuncia a chegada de [[Kirkushav Drekar]] para o dia seguinte e, à mesa, ele parte na mesma noite — qual é a ordem do dia? — *afeta:* [[Kirkushav Drekar]], [[Castelo de Kirkushav]], [[Sevic]]
+- **E385** [[Mira Vesnal]] nasceu escrava em [[Khaskavel]] e fugiu criança com os [[Rastas]], ou nasceu na [[Revavena]] recém-fundada? — *afeta:* [[Mira Vesnal]]
+- **E386** De qual deus [[Mira Vesnal]] é [[Acólito|acólita]]? — *afeta:* [[Mira Vesnal]]
+- **E387** Como [[Revavena]], que odeia a árvore, acolheu refugiados [[Skarv]] que a veneram? — *afeta:* [[Mira Vesnal]], [[Skarv]]
+- **E388** Qual o destino de [[Yenev Vesnal]] — vivo e transformado, morto, ou já não humano — e que retrato (raça, rosto, ofício) ele tinha antes de partir? — *afeta:* [[Yenev Vesnal]]
+- **E389** [[Tev Kossar]] nunca ouviu o nome de [[Yenev Vesnal]]: ele usava outro nome, ou sumiu antes de Tev entrar na fábrica? — *afeta:* [[Yenev Vesnal]], [[Tev Kossar]]
+- **E390** A rede de contrabando de [[Tev Kossar]] já foi lida pelo [[Culto de Malkhor]], ou as cartas ainda chegam limpas? — *afeta:* [[Tev Kossar]]
+- **E391** Algum jogador tomou a origem [[Amaldiçoado]] — [[Lázlo]] entra no mundo? — *afeta:* [[Lázlo]]
+- **E392** De onde veio [[Lázlo]] e qual célula dos [[Cultos de Osh'Kar]] o sacrificou? — *afeta:* [[Lázlo]], [[Cultos de Osh'Kar]]
+- **E393** O sonho de [[Lázlo]] vem da miragem d'[[O Oásis]] ou d'[[O Abismo]] debaixo dela? — *afeta:* [[Lázlo]], [[O Oásis]]
+- **E421** A infância de [[Karma]] — onde nasceu, como caiu no cativeiro e quando [[Karmath]] a escolheu. — *afeta:* [[Karma]], [[Rastas]]
+- **E394** A ficha de [[Hadran Vorgil]] grava Convencimento, Intuição e Ofício em chaves que o Bestiário não lê (`prof_convincing`, `prof_intuition`, `craft_attribute`) — corrigir para `prof_persuasion`, `prof_insight` e `craft_attr`? — *afeta:* [[Hadran Vorgil]]
+
+### A Vhelor e suas substâncias
+
+- **E395** A [[A Vhelor|Vhelor]] se alimenta do sangue do Sonhador ou dos pecados dele? — *afeta:* [[A Vhelor]]
+- **E396** "Quem desafia a árvore não retorna" convive com o clone, que voltou, e com [[Os Colhedores]], que voltam toda expedição — é regra geral com exceções nomeadas? — *afeta:* [[A Vhelor]], [[Os Colhedores]]
+- **E397** O nome Vhelor foi registrado em [[Idiomas|Criptografado]]: foram autômatos os primeiros a nomear a árvore? — *afeta:* [[A Vhelor]]
+- **E398** Quem abriu a porta da [[A Vhelor|Vhelor]] — [[Kheyos]], ou [[Velúria]]? — *afeta:* [[A Vhelor]], [[Câmaras de Provação]], [[Emaranhado de Raízes]]
+- **E399** A porta ainda está aberta no ano 0, e como um grupo da campanha entraria? — *afeta:* [[Câmaras de Provação]]
+- **E400** Quantas câmaras tem a travessia, que prova cada uma monta e como a árvore lê quem entra? — *afeta:* [[Câmaras de Provação]]
+- **E401** O que é o dragão de raízes da última câmara — criatura da árvore, Sonhador anterior deformado, ou montagem contra o desafiante? — *afeta:* [[Câmaras de Provação]]
+- **E402** Onde foram parar as almas de [[Klaus von Aldric]], [[Runa Skorn]] e [[Azgar Sandgale]] — presas na árvore, no [[Plano dos Mortos]] ou em [[O Abismo]]? — *afeta:* [[Câmaras de Provação]]
+- **E403** Qual o freio do vínculo da [[Casca de Raiz]] — teste para resistir, número de ingestões, condição que marque o portador, e como fechar o canal depois de aberto? — *afeta:* [[Casca de Raiz]]
+- **E404** Que língua murmura quem consome [[Casca de Raiz|casca de raiz]]? — *afeta:* [[Casca de Raiz]]
+- **E405** O que são as guardiãs da copa — forma, origem, número, fala — e o ar denso é a quarta substância da [[A Vhelor|Vhelor]]? — *afeta:* [[Folhas Amarelas]], [[Os Colhedores]]
+- **E406** Qual o preço e a categoria das [[Folhas Amarelas]] e da [[Seiva]] n'[[O Bazar]]? — *afeta:* [[Folhas Amarelas]], [[Seiva]]
+- **E407** As oferendas de "Folhas" a [[Vytália]] no [[Templo da Profecia]] são folhas comuns, de árvore comum? — *afeta:* [[Folhas Amarelas]], [[Templo da Profecia]]
+- **E408** A [[Seiva]] ganha regra — vício, regeneração acelerada, teste para resistir e degraus de dependência — como a [[Marca da Vhelor]] das folhas? — *afeta:* [[Seiva]]
+- **E409** A seiva se bebe ou se injeta, e as duas vias têm efeitos diferentes? — *afeta:* [[Seiva]], [[Alvak Krichama]]
+- **E410** Um dependente crônico de [[Seiva|seiva]] é um [[Corrompido]] em regra, e o "Grau de Corrupção" das fichas antigas mede isso ou a [[Marca da Vhelor]]? — *afeta:* [[Seiva]]
+- **E411** [[Os Colhedores]] são guilda ou autônomos, têm sede, pertencem a [[Khaskavel]], que equipamento usam e quem é o mais famoso deles? — *afeta:* [[Os Colhedores]]
+- **E412** [[Os Colhedores]] consomem as folhas que colhem? — *afeta:* [[Os Colhedores]]
+- **E413** Como se chamam os que extraem [[Seiva|seiva]] das raízes, já que "Colhedor" vale só para as folhas? — *afeta:* [[Os Colhedores]]
+
+### O Abismo e o Oásis
+
+- **E414** Abandonada a ideia do [[O Abismo|Abismo]] como representação do [[Plano dos Mortos]] no plano material, o portal e o acervo de almas retidas continuam valendo? — *afeta:* [[O Abismo]], [[Deserto do Abismo]]
+- **E415** [[Mundarak]] participou do aprisionamento de [[Osh'Kar]], ou emprestaram a terra dele sem pedir? — *afeta:* [[O Abismo]]
+- **E416** Quem lançou a ilusão d'[[O Oásis]], e como a subida à [[Cordilheira Cristalina]] a desliga — vista do alto, artefato no cume, ritual ou guardião? — *afeta:* [[O Oásis]], [[Cordilheira Cristalina]]
+- **E420** O que [[O Abismo]] oferece em troca de poder: com que Dores e Benefícios as cartas do Abismo serão refeitas? — *afeta:* [[O Abismo]], [[Deserto do Abismo]], [[Cultos de Osh'Kar]]
+
+### Templo da Profecia
+
+- **E417** Quem é o [[Kha]] atual e como chegou ao cargo, se os deuses atuais nunca foram mortais mas o templo diz que ele foi escolhido entre mortais? — *afeta:* [[Templo da Profecia]]
+- **E418** Quem construiu o [[Templo da Profecia]] e quem continua deixando oferendas nele? — *afeta:* [[Templo da Profecia]]
+- **E419** Quem riscou "Pecador" da placa de [[Malkhor]] — cultistas escondendo o nome do deus, ou revavenanos cuspindo nele? — *afeta:* [[Templo da Profecia]]
+
 ## Pendências operacionais
 
 - **Mapas**: depositar os 3 PNGs em `docs/memoria/mapas/` com os nomes do LEIA-ME (Kharavel campanha, Khaskavel Sessão 0, Kharavel Sessão 0).
 - **Notion — página raiz Sistema Khalkaria**: bloqueada para edição via API (ícone legado `money_yellow.svg` num callout). 5 correções pendentes de aplicação manual — ver `docs/memoria/log_notion.md`.
 - **Notion — lote 2 de correções de redação** (autorizado por D1, pendente de execução): '3 por Tier' → '3 no Tier 1' nas 7 classes; Execução do Artilheiro 'Você recebe 2d6' → 'o alvo recebe'; Reserva Oculta citando a exceção a Oco; 'Acolito'→'Acólito'; 'Exausto N'→'Exaustão N'; 'Sangrando N'→'Sangramento N'; 'Envenenado'→'Envenenamento'; 'Interação Social(X)'→perícia individual; 'Reflexo'→'Reflexos'; 'Ataque/Defesa'→'Atacar/Defender'; 'Intimidar'→'Intimidação'; 'Sussuros'→'Sussurros'; 'Ápatico'→'Apático'; 'Vicio'→'Vício'; Escravo '- 3 Comidas' colado na linha da Bolsa de Couro.
 - **Obsidian Local REST API**: roda no PC do Pedro; este ambiente remoto não alcança. O vault vive no repo e é sincronizado por git.
+## E200–E239 — Cosmologia
+
+### O sumiço de Kha e a Queda
+
+- **E200** O que é capaz de sequestrar um ser onipotente, onipresente e onisciente — outro deus, algo de fora do panteão, ou o próprio cargo se voltando contra ele? E há quanto tempo isso aconteceu? — *afeta:* [[Kha]], [[Cosmologia]], [[A Plenitude]]
+- **E201** O cargo de Kha está ocupado agora ou vago? As páginas dizem que os cinco escolheram um substituto que "já foi mortal"; o cânone diz que nenhum deus atual foi mortal. Se o remendo existe, quem é e o que ele pode? — *afeta:* [[Kha]], [[Primórdio]], [[A Plenitude]], [[Cosmologia]]
+- **E202** Quanto tempo se passou desde a Queda da Plenitude, em números que sirvam ao calendário: décadas, séculos ou milênios? — *afeta:* [[A Plenitude]]
+- **E203** A aposta de Kharavel entre Vytália e Malkhor foi armada antes ou depois da Queda? (A Árvore já usa a Declaração de Kha como argumento, e o conflito entre os cinco só existe sem Kha.) — *afeta:* [[A Plenitude]], [[Kha]], [[Malkhor]], [[Vytália]]
+- **E204** O que era, concretamente, a "transcendência imaterial" a que a Plenitude estava destinada — o destino dos seres ao fim daquela era? — *afeta:* [[A Plenitude]], [[Oblívio]]
+
+### Os cinco e seus agentes
+
+- **E205** Karmath aceita que Malkhor é essencial à Plenitude? As páginas dizem que ela "não aceita" e "ignora na prática"; o cânone diz que ela entende a necessidade dele e só não consegue negar a rivalidade. Qual das duas vale? — *afeta:* [[Karmath]], [[Malkhor]], [[A Plenitude]]
+- **E206** Quem armou o plano do coração puro que produziu Lena Skarv, e qual é exatamente o papel de Velúria nele: coautora da execução, ou apenas a fonte do vazamento? (As páginas de Lena e de Alvak atribuem a bênção e a manipulação a Velúria.) — *afeta:* [[Velúria]], [[Vytália]], [[Karmath]], [[O Sonhador]]
+- **E207** Os agentes de Karmath não sabem que são agentes, mas Karma sabe e entende a guerra divina. Ela é exceção consciente ou a regra mudou? E quem mais, em Kharavel, é agente sem saber? — *afeta:* [[Karmath]]
+- **E208** Que relação O Limiar tem com Kha e com Karmath: Kha conhecia ou ordenou a criação do guardião, e Karmath se serve dele de alguma forma? — *afeta:* [[O Limiar]], [[Kha]], [[Karmath]]
+- **E209** Símbolo, iconografia e culto de cada um dos cinco fora do Templo da Profecia: existe clero organizado, e com que emblema? — *afeta:* [[Karmath]], [[Velúria]], [[Vytália]], [[Malkhor]], [[Mundarak]]
+- **E210** Vytália é deusa dos seres ou deusa da vida? "Deusa da vida" aparece nas histórias da Árvore e nas magias — é epíteto popular a preservar ou erro a corrigir? — *afeta:* [[Vytália]]
+- **E211** O que dá a Mundarak presença concreta na mesa: um agente, um culto, um evento em Kharavel? Hoje ele só existe como criador do terreno. — *afeta:* [[Mundarak]]
+- **E212** Mundarak participou da prisão de Osh'Kar e da corrupção do Abismo, consentiu, ou a terra dele foi usada sem pedir? — *afeta:* [[Mundarak]], [[Osh'Kar]], [[Velúria]], [[Vytália]]
+- **E213** Por qual canal Malkhor toca os mortais: só pela Árvore e pelo clone, ou também em pessoa? — *afeta:* [[Malkhor]]
+- **E214** "Possibilitou o mau através do livre arbítrio" convive com "não é o deus do mal". O livre arbítrio é a dádiva dele e a maldade é escolha dos seres, ou há maldade própria no domínio do Pecado? — *afeta:* [[Malkhor]]
+- **E215** O que são as três energias de local que a onisciência de Mundarak permite sentir — Plenitude, Sangria e Brutal? "Plenitude" aí é resíduo da era perdida ou outra coisa de mesmo nome? — *afeta:* [[Mundarak]], [[A Plenitude]]
+- **E216** O Elixir da Expurgão é obra de clérigos de Karmath, como se diz no Bazar? — *afeta:* [[Karmath]]
+
+### Osh'Kar, as almas e o Abismo
+
+- **E217** O portal para o Plano dos Mortos dentro do Abismo continua existindo depois que o Abismo deixou de ser "representação do Plano dos Mortos"? Se não, para onde vão as almas de Kharavel hoje? — *afeta:* [[Osh'Kar]], [[Plano dos Mortos]]
+- **E218** Quem ceifa as almas fora de Kharavel, já que Osh'Kar continua livre nos outros planos — e alguém assumiu a função dele no material, como se fez com o cargo de Kha? — *afeta:* [[Osh'Kar]], [[Plano dos Mortos]]
+- **E219** As almas sacrificadas pelos cultos chegam de fato a Osh'Kar e o fortalecem, ou apenas engrossam o acervo preso antes do portal? — *afeta:* [[Osh'Kar]], [[Plano dos Mortos]]
+- **E220** Osh'Kar está livre também no Primórdio, ou o plano dos deuses fica fora do alcance dele? — *afeta:* [[Primórdio]], [[Osh'Kar]]
+- **E221** Como é o Plano dos Mortos por dentro: paisagem, habitantes, o que uma alma encontra ao atravessar? — *afeta:* [[Plano dos Mortos]]
+
+### Éter e o Limiar
+
+- **E222** Todo ser carrega Éter, mas a ficha só o conta em quem conjura. Não-conjuradores têm Éter latente com número, ou a substância neles é só lore? — *afeta:* [[Éter]], [[Plano Material]]
+- **E223** "Chama sempre mais éter do que o gasto" convive com um reservatório pessoal que se esvazia. O excedente é o efeito materializado no mundo, e não retorno ao conjurador? — *afeta:* [[Éter]]
+- **E224** As regras chamam de "forças primordiais" o mecanismo que traz o Éter do Místico, enquanto o Primordial é o que vaza do Primórdio. Fica um nome para cada coisa, ou o mecanismo do Éter é renomeado? — *afeta:* [[Éter]], [[Plano Místico]], [[Primórdio]]
+- **E225** Antes do Limiar — que nasceu depois do sumiço de Kha — como o Éter passava ao material durante a Plenitude: sem barreira alguma, ou havia outra guarda? — *afeta:* [[O Limiar]], [[Plano Místico]], [[A Plenitude]]
+- **E226** Mortais contam como aplanares para o Limiar? Se contam, nenhum teurgo entra no Místico, só puxa Éter de lá — mas a manifestação plena sussurra a localização de um portal para dentro. — *afeta:* [[O Limiar]], [[Plano Místico]]
+- **E227** O Limiar tem forma própria? Terro, o cavaleiro de escudo, é o próprio Limiar, um servo dele ou uma máscara que ele veste para os mortais? — *afeta:* [[O Limiar]]
+- **E228** O pacto do Limiar cobra punir quem exponha o Místico, e ao mesmo tempo ele distribui cartas a cinco aventureiros a cada nível. As duas coisas são a mesma política ou há tensão a resolver? — *afeta:* [[O Limiar]]
+- **E229** Como é o Plano Místico por dentro: paisagem, habitantes, o que um teurgo veria se atravessasse? — *afeta:* [[Plano Místico]]
+
+### Planos, escala e o Oblívio
+
+- **E230** O Oblívio entra no cânone? Se entrar: quem o criou, se nem Velúria nem Mundarak o conhecem; o que "criaturas" quer dizer (todos os seres, os mortos, os Corrompidos, as aberrações de Ossyria); e é ele o "plano inominável" do Exílio Existencial? — *afeta:* [[Oblívio]], [[Cosmologia]]
+- **E231** O que significa o Primórdio ser **binário**: dois estados, dois polos, verdadeiro e falso? É a propriedade mais citada do plano e a menos explicada. — *afeta:* [[Primórdio]], [[Kha]]
+- **E232** O Primórdio é o cerne do planeta Khalkaria ou de todo o cosmos, incluindo os "outros planetas e deuses" que o cometa de Mordval sugere? — *afeta:* [[Primórdio]], [[Plano Material]]
+- **E233** Os deuses "podem se materializar em qualquer lugar de Khalkaria" — a frase de origem ficou pela metade. Qual é o limite dessa aparição, já que Karmath nunca se manifesta e os outros agem por interpostas mãos? — *afeta:* [[Plano Material]], [[Karmath]]
+- **E234** O "espaço entre planos" para onde vai quem é *Banido* é um lugar de fato — com dentro, tempo e habitantes — ou apenas o nome de um efeito? — *afeta:* [[Plano Material]]
+- **E235** Khalkaria é o nome do planeta, do universo, ou dos dois? (O vault usa Khalkaria como planeta e "cosmos" como o conjunto dos planos.) — *afeta:* [[Plano Material]], [[Cosmologia]]
+
+### O Sonhador e a Vhelor
+
+- **E236** O prisioneiro da Vhelor está em um casulo no cerne, enraizado em meio às raízes, ou as duas coisas descrevem a mesma imagem? — *afeta:* [[O Sonhador]]
+- **E237** O pecado de Sinikko original — populista sem muitas opções, sustentando escravidão colonial — basta para explicar vinte e sete anos de explosão da Vhelor, ou algo mais alimentou a árvore nesse período? — *afeta:* [[O Sonhador]]
+- **E238** O que acontece com o Sonhador anterior quando outro assume o casulo: morre, é libertado, ou continua ali? — *afeta:* [[O Sonhador]]
+- **E239** O Sonhador conhece toda a história do continente e a Casca de Raiz abre esse canal aos jogadores. Quanto dele o mestre quer entregar na mesa, e sob que preço? — *afeta:* [[O Sonhador]], [[Casca de Raiz]]

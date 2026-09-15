@@ -74,7 +74,7 @@ No [[Templo da Profecia]], a placa dele foi apagada à força:
 
 > **3ª estatua: Malkhor** — Uma estatua de mármore de um ser com corpo distorcido e mal polido, sua face é inexistente e dois grandes chifres pretos são a única característica notável. À sua frente um recipiente de ouro com algumas oferendas, entre elas: "Adagas(Algumas sujas de sangue), Frascos com líquido Amarelo(Seiva), Fios de Cabelo e Sins(3)". Há também uma placa: "~~Pecador~~" Está ilegível danificada propositalmente.
 
-Em [[A Embrenha]] é adorado sem nome, como "A Mãe"; no [[Vilarejo Skarv]], como a deusa viva "Vhelorna", a Vhel-Mãe.
+A estátua sem face, de corpo distorcido e dois grandes chifres pretos, é a única imagem que se tem dele. Em [[A Embrenha]] é adorado sem nome, como "A Mãe"; no [[Vilarejo Skarv]], como a deusa viva "Vhelorna", a Vhel-Mãe.
 
 ## O nome nas magias proibidas
 
@@ -118,12 +118,9 @@ Derrotado o clone em [[Khaskavel]], a essência do deus contida nele abre o cami
 - **Campanha (ano 0):** plano do clone — "utilizar magia para infectar os Revavenanos assim como todo o continente de Kharavel remotamente, mediante uma grande chuva de Seiva".
 - **Desfecho verdadeiro:** clone derrotado → portal → [[Primórdio]] → expurgo ou derrota.
 
-## Pontas soltas
-1. **Malkhor toca os mortais diretamente?** Ele gerou um clone e manipula almas tomadas, mas nunca se disse por qual canal — se apenas pela Árvore ou também em pessoa.
-2. **Karmath aceita ou não que ele é essencial?** As páginas do panteão dizem que ela "não aceita" e "ignora na prática"; o mestre diz que ela entende a necessidade dele e apenas não consegue negar a rivalidade.
-3. **"Possibilitou o mau"** na criação de [[Volkrest]] convive com "não é o deus do mal": livre arbítrio não é maldade, mas a tensão está registrada.
-4. **Símbolo e iconografia** não definidos. A estátua sem face, de dois chifres, é a única referência visual.
-5. **Cronologia:** a aposta de [[Kharavel]] é anterior ou posterior à Queda da Plenitude.
+## Em aberto
+
+E203 (a aposta veio antes ou depois da Queda) · E205 (Karmath aceita que ele é essencial?) · E209 (símbolo e iconografia) · E213 (por qual canal toca os mortais) · E214 ("possibilitou o mau")
 
 ## Procedência
 - Notion: Malkhor `39e6e3a401d981eb87fecedc94f35b37` · Deuses `33e6e3a401d9817f9470e140120b1c22` · Templo da Profecia `33f6e3a401d980dd982ad39fcba2ed4e` · A Grande Árvore `33e6e3a401d9813b8a60f1f9669803be` · Direcionamento `33e6e3a401d98190a21ae6c430acbc38` · Culto de Malkhor `3696e3a401d981a0b2e3f42c3fa846e6` · Sinikko Kiriam `33e6e3a401d9813d8cf5d8d8e6c3fddc` · Substâncias `33e6e3a401d981ef841aefa20793d48d` · 2. Volkrest `33e6e3a401d9817fa7a8c67c898343e2` · Magias `3a66e3a401d98097a5d4e316154f9fcb` · Teurgo `caa6e3a401d98330bae281511750d407`

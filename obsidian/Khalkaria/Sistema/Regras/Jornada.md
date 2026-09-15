@@ -61,9 +61,8 @@ O que se perde na estrada volta no acampamento — ver [[Descanso]], cuja comodi
 - **Aplicada às regiões de** → [[Kharavel]]
 - **Cartas que afetam a jornada** → [[O Limiar (cartas)]] (Guardião da Natureza; a Dor *Perdido*, que aumenta em +1 os pontos necessários)
 
-## Pontas soltas
-- **Guiar escala igual?** Guiar dá +2 e as demais ações +1, mas todas somam "+1 para cada 5 pontos sobrepujantes" — falta confirmar se o bônus por excedente de Guiar é o mesmo.
-- **Nenhuma região tem Hostilidade atribuída.** As nove regiões de [[Kharavel]] não têm valor fixo; hoje o Mestre decide caso a caso. [[Perguntas Abertas]] E59.
+## Em aberto
+E59 (hostilidade por região) · E557 (escala de Guiar)
 
 ## Procedência
 - Notion `2b76e3a401d980c0ab7bc27a342f4ee1` — Jornada.

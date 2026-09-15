@@ -33,10 +33,8 @@ A raça é a primeira das três escolhas de [[Criação de Personagem]] — depo
 - **Civilização autômata** → [[Hyven]], em [[Aether]]
 - **Povos nativos de Kharavel** → [[Skarv]] (dryads), [[Xkamur]], [[Povos Diversos do Sul]], [[Embrenhos]]
 
-## Pontas soltas
-- **Dryads e anões não têm continente de berço declarado.** [[Volkrest]] reivindica humanos, grutos, autômatos e insetos; os outros dois povos ficaram sem origem. [[Perguntas Abertas]] E30.
-- **[[Hyven]] é uma facção autômata ou a pátria da raça?** [[Perguntas Abertas]] E30.
-- **O segredo do lobisomem** é mantido diante dos demais jogadores; ver [[Lobisomem]].
+## Em aberto
+E30 (berço de dryads e anões; Hyven) · E533 (Ae/Ar com três grafias)
 
 ## Procedência
 - Notion `3a66e3a401d980318836edcfa11c8a24` — índice de Raças (8 subpáginas).

@@ -83,12 +83,8 @@ Duas cartas raras de [[O Limiar (cartas)]] usam a mesma expressão:
 - **Conjurada por** → [[Teurgo]]
 - **Cartas que usam a expressão "escola do Primórdio"** → [[O Limiar (cartas)]]
 
-## Pontas soltas
-- **Primordial é escola ou camada?** Não existe lista de magias Primordiais: só um Foco que destrava o nível 4 das quatro escolas — e as cartas do Limiar ainda chamam essas mesmas quatro de "escolas do Primórdio", o que embaralha os dois sentidos. Uma anotação de trabalho ainda a descreve como quinta escola, de nível 5, mas a régua de magia tem quatro níveis (2 / 4 / 6 / 8 Éter). Falta decidir se Primordial é uma quinta escola a povoar, apenas o Foco de nível 4, ou o nome coletivo das quatro. [[Perguntas Abertas]] E41.
-- **Requisito do Foco escrito pela metade:** `*Experiente*> em Místico` — lê-se "Experiente ou superior".
-- **Risco do Transbordante nas "Apenas Transbordante".** Nove das vinte magias de nível 4 só existem em Transbordante; falta confirmar se o teste de Vontade CD 15 (falha = perder o dobro do Éter, isto é, −24) se aplica também a elas. [[Perguntas Abertas]] E49.
-- **Conjuração que atravessa rodadas.** *Fissura da Alma* custa "6 Ações (2 Rodadas)", e o turno dá três ações — mas não há regra geral de conjuração multi-rodada em [[Regras de Magia]]. [[Perguntas Abertas]] E58.
-- **Níveis inexistentes.** *Desejo Sombrio*, um Benefício do [[O Abismo|Abismo]] em [[O Limiar (cartas)]], permite "conjurar qualquer magia de nível 1-5"; só existem quatro níveis.
+## Em aberto
+E41 (escola ou camada) · E49 (risco do Transbordante) · E58 (conjuração multi-rodada) · E519 (requisito do Foco truncado) · E520 (nível 1-5 × 4 níveis)
 
 ## Procedência
 - Notion `3a66e3a401d98097a5d4e316154f9fcb` (Magias — Nível 4 e Regras de Magia), `2b76e3a401d980c0ab7bc27a342f4ee1` (Sistema Khalkaria — Armas: Foco Primordial; Magias: "escolas do primórdio") e `3a66e3a401d9806db1f8d6975255f676` (O Limiar — cartas Duas Mangas e Mestre Teurgo Supremo).

@@ -91,10 +91,8 @@ Vexor Skaleth · Sythera Coldblood · Draxus Fangscale · Nyssara Venomheart · 
 - **Imunes a** → [[Condições|Envenenamento]]
 - **Regras tocadas** → [[Atributos e Perícias]] · [[Dano, Ataque e Defesa]] (Ar) · [[Descanso]] · [[Combate]]
 
-## Pontas soltas
-- **O que é uma "criatura predável"?** A vantagem da Língua Bifurcada depende do termo, e ele não está definido em regra nenhuma. Quem decide o que é presa?
-- **Os Exilados.** Na primeira versão da história de Sinikko, os grutos criminosos dos esgotos formavam uma facção com esse nome, removida depois. O nome colide com a origem [[Exilado]]. [[Perguntas Abertas]] E33.
-- **Grutos ferais em Kharavel** — ver a mesma dúvida em [[Dryad]]: o resgate de [[Lena Skarv]] foi de soldados da [[Vanguarda Serafélia]], mas o relato antigo falava em grutos selvagens no [[Emaranhado de Raízes]].
+## Em aberto
+E33 (Os Exilados) · E541 (grutos ferais) · E542 (criatura predável)
 
 ## Procedência
 - Notion `9696e3a401d983b4b6e48199671689f4` — Gruto (🟡 Em desenvolvimento, ed. 2026-07-23); índice de Raças `3a66e3a401d980318836edcfa11c8a24`; 2. Volkrest `33e6e3a401d9817fa7a8c67c898343e2`; páginas de Sinikko, Kirkushav e Azgar Sandgale na [[Sessão 0]]; @Nomes Aleatórios `33e6e3a401d981d09cadf2397f4a8856`.

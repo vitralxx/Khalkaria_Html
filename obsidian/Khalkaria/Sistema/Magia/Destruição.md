@@ -288,16 +288,8 @@ As barras indicam, em ordem: **Contida / Normal / Forçada / Transbordante**. Na
 - **Conjurada por** → [[Teurgo]]
 - **Exceção de ritmo** → *Disparo Veloz* ignora a regra de 1 magia por turno ([[Combate]], [[Regras de Magia]])
 
-## Pontas soltas
-- **Onda Gravitacional (N1):** a descrição diz "são empurradas m para longe de vocês" — **falta o número**; a tabela dá 0 / 1,5 / 3 / 4,5 m, e é ela que vale.
-- **Caveiras Explosivas (N2):** tabela de dano 1d4 / 1d6 / 2d6 / 3d6 (Normal = 1d6) contra a descrição "causando 2d6 de dano de Fogo". Vale a tabela.
-- **Invocar Tempestade (N2):** tabela "Raios p/ Rodada 1 / 2 / 3 / 4" contra a descrição "as 3 criaturas que rolarem mais baixo são acertadas"; Área e Duração vêm com três valores em vez de quatro. Vale a tabela.
-- **Ventania Bizarra (N2):** tabela 1d10 / 2d10 / 3d10 / 4d10 de Força e área 1,5 / 3 / 4,5 / 6 m contra a descrição "2d8 de dano de Força" numa "área de 4,5 m em até 9 m". Vale a tabela.
-- **Fragmento Estelar (N3):** a progressão 1d6 / 2d6 / 6d6 / 10d6 **viola** a régua de intensidade (−1 / Base / +1 / +2 dados) de [[Regras de Magia]].
-- **Disparo Veloz (N3):** "ignora a regra de 1 cast por turno" — a regra que ele ignora não está escrita em nenhuma página do sistema. Está confirmada, falta redigi-la.
-- **Limiar Perfurante (N3) e Disparo Veloz (N3)** causam "dano Místico", mas Místico é **categoria**, não tipo ([[Tipos de Dano]]). [[Perguntas Abertas]] E43.
-- **Reversão Umbral (N3):** exige Transbordante, mas não traz linha de Intensidade na tabela como as demais.
-- **Fissura da Alma (N4):** "6 Ações (2 Rodadas)" sem regra geral de conjuração multi-rodada. [[Perguntas Abertas]] E58.
+## Em aberto
+E43 (Místico como tipo) · E58 (conjuração multi-rodada) · E504 (tabela × descrição) · E506 (Fragmento Estelar fora da régua) · E509 (Reversão Umbral sem Intensidade) · E513 (1 magia por turno) · E559 (empurrar sem derrubar)
 
 ## Procedência
 - Notion `3a66e3a401d98097a5d4e316154f9fcb` (Magias, 🟢 Pronto, fetch 2026-07-23) — seção ⚔️ Destruição dos níveis 1 a 4; modulações também em `2b76e3a401d980c0ab7bc27a342f4ee1` (Sistema Khalkaria → Magias).

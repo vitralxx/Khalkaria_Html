@@ -53,9 +53,8 @@ tags: [khalkaria/sistema, khalkaria/sistema/regras]
 - **Soco desarmado escala com** → [[Monge]] e cartas de [[O Limiar (cartas)]] (Garras de Éter, Lenda Monge, Artista Marcial Supremo)
 - **Tamanho alterado por magia** → [[Abjuração]] (Aumentar / Diminuir Criatura), [[O Limiar (cartas)]] (Colossus Primordial)
 
-## Pontas soltas
-- **Agarrar não define como se livrar.** A magia *Translocação Arcana* ("sai de Agarrão") e a carta *Corpo Escorregadio* ("+3 em testes para escapar de Agarrões") pressupõem um teste de escape que a manobra não descreve. [[Perguntas Abertas]] E57.
-- **Empurrar derruba sempre?** A manobra aplica *Caído* automaticamente no sucesso, mas a magia *Onda Gravitacional* empurra sem derrubar — falta dizer se a condição é exclusiva da manobra.
+## Em aberto
+E57 (escapar de Agarrar) · E559 (empurrar derruba sempre?)
 
 ## Procedência
 - Notion `2b76e3a401d980c0ab7bc27a342f4ee1` — Manobras; Tamanho.

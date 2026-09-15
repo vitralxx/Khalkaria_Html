@@ -71,12 +71,8 @@ A palidez do quarto degrau não é exclusiva das folhas: é *"a assinatura visua
 ## Linha do tempo
 - **Ano 0 (campanha).** Regra ativa para todo personagem, jogador ou NPC, que consuma folhas.
 
-## Pontas soltas
-1. **A Marca 4 como limiar dos itens de Vytália** vem das notas do catálogo de itens, que não são canônicas. A lógica está confirmada — corrompido não usa item de Vytália —, o número não. Precisa ser validado item a item.
-2. **"Descontrolado"**, no degrau 5, não é uma condição da lista de [[Condições]]; aparece em itálico, como descrição. Se vira condição formal ou continua narrativa, está em aberto.
-3. **A CD crescente** do degrau 2 não tem valor inicial nem incremento; o texto declara os números ajustáveis em mesa.
-4. **Duas corrupções, uma só formalizada.** As [[Folhas Amarelas]] têm sete degraus; a [[Seiva]], que arruinou bairros inteiros de [[Khaskavel]], não tem tabela nenhuma. Ou se escreve a segunda, ou se explica por que só uma conta.
-5. **Um [[Corrompido]] acumula Marcas normalmente?** Uma criatura que já passou pelo ritual dos [[Os Hax]] e come uma folha soma Marcas como qualquer outro, ou a corrupção anterior interfere? Não escrito.
+## Em aberto
+E500 (Descontrolado sem condição) · E537 (Marca 4 × raça Corrompido) · E560 (Marca 4 e itens de Vytália) · E561 (CD crescente do degrau 2) · E562 (Seiva sem tabela)
 
 ## Procedência
 - Notion: Substâncias da Grande Árvore `33e6e3a401d981ef841aefa20793d48d` · Lázlo `36d6e3a401d9818d9cddefbdd4015aad`

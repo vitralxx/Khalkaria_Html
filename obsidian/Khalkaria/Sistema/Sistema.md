@@ -60,7 +60,7 @@ tags: [khalkaria/sistema, khalkaria/moc]
 - [[Conhecimento]] — 20 magias de informação, comunicação e verdade.
 - [[Primordial]] — o Foco que destrava o **nível 4** das quatro escolas; e o tipo de dano vazado do [[Primórdio]].
 
-Um **nível 0** está previsto e ainda não foi escrito: cerca de vinte truques sem custo de [[Éter]], para dar o que fazer ao [[Teurgo]] de nível 1.
+Um **nível 0** está previsto: cerca de vinte truques sem custo de [[Éter]], para dar o que fazer ao [[Teurgo]] de nível 1 (E514).
 
 ## Classes (7)
 
@@ -85,19 +85,8 @@ Cada classe define Saúde/Stamina/Éter, Evasão, recurso próprio (FLUXO no [[M
 - **Cosmologia por trás da magia** → [[Éter]], [[O Limiar]], [[Plano Místico]], [[Primórdio]], [[Velúria]]
 - **Personagens de jogador construídos com estas regras** → [[Equipe desfloreio]]
 
-## Pontas soltas
-- **Modificador e Evasão sem página.** `(Atributo − 10) / 2` e `10 + Mod. DES` são usados em toda a mesa, no material dos jogadores e na exportação de fichas, mas não têm página de regra que os enuncie. [[Perguntas Abertas]] E40.
-- **Primordial: escola ou camada?** Ver [[Primordial]]. [[Perguntas Abertas]] E41.
-- **"Gelo" × "Frio".** O tipo canônico é **Frio**; "Gelo" ainda aparece na raiz e no template de ficha. Ver [[Tipos de Dano]].
-- **Seis idiomas listados sob a frase "apenas 5 idiomas existem"**, e o antigo "Esquecido" ainda não foi rebatizado **Criptografado** em toda parte. Ver [[Idiomas]].
-- **Contagem do Limiar.** Um resumo antigo anuncia 130 cartas onde as tabelas trazem 127, e uma faixa de "8-11 cartas" onde a correta é 5–11. Ver [[O Limiar (cartas)]]. [[Perguntas Abertas]] E44, E45.
-- **[[O Abismo]] será refeito por inteiro** — suas 41 cartas são provisórias.
-- **Nível 0 de magia a criar** (≈20 truques sem custo de Éter).
-- **Revisão geral das [[Condições]]** pendente.
-- **[[Criação de Personagem]]** ainda não foi escrita, e o template de ficha usa nomes antigos de perícia.
-- **Fichas dos cinco personagens de jogador** da [[Equipe desfloreio]] estão desatualizadas em relação às regras atuais. [[Perguntas Abertas]] E32.
-
-Lista completa em [[Perguntas Abertas]].
+## Em aberto
+E32 (fichas desatualizadas) · E40 (modificador e Evasão sem página) · E41 (Primordial: escola ou camada) · E44 (pools 14+ ou 16+) · E45 (mix do sorteio) · E500 (revisão geral das condições) · E514 (nível 0) · E515 (Ampliado × Forçada) · E521 (contagem do Limiar) · E522 (reescrita do Abismo) · E525 (Gelo × Frio) · E551 (template com nomes antigos) · E567 (seis idiomas e Criptografado)
 
 ## Procedência
 - Notion `2b76e3a401d980c0ab7bc27a342f4ee1` (Sistema Khalkaria — página raiz, 🟡 Em desenvolvimento, fetch 2026-08-27) e suas 7 subpáginas: Criação de Personagem, Classes, Raças, Origens, Condições, Magias, O Limiar.

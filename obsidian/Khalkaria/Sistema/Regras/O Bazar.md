@@ -90,10 +90,8 @@ Preço, raridade, categoria e requisitos do catálogo continuam valendo; só a c
 - **Itens de mesa** → as tendas da [[Sessão 0]]
 - **Fabricado por** → [[Alvak Krichama]], [[Jairo Krichama]], [[Alquimista]], [[Artilheiro]]
 
-## Pontas soltas
-- **Ofício(Alquimia)** aparece nas categorias, mas a regra de fabricação só cita Ferraria e Engenharia — falta dizer o que a Alquimia fabrica e com qual CD. [[Perguntas Abertas]] E54.
-- **As 92 fórmulas do catálogo alquímico** ([[Alquimista]]) podem se sobrepor a itens do compêndio, com nomes e preços repetidos. [[Perguntas Abertas]] E81.
-- **A coluna de notas do catálogo** segue não-canônica até a validação item a item.
+## Em aberto
+E54 (Ofício(Alquimia) na fabricação) · E81 (92 fórmulas × catálogo) · E560 (Marca 4 e itens de Vytália) · E565 (descontos empilhados)
 
 ## Procedência
 - Notion `2b76e3a401d980c0ab7bc27a342f4ee1` — O Bazar: categorias, raridades, Sistema de Crafting.
