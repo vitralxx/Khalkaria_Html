@@ -541,3 +541,52 @@ compartilhavam `1x Peça Mecânica` e 9 compartilhavam `1x Tecido Resistente`, s
 objeto. Razão de craft do tier Ordinário: **0,44 → 0,77**.
 Correções: `Engação` → `Enganação` (Selo Simples) · `Óleo Comum (frasco)` → `Óleo Comum` ·
 Bolsa de Couro ganhou "Não é empilhável e não ocupa espaço de bugiganga".
+
+## D48 — Crafting EXIGE treinamento na perícia de Ofício
+Pedro adicionou na tabela de perícias do Notion. Sem treinamento você não fabrica — por isso os kits
+que "permitem testes sem treinamento" são destravas reais, não bônus numéricos.
+
+### Probabilidade de fabricar (d20 + Mod.INT+3 + proficiência) — CDs pela escada do Alquimista
+| situação | Ord (10) | Inc (13) | Exó (17) | Lux (21) |
+|---|---|---|---|---|
+| Leigo + Kit Básico (−2) | 60% | 45% | 25% | 5% |
+| Ferramentas de Artesão (leigo +1) | 75% | 60% | 40% | 20% |
+| Treinado (+2) | 80% | 65% | 45% | 25% |
+| Treinado + Luvas / Experiente (+4) | 90% | 75% | 55% | 35% |
+| Mestre (+6) + Mestre-Artífice (+4) | 100% | 100% | 85% | 65% |
+
+**O Kit de Ferramentas Básico não quebra nada** — destrava o Ordinário (60%) e é quase inútil no
+Luxária (5%). A curva já se auto-limita.
+
+## D49 — 🔴 PENDENTE: a falha destrói o material em Ferraria/Engenharia?
+Só a Alquimia documenta ("em caso de falha, você perde os reagentes"). Se a mesma regra valer para
+as outras duas, **craftar vira prejuízo para quase todo mundo** (custo efetivo = 0,77x ÷ P(sucesso)):
+
+| situação | Ord | Inc | Exó | Lux |
+|---|---|---|---|---|
+| Leigo + Kit Básico | 1,28x | 1,71x | 3,08x | 15,40x |
+| Treinado (+2) | 0,96x | 1,18x | 1,71x | 3,08x |
+| Experiente (+4) | 0,86x | 1,03x | 1,40x | 2,20x |
+| Mestre + Mestre-Artífice | 0,77x | 0,77x | 0,91x | 1,18x |
+
+Acima de 1,00x sai mais caro que comprar pronto. **Só um Mestre com o kit Luxária lucra acima do
+Incomum** — o oposto do "quero que o crafting seja lucrativo".
+**Proposta:** em Ferraria e Engenharia a falha custa **o tempo, não o material** (metal errado
+volta para a forja; reagente alquímico reage e acaba). Mantém o 0,77x em toda a curva.
+
+### Lote 11 (OFÍCIO / KITS) — aplicado
+Textos do Pedro aplicados em 6 itens. `Engação`→`Enganação` no Kit de Disfarce. Receita do Kit de
+Manutenção passa a usar `+` como separador (era a única do Bazar com " e ").
+
+**Escada de cura do Autômato (D50).** O Autômato não se cura pelos meios tradicionais e depende
+desses kits, então a escada corre ~30% acima da Poção de Cura:
+| Raridade | Kit | cura | Poção de Cura equivalente |
+|---|---|---|---|
+| Ordinário | Kit de Manutenção Enferrujado | 2d6+Int (7) | Menor 2d4+Int (5) |
+| Incomum | Kit de Manutenção | 4d6+Int (14) | Moderada 3d6+Int (10,5) |
+| Exótico | Kit de Manutenção de Qualidade | 5d8+Int (22,5) | Maior 4d8+Int (18) |
+| Luxária | Kit de Manutenção Impecável | 8d8+Int (36) + 1 condição | Suprema 6d8+Int (27) + 1 condição |
+
+**Escada de Ofício(Ferraria)** criada espelhando a de Engenharia: Bigorna Portátil (Inc) ·
+Bigorna Rúnica (Exó) · Forja de Bolso (Lux). O Ordinário fica coberto pelo Kit de Ferramentas
+Básico, que já atende Engenharia e Ferraria.
