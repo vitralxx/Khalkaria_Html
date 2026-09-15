@@ -1,5 +1,10 @@
 # Khalkaria — Protocolo do Agente de Desenvolvimento
 
+> **Antes de qualquer coisa, leia `docs/COMECE_AQUI.md`.** Ele diz o que é este projeto, qual é a sua função (worldbuilding criativo, não manutenção de base) e onde mora cada coisa.
+>
+> **Trabalho de universo** (lore, NPCs, geografia, cronologia, conexões narrativas) → o vault em `obsidian/Khalkaria/`, com contrato em `_meta/CONVENCOES.md` e mapa em `_meta/Índice.md`.
+> **Trabalho de site** (HTML, JSON, ficha interativa) → este arquivo, das seções 3 a 8.
+
 Site estático do sistema de RPG dark fantasy **Khalkaria** (PT-BR), continente de Kharavel.
 Publicado em GitHub Pages: `vitralxx.github.io/Khalkaria_Html/`.
 
@@ -169,8 +174,11 @@ Sistema → Magias → Condições → Limiar → 7 Classes → 7 Raças → Ori
 - **Bazar `Lore/Notas`:** escrito por IA, **não-canônico** até validação item a item. Já falsos: "Bastão de Karmath vs Teurgos". "Não funciona acima da Marca 4" é item de Vytália, não de Karmath.
 - **Memória do agente:** `docs/memoria/` — `VARREDURA_NOTION_2026-09-04.md` (relatório), `digests/A..F` (por ramo), `notion_raw/` (páginas brutas), `respostas_pedro_2026-09-05.md` (**cânone dito pelo Pedro — tem precedência sobre o Notion**), `fidelidade_notion_vs_pedro_2026-09-05.md`, `mapas/`. Ler os digests antes de refazer qualquer varredura.
 - **Vault Obsidian:** `obsidian/Khalkaria/` — 162 notas com wikilinks; Pedro abre como vault local (o plugin Local REST API não é alcançável deste ambiente; a sincronização é por git). Estrutura: `Cosmologia/` (deuses, planos, entidades) · `Continentes/` (Kharavel com regiões, locais, facções, NPCs, A Vhelor; + 4 continentes) · `Campanha/` (Sessão 0, os 5 PJs, Linha do Tempo, Arco) · `Sistema/` (regras, magia por escola, 7 classes, 8 raças, 17 origens, condições, cartas) · `_meta/` (CONVENCOES, Perguntas Abertas, Log de Sincronização). Contrato de escrita: `_meta/CONVENCOES.md`. Toda página nova de lore nasce lá E no Notion.
-- **Perguntas pendentes:** `obsidian/Khalkaria/_meta/Perguntas Abertas.md` — 103 itens numerados (E1+) aguardando o Pedro. Consultar antes de assumir qualquer coisa duvidosa.
+- **Índice de Entidades:** `obsidian/Khalkaria/_meta/Índice.md` — toda entidade, tipo, pasta, aliases e uma linha de identificação, mais o que é citado sem ter nota. **Ler antes de procurar qualquer coisa no vault.** Gerado por `scripts/vault.py index`.
+- **Perguntas pendentes:** `obsidian/Khalkaria/_meta/Perguntas Abertas.md` — registro único e numerado. As notas trazem só os números, em `## Em aberto`; a base é afirmativa e a dúvida fica separada (decisão do Pedro, 2026-09-13).
 - **Correções no Notion:** typos, frases truncadas, contagens e grafias (lista C) podem ser aplicadas direto, **sempre registradas em `docs/memoria/log_notion.md`** (antes → depois, página, data). Em dúvida: comentário no Notion, não edição.
+- **`Sistema Khalkaria` e todas as suas subpáginas no Notion são sensíveis — PERGUNTAR AO PEDRO antes de qualquer edição** (regra dele, 2026-09-13). Correções de sistema estão adiadas até a lore assentar.
+- **Protocolo do vault:** `python3 scripts/vault.py check` antes de todo commit que toque `obsidian/`; `index` regenera o Índice; `report` grava auditoria datada em `docs/memoria/auditorias/`. Não criar scripts avulsos — comando novo entra nesse arquivo.
 
 ---
 

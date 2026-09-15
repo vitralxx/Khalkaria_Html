@@ -5,7 +5,7 @@ spoiler: gm
 era: atemporal
 aliases: [Convenções, Contrato do vault]
 fonte_notion: pedro-2026-09-05, pedro-2026-09-07
-ultima_sync: 2026-09-07
+ultima_sync: 2026-09-15
 tags: [khalkaria/meta]
 ---
 # Convenções do vault Khalkaria
@@ -22,6 +22,10 @@ Quando a nota precisa marcar que algo veio do mestre e não do texto antigo, esc
 
 - ❌ `Kirkushav planejava matar os Sandgale (A9). **B2:** munições gastam 1 por combate.`
 - ✅ `Kirkushav planejava matar os Sandgale por terem sobrevivido a Ossyria.` (a origem vai em Procedência)
+
+**A base afirma.** O corpo de uma nota diz o que *é*, não o que falta. Frases como "não está escrito", "ninguém decidiu", "em branco", "nunca foi contado" saem do texto: o fato fica afirmado e a dúvida vira número em `## Em aberto`. Um agente que lê a nota deve sair sabendo o que existe, não hesitando sobre o que não existe.
+
+**Link é relação, não coincidência.** Só se linka o que se relaciona no mundo: serve a, comanda, nasceu em, criou, deve a, teme. Nunca por semelhança de grafia, nome parecido ou porque algo "ainda não foi escrito" — um link falso suja o grafo e sugere parentesco onde não há. Exemplo do que não fazer: linkar [[Osh'Kar]] a partir de um general humano porque os dois nomes levam apóstrofo.
 
 **Lore não explica regra.** Uma nota de personagem nunca descreve o consumo de munição, custo de Éter ou escala de perícia — ela **linka** para [[Armas e Munição]], [[Regras de Magia]], [[Atributos e Perícias]]. O inverso também vale: nota de regra não conta história, só cita e linka.
 
@@ -66,11 +70,11 @@ tags: [khalkaria/<area>]
 3. `## Ficha` — **somente quando existir**. Nem todo ser tem ficha; ausência não é lacuna.
 4. `## Relações` — bullets `- **Papel** → [[Alvo]]`. É o que desenha o grafo: seja generoso.
 5. `## Linha do tempo` — quando houver eventos datados.
-6. `## Pontas soltas` — o que ainda não foi decidido, com as versões em conflito e a pergunta correspondente em [[Perguntas Abertas]].
+6. `## Em aberto` — **apenas** uma linha com os números do registro e um rótulo de duas a cinco palavras: `E29 (a escrava sem nome) · E312 (lealdade de Ka'ur)`. A pergunta inteira vive em [[Perguntas Abertas]]. Sem dúvida, a seção não existe.
 7. `## Procedência` — **único lugar** para páginas de origem, códigos de resposta do mestre, arquivos e datas.
 
 ## Datação
 Ver [[Linha do Tempo]]. Marco zero = **a Queda da Plenitude**. Eventos da campanha também aceitam marcação relativa: `Sessão 0` e `campanha` (27 anos depois).
 
 ## Fontes e prioridade
-Palavra do mestre > páginas do Notion > site. O site nunca é fonte. Conteúdo da coluna de notas do Bazar não é canônico. Nada se inventa: lacuna vira **Ponta solta** e pergunta numerada.
+Palavra do mestre > páginas do Notion > site. O site nunca é fonte. Conteúdo da coluna de notas do Bazar não é canônico. Nada se inventa: lacuna vira entrada numerada em [[Perguntas Abertas]] e aparece na nota só como número em `## Em aberto`.
