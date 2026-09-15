@@ -79,12 +79,9 @@ Texto integral das técnicas em [[Alquimista]].
 - **Antes de `C−27`:** deixa Hyven; *"Anos de busca"* sem pista; chega ao [[Império de Ferro]]; a audiência; aceita o acordo.
 - **`C−27`** ([[Sessão 0]]): *"Dias depois, vislumbrava pela primeira vez a Grande Árvore Sagrada de Kharavel"*; entra n'[[A Vhelor]] e "morre".
 
-## Pontas soltas
-1. **Onde foi o avistamento de Skorn** que [[Kirkushav Drekar]] guardava? Em [[Kharavel]], ou o Soberano estava apenas segurando a isca? E [[Hyven]] sabe que ainda existem dragões autômatos? ([[Perguntas Abertas]] E25)
-2. **Ilou Jr. tem ficha?** O companheiro é permanente e movido por um cristal único, enquanto as técnicas de constructo do [[Alquimista]] são temporárias. ([[Perguntas Abertas]] E25)
-3. **As duas cartas que faltam** — a folha declara oito e lista seis. ([[Perguntas Abertas]] E32)
-4. **Runa morreu de fato** em `C−27`? ([[Perguntas Abertas]] E19)
-5. **Os atributos no teto.** INT 22 e SAB 22 ao mesmo tempo exigem 18 e 18 de base mais todos os bônus disponíveis — está no limite do que a criação permite, e os recursos em branco impedem conferir. ([[Perguntas Abertas]] E32)
+## Em aberto
+
+**E19** o destino dos quatro · **E25** o avistamento de Skorn e a ficha de Ilou Jr. · **E32** as duas cartas que faltam · **E406** a ficha a refazer · **E407** os atributos no teto
 
 ## Procedência
 - Notion — página de PC *Runa Skorn* `33e6e3a401d981f2ae5fd3a12244a204` (🟢, ed. 2026-06-09) · *📜 Ficha - Runa Skorn* `37a6e3a401d980189fead42d06ab3520` (🟢) · *Roteiro da Sessão 0* `33e6e3a401d9819796c9dfb2263e215d` · *4. Aether* `33e6e3a401d9812bab36f280892bf817`

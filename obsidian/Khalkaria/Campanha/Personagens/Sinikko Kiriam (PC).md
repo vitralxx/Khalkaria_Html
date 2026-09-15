@@ -45,7 +45,7 @@ tags: [khalkaria/campanha, khalkaria/campanha/personagens]
 
 A história foi escrita três vezes, e as duas primeiras não são rascunhos descartáveis: mudam fatos. A segunda apenas organiza a terceira em capítulos — *Lorrain*, *O que sobrou*, *A Resistência*, *A Corrente Dourada*, *Kharavel*. A primeira conta outra vida:
 
-- A causa da morte de [[Lorrain Kiriam]] não é dita.
+- A morte de [[Lorrain Kiriam]] acontece fora de cena, sem causa declarada.
 - Aos dezesseis, Sinikko *"encontrou os Exilados"* — *"grutos criminosos, descartados pela cidade"* —, e **desceu aos esgotos por escolha**, em vez de ter crescido neles.
 - A audiência termina com [[Kirkushav Drekar]] oferecendo *"uma proposta"*, e não com uma chantagem que o Soberano é obrigado a aceitar.
 - O fecho é mais modesto: *"se for paciente o suficiente para esperar pelo momento certo"*.
@@ -116,7 +116,6 @@ Texto integral das técnicas em [[Teurgo]]; as magias, em [[Regras de Magia]].
 - **Raça · Classe · Origem** → [[Gruto]] · [[Teurgo]] · Nobre ([[Origens]]); escolas → [[Destruição]], [[Conhecimento]], [[Alteração]]
 - **Ligado a** → [[Éter]], [[O Limiar]], [[Plano Místico]], [[Velúria]]
 - **Destino** → o casulo d'[[A Vhelor]]; usado por [[Malkhor]]
-- **Eco de frase** → *"um peão que sabe que é peão ainda pode mudar o jogo"*, repetido por [[Azgar Sandgale]]
 
 ## Linha do tempo
 - **Aos dez anos:** humanos descem aos esgotos; [[Lorrain Kiriam]] morre entre os invasores e os seus.
@@ -127,13 +126,9 @@ Texto integral das técnicas em [[Teurgo]]; as magias, em [[Regras de Magia]].
 - **`C−27` a `C`:** o casulo se alimenta dele e a [[Casca de Raiz]] canaliza seus sonhos; o clone governa em seu nome.
 - **`C`:** ainda é o Sonhador, e o prazo da profecia vence.
 
-## Pontas soltas
-1. **Dois volkrestianos numa equipe de cinco continentes.** Sinikko e [[Vorn Drekar]] vêm do mesmo lugar; se Sinikko representa [[Kharavel]] por ser imperador de Khaskavel, isso nunca foi dito com todas as letras. ([[Perguntas Abertas]] E1, E16)
-2. **"Os Exilados"** — a facção de grutos criminosos da primeira versão da história perdeu o nome nas versões seguintes, e o nome colide com a Origem Exilado de [[Azgar Sandgale]]. Manter, renomear ou arquivar? ([[Perguntas Abertas]] E33)
-3. **O total de Éter declarado no nível 4** só fecha somando Grande Éter, Duas Mangas e o Canalizador — e ainda assim é uma ordem de grandeza que destoa de tudo que as regras preveem ([[Regras de Magia]], [[Progressão]]). O número está na ficha. ([[Perguntas Abertas]] E32)
-4. **As duas cartas que faltam** — a folha declara oito e lista seis. ([[Perguntas Abertas]] E32)
-5. **A idade dele nunca foi escrita**, nem a data em que foi nomeado imperador; e a capital do Império onde tudo isso aconteceu continua sem nome. ([[Perguntas Abertas]] E27, E37)
-6. **Ele era maligno o bastante?** A árvore cresce à medida da maldade de quem sonha, e vinte e sete anos bastaram para que a Vhelor chegasse ao ponto em que está. Um político populista que passou a vida protegendo os seus é matéria-prima estranha para isso — ver [[O Sonhador]].
+## Em aberto
+
+**E1** · **E16** o continente que ele representa · **E27** o nome da capital do Império · **E32** o Éter e as duas cartas que faltam · **E33** "os Exilados" · **E37** a idade e a data da nomeação · **E410** a maldade do Sonhador
 
 ## Procedência
 - Notion — página de PC *Sinikko Kiriam* `33e6e3a401d98172bcefef2453ce1564` (🟡, ed. 2026-07-18; três versões da história) · *📜 Ficha - Sinikko Kiriam* `3676e3a401d980babe07d418ffd1c9a2` (🟢) · *Roteiro da Sessão 0* `33e6e3a401d9819796c9dfb2263e215d` · *Sinikko Kiriam* (NPC, lore) `33e6e3a401d9813d8cf5d8d8e6c3fddc` · *Kirkushav Drekar* `33e6e3a401d98131815efc830056e2e3`

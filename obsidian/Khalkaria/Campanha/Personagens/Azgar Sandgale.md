@@ -72,7 +72,6 @@ Texto integral das técnicas em [[Artilheiro]].
 - **Equipe** → [[Equipe desfloreio]] ([[Sessão 0]]), com [[Vorn Drekar]], [[Klaus von Aldric]], [[Sinikko Kiriam (PC)|Sinikko Kiriam]] e [[Runa Skorn]]
 - **Raça · Classe · Origem** → [[Humano]] · [[Artilheiro]] · Exilado ([[Origens]])
 - **Regras que o definem em jogo** → [[Artilheiro]] (Concentração) · [[Armas e Munição]] · [[Jornada]]
-- **Eco de frase** → *"um peão que aguarda o momento certo ainda pode mudar o jogo"*, a mesma imagem que [[Sinikko Kiriam (PC)|Sinikko]] usa
 - **Destino** → *"morto"* n'[[A Vhelor]]
 
 ## Linha do tempo
@@ -80,14 +79,11 @@ Texto integral das técnicas em [[Artilheiro]].
 - **Infância e juventude:** o treinamento diário, as caçadas, o dogma.
 - **Pouco antes de `C−27`:** Terk mata o Batedor e confessa o exílio; vem a tempestade; Terk desaparece; a canoa, o navio, a ascensão no Império e a audiência com Kirkushav.
 - **`C−27`** ([[Sessão 0]]): a chantagem do Batedor na mesa redonda; entra n'[[A Vhelor]] e "morre".
-- **`C`:** o paradeiro de Terk continua sem resposta.
+- **`C`:** Terk segue desaparecido em [[Ossyria]].
 
-## Pontas soltas
-1. **Terk está vivo?** Ele sumiu, não morreu — e nem o filho nem o Império sabem o que a tempestade deixou de pé. ([[Perguntas Abertas]] E20)
-2. **Qual foi o crime de Terk?** Ele fala de *"penitência apenas minha"* e nunca diz o que fez para ser despejado em Ossyria. ([[Perguntas Abertas]] E20)
-3. **A tempestade de areia** *"grande demais para ser obra da natureza"* — obra de quem, e ligada a quê? ([[Perguntas Abertas]] E21)
-4. **Um só idioma.** Azgar fala apenas [[Comum]], o que é plausível para quem cresceu isolado em Ossyria, mas nunca foi confirmado como escolha.
-5. **A ficha** precisa de recursos calculados, história preenchida e da oitava carta que a contagem promete. ([[Perguntas Abertas]] E32)
+## Em aberto
+
+**E20** Terk e o crime do exílio · **E21** a tempestade de areia · **E32** a oitava carta · **E406** a ficha a refazer · **E407** o idioma único
 
 ## Procedência
 - Notion — página de PC *Azgar Sandgale* `33e6e3a401d9814caa28c26a3a66e84c` (🟢, ed. 2026-06-09) · *📜 Ficha - Azgar Sandgale* `37a6e3a401d980a193bde996278a535a` (🟢, ed. 2026-07-18) · *Roteiro da Sessão 0* `33e6e3a401d9819796c9dfb2263e215d`

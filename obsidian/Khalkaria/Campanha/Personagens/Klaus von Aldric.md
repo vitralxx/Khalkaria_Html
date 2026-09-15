@@ -37,7 +37,7 @@ A versão guardada na própria folha de personagem é anterior e mais curta: ter
 
 [[Kheyos]] é a única figura estável na vida de Klaus, e o que ele é importa para o resto do mundo: um teurgo **mortal**, não semideus, corrompido como o próprio Klaus, que *"quer proteger o seu próprio plano da inconsequência e ingenuidade dos deuses"*. A preocupação obsessiva com o [[Império de Ferro]] que Klaus lembra dele — *"a nação mais sanguinária e por isso mais poderosa de Khalkaria"* — é a mesma agenda vista de perto.
 
-A explicação que ele dá sobre o artefato é a única teologia que Klaus tem: *"artefatos imbuídos pelos próprios deuses, que ao encontrarem as pessoas certas não as mudam, mas amplificam o que sempre esteve lá"*. Qual deus imbuiu aquele objeto, ninguém disse.
+A explicação que ele dá sobre o artefato é a única teologia que Klaus tem: *"artefatos imbuídos pelos próprios deuses, que ao encontrarem as pessoas certas não as mudam, mas amplificam o que sempre esteve lá"*.
 
 ## Na mesa redonda
 
@@ -85,12 +85,9 @@ Texto integral das técnicas em [[Monge]].
 - **Antes de `C−27`:** justiceiro na capital do Império; preso; a proposta do Soberano.
 - **`C−27`** ([[Sessão 0]]): chega *"amarrado"* ao [[Castelo de Kirkushav]]; entra n'[[A Vhelor]] e "morre".
 
-## Pontas soltas
-1. **Qual deus imbuiu o artefato** que o despertou? O apelido "A Maldição Justa" aponta para [[Karmath]], mas nada foi dito. ([[Perguntas Abertas]] E22)
-2. **O culto que formou [[Kheyos]] em [[Aether]] são os Hax?** Se forem, mentor e algoz de Klaus vêm da mesma casa. ([[Perguntas Abertas]] E23)
-3. **Klaus morreu de fato** em `C−27`? O destino dos quatro que não viraram Sonhador nunca foi escrito. ([[Perguntas Abertas]] E19)
-4. **A idade** nunca foi declarada — adolescente no cativeiro, adulto na expedição.
-5. **A ficha** ainda carrega efeitos que não batem com as regras vivas: a Esquiva Abissal está anotada como *"3d6 em vez de d12"*, redação que a carta atual substituiu por nível de treinamento em Defender ([[O Limiar (cartas)]], [[Dano, Ataque e Defesa]]); o "Grau de Corrupção" foi trocado por pontos de corrupção por nível ([[Corrompido]]); e o bônus dos Punhos do Limiar não fecha com os atributos declarados ([[Atributos e Perícias]]). Receptáculo Natural, além disso, pressupõe truques sem custo de Éter que ainda não existem ([[Regras de Magia]]). ([[Perguntas Abertas]] E32)
+## Em aberto
+
+**E19** o destino dos quatro · **E22** o deus do artefato · **E23** os Hax e Kheyos · **E403** a idade · **E406** a ficha a refazer
 
 ## Procedência
 - Notion — página de PC *Klaus von Aldric* `33e6e3a401d9810ca145d41242d235b0` (🟡, ed. 2026-07-17) · *📜 Ficha Klaus von Aldric* `35f6e3a401d9802b9ac3cf1307281197` (🟢, ed. 2026-07-24) · *Roteiro da Sessão 0* `33e6e3a401d9819796c9dfb2263e215d` · *Os Hax* `3696e3a401d98127a568c856497d9ce6`

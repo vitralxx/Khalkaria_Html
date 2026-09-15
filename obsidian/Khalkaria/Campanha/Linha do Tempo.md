@@ -19,7 +19,13 @@ Duas âncoras convivem nesta nota:
 - **Ano absoluto** — contado desde a Queda. Escreve-se apenas o número: *ano 0* é a Queda; *ano 214* é o ducentésimo décimo quarto ano depois dela.
 - **Ano relativo à mesa** — usado enquanto a âncora absoluta não estiver fixada. **C** é o ano em que a campanha começa; **C−27** é a [[Sessão 0]]. Assim, `C−27` vira um número exato no dia em que C for definido, sem reescrever nada.
 
-> **A âncora ainda não foi escolhida.** Ver *Pontas soltas*, item 1, com três escalas propostas.
+### Três escalas propostas para a âncora
+
+A escolha do número absoluto de `C` está com o mestre (**E400**). Três escalas cabem no que já existe:
+
+- **≈ 120** — a Queda é ferida recente: os avós dos vivos ouviram dos pais como era a Plenitude. O [[Império de Ferro]] nasce quase junto com a era, e [[Kirkushav Drekar]], aos 93, teria vivido quase toda ela. Máxima urgência, mínimo espaço para "séculos".
+- **≈ 300** *(a recomendada)* — a Plenitude é história documentada, não mito: autômatos antigos com módulo de Backup carregam memória dela, e o idioma [[Criptografado]] guarda registros. [[Kharavel]] se forma e é descoberta dentro desses séculos, o que casa com *"nem sempre existiu no planeta"* e com *"há poucos séculos"*. O Império é fenômeno recente numa era longa — exatamente como as fontes o descrevem.
+- **≈ 1000** — a Plenitude vira mito contestado e a maioria dos povos duvida que Kha tenha existido. Ganha-se profundidade e perde-se a urgência: os deuses estariam remendando o mundo há um milênio.
 
 ## I. A Plenitude — antes do ano 0
 
@@ -86,7 +92,7 @@ Sem data fixada, em ordem de causa:
 - Khaskavel está enegrecida e já não tem escravos: tem embrenhos viciados. Revavena está consolidada. **A profecia de Karma vence neste ano.**
 - O clone prepara uma grande chuva de seiva sobre Revavena e o continente.
 - Kirkushav segue absoluto em Volkrest, aos 93 e mais.
-- Terk Sandgale: paradeiro desconhecido. Kheyos: situação não registrada.
+- [[Terk Sandgale]] segue desaparecido em [[Ossyria]] desde a tempestade.
 - **Estágio avançado:** escalar a [[Cordilheira Cristalina]] derruba a ilusão d'[[O Oásis]] e abre o caminho para [[O Abismo]] e Osh'Kar.
 - **Fim do arco:** derrotado o clone, a brecha aberta por Karma leva um dos jogadores ao [[Primórdio]] para enfrentar Malkhor. Vencer é assumir o cargo de deus do Pecado; perder é entregar a alma. → [[Campanha 1 — Arco]]
 
@@ -116,18 +122,9 @@ Dryads vivem mais que humanos: Lena, aos 35, é adulta jovem para o seu povo.
 - **Lugares-chave** → [[Khaskavel]], [[Revavena]], [[Castelo de Kirkushav]], [[A Vhelor]], [[O Abismo]]
 - **Pessoas-chave** → [[Kirkushav Drekar]], [[Sinikko Kiriam (original)]], [[Sinikko Kiriam (clone)]], [[Karma]], [[Sevic]], [[Alvak Krichama]], [[Lena Skarv]], [[Hadran Vorgil]]
 
-## Pontas soltas
+## Em aberto
 
-1. **Qual é o ano C?** Três escalas coerentes com o que já existe, para escolher:
-   - **≈ 120** — a Queda é ferida recente: os avós dos vivos ouviram dos pais como era a Plenitude. O Império de Ferro nasce quase junto com a era, e Kirkushav (93 anos) teria vivido quase toda ela. Máxima urgência, mínimo espaço para "séculos".
-   - **≈ 300** *(recomendada)* — a Plenitude é história documentada, não mito: autômatos antigos com módulo de Backup podem carregar memória dela, e o idioma [[Criptografado]] guarda registros. Kharavel se forma e é descoberta dentro desses séculos, o que casa com *"nem sempre existiu no planeta"* e com *"há poucos séculos"*. O Império é fenômeno recente numa era longa — exatamente como as fontes o descrevem.
-   - **≈ 1000** — a Plenitude vira mito contestado; a maioria dos povos duvida que Kha tenha existido. Ganha-se profundidade e perde-se a urgência: os deuses estariam "remendando" há um milênio.
-2. **A descoberta de Kharavel.** *"Descoberto há poucos séculos"* convive mal com *"aparentemente recém-formado"* e com a chegada do Império em C−32. O continente se formou depois da Queda e foi avistado por outros povos antes do Império, ou tudo aconteceu na mesma geração?
-3. **O Abismo é anterior à Vhelor?** Osh'Kar é aprisionado em Kharavel — mas Kharavel só existe depois da aposta. A prisão foi construída no continente já pronto, ou o continente foi erguido em torno dela? O mapa de C−27 mostra o sudoeste ainda verde, com cachoeiras onde hoje há a cratera.
-4. **A queda do castelo** não tem data — apenas *"há alguns anos"*, anterior a C−3.
-5. **Kuriam** não tem data de fundação nem de tomada, e não se sabe qual dos dois Sinikkos deu a ordem.
-6. **As idades dos cinco** nunca foram declaradas; a de Sinikko tampouco.
-7. **Nomes das eras.** *A Plenitude* já é nome do mestre. A era pós-Queda ainda não tem nome — nem o calendário, que hoje se lê apenas como "ano N".
+**E400** a âncora absoluta de `C` · **E401** os nomes da era e do calendário · **E17** a idade de Kharavel · **E402** o Abismo antes ou depois da Vhelor · **E36** as datas do castelo e de Kuriam · **E403** as idades dos cinco · **E37** a idade de Sinikko
 
 ## Procedência
 Consolidada das notas linkadas nesta página. Páginas de origem: Roteiro da Sessão 0 `33e6e3a401d9819796c9dfb2263e215d`; NPCs de Kharavel `33e6e3a401d98131815efc830056e2e3`; Deuses `33e6e3a401d9817f9470e140120b1c22`; cidades e regiões de Kharavel; fichas dos cinco. Definições do mestre em 2026-09-05 (panteão, Revavena, Sonhador, Sessão 0, arco final) e 2026-09-07 (marco zero na Queda da Plenitude; elo causal com o Império de Ferro; idades de Lena Skarv). Mapas em `docs/memoria/mapas/`.

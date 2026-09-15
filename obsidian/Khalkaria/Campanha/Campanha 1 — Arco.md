@@ -107,14 +107,9 @@ O mecanismo é a própria natureza do [[Primórdio]]: *"Estar no Plano Primordia
 - **Níveis 2 a 5:** [[O Limiar]] se manifesta a cada nível, com uma leva de cartas e um aumento de atributo.
 - **Fim do arco:** a queda do clone abre a brecha; um jogador entra no [[Primórdio]]; Malkhor é expurgado — ou ganha uma alma.
 
-## Pontas soltas
-1. **Um ou todos no Primórdio?** A palavra do mestre diz *"um dos jogadores"*; a página do clone diz *"Os jogadores são transportados para o plano dos deuses"*. Prevalece um só; o registro antigo precisa de acerto. ([[Perguntas Abertas]] E34)
-2. **A brecha e o portal** — a essência de Malkhor contida no clone abre o caminho, e Karma desbloqueia a brecha. As duas descrições podem ser a mesma coisa vista de ângulos diferentes, mas isso nunca foi dito. ([[Perguntas Abertas]] E34)
-3. **A ordem dos três desfechos** — a árvore cai pela entrega de Lena, pela queda do clone ou pelo expurgo de Malkhor? A profecia promete as duas quedas no mesmo ano e a sequência não está escrita. ([[Perguntas Abertas]] E34)
-4. **Se um jogador vira o deus do Pecado**, o que acontece com [[A Vhelor]] e com [[Khaskavel]]? A árvore é obra do cargo ou do ocupante? ([[Perguntas Abertas]] E34)
-5. **Revavena "cega pelo domínio da Grande Árvore"** é ambíguo: a cidade rejeita a Seiva e ainda assim aparece descrita como dominada por ela. Cegueira moral, não química — mas convém deixar explícito.
-6. **[[O Abismo]]** e as cartas nascidas dele estão em reformulação; o grupo não chegou lá ainda.
-7. **[[Kheyos]] no ano `C`** — onde está, e o que sobrou da [[Casa Isolada]] depois de vinte e sete anos? ([[Perguntas Abertas]] E37)
+## Em aberto
+
+**E34** o desfecho no Primórdio · **E37** Kheyos e a Casa Isolada no ano `C` · **E408** a cegueira de Revavena · **E409** O Abismo em reformulação · **E410** a maldade do Sonhador
 
 ## Procedência
 - Notion — *Direcionamento* (Kharavel) `33e6e3a401d98190a21ae6c430acbc38` · *Sinikko Kiriam* (NPC, lore) `33e6e3a401d9813d8cf5d8d8e6c3fddc` · *O Limiar* (sistema) `3a66e3a401d980a4ac2fcba79a2a8b6d`

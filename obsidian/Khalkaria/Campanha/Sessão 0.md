@@ -157,13 +157,9 @@ O que sai de lá não é o que entrou: [[Sinikko Kiriam (original)|Sinikko]] ocu
 - **`C−27`, à noite:** a porta d'A Vhelor; as Câmaras de Provação; o dragão de raízes; os cinco "morrem"; Sinikko vira o Sonhador; o clone nasce.
 - **Depois:** os Rastas fogem e fundam Revavena; Kirkushav abandona Kharavel; Hadran permanece, agora sob o clone.
 
-## Pontas soltas
-1. **A escrava que Hadran deveria matar** nunca é nomeada. [[Karma]] é a candidata óbvia — é ela quem conspira contra a colônia —, mas a ordem não diz. ([[Perguntas Abertas]] E29)
-2. **[[Sevic]] sobreviveu?** O que se sabe é que ele foi interrogado; se o Bilhete chegou às mãos de Karma, e portanto se ele escapa da execução, ficou em aberto. ([[Perguntas Abertas]] E38)
-3. **As cenas de Khaskavel e das Câmaras de Provação nunca foram escritas** como roteiro — existem apenas na memória da mesa e nas páginas dos NPCs. Vale registrá-las por extenso.
-4. **Como os cinco chegam à porta da árvore** é escolha da mesa, deliberadamente sem resposta escrita.
-5. **A raridade "Exóticos"**, teto do que [[Jairo Krichama]] pode forjar, precisa de correspondência exata na escala de raridade d'[[O Bazar]].
-6. **Sinikko "imperador"** de uma cidade com cinco anos de idade, descrito em outro lugar como quem *"operou alguns anos administrando"* — coerente, mas a data em que foi nomeado não existe. ([[Perguntas Abertas]] E37)
+## Em aberto
+
+**E29** a escrava que Hadran deve matar · **E38** o destino de Sevic · **E404** as cenas de Khaskavel e das Câmaras por escrever · **E405** a raridade "Exóticos" no Bazar · **E37** a data em que Sinikko foi nomeado imperador
 
 ## Procedência
 - Notion — *Sessão 0* `33e6e3a401d98175a7ccc9b79197bdf4` · *Roteiro da Sessão 0* `33e6e3a401d9819796c9dfb2263e215d` · *Os 5 escolhidos* `33e6e3a401d981ca971ec20d99f37233` · *Sevic* `39e6e3a401d981cdbd37cd863742b4f8`

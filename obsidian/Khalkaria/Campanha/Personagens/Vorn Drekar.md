@@ -88,14 +88,13 @@ Texto integral das técnicas em [[Brutalista]].
 - **`C−27`** ([[Sessão 0]]): convocado; [[Hadran Vorgil]] o acompanha a [[Khaskavel]]; entra n'[[A Vhelor]] e "morre".
 - **`C`:** o boato do clone de Vorn corre na boca de Hadran.
 
-## Pontas soltas
-1. **Quem é o clã das Baratas?** Insetos ou bandidos — o nome não decide. E **Vick Drekar** carrega o sobrenome de um pai ausente, o que ou é casamento não contado, ou é erro. ([[Perguntas Abertas]] E28)
-2. **O clone de Vorn existe?** Só há o gancho na boca de [[Hadran Vorgil]]; nada confirma que [[Malkhor]] fez com ele o que fez com Sinikko. ([[Perguntas Abertas]] E19)
-3. **O luto que não o menciona.** [[Kirkushav Drekar]] *"Sente que perdeu o filho que mais admirou"*, e a frase, escrita a respeito de Sinikko, ignora que o filho de verdade morreu na mesma câmara. Pendente de acerto nos registros.
-4. **A ficha** precisa perder as perícias legadas e ganhar a versão atual da história. ([[Perguntas Abertas]] E32)
+## Em aberto
+
+**E19** o clone de Vorn e o destino dos quatro · **E28** o clã das Baratas e o sobrenome de Vick · **E406** a ficha a refazer
 
 ## Procedência
 - Notion — página de PC *Vorn Drekar* `33e6e3a401d981b99d17e52ca1383748` (🟡, ed. 2026-07-17) · *📜 Ficha Vorn Drekar (1)* `3656e3a401d98006aeaefd2e24f25cd2` (🟢) · *Roteiro da Sessão 0* `33e6e3a401d9819796c9dfb2263e215d` · *Hadran Vorgil* `36d6e3a401d9817792d8ef277f93f46a`
 - Mestre, 2026-09-05 — A10 (*"Sinikko Kiriam NÃO é filho de kirkushav drekar, Vorn Drekar é."*) · A15 (Vorn representa Volkrest) · A5 (listado entre os cinco da Sessão 0) · B1 ("Gelo" → Frio) · B16 ("Conhecer" não existe; "Intimidar" → Intimidação) · B17 (autorização para refazer a ficha)
+- A corrigir nos registros: *"Sente que perdeu o filho que mais admirou"*, escrito a respeito de Sinikko, ignora que o filho de sangue morreu na mesma câmara
 - `docs/memoria/digests/F_sessoes_outros.md` §2, incidente 10
 - Brutos em `docs/memoria/notion_raw/sessao_os5_vorn.md`, `sessao_roteiro.md`, `sessao_npcs_relacionados.md`

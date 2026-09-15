@@ -15,7 +15,7 @@ tags: [khalkaria/campanha]
 
 ## Como a chamam
 
-Três nomes convivem: **esquadrão desfloreio**, na ordem escrita de Kirkushav; **equipe desfloreio**, como o mestre a chama; e **Os 5 escolhidos**, como ficaram registrados juntos. O nome de fábrica é o mesmo em todos: um comando montado para arrancar uma árvore do mapa.
+Três nomes convivem: **esquadrão desfloreio**, na ordem escrita de Kirkushav; **equipe desfloreio**, como o mestre a chama e como esta nota a trata; e **Os 5 escolhidos**, como ficaram registrados juntos — os dois outros valem como apelidos. O nome de fábrica é o mesmo em todos: um comando montado para arrancar uma árvore do mapa.
 
 > Na sessão zero, o esquadrão desfloreio sob comando de Kirkushav Drekar possui como principal objetivo a destruição da Grande Árvore. Em suma, o esquadrão desfloreio adentrará a grande árvore e será obrigada a suceder nas Camaras da Provação
 
@@ -45,7 +45,7 @@ Duas correções que a mesa carrega de cor: o filho de sangue de Kirkushav é **
 
 ## O que restou deles
 
-Todos os cinco "morrem" nas [[Câmaras de Provação]], e as aspas são do próprio mundo: o casulo d'[[A Vhelor]] não mata seu Sonhador, e [[Malkhor]] não desperdiça material. [[Sinikko Kiriam (original)|Sinikko]] segue vivo dentro da árvore, sonhando o que a árvore precisa que ele sonhe; um [[Sinikko Kiriam (clone)|clone]] governa [[Khaskavel]] no lugar dele por vinte e sete anos. De [[Klaus von Aldric]], [[Runa Skorn]] e [[Azgar Sandgale]] não se escreveu mais nada. De [[Vorn Drekar]] sobrou um boato na boca do irmão de armas que ficou: *"clone de Vorn (criação de Malkhor)"*.
+Todos os cinco "morrem" nas [[Câmaras de Provação]], e as aspas são do próprio mundo: o casulo d'[[A Vhelor]] não mata seu Sonhador, e [[Malkhor]] não desperdiça material. [[Sinikko Kiriam (original)|Sinikko]] segue vivo dentro da árvore, sonhando o que a árvore precisa que ele sonhe; um [[Sinikko Kiriam (clone)|clone]] governa [[Khaskavel]] no lugar dele por vinte e sete anos. [[Klaus von Aldric]], [[Runa Skorn]] e [[Azgar Sandgale]] ficaram nas Câmaras, e nenhuma notícia deles atravessou os vinte e sete anos seguintes. De [[Vorn Drekar]] sobrou um boato na boca do irmão de armas que ficou: *"clone de Vorn (criação de Malkhor)"*.
 
 A campanha atual nasce do buraco que eles abriram. As fichas dos cinco continuam guardadas no nível 4, congeladas no dia da expedição.
 
@@ -67,14 +67,13 @@ A campanha atual nasce do buraco que eles abriram. As fichas dos cinco continuam
 - **`C−27` a `C`:** o clone governa Khaskavel; Kirkushav *"Sente que perdeu o filho que mais admirou"* e abandona o continente.
 - **`C`:** um grupo novo herda o mundo que a equipe deixou; o clone de Vorn é gancho aberto.
 
-## Pontas soltas
-1. **Um por continente, e dois de Volkrest.** [[Vorn Drekar]] é volkrestiano e [[Sinikko Kiriam (PC)|Sinikko]] nasceu nos esgotos do Império, também em Volkrest; ninguém nasceu em [[Kharavel]]. Sinikko representa Kharavel por ser imperador de Khaskavel, ou a intenção era outra? ([[Perguntas Abertas]] E1, E16)
-2. **"O filho que mais admirou"** aparece escrito a respeito de Sinikko, e não se sustenta: o filho é Vorn, que morreu na mesma câmara e não é sequer mencionado no luto do pai. O mesmo erro está na descrição de [[Hadran Vorgil]] (*"que Kirkushav adotou como filho"*).
-3. **Klaus, Runa e Azgar morreram de fato?** As aspas em *"mortos"* e o boato do clone de Vorn deixam a porta entreaberta para os quatro. ([[Perguntas Abertas]] E19)
-4. **O nome da equipe** oscila entre *esquadrão desfloreio*, *equipe desfloreio* e *Os 5 escolhidos*; esta nota adota o segundo e guarda os outros como apelidos.
+## Em aberto
+
+**E1** · **E16** o continente que Sinikko representa · **E19** o destino dos quatro que não viraram Sonhador · **E403** as idades dos cinco
 
 ## Procedência
 - Notion — *Sessão 0* `33e6e3a401d98175a7ccc9b79197bdf4` · *Os 5 escolhidos* `33e6e3a401d981ca971ec20d99f37233` · páginas de PC de Vorn `33e6e3a401d981b99d17e52ca1383748`, Klaus `33e6e3a401d9810ca145d41242d235b0`, Sinikko `33e6e3a401d98172bcefef2453ce1564`, Runa `33e6e3a401d981f2ae5fd3a12244a204` e Azgar `33e6e3a401d9814caa28c26a3a66e84c`
 - Mestre, 2026-09-05 — A15 (um por continente, intencional, verbatim acima) · A5 (a equipe contratada por Kirkushav; os cinco nomes) · A10 (Vorn é o filho; Sinikko, sucessor descartado) · A6 e A16 (o casulo, o Sonhador, o clone, o desfecho) · A12 (Runa é Dryad) · B17 (*"Tudo desatualizado, pode atualizar"* — as cinco fichas)
+- A corrigir nos registros: *"Sente que perdeu o filho que mais admirou"* e *"que Kirkushav adotou como filho"* estão escritos a respeito de Sinikko; o filho é Vorn, morto na mesma câmara
 - `docs/memoria/digests/F_sessoes_outros.md` §2 · relatório `docs/memoria/fidelidade_notion_vs_pedro_2026-09-05.md` (A15, E1)
 - Brutos em `docs/memoria/notion_raw/sessao_sessoes_index.md`, `sessao_os5_*.md`

@@ -123,6 +123,131 @@ Cada item precisa de decisão do Pedro. E1–E15 vieram do cruzamento Notion × 
 - **E104** Alvak chegou a Khaskavel quantos anos antes da campanha? Os registros dizem 27, mas ele já estava na cidade há 29 para encontrar Lena na floresta. O número precisa recuar — 34? 40?
 - **E105** Se o resgate de Lena foi dois anos antes da Sessão 0, quem ordenou o ataque ao Vilarejo Skarv foi o **Sinikko original**, não o clone. Isso muda o retrato dele: promovia a homogenia enquanto ainda governava, ao mesmo tempo em que autorizava a dryad a viver na cidade. Confirma?
 
+## E400+ — Campanha
+
+### Calendário e âncora
+
+- **E400** Qual é o ano absoluto de `C`? Três escalas cabem no que já existe: ≈ 120 (a Queda como ferida recente), ≈ 300 (recomendada: a Plenitude como história documentada) e ≈ 1000 (a Plenitude como mito contestado). Escolhida uma, `C` e `C−27` viram números exatos sem reescrever nada. — *afeta:* [[Linha do Tempo]]
+- **E401** Nome da era pós-Queda e do calendário: *A Plenitude* já tem nome, a era atual não, e as datas hoje se leem apenas como "ano N". — *afeta:* [[Linha do Tempo]]
+- **E402** O Abismo é anterior à Vhelor? Osh'Kar é aprisionado em Kharavel, mas Kharavel só existe depois da aposta: a prisão foi construída no continente pronto, ou o continente foi erguido em torno dela? O mapa de `C−27` mostra o sudoeste ainda verde, com cachoeiras onde hoje há a cratera. — *afeta:* [[Linha do Tempo]]
+
+### Cronologia dos personagens
+
+- **E403** As idades dos cinco da equipe desfloreio nunca foram declaradas — Klaus é adolescente no cativeiro e adulto na expedição, e os outros quatro não têm número algum (a de Sinikko está em E37). — *afeta:* [[Linha do Tempo]], [[Klaus von Aldric]], [[Equipe desfloreio]]
+
+### Sessão 0
+
+- **E404** As cenas de Khaskavel e das [[Câmaras de Provação]] existem na memória da mesa e nas páginas dos NPCs, mas nunca foram escritas como roteiro. Registrá-las por extenso? — *afeta:* [[Sessão 0]]
+- **E405** A raridade "Exóticos", teto do que [[Jairo Krichama]] pode forjar, precisa de correspondência exata na escala de raridade d'[[O Bazar]]. — *afeta:* [[Sessão 0]]
+
+### Fichas dos cinco
+
+- **E406** As cinco folhas estão congeladas no nível 4 e não acompanharam as revisões posteriores: recursos e Grimório em branco, perícias com nomes legados ("Conhecer", "Enganar", "Intimidar", "Ofícios"), condições com grafia antiga, Esquiva Abissal como "3d6 em vez de d12", "Grau de Corrupção" no lugar dos pontos de corrupção por nível, o bônus dos Punhos do Limiar que não fecha com os atributos e Receptáculo Natural apoiado em truques sem custo que ainda não existem. Refazer as cinco contra as regras vivas (autorizado em B17). — *afeta:* [[Vorn Drekar]], [[Klaus von Aldric]], [[Sinikko Kiriam (PC)]], [[Runa Skorn]], [[Azgar Sandgale]]
+- **E407** Escolhas de criação que nunca foram confirmadas: Azgar fala só [[Comum]], e Runa declara INT 22 e SAB 22 ao mesmo tempo, o teto do que a criação permite. — *afeta:* [[Azgar Sandgale]], [[Runa Skorn]]
+
+### O arco
+
+- **E408** Revavena aparece descrita como "cega pelo domínio da Grande Árvore" ao mesmo tempo em que rejeita a [[Seiva]]. A leitura é de cegueira moral, não química — confirmar e deixar explícito. — *afeta:* [[Campanha 1 — Arco]]
+- **E409** [[O Abismo]] e as cartas nascidas dele estão em reformulação; o grupo ainda não chegou lá. Qual versão vale? — *afeta:* [[Campanha 1 — Arco]]
+- **E410** Sinikko era maligno o bastante para o casulo? A árvore cresce à medida da maldade de quem sonha, e vinte e sete anos bastaram para levá-la ao ponto em que está; um político populista que passou a vida protegendo os seus é matéria-prima estranha para isso. — *afeta:* [[Sinikko Kiriam (PC)]], [[Campanha 1 — Arco]]
+
+## E500+ — Sistema (regras, magia, classes, raças, origens, condições, cartas)
+
+### Condições sem definição
+
+- **E500** Os estados abaixo são citados como condição por técnicas, magias, superfícies e cartas, mas não têm entrada em [[Condições]]: *Incorpóreo*, *Marcado*, *Marcada à Morte X*, *Escondido*, *Endividado*, *Irritado*, *Provocado*, *Luto Selvagem*, *Pacto Sombrio*, *Parcialmente Intangível*, *Banido/Banida*, *Petrificado*, *Selado*, *Laçado*, *Possuído*, *sem vida*, *Vulnerável*, *Descontrolado* (degrau 5 da Marca). Quais viram condição formal e quais continuam efeito local da técnica? — *afeta:* [[Condições]], [[Alquimista]], [[Artilheiro]], [[Batedor]], [[Brutalista]], [[Monge]], [[Teurgo]], [[Abjuração]], [[Alteração]], [[Conhecimento]], [[Superfícies e Furtividade]], [[Marca da Vhelor]], [[O Limiar (cartas)]]
+- **E501** *Bomba Temporal* define "Lentidão 2" com valores próprios (1 ação por turno, −6 m, sem reação, −4 Reflexos) contra o *Lento X* canônico (−3 m, −1 ação). Qual dos dois vale? — *afeta:* [[Alquimista]], [[Condições]]
+- **E502** A magia *Pânico* diz que *Amedrontado* dá desvantagem em testes enquanto o alvo puder ver o conjurador; a condição só obriga a correr. A desvantagem entra na condição ou fica só na magia? — *afeta:* [[Condições]], [[Conhecimento]]
+- **E503** *Sobrepeso Leve* e *Sobrepeso Extremo* vivem sob um cabeçalho único. Viram duas condições com título próprio? — *afeta:* [[Condições]], [[Inventário e Peso]]
+
+### Valores em conflito (tabela × descrição)
+
+- **E504** Em oito magias a tabela e a descrição dão números diferentes — *Armadura de Kha* (1 rodada × 3 rodadas; imunidade Ordinário/Elemental/Místico × "tudo que não for Primordial"), *Estimulante Místico* (2 × 3 ataques), *Caveiras Explosivas* (1d6 × 2d6), *Invocar Tempestade* (1 raio × 3 criaturas), *Ventania Bizarra* (1d10 e 1,5 m × 2d8 e 4,5 m), *Aumentar/Diminuir Criatura* (categoria de tamanho × categoria de peso), *Onda Gravitacional* (descrição sem o número do empurrão). Confirmo que a tabela vence em todos e corrijo as descrições na fonte? — *afeta:* [[Abjuração]], [[Alteração]], [[Destruição]], [[Conhecimento]]
+- **E505** A descrição de *Sussurro do Ambiente* é cópia da de *Detectar Magia* e não corresponde ao Efeito nem à Área da própria tabela. Reescrever a partir da tabela? — *afeta:* [[Conhecimento]]
+- **E506** *Fragmento Estelar* progride 1d6 / 2d6 / 6d6 / 10d6, fora da régua −1 / base / +1 / +2 dados. Corrigir para a régua ou é exceção declarada? — *afeta:* [[Destruição]]
+- **E507** A legenda ✅/❎ contradiz os valores em várias linhas: quatro valores marcados como fixos (*Ruído Anti-Magia*, *Armadura de Espinhos*, *Refúgio dos Perdidos*, *Maldição do Peso*, *Pele de Camaleão*) e valor único marcado como modificável (*Xadrez*). Vale o número de barras ou a marca? — *afeta:* [[Regras de Magia]], [[Abjuração]], [[Alteração]]
+- **E508** *Exílio Existencial* não tem linha "Ação", e "em caso de sucesso no teste… 4d8 de dano Primordial" não diz sucesso de quem nem dano em quem. — *afeta:* [[Abjuração]]
+- **E509** Magias só-Transbordante: *Reversão Umbral* não traz linha de Intensidade e *Confissão do Éter* traz. Padronizar qual formato? (A margem de erro da *Confissão* também cresce +1 por uso consecutivo no dia, sem teto.) — *afeta:* [[Destruição]], [[Conhecimento]]
+- **E510** *Acme* é a única magia que mede tempo em segundos ("rebobina 6 segundos") e a única que não aceita modulação nenhuma. Intencional? — *afeta:* [[Alteração]]
+- **E511** *Apoteose Genética* escreve "+20 HP Máximo"; a nomenclatura do sistema é **Saúde**. Corrigir na fonte? — *afeta:* [[Alteração]]
+
+### Magia — regras gerais que faltam na fonte
+
+- **E512** Magia Sustentada: oito magias a usam, *Sinapsia Coletiva* manda pagar o custo cheio todo turno, *Armadura de Espinhos* diz "a cada turno" e *Refúgio dos Perdidos* "a cada rodada". Qual é a regra geral — custo cheio por turno? — *afeta:* [[Regras de Magia]], [[Abjuração]], [[Alteração]], [[Conhecimento]], [[Teurgo]]
+- **E513** O limite de **uma magia por turno** só aparece como exceção dentro de *Disparo Veloz*. Redigir na fonte com esse texto? — *afeta:* [[Regras de Magia]], [[Destruição]], [[Combate]]
+- **E514** Nível 0: os ≈20 truques sem custo de Éter. Enquanto não existirem, *Receptáculo Natural* ([[Corrompido]]) e o [[Cultista]] escolhem na lista de nível 1 e pagam Éter cheio — confirma esse contorno? — *afeta:* [[Regras de Magia]], [[Sistema]], [[Corrompido]], [[Cultista]], [[Criação de Personagem]]
+- **E515** A régua da raiz chama **Ampliado** o que as páginas de magia chamam **Forçada** (mesmos valores). Qual nome fica? — *afeta:* [[Regras de Magia]], [[Sistema]]
+- **E516** Duas magias citam efeitos que não existem no sistema: *Selo do Oblívio* ("não há Palavra de Retorno") e *Caco Esquecido* (compara-se a "Voz na Mente", cujo efeito é o de *Impulso Instintivo*). São nomes antigos? — *afeta:* [[Abjuração]], [[Conhecimento]]
+- **E517** *Armadura do Oblívio* e *Selo do Oblívio* nomeiam o Oblívio, plano proposto e não canônico. Renomear as magias ou canonizar o plano? — *afeta:* [[Abjuração]]
+- **E518** *Purgatório* falha contra quem morreu *Oco*, mas a condição *Oco* não descreve essa interação. — *afeta:* [[Conhecimento]]
+- **E519** O requisito do Foco Primordial está truncado na fonte: `*Experiente*> em Místico`. Lê-se "Experiente ou superior"? — *afeta:* [[Primordial]]
+- **E520** *Desejo Sombrio* permite "conjurar qualquer magia de nível 1-5"; a magia tem 4 níveis. Corrigir para 1-4? — *afeta:* [[Primordial]], [[O Limiar (cartas)]]
+
+### O Limiar
+
+- **E521** O bloco de resumo anuncia 130 cartas (Universais 10, Raras 60); as tabelas trazem 127 (8 + 60 + 59) mais 41 do Abismo = 168. Apagar o bloco ou reescrevê-lo com os números reais? — *afeta:* [[O Limiar (cartas)]], [[Sistema]]
+- **E522** Dor: como se ganha, como se gasta fora da tabela, se há limite e a partir de que nível se desce ao Abismo. A região inteira será refeita — isso trava também o ramo do Vazio do [[Monge]] e as 41 cartas do Abismo. — *afeta:* [[O Limiar (cartas)]], [[Sistema]], [[Monge]]
+- **E523** A terceira coluna da tabela de Benefícios do Abismo chama-se "Penalidade" e traz benefícios. Trocar o cabeçalho? — *afeta:* [[O Limiar (cartas)]]
+- **E524** Requisitos fora do padrão `ATR NN+`: "Arquiteto do Destino" (`22 SAB+`) e "Mestre Teurgo Supremo" (`INT 22+, 18 SAB, 16 DES+`). Padronizar a grafia — e atributo acima de 18 é alcançável? — *afeta:* [[O Limiar (cartas)]]
+- **E525** "Gelo" aparece em *Resistência Arcana*, *Escamas de Dragão*, *Corrente Elemental*, na raiz do Sistema e no template de ficha; o tipo canônico é **Frio**. Autoriza a troca em toda parte? — *afeta:* [[O Limiar (cartas)]], [[Sistema]], [[Tipos de Dano]]
+- **E526** *Garras de Éter* está no pool de Força, escala com Sabedoria e causa dano Cortante. Trocar de pool, de atributo ou de dano? — *afeta:* [[O Limiar (cartas)]]
+- **E527** *Bárbaro* mexe em quatro atributos (+1 FOR/CON, −1 INT/SAB). Como se soma com *Coluna de Titã*, *Memória Absoluta* e o "+2 Atributo" de cada nível? — *afeta:* [[O Limiar (cartas)]]
+- **E528** Correções de redação pendentes na fonte: *Muralha de Aço* (frase truncada "usar sua reação para Defender some sua perícia Defender à Evasão do aliado"), *Sexto Sentido* (parêntese desbalanceado), "Sussurador" → Sussurrador, "Ressureição" → Ressurreição, "Onisciencia" → Onisciência, ~20 cartas sem negrito no nome, "Luxaria" → Luxária na tabela de venda. Aplico direto? — *afeta:* [[O Limiar (cartas)]], [[Dinheiro e Comerciantes]]
+
+### Classes
+
+- **E529** [[Brutalista]] e [[Espadachim]] escrevem a CD como "10 + Força + Constituição" e "10 + (Destreza ou Força) + Constituição", sem "Mod.". São modificadores, como nas outras cinco classes? — *afeta:* [[Brutalista]], [[Espadachim]]
+- **E530** *Contador de Corpos* avança a cada 10 criaturas; as demais Marcas contam de cinco em cinco. Intencional? — *afeta:* [[Brutalista]]
+- **E531** Nomes e epígrafes repetidos entre classes: *Oportunista* ([[Espadachim]] e [[Batedor]], efeitos distintos) e a epígrafe de *Cicatrizes da Jornada* ([[Batedor]]), idêntica à de *Imortal* ([[Brutalista]]). Renomear qual? — *afeta:* [[Espadachim]], [[Batedor]], [[Brutalista]]
+- **E532** "Trêbado" (*três* + *bêbado*) é trocadilho deliberado ou grafia a normalizar? — *afeta:* [[Espadachim]]
+
+### Raças
+
+- **E533** A armadura natural tem três grafias: "Ae 5 a dano de Fogo" e "Ar 3 Natural" no [[Anão]], "2 de Armadura(Ar) Natural" no [[Dryad]], "2 Armadura(ar)" no [[Inseto]]. Qual forma fica? — *afeta:* [[Anão]], [[Dryad]], [[Inseto]], [[Dano, Ataque e Defesa]]
+- **E534** A ficha racial do [[Autômato]] não lista idioma, embora o [[Criptografado]] seja da espécie. O autômato jogável já nasce sabendo? — *afeta:* [[Autômato]], [[Idiomas]]
+- **E535** Autômato: a tabela tem quinze tecnologias e a busca em loja sorteia 1d12, com três entradas "Não Comprável"; e a raridade oscila entre "itens Exóticos" (texto) e Incomum/Luxária (tabela). Como se concilia? — *afeta:* [[Autômato]]
+- **E536** Que facção de [[Kharavel]] caça as Aberrações Sociais? — *afeta:* [[Corrompido]]
+- **E537** Quem alcança a quarta [[Marca da Vhelor]] vira [[Corrompido]] de raça? E um Corrompido acumula Marcas normalmente? — *afeta:* [[Corrompido]], [[Marca da Vhelor]]
+- **E538** A que linhagem pertence [[Lena Skarv]] — Florescura ou Cascaferro? — *afeta:* [[Dryad]]
+- **E539** Florescura ou Florescrua? As duas grafias circulam para a mesma família. — *afeta:* [[Dryad]]
+- **E540** Peso mínimo de 30 kg para dryads convive mal com 2,10 m de altura máxima e com "maior e mais forte que humanos comuns". Subir o mínimo? — *afeta:* [[Dryad]]
+- **E541** Existem grutos ferais no [[Emaranhado de Raízes]]? O relato antigo do resgate de [[Lena Skarv]] falava em dois grutos selvagens; a versão canônica são soldados da [[Vanguarda Serafélia]]. — *afeta:* [[Dryad]], [[Gruto]]
+- **E542** O que é uma "criatura predável", de que depende a vantagem da Língua Bifurcada? — *afeta:* [[Gruto]]
+- **E543** [[Humano]]: a raça concede uma perícia de interação e o Estilo *Popular* concede outra. São duas perícias sociais ou a mesma escrita duas vezes? — *afeta:* [[Humano]]
+- **E544** Três guerras sem nome nem data: humanos × insetos, insetos × Império de Ferro, e a guerra que "terminou para o mundo" do [[Soldado]]. — *afeta:* [[Humano]], [[Inseto]], [[Soldado]]
+- **E545** O [[Inseto]] é a única raça sem bloco base de atributos, movimento e dados físicos. Intencional, ou os valores existem e não foram escritos? — *afeta:* [[Inseto]]
+- **E546** "Dano atípico" (Besouros) e "dano perfurante" (Louva-a-Deus) precisam de leitura contra os doze tipos: atípico é tudo que não é Ordinário e perfurante é subtipo de Ordinário. Confirma? — *afeta:* [[Inseto]], [[Tipos de Dano]]
+- **E547** [[Lobisomem]]: *Garras e Presas Brutais* diz "2 ações para atacar" e "como 1 ação" na mesma frase; e a altura da Fera aparece como 1,80–2,80 m, 1,80–2,10 m (Ru'rak) e "ultrapassa os 2 metros" (Sh'kar). — *afeta:* [[Lobisomem]]
+- **E548** Dano Radiante que não cicatriza no [[Lobisomem]]: poções e elixires do [[Alquimista]] curam esse dano? — *afeta:* [[Lobisomem]], [[Alquimista]]
+- **E549** Em que continente ou região ficam os vilarejos lobisomens? — *afeta:* [[Lobisomem]]
+
+### Progressão e perícias
+
+- **E550** "Treinamento À Distância" e "Treinado em Armas Marciais" não estão entre as 22 perícias. São treinamentos avulsos de arma, com escala própria? — *afeta:* [[Armas e Munição]], [[Atributos e Perícias]]
+- **E551** A ficha lista Iniciativa, Conhecimento, Medicina, Investigação, Religião e Místico sob "Perícias Sociais", e o template usa nomes antigos de perícia. Reagrupar e renomear? — *afeta:* [[Atributos e Perícias]], [[Criação de Personagem]], [[Sistema]]
+- **E552** "Defender (1 ação) → +2 Defender" é o único bônus numérico fixo numa perícia que rola dado: o +2 soma ao resultado do dado ou direto à Evasão? — *afeta:* [[Combate]]
+- **E553** A Armadura Específica (Ae) aceita subtipo de Ordinário? Cartas e magias dão "Resistência a Dano Ordinário (Contundente, Perfurante, Cortante)", mas as regras tratam Ordinário como bloco único reduzido por Ar. — *afeta:* [[Dano, Ataque e Defesa]], [[Tipos de Dano]]
+- **E554** O descanso longo tem lista própria de ações (a fabricação consome "sua ação de descanso" e só o curto tem lista), e a sintonização de itens mágicos "alteráveis a cada descanso longo" entra nela? — *afeta:* [[Descanso]]
+- **E555** *Nômade* soma +1 à qualidade do descanso; a escala de qualidade precisa existir. Quais degraus? — *afeta:* [[Descanso]], [[Exilado]]
+- **E556** Mochilas aumentam o limite de espaços, sem valor declarado. Quanto cada uma dá? — *afeta:* [[Inventário e Peso]]
+- **E557** Em [[Jornada]], *Guiar* dá +2 e as demais ações +1, e todas somam "+1 para cada 5 pontos sobrepujantes". O excedente de Guiar escala igual? — *afeta:* [[Jornada]]
+- **E558** De onde vem o nome "Khan Sins", e "Sins" ecoa deliberadamente o Pecado de [[Malkhor]]? — *afeta:* [[Khan Sins]]
+- **E559** A manobra *Empurrar* aplica *Caído* automaticamente no sucesso, mas *Onda Gravitacional* empurra sem derrubar. O Caído é exclusivo da manobra? — *afeta:* [[Manobras e Tamanho]], [[Destruição]]
+- **E560** A Marca 4 como limiar dos itens de [[Vytália]] vem das notas não-canônicas do catálogo. A lógica está confirmada; o número precisa de validação item a item. — *afeta:* [[Marca da Vhelor]], [[O Bazar]]
+- **E561** A CD crescente do degrau 2 da Marca não tem valor inicial nem incremento. Quais? — *afeta:* [[Marca da Vhelor]]
+- **E562** As [[Folhas Amarelas]] têm sete degraus; a [[Seiva]] não tem tabela nenhuma. Escrever a segunda, ou só a primeira conta como Marca? — *afeta:* [[Marca da Vhelor]]
+- **E563** "4 Técnicas de Classe" no nível 1: conferir contra as sete páginas de classe e confirmar o número. — *afeta:* [[Progressão]]
+- **E564** A "Fé" do título de [[Sobrevivência, Fé e Estresse]] não usa a perícia Religião nem os deuses — a mecânica inteira é de Éter. Renomear a regra ou ligá-la à fé de fato? — *afeta:* [[Sobrevivência, Fé e Estresse]]
+
+### Economia e itens
+
+- **E565** *Negociador* (±10%), *Língua Prateada* do [[Batedor]] (−25%) e *Olho no Lance* (+20% de Sins) podem incidir na mesma compra. Qual a ordem de aplicação e o teto? — *afeta:* [[Mercador]], [[Batedor]], [[O Bazar]]
+- **E566** O [[Nobre]] começa com 2d6+5 Sins, menos da metade do [[Mercador]] (4d6+15). É o preço da queda ou erro de balanceamento? — *afeta:* [[Nobre]], [[Mercador]]
+
+### Nomenclatura de regra
+
+- **E567** A raiz do Sistema lista seis idiomas sob a frase "apenas 5 idiomas existem", e "Esquecido" ainda não foi rebatizado **Criptografado** em toda parte. Corrigir a contagem e a grafia na fonte? — *afeta:* [[Sistema]], [[Idiomas]]
+
 ## Pendências operacionais
 
 - **Mapas**: depositar os 3 PNGs em `docs/memoria/mapas/` com os nomes do LEIA-ME (Kharavel campanha, Khaskavel Sessão 0, Kharavel Sessão 0).
