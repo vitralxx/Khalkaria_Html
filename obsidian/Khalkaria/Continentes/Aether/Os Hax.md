@@ -69,8 +69,8 @@ São o fio que costura [[Mordval]] e [[Aether]] na apresentação do mundo: dois
 - **Inimigo de** → [[Hyven]], indignada com o que fizeram a Runa
 - **Interesse** → artefatos místicos imbuídos pelos próprios deuses
 - **Não operam em** → [[Kharavel]]
-- **Gancho em aberto** → [[Kheyos]], corrompido e formado por um culto de Aether
-- **Criatura sem nome** → a "aberração de coroa de almas" que matou Ilou
+- **Ligação provável** → [[Kheyos]], corrompido e formado por um culto de Aether
+- **Executor de [[Ilou Skorn]]** → a "aberração de coroa de almas" do monastério
 
 ## Linha do tempo
 - **Adolescência de [[Klaus von Aldric|Klaus]]:** abdução por um *"homem carismático"*; meses de rituais; vira soldado do exército Hax; desperta ao tocar o artefato; sabota em silêncio; foge.
@@ -78,11 +78,8 @@ São o fio que costura [[Mordval]] e [[Aether]] na apresentação do mundo: dois
 - **Antes de C−27:** Klaus encontra os pais assassinados pelos Hax em [[Mordval]] e passa a buscar vingança e [[Kheyos]].
 - **C−27 a C:** nenhuma ação dos Hax registrada em [[Kharavel]].
 
-## Pontas soltas
-1. **Kheyos é obra deles?** Ele se mostra a Klaus como *"também de um corrompido, com pele roxa e olhos brilhantes"* e diz que precisaria *"de mais estudo para entender as modificações profanas feitas em seu corpo pelo ritual Hax"*; e é descrito como teurgo corrompido, formado por um *"culto poderoso"* de Aether. O culto e o clã são o mesmo? → [[Perguntas Abertas]] E23.
-2. **Que tamanho tem o clã?** *"Milhares de guerreiros do exército Hax"* não combina com um punhado de monastérios ocultos. → [[Perguntas Abertas]] E24.
-3. **De quem era o artefato** que despertou Klaus — descrito como *"objeto valioso porém ordinário"* — e que o transformou n'A Maldição Justa. [[Karmath]] é o candidato natural, e nada confirma. → [[Perguntas Abertas]] E22.
-4. **Dryads e meio-cervos** aparecem como duas categorias de presa, mas meio-cervo **é** dryad — como [[Yu]]. Ou a lista se repete, ou os Hax distinguem alguma coisa entre as duas que ninguém registrou.
+## Em aberto
+E23 (o culto que formou Kheyos) · E24 (o tamanho do clã) · E22 (o artefato de Klaus) · E355 (dryads e meio-cervos)
 
 ## Procedência
 - Notion: Os Hax `3696e3a401d98127a568c856497d9ce6` (🟡 Em desenvolvimento, ed. 2026-05-23, filha de 4. Aether) · Klaus von Aldric `33e6e3a401d9810ca145d41242d235b0` · Runa Skorn `33e6e3a401d981f2ae5fd3a12244a204`

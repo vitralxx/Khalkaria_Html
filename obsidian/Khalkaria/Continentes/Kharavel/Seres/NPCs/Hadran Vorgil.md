@@ -115,13 +115,8 @@ O "assunto pessoal de Kirkushav" só se abre para quem insistir, num teste de Co
 - **0** (campanha): cinquenta e cinco anos, treinador e memória viva da base.
 - **Depois:** a revelação do Abismo, e a chance de o aliado virar antagonista.
 
-## Pontas soltas
-1. **Ele era outro homem em −27.** No castelo em obras é *"bobão e carismático"*; hoje é *"pragmático, eficiente"*. Vinte e sete anos e uma guarnição inteira enterrada explicam a mudança, mas ninguém escreveu essa transformação.
-2. **A escrava sem nome.** Kirkushav mandou matá-la; a única conspiradora à altura é [[Karma]]. Se a ordem foi cumprida, Karma morre em −27 e [[Sevic]] herda [[Revavena]] — e a cidade que os jogadores encontram é outra. As duas histórias nunca se cruzaram no papel. ([[Perguntas Abertas]] E29.)
-3. **A culpa do sobrevivente.** Por que ele saiu vivo daquela noite? Acaso ou alguém o poupou de propósito — e por quê?
-4. **Quando o castelo caiu.** Só se diz *"anos depois"* e *"há alguns anos"*; a data exata nunca foi fixada. ([[Perguntas Abertas]] E36.)
-5. **O clone de [[Vorn Drekar]]** aparece como gancho aqui, mas ninguém decidiu se ele existe de fato. ([[Perguntas Abertas]] E19.)
-6. **A ficha e o Bestiário.** A ficha grava Convencimento e Intuição em chaves que não batem com as do aplicativo (`prof_convincing` e `prof_intuition` em vez de `prof_persuasion` e `prof_insight`; `craft_attribute` em vez de `craft_attr`); a própria página manda *"conferir na importação"*.
+## Em aberto
+E374 (a mudança em 27 anos) · E29 (a escrava sem nome) · E373 (por que sobreviveu) · E36 (quando o castelo caiu) · E19 (o clone de Vorn) · E394 (as chaves da ficha)
 
 ## Procedência
 - Notion — *Hadran Vorgil* `36d6e3a401d9817792d8ef277f93f46a` (🟡, ed. 2026-06-06) · *Ficha de Combate — Hadran Vorgil (CR 2)* `3776e3a401d9813193def007042f0e34` (🗡️, 2026-06-06) · *Roteiro da Sessão 0* `33e6e3a401d9819796c9dfb2263e215d` · *Castelo em Ruínas* `3696e3a401d98161a014d3747e46b42b`

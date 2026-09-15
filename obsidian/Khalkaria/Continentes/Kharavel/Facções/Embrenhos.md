@@ -70,12 +70,8 @@ A cidade em que estão não é mais a cidade contra a qual os Rastas se rebelara
 - **Intervalo:** precarização e seiva transformam o bairro num *"grande culto de adoração bizarro"*; embrenhos renegados erguem [[Kuriam]]; [[Tev Kossar]] entra na fábrica (−8) e foge dela (−3).
 - **0** (campanha): a maioria está viciada, "os sãos" resistem em silêncio e estrangeiros morrem nas ruas.
 
-## Pontas soltas
-1. **Os sãos não têm rosto.** São a resistência mais óbvia dentro de Khaskavel e não têm líder, ponto de encontro nem um único nome.
-2. **Os oitenta que ficaram.** Sabe-se que muitos ficaram por medo e que uma facção escrava se opunha à libertação, mas o que exatamente foi feito deles — todos viraram embrenhos? alguns morreram? — nunca foi contado, e ninguém entre eles tem nome.
-3. **Os renegados de Kuriam.** Quando saíram da Embrenha, por que saíram e como chegaram tão ao sul é lenda sem versão.
-4. **A taverna do bairro.** Ela é chamada "O Solzinho Honesto" num registro e "Xexelentos em Apuros" no mapa da cidade ([[Perguntas Abertas]] E3; ver [[Taverna de Khaskavel]]).
-5. **"Seiva sagrada"** é vocabulário da época em que o culto ainda se dizia religião de bênçãos; hoje ninguém no topo usa esse adjetivo.
+## Em aberto
+E336 (os sãos) · E337 (os oitenta que ficaram) · E338 (os renegados de Kuriam) · E3 (o nome da taverna)
 
 ## Procedência
 - Notion — *Embrenhos* `33e6e3a401d981569024f9883fc59c05` (sem status, 2026-04-10) · *A Embrenha* `33e6e3a401d981eab0aeea427fd9f01e` · *Khaskavel* `33e6e3a401d981e39c8fe9df2e5a7f4d` (nomenclatura da árvore) · *Kuriam* `33e6e3a401d981ad83d7fe8266cc6630` · *Rastas* `39e6e3a401d9816e9861c60d9a86d1b9` · *Tev Kossar* `36d6e3a401d9811daf94f8854d6d01ee`

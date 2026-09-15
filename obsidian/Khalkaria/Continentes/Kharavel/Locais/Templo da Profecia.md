@@ -60,13 +60,8 @@ O outro caminho é entregar [[Lena Skarv]] ao casulo de [[O Sonhador]]. Este tem
 - **−27** ([[Sessão 0]]): já em ruínas; as cartas da época o põem no centro-oeste, dentro da floresta.
 - **0** (campanha): assinalado na borda sul do Emaranhado; as oferendas nas bacias — seiva, Sins, adagas sujas — são recentes, o que significa que alguém ainda sobe até aqui.
 
-## Pontas soltas
-1. **Kha já foi mortal?** O templo diz que o Kha atual foi mortal, escolhido pelos cinco; a cosmologia diz que *"os deuses atuais nunca foram mortais"*. Quem ocupa o cargo hoje, e como chegou lá?
-2. **Cinco e não sete.** Faltam [[Osh'Kar]] e [[Kha]]. É deliberado — Osh'Kar apagado da fé, Kha reservado à profecia? ([[Perguntas Abertas]] E13.)
-3. **A posição muda entre as cartas:** borda sul do Emaranhado na carta da campanha, centro-oeste na floresta na carta antiga. Mesmo templo mal desenhado, ou dois pontos diferentes? O próprio [[Kirkushav Drekar]] avisa que o mapa do cartógrafo *"pode ser impreciso"* ([[Perguntas Abertas]] E14).
-4. **Quem construiu o templo**, e quem continua deixando oferendas. O [[Culto de Malkhor]] deixaria seiva; ninguém confirmou.
-5. **Quem riscou "Pecador".** A placa foi danificada de propósito, e não se sabe se por cultistas escondendo o nome do deus ou por revavenanos cuspindo nele.
-6. A lista de deuses ainda descreve [[Karmath]] como "o deus da justiça" — é a lista que precisa mudar, não a estátua.
+## Em aberto
+E417 (o Kha atual) · E13 (cinco estátuas) · E14 (a posição nas cartas) · E418 (quem construiu) · E419 (quem riscou Pecador)
 
 ## Procedência
 - Notion — *Templo da Profecia* `33f6e3a401d980dd982ad39fcba2ed4e` (🟢 pronto, ed. 2026-05-23) · *Lena Skarv* `3696e3a401d981969032ea2fcf0b406e` · *Deuses* `33e6e3a401d9817f9470e140120b1c22`

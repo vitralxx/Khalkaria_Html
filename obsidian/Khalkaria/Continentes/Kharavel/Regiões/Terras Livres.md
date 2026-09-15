@@ -58,12 +58,8 @@ Das terras do centro-sul de vinte e sete anos atrás só se registram as montanh
 - **Intervalo:** [[Embrenhos]] renegados erguem [[Kuriam]] às escondidas; a vila cresce depressa e a [[Vanguarda Serafélia]] toma posse dela por ordem de [[Sinikko Kiriam (clone)|Sinikko Kiriam]]. A data não foi fixada.
 - **0** (campanha): **CR ≤1 a 2-3**; Kuriam sob a Vanguarda, exportando lenha e peixes.
 
-## Pontas soltas
-1. **Livres, mas com quartel.** A região é descrita como não dominada por nenhuma facção, e a vila no seu centro é dominada pela [[Vanguarda Serafélia]]. A leitura provável é que a liberdade seja das terras, não da vila — falta confirmar.
-2. **[[Povos Diversos do Sul]]:** quem são, onde vivem e que relação têm com os [[Xkamur]]. Nunca foram mapeados.
-3. **Para quem [[Kuriam]] exporta** lenha e peixe. A vila tem costa e produção; falta o destino da carga.
-4. **Quando [[Kuriam]] foi fundada e tomada** ([[Perguntas Abertas]] E36) — e, com a data, de qual Sinikko partiu a ordem: o original, imperador até a Sessão 0, ou o clone que o substituiu.
-5. As linhas exatas de fronteira ainda não foram traçadas ([[Perguntas Abertas]] E14).
+## Em aberto
+E330 (vila ocupada em terra livre) · E346 (os povos do sul) · E331 (o destino da carga) · E36 (quando Kuriam foi tomada) · E14 (as fronteiras)
 
 ## Procedência
 - Notion — *Terras Livres* `37b6e3a401d9811c8bcddbff184cacee` (🟠 rascunho, 2026-06-10)

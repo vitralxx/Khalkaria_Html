@@ -73,13 +73,8 @@ Fora dos cultos há um aliado inesperado. [[Hadran Vorgil]] odeia [[A Vhelor]] o
 - **Antes da história escrita:** [[Kha]] desaparece; Osh'Kar se entrega a devorar almas; o panteão o contém e o prende no Abismo, e [[Velúria]] e [[Vytália]] envenenam a região ao redor.
 - **0** (campanha): as células estão ativas e dispersas; [[Lázlo]], se estiver em jogo, escapou de um ritual há cerca de um ano; ninguém chegou perto do Abismo — *"os jogadores nem estão perto"*.
 
-## Pontas soltas
-1. **Nenhuma célula tem nome, lugar ou líder.** Faltam também a simbologia, a estética ritual, os idiomas que usam nos ritos e qualquer NPC que represente os cultos em algum ponto do mapa.
-2. **Existe uma célula-mãe?** Alguma congregação maior, talvez junto ao Abismo, centralizando os rituais mais poderosos — ou o culto é só poeira espalhada?
-3. **As almas chegam a Osh'Kar?** A dúvida é do próprio mundo: nem os cultistas sabem se alimentam o deus ou apenas o portal.
-4. **Como atravessam a ilusão.** Se conhecem o oásis como fachada, alguém precisa ter subido a [[Cordilheira Cristalina]] — e ninguém registrou quem.
-5. **O que o Abismo oferece.** As Dores e Benefícios do Abismo em [[O Limiar (cartas)]] ainda vão ser refeitos, e são eles que definem o que essas células prometem a quem entra ([[Perguntas Abertas]] E46).
-6. **Nome.** Fala-se tanto em "Culto de Osh'Kar", no singular, quanto em "Cultos", no plural; como não há organização única, o plural é a forma correta.
+## Em aberto
+E341 (células e congregação-mãe) · E342 (as almas chegam ao deus) · E343 (quem sabe da ilusão) · E420 (o que o Abismo oferece)
 
 ## Procedência
 - Notion — *Cultos de Osh'Kar* `3696e3a401d98125a280d7b0bf485494` (🟠 rascunho, 2026-05-23; traz seção "Pontos a Desenvolver") · *Facções* `3696e3a401d9814f8e0dfa4c6b50b850` · *Deuses* `33e6e3a401d9817f9470e140120b1c22` · *Lázlo* `36d6e3a401d9818d9cddefbdd4015aad` · *Hadran Vorgil* `36d6e3a401d9817792d8ef277f93f46a`

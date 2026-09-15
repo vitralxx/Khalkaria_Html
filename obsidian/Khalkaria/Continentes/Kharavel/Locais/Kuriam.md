@@ -36,12 +36,8 @@ As [[Terras Livres]] são *"terras não dominadas por nenhuma facção — relat
 - **Intervalo (−27 a 0):** fundação clandestina por embrenhos renegados; crescimento rápido; tomada pela [[Vanguarda Serafélia]]. Nenhuma dessas datas foi escrita.
 - **0** (campanha): vila com quartel, em região de ameaças brandas (**CR ≤1 a 2-3**) — ver [[Jornada]].
 
-## Pontas soltas
-1. **Qual Sinikko** ordenou a tomada: o [[Sinikko Kiriam (original)|original]], antes de −27, ou o [[Sinikko Kiriam (clone)|clone]], no intervalo? Se quem fundou foram *embrenhos* — palavra da Embrenha já degradada —, a vila é do intervalo e a ordem é do clone. Não se afirma ([[Perguntas Abertas]] E36).
-2. **Livres com um quartel dentro.** A região é descrita como não dominada por facção alguma e a vila no centro dela está dominada. A leitura provável é região livre com um ponto ocupado; falta confirmação.
-3. **O sul sábio** que ignora a tentação do poder não parece ser Kuriam. São outros povos, ainda não mapeados?
-4. **Ninguém tem nome aqui:** nenhum morador, nenhum comandante local da Vanguarda.
-5. **Para onde vão a lenha e o peixe** não foi escrito, nem se a vila tem porto próprio.
+## Em aberto
+E36 (quando foi tomada) · E330 (vila ocupada em terra livre) · E346 (os povos do sul) · E331 (o destino da carga) · E333 (porto próprio)
 
 ## Procedência
 - Notion — *Kuriam* `33e6e3a401d981ad83d7fe8266cc6630` (🟡, ed. 2026-05-24) · *Facções de Kharavel* `3696e3a401d9814f8e0dfa4c6b50b850` · *Terras Livres* `37b6e3a401d9811c8bcddbff184cacee` · *O Direcionamento* `33e6e3a401d98190a21ae6c430acbc38`

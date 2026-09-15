@@ -49,11 +49,8 @@ Nas tavernas, quem serve [[Osh'Kar]] sem saber o que serve fala em *"o senhor qu
 - **−27** ([[Sessão 0]]): as cartas da época mostram o sudoeste verde, com cachoeiras e vegetação tropical.
 - **0** (campanha): "O Oásis" marcado na fronteira do deserto; a ilusão de pé até que se escale a Cordilheira.
 
-## Pontas soltas
-1. **Quem lançou a ilusão.** Sabe-se quem corrompeu a região; da miragem em si ninguém reivindicou autoria.
-2. **Como o alto da [[Cordilheira Cristalina]] a desliga** — vista de cima, artefato no pico, ritual? Não escrito; a mesma dúvida consta em [[Cordilheira Cristalina]].
-3. **A cratera não aparece nas cartas antigas**, e o sudoeste inteiro era verde: o véu cobria a região toda, ou o deserto veio depois? ([[Perguntas Abertas]] E5.)
-4. **Ponto ou região?** Os registros falam da ilusão como cobertura da região; as cartas marcam "O Oásis" como um ponto na fronteira norte.
+## Em aberto
+E416 (quem lançou a ilusão) · E5 (o sudoeste verde) · E303 (ponto ou região)
 
 ## Procedência
 - Notion — *O Abismo* `3696e3a401d981aeb840ece0726fbf97` · *Deserto do Abismo* `37b6e3a401d9817ca984f3eca3a11688` (🟠) · *Lázlo* `36d6e3a401d9818d9cddefbdd4015aad` · *Cultos de Osh'Kar* `3696e3a401d98125a280d7b0bf485494` · *Deuses* `33e6e3a401d9817f9470e140120b1c22` · *Mundarak* `39e6e3a401d981e3a7fdc5b89aa8146b`

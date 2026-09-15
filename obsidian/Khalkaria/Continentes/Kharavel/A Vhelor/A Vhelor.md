@@ -137,16 +137,8 @@ Enquanto isso não acontece, a árvore só cresce. O clone *"traçou como objeti
 - **Intervalo.** A árvore cresce alimentada pelos pecados do Sonhador; a fábrica de seiva é erguida; os Colhedores sobem à copa; [[A Embrenha]] afunda no vício; os [[Skarv]] são atacados; [[Revavena]] passa a chamá-la de Praga.
 - **Ano 0 (campanha).** A copa dourada domina o horizonte do continente; o clone prepara a chuva de Seiva; Lena aparece como a solução óbvia de preço alto demais; e quanto mais folhas o grupo tiver consumido, mais forte estará a árvore no confronto final.
 
-## Pontas soltas
-1. **"Deusa da vida"** aparece três vezes nas páginas antigas e não corresponde a nenhum dos sete deuses: trata-se de [[Vytália]], deusa das criaturas. As páginas de origem ainda precisam ser uniformizadas.
-2. **Sangue ou pecado?** As páginas antigas dizem que a árvore é *"nutrida pelo sangue do sonhador"*; a formulação do mestre é que ela *"se alimenta dos seus pecados"*, dentro de um casulo. As duas leituras convivem, e a mecânica que vale é a segunda: maldade do prisioneiro = crescimento da árvore.
-3. **De quem foi o plano de [[Lena Skarv]]?** As páginas antigas creditam [[Velúria]]; o mestre credita [[Vytália]] e [[Karmath]], com Velúria apenas deixando escapar a fraqueza. Falta ajustar as notas de Lena e [[Alvak Krichama]].
-4. **"Todos que desafiam explorar a árvore não retornam ou quando retornam morrem dias depois"** — mas o clone de Sinikko voltou e governa há vinte e sete anos, e os Colhedores voltam com folhas para vender. A frase funciona como regra geral com exceções notáveis; nunca foi escrita assim.
-5. **O nome Vhelor é de origem autômata?** Ele foi registrado na língua hoje chamada [[Idiomas|Criptografado]], que é a língua extinta dos autômatos. Se isso significa que foram autômatos os primeiros a nomear a árvore, ninguém escreveu.
-6. **Quem fez a porta?** *"Obra de um teurgo muito poderoso, brincando com os locais"* — [[Kheyos]] é o candidato óbvio, [[Velúria]] o candidato divino, e nenhum dos dois está confirmado.
-7. **Bela por fora, maligna por dentro.** A descrição de Kharavel diz que ela brilha e *"parece nutrir toda a vida"*, enquanto a página da árvore a chama de fonte da maldade. A contradição é deliberada e sustenta a tentação — mas convém não perdê-la de vista ao descrever a copa na mesa.
-8. **Kirkushav quer a árvore "longe da minha cidade"** — e ela está a leste de Khaskavel, com raízes dentro dos muros. A proximidade é canônica; o incômodo dele também.
-9. **[[Folhas Amarelas]] estão catalogadas como categoria "Luxúria"** nas páginas de origem, contra a grafia oficial **Luxária**.
+## Em aberto
+E395 (sangue ou pecado) · E396 (quem volta da árvore) · E397 (o nome em Criptografado) · E398 (quem abriu a porta) · E369 (o que resta do Sonhador)
 
 ## Procedência
 - Notion: A Grande Árvore `33e6e3a401d9813b8a60f1f9669803be` · O Sonhador `33e6e3a401d98126bae4e981b581487f` · Substâncias da Grande Árvore `33e6e3a401d981ef841aefa20793d48d` · 1. Kharavel `33e6e3a401d981eeaecaf08dd1b33d29` · Deuses `33e6e3a401d9817f9470e140120b1c22` · Malkhor `39e6e3a401d981eb87fecedc94f35b37` · Vytália `39e6e3a401d9813dbd3cf924ae613a9a` · Roteiro da Sessão 0 `33e6e3a401d9819796c9dfb2263e215d` · Direcionamento `33e6e3a401d98190a21ae6c430acbc38` · Kirkushav Drekar

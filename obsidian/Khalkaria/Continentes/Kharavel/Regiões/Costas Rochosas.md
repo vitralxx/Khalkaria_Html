@@ -52,11 +52,8 @@ As minas já apareciam no leste vinte e sete anos atrás e continuam aparecendo 
 - **−27** ([[Sessão 0]]): minas já assinaladas no leste do continente.
 - **0** (campanha): **CR 4-5**.
 
-## Pontas soltas
-1. As [[Minas dos Krichama]] são de quem hoje, o que se extrai delas e existe colônia anã em Kharavel? Além do nome, nada foi escrito.
-2. Onde ardem as forjas seculares dos Krichama — em [[Volkrest]], de onde [[Alvak Krichama]] emigrou, ou aqui — e o que liga o clã a estas minas do outro lado do continente.
-3. Que criaturas guardam a costa: sabe-se que são resistentes, nada além disso.
-4. As linhas exatas de fronteira ainda não foram traçadas ([[Perguntas Abertas]] E14).
+## Em aberto
+E308 (as minas hoje) · E307 (as forjas do clã) · E311 (as criaturas da costa) · E14 (as fronteiras)
 
 ## Procedência
 - Notion — *Costas Rochosas* `37b6e3a401d9814bac9ce9b49d0693a7` (🟠 rascunho, 2026-06-10)

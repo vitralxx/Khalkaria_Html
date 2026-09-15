@@ -52,10 +52,8 @@ O vocabulário denuncia o cargo de quem fala: *"Quem usa 'A Soberana' em jantar 
 - **−27** ([[Sessão 0]]): o palácio já está de pé no alto da cidade, enquanto o resto de Khaskavel é canteiro de obras.
 - **0** (campanha): elite reclusa atrás da muralha; os contratos da fábrica de [[Seiva]] são assinados aqui.
 
-## Pontas soltas
-1. **As criaturas dos esgotos** não têm nome nem ficha — só a informação de que foram abandonadas ali.
-2. **A quem a Vanguarda responde hoje.** A tropa *"vem do império do ferro e a maioria são razoavelmente leais à capital"*, mas o clone cortou relações com o [[Império de Ferro]] e a tropa já não responde a [[Volkrest]] ([[Perguntas Abertas]] E29).
-3. **A fábrica é administrada daqui?** "A Vhelor Eterna" é a forma usada *"em documentos formais da fábrica"*, o que sugere escritórios em Vistaluz; a localização da fábrica nunca foi escrita.
+## Em aberto
+E335 (as criaturas dos esgotos) · E348 (a quem a Vanguarda responde) · E300 (onde fica a fábrica)
 
 ## Procedência
 - Notion — *Vistaluz* `33e6e3a401d98192ba6deb2cbe5bcc42` (sem status, 2026-04-10) · *Iluminado (old)* `33e6e3a401d981d8a9ead434576e2aaf` · *Khaskavel* `33e6e3a401d981e39c8fe9df2e5a7f4d` (nomenclatura da árvore) · *Substâncias / Folhas Amarelas* `33e6e3a401d981ef841aefa20793d48d` · *Culto de Malkhor* `3696e3a401d981a0b2e3f42c3fa846e6` · *A Vanguarda Seratélia* `33e6e3a401d98104845ddaafa86b57b2`

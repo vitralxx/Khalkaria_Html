@@ -58,11 +58,8 @@ A cópia que [[Malkhor]] fez do filho herdou aparência e algumas memórias — 
 ## Linha do tempo
 - **Quando Sinikko tem dez anos:** morre defendendo os seus na invasão dos esgotos. O ano exato depende da idade dele, que nunca foi escrita.
 
-## Pontas soltas
-1. **Onde uma gruta dos esgotos aprendeu a ser teurga.** Não há mestre, escola nem culto na história dela — e o Império destinava aos grutos apenas o subterrâneo.
-2. **O sobrenome Kiriam** aparece ligado a uma família *"de renda relativamente alta"* nos registros e aos esgotos na história do filho. A pobreza é o começo e a renda é o fim; onde Lorrain se encaixa nessa curva não foi dito.
-3. **Quem desceu aos esgotos** naquele dia, e por ordem de quem, nunca foi nomeado.
-4. **Idade, aparência e nome do pai** de Sinikko: em branco. Dela se sabe o nome, a classe, o que ensinou e como morreu.
+## Em aberto
+E370 (onde aprendeu teurgia) · E371 (quem desceu aos esgotos) · E372 (o pai de Sinikko)
 
 ## Procedência
 - Notion — *Sinikko Kiriam* (página de PC, Sessões / Sessão 0 / Os 5 escolhidos) `33e6e3a401d98172bcefef2453ce1564` (🟡, ed. 2026-07-18), versões 1 e 3. É a única página em que Lorrain existe

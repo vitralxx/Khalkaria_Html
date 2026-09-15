@@ -42,11 +42,8 @@ Acima dele há um imperador que não é quem diz ser; abaixo, uma guarnição qu
 ## Linha do tempo
 - **0** (campanha): General da [[Vanguarda Serafélia]]. Nenhum outro momento da vida dele foi datado.
 
-## Pontas soltas
-1. **Um comandante sem rosto.** Raça, idade, temperamento e história: nada. É o chefe militar do principal antagonista do continente e não tem sequer uma página própria nos registros.
-2. **Desde quando.** Se já era general na [[Sessão 0]], serve há vinte e sete anos e esteve perto o bastante para notar que o imperador voltou diferente da árvore.
-3. **A quem é leal de fato** — ao [[Império de Ferro]] de onde veio, ao imperador que rompeu com ele, ou ao culto que manda no imperador. Sabe o que a cidade virou?
-4. **Grafia** "Seratélia" nos registros, onde se lê [[Vanguarda Serafélia|Serafélia]].
+## Em aberto
+E349 (quem é o general) · E348 (a quem a tropa responde)
 
 ## Procedência
 - Notion — *A Vanguarda Seratélia* `33e6e3a401d98104845ddaafa86b57b2` (Khaskavel / Povos, sem status, 2026-04-10), citada integralmente. É a única fonte que menciona Ka'ur Zotama

@@ -29,9 +29,8 @@ Fica na parte baixa da cidade, a sul-oeste, perto da [[Igreja Serafélia]] e a a
 - **−27** ([[Sessão 0]]): a taverna existe e está assinalada nas cartas da cidade.
 - **0** (campanha): não descrita.
 
-## Pontas soltas
-1. **O nome.** "O Solzinho Honesto" ou "Xexelentos em Apuros"? São a mesma casa ou duas? O título desta nota muda quando a decisão vier ([[Perguntas Abertas]] E3).
-2. **Nada dentro.** Taverneiro, clientela, preços, papel na [[Sessão 0]] — a casa está vazia em todos os registros.
+## Em aberto
+E3 (o nome da casa) · E322 (o que há dentro)
 
 ## Procedência
 - Notion — *O Solzinho Honesto (Taverna)* `33e6e3a401d98147a598f76b59475af9` (🟡, ed. 2026-05-24, página sem conteúdo) · *A Embrenha* `33e6e3a401d981eab0aeea427fd9f01e` · *Localizações de Khaskavel* `33e6e3a401d981338b72db40bc8166f2`

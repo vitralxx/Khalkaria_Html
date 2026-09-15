@@ -99,13 +99,8 @@ O [[Sinikko Kiriam (clone)]] recebeu uma ordem e fez dela um projeto continental
 - **Intervalo.** A fábrica do Culto industrializa a produção; [[A Embrenha]] vira território de vício; a primeira geração de revavenanos é cooptada (≈ −10, [[Yenev Vesnal]]); [[Tev Kossar]] foge da fábrica (−3).
 - **Ano 0 (campanha).** Suprimento *"constante a preço baixo"* na Embrenha; o clone prepara a chuva de Seiva.
 
-## Pontas soltas
-1. **A Seiva não tem regra.** O vício, a regeneração acelerada, o teste para resistir, os degraus da dependência — tudo é narrativo. Só as [[Folhas Amarelas]] têm tabela ([[Marca da Vhelor]]). É a corrupção mais difundida do continente e a menos formalizada.
-2. **Bebe-se ou injeta-se?** As descrições falam em ingestão; [[Alvak Krichama]] tem marcas de seringa e os irmãos de [[Hadran Vorgil]] foram injetados. Se são duas vias, com efeitos diferentes, ninguém escreveu.
-3. **Onde fica a fábrica.** Nenhum texto localiza o prédio dentro de [[Khaskavel]]; o mapa antigo tem um edifício em construção com chaminés no oeste da cidade, o que é sugestão e não afirmação.
-4. **A exportação ainda existe?** Os registros antigos dizem que o culto exportava ao resto do mundo; hoje o clone cortou laços com o [[Império de Ferro]] e mira o continente. Se ainda sai seiva de [[Kharavel]] por mar, está em aberto.
-5. **Corrupção por seiva e a raça [[Corrompido]].** Um dependente crônico é um Corrompido em algum sentido de regra? E o "Grau de Corrupção" das fichas antigas mede isto ou a [[Marca da Vhelor]]? Nada declarado.
-6. **Preço e categoria da seiva no [[O Bazar]]** ainda não foram validados; a coluna de notas do catálogo não vale como cânone.
+## Em aberto
+E408 (a regra da seiva) · E409 (bebida ou injetada) · E300 (onde fica a fábrica) · E339 (a exportação hoje) · E410 (seiva e Corrompido) · E406 (preço no Bazar)
 
 ## Procedência
 - Notion: Substâncias da Grande Árvore `33e6e3a401d981ef841aefa20793d48d` · Culto de Malkhor `3696e3a401d981a0b2e3f42c3fa846e6` · Culto de Khaskavel (arquivada) `33e6e3a401d98110a854d7bdd14fa685` · Roteiro da Sessão 0 `33e6e3a401d9819796c9dfb2263e215d` · Sinikko Kiriam `33e6e3a401d9813d8cf5d8d8e6c3fddc` · Vilarejo Skarv `33e6e3a401d981f68258f6a0be896c08` · Templo da Profecia `33f6e3a401d980dd982ad39fcba2ed4e` · páginas de NPCs (Mira, Tev, Hadran, Karma)

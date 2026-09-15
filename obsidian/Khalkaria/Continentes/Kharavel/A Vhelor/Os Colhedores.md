@@ -64,12 +64,8 @@ Todo Colhedor que ceda à tentação de comer o que colhe passa a acumular [[Mar
 ## Linha do tempo
 - **Ano 0 (campanha).** Ativos, subindo a serviço dos nobres de [[Vistaluz]].
 
-## Pontas soltas
-1. **Quase tudo sobre eles está por escrever.** Se são uma guilda ou autônomos, se têm sede, se pertencem a [[Khaskavel]] ou vêm de fora, que equipamento usam, quem é o Colhedor mais famoso, que fichas têm — nada disso existe. O que existe é o ofício.
-2. **Eles consomem o que colhem?** Nenhum texto diz se os Colhedores comem folhas — o que os marcaria — ou se a disciplina do ofício proíbe.
-3. **Ninguém volta, mas eles voltam.** A fama diz que quem desafia a árvore não retorna; os Colhedores retornam com mercadoria e vendem. A regra geral e a existência do ofício ainda não foram conciliadas por escrito.
-4. **As guardiãs da copa** são o inimigo que define a profissão, e delas só se sabe que são criaturas simbióticas dos galhos altos. Sem saber o que são, não há como descrever uma expedição de verdade.
-5. **O nome vale só para as folhas.** Quem extrai [[Seiva]] das raízes — os *"vermes"* de que [[Kirkushav Drekar]] falava — nunca foi chamado de Colhedor; o termo não deve ser estendido a eles sem decisão.
+## Em aberto
+E411 (guilda ou autônomos) · E412 (consomem o que colhem) · E396 (quem volta da árvore) · E405 (as guardiãs da copa) · E413 (quem extrai a seiva)
 
 ## Procedência
 - Notion: Substâncias da Grande Árvore `33e6e3a401d981ef841aefa20793d48d` · A Grande Árvore `33e6e3a401d9813b8a60f1f9669803be`

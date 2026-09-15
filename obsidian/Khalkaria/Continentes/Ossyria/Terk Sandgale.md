@@ -46,9 +46,8 @@ Diante de Kirkushav, o filho mentiu e disse que o pai havia morrido — mentira 
 - **Pouco antes de C−27:** mata o Batedor; revela a verdade ao filho; desaparece na tempestade.
 - **C (campanha):** paradeiro desconhecido.
 
-## Pontas soltas
-1. **Terk está vivo?** É o gancho central de [[Azgar Sandgale]] e nunca foi decidido. → [[Perguntas Abertas]] E20
-2. **Qual foi o crime** que lhe valeu o degredo. Ele fala em penitência e cala o motivo. → [[Perguntas Abertas]] E20
+## Em aberto
+E20 (Terk vivo e o crime)
 
 ## Procedência
 - Notion: Azgar Sandgale `33e6e3a401d9814caa28c26a3a66e84c` · Roteiro da Sessão 0 `33e6e3a401d9819796c9dfb2263e215d`

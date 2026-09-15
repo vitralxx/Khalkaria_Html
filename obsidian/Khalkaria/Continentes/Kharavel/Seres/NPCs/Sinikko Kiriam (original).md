@@ -101,14 +101,8 @@ O casulo no cerne da [[A Vhelor]] abriga sempre uma criatura, e quanto mais mali
 - **−27 → 0:** dorme no casulo; seu pecado alimenta a árvore; a cópia governa em seu nome.
 - **0** (campanha): ainda é o Sonhador.
 
-## Pontas soltas
-1. **Os registros ainda o confundem com a cópia.** A página que descreve *"O Rei de Khaskavel"* mistura o homem que *"sempre tentou fazer a vida de todos serem melhor"* com o *"líder do Culto de Khaskavel e principal antagonista"* — duas criaturas diferentes na mesma entrada.
-2. **A diarquia.** Khaskavel nasceu governada por duas famílias e hoje só se fala da dele. Registrar a segunda como história encerrada ou apagá-la de vez? ([[Perguntas Abertas]] E9.)
-3. **A idade dele** nunca foi escrita, nem na Sessão 0 nem agora — e "agora", para quem dorme dentro de uma árvore, talvez nem conte. ([[Perguntas Abertas]] E37.)
-4. **"Os Exilados"**, nome dos grutos dos esgotos na primeira versão da sua história, sumiu nas seguintes e colide com a origem [[Exilado]]. Recuperar ou aposentar? ([[Perguntas Abertas]] E33.)
-5. **Ele representa qual continente** na equipe de um integrante por continente, se nasceu em [[Volkrest]] como [[Vorn Drekar]]? ([[Perguntas Abertas]] E1 e E16.)
-6. **O que sobra dele.** Nunca se escreveu se o Sonhador tem consciência, se pode ser acordado, se reconheceria alguém — nem o que acontece com ele caso outro coração ocupe o casulo.
-7. **Grafia** "Siniko" nos registros, onde se lê Sinikko.
+## Em aberto
+E9 (a diarquia) · E37 (a idade dele) · E33 (Os Exilados) · E1 (um por continente) · E16 (que continente representa) · E369 (o que resta do Sonhador)
 
 ## Procedência
 - Notion — *Sinikko Kiriam (NPC)* `33e6e3a401d9813d8cf5d8d8e6c3fddc` (🟡, ed. 2026-07-03) · *Sinikko Kiriam* (página de PC, Os 5 escolhidos) `33e6e3a401d98172bcefef2453ce1564` (🟡, ed. 2026-07-18, versões 1 e 3) · *O Rei de Khaskavel* `33e6e3a401d9814aa2a2c3d7ef3875a7` · *Kirkushav Drekar* `33e6e3a401d98131815efc830056e2e3` · *O Sonhador* `33e6e3a401d98126bae4e981b581487f` · *Roteiro da Sessão 0* `33e6e3a401d9819796c9dfb2263e215d` · *Alvak Krichama* `33e6e3a401d98103af5ef241c6512d02` · *Vilarejo Skarv* · *Casca de Raiz* (Substâncias)

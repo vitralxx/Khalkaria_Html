@@ -68,11 +68,8 @@ A elite de Vistaluz é mais velha que o senhor a quem serve hoje. Khaskavel come
 - **Intervalo:** a corrupção pela seiva chega à nobreza sem viciação ostensiva; a fábrica cria uma classe de altos funcionários; o mercado das folhas se firma.
 - **0** (campanha): nobres reclusos atrás da muralha, cargos médios do culto, e mais de um deles disposto a trair o clone.
 
-## Pontas soltas
-1. **O nome ainda vale?** "Iluminados" é o termo antigo para essa gente e nunca foi reescrito; os registros recentes descrevem a mesma elite sem batizá-la. Ou o nome continua, ou a elite de Vistaluz fica sem nome de facção.
-2. **A segunda família.** Se a diarquia entra na história, o topo original desta elite tem uma metade caída para contar ([[Perguntas Abertas]] E9).
-3. **Nenhum nobre tem nome.** O "nobre de cargo médio que quer trair" é um lugar vazio à espera de alguém. Nomes como Viktor von Raven ou Aldric von Haust são apenas sugestões de sonoridade, não pessoas.
-4. **Os nobres carregam a Marca?** Consomem [[Folhas Amarelas]] com regularidade, e as folhas marcam quem as usa — se a nobreza inteira já tem [[Marca da Vhelor]], ou só quem sussurra "O Trono", nunca foi escrito.
+## Em aberto
+E344 (o nome da elite) · E9 (a diarquia) · E345 (os nobres e a Marca)
 
 ## Procedência
 - Notion — *Iluminado (old)* `33e6e3a401d981d8a9ead434576e2aaf` (sem status, 2026-04-10; uma linha, transcrita na íntegra) · *Vistaluz* `33e6e3a401d98192ba6deb2cbe5bcc42` · *Khaskavel* `33e6e3a401d981e39c8fe9df2e5a7f4d` (nomenclatura da árvore) · *Culto de Malkhor* `3696e3a401d981a0b2e3f42c3fa846e6` · *Substâncias / Folhas Amarelas* `33e6e3a401d981ef841aefa20793d48d`

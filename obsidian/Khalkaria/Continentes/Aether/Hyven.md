@@ -41,7 +41,7 @@ Quando ela voltou mutilada do cativeiro, a cidade respondeu com o que sabe fazer
 
 ## A língua
 
-Os autômatos falam o [[Idiomas|Criptografado]]: *"Idioma extinto dos autômatos desde que eles começaram criptografar a linguagem comum para preservação da facção automata, todos os registros e conhecimentos automatos são comunicados nessa língua"*. Hyven é a comunidade autômata mais desenvolvida de que se tem notícia, e presume-se que seus registros estejam todos nessa língua — embora isso nunca tenha sido escrito.
+Os autômatos falam o [[Idiomas|Criptografado]]: *"Idioma extinto dos autômatos desde que eles começaram criptografar a linguagem comum para preservação da facção automata, todos os registros e conhecimentos automatos são comunicados nessa língua"*. Hyven é a comunidade autômata mais desenvolvida de que se tem notícia, e seus registros seguem essa língua.
 
 ## Relações
 - **Fica em** → [[Aether]], em parte remota
@@ -58,10 +58,8 @@ Os autômatos falam o [[Idiomas|Criptografado]]: *"Idioma extinto dos autômatos
 - **Juventude:** cativeiro nos Hax; retorno; chifre robótico; anos construindo Ilou Jr.
 - **Antes de C−27:** Runa se despede de Hyven, passa anos em busca dos Skorn, chega a [[Volkrest]] e à audiência com [[Kirkushav Drekar]].
 
-## Pontas soltas
-1. **Hyven e a raça autômata.** A raça [[Autômato]] não menciona Hyven nem [[Aether]], e Hyven é a única comunidade autômata com nome — as duas descrições nunca foram ligadas. → [[Perguntas Abertas]] E30.
-2. **A desconfiança dos teurgos** é registrada como provável, não como fato.
-3. **Hyven conhece os dragões Skorn?** O nome que Runa adotou veio da carcaça do dragão — *"Na carcaça dele, um nome rabiscado: Ilou Skorn"* —, não da cidade, e não se sabe se os dragões foram feitos ali. → [[Perguntas Abertas]] E25.
+## Em aberto
+E30 (Hyven e a raça Autômato) · E353 (a desconfiança dos teurgos) · E25 (os dragões Skorn)
 
 ## Procedência
 - Notion: 4. Aether `33e6e3a401d9812bab36f280892bf817`, seção Hyven (🟡) · Runa Skorn `33e6e3a401d981f2ae5fd3a12244a204`

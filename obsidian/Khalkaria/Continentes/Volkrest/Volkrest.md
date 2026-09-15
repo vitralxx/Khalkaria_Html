@@ -86,10 +86,8 @@ E há quem saia sem escolher: o Império despeja seus indesejados em [[Ossyria]]
 - **C−27 ([[Sessão 0]]):** Kirkushav vem a Kharavel e anuncia que *"voltarei a Volkrest hoje a noite"*.
 - **C−27 a C:** Kirkushav *"Volta a Volkrest e, ao longo dos 27 anos seguintes, dedica esforços a prolongar sua própria vida através de magia e alquimia"*; chega à campanha com mais de 93 anos.
 
-## Pontas soltas
-1. **A capital não tem nome.** A cidade dos esgotos, do bairro gruto e da guarda que prendeu Klaus — *"a cidade da injustiça"* — nunca foi nomeada. → [[Perguntas Abertas]] E27.
-2. **O clã das Baratas**, que arrasou o feudo de Vorn, aparece uma única vez e não se sabe se são insetos, bandidos ou uma casa nobre. → [[Perguntas Abertas]] E28.
-3. **Migração e idade dos continentes.** Os povos de Volkrest migram *"conforme o passar dos séculos"*, mas Kharavel é lembrada como *"aparentemente recém-formado"* e ao mesmo tempo *"descoberto há poucos séculos"*. → [[Perguntas Abertas]] E17.
+## Em aberto
+E27 (o nome da capital) · E28 (o clã das Baratas) · E17 (a idade dos continentes)
 
 ## Procedência
 - Notion: 2. Volkrest `33e6e3a401d9817fa7a8c67c898343e2` (🟠 Rascunho, ed. 2026-05-24; filha: O Império do Ferro) · Kirkushav Drekar `33e6e3a401d98131815efc830056e2e3` · Vorn Drekar `33e6e3a401d981b99d17e52ca1383748` · Sinikko Kiriam `33e6e3a401d98172bcefef2453ce1564`

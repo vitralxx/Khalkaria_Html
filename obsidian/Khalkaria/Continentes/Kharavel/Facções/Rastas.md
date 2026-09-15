@@ -110,14 +110,8 @@ Pelo caminho tomaram também o castelo de onde tudo começou: *"há alguns anos 
 - **Intervalo:** Revavena é construída do zero; a doutrina se radicaliza; o castelo em ruínas é tomado com apoio de povos nativos; a cidade abriga os desafortunados que saem de Khaskavel.
 - **0** (campanha): a Revolução Revavenana é a própria cidade, e a profecia de Karma vence no prazo que ela mesma marcou.
 
-## Pontas soltas
-1. **Como Revavena nasceu.** A palavra do mestre é clara — fundada do zero em −27 —, mas o registro da cidade ainda conta outra história, a de um palácio conquistado há dez anos numa cidade-satélite. A versão da fundação do zero prevalece; a página de [[Revavena]] segue pendente de correção.
-2. **Os oitenta Subjulgados.** Fugiram, ficaram, viraram os primeiros [[Embrenhos]]? Sabe-se apenas que muitos ficaram por medo e que uma facção escrava se opunha à libertação. Nenhum deles tem nome, e Revavena guarda aí uma culpa fundacional.
-3. **Nenhum Rasta além de Karma e Sevic foi batizado.** O "filho" de Sevic segue sendo um lugar vazio.
-4. **Karma antes de ser Karma.** A infância dela não foi escrita — entra na história já escrava em Khaskavel. E os poderes que a bênção lhe deu (o Olhar da Justiça, o desaparecimento místico, o não envelhecer) nunca foram medidos ([[Perguntas Abertas]] E10).
-5. **A escrava que Hadran deveria assassinar** não é nomeada na ordem de Kirkushav — se é Karma, a Sessão 0 tem um assassino já contratado dentro dela ([[Perguntas Abertas]] E29).
-6. **Sevic sobreviveu?** O interrogatório está registrado; o destino dele depois disso, e se o bilhete chegou às mãos de Karma, não ([[Perguntas Abertas]] E38).
-7. **Sinikko de dois lados.** Para Karma ele é o inimigo de origem; para os grutos, foi o libertador — a contradição é vivida pelo original, e o clone a resolve abandonando os grutos.
+## Em aberto
+E326 (o palácio de Revavena) · E337 (os oitenta que ficaram) · E352 (nomes rastas) · E421 (a infância de Karma) · E10 (os poderes de Karma) · E29 (a escrava sem nome) · E38 (Sevic sobreviveu)
 
 ## Procedência
 - Notion — *Rastas* `39e6e3a401d9816e9861c60d9a86d1b9` (🟡, 2026-07-15) · *Facções* `3696e3a401d9814f8e0dfa4c6b50b850` · *Karma* `39e6e3a401d98199a0bbf981a89abc2d` · *Sevic* `39e6e3a401d981cdbd37cd863742b4f8` · *Revavena* `33e6e3a401d981619f07d156693b051f` · *Castelo em Ruínas* `3696e3a401d98161a014d3747e46b42b` · *Karmath* `39e6e3a401d981bab6e3d23fadefe734`

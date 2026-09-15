@@ -69,11 +69,8 @@ O [[Vilarejo Skarv]] fica na costa oeste do [[Bosque Corrompido]]. Nas cartas de
 - **≈ −2:** Lena foge do ataque e é resgatada por [[Alvak Krichama]] — a data está em disputa, ver [[Lena Skarv]].
 - **0** (campanha): o vilarejo original em retração; Lena vive em Khaskavel escondendo o que é.
 
-## Pontas soltas
-1. **Veneram ou apenas usam?** O mesmo registro diz que trabalham a seiva *"sem venerar a árvore como deusa"* e, adiante, que ela *"é deusa viva"* e é cultuada. A explicação dos dois nomes resolve — aceitar os dons da Vhelorna é honrá-la —, mas as duas frases continuam se contradizendo na letra e pedem unificação.
-2. **A ilha do sudeste.** A ilha florestada desenhada no mapa antigo é o destino da realocação, ou o destino é outro lugar ainda sem nome? ([[Perguntas Abertas]] E6.)
-3. **Quem perseguiu Lena.** Há três versões — dois grutos selvagens, o ataque ao vilarejo, dois soldados da [[Vanguarda Serafélia]] — e a palavra do mestre fica com os soldados. E se Alvak matou dois soldados no meio de Khaskavel, alguém tinha de ter descoberto ([[Perguntas Abertas]] E12).
-4. **A cultura Skarv é quase toda um vazio.** Fora os dois nomes da Vhelor, não há organização social, ritual, número de gente nem um terceiro nome próprio: só Yu e Lena. Sobrenomes dryad como "Florescrua" e "Cascaferro" são sugestões soltas, não famílias Skarv.
+## Em aberto
+E351 (veneram ou usam) · E6 (a ilha do sudeste) · E12 (os dois soldados executados) · E350 (a cultura Skarv)
 
 ## Procedência
 - Notion — *Vilarejo Skarv* `33e6e3a401d981f68258f6a0be896c08` (🟡, 2026-06-09; descreve o povo e o lugar) · *Facções* `3696e3a401d9814f8e0dfa4c6b50b850` · *Lena Skarv* `3696e3a401d981969032ea2fcf0b406e` · *Alvak Krichama* `33e6e3a401d98103af5ef241c6512d02` · *Mira Vesnal* `36d6e3a401d981fb97bceeec037e614d` · *Os Hax* `3696e3a401d98127a568c856497d9ce6`

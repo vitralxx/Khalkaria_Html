@@ -83,14 +83,8 @@ Dois moradores das ruínas do [[Castelo de Kirkushav]] chegariam lá por caminho
 - **−1:** [[Lázlo]] é encontrado *"longe do Abismo"*, desidratado e com a cicatriz angular — sobrevivente de ritual.
 - **0** (campanha): cratera roxa nas cartas; acesso barrado pela ilusão até que se escale a [[Cordilheira Cristalina]].
 
-## Pontas soltas
-1. **As almas continuam retidas?** A ideia de que o Abismo é uma representação do [[Plano dos Mortos]] no plano material foi abandonada; se o portal e o acervo de almas sobrevivem a essa mudança, ninguém disse.
-2. **A cratera não aparece nas cartas antigas.** O Abismo foi revelado nesses vinte e sete anos, ou o desenho antigo mostrava a ilusão em escala continental? ([[Perguntas Abertas]] E5.)
-3. **[[Mundarak]] participou?** O plano material é dele, e a pergunta ficou registrada na própria página do deus: *"Ele participou do aprisionamento de Osh'Kar, ou emprestaram a terra dele sem pedir?"* Só [[Velúria]] e [[Vytália]] foram nomeadas.
-4. **As corrupções que o Abismo oferece** ainda não foram criadas, e as cartas do Abismo hoje existentes (dezoito Dores e vinte e três Benefícios) serão refeitas — não servem de referência.
-5. **A célula maior de cultistas** perto do Abismo, a estética do lugar e os NPCs que o rondam continuam sem escrever.
-6. O [[Abissal]] é chamado *"um dos mais raros de Khaskavel"* onde se quis dizer de Khalkaria ([[Perguntas Abertas]] E60).
-7. **Quem é "O Trancafiado"** invocado pelo [[Teurgo]] — Osh'Kar, ou uma segunda coisa selada no mesmo lugar? ([[Perguntas Abertas]] E72.)
+## Em aberto
+E414 (as almas retidas) · E5 (a cratera nas cartas antigas) · E415 (Mundarak participou) · E420 (o que o Abismo oferece) · E341 (a congregação-mãe) · E60 (Khaskavel ou Khalkaria) · E72 (quem é O Trancafiado)
 
 ## Procedência
 - Notion — *O Abismo* `3696e3a401d981aeb840ece0726fbf97` (🟡, ed. 2026-05-23) · *Osh'Kar* `3416e3a401d980bea207e73d726ec1bc` (🟠, ed. 2026-06-09) · *Deuses* `33e6e3a401d9817f9470e140120b1c22` (ed. 2026-09-04) · *Cultos de Osh'Kar* `3696e3a401d98125a280d7b0bf485494` (🟠) · *Mundarak* `39e6e3a401d981e3a7fdc5b89aa8146b` · *Lázlo* `36d6e3a401d9818d9cddefbdd4015aad` · *Hadran Vorgil* `36d6e3a401d9817792d8ef277f93f46a`

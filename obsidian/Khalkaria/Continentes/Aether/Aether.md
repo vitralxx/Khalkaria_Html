@@ -45,10 +45,6 @@ O outro poder do continente não estuda: colhe. [[Os Hax]] mantêm monastérios 
 
 [[Klaus von Aldric]] chegou enganado, com a proposta de *"recuperar um objeto num monastério abandonado no continente de Aether"*. *"Passou por maus bocados em sua jornada, enfrentou o frio, a fome"* e terminou no cativeiro. Depois de fugir, *"Sozinho em Aether"*, encontrou [[Kheyos]] *"na estrada"*.
 
-## O nome
-
-Aether, o continente, e [[Éter]], a energia que corre em todo ser, não são a mesma palavra e nunca são ditos como a mesma coisa — mas a terra é da deusa que criou o Éter, e a semelhança é evidente demais para ser acidente.
-
 ## Relações
 - **Continente de** → [[Khalkaria]] ([[Continentes]])
 - **Presente de** → [[Kha]] **para** → [[Velúria]]
@@ -67,11 +63,8 @@ Aether, o continente, e [[Éter]], a energia que corre em todo ser, não são a 
 - **Antes de C−27:** Runa deixa Hyven, passa *"Anos de busca"* pelos dragões Skorn, ouve falar do [[Império de Ferro]] e vai a [[Volkrest]].
 - **C−27 ([[Sessão 0]]):** [[Kirkushav Drekar]] chantageia Runa — *"seus amigos dragões estão perto do fim não é?"*.
 
-## Pontas soltas
-1. **O culto poderoso que ensinou Kheyos** não é nomeado, e não se sabe se são os [[Os Hax|Hax]] ou uma ordem de teurgos. → [[Perguntas Abertas]] E23.
-2. **Hyven e o resto de Aether.** A relação entre a civilização autômata e os teurgos tradicionais nunca foi definida; a desconfiança é suposição, não fato estabelecido.
-3. **Os dragões autômatos Skorn** são *"rarísssimo, praticamente extinto"*, e [[Kirkushav Drekar]] alega um *"avistamento recente de Skorn"* sem dizer onde. → [[Perguntas Abertas]] E25.
-4. **O nome do continente e o nome da energia.** Nada liga explicitamente Aether ao [[Éter]], apesar de a terra ser da deusa que o criou.
+## Em aberto
+E23 (o culto que formou Kheyos) · E353 (Hyven e os teurgos) · E25 (os dragões Skorn) · E354 (Aether e o Éter)
 
 ## Procedência
 - Notion: 4. Aether `33e6e3a401d9812bab36f280892bf817` (🟡 Em desenvolvimento, ed. 2026-05-24; seção inline Hyven, filha Os Hax) · Os Hax `3696e3a401d98127a568c856497d9ce6` · Runa Skorn `33e6e3a401d981f2ae5fd3a12244a204` · Klaus von Aldric `33e6e3a401d9810ca145d41242d235b0` · Kheyos `33e6e3a401d9819789c0da0fcde2f114`

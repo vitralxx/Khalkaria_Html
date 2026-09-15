@@ -60,12 +60,8 @@ Nem todos foram para a ilha: houve *"refugiados Skarv que passavam pela cidade"*
 - **Intervalo:** ataques ordenados pelo [[Sinikko Kiriam (clone)|clone]] na campanha de homogenia; o ataque que deixa [[Lena Skarv]] órfã; [[Yu]] traça o plano de mudança; a maior parte do povo parte para a ilha do sudeste.
 - **0** (campanha): o vilarejo original de pé, em retração.
 
-## Pontas soltas
-1. **Quando Lena fugiu.** Os registros põem o ataque na era do clone e o resgate dois anos antes da campanha; a versão do mestre põe Sinikko vendo a menina na forja já na [[Sessão 0]], o que jogaria o ataque para antes de −27 e o mandante para o [[Sinikko Kiriam (original)|original]]. Ver [[Arrma Boua]] e [[Perguntas Abertas]] E18.
-2. **Veneram ou não veneram?** A mesma página diz que os Skarv usavam a seiva *"sem venerar a árvore como deusa"* e, adiante, que para eles ela *"é deusa viva"* e é cultuada com dois nomes. A segunda versão é a mais recente e detalhada.
-3. **Dois Sinikkos na mesma frase.** [[Yu]] é subestimada por Sinikko na guerra antiga, e os ataques recorrentes são ordenados pelo clone — sem que os registros separem um do outro.
-4. **A ilha do sudeste** é mesmo o destino? ([[Perguntas Abertas]] E6.)
-5. **[[Yu]] está viva?** Não há página própria dela nos registros, só menções, e o paradeiro atual não foi escrito.
+## Em aberto
+E18 (quando Lena fugiu) · E105 (quem ordenou o ataque) · E351 (veneram ou usam) · E6 (a ilha do sudeste) · E366 (onde está Yu)
 
 ## Procedência
 - Notion — *Vilarejo Skarv* `33e6e3a401d981f68258f6a0be896c08` (🟡, ed. 2026-06-09) · *Lena Skarv* `3696e3a401d981969032ea2fcf0b406e` · *Alvak Krichama* `33e6e3a401d98103af5ef241c6512d02` · *Mira Vesnal* `36d6e3a401d981fb97bceeec037e614d` · *Facções de Kharavel* `3696e3a401d9814f8e0dfa4c6b50b850`

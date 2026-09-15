@@ -33,10 +33,8 @@ Contra a leitura religiosa pesa o resto do que se sabe da cidade: nenhum dos deu
 - **−27** ([[Sessão 0]]): em construção.
 - **0** (campanha): não descrita — não se sabe se foi concluída nem o que a corrupção da cidade fez dela.
 
-## Pontas soltas
-1. **O que é "Serafélia"** — igreja, ordem religiosa-militar, santo ou figura do Império? A que deus a catedral é dedicada? Existe culto oficial em Khaskavel além do [[Culto de Malkhor]]? ([[Perguntas Abertas]] E4.)
-2. **A obra terminou?** E sobreviveu ao apodrecimento da cidade? Nada escrito.
-3. **A própria existência desta igreja** repousa inteira num rótulo de mapa. Se o rótulo for decoração de cartógrafo, esta nota deixa de ter objeto.
+## Em aberto
+E4 (o que é Serafélia) · E321 (a obra e o rótulo)
 
 ## Procedência
 - Mapa de Khaskavel na Sessão 0 — `docs/memoria/mapas/LEIA-ME_mapas.md` §2 (único registro do lugar)

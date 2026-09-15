@@ -18,7 +18,7 @@ tags: [khalkaria/continentes]
 
 **[[Volkrest]]** foi encomendado por Kha em pessoa e moldado por todos os deuses. Dele saíram [[Humano]]s, [[Gruto]]s, [[Autômato]]s e [[Inseto]]s, que ao longo dos séculos migraram para os outros continentes. Hoje é terra de guerra longa e do [[Império de Ferro]], a maior civilização do planeta.
 
-**[[Mordval]]** é o continente fragmentado. Um cometa o partiu no começo do mundo e deixou nele energias que não eram daqui. Vive do mar: piratas, portos seguros e colônias imperiais espalhados por ilhas, algumas das quais ninguém se deu ao trabalho de nomear.
+**[[Mordval]]** é o continente fragmentado. Um cometa o partiu no começo do mundo e deixou nele energias que não eram daqui. Vive do mar: piratas, portos seguros e colônias imperiais espalhados por ilhas.
 
 **[[Aether]]** foi presente de Kha a Velúria, e é de lá que vem a maior parte do que os [[Teurgo]]s sabem. Criaturas mágicas boas e malignas o habitam por dádiva divina. Guarda [[Hyven]], a civilização autômata de engenharia mística, e os monastérios ocultos de [[Os Hax]].
 
@@ -42,7 +42,7 @@ A [[Equipe desfloreio]] da [[Sessão 0]] foi montada com um integrante de cada c
 
 ## Quem vive onde
 
-Volkrest é o berço declarado de [[Humano]]s, [[Gruto]]s, [[Autômato]]s e [[Inseto]]s, e é de lá que partem as migrações. [[Dryad]]s aparecem nos dois extremos do mundo — [[Runa Skorn]] criada em Aether, os [[Skarv]] nativos de Kharavel — sem que nenhuma terra seja apontada como sua origem. Os [[Anão|anões]] Krichama chegaram a Kharavel como imigrantes de Volkrest. Os [[Corrompido]]s não têm pátria: são feitos, e a maior parte dos que se conhecem saiu dos rituais dos [[Os Hax|Hax]] entre Aether e Mordval.
+Volkrest é o berço declarado de [[Humano]]s, [[Gruto]]s, [[Autômato]]s e [[Inseto]]s, e é de lá que partem as migrações. [[Dryad]]s aparecem nos dois extremos do mundo — [[Runa Skorn]] criada em Aether, os [[Skarv]] nativos de Kharavel. Os [[Anão|anões]] Krichama chegaram a Kharavel como imigrantes de Volkrest. Os [[Corrompido]]s não têm pátria: são feitos, e a maior parte dos que se conhecem saiu dos rituais dos [[Os Hax|Hax]] entre Aether e Mordval.
 
 ## Relações
 - **Planeta** → [[Khalkaria]]
@@ -55,10 +55,8 @@ Volkrest é o berço declarado de [[Humano]]s, [[Gruto]]s, [[Autômato]]s e [[In
 - **Dragão autômato de Hyven** → [[Ilou Skorn]], morto pelos [[Os Hax|Hax]]; dele veio o nome de [[Runa Skorn]]
 - **Cronologia** → [[Linha do Tempo]]
 
-## Pontas soltas
-1. **Um por continente, e ainda assim dois de Volkrest.** [[Vorn Drekar]] e [[Sinikko Kiriam (original)|Sinikko]] nasceram os dois no Império. Sinikko conta como representante de Kharavel por ser imperador de [[Khaskavel]]? → [[Perguntas Abertas]] E1, E16.
-2. **Dryads e anões sem pátria.** Nenhuma terra é apontada como origem dessas duas raças, embora ambas apareçam em mais de um continente. → [[Perguntas Abertas]] E30.
-3. **Não existe mapa-múndi.** Não há posição relativa entre os cinco continentes. Sabe-se apenas que Kharavel fica *"onde antes marinheiros afirmavam não haver nada"* e que [[Azgar Sandgale]] atravessou de canoa à deriva de Ossyria até ser recolhido por um navio rumo a Volkrest — o que sugere vizinhança entre as duas. → [[Perguntas Abertas]] E31.
+## Em aberto
+E1 (um por continente) · E16 (o continente de Sinikko) · E30 (a pátria de dryads e anões) · E31 (mapa-múndi)
 
 ## Procedência
 - Notion: Continentes `33e6e3a401d981c39158ccebacdd2224` (🟡 Em desenvolvimento, ed. 2026-05-23), com as cinco filhas numeradas 1–5 na ordem acima. Só Kharavel tem árvore profunda de subpáginas; Volkrest tem uma filha (O Império do Ferro), Aether tem uma (Os Hax) e uma seção inline (Hyven); Mordval e Ossyria são um parágrafo cada (🟠 Rascunho).

@@ -60,13 +60,8 @@ A cidade que ela guarnece é, no catálogo de facções do continente, *"colonia
 - **Intervalo:** toma [[Kuriam]]; ataca o [[Vilarejo Skarv]] repetidas vezes sob a campanha de homogenia do clone; dois soldados são executados por [[Alvak Krichama]] (data em disputa, ver [[Lena Skarv]]).
 - **0** (campanha): guarda de uma cidade dissolvida no vício, respondendo a um imperador que rompeu com o próprio Império.
 
-## Pontas soltas
-1. **Serafélia ou Seratélia.** Os registros alternam entre as duas grafias; a forma oficial é **Serafélia**, e as páginas com "Seratélia" seguem pendentes de correção.
-2. **Uma Vanguarda ou duas?** Do castelo se diz que *"a guarda presente nesse castelo era chamada de Vanguarda do Ferro"*, e o bilhete de [[Sevic]] fala da Vanguarda Serafélia assumindo esse mesmo castelo. O vault trata como duas tropas distintas — do Ferro é de Kirkushav, Serafélia é de Khaskavel —, o que ainda pede confirmação ([[Perguntas Abertas]] E29).
-3. **A Igreja Serafélia.** Se a ordem tem uma igreja em construção, Serafélia é também uma fé — e falta saber de qual deus, e o que a fé tem a ver com a tropa que leva o nome ([[Perguntas Abertas]] E4).
-4. **Lealdade hoje.** A tropa é do Império, mas o clone rompeu com o Império. Ela o seguiu inteira, rachou, ou parte voltou para [[Volkrest]]? Nada foi escrito.
-5. **Ka'ur Zotama tem uma linha só.** Não se sabe se é general em −27, no ano 0, ou nos dois.
-6. **Os dois soldados mortos por Alvak.** Executar dois membros da Vanguarda dentro de Khaskavel e continuar sendo o ferreiro oficial da cidade é impossível sem alguém ter fechado os olhos ([[Perguntas Abertas]] E12).
+## Em aberto
+E29 (uma Vanguarda ou duas) · E4 (o que é Serafélia) · E348 (a lealdade hoje) · E349 (quem é o general) · E12 (os dois soldados executados)
 
 ## Procedência
 - Notion — *A Vanguarda Seratélia* `33e6e3a401d98104845ddaafa86b57b2` (sem status, 2026-04-10) · *Facções* `3696e3a401d9814f8e0dfa4c6b50b850` · *Kuriam* `33e6e3a401d981ad83d7fe8266cc6630` · *Kirkushav Drekar* `33e6e3a401d98131815efc830056e2e3` · *Alvak Krichama* `33e6e3a401d98103af5ef241c6512d02` · *Rastas* `39e6e3a401d9816e9861c60d9a86d1b9` · *Vistaluz* `33e6e3a401d98192ba6deb2cbe5bcc42`

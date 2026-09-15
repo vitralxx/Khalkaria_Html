@@ -56,11 +56,8 @@ As raízes já cobriam o norte vinte e sete anos atrás e já entravam em [[Khas
 - **Intervalo:** extração de seiva das raízes se industrializa em [[Khaskavel]].
 - **0** (campanha): **CR 2-3** nas bordas, **CR 4-5** junto ao tronco.
 
-## Pontas soltas
-1. Onde exatamente fica a porta da árvore. Sabe-se que é *"obra de um teurgo muito poderoso"*, mas não em que ponto do emaranhado se abre.
-2. [[Khaskavel]] não pertence a nenhuma das nove regiões demarcadas; pelo desenho do continente, encosta neste emaranhado a leste e no [[Bosque Corrompido]] ao sul. Ver [[Kharavel]].
-3. Se as raízes avançaram nos últimos vinte e sete anos, e quanto — os registros das duas épocas não permitem comparar extensão.
-4. As linhas exatas de fronteira ainda não foram traçadas ([[Perguntas Abertas]] E14).
+## Em aberto
+E304 (onde fica a porta) · E301 (a região de Khaskavel) · E305 (o avanço das raízes) · E14 (as fronteiras)
 
 ## Procedência
 - Notion — *Emaranhado de Raízes* `37b6e3a401d98152a2c6ce1513040a71` (🟠 rascunho, 2026-06-10)

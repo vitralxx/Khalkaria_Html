@@ -45,11 +45,8 @@ O [[Sinikko Kiriam (clone)|clone]] *"cortou relações com o Império de Ferro"*
 - **Intervalo:** a seiva sai para o resto do mundo; jovens de [[Revavena]] entram para trabalhar na fábrica.
 - **0** (campanha): estado não escrito; sair do continente só por barco clandestino.
 
-## Pontas soltas
-1. **O porto hoje.** Com a cidade rompida com o Império, quem controla a entrada do continente — e ela ainda existe?
-2. **De onde partem os barcos clandestinos** de [[Tev Kossar]]: deste porto, de [[Kuriam]], de [[Revavena]], de alguma praia? Não escrito.
-3. **[[Revavena]] e [[Kuriam]] têm porto próprio?** Nunca foi dito, embora uma exporte peixe e a outra fique na costa nordeste.
-4. **As cartas da campanha** não descrevem o estado do porto.
+## Em aberto
+E332 (quem controla o porto) · E333 (os barcos clandestinos)
 
 ## Procedência
 - Mapa de Khaskavel na Sessão 0 — `docs/memoria/mapas/LEIA-ME_mapas.md` §2 (único registro do lugar), 2026-09-05

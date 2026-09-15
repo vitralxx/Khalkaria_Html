@@ -106,11 +106,8 @@ O resultado do trabalho do culto se mede na própria cidade que ele governa: vin
 - **Intervalo:** a fábrica entra em operação; a cidade adoece; jovens revavenanos são cooptados (Yenev, ≈ −10); ataques ao [[Vilarejo Skarv]]; Tev foge da fábrica (−3).
 - **0** (campanha): o culto domina Khaskavel e prepara a "grande chuva de Seiva" sobre [[Revavena]] e o continente inteiro.
 
-## Pontas soltas
-1. **Onde fica a fábrica.** É o alvo mais óbvio do continente e não tem endereço — [[A Embrenha]]? [[Vistaluz]]? a [[Mina de Khaskavel]]? Nenhum capataz e nenhum cultista de cargo alto tem nome.
-2. **A exportação continuou?** O culto antigo *"exporta ao resto do mundo em uma tentativa de propagar suas crenças"*; nada foi escrito sobre isso depois que o clone assumiu e voltou a mira para dentro de Kharavel.
-3. **O culto e a Vanguarda.** A [[Vanguarda Serafélia]] veio do [[Império de Ferro]], e o clone rompeu com o Império — a tropa passou a ser instrumento do culto, ou continua sendo apenas a guarda da cidade? ([[Perguntas Abertas]] E29.)
-4. **Os dois reis.** A diarquia fundadora de Khaskavel explica a frase do culto antigo, mas ainda não se decidiu se a segunda família fica na história ou desaparece dela ([[Perguntas Abertas]] E9).
+## Em aberto
+E300 (onde fica a fábrica) · E340 (quem a chefia) · E339 (a exportação hoje) · E29 (uma Vanguarda ou duas) · E348 (a lealdade da tropa) · E9 (a diarquia)
 
 ## Procedência
 - Notion — *Culto de Malkhor* `3696e3a401d981a0b2e3f42c3fa846e6` (🟡, 2026-06-09) · *Culto de Khaskavel (old)* `33e6e3a401d98110a854d7bdd14fa685` (sem status, 2026-04-10) · *Facções* `3696e3a401d9814f8e0dfa4c6b50b850` · *Sinikko (NPC)* `33e6e3a401d9813d8cf5d8d8e6c3fddc` · *Substâncias* `33e6e3a401d981ef841aefa20793d48d` · *Embrenhos* `33e6e3a401d981569024f9883fc59c05`

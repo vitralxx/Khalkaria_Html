@@ -109,17 +109,8 @@ Quem ainda vive nela vive escondido ou de passagem: [[Alvak Krichama]] mantém a
 - **Intervalo:** o clone corta laços com o Império; o [[Culto de Malkhor]] toma a infraestrutura; ergue-se a fábrica de [[Seiva]]; a [[A Embrenha]] vira culto de adoração; ataque ao [[Vilarejo Skarv]]; [[Kuriam]] é tomada; [[Yenev Vesnal]] desaparece (≈ −10); [[Tev Kossar]] foge (−3).
 - **0** (campanha): cidade enegrecida, sem escravos nem economia; embrenhos matam estrangeiros nas ruas; o clone prepara a *"grande chuva de Seiva"* sobre [[Revavena]] e o continente.
 
-## Pontas soltas
-1. **Os dois reis.** A diarquia de duas famílias fica registrada como história antiga da cidade, ou some junto com a família descartada? ([[Perguntas Abertas]] E9.)
-2. **A taverna** tem dois nomes ([[Perguntas Abertas]] E3).
-3. **Lena e Alvak** — quando a menina chegou à forja é a contradição mais séria da cidade. Ver [[Arrma Boua]] e [[Perguntas Abertas]] E18.
-4. **"Desde seus 5 anos de desenvolvimento"** é ambíguo: cinco anos de cidade, ou Sinikko no poder a partir do quinto ano? Os registros do próprio Sinikko dizem apenas que ele *"operou alguns anos administrando a cidade"*.
-5. **A região do continente** a que Khaskavel pertence nunca foi atribuída na legenda das nove regiões.
-6. **Onde fica a fábrica de seiva.** Nunca escrito. O edifício de chaminés a oeste, nas cartas antigas, é palpite.
-7. **O gentílico oscila** entre "Khaskavianos", "Khaskaveis" e "Khaskavelana", sem forma fixada.
-8. **A [[Igreja Serafélia]]** e o que "Serafélia" designa ([[Perguntas Abertas]] E4).
-9. **Onde** Sinikko conversou a sós com [[Karma]] e onde ela desapareceu misticamente — o lugar nunca foi dito.
-10. O [[Abissal]] é descrito como *"um dos mais raros de Khaskavel"* — quase certamente se quis dizer de Khalkaria, já que o idioma nasceu no [[O Abismo|Abismo]], do outro lado do continente ([[Perguntas Abertas]] E60).
+## Em aberto
+E9 (a diarquia) · E3 (o nome da taverna) · E18 (quando Lena chegou) · E324 (os cinco anos) · E301 (a região da cidade) · E300 (onde fica a fábrica) · E323 (o gentílico) · E4 (o que é Serafélia) · E325 (onde Karma desapareceu) · E60 (Khaskavel ou Khalkaria)
 
 ## Procedência
 - Notion — *Khaskavel* `33e6e3a401d981e39c8fe9df2e5a7f4d` (🟡, ed. 2026-06-09) · *Localizações* `33e6e3a401d981338b72db40bc8166f2` · *Áreas* `33e6e3a401d981478c6cc0692f6ac3a1` · *Povos* `33e6e3a401d98170aa0edfabdac4d27a` · *Embrenhos* `33e6e3a401d981569024f9883fc59c05` · *O Rei de Khaskavel* `33e6e3a401d9814aa2a2c3d7ef3875a7` · *A Vanguarda Seratélia* `33e6e3a401d98104845ddaafa86b57b2` · *Culto de Khaskavel (old)* `33e6e3a401d98110a854d7bdd14fa685` · *Iluminado (old)* `33e6e3a401d981d8a9ead434576e2aaf`

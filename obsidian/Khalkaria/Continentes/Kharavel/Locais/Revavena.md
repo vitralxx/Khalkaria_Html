@@ -76,14 +76,8 @@ Continua fora do alcance de Khaskavel — *"Revavena e o resto de Kharavel conti
 - **0** (campanha): consolidada; a região mais segura do continente; alvo da chuva de seiva.
 - **O ano da profecia** é este: vinte e sete anos depois, Revavena derrota Khaskavel e a Vhelor.
 
-## Pontas soltas
-1. **O palácio.** Se a cidade foi levantada do zero numa planície vazia, o *"palácio de Revavena"* que os registros antigos mandam conquistar não existia. Foi construído depois, ou é resíduo da versão superada?
-2. **Sustentável ou incendiária?** Os registros dizem que Revavena defende *"uma abordagem mais sustentável e inteligente"* e, três parágrafos abaixo, ensinam a dizer "vamos queimar a Praga". A primeira frase parece resto da versão antiga.
-3. **Cega pela árvore.** O texto que descreve o rumo do continente diz que Revavena estará *"cega pelo domínio d'A Grande Árvore"* — cega de ódio, presumivelmente, mas está escrito de forma ambígua.
-4. **[[Karma]] não envelhece** — confirmado? E quais são exatamente os poderes da bênção? ([[Perguntas Abertas]] E10.)
-5. **Os oitenta que ficaram.** Sabe-se que muitos escravos permaneceram por medo e que uma facção contrária à libertação se transformou junto com a cidade; se são eles os primeiros [[Embrenhos]], continua sem resposta — e é a culpa fundacional que Revavena guarda.
-6. **A cidade não tem rosto:** faltam descrição física, população, forma de governo e qualquer NPC além de [[Karma]], [[Sevic]] e [[Mira Vesnal]].
-7. **[[Sevic]] sobreviveu à [[Sessão 0]]?** Dele depende qual das duas Revavenas existe ([[Perguntas Abertas]] E38).
+## Em aberto
+E326 (o palácio) · E327 (sustentável ou incendiária) · E328 (cega pela árvore) · E10 (os poderes de Karma) · E337 (os oitenta que ficaram) · E329 (o rosto da cidade) · E38 (Sevic sobreviveu)
 
 ## Procedência
 - Notion — *Revavena* `33e6e3a401d981619f07d156693b051f` (🟡, ed. 2026-06-09) · *Rastas* `39e6e3a401d9816e9861c60d9a86d1b9` (🟡, ed. 2026-07-15) · *Karmath* `39e6e3a401d981bab6e3d23fadefe734` (🟠) · *Karma* `39e6e3a401d98199a0bbf981a89abc2d` · *Mira Vesnal* `36d6e3a401d981fb97bceeec037e614d` · *Sinikko Kiriam (NPC)* `33e6e3a401d9813d8cf5d8d8e6c3fddc` · *O Direcionamento* `33e6e3a401d98190a21ae6c430acbc38`

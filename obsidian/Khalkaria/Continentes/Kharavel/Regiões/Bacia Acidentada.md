@@ -49,10 +49,8 @@ Há vinte e sete anos o lago era turquesa e o castelo ainda estava em obras, cer
 - **−1:** [[Lázlo]] é encontrado no planalto central.
 - **0** (campanha): acampamento principal dos personagens de jogador.
 
-## Pontas soltas
-1. O rio que corta [[Khaskavel]] e o lago central pertencem à mesma bacia? Nada foi dito sobre onde as águas do centro desaguam.
-2. Em que ano exatamente o castelo caiu — só se sabe que foi *"há alguns anos"* antes da campanha. Ver [[Castelo de Kirkushav]] e [[Perguntas Abertas]] E36.
-3. As linhas exatas de fronteira com as vizinhas ainda não foram traçadas ([[Perguntas Abertas]] E14).
+## Em aberto
+E306 (as águas do centro) · E36 (a data da queda) · E14 (as fronteiras)
 
 ## Procedência
 - Notion — *Bacia Acidentada* `37b6e3a401d9812091d3f52b4c159b24` (🟠 rascunho, 2026-06-10)

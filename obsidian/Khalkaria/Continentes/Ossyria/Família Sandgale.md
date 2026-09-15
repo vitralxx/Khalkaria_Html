@@ -66,11 +66,8 @@ A acusação é uma alavanca deliberada: culpa falsa somada à esperança de ree
 - **C−27 ([[Sessão 0]]):** Kirkushav chantageia Azgar com o Batedor e com o ente querido.
 - **C (campanha):** o paradeiro de Terk segue desconhecido.
 
-## Pontas soltas
-1. **Terk está vivo?** É o gancho principal de Azgar e continua sem resposta. → [[Perguntas Abertas]] E20.
-2. **Por que Terk foi exilado.** Ele fala em *"penitência apenas minha"* e nunca diz o crime. → [[Perguntas Abertas]] E20.
-3. **Família ou sentença.** O título desta nota trata os Sandgale como família, e a fala de Terk os trata como categoria de condenados. As duas leituras são verdadeiras ao mesmo tempo e convém que continuem sendo.
-4. **A página de Azgar** apresenta a acusação de Kirkushav sem indicar que é mentira deliberada — cabe uma nota de mestre ali, porque à mesa a diferença entre erro e manipulação muda a cena inteira.
+## Em aberto
+E20 (Terk vivo e o crime)
 
 ## Procedência
 - Notion: Azgar Sandgale `33e6e3a401d9814caa28c26a3a66e84c` · Roteiro da Sessão 0 `33e6e3a401d9819796c9dfb2263e215d`

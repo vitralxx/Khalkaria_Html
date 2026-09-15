@@ -85,13 +85,8 @@ Os guardas cumprem o que Sevic os ouviu combinar. Se o papel não passa às mão
 - **Intervalo:** se vive, foge com os [[Rastas]] e ajuda a fundar [[Revavena]]; se [[Karma]] morreu, governa a cidade.
 - **0** (campanha): se vive, é memória viva do castelo e de quem os jogadores foram.
 
-## Pontas soltas
-1. **O bilhete chegou?** É a primeira bifurcação da campanha e ainda não foi registrada. Dela dependem a vida de Sevic e o feitio de [[Revavena]]. ([[Perguntas Abertas]] E38.)
-2. **"Irmã"** — sangue ou facção? Ele assina assim a própria despedida, e os dois sentidos mudam a história dos dois.
-3. **Qual Vanguarda tomaria o castelo.** O bilhete fala de *"a Vanguarda"* que fará dali um ponto de controle *"para os futuros anos de Khaskavel"* — o que aponta para a [[Vanguarda Serafélia]] —, mas quem guarnecia o castelo era a [[Vanguarda do Ferro]] de [[Kirkushav Drekar]]. ([[Perguntas Abertas]] E29.)
-4. **O filho.** O *"diga a ele que eu o amo"* não tem nome, idade nem paradeiro, e o *"faça o melhor pela família"* provavelmente fala dos Rastas. Há uma pessoa inteira escondida nessa linha.
-5. **O guarda desatento** também não tem nome — e foi ele quem deixou o bilhete existir.
-6. **Raça e idade** nunca foram fixadas.
+## Em aberto
+E38 (o bilhete chegou) · E376 (irmã de sangue ou de facção) · E29 (qual Vanguarda) · E352 (o filho) · E375 (a raça e o guarda)
 
 ## Procedência
 - Notion — *Sevic* `39e6e3a401d981cdbd37cd863742b4f8` (🟡, ed. 2026-07-15; a seção *O Bilhete* dessa página é o "documento do escravo" — não existe arquivo separado) · *Rastas* `39e6e3a401d9816e9861c60d9a86d1b9` · *Karma* `39e6e3a401d98199a0bbf981a89abc2d` · *Roteiro da Sessão 0* `33e6e3a401d9819796c9dfb2263e215d`

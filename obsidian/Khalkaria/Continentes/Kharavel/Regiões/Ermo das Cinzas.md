@@ -40,12 +40,8 @@ Do sudeste continental de vinte e sete anos atrás não sobrou registro algum: a
 ## Linha do tempo
 - **0** (campanha): **CR 4-5**; ruínas do [[Castelo do Sul]] de pé, sem ocupação registrada.
 
-## Pontas soltas
-1. **O que queimou aqui.** A causa das cinzas e a data nunca foram escritas. Já era assim há vinte e sete anos?
-2. **[[Castelo do Sul]].** Quem o construiu, para quê e quando caiu. Não se sabe sequer se tem relação com o Castelo das Nações que [[Kirkushav Drekar]] mandou erguer no centro, ou com alguma das outras nações colonizadoras.
-3. **A ilha florestada** ao largo do sudeste: é para lá que os [[Skarv]] foram realocados? ([[Perguntas Abertas]] E6.)
-4. A cor da região oscila entre cinza e preto conforme o desenho consultado — diferença menor, mas vale fixar uma.
-5. As linhas exatas de fronteira ainda não foram traçadas ([[Perguntas Abertas]] E14).
+## Em aberto
+E312 (o que queimou) · E318 (o Castelo do Sul) · E6 (a ilha do sudeste) · E315 (cinza ou preto) · E14 (as fronteiras)
 
 ## Procedência
 - Notion — *Ermo das Cinzas* `37b6e3a401d98125880bcd6e07e58000` (🟠 rascunho, 2026-06-10)

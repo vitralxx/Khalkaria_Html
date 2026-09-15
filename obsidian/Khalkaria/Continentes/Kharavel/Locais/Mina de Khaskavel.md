@@ -41,9 +41,8 @@ Quem cavava, em −27, quase certamente eram os escravos da cidade — na palavr
 - **−27** ([[Sessão 0]]): mina ativa sob as raízes; a extração de seiva já corre por fora, e Kirkushav a denuncia.
 - **0** (campanha): estado não escrito.
 
-## Pontas soltas
-1. **O que se extrai aqui, afinal** — minério, seiva das raízes, ou ambos? E é desta mina que a fábrica do [[Culto de Malkhor]] tira a matéria-prima? Nada disso foi escrito.
-2. **A mina hoje.** Se ainda opera, e para quem, não se sabe.
+## Em aberto
+E317 (o que se extrai) · E305 (as raízes no fundo)
 
 ## Procedência
 - Mapa de Khaskavel na Sessão 0 — `docs/memoria/mapas/LEIA-ME_mapas.md` §2 (único registro do lugar), 2026-09-05

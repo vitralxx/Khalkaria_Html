@@ -92,14 +92,8 @@ Hadran *"conhece passagens secretas e pontos cegos"* do lugar — é o último h
 - **−3:** chega [[Tev Kossar]]. **−2:** chega [[Mira Vesnal]]. **−1:** [[Lázlo]] é encontrado no planalto central.
 - **0** (campanha): acampamento principal dos personagens de jogador.
 
-## Pontas soltas
-1. **Em nome de quem o castelo continuou imperial.** Os registros dizem que serviu de base imperial sob o clone, mas o clone cortou relações com o [[Império de Ferro]]. As duas coisas não foram conciliadas.
-2. **A data da queda.** Só se sabe *"há alguns anos"*, e que é anterior a −3, quando [[Tev Kossar]] chega e Hadran já mora nas ruínas ([[Perguntas Abertas]] E36).
-3. **Quem atacou.** *"Revolucionários revavenanos e povos nativos"* — quais povos? [[Skarv]]? [[Xkamur]]? [[Povos Diversos do Sul]]? E os registros dos [[Rastas]] falam em *"ataque às ruínas do Castelo"*, como se já estivesse arruinado antes do ataque.
-4. **A conversa com [[Sevic]] e o bilhete** não têm cena escrita no roteiro, só o que consta nas páginas dos envolvidos. Também não se sabe se ele sobreviveu à Sessão 0 nem se o bilhete chegou a [[Karma]] ([[Perguntas Abertas]] E38).
-5. **O guarda desatento** e o destinatário do *"eu o amo"* no fim do bilhete continuam sem nome.
-6. **Duas Vanguardas.** A guarnição aparece como "Vanguarda de Ferro" e "Vanguarda do Ferro" na mesma página; a forma correta é [[Vanguarda do Ferro]] ([[Perguntas Abertas]] E29).
-7. A página de origem tem uma seção "Residentes Atuais" vazia duplicando "Habitantes Atuais".
+## Em aberto
+E319 (imperial em nome de quem) · E36 (a data da queda) · E320 (quem atacou) · E38 (o bilhete e Sevic) · E375 (o guarda desatento) · E384 (a chegada de Kirkushav) · E29 (uma Vanguarda ou duas)
 
 ## Procedência
 - Notion — *Castelo em Ruínas* `3696e3a401d98161a014d3747e46b42b` (🟡, ed. 2026-05-27) · *Roteiro da Sessão 0* `33e6e3a401d9819796c9dfb2263e215d` (🟡, ed. 2026-07-24) · *Sevic* `39e6e3a401d981cdbd37cd863742b4f8` · *Hadran Vorgil* `36d6e3a401d9817792d8ef277f93f46a` · *Lázlo* `36d6e3a401d9818d9cddefbdd4015aad` · *Rastas* `39e6e3a401d9816e9861c60d9a86d1b9`

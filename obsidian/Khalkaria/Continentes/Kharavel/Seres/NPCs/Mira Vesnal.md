@@ -89,11 +89,8 @@ Com [[Tev Kossar]], que trabalhou na mesma fábrica, ela pergunta *"sempre que h
 - **−1:** cuida de [[Lázlo]] durante a recuperação.
 - **0** (campanha): curandeira da base.
 
-## Pontas soltas
-1. **A infância dela não fecha com a fundação da cidade.** [[Revavena]] foi erguida do zero em −27, quando Mira tinha treze anos — mas ela *"cresceu em Revavena antes da revolução se intensificar"*. Ou nasceu escrava em [[Khaskavel]] e fugiu criança com os [[Rastas]], ou nasceu na cidade recém-fundada e a infância anterior é outra coisa. Nunca foi escrito.
-2. **As contas de mãe e filho não batem.** Ela tem quarenta anos; o filho tinha vinte ao partir e foi procurado por *"uma década"* até ela desistir *"há dois anos"* — o que a faria mãe por volta dos dez. Alguma das idades está errada. ([[Perguntas Abertas]] E35.)
-3. **Refugiados [[Skarv]] em Revavena.** Os Skarv veneram a árvore e Revavena a odeia. Como esses refugiados foram acolhidos, e por quanto tempo, não está escrito.
-4. **[[Acólito]] de quem?** A origem aparece entre as prováveis, mas nenhum deus é nomeado — e numa cidade que despreza a árvore, a escolha diz muito.
+## Em aberto
+E385 (a infância dela) · E35 (as idades de mãe e filho) · E387 (os refugiados Skarv) · E386 (acólita de quem)
 
 ## Procedência
 - Notion — *Mira Vesnal* `36d6e3a401d981fb97bceeec037e614d` (🟡, ed. 2026-05-28) · *Castelo em Ruínas* `3696e3a401d98161a014d3747e46b42b` · *A Grande Árvore* `33e6e3a401d9813b8a60f1f9669803be` (nomenclatura)

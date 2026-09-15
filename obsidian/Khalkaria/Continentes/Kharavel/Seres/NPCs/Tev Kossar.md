@@ -80,10 +80,8 @@ Com [[Mira Vesnal]] há a pergunta que volta sempre: ela procura [[Yenev Vesnal]
 - **−3:** foge, aos vinte e sete; vaga meses pelo continente e chega às ruínas do castelo.
 - **0** (campanha): trinta anos; informante e comerciante da base, juntando o preço do barco.
 
-## Pontas soltas
-1. **A fábrica não tem endereço.** Ninguém escreveu onde ela fica, quem a chefia, que ritual acontece nos salões trancados — de modo que o "detalhe crítico" que Tev pode soltar ainda não existe para ser dito. Ver [[Culto de Malkhor]].
-2. **A rede já foi lida?** A variante em que os contatos da Embrenha trabalham para o culto é possibilidade, não estado do mundo. Enquanto não for decidida, as cartas chegam limpas.
-3. **Quando o castelo caiu** — Tev chega às ruínas em −3, já desabitadas exceto por [[Hadran Vorgil]], mas a data da queda nunca foi fixada. ([[Perguntas Abertas]] E36.)
+## Em aberto
+E300 (onde fica a fábrica) · E340 (quem a chefia) · E390 (a rede já foi lida) · E36 (quando o castelo caiu)
 
 ## Procedência
 - Notion — *Tev Kossar* `36d6e3a401d9811daf94f8854d6d01ee` (🟡, ed. 2026-07-20) · *Castelo em Ruínas* `3696e3a401d98161a014d3747e46b42b`

@@ -76,15 +76,10 @@ O interior não é totalmente desconhecido em [[Kharavel]], porque vaza pelos so
 
 ## Linha do tempo
 - **−27 ([[Sessão 0]]).** A equipe atravessa a porta antes do pôr do sol; as câmaras se adaptam aos cinco; o dragão de raízes os espera na última sala; os cinco "morrem"; [[Sinikko Kiriam (original)]] assume o casulo e o clone sai da árvore.
-- **Ano 0 (campanha).** O interior só é conhecido pelos sonhos da [[Casca de Raiz]]; ninguém escreveu ainda como um novo grupo chegaria à porta.
+- **Ano 0 (campanha).** O interior só é conhecido pelos sonhos da [[Casca de Raiz]].
 
-## Pontas soltas
-1. **Quantas salas, e que provações?** A natureza adaptativa é canônica — as salas se moldam ao desafiante —, mas o desenho concreto de uma travessia (número de câmaras, que teste cada uma monta para cada tipo de ser, como a árvore "lê" quem entra) ainda não foi decidido para a mesa.
-2. **O que é o dragão de raízes?** Ele guarda a última câmara e nada mais se sabe dele: se é criatura própria da árvore, se é um Sonhador anterior deformado, ou se a Vhelor o monta contra o desafiante como monta as salas.
-3. **Quem abriu a porta.** *"Um teurgo muito poderoso, brincando com os locais"* — [[Kheyos]] é o suspeito mortal, [[Velúria]] o divino; nada confirmado.
-4. **O que sobrou dos outros quatro.** [[Vorn Drekar]] tem um clone à solta; [[Klaus von Aldric]], [[Runa Skorn]] e [[Azgar Sandgale]] não têm destino escrito. Se as almas ficaram presas na árvore, foram para o [[Plano dos Mortos]] ou pararam em [[O Abismo]], ninguém disse.
-5. **A porta ainda está aberta no ano 0?** Nenhum texto descreve como um grupo da campanha atual entraria — para levar [[Lena Skarv]] ao casulo ou para enfrentar o Sonhador.
-6. **Grafia.** Os registros antigos oscilam entre "Camaras da Provação", "câmaras de provação" e "Câmaras de Provação"; o vault adota a última.
+## Em aberto
+E400 (o desenho das câmaras) · E401 (o dragão de raízes) · E398 (quem abriu a porta) · E402 (as almas dos quatro) · E19 (o clone de Vorn) · E399 (a porta no ano 0)
 
 ## Procedência
 - Notion: A Grande Árvore `33e6e3a401d9813b8a60f1f9669803be` · Roteiro da Sessão 0 `33e6e3a401d9819796c9dfb2263e215d` · Substâncias da Grande Árvore `33e6e3a401d981ef841aefa20793d48d` · Sinikko Kiriam `33e6e3a401d9813d8cf5d8d8e6c3fddc` · Hadran Vorgil `36d6e3a401d9817792d8ef277f93f46a` · índice de Sessões

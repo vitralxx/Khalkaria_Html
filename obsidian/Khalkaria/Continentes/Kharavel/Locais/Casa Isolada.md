@@ -53,12 +53,8 @@ Porque o soberano do [[Império de Ferro]] quer o que a violência não dá: a f
 - **−27** ([[Sessão 0]]): Kheyos instalado na casa; ponto de interesse da expedição em Khaskavel.
 - **0** (campanha): o que restou da casa, e de Kheyos, não foi escrito.
 
-## Pontas soltas
-1. **Kheyos existe hoje?** E a casa sobreviveu ao apodrecimento de Khaskavel? Nada foi escrito sobre nenhum dos dois no ano da campanha ([[Perguntas Abertas]] E37).
-2. **"Corrompido pelas forças materializantes"** — sabendo que essas forças são o [[O Limiar|Limiar]] e o [[Éter]], corrompido em que sentido? Há relação com a raça [[Corrompido]]? Não se afirma.
-3. **O culto de [[Aether]]** que o ensinou não tem nome. São [[Os Hax]]? ([[Perguntas Abertas]] E23.)
-4. **O nome da casa** vem das cartas da cidade, não dos registros: ali é *"O Teurgo Solitário 'Casa Isolada'"*, enquanto os registros dizem apenas *"uma das casas mais remotas"*.
-5. **As cenas de Khaskavel na Sessão 0**, a visita ao laboratório inclusive, não estão escritas no roteiro.
+## Em aberto
+E37 (Kheyos no ano 0) · E334 (o nome e a casa hoje) · E380 (corrompido em que sentido) · E23 (o culto de Aether)
 
 ## Procedência
 - Notion — *Roteiro da Sessão 0* `33e6e3a401d9819796c9dfb2263e215d` · *Kheyos* `33e6e3a401d9819789c0da0fcde2f114` (🟠, ed. 2026-05-24) · *Kirkushav Drekar* `33e6e3a401d98131815efc830056e2e3` · *Klaus von Aldric* (página de PC)

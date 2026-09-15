@@ -66,14 +66,8 @@ Preços, categorias e a mecânica de melhoria estão em [[O Bazar]] e em [[Dinhe
 - **−27:** Alvak *"se firmou em khaskavel a 27 anos"*; na [[Sessão 0]], Sinikko vai à ferraria e vê a menina.
 - **0** (campanha): Lena, trinta e cinco anos, vive aqui sob proteção de Alvak.
 
-## Pontas soltas
-1. **Quando Lena chegou — a contradição central desta casa.** Se Sinikko a vê na ferraria na [[Sessão 0]], Lena está aqui há vinte e sete anos e teria hoje cerca de quarenta, ou não envelhece, como [[Karma]]. Os registros da cidade dizem outra coisa: resgatada há dois anos, aos treze, com quinze hoje; e a página de Alvak se contradiz sozinha, dizendo tanto *"Após 25 anos"* quanto *"há 25 anos"*. ([[Perguntas Abertas]] E18.)
-2. **Quem ordenou o ataque ao [[Vilarejo Skarv]]** depende do item anterior: os registros atribuem o ataque ao [[Sinikko Kiriam (clone)|clone]], *"durante a campanha de homogenia"*; se o resgate é anterior à Sessão 0, o mandante foi o [[Sinikko Kiriam (original)|original]].
-3. **Alvak executou dois soldados da Vanguarda e continua ferreiro da cidade.** Ninguém descobriu, ou o imperador o protegeu? ([[Perguntas Abertas]] E12.)
-4. **As folhas amarelas na fornalha.** Queimar como combustível a substância *"mais rara e mais cobiçada"* do continente é gesto enorme — ou resquício de uma versão descartada. Ver [[Folhas Amarelas]].
-5. **A tarefa de Alvak** nunca foi escrita, e sem ela as melhorias compráveis não têm gatilho.
-6. **As cenas de Khaskavel na Sessão 0**, a visita à ferraria inclusive, não estão escritas no roteiro — existem só nas páginas dos envolvidos.
-7. **Alvak chegou exatamente no ano da Sessão 0** — antes ou depois da expedição? ([[Perguntas Abertas]] E39.)
+## Em aberto
+E18 (quando Lena chegou) · E105 (quem ordenou o ataque) · E12 (os dois soldados executados) · E359 (as folhas na fornalha) · E361 (a tarefa de Alvak) · E39 (a chegada de Alvak)
 
 ## Procedência
 - Notion — *Arrma Boua (Forja) (old)* `33e6e3a401d98163beb4f770516bb0e8` (🔴 stub, 2026-05-24, marcada como localização deprecada) · *Alvak Krichama* `33e6e3a401d98103af5ef241c6512d02` (🟡, 2026-05-24) · *Quest — Alvak, o ferreiro* `33e6e3a401d981819212fc8fb29ab6cc` (🔴 stub, vazia) · *Lena Skarv* `3696e3a401d981969032ea2fcf0b406e`

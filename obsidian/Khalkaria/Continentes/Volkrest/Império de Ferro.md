@@ -106,12 +106,8 @@ O clone *"cortou relações com o Império de Ferro"*. Na prática o Império pe
 - **C−27 a C:** o clone corta relações; Kirkushav prolonga a própria vida e passa dos 93; [[Hadran Vorgil]] fica como último da [[Vanguarda do Ferro]] em Kharavel.
 - **C (campanha):** o Império é força externa, não vilão local.
 
-## Pontas soltas
-1. **Abomina magia e vive dela.** Kirkushav prolongou a própria vida por magia e alquimia enquanto o Império a trata como praga. Hipocrisia deliberada do Soberano ou exceção reconhecida? → [[Perguntas Abertas]] E11.
-2. **O castelo continuou imperial sob o clone?** O [[Castelo de Kirkushav]] é descrito como base imperial sob comando do Sinikko clone, mas o clone rompeu com o Império. Quem mandava ali nos 27 anos seguintes não está escrito.
-3. **A capital não tem nome**, e não se sabe quem governou em nome de Kirkushav em Volkrest durante os 27 anos em que ele se dedicou a esticar a própria vida. → [[Perguntas Abertas]] E27.
-4. **"Outras nações também colonizadoras"** chegaram a Kharavel depois do Império, e nenhuma é nomeada. → [[Perguntas Abertas]] E27.
-5. **Sinikko, filho adotivo ou refém dourado?** Há relatos de que Kirkushav o adotou como filho, e a história do próprio Sinikko fala em chantagem e correntes douradas. O filho de sangue é [[Vorn Drekar]], e a versão do refém prevalece; a do filho adotivo é como a corte imperial preferia contar.
+## Em aberto
+E11 (abomina magia e vive dela) · E319 (o castelo sob o clone) · E27 (a capital e as outras nações) · E382 (filho ou refém)
 
 ## Procedência
 - Notion: O Império do Ferro `33e6e3a401d981269fc0f19d9fe66772` (sem status, ed. 2026-04-10) · Kirkushav Drekar `33e6e3a401d98131815efc830056e2e3` (🟡, ed. 2026-07-23) · Roteiro da Sessão 0 `33e6e3a401d9819796c9dfb2263e215d` · Sinikko Kiriam (NPC) `33e6e3a401d9813d8cf5d8d8e6c3fddc` · origem verbatim na página de Vorn Drekar

@@ -51,10 +51,8 @@ O castelo à volta ainda é obra:
 - **Intervalo:** o castelo é tomado por revolucionários e povos nativos, e [[Hadran Vorgil]] é o único sobrevivente da guarnição.
 - **0** (campanha): ausente das ruínas.
 
-## Pontas soltas
-1. **O que foi feito dele.** Morreu na queda do castelo, voltou ao Império na comitiva de [[Kirkushav Drekar]], ou saiu antes? A forja está nas ruínas; o ferreiro, não.
-2. **A raça vem do clã.** O nome Krichama é anão, mas a única descrição que existe dele não diz a raça nem a idade nem a aparência — o rosto de Jairo continua em branco.
-3. **"Itens Exóticos"** precisa bater com as raridades de [[O Bazar]].
+## Em aberto
+E377 (o que foi feito dele) · E378 (os Itens Exóticos)
 
 ## Procedência
 - Notion — *Roteiro da Sessão 0* `33e6e3a401d9819796c9dfb2263e215d` (🟡, ed. 2026-07-24), cenas *Ferraria* e *Pátio* · *Anão* (Raças), clã Krichama

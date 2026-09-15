@@ -35,11 +35,8 @@ Nada além do desenho: uma ruína no cinza. As cartas do continente de vinte e s
 ## Linha do tempo
 - **0** (campanha): ruína de pé, sem ocupação registrada, no meio do ermo.
 
-## Pontas soltas
-1. **Quem construiu, quando e por quê**, e o que o derrubou. Nada disso foi escrito.
-2. **O que queimou o [[Ermo das Cinzas]]** e se o castelo caiu junto.
-3. **Já existia há vinte e sete anos?** A descrição das cartas antigas não o menciona; confirmar quando os desenhos originais estiverem à mão ([[Perguntas Abertas]] E14).
-4. **O plural do outro nome.** O castelo do centro se chamava "Castelo das Nações" — havia mais de um castelo planejado, e este é um deles? Não se afirma.
+## Em aberto
+E318 (quem construiu) · E312 (o que queimou o Ermo) · E14 (as cartas antigas)
 
 ## Procedência
 - Notion — *Ermo das Cinzas* `37b6e3a401d98125880bcd6e07e58000` (🟠, ed. 2026-06-10), única página que o cita

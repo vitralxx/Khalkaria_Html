@@ -46,11 +46,8 @@ Houve pelo menos uma vez em que o sul saiu da vida simples e pegou em armas: o c
 - **Intervalo:** povos nativos participam da tomada das ruínas do [[Castelo de Kirkushav]] ao lado dos [[Rastas]].
 - **0** (campanha): continuam no sul, sem nome e sem território desenhado.
 
-## Pontas soltas
-1. **Nada foi nomeado.** Faltam os povos, suas vilas, suas raças, seus líderes e a posição de cada um no mapa — o sul ainda não recebeu as regiões de facção que o resto de Kharavel tem.
-2. **Kuriam contradiz a promessa.** O sul é descrito como simples e sábio, mas o único lugar nomeado que existe nele é uma vila ocupada pela [[Vanguarda Serafélia]]. Como os povos do sul convivem com essa presença — comércio, hostilidade, indiferença — não foi escrito.
-3. **Os Xkamur são do sul?** É a suposição mais natural, e continua sendo só suposição: a posição deles nunca foi fixada.
-4. **A chave do Abismo.** Se algum povo do sul sabe que o pico da [[Cordilheira Cristalina]] desfaz a ilusão d'[[O Oásis]], esse povo guarda o segredo mais perigoso do continente.
+## Em aberto
+E346 (quem são os povos do sul) · E302 (onde ficam os Xkamur) · E343 (quem sabe da ilusão) · E330 (Kuriam ocupada)
 
 ## Procedência
 - Notion — *Facções* `3696e3a401d9814f8e0dfa4c6b50b850` (🟡, 2026-07-15; entrada "Povos Diversos do Sul — ainda não mapeados", e "Grupos Independentes — outros grupos a desenvolver conforme a campanha avança") · *Direcionamento* `33e6e3a401d98190a21ae6c430acbc38` (🟢, 2026-05-24) · *Kuriam* `33e6e3a401d981ad83d7fe8266cc6630` · *Castelo em Ruínas* `3696e3a401d98161a014d3747e46b42b`

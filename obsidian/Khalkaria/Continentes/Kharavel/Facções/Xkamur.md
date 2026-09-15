@@ -35,11 +35,8 @@ Um povo que nunca tocou na seiva é um povo sem [[Marca da Vhelor]] — e os art
 ## Linha do tempo
 - **0** (campanha): existem, e é tudo o que se pode afirmar — posição e estado desconhecidos.
 
-## Pontas soltas
-1. **Tudo está por escrever:** localização no mapa, aparência, organização social, idioma, a história da rivalidade com os [[Skarv]], a relação atual com [[Khaskavel]], como reagem a forasteiros que carreguem seiva, e qualquer nome próprio. Enquanto não tiverem região desenhada, não têm história.
-2. **Já são inimigos à mesa.** Existem fichas de criaturas Xkamur prontas para uso, e nenhuma delas foi nomeada aqui — faltam esses nomes, que são os primeiros Xkamur com rosto que o mundo terá.
-3. **Quem tomou o castelo.** Os "povos nativos" que atacaram as ruínas ao lado dos [[Rastas]] nunca foram identificados: Xkamur, [[Skarv]] ou outros.
-4. **São do sul?** A promessa de um sul *"simples, porém sábio"* combina com eles, mas a posição dos Xkamur nunca foi fixada — não se deve assumir.
+## Em aberto
+E347 (tudo dos Xkamur) · E302 (onde ficam) · E320 (quem atacou o castelo)
 
 ## Procedência
 - Notion — *Xkamur* `3696e3a401d98184af09dd6a4082e11a` (🔴 placeholder, 2026-05-23; traz a lista "A Desenvolver", recolhida acima em Pontas soltas, e a observação de que já existem fichas de inimigos no bestiário) · *Facções* `3696e3a401d9814f8e0dfa4c6b50b850` · *Vilarejo Skarv* `33e6e3a401d981f68258f6a0be896c08`

@@ -25,7 +25,7 @@ O nome veio da própria carcaça: *"Na carcaça dele, um nome rabiscado: Ilou Sk
 
 Do corpo do dragão Runa tirou o **cristal azul**, e com ele, de volta a [[Hyven]], construiu **Ilou Jr.**, o autômato companheiro movido por essa única fonte de energia. Adotou o sobrenome Skorn e passou anos procurando os dragões autômatos da mesma linhagem — descritos como praticamente extintos.
 
-Foi por aí que [[Kirkushav Drekar]] a pegou: alegou ter um *"avistamento recente de Skorn"* e usou a informação como isca para recrutá-la na [[Sessão 0]]. Se o avistamento existe, ninguém além dele diz onde.
+Foi por aí que [[Kirkushav Drekar]] a pegou: alegou ter um *"avistamento recente de Skorn"* e usou a informação como isca para recrutá-la na [[Sessão 0]]. Onde foi esse avistamento, ele não disse.
 
 ## Relações
 - **Libertado por** → [[Runa Skorn]]
@@ -39,8 +39,8 @@ Foi por aí que [[Kirkushav Drekar]] a pegou: alegou ter um *"avistamento recent
 - **Depois:** o cristal azul vira Ilou Jr. em [[Hyven]].
 - **C−27:** Kirkushav oferece notícias dos Skorn em troca da missão em [[Kharavel]].
 
-## Pontas soltas
-1. **Sobrou algum Skorn vivo?** Onde foi o avistamento que Kirkushav alega, e Hyven sabe da existência desses dragões? → [[Perguntas Abertas]] E25.
+## Em aberto
+E25 (sobrou algum Skorn)
 
 ## Procedência
 - Notion: Runa Skorn `33e6e3a401d981f2ae5fd3a12244a204` · Os Hax `3696e3a401d98127a568c856497d9ce6`

@@ -50,11 +50,8 @@ As montanhas já estavam aqui vinte e sete anos atrás, no centro-sul do contine
 - **−27** ([[Sessão 0]]): montanhas presentes no centro-sul, sem registro de ocupação.
 - **0** (campanha): **CR 4-5**; etapa obrigatória antes do [[Deserto do Abismo]].
 
-## Pontas soltas
-1. Como exatamente a escalada desfaz a ilusão — ritual no cume, artefato encontrado lá em cima, a visão do alto que revela a verdade, ou um guardião que precisa ser vencido? Nada foi decidido.
-2. A posição é descrita ora como centro-leste, ora como centro-sul a leste de [[Kuriam]]. As duas leituras colocam a cordilheira a leste do centro, mas o traçado exato falta ([[Perguntas Abertas]] E14).
-3. Quem extrai os cristais, e se há algum assentamento nas encostas. Sendo os [[Anão|anões]] Krichama ferreiros e os Caxon engenheiros, a ligação seria natural — mas ninguém a afirmou.
-4. Que criaturas guardam as alturas: sabe-se que são formidáveis, nada além disso.
+## Em aberto
+E416 (como a escalada desfaz a ilusão) · E310 (quem extrai os cristais) · E311 (as criaturas das alturas) · E14 (o traçado)
 
 ## Procedência
 - Notion — *Cordilheira Cristalina* `37b6e3a401d98170bcdadabd058821ac` (🟠 rascunho, 2026-06-10)

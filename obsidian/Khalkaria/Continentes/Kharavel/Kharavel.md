@@ -127,17 +127,8 @@ O desfecho da primeira campanha é o expurgo de [[Malkhor]]. Derrotado o [[Sinik
 - **0** (campanha): os personagens de jogador se instalam no [[Castelo de Kirkushav]]. Khaskavel *"não tem mais escravos — tem embrenhos viciados na seiva matando estrangeiros nas ruas"*. [[Revavena]] consolidada e armada.
 - **Previsto:** a *"grande chuva de Seiva"* sobre Revavena e todo o continente, plano do clone; e, no fim, o [[Primórdio]].
 
-## Pontas soltas
-1. **Quem criou o continente.** A versão antiga fala em três deuses — *"deus da terra, junto ao deus do pecado e a deusa das criaturas"* — com uma frase truncada; a versão atual tem [[Vytália]] pedindo e [[Mundarak]] construindo, com uma única criação de [[Malkhor]]. Falta confirmar que o "deus da terra" é Mundarak e completar a frase interrompida.
-2. **Que idade tem a descoberta.** Kharavel é dito *"descoberto há poucos séculos"* e já *"casa de raças de diversos lugares do planeta"*, mas também *"aparentemente recém-formado"*, com o Império sendo *"os primeiros a descobrir essa nova terra"* e [[Khaskavel]] com cinco anos na [[Sessão 0]] — e ainda assim *"os povos locais, que não são poucos"*, já resistiam. Séculos ou décadas? E quem chegou antes do Império: [[Skarv]], [[Xkamur]], os "primeiros povos que ruíram"? ([[Perguntas Abertas]] E17.)
-3. **Revavena cega pela árvore.** O desígnio da campanha diz que Khaskavel *e* [[Revavena]] estão *"completamente cegos pelo domínio d'A Grande Árvore"*, mas Revavena rejeita a árvore por princípio, chamando-a de A Praga. A leitura provável é que estejam cegos pelo conflito em torno dela, não por devoção a ela.
-4. **A região de [[Khaskavel]].** A divisão em nove regiões não cobre a cidade; pelo desenho ela fica entre o [[Emaranhado de Raízes]], a leste, e o [[Bosque Corrompido]], ao sul. Falta decidir se pertence a alguma.
-5. **A equipe de um por continente.** [[Vorn Drekar]] e [[Sinikko Kiriam (PC)|Sinikko]] vêm ambos de [[Volkrest]], e ninguém representa Kharavel — a menos que Sinikko o represente, como imperador de Khaskavel ([[Perguntas Abertas]] E1 e E16).
-6. **O sudoeste verde.** Cachoeiras e mata onde hoje há deserto: a região mudou em vinte e sete anos ou o que se registrava era a ilusão em escala regional? ([[Perguntas Abertas]] E5.)
-7. **A ilha florestada do sudeste** é o destino da realocação [[Skarv]]? ([[Perguntas Abertas]] E6.)
-8. **As fronteiras entre as nove regiões** foram deduzidas do desenho geral e ainda não têm traçado definido ([[Perguntas Abertas]] E14).
-9. **A hostilidade de cada região.** Nenhuma das nove tem valor atribuído para a travessia; o Mestre decide caso a caso ([[Perguntas Abertas]] E59, ver [[Jornada]]).
-10. **A cor do [[Ermo das Cinzas]]** oscila entre cinza e preto conforme o desenho consultado.
+## Em aberto
+E316 (quem criou o continente) · E17 (a idade da descoberta) · E328 (Revavena cega) · E301 (a região de Khaskavel) · E1 (um por continente) · E16 (o continente de Sinikko) · E5 (o sudoeste verde) · E6 (a ilha do sudeste) · E14 (as fronteiras) · E59 (a hostilidade das regiões) · E315 (a cor do Ermo)
 
 ## Procedência
 - Notion — *1. Kharavel* `33e6e3a401d981eeaecaf08dd1b33d29` · *Deuses* `33e6e3a401d9817f9470e140120b1c22` (ed. 2026-09-04) · *Direcionamento* `33e6e3a401d98190a21ae6c430acbc38` (🟢) · *Locais* `33f6e3a401d98073851ceb23c8e193f1` · *Facções* `3696e3a401d9814f8e0dfa4c6b50b850` (2026-07-15) · *Roteiro da Sessão 0* `33e6e3a401d9819796c9dfb2263e215d` · *Kirkushav Drekar* `33e6e3a401d98131815efc830056e2e3`

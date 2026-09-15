@@ -108,14 +108,8 @@ Ele nunca soube que o Sinikko que ficou com a cidade não era Sinikko, e o clone
 - **Intervalo:** abandona Kharavel; prolonga a própria vida por magia e alquimia; o clone corta relações com o Império.
 - **0** (campanha): mais de noventa anos, *"mais frio, mais distante, mas ainda absoluto"*.
 
-## Pontas soltas
-1. **Abomina magia e vive de magia.** Vinte e sete anos de alquimia para não morrer, num homem cujo império usa magia *"apenas para acabar com a própria magia"*. Hipocrisia deliberada ou ele não vê contradição? ([[Perguntas Abertas]] E11.)
-2. **"Criando-o como o próprio filho".** A frase está na descrição dele e na de [[Hadran Vorgil]], e não se sustenta: o filho é [[Vorn Drekar]]. Pendente de acerto nos registros.
-3. **O plano de matar os Sandgale** não aparece escrito em lugar nenhum — só a manipulação que ele monta em cima dele.
-4. **A chegada e a partida.** O bilhete diz que ele chega amanhã; na mesa ele diz que parte hoje à noite. Um dia separa as duas frases, e os ganchos de [[Sevic]] que fazem o relógio começar quando os jogadores leem o bilhete precisam desse dia.
-5. **Quem governa o Império nos vinte e sete anos** em que ele se dedica a não morrer, e como se chama a capital de onde manda. ([[Perguntas Abertas]] E27.)
-6. **Ele reaparece?** *"Pode reaparecer na campanha eventualmente"* é tudo o que se diz sobre o futuro dele.
-7. **Títulos** que variam conforme quem fala — General-Imperador, Soberano, general, *"gere a segurança do império"* —, sem que nenhum contradiga o outro de fato.
+## Em aberto
+E11 (abomina magia e vive dela) · E382 (filho ou refém) · E384 (a ordem do dia) · E27 (a capital e o governo) · E383 (ele reaparece)
 
 ## Procedência
 - Notion — *Kirkushav Drekar* `33e6e3a401d98131815efc830056e2e3` (🟡, ed. 2026-07-23) · *Roteiro da Sessão 0* `33e6e3a401d9819796c9dfb2263e215d` (🟡, ed. 2026-07-24) · *Castelo em Ruínas* `3696e3a401d98161a014d3747e46b42b` · *Hadran Vorgil* `36d6e3a401d9817792d8ef277f93f46a` · *Sinikko Kiriam* (página de PC) `33e6e3a401d98172bcefef2453ce1564` · *Sevic* `33e6e3a401d981b99d17e52ca1383748` · *Azgar Sandgale* `33e6e3a401d9814caa28c26a3a66e84c` · páginas de PC de Vorn, Klaus e Runa

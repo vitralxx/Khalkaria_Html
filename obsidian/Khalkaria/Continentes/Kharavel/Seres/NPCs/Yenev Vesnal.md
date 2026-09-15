@@ -55,11 +55,8 @@ O que ele encontrou na fábrica é o mesmo que Tev encontrou depois: *"trabalhad
 - **−10 a −2:** a mãe o procura sete vezes.
 - **0** (campanha): desaparecido há cerca de uma década; teria trinta anos.
 
-## Pontas soltas
-1. **As idades não fecham.** [[Mira Vesnal]] nasceu em −40; Yenev tinha vinte anos ao partir e foi procurado por uma década até ela desistir há dois anos, o que o faz nascer por volta de −30 e a torna mãe aos dez. Uma das duas idades precisa mudar. ([[Perguntas Abertas]] E35.)
-2. **O destino está deliberadamente em aberto** — vivo e transformado, morto há anos, ou algo que já não é humano. Escolher um fecha o subarco inteiro da mãe.
-3. **[[Tev Kossar]] nunca ouviu o nome.** Ou Yenev usava outro, ou sumiu antes de Tev entrar na fábrica. As duas leituras cabem.
-4. **Ninguém o descreveu.** Raça (humano, por filiação), rosto, ofício antes da viagem — nada existe além do nome.
+## Em aberto
+E35 (as idades) · E388 (o destino dele) · E389 (o nome que Tev não ouviu)
 
 ## Procedência
 - Notion — *Mira Vesnal* `36d6e3a401d981fb97bceeec037e614d` · *Tev Kossar* `36d6e3a401d9811daf94f8854d6d01ee` · *Lázlo* `36d6e3a401d9818d9cddefbdd4015aad` · *Castelo em Ruínas* `3696e3a401d98161a014d3747e46b42b`

@@ -66,11 +66,8 @@ Quando outro ocupar o casulo, o canal muda de dono. Se for [[Lena Skarv]], quem 
 - **Ano 0 (campanha).** Disponível a quem alcança raízes expostas; os sonhos são os de [[Sinikko Kiriam (original)]].
 - **Futuro possível.** Se [[Lena Skarv]] assumir o casulo, os sonhos passam a ser dela.
 
-## Pontas soltas
-1. **De quem foi o plano de Lena.** O texto da casca remete ao "plano de Velúria"; o plano é de [[Vytália]] e [[Karmath]], depois que [[Velúria]] deixou escapar a fraqueza da árvore. A referência precisa ser corrigida onde aparecer.
-2. **O vínculo permanente não tem freio.** *"Por volta da quinta ou sexta ingestão"* não é um número, não há teste para resistir e não existe condição que marque o portador estabelecido — nem forma conhecida de fechar o canal depois de aberto.
-3. **Onde estão as raízes expostas?** Se afloram por todo o [[Emaranhado de Raízes]], se entram na cidade de [[Khaskavel]], se aparecem no fundo da [[Mina de Khaskavel]] — nada disso está delimitado.
-4. **Que línguas o consumidor murmura?** [[Sinikko Kiriam (original)|Sinikko]] é gruto e fala [[Idiomas|Skalia]], mas nunca se disse que é isso que sai da boca de quem sonha.
+## Em aberto
+E403 (o freio do vínculo) · E305 (onde afloram as raízes) · E404 (a língua do sonho)
 
 ## Procedência
 - Notion: Substâncias da Grande Árvore `33e6e3a401d981ef841aefa20793d48d` · O Sonhador `33e6e3a401d98126bae4e981b581487f`

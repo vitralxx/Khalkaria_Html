@@ -89,13 +89,8 @@ A saída elegante é o segredo do [[Templo da Profecia]]: derrotar o [[Sinikko K
 - **−27** ([[Sessão 0]]): aos oito, é vista pelo imperador na forja e autorizada a viver em [[Khaskavel]].
 - **0** (campanha): trinta e cinco anos, escondida na cidade, sob proteção de Alvak.
 
-## Pontas soltas
-1. **Quem ordenou o ataque que a deixou órfã.** Os registros o atribuem ao [[Sinikko Kiriam (clone)|clone]], *"durante a campanha de homogenia de Khaskavel"* — mas o clone só existe depois da [[Sessão 0]], e o ataque é anterior a ela. O mandante teria de ser o [[Sinikko Kiriam (original)|original]], o mesmo imperador que depois a acolhe. ([[Perguntas Abertas]] E18, agora restrita a este ponto.)
-2. **Que animal é a metade dela.** Dryad é metade humano e metade um animal à escolha; o de Lena nunca foi dito, e *"galhadas pequenas"* é o único indício.
-3. **A "seção separada"** que os registros prometem sobre o papel estratégico dela nunca apareceu — é, ao que tudo indica, a própria passagem sobre o plano das deusas.
-4. **O que acontece com ela se o grupo escolher a saída elegante.** O expurgo de [[Malkhor]] poupa Lena, mas ninguém escreveu o que sobra da [[A Vhelor]] nem do casulo depois disso. ([[Perguntas Abertas]] E34.)
-5. **Ela sabe?** Nada foi escrito sobre Lena ter consciência da própria pureza, do plano das deusas ou do que se espera dela.
-6. **Descrições que ainda a tratam como criança** — *"pequena estatura"*, *"traços jovens"*, *"serenidade incomum para alguém da idade dela"* — vêm da contagem antiga de quinze anos. Continuam válidas como retrato de uma dryad jovem, mas convém não lê-las como retrato de uma menina.
+## Em aberto
+E105 (quem ordenou o ataque) · E363 (qual animal) · E364 (ela sabe) · E34 (o desfecho e o casulo) · E365 (Lena e Karma)
 
 ## Procedência
 - Notion — *Lena Skarv* `3696e3a401d981969032ea2fcf0b406e` (🟡, ed. 2026-05-23) · *Alvak Krichama* `33e6e3a401d98103af5ef241c6512d02` · *Vilarejo Skarv* `33e6e3a401d981f68258f6a0be896c08` · *O Sonhador* `33e6e3a401d98126bae4e981b581487f` · *Direcionamento* `33e6e3a401d98190a21ae6c430acbc38` §4 · *Templo da Profecia* `33f6e3a401d980dd982ad39fcba2ed4e` · *Hadran Vorgil* (gancho de sequestro)

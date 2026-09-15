@@ -39,10 +39,8 @@ Que a mina leve o nome dos ferreiros, e não o dos engenheiros de túneis, é um
 - **−27** ([[Sessão 0]]): há minas assinaladas no leste do continente.
 - **0** (campanha): as minas têm nome — Minas dos Krichama —, em região de **CR 4-5**.
 
-## Pontas soltas
-1. **Tudo além do nome.** Quem opera as minas hoje, o que se extrai delas, se existe colônia anã em Kharavel e de onde ela veio, se os Krichama daqui têm relação com [[Alvak Krichama]] e [[Jairo Krichama]], e que negócio as liga a [[Khaskavel]]. Nada disso foi escrito.
-2. **Ativas ou abandonadas?** A região é das mais letais do continente, com *"criaturas resistentes"*, o que combina tanto com uma mina defendida quanto com uma mina perdida.
-3. **Por que Krichama e não Caxon**, se são os Caxon que abrem túneis. Escolha deliberada, mas nunca explicada.
+## Em aberto
+E308 (quem opera hoje) · E307 (as forjas do clã) · E309 (Krichama e não Caxon) · E311 (as criaturas)
 
 ## Procedência
 - Notion — *Costas Rochosas* `37b6e3a401d9814bac9ce9b49d0693a7` (🟠, ed. 2026-06-10), única página que as cita · *Cordilheira Cristalina* · *Templo da Profecia* `33f6e3a401d980dd982ad39fcba2ed4e` · raça *Anão* (`docs/memoria/notion_raw/raca_anao.md`)

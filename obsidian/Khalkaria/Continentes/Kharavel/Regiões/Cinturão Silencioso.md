@@ -49,10 +49,8 @@ Há vinte e sete anos, planície sem assentamento algum. Hoje, [[Revavena]] cons
 - **Intervalo:** fuga dos [[Rastas]], fundação e radicalização de [[Revavena]].
 - **0** (campanha): **CR ≤1**; a quietude estranha permanece.
 
-## Pontas soltas
-1. Por que a influência da [[A Vhelor]] se abafa aqui? Proximidade de [[Karmath]] e de [[Revavena]], alguma propriedade do terreno, ou intenção divina — nada disso foi decidido.
-2. Correm relatos de um *"palácio de Revavena"* conquistado *"há 10 anos"*, incompatíveis com uma cidade fundada do zero há vinte e sete. A fundação do zero prevalece; a versão do palácio é resíduo antigo. Ver [[Revavena]].
-3. As linhas exatas de fronteira ainda não foram traçadas ([[Perguntas Abertas]] E14).
+## Em aberto
+E314 (o silêncio da árvore) · E326 (o palácio de Revavena) · E14 (as fronteiras)
 
 ## Procedência
 - Notion — *Cinturão Silencioso* `37b6e3a401d9811893b5d06a553dbb7a` (🟠 rascunho, 2026-06-10)

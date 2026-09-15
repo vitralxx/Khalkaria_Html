@@ -83,18 +83,14 @@ Quem acumula Marcas perde acesso ao que vem do outro lado da aposta:
 - **Bloqueiam** → itens abençoados por [[Vytália]]
 - **Irmãs de árvore** → [[Seiva]] · [[Casca de Raiz]]
 - **Palidez compartilhada com** → dependentes de [[Seiva]] ([[A Embrenha]])
-- **Uso antigo, hoje duvidoso** → combustível de forja de [[Alvak Krichama]] ([[Arrma Boua]])
+- **Uso registrado** → combustível de forja de [[Alvak Krichama]] ([[Arrma Boua]])
 
 ## Linha do tempo
 - **≈ −32.** As folhas douradas, visíveis de longe, atraem o [[Império de Ferro]] a [[Kharavel]].
 - **Ano 0 (campanha).** Mercado de luxo em [[Vistaluz]]; expedições dos Colhedores; cultistas subindo com magia do clone.
 
-## Pontas soltas
-1. **Luxúria ou Luxária?** Os registros antigos catalogam a folha como categoria "Luxúria"; a grafia oficial é **Luxária**.
-2. **Folha como combustível de forja.** Uma página antiga descreve [[Alvak Krichama]] usando folhas amarelas para alimentar a forja — o que é difícil de conciliar com *"a substância mais rara e mais cobiçada"*. Se o detalhe está descartado ou se o anão realmente queima uma fortuna por dia, ninguém disse.
-3. **"Nunca caem"** — e ainda assim há oferendas de *"Folhas"* a [[Vytália]] no [[Templo da Profecia]]. A leitura provável é que sejam folhas comuns, de árvore comum.
-4. **As guardiãs da copa** são chamadas de criaturas simbióticas, e é tudo: que forma têm, se nascem da árvore ou vieram morar nela, quantas são, se falam. O **ar denso** é descrito como *"possível substância adicional"* — seria a quarta substância da Vhelor, se confirmada.
-5. **Rendimento e preço.** *"3 a 4 folhas"* por expedição bem-sucedida é o único número existente; nenhum preço de folha está fixado no [[O Bazar]].
+## Em aberto
+E359 (as folhas na fornalha) · E407 (as folhas do Templo) · E405 (as guardiãs da copa) · E406 (preço no Bazar)
 
 ## Procedência
 - Notion: Substâncias da Grande Árvore `33e6e3a401d981ef841aefa20793d48d` · Arrma Boua (arquivada) `33e6e3a401d98163beb4f770516bb0e8` · Roteiro da Sessão 0 `33e6e3a401d9819796c9dfb2263e215d`

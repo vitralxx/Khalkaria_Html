@@ -79,15 +79,8 @@ Nos registros a passagem é descrita de outro jeito — *"a essência de Malkhor
 - **Intervalo:** [[Kirkushav Drekar]] abandona o continente; o clone corta relações com o [[Império de Ferro]]; ergue a fábrica de [[Seiva]] e vicia a cidade; ataca o [[Vilarejo Skarv]]; o [[Castelo de Kirkushav]] cai para revolucionários e nativos.
 - **0** (campanha): domina Khaskavel, prepara a chuva de [[Seiva]] e é o alvo da profecia de [[Karma]].
 
-## Pontas soltas
-1. **De quantas memórias ele herdou.** *"Mantém aparência e algumas memórias"* — quais? Sabe da profecia? Reconheceria [[Hadran Vorgil]], [[Alvak Krichama]], [[Lena Skarv]]? Nada disso foi escrito, e cada resposta muda o que ele faz com quem o original protegeu.
-2. **Khaskavel ainda consta como colônia** do [[Império de Ferro]] nos registros de facções, embora o clone tenha cortado relações. Um dos dois está desatualizado.
-3. **O clone de [[Vorn Drekar]]** aparece uma única vez, como gancho, e não tem lugar nem história.
-4. **Como se atravessa para o [[Primórdio]]**: portal aberto pela essência de Malkhor com o grupo inteiro passando, ou brecha aberta por [[Karma]] com um único jogador? E em que ordem entram a profecia, o casulo de [[Lena Skarv]] e o expurgo? ([[Perguntas Abertas]] E34.)
-5. **[[Kuriam]]** foi tomada *"sob ordem de Sinikko Kiriam"* — sem dizer qual dos dois.
-6. **A chuva de seiva** é descrita como plano e nunca como método: que magia, com que alcance, a partir de onde.
-7. **Os registros o confundem com o original** na entrada sobre *"O Rei de Khaskavel"*, onde as duas biografias se misturam.
-8. **Grafia** "Siniko" nos registros, onde se lê Sinikko.
+## Em aberto
+E367 (as memórias herdadas) · E357 (Khaskavel colônia) · E19 (o clone de Vorn) · E34 (a travessia ao Primórdio) · E36 (quando Kuriam foi tomada) · E368 (a chuva de seiva)
 
 ## Procedência
 - Notion — *Sinikko Kiriam (NPC)* `33e6e3a401d9813d8cf5d8d8e6c3fddc` (🟡, ed. 2026-07-03) · *Culto de Malkhor* `3696e3a401d981a0b2e3f42c3fa846e6` · *O Rei de Khaskavel* `33e6e3a401d9814aa2a2c3d7ef3875a7` · *Kirkushav Drekar* `33e6e3a401d98131815efc830056e2e3` · *Vilarejo Skarv* `33e6e3a401d981f68258f6a0be896c08` · *Castelo em Ruínas* `3696e3a401d98161a014d3747e46b42b` · *Substâncias* `33e6e3a401d981ef841aefa20793d48d` · *Hadran Vorgil* e *Tev Kossar* (ganchos)

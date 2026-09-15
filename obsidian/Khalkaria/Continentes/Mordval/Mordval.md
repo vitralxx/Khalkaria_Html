@@ -21,7 +21,7 @@ O impacto é a origem da geografia e talvez de mais coisa: foi por essa ferida q
 
 ## Geografia e vida
 
-Não há terra firme contínua: há ilhas, e entre elas o mar. Toda a economia depende disso — *"fortissima depêndencia marítima"*. Quem manda em cada trecho de água muda conforme o trecho: piratas em umas, portos seguros em outras, colônias imperiais nas que o [[Império de Ferro]] alcançou. Nenhum porto, cidade ou bandeira pirata chegou a ser nomeado.
+Não há terra firme contínua: há ilhas, e entre elas o mar. Toda a economia depende disso — *"fortissima depêndencia marítima"*. Quem manda em cada trecho de água muda conforme o trecho: piratas em umas, portos seguros em outras, colônias imperiais nas que o [[Império de Ferro]] alcançou.
 
 ## As ilhas sem nome
 
@@ -61,10 +61,8 @@ Do outro lado do mundo, em Khaskavel, Mordval é sinônimo de liberdade possíve
 - **Antes de C−27:** Klaus volta, encontra os pais mortos *"há um bom tempo"*, enterra-os e parte para [[Volkrest]].
 - **C (campanha):** [[Tev Kossar]] sonha com a passagem clandestina para Mordval.
 
-## Pontas soltas
-1. **Nada em Mordval tem nome.** Nenhum porto, nenhuma colônia imperial, nenhuma facção pirata. Falta ao menos um lugar nomeado para o continente existir na mesa. → [[Perguntas Abertas]] E26.
-2. **O cometa e a cosmologia.** *"Energias de outros planetas e deuses invadiram o planeta"* — existem deuses fora dos sete, e outros planetas habitados? Isso convive mal com [[Kha]] como deus supremo do universo e do cosmos. → [[Perguntas Abertas]] E26.
-3. **Quem aliciou Klaus.** O homem carismático que *"conhecia detalhes demais sobre Klaus"* e *"alegava conhecer sua mãe"* nunca é nomeado, nem se diz se era agente dos Hax.
+## Em aberto
+E26 (nomes em Mordval e o cometa) · E356 (quem aliciou Klaus)
 
 ## Procedência
 - Notion: 3. Mordval `33e6e3a401d9813c9065fb6377553748` (🟠 Rascunho, ed. 2026-05-23) · Klaus von Aldric `33e6e3a401d9810ca145d41242d235b0` · Os Hax `3696e3a401d98127a568c856497d9ce6`

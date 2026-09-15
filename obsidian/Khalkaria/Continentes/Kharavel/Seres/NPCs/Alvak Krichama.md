@@ -90,15 +90,8 @@ Quando descobrir que o luto pela primeira filha foi usado como isca e a vida int
 - **0** (campanha): ferreiro de confiança dos jogadores; Lena, aos trinta e cinco, vive sob seu teto.
 - **Depois:** a descoberta do plano divino e, talvez, uma armadura de paladino que ninguém queria ver nele.
 
-## Pontas soltas
-1. **Há quantos anos ele mora em Khaskavel?** Os registros dizem que *"se firmou em khaskavel a 27 anos"*, o que o faria chegar no ano da [[Sessão 0]] — dois anos depois de já ter uma forja onde abrigar Lena. Cabe uma leitura em que os vinte e sete anos são contados a partir da própria Sessão 0, e a frase seguinte, *"Após 25 anos [...] Alvak encontrou Lena"*, cai exatamente no resgate; mas isso não foi decidido. ([[Perguntas Abertas]] E39.)
-2. **Quem perseguia a menina.** Dois soldados da [[Vanguarda Serafélia]], executados por ele. Os registros da cidade dizem *"2 grutos selvagens que queriam sua carne"*; a versão dos soldados é a que vale, e é a que cria o problema seguinte.
-3. **Ele matou dois soldados da guarnição e continua sendo o ferreiro dela.** Ninguém descobriu, ou o imperador o cobriu? ([[Perguntas Abertas]] E12.)
-4. **Quem o guiou até a floresta.** Sendo o plano de [[Vytália]] e [[Karmath]], é uma delas que arma a caminhada — e então a bênção vingadora de Karmath perde o alvo, porque a injustiça seria dela mesma. Os registros antigos culpavam [[Velúria]] e resolviam isso de graça.
-5. **As folhas amarelas na fornalha e as marcas de seringa.** Queimar como carvão a substância mais cobiçada do continente, e ter o corpo furado com a regularidade de quem se aplica algo, são dois gestos enormes sem explicação. Alvak usa [[Seiva]]? Tem [[Marca da Vhelor]]? Ver [[Folhas Amarelas]].
-6. **A tarefa que libera as melhorias** nunca foi escrita, e sem ela o serviço não tem gatilho.
-7. **A idade dele.** Anões vivem entre duzentos e trezentos e cinquenta anos; a de Alvak nunca foi dita, nem quantos deles passou em Volkrest antes da travessia.
-8. **A raça** só aparece nas cartas antigas da cidade — a página que descreve o ferreiro nunca diz que ele é anão.
+## Em aberto
+E39 (há quantos anos em Khaskavel) · E12 (os dois soldados executados) · E362 (quem o guiou à floresta) · E359 (seringa e folhas) · E361 (a tarefa da forja) · E360 (a idade dele)
 
 ## Procedência
 - Notion — *Alvak Krichama* `33e6e3a401d98103af5ef241c6512d02` (🟡, ed. 2026-05-24) · *Arrma Boua (Forja) (old)* `33e6e3a401d98163beb4f770516bb0e8` (🔴 stub) · *Lena Skarv* `3696e3a401d981969032ea2fcf0b406e` · *Quest — Alvak, o ferreiro* `33e6e3a401d981819212fc8fb29ab6cc` (🔴 vazia) · *Anão* (Raças)

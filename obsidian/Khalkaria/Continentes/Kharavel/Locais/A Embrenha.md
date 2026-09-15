@@ -67,11 +67,8 @@ Hoje a Embrenha é o rosto do que sobrou de Khaskavel: *"Khaskavel não tem mais
 - **Intervalo:** precarização e seiva convertem o bairro num culto de adoração; a fábrica do [[Culto de Malkhor]] se instala; embrenhos renegados fundam [[Kuriam]].
 - **0** (campanha): viciados matam estrangeiros nas ruas; *"os sãos"* resistem organizados.
 
-## Pontas soltas
-1. **Onde fica a fábrica de seiva.** Nunca foi dito em que ponto da Embrenha o [[Culto de Malkhor]] produz. O edifício de chaminés que as cartas antigas marcam a oeste é candidato óbvio, mas ninguém afirmou isso.
-2. **Os sãos.** São *"organizados o suficiente para resistir e lutar contra o culto"* e não têm nome, líder nem ponto de encontro. Se há ligação entre eles e os contrabandistas de [[Tev Kossar]], ela não foi escrita.
-3. **Os oitenta que ficaram.** Sabe-se que parte dos escravos Subjulgados permaneceu e se transformou junto com a cidade — se são eles os primeiros embrenhos, e quem eram, continua em aberto.
-4. **O nome da taverna** oscila entre "O Solzinho Honesto" e "Xexelentos em Apuros" ([[Perguntas Abertas]] E3).
+## Em aberto
+E300 (onde fica a fábrica) · E336 (os sãos) · E337 (os oitenta que ficaram) · E3 (o nome da taverna)
 
 ## Procedência
 - Notion — *A Embrenha* `33e6e3a401d981eab0aeea427fd9f01e` · *Embrenhos* `33e6e3a401d981569024f9883fc59c05` (ambas sem status, 2026-04-10)

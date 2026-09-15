@@ -57,7 +57,7 @@ O que Azgar carrega dali é um dogma: *"tornar Ossyria um continente habitável 
 - **Continente de** → [[Khalkaria]] ([[Continentes]])
 - **Natureza** → "o erro brutal dos deuses"
 - **Colônia penal informal de** → [[Império de Ferro]] ([[Kirkushav Drekar]])
-- **Habitantes** → [[Família Sandgale]] (os exilados); aberrações e profanidades sem nome
+- **Habitantes** → [[Família Sandgale]] (os exilados); aberrações e profanidades
 - **Origem de** → [[Azgar Sandgale]] e [[Terk Sandgale]]
 - **Morto aqui** → o Batedor de Kirkushav, pela mão de Terk
 - **Fenômeno** → a tempestade de areia sobrenatural, *"algo que desejava expurgar toda a vida"*
@@ -65,17 +65,13 @@ O que Azgar carrega dali é um dogma: *"tornar Ossyria um continente habitável 
 - **Travessia e sobrevivência** → [[Jornada]], [[Sobrevivência, Fé e Estresse]]
 
 ## Linha do tempo
-- **Sem data:** o "erro brutal dos deuses" — nem a criação nem a ruína do continente foram datadas.
 - **Antes de C−32:** [[Terk Sandgale]] é exilado e leva Azgar *"ainda bebê"* consigo.
 - **Infância e juventude de [[Azgar Sandgale|Azgar]]:** treino de sobrevivência, caçadas, e na idade adulta a liderança das caçadas.
 - **Pouco antes de C−27:** chega o volkrestiano de broche; Terk o mata; conta ao filho a verdade do exílio; a tempestade varre a região; Terk desaparece; Azgar vai à deriva até um navio imperial, chega a [[Volkrest]], é levado a [[Kirkushav Drekar]] e de lá a [[Kharavel]].
 - **C (campanha):** o paradeiro de Terk continua desconhecido; Azgar segue *"rezar para que Terk ainda estivesse vivo"*.
 
-## Pontas soltas
-1. **Que erro, e de quais deuses?** O epíteto do continente nunca foi explicado, nem se tem relação com [[Osh'Kar]], já que ali *"a morte corre solta"*, ou com [[Mundarak]], que ergueu o plano. → [[Perguntas Abertas]] E21.
-2. **A tempestade tem autor?** Uma tempestade que *"desejava expurgar toda a vida"* implica vontade — divina, imperial ou de outra coisa. → [[Perguntas Abertas]] E21.
-3. **Terk está vivo?** Kirkushav perguntou pelo paradeiro dele e Azgar mentiu que havia morrido. É o gancho central do personagem e continua sem resposta. → [[Perguntas Abertas]] E20.
-4. **Nenhuma região, ruína ou aberração de Ossyria tem nome** — o continente inteiro cabe num parágrafo.
+## Em aberto
+E21 (o erro dos deuses) · E20 (Terk vivo e o crime) · E358 (nomes em Ossyria)
 
 ## Procedência
 - Notion: 5. Ossyria `33e6e3a401d98122b4cdead58587b6b6` (🟠 Rascunho, ed. 2026-05-23) · Azgar Sandgale `33e6e3a401d9814caa28c26a3a66e84c`

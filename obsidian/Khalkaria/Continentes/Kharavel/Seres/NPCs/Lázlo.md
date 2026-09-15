@@ -91,12 +91,8 @@ As perícias em que ele ajuda estão em [[Atributos e Perícias]]. Dos quatro mo
 - **−1 a 0:** a memória não volta; instala-se na biblioteca do castelo com os sonhos, os sussurros e o ímã.
 - **0** (campanha): erudito e bússola da base — se existir.
 
-## Pontas soltas
-1. **Ele existe?** Depende de ninguém à mesa tomar a origem [[Amaldiçoado]]. A decisão precisa ser registrada assim que os personagens forem criados.
-2. **De onde ele veio e quem o sacrificou.** A origem khaskavelana não é confirmada, e nenhuma célula dos [[Cultos de Osh'Kar]] tem nome ou território — não há altar identificável para o ritual de que ele escapou.
-3. **O sonho é da ilusão ou do que está embaixo dela?** Ele sonha com [[O Oásis]] tal como ele aparece a quem passa — o que não distingue se o chamado vem da fachada ou do [[O Abismo|Abismo]] real.
-4. **A memória de [[Yenev Vesnal]].** A hipótese de que Lázlo se lembre dele *"de algum jeito"* é sugestão sem nenhum apoio no que se sabe dos dois.
-5. **A página dele ainda é rascunho** — sem descrição do ritual, sem o nome verdadeiro, sem decisão sobre o que acontece se ele chegar ao Abismo.
+## Em aberto
+E391 (a origem Amaldiçoado) · E392 (de onde veio) · E393 (o sonho do Oásis)
 
 ## Procedência
 - Notion — *Lázlo* `36d6e3a401d9818d9cddefbdd4015aad` (🟠 rascunho, ed. 2026-07-15) · *Castelo em Ruínas* `3696e3a401d98161a014d3747e46b42b` · *Cultos de Osh'Kar* `3696e3a401d98125a280d7b0bf485494` · *A Grande Árvore* `33e6e3a401d9813b8a60f1f9669803be`

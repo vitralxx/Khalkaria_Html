@@ -87,13 +87,8 @@ E há a pergunta que o epíteto levanta sozinho: *"se Karma é agente sem saber 
 - **0** (campanha): governa a cidade; não envelheceu; a profecia vence o prazo.
 - **Desfecho previsto:** abre a brecha para o [[Primórdio]] depois da queda do [[Sinikko Kiriam (clone)|clone]].
 
-## Pontas soltas
-1. **Até onde vai a bênção.** O Olhar lê o passado; mas o desaparecimento no meio do abraço é teleporte, invisibilidade ou outra coisa? E a idade que não avança — é parte da dádiva ou o preço dela? ([[Perguntas Abertas]] E10.)
-2. **"Irmã" de [[Sevic]]** — sangue ou facção? Ele a chama assim no bilhete de despedida e ninguém decidiu qual dos dois sentidos vale.
-3. **Ela sobreviveu à Sessão 0?** [[Hadran Vorgil]] carregava a ordem de matar a escrava conspiradora, e o desenrolar da mesa é que decide se [[Revavena]] nasce messiânica sob Karma ou pragmática sob Sevic. O resultado precisa ser registrado. ([[Perguntas Abertas]] E29 e E38.)
-4. **A infância** nunca foi escrita — nem onde nasceu, nem como caiu no cativeiro, nem quando Karmath a escolheu.
-5. **A ordem do desfecho.** A profecia dela, [[Lena Skarv]] no casulo e o expurgo final ainda não têm sequência definida, e a brecha para o [[Primórdio]] convive com outra versão em que o portal se abre pela essência de [[Malkhor]]. ([[Perguntas Abertas]] E34.)
-6. **As duas peças de Karmath.** [[Lena Skarv]] e Karma servem à mesma deusa no mesmo continente, e nada liga uma à outra — nem se sabem da existência uma da outra.
+## Em aberto
+E10 (os poderes da bênção) · E421 (a infância dela) · E376 (irmã de sangue ou de facção) · E29 (a escrava sem nome) · E38 (Sevic sobreviveu) · E34 (a ordem do desfecho) · E365 (Karma e Lena)
 
 ## Procedência
 - Notion — *Karma* `39e6e3a401d98199a0bbf981a89abc2d` (🟡, ed. 2026-07-15; a advertência dessa página de que *"Karmath ainda não tem página em Deuses"* está desatualizada) · *Rastas* `39e6e3a401d9816e9861c60d9a86d1b9` · *Karmath* `39e6e3a401d981bab6e3d23fadefe734` (🟠) · *Sevic* `39e6e3a401d981cdbd37cd863742b4f8` · *Roteiro da Sessão 0* `33e6e3a401d9819796c9dfb2263e215d`

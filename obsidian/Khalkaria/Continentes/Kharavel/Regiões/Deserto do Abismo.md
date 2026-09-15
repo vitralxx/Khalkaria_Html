@@ -75,12 +75,8 @@ Vinte e sete anos atrás, o sudoeste de Kharavel era verde: cachoeiras e vegeta�
 - **−27** ([[Sessão 0]]): o sudoeste aparece coberto de cachoeiras e vegetação tropical.
 - **0** (campanha): deserto de **CR 4-5 e acima**; a ilusão de [[O Oásis]] ainda intacta, à espera da escalada da [[Cordilheira Cristalina]].
 
-## Pontas soltas
-1. **Verde então, deserto agora.** Os registros de vinte e sete anos atrás mostram cachoeiras e mata tropical no sudoeste; hoje há areia e a cratera. A região mudou nesse intervalo ou o antigo era a ilusão em escala regional? ([[Perguntas Abertas]] E5.)
-2. **As almas presas.** Se o Abismo não é mais uma representação do [[Plano dos Mortos]] no plano material, continua valendo que quase todas as almas de Kharavel se acumulam aqui, barradas antes do portal? A imagem é forte demais para se perder sem decisão.
-3. **O nome do idioma e o do continente.** No relato de origem lê-se *"um dos mais raros de Khaskavel"* e *"só existem no continente de Khalkaria"*; a leitura provável é "um dos mais raros de Khalkaria, e só existe no continente de Kharavel" ([[Perguntas Abertas]] E60).
-4. **As corrupções do Abismo** — o que exatamente ele oferece em troca de poder — ainda não foram criadas.
-5. As linhas exatas de fronteira ainda não foram traçadas ([[Perguntas Abertas]] E14).
+## Em aberto
+E5 (o sudoeste verde) · E414 (as almas retidas) · E420 (o que o Abismo oferece) · E60 (Khaskavel ou Khalkaria) · E14 (as fronteiras)
 
 ## Procedência
 - Notion — *Deserto do Abismo* `37b6e3a401d9817ca984f3eca3a11688` (🟠 rascunho, 2026-06-10) · *O Abismo* `3696e3a401d981aeb840ece0726fbf97` · *Lázlo* `36d6e3a401d9818d9cddefbdd4015aad` · *Castelo em Ruínas* `3696e3a401d98161a014d3747e46b42b`

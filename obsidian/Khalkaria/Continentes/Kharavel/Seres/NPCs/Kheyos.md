@@ -67,13 +67,8 @@ Nas cartas da cidade o lugar aparece como **O Teurgo Solitário**, além do rio,
 - **−27** ([[Sessão 0]]): instalado na [[Casa Isolada]], é a fonte de informação da expedição sobre as fraquezas da árvore.
 - **0** (campanha): paradeiro não registrado.
 
-## Pontas soltas
-1. **Ele ainda existe?** Nada foi escrito sobre Kheyos, ou sobre a [[Casa Isolada]], no ano da campanha — e ele é o único no continente que sabe o que está realmente em jogo. ([[Perguntas Abertas]] E37.)
-2. **O culto de [[Aether]]** que o formou não tem nome. São [[Os Hax]]? Ele é um corrompido de ritual, como [[Klaus von Aldric]], ou de exposição? ([[Perguntas Abertas]] E23.)
-3. **Como aprendeu a política dos deuses.** *"Explorou o horizonte do éter"* é a única pista, e aponta para [[Velúria]] e o [[O Limiar|Limiar]] — sem que ninguém o afirme.
-4. **A exceção de Kirkushav.** Um soberano que abomina magia hospeda um teurgo; encaixa em *"o império de ferro utiliza [magia] apenas para acabar com a própria magia"*, mas nunca foi dito assim.
-5. **O que ele descobriu sobre a árvore** nos anos de estudo — a informação que a expedição foi buscar — não está escrita em lugar nenhum.
-6. **Idade e aparência** além de *"pele roxa e olhos brilhantes"*, vistos pelos olhos de Klaus.
+## Em aberto
+E37 (Kheyos no ano 0) · E23 (o culto de Aether) · E381 (a política dos deuses) · E11 (Kirkushav e a magia) · E379 (o que ele descobriu)
 
 ## Procedência
 - Notion — *Kheyos* `33e6e3a401d9819789c0da0fcde2f114` (🟠 rascunho, ed. 2026-05-24, citada integralmente) · *Roteiro da Sessão 0* `33e6e3a401d9819796c9dfb2263e215d` · *Klaus von Aldric* (página de PC, Os 5 escolhidos) `33e6e3a401d9810ca145d41242d235b0` · *Os Hax* `3696e3a401d98127a568c856497d9ce6`

@@ -49,12 +49,8 @@ Nem todos couberam no plano: houve *"refugiados Skarv que passavam pela cidade"*
 - **Intervalo:** ataques recorrentes ordenados pelo [[Sinikko Kiriam (clone)|clone]]; Yu traça a realocação; a maior parte do povo parte para a ilha.
 - **0** (campanha): paradeiro não registrado.
 
-## Pontas soltas
-1. **Onde ela está.** Liderou a travessia ou ficou segurando o vilarejo em retração? Está viva? Nada foi escrito.
-2. **Qual Sinikko a subestimou.** Os registros usam o nome sem qualificar: a guerra antiga é do [[Sinikko Kiriam (original)|original]], os ataques recorrentes são do [[Sinikko Kiriam (clone)|clone]], e provavelmente ambos.
-3. **Ela e [[Lena Skarv]].** Parentesco, conhecimento do coração puro, notícia do resgate — nenhuma das três coisas existe por escrito, e a líder do povo é quem teria mais motivo para procurar a menina.
-4. **A ilha do sudeste** é mesmo o destino da realocação? ([[Perguntas Abertas]] E6.)
-5. **Idade, aparência e história pessoal**: fora *"metade-cerva altamente habilidosa"*, Yu não tem retrato nenhum.
+## Em aberto
+E366 (onde ela está) · E6 (a ilha do sudeste)
 
 ## Procedência
 - Notion — *Vilarejo Skarv* `33e6e3a401d981f68258f6a0be896c08` (🟡, ed. 2026-06-09), única página em que Yu aparece · *Os Hax* `3696e3a401d98127a568c856497d9ce6` · *Mira Vesnal* (refugiados Skarv em Revavena)

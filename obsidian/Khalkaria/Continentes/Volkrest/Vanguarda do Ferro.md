@@ -36,7 +36,7 @@ A segunda é matar. Hadran pede para acompanhar [[Vorn Drekar|Vorn]] até a cida
 > Hadran deseja acompanhar Vorn até a cidade para realizar sua primeira missão, então ele educadamente pedirá para acompanha-los até a cidade. Os dois se conhecem da vanguarda de ferro.
 > [...] Hadran quer acompanhar Vorn até a cidade para resolver assuntos pessoais de Kirkushav. (Missão Muito Importante) Convencimento(CD 15): Kirkushav ordenou a Hadran o assassinato de uma escrava por conspiração à colonia.
 
-→ a cena corre em [[Sessão 0]]. A escrava não é nomeada; a única acusada de conspiração descrita em Khaskavel é [[Karma]].
+→ a cena corre em [[Sessão 0]]. A ordem não nomeia a escrava; a única conspiradora descrita em Khaskavel é [[Karma]].
 
 ## Hadran, o último
 
@@ -70,10 +70,8 @@ A leitura corrente é que ele fala da Serafélia, o futuro ponto de controle da 
 - **C−27 a C:** Kirkushav abandona Kharavel; Hadran serve sob o clone; o castelo cai *"há alguns anos"* e Hadran é o único sobrevivente.
 - **C (campanha):** Hadran, aos 55, vive nas ruínas, treina os personagens de jogador e *"consideraria libertar Osh'Kar"* para destruir a árvore.
 
-## Pontas soltas
-1. **Uma Vanguarda ou duas?** As fontes ora dizem Vanguarda de Ferro, ora Serafélia, ora "Seratélia". A leitura adotada aqui é de duas organizações distintas — a tropa do Soberano e a guarnição da colônia. Falta confirmação, e o nome *Serafélia* reaparece como [[Igreja Serafélia]], o que sugere fé além de tropa. → [[Perguntas Abertas]] E4, E29.
-2. **Quem é a escrava** que Hadran deveria matar. [[Karma]] é a única conspiradora descrita, mas a ordem não a nomeia. → [[Perguntas Abertas]] E29.
-3. **Hadran mudou de homem.** Em C−27 é descrito como bobão e carismático; na campanha é pragmático, eficiente e movido por código militar. Vinte e sete anos e uma culpa de sobrevivente explicam a diferença, mas essa passagem nunca foi escrita.
+## Em aberto
+E29 (uma Vanguarda ou duas) · E4 (o que é Serafélia) · E374 (a mudança de Hadran)
 
 ## Procedência
 - Notion: Roteiro da Sessão 0 `33e6e3a401d9819796c9dfb2263e215d` · Hadran Vorgil `36d6e3a401d9817792d8ef277f93f46a` (🟡) e sua ficha CR 2 `3776e3a401d9813193def007042f0e34` · Castelo em Ruínas `3696e3a401d9814f8e0dfa4c6b50b850`
