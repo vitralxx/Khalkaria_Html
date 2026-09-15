@@ -633,3 +633,30 @@ existir no RPG por causa de um dado.
 ⚠️ **Pendente:** a Alquimia hoje tem regra própria ("em caso de falha você perde os reagentes",
 sem margem). Unificar as três perícias sob a regra de crítico, ou manter a Alquimia como a mais
 arriscada das três?
+
+## D50 — Luvas do Artesão viram Bugiganga
+Deixa de ser Item Mágico e de custar sintonia. Resolve a assimetria: as duas escadas de Ofício
+agora são paralelas e nenhuma cobra slot.
+| Raridade | Engenharia | Ferraria |
+|---|---|---|
+| Ordinário | **Kit de Ferramentas Básico** — sem treino com −2, 3 usos (atende as duas) | idem |
+| Incomum | Ferramentas de Artesão — sem treino + **+1** | Bigorna Portátil — sem treino + **+1** |
+| Exótico | Luvas do Artesão — **+2** | Bigorna Rúnica — **+2** |
+| Luxária | Kit de Mestre-Artífice — **+4** + cópia extra no d20 = 20 | Forja de Bolso — **+4** + cópia extra no d20 = 20 |
+Para alinhar, **removi o "Reduz a CD de criação em 2" da Bigorna Rúnica** — era invenção minha,
+não texto do Pedro. A alternativa (dar a cláusula às duas) é uma linha de distância.
+
+## D51 — Ofício(Alquimia) é exclusivo do Alquimista
+"A única maneira de se obter reagentes alquímicos é pela classe Alquimista, então só uma classe vai
+usar essa escada."
+→ **Não existe lacuna de kits de Alquimia** — eu havia apontado como lacuna, e não é: é design.
+→ Os 95 itens alquímicos do Bazar são **compráveis por qualquer um**, mas **fabricáveis só pelo
+Alquimista**. `Tipo de Craft = Alquimia` deve ser lido como "exclusivo de classe".
+
+## D52 — Alquimia perde os reagentes em QUALQUER falha
+"Alquimia tem que perder os reagentes na falha independente, pois a obtenção dos reagentes é
+natural em descansos."
+→ As três perícias **não** compartilham a mesma regra, e a diferença tem causa:
+- **Ferraria e Engenharia:** material custa Sins e é finito → só a **falha crítica** destrói (D49).
+- **Alquimia:** reagentes voltam de graça no descanso longo → **toda falha** destrói.
+A regra de crítico do D49 já está registrada no Notion pelo Pedro.
