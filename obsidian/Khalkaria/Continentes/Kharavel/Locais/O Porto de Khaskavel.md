@@ -37,16 +37,16 @@ O [[Sinikko Kiriam (clone)|clone]] *"cortou relações com o Império de Ferro"*
 - **Chegaram por aqui** → [[Kirkushav Drekar]] e sua frota · colonos e a [[Vanguarda Serafélia]] · [[Alvak Krichama]] · [[Yenev Vesnal]] · [[Mira Vesnal]]
 - **Sai por aqui** → recursos naturais de [[Kharavel]] · [[Seiva]] do [[Culto de Malkhor]]
 - **Saída clandestina de** → [[Tev Kossar]], por 500 a 800 [[Sins]]
-- **Outro porto possível do continente** → [[Kuriam]], que exporta lenha e peixes, sem porto declarado
+- **Outro porto possível do continente** → [[Kuriam]], que exporta lenha e peixes
 
 ## Linha do tempo
 - **≈ −32:** a frota do [[Império de Ferro]] desembarca e funda [[Khaskavel]].
 - **−27** ([[Sessão 0]]): porto ativo no centro de uma cidade em obras; [[Kirkushav Drekar]] embarca de volta a [[Volkrest]] ao anoitecer.
 - **Intervalo:** a seiva sai para o resto do mundo; jovens de [[Revavena]] entram para trabalhar na fábrica.
-- **0** (campanha): estado não escrito; sair do continente só por barco clandestino.
+- **0** (campanha): sair do continente só por barco clandestino.
 
 ## Em aberto
-E332 (quem controla o porto) · E333 (os barcos clandestinos)
+E326 (quem controla o porto) · E325 (portos e destino da carga)
 
 ## Procedência
 - Mapa de Khaskavel na Sessão 0 — `docs/memoria/mapas/LEIA-ME_mapas.md` §2 (único registro do lugar), 2026-09-05

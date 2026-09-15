@@ -67,7 +67,7 @@ Com [[Mira Vesnal]] há a pergunta que volta sempre: ela procura [[Yenev Vesnal]
 - **Trabalhou na** → fábrica de [[Seiva]] do [[Culto de Malkhor]], por cinco anos
 - **Mora em** → [[Castelo de Kirkushav]], há três anos · **deve o teto a** → [[Hadran Vorgil]]
 - **Convive com** → [[Mira Vesnal]], que pergunta por [[Yenev Vesnal]] · [[Lázlo]], de quem se afasta
-- **Rede** → primos, ex-colegas e contrabandistas da [[A Embrenha|Embrenha]], sem nome — e possivelmente já lida pelo [[Sinikko Kiriam (clone)]]
+- **Rede** → primos, ex-colegas e contrabandistas da [[A Embrenha|Embrenha]] — possivelmente já lida pelo [[Sinikko Kiriam (clone)]]
 - **Quer chegar a** → [[Volkrest]] ou [[Mordval]], pelo [[O Porto de Khaskavel]] · **guarda Sins** → ver [[Dinheiro e Comerciantes]] e [[O Bazar]]
 - **Caçado por** → [[Vanguarda Serafélia]] · **oprimido antes por** → [[Império de Ferro]]
 - **Sabe sem saber** → um nome de capataz, um horário de ritual, uma sala trancada
@@ -81,7 +81,7 @@ Com [[Mira Vesnal]] há a pergunta que volta sempre: ela procura [[Yenev Vesnal]
 - **0** (campanha): trinta anos; informante e comerciante da base, juntando o preço do barco.
 
 ## Em aberto
-E300 (onde fica a fábrica) · E340 (quem a chefia) · E390 (a rede já foi lida) · E36 (quando o castelo caiu)
+E300 (onde fica a fábrica) · E331 (a fábrica e a exportação) · E373 (a rede já foi lida) · E36 (quando o castelo caiu)
 
 ## Procedência
 - Notion — *Tev Kossar* `36d6e3a401d9811daf94f8854d6d01ee` (🟡, ed. 2026-07-20) · *Castelo em Ruínas* `3696e3a401d98161a014d3747e46b42b`

@@ -45,21 +45,21 @@ Seis anos depois, o menino sem mestre organizava a resistência que arrancaria t
 
 > cada instinto gritava que atravessá-lo era abandonar os que confiaram, trair a memória de Lorrain
 
-A cópia que [[Malkhor]] fez do filho herdou aparência e algumas memórias — sem que ninguém tenha escrito se esta é uma delas.
+A cópia que [[Malkhor]] fez do filho herdou aparência e algumas memórias.
 
 ## Relações
 - **Filho** → [[Sinikko Kiriam (original)]] · e, pelas memórias herdadas, [[Sinikko Kiriam (clone)]]
 - **Raça e classe** → [[Gruto]] · [[Teurgo|teurga]] · fala [[Skalia]]
 - **Viveu e morreu em** → os esgotos de [[Volkrest]], sob o [[Império de Ferro]]
-- **Morta por** → humanos do Império que desceram aos esgotos, sem nome nem punição
+- **Morta por** → humanos do Império que desceram aos esgotos
 - **Império que a matou, governado por** → [[Kirkushav Drekar]]
 - **Memória que move** → a recusa do filho em abandonar os grutos, e a contradição em que ele governou [[Khaskavel]]
 
 ## Linha do tempo
-- **Quando Sinikko tem dez anos:** morre defendendo os seus na invasão dos esgotos. O ano exato depende da idade dele, que nunca foi escrita.
+- **Quando Sinikko tem dez anos:** morre defendendo os seus na invasão dos esgotos.
 
 ## Em aberto
-E370 (onde aprendeu teurgia) · E371 (quem desceu aos esgotos) · E372 (o pai de Sinikko)
+E359 (a casa dos Kiriam)
 
 ## Procedência
 - Notion — *Sinikko Kiriam* (página de PC, Sessões / Sessão 0 / Os 5 escolhidos) `33e6e3a401d98172bcefef2453ce1564` (🟡, ed. 2026-07-18), versões 1 e 3. É a única página em que Lorrain existe

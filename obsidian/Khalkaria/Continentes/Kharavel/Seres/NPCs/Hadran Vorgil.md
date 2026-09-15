@@ -116,7 +116,7 @@ O "assunto pessoal de Kirkushav" só se abre para quem insistir, num teste de Co
 - **Depois:** a revelação do Abismo, e a chance de o aliado virar antagonista.
 
 ## Em aberto
-E374 (a mudança em 27 anos) · E29 (a escrava sem nome) · E373 (por que sobreviveu) · E36 (quando o castelo caiu) · E19 (o clone de Vorn) · E394 (as chaves da ficha)
+E361 (a mudança em 27 anos) · E29 (a escrava sem nome) · E360 (por que sobreviveu) · E36 (quando o castelo caiu) · E19 (o clone de Vorn) · E376 (as chaves da ficha)
 
 ## Procedência
 - Notion — *Hadran Vorgil* `36d6e3a401d9817792d8ef277f93f46a` (🟡, ed. 2026-06-06) · *Ficha de Combate — Hadran Vorgil (CR 2)* `3776e3a401d9813193def007042f0e34` (🗡️, 2026-06-06) · *Roteiro da Sessão 0* `33e6e3a401d9819796c9dfb2263e215d` · *Castelo em Ruínas* `3696e3a401d98161a014d3747e46b42b`

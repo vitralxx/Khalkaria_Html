@@ -90,7 +90,7 @@ Quem acumula Marcas perde acesso ao que vem do outro lado da aposta:
 - **Ano 0 (campanha).** Mercado de luxo em [[Vistaluz]]; expedições dos Colhedores; cultistas subindo com magia do clone.
 
 ## Em aberto
-E359 (as folhas na fornalha) · E407 (as folhas do Templo) · E405 (as guardiãs da copa) · E406 (preço no Bazar)
+E348 (as folhas na fornalha) · E388 (as folhas do Templo) · E386 (as guardiãs da copa) · E387 (preço no Bazar)
 
 ## Procedência
 - Notion: Substâncias da Grande Árvore `33e6e3a401d981ef841aefa20793d48d` · Arrma Boua (arquivada) `33e6e3a401d98163beb4f770516bb0e8` · Roteiro da Sessão 0 `33e6e3a401d9819796c9dfb2263e215d`

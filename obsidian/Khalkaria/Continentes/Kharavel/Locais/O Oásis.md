@@ -40,7 +40,7 @@ Nas tavernas, quem serve [[Osh'Kar]] sem saber o que serve fala em *"o senhor qu
 - **Fica em** → [[Deserto do Abismo]], na fronteira norte; encosta no [[Bosque Corrompido]], [[Kharavel]]
 - **Esconde** → [[O Abismo]] e [[Osh'Kar]]
 - **Se desfaz de** → o pico mais alto da [[Cordilheira Cristalina]]
-- **Quem a lançou** → os deuses que aprisionaram Osh'Kar; a corrupção da região é obra de [[Velúria]] e [[Vytália]], mas a ilusão nunca foi atribuída a ninguém em particular
+- **Quem a lançou** → os deuses que aprisionaram Osh'Kar; a corrupção da região é obra de [[Velúria]] e [[Vytália]]
 - **Aparece nos sonhos de** → [[Lázlo]], e por tabela dos [[Amaldiçoado|Amaldiçoados]]
 - **Invocado por** → [[Cultos de Osh'Kar]]
 - **A outra porta divina do continente** → [[Câmaras de Provação]], na [[A Vhelor]]
@@ -50,7 +50,7 @@ Nas tavernas, quem serve [[Osh'Kar]] sem saber o que serve fala em *"o senhor qu
 - **0** (campanha): "O Oásis" marcado na fronteira do deserto; a ilusão de pé até que se escale a Cordilheira.
 
 ## Em aberto
-E416 (quem lançou a ilusão) · E5 (o sudoeste verde) · E303 (ponto ou região)
+E394 (quem lançou a ilusão) · E5 (o sudoeste verde) · E303 (ponto ou região)
 
 ## Procedência
 - Notion — *O Abismo* `3696e3a401d981aeb840ece0726fbf97` · *Deserto do Abismo* `37b6e3a401d9817ca984f3eca3a11688` (🟠) · *Lázlo* `36d6e3a401d9818d9cddefbdd4015aad` · *Cultos de Osh'Kar* `3696e3a401d98125a280d7b0bf485494` · *Deuses* `33e6e3a401d9817f9470e140120b1c22` · *Mundarak* `39e6e3a401d981e3a7fdc5b89aa8146b`

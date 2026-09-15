@@ -11,7 +11,7 @@ tags: [khalkaria/continentes/kharavel/locais]
 ---
 # Minas dos Krichama
 
-**Resumo.** As minas do litoral leste de [[Kharavel]], cravadas nas [[Costas Rochosas]], entre falésias batidas pelo mar. Levam o nome de um clã de [[Anão|anões]] que é o dos ferreiros de [[Khalkaria]] — e é só isso que se sabe delas: nome, posição e o perigo da costa em volta. Não confundir com a [[Mina de Khaskavel]], que é urbana, fica no noroeste e cava sob as raízes da árvore.
+**Resumo.** As minas do litoral leste de [[Kharavel]], cravadas nas [[Costas Rochosas]], entre falésias batidas pelo mar. Levam o nome de um clã de [[Anão|anões]] que é o dos ferreiros de [[Khalkaria]]. Não confundir com a [[Mina de Khaskavel]], que é urbana, fica no noroeste e cava sob as raízes da árvore.
 
 ## Onde ficam
 > **Posição:** Leste, litoral. Contém as Minas dos Krichama. Costa rochosa e batida pelo mar. Terreno perigoso e criaturas resistentes.
@@ -24,9 +24,9 @@ Todo anão de Khalkaria carrega um de dois sobrenomes, e cada um deles é pratic
 > **Krichama:** Os Krichama são os mestres ferreiros e armeiros de Khalkaria. Suas forjas ardem há séculos ininterruptos, alimentadas por fogo alquímico e carvão primordial. Cada peça que criam é uma obra-prima, mas apenas para quem pode pagar o preço.
 > **Caxon:** Os Caxons são engenheiros, arquitetos e defensores das fortalezas subterrâneas. Eles constroem muralhas que nunca caem e túneis que atravessam continentes.
 
-São Krichama os dois anões conhecidos de Kharavel: [[Alvak Krichama]], ferreiro de [[Khaskavel]], e [[Jairo Krichama]], ferreiro do [[Castelo de Kirkushav]]. Nenhum dos dois foi ligado a estas minas.
+São Krichama os dois anões conhecidos de Kharavel: [[Alvak Krichama]], ferreiro de [[Khaskavel]], e [[Jairo Krichama]], ferreiro do [[Castelo de Kirkushav]].
 
-Que a mina leve o nome dos ferreiros, e não o dos engenheiros de túneis, é uma escolha que a geografia do continente registra sem explicar.
+A mina leva o nome dos ferreiros, e não o dos engenheiros de túneis.
 
 ## Relações
 - **Ficam em** → [[Costas Rochosas]], [[Kharavel]] (litoral leste)
@@ -40,7 +40,7 @@ Que a mina leve o nome dos ferreiros, e não o dos engenheiros de túneis, é um
 - **0** (campanha): as minas têm nome — Minas dos Krichama —, em região de **CR 4-5**.
 
 ## Em aberto
-E308 (quem opera hoje) · E307 (as forjas do clã) · E309 (Krichama e não Caxon) · E311 (as criaturas)
+E307 (as minas dos Krichama) · E308 (cristais e criaturas)
 
 ## Procedência
 - Notion — *Costas Rochosas* `37b6e3a401d9814bac9ce9b49d0693a7` (🟠, ed. 2026-06-10), única página que as cita · *Cordilheira Cristalina* · *Templo da Profecia* `33f6e3a401d980dd982ad39fcba2ed4e` · raça *Anão* (`docs/memoria/notion_raw/raca_anao.md`)

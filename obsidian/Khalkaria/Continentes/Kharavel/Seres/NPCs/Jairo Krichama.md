@@ -52,7 +52,7 @@ O castelo à volta ainda é obra:
 - **0** (campanha): ausente das ruínas.
 
 ## Em aberto
-E377 (o que foi feito dele) · E378 (os Itens Exóticos)
+E364 (o que foi feito dele)
 
 ## Procedência
 - Notion — *Roteiro da Sessão 0* `33e6e3a401d9819796c9dfb2263e215d` (🟡, ed. 2026-07-24), cenas *Ferraria* e *Pátio* · *Anão* (Raças), clã Krichama

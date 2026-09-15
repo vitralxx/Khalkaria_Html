@@ -39,7 +39,7 @@ A cena mais lembrada do bosque é a fuga de uma menina dryad pelas árvores:
 Do lado dela a mesma cena é curta: *"Fugiu sozinha pela floresta após o ataque"*. Do lado dele, os registros de Khaskavel resumem tudo a *"em uma caminhada rotineira, Alvak encontrou Lena Skarv perdida nas florestas"*. Os dois corpos de soldados ficaram no bosque; ninguém foi cobrado por eles.
 
 ## Antes e agora
-Há vinte e sete anos a floresta já estava aqui, com o [[Vilarejo Skarv]] inteiro no seu lugar de origem e o [[Templo da Profecia]] já em ruínas — mas nada nos registros da época a chama de corrompida. Hoje ela leva a corrupção no nome, o vilarejo encolheu depois dos ataques e a fronteira sul terminou virando a antessala do [[Deserto do Abismo]].
+Há vinte e sete anos a floresta já estava aqui, com o [[Vilarejo Skarv]] inteiro no seu lugar de origem e o [[Templo da Profecia]] já em ruínas. Hoje ela leva a corrupção no nome, o vilarejo encolheu depois dos ataques e a fronteira sul terminou virando a antessala do [[Deserto do Abismo]].
 
 ## Relações
 - **Fica em** → [[Kharavel]]
@@ -54,11 +54,11 @@ Há vinte e sete anos a floresta já estava aqui, com o [[Vilarejo Skarv]] intei
 ## Linha do tempo
 - **−27** ([[Sessão 0]]): [[Vilarejo Skarv]] intacto na posição original; templo já em ruínas.
 - **Intervalo:** ataques ao vilarejo e realocação parcial para a ilha do sudeste; a floresta é tomada pela corrupção.
-- **Data em disputa:** [[Lena Skarv]] foge pelo bosque e é salva por [[Alvak Krichama]] — dois anos antes da campanha, ou já na época da [[Sessão 0]] (ver Pontas soltas).
+- **[[Lena Skarv]]** foge pelo bosque e é salva por [[Alvak Krichama]] — ver [[Lena Skarv]].
 - **0** (campanha): floresta corrompida, **CR 2-3**.
 
 ## Em aberto
-E313 (a corrupção e a fuga de Lena) · E302 (onde ficam os Xkamur) · E14 (as fronteiras)
+E310 (a corrupção e a fuga de Lena) · E302 (onde ficam os Xkamur) · E14 (as fronteiras)
 
 ## Procedência
 - Notion — *Bosque Corrompido* `37b6e3a401d981ebb3ebddcec4b3dbdf` (🟠 rascunho, 2026-06-10)

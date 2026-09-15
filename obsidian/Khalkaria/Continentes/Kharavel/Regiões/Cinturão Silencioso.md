@@ -21,7 +21,7 @@ Ocupa o canto nordeste do continente, encostado no mar a norte e a leste. Nas ca
 A oeste está o [[Emaranhado de Raízes]], e com ele a própria [[A Vhelor]]; a sudoeste, a [[Bacia Acidentada]]; ao sul, as [[Costas Rochosas]]. [[Khaskavel]] e [[Revavena]] ocupam cantos opostos do norte, separadas pela árvore e pelo emaranhado de suas raízes — as duas cidades que disputam o continente quase não se veem uma à outra.
 
 ## Natureza
-A quietude é a característica da região, não um detalhe dela. Ao redor, a presença da [[A Vhelor]] pesa sobre o solo, os bichos e a cabeça de quem anda; aqui, some. Ninguém sabe por quê. De [[Karmath]] diz-se que *"Em Kharavel, sua presença é provavelmente mais forte em Revavena"* — se as duas coisas se explicam uma pela outra, ninguém escreveu.
+A quietude é a característica da região, não um detalhe dela. Ao redor, a presença da [[A Vhelor]] pesa sobre o solo, os bichos e a cabeça de quem anda; aqui, some. Ninguém sabe por quê. De [[Karmath]] diz-se que *"Em Kharavel, sua presença é provavelmente mais forte em Revavena"*.
 
 ## Perigo
 A mais segura das nove regiões — **1 de 9** — com ameaças de **CR ≤1**. É o cinturão em que se viaja sem escolta; ver [[Jornada]].
@@ -50,7 +50,7 @@ Há vinte e sete anos, planície sem assentamento algum. Hoje, [[Revavena]] cons
 - **0** (campanha): **CR ≤1**; a quietude estranha permanece.
 
 ## Em aberto
-E314 (o silêncio da árvore) · E326 (o palácio de Revavena) · E14 (as fronteiras)
+E311 (o silêncio da árvore) · E322 (a versão antiga da cidade) · E14 (as fronteiras)
 
 ## Procedência
 - Notion — *Cinturão Silencioso* `37b6e3a401d9811893b5d06a553dbb7a` (🟠 rascunho, 2026-06-10)

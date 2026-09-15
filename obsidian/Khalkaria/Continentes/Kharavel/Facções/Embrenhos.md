@@ -57,7 +57,7 @@ A cidade em que estão não é mais a cidade contra a qual os Rastas se rebelara
 - **Contraparte** → [[Iluminados]], a elite de [[Vistaluz]]
 - **Dependentes de** → [[Seiva]] · [[A Vhelor]] ("A Mãe") · [[Marca da Vhelor]]
 - **Explorados por** → [[Culto de Malkhor]] (a fábrica de seiva; os cultistas menores) · [[Vanguarda Serafélia]] · [[Império de Ferro]], enquanto Khaskavel foi colônia
-- **Resistência interna** → "Os sãos", sem líder e sem nome
+- **Resistência interna** → "Os sãos", que recusam a seiva e se organizam contra o culto
 - **Nomes conhecidos** → [[Tev Kossar]] (gruto, ex-operário da fábrica) · [[Yenev Vesnal]] (revavenano cooptado, desaparecido)
 - **Fundaram, segundo a lenda** → [[Kuriam]]
 - **Descendem em parte de** → os escravos que não fugiram com os [[Rastas]] na [[Sessão 0]]
@@ -71,7 +71,7 @@ A cidade em que estão não é mais a cidade contra a qual os Rastas se rebelara
 - **0** (campanha): a maioria está viciada, "os sãos" resistem em silêncio e estrangeiros morrem nas ruas.
 
 ## Em aberto
-E336 (os sãos) · E337 (os oitenta que ficaram) · E338 (os renegados de Kuriam) · E3 (o nome da taverna)
+E329 (os sãos e os renegados) · E330 (os oitenta que ficaram) · E3 (o nome da taverna)
 
 ## Procedência
 - Notion — *Embrenhos* `33e6e3a401d981569024f9883fc59c05` (sem status, 2026-04-10) · *A Embrenha* `33e6e3a401d981eab0aeea427fd9f01e` · *Khaskavel* `33e6e3a401d981e39c8fe9df2e5a7f4d` (nomenclatura da árvore) · *Kuriam* `33e6e3a401d981ad83d7fe8266cc6630` · *Rastas* `39e6e3a401d9816e9861c60d9a86d1b9` · *Tev Kossar* `36d6e3a401d9811daf94f8854d6d01ee`

@@ -110,7 +110,7 @@ Quem ainda vive nela vive escondido ou de passagem: [[Alvak Krichama]] mantém a
 - **0** (campanha): cidade enegrecida, sem escravos nem economia; embrenhos matam estrangeiros nas ruas; o clone prepara a *"grande chuva de Seiva"* sobre [[Revavena]] e o continente.
 
 ## Em aberto
-E9 (a diarquia) · E3 (o nome da taverna) · E18 (quando Lena chegou) · E324 (os cinco anos) · E301 (a região da cidade) · E300 (onde fica a fábrica) · E323 (o gentílico) · E4 (o que é Serafélia) · E325 (onde Karma desapareceu) · E60 (Khaskavel ou Khalkaria)
+E9 (a diarquia) · E3 (o nome da taverna) · E18 (quando Lena chegou) · E320 (os cinco anos) · E301 (a região da cidade) · E300 (onde fica a fábrica) · E319 (o gentílico) · E4 (o que é Serafélia) · E321 (onde Karma desapareceu) · E60 (Khaskavel ou Khalkaria)
 
 ## Procedência
 - Notion — *Khaskavel* `33e6e3a401d981e39c8fe9df2e5a7f4d` (🟡, ed. 2026-06-09) · *Localizações* `33e6e3a401d981338b72db40bc8166f2` · *Áreas* `33e6e3a401d981478c6cc0692f6ac3a1` · *Povos* `33e6e3a401d98170aa0edfabdac4d27a` · *Embrenhos* `33e6e3a401d981569024f9883fc59c05` · *O Rei de Khaskavel* `33e6e3a401d9814aa2a2c3d7ef3875a7` · *A Vanguarda Seratélia* `33e6e3a401d98104845ddaafa86b57b2` · *Culto de Khaskavel (old)* `33e6e3a401d98110a854d7bdd14fa685` · *Iluminado (old)* `33e6e3a401d981d8a9ead434576e2aaf`

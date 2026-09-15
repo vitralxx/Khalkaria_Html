@@ -17,7 +17,7 @@ tags: [khalkaria/continentes/kharavel/locais]
 Fica no canto sudoeste da cidade, entre a [[Taverna de Khaskavel|taverna]] a sul-oeste e a forja de [[Arrma Boua]] ao centro-sul, numa Khaskavel que naquele momento era um canteiro inteiro: casas em construção no centro, um edifício de chaminés a oeste, muros e portões inacabados por toda parte. Catedral gótica, portanto imponente e cara — obra do tipo que só se levanta com dinheiro do [[Império de Ferro]], de onde vem toda a Vanguarda.
 
 ## O nome
-"Serafélia" é palavra que aparece em Khaskavel ligada à força militar da cidade — *"a principal mão militar de Khaskavel"*, de que *"toda a vanguarda vem do império do ferro"*, e cujos soldados e famílias formam a população de [[Vistaluz]]. Uma catedral com esse nome sugere que o termo é anterior à tropa: uma fé, uma ordem, uma figura santa do Império a que a Vanguarda se dedica. Ninguém disse isso em voz alta.
+"Serafélia" é palavra que aparece em Khaskavel ligada à força militar da cidade — *"a principal mão militar de Khaskavel"*, de que *"toda a vanguarda vem do império do ferro"*, e cujos soldados e famílias formam a população de [[Vistaluz]]. Uma catedral com esse nome sugere que o termo é anterior à tropa: uma fé, uma ordem, uma figura santa do Império a que a Vanguarda se dedica.
 
 Contra a leitura religiosa pesa o resto do que se sabe da cidade: nenhum dos deuses — [[Vytália]], [[Malkhor]], [[Velúria]], [[Mundarak]], [[Karmath]], [[Kha]], [[Osh'Kar]] — tem culto declarado em Khaskavel, e a única religião ativa é o [[Culto de Malkhor]], que *"opera nas sombras"* e não constrói catedrais à luz do dia.
 
@@ -25,16 +25,14 @@ Contra a leitura religiosa pesa o resto do que se sabe da cidade: nenhum dos deu
 - **Fica em** → [[Khaskavel]] (sudoeste, fora da muralha, logo em território da [[A Embrenha]]), [[Kharavel]]
 - **Nome compartilhado com** → [[Vanguarda Serafélia]], comandada por [[Ka'ur Zotama]]
 - **Provável financiadora** → [[Império de Ferro]] / [[Volkrest]]
-- **Deus cultuado** → desconhecido
 - **Vizinhas** → [[Taverna de Khaskavel]] · [[Arrma Boua]]
 - **Religião concorrente na cidade** → [[Culto de Malkhor]]
 
 ## Linha do tempo
 - **−27** ([[Sessão 0]]): em construção.
-- **0** (campanha): não descrita — não se sabe se foi concluída nem o que a corrupção da cidade fez dela.
 
 ## Em aberto
-E4 (o que é Serafélia) · E321 (a obra e o rótulo)
+E4 (o que é Serafélia) · E317 (a obra e o rótulo)
 
 ## Procedência
 - Mapa de Khaskavel na Sessão 0 — `docs/memoria/mapas/LEIA-ME_mapas.md` §2 (único registro do lugar)

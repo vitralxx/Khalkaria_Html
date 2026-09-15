@@ -11,7 +11,7 @@ tags: [khalkaria/continentes/kharavel/seres/npcs]
 ---
 # Kheyos
 
-**Resumo.** [[Teurgo]] [[Corrompido]] de *"pele roxa e olhos brilhantes"*, formado em [[Aether]] por um culto que ninguém nomeia, que *"já assassinou líderes perigosos, impediu catástrofes e explorou o horizonte do éter utilizando-o para o bem"*. É mortal — nada de sangue divino — e é *"uma das únicas criaturas de Khalkaria que possui conhecimento significativo sobre a política de confronto dos deuses"*: sabe do sumiço de [[Kha]] e da guerra fria que se seguiu, e vive obcecado em *"proteger o seu próprio plano da inconsequência e ingenuidade dos deuses"*. Na [[Sessão 0]] ocupa a [[Casa Isolada]], no extremo sudeste de [[Khaskavel]], cedida pelo próprio [[Kirkushav Drekar]] para que estudasse as fraquezas da [[A Vhelor]]. Antes disso foi a única pessoa boa que [[Klaus von Aldric]] encontrou na estrada.
+**Resumo.** [[Teurgo]] [[Corrompido]] de *"pele roxa e olhos brilhantes"*, formado em [[Aether]] por um culto poderoso, que *"já assassinou líderes perigosos, impediu catástrofes e explorou o horizonte do éter utilizando-o para o bem"*. É mortal — nada de sangue divino — e é *"uma das únicas criaturas de Khalkaria que possui conhecimento significativo sobre a política de confronto dos deuses"*: sabe do sumiço de [[Kha]] e da guerra fria que se seguiu, e vive obcecado em *"proteger o seu próprio plano da inconsequência e ingenuidade dos deuses"*. Na [[Sessão 0]] ocupa a [[Casa Isolada]], no extremo sudeste de [[Khaskavel]], cedida pelo próprio [[Kirkushav Drekar]] para que estudasse as fraquezas da [[A Vhelor]]. Antes disso foi a única pessoa boa que [[Klaus von Aldric]] encontrou na estrada.
 
 ## O teurgo
 
@@ -49,7 +49,7 @@ Nas cartas da cidade o lugar aparece como **O Teurgo Solitário**, além do rio,
 
 ## Relações
 - **Raça e classe** → [[Corrompido]] · [[Teurgo]] mortal — **não é** filho nem semideus de [[Karmath]]
-- **Formado em** → [[Aether]], por *"um culto poderoso"* sem nome
+- **Formado em** → [[Aether]], por *"um culto poderoso"*
 - **Laboratório** → [[Casa Isolada]], em [[Khaskavel]], cedida por [[Kirkushav Drekar]]
 - **Mentor de** → [[Klaus von Aldric]], a quem deu manto, chapéu de palha e o rumo de [[Mordval]]
 - **Procurado por** → Klaus, em [[Volkrest]] · e pela [[Equipe desfloreio]] na [[Sessão 0]]
@@ -65,10 +65,9 @@ Nas cartas da cidade o lugar aparece como **O Teurgo Solitário**, além do rio,
 - **Infância:** [[Aether]], o culto poderoso, e a disciplina de *"proteger o mundo de si mesmo"*.
 - **Antes de −27:** encontra [[Klaus von Aldric]] na estrada, ensina-lhe o bastante para não ser consumido pelo artefato e o aponta para [[Mordval]]; depois some.
 - **−27** ([[Sessão 0]]): instalado na [[Casa Isolada]], é a fonte de informação da expedição sobre as fraquezas da árvore.
-- **0** (campanha): paradeiro não registrado.
 
 ## Em aberto
-E37 (Kheyos no ano 0) · E23 (o culto de Aether) · E381 (a política dos deuses) · E11 (Kirkushav e a magia) · E379 (o que ele descobriu)
+E37 (Kheyos no ano 0) · E23 (o culto de Aether) · E365 (quem é Kheyos) · E11 (Kirkushav e a magia)
 
 ## Procedência
 - Notion — *Kheyos* `33e6e3a401d9819789c0da0fcde2f114` (🟠 rascunho, ed. 2026-05-24, citada integralmente) · *Roteiro da Sessão 0* `33e6e3a401d9819796c9dfb2263e215d` · *Klaus von Aldric* (página de PC, Os 5 escolhidos) `33e6e3a401d9810ca145d41242d235b0` · *Os Hax* `3696e3a401d98127a568c856497d9ce6`

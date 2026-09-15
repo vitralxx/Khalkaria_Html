@@ -59,7 +59,7 @@ Os autômatos falam o [[Idiomas|Criptografado]]: *"Idioma extinto dos autômatos
 - **Antes de C−27:** Runa se despede de Hyven, passa anos em busca dos Skorn, chega a [[Volkrest]] e à audiência com [[Kirkushav Drekar]].
 
 ## Em aberto
-E30 (Hyven e a raça Autômato) · E353 (a desconfiança dos teurgos) · E25 (os dragões Skorn)
+E30 (Hyven e a raça Autômato) · E342 (a desconfiança dos teurgos) · E25 (os dragões Skorn)
 
 ## Procedência
 - Notion: 4. Aether `33e6e3a401d9812bab36f280892bf817`, seção Hyven (🟡) · Runa Skorn `33e6e3a401d981f2ae5fd3a12244a204`

@@ -25,7 +25,7 @@ Se alguém à mesa tomar a origem [[Amaldiçoado]], ninguém foi encontrado no p
 
 > Magro, pálido, olheiras profundas. Cabelo bagunçado, roupas que Hadran arranjou pra ele. Tem cicatriz no peito em formato angular que ele não lembra ter recebido. Olhos que perdem foco em momentos.
 
-[[Humano]] de origem provavelmente khaskavelana, ainda que não confirmada; a idade é a aparente, porque ele mesmo não sabe. Quem for reconstruí-lo como personagem jogável encontra um [[Teurgo]] ou [[Monge]] de origem [[Amaldiçoado]].
+[[Humano]] de origem provavelmente khaskavelana; a idade é a aparente, porque ele mesmo não sabe. Quem for reconstruí-lo como personagem jogável encontra um [[Teurgo]] ou [[Monge]] de origem [[Amaldiçoado]].
 
 ## História
 
@@ -92,7 +92,7 @@ As perícias em que ele ajuda estão em [[Atributos e Perícias]]. Dos quatro mo
 - **0** (campanha): erudito e bússola da base — se existir.
 
 ## Em aberto
-E391 (a origem Amaldiçoado) · E392 (de onde veio) · E393 (o sonho do Oásis)
+E374 (Lázlo existe)
 
 ## Procedência
 - Notion — *Lázlo* `36d6e3a401d9818d9cddefbdd4015aad` (🟠 rascunho, ed. 2026-07-15) · *Castelo em Ruínas* `3696e3a401d98161a014d3747e46b42b` · *Cultos de Osh'Kar* `3696e3a401d98125a280d7b0bf485494` · *A Grande Árvore* `33e6e3a401d9813b8a60f1f9669803be`

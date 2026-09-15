@@ -71,7 +71,7 @@ A leitura corrente é que ele fala da Serafélia, o futuro ponto de controle da 
 - **C (campanha):** Hadran, aos 55, vive nas ruínas, treina os personagens de jogador e *"consideraria libertar Osh'Kar"* para destruir a árvore.
 
 ## Em aberto
-E29 (uma Vanguarda ou duas) · E4 (o que é Serafélia) · E374 (a mudança de Hadran)
+E29 (uma Vanguarda ou duas) · E4 (o que é Serafélia) · E361 (a mudança de Hadran)
 
 ## Procedência
 - Notion: Roteiro da Sessão 0 `33e6e3a401d9819796c9dfb2263e215d` · Hadran Vorgil `36d6e3a401d9817792d8ef277f93f46a` (🟡) e sua ficha CR 2 `3776e3a401d9813193def007042f0e34` · Castelo em Ruínas `3696e3a401d9814f8e0dfa4c6b50b850`

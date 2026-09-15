@@ -11,7 +11,7 @@ tags: [khalkaria/continentes/kharavel/seres/npcs]
 ---
 # Yu
 
-**Resumo.** Líder do povo [[Skarv]], *"uma metade-cerva altamente habilidosa"* que passou anos batendo à porta de [[Khaskavel]] enquanto sua gente era morta e sequestrada — e que foi *"subestimada por Sinikko"* o tempo inteiro. Quando entendeu que a guerra estava perdida, deixou de negociar e começou a planejar a fuga: tirar os Skarv do alcance da cidade e levá-los para a ilha remota do sudeste do continente. Boa parte do povo já fez essa travessia; o [[Vilarejo Skarv]] original continua de pé, em retração, e ninguém escreveu de que lado do mar Yu ficou.
+**Resumo.** Líder do povo [[Skarv]], *"uma metade-cerva altamente habilidosa"* que passou anos batendo à porta de [[Khaskavel]] enquanto sua gente era morta e sequestrada — e que foi *"subestimada por Sinikko"* o tempo inteiro. Quando entendeu que a guerra estava perdida, deixou de negociar e começou a planejar a fuga: tirar os Skarv do alcance da cidade e levá-los para a ilha remota do sudeste do continente. Boa parte do povo já fez essa travessia; o [[Vilarejo Skarv]] original continua de pé, em retração.
 
 ## A metade-cerva
 
@@ -35,7 +35,7 @@ Nem todos couberam no plano: houve *"refugiados Skarv que passavam pela cidade"*
 - **Lidera** → [[Skarv]], no [[Vilarejo Skarv]], costa oeste do [[Bosque Corrompido]]
 - **Raça** → [[Dryad]] metade-cerva · fala [[Natural]]
 - **Subestimada por** → [[Sinikko Kiriam (original)]] · **atacada por** → [[Sinikko Kiriam (clone)]], a [[Vanguarda Serafélia]] e [[Khaskavel]]
-- **Do seu povo** → [[Lena Skarv]] (o parentesco entre as duas nunca foi escrito)
+- **Do seu povo** → [[Lena Skarv]]
 - **Rivais antigos** → [[Xkamur]], que rejeitam a árvore por completo
 - **Venera** → [[A Vhelor]] como Vhelorna e Vhel-Mãe; trabalha a [[Seiva]] em artefatos
 - **Deusa do seu povo** → [[Vytália]], cuja imagem no [[Templo da Profecia]] é uma dryad de galhadas
@@ -47,10 +47,9 @@ Nem todos couberam no plano: houve *"refugiados Skarv que passavam pela cidade"*
 - **≈ −32 a −27:** guerra cultural com [[Khaskavel]]; tentativas seguidas de diplomacia; é subestimada pelo imperador.
 - **−27** ([[Sessão 0]]): o vilarejo ainda está inteiro, na posição original.
 - **Intervalo:** ataques recorrentes ordenados pelo [[Sinikko Kiriam (clone)|clone]]; Yu traça a realocação; a maior parte do povo parte para a ilha.
-- **0** (campanha): paradeiro não registrado.
 
 ## Em aberto
-E366 (onde ela está) · E6 (a ilha do sudeste)
+E355 (onde ela está) · E6 (a ilha do sudeste)
 
 ## Procedência
 - Notion — *Vilarejo Skarv* `33e6e3a401d981f68258f6a0be896c08` (🟡, ed. 2026-06-09), única página em que Yu aparece · *Os Hax* `3696e3a401d98127a568c856497d9ce6` · *Mira Vesnal* (refugiados Skarv em Revavena)

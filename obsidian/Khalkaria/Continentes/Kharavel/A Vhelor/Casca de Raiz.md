@@ -67,7 +67,7 @@ Quando outro ocupar o casulo, o canal muda de dono. Se for [[Lena Skarv]], quem 
 - **Futuro possível.** Se [[Lena Skarv]] assumir o casulo, os sonhos passam a ser dela.
 
 ## Em aberto
-E403 (o freio do vínculo) · E305 (onde afloram as raízes) · E404 (a língua do sonho)
+E384 (o freio do vínculo) · E305 (onde afloram as raízes) · E385 (a língua do sonho)
 
 ## Procedência
 - Notion: Substâncias da Grande Árvore `33e6e3a401d981ef841aefa20793d48d` · O Sonhador `33e6e3a401d98126bae4e981b581487f`

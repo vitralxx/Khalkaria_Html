@@ -62,7 +62,7 @@ Do outro lado do mundo, em Khaskavel, Mordval é sinônimo de liberdade possíve
 - **C (campanha):** [[Tev Kossar]] sonha com a passagem clandestina para Mordval.
 
 ## Em aberto
-E26 (nomes em Mordval e o cometa) · E356 (quem aliciou Klaus)
+E26 (nomes em Mordval e o cometa) · E345 (quem aliciou Klaus)
 
 ## Procedência
 - Notion: 3. Mordval `33e6e3a401d9813c9065fb6377553748` (🟠 Rascunho, ed. 2026-05-23) · Klaus von Aldric `33e6e3a401d9810ca145d41242d235b0` · Os Hax `3696e3a401d98127a568c856497d9ce6`

@@ -79,7 +79,7 @@ O interior não é totalmente desconhecido em [[Kharavel]], porque vaza pelos so
 - **Ano 0 (campanha).** O interior só é conhecido pelos sonhos da [[Casca de Raiz]].
 
 ## Em aberto
-E400 (o desenho das câmaras) · E401 (o dragão de raízes) · E398 (quem abriu a porta) · E402 (as almas dos quatro) · E19 (o clone de Vorn) · E399 (a porta no ano 0)
+E382 (as câmaras e o dragão) · E380 (quem abriu a porta) · E383 (as almas dos quatro) · E19 (o clone de Vorn) · E381 (a porta no ano 0)
 
 ## Procedência
 - Notion: A Grande Árvore `33e6e3a401d9813b8a60f1f9669803be` · Roteiro da Sessão 0 `33e6e3a401d9819796c9dfb2263e215d` · Substâncias da Grande Árvore `33e6e3a401d981ef841aefa20793d48d` · Sinikko Kiriam `33e6e3a401d9813d8cf5d8d8e6c3fddc` · Hadran Vorgil `36d6e3a401d9817792d8ef277f93f46a` · índice de Sessões

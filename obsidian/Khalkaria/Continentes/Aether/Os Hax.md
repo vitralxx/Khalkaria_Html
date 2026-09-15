@@ -79,7 +79,7 @@ São o fio que costura [[Mordval]] e [[Aether]] na apresentação do mundo: dois
 - **C−27 a C:** nenhuma ação dos Hax registrada em [[Kharavel]].
 
 ## Em aberto
-E23 (o culto que formou Kheyos) · E24 (o tamanho do clã) · E22 (o artefato de Klaus) · E355 (dryads e meio-cervos)
+E23 (o culto que formou Kheyos) · E24 (o tamanho do clã) · E22 (o artefato de Klaus) · E344 (dryads e meio-cervos)
 
 ## Procedência
 - Notion: Os Hax `3696e3a401d98127a568c856497d9ce6` (🟡 Em desenvolvimento, ed. 2026-05-23, filha de 4. Aether) · Klaus von Aldric `33e6e3a401d9810ca145d41242d235b0` · Runa Skorn `33e6e3a401d981f2ae5fd3a12244a204`

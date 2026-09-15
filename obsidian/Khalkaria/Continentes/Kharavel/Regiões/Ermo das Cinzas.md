@@ -11,7 +11,7 @@ tags: [khalkaria/continentes/kharavel/regioes]
 ---
 # Ermo das Cinzas
 
-**Resumo.** O sudeste de [[Kharavel]] é terra morta coberta de cinza: pouca vida, muito perigo, e uma ruína de castelo que ninguém reclama como sua — o [[Castelo do Sul]]. É a segunda região mais letal do continente, atrás só do [[Deserto do Abismo]], e a menos documentada de todas: nem o que queimou aqui, nem quando, nem quem levantou o castelo.
+**Resumo.** O sudeste de [[Kharavel]] é terra morta coberta de cinza: pouca vida, muito perigo, e uma ruína de castelo que ninguém reclama como sua — o [[Castelo do Sul]]. É a segunda região mais letal do continente, atrás só do [[Deserto do Abismo]].
 
 ## Geografia
 Ocupa o canto sudeste, entre a costa leste e o interior. Nas cartas do continente aparece em **preto**, embora as descrições da região a chamem de cinza.
@@ -28,7 +28,7 @@ Ao norte estão as [[Costas Rochosas]]; a oeste, a [[Cordilheira Cristalina]] e 
 Oitava na escala de perigo do continente — **8 de 9** — com ameaças de **CR 4-5**. Só o [[Deserto do Abismo]] é pior; ver [[Jornada]].
 
 ## Antes e agora
-Do sudeste continental de vinte e sete anos atrás não sobrou registro algum: as cartas da época mostram a ilha florestada ao largo, mas não descrevem a terra firme. Não se sabe, portanto, se o ermo já era ermo quando a [[Equipe desfloreio]] partiu contra a árvore, ou se as cinzas caíram depois.
+As cartas de vinte e sete anos atrás mostram a ilha florestada ao largo e não descrevem a terra firme do sudeste.
 
 ## Relações
 - **Fica em** → [[Kharavel]]
@@ -38,10 +38,10 @@ Do sudeste continental de vinte e sete anos atrás não sobrou registro algum: a
 - **Comparar com** → [[Castelo de Kirkushav]], o outro castelo em ruínas do continente
 
 ## Linha do tempo
-- **0** (campanha): **CR 4-5**; ruínas do [[Castelo do Sul]] de pé, sem ocupação registrada.
+- **0** (campanha): **CR 4-5**; ruínas do [[Castelo do Sul]] de pé.
 
 ## Em aberto
-E312 (o que queimou) · E318 (o Castelo do Sul) · E6 (a ilha do sudeste) · E315 (cinza ou preto) · E14 (as fronteiras)
+E309 (o ermo e o castelo do sul) · E6 (a ilha do sudeste) · E312 (cinza ou preto) · E14 (as fronteiras)
 
 ## Procedência
 - Notion — *Ermo das Cinzas* `37b6e3a401d98125880bcd6e07e58000` (🟠 rascunho, 2026-06-10)

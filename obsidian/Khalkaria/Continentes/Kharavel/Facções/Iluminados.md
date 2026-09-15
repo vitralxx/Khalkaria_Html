@@ -69,7 +69,7 @@ A elite de Vistaluz é mais velha que o senhor a quem serve hoje. Khaskavel come
 - **0** (campanha): nobres reclusos atrás da muralha, cargos médios do culto, e mais de um deles disposto a trair o clone.
 
 ## Em aberto
-E344 (o nome da elite) · E9 (a diarquia) · E345 (os nobres e a Marca)
+E334 (a elite de Vistaluz) · E9 (a diarquia)
 
 ## Procedência
 - Notion — *Iluminado (old)* `33e6e3a401d981d8a9ead434576e2aaf` (sem status, 2026-04-10; uma linha, transcrita na íntegra) · *Vistaluz* `33e6e3a401d98192ba6deb2cbe5bcc42` · *Khaskavel* `33e6e3a401d981e39c8fe9df2e5a7f4d` (nomenclatura da árvore) · *Culto de Malkhor* `3696e3a401d981a0b2e3f42c3fa846e6` · *Substâncias / Folhas Amarelas* `33e6e3a401d981ef841aefa20793d48d`

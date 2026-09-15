@@ -153,8 +153,13 @@ def linha_identidade(n: dict) -> str:
     """Primeira frase útil da nota, para servir de legenda no índice."""
     corpo = re.sub(r"^#\s+.+$", "", n["corpo"], count=1, flags=re.M)
     m = re.search(r"\*\*Resumo\.\*\*\s*(.+?)(?=\n\n|\Z)", corpo, re.S)
-    txt = m.group(1) if m else next(
-        (l for l in corpo.split("\n") if l.strip() and not l.startswith(("#", ">", "-", "|", "*"))), "")
+    if m:
+        txt = m.group(1)
+    else:
+        # primeiro parágrafo de prosa antes de qualquer subtítulo
+        antes = corpo.split("\n## ")[0]
+        txt = next((l for l in antes.split("\n")
+                    if l.strip() and not l.startswith(("#", ">", "-", "|", "* ", "!", "1."))), "")
     txt = re.sub(r"\[\[([^\]|]+)\|([^\]]+)\]\]", r"\2", txt)
     txt = re.sub(r"\[\[([^\]]+)\]\]", r"\1", txt)
     txt = re.sub(r"[*_`]", "", txt).replace("\n", " ").strip()
@@ -199,13 +204,12 @@ def index(notas: dict[str, dict]) -> str:
             L.append(f": {linha_identidade(n)}")
             L.append("")
 
-    if ausentes:
+    faltantes = [(a, q) for a, q in ausentes.most_common() if a not in alvos]
+    if faltantes:
         L += ["## Citadas sem nota própria", "",
               "Entidades que o vault menciona mas ainda não descreve. Cada uma é uma nota a escrever "
               "ou um link a remover.", ""]
-        for alvo, q in ausentes.most_common():
-            if alvo in alvos:
-                continue
+        for alvo, q in faltantes:
             L.append(f"- **{alvo}** — citada {q}×")
         L.append("")
 

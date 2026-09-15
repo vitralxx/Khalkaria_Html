@@ -39,10 +39,9 @@ Quem cavava, em −27, quase certamente eram os escravos da cidade — na palavr
 
 ## Linha do tempo
 - **−27** ([[Sessão 0]]): mina ativa sob as raízes; a extração de seiva já corre por fora, e Kirkushav a denuncia.
-- **0** (campanha): estado não escrito.
 
 ## Em aberto
-E317 (o que se extrai) · E305 (as raízes no fundo)
+E314 (o que se extrai) · E305 (as raízes no fundo)
 
 ## Procedência
 - Mapa de Khaskavel na Sessão 0 — `docs/memoria/mapas/LEIA-ME_mapas.md` §2 (único registro do lugar), 2026-09-05

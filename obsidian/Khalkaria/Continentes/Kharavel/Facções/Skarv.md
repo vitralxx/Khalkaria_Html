@@ -66,11 +66,11 @@ O [[Vilarejo Skarv]] fica na costa oeste do [[Bosque Corrompido]]. Nas cartas de
 ## Linha do tempo
 - **≈ −32 a −27:** a colônia chega; os Skarv resistem e insistem na diplomacia; Yu é subestimada; na [[Sessão 0]] o vilarejo está intacto no lugar de origem.
 - **Intervalo:** ataques recorrentes sob a campanha de homogenia do clone; Yu planeja a realocação; grande parte do povo migra para a ilha do sudeste; refugiados passam por [[Revavena]].
-- **≈ −2:** Lena foge do ataque e é resgatada por [[Alvak Krichama]] — a data está em disputa, ver [[Lena Skarv]].
+- **≈ −2:** Lena foge do ataque e é resgatada por [[Alvak Krichama]]; ver [[Lena Skarv]].
 - **0** (campanha): o vilarejo original em retração; Lena vive em Khaskavel escondendo o que é.
 
 ## Em aberto
-E351 (veneram ou usam) · E6 (a ilha do sudeste) · E12 (os dois soldados executados) · E350 (a cultura Skarv)
+E340 (veneram ou usam) · E6 (a ilha do sudeste) · E12 (os dois soldados executados) · E339 (a cultura Skarv)
 
 ## Procedência
 - Notion — *Vilarejo Skarv* `33e6e3a401d981f68258f6a0be896c08` (🟡, 2026-06-09; descreve o povo e o lugar) · *Facções* `3696e3a401d9814f8e0dfa4c6b50b850` · *Lena Skarv* `3696e3a401d981969032ea2fcf0b406e` · *Alvak Krichama* `33e6e3a401d98103af5ef241c6512d02` · *Mira Vesnal* `36d6e3a401d981fb97bceeec037e614d` · *Os Hax* `3696e3a401d98127a568c856497d9ce6`

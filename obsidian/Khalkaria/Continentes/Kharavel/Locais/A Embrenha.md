@@ -68,7 +68,7 @@ Hoje a Embrenha é o rosto do que sobrou de Khaskavel: *"Khaskavel não tem mais
 - **0** (campanha): viciados matam estrangeiros nas ruas; *"os sãos"* resistem organizados.
 
 ## Em aberto
-E300 (onde fica a fábrica) · E336 (os sãos) · E337 (os oitenta que ficaram) · E3 (o nome da taverna)
+E300 (onde fica a fábrica) · E329 (os sãos e os renegados) · E330 (os oitenta que ficaram) · E3 (o nome da taverna)
 
 ## Procedência
 - Notion — *A Embrenha* `33e6e3a401d981eab0aeea427fd9f01e` · *Embrenhos* `33e6e3a401d981569024f9883fc59c05` (ambas sem status, 2026-04-10)

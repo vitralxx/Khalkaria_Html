@@ -50,7 +50,7 @@ A ilusão não se rompe de perto. Só se apaga de longe, do alto:
 > no inicio da sessão ela é protegida por uma ilusão de oásis, os jogadores antes devem escalar o pico mais alto da cordilheira cristalina, região de montanhas do mapa para desativarem a ilusão.
 
 ## O que o Abismo oferece
-Quem chega, chega para negociar: *"O Abismo oferece corrupções em troca de poder"* — as condições exatas dessa troca ainda não existem, porque ninguém chegou perto. As cartas do Abismo hoje registradas em [[O Limiar (cartas)]] serão inteiramente refeitas.
+Quem chega, chega para negociar: *"O Abismo oferece corrupções em troca de poder"*. As cartas do Abismo registradas em [[O Limiar (cartas)]] serão refeitas.
 
 ## Os cultos
 > **Cultos** — Existem cultos dedicados a Osh'Kar em Kharavel, dispersos e em células independentes, alguns tentando ativamente libertá-lo através de rituais de sacrifício (a origem **Amaldiçoado** representa sobreviventes desses rituais). Outros se aproveitam da presença divina próxima sem necessariamente entender o que servem.
@@ -78,13 +78,13 @@ Dois moradores das ruínas do [[Castelo de Kirkushav]] chegariam lá por caminho
 - **A outra prisão divina do continente** → [[A Vhelor]], onde o casulo guarda [[O Sonhador]]
 
 ## Linha do tempo
-- **Atemporal:** [[Kha]] some; [[Osh'Kar]] passa a devorar almas em vez de guiá-las; é linchado e trancado aqui; [[Velúria]] e [[Vytália]] corrompem a região em volta. Onde isso cai em relação à criação de Kharavel não foi dito.
+- **Atemporal:** [[Kha]] some; [[Osh'Kar]] passa a devorar almas em vez de guiá-las; é linchado e trancado aqui; [[Velúria]] e [[Vytália]] corrompem a região em volta.
 - **−27** ([[Sessão 0]]): o sudoeste aparece verde e cheio de cachoeiras nas cartas da época.
 - **−1:** [[Lázlo]] é encontrado *"longe do Abismo"*, desidratado e com a cicatriz angular — sobrevivente de ritual.
 - **0** (campanha): cratera roxa nas cartas; acesso barrado pela ilusão até que se escale a [[Cordilheira Cristalina]].
 
 ## Em aberto
-E414 (as almas retidas) · E5 (a cratera nas cartas antigas) · E415 (Mundarak participou) · E420 (o que o Abismo oferece) · E341 (a congregação-mãe) · E60 (Khaskavel ou Khalkaria) · E72 (quem é O Trancafiado)
+E393 (as almas retidas) · E5 (a cratera nas cartas antigas) · E395 (o que o Abismo oferece) · E332 (as células e as almas) · E60 (Khaskavel ou Khalkaria) · E72 (quem é O Trancafiado)
 
 ## Procedência
 - Notion — *O Abismo* `3696e3a401d981aeb840ece0726fbf97` (🟡, ed. 2026-05-23) · *Osh'Kar* `3416e3a401d980bea207e73d726ec1bc` (🟠, ed. 2026-06-09) · *Deuses* `33e6e3a401d9817f9470e140120b1c22` (ed. 2026-09-04) · *Cultos de Osh'Kar* `3696e3a401d98125a280d7b0bf485494` (🟠) · *Mundarak* `39e6e3a401d981e3a7fdc5b89aa8146b` · *Lázlo* `36d6e3a401d9818d9cddefbdd4015aad` · *Hadran Vorgil* `36d6e3a401d9817792d8ef277f93f46a`

@@ -107,7 +107,7 @@ O clone *"cortou relações com o Império de Ferro"*. Na prática o Império pe
 - **C (campanha):** o Império é força externa, não vilão local.
 
 ## Em aberto
-E11 (abomina magia e vive dela) · E319 (o castelo sob o clone) · E27 (a capital e as outras nações) · E382 (filho ou refém)
+E11 (abomina magia e vive dela) · E315 (o castelo sob o clone) · E27 (a capital e as outras nações) · E367 (filho ou refém)
 
 ## Procedência
 - Notion: O Império do Ferro `33e6e3a401d981269fc0f19d9fe66772` (sem status, ed. 2026-04-10) · Kirkushav Drekar `33e6e3a401d98131815efc830056e2e3` (🟡, ed. 2026-07-23) · Roteiro da Sessão 0 `33e6e3a401d9819796c9dfb2263e215d` · Sinikko Kiriam (NPC) `33e6e3a401d9813d8cf5d8d8e6c3fddc` · origem verbatim na página de Vorn Drekar

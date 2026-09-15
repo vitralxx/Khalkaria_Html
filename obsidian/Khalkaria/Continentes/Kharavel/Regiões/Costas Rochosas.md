@@ -30,7 +30,7 @@ O nome das minas vem do clã anão de ferreiros. Entre os [[Anão|anões]] há d
 
 > Todos os anões tem 2 sobrenomes possiveis, Krichama ou Caxon. Os krichama geralmente são ferreiros e os Caxon engenheiros. Jairo é o ferreiro do castelo de kirkushav. Alvak é o ferreiro da cidade de Khaskavel.
 
-Dos Krichama diz-se que são *"os mestres ferreiros e armeiros de Khalkaria. Suas forjas ardem há séculos ininterruptos, alimentadas por fogo alquímico e carvão primordial."* Se essas forjas se alimentam do minério daqui, ou se as minas apenas herdaram o nome do clã, é coisa que ninguém em Kharavel sabe dizer.
+Dos Krichama diz-se que são *"os mestres ferreiros e armeiros de Khalkaria. Suas forjas ardem há séculos ininterruptos, alimentadas por fogo alquímico e carvão primordial."*
 
 Que o leste do continente seja terra de minério tem eco na fé: entre as oferendas deixadas diante da estátua de [[Mundarak]] no [[Templo da Profecia]] contam-se *"picaretas e minérios diversos"*.
 
@@ -38,7 +38,7 @@ Que o leste do continente seja terra de minério tem eco na fé: entre as oferen
 Sexta na escala de perigo do continente — **6 de 9** — com ameaças de **CR 4-5**. O terreno mata tanto quanto o que vive nele; ver [[Jornada]].
 
 ## Antes e agora
-As minas já apareciam no leste vinte e sete anos atrás e continuam aparecendo hoje. Nada nos registros descreve mudança na região entre uma época e outra — nem crescimento, nem abandono.
+As minas já apareciam no leste vinte e sete anos atrás e continuam aparecendo hoje.
 
 ## Relações
 - **Fica em** → [[Kharavel]]
@@ -53,7 +53,7 @@ As minas já apareciam no leste vinte e sete anos atrás e continuam aparecendo 
 - **0** (campanha): **CR 4-5**.
 
 ## Em aberto
-E308 (as minas hoje) · E307 (as forjas do clã) · E311 (as criaturas da costa) · E14 (as fronteiras)
+E307 (as minas dos Krichama) · E308 (cristais e criaturas) · E14 (as fronteiras)
 
 ## Procedência
 - Notion — *Costas Rochosas* `37b6e3a401d9814bac9ce9b49d0693a7` (🟠 rascunho, 2026-06-10)

@@ -54,7 +54,7 @@ A mais letal das nove regiões — **9 de 9** — com ameaças de **CR 4-5 e aci
 - **Células dos [[Cultos de Osh'Kar]]**, que tentam soltar o que as deusas trancaram.
 
 ## Antes e agora
-Vinte e sete anos atrás, o sudoeste de Kharavel era verde: cachoeiras e vegetação tropical em vez de areia. Hoje é deserto, com a cratera roxa aberta no meio. Ou a região foi desertificada nesse intervalo, ou o que se via então já era a ilusão trabalhando em escala regional — a resposta não foi dada, e a corrupção orquestrada pelas deusas não vem datada.
+Vinte e sete anos atrás, o sudoeste de Kharavel era verde: cachoeiras e vegetação tropical em vez de areia. Hoje é deserto, com a cratera roxa aberta no meio. Ou a região foi desertificada nesse intervalo, ou o que se via então já era a ilusão trabalhando em escala regional.
 
 ## Relações
 - **Fica em** → [[Kharavel]]
@@ -76,7 +76,7 @@ Vinte e sete anos atrás, o sudoeste de Kharavel era verde: cachoeiras e vegeta�
 - **0** (campanha): deserto de **CR 4-5 e acima**; a ilusão de [[O Oásis]] ainda intacta, à espera da escalada da [[Cordilheira Cristalina]].
 
 ## Em aberto
-E5 (o sudoeste verde) · E414 (as almas retidas) · E420 (o que o Abismo oferece) · E60 (Khaskavel ou Khalkaria) · E14 (as fronteiras)
+E5 (o sudoeste verde) · E393 (as almas retidas) · E395 (o que o Abismo oferece) · E60 (Khaskavel ou Khalkaria) · E14 (as fronteiras)
 
 ## Procedência
 - Notion — *Deserto do Abismo* `37b6e3a401d9817ca984f3eca3a11688` (🟠 rascunho, 2026-06-10) · *O Abismo* `3696e3a401d981aeb840ece0726fbf97` · *Lázlo* `36d6e3a401d9818d9cddefbdd4015aad` · *Castelo em Ruínas* `3696e3a401d98161a014d3747e46b42b`

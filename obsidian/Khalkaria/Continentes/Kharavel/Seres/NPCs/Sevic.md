@@ -20,7 +20,7 @@ tags: [khalkaria/continentes/kharavel/seres/npcs]
 > Sevic é o único Rasta que **sai de Khaskavel**. Escapa às escuras com frequência, sozinho, sem apoio, e volta com a única coisa que os Rastas não conseguem produzir de dentro dos muros: **informação sobre o mundo lá fora.**
 > O objetivo dele nunca foi só fugir. Fugir é fácil e é suicídio — Kharavel mata quem sai despreparado. Sevic procurava um **lugar para onde ir**: um sítio onde ~100 pessoas sem armas, sem comida e sem treino conseguissem enfrentar a natureza de Kharavel e sobreviver o suficiente para virar algo. Ele estava procurando Revavena antes de Revavena existir.
 
-Humano, provavelmente — a raça nunca foi confirmada. Quem for reconstruí-lo como personagem jogável encontra um [[Batedor]] saído das origens [[Andarilho]] ou [[Criminoso]].
+Humano, provavelmente. Quem for reconstruí-lo como personagem jogável encontra um [[Batedor]] saído das origens [[Andarilho]] ou [[Criminoso]].
 
 ## A captura
 
@@ -67,15 +67,15 @@ Os guardas cumprem o que Sevic os ouviu combinar. Se o papel não passa às mão
 ## Relações
 - **Facção** → [[Rastas]] (os Esperançosos), como batedor e segundo
 - **Líder e "irmã"** → [[Karma]] · **herda dela** → [[Revavena]], se ela morrer
-- **Raça e reconstrução** → [[Humano]] (a confirmar) · [[Batedor]] · origens [[Andarilho]] ou [[Criminoso]]
+- **Raça e reconstrução** → [[Humano]], provável · [[Batedor]] · origens [[Andarilho]] ou [[Criminoso]]
 - **Escravo de** → [[Khaskavel]], sob [[Sinikko Kiriam (original)]] e o [[Império de Ferro]]
-- **Preso em** → [[Castelo de Kirkushav]], na cela do pátio, sob um guarda sem nome
+- **Preso em** → [[Castelo de Kirkushav]], na cela do pátio, sob vigia constante
 - **Interrogado pela** → [[Equipe desfloreio]]: [[Sinikko Kiriam (PC)|Sinikko Kiriam]], [[Vorn Drekar]], [[Klaus von Aldric]], [[Runa Skorn]], [[Azgar Sandgale]]
 - **Anuncia** → a chegada de [[Kirkushav Drekar]] e o plano da Vanguarda para o castelo
 - **Também no castelo naquela noite** → [[Hadran Vorgil]] · [[Jairo Krichama]]
 - **Ameaçado de execução por** → guardas da [[Vanguarda do Ferro]]
 - **Procurava** → o sítio que viraria [[Revavena]], no [[Cinturão Silencioso]]
-- **Ama alguém que o bilhete não nomeia** → o filho de Sevic, sem nome e sem idade
+- **Ama alguém que o bilhete não nomeia** → o filho de Sevic
 - **Eventos** → [[Sessão 0]] · [[Linha do Tempo]]
 
 ## Linha do tempo
@@ -86,7 +86,7 @@ Os guardas cumprem o que Sevic os ouviu combinar. Se o papel não passa às mão
 - **0** (campanha): se vive, é memória viva do castelo e de quem os jogadores foram.
 
 ## Em aberto
-E38 (o bilhete chegou) · E376 (irmã de sangue ou de facção) · E29 (qual Vanguarda) · E352 (o filho) · E375 (a raça e o guarda)
+E38 (o bilhete chegou) · E363 (irmã de sangue ou de facção) · E29 (qual Vanguarda) · E341 (o filho) · E362 (a raça e o guarda)
 
 ## Procedência
 - Notion — *Sevic* `39e6e3a401d981cdbd37cd863742b4f8` (🟡, ed. 2026-07-15; a seção *O Bilhete* dessa página é o "documento do escravo" — não existe arquivo separado) · *Rastas* `39e6e3a401d9816e9861c60d9a86d1b9` · *Karma* `39e6e3a401d98199a0bbf981a89abc2d` · *Roteiro da Sessão 0* `33e6e3a401d9819796c9dfb2263e215d`

@@ -102,7 +102,7 @@ O casulo no cerne da [[A Vhelor]] abriga sempre uma criatura, e quanto mais mali
 - **0** (campanha): ainda é o Sonhador.
 
 ## Em aberto
-E9 (a diarquia) · E37 (a idade dele) · E33 (Os Exilados) · E1 (um por continente) · E16 (que continente representa) · E369 (o que resta do Sonhador)
+E9 (a diarquia) · E37 (a idade dele) · E33 (Os Exilados) · E1 (um por continente) · E16 (que continente representa) · E358 (o que resta do Sonhador)
 
 ## Procedência
 - Notion — *Sinikko Kiriam (NPC)* `33e6e3a401d9813d8cf5d8d8e6c3fddc` (🟡, ed. 2026-07-03) · *Sinikko Kiriam* (página de PC, Os 5 escolhidos) `33e6e3a401d98172bcefef2453ce1564` (🟡, ed. 2026-07-18, versões 1 e 3) · *O Rei de Khaskavel* `33e6e3a401d9814aa2a2c3d7ef3875a7` · *Kirkushav Drekar* `33e6e3a401d98131815efc830056e2e3` · *O Sonhador* `33e6e3a401d98126bae4e981b581487f` · *Roteiro da Sessão 0* `33e6e3a401d9819796c9dfb2263e215d` · *Alvak Krichama* `33e6e3a401d98103af5ef241c6512d02` · *Vilarejo Skarv* · *Casca de Raiz* (Substâncias)

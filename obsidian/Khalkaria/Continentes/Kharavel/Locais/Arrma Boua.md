@@ -37,7 +37,7 @@ Alvak veio de [[Volkrest]] com uma filha e chegou sem ela:
 
 > O gancho aqui é Alvak em relação a perder outra filha, a intenção é faze-lo protege-la a qualquer custo, e um npc amigável pode se tornar o vilão mais triste de lutar contra.
 
-Nos registros mais antigos da cidade a cena é outra — os perseguidores são *"2 grutos selvagens que queriam sua carne"*, e Alvak *"perdeu sua filha ao vê-la se aventurar perto da grande árvore"*, o que o teria feito odiar *"toda a cidade"* e viver *"isolado repudiando a árvore"*, tentando *"se equipar o suficiente para enfrentar a árvore e achar sua filha"*. Essas versões foram superadas pelas acima; ficam registradas porque o muro alto, a timidez e as marcas de seringa não foram revogados com elas.
+Nos registros mais antigos da cidade a cena é outra — os perseguidores são *"2 grutos selvagens que queriam sua carne"*, e Alvak *"perdeu sua filha ao vê-la se aventurar perto da grande árvore"*, o que o teria feito odiar *"toda a cidade"* e viver *"isolado repudiando a árvore"*, tentando *"se equipar o suficiente para enfrentar a árvore e achar sua filha"*. Essas versões foram superadas pelas acima.
 
 Desde então a menina mora aqui:
 
@@ -48,7 +48,7 @@ Desde então a menina mora aqui:
 ## O que se compra aqui
 > Alvak oferece armas comuns, armaduras comuns e melhora de nível das armas dos jogadores. Após ser feita a quest de Alvak, é liberado as melhorias compráveis.
 
-Preços, categorias e a mecânica de melhoria estão em [[O Bazar]] e em [[Dinheiro e Comerciantes]]. O serviço que Alvak só presta depois de o grupo fazer algo por ele depende de uma tarefa que nunca foi escrita.
+Preços, categorias e a mecânica de melhoria estão em [[O Bazar]] e em [[Dinheiro e Comerciantes]].
 
 ## Relações
 - **Fica em** → [[Khaskavel]], no centro-sul da cidade, dentro da [[A Embrenha]]
@@ -67,7 +67,7 @@ Preços, categorias e a mecânica de melhoria estão em [[O Bazar]] e em [[Dinhe
 - **0** (campanha): Lena, trinta e cinco anos, vive aqui sob proteção de Alvak.
 
 ## Em aberto
-E18 (quando Lena chegou) · E105 (quem ordenou o ataque) · E12 (os dois soldados executados) · E359 (as folhas na fornalha) · E361 (a tarefa de Alvak) · E39 (a chegada de Alvak)
+E18 (quando Lena chegou) · E105 (quem ordenou o ataque) · E12 (os dois soldados executados) · E348 (as folhas na fornalha) · E350 (a tarefa de Alvak) · E39 (a chegada de Alvak)
 
 ## Procedência
 - Notion — *Arrma Boua (Forja) (old)* `33e6e3a401d98163beb4f770516bb0e8` (🔴 stub, 2026-05-24, marcada como localização deprecada) · *Alvak Krichama* `33e6e3a401d98103af5ef241c6512d02` (🟡, 2026-05-24) · *Quest — Alvak, o ferreiro* `33e6e3a401d981819212fc8fb29ab6cc` (🔴 stub, vazia) · *Lena Skarv* `3696e3a401d981969032ea2fcf0b406e`

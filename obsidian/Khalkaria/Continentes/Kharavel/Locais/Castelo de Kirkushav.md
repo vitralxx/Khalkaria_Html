@@ -93,7 +93,7 @@ Hadran *"conhece passagens secretas e pontos cegos"* do lugar — é o último h
 - **0** (campanha): acampamento principal dos personagens de jogador.
 
 ## Em aberto
-E319 (imperial em nome de quem) · E36 (a data da queda) · E320 (quem atacou) · E38 (o bilhete e Sevic) · E375 (o guarda desatento) · E384 (a chegada de Kirkushav) · E29 (uma Vanguarda ou duas)
+E315 (imperial em nome de quem) · E36 (a data da queda) · E316 (quem atacou) · E38 (o bilhete e Sevic) · E362 (o guarda desatento) · E369 (a chegada de Kirkushav) · E29 (uma Vanguarda ou duas)
 
 ## Procedência
 - Notion — *Castelo em Ruínas* `3696e3a401d98161a014d3747e46b42b` (🟡, ed. 2026-05-27) · *Roteiro da Sessão 0* `33e6e3a401d9819796c9dfb2263e215d` (🟡, ed. 2026-07-24) · *Sevic* `39e6e3a401d981cdbd37cd863742b4f8` · *Hadran Vorgil* `36d6e3a401d9817792d8ef277f93f46a` · *Lázlo* `36d6e3a401d9818d9cddefbdd4015aad` · *Rastas* `39e6e3a401d9816e9861c60d9a86d1b9`

@@ -33,11 +33,11 @@ As [[Terras Livres]] são *"terras não dominadas por nenhuma facção — relat
 - **General da Vanguarda, em Khaskavel** → [[Ka'ur Zotama]]
 
 ## Linha do tempo
-- **Intervalo (−27 a 0):** fundação clandestina por embrenhos renegados; crescimento rápido; tomada pela [[Vanguarda Serafélia]]. Nenhuma dessas datas foi escrita.
+- **Intervalo (−27 a 0):** fundação clandestina por embrenhos renegados; crescimento rápido; tomada pela [[Vanguarda Serafélia]].
 - **0** (campanha): vila com quartel, em região de ameaças brandas (**CR ≤1 a 2-3**) — ver [[Jornada]].
 
 ## Em aberto
-E36 (quando foi tomada) · E330 (vila ocupada em terra livre) · E346 (os povos do sul) · E331 (o destino da carga) · E333 (porto próprio)
+E36 (quando foi tomada) · E324 (vila ocupada em terra livre) · E335 (os povos do sul) · E325 (portos e destino da carga)
 
 ## Procedência
 - Notion — *Kuriam* `33e6e3a401d981ad83d7fe8266cc6630` (🟡, ed. 2026-05-24) · *Facções de Kharavel* `3696e3a401d9814f8e0dfa4c6b50b850` · *Terras Livres* `37b6e3a401d9811c8bcddbff184cacee` · *O Direcionamento* `33e6e3a401d98190a21ae6c430acbc38`

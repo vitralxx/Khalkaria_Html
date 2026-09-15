@@ -19,7 +19,7 @@ tags: [khalkaria/continentes/kharavel/seres/npcs]
 
 > Khaskavel mantinha poucos escravos e alta rotatividade de ocupações — Karma trabalhava em qualquer coisa que colocassem à sua frente: forja, carga, limpeza, campo, o que fosse. Nunca teve um ofício, nunca teve um lugar. Ela odiava essa vida e sabia exatamente o que era: **não era mão de obra, era refém.**
 
-Sabedoria altíssima, inteligência alta; quem for reconstruí-la como personagem jogável encontra uma [[Teurgo|Teurga]]. Da infância dela ainda não se sabe nada.
+Sabedoria altíssima, inteligência alta; quem for reconstruí-la como personagem jogável encontra uma [[Teurgo|Teurga]].
 
 ## O Olhar da Justiça
 
@@ -81,14 +81,13 @@ E há a pergunta que o epíteto levanta sozinho: *"se Karma é agente sem saber 
 - **Eventos** → [[Sessão 0]] · [[Linha do Tempo]]
 
 ## Linha do tempo
-- **Infância:** desconhecida.
 - **−27** ([[Sessão 0]]): escrava em [[Khaskavel]], líder dos vinte [[Rastas]] entre os cerca de cem escravos da cidade; recebe (ou não) o bilhete de [[Sevic]]; é interrogada por [[Sinikko Kiriam (original)|Sinikko]], lê o passado dele, anuncia a profecia dos vinte e sete anos, pede um abraço e desaparece; começa a preparar a fuga. **Pode morrer nessa noite.**
 - **Intervalo:** funda [[Revavena]] do zero e a faz justa, brutal e doutrinária.
 - **0** (campanha): governa a cidade; não envelheceu; a profecia vence o prazo.
 - **Desfecho previsto:** abre a brecha para o [[Primórdio]] depois da queda do [[Sinikko Kiriam (clone)|clone]].
 
 ## Em aberto
-E10 (os poderes da bênção) · E421 (a infância dela) · E376 (irmã de sangue ou de facção) · E29 (a escrava sem nome) · E38 (Sevic sobreviveu) · E34 (a ordem do desfecho) · E365 (Karma e Lena)
+E10 (os poderes da bênção) · E375 (a infância dela) · E363 (irmã de sangue ou de facção) · E29 (a escrava sem nome) · E38 (Sevic sobreviveu) · E34 (a ordem do desfecho) · E354 (Karma e Lena)
 
 ## Procedência
 - Notion — *Karma* `39e6e3a401d98199a0bbf981a89abc2d` (🟡, ed. 2026-07-15; a advertência dessa página de que *"Karmath ainda não tem página em Deuses"* está desatualizada) · *Rastas* `39e6e3a401d9816e9861c60d9a86d1b9` · *Karmath* `39e6e3a401d981bab6e3d23fadefe734` (🟠) · *Sevic* `39e6e3a401d981cdbd37cd863742b4f8` · *Roteiro da Sessão 0* `33e6e3a401d9819796c9dfb2263e215d`

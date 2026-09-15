@@ -100,7 +100,7 @@ O [[Sinikko Kiriam (clone)]] recebeu uma ordem e fez dela um projeto continental
 - **Ano 0 (campanha).** Suprimento *"constante a preço baixo"* na Embrenha; o clone prepara a chuva de Seiva.
 
 ## Em aberto
-E408 (a regra da seiva) · E409 (bebida ou injetada) · E300 (onde fica a fábrica) · E339 (a exportação hoje) · E410 (seiva e Corrompido) · E406 (preço no Bazar)
+E389 (a regra da seiva) · E390 (bebida ou injetada) · E300 (onde fica a fábrica) · E331 (a fábrica e a exportação) · E391 (seiva e Corrompido) · E387 (preço no Bazar)
 
 ## Procedência
 - Notion: Substâncias da Grande Árvore `33e6e3a401d981ef841aefa20793d48d` · Culto de Malkhor `3696e3a401d981a0b2e3f42c3fa846e6` · Culto de Khaskavel (arquivada) `33e6e3a401d98110a854d7bdd14fa685` · Roteiro da Sessão 0 `33e6e3a401d9819796c9dfb2263e215d` · Sinikko Kiriam `33e6e3a401d9813d8cf5d8d8e6c3fddc` · Vilarejo Skarv `33e6e3a401d981f68258f6a0be896c08` · Templo da Profecia `33f6e3a401d980dd982ad39fcba2ed4e` · páginas de NPCs (Mira, Tev, Hadran, Karma)

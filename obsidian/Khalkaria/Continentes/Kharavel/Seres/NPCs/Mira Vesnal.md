@@ -90,7 +90,7 @@ Com [[Tev Kossar]], que trabalhou na mesma fábrica, ela pergunta *"sempre que h
 - **0** (campanha): curandeira da base.
 
 ## Em aberto
-E385 (a infância dela) · E35 (as idades de mãe e filho) · E387 (os refugiados Skarv) · E386 (acólita de quem)
+E370 (a infância e a fé dela) · E35 (as idades de mãe e filho) · E371 (os refugiados Skarv)
 
 ## Procedência
 - Notion — *Mira Vesnal* `36d6e3a401d981fb97bceeec037e614d` (🟡, ed. 2026-05-28) · *Castelo em Ruínas* `3696e3a401d98161a014d3747e46b42b` · *A Grande Árvore* `33e6e3a401d9813b8a60f1f9669803be` (nomenclatura)

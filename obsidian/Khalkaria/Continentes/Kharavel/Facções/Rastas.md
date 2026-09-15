@@ -93,7 +93,7 @@ Pelo caminho tomaram também o castelo de onde tudo começou: *"há alguns anos 
 - **Deusa patrona de fato** → [[Karmath]]
 - **Nascem em** → [[Khaskavel]] (−27) · **fundam** → [[Revavena]], do zero, no [[Cinturão Silencioso]]
 - **Inimigos** → [[Khaskavel]] · [[Vanguarda Serafélia]] · [[Sinikko Kiriam (original)]] na Sessão 0 · [[Sinikko Kiriam (clone)]] hoje · [[Culto de Malkhor]] · [[A Vhelor]] · quem quer que use [[Seiva]]
-- **Aliados na queda do castelo** → povos nativos não nomeados ([[Xkamur]]? [[Skarv]]? [[Povos Diversos do Sul]]?) → [[Castelo de Kirkushav]]
+- **Aliados na queda do castelo** → os povos nativos que atacaram as ruínas do [[Castelo de Kirkushav]]
 - **Primeiro contato com** → [[Equipe desfloreio]]: [[Sinikko Kiriam (PC)|Sinikko Kiriam]] · [[Vorn Drekar]] · [[Klaus von Aldric]] · [[Runa Skorn]] · [[Azgar Sandgale]]
 - **Ameaça direta na Sessão 0** → [[Hadran Vorgil]], com ordem secreta de [[Kirkushav Drekar]] para o *"assassinato de uma escrava por conspiração à colonia"*
 - **Os que ficaram** → [[Embrenhos]], e a *"facção escrava que se opunha a libertação"*
@@ -111,7 +111,7 @@ Pelo caminho tomaram também o castelo de onde tudo começou: *"há alguns anos 
 - **0** (campanha): a Revolução Revavenana é a própria cidade, e a profecia de Karma vence no prazo que ela mesma marcou.
 
 ## Em aberto
-E326 (o palácio de Revavena) · E337 (os oitenta que ficaram) · E352 (nomes rastas) · E421 (a infância de Karma) · E10 (os poderes de Karma) · E29 (a escrava sem nome) · E38 (Sevic sobreviveu)
+E322 (a versão antiga da cidade) · E330 (os oitenta que ficaram) · E341 (nomes rastas) · E375 (a infância de Karma) · E10 (os poderes de Karma) · E29 (a escrava sem nome) · E38 (Sevic sobreviveu)
 
 ## Procedência
 - Notion — *Rastas* `39e6e3a401d9816e9861c60d9a86d1b9` (🟡, 2026-07-15) · *Facções* `3696e3a401d9814f8e0dfa4c6b50b850` · *Karma* `39e6e3a401d98199a0bbf981a89abc2d` · *Sevic* `39e6e3a401d981cdbd37cd863742b4f8` · *Revavena* `33e6e3a401d981619f07d156693b051f` · *Castelo em Ruínas* `3696e3a401d98161a014d3747e46b42b` · *Karmath* `39e6e3a401d981bab6e3d23fadefe734`

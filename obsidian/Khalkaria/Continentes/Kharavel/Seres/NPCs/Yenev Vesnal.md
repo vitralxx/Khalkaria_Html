@@ -11,7 +11,7 @@ tags: [khalkaria/continentes/kharavel/seres/npcs]
 ---
 # Yenev Vesnal
 
-**Resumo.** Filho único de [[Mira Vesnal]] e *"a alegria da vida dela"*. Nascido em [[Revavena]], foi convencido aos vinte anos por traficantes de [[Seiva]] a atravessar o continente até a fábrica de [[Khaskavel]], atrás dos bons salários que a história oficial prometia; era a primeira geração de jovens revavenanos cooptada assim. Sumiu poucos meses depois e as cartas pararam. Se estiver vivo, tem cerca de trinta anos na campanha. Não há dele descrição, retrato nem túmulo: Yenev existe no continente como ausência — o motor das sete viagens da mãe, a pergunta que ela repete a [[Tev Kossar]], e o rosto que ela tenta não enxergar em [[Lázlo]].
+**Resumo.** Filho único de [[Mira Vesnal]] e *"a alegria da vida dela"*. Nascido em [[Revavena]], foi convencido aos vinte anos por traficantes de [[Seiva]] a atravessar o continente até a fábrica de [[Khaskavel]], atrás dos bons salários que a história oficial prometia; era a primeira geração de jovens revavenanos cooptada assim. Sumiu poucos meses depois e as cartas pararam. Se estiver vivo, tem cerca de trinta anos na campanha. Yenev existe no continente como ausência — o motor das sete viagens da mãe, a pergunta que ela repete a [[Tev Kossar]], e o rosto que ela tenta não enxergar em [[Lázlo]].
 
 ## O que se sabe dele
 
@@ -38,10 +38,10 @@ O luto tem nome nas ruínas: Mira *"veio em luto silencioso pelo filho perdido e
 
 > A qualquer momento da campanha, um PC pode encontrar referência a Yenev Vesnal — num livro de registros da fábrica, num cadáver anônimo, num viciado que reconhece o nome. Mira vai querer ir junto investigar. Subarco emocional poderoso, pode terminar bem (encontram ele vivo, transformado), mal (morto há anos), ou ambiguo (se tornou algo não-humano — corrompido pela seiva ou pior).
 
-O que ele encontrou na fábrica é o mesmo que Tev encontrou depois: *"trabalhadores sumindo sem explicação, salões trancados aos quais ele não podia entrar"*. Um operário viciado que não some por acaso tem destinos conhecidos no continente — a [[Marca da Vhelor]] tem uma sétima marca, a sucumbência, em que a pessoa deixa de se pertencer, e a [[Seiva]] fica mais viciosa e mais corruptível conforme [[O Sonhador]] se torna mais maligno. Nada disso foi afirmado sobre ele; é o campo em que a resposta vai cair.
+O que ele encontrou na fábrica é o mesmo que Tev encontrou depois: *"trabalhadores sumindo sem explicação, salões trancados aos quais ele não podia entrar"*. Um operário viciado que não some por acaso tem destinos conhecidos no continente — a [[Marca da Vhelor]] tem uma sétima marca, a sucumbência, em que a pessoa deixa de se pertencer, e a [[Seiva]] fica mais viciosa e mais corruptível conforme [[O Sonhador]] se torna mais maligno.
 
 ## Relações
-- **Mãe** → [[Mira Vesnal]] · **pai** → não nomeado; ela *"casou-se cedo"*
+- **Mãe** → [[Mira Vesnal]], que *"casou-se cedo"*
 - **Natural de** → [[Revavena]]
 - **Levado por** → traficantes de [[Seiva]], até a fábrica do [[Culto de Malkhor]] em [[Khaskavel]] / [[A Embrenha]]
 - **Quase contemporâneo na fábrica** → [[Tev Kossar]], que entrou aos vinte e dois e nunca ouviu o nome dele
@@ -56,7 +56,7 @@ O que ele encontrou na fábrica é o mesmo que Tev encontrou depois: *"trabalhad
 - **0** (campanha): desaparecido há cerca de uma década; teria trinta anos.
 
 ## Em aberto
-E35 (as idades) · E388 (o destino dele) · E389 (o nome que Tev não ouviu)
+E35 (as idades) · E372 (o destino dele)
 
 ## Procedência
 - Notion — *Mira Vesnal* `36d6e3a401d981fb97bceeec037e614d` · *Tev Kossar* `36d6e3a401d9811daf94f8854d6d01ee` · *Lázlo* `36d6e3a401d9818d9cddefbdd4015aad` · *Castelo em Ruínas* `3696e3a401d98161a014d3747e46b42b`

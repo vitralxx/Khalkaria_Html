@@ -25,12 +25,12 @@ O sul de Kharavel é o contraponto do norte. Enquanto [[Khaskavel]] e [[Revavena
 
 > os povos ao sul ignoram a tentação de poder, levando uma vida simples, porém sábia.
 
-Esses **[[Povos Diversos do Sul]]** contam entre as facções do continente como *"contraponto sábio que ignoram a tentação da Árvore"*, mas seguem *"ainda não mapeados"*: existem no desígnio da campanha antes de existirem no terreno. Onde exatamente vivem — e se os [[Xkamur]], rivais históricos dos [[Skarv]], estão entre eles — continua em aberto.
+Esses **[[Povos Diversos do Sul]]** contam entre as facções do continente como *"contraponto sábio que ignoram a tentação da Árvore"*, e seguem *"ainda não mapeados"*.
 
 ## O que há dentro
 - **[[Kuriam]]**, vila com quartel, exportadora de lenha e peixes. *"Esta é uma cidade dominada pela vanguarda Serafélia."*
 - **A península sul** e sua costa, de onde vem o peixe de Kuriam.
-- **Os [[Povos Diversos do Sul]]**, em algum ponto ainda não fixado da região.
+- **Os [[Povos Diversos do Sul]]**, no interior da região.
 
 ## Kuriam, a exceção
 A vila nasceu à revelia de todo mundo e foi engolida assim que ficou grande demais para passar despercebida:
@@ -43,7 +43,7 @@ A vila nasceu à revelia de todo mundo e foi engolida assim que ficou grande dem
 Segunda mais segura das nove regiões — **2 de 9** — com ameaças que vão de **CR ≤1 a 2-3**. Risco moderado-baixo, terreno aberto; ver [[Jornada]].
 
 ## Antes e agora
-Das terras do centro-sul de vinte e sete anos atrás só se registram as montanhas da [[Cordilheira Cristalina]], a leste. Nada indica se [[Kuriam]] já existia então — a vila foi erguida às escondidas por [[Embrenhos]] renegados, e uma cidade construída nas escuras não aparece em mapa nenhum antes de crescer. Hoje a região é a segunda mais tranquila do continente, com a [[Vanguarda Serafélia]] instalada no seu centro.
+Das terras do centro-sul de vinte e sete anos atrás só se registram as montanhas da [[Cordilheira Cristalina]], a leste. [[Kuriam]] foi erguida às escondidas por [[Embrenhos]] renegados, e uma cidade construída nas escuras não aparece em mapa nenhum antes de crescer. Hoje a região é a segunda mais tranquila do continente, com a [[Vanguarda Serafélia]] instalada no seu centro.
 
 ## Relações
 - **Fica em** → [[Kharavel]]
@@ -55,11 +55,11 @@ Das terras do centro-sul de vinte e sete anos atrás só se registram as montanh
 - **Contraponto de** → [[Khaskavel]] e [[Revavena]]
 
 ## Linha do tempo
-- **Intervalo:** [[Embrenhos]] renegados erguem [[Kuriam]] às escondidas; a vila cresce depressa e a [[Vanguarda Serafélia]] toma posse dela por ordem de [[Sinikko Kiriam (clone)|Sinikko Kiriam]]. A data não foi fixada.
+- **Intervalo:** [[Embrenhos]] renegados erguem [[Kuriam]] às escondidas; a vila cresce depressa e a [[Vanguarda Serafélia]] toma posse dela por ordem de [[Sinikko Kiriam (clone)|Sinikko Kiriam]].
 - **0** (campanha): **CR ≤1 a 2-3**; Kuriam sob a Vanguarda, exportando lenha e peixes.
 
 ## Em aberto
-E330 (vila ocupada em terra livre) · E346 (os povos do sul) · E331 (o destino da carga) · E36 (quando Kuriam foi tomada) · E14 (as fronteiras)
+E324 (vila ocupada em terra livre) · E335 (os povos do sul) · E325 (portos e destino da carga) · E36 (quando Kuriam foi tomada) · E14 (as fronteiras)
 
 ## Procedência
 - Notion — *Terras Livres* `37b6e3a401d9811c8bcddbff184cacee` (🟠 rascunho, 2026-06-10)

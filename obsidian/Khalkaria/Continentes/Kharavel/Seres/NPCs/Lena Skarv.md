@@ -74,7 +74,7 @@ A saída elegante é o segredo do [[Templo da Profecia]]: derrotar o [[Sinikko K
 - **Criada pelo plano de** → [[Vytália]] e [[Karmath]]; nos registros da cidade, de [[Velúria]]
 - **Tolerada na cidade por** → [[Sinikko Kiriam (original)]]
 - **Órfã por** → um ataque ao [[Vilarejo Skarv]] · perseguida por dois soldados da [[Vanguarda Serafélia]]
-- **Líder do seu povo** → [[Yu]] (relação pessoal entre as duas nunca escrita)
+- **Líder do seu povo** → [[Yu]]
 - **Destino possível** → [[O Sonhador]] dentro da [[A Vhelor]], no lugar de [[Sinikko Kiriam (original)]]
 - **Alternativa ao sacrifício** → [[Templo da Profecia]] · [[Kha]] · [[Karma]] · [[Primórdio]] · [[Campanha 1 — Arco]]
 - **Ameaças** → [[Sinikko Kiriam (clone)]] e o [[Culto de Malkhor]] · [[Hadran Vorgil]], que pode sequestrá-la · [[Malkhor]]
@@ -90,7 +90,7 @@ A saída elegante é o segredo do [[Templo da Profecia]]: derrotar o [[Sinikko K
 - **0** (campanha): trinta e cinco anos, escondida na cidade, sob proteção de Alvak.
 
 ## Em aberto
-E105 (quem ordenou o ataque) · E363 (qual animal) · E364 (ela sabe) · E34 (o desfecho e o casulo) · E365 (Lena e Karma)
+E105 (quem ordenou o ataque) · E352 (qual animal) · E353 (ela sabe) · E34 (o desfecho e o casulo) · E354 (Lena e Karma)
 
 ## Procedência
 - Notion — *Lena Skarv* `3696e3a401d981969032ea2fcf0b406e` (🟡, ed. 2026-05-23) · *Alvak Krichama* `33e6e3a401d98103af5ef241c6512d02` · *Vilarejo Skarv* `33e6e3a401d981f68258f6a0be896c08` · *O Sonhador* `33e6e3a401d98126bae4e981b581487f` · *Direcionamento* `33e6e3a401d98190a21ae6c430acbc38` §4 · *Templo da Profecia* `33f6e3a401d980dd982ad39fcba2ed4e` · *Hadran Vorgil* (gancho de sequestro)

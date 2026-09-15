@@ -11,7 +11,7 @@ tags: [khalkaria/continentes/kharavel/faccoes]
 ---
 # Povos Diversos do Sul
 
-**Resumo.** É o nome coletivo dos povos nativos que vivem no sul de [[Kharavel]], longe das duas cidades que disputam o continente. Existem como contrapeso moral: enquanto [[Khaskavel]] e [[Revavena]] estão *"completamente cegos pelo domínio d'A Grande Árvore"*, os povos ao sul *"ignoram a tentação de poder, levando uma vida simples, porém sábia"*. O sul é [[Terras Livres]], [[Cordilheira Cristalina]], [[Deserto do Abismo]] e [[Ermo das Cinzas]] — terra que nenhuma facção domina, exceto por [[Kuriam]], que a [[Vanguarda Serafélia]] tomou. Nenhum desses povos tem nome, vila, líder ou território desenhado; os [[Xkamur]] provavelmente estão entre eles.
+**Resumo.** É o nome coletivo dos povos nativos que vivem no sul de [[Kharavel]], longe das duas cidades que disputam o continente. Existem como contrapeso moral: enquanto [[Khaskavel]] e [[Revavena]] estão *"completamente cegos pelo domínio d'A Grande Árvore"*, os povos ao sul *"ignoram a tentação de poder, levando uma vida simples, porém sábia"*. O sul é [[Terras Livres]], [[Cordilheira Cristalina]], [[Deserto do Abismo]] e [[Ermo das Cinzas]] — terra que nenhuma facção domina, exceto por [[Kuriam]], que a [[Vanguarda Serafélia]] tomou. Os [[Xkamur]] provavelmente estão entre eles.
 
 ## O papel que ocupam
 
@@ -28,7 +28,7 @@ O sul é descrito como o que sobra do mapa: [[Terras Livres]] são *"terras não
 
 ## O que já fizeram
 
-Houve pelo menos uma vez em que o sul saiu da vida simples e pegou em armas: o castelo do Império *"foi atacado e tomado por revolucionários e povos nativos cansados da opressão do Império"*, alguns anos antes da campanha. Quem eram esses nativos — [[Xkamur]], [[Skarv]], povos ainda sem nome — nunca foi dito, mas foi com eles que os [[Rastas]] derrubaram o [[Castelo de Kirkushav]].
+Houve pelo menos uma vez em que o sul saiu da vida simples e pegou em armas: o castelo do Império *"foi atacado e tomado por revolucionários e povos nativos cansados da opressão do Império"*, alguns anos antes da campanha. Foi com esses nativos que os [[Rastas]] derrubaram o [[Castelo de Kirkushav]].
 
 ## Relações
 - **Região** → [[Terras Livres]] · [[Cordilheira Cristalina]] · [[Ermo das Cinzas]] · [[Deserto do Abismo]] · possivelmente [[Costas Rochosas]]
@@ -44,10 +44,10 @@ Houve pelo menos uma vez em que o sul saiu da vida simples e pegou em armas: o c
 ## Linha do tempo
 - **≈ −32:** a colônia chega e os povos locais resistem desde o primeiro dia, sem chance contra o Império.
 - **Intervalo:** povos nativos participam da tomada das ruínas do [[Castelo de Kirkushav]] ao lado dos [[Rastas]].
-- **0** (campanha): continuam no sul, sem nome e sem território desenhado.
+- **0** (campanha): continuam no sul.
 
 ## Em aberto
-E346 (quem são os povos do sul) · E302 (onde ficam os Xkamur) · E343 (quem sabe da ilusão) · E330 (Kuriam ocupada)
+E335 (quem são os povos do sul) · E302 (onde ficam os Xkamur) · E333 (quem sabe da ilusão) · E324 (Kuriam ocupada)
 
 ## Procedência
 - Notion — *Facções* `3696e3a401d9814f8e0dfa4c6b50b850` (🟡, 2026-07-15; entrada "Povos Diversos do Sul — ainda não mapeados", e "Grupos Independentes — outros grupos a desenvolver conforme a campanha avança") · *Direcionamento* `33e6e3a401d98190a21ae6c430acbc38` (🟢, 2026-05-24) · *Kuriam* `33e6e3a401d981ad83d7fe8266cc6630` · *Castelo em Ruínas* `3696e3a401d98161a014d3747e46b42b`

@@ -26,19 +26,19 @@ Diante de estranhos ele encolhe — *"é bastante tímido e inseguro, ao percebe
 
 > *"Quem são vocês??? O que estão fazendo aqui? o que querem de mim?"*
 
-O muro, a manta e a desconfiança são de quem não quer a cidade dentro de casa. As [[Folhas Amarelas]] queimando na fornalha e as marcas de seringa na pele nunca foram explicadas — ver *Pontas soltas*.
+O muro, a manta e a desconfiança são de quem não quer a cidade dentro de casa.
 
 ## O clã e o ofício
 
 Todo [[Anão]] carrega um de dois sobrenomes, e o sobrenome já diz o ofício: Krichama forja, Caxon constrói máquinas. Alvak é o ferreiro da cidade; [[Jairo Krichama]] é o ferreiro do [[Castelo de Kirkushav]]. Do clã se conta que suas forjas *"ardem há séculos ininterruptos, alimentadas por fogo alquímico e carvão primordial"* — ver [[Minas dos Krichama]]. Ele fala [[Khazadun]] com os seus e comum com o resto.
 
-Em Arrma Boua vendem-se armas e armaduras comuns e melhora-se o que o cliente já traz na cintura; o que ele reserva para quem lhe prestar um favor só se abre depois de uma tarefa que ninguém escreveu. Preços e categorias estão em [[O Bazar]] e [[Dinheiro e Comerciantes]].
+Em Arrma Boua vendem-se armas e armaduras comuns e melhora-se o que o cliente já traz na cintura; o que ele reserva para quem lhe prestar um favor só se abre depois de uma tarefa dele. Preços e categorias estão em [[O Bazar]] e [[Dinheiro e Comerciantes]].
 
 ## A filha que morreu na travessia
 
 > Alvak, é um personagem central na narrativa de Khalkaria, ele é imigrante de Volkrest, império de ferro, sua filha morreu na travessia para Kharavel, a partir disso todos os dias ele forjava sem lamentar-se demais.
 
-O luto nunca foi superado e *"moldou silenciosamente sua disposição em ajudar Lena quando a encontrou"*. Registros mais antigos da cidade contam a perda de outro jeito — que ele *"perdeu sua filha ao vê-la se aventurar perto da grande árvore"* e que por isso *"odeia toda a cidade e vive isolado repudiando a árvore"*, tentando *"se equipar o suficiente para enfrentar a árvore e achar sua filha"*; e há ainda a versão que a mata *"ainda no Império de Ferro, antes da imigração para Khaskavel"*. Vale a travessia; as outras duas ficam registradas porque explicam o muro alto e o ódio à árvore que ninguém revogou.
+O luto nunca foi superado e *"moldou silenciosamente sua disposição em ajudar Lena quando a encontrou"*. Registros mais antigos da cidade contam a perda de outro jeito — que ele *"perdeu sua filha ao vê-la se aventurar perto da grande árvore"* e que por isso *"odeia toda a cidade e vive isolado repudiando a árvore"*, tentando *"se equipar o suficiente para enfrentar a árvore e achar sua filha"*; e há ainda a versão que a mata *"ainda no Império de Ferro, antes da imigração para Khaskavel"*. Vale a travessia.
 
 ## Lena
 
@@ -54,7 +54,7 @@ A caminhada em que ele encontrou a dryad ferida na floresta provavelmente não f
 
 > Não escolheu Alvak por bondade. Escolheu-o porque ele seria um excelente protetor inadvertido de Lena — a peça-chave para a destruição da Grande Árvore. [...] Tudo arquitetado para que, quando chegasse a hora [...] de reivindicar Lena, o instrumento estivesse pronto e protegido.
 
-Registros mais antigos põem [[Velúria]] no lugar das duas deusas e fazem de Karmath a vingadora da injustiça cometida contra o ferreiro. A autoria é de Vytália e Karmath — o que deixa a vingança sem réu óbvio (ver *Pontas soltas*).
+Registros mais antigos põem [[Velúria]] no lugar das duas deusas e fazem de Karmath a vingadora da injustiça cometida contra o ferreiro. A autoria é de [[Vytália]] e [[Karmath]].
 
 ## O vilão mais triste
 
@@ -78,7 +78,7 @@ Quando descobrir que o luto pela primeira filha foi usado como isca e a vida int
 - **Usado como instrumento por** → [[Vytália]] e [[Karmath]]
 - **Bênção possível** → [[Karmath]], se a manipulação vier à luz
 - **Alvo do seu ódio** → [[A Vhelor]], que queima na sua fornalha em forma de [[Folhas Amarelas]]
-- **Marcas de seringa** → [[Seiva]] · [[Marca da Vhelor]] — nunca explicadas
+- **Marcas de seringa** → [[Seiva]] · [[Marca da Vhelor]]
 - **Irmão de ofício** → [[Jairo Krichama]], no [[Castelo de Kirkushav]]
 - **Vende para** → aventureiros de Khaskavel; ver [[O Bazar]] e [[Dinheiro e Comerciantes]]
 - **Eventos** → [[Sessão 0]] · [[Campanha 1 — Arco]] · [[Linha do Tempo]]
@@ -91,7 +91,7 @@ Quando descobrir que o luto pela primeira filha foi usado como isca e a vida int
 - **Depois:** a descoberta do plano divino e, talvez, uma armadura de paladino que ninguém queria ver nele.
 
 ## Em aberto
-E39 (há quantos anos em Khaskavel) · E12 (os dois soldados executados) · E362 (quem o guiou à floresta) · E359 (seringa e folhas) · E361 (a tarefa da forja) · E360 (a idade dele)
+E39 (há quantos anos em Khaskavel) · E12 (os dois soldados executados) · E351 (quem o guiou à floresta) · E348 (seringa e folhas) · E350 (a tarefa da forja) · E349 (a idade dele)
 
 ## Procedência
 - Notion — *Alvak Krichama* `33e6e3a401d98103af5ef241c6512d02` (🟡, ed. 2026-05-24) · *Arrma Boua (Forja) (old)* `33e6e3a401d98163beb4f770516bb0e8` (🔴 stub) · *Lena Skarv* `3696e3a401d981969032ea2fcf0b406e` · *Quest — Alvak, o ferreiro* `33e6e3a401d981819212fc8fb29ab6cc` (🔴 vazia) · *Anão* (Raças)

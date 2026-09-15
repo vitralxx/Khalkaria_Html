@@ -71,7 +71,7 @@ O que Azgar carrega dali é um dogma: *"tornar Ossyria um continente habitável 
 - **C (campanha):** o paradeiro de Terk continua desconhecido; Azgar segue *"rezar para que Terk ainda estivesse vivo"*.
 
 ## Em aberto
-E21 (o erro dos deuses) · E20 (Terk vivo e o crime) · E358 (nomes em Ossyria)
+E21 (o erro dos deuses) · E20 (Terk vivo e o crime) · E347 (nomes em Ossyria)
 
 ## Procedência
 - Notion: 5. Ossyria `33e6e3a401d98122b4cdead58587b6b6` (🟠 Rascunho, ed. 2026-05-23) · Azgar Sandgale `33e6e3a401d9814caa28c26a3a66e84c`

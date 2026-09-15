@@ -37,7 +37,7 @@ Se essas almas de fato chegam a Osh'Kar ou se apenas engrossam o acervo já pres
 
 A história que os cargos altos perseguem começa no sumiço de [[Kha]]: sem o deus supremo, o panteão rachou, e Osh'Kar *"entregou-se ao prazer de devorar almas"* até ser contido pelos outros deuses e preso no Abismo. A prisão vale só para o [[Plano Material]] — nos outros planos ele continua livre —, e a região que o segura não é acidente geográfico: foi *"corrompida pelos deuses com criaturas perigosas para nenhum mortal conseguir libertar osh'kar"*, obra atribuída a [[Velúria]] junto com [[Vytália]]. Das criaturas que passaram a se comunicar entre si naquele lugar nasceu o idioma [[Abissal]] — a única língua em que, em tese, se poderia negociar com o que mora lá.
 
-O acesso é pior ainda. O que se vê de fora é [[O Oásis]], e o oásis é ilusão: só se desfaz para quem escala o pico mais alto da [[Cordilheira Cristalina]]. Como as células que falam do *"senhor que aguarda no oásis"* pretendem atravessar isso é assunto que nenhuma delas escreveu.
+O acesso é pior ainda. O que se vê de fora é [[O Oásis]], e o oásis é ilusão: só se desfaz para quem escala o pico mais alto da [[Cordilheira Cristalina]].
 
 ## Os que escaparam
 
@@ -74,7 +74,7 @@ Fora dos cultos há um aliado inesperado. [[Hadran Vorgil]] odeia [[A Vhelor]] o
 - **0** (campanha): as células estão ativas e dispersas; [[Lázlo]], se estiver em jogo, escapou de um ritual há cerca de um ano; ninguém chegou perto do Abismo — *"os jogadores nem estão perto"*.
 
 ## Em aberto
-E341 (células e congregação-mãe) · E342 (as almas chegam ao deus) · E343 (quem sabe da ilusão) · E420 (o que o Abismo oferece)
+E332 (as células e as almas) · E333 (quem sabe da ilusão) · E395 (o que o Abismo oferece)
 
 ## Procedência
 - Notion — *Cultos de Osh'Kar* `3696e3a401d98125a280d7b0bf485494` (🟠 rascunho, 2026-05-23; traz seção "Pontos a Desenvolver") · *Facções* `3696e3a401d9814f8e0dfa4c6b50b850` · *Deuses* `33e6e3a401d9817f9470e140120b1c22` · *Lázlo* `36d6e3a401d9818d9cddefbdd4015aad` · *Hadran Vorgil* `36d6e3a401d9817792d8ef277f93f46a`

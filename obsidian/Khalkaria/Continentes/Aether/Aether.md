@@ -64,7 +64,7 @@ O outro poder do continente não estuda: colhe. [[Os Hax]] mantêm monastérios 
 - **C−27 ([[Sessão 0]]):** [[Kirkushav Drekar]] chantageia Runa — *"seus amigos dragões estão perto do fim não é?"*.
 
 ## Em aberto
-E23 (o culto que formou Kheyos) · E353 (Hyven e os teurgos) · E25 (os dragões Skorn) · E354 (Aether e o Éter)
+E23 (o culto que formou Kheyos) · E342 (Hyven e os teurgos) · E25 (os dragões Skorn) · E343 (Aether e o Éter)
 
 ## Procedência
 - Notion: 4. Aether `33e6e3a401d9812bab36f280892bf817` (🟡 Em desenvolvimento, ed. 2026-05-24; seção inline Hyven, filha Os Hax) · Os Hax `3696e3a401d98127a568c856497d9ce6` · Runa Skorn `33e6e3a401d981f2ae5fd3a12244a204` · Klaus von Aldric `33e6e3a401d9810ca145d41242d235b0` · Kheyos `33e6e3a401d9819789c0da0fcde2f114`

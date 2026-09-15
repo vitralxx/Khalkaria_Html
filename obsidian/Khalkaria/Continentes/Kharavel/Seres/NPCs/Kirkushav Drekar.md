@@ -109,7 +109,7 @@ Ele nunca soube que o Sinikko que ficou com a cidade não era Sinikko, e o clone
 - **0** (campanha): mais de noventa anos, *"mais frio, mais distante, mas ainda absoluto"*.
 
 ## Em aberto
-E11 (abomina magia e vive dela) · E382 (filho ou refém) · E384 (a ordem do dia) · E27 (a capital e o governo) · E383 (ele reaparece)
+E11 (abomina magia e vive dela) · E367 (filho ou refém) · E369 (a ordem do dia) · E27 (a capital e o governo) · E368 (ele reaparece)
 
 ## Procedência
 - Notion — *Kirkushav Drekar* `33e6e3a401d98131815efc830056e2e3` (🟡, ed. 2026-07-23) · *Roteiro da Sessão 0* `33e6e3a401d9819796c9dfb2263e215d` (🟡, ed. 2026-07-24) · *Castelo em Ruínas* `3696e3a401d98161a014d3747e46b42b` · *Hadran Vorgil* `36d6e3a401d9817792d8ef277f93f46a` · *Sinikko Kiriam* (página de PC) `33e6e3a401d98172bcefef2453ce1564` · *Sevic* `33e6e3a401d981b99d17e52ca1383748` · *Azgar Sandgale* `33e6e3a401d9814caa28c26a3a66e84c` · páginas de PC de Vorn, Klaus e Runa

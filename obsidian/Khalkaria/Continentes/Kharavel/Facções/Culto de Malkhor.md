@@ -86,11 +86,11 @@ O resultado do trabalho do culto se mede na própria cidade que ele governa: vin
 ## Relações
 - **Deus servido** → [[Malkhor]]
 - **Líder e sumo-sacerdote** → [[Sinikko Kiriam (clone)]]
-- **Sede** → [[Khaskavel]] — [[Vistaluz]] para o topo, [[A Embrenha]] para a base; a fábrica de seiva, sem local escrito
+- **Sede** → [[Khaskavel]] — [[Vistaluz]] para o topo, [[A Embrenha]] para a base; a fábrica de seiva
 - **Fonte de poder** → [[A Vhelor]] → [[Seiva]] · [[Folhas Amarelas]] · [[Casca de Raiz]] · [[Marca da Vhelor]]
 - **Massa de manobra** → [[Embrenhos]] (viciados, "cultistas menores") · [[Iluminados]] (nobres corrompidos de cargo médio)
 - **Braço armado da cidade** → [[Vanguarda Serafélia]], sob o mesmo clone
-- **Dissidências** → Grupos Independentes, células de bandidos ex-cultistas sem nome
+- **Dissidências** → Grupos Independentes, células de bandidos ex-cultistas
 - **Concorrentes na colheita** → [[Os Colhedores]]
 - **Inimigos** → [[Rastas]] / [[Revavena]] · [[Karma]] · [[Xkamur]] · [[Skarv]] (atacados) · [[Vytália]] · [[Karmath]] · [[Hadran Vorgil]] · [[Mira Vesnal]]
 - **Sem aliança, conflito ocasional** → [[Cultos de Osh'Kar]]
@@ -107,7 +107,7 @@ O resultado do trabalho do culto se mede na própria cidade que ele governa: vin
 - **0** (campanha): o culto domina Khaskavel e prepara a "grande chuva de Seiva" sobre [[Revavena]] e o continente inteiro.
 
 ## Em aberto
-E300 (onde fica a fábrica) · E340 (quem a chefia) · E339 (a exportação hoje) · E29 (uma Vanguarda ou duas) · E348 (a lealdade da tropa) · E9 (a diarquia)
+E300 (onde fica a fábrica) · E331 (a fábrica e a exportação) · E29 (uma Vanguarda ou duas) · E337 (a lealdade da tropa) · E9 (a diarquia)
 
 ## Procedência
 - Notion — *Culto de Malkhor* `3696e3a401d981a0b2e3f42c3fa846e6` (🟡, 2026-06-09) · *Culto de Khaskavel (old)* `33e6e3a401d98110a854d7bdd14fa685` (sem status, 2026-04-10) · *Facções* `3696e3a401d9814f8e0dfa4c6b50b850` · *Sinikko (NPC)* `33e6e3a401d9813d8cf5d8d8e6c3fddc` · *Substâncias* `33e6e3a401d981ef841aefa20793d48d` · *Embrenhos* `33e6e3a401d981569024f9883fc59c05`

@@ -65,7 +65,7 @@ Escala de perigo de 1 a 9, sendo 1 a mais segura e 9 a mais letal.
 | [[Emaranhado de Raízes]] | Magenta | 5/9 | 2-3 a 4-5 | Norte-centro, raízes da Vhelor | [[A Vhelor]], [[Templo da Profecia]] (borda sul) | Khaskavel (O), Cinturão (L), Bacia e Bosque (S) |
 | [[Costas Rochosas]] | Verde | 6/9 | 4-5 | Leste, litoral | [[Minas dos Krichama]] | Cinturão (N), Bacia/Cordilheira (O), Ermo (S) |
 | [[Cordilheira Cristalina]] | Azul | 7/9 | 4-5 | Centro-sul/centro-leste, leste de Kuriam, montanhas nevadas | o pico que desfaz a ilusão do Oásis | Terras Livres (O), Bacia (N), Costas Rochosas (L), Ermo (SE) |
-| [[Ermo das Cinzas]] | Preto (descrito também como cinza) | 8/9 | 4-5 | Sudeste | [[Castelo do Sul]] | Costas Rochosas (N), Cordilheira e Terras Livres (O) |
+| [[Ermo das Cinzas]] | Preto / cinza | 8/9 | 4-5 | Sudeste | [[Castelo do Sul]] | Costas Rochosas (N), Cordilheira e Terras Livres (O) |
 | [[Deserto do Abismo]] | Roxo | 9/9 | 4-5 e acima | Sudoeste inteiro | [[O Abismo]], [[O Oásis]] (fronteira norte) | Bosque Corrompido (N), Terras Livres (L) |
 
 Sobre atravessar essas regiões, ver [[Jornada]].
@@ -93,7 +93,7 @@ O quarto ponto é a chave de tudo. No cerne da [[A Vhelor]] há um casulo que se
 - **Movimentos políticos** — [[Rastas]], a Revolução Revavenana; [[Vanguarda Serafélia]], que *"administra Kuriam, exporta lenha e peixes"*; [[Império de Ferro]] em [[Khaskavel]], *"colonialismo industrial, sob comando aparente do Sinikko clone"*.
 - **Grupos independentes** — *"Células de bandidos formadas por ex-cultistas de cargo médio que abandonaram a estrutura do Culto de Malkhor."*
 
-Vivem também no continente os [[Embrenhos]], povo pobre de [[A Embrenha]] dividido entre viciados, sãos e cultistas menores; os [[Iluminados]], facção de [[Khaskavel]] de que pouco restou registrado; e a memória de [[Lorrain Kiriam]], teurga, mãe de [[Sinikko Kiriam (original)]], morta nos esgotos.
+Vivem também no continente os [[Embrenhos]], povo pobre de [[A Embrenha]] dividido entre viciados, sãos e cultistas menores; os [[Iluminados]], a elite de [[Vistaluz]]; e a memória de [[Lorrain Kiriam]], teurga, mãe de [[Sinikko Kiriam (original)]], morta nos esgotos.
 
 ## O segredo do continente
 Nada da história de Kharavel é do conhecimento de quem vive nele. O segredo final de [[Khalkaria]] é a descoberta do conflito entre os deuses causado pelo sumiço de [[Kha]] — e a interferência dos personagens de jogador nesse caminho é o que resolve os problemas do universo inteiro.
@@ -120,15 +120,15 @@ O desfecho da primeira campanha é o expurgo de [[Malkhor]]. Derrotado o [[Sinik
 - **Origem ligada ao Abismo** → [[Amaldiçoado]]
 
 ## Linha do tempo
-- **Atemporal:** [[Vytália]] pede a [[Mundarak]] o continente; [[Malkhor]] planta a semente da [[A Vhelor]], *"florescendo inicialmente de uma pequena muda"*. *"Os primeiros povos e civilizações a terem contato com a seiva ruiram."* [[Osh'Kar]] é aprisionado em [[O Abismo]] depois do sumiço de [[Kha]]; [[Velúria]] e [[Vytália]] corrompem o sudoeste com criaturas perigosas para que ninguém o solte. A ordem entre esses eventos e a criação do continente não foi fixada.
+- **Atemporal:** [[Vytália]] pede a [[Mundarak]] o continente; [[Malkhor]] planta a semente da [[A Vhelor]], *"florescendo inicialmente de uma pequena muda"*. *"Os primeiros povos e civilizações a terem contato com a seiva ruiram."* [[Osh'Kar]] é aprisionado em [[O Abismo]] depois do sumiço de [[Kha]]; [[Velúria]] e [[Vytália]] corrompem o sudoeste com criaturas perigosas para que ninguém o solte.
 - **≈ −32:** o [[Império de Ferro]] encontra Kharavel e funda [[Khaskavel]] — *"Fazem cinco anos que Khaskavel foi construída"*, dito na Sessão 0. Diarquia de duas famílias. Guerra contra os povos nativos, [[Skarv]] e [[Xkamur]].
 - **−27** ([[Sessão 0]]): [[Kirkushav Drekar]] reúne a [[Equipe desfloreio]] no [[Castelo de Kirkushav]]; a equipe passa por [[Khaskavel]] e entra na [[A Vhelor]]; os cinco "morrem" nas [[Câmaras de Provação]]; [[Sinikko Kiriam (original)]] vira [[O Sonhador]]; [[Malkhor]] gera o [[Sinikko Kiriam (clone)|clone]]. Os [[Rastas]] fogem de Khaskavel e começam [[Revavena]] do zero. [[Karma]] profetiza que em vinte e sete anos a cidade da salvação se ergueria e derrotaria Khaskavel e a Vhelor, libertando Kharavel do Pecado. Kirkushav abandona o continente.
-- **Intervalo (−27 → 0):** o clone governa Khaskavel, corta relações com o [[Império de Ferro]] e passa a mirar a contaminação de toda Kharavel pela [[Seiva]]; [[A Embrenha]] vira um culto de viciados; o [[Vilarejo Skarv]] é atacado e parte do povo realocada para a ilha do sudeste; [[Yenev Vesnal]] desaparece em Khaskavel (≈ −10); o [[Castelo de Kirkushav]] cai para revolucionários e nativos, *"há alguns anos"*; [[Tev Kossar]] foge (−3); [[Mira Vesnal]] desiste da busca (−2); [[Lena Skarv]] é salva por [[Alvak Krichama]] (−2, com a data em disputa); [[Lázlo]] é encontrado no planalto central (−1).
+- **Intervalo (−27 → 0):** o clone governa Khaskavel, corta relações com o [[Império de Ferro]] e passa a mirar a contaminação de toda Kharavel pela [[Seiva]]; [[A Embrenha]] vira um culto de viciados; o [[Vilarejo Skarv]] é atacado e parte do povo realocada para a ilha do sudeste; [[Yenev Vesnal]] desaparece em Khaskavel (≈ −10); o [[Castelo de Kirkushav]] cai para revolucionários e nativos, *"há alguns anos"*; [[Tev Kossar]] foge (−3); [[Mira Vesnal]] desiste da busca (−2); [[Lena Skarv]] é salva por [[Alvak Krichama]] (−2; ver [[Lena Skarv]]); [[Lázlo]] é encontrado no planalto central (−1).
 - **0** (campanha): os personagens de jogador se instalam no [[Castelo de Kirkushav]]. Khaskavel *"não tem mais escravos — tem embrenhos viciados na seiva matando estrangeiros nas ruas"*. [[Revavena]] consolidada e armada.
 - **Previsto:** a *"grande chuva de Seiva"* sobre Revavena e todo o continente, plano do clone; e, no fim, o [[Primórdio]].
 
 ## Em aberto
-E316 (quem criou o continente) · E17 (a idade da descoberta) · E328 (Revavena cega) · E301 (a região de Khaskavel) · E1 (um por continente) · E16 (o continente de Sinikko) · E5 (o sudoeste verde) · E6 (a ilha do sudeste) · E14 (as fronteiras) · E59 (a hostilidade das regiões) · E315 (a cor do Ermo)
+E313 (quem criou o continente) · E17 (a idade da descoberta) · E322 (a versão antiga da cidade) · E301 (a região de Khaskavel) · E1 (um por continente) · E16 (o continente de Sinikko) · E5 (o sudoeste verde) · E6 (a ilha do sudeste) · E14 (as fronteiras) · E59 (a hostilidade das regiões) · E312 (a cor do Ermo)
 
 ## Procedência
 - Notion — *1. Kharavel* `33e6e3a401d981eeaecaf08dd1b33d29` · *Deuses* `33e6e3a401d9817f9470e140120b1c22` (ed. 2026-09-04) · *Direcionamento* `33e6e3a401d98190a21ae6c430acbc38` (🟢) · *Locais* `33f6e3a401d98073851ceb23c8e193f1` · *Facções* `3696e3a401d9814f8e0dfa4c6b50b850` (2026-07-15) · *Roteiro da Sessão 0* `33e6e3a401d9819796c9dfb2263e215d` · *Kirkushav Drekar* `33e6e3a401d98131815efc830056e2e3`

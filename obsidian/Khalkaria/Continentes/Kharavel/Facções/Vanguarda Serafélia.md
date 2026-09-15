@@ -57,11 +57,11 @@ A cidade que ela guarnece é, no catálogo de facções do continente, *"colonia
 ## Linha do tempo
 - **≈ −32:** chega com a frota de colonos e os generais de [[Kirkushav Drekar]] na fundação de Khaskavel.
 - **−27** ([[Sessão 0]]): mantém a ordem e a escravidão na cidade; planeja transformar o [[Castelo de Kirkushav]] em ponto de controle; a igreja da ordem está em obras no sudoeste.
-- **Intervalo:** toma [[Kuriam]]; ataca o [[Vilarejo Skarv]] repetidas vezes sob a campanha de homogenia do clone; dois soldados são executados por [[Alvak Krichama]] (data em disputa, ver [[Lena Skarv]]).
+- **Intervalo:** toma [[Kuriam]]; ataca o [[Vilarejo Skarv]] repetidas vezes sob a campanha de homogenia do clone; dois soldados são executados por [[Alvak Krichama]] (ver [[Lena Skarv]]).
 - **0** (campanha): guarda de uma cidade dissolvida no vício, respondendo a um imperador que rompeu com o próprio Império.
 
 ## Em aberto
-E29 (uma Vanguarda ou duas) · E4 (o que é Serafélia) · E348 (a lealdade hoje) · E349 (quem é o general) · E12 (os dois soldados executados)
+E29 (uma Vanguarda ou duas) · E4 (o que é Serafélia) · E337 (a lealdade hoje) · E338 (quem é o general) · E12 (os dois soldados executados)
 
 ## Procedência
 - Notion — *A Vanguarda Seratélia* `33e6e3a401d98104845ddaafa86b57b2` (sem status, 2026-04-10) · *Facções* `3696e3a401d9814f8e0dfa4c6b50b850` · *Kuriam* `33e6e3a401d981ad83d7fe8266cc6630` · *Kirkushav Drekar* `33e6e3a401d98131815efc830056e2e3` · *Alvak Krichama* `33e6e3a401d98103af5ef241c6512d02` · *Rastas* `39e6e3a401d9816e9861c60d9a86d1b9` · *Vistaluz* `33e6e3a401d98192ba6deb2cbe5bcc42`

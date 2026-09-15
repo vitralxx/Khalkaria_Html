@@ -36,7 +36,7 @@ Sétima na escala de perigo do continente — **7 de 9** — com ameaças de **C
 - **As criaturas das alturas**, guardiãs formidáveis das encostas e do cume.
 
 ## Antes e agora
-As montanhas já estavam aqui vinte e sete anos atrás, no centro-sul do continente, e nada nos registros diz que tenham mudado. É das poucas regiões de Kharavel que atravessou a colonização, a expedição contra a árvore e a corrupção do oeste sem se alterar.
+As montanhas já estavam aqui vinte e sete anos atrás, no centro-sul do continente. É das poucas regiões de Kharavel que atravessou a colonização, a expedição contra a árvore e a corrupção do oeste sem se alterar.
 
 ## Relações
 - **Fica em** → [[Kharavel]]
@@ -47,11 +47,11 @@ As montanhas já estavam aqui vinte e sete anos atrás, no centro-sul do contine
 - **Recurso** → cristais e mineração; comparar com as [[Minas dos Krichama]]
 
 ## Linha do tempo
-- **−27** ([[Sessão 0]]): montanhas presentes no centro-sul, sem registro de ocupação.
+- **−27** ([[Sessão 0]]): montanhas presentes no centro-sul.
 - **0** (campanha): **CR 4-5**; etapa obrigatória antes do [[Deserto do Abismo]].
 
 ## Em aberto
-E416 (como a escalada desfaz a ilusão) · E310 (quem extrai os cristais) · E311 (as criaturas das alturas) · E14 (o traçado)
+E394 (como a escalada desfaz a ilusão) · E308 (cristais e criaturas) · E14 (o traçado)
 
 ## Procedência
 - Notion — *Cordilheira Cristalina* `37b6e3a401d98170bcdadabd058821ac` (🟠 rascunho, 2026-06-10)

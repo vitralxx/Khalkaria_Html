@@ -138,7 +138,7 @@ Enquanto isso não acontece, a árvore só cresce. O clone *"traçou como objeti
 - **Ano 0 (campanha).** A copa dourada domina o horizonte do continente; o clone prepara a chuva de Seiva; Lena aparece como a solução óbvia de preço alto demais; e quanto mais folhas o grupo tiver consumido, mais forte estará a árvore no confronto final.
 
 ## Em aberto
-E395 (sangue ou pecado) · E396 (quem volta da árvore) · E397 (o nome em Criptografado) · E398 (quem abriu a porta) · E369 (o que resta do Sonhador)
+E377 (sangue ou pecado) · E378 (quem volta da árvore) · E379 (o nome em Criptografado) · E380 (quem abriu a porta) · E358 (o que resta do Sonhador)
 
 ## Procedência
 - Notion: A Grande Árvore `33e6e3a401d9813b8a60f1f9669803be` · O Sonhador `33e6e3a401d98126bae4e981b581487f` · Substâncias da Grande Árvore `33e6e3a401d981ef841aefa20793d48d` · 1. Kharavel `33e6e3a401d981eeaecaf08dd1b33d29` · Deuses `33e6e3a401d9817f9470e140120b1c22` · Malkhor `39e6e3a401d981eb87fecedc94f35b37` · Vytália `39e6e3a401d9813dbd3cf924ae613a9a` · Roteiro da Sessão 0 `33e6e3a401d9819796c9dfb2263e215d` · Direcionamento `33e6e3a401d98190a21ae6c430acbc38` · Kirkushav Drekar

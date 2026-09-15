@@ -24,7 +24,7 @@ E nasceu com uma contradição no fundamento:
 
 > O movimento que nasce jurando não derramar sangue funda a cidade mais sanguinária de Kharavel.
 
-Os registros mais antigos da cidade contam outra origem — *"fruto de uma recém revolução contra uma das cidade-satélite de Khaskavel"*, com um povo que *"há anos se opôs as práticas industriais e anarconaturais de Khaskavel"* e grupos revolucionários que lutaram por anos *"sendo perseguidos e mortos, conquistando há 10 anos o palácio de Revavena"*, e uma Revavena que se opõe à exploração da árvore *"acreditando em uma abordagem mais sustentável e inteligente"*. Essa versão foi superada pela fundação do zero; fica registrada porque é dela que vem o "palácio" de que a cidade fala.
+Os registros mais antigos da cidade contam outra origem — *"fruto de uma recém revolução contra uma das cidade-satélite de Khaskavel"*, com um povo que *"há anos se opôs as práticas industriais e anarconaturais de Khaskavel"* e grupos revolucionários que lutaram por anos *"sendo perseguidos e mortos, conquistando há 10 anos o palácio de Revavena"*, e uma Revavena que se opõe à exploração da árvore *"acreditando em uma abordagem mais sustentável e inteligente"*. Essa versão foi superada pela fundação do zero, e é dela que vem o "palácio" de que a cidade fala.
 
 ## A cidade e a deusa
 > A presença de Karmath é provavelmente mais forte em **Revavena** — e há um motivo com nome e rosto. [...] **A cidade libertária de Kharavel é, na prática, o braço armado de Karmath no continente.** A brutalidade de Revavena contra os usuários da seiva é justiça divina executada por mãos humanas convictas.
@@ -77,7 +77,7 @@ Continua fora do alcance de Khaskavel — *"Revavena e o resto de Kharavel conti
 - **O ano da profecia** é este: vinte e sete anos depois, Revavena derrota Khaskavel e a Vhelor.
 
 ## Em aberto
-E326 (o palácio) · E327 (sustentável ou incendiária) · E328 (cega pela árvore) · E10 (os poderes de Karma) · E337 (os oitenta que ficaram) · E329 (o rosto da cidade) · E38 (Sevic sobreviveu)
+E322 (a versão antiga da cidade) · E10 (os poderes de Karma) · E330 (os oitenta que ficaram) · E323 (o rosto da cidade) · E38 (Sevic sobreviveu)
 
 ## Procedência
 - Notion — *Revavena* `33e6e3a401d981619f07d156693b051f` (🟡, ed. 2026-06-09) · *Rastas* `39e6e3a401d9816e9861c60d9a86d1b9` (🟡, ed. 2026-07-15) · *Karmath* `39e6e3a401d981bab6e3d23fadefe734` (🟠) · *Karma* `39e6e3a401d98199a0bbf981a89abc2d` · *Mira Vesnal* `36d6e3a401d981fb97bceeec037e614d` · *Sinikko Kiriam (NPC)* `33e6e3a401d9813d8cf5d8d8e6c3fddc` · *O Direcionamento* `33e6e3a401d98190a21ae6c430acbc38`

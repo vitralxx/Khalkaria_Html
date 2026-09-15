@@ -61,7 +61,7 @@ Nem todos foram para a ilha: houve *"refugiados Skarv que passavam pela cidade"*
 - **0** (campanha): o vilarejo original de pé, em retração.
 
 ## Em aberto
-E18 (quando Lena fugiu) · E105 (quem ordenou o ataque) · E351 (veneram ou usam) · E6 (a ilha do sudeste) · E366 (onde está Yu)
+E18 (quando Lena fugiu) · E105 (quem ordenou o ataque) · E340 (veneram ou usam) · E6 (a ilha do sudeste) · E355 (onde está Yu)
 
 ## Procedência
 - Notion — *Vilarejo Skarv* `33e6e3a401d981f68258f6a0be896c08` (🟡, ed. 2026-06-09) · *Lena Skarv* `3696e3a401d981969032ea2fcf0b406e` · *Alvak Krichama* `33e6e3a401d98103af5ef241c6512d02` · *Mira Vesnal* `36d6e3a401d981fb97bceeec037e614d` · *Facções de Kharavel* `3696e3a401d9814f8e0dfa4c6b50b850`

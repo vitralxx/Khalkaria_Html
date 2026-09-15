@@ -11,7 +11,7 @@ tags: [khalkaria/continentes/kharavel/locais]
 ---
 # Castelo do Sul
 
-**Resumo.** Uma ruína de castelo no sudeste de [[Kharavel]], em pé no meio do [[Ermo das Cinzas]]. É a única coisa assinalada naquela terra morta, e a única coisa que se sabe dela é que existe: ninguém escreveu quem a ergueu, contra o quê, nem quando caiu.
+**Resumo.** Uma ruína de castelo no sudeste de [[Kharavel]], em pé no meio do [[Ermo das Cinzas]]. É a única coisa assinalada naquela terra morta.
 
 ## Onde fica
 No canto sudeste do continente, na região que as cartas desenham em terreno cinza:
@@ -20,23 +20,23 @@ No canto sudeste do continente, na região que as cartas desenham em terreno cin
 
 É região de ameaças à altura de aventureiros veteranos (**CR 4-5**) — a segunda mais letal do continente, atrás só do [[Deserto do Abismo]]; sobre atravessá-la, ver [[Jornada]]. Faz vizinhança com as [[Costas Rochosas]] ao norte, a [[Cordilheira Cristalina]] e as [[Terras Livres]] a oeste, e o mar a sul e a leste.
 
-Não é o [[Castelo de Kirkushav]], que fica no centro do continente e é o outro castelo arruinado de Kharavel — este não tem dono, nem história, nem moradores registrados.
+Não é o [[Castelo de Kirkushav]], que fica no centro do continente e é o outro castelo arruinado de Kharavel — este está sem ocupação.
 
-## O que se sabe
-Nada além do desenho: uma ruína no cinza. As cartas do continente de vinte e sete anos atrás não descrevem a terra firme do sudeste — mostram apenas a ilha florestada ao largo —, de modo que nem se sabe se o castelo já estava lá, e em que estado, quando a [[Equipe desfloreio]] partiu contra a árvore.
+## Nas cartas antigas
+As cartas do continente de vinte e sete anos atrás não descrevem a terra firme do sudeste: mostram apenas a ilha florestada ao largo.
 
 ## Relações
 - **Fica em** → [[Ermo das Cinzas]], [[Kharavel]] (sudeste)
 - **Não confundir com** → [[Castelo de Kirkushav]], no centro, na [[Bacia Acidentada]]
 - **Vizinhança** → [[Costas Rochosas]] · [[Cordilheira Cristalina]] · [[Terras Livres]]
 - **Ao largo, na mesma direção** → a ilha florestada do sudeste, provável destino dos [[Skarv]] realocados
-- **Suspeitos de o terem erguido, nenhum confirmado** → [[Império de Ferro]] · povos nativos ([[Xkamur]], [[Povos Diversos do Sul]]) · [[Cultos de Osh'Kar]], que operam em *"locais remotos"*
+- **Candidatos a construtor** → [[Império de Ferro]] · povos nativos ([[Xkamur]], [[Povos Diversos do Sul]]) · [[Cultos de Osh'Kar]], que operam em *"locais remotos"*
 
 ## Linha do tempo
-- **0** (campanha): ruína de pé, sem ocupação registrada, no meio do ermo.
+- **0** (campanha): ruína de pé no meio do ermo.
 
 ## Em aberto
-E318 (quem construiu) · E312 (o que queimou o Ermo) · E14 (as cartas antigas)
+E309 (o ermo e o castelo do sul) · E14 (as cartas antigas)
 
 ## Procedência
 - Notion — *Ermo das Cinzas* `37b6e3a401d98125880bcd6e07e58000` (🟠, ed. 2026-06-10), única página que o cita

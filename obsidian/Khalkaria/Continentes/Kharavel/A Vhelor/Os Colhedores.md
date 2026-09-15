@@ -65,7 +65,7 @@ Todo Colhedor que ceda à tentação de comer o que colhe passa a acumular [[Mar
 - **Ano 0 (campanha).** Ativos, subindo a serviço dos nobres de [[Vistaluz]].
 
 ## Em aberto
-E411 (guilda ou autônomos) · E412 (consomem o que colhem) · E396 (quem volta da árvore) · E405 (as guardiãs da copa) · E413 (quem extrai a seiva)
+E392 (o ofício dos Colhedores) · E378 (quem volta da árvore) · E386 (as guardiãs da copa)
 
 ## Procedência
 - Notion: Substâncias da Grande Árvore `33e6e3a401d981ef841aefa20793d48d` · A Grande Árvore `33e6e3a401d9813b8a60f1f9669803be`

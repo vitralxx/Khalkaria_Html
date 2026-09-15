@@ -43,18 +43,17 @@ Porque o soberano do [[Império de Ferro]] quer o que a violência não dá: a f
 - **Cedida por** → [[Kirkushav Drekar]] / [[Império de Ferro]]
 - **Objetivo dado a** → [[Equipe desfloreio]] na [[Sessão 0]]
 - **O que se estuda aqui** → [[A Vhelor]] · [[Seiva]] · [[Éter]] e [[O Limiar]]
-- **Formado em** → [[Aether]], por um culto que ninguém nomeia
+- **Formado em** → [[Aether]], por um culto poderoso
 - **Conheceu na estrada** → [[Klaus von Aldric]]
 - **Parentesco atribuído e desfeito** → [[Karmath]]
 - **A outra casa isolada da cidade** → [[Arrma Boua]]
-- **Fica fora de** → [[Vistaluz]], logo dentro do território da [[A Embrenha]] — nunca declarado assim
+- **Fica fora de** → [[Vistaluz]], logo dentro do território da [[A Embrenha]]
 
 ## Linha do tempo
 - **−27** ([[Sessão 0]]): Kheyos instalado na casa; ponto de interesse da expedição em Khaskavel.
-- **0** (campanha): o que restou da casa, e de Kheyos, não foi escrito.
 
 ## Em aberto
-E37 (Kheyos no ano 0) · E334 (o nome e a casa hoje) · E380 (corrompido em que sentido) · E23 (o culto de Aether)
+E37 (Kheyos no ano 0) · E327 (o nome e a casa hoje) · E366 (corrompido em que sentido) · E23 (o culto de Aether)
 
 ## Procedência
 - Notion — *Roteiro da Sessão 0* `33e6e3a401d9819796c9dfb2263e215d` · *Kheyos* `33e6e3a401d9819789c0da0fcde2f114` (🟠, ed. 2026-05-24) · *Kirkushav Drekar* `33e6e3a401d98131815efc830056e2e3` · *Klaus von Aldric* (página de PC)

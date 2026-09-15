@@ -61,7 +61,7 @@ O outro caminho é entregar [[Lena Skarv]] ao casulo de [[O Sonhador]]. Este tem
 - **0** (campanha): assinalado na borda sul do Emaranhado; as oferendas nas bacias — seiva, Sins, adagas sujas — são recentes, o que significa que alguém ainda sobe até aqui.
 
 ## Em aberto
-E417 (o Kha atual) · E13 (cinco estátuas) · E14 (a posição nas cartas) · E418 (quem construiu) · E419 (quem riscou Pecador)
+E396 (o Kha atual) · E13 (cinco estátuas) · E14 (a posição nas cartas) · E397 (o templo e a placa)
 
 ## Procedência
 - Notion — *Templo da Profecia* `33f6e3a401d980dd982ad39fcba2ed4e` (🟢 pronto, ed. 2026-05-23) · *Lena Skarv* `3696e3a401d981969032ea2fcf0b406e` · *Deuses* `33e6e3a401d9817f9470e140120b1c22`

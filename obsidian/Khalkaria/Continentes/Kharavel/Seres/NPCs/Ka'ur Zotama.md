@@ -11,13 +11,13 @@ tags: [khalkaria/continentes/kharavel/seres/npcs]
 ---
 # Ka'ur Zotama
 
-**Resumo.** General da [[Vanguarda Serafélia]], a mão militar de [[Khaskavel]]. É o oficial que segura a cidade no lugar para o [[Sinikko Kiriam (clone)|imperador]] — e, portanto, quem faz o trabalho pesado do [[Culto de Malkhor]] sem que se saiba se tem consciência disso. Sobre ele existe uma frase, e nada além dela.
+**Resumo.** General da [[Vanguarda Serafélia]], a mão militar de [[Khaskavel]]. É o oficial que segura a cidade no lugar para o [[Sinikko Kiriam (clone)|imperador]] — e, portanto, quem faz o trabalho pesado do [[Culto de Malkhor]] sem que se saiba se tem consciência disso.
 
 ## O general
 
 > **Ka'ur Zotama** é o General da Vanguarda Seratélia.
 
-É o que se registrou. Raça, idade, rosto, temperamento, fidelidade real: em branco. O apóstrofo no meio do nome segue o feitio dos nomes grutos e o de [[Osh'Kar]], mas ninguém escreveu que ele é [[Gruto|gruto]] — e a tropa que comanda veio inteira do outro lado do mar.
+A tropa que ele comanda veio inteira do outro lado do mar.
 
 ## A tropa que comanda
 
@@ -37,13 +37,13 @@ Acima dele há um imperador que não é quem diz ser; abaixo, uma guarnição qu
 - **Equipa-se com** → aço imbuído pela [[A Vhelor]], parte dele forjada por [[Alvak Krichama]]
 - **Inimigos** → [[Rastas]] e [[Revavena]] · [[Skarv]] e [[Yu]] · [[Xkamur]] · a base rebelde do [[Castelo de Kirkushav]], de [[Hadran Vorgil]]
 - **Não confundir com** → [[Vanguarda do Ferro]], a tropa pessoal de [[Kirkushav Drekar]]
-- **Ligação possível** → [[Culto de Malkhor]], nunca declarada
+- **Ligação possível** → [[Culto de Malkhor]], que comanda o imperador a quem ele serve
 
 ## Linha do tempo
-- **0** (campanha): General da [[Vanguarda Serafélia]]. Nenhum outro momento da vida dele foi datado.
+- **0** (campanha): General da [[Vanguarda Serafélia]].
 
 ## Em aberto
-E349 (quem é o general) · E348 (a quem a tropa responde)
+E338 (quem é o general) · E337 (a quem a tropa responde)
 
 ## Procedência
 - Notion — *A Vanguarda Seratélia* `33e6e3a401d98104845ddaafa86b57b2` (Khaskavel / Povos, sem status, 2026-04-10), citada integralmente. É a única fonte que menciona Ka'ur Zotama

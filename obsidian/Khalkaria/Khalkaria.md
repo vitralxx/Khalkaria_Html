@@ -54,10 +54,10 @@ Lore e regra vivem separadas: uma nota de personagem cita a arma que ele carrega
 - **Regras do jogo** → [[Sistema]]
 - **Fio narrativo em curso** → [[Campanha 1 — Arco]], [[Sessão 0]], [[Linha do Tempo]]
 
-## Pontas soltas
-- **Um integrante por continente.** [[Vorn Drekar]] e [[Sinikko Kiriam (PC)|Sinikko]] vêm ambos de [[Volkrest]]; se a intenção era um agente por continente, Sinikko representaria [[Kharavel]] como imperador de [[Khaskavel]]. [[Perguntas Abertas]] E1, E16.
-- **O fim da campanha.** A ordem entre a profecia de [[Karma]], [[Lena Skarv]] no casulo e o expurgo não está fechada, nem o destino da [[A Vhelor|Vhelor]] caso um personagem de jogador assuma o cargo de deus do Pecado. [[Perguntas Abertas]] E34.
-- A lista completa do que aguarda decisão está em [[Perguntas Abertas]].
+## Em aberto
+E1 (um integrante por continente) · E34 (a ordem do desfecho) · E400 (o ano da campanha) · E201 (o cargo de Kha está vago)
+
+A lista inteira, agrupada por tema, está em [[Perguntas Abertas]].
 
 ## Procedência
 - Cânone do mestre, 2026-09-05 (panteão, planos, a aposta de Kharavel, a Vhelor e o Sonhador, Sessão 0, true ending).

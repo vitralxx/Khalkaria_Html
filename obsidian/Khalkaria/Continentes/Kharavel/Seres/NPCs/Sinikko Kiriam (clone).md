@@ -59,7 +59,7 @@ A profecia que [[Karma]] sussurrou ao original, vinte e sete anos antes, tem o c
 
 > O true ending da campanha 1 é o expurgo do deus Malkhor. Ao derrotarem o clone feito por malhor de Sinikko kiriam que corrompe enquanto lidera Khaskavel. Uma brecha desbloqueada por Karma permite um dos jogadores a entrar no Plano Primordial e batalhar contra Malkhor. Em caso de vitoria, o jogador se torna o novo deus do pecado [...] Em caso de derrota, o corpo material do jogador morre, enquanto a alma do jogador agora pertence a malkhor para manipular.
 
-Nos registros a passagem é descrita de outro jeito — *"a essência de Malkhor contida em Sinikko abre um portal para o plano dos deuses"* e o grupo inteiro atravessa. O plano dos deuses é o [[Primórdio]]; quem atravessa, e por qual brecha, está em *Pontas soltas*.
+Nos registros a passagem é descrita de outro jeito — *"a essência de Malkhor contida em Sinikko abre um portal para o plano dos deuses"* e o grupo inteiro atravessa. O plano dos deuses é o [[Primórdio]].
 
 ## Relações
 - **Criado por** → [[Malkhor]] · **cópia de** → [[Sinikko Kiriam (original)]], hoje [[O Sonhador]]
@@ -80,7 +80,7 @@ Nos registros a passagem é descrita de outro jeito — *"a essência de Malkhor
 - **0** (campanha): domina Khaskavel, prepara a chuva de [[Seiva]] e é o alvo da profecia de [[Karma]].
 
 ## Em aberto
-E367 (as memórias herdadas) · E357 (Khaskavel colônia) · E19 (o clone de Vorn) · E34 (a travessia ao Primórdio) · E36 (quando Kuriam foi tomada) · E368 (a chuva de seiva)
+E356 (as memórias herdadas) · E346 (Khaskavel colônia) · E19 (o clone de Vorn) · E34 (a travessia ao Primórdio) · E36 (quando Kuriam foi tomada) · E357 (a chuva de seiva)
 
 ## Procedência
 - Notion — *Sinikko Kiriam (NPC)* `33e6e3a401d9813d8cf5d8d8e6c3fddc` (🟡, ed. 2026-07-03) · *Culto de Malkhor* `3696e3a401d981a0b2e3f42c3fa846e6` · *O Rei de Khaskavel* `33e6e3a401d9814aa2a2c3d7ef3875a7` · *Kirkushav Drekar* `33e6e3a401d98131815efc830056e2e3` · *Vilarejo Skarv* `33e6e3a401d981f68258f6a0be896c08` · *Castelo em Ruínas* `3696e3a401d98161a014d3747e46b42b` · *Substâncias* `33e6e3a401d981ef841aefa20793d48d` · *Hadran Vorgil* e *Tev Kossar* (ganchos)
