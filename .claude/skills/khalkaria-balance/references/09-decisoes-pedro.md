@@ -590,3 +590,46 @@ desses kits, então a escada corre ~30% acima da Poção de Cura:
 **Escada de Ofício(Ferraria)** criada espelhando a de Engenharia: Bigorna Portátil (Inc) ·
 Bigorna Rúnica (Exó) · Forja de Bolso (Lux). O Ordinário fica coberto pelo Kit de Ferramentas
 Básico, que já atende Engenharia e Ferraria.
+
+## D49 (RESOLVIDA) — Falha crítica por margem de CD no Ofício
+Decisão do Pedro: manter o risco de perder material, mas só na **falha crítica**, reativando a
+regra de crítico por CD na perícia. Sucesso crítico também tem que pagar o jogador.
+
+**Regra proposta (vai para o Notion, na perícia Ofício):**
+> **Falha crítica:** ficar **10 ou mais abaixo** da CD. Você perde todos os materiais da receita.
+> **Falha normal:** você não cria o item, mas **conserva os materiais** e pode tentar de novo.
+> **Sucesso crítico:** superar a CD em **10 ou mais**. Você **recupera 1 dos materiais** gastos.
+
+### Por que funciona: o risco só existe quando você tenta acima do seu nível
+**Chance de falha crítica** (Mod.INT +3, CDs Ord 10 · Inc 13 · Exó 17 · Lux 21):
+| situação | Ord | Inc | Exó | Lux |
+|---|---|---|---|---|
+| Leigo + Kit Básico (−2) | 0% | 10% | 30% | 50% |
+| Treinado (+2) | 0% | 0% | 10% | 30% |
+| Experiente (+4) | 0% | 0% | 0% | 20% |
+| Mestre (+6) | 0% | 0% | 0% | 10% |
+| **Mestre + kit Luxária (+4)** | 0% | 0% | 0% | **0%** |
+
+**Custo efetivo por item criado** (0,77x base, repetindo até conseguir):
+| situação | Ord | Inc | Exó | Lux |
+|---|---|---|---|---|
+| Leigo + Kit Básico | 0,73x | 0,94x | 1,69x | 8,47x |
+| Treinado (+2) | 0,67x | 0,71x | 0,94x | 1,69x |
+| Experiente (+4) | 0,66x | 0,68x | 0,75x | 1,21x |
+| Mestre (+6) | 0,64x | 0,66x | 0,71x | 0,94x |
+| Mestre + kit Luxária | 0,59x | 0,63x | 0,66x | 0,71x |
+
+**A diagonal é de graça, o alcance é que se paga.** Craftar no seu tier ou abaixo dá ~0,70x
+(lucro), um tier acima fica no break-even, dois acima é aposta ruim.
+
+🔑 **O material lendário fica protegido:** para ter 0% de falha crítica no Luxária é preciso ser
+**Mestre com o kit Luxária**. Um material único de quest só pode ser destruído por quem não
+conquistou o direito de tocá-lo — o que resolve exatamente o medo do Pedro de um item deixar de
+existir no RPG por causa de um dado.
+
+**Sucesso crítico espelha a maestria:** um Mestre fabricando item Ordinário recupera material em
+50% das vezes; com o kit Luxária, 70%. A recuperação vale 1 de 3 materiais (as receitas têm 3 slots).
+
+⚠️ **Pendente:** a Alquimia hoje tem regra própria ("em caso de falha você perde os reagentes",
+sem margem). Unificar as três perícias sob a regra de crítico, ou manter a Alquimia como a mais
+arriscada das três?
