@@ -52,7 +52,7 @@ O cálculo do dano, da Evasão e das reduções está em [[Dano, Ataque e Defesa
 
 ## Conjurar em combate
 
-Canaliza-se **uma magia por turno** — o *Disparo Veloz* é possivelmente a única magia do sistema que ignora esse limite. O custo em ações, o custo de [[Éter]] e as intensidades estão em [[Regras de Magia]].
+Canaliza-se **uma magia por turno** — o *Disparo Veloz* é a única magia do sistema que ignora esse limite. O custo em ações, o custo de [[Éter]] e as intensidades estão em [[Regras de Magia]].
 
 ## Munição
 

@@ -114,7 +114,7 @@ O nível de treinamento em Místico está em [[Atributos e Perícias]]; os Focos
 
 ## Ritmo da conjuração
 
-**Uma magia por turno.** É a regra geral, e *Disparo Veloz* ([[Destruição]], nível 3) é possivelmente a única magia do sistema que a ignora — a própria descrição dela diz isso.
+**Uma magia por turno.** É a regra geral, e *Disparo Veloz* ([[Destruição]], nível 3) é a única magia do sistema que a ignora.
 
 **Magia Sustentada.** Algumas magias continuam ativas enquanto o conjurador as alimenta: paga-se Éter a cada turno para manter a canalização. Conjurar outra magia sustentada, ficar *Atordoado* ou perder a capacidade de se concentrar ativamente dissipa a magia na hora. A quantia por turno costuma vir escrita na própria magia, com redações divergentes entre uma e outra (E512). O custo em ações de cada conjuração está na tabela de cada magia; a economia de ações do turno, em [[Combate]].
 

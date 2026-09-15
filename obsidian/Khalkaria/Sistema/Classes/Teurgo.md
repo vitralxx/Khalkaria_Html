@@ -60,7 +60,7 @@ O dano **Primordial**, cobrado no preço de quase toda técnica cara desta class
 | [[Alteração]] | Transformação, manipulação, enganação. |
 | [[Primordial]] | Magia selvagem e bruta, intenção incompreendida. (Requer nível 5) |
 
-Os Focos que habilitam cada escola estão catalogados em [[Armas e Munição]]; as intensidades, modulações e custos de conjuração, em [[Regras de Magia]]. Quando a tabela de uma magia e o texto da sua descrição divergirem, vale a tabela. Conjura-se **uma magia por turno** — *Disparo Veloz* é possivelmente a única magia do sistema que escapa dessa trava, o que na prática limita *Encadeamento*, *Canalização Infinita* e *Teorema Absoluto*. O nível 1 do Teurgo é magro por desenho: as cerca de vinte magias de **nível 0**, truques que não custam Éter, ainda estão por escrever.
+Os Focos que habilitam cada escola estão catalogados em [[Armas e Munição]]; as intensidades, modulações e custos de conjuração, em [[Regras de Magia]]. Quando a tabela de uma magia e o texto da sua descrição divergirem, vale a tabela. Conjura-se **uma magia por turno** — *Disparo Veloz* é a única magia do sistema que escapa dessa trava, o que na prática limita *Encadeamento*, *Canalização Infinita* e *Teorema Absoluto*. O nível 1 do Teurgo é magro por desenho: as cerca de vinte magias de **nível 0**, truques que não custam Éter, estão previstas (E514).
 
 ## Técnicas gerais
 > Você possui **3 Técnicas + Nível**, reatribuíveis em descanso longo.
