@@ -1,607 +1,178 @@
-# Log de decisões do Pedro
-Registro vivo. **Tem precedência sobre qualquer inferência minha.** Atualizar a cada rodada.
+# Parâmetros de decisão do Pedro
 
-## D1 — Armas: o Notion sobrescreve o CSV ✅
-"Tem seções no notion que sobrescrevem certos itens no bazar como a tabela de armas, que é a
-verdadeira pelo notion nesse caso." → **Os 5 chassis divergentes vão convergir para o Notion.**
-"A maioria das armas estão desatualizadas."
-
-## D2 — Munição: por CENA de combate ✅
-"Você gasta 1 munição do tipo respectivo da arma à distância por cena de combate, você não precisa
-gastar munições individuais. As munições no bazar adicionam efeitos a arma, ataque em área, mais
-dano por disparo, sim é um buff de cena por 1 item, por isso eles devem ser balanceados
-adequadamente." → O "20 munições = 1 slot" do CLAUDE.md está **errado**.
-
-## D3 — Alcance das armas à distância é canônico ✅
-**Distância Simples 18 m · Distância Pesada 18 m · Arremesso 9 m.**
-"Pode adicionar na descrição desses tipos de armas."
-
-## D4 — Toda arma declara seu efeito no texto ✅
-"Adicione esse efeito nas marciais e leve em consideração que as outras armas também devem ter
-explicitado seus efeitos nas descrições."
-→ Marciais levam também: **"1x/turno não custa Stamina"**.
-
-## D5 — Cláusula "empilháveis" 🆕
-"Existe também a cláusula empilháveis, não para armas, porém serve pra itens muito leves como
-**munições e lixo**." → Aplicar ao revisar Munição e Lixo. (Casa com a regra do Notion:
-"Itens leves contam como 1 bugiganga a cada 10 unidades.")
-
-## D6 — Economia de comerciantes: alterações aprovadas 🆕
-| Campo | Antes (Notion) | **Decidido** |
-|---|---|---|
-| Estoque nv1 / nv2 / nv3 | 100 / 250 / 500 | **250 / 500 / 1000** |
-| Reposição | 1d / 2d / 3d | **1 dia fixo para todos** |
-| Margem de venda | 50% / 66% / 75% | mantida |
-| Custo de upgrade | 250 / 500 | **em revisão** — Pedro considera baixar, porque são **6 categorias de comerciante** e o custo total de subir todos é proibitivo |
-
-**Resolve o furo do Luxária:** estoque nv3 de 1000 > média Luxária de 683. ✅
-**Resolve a inversão de reposição:** timer fixo não pune mais quem vende em lotes pequenos. ✅
-**Mantido de propósito:** comerciante que compra ≠ comerciante que vende.
-"É intencional, faz os jogadores ponderarem em quem investir, mesmo naqueles npcs que eles não
-gostam, cria tensão e narrativa."
-**Enquadramento correto do upgrade:** não é decisão econômica, é **acesso + RP** — libera itens
-novos, quests, e "denota o custo real de viver na economia de Khalkaria".
-
-## D7 — Origem Caçador reformulada 🆕
-Substitui o texto antigo ("Sobrevivência ≥ 15 → 2 Comidas + 1 item incomum vendável"):
-> Você usa sua **ação de descanso longo** para caçar e deve suceder em **Sobrevivência CD 15**.
-> Ao suceder, ganha **1d4 item:Comida** e **1d4 item:Couro de Caça**.
-
-**Couro de Caça** = material **Ordinário**, serve para crafting **e** venda.
-→ Renda cai de ~50 Sins/dia para ~2,5 × 21 ≈ **52 Sins/dia brutos em material Ordinário**, mas
-agora **custa a ação de descanso** (compete com Ferraria/Engenharia/Tratar Ferimentos) e entra na
-cadeia de crafting em vez de virar Sins direto. Integrado ao sistema de comerciantes.
-⚠️ **Verificar se "Couro de Caça" existe na categoria Material do CSV.**
-
-## D8 — Cartas do Limiar: poder absurdo é o design ✅
-"TODAS as cartas do limiar estão no notion, elas mudam drasticamente o sistema quando são usadas,
-pois as cartas raras, principalmente as de requisitos mais específicos e difíceis, são muito
-fortes. **Mas esse é o design, poder absurdo.**"
-→ **Não tratar carta rara forte como bug.** Ao comparar item × carta, a carta rara é o teto
-*legítimo*. O que continua valendo: um **item comprável e acumulável** não deve igualar uma carta
-travada atrás de requisito de atributo alto, porque item não tem o mesmo gate.
-Custos em pontos das cartas: **estão no Notion**, buscar quando precisar.
-
-## D9 — Preços em Sins já estão certos ✅
-"Eu já tinha ajeitado os sins dos itens em outra sessão."
-Confirmado pelo auditor: **0 de 582 itens fora da faixa**. A raridade é a única alavanca de preço.
-
-## Ordem de revisão aprovada
-Arma (genéricas → focos → únicas) → Munição → Escudo → Armadura → Item Mágico → Consumível →
-Bugiganga → Lixo. **Material: não tocar.**
-Protocolo: lotes de ~12–15 itens; imprimo Nome | Raridade | Descrição EXATA; Pedro opina em lista
-numerada; **correção num item se aplica à família inteira**.
+> **Este arquivo é a lei.** Tem precedência sobre qualquer inferência minha e sobre os outros
+> references. Organizado por assunto, não por ordem cronológica. Os códigos `D<N>` são
+> identificadores estáveis — nunca renumerar, nunca reciclar.
+>
+> Regra de manutenção: decisão nova entra na **seção do assunto**, não no fim do arquivo.
+> Se uma decisão nova revoga outra, edite a antiga em vez de empilhar.
 
 ---
 
-## D10 — 🔑 Itens não cobram Stamina
-"Geralmente, eu não cobro Stamina em itens, pelo custo de Sins ou ingredientes."
-→ **O custo de um item é o preço de aquisição (Sins/ingredientes), não recurso por uso.**
-Exceção que não é exceção: os **efeitos de arma** (Dilacerar/Alcançar/Desorientar 2, Executar 3)
-custam Stamina porque são **regra do sistema**, não do item.
-→ Ao precificar item, a alavanca é **raridade + frequência de uso** (1x/combate, 1x/descanso longo),
-nunca "gasta N Stamina".
+# 0. Protocolo de trabalho
 
-## D11 — Teto de dano por acerto é permissível no topo
-Sobre o Martelo de Mundarak (Pesada Brutal +3, 5d12+3, máx. 63 / 126 no crítico):
-"Essa arma é o ápice do poder por ataque individual, Pesada Brutal +3 com arma única Luxária,
-é permissível que ela seja poderosa." → **Não tratar como bug.**
+**D47 — Sempre imprimir o texto exato da planilha.** Nunca descrever um item sem mostrar a linha
+dele. Vale para achado, proposta e correção. *"Não gosto quando você resume o item sem de fato
+printar a tabela com texto exato da planilha."*
 
-## D12 — Focos Primordiais são +3 por natureza
-"Os focos primordiais são lategame lvl 5 apenas, então não faz sentido serem menor que Luxária,
-então naturalmente são armas +3." → Não existe Primordial +1/+2. Correto por design.
+**Fluxo de revisão.** Lotes de ~12–25 itens por categoria e raridade. Imprimo
+`Nome | Raridade | Descrição EXATA | receita`; o Pedro opina em lista numerada; eu reinsiro no CSV.
+**Correção apontada num item vale para a família inteira** — aplicar globalmente, não pontualmente.
 
-## Lotes concluídos
-- **Lote 1 (15 armas genéricas base → 118 armas):** aplicado. 53 reescritas, 35 já corretas.
-  15/15 chassis conformes ao Notion.
-- **Lote 2 (30 focos místicos):** aplicado. Normalizados para
-  `Foco Místico (Escola). Permite canalizar... +N Místico, +5N Éter máximo.
-  Requisito: Inteligência ≥ 12 e {Treinado|Experiente} em Místico. <efeito único>`
-  Correções: Primordiais passam a exigir **Experiente**; Véu de Velúria +20 → **+15 Éter**;
-  6 efeitos únicos reescritos pelo Pedro (Égide, Estilhaço, Premonição, Baluarte, Demiurgo,
-  Inquebrável).
+**Ordem de revisão.** Arma ✅ → Munição ✅ → Bugiganga (em curso) → Escudo → Armadura →
+Item Mágico → Consumível → Lixo. **Material: só por decisão explícita.**
 
-## D13 — Cobertura obrigatória de armas únicas 🆕
-"Lacunas são inaceitáveis, vamos fazer questão de que todos os tipos de armas únicas tenham a
-mesma quantidade em cada raridade: **Incomum 2, Exótico 2, Luxária 1**."
-→ 15 chassis × 5 = **75 armas únicas**. Hoje existem 28. **Faltam 47.**
+**Fontes de verdade.** Notion manda em tudo, **exceto o Bazar**, cuja verdade é
+`references/bazar-v26.csv`. Seções do Notion sobrescrevem itens do Bazar (D1: a tabela de armas).
+O **repo `vitralxx/Khalkaria_Html` é o site em HTML e está desatualizado** — um agente copia o
+Notion para lá e dessincroniza depois de patches. Nunca usar o repo como fonte.
+⚠️ **Partes do Bazar foram alucinadas por IAs.** Desconfiar de item cuja mecânica não aparece
+em nenhum outro lugar.
 
-## D14 — Escada de payload por raridade (derivada do estilo do Pedro) 🆕
-Normalizada por ele no lote 3 (LEVES):
-| Raridade | Dado extra | Forma do efeito |
-|---|---|---|
-| **Incomum** | **+1d4** | `Crítico: <teste> ou <condição>` |
-| **Exótico** | **+1d6** | efeito elaborado (condicional, escolha, dreno, respingo) |
-| **Luxária** | **+1d8** | `Como 1 ação/reação, <efeito>, 3x/Descanso Longo` |
-Gatilho padrão é **Crítico**, não "Ao acertar" (~7× mais frequente — foi corrigido na Lança Venenosa).
-Frequência substitui custo de recurso (ver D10: itens não cobram Stamina).
+**Nunca inventar cânone.** Adição criativa exige aprovação prévia. Correção factual contra o
+Notion pode ser aplicada direto. Ao inventar uma imagem ou termo, **declarar que é invenção minha**.
 
-## D15 — Identidade de chassi orienta o payload da arma única 🆕
-O efeito único deve amplificar o **efeito de arma do chassi**, não fugir dele:
-Dilacerar (Sangramento) → hemorragia, corte, corrosão de armadura ·
-Alcançar (sem retaliação) → negação de reação e de Evasão Ativa ·
-Desorientar (−2 Atacar/Defender, buff de party) → concussão, som, área ·
-Executar (+1 dado) → duelo, aposta, multiplicador.
-
-## D16 — 🔑 Toda condição aplicada por item deve declarar quando expira
-"Existem condições que descrevem precisamente quando elas expiram. Sangramento sai com ataque,
-Envenenamento expira ao suceder Fortitude. **Algumas condições não seguem esse padrão!** Lento por
-exemplo não tem condição de expiração. E nem Surdo. Então explicite quando essa condição expira."
-→ Ao escrever item que aplica condição, **sempre** incluir a expiração no texto do item.
-Padrão adotado: `até o fim da próxima rodada` (alinhado com *Atordoado*, a única condição
-temporizada do cânone).
-
-### 🔴 16 condições do Notion não têm regra de expiração
-`Desorientado` · `Lento X` · `Confuso` · `Enjoado` · `Cego` · `Surdo` · `Enraizado` ·
-`Amedrontado` · `Bêbado` · `Paralisado` · `Inconsciente` · `Desprevenido` · `Oco` ·
-`Desnutrido X` · `Sobrepeso Leve` · `Sobrepeso Extremo`
-**A mais grave é `Desorientado`** — é um dos 4 efeitos de arma canônicos (Desorientar, 2 Stamina)
-e não diz quanto dura. Toda arma Contundente do Bazar depende disso.
-**Pendente de decisão do Pedro no nível de sistema, não do Bazar.**
-
-## D17 — Estilo de nomenclatura (aprendido nas correções do lote 3)
-O Pedro renomeia para o **objeto físico correto**, não para o efeito:
-Espada→Adaga/Cimitarra/Foice Curta conforme o chassi ser leve; Estilete→Raízes; Faca→Adagas Duplas.
-Nome descreve **a arma**, o payload descreve o efeito. Evitar nomes que só repitam o elemento.
-
-## Lote 3 (LEVES) — CONCLUÍDO
-9 armas revisadas + **11 criadas**. Os 4 chassis leves estão em 2/2/1.
-Novas: Lâmina Corrosiva · Agulha do Vazio · Maça do Ecoante · Punhal de Mármore ·
-Manoplas Elétricas · Martelo do Juízo · Badalo de Kharavel · Florete Instável ·
-Lâmina do Duelista · Fio Dissonante · Fragmento Primordial.
-
-## D18 — Fragmento Primordial fica sem trava (aprovado)
-"Vamos deixar a Leve Ágil como está, é pra ser muito forte. Fragmento do Primórdio, que é o plano
-onde os deuses vivem."
-→ DPR 24,75 com exposição 0 permanente é o teto deliberado do sistema. **Não é bug.**
-A lore sustenta: arma feita do plano divino não paga o imposto de retaliação do plano material.
+**Método de verificação.** Comparar por conjunto via script, nunca a olho. Listas digitadas à mão
+a partir do Notion já falharam. `auditor.py` é a régua executável.
 
 ---
 
-## D19 — 🔴 CORREÇÃO: Vitalidade/Vigor/Ressonância são COEFICIENTES, não status
-"Os 3 status reais do sistema são: **Saúde, Stamina e Éter**. Vitalidade, Vigor e Ressonância
-apenas aumentam o fator de aumento nas classes."
-→ "6 Vitalidade" = o coeficiente 6 em `Saúde = 10 + (6 × Nv) + (Mod.CON × Nv)`.
-→ **Resolve a pergunta C.1 da Régua v0.2**: não é renomeação global. Nunca escrever "Vitalidade"
-como se fosse um recurso na ficha ou no export do Bestiário.
+# 1. Réguas de combate
 
-## D20 — 🔴 Evasão passiva é 10 + Mod.DES em TODAS as classes
-"A evasão passiva em todas as classes é 10 + Mod. Des."
-✅ **RESOLVIDO a favor do Notion.** O repo (`pages/classes/*.html`) lista 10/12/10/10/15/12/11,
-mas está **desatualizado**: "o site tem um agente que escaneia o Notion e cola lá, mas desatualiza
-depois de patches". O Notion manda. Corrigir as 7 páginas numa passada de sync futura.
-**Consequência:** invalida a análise A.2 e A.7 da Régua v0.2 — não existe "dispersão de Evasão
-por classe" nem outlier do Monge. A dispersão vem só do investimento em DES.
-**Pendente: confirmar contra o Notion e corrigir o repo.**
+## Modelo de DPR (canônico)
+```
+1 ação   (3 ataques a 60/35/10%)   DPR = 1,20·D + 1,05·mod     → 1,20D + 3,15 com mod +3
+2-3 ações (1 ataque a 60%)          DPR = 0,65·D + 0,60·mod     → 0,65D + 1,80 com mod +3
+```
+O 1,20 = 1,05 acertos + 0,15 de dados extras do crítico. O 0,65 = 0,60 + 0,05.
+**Referência de DPR de PJ no nível 5: 18–25. Saúde mediana de PJ no nível 5: ~55.**
 
-## D21 — Primeira técnica de nível 1 do ramo concede os treinamentos
-"Geralmente a 1ª técnica nível 1 concede esses treinamentos."
-→ Categoria de arma e perícia de ramo entram como técnica, não como linha da classe base.
+## PMA — Penalidade de Multiataque
+−5 cumulativo por ataque consecutivo no mesmo turno. **Todo texto de habilidade deve declarar
+se a PMA se aplica.**
 
-## D22 — "Margem de ameaça" vira terminologia oficial
-"Nunca escrevi no Notion, porém já tinha me conformado com esse nome pois é o mesmo usado no
-Tormenta20. Vamos mantê-lo como norma: **'+1 margem de ameaça' significa aumentar a margem do
-crítico no dado em 1**." → Escrever `+N margem de ameaça`, não "crítico em 19-20".
-**Pendente: registrar no Notion.**
+**D29 — PMA é contada POR ALVO em ataques multi-alvo.** Acumula −5 por ataque adicional contra a
+mesma criatura e **zera ao trocar de alvo**. Princípio que a sustenta: subir de nível de Sangramento
+é genuinamente difícil porque **todo ataque que acerta remove 1 marca**, o setup pode ser
+amplificado *e sabotado* por aliados, e proeza difícil merece dano absurdo.
 
-## D23 — Escada de rider das PESADAS (confirmada por cálculo)
-Um rider incide nos acertos; arma de 1 ação acerta ~1,75× mais que uma de 2. Paridade em DPR:
-`LEVE +1d4 ≈ PESADA +1d8` · `LEVE +1d6 ≈ PESADA +1d12` · `LEVE +1d8 ≈ PESADA +2d8`
-→ **PESADAS: Incomum +1d8 · Exótico +1d12 · Luxária +2d8.** Confirmado pelo Pedro.
-Exceção permitida: **rider de um degrau acima em troca de `1x/alvo`** (Machado da Fúria: +2d8 1x/alvo).
+## Retaliação
+Todo ataque (inclusive erro) abre contra-ataque; o alvo pode reagir a cada ataque e só gasta a
+reação no fim do seu turno. **Ataques à distância nunca são retaliados.** *Alcançar*, *Caído* e
+*Desprevenido* bloqueiam.
 
-## D24 — Vampiro: decisões do Pedro
-- **Corrente Sanguínea** (final): Sangue = Saúde temporária acima do máximo, teto `5 + (3 × Nível)`.
-  Técnicas custam Sangue; sem Sangue, paga com Saúde real **sem perda de conversão** —
-  "recurso de classe do Vampiro deve ser explicitamente mais forte que uma técnica do Espadachim".
-  **Pode transformar Sangue em Saúde como 1 ação**, e ao fim do combate converte o Sangue restante.
-- **Sede de Sangue** (característica 2, renomeada de "Presas" porque 2 ramos são à distância):
-  1×/turno, ao acertar contra criatura **viva** sob *Sangramento*, absorve `1d6 + Mod.CON` de Sangue.
-  Ao reduzir criatura viva a 0 de Saúde, absorve `Nível + Mod.CON`.
-- **Ramos:** **A Sombra** (Treinamento à Distância + Furtividade; furtividade/mobilidade/sangramento) ·
-  **O Carmesim** (Treinamento em Movimento; amplificar arma + corpo a corpo) ·
-  **O Hemomante** (Treinamento em Místico + Armas Místicas; sangue amplifica magia e substitui Éter).
-- Status: 6 Saúde / 5 Stamina / 4 Éter por nível = 15 ✅ · CD 10 + Mod.FOR|DES + Mod.INT.
+## Orçamento de ação por família de arma (D24, D25)
+```
+Leves · Marcial Precisa · Marcial Versátil   3 ações atacando   → habilidade só como AÇÃO LIVRE
+Pesadas · Marcial Pesada · Marcial Longa     sobra 1 ação       → habilidade pode custar 1 AÇÃO
+Pesada Brutal                                turno inteiro      → só PASSIVO ou no acerto
+```
 
-## Lote 4 (PESADAS) — CONCLUÍDO
-9 revisadas + **11 criadas**. Os 4 chassis pesados em 2/2/1.
-Novas: Machado Dentado · Guilhotina do Ocaso · Lança de Raízes · Alabarda Farpada ·
-Alabarda Impostora · Lança do Trespasse · Lança do Horizonte Primordial ·
-Sino Místico de Revavena · Machado de Duas Cabeças · Marreta Desfragmentadora · Executor de Ossos.
+## Escadas de rider por custo de ação (D14, D23, D25, D43)
+O rider incide nos **acertos**, e uma arma de 1 ação acerta ~1,85× mais que uma de 2.
+```
+ARMA          1 ação    Incomum +1d4 · Exótico +1d6  · Luxária +1d8
+              2-3 ações Incomum +1d8 · Exótico +1d12 · Luxária +2d8
 
-**Padrão de habilidade ativa por família (descoberto no desenho):**
-- **Pesadas** gastam 2 das 3 ações → **sobra 1 ação** → habilidade Luxária pode custar `1 ação`.
-- **Leves** gastam as 3 ações em ataques → habilidade Luxária precisa ser `ação livre`.
-- **Pesada Brutal** consome o turno inteiro → só efeitos **passivos ou no acerto**, nunca ativos.
+MUNIÇÃO       1 ação    Incomum +1d4 · Exótico +1d6  · Luxária +2d6
+              2 ações   Incomum +1d8 · Exótico +1d12 · Luxária +2d12
+```
+Paridade verificada: `6,0/3,25 = 1,846` · `d4→d8 = 1,80` · `d6→d12 = 1,857`.
+Exceção permitida: rider um degrau acima em troca de `1x/alvo` (Machado da Fúria: +2d8 1x/alvo).
 
-**Progresso geral: 50 de 75 armas únicas. Faltam 25** — MARCIAIS 15, À DISTÂNCIA 10.
-
-## D25 — MARCIAIS têm DUAS escadas de rider (oficial)
-Os 4 chassis marciais não compartilham custo de ação, e o rider incide nos **acertos**:
-| Chassi | Ações | Escada |
-|---|---|---|
-| Marcial **Pesada** · **Longa** | Atacar(2) | **Incomum +1d8 · Exótico +1d12 · Luxária +2d8** |
-| Marcial **Precisa** · **Versátil** | Atacar(1) | **Incomum +1d4 · Exótico +1d6 · Luxária +1d8** |
-Aplicado nas existentes: Lança de Casca-Seiva +1d4→+1d8 · Grilhões de Osh'Kar +2d6→+2d8 ·
-Lâmina de Vytália +1d12→**+1d8** · Bastão de Karmath +1d10→**+1d6**. (Lâmina de Hyven já estava certa.)
-
-**Orçamento de ação por família — regra de desenho:**
-Leves e Marcial Precisa/Versátil gastam as 3 ações atacando → habilidade ativa só como **ação livre**.
-Pesadas e Marcial Pesada/Longa sobra 1 ação → habilidade pode custar **1 ação**.
-Pesada Brutal consome o turno → só **passivo ou no acerto**.
-
-## D26 — Marcial Precisa é exceção 2/2/2 (aprovado)
-O *Fragmento do Oblívio* subiu para Luxária, criando duas Luxárias no chassi ao lado da
-*Lâmina de Vytália*. O Pedro escolheu a opção **(a)**: aceitar 2 Incomuns / 2 Exóticos /
-**2 Luxárias** como exceção declarada. É o chassi duelista — o das lâminas lendárias.
-Entrou o **Bordão Contra-Tempo** como 2º Exótico.
-
-**Nota de design do Fragmento do Oblívio:** ele é uma *peça de build*, não um upgrade de números.
-P(acertar 3 ataques) = **2,1% na PMA padrão** (+1,32 DPR, quase inerte), mas **21,6% com PMA
-anulada** (+13,61 DPR, +55%). Só acorda nas mãos de quem construiu redução de PMA.
-Lore que sustenta: o Oblívio é um plano que nem os deuses acessam — por isso o dano é **Força**,
-não Primordial (que vem do Primórdio, onde os deuses habitam).
-
-## D27 — Linha Kali (a definir)
-Material exclusivo de Khalkaria: branco como ferro, brilha amarelo sob a luz, **extremamente leve
-e afiado**, tema de aplicar **Exposto**.
-Decidido: **1 arma de Kali por chassi (15), todas Exóticas, cada uma brincando com Exposto de um
-jeito ligado ao efeito do chassi. A frequência do Exposto depende do chassi.**
-⚠️ **Aviso de calibração:** *Exposto* transforma o próximo acerto em crítico, e crítico dobra os
-dados. Uma aplicação vale **+14 (4d6) a +32,5 (5d12)** de dano — com DPR de referência de 18–25 no
-nível 5, **um Exposto por turno mais que dobra qualquer arma**. Sugestão temática que se
-autobalanceia: Kali **desce um degrau de dado** em troca do acesso ao Exposto (leve = menos massa).
-
-## Lote 5 (MARCIAIS) — CONCLUÍDO
-16 armas criadas. Os 4 chassis marciais fechados (Precisa em 2/2/2 por exceção).
-**66 de 75 armas únicas. Faltam 10, todas à distância.**
-
-## Lote 6 (À DISTÂNCIA) — CONCLUÍDO
-10 armas criadas. **Os 15 chassis fechados. 76 armas únicas (75 do alvo + 1 da exceção 2/2/2
-da Marcial Precisa).** Bazar em 631 linhas.
-
-### ⚠️ Decisão que EU tomei no Fio do Oblívio — confirmar com o Pedro
-O texto original não declarava se a PMA se aplica aos ataques gerados, e o Notion exige que
-**todo texto de habilidade declare explicitamente se o PMA se aplica**. Deixar em branco era
-inaceitável, então **escrevi "A PMA se aplica normalmente a esses ataques"** — a leitura conservadora.
-A diferença é brutal (Arremesso +3, 4d8+1d8+3 = 25,5 por acerto):
-
-| Cenário | Ataques | **SEM PMA** | **COM PMA** |
-|---|---|---|---|
-| 2 alvos × Sangramento 1 | 2 | 31 | 24 |
-| 4 alvos × Sangramento 2 | 8 | **122** | 27 |
-| 4 alvos × Sangramento 3 | 12 | **184** | 27 |
-| 6 alvos × Sangramento 3 | 18 | **275** | 27 |
-
-Referência: DPR de PJ no nv5 ≈ 18–25; Saúde mediana de PJ no nv5 ≈ 55.
-Sem PMA, uma ação livre mata duas vezes a party inteira. Com PMA, o efeito satura em ~27 e vira
-um bom finalizador de área. **Se o Pedro quiser sem PMA, é trocar uma frase — mas aí precisa de
-teto de alvos.**
-
-### ⚠️ Bacamarte de Cano Curto entrou sem revisão
-Foi a única das 10 propostas que o Pedro não comentou. Apliquei como proposto:
-`+ 1d8 Perfurante. Ao acertar um alvo a 9 m ou menos, o ataque causa +1d8 de dano adicional.`
-
-## D28 — Dois "dissidentes" deliberados na família À Distância
-*Bacamarte de Cano Curto* e *Facas de Lançamento* **recompensam encurtar a distância**, ao contrário
-das outras oito. É a arma que contraria a identidade da própria família — mantido de propósito.
-
-## D29 — 🔑 PMA é contada POR ALVO em ataques multi-alvo
-"O PMA se aplica sim nesse ataque, porém no mesmo alvo. O PMA não carrega para diferentes alvos:
-em todo alvo ele reseta em −5 no segundo ataque."
-→ Aplicado ao *Fio do Oblívio*. Texto final:
-`A PMA é contada separadamente para cada alvo: o segundo ataque contra a mesma criatura sofre −5,
-o terceiro −10, e assim por diante; ao trocar de alvo a PMA zera.`
-
-**Razão do Pedro (vale como princípio de design geral):** montar Sangramento 2–3 é genuinamente
-difícil — **todo ataque que acerta remove 1 marca**, então não dá para subir de nível de Sangramento
-sem aplicar 2 marcas num único ataque. O setup pode ser amplificado por aliados **e sabotado por
-eles** (aliado que limpa Sangramento estraga o turno do Artilheiro). Proeza difícil merece dano absurdo.
-
-**Recalibração do Fio do Oblívio** (Arremesso +3: 4d8 + 1d8 + 3 = 25,5/acerto):
-| Cenário | PMA global (antes) | **PMA por alvo (oficial)** | Sem PMA |
-|---|---|---|---|
-| 2 alvos × Sang. 1 | 24 | **33** | 31 |
-| 4 alvos × Sang. 2 | 27 | **106** | 122 |
-| 4 alvos × Sang. 3 | 27 | **121** | 184 |
-| 6 alvos × Sang. 3 | 27 | **181** | 275 |
-A regra por alvo devolve ~90% do teto sem PMA no setup alto e quase não muda o setup baixo —
-exatamente a curva pedida: teto altíssimo, só alcançável com trabalho de party.
-
-## D30 — 🔑 Ordem canônica dos campos na descrição de arma
-"Quando for botar na planilha do bazar, mantenha sempre essa ordem: tipo da arma e nível; dano e
-tipo de dano; modificador em atacar por conta do nível; ações da arma nesse esquema mesmo
-Atacar(1), Arremessar(1); efeitos de arma única; efeito do tipo de arma; requisitos."
-
-`{Chassi} +N. · {dado} {tipo} ({Attr}). · +N em Atacar. · Atacar(X), Arremessar(1). ·
-[Alcance X m.] · [Consome 1 munição (...).] · <PAYLOAD ÚNICO> · Efeito: {chassi} (custo): ... ·
-[1x/turno não custa Stamina.] · Requisito: ...`
-
-**Requisito passou a ser o ÚLTIMO campo** (antes vinha depois das ações).
-Aplicado globalmente: **136 armas reescritas** numa passada. `descricao_canonica()` gera nessa
-ordem e `partes_arma()` agora extrai o payload de forma independente de ordem.
-
-## D31 — 🆕 "Multiplicador de Crítico" é terminologia nova
-Introduzida pelo Pedro na *Picareta de Kali*: `+1 Multiplicador de Crítico`.
-Leitura: o crítico padrão dobra os dados; +1 multiplicador **triplica**.
-⚠️ **Pendente: registrar no Notion** (mesma situação de "margem de ameaça", D22).
-
-## D32 — Desorientado ganha duração de 1 turno
-"Vou definir a condição Desorientado com duração de 1 turno no Notion."
-→ **Fecha a lacuna mais grave da lista de 16 condições sem expiração (D16).** Itens que aplicam
-Desorientado não precisam mais declarar expiração no próprio texto.
-**Confuso continua sem regra de expiração** — a *Maça de Kali* declara "até o fim da próxima rodada".
-
-## D33 — Raridade Exótica não aplica Desorientado
-"Raridade exótica não faz sentido aplicar Desorientado, uma arma ordinária aplica essa condição."
-→ Régua de condição por raridade: **Desorientado é piso Ordinário** (é efeito de chassi).
-Payload Exótico precisa de condição de um degrau acima — **Confuso (−1 Ação)** é o substituto
-canônico. Vale para toda a revisão dali em diante, não só para as Kali.
-
-## D34 — Itens usam a CD do portador
-"Sim, é conforme que tudo utilize a CD do portador, algumas pequenas exceções de CD fixo."
-→ Padrão: `contra sua CD`. CD fixa (10–18) é exceção justificada, não o default.
-
-## Lote 7 (KALI) — CONCLUÍDO
-15 armas Exóticas + **1 material novo (Kali, Exótico)**. Bazar em **647 linhas**.
-Cobertura passa a **2 Incomum / 3 Exótico / 1 Luxária** em todos os 15 chassis
-(Marcial Precisa 2/3/2 pela exceção D26). **91 armas únicas.**
-
-**Regra da linha Kali (D27 fechada):**
-- **Sem rider de dano.** "Extremamente leve" = não acrescenta massa nem dado. O orçamento inteiro
-  do Exótico vai para o Exposto. Confirmado: *"Tá ótimo, não precisa de rider."*
-- **+1 margem de ameaça** em todas as 15. "Extremamente afiado."
-- Frequência do Exposto **inversamente proporcional ao nº de ataques do chassi**:
-  3 ataques → só o crítico · 1 ataque → crítico + 1 fonte controlável (1x/combate).
-- **Craftáveis:** Ferraria, `1x Arma <Chassi> +1 + 2x Kali` — a receita Exótica padrão com o
-  material trocado. Valor 5d12+180. Obtenção `Drop CR≥3, Loja`.
-
-| Chassi | Nome | Δ DPR vs Exótico padrão |
-|---|---|---|
-| Leve Cortante | Adaga de Kali | −2% |
-| Leve Perfurante | Agulhão de Kali | −2% |
-| Leve Contundente | Maça de Kali | −2% |
-| Leve Ágil | Lasca de Kali | +3% |
-| Pesada Cortante | Alabarda de Kali | +1% |
-| Pesada Perfurante | Picareta de Kali | +1% |
-| Pesada Contundente | Malho de Kali | +1% |
-| Pesada Brutal | Decepador de Kali | −6% (paga em valor de party) |
-| Marcial Pesada | Mangual de Kali | +4% |
-| Marcial Longa | Bordão de Kali | +4% |
-| Marcial Precisa | Rapieira de Kali | +3% |
-| Marcial Versátil | Sabre de Kali | +3% |
-| Distância Simples | Arco de Kali | −2% |
-| Distância Pesada | Balestra de Kali | +1% |
-| Arremesso | Dardos de Kali | +3% |
-
-**Média +0,6% · faixa −6% a +4%.** A linha inteira encosta no Exótico padrão sem passar.
-
-### ⚠️ Ambiguidade pendente — Decepador de Kali
-"Ao **executar** uma criatura" admite duas leituras: (a) ao usar o efeito **Executar** do chassi,
-ou (b) ao **reduzir a criatura a 0 de Saúde**. (a) dispara ~todo turno; (b) ~1x por combate.
-Escrito verbatim como o Pedro mandou. **Precisa de desempate.**
-
-## D35 — 🔑 Material vale UMA FAIXA ABAIXO do item da sua raridade
-Ideia do Pedro, e é melhor que a minha (que era usar material da raridade anterior):
-"Apenas os materiais podem ter o preço de uma raridade abaixo, assim podemos manter o crafting
-com os materiais equivalentes à raridade do item a ser craftado mantendo uma margem de lucro
-mínima, que dá viabilidade e valor pro craft."
-
-| Material | Raridade | Preço |
-|---|---|---|
-| Barra de Ferro, Reagente… | Ordinário | **1d8+2** (faixa Lixo) |
-| Aço Temperado, Engrenagem… | Incomum | **2d10+10** (faixa Ordinário) |
-| Liga Rúnica, Kali… | Exótico | **4d10+45** (faixa Incomum) |
-| Liga Primordial, Pele de Dragão… | Luxária | **5d12+180** (faixa Exótico) |
-
-**Preserva a estética:** arma Luxária de dano Primordial continua usando Energia Primordial
-(material Luxária). Os materiais do topo não ficam inúteis.
-**28 materiais reprecificados.** `auditor.py precos` aprendeu a regra (`FAIXA_ABAIXO`).
-Pedro vai adicionar **farm de material** (minerar minério, cortar madeira) — a margem real sobe
-mais ainda para quem obtém à mão.
-
-### Razão de craft alvo: 0,75x — como medir
-`auditor.py craft` reporta duas razões:
-- **total** = comprando tudo, item base incluído.
-- **marginal** = só os materiais, porque o item base o jogador normalmente **lootou**.
-A marginal é a que o jogador sente. Hoje: total 0,65x · marginal 0,47x em 163 receitas.
-Converter genérica→única no MESMO tier dá total 1,63x mas **marginal 0,63x** — o item base já
-custa 100% do alvo sozinho, então a razão total é inevitável e não é bug.
-
-## D36 — Ofício(Municiador) NÃO existe
-"Essa perícia não existe, é remanescência outdated do artilheiro, da época que o crafting não
-existia." → 🔴 **Corrigir `references/05-classes.md` linha 35**, que lista 4 ofícios canônicos.
-São **3**: Ferraria, Engenharia, Alquimia. Munição continua Engenharia.
-
-## D37 — Só Item Mágico é evolutivo do lado das Bugigangas
-"Bugigangas não são aditivas, cada uma serve para uma coisa; evoluí-la descarta a anterior.
-Consumíveis são gastos após o uso. Munição é consumida por cena."
-→ **Bugiganga, Consumível e Munição usam 3 materiais e NENHUM item base.**
-→ **Item Mágico é equipável com só 3 slots**, então o jogador prioriza raridade alta: é a única
-categoria de Bugigangas que pede progressão. ⚠️ Não foi criada pensando nisso — **pendente:
-definir os arquétipos de Item Mágico e encaixar uma progressão.**
-
-## D38 — Famílias de material (fechadas)
-**Ordinários (4):** Metal · Madeira · Couro · Tecido
-**Atípicos (4):** Mecânica · Gemas · Energias · Minerais
-Receita = `1 item base + 1 material ordinário + 1 material atípico` (ou 3 materiais, sem base).
-4×4 = 16 pares; com multiconjuntos de 2 entre 8 famílias = **36 combinações**, o que cobre o pior
-caso (35 itens Ordinários de Consumível). Nomes definidos pelo Pedro:
-- **Gemas:** Gema Bruta · Gema Refinada · Gema Mística · Gema Primordial
-- **Energias:** Fogo · Eletricidade · Éter · Energia Primordial
-  ("misticamente aprisionadas em frascos por teurgos e alquimistas para serem vendidas")
-- **Minerais:** Cobre · Ferro · Prata · Ouro (+ **Kali** como mineral de assinatura, fora da escada)
-⚠️ **Colisão de nome:** "Ferro" (Mineral Incomum) x "Barra de Ferro" (Metal Ordinário).
-
-## D39 — Alquimia: nível do item define a raridade no Bazar
-"Nível 1 da tabela do alquimista é Ordinário, seguindo progressivamente."
-`Nv1→Ordinário · Nv2→Incomum · Nv3→Exótico · Nv4→Luxária · Nv5→Luxária (travado por quest)`
-**Resolve os "5 níveis para 4 raridades":** o Nv5 não é uma quinta raridade, é Luxária com
-material de quest obrigatório.
-
-### Lote 8 (ALQUIMIA) — CONCLUÍDO
-O Bazar tinha uma **segunda cópia mais barata** da tabela do Alquimista: 70 itens nos dois lugares,
-**45 com contagem de reagente diferente** (o Bazar derivava de raridade 2/3/5, o Notion do design
-da classe 1→20). Corrigido:
-- **70 itens** sincronizados: raridade (25 mudaram), preço (25), reagentes (70), CD de craft (70).
-- **25 itens criados** — os 4 lendários de Nv5 + 21 que faltavam (o tier Nv4 quase inteiro).
-- **Cobertura Notion x Bazar: 95/95.** `Tipo de Craft` = Alquimia em todos.
-- Nova coluna **`CD de Craft`** (era `Coluna 1`, vazia).
-
-**Banda de reagente por nível (esboço do Pedro):** Nv1 1–3 · Nv2 2–4 · Nv3 4–6 · Nv4 8–12 · Nv5 15–20.
-⚠️ **3 itens do Notion estão fora da própria banda:** Sangue Falso (Nv3, 3) ·
-Extrato de Clarividência (Nv4, 6) · Amnésia Líquida (Nv4, 6).
-
-## D40 — Teto de farm do Alquimista: mantido por decisão
-Nv5, INT+4, DES+3 → 19 reagentes e 53 Stamina por descanso longo. Produção em Massa (5 Stamina/item
-extra, máx. = Nível) permite **12 itens de 8196 Sins de mercadoria**, mas o bolso do comerciante
-(D6: 250/500/1000/dia) trava a extração em **1000 Sins/dia**.
-"Ainda é alto… Vou apostar na sorte, pode deixar como está."
-⚠️ **Vetor que fica aberto:** recuperação rápida de Stamina + investir em vários comerciantes.
-O custo migrou de reagentes para Stamina.
-
-## D41 — 🔴 CORREÇÃO: munição é PASSIVA e custa ZERO ações
-"A munição é um efeito passivo que perdura por todo combate. Ao iniciar o combate, o jogador
-escolhe o tipo de munição que vai utilizar até o fim do combate; todos os seus ataques então
-carregam esse efeito passivo."
-→ **Não existe 'ação que sobra' a ser gasta com munição.** Eu justifiquei duas propostas com esse
-raciocínio e estava errado. Consequência real:
-- **Conjunto Ricochete** concedia um ataque novo a cada erro, o combate inteiro. Numa arma de 3
-  ataques (erro 40/65/90%) são **1,95 erros por turno** → +1,17 acertos sobre os 1,20 da arma:
-  **dobrava a arma**. Corrigido para causar só o rider, 1x/turno.
-- **Munição Atómica** (ex-Munição do Cerco) dava área de 3 m em *todo* disparo: com 3 alvos,
-  127 de dano por combate, contra 42 da Bomba de Plasma (o Luxária mais forte do Alquimista).
-  Respingo reduzido para metade do dano adicional.
-
-**Regra de desenho:** ao precificar munição, o rider incide em **todos os acertos do combate**
-(1 ação → 6,0 acertos-equivalentes · 2 ações → 3,25). Nada de munição pode custar ação nem conceder
-ataque extra.
+## Régua de condição por raridade (D33)
+**Desorientado é piso Ordinário** — é efeito de chassi, não serve como payload Exótico.
+Payload Exótico precisa de condição um degrau acima; **Confuso (−1 Ação)** é o substituto canônico.
 
 ## D42 — Escada de penetração de armadura
-"Incomum é no máximo 2~3 de penetração, Luxária ganha valor aí."
 `Incomum ignora 3 · Exótico ignora toda Armadura(Ar) · Luxária ignora Ar e Ae`
 Motivo: Ar no Bazar vai de 2 a 6 (mediana 5), então "ignora 5" no Incomum já zerava quase tudo.
 
-## D43 — Escada de rider de munição por custo de ação (paridade D23/D25)
-| Arma | acertos/combate | Incomum | Exótico | Luxária |
-|---|---|---|---|---|
-| Distância Simples · Arremesso (1 ação) | 6,00 | +1d4 | +1d6 | +2d6 |
-| Distância Pesada (2 ações) | 3,25 | **+1d8** | **+1d12** | **+2d12** |
+## Tetos deliberados (não são bugs)
+- **D11 — Martelo de Mundarak** (Pesada Brutal +3, 5d12+3, máx. 126 no crítico): ápice do dano por
+  ataque individual. Permissível.
+- **D18 — Fragmento Primordial** (Leve Ágil Luxária, DPR 24,75 com exposição 0 permanente): teto
+  deliberado. Arma feita do plano divino não paga o imposto de retaliação do plano material.
+- **D8 — Cartas do Limiar raras são absurdas de propósito.** A carta rara é o teto *legítimo* ao
+  comparar item × carta. O que continua valendo: item comprável e acumulável não deve igualar carta
+  travada atrás de requisito alto, porque item não tem o mesmo gate.
 
-### Lote 9 (MUNIÇÃO) — CONCLUÍDO
-16 itens reescritos + **13 criados**. Cobertura fechada em **12 por tipo de arma**
-(1 Ordinário / 5 Incomum / 4 Exótico / 2 Luxária), **36 munições**.
-Renomes: Lança de Fogo → **Óleo Inflamável** · Munição de Prata Rúnica → **Munição de Kali** ·
-Munição do Cerco → **Munição Atómica** · Lascas de Gema → **Farinha de Trigo**.
-Munição Fragmentadora ganhou o rider que faltava (+1d12 Cortante).
-⚠️ **Falta a receita das 36** — depende da forma final decidida (ver abaixo).
+---
 
-## D44 — Materiais: Prata e Lenha Seca removidas
-Kali assume o Exótico da família **Minerais** (Cobre · Ferro · Kali · Ouro).
-Lenha Seca sai: as escadas de madeira já cobrem o papel. **37 materiais.**
-**Fogo, Eletricidade e Éter continuam com esses nomes por decisão do Pedro** — são abstratos de
-propósito: "quem tem Éter e um foco vai poder usar literalmente 2 de Éter (status) para craftar um
-item"; uma fogueira provê Fogo. Podem ser comprados em frascos por quem não os gera.
+# 2. Réguas de economia
 
-## D45 — Produção em Massa: extras não são vendáveis
-Escolhida a opção C entre quatro simuladas. Texto a acrescentar na técnica **no Notion**:
-> *Itens criados por Produção em Massa não podem ser vendidos.*
+## Raridade → Sins (a única alavanca de preço, D9)
+```
+Lixo 1d8+2 (6,5) · Ordinário 2d10+10 (21) · Incomum 4d10+45 (67)
+Exótico 5d12+180 (212,5) · Luxária 6d20+620 (683)          razão geométrica ≈ 3,2
+```
+**D35 — Material vale UMA FAIXA ABAIXO do item da sua raridade.** Preserva a estética de craftar
+com material da mesma raridade do produto e ainda dá margem ao craft.
+```
+material Ordinário → 1d8+2   ·  Incomum → 2d10+10  ·  Exótico → 4d10+45  ·  Luxária → 5d12+180
+```
 
-**Por quê C e não preço:** o valor do item multiplica por **32** do Nv1 ao Nv4 enquanto o custo em
-reagentes só multiplica por **4** — o Alquimista sempre vai farmar o topo da tabela, e para achatar
-isso um item Nv4 teria que custar 64 reagentes contra um teto de Bolsa de 19. A ladeira é
-inescapável por preço; só trava dura resolve.
+## Sins iniciais por origem — a âncora
+Mediana **≈12 Sins**, faixa 2,5 (Escravo) a 29 (Mercador). Um Ordinário custa 21.
+→ **As faixas de raridade não são preços de loja para PJ de nível baixo: são valores de loot e de
+venda.** Exótico é prêmio de arco narrativo; Luxária é artefato de campanha.
 
-| Opção | itens/descanso | mercadoria | a 50% | Δ |
-|---|---|---|---|---|
-| Hoje | 12 | 8196 | 4098 | — |
-| A · máx. extras = Nível − Nível do item | 4 | 2732 | 1366 | −67% |
-| B · Stamina do extra = 5 × Nível do item | 4 | 2732 | 1366 | −67% |
-| **C · extras não vendáveis** | **2 vendáveis (12 para a party)** | **1366** | **683** | **−83%** |
+## D6 — Comerciantes
+| Campo | Decidido |
+|---|---|
+| Estoque nv1 / nv2 / nv3 | **250 / 500 / 1000** |
+| Reposição | **1 dia fixo** |
+| Margem de venda | 50% / 66% / 75% |
+**Comerciante que compra ≠ comerciante que vende**, de propósito: "faz os jogadores ponderarem em
+quem investir, cria tensão e narrativa". Upgrade de comerciante é **acesso + RP**, não decisão
+econômica. São **6 categorias** — investir em várias multiplica o teto de extração diária.
 
-C preserva a técnica inteira para o uso pretendido (armar o grupo) e mata só a impressora.
-Sobra ~1 item Luxária por dia de trabalho dedicado.
-⚠️ **Correção de análise minha:** eu havia dito que o bolso do comerciante (1000/dia) travava tudo.
-Não trava — são **6 categorias de comerciante**, então investir em vários leva o teto a ~6000/dia.
-Quem limita é a produção, e por isso o lever tem que estar na classe.
+## D10 — 🔑 Itens não cobram Stamina
+O custo de um item é o preço de aquisição (Sins/ingredientes), nunca recurso por uso.
+A alavanca é **raridade + frequência** (1x/combate, 1x/descanso longo).
+Exceção que não é exceção: os efeitos de arma (Dilacerar/Alcançar/Desorientar 2, Executar 3)
+custam Stamina porque são regra do **sistema**, não do item.
 
-## D46 — Munição: combate dura no máximo 5 turnos
-Confirmado pelo Pedro. Os valores por cena (6,0 acertos-equivalentes em arma de 1 ação, 3,25 em
-arma de 2 ações) são **teto**, não média. A escada D43 fica conservadora, o que é o lado certo de errar.
+## D45 — Produção em Massa não gera item vendável
+Texto para o Notion: *"Itens criados por Produção em Massa não podem ser vendidos."*
+Escolhida entre 4 opções simuladas. Corta 83% da renda (4098 → 683 Sins/descanso longo) sem tirar
+nada do uso pretendido da técnica (armar o grupo com 12 itens).
+**Por que preço não resolveria:** o valor do item multiplica por **32** do Nv1 ao Nv4 enquanto o
+custo em reagentes só multiplica por **4**. Achatar exigiria um item Nv4 custando 64 reagentes
+contra um teto de Bolsa de 19. A ladeira é inescapável por preço; só trava dura resolve.
+**D40 — o teto foi aceito conscientemente** antes da trava: *"Ainda é alto… Vou apostar na sorte,
+pode deixar como está."* ⚠️ **Vetor que continua aberto:** recuperação rápida de Stamina somada a
+investir em vários comerciantes. O custo migrou de reagentes para Stamina.
 
-## D47 — Apresentação: sempre mostrar o texto exato da planilha
-"Não gosto quando você resume o item sem de fato printar a tabela com texto exato da planilha;
-sempre que possível me mostre o estado do que você está falando para me contextualizar."
-→ **Nunca descrever um item sem imprimir a linha dele.** Vale para achado, proposta e correção.
+---
 
-### Lote 10 (BUGIGANGA Ordinário) — parcial
-25 → 24 itens. **Manta Térmica removida** (duplicava o Saco de Dormir: ambas "elevam a qualidade de
-um descanso ao ar livre em 1 nível"). Todas as 24 receitas reescritas por tema — antes 13 itens
-compartilhavam `1x Peça Mecânica` e 9 compartilhavam `1x Tecido Resistente`, sem relação com o
-objeto. Razão de craft do tier Ordinário: **0,44 → 0,77**.
-Correções: `Engação` → `Enganação` (Selo Simples) · `Óleo Comum (frasco)` → `Óleo Comum` ·
-Bolsa de Couro ganhou "Não é empilhável e não ocupa espaço de bugiganga".
+# 3. Réguas de crafting
 
-## D48 — Crafting EXIGE treinamento na perícia de Ofício
-Pedro adicionou na tabela de perícias do Notion. Sem treinamento você não fabrica — por isso os kits
-que "permitem testes sem treinamento" são destravas reais, não bônus numéricos.
+## D36 — São 3 ofícios: Ferraria, Engenharia, Alquimia
+Municiador **não existe** (remanescência outdated do Artilheiro).
+```
+Ofício(Ferraria)    → EQUIPAMENTOS : Arma · Armadura · Escudo
+Ofício(Engenharia)  → BUGIGANGAS   : Bugiganga · Munição · Item Mágico
+Ofício(Alquimia)    → Consumíveis alquímicos
+```
+**D51 — Ofício(Alquimia) é exclusivo do Alquimista**, porque reagente só vem da classe.
+`Tipo de Craft = Alquimia` no Bazar lê-se "exclusivo de classe". Os 95 itens alquímicos continuam
+**compráveis por qualquer um**, só não fabricáveis. O Alquimista **não** é fabricante universal —
+não tem proficiência em Ferraria nem Engenharia por padrão.
 
-### Probabilidade de fabricar (d20 + Mod.INT+3 + proficiência) — CDs pela escada do Alquimista
-| situação | Ord (10) | Inc (13) | Exó (17) | Lux (21) |
-|---|---|---|---|---|
-| Leigo + Kit Básico (−2) | 60% | 45% | 25% | 5% |
-| Ferramentas de Artesão (leigo +1) | 75% | 60% | 40% | 20% |
-| Treinado (+2) | 80% | 65% | 45% | 25% |
-| Treinado + Luvas / Experiente (+4) | 90% | 75% | 55% | 35% |
-| Mestre (+6) + Mestre-Artífice (+4) | 100% | 100% | 85% | 65% |
+## D48 — Crafting exige treinamento na perícia
+Sem treinamento você não fabrica. Por isso kits que "permitem testes sem treinamento" são
+**destravas**, não bônus numéricos.
 
-**O Kit de Ferramentas Básico não quebra nada** — destrava o Ordinário (60%) e é quase inútil no
-Luxária (5%). A curva já se auto-limita.
+## D49 — Falha crítica por margem de CD (Ferraria e Engenharia)
+> **Falha crítica:** ficar **10 ou mais abaixo** da CD → perde todos os materiais.
+> **Falha normal:** não cria o item, **conserva os materiais**, pode tentar de novo.
+> **Sucesso crítico:** superar a CD em **10 ou mais** → **recupera 1 dos materiais**.
 
-## D49 — 🔴 PENDENTE: a falha destrói o material em Ferraria/Engenharia?
-Só a Alquimia documenta ("em caso de falha, você perde os reagentes"). Se a mesma regra valer para
-as outras duas, **craftar vira prejuízo para quase todo mundo** (custo efetivo = 0,77x ÷ P(sucesso)):
+**D52 — Alquimia é a exceção: perde os reagentes em QUALQUER falha**, porque reagentes voltam de
+graça no descanso longo. Material de Ferraria/Engenharia custa Sins e é finito.
 
-| situação | Ord | Inc | Exó | Lux |
-|---|---|---|---|---|
-| Leigo + Kit Básico | 1,28x | 1,71x | 3,08x | 15,40x |
-| Treinado (+2) | 0,96x | 1,18x | 1,71x | 3,08x |
-| Experiente (+4) | 0,86x | 1,03x | 1,40x | 2,20x |
-| Mestre + Mestre-Artífice | 0,77x | 0,77x | 0,91x | 1,18x |
-
-Acima de 1,00x sai mais caro que comprar pronto. **Só um Mestre com o kit Luxária lucra acima do
-Incomum** — o oposto do "quero que o crafting seja lucrativo".
-**Proposta:** em Ferraria e Engenharia a falha custa **o tempo, não o material** (metal errado
-volta para a forja; reagente alquímico reage e acaba). Mantém o 0,77x em toda a curva.
-
-### Lote 11 (OFÍCIO / KITS) — aplicado
-Textos do Pedro aplicados em 6 itens. `Engação`→`Enganação` no Kit de Disfarce. Receita do Kit de
-Manutenção passa a usar `+` como separador (era a única do Bazar com " e ").
-
-**Escada de cura do Autômato (D50).** O Autômato não se cura pelos meios tradicionais e depende
-desses kits, então a escada corre ~30% acima da Poção de Cura:
-| Raridade | Kit | cura | Poção de Cura equivalente |
-|---|---|---|---|
-| Ordinário | Kit de Manutenção Enferrujado | 2d6+Int (7) | Menor 2d4+Int (5) |
-| Incomum | Kit de Manutenção | 4d6+Int (14) | Moderada 3d6+Int (10,5) |
-| Exótico | Kit de Manutenção de Qualidade | 5d8+Int (22,5) | Maior 4d8+Int (18) |
-| Luxária | Kit de Manutenção Impecável | 8d8+Int (36) + 1 condição | Suprema 6d8+Int (27) + 1 condição |
-
-**Escada de Ofício(Ferraria)** criada espelhando a de Engenharia: Bigorna Portátil (Inc) ·
-Bigorna Rúnica (Exó) · Forja de Bolso (Lux). O Ordinário fica coberto pelo Kit de Ferramentas
-Básico, que já atende Engenharia e Ferraria.
-
-## D49 (RESOLVIDA) — Falha crítica por margem de CD no Ofício
-Decisão do Pedro: manter o risco de perder material, mas só na **falha crítica**, reativando a
-regra de crítico por CD na perícia. Sucesso crítico também tem que pagar o jogador.
-
-**Regra proposta (vai para o Notion, na perícia Ofício):**
-> **Falha crítica:** ficar **10 ou mais abaixo** da CD. Você perde todos os materiais da receita.
-> **Falha normal:** você não cria o item, mas **conserva os materiais** e pode tentar de novo.
-> **Sucesso crítico:** superar a CD em **10 ou mais**. Você **recupera 1 dos materiais** gastos.
-
-### Por que funciona: o risco só existe quando você tenta acima do seu nível
-**Chance de falha crítica** (Mod.INT +3, CDs Ord 10 · Inc 13 · Exó 17 · Lux 21):
+**Chance de falha crítica** (Mod.INT +3; CDs Ord 10 · Inc 13 · Exó 17 · Lux 21):
 | situação | Ord | Inc | Exó | Lux |
 |---|---|---|---|---|
 | Leigo + Kit Básico (−2) | 0% | 10% | 30% | 50% |
@@ -610,105 +181,229 @@ regra de crítico por CD na perícia. Sucesso crítico também tem que pagar o j
 | Mestre (+6) | 0% | 0% | 0% | 10% |
 | **Mestre + kit Luxária (+4)** | 0% | 0% | 0% | **0%** |
 
-**Custo efetivo por item criado** (0,77x base, repetindo até conseguir):
+**Custo efetivo por item criado** (base 0,77x, repetindo até conseguir):
 | situação | Ord | Inc | Exó | Lux |
 |---|---|---|---|---|
 | Leigo + Kit Básico | 0,73x | 0,94x | 1,69x | 8,47x |
 | Treinado (+2) | 0,67x | 0,71x | 0,94x | 1,69x |
 | Experiente (+4) | 0,66x | 0,68x | 0,75x | 1,21x |
-| Mestre (+6) | 0,64x | 0,66x | 0,71x | 0,94x |
 | Mestre + kit Luxária | 0,59x | 0,63x | 0,66x | 0,71x |
 
-**A diagonal é de graça, o alcance é que se paga.** Craftar no seu tier ou abaixo dá ~0,70x
-(lucro), um tier acima fica no break-even, dois acima é aposta ruim.
+🔑 **A diagonal é de graça, o alcance é que se paga.** No próprio tier ~0,70x; um acima, break-even;
+dois acima, aposta ruim. **Material lendário fica protegido:** só quem é Mestre com o kit Luxária
+tem 0% de falha crítica no topo. A origem **Ferreiro** ignora falha crítica em Arma/Armadura/Escudo.
 
-🔑 **O material lendário fica protegido:** para ter 0% de falha crítica no Luxária é preciso ser
-**Mestre com o kit Luxária**. Um material único de quest só pode ser destruído por quem não
-conquistou o direito de tocá-lo — o que resolve exatamente o medo do Pedro de um item deixar de
-existir no RPG por causa de um dado.
+## Forma da receita
+```
+EVOLUTIVO (Arma, Armadura, Escudo)   1x item da raridade anterior + 1x material + 1x temático
+NÃO-EVOLUTIVO (Bugiganga, Munição,   3x material
+  Consumível)
+GENÉRICA → ÚNICA do MESMO tier       1x genérica do tier + 2x material  (razão total 1,63x,
+                                      marginal 0,63x — o item base já custa 100% do alvo sozinho,
+                                      então a razão total é inevitável e não é bug)
+```
+**Alvo: ~0,75x.** Puxar 1 material de um tier **abaixo** quando o tema pede é permitido e é o que
+leva a razão a ~0,72x. Puxar de tier **acima** quebra o custo e é proibido.
+`auditor.py craft` reporta **total** (comprando tudo) e **marginal** (só os materiais, porque o item
+base o jogador normalmente lootou). A **marginal** é a que o jogador sente.
+`auditor.py craft` também aponta **receitas idênticas** na mesma categoria+raridade — receita
+repetida é monótona e exploitável.
 
-**Sucesso crítico espelha a maestria:** um Mestre fabricando item Ordinário recupera material em
-50% das vezes; com o kit Luxária, 70%. A recuperação vale 1 de 3 materiais (as receitas têm 3 slots).
+## D38 — As 8 famílias de material (fechadas)
+| Família | Ordinário | Incomum | Exótico | Luxária |
+|---|---|---|---|---|
+| **Metal** | Lingote de Ferro | Aço Temperado | Liga Rúnica | Liga Primordial |
+| **Madeira** | Madeira Comum | Madeira Nobre | Madeira Mística | Madeira da Vhelor |
+| **Couro** | Couro de Caça | Couro Refinado | Couro Bestial | Pele de Dragão |
+| **Tecido** | Tecido Resistente | Fibra Sintética | Trama Etérea | Fio do Destino |
+| **Mecânica** | Peça Mecânica | Engrenagem | Mecanismo Arcano | Coração Mecânico |
+| **Gema** | Gema Bruta | Gema Refinada | Gema Mística | Gema Primordial |
+| **Energia** | Fogo | Eletricidade | Éter | Energia Primordial |
+| **Mineral** | Cobre | Ferro | **Kali** | Ouro |
 
-⚠️ **Pendente:** a Alquimia hoje tem regra própria ("em caso de falha você perde os reagentes",
-sem margem). Unificar as três perícias sob a regra de crítico, ou manter a Alquimia como a mais
-arriscada das três?
+As 4 primeiras são **ordinárias** (o que o item É); as 4 últimas **atípicas** (o que o item FAZ).
+8 famílias → 36 combinações de 2 materiais, o que cobre o pior caso (35 itens Ordinários de
+Consumível). **Fogo, Eletricidade e Éter são abstratos de propósito** — um teurgo com foco gasta
+2 de Éter (status) para craftar; quem não gera compra em frasco. Fogueira provê Fogo.
 
-## D50 — Luvas do Artesão viram Bugiganga
-Deixa de ser Item Mágico e de custar sintonia. Resolve a assimetria: as duas escadas de Ofício
-agora são paralelas e nenhuma cobra slot.
+**D44 — removidos:** *Prata* (Kali assumiu o Exótico dos Minerais) e *Lenha Seca* (as escadas de
+madeira já cobrem o papel). *Barra de Ferro* virou **Lingote de Ferro** para liberar o nome Ferro.
+
+**Fora das escadas (5):** `Reagente Alquímico` (insumo de classe, escala por quantidade, não por
+raridade) + 4 reagentes de quest Luxária: **Lágrima de Velúria** → Lágrimas do Tempo ·
+**Pétala do Sonhador** → Elixir da Imortalidade · **Grilhões do Abismo** → Núcleo Abissal ·
+**Sangue Primordial** → Soro do Homúnculo.
+
+---
+
+# 4. Réguas por categoria de item
+
+## Arma
+**D30 — Ordem canônica dos campos.** Requisito é o **último**.
+```
+{Chassi} +N. · {dado} {tipo} ({Attr}). · +N em Atacar. · Atacar(X), Arremessar(1). ·
+[Alcance X m.] · [Consome 1 munição (...).] · <PAYLOAD ÚNICO> ·
+Efeito: {chassi} ({custo}): ... · [1x/turno não custa Stamina.] · Requisito: ...
+```
+**D4** — toda arma declara seu efeito de chassi no texto; marciais levam "1x/turno não custa Stamina".
+**D3** — alcances canônicos: Distância Simples 18 m · Distância Pesada 18 m · Arremesso 9 m.
+**D13** — cobertura obrigatória de únicas, hoje em **2 Incomum / 3 Exótico / 1 Luxária** por chassi
+(a linha Kali é o 3º Exótico). Marcial Precisa é exceção 2/3/2 (**D26**).
+**D15** — o payload único amplifica o efeito do chassi: Dilacerar→hemorragia · Alcançar→negação de
+reação · Desorientar→concussão/área · Executar→duelo/multiplicador.
+**D14** — gatilho padrão do payload é **Crítico**, não "Ao acertar" (~7× mais frequente).
+**D17** — nome descreve **o objeto físico**, o payload descreve o efeito.
+**D12** — Focos Primordiais são +3 por natureza (lategame nv5, não existe Primordial +1/+2).
+**D28** — *Bacamarte de Cano Curto* e *Facas de Lançamento* **recompensam encurtar a distância**, ao
+contrário das outras oito da família. É a arma que contraria a identidade da própria família —
+mantido de propósito. Dissidente deliberado não é bug.
+
+**Linha Kali (D27 fechada):** sem rider de dano ("extremamente leve" = não acrescenta massa nem
+dado), **+1 margem de ameaça** nas 15, e a frequência do Exposto é **inversamente proporcional ao
+nº de ataques do chassi** (3 ataques → só o crítico; 1 ataque → crítico + 1 fonte controlável
+1x/combate). Média +0,6% de DPR contra o Exótico padrão, faixa −6% a +4%.
+
+## Munição
+**D2 — Munição é gasta por CENA de combate**, não por disparo. O "20 munições = 1 slot" do
+CLAUDE.md está errado.
+**D41 — 🔴 Munição é PASSIVA e custa ZERO ações.** O jogador escolhe o tipo no início do combate e
+todos os ataques carregam o efeito até o fim. **Nunca** pode custar ação nem conceder ataque extra.
+Ao precificar, o rider incide em **todos os acertos do combate**:
+**1 ação → 6,0 acertos-equivalentes · 2 ações → 3,25** (teto, com combate de no máximo 5 turnos, D46).
+Cobertura fechada em **12 por tipo de arma**: 1 Ordinário / 5 Incomum / 4 Exótico / 2 Luxária.
+
+## Bugiganga — duas famílias separadas por regra
+**D54 — Bugiganga passiva:** `+N <Perícia> enquanto no inventário`, com **Incomum +1 · Exótico +2 ·
+Luxária +4**. Bugiganga não é equipável, então o buff é pequeno e permanente.
+**D55 — Kit:** `+4 em testes de <Perícia> por 1 cena. 3 usos.`
+→ **Passiva dá pouco para sempre; kit dá muito e acaba.**
+
+**D56 — Bolsas e mochilas:** efeito é exclusivo por item. Itens diferentes empilham; cópias do
+mesmo item não. Cláusula: `O efeito não acumula com outra cópia deste mesmo item.`
+
+**D53 — Fonte de luz precisa de loop de combustível.** Não ter combustível **custa uma raridade**.
+O loop real fica no Incomum (Lanterna de Óleo consome Óleo Comum).
+
+**D59 — Item de efeito contínuo não é Bugiganga.** Se exige estar vestido/calçado na hora, vai para
+**Item Mágico** (passivo enquanto sintonizado). Equipamento sempre dá Ar ou Ae, então não serve.
+Se é destruído no uso, é **Consumível** — essa é a definição. Bugiganga com limite de usos não é
+destruída: quebra e pode ser consertada.
+
+**D5 — Cláusula "empilhável"** (`pesa 1 bugiganga a cada 10 unidades`) vale para itens muito leves:
+munições e lixo.
+
+## Escadas de Ofício (paralelas, nenhuma cobra sintonia — D50)
 | Raridade | Engenharia | Ferraria |
 |---|---|---|
 | Ordinário | **Kit de Ferramentas Básico** — sem treino com −2, 3 usos (atende as duas) | idem |
 | Incomum | Ferramentas de Artesão — sem treino + **+1** | Bigorna Portátil — sem treino + **+1** |
 | Exótico | Luvas do Artesão — **+2** | Bigorna Rúnica — **+2** |
-| Luxária | Kit de Mestre-Artífice — **+4** + cópia extra no d20 = 20 | Forja de Bolso — **+4** + cópia extra no d20 = 20 |
-Para alinhar, **removi o "Reduz a CD de criação em 2" da Bigorna Rúnica** — era invenção minha,
-não texto do Pedro. A alternativa (dar a cláusula às duas) é uma linha de distância.
+| Luxária | Kit de Mestre-Artífice — **+4** + cópia extra no d20 = 20 | Forja de Bolso — **+4** + idem |
 
-## D51 — Ofício(Alquimia) é exclusivo do Alquimista
-"A única maneira de se obter reagentes alquímicos é pela classe Alquimista, então só uma classe vai
-usar essa escada."
-→ **Não existe lacuna de kits de Alquimia** — eu havia apontado como lacuna, e não é: é design.
-→ Os 95 itens alquímicos do Bazar são **compráveis por qualquer um**, mas **fabricáveis só pelo
-Alquimista**. `Tipo de Craft = Alquimia` deve ser lido como "exclusivo de classe".
+## Consumível / Alquimia
+**D39 — O nível do item alquímico define a raridade no Bazar:**
+`Nv1→Ordinário · Nv2→Incomum · Nv3→Exótico · Nv4→Luxária · Nv5→Luxária (travado por quest)`.
+Resolve os "5 níveis para 4 raridades": o Nv5 não é uma quinta raridade.
+**Banda de reagente por nível:** Nv1 1–3 · Nv2 2–4 · Nv3 4–6 · Nv4 8–12 · Nv5 15–20.
+A contagem de reagentes no Bazar **vem da tabela do Notion**, não é derivada de raridade.
+`references/alquimista-notion.json` guarda nível, reagentes e CD dos 95 itens.
+**Escada de cura do Autômato:** a raça não se cura por meios tradicionais, então os Kits de
+Manutenção correm **~30% acima** da Poção de Cura em cada raridade (7 / 14 / 22,5 / 36).
 
-## D52 — Alquimia perde os reagentes em QUALQUER falha
-"Alquimia tem que perder os reagentes na falha independente, pois a obtenção dos reagentes é
-natural em descansos."
-→ As três perícias **não** compartilham a mesma regra, e a diferença tem causa:
-- **Ferraria e Engenharia:** material custa Sins e é finito → só a **falha crítica** destrói (D49).
-- **Alquimia:** reagentes voltam de graça no descanso longo → **toda falha** destrói.
-A regra de crítico do D49 já está registrada no Notion pelo Pedro.
+---
 
-## D53 — Fonte de luz precisa de loop de combustível
-"Fontes de luz têm que ter loop de gameplay que nem a lanterna de óleo, que exige um combustível
-que é um item real." → **Não ter combustível custa uma raridade.**
-| Raridade | Item | Loop |
+# 5. Cânone do sistema e terminologia
+
+**D19 — Vitalidade/Vigor/Ressonância são COEFICIENTES, não status.** Os 3 status reais são
+**Saúde, Stamina e Éter**. "6 Vitalidade" = o coeficiente 6 em `Saúde = 10 + (6×Nv) + (Mod.CON×Nv)`.
+
+**D20 — Evasão passiva é `10 + Mod.DES` em TODAS as classes.** O repo lista valores por classe e
+está desatualizado. ⚠️ Corrigir as 7 páginas numa passada de sync.
+
+**D57 — A CD é sempre a do portador, sem exceção.** Escrever `contra sua CD`. Revoga a ressalva
+de "pequenas exceções de CD fixo" que constava do D34.
+
+**D58 — Alcance infinito não existe.** Todo efeito de detecção/comunicação declara um teto.
+
+**D16 — Toda condição aplicada por item declara quando expira.** Padrão: `até o fim da próxima
+rodada`. Ainda **sem regra de expiração no cânone**: `Lento X` · `Cego` · `Surdo` · `Enraizado` ·
+`Amedrontado` · `Bêbado` · `Paralisado` · `Inconsciente` · `Oco` · `Desnutrido X` ·
+`Sobrepeso Leve/Extremo`.
+✅ Resolvidas: **D32 Desorientado dura 1 turno** · **Confuso** ganhou "gaste 1 ação para se livrar"
+(o que lhe dá regra própria de saída — item não precisa mais declarar expiração para ela) ·
+**Desprevenido** vem de Furtividade.
+
+**D22 — "margem de ameaça"** é oficial: `+N margem de ameaça` = aumentar a margem do crítico em N.
+**D31 — "Multiplicador de Crítico"** é oficial: crítico padrão dobra os dados, +1 multiplicador
+triplica. ⚠️ Ambos **pendentes de registro no Notion**.
+
+**D21 — A primeira técnica de nível 1 do ramo concede os treinamentos** (categoria de arma e perícia
+de ramo entram como técnica, não como linha da classe base).
+
+**D7 — Origem Caçador** (versão atual do Notion, substitui a que eu tinha registrada): caça em
+descanso longo com teste de Sobrevivência em escada —
+`10+ → 1 Couro de Caça + 1 Comida · 15+ → 2 Couros · 20+ → 1 Couro Refinado + 2 Comidas ·
+25+ → 2 Couros Refinados · 30+ → 1 Couro Bestial + 3 Comidas`. Custa a **ação de descanso** e entra
+na cadeia de crafting em vez de virar Sins direto.
+
+**Origem pode destravar categoria de arma e conjuração.** Acólito → Marciais · Andarilho →
+À Distância · Anão → as duas · Cultista → 2 magias de nível 1. Não assumir que só a classe abre
+esses portões.
+
+---
+
+# 6. Classes em desenho
+
+**D24 — Vampiro.** Status 6 Saúde / 5 Stamina / 4 Éter (=15) · CD 10 + Mod.FOR|DES + Mod.INT.
+**Corrente Sanguínea:** Sangue = Saúde temporária acima do máximo, teto `5 + (3×Nível)`; sem Sangue
+paga com Saúde real sem perda de conversão; pode converter Sangue em Saúde como 1 ação.
+**Sede de Sangue:** 1×/turno, ao acertar criatura viva sob Sangramento absorve `1d6 + Mod.CON`;
+ao reduzir criatura viva a 0 de Saúde absorve `Nível + Mod.CON`.
+**Ramos:** A Sombra · O Carmesim · O Hemomante.
+
+**Necromante e Xamã** — desenhados em conversa, ainda não consolidados aqui.
+⚠️ **Xamã pendente:** nome do recurso primário (recomendei **Lapso**) e as 4 técnicas de nível 1.
+
+---
+
+# 7. Lotes concluídos
+
+| # | Lote | Resultado |
 |---|---|---|
-| Ordinário | Tocha (x2) · Vela de Sebo | consome o próprio item |
-| **Incomum** | **Lanterna de Óleo** | **consome Óleo Comum — o loop de verdade** |
-| Exótico | Lanterna Arcana · Vela Eterna · Lanterna Solar | sem combustível (a Solar recarrega ao sol) |
-| Luxária | **Círio do Alvorecer** 🆕 | sem combustível, 18 m, revela ocultos, 1d6 Radiante/turno em mortos-vivos e corrompidos |
-Papéis separados de propósito: a **Arcana** é a luz de trabalho que revela invisíveis; a **Eterna**
-é fraca mas **não pode ser apagada por nada**; a **Solar** castiga mortos-vivos.
+| 1 | Armas genéricas | 15 chassis conformes ao Notion, 53 reescritas |
+| 2 | Focos místicos | 30 normalizados; Primordiais exigem Experiente |
+| 3–6 | Armas únicas | Leves, Pesadas, Marciais e À Distância — 15 chassis fechados |
+| 7 | **Kali** | 15 armas Exóticas + o material Kali; **91 armas únicas** |
+| 8 | **Alquimia** | Bazar tinha uma 2ª cópia mais barata da tabela do Alquimista: 70 itens em comum, 45 com reagente divergente. 70 sincronizados, 25 criados. **Cobertura 95/95** |
+| 9 | **Munição** | 16 reescritas + 13 criadas → **12 por tipo de arma, 36 no total** |
+| 10 | Bugiganga Ordinário | 24 receitas temáticas; razão do tier 0,44 → 0,77 |
+| 11 | Ofício / Kits | 2 escadas paralelas + escada de cura do Autômato |
+| 12 | Bugiganga Incomum | 22 revisadas, família de luz e famílias passiva/kit separadas |
 
-## D54 — 🔑 Buff de perícia em Bugiganga: sempre "enquanto no inventário", e pequeno
-"Se for dar buff em perícias em bugigangas é sempre nesse estilo de estar no inventário, já que não
-são equipáveis tem que dar um buff pequeno."
-**Escala:** Incomum **+1** · Exótico **+2** · Luxária **+4** (é a escada de Ofício já existente).
-Aplicado: Luneta +4→**+1** · Lente do Teurgo +4→**+1** · Lente do Escriba +2→**+1**.
+Detalhe item a item dos novos: `references/10-novidades-bazar.md` (gerado por `auditor.py novidades`).
 
-## D55 — 🔑 Família KITS: bônus grande, por cena, com usos
-Separada da bugiganga passiva. **Forma canônica: `+4 em testes de <Perícia> por 1 cena. 3 usos.`**
-Aplicado a Kit de Crime (era +2 Crime, 5 usos), Kit de Disfarce (+4, 3 usos — já era o padrão) e
-Kit de Medicina (era "vantagem em 3 testes").
-→ A diferença entre as duas famílias: **bugiganga passiva dá pouco para sempre; kit dá muito e acaba.**
+---
 
-## D56 — Bolsas e mochilas: efeito exclusivo por item
-"É exclusivo por item, então itens diferentes empilham mas aumentar a quantidade do mesmo item não
-empilha efeitos." → Cláusula `O efeito não acumula com outra cópia deste mesmo item.` aplicada a
-Bolsa de Couro, Mochila Reforçada, Mochila do Contrabandista e Bolsa Dimensional.
+# 8. Pendências abertas
 
-## D57 — CD é sempre a do portador, sem exceção
-"Isso é outdated, sempre do portador é o CD." → Armadilha de Pregos perdeu a CD 13 fixa.
-Revoga a ressalva de "pequenas exceções de CD fixo" do D34.
+**Sistema (Notion, do Pedro)**
+- Registrar **"margem de ameaça"** (D22) e **"Multiplicador de Crítico"** (D31).
+- Regra de expiração para as 11 condições listadas em D16.
+- Corrigir Evasão passiva nas 7 páginas de classe do repo (D20).
 
-## D58 — Alcance infinito não existe
-Sino de Alerta ganhou teto de **1 km** (mesmo teto da Pedra de Mensagem).
-
-## D59 — Item de efeito contínuo não é Bugiganga
-Calçados de Mola → **Item Mágico / Exótico**: "exige que esteja no seu pé na hora da queda, então
-está mais para equipamento; mas equipamento sempre dá Ar ou Ae, então vai para item mágico e
-assimila ao padrão da categoria" (passivo enquanto sintonizado).
-Garrafa de Rum Forte → **Consumível** (o próprio texto já dizia "Consumível:").
-
-### Lote 12 (BUGIGANGA Incomum) — CONCLUÍDO
-22 itens revisados, 23 alterações, 1 criado. **0 receitas duplicadas em Bugiganga Incomum.**
-Distribuição da categoria: 24/22/14/8 → **24/18/16/9**.
-
-⚠️ **Pendências abertas**
-- **Família dos alcoólicos** (condição *Bêbado*) — várias classes dependem. Fazer na passada de Consumível.
+**Bazar (meu, quando chegar a vez)**
+- **Família dos alcoólicos** (condição *Bêbado*) — várias classes dependem. Na passada de Consumível.
+- **Item Mágico: 61 itens, 0 receitas** e nenhuma progressão. É a única categoria de Bugigangas que
+  pede evolução (3 slots equipáveis → o jogador prioriza raridade alta) e não foi criada pensando
+  nisso. Não é Ferraria nem Engenharia nem Alquimia — **talvez perícia Místico, mas não agora** (D37).
+- **Bugiganga é pesada embaixo** (24 Ordinários contra 9 Luxárias); Consumível é plana (53/53/50/57).
+- **7 bugigangas Exóticas compartilham `1x Mecanismo Arcano`** — próximo lote.
+- Armas genéricas Ordinárias compartilham `2x Lingote de Ferro` / `2x Madeira Comum`.
 - **Carta do Limiar rara** para o Alquimista que domina Ferraria e Engenharia (ideia do Pedro).
-- Bugiganga ainda é pesada embaixo (24 Ordinários contra 9 Luxárias); Consumível é plana (53/53/50/57).
-- 7 bugigangas Exóticas ainda compartilham `1x Mecanismo Arcano` — é o próximo lote.
+- Colisão de nome a vigiar: **Ferro** (Mineral Incomum) × **Lingote de Ferro** (Metal Ordinário).
+
+**Desempates que eu preciso**
+- **Decepador de Kali** — resolvido: "ao reduzir uma criatura a 0 de Saúde".
+- **3 itens do Notion fora da banda de reagente do próprio nível** (D39): já corrigidos —
+  Sangue Falso → Nv1, Extrato de Clarividência e Amnésia Líquida → 8 reagentes.
+- **Munição Fragmentadora** — resolvido: ganhou rider +1d12 Cortante.
