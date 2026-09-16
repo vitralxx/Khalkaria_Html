@@ -5,7 +5,7 @@ spoiler: gm
 era: atemporal
 aliases: ["Índice", "Índice de Entidades", "Mapa do vault"]
 fonte_notion: gerado
-ultima_sync: 2026-09-15
+ultima_sync: 2026-09-16
 tags: [khalkaria/meta]
 ---
 # Índice de Entidades

@@ -25,7 +25,7 @@ PERGUNTAS = VAULT / "_meta" / "Perguntas Abertas.md"
 AUDITORIAS = RAIZ / "docs" / "memoria" / "auditorias"
 
 # Notas de processo: seguem outras regras de voz e de seção.
-META = {"CONVENCOES", "Perguntas Abertas", "Log de Sincronização", "Índice"}
+META = {"CONVENCOES", "Perguntas Abertas", "Log de Sincronização", "Índice", "Ligações propostas"}
 
 CAMPOS = ["tipo", "status", "spoiler", "era", "aliases", "fonte_notion", "ultima_sync", "tags"]
 TIPOS = {"deus", "plano", "entidade", "conceito", "substancia", "fenomeno", "era", "continente",
