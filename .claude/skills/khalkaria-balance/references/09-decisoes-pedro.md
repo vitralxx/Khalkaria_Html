@@ -93,6 +93,15 @@ Motivo: Ar no Bazar vai de 2 a 6 (mediana 5), então "ignora 5" no Incomum já z
   ataque individual. Permissível.
 - **D18 — Fragmento Primordial** (Leve Ágil Luxária, DPR 24,75 com exposição 0 permanente): teto
   deliberado. Arma feita do plano divino não paga o imposto de retaliação do plano material.
+- **D60 — 🔑 Item que replica mecânica de classe é FEATURE, não invasão.** *"Pense também num
+  grupo sem uma dessas classes: isso faz com que essas mecânicas exclusivas retornem ao jogo."*
+  O *Autômato de Bolso* replica o Constructo do Artificer, a *Cápsula de Reanimação* replica o
+  Elixir da Fênix do Boticário, o *Núcleo de Sobrecarga* amplifica o Artilheiro — e é assim que
+  um grupo sem Alquimista alcança aquelas mecânicas. **Não tratar como inversão de custo.**
+  O que continua valendo: o item paga em raridade o que a classe paga em recurso.
+- **Poder de RP não se precifica.** *"Esse robozinho pode entrar em fechaduras e destrancar do
+  outro lado, passando por cima do ladino do grupo. Potencial infinito."* Item Luxária é
+  naturalmente forte; o teto de utilidade narrativa é aceito e não entra na conta de DPR.
 - **D8 — Cartas do Limiar raras são absurdas de propósito.** A carta rara é o teto *legítimo* ao
   comparar item × carta. O que continua valendo: item comprável e acumulável não deve igualar carta
   travada atrás de requisito alto, porque item não tem o mesmo gate.
@@ -273,8 +282,11 @@ Ao precificar, o rider incide em **todos os acertos do combate**:
 Cobertura fechada em **12 por tipo de arma**: 1 Ordinário / 5 Incomum / 4 Exótico / 2 Luxária.
 
 ## Bugiganga — duas famílias separadas por regra
-**D54 — Bugiganga passiva:** `+N <Perícia> enquanto no inventário`, com **Incomum +1 · Exótico +2 ·
-Luxária +4**. Bugiganga não é equipável, então o buff é pequeno e permanente.
+**D54 — Bugiganga passiva:** `+N <Perícia> enquanto no inventário`.
+**Ordinário destrava situação e NÃO dá número · Incomum +1 · Exótico +2 · Luxária +4.**
+Bugiganga não é equipável, então o buff é pequeno e permanente. O tier Ordinário tem identidade
+própria: é utilitário de RP puro (*"são apenas itens úteis para RP"*) — Espelho Pequeno, Agasalho
+de Pele e Selo Simples não dão bônus nenhum.
 **D55 — Kit:** `+4 em testes de <Perícia> por 1 cena. 3 usos.`
 → **Passiva dá pouco para sempre; kit dá muito e acaba.**
 
@@ -283,6 +295,12 @@ mesmo item não. Cláusula: `O efeito não acumula com outra cópia deste mesmo 
 
 **D53 — Fonte de luz precisa de loop de combustível.** Não ter combustível **custa uma raridade**.
 O loop real fica no Incomum (Lanterna de Óleo consome Óleo Comum).
+
+**D61 — Bugiganga usável SEMPRE tem limite.** Número de usos, duração, ou ambos. Efeito
+permanente e ilimitado é de Item Mágico, que compete pelos **3 slots de sintonização** do jogador.
+→ O teste limpo: **ativado por uso = Bugiganga · contínuo enquanto vestido = Item Mágico.**
+(*Botas Aracnídeas* ficam em Bugiganga por serem 2x/descanso longo; *Calçados de Mola* foram para
+Item Mágico por serem contínuos.)
 
 **D59 — Item de efeito contínuo não é Bugiganga.** Se exige estar vestido/calçado na hora, vai para
 **Item Mágico** (passivo enquanto sintonizado). Equipamento sempre dá Ar ou Ae, então não serve.
@@ -379,6 +397,8 @@ ao reduzir criatura viva a 0 de Saúde absorve `Nível + Mod.CON`.
 | 10 | Bugiganga Ordinário | 24 receitas temáticas; razão do tier 0,44 → 0,77 |
 | 11 | Ofício / Kits | 2 escadas paralelas + escada de cura do Autômato |
 | 12 | Bugiganga Incomum | 22 revisadas, família de luz e famílias passiva/kit separadas |
+| 13 | Bugiganga Exótico | 10 alterados; Diário de Hadran e Bisturi de Mira **removidos por spoiler de lore**; Kit de Trauma → Consumível |
+| 14 | Bugiganga Luxária | 6 reescritos pelo Pedro. **Categoria Bugiganga fechada: 0 receitas duplicadas nas 4 raridades, 0 materiais órfãos** |
 
 Detalhe item a item dos novos: `references/10-novidades-bazar.md` (gerado por `auditor.py novidades`).
 
@@ -397,7 +417,7 @@ Detalhe item a item dos novos: `references/10-novidades-bazar.md` (gerado por `a
   pede evolução (3 slots equipáveis → o jogador prioriza raridade alta) e não foi criada pensando
   nisso. Não é Ferraria nem Engenharia nem Alquimia — **talvez perícia Místico, mas não agora** (D37).
 - **Bugiganga é pesada embaixo** (24 Ordinários contra 9 Luxárias); Consumível é plana (53/53/50/57).
-- **7 bugigangas Exóticas compartilham `1x Mecanismo Arcano`** — próximo lote.
+- **Item único / conteúdo de campanha** deve sair do catálogo ou ir para `Obtenção: Único/Quest`.
 - Armas genéricas Ordinárias compartilham `2x Lingote de Ferro` / `2x Madeira Comum`.
 - **Carta do Limiar rara** para o Alquimista que domina Ferraria e Engenharia (ideia do Pedro).
 - Colisão de nome a vigiar: **Ferro** (Mineral Incomum) × **Lingote de Ferro** (Metal Ordinário).
