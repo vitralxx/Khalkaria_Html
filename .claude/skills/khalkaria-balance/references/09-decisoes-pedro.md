@@ -445,3 +445,48 @@ Detalhe item a item dos novos: `references/10-novidades-bazar.md` (gerado por `a
 - **3 itens do Notion fora da banda de reagente do próprio nível** (D39): já corrigidos —
   Sangue Falso → Nv1, Extrato de Clarividência e Amnésia Líquida → 8 reagentes.
 - **Munição Fragmentadora** — resolvido: ganhou rider +1d12 Cortante.
+
+## D63 — 🔑 Ae é SEMPRE um tipo de dano; Ar cobre os 3 ordinários de uma vez
+"`Ae(Cortante, 5)` existe, `Ae(Ordinário, 3)` **não existe**. `Ar 3` já dá a redução fixa nos 3
+tipos ordinários de uma vez, por isso é mais forte."
+`Ae(Categoria, N)` = resistência N em **todos** os tipos daquela categoria (Elemental, Biológico,
+Místico). Se for "escolha 1 tipo", o item precisa dizer isso explicitamente.
+**Força e Primordial são reservados para Luxária.**
+
+### Escada de Ae — cada nível de abrangência custa metade
+| Alcance | Ordinário | Incomum | Exótico | Luxária |
+|---|---|---|---|---|
+| **1 tipo** | 3 | 5 | 7 | 10 |
+| **1 categoria** (3 tipos) | — | 2 | 4 | 6 |
+| **Todos** | — | 1 | 2 | 3 |
+O *Anel do Baluarte* já era `Ae(Todos, 3)` em Luxária — a régua bate com o item que já existia.
+**Motivo do valor alto no tier baixo:** só cabem 2 leves equipadas e o dano é específico, então um
+acessório precisa mitigar de verdade mesmo no Incomum. O que faltava era a progressão no topo.
+
+## D64 — Ar: faixas que não se sobrepõem
+`Ordinário 1–2 · Incomum 3–4 · Exótico 5–6 · Luxária 7–8`
+Antes as faixas se sobrepunham inteiras e um Peitoral de Ferro Ordinário (21 Sins) dava o mesmo
+Ar 4 de cinco Exóticos (212 Sins).
+**A faixa não é engessada:** uma armadura pode subir 1 degrau se tiver drawback forte ou efeito
+fraco, e descer 1 se não tiver penalidade nenhuma. (Peitoral de Ferro fica Ar 3 pagando
+−3 m, −2 Furtividade e −1 Reflexos; Cota Élfica fica Ar 4 no Exótico por não ter penalidade e
+ainda dar +2 Furtividade.)
+
+## D65 — Penalidade é função de Ar E de raridade
+`-3 m Movimento` é debuff forte · `-1,5 m` é fraco. Mesma lógica para **Furtividade** e **Reflexos**.
+Armadura de Ar alto dentro da faixa paga penalidade; de Ar baixo não paga e pode até dar bônus.
+**Resistência ou imunidade alta sempre vem com trade-off** (Vulnerável a X, ou penalidade pesada).
+
+## D66 — "Pesada" é slot, não peso
+Armadura Pesada = 1 slot, dá Ar. Armadura Leve = 2 slots, dá Ae, e são acessórios (botas,
+talismãs, broches) — **muito mais fracos que o traje pesado**, por design.
+Isso **não** obriga toda Armadura Pesada a ser pesada: Ar baixo com efeito interessante é legítimo.
+**Sem +Evasão em armadura** (talvez uma Luxária no futuro). Bônus de perícia só quando casa com o
+arquétipo (Furtividade em armadura ágil).
+
+### Lote 17 (ARMADURA) — CONCLUÍDO
+45 reescritas + **5 criadas** para fechar a cobertura de tipos de dano (Grevas de Couro/Perfurante ·
+Manto Elemental · Talismã Rúnico · Manopla do Impacto/Força · Selo do Primórdio/Primordial).
+**50 armaduras, 0 receitas duplicadas, todos os 14 alvos de Ae cobertos.**
+Armadura Viva foi para Luxária e perdeu o tracking por ataque (era "+1 Ar por dano recebido,
+máx. 10"; virou "+2 Ar na primeira vez que recebe dano em cada combate").
