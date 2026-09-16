@@ -316,6 +316,16 @@ destruída: quebra e pode ser consertada.
 **D5 — Cláusula "empilhável"** (`pesa 1 bugiganga a cada 10 unidades`) vale para itens muito leves:
 munições e lixo.
 
+## D62 — Escudo: escada de Defender por raridade e cadeia evolutiva
+`Ordinário +1 · Incomum +2 · Exótico +3 · Luxária +4`, sem exceção. Antes a escada era plana —
+um Escudo Reforçado Incomum dava o mesmo +3 dos dois Exóticos.
+- **Todos** levam `-1,5 m Movimento`. A penalidade é do tipo de item, não do item.
+- **Redação canônica:** `+X Defender ao usar a reação Defender.` (antes só 3 de 10 declaravam
+  que era reação).
+- **Escudo é evolutivo**, como as armas: o Incomum sai de um Ordinário, o Exótico de um Incomum,
+  o Luxária de um Exótico.
+- Item único fica **`Obtenção: Único/Quest` e sem receita** (Escudo de Karmath).
+
 ## Escadas de Ofício (paralelas, nenhuma cobra sintonia — D50)
 | Raridade | Engenharia | Ferraria |
 |---|---|---|
@@ -404,6 +414,8 @@ ao reduzir criatura viva a 0 de Saúde absorve `Nível + Mod.CON`.
 | 11 | Ofício / Kits | 2 escadas paralelas + escada de cura do Autômato |
 | 12 | Bugiganga Incomum | 22 revisadas, família de luz e famílias passiva/kit separadas |
 | 13 | Bugiganga Exótico | 10 alterados; Diário de Hadran e Bisturi de Mira **removidos por spoiler de lore**; Kit de Trauma → Consumível |
+| 15 | Arma (receitas) | 5 famílias compartilham receita; 30 focos que não tinham ganharam, 76 únicas fechadas pela regra genérica→única |
+| 16 | Escudo | 10 reescritos: escada de Defender, cadeia evolutiva, receitas |
 | 14 | Bugiganga Luxária | 6 reescritos pelo Pedro. **Categoria Bugiganga fechada: 0 receitas duplicadas nas 4 raridades, 0 materiais órfãos** |
 
 Detalhe item a item dos novos: `references/10-novidades-bazar.md` (gerado por `auditor.py novidades`).
