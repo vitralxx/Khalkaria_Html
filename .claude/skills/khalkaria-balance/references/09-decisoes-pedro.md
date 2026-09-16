@@ -211,6 +211,12 @@ GENÉRICA → ÚNICA do MESMO tier       1x genérica do tier + 2x material  (ra
                                       marginal 0,63x — o item base já custa 100% do alvo sozinho,
                                       então a razão total é inevitável e não é bug)
 ```
+⚠️ **Nenhum item evolutivo pula degrau.** Um `Foco de Destruição +2` exige o `+1` como item base;
+o mesmo vale para toda arma `+N`. Foco único sai do **genérico da própria escola no mesmo tier**.
+Exceção: a escola **Primordial** não tem cadeia genérica (D12, nasce +3), então parte do zero.
+**Armas e focos compartilham receita dentro da família** (Leve · Pesada · Marcial · À Distância ·
+Foco), não por chassi — decisão do Pedro.
+
 **Alvo: ~0,75x.** Puxar 1 material de um tier **abaixo** quando o tema pede é permitido e é o que
 leva a razão a ~0,72x. Puxar de tier **acima** quebra o custo e é proibido.
 `auditor.py craft` reporta **total** (comprando tudo) e **marginal** (só os materiais, porque o item
