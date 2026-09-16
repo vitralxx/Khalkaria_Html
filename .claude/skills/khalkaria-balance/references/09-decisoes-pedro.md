@@ -660,3 +660,55 @@ natural em descansos."
 - **Ferraria e Engenharia:** material custa Sins e é finito → só a **falha crítica** destrói (D49).
 - **Alquimia:** reagentes voltam de graça no descanso longo → **toda falha** destrói.
 A regra de crítico do D49 já está registrada no Notion pelo Pedro.
+
+## D53 — Fonte de luz precisa de loop de combustível
+"Fontes de luz têm que ter loop de gameplay que nem a lanterna de óleo, que exige um combustível
+que é um item real." → **Não ter combustível custa uma raridade.**
+| Raridade | Item | Loop |
+|---|---|---|
+| Ordinário | Tocha (x2) · Vela de Sebo | consome o próprio item |
+| **Incomum** | **Lanterna de Óleo** | **consome Óleo Comum — o loop de verdade** |
+| Exótico | Lanterna Arcana · Vela Eterna · Lanterna Solar | sem combustível (a Solar recarrega ao sol) |
+| Luxária | **Círio do Alvorecer** 🆕 | sem combustível, 18 m, revela ocultos, 1d6 Radiante/turno em mortos-vivos e corrompidos |
+Papéis separados de propósito: a **Arcana** é a luz de trabalho que revela invisíveis; a **Eterna**
+é fraca mas **não pode ser apagada por nada**; a **Solar** castiga mortos-vivos.
+
+## D54 — 🔑 Buff de perícia em Bugiganga: sempre "enquanto no inventário", e pequeno
+"Se for dar buff em perícias em bugigangas é sempre nesse estilo de estar no inventário, já que não
+são equipáveis tem que dar um buff pequeno."
+**Escala:** Incomum **+1** · Exótico **+2** · Luxária **+4** (é a escada de Ofício já existente).
+Aplicado: Luneta +4→**+1** · Lente do Teurgo +4→**+1** · Lente do Escriba +2→**+1**.
+
+## D55 — 🔑 Família KITS: bônus grande, por cena, com usos
+Separada da bugiganga passiva. **Forma canônica: `+4 em testes de <Perícia> por 1 cena. 3 usos.`**
+Aplicado a Kit de Crime (era +2 Crime, 5 usos), Kit de Disfarce (+4, 3 usos — já era o padrão) e
+Kit de Medicina (era "vantagem em 3 testes").
+→ A diferença entre as duas famílias: **bugiganga passiva dá pouco para sempre; kit dá muito e acaba.**
+
+## D56 — Bolsas e mochilas: efeito exclusivo por item
+"É exclusivo por item, então itens diferentes empilham mas aumentar a quantidade do mesmo item não
+empilha efeitos." → Cláusula `O efeito não acumula com outra cópia deste mesmo item.` aplicada a
+Bolsa de Couro, Mochila Reforçada, Mochila do Contrabandista e Bolsa Dimensional.
+
+## D57 — CD é sempre a do portador, sem exceção
+"Isso é outdated, sempre do portador é o CD." → Armadilha de Pregos perdeu a CD 13 fixa.
+Revoga a ressalva de "pequenas exceções de CD fixo" do D34.
+
+## D58 — Alcance infinito não existe
+Sino de Alerta ganhou teto de **1 km** (mesmo teto da Pedra de Mensagem).
+
+## D59 — Item de efeito contínuo não é Bugiganga
+Calçados de Mola → **Item Mágico / Exótico**: "exige que esteja no seu pé na hora da queda, então
+está mais para equipamento; mas equipamento sempre dá Ar ou Ae, então vai para item mágico e
+assimila ao padrão da categoria" (passivo enquanto sintonizado).
+Garrafa de Rum Forte → **Consumível** (o próprio texto já dizia "Consumível:").
+
+### Lote 12 (BUGIGANGA Incomum) — CONCLUÍDO
+22 itens revisados, 23 alterações, 1 criado. **0 receitas duplicadas em Bugiganga Incomum.**
+Distribuição da categoria: 24/22/14/8 → **24/18/16/9**.
+
+⚠️ **Pendências abertas**
+- **Família dos alcoólicos** (condição *Bêbado*) — várias classes dependem. Fazer na passada de Consumível.
+- **Carta do Limiar rara** para o Alquimista que domina Ferraria e Engenharia (ideia do Pedro).
+- Bugiganga ainda é pesada embaixo (24 Ordinários contra 9 Luxárias); Consumível é plana (53/53/50/57).
+- 7 bugigangas Exóticas ainda compartilham `1x Mecanismo Arcano` — é o próximo lote.
