@@ -23,3 +23,17 @@ tags: [khalkaria/meta]
 - 61 perguntas em [[Perguntas Abertas]] aguardando o Pedro.
 
 **Regra daqui em diante:** toda página nova de lore nasce no vault **e** no Notion. Em divergência, vale o Notion — exceto onde `docs/memoria/respostas_pedro_2026-09-05.md` disser o contrário.
+
+## 2026-09-15 — base afirmativa, índice e protocolo
+
+**O que mudou de método.** As notas deixaram de discutir dúvida no meio do texto. A base agora afirma o que é canônico; o que falta decidir vive só em [[Perguntas Abertas]], e cada nota cita apenas os números em `## Em aberto`. Motivo: 733 incertezas espalhadas por 160 notas — quase cinco por nota — faziam qualquer leitor hesitar onde não precisava.
+
+**Consolidação.** As 733 viraram 217 perguntas novas, agrupadas por tema e fundidas quando eram a mesma dúvida em notas diferentes. O registro tem hoje 322 entradas, com as doze que mais destravam listadas no topo.
+
+**Links.** Passaram a valer só por relação real no mundo. Foram removidas arestas nascidas de coincidência — a mais citada ligava um general humano ao deus da morte porque os dois nomes levam apóstrofo.
+
+**Índice.** [[Índice]] passa a listar as 160 entidades com tipo, pasta, aliases e uma linha de identificação, mais os centros do grafo. É por onde se começa qualquer busca.
+
+**Protocolo.** `scripts/vault.py` com `check`, `index` e `report`. O `check` roda antes de todo commit e reprova link sem destino, frontmatter fora do contrato, seção errada, vocabulário de processo no corpo, link por coincidência e dúvida sem número. Auditorias datadas ficam em `docs/memoria/auditorias/`.
+
+**Porta de entrada.** `docs/COMECE_AQUI.md` declara a função do agente — worldbuilding criativo, leitura de padrões e proposta de ligações — antes de qualquer coisa operacional.
