@@ -386,6 +386,39 @@ esses portões.
 
 ---
 
+## D68 — O andar de Nível 1 (truques)
+Todas as magias existentes **sobem 1 nível**: as antigas 1–4 viram 2–5. O novo Nível 1 são os
+20 truques. Consequência limpa: a regra do Teurgo deixa de ser "iguais ou abaixo do seu
+(nível − 1)" e passa a ser **"do mesmo nível que o seu"** — neutra nos níveis 2 a 5, só o nível 1
+muda.
+```
+Nível 1 → 0 Éter   ·  Nível 2 → 2  ·  Nível 3 → 4  ·  Nível 4 → 6  ·  Nível 5 → 8 (Foco Primordial)
+```
+**Nível 1 não tem Intensidade Contida.** Normal 0 · Forçada +2 · Transbordante +4. Três barras nas
+descrições, não quatro. Precisa de **piso de custo 0** escrito, senão *Canalização Eficiente* (−1
+Éter) leva um truque Normal a custo negativo.
+
+**D69 — modulação em truque mantém o preço cheio.** "Modulação não é pra early game." Modular um
+truque custa mais que conjurar uma magia de Nível 2 inteira, e isso é intencional.
+
+**Teto de dano de truque (Destruição):** 1d4 base é o único seguro na escada x/x+1/x+2. Com 1d6 o
+truque bate a magia de Nível 2 no mesmo preço em Éter — por isso as duas que usam 1d6 pagam em
+ação ou em alcance e não têm rider.
+
+**Renumeração pendente no Notion:** *Dissipar Magia* ("Nível 2 ou menor" → 3) · origem **Cultista**
+e raça **Corrompido** ("2 magias de nível 1" — vira 2 truques; no Corrompido o custo de falha de
+1d4 psíquico passa a ser ≥ o dano da magia) · técnicas do Teurgo que já citavam "magias nvl 0".
+
+## D70 — Presságio: o custo é o número de dados da arma
+Truque de Abjuração. *"Como ação livre, sua próxima rolagem de Atacar neste turno ignora a PMA.
+Se acertar, você perde Éter igual ao número de dados de dano da arma usada."* Só Intensidade Normal.
+**Por que não custo fixo:** o ganho é constante em acertos (+0,25/turno) mas varia com o dano por
+acerto — +2,0 DPR num Teurgo de 2d6, +6,5 num Espadachim de 4d10, +7,8 num Brutalista de 4d12.
+Custo fixo de 2 Éter deixava o marcial com ~10 usos/dia num pool de 21 e o Teurgo com 33 num de 66.
+Atrelar ao número de dados faz a razão ganho/custo ficar constante e o tamanho do pool racionar o
+resto: Teurgo 33 usos, marcial 5. Zero tracking — o número de dados já está impresso na arma.
+
+
 # 6. Classes em desenho
 
 **D24 — Vampiro.** Status 6 Saúde / 5 Stamina / 4 Éter (=15) · CD 10 + Mod.FOR|DES + Mod.INT.
@@ -450,7 +483,18 @@ Detalhe item a item dos novos: `references/10-novidades-bazar.md` (gerado por `a
 "`Ae(Cortante, 5)` existe, `Ae(Ordinário, 3)` **não existe**. `Ar 3` já dá a redução fixa nos 3
 tipos ordinários de uma vez, por isso é mais forte."
 `Ae(Categoria, N)` = resistência N em **todos** os tipos daquela categoria (Elemental, Biológico,
-Místico). Se for "escolha 1 tipo", o item precisa dizer isso explicitamente.
+Místico).
+
+**D67 — emenda à D63: `Ae(Categoria)` é SEMPRE a categoria inteira.** A saída "escolha 1 tipo"
+deixa de existir como forma — gerava dupla interpretação na mesa. Quem quer 1 tipo escreve
+`Ae(<tipo>, N)` e usa a escada de 1 tipo. As 4 categorias são as da página *Tipos de Dano*:
+`Ordinário` (Cortante · Contundente · Perfurante) · `Elemental` (Fogo · Frio · Elétrico) ·
+`Biológico` (Veneno · Ácido · Psíquico) · `Místico` (Radiante · Trovejante · Necrótico · Força ·
+Primordial). **`Ae(Ordinário, N)` continua não existindo: é `Ar N`.**
+Corrigidos na v26: `Escudo Rúnico de Guerra` (Ae(Ordinário,2) → **Ar 2**) e
+`Anel de Proteção Elemental` (Ae(elemento à escolha,4) → **Ae(Elemental, 4)**).
+Pendente no Notion (do Pedro): a magia **Pele de Pedra** usa `Ae (Ordinário): 2/5/7/10` e a própria
+descrição dela diz "contra dano Ordinário (Cortante, Contundente e Perfurante)" — é **Ar**.
 **Força e Primordial são reservados para Luxária.**
 
 ### Escada de Ae — cada nível de abrangência custa metade
