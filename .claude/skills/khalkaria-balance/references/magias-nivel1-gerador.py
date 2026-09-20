@@ -155,8 +155,9 @@ M = [
  [("Ação","Ação Livre","❎"),("Gatilho","Você vai rolar Iniciativa","❎"),("Alcance","Pessoal","❎"),
   ("Efeito","Role a Iniciativa duas vezes e fique com o melhor resultado","❎")],
  "Você sente o combate um instante antes de ele começar. Iniciativa se rola uma vez por combate, então a "
- "magia se limita sozinha: não há uso repetido nem nada para anotar.",
- ["Compartilhar","Exigir"]),
+ "magia se limita sozinha: não há uso repetido nem nada para anotar. A modulação Compartilhar não "
+ "funciona nesta magia.",
+ ["Exigir"]),
 ]
 
 MODS = {

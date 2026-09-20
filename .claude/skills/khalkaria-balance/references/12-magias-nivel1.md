@@ -310,6 +310,6 @@ Por um instante o Éter te mostra o erro no momento exato em que ele acontece �
 | Alcance | Pessoal | ❎ |
 | Efeito | Role a Iniciativa duas vezes e fique com o melhor resultado | ❎ |
 
-Você sente o combate um instante antes de ele começar. Iniciativa se rola uma vez por combate, então a magia se limita sozinha: não há uso repetido nem nada para anotar.
+Você sente o combate um instante antes de ele começar. Iniciativa se rola uma vez por combate, então a magia se limita sozinha: não há uso repetido nem nada para anotar. A modulação Compartilhar não funciona nesta magia.
 
-`Modulações aplicáveis: Compartilhar (+1) · Exigir (+2)`
+`Modulações aplicáveis: Exigir (+2)`
