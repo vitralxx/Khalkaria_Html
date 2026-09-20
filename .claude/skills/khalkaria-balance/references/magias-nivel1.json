@@ -1,0 +1,684 @@
+[
+  {
+    "escola": "Destruição",
+    "nome": "Fagulha",
+    "stats": [
+      {
+        "campo": "Ação",
+        "valor": "1 Ação",
+        "mod": "❎"
+      },
+      {
+        "campo": "Alcance",
+        "valor": "4,5 / 6 / 9 m",
+        "mod": "✅"
+      },
+      {
+        "campo": "Alvo",
+        "valor": "1 Criatura",
+        "mod": "❎"
+      },
+      {
+        "campo": "Dano",
+        "valor": "1d4 / 2d4 / 3d4 Fogo",
+        "mod": "✅"
+      }
+    ],
+    "descricao": "Você estala os dedos e arremessa uma fagulha. Faça um teste de Místico contra a Evasão do alvo. A fagulha acende objetos inflamáveis desatendidos (tocha, estopa, óleo derramado) sem precisar de teste.",
+    "modulacoes": [
+      "Fragmentar",
+      "Alterar",
+      "Carregar",
+      "Marcar"
+    ]
+  },
+  {
+    "escola": "Destruição",
+    "nome": "Centelha",
+    "stats": [
+      {
+        "campo": "Ação",
+        "valor": "1 Ação",
+        "mod": "❎"
+      },
+      {
+        "campo": "Alcance",
+        "valor": "1,5 m",
+        "mod": "❎"
+      },
+      {
+        "campo": "Alvo",
+        "valor": "1 Criatura",
+        "mod": "❎"
+      },
+      {
+        "campo": "Dano",
+        "valor": "1d4 / 2d4 / 3d4 Elétrico",
+        "mod": "✅"
+      }
+    ],
+    "descricao": "Um arco elétrico salta da sua mão para a criatura mais próxima. Acerta automaticamente e não pode ser bloqueado por cobertura. O alcance não aumenta por intensidade: o arco precisa de ar curto para saltar.",
+    "modulacoes": [
+      "Fragmentar",
+      "Alterar"
+    ]
+  },
+  {
+    "escola": "Destruição",
+    "nome": "Rajada Prismática",
+    "stats": [
+      {
+        "campo": "Ação",
+        "valor": "2 Ações",
+        "mod": "❎"
+      },
+      {
+        "campo": "Alcance",
+        "valor": "Pessoal",
+        "mod": "❎"
+      },
+      {
+        "campo": "Área",
+        "valor": "Cone de 3 / 4,5 / 6 m",
+        "mod": "✅"
+      },
+      {
+        "campo": "Dano",
+        "valor": "1d4 / 2d4 / 3d4 Ordinário (perfurante)",
+        "mod": "✅"
+      },
+      {
+        "campo": "Resistência",
+        "valor": "Reflexos para metade · CD +0 / +2 / +4",
+        "mod": "✅"
+      }
+    ],
+    "descricao": "Você materializa um punhado de cacos místicos e os cospe em cone.",
+    "modulacoes": [
+      "Alterar",
+      "Carregar"
+    ]
+  },
+  {
+    "escola": "Destruição",
+    "nome": "Toque Cáustico",
+    "stats": [
+      {
+        "campo": "Ação",
+        "valor": "1 Ação",
+        "mod": "❎"
+      },
+      {
+        "campo": "Alcance",
+        "valor": "Toque",
+        "mod": "❎"
+      },
+      {
+        "campo": "Alvo",
+        "valor": "1 Criatura",
+        "mod": "❎"
+      },
+      {
+        "campo": "Dano",
+        "valor": "1d6 / 2d6 / 3d6 Ácido",
+        "mod": "✅"
+      }
+    ],
+    "descricao": "A ponta do seu dedo expele um ácido místico que se dissipa ao contato. Faça um teste de Místico contra a Evasão do alvo. Na intensidade transbordante, quando aplicado a um material não-mágico (corda, fechadura, grade fina), corrói em 1 rodada.",
+    "modulacoes": [
+      "Fragmentar",
+      "Alterar",
+      "Carregar",
+      "Marcar"
+    ]
+  },
+  {
+    "escola": "Destruição",
+    "nome": "Presas de Gelo",
+    "stats": [
+      {
+        "campo": "Ação",
+        "valor": "2 Ações",
+        "mod": "❎"
+      },
+      {
+        "campo": "Alcance",
+        "valor": "3 / 4,5 / 6 m",
+        "mod": "✅"
+      },
+      {
+        "campo": "Presas",
+        "valor": "2 / 3 / 4",
+        "mod": "✅"
+      },
+      {
+        "campo": "Alvo",
+        "valor": "1 criatura por presa, à sua escolha",
+        "mod": "❎"
+      },
+      {
+        "campo": "Dano",
+        "valor": "1d4 Frio por presa",
+        "mod": "❎"
+      }
+    ],
+    "descricao": "Presas de gelo se formam no ar e disparam contra os inimigos. Cada presa dispara um ataque independente, teste de Místico contra a Evasão do alvo. A intensidade adiciona mais presas. PMA é aplicada nessa magia.",
+    "modulacoes": [
+      "Fragmentar",
+      "Alterar",
+      "Carregar",
+      "Marcar"
+    ]
+  },
+  {
+    "escola": "Abjuração",
+    "nome": "Verniz do Éter",
+    "stats": [
+      {
+        "campo": "Ação",
+        "valor": "1 Ação",
+        "mod": "❎"
+      },
+      {
+        "campo": "Alcance",
+        "valor": "Pessoal",
+        "mod": "❎"
+      },
+      {
+        "campo": "Efeito",
+        "valor": "Ae 1 / 2 / 3 contra um tipo de dano à escolha",
+        "mod": "✅"
+      },
+      {
+        "campo": "Duração",
+        "valor": "Até o fim do seu próximo turno",
+        "mod": "❎"
+      }
+    ],
+    "descricao": "Você enverniza sua pele com uma camada fina de abjuração afinada a um elemento seguinte: Fogo, Frio, Elétrico, Veneno, Ácido, Psíquico, Radiante, Trovejante ou Necrótico. Escolha o tipo ao conjurar. Não funciona contra dano Ordinário.",
+    "modulacoes": [
+      "Ancorar",
+      "Refletir",
+      "Socializar",
+      "Acelerar"
+    ]
+  },
+  {
+    "escola": "Abjuração",
+    "nome": "Presságio",
+    "stats": [
+      {
+        "campo": "Ação",
+        "valor": "Ação Livre",
+        "mod": "❎"
+      },
+      {
+        "campo": "Alcance",
+        "valor": "Pessoal (apenas em você)",
+        "mod": "❎"
+      },
+      {
+        "campo": "Intensidade",
+        "valor": "Apenas Normal",
+        "mod": "❎"
+      },
+      {
+        "campo": "Efeito",
+        "valor": "A sua próxima rolagem de Atacar neste turno ignora a PMA",
+        "mod": "❎"
+      },
+      {
+        "campo": "Custo",
+        "valor": "Se acertar, você perde Éter igual ao número de dados de dano da arma usada",
+        "mod": "❎"
+      }
+    ],
+    "descricao": "Você antecipa o golpe um instante antes de desferi-lo. A modulação Socializar não funciona nesta magia.",
+    "modulacoes": [
+      "Ancorar"
+    ]
+  },
+  {
+    "escola": "Abjuração",
+    "nome": "Anteparo Etérico",
+    "stats": [
+      {
+        "campo": "Ação",
+        "valor": "1 Ação",
+        "mod": "❎"
+      },
+      {
+        "campo": "Alcance",
+        "valor": "3 / 4,5 / 6 m",
+        "mod": "✅"
+      },
+      {
+        "campo": "Área",
+        "valor": "Painel de 1,5 m × 1,5 m",
+        "mod": "❎"
+      },
+      {
+        "campo": "Saúde do Painel",
+        "valor": "5 / 10 / 15",
+        "mod": "✅"
+      },
+      {
+        "campo": "Duração",
+        "valor": "Até o início do seu próximo turno",
+        "mod": "❎"
+      }
+    ],
+    "descricao": "Você fixa um painel de energia etérica translúcida em um ponto que possa ver. Ele fornece cobertura total a quem estiver atrás dele e some ao ser reduzido a 0 de Saúde.",
+    "modulacoes": [
+      "Ancorar",
+      "Refletir",
+      "Socializar",
+      "Acelerar"
+    ]
+  },
+  {
+    "escola": "Abjuração",
+    "nome": "Rescaldo",
+    "stats": [
+      {
+        "campo": "Ação",
+        "valor": "1 Ação",
+        "mod": "❎"
+      },
+      {
+        "campo": "Alcance",
+        "valor": "Toque / 1,5 / 3 m",
+        "mod": "✅"
+      },
+      {
+        "campo": "Alvo",
+        "valor": "1 Criatura",
+        "mod": "❎"
+      },
+      {
+        "campo": "Efeito",
+        "valor": "Remove Em Chamas · Forçada: também Enjoado ou Desorientado · Transbordante: também Amedrontado",
+        "mod": "✅"
+      }
+    ],
+    "descricao": "Você passa a mão sobre a criatura e a energia abjurante sufoca o que arde nela. Cada conjuração remove uma única condição — a intensidade amplia a lista de escolhas, não a quantidade removida.",
+    "modulacoes": [
+      "Socializar",
+      "Acelerar"
+    ]
+  },
+  {
+    "escola": "Abjuração",
+    "nome": "Vínculo Cósmico",
+    "stats": [
+      {
+        "campo": "Ação",
+        "valor": "1 Ação",
+        "mod": "❎"
+      },
+      {
+        "campo": "Alcance",
+        "valor": "Toque",
+        "mod": "❎"
+      },
+      {
+        "campo": "Alvo",
+        "valor": "1 / 2 / 3 Criatura(s) voluntária(s)",
+        "mod": "✅"
+      },
+      {
+        "campo": "Duração",
+        "valor": "Até o fim do seu próximo turno",
+        "mod": "❎"
+      },
+      {
+        "campo": "Efeito",
+        "valor": "O próximo dano recebido é repartido igualmente entre os conectados",
+        "mod": "❎"
+      }
+    ],
+    "descricao": "Você amarra um fio breve entre você e outra criatura que reparte os ferimentos igualmente entre as criaturas conectadas.",
+    "modulacoes": [
+      "Ancorar",
+      "Refletir",
+      "Socializar",
+      "Acelerar"
+    ]
+  },
+  {
+    "escola": "Alteração",
+    "nome": "Dedo Místico",
+    "stats": [
+      {
+        "campo": "Ação",
+        "valor": "1 Ação",
+        "mod": "❎"
+      },
+      {
+        "campo": "Alcance",
+        "valor": "4,5 / 9 / 13,5 m",
+        "mod": "✅"
+      },
+      {
+        "campo": "Efeito",
+        "valor": "Manipula 1 objeto de até 0,5 kg que você possa ver",
+        "mod": "❎"
+      }
+    ],
+    "descricao": "Você move um objeto leve à distância: puxa uma alavanca, vira uma página, apaga uma vela, empurra uma moeda por baixo de uma porta. Uma manipulação por conjuração. Não pode atacar, desarmar nem tirar item de criatura.",
+    "modulacoes": [
+      "Alcançar",
+      "Contagiar"
+    ]
+  },
+  {
+    "escola": "Alteração",
+    "nome": "Lábia",
+    "stats": [
+      {
+        "campo": "Ação",
+        "valor": "1 Ação",
+        "mod": "❎"
+      },
+      {
+        "campo": "Alcance",
+        "valor": "Pessoal",
+        "mod": "❎"
+      },
+      {
+        "campo": "Efeito",
+        "valor": "+1 / +2 / +3 na próxima rolagem de Convencimento, Intimidação, Enganação, Motivar ou Crime",
+        "mod": "✅"
+      },
+      {
+        "campo": "Duração",
+        "valor": "A próxima rolagem desta cena",
+        "mod": "❎"
+      }
+    ],
+    "descricao": "Escolha a perícia ao conjurar. Quem estiver te observando pode fazer Percepção contra a sua CD para perceber a conjuração; contra quem perceber, o bônus não se aplica.",
+    "modulacoes": [
+      "Inversão",
+      "Contagiar",
+      "Insistir"
+    ]
+  },
+  {
+    "escola": "Alteração",
+    "nome": "Lastro",
+    "stats": [
+      {
+        "campo": "Ação",
+        "valor": "1 Ação",
+        "mod": "❎"
+      },
+      {
+        "campo": "Alcance",
+        "valor": "4,5 / 9 / 13,5 m",
+        "mod": "✅"
+      },
+      {
+        "campo": "Alvo",
+        "valor": "1 Criatura",
+        "mod": "❎"
+      },
+      {
+        "campo": "Duração",
+        "valor": "1 Rodada",
+        "mod": "❎"
+      },
+      {
+        "campo": "Resistência",
+        "valor": "Vontade ou Lento 1 · CD +0 / +2 / +4",
+        "mod": "✅"
+      }
+    ],
+    "descricao": "Você adiciona peso ilusório aos membros de uma criatura. Em caso de falha no teste de Vontade, ela fica Lento 1 até o fim do próximo turno dela.",
+    "modulacoes": [
+      "Inversão",
+      "Alcançar",
+      "Contagiar",
+      "Insistir"
+    ]
+  },
+  {
+    "escola": "Alteração",
+    "nome": "Têmpera",
+    "stats": [
+      {
+        "campo": "Ação",
+        "valor": "1 Ação",
+        "mod": "❎"
+      },
+      {
+        "campo": "Alcance",
+        "valor": "Toque",
+        "mod": "❎"
+      },
+      {
+        "campo": "Alvo",
+        "valor": "1 Arma",
+        "mod": "❎"
+      },
+      {
+        "campo": "Duração",
+        "valor": "1 / 2 / 3 ataque(s)",
+        "mod": "✅"
+      },
+      {
+        "campo": "Efeito",
+        "valor": "O dano da arma muda para um tipo Atípico à escolha",
+        "mod": "❎"
+      }
+    ],
+    "descricao": "Fogo, Frio, Elétrico, Veneno, Ácido, Psíquico, Radiante, Trovejante ou Necrótico. A arma mantém o dado base e o atributo.",
+    "modulacoes": [
+      "Inversão",
+      "Contagiar",
+      "Insistir"
+    ]
+  },
+  {
+    "escola": "Alteração",
+    "nome": "Rosto Emprestado",
+    "stats": [
+      {
+        "campo": "Ação",
+        "valor": "2 Ações",
+        "mod": "❎"
+      },
+      {
+        "campo": "Alcance",
+        "valor": "Toque",
+        "mod": "❎"
+      },
+      {
+        "campo": "Duração",
+        "valor": "10 / 30 / 60 minutos",
+        "mod": "✅"
+      },
+      {
+        "campo": "Efeito",
+        "valor": "Altera um único detalhe da sua aparência",
+        "mod": "❎"
+      }
+    ],
+    "descricao": "Cor dos olhos, uma cicatriz, o timbre da voz, a cor do cabelo, a insígnia da roupa. Não muda altura, rosto inteiro nem porte. Quem interagir pode fazer Percepção contra a sua CD para notar.",
+    "modulacoes": [
+      "Inversão",
+      "Contagiar",
+      "Insistir"
+    ]
+  },
+  {
+    "escola": "Conhecimento",
+    "nome": "Farejar Elemento",
+    "stats": [
+      {
+        "campo": "Ação",
+        "valor": "1 Ação",
+        "mod": "❎"
+      },
+      {
+        "campo": "Alcance",
+        "valor": "Pessoal · raio 4,5 / 9 / 13,5 m",
+        "mod": "✅"
+      },
+      {
+        "campo": "Duração",
+        "valor": "1 / 5 / 10 minutos",
+        "mod": "✅"
+      },
+      {
+        "campo": "Efeito",
+        "valor": "Normal: há Éter no raio · Forçada: qual elemento · Transbordante: a direção",
+        "mod": "✅"
+      }
+    ],
+    "descricao": "Seu faro fica extremamente sensível ao éter, rapidamente você sabe dizer se ele está presente no raio.",
+    "modulacoes": [
+      "Compartilhar",
+      "Exigir",
+      "Projetar"
+    ]
+  },
+  {
+    "escola": "Conhecimento",
+    "nome": "Ponto Cego",
+    "stats": [
+      {
+        "campo": "Ação",
+        "valor": "1 Ação",
+        "mod": "❎"
+      },
+      {
+        "campo": "Alcance",
+        "valor": "4,5 / 9 / 13,5 m",
+        "mod": "✅"
+      },
+      {
+        "campo": "Alvo",
+        "valor": "1 Criatura",
+        "mod": "❎"
+      },
+      {
+        "campo": "Efeito",
+        "valor": "Revela se o alvo tem Ae, resistência ou imunidade na categoria escolhida — sem os valores",
+        "mod": "❎"
+      }
+    ],
+    "descricao": "Você estuda a criatura e misticamente descobre suas principais resistências e imunidades. Escolha Ordinário, Elemental, Biológico ou Místico; o mestre revela se o alvo tem Armadura Específica, resistência e imunidades, mas não o valor exato.",
+    "modulacoes": [
+      "Compartilhar",
+      "Exigir",
+      "Projetar",
+      "Gravar"
+    ]
+  },
+  {
+    "escola": "Conhecimento",
+    "nome": "Sina",
+    "stats": [
+      {
+        "campo": "Ação",
+        "valor": "1 Ação",
+        "mod": "❎"
+      },
+      {
+        "campo": "Alcance",
+        "valor": "9 / 18 / 27 m para marcar",
+        "mod": "✅"
+      },
+      {
+        "campo": "Alvo",
+        "valor": "1 Criatura que você possa ver",
+        "mod": "❎"
+      },
+      {
+        "campo": "Duração",
+        "valor": "10 minutos / 1 hora / 8 horas",
+        "mod": "✅"
+      },
+      {
+        "campo": "Efeito",
+        "valor": "Você sempre sabe a direção e a distância aproximada do alvo, sem limite de alcance",
+        "mod": "❎"
+      }
+    ],
+    "descricao": "Você amarra um fio de atenção à criatura. Ele não se rompe com parede, escuridão nem invisibilidade — mas também não diz o que ela está fazendo, nem permite atacá-la sem vê-la. Você só pode ter uma Sina ativa por vez.",
+    "modulacoes": [
+      "Compartilhar",
+      "Exigir",
+      "Projetar",
+      "Gravar"
+    ]
+  },
+  {
+    "escola": "Conhecimento",
+    "nome": "Vislumbre",
+    "stats": [
+      {
+        "campo": "Ação",
+        "valor": "Reação",
+        "mod": "❎"
+      },
+      {
+        "campo": "Gatilho",
+        "valor": "Você tira 1 na rolagem de um teste de perícia",
+        "mod": "❎"
+      },
+      {
+        "campo": "Alcance",
+        "valor": "Pessoal",
+        "mod": "❎"
+      },
+      {
+        "campo": "Intensidade",
+        "valor": "Apenas Transbordante",
+        "mod": "❎"
+      },
+      {
+        "campo": "Efeito",
+        "valor": "Re-role o teste com desvantagem",
+        "mod": "❎"
+      }
+    ],
+    "descricao": "Por um instante o Éter te mostra o erro no momento exato em que ele acontece — tarde demais para evitá-lo, cedo o bastante para tentar de novo. O que chega é confuso e incompleto, e a segunda tentativa vem torta.",
+    "modulacoes": [
+      "Compartilhar",
+      "Exigir",
+      "Gravar"
+    ]
+  },
+  {
+    "escola": "Conhecimento",
+    "nome": "Presciência",
+    "stats": [
+      {
+        "campo": "Ação",
+        "valor": "Ação Livre",
+        "mod": "❎"
+      },
+      {
+        "campo": "Gatilho",
+        "valor": "Você vai rolar Iniciativa",
+        "mod": "❎"
+      },
+      {
+        "campo": "Alcance",
+        "valor": "Pessoal",
+        "mod": "❎"
+      },
+      {
+        "campo": "Efeito",
+        "valor": "Role a Iniciativa duas vezes e fique com o melhor resultado",
+        "mod": "❎"
+      }
+    ],
+    "descricao": "Você sente o combate um instante antes de ele começar. Iniciativa se rola uma vez por combate, então a magia se limita sozinha: não há uso repetido nem nada para anotar.",
+    "modulacoes": [
+      "Compartilhar",
+      "Exigir"
+    ]
+  }
+]
