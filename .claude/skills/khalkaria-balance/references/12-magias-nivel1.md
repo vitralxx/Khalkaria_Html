@@ -305,11 +305,12 @@ Por um instante o Éter te mostra o erro no momento exato em que ele acontece �
 
 | Característica | Valor | Mod |
 |---|---|---|
-| Ação | Ação Livre | ❎ |
-| Gatilho | Você vai rolar Iniciativa | ❎ |
+| Ação | Reação | ❎ |
+| Gatilho | Você é chamado a fazer um teste de Fortitude, Vontade ou Reflexos | ❎ |
 | Alcance | Pessoal | ❎ |
-| Efeito | Role a Iniciativa duas vezes e fique com o melhor resultado | ❎ |
+| Intensidade | Apenas Normal | ❎ |
+| Efeito | Você faz o teste com Vontade no lugar da perícia chamada | ❎ |
 
-Você sente o combate um instante antes de ele começar. Iniciativa se rola uma vez por combate, então a magia se limita sozinha: não há uso repetido nem nada para anotar. A modulação Compartilhar não funciona nesta magia.
+Você sente a coisa vir antes de ela chegar, e o que te segura não é o corpo: é ter visto. Onde os outros travam os músculos ou saltam para o lado, você simplesmente já sabia. A modulação Compartilhar não funciona nesta magia.
 
-`Modulações aplicáveis: Exigir (+2)`
+`Modulações aplicáveis: Gravar (+3)`
