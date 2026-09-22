@@ -612,7 +612,7 @@
                 </div>
                 <div class="hero-content">
                     <p class="hero-tagline">
-                        "O mundo é uma oficina. Cada planta esconde uma cura, cada mineral guarda uma explosão, cada substância espera ser transformada."
+                        "O mundo é uma oficina. Cada planta esconde uma cura, cada mineral guarda uma explosão, cada substância espera ser transformada. Enquanto outros veem ingredientes, você vê possibilidades infinitas."
                     </p>
                     <p class="hero-desc">
                         Suas mãos carregam cicatrizes de experimentos. Seu avental conta histórias de explosões "controladas". Seu olhar disseca qualquer objeto, calculando o que pode extrair dele. Para você, não existe lixo - apenas matéria-prima esperando propósito.
@@ -642,7 +642,7 @@
             
             <div class="ramos-intro">
                 <p><strong>Você começa treinado em:</strong> Ofício (Alquimia), Conhecimento</p>
-                <p><strong>Escolha (1 + Mod. Inteligência) perícias:</strong> Ofício (Alquimia), Investigação, Sobrevivência, Místico, Medicina</p>
+                <p><strong>Escolha (1 + Mod. Inteligência) perícias:</strong> Ofício (Alquimia), Ofício (Engenharia), Ofício (Ferraria), Místico, Medicina</p>
             </div>
 
             <!-- STATUS -->
@@ -665,11 +665,11 @@
                 </div>
                 <div class="formula-card">
                     <h4>🛡️ Evasão Ativa</h4>
-                    <code>12 + Mod.Des + Prof.Defender</code>
+                    <code>10 + Mod.Des + Prof.Defender</code>
                 </div>
                 <div class="formula-card">
                     <h4>🛡️ Evasão Passiva</h4>
-                    <code>12 + Mod. Destreza</code>
+                    <code>10 + Mod. Destreza</code>
                 </div>
             </div>
 
@@ -744,7 +744,7 @@
                     <ul style="color: var(--text-secondary); margin: 0; padding-left: 1.25rem; font-size: 0.9rem;">
                         <li><strong>Tempo Padrão:</strong> 10 minutos</li>
                         <li><strong>Criação em Lote:</strong> Criando com 10 minutos, pode criar múltiplos itens de uma vez</li>
-                        <li><strong>Durabilidade:</strong> Itens duram até o próximo descanso longo</li>
+                        <li><strong>Durabilidade:</strong> Itens duram até o próximo descanso longo, depois perdem seus efeitos ou apresentam falhas</li>
                         <li><strong>Desmanche:</strong> Pode reverter itens produzidos por você, recuperando reagentes</li>
                         <li><strong>Teste de Alquimia:</strong> Role Ofício (Alquimia) contra o CD do item; falha = perde reagentes</li>
                     </ul>
@@ -757,7 +757,7 @@
             </div>
 
             <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">
-                Toda classe possui técnicas, você pode reatribuí-las livremente ao realizar um descanso longo. <strong>Você possui 3 Técnicas + Nível.</strong>
+                Toda classe possui técnicas, você pode reatribuí-las livremente ao realizar um descanso longo, respeitando o limite de pontos. <strong>Você possui 3 Técnicas + Nível.</strong>
             </p>
 
             <div class="techniques-grid">
@@ -769,7 +769,7 @@
                 <div class="technique-card">
                     <h4>Produção em Massa</h4>
                     <span class="tech-meta">1 Ação • 5 Stamina/Item</span>
-                    <p>Ao criar um item alquímico, pode gastar 5 de Stamina para criar +1 desse mesmo item sem reagentes adicionais.</p>
+                    <p>Ao criar um item alquímico, pode gastar 5 de Stamina para criar +1 desse mesmo item sem reagentes adicionais. Máx. itens adicionais = Nível. Itens criados por Produção em Massa não podem ser vendidos pois são de baixa qualidade.</p>
                 </div>
                 <div class="technique-card">
                     <h4>Alquimia de Combate</h4>
@@ -1032,7 +1032,7 @@
                             </tr>
                             <tr>
                                 <td class="item-name">Antídoto Universal</td>
-                                <td>Remove <em>Envenenado</em>, <em>Enjoado</em> ou doença não-mágica.</td>
+                                <td>Remove <em>Envenenamento</em>, <em>Enjoado</em> ou doença não-mágica.</td>
                                 <td class="reagent-col">3</td>
                                 <td class="cd-col">14</td>
                             </tr>
@@ -1045,13 +1045,13 @@
                             <tr class="category-row"><td colspan="4">Elixires e Óleos</td></tr>
                             <tr>
                                 <td class="item-name">Elixir de Força</td>
-                                <td>+2 testes de Força, +2 dano corpo a corpo. Duração 10 min.</td>
+                                <td>+2 testes de Força como atributo principal, +2 dano corpo a corpo. Duração 10 min.</td>
                                 <td class="reagent-col">3</td>
                                 <td class="cd-col">12</td>
                             </tr>
                             <tr>
                                 <td class="item-name">Elixir de Agilidade</td>
-                                <td>+2 testes de Destreza, +1,5m Movimento. Duração 10 min.</td>
+                                <td>+2 testes de Destreza como atributo principal, +1,5m Movimento. Duração 10 min.</td>
                                 <td class="reagent-col">3</td>
                                 <td class="cd-col">12</td>
                             </tr>
@@ -1069,13 +1069,13 @@
                             </tr>
                             <tr>
                                 <td class="item-name">Óleo Congelante</td>
-                                <td>Arma: próximos 3 ataques +1d6 Frio. Crítico = <em>Lento 1</em> 1 rodada.</td>
+                                <td>Arma: próximos 3 ataques +1d6 Frio. Crítico = <em>Lento 1</em> (máx. 1x/alvo) por 1 rodada. Duração 1 Min.</td>
                                 <td class="reagent-col">2</td>
                                 <td class="cd-col">12</td>
                             </tr>
                             <tr>
                                 <td class="item-name">Óleo Corrosivo</td>
-                                <td>Arma: próximos 3 ataques ignoram 3 Armadura. Duração 1 min.</td>
+                                <td>Arma: próximos 3 ataques ignoram 5 Armadura. Duração 1 min.</td>
                                 <td class="reagent-col">2</td>
                                 <td class="cd-col">12</td>
                             </tr>
@@ -1131,7 +1131,7 @@
                             <tr class="category-row"><td colspan="4">Venenos</td></tr>
                             <tr>
                                 <td class="item-name">Veneno Padrão</td>
-                                <td>3 ataques. +1d6 Biológico. Fortitude ou <em>Envenenado</em> 1 min.</td>
+                                <td>3 ataques. +1d6 Biológico. Fortitude ou <em>Envenenamento</em> 1 min. Duração 1 min.</td>
                                 <td class="reagent-col">3</td>
                                 <td class="cd-col">12</td>
                             </tr>
@@ -1211,7 +1211,7 @@
                             </tr>
                             <tr>
                                 <td class="item-name">Adrenalina de Campo</td>
-                                <td>Criatura inconsciente acorda com metade da Saúde máxima instantaneamente. Fica Exausto 1 após 1 hora.</td>
+                                <td>Criatura inconsciente acorda com metade da Saúde máxima instantaneamente. Recebe Exaustão 1 após 1 hora.</td>
                                 <td class="reagent-col">4</td>
                                 <td class="cd-col">16</td>
                             </tr>
@@ -1236,7 +1236,7 @@
                             </tr>
                             <tr>
                                 <td class="item-name">Extrato de Velocidade</td>
-                                <td>+1 Ação por turno. Duração 3 turnos. Exausto 1 após efeito.</td>
+                                <td>+1 Ação por turno. Duração 3 turnos. Exaustão 1 após efeito.</td>
                                 <td class="reagent-col">6</td>
                                 <td class="cd-col">18</td>
                             </tr>
@@ -1273,7 +1273,7 @@
                             </tr>
                             <tr>
                                 <td class="item-name">Tintura Fantasma</td>
-                                <td>Translúcido. +4 Furtividade. Atacar cancela. Duração 1 min.</td>
+                                <td>Translúcido, recebe metade de todo dano. +4 Furtividade. Atacar cancela. Duração 1 min.</td>
                                 <td class="reagent-col">4</td>
                                 <td class="cd-col">16</td>
                             </tr>
@@ -1426,7 +1426,7 @@
                             <tr class="category-row"><td colspan="4">Utilidades</td></tr>
                             <tr>
                                 <td class="item-name">Essência Etérea</td>
-                                <td>Torna-se Incorpóreo por 1 minuto. Atravessa paredes. Não pode interagir fisicamente.</td>
+                                <td>Torna-se Incorpóreo por 1 minuto. Atravessa paredes finas. Não pode interagir fisicamente.</td>
                                 <td class="reagent-col">8</td>
                                 <td class="cd-col">20</td>
                             </tr>
@@ -1438,19 +1438,19 @@
                             </tr>
                             <tr>
                                 <td class="item-name">Bomba Temporal</td>
-                                <td>Área 6m. Criaturas afetadas: <em>Lentidão 2</em> (1 Ação/turno, -6 m movimento, sem reação, -4 Reflexo) por 3 rodadas. Vontade nega.</td>
+                                <td>Área 6m. Criaturas afetadas: <em>Lento 2</em> (-2 Ação/turno, -6 m movimento, sem reação, -4 Reflexo) por 3 rodadas. Vontade nega.</td>
                                 <td class="reagent-col">12</td>
                                 <td class="cd-col">22</td>
                             </tr>
                             <tr>
                                 <td class="item-name">Extrato de Clarividência</td>
                                 <td>Vê e ouve local que você conhece a até 1km por 10 min.</td>
-                                <td class="reagent-col">6</td>
+                                <td class="reagent-col">8</td>
                                 <td class="cd-col">20</td>
                             </tr>
                             <tr>
                                 <td class="item-name">Tinta do Destino</td>
-                                <td>Escreva um evento simples. 50% chance de acontecer nas próximas 24h. Mestre rola os dados.</td>
+                                <td>Escreva um evento simples. 50% chance de acontecer nas próximas 24h. Mestre rola os dados. O evento não pode incluir diretamente a morte de uma criatura ou fenômenos/eventos maiores do que a queda de uma árvore média, por exemplo.</td>
                                 <td class="reagent-col">10</td>
                                 <td class="cd-col">22</td>
                             </tr>
@@ -1476,7 +1476,7 @@
                             <tr>
                                 <td class="item-name">Amnésia Líquida</td>
                                 <td>Ingerido. Vontade ou perde memórias das últimas 24h.</td>
-                                <td class="reagent-col">6</td>
+                                <td class="reagent-col">8</td>
                                 <td class="cd-col">20</td>
                             </tr>
                         </tbody>
@@ -1503,20 +1503,20 @@
                                 <td class="cd-col">24</td>
                             </tr>
                             <tr>
-                                <td class="item-name">Bomba do Vazio</td>
+                                <td class="item-name">Núcleo Abissal</td>
                                 <td>10d10 Força em 9m raio. Reflexos ou Morte Instantânea no centro da bomba. Tudo é empurrado <strong>para o centro</strong> e comprimido. Requer <em>Grilhões do Abismo</em>.</td>
                                 <td class="reagent-col">15</td>
                                 <td class="cd-col">24</td>
                             </tr>
                             <tr>
                                 <td class="item-name">Soro do Homúnculo</td>
-                                <td>Ao injetar transforma em servo alquímico (CR 2) leal pra sempre. Requer <em>Sangue Primordial</em>.</td>
+                                <td>Ao injetar transforma uma criatura em servo alquímico leal pra sempre. Requer <em>Sangue Primordial</em>.</td>
                                 <td class="reagent-col">15</td>
                                 <td class="cd-col">24</td>
                             </tr>
                             <tr>
-                                <td class="item-name">Lágrimas do Tempo</td>
-                                <td>Reverte objeto/criatura/local ao estado de até 1000 anos atrás. 1 uso. Requer <em>Areia Temporal</em>.</td>
+                                <td class="item-name">Lágrima do Tempo</td>
+                                <td>Reverte objeto/criatura/local ao estado de até 1000 anos atrás. 1 uso. Requer <em>Lágrima de Velúria</em>.</td>
                                 <td class="reagent-col">20</td>
                                 <td class="cd-col">26</td>
                             </tr>
@@ -1540,17 +1540,17 @@
                 <div class="ramo-card artificer">
                     <h3 id="ramos-ramo-do-artificer">⚙️ Ramo do Artificer</h3>
                     <div class="subtitle">Utilidade e Infusão Mágica</div>
-                    <p>Você cruzou a fronteira entre alquimia e arcanismo. Éter não é apenas combustível - é um ingrediente. Suas criações brilham com runas, seus itens pensam, suas invenções desafiam as leis naturais.</p>
+                    <p>Você cruzou a fronteira entre alquimia e místicidade. Onde outros veem limite, você vê oportunidade. Éter não é apenas combustível - é um ingrediente. Suas criações brilham com runas, seus itens pensam, suas invenções desafiam as leis naturais. Você não é apenas um alquimista; é um inventor que dobra a realidade.</p>
                 </div>
                 <div class="ramo-card bombardeiro">
                     <h3 id="ramos-ramo-do-bombardeiro">💣 Ramo do Bombardeiro</h3>
                     <div class="subtitle">Combate e Toxinas</div>
-                    <p>Você dominou a arte da destruição química. Seus frascos brilham com cores que prometem dor. Seu sorriso aparece quando algo explode. Você cria para um único propósito: aniquilação eficiente.</p>
+                    <p>Você dominou a arte da destruição química. Seus frascos brilham com cores que prometem dor. Seu sorriso aparece quando algo explode. Enquanto outros alquimistas criam para curar ou construir, você cria para um único propósito: aniquilação eficiente.</p>
                 </div>
                 <div class="ramo-card boticario">
                     <h3 id="ramos-ramo-do-boticario">💊 Ramo do Boticário</h3>
                     <div class="subtitle">Cura e Abjuração</div>
-                    <p>Você é a linha entre a vida e a morte do seu grupo. Suas poções fecham feridas que magia não alcança, seus elixires transformam covardes em heróis. Onde o Bombardeiro traz destruição, você traz esperança.</p>
+                    <p>Você é a linha entre a vida e a morte das criaturas. Suas poções fecham feridas que magia não alcança, seus elixires transformam covardes em heróis, seus tônicos enfraquecem gigantes. Você traz esperança - e ocasionalmente, a ruína silenciosa dos inimigos através de debilitações precisas.</p>
                 </div>
             </div>
 
@@ -1619,7 +1619,7 @@
                     <div class="quote">"Minhas invenções, extremamente calibradas."</div>
                 </div>
                 <div class="marca-body">
-                    <p>Você tem um certo afeto com cada invenção sua… afeto até demais.</p>
+                    <p>Você é extremamente metódico e organizado, seus experimentos são friamente calculados.</p>
                     <div class="marca-effect">
                         <p><strong>1x/descanso longo:</strong> Você pode causar o <strong>dano máximo</strong> de um item alquímico que você criou e arremessou.</p>
                     </div>
@@ -1643,7 +1643,7 @@
                         <p>Para cada 5 criaturas que você retirou a condição <em>Morrendo</em>, ganha <strong>+1 permanente em Medicina</strong>. Ao chegar em +5, essa habilidade fica supérflua.</p>
                     </div>
                     <div class="marca-effect">
-                        <p>Ao curar uma criatura que estava com 0 de Saúde e remover a condição <em>Morrendo</em>, ela também recupera <strong>1d4 de Stamina</strong>.</p>
+                        <p>Ao curar uma criatura que estava com 0 de Saúde e remover a condição <em>Morrendo</em>, ela e você também recuperam <strong>2d6 de Stamina</strong>.</p>
                     </div>
                 </div>
             </div>
@@ -1700,8 +1700,9 @@
                             <ul>
                                 <li><strong>Tempo:</strong> 10 min (item alquímico)</li>
                                 <li><strong>Custo:</strong> (Nível da Magia × 2) Reagentes</li>
-                                <li><strong>Magias:</strong> 1 + Mod.Int no nível 1, +1/nível</li>
+                                <li><strong>Magias:</strong> 1 + Mod.Int (mín. 1) do seu nível-1 ou menor, +1 magia/nível depois disso</li>
                                 <li><strong>CD:</strong> 10 + (2 × Nível da Magia)</li>
+                                <li><strong>Usar Cartucho:</strong> Qualquer criatura pode conjurar a magia infundida, usando seus próprios atributos como base dos CDs e ataques, respeitando o custo de ações da magia</li>
                                 <li><strong>Limite:</strong> (Nível + Mod.Int) cartuchos</li>
                             </ul>
                         </div>
@@ -1719,7 +1720,8 @@
                                 <span><strong>Mov 9m</strong></span>
                                 <span><strong>2 Ações</strong></span>
                             </div>
-                            <p>O constructo pode: Atacar (1d6+Mod.Int), Carregar (5 Equip./20 Bug.), Espionar (100m telepático), Entregar itens (reação), Detonar (2d6 Elemental em 3m).</p>
+                            <p>O constructo pode voar ou escalar. Pode: Atacar (1d20+Mod.Int, Dano 1d6+Mod.Int), Carregar (5 Equip./20 Bug.), Espionar (100m telepático), Entregar itens (reação), Detonar (2d6 Elemental em 3m).</p>
+                            <p>Você pode ter apenas 1 constructo por vez. Ao ser destruído, pode saquear 2 reagentes dele.</p>
                         </div>
                     </div>
                 </div>
@@ -1836,7 +1838,7 @@
                             <span class="cost">3 Ações, 5 Éter + 6 Reagentes</span>
                         </div>
                         <div class="tech-card-body">
-                            <p>Você cria um constructo aprimorado (Pequeno) que dura até o próximo descanso longo.</p>
+                            <p>Você cria um constructo aprimorado (Pequeno, pode voar ou escalar) que dura até o próximo descanso longo ou até ser destruído. Você só pode ter 1 constructo ativo por vez. Ao ser destruído, pode saquear 3 reagentes dele.</p>
                             <div class="constructo-stats">
                                 <span><strong>25 HP</strong></span>
                                 <span><strong>Evasão 14</strong></span>
@@ -1844,7 +1846,7 @@
                                 <span><strong>Mov 9m</strong></span>
                                 <span><strong>3 Ações</strong></span>
                             </div>
-                            <p>O constructo pode: Atacar (2d6+Mod.Int Elemental), Escudo (+2 Defender aliado), Carregar (10 Equip./30 Bug.), Reparar (1d8 HP a si, 2x/curto), Espionar (200m), Detonar (4d6 Elemental em 4,5m).</p>
+                            <p>O constructo pode: Atacar (1d20+Mod.Int + seu treinamento em Atacar, Dano 2d6+Mod.Int Elemental — escolha o tipo ao criar), Escudo (+2 Defender aliado), Carregar (10 Equip./30 Bug.), Reparar (1d8 HP a si, 2x/curto), Espionar (200m), Detonar (4d6 Elemental em 4,5m).</p>
                         </div>
                     </div>
                 </div>
@@ -1939,7 +1941,7 @@
                         </div>
                         <p><strong>Habilidades:</strong></p>
                         <ul>
-                            <li><strong>Esmagar</strong> (2 Ações): alcance 3m, 4d10+Mod.Int Contundente. Fortitude ou <em>Caído</em>.</li>
+                            <li><strong>Esmagar</strong> (2 Ações): alcance 3m, 4d10+Mod.Int Contundente. Alvos médios ou menores: Fortitude ou <em>Caído</em>.</li>
                             <li><strong>Rajada Arcana</strong> (1 Ação): linha 12m, 3d8 Elemental, Reflexo p/ metade.</li>
                             <li><strong>Escudo</strong> (1 Ação): aliados em 4,5m +3 Defender até próximo turno.</li>
                             <li><strong>Investida</strong> (3 Ações): avança 12m em linha. Fortitude ou 3d10 Contundente + <em>Caído</em> + empurrado 3m.</li>
@@ -1970,7 +1972,15 @@
                             <li>Todas as criaturas sofrem <strong>8d6 de dano</strong> (escolha 2 tipos: Fogo, Frio, Elétrico, Ácido ou Veneno).</li>
                             <li>Reflexos para metade do dano.</li>
                             <li>Criaturas que falharem ficam <em>Cegas</em>, <em>Surdas</em> e <em>Caídas</em> por 1 rodada.</li>
-                            <li>A área fica coberta de substâncias voláteis por 1 minuto (2d6 dano + efeitos por tipo).</li>
+                            <li>A área fica coberta de substâncias voláteis por 1 minuto com as substâncias utilizadas. Criaturas que entram ou começam o turno na área:
+                            <ul>
+                                <li><strong>Fogo:</strong> Sofrem 2d6 Fogo e se falharem em Reflexos ficam <em>em chamas</em>.</li>
+                                <li><strong>Frio:</strong> Sofrem 2d6 Frio e se falharem em Movimento ficam <em>Lento</em>.</li>
+                                <li><strong>Elétrico:</strong> Sofrem 2d6 Elétrico e se falharem em Fortitude ficam <em>Atordoados</em>.</li>
+                                <li><strong>Ácido:</strong> Sofrem 2d6 Ácido e se falharem em Fortitude ficam <em>Cegos</em>.</li>
+                                <li><strong>Veneno:</strong> Sofrem 2d6 Veneno e se falharem em Fortitude recebem <em>Envenenamento</em>.</li>
+                            </ul>
+                        </li>
                         </ul>
                         <div class="ultimate-cost">
                             <h5>💀 O Custo</h5>

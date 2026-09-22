@@ -45,7 +45,7 @@
             "effect"
           ],
           "icon": "🌍",
-          "effect": "+10 Stamina máxima permanente"
+          "effect": "+2d6+8 Stamina máxima permanente"
         },
         {
           "id": "limiar-poco-arcano",
@@ -56,7 +56,7 @@
             "effect"
           ],
           "icon": "🌍",
-          "effect": "+10 Éter máximo permanente"
+          "effect": "+2d6+8 Éter máximo permanente"
         },
         {
           "id": "limiar-sangue-espesso",
@@ -120,7 +120,7 @@
           ],
           "icon": "💪",
           "req": "FOR 16+",
-          "effect": "Seus ataques corpo a corpo críticos reduzem 1 de Armadura do inimigo"
+          "effect": "Seus ataques corpo a corpo críticos reduzem 1 de Armadura do inimigo até o fim do combate"
         },
         {
           "id": "limiar-pontos-vitais",
@@ -137,7 +137,7 @@
         },
         {
           "id": "limiar-garras-de-aco",
-          "nome": "Garras de Aço",
+          "nome": "Garras de Éter",
           "ordem": [
             "icon",
             "req",
@@ -146,7 +146,7 @@
           ],
           "icon": "💪",
           "req": "FOR 16+",
-          "effect": "Seus ataques desarmados causam 1d12 + FOR de dano (ao invés de 1d4)"
+          "effect": "Seus ataques desarmados causam 1d10 + SAB de dano Cortante (ao invés de 1d4)"
         },
         {
           "id": "limiar-coluna-de-tita",
@@ -172,7 +172,7 @@
           ],
           "icon": "💪",
           "req": "FOR 16+",
-          "effect": "Ao reduzir criatura a 0 Saúde corpo a corpo, seu próximo ataque neste turno causa +2d6 de dano"
+          "effect": "Ao reduzir criatura a 0 Saúde corpo a corpo, seu próximo ataque neste turno causa +1d10 de dano de Força"
         },
         {
           "id": "limiar-arremesso-brutal",
@@ -211,7 +211,7 @@
           ],
           "icon": "💪",
           "req": "FOR 16+",
-          "effect": "Ao empurrar com sucesso, empurre +4,5m adicionais e cause 3d6 de dano caso o alvo colida com qualquer obstáculo"
+          "effect": "Ao empurrar com sucesso, empurre +4,5m adicionais e cause 3d6 de dano de Força caso o alvo colida com qualquer obstáculo"
         },
         {
           "id": "limiar-limiar-da-morte",
@@ -224,7 +224,7 @@
           ],
           "icon": "💪",
           "req": "FOR 16+",
-          "effect": "Enquanto abaixo de 50% Saúde, +3 em Atacar e Defender corpo a corpo"
+          "effect": "Como ação livre, nesta rodada você fica vulnerável a dano ordinário, porém causa +2d8 de dano de Força em todos os ataques."
         },
         {
           "id": "limiar-presenca-aterradora",
@@ -237,7 +237,7 @@
           ],
           "icon": "💪",
           "req": "FOR 16+",
-          "effect": "Aumente 2 níveis de treinamento em Intimidação. Criaturas Médias ou menores têm -3 em Vontade contra sua intimidação"
+          "effect": "Aumente 2 níveis de treinamento em Intimidação. Criaturas menores que você têm desvantagem em Vontade contra sua intimidação"
         },
         {
           "id": "limiar-quebra-escudos",
@@ -294,7 +294,7 @@
           ],
           "icon": "🎯",
           "req": "DES 16+",
-          "effect": "1x/combate: Force um ataque que te acertaria a causar metade do dano (pode ser declarado após a rolagem)"
+          "effect": "1x/Curto: Force um ataque que te acertaria a causar metade do dano (pode ser declarado após a rolagem)"
         },
         {
           "id": "limiar-passos-do-vento",
@@ -320,7 +320,7 @@
           ],
           "icon": "🎯",
           "req": "DES 16+",
-          "effect": "Os primeiros golpes são apenas para distrair. Após realizar um ataque, adicione +2 ao seu Atacar pelo resto dessa rodada (acumulativo, máx. +6)"
+          "effect": "Os primeiros golpes são apenas para distrair. Ao errar um golpe contra um alvo pode gastar 5 Stamina como ação livre para adicionar Exposto ao alvo."
         },
         {
           "id": "limiar-artilharia",
@@ -346,7 +346,7 @@
           ],
           "icon": "🎯",
           "req": "DES 16+",
-          "effect": "Aumente 2 níveis de treinamento em Crime. Você pode furtar objetos de alvos em combate como ação livre, desde que não estejam os utilizando. Adicionalmente, ao estar em combate, você sempre tem vantagem em Crime."
+          "effect": "Aumente 2 níveis de treinamento em Crime. Você pode tentar furtar objetos de alvos em combate como 1 ação, desde que não estejam os utilizando. Adicionalmente, ao estar em combate, você sempre tem vantagem em Crime."
         },
         {
           "id": "limiar-rapino",
@@ -398,7 +398,7 @@
           ],
           "icon": "🎯",
           "req": "DES 16+",
-          "effect": "Ao acertar dois ataques a distância na mesma criatura, você pode realizar outro como ação livre na mesma criatura."
+          "effect": "Ao acertar dois ataques a distância na mesma criatura, você pode gastar 5 de stamina para realizar outro como ação livre na mesma criatura."
         },
         {
           "id": "limiar-esquiva-abissal",
@@ -429,7 +429,7 @@
           ],
           "icon": "🛡️",
           "req": "CON 16+",
-          "effect": "Reduza todo dano recebido em 5 (mínimo 1)"
+          "effect": "Reduza todo dano recebido em 5 (mínimo 1); Ae(5, todos) Exceto: Força e Primordial"
         },
         {
           "id": "limiar-coracao-imortal",
@@ -442,7 +442,7 @@
           ],
           "icon": "🛡️",
           "req": "CON 16+",
-          "effect": "1x/campanha: Ao ser reduzido a 0 Saúde, volte com 50% da Saúde máxima automaticamente"
+          "effect": "1x/Semana: Ao ser reduzido a 0 Saúde, volte com 50% da Saúde máxima automaticamente"
         },
         {
           "id": "limiar-sangue-regenerador",
@@ -455,7 +455,7 @@
           ],
           "icon": "🛡️",
           "req": "CON 16+",
-          "effect": "Recupere 3 Saúde por rodada durante combate (no início do seu turno)"
+          "effect": "Recupere Mod. Con Saúde por rodada durante combate (no início do seu turno)"
         },
         {
           "id": "limiar-pulmoes-titanicos",
@@ -481,7 +481,7 @@
           ],
           "icon": "🛡️",
           "req": "CON 16+",
-          "effect": "Aumente 2 níveis de treinamento em Fortitude. Você pode reagir a ataques eminentes com uma nova reação, Aceitar a Dor: role um teste de Fortitude, caso o dano seja inferior ao seu teste, ignore o dano."
+          "effect": "Aumente 2 níveis de treinamento em Fortitude. Você pode reagir a ataques eminentes com uma nova reação, Aceitar a Dor: role um teste de Fortitude, caso o dano (Antes de quaisquer resistências) seja inferior ao seu teste, ignore o dano."
         },
         {
           "id": "limiar-resistencia-arcana",
@@ -494,7 +494,7 @@
           ],
           "icon": "🛡️",
           "req": "CON 16+",
-          "effect": "Escolha 1 tipo de dano atípico (Fogo, Gelo, Ácido, Elétrico, Trovejante, Veneno, Necrótico, Psíquico, Radiante). Você tem Resistência a ele. Adicionalmente, ganhe 2 de armadura específica em todos os outros tipos de dano."
+          "effect": "Escolha 1 tipo de dano atípico (Fogo, Frio, Ácido, Elétrico, Trovejante, Veneno, Necrótico, Psíquico, Radiante). Você tem Resistência a ele. Adicionalmente, ganhe 2 de armadura específica em todos os outros tipos de dano. Exceto: Força e Primordial"
         },
         {
           "id": "limiar-cicatrizacao-acelerada",
@@ -629,7 +629,7 @@
           ],
           "icon": "📚",
           "req": "INT 16+",
-          "effect": "Aumente 2 níveis de treinamento em Motivar. Adicionalmente, 1x/rodada (1 ação): Um aliado em 9m ataca imediatamente como reação com +2 em Atacar."
+          "effect": "Aumente 2 níveis de treinamento em Motivar. Você pode usar a perícia motivar no lugar de Convencer. Adicionalmente, 1x/rodada (1 ação): Um aliado em 9m ataca imediatamente como reação com +2 em Atacar."
         },
         {
           "id": "limiar-contra-magica-instintiva",
@@ -642,7 +642,7 @@
           ],
           "icon": "📚",
           "req": "INT 16+",
-          "effect": "Ao ver magia sendo castada, role Conhecimento CD 15. Sucesso: você sabe exatamente o que faz E pode gastar sua reação para dar +5 em Resistência ao alvo dela. Adicionalmente, aumente sua CD de classe em +2"
+          "effect": "Ao ver magia sendo castada, role Conhecimento CD 15. Sucesso: você sabe exatamente o que faz E pode gastar sua reação para dar +5 em Resistência ao alvo dela. Adicionalmente, aumente sua CD de classe em +1"
         },
         {
           "id": "limiar-decifrador-universal",
@@ -655,7 +655,7 @@
           ],
           "icon": "📚",
           "req": "INT 16+",
-          "effect": "Aumente 2 níveis de treinamento em Investigação. Você pode ler QUALQUER idioma escrito após 1 minuto de estudo"
+          "effect": "Aumente 2 níveis de treinamento em Investigação. Você pode ler QUALQUER idioma escrito após 1 minuto de estudo. Adicionalmente, Você pode fazer testes de Investigação sobre qualquer tópico."
         },
         {
           "id": "limiar-memoria-absoluta",
@@ -707,7 +707,7 @@
           ],
           "icon": "📚",
           "req": "INT 16+",
-          "effect": "Ao estar com 100% de éter, você ganha +1 nível de treinamento em todas as perícias. Adicionalmente, ao estar com 100% de éter, stamina e saúde você tem vantagem em todas as perícias."
+          "effect": "Ao estar com 100% de 2 Status você tem +2 em todas as perícias."
         },
         {
           "id": "limiar-estudo-intenso",
@@ -733,7 +733,7 @@
           ],
           "icon": "📚",
           "req": "INT 16+",
-          "effect": "Você acumula dano a cada combate em que você não perde saúde. +1 de dano de Força por combate sem perder saúde. Ao perder qualquer saúde, você perde 5 pontos de dano acumulados nessa carta instantaneamente."
+          "effect": "Você acumula dano a cada combate em que você não perde saúde. +1 de dano de Força por combate sem perder saúde. Ao perder qualquer saúde, você perde 5 pontos de dano acumulados nessa carta instantaneamente e recebe +5 de dano Primordial."
         }
       ]
     },
@@ -807,7 +807,7 @@
         },
         {
           "id": "limiar-comunhao-primordial",
-          "nome": "Comunhão Primordial",
+          "nome": "Comunhão",
           "ordem": [
             "icon",
             "req",
@@ -829,7 +829,7 @@
           ],
           "icon": "🔮",
           "req": "SAB 16+",
-          "effect": "1x/combate (reação): Ao você ou aliado em 9m ser alvo de ataque, você pode fazer o atacante rerolar com desvantagem"
+          "effect": "1x/Descanso Longo: Ao você ou aliado em 9m ser alvo de ataque, como ação livre pode fazer o atacante rerolar com desvantagem"
         },
         {
           "id": "limiar-guardiao-da-natureza",
@@ -987,7 +987,7 @@
             "name"
           ],
           "icon": "⭐",
-          "req": "FOR 20+, SAB 14+"
+          "req": "DES 22+, SAB 16+"
         },
         {
           "id": "limiar-assassino-fantasma",
@@ -1097,7 +1097,7 @@
             "name"
           ],
           "icon": "⭐",
-          "req": "INT 22+, DES 16+ (Teurgo apenas)"
+          "req": "INT 22+, DES 16+"
         },
         {
           "id": "limiar-o-mestre",
@@ -1141,7 +1141,7 @@
             "name"
           ],
           "icon": "⭐",
-          "req": "INT 18+, SAB 18+"
+          "req": "SAB 22+"
         },
         {
           "id": "limiar-contra-teurgo-supremo",
@@ -1174,7 +1174,7 @@
             "name"
           ],
           "icon": "⭐",
-          "req": "INT 22+ (Teurgo apenas)"
+          "req": "INT 22+, SAB 18+, DES 16+"
         },
         {
           "id": "limiar-grande-eter",
@@ -1266,14 +1266,14 @@
         },
         {
           "id": "limiar-onisciencia-de-kha",
-          "nome": "Onisciência de Kha",
+          "nome": "Onisciência de Mundarak",
           "ordem": [
             "icon",
             "req",
             "name"
           ],
           "icon": "⭐",
-          "req": "INT 18+, SAB 18+, DES 16+"
+          "req": "INT 20+, SAB 20+, DES 16+"
         },
         {
           "id": "limiar-tanque-absoluto",
@@ -1718,7 +1718,7 @@
         "tipo": "gain",
         "iconAttrs": "",
         "iconeSvg": "<svg viewBox=\"0 0 24 24\"><path d=\"M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z\"/></svg>",
-        "desc": "Você não nasceu para negociações. +100% Sins gastos ao comprar itens. Deve comprar seus próprios itens."
+        "desc": "Você não nasceu para negociações. +100% Sins gastos ao comprar itens ou equipamentos. OBS: Você deve comprar seus próprios itens, não pode pedir para um companheiro comprar por você."
       },
       {
         "id": "abismo-burro",
@@ -1808,7 +1808,7 @@
         "tipo": "spend",
         "iconAttrs": "",
         "iconeSvg": "<svg viewBox=\"0 0 24 24\"><path d=\"M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z\"/></svg>",
-        "desc": "Sinta a presença de criaturas vivas em 30m através de paredes. Sempre sabe se um local está completamente saqueado."
+        "desc": "Você pode sentir a presença de criaturas vivas em 30m através de paredes e obstáculos. Adicionalmente, você sempre sabe se um local explorável está completamente saqueado ou se ainda existem camaras não exploradas."
       },
       {
         "id": "abismo-assustador",
@@ -1819,7 +1819,7 @@
         "tipo": "spend",
         "iconAttrs": "",
         "iconeSvg": "<svg viewBox=\"0 0 24 24\"><path d=\"M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-4-8c.79 0 1.5-.71 1.5-1.5S8.79 9 8 9s-1.5.71-1.5 1.5S7.21 11 8 11zm8 0c.79 0 1.5-.71 1.5-1.5S16.79 9 16 9s-1.5.71-1.5 1.5.71 1.5 1.5 1.5zm-4 4c2.21 0 4-1.79 4-4h-8c0 2.21 1.79 4 4 4z\"/></svg>",
-        "desc": "Ao ser atacado, o inimigo deve suceder Vontade contra seu CD ou fica <em>Amedrontado</em> por 1 rodada."
+        "desc": "Ao ser atacado, o inimigo deve suceder um teste de Vontade contra seu CD ou fica <em>Amedrontado</em> por 1 rodada. A criatura fica imune ao suceder ou após o efeito."
       },
       {
         "id": "abismo-saciado",
@@ -1907,7 +1907,7 @@
         "tipo": "spend",
         "iconAttrs": "",
         "iconeSvg": "<svg viewBox=\"0 0 24 24\"><path d=\"M7 2v11h3v9l7-12h-4l4-8z\"/></svg>",
-        "desc": "Ao matar uma criatura mágica, absorva sua essência (1 ação). Ganhe acesso a 1 magia que ela conhecia por 1 dia. Conjure sem foco designado."
+        "desc": "Ao matar uma criatura mágica ou conjuradora, você pode absorver sua essência (1 ação). Ganhe acesso a 1 magia que ela conhecia por 1 dia ou até ser utilizada pela primeira vez. Você pode conjurar essa magia sem um foco designado."
       },
       {
         "id": "abismo-dom-da-ressurreicao",
@@ -1951,7 +1951,7 @@
         "tipo": "spend",
         "iconAttrs": "style=\"background: linear-gradient(135deg, #92400e, #4a1942);\"",
         "iconeSvg": "<svg viewBox=\"0 0 24 24\"><path d=\"M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z\"/></svg>",
-        "desc": "Você é extremamente ágil e perspicaz. Nasceu para se aventurar. Possui +1 Ação por rodada. Somando 4 ações totais."
+        "desc": "Você é extremamente ágil e perspicaz. Nasceu para se aventurar. Possui +1 Ação por rodada."
       },
       {
         "id": "abismo-mente-fragmentada",
@@ -1973,7 +1973,7 @@
         "tipo": "spend",
         "iconAttrs": "style=\"background: linear-gradient(135deg, #92400e, #4a1942);\"",
         "iconeSvg": "<svg viewBox=\"0 0 24 24\"><path d=\"M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z\"/></svg>",
-        "desc": "Sua alma é parcialmente vazia. Ganhe resistência a todos os tipos de dano (exceto Radiante e Primordial), imunidade a condições físicas."
+        "desc": "Sua alma é parcialmente vazia e não é inteiramente viva como a de outros. Ganhe resistência a todos os tipos de dano (exceto Radiante e Primordial), imunidade a condições físicas (Embriagado, Sangramento, Lento, Atordoado, Paralisado, Desorientado, Enjoado, Envenenamento)."
       },
       {
         "id": "abismo-esquiva-lendaria",
@@ -1995,7 +1995,7 @@
         "tipo": "spend",
         "iconAttrs": "style=\"background: linear-gradient(135deg, #8b0000, #4a1942);\"",
         "iconeSvg": "<svg viewBox=\"0 0 24 24\"><path d=\"M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z\"/></svg>",
-        "desc": "Você tem um clone quase exatamente igual que compartilha pensamentos. Pode teletransportar para ele como 3 ações. Ele possui faíscas de independência."
+        "desc": "Você tem um clone quase exatamente igual a você que compartilha pensamentos, sensações, personalidade, tecnicas e conhecimento. Você pode teletransportar como 3 ações para ele a qualquer momento. E pode controlá-lo livremente. Ele é extremamente igual a você, porem possui faíscas de independência e individualidade."
       },
       {
         "id": "abismo-desejo-sombrio",
@@ -2006,7 +2006,7 @@
         "tipo": "spend",
         "iconAttrs": "style=\"background: linear-gradient(135deg, #8b0000, #4a1942);\"",
         "iconeSvg": "<svg viewBox=\"0 0 24 24\"><path d=\"M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z\"/></svg>",
-        "desc": "Conjure qualquer magia de nível 1-5 (mesmo que não saiba) ou altere um evento recente retroativamente. O Mestre decide as consequências. <strong>1x/Campanha.</strong>"
+        "desc": "Você pode conjurar qualquer magia de nível 1-5 (mesmo que não saiba) ou alterar um evento recente (até 1 minuto atrás) retroativamente. O Mestre decide as consequências. Usar isso pode atrair atenção indesejada. <strong>1x/Campanha.</strong>"
       }
     ]
   }

@@ -31,7 +31,7 @@
       "tipo": "variant-card",
       "opentag": "<div class=\"variant-card\">",
       "nome": "Krichama",
-      "corpo": "\n                    <h4>Krichama</h4>\n                    <p>Os mestres ferreiros e armeiros de Khalkaria. Suas forjas ardem há séculos ininterruptos, alimentadas por fogo alquímico e carvão primordial.</p>\n                    <ul>\n                        <li>Treinado em Ofício (Ferraria)</li>\n                        <li>Você tem Ae 5 a dano de Fogo.</li>\n                        <li>Durante um descanso longo, você pode consertar armas, armaduras e melhorar uma arma de nível 1 para nível 2 (1 arma por descanso longo).</li>\n                    </ul>\n                "
+      "corpo": "\n                    <h4>Krichama</h4>\n                    <p>Os mestres ferreiros e armeiros de Khalkaria. Suas forjas ardem há séculos ininterruptos, alimentadas por fogo alquímico e carvão primordial. Cada peça que criam é uma obra-prima, mas apenas para quem pode pagar o preço.</p>\n                    <ul>\n                        <li>Treinado em Ofício (Ferraria)</li>\n                        <li>Você tem Ae 5 a dano de Fogo.</li>\n                        <li>Durante um descanso longo, você pode fabricar 2 Equipamentos, ao invés de 1.</li>\n                    </ul>\n                "
     },
     {
       "id": "anao-caxon",
@@ -39,7 +39,7 @@
       "tipo": "variant-card",
       "opentag": "<div class=\"variant-card\">",
       "nome": "Caxon",
-      "corpo": "\n                    <h4>Caxon</h4>\n                    <p>Engenheiros, arquitetos e defensores das fortalezas subterrâneas. Constroem muralhas que nunca caem e túneis que atravessam continentes.</p>\n                    <ul>\n                        <li>Treinado em Ofício (Engenharia)</li>\n                        <li>Você tem Ar 3 Natural</li>\n                        <li>Você não pode ser movido contra sua vontade, a menos que falhe em um teste de Fortitude (CD 20)</li>\n                        <li>Enquanto estiver em cavernas, você ganha 1,5m de movimento e tem +1 em todas as perícias.</li>\n                    </ul>\n                "
+      "corpo": "\n                    <h4>Caxon</h4>\n                    <p>Engenheiros, arquitetos e defensores das fortalezas subterrâneas. Constroem muralhas que nunca caem e túneis que atravessam continentes. São os anões mais tradicionalistas, inflexíveis, pragmáticos, brutalmente honestos.</p>\n                    <ul>\n                        <li>Treinado em Ofício (Engenharia)</li>\n                        <li>Você tem Ar 3 Natural</li>\n                        <li>Durante um descanso longo, você pode fabricar 2 Bugigangas, ao invés de 1.</li>\n                    </ul>\n                "
     }
   ]
 }

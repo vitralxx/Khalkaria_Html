@@ -101,7 +101,7 @@
         {
           "id": "confuso",
           "nome": "Confuso",
-          "corpo": "<p>Você perde algumas memórias recentes e tem dificuldade pra assimilar a situação. Você pode gastar 1 ação para se livrar dessa condição.</p>\n                        <ul>\n                            <li>-1 Ação</li>\n                        </ul>"
+          "corpo": "<p>Você perde algumas memórias recentes e tem dificuldade pra assimilar a situação. Você pode gastar 1 ação para se livrar dessa condição. Você pode gastar 1 ação para se livrar dessa condição.</p>\n                        <ul>\n                            <li>-1 Ação</li>\n                        </ul>"
         },
         {
           "id": "amedrontado",

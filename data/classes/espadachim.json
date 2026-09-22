@@ -23,13 +23,13 @@
       "id": "espadachim-pedra-de-amolar",
       "tipo": "technique-card",
       "nome": "Pedra de Amolar",
-      "corpo": "\n                    <div class=\"technique-header\">\n                        <h4>Pedra de Amolar</h4>\n                        <div class=\"technique-cost\"><span class=\"action\">Descanso Curto</span></div>\n                    </div>\n                    <p>Amole sua espada para +1d4 dano Cortante no próximo combate.</p>\n                "
+      "corpo": "\n                    <div class=\"technique-header\">\n                        <h4>Pedra de Amolar</h4>\n                        <div class=\"technique-cost\"><span class=\"action\">Descanso Curto</span></div>\n                    </div>\n                    <p>Você pode gastar sua ação de descanso curto para amolar sua espada: ela passa a causar +1d4 de dano Cortante, porém apenas durante o próximo combate — depois disso, ela volta ao normal.</p>\n                "
     },
     {
       "id": "espadachim-respiro-do-espadachim",
       "tipo": "technique-card",
       "nome": "Respiro do Espadachim",
-      "corpo": "\n                    <div class=\"technique-header\">\n                        <h4>Respiro do Espadachim</h4>\n                        <div class=\"technique-cost\"><span class=\"action\">1 Ação</span></div>\n                    </div>\n                    <p>Recupera Stamina = Mod.Con +1d4 e recebe +2 Defender até o início do próximo turno. (1x/turno)</p>\n                "
+      "corpo": "\n                    <div class=\"technique-header\">\n                        <h4>Respiro do Espadachim</h4>\n                        <div class=\"technique-cost\"><span class=\"action\">1 Ação</span></div>\n                    </div>\n                    <p>Em combate, recupera Stamina = Mod.Con +1d4 e recebe +2 Defender até o início do próximo turno. (1x/turno)</p>\n                "
     },
     {
       "id": "espadachim-lamina-rapida",
@@ -71,13 +71,13 @@
       "id": "espadachim-passo-afiado",
       "tipo": "technique-card",
       "nome": "Passo Afiado",
-      "corpo": "\n                    <div class=\"technique-header\">\n                        <h4>Passo Afiado</h4>\n                        <div class=\"technique-cost\">\n                            <span class=\"stamina\">2 Stamina</span>\n                            <span class=\"action\">Reação</span>\n                        </div>\n                    </div>\n                    <p>Quando inimigo errar você: mova 1,5m sem ataque de oportunidade.</p>\n                "
+      "corpo": "\n                    <div class=\"technique-header\">\n                        <h4>Passo Afiado</h4>\n                        <div class=\"technique-cost\">\n                            <span class=\"stamina\">2 Stamina</span>\n                            <span class=\"action\">Ação Livre</span>\n                        </div>\n                    </div>\n                    <p>Quando inimigo errar você: mova 1,5m sem ataque de oportunidade.</p>\n                "
     },
     {
       "id": "espadachim-corta-luz",
       "tipo": "technique-card",
       "nome": "Corta-Luz",
-      "corpo": "\n                    <div class=\"technique-header\">\n                        <h4>Corta-Luz</h4>\n                        <div class=\"technique-cost\">\n                            <span class=\"stamina\">3 Stamina</span>\n                            <span class=\"action\">Reação</span>\n                        </div>\n                    </div>\n                    <p>Quando errar ataque: faça segundo ataque com -2.</p>\n                "
+      "corpo": "\n                    <div class=\"technique-header\">\n                        <h4>Corta-Luz</h4>\n                        <div class=\"technique-cost\">\n                            <span class=\"stamina\">3 Stamina</span>\n                            <span class=\"action\">Reação</span>\n                        </div>\n                    </div>\n                    <p>Quando errar ataque: faça segundo ataque contra o mesmo alvo, com -2.</p>\n                "
     },
     {
       "id": "espadachim-bilhete-de-entrada",
@@ -89,7 +89,7 @@
       "id": "espadachim-brecha",
       "tipo": "technique-card",
       "nome": "Brecha",
-      "corpo": "\n                    <div class=\"technique-header\">\n                        <h4>Brecha</h4>\n                        <div class=\"technique-cost\">\n                            <span class=\"stamina\">5 Stamina</span>\n                            <span class=\"action\">1 Ação</span>\n                        </div>\n                    </div>\n                    <p>Ao acertar alvo não Exposto: aplica Exposto. Se já Exposto: adiciona Sangramento 1. (1x/turno)</p>\n                "
+      "corpo": "\n                    <div class=\"technique-header\">\n                        <h4>Brecha</h4>\n                        <div class=\"technique-cost\">\n                            <span class=\"stamina\">5 Stamina</span>\n                            <span class=\"action\">1 Ação ou Passiva</span>\n                        </div>\n                    </div>\n                    <p>Ao acertar alvo não Exposto: aplica Exposto como 1 ação. Se já Exposto: adiciona Sangramento 1 como ação livre. (1x/turno)</p>\n                "
     },
     {
       "id": "espadachim-disciplina",
@@ -137,7 +137,7 @@
       "id": "espadachim-sentenca-final",
       "tipo": "ultimate-card",
       "nome": "Sentença Final",
-      "corpo": "\n                                <h5>Sentença Final</h5>\n                                <p class=\"meta\">1 Ação · 10 Stamina · 1x/Dia</p>\n                                <p class=\"quote\">\"A morte chega para todos os pecadores\"</p>\n                                <p>Escolha 1 inimigo que esteja com a Marca do Duelo:</p>\n                                <div class=\"effect-list\">\n                                    <ul>\n                                        <li>Você e a <strong>Marca do Duelo</strong> são arrancados do campo de batalha para <em>o Plano Místico</em> até a morte de um dos dois.</li>\n                                        <li>Enquanto neste plano, suas <strong>retaliações</strong> não gastam reação.</li>\n                                    </ul>\n                                </div>\n                                <div class=\"ultimate-cost\">\n                                    <h6>⚠️ O Custo</h6>\n                                    <p>Sua espada foi danificada. Perca 2d10 de Éter. A <em>Trama</em> decidiu o seu destino.</p>\n                                </div>\n                            "
+      "corpo": "\n                                <h5>Sentença Final</h5>\n                                <p class=\"meta\">1 Ação · 10 Stamina · 1x/Dia</p>\n                                <p class=\"quote\">\"A morte chega para todos os pecadores\"</p>\n                                <p>Escolha 1 inimigo que esteja com a Marca do Duelo. Você e o inimigo são transportados para um plano impossível. A única saída é evidente. A morte de um dos dois:</p>\n                                <div class=\"effect-list\">\n                                    <ul>\n                                        <li>Você e a <strong>Marca do Duelo</strong> são arrancados do campo de batalha para <em>o Plano Místico</em> até a morte de um dos dois.</li>\n                                        <li>Enquanto neste plano, suas <strong>retaliações</strong> não gastam reação.</li>\n                                    </ul>\n                                </div>\n                                <div class=\"ultimate-cost\">\n                                    <h6>⚠️ O Custo</h6>\n                                    <p>Sua espada foi danificada. Perca 2d10 de Éter. A <em>Trama</em> decidiu o seu destino.</p>\n                                </div>\n                            "
     },
     {
       "id": "espadachim-nostalgia",
@@ -197,7 +197,7 @@
       "id": "espadachim-blefe-do-bebado",
       "tipo": "marca-card",
       "nome": "Blefe do Bêbado",
-      "corpo": "\n                                    <h5>Blefe do Bêbado</h5>\n                                    <p class=\"flavor\">\"Você consegue extrapolar todos os limites e, às vezes, sair impune com isso.\"</p>\n                                    <p>Você nunca admite seu vício em bebidas e possui um sério problema com mentiras.</p>\n                                    <ul>\n                                        <li>Para cada 5 mentiras que você fez alguém acreditar, você ganha <strong>+1 permanente em Enganação</strong>. (Máx. +5)</li>\n                                        <li>Sempre que suceder em um teste de Enganação, recupere Mod. Constituição de Stamina.</li>\n                                    </ul>\n                                "
+      "corpo": "\n                                    <h5>Blefe do Bêbado</h5>\n                                    <p class=\"flavor\">\"Você consegue extrapolar todos os limites e, às vezes, sair impune com isso.\"</p>\n                                    <p>Você nunca admite seu vício em bebidas e possui um sério problema com mentiras.</p>\n                                    <ul>\n                                        <li>Para cada 5 mentiras que você fez alguém acreditar, você ganha <strong>+1 permanente em Enganação</strong>. (Máx. +5)</li>\n                                        <li>Mentir lhe faz bem. Sempre que suceder em um teste de Enganação, recupere Mod. Constituição de Stamina.</li>\n                                    </ul>\n                                "
     },
     {
       "id": "espadachim-golpe-torto",
@@ -209,7 +209,7 @@
       "id": "espadachim-beber-ate-cair",
       "tipo": "tier-technique",
       "nome": "Beber até Cair",
-      "corpo": "\n                                    <h5>Beber até Cair</h5>\n                                    <p class=\"meta\">1 Ação · 1 Item:Álcool</p>\n                                    <p>Ganhe condição <em>Bêbado</em>. Enquanto bêbado: <strong>+2 Evasão</strong> e <strong>+2 Atacar</strong>.</p>\n                                "
+      "corpo": "\n                                    <h5>Beber até Cair</h5>\n                                    <p class=\"meta\">1 Ação · 1 Item:Álcool</p>\n                                    <p>Fique <em>Bêbado</em>. Adicionalmente, você ignora as adversidades da condição Bêbado descritas na tabela de Condições. Os efeitos negativos concedidos por técnicas permanecem.</p>\n                                "
     },
     {
       "id": "espadachim-sorte-do-bebado",

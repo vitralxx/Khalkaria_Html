@@ -35,7 +35,7 @@
       "id": "brutalista-casca-grossa",
       "tipo": "technique-card",
       "nome": "Casca Grossa",
-      "corpo": "\n                    <h4>Casca Grossa</h4>\n                    <span class=\"tech-meta\">Passiva</span>\n                    <p>Você tem Armadura (Ar) natural equivalente ao seu Mod. Fortitude.</p>\n                "
+      "corpo": "\n                    <h4>Casca Grossa</h4>\n                    <span class=\"tech-meta\">Passiva</span>\n                    <p>Você tem Armadura (Ar) natural equivalente ao seu Mod. Constituição.</p>\n                "
     },
     {
       "id": "brutalista-empurrao",
@@ -65,7 +65,7 @@
       "id": "brutalista-hoje-nao",
       "tipo": "technique-card",
       "nome": "Hoje Não",
-      "corpo": "\n                    <h4>Hoje Não</h4>\n                    <span class=\"tech-meta\">1 Ação</span>\n                    <p>1x/descanso longo: ao ser reduzido a 25% HP ou menos, recupere 2d8+Mod.Con de Saúde e 1d8+Mod.For de Stamina.</p>\n                "
+      "corpo": "\n                    <h4>Hoje Não</h4>\n                    <span class=\"tech-meta\">1 Ação</span>\n                    <p>1x/descanso longo: ao estar abaixo de 25% HP, recupere 2d8+Mod.Con de Saúde e 1d8+Mod.For de Stamina.</p>\n                "
     },
     {
       "id": "brutalista-gancho",
@@ -143,7 +143,7 @@
       "id": "brutalista-postura-defensiva",
       "tipo": "tech-card",
       "nome": "Postura Defensiva",
-      "corpo": "<div class=\"tech-card-header colosso\"><h4>Postura Defensiva</h4><span class=\"cost\">1 Ação, 3 Stamina</span></div><div class=\"tech-card-body\"><p>Até o início do próximo turno: <strong>+2 Defender</strong>, <strong>+2 Ar Natural</strong>, não pode ser Derrubado ou Empurrado.</p><p><strong>Porém:</strong> Não pode se mover e -2 em Atacar.</p></div>"
+      "corpo": "<div class=\"tech-card-header colosso\"><h4>Postura Defensiva</h4><span class=\"cost\">1 Ação, 3 Stamina</span></div><div class=\"tech-card-body\"><p>Até o início do próximo turno: <strong>+2 Defender</strong>, <strong>+2 Ar Natural</strong>, não pode ser Derrubado ou Empurrado por quase nada.</p><p><strong>Porém:</strong> Não pode se mover e -2 em Atacar.</p></div>"
     },
     {
       "id": "brutalista-furia-sanguinaria",
@@ -155,7 +155,7 @@
       "id": "brutalista-frenesi",
       "tipo": "tech-card",
       "nome": "Frenesi",
-      "corpo": "<div class=\"tech-card-header berserker\"><h4>Frenesi</h4><span class=\"cost\">3 Ações, 3 Stamina</span></div><div class=\"tech-card-body\"><p>Entra em Frenesi até fim do combate: <strong>+2 Atacar</strong>, <strong>+1 dado de dano</strong>, Resistência a Dano Ordinário.</p><p><strong>Porém:</strong> Não pode Defender, fica descontrolado, deve atacar toda rodada. 1x/descanso longo (2x no nível 3).</p></div>"
+      "corpo": "<div class=\"tech-card-header berserker\"><h4>Frenesi</h4><span class=\"cost\">3 Ações, 3 Stamina</span></div><div class=\"tech-card-body\"><p>Entra em Frenesi até fim do combate ou até ficar Inconsciente: <strong>+2 Atacar</strong>, <strong>+1 dado de dano</strong>, Resistência a Dano Ordinário.</p><p><strong>Porém:</strong> Não pode Defender (apenas contra-atacar/retaliar), fica descontrolado, deve atacar toda rodada. 1x/descanso longo (2x no nível 3).</p></div>"
     },
     {
       "id": "brutalista-retaliacao-selvagem",
@@ -167,13 +167,13 @@
       "id": "brutalista-veterano-de-guerra",
       "tipo": "tech-card",
       "nome": "Veterano de Guerra",
-      "corpo": "<div class=\"tech-card-header general\"><h4>Veterano de Guerra</h4><span class=\"cost\">Passiva</span></div><div class=\"tech-card-body\"><p>Você se torna <strong>Treinado em Iniciativa</strong>. Não pode ser <em>Desprevenido</em>.</p><p>No primeiro turno de qualquer combate, você e aliados em até 9m têm <strong>+2 em Iniciativa</strong>.</p></div>"
+      "corpo": "<div class=\"tech-card-header general\"><h4>Veterano de Guerra</h4><span class=\"cost\">Passiva</span></div><div class=\"tech-card-body\"><p>Você se torna <strong>Treinado em Iniciativa</strong>. Não pode ser <em>Desprevenido</em>.</p><p>No primeiro turno de qualquer combate, você e aliados em até 9m que possam te ouvir têm <strong>+2 em Iniciativa</strong>.</p></div>"
     },
     {
       "id": "brutalista-comando-tatico",
       "tipo": "tech-card",
       "nome": "Comando Tático",
-      "corpo": "<div class=\"tech-card-header general\"><h4>Comando Tático</h4><span class=\"cost\">1 Ação, 2 Stamina</span></div><div class=\"tech-card-body\"><p>Aliado em até 9m pode como reação: <strong>Atacar</strong> (+2), <strong>Mover</strong> (sem oportunidade), ou <strong>Defender</strong> (+4). Máximo 2x/rodada.</p></div>"
+      "corpo": "<div class=\"tech-card-header general\"><h4>Comando Tático</h4><span class=\"cost\">1 Ação, 2 Stamina</span></div><div class=\"tech-card-body\"><p>Aliado em até 9m que possa te ouvir e ver pode como reação: <strong>Atacar</strong> (+2), <strong>Mover</strong> (sem oportunidade), ou <strong>Defender</strong> (+4). Máximo 2x/rodada.</p></div>"
     },
     {
       "id": "brutalista-leitura-de-combate",
@@ -191,25 +191,25 @@
       "id": "brutalista-resistencia-adaptavel",
       "tipo": "tech-card",
       "nome": "Resistência Adaptável",
-      "corpo": "<div class=\"tech-card-header colosso\"><h4>Resistência Adaptável</h4><span class=\"cost\">Passiva / 3 Stamina</span></div><div class=\"tech-card-body\"><p>Você possui <strong>5 Armadura Específica (Ae)</strong> de um tipo escolhido.</p><p>Ao receber dano de tipo diferente, pode gastar 3 Stamina para trocar instantaneamente.</p></div>"
+      "corpo": "<div class=\"tech-card-header colosso\"><h4>Resistência Adaptável</h4><span class=\"cost\">Passiva / 3 Stamina</span></div><div class=\"tech-card-body\"><p>Você possui <strong>5 Armadura Específica (Ae)</strong> de um tipo escolhido.</p><p>Ao receber dano de tipo diferente, pode gastar 3 Stamina para trocar instantaneamente. Adicionalmente, pode trocar a resistência da Ae livremente em um descanso curto.</p></div>"
     },
     {
       "id": "brutalista-epifania-sanguinea",
       "tipo": "tech-card",
       "nome": "Epifania Sanguínea",
-      "corpo": "<div class=\"tech-card-header berserker\"><h4>Epifania Sanguínea</h4><span class=\"cost\">Passiva</span></div><div class=\"tech-card-body\"><p>Ao matar criatura: recupera <strong>1d6+Mod.Con HP</strong>. Ao sofrer crítico: próximo ataque causa <strong>+1d10</strong>.</p><p><strong>Em Frenesi:</strong> Esses bônus dobram.</p></div>"
+      "corpo": "<div class=\"tech-card-header berserker\"><h4>Epifania Sanguínea</h4><span class=\"cost\">Passiva</span></div><div class=\"tech-card-body\"><p>Ao reduzir uma criatura a 0 de Saúde: recupera <strong>1d6+Mod.Con HP</strong>. Ao sofrer crítico: próximo ataque causa <strong>+1d10</strong>.</p><p><strong>Em Frenesi:</strong> Esses bônus dobram.</p></div>"
     },
     {
       "id": "brutalista-ignorar-dor",
       "tipo": "tech-card",
       "nome": "Ignorar Dor",
-      "corpo": "<div class=\"tech-card-header berserker\"><h4>Ignorar Dor</h4><span class=\"cost\">Reação, 3 Stamina</span></div><div class=\"tech-card-body\"><p>Quando dano te deixaria Inconsciente: permaneça com 1 HP. Ganha <strong>+4 Atacar</strong> e <strong>+2d6 dano</strong> até fim do próximo turno. 1x/descanso longo.</p></div>"
+      "corpo": "<div class=\"tech-card-header berserker\"><h4>Ignorar Dor</h4><span class=\"cost\">Reação, 3 Stamina</span></div><div class=\"tech-card-body\"><p>Quando dano te deixaria Inconsciente: permaneça com 1 HP. Ganha <strong>+4 Atacar</strong> e <strong>+2d6 dano</strong> até fim do próximo turno. Se estiver em Frenesi ao usar esta habilidade, recupera 2d6 de Saúde (ao invés de 1). 1x/descanso longo.</p></div>"
     },
     {
       "id": "brutalista-formacao-de-combate",
       "tipo": "tech-card",
       "nome": "Formação de Combate",
-      "corpo": "<div class=\"tech-card-header general\"><h4>Formação de Combate</h4><span class=\"cost\">2 Ações, 3 Stamina</span></div><div class=\"tech-card-body\"><p><strong>Precisão:</strong> 2+: +2 Atacar | 3+: +1 Atacar | 4+: +1,5m Movimento | 5+: Acerto dá +2 Atacar ao próximo aliado</p><p><strong>Degolar:</strong> 2+: +1 Dano | 3+: +1d6 | 4+: +1d6 | 5+: Execução dá 1 ação grátis</p></div>"
+      "corpo": "<div class=\"tech-card-header general\"><h4>Formação de Combate</h4><span class=\"cost\">2 Ações, 3 Stamina</span></div><div class=\"tech-card-body\"><p><strong>Precisão:</strong> 2+: +2 Atacar | 3+: +1 Atacar | 4+: +1,5m Movimento | 5+: Acerto dá +2 Atacar ao próximo aliado</p><p><strong>Degolar:</strong> 2+: +1 Dano | 3+: +1d6 | 4+: +1d6 | 5+: Execução dá 1 ação grátis</p><p>A formação dura até qualquer aliado ser removido do alcance (quebrando por completo) ou até o fim do combate.</p></div>"
     },
     {
       "id": "brutalista-o-experiente",
@@ -221,19 +221,19 @@
       "id": "brutalista-a-ultima-parede",
       "tipo": "ultimate-card",
       "nome": "🛡️ A Última Parede",
-      "corpo": "\n                    <div class=\"ultimate-header colosso\"><h4>🛡️ A Última Parede</h4><div><span class=\"ultimate-badge\">ULTIMATE</span><span style=\"margin-left: 0.5rem; color: var(--text-muted); font-size: 0.85rem;\">3 Ações, 5 Stamina</span></div></div>\n                    <div class=\"ultimate-quote\">\"Enquanto estiver vivo, Eu Não Cairei.\"</div>\n                    <div class=\"ultimate-body\">\n                        <p>Runas douradas surgem em sua armadura. Por <strong>1 minuto</strong>: aumenta tamanho, não pode ser movido, Armadura dobra, Resistência a todos os danos, Guardião funciona em 4,5m como ação livre, aliados em 4,5m ganham +4 Defender e +2 Resistência. 1x/combate pode redirecionar dano fatal de aliado (até 9m) para você.</p>\n                        <div class=\"ultimate-cost\"><h5>💀 O Custo</h5><p>Não pode atacar durante o efeito. Ao acabar, ganha <em>Exaustão 1</em>.</p></div>\n                    </div>\n                "
+      "corpo": "\n                    <div class=\"ultimate-header colosso\"><h4>🛡️ A Última Parede</h4><div><span class=\"ultimate-badge\">ULTIMATE</span><span style=\"margin-left: 0.5rem; color: var(--text-muted); font-size: 0.85rem;\">3 Ações, 5 Stamina</span></div></div>\n                    <div class=\"ultimate-quote\">\"Enquanto estiver vivo, Eu Não Cairei.\"</div>\n                    <div class=\"ultimate-body\">\n                        <p>Runas douradas surgem em sua armadura. Por <strong>1 minuto</strong>: aumenta tamanho, não pode se mover, ser movido, ser derrubado ou teletransportado por qualquer meio, Armadura dobra, Resistência a todos os danos, Guardião funciona em 4,5m como ação livre, aliados em 4,5m ganham +4 Defender e +2 Resistência. 1x/combate pode redirecionar dano que deixaria um aliado inconsciente (até 9m) para você. Ao ativar, todos os inimigos em até 9m devem suceder em um teste de Vontade ou ficam provocados por você e não podem atacar outras criaturas nesta rodada.</p>\n                        <div class=\"ultimate-cost\"><h5>💀 O Custo</h5><p>Não pode atacar durante o efeito. Ao acabar, ganha <em>Exaustão 1</em>.</p></div>\n                    </div>\n                "
     },
     {
       "id": "brutalista-despertar-a-besta",
       "tipo": "ultimate-card",
       "nome": "🔥 Despertar A Besta",
-      "corpo": "\n                    <div class=\"ultimate-header berserker\"><h4>🔥 Despertar A Besta</h4><div><span class=\"ultimate-badge\">ULTIMATE</span><span style=\"margin-left: 0.5rem; color: var(--text-muted); font-size: 0.85rem;\">1 Ação, 5 Stamina</span></div></div>\n                    <div class=\"ultimate-quote\">\"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHHHH\"</div>\n                    <div class=\"ultimate-body\">\n                        <p><strong>Pré-requisito:</strong> Abaixo de 25% HP. Por <strong>3 rodadas</strong>: +3d6 dano, Vantagem em ataques, movimento dobra, imune a Amedrontado/Enfeitiçado/Atordoado/Inconsciente, dano fatal te deixa com 1 HP. Ao matar: 2d10 HP, move 4,5m e ataca como ação livre.</p>\n                        <div class=\"ultimate-cost\"><h5>💀 O Custo</h5><p>Ao final das 3 rodadas, cai <strong>Inconsciente automaticamente</strong> por 1 minuto.</p></div>\n                    </div>\n                "
+      "corpo": "\n                    <div class=\"ultimate-header berserker\"><h4>🔥 Despertar A Besta</h4><div><span class=\"ultimate-badge\">ULTIMATE</span><span style=\"margin-left: 0.5rem; color: var(--text-muted); font-size: 0.85rem;\">1 Ação, 5 Stamina</span></div></div>\n                    <div class=\"ultimate-quote\">\"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHHHH\"</div>\n                    <div class=\"ultimate-body\">\n                        <p><strong>Pré-requisito:</strong> Abaixo de 25% HP. Por <strong>3 rodadas</strong>: +3d6 dano, Vantagem em ataques, movimento dobra, imune a Amedrontado/Enfeitiçado/Atordoado/Inconsciente, dano fatal te deixa com 1 HP. Ao matar: 2d10 HP, move 4,5m e ataca como ação livre.</p>\n                        <div class=\"ultimate-cost\"><h5>💀 O Custo</h5><p>Ao final das 3 rodadas, cai <strong>Inconsciente automaticamente</strong>, independente da sua Saúde atual, e não pode ser acordado por meios normais por 1 minuto. Ao acabar o efeito, ganha <em>Exaustão 1</em> e perde permanentemente 2 de Éter.</p></div>\n                    </div>\n                "
     },
     {
       "id": "brutalista-campo-de-batalha",
       "tipo": "ultimate-card",
       "nome": "👑 Campo de Batalha",
-      "corpo": "\n                    <div class=\"ultimate-header general\"><h4>👑 Campo de Batalha</h4><div><span class=\"ultimate-badge\">ULTIMATE</span><span style=\"margin-left: 0.5rem; color: var(--text-muted); font-size: 0.85rem;\">3 Ações, 5 Stamina</span></div></div>\n                    <div class=\"ultimate-quote\">\"A guerra, marca qualquer um.\"</div>\n                    <div class=\"ultimate-body\">\n                        <p>Aliados em até <strong>18m</strong> por <strong>1 minuto</strong>: +3 Atacar/Defender/Resistência, imunes a Amedrontado/Enfeitiçado, recuperam 2d6 HP e 1d6 Stamina. Podem mover como ação livre sem oportunidade. <strong>Insistir:</strong> 1x cada aliado repete ataque errado. <strong>Passo Final:</strong> 1x sua reação faz todos atacarem o mesmo alvo. Comando Tático fica grátis.</p>\n                        <div class=\"ultimate-cost\"><h5>💀 O Custo</h5><p>Cada vez que aliado afetado sofrer dano, você perde <strong>1 de Éter</strong>.</p></div>\n                    </div>\n                "
+      "corpo": "\n                    <div class=\"ultimate-header general\"><h4>👑 Campo de Batalha</h4><div><span class=\"ultimate-badge\">ULTIMATE</span><span style=\"margin-left: 0.5rem; color: var(--text-muted); font-size: 0.85rem;\">3 Ações, 5 Stamina</span></div></div>\n                    <div class=\"ultimate-quote\">\"A guerra, marca qualquer um.\"</div>\n                    <div class=\"ultimate-body\">\n                        <p>Aliados em até <strong>18m</strong> que possam te ouvir, por <strong>1 minuto</strong>: +3 Atacar/Defender/Resistência, imunes a Amedrontado/Enfeitiçado, recuperam 2d6 HP e 1d6 Stamina. Podem mover como ação livre sem oportunidade. <strong>Insistir:</strong> 1x cada aliado repete ataque errado. <strong>Passo Final:</strong> 1x sua reação faz todos atacarem o mesmo alvo. Comando Tático fica grátis.</p>\n                        <div class=\"ultimate-cost\"><h5>💀 O Custo</h5><p>Cada vez que aliado afetado sofrer dano, você perde <strong>1 de Éter</strong>.</p></div>\n                    </div>\n                "
     }
   ]
 }

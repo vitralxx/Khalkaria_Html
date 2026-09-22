@@ -23,7 +23,7 @@
       "tipo": "trait-card",
       "opentag": "<div class=\"trait-card\">",
       "nome": "Amado",
-      "corpo": "\n                <h4>Amado</h4>\n                <ul>\n                    <li>Como 1 ação, uma criatura em até 9m deve fazer um teste de Vontade contra sua CD ou fica <em>Enfeitiçada</em>.</li>\n                    <li>A criatura fica enfeitiçada até passar no teste de Vontade ou você atacar ela.</li>\n                    <li>Você tem +2 em interação social contra criaturas que gostam de você.</li>\n                </ul>\n            "
+      "corpo": "\n                <h4>Amado</h4>\n                <ul>\n                    <li>Você pode tentar encantar uma criatura com sua aparência eloquente. Como 1 ação, uma criatura em até 9m deve fazer um teste de Vontade contra sua CD ou fica <em>Enfeitiçada</em>.</li>\n                    <li>A criatura fica enfeitiçada até passar no teste de Vontade no final de cada turno dela ou você atacar ela.</li>\n                    <li>Grutos tem vantagem no teste de resistência dessa característica.</li>\n                    <li>Você tem +2 em interação social(qualquer) contra criaturas que gostam de você.</li>\n                </ul>\n            "
     },
     {
       "id": "dryad-florescura",
@@ -31,7 +31,7 @@
       "tipo": "variant-card",
       "opentag": "<div class=\"variant-card\">",
       "nome": "Florescura",
-      "corpo": "\n                    <h4>Florescura</h4>\n                    <p>Guardiões da magia antiga. Você segue o legado dos seus ancestrais, louvando o éter a todo custo.</p>\n                    <ul>\n                        <li>Você é treinado em Místico.</li>\n                        <li>Você pode conjurar uma ilusão menor naturalmente como 2 ações, sem foco. (um som baixo, cheiro fraco ou uma luz pequena)</li>\n                        <li>Escolha 1 magia de nível 1, você pode usá-la sem um foco.</li>\n                    </ul>\n                "
+      "corpo": "\n                    <h4>Florescura</h4>\n                    <p>Guardiões da magia antiga. Você segue o legado dos seus ancestrais, louvando o éter a todo custo. Os Florescura protegem a magia e, como consequência de sua linhagem, você é familiar ao místico.</p>\n                    <ul>\n                        <li>Você é treinado em Místico.</li>\n                        <li>Você pode conjurar uma ilusão menor naturalmente como 2 ações, sem foco. (um som baixo, cheiro fraco ou uma luz pequena)</li>\n                        <li>Escolha 1 magia de nível 1, você pode usá-la sem um foco.</li>\n                    </ul>\n                "
     },
     {
       "id": "dryad-cascaferro",
@@ -39,7 +39,7 @@
       "tipo": "variant-card",
       "opentag": "<div class=\"variant-card\">",
       "nome": "Cascaferro",
-      "corpo": "\n                    <h4>Cascaferro</h4>\n                    <p>Protetores da fauna selvagem. Desde pequeno, você aprendeu a proteger os menores e necessitados.</p>\n                    <ul>\n                        <li>Você é treinado em Movimento.</li>\n                        <li>Você é treinado em Armas Marciais.</li>\n                        <li>+1 Armadura (Ar) Natural e +1 Evasão.</li>\n                        <li>Animais são naturalmente amigáveis em relação a você.</li>\n                    </ul>\n                "
+      "corpo": "\n                    <h4>Cascaferro</h4>\n                    <p>Protetores da fauna selvagem. Desde pequeno, você esteve conectado à natureza e aprendeu a proteger os menores e necessitados. Você faz parte de uma linhagem que preserva o ciclo natural das plantas e dos animais.</p>\n                    <ul>\n                        <li>Você é treinado em Movimento.</li>\n                        <li>Você é treinado em Armas Marciais.</li>\n                        <li>+1 Armadura (Ar) Natural e +1 Evasão.</li>\n                        <li>Animais são naturalmente amigáveis em relação a você.</li>\n                    </ul>\n                "
     }
   ]
 }

@@ -559,7 +559,7 @@
                         </div>
                         <div class="stat-card">
                             <div class="label">Estilo</div>
-                            <div class="value">Exploração e Furtividade</div>
+                            <div class="value">Exploração, Controle de Terreno e Furtividade</div>
                         </div>
                     </div>
                 </div>
@@ -595,11 +595,11 @@
                 </div>
                 <div class="formula-card">
                     <h4>🛡️ Evasão Ativa</h4>
-                    <code>12 + Mod.Des + Prof.Defender</code>
+                    <code>10 + Mod.Des + Prof.Defender</code>
                 </div>
                 <div class="formula-card">
                     <h4>🛡️ Evasão Passiva</h4>
-                    <code>12 + Mod. Destreza</code>
+                    <code>10 + Mod. Destreza</code>
                 </div>
             </div>
 
@@ -645,14 +645,14 @@
             </div>
 
             <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">
-                Toda classe possui técnicas, você pode reatribuí-las livremente ao realizar um descanso longo. <strong>Você possui 3 Técnicas + Nível.</strong>
+                Toda classe possui técnicas, você pode reatribuí-las livremente ao realizar um descanso longo, respeitando o limite de pontos. <strong>Você possui 3 Técnicas + Nível.</strong>
             </p>
 
             <div class="techniques-grid">
                 <div class="technique-card">
                     <h4>Atento</h4>
                     <span class="tech-meta">Passiva</span>
-                    <p>Ao receber a condição <em>Desprevenido</em>, role um teste de Sobrevivência ou Furtividade  contra a CD do inimigo, caso suceda você não está <em>Desprevenido</em>.</p>
+                    <p>Você é imune à condição <em>Desprevenido</em>.</p>
                 </div>
                 <div class="technique-card">
                     <h4>Passo Ciente</h4>
@@ -711,13 +711,13 @@
                 </div>
                 <div class="technique-card">
                     <h4>Fantasma</h4>
-                    <span class="tech-meta">Reação • 3 Stamina</span>
-                    <p>Ao ser atacado pode rolar sua <em>Defesa</em> como se fosse sua <em>Furtividade</em>. Sua rolagem de Furtividade se torna sua evasão.</p>
+                    <span class="tech-meta">Ação Livre • 2 Stamina</span>
+                    <p>Ao ser atacado e optar por se <em>defender</em>, pode somar seu treinamento de <em>Furtividade</em> na perícia.</p>
                 </div>
                 <div class="technique-card">
                     <h4>Saque</h4>
                     <span class="tech-meta">Reação</span>
-                    <p>Ao eliminar uma criatura, pode saqueá-la, ganhando 1d4 + (Nível × 2) de Dinheiro.</p>
+                    <p>Ao eliminar uma criatura, pode saqueá-la, ganhando 1d4 + (Nível × 2) de Sins.</p>
                 </div>
                 <div class="technique-card">
                     <h4>Ocultar-se</h4>
@@ -737,15 +737,15 @@
                 </ul>
                 <p>Você <u>ganha</u> <strong>Instinto</strong> das seguintes maneiras:</p>
                 <ul style="margin:4px 0 12px 20px;line-height:2.2;">
-                    <li><strong>Perícia:</strong> Ao suceder em qualquer perícia → +1 Instinto : Máx. 1x por rodada, Máx. 1x/perícia a cada cena</li>
-                    <li><strong>Acerto:</strong> Ao acertar qualquer inimigo → +1 Instinto, Crítico → +2 : Máx 1x/rodada</li>
+                    <li><strong>Perícia:</strong> Ao suceder em qualquer perícia → +1 Instinto : Máx. 2x por rodada, Máx. 1x/perícia a cada cena</li>
+                    <li><strong>Acerto:</strong> Ao acertar qualquer inimigo → +1 Instinto : Máx 1x/rodada</li>
                     <li><strong>Esquiva:</strong> Ao esquivar de qualquer ataque → +1 Instinto : Máx 1x/Rodada</li>
                 </ul>
                 <p>Você <u>perde</u> TODO seu <strong>Instinto</strong> das seguintes maneiras:</p>
                 <ul style="margin:4px 0 16px 20px;line-height:2.2;">
                     <li><strong>Dano:</strong> Ao receber dano maior que metade da sua vida máxima de qualquer fonte → =0 Instinto</li>
                     <li><strong>Condição:</strong> Ao ficar Atordoado, Desorientado ou Desprevenido → =0 Instinto</li>
-                    <li><strong>Perícia:</strong> Ao falhar criticamente em qualquer perícia → =0 Instinto</li>
+                    <li><strong>Perícia:</strong> Ao falhar qualquer perícia → =0 Instinto</li>
                     <li><strong>Tempo:</strong> Ao ficar 10 minutos sem ganhar instinto → =0 Instinto</li>
                 </ul>
                 <p>Você pode utilizar seu Instinto para ganhar os seguintes benefícios:</p>
@@ -927,11 +927,11 @@
                             <span class="cost">Descanso Curto, 5 Stamina</span>
                         </div>
                         <div class="tech-card-body">
-                            <p>Você pode mapear locais previamente transitados, até um tamanho máximo de até <strong>1 quilômetro quadrado</strong>. Recebendo os seguintes benefícios ao estar neste local:</p>
+                            <p>Desenhe um <em>Mapa de Exploração</em>. Você pode mapear locais previamente transitados, até um tamanho máximo de até <strong>1 quilômetro quadrado</strong>. O <em>Mapa de Exploração</em> é um item de raridade <strong>Incomum</strong>. Ao estar com o mapa, você recebe os seguintes benefícios ao estar no local mapeado:</p>
                             <ul>
-                                <li>Tem conhecimento geral da geografia da área. <strong>+2 em testes de jornada</strong>.</li>
-                                <li><strong>+2 Percepção</strong> e <strong>Sobrevivência</strong></li>
-                                <li>Ao descansar na natureza pode indicar locais ideais para descanso, recebendo <strong>+5</strong> no teste de Sobrevivência de descanso longo.</li>
+                                <li>Tem conhecimento geral da geografia da área.</li>
+                                <li><strong>+5</strong> em Sobrevivência enquanto na região do mapa.</li>
+                                
                             </ul>
                         </div>
                     </div>
@@ -1024,8 +1024,8 @@
                         </div>
                         <div class="tech-card-body">
                             <p>Você pode tentar convencer uma criatura que consiga te entender a aceitar um empréstimo (monetário ou de bens).</p>
-                            <p>Role <strong>Convencimento vs Vontade</strong>. Se suceder, pode escolher quanto dinheiro oferece recebendo <strong>20% de lucro</strong> no dia seguinte.</p>
-                            <p>Se o alvo não conseguir pagar ele fica <em>Endividado</em>. Você possui <strong>+5</strong> em testes de Convencimento contra criaturas endividadas.</p>
+                            <p>Role <strong>Convencimento vs Vontade</strong>. Se suceder, pode escolher quanto dinheiro oferece recebendo <strong>20% de lucro</strong> no dia seguinte, se o alvo possuir o dinheiro.</p>
+                            <p>Se o alvo não conseguir pagar ele fica <em>Endividado</em>. Você possui <strong>+5</strong> em testes de Convencimento contra criaturas endividadas, que ficam muito mais suscetíveis a seguir suas ordens ao falharem em testes de Vontade contra você numa tentativa de quitar suas dívidas.</p>
                         </div>
                     </div>
                     <div class="tech-card">
@@ -1121,7 +1121,7 @@
                         </div>
                         <div class="tech-card-body">
                             <p>Você já ouviu falar de muita gente e possivelmente elas te devem algo, ou você que deve...</p>
-                            <p>Role <strong>Convencimento CD 20</strong> (pode ser dificultado dependendo da localização). Só pode ser utilizado 1x por localização.</p>
+                            <p>Role <strong>Convencimento CD 20</strong> (pode ser dificultado dependendo da localização). Só pode ser utilizado 1x por localização, mas pode ser usado em diferentes áreas de uma cidade grande.</p>
                             <table class="d100-table">
                                 <tr><td class="roll">Falha Crítica</td><td>O contato existe, mas te odeia. Ele ativamente trabalha contra você enquanto estiver na cidade.</td></tr>
                                 <tr><td class="roll">Falha</td><td>O contato existe, mas você deve algo a ele. Ele só ajuda se você quitar a dívida primeiro.</td></tr>
@@ -1210,7 +1210,7 @@
                         <div class="ultimate-cost">
                             <h5>💀 O Custo</h5>
                             <ul>
-                                <li>Ao fim do combate, seu mapa da região é <strong>desintegrado</strong>, virando pó.</li>
+                                <li>Ao fim do combate, sua ultimate cessa e seu mapa da região é <strong>desintegrado</strong>, virando pó rapidamente.</li>
                                 <li>Perca <strong>2d6 de Éter</strong>.</li>
                                 <li style="font-style: italic; color: var(--text-muted);">Você sente que roubou magia, de onde não devia.</li>
                             </ul>

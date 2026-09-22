@@ -71,7 +71,7 @@
       "tipo": "tech-card",
       "opentag": "<div class=\"tech-card\">",
       "nome": "Sistema de Reconhecimento de Ameaças",
-      "corpo": "\n                    <div><h5>Sistema de Reconhecimento de Ameaças</h5><p class=\"desc\">Algoritmo de análise de movimentos inimigos.</p></div>\n                    <div class=\"effect\">+1 ao atacar criaturas hostis. Pode rolar Atacar com Inteligência.</div>\n                    <div class=\"price\">Exótico</div>\n                "
+      "corpo": "\n                    <div><h5>Sistema de Reconhecimento de Ameaças</h5><p class=\"desc\">Algoritmo de análise de movimentos inimigos.</p></div>\n                    <div class=\"effect\">+1 ao atacar criaturas hostis. Pode rolar Atacar com Inteligência ao invés de Força/Destreza.</div>\n                    <div class=\"price\">Exótico</div>\n                "
     },
     {
       "id": "automato-nucleo-duplo",
@@ -79,7 +79,7 @@
       "tipo": "tech-card",
       "opentag": "<div class=\"tech-card\">",
       "nome": "Núcleo-Duplo",
-      "corpo": "\n                    <div><h5>Núcleo-Duplo</h5><p class=\"desc\">Núcleo de energia substituto.</p></div>\n                    <div class=\"effect\">Ao ser reduzido a 0 vida, fica com 1. Quebra ao usar, conserto CD 15 por descanso longo.</div>\n                    <div class=\"price\">Exótico</div>\n                "
+      "corpo": "\n                    <div><h5>Núcleo-Duplo</h5><p class=\"desc\">Núcleo de energia substituto.</p></div>\n                    <div class=\"effect\">Ao ser reduzido a 0 vida, fica com 1. Quebra ao usar; conserto com teste de Ofício(Engenharia) CD 15, uma vez por descanso longo.</div>\n                    <div class=\"price\">Exótico</div>\n                "
     },
     {
       "id": "automato-braco-balistico",
@@ -87,7 +87,7 @@
       "tipo": "tech-card",
       "opentag": "<div class=\"tech-card\">",
       "nome": "Braço Balístico",
-      "corpo": "\n                    <div><h5>Braço Balístico</h5><p class=\"desc\">Mecanismo de disparo oculto no antebraço.</p></div>\n                    <div class=\"effect\">Arma a distância simples integrada. Não pode ser desarmado. Recarrega com Munição de Fogo.</div>\n                    <div class=\"price\">Exótico</div>\n                "
+      "corpo": "\n                    <div><h5>Braço Balístico</h5><p class=\"desc\">Mecanismo de disparo oculto no antebraço.</p></div>\n                    <div class=\"effect\">Arma a distância simples integrada. Não pode ser desarmado. Recarrega com Munição de Fogo a cada combate, ao invés de Virotes/Flechas. Causa +2d6 de dano de Fogo.</div>\n                    <div class=\"price\">Exótico</div>\n                "
     },
     {
       "id": "automato-lamina-retratil",
@@ -95,7 +95,7 @@
       "tipo": "tech-card",
       "opentag": "<div class=\"tech-card\">",
       "nome": "Lâmina Retrátil",
-      "corpo": "\n                    <div><h5>Lâmina Retrátil</h5><p class=\"desc\">Lâmina afiada emerge do pulso.</p></div>\n                    <div class=\"effect\">Arma marcial leve +1 integrada no antebraço. Pega com ação livre.</div>\n                    <div class=\"price\">Luxária</div>\n                "
+      "corpo": "\n                    <div><h5>Lâmina Retrátil</h5><p class=\"desc\">Lâmina afiada emerge do pulso.</p></div>\n                    <div class=\"effect\">Arma marcial leve +1 integrada no antebraço. Pega com ação livre. Causa +1d10 de dano Cortante.</div>\n                    <div class=\"price\">Luxária</div>\n                "
     },
     {
       "id": "automato-capacitores-de-energia",
@@ -103,7 +103,7 @@
       "tipo": "tech-card",
       "opentag": "<div class=\"tech-card\">",
       "nome": "Capacitores de Energia",
-      "corpo": "\n                    <div><h5>Capacitores de Energia</h5><p class=\"desc\">Reserva energética para adrenalina.</p></div>\n                    <div class=\"effect\">Sobrecarrega (1 ação): +1d6 dano por 3 rodadas. Ao final, recebe 2d4 dano Elemental.</div>\n                    <div class=\"price\">Luxária</div>\n                "
+      "corpo": "\n                    <div><h5>Capacitores de Energia</h5><p class=\"desc\">Reserva energética para adrenalina.</p></div>\n                    <div class=\"effect\">Sobrecarrega (1 ação): +1d6 dano de Força por 3 rodadas. Ao final, recebe 2d4 dano Elemental (Eletricidade).</div>\n                    <div class=\"price\">Luxária</div>\n                "
     },
     {
       "id": "automato-auto-reparador",

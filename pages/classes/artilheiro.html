@@ -154,7 +154,7 @@
             <div class="section-divider"><h2 id="treinamento">⚔️ Treinamento</h2></div>
             <div class="ramos-intro">
                 <p><strong>Você começa treinado em:</strong> Armas à Distância, Atacar, Percepção</p>
-                <p><strong>Escolha (1 + Mod.Int) perícias:</strong> Furtividade, Iniciativa, Ofício (Municiador), Investigação, Movimento</p>
+                <p><strong>Escolha (1 + Mod.Int) perícias:</strong> Furtividade, Iniciativa, Ofício (Engenharia), Investigação, Movimento</p>
             </div>
 
             <div class="section-divider"><h2 id="status-iniciais">📊 Status Iniciais</h2></div>
@@ -162,8 +162,8 @@
                 <div class="formula-card"><h4>❤️ Saúde</h4><code>10 + (4 × Nível) + (Mod.CON × Nível)</code></div>
                 <div class="formula-card"><h4>⚡ Stamina</h4><code>8 + (7 × Nível) + ([Mod.FOR OU Mod.DES] × Nível)</code></div>
                 <div class="formula-card"><h4>✨ Éter</h4><code>6 + (4 × Nível) + ([Mod.INT OU Mod.SAB] × Nível)</code></div>
-                <div class="formula-card"><h4>🛡️ Evasão Ativa</h4><code>11 + Mod.Des + Prof.Defender</code></div>
-                <div class="formula-card"><h4>🛡️ Evasão Passiva</h4><code>11 + Mod.Destreza</code></div>
+                <div class="formula-card"><h4>🛡️ Evasão Ativa</h4><code>10 + Mod.Des + Prof.Defender</code></div>
+                <div class="formula-card"><h4>🛡️ Evasão Passiva</h4><code>10 + Mod.Destreza</code></div>
             </div>
 
             <div class="section-divider"><h2 id="progressao">📈 Progressão</h2></div>
@@ -211,12 +211,12 @@
                 <div class="technique-card">
                     <h4>Balas de Ferro</h4>
                     <span class="tech-meta">Passiva</span>
-                    <p>Ataques críticos reduzem 3 de Armadura (Ar/Ae) do alvo.</p>
+                    <p>Ataques críticos reduzem 3 de Armadura (Ar/Ae) do alvo no acerto. Só pode remover Armadura do tipo de dano que sua arma causa.</p>
                 </div>
                 <div class="technique-card">
                     <h4>Artesão de Munição</h4>
                     <span class="tech-meta">Passiva</span>
-                    <p>Durante descanso, pode criar 1 munição sem testes.</p>
+                    <p>Durante descanso curto ou longo, pode criar 1 munição (Flecha, Munição de Armas de Fogo ou Adagas de lançamento) sem testes.</p>
                 </div>
                 <div class="technique-card">
                     <h4>Olho do Atirador</h4>
@@ -303,21 +303,21 @@
                 
                 <h4 style="color: var(--ramo-vendaval); margin: 1.5rem 0 1rem;">🌀 Vendaval</h4>
                 <div class="tech-grid">
-                    <div class="tech-card"><div class="tech-card-header vendaval"><h4>Mãos Velozes</h4><span class="cost">Passiva</span></div><div class="tech-card-body"><p>+1 Treinamento em Atacar. Com Armas de Arremesso:</p><ul><li>Sacar como ação livre</li><li>Multi-ataque -2 (ao invés de -5)</li><li>2+ ataques no mesmo turno/alvo: +1d6 Perfurante</li></ul><p>Fabrica Conjuntos de Arremesso em descansos.</p></div></div>
+                    <div class="tech-card"><div class="tech-card-header vendaval"><h4>Mãos Velozes</h4><span class="cost">Passiva</span></div><div class="tech-card-body"><p>+1 Treinamento em Atacar. Com Armas de Arremesso:</p><ul><li>Sacar como ação livre</li><li>Multi-ataque -2 (ao invés de -5)</li><li>2+ ataques no mesmo turno/alvo: +1d6 Perfurante</li></ul><p>Fabrica 1 Conjunto de Arremesso em descanso curto e 2 em descanso longo.</p></div></div>
                     <div class="tech-card"><div class="tech-card-header vendaval"><h4>Passo do Vento</h4><span class="cost">Passiva</span></div><div class="tech-card-body"><ul><li>Mover-se não perde mais Concentração</li><li>Ao acertar: move 1,5m como ação livre</li><li>Adiciona Concentração à Evasão</li></ul></div></div>
-                    <div class="tech-card"><div class="tech-card-header vendaval"><h4>Vendaval de Aço</h4><span class="cost">2 Ações, 5 Stamina</span></div><div class="tech-card-body"><p>Faça <strong>3 Ataques</strong> sem penalidade de multi-ataque.</p><p>Se 2+ acertarem mesmo alvo: <em>Sangramento 1</em>.</p></div></div>
+                    <div class="tech-card"><div class="tech-card-header vendaval"><h4>Vendaval de Aço</h4><span class="cost">2 Ações, 5 Stamina</span></div><div class="tech-card-body"><p>Faça <strong>3 Ataques com Armas de Arremesso</strong> sem penalidade de multi-ataque.</p><p>Se 2+ acertarem mesmo alvo: <em>Sangramento 1</em>.</p></div></div>
                 </div>
 
                 <h4 style="color: var(--ramo-polvora); margin: 1.5rem 0 1rem;">🔥 Pólvora</h4>
                 <div class="tech-grid">
-                    <div class="tech-card"><div class="tech-card-header polvora"><h4>Mão de Ferro</h4><span class="cost">Passiva</span></div><div class="tech-card-body"><p>+1 Treinamento em Atacar. Com Armas de Fogo:</p><ul><li>+2 de dano Perfurante</li><li>Ignora 2 de Armadura (Ar)</li></ul><p>Fabrica Munições de Fogo em descansos.</p></div></div>
-                    <div class="tech-card"><div class="tech-card-header polvora"><h4>Presença da Pólvora</h4><span class="cost">Passiva</span></div><div class="tech-card-body"><p>+1 Treinamento em Intimidação.</p><p>Ao acertar com arma de fogo, criaturas em 3m do alvo (exceto o alvo): Vontade ou <em>Amedrontadas</em> 1 rodada.</p><p>Com 5+ Concentração: afeta o alvo também.</p></div></div>
-                    <div class="tech-card"><div class="tech-card-header polvora"><h4>Rajada de Tiros</h4><span class="cost">1 Ação, 3 Stamina</span></div><div class="tech-card-body"><p><strong>2 Ataques</strong> sem penalidade em até 2 alvos com 3m entre si.</p><p>Se 2 acertarem mesmo alvo: Fortitude ou <em>Atordoado</em>.</p></div></div>
+                    <div class="tech-card"><div class="tech-card-header polvora"><h4>Mão de Ferro</h4><span class="cost">Passiva</span></div><div class="tech-card-body"><p>+1 Treinamento em Atacar. Com Armas de Fogo:</p><ul><li>+2 de dano Perfurante</li><li>Ignora 2 de Armadura (Ar)</li></ul><p>Fabrica 1 Munição de Fogo em descanso curto e 2 em descanso longo.</p></div></div>
+                    <div class="tech-card"><div class="tech-card-header polvora"><h4>Presença da Pólvora</h4><span class="cost">Passiva</span></div><div class="tech-card-body"><p>+1 Treinamento em Intimidação.</p><p>Ao acertar com arma de fogo, criaturas em 3m do alvo (exceto o alvo): Vontade ou <em>Amedrontadas</em> 1 rodada. Ao suceder, a criatura fica imune a esse efeito. Com 5+ Concentração, o efeito também afeta o alvo.</p><p>Com 5+ Concentração: afeta o alvo também.</p></div></div>
+                    <div class="tech-card"><div class="tech-card-header polvora"><h4>Rajada de Tiros</h4><span class="cost">1 Ação, 3 Stamina</span></div><div class="tech-card-body"><p><strong>2 Ataques com uma Arma de Fogo</strong> sem penalidade em até 2 alvos com 3m entre si.</p><p>Se 2 acertarem mesmo alvo: Fortitude ou <em>Atordoado</em> até o fim do próximo turno dele.</p></div></div>
                 </div>
 
                 <h4 style="color: var(--ramo-predador); margin: 1.5rem 0 1rem;">🏹 Predador</h4>
                 <div class="tech-grid">
-                    <div class="tech-card"><div class="tech-card-header predador"><h4>Olho do Arqueiro</h4><span class="cost">Passiva</span></div><div class="tech-card-body"><p>+1 Treinamento em Atacar. Com Arcos/Bestas:</p><ul><li>Alcance +6m</li><li>Ao mirar: próximo ataque +2 Atacar</li></ul><p>Fabrica Flechas/Virotes em descansos.</p></div></div>
+                    <div class="tech-card"><div class="tech-card-header predador"><h4>Olho do Arqueiro</h4><span class="cost">Passiva</span></div><div class="tech-card-body"><p>+1 Treinamento em Atacar. Com Arcos/Bestas:</p><ul><li>Alcance +6m</li><li>Ao mirar: próximo ataque +2 Atacar</li></ul><p>Fabrica 1 munição de Flecha ou Virote em descanso curto e 2 em descanso longo.</p></div></div>
                     <div class="tech-card"><div class="tech-card-header predador"><h4>Flechas do Predador</h4><span class="cost">Passiva</span></div><div class="tech-card-body"><p>Escolha o tipo de flecha ao atacar:</p><ul><li><strong>Perfurante:</strong> Ignora 3 Ar adicional</li><li><strong>Farpada:</strong> <em>Sangramento 1</em></li><li><strong>Explosão:</strong> Empurra 1,5m</li><li><strong>Incendiária:</strong> +1d4 Fogo</li></ul></div></div>
                     <div class="tech-card"><div class="tech-card-header predador"><h4>Tiro Carregado</h4><span class="cost">1-3 Ações, 2 Stamina</span></div><div class="tech-card-body"><ul><li>1 Ação: +1d6 Perfurante</li><li>2 Ações: +2d6 Perfurante</li><li>3 Ações: +3d6 Perfurante, Crítico +1</li></ul><p>Ganha +1 Concentração por ação gasta.</p></div></div>
                 </div>
@@ -328,13 +328,13 @@
                 
                 <h4 style="color: var(--ramo-vendaval); margin: 1.5rem 0 1rem;">🌀 Vendaval</h4>
                 <div class="tech-grid">
-                    <div class="tech-card"><div class="tech-card-header vendaval"><h4>Projétil Envenenado</h4><span class="cost">Passiva</span></div><div class="tech-card-body"><p>Durante descanso curto, aplica veneno em até <strong>5 munições</strong>.</p><p>Ao acertar: Fortitude ou <em>Envenenado</em> 2 rodadas. Com 5+ Conc: Desvantagem no teste.</p></div></div>
+                    <div class="tech-card"><div class="tech-card-header vendaval"><h4>Projétil Envenenado</h4><span class="cost">Passiva</span></div><div class="tech-card-body"><p>Durante descanso curto, aplica veneno em até <strong>5 munições</strong> (flechas, virotes, munições de fogo ou armas de arremesso).</p><p>Ao acertar: Fortitude ou <em>Envenenamento</em> 2 rodadas. Com 5+ Conc: Desvantagem no teste.</p></div></div>
                     <div class="tech-card"><div class="tech-card-header vendaval"><h4>Dança da Morte</h4><span class="cost">1 Ação, 4 Stamina, 3 Conc.</span></div><div class="tech-card-body"><p>Até próximo turno: quando criatura se mover no alcance, faça 1 Ataque à Distância como ação livre (gasta reação).</p><p>Se acertar 3+: recupera <strong>2 Concentração</strong>.</p></div></div>
                 </div>
 
                 <h4 style="color: var(--ramo-polvora); margin: 1.5rem 0 1rem;">🔥 Pólvora</h4>
                 <div class="tech-grid">
-                    <div class="tech-card"><div class="tech-card-header polvora"><h4>Munição Especial</h4><span class="cost">1 Ação, 2 Stamina</span></div><div class="tech-card-body"><p>Fabrica munições especiais (uso único):</p><ul><li><strong>Explosiva:</strong> Criaturas em 1,5m sofrem dano</li><li><strong>Perfurante:</strong> Ignora toda armadura</li><li><strong>Atordoante:</strong> Fortitude ou <em>Atordoado</em></li><li><strong>Incendiária:</strong> Alvo fica <em>Em Chamas</em></li></ul></div></div>
+                    <div class="tech-card"><div class="tech-card-header polvora"><h4>Munição Especial</h4><span class="cost">1 Ação, 2 Stamina</span></div><div class="tech-card-body"><p>Fabrica munições especiais (uso único):</p><ul><li><strong>Explosiva:</strong> Criaturas em 1,5m sofrem o dano original da flecha</li><li><strong>Perfurante:</strong> Ignora toda armadura</li><li><strong>Atordoante:</strong> Fortitude ou <em>Atordoado</em> por 1 rodada (não causa dano)</li><li><strong>Incendiária:</strong> Alvo fica <em>Em Chamas</em></li></ul><p>Fabrica 1 Munição Especial em descanso curto ou 2 em descanso longo. 3 munições especiais contam como 1 bugiganga.</p></div></div>
                     <div class="tech-card"><div class="tech-card-header polvora"><h4>Execução</h4><span class="cost">1 Ação, 4 Stamina, 5 Conc.</span></div><div class="tech-card-body"><p>Próximo ataque: <strong>+4 Atacar</strong>.</p><p>Se alvo &lt;50% HP: +2d6 Perfurante.</p><p>Se alvo &lt;25% HP: crítico automático.</p><p>Se matar: +3 Concentração.</p></div></div>
                 </div>
 
@@ -353,7 +353,7 @@
                     <div class="ultimate-quote">"Vendaval de lâminas."</div>
                     <div class="ultimate-body">
                         <p>Desencadeia uma rajada implacável em <strong>raio 6m</strong> até 12m de distância.</p>
-                        <ul><li>1 ataque contra cada criatura na área</li><li>Atingidos: Fortitude ou <em>Sangrando 2</em> e <em>Lento 1</em> por 2 rodadas</li><li>Para cada 2 criaturas atingidas: <strong>+1 ataque adicional</strong></li></ul>
+                        <ul><li>1 ataque contra cada criatura na área</li><li>Atingidos: Fortitude ou <em>Sangramento 2</em> e <em>Lento 1</em> por 2 rodadas</li><li>Para cada 2 criaturas atingidas: <strong>+1 ataque adicional</strong></li></ul>
                         <div class="ultimate-cost"><h5>💀 O Custo</h5><ul><li>Perde toda Concentração</li><li>Gasta 1 munição</li><li>Perde 1d6 de Éter</li></ul></div>
                     </div>
                 </div>
@@ -363,7 +363,7 @@
                     <div class="ultimate-quote">"Quando tudo falha, puxe o gatilho mais forte."</div>
                     <div class="ultimate-body">
                         <p>Disparo devastador com <strong>+6 Atacar</strong>.</p>
-                        <ul><li>Dano: base + <strong>5d6</strong> + Concentração atual em d6s de Perfurante</li><li>Alvo e criaturas em 3m: Fortitude ou <em>Atordoados</em> e <em>Surdos</em></li><li>Se matar: criaturas em 9m devem passar em Vontade ou ficam <em>Amedrontadas</em></li><li>Barulho audível até <strong>1km</strong></li></ul>
+                        <ul><li>Dano: base + <strong>5d6</strong> + Concentração atual em d6s de Perfurante</li><li>Alvo e criaturas em 3m: Fortitude ou <em>Atordoados</em> e <em>Surdos</em> por 1 rodada</li><li>Se matar: criaturas em 9m que presenciaram devem passar em Vontade ou ficam <em>Amedrontadas</em> até passar no teste no início de cada rodada</li><li>Barulho audível até <strong>1km</strong></li></ul>
                         <div class="ultimate-cost"><h5>💀 O Custo</h5><ul><li>Perde toda Concentração</li><li>Arma inutilizável até descanso longo</li><li>Perde 1d6 de Éter</li></ul></div>
                     </div>
                 </div>
@@ -375,8 +375,8 @@
                         <p>Disparo que transcende a precisão mortal:</p>
                         <ul><li><strong>Alcance ilimitado</strong> (desde que saiba onde está o alvo)</li><li>Ignora cobertura, Ar, Ae e Resistência</li><li><strong>Crítico automático</strong> se acertar</li></ul>
                         <p>Alvo deve passar em Fortitude ou sofre (sua escolha):</p>
-                        <ul><li><strong>Execução:</strong> Se &lt;30% HP, morre instantaneamente</li><li><strong>Incapacitar:</strong> <em>Paralisado</em> 2 rodadas</li><li><strong>Marcar:</strong> Permanentemente marcado, você sempre sabe sua localização e tem +4 Atacar</li></ul>
-                        <div class="ultimate-cost"><h5>💀 O Custo</h5><ul><li>Perde toda Concentração</li><li>Fica <em>Exausto 1</em></li><li>Perde 1d6 de Éter</li></ul></div>
+                        <ul><li><strong>Execução:</strong> Se &lt;30% HP, morre instantaneamente</li><li><strong>Incapacitar:</strong> <em>Paralisado</em> 2 rodadas</li><li><strong>Marcar:</strong> Permanentemente marcado, você sempre sabe sua localização e tem +4 Atacar contra ele até morrer</li></ul>
+                        <div class="ultimate-cost"><h5>💀 O Custo</h5><ul><li>Perde toda Concentração</li><li>Fica com <em>Exaustão 1</em></li><li>Perde 1d6 de Éter</li></ul></div>
                     </div>
                 </div>
             </div>

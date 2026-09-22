@@ -7,7 +7,7 @@
       "tipo": "trait-card",
       "opentag": "<div class=\"trait-card\">",
       "nome": "Persistência Humana",
-      "corpo": "\n                <h4>Persistência Humana</h4>\n                <p>Humanos são persistentes, ao falhar em um teste qualquer pode rolar 1d4 e somar ao teste. (Usos: 1+mod. Sabedoria/descanso longo)</p>\n            "
+      "corpo": "\n                <h4>Persistência Humana</h4>\n                <p>Humanos são persistentes, ao falhar em um teste qualquer, como ação livre, pode rolar 1d4 e somar ao teste. (Usos: 1+mod. Sabedoria/descanso longo)</p>\n            "
     },
     {
       "id": "humano-simples",

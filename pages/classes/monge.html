@@ -580,7 +580,7 @@
                         "Enquanto guerreiros dependem de aço e magos imploram a forças externas, você olhou para dentro. Seu corpo é templo, arma e fortaleza."
                     </p>
                     <p class="hero-desc">
-                        Através de anos de disciplina - ou de conexões que outros não compreendem - você aprendeu a canalizar o Fluxo: a energia que pulsa em toda criatura viva. Seus punhos quebram o que espadas não cortam. Seus passos não fazem som. Sua mente é uma muralha contra influências arcanas.
+                        Através de anos de disciplina - ou de conexões que outros não compreendem - você aprendeu a canalizar o Fluxo: a energia que pulsa em toda criatura viva. Seus punhos quebram o que espadas não cortam. Seus passos não fazem som. Sua mente é uma muralha contra influências arcanas. Você não precisa de armadura porque aprendeu a não ser atingido. Não precisa de magia porque sua vontade é suficiente.
                     </p>
                     
                     <div class="quick-stats">
@@ -594,7 +594,7 @@
                         </div>
                         <div class="stat-card">
                             <div class="label">Estilo</div>
-                            <div class="value">Combate Versátil</div>
+                            <div class="value">Combate Versátil, Utilidade e Resistência Mental</div>
                         </div>
                     </div>
                 </div>
@@ -606,8 +606,8 @@
             </div>
             
             <div class="ramos-intro">
-                <p><strong>Você começa treinado em:</strong> Armas Marciais, Movimento, Vontade</p>
-                <p><strong>Escolha (1 + Mod. Inteligência) perícias:</strong> Atacar, Defender, Iniciativa, Religião, Percepção</p>
+                <p><strong>Você começa treinado em:</strong> Armas Marciais, Movimento, Atacar</p>
+                <p><strong>Escolha (1 + Mod. Inteligência) perícias:</strong> Vontade, Defender, Iniciativa, Religião, Percepção</p>
             </div>
 
             <!-- STATUS -->
@@ -630,11 +630,11 @@
                 </div>
                 <div class="formula-card">
                     <h4>🛡️ Evasão Ativa</h4>
-                    <code>15 + Mod.Des + Prof.Defender</code>
+                    <code>10 + Mod.Des + Prof.Defender</code>
                 </div>
                 <div class="formula-card">
                     <h4>🛡️ Evasão Passiva</h4>
-                    <code>15 + Mod. Destreza</code>
+                    <code>10 + Mod. Destreza</code>
                 </div>
             </div>
 
@@ -736,13 +736,13 @@
             </div>
 
             <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">
-                Toda classe possui técnicas, você pode reatribuí-las livremente ao realizar um descanso longo. <strong>Você possui 3 Técnicas + Nível.</strong>
+                Toda classe possui técnicas, você pode reatribuí-las livremente ao realizar um descanso longo, respeitando o limite de pontos. <strong>Você possui 3 Técnicas + Nível.</strong>
             </p>
 
             <div class="techniques-grid">
                 <div class="technique-card">
                     <h4>Evasivo</h4>
-                    <span class="tech-meta">Passiva • 1 Fluxo</span>
+                    <span class="tech-meta">Passiva • 1-5 Fluxo</span>
                     <p>Adicione seu Fluxo a sua evasão, tanto ativa quanto passiva.</p>
                 </div>
                 <div class="technique-card">
@@ -768,7 +768,7 @@
                 <div class="technique-card">
                     <h4>Silêncio Interior</h4>
                     <span class="tech-meta">Passiva • 5 Fluxo</span>
-                    <p>Você tem vantagem em todos testes de resistência.</p>
+                    <p>Você tem vantagem em todos testes de resistência (Reflexos, Fortitude e Vontade).</p>
                 </div>
                 <div class="technique-card">
                     <h4>Andar nas Paredes</h4>
@@ -788,7 +788,7 @@
                 <div class="technique-card">
                     <h4>Golpe Sequencial</h4>
                     <span class="tech-meta">Ação Livre • 5 Stamina, 1 Fluxo</span>
-                    <p>Ao acertar um ataque desarmado, pode fazer outro ataque imediatamente contra o mesmo alvo (Sem penalidade de multi-ataque).</p>
+                    <p>Ao usar a ação atacar e acertar um ataque desarmado, pode fazer outro ataque imediatamente contra o mesmo alvo.</p>
                 </div>
                 <div class="technique-card">
                     <h4>Dança do Monge</h4>
@@ -803,7 +803,7 @@
                 <div class="technique-card">
                     <h4>Golpe das Mazelas</h4>
                     <span class="tech-meta">1 Ação • 3 Stamina</span>
-                    <p>Ao acertar um ataque desarmado, o alvo deve fazer Fortitude (CD 10 + Mod. Des) ou fica <em>Atordoado</em> até o fim do seu próximo turno.</p>
+                    <p>Ao acertar um ataque desarmado, o alvo deve fazer Fortitude ou fica <em>Atordoado</em> até o fim do seu próximo turno.</p>
                 </div>
                 <div class="technique-card">
                     <h4>Queda Suave</h4>
@@ -813,7 +813,7 @@
                 <div class="technique-card">
                     <h4>Apanhar Projétil</h4>
                     <span class="tech-meta">Reação</span>
-                    <p>Ao ser atingido por um ataque à distância, reduza o dano em (Nível)d10 + Mod.Des. Se reduzir a 0, você pegou o projétil. Pode arremessar de volta ao atacante em um mesmo movimento.</p>
+                    <p>Ao ser atingido por um ataque à distância, reduza o dano em (Nível)d10 + Mod.Des. Se reduzir a 0, você pegou o projétil. Pode arremessar de volta ao atacante em um mesmo movimento. Você pode utilizar essa técnica em qualquer projétil, porém arremessá-lo de volta depende que seja sólido e leve o suficiente.</p>
                 </div>
             </div>
 
@@ -990,8 +990,7 @@
                         <div class="tech-card-body">
                             <ul>
                                 <li>Você se torna Treinado em Atacar. Se já for Treinado, se torna Experiente e assim por diante.</li>
-                                <li>Seus ataques desarmados causam <strong>+1d6 de dano</strong>.</li>
-                                <li>Ao acertar dois ataques desarmados no mesmo turno contra o mesmo alvo, o terceiro ataque neste turno tem <strong>Vantagem</strong>.</li>
+                                <li>Seus ataques desarmados causam <strong>+1d6 de dano Contundente</strong>.</li>
                             </ul>
                         </div>
                     </div>
@@ -1015,7 +1014,7 @@
                         <div class="tech-card-body">
                             <ul>
                                 <li>Ao derrubar uma criatura a 0 Saúde com um ataque desarmado, você pode gastar <strong>3 Stamina</strong> para imediatamente se mover até <strong>3m</strong> e fazer outro ataque desarmado contra um alvo diferente como Ação Livre.</li>
-                                <li>Esse efeito pode encadear até seu <strong>(Mod. Destreza) vezes por turno</strong>.</li>
+                                <li>Esse efeito pode encadear até <strong>2 vezes por turno</strong>.</li>
                             </ul>
                         </div>
                     </div>
@@ -1031,7 +1030,7 @@
                         <div class="tech-card-body">
                             <ul>
                                 <li>Você se torna Treinado em <em>Místico</em>. Se já for Treinado, se torna Experiente e assim por diante.</li>
-                                <li>Seus ataques desarmados causam <strong>dano Mental</strong> ao invés de Contundente (você pode trocar entre os dois tipos em um descanso curto).</li>
+                                <li>Seus ataques desarmados causam <strong>dano Necrótico</strong> ao invés de Contundente (você pode trocar entre os dois tipos em um descanso curto).</li>
                                 <li>Você cura <strong>1 de Saúde</strong> ao acertar um ataque corpo a corpo desarmado.</li>
                             </ul>
                         </div>
@@ -1048,7 +1047,8 @@
                                 <li>+2 Fluxo ao falhar em teste de resistência</li>
                                 <li>+3 Fluxo ao ver um aliado cair para 0 Saúde</li>
                             </ul>
-                            <p>Ao atingir 5 de Fluxo, você emana uma <strong>aura de 1,5m</strong>: Inimigos que começam o turno na aura sofrem 1d6 de dano Mental e devem suceder em Vontade (CD 10+Mod.Sab+Mod.Des) ou ficam <em>Desorientados</em>.</p>
+                            <p>Ao atingir 5 de Fluxo, você emana uma <strong>aura de 1,5m</strong>: Inimigos que começam o turno na aura sofrem 1d6 de dano Necrótico e devem suceder em Vontade (CD 10+Mod.Sab+Mod.Des) ou ficam <em>Desorientados</em>.</p>
+                            <p>Você ainda ganha fluxo das formas normais.</p>
                         </div>
                     </div>
                     <div class="tech-card">
@@ -1063,7 +1063,7 @@
                                 <li>Você pode se mover através de criaturas e objetos finos (Até 10cm). Se terminar o turno dentro de outro corpo é expulso e recebe 2d6 de dano de Força.</li>
                                 <li>Você recebe <strong>+5 em testes de furtividade</strong>.</li>
                             </ul>
-                            <p>Ao sair da forma, criaturas em até 1,5m devem fazer Vontade (CD 10+Mod.Sab+Mod.Des) ou ficam <em>Desorientados</em>.</p>
+                            <p>Ao sair da forma, criaturas em até 1,5m devem fazer Vontade ou ficam <em>Desorientados</em>.</p>
                         </div>
                     </div>
                 </div>
@@ -1148,7 +1148,7 @@
                         </div>
                         <div class="tech-card-body">
                             <p>Seus ataques desarmados tem <strong>crítico em 19-20</strong>.</p>
-                            <p>No crítico, teste de Vontade (CD 15+Mod.Sab) ou escolha um dos efeitos:</p>
+                            <p>No crítico, teste de Vontade ou escolha um dos efeitos:</p>
                             <ul>
                                 <li><strong>Atordoar:</strong> Alvo fica <em>Atordoado</em>.</li>
                                 <li><strong>Sangrar:</strong> Alvo recebe <em>Sangramento 2</em>.</li>
@@ -1164,7 +1164,7 @@
                         <div class="tech-card-body">
                             <ul>
                                 <li>Seu fluxo só reseta após <strong>2 rodadas</strong> sem ganhar fluxo.</li>
-                                <li>Ao receber dano, pode negar a perda de fluxo uma quantidade de vezes igual ao seu <strong>Mod. de Sabedoria</strong>.</li>
+                                <li>Ao receber dano, pode negar a perda de fluxo uma quantidade de vezes igual ao seu <strong>Mod. de Sabedoria por Descanso Longo</strong>.</li>
                             </ul>
                         </div>
                     </div>
@@ -1179,9 +1179,9 @@
                         </div>
                         <div class="tech-card-body">
                             <ul>
-                                <li>Ao acertar um ataque, pode exigir um teste de Vontade (CD 10+Mod.Sab+Mod.Des) ou o alvo fica <em>Amedrontado</em>.</li>
+                                <li>Ao acertar um ataque, pode exigir um teste de Vontade ou o alvo fica <em>Amedrontado</em>.</li>
                                 <li>A cada criatura amedrontada no seu campo de visão, você ganha <strong>1 de fluxo permanente</strong> (que não pode ser perdido) até a criatura se livrar dessa condição.</li>
-                                <li>Ao atacar uma criatura <em>Amedrontada</em>, o ataque causa <strong>+1d8 de dano Mental</strong>.</li>
+                                <li>Ao atacar uma criatura <em>Amedrontada</em>, o ataque causa <strong>+1d8 de dano Necrótico</strong>.</li>
                             </ul>
                         </div>
                     </div>
@@ -1194,7 +1194,7 @@
                             <ul>
                                 <li>Crie um portal com ponto de entrada de onde você está, até qualquer lugar em até <strong>15m</strong>.</li>
                                 <li>Você e aliados se teletransportam normalmente entre os portais.</li>
-                                <li>Inimigos que se teletransportarem devem suceder em Vontade (CD 10+Mod.Sab+Mod.Des) ou sofrem <strong>2d6 de Dano Mental</strong> e ficam <em>Amedrontados</em>.</li>
+                                <li>Inimigos que se teletransportarem devem suceder em Vontade ou sofrem <strong>2d6 de Dano Necrótico</strong> e ficam <em>Amedrontados</em>.</li>
                                 <li>O portal dura <strong>3 Rodadas</strong>. Você pode ter apenas 1 portal ativo por vez.</li>
                             </ul>
                         </div>
@@ -1209,7 +1209,7 @@
                             <span class="cost">Passiva</span>
                         </div>
                         <div class="tech-card-body">
-                            <p>Você invoca um espírito animal <strong>maior</strong> que se manifesta como um companheiro primal.</p>
+                            <p>Você invoca um espírito animal <strong>maior</strong> que se manifesta como um companheiro primal. Ele dura até o fim do combate ou até ser destruído. Escolha a forma ao invocar:</p>
                             <div class="companion-grid">
                                 <div class="companion-card">
                                     <h5>🐺 Lobo Sanguíneo</h5>
@@ -1233,7 +1233,7 @@
                                     <p>Ataque: Mod.Des+2, Dano: 1d10+Des (Perfurante). Você vê através dos olhos dele. Ao atacar, aplica <em>Lento 1</em>.</p>
                                 </div>
                             </div>
-                            <p style="margin-top: 1rem; font-size: 0.85rem;">Só pode ter 1 Companheiro Primal maior ativo por vez. Pode invocar 1 companheiro primal menor simultaneamente.</p>
+                            <p style="margin-top: 1rem; font-size: 0.85rem;">O Companheiro age no seu turno, tem 2 Ações, evasão passiva permanente e usa seu bônus de Atacar. Só pode ter 1 Companheiro Primal maior ativo por vez e pode invocá-lo fora de combate por 5 minutos. Pode invocar 1 companheiro primal menor simultaneamente.</p>
                         </div>
                     </div>
                     <div class="tech-card">
@@ -1245,7 +1245,7 @@
                             <p>Você invoca um totem natural de <strong>9m de raio</strong> que dura 3 rodadas. O totem instiga a força da natureza a proteger seus aliados e atrapalhar seus inimigos:</p>
                             <ul>
                                 <li>Aliados nesta área recuperam <strong>1d4+Mod.Sab Saúde</strong> por rodada.</li>
-                                <li>Inimigos nesta área devem suceder em Fortitude (CD 10+Mod.Sab+Mod.Des) ou ficam <em>Paralisados</em> até sucederem no final de cada um de seus turnos ou o totem acabar.</li>
+                                <li>Inimigos nesta área devem suceder em Fortitude ou ficam <em>Paralisados</em> até sucederem no final de cada um de seus turnos ou o totem acabar.</li>
                             </ul>
                         </div>
                     </div>
@@ -1262,7 +1262,7 @@
                 <!-- Transcendência -->
                 <div class="ultimate-card">
                     <div class="ultimate-header punho">
-                        <h4>🥊 Transcendência</h4>
+                        <h4>🥊 Transcendência Suprema</h4>
                         <div>
                             <span class="ultimate-badge">ULTIMATE</span>
                             <span style="margin-left: 0.5rem; color: var(--text-muted); font-size: 0.85rem;">3 Ações, 5 Stamina, 5 Fluxo</span>
@@ -1300,15 +1300,15 @@
                         <p>Você está completamente vazio por dentro, ágil e fantasmagórico. Por <strong>3 rodadas</strong>:</p>
                         <ul>
                             <li>As técnicas <strong>"Forma do Vazio"</strong> e <strong>"O Terror"</strong> ficam ativas permanentemente.</li>
-                            <li>Todas as criaturas em até 12m devem suceder em Vontade (CD 10+Mod.Des+Mod.Sab) ou ficam <em>Amedrontadas</em>.</li>
+                            <li>Todas as criaturas em até 12m devem suceder em Vontade ou ficam <em>Amedrontadas</em>.</li>
                             <li>Pode atravessar <strong>qualquer superfície</strong>.</li>
-                            <li>Todos seus ataques causam <strong>+2d8 de dano Mental</strong> e Ignoram Armadura/Resistência.</li>
+                            <li>Todos seus ataques causam <strong>+2d8 de dano Necrótico</strong> e Ignoram Armadura/Resistência.</li>
                             <li>Imune a <em>Amedrontado</em>, <em>Confuso</em> e <em>Enfeitiçado</em>.</li>
-                            <li>Teletransporta a até <strong>4,5m como ação livre</strong> (1x/Turno).</li>
+                            <li>Teletransporta a até <strong>4,5m como 1 ação</strong> (1x/Turno).</li>
                         </ul>
                         <div class="ultimate-cost">
                             <h5>💀 O Custo</h5>
-                            <p>Você perde todo seu fluxo e <strong>1d6 de Éter</strong>.</p>
+                            <p>Você perde todo seu fluxo e <strong>metade do seu Éter atual</strong>.</p>
                             <p style="font-style: italic; color: var(--text-muted);">Ele… te chama.</p>
                         </div>
                     </div>
@@ -1353,7 +1353,7 @@
                                 <p><strong>Ataque:</strong> +1, +(1d10+Des) Perfurante</p>
                                 <p><strong>Evasão:</strong> +3</p>
                                 <p><strong>Movimento:</strong> 18m Voo, pode se mover como ação livre</p>
-                                <p><strong>Efeito:</strong> Alvo fica <em>Lento 1</em> por 1 rodada. Ao atacar alvo Lento X, você tem +X Atacar e Dano.</p>
+                                <p><strong>Efeito:</strong> Alvo fica <em>Lento 1</em> por 1 rodada. Ao atacar alvo Lento X, você tem +X Atacar e Dano Cortante.</p>
                                 <p><strong>Habilidade:</strong> Com 3 ações, você pode tentar agarrar um alvo e soltá-lo dos céus, causando <strong>4d12 de dano de Força</strong>.</p>
                             </div>
                         </div>
