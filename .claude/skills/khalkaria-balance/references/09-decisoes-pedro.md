@@ -344,6 +344,20 @@ A contagem de reagentes no Bazar **vem da tabela do Notion**, não é derivada d
 **Escada de cura do Autômato:** a raça não se cura por meios tradicionais, então os Kits de
 Manutenção correm **~30% acima** da Poção de Cura em cada raridade (7 / 14 / 22,5 / 36).
 
+**D71 — Pergaminho: a raridade é o nível da magia.** Existe **1 pergaminho por magia canônica**,
+`Não-craftável`, `1 uso: conjura <Magia> (magia de <Escola>, Nível N).` A escada fechou exata em
+**100 pergaminhos, 20 por faixa**, sem precisar forçar:
+```
+Nível 1 (truques) → Lixo   ·  Nível 2 → Ordinário  ·  Nível 3 → Incomum
+Nível 4 → Exótico          ·  Nível 5 → Luxária
+```
+Como o shift de nível (D68) e o mapa nível→raridade andaram juntos, **a raridade dos 80
+pergaminhos antigos não mudou** — só o número no texto. Lixo era a única faixa livre abaixo de
+Ordinário e cai bem: um pergaminho de magia de 0 Éter vale pouco para quem conjura, mas continua
+sendo a única forma de um **não-conjurador** usar a magia.
+⚠️ **Todo pergaminho cita o nível no próprio texto.** Qualquer renumeração futura de magia
+desatualiza os 100 de uma vez — é o maior acoplamento do catálogo.
+
 ---
 
 # 5. Cânone do sistema e terminologia
@@ -451,7 +465,13 @@ ao reduzir criatura viva a 0 de Saúde absorve `Nível + Mod.CON`.
 | 16 | Escudo | 10 reescritos: escada de Defender, cadeia evolutiva, receitas |
 | 14 | Bugiganga Luxária | 6 reescritos pelo Pedro. **Categoria Bugiganga fechada: 0 receitas duplicadas nas 4 raridades, 0 materiais órfãos** |
 
+| 17 | Armadura | 50: escadas de Ar e Ae, `[Pesada]`/`[Leve]` como slot, 14 alvos de Ae cobertos |
+| 18 | **Magias de Nível 1** | 20 truques criados (5 por escola) + shift de todas as magias em +1 nível (D68–D70). Ver `12-magias-nivel1.md` |
+| 19 | Pergaminhos | 80 renumerados + 20 criados = **100, escada nível→raridade fechada** (D71) |
+
 Detalhe item a item dos novos: `references/10-novidades-bazar.md` (gerado por `auditor.py novidades`).
+
+**Em andamento: Consumível** — 235 itens, 106 com receita. Última categoria antes de Item Mágico.
 
 ---
 
@@ -461,6 +481,45 @@ Detalhe item a item dos novos: `references/10-novidades-bazar.md` (gerado por `a
 - Registrar **"margem de ameaça"** (D22) e **"Multiplicador de Crítico"** (D31).
 - Regra de expiração para as 11 condições listadas em D16.
 - Corrigir Evasão passiva nas 7 páginas de classe do repo (D20).
+
+### Varredura de nível de magia (feita em 2026-09-22, para o shift da D68)
+🔴 **Fórmulas que mudam sozinhas, sem ninguém editar** — multiplicam pelo nível da magia:
+| Onde | Texto | Efeito do shift |
+|---|---|---|
+| Teurgo › Canalização Visceral | `dano primordial = nível da magia × 2` | toda magia custa **+2 Saúde** |
+| Teurgo › Eterno Aprendiz | `CD 15 + Nível da Magia × 2` | aprender fica **+2 de CD** |
+| Magias › Dissipar Magia | `CD 20 + nível da magia` | dissipar fica **+1 de CD** |
+| Ficha Runa Skorn | `(Nível da Magia × 2) Reagentes` | custo sobe sozinho |
+
+🟠 **A regra de acesso do Teurgo, 3 blocos com texto idêntico** (`caa6e3a4-…`):
+*"Você só pode escolher magias iguais ou abaixo do seu (nível - 1)"* → **"do mesmo nível que o
+seu"**, em **Grimório Arcano** (Acadêmico), **Canalizador Inato** (Receptáculo) e **Magias
+Pactuadas** (Arauto).
+
+🟡 **Números literais:**
+| Página | Atual | Vira |
+|---|---|---|
+| Magias › Dissipar Magia | "Magias de Nível 2 ou menor" | Nível 3 ou menor |
+| O Limiar › Abismo › *Desejo Sombrio* (8 Dor) | "qualquer magia de nível 1-4" | 1-5 (ou 2-5) |
+| Corrompido `e6d6e3a4` | "duas magias de nível 0" | nível 1 |
+| Cultista `1966e3a4` | "2 magias de nível 0" | nível 1 |
+| Fichas Klaus / Sinikko / Runa | acompanham Corrompido e Teurgo | — |
+
+⚠️ **A tabela de custo está DUPLICADA.** A raiz **Sistema Khalkaria** `2b76e3a4` tem uma segunda
+cópia completa das regras (custo **e** intensidade). Atualizar só a página *Magias* desincroniza
+em silêncio. As duas precisam da linha `Nível 1 = 0 Éter` e da nota de que Nível 1 não tem Contida.
+
+🔵 **Órfãs de Contida** (truque não tem Contida, então nunca disparam em Nível 1):
+*Éter Residual* e *Magias Pactuadas* ("Contida = 0 éter"). Funciona, mas o jogador vai perguntar.
+
+🟢 **Conferidos, não mudam:** Teurgo › Escolas ("magias de nível 1 no primeiro nível" agora
+significa truques) · Escola Primordial "(Requer nível 5)" · Patrono O Limiar ("nível igual ou
+abaixo do seu", já está na forma nova) · *Ruído Anti-Magia* ("qualquer nível") · as cópias
+arquivadas na pasta **Outros**.
+
+**Visto de passagem em O Limiar, fora do escopo:** o bloco de resumo diz "Total de Cartas: 127 ·
+Universais: 8" contra 129 / 10 universais no meu registro; e os cabeçalhos de coluna dizem
+`FOR 16+` enquanto o resumo logo abaixo diz `FOR 14+`.
 
 **Bazar (meu, quando chegar a vez)**
 - **Família dos alcoólicos** (condição *Bêbado*) — várias classes dependem. Na passada de Consumível.
@@ -478,6 +537,11 @@ Detalhe item a item dos novos: `references/10-novidades-bazar.md` (gerado por `a
 - **3 itens do Notion fora da banda de reagente do próprio nível** (D39): já corrigidos —
   Sangue Falso → Nv1, Extrato de Clarividência e Amnésia Líquida → 8 reagentes.
 - **Munição Fragmentadora** — resolvido: ganhou rider +1d12 Cortante.
+- **Escudo 9/10 sem receita** — resolvido: é o *Escudo de Karmath*, `Item único` + `Não-craftável`
+  + `Único/Quest`. Coerente consigo mesmo, não é buraco.
+- **Auditoria de `Ae(` nas 34 ocorrências** — 2 corrigidos (D67); as demais estavam na escada.
+  Meu script inicial usou uma lista de categorias digitada de memória e acusou *Biológico* como
+  inválido, quando a D63 já a listava. **Ler a referência, não recitá-la.**
 
 ## D63 — 🔑 Ae é SEMPRE um tipo de dano; Ar cobre os 3 ordinários de uma vez
 "`Ae(Cortante, 5)` existe, `Ae(Ordinário, 3)` **não existe**. `Ar 3` já dá a redução fixa nos 3

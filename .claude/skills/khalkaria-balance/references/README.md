@@ -10,21 +10,25 @@
 
 ## Estado do Bazar
 
-`references/bazar-v26.csv` — **699 itens, 700 linhas, 29 colunas.**
-⚠️ **O cabeçalho está no MEIO do arquivo (linha 581)**, não na primeira nem na última: linhas novas
+`references/bazar-v26.csv` — **722 itens, 723 linhas, 29 colunas.**
+⚠️ **O cabeçalho está no MEIO do arquivo (linha 599)**, não na primeira nem na última: linhas novas
 foram acrescentadas depois dele. `auditor.load()` já trata isso.
 
-| Categoria | Itens |
-|---|---|
-| Consumível | 214 |
-| Arma | 181 |
-| Bugiganga | 67 |
-| Item Mágico | 61 |
-| Lixo | 48 |
-| Armadura | 45 |
-| Material | 37 |
-| Munição | 36 |
-| Escudo | 10 |
+| Categoria | Itens | Receitas |
+|---|---|---|
+| Consumível | 235 | 106/235 |
+| Arma | 181 | 181/181 |
+| Bugiganga | 64 | 64/64 |
+| Item Mágico | 61 | 0/61 |
+| Armadura | 50 | 50/50 |
+| Lixo | 48 | 0/48 |
+| Material | 37 | 0/37 |
+| Munição | 36 | 36/36 |
+| Escudo | 10 | 9/10 |
+
+**Lixo e Material não entram na conta de receita** — lixo não se fabrica e material se extrai.
+Sobre o que é fabricável: **446 de 637, 70%**. O que falta é Consumível (em revisão) e
+Item Mágico (adiado de propósito, D37).
 
 **Colunas:** Nome · Categoria · Raridade · Efeito · Efeito_Jogador · Valor (Sins) · Obtenção ·
 Tipo de Craft · Ingredientes · Tags · Lore/Notas · **CD de Craft** · (17 colunas vazias de reserva).
@@ -37,6 +41,11 @@ Tipo de Craft · Ingredientes · Tags · Lore/Notas · **CD de Craft** · (17 co
 |---|---|---|
 | **`09-decisoes-pedro.md`** | **Os parâmetros. Lei.** | conversa com o Pedro |
 | `01-nucleo-sistema.md` | Regras centrais: perícias, retaliação, dano/defesa, armas, inventário, magia | Notion `2b76e3a4…` |
+| **`12-magias-nivel1.md`** | **As 20 magias de Nível 1**, formato de tabela do Notion | fechado com o Pedro |
+| `magias-nivel1.json` | as mesmas 20 como dado (Rota 1) | gerado |
+| `magias-nivel1-gerador.py` | guarda as 20 e **valida antes de emitir**: 5 por escola, nomes únicos, modulações da escola certa, barras de exatamente 3 valores, nenhuma menção a Contida | — |
+| `prompt-slides-magias.md` | prompt pronto para o Claude Design: 8 slides (M1–M8) | — |
+| `prompt-slides-17-24.md` | prompt pronto para o Claude Design: a seção do Bazar | — |
 | `02-condicoes.md` | 30 condições ordenadas por impacto em combate | Notion `3a66e3a4…ceef0b25` |
 | `03-origens.md` | 17 origens + Sins iniciais (âncora de preço) | Notion `3a66e3a4…cb77002a` |
 | `04-racas.md` | 7 raças + régua raridade→poder das Tecnologias do Autômato | `data/racas/*.json` |
