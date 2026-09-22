@@ -30,6 +30,11 @@
         .habilidade-box{background:linear-gradient(135deg,rgba(212,175,55,0.08),transparent);border:1px solid var(--gold-dark);border-radius:8px;padding:1rem;margin-top:1rem}
         .habilidade-box h4{color:var(--gold);margin-bottom:0.5rem}
         .habilidade-box p{color:var(--text-secondary);font-size:0.9rem;margin:0}
+        .habilidade-box ul{margin:0;padding-left:1.15rem}
+        .habilidade-box li{color:var(--text-secondary);font-size:0.9rem;margin-bottom:0.3rem}
+        .habilidade-box ul.faixas{list-style:none;padding-left:0;margin-top:0.6rem;display:grid;gap:0.25rem}
+        .habilidade-box ul.faixas li{display:flex;gap:0.7rem;align-items:baseline;margin:0}
+        .habilidade-box ul.faixas b{color:var(--gold-light);font-family:var(--font-heading);font-size:0.8rem;min-width:2.6rem;flex-shrink:0}
         .quick-nav{display:flex;flex-wrap:wrap;gap:0.5rem;justify-content:center;margin-bottom:2rem;padding:1rem;background:var(--bg-secondary);border-radius:8px}
         .quick-nav a{color:var(--text-muted);text-decoration:none;padding:0.35rem 0.75rem;border-radius:4px;font-size:0.85rem;transition:all 0.2s}
         .quick-nav a:hover{color:var(--gold);background:var(--bg-tertiary)}
@@ -89,8 +94,10 @@
                 <a href="#escravo">Escravo</a>
                 <a href="#exilado">Exilado</a>
                 <a href="#ferreiro">Ferreiro</a>
+                <a href="#lenhador">Lenhador</a>
                 <a href="#marinheiro">Marinheiro</a>
                 <a href="#mercador">Mercador</a>
+                <a href="#mineiro">Mineiro</a>
                 <a href="#nobre">Nobre</a>
                 <a href="#refugiado">Refugiado</a>
                 <a href="#soldado">Soldado</a>
@@ -110,7 +117,7 @@
                     <p class="origem-desc">Você passou anos estudando. História, alquimia, política, bestas, ruínas — o conhecimento era seu refúgio e sua arma. Mas em Khalkaria, saber demais é perigoso. Cada resposta abria dez perguntas novas, cada descoberta revelava camadas mais profundas de escuridão. Agora o mundo te chama para fora das bibliotecas, para aplicar o que aprendeu. Sua mente é afiada. Você sabe coisas que outros nem imaginam que existem. A única questão é se o que você sabe vai te salvar — ou te condenar.</p>
                     <div class="origem-grid">
                         <div class="origem-section">
-                            <h4>🎯 Perícia</h4>
+                            <h4>🎯 Treinamento</h4>
                             <p>Conhecimento</p>
                         </div>
                         <div class="origem-section">
@@ -145,7 +152,7 @@
                     <p class="origem-desc">O calor da forja nunca cessou. O fogo escolheu você como artista. Você aprendeu a ler o metal pela cor, a domar o ferro a marteladas, a transformar minério bruto em lâmina e escudo. Numa terra que devora os despreparados, você é a mão que arma os sobreviventes e sabe que toda matéria um dia pode virar arma.</p>
                     <div class="origem-grid">
                         <div class="origem-section">
-                            <h4>🎯 Perícia</h4>
+                            <h4>🎯 Treinamento</h4>
                             <p>Ofício(Ferraria)</p>
                         </div>
                         <div class="origem-section">
@@ -180,7 +187,7 @@
                     <p class="origem-desc">Couro, madeira, tecido, engrenagem, em suas mãos, tudo vira algo útil. Você não forja lâminas, mas constrói o que mantém um grupo vivo: a bolsa que carrega o saque, a corda que salva da queda, o mecanismo que abre as portas certas. Onde outros veem lixo, você vê possibilidade.</p>
                     <div class="origem-grid">
                         <div class="origem-section">
-                            <h4>🎯 Perícia</h4>
+                            <h4>🎯 Treinamento</h4>
                             <p>Ofício(Engenharia)</p>
                         </div>
                         <div class="origem-section">
@@ -203,6 +210,96 @@
                 </div>
             </div>
 
+            <!-- LENHADOR -->
+            <div class="origem-card" id="lenhador">
+                <div class="origem-header" onclick="this.parentElement.classList.toggle('active')">
+                    <h3 id="lenhador-2"><span class="icon">🪓</span> Lenhador</h3>
+                    <div style="display:flex;align-items:center;gap:1rem">
+                        <span class="origem-sins">💰 2d6+5</span>
+                        <span class="toggle-icon">▼</span>
+                    </div>
+                </div>
+                <div class="origem-body">
+                    <p class="origem-desc">Você está acostumado a derrubar suas florestas com o seu machado. Porém, a floresta de Kharavel não é sua. Você aprendeu isso na primeira vez que abriu um tronco e achou a veia amarela correndo por dentro dele. Você lê a árvore antes de tocá-la: o lado que o vento castigou, a raiz que já apodreceu, e o amarelo na folha que diz que aquela madeira não serve para casa nenhuma. Machado é paciência — golpe errado custa o dia, às vezes a perna, às vezes muito mais do que isso. Você conhece o peso de cada madeira pelo braço e sabe que nenhuma delas cai calada. Numa terra onde a maior árvore de todas cresce para dentro de tudo, você é quem separa o que ainda é madeira do que já é corrupção.</p>
+                    <div class="origem-grid">
+                        <div class="origem-section">
+                            <h4>🎯 Treinamento</h4>
+                            <p>Sobrevivência</p>
+                        </div>
+                        <div class="origem-section">
+                            <h4>🎒 Itens Iniciais</h4>
+                            <ul>
+                                <li>Roupas Básicas</li>
+                                <li>1 Arma Pesada (1 Equipamento)</li>
+                                <li>1 Kit de Ferramentas (1 Bugiganga)</li>
+                                <li>1 <a href="bazar.html?item=Bolsa de Couro" class="item-link">Bolsa de Couro</a> (1 Bugiganga)</li>
+                                <li>1 <a href="bazar.html?item=Madeira Comum" class="item-link">Madeira Comum</a> (1 Bugiganga)</li>
+                                <li>2 Comidas (2 Bugigangas)</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="habilidade-box">
+                        <h4>✨ Lenhar</h4>
+                        <ul>
+                            <li>Você pode arremessar armas pesadas como 3 ações; no acerto, você causa o dano máximo da arma. <strong>1x/Combate</strong>.</li>
+                            <li>Você pode cortar árvores e adquirir madeira como uma ação de descanso longo. Ao fazer isso, role um teste de <strong>Sobrevivência</strong>:</li>
+                        </ul>
+                        <ul class="faixas">
+                            <li><b>10+</b> <span>2 Madeiras Comum</span></li>
+                            <li><b>15+</b> <span>4 Madeiras Comum</span></li>
+                            <li><b>20+</b> <span>2 Madeiras Nobres</span></li>
+                            <li><b>25+</b> <span>4 Madeiras Nobres</span></li>
+                            <li><b>30+</b> <span>2 Madeiras Místicas</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MINEIRO -->
+            <div class="origem-card" id="mineiro">
+                <div class="origem-header" onclick="this.parentElement.classList.toggle('active')">
+                    <h3 id="mineiro-2"><span class="icon">⛏️</span> Mineiro</h3>
+                    <div style="display:flex;align-items:center;gap:1rem">
+                        <span class="origem-sins">💰 2d6+5</span>
+                        <span class="toggle-icon">▼</span>
+                    </div>
+                </div>
+                <div class="origem-body">
+                    <p class="origem-desc">Toda pedra tem uma direção. Você aprendeu a seguir o veio para onde ele vai, e não para onde você queria que fosse; a escorar o teto antes de abrir o próximo metro; a desconfiar quando a chama da lamparina encolhe, porque o ar ruim mata antes do desabamento. Reconhece minério ruim pelo peso e pelo jeito que quebra. Sabe que o salário do dia é o que você consegue carregar na subida. O que Kharavel tem de valor está enterrado fundo, e alguém precisa descer.</p>
+                    <div class="origem-grid">
+                        <div class="origem-section">
+                            <h4>🎯 Treinamento</h4>
+                            <p>Sobrevivência</p>
+                        </div>
+                        <div class="origem-section">
+                            <h4>🎒 Itens Iniciais</h4>
+                            <ul>
+                                <li>Roupas Básicas</li>
+                                <li>1 Arma Pesada (1 Equipamento)</li>
+                                <li>1 Kit de Ferramentas (1 Bugiganga)</li>
+                                <li>1 <a href="bazar.html?item=Bolsa de Couro" class="item-link">Bolsa de Couro</a> (1 Bugiganga)</li>
+                                <li>1 <a href="bazar.html?item=Madeira Comum" class="item-link">Madeira Comum</a> (1 Bugiganga)</li>
+                                <li>2 Comidas (2 Bugigangas)</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="habilidade-box">
+                        <h4>✨ Minerar</h4>
+                        <ul>
+                            <li>Você pode gastar +1 ação no ataque padrão da sua arma equipada para receber <strong>+2 de Margem de Ameaça</strong>. <strong>1x/Turno</strong>.</li>
+                            <li>Você pode minerar em sítios de mineração e adquirir minerais como uma ação de descanso longo. Ao fazer isso, role um teste de <strong>Sobrevivência</strong>:</li>
+                        </ul>
+                        <ul class="faixas">
+                            <li><b>10+</b> <span>2 Cobres</span></li>
+                            <li><b>15+</b> <span>1 Cobre e 1 Ferro</span></li>
+                            <li><b>20+</b> <span>2 Ferros</span></li>
+                            <li><b>25+</b> <span>1 Ferro e 1 Kali</span></li>
+                            <li><b>30+</b> <span>2 Kali</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
             <!-- EXILADO -->
             <div class="origem-card" id="exilado">
                 <div class="origem-header" onclick="this.parentElement.classList.toggle('active')">
@@ -216,7 +313,7 @@
                     <p class="origem-desc">Algo te expulsou. Um crime, uma traição, uma verdade que não deveria ter descoberto. Você deixou tudo para trás — nome, lar, identidade — e sumiu nas bordas do mapa. Cada fogueira solitária é um lembrete do que você perdeu. Cada pegada apagada é uma oração para que o passado não te alcance. Você sobreviveu até aqui. Mas em Khalkaria, o exílio nunca é permanente. Cedo ou tarde, o que você fugiu vem cobrar.</p>
                     <div class="origem-grid">
                         <div class="origem-section">
-                            <h4>🎯 Perícia</h4>
+                            <h4>🎯 Treinamento</h4>
                             <p>Sobrevivência</p>
                         </div>
                         <div class="origem-section">
