@@ -15,7 +15,7 @@
       "tipo": "trait-card",
       "opentag": "<div class=\"trait-card\">",
       "nome": "Receptáculo Natural",
-      "corpo": "\n                <h4>Receptáculo Natural</h4>\n                <ul>\n                    <li>Você pode conjurar duas magias de nível 0, de qualquer escola, sem um foco designado.</li>\n                    <li>Ao fazer isso, rola Vontade (CD 12), recebendo 1d4 de dano Psíquico em caso de falha.</li>\n                    <li>Escolha-as dentre as listas de magia nível 1.</li>\n                </ul>\n            "
+      "corpo": "\n                <h4>Receptáculo Natural</h4>\n                <ul>\n                    <li>Você pode conjurar duas magias de nível 1, de qualquer escola, sem um foco designado.</li>\n                    <li>Ao fazer isso, rola Vontade (CD 12), recebendo 1d4 de dano Psíquico em caso de falha.</li>\n                    <li>Escolha-as dentre as listas de magia nível 1.</li>\n                </ul>\n            "
     },
     {
       "id": "corrompido-sussurros-1x-descanso-curto",

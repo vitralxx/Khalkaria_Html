@@ -11,7 +11,7 @@
       "id": "alquimista-producao-em-massa",
       "tipo": "technique-card",
       "nome": "Produção em Massa",
-      "corpo": "\n                    <h4>Produção em Massa</h4>\n                    <span class=\"tech-meta\">1 Ação • 5 Stamina/Item</span>\n                    <p>Ao criar um item alquímico, pode gastar 5 de Stamina para criar +1 desse mesmo item sem reagentes adicionais. Máx. itens adicionais = Nível. Itens criados por Produção em Massa não podem ser vendidos pois são de baixa qualidade.</p>\n                "
+      "corpo": "\n                    <h4>Produção em Massa</h4>\n                    <span class=\"tech-meta\">1 Ação • 5 Stamina/Item</span>\n                    <p>Ao criar um item alquímico, pode gastar 5 de Stamina para criar +1 desse mesmo item sem reagentes adicionais. Máx. itens adicionais = Nível. Itens criados por Produção em Massa não podem ser vendidos pois são de baixa qualidade. <span style=\"color: var(--text-muted);\">&lt;-PlantKiller2005</span></p>\n                "
     },
     {
       "id": "alquimista-alquimia-de-combate",
@@ -179,7 +179,7 @@
       "id": "alquimista-tonico-cruel",
       "tipo": "tech-card",
       "nome": "Tônico Cruel",
-      "corpo": "\n                        <div class=\"tech-card-header boticario\">\n                            <h4>Tônico Cruel</h4>\n                            <span class=\"cost\">1 Ação, 3 Stamina</span>\n                        </div>\n                        <div class=\"tech-card-body\">\n                            <p>Escolha uma criatura em até 9m. Ela deve fazer um teste de <strong>Fortitude</strong>:</p>\n                            <ul>\n                                <li><strong>Letargia:</strong> -2 em Atacar e Defender</li>\n                                <li><strong>Fraqueza:</strong> -3m de Movimento e sem Reações</li>\n                                <li><strong>Vulnerabilidade:</strong> -2 Armadura e Desvantagem em Fortitude</li>\n                            </ul>\n                            <p>Duração 1 rodada. Se falhar, não pode usar contra a mesma criatura neste combate.</p>\n                        </div>\n                    "
+      "corpo": "\n                        <div class=\"tech-card-header boticario\">\n                            <h4>Tônico Cruel</h4>\n                            <span class=\"cost\">1 Ação, 3 Stamina</span>\n                        </div>\n                        <div class=\"tech-card-body\">\n                            <p>Escolha uma criatura em até 9m. Ela deve fazer um teste de <strong>Fortitude</strong>:</p>\n                            <ul>\n                                <li><strong>Letargia:</strong> -2 em Atacar e Defender</li>\n                                <li><strong>Fraqueza:</strong> -3m de Movimento e sem Reações</li>\n                                <li><strong>Vulnerabilidade:</strong> -2 Armadura e Desvantagem em Fortitude</li>\n                            </ul>\n                            <p>Duração 1 rodada. Ao falhar contra uma criatura, não pode usar esta habilidade contra a mesma criatura neste combate.</p>\n                        </div>\n                    "
     },
     {
       "id": "alquimista-runas-de-protecao",
