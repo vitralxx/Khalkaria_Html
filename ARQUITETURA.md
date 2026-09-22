@@ -131,10 +131,13 @@ links/assets locais existentes, round-trip JSON→HTML e consistência das
 1. **`index.html`, `classes.html`, `criacao.html`** ainda são HTML manual.
    São páginas pequenas e de navegação, não de conteúdo canônico — prioridade
    baixa, mas o padrão já está pronto (ver `tools/migrar_sistema.py`).
-2. **Manifesto do Notion incompleto** (`notion_cache/pages.json`): falta o UUID
-   da página índice `racas` e das 17 origens, que existem como `.new.md` em
-   `notion_cache/origens/` sem entrada correspondente. Enquanto isso, o diff
-   automático não cobre essas páginas.
+2. ~~**Manifesto do Notion incompleto**~~ — **resolvido em 2026-09-22.** O
+   `notion_cache/pages.json` cobre as 42 páginas da árvore: índices de `racas`,
+   `classes` e o template de ficha, mais as 19 origens. O diff automático
+   (`sync_notion.py report`) agora cobre tudo. A raça **Lobisomem** fica de
+   fora por decisão do Pedro (é oculta) e está registrada na chave `_ignorar`
+   do manifesto, para que a ausência não pareça esquecimento numa varredura
+   futura.
 3. **`js/ficha.js` injeta o próprio CSS** (`injectCSS`, ~50 linhas). Funciona,
    mas deixa a ficha fora do design system — mover para `css/ficha.css`.
 4. **Raças não estão na navegação.** A sidebar lista as 7 classes mas não as

@@ -1,11 +1,16 @@
 {
   "_doc": "Manifesto de páginas do Notion (árvore VERDADEIRA 2b76…, não o backup 5296 em 'Outros'). slug -> uuid. Usado por sync_notion.py e pela rotina de sincronização.",
+  "_ignorar": "racas/lobisomem = 3c66e3a401d980019c48edd3b1f44452 — raça OCULTA por decisão do Pedro. NÃO buscar, NÃO comparar, NÃO publicar no site. Mantido aqui só para que varreduras futuras saibam que a omissão é intencional, não um esquecimento.",
+  "_nota_origens": "A página Origens tem 19 subpáginas de origem (17 antigas + Lenhador + Mineiro) e 1 bloco em branco espúrio (3dc6e3a401d980be8689c450b46e403f) que não é origem real.",
+
   "sistema":              "2b76e3a401d980c0ab7bc27a342f4ee1",
   "criacao":              "3a66e3a401d9806681b8f403c4700b11",
+  "criacao/ficha":        "4e66e3a401d9832b97b4017bc00ff2c2",
   "magias":               "3a66e3a401d98097a5d4e316154f9fcb",
   "condicoes":            "3a66e3a401d9803f8862ea52ceef0b25",
   "limiar":               "3a66e3a401d9806db1f8d6975255f676",
-  "origens":              "3a66e3a401d9808aa877f7e7cb77002a",
+
+  "classes":              "3a66e3a401d9809b8eceec1f30be9fd2",
   "classes/espadachim":   "8506e3a401d9837b88a501bad1e66368",
   "classes/monge":        "0876e3a401d98388a48d8136e92563bc",
   "classes/batedor":      "8706e3a401d9823a91fd81f689a6fbe7",
@@ -13,11 +18,34 @@
   "classes/teurgo":       "caa6e3a401d98330bae281511750d407",
   "classes/artilheiro":   "d896e3a401d983f38cc78196ad7491b4",
   "classes/brutalista":   "a2c6e3a401d982f187320168cbb2e7d8",
+
+  "racas":                "3a66e3a401d980318836edcfa11c8a24",
   "racas/humano":         "07a6e3a401d98339bd6d819dea28568f",
   "racas/anao":           "f5a6e3a401d982b2a1f38123743db4be",
   "racas/dryad":          "3b16e3a401d982648d9b812e2efd6947",
   "racas/gruto":          "9696e3a401d983b4b6e48199671689f4",
   "racas/corrompido":     "e6d6e3a401d983b592a581e5565d059b",
   "racas/automato":       "80c6e3a401d98398b2ff0126a7c983b9",
-  "racas/inseto":         "f6d6e3a401d9839591dd814cdefa153b"
+  "racas/inseto":         "f6d6e3a401d9839591dd814cdefa153b",
+
+  "origens":              "3a66e3a401d9808aa877f7e7cb77002a",
+  "origens/academico":    "3ea6e3a401d98354ba6601d1b1c28b03",
+  "origens/acolito":      "ee96e3a401d98310ad5581d3c14301db",
+  "origens/amaldicoado":  "1056e3a401d9836ab1e901e614e5d3d4",
+  "origens/andarilho":    "4426e3a401d983a483a601a962a41e6b",
+  "origens/artesao":      "3476e3a401d9833780b081628d425d58",
+  "origens/cacador":      "b8f6e3a401d9823884ac812414e85095",
+  "origens/criminoso":    "dff6e3a401d983e39558013b95f2ca1d",
+  "origens/cultista":     "1966e3a401d9832eb27501929f11322f",
+  "origens/escravo":      "4856e3a401d98323b70901d8093e16a1",
+  "origens/exilado":      "6906e3a401d982208d1e01353e11a7d2",
+  "origens/ferreiro":     "e016e3a401d983d1a2d981773bc4aff2",
+  "origens/lenhador":     "3dc6e3a401d980968fe6d6aad0b8fa40",
+  "origens/marinheiro":   "6e56e3a401d9828f84d001ba75ff61c4",
+  "origens/mercador":     "98d6e3a401d9831386fc01d118567160",
+  "origens/mineiro":      "3dc6e3a401d98042b6b0cd0ebff875d6",
+  "origens/nobre":        "e7a6e3a401d98247b3ba01084195cb30",
+  "origens/refugiado":    "b236e3a401d9833a99778127942ab31d",
+  "origens/soldado":      "3d06e3a401d98271b1fc014575ee631c",
+  "origens/vidente":      "a706e3a401d983a2981d81eb96e0ce19"
 }

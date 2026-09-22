@@ -18,16 +18,17 @@ Publicado em GitHub Pages: `vitralxx.github.io/Khalkaria_Html/`.
 ## 2. Sistema — referência rápida
 
 - **Atributos (5):** FOR, DES, CON, INT, SAB (8–18). Modificador = (Atributo − 10) / 2. **Não existe Carisma.**
-- **Perícias (22, canônicas):** Atacar, Defender, Movimento, Fortitude, Vontade, Reflexos, Percepção, Sobrevivência, Furtividade, Crime, Iniciativa, Conhecimento, Medicina, Investigação, Religião, Místico, Convencimento, Intimidação, Intuição, Enganação, Motivar, Ofício(X). Fonte da verdade: ficha física. Mapeiam **1:1** com as colunas `prof_*` do Bestiário (ver §5).
+- **Perícias (23, canônicas):** Atacar, Defender, Movimento, Fortitude, Vontade, Reflexos, Percepção, Sobrevivência, Furtividade, Crime, Iniciativa, Conhecimento, Medicina, Investigação, Religião, Místico, Convencimento, Intimidação, Intuição, Enganação, Motivar, **Ofício(Engenharia)**, **Ofício(Ferraria)**. Fonte da verdade: ficha física. Mapeiam **1:1** com as colunas `prof_*` do Bestiário (ver §5). O genérico `Ofício(X)` deixou de existir em 2026-09: viraram duas perícias concretas, ambas `1d20+Inteligência`, usadas na fabricação.
 - **Proficiência de perícia:** escala de 4 níveis — +2 / +4 / +6 / +8 (não é binária).
 - **Recursos:** Saúde, Stamina (todas as classes), Éter (conjuradores), Recurso de Classe específico (ex.: FLUXO no Monge).
+- **Valores de classe:** cada classe tem **Vitalidade**, **Vigor** e **Ressonância** — os multiplicadores que entram no cálculo de Saúde, Stamina e Éter máximos. Vivem nas fórmulas dos `templates/classes/*.template.html`.
 - **Derivados:** Movimento, Evasão, CD.
 - **Inventário:** Equipamentos = 2 + Mod.FOR slots · Bugigangas = 10 + Mod.FOR. Munição: 20 unidades = 1 slot. Moedas não pesam. Condições de excesso: *Sobrepeso Leve* / *Sobrepeso Extremo*.
-- **Magia:** 4 níveis. Custo base 2/4/6/8 Éter. Intensidades: Contida (−2) / Normal / Forçada (+2) / Transbordante (+4). Exige Treinado em Místico + Foco da escola. Escolas: Destruição, Abjuração, Alteração, Conhecimento.
+- **Magia:** **5 níveis**. Custo base **0/2/4/6/8** Éter — o Nível 1 é gratuito e o Nível 5 exige Foco Primordial. Intensidades: Contida (−2) / Normal / Forçada (+2) / Transbordante (+4). Exige Treinado em Místico + Foco da escola. Escolas: Destruição, Abjuração, Alteração, Conhecimento.
 - **Resistências:** 12 tipos de dano — Ordinário, Fogo, Frio, Elétrico, Veneno, Ácido, Psíquico, Força, Radiante, Trovejante, Necrótico, Primordial. Cada um com Resistência (R) e Imunidade (I).
 - **Classes (7):** Espadachim, Batedor, Brutalista, Teurgo, Monge, Alquimista, Artilheiro.
 - **Raças (7):** Humano, Anão, Dryad, Autômato, Gruto, Inseto, Corrompido.
-- **Origens:** 17.
+- **Origens:** **19** (Lenhador e Mineiro entraram em 2026-09).
 - **CR:** CR 2 = equilíbrio para 5 jogadores de nível 2. CR 4 = risco de TPK. Campanha roda níveis 1–5.
 - **Sins:** moeda do universo. Contador editável na ficha — **não** é stat derivado, não deriva de atributo. Não trava aquisição de item.
 
@@ -107,7 +108,7 @@ Ficha de personagem jogável no site, com drag-and-drop de conteúdo das página
 - Exportação compatível com o app **Bestiário Khalkaria** (Flask + SQLite).
 
 **Compatibilidade Bestiário (analisado, v10):** contrato de import = pack de criação v8, endpoints `/api/creature/import` (colar JSON) e `/api/import` (upload). Schema canônico `{"type":"npc"|"monster", "name", <stats>, "prof_*", "weapons":[], "abilities":[]}`; import **tolerante** (filtra chaves desconhecidas, não-destrutivo). O PJ exporta como `type:"npc"`.
-- **Perícias → `prof_*` (1:1):** Atacar→`prof_attack`, Defender→`prof_defend`, Movimento→`prof_movement`, Fortitude→`prof_fortitude`, Vontade→`prof_will`, Reflexos→`prof_reflexes`, Percepção→`prof_perception`, Sobrevivência→`prof_survival`, Furtividade→`prof_stealth`, Crime→`prof_crime`, Iniciativa→`prof_initiative`, Conhecimento→`prof_knowledge`, Medicina→`prof_medicine`, Investigação→`prof_investigation`, Religião→`prof_religion`, Místico→`prof_mystic`, Convencimento→`prof_persuasion`, Intimidação→`prof_intimidation`, Intuição→`prof_insight`, Enganação→`prof_deception`, Motivar→`prof_motivate`, Ofício→`prof_craft`+`craft_attr`.
+- **Perícias → `prof_*` (1:1):** Atacar→`prof_attack`, Defender→`prof_defend`, Movimento→`prof_movement`, Fortitude→`prof_fortitude`, Vontade→`prof_will`, Reflexos→`prof_reflexes`, Percepção→`prof_perception`, Sobrevivência→`prof_survival`, Furtividade→`prof_stealth`, Crime→`prof_crime`, Iniciativa→`prof_initiative`, Conhecimento→`prof_knowledge`, Medicina→`prof_medicine`, Investigação→`prof_investigation`, Religião→`prof_religion`, Místico→`prof_mystic`, Convencimento→`prof_persuasion`, Intimidação→`prof_intimidation`, Intuição→`prof_insight`, Enganação→`prof_deception`, Motivar→`prof_motivate`, Ofício→`prof_craft`+`craft_attr`. **Pendência:** com a divisão em Ofício(Engenharia) e Ofício(Ferraria), o par `prof_craft`/`craft_attr` só comporta uma das duas — decidir com o Pedro se o export manda a de maior treinamento ou se o Bestiário ganha um segundo par.
 - **Atributos:** FOR/DES/CON/INT/SAB → `strength/dexterity/constitution/intelligence/wisdom`. **Recursos:** `health_max/stamina_max/ether_max`. **Derivados:** `evasion/movement/armor`. **Resistências:** R→`resistances`, I→`immunities` (strings CSV). **Magias/Técnicas** → `abilities[]`; **armas do inventário** → `weapons[]`.
 - **Só-ficha (descartado no export):** inventário geral, Sins, cartas do Limiar, lore. A ficha nativa é superset; o export é projeção `npc`.
 
@@ -171,7 +172,7 @@ Sistema → Magias → Condições → Limiar → 7 Classes → 7 Raças → Ori
 
 - **Notion:** `notion-fetch` por UUID é mais confiável que por URL. Contar linhas direto do conteúdo — blocos de resumo ficam desatualizados (ex.: "Raras: 60" quando o catálogo tem 59).
 - **Imagens:** URLs S3 do Notion expiram em ~1h e o sandbox bloqueia download. **Nunca tentar baixar** — o Pedro substitui `images/*.png` manualmente.
-- **O Limiar:** **170 cartas** (sincronizado com o Notion em 2026-07-23). Catálogo 129 = Universais 10 + FOR/DES/CON/INT/SAB 12 cada (60) + **Raras 59**. Abismo = 18 Dores + 23 Benefícios. Página Notion viva `3a66e3a4-01d9-806d-b1f8-d6975255f676` (sob "Sistema Khalkaria") é autoritativa — a UUID antiga `2df6e3a4-…` está **deletada** no Notion (conteúdo idêntico). Tabelas inline, **não** o bloco de resumo — que diz "Total 130 / Raras 60", desatualizado). Site exibe raras como ícone+requisito+nome (sem efeito) — decisão de design existente. Cartas raras devem usar **apenas recursos universais** (Stamina, Éter, HP, Reações, Ações, CD de classe) — nunca recursos travados por classe como FLUXO.
+- **O Limiar:** **168 cartas** (sincronizado com o Notion em 2026-09-22). Catálogo 127 = Universais **8** + FOR/DES/CON/INT/SAB 12 cada (60) + **Raras 59**. Abismo = 18 Dores + 23 Benefícios. Página Notion viva `3a66e3a4-01d9-806d-b1f8-d6975255f676` (sob "Sistema Khalkaria") é autoritativa — a UUID antiga `2df6e3a4-…` está **deletada** no Notion (conteúdo idêntico). Contar pelas tabelas inline, **não** pelo bloco de resumo. Nesta rodada os totais do resumo batem, mas ele ainda diz "FOR 14+" enquanto os cabeçalhos do catálogo dizem **16+** — vale o catálogo. Site exibe raras como ícone+requisito+nome (sem efeito) — decisão de design existente. Cartas raras devem usar **apenas recursos universais** (Stamina, Éter, HP, Reações, Ações, CD de classe) — nunca recursos travados por classe como FLUXO.
 
 ---
 

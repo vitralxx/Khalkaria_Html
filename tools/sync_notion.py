@@ -37,11 +37,18 @@ def path(slug, kind):
     return sub
 
 def norm(t):
-    """Normaliza p/ diff estável: remove timestamp do fetch e URLs de imagem S3
-    (que mudam a cada busca), colapsa espaços. Preserva o texto/valores."""
+    """Normaliza p/ diff estável: tira o que muda a cada busca sem o conteúdo ter
+    mudado — timestamp, URLs S3, o verbo da ferramenta MCP, metadados de ícone e
+    variação tipográfica de aspas. Preserva integralmente texto e valores."""
     t = re.sub(r'as of \d{4}-\d\d-\d\dT[0-9:.\-]+Z?', 'as of <ts>', t)
     t = t.replace('\\n', '\n').replace('\\t', ' ').replace('\\"', '"')
     t = re.sub(r'https://prod-files-secure\.s3[^\s")]+', '<img-s3>', t)
+    # o preâmbulo já veio como 'view' e como 'fetch' conforme a versão do MCP
+    t = re.sub(r'(Here is the result of )"\w+"', r'\1"<op>"', t)
+    # <iconMetadata> passou a ser emitido em 2026; é metadado, não conteúdo
+    t = re.sub(r'<iconMetadata>.*?</iconMetadata>\s*', '', t, flags=re.S)
+    # aspas/apóstrofos curvos vs retos não são divergência (CLAUDE.md §6)
+    t = t.translate(str.maketrans({'‘': "'", '’': "'", '“': '"', '”': '"'}))
     t = re.sub(r'[ \t]+', ' ', t)
     return '\n'.join(l.strip() for l in t.splitlines() if l.strip())
 
