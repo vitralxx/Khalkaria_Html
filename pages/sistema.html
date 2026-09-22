@@ -146,20 +146,22 @@
                 <div class="subsection" id="atributos">
                     <h3 id="fundamentos-atributos-iniciais">Atributos Iniciais</h3>
                     <div class="content-card">
-                        <p>Todos os atributos variam de <strong>8 a 18</strong>:</p>
+                        <p>Existem 5 Atributos em Khalkaria:</p>
                         <ul>
-                            <li><strong>Força</strong> 8-18</li>
-                            <li><strong>Destreza</strong> 8-18</li>
-                            <li><strong>Constituição</strong> 8-18</li>
-                            <li><strong>Inteligência</strong> 8-18</li>
-                            <li><strong>Sabedoria</strong> 8-18</li>
+                            <li><strong>Força</strong></li>
+                            <li><strong>Destreza</strong></li>
+                            <li><strong>Constituição</strong></li>
+                            <li><strong>Inteligência</strong></li>
+                            <li><strong>Sabedoria</strong></li>
                         </ul>
                         
                         <div class="rule-box">
                             <p><strong>Criação de Personagem:</strong></p>
                             <ol>
-                                <li>Role 4d6, retire o pior, some e anote o valor. Faça isso 5 vezes, e distribua os valores dentre seus atributos. Você pode retirar 1 ponto de um atributo e adicionar a outro.</li>
-                                <li>Escolha sua raça, classe e origem, nesta ordem.</li>
+                                <li>Role 4d6 5 vezes, retire o pior dado de cada rolagem e anote o valor dos 5 resultados.<br>Distribua os 5 valores dentre seus 5 atributos.<br>Você pode retirar 1 ponto de um atributo e adicionar a outro.</li>
+                                <li>Escolha sua raça.</li>
+                                <li>Escolha sua classe.</li>
+                                <li>Escolha sua origem.</li>
                             </ol>
                         </div>
                     </div>
@@ -183,6 +185,23 @@
                             <div class="status-item status-eter">
                                 <strong>Éter:</strong>
                                 <span>Energia primordial que todo ser tem. Define sua sanidade e energia espiritual. Ao reduzir a 0 ou menos fica <a href="condicoes.html#oco" class="keyword-link">Oco</a>.</span>
+                            </div>
+                        </div>
+
+                        <p style="margin-top:1.25rem;">Além dos 3 status universais, cada classe possui 3 valores personalizados:</p>
+
+                        <div class="status-list">
+                            <div class="status-item status-saude">
+                                <strong>Vitalidade:</strong>
+                                <span>Utilizado no cálculo da Saúde máxima.</span>
+                            </div>
+                            <div class="status-item status-stamina">
+                                <strong>Vigor:</strong>
+                                <span>Utilizado no cálculo da Stamina máxima.</span>
+                            </div>
+                            <div class="status-item status-eter">
+                                <strong>Ressonância:</strong>
+                                <span>Utilizado no cálculo do Éter máximo.</span>
                             </div>
                         </div>
                     </div>
@@ -265,7 +284,7 @@
                                 </tr>
                                 <tr>
                                     <td><strong>Medicina</strong></td>
-                                    <td>Define seus conhecimentos médicos.</td>
+                                    <td>Define seus conhecimentos médicos e biológicos.</td>
                                     <td><code>1d20+Inteligência</code></td>
                                 </tr>
                                 <tr>
@@ -275,7 +294,7 @@
                                 </tr>
                                 <tr>
                                     <td><strong>Religião</strong></td>
-                                    <td>Define seus conhecimentos sobre religião.</td>
+                                    <td>Define seus conhecimentos sobre religião e a cosmologia.</td>
                                     <td><code>1d20+Sabedoria</code></td>
                                 </tr>
                                 <tr>
@@ -284,9 +303,14 @@
                                     <td><code>1d20+Inteligência</code></td>
                                 </tr>
                                 <tr>
-                                    <td><strong>Ofício(X)</strong></td>
-                                    <td>Esse teste pode ser usado para realizar testes específicos de profissão, como forjar algo, artesanato ou outros testes que exigem uma especialização bastante específica. Você não pode usar esse teste sem tê-lo treinado.</td>
-                                    <td><code>1d20+X</code></td>
+                                    <td><strong>Ofício(Engenharia)</strong></td>
+                                    <td>Você pode utilizar essa perícia como uma ação de descanso longo para fabricar uma Bugiganga. A fabricação exige Materiais e o sucesso na perícia. Você não pode utilizar essa perícia sem tê-la treinada.</td>
+                                    <td><code>1d20+Inteligência</code></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Ofício(Ferraria)</strong></td>
+                                    <td>Você pode utilizar essa perícia como uma ação de descanso longo para fabricar uma Bugiganga. A fabricação exige Materiais e o sucesso na perícia. Você não pode utilizar essa perícia sem tê-la treinada.</td>
+                                    <td><code>1d20+Inteligência</code></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -351,7 +375,7 @@
                             <div class="prof-item"><span class="bonus">+8</span> Lendário</div>
                         </div>
                         
-                        <p>Proficiência é ganha progressivamente por sua classe.</p>
+                        <p>Proficiência é ganha progressivamente por sua classe, raça, origem, cartas do Limiar ou Npcs.</p>
                         
                         <div class="rule-box">
                             <p>Você nunca receberá uma habilidade que diga "Experiente em Atacar", por exemplo. Mas ao possuir duas habilidades que te fornecem "Treinado em Atacar" você se torna experiente nesta.</p>
@@ -376,7 +400,7 @@
                 <div class="subsection" id="criticos">
                     <h3 id="fundamentos-criticos-e-falhas">Críticos e Falhas</h3>
                     <div class="content-card">
-                        <p><strong style="color: var(--gold);">Crítico:</strong> Se tirar 20 no dado você críta.</p>
+                        <p><strong style="color: var(--gold);">Crítico:</strong> Se tirar 20 no dado você críta. <span style="color: var(--text-muted);">(a Margem de Ameaça pode aumentar os resultados em que você críta)</span></p>
 
                         <p><strong style="color: var(--accent-red);">Falha Crítica:</strong> Se tirar 1 no dado você falha criticamente.</p>
                     </div>
@@ -456,6 +480,10 @@
                             <h4>Dano</h4>
                             <p><strong>Dano</strong> = Dano da arma + Mod. Atributo</p>
                             <p><strong>Dano Crítico</strong> = Role o dobro de dados + Mod. Atributo</p>
+                            <p><strong>Margem de Ameaça</strong> = a faixa do d20 em que seu ataque é considerado um crítico
+                                <br><small>Por padrão, apenas ao rolar 20.</small></p>
+                            <p><strong>Multiplicador de Crítico</strong> = o quanto o crítico de uma arma multiplica
+                                <br><small>Por padrão, o dobro.</small></p>
                             
                             <ul>
                                 <li><strong>Corpo a Corpo Pesado</strong> = +Mod. Força
@@ -582,7 +610,7 @@
                 <div class="subsection" id="armas">
                     <h3 id="equipamento-armas">Armas</h3>
                     <div class="content-card">
-                        <p>São <strong>altamente interpretativas</strong>, nesse sistema você pode criar a arma que quiser e usar os status da categoria que mais se aproxima a ela. Cada tipo de arma possui 5 características principais:</p>
+                        <p>São <strong>altamente interpretativas</strong>, nesse sistema você pode criar a arma que quiser e usar os status da categoria que mais se aproxima a ela. Cada tipo de arma possui 6 características principais:</p>
                         
                         <ul>
                             <li><strong>Dado Base</strong></li>
@@ -604,6 +632,7 @@
                                     <th>Dano</th>
                                     <th>Efeito</th>
                                     <th>Ações</th>
+                                    <th>Req. Extra</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -614,6 +643,7 @@
                                     <td>Cortante</td>
                                     <td>Dilacerar</td>
                                     <td>Atacar(1), Arremessar(1)</td>
+                                    <td>—</td>
                                 </tr>
                                 <tr>
                                     <td>Leve Perfurante</td>
@@ -622,6 +652,7 @@
                                     <td>Perfurante</td>
                                     <td>Alcançar</td>
                                     <td>Atacar(1), Arremessar(1)</td>
+                                    <td>—</td>
                                 </tr>
                                 <tr>
                                     <td>Leve Contundente</td>
@@ -629,15 +660,17 @@
                                     <td>Des</td>
                                     <td>Contundente</td>
                                     <td>Desorientar</td>
-                                    <td>Atacar(1)</td>
+                                    <td>Atacar(1), Arremessar(1)</td>
+                                    <td>—</td>
                                 </tr>
                                 <tr>
                                     <td>Leve Ágil</td>
                                     <td>1d8</td>
                                     <td>Des</td>
-                                    <td>Contextual</td>
-                                    <td>Executar <small>(Des ≥ 14)</small></td>
+                                    <td>Cortante, Perfurante ou Contundente</td>
+                                    <td>Executar</td>
                                     <td>Atacar(1)</td>
+                                    <td>Des ≥ 14</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -660,7 +693,7 @@
                             <tbody>
                                 <tr>
                                     <td>Pesada Cortante</td>
-                                    <td>2d10</td>
+                                    <td>1d12</td>
                                     <td>For</td>
                                     <td>Cortante</td>
                                     <td>Dilacerar</td>
@@ -669,7 +702,7 @@
                                 </tr>
                                 <tr>
                                     <td>Pesada Perfurante</td>
-                                    <td>2d10</td>
+                                    <td>1d12</td>
                                     <td>For</td>
                                     <td>Perfurante</td>
                                     <td>Alcançar</td>
@@ -678,7 +711,7 @@
                                 </tr>
                                 <tr>
                                     <td>Pesada Contundente</td>
-                                    <td>2d10</td>
+                                    <td>1d12</td>
                                     <td>For</td>
                                     <td>Contundente</td>
                                     <td>Desorientar</td>
@@ -687,12 +720,12 @@
                                 </tr>
                                 <tr>
                                     <td>Pesada Brutal</td>
-                                    <td>3d10</td>
+                                    <td>2d12</td>
                                     <td>For</td>
-                                    <td>Contextual</td>
+                                    <td>Cortante, Perfurante ou Contundente</td>
                                     <td>Executar</td>
                                     <td>Atacar(3)</td>
-                                    <td>Força ≥ 14</td>
+                                    <td>For ≥ 14</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -709,40 +742,45 @@
                                     <th>Dano</th>
                                     <th>Efeito</th>
                                     <th>Ações</th>
+                                    <th>Req. Extra</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>Marcial Versátil</td>
-                                    <td>1d8</td>
-                                    <td>Des</td>
-                                    <td>Contextual</td>
-                                    <td>Dilacerar</td>
-                                    <td>Atacar(1)</td>
-                                </tr>
-                                <tr>
-                                    <td>Marcial Precisa</td>
-                                    <td>2d12</td>
-                                    <td>Des</td>
-                                    <td>Cortante</td>
-                                    <td>Executar</td>
-                                    <td>Atacar(2)</td>
-                                </tr>
-                                <tr>
                                     <td>Marcial Pesada</td>
-                                    <td>2d12</td>
+                                    <td>2d10</td>
                                     <td>For</td>
                                     <td>Contundente</td>
-                                    <td>Desorientar</td>
+                                    <td>Desorientar <small style="color: var(--text-muted);">— 1x/Turno não custa Stamina</small></td>
                                     <td>Atacar(2)</td>
+                                    <td>—</td>
                                 </tr>
                                 <tr>
                                     <td>Marcial Longa</td>
-                                    <td>1d8</td>
+                                    <td>2d10</td>
                                     <td>For</td>
                                     <td>Perfurante</td>
-                                    <td>Alcançar</td>
+                                    <td>Alcançar <small style="color: var(--text-muted);">— 1x/Turno não custa Stamina</small></td>
+                                    <td>Atacar(2)</td>
+                                    <td>—</td>
+                                </tr>
+                                <tr>
+                                    <td>Marcial Precisa</td>
+                                    <td>1d8</td>
+                                    <td>Des</td>
+                                    <td>Cortante</td>
+                                    <td>Executar <small style="color: var(--text-muted);">— 1x/Turno não custa Stamina</small></td>
                                     <td>Atacar(1)</td>
+                                    <td>—</td>
+                                </tr>
+                                <tr>
+                                    <td>Marcial Versátil</td>
+                                    <td>1d8</td>
+                                    <td>Des</td>
+                                    <td>Cortante, Perfurante ou Contundente</td>
+                                    <td>Dilacerar <small style="color: var(--text-muted);">— 1x/Turno não custa Stamina</small></td>
+                                    <td>Atacar(1)</td>
+                                    <td>—</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -765,19 +803,19 @@
                             <tbody>
                                 <tr>
                                     <td>Distância Simples</td>
-                                    <td>1d8</td>
+                                    <td>1d6</td>
                                     <td>Des</td>
                                     <td>Perfurante</td>
-                                    <td>Dilacerar <small>· 18 m</small></td>
+                                    <td>Dilacerar</td>
                                     <td>Atacar(1)</td>
                                     <td>—</td>
                                 </tr>
                                 <tr>
                                     <td>Distância Pesada</td>
-                                    <td>2d10</td>
+                                    <td>1d12</td>
                                     <td>Des</td>
                                     <td>Perfurante</td>
-                                    <td>Executar <small>· 18 m</small></td>
+                                    <td>Executar</td>
                                     <td>Atacar(2)</td>
                                     <td>—</td>
                                 </tr>
@@ -785,16 +823,16 @@
                                     <td>Arremesso</td>
                                     <td>1d8</td>
                                     <td>Des</td>
-                                    <td>Contextual</td>
-                                    <td>Dilacerar <small>· 9 m</small></td>
+                                    <td>Perfurante</td>
+                                    <td>Dilacerar</td>
                                     <td>Atacar(1)</td>
-                                    <td>Destreza ≥ 14</td>
+                                    <td>Des ≥ 14</td>
                                 </tr>
                             </tbody>
                         </table>
                         </div>
                         
-                        <h4>Armas Místicas <small style="color: var(--text-muted);">— Requisito: Treinamento Armas Místicas</small></h4>
+                        <h4>Armas Místicas <small style="color: var(--text-muted);">— Requisito: Inteligência ≥ 12</small></h4>
                         <div style="overflow-x: auto;">
                         <table class="sistema-table">
                             <thead>
@@ -1050,7 +1088,28 @@
                 <div class="subsection" id="comerciantes">
                     <h3 id="equipamento-comerciantes">Comerciantes</h3>
                     <div class="content-card">
-                        <p>Cada comerciante possui um nível que define seu estoque de Sins, a frequência de reposição, a porcentagem paga ao comprar seus itens e o custo para evoluir de nível.</p>
+                        <p>Comerciantes são o pilar principal de transações conforme os itens do <a href="bazar.html" class="keyword-link">Bazar</a>. As seguintes categorias de comerciante podem ser encontradas:</p>
+                        <div style="overflow-x: auto;">
+                        <table class="sistema-table">
+                            <thead>
+                                <tr>
+                                    <th>Comerciante</th>
+                                    <th>Itens à venda</th>
+                                    <th>Raridade</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td><strong>Sucateiro</strong></td><td>Nenhum, compra ou recicla tudo.</td><td>Comum</td></tr>
+                                <tr><td><strong>Fornecedor</strong></td><td>Materiais</td><td>Comum</td></tr>
+                                <tr><td><strong>Artesão</strong></td><td>Bugigangas</td><td>Comum</td></tr>
+                                <tr><td><strong>Ferreiro</strong></td><td>Equipamentos</td><td>Médio</td></tr>
+                                <tr><td><strong>Boticário</strong></td><td>Consumíveis</td><td>Médio</td></tr>
+                                <tr><td><strong>Artificer</strong></td><td>Itens Mágicos</td><td>Raro</td></tr>
+                            </tbody>
+                        </table>
+                        </div>
+
+                        <p style="margin-top:1.25rem;">Além dos tipos de comerciante, cada um possui um nível que define o limite de Sins. Um comerciante sem Sins não pode comprar itens dos jogadores, e comprar itens do comerciante adiciona Sins ao estoque do vendedor. O preço dos itens vendidos pelos comerciantes é rolado conforme a faixa de preço da raridade do item em específico.</p>
                         <div style="overflow-x: auto;">
                         <table class="sistema-table">
                             <thead>
@@ -1063,9 +1122,9 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr><td><strong>1</strong></td><td>100</td><td>Diária</td><td>50%</td><td>250 Sins</td></tr>
-                                <tr><td><strong>2</strong></td><td>250</td><td>2 Dias</td><td>66%</td><td>500 Sins</td></tr>
-                                <tr><td><strong>3</strong></td><td>500</td><td>3 Dias</td><td>75%</td><td>—</td></tr>
+                                <tr><td><strong>1</strong></td><td>250</td><td>Diária</td><td>50%</td><td>125 Sins</td></tr>
+                                <tr><td><strong>2</strong></td><td>500</td><td>Diária</td><td>66%</td><td>250 Sins</td></tr>
+                                <tr><td><strong>3</strong></td><td>1000</td><td>Diária</td><td>75%</td><td>—</td></tr>
                             </tbody>
                         </table>
                         </div>
@@ -1076,7 +1135,24 @@
                 <div class="subsection" id="crafting">
                     <h3 id="equipamento-sistema-de-crafting">Sistema de Crafting</h3>
                     <div class="content-card">
-                        <p>Caso possua ao menos 1 nível de treinamento nas perícias: <strong>Ofício(Ferraria)</strong> ou <strong>Ofício(Engenharia)</strong>, qualquer jogador, ao fazer um descanso longo, pode optar por tentar construir UM Item do Bazar que seja igual ou inferior ao seu nível em relação a Raridade do Item. Ao realizar tal tarefa, o jogador rola a perícia de Ofício(Ferraria) para equipamentos e Ofício(Engenharia) para itens, relacionando o resultado com a CD de Criação do Item e utilizando quaisquer ingredientes. Caso suceda, o jogador constrói o item e descarta os ingredientes, caso contrário, perde os ingredientes.</p>
+                        <p>Caso possua ao menos 1 nível de treinamento nas perícias: <strong>Ofício(Ferraria)</strong> ou <strong>Ofício(Engenharia)</strong>, qualquer jogador, ao fazer um descanso longo, pode optar por tentar construir UM Item do Bazar que seja igual ou inferior ao seu nível em relação a Raridade do Item. Ao realizar tal tarefa, o jogador rola a perícia de Ofício(Ferraria) para equipamentos e Ofício(Engenharia) para itens, relacionando o resultado com a CD de Criação do Item e utilizando quaisquer ingredientes.</p>
+
+                        <div style="overflow-x: auto;">
+                        <table class="sistema-table">
+                            <thead>
+                                <tr>
+                                    <th>Resultado</th>
+                                    <th>Quando</th>
+                                    <th>Efeito</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td><strong style="color: var(--gold);">Sucesso crítico</strong></td><td>Superar a CD em 10 ou mais</td><td>Você cria o item e <strong>recupera 1 dos materiais</strong> gastos, à sua escolha.</td></tr>
+                                <tr><td><strong>Falha normal</strong></td><td>Não atingir a CD</td><td>Você não cria o item, mas <strong>conserva os materiais</strong> e pode tentar de novo.</td></tr>
+                                <tr><td><strong style="color: var(--accent-red);">Falha crítica</strong></td><td>Ficar 10 ou mais abaixo da CD</td><td>Você <strong>perde todos os materiais</strong> da receita.</td></tr>
+                            </tbody>
+                        </table>
+                        </div>
                         <ul>
                             <li><strong>Itens Craftáveis:</strong>
                                 <ul>
@@ -1713,10 +1789,11 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr><td>Magias Nível 1</td><td>2 Éter</td><td>—</td></tr>
-                                <tr><td>Magias Nível 2</td><td>4 Éter</td><td>—</td></tr>
-                                <tr><td>Magias Nível 3</td><td>6 Éter</td><td>—</td></tr>
-                                <tr><td>Magias Nível 4</td><td>8 Éter</td><td>Requer Foco Primordial</td></tr>
+                                <tr><td>Magias Nível 1</td><td>0 Éter</td><td>—</td></tr>
+                                <tr><td>Magias Nível 2</td><td>2 Éter</td><td>—</td></tr>
+                                <tr><td>Magias Nível 3</td><td>4 Éter</td><td>—</td></tr>
+                                <tr><td>Magias Nível 4</td><td>6 Éter</td><td>—</td></tr>
+                                <tr><td>Magias Nível 5</td><td>8 Éter</td><td>Requer Foco Primordial</td></tr>
                             </tbody>
                         </table>
                     </div>
@@ -1731,7 +1808,7 @@
                         <div class="intensidade-grid">
                             <div class="intensidade-item int-contida">
                                 <strong>Contida</strong>
-                                <span>-2 Éter</span>
+                                <span>-2 Éter (mín. 1)</span>
                                 <small>Efeito Reduzido</small>
                             </div>
                             <div class="intensidade-item int-normal">
