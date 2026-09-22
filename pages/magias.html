@@ -10,22 +10,27 @@
     <link rel="stylesheet" href="../css/style.css">
     <style>
         :root {
-            --lvl1: #e74c3c;
-            --lvl2: #e67e22;
-            --lvl3: #3498db;
-            --lvl4: #9b59b6;
+            --lvl1: #9aa5b1;
+            --lvl2: #e74c3c;
+            --lvl3: #e67e22;
+            --lvl4: #3498db;
+            --lvl5: #9b59b6;
         }
         .level-header { display:flex; align-items:center; gap:14px; margin:48px 0 20px; }
         .level-badge { font-family:var(--font-heading); font-size:12px; letter-spacing:2px; font-weight:700; padding:5px 16px; border-radius:20px; white-space:nowrap; }
-        .level-badge.l1 { background:rgba(231,76,60,.15); color:var(--lvl1); border:1px solid rgba(231,76,60,.4); }
-        .level-badge.l2 { background:rgba(230,126,34,.15); color:var(--lvl2); border:1px solid rgba(230,126,34,.4); }
-        .level-badge.l3 { background:rgba(52,152,219,.15); color:var(--lvl3); border:1px solid rgba(52,152,219,.4); }
-        .level-badge.l4 { background:rgba(155,89,182,.15); color:var(--lvl4); border:1px solid rgba(155,89,182,.4); }
+        .level-badge.l1 { background:rgba(154,165,177,.13); color:var(--lvl1); border:1px solid rgba(154,165,177,.4); }
+        .level-badge.l2 { background:rgba(231,76,60,.15); color:var(--lvl2); border:1px solid rgba(231,76,60,.4); }
+        .level-badge.l3 { background:rgba(230,126,34,.15); color:var(--lvl3); border:1px solid rgba(230,126,34,.4); }
+        .level-badge.l4 { background:rgba(52,152,219,.15); color:var(--lvl4); border:1px solid rgba(52,152,219,.4); }
+        .level-badge.l5 { background:rgba(155,89,182,.15); color:var(--lvl5); border:1px solid rgba(155,89,182,.4); }
         .level-line { flex:1; height:1px; background:linear-gradient(to right,var(--border-color),transparent); }
         .level-header h2 { font-family:var(--font-heading); font-size:20px; color:var(--text-primary); margin:0; }
 
         .primordial-warning { background:rgba(155,89,182,.08); border:1px solid rgba(155,89,182,.3); border-radius:6px; padding:13px 18px; margin-bottom:22px; color:#c39bd3; font-size:15px; }
-        .primordial-warning strong { color:var(--lvl4); }
+        .primordial-warning strong { color:var(--lvl5); }
+
+        .cantrip-note { background:rgba(154,165,177,.06); border:1px solid rgba(154,165,177,.28); border-radius:6px; padding:13px 18px; margin-bottom:22px; color:#aab4be; font-size:15px; }
+        .cantrip-note strong { color:var(--lvl1); }
 
         .school-group { margin-bottom:28px; }
         .school-header { display:flex; align-items:center; gap:10px; padding:10px 16px; border-radius:6px 6px 0 0; font-family:var(--font-heading); font-size:13px; letter-spacing:1px; cursor:pointer; user-select:none; border:1px solid; transition:filter .2s; }
@@ -61,6 +66,9 @@
 
         .tradeoff-tag { display:inline-block; background:rgba(155,89,182,.12); border:1px solid rgba(155,89,182,.35); color:#c39bd3; font-size:11px; font-family:var(--font-heading); letter-spacing:1px; padding:2px 10px; border-radius:3px; margin-bottom:8px; }
 
+        .spell-mods { display:flex; gap:9px; align-items:baseline; flex-wrap:wrap; margin-top:11px; padding-top:10px; border-top:1px solid rgba(42,42,53,.8); font-size:13px; color:var(--text-secondary); }
+        .spell-mods .spell-mods-label { flex-shrink:0; font-family:var(--font-heading); font-size:10px; letter-spacing:1.5px; text-transform:uppercase; color:var(--gold-dark); }
+
         .mod-block { margin:14px 0; }
         .mod-block-title { font-family:var(--font-heading); font-size:12px; letter-spacing:1.5px; text-transform:uppercase; padding:7px 14px; border-radius:4px 4px 0 0; border:1px solid; margin-bottom:-1px; }
         .mod-block-title.d  { color:#c39bd3; border-color:rgba(155,89,182,.4); background:rgba(155,89,182,.08); }
@@ -76,10 +84,12 @@
         .spell-quick-nav h2 { font-family:var(--font-heading); font-size:11px; letter-spacing:2.5px; text-transform:uppercase; color:var(--text-muted); margin-bottom:12px; }
         .spell-quick-nav-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(170px,1fr)); gap:7px; }
         .spell-quick-nav a { display:block; padding:7px 13px; border-radius:4px; font-size:13px; text-decoration:none; border:1px solid var(--border-color); transition:all .18s; font-family:var(--font-heading); letter-spacing:.5px; }
-        .spell-quick-nav a.lvl1 { color:var(--lvl1); } .spell-quick-nav a.lvl1:hover { background:rgba(231,76,60,.1); border-color:var(--lvl1); }
-        .spell-quick-nav a.lvl2 { color:var(--lvl2); } .spell-quick-nav a.lvl2:hover { background:rgba(230,126,34,.1); border-color:var(--lvl2); }
-        .spell-quick-nav a.lvl3 { color:var(--lvl3); } .spell-quick-nav a.lvl3:hover { background:rgba(52,152,219,.1); border-color:var(--lvl3); }
-        .spell-quick-nav a.lvl4 { color:var(--lvl4); } .spell-quick-nav a.lvl4:hover { background:rgba(155,89,182,.1); border-color:var(--lvl4); }
+        .spell-quick-nav a.ref  { color:var(--gold-dark); } .spell-quick-nav a.ref:hover  { background:rgba(212,175,55,.08); border-color:var(--gold-dark); }
+        .spell-quick-nav a.lvl1 { color:var(--lvl1); } .spell-quick-nav a.lvl1:hover { background:rgba(154,165,177,.1); border-color:var(--lvl1); }
+        .spell-quick-nav a.lvl2 { color:var(--lvl2); } .spell-quick-nav a.lvl2:hover { background:rgba(231,76,60,.1); border-color:var(--lvl2); }
+        .spell-quick-nav a.lvl3 { color:var(--lvl3); } .spell-quick-nav a.lvl3:hover { background:rgba(230,126,34,.1); border-color:var(--lvl3); }
+        .spell-quick-nav a.lvl4 { color:var(--lvl4); } .spell-quick-nav a.lvl4:hover { background:rgba(52,152,219,.1); border-color:var(--lvl4); }
+        .spell-quick-nav a.lvl5 { color:var(--lvl5); } .spell-quick-nav a.lvl5:hover { background:rgba(155,89,182,.1); border-color:var(--lvl5); }
 
         .section-anchor { display:block; visibility:hidden; height:0; margin-top:-80px; padding-top:80px; }
     </style>
@@ -127,14 +137,15 @@
             <div class="spell-quick-nav">
                 <h2 id="navegacao-rapida">📋 Navegação Rápida</h2>
                 <div class="spell-quick-nav-grid">
-                    <a href="#regras"      class="lvl1">📖 Regras de Magia</a>
-                    <a href="#custo-base"  class="lvl1">💠 Custo Base</a>
-                    <a href="#intensidade" class="lvl1">🔥 Intensidade</a>
-                    <a href="#modulacoes"  class="lvl1">🔧 Modulações</a>
-                    <a href="#nivel1"      class="lvl1">🔴 Nível 1</a>
-                    <a href="#nivel2"      class="lvl2">🟠 Nível 2</a>
-                    <a href="#nivel3"      class="lvl3">🔵 Nível 3</a>
-                    <a href="#nivel4"      class="lvl4">🟣 Nível 4</a>
+                    <a href="#regras"      class="ref">📖 Regras de Magia</a>
+                    <a href="#custo-base"  class="ref">💠 Custo Base</a>
+                    <a href="#intensidade" class="ref">🔥 Intensidade</a>
+                    <a href="#modulacoes"  class="ref">🔧 Modulações</a>
+                    <a href="#nivel1"      class="lvl1">⚪ Nível 1</a>
+                    <a href="#nivel2"      class="lvl2">🔴 Nível 2</a>
+                    <a href="#nivel3"      class="lvl3">🟠 Nível 3</a>
+                    <a href="#nivel4"      class="lvl4">🔵 Nível 4</a>
+                    <a href="#nivel5"      class="lvl5">🟣 Nível 5</a>
                 </div>
             </div>
 
@@ -160,10 +171,11 @@
             <div class="card">
                 <h2 id="custo-base-por-nivel" class="card-title">💠 Custo Base por Nível</h2>
                 <table><thead><tr><th>Nível</th><th>Custo de Éter</th><th>Requisito</th></tr></thead><tbody>
-                    <tr><td>Nível 1</td><td>2 Éter</td><td>—</td></tr>
-                    <tr><td>Nível 2</td><td>4 Éter</td><td>—</td></tr>
-                    <tr><td>Nível 3</td><td>6 Éter</td><td>—</td></tr>
-                    <tr><td>Nível 4</td><td>8 Éter</td><td>Foco Primordial</td></tr>
+                    <tr><td>Nível 1</td><td>0 Éter</td><td>—</td></tr>
+                    <tr><td>Nível 2</td><td>2 Éter</td><td>—</td></tr>
+                    <tr><td>Nível 3</td><td>4 Éter</td><td>—</td></tr>
+                    <tr><td>Nível 4</td><td>6 Éter</td><td>—</td></tr>
+                    <tr><td>Nível 5</td><td>8 Éter</td><td>Foco Primordial</td></tr>
                 </tbody></table>
             </div>
 
@@ -232,8 +244,59 @@
 
             <span id="nivel1" class="section-anchor"></span>
             <div class="level-header">
-                <span class="level-badge l1">🔴 NÍVEL 1</span>
+                <span class="level-badge l1">⚪ NÍVEL 1</span>
                 <h2 id="magias-de-primeiro-nivel">Magias de Primeiro Nível</h2>
+                <div class="level-line"></div>
+            </div>
+
+            <div class="cantrip-note">
+                ✦ Magias de primeiro nível custam <strong>0 Éter</strong>. As demais exigências de conjuração continuam valendo: ser Treinado em Místico, ter aprendido a magia e empunhar o Foco da escola.
+            </div>
+            <div class="school-group">
+                <div class="school-header destruicao" onclick="toggleSchool(this)">⚔️ Destruição<span class="toggle-icon">▼</span></div>
+                <div class="school-body">
+                    <div class="spell-card"><div class="spell-header" onclick="toggleSpell(this)"><span class="spell-dot"></span><h4>🔹 Fagulha</h4><span class="spell-toggle">▶</span></div><div class="spell-body"><table class="spell-table"><thead><tr><th>Característica</th><th>Valor</th><th>Mod</th></tr></thead><tbody><tr><td>Ação</td><td>1 Ação</td><td class="mod-no">❎</td></tr><tr><td>Alcance</td><td>4,5 / 6 / 9 m</td><td class="mod-yes">✅</td></tr><tr><td>Alvo</td><td>1 Criatura</td><td class="mod-no">❎</td></tr><tr><td>Dano</td><td>1d4 / 2d4 / 3d4 Fogo</td><td class="mod-yes">✅</td></tr></tbody></table><p class="spell-desc">Você estala os dedos e arremessa uma fagulha. Faça um teste de Místico contra a Evasão do alvo. A fagulha acende objetos inflamáveis desatendidos (tocha, estopa, óleo derramado) sem precisar de teste.</p><p class="spell-mods"><span class="spell-mods-label">Modulações</span>Fragmentar (+3) · Alterar (+3) · Carregar (+3) · Marcar (+5)</p></div></div>
+                    <div class="spell-card"><div class="spell-header" onclick="toggleSpell(this)"><span class="spell-dot"></span><h4>🔹 Centelha</h4><span class="spell-toggle">▶</span></div><div class="spell-body"><table class="spell-table"><thead><tr><th>Característica</th><th>Valor</th><th>Mod</th></tr></thead><tbody><tr><td>Ação</td><td>1 Ação</td><td class="mod-no">❎</td></tr><tr><td>Alcance</td><td>1,5 m</td><td class="mod-no">❎</td></tr><tr><td>Alvo</td><td>1 Criatura</td><td class="mod-no">❎</td></tr><tr><td>Dano</td><td>1d4 / 2d4 / 3d4 Elétrico</td><td class="mod-yes">✅</td></tr></tbody></table><p class="spell-desc">Um arco elétrico salta da sua mão para a criatura mais próxima. Acerta automaticamente e não pode ser bloqueado por cobertura. O alcance não aumenta por intensidade: o arco precisa de ar curto para saltar.</p><p class="spell-mods"><span class="spell-mods-label">Modulações</span>Fragmentar (+3) · Alterar (+3)</p></div></div>
+                    <div class="spell-card"><div class="spell-header" onclick="toggleSpell(this)"><span class="spell-dot"></span><h4>🔹 Rajada Prismática</h4><span class="spell-toggle">▶</span></div><div class="spell-body"><table class="spell-table"><thead><tr><th>Característica</th><th>Valor</th><th>Mod</th></tr></thead><tbody><tr><td>Ação</td><td>2 Ações</td><td class="mod-no">❎</td></tr><tr><td>Alcance</td><td>Pessoal</td><td class="mod-no">❎</td></tr><tr><td>Área</td><td>Cone de 3 / 4,5 / 6 m</td><td class="mod-yes">✅</td></tr><tr><td>Dano</td><td>1d4 / 2d4 / 3d4 Ordinário (perfurante)</td><td class="mod-yes">✅</td></tr><tr><td>Resistência</td><td>Reflexos para metade · CD +0 / +2 / +4</td><td class="mod-yes">✅</td></tr></tbody></table><p class="spell-desc">Você materializa um punhado de cacos místicos e os cospe em cone.</p><p class="spell-mods"><span class="spell-mods-label">Modulações</span>Alterar (+3) · Carregar (+3)</p></div></div>
+                    <div class="spell-card"><div class="spell-header" onclick="toggleSpell(this)"><span class="spell-dot"></span><h4>🔹 Toque Cáustico</h4><span class="spell-toggle">▶</span></div><div class="spell-body"><table class="spell-table"><thead><tr><th>Característica</th><th>Valor</th><th>Mod</th></tr></thead><tbody><tr><td>Ação</td><td>1 Ação</td><td class="mod-no">❎</td></tr><tr><td>Alcance</td><td>Toque</td><td class="mod-no">❎</td></tr><tr><td>Alvo</td><td>1 Criatura</td><td class="mod-no">❎</td></tr><tr><td>Dano</td><td>1d6 / 2d6 / 3d6 Ácido</td><td class="mod-yes">✅</td></tr></tbody></table><p class="spell-desc">A ponta do seu dedo expele um ácido místico que se dissipa ao contato. Faça um teste de Místico contra a Evasão do alvo. Na intensidade transbordante, quando aplicado a um material não-mágico (corda, fechadura, grade fina), corrói em 1 rodada.</p><p class="spell-mods"><span class="spell-mods-label">Modulações</span>Fragmentar (+3) · Alterar (+3) · Carregar (+3) · Marcar (+5)</p></div></div>
+                    <div class="spell-card"><div class="spell-header" onclick="toggleSpell(this)"><span class="spell-dot"></span><h4>🔹 Presas de Gelo</h4><span class="spell-toggle">▶</span></div><div class="spell-body"><table class="spell-table"><thead><tr><th>Característica</th><th>Valor</th><th>Mod</th></tr></thead><tbody><tr><td>Ação</td><td>2 Ações</td><td class="mod-no">❎</td></tr><tr><td>Alcance</td><td>3 / 4,5 / 6 m</td><td class="mod-yes">✅</td></tr><tr><td>Presas</td><td>2 / 3 / 4</td><td class="mod-yes">✅</td></tr><tr><td>Alvo</td><td>1 criatura por presa, à sua escolha</td><td class="mod-no">❎</td></tr><tr><td>Dano</td><td>1d4 Frio por presa</td><td class="mod-no">❎</td></tr></tbody></table><p class="spell-desc">Presas de gelo se formam no ar e disparam contra os inimigos. Cada presa dispara um ataque independente, teste de Místico contra a Evasão do alvo. A intensidade adiciona mais presas. PMA é aplicada nessa magia.</p><p class="spell-mods"><span class="spell-mods-label">Modulações</span>Fragmentar (+3) · Alterar (+3) · Carregar (+3) · Marcar (+5)</p></div></div>
+                </div>
+            </div>
+            <div class="school-group">
+                <div class="school-header abjuracao" onclick="toggleSchool(this)">🛡️ Abjuração<span class="toggle-icon">▼</span></div>
+                <div class="school-body">
+                    <div class="spell-card"><div class="spell-header" onclick="toggleSpell(this)"><span class="spell-dot"></span><h4>🔹 Verniz do Éter</h4><span class="spell-toggle">▶</span></div><div class="spell-body"><table class="spell-table"><thead><tr><th>Característica</th><th>Valor</th><th>Mod</th></tr></thead><tbody><tr><td>Ação</td><td>1 Ação</td><td class="mod-no">❎</td></tr><tr><td>Alcance</td><td>Pessoal</td><td class="mod-no">❎</td></tr><tr><td>Efeito</td><td>Ae 1 / 2 / 3 contra um tipo de dano à escolha</td><td class="mod-yes">✅</td></tr><tr><td>Duração</td><td>Até o fim do seu próximo turno</td><td class="mod-no">❎</td></tr></tbody></table><p class="spell-desc">Você enverniza sua pele com uma camada fina de abjuração afinada a um elemento seguinte: Fogo, Frio, Elétrico, Veneno, Ácido, Psíquico, Radiante, Trovejante ou Necrótico. Escolha o tipo ao conjurar. Não funciona contra dano Ordinário.</p><p class="spell-mods"><span class="spell-mods-label">Modulações</span>Ancorar (+2) · Refletir (+3) · Socializar (+4) · Acelerar (+5)</p></div></div>
+                    <div class="spell-card"><div class="spell-header" onclick="toggleSpell(this)"><span class="spell-dot"></span><h4>🔹 Presságio</h4><span class="spell-toggle">▶</span></div><div class="spell-body"><table class="spell-table"><thead><tr><th>Característica</th><th>Valor</th><th>Mod</th></tr></thead><tbody><tr><td>Ação</td><td>Ação Livre</td><td class="mod-no">❎</td></tr><tr><td>Alcance</td><td>Pessoal (apenas em você)</td><td class="mod-no">❎</td></tr><tr><td>Intensidade</td><td>Apenas Normal</td><td class="mod-no">❎</td></tr><tr><td>Efeito</td><td>A sua próxima rolagem de Atacar neste turno ignora a PMA</td><td class="mod-no">❎</td></tr><tr><td>Custo</td><td>Se acertar, você perde Éter igual ao número de dados de dano da arma usada</td><td class="mod-no">❎</td></tr></tbody></table><p class="spell-desc">Você antecipa o golpe um instante antes de desferi-lo. A modulação Socializar não funciona nesta magia.</p><p class="spell-mods"><span class="spell-mods-label">Modulações</span>Ancorar (+2)</p></div></div>
+                    <div class="spell-card"><div class="spell-header" onclick="toggleSpell(this)"><span class="spell-dot"></span><h4>🔹 Anteparo Etérico</h4><span class="spell-toggle">▶</span></div><div class="spell-body"><table class="spell-table"><thead><tr><th>Característica</th><th>Valor</th><th>Mod</th></tr></thead><tbody><tr><td>Ação</td><td>1 Ação</td><td class="mod-no">❎</td></tr><tr><td>Alcance</td><td>3 / 4,5 / 6 m</td><td class="mod-yes">✅</td></tr><tr><td>Área</td><td>Painel de 1,5 m × 1,5 m</td><td class="mod-no">❎</td></tr><tr><td>Saúde do Painel</td><td>5 / 10 / 15</td><td class="mod-yes">✅</td></tr><tr><td>Duração</td><td>Até o início do seu próximo turno</td><td class="mod-no">❎</td></tr></tbody></table><p class="spell-desc">Você fixa um painel de energia etérica translúcida em um ponto que possa ver. Ele fornece cobertura total a quem estiver atrás dele e some ao ser reduzido a 0 de Saúde.</p><p class="spell-mods"><span class="spell-mods-label">Modulações</span>Ancorar (+2) · Refletir (+3) · Socializar (+4) · Acelerar (+5)</p></div></div>
+                    <div class="spell-card"><div class="spell-header" onclick="toggleSpell(this)"><span class="spell-dot"></span><h4>🔹 Rescaldo</h4><span class="spell-toggle">▶</span></div><div class="spell-body"><table class="spell-table"><thead><tr><th>Característica</th><th>Valor</th><th>Mod</th></tr></thead><tbody><tr><td>Ação</td><td>1 Ação</td><td class="mod-no">❎</td></tr><tr><td>Alcance</td><td>Toque / 1,5 / 3 m</td><td class="mod-yes">✅</td></tr><tr><td>Alvo</td><td>1 Criatura</td><td class="mod-no">❎</td></tr><tr><td>Efeito</td><td>Remove Em Chamas · Forçada: também Enjoado ou Desorientado · Transbordante: também Amedrontado</td><td class="mod-yes">✅</td></tr></tbody></table><p class="spell-desc">Você passa a mão sobre a criatura e a energia abjurante sufoca o que arde nela. Cada conjuração remove uma única condição — a intensidade amplia a lista de escolhas, não a quantidade removida.</p><p class="spell-mods"><span class="spell-mods-label">Modulações</span>Socializar (+4) · Acelerar (+5)</p></div></div>
+                    <div class="spell-card"><div class="spell-header" onclick="toggleSpell(this)"><span class="spell-dot"></span><h4>🔹 Vínculo Cósmico</h4><span class="spell-toggle">▶</span></div><div class="spell-body"><table class="spell-table"><thead><tr><th>Característica</th><th>Valor</th><th>Mod</th></tr></thead><tbody><tr><td>Ação</td><td>1 Ação</td><td class="mod-no">❎</td></tr><tr><td>Alcance</td><td>Toque</td><td class="mod-no">❎</td></tr><tr><td>Alvo</td><td>1 / 2 / 3 Criatura(s) voluntária(s)</td><td class="mod-yes">✅</td></tr><tr><td>Duração</td><td>Até o fim do seu próximo turno</td><td class="mod-no">❎</td></tr><tr><td>Efeito</td><td>O próximo dano recebido é repartido igualmente entre os conectados</td><td class="mod-no">❎</td></tr></tbody></table><p class="spell-desc">Você amarra um fio breve entre você e outra criatura que reparte os ferimentos igualmente entre as criaturas conectadas.</p><p class="spell-mods"><span class="spell-mods-label">Modulações</span>Ancorar (+2) · Refletir (+3) · Socializar (+4) · Acelerar (+5)</p></div></div>
+                </div>
+            </div>
+            <div class="school-group">
+                <div class="school-header alteracao" onclick="toggleSchool(this)">🌀 Alteração<span class="toggle-icon">▼</span></div>
+                <div class="school-body">
+                    <div class="spell-card"><div class="spell-header" onclick="toggleSpell(this)"><span class="spell-dot"></span><h4>🔹 Dedo Místico</h4><span class="spell-toggle">▶</span></div><div class="spell-body"><table class="spell-table"><thead><tr><th>Característica</th><th>Valor</th><th>Mod</th></tr></thead><tbody><tr><td>Ação</td><td>1 Ação</td><td class="mod-no">❎</td></tr><tr><td>Alcance</td><td>4,5 / 9 / 13,5 m</td><td class="mod-yes">✅</td></tr><tr><td>Efeito</td><td>Manipula 1 objeto de até 0,5 kg que você possa ver</td><td class="mod-no">❎</td></tr></tbody></table><p class="spell-desc">Você move um objeto leve à distância: puxa uma alavanca, vira uma página, apaga uma vela, empurra uma moeda por baixo de uma porta. Uma manipulação por conjuração. Não pode atacar, desarmar nem tirar item de criatura.</p><p class="spell-mods"><span class="spell-mods-label">Modulações</span>Alcançar (+3) · Contagiar (+3)</p></div></div>
+                    <div class="spell-card"><div class="spell-header" onclick="toggleSpell(this)"><span class="spell-dot"></span><h4>🔹 Lábia</h4><span class="spell-toggle">▶</span></div><div class="spell-body"><table class="spell-table"><thead><tr><th>Característica</th><th>Valor</th><th>Mod</th></tr></thead><tbody><tr><td>Ação</td><td>1 Ação</td><td class="mod-no">❎</td></tr><tr><td>Alcance</td><td>Pessoal</td><td class="mod-no">❎</td></tr><tr><td>Efeito</td><td>+1 / +2 / +3 na próxima rolagem de Convencimento, Intimidação, Enganação, Motivar ou Crime</td><td class="mod-yes">✅</td></tr><tr><td>Duração</td><td>A próxima rolagem desta cena</td><td class="mod-no">❎</td></tr></tbody></table><p class="spell-desc">Escolha a perícia ao conjurar. Quem estiver te observando pode fazer Percepção contra a sua CD para perceber a conjuração; contra quem perceber, o bônus não se aplica.</p><p class="spell-mods"><span class="spell-mods-label">Modulações</span>Inversão (+2) · Contagiar (+3) · Insistir (+5)</p></div></div>
+                    <div class="spell-card"><div class="spell-header" onclick="toggleSpell(this)"><span class="spell-dot"></span><h4>🔹 Lastro</h4><span class="spell-toggle">▶</span></div><div class="spell-body"><table class="spell-table"><thead><tr><th>Característica</th><th>Valor</th><th>Mod</th></tr></thead><tbody><tr><td>Ação</td><td>1 Ação</td><td class="mod-no">❎</td></tr><tr><td>Alcance</td><td>4,5 / 9 / 13,5 m</td><td class="mod-yes">✅</td></tr><tr><td>Alvo</td><td>1 Criatura</td><td class="mod-no">❎</td></tr><tr><td>Duração</td><td>1 Rodada</td><td class="mod-no">❎</td></tr><tr><td>Resistência</td><td>Vontade ou Lento 1 · CD +0 / +2 / +4</td><td class="mod-yes">✅</td></tr></tbody></table><p class="spell-desc">Você adiciona peso ilusório aos membros de uma criatura. Em caso de falha no teste de Vontade, ela fica Lento 1 até o fim do próximo turno dela.</p><p class="spell-mods"><span class="spell-mods-label">Modulações</span>Inversão (+2) · Alcançar (+3) · Contagiar (+3) · Insistir (+5)</p></div></div>
+                    <div class="spell-card"><div class="spell-header" onclick="toggleSpell(this)"><span class="spell-dot"></span><h4>🔹 Têmpera</h4><span class="spell-toggle">▶</span></div><div class="spell-body"><table class="spell-table"><thead><tr><th>Característica</th><th>Valor</th><th>Mod</th></tr></thead><tbody><tr><td>Ação</td><td>1 Ação</td><td class="mod-no">❎</td></tr><tr><td>Alcance</td><td>Toque</td><td class="mod-no">❎</td></tr><tr><td>Alvo</td><td>1 Arma</td><td class="mod-no">❎</td></tr><tr><td>Duração</td><td>1 / 2 / 3 ataque(s)</td><td class="mod-yes">✅</td></tr><tr><td>Efeito</td><td>O dano da arma muda para um tipo Atípico à escolha</td><td class="mod-no">❎</td></tr></tbody></table><p class="spell-desc">Fogo, Frio, Elétrico, Veneno, Ácido, Psíquico, Radiante, Trovejante ou Necrótico. A arma mantém o dado base e o atributo.</p><p class="spell-mods"><span class="spell-mods-label">Modulações</span>Inversão (+2) · Contagiar (+3) · Insistir (+5)</p></div></div>
+                    <div class="spell-card"><div class="spell-header" onclick="toggleSpell(this)"><span class="spell-dot"></span><h4>🔹 Rosto Emprestado</h4><span class="spell-toggle">▶</span></div><div class="spell-body"><table class="spell-table"><thead><tr><th>Característica</th><th>Valor</th><th>Mod</th></tr></thead><tbody><tr><td>Ação</td><td>2 Ações</td><td class="mod-no">❎</td></tr><tr><td>Alcance</td><td>Toque</td><td class="mod-no">❎</td></tr><tr><td>Duração</td><td>10 / 30 / 60 minutos</td><td class="mod-yes">✅</td></tr><tr><td>Efeito</td><td>Altera um único detalhe da sua aparência</td><td class="mod-no">❎</td></tr></tbody></table><p class="spell-desc">Cor dos olhos, uma cicatriz, o timbre da voz, a cor do cabelo, a insígnia da roupa. Não muda altura, rosto inteiro nem porte. Quem interagir pode fazer Percepção contra a sua CD para notar.</p><p class="spell-mods"><span class="spell-mods-label">Modulações</span>Inversão (+2) · Contagiar (+3) · Insistir (+5)</p></div></div>
+                </div>
+            </div>
+            <div class="school-group">
+                <div class="school-header conhecimento" onclick="toggleSchool(this)">🔮 Conhecimento<span class="toggle-icon">▼</span></div>
+                <div class="school-body">
+                    <div class="spell-card"><div class="spell-header" onclick="toggleSpell(this)"><span class="spell-dot"></span><h4>🔹 Farejar Elemento</h4><span class="spell-toggle">▶</span></div><div class="spell-body"><table class="spell-table"><thead><tr><th>Característica</th><th>Valor</th><th>Mod</th></tr></thead><tbody><tr><td>Ação</td><td>1 Ação</td><td class="mod-no">❎</td></tr><tr><td>Alcance</td><td>Pessoal · raio 4,5 / 9 / 13,5 m</td><td class="mod-yes">✅</td></tr><tr><td>Duração</td><td>1 / 5 / 10 minutos</td><td class="mod-yes">✅</td></tr><tr><td>Efeito</td><td>Normal: há Éter no raio · Forçada: qual elemento · Transbordante: a direção</td><td class="mod-yes">✅</td></tr></tbody></table><p class="spell-desc">Seu faro fica extremamente sensível ao éter, rapidamente você sabe dizer se ele está presente no raio.</p><p class="spell-mods"><span class="spell-mods-label">Modulações</span>Compartilhar (+1) · Exigir (+2) · Projetar (+2)</p></div></div>
+                    <div class="spell-card"><div class="spell-header" onclick="toggleSpell(this)"><span class="spell-dot"></span><h4>🔹 Ponto Cego</h4><span class="spell-toggle">▶</span></div><div class="spell-body"><table class="spell-table"><thead><tr><th>Característica</th><th>Valor</th><th>Mod</th></tr></thead><tbody><tr><td>Ação</td><td>1 Ação</td><td class="mod-no">❎</td></tr><tr><td>Alcance</td><td>4,5 / 9 / 13,5 m</td><td class="mod-yes">✅</td></tr><tr><td>Alvo</td><td>1 Criatura</td><td class="mod-no">❎</td></tr><tr><td>Efeito</td><td>Revela se o alvo tem Ae, resistência ou imunidade na categoria escolhida — sem os valores</td><td class="mod-no">❎</td></tr></tbody></table><p class="spell-desc">Você estuda a criatura e misticamente descobre suas principais resistências e imunidades. Escolha Ordinário, Elemental, Biológico ou Místico; o mestre revela se o alvo tem Armadura Específica, resistência e imunidades, mas não o valor exato.</p><p class="spell-mods"><span class="spell-mods-label">Modulações</span>Compartilhar (+1) · Exigir (+2) · Projetar (+2) · Gravar (+3)</p></div></div>
+                    <div class="spell-card"><div class="spell-header" onclick="toggleSpell(this)"><span class="spell-dot"></span><h4>🔹 Sina</h4><span class="spell-toggle">▶</span></div><div class="spell-body"><table class="spell-table"><thead><tr><th>Característica</th><th>Valor</th><th>Mod</th></tr></thead><tbody><tr><td>Ação</td><td>1 Ação</td><td class="mod-no">❎</td></tr><tr><td>Alcance</td><td>9 / 18 / 27 m para marcar</td><td class="mod-yes">✅</td></tr><tr><td>Alvo</td><td>1 Criatura que você possa ver</td><td class="mod-no">❎</td></tr><tr><td>Duração</td><td>10 minutos / 1 hora / 8 horas</td><td class="mod-yes">✅</td></tr><tr><td>Efeito</td><td>Você sempre sabe a direção e a distância aproximada do alvo, sem limite de alcance</td><td class="mod-no">❎</td></tr></tbody></table><p class="spell-desc">Você amarra um fio de atenção à criatura. Ele não se rompe com parede, escuridão nem invisibilidade — mas também não diz o que ela está fazendo, nem permite atacá-la sem vê-la. Você só pode ter uma Sina ativa por vez.</p><p class="spell-mods"><span class="spell-mods-label">Modulações</span>Compartilhar (+1) · Exigir (+2) · Projetar (+2) · Gravar (+3)</p></div></div>
+                    <div class="spell-card"><div class="spell-header" onclick="toggleSpell(this)"><span class="spell-dot"></span><h4>🔹 Vislumbre</h4><span class="spell-toggle">▶</span></div><div class="spell-body"><table class="spell-table"><thead><tr><th>Característica</th><th>Valor</th><th>Mod</th></tr></thead><tbody><tr><td>Ação</td><td>Reação</td><td class="mod-no">❎</td></tr><tr><td>Gatilho</td><td>Você tira 1 na rolagem de um teste de perícia</td><td class="mod-no">❎</td></tr><tr><td>Alcance</td><td>Pessoal</td><td class="mod-no">❎</td></tr><tr><td>Intensidade</td><td>Apenas Transbordante</td><td class="mod-no">❎</td></tr><tr><td>Efeito</td><td>Re-role o teste com desvantagem</td><td class="mod-no">❎</td></tr></tbody></table><p class="spell-desc">Por um instante o Éter te mostra o erro no momento exato em que ele acontece — tarde demais para evitá-lo, cedo o bastante para tentar de novo. O que chega é confuso e incompleto, e a segunda tentativa vem torta.</p><p class="spell-mods"><span class="spell-mods-label">Modulações</span>Compartilhar (+1) · Exigir (+2) · Gravar (+3)</p></div></div>
+                    <div class="spell-card"><div class="spell-header" onclick="toggleSpell(this)"><span class="spell-dot"></span><h4>🔹 Presciência</h4><span class="spell-toggle">▶</span></div><div class="spell-body"><table class="spell-table"><thead><tr><th>Característica</th><th>Valor</th><th>Mod</th></tr></thead><tbody><tr><td>Ação</td><td>Reação</td><td class="mod-no">❎</td></tr><tr><td>Gatilho</td><td>Você é chamado a fazer um teste de Fortitude, Vontade ou Reflexos</td><td class="mod-no">❎</td></tr><tr><td>Alcance</td><td>Pessoal</td><td class="mod-no">❎</td></tr><tr><td>Intensidade</td><td>Apenas Normal</td><td class="mod-no">❎</td></tr><tr><td>Efeito</td><td>Você faz o teste com Vontade no lugar da perícia chamada</td><td class="mod-no">❎</td></tr></tbody></table><p class="spell-desc">Você sente a coisa vir antes de ela chegar, e o que te segura não é o corpo: é ter visto. Onde os outros travam os músculos ou saltam para o lado, você simplesmente já sabia. A modulação Compartilhar não funciona nesta magia.</p><p class="spell-mods"><span class="spell-mods-label">Modulações</span>Gravar (+3)</p></div></div>
+                </div>
+            </div>
+            <div class="separator-ornament"><span>✦</span></div>
+            <span id="nivel2" class="section-anchor"></span>
+            <div class="level-header">
+                <span class="level-badge l2">🔴 NÍVEL 2</span>
+                <h2 id="magias-de-segundo-nivel">Magias de Segundo Nível</h2>
                 <div class="level-line"></div>
             </div>
 
@@ -278,10 +341,10 @@
                 </div>
             </div>
             <div class="separator-ornament"><span>✦</span></div>
-            <span id="nivel2" class="section-anchor"></span>
+            <span id="nivel3" class="section-anchor"></span>
             <div class="level-header">
-                <span class="level-badge l2">🟠 NÍVEL 2</span>
-                <h2 id="magias-de-segundo-nivel">Magias de Segundo Nível</h2>
+                <span class="level-badge l3">🟠 NÍVEL 3</span>
+                <h2 id="magias-de-terceiro-nivel">Magias de Terceiro Nível</h2>
                 <div class="level-line"></div>
             </div>
 
@@ -326,10 +389,10 @@
                 </div>
             </div>
             <div class="separator-ornament"><span>✦</span></div>
-            <span id="nivel3" class="section-anchor"></span>
+            <span id="nivel4" class="section-anchor"></span>
             <div class="level-header">
-                <span class="level-badge l3">🔵 NÍVEL 3</span>
-                <h2 id="magias-de-terceiro-nivel">Magias de Terceiro Nível</h2>
+                <span class="level-badge l4">🔵 NÍVEL 4</span>
+                <h2 id="magias-de-quarto-nivel">Magias de Quarto Nível</h2>
                 <div class="level-line"></div>
             </div>
 
@@ -374,10 +437,10 @@
                 </div>
             </div>
             <div class="separator-ornament"><span>✦</span></div>
-            <span id="nivel4" class="section-anchor"></span>
+            <span id="nivel5" class="section-anchor"></span>
             <div class="level-header">
-                <span class="level-badge l4">🟣 NÍVEL 4</span>
-                <h2 id="magias-de-quarto-nivel">Magias de Quarto Nível</h2>
+                <span class="level-badge l5">🟣 NÍVEL 5</span>
+                <h2 id="magias-de-quinto-nivel">Magias de Quinto Nível</h2>
                 <div class="level-line"></div>
             </div>
 

@@ -3,8 +3,8 @@
 # Gerador reverso de Magias (Rota 1): data/magias.json -> pages/magias.html
 # Fonte da verdade = data/magias.json. NÃO editar pages/magias.html à mão.
 # Uso: python gerar_magias.py [repo_root]
-# Template: templates/magias.template.html (contém <style>, sidebar e as 4 seções
-# introdutórias como literal; placeholders {{NIVEL_1..4}} recebem as magias do JSON).
+# Template: templates/magias.template.html (contém <style>, sidebar e as seções
+# introdutórias como literal; placeholders {{NIVEL_1..5}} recebem as magias do JSON).
 # Round-trip contra o HTML original validado no bootstrap (80/80 cards, página inteira
 # normalizada idêntica) — ver método §6 do CLAUDE.md.
 import json, sys, os
@@ -15,6 +15,7 @@ TPL = f'{REPO}/templates/magias.template.html'
 JSON_SRC = f'{REPO}/data/magias.json'
 OUT = f'{REPO}/pages/magias.html'
 
+NIVEIS = 5
 ESCOLAS = ('destruicao', 'abjuracao', 'alteracao', 'conhecimento')
 LABELS = {
     'destruicao':   '⚔️ Destruição',
@@ -29,12 +30,14 @@ def gen_card(s):
         f'<tr><td>{st["caracteristica"]}</td><td>{st["valor"]}</td>'
         f'<td class="mod-{"yes" if st["mod"] else "no"}">{"✅" if st["mod"] else "❎"}</td></tr>'
         for st in s['stats'])
+    mods = (f'<p class="spell-mods"><span class="spell-mods-label">Modulações</span>'
+            f'{s["modulacoes"]}</p>') if s.get('modulacoes') else ''
     return (f'<div class="spell-card"><div class="spell-header" onclick="toggleSpell(this)">'
             f'<span class="spell-dot"></span><h4>🔹 {s["nome"]}</h4>'
             f'<span class="spell-toggle">▶</span></div><div class="spell-body">{tag}'
             f'<table class="spell-table"><thead><tr><th>Característica</th><th>Valor</th>'
             f'<th>Mod</th></tr></thead><tbody>{rows}</tbody></table>'
-            f'<p class="spell-desc">{s["descricao"]}</p></div></div>')
+            f'<p class="spell-desc">{s["descricao"]}</p>{mods}</div></div>')
 
 def gen_group(esc, spells):
     cards = '\n                    '.join(gen_card(s) for s in spells)
@@ -55,7 +58,7 @@ def main():
     data = json.load(open(JSON_SRC, encoding='utf-8'))
     page = template
     total = 0
-    for n in range(1, 5):
+    for n in range(1, NIVEIS + 1):
         marker = f'{{{{NIVEL_{n}}}}}'
         if marker not in page:
             raise SystemExit(f'placeholder {marker} ausente no template')

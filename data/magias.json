@@ -2,10 +2,685 @@
   "nivel1": {
     "destruicao": [
       {
+        "id": "magia-fagulha",
+        "nome": "Fagulha",
+        "escola": "destruicao",
+        "nivel": 1,
+        "custoBase": 0,
+        "stats": [
+          {
+            "caracteristica": "Ação",
+            "valor": "1 Ação",
+            "mod": false
+          },
+          {
+            "caracteristica": "Alcance",
+            "valor": "4,5 / 6 / 9 m",
+            "mod": true
+          },
+          {
+            "caracteristica": "Alvo",
+            "valor": "1 Criatura",
+            "mod": false
+          },
+          {
+            "caracteristica": "Dano",
+            "valor": "1d4 / 2d4 / 3d4 Fogo",
+            "mod": true
+          }
+        ],
+        "descricao": "Você estala os dedos e arremessa uma fagulha. Faça um teste de Místico contra a Evasão do alvo. A fagulha acende objetos inflamáveis desatendidos (tocha, estopa, óleo derramado) sem precisar de teste.",
+        "modulacoes": "Fragmentar (+3) · Alterar (+3) · Carregar (+3) · Marcar (+5)"
+      },
+      {
+        "id": "magia-centelha",
+        "nome": "Centelha",
+        "escola": "destruicao",
+        "nivel": 1,
+        "custoBase": 0,
+        "stats": [
+          {
+            "caracteristica": "Ação",
+            "valor": "1 Ação",
+            "mod": false
+          },
+          {
+            "caracteristica": "Alcance",
+            "valor": "1,5 m",
+            "mod": false
+          },
+          {
+            "caracteristica": "Alvo",
+            "valor": "1 Criatura",
+            "mod": false
+          },
+          {
+            "caracteristica": "Dano",
+            "valor": "1d4 / 2d4 / 3d4 Elétrico",
+            "mod": true
+          }
+        ],
+        "descricao": "Um arco elétrico salta da sua mão para a criatura mais próxima. Acerta automaticamente e não pode ser bloqueado por cobertura. O alcance não aumenta por intensidade: o arco precisa de ar curto para saltar.",
+        "modulacoes": "Fragmentar (+3) · Alterar (+3)"
+      },
+      {
+        "id": "magia-rajada-prismatica",
+        "nome": "Rajada Prismática",
+        "escola": "destruicao",
+        "nivel": 1,
+        "custoBase": 0,
+        "stats": [
+          {
+            "caracteristica": "Ação",
+            "valor": "2 Ações",
+            "mod": false
+          },
+          {
+            "caracteristica": "Alcance",
+            "valor": "Pessoal",
+            "mod": false
+          },
+          {
+            "caracteristica": "Área",
+            "valor": "Cone de 3 / 4,5 / 6 m",
+            "mod": true
+          },
+          {
+            "caracteristica": "Dano",
+            "valor": "1d4 / 2d4 / 3d4 Ordinário (perfurante)",
+            "mod": true
+          },
+          {
+            "caracteristica": "Resistência",
+            "valor": "Reflexos para metade · CD +0 / +2 / +4",
+            "mod": true
+          }
+        ],
+        "descricao": "Você materializa um punhado de cacos místicos e os cospe em cone.",
+        "modulacoes": "Alterar (+3) · Carregar (+3)"
+      },
+      {
+        "id": "magia-toque-caustico",
+        "nome": "Toque Cáustico",
+        "escola": "destruicao",
+        "nivel": 1,
+        "custoBase": 0,
+        "stats": [
+          {
+            "caracteristica": "Ação",
+            "valor": "1 Ação",
+            "mod": false
+          },
+          {
+            "caracteristica": "Alcance",
+            "valor": "Toque",
+            "mod": false
+          },
+          {
+            "caracteristica": "Alvo",
+            "valor": "1 Criatura",
+            "mod": false
+          },
+          {
+            "caracteristica": "Dano",
+            "valor": "1d6 / 2d6 / 3d6 Ácido",
+            "mod": true
+          }
+        ],
+        "descricao": "A ponta do seu dedo expele um ácido místico que se dissipa ao contato. Faça um teste de Místico contra a Evasão do alvo. Na intensidade transbordante, quando aplicado a um material não-mágico (corda, fechadura, grade fina), corrói em 1 rodada.",
+        "modulacoes": "Fragmentar (+3) · Alterar (+3) · Carregar (+3) · Marcar (+5)"
+      },
+      {
+        "id": "magia-presas-de-gelo",
+        "nome": "Presas de Gelo",
+        "escola": "destruicao",
+        "nivel": 1,
+        "custoBase": 0,
+        "stats": [
+          {
+            "caracteristica": "Ação",
+            "valor": "2 Ações",
+            "mod": false
+          },
+          {
+            "caracteristica": "Alcance",
+            "valor": "3 / 4,5 / 6 m",
+            "mod": true
+          },
+          {
+            "caracteristica": "Presas",
+            "valor": "2 / 3 / 4",
+            "mod": true
+          },
+          {
+            "caracteristica": "Alvo",
+            "valor": "1 criatura por presa, à sua escolha",
+            "mod": false
+          },
+          {
+            "caracteristica": "Dano",
+            "valor": "1d4 Frio por presa",
+            "mod": false
+          }
+        ],
+        "descricao": "Presas de gelo se formam no ar e disparam contra os inimigos. Cada presa dispara um ataque independente, teste de Místico contra a Evasão do alvo. A intensidade adiciona mais presas. PMA é aplicada nessa magia.",
+        "modulacoes": "Fragmentar (+3) · Alterar (+3) · Carregar (+3) · Marcar (+5)"
+      }
+    ],
+    "abjuracao": [
+      {
+        "id": "magia-verniz-do-eter",
+        "nome": "Verniz do Éter",
+        "escola": "abjuracao",
+        "nivel": 1,
+        "custoBase": 0,
+        "stats": [
+          {
+            "caracteristica": "Ação",
+            "valor": "1 Ação",
+            "mod": false
+          },
+          {
+            "caracteristica": "Alcance",
+            "valor": "Pessoal",
+            "mod": false
+          },
+          {
+            "caracteristica": "Efeito",
+            "valor": "Ae 1 / 2 / 3 contra um tipo de dano à escolha",
+            "mod": true
+          },
+          {
+            "caracteristica": "Duração",
+            "valor": "Até o fim do seu próximo turno",
+            "mod": false
+          }
+        ],
+        "descricao": "Você enverniza sua pele com uma camada fina de abjuração afinada a um elemento seguinte: Fogo, Frio, Elétrico, Veneno, Ácido, Psíquico, Radiante, Trovejante ou Necrótico. Escolha o tipo ao conjurar. Não funciona contra dano Ordinário.",
+        "modulacoes": "Ancorar (+2) · Refletir (+3) · Socializar (+4) · Acelerar (+5)"
+      },
+      {
+        "id": "magia-pressagio",
+        "nome": "Presságio",
+        "escola": "abjuracao",
+        "nivel": 1,
+        "custoBase": 0,
+        "stats": [
+          {
+            "caracteristica": "Ação",
+            "valor": "Ação Livre",
+            "mod": false
+          },
+          {
+            "caracteristica": "Alcance",
+            "valor": "Pessoal (apenas em você)",
+            "mod": false
+          },
+          {
+            "caracteristica": "Intensidade",
+            "valor": "Apenas Normal",
+            "mod": false
+          },
+          {
+            "caracteristica": "Efeito",
+            "valor": "A sua próxima rolagem de Atacar neste turno ignora a PMA",
+            "mod": false
+          },
+          {
+            "caracteristica": "Custo",
+            "valor": "Se acertar, você perde Éter igual ao número de dados de dano da arma usada",
+            "mod": false
+          }
+        ],
+        "descricao": "Você antecipa o golpe um instante antes de desferi-lo. A modulação Socializar não funciona nesta magia.",
+        "modulacoes": "Ancorar (+2)"
+      },
+      {
+        "id": "magia-anteparo-eterico",
+        "nome": "Anteparo Etérico",
+        "escola": "abjuracao",
+        "nivel": 1,
+        "custoBase": 0,
+        "stats": [
+          {
+            "caracteristica": "Ação",
+            "valor": "1 Ação",
+            "mod": false
+          },
+          {
+            "caracteristica": "Alcance",
+            "valor": "3 / 4,5 / 6 m",
+            "mod": true
+          },
+          {
+            "caracteristica": "Área",
+            "valor": "Painel de 1,5 m × 1,5 m",
+            "mod": false
+          },
+          {
+            "caracteristica": "Saúde do Painel",
+            "valor": "5 / 10 / 15",
+            "mod": true
+          },
+          {
+            "caracteristica": "Duração",
+            "valor": "Até o início do seu próximo turno",
+            "mod": false
+          }
+        ],
+        "descricao": "Você fixa um painel de energia etérica translúcida em um ponto que possa ver. Ele fornece cobertura total a quem estiver atrás dele e some ao ser reduzido a 0 de Saúde.",
+        "modulacoes": "Ancorar (+2) · Refletir (+3) · Socializar (+4) · Acelerar (+5)"
+      },
+      {
+        "id": "magia-rescaldo",
+        "nome": "Rescaldo",
+        "escola": "abjuracao",
+        "nivel": 1,
+        "custoBase": 0,
+        "stats": [
+          {
+            "caracteristica": "Ação",
+            "valor": "1 Ação",
+            "mod": false
+          },
+          {
+            "caracteristica": "Alcance",
+            "valor": "Toque / 1,5 / 3 m",
+            "mod": true
+          },
+          {
+            "caracteristica": "Alvo",
+            "valor": "1 Criatura",
+            "mod": false
+          },
+          {
+            "caracteristica": "Efeito",
+            "valor": "Remove Em Chamas · Forçada: também Enjoado ou Desorientado · Transbordante: também Amedrontado",
+            "mod": true
+          }
+        ],
+        "descricao": "Você passa a mão sobre a criatura e a energia abjurante sufoca o que arde nela. Cada conjuração remove uma única condição — a intensidade amplia a lista de escolhas, não a quantidade removida.",
+        "modulacoes": "Socializar (+4) · Acelerar (+5)"
+      },
+      {
+        "id": "magia-vinculo-cosmico",
+        "nome": "Vínculo Cósmico",
+        "escola": "abjuracao",
+        "nivel": 1,
+        "custoBase": 0,
+        "stats": [
+          {
+            "caracteristica": "Ação",
+            "valor": "1 Ação",
+            "mod": false
+          },
+          {
+            "caracteristica": "Alcance",
+            "valor": "Toque",
+            "mod": false
+          },
+          {
+            "caracteristica": "Alvo",
+            "valor": "1 / 2 / 3 Criatura(s) voluntária(s)",
+            "mod": true
+          },
+          {
+            "caracteristica": "Duração",
+            "valor": "Até o fim do seu próximo turno",
+            "mod": false
+          },
+          {
+            "caracteristica": "Efeito",
+            "valor": "O próximo dano recebido é repartido igualmente entre os conectados",
+            "mod": false
+          }
+        ],
+        "descricao": "Você amarra um fio breve entre você e outra criatura que reparte os ferimentos igualmente entre as criaturas conectadas.",
+        "modulacoes": "Ancorar (+2) · Refletir (+3) · Socializar (+4) · Acelerar (+5)"
+      }
+    ],
+    "alteracao": [
+      {
+        "id": "magia-dedo-mistico",
+        "nome": "Dedo Místico",
+        "escola": "alteracao",
+        "nivel": 1,
+        "custoBase": 0,
+        "stats": [
+          {
+            "caracteristica": "Ação",
+            "valor": "1 Ação",
+            "mod": false
+          },
+          {
+            "caracteristica": "Alcance",
+            "valor": "4,5 / 9 / 13,5 m",
+            "mod": true
+          },
+          {
+            "caracteristica": "Efeito",
+            "valor": "Manipula 1 objeto de até 0,5 kg que você possa ver",
+            "mod": false
+          }
+        ],
+        "descricao": "Você move um objeto leve à distância: puxa uma alavanca, vira uma página, apaga uma vela, empurra uma moeda por baixo de uma porta. Uma manipulação por conjuração. Não pode atacar, desarmar nem tirar item de criatura.",
+        "modulacoes": "Alcançar (+3) · Contagiar (+3)"
+      },
+      {
+        "id": "magia-labia",
+        "nome": "Lábia",
+        "escola": "alteracao",
+        "nivel": 1,
+        "custoBase": 0,
+        "stats": [
+          {
+            "caracteristica": "Ação",
+            "valor": "1 Ação",
+            "mod": false
+          },
+          {
+            "caracteristica": "Alcance",
+            "valor": "Pessoal",
+            "mod": false
+          },
+          {
+            "caracteristica": "Efeito",
+            "valor": "+1 / +2 / +3 na próxima rolagem de Convencimento, Intimidação, Enganação, Motivar ou Crime",
+            "mod": true
+          },
+          {
+            "caracteristica": "Duração",
+            "valor": "A próxima rolagem desta cena",
+            "mod": false
+          }
+        ],
+        "descricao": "Escolha a perícia ao conjurar. Quem estiver te observando pode fazer Percepção contra a sua CD para perceber a conjuração; contra quem perceber, o bônus não se aplica.",
+        "modulacoes": "Inversão (+2) · Contagiar (+3) · Insistir (+5)"
+      },
+      {
+        "id": "magia-lastro",
+        "nome": "Lastro",
+        "escola": "alteracao",
+        "nivel": 1,
+        "custoBase": 0,
+        "stats": [
+          {
+            "caracteristica": "Ação",
+            "valor": "1 Ação",
+            "mod": false
+          },
+          {
+            "caracteristica": "Alcance",
+            "valor": "4,5 / 9 / 13,5 m",
+            "mod": true
+          },
+          {
+            "caracteristica": "Alvo",
+            "valor": "1 Criatura",
+            "mod": false
+          },
+          {
+            "caracteristica": "Duração",
+            "valor": "1 Rodada",
+            "mod": false
+          },
+          {
+            "caracteristica": "Resistência",
+            "valor": "Vontade ou Lento 1 · CD +0 / +2 / +4",
+            "mod": true
+          }
+        ],
+        "descricao": "Você adiciona peso ilusório aos membros de uma criatura. Em caso de falha no teste de Vontade, ela fica Lento 1 até o fim do próximo turno dela.",
+        "modulacoes": "Inversão (+2) · Alcançar (+3) · Contagiar (+3) · Insistir (+5)"
+      },
+      {
+        "id": "magia-tempera",
+        "nome": "Têmpera",
+        "escola": "alteracao",
+        "nivel": 1,
+        "custoBase": 0,
+        "stats": [
+          {
+            "caracteristica": "Ação",
+            "valor": "1 Ação",
+            "mod": false
+          },
+          {
+            "caracteristica": "Alcance",
+            "valor": "Toque",
+            "mod": false
+          },
+          {
+            "caracteristica": "Alvo",
+            "valor": "1 Arma",
+            "mod": false
+          },
+          {
+            "caracteristica": "Duração",
+            "valor": "1 / 2 / 3 ataque(s)",
+            "mod": true
+          },
+          {
+            "caracteristica": "Efeito",
+            "valor": "O dano da arma muda para um tipo Atípico à escolha",
+            "mod": false
+          }
+        ],
+        "descricao": "Fogo, Frio, Elétrico, Veneno, Ácido, Psíquico, Radiante, Trovejante ou Necrótico. A arma mantém o dado base e o atributo.",
+        "modulacoes": "Inversão (+2) · Contagiar (+3) · Insistir (+5)"
+      },
+      {
+        "id": "magia-rosto-emprestado",
+        "nome": "Rosto Emprestado",
+        "escola": "alteracao",
+        "nivel": 1,
+        "custoBase": 0,
+        "stats": [
+          {
+            "caracteristica": "Ação",
+            "valor": "2 Ações",
+            "mod": false
+          },
+          {
+            "caracteristica": "Alcance",
+            "valor": "Toque",
+            "mod": false
+          },
+          {
+            "caracteristica": "Duração",
+            "valor": "10 / 30 / 60 minutos",
+            "mod": true
+          },
+          {
+            "caracteristica": "Efeito",
+            "valor": "Altera um único detalhe da sua aparência",
+            "mod": false
+          }
+        ],
+        "descricao": "Cor dos olhos, uma cicatriz, o timbre da voz, a cor do cabelo, a insígnia da roupa. Não muda altura, rosto inteiro nem porte. Quem interagir pode fazer Percepção contra a sua CD para notar.",
+        "modulacoes": "Inversão (+2) · Contagiar (+3) · Insistir (+5)"
+      }
+    ],
+    "conhecimento": [
+      {
+        "id": "magia-farejar-elemento",
+        "nome": "Farejar Elemento",
+        "escola": "conhecimento",
+        "nivel": 1,
+        "custoBase": 0,
+        "stats": [
+          {
+            "caracteristica": "Ação",
+            "valor": "1 Ação",
+            "mod": false
+          },
+          {
+            "caracteristica": "Alcance",
+            "valor": "Pessoal · raio 4,5 / 9 / 13,5 m",
+            "mod": true
+          },
+          {
+            "caracteristica": "Duração",
+            "valor": "1 / 5 / 10 minutos",
+            "mod": true
+          },
+          {
+            "caracteristica": "Efeito",
+            "valor": "Normal: há Éter no raio · Forçada: qual elemento · Transbordante: a direção",
+            "mod": true
+          }
+        ],
+        "descricao": "Seu faro fica extremamente sensível ao éter, rapidamente você sabe dizer se ele está presente no raio.",
+        "modulacoes": "Compartilhar (+1) · Exigir (+2) · Projetar (+2)"
+      },
+      {
+        "id": "magia-ponto-cego",
+        "nome": "Ponto Cego",
+        "escola": "conhecimento",
+        "nivel": 1,
+        "custoBase": 0,
+        "stats": [
+          {
+            "caracteristica": "Ação",
+            "valor": "1 Ação",
+            "mod": false
+          },
+          {
+            "caracteristica": "Alcance",
+            "valor": "4,5 / 9 / 13,5 m",
+            "mod": true
+          },
+          {
+            "caracteristica": "Alvo",
+            "valor": "1 Criatura",
+            "mod": false
+          },
+          {
+            "caracteristica": "Efeito",
+            "valor": "Revela se o alvo tem Ae, resistência ou imunidade na categoria escolhida — sem os valores",
+            "mod": false
+          }
+        ],
+        "descricao": "Você estuda a criatura e misticamente descobre suas principais resistências e imunidades. Escolha Ordinário, Elemental, Biológico ou Místico; o mestre revela se o alvo tem Armadura Específica, resistência e imunidades, mas não o valor exato.",
+        "modulacoes": "Compartilhar (+1) · Exigir (+2) · Projetar (+2) · Gravar (+3)"
+      },
+      {
+        "id": "magia-sina",
+        "nome": "Sina",
+        "escola": "conhecimento",
+        "nivel": 1,
+        "custoBase": 0,
+        "stats": [
+          {
+            "caracteristica": "Ação",
+            "valor": "1 Ação",
+            "mod": false
+          },
+          {
+            "caracteristica": "Alcance",
+            "valor": "9 / 18 / 27 m para marcar",
+            "mod": true
+          },
+          {
+            "caracteristica": "Alvo",
+            "valor": "1 Criatura que você possa ver",
+            "mod": false
+          },
+          {
+            "caracteristica": "Duração",
+            "valor": "10 minutos / 1 hora / 8 horas",
+            "mod": true
+          },
+          {
+            "caracteristica": "Efeito",
+            "valor": "Você sempre sabe a direção e a distância aproximada do alvo, sem limite de alcance",
+            "mod": false
+          }
+        ],
+        "descricao": "Você amarra um fio de atenção à criatura. Ele não se rompe com parede, escuridão nem invisibilidade — mas também não diz o que ela está fazendo, nem permite atacá-la sem vê-la. Você só pode ter uma Sina ativa por vez.",
+        "modulacoes": "Compartilhar (+1) · Exigir (+2) · Projetar (+2) · Gravar (+3)"
+      },
+      {
+        "id": "magia-vislumbre",
+        "nome": "Vislumbre",
+        "escola": "conhecimento",
+        "nivel": 1,
+        "custoBase": 0,
+        "stats": [
+          {
+            "caracteristica": "Ação",
+            "valor": "Reação",
+            "mod": false
+          },
+          {
+            "caracteristica": "Gatilho",
+            "valor": "Você tira 1 na rolagem de um teste de perícia",
+            "mod": false
+          },
+          {
+            "caracteristica": "Alcance",
+            "valor": "Pessoal",
+            "mod": false
+          },
+          {
+            "caracteristica": "Intensidade",
+            "valor": "Apenas Transbordante",
+            "mod": false
+          },
+          {
+            "caracteristica": "Efeito",
+            "valor": "Re-role o teste com desvantagem",
+            "mod": false
+          }
+        ],
+        "descricao": "Por um instante o Éter te mostra o erro no momento exato em que ele acontece — tarde demais para evitá-lo, cedo o bastante para tentar de novo. O que chega é confuso e incompleto, e a segunda tentativa vem torta.",
+        "modulacoes": "Compartilhar (+1) · Exigir (+2) · Gravar (+3)"
+      },
+      {
+        "id": "magia-presciencia",
+        "nome": "Presciência",
+        "escola": "conhecimento",
+        "nivel": 1,
+        "custoBase": 0,
+        "stats": [
+          {
+            "caracteristica": "Ação",
+            "valor": "Reação",
+            "mod": false
+          },
+          {
+            "caracteristica": "Gatilho",
+            "valor": "Você é chamado a fazer um teste de Fortitude, Vontade ou Reflexos",
+            "mod": false
+          },
+          {
+            "caracteristica": "Alcance",
+            "valor": "Pessoal",
+            "mod": false
+          },
+          {
+            "caracteristica": "Intensidade",
+            "valor": "Apenas Normal",
+            "mod": false
+          },
+          {
+            "caracteristica": "Efeito",
+            "valor": "Você faz o teste com Vontade no lugar da perícia chamada",
+            "mod": false
+          }
+        ],
+        "descricao": "Você sente a coisa vir antes de ela chegar, e o que te segura não é o corpo: é ter visto. Onde os outros travam os músculos ou saltam para o lado, você simplesmente já sabia. A modulação Compartilhar não funciona nesta magia.",
+        "modulacoes": "Gravar (+3)"
+      }
+    ]
+  },
+  "nivel2": {
+    "destruicao": [
+      {
         "id": "magia-dardo-arcano",
         "nome": "Dardo Arcano",
         "escola": "destruicao",
-        "nivel": 1,
+        "nivel": 2,
         "custoBase": 2,
         "stats": [
           {
@@ -30,7 +705,7 @@
         "id": "magia-onda-gravitacional",
         "nome": "Onda Gravitacional",
         "escola": "destruicao",
-        "nivel": 1,
+        "nivel": 2,
         "custoBase": 2,
         "stats": [
           {
@@ -65,7 +740,7 @@
         "id": "magia-incinerar-area",
         "nome": "Incinerar Área",
         "escola": "destruicao",
-        "nivel": 1,
+        "nivel": 2,
         "custoBase": 2,
         "stats": [
           {
@@ -100,7 +775,7 @@
         "id": "magia-toque-gelido",
         "nome": "Toque Gélido",
         "escola": "destruicao",
-        "nivel": 1,
+        "nivel": 2,
         "custoBase": 2,
         "stats": [
           {
@@ -125,7 +800,7 @@
         "id": "magia-raio-eletrico",
         "nome": "Raio Elétrico",
         "escola": "destruicao",
-        "nivel": 1,
+        "nivel": 2,
         "custoBase": 2,
         "stats": [
           {
@@ -157,7 +832,7 @@
         "id": "magia-escudo-telecinetico",
         "nome": "Escudo Telecinético",
         "escola": "abjuracao",
-        "nivel": 1,
+        "nivel": 2,
         "custoBase": 2,
         "stats": [
           {
@@ -182,7 +857,7 @@
         "id": "magia-solo-sagrado",
         "nome": "Solo Sagrado",
         "escola": "abjuracao",
-        "nivel": 1,
+        "nivel": 2,
         "custoBase": 2,
         "stats": [
           {
@@ -217,7 +892,7 @@
         "id": "magia-armadura-do-oblivio",
         "nome": "Armadura do Oblívio",
         "escola": "abjuracao",
-        "nivel": 1,
+        "nivel": 2,
         "custoBase": 2,
         "stats": [
           {
@@ -247,7 +922,7 @@
         "id": "magia-santuario-menor",
         "nome": "Santuário Menor",
         "escola": "abjuracao",
-        "nivel": 1,
+        "nivel": 2,
         "custoBase": 2,
         "stats": [
           {
@@ -277,7 +952,7 @@
         "id": "magia-purificacao-mistica",
         "nome": "Purificação Mística",
         "escola": "abjuracao",
-        "nivel": 1,
+        "nivel": 2,
         "custoBase": 2,
         "stats": [
           {
@@ -309,7 +984,7 @@
         "id": "magia-mao-magica",
         "nome": "Mão Mágica",
         "escola": "alteracao",
-        "nivel": 1,
+        "nivel": 2,
         "custoBase": 2,
         "stats": [
           {
@@ -334,7 +1009,7 @@
         "id": "magia-estimulante-mistico",
         "nome": "Estimulante Místico",
         "escola": "alteracao",
-        "nivel": 1,
+        "nivel": 2,
         "custoBase": 2,
         "stats": [
           {
@@ -369,7 +1044,7 @@
         "id": "magia-disfarce-ilusorio",
         "nome": "Disfarce Ilusório",
         "escola": "alteracao",
-        "nivel": 1,
+        "nivel": 2,
         "custoBase": 2,
         "stats": [
           {
@@ -399,7 +1074,7 @@
         "id": "magia-queda-suave",
         "nome": "Queda Suave",
         "escola": "alteracao",
-        "nivel": 1,
+        "nivel": 2,
         "custoBase": 2,
         "stats": [
           {
@@ -429,7 +1104,7 @@
         "id": "magia-maldicao-do-peso",
         "nome": "Maldição do Peso",
         "escola": "alteracao",
-        "nivel": 1,
+        "nivel": 2,
         "custoBase": 2,
         "stats": [
           {
@@ -466,7 +1141,7 @@
         "id": "magia-detectar-magia",
         "nome": "Detectar Magia",
         "escola": "conhecimento",
-        "nivel": 1,
+        "nivel": 2,
         "custoBase": 2,
         "stats": [
           {
@@ -496,7 +1171,7 @@
         "id": "magia-alarme",
         "nome": "Alarme",
         "escola": "conhecimento",
-        "nivel": 1,
+        "nivel": 2,
         "custoBase": 2,
         "stats": [
           {
@@ -526,7 +1201,7 @@
         "id": "magia-mensagem",
         "nome": "Mensagem",
         "escola": "conhecimento",
-        "nivel": 1,
+        "nivel": 2,
         "custoBase": 2,
         "stats": [
           {
@@ -551,7 +1226,7 @@
         "id": "magia-lingua-mistica",
         "nome": "Língua Mística",
         "escola": "conhecimento",
-        "nivel": 1,
+        "nivel": 2,
         "custoBase": 2,
         "stats": [
           {
@@ -576,7 +1251,7 @@
         "id": "magia-entender-ser",
         "nome": "Entender Ser",
         "escola": "conhecimento",
-        "nivel": 1,
+        "nivel": 2,
         "custoBase": 2,
         "stats": [
           {
@@ -609,13 +1284,13 @@
       }
     ]
   },
-  "nivel2": {
+  "nivel3": {
     "destruicao": [
       {
         "id": "magia-lanca-de-gelo",
         "nome": "Lança de Gelo",
         "escola": "destruicao",
-        "nivel": 2,
+        "nivel": 3,
         "custoBase": 4,
         "stats": [
           {
@@ -650,7 +1325,7 @@
         "id": "magia-verdades-dolorosas",
         "nome": "Verdades Dolorosas",
         "escola": "destruicao",
-        "nivel": 2,
+        "nivel": 3,
         "custoBase": 4,
         "stats": [
           {
@@ -685,7 +1360,7 @@
         "id": "magia-caveiras-explosivas",
         "nome": "Caveiras Explosivas",
         "escola": "destruicao",
-        "nivel": 2,
+        "nivel": 3,
         "custoBase": 4,
         "stats": [
           {
@@ -720,7 +1395,7 @@
         "id": "magia-invocar-tempestade",
         "nome": "Invocar Tempestade",
         "escola": "destruicao",
-        "nivel": 2,
+        "nivel": 3,
         "custoBase": 4,
         "stats": [
           {
@@ -765,7 +1440,7 @@
         "id": "magia-ventania-bizarra",
         "nome": "Ventania Bizarra",
         "escola": "destruicao",
-        "nivel": 2,
+        "nivel": 3,
         "custoBase": 4,
         "stats": [
           {
@@ -802,7 +1477,7 @@
         "id": "magia-barreira-de-energia",
         "nome": "Barreira de Energia",
         "escola": "abjuracao",
-        "nivel": 2,
+        "nivel": 3,
         "custoBase": 4,
         "stats": [
           {
@@ -832,7 +1507,7 @@
         "id": "magia-telepatia",
         "nome": "Telepatia",
         "escola": "abjuracao",
-        "nivel": 2,
+        "nivel": 3,
         "custoBase": 4,
         "stats": [
           {
@@ -867,7 +1542,7 @@
         "id": "magia-dissipar-magia",
         "nome": "Dissipar Magia",
         "escola": "abjuracao",
-        "nivel": 2,
+        "nivel": 3,
         "custoBase": 4,
         "stats": [
           {
@@ -897,7 +1572,7 @@
         "id": "magia-aumentar-diminuir-criatura",
         "nome": "Aumentar / Diminuir Criatura",
         "escola": "abjuracao",
-        "nivel": 2,
+        "nivel": 3,
         "custoBase": 4,
         "stats": [
           {
@@ -937,7 +1612,7 @@
         "id": "magia-personificar-elemento",
         "nome": "Personificar Elemento",
         "escola": "abjuracao",
-        "nivel": 2,
+        "nivel": 3,
         "custoBase": 4,
         "stats": [
           {
@@ -969,7 +1644,7 @@
         "id": "magia-pele-de-pedra",
         "nome": "Pele de Pedra",
         "escola": "alteracao",
-        "nivel": 2,
+        "nivel": 3,
         "custoBase": 4,
         "stats": [
           {
@@ -1004,7 +1679,7 @@
         "id": "magia-confundir-sentidos",
         "nome": "Confundir Sentidos",
         "escola": "alteracao",
-        "nivel": 2,
+        "nivel": 3,
         "custoBase": 4,
         "stats": [
           {
@@ -1044,7 +1719,7 @@
         "id": "magia-translocacao-arcana",
         "nome": "Translocação Arcana",
         "escola": "alteracao",
-        "nivel": 2,
+        "nivel": 3,
         "custoBase": 4,
         "stats": [
           {
@@ -1069,7 +1744,7 @@
         "id": "magia-transfigurar-arma",
         "nome": "Transfigurar Arma",
         "escola": "alteracao",
-        "nivel": 2,
+        "nivel": 3,
         "custoBase": 4,
         "stats": [
           {
@@ -1104,7 +1779,7 @@
         "id": "magia-enraizar",
         "nome": "Enraizar",
         "escola": "alteracao",
-        "nivel": 2,
+        "nivel": 3,
         "custoBase": 4,
         "stats": [
           {
@@ -1136,7 +1811,7 @@
         "id": "magia-sussurro-do-ambiente",
         "nome": "Sussurro do Ambiente",
         "escola": "conhecimento",
-        "nivel": 2,
+        "nivel": 3,
         "custoBase": 4,
         "stats": [
           {
@@ -1171,7 +1846,7 @@
         "id": "magia-panico",
         "nome": "Pânico",
         "escola": "conhecimento",
-        "nivel": 2,
+        "nivel": 3,
         "custoBase": 4,
         "stats": [
           {
@@ -1206,7 +1881,7 @@
         "id": "magia-historia-do-eter",
         "nome": "História do Éter",
         "escola": "conhecimento",
-        "nivel": 2,
+        "nivel": 3,
         "custoBase": 4,
         "stats": [
           {
@@ -1236,7 +1911,7 @@
         "id": "magia-emprestimo-natural",
         "nome": "Empréstimo Natural",
         "escola": "conhecimento",
-        "nivel": 2,
+        "nivel": 3,
         "custoBase": 4,
         "stats": [
           {
@@ -1266,7 +1941,7 @@
         "id": "magia-impulso-instintivo",
         "nome": "Impulso Instintivo",
         "escola": "conhecimento",
-        "nivel": 2,
+        "nivel": 3,
         "custoBase": 4,
         "stats": [
           {
@@ -1299,13 +1974,13 @@
       }
     ]
   },
-  "nivel3": {
+  "nivel4": {
     "destruicao": [
       {
         "id": "magia-pestilencia",
         "nome": "Pestilência",
         "escola": "destruicao",
-        "nivel": 3,
+        "nivel": 4,
         "custoBase": 6,
         "stats": [
           {
@@ -1340,7 +2015,7 @@
         "id": "magia-limiar-perfurante",
         "nome": "Limiar Perfurante",
         "escola": "destruicao",
-        "nivel": 3,
+        "nivel": 4,
         "custoBase": 6,
         "stats": [
           {
@@ -1375,7 +2050,7 @@
         "id": "magia-fragmento-estelar",
         "nome": "Fragmento Estelar",
         "escola": "destruicao",
-        "nivel": 3,
+        "nivel": 4,
         "custoBase": 6,
         "stats": [
           {
@@ -1410,7 +2085,7 @@
         "id": "magia-disparo-veloz",
         "nome": "Disparo Veloz",
         "escola": "destruicao",
-        "nivel": 3,
+        "nivel": 4,
         "custoBase": 6,
         "stats": [
           {
@@ -1440,7 +2115,7 @@
         "id": "magia-reversao-umbral",
         "nome": "Reversão Umbral",
         "escola": "destruicao",
-        "nivel": 3,
+        "nivel": 4,
         "custoBase": 6,
         "stats": [
           {
@@ -1467,7 +2142,7 @@
         "id": "magia-contramedida",
         "nome": "Contramedida",
         "escola": "abjuracao",
-        "nivel": 3,
+        "nivel": 4,
         "custoBase": 6,
         "stats": [
           {
@@ -1497,7 +2172,7 @@
         "id": "magia-ruido-anti-magia",
         "nome": "Ruído Anti-Magia",
         "escola": "abjuracao",
-        "nivel": 3,
+        "nivel": 4,
         "custoBase": 6,
         "stats": [
           {
@@ -1532,7 +2207,7 @@
         "id": "magia-armadura-de-espinhos",
         "nome": "Armadura de Espinhos",
         "escola": "abjuracao",
-        "nivel": 3,
+        "nivel": 4,
         "custoBase": 6,
         "stats": [
           {
@@ -1567,7 +2242,7 @@
         "id": "magia-refugio-dos-perdidos",
         "nome": "Refúgio dos Perdidos",
         "escola": "abjuracao",
-        "nivel": 3,
+        "nivel": 4,
         "custoBase": 6,
         "stats": [
           {
@@ -1602,7 +2277,7 @@
         "id": "magia-laco-da-uniao",
         "nome": "Laço da União",
         "escola": "abjuracao",
-        "nivel": 3,
+        "nivel": 4,
         "custoBase": 6,
         "stats": [
           {
@@ -1639,7 +2314,7 @@
         "id": "magia-transferir-condicao",
         "nome": "Transferir Condição",
         "escola": "alteracao",
-        "nivel": 3,
+        "nivel": 4,
         "custoBase": 6,
         "stats": [
           {
@@ -1674,7 +2349,7 @@
         "id": "magia-absorver-contusao",
         "nome": "Absorver Contusão",
         "escola": "alteracao",
-        "nivel": 3,
+        "nivel": 4,
         "custoBase": 6,
         "stats": [
           {
@@ -1704,7 +2379,7 @@
         "id": "magia-pele-de-camaleao",
         "nome": "Pele de Camaleão",
         "escola": "alteracao",
-        "nivel": 3,
+        "nivel": 4,
         "custoBase": 6,
         "stats": [
           {
@@ -1739,7 +2414,7 @@
         "id": "magia-xadrez",
         "nome": "Xadrez",
         "escola": "alteracao",
-        "nivel": 3,
+        "nivel": 4,
         "custoBase": 6,
         "stats": [
           {
@@ -1774,7 +2449,7 @@
         "id": "magia-plasmar-terreno",
         "nome": "Plasmar Terreno",
         "escola": "alteracao",
-        "nivel": 3,
+        "nivel": 4,
         "custoBase": 6,
         "stats": [
           {
@@ -1801,7 +2476,7 @@
         "id": "magia-purgatorio",
         "nome": "Purgatório",
         "escola": "conhecimento",
-        "nivel": 3,
+        "nivel": 4,
         "custoBase": 6,
         "stats": [
           {
@@ -1836,7 +2511,7 @@
         "id": "magia-projecao-astral",
         "nome": "Projeção Astral",
         "escola": "conhecimento",
-        "nivel": 3,
+        "nivel": 4,
         "custoBase": 6,
         "stats": [
           {
@@ -1871,7 +2546,7 @@
         "id": "magia-sinapsia-coletiva",
         "nome": "Sinapsia Coletiva",
         "escola": "conhecimento",
-        "nivel": 3,
+        "nivel": 4,
         "custoBase": 6,
         "stats": [
           {
@@ -1906,7 +2581,7 @@
         "id": "magia-caco-esquecido",
         "nome": "Caco Esquecido",
         "escola": "conhecimento",
-        "nivel": 3,
+        "nivel": 4,
         "custoBase": 6,
         "stats": [
           {
@@ -1946,7 +2621,7 @@
         "id": "magia-confissao-do-eter",
         "nome": "Confissão do Éter",
         "escola": "conhecimento",
-        "nivel": 3,
+        "nivel": 4,
         "custoBase": 6,
         "stats": [
           {
@@ -1974,13 +2649,13 @@
       }
     ]
   },
-  "nivel4": {
+  "nivel5": {
     "destruicao": [
       {
         "id": "magia-fissura-da-alma",
         "nome": "Fissura da Alma",
         "escola": "destruicao",
-        "nivel": 4,
+        "nivel": 5,
         "custoBase": 8,
         "stats": [
           {
@@ -2021,7 +2696,7 @@
         "id": "magia-pestilencia-primordial",
         "nome": "Pestilência Primordial",
         "escola": "destruicao",
-        "nivel": 4,
+        "nivel": 5,
         "custoBase": 8,
         "stats": [
           {
@@ -2072,7 +2747,7 @@
         "id": "magia-eco-do-apocalipse",
         "nome": "Eco do Apocalipse",
         "escola": "destruicao",
-        "nivel": 4,
+        "nivel": 5,
         "custoBase": 8,
         "stats": [
           {
@@ -2113,7 +2788,7 @@
         "id": "magia-cometa-do-martir",
         "nome": "Cometa do Mártir",
         "escola": "destruicao",
-        "nivel": 4,
+        "nivel": 5,
         "custoBase": 8,
         "stats": [
           {
@@ -2164,7 +2839,7 @@
         "id": "magia-tempestade-primordial",
         "nome": "Tempestade Primordial",
         "escola": "destruicao",
-        "nivel": 4,
+        "nivel": 5,
         "custoBase": 8,
         "stats": [
           {
@@ -2212,7 +2887,7 @@
         "id": "magia-armadura-de-kha",
         "nome": "Armadura de Kha",
         "escola": "abjuracao",
-        "nivel": 4,
+        "nivel": 5,
         "custoBase": 8,
         "stats": [
           {
@@ -2248,7 +2923,7 @@
         "id": "magia-exilio-existencial",
         "nome": "Exílio Existencial",
         "escola": "abjuracao",
-        "nivel": 4,
+        "nivel": 5,
         "custoBase": 8,
         "stats": [
           {
@@ -2289,7 +2964,7 @@
         "id": "magia-selo-do-oblivio",
         "nome": "Selo do Oblívio",
         "escola": "abjuracao",
-        "nivel": 4,
+        "nivel": 5,
         "custoBase": 8,
         "stats": [
           {
@@ -2325,7 +3000,7 @@
         "id": "magia-reversao-primordial",
         "nome": "Reversão Primordial",
         "escola": "abjuracao",
-        "nivel": 4,
+        "nivel": 5,
         "custoBase": 8,
         "stats": [
           {
@@ -2356,7 +3031,7 @@
         "id": "magia-vytalia",
         "nome": "Vytália",
         "escola": "abjuracao",
-        "nivel": 4,
+        "nivel": 5,
         "custoBase": 8,
         "stats": [
           {
@@ -2399,7 +3074,7 @@
         "id": "magia-aprendiz-caotico",
         "nome": "Aprendiz Caótico",
         "escola": "alteracao",
-        "nivel": 4,
+        "nivel": 5,
         "custoBase": 8,
         "stats": [
           {
@@ -2440,7 +3115,7 @@
         "id": "magia-fusao-de-corpos",
         "nome": "Fusão de Corpos",
         "escola": "alteracao",
-        "nivel": 4,
+        "nivel": 5,
         "custoBase": 8,
         "stats": [
           {
@@ -2481,7 +3156,7 @@
         "id": "magia-acme",
         "nome": "Acme",
         "escola": "alteracao",
-        "nivel": 4,
+        "nivel": 5,
         "custoBase": 8,
         "stats": [
           {
@@ -2517,7 +3192,7 @@
         "id": "magia-apoteose-genetica",
         "nome": "Apoteose Genética",
         "escola": "alteracao",
-        "nivel": 4,
+        "nivel": 5,
         "custoBase": 8,
         "stats": [
           {
@@ -2563,7 +3238,7 @@
         "id": "magia-julgamento-de-kha",
         "nome": "Julgamento de Kha",
         "escola": "alteracao",
-        "nivel": 4,
+        "nivel": 5,
         "custoBase": 8,
         "stats": [
           {
@@ -2611,7 +3286,7 @@
         "id": "magia-necropsia-primordial",
         "nome": "Necropsia Primordial",
         "escola": "conhecimento",
-        "nivel": 4,
+        "nivel": 5,
         "custoBase": 8,
         "stats": [
           {
@@ -2652,7 +3327,7 @@
         "id": "magia-olhos-de-malkhor",
         "nome": "Olhos de Malkhor",
         "escola": "conhecimento",
-        "nivel": 4,
+        "nivel": 5,
         "custoBase": 8,
         "stats": [
           {
@@ -2698,7 +3373,7 @@
         "id": "magia-tecido-de-vytalia",
         "nome": "Tecido de Vytália",
         "escola": "conhecimento",
-        "nivel": 4,
+        "nivel": 5,
         "custoBase": 8,
         "stats": [
           {
@@ -2739,7 +3414,7 @@
         "id": "magia-possessao-carnal",
         "nome": "Possessão Carnal",
         "escola": "conhecimento",
-        "nivel": 4,
+        "nivel": 5,
         "custoBase": 8,
         "stats": [
           {
@@ -2780,7 +3455,7 @@
         "id": "magia-dadiva-de-kha",
         "nome": "Dádiva de Kha",
         "escola": "conhecimento",
-        "nivel": 4,
+        "nivel": 5,
         "custoBase": 8,
         "stats": [
           {

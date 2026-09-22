@@ -10,22 +10,27 @@
     <link rel="stylesheet" href="../css/style.css">
     <style>
         :root {
-            --lvl1: #e74c3c;
-            --lvl2: #e67e22;
-            --lvl3: #3498db;
-            --lvl4: #9b59b6;
+            --lvl1: #9aa5b1;
+            --lvl2: #e74c3c;
+            --lvl3: #e67e22;
+            --lvl4: #3498db;
+            --lvl5: #9b59b6;
         }
         .level-header { display:flex; align-items:center; gap:14px; margin:48px 0 20px; }
         .level-badge { font-family:var(--font-heading); font-size:12px; letter-spacing:2px; font-weight:700; padding:5px 16px; border-radius:20px; white-space:nowrap; }
-        .level-badge.l1 { background:rgba(231,76,60,.15); color:var(--lvl1); border:1px solid rgba(231,76,60,.4); }
-        .level-badge.l2 { background:rgba(230,126,34,.15); color:var(--lvl2); border:1px solid rgba(230,126,34,.4); }
-        .level-badge.l3 { background:rgba(52,152,219,.15); color:var(--lvl3); border:1px solid rgba(52,152,219,.4); }
-        .level-badge.l4 { background:rgba(155,89,182,.15); color:var(--lvl4); border:1px solid rgba(155,89,182,.4); }
+        .level-badge.l1 { background:rgba(154,165,177,.13); color:var(--lvl1); border:1px solid rgba(154,165,177,.4); }
+        .level-badge.l2 { background:rgba(231,76,60,.15); color:var(--lvl2); border:1px solid rgba(231,76,60,.4); }
+        .level-badge.l3 { background:rgba(230,126,34,.15); color:var(--lvl3); border:1px solid rgba(230,126,34,.4); }
+        .level-badge.l4 { background:rgba(52,152,219,.15); color:var(--lvl4); border:1px solid rgba(52,152,219,.4); }
+        .level-badge.l5 { background:rgba(155,89,182,.15); color:var(--lvl5); border:1px solid rgba(155,89,182,.4); }
         .level-line { flex:1; height:1px; background:linear-gradient(to right,var(--border-color),transparent); }
         .level-header h2 { font-family:var(--font-heading); font-size:20px; color:var(--text-primary); margin:0; }
 
         .primordial-warning { background:rgba(155,89,182,.08); border:1px solid rgba(155,89,182,.3); border-radius:6px; padding:13px 18px; margin-bottom:22px; color:#c39bd3; font-size:15px; }
-        .primordial-warning strong { color:var(--lvl4); }
+        .primordial-warning strong { color:var(--lvl5); }
+
+        .cantrip-note { background:rgba(154,165,177,.06); border:1px solid rgba(154,165,177,.28); border-radius:6px; padding:13px 18px; margin-bottom:22px; color:#aab4be; font-size:15px; }
+        .cantrip-note strong { color:var(--lvl1); }
 
         .school-group { margin-bottom:28px; }
         .school-header { display:flex; align-items:center; gap:10px; padding:10px 16px; border-radius:6px 6px 0 0; font-family:var(--font-heading); font-size:13px; letter-spacing:1px; cursor:pointer; user-select:none; border:1px solid; transition:filter .2s; }
@@ -61,6 +66,9 @@
 
         .tradeoff-tag { display:inline-block; background:rgba(155,89,182,.12); border:1px solid rgba(155,89,182,.35); color:#c39bd3; font-size:11px; font-family:var(--font-heading); letter-spacing:1px; padding:2px 10px; border-radius:3px; margin-bottom:8px; }
 
+        .spell-mods { display:flex; gap:9px; align-items:baseline; flex-wrap:wrap; margin-top:11px; padding-top:10px; border-top:1px solid rgba(42,42,53,.8); font-size:13px; color:var(--text-secondary); }
+        .spell-mods .spell-mods-label { flex-shrink:0; font-family:var(--font-heading); font-size:10px; letter-spacing:1.5px; text-transform:uppercase; color:var(--gold-dark); }
+
         .mod-block { margin:14px 0; }
         .mod-block-title { font-family:var(--font-heading); font-size:12px; letter-spacing:1.5px; text-transform:uppercase; padding:7px 14px; border-radius:4px 4px 0 0; border:1px solid; margin-bottom:-1px; }
         .mod-block-title.d  { color:#c39bd3; border-color:rgba(155,89,182,.4); background:rgba(155,89,182,.08); }
@@ -76,10 +84,12 @@
         .spell-quick-nav h2 { font-family:var(--font-heading); font-size:11px; letter-spacing:2.5px; text-transform:uppercase; color:var(--text-muted); margin-bottom:12px; }
         .spell-quick-nav-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(170px,1fr)); gap:7px; }
         .spell-quick-nav a { display:block; padding:7px 13px; border-radius:4px; font-size:13px; text-decoration:none; border:1px solid var(--border-color); transition:all .18s; font-family:var(--font-heading); letter-spacing:.5px; }
-        .spell-quick-nav a.lvl1 { color:var(--lvl1); } .spell-quick-nav a.lvl1:hover { background:rgba(231,76,60,.1); border-color:var(--lvl1); }
-        .spell-quick-nav a.lvl2 { color:var(--lvl2); } .spell-quick-nav a.lvl2:hover { background:rgba(230,126,34,.1); border-color:var(--lvl2); }
-        .spell-quick-nav a.lvl3 { color:var(--lvl3); } .spell-quick-nav a.lvl3:hover { background:rgba(52,152,219,.1); border-color:var(--lvl3); }
-        .spell-quick-nav a.lvl4 { color:var(--lvl4); } .spell-quick-nav a.lvl4:hover { background:rgba(155,89,182,.1); border-color:var(--lvl4); }
+        .spell-quick-nav a.ref  { color:var(--gold-dark); } .spell-quick-nav a.ref:hover  { background:rgba(212,175,55,.08); border-color:var(--gold-dark); }
+        .spell-quick-nav a.lvl1 { color:var(--lvl1); } .spell-quick-nav a.lvl1:hover { background:rgba(154,165,177,.1); border-color:var(--lvl1); }
+        .spell-quick-nav a.lvl2 { color:var(--lvl2); } .spell-quick-nav a.lvl2:hover { background:rgba(231,76,60,.1); border-color:var(--lvl2); }
+        .spell-quick-nav a.lvl3 { color:var(--lvl3); } .spell-quick-nav a.lvl3:hover { background:rgba(230,126,34,.1); border-color:var(--lvl3); }
+        .spell-quick-nav a.lvl4 { color:var(--lvl4); } .spell-quick-nav a.lvl4:hover { background:rgba(52,152,219,.1); border-color:var(--lvl4); }
+        .spell-quick-nav a.lvl5 { color:var(--lvl5); } .spell-quick-nav a.lvl5:hover { background:rgba(155,89,182,.1); border-color:var(--lvl5); }
 
         .section-anchor { display:block; visibility:hidden; height:0; margin-top:-80px; padding-top:80px; }
     </style>
@@ -95,14 +105,15 @@
             <div class="spell-quick-nav">
                 <h2>📋 Navegação Rápida</h2>
                 <div class="spell-quick-nav-grid">
-                    <a href="#regras"      class="lvl1">📖 Regras de Magia</a>
-                    <a href="#custo-base"  class="lvl1">💠 Custo Base</a>
-                    <a href="#intensidade" class="lvl1">🔥 Intensidade</a>
-                    <a href="#modulacoes"  class="lvl1">🔧 Modulações</a>
-                    <a href="#nivel1"      class="lvl1">🔴 Nível 1</a>
-                    <a href="#nivel2"      class="lvl2">🟠 Nível 2</a>
-                    <a href="#nivel3"      class="lvl3">🔵 Nível 3</a>
-                    <a href="#nivel4"      class="lvl4">🟣 Nível 4</a>
+                    <a href="#regras"      class="ref">📖 Regras de Magia</a>
+                    <a href="#custo-base"  class="ref">💠 Custo Base</a>
+                    <a href="#intensidade" class="ref">🔥 Intensidade</a>
+                    <a href="#modulacoes"  class="ref">🔧 Modulações</a>
+                    <a href="#nivel1"      class="lvl1">⚪ Nível 1</a>
+                    <a href="#nivel2"      class="lvl2">🔴 Nível 2</a>
+                    <a href="#nivel3"      class="lvl3">🟠 Nível 3</a>
+                    <a href="#nivel4"      class="lvl4">🔵 Nível 4</a>
+                    <a href="#nivel5"      class="lvl5">🟣 Nível 5</a>
                 </div>
             </div>
 
@@ -128,10 +139,11 @@
             <div class="card">
                 <h2 class="card-title">💠 Custo Base por Nível</h2>
                 <table><thead><tr><th>Nível</th><th>Custo de Éter</th><th>Requisito</th></tr></thead><tbody>
-                    <tr><td>Nível 1</td><td>2 Éter</td><td>—</td></tr>
-                    <tr><td>Nível 2</td><td>4 Éter</td><td>—</td></tr>
-                    <tr><td>Nível 3</td><td>6 Éter</td><td>—</td></tr>
-                    <tr><td>Nível 4</td><td>8 Éter</td><td>Foco Primordial</td></tr>
+                    <tr><td>Nível 1</td><td>0 Éter</td><td>—</td></tr>
+                    <tr><td>Nível 2</td><td>2 Éter</td><td>—</td></tr>
+                    <tr><td>Nível 3</td><td>4 Éter</td><td>—</td></tr>
+                    <tr><td>Nível 4</td><td>6 Éter</td><td>—</td></tr>
+                    <tr><td>Nível 5</td><td>8 Éter</td><td>Foco Primordial</td></tr>
                 </tbody></table>
             </div>
 
@@ -200,16 +212,19 @@
 
             <span id="nivel1" class="section-anchor"></span>
             <div class="level-header">
-                <span class="level-badge l1">🔴 NÍVEL 1</span>
+                <span class="level-badge l1">⚪ NÍVEL 1</span>
                 <h2>Magias de Primeiro Nível</h2>
                 <div class="level-line"></div>
             </div>
 
+            <div class="cantrip-note">
+                ✦ Magias de primeiro nível custam <strong>0 Éter</strong>. As demais exigências de conjuração continuam valendo: ser Treinado em Místico, ter aprendido a magia e empunhar o Foco da escola.
+            </div>
             {{NIVEL_1}}
             <div class="separator-ornament"><span>✦</span></div>
             <span id="nivel2" class="section-anchor"></span>
             <div class="level-header">
-                <span class="level-badge l2">🟠 NÍVEL 2</span>
+                <span class="level-badge l2">🔴 NÍVEL 2</span>
                 <h2>Magias de Segundo Nível</h2>
                 <div class="level-line"></div>
             </div>
@@ -218,7 +233,7 @@
             <div class="separator-ornament"><span>✦</span></div>
             <span id="nivel3" class="section-anchor"></span>
             <div class="level-header">
-                <span class="level-badge l3">🔵 NÍVEL 3</span>
+                <span class="level-badge l3">🟠 NÍVEL 3</span>
                 <h2>Magias de Terceiro Nível</h2>
                 <div class="level-line"></div>
             </div>
@@ -227,15 +242,24 @@
             <div class="separator-ornament"><span>✦</span></div>
             <span id="nivel4" class="section-anchor"></span>
             <div class="level-header">
-                <span class="level-badge l4">🟣 NÍVEL 4</span>
+                <span class="level-badge l4">🔵 NÍVEL 4</span>
                 <h2>Magias de Quarto Nível</h2>
+                <div class="level-line"></div>
+            </div>
+
+            {{NIVEL_4}}
+            <div class="separator-ornament"><span>✦</span></div>
+            <span id="nivel5" class="section-anchor"></span>
+            <div class="level-header">
+                <span class="level-badge l5">🟣 NÍVEL 5</span>
+                <h2>Magias de Quinto Nível</h2>
                 <div class="level-line"></div>
             </div>
 
             <div class="primordial-warning">
                 ⚠️ Requer <strong>Foco Primordial</strong>. Todo dano dessas magias é <strong>Primordial</strong> — True Damage, ignora toda Armadura e Armadura Específica. Contudo, pode custar caro.
             </div>
-            {{NIVEL_4}}
+            {{NIVEL_5}}
             <div class="separator-ornament"><span>◆ ◆ ◆</span></div>
             <div class="navigation-footer">
                 <a href="sistema.html" class="nav-footer-link">← Voltar ao Sistema Base</a>
