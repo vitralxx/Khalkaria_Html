@@ -163,14 +163,14 @@
         }
 
         /* FLUXO BOX */
-        .fluxo-box {
+        .fluxo-box, .trait-box {
             background: linear-gradient(135deg, rgba(139,92,246,0.1), rgba(34,197,94,0.05));
             border: 2px solid var(--ramo-vazio);
             border-radius: 12px;
             padding: 1.5rem;
             margin: 2rem 0;
         }
-        .fluxo-box h3 {
+        .fluxo-box h3, .trait-box h3 {
             color: var(--ramo-vazio);
             font-family: var(--font-heading);
             margin-bottom: 1rem;
@@ -674,6 +674,21 @@
                 </tbody>
             </table>
 
+            <!-- ARMA HUMANA -->
+            <div class="section-divider">
+                <h2 id="arma-humana">👊 Arma Humana</h2>
+            </div>
+
+            <div class="trait-box">
+                <h3 id="arma-humana-2">👊 Arma Humana</h3>
+                <p style="color: var(--text-secondary); margin: 0;">
+                    Seus ataques desarmados causam <strong>1d8</strong> de dano (ao invés de 1d4).
+                </p>
+                <p style="color: var(--text-muted); margin: 0.75rem 0 0 0;">
+                    Cartas do Limiar e itens podem, recorrentemente, substituir isso.
+                </p>
+            </div>
+
             <!-- FLUXO -->
             <div class="section-divider">
                 <h2 id="fluxo">🌀 Fluxo</h2>
@@ -726,11 +741,6 @@
 
             <div class="techniques-grid">
                 <div class="technique-card">
-                    <h4>Punhos de Ferro</h4>
-                    <span class="tech-meta">Passiva</span>
-                    <p>Seus ataques desarmados causam 1d8 de dano (ao invés de 1d4).</p>
-                </div>
-                <div class="technique-card">
                     <h4>Evasivo</h4>
                     <span class="tech-meta">Passiva • 1 Fluxo</span>
                     <p>Adicione seu Fluxo a sua evasão, tanto ativa quanto passiva.</p>
@@ -769,6 +779,11 @@
                     <h4>Quebrar Guarda</h4>
                     <span class="tech-meta">Passiva • 5 Fluxo</span>
                     <p>Seu primeiro ataque gasta a reação do seu alvo. Ou seja, ele só pode defender ao seu primeiro golpe.</p>
+                </div>
+                <div class="technique-card">
+                    <h4>Transcendência</h4>
+                    <span class="tech-meta">Ação Livre • 5 Stamina • 5 Saúde</span>
+                    <p>Durante essa rodada, a regra de Penalidade de Multi-Ataque (PMA) não se aplica a você.</p>
                 </div>
                 <div class="technique-card">
                     <h4>Golpe Sequencial</h4>

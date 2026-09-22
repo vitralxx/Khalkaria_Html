@@ -2,12 +2,6 @@
   "classe": "monge",
   "cards": [
     {
-      "id": "monge-punhos-de-ferro",
-      "tipo": "technique-card",
-      "nome": "Punhos de Ferro",
-      "corpo": "\n                    <h4>Punhos de Ferro</h4>\n                    <span class=\"tech-meta\">Passiva</span>\n                    <p>Seus ataques desarmados causam 1d8 de dano (ao invés de 1d4).</p>\n                "
-    },
-    {
       "id": "monge-evasivo",
       "tipo": "technique-card",
       "nome": "Evasivo",
@@ -54,6 +48,12 @@
       "tipo": "technique-card",
       "nome": "Quebrar Guarda",
       "corpo": "\n                    <h4>Quebrar Guarda</h4>\n                    <span class=\"tech-meta\">Passiva • 5 Fluxo</span>\n                    <p>Seu primeiro ataque gasta a reação do seu alvo. Ou seja, ele só pode defender ao seu primeiro golpe.</p>\n                "
+    },
+    {
+      "id": "monge-transcendencia",
+      "tipo": "technique-card",
+      "nome": "Transcendência",
+      "corpo": "\n                    <h4>Transcendência</h4>\n                    <span class=\"tech-meta\">Ação Livre • 5 Stamina • 5 Saúde</span>\n                    <p>Durante essa rodada, a regra de Penalidade de Multi-Ataque (PMA) não se aplica a você.</p>\n                "
     },
     {
       "id": "monge-golpe-sequencial",
