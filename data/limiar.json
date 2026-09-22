@@ -90,28 +90,6 @@
           ],
           "icon": "🌍",
           "effect": "Aumente 2 níveis de treinamento em Iniciativa"
-        },
-        {
-          "id": "limiar-marca-do-guerreiro",
-          "nome": "Marca do Guerreiro",
-          "ordem": [
-            "icon",
-            "name",
-            "effect"
-          ],
-          "icon": "🌍",
-          "effect": "Aumente 1 nível de treinamento em Atacar"
-        },
-        {
-          "id": "limiar-postura-de-ferro",
-          "nome": "Postura de Ferro",
-          "ordem": [
-            "icon",
-            "name",
-            "effect"
-          ],
-          "icon": "🌍",
-          "effect": "Aumente 1 nível de treinamento em Defender"
         }
       ]
     },
