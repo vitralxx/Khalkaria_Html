@@ -19,7 +19,8 @@ Comandos:
 """
 import sys, os, re, json, difflib
 
-ROOT = os.path.dirname(os.path.abspath(__file__))
+TOOLS = os.path.dirname(os.path.abspath(__file__))
+ROOT = os.path.dirname(TOOLS)
 CACHE = os.path.join(ROOT, 'notion_cache')
 PAGES = {k: v for k, v in json.load(open(os.path.join(CACHE, 'pages.json'), encoding='utf-8')).items()
          if not k.startswith('_')}
