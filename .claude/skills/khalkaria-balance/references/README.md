@@ -10,21 +10,24 @@
 
 ## Estado do Bazar
 
-`references/bazar-v26.csv` — **722 itens, 723 linhas, 29 colunas.**
-⚠️ **O cabeçalho está no MEIO do arquivo (linha 599)**, não na primeira nem na última: linhas novas
-foram acrescentadas depois dele. `auditor.load()` já trata isso.
+`references/bazar-v26.csv` — **727 itens + 1 linha de cabeçalho, 29 colunas.**
+✅ **Cabeçalho na linha 1.** Antes estava na linha 606 e a linha 1 era um item, o que quebrava
+`csv.DictReader` e o gerador. `Bazar_Khalkaria_v26.csv` na raiz é o export para o gerador.
 
 | Categoria | Itens | Receitas |
 |---|---|---|
-| Consumível | 235 | 106/235 |
-| Arma | 181 | 181/181 |
-| Bugiganga | 64 | 64/64 |
-| Item Mágico | 61 | 0/61 |
-| Armadura | 50 | 50/50 |
-| Lixo | 48 | 0/48 |
-| Material | 37 | 0/37 |
-| Munição | 36 | 36/36 |
-| Escudo | 10 | 9/10 |
+| Consumível | 240 | 129 |
+| Arma | 181 | 181 |
+| Bugiganga | 64 | 64 |
+| Item Mágico | 61 | 0 |
+| Armadura | 50 | 50 |
+| Lixo | 48 | 0 |
+| Munição | 36 | 36 |
+| Material | 35 | 0 |
+| Escudo | 10 | 9 |
+| Material, Consumível | 2 | 0 |
+
+**Lixo, Material, Pergaminho, Sobrevivência e Único/Quest não entram na conta de receita.
 
 **Lixo e Material não entram na conta de receita** — lixo não se fabrica e material se extrai.
 Sobre o que é fabricável: **446 de 637, 70%**. O que falta é Consumível (em revisão) e

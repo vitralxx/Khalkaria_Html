@@ -358,6 +358,71 @@ sendo a única forma de um **não-conjurador** usar a magia.
 ⚠️ **Todo pergaminho cita o nível no próprio texto.** Qualquer renumeração futura de magia
 desatualiza os 100 de uma vez — é o maior acoplamento do catálogo.
 
+**D72 — Veneno é Alquimia, exclusivo do Alquimista.** Os 5 venenos e óleos de arma
+(Peçonha de Caçador · Sonífero Rústico · Veneno de Lâmina Comum · Toxina do Esquecimento ·
+Veneno da Viúva Pálida) entram na Alquimia. Consequência aceita: a família inteira de veneno fica
+travada numa classe, mas segue **comprável por qualquer um** (D51).
+
+**D73 — Sobrevivência é o 4º ofício, e não tem receita de ingrediente.** O teste **é** a obtenção:
+`Obtenção = Sobrevivência CD N · <Região>`. Cobre comida, água, ervas e colheita.
+8 itens: Comida · Cantil · Pão de Viagem Reforçado · Casca de Raiz · Erva Medicinal ·
+Café Concentrado · Chá de Ervas Amargas · Seiva da Vhelor.
+**Sai do denominador de cobertura de receita**, como Lixo e Material.
+CD pela raridade, com **uma exceção deliberada**: Seiva da Vhelor é Exótico mas CD 10 — o custo
+real dela é a corrupção, que o jogador descobre jogando.
+
+**D74 — Itens de lore não são drop repetível.** `+2 de atributo`, `+1 mão do Limiar` e
+ressurreição saíram de `Drop CR≥3` para `Único/Quest`. Ressurreição agora é **1x por personagem**:
+um revive bloqueia qualquer próximo. A Folha Amarela só se colhe na copa da Vhelor.
+
+**D75 — Um item pode ter categoria dupla.** `Categoria = "Material, Consumível"` quando ele é
+reagente **e** usável: *Pétala do Sonhador* (Elixir da Imortalidade **ou** o true ending) e
+*Lágrima de Velúria* (Lágrimas do Tempo **ou** a mão do Limiar). **Usar de um jeito gasta o
+outro** — é escolha, não acúmulo. O site divide por vírgula e indexa nas duas, sem duplicar o card.
+
+**D76 — Escada de poção: dobra a cada faixa.**
+```
+Cura   2d4+Int 5,0 → 3d6+Int 10,5 → 5d8+Int 22,5 → 8d10+Int 44,0
+Vigor  1d6     3,5 → 2d6      7,0 → 3d8     13,5 → 5d10     27,5
+```
+A Suprema curava **menos** que a Maior (6d8 contra 6d10) por 3× o preço. Criada a *Poção de Vigor
+Moderada*, que faltava no Incomum. **Linearidade estrita pelo preço é impossível:** o preço sobe
+3,2× por faixa; acompanhar daria 163 de cura em Luxária contra ~55 de Saúde mediana no nível 5.
+
+**D77 — `Obtenção` tem formato fixo e parseável.**
+```
+Drop CR 3 · Terras Livres · Loja        Sobrevivência CD 10 · Cordilheira Cristalina · Loja
+Alquimista · Drop CR 2 · … · Loja       Único/Quest
+```
+| Raridade | Drop | Regiões |
+|---|---|---|
+| Lixo | CR <1 | 1 |
+| Ordinário | CR 1 | 1–2 |
+| Incomum | CR 2 | 3–4 |
+| Exótico | CR 3 | 5–6 |
+| Luxária | CR 4+ | 7–8 |
+
+As 8 regiões, em dificuldade crescente: `1 Cinturão Silencioso · 2 Bosque Corrompido ·
+3 Emaranhado de Raízes · 4 Costas Rochosas · 5 Terras Livres · 6 Cordilheira Cristalina ·
+7 Ermo das Cinzas · 8 Deserto do Abismo`.
+**Cada item pertence a UMA região**, não a uma faixa "dessa para cima" — quem está no Deserto do
+Abismo não quer item ordinário. O campo tinha 12+ formatos, incluindo 32 itens com JSON cru
+(`["Loja","Drop"]`) vazado de um lote antigo de IA.
+
+**D78 — Bebidas usam a condição *Bêbado*, nunca penalidade inventada.** 8 itens, 2 por raridade.
+*Bêbado* é puramente negativo (`2 natural = falha crítica` + `−2 em Atacar, Defender, Movimento,
+Reflexos, Fortitude e Vontade`), então o benefício é dimensionado **contando** a penalidade.
+Espadachim e a origem Bêbado ignoram o custo e ganham mais — é o perk da especialidade, não bug.
+
+---
+
+## ⚠️ Estrutura do CSV — o bug que quebrava a regeneração
+O arquivo **não tinha cabeçalho na linha 1**: a linha 1 era um item (`Agulha Torta`) e o cabeçalho
+estava na linha 606. `gerar_bazar.py` usa `csv.DictReader`, que lê a primeira linha como nomes de
+coluna — rodá-lo nesse arquivo produzia lixo. O site só funcionava porque vinha do `v25` antigo.
+**Corrigido:** cabeçalho na linha 1, 727 linhas normalizadas em 29 colunas.
+`Bazar_Khalkaria_v26.csv` na raiz do repo é o export pronto para o gerador.
+
 ---
 
 # 5. Cânone do sistema e terminologia
@@ -471,7 +536,10 @@ ao reduzir criatura viva a 0 de Saúde absorve `Nível + Mod.CON`.
 
 Detalhe item a item dos novos: `references/10-novidades-bazar.md` (gerado por `auditor.py novidades`).
 
-**Em andamento: Consumível** — 235 itens, 106 com receita. Última categoria antes de Item Mágico.
+| 20 | **Consumível** | **CONCLUÍDO.** 30 receitas escritas, poções recalibradas, 8 bebidas, itens de lore para Único/Quest, campo `Obtenção` inteiro reescrito |
+
+**Em andamento: rework do Batedor** — a classe mais antiga do sistema, hoje dominada por classes
+que fazem tudo melhor.
 
 ---
 
@@ -522,7 +590,7 @@ Universais: 8" contra 129 / 10 universais no meu registro; e os cabeçalhos de c
 `FOR 16+` enquanto o resumo logo abaixo diz `FOR 14+`.
 
 **Bazar (meu, quando chegar a vez)**
-- **Família dos alcoólicos** (condição *Bêbado*) — várias classes dependem. Na passada de Consumível.
+- ✅ Família dos alcoólicos — resolvida na D78.
 - **Item Mágico: 61 itens, 0 receitas** e nenhuma progressão. É a única categoria de Bugigangas que
   pede evolução (3 slots equipáveis → o jogador prioriza raridade alta) e não foi criada pensando
   nisso. Não é Ferraria nem Engenharia nem Alquimia — **talvez perícia Místico, mas não agora** (D37).
@@ -539,6 +607,11 @@ Universais: 8" contra 129 / 10 universais no meu registro; e os cabeçalhos de c
 - **Munição Fragmentadora** — resolvido: ganhou rider +1d12 Cortante.
 - **Escudo 9/10 sem receita** — resolvido: é o *Escudo de Karmath*, `Item único` + `Não-craftável`
   + `Único/Quest`. Coerente consigo mesmo, não é buraco.
+- **A régua errou, não o dado (2026-09-24).** Meu auditor acusou 12 consumíveis de Engenharia como
+  incoerentes com a D36 — mas a D36 diz "Alquimia → consumíveis **alquímicos**", não "todo
+  Consumível", e **5 dos 12 eram Kits já aprovados** em lote anterior. Eu ia "consertar" item
+  certo. **Quando a auditoria acusa em massa algo que já passou por revisão, suspeite da régua
+  antes do dado.**
 - **Auditoria de `Ae(` nas 34 ocorrências** — 2 corrigidos (D67); as demais estavam na escada.
   Meu script inicial usou uma lista de categorias digitada de memória e acusou *Biológico* como
   inválido, quando a D63 já a listava. **Ler a referência, não recitá-la.**
