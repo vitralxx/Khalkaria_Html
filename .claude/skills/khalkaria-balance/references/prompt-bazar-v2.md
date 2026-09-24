@@ -43,11 +43,12 @@ Rodei as duas telas atuais (Cards e Lista). Os problemas, em ordem de gravidade:
 
 ## A planilha: como indexar
 
-`Bazar_Khalkaria_v26.csv` — **729 itens, 730 linhas, 29 colunas.**
+`Bazar_Khalkaria_v26.csv` — **729 itens + 1 linha de cabeçalho, 29 colunas.**
 
-⚠️ **O cabeçalho está na linha 606, no MEIO do arquivo.** Linhas foram acrescentadas depois dele.
-Um `csv.DictReader` ingênuo lê tudo errado. Detecte a linha cujo primeiro campo é `Nome`, use-a
-como cabeçalho, e trate **todas** as outras linhas como dados.
+✅ **A estrutura foi consertada.** O arquivo antes não tinha cabeçalho na linha 1 — ela era um item
+(`Agulha Torta`) e o cabeçalho estava perdido na linha 606, então `csv.DictReader` usava um item
+como nomes de coluna e produzia lixo. Agora o cabeçalho está na linha 1 e todas as 729 linhas têm
+as 29 colunas. `csv.DictReader(open(CSV))` funciona direto, sem tratamento especial.
 
 Colunas usadas (as 17 `Coluna N` no fim são reserva vazia, ignore):
 
