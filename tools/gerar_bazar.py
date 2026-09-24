@@ -105,8 +105,25 @@ def parse_arquetipo(efeito, categoria):
     return ('', '')
 
 
+ARTE = os.path.join(RAIZ, 'data', 'icones-materiais.json')
+
+
+def carrega_arte():
+    """Material -> images/materiais/<slug>.webp, quando a arte existe."""
+    if not os.path.exists(ARTE):
+        return {}
+    mapa = json.load(open(ARTE, encoding='utf-8')).get('icones', {})
+    out = {}
+    for material in mapa:
+        rel = 'materiais/' + slug(material, '') + '.webp'
+        if os.path.exists(os.path.join(RAIZ, 'images', rel)):
+            out[material] = rel
+    return out
+
+
 def main():
     rows = list(csv.DictReader(open(CSV, encoding='utf-8')))
+    arte = carrega_arte()
     nomes = {r['Nome'] for r in rows}
     cat_de = {r['Nome']: r['Categoria'] for r in rows}
 
@@ -147,6 +164,7 @@ def main():
             'arquetipo': arq, 'familia': fam,
             'tags': tags, 'lore': (r.get('Lore/Notas') or '').strip(),
             'pai': pai,
+            'arte': arte.get(nome, ''),
             'busca': ' '.join([nome, categoria, r.get('Raridade', ''), r.get('Tipo de Craft', ''),
                                regiao, arq, ' '.join(tags), efeito]).lower(),
         })
@@ -154,7 +172,8 @@ def main():
     # compacto: é artefato, a fonte legível é o CSV
     json.dump(itens, open(BJSON, 'w', encoding='utf-8', newline=''),
               ensure_ascii=False, separators=(',', ':'))
-    print(f'bazar.json gerado: {len(itens)} itens -> {BJSON}')
+    comArte = sum(1 for i in itens if i['arte'])
+    print(f'bazar.json gerado: {len(itens)} itens -> {BJSON} | {comArte} com arte')
 
     # vocabulário presente no catálogo, na ordem canônica (a página lê daqui)
     presentes = lambda ordem, chave: [v for v in ordem if any(

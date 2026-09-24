@@ -58,6 +58,16 @@
   }
   function icoRar(r) { return svg('rar-' + semAcento(r || '').toLowerCase()); }
   function icoCat(it) { return ICO[it.cats && it.cats[0]] || 'ico-material'; }
+  // Materiais têm arte própria (images/materiais/*.webp). Quem não tem cai no
+  // ícone gravado. O medalhão usa o mesmo fundo em que a arte foi composta,
+  // então as imagens sem recorte perfeito não mostram a emenda.
+  function arte(it, cls) {
+    if (!it) return '';
+    if (it.arte) return '<img class="bz-arte ' + (cls || '') + '" src="../images/' + it.arte +
+      '" alt="" loading="lazy" decoding="async">';
+    return svg(icoCat(it), cls);
+  }
+  function artePorNome(nome, cls) { return arte(porNome[nome], cls); }
 
   function salvar() { try { localStorage.setItem(LS, JSON.stringify(E)); } catch (e) {} }
   function carregar() {
@@ -216,7 +226,7 @@
     return '<article class="item-card ' + classeRar(it.raridade) +
       (al === 'dificil' ? ' dificil' : '') + (al === 'ok' ? ' alcancavel' : '') +
       '" data-n="' + esc(it.nome) + '" style="--i:' + i + '" tabindex="0">' +
-      '<div class="item-head">' + svg(icoCat(it), 'item-ico') +
+      '<div class="item-head">' + arte(it, 'item-ico') +
         '<span class="item-name">' + esc(it.nome) + '</span></div>' +
       '<div class="item-chips">' +
         '<span class="tag-rar">' + icoRar(it.raridade) + esc(it.raridade) + '</span>' +
@@ -252,7 +262,7 @@
     return lista.map(function (it) {
       var reg = it.regiao || (it.unico ? 'Único/Quest' : '—');
       return '<tr class="item-card ' + classeRar(it.raridade) + '" data-n="' + esc(it.nome) + '">' +
-        '<td class="c-nome"><span class="item-name">' + esc(it.nome) + '</span></td>' +
+        '<td class="c-nome">' + arte(it, 'c-ico') + '<span class="item-name">' + esc(it.nome) + '</span></td>' +
         '<td class="c-rar"><span class="tag-rar">' + icoRar(it.raridade) + esc(it.raridade) + '</span></td>' +
         '<td>' + esc(it.categoria) + '</td>' +
         '<td class="c-efeito"><span>' + esc(it.efeito) + '</span></td>' +
@@ -344,7 +354,7 @@
       var tem = (+E.saco[g.item] || 0) >= g.n;
       var estado = E.mochila || Object.keys(E.saco).length ? (tem ? ' tem' : ' falta') : '';
       return '<button type="button" class="bz-ing' + estado + '" data-ir="' + esc(g.item) + '">' +
-        (mat ? svg(icoCat(mat), 'bz-ing-ico') : '') +
+        arte(mat, 'bz-ing-ico') +
         '<b>' + g.n + '×</b> ' + esc(g.item) +
         (ondeAchar(g.item) ? '<span class="bz-ing-onde">' + esc(ondeAchar(g.item)) + '</span>' : '') +
         '</button>';
@@ -365,8 +375,8 @@
           '<div class="bz-passo-linha">' +
             (p.cd != null ? '<span class="bz-passo-cd">' + esc(p.craft) + ' CD ' + p.cd + '</span>' : '') +
             (p.ing || []).map(function (g) {
-              return '<button type="button" class="bz-ing" data-ir="' + esc(g.item) + '"><b>' + g.n +
-                '×</b> ' + esc(g.item) + '</button>';
+              return '<button type="button" class="bz-ing" data-ir="' + esc(g.item) + '">' +
+                artePorNome(g.item, 'bz-ing-ico') + '<b>' + g.n + '×</b> ' + esc(g.item) + '</button>';
             }).join('') +
           '</div></div></div>';
       }).join('') + '</div>';
@@ -389,7 +399,7 @@
     var it = porNome[nome];
     if (!it) return;
     var reg = it.regiao || (it.unico ? 'Único/Quest' : '—');
-    var h = '<div class="bz-d-head">' + svg(icoCat(it), 'bz-d-ico') + '<div>' +
+    var h = '<div class="bz-d-head">' + arte(it, 'bz-d-ico') + '<div>' +
       '<h2 class="bz-d-nome" id="bz-detalhe-nome">' + esc(it.nome) + '</h2>' +
       '<div class="item-chips">' +
         '<span class="tag-rar">' + icoRar(it.raridade) + esc(it.raridade) + '</span>' +
@@ -435,7 +445,8 @@
     $('#bz-mochila-itens').innerHTML = Object.keys(E.saco).sort(function (a, b) {
       return a.localeCompare(b, 'pt');
     }).map(function (m) {
-      return '<span class="bz-mat"><b>' + E.saco[m] + '×</b> ' + esc(m) +
+      return '<span class="bz-mat">' + artePorNome(m, 'bz-mat-ico') +
+        '<b>' + E.saco[m] + '×</b> ' + esc(m) +
         '<button type="button" data-tirar="' + esc(m) + '" aria-label="Remover ' + esc(m) + '">×</button></span>';
     }).join('');
   }

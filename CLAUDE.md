@@ -18,7 +18,7 @@ Publicado em GitHub Pages: `vitralxx.github.io/Khalkaria_Html/`.
 ## 2. Sistema — referência rápida
 
 - **Atributos (5):** FOR, DES, CON, INT, SAB (8–18). Modificador = (Atributo − 10) / 2. **Não existe Carisma.**
-- **Perícias (23, canônicas):** Atacar, Defender, Movimento, Fortitude, Vontade, Reflexos, Percepção, Sobrevivência, Furtividade, Crime, Iniciativa, Conhecimento, Medicina, Investigação, Religião, Místico, Convencimento, Intimidação, Intuição, Enganação, Motivar, **Ofício(Engenharia)**, **Ofício(Ferraria)**. Fonte da verdade: ficha física. Mapeiam **1:1** com as colunas `prof_*` do Bestiário (ver §5). O genérico `Ofício(X)` deixou de existir em 2026-09: viraram duas perícias concretas, ambas `1d20+Inteligência`, usadas na fabricação. ⚠️ O Notion cita um terceiro, **Ofício(Alquimia)**, nas descrições de categoria de item (Consumível e Bugiganga), mas ele **não** tem linha na tabela de Perícias — confirmar com o Pedro se é perícia canônica ou habilidade do Alquimista.
+- **Perícias (24, canônicas):** Atacar, Defender, Movimento, Fortitude, Vontade, Reflexos, Percepção, Sobrevivência, Furtividade, Crime, Iniciativa, Conhecimento, Medicina, Investigação, Religião, Místico, Convencimento, Intimidação, Intuição, Enganação, Motivar, **Ofício(Engenharia)**, **Ofício(Ferraria)**, **Ofício(Alquimia)**. Fonte da verdade: ficha física. O genérico `Ofício(X)` deixou de existir em 2026-09: viraram perícias concretas, todas `1d20+Inteligência`, usadas na fabricação. **Ofício(Alquimia)** também é canônica (confirmado pelo Pedro em 2026-09-24) — são 24 perícias no total. Ela **não** entra no mapeamento `prof_*` do Bestiário: inimigos e NPCs não fabricam, crafting é só de jogador.
 - **Proficiência de perícia:** escala de 4 níveis — +2 / +4 / +6 / +8 (não é binária).
 - **Recursos:** Saúde, Stamina (todas as classes), Éter (conjuradores), Recurso de Classe específico (ex.: FLUXO no Monge).
 - **Valores de classe:** cada classe tem **Vitalidade**, **Vigor** e **Ressonância** — os multiplicadores que entram no cálculo de Saúde, Stamina e Éter máximos. Vivem nas fórmulas dos `templates/classes/*.template.html`.
@@ -59,8 +59,10 @@ de `partials/sidebar.html`, `<img>` apontando para `.webp`, e id determinístico
 em cada h2/h3 (`id="custo-base-por-nivel"`, h3 com escopo do h2). O id de título
 pertence ao build e é sempre recalculado — não escrever id em h2/h3 à mão.
 
-**Fora de escopo do agente:** `bazar.html`, `data/Bazar_Khalkaria_v25.csv`,
-`tools/gerar_bazar.py` — mantidos pelo Pedro.
+**O Bazar entrou em escopo em 2026-09-24.** `tools/gerar_bazar.py`, `css/bazar.css`,
+`js/bazar.js` e `templates/bazar.template.html` são do agente de HTML. O CSV
+(`data/Bazar_Khalkaria_v26.csv`) é conteúdo do Pedro: só se mexe nele com aprovação
+explícita, e a página nunca é editada à mão — é artefato.
 *Exceção:* a seção "O Bazar" dentro da página **Sistema** do Notion **é** escopo
 e vai em `data/sistema.json`.
 
@@ -108,7 +110,7 @@ Ficha de personagem jogável no site, com drag-and-drop de conteúdo das página
 - Exportação compatível com o app **Bestiário Khalkaria** (Flask + SQLite).
 
 **Compatibilidade Bestiário (analisado, v10):** contrato de import = pack de criação v8, endpoints `/api/creature/import` (colar JSON) e `/api/import` (upload). Schema canônico `{"type":"npc"|"monster", "name", <stats>, "prof_*", "weapons":[], "abilities":[]}`; import **tolerante** (filtra chaves desconhecidas, não-destrutivo). O PJ exporta como `type:"npc"`.
-- **Perícias → `prof_*` (1:1):** Atacar→`prof_attack`, Defender→`prof_defend`, Movimento→`prof_movement`, Fortitude→`prof_fortitude`, Vontade→`prof_will`, Reflexos→`prof_reflexes`, Percepção→`prof_perception`, Sobrevivência→`prof_survival`, Furtividade→`prof_stealth`, Crime→`prof_crime`, Iniciativa→`prof_initiative`, Conhecimento→`prof_knowledge`, Medicina→`prof_medicine`, Investigação→`prof_investigation`, Religião→`prof_religion`, Místico→`prof_mystic`, Convencimento→`prof_persuasion`, Intimidação→`prof_intimidation`, Intuição→`prof_insight`, Enganação→`prof_deception`, Motivar→`prof_motivate`, Ofício→`prof_craft`+`craft_attr`. **Pendência:** com a divisão em Ofício(Engenharia) e Ofício(Ferraria), o par `prof_craft`/`craft_attr` só comporta uma das duas — decidir com o Pedro se o export manda a de maior treinamento ou se o Bestiário ganha um segundo par.
+- **Perícias → `prof_*` (1:1):** Atacar→`prof_attack`, Defender→`prof_defend`, Movimento→`prof_movement`, Fortitude→`prof_fortitude`, Vontade→`prof_will`, Reflexos→`prof_reflexes`, Percepção→`prof_perception`, Sobrevivência→`prof_survival`, Furtividade→`prof_stealth`, Crime→`prof_crime`, Iniciativa→`prof_initiative`, Conhecimento→`prof_knowledge`, Medicina→`prof_medicine`, Investigação→`prof_investigation`, Religião→`prof_religion`, Místico→`prof_mystic`, Convencimento→`prof_persuasion`, Intimidação→`prof_intimidation`, Intuição→`prof_insight`, Enganação→`prof_deception`, Motivar→`prof_motivate`, Ofício→`prof_craft`+`craft_attr`. **Decidido (2026-09-24):** fabricação é só de jogador — inimigos e NPCs não craftam —, então as perícias de Ofício não precisam de linha própria no Bestiário. O export segue mandando um `prof_craft` só; a ficha guarda as três (Ferraria, Engenharia, Alquimia) para o filtro do Bazar.
 - **Atributos:** FOR/DES/CON/INT/SAB → `strength/dexterity/constitution/intelligence/wisdom`. **Recursos:** `health_max/stamina_max/ether_max`. **Derivados:** `evasion/movement/armor`. **Resistências:** R→`resistances`, I→`immunities` (strings CSV). **Magias/Técnicas** → `abilities[]`; **armas do inventário** → `weapons[]`.
 - **Só-ficha (descartado no export):** inventário geral, Sins, cartas do Limiar, lore. A ficha nativa é superset; o export é projeção `npc`.
 

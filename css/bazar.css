@@ -635,3 +635,37 @@ body[data-no-rightbar] .main-content { margin-right: 0; max-width: none; }
 
 /* sentinela do carregamento por lote */
 .bz-sentinela { height: 1px; margin-top: -1px; }
+
+/* ---------------------------------------------------------- arte de material
+   Os tiles são compostos sobre #16161d (tools/gerar_icones_materiais.py), a
+   mesma cor do medalhão — as 12 imagens que vieram sem recorte não mostram
+   emenda. Moldura arredondada com aro fino, no tom da raridade do item. */
+.bz-arte {
+    display: inline-block;
+    object-fit: cover;
+    background: var(--bz-raiz);
+    border: 1px solid var(--rbd, var(--border-color));
+    border-radius: 26%;
+    box-shadow: inset 0 0 12px -4px #000, 0 1px 3px #0009;
+    flex: 0 0 auto;
+}
+.item-ico.bz-arte { width: 40px; height: 40px; margin-top: 0; opacity: 1; }
+.bz-d-ico.bz-arte { width: 68px; height: 68px; border-radius: 20%; }
+.bz-ing-ico.bz-arte { width: 26px; height: 26px; border-radius: 28%; margin: -.14rem 0; }
+.bz-mat-ico { width: 22px; height: 22px; border-radius: 28%; }
+.bz-ing { padding-left: .34rem; }
+
+/* na visão Cards, a arte cresce de leve junto com o hover do card */
+.cards .item-card .bz-arte { transition: transform .28s var(--bz-mola), border-color .22s; }
+.cards .item-card:hover .bz-arte { transform: scale(1.08) rotate(-2deg); border-color: var(--rc); }
+
+/* medalhão do detalhe ganha um halo na cor da raridade */
+.bz-d-ico.bz-arte { box-shadow: inset 0 0 14px -4px #000, 0 0 26px -8px var(--rc); }
+
+/* lista: medalhão pequeno antes do nome */
+.bz-tabela td.c-nome { display: flex; align-items: center; gap: .45rem; }
+.c-ico { width: 24px; height: 24px; }
+.c-ico:not(.bz-arte) { color: var(--rc); opacity: .8; }
+
+/* ingrediente que a mochila já cobre acende o aro */
+.bz-ing.tem .bz-arte { border-color: #2d5a3d; box-shadow: inset 0 0 12px -4px #000, 0 0 12px -4px #6ee7a0; }
