@@ -4,7 +4,7 @@
 import csv, json, sys, os, re, unicodedata
 
 RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-CSV = sys.argv[1] if len(sys.argv) > 1 else os.path.join(RAIZ, 'data', 'Bazar_Khalkaria_v25.csv')
+CSV = sys.argv[1] if len(sys.argv) > 1 else os.path.join(RAIZ, 'data', 'Bazar_Khalkaria_v26.csv')
 OUT = sys.argv[2] if len(sys.argv) > 2 else os.path.join(RAIZ, 'pages', 'bazar.html')
 
 rows = list(csv.DictReader(open(CSV, encoding='utf-8')))
