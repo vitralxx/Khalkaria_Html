@@ -18,7 +18,7 @@ notion_cache/<slug>.new.md           snapshot bruto
 data/*.json                           conteúdo mecânico estruturado
    │  tools/build.py
    │    fase 1: geradores   data + templates -> pages/*.html
-   │    fase 2: shell       navegação única, webp, âncoras estáveis
+   │    fase 2: shell       navegação única, webp, âncoras estáveis, ?v= nos assets
    ▼
 pages/*.html                          ARTEFATO — nunca editar à mão
    │  tools/validar.py
@@ -108,8 +108,14 @@ notion_cache/                  snapshots (git-ignorado, exceto pages.json)
 | **index.html, classes.html, criacao.html** | **não** | **não** |
 
 20 páginas fecham round-trip byte-a-byte. 3 ainda são HTML manual — mas todas
-recebem a fase 2 (navegação, webp, âncoras), então nenhuma fica de fora do
-shell comum.
+recebem a fase 2 (navegação, webp, âncoras e versão dos assets), então nenhuma
+fica de fora do shell comum.
+
+**Versão dos assets.** O `shell.py` põe `?v=<8 hex do sha1 de js/*.js + css/*.css>`
+em todo `<script src>`/`<link href>` local das 24 páginas, e o `js/main.js` repassa
+a mesma versão ao `ficha.js` que injeta. O GitHub Pages manda cache de 10 min: sem
+isso, depois de um deploy o navegador servia um `ficha.js` antigo nas páginas fora
+do Bazar. O `bazar.json` é buscado com `?v=<hash do arquivo>` (`BZ_VOCAB.dados`).
 
 ## 5. Convenção de CSS
 
@@ -148,8 +154,9 @@ regra por baixo) e `inv` em todo item do `data/bazar.json`.
 `gerar_bazar.py` falha (código 1, nada gravado) quando uma frase de inventário
 do CSV não casa com o esperado, quando há colisão de id, ingrediente fora do
 catálogo ou quando `data/condicoes.json` perde os cards de Sobrepeso. Contagem
-diferente da registrada em `ESPERADO` é só AVISO. `{{VER}}` no template vira o
-hash dos assets do Bazar (cache-bust do `?v=`).
+diferente da registrada em `ESPERADO` é só AVISO. O `?v=` final dos assets é o da
+fase 2 do shell (hash de todos os js/css); o `{{VER}}` do template é só o valor
+inicial, sobrescrito por ela.
 
 Com `node` no PATH e a pasta `tools/testes/`, o build roda `node --test` nos
 `*.test.js` dela; teste vermelho derruba o build. Sem `node`, imprime "testes

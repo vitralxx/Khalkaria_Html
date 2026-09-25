@@ -2,6 +2,56 @@
 
 Versionamento semântico. Cada versão é uma tag git.
 
+## v1.5 — 2026-09-25 · Bazar v3 e inventário da Ficha
+
+### Adicionado
+- **Painel de receita à esquerda.** Clicar num item abre a receita num painel
+  que cobre a navegação: medalhão, "Guardar" com a projeção de carga ("vira
+  Sobrepeso Leve"), ingredientes com arte, "tenho x/n" e onde achar cada um,
+  cadeia de fabricação inteira, "Entra em N receitas" e ficha técnica.
+  Histórico ‹ › com `[` `]`, link direto `#item/<id>`.
+- **Pop-up do card no hover** em todo ingrediente, degrau, uso, migalha, linha
+  do inventário, opção do "Guardar item…" e na coluna Nome da Lista.
+- **Inventário no Bazar**, em duas colunas — Bugigangas e Equipamentos —, que É
+  o inventário da Ficha (mesmo estado, sincronizado com o drawer e entre abas).
+  Peso total, réguas de carga até 2× o máximo, Sobrepeso Leve/Extremo com o
+  texto da condição, caixa "Item Empilhável" (10 unidades = 1 de peso, marcada
+  pelo registro), Equipado (não pesa; 1 Armadura Pesada e 2 Leves),
+  Sintonizado (até 3), bolsas e mochilas somando capacidade, stepper, mover
+  entre colunas, remover com Desfazer (Ctrl+Z). Adiciona por "+ inventário",
+  arrastando, pelo painel ou pelo campo "Guardar item…" ("11 flecha").
+  Modos painel, trilho (Shift+I) e amplo.
+- **"Fecha com o inventário"**, no lugar da Mochila de texto livre: mostra o que
+  o que você carrega fecha, e "Quase fecha · falta um ingrediente" com o que
+  falta e onde achar.
+- **Motor de carga** (`KhInv`, dentro do `js/ficha.js`) com 80 testes
+  (`node --test`), e guarda-fio no validador que falha o build se as frases de
+  peso do Sistema mudarem no Notion.
+- Arte dos 32 materiais, conferida pelo Pedro.
+
+### Mudado
+- **Ficha 2.0.** O inventário passa de 4 listas para 2 colunas. A migração é
+  automática, idempotente e guarda antes um backup em
+  `localStorage.khalkaria_ficha_v1_backup`. Duplicatas se fundem, armaduras e
+  materiais passam a pesar.
+- **Export do Bestiário:** armaduras deixam de sair em `weapons[]` (um
+  `indexOf('arma')` casava com "Armadura").
+- Filtros: raridade desligada é neutra; regiões viram uma trilha de perigo numa
+  linha só. A Lista alinha e o cabeçalho gruda sob a barra.
+- Raças na navegação; catálogo v26 (727 itens).
+
+### Corrigido
+- Cache pós-deploy: todo JS/CSS local das 24 páginas sai com `?v=<hash>`. Antes,
+  o navegador servia um `ficha.js` antigo fora do Bazar depois de um deploy.
+- 14 defeitos confirmados por revisão adversarial, entre eles: XSS por ficha
+  importada, ping-pong infinito entre duas abas com catálogos diferentes, e
+  Equipado/Sintonizado valendo para a pilha inteira em vez de por unidade.
+
+### Pendente com o Pedro
+Munição 10:1 (CSV) × 20:1 (CLAUDE.md §2); limites Pesada/Leve independentes;
+mochilas diferentes somando; Sintonizado sem efeito no peso; arma empilhável
+(Estilhaços do Abismo) em Bugigangas. Todas com padrão aplicado numa constante.
+
 ## v1.4 — 2026-09-14
 
 Reorganização estrutural do repositório. Nenhuma mudança de conteúdo canônico:

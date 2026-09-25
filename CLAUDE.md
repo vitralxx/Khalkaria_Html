@@ -43,7 +43,7 @@ index.html                  landing (HTML manual)
 partials/sidebar.html       FONTE ÚNICA da navegação
 css/style.css               design system  |  css/classes.css, css/racas.css
 js/main.js  js/utils.js  js/ficha.js
-data/*.json                 conteúdo + data/Bazar_Khalkaria_v25.csv
+data/*.json                 conteúdo + data/Bazar_Khalkaria_v26.csv
 templates/*.template.html   scaffold com {{CAT_x}} / {{CARD_n}} / <!--SIDEBAR-->
 tools/build.py              fase 1 geradores + fase 2 shell + validação
 tools/validar.py            integridade estrutural (§6 automatizado)
@@ -56,8 +56,10 @@ images/*.png (fonte) -> *.webp (servido)
 
 **Fase 2 (`tools/shell.py`), aplicada a TODAS as páginas:** navegação a partir
 de `partials/sidebar.html`, `<img>` apontando para `.webp`, e id determinístico
-em cada h2/h3 (`id="custo-base-por-nivel"`, h3 com escopo do h2). O id de título
-pertence ao build e é sempre recalculado — não escrever id em h2/h3 à mão.
+em cada h2/h3 (`id="custo-base-por-nivel"`, h3 com escopo do h2), e `?v=<hash>` em
+todo `<script src>`/`<link href>` local (cache do GitHub Pages: sem versão na URL,
+o navegador serve JS antigo depois do deploy). O id de título pertence ao build e
+é sempre recalculado — não escrever id em h2/h3 à mão, nem `?v=` em asset à mão.
 
 **O Bazar entrou em escopo em 2026-09-24.** `tools/gerar_bazar.py`, `css/bazar.css`,
 `js/bazar.js` e `templates/bazar.template.html` são do agente de HTML. O CSV
@@ -161,7 +163,7 @@ Sistema → Magias → Condições → Limiar → 7 Classes → 7 Raças → Ori
 
 ## 8. Entrega
 
-- Versionamento semântico. Última versão publicada: **v1.4** (tag git).
+- Versionamento semântico. Última versão publicada: **v1.5** (tag git).
 - No modelo antigo: zip completo `Khalkaria_Html-v{X.Y}.zip`, nunca patch parcial.
 - Trabalhando no repo local via Claude Code: commits atômicos, mensagem descritiva em PT-BR.
 - Antes de qualquer commit que toque HTML/CSS/JSON: `python tools/build.py` tem que passar.
