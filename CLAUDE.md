@@ -60,6 +60,9 @@ em cada h2/h3 (`id="custo-base-por-nivel"`, h3 com escopo do h2), e `?v=<hash>` 
 todo `<script src>`/`<link href>` local (cache do GitHub Pages: sem versão na URL,
 o navegador serve JS antigo depois do deploy). O id de título pertence ao build e
 é sempre recalculado — não escrever id em h2/h3 à mão, nem `?v=` em asset à mão.
+O shell também injeta `partials/head-boot.html` (estado da nav antes do paint) e
+`js/nav.js` (trilho de 64px, atalho `\`, grupos, menu mobile); a largura da nav no
+layout é só `--nav-w`.
 
 **O Bazar entrou em escopo em 2026-09-24.** `tools/gerar_bazar.py`, `css/bazar.css`,
 `js/bazar.js` e `templates/bazar.template.html` são do agente de HTML. O CSV

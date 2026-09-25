@@ -18,7 +18,8 @@ notion_cache/<slug>.new.md           snapshot bruto
 data/*.json                           conteúdo mecânico estruturado
    │  tools/build.py
    │    fase 1: geradores   data + templates -> pages/*.html
-   │    fase 2: shell       navegação única, webp, âncoras estáveis, ?v= nos assets
+   │    fase 2: shell       navegação única, boot da nav, nav.js, webp, âncoras
+   │                        estáveis, ?v= nos assets
    ▼
 pages/*.html                          ARTEFATO — nunca editar à mão
    │  tools/validar.py
@@ -50,7 +51,8 @@ servido são os `.webp` gerados a partir deles.
 
 ```
 index.html                     landing (HTML manual)
-partials/sidebar.html          FONTE ÚNICA da navegação do site
+partials/sidebar.html          FONTE ÚNICA da navegação do site (markup + sprite nv-*)
+partials/head-boot.html        <script data-nav-boot> que o shell põe antes de </head>
 
 tools/build.py                 orquestrador: geradores + shell + validação
 tools/validar.py               integridade estrutural (método §6 do CLAUDE.md)
@@ -68,8 +70,11 @@ css/style.css                  design system: tokens :root, layout, globais
 css/classes.css                componentes das 7 páginas de classe
 css/racas.css                  componentes das 7 páginas de raça
 css/bazar.css                  só a página do Bazar (tokens --bz-* no :root dele)
-js/main.js                     splash, menu mobile, smooth scroll, fade-in
+js/main.js                     splash, smooth scroll, fade-in
                                + auto-injeta ficha.js em todas as páginas
+js/nav.js                      navegação lateral: trilho de 64px, atalho \, dica,
+                               grupos recolhíveis, menu mobile (injetado pelo shell
+                               em TODAS as páginas, inclusive o Bazar)
 js/utils.js                    sidebar direita (índice, recentes, busca)
 js/ficha.js                    Ficha Interativa: no topo o motor PURO KhInv
                                (carga, migração, reconciliação, export de armas;
@@ -117,6 +122,28 @@ a mesma versão ao `ficha.js` que injeta. O GitHub Pages manda cache de 10 min: 
 isso, depois de um deploy o navegador servia um `ficha.js` antigo nas páginas fora
 do Bazar. O `bazar.json` é buscado com `?v=<hash do arquivo>` (`BZ_VOCAB.dados`).
 
+**Navegação lateral.** Markup só em `partials/sidebar.html`; o shell a copia para
+as 24 páginas, reescreve os `href` (que têm de ser o 1º atributo do `<a>`) e marca
+o link atual com `.active` + `aria-current="page"`. Também injeta
+`partials/head-boot.html` antes de `</head>` e `js/nav.js` antes de `</body>`
+(antes do `?v=`, que o `nav.js` também ganha). O `nav.js` é separado do `main.js`
+porque o Bazar não carrega `main.js` (que injetaria o `ficha.js` pela segunda vez).
+
+- **Largura:** a única variável que o layout lê é `--nav-w` (`style.css`):
+  `--nav-w-aberta` 280px ou `--nav-w-trilho` 64px quando `html[data-nav="trilho"]`,
+  só com a viewport em ≥901px. `--sidebar-width` é alias legado. Proibido
+  transform/filter/contain/will-change na `.sidebar` do desktop.
+- **Estado:** localStorage `khalkaria_nav` = `{v:1, trilho, fechados:["racas"|"classes"]}`,
+  sempre em try/catch. O boot do `<head>` aplica o estado no `<html>` antes do
+  primeiro paint (sem pisca entre páginas); o evento `storage` sincroniza as abas.
+- **Atalho `\`** (tecla própria no ABNT2) alterna o trilho; ignorado em campo de
+  texto, com Ctrl/Alt/Meta, dentro da Ficha e no mobile. Esc só é consumido com a
+  dica ou o menu mobile abertos, para não engolir o Esc do Bazar e da Ficha.
+- **Grupos** Raças e Classes recolhem pelo cabeçalho (`html[data-nav-fechados]`);
+  o grupo da página atual nunca fecha.
+- **Dica** do trilho: um `#nav-dica` fixed no `<body>`, z 105 (acima da nav,
+  abaixo da receita do Bazar, do cartão e da Ficha).
+
 ## 5. Convenção de CSS
 
 Ordem de carga e responsabilidade de cada camada:
@@ -147,7 +174,9 @@ python tools/sync_notion.py accept     # promove .new -> .base
 
 `validar.py` checa: tags balanceadas, âncoras `#x` com destino, IDs duplicados,
 links/assets locais existentes, round-trip JSON→HTML, consistência das
-24 sidebars (página sem `<nav class="sidebar">` é FALHA), as 5 frases de peso
+24 sidebars (página sem `<nav class="sidebar">` é FALHA; e em cada página 1 boot,
+1 `nav.js`, 1 `aria-current`, todo glifo `nv-*` com `<symbol>` e todo `.nav-link`
+com `.nav-rot`), as 5 frases de peso
 do Sistema que o motor de carga codifica (guarda-fio contra o Notion mudar a
 regra por baixo) e `inv` em todo item do `data/bazar.json`.
 
@@ -180,8 +209,8 @@ do motor pulados". À mão: `node --test tools/testes` (ou
    Bazar v3 também `injectCSSInventario`, o bloco `#kf-css-inv` do inventário
    do drawer). Funciona, mas deixa a ficha fora do design system (cores em hex,
    sem tokens) — mover os dois para `css/ficha.css`.
-4. **Raças não estão na navegação.** A sidebar lista as 7 classes mas não as
-   7 raças; chega-se nelas só pela página `racas.html`. Assimetria de UX.
+4. ~~**Raças não estão na navegação.**~~ Resolvido: a nav lista as 7 raças e as
+   7 classes, em grupos recolhíveis.
 5. **Restam ~120 KB de CSS inline** nos templates de classe e raça. É CSS
    legitimamente por página (cores de ramo interligadas às regras), mas parte
    dele viraria variação de token se o design system crescesse.
