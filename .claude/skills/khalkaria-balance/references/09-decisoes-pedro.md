@@ -556,9 +556,47 @@ como ajuste pontual. O que este rework tem que produzir, além do Batedor pronto
 # 8. Pendências abertas
 
 **Sistema (Notion, do Pedro)**
-- Registrar **"margem de ameaça"** (D22) e **"Multiplicador de Crítico"** (D31).
+- ✅ **"Margem de ameaça" (D22) e "Multiplicador de Crítico" (D31) JÁ ESTÃO no Notion.**
+  Conferido em 2026-09-25 na página `2b76e3a4`, seção *Dano*. Pendências fechadas.
 - Regra de expiração para as 11 condições listadas em D16.
 - Corrigir Evasão passiva nas 7 páginas de classe do repo (D20).
+
+### Lacunas de cânone abertas pela ficha digital (2026-09-25)
+Levantadas ao responder o agente de HTML (ver `14-ficha-digital.md`, 19 itens priorizados).
+Conferidas por busca na página Sistema, não de memória. **As duas primeiras são as mais graves
+do sistema inteiro**, porque tudo que é derivado depende delas:
+
+| # | Lacuna | Por quê |
+|---|---|---|
+| 1 | 🔴 **O modificador de atributo não existe no Notion** | A seção *Atributos Iniciais* só lista os 5 atributos e o 4d6-drop-lowest. A única fonte é o CLAUDE.md, que não é canônico. Recomendo `floor((attr−10)/2)`. |
+| 2 | 🔴 **Vantagem e desvantagem nunca foram definidas** | Zero ocorrências de `2d20`. Usadas por 6 condições, superfícies, arma sem requisito e a ação *Esforçar-se*. Recomendo 2d20 maior/menor, cancelam, não acumulam. |
+| 3 | **O `mín. 1` da Contida é invenção do site** | O Notion diz só `Contida | −2 Éter`. Mas o piso **precisa** existir: sem ele, Nível 2 Contida custa 0 e os 20 truques da D68 nascem obsoletos. Recomendo piso 1 na Contida **e** piso 0 no custo final (dois pisos, etapas diferentes). |
+| 4 | **Sangramento X escala ou não?** | O card diz `+1d4` fixo; a **D29** diz *"proeza difícil merece dano absurdo"*, o que só faz sentido escalando. Recomendo `+Xd4`. É a decisão de maior impacto em DPR. |
+| 5 | **Ar racial + Ar de armadura acumulam? Tem teto?** | Anão Caxon (3) + Pesada Luxária (8) = **Ar 11**, que zera arma leve sem upgrade. Recomendo soma com teto 10. |
+| 6 | **O tique de Morrendo é mitigável?** | Se for, `Ae(Biológico, 4)` num PJ de 55 de Saúde reduz o tique a 1/rodada e desliga o relógio da morte. Recomendo não mitigável. |
+| 7 | **Liberar estresse é opcional?** | 5 pontos custam ~17,5 Stamina + 17,5 Éter; um Descanso Normal devolve 13,5. **Obrigatório, descansar fica pior que não descansar.** Recomendo opcional. |
+| 8 | **Exposto derivado de Paralisado é contínuo?** | Se for, todo ataque contra paralisado crita. Recomendo: concedido uma vez, consumido no primeiro acerto. |
+| 9 | **Saída de Exaurido e Oco** | "Encerra em qualquer descanso" permite sair com 0 de Stamina e sem a condição, e o gatilho não re-dispara. Recomendo `sai: recurso > 0`. |
+| 10 | **Como o Desnutrido diminui** | Só existe a regra de subir. Recomendo: comer no descanso longo remove 1. |
+| 11 | **Lista das "condições mentais"** | Citada pelo Teurgo e pelo Veterano, nunca escrita. |
+| 12 | **"1 cast por turno" existe?** | A magia *Projétil* diz que **ignora** uma regra que não está na página Sistema. |
+| 13 | **Descrição do Ofício(Ferraria)** está com o texto da Engenharia | Copiar-colar. O escopo certo é o da D36. |
+| 14 | **Intimidação: CON/FOR ou FOR/SAB?** | Ficha física e tabela de perícias discordam. Recomendo CON/FOR. |
+| 15 | **"+2 pontos de atributo por nível"** | O agente de HTML afirma que existe; **a tabela de Progressão do Notion não menciona.** O único `+2 Atributo` que eu conheço é a 6ª carta do Limiar. Ou é regra que eu não conheço, ou entrou por engano no site e está inflando todo derivado. |
+
+🔴 **Dois bugs de desenho achados na mesma passada**, ambos da mesma família do bug do Instinto:
+
+- **Concentração do Artilheiro:** teto `3 + Mod.SAB`, mas *Foco Absoluto* e *Tiro de Reflexo*
+  pedem 5 e *Paciência Inabalável* pede 6+. Com SAB 12 (máx 4) são técnicas **inalcançáveis**, e
+  nada avisa. Além disso o texto não diz se a Concentração é **gasta** ou só **exigida**:
+  *"soma sempre ao ataque"* sugere requisito, mas *Tiro na Cabeça* fala em *"ponto de Concentração
+  gasto"*. → Entra na **régua de recurso de classe** da D79, junto com o Instinto.
+- **Reset do Fluxo é texto morto.** *"se passar 1 rodada sem ganhar Fluxo ou receber dano"* nunca
+  dispara, porque **mover-se já dá Fluxo**. Sobra só o `fim de combate`.
+
+⚠️ **Interação que mata sem dano:** Exaustão 4 divide os atributos pela metade → CON cai → Saúde
+máxima cai pela metade → se o atual for cortado sem grampo, o personagem pode cruzar `−½ máx` e
+**morrer no recálculo**. Qualquer implementação precisa grampear em `max(0, novoMax)`.
 
 ### Varredura de nível de magia (feita em 2026-09-22, para o shift da D68)
 🔴 **Fórmulas que mudam sozinhas, sem ninguém editar** — multiplicam pelo nível da magia:
