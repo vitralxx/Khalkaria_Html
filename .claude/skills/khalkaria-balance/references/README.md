@@ -44,6 +44,7 @@ Tipo de Craft · Ingredientes · Tags · Lore/Notas · **CD de Craft** · (17 co
 |---|---|---|
 | **`09-decisoes-pedro.md`** | **Os parâmetros. Lei.** | conversa com o Pedro |
 | `01-nucleo-sistema.md` | Regras centrais: perícias, retaliação, dano/defesa, armas, inventário, magia | Notion `2b76e3a4…` |
+| **`13-batedor-diagnostico.md`** | **Projeto ativo:** diagnóstico do Batedor + decisão de escopo + próximo passo | análise + Notion `8706e3a4…` |
 | **`12-magias-nivel1.md`** | **As 20 magias de Nível 1**, formato de tabela do Notion | fechado com o Pedro |
 | `magias-nivel1.json` | as mesmas 20 como dado (Rota 1) | gerado |
 | `magias-nivel1-gerador.py` | guarda as 20 e **valida antes de emitir**: 5 por escola, nomes únicos, modulações da escola certa, barras de exatamente 3 valores, nenhuma menção a Contida | — |

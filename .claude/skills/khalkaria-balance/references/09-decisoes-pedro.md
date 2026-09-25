@@ -541,6 +541,16 @@ Detalhe item a item dos novos: `references/10-novidades-bazar.md` (gerado por `a
 **Em andamento: rework do Batedor** — a classe mais antiga do sistema, hoje dominada por classes
 que fazem tudo melhor.
 
+**D79 — O rework do Batedor é escopo COMPLETO, e é o protótipo da infraestrutura de classe.**
+O Pedro escolheu a opção 3 entre cirúrgico / identidade / completo, com a justificativa de que
+*"esse será o teste experimento que teremos para começar a construir as outras classes, raças e
+origens"*. Consequência de método: cada decisão aqui precisa sair como **régua reutilizável**, não
+como ajuste pontual. O que este rework tem que produzir, além do Batedor pronto:
+- um **orçamento de técnica** (quanto vale uma passiva, uma de 1 ação, uma reação, por tier)
+- uma **régua de recurso de classe** (ganho, perda, teto, e como não repetir o erro do Instinto)
+- um **teste de sobreposição entre classes** (o Batedor e o Artilheiro compartilham 4/7/4)
+- o **template de página de classe**, para Vigário, Vampiro, Necromante e Xamã caírem nele
+
 ---
 
 # 8. Pendências abertas

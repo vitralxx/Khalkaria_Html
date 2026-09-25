@@ -79,3 +79,41 @@ funciona — então as técnicas dele não conversam entre si.
    conversarem.
 4. **Trazer a exploração para dentro do combate** — o que a classe sabe fazer (terreno, rastro,
    armadilha, posição) virar vantagem tática em luta, em vez de utilidade fora dela.
+
+
+---
+
+# DECISÃO E PRÓXIMO PASSO  ·  2026-09-25
+
+**Escopo aprovado: 3 — rework completo** (D79). E ele é o **protótipo da infraestrutura de
+classe**: o que sair daqui vira régua para Vigário, Vampiro, Necromante, Xamã, e para as raças e
+origens novas. Cada número precisa vir com a regra que o gerou.
+
+## O que eu ainda preciso ler antes de propor
+
+1. **As outras 6 classes clássicas** no Notion, para montar a tabela comparativa de técnicas —
+   quantas servem em combate, quanto custam, e o que cada recurso de classe faz.
+   `Classes` = `3a66e3a4-01d9-809b-8ece-ec1f30be9fd2`
+2. **O Artilheiro em particular** — é quem sobrepõe o Batedor (4/7/4, arma à distância).
+3. **A página raiz Sistema Khalkaria** `2b76e3a4-…` — regra de ação, reação, furtividade e
+   terreno, que é onde o Batedor deveria ganhar tração.
+
+## Réguas que já tenho e valem aqui
+
+- **DPR canônico:** 1 ação (3 ataques 60/35/10) = `1,20D + 1,05·mod` · 2–3 ações (1 ataque) =
+  `0,65D + 0,60·mod`. Referência nv5 = 18–25. Saúde mediana nv5 ≈ 55.
+- **Orçamento de coeficiente:** toda classe distribui **15 pontos** entre Vitalidade, Vigor e
+  Ressonância. Batedor e Artilheiro estão os dois em `4/7/4`.
+- **Fórmula de status:** `base + (coeficiente × Nível) + (Mod × Nível)`.
+- **PMA:** −5 cumulativo, contado **por alvo** (D29).
+- **Evasão passiva = 10 + Mod.DES** em todas as classes (D20).
+
+## A pergunta de desenho que abre o rework
+
+O Batedor sabe fazer coisas que **nenhuma outra classe faz** — ler terreno, preparar emboscada,
+mapear, andar sem ativar armadilha. O problema é que tudo isso vale **fora** do combate, e combate
+é onde a comparação entre classes acontece.
+
+**O rework tem que trazer a exploração para dentro da luta:** terreno, rastro, posição e preparação
+virando vantagem tática em combate, e não utilidade de viagem. Se isso der certo, o Batedor deixa
+de ser "Artilheiro pior" e passa a ser a classe que **escolhe onde a luta acontece**.
