@@ -591,10 +591,13 @@ body.bz-rc-aberta .bazar-page { margin-left: var(--bz-rc-w); }
 .bz-tabela tbody tr:hover { background: #ffffff07; }
 .bz-tabela tbody tr:focus-visible { outline: 2px solid var(--amber); outline-offset: -2px; }
 .bz-tabela tbody tr.selecionado { background: #e08b2c10; box-shadow: inset 3px 0 0 var(--amber); }
-.bz-tabela td { padding: .5rem .6rem; vertical-align: top; color: var(--text-secondary); }
+/* anywhere: palavra longa ("Desfragmentadora", "Sobrevivência") não fixa o
+   mínimo da coluna; a tabela só quebra no meio da palavra se faltar largura.
+   Células nowrap (Raridade, Valor, CD) não são afetadas. */
+.bz-tabela td { padding: .5rem .6rem; vertical-align: top; color: var(--text-secondary); overflow-wrap: anywhere; }
 .bz-tabela td.c-nome { color: var(--gold); font-family: var(--font-heading); }
 .bz-tabela tr:hover td.c-nome { color: var(--gold-light); }
-.bz-tabela td.c-efeito { color: var(--text-primary); min-width: 12rem; }
+.bz-tabela td.c-efeito { color: var(--text-primary); min-width: 8rem; }
 /* duas linhas na lista mantêm a tabela escaneável; o texto inteiro fica no painel */
 .bz-tabela td.c-efeito span { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
 .bz-tabela tbody tr:hover td.c-efeito span { -webkit-line-clamp: 6; }
@@ -607,6 +610,11 @@ body.bz-rc-aberta .bazar-page { margin-left: var(--bz-rc-w); }
 .bz-tabela td.c-nome .bz-selo-n { margin-left: .3rem; }
 @container registro (max-width: 899px) {
     .bz-tabela .c-obtencao, .bz-tabela .c-regiao { display: none; }
+}
+/* 577px (1366, receita aberta) e 637px (fechada): sem Categoria o mínimo
+   da tabela (títulos nowrap + Raridade/Valor/CD + 8rem de Efeito) cabe */
+@container registro (max-width: 699px) {
+    .bz-tabela .c-categoria { display: none; }
 }
 @container registro (max-width: 639px) {
     .bz-tabela .c-craft { display: none; }
@@ -713,8 +721,9 @@ body.bz-rc-aberta .bazar-page { margin-left: var(--bz-rc-w); }
 .bz-inv-btn:hover, .bz-col-btn:hover { color: var(--gold-light); border-color: var(--border-color); background: #ffffff06; }
 .bz-inv-btn[aria-pressed="true"] { color: var(--gold); border-color: var(--amber-dim); }
 .bz-inv-btn:focus-visible, .bz-col-btn:focus-visible, .bz-inv-for:focus-visible,
-.bz-faixa-btn:focus-visible, .bz-inv-exportar:focus-visible, .bz-toast-btn:focus-visible,
-.bz-trilho:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
+.bz-faixa-btn:focus-visible, .bz-inv-exportar:focus-visible, .bz-toast-btn:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
+/* o trilho ocupa o aside inteiro (overflow:hidden): anel para dentro */
+.bz-trilho:focus-visible { outline: 2px solid var(--amber); outline-offset: -4px; }
 .bz-inv-l2 { align-items: center; margin-top: .45rem; gap: .55rem .75rem; }
 .bz-inv-for {
     font-family: var(--bz-mono); font-variant-numeric: tabular-nums; font-size: .8rem;
@@ -1125,7 +1134,9 @@ body.bz-rc-aberta .bz-rc-borda {
     outline: 2px solid var(--amber); outline-offset: 2px;
 }
 .bz-rc-x { margin-left: auto; }
-.bz-rc-migalhas { display: flex; align-items: center; gap: 4px; min-width: 0; overflow: hidden; padding: 0 .2rem; }
+/* overflow:hidden corta o excesso de migalhas; o padding de 5px deixa inteiro
+   o anel de foco (2px + 2px de offset) */
+.bz-rc-migalhas { display: flex; align-items: center; gap: 4px; min-width: 0; overflow: hidden; padding: 5px; }
 .bz-rc-migalha {
     width: 24px; height: 24px;
     display: inline-flex; align-items: center; justify-content: center;
