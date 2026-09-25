@@ -2,9 +2,9 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "https://vitralxx.github.io/Khalkaria_Html/data/ficha.schema.json",
   "title": "Ficha de Personagem Khalkaria",
-  "description": "Ficha nativa (superset) do jogador. O Export para o Bestiário Khalkaria é uma projeção 'type:npc' derivada deste objeto (ver x-bestiary). Campos derivados NÃO são fonte da verdade: calculados em runtime a partir de atributos/perícias/inventário.",
+  "description": "Ficha nativa (superset) do jogador, gravada em localStorage 'khalkaria_ficha' e no Export JSON. O Export para o Bestiário Khalkaria é uma projeção 'type:npc' derivada deste objeto (ver x-bestiary). Campos derivados NÃO são fonte da verdade: calculados em runtime a partir de atributos/perícias/inventário (a carga vem de KhInv.calcular, em js/ficha.js).",
   "type": "object",
-  "required": ["schemaVersion", "meta", "atributos", "pericias", "recursos"],
+  "required": ["schemaVersion", "meta", "atributos", "pericias", "recursos", "inventario"],
   "additionalProperties": true,
 
   "x-bestiary": {
@@ -16,12 +16,21 @@
     "recursos.saude.max": "health_max", "recursos.stamina.max": "stamina_max", "recursos.eter.max": "ether_max",
     "derivados.evasao": "evasion", "derivados.movimento": "movement", "derivados.armadura": "armor",
     "resistencias[R]": "resistances (CSV)", "resistencias[I]": "immunities (CSV)",
-    "grimorio+tecnicas": "abilities[]", "inventario.armas": "weapons[]",
+    "grimorio+tecnicas": "abilities[]",
+    "inventario.*[categoria ∋ 'Arma']": "weapons[]",
+    "_weapons": "KhInv.armasBestiario: entradas das DUAS colunas cuja categoria, separada por vírgula, contém o token exato 'Arma' (nunca substring: 'Armadura' não é arma). Equipadas primeiro. Cada uma vira $defs/arma. Armaduras não saem em weapons[].",
     "descartado": ["inventario (não-armas)", "sins", "cartasLimiar", "lore"]
   },
 
   "properties": {
-    "schemaVersion": { "type": "string", "const": "1.0" },
+    "schemaVersion": {
+      "type": "string", "const": "2.0",
+      "description": "1.0 só é aceito no import e migrado em código (KhInv.migrarV1): as listas armas/equipamentos/bugigangas/materiais são re-roteadas pela coluna canônica e fundidas. O JSON cru da 1.0 fica em localStorage 'khalkaria_ficha_v1_backup'."
+    },
+    "rev": { "type": "integer", "minimum": 0, "default": 0, "description": "Contador de gravações. Toda gravação faz rev++; uma aba adota o storage quando o rev de lá é maior." },
+    "salvoEm": { "type": "string", "description": "ISO 8601 da última gravação, ou ''." },
+    "exportadoEm": { "type": "string", "description": "ISO 8601 do último Export JSON (KF.exportar), ou ''. O rodapé do inventário do Bazar lembra de exportar depois de 7 dias." },
+    "migradoEm": { "type": "string", "description": "ISO 8601 da migração 1.0 -> 2.0, ou '' (ficha que nasceu 2.0)." },
 
     "meta": {
       "type": "object",
@@ -134,14 +143,13 @@
 
     "inventario": {
       "type": "object",
-      "description": "Slots: equipamentos = 2 + Mod.FOR; bugigangas = 10 + Mod.FOR (derivado, com alerta de Sobrepeso). Munição: 20 un = 1 slot. Sins não pesam. Aquisição NUNCA travada por moeda.",
+      "description": "Duas colunas, nesta ordem: Bugigangas e Equipamentos. Capacidade (derivada): bugigangas = 10 + Mod.FOR (mín. 1) e equipamentos = 2 + Mod.FOR (mín. 1), mais o bônus de inv.capacidade dos itens carregados; o mínimo 1 vale só para a base. Itens equipados não contam. Peso: cada item pesa 1; Efeito com 'Empilhável': 1 bugiganga a cada 10 unidades. Munição: pendente (20:1 no CLAUDE.md × 10:1 no CSV). Acima do máximo e menos que o dobro: Sobrepeso Leve; o dobro ou mais: Sobrepeso Extremo. Sins não pesam. Aquisição NUNCA travada por moeda. Invariante: no máximo uma entrada NÃO equipada por (coluna, id), e toda entrada equipada tem qtd 1.",
+      "required": ["sins", "bugigangas", "equipamentos"],
       "additionalProperties": false,
       "properties": {
-        "sins": { "type": "integer", "minimum": 0, "default": 0, "description": "Contador livre. Moeda do universo. Não deriva de atributo." },
-        "equipamentos": { "type": "array", "items": { "$ref": "#/$defs/item" } },
-        "bugigangas":   { "type": "array", "items": { "$ref": "#/$defs/item" } },
-        "materiais":    { "type": "array", "items": { "$ref": "#/$defs/item" } },
-        "armas":        { "type": "array", "items": { "$ref": "#/$defs/arma" }, "description": "Exportadas para weapons[] do Bestiário." }
+        "sins": { "type": "integer", "minimum": 0, "default": 0, "description": "Contador livre. Moeda do universo. Não deriva de atributo e não pesa." },
+        "bugigangas":   { "type": "array", "items": { "$ref": "#/$defs/entradaInventario" } },
+        "equipamentos": { "type": "array", "items": { "$ref": "#/$defs/entradaInventario" } }
       }
     },
 
@@ -235,34 +243,71 @@
       }
     },
 
-    "item": {
-      "description": "Snapshot alinhado ao data/bazar.json (pipeline do Pedro). Preço é informativo.",
-      "allOf": [{ "$ref": "#/$defs/entidadeBase" }],
+    "entradaInventario": {
+      "description": "Uma linha do inventário. O snapshot (nome..valor, inv) vem do data/bazar.json e é atualizado pela reconciliação com o catálogo (KhInv.reconciliar), que nunca toca em qtd, equipado, sintonizado nem secaoManual. Preço é informativo.",
+      "type": "object",
+      "required": ["uid", "id", "nome", "qtd", "empilhavel", "equipado", "sintonizado", "avulso"],
+      "additionalProperties": true,
       "properties": {
-        "categoria": { "type": "string" },
+        "uid": { "type": "string", "description": "Identidade da linha: 'e' + Date.now() em base 36 + 4 caracteres aleatórios. Estável entre gravações." },
+        "id": { "type": "string", "description": "id do item em data/bazar.json (ex.: item-virotes-flechas); '' no item avulso." },
+        "nome": { "type": "string" },
+        "categoria": { "type": "string", "description": "Categorias do CSV separadas por vírgula; lida por token (ex.: 'Arma', 'Armadura', 'Item Mágico')." },
         "raridade": { "type": "string" },
+        "arquetipo": { "type": "string" },
+        "arte": { "type": "string" },
         "efeito": { "type": "string" },
-        "valor": { "type": "string", "description": "Valor (Sins), informativo. Ex.: '6d10+40'." },
-        "obtencao": { "type": "string" },
-        "craft": { "type": "string" },
-        "ingredientes": { "type": "string" },
-        "qtd": { "type": "integer", "minimum": 1, "default": 1 },
-        "slotPeso": { "type": "number", "description": "peso em slots; munição = 20un/slot" }
+        "valor": { "type": "string", "description": "Valor (Sins), informativo e nunca convertido em número. Ex.: '6d10+40'." },
+        "inv": {
+          "oneOf": [{ "$ref": "#/$defs/invRegistro" }, { "type": "null" }],
+          "description": "Regras de carga do registro; null até o catálogo chegar (entrada migrada) e no avulso."
+        },
+        "qtd": { "type": "integer", "minimum": 1, "maximum": 9999, "default": 1, "description": "Zero não existe: descer abaixo de 1 remove a entrada." },
+        "empilhavel": { "type": "boolean", "description": "Caixa 'Item Empilhável' marcada pelo jogador; vence o registro." },
+        "empilhavelRegistro": { "type": ["boolean", "null"], "description": "O que o registro diz (inv.empilhavel, ou a frase do Efeito). null no avulso." },
+        "equipado": { "type": "boolean", "description": "Só na coluna equipamentos. Equipado não pesa. Limites: 1 Armadura [Pesada] e 2 [Leve] (independentes: pendente Pedro)." },
+        "equipadoEm": { "type": ["string", "null"], "description": "ISO 8601 de quando foi equipado, ou null." },
+        "sintonizado": { "type": "boolean", "description": "Itens Mágicos; limite de 3. Não muda o peso (pendente Pedro)." },
+        "secaoManual": { "type": "boolean", "description": "true quando o jogador pôs a entrada fora da coluna canônica (selo 'fora da regra')." },
+        "avulso": { "type": "boolean", "description": "Item sem registro: nome livre, sem efeito, caixa Empilhável desmarcada." },
+        "orfao": { "type": "boolean", "description": "id que sumiu do catálogo. Nunca é apagado; pesa pelo snapshot." }
+      }
+    },
+
+    "invRegistro": {
+      "description": "Campo 'inv' de cada item do data/bazar.json, gerado por tools/gerar_bazar.py a partir do CSV. Nada de peso pré-calculado.",
+      "type": "object",
+      "required": ["slot"],
+      "additionalProperties": false,
+      "properties": {
+        "slot": { "type": "string", "enum": ["equipamento", "bugiganga"], "description": "Coluna canônica. Empilhável vai para bugiganga (SLOT_EMPILHAVEL, pendente Pedro)." },
+        "empilhavel": { "type": "boolean" },
+        "armadura": { "type": "string", "enum": ["Pesada", "Leve"] },
+        "capacidade": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": { "bug": { "type": "integer" }, "equip": { "type": "integer" } }
+        },
+        "acumula": { "type": "boolean", "description": "false: cópias do mesmo item não somam capacidade." },
+        "ocupa": { "type": "boolean", "description": "false: não ocupa espaço (Bolsa de Couro)." },
+        "recipiente": { "type": "integer", "description": "Armazena até N Bugigangas (Bolsa Dimensional). Ainda não modelado na carga: só selo." }
       }
     },
 
     "arma": {
-      "description": "Item de combate; exporta para weapons[] do Bestiário (o app reescala por level).",
-      "allOf": [{ "$ref": "#/$defs/entidadeBase" }],
+      "description": "Projeção de uma entradaInventario em weapons[] do Bestiário (KhInv.armasBestiario). O app reescala por level.",
+      "type": "object",
+      "required": ["name"],
       "properties": {
-        "category": { "type": "string", "description": "categoria do catálogo, ex.: 'Pesada Cortante'" },
-        "level": { "type": "string", "enum": ["0", "1", "2", "3"], "default": "0" },
-        "dado": { "type": "string", "description": "dado base, ex.: '1d12'" },
+        "name": { "type": "string", "description": "nome da entrada" },
+        "category": { "type": "string", "description": "arquétipo do catálogo, ex.: 'Pesada Cortante'; '' se não houver" },
+        "level": { "type": "string", "enum": ["0", "1", "2", "3"], "default": "0", "description": "o N de um nome terminado em ' +N'" },
+        "dado": { "type": "string", "description": "dado base, ex.: '1d12' (hoje sai '')" },
         "atributo": { "type": "string", "enum": ["Força", "Destreza"] },
-        "dano": { "type": "string", "description": "tipo de dano" },
+        "dano": { "type": "string", "description": "tipo de dano (hoje sai '')" },
         "acoes": { "type": "string", "description": "ex.: 'Atacar(2)'" },
         "efeito": { "type": "string" },
-        "mystic": { "type": "boolean", "default": false, "description": "true p/ focos (sem dano/acerto)" }
+        "mystic": { "type": "boolean", "default": false, "description": "true quando o arquétipo começa com 'Foco Místico' (sem dano/acerto)" }
       }
     },
 

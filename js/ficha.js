@@ -477,6 +477,8 @@
   var loteN = 0;
   var bazarCache = null, idxCatalogo = null, catalogoPromessa = null;
   var renderPendente = false, abrirPendente = null, obsT;
+  var conflitoDrawer = null;           // {uid, campo, conflito}: "Trocar por esta" até a próxima mudança
+  var migrouAgora = false;             // load() converteu uma v1: o init() mostra o toast de migração
 
   function agoraISO() { return new Date().toISOString(); }
   function clone(x) {
@@ -510,6 +512,11 @@
     var inv = f && f.inventario;
     return !!(inv && typeof inv === 'object' && (temPropria(inv, 'armas') || temPropria(inv, 'materiais')));
   }
+  function temItens(f) {
+    var inv = f && f.inventario;
+    return KhInv.COLUNAS.some(function (c) { return !!(inv && Array.isArray(inv[c]) && inv[c].length); });
+  }
+  var MSG_MIGRACAO = 'Inventário convertido: 4 listas → 2 colunas. Armaduras e materiais agora pesam; marque o que está Equipado.';
   function guardaBackup(raw) {
     if (lsGet(BACKUP_KEY) != null) return;   // nunca sobrescreve o backup
     try { localStorage.setItem(BACKUP_KEY, raw); } catch (e) {}
@@ -526,6 +533,7 @@
     if (!f || typeof f !== 'object' || Array.isArray(f)) { guardaBackup(raw); return novaFicha(); }
     if (f.schemaVersion !== SCHEMA_VERSION) guardaBackup(raw);
     var m = migra(f);
+    if (f.schemaVersion !== SCHEMA_VERSION) migrouAgora = temItens(m);
     if (f.schemaVersion !== SCHEMA_VERSION || temListasVelhas(f)) {
       m.rev++; m.salvoEm = agoraISO(); grava(m);
     } else ultimoGravado = raw;
@@ -580,6 +588,7 @@
   function commit(partes, origem, op, uid) {
     clearTimeout(saveT); saveT = null;
     ficha.rev++; ficha.salvoEm = agoraISO(); grava(ficha);
+    conflitoDrawer = null;
     if (body) {
       if (partes.indexOf('tudo') >= 0) renderAllQuandoLivre();
       else { renderListas(); refreshDerivados(); atualizaSins(); }
@@ -766,12 +775,12 @@
   }
 
   // ---------------- toast ----------------
-  function toast(msg) {
+  function toast(msg, ms) {
     if (!document.body) return;
     var t = document.getElementById('kf-toast');
-    if (!t) { t = el('div', { id:'kf-toast', 'data-kf-ignorar':'' }); document.body.appendChild(t); }
+    if (!t) { t = el('div', { id:'kf-toast', 'data-kf-ignorar':'', role:'status' }); document.body.appendChild(t); }
     t.textContent = msg; t.className = 'kf-show';
-    clearTimeout(toastT); toastT = setTimeout(function () { t.className = ''; }, 1600);
+    clearTimeout(toastT); toastT = setTimeout(function () { t.className = ''; }, ms || 1600);
   }
 
   // ---------------- CSS ----------------
@@ -821,6 +830,66 @@
       '.kf-addbtn{display:inline-block;margin-left:8px;background:rgba(212,175,55,.12);color:#d4af37;border:1px solid rgba(212,175,55,.4);border-radius:4px;padding:1px 7px;cursor:pointer;font-size:11px;font-family:Cinzel,serif;vertical-align:middle;user-select:none}',
       '.kf-addbtn:hover{background:rgba(212,175,55,.25)}',
       '.kf-draggable{cursor:grab}'
+    ].join('\n');
+    document.head.appendChild(css);
+  }
+  // Inventário do drawer (§4.11). Bloco próprio, fora do injectCSS (que é dívida
+  // registrada e não muda nesta entrega). Cores do §10 em hex, como o drawer.
+  function injectCSSInventario() {
+    if (document.getElementById('kf-css-inv')) return;
+    var mono = 'ui-monospace,"Cascadia Mono",Consolas,monospace';
+    var css = document.createElement('style'); css.id = 'kf-css-inv';
+    css.textContent = [
+      '.kf-sec-nota{font-family:"Crimson Text",Georgia,serif;font-size:12px;font-style:italic;letter-spacing:0;color:#8a857c}',
+      '.kf-carga{margin:2px 0 10px}',
+      '.kf-carga-topo{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:4px}',
+      '.kf-peso{font-size:12px;color:#9a968e;line-height:1.2}',
+      '.kf-peso b{font-family:' + mono + ';font-variant-numeric:tabular-nums;font-size:1.25rem;color:#e6e2da;margin-left:6px;font-weight:600}',
+      '.kf-peso small{display:block;font-size:11px;color:#7a766e}',
+      '.kf-cond{margin-left:auto;font-family:Cinzel,serif;font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:3px 8px;border-radius:3px;text-decoration:none;white-space:nowrap}',
+      '.kf-cond-nenhuma{color:#8a857c;border:1px solid #2a2a35}',
+      '.kf-cond-leve{color:#120d06;background:#e08b2c}',
+      '.kf-cond-extremo{color:#ffe9e4;background:#8b2635}',
+      'a.kf-cond:hover,a.kf-cond:focus-visible{text-decoration:underline}',
+      '.kf-carga-col{margin-top:8px}',
+      '.kf-carga-lin{display:flex;align-items:baseline;gap:8px;font-size:12px}',
+      '.kf-carga-nome{font-family:Cinzel,serif;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#c9a94a}',
+      '.kf-carga-num{font-family:' + mono + ';font-variant-numeric:tabular-nums;color:#9a968e;cursor:help}',
+      '.kf-carga-num b{font-size:14px;color:#f0d77a}',
+      '.kf-est-leve .kf-carga-num b{color:#e08b2c}.kf-est-extremo .kf-carga-num b{color:#ff6b5a}',
+      '.kf-carga-est{margin-left:auto;font-style:italic;font-size:12px;color:#9a968e}',
+      '.kf-est-leve .kf-carga-est{color:#e08b2c}.kf-est-extremo .kf-carga-est{color:#ff6b5a}',
+      '.kf-regua{position:relative;height:8px;border-radius:2px;background:#0a0a10;box-shadow:inset 0 0 0 1px #2a2a35;margin:4px 14px 0 0}',
+      '.kf-regua-ok{position:absolute;left:0;top:0;bottom:0;background:linear-gradient(90deg,#9c7c1f,#d4af37);border-radius:2px 0 0 2px;transition:width .2s ease-out}',
+      '.kf-regua-exc{position:absolute;left:50%;top:0;bottom:0;background:repeating-linear-gradient(45deg,#e08b2c 0 3px,#a8661d 3px 6px);transition:width .2s ease-out}',
+      '.kf-est-extremo .kf-regua-exc{background:repeating-linear-gradient(45deg,#b3261e 0 3px,#6e1712 3px 6px)}',
+      '.kf-regua-marco{position:absolute;left:50%;top:-2px;bottom:-2px;width:2px;margin-left:-1px;background:#f0d77a}',
+      '.kf-regua-mais{position:absolute;left:100%;top:-4px;margin-left:3px;font-family:' + mono + ';font-size:10px;color:#ff6b5a}',
+      '.kf-inv-cab{font-family:Cinzel,serif;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#c9a94a;margin:10px 0 4px;padding-bottom:2px;border-bottom:1px solid #2a2a35}',
+      '.kf-inv-vazio{font-size:12px;font-style:italic;color:#6a665e;padding:2px 0 6px}',
+      '.kf-inv-item{background:#101017;border:1px solid #23232d;border-left:3px solid #3a3a45;border-radius:4px;padding:5px 7px;margin-bottom:4px;font-size:12px}',
+      '.kf-inv-item.kf-equipado{border-left-color:#d4af37;background:#15140f}',
+      '.kf-inv-l1{display:flex;align-items:flex-start;gap:6px}',
+      '.kf-inv-nome{flex:1;min-width:0;font-family:Cinzel,serif;font-size:12.5px;line-height:1.25;color:#e6e2da}',
+      '.kf-inv-nome.kf-orfao{font-style:italic}',
+      '.kf-inv-peso{font-family:' + mono + ';font-variant-numeric:tabular-nums;color:#9a968e;white-space:nowrap;cursor:help}',
+      '.kf-inv-x{background:none;border:none;color:#e06b5a;opacity:.45;cursor:pointer;font-size:16px;line-height:1;padding:0 2px}',
+      '.kf-inv-x:hover,.kf-inv-x:focus-visible{opacity:1}',
+      '.kf-inv-l2{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:4px}',
+      '.kf-step{display:inline-flex;align-items:center;border:1px solid #2a2a35;border-radius:4px;overflow:hidden}',
+      '.kf-step button{background:#1a1a22;color:#d4af37;border:none;width:22px;height:22px;padding:0;cursor:pointer;font-size:14px;line-height:1}',
+      '.kf-step button:hover{background:#24242e}',
+      '#kf-drawer .kf-step input[type=text]{flex:none;min-width:0;width:4.4ch;text-align:center;border:none;border-radius:0;padding:2px 0;font-family:' + mono + ';font-variant-numeric:tabular-nums}',
+      '.kf-inv-cx{display:inline-flex;align-items:center;gap:4px;font-size:12.5px;color:#c8c4bc;cursor:pointer}',
+      '#kf-drawer .kf-inv-cx input{margin:0;padding:0;accent-color:#e08b2c}',
+      '.kf-dif{display:inline-block;width:5px;height:5px;border-radius:50%;background:#e08b2c;margin-left:2px}',
+      '.kf-inv-tags{display:flex;flex-wrap:wrap;gap:4px;margin-top:4px}',
+      '.kf-inv-tags .kf-tag{margin:0}',
+      'button.kf-tag{background:none;color:#e08b2c;border-color:#e08b2c66;cursor:pointer;font-family:inherit}',
+      '.kf-inv-aviso{margin:5px 0 0;font-size:12px;color:#e08b2c}',
+      '.kf-inv-aviso .kf-btn{margin-left:6px}',
+      '#kf-drawer .kf-inv-item button:focus-visible,#kf-drawer .kf-inv-item input:focus-visible{outline:2px solid #e08b2c;outline-offset:1px}',
+      '#kf-toast{max-width:min(560px,90vw);text-align:center;line-height:1.35}'
     ].join('\n');
     document.head.appendChild(css);
   }
@@ -897,7 +966,12 @@
     });
     function rec(chave, padrao) { return temPropria(estadoSec, chave) ? estadoSec[chave] : padrao; }
     body.innerHTML = '';
-    derdispEl = null;
+    derdispEl = null; cargaEl = null;
+    // no Bazar o inventário completo está na página: a seção nasce recolhida, com a nota
+    var noBazar = naBazar();
+    var tituloInv = noBazar
+      ? el('span', {}, ['▐ Inventário ', el('span', { class:'kf-sec-nota' }, ['· o inventário completo está nesta página'])])
+      : '▐ Inventário';
     // NÚCLEO
     body.appendChild(sec('identidade', '▐ Identidade', [
       txt('Nome', R('meta'), 'nome'), txt('Jogador', R('meta'), 'jogador'),
@@ -914,7 +988,7 @@
     body.appendChild(sec('recursos', '▐ Recursos', renderRecursos(), rec('recursos', false)));
     body.appendChild(sec('derivados', '▐ Derivados', [renderDerivados()], rec('derivados', false)));
     body.appendChild(sec('resistencias', '▐ Resistências', [renderResist()], rec('resistencias', true)));
-    body.appendChild(sec('inventario', '▐ Inventário', renderInventario(), rec('inventario', true)));
+    body.appendChild(sec('inventario', tituloInv, renderInventario(), rec('inventario', noBazar)));
     // listas por DnD/+add
     body.appendChild(sec('tecnicas', '▐ Técnicas & Marcas', [dropZone('tecnicas','Arraste técnicas/marcas aqui'), listaEl('tecnicas')], rec('tecnicas', false)));
     body.appendChild(sec('grimorio', '▐ Grimório (Magias)', [dropZone('grimorio','Arraste magias aqui'), listaEl('grimorio')], rec('grimorio', false)));
@@ -1012,10 +1086,12 @@
     refreshDerivados();
     return wrap;
   }
-  // Equip./Bugigangas pelo motor de carga (KhInv.calcular), com Leve e Extremo
+  // Equip./Bugigangas pela mesma carga do KF.carga(), com Leve e Extremo; o
+  // bloco de carga do Inventário (Peso total, condição, réguas) vai junto
   function refreshDerivados() {
+    var cg = (derdispEl || cargaEl) ? cargaAtual() : null;
+    refreshCarga(cg);
     if (!derdispEl) return;
-    var cg = KhInv.calcular(ficha.inventario, ficha.atributos.for);
     function linha(rotulo, c) {
       var sp = c.estado === 'leve' ? ' · Sobrepeso Leve' : (c.estado === 'extremo' ? ' · Sobrepeso Extremo' : '');
       return '<div>' + rotulo + '</div><div class="' + (c.estado === 'ok' ? 'kf-ok' : 'kf-warn') + '">' +
@@ -1046,41 +1122,250 @@
     return grid;
   }
 
-  // Inventário v2 no drawer: duas colunas por uid. A versão rica (stepper,
-  // caixas, réguas) é a etapa 4; aqui só o que mantém o drawer funcionando.
+  // ---------------- inventário no drawer (spec §4.11) ----------------
+  // Duas colunas por uid: [nome] [= peso] [×] / [− n +] [☐ Item Empilhável]
+  // [☐ Equipado]. Peso total, condição e as duas réguas vêm de cargaAtual()
+  // (o mesmo KF.carga()) e são redesenhados em refreshDerivados(), então a FOR
+  // digitada mexe na régua na hora. Tudo escreve pelos mutadores (commit).
+  var NOME_COL = { bugigangas: 'Bugigangas', equipamentos: 'Equipamentos' };
+  var cargaEl = null;
+  function cargaAtual() { return KhInv.calcular(ficha.inventario, ficha.atributos.for); }
+  function atual(uid) { var a = KhInv.acha(ficha.inventario, uid); return a ? a.entrada : null; }
+
+  // texto verbatim da condição quando o Bazar injetou BZ_VOCAB; fora dele, só o link
+  function condicaoInfo(c) {
+    var v = raiz.BZ_VOCAB && raiz.BZ_VOCAB.condicoes && raiz.BZ_VOCAB.condicoes[c];
+    return { id: (v && v.id) || 'sobrepeso-' + c,
+      nome: (v && v.nome) || (c === 'leve' ? 'Sobrepeso Leve' : 'Sobrepeso Extremo'),
+      texto: (v && v.texto) || '' };
+  }
+  function seloCondicao(condicao) {
+    if (condicao !== 'leve' && condicao !== 'extremo') {
+      return el('span', { class:'kf-cond kf-cond-nenhuma' }, ['Sem sobrepeso']);
+    }
+    var ci = condicaoInfo(condicao);
+    return el('a', { class:'kf-cond kf-cond-' + condicao, href: ROOT + 'pages/condicoes.html#' + ci.id,
+      title: ci.texto || ('Ver ' + ci.nome + ' em Condições') }, [ci.nome]);
+  }
+  // "10 base + 2 FOR 14 + 3 Mochila Reforçada = 15" (o mínimo 1 vale só para a base)
+  function contaCapacidade(c, cg) {
+    var base = c === 'bugigangas' ? KhInv.REGRAS.BASE_BUG : KhInv.REGRAS.BASE_EQ;
+    var col = cg[c], m = cg.modFor;
+    var s = base + ' base ' + (m < 0 ? '− ' + (-m) : '+ ' + m) + ' FOR ' + cg.forca;
+    if (base + m < KhInv.REGRAS.MIN) s += ' (mín. ' + KhInv.REGRAS.MIN + ')';
+    col.bonus.forEach(function (b) {
+      s += ' + ' + b.n + ' ' + b.nome;
+      if (b.ignoradas === 1) s += ' (2ª ' + b.nome + ' não acumula)';
+      else if (b.ignoradas > 1) s += ' (' + b.ignoradas + ' cópias de ' + b.nome + ' não acumulam)';
+    });
+    return s + ' = ' + col.max;
+  }
+  function textoEstado(col) {
+    if (col.estado === 'ok') return 'livre ' + (col.max - col.usado);
+    if (col.estado === 'leve') return 'Sobrepeso Leve — Extremo em ' + (2 * col.max);
+    return 'Sobrepeso Extremo';
+  }
+  // régua de 0 a 2×max: dourado até o max, âmbar hachurado até 2×max; marco no max
+  function regua(c, cg) {
+    var col = cg[c], total = 2 * col.max;
+    var ok = total > 0 ? Math.min(col.usado, col.max) / total * 100 : 0;
+    var exc = total > 0 ? Math.max(0, Math.min(col.usado, total) - col.max) / total * 100 : 0;
+    var cond = col.estado === 'leve' ? ', Sobrepeso Leve' : (col.estado === 'extremo' ? ', Sobrepeso Extremo' : '');
+    return el('div', { class:'kf-regua', role:'meter', 'aria-label': NOME_COL[c],
+      'aria-valuemin': 0, 'aria-valuemax': col.max, 'aria-valuenow': col.usado,
+      'aria-valuetext': col.usado + ' de ' + col.max + ' ' + NOME_COL[c].toLowerCase() + cond }, [
+      el('span', { class:'kf-regua-ok', style:'width:' + ok + '%' }),
+      exc > 0 ? el('span', { class:'kf-regua-exc', style:'width:' + exc + '%' }) : null,
+      el('span', { class:'kf-regua-marco' }),
+      col.usado > total ? el('span', { class:'kf-regua-mais' }, ['+' + (col.usado - total)]) : null
+    ]);
+  }
+  function blocoColuna(c, cg) {
+    var col = cg[c];
+    return el('div', { class:'kf-carga-col kf-est-' + col.estado, 'data-carga': c }, [
+      el('div', { class:'kf-carga-lin' }, [
+        el('span', { class:'kf-carga-nome' }, [NOME_COL[c]]),
+        el('span', { class:'kf-carga-num', title: contaCapacidade(c, cg) }, [
+          el('b', {}, [String(col.usado)]), ' / ' + col.max]),
+        el('span', { class:'kf-carga-est' }, [textoEstado(col)])
+      ]),
+      regua(c, cg)
+    ]);
+  }
+  function refreshCarga(cg) {
+    if (!cargaEl) return;
+    cg = cg || cargaAtual();
+    cargaEl.innerHTML = '';
+    cargaEl.appendChild(el('div', { class:'kf-carga-topo' }, [
+      el('div', { class:'kf-peso' }, [
+        'Peso total', el('b', {}, [String(cg.pesoTotal)]),
+        el('small', {}, [cg.bugigangas.usado + ' bugigangas + ' + cg.equipamentos.usado + ' equipamentos'])
+      ]),
+      seloCondicao(cg.condicao)
+    ]));
+    KhInv.COLUNAS.forEach(function (c) { cargaEl.appendChild(blocoColuna(c, cg)); });
+  }
+
   function renderInventario() {
     var sins = el('input', { type:'number', min:0, step:1, id:'kf-sins', value: ficha.inventario.sins, title:'não pesa' });
     sins.addEventListener('change', function () { sins.value = definirSins(sins.value, 'drawer'); });
     var busca = el('input', { type:'text', placeholder:'Buscar item do Bazar…' });
     var res = el('div', {});
     busca.addEventListener('input', function () { buscaBazar(busca.value, res); });
-    function rot(t) { return el('div', { style:'font-size:11px;color:#c9a94a;margin:6px 0 2px' }, [t]); }
+    cargaEl = el('div', { class:'kf-carga' });
+    var cg = cargaAtual();
+    refreshCarga(cg);
     return [
       el('div', { class:'kf-row' }, [el('label', {}, ['Sins']), sins]),
+      cargaEl,
       el('div', { class:'kf-row' }, [busca]),
       res,
       dropZone('inventario', 'Arraste itens do Bazar aqui'),
-      rot('Bugigangas'), listaInvEl('bugigangas'),
-      rot('Equipamentos'), listaInvEl('equipamentos')
+      el('div', { class:'kf-inv-cab' }, [NOME_COL.bugigangas]), listaInvEl('bugigangas', cg),
+      el('div', { class:'kf-inv-cab' }, [NOME_COL.equipamentos]), listaInvEl('equipamentos', cg)
     ];
   }
   function atualizaSins() {
     var i = body && body.querySelector('#kf-sins');
     if (i && document.activeElement !== i) i.value = ficha.inventario.sins;
   }
-  function listaInvEl(coluna) {
-    var wrap = el('div', { 'data-lista': 'inventario.' + coluna });
-    (ficha.inventario[coluna] || []).forEach(function (e) {
-      var tags = (e.equipado ? '<span class="kf-tag">equipado</span>' : '') +
-        (e.avulso ? '<span class="kf-tag">sem registro</span>' : '') +
-        (e.orfao ? '<span class="kf-tag">fora do registro</span>' : '');
-      wrap.appendChild(el('div', { class:'kf-list-item', 'data-uid': e.uid }, [
-        el('span', { class:'kf-x', title:'Remover', onclick: function () {
-          if (remover(e.uid, 'drawer')) toast('Removido: ' + e.nome); } }, ['✕']),
-        el('span', { class:'kf-nm', html: tags + esc(e.nome) + (e.qtd > 1 ? ' <b>×' + e.qtd + '</b>' : '') })
-      ]));
+  function listaInvEl(coluna, cg) {
+    cg = cg || cargaAtual();
+    var wrap = el('div', { class:'kf-inv-lista', 'data-lista': 'inventario.' + coluna, 'data-col': coluna });
+    var l = (ficha.inventario[coluna] || []).filter(function (e) { return e && e.uid; });
+    if (!l.length) wrap.appendChild(el('div', { class:'kf-inv-vazio' }, ['Nada carregado.']));
+    var avisos = {};
+    cg.avisos.forEach(function (a) {
+      (a.uids || []).forEach(function (u) { (avisos[u] = avisos[u] || []).push(a); });
     });
+    l.forEach(function (e) { wrap.appendChild(linhaInv(e, coluna, cg, avisos[e.uid] || [])); });
     return wrap;
+  }
+  function motivoPeso(e, coluna, cg) {
+    var m = cg.motivoPorUid[e.uid], p = cg.pesoPorUid[e.uid] || 0;
+    if (m === 'equipado') return 'equipado não conta';
+    if (m === 'nao-ocupa') return 'não ocupa espaço';
+    if (m === 'unidade') return 'cada item pesa 1';
+    if (m === 'pilha') {
+      if (!p) return 'soma na pilha da outra linha deste item';
+      var k = e.id || e.uid, soma = 0;
+      (ficha.inventario[coluna] || []).forEach(function (x) {
+        if (x && cg.motivoPorUid[x.uid] === 'pilha' && (x.id || x.uid) === k) soma += x.qtd;
+      });
+      return soma + ' un. ÷ ' + KhInv.REGRAS.PILHA + ', arredonda para cima = ' + p;
+    }
+    return '';
+  }
+  function textoConflito(cf) {
+    var nomes = (cf.uids || []).map(function (u) { var x = atual(u); return x ? x.nome : ''; }).filter(Boolean);
+    var n = nomes.length, lista = nomes.length ? ' (' + nomes.join(', ') + ')' : '';
+    if (cf.tipo === 'pesada') return 'Já há ' + n + (n === 1 ? ' Armadura Pesada equipada' : ' Armaduras Pesadas equipadas') + lista + '.';
+    if (cf.tipo === 'leve') return 'Já há ' + n + (n === 1 ? ' Armadura Leve equipada' : ' Armaduras Leves equipadas') + lista + '.';
+    return 'Já há ' + n + (n === 1 ? ' Item Mágico sintonizado' : ' Itens Mágicos sintonizados') + lista + '.';
+  }
+  function tagEl(t, title) { return el('span', { class:'kf-tag', title: title || null }, [t]); }
+  function caixa(ctl, rotulo, marcado, aoMudar, extra) {
+    var cb = el('input', { type:'checkbox', 'data-ctl': ctl });
+    cb.checked = !!marcado;
+    cb.addEventListener('change', function () { aoMudar(cb); });
+    return el('label', { class:'kf-inv-cx' }, [cb, ' ' + rotulo, extra || null]);
+  }
+  function linhaInv(e, coluna, cg, avisos) {
+    var uid = e.uid, peso = cg.pesoPorUid[uid] || 0;
+    var qtd = e.qtd;
+    function mudaQtd(n) {
+      var ent = atual(uid);
+      if (!ent) return;
+      var r = quantidade(uid, n, 'drawer');
+      if (r && r.removido) toast('Removido: ' + ent.nome);
+    }
+    function passo(ev, d) {
+      var ent = atual(uid);
+      if (ent) mudaQtd(ent.qtd + (ev && ev.shiftKey ? 10 * d : d));
+    }
+    // L1: nome, peso com o motivo no title, ×
+    var tags = [];
+    if (e.equipado) tags.push(tagEl('equipado'));
+    if (e.sintonizado) tags.push(tagEl('sintonizado'));
+    if (e.avulso) tags.push(tagEl('sem registro'));
+    if (e.inv && e.inv.capacidade) {
+      var cp = [];
+      if (e.inv.capacidade.bug) cp.push('+' + e.inv.capacidade.bug + ' bugigangas');
+      if (e.inv.capacidade.equip) cp.push('+' + e.inv.capacidade.equip + ' equipamentos');
+      if (cp.length) tags.push(tagEl(cp.join(' · '), 'aumenta a capacidade'));
+    }
+    if (e.inv && e.inv.recipiente) tags.push(tagEl('recipiente ainda não modelado',
+      'Armazena até ' + e.inv.recipiente + ' Bugigangas: a ficha ainda não desconta isso'));
+    var textos = [];
+    avisos.forEach(function (a) {
+      if (a.tipo === 'copia') tags.push(tagEl('cópia não acumula', a.msg));
+      else if (a.tipo === 'orfao') tags.push(tagEl('fora do registro', a.msg));
+      else if (a.tipo === 'fora-da-regra') {
+        tags.push(el('button', { type:'button', class:'kf-tag', 'data-ctl':'corrigir', title: a.msg + ' (clique para mover)',
+          onclick: function () { var x = atual(uid); if (x) mover(uid, KhInv.colunaCanonica(x), 'drawer'); } },
+          ['fora da regra · corrigir']));
+      } else textos.push(a.msg);   // pesada | leve | sintonia: estado acima do limite, só aviso
+    });
+    var linha = el('div', { class:'kf-inv-item' + (e.equipado ? ' kf-equipado' : ''), 'data-uid': uid, role:'group',
+      'aria-label': e.nome + ', ' + qtd + ', peso ' + peso + (e.empilhavel ? ', empilhável' : '') + (e.equipado ? ', equipado' : '') }, [
+      el('div', { class:'kf-inv-l1' }, [
+        el('span', { class:'kf-inv-nome' + (e.orfao ? ' kf-orfao' : ''), title: [e.categoria, e.raridade].filter(Boolean).join(' · ') || null }, [e.nome]),
+        el('span', { class:'kf-inv-peso', title: motivoPeso(e, coluna, cg) }, ['= ' + peso]),
+        el('button', { type:'button', class:'kf-inv-x', 'data-ctl':'x', title:'Remover', 'aria-label':'Remover ' + e.nome,
+          onclick: function () { var x = atual(uid); if (x && remover(uid, 'drawer')) toast('Removido: ' + x.nome); } }, ['×'])
+      ])
+    ]);
+    // L2: stepper, Item Empilhável, Equipado
+    var num = el('input', { type:'text', inputmode:'numeric', 'data-ctl':'qtd', value: qtd,
+      'aria-label':'Quantidade de ' + e.nome, title:'Quantidade (Enter aplica; 0 remove)' });
+    function aplicaNum() {
+      var n = parseInt(String(num.value).trim(), 10);
+      if (!isFinite(n)) { num.value = qtd; return; }
+      if (n !== qtd) mudaQtd(n);
+    }
+    num.addEventListener('change', aplicaNum);
+    num.addEventListener('keydown', function (ev) {
+      if (ev.key === 'Enter') { ev.preventDefault(); aplicaNum(); }
+      else if (ev.key === 'Escape') { num.value = qtd; }
+    });
+    var dif = null;
+    if (typeof e.empilhavelRegistro === 'boolean' && e.empilhavel !== e.empilhavelRegistro) {
+      dif = el('span', { class:'kf-dif', title:'o registro diz: ' + (e.empilhavelRegistro ? 'empilhável' : 'não empilhável') });
+    }
+    var l2 = el('div', { class:'kf-inv-l2' }, [
+      el('span', { class:'kf-step' }, [
+        el('button', { type:'button', 'data-ctl':'menos', title:'Menos 1 (Shift: 10)', 'aria-label':'Diminuir ' + e.nome,
+          onclick: function (ev) { passo(ev, -1); } }, ['−']),
+        num,
+        el('button', { type:'button', 'data-ctl':'mais', title:'Mais 1 (Shift: 10)', 'aria-label':'Aumentar ' + e.nome,
+          onclick: function (ev) { passo(ev, 1); } }, ['+'])
+      ]),
+      caixa('emp', 'Item Empilhável', e.empilhavel, function () { alternar(uid, 'empilhavel', 'drawer'); }, dif)
+    ]);
+    if (coluna === 'equipamentos') {
+      l2.appendChild(caixa('equip', 'Equipado', e.equipado, function (cb) {
+        var r = alternar(uid, 'equipado', 'drawer');
+        if (r && r.ok) return;
+        cb.checked = !cb.checked;   // conflito ou erro: nada muda
+        if (r && r.conflito) { conflitoDrawer = { uid: uid, campo: 'equipado', conflito: r.conflito }; renderListas(); }
+      }));
+    }
+    linha.appendChild(l2);
+    if (tags.length) linha.appendChild(el('div', { class:'kf-inv-tags' }, tags));
+    textos.forEach(function (t) { linha.appendChild(el('p', { class:'kf-inv-aviso' }, [t])); });
+    // Passar do limite não muda nada: a linha oferece "Trocar por esta" (um passo só de desfazer)
+    if (conflitoDrawer && conflitoDrawer.uid === uid) {
+      var cf = conflitoDrawer;
+      linha.appendChild(el('p', { class:'kf-inv-aviso', role:'status' }, [
+        textoConflito(cf.conflito),
+        el('button', { type:'button', class:'kf-btn sm', 'data-ctl':'trocar', onclick: function () {
+          var x = atual(uid);
+          var r = trocar(uid, cf.campo, cf.conflito.uids, 'drawer');
+          if (r && r.ok && x) toast('Trocado: ' + x.nome + ' equipado');
+        } }, ['Trocar por esta'])
+      ]));
+    }
+    return linha;
   }
 
   // ---- listas (suporta caminho aninhado inventario.x) ----
@@ -1101,12 +1386,27 @@
   }
   function renderListas() {
     if (!body) return;
+    // o stepper e as caixas são redesenhados a cada commit: devolve o foco ao
+    // mesmo controle da mesma linha (teclado não se perde no +/−)
+    var a = document.activeElement, fUid = null, fCtl = null;
+    if (a && a.getAttribute && body.contains(a)) {
+      var li = a.closest ? a.closest('[data-uid]') : null;
+      fCtl = a.getAttribute('data-ctl');
+      if (li && fCtl) fUid = li.getAttribute('data-uid');
+    }
+    var cg = cargaAtual();
     ['tecnicas','grimorio','cartasLimiar','inventario.bugigangas','inventario.equipamentos'].forEach(function (campo) {
       var holder = body.querySelector('[data-lista="' + campo + '"]');
       if (!holder) return;
-      var novo = campo.indexOf('inventario.') === 0 ? listaInvEl(campo.slice(11)) : listaEl(campo);
+      var novo = campo.indexOf('inventario.') === 0 ? listaInvEl(campo.slice(11), cg) : listaEl(campo);
       holder.parentNode.replaceChild(novo, holder);
     });
+    if (fUid) {
+      try {
+        var n = body.querySelector('[data-uid="' + fUid + '"] [data-ctl="' + fCtl + '"]');
+        if (n && n.focus) n.focus();
+      } catch (e) {}
+    }
   }
 
   function dropZone(campo, texto) {
@@ -1139,7 +1439,8 @@
       }).slice(0, 12);
       hits.forEach(function (it) {
         res.appendChild(el('div', { class:'kf-list-item' }, [
-          el('span', { class:'kf-btn sm', onclick: function () { addItemBazar(it); } }, ['+']),
+          el('span', { class:'kf-btn sm', title:'Guardar (Shift+clique: 10)',
+            onclick: function (ev) { addItemBazar(it, ev && ev.shiftKey ? 10 : 1); } }, ['+']),
           el('span', { class:'kf-nm', html: esc(it.nome) + ' <span style="color:#777">· ' + esc(it.raridade) + ' · ' + esc(it.valor) + ' Sins</span>' })
         ]));
       });
@@ -1293,7 +1594,10 @@
         var f;
         try { f = JSON.parse(fr.result); } catch (e) { f = null; }
         if (!f || typeof f !== 'object' || Array.isArray(f)) { toast('JSON inválido'); return; }
-        substitui(migra(f), 'import'); toast('Ficha importada');
+        var nova = migra(f);
+        substitui(nova, 'import');
+        if (f.schemaVersion !== SCHEMA_VERSION && temItens(nova)) toast('Ficha importada. ' + MSG_MIGRACAO, 8000);
+        else toast('Ficha importada');
       };
       fr.readAsText(inp.files[0]);
     });
@@ -1343,7 +1647,8 @@
 
   // ---------------- init ----------------
   function init() {
-    injectCSS(); buildDrawer(); decorar();
+    injectCSS(); injectCSSInventario(); buildDrawer(); decorar();
+    if (migrouAgora) { migrouAgora = false; toast(MSG_MIGRACAO, 8000); }
     // conteúdo dinâmico (ex.: Bazar re-renderiza o grid ao filtrar) -> re-decora.
     // Mudança dentro de [data-kf-ignorar] (drawer, toast, inventário do Bazar) não conta.
     try {
@@ -1379,7 +1684,7 @@
   raiz.KF = Object.freeze({
     versao: '2',
     inventario: function () { return clone(invDe()); },
-    carga: function () { return KhInv.calcular(ficha.inventario, ficha.atributos.for); },
+    carga: function () { return cargaAtual(); },
     projetar: function (item, opts) { return KhInv.projetar(invDe(), ficha.atributos.for, doCatalogo(item), opts); },
     quantidadePorId: function () { return KhInv.quantidadePorId(ficha.inventario); },
     tenho: function (id) { return KhInv.quantidadePorId(ficha.inventario)[id] || 0; },
