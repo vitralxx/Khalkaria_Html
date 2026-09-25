@@ -76,9 +76,10 @@ js/ficha.js                    Ficha Interativa: no topo o motor PURO KhInv
                                sem DOM, testável no node), depois o drawer, o
                                estado v2 e a API window.KF (§8)
 js/bazar.js                    núcleo do Bazar: catálogo, filtros, Bancada
-js/bazar-cartao.js             pop-up do card            ┐ Bazar v3, entram nas
-js/bazar-receita.js            painel de receita         │ próximas etapas; o build
-js/bazar-inventario.js         inventário em 2 colunas   ┘ já os inclui no {{VER}}
+js/bazar-cartao.js             pop-up do card (BZ.cartao)       ┐ módulos do Bazar v3,
+js/bazar-receita.js            painel de receita (BZ.receita)   │ registrados em window.BZ e
+js/bazar-inventario.js         inventário em 2 colunas          │ carregados depois do bazar.js,
+                               (BZ.inventario)                  ┘ todos com ?v={{VER}}
 
 data/*.json                    sistema, magias, condicoes, limiar, origens,
                                racas, bazar
