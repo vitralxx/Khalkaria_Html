@@ -135,6 +135,9 @@
   var TOAST_MS = 6000, MOLA_MS = 500, PISCA_MS = 1500, PIORA_MS = 700, REMOVE_MS = 160;
   var ATALHOS_LINHA = 'ArrowUp ArrowDown Home End Enter Plus - Q Delete E T S M';
   var MSG_EQUIPADO_1 = 'Item equipado conta 1 unidade; desequipe para mudar a quantidade';
+  var MSG_SINTONIZADO_1 = 'Item sintonizado conta 1 unidade; dessintonize para mudar a quantidade';
+  // invariante da ficha v2: entrada equipada ou sintonizada tem qtd 1
+  function travaQtd(e) { return e.equipado ? MSG_EQUIPADO_1 : (e.sintonizado ? MSG_SINTONIZADO_1 : ''); }
   var MSG_MIGRACAO ='Inventário convertido: 4 listas → 2 colunas. Armaduras e materiais agora pesam; marque o que está Equipado.';
 
   var el = {
@@ -339,10 +342,10 @@
         '<span class="bz-stepper bz-slot-step">' +
           '<button type="button" data-acao="menos" tabindex="-1" aria-label="Diminuir ' + esc(e.nome) + '" title="Menos 1 (−; Shift: 10)" aria-keyshortcuts="-">−</button>' +
           '<input type="text" inputmode="numeric" data-acao="qtd" tabindex="-1" value="' + e.qtd + '" aria-label="Quantidade de ' +
-            esc(e.nome) + '" title="' + (e.equipado ? esc(MSG_EQUIPADO_1) : 'Quantidade (Enter aplica; abaixo de 1 remove)') +
-            '" aria-keyshortcuts="Q" autocomplete="off"' + (e.equipado ? ' readonly' : '') + '>' +
+            esc(e.nome) + '" title="' + (travaQtd(e) ? esc(travaQtd(e)) : 'Quantidade (Enter aplica; abaixo de 1 remove)') +
+            '" aria-keyshortcuts="Q" autocomplete="off"' + (travaQtd(e) ? ' readonly' : '') + '>' +
           '<button type="button" data-acao="mais" tabindex="-1" aria-label="Aumentar ' + esc(e.nome) + '" title="' +
-            (e.equipado ? esc(MSG_EQUIPADO_1) : 'Mais 1 (+; Shift: 10)') + '" aria-keyshortcuts="Plus"' + (e.equipado ? ' disabled' : '') + '>+</button>' +
+            (travaQtd(e) ? esc(travaQtd(e)) : 'Mais 1 (+; Shift: 10)') + '" aria-keyshortcuts="Plus"' + (travaQtd(e) ? ' disabled' : '') + '>+</button>' +
         '</span>' +
         caixaHTML('emp', 'Item Empilhável', e.empilhavel, dif, 'S') +
         (coluna === 'equipamentos' ? caixaHTML('equip', 'Equipado', e.equipado, '', 'E') : '') +
@@ -674,8 +677,8 @@
     n = parseInt(n, 10);
     if (!isFinite(n)) return;
     if (n < 1) { remover(uid); return; }
-    // invariante da ficha v2: toda entrada equipada tem qtd 1
-    if (e.equipado && n > 1) { BZ.anunciar(MSG_EQUIPADO_1); render(); return; }
+    // invariante da ficha v2: toda entrada equipada ou sintonizada tem qtd 1
+    if (travaQtd(e) && n > 1) { BZ.anunciar(travaQtd(e)); render(); return; }
     k.quantidade(uid, Math.min(n, QTD_MAX));
   }
   function passo(uid, d) {

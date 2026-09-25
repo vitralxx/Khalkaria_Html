@@ -334,3 +334,39 @@ test('pagehide e visibilitychange→hidden sem nada pendente não gravam', () =>
   p.doc('visibilitychange');
   assert.equal(st.getItem(LS), null);
 });
+
+test('duas abas com bazar.json diferentes: adotar não reconcilia, sem ping-pong de gravação', () => {
+  const st = armazenamento();
+  const catVelho = puro(CAT);
+  const catNovo = puro(CAT).map((x) => (x.nome === 'Adaga de Kali' ? Object.assign(x, { efeito: x.efeito + ' (errata)' }) : x));
+  const A = pagina(st, { bazar: true });           // Bazar aberto antes do deploy
+  A.KF.catalogo(catVelho);
+  A.KF.adicionar(item('Adaga de Kali'));
+  const B = pagina(st, { bazar: true });           // aba nova, com o bazar.json publicado
+  B.KF.catalogo(catNovo);
+  const rev = A.guardado().rev;
+  assert.equal(B.mudou().at(-1).detail.origem, 'reconciliacao', 'B reconcilia uma vez com o catálogo dele');
+  assert.match(A.guardado().inventario.equipamentos[0].efeito, /\(errata\)$/);
+  // entrega os eventos storage de lá para cá várias vezes: ninguém regrava
+  for (let i = 0; i < 10; i++) { A.win('storage', { key: LS }); B.win('storage', { key: LS }); }
+  assert.equal(A.guardado().rev, rev, 'adotar não grava');
+  assert.equal(A.mudou().filter((e) => e.detail.origem === 'reconciliacao').length, 0, 'A nunca reconcilia uma adoção');
+  assert.match(A.KF.inventario().equipamentos[0].efeito, /\(errata\)$/, 'A adotou o snapshot de B');
+  // o que A digita depois segue valendo, sem voltar ao catálogo velho
+  A.KF.definirSins(5);
+  B.win('storage', { key: LS });
+  assert.equal(B.KF.inventario().sins, 5);
+  assert.equal(A.guardado().rev, rev + 1);
+});
+
+test('KF.quantidade em entrada equipada: recusa, não grava nem emite', () => {
+  const p = pagina(armazenamento());
+  const u = p.KF.adicionar(item('Cota de Malha'));
+  p.KF.alternar(u, 'equipado');
+  const rev = p.guardado().rev, n = p.mudou().length;
+  const r = p.KF.quantidade(u, 5);
+  assert.equal(r.ok, false); assert.equal(r.erro, 'equipado');
+  assert.equal(p.guardado().rev, rev);
+  assert.equal(p.mudou().length, n);
+  assert.equal(p.KF.inventario().equipamentos[0].qtd, 1);
+});

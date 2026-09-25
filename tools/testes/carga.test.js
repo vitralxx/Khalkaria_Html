@@ -524,3 +524,106 @@ test('normalizaEntrada: qtd, defaults e chaves da v1', () => {
   const n1 = K.normalizaEntrada({ id: 'item-kali', nome: 'Kali', qtd: 2 });
   assert.deepEqual(K.normalizaEntrada(n1), n1);
 });
+
+// ---- Equipado/Sintonizado valem por unidade (entrada marcada tem qtd 1) ----
+const MAGICOS = ['Anel da Carapaça', 'Anel das Brasas', 'Amuleto de Visão Noturna', 'Amuleto do Vínculo'];
+
+test('quantidade: entrada equipada ou sintonizada não passa de 1; abaixo de 1 ainda remove', () => {
+  const inv = vazio();
+  const c = add(inv, 'Cota de Malha', 1);
+  K.alternar(inv, c, 'equipado', AGORA);
+  const antes = JSON.stringify(inv);
+  assert.deepEqual(K.quantidade(inv, c, 5), { ok: false, erro: 'equipado' });
+  assert.equal(JSON.stringify(inv), antes, 'nada muda');
+  assert.equal(K.calcular(inv, 10).avisos.filter((a) => a.tipo === 'pesada').length, 0);
+  const s = add(inv, 'Anel da Carapaça', 1);
+  K.alternar(inv, s, 'sintonizado');
+  assert.deepEqual(K.quantidade(inv, s, 2), { ok: false, erro: 'sintonizado' });
+  assert.equal(K.quantidade(inv, s, 1).ok, true);
+  assert.equal(K.quantidade(inv, c, 0).removido, true);
+});
+
+test('migração: equipada/sintonizada com qtd > 1 separa 1 unidade; Equipado fora de Equipamentos é limpo', () => {
+  const f = { schemaVersion: '2.0', inventario: { sins: 0,
+    equipamentos: [
+      Object.assign(K.entradaDeItem(item('Cota de Malha')), { uid: 'u1', qtd: 5, equipado: true, equipadoEm: AGORA }),
+      Object.assign(K.entradaDeItem(item('Adaga de Kali')), { uid: 'u2', qtd: 2 }),
+      Object.assign(K.entradaDeItem(item('Adaga de Kali')), { uid: 'u3', qtd: 3, equipado: true, equipadoEm: AGORA })
+    ],
+    bugigangas: [
+      Object.assign(K.entradaDeItem(item('Anel da Carapaça')), { uid: 'u4', qtd: 3, sintonizado: true }),
+      Object.assign(K.entradaDeItem(item('Kali')), { uid: 'u5', qtd: 2, equipado: true, equipadoEm: AGORA })
+    ] } };
+  const v2 = K.migrarV1(f, AGORA), inv = v2.inventario;
+  const resumo = (l) => l.map((e) => [e.nome, e.qtd, e.equipado, e.sintonizado]);
+  assert.deepEqual(resumo(inv.equipamentos), [
+    ['Cota de Malha', 1, true, false], ['Cota de Malha', 4, false, false],
+    ['Adaga de Kali', 4, false, false],   // a sobra da equipada funde na livre
+    ['Adaga de Kali', 1, true, false]]);
+  assert.deepEqual(resumo(inv.bugigangas), [
+    ['Anel da Carapaça', 1, false, true], ['Anel da Carapaça', 2, false, false], ['Kali', 2, false, false]]);
+  assert.equal(inv.bugigangas[2].equipadoEm, null);
+  const uids = inv.equipamentos.concat(inv.bugigangas).map((e) => e.uid);
+  assert.equal(new Set(uids).size, uids.length, 'uids únicos');
+  assert.equal(K.calcular(inv, 10).equipamentos.usado, 8, '4 Cotas + 4 Adagas livres; as equipadas não pesam');
+  // idempotente
+  assert.deepEqual(K.migrarV1(v2, AGORA).inventario, inv);
+});
+
+test('sintonia: cópia comprada não herda a sintonia; dessintonizar funde de volta', () => {
+  const inv = vazio();
+  const us = MAGICOS.slice(0, 3).map((n) => add(inv, n, 1));
+  for (const u of us) assert.equal(K.alternar(inv, u, 'sintonizado').ok, true);
+  const r = K.mesclar(inv, item(MAGICOS[0]), { qtd: 1 });
+  assert.equal(r.fundiu, false);
+  assert.equal(K.acha(inv, us[0]).entrada.qtd, 1);
+  assert.equal(K.acha(inv, r.uid).entrada.sintonizado, false);
+  assert.equal(K.calcular(inv, 10).avisos.filter((a) => a.tipo === 'sintonia').length, 0);
+  // dessintonizar: a unidade volta para a pilha livre
+  const d = K.alternar(inv, us[0], 'sintonizado');
+  assert.deepEqual(d, { ok: true, uid: r.uid });
+  assert.equal(K.acha(inv, us[0]), null);
+  assert.equal(K.acha(inv, r.uid).entrada.qtd, 2);
+});
+
+test('sintonia: sintonizar uma pilha separa 1 unidade e o limite conta essa 1', () => {
+  const inv = vazio();
+  const a = add(inv, MAGICOS[0], 1), b = add(inv, MAGICOS[1], 1), c = add(inv, MAGICOS[2], 2);
+  K.alternar(inv, a, 'sintonizado'); K.alternar(inv, b, 'sintonizado');
+  const r = K.alternar(inv, c, 'sintonizado');
+  assert.equal(r.ok, true);
+  assert.notEqual(r.uid, c);
+  const nova = K.acha(inv, r.uid).entrada, pilha = K.acha(inv, c).entrada;
+  assert.deepEqual([nova.qtd, nova.sintonizado], [1, true]);
+  assert.deepEqual([pilha.qtd, pilha.sintonizado], [1, false]);
+  assert.ok(inv.bugigangas.indexOf(nova) < inv.bugigangas.indexOf(pilha), 'posta logo antes');
+  // 4ª unidade: conflito com os 3 que ocupam o limite
+  const r4 = K.alternar(inv, c, 'sintonizado');
+  assert.deepEqual(r4, { ok: false, conflito: { tipo: 'sintonia', uids: [a, b, r.uid] } });
+});
+
+test('sintonia: pilha de 4 sem nada sintonizado sintoniza sem conflito', () => {
+  const inv = vazio();
+  const c = add(inv, MAGICOS[2], 4);
+  const r = K.alternar(inv, c, 'sintonizado');
+  assert.equal(r.ok, true);
+  assert.equal(K.conflito(inv, c, 'sintonizado'), null);
+  assert.equal(K.calcular(inv, 10).avisos.filter((a) => a.tipo === 'sintonia').length, 0);
+});
+
+test('sintonia: mover, desequipar e fundir não misturam entrada sintonizada com livre', () => {
+  const inv = vazio();
+  const s = add(inv, MAGICOS[0], 1);
+  K.alternar(inv, s, 'sintonizado');
+  const l = add(inv, MAGICOS[0], 2, 'equipamentos');
+  // mover a sintonizada para junto da livre: não funde
+  assert.deepEqual(K.mover(inv, s, 'equipamentos'), { ok: true, uid: s });
+  assert.equal(K.acha(inv, s).entrada.sintonizado, true);
+  assert.equal(K.acha(inv, l).entrada.qtd, 2);
+  // equipada + sintonizada: desequipar mantém a unidade separada
+  assert.equal(K.alternar(inv, s, 'equipado', AGORA).ok, true);
+  assert.deepEqual(K.alternar(inv, s, 'equipado', AGORA), { ok: true, uid: s });
+  assert.equal(K.acha(inv, s).entrada.sintonizado, true);
+  assert.equal(K.acha(inv, l).entrada.qtd, 2);
+  assert.equal(K.fundir(inv.equipamentos).length, 2);
+});

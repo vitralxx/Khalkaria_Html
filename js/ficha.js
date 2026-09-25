@@ -109,11 +109,24 @@
       CAMPOS_SNAPSHOT.forEach(function (k) { o[k] = str(item[k]); });
       return o;
     }
-    // funde entradas NÃO equipadas de mesma chave, somando qtd (a 1ª fica)
+    // Equipado e Sintonizado valem por UNIDADE: a entrada marcada tem sempre qtd 1
+    // e nunca entra em fusão. "Livre" é a entrada que pode receber/fundir cópias.
+    function livre(x) { return !!x && !x.equipado && !x.sintonizado; }
+    // entrada marcada com qtd > 1 (import, estado antigo): 1 unidade fica marcada,
+    // o resto vira uma entrada livre logo depois
+    function separaMarcada(e, usados) {
+      if (livre(e) || qtdDe(e) <= 1) return [e];
+      var resto = clone(e);
+      resto.uid = novoUid(usados); resto.qtd = qtdDe(e) - 1;
+      resto.equipado = false; resto.equipadoEm = null; resto.sintonizado = false;
+      e.qtd = 1;
+      return [e, resto];
+    }
+    // funde entradas livres de mesma chave, somando qtd (a 1ª fica)
     function fundir(l) {
       var vistos = {}, out = [];
       lista(l).forEach(function (e) {
-        if (e.equipado) { out.push(e); return; }
+        if (!livre(e)) { out.push(e); return; }
         var k = chave(e);
         if (vistos[k]) { vistos[k].qtd = Math.min(REGRAS.QTD_MAX, qtdDe(vistos[k]) + qtdDe(e)); return; }
         vistos[k] = e; out.push(e);
@@ -201,7 +214,7 @@
     }
 
     // ---- mutadores puros (mexem no inv recebido; quem chama tira o snapshot) ----
-    // adiciona com fusão na entrada não equipada de mesma chave na coluna-alvo
+    // adiciona com fusão na entrada livre de mesma chave na coluna-alvo
     function mesclar(inv, item, opts) {
       opts = opts || {};
       var n = qtdDe({ qtd: opts.qtd == null ? 1 : opts.qtd });
@@ -210,7 +223,7 @@
       var coluna = COLUNAS.indexOf(opts.coluna) >= 0 ? opts.coluna : canon;
       if (!Array.isArray(inv[coluna])) inv[coluna] = [];
       var k = chave(base);
-      var alvo = inv[coluna].filter(function (x) { return x && !x.equipado && chave(x) === k; })[0];
+      var alvo = inv[coluna].filter(function (x) { return livre(x) && chave(x) === k; })[0];
       if (alvo) { alvo.qtd = Math.min(REGRAS.QTD_MAX, qtdDe(alvo) + n); return { uid: alvo.uid, coluna: coluna, fundiu: true }; }
       base.qtd = n;
       base.secaoManual = !base.avulso && coluna !== canon;
@@ -224,12 +237,13 @@
       a.lista.splice(a.indice, 1);
       return a.entrada;
     }
-    // n < 1 remove; teto 9999
+    // n < 1 remove; teto 9999. Entrada equipada/sintonizada fica em 1 (nada muda).
     function quantidade(inv, uid, n) {
       var a = acha(inv, uid);
       if (!a) return { ok: false };
       n = parseInt(n, 10);
       if (!(n >= 1)) { a.lista.splice(a.indice, 1); return { ok: true, removido: true }; }
+      if (n > 1 && !livre(a.entrada)) return { ok: false, erro: a.entrada.equipado ? 'equipado' : 'sintonizado' };
       a.entrada.qtd = Math.min(REGRAS.QTD_MAX, n);
       return { ok: true, removido: false };
     }
@@ -244,7 +258,7 @@
       e.secaoManual = !e.avulso && coluna !== colunaCanonica(e);
       if (!Array.isArray(inv[coluna])) inv[coluna] = [];
       var k = chave(e);
-      var alvo = inv[coluna].filter(function (x) { return x && !x.equipado && chave(x) === k; })[0];
+      var alvo = livre(e) && inv[coluna].filter(function (x) { return livre(x) && chave(x) === k; })[0];
       if (alvo) { alvo.qtd = Math.min(REGRAS.QTD_MAX, qtdDe(alvo) + qtdDe(e)); return { ok: true, uid: alvo.uid }; }
       inv[coluna].push(e);
       return { ok: true, uid: e.uid };
@@ -262,12 +276,32 @@
         var n = outros.reduce(function (s, x) { return s + qtdDe(x); }, 0);
         return n + 1 > lim ? { tipo: arm === 'Pesada' ? 'pesada' : 'leve', uids: outros.map(function (x) { return x.uid; }) } : null;
       }
-      if (campo === 'sintonizado') {
+      if (campo === 'sintonizado') {   // sintonizar liga 1 unidade (uma pilha separa 1)
         var sint = lista(inv.bugigangas).concat(lista(inv.equipamentos)).filter(function (x) { return x !== e && x.sintonizado; });
         var ns = sint.reduce(function (s, x) { return s + qtdDe(x); }, 0);
-        return ns + qtdDe(e) > REGRAS.LIM_SINTONIA ? { tipo: 'sintonia', uids: sint.map(function (x) { return x.uid; }) } : null;
+        return ns + 1 > REGRAS.LIM_SINTONIA ? { tipo: 'sintonia', uids: sint.map(function (x) { return x.uid; }) } : null;
       }
       return null;
+    }
+    // desmarcar: a entrada que ficou livre volta para a livre de mesma chave na mesma lista
+    function devolve(a, e) {
+      if (!livre(e)) return e.uid;
+      var k = chave(e);
+      var alvo = a.lista.filter(function (x) { return x !== e && livre(x) && chave(x) === k; })[0];
+      if (!alvo) return e.uid;
+      alvo.qtd = Math.min(REGRAS.QTD_MAX, qtdDe(alvo) + qtdDe(e));
+      a.lista.splice(a.lista.indexOf(e), 1);
+      return alvo.uid;
+    }
+    // separa 1 unidade de uma pilha livre numa entrada própria, posta logo antes
+    function separaUma(inv, a, marca) {
+      var e = a.entrada;
+      e.qtd = qtdDe(e) - 1;
+      var nova = clone(e);
+      nova.uid = novoUid(uidsDe(inv)); nova.qtd = 1;
+      Object.keys(marca).forEach(function (k) { nova[k] = marca[k]; });
+      a.lista.splice(a.indice, 0, nova);
+      return nova.uid;
     }
     // {ok:true, uid} | {ok:false, conflito:{tipo, uids}} | {ok:false, erro}. Com conflito nada muda.
     function alternar(inv, uid, campo, agora) {
@@ -276,33 +310,23 @@
       var e = a.entrada;
       if (campo === 'empilhavel') { e.empilhavel = !e.empilhavel; return { ok: true, uid: uid }; }
       if (campo === 'sintonizado') {
-        if (!e.sintonizado) { var cs = conflito(inv, uid, campo); if (cs) return { ok: false, conflito: cs }; }
-        e.sintonizado = !e.sintonizado;
+        if (e.sintonizado) { e.sintonizado = false; return { ok: true, uid: devolve(a, e) }; }
+        var cs = conflito(inv, uid, campo);
+        if (cs) return { ok: false, conflito: cs };
+        if (qtdDe(e) > 1) return { ok: true, uid: separaUma(inv, a, { sintonizado: true }) };
+        e.sintonizado = true;
         return { ok: true, uid: uid };
       }
       if (campo !== 'equipado') return { ok: false, erro: 'campo' };
-      if (e.equipado) {   // desequipar: funde de volta na não equipada de mesmo id na mesma coluna
+      if (e.equipado) {   // desequipar: funde de volta na livre de mesmo id na mesma coluna
         e.equipado = false; e.equipadoEm = null;
-        var k = chave(e);
-        var alvo = a.lista.filter(function (x) { return x !== e && !x.equipado && chave(x) === k; })[0];
-        if (alvo) {
-          alvo.qtd = Math.min(REGRAS.QTD_MAX, qtdDe(alvo) + qtdDe(e));
-          a.lista.splice(a.lista.indexOf(e), 1);
-          return { ok: true, uid: alvo.uid };
-        }
-        return { ok: true, uid: uid };
+        return { ok: true, uid: devolve(a, e) };
       }
       if (a.coluna !== 'equipamentos') return { ok: false, erro: 'coluna' };
       var cf = conflito(inv, uid, campo);
       if (cf) return { ok: false, conflito: cf };
       agora = agora || new Date().toISOString();
-      if (qtdDe(e) > 1) {   // separa 1 unidade numa entrada própria, posta logo antes
-        e.qtd = qtdDe(e) - 1;
-        var nova = clone(e);
-        nova.uid = novoUid(uidsDe(inv)); nova.qtd = 1; nova.equipado = true; nova.equipadoEm = agora;
-        a.lista.splice(a.indice, 0, nova);
-        return { ok: true, uid: nova.uid };
-      }
+      if (qtdDe(e) > 1) return { ok: true, uid: separaUma(inv, a, { equipado: true, equipadoEm: agora }) };
       e.equipado = true; e.equipadoEm = agora;
       return { ok: true, uid: uid };
     }
@@ -348,16 +372,19 @@
       ['armas', 'equipamentos', 'bugigangas', 'materiais'].forEach(function (k) {
         lista(inv[k]).forEach(function (e) {
           if (!e || typeof e !== 'object') return;
-          if (!eraV1 && COLUNAS.indexOf(k) >= 0 && typeof e.uid === 'string' && e.uid) novo[k].push(normalizaEntrada(e, usados));
+          if (!eraV1 && COLUNAS.indexOf(k) >= 0 && typeof e.uid === 'string' && e.uid) guarda(k, normalizaEntrada(e, usados));
           else rerota.push(e);
         });
       });
       rerota.forEach(function (e) {
         var n = normalizaEntrada(Object.assign({}, e, { secaoManual: false }), usados);
-        var c = colunaCanonica(n);
-        if (c !== 'equipamentos') { n.equipado = false; n.equipadoEm = null; }
-        novo[c].push(n);
+        guarda(colunaCanonica(n), n);
       });
+      // Equipado só vale em Equipamentos; entrada marcada com qtd > 1 separa 1 unidade
+      function guarda(c, n) {
+        if (c !== 'equipamentos') { n.equipado = false; n.equipadoEm = null; }
+        separaMarcada(n, usados).forEach(function (x) { novo[c].push(x); });
+      }
       delete inv.armas; delete inv.materiais;
       var sins = Math.floor(Number(inv.sins));
       inv.sins = sins > 0 ? sins : 0;
@@ -516,7 +543,12 @@
     var inv = f && f.inventario;
     return KhInv.COLUNAS.some(function (c) { return !!(inv && Array.isArray(inv[c]) && inv[c].length); });
   }
-  var MSG_MIGRACAO = 'Inventário convertido: 4 listas → 2 colunas. Armaduras e materiais agora pesam; marque o que está Equipado.';
+  // invariante da ficha v2: entrada equipada ou sintonizada tem qtd 1 (KhInv.quantidade recusa)
+  var MSG_QTD_1 = {
+    equipado: 'Item equipado conta 1 unidade; desequipe para mudar a quantidade',
+    sintonizado: 'Item sintonizado conta 1 unidade; dessintonize para mudar a quantidade'
+  };
+  var MSG_MIGRACAO ='Inventário convertido: 4 listas → 2 colunas. Armaduras e materiais agora pesam; marque o que está Equipado.';
   function guardaBackup(raw) {
     if (lsGet(BACKUP_KEY) != null) return;   // nunca sobrescreve o backup
     try { localStorage.setItem(BACKUP_KEY, raw); } catch (e) {}
@@ -615,7 +647,11 @@
     if (velhas) { ficha.rev++; ficha.salvoEm = agoraISO(); grava(ficha); }
     if (body) renderAllQuandoLivre();
     emite(['tudo'], 'outra-aba', 'sincroniza');
-    if (idxCatalogo) reconciliaCatalogo(); else verificaPendentes();
+    // Adotar NUNCA reconcilia: quem gravou já reconciliou com o catálogo dele.
+    // Duas abas com bazar.json diferentes (deploy no meio) reconciliando cada
+    // adoção gravavam uma por cima da outra para sempre. A reconciliação roda
+    // uma vez por página, quando o catálogo chega (catalogo()) e no import.
+    verificaPendentes();
     return true;
   }
 
@@ -845,7 +881,7 @@
       '.kf-carga-topo{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:4px}',
       '.kf-peso{font-size:12px;color:#9a968e;line-height:1.2}',
       '.kf-peso b{font-family:' + mono + ';font-variant-numeric:tabular-nums;font-size:1.25rem;color:#e6e2da;margin-left:6px;font-weight:600}',
-      '.kf-peso small{display:block;font-size:11px;color:#7a766e}',
+      '.kf-peso small{display:block;font-size:11px;color:#8a857c}',
       '.kf-cond{margin-left:auto;font-family:Cinzel,serif;font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:3px 8px;border-radius:3px;text-decoration:none;white-space:nowrap}',
       '.kf-cond-nenhuma{color:#8a857c;border:1px solid #2a2a35}',
       '.kf-cond-leve{color:#120d06;background:#e08b2c}',
@@ -866,7 +902,7 @@
       '.kf-regua-marco{position:absolute;left:50%;top:-2px;bottom:-2px;width:2px;margin-left:-1px;background:#f0d77a}',
       '.kf-regua-mais{position:absolute;left:100%;top:-4px;margin-left:3px;font-family:' + mono + ';font-size:10px;color:#ff6b5a}',
       '.kf-inv-cab{font-family:Cinzel,serif;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#c9a94a;margin:10px 0 4px;padding-bottom:2px;border-bottom:1px solid #2a2a35}',
-      '.kf-inv-vazio{font-size:12px;font-style:italic;color:#6a665e;padding:2px 0 6px}',
+      '.kf-inv-vazio{font-size:12px;font-style:italic;color:#8a857c;padding:2px 0 6px}',
       '.kf-inv-item{background:#101017;border:1px solid #23232d;border-left:3px solid #3a3a45;border-radius:4px;padding:5px 7px;margin-bottom:4px;font-size:12px}',
       '.kf-inv-item.kf-equipado{border-left-color:#d4af37;background:#15140f}',
       '.kf-inv-l1{display:flex;align-items:flex-start;gap:6px}',
@@ -879,6 +915,7 @@
       '.kf-step{display:inline-flex;align-items:center;border:1px solid #2a2a35;border-radius:4px;overflow:hidden}',
       '.kf-step button{background:#1a1a22;color:#d4af37;border:none;width:22px;height:22px;padding:0;cursor:pointer;font-size:14px;line-height:1}',
       '.kf-step button:hover{background:#24242e}',
+      '.kf-step button:disabled{color:#5a5650;cursor:not-allowed;background:#1a1a22}',
       '#kf-drawer .kf-step input[type=text]{flex:none;min-width:0;width:4.4ch;text-align:center;border:none;border-radius:0;padding:2px 0;font-family:' + mono + ';font-variant-numeric:tabular-nums}',
       '.kf-inv-cx{display:inline-flex;align-items:center;gap:4px;font-size:12.5px;color:#c8c4bc;cursor:pointer}',
       '#kf-drawer .kf-inv-cx input{margin:0;padding:0;accent-color:#e08b2c}',
@@ -1278,7 +1315,9 @@
       if (!ent) return;
       var r = quantidade(uid, n, 'drawer');
       if (r && r.removido) toast('Removido: ' + ent.nome);
+      else if (r && r.erro) { toast(MSG_QTD_1[r.erro] || ''); renderListas(); }
     }
+    var trava = e.equipado ? MSG_QTD_1.equipado : (e.sintonizado ? MSG_QTD_1.sintonizado : '');
     function passo(ev, d) {
       var ent = atual(uid);
       if (ent) mudaQtd(ent.qtd + (ev && ev.shiftKey ? 10 * d : d));
@@ -1317,7 +1356,8 @@
     ]);
     // L2: stepper, Item Empilhável, Equipado
     var num = el('input', { type:'text', inputmode:'numeric', 'data-ctl':'qtd', value: qtd,
-      'aria-label':'Quantidade de ' + e.nome, title:'Quantidade (Enter aplica; 0 remove)' });
+      'aria-label':'Quantidade de ' + e.nome, title: trava || 'Quantidade (Enter aplica; 0 remove)',
+      readonly: trava ? 'readonly' : null });
     function aplicaNum() {
       var n = parseInt(String(num.value).trim(), 10);
       if (!isFinite(n)) { num.value = qtd; return; }
@@ -1337,8 +1377,8 @@
         el('button', { type:'button', 'data-ctl':'menos', title:'Menos 1 (Shift: 10)', 'aria-label':'Diminuir ' + e.nome,
           onclick: function (ev) { passo(ev, -1); } }, ['−']),
         num,
-        el('button', { type:'button', 'data-ctl':'mais', title:'Mais 1 (Shift: 10)', 'aria-label':'Aumentar ' + e.nome,
-          onclick: function (ev) { passo(ev, 1); } }, ['+'])
+        el('button', { type:'button', 'data-ctl':'mais', title: trava || 'Mais 1 (Shift: 10)', 'aria-label':'Aumentar ' + e.nome,
+          disabled: trava ? 'disabled' : null, onclick: function (ev) { passo(ev, 1); } }, ['+'])
       ]),
       caixa('emp', 'Item Empilhável', e.empilhavel, function () { alternar(uid, 'empilhavel', 'drawer'); }, dif)
     ]);
