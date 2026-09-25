@@ -240,6 +240,22 @@
       return !!m && tenho(m.id) >= g.n;
     });
   }
+  // Receita a UM ingrediente de fechar: todos os outros estão cobertos pelo
+  // inventário. Devolve o que falta ({item, n}) ou null.
+  // Só conta como "quase" se o jogador JÁ tem parte da receita: pelo menos um
+  // ingrediente coberto, ou parte da quantidade do único que falta. Sem isso,
+  // toda receita de um ingrediente só entrava (129 "quase" com 2 materiais).
+  function faltaUm(it) {
+    if (!it || !it.ing || !it.ing.length) return null;
+    var falta = null, cobertos = 0;
+    for (var i = 0; i < it.ing.length; i++) {
+      var g = it.ing[i], m = porNome[g.item], tem = m ? tenho(m.id) : 0;
+      if (tem >= g.n) { cobertos++; continue; }
+      if (falta) return null;               // falta mais de um ingrediente
+      falta = { item: g.item, n: g.n - tem, parcial: tem > 0 };
+    }
+    return falta && (cobertos > 0 || falta.parcial) ? falta : null;
+  }
   var fechaChave = '';
   function recalcFecho() {
     var ids = [];
@@ -280,8 +296,56 @@
     if (E.of.length && E.of.indexOf(it.craft) < 0) return false;
     if (E.arq.length && E.arq.indexOf(it.arquetipo) < 0) return false;
     if (E.bancada && alcance(it) === 'fora') return false;
-    if (E.fecho && kf() && !fecha(it)) return false;
+    if (E.fecho && kf() && !fecha(it) && !ignorarFecho) return false;
     return true;
+  }
+  var ignorarFecho = false;   // o "Quase fecha" respeita os OUTROS filtros ativos
+
+  // ------------------------------------------------------------ quase fecha
+  var MAX_QUASE = 12;
+  function renderQuase() {
+    var sec = $('#bz-quase');
+    if (!sec) return;
+    var k = kf();
+    if (!E.fecho || !k) { sec.hidden = true; $('#bz-quase-grade').innerHTML = ''; return; }
+    var vazio = !Object.keys(qtdPorId).length;
+    var lista = [];
+    if (!vazio) {
+      ignorarFecho = true;
+      try {
+        ITENS.forEach(function (it) {
+          if (fecha(it) || !passa(it)) return;
+          var f = faltaUm(it);
+          if (f) lista.push({ it: it, f: f });
+        });
+      } finally { ignorarFecho = false; }
+      lista.sort(function (a, b) {
+        return a.f.n - b.f.n || a.it._rar - b.it._rar || a.it.nome.localeCompare(b.it.nome, 'pt');
+      });
+    }
+    var n = lista.length;
+    lista = lista.slice(0, MAX_QUASE);
+    var msg = '', titulo = '';
+    if (vazio) {
+      msg = 'Seu inventário está vazio. Guarde materiais pelo “+ inventário” dos cards ou pelo campo ' +
+        '“Guardar item…” — este filtro passa a mostrar o que eles fecham.';
+    } else if (!filtrados.length) {
+      msg = n ? 'Nada do que você carrega fecha uma receita inteira ainda.'
+              : 'Nada do que você carrega fecha — nem chega perto — de uma receita com esses filtros.';
+    }
+    if (n) titulo = 'Quase fecha · falta um ingrediente' + (n > MAX_QUASE ? ' · ' + MAX_QUASE + ' de ' + n : ' · ' + n);
+    $('#bz-quase-msg').textContent = msg;
+    $('#bz-quase-msg').hidden = !msg;
+    $('#bz-quase-titulo').textContent = titulo;
+    $('#bz-quase-titulo').hidden = !titulo;
+    $('#bz-quase-grade').innerHTML = lista.map(function (x, i) {
+      var falta = '<p class="item-falta">' + svg('ico-aviso', 'bz-ico-aviso') + 'Falta: <b>' + x.f.n +
+        '×</b> ' + esc(x.f.item) + (ondeAchar(x.f.item) ? ' <span>· ' + esc(ondeAchar(x.f.item)) + '</span>' : '') + '</p>';
+      return cardHTML(x.it, i).replace('<div class="item-meta">', falta + '<div class="item-meta">');
+    }).join('');
+    sec.hidden = !(msg || n);
+    // com o filtro ligado e nada fechando, a mensagem de vazio genérica sai de cena
+    if (msg) $('#bz-vazio').hidden = true;
   }
 
   function ordenar(lista) {
@@ -327,13 +391,23 @@
         '<span class="chip-n">' + contar('rar', r) + '</span></button>';
     }).join(''));
 
-    h += grupo('Região', (V.regioes || []).map(function (r, i) {
+    // Região é uma TRILHA de perigo numa linha só: 8 segmentos iguais, do mais
+    // frio (1) ao mais quente (8), e Único/Quest no fim. Em chips, as 8 regiões
+    // quebravam linha e deixavam "Único/Quest" sozinho embaixo.
+    var seg = function (r, i, quest) {
       var on = E.reg.indexOf(r) >= 0;
-      return '<button type="button" class="chip chip-reg' + (on ? ' on' : '') +
-        '" style="--r:' + i + '" data-f="reg" data-v="' + esc(r) + '" aria-pressed="' + on +
-        '"><span class="bz-reg-n">' + (i + 1) + '.</span> ' + esc(r) +
-        '<span class="chip-n">' + contar('reg', r) + '</span></button>';
-    }).join('') + chip('reg', 'Único/Quest'));
+      return '<button type="button" class="bz-seg' + (quest ? ' bz-seg-quest' : '') + (on ? ' on' : '') +
+        '"' + (quest ? '' : ' style="--r:' + i + '"') + ' data-f="reg" data-v="' + esc(r) +
+        '" aria-pressed="' + on + '" title="' + esc(r) + ' · ' + contar('reg', r) + ' itens">' +
+        '<span class="bz-seg-topo"><span class="bz-seg-n">' + (quest ? svg('rar-exotico', 'bz-seg-ico') : i + 1) + '</span>' +
+        '<span class="bz-seg-c">' + contar('reg', r) + '</span></span>' +
+        // "Único/Quest" não tem espaço: o <wbr> deixa quebrar depois da barra
+        '<span class="bz-seg-nome">' + esc(r).replace('/', '/<wbr>') + '</span></button>';
+    };
+    h += '<div class="bz-grupo bz-grupo-reg"><span class="bz-grupo-nome">Região</span>' +
+      '<div class="bz-trilha" role="group" aria-label="Região, da menos à mais perigosa">' +
+      (V.regioes || []).map(function (r, i) { return seg(r, i, false); }).join('') +
+      seg('Único/Quest', 0, true) + '</div></div>';
 
     h += grupo('Ofício', (V.oficios || []).map(function (o) { return chip('of', o); }).join(''));
 
@@ -399,8 +473,10 @@
       var reg = it.regiao || (it.unico ? 'Único/Quest' : '—');
       return '<tr class="item-card ' + classeRar(it.raridade) + (it.id === BZ.selecionado ? ' selecionado' : '') +
         '" data-n="' + esc(it.nome) + '" data-id="' + esc(it.id) + '" tabindex="0">' +
-        '<td class="c-nome" data-prever="' + esc(it.id) + '">' + arte(it, 'c-ico') +
-          '<span class="item-name">' + esc(it.nome) + '</span>' + seloHTML(it.id) + '</td>' +
+        // o flex mora no <div> interno: um <td> com display:flex deixa de ser
+        // célula, não estica até a altura da linha e desalinha as bordas
+        '<td class="c-nome" data-prever="' + esc(it.id) + '"><div class="c-nome-in">' + arte(it, 'c-ico') +
+          '<span class="item-name">' + esc(it.nome) + '</span>' + seloHTML(it.id) + '</div></td>' +
         '<td class="c-raridade"><span class="tag-rar">' + icoRar(it.raridade) + esc(it.raridade) + '</span></td>' +
         '<td class="c-categoria">' + esc(it.categoria) + '</td>' +
         '<td class="c-efeito"><span>' + esc(it.efeito) + '</span></td>' +
@@ -490,6 +566,7 @@
     $('#bz-vazio').hidden = filtrados.length > 0;
     $('#bz-visiveis').textContent = filtrados.length;
     pinta();
+    renderQuase();
     ativos();
     salvar();
     BZ.aoRender.forEach(function (fn) {
@@ -509,7 +586,7 @@
       if (!s) {
         s = document.createElement('span');
         s.className = 'bz-selo-n';
-        var alvo = c.querySelector('.item-head') || c.querySelector('td.c-nome') || c;
+        var alvo = c.querySelector('.item-head') || c.querySelector('.c-nome-in') || c;
         alvo.appendChild(s);
       }
       s.textContent = '×' + n;
@@ -605,11 +682,14 @@
     });
 
     $('#bz-filtros').addEventListener('click', function (e) {
-      var b = e.target.closest('.chip');
+      var b = e.target.closest('.chip, .bz-seg');
       if (b) {
         alterna(E[b.dataset.f], b.dataset.v);
-        b.classList.toggle('on');
-        b.setAttribute('aria-pressed', b.classList.contains('on'));
+        // a aparência sai do ESTADO, nunca de um toggle da classe: assim chip e
+        // filtro não têm como ficar dessincronizados
+        var on = E[b.dataset.f].indexOf(b.dataset.v) >= 0;
+        b.classList.toggle('on', on);
+        b.setAttribute('aria-pressed', String(on));
         return render();
       }
       if (e.target.id === 'bz-arq-mais') {
@@ -690,6 +770,17 @@
       var c = e.target.closest('.item-card[data-id]');
       if (c && e.target === c) { e.preventDefault(); abreItem(c.dataset.id, { via: 'catalogo', teclado: true }); }
     });
+    // a grade do "Quase fecha" abre a receita do mesmo jeito que o catálogo
+    $('#bz-quase-grade').addEventListener('click', function (e) {
+      if (e.target.closest('.kf-addbtn')) return;
+      var c = e.target.closest('.item-card[data-id]');
+      if (c) abreItem(c.dataset.id, { via: 'catalogo', teclado: e.detail === 0, clique: e.detail > 0 });
+    });
+    $('#bz-quase-grade').addEventListener('keydown', function (e) {
+      if (e.key !== 'Enter') return;
+      var c = e.target.closest('.item-card[data-id]');
+      if (c && e.target === c) { e.preventDefault(); abreItem(c.dataset.id, { via: 'catalogo', teclado: true }); }
+    });
 
     document.addEventListener('keydown', function (e) {
       if (e.defaultPrevented) return;
@@ -744,7 +835,9 @@
       if ((antes[id] || 0) !== (qtdPorId[id] || 0)) mudou[id] = true;
     });
     Object.keys(mudou).forEach(atualizaSelo);
+    // o conjunto que FECHA mudou: re-render; senão só o "Quase fecha" pode ter mudado
     if (recalcFecho() && E.fecho && kf()) render();
+    else if (E.fecho && Object.keys(mudou).length) renderQuase();
     BZ.aoMudar.forEach(function (fn) {
       try { fn(m, mudou); } catch (err) { if (window.console) console.error(err); }
     });
@@ -812,7 +905,8 @@
     inventario: null      // js/bazar-inventario.js
   };
 
-  fetch('../data/bazar.json')
+  // ?v= = hash do bazar.json gravado pelo gerador: CSV novo, URL nova, sem catálogo velho do cache
+  fetch('../data/bazar.json' + (V.dados ? '?v=' + V.dados : ''))
     .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
     .then(function (d) {
       if (!Array.isArray(d)) throw new Error('bazar.json não é array');

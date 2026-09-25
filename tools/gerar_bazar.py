@@ -362,6 +362,9 @@ def main():
         'municoes': sorted({it['arquetipo'] for it in itens if it['familia'] == 'Munição'}),
         'total': len(itens),
         'condicoes': condicoes,
+        # versão do catálogo para o fetch do bazar.json: sem ela, depois de um
+        # CSV novo a página nova buscava o catálogo velho do cache (10 min no Pages)
+        'dados': hashlib.sha1(open(BJSON, 'rb').read()).hexdigest()[:8],
     }
 
     ver = versao_assets()

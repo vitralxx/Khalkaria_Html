@@ -367,12 +367,78 @@ body.bz-rc-aberta .bazar-page { margin-left: var(--bz-rc-w); }
 }
 .chip-n { font-size: .7rem; opacity: .62; font-variant-numeric: tabular-nums; }
 .chip.on .chip-n { opacity: .72; }
-/* raridade colore o próprio chip */
-.chip.chip-rar { color: var(--rc); border-color: var(--rbd); background: var(--rbg); }
+/* Raridade: DESLIGADO é neutro como qualquer chip — só o glifo carrega a cor.
+   Antes o chip desligado já nascia pintado (texto, borda e fundo na cor da
+   raridade) e os cinco pareciam sempre acesos: o último clicado dava a
+   impressão de ter ficado preso mesmo com o filtro desligado. */
+.chip.chip-rar svg { color: var(--rc); }
+.chip.chip-rar:hover { color: var(--rc); border-color: var(--rbd); }
 .chip.chip-rar.on { background: var(--rc); border-color: var(--rc); color: #120d06; box-shadow: 0 0 16px -4px var(--rc); }
-/* região: a cor esquenta do 1 ao 8 */
-.chip-reg { --h: calc(190deg - var(--r) * 24deg); border-color: hsl(var(--h) 38% 30%); color: hsl(var(--h) 45% 66%); }
-.chip-reg.on { background: hsl(var(--h) 52% 46%); border-color: hsl(var(--h) 60% 62%); color: #0d0906; box-shadow: 0 0 16px -4px hsl(var(--h) 60% 50%); }
+.chip.chip-rar.on svg { color: #120d06; }
+
+/* Região: trilha de perigo numa linha só. 8 segmentos iguais do frio (1) ao
+   quente (8) + Único/Quest. O filete de baixo de cada segmento, lado a lado,
+   desenha a trilha; aceso, o segmento inteiro ganha a cor do seu calor. */
+.bz-grupo-reg { flex-wrap: nowrap; align-items: stretch; }
+.bz-grupo-reg .bz-grupo-nome { align-self: center; }
+.bz-trilha {
+    flex: 1 1 auto;
+    min-width: 0;
+    display: grid;
+    grid-template-columns: repeat(8, minmax(0, 1fr)) minmax(0, .9fr);
+    gap: 3px;
+}
+.bz-seg {
+    --h: calc(190deg - var(--r, 0) * 24deg);
+    display: flex;
+    flex-direction: column;
+    gap: .12rem;
+    min-width: 0;
+    padding: .28rem .42rem .32rem;
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
+    border-bottom: 3px solid hsl(var(--h) 48% 34%);
+    border-radius: 6px 6px 2px 2px;
+    color: var(--text-secondary);
+    font-family: var(--font-body);
+    text-align: left;
+    cursor: pointer;
+    transition: color .2s, border-color .2s, background .2s, box-shadow .2s;
+}
+.bz-seg-topo { display: flex; align-items: baseline; justify-content: space-between; gap: .3rem; }
+.bz-seg-n {
+    font-family: var(--bz-mono);
+    font-size: .74rem;
+    color: hsl(var(--h) 60% 64%);
+    line-height: 1;
+}
+.bz-seg-ico { width: 11px; height: 11px; color: var(--text-muted); }
+.bz-seg-c { font-family: var(--bz-mono); font-size: .66rem; color: var(--text-muted); font-variant-numeric: tabular-nums; }
+/* palavra inteira ou nada: quebrar no meio ("Emaranhad·o") lia mal */
+.bz-seg-nome { font-size: .76rem; line-height: 1.15; overflow-wrap: normal; word-break: normal; hyphens: manual; }
+.bz-seg:hover { color: var(--text-primary); border-color: hsl(var(--h) 40% 42%); border-bottom-color: hsl(var(--h) 60% 50%); }
+.bz-seg:focus-visible { outline: 2px solid var(--amber); outline-offset: 1px; }
+.bz-seg.on {
+    background: hsl(var(--h) 45% 17%);
+    border-color: hsl(var(--h) 58% 52%);
+    border-bottom-color: hsl(var(--h) 70% 58%);
+    color: #f4f1ea;
+    box-shadow: 0 0 16px -6px hsl(var(--h) 65% 50%), inset 0 0 0 1px hsl(var(--h) 58% 52% / .35);
+}
+.bz-seg.on .bz-seg-n { color: hsl(var(--h) 80% 76%); }
+.bz-seg.on .bz-seg-c { color: #d8d2c4; }
+.bz-seg-quest { border-bottom-style: dashed; border-bottom-color: #4a4458; }
+.bz-seg-quest:hover { border-color: var(--roxo); border-bottom-color: var(--roxo-claro); }
+.bz-seg-quest.on { background: #1b1430; border-color: var(--roxo-claro); border-bottom-color: var(--roxo-claro); box-shadow: 0 0 16px -6px var(--roxo-claro); }
+.bz-seg-quest.on .bz-seg-ico { color: var(--roxo-claro); }
+/* registro estreito (1366 com o painel aberto): o rótulo sobe e a trilha usa a largura toda */
+@container registro (max-width: 760px) {
+    .bz-grupo-reg { flex-wrap: wrap; }
+    .bz-grupo-reg .bz-grupo-nome { flex-basis: 100%; }
+    .bz-trilha { gap: 2px; }
+    .bz-seg { padding: .26rem .3rem .3rem; }
+    .bz-seg-nome { font-size: .66rem; letter-spacing: -.01em; }
+}
 .bz-mais {
     background: none; border: 1px dashed var(--border-color); color: var(--text-muted);
     border-radius: 999px; padding: .24rem .6rem; font-size: .74rem; cursor: pointer;
@@ -1691,7 +1757,17 @@ svg.bz-rc-uso-ico { width: 16px; height: 16px; margin: 0 3px; }
 .cards .item-card:hover .bz-arte { transform: scale(1.08) rotate(-2deg); border-color: var(--rc); }
 
 /* lista: medalhão pequeno antes do nome */
-.bz-tabela td.c-nome { display: flex; align-items: center; gap: .45rem; }
+/* o <td> continua célula de tabela (estica até a altura da linha e alinha a
+   borda com as vizinhas); o arranjo em linha fica no contêiner interno */
+.bz-tabela .c-nome-in { display: flex; align-items: center; flex-wrap: wrap; gap: .3rem .45rem; min-height: 24px; }
+/* O style.css dá `table { overflow: hidden }` a todas as tabelas do site. Aqui
+   isso fazia da própria tabela o contêiner do sticky: o cabeçalho grudava
+   93 px ABAIXO do topo da tabela, no meio das linhas. `clip` recorta igual
+   sem criar contêiner de rolagem, e o cabeçalho volta a grudar sob a barra. */
+.bz-tabela { overflow: clip; }
+/* o Nome é a coluna que se lê primeiro: nunca espremido abaixo de 10rem */
+.bz-tabela th.c-nome, .bz-tabela td.c-nome { min-width: 10.5rem; }
+.bz-tabela td.c-nome .item-name { overflow-wrap: normal; }
 .c-ico { width: 24px; height: 24px; }
 .c-ico:not(.bz-arte) { color: var(--rc); opacity: .8; }
 
@@ -1713,6 +1789,57 @@ svg.bz-rc-uso-ico { width: 16px; height: 16px; margin: 0 3px; }
 .item-valor, .item-cd, .bz-tabela td.c-valor, .bz-tabela td.c-cd {
     font-variant-numeric: tabular-nums;
 }
+
+/* ---------------------------------------------------------- inventário empilhado (1366)
+   Com as colunas uma sobre a outra, cada uma rolando sozinha, sobrava altura
+   para ~1 linha por coluna. Empilhado, o inventário vira UM rolador; o
+   cabeçalho de cada coluna gruda no topo enquanto a lista dela passa. */
+@container inv (max-width: 599px) {
+    .bz-inv-cols { overflow-y: auto; overscroll-behavior: contain; }
+    .bz-inv-cols .bz-col { flex: 0 0 auto; min-height: auto; }
+    .bz-inv-cols .bz-col-lista { flex: 0 0 auto; overflow: visible; min-height: 0; }
+    .bz-inv-cols .bz-col-cab {
+        position: sticky;
+        top: 0;
+        z-index: 2;
+        background: var(--bz-cantos), linear-gradient(180deg, #15131c, #110f17);
+    }
+    .bz-inv-cols .bz-col.recolhida { flex: 0 0 auto; }
+}
+
+/* ---------------------------------------------------------- "Fecha com o inventário": quase fecha */
+.bz-quase { margin-top: .6rem; }
+.bz-quase-msg {
+    margin: 1.6rem auto 1rem;
+    max-width: 44rem;
+    text-align: center;
+    color: var(--text-secondary);
+    font-style: italic;
+    line-height: 1.6;
+}
+.bz-quase-titulo {
+    display: flex; align-items: center; gap: .7rem;
+    margin: 1.4rem 0 .7rem;
+    font-family: var(--font-heading);
+    font-size: .74rem;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: var(--amber);
+}
+.bz-quase-titulo::after { content: ''; flex: 1; height: 1px; background: linear-gradient(90deg, var(--amber-dim), transparent); }
+.item-falta {
+    display: flex; align-items: baseline; flex-wrap: wrap; gap: .3rem;
+    margin: 0;
+    padding: .28rem .5rem;
+    font-size: .82rem;
+    color: #f0c48a;
+    background: #e08b2c12;
+    border: 1px dashed var(--amber-dim);
+    border-radius: 6px;
+}
+.item-falta b { color: var(--gold-light); font-family: var(--bz-mono); font-weight: 400; }
+.item-falta span { color: var(--text-secondary); font-size: .76rem; }
+.item-falta .bz-ico-aviso { width: 13px; height: 13px; align-self: center; color: var(--amber); }
 
 /* ---------------------------------------------------------- acessibilidade: movimento reduzido
    Tudo instantâneo. As raízes nascem prontas; o piscar vira um marcador

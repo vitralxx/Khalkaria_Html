@@ -169,6 +169,13 @@
 
                     <div class="bz-resultados" id="bz-resultados"></div>
                     <p class="bz-vazio" id="bz-vazio" hidden>Nada no registro com esses filtros.</p>
+                    <!-- "Fecha com o inventário": o que está a UM ingrediente de fechar.
+                         Nunca deixa o filtro devolver uma tela vazia sem saída. -->
+                    <section class="bz-quase" id="bz-quase" hidden aria-label="Quase fecha">
+                        <p class="bz-quase-msg" id="bz-quase-msg"></p>
+                        <p class="bz-quase-titulo" id="bz-quase-titulo"></p>
+                        <div class="bz-resultados cards bz-quase-grade" id="bz-quase-grade"></div>
+                    </section>
                 </section>
 
                 <aside class="bz-inv" id="bz-inventario" data-kf-ignorar aria-labelledby="inventario">
