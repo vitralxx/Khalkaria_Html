@@ -110,6 +110,37 @@ def parse_arquetipo(efeito, categoria):
     return ('', '')
 
 
+RE_EMPILHA = re.compile(r'(?<!Não é )[Ee]mpilh[aá]vel:\s*pesa 1 bugiganga a cada 10 unidades')
+RE_CAPAC = re.compile(r'\+(\d+)\s*(?:de capacidade de\s*)?(bugigangas?|equipamentos?)', re.I)
+EQUIPAMENTO = {'Arma', 'Armadura', 'Escudo'}
+
+
+def parse_inventario(efeito, cats, arq, fam):
+    """Como o item se comporta no inventário — tudo lido do Efeito, nada inventado.
+
+    Regra canônica (Sistema > Inventário e Peso): Equipamentos são armas,
+    armaduras e escudos; Bugigangas são todo o resto. "Itens leves contam como
+    1 bugiganga a cada 10 unidades" — 85 itens do CSV declaram isso no Efeito.
+    Bolsas e mochilas declaram capacidade extra e se acumulam com cópia ou não.
+    """
+    ef = efeito or ''
+    inv = {'slot': 'equipamento' if (cats and cats[0] in EQUIPAMENTO) else 'bugiganga'}
+    if RE_EMPILHA.search(ef):
+        inv['empilhavel'] = True
+    if fam == 'Slot' and arq in ('Pesada', 'Leve'):
+        inv['armadura'] = arq                     # Pesada: 1 equipada · Leve: até 2
+    if re.search(r'capacidade', ef, re.I):
+        extra = {}
+        for n, tipo in RE_CAPAC.findall(ef):
+            extra['equip' if tipo.lower().startswith('equip') else 'bug'] = int(n)
+        if extra:
+            inv['capacidade'] = extra
+            inv['acumula'] = not re.search(r'não acumula com outra cópia', ef, re.I)
+    if re.search(r'não ocupa espaço', ef, re.I):
+        inv['ocupa'] = False
+    return inv
+
+
 ARTE = os.path.join(RAIZ, 'data', 'icones-materiais.json')
 
 
@@ -170,6 +201,7 @@ def main():
             'tags': tags, 'lore': (r.get('Lore/Notas') or '').strip(),
             'pai': pai,
             'arte': arte.get(nome, ''),
+            'inv': parse_inventario(efeito, cats, arq, fam),
             'busca': ' '.join([nome, categoria, r.get('Raridade', ''), r.get('Tipo de Craft', ''),
                                regiao, arq, ' '.join(tags), efeito]).lower(),
         })
