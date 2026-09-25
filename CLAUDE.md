@@ -23,8 +23,9 @@ Publicado em GitHub Pages: `vitralxx.github.io/Khalkaria_Html/`.
 - **Recursos:** Saúde, Stamina (todas as classes), Éter (conjuradores), Recurso de Classe específico (ex.: FLUXO no Monge).
 - **Valores de classe:** cada classe tem **Vitalidade**, **Vigor** e **Ressonância** — os multiplicadores que entram no cálculo de Saúde, Stamina e Éter máximos. Vivem nas fórmulas dos `templates/classes/*.template.html`.
 - **Derivados:** Movimento, Evasão, CD.
-- **Inventário:** Equipamentos = 2 + Mod.FOR slots · Bugigangas = 10 + Mod.FOR. Munição: 20 unidades = 1 slot. Moedas não pesam. Condições de excesso: *Sobrepeso Leve* / *Sobrepeso Extremo*.
-- **Magia:** **5 níveis**. Custo base **0/2/4/6/8** Éter — o Nível 1 é gratuito e o Nível 5 exige Foco Primordial. Intensidades: Contida (−2) / Normal / Forçada (+2) / Transbordante (+4). Exige Treinado em Místico + Foco da escola. Escolas: Destruição, Abjuração, Alteração, Conhecimento.
+- **Inventário:** Equipamentos = 2 + Mod.FOR slots · Bugigangas = 10 + Mod.FOR. Itens com a propriedade **Empilhável** (munição incluída): 10 unidades = 1 de peso (confirmado pelo Pedro em 2026-09-25; o "20 = 1 slot" antigo estava errado). Moedas não pesam. Condições de excesso: *Sobrepeso Leve* / *Sobrepeso Extremo*. Itens que dão capacidade (Mochila Reforçada, do Contrabandista…) somam quando estão no inventário.
+- **Progressão:** a cada nível (2–5) o Limiar dá **+2 pontos de atributo**; além disso, o jogador pode comprar a 6ª carta (+2 Atributo Adicional, 2 pontos do Limiar). Canônico, confirmado pelo Pedro em 2026-09-25.
+- **Magia:** **5 níveis**. Custo base **0/2/4/6/8** Éter — o Nível 1 é gratuito e o Nível 5 exige Foco Primordial. Intensidades: Contida (−2, **mín. 1** — canônico, confirmado em 2026-09-25) / Normal / Forçada (+2) / Transbordante (+4). Exige Treinado em Místico + Foco da escola. Escolas: Destruição, Abjuração, Alteração, Conhecimento.
 - **Resistências:** 12 tipos de dano — Ordinário, Fogo, Frio, Elétrico, Veneno, Ácido, Psíquico, Força, Radiante, Trovejante, Necrótico, Primordial. Cada um com Resistência (R) e Imunidade (I).
 - **Classes (7):** Espadachim, Batedor, Brutalista, Teurgo, Monge, Alquimista, Artilheiro.
 - **Raças (7):** Humano, Anão, Dryad, Autômato, Gruto, Inseto, Corrompido.

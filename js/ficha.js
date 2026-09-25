@@ -12,11 +12,11 @@
 
   // ================= KhInv: motor de carga e inventário (PURO) =================
   // Regras do texto do Sistema (validar.py confere as frases). Pendências do
-  // Pedro marcadas: munição 20:1 (CLAUDE.md) × 10:1 (CSV); limites Pesada/Leve
-  // independentes; bônus de mochilas diferentes somam.
+  // Pedro marcadas: limites Pesada/Leve independentes; bônus de mochilas
+  // diferentes somam. Empilhável 10:1 (munição incluída) confirmado em 2026-09-25.
   var KhInv = (function () {
     var REGRAS = Object.freeze({
-      BASE_BUG: 10, BASE_EQ: 2, MIN: 1, PILHA: 10 /* pendente: munição */,
+      BASE_BUG: 10, BASE_EQ: 2, MIN: 1, PILHA: 10,
       LIM_PESADA: 1, LIM_LEVE: 2, LIM_SINTONIA: 3, QTD_MAX: 9999,
       FRASE_EMPILHA: 'Empilhável: pesa 1 bugiganga a cada 10 unidades'
     });
