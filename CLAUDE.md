@@ -166,7 +166,7 @@ Sistema → Magias → Condições → Limiar → 7 Classes → 7 Raças → Ori
 
 ## 8. Entrega
 
-- Versionamento semântico. Última versão publicada: **v1.5** (tag git).
+- Versionamento semântico. Última versão publicada: **v1.6** (tag git).
 - No modelo antigo: zip completo `Khalkaria_Html-v{X.Y}.zip`, nunca patch parcial.
 - Trabalhando no repo local via Claude Code: commits atômicos, mensagem descritiva em PT-BR.
 - Antes de qualquer commit que toque HTML/CSS/JSON: `python tools/build.py` tem que passar.

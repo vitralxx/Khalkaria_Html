@@ -2,6 +2,25 @@
 
 Versionamento semântico. Cada versão é uma tag git.
 
+## v1.6 — 2026-09-25 · Filtros em trilha e navegação recolhível
+
+### Mudado
+- **Filtros do Bazar:** as cinco linhas — Categoria, Raridade, Ofício, Região e
+  Arquétipo — seguem agora o formato de trilha aprovado na Região: segmentos
+  iguais numa fileira, com glifo, contagem e nome. A cor só aparece onde é dado
+  (raridade com as cores fixas, região com o calor 1→8); o resto usa âmbar
+  neutro. O Arquétipo mostra os 22 itens agrupados por família, sem o "+14".
+- **Navegação lateral redesenhada:** glifos SVG gravados no lugar dos emojis,
+  raízes preto-sobre-preto, grupos Raças e Classes recolhíveis e link atual
+  marcado com `aria-current`.
+- **Navegação recolhível:** um trilho de 64 px com dica em cada ícone, pelo
+  botão ou pela tecla `\`. O estado fica lembrado entre páginas e é aplicado
+  no `<head>`, antes do primeiro desenho, então a página não pisca aberta. No
+  Bazar, o registro ganha espaço (644 → 860 px em 1366).
+- O menu do celular passou para `js/nav.js` e agora também existe no Bazar.
+- O card do Bazar no Início mostra a contagem real de itens, preenchida pelo
+  build (dizia 581).
+
 ## v1.5 — 2026-09-25 · Bazar v3 e inventário da Ficha
 
 ### Adicionado
