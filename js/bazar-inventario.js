@@ -132,7 +132,7 @@
   var ROTULO = { bugigangas: 'Bugigangas', equipamentos: 'Equipamentos' };
   var OUTRA = { bugigangas: 'equipamentos', equipamentos: 'bugigangas' };
   var ORD_ESTADO = { ok: 0, leve: 1, extremo: 2 };
-  var TOAST_MS = 6000, MOLA_MS = 500, PISCA_MS = 1500, PIORA_MS = 700;
+  var TOAST_MS = 6000, MOLA_MS = 500, PISCA_MS = 1500, PIORA_MS = 700, REMOVE_MS = 160;
   var ATALHOS_LINHA = 'ArrowUp ArrowDown Home End Enter Plus - Q Delete E T S M';
   var MSG_EQUIPADO_1 = 'Item equipado conta 1 unidade; desequipe para mudar a quantidade';
   var MSG_MIGRACAO ='Inventário convertido: 4 listas → 2 colunas. Armaduras e materiais agora pesam; marque o que está Equipado.';
@@ -256,8 +256,10 @@
     var total = 2 * col.max;
     var ok = total > 0 ? Math.min(col.usado, col.max) / total * 100 : 0;
     var exc = total > 0 ? Math.max(0, Math.min(col.usado, total) - col.max) / total * 100 : 0;
+    // entalhes por cima do preenchimento: um por unidade até 40, senão tique a cada 5
     return '<span class="bz-regua-ok" style="width:' + ok + '%"></span>' +
       (exc > 0 ? '<span class="bz-regua-exc" style="width:' + exc + '%;left:50%"></span>' : '') +
+      '<span class="bz-regua-entalhes" aria-hidden="true"></span>' +
       '<span class="bz-regua-marco" aria-hidden="true"></span>' +
       (col.usado > total ? '<span class="bz-regua-mais">+' + (col.usado - total) + '</span>' : '');
   }
@@ -268,8 +270,11 @@
     no.setAttribute('aria-valuenow', String(col.usado));
     no.setAttribute('aria-valuetext', col.usado + ' de ' + col.max + ' ' + ROTULO[c].toLowerCase() + (cond ? ', ' + cond : ''));
     no.setAttribute('data-estado', col.estado);
-    no.classList.toggle('segmentada', 2 * col.max <= 40);
-    no.style.setProperty('--bz-n', String(Math.max(1, 2 * col.max)));
+    var total = Math.max(1, 2 * col.max);
+    no.classList.toggle('segmentada', total <= 40);
+    no.classList.toggle('ticada', total > 40);
+    no.style.setProperty('--bz-n', String(total));
+    no.style.setProperty('--bz-t', String(total / 5));
     trocaHTML(no, reguaHTML(col));
   }
 
@@ -325,7 +330,8 @@
       '" aria-keyshortcuts="' + ATALHOS_LINHA + '">' +
       '<div class="bz-slot-l1">' + medalhaoHTML(e) +
         '<button type="button" class="bz-slot-nome" tabindex="-1"' + nomeAttrs + '>' + esc(e.nome) + '</button>' +
-        '<span class="bz-slot-peso" title="' + esc(motivoPeso(e, coluna, cg, inv)) + '">= ' + peso + '</span>' +
+        '<span class="bz-slot-peso" title="' + esc(motivoPeso(e, coluna, cg, inv)) + '">' +
+          (e.empilhavel ? U.svg('ico-empilhavel', 'bz-slot-pilha') : '') + '= ' + peso + '</span>' +
         '<button type="button" class="bz-slot-x" data-acao="x" tabindex="-1" aria-label="Remover ' + esc(e.nome) +
           '" title="Remover (Delete)">×</button>' +
       '</div>' +
@@ -639,12 +645,28 @@
     piscar(uid);
     return uid;
   }
+  // A linha removida fecha a altura até 0 em 160ms (§10) e só então sai da
+  // ficha; com movimento reduzido, sai na hora.
+  var saindo = {};
   function remover(uid) {
     var k = kf(), e = entrada(uid);
-    if (!k || !e) return;
+    if (!k || !e || saindo[uid]) return;
     var v = vizinha(uid);
-    if (aside.contains(document.activeElement)) focoPend = v ? { uid: v.uid, acao: '', col: v.col } : null;
-    if (k.remover(uid)) toast('Removido: ' + e.nome, true, uid);
+    var comFoco = aside.contains(document.activeElement);
+    var li = linhaDe(uid);
+    function fim() {
+      delete saindo[uid];
+      var e2 = entrada(uid);
+      if (!e2) return;
+      if (comFoco) focoPend = v ? { uid: v.uid, acao: '', col: v.col } : null;
+      if (k.remover(uid)) toast('Removido: ' + e2.nome, true, uid);
+    }
+    if (!li || reduzMov) { fim(); return; }
+    saindo[uid] = true;
+    li.style.height = li.offsetHeight + 'px';
+    void li.offsetHeight;
+    li.classList.add('bz-sai');
+    setTimeout(fim, REMOVE_MS);
   }
   function quantidade(uid, n) {
     var k = kf(), e = entrada(uid);
@@ -1103,11 +1125,23 @@
     var it = (p.item.id && D.porId[p.item.id]) || D.porNome[p.item.nome] || p.item;
     guardar(it, col || null, 1);   // a coluna em que se solta VALE; cabeçalho e trilho: a canônica
   });
+  var origemArrasto = null;
+  // origem do arrasto vinda do registro ou do painel: opacidade .45 (§10).
+  // Num rAF, para a imagem do arrasto sair com a opacidade cheia.
+  document.addEventListener('dragstart', function (e) {
+    var t = e.target && e.target.closest ? e.target : null;
+    var o = t && (t.closest('#bz-registro .item-card') || t.closest('#bz-receita [data-ir]'));
+    if (!o) return;
+    origemArrasto = o;
+    U.raf(function () { if (origemArrasto === o) o.classList.add('bz-arrastando'); });
+  });
   document.addEventListener('dragend', function () {
+    origemArrasto = null;
     limpaAlvos();
     paraMola();
     arrasto.uid = ''; arrasto.col = '';
     aside.querySelectorAll('li.is-arrastando').forEach(function (li) { li.classList.remove('is-arrastando'); });
+    document.querySelectorAll('.bz-arrastando').forEach(function (x) { x.classList.remove('bz-arrastando'); });
   }, true);
 
   // ------------------------------------------------------------ nome digitado no drawer

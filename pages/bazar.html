@@ -7,8 +7,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400&family=UnifrakturMaguntia&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../css/style.css?v=ecb51731">
-    <link rel="stylesheet" href="../css/bazar.css?v=ecb51731">
+    <link rel="stylesheet" href="../css/style.css?v=2bfea0f2">
+    <link rel="stylesheet" href="../css/bazar.css?v=2bfea0f2">
 </head>
 <body data-no-rightbar data-bazar>
     <button class="menu-toggle">☰ Menu</button>
@@ -81,7 +81,28 @@
       <symbol id="ico-equipado" viewBox="0 0 24 24"><rect x="4.4" y="7.4" width="15.2" height="9.2" rx="1.6" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M12 7.4v9.2M12 12h5" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></symbol>
       <symbol id="ico-sintonia" viewBox="0 0 24 24"><ellipse cx="12" cy="13" rx="7" ry="5.4" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M12 3.6l1.4 2.6L12 8.4l-1.4-2.2Z" fill="none" stroke="currentColor" stroke-width="1" stroke-linejoin="round"/></symbol>
       <symbol id="ico-empilhavel" viewBox="0 0 24 24"><ellipse cx="12" cy="7" rx="6.4" ry="2.4" fill="none" stroke="currentColor" stroke-width="1.1"/><path d="M5.6 7v3.6c0 1.3 2.9 2.4 6.4 2.4s6.4-1.1 6.4-2.4V7M5.6 10.6v3.6c0 1.3 2.9 2.4 6.4 2.4s6.4-1.1 6.4-2.4v-3.6M5.6 14.2v3.2c0 1.3 2.9 2.4 6.4 2.4s6.4-1.1 6.4-2.4v-3.2" fill="none" stroke="currentColor" stroke-width="1.1"/></symbol>
-      <symbol id="saco-vazio" viewBox="0 0 48 48"><path d="M17 11h14l-3 5c6.6 2.4 11 8.6 11 15.4C39 38 33.4 42 24 42S9 38 9 31.4C9 24.6 13.4 18.4 20 16Z" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><path d="M20 16h8M18.6 7.4c1.8 1.2 3.6 1.2 5.4 0s3.6-1.2 5.4 0" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" opacity=".7"/></symbol>
+      <symbol id="saco-vazio" viewBox="0 0 48 48"><path pathLength="1" d="M17 11h14l-3 5c6.6 2.4 11 8.6 11 15.4C39 38 33.4 42 24 42S9 38 9 31.4C9 24.6 13.4 18.4 20 16Z" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><path pathLength="1" d="M20 16h8M18.6 7.4c1.8 1.2 3.6 1.2 5.4 0s3.6-1.2 5.4 0" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" opacity=".7"/></symbol>
+
+      <!-- raízes gravadas (spec §10): preto sobre preto, nunca sobre texto ou
+           preenchimento. pathLength="1" em todo traço, para o desenho por
+           stroke-dashoffset 1→0 (dasharray e dashoffset herdam do <use>). -->
+      <symbol id="raiz-v" viewBox="0 0 16 400" preserveAspectRatio="none">
+        <path pathLength="1" d="M8 0C10.6 34 5.4 62 8 104S11.2 170 7.4 214 5 300 8.6 342 8 380 8 400" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+        <path pathLength="1" d="M8.2 58c2 7 4.4 12 7.2 17M7.6 150c-2.2 6-4.6 11-7 14M8.8 236c2.2 5 4.2 10 6.6 13M7 296c-2.2 6-4.2 10-6.4 14M8.8 362c2 4 4 8 6.4 11" fill="none" stroke="currentColor" stroke-width=".8" stroke-linecap="round"/>
+      </symbol>
+      <symbol id="raiz-elo" viewBox="0 0 24 48" preserveAspectRatio="none">
+        <path pathLength="1" d="M12 0C9.6 9 14.4 17 12 26S10.6 40 12 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+        <path pathLength="1" d="M12.2 25c-2.2-1.4-3 1.6-.4 2.2 2.6.6 2.8-2.6.4-2.2M12.4 33c2.4 1.6 4.8 2.4 8 2.6" fill="none" stroke="currentColor" stroke-width=".8" stroke-linecap="round"/>
+      </symbol>
+      <symbol id="raiz-garra" viewBox="0 0 24 12">
+        <path pathLength="1" d="M0 6c4 0 6.4-.6 9.4-.2s5.4.8 8.6.2" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+        <path pathLength="1" d="M9.4 5.8c2-1.6 3.8-3.4 5.2-5.2" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round"/>
+        <path pathLength="1" d="M13.4 6.2c2.4 1.2 4.4 3 5.8 5.2M18 6c2.4-.8 4.2-2.2 5.6-4" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" style="opacity:var(--bz-garra-mais,0)"/>
+      </symbol>
+      <symbol id="raiz-no" viewBox="0 0 12 12">
+        <circle pathLength="1" cx="6" cy="6" r="4.2" fill="none" stroke="currentColor" stroke-width="1.3"/>
+        <path pathLength="1" d="M6 1.8V0M6 10.2V12M3 9l-1.6 1.6" fill="none" stroke="currentColor" stroke-width=".9" stroke-linecap="round"/>
+      </symbol>
     </svg>
 
     <div class="app-container">
@@ -240,11 +261,19 @@
                                 <span class="bz-col-est" data-est></span>
                                 <button type="button" class="bz-col-btn" data-col-mais aria-label="Guardar em Bugigangas" title="Guardar em Bugigangas"><svg aria-hidden="true"><use href="#ico-mais"/></svg></button>
                                 <button type="button" class="bz-col-btn bz-col-recolher" data-col-recolher aria-expanded="true" aria-label="Recolher Bugigangas" title="Recolher Bugigangas"><svg aria-hidden="true"><use href="#ico-recolher"/></svg></button>
-                                <div class="bz-regua" data-regua role="meter" aria-label="Bugigangas" aria-valuemin="0" aria-valuemax="1" aria-valuenow="0"></div>
+                                <div class="bz-regua-linha">
+                                    <div class="bz-regua" data-regua role="meter" aria-label="Bugigangas" aria-valuemin="0" aria-valuemax="1" aria-valuenow="0"></div>
+                                    <svg class="bz-regua-garra" aria-hidden="true"><use href="#raiz-garra"/></svg>
+                                </div>
                             </header>
                             <p class="bz-col-solte" data-solte aria-hidden="true"></p>
                             <ul class="bz-col-lista" data-col="bugigangas"></ul>
                         </section>
+                        <!-- divisor: #raiz-v com as colunas lado a lado, #raizes quando empilhadas -->
+                        <div class="bz-inv-divisor" aria-hidden="true">
+                            <svg class="bz-inv-div-v"><use href="#raiz-v"/></svg>
+                            <svg class="bz-inv-div-h"><use href="#raizes"/></svg>
+                        </div>
                         <section class="bz-col" data-col="equipamentos" aria-labelledby="inventario-equipamentos">
                             <header class="bz-col-cab">
                                 <h3 id="inventario-equipamentos" class="bz-col-titulo">Equipamentos</h3>
@@ -252,7 +281,10 @@
                                 <span class="bz-col-est" data-est></span>
                                 <button type="button" class="bz-col-btn" data-col-mais aria-label="Guardar em Equipamentos" title="Guardar em Equipamentos"><svg aria-hidden="true"><use href="#ico-mais"/></svg></button>
                                 <button type="button" class="bz-col-btn bz-col-recolher" data-col-recolher aria-expanded="true" aria-label="Recolher Equipamentos" title="Recolher Equipamentos"><svg aria-hidden="true"><use href="#ico-recolher"/></svg></button>
-                                <div class="bz-regua" data-regua role="meter" aria-label="Equipamentos" aria-valuemin="0" aria-valuemax="1" aria-valuenow="0"></div>
+                                <div class="bz-regua-linha">
+                                    <div class="bz-regua" data-regua role="meter" aria-label="Equipamentos" aria-valuemin="0" aria-valuemax="1" aria-valuenow="0"></div>
+                                    <svg class="bz-regua-garra" aria-hidden="true"><use href="#raiz-garra"/></svg>
+                                </div>
                             </header>
                             <p class="bz-col-solte" data-solte aria-hidden="true"></p>
                             <ul class="bz-col-lista" data-col="equipamentos"></ul>
@@ -276,15 +308,18 @@
         </div>
         <div class="bz-rc-corpo" id="bz-rc-corpo"></div>
     </aside>
+    <!-- borda direita do painel de receita: fora do <aside> porque ele rola
+         (overflow corta o right:-8px); aparece com body.bz-rc-aberta -->
+    <svg class="bz-rc-borda" aria-hidden="true" focusable="false"><use href="#raiz-v"/></svg>
 
     <div class="bz-cartao" id="bz-preview" role="tooltip" data-kf-ignorar hidden></div>
     <div class="bz-sr" id="bz-vivo" aria-live="polite"></div>
 
     <script>window.BZ_VOCAB = {"categorias": ["Arma", "Armadura", "Escudo", "Consumível", "Munição", "Bugiganga", "Item Mágico", "Material", "Lixo"], "raridades": ["Lixo", "Ordinário", "Incomum", "Exótico", "Luxária"], "oficios": ["Ferraria", "Engenharia", "Alquimia", "Sobrevivência", "Não-craftável"], "regioes": ["Cinturão Silencioso", "Bosque Corrompido", "Emaranhado de Raízes", "Costas Rochosas", "Terras Livres", "Cordilheira Cristalina", "Ermo das Cinzas", "Deserto do Abismo"], "chassis": ["Leve Cortante", "Leve Perfurante", "Leve Contundente", "Leve Ágil", "Pesada Cortante", "Pesada Perfurante", "Pesada Contundente", "Pesada Brutal", "Marcial Pesada", "Marcial Longa", "Marcial Precisa", "Marcial Versátil", "Distância Simples", "Distância Pesada", "Arremesso"], "focos": ["Foco Místico (Abjuração)", "Foco Místico (Alteração)", "Foco Místico (Conhecimento)", "Foco Místico (Destruição)", "Foco Místico (Primordial)"], "slots": ["Leve", "Pesada"], "municoes": ["Arremesso", "Distância Pesada", "Distância Simples"], "total": 727, "condicoes": {"leve": {"id": "sobrepeso-leve", "nome": "Sobrepeso Leve", "texto": "Movimento diminuído para a metade. -2 em perícias com Força, Destreza ou Constituição como atributo base."}, "extremo": {"id": "sobrepeso-extremo", "nome": "Sobrepeso Extremo", "texto": "Você tem 1,5 m de Movimento. Desvantagem em perícias com Força, Destreza ou Constituição como atributo base."}}};</script>
-    <script src="../js/ficha.js?v=ecb51731"></script>
-    <script src="../js/bazar.js?v=ecb51731"></script>
-    <script src="../js/bazar-cartao.js?v=ecb51731"></script>
-    <script src="../js/bazar-receita.js?v=ecb51731"></script>
-    <script src="../js/bazar-inventario.js?v=ecb51731"></script>
+    <script src="../js/ficha.js?v=2bfea0f2"></script>
+    <script src="../js/bazar.js?v=2bfea0f2"></script>
+    <script src="../js/bazar-cartao.js?v=2bfea0f2"></script>
+    <script src="../js/bazar-receita.js?v=2bfea0f2"></script>
+    <script src="../js/bazar-inventario.js?v=2bfea0f2"></script>
 </body>
 </html>

@@ -30,7 +30,27 @@
     --bz-leve: #e08b2c;
     --bz-extremo: #8b2635;
     --bz-extremo-vivo: #b3261e;
+
+    /* texto discreto com contraste >= 4.5:1 sobre os painéis (#0c0b10–#15151f).
+       O --text-muted do style.css (#6b6560) fica em ~3.3:1; aqui ele é
+       sobreposto só dentro da mesa, do painel e do pop-up (§11). */
+    --bz-muted: #8a8580;
+    /* cantos de livro-razão: L de 10px, 1px --amber-dim a 40% */
+    --bz-canto: #8a551866;
+    --bz-cantos:
+        linear-gradient(var(--bz-canto), var(--bz-canto)) left top / 10px 1px no-repeat,
+        linear-gradient(var(--bz-canto), var(--bz-canto)) left top / 1px 10px no-repeat,
+        linear-gradient(var(--bz-canto), var(--bz-canto)) right top / 10px 1px no-repeat,
+        linear-gradient(var(--bz-canto), var(--bz-canto)) right top / 1px 10px no-repeat,
+        linear-gradient(var(--bz-canto), var(--bz-canto)) left bottom / 10px 1px no-repeat,
+        linear-gradient(var(--bz-canto), var(--bz-canto)) left bottom / 1px 10px no-repeat,
+        linear-gradient(var(--bz-canto), var(--bz-canto)) right bottom / 10px 1px no-repeat,
+        linear-gradient(var(--bz-canto), var(--bz-canto)) right bottom / 1px 10px no-repeat;
 }
+.bazar-page, .bz-rc, .bz-cartao { --text-muted: var(--bz-muted); }
+/* foco de base na mesa e no painel; as regras específicas abaixo (linhas com
+   outline para dentro, campos) vêm depois e prevalecem */
+.bazar-page :focus-visible, .bz-rc :focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
 @media (min-width: 1800px) {
     :root { --bz-rc-w: 400px; --bz-inv-w: 640px; }
 }
@@ -611,6 +631,7 @@ body.bz-rc-aberta .bazar-page { margin-left: var(--bz-rc-w); }
     flex: 0 0 auto;
     padding: .7rem .85rem .6rem;
     border-bottom: 1px solid var(--border-color);
+    background: var(--bz-cantos);
 }
 .bz-inv-linha { display: flex; align-items: baseline; gap: .6rem; flex-wrap: wrap; }
 .bz-inv .bz-inv-titulo {
@@ -636,7 +657,12 @@ body.bz-rc-aberta .bazar-page { margin-left: var(--bz-rc-w); }
     display: flex;
     flex-direction: column;
 }
-.bz-col + .bz-col { border-top: 1px solid #1c1714; }
+/* divisor Bugigangas | Equipamentos: #raizes deitado quando empilhadas,
+   #raiz-v em pé quando lado a lado (container query logo abaixo) */
+.bz-inv-divisor { position: relative; flex: 0 0 10px; pointer-events: none; }
+.bz-inv-divisor svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.bz-inv-div-v { display: none; color: #1c1714; }
+.bz-inv-div-h { color: #2b2320; }
 .bz-col-cab {
     flex: 0 0 auto;
     min-height: 40px;
@@ -664,7 +690,9 @@ body.bz-rc-aberta .bazar-page { margin-left: var(--bz-rc-w); }
 }
 @container inv (min-width: 600px) {
     .bz-inv-cols { flex-direction: row; }
-    .bz-col + .bz-col { border-top: 0; border-left: 1px solid #1c1714; }
+    .bz-inv-divisor { flex: 0 0 16px; }
+    .bz-inv-div-v { display: block; }
+    .bz-inv-div-h { display: none; }
 }
 .bz-inv-rodape {
     flex: 0 0 auto;
@@ -765,6 +793,7 @@ svg.bz-cb-ico { width: 18px; height: 18px; }
 .bz-col-cab {
     flex-wrap: wrap; row-gap: 3px; padding: .35rem .85rem .4rem;
     position: relative;
+    background: var(--bz-cantos);
 }
 .bz-col-num {
     font-family: var(--bz-mono); font-variant-numeric: tabular-nums; font-size: .9rem; color: var(--text-secondary);
@@ -779,19 +808,27 @@ svg.bz-cb-ico { width: 18px; height: 18px; }
 .bz-col-num:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
 
 /* régua: 0 a 2×max; dourado até o max, âmbar hachurado até 2×max */
+/* a linha da régua reserva 18px à direita para a garra de sobrepeso, que
+   fica FORA do trilho: nunca sobre o preenchimento nem sobre os números */
+.bz-regua-linha { flex: 0 0 100%; display: flex; align-items: center; gap: 3px; }
 .bz-regua {
-    position: relative; flex: 0 0 100%; height: 8px; border-radius: 2px;
+    position: relative; flex: 1 1 auto; min-width: 0; height: 8px; border-radius: 2px;
     background: #0b0a0f; box-shadow: inset 0 0 0 1px #ffffff0d;
-}
-.bz-regua.segmentada {
-    background:
-        repeating-linear-gradient(90deg, transparent 0 calc(100% / var(--bz-n) - 1px), #000a calc(100% / var(--bz-n) - 1px) calc(100% / var(--bz-n))),
-        #0b0a0f;
 }
 .bz-regua-ok, .bz-regua-exc { position: absolute; top: 0; bottom: 0; left: 0; border-radius: 2px; transition: width .2s ease-out; }
 .bz-regua-ok { background: linear-gradient(90deg, var(--gold-dark), var(--gold)); }
+/* do max a 2×max: âmbar com hachura de 45° e 6px */
 .bz-regua-exc { background: repeating-linear-gradient(45deg, var(--bz-leve) 0 3px, #8a5518 3px 6px); }
+/* passou de 2×max: listrado em brasa, sem piscar; o "+N" diz quanto */
 .bz-regua[data-estado="extremo"] .bz-regua-exc { background: repeating-linear-gradient(45deg, var(--bz-extremo-vivo) 0 3px, #5a1e26 3px 6px); }
+/* entalhes por cima do preenchimento: um por unidade (2×max ≤ 40) ou tique a cada 5 */
+.bz-regua-entalhes { position: absolute; inset: 0; border-radius: 2px; pointer-events: none; }
+.bz-regua.segmentada .bz-regua-entalhes {
+    background: repeating-linear-gradient(90deg, transparent 0 calc(100% / var(--bz-n) - 1px), #000a calc(100% / var(--bz-n) - 1px) calc(100% / var(--bz-n)));
+}
+.bz-regua.ticada .bz-regua-entalhes {
+    background: repeating-linear-gradient(90deg, transparent 0 calc(100% / var(--bz-t) - 1px), #000c calc(100% / var(--bz-t) - 1px) calc(100% / var(--bz-t)));
+}
 .bz-regua-marco { position: absolute; top: -2px; bottom: -2px; left: calc(50% - 1px); width: 2px; background: var(--gold-light); }
 .bz-regua::after {
     content: ""; position: absolute; top: -2px; bottom: -2px; right: 0;
@@ -799,12 +836,25 @@ svg.bz-cb-ico { width: 18px; height: 18px; }
 }
 .bz-regua-mais {
     position: absolute; right: 2px; top: -15px;
-    font-family: var(--bz-mono); font-size: .68rem; color: #ff6b5a;
+    font-family: var(--bz-mono); font-variant-numeric: tabular-nums; font-size: .68rem; color: #ff6b5a;
 }
-.bz-regua.bz-piora { animation: bz-piora .7s ease-out; }
-@keyframes bz-piora { 30% { box-shadow: 0 0 10px 1px var(--bz-leve); } }
-.bz-regua.bz-piora[data-estado="extremo"] { animation-name: bz-piora-ext; }
-@keyframes bz-piora-ext { 30% { box-shadow: 0 0 10px 1px var(--bz-extremo-vivo); } }
+/* ao PIORAR de faixa: um único brilho de 700ms na cor do estado (só opacidade) */
+.bz-regua::before {
+    content: ""; position: absolute; inset: -2px; border-radius: 3px; pointer-events: none;
+    box-shadow: 0 0 10px 1px var(--bz-brilho, var(--bz-leve));
+    opacity: 0;
+}
+.bz-regua[data-estado="extremo"] { --bz-brilho: var(--bz-extremo-vivo); }
+.bz-regua.bz-piora::before { animation: bz-piora .7s ease-out; }
+@keyframes bz-piora { 30% { opacity: 1; } }
+
+/* garra de sobrepeso (#raiz-garra, 18×10), colada à ponta direita */
+.bz-regua-garra { flex: 0 0 18px; width: 18px; height: 10px; overflow: visible; visibility: hidden; }
+.bz-col[data-estado="leve"] .bz-regua-garra { visibility: visible; color: #8a5518; }
+.bz-col[data-estado="extremo"] .bz-regua-garra {
+    visibility: visible; color: #5a1e26; --bz-garra-mais: 1;
+    filter: drop-shadow(0 0 5px #6d4aa0aa);   /* roxo = corrupção; estático */
+}
 
 /* recolher coluna: só no modo empilhado */
 .bz-col.recolhida { flex: 0 0 auto; }
@@ -836,7 +886,9 @@ svg.bz-cb-ico { width: 18px; height: 18px; }
 }
 .bz-inv-grupo.com-raiz { padding-top: 1rem; }
 .bz-inv-grupo-raiz { position: absolute; left: .85rem; right: .85rem; top: 0; width: calc(100% - 1.7rem); height: 10px; color: #2b2320; }
-.bz-inv-grupo[data-grupo="Equipado"] ~ .bz-slot.is-equipado { background-color: #d4af370a; }
+/* grupo Equipado: véu dourado #d4af370a por cima da linha gravada */
+.bz-inv-grupo[data-grupo="Equipado"],
+.bz-inv-grupo[data-grupo="Equipado"] ~ .bz-slot.is-equipado { background-image: linear-gradient(#d4af370a, #d4af370a); }
 .bz-col-vazio { padding: 1.4rem .85rem; text-align: center; color: var(--text-muted); font-size: .88rem; }
 .bz-col-vazio p { margin: .3rem 0 0; }
 .bz-vazio-ico { width: 48px; height: 48px; color: #1a1a24; }
@@ -857,9 +909,20 @@ svg.bz-cb-ico { width: 18px; height: 18px; }
 .bz-slot:hover { background-color: #15151d; border-left-color: var(--rc); }
 .bz-slot:hover .bz-slot-nome { color: var(--gold-light); }
 .bz-slot:focus-visible { outline: 2px solid var(--amber); outline-offset: -2px; }
-.bz-slot.is-arrastando { opacity: .45; }
-.bz-slot.bz-pisca { animation: bz-pisca .6s ease-out; }
-@keyframes bz-pisca { from { background-color: #e08b2c24; } to { background-color: #101017; } }
+.bz-slot.is-arrastando, .bz-arrastando { opacity: .45; }
+/* linha guardada: véu #e08b2c24 que some em 600ms (só opacidade) */
+.bz-slot::after {
+    content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
+    background: #e08b2c24; opacity: 0;
+}
+.bz-slot.bz-pisca::after { animation: bz-pisca .6s ease-out; }
+@keyframes bz-pisca { from { opacity: 1; } to { opacity: 0; } }
+/* linha removida: a altura fecha até 0 em 160ms; o JS tira da ficha depois */
+.bz-slot.bz-sai {
+    height: 0 !important; min-height: 0; padding-top: 0; padding-bottom: 0; margin-bottom: 0;
+    opacity: 0; overflow: hidden; pointer-events: none;
+    transition: height .16s ease-in, padding .16s ease-in, margin .16s ease-in, opacity .16s ease-in;
+}
 .bz-slot-l1, .bz-slot-l2 { display: flex; align-items: center; gap: .4rem; }
 .bz-slot-l2 { flex-wrap: wrap; margin-top: .25rem; row-gap: .2rem; }
 .bz-slot-med {
@@ -869,8 +932,12 @@ svg.bz-cb-ico { width: 18px; height: 18px; }
 }
 .bz-slot-ico { width: 28px; height: 28px; }
 svg.bz-slot-ico { width: 20px; height: 20px; }
-.bz-slot.is-avulso .bz-slot-med { border: 1px dashed var(--text-muted); border-radius: 26%; color: var(--text-muted); }
-.bz-slot.is-equipado .bz-slot-med .bz-arte { border-color: var(--gold); }
+/* sem arte: o SVG da categoria em --rc sobre --rbg, com aro --rbd */
+.bz-slot-med:not(:has(.bz-arte)) { background: var(--rbg); border: 1px solid var(--rbd); border-radius: 26%; }
+.bz-slot.is-avulso .bz-slot-med { background: transparent; border: 1px dashed var(--text-muted); border-radius: 26%; color: var(--text-muted); }
+/* equipado: aro --gold no medalhão (com ou sem arte) + fivela */
+.bz-slot.is-equipado .bz-slot-med .bz-arte,
+.bz-slot.is-equipado .bz-slot-med:not(:has(.bz-arte)) { border-color: var(--gold); }
 .bz-slot-fivela { position: absolute; right: -5px; bottom: -4px; width: 13px; height: 13px; color: var(--gold); }
 .bz-slot-nome {
     flex: 1 1 auto; min-width: 0; padding: 0; text-align: left;
@@ -884,6 +951,8 @@ svg.bz-slot-ico { width: 20px; height: 20px; }
     flex: 0 0 auto; font-family: var(--bz-mono); font-variant-numeric: tabular-nums;
     font-size: .8rem; color: var(--text-secondary); cursor: help;
 }
+.bz-slot-peso { display: inline-flex; align-items: center; gap: .2rem; }
+.bz-slot-pilha { width: 13px; height: 13px; color: var(--amber); opacity: .8; }
 .bz-slot-x {
     flex: 0 0 auto; width: 22px; height: 22px; padding: 0;
     background: none; border: 0; border-radius: 4px; cursor: pointer;
@@ -993,6 +1062,29 @@ svg.bz-slot-ico { width: 20px; height: 20px; }
 @keyframes bz-rc-entra { from { opacity: 0; transform: translateX(-12px); } }
 @keyframes bz-rc-sai { to { opacity: 0; transform: translateX(-12px); } }
 
+/* borda direita do painel: #raiz-v de desenho único (1→0 em 600ms, 120ms de
+   atraso) a cada abertura. Fica fora do <aside>, que rola e cortaria o −8px. */
+.bz-rc-borda {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: calc(var(--bz-rc-w) - 8px);
+    width: 16px;
+    height: 100vh;
+    z-index: 111;
+    pointer-events: none;
+    overflow: visible;
+    color: var(--bz-raiz-funda);
+    filter: drop-shadow(0 0 1px #2b2320);
+    stroke-dasharray: 1;
+    stroke-dashoffset: 0;
+}
+body.bz-rc-aberta .bz-rc-borda {
+    display: block;
+    animation: bz-desenha .6s cubic-bezier(.2, .7, .2, 1) .12s both;
+}
+@keyframes bz-desenha { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+
 .bz-rc-barra {
     position: sticky;
     top: 0;
@@ -1044,7 +1136,12 @@ svg.bz-slot-ico { width: 20px; height: 20px; }
 .bz-rc-corpo { padding: .9rem 1rem 2.4rem; }
 .bz-rc-corpo p { margin: 0; }
 
-.bz-rc-cab { display: flex; gap: .8rem; align-items: flex-start; }
+.bz-rc-cab {
+    display: flex; gap: .8rem; align-items: flex-start;
+    /* cantos de livro-razão; o recuo negativo mantém o conteúdo alinhado ao corpo */
+    margin: -.4rem -.5rem 0; padding: .4rem .5rem;
+    background: var(--bz-cantos);
+}
 .bz-rc-medalhao {
     width: 68px; height: 68px;
     flex: 0 0 auto;
@@ -1254,6 +1351,14 @@ svg.bz-slot-ico { width: 20px; height: 20px; }
     animation-delay: var(--d, 0ms);
 }
 @keyframes bz-raiz { to { stroke-dashoffset: 0; } }
+/* nó onde as raízes convergem, colado ao topo do medalhão do produto */
+.bz-rc-raiz-no { color: var(--bz-raiz-traco); }
+.bz-rc-arvore:has(.bz-rc-produto.fechada) .bz-rc-raiz-no { color: var(--gold-light); }
+.bz-rc-raizes.anima .bz-rc-raiz-no {
+    stroke-dasharray: 1;
+    animation: bz-desenha .42s cubic-bezier(.2, .7, .2, 1) both;
+    animation-delay: var(--d, 0ms);
+}
 
 .bz-rc-ings { list-style: none; margin: 0; padding: 0 0 0 28px; display: flex; flex-direction: column; gap: .35rem; }
 .bz-rc-ing {
@@ -1295,7 +1400,8 @@ svg.bz-rc-ing-ico { width: 22px; height: 22px; margin: 0 5px; }
 }
 .bz-rc-tem.ok { color: #6ee7a0; background: #1e3a2a; }
 .bz-rc-tem.parcial { color: #e08b2c; background: #2a1d10; }
-.bz-rc-tem.zero { color: #8b6b6b; background: #1a1414; }
+/* cor de lixo: #8b6b6b dá 3.8:1 sobre #1a1414; o texto sobe um tom (4.7:1) e o aro fica no #8b6b6b */
+.bz-rc-tem.zero { color: #9a7a7a; background: #1a1414; box-shadow: inset 0 0 0 1px #8b6b6b55; }
 .bz-rc-mais {
     flex: 0 0 auto;
     width: 24px; height: 24px;
@@ -1332,11 +1438,17 @@ svg.bz-rc-ing-ico { width: 22px; height: 22px; margin: 0 5px; }
 .bz-passo { display: grid; grid-template-columns: 1.3rem 1fr; gap: .55rem; padding: .35rem 0; }
 .bz-passo.ramo { margin-left: 1.3rem; }
 .bz-passo-trilho { position: relative; display: flex; justify-content: center; }
-.bz-passo-trilho::before {
-    content: ''; position: absolute; top: 0; bottom: -.35rem; width: 2px;
-    background: linear-gradient(180deg, var(--bz-raiz-traco), #1c1714);
+/* trilho de raiz: um #raiz-elo por degrau, do topo do degrau ao seguinte;
+   espelhado nos ímpares (.impar vem do índice, não do acaso) */
+.bz-passo-elo {
+    position: absolute; top: -.35rem; bottom: -.35rem; left: 50%;
+    width: 24px; height: calc(100% + .7rem); margin-left: -12px;
+    overflow: visible; pointer-events: none;
+    color: var(--bz-raiz-traco);
 }
-.bz-passo:last-child .bz-passo-trilho::before { display: none; }
+.bz-passo.impar .bz-passo-elo { transform: scaleX(-1); }
+.bz-passo:first-child .bz-passo-elo { top: .9rem; height: calc(100% - .55rem); }
+.bz-passo:last-child .bz-passo-elo { display: none; }
 .bz-passo-no {
     position: relative; z-index: 1;
     width: 13px; height: 13px; margin-top: .55rem; border-radius: 50%;
@@ -1565,13 +1677,44 @@ svg.bz-rc-uso-ico { width: 16px; height: 16px; margin: 0 3px; }
 /* sentinela do carregamento por lote */
 .bz-sentinela { height: 1px; margin-top: -1px; }
 
-/* ---------------------------------------------------------- acessibilidade */
+/* ---------------------------------------------------------- tipografia (§10)
+   Rótulos: Cinzel .7rem em caixa alta, espaçamento .14em. Números, fórmulas,
+   CD e peso: --bz-mono com algarismos tabulares. */
+.bz-sort label, .bz-grupo-nome, .bz-ativos-nome, .bz-rc-rot, .bz-rc-campo dt,
+.bz-inv .bz-inv-grupo-nome, .bz-tabela thead th {
+    font-family: var(--font-heading);
+    font-size: .7rem;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+}
+.bz-rc-n, .bz-passo-cd, .bz-rc-uso-cd, .bz-rc-tem, .bz-mini b, .bz-slot-peso,
+.bz-slot-step input, .bz-stepper input, .bz-cb-dest, .bz-rc-proj, .bz-rc-proj-menu,
+.item-valor, .item-cd, .bz-tabela td.c-valor, .bz-tabela td.c-cd {
+    font-variant-numeric: tabular-nums;
+}
+
+/* ---------------------------------------------------------- acessibilidade: movimento reduzido
+   Tudo instantâneo. As raízes nascem prontas; o piscar vira um marcador
+   âmbar fixo de 2px à esquerda por 1,5s (o JS mantém a classe esse tempo). */
 @media (prefers-reduced-motion: reduce) {
     .bz-primeira.cards .item-card, .bz-rc.bz-rc-entra, .bz-rc.bz-rc-sai { animation: none; }
-    .bz-rc-raizes.anima path { animation: none; stroke-dashoffset: 0; }
-    .cards .item-card.rar-luxaria::before { animation: none; }
-    .bz-regua.bz-piora { animation: none; }
-    /* o piscar vira um marcador âmbar fixo de 2px à esquerda por 1,5s */
-    .bz-slot.bz-pisca { animation: none; box-shadow: inset 2px 0 0 var(--amber), inset 0 0 0 1px #0008; }
-    * { transition-duration: .01ms !important; }
+    .bz-rc-raizes.anima path, .bz-rc-raizes.anima .bz-rc-raiz-no { animation: none; stroke-dashoffset: 0; }
+    body.bz-rc-aberta .bz-rc-borda { animation: none; stroke-dashoffset: 0; }
+    .cards .item-card.rar-luxaria::before { animation: none; opacity: 0; }
+    .bz-regua.bz-piora::before { animation: none; }
+    .bz-slot.bz-pisca::after { animation: none; opacity: 0; }
+    .bz-slot.bz-pisca { box-shadow: inset 2px 0 0 var(--amber), inset 0 1px 0 #ffffff05, inset 0 0 0 1px #0008; }
+    .bz-slot.bz-sai { transition: none; }
+    /* sem deslocamento no hover nem escala no pop-up */
+    .cards .item-card:hover, .chip:hover, .chip:active,
+    .cards .item-card:hover .bz-arte, .cards .item-card::after,
+    .bz-cartao, .bz-cartao.sai { transform: none; }
+    *, *::before, *::after {
+        transition-duration: .01ms !important;
+        transition-delay: 0s !important;
+        animation-duration: .01ms !important;
+        animation-delay: 0s !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+    }
 }

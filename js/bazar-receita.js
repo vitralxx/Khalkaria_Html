@@ -122,8 +122,11 @@
   }
 
   function degrauHTML(p, atualP, ramo, i) {
-    return '<li class="bz-passo ' + U.classeRar(p.raridade) + (atualP ? ' atual' : '') + (ramo ? ' ramo' : '') + '" style="--i:' + i + '">' +
-      '<span class="bz-passo-trilho"><span class="bz-passo-no"></span></span>' +
+    // trilho de raiz: um #raiz-elo por degrau, espelhado nos ímpares (determinístico)
+    return '<li class="bz-passo ' + U.classeRar(p.raridade) + (atualP ? ' atual' : '') + (ramo ? ' ramo' : '') +
+      (i % 2 ? ' impar' : '') + '" style="--i:' + i + '">' +
+      '<span class="bz-passo-trilho"><svg class="bz-passo-elo" aria-hidden="true" focusable="false"><use href="#raiz-elo"/></svg>' +
+        '<span class="bz-passo-no"></span></span>' +
       '<div class="bz-passo-corpo">' +
         '<div class="bz-passo-l1">' + arte(p, 'bz-passo-ico') +
           '<button type="button" class="bz-passo-nome" data-ir="' + esc(p.id) + '" data-prever="' + esc(p.id) + '" draggable="true"' +
@@ -328,13 +331,18 @@
     var base = arv.getBoundingClientRect();
     var pr = prod.getBoundingClientRect();
     var H = Math.max(1, Math.round(base.height));
-    var py = pr.top - base.top + 4;              // topo do medalhão do produto
+    var topoProd = Math.round(pr.top - base.top); // topo do medalhão do produto
     var px = 20;                                  // centro do medalhão (40px, à esquerda)
+    // as raízes convergem num #raiz-no (12px) colado ao topo do medalhão,
+    // sem invadir o preenchimento dele
+    var noY = topoProd - 6;
+    var py = noY - 5;
     s.setAttribute('viewBox', '0 0 28 ' + H);
     s.setAttribute('width', '28');
     s.setAttribute('height', String(H));
     s.classList.toggle('anima', !!animar);
     while (s.firstChild) s.removeChild(s.firstChild);
+    var nRaizes = 0;
     arv.querySelectorAll('.bz-rc-ing').forEach(function (li, n) {
       var r = li.getBoundingClientRect();
       var y = Math.round(r.top - base.top + Math.min(r.height / 2, 22));
@@ -355,7 +363,18 @@
       g.appendChild(tronco);
       g.appendChild(radicula);
       s.appendChild(g);
+      nRaizes = n + 1;
     });
+    if (!nRaizes) return;
+    var no = document.createElementNS(NS, 'use');
+    no.setAttribute('href', '#raiz-no');
+    no.setAttribute('x', String(px - 6));
+    no.setAttribute('y', String(noY - 6));
+    no.setAttribute('width', '12');
+    no.setAttribute('height', '12');
+    no.setAttribute('class', 'bz-rc-raiz-no');
+    no.style.setProperty('--d', (nRaizes * 50 + 300) + 'ms');
+    s.appendChild(no);
   }
   var resizeT;
   window.addEventListener('resize', function () {
