@@ -52,6 +52,7 @@ UM_ING = re.compile(r'^(\d+)x\s+(.+?)\s*$')
 RE_SLOT = re.compile(r'^\[([^\]]+)\]')
 RE_FOCO = re.compile(r'^Foco Místico\s*\(([^)]+)\)')
 RE_CR = re.compile(r'^Drop CR\s*(.+)$')
+RE_REAGENTES = re.compile(r'(?<![\w])(\d+) Reagentes(?![\w])')
 
 
 def slug(nome, pre='item-'):
@@ -81,6 +82,10 @@ def parse_ingredientes(txt):
     txt = (txt or '').strip()
     if not txt:
         return []
+    # O CSV do agente de balanceamento escreve "2 Reagentes" (sem x, no plural)
+    # nas receitas de Alquimia; o item do catálogo é "Reagente Alquímico (x1)".
+    # Normalizar aqui mantém o link mesmo quando a planilha volta na forma antiga.
+    txt = RE_REAGENTES.sub(r'x Reagente Alquímico (x1)', txt)
     out = []
     for parte in SEP_ING.split(txt):
         m = UM_ING.match(parte.strip())

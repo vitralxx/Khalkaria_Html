@@ -1,54 +1,41 @@
 {
-  "_doc": "Material do Bazar -> arquivo de arte. Os PNGs originais ficam fora do repo (zip do Pedro); tools/gerar_icones_materiais.py normaliza para images/materiais/<slug>.webp. Os nomes 'Camada N' vêm das camadas do arquivo de arte — a associação foi lida da imagem, não do nome. As marcadas em '_conferir' são as que o Pedro precisa confirmar.",
-
+  "_doc": "Material do Bazar -> arquivo de arte. Os PNGs originais ficam fora do repo (zip do Pedro); tools/gerar_icones_materiais.py normaliza para images/materiais/<slug>.webp. Os nomes 'Camada N' vêm das camadas do arquivo de arte — a associação foi feita pela imagem e conferida pelo Pedro.",
   "icones": {
-    "Cobre":                   "Camada 20.png",
-    "Ferro":                   "Ferro.png",
-    "Aço Temperado":           "Camada 5.png",
-    "Kali":                    "Camada 21.png",
-    "Liga Rúnica":             "Camada 6.png",
-    "Liga Primordial":         "Camada 7.png",
-    "Ouro":                    "Camada 4.png",
-
-    "Madeira Comum":           "Camada 8.png",
-    "Madeira Nobre":           "Camada 9.png",
-    "Madeira Mística":         "Camada 10.png",
-    "Madeira da Vhelor":       "Camada 11.png",
-
-    "Couro de Caça":           "Camada 12.png",
-    "Couro Refinado":          "Camada 13.png",
-    "Couro Bestial":           "Camada 14.png",
-    "Pele de Dragão":          "Camada 15.png",
-
-    "Tecido Resistente":       "Camada 16.png",
-    "Fibra Sintética":         "Camada 17.png",
-    "Trama Etérea":            "Camada 18.png",
-    "Fio do Destino":          "Camada 19.png",
-
-    "Gema Bruta":              "Camada 27.png",
-    "Gema Refinada":           "Camada 28.png",
-    "Gema Mística":            "Camada 22.png",
-    "Gema Primordial":         "Camada 29.png",
-
-    "Peça Mecânica":           "Camada 23.png",
-    "Engrenagem":              "Camada 24.png",
-    "Mecanismo Arcano":        "Camada 25.png",
-    "Coração Mecânico":        "Camada 26.png",
-
-    "Fogo":                    "Camada 31.png",
-    "Eletricidade":            "Camada 32.png",
-    "Éter":                    "Camada 33.png",
-    "Energia Primordial":      "Camada 34.png",
-
-    "Reagente Alquímico (x1)": "Camada 30.png"
+    "Cobre": "Camada 20.png",
+    "Ferro": "Camada 21.png",
+    "Aço Temperado": "Camada 5.png",
+    "Kali": "Camada 22.png",
+    "Liga Rúnica": "Camada 6.png",
+    "Liga Primordial": "Camada 7.png",
+    "Ouro": "Camada 4.png",
+    "Madeira Comum": "Camada 8.png",
+    "Madeira Nobre": "Camada 9.png",
+    "Madeira Mística": "Camada 10.png",
+    "Madeira da Vhelor": "Camada 11.png",
+    "Couro de Caça": "Camada 12.png",
+    "Couro Refinado": "Camada 13.png",
+    "Couro Bestial": "Camada 14.png",
+    "Pele de Dragão": "Camada 15.png",
+    "Tecido Resistente": "Camada 16.png",
+    "Fibra Sintética": "Camada 17.png",
+    "Trama Etérea": "Camada 18.png",
+    "Fio do Destino": "Camada 19.png",
+    "Gema Bruta": "Camada 27.png",
+    "Gema Refinada": "Camada 28.png",
+    "Gema Mística": "Camada 29.png",
+    "Gema Primordial": "Camada 30.png",
+    "Peça Mecânica": "Camada 23.png",
+    "Engrenagem": "Camada 24.png",
+    "Mecanismo Arcano": "Camada 25.png",
+    "Coração Mecânico": "Camada 26.png",
+    "Fogo": "Camada 31.png",
+    "Eletricidade": "Camada 32.png",
+    "Éter": "Camada 33.png",
+    "Energia Primordial": "Camada 34.png",
+    "Lingote de Ferro": "Ferro.png"
   },
-
-  "_conferir": [
-    "Ouro / Kali / Ferro / Lingote de Ferro — são 8 metais no catálogo para 7 imagens de metal. 'Camada 4' (massa dourada em brasa) foi lida como Ouro e 'Camada 21' (cristais metálicos escuros) como Kali.",
-    "Ferro.png é o único com nome próprio e mostra um lingote fundido — mas 'Lingote de Ferro' e 'Ferro' são itens diferentes no catálogo. Ficou em 'Ferro'.",
-    "Camada 30 (orbe dourado com anéis rúnicos) foi lida como Reagente Alquímico por eliminação; não parece alquimia.",
-    "Gemas: 27 bruta -> 28 lapidada -> 22 mística -> 29 primordial, pela progressão visual."
+  "semIcone": [
+    "Reagente Alquímico (x1)"
   ],
-
-  "semIcone": ["Lingote de Ferro"]
+  "_revisado": "Conferido pelo Pedro em 2026-09-25: as 32 artes associadas corretamente."
 }
