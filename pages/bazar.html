@@ -7,8 +7,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400&family=UnifrakturMaguntia&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../css/style.css?v=d0b1c3d9">
-    <link rel="stylesheet" href="../css/bazar.css?v=d0b1c3d9">
+    <link rel="stylesheet" href="../css/style.css?v=ecb51731">
+    <link rel="stylesheet" href="../css/bazar.css?v=ecb51731">
 </head>
 <body data-no-rightbar data-bazar>
     <button class="menu-toggle">☰ Menu</button>
@@ -75,6 +75,13 @@
       <symbol id="ico-recolher" viewBox="0 0 24 24"><path d="M4.4 12h10.4M10.6 7.6 15 12l-4.4 4.4M19.4 4.6v14.8" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/></symbol>
       <symbol id="ico-expandir" viewBox="0 0 24 24"><path d="M9.4 4.6H4.6v4.8M14.6 4.6h4.8v4.8M19.4 14.6v4.8h-4.8M4.6 14.6v4.8h4.8" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/></symbol>
       <symbol id="ico-aviso" viewBox="0 0 24 24"><path d="M12 3.8 21 19.4H3Z" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/><path d="M12 9.6v4.8M12 16.6v.2" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></symbol>
+      <symbol id="ico-ficha" viewBox="0 0 24 24"><path d="M6.4 3.4h8.2l3 3v14.2H6.4Z" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/><path d="M9 9.6h6M9 12.8h6M9 16h4" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" opacity=".75"/></symbol>
+      <symbol id="ico-mais" viewBox="0 0 24 24"><path d="M12 5.4v13.2M5.4 12h13.2" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></symbol>
+      <symbol id="ico-sins" viewBox="0 0 24 24"><circle cx="12" cy="12" r="7.6" fill="none" stroke="currentColor" stroke-width="1.2"/><circle cx="12" cy="12" r="4.6" fill="none" stroke="currentColor" stroke-width=".9" opacity=".65"/><path d="M12 9.4v5.2" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/></symbol>
+      <symbol id="ico-equipado" viewBox="0 0 24 24"><rect x="4.4" y="7.4" width="15.2" height="9.2" rx="1.6" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M12 7.4v9.2M12 12h5" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></symbol>
+      <symbol id="ico-sintonia" viewBox="0 0 24 24"><ellipse cx="12" cy="13" rx="7" ry="5.4" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M12 3.6l1.4 2.6L12 8.4l-1.4-2.2Z" fill="none" stroke="currentColor" stroke-width="1" stroke-linejoin="round"/></symbol>
+      <symbol id="ico-empilhavel" viewBox="0 0 24 24"><ellipse cx="12" cy="7" rx="6.4" ry="2.4" fill="none" stroke="currentColor" stroke-width="1.1"/><path d="M5.6 7v3.6c0 1.3 2.9 2.4 6.4 2.4s6.4-1.1 6.4-2.4V7M5.6 10.6v3.6c0 1.3 2.9 2.4 6.4 2.4s6.4-1.1 6.4-2.4v-3.6M5.6 14.2v3.2c0 1.3 2.9 2.4 6.4 2.4s6.4-1.1 6.4-2.4v-3.2" fill="none" stroke="currentColor" stroke-width="1.1"/></symbol>
+      <symbol id="saco-vazio" viewBox="0 0 48 48"><path d="M17 11h14l-3 5c6.6 2.4 11 8.6 11 15.4C39 38 33.4 42 24 42S9 38 9 31.4C9 24.6 13.4 18.4 20 16Z" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><path d="M20 16h8M18.6 7.4c1.8 1.2 3.6 1.2 5.4 0s3.6-1.2 5.4 0" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" opacity=".7"/></symbol>
     </svg>
 
     <div class="app-container">
@@ -186,27 +193,75 @@
                 </section>
 
                 <aside class="bz-inv" id="bz-inventario" data-kf-ignorar aria-labelledby="inventario">
-                    <header class="bz-inv-cab">
+                    <!-- trilho (48px): só aparece em data-inv="trilho"; é alvo de soltura com mola -->
+                    <button type="button" class="bz-trilho" id="bz-trilho" aria-keyshortcuts="Shift+I" title="Abrir o inventário (Shift+I)">
+                        <span class="bz-trilho-titulo" aria-hidden="true">Inventário</span>
+                        <span class="bz-trilho-reguas" aria-hidden="true">
+                            <span class="bz-trilho-regua" data-carga="bugigangas"><i></i><b>B</b></span>
+                            <span class="bz-trilho-regua" data-carga="equipamentos"><i></i><b>E</b></span>
+                        </span>
+                        <span class="bz-trilho-peso" id="bz-trilho-peso" aria-hidden="true">0</span>
+                        <span class="bz-trilho-cond" id="bz-trilho-cond" aria-hidden="true"></span>
+                    </button>
+
+                    <header class="bz-inv-cab" id="bz-inv-cab">
                         <div class="bz-inv-linha">
                             <h2 id="inventario" class="bz-inv-titulo">Inventário</h2>
                             <span class="bz-inv-dono" id="bz-inv-dono"></span>
+                            <span class="bz-inv-acoes">
+                                <button type="button" class="bz-inv-btn" id="bz-inv-amplo" aria-pressed="false" aria-label="Ampliar o inventário" title="Amplo: o inventário ocupa a mesa"><svg aria-hidden="true"><use href="#ico-expandir"/></svg></button>
+                                <button type="button" class="bz-inv-btn" id="bz-inv-recolher" aria-label="Recolher o inventário" title="Recolher em trilho (Shift+I)" aria-keyshortcuts="Shift+I"><svg aria-hidden="true"><use href="#ico-recolher"/></svg></button>
+                                <button type="button" class="bz-inv-btn" id="bz-inv-ficha" aria-label="Abrir o inventário na Ficha" title="Ficha"><svg aria-hidden="true"><use href="#ico-ficha"/></svg></button>
+                            </span>
                         </div>
+                        <div class="bz-inv-linha bz-inv-l2">
+                            <button type="button" class="bz-inv-for" id="bz-inv-for" title="A FOR é editada na Ficha">FOR 10 (+0)</button>
+                            <label class="bz-inv-sins" title="não pesa">
+                                <svg aria-hidden="true"><use href="#ico-sins"/></svg>
+                                <span class="bz-sr">Sins</span>
+                                <input type="text" inputmode="numeric" id="bz-inv-sins" value="0" autocomplete="off" spellcheck="false">
+                            </label>
+                            <span class="bz-inv-peso" id="bz-inv-peso">Peso total <b>0</b><small>0 bugigangas + 0 equipamentos</small></span>
+                            <span class="bz-inv-cond" id="bz-inv-cond"></span>
+                        </div>
+                        <div class="bz-cb" id="bz-cb">
+                            <label class="bz-sr" for="bz-cb-input">Guardar item</label>
+                            <input type="text" id="bz-cb-input" class="bz-cb-input" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="bz-cb-lista" aria-keyshortcuts="i" placeholder="Guardar item… (i)" autocomplete="off" spellcheck="false">
+                            <ul class="bz-cb-lista" id="bz-cb-lista" role="listbox" aria-label="Itens do registro" hidden></ul>
+                        </div>
+                        <div class="bz-inv-faixas" id="bz-inv-faixas"></div>
                     </header>
+
                     <div class="bz-inv-cols" id="bz-inv-cols">
-                        <section class="bz-col" data-col="bugigangas">
+                        <section class="bz-col" data-col="bugigangas" aria-labelledby="inventario-bugigangas">
                             <header class="bz-col-cab">
                                 <h3 id="inventario-bugigangas" class="bz-col-titulo">Bugigangas</h3>
+                                <span class="bz-col-num" data-num></span>
+                                <span class="bz-col-est" data-est></span>
+                                <button type="button" class="bz-col-btn" data-col-mais aria-label="Guardar em Bugigangas" title="Guardar em Bugigangas"><svg aria-hidden="true"><use href="#ico-mais"/></svg></button>
+                                <button type="button" class="bz-col-btn bz-col-recolher" data-col-recolher aria-expanded="true" aria-label="Recolher Bugigangas" title="Recolher Bugigangas"><svg aria-hidden="true"><use href="#ico-recolher"/></svg></button>
+                                <div class="bz-regua" data-regua role="meter" aria-label="Bugigangas" aria-valuemin="0" aria-valuemax="1" aria-valuenow="0"></div>
                             </header>
+                            <p class="bz-col-solte" data-solte aria-hidden="true"></p>
                             <ul class="bz-col-lista" data-col="bugigangas"></ul>
                         </section>
-                        <section class="bz-col" data-col="equipamentos">
+                        <section class="bz-col" data-col="equipamentos" aria-labelledby="inventario-equipamentos">
                             <header class="bz-col-cab">
                                 <h3 id="inventario-equipamentos" class="bz-col-titulo">Equipamentos</h3>
+                                <span class="bz-col-num" data-num></span>
+                                <span class="bz-col-est" data-est></span>
+                                <button type="button" class="bz-col-btn" data-col-mais aria-label="Guardar em Equipamentos" title="Guardar em Equipamentos"><svg aria-hidden="true"><use href="#ico-mais"/></svg></button>
+                                <button type="button" class="bz-col-btn bz-col-recolher" data-col-recolher aria-expanded="true" aria-label="Recolher Equipamentos" title="Recolher Equipamentos"><svg aria-hidden="true"><use href="#ico-recolher"/></svg></button>
+                                <div class="bz-regua" data-regua role="meter" aria-label="Equipamentos" aria-valuemin="0" aria-valuemax="1" aria-valuenow="0"></div>
                             </header>
+                            <p class="bz-col-solte" data-solte aria-hidden="true"></p>
                             <ul class="bz-col-lista" data-col="equipamentos"></ul>
                         </section>
                     </div>
-                    <footer class="bz-inv-rodape" id="bz-inv-rodape"></footer>
+                    <footer class="bz-inv-rodape" id="bz-inv-rodape">
+                        <p class="bz-inv-export" id="bz-inv-export"></p>
+                        <div class="bz-toast" id="bz-toast" role="status" aria-live="polite"></div>
+                    </footer>
                 </aside>
             </div>
         </main>
@@ -226,10 +281,10 @@
     <div class="bz-sr" id="bz-vivo" aria-live="polite"></div>
 
     <script>window.BZ_VOCAB = {"categorias": ["Arma", "Armadura", "Escudo", "Consumível", "Munição", "Bugiganga", "Item Mágico", "Material", "Lixo"], "raridades": ["Lixo", "Ordinário", "Incomum", "Exótico", "Luxária"], "oficios": ["Ferraria", "Engenharia", "Alquimia", "Sobrevivência", "Não-craftável"], "regioes": ["Cinturão Silencioso", "Bosque Corrompido", "Emaranhado de Raízes", "Costas Rochosas", "Terras Livres", "Cordilheira Cristalina", "Ermo das Cinzas", "Deserto do Abismo"], "chassis": ["Leve Cortante", "Leve Perfurante", "Leve Contundente", "Leve Ágil", "Pesada Cortante", "Pesada Perfurante", "Pesada Contundente", "Pesada Brutal", "Marcial Pesada", "Marcial Longa", "Marcial Precisa", "Marcial Versátil", "Distância Simples", "Distância Pesada", "Arremesso"], "focos": ["Foco Místico (Abjuração)", "Foco Místico (Alteração)", "Foco Místico (Conhecimento)", "Foco Místico (Destruição)", "Foco Místico (Primordial)"], "slots": ["Leve", "Pesada"], "municoes": ["Arremesso", "Distância Pesada", "Distância Simples"], "total": 727, "condicoes": {"leve": {"id": "sobrepeso-leve", "nome": "Sobrepeso Leve", "texto": "Movimento diminuído para a metade. -2 em perícias com Força, Destreza ou Constituição como atributo base."}, "extremo": {"id": "sobrepeso-extremo", "nome": "Sobrepeso Extremo", "texto": "Você tem 1,5 m de Movimento. Desvantagem em perícias com Força, Destreza ou Constituição como atributo base."}}};</script>
-    <script src="../js/ficha.js?v=d0b1c3d9"></script>
-    <script src="../js/bazar.js?v=d0b1c3d9"></script>
-    <script src="../js/bazar-cartao.js?v=d0b1c3d9"></script>
-    <script src="../js/bazar-receita.js?v=d0b1c3d9"></script>
-    <script src="../js/bazar-inventario.js?v=d0b1c3d9"></script>
+    <script src="../js/ficha.js?v=ecb51731"></script>
+    <script src="../js/bazar.js?v=ecb51731"></script>
+    <script src="../js/bazar-cartao.js?v=ecb51731"></script>
+    <script src="../js/bazar-receita.js?v=ecb51731"></script>
+    <script src="../js/bazar-inventario.js?v=ecb51731"></script>
 </body>
 </html>

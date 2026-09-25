@@ -1691,6 +1691,7 @@
     atributo: function (k) { var n = parseInt(ficha.atributos[String(k || '').toLowerCase()], 10); return isFinite(n) ? n : 0; },
     migradoEm: function () { return ficha.migradoEm || ''; },
     exportadoEm: function () { return ficha.exportadoEm || ''; },
+    nome: function () { return String((ficha.meta && ficha.meta.nome) || '').trim(); },
     adicionar: function (item, opts) { return adicionar(item, opts, 'local'); },
     quantidade: function (uid, n) { return quantidade(uid, n, 'local'); },
     alternar: function (uid, campo) { return alternar(uid, campo, 'local'); },
