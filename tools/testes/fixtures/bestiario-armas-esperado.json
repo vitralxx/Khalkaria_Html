@@ -1,0 +1,11 @@
+[
+  {
+    "name": "Adaga de Kali",
+    "category": "Leve Cortante",
+    "level": "0",
+    "dado": "",
+    "atributo": "Força",
+    "dano": "",
+    "efeito": "Leve Cortante +2. 3d6 Cortante (Destreza). +2 em Atacar. Atacar(1), Arremessar(1). +1 margem de ameaça. Crítico: o alvo fica Exposto. Seus ataques contra uma criatura Exposta aplicam Sangramento 1 no acerto. Efeito: Dilacerar (2 Stamina): seu próximo ataque aplica Sangramento 1 no acerto. Requisito: Destreza ≥ 12."
+  }
+]

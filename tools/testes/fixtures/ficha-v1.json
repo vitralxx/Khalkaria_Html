@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "1.0",
+  "meta": { "nome": "Borin Teste", "jogador": "Pedro", "nivel": 2, "xp": 0, "raca": "Anão", "variante": "", "classe": "Brutalista", "ramo": "", "origem": "Mineiro" },
+  "atributos": { "for": 14, "des": 12, "con": 14, "int": 10, "sab": 10 },
+  "pericias": { "atacar": 2, "defender": 2, "oficio": 0 },
+  "oficioAttr": "int",
+  "recursos": { "saude": { "atual": 20, "max": 20 }, "stamina": { "atual": 8, "max": 8 }, "eter": { "atual": 0, "max": 0 },
+                "recursoClasse": { "nome": "", "atual": 0, "max": 0 } },
+  "derivadosManuais": { "evasao": 12, "cd": 12, "movimento": 9, "armadura": 1 },
+  "resistencias": {},
+  "inventario": {
+    "sins": 37,
+    "equipamentos": [
+      { "id": "item-escudo-de-madeira", "nome": "Escudo de Madeira", "tipo": "Escudo", "categoria": "Escudo", "raridade": "Ordinário",
+        "efeito": "+1 Defender ao usar a reação Defender. -1,5 m Movimento.", "valor": "2d10+10", "qtd": 1, "slotPeso": 1 }
+    ],
+    "bugigangas": [
+      { "id": "item-virotes-flechas", "nome": "Virotes/Flechas", "tipo": "Munição", "categoria": "Munição", "raridade": "Ordinário",
+        "efeito": "[Distância Simples] Munição básica para armas à distância simples. Empilhável: pesa 1 bugiganga a cada 10 unidades.", "valor": "2d10+10", "qtd": 1, "slotPeso": 1 }
+    ],
+    "materiais": [
+      { "id": "item-kali", "nome": "Kali", "tipo": "Material", "categoria": "Material", "raridade": "Exótico",
+        "efeito": "Ingrediente-base de craft (mineral). Usado nas receitas de Ferraria das armas de Kali. Empilhável: pesa 1 bugiganga a cada 10 unidades.", "valor": "4d10+45", "qtd": 1, "slotPeso": 1 },
+      { "id": "item-kali", "nome": "Kali", "tipo": "Material", "categoria": "Material", "raridade": "Exótico",
+        "efeito": "Ingrediente-base de craft (mineral). Usado nas receitas de Ferraria das armas de Kali. Empilhável: pesa 1 bugiganga a cada 10 unidades.", "valor": "4d10+45", "qtd": 1, "slotPeso": 1 }
+    ],
+    "armas": [
+      { "id": "item-armadura-de-couro", "nome": "Armadura de Couro", "tipo": "Armadura", "categoria": "Armadura", "raridade": "Ordinário",
+        "efeito": "[Pesada] Ar 1. Sem penalidade.", "valor": "2d10+10", "qtd": 1, "slotPeso": 1 },
+      { "id": "item-adaga-de-kali", "nome": "Adaga de Kali", "tipo": "Arma", "categoria": "Arma", "raridade": "Exótico",
+        "efeito": "Leve Cortante +2. 3d6 Cortante (Destreza). +2 em Atacar. Atacar(1), Arremessar(1). +1 margem de ameaça. Crítico: o alvo fica Exposto. Seus ataques contra uma criatura Exposta aplicam Sangramento 1 no acerto. Efeito: Dilacerar (2 Stamina): seu próximo ataque aplica Sangramento 1 no acerto. Requisito: Destreza ≥ 12.", "valor": "5d12+180", "qtd": 1, "slotPeso": 1 }
+    ]
+  },
+  "tecnicas": [],
+  "grimorio": [],
+  "cartasLimiar": [],
+  "lore": { "historia": "", "outros": "" }
+}

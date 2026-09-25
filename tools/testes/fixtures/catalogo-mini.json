@@ -1,0 +1,283 @@
+[
+  {
+    "id": "item-virotes-flechas",
+    "nome": "Virotes/Flechas",
+    "categoria": "Munição",
+    "raridade": "Ordinário",
+    "arquetipo": "Distância Simples",
+    "arte": "",
+    "efeito": "[Distância Simples] Munição básica para armas à distância simples. Empilhável: pesa 1 bugiganga a cada 10 unidades.",
+    "valor": "2d10+10",
+    "inv": {
+      "slot": "bugiganga",
+      "empilhavel": true
+    }
+  },
+  {
+    "id": "item-flechas-gelidas",
+    "nome": "Flechas Gélidas",
+    "categoria": "Munição",
+    "raridade": "Incomum",
+    "arquetipo": "Distância Simples",
+    "arte": "",
+    "efeito": "[Distância Simples] +1d4 Frio no acerto. Crítico: Lento 1. Empilhável: pesa 1 bugiganga a cada 10 unidades.",
+    "valor": "4d10+45",
+    "inv": {
+      "slot": "bugiganga",
+      "empilhavel": true
+    }
+  },
+  {
+    "id": "item-estilhacos-do-abismo",
+    "nome": "Estilhaços do Abismo",
+    "categoria": "Arma",
+    "raridade": "Exótico",
+    "arquetipo": "Arremesso",
+    "arte": "",
+    "efeito": "Arremesso +2. 3d8 Perfurante (Destreza). +2 em Atacar. Atacar(1). Alcance 9 m. Consome 1 munição (Conjunto de Arremesso) por cena de combate. + 1d10 Primordial. Empilhável: pesa 1 bugiganga a cada 10 unidades. Efeito: Dilacerar (2 Stamina): seu próximo ataque aplica Sangramento 1 no acerto. Requisito: Destreza ≥ 14.",
+    "valor": "5d12+180",
+    "inv": {
+      "slot": "bugiganga",
+      "empilhavel": true
+    }
+  },
+  {
+    "id": "item-tocha-x2",
+    "nome": "Tocha (x2)",
+    "categoria": "Bugiganga",
+    "raridade": "Ordinário",
+    "arquetipo": "",
+    "arte": "",
+    "efeito": "2 tochas. Cada uma fornece luz por 4 horas em raio de 6m. Empilhável: pesa 1 bugiganga a cada 10 unidades.",
+    "valor": "2d10+10",
+    "inv": {
+      "slot": "bugiganga",
+      "empilhavel": true
+    }
+  },
+  {
+    "id": "item-kali",
+    "nome": "Kali",
+    "categoria": "Material",
+    "raridade": "Exótico",
+    "arquetipo": "",
+    "arte": "materiais/kali.webp",
+    "efeito": "Ingrediente-base de craft (mineral). Usado nas receitas de Ferraria das armas de Kali. Empilhável: pesa 1 bugiganga a cada 10 unidades.",
+    "valor": "4d10+45",
+    "inv": {
+      "slot": "bugiganga",
+      "empilhavel": true
+    }
+  },
+  {
+    "id": "item-bolsa-de-couro",
+    "nome": "Bolsa de Couro",
+    "categoria": "Bugiganga",
+    "raridade": "Ordinário",
+    "arquetipo": "",
+    "arte": "",
+    "efeito": "Bolsa funcional. Adiciona +2 de capacidade de bugigangas. Não é empilhável e não ocupa espaço de bugiganga. O efeito não acumula com outra cópia deste mesmo item.",
+    "valor": "2d10+10",
+    "inv": {
+      "slot": "bugiganga",
+      "capacidade": {
+        "bug": 2
+      },
+      "acumula": false,
+      "ocupa": false
+    }
+  },
+  {
+    "id": "item-mochila-reforcada",
+    "nome": "Mochila Reforçada",
+    "categoria": "Bugiganga",
+    "raridade": "Incomum",
+    "arquetipo": "",
+    "arte": "",
+    "efeito": "+3 Bugigangas e +1 Equipamento de capacidade. O efeito não acumula com outra cópia deste mesmo item.",
+    "valor": "4d10+45",
+    "inv": {
+      "slot": "bugiganga",
+      "capacidade": {
+        "bug": 3,
+        "equip": 1
+      },
+      "acumula": false
+    }
+  },
+  {
+    "id": "item-bolsa-dimensional",
+    "nome": "Bolsa Dimensional",
+    "categoria": "Bugiganga",
+    "raridade": "Luxária",
+    "arquetipo": "",
+    "arte": "",
+    "efeito": "Armazena até 50 Bugigangas; o conteúdo não conta peso. Sacar ou guardar itens custa ação livre, em vez de 1 ação. Itens vivos não podem entrar. O efeito não acumula com outra cópia deste mesmo item.",
+    "valor": "6d20+620",
+    "inv": {
+      "slot": "bugiganga",
+      "recipiente": 50
+    }
+  },
+  {
+    "id": "item-armadura-de-couro",
+    "nome": "Armadura de Couro",
+    "categoria": "Armadura",
+    "raridade": "Ordinário",
+    "arquetipo": "Pesada",
+    "arte": "",
+    "efeito": "[Pesada] Ar 1. Sem penalidade.",
+    "valor": "2d10+10",
+    "inv": {
+      "slot": "equipamento",
+      "armadura": "Pesada"
+    }
+  },
+  {
+    "id": "item-cota-de-malha",
+    "nome": "Cota de Malha",
+    "categoria": "Armadura",
+    "raridade": "Ordinário",
+    "arquetipo": "Pesada",
+    "arte": "",
+    "efeito": "[Pesada] Ar 2. -1,5 m Movimento. -1 Furtividade.",
+    "valor": "2d10+10",
+    "inv": {
+      "slot": "equipamento",
+      "armadura": "Pesada"
+    }
+  },
+  {
+    "id": "item-bracadeiras-de-couro",
+    "nome": "Braçadeiras de Couro",
+    "categoria": "Armadura",
+    "raridade": "Ordinário",
+    "arquetipo": "Leve",
+    "arte": "",
+    "efeito": "[Leve] Ae(Cortante, 3).",
+    "valor": "2d10+10",
+    "inv": {
+      "slot": "equipamento",
+      "armadura": "Leve"
+    }
+  },
+  {
+    "id": "item-capacete-de-ferro",
+    "nome": "Capacete de Ferro",
+    "categoria": "Armadura",
+    "raridade": "Ordinário",
+    "arquetipo": "Leve",
+    "arte": "",
+    "efeito": "[Leve] Ae(Contundente, 3).",
+    "valor": "2d10+10",
+    "inv": {
+      "slot": "equipamento",
+      "armadura": "Leve"
+    }
+  },
+  {
+    "id": "item-amuleto-antitoxico",
+    "nome": "Amuleto Antitóxico",
+    "categoria": "Armadura",
+    "raridade": "Incomum",
+    "arquetipo": "Leve",
+    "arte": "",
+    "efeito": "[Leve] Ae(Veneno, 5).",
+    "valor": "4d10+45",
+    "inv": {
+      "slot": "equipamento",
+      "armadura": "Leve"
+    }
+  },
+  {
+    "id": "item-adaga-de-kali",
+    "nome": "Adaga de Kali",
+    "categoria": "Arma",
+    "raridade": "Exótico",
+    "arquetipo": "Leve Cortante",
+    "arte": "",
+    "efeito": "Leve Cortante +2. 3d6 Cortante (Destreza). +2 em Atacar. Atacar(1), Arremessar(1). +1 margem de ameaça. Crítico: o alvo fica Exposto. Seus ataques contra uma criatura Exposta aplicam Sangramento 1 no acerto. Efeito: Dilacerar (2 Stamina): seu próximo ataque aplica Sangramento 1 no acerto. Requisito: Destreza ≥ 12.",
+    "valor": "5d12+180",
+    "inv": {
+      "slot": "equipamento"
+    }
+  },
+  {
+    "id": "item-foco-de-abjuracao-1",
+    "nome": "Foco de Abjuração +1",
+    "categoria": "Arma",
+    "raridade": "Incomum",
+    "arquetipo": "Foco Místico (Abjuração)",
+    "arte": "",
+    "efeito": "Foco Místico (Abjuração). Permite canalizar magias da escola de Abjuração. +1 Místico, +5 Éter máximo. Requisito: Inteligência ≥ 12 e Treinado em Místico.",
+    "valor": "4d10+45",
+    "inv": {
+      "slot": "equipamento"
+    }
+  },
+  {
+    "id": "item-escudo-de-madeira",
+    "nome": "Escudo de Madeira",
+    "categoria": "Escudo",
+    "raridade": "Ordinário",
+    "arquetipo": "",
+    "arte": "",
+    "efeito": "+1 Defender ao usar a reação Defender. -1,5 m Movimento.",
+    "valor": "2d10+10",
+    "inv": {
+      "slot": "equipamento"
+    }
+  },
+  {
+    "id": "item-anel-da-carapaca",
+    "nome": "Anel da Carapaça",
+    "categoria": "Item Mágico",
+    "raridade": "Incomum",
+    "arquetipo": "",
+    "arte": "",
+    "efeito": "Ar 2 permanente. Ao ficar abaixo de metade da Saúde, +1 Ar.",
+    "valor": "4d10+45",
+    "inv": {
+      "slot": "bugiganga"
+    }
+  },
+  {
+    "id": "item-anel-das-brasas",
+    "nome": "Anel das Brasas",
+    "categoria": "Item Mágico",
+    "raridade": "Incomum",
+    "arquetipo": "",
+    "arte": "",
+    "efeito": "Suas magias e ataques de Fogo causam +1 de dano por dado. Não acumula com outras fontes.",
+    "valor": "4d10+45",
+    "inv": {
+      "slot": "bugiganga"
+    }
+  },
+  {
+    "id": "item-amuleto-de-visao-noturna",
+    "nome": "Amuleto de Visão Noturna",
+    "categoria": "Item Mágico",
+    "raridade": "Incomum",
+    "arquetipo": "",
+    "arte": "",
+    "efeito": "Visão no Escuro 12m enquanto vestido.",
+    "valor": "4d10+45",
+    "inv": {
+      "slot": "bugiganga"
+    }
+  },
+  {
+    "id": "item-amuleto-do-vinculo",
+    "nome": "Amuleto do Vínculo",
+    "categoria": "Item Mágico",
+    "raridade": "Incomum",
+    "arquetipo": "",
+    "arte": "",
+    "efeito": "1x por descanso longo: transfere até 10 de Saúde sua para um aliado a 9m como 1 ação.",
+    "valor": "4d10+45",
+    "inv": {
+      "slot": "bugiganga"
+    }
+  }
+]
