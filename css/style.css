@@ -239,6 +239,10 @@ body {
     transition: transform .15s;
 }
 .nav-grupo-cab[aria-expanded="true"] .nav-caret { transform: rotate(90deg); }
+/* o caret também lê o atributo que o head-boot põe no <html>: sem isto, um
+   grupo salvo fechado mostraria o caret aberto até o nav.js rodar no fim do body */
+html[data-nav-fechados~="racas"] .nav-grupo[data-grupo="racas"]:not(:has(.active)) .nav-caret,
+html[data-nav-fechados~="classes"] .nav-grupo[data-grupo="classes"]:not(:has(.active)) .nav-caret { transform: none; }
 .nav-grupo-cab:hover { color: var(--text-secondary); }
 .nav-grupo-cab:hover .nav-caret { color: var(--gold); }
 .nav-grupo-cab[aria-disabled="true"] { cursor: default; }
@@ -362,7 +366,8 @@ html[data-nav-fechados~="classes"] .nav-grupo[data-grupo="classes"]:not(:has(.ac
         padding: 0.8rem 0 0.75rem;
     }
     html[data-nav="trilho"] .sidebar-header::after { left: 14px; right: 14px; }
-    html[data-nav="trilho"] .nav-logo-txt,
+    /* o "Khalkaria" sai por clip (abaixo), não display:none: o "K" é
+       aria-hidden e o link do logo ficaria sem nome acessível */
     html[data-nav="trilho"] .sidebar-subtitle { display: none; }
     html[data-nav="trilho"] .nav-logo-k {
         display: grid; place-items: center;
@@ -402,6 +407,7 @@ html[data-nav-fechados~="classes"] .nav-grupo[data-grupo="classes"]:not(:has(.ac
     /* rótulos: visualmente ocultos por clip, NUNCA display:none (o nome
        acessível do link continua o mesmo) */
     html[data-nav="trilho"] .nav-rot,
+    html[data-nav="trilho"] .nav-logo-txt,
     html[data-nav="trilho"] .nav-grupo-rot,
     html[data-nav="trilho"] .nav-grupo-n {
         position: absolute;
