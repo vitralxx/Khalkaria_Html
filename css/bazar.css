@@ -1141,8 +1141,109 @@ svg.bz-rc-uso-ico { width: 16px; height: 16px; margin: 0 3px; }
     border-left: 2px solid var(--roxo); padding-left: .8rem; font-size: .94rem;
 }
 
-/* ---------------------------------------------------------- pop-up (§3 preenche) */
+/* ---------------------------------------------------------- pop-up (§3, js/bazar-cartao.js)
+   Um nó só (#bz-preview), fixo, sem ponteiro. A raiz não corta (a seta fica
+   para fora); quem corta é .bz-ct-corpo, com fade de 24px no pé quando
+   transborda. O rodapé dinâmico nunca é cortado. */
+.bz-cartao {
+    /* --rc/--rbg/--rbd vêm da .rar-* que o JS põe no nó (sem padrão aqui:
+       esta regra vem depois das .rar-* e as sobreporia) */
+    position: fixed; left: 0; top: 0; z-index: 400;
+    width: 340px; max-height: 70vh;
+    display: flex; flex-direction: column;
+    pointer-events: none;
+    background: var(--bz-grao), var(--bz-painel);
+    border: 1px solid var(--rbd);
+    border-radius: 8px;
+    box-shadow: 0 18px 40px -14px #000, inset 0 1px 0 #ffffff05, 0 0 0 1px #0008;
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    opacity: 0;
+    transform: scale(.97);
+    transform-origin: 0 50%;
+    transition: opacity .12s ease-out, transform .12s ease-out;
+}
 .bz-cartao[hidden] { display: none; }
+.bz-cartao.vis { opacity: 1; transform: none; }
+.bz-cartao.sai { opacity: 0; transform: scale(.97); transition-duration: .08s; }
+.bz-cartao[data-seta="esq"]   { transform-origin: 0 var(--seta-y, 50%); }
+.bz-cartao[data-seta="dir"]   { transform-origin: 100% var(--seta-y, 50%); }
+.bz-cartao[data-seta="cima"]  { transform-origin: var(--seta-x, 50%) 0; }
+.bz-cartao[data-seta="baixo"] { transform-origin: var(--seta-x, 50%) 100%; }
+
+/* seta de 8px em ponta de raiz: ::before é o aro (--rbd), ::after o miolo */
+.bz-cartao::before, .bz-cartao::after { content: ""; position: absolute; pointer-events: none; }
+.bz-cartao[data-seta="esq"]::before, .bz-cartao[data-seta="esq"]::after,
+.bz-cartao[data-seta="dir"]::before, .bz-cartao[data-seta="dir"]::after {
+    width: 9px; height: 16px; top: calc(var(--seta-y, 50%) - 8px);
+}
+.bz-cartao[data-seta="cima"]::before, .bz-cartao[data-seta="cima"]::after,
+.bz-cartao[data-seta="baixo"]::before, .bz-cartao[data-seta="baixo"]::after {
+    width: 16px; height: 9px; left: calc(var(--seta-x, 50%) - 8px);
+}
+.bz-cartao::before { background: var(--rbd); }
+.bz-cartao::after { background: #13111a; }
+.bz-cartao[data-seta="esq"]::before, .bz-cartao[data-seta="esq"]::after {
+    left: -9px; clip-path: polygon(100% 0, 55% 30%, 0 58%, 50% 64%, 100% 100%);
+}
+.bz-cartao[data-seta="esq"]::after { left: -7px; }
+.bz-cartao[data-seta="dir"]::before, .bz-cartao[data-seta="dir"]::after {
+    right: -9px; clip-path: polygon(0 0, 45% 30%, 100% 58%, 50% 64%, 0 100%);
+}
+.bz-cartao[data-seta="dir"]::after { right: -7px; background: #0e0d12; }
+.bz-cartao[data-seta="cima"]::before, .bz-cartao[data-seta="cima"]::after {
+    top: -9px; clip-path: polygon(0 100%, 30% 55%, 58% 0, 64% 50%, 100% 100%);
+}
+.bz-cartao[data-seta="cima"]::after { top: -7px; }
+.bz-cartao[data-seta="baixo"]::before, .bz-cartao[data-seta="baixo"]::after {
+    bottom: -9px; clip-path: polygon(0 0, 30% 45%, 58% 100%, 64% 50%, 100% 0);
+}
+.bz-cartao[data-seta="baixo"]::after { bottom: -7px; background: #0c0b10; }
+
+.bz-cartao p { margin: 0; }
+.bz-ct-corpo {
+    position: relative; flex: 1 1 auto; min-height: 0; overflow: hidden;
+    padding: .75rem .85rem .65rem;
+}
+.bz-ct-corpo.corta::after {
+    content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 24px;
+    background: linear-gradient(180deg, #0c0b1000, #0c0b10);
+}
+.bz-ct-cab { display: flex; align-items: flex-start; gap: .65rem; margin-bottom: .55rem; }
+.bz-ct-ico { width: 44px; height: 44px; }
+.bz-ct-med {
+    width: 44px; height: 44px; flex: 0 0 auto;
+    display: grid; place-items: center;
+    border-radius: 26%;
+    background: var(--rbg); border: 1px solid var(--rbd); color: var(--rc);
+}
+.bz-ct-med svg { width: 24px; height: 24px; }
+.bz-ct-med.avulso { background: transparent; border-style: dashed; color: var(--text-secondary); }
+.bz-ct-titulo { min-width: 0; flex: 1; }
+.bz-ct-nome {
+    font-family: var(--font-heading); font-size: 1rem; line-height: 1.25;
+    color: var(--gold); margin-bottom: .3rem !important;
+}
+.bz-ct-sem { font-style: italic; font-size: .88rem; color: var(--text-secondary); }
+.bz-ct-efeito { font-size: .96rem; line-height: 1.5; color: var(--text-primary); margin-bottom: .5rem !important; }
+.bz-ct-meta {
+    font-family: var(--bz-mono); font-variant-numeric: tabular-nums;
+    font-size: .76rem; color: var(--gold-light); margin-bottom: .2rem !important;
+}
+.bz-ct-peso { font-size: .84rem; color: var(--text-secondary); }
+.bz-ct-pe {
+    flex: 0 0 auto;
+    border-top: 1px solid #ffffff0d;
+    background: #0c0b10;
+    border-radius: 0 0 8px 8px;
+    padding: .45rem .85rem .5rem;
+    font-size: .84rem; color: var(--text-secondary);
+    display: flex; flex-direction: column; gap: .15rem;
+}
+.bz-ct-pe b { font-family: var(--bz-mono); font-weight: 400; font-variant-numeric: tabular-nums; color: var(--gold-light); }
+.bz-ct-pede.ok .bz-ct-x { color: var(--bz-tem); }
+.bz-ct-pede.parcial .bz-ct-x { color: var(--bz-leve); }
+.bz-ct-pede.zero .bz-ct-x { color: var(--text-secondary); }
 
 /* ---------------------------------------------------------- arte de material
    Os tiles são compostos sobre #16161d (tools/gerar_icones_materiais.py), a

@@ -98,7 +98,8 @@
         '<ul class="bz-rc-ings">' + it.ing.map(function (g, i) {
           var m = D.porNome[g.item];
           var onde = U.ondeAchar(g.item);
-          var alvo = m ? ' data-ir="' + esc(m.id) + '" data-prever="' + esc(m.id) + '" draggable="true"' : '';
+          // data-pede: o pop-up (bazar-cartao.js) mostra "Receita pede n · você tem x"
+          var alvo = m ? ' data-ir="' + esc(m.id) + '" data-prever="' + esc(m.id) + '" data-pede="' + g.n + '" draggable="true"' : '';
           return '<li class="bz-rc-ing ' + (m ? U.classeRar(m.raridade) : '') + '" data-i="' + i + '"' + alvo + '>' +
             '<span class="bz-rc-ing-l1">' +
               (m ? arte(m, 'bz-rc-ing-ico') : '<span class="bz-rc-ing-ico"></span>') +
@@ -135,7 +136,7 @@
             var m = D.porNome[g.item];
             if (!m) return '<span class="bz-mini">' + g.n + '× ' + esc(g.item) + '</span>';
             return '<button type="button" class="bz-mini ' + U.classeRar(m.raridade) + '" data-ir="' + esc(m.id) +
-              '" data-prever="' + esc(m.id) + '" draggable="true" title="' + esc(g.n + '× ' + g.item) +
+              '" data-prever="' + esc(m.id) + '" data-pede="' + g.n + '" draggable="true" title="' + esc(g.n + '× ' + g.item) +
               '" aria-label="' + esc(g.n + '× ' + g.item) + '">' + arte(m, 'bz-mini-ico') + '<b>' + g.n + '×</b></button>';
           }).join('') +
         '</div>' +
