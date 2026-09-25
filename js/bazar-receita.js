@@ -176,7 +176,7 @@
     }
     h += nomes.map(function (g) {
       var l = grupos[g].slice().sort(function (a, b) { return a.nome.localeCompare(b.nome, 'pt'); });
-      return '<details class="bz-rc-grupo" data-n="' + l.length + '"' + (l.length > 8 ? '' : ' open') + '>' +
+      return '<details class="bz-rc-grupo" data-total="' + l.length + '"' + (l.length > 8 ? '' : ' open') + '>' +
         '<summary><span>' + esc(g) + '</span> <span class="bz-rc-grupo-n">' + l.length + '</span></summary>' +
         '<ul class="bz-rc-usos-lista">' + l.map(function (u) {
           return '<li data-busca="' + esc(U.semAcento(u.nome).toLowerCase()) + '">' +
@@ -583,7 +583,7 @@
         if (ok) vis++;
       });
       d.hidden = vis === 0;
-      d.open = q ? vis > 0 : (+d.getAttribute('data-n') <= 8);
+      d.open = q ? vis > 0 : (+d.getAttribute('data-total') <= 8);
     });
   });
   // linhas de ingrediente, degraus e usos são arrastáveis com o payload do card

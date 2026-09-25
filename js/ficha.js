@@ -1585,6 +1585,9 @@
     desfazerPilha = [];
     commit(['tudo'], origem, origem);
     reconciliaCatalogo();
+    // ficha importada fora do Bazar pode trazer entradas sem inv (v1 migrada):
+    // sem isto o catálogo só seria pedido no próximo carregamento de página
+    verificaPendentes();
   }
   function importJSON() {
     var inp = el('input', { type:'file', accept:'.json,application/json' });

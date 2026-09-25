@@ -311,7 +311,7 @@
     return h.length ? '<span class="bz-slot-selos">' + h.join('') + '</span>' : '';
   }
   function caixaHTML(acao, rotulo, marcado, extra, atalho) {
-    return '<label class="bz-slot-cx"><input type="checkbox" data-acao="' + acao + '" tabindex="-1"' +
+    return '<label class="bz-slot-cx"' + (atalho ? ' title="' + rotulo + ' (' + atalho + ')"' : '') + '><input type="checkbox" data-acao="' + acao + '" tabindex="-1"' +
       (marcado ? ' checked' : '') + (atalho ? ' aria-keyshortcuts="' + atalho + '"' : '') + '> ' +
       rotulo + (extra || '') + '</label>';
   }
@@ -337,12 +337,12 @@
       '</div>' +
       '<div class="bz-slot-l2">' +
         '<span class="bz-stepper bz-slot-step">' +
-          '<button type="button" data-acao="menos" tabindex="-1" aria-label="Diminuir ' + esc(e.nome) + '" title="Menos 1 (Shift: 10)">−</button>' +
+          '<button type="button" data-acao="menos" tabindex="-1" aria-label="Diminuir ' + esc(e.nome) + '" title="Menos 1 (−; Shift: 10)" aria-keyshortcuts="-">−</button>' +
           '<input type="text" inputmode="numeric" data-acao="qtd" tabindex="-1" value="' + e.qtd + '" aria-label="Quantidade de ' +
             esc(e.nome) + '" title="' + (e.equipado ? esc(MSG_EQUIPADO_1) : 'Quantidade (Enter aplica; abaixo de 1 remove)') +
             '" aria-keyshortcuts="Q" autocomplete="off"' + (e.equipado ? ' readonly' : '') + '>' +
           '<button type="button" data-acao="mais" tabindex="-1" aria-label="Aumentar ' + esc(e.nome) + '" title="' +
-            (e.equipado ? esc(MSG_EQUIPADO_1) : 'Mais 1 (Shift: 10)') + '"' + (e.equipado ? ' disabled' : '') + '>+</button>' +
+            (e.equipado ? esc(MSG_EQUIPADO_1) : 'Mais 1 (+; Shift: 10)') + '" aria-keyshortcuts="Plus"' + (e.equipado ? ' disabled' : '') + '>+</button>' +
         '</span>' +
         caixaHTML('emp', 'Item Empilhável', e.empilhavel, dif, 'S') +
         (coluna === 'equipamentos' ? caixaHTML('equip', 'Equipado', e.equipado, '', 'E') : '') +
@@ -608,7 +608,7 @@
     clearTimeout(toastT);
     toastUid = uid || '';
     el.toast.innerHTML = '<span>' + esc(msg) + '</span>' +
-      (desfazer ? ' · <button type="button" class="bz-toast-btn" data-toast-desfazer>Desfazer</button>' : '');
+      (desfazer ? ' · <button type="button" class="bz-toast-btn" data-toast-desfazer title="Desfazer (Ctrl+Z)" aria-keyshortcuts="Control+Z">Desfazer</button>' : '');
     el.toast.classList.add('on');
     toastT = setTimeout(fechaToast, TOAST_MS);
   }
