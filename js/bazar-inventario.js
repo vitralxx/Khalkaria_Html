@@ -114,9 +114,40 @@
     return { txt: d === 0 ? 'Ficha exportada hoje' : 'Ficha exportada há ' + d + (d === 1 ? ' dia' : ' dias'), velha: d > 7 };
   }
 
+  // Campos de uma entrada importada (.khalkaria.json de outra pessoa, drop de
+  // text/plain de fora) chegam crus: nada deles vai para o HTML sem passar por aqui.
+  function escHTML(s) {
+    return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
+  // classe da raridade só com [a-z0-9-]: "Ordinário" -> rar-ordinario
+  function classeRar(r) {
+    var s = semAcentoMin(r).replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+    return 'rar-' + (s || 'ordinario');
+  }
+  // capacidade do recipiente: número inteiro positivo, senão null (não mostra selo)
+  function numRecipiente(v) {
+    var n = typeof v === 'number' ? v : (typeof v === 'string' && /^\s*\d+\s*$/.test(v) ? +v : NaN);
+    return isFinite(n) && n > 0 ? Math.floor(n) : null;
+  }
+  function seloRecipienteHTML(inv) {
+    var n = numRecipiente(inv && inv.recipiente);
+    if (n == null) return '';
+    return '<span class="bz-selo" title="Armazena até ' + n +
+      ' Bugigangas: a ficha ainda não desconta isso">recipiente ainda não modelado</span>';
+  }
+  // "i" foca o combobox; Shift+I alterna trilho/painel. Com Caps Lock, e.key
+  // vem "I" sem Shift: continua sendo o combobox.
+  function acaoTeclaI(e) {
+    return e && e.shiftKey ? 'trilho' : 'combobox';
+  }
+
   var P = {
     interpretaBusca: interpretaBusca, busca: busca, agrupa: agrupa, grupoDe: grupoDe,
     diasDesde: diasDesde, textoExport: textoExport, semAcentoMin: semAcentoMin,
+    escHTML: escHTML, classeRar: classeRar, numRecipiente: numRecipiente,
+    seloRecipienteHTML: seloRecipienteHTML, acaoTeclaI: acaoTeclaI,
     ORDEM_GRUPOS: ORDEM_GRUPOS.slice(), SEM_REGISTRO: SEM_REGISTRO
   };
   if (typeof module === 'object' && module && module.exports) { module.exports = P; return; }
@@ -307,10 +338,8 @@
           esc(a.msg + ' (clique para mover)') + '">fora da regra · corrigir</button>');
       }
     });
-    if (e.inv && e.inv.recipiente) {
-      h.push('<span class="bz-selo" title="Armazena até ' + e.inv.recipiente +
-        ' Bugigangas: a ficha ainda não desconta isso">recipiente ainda não modelado</span>');
-    }
+    var rec = seloRecipienteHTML(e.inv);
+    if (rec) h.push(rec);
     return h.length ? '<span class="bz-slot-selos">' + h.join('') + '</span>' : '';
   }
   function caixaHTML(acao, rotulo, marcado, extra, atalho) {
@@ -327,7 +356,7 @@
       (e.equipado ? ', equipado' : '') + (e.sintonizado ? ', sintonizado' : '') + (e.avulso ? ', sem registro' : '');
     var dif = typeof e.empilhavelRegistro === 'boolean' && e.empilhavel !== e.empilhavelRegistro
       ? '<span class="bz-dif" title="o registro diz: ' + (e.empilhavelRegistro ? 'empilhável' : 'não empilhável') + '"></span>' : '';
-    var h = '<li class="bz-slot ' + (rar ? U.classeRar(rar) : 'rar-ordinario') +
+    var h = '<li class="bz-slot ' + classeRar(rar) +
       (e.equipado ? ' is-equipado' : '') + (e.avulso ? ' is-avulso' : '') + (e.orfao ? ' is-orfao' : '') +
       '" data-uid="' + esc(uid) + '" tabindex="' + (tab ? '0' : '-1') + '" draggable="true" aria-label="' + esc(rotulo) +
       '" aria-keyshortcuts="' + ATALHOS_LINHA + '">' +
@@ -499,10 +528,14 @@
   }
   function coluna(c, inv, cg, avisosPorUid) {
     var x = el.cols[c], col = cg[c];
-    trocaHTML(x.num, '<b>' + col.usado + '</b> / ' + col.max);
-    x.num.title = contaCapacidade(c, cg);
+    // a conta aparece em .bz-col-conta no hover E no foco por teclado (title
+    // não aparece no foco); role=img para o aria-label valer no <span>
+    var conta = contaCapacidade(c, cg);
+    trocaHTML(x.num, '<b>' + col.usado + '</b> / ' + col.max +
+      '<span class="bz-col-conta" aria-hidden="true">' + esc(conta) + '</span>');
+    x.num.setAttribute('role', 'img');
     x.num.setAttribute('tabindex', '0');
-    x.num.setAttribute('aria-label', col.usado + ' de ' + col.max + '. ' + contaCapacidade(c, cg));
+    x.num.setAttribute('aria-label', col.usado + ' de ' + col.max + '. ' + conta);
     x.est.textContent = textoEstado(col);
     x.sec.setAttribute('data-estado', col.estado);
     pintaRegua(x.regua, c, col);
@@ -809,7 +842,7 @@
         'Guardar “' + esc(op.nome) + '” como item sem registro <span class="bz-cb-dest">→ ' + ROTULO[dest] + '</span></li>';
     }
     var it = op.it, d = cb.alvo || colunaCanonica(it), p = pesoCurto(it);
-    return '<li role="option" id="' + id + '" class="bz-cb-op ' + U.classeRar(it.raridade) + '" data-i="' + i +
+    return '<li role="option" id="' + id + '" class="bz-cb-op ' + classeRar(it.raridade) + '" data-i="' + i +
       '" data-prever="' + esc(it.id) + '" aria-selected="false">' +
       '<span class="bz-cb-med">' + U.arte(it, 'bz-cb-ico') + '</span>' +
       '<span class="bz-cb-nome">' + esc(it.nome) + '</span>' +
@@ -1052,8 +1085,13 @@
     }
     return false;
   });
-  BZ.atalho('i', function () { if (!kf()) return false; focaCb(''); });
-  BZ.atalho('I', function () { alternaTrilho(); });
+  function teclaI(e) {
+    if (acaoTeclaI(e) === 'trilho') { alternaTrilho(); return; }
+    if (!kf()) return false;
+    focaCb('');
+  }
+  BZ.atalho('i', teclaI);
+  BZ.atalho('I', teclaI);
 
   // ------------------------------------------------------------ arrastar e soltar
   var arrasto = { uid: '', col: '' };

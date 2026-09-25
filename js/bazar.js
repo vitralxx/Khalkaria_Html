@@ -70,7 +70,8 @@
   function semAcento(s) {
     return String(s == null ? '' : s).normalize('NFD').replace(/[̀-ͯ]/g, '');
   }
-  function classeRar(r) { return 'rar-' + semAcento(r || '').toLowerCase(); }
+  // só [a-z0-9-]: vai concatenado em class="..." (a raridade pode vir de import)
+  function classeRar(r) { return 'rar-' + semAcento(r || '').toLowerCase().replace(/[^a-z0-9-]/g, ''); }
   function svg(id, cls) {
     return '<svg class="' + (cls || '') + '" aria-hidden="true"><use href="#' + id + '"/></svg>';
   }

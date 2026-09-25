@@ -806,6 +806,16 @@ svg.bz-cb-ico { width: 18px; height: 18px; }
 .bz-col[data-estado="leve"] .bz-col-est { color: var(--bz-leve); }
 .bz-col[data-estado="extremo"] .bz-col-est { color: #ff6b5a; }
 .bz-col-num:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
+/* a conta da capacidade (§4.2: hover OU foco): presa ao .bz-col-cab, na
+   largura da coluna, por cima da lista; nunca intercepta o ponteiro */
+.bz-col-conta {
+    display: none; position: absolute; left: .85rem; right: .85rem; top: calc(100% - 2px); z-index: 5;
+    padding: .3rem .55rem; border-radius: 5px; pointer-events: none;
+    background: #0c0b10; border: 1px solid var(--amber-dim); box-shadow: 0 4px 12px #0009;
+    font-family: var(--bz-mono); font-size: .8rem; line-height: 1.35; color: var(--text-primary);
+    white-space: normal;
+}
+.bz-col-num:hover .bz-col-conta, .bz-col-num:focus-visible .bz-col-conta { display: block; }
 
 /* régua: 0 a 2×max; dourado até o max, âmbar hachurado até 2×max */
 /* a linha da régua reserva 18px à direita para a garra de sobrepeso, que

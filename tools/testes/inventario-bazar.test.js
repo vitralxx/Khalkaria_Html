@@ -69,3 +69,32 @@ test('rodapé: lembrete de exportação fica âmbar depois de 7 dias', () => {
   assert.deepEqual(P.textoExport('2026-09-18T08:00:00Z', agora), { txt: 'Ficha exportada há 7 dias', velha: false });
   assert.deepEqual(P.textoExport('2026-09-13T08:00:00Z', agora), { txt: 'Ficha exportada há 12 dias', velha: true });
 });
+
+// Achado de revisão: raridade e inv.recipiente de uma entrada importada (ou de
+// um drop text/plain de fora) chegavam crus ao innerHTML das linhas.
+test('segurança: raridade e recipiente importados não quebram o HTML da linha', () => {
+  const K = require(path.join(__dirname, '..', '..', 'js', 'ficha.js'));
+  const mal = 'x"><img src=x onerror=alert(document.domain)>';
+  const e = K.normalizaEntrada({ uid: 'u1', id: 'nao-existe', nome: 'Isca', raridade: mal,
+    inv: { recipiente: '3"><img src=x onerror=alert(2)>' } }, {});
+  assert.equal(e.raridade, mal);                        // a ficha preserva o dado (import tolerante)
+  const cls = P.classeRar(e.raridade);
+  assert.match(cls, /^rar-[a-z0-9-]+$/);
+  assert.equal(P.seloRecipienteHTML(e.inv), '');        // recipiente não numérico: sem selo
+  // as raridades reais seguem casando com as classes do css/bazar.css
+  assert.equal(P.classeRar('Ordinário'), 'rar-ordinario');
+  assert.equal(P.classeRar('Exótico'), 'rar-exotico');
+  assert.equal(P.classeRar('Luxária'), 'rar-luxaria');
+  assert.equal(P.classeRar(''), 'rar-ordinario');
+  assert.match(P.seloRecipienteHTML({ recipiente: 50 }), /Armazena até 50 Bugigangas/);
+  assert.match(P.seloRecipienteHTML({ recipiente: '12' }), /Armazena até 12 Bugigangas/);
+  assert.equal(P.seloRecipienteHTML({ recipiente: 0 }), '');
+  assert.equal(P.seloRecipienteHTML(null), '');
+  assert.equal(P.escHTML('"<a>&\''), '&quot;&lt;a&gt;&amp;&#39;');
+});
+
+test('atalho: com Caps Lock, "I" sem Shift foca o combobox; Shift+I alterna o trilho', () => {
+  assert.equal(P.acaoTeclaI({ key: 'i', shiftKey: false }), 'combobox');
+  assert.equal(P.acaoTeclaI({ key: 'I', shiftKey: false }), 'combobox');   // Caps Lock
+  assert.equal(P.acaoTeclaI({ key: 'I', shiftKey: true }), 'trilho');
+});
