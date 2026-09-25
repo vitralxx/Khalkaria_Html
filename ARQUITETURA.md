@@ -55,7 +55,7 @@ tools/shell.py                 fase 2: navegação, webp, âncoras determinísti
 tools/sync_notion.py           motor de diff de snapshots do Notion
 tools/gerar_<pagina>.py        geradores JSON -> HTML (7)
 tools/gerar_webp.py            reencode das imagens
-tools/gerar_bazar.py           gerador do Bazar (escopo do Pedro)
+tools/gerar_bazar.py           gerador do Bazar (CSV -> bazar.json com `inv` + página)
 tools/extrair_css.py           refatoração pontual de CSS (não é build)
 tools/migrar_sistema.py        migração pontual do Sistema (já rodada)
 
@@ -111,10 +111,10 @@ faz essa extração respeitando o cascade.
 ## 6. Comandos
 
 ```bash
-python tools/build.py                  # gera tudo (menos Bazar) + valida
-python tools/build.py --bazar          # inclui o Bazar
+python tools/build.py                  # gera tudo (Bazar incluso) + testes do motor + valida
 python tools/build.py magias racas     # alvos específicos
 python tools/build.py --no-check       # sem validar
+                                       # (--bazar ainda é aceito, mas é no-op)
 python tools/validar.py                # só valida
 python tools/gerar_webp.py --force     # reencoda todas as imagens
 python tools/sync_notion.py status     # snapshots do Notion disponíveis
@@ -123,8 +123,19 @@ python tools/sync_notion.py accept     # promove .new -> .base
 ```
 
 `validar.py` checa: tags balanceadas, âncoras `#x` com destino, IDs duplicados,
-links/assets locais existentes, round-trip JSON→HTML e consistência das
-24 sidebars.
+links/assets locais existentes, round-trip JSON→HTML, consistência das
+24 sidebars (página sem `<nav class="sidebar">` é FALHA), as 5 frases de peso
+do Sistema que o motor de carga codifica (guarda-fio contra o Notion mudar a
+regra por baixo) e `inv` em todo item do `data/bazar.json`.
+
+`gerar_bazar.py` falha (código 1, nada gravado) quando uma frase de inventário
+do CSV não casa com o esperado, quando há colisão de id, ingrediente fora do
+catálogo ou quando `data/condicoes.json` perde os cards de Sobrepeso. Contagem
+diferente da registrada em `ESPERADO` é só AVISO. `{{VER}}` no template vira o
+hash dos assets do Bazar (cache-bust do `?v=`).
+
+Com `node` no PATH e a pasta `tools/testes/`, o build roda `node --test` nos
+`*.test.js` dela; teste vermelho derruba o build.
 
 ## 7. Dívidas restantes
 

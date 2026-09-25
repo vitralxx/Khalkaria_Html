@@ -11,14 +11,17 @@ integridade do artefato HTML, que é o que quebra em silêncio:
   4. Links e assets locais (href/src) apontando para arquivo existente
   5. Round-trip: regenerar de data/*.json bate byte-a-byte com pages/*.html
      (prova que nenhum HTML gerado foi editado à mão — CLAUDE.md §4/§10)
-  6. Sidebar: todas as páginas com o mesmo conjunto de links de navegação
+  6. Sidebar: todas as páginas com o mesmo conjunto de links de navegação;
+     página sem <nav class="sidebar"> é FALHA
+  7. Guarda-fio: as 5 frases de peso do Sistema que o motor de carga codifica
+  8. data/bazar.json é ARRAY e todo item traz `inv`
 
 Uso:
   python validar.py [repo_root]
   python validar.py . --skip-roundtrip
 Saída: exit 0 = tudo OK; exit 1 = há falhas.
 """
-import os, re, sys, glob, shutil, filecmp, subprocess, tempfile
+import os, re, sys, json, glob, shutil, filecmp, subprocess, tempfile
 import shell
 from html.parser import HTMLParser
 
@@ -31,7 +34,10 @@ VOID = {'area', 'base', 'br', 'col', 'embed', 'hr', 'img', 'input', 'link',
 # páginas geradas por gerador -> script que as produz (para o round-trip)
 GERADORES = ['gerar_sistema.py', 'gerar_magias.py', 'gerar_condicoes.py', 'gerar_limiar.py',
              'gerar_classes.py', 'gerar_racas.py', 'gerar_origens.py']
-# o Bazar é mantido pelo Pedro fora deste fluxo (CLAUDE.md §3)
+# O Bazar entra no build padrão, mas não no round-trip: o gerador dele lê o CSV
+# e grava data/bazar.json na raiz do repo (não recebe repo_root), então
+# regenerá-lo aqui sobrescreveria o artefato real. A integridade do bazar.json
+# é checada em checa_bazar_inv().
 FORA_ROUNDTRIP = {'pages/bazar.html'}
 
 falhas = []
@@ -123,7 +129,9 @@ def checa_sidebar():
         h = open(f, encoding='utf-8').read()
         m = re.search(r'<nav class="sidebar".*?</nav>', h, re.S)
         if not m:
-            print(f'  AVISO  {rel(f)}: sem <nav class="sidebar">')
+            # página publicada sem navegação = gerador rodou fora do build.py
+            falhas.append(f'sidebar:{rel(f)}')
+            print(f'  FALHA  {rel(f)}: sem <nav class="sidebar"> (rode python tools/build.py)')
             continue
         # normaliza: resolve o href para caminho absoluto no repo (o prefixo
         # relativo muda por profundidade) e ignora a classe .active
@@ -143,6 +151,77 @@ def checa_sidebar():
             print(f'  FALHA  {k}: falta {sorted(x[1] for x in ref - v)} | extra {sorted(x[1] for x in v - ref)}')
     else:
         print(f'  OK     {len(conjuntos)} sidebars com os mesmos {len(ref)} links')
+
+
+# Regras de peso que o motor de carga (KhInv, js/ficha.js) implementa. Se o
+# Notion reescrever qualquer uma, o sync muda data/sistema.json e esta checagem
+# acusa: é o aviso de que o motor e os testes precisam ser revistos junto.
+FRASES_INVENTARIO = [
+    '2+Mod. Força (Min. 1) Equipamentos, itens equipados não contam',
+    '10+Mod. Força (Min. 1) Bugigangas',
+    'Itens leves contam como 1 bugiganga a cada 10 unidades',
+    'Acima do peso máximo, porém menos que o dobro',
+    'Igual ou mais que o dobro do peso máximo',
+]
+
+
+def _textos_html(o):
+    """Todos os campos "html" de um JSON, em ordem de documento."""
+    if isinstance(o, dict):
+        for k, v in o.items():
+            if k == 'html' and isinstance(v, str):
+                yield v
+            else:
+                yield from _textos_html(v)
+    elif isinstance(o, list):
+        for v in o:
+            yield from _textos_html(v)
+
+
+def checa_regras_inventario(root=None):
+    """[7] Guarda-fio: as 5 frases do Sistema que o motor de carga codifica."""
+    root = root or ROOT
+    print('[7] Guarda-fio das regras de inventário (data/sistema.json)')
+    f = os.path.join(root, 'data', 'sistema.json')
+    try:
+        dados = json.load(open(f, encoding='utf-8'))
+    except (OSError, ValueError) as e:
+        falhas.append('regras-inventario')
+        print(f'  FALHA  data/sistema.json ilegível: {e}')
+        return
+    texto = re.sub(r'\s+', ' ', re.sub(r'<[^>]+>', ' ', ' '.join(_textos_html(dados))))
+    faltam = [fr for fr in FRASES_INVENTARIO if fr not in texto]
+    if faltam:
+        falhas.append('regras-inventario')
+        for fr in faltam:
+            print(f'  FALHA  frase sumiu do Sistema: "{fr}" (o motor de carga precisa ser revisto)')
+    else:
+        print(f'  OK     {len(FRASES_INVENTARIO)} frases de peso presentes')
+
+
+def checa_bazar_inv(root=None):
+    """[8] Todo item do data/bazar.json traz o campo inv (contrato do inventário)."""
+    root = root or ROOT
+    print('[8] data/bazar.json: campo inv em todo item')
+    f = os.path.join(root, 'data', 'bazar.json')
+    try:
+        itens = json.load(open(f, encoding='utf-8'))
+    except (OSError, ValueError) as e:
+        falhas.append('bazar-inv')
+        print(f'  FALHA  data/bazar.json ilegível: {e}')
+        return
+    if not isinstance(itens, list):
+        falhas.append('bazar-inv')
+        print('  FALHA  data/bazar.json deixou de ser ARRAY (contrato do js/ficha.js)')
+        return
+    sem = [i.get('nome', '?') if isinstance(i, dict) else repr(i)[:40]
+           for i in itens if not (isinstance(i, dict) and isinstance(i.get('inv'), dict)
+                                  and i['inv'].get('slot') in ('equipamento', 'bugiganga'))]
+    if sem:
+        falhas.append('bazar-inv')
+        print(f'  FALHA  {len(sem)} item(ns) sem inv válido: {sem[:8]}{" …" if len(sem) > 8 else ""}')
+    else:
+        print(f'  OK     {len(itens)} itens com inv')
 
 
 def checa_roundtrip():
@@ -186,6 +265,10 @@ if __name__ == '__main__':
     checa_html()
     print()
     checa_sidebar()
+    print()
+    checa_regras_inventario()
+    print()
+    checa_bazar_inv()
     print()
     if '--skip-roundtrip' not in FLAGS:
         checa_roundtrip()

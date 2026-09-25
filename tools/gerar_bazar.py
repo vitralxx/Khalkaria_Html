@@ -17,9 +17,17 @@ data/bazar.json é um ARRAY (contrato do js/ficha.js, que faz bazarCache.find).
 Cada item carrega os campos do CSV mais os derivados que a página precisa:
 região, CR, arquétipo, ingredientes parseados e degrau anterior da cadeia.
 
+Cada item ganha também `inv` (como se comporta no inventário, lido do Efeito:
+slot, empilhavel, armadura, capacidade/acumula, ocupa, recipiente). Frase de
+inventário que não casa com o esperado é FALHA (sai com código 1, nada gravado).
+
+Placeholders do template: {{VOCAB}} (inclui as condições de Sobrepeso de
+data/condicoes.json), {{TOTAL}} e {{VER}} (hash dos assets do Bazar, cache-bust).
+
 Uso: python tools/gerar_bazar.py [csv] [saida_html]
+Para publicar, use `python tools/build.py`: só ele aplica a navegação (fase 2).
 """
-import csv, json, sys, os, re, unicodedata
+import csv, json, sys, os, re, unicodedata, hashlib, glob
 
 RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 CSV = sys.argv[1] if len(sys.argv) > 1 else os.path.join(RAIZ, 'data', 'Bazar_Khalkaria_v26.csv')
@@ -112,7 +120,20 @@ def parse_arquetipo(efeito, categoria):
 
 RE_EMPILHA = re.compile(r'(?<!Não é )[Ee]mpilh[aá]vel:\s*pesa 1 bugiganga a cada 10 unidades')
 RE_CAPAC = re.compile(r'\+(\d+)\s*(?:de capacidade de\s*)?(bugigangas?|equipamentos?)', re.I)
+RE_RECIPIENTE = re.compile(r'Armazena até (\d+) Bugigangas')
 EQUIPAMENTO = {'Arma', 'Armadura', 'Escudo'}
+
+# Onde mora o que é empilhável. O Sistema diz que "itens leves contam como 1
+# bugiganga a cada 10 unidades", então a pilha pesa em Bugigangas mesmo quando
+# a categoria é Arma (Estilhaços do Abismo). PENDENTE PEDRO: se ele decidir que
+# arma empilhável continua em Equipamentos, é só trocar esta constante.
+SLOT_EMPILHAVEL = 'bugiganga'
+
+# Contagem registrada em 2026-09-25 (CSV v26). Item novo no CSV muda a contagem
+# legitimamente, então divergir aqui é só AVISO; frase reescrita no Efeito é
+# pega pelas FALHAs estruturais de validar_inventario().
+ESPERADO = {'empilhavel': 85, 'capacidade': 3, 'naoOcupa': 1,
+            'armaduras': (27, 23), 'slot': (240, 487)}
 
 
 def parse_inventario(efeito, cats, arq, fam):
@@ -122,10 +143,16 @@ def parse_inventario(efeito, cats, arq, fam):
     armaduras e escudos; Bugigangas são todo o resto. "Itens leves contam como
     1 bugiganga a cada 10 unidades" — 85 itens do CSV declaram isso no Efeito.
     Bolsas e mochilas declaram capacidade extra e se acumulam com cópia ou não.
+    Nada de peso pré-calculado: o motor da Ficha (KhInv) faz a conta.
     """
     ef = efeito or ''
-    inv = {'slot': 'equipamento' if (cats and cats[0] in EQUIPAMENTO) else 'bugiganga'}
-    if RE_EMPILHA.search(ef):
+    empilha = bool(RE_EMPILHA.search(ef))
+    if empilha:
+        slot = SLOT_EMPILHAVEL
+    else:
+        slot = 'equipamento' if set(cats or []) & EQUIPAMENTO else 'bugiganga'
+    inv = {'slot': slot}
+    if empilha:
         inv['empilhavel'] = True
     if fam == 'Slot' and arq in ('Pesada', 'Leve'):
         inv['armadura'] = arq                     # Pesada: 1 equipada · Leve: até 2
@@ -138,7 +165,93 @@ def parse_inventario(efeito, cats, arq, fam):
             inv['acumula'] = not re.search(r'não acumula com outra cópia', ef, re.I)
     if re.search(r'não ocupa espaço', ef, re.I):
         inv['ocupa'] = False
+    m = RE_RECIPIENTE.search(ef)
+    if m:
+        inv['recipiente'] = int(m.group(1))       # Bolsa Dimensional: só o selo da linha
     return inv
+
+
+def validar_inventario(itens, nomes):
+    """FALHAs estruturais: o que, se passar, faz o inventário pesar errado em silêncio."""
+    falhas = []
+    for it in itens:
+        ef, inv, nome = it['efeito'], it['inv'], it['nome']
+        if (re.search(r'empilh', ef, re.I) and not RE_EMPILHA.search(ef)
+                and 'Não é empilhável' not in ef):
+            falhas.append(f'{nome}: o Efeito fala em empilhar mas não casa a frase '
+                          f'"Empilhável: pesa 1 bugiganga a cada 10 unidades" nem "Não é empilhável"')
+        tem_palavra = bool(re.search(r'capacidade', ef, re.I))
+        if tem_palavra != ('capacidade' in inv):
+            falhas.append(f'{nome}: o Efeito ' + ('fala em capacidade mas nenhum "+N bugigangas/equipamentos" foi lido'
+                                                  if tem_palavra else 'não fala em capacidade mas inv.capacidade existe'))
+        if 'Armadura' in it['cats'] and inv.get('armadura') not in ('Pesada', 'Leve'):
+            falhas.append(f'{nome}: Armadura sem [Pesada]/[Leve] no começo do Efeito')
+        for g in it['ing']:
+            if g['item'] not in nomes:
+                falhas.append(f'{nome}: ingrediente "{g["item"]}" não existe no catálogo')
+    return falhas
+
+
+def contagem_inventario(itens):
+    inv = [i['inv'] for i in itens]
+    return {
+        'empilhavel': sum(1 for x in inv if x.get('empilhavel')),
+        'capacidade': sum(1 for x in inv if 'capacidade' in x),
+        'naoOcupa': sum(1 for x in inv if x.get('ocupa') is False),
+        'armaduras': (sum(1 for x in inv if x.get('armadura') == 'Pesada'),
+                      sum(1 for x in inv if x.get('armadura') == 'Leve')),
+        'slot': (sum(1 for x in inv if x['slot'] == 'equipamento'),
+                 sum(1 for x in inv if x['slot'] == 'bugiganga')),
+        'recipiente': sum(1 for x in inv if 'recipiente' in x),
+    }
+
+
+CONDICOES = os.path.join(RAIZ, 'data', 'condicoes.json')
+SOBREPESO = {'leve': 'sobrepeso-leve', 'extremo': 'sobrepeso-extremo'}
+
+
+def texto_plano(html):
+    """Normalizador do §6 do CLAUDE.md: tira tags e colapsa espaços."""
+    return re.sub(r'\s+', ' ', re.sub(r'<[^>]+>', ' ', html or '')).strip()
+
+
+def carrega_condicoes():
+    """Sobrepeso Leve/Extremo verbatim de data/condicoes.json (fonte: Notion).
+
+    Devolve (vocab, falhas). O selo de condição do inventário cita este texto;
+    se o card sumir ou mudar de id, é FALHA — nunca texto digitado à mão aqui.
+    """
+    cards = {}
+    if os.path.exists(CONDICOES):
+        dados = json.load(open(CONDICOES, encoding='utf-8'))
+        for cat in dados.get('categorias', []):
+            for c in cat.get('cards', []):
+                cards[c.get('id')] = c
+    out, falhas = {}, []
+    for chave, cid in SOBREPESO.items():
+        c = cards.get(cid)
+        if not c:
+            falhas.append(f'data/condicoes.json sem o card "{cid}"')
+            continue
+        out[chave] = {'id': cid, 'nome': c.get('nome', ''), 'texto': texto_plano(c.get('corpo', ''))}
+    return out, falhas
+
+
+# arquivos cujo conteúdo muda o comportamento da página: o ?v= só muda quando eles mudam
+VER_ARQUIVOS = ['js/ficha.js', 'js/bazar*.js', 'css/bazar.css']
+
+
+def versao_assets():
+    """8 primeiros hex do sha1 de js/ficha.js + js/bazar*.js + css/bazar.css.
+
+    CRLF vira LF antes do hash: o repo tem finais de linha misturados e o git
+    normaliza, então o mesmo commit tem de dar o mesmo ?v= em qualquer checkout.
+    """
+    h = hashlib.sha1()
+    for padrao in VER_ARQUIVOS:
+        for f in sorted(glob.glob(os.path.join(RAIZ, *padrao.split('/')))):
+            h.update(open(f, 'rb').read().replace(b'\r\n', b'\n'))
+    return h.hexdigest()[:8]
 
 
 ARTE = os.path.join(RAIZ, 'data', 'icones-materiais.json')
@@ -163,7 +276,7 @@ def main():
     nomes = {r['Nome'] for r in rows}
     cat_de = {r['Nome']: r['Categoria'] for r in rows}
 
-    itens, vistos = [], {}
+    itens, dono_slug, falhas = [], {}, []
     for r in rows:
         nome = r['Nome']
         categoria = (r.get('Categoria') or '').strip()
@@ -181,10 +294,13 @@ def main():
                     if g['item'] in nomes and g['item'] != nome
                     and cat_de[g['item']] == categoria and categoria != 'Material'), '')
 
+        # O id é a âncora #item/<id> e a chave do inventário da Ficha. Sufixo -N
+        # por ordem de aparição mudaria de dono quando o CSV fosse reordenado,
+        # então colisão é FALHA: o Pedro renomeia um dos itens.
         sid = slug(nome)
-        vistos[sid] = vistos.get(sid, 0) + 1
-        if vistos[sid] > 1:
-            sid = f'{sid}-{vistos[sid]}'
+        if sid in dono_slug:
+            falhas.append(f'colisão de id "{sid}": "{dono_slug[sid]}" e "{nome}"')
+        dono_slug.setdefault(sid, nome)
 
         itens.append({
             'id': sid, 'nome': nome,
@@ -206,6 +322,26 @@ def main():
                                regiao, arq, ' '.join(tags), efeito]).lower(),
         })
 
+    falhas += validar_inventario(itens, nomes)
+    condicoes, falhas_cond = carrega_condicoes()
+    falhas += falhas_cond
+    if falhas:
+        for f in falhas:
+            print(f'FALHA: {f}')
+        print(f'{len(falhas)} falha(s) estrutural(is): bazar.json e bazar.html NÃO foram gravados.')
+        sys.exit(1)
+
+    n = contagem_inventario(itens)
+    print(f"inv: {n['empilhavel']} empilháveis · {n['capacidade']} com capacidade · "
+          f"{n['naoOcupa']} não ocupa · {sum(n['armaduras'])} armaduras "
+          f"({n['armaduras'][0]} P / {n['armaduras'][1]} L) · "
+          f"{n['slot'][0]} equipamentos / {n['slot'][1]} bugigangas · "
+          f"{n['recipiente']} recipiente")
+    for chave, esperado in ESPERADO.items():
+        if n[chave] != esperado:
+            print(f'AVISO: inv.{chave} = {n[chave]}, esperado {esperado}. Item novo no CSV '
+                  f'explica; se não, confira o Efeito e atualize ESPERADO.')
+
     # compacto: é artefato, a fonte legível é o CSV
     json.dump(itens, open(BJSON, 'w', encoding='utf-8', newline=''),
               ensure_ascii=False, separators=(',', ':'))
@@ -225,17 +361,20 @@ def main():
         'slots': sorted({it['arquetipo'] for it in itens if it['familia'] == 'Slot'}),
         'municoes': sorted({it['arquetipo'] for it in itens if it['familia'] == 'Munição'}),
         'total': len(itens),
+        'condicoes': condicoes,
     }
 
+    ver = versao_assets()
     page = open(TPL, encoding='utf-8', newline='').read()
     page = page.replace('{{VOCAB}}', json.dumps(vocab, ensure_ascii=False))
     page = page.replace('{{TOTAL}}', str(len(itens)))
+    page = page.replace('{{VER}}', ver)
     os.makedirs(os.path.dirname(OUT), exist_ok=True)
     open(OUT, 'w', encoding='utf-8', newline='').write(page)
-    print(f'bazar.html gerado: {len(itens)} itens -> {OUT}')
-    if '<!--SIDEBAR-->' in page:
+    print(f'bazar.html gerado: {len(itens)} itens -> {OUT} | assets v={ver}')
+    if '<!--SIDEBAR-->' in page and not os.environ.get('KH_BUILD'):   # build.py define KH_BUILD
         print('    aviso: a navegação ainda é o marcador <!--SIDEBAR-->.'
-              ' Rode `python tools/build.py --bazar` para aplicar a fase 2.')
+              ' Publique pelo `python tools/build.py`, que aplica a fase 2.')
 
 
 if __name__ == '__main__':
