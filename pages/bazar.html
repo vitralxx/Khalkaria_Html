@@ -7,8 +7,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400&family=UnifrakturMaguntia&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../css/style.css?v=d6ecd72e">
-    <link rel="stylesheet" href="../css/bazar.css?v=d6ecd72e">
+    <link rel="stylesheet" href="../css/style.css?v=51afc24f">
+    <link rel="stylesheet" href="../css/bazar.css?v=51afc24f">
 </head>
 <body data-no-rightbar data-bazar>
     <button class="menu-toggle">☰ Menu</button>
@@ -52,6 +52,29 @@
       <symbol id="ico-lixo" viewBox="0 0 24 24">
         <path d="M5.6 7.8c1.6-1.9 3.4-1.2 5 .1 1.7 1.4 3.4 2.1 5 .2" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
         <path d="M4.4 12.6c2.4 2 4.2.6 6.2-.6 2-1.2 4.2-1.5 5.8 1.2M6.6 18c2.6-1.4 4-.4 6.4.6 1.6.7 3 .4 3.9-.9" fill="none" stroke="currentColor" stroke-width="1.15" stroke-linecap="round" opacity=".75"/>
+      </symbol>
+
+      <!-- ofícios (linha Ofício dos filtros) -->
+      <symbol id="of-ferraria" viewBox="0 0 24 24">
+        <path d="M4 12.8h12.4c1.4 0 2.8-.6 3.6-1.6v2.2c-.8 1.2-2 1.8-3.4 1.8H14l-.8 2.6h2.4v1.8H8.4v-1.8h2.4l-.8-2.6H7.2c-1.8 0-3-1.1-3.2-2.4ZM12.3 2.1 16.6 6.3 14.9 8 10.6 3.7ZM12.7 5.9 7.6 11" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M18.2 8.8l1.8.6M18.8 2.8l1-1.2M20 5.6h1.6" fill="none" stroke="currentColor" stroke-width=".9" stroke-linecap="round" opacity=".65"/>
+      </symbol>
+      <symbol id="of-engenharia" viewBox="0 0 24 24">
+        <path d="M9.9 5.8 10.1 3.6h3.8l.2 2.2A6.6 6.6 0 0 1 16.3 7l2-.9 1.9 3.4-1.7 1.2a6.6 6.6 0 0 1 0 2.6l1.7 1.2-1.9 3.4-2-.9a6.6 6.6 0 0 1-2.2 1.2l-.2 2.2h-3.8l-.2-2.2A6.6 6.6 0 0 1 7.7 17l-2 .9-1.9-3.4 1.7-1.2a6.6 6.6 0 0 1 0-2.6L3.8 9.5l1.9-3.4 2 .9a6.6 6.6 0 0 1 2.2-1.2Z" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/>
+        <circle cx="12" cy="12" r="2.4" fill="none" stroke="currentColor" stroke-width=".9" opacity=".65"/>
+      </symbol>
+      <symbol id="of-alquimia" viewBox="0 0 24 24">
+        <path d="M12.2 11.8A4.8 4.8 0 1 0 12.7 15L20.2 16.8M12.2 11.8 20.6 15.4 20.2 16.8" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="6.8" cy="15.6" r="1.1" fill="none" stroke="currentColor" stroke-width=".9" opacity=".65"/>
+        <circle cx="9.2" cy="12.6" r=".6" fill="none" stroke="currentColor" stroke-width=".9" opacity=".65"/>
+      </symbol>
+      <symbol id="of-sobrevivencia" viewBox="0 0 24 24">
+        <path d="M12 2.8c2.6 2.8 4 5 4 7 0 2.2-1.8 3.8-4 3.8s-4-1.6-4-3.8c0-1.6.8-2.8 2-3.8.2 1.4.8 2.2 1.6 2.6.2-2 .4-3.8.4-5.8ZM4.4 20.6 19.6 16M4.4 16l15.2 4.6M5 18.3h14" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M12 13.6c-1.1 0-1.9-.7-1.9-1.7 0-.8.7-1.7 1.9-2.6 1.2.9 1.9 1.8 1.9 2.6 0 1-.8 1.7-1.9 1.7Z" fill="none" stroke="currentColor" stroke-width=".9" stroke-linejoin="round" opacity=".65"/>
+      </symbol>
+      <symbol id="of-nenhum" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="7.6" fill="none" stroke="currentColor" stroke-width="1.3"/>
+        <path d="M6.6 17.4 17.4 6.6" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
       </symbol>
 
       <!-- marcas de raridade -->
@@ -323,10 +346,10 @@
     <div class="bz-sr" id="bz-vivo" aria-live="polite"></div>
 
     <script>window.BZ_VOCAB = {"categorias": ["Arma", "Armadura", "Escudo", "Consumível", "Munição", "Bugiganga", "Item Mágico", "Material", "Lixo"], "raridades": ["Lixo", "Ordinário", "Incomum", "Exótico", "Luxária"], "oficios": ["Ferraria", "Engenharia", "Alquimia", "Sobrevivência", "Não-craftável"], "regioes": ["Cinturão Silencioso", "Bosque Corrompido", "Emaranhado de Raízes", "Costas Rochosas", "Terras Livres", "Cordilheira Cristalina", "Ermo das Cinzas", "Deserto do Abismo"], "chassis": ["Leve Cortante", "Leve Perfurante", "Leve Contundente", "Leve Ágil", "Pesada Cortante", "Pesada Perfurante", "Pesada Contundente", "Pesada Brutal", "Marcial Pesada", "Marcial Longa", "Marcial Precisa", "Marcial Versátil", "Distância Simples", "Distância Pesada", "Arremesso"], "focos": ["Foco Místico (Abjuração)", "Foco Místico (Alteração)", "Foco Místico (Conhecimento)", "Foco Místico (Destruição)", "Foco Místico (Primordial)"], "slots": ["Leve", "Pesada"], "municoes": ["Arremesso", "Distância Pesada", "Distância Simples"], "total": 727, "condicoes": {"leve": {"id": "sobrepeso-leve", "nome": "Sobrepeso Leve", "texto": "Movimento diminuído para a metade. -2 em perícias com Força, Destreza ou Constituição como atributo base."}, "extremo": {"id": "sobrepeso-extremo", "nome": "Sobrepeso Extremo", "texto": "Você tem 1,5 m de Movimento. Desvantagem em perícias com Força, Destreza ou Constituição como atributo base."}}, "dados": "9455a675"};</script>
-    <script src="../js/ficha.js?v=d6ecd72e"></script>
-    <script src="../js/bazar.js?v=d6ecd72e"></script>
-    <script src="../js/bazar-cartao.js?v=d6ecd72e"></script>
-    <script src="../js/bazar-receita.js?v=d6ecd72e"></script>
-    <script src="../js/bazar-inventario.js?v=d6ecd72e"></script>
+    <script src="../js/ficha.js?v=51afc24f"></script>
+    <script src="../js/bazar.js?v=51afc24f"></script>
+    <script src="../js/bazar-cartao.js?v=51afc24f"></script>
+    <script src="../js/bazar-receita.js?v=51afc24f"></script>
+    <script src="../js/bazar-inventario.js?v=51afc24f"></script>
 </body>
 </html>

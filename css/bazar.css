@@ -329,8 +329,23 @@ body.bz-rc-aberta .bazar-page { margin-left: var(--bz-rc-w); }
     margin-bottom: .8rem;
     border-bottom: 1px dashed var(--border-color);
 }
-.bz-filtros { display: flex; flex-direction: column; gap: .4rem; }
-.bz-grupo { display: flex; flex-wrap: wrap; gap: .34rem; align-items: center; }
+/* Toda linha de filtro é uma TRILHA: segmentos retangulares iguais numa linha
+   só, topo com glifo/número e contagem, nome embaixo, filete inferior de 3px;
+   aceso = segmento preenchido. A Região (aprovada primeiro) dita a anatomia.
+   Lei de cor: calor só na Região, cor fixa do sistema só na Raridade, âmbar
+   neutro no resto (roxo/verde em Categoria/Ofício/Arquétipo seria lido como
+   raridade). Desligado, o segmento é neutro: só glifo e filete levam cor.
+
+   Contas (container registro = vw − 17 − nav − 56 − inv − 16; rótulo à
+   esquerda ≈ 98px):
+                        nav 280   nav em trilho 64   receita aberta
+     1366 (inv 360)      637px        853px             577px
+     1920 (inv 640)      911px       1127px             791px
+   ≤760 rótulo em cima em todas as linhas; ≥1080 (só 1127) Raridade|Ofício
+   pareados e Arquétipo em 11 colunas; ≤620 aperto só da Categoria; <540
+   fallback. Nome de segmento nunca parte palavra. */
+.bz-filtros { display: flex; flex-direction: column; gap: .5rem; }
+.bz-grupo { display: flex; flex-wrap: nowrap; align-items: stretch; gap: .34rem; min-width: 0; }
 .bz-grupo-nome {
     font-family: var(--font-heading);
     font-size: .68rem;
@@ -339,65 +354,32 @@ body.bz-rc-aberta .bazar-page { margin-left: var(--bz-rc-w); }
     color: var(--text-muted);
     min-width: 5.6rem;
     flex: 0 0 auto;
+    align-self: center;
 }
-.chip {
-    display: inline-flex;
-    align-items: center;
-    gap: .34rem;
-    padding: .28rem .66rem;
-    background: var(--bg-tertiary);
-    border: 1px solid var(--border-color);
-    border-radius: 999px;
-    color: var(--text-secondary);
-    font-size: .8rem;
-    cursor: pointer;
-    user-select: none;
-    position: relative;
-    transition: color .2s, border-color .2s, background .2s, transform .16s var(--bz-mola);
-}
-.chip svg { width: 15px; height: 15px; flex: 0 0 auto; }
-.chip:hover { color: var(--text-primary); border-color: var(--amber); transform: translateY(-1px); }
-.chip:active { transform: translateY(0) scale(.96); }
-.chip.on {
-    color: #120d06;
-    border-color: var(--amber);
-    background: linear-gradient(180deg, var(--gold-light), var(--amber));
-    font-weight: 600;
-    box-shadow: 0 0 16px -4px var(--amber);
-}
-.chip-n { font-size: .7rem; opacity: .62; font-variant-numeric: tabular-nums; }
-.chip.on .chip-n { opacity: .72; }
-/* Raridade: DESLIGADO é neutro como qualquer chip — só o glifo carrega a cor.
-   Antes o chip desligado já nascia pintado (texto, borda e fundo na cor da
-   raridade) e os cinco pareciam sempre acesos: o último clicado dava a
-   impressão de ter ficado preso mesmo com o filtro desligado. */
-.chip.chip-rar svg { color: var(--rc); }
-.chip.chip-rar:hover { color: var(--rc); border-color: var(--rbd); }
-.chip.chip-rar.on { background: var(--rc); border-color: var(--rc); color: #120d06; box-shadow: 0 0 16px -4px var(--rc); }
-.chip.chip-rar.on svg { color: #120d06; }
-
-/* Região: trilha de perigo numa linha só. 8 segmentos iguais do frio (1) ao
-   quente (8) + Único/Quest. O filete de baixo de cada segmento, lado a lado,
-   desenha a trilha; aceso, o segmento inteiro ganha a cor do seu calor. */
-.bz-grupo-reg { flex-wrap: nowrap; align-items: stretch; }
-.bz-grupo-reg .bz-grupo-nome { align-self: center; }
+.bz-grupo-arq > .bz-grupo-nome { align-self: flex-start; padding-top: 1.05rem; }
 .bz-trilha {
     flex: 1 1 auto;
     min-width: 0;
     display: grid;
-    grid-template-columns: repeat(8, minmax(0, 1fr)) minmax(0, .9fr);
+    grid-template-columns: repeat(var(--n, 5), minmax(0, 1fr));
     gap: 3px;
 }
+.bz-trilha-reg { grid-template-columns: repeat(8, minmax(0, 1fr)) minmax(0, .9fr); }
+.bz-par { display: grid; gap: .5rem; }
+
+/* base genérica (Categoria, Raridade, Ofício, Arquétipo): âmbar neutro */
 .bz-seg {
-    --h: calc(190deg - var(--r, 0) * 24deg);
+    --sc: #3a2f22;
+    --sc-vivo: var(--amber);
+    --sc-fundo: #241809;
     display: flex;
     flex-direction: column;
     gap: .12rem;
     min-width: 0;
-    padding: .28rem .42rem .32rem;
+    padding: .28rem .3rem .32rem;
     background: var(--bg-tertiary);
     border: 1px solid var(--border-color);
-    border-bottom: 3px solid hsl(var(--h) 48% 34%);
+    border-bottom: 3px solid var(--sc);
     border-radius: 6px 6px 2px 2px;
     color: var(--text-secondary);
     font-family: var(--font-body);
@@ -409,42 +391,122 @@ body.bz-rc-aberta .bazar-page { margin-left: var(--bz-rc-w); }
 .bz-seg-n {
     font-family: var(--bz-mono);
     font-size: .74rem;
-    color: hsl(var(--h) 60% 64%);
+    color: var(--text-muted);
     line-height: 1;
 }
 .bz-seg-ico { width: 11px; height: 11px; color: var(--text-muted); }
 .bz-seg-c { font-family: var(--bz-mono); font-size: .66rem; color: var(--text-muted); font-variant-numeric: tabular-nums; }
 /* palavra inteira ou nada: quebrar no meio ("Emaranhad·o") lia mal */
 .bz-seg-nome { font-size: .76rem; line-height: 1.15; overflow-wrap: normal; word-break: normal; hyphens: manual; }
-.bz-seg:hover { color: var(--text-primary); border-color: hsl(var(--h) 40% 42%); border-bottom-color: hsl(var(--h) 60% 50%); }
+.bz-seg:hover {
+    color: var(--text-primary);
+    border-color: color-mix(in srgb, var(--sc-vivo) 45%, var(--border-color));
+    border-bottom-color: var(--sc-vivo);
+}
 .bz-seg:focus-visible { outline: 2px solid var(--amber); outline-offset: 1px; }
 .bz-seg.on {
+    background: var(--sc-fundo);
+    border-color: var(--sc-vivo);
+    border-bottom-color: var(--sc-vivo);
+    color: #f4f1ea;
+    box-shadow: 0 0 16px -6px var(--sc-vivo), inset 0 0 0 1px color-mix(in srgb, var(--sc-vivo) 35%, transparent);
+}
+.bz-seg.on .bz-seg-n { color: var(--gold-light); }
+.bz-seg.on .bz-seg-c { color: #d8d2c4; }
+.bz-trilha:not(.bz-trilha-reg) .bz-seg.on .bz-seg-ico { color: var(--sc-vivo); }
+/* "fora da escala" (Não-craftável): mesma forma do Quest da Região */
+.bz-seg-fora { --sc: #4a4458; border-bottom-style: dashed; }
+.bz-trilha-cat .bz-seg-nome { font-size: .72rem; }
+
+/* Raridade: tokens vindos das cores fixas (.rar-* no próprio botão) */
+.bz-trilha-rar .bz-seg { --sc: color-mix(in srgb, var(--rbd) 70%, #15151f); --sc-vivo: var(--rc); --sc-fundo: var(--rbg); }
+.bz-trilha-rar .bz-seg .bz-seg-n, .bz-trilha-rar .bz-seg.on .bz-seg-n,
+.bz-trilha-rar .bz-seg .bz-seg-ico, .bz-trilha-rar .bz-seg.on .bz-seg-ico { color: var(--rc); }
+
+/* Região: trilha de perigo, 8 segmentos do frio (1) ao quente (8) + Único/Quest.
+   Valores intocados desde a aprovação; só ganharam o prefixo .bz-trilha-reg. */
+.bz-trilha-reg .bz-seg {
+    --h: calc(190deg - var(--r, 0) * 24deg);
+    padding: .28rem .42rem .32rem;
+    border-bottom-color: hsl(var(--h) 48% 34%);
+}
+.bz-trilha-reg .bz-seg .bz-seg-n { color: hsl(var(--h) 60% 64%); }
+.bz-trilha-reg .bz-seg:hover { border-color: hsl(var(--h) 40% 42%); border-bottom-color: hsl(var(--h) 60% 50%); }
+.bz-trilha-reg .bz-seg.on {
     background: hsl(var(--h) 45% 17%);
     border-color: hsl(var(--h) 58% 52%);
     border-bottom-color: hsl(var(--h) 70% 58%);
-    color: #f4f1ea;
     box-shadow: 0 0 16px -6px hsl(var(--h) 65% 50%), inset 0 0 0 1px hsl(var(--h) 58% 52% / .35);
 }
-.bz-seg.on .bz-seg-n { color: hsl(var(--h) 80% 76%); }
-.bz-seg.on .bz-seg-c { color: #d8d2c4; }
-.bz-seg-quest { border-bottom-style: dashed; border-bottom-color: #4a4458; }
-.bz-seg-quest:hover { border-color: var(--roxo); border-bottom-color: var(--roxo-claro); }
-.bz-seg-quest.on { background: #1b1430; border-color: var(--roxo-claro); border-bottom-color: var(--roxo-claro); box-shadow: 0 0 16px -6px var(--roxo-claro); }
-.bz-seg-quest.on .bz-seg-ico { color: var(--roxo-claro); }
-/* registro estreito (1366 com o painel aberto): o rótulo sobe e a trilha usa a largura toda */
+.bz-trilha-reg .bz-seg.on .bz-seg-n { color: hsl(var(--h) 80% 76%); }
+/* Quest: DEPOIS das de cima, com o mesmo prefixo (senão perde por especificidade) */
+.bz-trilha-reg .bz-seg-quest { border-bottom-style: dashed; border-bottom-color: #4a4458; }
+.bz-trilha-reg .bz-seg-quest:hover { border-color: var(--roxo); border-bottom-color: var(--roxo-claro); }
+.bz-trilha-reg .bz-seg-quest.on { background: #1b1430; border-color: var(--roxo-claro); border-bottom-color: var(--roxo-claro); box-shadow: 0 0 16px -6px var(--roxo-claro); }
+.bz-trilha-reg .bz-seg-quest.on .bz-seg-ico { color: var(--roxo-claro); }
+
+/* Arquétipo: os 22 sempre à vista, numa grade de segmentos por família.
+   8 colunas: [Leves 4 | Pesadas 4] / [À distância 3 em 4 | Marciais 4] /
+   [Focos 5 em 6 | Armadura 2]. 11 colunas (≥1080): [L4|P4|D3] / [M4|F5|A2]. */
+.bz-arq {
+    flex: 1 1 auto;
+    min-width: 0;
+    display: grid;
+    grid-template-columns: repeat(8, minmax(0, 1fr));
+    gap: .45rem 3px;
+}
+.bz-fam { grid-column: span var(--span, var(--n)); display: grid; gap: .18rem; min-width: 0; }
+.bz-fam[data-fam="distancia"] { --span: 4; }
+.bz-fam[data-fam="foco"] { --span: 6; }
+.bz-fam[data-fam="outros"] { grid-column: 1 / -1; }
+.bz-fam-segs { display: grid; grid-template-columns: repeat(var(--n), minmax(0, 1fr)); gap: 3px; }
+.bz-fam-nome {
+    display: flex;
+    align-items: center;
+    gap: .35rem;
+    min-width: 0;
+    font-family: var(--font-heading);
+    font-size: .6rem;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--bz-muted);
+    white-space: nowrap;
+}
+.bz-fam-nome b { font-family: var(--bz-mono); font-weight: 400; letter-spacing: 0; }
+/* colchete de família: abraça os segmentos dela */
+.bz-fam-nome::after {
+    content: '';
+    flex: 1;
+    min-width: .5rem;
+    height: 5px;
+    align-self: flex-end;
+    border: 1px solid #3a2f22;
+    border-bottom: 0;
+    border-radius: 2px 2px 0 0;
+}
+
 @container registro (max-width: 760px) {
-    .bz-grupo-reg { flex-wrap: wrap; }
-    .bz-grupo-reg .bz-grupo-nome { flex-basis: 100%; }
+    .bz-grupo { flex-wrap: wrap; }
+    .bz-grupo-nome, .bz-grupo-arq > .bz-grupo-nome { flex-basis: 100%; padding-top: 0; }
     .bz-trilha { gap: 2px; }
-    .bz-seg { padding: .26rem .3rem .3rem; }
-    .bz-seg-nome { font-size: .66rem; letter-spacing: -.01em; }
+    /* a Região precisa repetir o prefixo: mesmo padding de antes da mudança */
+    .bz-seg, .bz-trilha-reg .bz-seg { padding: .26rem .3rem .3rem; }
+    .bz-seg-nome, .bz-trilha-cat .bz-seg-nome { font-size: .66rem; letter-spacing: -.01em; }
 }
-.bz-mais {
-    background: none; border: 1px dashed var(--border-color); color: var(--text-muted);
-    border-radius: 999px; padding: .24rem .6rem; font-size: .74rem; cursor: pointer;
-    font-family: var(--font-body); transition: color .2s, border-color .2s;
+@container registro (max-width: 620px) {
+    .bz-trilha-cat { gap: 2px; }
+    .bz-trilha-cat .bz-seg { padding-inline: .22rem; }
+    .bz-trilha-cat .bz-seg-nome { font-size: .64rem; }
 }
-.bz-mais:hover { color: var(--amber); border-color: var(--amber); }
+@container registro (min-width: 1080px) {
+    .bz-par { grid-template-columns: 1fr 1fr; column-gap: 1.25rem; }
+    .bz-arq { grid-template-columns: repeat(11, minmax(0, 1fr)); }
+    .bz-arq .bz-fam[data-fam] { --span: var(--n); }
+}
+@container registro (max-width: 539px) {
+    .bz-arq .bz-fam { grid-column: 1 / -1; }
+    .bz-trilha:not(.bz-trilha-reg) { grid-template-columns: repeat(auto-fill, minmax(5.2rem, 1fr)); }
+}
 
 .bz-painel {
     margin-top: .7rem;
@@ -677,7 +739,9 @@ body.bz-rc-aberta .bazar-page { margin-left: var(--bz-rc-w); }
 @container registro (max-width: 899px) {
     .bz-tabela .c-obtencao, .bz-tabela .c-regiao { display: none; }
 }
-/* 577px (1366, receita aberta) e 637px (fechada): sem Categoria o mínimo
+/* Larguras do registro (ver a tabela no bloco de filtros): 577/637/853 em
+   1366 e 791/911/1127 em 1920 (receita aberta / nav 280 / nav em trilho 64).
+   577px (1366, receita aberta) e 637px (nav aberta): sem Categoria o mínimo
    da tabela (títulos nowrap + Raridade/Valor/CD + 8rem de Efeito) cabe */
 @container registro (max-width: 699px) {
     .bz-tabela .c-categoria { display: none; }
@@ -1854,7 +1918,7 @@ svg.bz-rc-uso-ico { width: 16px; height: 16px; margin: 0 3px; }
     .bz-slot.bz-pisca { box-shadow: inset 2px 0 0 var(--amber), inset 0 1px 0 #ffffff05, inset 0 0 0 1px #0008; }
     .bz-slot.bz-sai { transition: none; }
     /* sem deslocamento no hover nem escala no pop-up */
-    .cards .item-card:hover, .chip:hover, .chip:active,
+    .cards .item-card:hover, .bz-seg,
     .cards .item-card:hover .bz-arte, .cards .item-card::after,
     .bz-cartao, .bz-cartao.sai { transform: none; }
     *, *::before, *::after {

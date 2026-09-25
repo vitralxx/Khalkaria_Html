@@ -55,8 +55,49 @@
       return (r || porNome) * dir;
     };
   }
+  // Linha Arquétipo dos filtros: os 22 valores do vocabulário agrupados por
+  // família, cada um com o rótulo curto que aparece no segmento. O data-v do
+  // filtro continua sendo o valor completo; `rot` é só exibição.
+  // Testada em tools/testes/filtros-bazar.test.js.
+  var FAMILIAS_ARQ = [
+    { id: 'leve', nome: 'Leves', glifo: 'ico-arma' },
+    { id: 'pesada', nome: 'Pesadas', glifo: 'ico-arma' },
+    { id: 'distancia', nome: 'À distância', glifo: 'ico-arma' },
+    { id: 'marcial', nome: 'Marciais', glifo: 'ico-arma' },
+    { id: 'foco', nome: 'Focos místicos', glifo: 'ico-magico' },
+    { id: 'armadura', nome: 'Armadura', glifo: 'ico-armadura' },
+    { id: 'outros', nome: 'Outros', glifo: '' }
+  ];
+  function familiasArq(V) {
+    V = V || {};
+    var fams = {}, visto = {};
+    FAMILIAS_ARQ.forEach(function (f) {
+      fams[f.id] = { id: f.id, nome: f.nome, glifo: f.glifo, itens: [] };
+    });
+    function poe(id, v, rot) {
+      if (!v || visto[v]) return;
+      visto[v] = true;
+      fams[id].itens.push({ v: v, rot: rot });
+    }
+    function arma(v) {
+      var m = /^(Leve|Pesada|Marcial)\s+(.+)$/.exec(v);
+      if (m) return poe({ Leve: 'leve', Pesada: 'pesada', Marcial: 'marcial' }[m[1]], v, m[2]);
+      if (/^(Distância|Arremesso)/.test(v)) return poe('distancia', v, v.replace(/^Distância\s+/, ''));
+      poe('outros', v, v);
+    }
+    (V.chassis || []).forEach(arma);
+    (V.focos || []).forEach(function (v) {
+      var m = /\(([^)]+)\)/.exec(v || '');
+      poe(m ? 'foco' : 'outros', v, m ? m[1] : v);
+    });
+    (V.slots || []).forEach(function (v) { poe('armadura', v, v); });
+    (V.municoes || []).forEach(arma);
+    return FAMILIAS_ARQ.map(function (f) { return fams[f.id]; })
+      .filter(function (f) { return f.itens.length; });
+  }
+
   if (typeof module === 'object' && module && module.exports) {
-    module.exports = { comparador: comparador, COLS_TEXTO: COLS_TEXTO };
+    module.exports = { comparador: comparador, COLS_TEXTO: COLS_TEXTO, familiasArq: familiasArq };
     return;
   }
 
@@ -366,62 +407,133 @@
     return n;
   }
 
-  function chip(chave, valor, extra, ico) {
-    var on = E[chave].indexOf(valor) >= 0;
-    return '<button type="button" class="chip ' + (extra || '') + (on ? ' on' : '') +
-      '" data-f="' + chave + '" data-v="' + esc(valor) + '" aria-pressed="' + on + '">' +
-      (ico ? svg(ico) : '') + esc(valor) +
-      '<span class="chip-n">' + contar(chave, valor) + '</span></button>';
+  // armas e munições que dividem o mesmo arquétipo: a contagem diz as duas partes
+  function contarMix(valor) {
+    var armas = 0, mun = 0;
+    for (var i = 0; i < ITENS.length; i++) {
+      if (ITENS[i].arquetipo !== valor) continue;
+      if (ITENS[i].familia === 'Munição') mun++; else armas++;
+    }
+    return { armas: armas, mun: mun };
   }
 
-  function grupo(nome, html) {
-    return '<div class="bz-grupo"><span class="bz-grupo-nome">' + nome + '</span>' + html + '</div>';
+  // glifo de cada ofício no topo do segmento (sem glifo: topo só com a contagem)
+  var ICO_OF = {
+    'Ferraria': 'of-ferraria', 'Engenharia': 'of-engenharia', 'Alquimia': 'of-alquimia',
+    'Sobrevivência': 'of-sobrevivencia', 'Não-craftável': 'of-nenhum'
+  };
+
+  // Toda linha de filtro é uma TRILHA de segmentos (a anatomia da Região):
+  // topo com glifo/número e contagem, nome embaixo, filete de 3px; aceso =
+  // preenchido. O data-v é sempre o valor completo; `rot` é só o que se lê.
+  // o = {topo, rot, cls, estilo, dica, n}
+  function seg(chave, valor, o) {
+    o = o || {};
+    var on = E[chave].indexOf(valor) >= 0;
+    var n = o.n != null ? o.n : contar(chave, valor);
+    var dica = o.dica || (valor + ', ' + n + (n === 1 ? ' item' : ' itens'));
+    return '<button type="button" class="bz-seg' + (o.cls || '') + (on ? ' on' : '') + '"' +
+      (o.estilo ? ' style="' + o.estilo + '"' : '') +
+      ' data-f="' + chave + '" data-v="' + esc(valor) + '" aria-pressed="' + on + '" tabindex="-1"' +
+      ' aria-label="' + esc(dica) + '" title="' + esc(o.dica ? dica : valor + ' · ' + n + ' itens') + '">' +
+      '<span class="bz-seg-topo" aria-hidden="true"><span class="bz-seg-n">' + (o.topo == null ? '' : o.topo) + '</span>' +
+      '<span class="bz-seg-c">' + n + '</span></span>' +
+      // "Único/Quest" não tem espaço: o <wbr> deixa quebrar depois da barra
+      '<span class="bz-seg-nome" aria-hidden="true">' + esc(o.rot || valor).replace('/', '/<wbr>') + '</span></button>';
+  }
+
+  function trilha(id, nome, corpo, n, rotulo) {
+    return '<div class="bz-grupo bz-grupo-' + id + '"><span class="bz-grupo-nome" id="bz-g-' + id + '">' + nome + '</span>' +
+      '<div class="bz-trilha bz-trilha-' + id + '" role="toolbar" ' +
+      (rotulo ? 'aria-label="' + esc(rotulo) + '"' : 'aria-labelledby="bz-g-' + id + '"') +
+      ' style="--n:' + n + '">' + corpo + '</div></div>';
   }
 
   function montarFiltros() {
-    var h = '';
-    h += grupo('Categoria', (V.categorias || []).map(function (c) {
-      return chip('cat', c, '', ICO[c]);
-    }).join(''));
+    var caixa = $('#bz-filtros');
+    var foco = document.activeElement && document.activeElement.closest &&
+      document.activeElement.closest('#bz-filtros .bz-seg');
+    var voltar = foco ? { f: foco.dataset.f, v: foco.dataset.v } : null;
 
-    h += grupo('Raridade', (V.raridades || []).map(function (r) {
-      return '<button type="button" class="chip chip-rar ' + classeRar(r) +
-        (E.rar.indexOf(r) >= 0 ? ' on' : '') + '" data-f="rar" data-v="' + esc(r) +
-        '" aria-pressed="' + (E.rar.indexOf(r) >= 0) + '">' + icoRar(r) + esc(r) +
-        '<span class="chip-n">' + contar('rar', r) + '</span></button>';
-    }).join(''));
+    var h = '';
+    var cats = V.categorias || [];
+    h += trilha('cat', 'Categoria', cats.map(function (c) {
+      return seg('cat', c, { topo: ICO[c] ? svg(ICO[c], 'bz-seg-ico') : '' });
+    }).join(''), cats.length);
+
+    // Raridade e Ofício são curtas (5 cada): lado a lado quando o registro é largo
+    var rars = V.raridades || [], ofs = V.oficios || [];
+    h += '<div class="bz-par">' +
+      trilha('rar', 'Raridade', rars.map(function (r) {
+        return seg('rar', r, {
+          cls: ' ' + classeRar(r),
+          topo: svg('rar-' + semAcento(r || '').toLowerCase(), 'bz-seg-ico')
+        });
+      }).join(''), rars.length) +
+      trilha('of', 'Ofício', ofs.map(function (o) {
+        var fora = o === 'Não-craftável';
+        return seg('of', o, {
+          topo: ICO_OF[o] ? svg(ICO_OF[o], 'bz-seg-ico') : '',
+          cls: fora ? ' bz-seg-fora' : '',
+          // hífen que não quebra (U+2011) só na exibição; o data-v fica com o normal
+          rot: fora ? 'Não‑craftável' : ''
+        });
+      }).join(''), ofs.length) +
+      '</div>';
 
     // Região é uma TRILHA de perigo numa linha só: 8 segmentos iguais, do mais
-    // frio (1) ao mais quente (8), e Único/Quest no fim. Em chips, as 8 regiões
-    // quebravam linha e deixavam "Único/Quest" sozinho embaixo.
-    var seg = function (r, i, quest) {
-      var on = E.reg.indexOf(r) >= 0;
-      return '<button type="button" class="bz-seg' + (quest ? ' bz-seg-quest' : '') + (on ? ' on' : '') +
-        '"' + (quest ? '' : ' style="--r:' + i + '"') + ' data-f="reg" data-v="' + esc(r) +
-        '" aria-pressed="' + on + '" title="' + esc(r) + ' · ' + contar('reg', r) + ' itens">' +
-        '<span class="bz-seg-topo"><span class="bz-seg-n">' + (quest ? svg('rar-exotico', 'bz-seg-ico') : i + 1) + '</span>' +
-        '<span class="bz-seg-c">' + contar('reg', r) + '</span></span>' +
-        // "Único/Quest" não tem espaço: o <wbr> deixa quebrar depois da barra
-        '<span class="bz-seg-nome">' + esc(r).replace('/', '/<wbr>') + '</span></button>';
-    };
-    h += '<div class="bz-grupo bz-grupo-reg"><span class="bz-grupo-nome">Região</span>' +
-      '<div class="bz-trilha" role="group" aria-label="Região, da menos à mais perigosa">' +
-      (V.regioes || []).map(function (r, i) { return seg(r, i, false); }).join('') +
-      seg('Único/Quest', 0, true) + '</div></div>';
+    // frio (1) ao mais quente (8), e Único/Quest no fim.
+    var regs = V.regioes || [];
+    h += trilha('reg', 'Região', regs.map(function (r, i) {
+      return seg('reg', r, { estilo: '--r:' + i, topo: i + 1 });
+    }).join('') + seg('reg', 'Único/Quest', { cls: ' bz-seg-quest', topo: svg('rar-exotico', 'bz-seg-ico') }),
+    regs.length + 1, 'Região, da menos à mais perigosa');
 
-    h += grupo('Ofício', (V.oficios || []).map(function (o) { return chip('of', o); }).join(''));
+    // Arquétipo: os 22 sempre à vista, numa grade de segmentos por família
+    h += '<div class="bz-grupo bz-grupo-arq"><span class="bz-grupo-nome" id="bz-g-arq">Arquétipo</span>' +
+      '<div class="bz-arq" role="toolbar" aria-labelledby="bz-g-arq">' +
+      familiasArq(V).map(function (fam) {
+        var soma = 0;
+        var segs = fam.itens.map(function (x) {
+          var mix = contarMix(x.v), n = mix.armas + mix.mun;
+          soma += n;
+          var dica = mix.armas && mix.mun
+            ? x.v + ', ' + n + ' itens: ' + mix.armas + (mix.armas === 1 ? ' arma, ' : ' armas, ') +
+              mix.mun + (mix.mun === 1 ? ' munição' : ' munições')
+            : '';
+          return seg('arq', x.v, { rot: x.rot, dica: dica, n: n });
+        }).join('');
+        return '<div class="bz-fam" role="group" aria-label="' + esc(fam.nome) + '" data-fam="' + fam.id +
+          '" style="--n:' + fam.itens.length + '">' +
+          '<span class="bz-fam-nome" aria-hidden="true">' + (fam.glifo ? svg(fam.glifo, 'bz-seg-ico') : '') +
+          esc(fam.nome) + ' <b>' + soma + '</b></span>' +
+          '<div class="bz-fam-segs">' + segs + '</div></div>';
+      }).join('') +
+      '</div></div>';
 
-    var arqs = [].concat(V.chassis || [], V.focos || [], V.slots || [], V.municoes || [])
-      .filter(function (a, i, arr) { return a && arr.indexOf(a) === i; });
-    var visiveis = arqs.slice(0, 8), resto = arqs.slice(8);
-    h += grupo('Arquétipo',
-      visiveis.map(function (a) { return chip('arq', a); }).join('') +
-      (resto.length
-        ? '<span class="bz-arq-resto" hidden>' + resto.map(function (a) { return chip('arq', a); }).join('') + '</span>' +
-          '<button type="button" class="bz-mais" id="bz-arq-mais">+' + resto.length + ' arquétipos</button>'
-        : ''));
+    caixa.innerHTML = h;
+    rovingInit();
+    if (voltar) {
+      var alvo = caixa.querySelector('.bz-seg[data-f="' + voltar.f + '"][data-v="' + CSS.escape(voltar.v) + '"]');
+      if (alvo) { rovingPara(alvo); alvo.focus(); }
+    }
+  }
 
-    $('#bz-filtros').innerHTML = h;
+  // ------------------------------------------------------------ roving tabindex
+  // Cada linha de filtro é um toolbar com UMA parada de Tab (5 no total, em vez
+  // de ~50). Setas/Home/End andam dentro da linha; ver ligar().
+  function rovingInit() {
+    document.querySelectorAll('#bz-filtros [role="toolbar"]').forEach(function (tb) {
+      var segs = tb.querySelectorAll('.bz-seg');
+      if (!segs.length) return;
+      var alvo = tb.querySelector('.bz-seg.on') || segs[0];
+      segs.forEach(function (s) { s.tabIndex = s === alvo ? 0 : -1; });
+    });
+  }
+  function rovingPara(b) {
+    var tb = b.closest('[role="toolbar"]');
+    if (!tb) return;
+    tb.querySelectorAll('.bz-seg').forEach(function (s) { s.tabIndex = s === b ? 0 : -1; });
   }
 
   // ------------------------------------------------------------ render
@@ -682,35 +794,56 @@
     });
 
     $('#bz-filtros').addEventListener('click', function (e) {
-      var b = e.target.closest('.chip, .bz-seg');
-      if (b) {
-        alterna(E[b.dataset.f], b.dataset.v);
-        // a aparência sai do ESTADO, nunca de um toggle da classe: assim chip e
-        // filtro não têm como ficar dessincronizados
-        var on = E[b.dataset.f].indexOf(b.dataset.v) >= 0;
-        b.classList.toggle('on', on);
-        b.setAttribute('aria-pressed', String(on));
-        return render();
-      }
-      if (e.target.id === 'bz-arq-mais') {
-        var resto = $('.bz-arq-resto');
-        if (!e.target.dataset.txt) e.target.dataset.txt = e.target.textContent;
-        resto.hidden = !resto.hidden;
-        e.target.textContent = resto.hidden ? e.target.dataset.txt : 'menos';
-      }
+      var b = e.target.closest('.bz-seg');
+      if (!b) return;
+      alterna(E[b.dataset.f], b.dataset.v);
+      // a aparência sai do ESTADO, nunca de um toggle da classe: assim segmento
+      // e filtro não têm como ficar dessincronizados
+      var on = E[b.dataset.f].indexOf(b.dataset.v) >= 0;
+      b.classList.toggle('on', on);
+      b.setAttribute('aria-pressed', String(on));
+      rovingPara(b);
+      render();
+    });
+    // setas/Home/End dentro de uma linha de filtro, em ordem de DOM, sem dar a volta
+    $('#bz-filtros').addEventListener('keydown', function (e) {
+      if (e.ctrlKey || e.metaKey || e.altKey) return;
+      var k = e.key;
+      if (k !== 'ArrowLeft' && k !== 'ArrowRight' && k !== 'Home' && k !== 'End') return;
+      var b = e.target.closest && e.target.closest('.bz-seg');
+      var tb = b && b.closest('[role="toolbar"]');
+      if (!tb) return;
+      var segs = Array.prototype.slice.call(tb.querySelectorAll('.bz-seg'));
+      var i = segs.indexOf(b);
+      var j = k === 'Home' ? 0 : k === 'End' ? segs.length - 1
+        : Math.max(0, Math.min(segs.length - 1, i + (k === 'ArrowRight' ? 1 : -1)));
+      e.preventDefault();
+      if (j === i) return;
+      rovingPara(segs[j]);
+      segs[j].focus();
     });
 
+    // a faixa de ativos é refeita a cada render: o botão clicado some. O foco vai
+    // para o próximo ativo da faixa ou, se ela esvaziou, para o botão Filtros.
+    function refocaAtivos(i) {
+      var ativos = document.querySelectorAll('#bz-ativos .bz-ativo');
+      var alvo = !$('#bz-ativos').hidden && (ativos[Math.min(i, ativos.length - 1)] || $('#bz-limpar'));
+      (alvo || $('#bz-filtros-btn')).focus();
+    }
     $('#bz-ativos').addEventListener('click', function (e) {
       var b = e.target.closest('.bz-ativo');
       if (b) {
+        var i = Array.prototype.indexOf.call(document.querySelectorAll('#bz-ativos .bz-ativo'), b);
         if (b.dataset.f === 'q') { E.q = ''; $('#bz-search').value = ''; }
         else alterna(E[b.dataset.f], b.dataset.v);
-        montarFiltros(); return render();
+        montarFiltros(); render();
+        return refocaAtivos(i);
       }
       if (e.target.id === 'bz-limpar') {
         E.q = ''; $('#bz-search').value = '';
         FILTROS.forEach(function (k) { E[k] = []; });
         montarFiltros(); render();
+        refocaAtivos(0);
       }
     });
 
