@@ -8,6 +8,31 @@
    ============================================================ */
 (function (BZ) {
   'use strict';
+
+  // ============================================================ parte pura (testada no node)
+  // Para onde o foco volta quando o painel fecha. A ordem importa:
+  //   1. o próprio nó de origem, se ainda está no documento e é focável;
+  //   2. a linha do inventário de mesmo uid (o kf:mudou troca as <li> por innerHTML,
+  //      então o nó guardado some mesmo quando a linha continua lá);
+  //   3. o card do catálogo de mesmo id;
+  //   4. as reservas, na ordem dada (busca, combobox do inventário, botões da mesa).
+  // Só vale candidato focável: .bz-registro fica display:none no estado "amplo",
+  // e as colunas do inventário somem no "trilho".
+  // `q` injeta o DOM: { vivo(el), linhaInv(uid), card(id), reservas[], focavel(el) }.
+  function alvoRetorno(origem, q) {
+    origem = origem || {};
+    var cands = [];
+    if (origem.el && q.vivo(origem.el)) cands.push(origem.el);
+    if (origem.uid) cands.push(q.linhaInv(origem.uid));
+    if (origem.id) cands.push(q.card(origem.id));
+    cands = cands.concat(q.reservas || []);
+    for (var i = 0; i < cands.length; i++) {
+      if (cands[i] && q.focavel(cands[i])) return cands[i];
+    }
+    return null;
+  }
+  var P = { alvoRetorno: alvoRetorno };
+  if (typeof module === 'object' && module && module.exports) { module.exports = P; return; }
   if (!BZ) return;
 
   var U = BZ.util, D = BZ.dados;
@@ -22,7 +47,7 @@
 
   var hist = { pilha: [], i: -1 };
   var aberto = false, atual = '';
-  var origem = { id: '', el: null };
+  var origem = { id: '', el: null, uid: '' };
   var qtd = 1, fechaT = null;
 
   // ------------------------------------------------------------ utilidades
@@ -411,6 +436,10 @@
     clearTimeout(fechaT);
     atual = it.id;
     aberto = true;
+    // foco dentro do painel antes da troca: o innerHTML (corpo e migalhas) tira o nó
+    // focado do DOM e o ‹ › focado pode ficar disabled — nos dois casos o foco
+    // cairia no <body>
+    var focoDentro = !abrindo && painel.contains(document.activeElement);
     qtd = it.inv && it.inv.empilhavel ? 10 : 1;
     painel.className = 'bz-rc ' + U.classeRar(it.raridade);
     corpo.innerHTML = conteudoHTML(it);
@@ -426,7 +455,9 @@
     atualizaDinamico();
     U.raf(function () { desenhaRaizes(true); });
     BZ.anunciar('Receita: ' + it.nome);
-    if (o.teclado) {
+    var a = document.activeElement;
+    var perdido = focoDentro && (!a || !painel.contains(a) || a.disabled);
+    if (o.teclado || perdido) {
       var h2 = $('#bz-rc-nome');
       if (h2) h2.focus({ preventScroll: true });
     }
@@ -444,16 +475,20 @@
       hist.i = hist.pilha.length - 1;
     }
     if (o.via === 'catalogo' || o.via === 'inv' || o.via === 'hash' || !aberto) {
-      origem = { id: id, el: o.el || null };
+      var el = o.el || null;
+      origem = { id: id, el: el, uid: (el && el.getAttribute && el.getAttribute('data-uid')) || '' };
     }
     mostra(it, o);
     return true;
   }
-  function navega(d) {
+  function navega(d, teclado) {
     var j = hist.i + d;
     if (j < 0 || j >= hist.pilha.length) return false;
     hist.i = j;
-    return abrir(hist.pilha[j], { via: 'hist' });
+    return abrir(hist.pilha[j], { via: 'hist', teclado: !!teclado });
+  }
+  function focavel(el) {
+    return !!el && !el.disabled && !el.closest('[hidden]') && el.getClientRects().length > 0;
   }
   function fechaMenu() {
     var m = $('#bz-rc-menu'), b = $('#bz-rc-outra');
@@ -477,12 +512,15 @@
     }, 120);
     BZ.marcaSelecionado('');
     trocaHash('');
-    // o foco volta ao card de origem (por data-id) se ele existir; senão, à busca
-    var alvo = origem.el && document.contains(origem.el) ? origem.el : null;
-    if (!alvo && origem.id) {
-      alvo = document.querySelector('#bz-resultados .item-card[data-id="' + CSS.escape(origem.id) + '"]');
-    }
-    if (!alvo) alvo = $('#bz-search');
+    // o foco volta à origem (nó guardado, linha do inventário de mesmo uid, card do
+    // catálogo de mesmo id); senão, à primeira reserva visível
+    var alvo = alvoRetorno(origem, {
+      vivo: function (el) { return document.contains(el); },
+      linhaInv: function (uid) { return document.querySelector('#bz-inventario li.bz-slot[data-uid="' + CSS.escape(uid) + '"]'); },
+      card: function (id) { return document.querySelector('#bz-resultados .item-card[data-id="' + CSS.escape(id) + '"]'); },
+      reservas: [$('#bz-search'), $('#bz-cb-input'), $('#bz-inv-amplo'), $('#bz-trilho')],
+      focavel: focavel
+    });
     if (alvo) alvo.focus({ preventScroll: !!o.clique });
     return true;
   }
@@ -521,8 +559,8 @@
     var t = e.target, b;
     var clique = e.detail > 0;
     if (t.closest('#bz-rc-fechar')) return fechar({ clique: clique });
-    if (t.closest('#bz-rc-voltar')) return navega(-1);
-    if (t.closest('#bz-rc-avancar')) return navega(1);
+    if (t.closest('#bz-rc-voltar')) return navega(-1, !clique);
+    if (t.closest('#bz-rc-avancar')) return navega(1, !clique);
     if ((b = t.closest('[data-hist]'))) {
       var j = +b.getAttribute('data-hist');
       if (hist.pilha[j]) { hist.i = j; abrir(hist.pilha[j], { via: 'hist', teclado: !clique }); }
@@ -604,8 +642,8 @@
     return fechar({});
   });
   // [ e ] percorrem o histórico (painel aberto, foco fora de campo de texto)
-  BZ.atalho('[', function () { if (!aberto) return false; navega(-1); });
-  BZ.atalho(']', function () { if (!aberto) return false; navega(1); });
+  BZ.atalho('[', function () { if (!aberto) return false; navega(-1, true); });
+  BZ.atalho(']', function () { if (!aberto) return false; navega(1, true); });
 
   function doHash() {
     var m = /^#item\/(.+)$/.exec(location.hash || '');
@@ -634,4 +672,4 @@
     var it = D.porId[atual];
     if (it) atualizaAlcance(it);
   });
-})(window.BZ);
+})(typeof window !== 'undefined' ? window.BZ : null);
