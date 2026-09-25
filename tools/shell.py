@@ -158,6 +158,26 @@ def aplica_versao(html, versao):
     return RE_ASSET.sub(lambda m: m.group(1) + m.group(2) + '?v=' + versao + m.group(3), html)
 
 
+# 5. TOTAIS — números que vêm dos dados, nunca digitados: <span data-bazar-total>
+#    recebe a contagem do data/bazar.json (o index.html dizia "581 itens" com 727).
+RE_TOTAL_BAZAR = re.compile(r'(<span data-bazar-total>)[^<]*(</span>)')
+
+
+def total_bazar(raiz=RAIZ):
+    import json
+    p = os.path.join(raiz, 'data', 'bazar.json')
+    try:
+        return len(json.load(open(p, encoding='utf-8')))
+    except (OSError, ValueError):
+        return None
+
+
+def aplica_totais(html, total):
+    if total is None:
+        return html
+    return RE_TOTAL_BAZAR.sub(lambda m: m.group(1) + str(total) + m.group(2), html)
+
+
 def paginas(raiz):
     fs = []
     for dirpath, _, nomes in os.walk(os.path.join(raiz, 'pages')):
@@ -173,12 +193,13 @@ def aplicar(raiz=RAIZ, verboso=True):
     # a versão vem SEMPRE dos assets do repo real (o round-trip do validar.py
     # roda numa cópia temporária sem js/ e css/, e precisa dar o mesmo hash)
     versao = versao_assets(RAIZ)
+    total = total_bazar(RAIZ)
     n_nav = n_anc = n_ver = 0
     for f in paginas(raiz):
         rel = os.path.relpath(f, raiz).replace(os.sep, '/')
         antes = open(f, encoding='utf-8', newline='').read()
         depois = aplica_webp(aplica_ancoras(aplica_sidebar(antes, rel, modelo)), rel)
-        depois = aplica_versao(depois, versao)
+        depois = aplica_totais(aplica_versao(depois, versao), total)
         n_ver += len(RE_ASSET.findall(depois))
         if depois != antes:
             open(f, 'w', encoding='utf-8', newline='').write(depois)
