@@ -435,7 +435,9 @@
 
   var LS_KEY = 'khalkaria_ficha';
   var OPEN_KEY = 'khalkaria_ficha_open';
-  var SCHEMA_VERSION = '1.0';
+  var BACKUP_KEY = 'khalkaria_ficha_v1_backup';
+  var SCHEMA_VERSION = '2.0';
+  var DESFAZER_MAX = 20;
 
   // base do site relativo ao próprio ficha.js (…/js/ficha.js -> raiz).
   // currentScript é nulo em script inserido dinamicamente -> fallback por querySelector / global.
@@ -465,10 +467,29 @@
     ['veneno','Veneno'],['acido','Ácido'],['psiquico','Psíquico'],['forca','Força'],
     ['radiante','Radiante'],['trovejante','Trovejante'],['necrotico','Necrótico'],['primordial','Primordial']];
 
-  // ---------------- estado ----------------
+  // Estado de página. Declarado ANTES do load(): a KF existe antes do init(), e
+  // tudo que o load() e os mutadores tocam precisa estar inicializado.
+  var drawer = null, body = null;      // body só existe depois do init(): mutadores testam if (body)
+  var ultimoGravado = null;            // último JSON que ESTA página gravou (sincroniza ignora o eco)
+  var saveT = null;                    // debounce dos campos digitados do drawer
+  var toastT;
+  var desfazerPilha = [];              // snapshots (JSON) de ficha.inventario, em memória, por página
+  var loteN = 0;
+  var bazarCache = null, idxCatalogo = null, catalogoPromessa = null;
+  var renderPendente = false, abrirPendente = null, obsT;
+
+  function agoraISO() { return new Date().toISOString(); }
+  function clone(x) {
+    if (typeof structuredClone === 'function') return structuredClone(x);
+    return x === undefined ? undefined : JSON.parse(JSON.stringify(x));
+  }
+  function lsGet(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
+  function temPropria(o, k) { return !!o && Object.prototype.hasOwnProperty.call(o, k); }
+
+  // ---------------- estado (ficha v2, spec §5.2) ----------------
   function novaFicha() {
     var f = {
-      schemaVersion: SCHEMA_VERSION,
+      schemaVersion: SCHEMA_VERSION, rev: 0, salvoEm: '', exportadoEm: '', migradoEm: '',
       meta: { nome:'', jogador:'', nivel:1, xp:0, raca:'', variante:'', classe:'', ramo:'', origem:'' },
       atributos: { for:10, des:10, con:10, int:10, sab:10 },
       pericias: {}, oficioAttr:'int',
@@ -476,7 +497,7 @@
                   recursoClasse:{nome:'',atual:0,max:0} },
       derivadosManuais: { evasao:0, cd:0, movimento:9, armadura:0 },
       resistencias: {},
-      inventario: { sins:0, equipamentos:[], bugigangas:[], materiais:[], armas:[] },
+      inventario: { sins:0, bugigangas:[], equipamentos:[] },
       tecnicas: [], grimorio: [], cartasLimiar: [], lore:{ historia:'', outros:'' }
     };
     PERICIAS.forEach(function (p) { f.pericias[p[0]] = 0; });
@@ -484,15 +505,44 @@
     return f;
   }
 
-  var ficha = load();
-  function load() {
-    try {
-      var raw = localStorage.getItem(LS_KEY);
-      if (raw) return migra(JSON.parse(raw));
-    } catch (e) {}
-    return novaFicha();
+  // listas da v1 (ou recriadas vazias por um ficha.js antigo em cache noutra página)
+  function temListasVelhas(f) {
+    var inv = f && f.inventario;
+    return !!(inv && typeof inv === 'object' && (temPropria(inv, 'armas') || temPropria(inv, 'materiais')));
   }
-  function migra(f) { var base = novaFicha(); return deepMerge(base, f); }
+  function guardaBackup(raw) {
+    if (lsGet(BACKUP_KEY) != null) return;   // nunca sobrescreve o backup
+    try { localStorage.setItem(BACKUP_KEY, raw); } catch (e) {}
+  }
+
+  var ficha = load();
+  // Só aqui grava o backup (spec §5.6.1). A ficha migrada vai para o storage na
+  // hora, com rev++, para que as outras abas adotem a v2.
+  function load() {
+    var raw = lsGet(LS_KEY);
+    if (!raw) return novaFicha();
+    var f;
+    try { f = JSON.parse(raw); } catch (e) { f = null; }
+    if (!f || typeof f !== 'object' || Array.isArray(f)) { guardaBackup(raw); return novaFicha(); }
+    if (f.schemaVersion !== SCHEMA_VERSION) guardaBackup(raw);
+    var m = migra(f);
+    if (f.schemaVersion !== SCHEMA_VERSION || temListasVelhas(f)) {
+      m.rev++; m.salvoEm = agoraISO(); grava(m);
+    } else ultimoGravado = raw;
+    return m;
+  }
+  // Roda em load, import, storage e pageshow. migrarV1 é idempotente; o delete é
+  // repetido depois do deepMerge porque ele preserva chaves fora da base.
+  function migra(f) {
+    var m = deepMerge(novaFicha(), KhInv.migrarV1(f));
+    if (!m.inventario || typeof m.inventario !== 'object' || Array.isArray(m.inventario)) m.inventario = novaFicha().inventario;
+    delete m.inventario.armas; delete m.inventario.materiais;
+    KhInv.COLUNAS.forEach(function (c) { if (!Array.isArray(m.inventario[c])) m.inventario[c] = []; });
+    m.schemaVersion = SCHEMA_VERSION;
+    var r = parseInt(m.rev, 10); m.rev = r > 0 ? r : 0;
+    ['salvoEm', 'exportadoEm', 'migradoEm'].forEach(function (k) { if (typeof m[k] !== 'string') m[k] = ''; });
+    return m;
+  }
   function deepMerge(base, over) {
     if (typeof base !== 'object' || base === null || Array.isArray(base)) return over === undefined ? base : over;
     var out = Array.isArray(base) ? base.slice() : Object.assign({}, base);
@@ -501,22 +551,184 @@
     });
     return out;
   }
-  var saveT;
-  function save() { clearTimeout(saveT); saveT = setTimeout(function () {
-    try { localStorage.setItem(LS_KEY, JSON.stringify(ficha)); } catch (e) {}
-  }, 200); }
+
+  // ---------------- gravação e sincronia (spec §5.5) ----------------
+  function grava(f) {
+    var s = JSON.stringify(f);
+    try { localStorage.setItem(LS_KEY, s); ultimoGravado = s; return true; }
+    catch (e) {
+      if (e && (e.name === 'QuotaExceededError' || e.name === 'NS_ERROR_DOM_QUOTA_REACHED' || e.code === 22)) {
+        toast('Não foi possível salvar — exporte a ficha');
+      }
+      return false;
+    }
+  }
+  // campos digitados do drawer: debounce de 200ms, com rev++ no flush
+  function save() { clearTimeout(saveT); saveT = setTimeout(flush, 200); }
+  function flush() {
+    if (saveT == null) return;
+    clearTimeout(saveT); saveT = null;
+    ficha.rev++; ficha.salvoEm = agoraISO(); grava(ficha);
+  }
+  function emite(partes, origem, op, uid) {
+    try {
+      document.dispatchEvent(new CustomEvent('kf:mudou', { detail: {
+        partes: partes.slice(), origem: origem, op: op || '', uid: uid || '' } }));
+    } catch (e) {}
+  }
+  // grava NA HORA (leva junto o que estava no debounce), redesenha e avisa
+  function commit(partes, origem, op, uid) {
+    clearTimeout(saveT); saveT = null;
+    ficha.rev++; ficha.salvoEm = agoraISO(); grava(ficha);
+    if (body) {
+      if (partes.indexOf('tudo') >= 0) renderAllQuandoLivre();
+      else { renderListas(); refreshDerivados(); atualizaSins(); }
+    }
+    emite(partes, origem, op, uid);
+    if (origem !== 'reconciliacao') verificaPendentes();
+  }
+  // Relê o storage; adota se o rev de lá for maior (ou igual, mas com as listas
+  // velhas que um ficha.js antigo recria). Digitar a mesma ficha em duas abas
+  // dentro dos mesmos 200ms: vale a última escrita (aceito).
+  function sincroniza() {
+    var raw = lsGet(LS_KEY);
+    if (!raw || raw === ultimoGravado) return false;
+    var f;
+    try { f = JSON.parse(raw); } catch (e) { return false; }
+    if (!f || typeof f !== 'object' || Array.isArray(f)) return false;
+    var r = parseInt(f.rev, 10) || 0;
+    var velhas = temListasVelhas(f);
+    if (!(r > ficha.rev || (r === ficha.rev && velhas))) return false;
+    clearTimeout(saveT); saveT = null;
+    ficha = migra(f);
+    ultimoGravado = raw;
+    desfazerPilha = [];
+    if (velhas) { ficha.rev++; ficha.salvoEm = agoraISO(); grava(ficha); }
+    if (body) renderAllQuandoLivre();
+    emite(['tudo'], 'outra-aba', 'sincroniza');
+    if (idxCatalogo) reconciliaCatalogo(); else verificaPendentes();
+    return true;
+  }
+
+  // ---------------- mutadores (spec §5.3) ----------------
+  // sincroniza, snapshot para desfazer, aplica, commit. Sem mudança, nada é
+  // gravado nem emitido (ex.: alternar com conflito). Dentro de lote só aplica.
+  function empilhaDesfazer(json) {
+    desfazerPilha.push(json);
+    if (desfazerPilha.length > DESFAZER_MAX) desfazerPilha.shift();
+  }
+  function partesDoDiff(antes) {
+    var a = JSON.parse(antes), d = ficha.inventario, p = [];
+    if (JSON.stringify(a.bugigangas) !== JSON.stringify(d.bugigangas) ||
+        JSON.stringify(a.equipamentos) !== JSON.stringify(d.equipamentos)) p.push('inventario');
+    if (a.sins !== d.sins) p.push('sins');
+    return p.length ? p : ['inventario'];
+  }
+  function muta(op, origem, fn) {
+    if (loteN) return fn();
+    sincroniza();
+    var antes = JSON.stringify(ficha.inventario);
+    var r = fn();
+    if (JSON.stringify(ficha.inventario) === antes) return r;
+    empilhaDesfazer(antes);
+    commit(partesDoDiff(antes), origem || 'local', op, r && r.uid);
+    return r;
+  }
+  function doCatalogo(item) {   // o registro atual vence o payload (card sem catálogo, drag antigo)
+    if (!item || item.avulso || !idxCatalogo) return item;
+    return (item.id && temPropria(idxCatalogo.porId, item.id) && idxCatalogo.porId[item.id]) ||
+      (item.nome && temPropria(idxCatalogo.porNome, item.nome) && idxCatalogo.porNome[item.nome]) || item;
+  }
+  function adicionar(item, opts, origem) {
+    if (!item || typeof item !== 'object') return null;
+    if (item.avulso ? !String(item.nome || '').trim() : !(item.id || item.nome)) return null;
+    var it = doCatalogo(item);
+    var r = muta('adicionar', origem, function () { return KhInv.mesclar(ficha.inventario, it, opts || {}); });
+    return r ? r.uid : null;
+  }
+  function quantidade(uid, n, origem) {
+    return muta('quantidade', origem, function () { return Object.assign({ uid: uid }, KhInv.quantidade(ficha.inventario, uid, n)); });
+  }
+  function alternar(uid, campo, origem) {
+    return muta('alternar', origem, function () { return KhInv.alternar(ficha.inventario, uid, campo); });
+  }
+  function trocar(uid, campo, uidsASoltar, origem) {   // "Trocar por esta": um passo só de desfazer
+    return muta('trocar', origem, function () { return KhInv.trocar(ficha.inventario, uid, campo, uidsASoltar); });
+  }
+  function mover(uid, coluna, origem) {
+    return muta('mover', origem, function () { return KhInv.mover(ficha.inventario, uid, coluna); });
+  }
+  function remover(uid, origem) {
+    var r = muta('remover', origem, function () { return { uid: uid, entrada: KhInv.remover(ficha.inventario, uid) }; });
+    return !!(r && r.entrada);
+  }
+  function definirSins(n, origem) {
+    n = Math.floor(Number(n));
+    if (!(n >= 0)) n = 0;
+    muta('sins', origem, function () { ficha.inventario.sins = n; return null; });
+    return ficha.inventario.sins;
+  }
+  function lote(fn) {
+    if (loteN) return fn();
+    sincroniza();
+    var antes = JSON.stringify(ficha.inventario), r;
+    loteN++;
+    try { r = fn(); }
+    catch (e) { ficha.inventario = JSON.parse(antes); throw e; }
+    finally { loteN--; }
+    if (JSON.stringify(ficha.inventario) === antes) return r;
+    empilhaDesfazer(antes);
+    commit(partesDoDiff(antes), 'local', 'lote', r && r.uid);
+    return r;
+  }
+  function desfazer() {
+    sincroniza();
+    if (!desfazerPilha.length) return false;
+    ficha.inventario = JSON.parse(desfazerPilha.pop());
+    commit(['inventario', 'sins'], 'desfazer', 'desfazer');
+    return true;
+  }
+
+  // ---------------- catálogo e reconciliação (spec §5.6/§5.7) ----------------
+  function naBazar() { return !!(document.body && document.body.hasAttribute('data-bazar')); }
+  function reconciliaCatalogo() {
+    if (!idxCatalogo) return;
+    if (KhInv.reconciliar(ficha.inventario, idxCatalogo.porId, idxCatalogo.porNome)) {
+      commit(['inventario'], 'reconciliacao', 'reconciliar');
+    }
+  }
+  // o Bazar entrega o bazar.json já baixado; fora dele, é o fetch preguiçoso
+  function catalogo(arr) {
+    if (!Array.isArray(arr)) return;
+    bazarCache = arr;
+    idxCatalogo = KhInv.indexar(arr);
+    sincroniza();
+    reconciliaCatalogo();
+    if (body) decorarBazar();
+  }
+  function pedeCatalogo() {
+    if (bazarCache) return Promise.resolve(bazarCache);
+    if (!catalogoPromessa) {
+      catalogoPromessa = fetch(ROOT + 'data/bazar.json')
+        .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+        .then(function (d) { if (!bazarCache) catalogo(d); return bazarCache; });
+    }
+    return catalogoPromessa;
+  }
+  // entrada sem inv (migrada ou vinda de card sem catálogo) e fora do registro ainda não conferida
+  function temPendentes() {
+    return KhInv.COLUNAS.some(function (c) {
+      return (ficha.inventario[c] || []).some(function (e) { return e && e.inv === null && !e.avulso && !e.orfao; });
+    });
+  }
+  function verificaPendentes() {
+    if (bazarCache || catalogoPromessa || !document.body || naBazar() || !temPendentes()) return;
+    pedeCatalogo().catch(function () {});
+  }
 
   // ---------------- derivados ----------------
   function mod(attr) { return Math.floor((ficha.atributos[attr] - 10) / 2); }
   function modStr(attr) { var m = mod(attr); return (m >= 0 ? '+' : '') + m; }
-  function slotsEquipMax() { return 2 + mod('for'); }
-  function slotsBugiMax() { return 10 + mod('for'); }
-  function somaSlots(lista) {
-    return lista.reduce(function (s, it) {
-      var q = it.qtd || 1, peso = (it.slotPeso != null) ? it.slotPeso : 1;
-      return s + q * peso;
-    }, 0);
-  }
 
   // ---------------- util DOM ----------------
   function el(tag, attrs, kids) {
@@ -532,6 +744,12 @@
   }
   function esc(s) { return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) {
     return { '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;' }[c]; }); }
+  // referência ao objeto da ficha resolvida na hora do evento: depois de adotar
+  // outra aba (ficha nova), o input focado grava na ficha certa
+  function R(caminho) {
+    return function () { return caminho.split('.').reduce(function (o, k) { return o[k]; }, ficha); };
+  }
+  function alvoDe(obj) { return typeof obj === 'function' ? obj() : obj; }
 
   // ---------------- entidades (payload de card) ----------------
   function slug(nome, pre) {
@@ -540,17 +758,18 @@
     return (pre || '') + s;
   }
   function addEntidade(campo, ent) {
+    sincroniza();
     var lista = ficha[campo];
     // evita duplicar mesmo id
     if (ent.id && lista.some(function (x) { return x.id === ent.id; })) { toast(ent.nome + ' já está na ficha'); return; }
-    lista.push(ent); save(); renderListas(); toast('+ ' + ent.nome);
+    lista.push(ent); save(); if (body) renderListas(); toast('+ ' + ent.nome);
   }
 
   // ---------------- toast ----------------
-  var toastT;
   function toast(msg) {
+    if (!document.body) return;
     var t = document.getElementById('kf-toast');
-    if (!t) { t = el('div', { id:'kf-toast' }); document.body.appendChild(t); }
+    if (!t) { t = el('div', { id:'kf-toast', 'data-kf-ignorar':'' }); document.body.appendChild(t); }
     t.textContent = msg; t.className = 'kf-show';
     clearTimeout(toastT); toastT = setTimeout(function () { t.className = ''; }, 1600);
   }
@@ -607,7 +826,6 @@
   }
 
   // ---------------- drawer ----------------
-  var drawer, body;
   function setOpen(b) {
     drawer.classList.toggle('kf-open', b);
     try { localStorage.setItem(OPEN_KEY, b ? '1' : '0'); } catch (e) {}
@@ -617,7 +835,7 @@
       onclick: function () { setOpen(!drawer.classList.contains('kf-open')); } }, ['📋 FICHA']);
     document.body.appendChild(toggle);
 
-    drawer = el('div', { id:'kf-drawer', class:'kf-drawer' });
+    drawer = el('div', { id:'kf-drawer', class:'kf-drawer', 'data-kf-ignorar':'' });
     var head = el('div', { id:'kf-head' }, [
       el('h2', {}, ['Ficha']),
       el('button', { class:'kf-btn sm', title:'Exportar JSON', onclick: exportJSON }, ['⬇ JSON']),
@@ -631,16 +849,16 @@
     document.body.appendChild(drawer);
     renderAll();
     // re-hidrata estado aberto/fechado entre páginas (sem animar na carga)
-    if (localStorage.getItem(OPEN_KEY) === '1') {
+    if (lsGet(OPEN_KEY) === '1') {
       var prev = drawer.style.transition; drawer.style.transition = 'none';
       drawer.classList.add('kf-open');
       requestAnimationFrame(function () { drawer.style.transition = prev; });
     }
   }
 
-  function sec(titulo, conteudo, collapsed) {
+  function sec(chave, titulo, conteudo, collapsed) {
     var b = el('div', { class:'kf-secbody' }, conteudo);
-    var s = el('div', { class:'kf-sec' + (collapsed ? ' kf-collapsed' : '') }, [
+    var s = el('div', { class:'kf-sec' + (collapsed ? ' kf-collapsed' : ''), 'data-sec': chave }, [
       el('h3', { onclick: function () { s.classList.toggle('kf-collapsed'); } }, [titulo, el('span', {}, ['▾'])]),
       b
     ]);
@@ -648,53 +866,76 @@
   }
 
   function txt(label, obj, key, type) {
-    var inp = el('input', { type: type || 'text', value: obj[key] });
+    var inp = el('input', { type: type || 'text', value: alvoDe(obj)[key] });
     inp.addEventListener('input', function () {
-      obj[key] = (type === 'number') ? (parseFloat(inp.value) || 0) : inp.value;
+      alvoDe(obj)[key] = (type === 'number') ? (parseFloat(inp.value) || 0) : inp.value;
       save(); refreshDerivados();
     });
     return el('div', { class:'kf-row' }, [label ? el('label', {}, [label]) : null, inp]);
   }
 
+  // Com um input do drawer focado, espera o focusout (não arranca o campo do jogador)
+  function focoNoDrawer() {
+    var a = document.activeElement;
+    return !!(a && drawer && drawer.contains(a) && /^(INPUT|TEXTAREA|SELECT)$/.test(a.tagName));
+  }
+  function renderAllQuandoLivre() {
+    if (!body) return;
+    if (!focoNoDrawer()) { renderPendente = false; renderAll(); return; }
+    if (renderPendente) return;
+    renderPendente = true;
+    drawer.addEventListener('focusout', function () {
+      setTimeout(function () { renderPendente = false; renderAllQuandoLivre(); }, 0);
+    }, { once: true });
+  }
+
   function renderAll() {
+    // preserva seções abertas/recolhidas e a rolagem (renderAll agora roda em import/outra aba)
+    var estadoSec = {}, rolagem = body.scrollTop;
+    body.querySelectorAll('.kf-sec[data-sec]').forEach(function (s) {
+      estadoSec[s.getAttribute('data-sec')] = s.classList.contains('kf-collapsed');
+    });
+    function rec(chave, padrao) { return temPropria(estadoSec, chave) ? estadoSec[chave] : padrao; }
     body.innerHTML = '';
+    derdispEl = null;
     // NÚCLEO
-    body.appendChild(sec('▐ Identidade', [
-      txt('Nome', ficha.meta, 'nome'), txt('Jogador', ficha.meta, 'jogador'),
+    body.appendChild(sec('identidade', '▐ Identidade', [
+      txt('Nome', R('meta'), 'nome'), txt('Jogador', R('meta'), 'jogador'),
       el('div', { class:'kf-row' }, [
-        el('label', {}, ['Nível']), numInput(ficha.meta, 'nivel'),
-        el('label', {}, ['XP']), numInput(ficha.meta, 'xp')
+        el('label', {}, ['Nível']), numInput(R('meta'), 'nivel'),
+        el('label', {}, ['XP']), numInput(R('meta'), 'xp')
       ]),
-      txt('Raça', ficha.meta, 'raca'), txt('Variante', ficha.meta, 'variante'),
-      txt('Classe', ficha.meta, 'classe'), txt('Ramo', ficha.meta, 'ramo'),
-      txt('Origem', ficha.meta, 'origem')
-    ]));
-    body.appendChild(sec('▐ Atributos', [renderAtributos()]));
-    body.appendChild(sec('▐ Perícias', [renderPericias()], true));
-    body.appendChild(sec('▐ Recursos', renderRecursos()));
-    body.appendChild(sec('▐ Derivados', [renderDerivados()]));
-    body.appendChild(sec('▐ Resistências', [renderResist()], true));
-    body.appendChild(sec('▐ Inventário', renderInventario(), true));
+      txt('Raça', R('meta'), 'raca'), txt('Variante', R('meta'), 'variante'),
+      txt('Classe', R('meta'), 'classe'), txt('Ramo', R('meta'), 'ramo'),
+      txt('Origem', R('meta'), 'origem')
+    ], rec('identidade', false)));
+    body.appendChild(sec('atributos', '▐ Atributos', [renderAtributos()], rec('atributos', false)));
+    body.appendChild(sec('pericias', '▐ Perícias', [renderPericias()], rec('pericias', true)));
+    body.appendChild(sec('recursos', '▐ Recursos', renderRecursos(), rec('recursos', false)));
+    body.appendChild(sec('derivados', '▐ Derivados', [renderDerivados()], rec('derivados', false)));
+    body.appendChild(sec('resistencias', '▐ Resistências', [renderResist()], rec('resistencias', true)));
+    body.appendChild(sec('inventario', '▐ Inventário', renderInventario(), rec('inventario', true)));
     // listas por DnD/+add
-    body.appendChild(sec('▐ Técnicas & Marcas', [dropZone('tecnicas','Arraste técnicas/marcas aqui'), listaEl('tecnicas')]));
-    body.appendChild(sec('▐ Grimório (Magias)', [dropZone('grimorio','Arraste magias aqui'), listaEl('grimorio')]));
-    body.appendChild(sec('▐ Cartas do Limiar', [dropZone('cartasLimiar','Arraste cartas do Limiar aqui'), listaEl('cartasLimiar')]));
-    body.appendChild(sec('▐ Lore', [
+    body.appendChild(sec('tecnicas', '▐ Técnicas & Marcas', [dropZone('tecnicas','Arraste técnicas/marcas aqui'), listaEl('tecnicas')], rec('tecnicas', false)));
+    body.appendChild(sec('grimorio', '▐ Grimório (Magias)', [dropZone('grimorio','Arraste magias aqui'), listaEl('grimorio')], rec('grimorio', false)));
+    body.appendChild(sec('cartas', '▐ Cartas do Limiar', [dropZone('cartasLimiar','Arraste cartas do Limiar aqui'), listaEl('cartasLimiar')], rec('cartas', false)));
+    body.appendChild(sec('lore', '▐ Lore', [
       el('div',{class:'kf-row'},[el('label',{},['História'])]),
-      areaInput(ficha.lore,'historia'),
+      areaInput(R('lore'),'historia'),
       el('div',{class:'kf-row'},[el('label',{},['Outros'])]),
-      areaInput(ficha.lore,'outros')
-    ], true));
+      areaInput(R('lore'),'outros')
+    ], rec('lore', true)));
+    body.scrollTop = rolagem;
   }
 
   function numInput(obj, key) {
-    var inp = el('input', { type:'number', value: obj[key] });
-    inp.addEventListener('input', function () { obj[key] = parseFloat(inp.value) || 0; save(); refreshDerivados(); });
+    var inp = el('input', { type:'number', value: alvoDe(obj)[key] });
+    inp.addEventListener('input', function () { alvoDe(obj)[key] = parseFloat(inp.value) || 0; save(); refreshDerivados(); });
     return inp;
   }
   function areaInput(obj, key) {
-    var ta = el('textarea', { rows:3, style:'width:100%' }); ta.value = obj[key] || '';
-    ta.addEventListener('input', function () { obj[key] = ta.value; save(); });
+    var ta = el('textarea', { rows:3, style:'width:100%' }); ta.value = alvoDe(obj)[key] || '';
+    ta.addEventListener('input', function () { alvoDe(obj)[key] = ta.value; save(); });
     return ta;
   }
 
@@ -706,6 +947,7 @@
       inp.addEventListener('input', function () {
         ficha.atributos[a[0]] = parseInt(inp.value, 10) || 0; save();
         modEl.textContent = modStr(a[0]); refreshDerivados();
+        emite(['atributos'], 'drawer', 'atributo');
       });
       grid.appendChild(el('div', { class:'kf-a' }, [el('label', {}, [a[1]]), inp, modEl]));
     });
@@ -739,15 +981,15 @@
   }
   function renderRecursos() {
     return [
-      recRow('Saúde', ficha.recursos.saude),
-      recRow('Stamina', ficha.recursos.stamina),
-      recRow('Éter', ficha.recursos.eter),
+      recRow('Saúde', R('recursos.saude')),
+      recRow('Stamina', R('recursos.stamina')),
+      recRow('Éter', R('recursos.eter')),
       el('div', { class:'kf-row' }, [
         el('label', {}, ['Rec. Classe']),
         (function(){ var i=el('input',{type:'text',value:ficha.recursos.recursoClasse.nome,placeholder:'ex: FLUXO'});
           i.addEventListener('input',function(){ficha.recursos.recursoClasse.nome=i.value;save();});return i;})()
       ]),
-      recRow('  ↳ valor', ficha.recursos.recursoClasse)
+      recRow('  ↳ valor', R('recursos.recursoClasse'))
     ];
   }
 
@@ -756,12 +998,12 @@
     var wrap = el('div', {});
     // manuais (vêm da classe/regras)
     wrap.appendChild(el('div', { class:'kf-row' }, [
-      el('label', {}, ['Evasão']), numInput(ficha.derivadosManuais, 'evasao'),
-      el('label', {}, ['CD']), numInput(ficha.derivadosManuais, 'cd')
+      el('label', {}, ['Evasão']), numInput(R('derivadosManuais'), 'evasao'),
+      el('label', {}, ['CD']), numInput(R('derivadosManuais'), 'cd')
     ]));
     wrap.appendChild(el('div', { class:'kf-row' }, [
-      el('label', {}, ['Movim.(m)']), numInput(ficha.derivadosManuais, 'movimento'),
-      el('label', {}, ['Armadura']), numInput(ficha.derivadosManuais, 'armadura')
+      el('label', {}, ['Movim.(m)']), numInput(R('derivadosManuais'), 'movimento'),
+      el('label', {}, ['Armadura']), numInput(R('derivadosManuais'), 'armadura')
     ]));
     wrap.appendChild(el('div', { class:'kf-row', style:'font-size:10px;color:#666' },
       ['Evasão/CD/Movim. vêm da sua classe — preencha manualmente.']));
@@ -770,16 +1012,18 @@
     refreshDerivados();
     return wrap;
   }
+  // Equip./Bugigangas pelo motor de carga (KhInv.calcular), com Leve e Extremo
   function refreshDerivados() {
     if (!derdispEl) return;
-    var ue = somaSlots(ficha.inventario.equipamentos.concat(ficha.inventario.armas));
-    var ub = somaSlots(ficha.inventario.bugigangas);
-    var ce = slotsEquipMax(), cb = slotsBugiMax();
-    var spe = ue > ce, spb = ub > cb;
+    var cg = KhInv.calcular(ficha.inventario, ficha.atributos.for);
+    function linha(rotulo, c) {
+      var sp = c.estado === 'leve' ? ' · Sobrepeso Leve' : (c.estado === 'extremo' ? ' · Sobrepeso Extremo' : '');
+      return '<div>' + rotulo + '</div><div class="' + (c.estado === 'ok' ? 'kf-ok' : 'kf-warn') + '">' +
+        c.usado + ' / ' + c.max + sp + '</div>';
+    }
     derdispEl.innerHTML =
       '<div>Mods</div><div><b>' + ATTRS.map(function(a){return a[1]+' '+modStr(a[0]);}).join(' · ') + '</b></div>' +
-      '<div>Equip.</div><div class="'+(spe?'kf-warn':'kf-ok')+'">'+ue+' / '+ce+(spe?' ⚠ Sobrepeso':'')+'</div>' +
-      '<div>Bugigangas</div><div class="'+(spb?'kf-warn':'kf-ok')+'">'+ub+' / '+cb+(spb?' ⚠ Sobrepeso':'')+'</div>';
+      linha('Equip.', cg.equipamentos) + linha('Bugigangas', cg.bugigangas);
   }
 
   function renderResist() {
@@ -802,21 +1046,41 @@
     return grid;
   }
 
+  // Inventário v2 no drawer: duas colunas por uid. A versão rica (stepper,
+  // caixas, réguas) é a etapa 4; aqui só o que mantém o drawer funcionando.
   function renderInventario() {
-    var sinsRow = el('div', { class:'kf-row' }, [el('label', {}, ['💰 Sins']), numInput(ficha.inventario, 'sins')]);
+    var sins = el('input', { type:'number', min:0, step:1, id:'kf-sins', value: ficha.inventario.sins, title:'não pesa' });
+    sins.addEventListener('change', function () { sins.value = definirSins(sins.value, 'drawer'); });
     var busca = el('input', { type:'text', placeholder:'Buscar item do Bazar…' });
     var res = el('div', {});
     busca.addEventListener('input', function () { buscaBazar(busca.value, res); });
+    function rot(t) { return el('div', { style:'font-size:11px;color:#c9a94a;margin:6px 0 2px' }, [t]); }
     return [
-      sinsRow,
+      el('div', { class:'kf-row' }, [el('label', {}, ['Sins']), sins]),
       el('div', { class:'kf-row' }, [busca]),
       res,
-      dropZone('inventario.bugigangas', 'Arraste itens do Bazar aqui'),
-      el('div', { style:'font-size:11px;color:#c9a94a;margin:6px 0 2px' }, ['Armas']), listaEl('inventario.armas'),
-      el('div', { style:'font-size:11px;color:#c9a94a;margin:6px 0 2px' }, ['Equipamentos']), listaEl('inventario.equipamentos'),
-      el('div', { style:'font-size:11px;color:#c9a94a;margin:6px 0 2px' }, ['Bugigangas']), listaEl('inventario.bugigangas'),
-      el('div', { style:'font-size:11px;color:#c9a94a;margin:6px 0 2px' }, ['Materiais']), listaEl('inventario.materiais')
+      dropZone('inventario', 'Arraste itens do Bazar aqui'),
+      rot('Bugigangas'), listaInvEl('bugigangas'),
+      rot('Equipamentos'), listaInvEl('equipamentos')
     ];
+  }
+  function atualizaSins() {
+    var i = body && body.querySelector('#kf-sins');
+    if (i && document.activeElement !== i) i.value = ficha.inventario.sins;
+  }
+  function listaInvEl(coluna) {
+    var wrap = el('div', { 'data-lista': 'inventario.' + coluna });
+    (ficha.inventario[coluna] || []).forEach(function (e) {
+      var tags = (e.equipado ? '<span class="kf-tag">equipado</span>' : '') +
+        (e.avulso ? '<span class="kf-tag">sem registro</span>' : '') +
+        (e.orfao ? '<span class="kf-tag">fora do registro</span>' : '');
+      wrap.appendChild(el('div', { class:'kf-list-item', 'data-uid': e.uid }, [
+        el('span', { class:'kf-x', title:'Remover', onclick: function () {
+          if (remover(e.uid, 'drawer')) toast('Removido: ' + e.nome); } }, ['✕']),
+        el('span', { class:'kf-nm', html: tags + esc(e.nome) + (e.qtd > 1 ? ' <b>×' + e.qtd + '</b>' : '') })
+      ]));
+    });
+    return wrap;
   }
 
   // ---- listas (suporta caminho aninhado inventario.x) ----
@@ -836,10 +1100,12 @@
     return wrap;
   }
   function renderListas() {
-    ['tecnicas','grimorio','cartasLimiar','inventario.armas','inventario.equipamentos',
-     'inventario.bugigangas','inventario.materiais'].forEach(function (campo) {
+    if (!body) return;
+    ['tecnicas','grimorio','cartasLimiar','inventario.bugigangas','inventario.equipamentos'].forEach(function (campo) {
       var holder = body.querySelector('[data-lista="' + campo + '"]');
-      if (holder) { var novo = listaEl(campo); holder.parentNode.replaceChild(novo, holder); }
+      if (!holder) return;
+      var novo = campo.indexOf('inventario.') === 0 ? listaInvEl(campo.slice(11)) : listaEl(campo);
+      holder.parentNode.replaceChild(novo, holder);
     });
   }
 
@@ -851,8 +1117,10 @@
       e.preventDefault(); dz.classList.remove('kf-over');
       try {
         var p = JSON.parse(e.dataTransfer.getData('text/plain'));
-        if (p._bazar) { addItemBazar(p.item); return; }
+        // item do Bazar vai para a coluna canônica, solte onde soltar no drawer
+        if (p._bazar) { if (adicionar(p.item, {}, 'drawer')) toast('+ ' + p.item.nome); return; }
         var campoAlvo = p._campo || campo;      // roteia pelo tipo, não pela zona
+        if (campoAlvo.indexOf('inventario') === 0) return;
         var ent = Object.assign({}, p); delete ent._campo; delete ent._bazar;
         addEntidade(campoAlvo, ent);
       } catch (x) {}
@@ -861,7 +1129,6 @@
   }
 
   // ---------------- Bazar (data/bazar.json) ----------------
-  var bazarCache = null;
   function buscaBazar(q, res) {
     q = (q || '').trim().toLowerCase();
     res.innerHTML = '';
@@ -879,20 +1146,12 @@
       if (!hits.length) res.appendChild(el('div', { style:'font-size:11px;color:#666' }, ['Nada encontrado']));
     }
     if (bazarCache) return achar();
-    fetch(ROOT + 'data/bazar.json').then(function (r) { return r.json(); })
-      .then(function (d) { bazarCache = d; achar(); })
+    pedeCatalogo().then(achar)
       .catch(function () { res.appendChild(el('div', { style:'font-size:11px;color:#c0392b' }, ['Bazar indisponível (rode via servidor)'])); });
   }
-  function addItemBazar(it) {
-    var cat = (it.categoria || '').toLowerCase();
-    var campo = 'inventario.bugigangas';
-    if (cat.indexOf('arma') >= 0) campo = 'inventario.armas';
-    else if (cat.indexOf('material') >= 0) campo = 'inventario.materiais';
-    else if (/armadura|escudo|equip/.test(cat)) campo = 'inventario.equipamentos';
-    var lista = getLista(campo);
-    var ent = { id: it.id, nome: it.nome, tipo: it.categoria, categoria: it.categoria,
-      raridade: it.raridade, efeito: it.efeito, valor: it.valor, qtd: 1, slotPeso: 1 };
-    lista.push(ent); save(); renderListas(); refreshDerivados(); toast('+ ' + it.nome);
+  // coluna pela regra do registro (KhInv.colunaCanonica): acabou o roteamento por substring
+  function addItemBazar(it, qtd) {
+    if (adicionar(it, { qtd: qtd || 1 }, 'drawer')) toast('+ ' + (qtd > 1 ? qtd + '× ' : '') + it.nome);
   }
 
   // ---------------- decorar cards das páginas ----------------
@@ -971,28 +1230,36 @@
     });
   }
 
-  // itens do Bazar (bazar.html) — renderizados dinamicamente: .item-card[data-n]
+  // itens do Bazar (bazar.html) — renderizados dinamicamente: .item-card[data-n].
+  // Em body[data-bazar] o catálogo chega por KF.catalogo() (sem 2º fetch) e o
+  // rótulo vira "+ inventário"; Shift+clique guarda 10.
   function decorarBazar() {
     var itens = document.querySelectorAll('.item-card[data-n]:not([data-kf])');
     if (!itens.length) return;
-    function aplica() {
-      itens.forEach(function (card) {
-        if (card.getAttribute('data-kf')) return;
-        var nome = card.getAttribute('data-n');
-        var it = bazarCache ? bazarCache.find(function (x) { return x.nome === nome; }) : null;
-        if (!it) it = { id: slug(nome, 'item-'), nome: nome, categoria:'', raridade:'', efeito:'', valor:'' };
-        card.setAttribute('data-kf', '1');
-        var alvo = card.querySelector('.item-name,.item-head') || card;
-        alvo.appendChild(el('span', { class:'kf-addbtn', title:'Adicionar à ficha',
-          onclick: function (e) { e.stopPropagation(); addItemBazar(it); } }, ['+ ficha']));
-        card.setAttribute('draggable', 'true'); card.classList.add('kf-draggable');
-        card.addEventListener('dragstart', function (e) {
-          e.dataTransfer.setData('text/plain', JSON.stringify({ _bazar: true, item: it })); });
-      });
+    if (!bazarCache) {
+      if (naBazar()) return;                       // decora quando o bazar.js chamar KF.catalogo
+      pedeCatalogo().catch(function () { aplicaBazar(itens); });   // sucesso: catalogo() redecora
+      return;
     }
-    if (bazarCache) return aplica();
-    fetch(ROOT + 'data/bazar.json').then(function (r) { return r.json(); })
-      .then(function (d) { bazarCache = d; aplica(); }).catch(aplica);
+    aplicaBazar(itens);
+  }
+  function aplicaBazar(itens) {
+    var noBazar = naBazar();
+    itens.forEach(function (card) {
+      if (card.getAttribute('data-kf') || card.closest('[data-kf-ignorar]')) return;
+      var nome = card.getAttribute('data-n');
+      var it = (idxCatalogo && temPropria(idxCatalogo.porNome, nome) && idxCatalogo.porNome[nome]) ||
+        { id: slug(nome, 'item-'), nome: nome, categoria:'', raridade:'', efeito:'', valor:'' };
+      card.setAttribute('data-kf', '1');
+      var alvo = card.querySelector('.item-name,.item-head') || card;
+      alvo.appendChild(el('span', { class:'kf-addbtn',
+        title: (noBazar ? 'Guardar no inventário' : 'Adicionar à ficha') + ' (Shift+clique: 10)',
+        onclick: function (e) { e.stopPropagation(); e.preventDefault(); addItemBazar(it, e.shiftKey ? 10 : 1); } },
+        [noBazar ? '+ inventário' : '+ ficha']));
+      card.setAttribute('draggable', 'true'); card.classList.add('kf-draggable');
+      card.addEventListener('dragstart', function (e) {
+        e.dataTransfer.setData('text/plain', JSON.stringify({ _bazar: true, item: it })); });
+    });
   }
 
   // ---------------- Export / Import ----------------
@@ -1001,20 +1268,40 @@
     var a = el('a', { href: URL.createObjectURL(blob), download: nome });
     document.body.appendChild(a); a.click(); a.remove();
   }
-  function exportJSON() { baixar((ficha.meta.nome || 'ficha').replace(/\s+/g,'_') + '.khalkaria.json', ficha); }
+  // KF.exportar(): grava exportadoEm (o rodapé do inventário lê) e baixa
+  function exportJSON() {
+    sincroniza();
+    ficha.exportadoEm = agoraISO();
+    commit(['tudo'], 'local', 'exportar');
+    baixar((ficha.meta.nome || 'ficha').replace(/\s+/g,'_') + '.khalkaria.json', ficha);
+  }
+  // troca a ficha inteira: rev acima do atual (as outras abas adotam) e zera o desfazer
+  function substitui(nova, origem) {
+    sincroniza();
+    var rev = ficha.rev;
+    ficha = nova;
+    ficha.rev = Math.max(rev, ficha.rev);
+    desfazerPilha = [];
+    commit(['tudo'], origem, origem);
+    reconciliaCatalogo();
+  }
   function importJSON() {
     var inp = el('input', { type:'file', accept:'.json,application/json' });
     inp.addEventListener('change', function () {
       var fr = new FileReader();
-      fr.onload = function () { try { ficha = migra(JSON.parse(fr.result)); save(); renderAll(); toast('Ficha importada'); }
-        catch (e) { toast('JSON inválido'); } };
+      fr.onload = function () {
+        var f;
+        try { f = JSON.parse(fr.result); } catch (e) { f = null; }
+        if (!f || typeof f !== 'object' || Array.isArray(f)) { toast('JSON inválido'); return; }
+        substitui(migra(f), 'import'); toast('Ficha importada');
+      };
       fr.readAsText(inp.files[0]);
     });
     inp.click();
   }
   function resetFicha() {
     if (!confirm('Nova ficha? A atual será substituída (exporte antes se quiser guardar).')) return;
-    ficha = novaFicha(); save(); renderAll(); toast('Nova ficha');
+    substitui(novaFicha(), 'reset'); toast('Nova ficha');
   }
 
   // projeção Bestiário (type:npc) — ver data/ficha.schema.json x-bestiary
@@ -1037,25 +1324,84 @@
     b.resistances = rs.join(', '); b.immunities = im.join(', '); b.armor_specific = ae.join(', ');
     b.abilities = ficha.tecnicas.concat(ficha.grimorio).map(function (t) {
       return { name: t.nome, description: t.descricao || '' }; });
-    b.weapons = ficha.inventario.armas.map(function (w) {
-      return { name: w.nome, category: w.category || '', level: w.level || '0',
-        dado: w.dado || '', atributo: w.atributo || 'Força', dano: w.dano || '', efeito: w.efeito || '' }; });
+    // token exato 'Arma' nas duas colunas, equipadas primeiro (armaduras não saem mais aqui)
+    b.weapons = KhInv.armasBestiario(ficha.inventario);
     baixar((ficha.meta.nome || 'personagem').replace(/\s+/g,'_') + '.bestiario.json', b);
     toast('Export Bestiário (type:npc)');
   }
 
+  // abre o drawer e expande a seção (antes do init, fica para o init)
+  function abrir(secao) {
+    if (!body) { abrirPendente = secao || ''; return; }
+    setOpen(true);
+    var s = secao ? body.querySelector('.kf-sec[data-sec="' + secao + '"]') : null;
+    if (s) {
+      s.classList.remove('kf-collapsed');
+      if (s.scrollIntoView) s.scrollIntoView({ block: 'start' });
+    }
+  }
+
   // ---------------- init ----------------
-  var obsT;
   function init() {
     injectCSS(); buildDrawer(); decorar();
-    // conteúdo dinâmico (ex.: Bazar re-renderiza o grid ao filtrar) -> re-decora
+    // conteúdo dinâmico (ex.: Bazar re-renderiza o grid ao filtrar) -> re-decora.
+    // Mudança dentro de [data-kf-ignorar] (drawer, toast, inventário do Bazar) não conta.
     try {
-      var obs = new MutationObserver(function () {
+      var obs = new MutationObserver(function (regs) {
+        var conta = regs.some(function (r) {
+          var t = r.target;
+          if (t && t.nodeType !== 1) t = t.parentElement;
+          return !(t && t.closest && t.closest('[data-kf-ignorar]'));
+        });
+        if (!conta) return;
         clearTimeout(obsT); obsT = setTimeout(decorar, 150);
       });
       obs.observe(document.body, { childList: true, subtree: true });
     } catch (e) {}
+    verificaPendentes();
+    if (abrirPendente !== null) { var s = abrirPendente; abrirPendente = null; abrir(s); }
   }
+
+  // sincronia entre abas e páginas: storage não basta (bfcache precisa de pageshow)
+  window.addEventListener('storage', function (e) { if (e.key === LS_KEY) sincroniza(); });
+  window.addEventListener('pageshow', function () { sincroniza(); });
+  window.addEventListener('pagehide', flush);
+  document.addEventListener('visibilitychange', function () {
+    if (document.visibilityState === 'hidden') flush();
+    else if (document.visibilityState === 'visible') sincroniza();
+  });
+
+  // ---------------- API (spec §5.3). Leituras devolvem cópia. ----------------
+  function invDe() {
+    var i = ficha.inventario;
+    return { sins: i.sins, bugigangas: i.bugigangas, equipamentos: i.equipamentos };
+  }
+  raiz.KF = Object.freeze({
+    versao: '2',
+    inventario: function () { return clone(invDe()); },
+    carga: function () { return KhInv.calcular(ficha.inventario, ficha.atributos.for); },
+    projetar: function (item, opts) { return KhInv.projetar(invDe(), ficha.atributos.for, doCatalogo(item), opts); },
+    quantidadePorId: function () { return KhInv.quantidadePorId(ficha.inventario); },
+    tenho: function (id) { return KhInv.quantidadePorId(ficha.inventario)[id] || 0; },
+    atributo: function (k) { var n = parseInt(ficha.atributos[String(k || '').toLowerCase()], 10); return isFinite(n) ? n : 0; },
+    migradoEm: function () { return ficha.migradoEm || ''; },
+    exportadoEm: function () { return ficha.exportadoEm || ''; },
+    adicionar: function (item, opts) { return adicionar(item, opts, 'local'); },
+    quantidade: function (uid, n) { return quantidade(uid, n, 'local'); },
+    alternar: function (uid, campo) { return alternar(uid, campo, 'local'); },
+    trocar: function (uid, campo, uidsASoltar) { return trocar(uid, campo, uidsASoltar, 'local'); },
+    mover: function (uid, coluna) { return mover(uid, coluna, 'local'); },
+    remover: function (uid) { return remover(uid, 'local'); },
+    definirSins: function (n) { return definirSins(n, 'local'); },
+    lote: lote,
+    desfazer: desfazer,
+    podeDesfazer: function () { return desfazerPilha.length > 0; },
+    catalogo: catalogo,
+    abrir: abrir,
+    exportar: exportJSON
+  });
+  try { document.dispatchEvent(new CustomEvent('kf:pronta', { detail: { versao: '2' } })); } catch (e) {}
+
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
   else init();
 })(typeof window !== 'undefined' ? window : this);
