@@ -7,8 +7,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400&family=UnifrakturMaguntia&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../css/style.css?v=51afc24f">
-    <link rel="stylesheet" href="../../css/racas.css?v=51afc24f">
+    <link rel="stylesheet" href="../../css/style.css?v=46e6484d">
+    <link rel="stylesheet" href="../../css/racas.css?v=46e6484d">
     <style>
         @media(max-width:800px){.raca-header{grid-template-columns:1fr}}
         .raca-image-container{background:var(--bg-tertiary);border:1px solid var(--border-color);border-radius:12px;height:400px;display:flex;align-items:center;justify-content:center;color:var(--text-muted);overflow:hidden}
@@ -22,6 +22,7 @@
         .variant-card li{color:var(--text-secondary);margin-bottom:0.35rem}
         .section-title{color:var(--gold);font-family:var(--font-heading);margin:1.5rem 0 1rem 0}
     </style>
+    <script data-nav-boot>(function(){try{var s=JSON.parse(localStorage.getItem('khalkaria_nav')||'{}'),h=document.documentElement;if(s.trilho)h.setAttribute('data-nav','trilho');if(s.fechados&&s.fechados.length)h.setAttribute('data-nav-fechados',s.fechados.join(' '))}catch(e){}})()</script>
 </head>
 <body>
     <button class="menu-toggle">☰ Menu</button>
@@ -52,7 +53,7 @@
                 <div class="nav-section-title">Raças</div>
                 <a href="humano.html" class="nav-link nav-link-sub">🧍 Humano</a>
                 <a href="anao.html" class="nav-link nav-link-sub">⛏️ Anão</a>
-                <a href="dryad.html" class="nav-link active nav-link-sub">🌿 Dryad</a>
+                <a href="dryad.html" aria-current="page" class="nav-link active nav-link-sub">🌿 Dryad</a>
                 <a href="gruto.html" class="nav-link nav-link-sub">🪨 Gruto</a>
                 <a href="corrompido.html" class="nav-link nav-link-sub">🩸 Corrompido</a>
                 <a href="automato.html" class="nav-link nav-link-sub">⚙️ Autômato</a>
@@ -172,7 +173,8 @@
             </div>
         </main>
     </div>
-    <script src="../../js/main.js?v=51afc24f"></script>
-    <script src="../../js/utils.js?v=51afc24f"></script>
+    <script src="../../js/main.js?v=46e6484d"></script>
+    <script src="../../js/utils.js?v=46e6484d"></script>
+    <script src="../../js/nav.js?v=46e6484d" data-nav-js></script>
 </body>
 </html>

@@ -26,13 +26,25 @@ reaplicar não muda o resultado.
      10 min e, sem versão na URL, o navegador servia um ficha.js ANTIGO nas
      páginas fora do Bazar depois de um deploy (a window.KF sumia). O js/main.js
      repassa a mesma versão ao ficha.js que ele injeta.
+
+  5. TOTAIS    — <span data-bazar-total> recebe a contagem de data/bazar.json.
+
+  6. BOOT      — partials/head-boot.html (<script data-nav-boot>) antes de
+     </head>: aplica o estado salvo da nav (trilho, grupos fechados) no <html>
+     antes do primeiro paint, sem piscar.
+
+  7. NAV.JS    — <script src="…js/nav.js" data-nav-js> antes de </body> em
+     todas as páginas (inclusive o Bazar, que não carrega main.js).
+
+  A nav marcada: o link da página atual ganha .active E aria-current="page".
+  Os passos 6 e 7 rodam antes do 4, para o nav.js receber ?v= também.
 """
 import hashlib, os, re, sys, unicodedata
 
 TOOLS = os.path.dirname(os.path.abspath(__file__))
 RAIZ = os.path.dirname(TOOLS)
 
-RE_NAV = re.compile(r'[ \t]*<nav class="sidebar">.*?</nav>', re.S)
+RE_NAV = re.compile(r'[ \t]*<nav class="sidebar"[^>]*>.*?</nav>', re.S)
 RE_MARCADOR = re.compile(r'[ \t]*<!--SIDEBAR-->')
 RE_MAIN = re.compile(r'<main class="main-content[^"]*">.*?</main>', re.S)
 RE_TITULO = re.compile(r'<(h[23])(\s[^>]*)?>(.*?)</\1>', re.S)
@@ -63,10 +75,11 @@ def sidebar_para(pagina_rel, modelo):
         href, resto = m.group(1), m.group(2)
         rel = os.path.relpath(href, base).replace(os.sep, '/') if base else href
         ativo = os.path.normpath(href) == os.path.normpath(pagina_rel)
-        if ativo and 'nav-link' in resto and 'active' not in resto:
-            resto = resto.replace('class="nav-link', 'class="nav-link active', 1)
-        elif not ativo:
-            resto = resto.replace('nav-link active', 'nav-link')
+        # o modelo nunca traz .active nem aria-current; o logo (sem nav-link)
+        # nunca ganha aria-current, então a página tem exatamente um
+        resto = resto.replace(' aria-current="page"', '').replace('nav-link active', 'nav-link')
+        if ativo and 'nav-link' in resto:
+            resto = resto.replace('class="nav-link', 'aria-current="page" class="nav-link active', 1)
         return f'<a href="{rel}"{resto}'
 
     return re.sub(r'<a href="([^"]+)"([^>]*)', refaz, modelo)
@@ -178,6 +191,35 @@ def aplica_totais(html, total):
     return RE_TOTAL_BAZAR.sub(lambda m: m.group(1) + str(total) + m.group(2), html)
 
 
+# 6. BOOT DA NAV — partials/head-boot.html antes de </head>: lê o estado salvo
+#    (trilho, grupos fechados) e marca o <html> ANTES do primeiro paint. Sem
+#    ele a nav piscaria aberta a cada troca de página com o trilho salvo.
+RE_BOOT = re.compile(r'[ \t]*<script data-nav-boot>.*?</script>\n?', re.S)
+
+
+def carrega_boot():
+    return open(os.path.join(RAIZ, 'partials', 'head-boot.html'),
+                encoding='utf-8', newline='').read().strip()
+
+
+def aplica_boot(html, boot):
+    html = RE_BOOT.sub('', html)
+    return html.replace('</head>', f'    {boot}\n</head>', 1)
+
+
+# 7. NAV.JS — js/nav.js antes de </body> em TODAS as páginas (recolher, grupos,
+#    dica, atalho e menu mobile). Fica fora do main.js porque o Bazar não carrega
+#    main.js (que injetaria o ficha.js uma segunda vez).
+RE_NAVJS = re.compile(r'[ \t]*<script src="[^"]*js/nav\.js[^"]*" data-nav-js></script>\n?')
+
+
+def aplica_navjs(html, pagina_rel):
+    prefixo = '../' * pagina_rel.count('/')
+    html = RE_NAVJS.sub('', html)
+    return html.replace('</body>',
+                        f'    <script src="{prefixo}js/nav.js" data-nav-js></script>\n</body>', 1)
+
+
 def paginas(raiz):
     fs = []
     for dirpath, _, nomes in os.walk(os.path.join(raiz, 'pages')):
@@ -190,6 +232,7 @@ def paginas(raiz):
 
 def aplicar(raiz=RAIZ, verboso=True):
     modelo = carrega_sidebar()
+    boot = carrega_boot()
     # a versão vem SEMPRE dos assets do repo real (o round-trip do validar.py
     # roda numa cópia temporária sem js/ e css/, e precisa dar o mesmo hash)
     versao = versao_assets(RAIZ)
@@ -199,6 +242,8 @@ def aplicar(raiz=RAIZ, verboso=True):
         rel = os.path.relpath(f, raiz).replace(os.sep, '/')
         antes = open(f, encoding='utf-8', newline='').read()
         depois = aplica_webp(aplica_ancoras(aplica_sidebar(antes, rel, modelo)), rel)
+        # boot e nav.js ANTES da versão, para o nav.js ganhar ?v= também
+        depois = aplica_navjs(aplica_boot(depois, boot), rel)
         depois = aplica_totais(aplica_versao(depois, versao), total)
         n_ver += len(RE_ASSET.findall(depois))
         if depois != antes:

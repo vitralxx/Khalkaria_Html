@@ -7,7 +7,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400&family=UnifrakturMaguntia&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../css/style.css?v=51afc24f">
+    <link rel="stylesheet" href="../css/style.css?v=46e6484d">
+    <script data-nav-boot>(function(){try{var s=JSON.parse(localStorage.getItem('khalkaria_nav')||'{}'),h=document.documentElement;if(s.trilho)h.setAttribute('data-nav','trilho');if(s.fechados&&s.fechados.length)h.setAttribute('data-nav-fechados',s.fechados.join(' '))}catch(e){}})()</script>
 </head>
 <body>
     <button class="menu-toggle">☰ Menu</button>
@@ -22,7 +23,7 @@
             <div class="nav-section">
                 <div class="nav-section-title">Fundamentos</div>
                 <a href="../index.html" class="nav-link">🏠 Início</a>
-                <a href="sistema.html" class="nav-link active">📜 Sistema Base</a>
+                <a href="sistema.html" aria-current="page" class="nav-link active">📜 Sistema Base</a>
                 <a href="condicoes.html" class="nav-link">⚡ Condições</a>
                 <a href="magias.html" class="nav-link">✨ Magias</a>
                 <a href="bazar.html" class="nav-link">💰 O Bazar</a>
@@ -2083,7 +2084,7 @@
     <!-- BOTÃO VOLTAR AO TOPO -->
     <button class="back-to-top" id="backToTop" title="Voltar ao topo">↑</button>
     
-    <script src="../js/main.js?v=51afc24f"></script>
+    <script src="../js/main.js?v=46e6484d"></script>
     <script>
         // Botão Voltar ao Topo
         const backToTop = document.getElementById('backToTop');
@@ -2132,6 +2133,7 @@
             });
         });
     </script>
-    <script src="../js/utils.js?v=51afc24f"></script>
+    <script src="../js/utils.js?v=46e6484d"></script>
+    <script src="../js/nav.js?v=46e6484d" data-nav-js></script>
 </body>
 </html>

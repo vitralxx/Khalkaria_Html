@@ -12,7 +12,9 @@ integridade do artefato HTML, que é o que quebra em silêncio:
   5. Round-trip: regenerar de data/*.json bate byte-a-byte com pages/*.html
      (prova que nenhum HTML gerado foi editado à mão — CLAUDE.md §4/§10)
   6. Sidebar: todas as páginas com o mesmo conjunto de links de navegação;
-     página sem <nav class="sidebar"> é FALHA
+     página sem <nav class="sidebar"> é FALHA. E o contrato da nav: 1 boot no
+     <head>, 1 js/nav.js, 1 aria-current="page", todo glifo nv-* com seu
+     <symbol> e todo .nav-link com rótulo .nav-rot (o trilho o esconde por clip)
   7. Guarda-fio: as 5 frases de peso do Sistema que o motor de carga codifica
   8. data/bazar.json é ARRAY e todo item traz `inv`
 
@@ -122,6 +124,31 @@ def checa_html():
         print(f'  OK     {len(paginas())} páginas íntegras')
 
 
+NAV_ROT_PENDENTE = True
+
+
+def checa_nav_pagina(h, nav):
+    """Contrato da nav (shell.py passos 1, 6 e 7) numa página já montada."""
+    probs = []
+    for marca, oque in (('data-nav-boot', 'boot da nav no <head>'),
+                        ('data-nav-js', '<script> do js/nav.js')):
+        n = h.count(marca)
+        if n != 1:
+            probs.append(f'{n}× {oque} (esperado 1)')
+    n = nav.count('aria-current="page"')
+    if n != 1:
+        probs.append(f'{n}× aria-current="page" na nav (esperado 1)')
+    simbolos = set(re.findall(r'<symbol id="([^"]+)"', h))
+    sem = sorted({u for u in re.findall(r'<use href="#(nv-[^"]+)"', nav) if u not in simbolos})
+    if sem:
+        probs.append(f'glifos sem <symbol>: {sem}')
+    for a in [] if NAV_ROT_PENDENTE else re.findall(r'<a href="[^"]+"[^>]*class="nav-link[^"]*"[^>]*>.*?</a>', nav, re.S):
+        rot = re.search(r'<span class="nav-rot">([^<]*)</span>', a)
+        if not (rot and rot.group(1).strip()):
+            probs.append(f'link sem rótulo .nav-rot: {re.sub(r"<[^>]+>", "", a).strip()[:40]!r}')
+    return probs
+
+
 def checa_sidebar():
     print('[6] Consistência da navegação (sidebar)')
     conjuntos = {}
@@ -135,6 +162,11 @@ def checa_sidebar():
             continue
         # normaliza: resolve o href para caminho absoluto no repo (o prefixo
         # relativo muda por profundidade) e ignora a classe .active
+        probs = checa_nav_pagina(h, m.group(0))
+        if probs:
+            falhas.append(f'nav:{rel(f)}')
+            for x in probs:
+                print(f'  FALHA  {rel(f)}: {x}')
         base = os.path.dirname(f)
         links = set()
         for href, txt in re.findall(r'<a href="([^"]+)"[^>]*>(.*?)</a>', m.group(0), re.S):
