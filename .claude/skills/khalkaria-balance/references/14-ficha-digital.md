@@ -6,6 +6,38 @@
 
 ---
 
+## Revisão 2 (2026-09-25) — decisões do Pedro. **Onde conflitar com o resto do arquivo, vale esta seção.**
+
+| Tema | Decisão | Código |
+|---|---|---|
+| Modificador de atributo | `floor((attr − 10)/2)`, tabela de 4–5 (−3) a 24–25 (+7) | D80 |
+| Vantagem / desvantagem | 2d20 maior/menor, não acumulam, se anulam, **crítico vale para o dado usado**, Defender rola o próprio dado 2× | D81 |
+| Custo mínimo de magia | **1 Éter para toda conjuração**, mesmo após reduções. Única de custo 0: Nível 1, Normal, sem modulação. **Substitui o modelo de "dois pisos"** que eu propus em C06/P38/P39 | D82 |
+| Sangramento X | `+Xd4` por acerto, cada acerto remove 1 | D83 |
+| Estresse | fica como está; liberação obrigatória; o saldo negativo no descanso é a punição funcionando | D84 |
+| Ar | soma racial + armadura, sem teto | D85 |
+| Morrendo | tique não mitigável | D86 |
+| **+2 atributos por nível** | canônico (Limiar, *Bênção Imediata dos Atributos*), +8 no nível 5 | D87 |
+| PMA na ficha | **display da progressão de ataques**, sem contador por alvo | Pedro, via agente de HTML |
+
+**Status no Notion:** D80–D82 ainda **não** estão na página Sistema. Tentei gravar pela API e ela
+recusou a página inteira por causa de ícones de callout legados (`money_yellow`, `mountain_yellow`).
+Nada foi gravado. O Pedro disse que já entrou; o fetch de hoje ainda mostra a página editada por
+último em 22/09, sem os blocos. No JSON esses três estão como `"aprovado"` até o fetch confirmar.
+
+**Três correções minhas da revisão 1:**
+1. **P46 — o Limiar NÃO "fecha exato em 16 pontos / 6 cartas".** O custo crescente é **por mão, a
+   cada nível**: são 4 cartas grátis na campanha. O Limiar diz *"5-11 Cartas do Limiar escolhidas"*.
+2. **P02 — "os atributos só mudam pela carta +2 do Limiar" está errado.** Todo nível dá +2 (D87). A
+   recomendação `maior` continua, pelo outro motivo: não guarda estado.
+3. **P24 — `criticoComUm20` saiu.** Com desvantagem, um 20 no dado descartado não crita.
+
+**C16 — *Marcada à Morte X* está definida:** dentro da ultimate *Silêncio* do Batedor (Sem-Nome,
+Tier 3). É estado de classe e acumula ao ser reaplicada. Não promover a condição genérica. O
+Batedor está em rework (D79), então pode mudar.
+
+---
+
 ## 0. Como ler esta resposta
 
 Cada resposta leva um selo:
@@ -1269,26 +1301,14 @@ custo" quer dizer *você paga carregando menos combustível*, que é elegante e 
 
 | Validação | Regra exata | Ação |
 |---|---|---|
-| Pontos do Limiar | 4 por nível nos níveis 2–5 = **16 no total**; 1ª carta grátis, depois 2, 3, 4, 5…; a 6ª (+2 Atributo) custa sempre 2 | `avisar` |
+| Pontos do Limiar | 4 por nível nos níveis 2–5 = **16 no total**; **por mão**: 1ª carta grátis, depois 2, 3, 4…; a 6ª (+2 Atributo) custa sempre 2; pontos não gastos acumulam | `avisar` |
 | Dor do Abismo | gasto ≤ ganho | `avisar` |
 | Corrupção por nível | 1:2 · 2:5 · 3:9 · 4:14 · 5:20 | `avisar` |
 | Técnicas | `3 + Nível` | `avisar` |
 | Tiers | Tier 1 no nv2, Tier 2 no nv4, Tier 3 no nv5 | `avisar` |
 | Marcas | 1 no nv3, 2 no nv4, 3 no nv5 | `avisar` |
 
-🔑 **Uma conta que vale mostrar na interface, porque fecha exata.** O orçamento do Limiar não é
-aproximado — ele foi desenhado para **exatamente 6 cartas** do nível 1 ao 5:
-
-```
-orçamento total          +4 × 4 níveis (2,3,4,5)  = 16 pontos
-carta 1  grátis                                     0
-cartas 2–5   2 + 3 + 4 + 5                       = 14
-carta 6  (+2 Atributo), custo fixo                  2
-                                              total 16  ✓ exato
-```
-
-Se a ficha mostrar "16 pontos · 6 cartas", o jogador entende o desenho na hora. E qualquer build
-que não bata é imediatamente visível.
+~~Conta "16 pontos = 6 cartas" removida: estava errada. Ver Revisão 2 no topo.~~
 
 **Por que `avisar` e nunca `bloquear`:** o mestre concede exceções (uma quest, uma carta do Abismo,
 um acordo de mesa), e uma ficha que recusa uma build que o mestre autorizou é uma ficha que o

@@ -465,6 +465,67 @@ esses portões.
 
 ---
 
+## Decisões da ficha digital (2026-09-25)
+Respostas do Pedro às lacunas levantadas em `14-ficha-digital.md`.
+
+**D80 — Modificador de atributo: `floor((atributo − 10) / 2)`.** Vai para o Notion, dentro da seção
+*Atributos Iniciais*, com tabela simples. A tabela vai de 4–5 (−3) até 24–25 (+7), porque os
+atributos passam de 18 no jogo (ver D87) e caem abaixo de 8 com o Abismo (*Murcho* −4, *Sem Membro*).
+
+**D81 — Vantagem e desvantagem viram regra geral.** Texto aprovado:
+> **Vantagem:** Role 2d20 e use o maior resultado. **Desvantagem:** Role 2d20 e use o menor
+> resultado. Vantagem e desvantagem não se acumulam: várias fontes de vantagem continuam sendo
+> 2d20. Se você tiver vantagem e desvantagem ao mesmo tempo, elas se anulam e você rola
+> normalmente. Crítico e falha crítica valem para o dado que você usou. Na perícia *Defender*,
+> que usa dado próprio, role esse dado duas vezes.
+
+**D82 — Custo mínimo de magia é 1 Éter, para todas.** *"Seria o caso de modular ou intensificar e
+o custo de éter ser reduzido por alguma técnica; apesar de ser um truque, o mínimo continua sendo
+1, igual às outras magias."* A **única** conjuração de custo 0 é a magia de Nível 1 em intensidade
+Normal e sem modulação. Revoga o meu modelo de "dois pisos" (piso 1 só na Contida + piso 0 no
+total): é um piso só, igual para tudo. Consequências: Nível 2 Contida = 1 Éter; um truque Forçado
+com *Canalização Eficiente* (−1) custa 1, não 0. **Nível 1 não tem Contida** (D68) — vai escrito
+junto.
+
+**D83 — Sangramento escala: `+Xd4` por acerto, e cada acerto remove 1.** *"Um alvo com 3 de
+sangramento quando é acertado recebe 3d4 de dano e fica com sangramento 2; o próximo acerto dá
+2d4, e assim por diante."* Escala, mas com dificuldade: Dilacerar aplica 1 e cada acerto consome
+1, então **um atacante sozinho com Dilacerar mantém o alvo em Sangramento 1** — só sobe quem aplica
+2+ de uma vez. No Bazar, só 3 itens fazem isso, e os três têm trava (*Lâminas do Vazio* e *Machado
+Dentado* no crítico; *Machadinhas Gêmeas* com 2 acertos no mesmo alvo no mesmo turno, ~26% dos
+turnos). *Sangria Precisa* (carta rara) troca o dado para d6 → passa a ser `+Xd6`.
+⚠️ **Em aberto:** num acerto que aplica Sangramento num alvo que já sangra, o que resolve primeiro?
+Recomendo **consumir antes de aplicar** (o corte novo não sangra no mesmo golpe que o abriu). Muda
+só 1d4 por acerto, mas precisa estar escrito.
+
+**D84 — Estresse fica como está.** *"O estresse é feito para punir desavenças entre o grupo;
+chegar em 5 de estresse quer dizer que você deu ou recebeu 5 golpes de um aliado. A regra foi
+proposta pelos meus jogadores."* O descanso longo com saldo negativo (5 de estresse custa ~17,5
+Stamina e Éter contra ~13,5 recuperados) é **a punição funcionando**, não bug. Liberação obrigatória.
+
+**D85 — Ar acumula sem teto.** *"Ar 11 é alto, porém é a Luxária que carrega esse número; na
+raridade Luxária toda arma leve tem upgrade ao menos +2."* Ar racial + Ar de armadura somam.
+
+**D86 — O dano de Morrendo não é mitigável.** Ar, Ae e Resistência não reduzem o tique.
+
+**D87 — 🔑 Todo nível conquistado dá +2 pontos de atributo (+8 no nível 5).** Canônico, e escrito
+só no Limiar, verbatim:
+> ### **1. Bênção Imediata dos Atributos**
+> - Você recebe **+2 pontos de atributo** instantaneamente.
+> - Distribua esses 2 pontos como quiser entre seus atributos (FOR, DES, CON, INT, SAB).
+> **Lembre-se:** Modificadores de atributo aumentam a cada 2 pontos.
+
+Além disso a 6ª carta de toda mão é `+2 Atributo`, a 2 Pontos do Limiar.
+🔴 **Consequência para as réguas:** um atributo principal de 16 no nível 1 chega a **24 (+7)** no
+nível 5 só com a Bênção, sem contar cartas. As raras do Limiar pedem 20–24+ de propósito. **O modelo
+de DPR foi calibrado com mod +3** — no nível 5 o mod realista do atributo principal é +5 a +7.
+A referência de DPR nv5 (18–25) precisa ser **recalculada** antes de ser usada no rework do Batedor.
+
+🔴 **Correção minha:** eu tinha escrito que o orçamento do Limiar "fecha exato em 16 pontos / 6
+cartas". **Errado.** O custo crescente (grátis, 2, 3, 4…) é **por mão, a cada nível** — são 4 cartas
+grátis ao longo da campanha, não 1. O próprio Limiar diz: *"5-11 Cartas do Limiar escolhidas
+(dependendo de como gastou os pontos)"*.
+
 ## D68 — O andar de Nível 1 (truques)
 Todas as magias existentes **sobem 1 nível**: as antigas 1–4 viram 2–5. O novo Nível 1 são os
 20 truques. Consequência limpa: a regra do Teurgo deixa de ser "iguais ou abaixo do seu
@@ -562,27 +623,28 @@ como ajuste pontual. O que este rework tem que produzir, além do Batedor pronto
 - Corrigir Evasão passiva nas 7 páginas de classe do repo (D20).
 
 ### Lacunas de cânone abertas pela ficha digital (2026-09-25)
-Levantadas ao responder o agente de HTML (ver `14-ficha-digital.md`, 19 itens priorizados).
-Conferidas por busca na página Sistema, não de memória. **As duas primeiras são as mais graves
-do sistema inteiro**, porque tudo que é derivado depende delas:
+Ver `14-ficha-digital.md`. **Resolvidas pelo Pedro no mesmo dia (D80–D87):** modificador,
+vantagem/desvantagem, custo mínimo de magia, Sangramento, estresse, Ar, Morrendo, +2 atributos.
 
-| # | Lacuna | Por quê |
+⚠️ **O Notion não aceitou a edição da página Sistema pela API.** Ela revalida a página inteira e
+recusa ícones de callout que não suporta mais: `/icons/money_yellow.svg` (*Dinheiro*) e
+`/icons/mountain_yellow.svg` (*Superfícies*), e podem existir outros. Nada foi gravado (o erro 400
+recusa a operação inteira). Os textos de D80, D81 e D82 foram entregues ao Pedro para colar à mão.
+**Qualquer edição futura dessa página pela API vai falhar igual** até os ícones serem trocados.
+
+**Continuam abertas:**
+
+| # | Lacuna | Recomendação |
 |---|---|---|
-| 1 | 🔴 **O modificador de atributo não existe no Notion** | A seção *Atributos Iniciais* só lista os 5 atributos e o 4d6-drop-lowest. A única fonte é o CLAUDE.md, que não é canônico. Recomendo `floor((attr−10)/2)`. |
-| 2 | 🔴 **Vantagem e desvantagem nunca foram definidas** | Zero ocorrências de `2d20`. Usadas por 6 condições, superfícies, arma sem requisito e a ação *Esforçar-se*. Recomendo 2d20 maior/menor, cancelam, não acumulam. |
-| 3 | **O `mín. 1` da Contida é invenção do site** | O Notion diz só `Contida | −2 Éter`. Mas o piso **precisa** existir: sem ele, Nível 2 Contida custa 0 e os 20 truques da D68 nascem obsoletos. Recomendo piso 1 na Contida **e** piso 0 no custo final (dois pisos, etapas diferentes). |
-| 4 | **Sangramento X escala ou não?** | O card diz `+1d4` fixo; a **D29** diz *"proeza difícil merece dano absurdo"*, o que só faz sentido escalando. Recomendo `+Xd4`. É a decisão de maior impacto em DPR. |
-| 5 | **Ar racial + Ar de armadura acumulam? Tem teto?** | Anão Caxon (3) + Pesada Luxária (8) = **Ar 11**, que zera arma leve sem upgrade. Recomendo soma com teto 10. |
-| 6 | **O tique de Morrendo é mitigável?** | Se for, `Ae(Biológico, 4)` num PJ de 55 de Saúde reduz o tique a 1/rodada e desliga o relógio da morte. Recomendo não mitigável. |
-| 7 | **Liberar estresse é opcional?** | 5 pontos custam ~17,5 Stamina + 17,5 Éter; um Descanso Normal devolve 13,5. **Obrigatório, descansar fica pior que não descansar.** Recomendo opcional. |
-| 8 | **Exposto derivado de Paralisado é contínuo?** | Se for, todo ataque contra paralisado crita. Recomendo: concedido uma vez, consumido no primeiro acerto. |
-| 9 | **Saída de Exaurido e Oco** | "Encerra em qualquer descanso" permite sair com 0 de Stamina e sem a condição, e o gatilho não re-dispara. Recomendo `sai: recurso > 0`. |
-| 10 | **Como o Desnutrido diminui** | Só existe a regra de subir. Recomendo: comer no descanso longo remove 1. |
-| 11 | **Lista das "condições mentais"** | Citada pelo Teurgo e pelo Veterano, nunca escrita. |
-| 12 | **"1 cast por turno" existe?** | A magia *Projétil* diz que **ignora** uma regra que não está na página Sistema. |
-| 13 | **Descrição do Ofício(Ferraria)** está com o texto da Engenharia | Copiar-colar. O escopo certo é o da D36. |
-| 14 | **Intimidação: CON/FOR ou FOR/SAB?** | Ficha física e tabela de perícias discordam. Recomendo CON/FOR. |
-| 15 | **"+2 pontos de atributo por nível"** | O agente de HTML afirma que existe; **a tabela de Progressão do Notion não menciona.** O único `+2 Atributo` que eu conheço é a 6ª carta do Limiar. Ou é regra que eu não conheço, ou entrou por engano no site e está inflando todo derivado. |
+| 1 | Exposto derivado de Paralisado é contínuo? | Concedido uma vez, consumido no primeiro acerto |
+| 2 | Saída de Exaurido e Oco | `sai: recurso > 0` |
+| 3 | Como o Desnutrido diminui | Comer no descanso longo remove 1 |
+| 4 | Lista das "condições mentais" | Confuso, Amedrontado, Descontrolado, Enfeitiçado, Adormecido |
+| 5 | "1 cast por turno" existe? | *Projétil* diz que ignora uma regra que não está escrita |
+| 6 | Ofício(Ferraria) com o texto da Engenharia | Copiar-colar; escopo da D36 |
+| 7 | Intimidação: CON/FOR ou FOR/SAB? | CON/FOR |
+| 8 | Ordem do Sangramento num acerto que também aplica | Consumir antes de aplicar (D83) |
+| 9 | O dado de Defender soma atributo? | Não, senão conta Destreza duas vezes |
 
 🔴 **Dois bugs de desenho achados na mesma passada**, ambos da mesma família do bug do Instinto:
 

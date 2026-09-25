@@ -1,41 +1,90 @@
 {
   "schemaVersion": "regras-ficha/1.0",
-  "geradoEm": "2026-09-25",
+  "geradoEm": "2026-09-25 (rev. 2: decisões D80–D87 do Pedro)",
   "_doc": "Resposta do agente de balanceamento ao pedido docs/ficha-digital/01-pedido-ao-balanceamento.md. O texto com a justificativa de cada regra esta em 14-ficha-digital.md, na mesma numeracao P/C. Nada aqui e canonico so porque esta escrito: leia o campo 'status'.",
   "_status": {
     "canonico": "Esta no Notion ou numa decisao registrada em 09-decisoes-pedro.md. Pode ir para o site.",
     "decisao": "Arbitrado agora, com justificativa. PRECISA ser escrito no Notion pelo Pedro antes de virar regra de mesa.",
     "pedroDecide": "Nao e alcada do balanceamento. O campo 'recomendacao' traz a sugestao e o motivo.",
-    "pendente": "O canone nao responde. Valor null, com o motivo no campo 'pendente'."
+    "pendente": "O canone nao responde. Valor null, com o motivo no campo 'pendente'.",
+    "aprovado": "O Pedro decidiu (D80–D87). Vale como regra; o texto ainda precisa ser colado no Notion, porque a API recusou a edição da página Sistema (ícones de callout legados)."
   },
-
   "fontes": [
-    {"id": "notion-sistema", "uuid": "2b76e3a401d980c0ab7bc27a342f4ee1", "titulo": "Sistema Khalkaria", "conferidoEm": "2026-09-25"},
-    {"id": "notion-condicoes", "uuid": "3a66e3a401d9803f8862ea52ceef0b25", "titulo": "Condicoes"},
-    {"id": "notion-classes", "uuid": "3a66e3a401d9809b8eceec1f30be9fd2", "titulo": "Classes"},
-    {"id": "notion-limiar", "uuid": "3a66e3a401d9806db1f8d6975255f676", "titulo": "O Limiar"},
-    {"id": "decisoes", "arquivo": ".claude/skills/khalkaria-balance/references/09-decisoes-pedro.md", "nota": "Decisoes D1-D79 do Pedro. Tem precedencia sobre inferencia."}
+    {
+      "id": "notion-sistema",
+      "uuid": "2b76e3a401d980c0ab7bc27a342f4ee1",
+      "titulo": "Sistema Khalkaria",
+      "conferidoEm": "2026-09-25"
+    },
+    {
+      "id": "notion-condicoes",
+      "uuid": "3a66e3a401d9803f8862ea52ceef0b25",
+      "titulo": "Condicoes"
+    },
+    {
+      "id": "notion-classes",
+      "uuid": "3a66e3a401d9809b8eceec1f30be9fd2",
+      "titulo": "Classes"
+    },
+    {
+      "id": "notion-limiar",
+      "uuid": "3a66e3a401d9806db1f8d6975255f676",
+      "titulo": "O Limiar"
+    },
+    {
+      "id": "decisoes",
+      "arquivo": ".claude/skills/khalkaria-balance/references/09-decisoes-pedro.md",
+      "nota": "Decisoes D1-D79 do Pedro. Tem precedencia sobre inferencia."
+    }
   ],
-
   "atributos": {
-    "faixa": {"min": 8, "max": 18},
-    "lista": ["FOR", "DES", "CON", "INT", "SAB"],
+    "faixa": {
+      "criacao": [
+        8,
+        18
+      ],
+      "emJogo": "sem teto escrito; +2 por nivel (D87) e cartas levam a 22-24+, e o Abismo leva abaixo de 8",
+      "nota": "A tabela do Notion vai de 4-5 (-3) a 24-25 (+7)."
+    },
+    "lista": [
+      "FOR",
+      "DES",
+      "CON",
+      "INT",
+      "SAB"
+    ],
     "semCarisma": true,
     "modificador": {
       "formula": "floor((attr - 10) / 2)",
-      "status": "decisao",
-      "fonte": null,
-      "pendente": "P17/C13 - NAO EXISTE no Notion. Conferida a secao 'Atributos Iniciais' de 2b76e3a4 em 2026-09-25: so lista os 5 atributos e a criacao 4d6-drop-lowest. A unica fonte do repo e o CLAUDE.md, que nao e canonico. E a lacuna mais grave: todo derivado depende dela.",
-      "recomendacao": "floor. O valor impar fica morto (9 = 8), que e o padrao d20 e o que a regra de criacao ja pressupoe ao permitir mover 1 ponto entre atributos."
+      "status": "aprovado",
+      "fonte": "D80",
+      "pendente": "O Pedro disse ao agente de HTML que ja escreveu no Notion. Fetch de 2026-09-25 da pagina 2b76e3a4: ultima edicao 2026-09-22, sem o bloco; busca no workspace tambem nao acha. Troca para 'canonico' quando o fetch mostrar."
+    },
+    "ganhoPorNivel": {
+      "pontos": 2,
+      "niveis": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "totalNoNivel5": 8,
+      "status": "canonico",
+      "fonte": "notion-limiar > A Cada Nivel > 1. Bencao Imediata dos Atributos",
+      "verbatim": "Voce recebe +2 pontos de atributo instantaneamente. Distribua esses 2 pontos como quiser entre seus atributos (FOR, DES, CON, INT, SAB). Lembre-se: Modificadores de atributo aumentam a cada 2 pontos."
     }
   },
-
   "recursos": {
     "saude": {
       "max": "10 + classe.V*nivel + mod.CON*nivel",
       "min": "-floor(recurso.saude.max/2)",
       "gastoSemSaldo": "naoSeAplica",
-      "gatilhos": [{"quando": "atual<=0", "condicao": "morrendo"}],
+      "gatilhos": [
+        {
+          "quando": "atual<=0",
+          "condicao": "morrendo"
+        }
+      ],
       "morteEm": "atual < -floor(recurso.saude.max/2)",
       "status": "canonico",
       "fonte": "notion-sistema > Status; templates/classes"
@@ -44,12 +93,17 @@
       "max": "8 + classe.G*nivel + escolha(mod.FOR,mod.DES)*nivel",
       "modoEscolha": "maior",
       "modoEscolhaStatus": "pedroDecide",
-      "modoEscolhaRecomendacao": "P02 - 'maior'. 'escolhaFixa' criaria armadilha sem saida: Khalkaria nao tem respec, os atributos so mudam pela carta +2 do Limiar, e a escolha seria feita no nivel 1. 'maior' da o mesmo resultado para quem escolheria certo e nao pune quem nao sabia.",
+      "modoEscolhaRecomendacao": "P02 - 'maior'. Nao guarda estado, entao nao dessincroniza, e da o mesmo resultado para quem escolheria certo. (Correcao da rev. 1: eu tinha dito que os atributos so mudam pela carta +2 do Limiar. Errado: todo nivel da +2 pontos de atributo, D87.)",
       "min": 0,
       "gastoSemSaldo": "proibido",
       "gastoSemSaldoStatus": "decisao",
       "gastoSemSaldoMotivo": "P07 - nada no canone descreve Stamina negativa. Exaurido (0 Stamina, 'nao pode rolar pericias') E o piso punitivo. Permitir negativo cria recurso infinito sem consequencia escrita.",
-      "gatilhos": [{"quando": "atual==0", "condicao": "exaurido"}]
+      "gatilhos": [
+        {
+          "quando": "atual==0",
+          "condicao": "exaurido"
+        }
+      ]
     },
     "eter": {
       "max": "6 + classe.R*nivel + escolha(mod.INT,mod.SAB)*nivel",
@@ -59,56 +113,144 @@
       "gastoSemSaldo": "proibido",
       "perdaInvoluntariaNegativa": true,
       "gastoSemSaldoMotivo": "P07 - Oco diz 'Nao canaliza magias', entao gasto voluntario trava em 0. Mas o proprio Oco descreve Eter negativo (-5 a cada pericia falha), e a falha do Transbordante tambem leva a negativo. Gasto voluntario e perda involuntaria precisam de regras diferentes.",
-      "gatilhos": [{"quando": "atual<=0", "condicao": "oco"}],
-      "perdePersonagemEm": "atual <= -floor(recurso.eter.max/2)"
+      "gatilhos": [
+        {
+          "quando": "atual<=0",
+          "condicao": "oco"
+        }
+      ],
+      "perdePersonagemEm": "atual <= -floor(recurso.eter.max/2)",
+      "modoEscolhaRecomendacao": "P02 - 'maior'. Nao guarda estado, entao nao dessincroniza, e da o mesmo resultado para quem escolheria certo. (Correcao da rev. 1: eu tinha dito que os atributos so mudam pela carta +2 do Limiar. Errado: todo nivel da +2 pontos de atributo, D87.)"
     },
-
     "ordemMaximo": [
-      {"etapa": "base", "valor": {"saude": 10, "stamina": 8, "eter": 6}},
-      {"etapa": "coeficiente", "formula": "classe.V|G|R * nivel", "nota": "Origem Escravo '+1 Vitalidade' entra AQUI como V+1 (D19: Vitalidade e coeficiente, nao status)."},
-      {"etapa": "modificador", "formula": "escolha(mod.A,mod.B) * nivel"},
-      {"etapa": "bonusFixo", "exemplos": ["Rokhan +10 Saude", "Skal'ri +5 Eter", "Andarilho +10 Stamina", "Sangue Morto +5 Eter/+5 Stamina", "Difusao de Eter -10 Eter", "Vigor Mistico +5*nivel Saude"]},
-      {"etapa": "bonusRolado", "nota": "valor guardado por fonte, ver 'bonusRolados'"},
-      {"etapa": "percentual", "exemplos": ["Sacrificio Vivo *0.5"]},
-      {"etapa": "reducaoPermanente", "exemplos": ["Armadura de Kha -8 Eter", "Vytalia -1/-2/-3", "Exigente (acumulado)", "Cometa do Martir (acumulado)"]},
-      {"etapa": "condicao", "exemplos": ["Desnutrido -10*X Saude"]},
-      {"etapa": "piso", "formula": "max(0, valor)"}
+      {
+        "etapa": "base",
+        "valor": {
+          "saude": 10,
+          "stamina": 8,
+          "eter": 6
+        }
+      },
+      {
+        "etapa": "coeficiente",
+        "formula": "classe.V|G|R * nivel",
+        "nota": "Origem Escravo '+1 Vitalidade' entra AQUI como V+1 (D19: Vitalidade e coeficiente, nao status)."
+      },
+      {
+        "etapa": "modificador",
+        "formula": "escolha(mod.A,mod.B) * nivel"
+      },
+      {
+        "etapa": "bonusFixo",
+        "exemplos": [
+          "Rokhan +10 Saude",
+          "Skal'ri +5 Eter",
+          "Andarilho +10 Stamina",
+          "Sangue Morto +5 Eter/+5 Stamina",
+          "Difusao de Eter -10 Eter",
+          "Vigor Mistico +5*nivel Saude"
+        ]
+      },
+      {
+        "etapa": "bonusRolado",
+        "nota": "valor guardado por fonte, ver 'bonusRolados'"
+      },
+      {
+        "etapa": "percentual",
+        "exemplos": [
+          "Sacrificio Vivo *0.5"
+        ]
+      },
+      {
+        "etapa": "reducaoPermanente",
+        "exemplos": [
+          "Armadura de Kha -8 Eter",
+          "Vytalia -1/-2/-3",
+          "Exigente (acumulado)",
+          "Cometa do Martir (acumulado)"
+        ]
+      },
+      {
+        "etapa": "condicao",
+        "exemplos": [
+          "Desnutrido -10*X Saude"
+        ]
+      },
+      {
+        "etapa": "piso",
+        "formula": "max(0, valor)"
+      }
     ],
     "ordemMaximoStatus": "decisao",
     "ordemMaximoMotivo": "P03 - percentual ANTES de reducao permanente: Sacrificio Vivo corta o maximo que voce teria; Armadura de Kha e divida fixa de 8. Se a divida viesse antes da metade, custaria efetivamente 4, e a carta de trade-off ficaria mais barata para quem pegou a carta mais punitiva. Condicao por ultimo porque e reversivel.",
     "arredondamento": "floor, uma vez, no fim",
-
     "bonusRolados": {
       "modo": "rolaUmaVez",
       "nota": "Guarde o VALOR rolado por fonte, nao a formula: senao o maximo muda toda vez que a ficha recarrega.",
       "fontes": {
-        "reservas-profundas": {"recurso": "stamina", "dado": "2d6+8", "modo": "rolaUmaVez"},
-        "poco-arcano": {"recurso": "eter", "dado": "2d6+8", "modo": "rolaUmaVez"},
-        "sangue-espesso": {"recurso": "saude", "dado": "2d10+5", "modo": "rolaUmaVez"},
-        "pulmoes-titanicos": {"recurso": "saude", "dado": "3d12+8", "modo": "rolaUmaVez"},
-        "dom-da-ressurreicao": {"recurso": "saude|stamina", "valor": -10, "modo": "valorFixo"},
-        "cometa-do-martir": {"recurso": "eter", "dado": "-1d6", "modo": "rolaPorUso", "acumula": true, "nota": "P04 - nao e bonus de maximo, e divida que cresce: trade-off de magia de Nivel 5, cobrado a cada conjuracao."},
-        "exigente": {"recurso": "stamina,eter", "valor": -1, "modo": "acumuladorPorEvento", "evento": "falhaCritica", "acumula": true}
+        "reservas-profundas": {
+          "recurso": "stamina",
+          "dado": "2d6+8",
+          "modo": "rolaUmaVez"
+        },
+        "poco-arcano": {
+          "recurso": "eter",
+          "dado": "2d6+8",
+          "modo": "rolaUmaVez"
+        },
+        "sangue-espesso": {
+          "recurso": "saude",
+          "dado": "2d10+5",
+          "modo": "rolaUmaVez"
+        },
+        "pulmoes-titanicos": {
+          "recurso": "saude",
+          "dado": "3d12+8",
+          "modo": "rolaUmaVez"
+        },
+        "dom-da-ressurreicao": {
+          "recurso": "saude|stamina",
+          "valor": -10,
+          "modo": "valorFixo"
+        },
+        "cometa-do-martir": {
+          "recurso": "eter",
+          "dado": "-1d6",
+          "modo": "rolaPorUso",
+          "acumula": true,
+          "nota": "P04 - nao e bonus de maximo, e divida que cresce: trade-off de magia de Nivel 5, cobrado a cada conjuracao."
+        },
+        "exigente": {
+          "recurso": "stamina,eter",
+          "valor": -1,
+          "modo": "acumuladorPorEvento",
+          "evento": "falhaCritica",
+          "acumula": true
+        }
       },
       "status": "decisao"
     },
-
     "aoReduzirMax": "corta",
     "aoAumentarMax": "somaDiferenca",
     "grampoObrigatorio": "atual = min(atual, max(0, novoMax))",
     "grampoMotivo": "P06/P28 - Exaustao 4 divide CON, o que derruba a Saude maxima, o que sob 'corta' fatia a Saude atual. SEM o grampo em max(0,novoMax) a Exaustao 4 empurraria o personagem abaixo de -max/2 e mataria no recalculo, sem dano nenhum. Morte vem de dano, nunca de recalculo de maximo.",
     "aoReduzirMaxStatus": "decisao",
-
     "curaPassaMax": false,
     "atributoCuraItem": "usuario",
     "atributoCuraItemMotivo": "P09 - funciona nos dois casos: a pocao que voce bebe (usuario = alvo) e o Kit de Trauma aplicado no aliado caido, que nao pode usar o INT de um inconsciente. Efeito colateral bom: INT alto faz curandeiro melhor, e Medicina ja e pericia de INT.",
     "curaStatus": "decisao",
-
     "temporario": {
-      "recursos": ["saude", "stamina"],
+      "recursos": [
+        "saude",
+        "stamina"
+      ],
       "consumidoAntes": true,
       "acumula": "maior",
-      "expira": ["duracaoPropria", "fimCombate", "descansoLongo"],
+      "expira": [
+        "duracaoPropria",
+        "fimCombate",
+        "descansoLongo"
+      ],
       "status": "pedroDecide",
       "pendente": "P08 - LACUNA REAL. Busca por 'temporar' na pagina Sistema: zero ocorrencias. Saude temporaria so existe como efeito solto de item e tecnica, sem regra geral.",
       "recomendacao": "'maior', nao 'soma': as fontes ja sao grandes (Monge/Alquimista +20 Saude e +10 Stamina, companheiros 20/25/35) e somar duas num personagem de ~55 de Saude no nivel 5 mais que dobra a vida efetiva por um combate.",
@@ -120,140 +262,351 @@
       }
     }
   },
-
   "classes": {
-    "_orcamento": {"soma": 15, "nota": "D19 - toda classe distribui exatamente 15 pontos entre V, G e R. Classe nova que nao somar 15 e bug.", "status": "canonico"},
-
+    "_orcamento": {
+      "soma": 15,
+      "nota": "D19 - toda classe distribui exatamente 15 pontos entre V, G e R. Classe nova que nao somar 15 e bug.",
+      "status": "canonico"
+    },
     "espadachim": {
-      "V": 6, "G": 6, "R": 3,
-      "cd": {"formula": "10 + escolha(mod.DES,mod.FOR) + mod.CON", "modoEscolha": "maior", "modoEscolhaStatus": "pedroDecide"},
+      "V": 6,
+      "G": 6,
+      "R": 3,
+      "cd": {
+        "formula": "10 + escolha(mod.DES,mod.FOR) + mod.CON",
+        "modoEscolha": "maior",
+        "modoEscolhaStatus": "pedroDecide"
+      },
       "armaInicial": "Marciais",
-      "periciasIniciais": ["atacar", "defender"],
+      "periciasIniciais": [
+        "atacar",
+        "defender"
+      ],
       "recursos": [],
-      "estados": [{"id": "marca-do-duelo", "max": 1, "alvo": "1 criatura", "bonus": {"1": "+1/+1", "3": "+2/+2", "5": "+3/+3"}, "rastrear": "essencial"}]
+      "estados": [
+        {
+          "id": "marca-do-duelo",
+          "max": 1,
+          "alvo": "1 criatura",
+          "bonus": {
+            "1": "+1/+1",
+            "3": "+2/+2",
+            "5": "+3/+3"
+          },
+          "rastrear": "essencial"
+        }
+      ]
     },
     "batedor": {
-      "V": 4, "G": 7, "R": 4,
-      "cd": {"formula": "10 + mod.DES + mod.SAB"},
+      "V": 4,
+      "G": 7,
+      "R": 4,
+      "cd": {
+        "formula": "10 + mod.DES + mod.SAB"
+      },
       "armaInicial": "A Distancia",
-      "periciasIniciais": ["sobrevivencia", "percepcao"],
-      "recursos": [{
-        "id": "instinto", "nome": "Instinto", "max": "5",
-        "inicio": {"evento": "inicioCena", "valor": 0},
-        "ganhos": [
-          {"gatilho": "sucessoEmPericia", "valor": 1, "limite": {"n": 2, "por": "novaRodada"}, "limite2": {"n": 1, "por": "cena", "escopo": "porPericia"}},
-          {"gatilho": "acerto", "valor": 1, "limite": {"n": 1, "por": "novaRodada"}},
-          {"gatilho": "esquiva", "valor": 1, "limite": {"n": 1, "por": "novaRodada"}}
-        ],
-        "zeraEm": ["danoMaiorQueMetadeDaVidaMax", "condicao:atordoado", "condicao:desorientado", "condicao:desprevenido", "falhaEmPericia", "10minSemGanhar"],
-        "custoEmTecnicas": "gasto",
-        "gastos": {"pressentimento": "X", "sexto-sentido": 2, "segundo-folego": 3, "golpe-instinto": 4, "instinto-reativo": 5},
-        "_alertaDeDesenho": "BUG CONHECIDO, em correcao. 'Ao falhar qualquer pericia -> zera' e Atacar E pericia. Com 3 ataques a 60/35/10%, a chance de nao falhar nenhum e 0,60*0,35*0,10 = 2,1%: o Instinto zera em 97,9% dos turnos em que o Batedor ataca. Chegar ao teto 5 exige ~3 rodadas limpas = 0,0009%. Diagnostico completo em 13-batedor-diagnostico.md. O rework (D79) vai mudar este bloco.",
-        "status": "canonico-mas-em-rework"
-      }]
+      "periciasIniciais": [
+        "sobrevivencia",
+        "percepcao"
+      ],
+      "recursos": [
+        {
+          "id": "instinto",
+          "nome": "Instinto",
+          "max": "5",
+          "inicio": {
+            "evento": "inicioCena",
+            "valor": 0
+          },
+          "ganhos": [
+            {
+              "gatilho": "sucessoEmPericia",
+              "valor": 1,
+              "limite": {
+                "n": 2,
+                "por": "novaRodada"
+              },
+              "limite2": {
+                "n": 1,
+                "por": "cena",
+                "escopo": "porPericia"
+              }
+            },
+            {
+              "gatilho": "acerto",
+              "valor": 1,
+              "limite": {
+                "n": 1,
+                "por": "novaRodada"
+              }
+            },
+            {
+              "gatilho": "esquiva",
+              "valor": 1,
+              "limite": {
+                "n": 1,
+                "por": "novaRodada"
+              }
+            }
+          ],
+          "zeraEm": [
+            "danoMaiorQueMetadeDaVidaMax",
+            "condicao:atordoado",
+            "condicao:desorientado",
+            "condicao:desprevenido",
+            "falhaEmPericia",
+            "10minSemGanhar"
+          ],
+          "custoEmTecnicas": "gasto",
+          "gastos": {
+            "pressentimento": "X",
+            "sexto-sentido": 2,
+            "segundo-folego": 3,
+            "golpe-instinto": 4,
+            "instinto-reativo": 5
+          },
+          "_alertaDeDesenho": "BUG CONHECIDO, em correcao. 'Ao falhar qualquer pericia -> zera' e Atacar E pericia. Com 3 ataques a 60/35/10%, a chance de nao falhar nenhum e 0,60*0,35*0,10 = 2,1%: o Instinto zera em 97,9% dos turnos em que o Batedor ataca. Chegar ao teto 5 exige ~3 rodadas limpas = 0,0009%. Diagnostico completo em 13-batedor-diagnostico.md. O rework (D79) vai mudar este bloco.",
+          "status": "canonico-mas-em-rework"
+        }
+      ]
     },
     "brutalista": {
-      "V": 8, "G": 4, "R": 3,
-      "cd": {"formula": "10 + mod.FOR + mod.CON"},
+      "V": 8,
+      "G": 4,
+      "R": 3,
+      "cd": {
+        "formula": "10 + mod.FOR + mod.CON"
+      },
       "armaInicial": null,
-      "periciasIniciais": ["fortitude", "atacar"],
-      "recursos": [{
-        "id": "brutalidade", "nome": "Brutalidade", "max": "5",
-        "inicio": {"evento": "inicioCombate", "valor": 0},
-        "ganhos": [{"gatilho": "receber5OuMaisDeDanoDeUmaFonte", "valor": 1}],
-        "efeitoPassivo": "+1 de dano por ponto",
-        "gastoEspecial": "gastar tudo recupera Xd4 Stamina, X = pontos gastos",
-        "zeraEm": ["fimCombate"],
-        "custoEmTecnicas": "gasto"
-      }]
+      "periciasIniciais": [
+        "fortitude",
+        "atacar"
+      ],
+      "recursos": [
+        {
+          "id": "brutalidade",
+          "nome": "Brutalidade",
+          "max": "5",
+          "inicio": {
+            "evento": "inicioCombate",
+            "valor": 0
+          },
+          "ganhos": [
+            {
+              "gatilho": "receber5OuMaisDeDanoDeUmaFonte",
+              "valor": 1
+            }
+          ],
+          "efeitoPassivo": "+1 de dano por ponto",
+          "gastoEspecial": "gastar tudo recupera Xd4 Stamina, X = pontos gastos",
+          "zeraEm": [
+            "fimCombate"
+          ],
+          "custoEmTecnicas": "gasto"
+        }
+      ]
     },
     "teurgo": {
-      "V": 3, "G": 3, "R": 9,
-      "cd": {"formula": "10 + mod.INT + mod.SAB"},
+      "V": 3,
+      "G": 3,
+      "R": 9,
+      "cd": {
+        "formula": "10 + mod.INT + mod.SAB"
+      },
       "armaInicial": "Misticas",
-      "periciasIniciais": ["mistico", "conhecimento"],
+      "periciasIniciais": [
+        "mistico",
+        "conhecimento"
+      ],
       "recursos": [],
       "nota": "Sem contador proprio: o recurso e o Eter, e o eixo de build sao as Escolas (2/3/5 por nivel)."
     },
     "monge": {
-      "V": 5, "G": 5, "R": 5,
-      "cd": {"formula": "10 + mod.DES + mod.SAB"},
+      "V": 5,
+      "G": 5,
+      "R": 5,
+      "cd": {
+        "formula": "10 + mod.DES + mod.SAB"
+      },
       "armaInicial": "Marciais",
-      "periciasIniciais": ["movimento", "vontade"],
-      "recursos": [{
-        "id": "fluxo", "nome": "Fluxo", "max": "5",
-        "inicio": {"evento": "inicioCombate", "valor": 0},
-        "ganhos": [
-          {"gatilho": "acertoCorpoACorpo", "valor": 1, "limite": {"n": 2, "por": "novaRodada"}},
-          {"gatilho": "esquivarOuBloquear", "valor": 1, "limite": {"n": 1, "por": "novaRodada"}},
-          {"gatilho": "aplicarCondicao", "valor": 1},
-          {"gatilho": "moverSe", "valor": 1, "limite": {"n": 1, "por": "novaRodada"}}
-        ],
-        "zeraEm": ["fimCombate"],
-        "custoEmTecnicas": "requisito",
-        "custoEmTecnicasFonte": "texto da classe: 'o custo em tecnicas e apenas requisito, nao e gasto'",
-        "_clausulaMorta": "C20/P12 - 'se passar 1 rodada sem ganhar Fluxo ou receber dano' NUNCA dispara em combate, porque MOVER-SE ja da Fluxo. Um Monge que nao ganha Fluxo numa rodada e um que nao atacou, nao esquivou, nao aplicou condicao, nao andou e nao levou dano. Modelar so 'fimCombate'. Recomendacao ao Pedro: reescrever como 'Fora de combate, voce perde todo o Fluxo apos 1 rodada sem ganha-lo nem receber dano', ou apagar a segunda metade.",
-        "status": "decisao"
-      }]
+      "periciasIniciais": [
+        "movimento",
+        "vontade"
+      ],
+      "recursos": [
+        {
+          "id": "fluxo",
+          "nome": "Fluxo",
+          "max": "5",
+          "inicio": {
+            "evento": "inicioCombate",
+            "valor": 0
+          },
+          "ganhos": [
+            {
+              "gatilho": "acertoCorpoACorpo",
+              "valor": 1,
+              "limite": {
+                "n": 2,
+                "por": "novaRodada"
+              }
+            },
+            {
+              "gatilho": "esquivarOuBloquear",
+              "valor": 1,
+              "limite": {
+                "n": 1,
+                "por": "novaRodada"
+              }
+            },
+            {
+              "gatilho": "aplicarCondicao",
+              "valor": 1
+            },
+            {
+              "gatilho": "moverSe",
+              "valor": 1,
+              "limite": {
+                "n": 1,
+                "por": "novaRodada"
+              }
+            }
+          ],
+          "zeraEm": [
+            "fimCombate"
+          ],
+          "custoEmTecnicas": "requisito",
+          "custoEmTecnicasFonte": "texto da classe: 'o custo em tecnicas e apenas requisito, nao e gasto'",
+          "_clausulaMorta": "C20/P12 - 'se passar 1 rodada sem ganhar Fluxo ou receber dano' NUNCA dispara em combate, porque MOVER-SE ja da Fluxo. Um Monge que nao ganha Fluxo numa rodada e um que nao atacou, nao esquivou, nao aplicou condicao, nao andou e nao levou dano. Modelar so 'fimCombate'. Recomendacao ao Pedro: reescrever como 'Fora de combate, voce perde todo o Fluxo apos 1 rodada sem ganha-lo nem receber dano', ou apagar a segunda metade.",
+          "status": "decisao"
+        }
+      ]
     },
     "alquimista": {
-      "V": 4, "G": 6, "R": 5,
-      "cd": {"formula": "10 + mod.INT + mod.DES"},
+      "V": 4,
+      "G": 6,
+      "R": 5,
+      "cd": {
+        "formula": "10 + mod.INT + mod.DES"
+      },
       "armaInicial": null,
-      "periciasIniciais": ["oficio-alquimia", "conhecimento"],
-      "recursos": [{
-        "id": "reagentes", "nome": "Reagentes", "max": "(nivel * 3) + mod.INT",
-        "inicio": {"evento": "criacao", "valor": "max"},
-        "recupera": [
-          {"evento": "descansoLongo", "valor": "max"},
-          {"evento": "descansoCurto", "acao": "Buscar Reagentes", "formula": "1d4+nivel"}
-        ],
-        "custoEmTecnicas": "gasto"
-      }]
+      "periciasIniciais": [
+        "oficio-alquimia",
+        "conhecimento"
+      ],
+      "recursos": [
+        {
+          "id": "reagentes",
+          "nome": "Reagentes",
+          "max": "(nivel * 3) + mod.INT",
+          "inicio": {
+            "evento": "criacao",
+            "valor": "max"
+          },
+          "recupera": [
+            {
+              "evento": "descansoLongo",
+              "valor": "max"
+            },
+            {
+              "evento": "descansoCurto",
+              "acao": "Buscar Reagentes",
+              "formula": "1d4+nivel"
+            }
+          ],
+          "custoEmTecnicas": "gasto"
+        }
+      ]
     },
     "artilheiro": {
-      "V": 4, "G": 7, "R": 4,
-      "cd": {"formula": "10 + mod.DES + mod.SAB"},
+      "V": 4,
+      "G": 7,
+      "R": 4,
+      "cd": {
+        "formula": "10 + mod.DES + mod.SAB"
+      },
       "armaInicial": "A Distancia",
-      "periciasIniciais": ["atacar", "percepcao"],
-      "recursos": [{
-        "id": "concentracao", "nome": "Concentracao", "max": "3 + mod.SAB",
-        "inicio": {"evento": "inicioCombate", "valor": 0},
-        "efeitoPassivo": "soma sempre ao ataque",
-        "ganhos": [
-          {"gatilho": "acertar", "valor": 1},
-          {"gatilho": "critico", "valor": 2},
-          {"gatilho": "mirar", "valor": 2},
-          {"gatilho": "ficarParado", "valor": 1}
-        ],
-        "perdas": [
-          {"gatilho": "receberDano", "valor": -1},
-          {"gatilho": "mover", "valor": -1},
-          {"gatilho": "falharResistencia", "valor": -2},
-          {"gatilho": "aliadoCaiMorrendo", "valor": -3}
-        ],
-        "zeraEm": ["fimCombate"],
-        "custoEmTecnicas": "porTecnica",
-        "custoEmTecnicasPadrao": "requisito",
-        "_alertaDeDesenho": "C15/P11 - mesmo padrao do bug do Instinto: o teto nao alcanca os proprios gastadores. SAB 12 -> max 4, e Foco Absoluto (5 Conc.) e Tiro de Reflexo (5) ficam INALCANCAVEIS; Paciencia Inabalavel (6+) exige SAB 16. Nao e gate de build, e armadilha, porque a pagina nao avisa. E o texto nao diz se cada tecnica GASTA ou so EXIGE: 'soma sempre ao ataque' sugere requisito, mas Tiro na Cabeca fala em 'ponto de Concentracao gasto'. Entra na regua de recurso de classe da D79.",
-        "regraDaFicha": "Mostrar a tecnica acima do teto DESABILITADA COM O MOTIVO ESCRITO ('requer 5 Conc.; seu maximo e 4'). Nunca esconder e nunca bloquear em silencio.",
-        "status": "canonico-com-bug-conhecido"
-      }]
+      "periciasIniciais": [
+        "atacar",
+        "percepcao"
+      ],
+      "recursos": [
+        {
+          "id": "concentracao",
+          "nome": "Concentracao",
+          "max": "3 + mod.SAB",
+          "inicio": {
+            "evento": "inicioCombate",
+            "valor": 0
+          },
+          "efeitoPassivo": "soma sempre ao ataque",
+          "ganhos": [
+            {
+              "gatilho": "acertar",
+              "valor": 1
+            },
+            {
+              "gatilho": "critico",
+              "valor": 2
+            },
+            {
+              "gatilho": "mirar",
+              "valor": 2
+            },
+            {
+              "gatilho": "ficarParado",
+              "valor": 1
+            }
+          ],
+          "perdas": [
+            {
+              "gatilho": "receberDano",
+              "valor": -1
+            },
+            {
+              "gatilho": "mover",
+              "valor": -1
+            },
+            {
+              "gatilho": "falharResistencia",
+              "valor": -2
+            },
+            {
+              "gatilho": "aliadoCaiMorrendo",
+              "valor": -3
+            }
+          ],
+          "zeraEm": [
+            "fimCombate"
+          ],
+          "custoEmTecnicas": "porTecnica",
+          "custoEmTecnicasPadrao": "requisito",
+          "_alertaDeDesenho": "C15/P11 - mesmo padrao do bug do Instinto: o teto nao alcanca os proprios gastadores. SAB 12 -> max 4, e Foco Absoluto (5 Conc.) e Tiro de Reflexo (5) ficam INALCANCAVEIS; Paciencia Inabalavel (6+) exige SAB 16. Nao e gate de build, e armadilha, porque a pagina nao avisa. E o texto nao diz se cada tecnica GASTA ou so EXIGE: 'soma sempre ao ataque' sugere requisito, mas Tiro na Cabeca fala em 'ponto de Concentracao gasto'. Entra na regua de recurso de classe da D79.",
+          "regraDaFicha": "Mostrar a tecnica acima do teto DESABILITADA COM O MOTIVO ESCRITO ('requer 5 Conc.; seu maximo e 4'). Nunca esconder e nunca bloquear em silencio.",
+          "status": "canonico-com-bug-conhecido"
+        }
+      ]
     },
-
     "_emDesenho": {
       "vampiro": {
-        "V": 6, "G": 5, "R": 4,
-        "cd": {"formula": "10 + escolha(mod.FOR,mod.DES) + mod.INT"},
+        "V": 6,
+        "G": 5,
+        "R": 4,
+        "cd": {
+          "formula": "10 + escolha(mod.FOR,mod.DES) + mod.INT"
+        },
         "fonte": "D24",
         "status": "emDesenho",
         "nota": "Nao publicar. Registrado aqui para o schema ja prever o formato. Recurso 'Sangue' = Saude temporaria acima do maximo, teto 5 + (3*nivel); sem Sangue paga com Saude real sem perda de conversao; converte Sangue em Saude como 1 acao."
       },
-      "_pendentes": ["vigario", "necromante", "xama"],
+      "_pendentes": [
+        "vigario",
+        "necromante",
+        "xama"
+      ],
       "_nota": "D79 - o rework do Batedor e o prototipo da infraestrutura de classe. Quando fechar, a 'regua de recurso de classe' vira o molde destas quatro, e este bloco 'classes.<id>.recursos[]' deve ser o formato de saida dela."
     }
   },
-
   "derivados": {
     "evasao": {
       "passiva": "10 + mod.DES",
@@ -270,7 +623,10 @@
         "dadoSomaAtributo": false,
         "dadoSomaAtributoStatus": "decisao",
         "dadoSomaAtributoMotivo": "C01 - a Evasao Passiva ja e 10 + Mod.DES. Somar Mod.DES tambem no dado contaria Destreza duas vezes. Precisa de uma linha no Notion.",
-        "_obsoletas": ["'10 + Mod.Des + Prof.Defender' das paginas de classe: anterior a regra do dado", "'1d10 + Mod.Destreza' do data/sistema.json: chumba o dado do Experiente E soma Destreza"],
+        "_obsoletas": [
+          "'10 + Mod.Des + Prof.Defender' das paginas de classe: anterior a regra do dado",
+          "'1d10 + Mod.Destreza' do data/sistema.json: chumba o dado do Experiente E soma Destreza"
+        ],
         "_divergenciaInterna": "O Notion diz 'neste TURNO' na secao Defesa e 'nesta RODADA' na secao Sua Rodada. Como o escopo ja esta preso a um agressor, a diferenca so aparece se ele atacar fora do proprio turno. Recomendo 'neste turno do agressor'. Impacto baixo."
       },
       "acaoDefender": {
@@ -285,33 +641,89 @@
         "nota": "P15 - o alvo e a PERICIA (a rolagem), nao a Evasao: somar direto na Evasao seria buff incondicional. 'acumula: false' porque a acao ja e fraca (1 de 3 acoes por +2 numa reacao que talvez nem aconteca); deixar acumular convidaria a gastar 2 ou 3 acoes nisso."
       },
       "modificadores": [
-        {"fonte": "dryad-variante", "valor": 1},
-        {"fonte": "automato-fibra-de-carbono", "valor": 1},
-        {"fonte": "limiar-sombra-dancante", "valor": 1},
-        {"fonte": "abismo-esquiva-lendaria", "valor": 5, "extra": "+1 Reacao Maxima"},
-        {"fonte": "abismo-obvio", "valor": -5},
-        {"fonte": "monge-evasivo", "valor": "fluxo"},
-        {"fonte": "batedor-sexto-sentido", "valor": 2, "duracao": "turno"},
-        {"fonte": "condicao:atordoado", "valor": -2},
-        {"fonte": "condicao:enjoado", "valor": -2}
+        {
+          "fonte": "dryad-variante",
+          "valor": 1
+        },
+        {
+          "fonte": "automato-fibra-de-carbono",
+          "valor": 1
+        },
+        {
+          "fonte": "limiar-sombra-dancante",
+          "valor": 1
+        },
+        {
+          "fonte": "abismo-esquiva-lendaria",
+          "valor": 5,
+          "extra": "+1 Reacao Maxima"
+        },
+        {
+          "fonte": "abismo-obvio",
+          "valor": -5
+        },
+        {
+          "fonte": "monge-evasivo",
+          "valor": "fluxo"
+        },
+        {
+          "fonte": "batedor-sexto-sentido",
+          "valor": 2,
+          "duracao": "turno"
+        },
+        {
+          "fonte": "condicao:atordoado",
+          "valor": -2
+        },
+        {
+          "fonte": "condicao:enjoado",
+          "valor": -2
+        }
       ],
-      "porArmaduraOuEscudo": {"valor": 0, "status": "canonico", "fonte": "D66: 'Sem +Evasao em armadura'"}
+      "porArmaduraOuEscudo": {
+        "valor": 0,
+        "status": "canonico",
+        "fonte": "D66: 'Sem +Evasao em armadura'"
+      }
     },
-
     "cd": {
       "unica": true,
       "status": "canonico",
       "fonte": "D57: 'A CD e sempre a do portador, sem excecao'",
       "nota": "C12/P16 - quando a formula nao escreve 'Mod.', e sempre o modificador. Atributos vao de 8 a 18; '10 + Forca + Constituicao' num FOR 16/CON 14 daria CD 40 contra um d20. Vale para Brutalista, Espadachim e o '10 + Des + Sab' do template do Artilheiro.",
       "modificadores": [
-        {"fonte": "limiar-contra-magica-instintiva", "valor": 1},
-        {"fonte": "limiar-estudo-intenso", "valor": 2}
+        {
+          "fonte": "limiar-contra-magica-instintiva",
+          "valor": 1
+        },
+        {
+          "fonte": "limiar-estudo-intenso",
+          "valor": 2
+        }
       ]
     },
-
     "movimento": {
-      "basePorRaca": {"anao": 7.5, "humano": 9, "automato": 9, "corrompido": 9, "gruto": 9, "dryad": 10.5, "inseto": {"besouro": 7.5, "louva-a-deus": 9, "barata": 10.5}},
-      "ordem": ["base", "somas", "multiplicacoes", "fixos", "piso", "arredonda"],
+      "basePorRaca": {
+        "anao": 7.5,
+        "humano": 9,
+        "automato": 9,
+        "corrompido": 9,
+        "gruto": 9,
+        "dryad": 10.5,
+        "inseto": {
+          "besouro": 7.5,
+          "louva-a-deus": 9,
+          "barata": 10.5
+        }
+      },
+      "ordem": [
+        "base",
+        "somas",
+        "multiplicacoes",
+        "fixos",
+        "piso",
+        "arredonda"
+      ],
       "fixosVencemTudo": true,
       "entreFixosVence": "menor",
       "passo": 1.5,
@@ -320,95 +732,597 @@
       "status": "decisao",
       "motivo": "P18 - 'fixo vence tudo, e entre fixos vale o menor' e a unica regra nao arbitraria para quem esta Caido (=1,5) e Enraizado (=0) ao mesmo tempo. O arredondamento e necessario, nao cosmetico: todo valor base e soma e multiplo de 1,5, mas 10,5 * 0,5 = 5,25 nao e. Uma Dryad com Sobrepeso Leve produz a unica fracao do sistema.",
       "somas": [
-        {"fonte": "skalri", "valor": 1.5}, {"fonte": "suspensoes-lubrificadas", "valor": 3},
-        {"fonte": "passo-tremulo", "valor": -3}, {"fonte": "limiar-pernas-incansaveis", "valor": 3},
-        {"fonte": "limiar-passos-do-vento", "valor": 3}, {"fonte": "acao-acelerar", "valor": 3},
-        {"fonte": "condicao:lento", "valor": -3}, {"fonte": "escudo", "valor": -1.5, "nota": "D62 - todo escudo, sem excecao"}
+        {
+          "fonte": "skalri",
+          "valor": 1.5
+        },
+        {
+          "fonte": "suspensoes-lubrificadas",
+          "valor": 3
+        },
+        {
+          "fonte": "passo-tremulo",
+          "valor": -3
+        },
+        {
+          "fonte": "limiar-pernas-incansaveis",
+          "valor": 3
+        },
+        {
+          "fonte": "limiar-passos-do-vento",
+          "valor": 3
+        },
+        {
+          "fonte": "acao-acelerar",
+          "valor": 3
+        },
+        {
+          "fonte": "condicao:lento",
+          "valor": -3
+        },
+        {
+          "fonte": "escudo",
+          "valor": -1.5,
+          "nota": "D62 - todo escudo, sem excecao"
+        }
       ],
       "multiplicacoes": [
-        {"fonte": "condicao:sobrepeso-leve", "valor": 0.5},
-        {"fonte": "condicao:exaustao", "nivel": 3, "valor": 0.5},
-        {"fonte": "abismo-sem-membro", "valor": 0.5},
-        {"fonte": "monge-explosao", "valor": 2}
+        {
+          "fonte": "condicao:sobrepeso-leve",
+          "valor": 0.5
+        },
+        {
+          "fonte": "condicao:exaustao",
+          "nivel": 3,
+          "valor": 0.5
+        },
+        {
+          "fonte": "abismo-sem-membro",
+          "valor": 0.5
+        },
+        {
+          "fonte": "monge-explosao",
+          "valor": 2
+        }
       ],
       "fixos": [
-        {"fonte": "condicao:caido", "valor": 1.5},
-        {"fonte": "condicao:sobrepeso-extremo", "valor": 1.5},
-        {"fonte": "condicao:enraizado", "valor": 0},
-        {"fonte": "condicao:exaustao", "nivel": 4, "valor": 0}
+        {
+          "fonte": "condicao:caido",
+          "valor": 1.5
+        },
+        {
+          "fonte": "condicao:sobrepeso-extremo",
+          "valor": 1.5
+        },
+        {
+          "fonte": "condicao:enraizado",
+          "valor": 0
+        },
+        {
+          "fonte": "condicao:exaustao",
+          "nivel": 4,
+          "valor": 0
+        }
       ]
     },
-
     "armadura": {
       "fonteItem": "texto do campo Efeito do CSV do Bazar, na forma 'Ar N' e 'Ae(Tipo, N)'. NAO existe coluna dedicada.",
       "fonteItemStatus": "pendente",
       "fonteItemNota": "P19 - a gramatica e fechada (D63/D64/D67), entao da para extrair com confianca. O agente de balanceamento pode entregar Ar e Ae parseados em coluna propria para as 50 armaduras e 10 escudos: e o CSV dele. Basta pedir.",
       "acumulaNatural": "soma",
-      "acumulaNaturalStatus": "pedroDecide",
+      "acumulaNaturalStatus": "aprovado",
       "acumulaNaturalAlerta": "P19 - leitura literal (nada diz o contrario), mas o pior caso realista e Anao Caxon (Ar 3 natural) + armadura Pesada Luxaria (Ar 8, teto da D64) = Ar 11. Isso ZERA o dano de uma arma leve sem upgrade (1d6+DES+4 = ~7,5) e corta 76% de uma leve +2 (3d6+4 = ~14,5). O que segura hoje e a D42 (Incomum ignora 3 / Exotico ignora todo o Ar / Luxaria ignora Ar e Ae) e o limite de 1 armadura Pesada equipada.",
-      "acumulaNaturalRecomendacao": "soma com teto 10. A alternativa 'maior(Ar natural, Ar de armadura)' faz o Ar racial do Anao virar letra morta assim que ele veste qualquer armadura Incomum.",
       "teto": null,
-      "tetoPendente": "Nenhum teto escrito no canone.",
+      "tetoPendente": null,
       "aeMesmoTipo": "soma",
       "aeMesmoTipoStatus": "decisao",
       "aeCamadasSomam": true,
       "aeCamadasNota": "Ae(tipo) + Ae(categoria) + Ae(Todos) somam. Cada camada foi precificada de forma independente na D67 e os limites de equipar (1 pesada + 2 leves + 3 sintonizados) ja sao o teto real.",
-      "arNaturalPorRaca": {"anao-variante": 3, "dryad": 2, "dryad-variante": 3, "gruto-rokhan": 1, "inseto-besouro": 2},
-      "arBandasPorRaridade": {"ordinario": [1, 2], "incomum": [3, 4], "exotico": [5, 6], "luxaria": [7, 8], "fonte": "D64"},
+      "arNaturalPorRaca": {
+        "anao-variante": 3,
+        "dryad": 2,
+        "dryad-variante": 3,
+        "gruto-rokhan": 1,
+        "inseto-besouro": 2
+      },
+      "arBandasPorRaridade": {
+        "ordinario": [
+          1,
+          2
+        ],
+        "incomum": [
+          3,
+          4
+        ],
+        "exotico": [
+          5,
+          6
+        ],
+        "luxaria": [
+          7,
+          8
+        ],
+        "fonte": "D64"
+      },
       "aeEscada": {
-        "porTipo": {"ordinario": 3, "incomum": 5, "exotico": 7, "luxaria": 10},
-        "porCategoria": {"incomum": 2, "exotico": 4, "luxaria": 6},
-        "todos": {"incomum": 1, "exotico": 2, "luxaria": 3},
+        "porTipo": {
+          "ordinario": 3,
+          "incomum": 5,
+          "exotico": 7,
+          "luxaria": 10
+        },
+        "porCategoria": {
+          "incomum": 2,
+          "exotico": 4,
+          "luxaria": 6
+        },
+        "todos": {
+          "incomum": 1,
+          "exotico": 2,
+          "luxaria": 3
+        },
         "fonte": "D63/D67"
       },
-      "aeOrdinarioNaoExiste": {"valor": true, "fonte": "D67", "nota": "Ae(Ordinario, N) NAO existe: e Ar N. Se o parser encontrar isso num item, e erro de escrita, nao variante. Pendente no Notion: a magia Pele de Pedra usa Ae(Ordinario): 2/5/7/10 e deveria ser Ar."},
-      "penetracao": {"incomum": "ignora 3 de Ar", "exotico": "ignora todo o Ar", "luxaria": "ignora Ar e Ae", "fonte": "D42"}
+      "aeOrdinarioNaoExiste": {
+        "valor": true,
+        "fonte": "D67",
+        "nota": "Ae(Ordinario, N) NAO existe: e Ar N. Se o parser encontrar isso num item, e erro de escrita, nao variante. Pendente no Notion: a magia Pele de Pedra usa Ae(Ordinario): 2/5/7/10 e deveria ser Ar."
+      },
+      "penetracao": {
+        "incomum": "ignora 3 de Ar",
+        "exotico": "ignora todo o Ar",
+        "luxaria": "ignora Ar e Ae",
+        "fonte": "D42"
+      },
+      "acumulaNaturalFonte": "D85: 'Ar 11 e alto, porem e a Luxaria que carrega esse numero, na raridade Luxaria toda arma leve tem upgrade ao menos +2.'"
     },
-
-    "iniciativa": {"pericia": "iniciativa", "formula": "1d20 + mod.DES + prof.iniciativa", "status": "canonico"},
-
+    "iniciativa": {
+      "pericia": "iniciativa",
+      "formula": "1d20 + mod.DES + prof.iniciativa",
+      "status": "canonico"
+    },
     "inventario": {
       "equipamentos": "max(1, 2 + mod.FOR)",
       "bugigangas": "max(1, 10 + mod.FOR)",
       "itemEquipadoNaoPesa": true,
-      "empilhavel": {"unidadesPorSlot": 10, "status": "canonico", "fonte": "D5 + Notion: 'Itens leves contam como 1 bugiganga a cada 10 unidades'", "nota": "C10 - o '20 unidades = 1 slot' do CLAUDE.md esta ERRADO. O CSV (10:1) esta certo, e o REGRAS.PILHA=10 do js/ficha.js pode sair de 'pendente'."},
-      "limitesEquipar": {"armaduraPesada": 1, "armaduraLeve": 2, "sintonizados": 3, "armaComBeneficio": 1},
-      "sobrepeso": {"ok": "u <= m", "leve": "m < u < 2m", "extremo": "u >= 2m", "valeAPiorColuna": true}
+      "empilhavel": {
+        "unidadesPorSlot": 10,
+        "status": "canonico",
+        "fonte": "D5 + Notion: 'Itens leves contam como 1 bugiganga a cada 10 unidades'",
+        "nota": "10 unidades = 1 de peso para qualquer item Empilhavel (municao e lixo inclusos). O '20 = 1 slot' do CLAUDE.md foi corrigido na main (dffed90).",
+        "escopo": "toda a propriedade Empilhavel, nao so municao"
+      },
+      "limitesEquipar": {
+        "armaduraPesada": 1,
+        "armaduraLeve": 2,
+        "sintonizados": 3,
+        "armaComBeneficio": 1
+      },
+      "sobrepeso": {
+        "ok": "u <= m",
+        "leve": "m < u < 2m",
+        "extremo": "u >= 2m",
+        "valeAPiorColuna": true
+      }
+    },
+    "progressaoDeAtaques": {
+      "tipo": "display",
+      "linha": "totalAtacar + (i-1)*pma, para i = 1..n",
+      "exemplo": "Atacar +5, Mod +2, pma -5 -> '1o +7 . 2o +2 . 3o -3'",
+      "n": "floor(acoesDisponiveis / custoAtacar(armaEquipada))",
+      "nTabela": {
+        "Atacar(1)": 3,
+        "Atacar(2)": 1,
+        "Atacar(3)": 1,
+        "nota": "com 3 acoes. Leves, Marcial Precisa, Marcial Versatil, Distancia Simples e Arremesso sao Atacar(1); Pesadas, Marcial Pesada, Marcial Longa e Distancia Pesada sao Atacar(2); Pesada Brutal e Atacar(3)."
+      },
+      "nRecalculaCom": [
+        "condicao:atordoado (-2 acoes)",
+        "condicao:lento (-1)",
+        "condicao:confuso (-1)",
+        "abismo:lenda-viva (+1 acao)"
+      ],
+      "status": "decisao",
+      "motivo": "Pedido (a) do agente de HTML: quantos ataques mostrar. Nao e um numero fixo: e o que as acoes compram. Uma Pesada nunca mostra 3 linhas; uma Leve com Atordoado mostra 1.",
+      "modificadoresConhecidos": [
+        {
+          "fonte": "batedor-maos-rapidas",
+          "alvo": "pma",
+          "op": "soma",
+          "valor": 2,
+          "escopo": "turno",
+          "custo": "2 Stamina, Reacao",
+          "nota": "de -5 para -3"
+        },
+        {
+          "fonte": "espadachim-oportunista",
+          "alvo": "pma",
+          "op": "fixa",
+          "valor": -3,
+          "escopo": "rodada",
+          "custo": "5 Stamina, acao livre"
+        },
+        {
+          "fonte": "artilheiro-maos-velozes",
+          "alvo": "pma",
+          "op": "fixa",
+          "valor": -2,
+          "condicao": "armas de arremesso",
+          "custo": "passiva (Vendaval T1)"
+        },
+        {
+          "fonte": "artilheiro-tiro-duplo",
+          "alvo": "pma",
+          "op": "fixa",
+          "valor": 0,
+          "escopo": "proximo ataque",
+          "custo": "1 Acao, 3 Stamina, 2 Concentracao"
+        },
+        {
+          "fonte": "artilheiro-rajada-de-tiros",
+          "alvo": "pma",
+          "op": "fixa",
+          "valor": 0,
+          "escopo": "2 ataques da tecnica",
+          "custo": "1 acao, 3 Stamina"
+        },
+        {
+          "fonte": "artilheiro-vendaval-de-aco",
+          "alvo": "pma",
+          "op": "fixa",
+          "valor": 0,
+          "escopo": "3 ataques da tecnica",
+          "custo": "2 Acoes, 5 Stamina"
+        },
+        {
+          "fonte": "magia-pressagio",
+          "alvo": "pma",
+          "op": "fixa",
+          "valor": 0,
+          "escopo": "proxima rolagem de Atacar no turno",
+          "custo": "acao livre; se acertar, perde Eter = n de dados da arma (D70)"
+        },
+        {
+          "fonte": "monge-golpe-sequencial",
+          "alvo": "pma",
+          "op": "fixa",
+          "valor": 0,
+          "escopo": "1 ataque desarmado extra",
+          "custo": "acao livre, 5 Stamina, 1 Fluxo"
+        },
+        {
+          "fonte": "inseto-louva-a-deus",
+          "alvo": "pma",
+          "op": "fixa",
+          "valor": 0,
+          "escopo": "1 ataque 1d6, 1x/combate"
+        },
+        {
+          "fonte": "limiar-rajada-perfeita",
+          "alvo": "pma",
+          "op": "fixa",
+          "valor": 0,
+          "escopo": "4 ataques da tecnica",
+          "rara": true
+        },
+        {
+          "fonte": "limiar-carnificina",
+          "alvo": "pma",
+          "op": "fixa",
+          "valor": 0,
+          "escopo": "ataque extra ao matar",
+          "rara": true
+        },
+        {
+          "fonte": "limiar-laminas-dancantes",
+          "alvo": "pma",
+          "op": "lembrete",
+          "valor": "os dois ataques usam a mesma PMA",
+          "rara": true
+        }
+      ],
+      "modificadoresStatus": "parcial: sao as fontes que eu li nesta sessao (Batedor, Artilheiro, Limiar) e as das minhas referencias. A lista completa sai do parser do bloco C (tecnicas de todas as classes, racas, origens, itens), com validacao por conjunto."
     }
   },
-
   "pericias": [
-    {"id": "atacar", "nome": "Atacar", "atributos": ["FOR", "DES"], "modo": "porArma", "tags": ["fisica"], "bestiario": "prof_attack", "status": "canonico", "nota": "C03/P20 - o Notion define por arma: Corpo a Corpo Pesado usa FOR, Leve usa DES, a Distancia usa DES, Mistica usa a pericia Mistico. '(Forca ou Destreza)' na tabela e a UNIAO dos casos, nao escolha do jogador."},
-    {"id": "defender", "nome": "Defender", "atributos": [], "dadoPorGrau": ["1d6", "1d8", "1d10", "1d12", "2d8"], "tags": ["fisica"], "bestiario": "prof_defend", "status": "canonico", "nota": "C02 - unica pericia que escala por DADO. Nao soma atributo nenhum. NAO e 'resistencia'."},
-    {"id": "movimento", "nome": "Movimento", "atributos": ["FOR", "DES"], "modo": "maior", "tags": ["fisica"], "bestiario": "prof_movement"},
-    {"id": "fortitude", "nome": "Fortitude", "atributos": ["CON"], "tags": ["fisica", "resistencia"], "bestiario": "prof_fortitude"},
-    {"id": "vontade", "nome": "Vontade", "atributos": ["SAB"], "tags": ["resistencia"], "bestiario": "prof_will"},
-    {"id": "reflexos", "nome": "Reflexos", "atributos": ["DES"], "tags": ["fisica", "resistencia"], "bestiario": "prof_reflexes"},
-    {"id": "percepcao", "nome": "Percepcao", "atributos": ["SAB"], "tags": [], "bestiario": "prof_perception"},
-    {"id": "sobrevivencia", "nome": "Sobrevivencia", "atributos": ["SAB"], "tags": [], "bestiario": "prof_survival", "nota": "D73 - e o 4o caminho de obtencao do Bazar. 'Obtencao = Sobrevivencia CD N . <Regiao>'. Nao precisa de campo novo na ficha."},
-    {"id": "furtividade", "nome": "Furtividade", "atributos": ["DES"], "tags": ["fisica"], "bestiario": "prof_stealth"},
-    {"id": "crime", "nome": "Crime", "atributos": ["DES"], "tags": ["fisica"], "bestiario": "prof_crime"},
-    {"id": "iniciativa", "nome": "Iniciativa", "atributos": ["DES"], "tags": ["fisica"], "bestiario": "prof_initiative"},
-    {"id": "conhecimento", "nome": "Conhecimento", "atributos": ["INT"], "tags": [], "bestiario": "prof_knowledge"},
-    {"id": "medicina", "nome": "Medicina", "atributos": ["INT"], "tags": [], "bestiario": "prof_medicine"},
-    {"id": "investigacao", "nome": "Investigacao", "atributos": ["INT"], "tags": [], "bestiario": "prof_investigation"},
-    {"id": "religiao", "nome": "Religiao", "atributos": ["SAB"], "tags": [], "bestiario": "prof_religion", "status": "canonico", "nota": "C04 - Notion verbatim: 'Religiao | Define seus conhecimentos sobre religiao e a cosmologia. | 1d20+Sabedoria'. js/ficha.js e data/ficha.schema.json (x-attr 'int') estao ERRADOS. Correcao factual, pode aplicar direto."},
-    {"id": "mistico", "nome": "Mistico", "atributos": ["INT"], "tags": [], "bestiario": "prof_mystic"},
-    {"id": "convencimento", "nome": "Convencimento", "atributos": ["DES", "INT"], "modo": "maior", "tags": ["social"], "bestiario": "prof_persuasion"},
-    {"id": "intimidacao", "nome": "Intimidacao", "atributos": ["CON", "FOR"], "modo": "maior", "tags": ["fisica", "social"], "bestiario": "prof_intimidation", "status": "pedroDecide", "pendente": "C03 - ficha fisica diz (For/Sab), tabela de pericias diz (Con ou For).", "recomendacao": "CON ou FOR. SAB ja carrega 6 pericias (Vontade, Percepcao, Sobrevivencia, Religiao, Intuicao, Motivar) e CON carrega so Fortitude. Khalkaria nao tem Carisma de proposito: as sociais estao espalhadas em DES/INT, FOR/CON e SAB. Mover Intimidacao para SAB junta 7 pericias num atributo e esvazia CON."},
-    {"id": "intuicao", "nome": "Intuicao", "atributos": ["SAB"], "tags": [], "bestiario": "prof_insight"},
-    {"id": "enganacao", "nome": "Enganacao", "atributos": ["DES", "INT"], "modo": "maior", "tags": ["social"], "bestiario": "prof_deception"},
-    {"id": "motivar", "nome": "Motivar", "atributos": ["SAB"], "tags": ["social"], "bestiario": "prof_motivate"},
-    {"id": "oficio-ferraria", "nome": "Oficio(Ferraria)", "atributos": ["INT"], "tags": [], "bestiario": "prof_craft", "exigeTreino": true, "escopo": "Equipamentos: Arma, Armadura e Escudo", "status": "canonico", "nota": "C11 - a descricao no Notion esta com o texto da Engenharia ('fabricar uma Bugiganga'), copiar-colar. O escopo correto e o da D36."},
-    {"id": "oficio-engenharia", "nome": "Oficio(Engenharia)", "atributos": ["INT"], "tags": [], "bestiario": "prof_craft", "exigeTreino": true, "escopo": "Bugigangas: Bugiganga, Municao e Item Magico"},
-    {"id": "oficio-alquimia", "nome": "Oficio(Alquimia)", "atributos": ["INT"], "tags": [], "bestiario": "prof_craft", "exigeTreino": true, "escopo": "Consumiveis alquimicos", "exclusivaDaClasse": "alquimista", "fonte": "D51", "nota": "Item alquimico continua COMPRAVEL por qualquer um. O que e exclusivo e fabricar, nao possuir."}
+    {
+      "id": "atacar",
+      "nome": "Atacar",
+      "atributos": [
+        "FOR",
+        "DES"
+      ],
+      "modo": "porArma",
+      "tags": [
+        "fisica"
+      ],
+      "bestiario": "prof_attack",
+      "status": "canonico",
+      "nota": "C03/P20 - o Notion define por arma: Corpo a Corpo Pesado usa FOR, Leve usa DES, a Distancia usa DES, Mistica usa a pericia Mistico. '(Forca ou Destreza)' na tabela e a UNIAO dos casos, nao escolha do jogador."
+    },
+    {
+      "id": "defender",
+      "nome": "Defender",
+      "atributos": [],
+      "dadoPorGrau": [
+        "1d6",
+        "1d8",
+        "1d10",
+        "1d12",
+        "2d8"
+      ],
+      "tags": [
+        "fisica"
+      ],
+      "bestiario": "prof_defend",
+      "status": "canonico",
+      "nota": "C02 - unica pericia que escala por DADO. Nao soma atributo nenhum. NAO e 'resistencia'."
+    },
+    {
+      "id": "movimento",
+      "nome": "Movimento",
+      "atributos": [
+        "FOR",
+        "DES"
+      ],
+      "modo": "maior",
+      "tags": [
+        "fisica"
+      ],
+      "bestiario": "prof_movement"
+    },
+    {
+      "id": "fortitude",
+      "nome": "Fortitude",
+      "atributos": [
+        "CON"
+      ],
+      "tags": [
+        "fisica",
+        "resistencia"
+      ],
+      "bestiario": "prof_fortitude"
+    },
+    {
+      "id": "vontade",
+      "nome": "Vontade",
+      "atributos": [
+        "SAB"
+      ],
+      "tags": [
+        "resistencia"
+      ],
+      "bestiario": "prof_will"
+    },
+    {
+      "id": "reflexos",
+      "nome": "Reflexos",
+      "atributos": [
+        "DES"
+      ],
+      "tags": [
+        "fisica",
+        "resistencia"
+      ],
+      "bestiario": "prof_reflexes"
+    },
+    {
+      "id": "percepcao",
+      "nome": "Percepcao",
+      "atributos": [
+        "SAB"
+      ],
+      "tags": [],
+      "bestiario": "prof_perception"
+    },
+    {
+      "id": "sobrevivencia",
+      "nome": "Sobrevivencia",
+      "atributos": [
+        "SAB"
+      ],
+      "tags": [],
+      "bestiario": "prof_survival",
+      "nota": "D73 - e o 4o caminho de obtencao do Bazar. 'Obtencao = Sobrevivencia CD N . <Regiao>'. Nao precisa de campo novo na ficha."
+    },
+    {
+      "id": "furtividade",
+      "nome": "Furtividade",
+      "atributos": [
+        "DES"
+      ],
+      "tags": [
+        "fisica"
+      ],
+      "bestiario": "prof_stealth"
+    },
+    {
+      "id": "crime",
+      "nome": "Crime",
+      "atributos": [
+        "DES"
+      ],
+      "tags": [
+        "fisica"
+      ],
+      "bestiario": "prof_crime"
+    },
+    {
+      "id": "iniciativa",
+      "nome": "Iniciativa",
+      "atributos": [
+        "DES"
+      ],
+      "tags": [
+        "fisica"
+      ],
+      "bestiario": "prof_initiative"
+    },
+    {
+      "id": "conhecimento",
+      "nome": "Conhecimento",
+      "atributos": [
+        "INT"
+      ],
+      "tags": [],
+      "bestiario": "prof_knowledge"
+    },
+    {
+      "id": "medicina",
+      "nome": "Medicina",
+      "atributos": [
+        "INT"
+      ],
+      "tags": [],
+      "bestiario": "prof_medicine"
+    },
+    {
+      "id": "investigacao",
+      "nome": "Investigacao",
+      "atributos": [
+        "INT"
+      ],
+      "tags": [],
+      "bestiario": "prof_investigation"
+    },
+    {
+      "id": "religiao",
+      "nome": "Religiao",
+      "atributos": [
+        "SAB"
+      ],
+      "tags": [],
+      "bestiario": "prof_religion",
+      "status": "canonico",
+      "nota": "C04 - Notion verbatim: 'Religiao | Define seus conhecimentos sobre religiao e a cosmologia. | 1d20+Sabedoria'. js/ficha.js e data/ficha.schema.json (x-attr 'int') estao ERRADOS. Correcao factual, pode aplicar direto."
+    },
+    {
+      "id": "mistico",
+      "nome": "Mistico",
+      "atributos": [
+        "INT"
+      ],
+      "tags": [],
+      "bestiario": "prof_mystic"
+    },
+    {
+      "id": "convencimento",
+      "nome": "Convencimento",
+      "atributos": [
+        "DES",
+        "INT"
+      ],
+      "modo": "maior",
+      "tags": [
+        "social"
+      ],
+      "bestiario": "prof_persuasion"
+    },
+    {
+      "id": "intimidacao",
+      "nome": "Intimidacao",
+      "atributos": [
+        "CON",
+        "FOR"
+      ],
+      "modo": "maior",
+      "tags": [
+        "fisica",
+        "social"
+      ],
+      "bestiario": "prof_intimidation",
+      "status": "pedroDecide",
+      "pendente": "C03 - ficha fisica diz (For/Sab), tabela de pericias diz (Con ou For).",
+      "recomendacao": "CON ou FOR. SAB ja carrega 6 pericias (Vontade, Percepcao, Sobrevivencia, Religiao, Intuicao, Motivar) e CON carrega so Fortitude. Khalkaria nao tem Carisma de proposito: as sociais estao espalhadas em DES/INT, FOR/CON e SAB. Mover Intimidacao para SAB junta 7 pericias num atributo e esvazia CON."
+    },
+    {
+      "id": "intuicao",
+      "nome": "Intuicao",
+      "atributos": [
+        "SAB"
+      ],
+      "tags": [],
+      "bestiario": "prof_insight"
+    },
+    {
+      "id": "enganacao",
+      "nome": "Enganacao",
+      "atributos": [
+        "DES",
+        "INT"
+      ],
+      "modo": "maior",
+      "tags": [
+        "social"
+      ],
+      "bestiario": "prof_deception"
+    },
+    {
+      "id": "motivar",
+      "nome": "Motivar",
+      "atributos": [
+        "SAB"
+      ],
+      "tags": [
+        "social"
+      ],
+      "bestiario": "prof_motivate"
+    },
+    {
+      "id": "oficio-ferraria",
+      "nome": "Oficio(Ferraria)",
+      "atributos": [
+        "INT"
+      ],
+      "tags": [],
+      "bestiario": "prof_craft",
+      "exigeTreino": true,
+      "escopo": "Equipamentos: Arma, Armadura e Escudo",
+      "status": "canonico",
+      "nota": "C11 - a descricao no Notion esta com o texto da Engenharia ('fabricar uma Bugiganga'), copiar-colar. O escopo correto e o da D36."
+    },
+    {
+      "id": "oficio-engenharia",
+      "nome": "Oficio(Engenharia)",
+      "atributos": [
+        "INT"
+      ],
+      "tags": [],
+      "bestiario": "prof_craft",
+      "exigeTreino": true,
+      "escopo": "Bugigangas: Bugiganga, Municao e Item Magico"
+    },
+    {
+      "id": "oficio-alquimia",
+      "nome": "Oficio(Alquimia)",
+      "atributos": [
+        "INT"
+      ],
+      "tags": [],
+      "bestiario": "prof_craft",
+      "exigeTreino": true,
+      "escopo": "Consumiveis alquimicos",
+      "exclusivaDaClasse": "alquimista",
+      "fonte": "D51",
+      "nota": "Item alquimico continua COMPRAVEL por qualquer um. O que e exclusivo e fabricar, nao possuir."
+    }
   ],
-
   "periciasNota": "C11 - sao 24. O generico Oficio(X) deixou de existir. As 3 de Oficio exigem treino (D48 + Notion: 'Voce nao pode utilizar essa pericia sem te-la treinada'). Inimigos e NPCs nao fabricam, entao o export para o Bestiario manda um prof_craft so.",
-
   "proficiencia": {
-    "graus": [0, 2, 4, 6, 8],
-    "rotulos": ["Leigo", "Treinado", "Experiente", "Mestre", "Lendario"],
+    "graus": [
+      0,
+      2,
+      4,
+      6,
+      8
+    ],
+    "rotulos": [
+      "Leigo",
+      "Treinado",
+      "Experiente",
+      "Mestre",
+      "Lendario"
+    ],
     "empilha": true,
     "empilhaRegra": "Duas fontes de 'Treinado em X' fazem Experiente. Nenhuma fonte concede um grau nomeado acima de Treinado: elas empilham.",
     "status": "canonico",
@@ -417,19 +1331,14 @@
     "calculadaOuManualStatus": "decisao",
     "calculadaOuManualMotivo": "P23 - calcular exige dado estruturado de 259 habilidades de classe, 168 cartas, 7 racas e 19 origens, tudo em prosa. Meio-termo recomendado: o select continua manual, mas ao lado a ficha lista as fontes DA BUILD DO JOGADOR que mencionam treinamento, como checklist. Resolve o problema real (esquecer uma concessao) sem exigir parser confiavel."
   },
-
   "testes": {
     "vantagem": "2d20, fica com o maior",
     "desvantagem": "2d20, fica com o menor",
     "cancelam": true,
     "acumulam": false,
-    "criticoComUm20": true,
     "aplicaDefender": true,
     "aplicaDefenderNota": "Defender nao usa d20. Vantagem em Defender = rolar o DADO DE DEFENDER duas vezes (2x 1d10 para um Experiente), nao 2d20. Se isso nao ficar escrito, alguem vai implementar 2d20.",
-    "status": "pedroDecide",
-    "pendente": "P24 - LACUNA REAL. Zero ocorrencias de '2d20' na pagina Sistema. A mecanica e usada por 6 condicoes, por superficies (Grama Alta), por arma sem requisito e pela acao Esforcar-se, e NUNCA e definida. A unica definicao do repo e uma carta do Limiar.",
-    "recomendacaoMotivo": "'cancelam true, acumulam false' e o par que mantem a mesa jogavel: se acumulassem, um personagem Cego + Exausto 1 + com arma sem requisito rolaria 4d20 pegando o menor.",
-
+    "status": "aprovado",
     "critico": {
       "natural20": "critico",
       "natural1": "falhaCritica",
@@ -437,214 +1346,846 @@
       "status": "canonico",
       "verbatim": "Em ordem de regra, quase todas as rolagens utilizam o d20. Critico: Se tirar 20 no dado voce crita. (Margem de Ameaca pode aumentar os resultados em que voce crita) Falha Critica: Se tirar 1 no dado voce falha criticamente.",
       "nota": "P25 - 'critico' NAO e 'sucesso automatico'. A regra diz que voce CRITA, e o que isso significa depende do contexto: em ataque dobra os dados, em fabricacao devolve um material.",
-      "margemDeAmeaca": {"padrao": 20, "porArma": true, "status": "canonico", "fonte": "notion-sistema (registrado; da baixa na pendencia D22)"},
-      "multiplicador": {"padrao": 2, "porArma": true, "status": "canonico", "fonte": "notion-sistema (registrado; da baixa na pendencia D31)"},
+      "margemDeAmeaca": {
+        "padrao": 20,
+        "porArma": true,
+        "status": "canonico",
+        "fonte": "notion-sistema (registrado; da baixa na pendencia D22)"
+      },
+      "multiplicador": {
+        "padrao": 2,
+        "porArma": true,
+        "status": "canonico",
+        "fonte": "notion-sistema (registrado; da baixa na pendencia D31)"
+      },
       "dobra": "dadosArma",
       "dobraVerbatim": "Dano Critico: Role o dobro de dados da arma + Mod. Atributo da arma",
       "dobraNota": "So os dados DA ARMA. O +1d4 do Sangramento e os dados extras de tecnica NAO dobram. E tambem a premissa do modelo de DPR canonico (coeficiente 1,20 = 1,05 acertos + 0,15 de dados extras do critico); se dobrasse tudo, a regua de preco do Bazar inteira estaria errada.",
       "_colisaoDeTermo": "P25 - ATENCAO: 'critico' tem DUAS definicoes no sistema e a ficha NAO pode ter uma funcao ehCritico() unica. (1) Regra geral: 20/1 natural no d20. (2) Fabricacao (D49): margem de +-10 sobre a CD ('ficar 10 ou mais abaixo da CD' / 'superar a CD em 10 ou mais'). E a D52 acrescenta um terceiro caso: Alquimia perde os reagentes em QUALQUER falha. E a condicao Bebado acrescenta um quarto: '2 natural em qualquer teste conta como falha critica' - a faixa de falha critica tambem e modificavel."
-    }
+    },
+    "fonte": "D81",
+    "criticoNoDadoUsado": true,
+    "criticoNota": "Critico e falha critica valem para o dado que voce USOU. Com desvantagem, um 20 no dado descartado nao crita.",
+    "pendente": "O Pedro disse ao agente de HTML que ja escreveu no Notion. Fetch de 2026-09-25 da pagina 2b76e3a4: ultima edicao 2026-09-22, sem o bloco; busca no workspace tambem nao acha. Troca para 'canonico' quando o fetch mostrar."
   },
-
   "condicoes": [
-    {"id": "morrendo", "nome": "Morrendo", "grupoUI": "criticas", "tags": [],
-     "entra": "recurso.saude.atual <= 0", "sai": "recurso.saude.atual > 0",
-     "implica": ["inconsciente"], "implicaModo": "derivada",
-     "efeitos": [{"alvo": "danoPorRodada", "op": "soma", "valor": "floor(recurso.saude.max*0.1)", "tipoDano": "biologico", "momento": "inicioTurnoAfetado", "mitigavel": false}],
-     "morteEm": "recurso.saude.atual < -floor(recurso.saude.max/2)",
-     "estabilizar": "2 acoes + Medicina CD 20",
-     "desestabiliza": "aoSerAcertado",
-     "status": "decisao",
-     "nota": "P52 - 'mitigavel: false' e DECISAO com motivo: um personagem com Ae(Biologico,4) e 55 de Saude maxima levaria 5-4 = 1 por rodada, e o relogio da morte praticamente desligaria. Nao e um ataque, e o corpo falhando. 'desestabiliza: aoSerAcertado' tambem e decisao: o texto diz 'ser atacado novamente', mas desfazer 2 acoes + Medicina CD 20 num ataque que ERROU e um swing enorme decidido por um dado que o medico nao pode influenciar."},
-
-    {"id": "inconsciente", "nome": "Inconsciente", "grupoUI": "criticas", "tags": ["mental"],
-     "efeitos": [{"alvo": "controle", "op": "semAcao"}, {"alvo": "tag.resistencia", "op": "falhaAuto"}],
-     "duracao": null, "duracaoPendente": "D16 - sem regra de expiracao no canone"},
-
-    {"id": "exaurido", "nome": "Exaurido", "grupoUI": "criticas", "tags": [],
-     "entra": "recurso.stamina.atual == 0", "sai": "recurso.stamina.atual > 0",
-     "efeitos": [{"alvo": "todasAsPericias", "op": "semAcao", "nota": "nao pode rolar pericias"}],
-     "status": "decisao",
-     "nota": "P32 - o card diz 'encerra em qualquer descanso', mas o descanso recupera 2 status A ESCOLHA. Quem escolher Saude e Eter sai do descanso com 0 de Stamina e SEM Exaurido, e o gatilho de entrada ('ao reduzir a 0') nao dispara de novo porque ele ja esta em 0. Resultado: 0 de Stamina sem penalidade, para sempre. Recomendo 'sai: stamina > 0', tratando o descanso como o modo normal de sair, nao como a condicao de saida."},
-
-    {"id": "oco", "nome": "Oco", "grupoUI": "criticas", "tags": [],
-     "entra": "recurso.eter.atual <= 0", "sai": "recurso.eter.atual > 0",
-     "efeitos": [{"alvo": "recurso.eter", "op": "soma", "valor": -5, "gatilho": "aoFalharPericia"}, {"alvo": "conjurar", "op": "semAcao"}],
-     "perdePersonagemEm": "recurso.eter.atual <= -floor(recurso.eter.max/2)",
-     "status": "decisao",
-     "nota": "Mesmo buraco do Exaurido. E C14: o card diz 'ao ALCANCAR metade' (<=) enquanto o Morrendo diz 'ao ULTRAPASSAR' (<). Recomendo padronizar em 'ultrapassar' nos dois."},
-
-    {"id": "exaustao", "nome": "Exaustao 1-5", "grupoUI": "criticas", "tags": [],
-     "x": {"tipo": "nivel", "inicial": 1, "max": 5, "decrementa": "descansoLongo"},
-     "cumulativa": true,
-     "niveis": {
-       "1": [{"alvo": "tag.fisica", "op": "desvantagem"}],
-       "2": [{"alvo": "danoCausado", "op": "multiplica", "valor": 0.5, "nota": "no dano FINAL, depois de dados e modificadores, com floor"}],
-       "3": [{"alvo": "todosOsTestes", "op": "desvantagem"}, {"alvo": "movimento", "op": "multiplica", "valor": 0.5}],
-       "4": [{"alvo": "atributos", "op": "multiplica", "valor": 0.5}, {"alvo": "movimento", "op": "fixa", "valor": 0}],
-       "5": [{"alvo": "estado", "op": "fixa", "valor": "morte"}]
-     },
-     "metadeAtributo": "atributo", "arred": "floor", "recalculaMax": true,
-     "status": "decisao",
-     "nota": "P28 - divide o ATRIBUTO (e o que o texto diz; dividir o modificador seria quase inocuo). FOR 16 -> 8 -> mod -1. E devastador, e devia ser: Exaustao 4 e um degrau da morte. ATENCAO ao grampo obrigatorio em recursos.grampoObrigatorio: a queda de CON derruba a Saude maxima, e sem max(0,novoMax) a Exaustao 4 mataria no recalculo, sem dano nenhum."},
-
-    {"id": "desnutrido", "nome": "Desnutrido X", "grupoUI": "criticas", "tags": ["fisica"],
-     "x": {"tipo": "intensidade", "inicial": 1, "incrementa": "noiteSemComer", "decrementa": null},
-     "efeitos": [
-       {"alvo": "tag.fisica", "op": "desvantagem"},
-       {"alvo": "custo.stamina", "op": "multiplica", "valor": 2},
-       {"alvo": "recurso.saude.max", "op": "soma", "valor": "-10 * X"}
-     ],
-     "morteEm": "recurso.saude.max == 0",
-     "status": "pedroDecide",
-     "pendente": "P27 - COMO DIMINUI nao esta escrito em lugar nenhum. So existe a regra de subir (+1 por noite sem comer).",
-     "recomendacao": "Comer num descanso longo remove 1, espelhando a Exaustao."},
-
-    {"id": "exposto", "nome": "Exposto", "grupoUI": "combate", "tags": [],
-     "efeitos": [{"alvo": "proximoAtaqueQueAcertar", "op": "fixa", "valor": "critico"}],
-     "removeEm": "aoSerAcertado",
-     "concedidaUmaVez": true,
-     "status": "pedroDecide",
-     "nota": "P31 - CRITICO para o modelo de dados. Exposto e implicada por Desprevenido, Paralisado e Adormecido, mas tem que ser instancia SEPARADA e concedida UMA VEZ, ao entrar no estado. Se fosse derivada continua, seria reaplicada enquanto o alvo estivesse Paralisado e TODO ataque contra um paralisado seria critico - muito alem de 'morte funcional'."},
-
-    {"id": "sangramento", "nome": "Sangramento X", "grupoUI": "combate", "tags": ["fisica"],
-     "x": {"tipo": "pilha", "inicial": 1, "decrementa": "aoSerAcertado"},
-     "efeitos": [{"alvo": "danoRecebidoPorAtaque", "op": "soma", "valor": "1d4", "tipoDano": "biologico", "escalaComX": null}],
-     "status": "pedroDecide",
-     "pendente": "P27 - DECISAO DE MAIOR IMPACTO EM DPR DESTA LISTA. O card diz '+1d4' fixo. Mas a D29 registra o principio do Pedro: 'subir de nivel de Sangramento e genuinamente dificil porque todo ataque que acerta remove 1 marca [...] e proeza dificil merece dano absurdo'. Com +1d4 fixo nao ha proeza nenhuma: acumular marcas nao da NADA a mais.",
-     "recomendacao": "+Xd4, coerente com a D29, e o card precisa ser reescrito. Numero: Sangramento 3 com o alvo levando 3 acertos na rodada = +7,5 na leitura fixa contra +22,5 na leitura escalada."},
-
-    {"id": "invisivel", "nome": "Invisivel", "grupoUI": "sensoriais", "tags": [],
-     "efeitos": [{"alvo": "pericia.furtividade", "op": "fixa", "valor": "sucessoAutomatico"}, {"alvo": "pericia.defender", "op": "soma", "valor": 5}, {"alvo": "pericia.atacar", "op": "soma", "valor": 5}],
-     "removeEm": "atacarOuReceberDano"},
-
-    {"id": "atordoado", "nome": "Atordoado", "grupoUI": "combate", "tags": ["fisica"],
-     "efeitos": [{"alvo": "acoes", "op": "soma", "valor": -2}, {"alvo": "evasao", "op": "soma", "valor": -2}],
-     "duracao": {"ate": "inicioProximoTurnoAfetado"},
-     "status": "decisao",
-     "nota": "P29 - '-2 Acoes e Evasao' = -2 nos dois, nao 'perde a Evasao': perder a Evasao inteira poria Atordoado acima de Paralisado, e o proprio site ja le -2. A duracao conta a partir do AFETADO: 'ate a proxima rodada' lido como o contador de rodada viraria faria a mesma condicao valer quase nada em quem age por ultimo na iniciativa e um turno inteiro em quem age primeiro. A D32 ja abriu o precedente com 'Desorientado dura 1 turno'."},
-
-    {"id": "desorientado", "nome": "Desorientado", "grupoUI": "combate", "tags": ["fisica"],
-     "efeitos": [{"alvo": "pericia.atacar", "op": "soma", "valor": -2}, {"alvo": "pericia.defender", "op": "soma", "valor": -2}],
-     "duracao": {"ate": "fimProximoTurnoAfetado", "rodadas": 1}, "status": "canonico", "fonte": "D32"},
-
-    {"id": "caido", "nome": "Caido", "grupoUI": "combate", "tags": ["fisica"],
-     "efeitos": [{"alvo": "movimento", "op": "fixa", "valor": 1.5}, {"alvo": "retaliar", "op": "semReacao"}, {"alvo": "pericia.defender", "op": "soma", "valor": -2}],
-     "sai": "1 acao para levantar"},
-
-    {"id": "desprevenido", "nome": "Desprevenido", "grupoUI": "combate", "tags": [],
-     "efeitos": [{"alvo": "reagirAAtaques", "op": "semReacao"}],
-     "implica": ["exposto"], "implicaModo": "separada",
-     "vemDe": "Furtividade", "status": "canonico"},
-
-    {"id": "paralisado", "nome": "Paralisado", "grupoUI": "fisicas", "tags": ["fisica"],
-     "efeitos": [{"alvo": "acoes", "op": "semAcao"}, {"alvo": "reacoes", "op": "semReacao"}, {"alvo": "tag.resistencia", "op": "falhaAuto"}],
-     "implica": ["exposto"], "implicaModo": "separada",
-     "duracao": null, "duracaoPendente": "D16"},
-
-    {"id": "adormecido", "nome": "Adormecido", "grupoUI": "fisicas", "tags": ["mental"],
-     "implica": ["exposto", "inconsciente"], "implicaModo": "exposto:separada, inconsciente:derivada",
-     "sai": "acordar"},
-
-    {"id": "lento", "nome": "Lento X", "grupoUI": "movimento", "tags": ["fisica"],
-     "x": {"tipo": "duracao", "unidade": "rodadas", "inicial": "daFonte", "decrementa": "fimDaRodada"},
-     "efeitos": [{"alvo": "movimento", "op": "soma", "valor": -3}, {"alvo": "acoes", "op": "soma", "valor": -1}],
-     "status": "decisao",
-     "nota": "P27 - X e DURACAO e da para provar: o efeito escrito nao tem X nenhum. Se X fosse intensidade, Lento 3 seria -9 m e -3 ACOES, ou seja, o turno inteiro, mais forte que Paralisado. Uma condicao de Classe S nao se esconde sem aviso numa condicao de movimento."},
-
-    {"id": "enraizado", "nome": "Enraizado", "grupoUI": "movimento", "tags": ["fisica"],
-     "efeitos": [{"alvo": "movimento", "op": "fixa", "valor": 0}],
-     "duracao": null, "duracaoPendente": "D16"},
-
-    {"id": "sobrepeso-leve", "nome": "Sobrepeso Leve", "grupoUI": "movimento", "tags": ["fisica"],
-     "efeitos": [{"alvo": "movimento", "op": "multiplica", "valor": 0.5}, {"alvo": "tag.fisica", "op": "soma", "valor": -2}],
-     "entra": "uso > capacidade && uso < 2*capacidade", "status": "canonico"},
-
-    {"id": "sobrepeso-extremo", "nome": "Sobrepeso Extremo", "grupoUI": "movimento", "tags": ["fisica"],
-     "efeitos": [{"alvo": "movimento", "op": "fixa", "valor": 1.5}, {"alvo": "tag.fisica", "op": "desvantagem"}],
-     "entra": "uso >= 2*capacidade", "status": "canonico"},
-
-    {"id": "confuso", "nome": "Confuso", "grupoUI": "mentais", "tags": ["mental"],
-     "efeitos": [{"alvo": "acoes", "op": "soma", "valor": -1}],
-     "sai": "gaste 1 acao para se livrar", "status": "canonico"},
-
-    {"id": "amedrontado", "nome": "Amedrontado", "grupoUI": "mentais", "tags": ["mental"],
-     "efeitos": [{"alvo": "turno", "op": "lembrete", "valor": "gasta o turno fugindo da fonte"}],
-     "duracao": null, "duracaoPendente": "D16"},
-
-    {"id": "descontrolado", "nome": "Descontrolado X", "grupoUI": "mentais", "tags": ["mental"],
-     "x": {"tipo": "duracao", "unidade": "rodadas", "inicial": "daFonte", "decrementa": "fimDaRodada"},
-     "efeitos": [{"alvo": "turno", "op": "lembrete", "valor": "gasta o turno atacando a criatura mais proxima"}]},
-
-    {"id": "enfeiticado", "nome": "Enfeiticado", "grupoUI": "mentais", "tags": ["mental"],
-     "efeitos": [{"alvo": "atacarQuemEnfeiticou", "op": "semAcao"}, {"alvo": "tag.social", "op": "soma", "valor": -5, "escopo": "contra quem enfeiticou"}],
-     "duracao": null, "duracaoPendente": "D16"},
-
-    {"id": "bebado", "nome": "Bebado", "aliases": ["Embriagado"], "grupoUI": "mentais", "tags": ["fisica"],
-     "efeitos": [
-       {"alvo": "faixaDeFalhaCritica", "op": "fixa", "valor": "2 natural conta como falha critica"},
-       {"alvo": "pericia.atacar", "op": "soma", "valor": -2},
-       {"alvo": "pericia.defender", "op": "soma", "valor": -2},
-       {"alvo": "pericia.movimento", "op": "soma", "valor": -2},
-       {"alvo": "pericia.reflexos", "op": "soma", "valor": -2},
-       {"alvo": "pericia.fortitude", "op": "soma", "valor": -2},
-       {"alvo": "pericia.vontade", "op": "soma", "valor": -2}
-     ],
-     "duracao": null, "duracaoPendente": "D16",
-     "status": "canonico",
-     "nota": "D78 - as 8 bebidas do Bazar usam esta condicao, nunca penalidade inventada. E puramente negativa, entao o beneficio da bebida foi dimensionado CONTANDO a penalidade. Espadachim e a origem Bebado ganham mais dessa fonte: e o perk da especialidade, nao bug."},
-
-    {"id": "envenenamento", "nome": "Envenenamento", "aliases": ["Envenenado"], "grupoUI": "fisicas", "tags": ["fisica"],
-     "efeitos": [{"alvo": "tag.fisica", "op": "soma", "valor": -2}, {"alvo": "danoPorRodada", "op": "soma", "valor": "1d6", "tipoDano": "biologico"}],
-     "sai": "Fortitude CD 20 ou Antidoto"},
-
-    {"id": "em-chamas", "nome": "Em Chamas", "grupoUI": "fisicas", "tags": [],
-     "efeitos": [{"alvo": "danoPorRodada", "op": "soma", "valor": "1d6", "tipoDano": "fogo", "momento": "inicioTurnoAfetado"}],
-     "sai": "1 acao para apagar"},
-
-    {"id": "enjoado", "nome": "Enjoado", "grupoUI": "fisicas", "tags": ["fisica"],
-     "efeitos": [{"alvo": "pericia.fortitude", "op": "soma", "valor": -5}, {"alvo": "evasao", "op": "soma", "valor": -2}],
-     "duracao": null, "duracaoPendente": "D16"},
-
-    {"id": "cego", "nome": "Cego", "grupoUI": "sensoriais", "tags": [],
-     "efeitos": [{"alvo": "pericia.percepcao", "op": "soma", "valor": -5}, {"alvo": "pericia.atacar", "op": "desvantagem"}, {"alvo": "testesVisuais", "op": "falhaAuto"}],
-     "duracao": null, "duracaoPendente": "D16"},
-
-    {"id": "surdo", "nome": "Surdo", "grupoUI": "sensoriais", "tags": [],
-     "efeitos": [{"alvo": "pericia.percepcao", "op": "soma", "valor": -2}, {"alvo": "testesAuditivos", "op": "falhaAuto"}],
-     "duracao": null, "duracaoPendente": "D16"},
-
-    {"id": "agarrado", "nome": "Agarrado", "grupoUI": "combate", "tags": ["fisica"],
-     "efeitos": [{"alvo": "atacarContraOAlvo", "op": "soma", "valor": 2}, {"alvo": "pericia.atacar", "op": "soma", "valor": -2}],
-     "implica": ["enraizado"], "implicaModo": "derivada",
-     "status": "pedroDecide",
-     "pendente": "C16 - usada no conteudo e ausente do catalogo, MAS o efeito ja esta definido na manobra Agarrar do Notion: 'Atacar contra o alvo +2, alvo -2 ao Atacar, alvo Enraizado'. So falta o card.",
-     "recomendacao": "Promover a condicao com esses tres efeitos exatos. Nada de novo precisa ser inventado."},
-
-    {"id": "marcado", "nome": "Marcado", "status": "pedroDecide", "pendente": "C16 - usada no conteudo ('+2 Atacar contra ele'), ausente do catalogo.", "recomendacao": "NAO promover. Parece a Marca do Duelo do Espadachim generalizada, e virar condicao generica pisa na identidade da classe: e o unico estado que o Espadachim tem."},
-    {"id": "marcada-a-morte", "nome": "Marcada a Morte X", "status": "pedroDecide", "pendente": "C16 - usada no conteudo, ausente do catalogo. Nao tenho o texto."}
+    {
+      "id": "morrendo",
+      "nome": "Morrendo",
+      "grupoUI": "criticas",
+      "tags": [],
+      "entra": "recurso.saude.atual <= 0",
+      "sai": "recurso.saude.atual > 0",
+      "implica": [
+        "inconsciente"
+      ],
+      "implicaModo": "derivada",
+      "efeitos": [
+        {
+          "alvo": "danoPorRodada",
+          "op": "soma",
+          "valor": "floor(recurso.saude.max*0.1)",
+          "tipoDano": "biologico",
+          "momento": "inicioTurnoAfetado",
+          "mitigavel": false
+        }
+      ],
+      "morteEm": "recurso.saude.atual < -floor(recurso.saude.max/2)",
+      "estabilizar": "2 acoes + Medicina CD 20",
+      "desestabiliza": "aoSerAcertado",
+      "status": "aprovado",
+      "nota": "P52 - 'mitigavel: false' e DECISAO com motivo: um personagem com Ae(Biologico,4) e 55 de Saude maxima levaria 5-4 = 1 por rodada, e o relogio da morte praticamente desligaria. Nao e um ataque, e o corpo falhando. 'desestabiliza: aoSerAcertado' tambem e decisao: o texto diz 'ser atacado novamente', mas desfazer 2 acoes + Medicina CD 20 num ataque que ERROU e um swing enorme decidido por um dado que o medico nao pode influenciar.",
+      "fonte": "D86 (tique nao mitigavel); resto: decisao"
+    },
+    {
+      "id": "inconsciente",
+      "nome": "Inconsciente",
+      "grupoUI": "criticas",
+      "tags": [
+        "mental"
+      ],
+      "efeitos": [
+        {
+          "alvo": "controle",
+          "op": "semAcao"
+        },
+        {
+          "alvo": "tag.resistencia",
+          "op": "falhaAuto"
+        }
+      ],
+      "duracao": null,
+      "duracaoPendente": "D16 - sem regra de expiracao no canone"
+    },
+    {
+      "id": "exaurido",
+      "nome": "Exaurido",
+      "grupoUI": "criticas",
+      "tags": [],
+      "entra": "recurso.stamina.atual == 0",
+      "sai": "recurso.stamina.atual > 0",
+      "efeitos": [
+        {
+          "alvo": "todasAsPericias",
+          "op": "semAcao",
+          "nota": "nao pode rolar pericias"
+        }
+      ],
+      "status": "decisao",
+      "nota": "P32 - o card diz 'encerra em qualquer descanso', mas o descanso recupera 2 status A ESCOLHA. Quem escolher Saude e Eter sai do descanso com 0 de Stamina e SEM Exaurido, e o gatilho de entrada ('ao reduzir a 0') nao dispara de novo porque ele ja esta em 0. Resultado: 0 de Stamina sem penalidade, para sempre. Recomendo 'sai: stamina > 0', tratando o descanso como o modo normal de sair, nao como a condicao de saida."
+    },
+    {
+      "id": "oco",
+      "nome": "Oco",
+      "grupoUI": "criticas",
+      "tags": [],
+      "entra": "recurso.eter.atual <= 0",
+      "sai": "recurso.eter.atual > 0",
+      "efeitos": [
+        {
+          "alvo": "recurso.eter",
+          "op": "soma",
+          "valor": -5,
+          "gatilho": "aoFalharPericia"
+        },
+        {
+          "alvo": "conjurar",
+          "op": "semAcao"
+        }
+      ],
+      "perdePersonagemEm": "recurso.eter.atual <= -floor(recurso.eter.max/2)",
+      "status": "decisao",
+      "nota": "Mesmo buraco do Exaurido. E C14: o card diz 'ao ALCANCAR metade' (<=) enquanto o Morrendo diz 'ao ULTRAPASSAR' (<). Recomendo padronizar em 'ultrapassar' nos dois."
+    },
+    {
+      "id": "exaustao",
+      "nome": "Exaustao 1-5",
+      "grupoUI": "criticas",
+      "tags": [],
+      "x": {
+        "tipo": "nivel",
+        "inicial": 1,
+        "max": 5,
+        "decrementa": "descansoLongo"
+      },
+      "cumulativa": true,
+      "niveis": {
+        "1": [
+          {
+            "alvo": "tag.fisica",
+            "op": "desvantagem"
+          }
+        ],
+        "2": [
+          {
+            "alvo": "danoCausado",
+            "op": "multiplica",
+            "valor": 0.5,
+            "nota": "no dano FINAL, depois de dados e modificadores, com floor"
+          }
+        ],
+        "3": [
+          {
+            "alvo": "todosOsTestes",
+            "op": "desvantagem"
+          },
+          {
+            "alvo": "movimento",
+            "op": "multiplica",
+            "valor": 0.5
+          }
+        ],
+        "4": [
+          {
+            "alvo": "atributos",
+            "op": "multiplica",
+            "valor": 0.5
+          },
+          {
+            "alvo": "movimento",
+            "op": "fixa",
+            "valor": 0
+          }
+        ],
+        "5": [
+          {
+            "alvo": "estado",
+            "op": "fixa",
+            "valor": "morte"
+          }
+        ]
+      },
+      "metadeAtributo": "atributo",
+      "arred": "floor",
+      "recalculaMax": true,
+      "status": "decisao",
+      "nota": "P28 - divide o ATRIBUTO (e o que o texto diz; dividir o modificador seria quase inocuo). FOR 16 -> 8 -> mod -1. E devastador, e devia ser: Exaustao 4 e um degrau da morte. ATENCAO ao grampo obrigatorio em recursos.grampoObrigatorio: a queda de CON derruba a Saude maxima, e sem max(0,novoMax) a Exaustao 4 mataria no recalculo, sem dano nenhum."
+    },
+    {
+      "id": "desnutrido",
+      "nome": "Desnutrido X",
+      "grupoUI": "criticas",
+      "tags": [
+        "fisica"
+      ],
+      "x": {
+        "tipo": "intensidade",
+        "inicial": 1,
+        "incrementa": "noiteSemComer",
+        "decrementa": null
+      },
+      "efeitos": [
+        {
+          "alvo": "tag.fisica",
+          "op": "desvantagem"
+        },
+        {
+          "alvo": "custo.stamina",
+          "op": "multiplica",
+          "valor": 2
+        },
+        {
+          "alvo": "recurso.saude.max",
+          "op": "soma",
+          "valor": "-10 * X"
+        }
+      ],
+      "morteEm": "recurso.saude.max == 0",
+      "status": "pedroDecide",
+      "pendente": "P27 - COMO DIMINUI nao esta escrito em lugar nenhum. So existe a regra de subir (+1 por noite sem comer).",
+      "recomendacao": "Comer num descanso longo remove 1, espelhando a Exaustao."
+    },
+    {
+      "id": "exposto",
+      "nome": "Exposto",
+      "grupoUI": "combate",
+      "tags": [],
+      "efeitos": [
+        {
+          "alvo": "proximoAtaqueQueAcertar",
+          "op": "fixa",
+          "valor": "critico"
+        }
+      ],
+      "removeEm": "aoSerAcertado",
+      "concedidaUmaVez": true,
+      "status": "pedroDecide",
+      "nota": "P31 - CRITICO para o modelo de dados. Exposto e implicada por Desprevenido, Paralisado e Adormecido, mas tem que ser instancia SEPARADA e concedida UMA VEZ, ao entrar no estado. Se fosse derivada continua, seria reaplicada enquanto o alvo estivesse Paralisado e TODO ataque contra um paralisado seria critico - muito alem de 'morte funcional'."
+    },
+    {
+      "id": "sangramento",
+      "nome": "Sangramento X",
+      "grupoUI": "combate",
+      "tags": [
+        "fisica"
+      ],
+      "x": {
+        "tipo": "pilha",
+        "inicial": 1,
+        "decrementa": "aoSerAcertado"
+      },
+      "efeitos": [
+        {
+          "alvo": "danoRecebidoPorAcerto",
+          "op": "soma",
+          "valor": "X d4",
+          "tipoDano": "biologico",
+          "escalaComX": true
+        }
+      ],
+      "status": "aprovado",
+      "fonte": "D83",
+      "verbatimPedro": "um alvo com 3 de sangramento quando e acertado recebe 3d4 de dano e fica com sangramento 2, o proximo acerto da 2d4 de dano e assim por diante",
+      "ordemNumAcertoQueAplica": null,
+      "ordemPendente": "Num acerto que aplica Sangramento num alvo que ja sangra: consome antes ou aplica antes? Recomendacao: consumir antes de aplicar. Diferenca de 1d4 por acerto.",
+      "nota": "Escala com dificuldade: Dilacerar aplica 1 e cada acerto consome 1, entao um atacante so com Dilacerar mantem o alvo em 1. Sangria Precisa (rara) troca o dado para d6: Xd6."
+    },
+    {
+      "id": "invisivel",
+      "nome": "Invisivel",
+      "grupoUI": "sensoriais",
+      "tags": [],
+      "efeitos": [
+        {
+          "alvo": "pericia.furtividade",
+          "op": "fixa",
+          "valor": "sucessoAutomatico"
+        },
+        {
+          "alvo": "pericia.defender",
+          "op": "soma",
+          "valor": 5
+        },
+        {
+          "alvo": "pericia.atacar",
+          "op": "soma",
+          "valor": 5
+        }
+      ],
+      "removeEm": "atacarOuReceberDano"
+    },
+    {
+      "id": "atordoado",
+      "nome": "Atordoado",
+      "grupoUI": "combate",
+      "tags": [
+        "fisica"
+      ],
+      "efeitos": [
+        {
+          "alvo": "acoes",
+          "op": "soma",
+          "valor": -2
+        },
+        {
+          "alvo": "evasao",
+          "op": "soma",
+          "valor": -2
+        }
+      ],
+      "duracao": {
+        "ate": "inicioProximoTurnoAfetado"
+      },
+      "status": "decisao",
+      "nota": "P29 - '-2 Acoes e Evasao' = -2 nos dois, nao 'perde a Evasao': perder a Evasao inteira poria Atordoado acima de Paralisado, e o proprio site ja le -2. A duracao conta a partir do AFETADO: 'ate a proxima rodada' lido como o contador de rodada viraria faria a mesma condicao valer quase nada em quem age por ultimo na iniciativa e um turno inteiro em quem age primeiro. A D32 ja abriu o precedente com 'Desorientado dura 1 turno'."
+    },
+    {
+      "id": "desorientado",
+      "nome": "Desorientado",
+      "grupoUI": "combate",
+      "tags": [
+        "fisica"
+      ],
+      "efeitos": [
+        {
+          "alvo": "pericia.atacar",
+          "op": "soma",
+          "valor": -2
+        },
+        {
+          "alvo": "pericia.defender",
+          "op": "soma",
+          "valor": -2
+        }
+      ],
+      "duracao": {
+        "ate": "fimProximoTurnoAfetado",
+        "rodadas": 1
+      },
+      "status": "canonico",
+      "fonte": "D32"
+    },
+    {
+      "id": "caido",
+      "nome": "Caido",
+      "grupoUI": "combate",
+      "tags": [
+        "fisica"
+      ],
+      "efeitos": [
+        {
+          "alvo": "movimento",
+          "op": "fixa",
+          "valor": 1.5
+        },
+        {
+          "alvo": "retaliar",
+          "op": "semReacao"
+        },
+        {
+          "alvo": "pericia.defender",
+          "op": "soma",
+          "valor": -2
+        }
+      ],
+      "sai": "1 acao para levantar"
+    },
+    {
+      "id": "desprevenido",
+      "nome": "Desprevenido",
+      "grupoUI": "combate",
+      "tags": [],
+      "efeitos": [
+        {
+          "alvo": "reagirAAtaques",
+          "op": "semReacao"
+        }
+      ],
+      "implica": [
+        "exposto"
+      ],
+      "implicaModo": "separada",
+      "vemDe": "Furtividade",
+      "status": "canonico"
+    },
+    {
+      "id": "paralisado",
+      "nome": "Paralisado",
+      "grupoUI": "fisicas",
+      "tags": [
+        "fisica"
+      ],
+      "efeitos": [
+        {
+          "alvo": "acoes",
+          "op": "semAcao"
+        },
+        {
+          "alvo": "reacoes",
+          "op": "semReacao"
+        },
+        {
+          "alvo": "tag.resistencia",
+          "op": "falhaAuto"
+        }
+      ],
+      "implica": [
+        "exposto"
+      ],
+      "implicaModo": "separada",
+      "duracao": null,
+      "duracaoPendente": "D16"
+    },
+    {
+      "id": "adormecido",
+      "nome": "Adormecido",
+      "grupoUI": "fisicas",
+      "tags": [
+        "mental"
+      ],
+      "implica": [
+        "exposto",
+        "inconsciente"
+      ],
+      "implicaModo": "exposto:separada, inconsciente:derivada",
+      "sai": "acordar"
+    },
+    {
+      "id": "lento",
+      "nome": "Lento X",
+      "grupoUI": "movimento",
+      "tags": [
+        "fisica"
+      ],
+      "x": {
+        "tipo": "duracao",
+        "unidade": "rodadas",
+        "inicial": "daFonte",
+        "decrementa": "fimDaRodada"
+      },
+      "efeitos": [
+        {
+          "alvo": "movimento",
+          "op": "soma",
+          "valor": -3
+        },
+        {
+          "alvo": "acoes",
+          "op": "soma",
+          "valor": -1
+        }
+      ],
+      "status": "decisao",
+      "nota": "P27 - X e DURACAO e da para provar: o efeito escrito nao tem X nenhum. Se X fosse intensidade, Lento 3 seria -9 m e -3 ACOES, ou seja, o turno inteiro, mais forte que Paralisado. Uma condicao de Classe S nao se esconde sem aviso numa condicao de movimento."
+    },
+    {
+      "id": "enraizado",
+      "nome": "Enraizado",
+      "grupoUI": "movimento",
+      "tags": [
+        "fisica"
+      ],
+      "efeitos": [
+        {
+          "alvo": "movimento",
+          "op": "fixa",
+          "valor": 0
+        }
+      ],
+      "duracao": null,
+      "duracaoPendente": "D16"
+    },
+    {
+      "id": "sobrepeso-leve",
+      "nome": "Sobrepeso Leve",
+      "grupoUI": "movimento",
+      "tags": [
+        "fisica"
+      ],
+      "efeitos": [
+        {
+          "alvo": "movimento",
+          "op": "multiplica",
+          "valor": 0.5
+        },
+        {
+          "alvo": "tag.fisica",
+          "op": "soma",
+          "valor": -2
+        }
+      ],
+      "entra": "uso > capacidade && uso < 2*capacidade",
+      "status": "canonico"
+    },
+    {
+      "id": "sobrepeso-extremo",
+      "nome": "Sobrepeso Extremo",
+      "grupoUI": "movimento",
+      "tags": [
+        "fisica"
+      ],
+      "efeitos": [
+        {
+          "alvo": "movimento",
+          "op": "fixa",
+          "valor": 1.5
+        },
+        {
+          "alvo": "tag.fisica",
+          "op": "desvantagem"
+        }
+      ],
+      "entra": "uso >= 2*capacidade",
+      "status": "canonico"
+    },
+    {
+      "id": "confuso",
+      "nome": "Confuso",
+      "grupoUI": "mentais",
+      "tags": [
+        "mental"
+      ],
+      "efeitos": [
+        {
+          "alvo": "acoes",
+          "op": "soma",
+          "valor": -1
+        }
+      ],
+      "sai": "gaste 1 acao para se livrar",
+      "status": "canonico"
+    },
+    {
+      "id": "amedrontado",
+      "nome": "Amedrontado",
+      "grupoUI": "mentais",
+      "tags": [
+        "mental"
+      ],
+      "efeitos": [
+        {
+          "alvo": "turno",
+          "op": "lembrete",
+          "valor": "gasta o turno fugindo da fonte"
+        }
+      ],
+      "duracao": null,
+      "duracaoPendente": "D16"
+    },
+    {
+      "id": "descontrolado",
+      "nome": "Descontrolado X",
+      "grupoUI": "mentais",
+      "tags": [
+        "mental"
+      ],
+      "x": {
+        "tipo": "duracao",
+        "unidade": "rodadas",
+        "inicial": "daFonte",
+        "decrementa": "fimDaRodada"
+      },
+      "efeitos": [
+        {
+          "alvo": "turno",
+          "op": "lembrete",
+          "valor": "gasta o turno atacando a criatura mais proxima"
+        }
+      ]
+    },
+    {
+      "id": "enfeiticado",
+      "nome": "Enfeiticado",
+      "grupoUI": "mentais",
+      "tags": [
+        "mental"
+      ],
+      "efeitos": [
+        {
+          "alvo": "atacarQuemEnfeiticou",
+          "op": "semAcao"
+        },
+        {
+          "alvo": "tag.social",
+          "op": "soma",
+          "valor": -5,
+          "escopo": "contra quem enfeiticou"
+        }
+      ],
+      "duracao": null,
+      "duracaoPendente": "D16"
+    },
+    {
+      "id": "bebado",
+      "nome": "Bebado",
+      "aliases": [
+        "Embriagado"
+      ],
+      "grupoUI": "mentais",
+      "tags": [
+        "fisica"
+      ],
+      "efeitos": [
+        {
+          "alvo": "faixaDeFalhaCritica",
+          "op": "fixa",
+          "valor": "2 natural conta como falha critica"
+        },
+        {
+          "alvo": "pericia.atacar",
+          "op": "soma",
+          "valor": -2
+        },
+        {
+          "alvo": "pericia.defender",
+          "op": "soma",
+          "valor": -2
+        },
+        {
+          "alvo": "pericia.movimento",
+          "op": "soma",
+          "valor": -2
+        },
+        {
+          "alvo": "pericia.reflexos",
+          "op": "soma",
+          "valor": -2
+        },
+        {
+          "alvo": "pericia.fortitude",
+          "op": "soma",
+          "valor": -2
+        },
+        {
+          "alvo": "pericia.vontade",
+          "op": "soma",
+          "valor": -2
+        }
+      ],
+      "duracao": null,
+      "duracaoPendente": "D16",
+      "status": "canonico",
+      "nota": "D78 - as 8 bebidas do Bazar usam esta condicao, nunca penalidade inventada. E puramente negativa, entao o beneficio da bebida foi dimensionado CONTANDO a penalidade. Espadachim e a origem Bebado ganham mais dessa fonte: e o perk da especialidade, nao bug."
+    },
+    {
+      "id": "envenenamento",
+      "nome": "Envenenamento",
+      "aliases": [
+        "Envenenado"
+      ],
+      "grupoUI": "fisicas",
+      "tags": [
+        "fisica"
+      ],
+      "efeitos": [
+        {
+          "alvo": "tag.fisica",
+          "op": "soma",
+          "valor": -2
+        },
+        {
+          "alvo": "danoPorRodada",
+          "op": "soma",
+          "valor": "1d6",
+          "tipoDano": "biologico"
+        }
+      ],
+      "sai": "Fortitude CD 20 ou Antidoto"
+    },
+    {
+      "id": "em-chamas",
+      "nome": "Em Chamas",
+      "grupoUI": "fisicas",
+      "tags": [],
+      "efeitos": [
+        {
+          "alvo": "danoPorRodada",
+          "op": "soma",
+          "valor": "1d6",
+          "tipoDano": "fogo",
+          "momento": "inicioTurnoAfetado"
+        }
+      ],
+      "sai": "1 acao para apagar"
+    },
+    {
+      "id": "enjoado",
+      "nome": "Enjoado",
+      "grupoUI": "fisicas",
+      "tags": [
+        "fisica"
+      ],
+      "efeitos": [
+        {
+          "alvo": "pericia.fortitude",
+          "op": "soma",
+          "valor": -5
+        },
+        {
+          "alvo": "evasao",
+          "op": "soma",
+          "valor": -2
+        }
+      ],
+      "duracao": null,
+      "duracaoPendente": "D16"
+    },
+    {
+      "id": "cego",
+      "nome": "Cego",
+      "grupoUI": "sensoriais",
+      "tags": [],
+      "efeitos": [
+        {
+          "alvo": "pericia.percepcao",
+          "op": "soma",
+          "valor": -5
+        },
+        {
+          "alvo": "pericia.atacar",
+          "op": "desvantagem"
+        },
+        {
+          "alvo": "testesVisuais",
+          "op": "falhaAuto"
+        }
+      ],
+      "duracao": null,
+      "duracaoPendente": "D16"
+    },
+    {
+      "id": "surdo",
+      "nome": "Surdo",
+      "grupoUI": "sensoriais",
+      "tags": [],
+      "efeitos": [
+        {
+          "alvo": "pericia.percepcao",
+          "op": "soma",
+          "valor": -2
+        },
+        {
+          "alvo": "testesAuditivos",
+          "op": "falhaAuto"
+        }
+      ],
+      "duracao": null,
+      "duracaoPendente": "D16"
+    },
+    {
+      "id": "agarrado",
+      "nome": "Agarrado",
+      "grupoUI": "combate",
+      "tags": [
+        "fisica"
+      ],
+      "efeitos": [
+        {
+          "alvo": "atacarContraOAlvo",
+          "op": "soma",
+          "valor": 2
+        },
+        {
+          "alvo": "pericia.atacar",
+          "op": "soma",
+          "valor": -2
+        }
+      ],
+      "implica": [
+        "enraizado"
+      ],
+      "implicaModo": "derivada",
+      "status": "pedroDecide",
+      "pendente": "C16 - usada no conteudo e ausente do catalogo, MAS o efeito ja esta definido na manobra Agarrar do Notion: 'Atacar contra o alvo +2, alvo -2 ao Atacar, alvo Enraizado'. So falta o card.",
+      "recomendacao": "Promover a condicao com esses tres efeitos exatos. Nada de novo precisa ser inventado."
+    },
+    {
+      "id": "marcado",
+      "nome": "Marcado",
+      "status": "pedroDecide",
+      "pendente": "C16 - usada no conteudo ('+2 Atacar contra ele'), ausente do catalogo.",
+      "recomendacao": "NAO promover. Parece a Marca do Duelo do Espadachim generalizada, e virar condicao generica pisa na identidade da classe: e o unico estado que o Espadachim tem."
+    },
+    {
+      "id": "marcada-a-morte",
+      "nome": "Marcada a Morte X",
+      "status": "canonico",
+      "pendente": null,
+      "recomendacao": "NAO promover a condicao generica.",
+      "fonte": "Batedor > Sem-Nome > Tier 3 'Silencio' (ultimate)",
+      "nota": "Definida dentro da ultimate. Acumula ao ser reaplicada (Marcada a Morte 2...). Da +X em testes contra o alvo, ignora X de Evasao, +X dados no critico, deixa o alvo Exposto. E estado de classe, como a Marca do Duelo. ATENCAO: o Batedor esta em rework (D79) e esta ultimate pode mudar."
+    }
   ],
-
   "condicoesNaoSaoCondicao": [
-    {"nome": "Terreno Dificil", "e": "superficie", "fonte": "notion-sistema > Superficies", "efeito": "dobro de movimento", "nota": "pertence ao ambiente, nao ao personagem"},
-    {"nome": "Vulneravel", "e": "camada da grade de dano", "nota": "Vulnerabilidade x2"},
-    {"nome": "Dissipado", "e": "estado de um efeito magico", "nota": "nao da criatura"}
+    {
+      "nome": "Terreno Dificil",
+      "e": "superficie",
+      "fonte": "notion-sistema > Superficies",
+      "efeito": "dobro de movimento",
+      "nota": "pertence ao ambiente, nao ao personagem"
+    },
+    {
+      "nome": "Vulneravel",
+      "e": "camada da grade de dano",
+      "nota": "Vulnerabilidade x2"
+    },
+    {
+      "nome": "Dissipado",
+      "e": "estado de um efeito magico",
+      "nota": "nao da criatura"
+    }
   ],
-
-  "condicoesAliases": {"Embriagado": "bebado", "Exausto N": "exaustao nivel N", "Envenenado": "envenenamento", "Gelo": "frio (tipo de dano, nao condicao)"},
-
+  "condicoesAliases": {
+    "Embriagado": "bebado",
+    "Exausto N": "exaustao nivel N",
+    "Envenenado": "envenenamento",
+    "Gelo": "frio (tipo de dano, nao condicao)"
+  },
   "taxonomiaDeCondicao": {
     "doisEixos": true,
-    "grupoUI": {"valores": ["criticas", "combate", "movimento", "mentais", "fisicas", "sensoriais"], "uso": "achar o card na interface", "status": "decisaoDoSite"},
-    "tags": {"valores": ["fisica", "mental"], "uso": "imunidades por categoria (cartas, tecnicas) consultam isto", "status": "canonicoParcial"},
+    "grupoUI": {
+      "valores": [
+        "criticas",
+        "combate",
+        "movimento",
+        "mentais",
+        "fisicas",
+        "sensoriais"
+      ],
+      "uso": "achar o card na interface",
+      "status": "decisaoDoSite"
+    },
+    "tags": {
+      "valores": [
+        "fisica",
+        "mental"
+      ],
+      "uso": "imunidades por categoria (cartas, tecnicas) consultam isto",
+      "status": "canonicoParcial"
+    },
     "fisicaFonte": "O Limiar define: Embriagado, Sangramento, Lento, Atordoado, Paralisado, Desorientado, Enjoado, Envenenamento",
     "mental": null,
     "mentalPendente": "C17/C34 - 'condicoes mentais' e citada pelo Teurgo e pelo Veterano e NUNCA foi listada.",
-    "mentalRecomendacao": ["confuso", "amedrontado", "descontrolado", "enfeiticado", "adormecido"],
+    "mentalRecomendacao": [
+      "confuso",
+      "amedrontado",
+      "descontrolado",
+      "enfeiticado",
+      "adormecido"
+    ],
     "mentalRecomendacaoMotivo": "Bebado fica fora porque o Limiar ja a colocou entre as fisicas.",
     "nota": "NAO funda os dois eixos. Um serve para achar o card, o outro para decidir se a condicao pega."
   },
-
   "empilhamento": {
     "entreCondicoes": "soma",
     "mesmaCondicao": "renovaDuracao",
@@ -652,16 +2193,25 @@
     "status": "decisao",
     "alerta": "P26 - as penalidades nao tem teto. Bebado + Desorientado + Envenenado + Sobrepeso Leve = Atacar -8, e ainda com desvantagem se houver Exaustao 1. Contra Evasao tipica de 13-14 e acerto quase impossivel. E a leitura literal e eu nao invento teto, mas e onde mora a espiral da morte, e a ficha vai deixar isso visivel pela primeira vez porque hoje ninguem soma."
   },
-
   "multiplicadoresGlobaisDeCusto": {
     "ordem": "custoFinal = max(piso, (base + ajustes fixos) * PRODUTO(multiplicadores)), com floor",
     "fontes": [
-      {"id": "condicao:desnutrido", "alvo": "stamina", "fator": 2, "status": "canonico", "verbatim": "Voce gasta o dobro de Stamina para tudo"},
-      {"id": "mente-fraca", "alvo": "eter", "fator": 2, "status": "canonico"}
+      {
+        "id": "condicao:desnutrido",
+        "alvo": "stamina",
+        "fator": 2,
+        "status": "canonico",
+        "verbatim": "Voce gasta o dobro de Stamina para tudo"
+      },
+      {
+        "id": "mente-fraca",
+        "alvo": "eter",
+        "fator": 2,
+        "status": "canonico"
+      }
     ],
     "nota": "P35 - hoje os dois atingem recursos diferentes e nao interagem. A ordem precisa estar escrita para quando aparecer um terceiro."
   },
-
   "turno": {
     "acoes": 3,
     "reacoes": 1,
@@ -671,7 +2221,7 @@
     "pmaEscopo": "porAlvo",
     "pmaStatus": "canonico",
     "pmaFonte": "D29",
-    "pmaNota": "P55 - acumula -5 por ataque adicional contra a MESMA criatura e ZERA ao trocar de alvo. E o item mais subestimado da lista de rastreamento: puramente deterministico, e a regra que a mesa mais erra, e a que mais muda um numero. Se a ficha automatizasse uma coisa so, deveria ser esta.",
+    "pmaNota": "MECANICA (D29): -5 cumulativo por ataque no mesmo turno, contado POR ALVO, zera ao trocar de alvo; so vale na acao Atacar. FICHA: nao rastreia alvo, mostra a progressao (ver derivados.progressaoDeAtaques).",
     "acaoLivreMax": null,
     "acaoLivreStatus": "pendente",
     "acaoLivrePendente": "P36 - 'Acao Livre' nao existe na lista de Sua Rodada; a palavra so aparece dentro da modulacao Acelerar (3->2->1->Reacao->Acao Livre).",
@@ -683,17 +2233,37 @@
     "escopo": "turno",
     "reacaoNota": "Com a regra de retaliacao ('a criatura pode escolher reagir a cada um deles; ao final do seu turno, ela considera a reacao gasta'), UMA reacao ja cobre TODOS os ataques de UM agressor. A reacao extra (Esquiva Lendaria +1) serve para um SEGUNDO agressor, nao para mais ataques do mesmo.",
     "custoDeAcao": {
-      "mover": {"custo": 1, "maxPorTurno": 1},
-      "pular": {"custo": 2, "efeito": "1/3 do Movimento"},
-      "acelerar": {"custo": 1, "efeito": "+3 m nesta rodada"},
-      "atacar": {"custo": "depende da arma"},
-      "defender": {"custo": 1, "efeito": "+2 Defender ate seu proximo turno"},
-      "conjurar": {"custo": "1-3, pelo campo Acao da magia"},
-      "tecnica": {"custo": "1-3, pelo texto da tecnica"},
-      "esconder": {"custo": 3, "fonte": "notion-sistema > Furtividade"}
+      "mover": {
+        "custo": 1,
+        "maxPorTurno": 1
+      },
+      "pular": {
+        "custo": 2,
+        "efeito": "1/3 do Movimento"
+      },
+      "acelerar": {
+        "custo": 1,
+        "efeito": "+3 m nesta rodada"
+      },
+      "atacar": {
+        "custo": "depende da arma"
+      },
+      "defender": {
+        "custo": 1,
+        "efeito": "+2 Defender ate seu proximo turno"
+      },
+      "conjurar": {
+        "custo": "1-3, pelo campo Acao da magia"
+      },
+      "tecnica": {
+        "custo": "1-3, pelo texto da tecnica"
+      },
+      "esconder": {
+        "custo": 3,
+        "fonte": "notion-sistema > Furtividade"
+      }
     }
   },
-
   "municao": {
     "descontoPor": "combate",
     "descontoPorNota": "1 municao do tipo da arma por CENA DE COMBATE, nao por disparo",
@@ -704,63 +2274,144 @@
     "fonte": "D2, D41, divergencia A1 (confirmada pelo Pedro em 2026-08-26)",
     "nota": "C10/P37 - o CLAUDE.md esta errado nos dois pontos ('20 = 1 slot' e gasto por disparo). Municao especial e BUFF DE CENA por 1 unidade: e a mecanica mais subestimada do Bazar. D41: nunca pode custar acao nem conceder ataque extra."
   },
-
   "magia": {
     "niveis": 5,
-    "custoBase": [0, 2, 4, 6, 8],
+    "custoBase": [
+      0,
+      2,
+      4,
+      6,
+      8
+    ],
     "status": "canonico",
     "fonte": "notion-sistema, conferido 2026-09-25 (ja pos-D68)",
     "verbatim": "Magias Nivel 1: 0 Eter / Nivel 2: 2 Eter / Nivel 3: 4 Eter / Nivel 4: 6 Eter / Nivel 5: 8 Eter (requer Foco Primordial)",
     "nota": "C05/P42 - o data/ficha.schema.json com nivel1..4 e custos 2/4/6/8 e PRE-D68. O layout fisico 'Grimorio, magias por nivel 1-4' tambem.",
-
-    "intensidade": {"contida": -2, "normal": 0, "forcada": 2, "transbordante": 4},
+    "intensidade": {
+      "contida": -2,
+      "normal": 0,
+      "forcada": 2,
+      "transbordante": 4
+    },
     "contidaExisteNoNivel1": false,
     "contidaExisteNoNivel1Fonte": "D68 - Nivel 1 tem TRES barras (Normal/Forcada/Transbordante), nao quatro.",
     "regraDas3BarrasNaoValeNoNivel1": "ATENCAO: o CLAUDE.md secao 6 manda expandir 3 valores para 4 repetindo o primeiro. Para o Nivel 1 isso esta ERRADO: a coluna Contida nao deve existir.",
-
-    "minimoContida": 1,
-    "minimoContidaStatus": "pedroDecide",
-    "minimoContidaPendente": "C06 - o '-2 Eter (min. 1)' NAO existe no Notion. A tabela de Intensidade diz apenas 'Contida | -2 Eter | Efeito Reduzido'. O min. 1 e do data/sistema.json, ou seja, regra que o site criou.",
-    "minimoContidaRecomendacao": "MANTER o piso 1, e escrever no Notion. Como o Nivel 1 nao tem Contida, o piso so pode incidir em UM lugar: Nivel 2 Contida (2-2=0). Sem o piso, uma magia de Nivel 2 com -1 dado (~1d6) custa o mesmo que um truque em potencia plena (teto 1d4, D68), e o tier inteiro de truques nasce obsoleto.",
-
-    "pisoCustoFinal": 0,
-    "pisoCustoFinalStatus": "decisao",
-    "pisoCustoFinalMotivo": "D68 - sem ele, Canalizacao Eficiente (-1 Eter, Teurgo) leva um truque Normal a custo NEGATIVO. E piso diferente do da Contida, em etapa diferente: os dois precisam existir.",
-
     "tabelaCusto": {
-      "1": {"contida": null, "normal": 0, "forcada": 2, "transbordante": 4},
-      "2": {"contida": 1, "normal": 2, "forcada": 4, "transbordante": 6},
-      "3": {"contida": 2, "normal": 4, "forcada": 6, "transbordante": 8},
-      "4": {"contida": 4, "normal": 6, "forcada": 8, "transbordante": 10},
-      "5": {"contida": 6, "normal": 8, "forcada": 10, "transbordante": 12}
+      "1": {
+        "contida": null,
+        "normal": 0,
+        "forcada": 2,
+        "transbordante": 4
+      },
+      "2": {
+        "contida": 1,
+        "normal": 2,
+        "forcada": 4,
+        "transbordante": 6
+      },
+      "3": {
+        "contida": 2,
+        "normal": 4,
+        "forcada": 6,
+        "transbordante": 8
+      },
+      "4": {
+        "contida": 4,
+        "normal": 6,
+        "forcada": 8,
+        "transbordante": 10
+      },
+      "5": {
+        "contida": 6,
+        "normal": 8,
+        "forcada": 10,
+        "transbordante": 12
+      }
     },
-
     "ordemCusto": [
-      {"etapa": 1, "op": "base por nivel"},
-      {"etapa": 2, "op": "+ intensidade"},
-      {"etapa": 3, "op": "PISO DA CONTIDA = 1", "escopo": "parcela(base+intensidade)", "nota": "so incide no Nivel 2"},
-      {"etapa": 4, "op": "+ soma das modulacoes"},
-      {"etapa": 5, "op": "* multiplicadores", "exemplos": ["Mente Fraca x2"]},
-      {"etapa": 6, "op": "- descontos fixos", "exemplos": ["Escola Visceral -2", "Patrono O Limiar -1 (abjuracao)", "Canalizacao Eficiente -1 por 2 Stamina"]},
-      {"etapa": 7, "op": "PISO FINAL = 0", "escopo": "total"}
+      {
+        "etapa": 1,
+        "op": "base por nivel"
+      },
+      {
+        "etapa": 2,
+        "op": "+ intensidade"
+      },
+      {
+        "etapa": 3,
+        "op": "+ soma das modulacoes"
+      },
+      {
+        "etapa": 4,
+        "op": "* multiplicadores",
+        "exemplos": [
+          "Mente Fraca x2"
+        ]
+      },
+      {
+        "etapa": 5,
+        "op": "- descontos fixos",
+        "exemplos": [
+          "Escola Visceral -2",
+          "Patrono O Limiar -1 (abjuracao)",
+          "Canalizacao Eficiente -1 por 2 Stamina"
+        ]
+      },
+      {
+        "etapa": 6,
+        "op": "PISO = 1",
+        "excecao": "Nivel 1 + Normal + sem modulacao = 0 (e descontos nao se aplicam a ela)"
+      }
     ],
     "ordemCustoMotivo": "P39 - desconto DEPOIS de multiplicador: se viesse antes, a Mente Fraca dobraria um custo ja descontado, e cada ponto de desconto valeria o DOBRO justamente para quem carrega a maldicao. Desconto e dinheiro no bolso do jogador; aplica por ultimo.",
-    "minimoAplicaEm": {"contida": "parcela", "final": "total"},
-
-    "cdPorIntensidade": [-2, 0, 2, 4],
-    "danoPorIntensidade": [-1, 0, 1, 2],
+    "cdPorIntensidade": [
+      -2,
+      0,
+      2,
+      4
+    ],
+    "danoPorIntensidade": [
+      -1,
+      0,
+      1,
+      2
+    ],
     "danoUnidade": "dados",
-
-    "modulacoesNiveis": [1, 2, 3, 4, 5],
+    "modulacoesNiveis": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
     "modulacaoEmTruquePrecoCheio": true,
     "modulacaoFonte": "D69 - 'modulacao em truque mantem o preco cheio. Modulacao nao e pra early game.' Um Fragmentar (+3) num truque de 0 Eter custa 3, enquanto a magia de Nivel 2 inteira custa 2. E intencional.",
     "modulacoes": {
-      "destruicao": {"fragmentar": 3, "alterar": 3, "carregar": 3, "marcar": 5},
-      "abjuracao": {"ancorar": 2, "refletir": 3, "socializar": 4, "acelerar": 5},
-      "alteracao": {"inversao": 2, "alcancar": 3, "contagiar": 3, "insistir": 5},
-      "conhecimento": {"compartilhar": 1, "exigir": 2, "projetar": 2, "gravar": 3}
+      "destruicao": {
+        "fragmentar": 3,
+        "alterar": 3,
+        "carregar": 3,
+        "marcar": 5
+      },
+      "abjuracao": {
+        "ancorar": 2,
+        "refletir": 3,
+        "socializar": 4,
+        "acelerar": 5
+      },
+      "alteracao": {
+        "inversao": 2,
+        "alcancar": 3,
+        "contagiar": 3,
+        "insistir": 5
+      },
+      "conhecimento": {
+        "compartilhar": 1,
+        "exigir": 2,
+        "projetar": 2,
+        "gravar": 3
+      }
     },
-
     "transbordanteRisco": {
       "teste": "Vontade CD 15",
       "falha": "o cast falha e voce perde o dobro do Eter utilizado",
@@ -769,7 +2420,6 @@
       "status": "decisao",
       "nota": "P40 - 'utilizado' e o que voce de fato pagou, modulacoes incluidas. E e perda INVOLUNTARIA, entao atravessa o 0 e pode disparar Oco. Numero: um Teurgo nv5 com INT 16 tem Eter maximo 66; Nivel 5 Transbordante + 2 modulacoes = 20 de custo, 40 de perda na falha = 61% do pool num unico teste de Vontade CD 15."
     },
-
     "sustentada": {
       "custoPorTurno": "total",
       "maxAtivas": 1,
@@ -778,7 +2428,6 @@
       "foraCombate": null,
       "foraCombatePendente": "Nao tenho fonte para 'a cada 30 min'."
     },
-
     "requisitos": {
       "validar": "avisar",
       "validarStatus": "decisao",
@@ -787,16 +2436,51 @@
       "motivo": "P42 - 'avisar', nao 'bloquear': a origem Cultista concede 2 magias de Nivel 1 e a raca Corrompido tambem, SEM o gate. Bloquear quebraria as duas builds.",
       "avisoPorFoco": "Avise tambem por FOCO, nao so por treino: so se pode empunhar 1 Foco por vez. Um Teurgo com 4 escolas aprendidas so conjura a da escola equipada, e ninguem lembra disso na mesa."
     },
-
     "orfasDeContida": {
-      "itens": ["eter-residual", "magias-pactuadas"],
+      "itens": [
+        "eter-residual",
+        "magias-pactuadas"
+      ],
       "nota": "Dependem da intensidade Contida ('Contida = 0 eter'). Continuam funcionando do Nivel 2 para cima; so nunca disparam em truque. O jogador vai perguntar: vale uma nota na pagina."
     },
-
-    "escolas": ["destruicao", "abjuracao", "alteracao", "conhecimento"],
-    "focoPrimordial": {"destravaNivel": 5, "requisito": "Experiente em Mistico", "nota": "Nao e uma 5a escola: e o portao do Nivel 5."}
+    "escolas": [
+      "destruicao",
+      "abjuracao",
+      "alteracao",
+      "conhecimento"
+    ],
+    "focoPrimordial": {
+      "destravaNivel": 5,
+      "requisito": "Experiente em Mistico",
+      "nota": "Nao e uma 5a escola: e o portao do Nivel 5."
+    },
+    "custoMinimo": {
+      "valor": 1,
+      "excecao": "magia de Nivel 1 em intensidade Normal e sem modulacao = 0 Eter",
+      "aplicaDepoisDeReducoes": true,
+      "status": "aprovado",
+      "fonte": "D82",
+      "verbatimPedro": "seria o caso de modular ou intensificar e o custo de eter ser reduzido por alguma tecnica, apesar de ser um truque o minimo continua sendo 1 igual as outras magias",
+      "nota": "Um piso so, igual para todas. Substitui o modelo de 'dois pisos' da revisao 1."
+    },
+    "exemplosDoPiso": [
+      {
+        "caso": "Nivel 2 Contida",
+        "conta": "2-2 = 0",
+        "custo": 1
+      },
+      {
+        "caso": "Truque Forcado + Canalizacao Eficiente",
+        "conta": "0+2-1 = 1",
+        "custo": 1
+      },
+      {
+        "caso": "Truque Normal + Escola Visceral",
+        "conta": "0 (excecao)",
+        "custo": 0
+      }
+    ]
   },
-
   "recargas": {
     "turno": "fimTurno",
     "rodada": "novaRodada",
@@ -816,15 +2500,62 @@
       "rodada": "rodada != turno. '2x/rodada' (Fluxo) conta tambem os ganhos no turno dos outros (esquivar, ser acertado). '1x/turno' e so o seu. Nao unifique."
     }
   },
-
   "vocabulario": {
     "_doc": "P44 - a gramatica que o balanceamento define. O bloco 'itens' preenchido NAO vem digitado a mao: ver 'itensMetodo'.",
-    "custoTipo": ["fixo", "variavel", "percentual", "porUnidade", "reserva", "requisito"],
-    "recurso": ["stamina", "eter", "saude", "reagentes", "fluxo", "instinto", "brutalidade", "concentracao", "usos"],
-    "acoes": [0, 1, 2, 3, "reacao", "passiva"],
+    "custoTipo": [
+      "fixo",
+      "variavel",
+      "percentual",
+      "porUnidade",
+      "reserva",
+      "requisito"
+    ],
+    "recurso": [
+      "stamina",
+      "eter",
+      "saude",
+      "reagentes",
+      "fluxo",
+      "instinto",
+      "brutalidade",
+      "concentracao",
+      "usos"
+    ],
+    "acoes": [
+      0,
+      1,
+      2,
+      3,
+      "reacao",
+      "passiva"
+    ],
     "acaoZeroSignifica": "acao livre",
-    "op": ["soma", "multiplica", "fixa", "minimo", "maximo", "vantagem", "desvantagem", "falhaAuto", "semAcao", "semReacao", "lembrete"],
-    "eventos": ["inicioCombate", "novaRodada", "inicioTurno", "fimTurno", "fimCombate", "fimCena", "descansoCurto", "descansoLongo", "novoDia", "sessao", "manual"],
+    "op": [
+      "soma",
+      "multiplica",
+      "fixa",
+      "minimo",
+      "maximo",
+      "vantagem",
+      "desvantagem",
+      "falhaAuto",
+      "semAcao",
+      "semReacao",
+      "lembrete"
+    ],
+    "eventos": [
+      "inicioCombate",
+      "novaRodada",
+      "inicioTurno",
+      "fimTurno",
+      "fimCombate",
+      "fimCena",
+      "descansoCurto",
+      "descansoLongo",
+      "novoDia",
+      "sessao",
+      "manual"
+    ],
     "custoTipoDetalhe": {
       "fixo": "valor unico",
       "variavel": "{min, max|null} - campo de valor ou slider. Cobre '2+ Stamina', 'X Stamina', '1-5 Eter'",
@@ -835,77 +2566,234 @@
     },
     "momentoDoDesconto": "na confirmacao do 'usar', com desfazer disponivel"
   },
-
   "itens": {
     "_vazio": true,
     "_metodo": "P44 - NAO vou digitar ~259 habilidades de classe + 168 cartas + 7 racas + 19 origens a mao. Lista digitada a mao a partir do Notion JA FALHOU neste projeto: foi assim que uma carta duplicada do Limiar passou por conferencia visual e so apareceu numa comparacao por conjunto. Entregar 450 linhas de custo digitadas por mim seria entregar um dado que eu mesmo nao confiaria.",
     "_proposta": "Rodar um parser sobre data/classes/*.json e data/limiar.json com o 'vocabulario' acima, validando POR CONJUNTO: toda habilidade tem que cair em exatamente um custoTipo, e o relatorio lista as que nao cairam, que sao as que precisam de decisao humana. Mesmo metodo que fechou o Bazar em 727 itens com zero erro. As que sobrarem vao ao Pedro em lote, no formato que ele ja usa.",
     "_bloqueio": "As 59 cartas RARAS do Limiar nao tem efeito no data/limiar.json (so nome e requisito) - decisao de design do site. O parser nao tem o que parsear nelas: o efeito tem que vir do Notion primeiro.",
     "_exemplos": {
-      "monge-explosao": {"acoes": null, "custo": {"fluxo": 4}, "custoTipo": "requisito", "modificadores": [{"alvo": "movimento", "op": "multiplica", "valor": 2}]},
-      "limiar-estudo-intenso": {"modificadores": [{"alvo": "cd", "op": "soma", "valor": 2}], "permanente": true},
-      "espadachim-sangue-por-aco": {"acoes": 0, "custo": {"saude": 2}, "custoTipo": "porUnidade", "efeito": "2 Saude = 1 Stamina", "nota": "taxa canonica de conversao"},
-      "teurgo-canalizacao-eficiente": {"acoes": 0, "custo": {"stamina": 2}, "custoTipo": "fixo", "efeito": "-1 Eter no custo de uma magia", "nota": "taxa canonica"},
-      "brutalista-destruir": {"acoes": 0, "custo": {"stamina": 2}, "custoTipo": "porUnidade", "efeito": "+1d6 de dano por 2 Stamina, maximo = Nivel, no acerto", "nota": "taxa canonica: ~2 Stamina por 1d6"}
+      "monge-explosao": {
+        "acoes": null,
+        "custo": {
+          "fluxo": 4
+        },
+        "custoTipo": "requisito",
+        "modificadores": [
+          {
+            "alvo": "movimento",
+            "op": "multiplica",
+            "valor": 2
+          }
+        ]
+      },
+      "limiar-estudo-intenso": {
+        "modificadores": [
+          {
+            "alvo": "cd",
+            "op": "soma",
+            "valor": 2
+          }
+        ],
+        "permanente": true
+      },
+      "espadachim-sangue-por-aco": {
+        "acoes": 0,
+        "custo": {
+          "saude": 2
+        },
+        "custoTipo": "porUnidade",
+        "efeito": "2 Saude = 1 Stamina",
+        "nota": "taxa canonica de conversao"
+      },
+      "teurgo-canalizacao-eficiente": {
+        "acoes": 0,
+        "custo": {
+          "stamina": 2
+        },
+        "custoTipo": "fixo",
+        "efeito": "-1 Eter no custo de uma magia",
+        "nota": "taxa canonica"
+      },
+      "brutalista-destruir": {
+        "acoes": 0,
+        "custo": {
+          "stamina": 2
+        },
+        "custoTipo": "porUnidade",
+        "efeito": "+1d6 de dano por 2 Stamina, maximo = Nivel, no acerto",
+        "nota": "taxa canonica: ~2 Stamina por 1d6"
+      }
     }
   },
-
   "descanso": {
     "curto": {
       "maxPorDia": 2,
       "duracao": "30 min",
-      "exige": ["lugar seguro"],
+      "exige": [
+        "lugar seguro"
+      ],
       "exigeComida": false,
       "exigeLuz": false,
-      "recupera": {"dado": "2d6", "status": 2, "modo": "umaPorStatus"},
+      "recupera": {
+        "dado": "2d6",
+        "status": 2,
+        "modo": "umaPorStatus"
+      },
       "acoes": [
-        {"id": "tratar-ferimentos", "teste": "Medicina CD 15", "efeito": "+1d6 Saude"},
-        {"id": "meditar", "teste": "Vontade CD 15", "efeito": "+1d6 Eter"},
-        {"id": "relaxar", "teste": null, "efeito": "+1d6 Stamina"},
-        {"id": "comer-refeicao", "exige": "item Comida", "efeito": "+2d6 de 1 status a escolha"},
-        {"id": "buscar-reagentes", "classe": "alquimista", "efeito": "1d4+nivel Reagentes"}
+        {
+          "id": "tratar-ferimentos",
+          "teste": "Medicina CD 15",
+          "efeito": "+1d6 Saude"
+        },
+        {
+          "id": "meditar",
+          "teste": "Vontade CD 15",
+          "efeito": "+1d6 Eter"
+        },
+        {
+          "id": "relaxar",
+          "teste": null,
+          "efeito": "+1d6 Stamina"
+        },
+        {
+          "id": "comer-refeicao",
+          "exige": "item Comida",
+          "efeito": "+2d6 de 1 status a escolha"
+        },
+        {
+          "id": "buscar-reagentes",
+          "classe": "alquimista",
+          "efeito": "1d4+nivel Reagentes"
+        }
       ],
       "acaoSoma": true,
       "falharAnula": "soAAcao",
       "efeitos": [
-        {"alvo": "estresse", "op": "soma", "valor": -1, "custo": "1d6 Stamina + 1d6 Eter", "opcional": true},
-        {"alvo": "usos.curto", "op": "fixa", "valor": "max"},
-        {"alvo": "condicao.exaurido", "op": "lembrete", "valor": "encerra se stamina > 0"},
-        {"alvo": "condicao.oco", "op": "lembrete", "valor": "encerra se eter > 0"}
+        {
+          "alvo": "estresse",
+          "op": "soma",
+          "valor": -1,
+          "custo": "1d6 Stamina + 1d6 Eter",
+          "opcional": false
+        },
+        {
+          "alvo": "usos.curto",
+          "op": "fixa",
+          "valor": "max"
+        },
+        {
+          "alvo": "condicao.exaurido",
+          "op": "lembrete",
+          "valor": "encerra se stamina > 0"
+        },
+        {
+          "alvo": "condicao.oco",
+          "op": "lembrete",
+          "valor": "encerra se eter > 0"
+        }
       ],
-      "naoFaz": ["remover Exaustao", "zerar recurso de classe (ele ja zera no fim do combate)"]
+      "naoFaz": [
+        "remover Exaustao",
+        "zerar recurso de classe (ele ja zera no fim do combate)"
+      ]
     },
     "longo": {
       "maxPorDia": 1,
       "duracao": "8 h",
       "finalizaODia": true,
-      "exige": ["fonte de luz", "1 alimento por jogador"],
+      "exige": [
+        "fonte de luz",
+        "1 alimento por jogador"
+      ],
       "semAlimento": "corta o Xd8 de quem nao comeu",
       "semAlimentoStatus": "decisao",
       "semAlimentoNota": "Recomendo que corte SO a recuperacao de status, nao o resto: o dia vira igual, os usos de 'dia' recarregam, a Exaustao baixa. 'Quem nao se alimenta, nao se recupera' fala de recuperacao.",
-      "recupera": {"dado": "Xd8", "X": "comodidade", "status": 2, "modo": "umaPorStatus"},
-      "comodidade": {"1": "Precario", "2": "Ruim", "3": "Normal", "4": "Bom", "5": "Luxuoso"},
-      "comodidadeAoArLivre": {"<15": 1, "15-19": 2, "20-24": 3, "25-29": 4, "30+": 5, "teste": "maior Sobrevivencia do grupo"},
+      "recupera": {
+        "dado": "Xd8",
+        "X": "comodidade",
+        "status": 2,
+        "modo": "umaPorStatus"
+      },
+      "comodidade": {
+        "1": "Precario",
+        "2": "Ruim",
+        "3": "Normal",
+        "4": "Bom",
+        "5": "Luxuoso"
+      },
+      "comodidadeAoArLivre": {
+        "<15": 1,
+        "15-19": 2,
+        "20-24": 3,
+        "25-29": 4,
+        "30+": 5,
+        "teste": "maior Sobrevivencia do grupo"
+      },
       "efeitos": [
-        {"alvo": "condicao.exaustao", "op": "soma", "valor": -1},
-        {"alvo": "estresse", "op": "fixa", "valor": 0, "custo": "1d6 Stamina + 1d6 Eter POR PONTO", "opcional": true},
-        {"alvo": "recurso.reagentes", "op": "fixa", "valor": "max"},
-        {"alvo": "usos.longo", "op": "fixa", "valor": "max"},
-        {"alvo": "usos.dia", "op": "fixa", "valor": "max"},
-        {"alvo": "tecnicasGerais", "op": "lembrete", "valor": "reatribuiveis (3 + Nivel)"},
-        {"alvo": "sintonizados", "op": "lembrete", "valor": "pode trocar os 3"},
-        {"alvo": "fabricacao", "op": "lembrete", "valor": "1 tentativa como acao de descanso (Ferraria/Engenharia)"},
-        {"alvo": "contadorDescansosCurtos", "op": "fixa", "valor": 0},
-        {"alvo": "dia", "op": "soma", "valor": 1}
+        {
+          "alvo": "condicao.exaustao",
+          "op": "soma",
+          "valor": -1
+        },
+        {
+          "alvo": "estresse",
+          "op": "fixa",
+          "valor": 0,
+          "custo": "1d6 Stamina + 1d6 Eter POR PONTO",
+          "opcional": false
+        },
+        {
+          "alvo": "recurso.reagentes",
+          "op": "fixa",
+          "valor": "max"
+        },
+        {
+          "alvo": "usos.longo",
+          "op": "fixa",
+          "valor": "max"
+        },
+        {
+          "alvo": "usos.dia",
+          "op": "fixa",
+          "valor": "max"
+        },
+        {
+          "alvo": "tecnicasGerais",
+          "op": "lembrete",
+          "valor": "reatribuiveis (3 + Nivel)"
+        },
+        {
+          "alvo": "sintonizados",
+          "op": "lembrete",
+          "valor": "pode trocar os 3"
+        },
+        {
+          "alvo": "fabricacao",
+          "op": "lembrete",
+          "valor": "1 tentativa como acao de descanso (Ferraria/Engenharia)"
+        },
+        {
+          "alvo": "contadorDescansosCurtos",
+          "op": "fixa",
+          "valor": 0
+        },
+        {
+          "alvo": "dia",
+          "op": "soma",
+          "valor": 1
+        }
       ]
     },
     "ordem": "recuperar PRIMEIRO, liberar estresse DEPOIS - voce nao pode cobrar um custo que o personagem ainda nao tem",
-    "statusElegiveis": ["saude", "stamina", "eter"],
+    "statusElegiveis": [
+      "saude",
+      "stamina",
+      "eter"
+    ],
     "statusElegiveisNota": "P47 - sao os 3 UNIVERSAIS, nao o recurso de classe. Fluxo, Brutalidade e Concentracao comecam em 0 por desenho: 'recuperar' nao faz sentido. Reagentes tem regra propria.",
     "modo": "umaPorStatus",
     "modoStatus": "decisao",
     "modoMotivo": "Mecanicamente quase indiferente (mesmo valor esperado, muda so a variancia), mas e como toda mesa le e remove uma correlacao artificial entre dois recursos independentes.",
-
     "estresse": {
       "ganha": "+1 nos DOIS ao atacar um aliado, mesmo errando",
       "liberaCurto": 1,
@@ -913,43 +2801,93 @@
       "custoPorPonto": "1d6 Stamina + 1d6 Eter",
       "max": null,
       "maxPendente": "P49 - nao tem teto escrito. Nao vou inventar um.",
-      "opcional": true,
-      "opcionalStatus": "pedroDecide",
-      "_alerta": "P48 - O DESCANSO LONGO PODE TE DEIXAR PIOR. Com 5 de estresse, a liberacao custa 5d6 Stamina + 5d6 Eter = ~17,5 de cada. Um Descanso Normal (X=3) devolve 3d8 = ~13,5 em dois status. Saldo: -4 Stamina e -4 Eter depois de 8 horas dormindo. Se a liberacao for OBRIGATORIA, existe um estado em que descansar e estritamente pior que nao descansar, e jogador nenhum vai descansar com estresse alto - o que inverte a funcao da mecanica. RECOMENDO opcional, com o jogador escolhendo quantos pontos soltar.",
-      "_autolimite": "Observacao: o estresse ja se autolimita na pratica, porque o custo de liberacao cresce linearmente. Se o Pedro quiser um teto, e o argumento para coloca-lo onde o custo ainda e pagavel."
+      "opcional": false,
+      "opcionalStatus": "aprovado",
+      "_alerta": "O saldo negativo no descanso longo com estresse alto e INTENCIONAL (D84): 'O estresse e feito para punir desavencas entre o grupo; chegar em 5 de estresse quer dizer que voce deu ou recebeu 5 golpes de um aliado. A regra foi proposta pelos meus jogadores.' Liberacao obrigatoria.",
+      "_autolimite": "Observacao: o estresse ja se autolimita na pratica, porque o custo de liberacao cresce linearmente. Se o Pedro quiser um teto, e o argumento para coloca-lo onde o custo ainda e pagavel.",
+      "fonte": "D84"
     },
-
     "necessidades": {
-      "semComer": {"porNoite": "+1 Desnutrido", "efeito": "-10 Saude maxima por ponto", "morte": "Saude maxima em 0"},
-      "semDescansar": {"primeiroDia": "tolerado", "segundoDia": "Exaustao 1"}
+      "semComer": {
+        "porNoite": "+1 Desnutrido",
+        "efeito": "-10 Saude maxima por ponto",
+        "morte": "Saude maxima em 0"
+      },
+      "semDescansar": {
+        "primeiroDia": "tolerado",
+        "segundoDia": "Exaustao 1"
+      }
     },
-
     "feSanidade": {
       "modo": "manual",
-      "unicaReferenciaCanonica": {"gatilho": "ver um aliado morrer", "teste": "Vontade CD 20", "falha": "-2d6+3 Eter"},
+      "unicaReferenciaCanonica": {
+        "gatilho": "ver um aliado morrer",
+        "teste": "Vontade CD 20",
+        "falha": "-2d6+3 Eter"
+      },
       "nota": "P49 - o canone tem UMA linha numerica. Use-a como referencia visivel ao lado de um campo de perda manual. Nao construa tabela que nao existe."
     },
-
     "jornada": {
-      "hostilidade": [0, 5, 10, 15, 20],
+      "hostilidade": [
+        0,
+        5,
+        10,
+        15,
+        20
+      ],
       "pontos": "3 + (hostilidade/5)",
-      "tabelaDeFalha": ["4d6", "2d8", "2d6", "1d6", "1d4"],
+      "tabelaDeFalha": [
+        "4d6",
+        "2d8",
+        "2d6",
+        "1d6",
+        "1d4"
+      ],
       "status": "canonico",
       "nota": "C09 - vale o Notion. O data/sistema.json tem 2d6/1d8/1d6/1d4/1d3, que e a tabela antiga. Nao e diferenca cosmetica: a primeira faixa vai de media 7 para media 14, DOBRA."
     }
   },
-
   "dano": {
     "formula": "dados da arma + Mod. Atributo da arma",
-    "atributoPorArma": {"pesada": "FOR", "leve": "DES", "distancia": "DES", "mistica": "INT|SAB"},
-    "acertoPorArma": {"pesada": "atacar", "leve": "atacar", "distancia": "atacar", "mistica": "mistico"},
+    "atributoPorArma": {
+      "pesada": "FOR",
+      "leve": "DES",
+      "distancia": "DES",
+      "mistica": "INT|SAB"
+    },
+    "acertoPorArma": {
+      "pesada": "atacar",
+      "leve": "atacar",
+      "distancia": "atacar",
+      "mistica": "mistico"
+    },
     "ordemMitigacao": [
-      {"etapa": 0, "op": "imunidade ao tipo -> dano = 0, encerra"},
-      {"etapa": 1, "op": "dano bruto", "nota": "critico: dobro dos DADOS DA ARMA + mod"},
-      {"etapa": 2, "op": "Vulnerabilidade *2 / Resistencia /2", "nota": "se as duas, cancelam"},
-      {"etapa": 3, "op": "- Ar (se tipo Ordinario) - Ae(tipo) - Ae(categoria) - Ae(Todos)"},
-      {"etapa": 4, "op": "floor"},
-      {"etapa": 5, "op": "max(0, dano)"}
+      {
+        "etapa": 0,
+        "op": "imunidade ao tipo -> dano = 0, encerra"
+      },
+      {
+        "etapa": 1,
+        "op": "dano bruto",
+        "nota": "critico: dobro dos DADOS DA ARMA + mod"
+      },
+      {
+        "etapa": 2,
+        "op": "Vulnerabilidade *2 / Resistencia /2",
+        "nota": "se as duas, cancelam"
+      },
+      {
+        "etapa": 3,
+        "op": "- Ar (se tipo Ordinario) - Ae(tipo) - Ae(categoria) - Ae(Todos)"
+      },
+      {
+        "etapa": 4,
+        "op": "floor"
+      },
+      {
+        "etapa": 5,
+        "op": "max(0, dano)"
+      }
     ],
     "ordemMotivo": "P50 - Resistencia ANTES de Ar: resistencia e propriedade de como o dano te afeta, Ar e o que ele tem que atravessar. Metade depois da subtracao faria a armadura render o dobro para quem ja e resistente, dois descontos no mesmo eixo. E a ordem inversa produz valores negativos no meio do calculo.",
     "arredondamento": "floor, uma vez, na etapa 4",
@@ -959,29 +2897,56 @@
     "imunidade": "zera",
     "imunidadeStatus": "decisao",
     "imunidadePendente": "Imunidade nunca foi definida no Notion. 'Zera' e a unica leitura.",
-
     "categorias": {
-      "ordinario": ["cortante", "contundente", "perfurante"],
-      "elemental": ["fogo", "frio", "eletrico"],
-      "biologico": ["veneno", "acido", "psiquico"],
-      "mistico": ["radiante", "trovejante", "necrotico", "forca", "primordial"]
+      "ordinario": [
+        "cortante",
+        "contundente",
+        "perfurante"
+      ],
+      "elemental": [
+        "fogo",
+        "frio",
+        "eletrico"
+      ],
+      "biologico": [
+        "veneno",
+        "acido",
+        "psiquico"
+      ],
+      "mistico": [
+        "radiante",
+        "trovejante",
+        "necrotico",
+        "forca",
+        "primordial"
+      ]
     },
     "totalDeTipos": 14,
     "categoriasFonte": "D63/D67, pagina Tipos de Dano",
     "gradeNota": "C18 - a grade atual tem 12 porque colapsa os 3 ordinarios numa linha 'Ordinario'. Mas a D63 garante que Ae(Cortante, 5) existe, entao os tres precisam de linha propria. Ar NAO e linha da grade: e escalar a parte que reduz a categoria Ordinario inteira.",
-    "aliasesDeTipo": {"gelo": "frio", "eletricidade": "eletrico"},
-
+    "aliasesDeTipo": {
+      "gelo": "frio",
+      "eletricidade": "eletrico"
+    },
     "danoGenericoDeCategoria": {
       "regra": "Dano escrito como categoria ('dano Biologico', '1d12 Mistico') e reduzido por Ae(categoria) e Ae(Todos), NAO por Ae de um tipo especifico daquela categoria.",
       "status": "decisao",
       "motivo": "P51 - e a regra que faz a escada da D67 significar alguma coisa: pagar por abrangencia tem que comprar abrangencia.",
-      "exemplo": {"tem": "Ae(Veneno,5)", "reduzDanoBiologicoGenerico": false, "tem2": "Ae(Biologico,4)", "reduz2": true}
+      "exemplo": {
+        "tem": "Ae(Veneno,5)",
+        "reduzDanoBiologicoGenerico": false,
+        "tem2": "Ae(Biologico,4)",
+        "reduz2": true
+      }
     },
-
-    "camadasDaGrade": ["R", "I", "V", "Ae"],
+    "camadasDaGrade": [
+      "R",
+      "I",
+      "V",
+      "Ae"
+    ],
     "arForaDaGrade": true
   },
-
   "morte": {
     "morrendo": {
       "tick": "floor(recurso.saude.max * 0.1)",
@@ -999,45 +2964,115 @@
       }
     },
     "estadosFinais": [
-      {"id": "exaustao-5", "acao": "alertar"},
-      {"id": "desnutrido-max-zero", "acao": "alertar"},
-      {"id": "saude-abaixo-metade-negativa", "acao": "alertar"},
-      {"id": "eter-metade-negativa", "acao": "alertar", "nota": "personagem vai para o mestre"}
+      {
+        "id": "exaustao-5",
+        "acao": "alertar"
+      },
+      {
+        "id": "desnutrido-max-zero",
+        "acao": "alertar"
+      },
+      {
+        "id": "saude-abaixo-metade-negativa",
+        "acao": "alertar"
+      },
+      {
+        "id": "eter-metade-negativa",
+        "acao": "alertar",
+        "nota": "personagem vai para o mestre"
+      }
     ],
     "travaEdicao": false,
     "travaMotivo": "P53 - o mestre reverte desfecho, e a ressurreicao existe (D74: 1x por personagem, e um revive bloqueia qualquer proximo). Uma ficha que se tranca sozinha num estado que o mestre pode desfazer e uma ficha que o jogador vai contornar exportando o JSON e editando na mao. Banner que nao da para ignorar, tudo editavel."
   },
-
   "progressao": {
-    "xp": {"2": 150, "3": 400, "4": 1000, "5": 2000},
-    "xpPorDc": {"1/4": 2, "1/2": 5, "1": 10, "2": 25, "3": 50, "4": 100, "5": 200},
+    "xp": {
+      "2": 150,
+      "3": 400,
+      "4": 1000,
+      "5": 2000
+    },
+    "xpPorDc": {
+      "1/4": 2,
+      "1/2": 5,
+      "1": 10,
+      "2": 25,
+      "3": 50,
+      "4": 100,
+      "5": 200
+    },
     "autoNivel": false,
     "autoNivelMotivo": "P54 - a ficha AVISA. Quem concede nivel e o mestre, e ele pode segurar a subida por razao de arco.",
     "porNivel": {
-      "1": {"tecnicas": 4, "outros": ["Caracteristicas de Raca", "1 Habilidade de Origem"]},
-      "2": {"tecnicas": 5, "tier": 1, "pontosLimiar": 4},
-      "3": {"tecnicas": 6, "marcas": 1, "pontosLimiar": 4},
-      "4": {"tecnicas": 7, "tier": 2, "marcas": 2, "pontosLimiar": 4},
-      "5": {"tecnicas": 8, "tier": 3, "marcas": 3, "pontosLimiar": 4}
+      "1": {
+        "tecnicas": 4,
+        "outros": [
+          "Caracteristicas de Raca",
+          "1 Habilidade de Origem"
+        ]
+      },
+      "2": {
+        "tecnicas": 5,
+        "tier": 1,
+        "pontosLimiar": 4
+      },
+      "3": {
+        "tecnicas": 6,
+        "marcas": 1,
+        "pontosLimiar": 4
+      },
+      "4": {
+        "tecnicas": 7,
+        "tier": 2,
+        "marcas": 2,
+        "pontosLimiar": 4
+      },
+      "5": {
+        "tecnicas": 8,
+        "tier": 3,
+        "marcas": 3,
+        "pontosLimiar": 4
+      }
     },
     "tecnicasFormula": "3 + nivel",
     "tecnicasReatribuiveis": "descansoLongo",
-    "corrupcaoMax": {"1": 2, "2": 5, "3": 9, "4": 14, "5": 20},
-
+    "corrupcaoMax": {
+      "1": 2,
+      "2": 5,
+      "3": 9,
+      "4": 14,
+      "5": 20
+    },
     "limiar": {
+      "pontosPorNivel": 4,
+      "niveis": [
+        2,
+        3,
+        4,
+        5
+      ],
       "pontosTotais": 16,
-      "custoDasCartas": [0, 2, 3, 4, 5],
-      "sextaCarta": {"efeito": "+2 Atributo", "custo": 2, "fixo": true},
-      "fechaExato": true,
-      "conta": "16 pontos = 0 (1a gratis) + 2+3+4+5 (cartas 2-5 = 14) + 2 (6a) = 16. EXATAMENTE 6 cartas do nivel 1 ao 5.",
-      "nota": "P46 - o orcamento nao e aproximado, foi desenhado para exatamente 6 cartas. Se a ficha mostrar '16 pontos / 6 cartas', o jogador entende o desenho na hora, e qualquer build que nao bata fica imediatamente visivel."
+      "porMao": {
+        "cartasReveladas": 5,
+        "sextaCartaEspecial": "+2 Atributo Adicional",
+        "custoDasCartas": [
+          "gratis",
+          2,
+          3,
+          4,
+          "..."
+        ],
+        "sextaCartaCusto": 2
+      },
+      "custoEscalonaPorMao": true,
+      "cartasGratisNaCampanha": 4,
+      "totalDeCartas": "5-11",
+      "pontosNaoGastosAcumulam": true,
+      "podeQueimar": "1 carta por mao, nunca retorna",
+      "status": "canonico",
+      "fonte": "notion-limiar > A Cada Nivel",
+      "_correcao": "A revisao 1 dizia que o orcamento 'fecha exato em 16 pontos / 6 cartas'. ERRADO: o custo crescente e POR MAO, a cada nivel. O proprio Limiar diz '5-11 Cartas do Limiar escolhidas (dependendo de como gastou os pontos)'."
     },
-
-    "_naoConfirmado": {
-      "pontosDeAtributoPorNivel": null,
-      "pendente": "P54 - a tabela de Progressao do Notion NAO menciona ganho de atributo por nivel. O unico '+2 Atributo' que eu conheco e a 6a carta do Limiar. Se o site esta concedendo +2 de atributo a cada nivel a partir de outra fonte, DIGA QUAL: ou e regra que eu nao conheco, ou entrou por engano e esta inflando todos os derivados do sistema."
-    },
-
     "validacoes": {
       "pontosDoLimiar": "avisar",
       "dorDoAbismo": "avisar",
@@ -1048,59 +3083,102 @@
       "bloquear": [],
       "motivo": "P46 - o mestre concede excecoes (uma quest, uma carta do Abismo, um acordo de mesa), e uma ficha que recusa uma build que o mestre autorizou e uma ficha que o jogador abandona. Aviso claro e persistente resolve o problema real (build invalida por engano) sem criar o problema novo."
     },
-
     "checklistDeNivel": [
-      {"item": "Saude/Stamina/Eter maximos", "automatico": true},
-      {"item": "Reagentes maximos", "automatico": true},
-      {"item": "Marca do Duelo (nv3 +2/+2, nv5 +3/+3)", "automatico": true},
-      {"item": "Contagem de tecnicas (3 + Nivel)", "automatico": "conta sim, escolhe nao"},
-      {"item": "Destravar Tier (1->nv2, 2->nv4, 3->nv5)", "automatico": "sinaliza"},
-      {"item": "Contagem de Marcas", "automatico": "conta sim, escolhe nao"},
-      {"item": "+4 Pontos do Limiar", "automatico": true},
-      {"item": "Escolas do Teurgo (2/3/5)", "automatico": "sinaliza"},
-      {"item": "Teto de Corrupcao", "automatico": true}
-    ]
+      {
+        "item": "+2 pontos de atributo (Bencao Imediata)",
+        "automatico": "conta sim, distribui nao"
+      },
+      {
+        "item": "Saude/Stamina/Eter maximos",
+        "automatico": true
+      },
+      {
+        "item": "Reagentes maximos",
+        "automatico": true
+      },
+      {
+        "item": "Marca do Duelo (nv3 +2/+2, nv5 +3/+3)",
+        "automatico": true
+      },
+      {
+        "item": "Contagem de tecnicas (3 + Nivel)",
+        "automatico": "conta sim, escolhe nao"
+      },
+      {
+        "item": "Destravar Tier (1->nv2, 2->nv4, 3->nv5)",
+        "automatico": "sinaliza"
+      },
+      {
+        "item": "Contagem de Marcas",
+        "automatico": "conta sim, escolhe nao"
+      },
+      {
+        "item": "+4 Pontos do Limiar",
+        "automatico": true
+      },
+      {
+        "item": "Escolas do Teurgo (2/3/5)",
+        "automatico": "sinaliza"
+      },
+      {
+        "item": "Teto de Corrupcao",
+        "automatico": true
+      }
+    ],
+    "pontosDeAtributoPorNivel": {
+      "valor": 2,
+      "status": "canonico",
+      "fonte": "notion-limiar > Bencao Imediata dos Atributos (D87)"
+    }
   },
-
   "rastrear": {
     "_principio": "P55 - rastreie o que e PRIVADO e DETERMINISTICO; nao rastreie o que e COMPARTILHADO e NEGOCIADO. O que so depende dos numeros do personagem, a ficha acerta sempre. O que depende do que o mestre decidiu, a ficha so pode palpitar, e palpite errado com cara de autoridade e pior que campo vazio.",
     "essencial": [
-      "saudeAtual", "staminaAtual", "eterAtual",
+      "saudeAtual",
+      "staminaAtual",
+      "eterAtual",
       "recursoClasse",
-      "pmaPorAlvo",
+      "progressaoDeAtaques",
       "condicoesAtivasComXeDuracao",
       "usosPorRecarga",
       "municao",
       "descansosDoDia",
-      "exaustao", "desnutrido",
+      "exaustao",
+      "desnutrido",
       "estresse",
       "marcaDoDuelo"
     ],
-    "opcional": ["temporarios", "acoesReacaoDoTurno", "efeitosSustentados", "iniciativaDaCena"],
-    "ruido": ["rodadaAtualComoContadorDoJogador", "enforcementDeAcao"],
+    "opcional": [
+      "temporarios",
+      "acoesReacaoDoTurno",
+      "efeitosSustentados",
+      "iniciativaDaCena"
+    ],
+    "ruido": [
+      "rodadaAtualComoContadorDoJogador",
+      "enforcementDeAcao"
+    ],
     "justificativas": {
-      "pmaPorAlvo": "O item mais subestimado do pedido. -5 cumulativo POR ALVO, zerando ao trocar de alvo (D29). E a regra que a mesa mais erra, e puramente deterministica e e a que mais muda um numero. Se a ficha automatizasse UMA coisa so, seria esta.",
       "estresse": "Nao existe em lugar nenhum fora da ficha, e cobra caro no descanso (ver descanso.estresse._alerta).",
       "exaustao": "Mexe no MAXIMO, que cascateia em tudo.",
       "rodadaAtualComoContadorDoJogador": "A RODADA E DO MESTRE. Cinco fichas com contador proprio vao dessincronizar na primeira vez que alguem perder um turno, e clock dessincronizado e pior que clock nenhum. Solucao: a ficha conta OS TURNOS DELA e expressa toda duracao em 'turnos seus'. Ai e autoconsistente e nao precisa de estado compartilhado.",
-      "acoesReacaoDoTurno": "Otimo como display para jogador novo. NUNCA como trava: enforcement briga com o mestre."
+      "acoesReacaoDoTurno": "Otimo como display para jogador novo. NUNCA como trava: enforcement briga com o mestre.",
+      "progressaoDeAtaques": "Decisao do Pedro: a ficha NAO rastreia PMA por alvo ('jogador nao vai marcar alvo na ficha'). Mostra a progressao pronta como display: '1o +7 . 2o +2 . 3o -3'. A troca de alvo (D29) o jogador aplica de cabeca."
     }
   },
-
   "automacao": {
     "_principio": "P56 - automatize o que deriva de um NUMERO que a ficha ja tem; nao automatize o que deriva de um JULGAMENTO na mesa.",
     "modificadoresEMaximos": "automatico",
     "evasaoPassivaCdCapacidade": "automatico",
     "movimentoEfetivo": "automatico",
     "penalidadeDeCondicaoEmPericia": "automatico no total, com detalhamento visivel",
-    "pma": "automatico",
+    "pma": "display da progressao de ataques; sem contador por alvo",
     "descontoDeCusto": "automatico, com desfazer",
     "ganhoDeRecursoDeClasse": "lembrete + botao",
     "aplicarRemoverCondicao": "lembrete",
     "rolagemDeDescanso": "automatico, com desfazer",
     "estadosFinais": "alerta, nunca automatico",
     "_regraDeInterface": "Vale mais que a decisao automatico/lembrete: TODO NUMERO DERIVADO PRECISA MOSTRAR DE ONDE VEIO. Um jogador que ve 'Atacar +5' sem explicacao nao confia; um que ve '+3 DES +4 prof -2 Desorientado' confia e ainda aprende o sistema. Automacao sem rastreabilidade gera desconfianca, e ficha em que ninguem confia volta para o papel.",
-
     "rolador": "roladorOpcional",
     "roladorPadrao": "desligado",
     "roladorPrioridade": "construir por ultimo",
@@ -1109,27 +3187,77 @@
       "Rolador cria um problema que dado fisico nao tem: confianca. 'Tirei 20' com dado na mesa e fato publico; com rolador e alegacao.",
       "Khalkaria e tatil de proposito. O Limiar e mao de cartas, o Abismo e barganha. Tirar o dado da mao do jogador anda contra a estetica do sistema."
     ],
-    "roladorRequisitos": ["historico", "linha copiavel para o chat do grupo"],
-
-    "log": {"comDesfazer": true, "profundidade": 20, "obrigatorio": true,
-      "motivo": "P58 - clique errado em 'Descanso Longo' e irrecuperavel sem log, porque ele consome o dia, rola recuperacao, baixa Exaustao e cobra estresse de uma vez. Dano e gasto de recurso tambem: a mesa corrige o tempo todo ('nao, o ataque errou')."}
+    "roladorRequisitos": [
+      "historico",
+      "linha copiavel para o chat do grupo"
+    ],
+    "log": {
+      "comDesfazer": true,
+      "profundidade": 20,
+      "obrigatorio": true,
+      "motivo": "P58 - clique errado em 'Descanso Longo' e irrecuperavel sem log, porque ele consome o dia, rola recuperacao, baixa Exaustao e cobra estresse de uma vez. Dano e gasto de recurso tambem: a mesa corrige o tempo todo ('nao, o ataque errou')."
+    }
   },
-
   "eventos": {
-    "inicioCombate": ["recursoDeClasse -> valor inicial (0)", "desconta 1 municao do tipo equipado", "zera PMA", "reseta usos 'combate'", "marca reacao disponivel"],
-    "novaRodada": ["reseta a reacao", "tique de Em Chamas e Envenenamento", "decrementa condicoes de duracao em rodadas", "cobra Eter das magias sustentadas", "reseta limites 'por rodada'"],
-    "fimTurno": ["zera a PMA de todos os alvos", "expira efeitos 'ate o fim do seu turno'", "marca a reacao como gasta"],
-    "fimCombate": ["zera Fluxo, Brutalidade e Concentracao", "reseta usos 'combate'", "expira temporarios de combate", "limpa condicoes com fim em combate"],
-    "fimCena": ["reseta usos 'cena'", "zera Instinto", "limpa a municao da cena"],
-    "descansoCurto": ["assistente de descanso.curto"],
-    "descansoLongo": ["assistente de descanso.longo", "avanca o dia"],
-    "novoDia": ["reseta usos 'dia'", "NAO recupera status", "avisa sobre Exaustao no 2o dia sem descanso"]
+    "inicioCombate": [
+      "recursoDeClasse -> valor inicial (0)",
+      "desconta 1 municao do tipo equipado",
+      "reseta usos 'combate'",
+      "marca reacao disponivel"
+    ],
+    "novaRodada": [
+      "reseta a reacao",
+      "tique de Em Chamas e Envenenamento",
+      "decrementa condicoes de duracao em rodadas",
+      "cobra Eter das magias sustentadas",
+      "reseta limites 'por rodada'"
+    ],
+    "fimTurno": [
+      "expira efeitos 'ate o fim do seu turno'",
+      "marca a reacao como gasta"
+    ],
+    "fimCombate": [
+      "zera Fluxo, Brutalidade e Concentracao",
+      "reseta usos 'combate'",
+      "expira temporarios de combate",
+      "limpa condicoes com fim em combate"
+    ],
+    "fimCena": [
+      "reseta usos 'cena'",
+      "zera Instinto",
+      "limpa a municao da cena"
+    ],
+    "descansoCurto": [
+      "assistente de descanso.curto"
+    ],
+    "descansoLongo": [
+      "assistente de descanso.longo",
+      "avanca o dia"
+    ],
+    "novoDia": [
+      "reseta usos 'dia'",
+      "NAO recupera status",
+      "avisa sobre Exaustao no 2o dia sem descanso"
+    ]
   },
-
   "export": {
     "exportarEstado": true,
     "blocoSeparado": "estadoSessao",
-    "campos": ["saude.atual", "stamina.atual", "eter.atual", "recursoClasse.nome", "recursoClasse.atual", "condicoes", "temporarios", "exaustao", "desnutrido", "evasaoPassiva", "ar", "ae", "movimentoEfetivo"],
+    "campos": [
+      "saude.atual",
+      "stamina.atual",
+      "eter.atual",
+      "recursoClasse.nome",
+      "recursoClasse.atual",
+      "condicoes",
+      "temporarios",
+      "exaustao",
+      "desnutrido",
+      "evasaoPassiva",
+      "ar",
+      "ae",
+      "movimentoEfetivo"
+    ],
     "motivo": "P59 - manda os dois, em blocos distintos: a build no formato npc que o Bestiario ja aceita, e o estado num 'estadoSessao' a parte. Como o import e tolerante e filtra chave desconhecida, o Bestiario ignora o bloco novo ate querer usa-lo.",
     "linhaDeMesa": {
       "formato": "Saude {atual}/{max} . Evasao {passiva} . Ar {ar} . Ae({tipo} {n}) . Movimento {efetivo} m\\nCondicoes: {lista}",
@@ -1138,38 +3266,168 @@
       "motivo": "E o que um mestre pergunta em combate, sempre a mesma coisa. Resolve sem precisar que o Bestiario mude nada."
     }
   },
-
   "pendenciasNotion": [
-    {"n": 1, "o": "Modificador de atributo: floor((attr-10)/2)", "porque": "NAO esta em lugar nenhum. TODO derivado depende dela.", "gravidade": "critica"},
-    {"n": 2, "o": "Vantagem e desvantagem, regra geral", "porque": "Usada por 6 condicoes, superficies e armas sem requisito. Nunca definida.", "gravidade": "critica"},
-    {"n": 3, "o": "Piso da Contida (1) e piso do custo final (0)", "porque": "Sem o primeiro o tier de truques nasce obsoleto; sem o segundo existe custo negativo.", "gravidade": "alta"},
-    {"n": 4, "o": "Sangramento X escala ou nao", "porque": "Maior impacto em DPR da lista. A D29 diz que deve escalar; o card diz que nao.", "gravidade": "alta"},
-    {"n": 5, "o": "Ae/Ar acumulam? Tem teto?", "porque": "Ar 11 zera o arquetipo de arma leve sem upgrade.", "gravidade": "alta"},
-    {"n": 6, "o": "Dano de Morrendo e mitigavel?", "porque": "Se for, Ae(Biologico) desliga o relogio da morte.", "gravidade": "alta"},
-    {"n": 7, "o": "Liberacao de estresse e opcional?", "porque": "Se obrigatoria, descansar com 5 de estresse e pior que nao descansar.", "gravidade": "alta"},
-    {"n": 8, "o": "Exposto derivado de Paralisado: concede uma vez, nao continuamente", "porque": "A leitura continua faz todo ataque contra paralisado ser critico.", "gravidade": "alta"},
-    {"n": 9, "o": "Saida de Exaurido e Oco = recurso > 0", "porque": "A leitura literal permite ficar em 0 de Stamina sem penalidade para sempre.", "gravidade": "media"},
-    {"n": 10, "o": "Como o Desnutrido diminui", "porque": "So existe a regra de subir.", "gravidade": "media"},
-    {"n": 11, "o": "Lista das 'condicoes mentais'", "porque": "Citada pelo Teurgo e pelo Veterano, nunca escrita.", "gravidade": "media"},
-    {"n": 12, "o": "Promover Agarrado a condicao", "porque": "O efeito ja existe na manobra Agarrar; so falta o card.", "gravidade": "media"},
-    {"n": 13, "o": "'1 cast por turno' existe?", "porque": "Projetil diz que ignora uma regra que nao esta escrita.", "gravidade": "media"},
-    {"n": 14, "o": "O dado de Defender nao soma atributo", "porque": "Uma linha, evita contar Destreza duas vezes.", "gravidade": "media"},
-    {"n": 15, "o": "Descricao do Oficio(Ferraria) esta com o texto da Engenharia", "porque": "Correcao de copiar-colar.", "gravidade": "baixa"},
-    {"n": 16, "o": "Intimidacao: CON/FOR ou FOR/SAB?", "porque": "Ficha fisica e tabela de pericias discordam.", "gravidade": "baixa"},
-    {"n": 17, "o": "Padronizar ultrapassar/alcancar em Morrendo e Oco", "porque": "Uma palavra em cada card.", "gravidade": "baixa"},
-    {"n": 18, "o": "Pele de Pedra usa Ae(Ordinario) e deveria ser Ar", "porque": "Ja era pendencia (D67).", "gravidade": "baixa"},
-    {"n": 19, "o": "Residuo da renumeracao de magia (D68)", "porque": "Dissipar Magia, Teurgo x3, Cultista, Corrompido, Desejo Sombrio.", "gravidade": "media"}
+    {
+      "n": 1,
+      "o": "Modificador de atributo: floor((attr-10)/2)",
+      "porque": "NAO esta em lugar nenhum. TODO derivado depende dela.",
+      "gravidade": "critica",
+      "status": "decidido: D80"
+    },
+    {
+      "n": 2,
+      "o": "Vantagem e desvantagem, regra geral",
+      "porque": "Usada por 6 condicoes, superficies e armas sem requisito. Nunca definida.",
+      "gravidade": "critica",
+      "status": "decidido: D81"
+    },
+    {
+      "n": 3,
+      "o": "Piso da Contida (1) e piso do custo final (0)",
+      "porque": "Sem o primeiro o tier de truques nasce obsoleto; sem o segundo existe custo negativo.",
+      "gravidade": "alta",
+      "status": "decidido: D82"
+    },
+    {
+      "n": 4,
+      "o": "Sangramento X escala ou nao",
+      "porque": "Maior impacto em DPR da lista. A D29 diz que deve escalar; o card diz que nao.",
+      "gravidade": "alta",
+      "status": "decidido: D83"
+    },
+    {
+      "n": 5,
+      "o": "Ae/Ar acumulam? Tem teto?",
+      "porque": "Ar 11 zera o arquetipo de arma leve sem upgrade.",
+      "gravidade": "alta",
+      "status": "decidido: D85"
+    },
+    {
+      "n": 6,
+      "o": "Dano de Morrendo e mitigavel?",
+      "porque": "Se for, Ae(Biologico) desliga o relogio da morte.",
+      "gravidade": "alta",
+      "status": "decidido: D86"
+    },
+    {
+      "n": 7,
+      "o": "Liberacao de estresse e opcional?",
+      "porque": "Se obrigatoria, descansar com 5 de estresse e pior que nao descansar.",
+      "gravidade": "alta",
+      "status": "decidido: D84"
+    },
+    {
+      "n": 8,
+      "o": "Exposto derivado de Paralisado: concede uma vez, nao continuamente",
+      "porque": "A leitura continua faz todo ataque contra paralisado ser critico.",
+      "gravidade": "alta"
+    },
+    {
+      "n": 9,
+      "o": "Saida de Exaurido e Oco = recurso > 0",
+      "porque": "A leitura literal permite ficar em 0 de Stamina sem penalidade para sempre.",
+      "gravidade": "media"
+    },
+    {
+      "n": 10,
+      "o": "Como o Desnutrido diminui",
+      "porque": "So existe a regra de subir.",
+      "gravidade": "media"
+    },
+    {
+      "n": 11,
+      "o": "Lista das 'condicoes mentais'",
+      "porque": "Citada pelo Teurgo e pelo Veterano, nunca escrita.",
+      "gravidade": "media"
+    },
+    {
+      "n": 12,
+      "o": "Promover Agarrado a condicao",
+      "porque": "O efeito ja existe na manobra Agarrar; so falta o card.",
+      "gravidade": "media"
+    },
+    {
+      "n": 13,
+      "o": "'1 cast por turno' existe?",
+      "porque": "Projetil diz que ignora uma regra que nao esta escrita.",
+      "gravidade": "media"
+    },
+    {
+      "n": 14,
+      "o": "O dado de Defender nao soma atributo",
+      "porque": "Uma linha, evita contar Destreza duas vezes.",
+      "gravidade": "media"
+    },
+    {
+      "n": 15,
+      "o": "Descricao do Oficio(Ferraria) esta com o texto da Engenharia",
+      "porque": "Correcao de copiar-colar.",
+      "gravidade": "baixa"
+    },
+    {
+      "n": 16,
+      "o": "Intimidacao: CON/FOR ou FOR/SAB?",
+      "porque": "Ficha fisica e tabela de pericias discordam.",
+      "gravidade": "baixa"
+    },
+    {
+      "n": 17,
+      "o": "Padronizar ultrapassar/alcancar em Morrendo e Oco",
+      "porque": "Uma palavra em cada card.",
+      "gravidade": "baixa"
+    },
+    {
+      "n": 18,
+      "o": "Pele de Pedra usa Ae(Ordinario) e deveria ser Ar",
+      "porque": "Ja era pendencia (D67).",
+      "gravidade": "baixa"
+    },
+    {
+      "n": 19,
+      "o": "Residuo da renumeracao de magia (D68)",
+      "porque": "Dissipar Magia, Teurgo x3, Cultista, Corrompido, Desejo Sombrio.",
+      "gravidade": "media"
+    },
+    {
+      "n": 20,
+      "o": "Ordem do Sangramento num acerto que tambem aplica",
+      "porque": "Consumir antes ou aplicar antes muda 1d4 por acerto.",
+      "gravidade": "baixa"
+    }
   ],
-
   "baixaDePendencia": [
-    {"id": "D22", "o": "Margem de Ameaca", "status": "JA REGISTRADA no Notion, conferido 2026-09-25"},
-    {"id": "D31", "o": "Multiplicador de Critico", "status": "JA REGISTRADA no Notion, conferido 2026-09-25"}
+    {
+      "id": "D22",
+      "o": "Margem de Ameaca",
+      "status": "JA REGISTRADA no Notion, conferido 2026-09-25"
+    },
+    {
+      "id": "D31",
+      "o": "Multiplicador de Critico",
+      "status": "JA REGISTRADA no Notion, conferido 2026-09-25"
+    }
   ],
-
   "posso_entregar": [
-    {"n": 1, "o": "Ar e Ae parseados por item (50 armaduras + 10 escudos + itens magicos), em coluna propria, a partir do CSV do Bazar", "resolve": "P19", "custo": "baixo", "nota": "E meu arquivo e a gramatica e fechada (D63/D64/D67). Basta pedir."},
-    {"n": 2, "o": "O bloco 'itens' do P44, via parser + validacao por conjunto sobre data/classes/*.json e data/limiar.json", "resolve": "P44, P45, P23", "custo": "medio", "nota": "Com relatorio das habilidades que nao cairem na gramatica, para o Pedro decidir em lote. As 59 cartas raras estao bloqueadas ate o efeito vir do Notion."},
-    {"n": 3, "o": "Revisao do desenho de recurso de classe (Instinto e Concentracao)", "resolve": "C15, P11", "custo": "alto", "nota": "E a D79 e ja esta em andamento no rework do Batedor. Quando fechar, a 'regua de recurso de classe' vira o molde de Vigario, Vampiro, Necromante e Xama, e o classes.<id>.recursos[] deste contrato deve ser o formato de saida dela."},
-    {"n": 4, "o": "Os numeros que faltam para decidir: teto de Ar, custo real do estresse por comodidade, DPR do Sangramento nas duas leituras", "resolve": "pendencias 4, 5 e 7", "custo": "baixo"}
+    {
+      "n": 1,
+      "o": "Ar e Ae parseados por item (50 armaduras + 10 escudos + itens magicos), em coluna propria, a partir do CSV do Bazar",
+      "resolve": "P19",
+      "custo": "baixo",
+      "nota": "E meu arquivo e a gramatica e fechada (D63/D64/D67). Basta pedir."
+    },
+    {
+      "n": 2,
+      "o": "O bloco 'itens' do P44, via parser + validacao por conjunto sobre data/classes/*.json e data/limiar.json",
+      "resolve": "P44, P45, P23",
+      "custo": "medio",
+      "nota": "Com relatorio das habilidades que nao cairem na gramatica, para o Pedro decidir em lote. As 59 cartas raras estao bloqueadas ate o efeito vir do Notion."
+    },
+    {
+      "n": 3,
+      "o": "Revisao do desenho de recurso de classe (Instinto e Concentracao)",
+      "resolve": "C15, P11",
+      "custo": "alto",
+      "nota": "E a D79 e ja esta em andamento no rework do Batedor. Quando fechar, a 'regua de recurso de classe' vira o molde de Vigario, Vampiro, Necromante e Xama, e o classes.<id>.recursos[] deste contrato deve ser o formato de saida dela."
+    }
   ]
 }
