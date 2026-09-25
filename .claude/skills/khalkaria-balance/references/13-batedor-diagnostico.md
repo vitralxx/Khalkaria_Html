@@ -117,3 +117,54 @@ mapear, andar sem ativar armadilha. O problema é que tudo isso vale **fora** do
 **O rework tem que trazer a exploração para dentro da luta:** terreno, rastro, posição e preparação
 virando vantagem tática em combate, e não utilidade de viagem. Se isso der certo, o Batedor deixa
 de ser "Artilheiro pior" e passa a ser a classe que **escolhe onde a luta acontece**.
+
+---
+
+# MÉTODO DE VALIDAÇÃO  ·  simulador vs. subagente
+
+Pergunta do Pedro: adotar subagentes que **joguem o RPG de verdade**, cientes das regras, testando
+classe contra classe? Resposta: **boa ideia, escopo errado.** As duas metades se separam limpo.
+
+## Por que subagente NÃO serve para número
+
+1. **LLM é mau escriturário.** Um combate de 5 rodadas com 2 combatentes tem ~60 mutações de
+   estado (Stamina, PMA por alvo, condição expirando, Ar reduzindo dano, reação já gasta). O erro
+   acumula em silêncio e o agente reporta o resultado com a mesma confiança de sempre.
+2. **O resultado não é auditável.** "Batedor perde 7 de 10" não é falseável. Isso viola a §6 do
+   protocolo — *não confiar em lista digitada à mão, extrair por script, comparar por conjunto* —
+   que existe justamente porque conferência no olho já falhou aqui (a carta duplicada do Limiar).
+3. **Agente não joga como jogador.** Ou otimiza, ou escolhe por sabor. Balanceamento precisa do
+   jogador **mediano**, que é nenhum dos dois.
+4. **A superfície de regra é cara.** 22 perícias, 30 condições, PMA por alvo, 3 ações, Ar/Ae,
+   12 tipos de dano, intensidade, modulação, 3 status. Cada agente nasce frio e re-deriva tudo.
+
+## O caso que decide a questão: o Instinto
+
+O bug saiu de **uma conta**: `0,60 × 0,35 × 0,10 = 2,1%`. Dez combates simulados por agente teriam
+produzido a sensação *"o Instinto vive zerando"* — nunca o **97,9%**, que é o que vira decisão.
+
+## `simulador.py` — a peça a construir
+
+Determinístico, 10 mil iterações, reprodutível, auditável. Mesmo princípio do `auditor.py`.
+**E é a infraestrutura que a D79 pede:** recebendo a classe como dado (JSON), serve igual para
+Vigário, Vampiro, Necromante e Xamã — muda o coeficiente, roda a matriz de confronto inteira.
+
+Ele precisa modelar, no mínimo: 3 ações/turno · PMA −5 por alvo (D29) · 60/35/10 · crítico só em
+20 natural + margem de ameaça · Ar e Ae · Stamina/Éter como recurso que acaba · condições com
+expiração · reação disputada (Defender × habilidade de classe).
+
+## Onde subagente É melhor que script e melhor que eu
+
+Simulação não responde: a técnica é **divertida**? dá **trabalho de anotar** na mesa? um **advogado
+de regras** torce o texto? a **fantasia** se sustenta? Isso é leitura de linguagem.
+
+Um agente com uma técnica e a instrução **"ache o exploit"** é barato, tem entregável claro, e pega
+o tipo de coisa que número nenhum pega — como a *Leitura de Batalha* do Espadachim, que o Pedro
+matou não por ser forte, mas por ser impossível de trackear com 10 inimigos.
+
+## A divisão
+
+| O que validar | Ferramenta |
+|---|---|
+| Número, confronto, atrito de recurso, DPR, sobrevivência | **`simulador.py`** |
+| Exploit, ambiguidade de texto, carga de tracking, fantasia | **subagente lendo o texto** |
