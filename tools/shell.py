@@ -19,9 +19,15 @@ reaplicar não muda o resultado.
      (slug estável: "Custo Base" -> id="custo-base"). Substitui os sec-0/sec-1
      que o js/utils.js inventava em runtime, que mudavam de alvo a cada
      reordenação e não existiam no HTML servido (CLAUDE.md §10).
-     Títulos que já têm id são preservados; colisões ganham sufixo -2, -3…
+     O id de título é sempre recalculado; colisões ganham sufixo -2, -3…
+
+  4. VERSÃO    — todo <script src> e <link href> LOCAL (js/, css/) ganha
+     ?v=<hash do conteúdo de js/*.js e css/*.css>. O GitHub Pages manda cache de
+     10 min e, sem versão na URL, o navegador servia um ficha.js ANTIGO nas
+     páginas fora do Bazar depois de um deploy (a window.KF sumia). O js/main.js
+     repassa a mesma versão ao ficha.js que ele injeta.
 """
-import os, re, sys, unicodedata
+import hashlib, os, re, sys, unicodedata
 
 TOOLS = os.path.dirname(os.path.abspath(__file__))
 RAIZ = os.path.dirname(TOOLS)
@@ -128,6 +134,30 @@ def aplica_webp(html, pagina_rel):
     return RE_IMG.sub(troca, html)
 
 
+RE_ASSET = re.compile(
+    r'(<(?:script\b[^>]*\bsrc|link\b[^>]*\bhref)=")'        # abertura até o valor
+    r'((?:\.\./)*(?:js|css)/[^"?#]+\.(?:js|css))'           # só caminho LOCAL relativo
+    r'(?:\?v=[^"#]*)?'                                       # versão anterior, se houver
+    r'(")', re.I)
+
+
+def versao_assets(raiz=RAIZ):
+    """8 hex do sha1 de js/*.js + css/*.css, com CRLF normalizado para LF (o
+    mesmo commit dá a mesma versão em qualquer checkout)."""
+    h = hashlib.sha1()
+    for pasta, ext in (('js', '.js'), ('css', '.css')):
+        base = os.path.join(raiz, pasta)
+        for nome in sorted(os.listdir(base)) if os.path.isdir(base) else []:
+            if nome.endswith(ext):
+                h.update(nome.encode('utf-8'))
+                h.update(open(os.path.join(base, nome), 'rb').read().replace(b'\r\n', b'\n'))
+    return h.hexdigest()[:8]
+
+
+def aplica_versao(html, versao):
+    return RE_ASSET.sub(lambda m: m.group(1) + m.group(2) + '?v=' + versao + m.group(3), html)
+
+
 def paginas(raiz):
     fs = []
     for dirpath, _, nomes in os.walk(os.path.join(raiz, 'pages')):
@@ -140,18 +170,23 @@ def paginas(raiz):
 
 def aplicar(raiz=RAIZ, verboso=True):
     modelo = carrega_sidebar()
-    n_nav = n_anc = 0
+    # a versão vem SEMPRE dos assets do repo real (o round-trip do validar.py
+    # roda numa cópia temporária sem js/ e css/, e precisa dar o mesmo hash)
+    versao = versao_assets(RAIZ)
+    n_nav = n_anc = n_ver = 0
     for f in paginas(raiz):
         rel = os.path.relpath(f, raiz).replace(os.sep, '/')
         antes = open(f, encoding='utf-8', newline='').read()
         depois = aplica_webp(aplica_ancoras(aplica_sidebar(antes, rel, modelo)), rel)
+        depois = aplica_versao(depois, versao)
+        n_ver += len(RE_ASSET.findall(depois))
         if depois != antes:
             open(f, 'w', encoding='utf-8', newline='').write(depois)
             n_nav += 1
         n_anc += len(re.findall(r'<h[23] id="', depois))
     if verboso:
         print(f'    shell aplicado: {len(paginas(raiz))} páginas '
-              f'({n_nav} alteradas, {n_anc} âncoras estáveis)')
+              f'({n_nav} alteradas, {n_anc} âncoras estáveis, {n_ver} assets em ?v={versao})')
     return n_nav
 
 

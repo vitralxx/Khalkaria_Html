@@ -9,7 +9,9 @@
     if (!here) return;
     window.KF_ROOT = new URL('../', here).href;
     var f = document.createElement('script');
-    f.src = new URL('ficha.js', here).href;
+    // repassa o ?v= do próprio main.js (o build versiona todos os assets locais):
+    // sem ele o navegador servia um ficha.js antigo do cache depois do deploy
+    f.src = new URL('ficha.js' + new URL(here).search, here).href;
     document.head.appendChild(f);
   } catch (e) {}
 })();
