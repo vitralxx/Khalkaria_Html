@@ -22,6 +22,44 @@
 (function () {
   'use strict';
 
+  // ============================================================ parte pura
+  // Sem DOM: testada em tools/testes/ordenacao-bazar.test.js.
+  // Ordem do catálogo por qualquer coluna clicável da Lista (COLS). Toda chave
+  // que a tabela marca com aria-sort tem de estar aqui; nome desempata sempre.
+  // Colunas de texto: vazio vai para o fim (como o CD sem valor). Região segue a
+  // ordem numerada do vocabulário (1., 2., …), depois Único/Quest, depois o resto.
+  var COLS_TEXTO = ['categoria', 'efeito', 'obtencao', 'regiao', 'craft'];
+  function regiaoDe(it) { return it.regiao || (it.unico ? 'Único/Quest' : ''); }
+  function textoDe(it, k) {
+    var v = k === 'regiao' ? regiaoDe(it) : it[k];
+    return v == null ? '' : String(v).trim();
+  }
+  function comparador(k, dir, ordRegioes) {
+    var regs = ordRegioes || [];
+    function posRegiao(s) {
+      if (!s) return 1e9;
+      var i = regs.indexOf(s);
+      return i >= 0 ? i : (s === 'Único/Quest' ? regs.length : regs.length + 1);
+    }
+    return function (a, b) {
+      var porNome = a.nome.localeCompare(b.nome, 'pt'), r;
+      if (k === 'raridade') r = a._rar - b._rar;
+      else if (k === 'valor') r = a._valor - b._valor;
+      else if (k === 'cd') r = (a.cd == null ? 1e9 : a.cd) - (b.cd == null ? 1e9 : b.cd);
+      else if (COLS_TEXTO.indexOf(k) >= 0) {
+        var ta = textoDe(a, k), tb = textoDe(b, k);
+        if (k === 'regiao') r = posRegiao(ta) - posRegiao(tb) || ta.localeCompare(tb, 'pt');
+        else if (!ta !== !tb) r = ta ? -1 : 1;
+        else r = ta.localeCompare(tb, 'pt');
+      } else r = 0;
+      return (r || porNome) * dir;
+    };
+  }
+  if (typeof module === 'object' && module && module.exports) {
+    module.exports = { comparador: comparador, COLS_TEXTO: COLS_TEXTO };
+    return;
+  }
+
   var V = window.BZ_VOCAB || {};
   var LS = 'khalkaria_bazar_estado';
   // Os objetos abaixo nunca são reatribuídos: o BZ.dados aponta para eles.
@@ -247,17 +285,7 @@
   }
 
   function ordenar(lista) {
-    var k = E.ordem;
-    return lista.sort(function (a, b) {
-      var r;
-      if (k === 'raridade') r = a._rar - b._rar || a.nome.localeCompare(b.nome, 'pt');
-      else if (k === 'valor') r = a._valor - b._valor || a.nome.localeCompare(b.nome, 'pt');
-      else if (k === 'cd') {
-        var ca = a.cd == null ? 1e9 : a.cd, cb = b.cd == null ? 1e9 : b.cd;
-        r = ca - cb || a.nome.localeCompare(b.nome, 'pt');
-      } else r = a.nome.localeCompare(b.nome, 'pt');
-      return r * E.dir;
-    });
+    return lista.sort(comparador(E.ordem, E.dir, V.regioes));
   }
 
   // ------------------------------------------------------------ chips
