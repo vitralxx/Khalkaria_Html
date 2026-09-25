@@ -85,7 +85,7 @@ def parse_ingredientes(txt):
     # O CSV do agente de balanceamento escreve "2 Reagentes" (sem x, no plural)
     # nas receitas de Alquimia; o item do catálogo é "Reagente Alquímico (x1)".
     # Normalizar aqui mantém o link mesmo quando a planilha volta na forma antiga.
-    txt = RE_REAGENTES.sub(r'x Reagente Alquímico (x1)', txt)
+    txt = RE_REAGENTES.sub(r'\1x Reagente Alquímico (x1)', txt)
     out = []
     for parte in SEP_ING.split(txt):
         m = UM_ING.match(parte.strip())
