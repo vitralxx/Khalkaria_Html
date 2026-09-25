@@ -124,9 +124,6 @@ def checa_html():
         print(f'  OK     {len(paginas())} páginas íntegras')
 
 
-NAV_ROT_PENDENTE = True
-
-
 def checa_nav_pagina(h, nav):
     """Contrato da nav (shell.py passos 1, 6 e 7) numa página já montada."""
     probs = []
@@ -142,7 +139,7 @@ def checa_nav_pagina(h, nav):
     sem = sorted({u for u in re.findall(r'<use href="#(nv-[^"]+)"', nav) if u not in simbolos})
     if sem:
         probs.append(f'glifos sem <symbol>: {sem}')
-    for a in [] if NAV_ROT_PENDENTE else re.findall(r'<a href="[^"]+"[^>]*class="nav-link[^"]*"[^>]*>.*?</a>', nav, re.S):
+    for a in re.findall(r'<a href="[^"]+"[^>]*class="nav-link[^"]*"[^>]*>.*?</a>', nav, re.S):
         rot = re.search(r'<span class="nav-rot">([^<]*)</span>', a)
         if not (rot and rot.group(1).strip()):
             probs.append(f'link sem rótulo .nav-rot: {re.sub(r"<[^>]+>", "", a).strip()[:40]!r}')

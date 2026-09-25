@@ -21,7 +21,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const splash = document.querySelector('.splash-screen');
     if (splash) {
         // One-time: se já viu a entrada, esconde imediatamente sem animar
-        if (localStorage.getItem('khalkaria_splash_seen')) {
+        var visto = false;
+        try { visto = !!localStorage.getItem('khalkaria_splash_seen'); } catch (e) {}
+        if (visto) {
             splash.classList.add('hidden');
             splash.style.display = 'none';
         } else {
@@ -34,23 +36,9 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
-    // Mobile Menu Toggle
-    const menuToggle = document.querySelector('.menu-toggle');
-    const sidebar = document.querySelector('.sidebar');
-    
-    if (menuToggle && sidebar) {
-        menuToggle.addEventListener('click', function() {
-            sidebar.classList.toggle('open');
-        });
-        
-        // Close sidebar when clicking outside
-        document.addEventListener('click', function(e) {
-            if (!sidebar.contains(e.target) && !menuToggle.contains(e.target)) {
-                sidebar.classList.remove('open');
-            }
-        });
-    }
-    
+    // O menu mobile (.menu-toggle) mora em js/nav.js, que o build injeta em
+    // todas as páginas — inclusive o Bazar, que não carrega este arquivo.
+
     // Smooth scroll for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {

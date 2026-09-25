@@ -7,8 +7,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400&family=UnifrakturMaguntia&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../css/style.css?v=46e6484d">
-    <link rel="stylesheet" href="../css/bazar.css?v=46e6484d">
+    <link rel="stylesheet" href="../css/style.css?v=9dfb0eea">
+    <link rel="stylesheet" href="../css/bazar.css?v=9dfb0eea">
     <script data-nav-boot>(function(){try{var s=JSON.parse(localStorage.getItem('khalkaria_nav')||'{}'),h=document.documentElement;if(s.trilho)h.setAttribute('data-nav','trilho');if(s.fechados&&s.fechados.length)h.setAttribute('data-nav-fechados',s.fechados.join(' '))}catch(e){}})()</script>
 </head>
 <body data-no-rightbar data-bazar>
@@ -130,47 +130,66 @@
     </svg>
 
     <div class="app-container">
-        <nav class="sidebar">
+        <nav class="sidebar" id="nav-principal" aria-label="Navegação do sistema">
+            <svg class="nav-sprite" aria-hidden="true" focusable="false">
+                <symbol id="nv-inicio" viewBox="0 0 24 24"><path d="M5.6 20.4v-9.8a6.4 6.4 0 0 1 12.8 0v9.8M3.4 20.4h17.2" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"></path><path d="M9.2 20.4v-8.2a2.8 2.8 0 0 1 5.6 0v8.2" fill="none" stroke="currentColor" stroke-width=".9" stroke-linecap="round" opacity=".65"></path></symbol>
+                <symbol id="nv-sistema" viewBox="0 0 24 24"><path d="M5.6 4.4a1 1 0 0 1 1-1h10.8v17.2H6.6a1 1 0 0 1-1-1ZM17.4 10.2h1.8v3.6h-1.8" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"></path><path d="M8.4 3.4v17.2M10.8 8h4M10.8 10.8h3" fill="none" stroke="currentColor" stroke-width=".9" stroke-linecap="round" opacity=".65"></path></symbol>
+                <symbol id="nv-condicoes" viewBox="0 0 24 24"><circle cx="12" cy="12" r="7.6" fill="none" stroke="currentColor" stroke-width="1.3"></circle><path d="M13.2 4.5 11.1 9l2.5 2.3-2.3 3.5 1 4.7" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"></path><circle cx="12" cy="12" r="4.4" fill="none" stroke="currentColor" stroke-width=".9" opacity=".65"></circle></symbol>
+                <symbol id="nv-magias" viewBox="0 0 24 24"><path d="M12 4.6 13.5 10.5 19.4 12 13.5 13.5 12 19.4 10.5 13.5 4.6 12 10.5 10.5Z" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"></path><circle cx="12" cy="12" r="8.8" fill="none" stroke="currentColor" stroke-width=".9" opacity=".65"></circle></symbol>
+                <symbol id="nv-bazar" viewBox="0 0 24 24"><path d="M12 4.4v15.2M8.4 19.6h7.2M5.4 7.4h13.2M3 12.4h4.8a2.4 2.4 0 0 1-4.8 0ZM16.2 12.4H21a2.4 2.4 0 0 1-4.8 0Z" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"></path><path d="M5.4 7.4 3.4 12.4M5.4 7.4l2 5M18.6 7.4l-2 5M18.6 7.4l2 5" fill="none" stroke="currentColor" stroke-width=".9" stroke-linecap="round" opacity=".65"></path></symbol>
+                <symbol id="nv-criacao" viewBox="0 0 24 24"><path d="M20 3.4c-4.8.8-8.4 4.6-9.8 11l1.4.8c3.8-2.8 6.8-6.4 8.4-11.8ZM10.2 14.4l-1.8 4.4" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"></path><path d="M12.6 6.2H4.4v13.4h11.2v-5.4M6.8 10h3.6M6.8 13h2.4" fill="none" stroke="currentColor" stroke-width=".9" stroke-linecap="round" stroke-linejoin="round" opacity=".65"></path></symbol>
+                <symbol id="nv-racas" viewBox="0 0 24 24"><path d="M8.8 11.6a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM3.4 19.8c.4-3.6 2.6-5.6 5.4-5.6s5 2 5.4 5.6" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"></path><path d="M14.6 5.2a2.8 2.8 0 1 1 1.2 5.5M16.2 13.6c2.4.3 4 2.3 4.4 6.2" fill="none" stroke="currentColor" stroke-width=".9" stroke-linecap="round" opacity=".65"></path></symbol>
+                <symbol id="nv-classes" viewBox="0 0 24 24"><path d="M4.6 4.6l11 11M19.4 4.6l-11 11M13.8 17.4l3.6-3.6M6.6 13.8l3.6 3.6" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"></path><path d="M15.6 15.6l3.6 3.6M8.4 15.6l-3.6 3.6" fill="none" stroke="currentColor" stroke-width=".9" stroke-linecap="round" opacity=".65"></path></symbol>
+                <symbol id="nv-origens" viewBox="0 0 24 24"><path d="M12 3.8v8.2M12 12c-.4 3.4-3.8 4.4-6 8.2M12 12v8.2M12 12c.4 3.4 3.8 4.4 6 8.2" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"></path><path d="M5 8.6h14M8.4 16.9 6.6 16M15.6 16.9l1.8-.9" fill="none" stroke="currentColor" stroke-width=".9" stroke-linecap="round" opacity=".65"></path></symbol>
+                <symbol id="nv-limiar" viewBox="0 0 24 24"><path d="M5.2 8.8h5.2a.6.6 0 0 1 .6.6v10.2H4.6V9.4a.6.6 0 0 1 .6-.6ZM3.4 20.4h17.2" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"></path><path d="M14 20.4V4.6h5.6v15.8M7.8 12.4l1.2 1.6-1.2 1.6-1.2-1.6Z" fill="none" stroke="currentColor" stroke-width=".9" stroke-linecap="round" stroke-linejoin="round" opacity=".65"></path></symbol>
+                <symbol id="nv-recolher" viewBox="0 0 24 24"><path d="M19.6 12H9.2M13.4 7.6 9 12l4.4 4.4M4.6 4.6v14.8" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"></path></symbol>
+                <symbol id="nv-expandir" viewBox="0 0 24 24"><path d="M9.2 12h10.4M15.4 7.6 19.8 12l-4.4 4.4M4.6 4.6v14.8" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"></path></symbol>
+                <symbol id="nv-caret" viewBox="0 0 24 24"><path d="M9.4 5.4 16 12l-6.6 6.6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></symbol>
+            </svg>
             <div class="sidebar-header">
-                <a href="../index.html" class="sidebar-logo">Khalkaria</a>
+                <a href="../index.html" class="sidebar-logo"><span class="nav-logo-txt">Khalkaria</span><span class="nav-logo-k" aria-hidden="true">K</span></a>
                 <div class="sidebar-subtitle">Sistema de Regras</div>
-                <div class="sidebar-ornament"><span>◆</span></div>
+                <button type="button" class="nav-recolher" aria-controls="nav-principal" aria-expanded="true" aria-keyshortcuts="\" aria-label="Recolher navegação" title="Recolher navegação (\)"><svg class="nav-ico" aria-hidden="true"><use href="#nv-recolher"></use></svg></button>
             </div>
             <div class="nav-section">
                 <div class="nav-section-title">Fundamentos</div>
-                <a href="../index.html" class="nav-link">🏠 Início</a>
-                <a href="sistema.html" class="nav-link">📜 Sistema Base</a>
-                <a href="condicoes.html" class="nav-link">⚡ Condições</a>
-                <a href="magias.html" class="nav-link">✨ Magias</a>
-                <a href="bazar.html" aria-current="page" class="nav-link active">💰 O Bazar</a>
+                <a href="../index.html" class="nav-link"><svg class="nav-ico" aria-hidden="true"><use href="#nv-inicio"></use></svg><span class="nav-rot">Início</span></a>
+                <a href="sistema.html" class="nav-link"><svg class="nav-ico" aria-hidden="true"><use href="#nv-sistema"></use></svg><span class="nav-rot">Sistema Base</span></a>
+                <a href="condicoes.html" class="nav-link"><svg class="nav-ico" aria-hidden="true"><use href="#nv-condicoes"></use></svg><span class="nav-rot">Condições</span></a>
+                <a href="magias.html" class="nav-link"><svg class="nav-ico" aria-hidden="true"><use href="#nv-magias"></use></svg><span class="nav-rot">Magias</span></a>
+                <a href="bazar.html" aria-current="page" class="nav-link active"><svg class="nav-ico" aria-hidden="true"><use href="#nv-bazar"></use></svg><span class="nav-rot">O Bazar</span></a>
             </div>
             <div class="nav-section">
                 <div class="nav-section-title">Criação de Personagem</div>
-                <a href="criacao.html" class="nav-link">🎭 Criação</a>
-                <a href="racas.html" class="nav-link">👤 Raças</a>
-                <a href="classes.html" class="nav-link">⚔️ Classes</a>
-                <a href="origens.html" class="nav-link">📜 Origens</a>
-                <a href="limiar.html" class="nav-link">🌟 O Limiar</a>
+                <a href="criacao.html" class="nav-link"><svg class="nav-ico" aria-hidden="true"><use href="#nv-criacao"></use></svg><span class="nav-rot">Criação</span></a>
+                <a href="racas.html" class="nav-link"><svg class="nav-ico" aria-hidden="true"><use href="#nv-racas"></use></svg><span class="nav-rot">Raças</span></a>
+                <a href="classes.html" class="nav-link"><svg class="nav-ico" aria-hidden="true"><use href="#nv-classes"></use></svg><span class="nav-rot">Classes</span></a>
+                <a href="origens.html" class="nav-link"><svg class="nav-ico" aria-hidden="true"><use href="#nv-origens"></use></svg><span class="nav-rot">Origens</span></a>
+                <a href="limiar.html" class="nav-link"><svg class="nav-ico" aria-hidden="true"><use href="#nv-limiar"></use></svg><span class="nav-rot">O Limiar</span></a>
             </div>
-            <div class="nav-section">
-                <div class="nav-section-title">Raças</div>
-                <a href="racas/humano.html" class="nav-link nav-link-sub">🧍 Humano</a>
-                <a href="racas/anao.html" class="nav-link nav-link-sub">⛏️ Anão</a>
-                <a href="racas/dryad.html" class="nav-link nav-link-sub">🌿 Dryad</a>
-                <a href="racas/gruto.html" class="nav-link nav-link-sub">🪨 Gruto</a>
-                <a href="racas/corrompido.html" class="nav-link nav-link-sub">🩸 Corrompido</a>
-                <a href="racas/automato.html" class="nav-link nav-link-sub">⚙️ Autômato</a>
-                <a href="racas/inseto.html" class="nav-link nav-link-sub">🦂 Inseto</a>
+            <div class="nav-section nav-grupo" data-grupo="racas">
+                <button type="button" class="nav-grupo-cab" aria-expanded="true" aria-controls="nav-g-racas" data-dica="Raças (7)"><span class="nav-grupo-rot">Raças</span><span class="nav-grupo-n">7</span><svg class="nav-caret" aria-hidden="true"><use href="#nv-caret"></use></svg></button>
+                <div class="nav-grupo-lista" id="nav-g-racas">
+                    <a href="racas/humano.html" class="nav-link nav-link-sub"><span class="nav-mono" aria-hidden="true">Hu</span><span class="nav-rot">Humano</span></a>
+                    <a href="racas/anao.html" class="nav-link nav-link-sub"><span class="nav-mono" aria-hidden="true">An</span><span class="nav-rot">Anão</span></a>
+                    <a href="racas/dryad.html" class="nav-link nav-link-sub"><span class="nav-mono" aria-hidden="true">Dr</span><span class="nav-rot">Dryad</span></a>
+                    <a href="racas/gruto.html" class="nav-link nav-link-sub"><span class="nav-mono" aria-hidden="true">Gr</span><span class="nav-rot">Gruto</span></a>
+                    <a href="racas/corrompido.html" class="nav-link nav-link-sub"><span class="nav-mono" aria-hidden="true">Co</span><span class="nav-rot">Corrompido</span></a>
+                    <a href="racas/automato.html" class="nav-link nav-link-sub"><span class="nav-mono" aria-hidden="true">Au</span><span class="nav-rot">Autômato</span></a>
+                    <a href="racas/inseto.html" class="nav-link nav-link-sub"><span class="nav-mono" aria-hidden="true">In</span><span class="nav-rot">Inseto</span></a>
+                </div>
             </div>
-            <div class="nav-section">
-                <div class="nav-section-title">Classes</div>
-                <a href="classes/espadachim.html" class="nav-link nav-link-sub">⚔️ Espadachim</a>
-                <a href="classes/monge.html" class="nav-link nav-link-sub">👊 Monge</a>
-                <a href="classes/batedor.html" class="nav-link nav-link-sub">🏹 Batedor</a>
-                <a href="classes/alquimista.html" class="nav-link nav-link-sub">⚗️ Alquimista</a>
-                <a href="classes/teurgo.html" class="nav-link nav-link-sub">✨ Teurgo</a>
-                <a href="classes/artilheiro.html" class="nav-link nav-link-sub">💥 Artilheiro</a>
-                <a href="classes/brutalista.html" class="nav-link nav-link-sub">🪓 Brutalista</a>
+            <div class="nav-section nav-grupo" data-grupo="classes">
+                <button type="button" class="nav-grupo-cab" aria-expanded="true" aria-controls="nav-g-classes" data-dica="Classes (7)"><span class="nav-grupo-rot">Classes</span><span class="nav-grupo-n">7</span><svg class="nav-caret" aria-hidden="true"><use href="#nv-caret"></use></svg></button>
+                <div class="nav-grupo-lista" id="nav-g-classes">
+                    <a href="classes/espadachim.html" class="nav-link nav-link-sub"><span class="nav-mono" aria-hidden="true">Es</span><span class="nav-rot">Espadachim</span></a>
+                    <a href="classes/monge.html" class="nav-link nav-link-sub"><span class="nav-mono" aria-hidden="true">Mo</span><span class="nav-rot">Monge</span></a>
+                    <a href="classes/batedor.html" class="nav-link nav-link-sub"><span class="nav-mono" aria-hidden="true">Ba</span><span class="nav-rot">Batedor</span></a>
+                    <a href="classes/alquimista.html" class="nav-link nav-link-sub"><span class="nav-mono" aria-hidden="true">Al</span><span class="nav-rot">Alquimista</span></a>
+                    <a href="classes/teurgo.html" class="nav-link nav-link-sub"><span class="nav-mono" aria-hidden="true">Te</span><span class="nav-rot">Teurgo</span></a>
+                    <a href="classes/artilheiro.html" class="nav-link nav-link-sub"><span class="nav-mono" aria-hidden="true">Ar</span><span class="nav-rot">Artilheiro</span></a>
+                    <a href="classes/brutalista.html" class="nav-link nav-link-sub"><span class="nav-mono" aria-hidden="true">Br</span><span class="nav-rot">Brutalista</span></a>
+                </div>
             </div>
         </nav>
 
@@ -347,11 +366,11 @@
     <div class="bz-sr" id="bz-vivo" aria-live="polite"></div>
 
     <script>window.BZ_VOCAB = {"categorias": ["Arma", "Armadura", "Escudo", "Consumível", "Munição", "Bugiganga", "Item Mágico", "Material", "Lixo"], "raridades": ["Lixo", "Ordinário", "Incomum", "Exótico", "Luxária"], "oficios": ["Ferraria", "Engenharia", "Alquimia", "Sobrevivência", "Não-craftável"], "regioes": ["Cinturão Silencioso", "Bosque Corrompido", "Emaranhado de Raízes", "Costas Rochosas", "Terras Livres", "Cordilheira Cristalina", "Ermo das Cinzas", "Deserto do Abismo"], "chassis": ["Leve Cortante", "Leve Perfurante", "Leve Contundente", "Leve Ágil", "Pesada Cortante", "Pesada Perfurante", "Pesada Contundente", "Pesada Brutal", "Marcial Pesada", "Marcial Longa", "Marcial Precisa", "Marcial Versátil", "Distância Simples", "Distância Pesada", "Arremesso"], "focos": ["Foco Místico (Abjuração)", "Foco Místico (Alteração)", "Foco Místico (Conhecimento)", "Foco Místico (Destruição)", "Foco Místico (Primordial)"], "slots": ["Leve", "Pesada"], "municoes": ["Arremesso", "Distância Pesada", "Distância Simples"], "total": 727, "condicoes": {"leve": {"id": "sobrepeso-leve", "nome": "Sobrepeso Leve", "texto": "Movimento diminuído para a metade. -2 em perícias com Força, Destreza ou Constituição como atributo base."}, "extremo": {"id": "sobrepeso-extremo", "nome": "Sobrepeso Extremo", "texto": "Você tem 1,5 m de Movimento. Desvantagem em perícias com Força, Destreza ou Constituição como atributo base."}}, "dados": "9455a675"};</script>
-    <script src="../js/ficha.js?v=46e6484d"></script>
-    <script src="../js/bazar.js?v=46e6484d"></script>
-    <script src="../js/bazar-cartao.js?v=46e6484d"></script>
-    <script src="../js/bazar-receita.js?v=46e6484d"></script>
-    <script src="../js/bazar-inventario.js?v=46e6484d"></script>
-    <script src="../js/nav.js?v=46e6484d" data-nav-js></script>
+    <script src="../js/ficha.js?v=9dfb0eea"></script>
+    <script src="../js/bazar.js?v=9dfb0eea"></script>
+    <script src="../js/bazar-cartao.js?v=9dfb0eea"></script>
+    <script src="../js/bazar-receita.js?v=9dfb0eea"></script>
+    <script src="../js/bazar-inventario.js?v=9dfb0eea"></script>
+    <script src="../js/nav.js?v=9dfb0eea" data-nav-js></script>
 </body>
 </html>
