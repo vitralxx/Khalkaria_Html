@@ -7,10 +7,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400&family=UnifrakturMaguntia&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../css/style.css?v=ce1a8ee5">
-    <link rel="stylesheet" href="../css/bazar.css?v=ce1a8ee5">
+    <link rel="stylesheet" href="../css/style.css?v=41ddb4c9">
+    <link rel="stylesheet" href="../css/bazar.css?v=41ddb4c9">
 </head>
-<body data-no-rightbar>
+<body data-no-rightbar data-bazar>
     <button class="menu-toggle">☰ Menu</button>
 
     <!-- ============ SPRITE DE ÍCONES ============
@@ -67,6 +67,14 @@
         <path d="M152 20c-8 5-14 12-18 20M182 20c4 6 6 13 6 20M218 20c-6 6-9 13-10 20M248 20c9 4 15 11 19 20" fill="none" stroke="currentColor" stroke-width=".9" opacity=".75"/>
         <path d="M120 20c-10-4-18-10-24-18M280 20c10-5 17-11 22-18" fill="none" stroke="currentColor" stroke-width=".8" opacity=".5"/>
       </symbol>
+
+      <!-- controles da mesa: painel de receita e inventário -->
+      <symbol id="ico-voltar" viewBox="0 0 24 24"><path d="M14.6 5.4 8 12l6.6 6.6" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+      <symbol id="ico-avancar" viewBox="0 0 24 24"><path d="M9.4 5.4 16 12l-6.6 6.6" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+      <symbol id="ico-fechar" viewBox="0 0 24 24"><path d="M6.4 6.4 17.6 17.6M17.6 6.4 6.4 17.6" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></symbol>
+      <symbol id="ico-recolher" viewBox="0 0 24 24"><path d="M4.4 12h10.4M10.6 7.6 15 12l-4.4 4.4M19.4 4.6v14.8" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+      <symbol id="ico-expandir" viewBox="0 0 24 24"><path d="M9.4 4.6H4.6v4.8M14.6 4.6h4.8v4.8M19.4 14.6v4.8h-4.8M4.6 14.6v4.8h4.8" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+      <symbol id="ico-aviso" viewBox="0 0 24 24"><path d="M12 3.8 21 19.4H3Z" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/><path d="M12 9.6v4.8M12 16.6v.2" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></symbol>
     </svg>
 
     <div class="app-container">
@@ -115,98 +123,113 @@
         </nav>
 
         <main class="main-content bazar-page">
-            <header class="bz-hero">
-                <svg class="bz-hero-raiz" aria-hidden="true"><use href="#raizes"/></svg>
-                <h1>O Bazar<span class="bz-hero-sub">Registro de Kharavel</span></h1>
-                <p class="bz-hero-meta">
-                    <strong id="bz-total">727</strong> itens catalogados ·
-                    <span id="bz-visiveis">727</span> em exibição
-                </p>
-                <svg class="bz-hero-raiz bz-hero-raiz-b" aria-hidden="true"><use href="#raizes"/></svg>
-            </header>
+            <div class="bz-mesa" id="bz-mesa" data-inv="painel">
+                <section class="bz-registro" id="bz-registro" aria-label="Registro de itens">
+                    <header class="bz-topo">
+                        <h1 class="bz-topo-titulo">O Bazar<span class="bz-topo-sub">Registro de Kharavel</span></h1>
+                        <p class="bz-topo-meta"><span id="bz-total">727</span> itens · <span id="bz-visiveis">727</span> em exibição</p>
+                        <svg class="bz-topo-raiz" aria-hidden="true"><use href="#raizes"/></svg>
+                    </header>
 
-            <div class="bz-controls" id="bz-controls">
-                <div class="bz-bar">
-                    <label class="bz-search-wrap">
-                        <svg class="bz-search-ico" aria-hidden="true" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.4" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="m15.4 15.4 4.4 4.4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-                        <input type="search" id="bz-search" placeholder="Buscar nome, efeito, material, tag…" autocomplete="off" spellcheck="false">
-                        <kbd class="bz-kbd">/</kbd>
-                    </label>
-                    <div class="bz-bar-right">
-                        <div class="bz-sort">
-                            <label for="bz-order">Ordenar</label>
-                            <select id="bz-order">
-                                <option value="nome">Nome</option>
-                                <option value="raridade">Raridade</option>
-                                <option value="valor">Valor</option>
-                                <option value="cd">CD de craft</option>
-                            </select>
-                            <button type="button" id="bz-dir" class="bz-dir" title="Inverter ordem" aria-label="Inverter ordem">↑</button>
+                    <div class="bz-bar" id="bz-bar">
+                        <div class="bz-bar-linha">
+                            <label class="bz-search-wrap">
+                                <svg class="bz-search-ico" aria-hidden="true" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.4" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="m15.4 15.4 4.4 4.4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                                <input type="search" id="bz-search" placeholder="Buscar nome, efeito, material, tag…" autocomplete="off" spellcheck="false" aria-label="Buscar no registro" aria-keyshortcuts="/">
+                                <kbd class="bz-kbd">/</kbd>
+                            </label>
+                            <div class="bz-sort">
+                                <label for="bz-order">Ordenar</label>
+                                <select id="bz-order">
+                                    <option value="nome">Nome</option>
+                                    <option value="raridade">Raridade</option>
+                                    <option value="valor">Valor</option>
+                                    <option value="cd">CD de craft</option>
+                                </select>
+                                <button type="button" id="bz-dir" class="bz-dir" title="Inverter ordem" aria-label="Inverter ordem">↑</button>
+                            </div>
+                            <div class="bz-views" role="group" aria-label="Modo de exibição">
+                                <button type="button" class="bz-view active" data-view="cards">Cards</button>
+                                <button type="button" class="bz-view" data-view="lista">Lista</button>
+                            </div>
+                            <button type="button" class="bz-filtros-btn" id="bz-filtros-btn" aria-expanded="false" aria-controls="bz-filtros-caixa">
+                                Filtros <span class="bz-filtros-n" id="bz-filtros-n"></span>
+                            </button>
+                            <button type="button" class="bz-tool-toggle" data-tool="bancada" aria-expanded="false" aria-controls="bz-painel-bancada" title="Bancada: o que eu consigo fabricar">
+                                <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M4 20h16M6 20V9.6l6-4.2 6 4.2V20M9.6 20v-5.4h4.8V20" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg>
+                                <span>Bancada</span><small>o que eu consigo fabricar</small>
+                                <span class="bz-led" aria-hidden="true"></span>
+                            </button>
+                            <button type="button" class="bz-tool-toggle" data-tool="fecho" aria-pressed="false" title="Fecha com o inventário: o que dá pra fazer com o que eu carrego">
+                                <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M4.6 12.6 9.4 17.4 19.4 7" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                                <span>Fecha com o inventário · <b class="bz-fecho-n" id="bz-fecho-n">0</b></span><small>o que dá pra fazer com o que eu carrego</small>
+                                <span class="bz-led" aria-hidden="true"></span>
+                            </button>
                         </div>
-                        <div class="bz-views" role="group" aria-label="Modo de exibição">
-                            <button type="button" class="bz-view active" data-view="cards">Cards</button>
-                            <button type="button" class="bz-view" data-view="lista">Lista</button>
-                        </div>
+                        <div class="bz-ativos" id="bz-ativos" hidden></div>
                     </div>
-                </div>
 
-                <div class="bz-filtros" id="bz-filtros"><!-- chips: js/bazar.js --></div>
+                    <div class="bz-filtros-caixa" id="bz-filtros-caixa" hidden>
+                        <div class="bz-filtros" id="bz-filtros"><!-- chips: js/bazar.js --></div>
+                        <section class="bz-painel" id="bz-painel-bancada" hidden>
+                            <p class="bz-painel-ajuda">
+                                Informe seu modificador em cada ofício. A régua é <strong>10&nbsp;+&nbsp;Mod</strong>
+                                para craft confortável e <strong>20&nbsp;+&nbsp;Mod</strong> para o limite do que
+                                você alcança. Entre as duas, o item aparece com aviso; acima do limite, sai da lista.
+                            </p>
+                            <div class="bz-mods" id="bz-mods"><!-- campos: js/bazar.js --></div>
+                        </section>
+                    </div>
 
-                <div class="bz-ferramentas">
-                    <button type="button" class="bz-tool-toggle" data-tool="bancada" aria-expanded="false">
-                        <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M4 20h16M6 20V9.6l6-4.2 6 4.2V20M9.6 20v-5.4h4.8V20" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg>
-                        <span>Bancada</span><small>o que eu consigo fabricar</small>
-                        <span class="bz-led" aria-hidden="true"></span>
-                    </button>
-                    <button type="button" class="bz-tool-toggle" data-tool="mochila" aria-expanded="false">
-                        <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M6.4 8.6h11.2l1.2 11.2H5.2ZM9 8.6V6.4a3 3 0 0 1 6 0v2.2" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg>
-                        <span>Mochila</span><small>o que dá pra fazer com o que eu tenho</small>
-                        <span class="bz-led" aria-hidden="true"></span>
-                    </button>
-                </div>
-
-                <section class="bz-painel" id="bz-painel-bancada" hidden>
-                    <p class="bz-painel-ajuda">
-                        Informe seu modificador em cada ofício. A régua é <strong>10&nbsp;+&nbsp;Mod</strong>
-                        para craft confortável e <strong>20&nbsp;+&nbsp;Mod</strong> para o limite do que
-                        você alcança. Entre as duas, o item aparece com aviso; acima do limite, sai da lista.
-                    </p>
-                    <div class="bz-mods" id="bz-mods"><!-- campos: js/bazar.js --></div>
+                    <div class="bz-resultados" id="bz-resultados"></div>
+                    <p class="bz-vazio" id="bz-vazio" hidden>Nada no registro com esses filtros.</p>
                 </section>
 
-                <section class="bz-painel" id="bz-painel-mochila" hidden>
-                    <p class="bz-painel-ajuda">
-                        Anote os materiais que você carrega. A lista passa a mostrar só o que a sua
-                        mochila fecha — <em>tudo</em> o que a receita pede, na quantidade pedida.
-                    </p>
-                    <div class="bz-mochila-add">
-                        <input type="text" id="bz-mat-busca" list="bz-mat-lista" placeholder="Material…" autocomplete="off">
-                        <datalist id="bz-mat-lista"></datalist>
-                        <input type="number" id="bz-mat-qtd" min="1" value="1" aria-label="Quantidade">
-                        <button type="button" id="bz-mat-add">Guardar</button>
-                        <button type="button" id="bz-mat-limpar" class="bz-ghost">Esvaziar</button>
+                <aside class="bz-inv" id="bz-inventario" data-kf-ignorar aria-labelledby="inventario">
+                    <header class="bz-inv-cab">
+                        <div class="bz-inv-linha">
+                            <h2 id="inventario" class="bz-inv-titulo">Inventário</h2>
+                            <span class="bz-inv-dono" id="bz-inv-dono"></span>
+                        </div>
+                    </header>
+                    <div class="bz-inv-cols" id="bz-inv-cols">
+                        <section class="bz-col" data-col="bugigangas">
+                            <header class="bz-col-cab">
+                                <h3 id="inventario-bugigangas" class="bz-col-titulo">Bugigangas</h3>
+                            </header>
+                            <ul class="bz-col-lista" data-col="bugigangas"></ul>
+                        </section>
+                        <section class="bz-col" data-col="equipamentos">
+                            <header class="bz-col-cab">
+                                <h3 id="inventario-equipamentos" class="bz-col-titulo">Equipamentos</h3>
+                            </header>
+                            <ul class="bz-col-lista" data-col="equipamentos"></ul>
+                        </section>
                     </div>
-                    <div class="bz-mochila-itens" id="bz-mochila-itens"></div>
-                </section>
-
-                <div class="bz-ativos" id="bz-ativos" hidden></div>
+                    <footer class="bz-inv-rodape" id="bz-inv-rodape"></footer>
+                </aside>
             </div>
-
-            <div class="bz-resultados" id="bz-resultados" aria-live="polite"></div>
-            <p class="bz-vazio" id="bz-vazio" hidden>Nada no registro com esses filtros.</p>
         </main>
     </div>
 
-    <div class="bz-detalhe" id="bz-detalhe" hidden>
-        <div class="bz-detalhe-fundo" data-fechar></div>
-        <article class="bz-detalhe-corpo" role="dialog" aria-modal="true" aria-labelledby="bz-detalhe-nome">
-            <button type="button" class="bz-detalhe-x" data-fechar aria-label="Fechar">×</button>
-            <div id="bz-detalhe-conteudo"></div>
-        </article>
-    </div>
+    <aside class="bz-rc" id="bz-receita" data-kf-ignorar aria-label="Receita" hidden>
+        <div class="bz-rc-barra">
+            <button type="button" class="bz-rc-nav" id="bz-rc-voltar" aria-label="Item anterior" title="Item anterior ([)" aria-keyshortcuts="[" disabled><svg aria-hidden="true"><use href="#ico-voltar"/></svg></button>
+            <button type="button" class="bz-rc-nav" id="bz-rc-avancar" aria-label="Próximo item" title="Próximo item (])" aria-keyshortcuts="]" disabled><svg aria-hidden="true"><use href="#ico-avancar"/></svg></button>
+            <nav class="bz-rc-migalhas" id="bz-rc-migalhas" aria-label="Itens vistos"></nav>
+            <button type="button" class="bz-rc-nav bz-rc-x" id="bz-rc-fechar" aria-label="Fechar receita" title="Fechar (Esc)" aria-keyshortcuts="Escape"><svg aria-hidden="true"><use href="#ico-fechar"/></svg></button>
+        </div>
+        <div class="bz-rc-corpo" id="bz-rc-corpo"></div>
+    </aside>
+
+    <div class="bz-cartao" id="bz-preview" role="tooltip" data-kf-ignorar hidden></div>
+    <div class="bz-sr" id="bz-vivo" aria-live="polite"></div>
 
     <script>window.BZ_VOCAB = {"categorias": ["Arma", "Armadura", "Escudo", "Consumível", "Munição", "Bugiganga", "Item Mágico", "Material", "Lixo"], "raridades": ["Lixo", "Ordinário", "Incomum", "Exótico", "Luxária"], "oficios": ["Ferraria", "Engenharia", "Alquimia", "Sobrevivência", "Não-craftável"], "regioes": ["Cinturão Silencioso", "Bosque Corrompido", "Emaranhado de Raízes", "Costas Rochosas", "Terras Livres", "Cordilheira Cristalina", "Ermo das Cinzas", "Deserto do Abismo"], "chassis": ["Leve Cortante", "Leve Perfurante", "Leve Contundente", "Leve Ágil", "Pesada Cortante", "Pesada Perfurante", "Pesada Contundente", "Pesada Brutal", "Marcial Pesada", "Marcial Longa", "Marcial Precisa", "Marcial Versátil", "Distância Simples", "Distância Pesada", "Arremesso"], "focos": ["Foco Místico (Abjuração)", "Foco Místico (Alteração)", "Foco Místico (Conhecimento)", "Foco Místico (Destruição)", "Foco Místico (Primordial)"], "slots": ["Leve", "Pesada"], "municoes": ["Arremesso", "Distância Pesada", "Distância Simples"], "total": 727, "condicoes": {"leve": {"id": "sobrepeso-leve", "nome": "Sobrepeso Leve", "texto": "Movimento diminuído para a metade. -2 em perícias com Força, Destreza ou Constituição como atributo base."}, "extremo": {"id": "sobrepeso-extremo", "nome": "Sobrepeso Extremo", "texto": "Você tem 1,5 m de Movimento. Desvantagem em perícias com Força, Destreza ou Constituição como atributo base."}}};</script>
-    <script src="../js/bazar.js?v=ce1a8ee5"></script>
-    <script src="../js/ficha.js?v=ce1a8ee5"></script>
+    <script src="../js/ficha.js?v=41ddb4c9"></script>
+    <script src="../js/bazar.js?v=41ddb4c9"></script>
+    <script src="../js/bazar-cartao.js?v=41ddb4c9"></script>
+    <script src="../js/bazar-receita.js?v=41ddb4c9"></script>
+    <script src="../js/bazar-inventario.js?v=41ddb4c9"></script>
 </body>
 </html>
