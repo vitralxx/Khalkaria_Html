@@ -84,6 +84,35 @@ class TestIds(Repo):
         self.escreve('data/bazar.json', json.dumps([{'id': 'magia-x', 'nome': 'X'}]))
         self.assertIn('repetido no site', self.roda(validar.checa_ids)[1])
 
+    def test_controles_fora_do_card(self):
+        # E3: par movido para fora do card (a contagem total continua batendo)
+        self.escreve('pages/magias.html', CARD.replace(CTL, '') + '<main>' + CTL + '</main>')
+        f, out = self.roda(validar.checa_ids)
+        self.assertEqual(f, ['ids'])
+        self.assertIn('primeiros filhos', out)
+
+    def test_controles_trocados_de_card(self):
+        # E4: par tirado do 1º card e duplicado no 2º
+        dois = CARD.replace(CTL, '') + CARD.replace('magia-x', 'magia-y').replace(CTL, CTL + CTL)
+        self.escreve('data/catalogo/magia.json', json.dumps(
+            {'schema': 'catalogo/1', 'tipo': 'magia', 'total': 2,
+             'entradas': [{'id': 'magia-x', 'tipo': 'magia', 'nome': 'X'},
+                          {'id': 'magia-y', 'tipo': 'magia', 'nome': 'Y'}]}))
+        self.escreve('pages/magias.html', dois)
+        self.assertIn('magia:magia-x', self.roda(validar.checa_ids)[1])
+
+    def test_card_do_json_sumido_do_dom_e_do_catalogo(self):
+        # traço com classe CSS trocada: some da página E do catálogo; o JSON acusa
+        self.escreve('pages/magias.html', CARD)
+        self.escreve('data/racas/humano.json', json.dumps({'cards': [
+            {'id': 'humano-regra', 'opentag': '<div class="rule-box">'},
+            {'id': 'humano-traco', 'opentag': '<div class="traco-card">'}]}))
+        self.escreve('pages/racas/humano.html', '<div class="traco-card"><h4>T</h4></div>')
+        f, out = self.roda(validar.checa_ids)
+        self.assertEqual(f, ['ids'])
+        self.assertIn('humano-traco', out)
+        self.assertNotIn('humano-regra', out)   # rule-box é NAO_ENTIDADE
+
     def test_alias(self):
         self.escreve('pages/magias.html', CARD)
         self.escreve('tools/alias_ids.json', json.dumps({'alias': {'velho': 'nao-existe'}}))
@@ -136,9 +165,24 @@ class TestGlifos(Repo):
         self.escreve('partials/glifos.html', SPRITE.replace('g-levar', 'g-ramo-guarda'))
         self.assertIn('duplicados', self.roda(validar.checa_glifos)[1])
 
+    def test_ramo_com_hifen(self):
+        self.escreve('templates/classes/d.template.html',
+                     '<style>:root{--ramo-sem-nome:#fff;--ramo-sem-nome-dark:#000;}</style>')
+        self.assertIn("'sem-nome'", self.roda(validar.checa_glifos)[1])
+
     def test_ramo_sem_glifo(self):
         self.escreve('templates/classes/d.template.html', '<style>:root{--ramo-novo:#fff;}</style>')
         self.assertIn('ramo sem glifo', self.roda(validar.checa_glifos)[1])
+
+
+class TestKfMarca(unittest.TestCase):
+    def test_classe_fora_do_mapa_derruba(self):
+        import kf_marca
+        m = kf_marca.TIPO_POR_CLASSE_CSS_RACA
+        self.assertEqual(kf_marca.tipo_do_opentag('<div class="trait-card">', m), 'traco')
+        self.assertIsNone(kf_marca.tipo_do_opentag('<div class="rule-box">', m))
+        with self.assertRaises(SystemExit):
+            kf_marca.tipo_do_opentag('<div class="traco-card">', m)
 
 
 if __name__ == '__main__':

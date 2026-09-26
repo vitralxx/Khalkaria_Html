@@ -115,7 +115,7 @@ def racas(cat):
     for raca in RACAS:
         for c in ler(f'data/racas/{raca}.json')['cards']:
             tipo = tipo_do_opentag(c['opentag'], TIPO_POR_CLASSE_CSS_RACA)
-            if tipo is None:          # rule-box: regra da página, não entidade
+            if tipo is None:          # NAO_ENTIDADE (rule-box/warning): regra da página
                 continue
             e = base(tipo, c['id'], c['nome'])
             e['resumo'] = texto(sem_titulo(c['corpo']))

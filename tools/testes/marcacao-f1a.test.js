@@ -106,7 +106,8 @@ test('catálogo: carta rara só com id, tipo, nome, categoria e requisito', () =
 test('páginas: o nome do card (sem emoji) é o nome do catálogo', () => {
   const porId = new Map();
   catalogo().forEach((d) => d.entradas.forEach((e) => porId.set(`${e.tipo}:${e.id}`, e)));
-  const rotulo = /data-kf-tipo="([^"]+)" data-kf-id="([^"]+)"[^>]*>(?:<button type="button" class="ent-add" hidden aria-keyshortcuts="A" aria-label="Levar para a ficha: ([^"]*)"><\/button><span class="ent-alca" hidden aria-hidden="true"><\/span>)?/g;
+  // botão + alça logo depois da tag: obrigatório em todo card que não é <a>
+  const rotulo = /<([a-z][a-z0-9]*)\s[^>]*?data-kf-tipo="([^"]+)" data-kf-id="([^"]+)"[^>]*>(?:<button type="button" class="ent-add" hidden aria-keyshortcuts="A" aria-label="Levar para a ficha: ([^"]*)"><\/button><span class="ent-alca" hidden aria-hidden="true"><\/span>)?/g;
   let n = 0;
   const paginas = [];
   (function anda(dir) {
@@ -119,9 +120,12 @@ test('páginas: o nome do card (sem emoji) é o nome do catálogo', () => {
   for (const p of paginas) {
     const h = fs.readFileSync(p, 'utf8');
     for (const m of h.matchAll(rotulo)) {
-      const e = porId.get(`${m[1]}:${m[2]}`);
-      assert.ok(e, `${path.basename(p)}: ${m[1]}:${m[2]} fora do catálogo`);
-      if (m[3] !== undefined) assert.equal(desesc(m[3]), e.nome, `${m[2]}: rótulo do botão`);
+      const [, tag, tipo, id, rot] = m;
+      const e = porId.get(`${tipo}:${id}`);
+      assert.ok(e, `${path.basename(p)}: ${tipo}:${id} fora do catálogo`);
+      if (tag === 'a') assert.equal(rot, undefined, `${id}: botão dentro de link`);
+      else assert.ok(rot !== undefined, `${path.basename(p)}: ${tipo}:${id} sem .ent-add + .ent-alca como primeiros filhos`);
+      if (rot !== undefined) assert.equal(desesc(rot), e.nome, `${id}: rótulo do botão`);
       n++;
     }
   }

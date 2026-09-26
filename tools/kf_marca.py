@@ -34,6 +34,11 @@ TIPO_POR_CLASSE_CSS = {
 }
 TIPO_POR_CLASSE_CSS_RACA = dict(TIPO_POR_CLASSE_CSS, **{'tech-card': 'tecnologia'})
 
+# Cards que são regra da página, não entidade: saem sem data-kf-* e fora do
+# catálogo. Allowlist explícita: classe fora do mapa E fora daqui derruba o
+# build (senão um card renomeado some da marcação com build verde).
+NAO_ENTIDADE = frozenset({'rule-box', 'warning'})
+
 # Emoji e símbolos pictográficos (mesmas faixas do textoLimpo do js/ficha.js,
 # mais ZWJ, keycap e o bloco 2300-23FF).
 EMOJI = re.compile('[\U0001F000-\U0001FAFF☀-➿⬀-⯿⌀-⏿'
@@ -78,8 +83,12 @@ def abre(opentag, tipo, id_):
 
 
 def tipo_do_opentag(opentag, tabela):
+    """Tipo do card pela classe CSS; None só para classe de NAO_ENTIDADE."""
     m = re.search(r'class="([^"]+)"', opentag)
-    for c in (m.group(1).split() if m else []):
+    classes = m.group(1).split() if m else []
+    for c in classes:
         if c in tabela:
             return tabela[c]
-    return None
+    if NAO_ENTIDADE.intersection(classes):
+        return None
+    raise SystemExit(f'kf_marca: card sem tipo (classe fora do mapa e de NAO_ENTIDADE): {opentag!r}')

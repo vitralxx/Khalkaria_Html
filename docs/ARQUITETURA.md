@@ -197,8 +197,10 @@ decididos D80–D82 no `data/sistema.json` (modificador, vantagem/desvantagem,
 custo mínimo de magia), por frase verbatim do Notion, e o id de todo card de
 classe (`data/classes/*.json`) = `<classe>-` + slug do nome, sem duplicata.
 Desde a F1a também: `[ids]` (id de entidade único no site; `data-kf-*` dos cards
-== catálogo por conjunto; `.ent-add`/`.ent-alca` nascem `hidden`; alvos do
-`alias_ids.json` existem), `[fragmentos]` (`pagina.html#id` e
+== catálogo por conjunto — 646 entradas em 14 tipos, mais os 727 itens do Bazar —
+e == ids dos JSON de raças, origens e classes lidos direto, sem a tabela
+classe -> tipo; todo card marcado, menos o `<a>` do índice, abre com o par
+`.ent-add` + `.ent-alca`, ambos `hidden`; alvos do `alias_ids.json` existem), `[fragmentos]` (`pagina.html#id` e
 `bazar.html#item/<id>` com destino) e `[glifos]` (sprite íntegro, um glifo por
 `--ramo-*`, todo `<use href="#g-*">` com símbolo). O round-trip regenera também
 o `data/catalogo/`.
@@ -209,7 +211,11 @@ o `data/catalogo/`.
 (inertes até a F4; primeiros filhos para não mexer nos `p:last-child`). Exceções:
 o preview `<a class="raca-card">` do índice não leva botão (botão dentro de link
 é HTML inválido) e o Bazar, renderizado no `js/bazar.js`, não leva `data-prever`
-no card (lá o `data-prever` é o gatilho do cartão, no nome, com o id puro).
+no card (lá o `data-prever` é o gatilho do cartão, no nome, com o id puro);
+o `marcacao-bazar.test.js` roda o render do card e da linha da Lista sobre o
+`data/bazar.json` inteiro. Card que não é entidade (regra da página) só existe
+pela allowlist `NAO_ENTIDADE` do `tools/kf_marca.py` (`rule-box`, `warning`):
+classe CSS fora do mapa e fora dela derruba o build.
 
 Os índices "Navegação Rápida" de Condições e Sistema saem do gerador
 (`{{IDX_<categoria>}}` no template): um link por card/subseção, na ordem do

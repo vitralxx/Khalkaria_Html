@@ -38,6 +38,7 @@ Saída: exit 0 = tudo OK; exit 1 = há falhas.
 """
 import os, re, sys, json, glob, shutil, filecmp, subprocess, tempfile
 import shell
+from kf_marca import NAO_ENTIDADE
 from html.parser import HTMLParser
 
 TOOLS = os.path.dirname(os.path.abspath(__file__))
@@ -365,6 +366,34 @@ def _attr(tag, nome):
     return m.group(1) if m else None
 
 
+# Par de controles que abre todo card marcado (menos o <a> do índice de raças)
+RE_CONTROLES = re.compile(r'<button type="button" class="ent-add" hidden [^>]*></button>'
+                          r'<span class="ent-alca" hidden [^>]*></span>')
+# Fontes com {cards:[{id, opentag}]}: data/<x>.json -> pages/<x>.html
+FONTES_CARDS = ('racas', 'racas/*', 'origens', 'classes/*')
+
+
+def _ids_json(root):
+    """{pagina_rel: {ids}} lido direto dos JSON de conteúdo, sem a tabela de
+    classe -> tipo dos geradores: todo card é entidade, menos NAO_ENTIDADE."""
+    out, probs = {}, []
+    for padrao in FONTES_CARDS:
+        for f in sorted(glob.glob(os.path.join(root, 'data', padrao + '.json'))):
+            r = os.path.relpath(f, os.path.join(root, 'data')).replace(os.sep, '/')[:-5]
+            try:
+                cards = json.load(open(f, encoding='utf-8'))['cards']
+            except (OSError, ValueError, KeyError) as e:
+                probs.append(f'{rel(f, root)} ilegível: {e}')
+                continue
+            ids = set()
+            for c in cards:
+                m = re.search(r'class="([^"]+)"', c.get('opentag', ''))
+                if NAO_ENTIDADE.isdisjoint(m.group(1).split() if m else []):
+                    ids.add(c.get('id'))
+            out[f'pages/{r}.html'] = ids
+    return out, probs
+
+
 def checa_ids(root=None):
     """[ids] Unicidade global, DOM x catálogo por conjunto, controles hidden, alias."""
     root = root or ROOT
@@ -379,21 +408,38 @@ def checa_ids(root=None):
     if dup:
         ruins.append(f'id de entidade repetido no site: {dup[:10]}')
     esperado = set(ents)
+    por_json, probs = _ids_json(root)
+    ruins += probs
 
     dom = Counter()
     for f in paginas(root):
-        if os.path.relpath(f, root).replace(os.sep, '/') == 'pages/bazar.html':   # nasce no js/bazar.js
+        pr = os.path.relpath(f, root).replace(os.sep, '/')
+        if pr == 'pages/bazar.html':          # nasce no js/bazar.js
             continue
         h = open(f, encoding='utf-8').read()
         n_cards = n_link = 0
-        for tag in re.findall(r'<[a-z][a-z0-9]*\s[^>]*\bdata-kf-id="[^"]*"[^>]*>', h):
+        ids_pag, sem_par = set(), []
+        for m in re.finditer(r'<[a-z][a-z0-9]*\s[^>]*\bdata-kf-id="[^"]*"[^>]*>', h):
+            tag = m.group(0)
             tipo, id_, prever = _attr(tag, 'data-kf-tipo'), _attr(tag, 'data-kf-id'), _attr(tag, 'data-prever')
             dom[(tipo, id_)] += 1
+            ids_pag.add(id_)
             if prever != f'{tipo}:{id_}':
                 ruins.append(f'{rel(f, root)}: data-prever="{prever}" em {tipo}:{id_} (esperado "{tipo}:{id_}")')
             if tag.startswith('<a '):
                 n_link += 1                   # preview do índice de raças: sem botão dentro de link
+            elif not RE_CONTROLES.match(h, m.end()):
+                sem_par.append(f'{tipo}:{id_}')   # botão + alça são os PRIMEIROS filhos do card
             n_cards += 1
+        if sem_par:
+            ruins.append(f'{rel(f, root)}: card sem .ent-add + .ent-alca como primeiros filhos: {sem_par[:10]}')
+        if pr in por_json:                    # contra o JSON de conteúdo, não só contra o catálogo
+            faltam = sorted(por_json[pr] - ids_pag)
+            sobram = sorted(ids_pag - por_json[pr])
+            if faltam:
+                ruins.append(f'{rel(f, root)}: card do JSON sem data-kf-id na página: {faltam[:10]}')
+            if sobram:
+                ruins.append(f'{rel(f, root)}: data-kf-id sem card no JSON: {sobram[:10]}')
         for cls in ('ent-add', 'ent-alca'):
             tags = re.findall(r'<[a-z]+\s[^>]*class="' + cls + r'"[^>]*>', h)
             if len(tags) != n_cards - n_link:
@@ -502,7 +548,8 @@ def checa_glifos(root=None):
     # um glifo por ramo: o mesmo slug do token --ramo-<r> das páginas de classe
     ramos = set()
     for t in glob.glob(os.path.join(root, 'templates', 'classes', '*.template.html')):
-        ramos |= {r for r in re.findall(r'--ramo-([a-z0-9]+)(?:-dark)?\s*:', open(t, encoding='utf-8').read())}
+        ramos |= {re.sub(r'-dark$', '', r) for r in
+                  re.findall(r'--ramo-([a-z0-9]+(?:-[a-z0-9]+)*)\s*:', open(t, encoding='utf-8').read())}
     g_ramos = {i[len('g-ramo-'):] for i in no_sprite if i.startswith('g-ramo-')}
     if ramos - g_ramos:
         ruins.append(f'ramo sem glifo: {sorted(ramos - g_ramos)}')
