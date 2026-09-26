@@ -182,3 +182,5 @@ Moldura gótica com raízes, títulos em blackletter (o site já carrega `--font
 | — | Espadachim e Teurgo têm recurso de classe? | "Tem sim, teurgo também. Todas têm." |
 
 Cores de recurso (depois das fotos): Saúde vermelho, **Stamina amarelo**, **Éter verde e roxo**. Recolorir os ícones de Stamina e Éter da ficha física: autorizado.
+
+**Tooltip de fórmula (2026-09-26):** "quero tudo que tenha cálculos com tooltip mostrando a fórmula." Todo número calculado, na ficha e no site, mostra a fórmula simbólica e a conta com os números (plano, M2).
