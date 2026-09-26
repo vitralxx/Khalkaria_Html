@@ -613,7 +613,7 @@
     var k = kf(), saco = BZ.sacoAntigo ? BZ.sacoAntigo() : null;
     if (!k || !saco) return;
     // ficha só-leitura (migrada para a v3): nada é levado e o saco antigo fica guardado
-    if (typeof k.somenteLeitura === 'function' && k.somenteLeitura()) { BZ.anunciar('Ficha só-leitura: migrada para a v3'); return; }
+    if (barraSoLeitura(k)) return;
     var nr = [], levados = 0, un = 0;
     k.lote(function () {
       Object.keys(saco).forEach(function (nome) {
@@ -683,12 +683,30 @@
     piscar(uid);
     return uid;
   }
+  // Ficha só-leitura (migrada para a v3, F0): o mutador não aplica nada, então
+  // a linha não anima nem some; o aviso sai no toast e a coluna é redesenhada.
+  var MSG_SO_LEITURA = 'Ficha só-leitura: migrada para a v3';
+  function barraSoLeitura(k) {
+    if (!(typeof k.somenteLeitura === 'function' && k.somenteLeitura())) return false;
+    BZ.anunciar(MSG_SO_LEITURA);
+    toast(MSG_SO_LEITURA);
+    redesenha();
+    return true;
+  }
+  // Mutação recusada: redesenha as colunas mesmo com o HTML igual ao último
+  // escrito (trocaHTML pularia), para desfazer a classe de saída, a qtd
+  // digitada e a caixa marcada que não chegaram à ficha.
+  function redesenha() {
+    COLUNAS.forEach(function (c) { if (el.cols[c].lista) el.cols[c].lista._bzHtml = null; });
+    render();
+  }
   // A linha removida fecha a altura até 0 em 160ms (§10) e só então sai da
   // ficha; com movimento reduzido, sai na hora.
   var saindo = {};
   function remover(uid) {
     var k = kf(), e = entrada(uid);
     if (!k || !e || saindo[uid]) return;
+    if (barraSoLeitura(k)) return;
     var v = vizinha(uid);
     var comFoco = aside.contains(document.activeElement);
     var li = linhaDe(uid);
@@ -697,7 +715,10 @@
       var e2 = entrada(uid);
       if (!e2) return;
       if (comFoco) focoPend = v ? { uid: v.uid, acao: '', col: v.col } : null;
-      if (k.remover(uid)) toast('Removido: ' + e2.nome, true, uid);
+      if (k.remover(uid)) { toast('Removido: ' + e2.nome, true, uid); return; }
+      focoPend = null;
+      if (li) { li.classList.remove('bz-sai'); li.style.height = ''; }
+      redesenha();   // recusado (ex.: a ficha virou só-leitura durante a animação)
     }
     if (!li || reduzMov) { fim(); return; }
     saindo[uid] = true;
@@ -712,9 +733,11 @@
     n = parseInt(n, 10);
     if (!isFinite(n)) return;
     if (n < 1) { remover(uid); return; }
+    if (barraSoLeitura(k)) return;
     // invariante da ficha v2: toda entrada equipada ou sintonizada tem qtd 1
-    if (travaQtd(e) && n > 1) { BZ.anunciar(travaQtd(e)); render(); return; }
-    k.quantidade(uid, Math.min(n, QTD_MAX));
+    if (travaQtd(e) && n > 1) { BZ.anunciar(travaQtd(e)); redesenha(); return; }
+    var r = k.quantidade(uid, Math.min(n, QTD_MAX));
+    if (!r || !r.ok) redesenha();   // o campo volta à qtd real da ficha
   }
   function passo(uid, d) {
     var e = entrada(uid);
@@ -723,6 +746,7 @@
   function alternar(uid, campo) {
     var k = kf(), e = entrada(uid);
     if (!k || !e) return;
+    if (barraSoLeitura(k)) return;
     var r = k.alternar(uid, campo);
     if (r && r.ok) {
       conflito = null;
@@ -741,7 +765,7 @@
     } else if (r && r.erro === 'coluna') {
       BZ.anunciar('Equipado só vale na coluna Equipamentos');
     }
-    render();   // devolve a caixa ao estado real (nada mudou)
+    redesenha();   // devolve a caixa ao estado real (nada mudou)
   }
   function trocarConflito() {
     var k = kf(), c = conflito;

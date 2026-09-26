@@ -318,3 +318,19 @@ test('em só-leitura os controles do drawer ficam desabilitados, menos os da fai
   assert.deepEqual(noCorpo.filter((e) => !e.disabled).map((e) => e.tagName), []);
   assert.equal(p.botao('Voltar a usar a v2').disabled, false);
 });
+
+test('stepper do drawer com marcador gravado sem evento: aviso de só-leitura, sem toast vazio', () => {
+  const st = armazenamento();
+  fichaV2(st);                 // 5 Virotes/Flechas, desenhados no drawer desta página
+  const p = pagina(st);
+  st.setItem(DONO, 'v3');
+  st.escritas.length = 0;
+  const mais = p.dom.criados.filter((e) => e.tagName === 'BUTTON' && e.getAttribute('data-ctl') === 'mais').pop();
+  assert.ok(mais, 'stepper + existe');
+  mais.click();
+  assert.equal(p.KF.somenteLeitura(), true);
+  assert.equal(p.toasts().pop(), MSG_RO, 'o último toast é o de só-leitura');
+  assert.ok(!p.toasts().includes(''), 'nenhum toast vazio');
+  assert.equal(p.KF.inventario().bugigangas[0].qtd, 5);
+  assert.deepEqual(st.escritas, []);
+});

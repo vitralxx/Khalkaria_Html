@@ -7,7 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400&family=UnifrakturMaguntia&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../css/style.css?v=b94ed547">
+    <link rel="stylesheet" href="../css/style.css?v=10f91b67">
     <script data-nav-boot>(function(){try{var s=JSON.parse(localStorage.getItem('khalkaria_nav')||'{}'),h=document.documentElement;if(s.trilho)h.setAttribute('data-nav','trilho');if(s.fechados&&s.fechados.length)h.setAttribute('data-nav-fechados',s.fechados.join(' '))}catch(e){}})()</script>
 </head>
 <body>
@@ -217,7 +217,7 @@
                         <div class="rule-box">
                             <p><strong>Criação de Personagem:</strong></p>
                             <ol>
-                                <li>Role 4d6 5 vezes, retire o pior dado de cada rolagem e anote o valor dos 5 resultados.<br>Distribua os 5 valores dentre seus 5 atributos.<br>Você pode retirar 1 ponto de um atributo e adicionar a outro.</li>
+                                <li>Role 4d6 5 vezes, retire o pior dado de cada rolagem e anote o valor dos 5 resultados.<br>Se a soma de uma rolagem der menos de 8, role os 4 dados novamente: por isso cada valor fica entre 8 e 18.<br>Distribua os 5 valores dentre seus 5 atributos.<br>Você pode retirar 1 ponto de um atributo e adicionar a outro.</li>
                                 <li>Escolha sua raça.</li>
                                 <li>Escolha sua classe.</li>
                                 <li>Escolha sua origem.</li>
@@ -368,7 +368,7 @@
                                 </tr>
                                 <tr>
                                     <td><strong>Ofício(Ferraria)</strong></td>
-                                    <td>Você pode utilizar essa perícia como uma ação de descanso longo para fabricar uma Bugiganga. A fabricação exige Materiais e o sucesso na perícia. Você não pode utilizar essa perícia sem tê-la treinada.</td>
+                                    <td>Você pode utilizar essa perícia como uma ação de descanso longo para fabricar um Equipamento (Arma, Armadura ou Escudo). A fabricação exige Materiais e o sucesso na perícia. Você não pode utilizar essa perícia sem tê-la treinada.</td>
                                     <td><code>1d20+Inteligência</code></td>
                                 </tr>
                             </tbody>
@@ -500,11 +500,13 @@
                             <li><strong>Acelerar</strong> (1 ação) → +3 m de movimento nesta rodada.</li>
                             <li><strong>Atacar</strong> (Depende da arma) — Ataques consecutivos somam −5 a cada ataque no mesmo turno.</li>
                             <li><strong>Defender</strong> (1 ação) → +2 <a href="#defender" class="keyword-link">Defender</a> até seu próximo turno.</li>
-                            <li><strong>Defender fora do seu turno</strong> (Reação) → Soma o dado da perícia <a href="#defender" class="keyword-link">Defender</a> à sua <a href="#evasao" class="keyword-link">evasão</a> contra todos os ataques do agressor nesta rodada.</li>
-                            <li><strong>Conjurar magia</strong> (1-3 ações)</li>
+                            <li><strong>Defender fora do seu turno</strong> (Reação) → Soma o dado da perícia <a href="#defender" class="keyword-link">Defender</a> à sua <a href="#evasao" class="keyword-link">evasão</a> contra todos os ataques do agressor neste turno.</li>
+                            <li><strong>Conjurar magia</strong> (1-3 ações), no máximo 1 magia conjurada por turno.</li>
+                            <li><strong>Usar item consumível</strong> (1 ação) → em você ou em outra criatura. Se o item for arremessado, siga o que ele diz.</li>
                             <li><strong>Técnica Específica</strong> (1–3 ações)</li>
                             <li><strong>Outro</strong> (1-3 ações) — dependendo de sua dificuldade ou demora para executar</li>
                             <li>Reações servem para regras/habilidades específicas</li>
+                            <li>Ações livres não têm limite por turno.</li>
                         </ul>
                     </div>
                 </div>
@@ -573,9 +575,10 @@
                             <p id="evasao"><strong>Evasão</strong> = Determinada pela sua classe, define se você desvia/resiste o dano quando alvo de um ataque.</p>
                             <ul>
                                 <li><strong>Evasão Passiva</strong> — É sua evasão natural. Quando alvo de um ataque, se sua evasão for maior que a rolagem de ataque você desvia/resiste o ataque.</li>
-                                <li><strong>Evasão Ativa</strong> — Quando alvo de um ataque, você pode gastar sua reação para somar o dado da perícia <a href="#defender" class="keyword-link">Defender</a> (conforme seu treinamento) à sua evasão contra todos os ataques do agressor neste turno.</li>
+                                <li><strong>Evasão Ativa</strong> — Quando alvo de um ataque, você pode gastar sua reação para somar o dado da perícia <a href="#defender" class="keyword-link">Defender</a> (conforme seu treinamento) à sua evasão contra todos os ataques do agressor neste turno. Ataques de outros agressores continuam contra a sua Evasão Passiva. O dado não soma atributo: a Destreza já está na Evasão Passiva.</li>
                             </ul>
                             <p><strong>Armadura (Ar)</strong> = Reduz dano <em>ordinário</em> em uma constante fixa, dependendo da armadura</p>
+                            <p>O Ar de fontes diferentes se soma (por exemplo, o Ar natural da raça e o Ar da armadura).</p>
                             
                             <h4>Resistência, Vulnerabilidade e Armadura Específica (Ae)</h4>
                             <ul>
@@ -675,7 +678,7 @@
                                 <tr>
                                     <td><strong>Investida</strong></td>
                                     <td><code>2 ações · Movimento</code></td>
-                                    <td>Você gasta duas ações para se movimentar até seu Movimento em linha reta. A cada inimigo colidido no seu caminho, faça um teste de <em>Movimento</em> contra ele: em caso de sucesso, você realiza 1 ação: Atacar contra ele e segue para o próximo alvo na trajetória; em caso de falha, você é interceptado, para antes do alvo contra o qual falhou e realiza 1 ação: Atacar contra ele.</td>
+                                    <td>Você gasta duas ações para se movimentar até seu Movimento em linha reta. A cada inimigo colidido no seu caminho, faça um teste de <em>Movimento</em> contra ele: em caso de sucesso, você realiza 1 ação: Atacar contra ele e segue para o próximo alvo na trajetória; em caso de falha, você é interceptado, para antes do alvo contra o qual falhou e realiza 1 ação: Atacar contra ele.<br>A Investida conta como a sua ação de <em>Mover</em> do turno. Ultrapassar inimigos durante a Investida não provoca ataques de oportunidade.</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -979,6 +982,7 @@
                 <div class="subsection" id="nivel-armas">
                     <h3 id="equipamento-nivel-de-armas">Nível de Armas</h3>
                     <div class="content-card">
+                        <p>Leves, Pesadas, Marciais e À Distância.</p>
                         <table class="sistema-table">
                             <thead>
                                 <tr>
@@ -1020,6 +1024,7 @@
                                 <tr><td><strong>+3</strong></td><td>+3 Místico</td><td>+15 Éter máximo</td></tr>
                             </tbody>
                         </table>
+                        <p>Você só pode se beneficiar das melhorias de 1 arma equipada.</p>
                     </div>
                 </div>
 
@@ -1618,7 +1623,7 @@
                 <div class="subsection" id="necessidades">
                     <h3 id="sobrevivencia-necessidades-de-sobrevivencia">Necessidades de Sobrevivência</h3>
                     <div class="content-card">
-                        <p>O grupo precisa se alimentar e beber água ao menos <strong>1 vez por dia</strong> para não ficarem <a href="condicoes.html#desnutrido" class="keyword-link">Desnutridos 1</a>. A cada noite sem comer, a <em>desnutrição</em> aumenta em 1 reduzindo sua saúde máxima em 10. Ao chegar a 0 você morre.</p>
+                        <p>O grupo precisa se alimentar e beber água ao menos <strong>1 vez por dia</strong> para não ficarem <a href="condicoes.html#desnutrido" class="keyword-link">Desnutridos 1</a>. A cada noite em que descansar sem comer ou sem luz de fogueira ou outra fonte, a <em>desnutrição</em> aumenta em 1 reduzindo sua saúde máxima em 10. Ao chegar a 0 você morre.</p>
                         
                         <p>O alimento padrão de Khalkaria são as <strong>Comidas</strong> consumidas em descansos longos. Porém, se você se alimentar em uma taverna antes do descanso longo, por exemplo, não precisa comer no descanso longo.</p>
                         
@@ -2164,7 +2169,7 @@
     <!-- BOTÃO VOLTAR AO TOPO -->
     <button class="back-to-top" id="backToTop" title="Voltar ao topo">↑</button>
     
-    <script src="../js/main.js?v=b94ed547"></script>
+    <script src="../js/main.js?v=10f91b67"></script>
     <script>
         // Botão Voltar ao Topo
         const backToTop = document.getElementById('backToTop');
@@ -2213,7 +2218,7 @@
             });
         });
     </script>
-    <script src="../js/utils.js?v=b94ed547"></script>
-    <script src="../js/nav.js?v=b94ed547" data-nav-js></script>
+    <script src="../js/utils.js?v=10f91b67"></script>
+    <script src="../js/nav.js?v=10f91b67" data-nav-js></script>
 </body>
 </html>

@@ -17,8 +17,9 @@ integridade do artefato HTML, que é o que quebra em silêncio:
      <symbol> e todo .nav-link com rótulo .nav-rot (o trilho o esconde por clip)
   7. Guarda-fio: as 5 frases de peso do Sistema que o motor de carga codifica
   8. data/bazar.json é ARRAY e todo item traz `inv`
-  9. Guarda-fio: os 3 blocos decididos D80–D82 (modificador, vantagem/
-     desvantagem, custo mínimo de magia) continuam em data/sistema.json
+  9. Guarda-fio: os blocos decididos D80–D82 (modificador, vantagem/
+     desvantagem, custo mínimo de magia), D8b/D8c (reação Defender, Evasão
+     Ativa) e D30 (faixa 8–18) continuam em data/sistema.json
  10. Id de card de classe = '<classe>-' + slug do nome, sem duplicata
 Em 2, também o link para outra página (pagina.html#x): o id x tem de existir lá.
 
@@ -244,7 +245,7 @@ def checa_regras_inventario(root=None):
         print(f'  OK     {len(FRASES_INVENTARIO)} frases de peso presentes')
 
 
-# Blocos que o Pedro decidiu (D80–D82) e gravou na página Sistema do Notion; a
+# Blocos que o Pedro decidiu (D80–D82, D8b/D8c, D30) e gravou na página Sistema do Notion; a
 # ficha (motor de regras) conta com eles. Se um sync apagar ou reescrever algum,
 # o build falha e o motor tem de ser revisto junto. Frases verbatim do Notion.
 BLOCOS_SISTEMA = {
@@ -265,13 +266,21 @@ BLOCOS_SISTEMA = {
         'A única exceção é a magia de Nível 1 conjurada em intensidade Normal e sem modulação, que custa 0 Éter.',
         'Magias de Nível 1 não possuem a intensidade Contida.',
     ],
+    'D8b/D8c reação Defender e Evasão Ativa': [
+        'Soma o dado da perícia Defender à sua evasão contra todos os ataques do agressor neste turno.',
+        'Ataques de outros agressores continuam contra a sua Evasão Passiva.',
+        'O dado não soma atributo: a Destreza já está na Evasão Passiva.',
+    ],
+    'D30 faixa 8-18 na criação': [
+        'Se a soma de uma rolagem der menos de 8, role os 4 dados novamente: por isso cada valor fica entre 8 e 18.',
+    ],
 }
 
 
 def checa_blocos_sistema(root=None):
-    """[9] Guarda-fio: os blocos D80–D82 do Sistema (snapshot por frase)."""
+    """[9] Guarda-fio: os blocos decididos do Sistema (snapshot por frase)."""
     root = root or ROOT
-    print('[9] Guarda-fio dos blocos D80–D82 (data/sistema.json)')
+    print('[9] Guarda-fio dos blocos decididos (data/sistema.json)')
     f = os.path.join(root, 'data', 'sistema.json')
     try:
         dados = json.load(open(f, encoding='utf-8'))

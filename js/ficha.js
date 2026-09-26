@@ -1418,6 +1418,8 @@
       if (!ent) return;
       var r = quantidade(uid, n, 'drawer');
       if (r && r.removido) toast('Removido: ' + ent.nome);
+      // só-leitura: bloqueado() já avisou e redesenhou tudo travado
+      else if (r && r.erro === RES_RO.erro) return;
       else if (r && r.erro) { toast(MSG_QTD_1[r.erro] || ''); renderListas(); }
     }
     var trava = e.equipado ? MSG_QTD_1.equipado : (e.sintonizado ? MSG_QTD_1.sintonizado : '');
@@ -1551,6 +1553,7 @@
         if (n && n.focus) n.focus();
       } catch (e) {}
     }
+    if (somenteLeitura) travaDrawer();   // linhas recriadas nascem habilitadas
   }
 
   function dropZone(campo, texto) {
