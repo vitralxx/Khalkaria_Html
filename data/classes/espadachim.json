@@ -192,6 +192,53 @@
         "nome": "🍺 Ramo do Exilado Bêbado",
         "descricao": "A sociedade nunca soube o que fazer com você. Talvez tenha sido alguma substância proibida que primeiro tocou seus lábios, ou talvez você simplesmente tenha nascido deslocado — um estranho em qualquer lugar que pisasse. O álcool, ironicamente, tornou-se sua âncora: onde outros perdem controle, você encontra clareza. Cada gole acalma os tremores de um passado que prefere esquecer e aguça seus sentidos para o presente que importa. Nas tavernas e vielas sombrias, dizem que você luta melhor embriagado do que a maioria dos soldados sóbrios — e estão certos. Sua lâmina dança com uma imprevisibilidade calculada, cada movimento aparentemente descuidado escondendo uma precisão mortal que só você compreende."
       }
+    ],
+    "ramosTexto": [
+      "Os ramos são caminhos irreversíveis que definem seu personagem. Você escolhe <strong>3 Marcas</strong> e <strong>6 Técnicas de Ramo</strong> (3 no Tier 1, ao chegar ao nível 2; 2 no Tier 2, no nível 4; e 1 Ultimate no Tier 3, no nível 5) ao longo da progressão. É aceitável misturar os 3 ramos."
+    ],
+    "ramosRegra": {
+      "marcas": 3,
+      "tecnicas": 6,
+      "porTier": [
+        {
+          "tier": 1,
+          "quantidade": 3,
+          "nivel": 2,
+          "ultimate": false
+        },
+        {
+          "tier": 2,
+          "quantidade": 2,
+          "nivel": 4,
+          "ultimate": false
+        },
+        {
+          "tier": 3,
+          "quantidade": 1,
+          "nivel": 5,
+          "ultimate": true
+        }
+      ]
+    },
+    "tiers": [
+      {
+        "badge": "TIER 1",
+        "tier": 1,
+        "nivel": null,
+        "usos": null
+      },
+      {
+        "badge": "TIER 2",
+        "tier": 2,
+        "nivel": null,
+        "usos": null
+      },
+      {
+        "badge": "TIER 3",
+        "tier": 3,
+        "nivel": null,
+        "usos": null
+      }
     ]
   },
   "cards": [
@@ -199,235 +246,391 @@
       "id": "espadachim-leitura-de-batalha",
       "tipo": "technique-card",
       "nome": "Leitura de Batalha",
-      "corpo": "<div class=\"technique-header\"><h4>Leitura de Batalha</h4><div class=\"technique-cost\"><span class=\"action\">Passiva</span></div></div><p>Ao atacar um inimigo com a <strong>Marca do Duelo</strong> você tem +3 atacar.</p>"
+      "corpo": "<div class=\"technique-header\"><h4>Leitura de Batalha</h4><div class=\"technique-cost\"><span class=\"action\">Passiva</span></div></div><p>Ao atacar um inimigo com a <strong>Marca do Duelo</strong> você tem +3 atacar.</p>",
+      "grupo": "geral",
+      "ramo": null,
+      "tier": null,
+      "custoTexto": "Passiva"
     },
     {
       "id": "espadachim-peso-do-fracasso",
       "tipo": "technique-card",
       "nome": "Peso do Fracasso",
-      "corpo": "<div class=\"technique-header\"><h4>Peso do Fracasso</h4><div class=\"technique-cost\"><span class=\"action\">Passiva</span></div></div><p>Retaliar um inimigo com a <strong>Marca do Duelo</strong> causa +(Nível)d6 de dano Cortante.</p>"
+      "corpo": "<div class=\"technique-header\"><h4>Peso do Fracasso</h4><div class=\"technique-cost\"><span class=\"action\">Passiva</span></div></div><p>Retaliar um inimigo com a <strong>Marca do Duelo</strong> causa +(Nível)d6 de dano Cortante.</p>",
+      "grupo": "geral",
+      "ramo": null,
+      "tier": null,
+      "custoTexto": "Passiva"
     },
     {
       "id": "espadachim-limiar-da-morte",
       "tipo": "technique-card",
       "nome": "Limiar da Morte",
-      "corpo": "<div class=\"technique-header\"><h4>Limiar da Morte</h4><div class=\"technique-cost\"><span class=\"action\">Passiva</span></div></div><p>Ao estar com ≤ 50% Saúde, seus ataques contra <strong>a Marca do Duelo</strong> causam +2d6 de dano Cortante.</p>"
+      "corpo": "<div class=\"technique-header\"><h4>Limiar da Morte</h4><div class=\"technique-cost\"><span class=\"action\">Passiva</span></div></div><p>Ao estar com ≤ 50% Saúde, seus ataques contra <strong>a Marca do Duelo</strong> causam +2d6 de dano Cortante.</p>",
+      "grupo": "geral",
+      "ramo": null,
+      "tier": null,
+      "custoTexto": "Passiva"
     },
     {
       "id": "espadachim-pedra-de-amolar",
       "tipo": "technique-card",
       "nome": "Pedra de Amolar",
-      "corpo": "<div class=\"technique-header\"><h4>Pedra de Amolar</h4><div class=\"technique-cost\"><span class=\"action\">Descanso Curto</span></div></div><p>Você pode gastar sua ação de descanso curto para Amolar a sua espada, ela passa a causar +1d4 de dano Cortante, porém apenas durante o próximo combate, após isso ela volta ao normal.</p>"
+      "corpo": "<div class=\"technique-header\"><h4>Pedra de Amolar</h4><div class=\"technique-cost\"><span class=\"action\">Descanso Curto</span></div></div><p>Você pode gastar sua ação de descanso curto para Amolar a sua espada, ela passa a causar +1d4 de dano Cortante, porém apenas durante o próximo combate, após isso ela volta ao normal.</p>",
+      "grupo": "geral",
+      "ramo": null,
+      "tier": null,
+      "custoTexto": "Descanso Curto"
     },
     {
       "id": "espadachim-respiro-do-espadachim",
       "tipo": "technique-card",
       "nome": "Respiro do Espadachim",
-      "corpo": "<div class=\"technique-header\"><h4>Respiro do Espadachim</h4><div class=\"technique-cost\"><span class=\"action\">1 Ação</span></div></div><p>Em combate, recupera Stamina igual ao seu Mod. de Constituição +1d4 e recebe +2 Defender até o início do seu próximo turno. (Max. 1 vez por turno)</p>"
+      "corpo": "<div class=\"technique-header\"><h4>Respiro do Espadachim</h4><div class=\"technique-cost\"><span class=\"action\">1 Ação</span></div></div><p>Em combate, recupera Stamina igual ao seu Mod. de Constituição +1d4 e recebe +2 Defender até o início do seu próximo turno. (Max. 1 vez por turno)</p>",
+      "grupo": "geral",
+      "ramo": null,
+      "tier": null,
+      "custoTexto": "1 Ação"
     },
     {
       "id": "espadachim-lamina-rapida",
       "tipo": "technique-card",
       "nome": "Lâmina Rápida",
-      "corpo": "<div class=\"technique-header\"><h4>Lâmina Rápida</h4><div class=\"technique-cost\"><span class=\"stamina\">5 Stamina</span><span class=\"action\">1 Ação</span></div></div><p>Ataque duas vezes como 1 ação. Esses ataques não podem receber <em>retaliação.</em></p>"
+      "corpo": "<div class=\"technique-header\"><h4>Lâmina Rápida</h4><div class=\"technique-cost\"><span class=\"stamina\">5 Stamina</span><span class=\"action\">1 Ação</span></div></div><p>Ataque duas vezes como 1 ação. Esses ataques não podem receber <em>retaliação.</em></p>",
+      "grupo": "geral",
+      "ramo": null,
+      "tier": null,
+      "custoTexto": "5 Stamina · 1 Ação"
     },
     {
       "id": "espadachim-corte-diagonal",
       "tipo": "technique-card",
       "nome": "Corte Diagonal",
-      "corpo": "<div class=\"technique-header\"><h4>Corte Diagonal</h4><div class=\"technique-cost\"><span class=\"stamina\">3 Stamina</span><span class=\"action\">Ação Livre</span></div></div><p>Seu próximo ataque tem +2 no acerto. Adicionalmente, se seu próximo ataque acertar um inimigo com a <strong>Marca do Duelo</strong> adiciona <strong><em>Sangramento 1</em></strong>.</p>"
+      "corpo": "<div class=\"technique-header\"><h4>Corte Diagonal</h4><div class=\"technique-cost\"><span class=\"stamina\">3 Stamina</span><span class=\"action\">Ação Livre</span></div></div><p>Seu próximo ataque tem +2 no acerto. Adicionalmente, se seu próximo ataque acertar um inimigo com a <strong>Marca do Duelo</strong> adiciona <strong><em>Sangramento 1</em></strong>.</p>",
+      "grupo": "geral",
+      "ramo": null,
+      "tier": null,
+      "custoTexto": "3 Stamina · Ação Livre"
     },
     {
       "id": "espadachim-x1",
       "tipo": "technique-card",
       "nome": "x1",
-      "corpo": "<div class=\"technique-header\"><h4>x1</h4><div class=\"technique-cost\"><span class=\"stamina\">5 Stamina</span><span class=\"action\">2 Ações</span></div></div><p>Você foca toda sua concentração em um único alvo em até 9 m que esteja com <strong>a Marca do Duelo</strong>.<br>Enquanto o alvo estiver isolado por ao menos, 1,5 m de qualquer outro inimigo<br>você recebe os seguintes benefícios contra o inimigo com a <strong>Marca do Duelo:<br>• +1d10</strong> dano Cortante<br>• Vantagem ao Atacar.<br>Ao trocar o alvo da <strong>Marca do Duelo</strong>, você perde os efeitos e precisa utilizar essa <strong>Técnica</strong> novamente.</p>"
+      "corpo": "<div class=\"technique-header\"><h4>x1</h4><div class=\"technique-cost\"><span class=\"stamina\">5 Stamina</span><span class=\"action\">2 Ações</span></div></div><p>Você foca toda sua concentração em um único alvo em até 9 m que esteja com <strong>a Marca do Duelo</strong>.<br>Enquanto o alvo estiver isolado por ao menos, 1,5 m de qualquer outro inimigo<br>você recebe os seguintes benefícios contra o inimigo com a <strong>Marca do Duelo:<br>• +1d10</strong> dano Cortante<br>• Vantagem ao Atacar.<br>Ao trocar o alvo da <strong>Marca do Duelo</strong>, você perde os efeitos e precisa utilizar essa <strong>Técnica</strong> novamente.</p>",
+      "grupo": "geral",
+      "ramo": null,
+      "tier": null,
+      "custoTexto": "5 Stamina · 2 Ações"
     },
     {
       "id": "espadachim-oportunista",
       "tipo": "technique-card",
       "nome": "Oportunista",
-      "corpo": "<div class=\"technique-header\"><h4>Oportunista</h4><div class=\"technique-cost\"><span class=\"stamina\">5 Stamina</span><span class=\"action\">Ação Livre</span></div></div><p>Você pode como ação livre reduzir a PMA para -3, ao invés de -5, nesta rodada.</p>"
+      "corpo": "<div class=\"technique-header\"><h4>Oportunista</h4><div class=\"technique-cost\"><span class=\"stamina\">5 Stamina</span><span class=\"action\">Ação Livre</span></div></div><p>Você pode como ação livre reduzir a PMA para -3, ao invés de -5, nesta rodada.</p>",
+      "grupo": "geral",
+      "ramo": null,
+      "tier": null,
+      "custoTexto": "5 Stamina · Ação Livre"
     },
     {
       "id": "espadachim-quebrar-postura",
       "tipo": "technique-card",
       "nome": "Quebrar Postura",
-      "corpo": "<div class=\"technique-header\"><h4>Quebrar Postura</h4><div class=\"technique-cost\"><span class=\"stamina\">3 Stamina</span><span class=\"action\">Ação Livre</span></div></div><p>Ao acertar um alvo com a <strong>Marca do Duelo</strong>, ele perde sua reação até o fim da rodada. O alvo ainda pode bloquear ou retaliar, mas perde a reação logo em seguida se for acertado.</p>"
+      "corpo": "<div class=\"technique-header\"><h4>Quebrar Postura</h4><div class=\"technique-cost\"><span class=\"stamina\">3 Stamina</span><span class=\"action\">Ação Livre</span></div></div><p>Ao acertar um alvo com a <strong>Marca do Duelo</strong>, ele perde sua reação até o fim da rodada. O alvo ainda pode bloquear ou retaliar, mas perde a reação logo em seguida se for acertado.</p>",
+      "grupo": "geral",
+      "ramo": null,
+      "tier": null,
+      "custoTexto": "3 Stamina · Ação Livre"
     },
     {
       "id": "espadachim-ponto-fraco",
       "tipo": "technique-card",
       "nome": "Ponto Fraco",
-      "corpo": "<div class=\"technique-header\"><h4>Ponto Fraco</h4><div class=\"technique-cost\"><span class=\"stamina\">5 Stamina</span><span class=\"action\">Passiva</span></div></div><p>Ao atacar um inimigo <em>Exposto</em>, você pode como uma ação livre gastar 5 de Stamina para manter a condição no inimigo, mesmo após atacar.</p>"
+      "corpo": "<div class=\"technique-header\"><h4>Ponto Fraco</h4><div class=\"technique-cost\"><span class=\"stamina\">5 Stamina</span><span class=\"action\">Passiva</span></div></div><p>Ao atacar um inimigo <em>Exposto</em>, você pode como uma ação livre gastar 5 de Stamina para manter a condição no inimigo, mesmo após atacar.</p>",
+      "grupo": "geral",
+      "ramo": null,
+      "tier": null,
+      "custoTexto": "5 Stamina · Passiva"
     },
     {
       "id": "espadachim-passo-afiado",
       "tipo": "technique-card",
       "nome": "Passo Afiado",
-      "corpo": "<div class=\"technique-header\"><h4>Passo Afiado</h4><div class=\"technique-cost\"><span class=\"stamina\">2 Stamina</span><span class=\"action\">Ação Livre</span></div></div><p>Quando um inimigo errar você, mova-se 1,5 m sem provocar ataques de oportunidade.</p>"
+      "corpo": "<div class=\"technique-header\"><h4>Passo Afiado</h4><div class=\"technique-cost\"><span class=\"stamina\">2 Stamina</span><span class=\"action\">Ação Livre</span></div></div><p>Quando um inimigo errar você, mova-se 1,5 m sem provocar ataques de oportunidade.</p>",
+      "grupo": "geral",
+      "ramo": null,
+      "tier": null,
+      "custoTexto": "2 Stamina · Ação Livre"
     },
     {
       "id": "espadachim-corta-luz",
       "tipo": "technique-card",
       "nome": "Corta-Luz",
-      "corpo": "<div class=\"technique-header\"><h4>Corta-Luz</h4><div class=\"technique-cost\"><span class=\"stamina\">3 Stamina</span><span class=\"action\">Reação</span></div></div><p>Quando você errar um ataque, pode realizar um segundo ataque contra o mesmo alvo, com −2.</p>"
+      "corpo": "<div class=\"technique-header\"><h4>Corta-Luz</h4><div class=\"technique-cost\"><span class=\"stamina\">3 Stamina</span><span class=\"action\">Reação</span></div></div><p>Quando você errar um ataque, pode realizar um segundo ataque contra o mesmo alvo, com −2.</p>",
+      "grupo": "geral",
+      "ramo": null,
+      "tier": null,
+      "custoTexto": "3 Stamina · Reação"
     },
     {
       "id": "espadachim-bilhete-de-entrada",
       "tipo": "technique-card",
       "nome": "Bilhete de Entrada",
-      "corpo": "<div class=\"technique-header\"><h4>Bilhete de Entrada</h4><div class=\"technique-cost\"><span class=\"stamina\">5 Stamina</span><span class=\"action\">Reação</span></div></div><p>Quando um inimigo entrar no seu alcance: pode atacar imediatamente com −5.</p>"
+      "corpo": "<div class=\"technique-header\"><h4>Bilhete de Entrada</h4><div class=\"technique-cost\"><span class=\"stamina\">5 Stamina</span><span class=\"action\">Reação</span></div></div><p>Quando um inimigo entrar no seu alcance: pode atacar imediatamente com −5.</p>",
+      "grupo": "geral",
+      "ramo": null,
+      "tier": null,
+      "custoTexto": "5 Stamina · Reação"
     },
     {
       "id": "espadachim-brecha",
       "tipo": "technique-card",
       "nome": "Brecha",
-      "corpo": "<div class=\"technique-header\"><h4>Brecha</h4><div class=\"technique-cost\"><span class=\"stamina\">5 Stamina</span><span class=\"action\">1 Ação ou Passiva</span></div></div><p>Ao acertar um ataque em um alvo não <em>exposto</em>, pode aplicar <em>Exposto</em> como 1 ação.<br>Adicionalmente, se o alvo já estiver <em>exposto</em>, pode adicionar <em>Sangramento 1</em> como ação livre. (Max. 1 vez por turno)</p>"
+      "corpo": "<div class=\"technique-header\"><h4>Brecha</h4><div class=\"technique-cost\"><span class=\"stamina\">5 Stamina</span><span class=\"action\">1 Ação ou Passiva</span></div></div><p>Ao acertar um ataque em um alvo não <em>exposto</em>, pode aplicar <em>Exposto</em> como 1 ação.<br>Adicionalmente, se o alvo já estiver <em>exposto</em>, pode adicionar <em>Sangramento 1</em> como ação livre. (Max. 1 vez por turno)</p>",
+      "grupo": "geral",
+      "ramo": null,
+      "tier": null,
+      "custoTexto": "5 Stamina · 1 Ação ou Passiva"
     },
     {
       "id": "espadachim-disciplina",
       "tipo": "marca-card",
       "nome": "Disciplina",
-      "corpo": "<h5>Disciplina</h5><p class=\"flavor\">\"Você é frio e age apenas quando necessário.\"</p><p>Você é friamente disciplinado e segue um conjunto de valores difíceis de quebrar.</p><ul><li>Para cada 5 combates onde a Marca do Duelo te atacou antes de você atacá-la, você ganha +1 permanentemente em <strong>Vontade</strong>. (Máx. +5)</li><li>Na primeira vez em cada combate que você sofre um ataque antes de ter atacado, recupere Stamina igual ao seu Mod. Constituição.</li></ul>"
+      "corpo": "<h5>Disciplina</h5><p class=\"flavor\">\"Você é frio e age apenas quando necessário.\"</p><p>Você é friamente disciplinado e segue um conjunto de valores difíceis de quebrar.</p><ul><li>Para cada 5 combates onde a Marca do Duelo te atacou antes de você atacá-la, você ganha +1 permanentemente em <strong>Vontade</strong>. (Máx. +5)</li><li>Na primeira vez em cada combate que você sofre um ataque antes de ter atacado, recupere Stamina igual ao seu Mod. Constituição.</li></ul>",
+      "grupo": "marca",
+      "ramo": "espadachim-ramo-do-guarda-lamina",
+      "tier": null,
+      "custoTexto": null
     },
     {
       "id": "espadachim-caca-fardos",
       "tipo": "marca-card",
       "nome": "Caça Fardos",
-      "corpo": "<h5>Caça Fardos</h5><p class=\"flavor\">\"Você busca criaturas indignas, e as assassina com prazer.\"</p><p>Você é naturalmente benevolente e busca punir criaturas bestiais/monstruosas.</p><ul><li>Para cada 5 criaturas monstruosas ou malignas que você matou, você ganha +1 permanentemente em <strong>Sobrevivência</strong>. (Máx. +5)</li><li>Você consegue localizar a <strong>Marca do Duelo</strong> em qualquer situação, mesmo que ela esteja <em>invisível</em> ou <em>escondida</em>.</li></ul>"
+      "corpo": "<h5>Caça Fardos</h5><p class=\"flavor\">\"Você busca criaturas indignas, e as assassina com prazer.\"</p><p>Você é naturalmente benevolente e busca punir criaturas bestiais/monstruosas.</p><ul><li>Para cada 5 criaturas monstruosas ou malignas que você matou, você ganha +1 permanentemente em <strong>Sobrevivência</strong>. (Máx. +5)</li><li>Você consegue localizar a <strong>Marca do Duelo</strong> em qualquer situação, mesmo que ela esteja <em>invisível</em> ou <em>escondida</em>.</li></ul>",
+      "grupo": "marca",
+      "ramo": "espadachim-ramo-do-guarda-lamina",
+      "tier": null,
+      "custoTexto": null
     },
     {
       "id": "espadachim-parry-perfeito",
       "tipo": "tier-technique",
       "nome": "Parry Perfeito",
-      "corpo": "<h5>Parry Perfeito</h5><p class=\"meta\">Ação Livre · 3 Stamina</p><ul><li>Ao defender um ataque da <strong>Marca do Duelo</strong> com sucesso, <strong>Retalie</strong> como <em>Ação Livre</em>.</li></ul>"
+      "corpo": "<h5>Parry Perfeito</h5><p class=\"meta\">Ação Livre · 3 Stamina</p><ul><li>Ao defender um ataque da <strong>Marca do Duelo</strong> com sucesso, <strong>Retalie</strong> como <em>Ação Livre</em>.</li></ul>",
+      "grupo": "ramo",
+      "ramo": "espadachim-ramo-do-guarda-lamina",
+      "tier": 1,
+      "custoTexto": "Ação Livre · 3 Stamina"
     },
     {
       "id": "espadachim-duelista-intocavel",
       "tipo": "tier-technique",
       "nome": "Duelista Intocável",
-      "corpo": "<h5>Duelista Intocável</h5><p class=\"meta\">Passiva</p><ul><li>Você se torna <em>Treinado</em> em <strong>Defender</strong>. Se já for <em>Treinado</em>, se torna <em>Experiente</em> e assim por diante.</li><li>Enquanto não tiver realizado ataques nesta rodada, você ganha +5 em testes de <em>Defender.</em></li><li>Você ignora todo Ar (Armadura) ao <strong>Retaliar</strong>.</li></ul>"
+      "corpo": "<h5>Duelista Intocável</h5><p class=\"meta\">Passiva</p><ul><li>Você se torna <em>Treinado</em> em <strong>Defender</strong>. Se já for <em>Treinado</em>, se torna <em>Experiente</em> e assim por diante.</li><li>Enquanto não tiver realizado ataques nesta rodada, você ganha +5 em testes de <em>Defender.</em></li><li>Você ignora todo Ar (Armadura) ao <strong>Retaliar</strong>.</li></ul>",
+      "grupo": "ramo",
+      "ramo": "espadachim-ramo-do-guarda-lamina",
+      "tier": 1,
+      "custoTexto": "Passiva"
     },
     {
       "id": "espadachim-guardar-a-lamina",
       "tipo": "tier-technique",
       "nome": "Guardar a Lâmina",
-      "corpo": "<h5>Guardar a Lâmina</h5><p class=\"meta\">1 Ação · 2 Stamina</p><ul><li>Até o início do seu próximo turno você ganha as seguintes vantagens:<ul><li>+2 Defender</li><li>Sua primeira retaliação não gasta reação</li></ul></li></ul>"
+      "corpo": "<h5>Guardar a Lâmina</h5><p class=\"meta\">1 Ação · 2 Stamina</p><ul><li>Até o início do seu próximo turno você ganha as seguintes vantagens:<ul><li>+2 Defender</li><li>Sua primeira retaliação não gasta reação</li></ul></li></ul>",
+      "grupo": "ramo",
+      "ramo": "espadachim-ramo-do-guarda-lamina",
+      "tier": 1,
+      "custoTexto": "1 Ação · 2 Stamina"
     },
     {
       "id": "espadachim-contra-guarda",
       "tipo": "tier-technique",
       "nome": "Contra-guarda",
-      "corpo": "<h5>Contra-guarda</h5><p class=\"meta\">Passiva</p><ul><li>Se você não realizou nenhum ataque no seu turno, sua próxima retaliação contra a Marca do Duelo causa <strong>dano crítico</strong>.</li></ul>"
+      "corpo": "<h5>Contra-guarda</h5><p class=\"meta\">Passiva</p><ul><li>Se você não realizou nenhum ataque no seu turno, sua próxima retaliação contra a Marca do Duelo causa <strong>dano crítico</strong>.</li></ul>",
+      "grupo": "ramo",
+      "ramo": "espadachim-ramo-do-guarda-lamina",
+      "tier": 2,
+      "custoTexto": "Passiva"
     },
     {
       "id": "espadachim-inimigo-mortal",
       "tipo": "tier-technique",
       "nome": "Inimigo Mortal",
-      "corpo": "<h5>Inimigo Mortal</h5><p class=\"meta\">1 Ação · 5 Stamina</p><ul><li>Até o início do seu próximo turno, você pode retaliar <strong>a Marca do Duelo</strong> até <strong>2</strong> vezes sem gastar reação.</li></ul>"
+      "corpo": "<h5>Inimigo Mortal</h5><p class=\"meta\">1 Ação · 5 Stamina</p><ul><li>Até o início do seu próximo turno, você pode retaliar <strong>a Marca do Duelo</strong> até <strong>2</strong> vezes sem gastar reação.</li></ul>",
+      "grupo": "ramo",
+      "ramo": "espadachim-ramo-do-guarda-lamina",
+      "tier": 2,
+      "custoTexto": "1 Ação · 5 Stamina"
     },
     {
       "id": "espadachim-sentenca-final",
       "tipo": "ultimate-card",
       "nome": "Sentença Final",
-      "corpo": "<h5>Sentença Final</h5><p class=\"meta\">1 Ação · 10 Stamina · 1x/Dia</p><p class=\"quote\">\"A morte chega para todos os pecadores\"</p><p>Escolha 1 inimigo que esteja com <strong>a Marca do Duelo.</strong> Você e o inimigo são transportados para um plano impossível.<br>A única saída é evidente. A morte de um dos dois:</p><div class=\"effect-list\"><ul><li>Você e <strong>a Marca do Duelo</strong> são arrancados do campo de batalha para <strong><em>o Plano Místico</em></strong> até a morte de um dos dois.</li><li>Enquanto neste plano, as suas <strong>retaliações</strong> não gastam reação.</li></ul></div><div class=\"ultimate-cost\"><h6>⚠️ O Custo</h6><ul><li>Sua espada foi danificada. Perca 2d10 de Éter.</li><li>A <strong><em>Trama</em></strong> decidiu o seu destino.</li></ul></div>"
+      "corpo": "<h5>Sentença Final</h5><p class=\"meta\">1 Ação · 10 Stamina · 1x/Dia</p><p class=\"quote\">\"A morte chega para todos os pecadores\"</p><p>Escolha 1 inimigo que esteja com <strong>a Marca do Duelo.</strong> Você e o inimigo são transportados para um plano impossível.<br>A única saída é evidente. A morte de um dos dois:</p><div class=\"effect-list\"><ul><li>Você e <strong>a Marca do Duelo</strong> são arrancados do campo de batalha para <strong><em>o Plano Místico</em></strong> até a morte de um dos dois.</li><li>Enquanto neste plano, as suas <strong>retaliações</strong> não gastam reação.</li></ul></div><div class=\"ultimate-cost\"><h6>⚠️ O Custo</h6><ul><li>Sua espada foi danificada. Perca 2d10 de Éter.</li><li>A <strong><em>Trama</em></strong> decidiu o seu destino.</li></ul></div>",
+      "grupo": "ultimate",
+      "ramo": "espadachim-ramo-do-guarda-lamina",
+      "tier": 3,
+      "custoTexto": "1 Ação · 10 Stamina · 1x/Dia"
     },
     {
       "id": "espadachim-nostalgia",
       "tipo": "marca-card",
       "nome": "Nostalgia",
-      "corpo": "<h5>Nostalgia</h5><p class=\"flavor\">\"Como eles ousam ter te desrespeitado?\"</p><p>Você é rancoroso em seu cerne, guarda mais magoas do que deveria.</p><ul><li>Para cada 5 criaturas que te causaram dano e que você matou, você ganha +1 permanentemente em <strong>Intimidação</strong>. (Máx. +5)</li><li>Ao sofrer dano de uma criatura enquanto não tiver uma Marca do Duelo ativa, ela recebe a Marca do Duelo automaticamente. Adicionalmente, ao sofrer dano de uma criatura pode adicionar <strong>a Marca do Duelo</strong> a ela como uma reação.</li></ul>"
+      "corpo": "<h5>Nostalgia</h5><p class=\"flavor\">\"Como eles ousam ter te desrespeitado?\"</p><p>Você é rancoroso em seu cerne, guarda mais magoas do que deveria.</p><ul><li>Para cada 5 criaturas que te causaram dano e que você matou, você ganha +1 permanentemente em <strong>Intimidação</strong>. (Máx. +5)</li><li>Ao sofrer dano de uma criatura enquanto não tiver uma Marca do Duelo ativa, ela recebe a Marca do Duelo automaticamente. Adicionalmente, ao sofrer dano de uma criatura pode adicionar <strong>a Marca do Duelo</strong> a ela como uma reação.</li></ul>",
+      "grupo": "marca",
+      "ramo": "espadachim-ramo-do-oprimido",
+      "tier": null,
+      "custoTexto": null
     },
     {
       "id": "espadachim-vinganca",
       "tipo": "marca-card",
       "nome": "Vingança",
-      "corpo": "<h5>Vingança</h5><p class=\"flavor\">\"Raiva. O único prazer que nunca te traiu.\"</p><p>Você não consegue se controlar em não se vingar quando é desrespeitado.</p><ul><li>Para cada 5 combates que você terminou com menos da metade da Saúde, você ganha +1 permanentemente em <strong>Fortitude</strong>. (Máx. +5)</li><li>Ao ser reduzido a menos de 25% da Saúde, seus ataques causam +2d6 de dano Cortante até o fim do combate.</li></ul>"
+      "corpo": "<h5>Vingança</h5><p class=\"flavor\">\"Raiva. O único prazer que nunca te traiu.\"</p><p>Você não consegue se controlar em não se vingar quando é desrespeitado.</p><ul><li>Para cada 5 combates que você terminou com menos da metade da Saúde, você ganha +1 permanentemente em <strong>Fortitude</strong>. (Máx. +5)</li><li>Ao ser reduzido a menos de 25% da Saúde, seus ataques causam +2d6 de dano Cortante até o fim do combate.</li></ul>",
+      "grupo": "marca",
+      "ramo": "espadachim-ramo-do-oprimido",
+      "tier": null,
+      "custoTexto": null
     },
     {
       "id": "espadachim-furia-do-verme",
       "tipo": "tier-technique",
       "nome": "Fúria do Verme",
-      "corpo": "<h5>Fúria do Verme</h5><p class=\"meta\">Passiva</p><ul><li>Você se torna <em>Treinado</em> em <strong>Atacar</strong>. Se já for <em>Treinado</em>, se torna <em>Experiente</em> e assim por diante.</li><li>Seus ataques corpo a corpo causam +1d6 de dano Cortante.</li><li>No fim do seu turno, se você atacou, receba 1d4 de dano Primordial (não reduzível).</li></ul>"
+      "corpo": "<h5>Fúria do Verme</h5><p class=\"meta\">Passiva</p><ul><li>Você se torna <em>Treinado</em> em <strong>Atacar</strong>. Se já for <em>Treinado</em>, se torna <em>Experiente</em> e assim por diante.</li><li>Seus ataques corpo a corpo causam +1d6 de dano Cortante.</li><li>No fim do seu turno, se você atacou, receba 1d4 de dano Primordial (não reduzível).</li></ul>",
+      "grupo": "ramo",
+      "ramo": "espadachim-ramo-do-oprimido",
+      "tier": 1,
+      "custoTexto": "Passiva"
     },
     {
       "id": "espadachim-adrenalina-sanguinea",
       "tipo": "tier-technique",
       "nome": "Adrenalina Sanguínea",
-      "corpo": "<h5>Adrenalina Sanguínea</h5><p class=\"meta\">Passiva</p><ul><li>Quando a <strong>Marca do Duelo</strong> for morta por você:<ul><li>Ganhe 1 Ação.</li><li>Recupere (Nível)d6 de Saúde.</li></ul></li></ul>"
+      "corpo": "<h5>Adrenalina Sanguínea</h5><p class=\"meta\">Passiva</p><ul><li>Quando a <strong>Marca do Duelo</strong> for morta por você:<ul><li>Ganhe 1 Ação.</li><li>Recupere (Nível)d6 de Saúde.</li></ul></li></ul>",
+      "grupo": "ramo",
+      "ramo": "espadachim-ramo-do-oprimido",
+      "tier": 1,
+      "custoTexto": "Passiva"
     },
     {
       "id": "espadachim-sangue-por-aco",
       "tipo": "tier-technique",
       "nome": "Sangue por Aço",
-      "corpo": "<h5>Sangue por Aço</h5><p class=\"meta\">Ação Livre</p><ul><li>Você pode pagar Saúde no lugar de Stamina em qualquer técnica, na proporção 2 Saúde = 1 Stamina.</li></ul>"
+      "corpo": "<h5>Sangue por Aço</h5><p class=\"meta\">Ação Livre</p><ul><li>Você pode pagar Saúde no lugar de Stamina em qualquer técnica, na proporção 2 Saúde = 1 Stamina.</li></ul>",
+      "grupo": "ramo",
+      "ramo": "espadachim-ramo-do-oprimido",
+      "tier": 1,
+      "custoTexto": "Ação Livre"
     },
     {
       "id": "espadachim-carne-rasgada",
       "tipo": "tier-technique",
       "nome": "Carne Rasgada",
-      "corpo": "<h5>Carne Rasgada</h5><p class=\"meta\">Passiva</p><ul><li>Ao estar com menos da metade da vida, você ganha os seguintes benefícios:<ul><li>Seus ataques contra <strong>a Marca do Duelo</strong> causam <strong>+2d6</strong> de dano Cortante.</li><li>Você tem <em>resistência</em> a dano <strong><em>Ordinário</em></strong> contra <strong>a Marca do Duelo</strong>.</li></ul></li></ul>"
+      "corpo": "<h5>Carne Rasgada</h5><p class=\"meta\">Passiva</p><ul><li>Ao estar com menos da metade da vida, você ganha os seguintes benefícios:<ul><li>Seus ataques contra <strong>a Marca do Duelo</strong> causam <strong>+2d6</strong> de dano Cortante.</li><li>Você tem <em>resistência</em> a dano <strong><em>Ordinário</em></strong> contra <strong>a Marca do Duelo</strong>.</li></ul></li></ul>",
+      "grupo": "ramo",
+      "ramo": "espadachim-ramo-do-oprimido",
+      "tier": 2,
+      "custoTexto": "Passiva"
     },
     {
       "id": "espadachim-massacre",
       "tipo": "tier-technique",
       "nome": "Massacre",
-      "corpo": "<h5>Massacre</h5><p class=\"meta\">1 Ação · 5 Stamina</p><ul><li>Faça 2 ataques corpo a corpo contra <strong>a Marca do Duelo.</strong> Se ambos acertarem:<ul><li>Você causa +2d6 de dano Cortante</li><li>O alvo recebe <em>Sangramento 1</em>.</li></ul></li></ul>"
+      "corpo": "<h5>Massacre</h5><p class=\"meta\">1 Ação · 5 Stamina</p><ul><li>Faça 2 ataques corpo a corpo contra <strong>a Marca do Duelo.</strong> Se ambos acertarem:<ul><li>Você causa +2d6 de dano Cortante</li><li>O alvo recebe <em>Sangramento 1</em>.</li></ul></li></ul>",
+      "grupo": "ramo",
+      "ramo": "espadachim-ramo-do-oprimido",
+      "tier": 2,
+      "custoTexto": "1 Ação · 5 Stamina"
     },
     {
       "id": "espadachim-cicatrizes",
       "tipo": "ultimate-card",
       "nome": "Cicatrizes",
-      "corpo": "<h5>Cicatrizes</h5><p class=\"meta\">1 Ação · 10 Stamina · 1x/Dia</p><p class=\"quote\">\"A dor, nunca foi sua inimiga. Mas sim, sua arma\"</p><p>Você entra em um estado epifânico onde você se desprende das amarras da dor por completo:</p><div class=\"effect-list\"><ul><li>Durante 3 rodadas você não pode ser reduzido abaixo de 1 de Saúde.</li></ul></div><div class=\"ultimate-cost\"><h6>⚠️ O Custo</h6><ul><li>Enquanto nesse estado, anote todo dano que receber. Ao fim das 3 rodadas, você o recebe como dano <strong>Primordial</strong>.</li><li>A <strong><em>Trama</em></strong> decidiu o seu destino.</li></ul></div>"
+      "corpo": "<h5>Cicatrizes</h5><p class=\"meta\">1 Ação · 10 Stamina · 1x/Dia</p><p class=\"quote\">\"A dor, nunca foi sua inimiga. Mas sim, sua arma\"</p><p>Você entra em um estado epifânico onde você se desprende das amarras da dor por completo:</p><div class=\"effect-list\"><ul><li>Durante 3 rodadas você não pode ser reduzido abaixo de 1 de Saúde.</li></ul></div><div class=\"ultimate-cost\"><h6>⚠️ O Custo</h6><ul><li>Enquanto nesse estado, anote todo dano que receber. Ao fim das 3 rodadas, você o recebe como dano <strong>Primordial</strong>.</li><li>A <strong><em>Trama</em></strong> decidiu o seu destino.</li></ul></div>",
+      "grupo": "ultimate",
+      "ramo": "espadachim-ramo-do-oprimido",
+      "tier": 3,
+      "custoTexto": "1 Ação · 10 Stamina · 1x/Dia"
     },
     {
       "id": "espadachim-coragem-liquida",
       "tipo": "marca-card",
       "nome": "Coragem Líquida",
-      "corpo": "<h5>Coragem Líquida</h5><p class=\"flavor\">\"Seu corpo tropeça, sua lâmina não… Ou talvez\"</p><p>Você fica corajoso ao estar Bêbado e estranhamente sem vergonha.</p><ul><li>Para cada 5 combates que você saiu vitorioso e esteve sob a condição <em>Bêbado</em>, você ganha +1 permanentemente em <strong>Movimento</strong>. (Máx. +5)</li><li>Uma vez por rodada, se você errar um ataque: pode rolar novamente como ação livre.<br>Porém, se errar de novo, fica <em>exposto</em>.</li></ul>"
+      "corpo": "<h5>Coragem Líquida</h5><p class=\"flavor\">\"Seu corpo tropeça, sua lâmina não… Ou talvez\"</p><p>Você fica corajoso ao estar Bêbado e estranhamente sem vergonha.</p><ul><li>Para cada 5 combates que você saiu vitorioso e esteve sob a condição <em>Bêbado</em>, você ganha +1 permanentemente em <strong>Movimento</strong>. (Máx. +5)</li><li>Uma vez por rodada, se você errar um ataque: pode rolar novamente como ação livre.<br>Porém, se errar de novo, fica <em>exposto</em>.</li></ul>",
+      "grupo": "marca",
+      "ramo": "espadachim-ramo-do-exilado-bebado",
+      "tier": null,
+      "custoTexto": null
     },
     {
       "id": "espadachim-blefe-do-bebado",
       "tipo": "marca-card",
       "nome": "Blefe do Bêbado",
-      "corpo": "<h5>Blefe do Bêbado</h5><p class=\"flavor\">\"Você consegue extrapolar todos os limites e, às vezes, sair impune com isso.\"</p><p>Você nunca admite seu vício em bebidas e possui um sério problema com mentiras.</p><ul><li>Para cada 5 mentiras que você fez alguém acreditar, você ganha +1 permanentemente em <strong>Enganação</strong>. (Máx. +5)</li><li>Mentir lhe faz bem. Sempre que suceder em um teste de Enganação, recupere Mod. Constituição de Stamina.</li></ul>"
+      "corpo": "<h5>Blefe do Bêbado</h5><p class=\"flavor\">\"Você consegue extrapolar todos os limites e, às vezes, sair impune com isso.\"</p><p>Você nunca admite seu vício em bebidas e possui um sério problema com mentiras.</p><ul><li>Para cada 5 mentiras que você fez alguém acreditar, você ganha +1 permanentemente em <strong>Enganação</strong>. (Máx. +5)</li><li>Mentir lhe faz bem. Sempre que suceder em um teste de Enganação, recupere Mod. Constituição de Stamina.</li></ul>",
+      "grupo": "marca",
+      "ramo": "espadachim-ramo-do-exilado-bebado",
+      "tier": null,
+      "custoTexto": null
     },
     {
       "id": "espadachim-golpe-torto",
       "tipo": "tier-technique",
       "nome": "Golpe Torto",
-      "corpo": "<h5>Golpe Torto</h5><p class=\"meta\">1 Ação · 3 Stamina</p><ul><li>Seu próximo ataque possui +2 Atacar, se acertar +3d6 de dano Cortante.<br>Se você errar, você fica <em>exposto</em>.</li></ul>"
+      "corpo": "<h5>Golpe Torto</h5><p class=\"meta\">1 Ação · 3 Stamina</p><ul><li>Seu próximo ataque possui +2 Atacar, se acertar +3d6 de dano Cortante.<br>Se você errar, você fica <em>exposto</em>.</li></ul>",
+      "grupo": "ramo",
+      "ramo": "espadachim-ramo-do-exilado-bebado",
+      "tier": 1,
+      "custoTexto": "1 Ação · 3 Stamina"
     },
     {
       "id": "espadachim-beber-ate-cair",
       "tipo": "tier-technique",
       "nome": "Beber até Cair",
-      "corpo": "<h5>Beber até Cair</h5><p class=\"meta\">1 Ação · 1 Item:Álcool</p><ul><li>Fique <em>Bêbado.</em> Adicionalmente, você ignora as adversidades da condição Bêbado descritas na tabela de Condições.<br>Os efeitos negativos concedidos por técnicas permanecem.</li></ul>"
+      "corpo": "<h5>Beber até Cair</h5><p class=\"meta\">1 Ação · 1 Item:Álcool</p><ul><li>Fique <em>Bêbado.</em> Adicionalmente, você ignora as adversidades da condição Bêbado descritas na tabela de Condições.<br>Os efeitos negativos concedidos por técnicas permanecem.</li></ul>",
+      "grupo": "ramo",
+      "ramo": "espadachim-ramo-do-exilado-bebado",
+      "tier": 1,
+      "custoTexto": "1 Ação · 1 Item:Álcool"
     },
     {
       "id": "espadachim-sorte-do-bebado",
       "tipo": "tier-technique",
       "nome": "Sorte do Bêbado",
-      "corpo": "<h5>Sorte do Bêbado</h5><p class=\"meta\">Passiva</p><ul><li>Você se torna <em>Treinado</em> em <strong>Qualquer Perícia</strong> à sua escolha. Se já for <em>Treinado</em>, se torna <em>Experiente</em> e assim por diante.</li><li>Enquanto Bêbado:<ul><li>Você tem margem de crítico +1 em TODAS as rolagens.</li><li>+2 Atacar</li><li>+2 Evasão</li><li>Desvantagem em testes de resistência (Reflexos, Fortitude e Vontade).</li></ul></li></ul>"
+      "corpo": "<h5>Sorte do Bêbado</h5><p class=\"meta\">Passiva</p><ul><li>Você se torna <em>Treinado</em> em <strong>Qualquer Perícia</strong> à sua escolha. Se já for <em>Treinado</em>, se torna <em>Experiente</em> e assim por diante.</li><li>Enquanto Bêbado:<ul><li>Você tem margem de crítico +1 em TODAS as rolagens.</li><li>+2 Atacar</li><li>+2 Evasão</li><li>Desvantagem em testes de resistência (Reflexos, Fortitude e Vontade).</li></ul></li></ul>",
+      "grupo": "ramo",
+      "ramo": "espadachim-ramo-do-exilado-bebado",
+      "tier": 1,
+      "custoTexto": "Passiva"
     },
     {
       "id": "espadachim-trebado",
       "tipo": "tier-technique",
       "nome": "Trêbado",
-      "corpo": "<h5>Trêbado</h5><p class=\"meta\">Ação Livre · 5 Stamina</p><ul><li>Imediatamente após rolar um dado, você pode escolher gastar <strong>5</strong> de <strong>Stamina</strong> como ação livre<br>para rolar novamente esse mesmo <strong>teste de perícia.</strong> (<em>3x/descanso longo)</em></li></ul>"
+      "corpo": "<h5>Trêbado</h5><p class=\"meta\">Ação Livre · 5 Stamina</p><ul><li>Imediatamente após rolar um dado, você pode escolher gastar <strong>5</strong> de <strong>Stamina</strong> como ação livre<br>para rolar novamente esse mesmo <strong>teste de perícia.</strong> (<em>3x/descanso longo)</em></li></ul>",
+      "grupo": "ramo",
+      "ramo": "espadachim-ramo-do-exilado-bebado",
+      "tier": 2,
+      "custoTexto": "Ação Livre · 5 Stamina"
     },
     {
       "id": "espadachim-dobrar-a-aposta",
       "tipo": "tier-technique",
       "nome": "Dobrar a Aposta",
-      "corpo": "<h5>Dobrar a Aposta</h5><p class=\"meta\">Ação Livre · 3 Stamina</p><ul><li>Declare antes de atacar <strong>a Marca do Duelo</strong>.<ul><li>Se <strong>acertar</strong>:<ul><li>+4d6 de dano Cortante.</li></ul></li><li>Se <strong>errar</strong>:<ul><li>receba 2d6 de dano Primordial e fique <em>Exposto</em>.</li></ul></li></ul></li></ul>"
+      "corpo": "<h5>Dobrar a Aposta</h5><p class=\"meta\">Ação Livre · 3 Stamina</p><ul><li>Declare antes de atacar <strong>a Marca do Duelo</strong>.<ul><li>Se <strong>acertar</strong>:<ul><li>+4d6 de dano Cortante.</li></ul></li><li>Se <strong>errar</strong>:<ul><li>receba 2d6 de dano Primordial e fique <em>Exposto</em>.</li></ul></li></ul></li></ul>",
+      "grupo": "ramo",
+      "ramo": "espadachim-ramo-do-exilado-bebado",
+      "tier": 2,
+      "custoTexto": "Ação Livre · 3 Stamina"
     },
     {
       "id": "espadachim-epifania",
       "tipo": "ultimate-card",
       "nome": "Epifania",
-      "corpo": "<h5>Epifania</h5><p class=\"meta\">1 Ação · 5 Stamina · 1x/Dia</p><p class=\"quote\">\"O corpo cambaleia, mas o destino tropeça junto\"</p><p>A bebida que antes corria em suas veias para te embebedar, agora lhe concede vidência sobre o futuro:</p><div class=\"effect-list\"><ul><li>Role 6d20 abertamente na mesa. Durante os próximos 10 minutos, toda rolagem sua usa esses dados à sua escolha.</li></ul></div><div class=\"ultimate-cost\"><h6>⚠️ O Custo</h6><ul><li>Você bebeu todo seu álcool. Perca 2d10 de Éter.</li><li>A <strong><em>Trama</em></strong> decidiu o seu destino.</li></ul></div>"
+      "corpo": "<h5>Epifania</h5><p class=\"meta\">1 Ação · 5 Stamina · 1x/Dia</p><p class=\"quote\">\"O corpo cambaleia, mas o destino tropeça junto\"</p><p>A bebida que antes corria em suas veias para te embebedar, agora lhe concede vidência sobre o futuro:</p><div class=\"effect-list\"><ul><li>Role 6d20 abertamente na mesa. Durante os próximos 10 minutos, toda rolagem sua usa esses dados à sua escolha.</li></ul></div><div class=\"ultimate-cost\"><h6>⚠️ O Custo</h6><ul><li>Você bebeu todo seu álcool. Perca 2d10 de Éter.</li><li>A <strong><em>Trama</em></strong> decidiu o seu destino.</li></ul></div>",
+      "grupo": "ultimate",
+      "ramo": "espadachim-ramo-do-exilado-bebado",
+      "tier": 3,
+      "custoTexto": "1 Ação · 5 Stamina · 1x/Dia"
     }
   ]
 }

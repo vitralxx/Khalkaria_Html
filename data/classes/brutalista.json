@@ -164,6 +164,59 @@
         "subtitulo": "Utilidade e Tática",
         "descricao": "Guerras não são vencidas pelo mais forte - são vencidas pelo mais preparado. Você aprendeu isso nos campos de batalha, nos becos, nas arenas. Força bruta é ferramenta, não estratégia. O verdadeiro guerreiro lê o combate como outros leem livros."
       }
+    ],
+    "ramosTexto": [
+      "Os ramos são caminhos, características únicas do seu personagem. Diferente das técnicas, são <strong>irreversíveis</strong>.",
+      "<strong>Marcas de Ramo:</strong> Que construiu ao longo da sua vida, moldando sua PERSONALIDADE.",
+      "<strong>Técnicas de Ramo:</strong> Que aprendeu ao longo do seu treinamento definindo seu ESTILO DE AGIR.",
+      "É extremamente aceitável que você <strong>misture os 3 ramos</strong>. Ao longo da criação você escolherá: <strong>3 Marcas</strong> e <strong>6 Técnicas de Ramo</strong> (3 no Tier 1, ao chegar ao nível 2; 2 no Tier 2, no nível 4; e 1 Ultimate no Tier 3, no nível 5)."
+    ],
+    "ramosRegra": {
+      "marcas": 3,
+      "tecnicas": 6,
+      "porTier": [
+        {
+          "tier": 1,
+          "quantidade": 3,
+          "nivel": 2,
+          "ultimate": false
+        },
+        {
+          "tier": 2,
+          "quantidade": 2,
+          "nivel": 4,
+          "ultimate": false
+        },
+        {
+          "tier": 3,
+          "quantidade": 1,
+          "nivel": 5,
+          "ultimate": true
+        }
+      ]
+    },
+    "tiers": [
+      {
+        "titulo": "Tier 1",
+        "badge": "Nível 2+",
+        "tier": 1,
+        "nivel": 2,
+        "usos": null
+      },
+      {
+        "titulo": "Tier 2",
+        "badge": "Nível 4+",
+        "tier": 2,
+        "nivel": 4,
+        "usos": null
+      },
+      {
+        "titulo": "Tier 3 — Ultimates",
+        "badge": "Nível 5 • 1x/Dia",
+        "tier": 3,
+        "nivel": 5,
+        "usos": "1x/Dia"
+      }
     ]
   },
   "cards": [
@@ -171,235 +224,391 @@
       "id": "brutalista-bruto",
       "tipo": "technique-card",
       "nome": "Bruto",
-      "corpo": "<h4>Bruto</h4><span class=\"tech-meta\">Passiva</span><p>Seus ataques corpo a corpo ignoram 2 de armadura.</p>"
+      "corpo": "<h4>Bruto</h4><span class=\"tech-meta\">Passiva</span><p>Seus ataques corpo a corpo ignoram 2 de armadura.</p>",
+      "grupo": "geral",
+      "ramo": null,
+      "tier": null,
+      "custoTexto": "Passiva"
     },
     {
       "id": "brutalista-impeto-de-sangue",
       "tipo": "technique-card",
       "nome": "Ímpeto de Sangue",
-      "corpo": "<h4>Ímpeto de Sangue</h4><span class=\"tech-meta\">Passiva</span><p>Ao derrubar um inimigo a 0 de Saúde, seu próximo ataque neste turno tem +2 Atacar e +1d6 de dano.</p>"
+      "corpo": "<h4>Ímpeto de Sangue</h4><span class=\"tech-meta\">Passiva</span><p>Ao derrubar um inimigo a 0 de Saúde, seu próximo ataque neste turno tem +2 Atacar e +1d6 de dano.</p>",
+      "grupo": "geral",
+      "ramo": null,
+      "tier": null,
+      "custoTexto": "Passiva"
     },
     {
       "id": "brutalista-finalizar",
       "tipo": "technique-card",
       "nome": "Finalizar",
-      "corpo": "<h4>Finalizar</h4><span class=\"tech-meta\">Passiva</span><p>Ao causar dano em uma criatura, ela instantaneamente morre se estiver com Saúde igual ou menor que sua Brutalidade.</p>"
+      "corpo": "<h4>Finalizar</h4><span class=\"tech-meta\">Passiva</span><p>Ao causar dano em uma criatura, ela instantaneamente morre se estiver com Saúde igual ou menor que sua Brutalidade.</p>",
+      "grupo": "geral",
+      "ramo": null,
+      "tier": null,
+      "custoTexto": "Passiva"
     },
     {
       "id": "brutalista-inabalavel",
       "tipo": "technique-card",
       "nome": "Inabalável",
-      "corpo": "<h4>Inabalável</h4><span class=\"tech-meta\">Passiva</span><p>Você tem vantagem em testes de Fortitude ou Movimento ao ser movido contra sua vontade.</p>"
+      "corpo": "<h4>Inabalável</h4><span class=\"tech-meta\">Passiva</span><p>Você tem vantagem em testes de Fortitude ou Movimento ao ser movido contra sua vontade.</p>",
+      "grupo": "geral",
+      "ramo": null,
+      "tier": null,
+      "custoTexto": "Passiva"
     },
     {
       "id": "brutalista-agarrao",
       "tipo": "technique-card",
       "nome": "Agarrão",
-      "corpo": "<h4>Agarrão</h4><span class=\"tech-meta\">Passiva</span><p>Você recebe +2 em testes de <em>Movimento</em> ao realizar a manobra <em>Agarrar</em>. Adicionalmente, ao agarrar um alvo com sucesso, ele recebe 1d6 + mod. Força de dano ao receber ataques.</p>"
+      "corpo": "<h4>Agarrão</h4><span class=\"tech-meta\">Passiva</span><p>Você recebe +2 em testes de <em>Movimento</em> ao realizar a manobra <em>Agarrar</em>. Adicionalmente, ao agarrar um alvo com sucesso, ele recebe 1d6 + mod. Força de dano ao receber ataques.</p>",
+      "grupo": "geral",
+      "ramo": null,
+      "tier": null,
+      "custoTexto": "Passiva"
     },
     {
       "id": "brutalista-casca-grossa",
       "tipo": "technique-card",
       "nome": "Casca Grossa",
-      "corpo": "<h4>Casca Grossa</h4><span class=\"tech-meta\">Passiva</span><p>Você tem Armadura(Ar) natural equivalente ao seu Mod. Constituição.</p>"
+      "corpo": "<h4>Casca Grossa</h4><span class=\"tech-meta\">Passiva</span><p>Você tem Armadura(Ar) natural equivalente ao seu Mod. Constituição.</p>",
+      "grupo": "geral",
+      "ramo": null,
+      "tier": null,
+      "custoTexto": "Passiva"
     },
     {
       "id": "brutalista-empurrao",
       "tipo": "technique-card",
       "nome": "Empurrão",
-      "corpo": "<h4>Empurrão</h4><span class=\"tech-meta\">Passiva</span><p>Ao empurrar um alvo com sucesso, ele recebe 1d6 de dano por cada 3m empurrado. Se colidir com obstáculo sólido, +2d6 de dano.</p>"
+      "corpo": "<h4>Empurrão</h4><span class=\"tech-meta\">Passiva</span><p>Ao empurrar um alvo com sucesso, ele recebe 1d6 de dano por cada 3m empurrado. Se colidir com obstáculo sólido, +2d6 de dano.</p>",
+      "grupo": "geral",
+      "ramo": null,
+      "tier": null,
+      "custoTexto": "Passiva"
     },
     {
       "id": "brutalista-destruir",
       "tipo": "technique-card",
       "nome": "Destruir",
-      "corpo": "<h4>Destruir</h4><span class=\"tech-meta\">Ação Livre • 2+ Stamina</span><p>Ao acertar um ataque corpo a corpo, pode gastar Stamina para adicionar +1d6 de dano por 2 Stamina gastos. Máximo de dados adicionais = Nível.</p>"
+      "corpo": "<h4>Destruir</h4><span class=\"tech-meta\">Ação Livre • 2+ Stamina</span><p>Ao acertar um ataque corpo a corpo, pode gastar Stamina para adicionar +1d6 de dano por 2 Stamina gastos. Máximo de dados adicionais = Nível.</p>",
+      "grupo": "geral",
+      "ramo": null,
+      "tier": null,
+      "custoTexto": "Ação Livre • 2+ Stamina"
     },
     {
       "id": "brutalista-ranger-os-dentes",
       "tipo": "technique-card",
       "nome": "Ranger os Dentes",
-      "corpo": "<h4>Ranger os Dentes</h4><span class=\"tech-meta\">Reação • 2+ Stamina</span><p>Ao receber dano, pode gastar Stamina para reduzir o dano em 1d6 por 2 Stamina gastos. Máximo = Nível.</p>"
+      "corpo": "<h4>Ranger os Dentes</h4><span class=\"tech-meta\">Reação • 2+ Stamina</span><p>Ao receber dano, pode gastar Stamina para reduzir o dano em 1d6 por 2 Stamina gastos. Máximo = Nível.</p>",
+      "grupo": "geral",
+      "ramo": null,
+      "tier": null,
+      "custoTexto": "Reação • 2+ Stamina"
     },
     {
       "id": "brutalista-provocar",
       "tipo": "technique-card",
       "nome": "Provocar",
-      "corpo": "<h4>Provocar</h4><span class=\"tech-meta\">1 Ação • 2 Stamina</span><p>Escolha um inimigo em até 9m que possa te ouvir. Ele deve passar em Vontade ou deve te atacar no próximo turno dele.</p>"
+      "corpo": "<h4>Provocar</h4><span class=\"tech-meta\">1 Ação • 2 Stamina</span><p>Escolha um inimigo em até 9m que possa te ouvir. Ele deve passar em Vontade ou deve te atacar no próximo turno dele.</p>",
+      "grupo": "geral",
+      "ramo": null,
+      "tier": null,
+      "custoTexto": "1 Ação • 2 Stamina"
     },
     {
       "id": "brutalista-hoje-nao",
       "tipo": "technique-card",
       "nome": "Hoje Não",
-      "corpo": "<h4>Hoje Não</h4><span class=\"tech-meta\">1 Ação</span><p>Uma vez por descanso longo, ao estar abaixo de 25% da sua Saúde, pode recuperar 2d8 + Mod. Constituição de Saúde e 1d8 + Mod. Força de Stamina.</p>"
+      "corpo": "<h4>Hoje Não</h4><span class=\"tech-meta\">1 Ação</span><p>Uma vez por descanso longo, ao estar abaixo de 25% da sua Saúde, pode recuperar 2d8 + Mod. Constituição de Saúde e 1d8 + Mod. Força de Stamina.</p>",
+      "grupo": "geral",
+      "ramo": null,
+      "tier": null,
+      "custoTexto": "1 Ação"
     },
     {
       "id": "brutalista-gancho",
       "tipo": "technique-card",
       "nome": "Gancho",
-      "corpo": "<h4>Gancho</h4><span class=\"tech-meta\">1 Ação • 3 Stamina</span><p>Ao acertar seu próximo ataque corpo a corpo, <em>Atordoa</em> o alvo caso ele falhe em um teste de <em>Fortitude</em></p>"
+      "corpo": "<h4>Gancho</h4><span class=\"tech-meta\">1 Ação • 3 Stamina</span><p>Ao acertar seu próximo ataque corpo a corpo, <em>Atordoa</em> o alvo caso ele falhe em um teste de <em>Fortitude</em></p>",
+      "grupo": "geral",
+      "ramo": null,
+      "tier": null,
+      "custoTexto": "1 Ação • 3 Stamina"
     },
     {
       "id": "brutalista-o-proximo",
       "tipo": "technique-card",
       "nome": "O Próximo",
-      "corpo": "<h4>O Próximo</h4><span class=\"tech-meta\">1 Ação • 3 Stamina</span><p>Escolha um alvo que você possa ver, você tem +2 atacar contra ele, até o fim do combate.<br>Ao errar um ataque contra esse alvo, você ganha +1 atacar contra ele. (Max +3)<br>Se o alvo morrer, pode gastar 2 Stamina como uma ação livre para trocar o alvo.</p>"
+      "corpo": "<h4>O Próximo</h4><span class=\"tech-meta\">1 Ação • 3 Stamina</span><p>Escolha um alvo que você possa ver, você tem +2 atacar contra ele, até o fim do combate.<br>Ao errar um ataque contra esse alvo, você ganha +1 atacar contra ele. (Max +3)<br>Se o alvo morrer, pode gastar 2 Stamina como uma ação livre para trocar o alvo.</p>",
+      "grupo": "geral",
+      "ramo": null,
+      "tier": null,
+      "custoTexto": "1 Ação • 3 Stamina"
     },
     {
       "id": "brutalista-golpe-desconcertado",
       "tipo": "technique-card",
       "nome": "Golpe Desconcertado",
-      "corpo": "<h4>Golpe Desconcertado</h4><span class=\"tech-meta\">1 Ação • 3 Stamina</span><p>Você utiliza toda sua força em um golpe forte e amplo porém desconcertado.<br>Declare antes de atacar, você tem vantagem no próximo ataque.<br>Se errar o golpe, você fica exposto até o seu próximo turno.</p>"
+      "corpo": "<h4>Golpe Desconcertado</h4><span class=\"tech-meta\">1 Ação • 3 Stamina</span><p>Você utiliza toda sua força em um golpe forte e amplo porém desconcertado.<br>Declare antes de atacar, você tem vantagem no próximo ataque.<br>Se errar o golpe, você fica exposto até o seu próximo turno.</p>",
+      "grupo": "geral",
+      "ramo": null,
+      "tier": null,
+      "custoTexto": "1 Ação • 3 Stamina"
     },
     {
       "id": "brutalista-investida",
       "tipo": "technique-card",
       "nome": "Investida",
-      "corpo": "<h4>Investida</h4><span class=\"tech-meta\">2 Ações • 3 Stamina</span><p>Pode investir em uma linha reta de no mínimo 4,5 m até 9 m. Alvos no caminho, devem suceder em um teste de <em>Fortitude</em> ou recebem (Nível)d6+Mod. Força e ficam <em>Caidos</em>.</p>"
+      "corpo": "<h4>Investida</h4><span class=\"tech-meta\">2 Ações • 3 Stamina</span><p>Pode investir em uma linha reta de no mínimo 4,5 m até 9 m. Alvos no caminho, devem suceder em um teste de <em>Fortitude</em> ou recebem (Nível)d6+Mod. Força e ficam <em>Caidos</em>.</p>",
+      "grupo": "geral",
+      "ramo": null,
+      "tier": null,
+      "custoTexto": "2 Ações • 3 Stamina"
     },
     {
       "id": "brutalista-cicatrizes-de-ferro",
       "tipo": "marca-card",
       "nome": "Cicatrizes de Ferro",
-      "corpo": "<div class=\"marca-header colosso\"><h4>Cicatrizes de Ferro</h4><div class=\"quote\">\"Cada golpe que você recebe te ensina a receber o próximo melhor.\"</div></div><div class=\"marca-body\"><p>Você sente prazer em sentir dor e busca isso ativamente.</p><div class=\"marca-effect\"><p>Para cada 5 combates ganhos ao longo de sua vida, você ganha +1 <em>Fortitude</em> permanente.<br>Ao chegar em +5, essa habilidade fica supérflua.</p></div><div class=\"marca-effect\"><p>Ao receber dano protegendo um aliado, você ganha +1 de Stamina.</p></div></div>"
+      "corpo": "<div class=\"marca-header colosso\"><h4>Cicatrizes de Ferro</h4><div class=\"quote\">\"Cada golpe que você recebe te ensina a receber o próximo melhor.\"</div></div><div class=\"marca-body\"><p>Você sente prazer em sentir dor e busca isso ativamente.</p><div class=\"marca-effect\"><p>Para cada 5 combates ganhos ao longo de sua vida, você ganha +1 <em>Fortitude</em> permanente.<br>Ao chegar em +5, essa habilidade fica supérflua.</p></div><div class=\"marca-effect\"><p>Ao receber dano protegendo um aliado, você ganha +1 de Stamina.</p></div></div>",
+      "grupo": "marca",
+      "ramo": "brutalista-ramo-do-colosso",
+      "tier": null,
+      "custoTexto": null
     },
     {
       "id": "brutalista-imortal",
       "tipo": "marca-card",
       "nome": "Imortal",
-      "corpo": "<div class=\"marca-header colosso\"><h4>Imortal</h4><div class=\"quote\">\"Cada ferida conta uma história. Cada história te ensinou a sobreviver.\"</div></div><div class=\"marca-body\"><p>Você não é do tipo que morre e se tornou apático em relação a morte.</p><div class=\"marca-effect\"><p>Enquanto estiver com ou menos da metade da vida, você tem:</p><ul><li>+2 Armadura(Ar) Natural</li></ul></div><div class=\"marca-effect\"><p>Ao ser reduzido a 0 de Saúde, pode escolher não morrer como ação livre voltando a 1 de Saúde.<br>Ao fazer isso, você ganha +1 de <em>Exaustão</em>.</p></div></div>"
+      "corpo": "<div class=\"marca-header colosso\"><h4>Imortal</h4><div class=\"quote\">\"Cada ferida conta uma história. Cada história te ensinou a sobreviver.\"</div></div><div class=\"marca-body\"><p>Você não é do tipo que morre e se tornou apático em relação a morte.</p><div class=\"marca-effect\"><p>Enquanto estiver com ou menos da metade da vida, você tem:</p><ul><li>+2 Armadura(Ar) Natural</li></ul></div><div class=\"marca-effect\"><p>Ao ser reduzido a 0 de Saúde, pode escolher não morrer como ação livre voltando a 1 de Saúde.<br>Ao fazer isso, você ganha +1 de <em>Exaustão</em>.</p></div></div>",
+      "grupo": "marca",
+      "ramo": "brutalista-ramo-do-colosso",
+      "tier": null,
+      "custoTexto": null
     },
     {
       "id": "brutalista-contador-de-corpos",
       "tipo": "marca-card",
       "nome": "Contador de Corpos",
-      "corpo": "<div class=\"marca-header berserker\"><h4>Contador de Corpos</h4><div class=\"quote\">\"Você não lembra dos rostos. Só do número.\"</div></div><div class=\"marca-body\"><p>Você busca assassinar criaturas e conta e reconta ativamente suas histórias terríveis.</p><div class=\"marca-effect\"><p>Para cada 10 criaturas que você matou, ganha +1 permanente em <em>Atacar</em>.<br>Ao chegar em +5, essa habilidade fica supérflua.</p></div><div class=\"marca-effect\"><p>Ao matar uma criatura *brutalmente, você ganha +1 de Stamina e perde 1 de éter.</p></div></div>"
+      "corpo": "<div class=\"marca-header berserker\"><h4>Contador de Corpos</h4><div class=\"quote\">\"Você não lembra dos rostos. Só do número.\"</div></div><div class=\"marca-body\"><p>Você busca assassinar criaturas e conta e reconta ativamente suas histórias terríveis.</p><div class=\"marca-effect\"><p>Para cada 10 criaturas que você matou, ganha +1 permanente em <em>Atacar</em>.<br>Ao chegar em +5, essa habilidade fica supérflua.</p></div><div class=\"marca-effect\"><p>Ao matar uma criatura *brutalmente, você ganha +1 de Stamina e perde 1 de éter.</p></div></div>",
+      "grupo": "marca",
+      "ramo": "brutalista-ramo-do-berserker",
+      "tier": null,
+      "custoTexto": null
     },
     {
       "id": "brutalista-vicio-em-sangue",
       "tipo": "marca-card",
       "nome": "Vício em Sangue",
-      "corpo": "<div class=\"marca-header berserker\"><h4>Vício em Sangue</h4><div class=\"quote\">\"Sangue, presente em nosso nascimento e morte.\"</div></div><div class=\"marca-body\"><p>Você começa a se viciar em ver/sentir sangue. Acertos consecutivos fomentam sua loucura.</p><div class=\"marca-effect\"><p>Ao acertar um ataque corpo a corpo, seu próximo ataque tem +1 <em>Atacar,</em> esse bônus é cumulativo até um Max. de +3.</p></div><div class=\"marca-effect\"><p>Ao errar um ataque, o bônus é reduzido a 0.</p></div><div class=\"marca-effect\"><p>Ao estar com +3 em atacar, seus acertos críticos causam +1d10 de dano adicional.</p></div></div>"
+      "corpo": "<div class=\"marca-header berserker\"><h4>Vício em Sangue</h4><div class=\"quote\">\"Sangue, presente em nosso nascimento e morte.\"</div></div><div class=\"marca-body\"><p>Você começa a se viciar em ver/sentir sangue. Acertos consecutivos fomentam sua loucura.</p><div class=\"marca-effect\"><p>Ao acertar um ataque corpo a corpo, seu próximo ataque tem +1 <em>Atacar,</em> esse bônus é cumulativo até um Max. de +3.</p></div><div class=\"marca-effect\"><p>Ao errar um ataque, o bônus é reduzido a 0.</p></div><div class=\"marca-effect\"><p>Ao estar com +3 em atacar, seus acertos críticos causam +1d10 de dano adicional.</p></div></div>",
+      "grupo": "marca",
+      "ramo": "brutalista-ramo-do-berserker",
+      "tier": null,
+      "custoTexto": null
     },
     {
       "id": "brutalista-olhos-do-estrategista",
       "tipo": "marca-card",
       "nome": "Olhos do Estrategista",
-      "corpo": "<div class=\"marca-header general\"><h4>Olhos do Estrategista</h4><div class=\"quote\">\"Você não vê pessoas. Vê peças em um tabuleiro.\"</div></div><div class=\"marca-body\"><p>Você tem dificuldade em não pensar logicamente/estrategicamente em situações críticas.</p><div class=\"marca-effect\"><p>Para cada combate vencido onde você usou Comando Tático ou Leitura de Combate pelo menos uma vez,<br>você ganha +1 permanente em Percepção.<br>Ao chegar em +5, essa habilidade fica supérflua.</p></div><div class=\"marca-effect\"><p>Combates vencidos onde nenhum aliado caiu <em>Morrendo</em> recuperam 1d6 de Stamina a todos os aliados.</p></div></div>"
+      "corpo": "<div class=\"marca-header general\"><h4>Olhos do Estrategista</h4><div class=\"quote\">\"Você não vê pessoas. Vê peças em um tabuleiro.\"</div></div><div class=\"marca-body\"><p>Você tem dificuldade em não pensar logicamente/estrategicamente em situações críticas.</p><div class=\"marca-effect\"><p>Para cada combate vencido onde você usou Comando Tático ou Leitura de Combate pelo menos uma vez,<br>você ganha +1 permanente em Percepção.<br>Ao chegar em +5, essa habilidade fica supérflua.</p></div><div class=\"marca-effect\"><p>Combates vencidos onde nenhum aliado caiu <em>Morrendo</em> recuperam 1d6 de Stamina a todos os aliados.</p></div></div>",
+      "grupo": "marca",
+      "ramo": "brutalista-ramo-do-general",
+      "tier": null,
+      "custoTexto": null
     },
     {
       "id": "brutalista-plano-do-general",
       "tipo": "marca-card",
       "nome": "Plano do General",
-      "corpo": "<div class=\"marca-header general\"><h4>Plano do General</h4><div class=\"quote\">\"Um bom General é aquele que sempre tem um plano, até quando o primeiro dá errado.\"</div></div><div class=\"marca-body\"><p>Você anseia controlar tudo, quando as coisas não vão conforme seu plano, você perde a cabeça.</p><div class=\"marca-effect\"><p>Você pode elaborar um plano de combate e designar um objetivo a ser alcançado, como por exemplo:</p><ul><li><em>“O goblin morrerá no primeiro turno por mim.”</em></li><li><em>“Irei distrair os guardas para o ladino alcançar a porta”</em></li><li><em>“Iremos explodir a ponte enquanto os inimigos passam por ela”</em></li></ul></div><div class=\"marca-effect\"><p>Se a condição designada ocorrer de maneira fiel ao seu plano, você e aliados em até 9 m<br>ganham UMA das três recompensas:</p><ul><li>Vantagem em um teste de sua escolha até o fim do combate.</li><li>+4 Iniciativa.</li><li>Os inimigos ficam <em>expostos</em> por 1 rodada.</li></ul></div></div>"
+      "corpo": "<div class=\"marca-header general\"><h4>Plano do General</h4><div class=\"quote\">\"Um bom General é aquele que sempre tem um plano, até quando o primeiro dá errado.\"</div></div><div class=\"marca-body\"><p>Você anseia controlar tudo, quando as coisas não vão conforme seu plano, você perde a cabeça.</p><div class=\"marca-effect\"><p>Você pode elaborar um plano de combate e designar um objetivo a ser alcançado, como por exemplo:</p><ul><li><em>“O goblin morrerá no primeiro turno por mim.”</em></li><li><em>“Irei distrair os guardas para o ladino alcançar a porta”</em></li><li><em>“Iremos explodir a ponte enquanto os inimigos passam por ela”</em></li></ul></div><div class=\"marca-effect\"><p>Se a condição designada ocorrer de maneira fiel ao seu plano, você e aliados em até 9 m<br>ganham UMA das três recompensas:</p><ul><li>Vantagem em um teste de sua escolha até o fim do combate.</li><li>+4 Iniciativa.</li><li>Os inimigos ficam <em>expostos</em> por 1 rodada.</li></ul></div></div>",
+      "grupo": "marca",
+      "ramo": "brutalista-ramo-do-general",
+      "tier": null,
+      "custoTexto": null
     },
     {
       "id": "brutalista-muralha-viva",
       "tipo": "tech-card",
       "nome": "Muralha Viva",
-      "corpo": "<div class=\"tech-card-header colosso\"><h4>Muralha Viva</h4><span class=\"cost\">Passiva</span></div><div class=\"tech-card-body\"><ul><li>Você se torna Treinado em <em>Defender</em>. Se já for Treinado, se torna Experiente e assim por diante.</li><li>O treinamento da sua pericia <em>Defender</em> aumenta de 3 em 3. (Ao invés de 2 em 2)</li></ul></div>"
+      "corpo": "<div class=\"tech-card-header colosso\"><h4>Muralha Viva</h4><span class=\"cost\">Passiva</span></div><div class=\"tech-card-body\"><ul><li>Você se torna Treinado em <em>Defender</em>. Se já for Treinado, se torna Experiente e assim por diante.</li><li>O treinamento da sua pericia <em>Defender</em> aumenta de 3 em 3. (Ao invés de 2 em 2)</li></ul></div>",
+      "grupo": "ramo",
+      "ramo": "brutalista-ramo-do-colosso",
+      "tier": 1,
+      "custoTexto": "Passiva"
     },
     {
       "id": "brutalista-guardiao",
       "tipo": "tech-card",
       "nome": "Guardião",
-      "corpo": "<div class=\"tech-card-header colosso\"><h4>Guardião</h4><span class=\"cost\">Passiva</span></div><div class=\"tech-card-body\"><ul><li>Quando um aliado adjacente (até 1,5m) for atacado, você pode usar sua reação para se tornar o alvo do ataque.</li><li>Você pode usar Defender normalmente contra esse ataque.</li></ul></div>"
+      "corpo": "<div class=\"tech-card-header colosso\"><h4>Guardião</h4><span class=\"cost\">Passiva</span></div><div class=\"tech-card-body\"><ul><li>Quando um aliado adjacente (até 1,5m) for atacado, você pode usar sua reação para se tornar o alvo do ataque.</li><li>Você pode usar Defender normalmente contra esse ataque.</li></ul></div>",
+      "grupo": "ramo",
+      "ramo": "brutalista-ramo-do-colosso",
+      "tier": 1,
+      "custoTexto": "Passiva"
     },
     {
       "id": "brutalista-postura-defensiva",
       "tipo": "tech-card",
       "nome": "Postura Defensiva",
-      "corpo": "<div class=\"tech-card-header colosso\"><h4>Postura Defensiva</h4><span class=\"cost\">1 Ação, 3 Stamina</span></div><div class=\"tech-card-body\"><ul><li>Até o inicio do seu próximo turno:<ul><li>+2 <em>Defender.</em></li><li>+2 Armadura(Ar) Natural.</li><li>Você não pode ser Derrubado ou Empurrado por quase nada.</li></ul></li><li>Porém, enquanto em Postura Defensiva:<ul><li>Você não pode se mover.</li><li>-2 em <em>Atacar</em>.</li></ul></li></ul></div>"
+      "corpo": "<div class=\"tech-card-header colosso\"><h4>Postura Defensiva</h4><span class=\"cost\">1 Ação, 3 Stamina</span></div><div class=\"tech-card-body\"><ul><li>Até o inicio do seu próximo turno:<ul><li>+2 <em>Defender.</em></li><li>+2 Armadura(Ar) Natural.</li><li>Você não pode ser Derrubado ou Empurrado por quase nada.</li></ul></li><li>Porém, enquanto em Postura Defensiva:<ul><li>Você não pode se mover.</li><li>-2 em <em>Atacar</em>.</li></ul></li></ul></div>",
+      "grupo": "ramo",
+      "ramo": "brutalista-ramo-do-colosso",
+      "tier": 1,
+      "custoTexto": "1 Ação, 3 Stamina"
     },
     {
       "id": "brutalista-furia-sanguinaria",
       "tipo": "tech-card",
       "nome": "Fúria Sanguinária",
-      "corpo": "<div class=\"tech-card-header berserker\"><h4>Fúria Sanguinária</h4><span class=\"cost\">Passiva</span></div><div class=\"tech-card-body\"><ul><li>Você se torna Treinado em <em>Atacar</em>. Se já for Treinado, se torna Experiente e assim por diante.</li><li>Seus ataques corpo a corpo causam dano adicional baseado na sua saúde perdida:<ul><li>Abaixo de 75%: +1 de dano</li><li>Abaixo de 50%: +3 de dano</li><li>Abaixo de 25%: +5 de dano</li></ul></li></ul></div>"
+      "corpo": "<div class=\"tech-card-header berserker\"><h4>Fúria Sanguinária</h4><span class=\"cost\">Passiva</span></div><div class=\"tech-card-body\"><ul><li>Você se torna Treinado em <em>Atacar</em>. Se já for Treinado, se torna Experiente e assim por diante.</li><li>Seus ataques corpo a corpo causam dano adicional baseado na sua saúde perdida:<ul><li>Abaixo de 75%: +1 de dano</li><li>Abaixo de 50%: +3 de dano</li><li>Abaixo de 25%: +5 de dano</li></ul></li></ul></div>",
+      "grupo": "ramo",
+      "ramo": "brutalista-ramo-do-berserker",
+      "tier": 1,
+      "custoTexto": "Passiva"
     },
     {
       "id": "brutalista-frenesi",
       "tipo": "tech-card",
       "nome": "Frenesi",
-      "corpo": "<div class=\"tech-card-header berserker\"><h4>Frenesi</h4><span class=\"cost\">3 Ações, 3 Stamina</span></div><div class=\"tech-card-body\"><ul><li>Você entra em Frenesi até o fim do combate ou até ficar <em>Inconsciente</em>.</li><li>Durante o Frenesi:<ul><li>+2 em <em>Atacar</em></li><li>+1 dado de dano em ataques corpo a corpo</li><li>Resistência a <em>Dano Ordinário</em></li></ul></li><li>Porém, enquanto em Frenesi:<ul><li>Não pode Defender, apenas contra atacar(retaliar).</li><li>Fica descontrolado e não pode usar habilidades que exijam paciência ou concentração.</li><li>Deve atacar uma criatura toda rodada, caso contrário o Frenesi acaba.</li></ul></li><li>Você pode usar Frenesi 1 vez por descanso longo no nível 1 e 2 vezes no nível 3.</li></ul></div>"
+      "corpo": "<div class=\"tech-card-header berserker\"><h4>Frenesi</h4><span class=\"cost\">3 Ações, 3 Stamina</span></div><div class=\"tech-card-body\"><ul><li>Você entra em Frenesi até o fim do combate ou até ficar <em>Inconsciente</em>.</li><li>Durante o Frenesi:<ul><li>+2 em <em>Atacar</em></li><li>+1 dado de dano em ataques corpo a corpo</li><li>Resistência a <em>Dano Ordinário</em></li></ul></li><li>Porém, enquanto em Frenesi:<ul><li>Não pode Defender, apenas contra atacar(retaliar).</li><li>Fica descontrolado e não pode usar habilidades que exijam paciência ou concentração.</li><li>Deve atacar uma criatura toda rodada, caso contrário o Frenesi acaba.</li></ul></li><li>Você pode usar Frenesi 1 vez por descanso longo no nível 1 e 2 vezes no nível 3.</li></ul></div>",
+      "grupo": "ramo",
+      "ramo": "brutalista-ramo-do-berserker",
+      "tier": 1,
+      "custoTexto": "3 Ações, 3 Stamina"
     },
     {
       "id": "brutalista-retaliacao-selvagem",
       "tipo": "tech-card",
       "nome": "Retaliação Selvagem",
-      "corpo": "<div class=\"tech-card-header berserker\"><h4>Retaliação Selvagem</h4><span class=\"cost\">Reação</span></div><div class=\"tech-card-body\"><ul><li>Ao escolher Retaliar como reação contra um ataque inimigo, você recebe os seguintes bônus:<ul><li>+2 em Atacar na retaliação</li><li>+1d6 de dano na retaliação</li></ul></li><li>Se você estiver abaixo de 50% de Saúde, os bônus aumentam para:<ul><li>+4 em Atacar na retaliação</li><li>+2d6 de dano na retaliação</li></ul></li></ul></div>"
+      "corpo": "<div class=\"tech-card-header berserker\"><h4>Retaliação Selvagem</h4><span class=\"cost\">Reação</span></div><div class=\"tech-card-body\"><ul><li>Ao escolher Retaliar como reação contra um ataque inimigo, você recebe os seguintes bônus:<ul><li>+2 em Atacar na retaliação</li><li>+1d6 de dano na retaliação</li></ul></li><li>Se você estiver abaixo de 50% de Saúde, os bônus aumentam para:<ul><li>+4 em Atacar na retaliação</li><li>+2d6 de dano na retaliação</li></ul></li></ul></div>",
+      "grupo": "ramo",
+      "ramo": "brutalista-ramo-do-berserker",
+      "tier": 1,
+      "custoTexto": "Reação"
     },
     {
       "id": "brutalista-veterano-de-guerra",
       "tipo": "tech-card",
       "nome": "Veterano de Guerra",
-      "corpo": "<div class=\"tech-card-header general\"><h4>Veterano de Guerra</h4><span class=\"cost\">Passiva</span></div><div class=\"tech-card-body\"><ul><li>Você se torna Treinado em <em>Iniciativa</em>. Se já for Treinado, se torna Experiente e assim por diante.</li><li>Você não pode ser <em>Desprevenido.</em></li><li>No primeiro turno de qualquer combate, você e aliados em até 9m que possam te ouvir têm +2 em Iniciativa.</li></ul></div>"
+      "corpo": "<div class=\"tech-card-header general\"><h4>Veterano de Guerra</h4><span class=\"cost\">Passiva</span></div><div class=\"tech-card-body\"><ul><li>Você se torna Treinado em <em>Iniciativa</em>. Se já for Treinado, se torna Experiente e assim por diante.</li><li>Você não pode ser <em>Desprevenido.</em></li><li>No primeiro turno de qualquer combate, você e aliados em até 9m que possam te ouvir têm +2 em Iniciativa.</li></ul></div>",
+      "grupo": "ramo",
+      "ramo": "brutalista-ramo-do-general",
+      "tier": 1,
+      "custoTexto": "Passiva"
     },
     {
       "id": "brutalista-comando-tatico",
       "tipo": "tech-card",
       "nome": "Comando Tático",
-      "corpo": "<div class=\"tech-card-header general\"><h4>Comando Tático</h4><span class=\"cost\">1 Ação, 2 Stamina</span></div><div class=\"tech-card-body\"><ul><li>Escolha um aliado em até 9m que possa te ouvir e ver. Ele pode imediatamente realizar uma das seguintes ações como reação:<ul><li><strong>Atacar:</strong> O aliado faz um ataque com +2 Atacar contra uma criatura em seu alcance.</li><li><strong>Mover:</strong> O aliado se move até seu movimento sem provocar ataques de oportunidade.</li><li><strong>Defender:</strong> O aliado ganha +4 em Defender até o início do próximo turno dele.</li></ul></li><li>Você pode usar Comando Tático no máximo 2 vezes por rodada.</li></ul></div>"
+      "corpo": "<div class=\"tech-card-header general\"><h4>Comando Tático</h4><span class=\"cost\">1 Ação, 2 Stamina</span></div><div class=\"tech-card-body\"><ul><li>Escolha um aliado em até 9m que possa te ouvir e ver. Ele pode imediatamente realizar uma das seguintes ações como reação:<ul><li><strong>Atacar:</strong> O aliado faz um ataque com +2 Atacar contra uma criatura em seu alcance.</li><li><strong>Mover:</strong> O aliado se move até seu movimento sem provocar ataques de oportunidade.</li><li><strong>Defender:</strong> O aliado ganha +4 em Defender até o início do próximo turno dele.</li></ul></li><li>Você pode usar Comando Tático no máximo 2 vezes por rodada.</li></ul></div>",
+      "grupo": "ramo",
+      "ramo": "brutalista-ramo-do-general",
+      "tier": 1,
+      "custoTexto": "1 Ação, 2 Stamina"
     },
     {
       "id": "brutalista-leitura-de-combate",
       "tipo": "tech-card",
       "nome": "Leitura de Combate",
-      "corpo": "<div class=\"tech-card-header general\"><h4>Leitura de Combate</h4><span class=\"cost\">1 Ação, 2 Stamina</span></div><div class=\"tech-card-body\"><ul><li>Escolha uma criatura que você possa ver. Role Percepção contra Enganação dela.<ul><li>Em caso de sucesso, você descobre uma das seguintes informações (sua escolha):<ul><li>Saúde aproximada (acima de 75%, 50-75%, 25-50%, abaixo de 25%)</li><li>Próxima ação provável (atacar, defender, fugir, conjurar)</li><li>Fraqueza tática (+2 Atacar contra ela até o fim do seu próximo turno para você e aliados que você informar)</li></ul></li><li>Em caso de falha, você não pode usar esta habilidade contra a mesma criatura neste combate.</li></ul></li></ul></div>"
+      "corpo": "<div class=\"tech-card-header general\"><h4>Leitura de Combate</h4><span class=\"cost\">1 Ação, 2 Stamina</span></div><div class=\"tech-card-body\"><ul><li>Escolha uma criatura que você possa ver. Role Percepção contra Enganação dela.<ul><li>Em caso de sucesso, você descobre uma das seguintes informações (sua escolha):<ul><li>Saúde aproximada (acima de 75%, 50-75%, 25-50%, abaixo de 25%)</li><li>Próxima ação provável (atacar, defender, fugir, conjurar)</li><li>Fraqueza tática (+2 Atacar contra ela até o fim do seu próximo turno para você e aliados que você informar)</li></ul></li><li>Em caso de falha, você não pode usar esta habilidade contra a mesma criatura neste combate.</li></ul></li></ul></div>",
+      "grupo": "ramo",
+      "ramo": "brutalista-ramo-do-general",
+      "tier": 1,
+      "custoTexto": "1 Ação, 2 Stamina"
     },
     {
       "id": "brutalista-fortaleza-de-aco",
       "tipo": "tech-card",
       "nome": "Fortaleza de Aço",
-      "corpo": "<div class=\"tech-card-header colosso\"><h4>Fortaleza de Aço</h4><span class=\"cost\">Reação, 2 Stamina</span></div><div class=\"tech-card-body\"><ul><li>Quando você receberia dano, você pode usar sua reação para reduzir esse dano em 1d8 + Mod. Constituição.<ul><li>Se você estiver em Postura Defensiva, a redução aumenta para 2d8 + Mod. Constituição.</li><li>Você pode usar esta habilidade um número de vezes igual ao seu mod. de Constituição (mínimo 1) por combate.</li></ul></li></ul></div>"
+      "corpo": "<div class=\"tech-card-header colosso\"><h4>Fortaleza de Aço</h4><span class=\"cost\">Reação, 2 Stamina</span></div><div class=\"tech-card-body\"><ul><li>Quando você receberia dano, você pode usar sua reação para reduzir esse dano em 1d8 + Mod. Constituição.<ul><li>Se você estiver em Postura Defensiva, a redução aumenta para 2d8 + Mod. Constituição.</li><li>Você pode usar esta habilidade um número de vezes igual ao seu mod. de Constituição (mínimo 1) por combate.</li></ul></li></ul></div>",
+      "grupo": "ramo",
+      "ramo": "brutalista-ramo-do-colosso",
+      "tier": 2,
+      "custoTexto": "Reação, 2 Stamina"
     },
     {
       "id": "brutalista-resistencia-adaptavel",
       "tipo": "tech-card",
       "nome": "Resistência Adaptável",
-      "corpo": "<div class=\"tech-card-header colosso\"><h4>Resistência Adaptável</h4><span class=\"cost\">Passiva / 3 Stamina</span></div><div class=\"tech-card-body\"><ul><li>Você possui 5 Armadura Específica(Ae) de um tipo de dano escolhido por você.</li><li>Ao receber dano específico diferente do protegido pela sua Ae, pode gastar 3 de Stamina como uma ação livre para trocar o tipo de dano da Ae para o tipo de dano que foi atacado instantaneamente.</li><li>Adicionalmente, Você pode trocar a resistência da Ae em um descanso curto livremente.</li></ul></div>"
+      "corpo": "<div class=\"tech-card-header colosso\"><h4>Resistência Adaptável</h4><span class=\"cost\">Passiva / 3 Stamina</span></div><div class=\"tech-card-body\"><ul><li>Você possui 5 Armadura Específica(Ae) de um tipo de dano escolhido por você.</li><li>Ao receber dano específico diferente do protegido pela sua Ae, pode gastar 3 de Stamina como uma ação livre para trocar o tipo de dano da Ae para o tipo de dano que foi atacado instantaneamente.</li><li>Adicionalmente, Você pode trocar a resistência da Ae em um descanso curto livremente.</li></ul></div>",
+      "grupo": "ramo",
+      "ramo": "brutalista-ramo-do-colosso",
+      "tier": 2,
+      "custoTexto": "Passiva / 3 Stamina"
     },
     {
       "id": "brutalista-epifania-sanguinea",
       "tipo": "tech-card",
       "nome": "Epifania Sanguínea",
-      "corpo": "<div class=\"tech-card-header berserker\"><h4>Epifania Sanguínea</h4><span class=\"cost\">Passiva</span></div><div class=\"tech-card-body\"><ul><li>Ao reduzir uma criatura a 0 de Saúde, você recupera 1d6+Mod. Constituição de Saúde.</li><li>Quando você sofre um acerto crítico, seu próximo ataque causa +1d10 de dano adicional.</li><li>Ao estar em frenesi, esses bônus dobram.</li></ul></div>"
+      "corpo": "<div class=\"tech-card-header berserker\"><h4>Epifania Sanguínea</h4><span class=\"cost\">Passiva</span></div><div class=\"tech-card-body\"><ul><li>Ao reduzir uma criatura a 0 de Saúde, você recupera 1d6+Mod. Constituição de Saúde.</li><li>Quando você sofre um acerto crítico, seu próximo ataque causa +1d10 de dano adicional.</li><li>Ao estar em frenesi, esses bônus dobram.</li></ul></div>",
+      "grupo": "ramo",
+      "ramo": "brutalista-ramo-do-berserker",
+      "tier": 2,
+      "custoTexto": "Passiva"
     },
     {
       "id": "brutalista-ignorar-dor",
       "tipo": "tech-card",
       "nome": "Ignorar Dor",
-      "corpo": "<div class=\"tech-card-header berserker\"><h4>Ignorar Dor</h4><span class=\"cost\">Reação, 3 Stamina</span></div><div class=\"tech-card-body\"><ul><li>Quando você receberia dano que te deixaria Inconsciente, você pode usar sua reação e 3 de Stamina para permanecer com 1 de Saúde.<ul><li>Ao fazer isso, Até o fim do seu próximo turno, você tem +4 em Atacar e seus ataques causam +2d6 de dano.</li><li>Se você estiver em frenesi quando usar essa habilidade, você recupera 2d6 de Saúde, ao invés de 1.</li></ul><p>Você pode usar essa habilidade 1 vez por descanso longo.</p></li></ul></div>"
+      "corpo": "<div class=\"tech-card-header berserker\"><h4>Ignorar Dor</h4><span class=\"cost\">Reação, 3 Stamina</span></div><div class=\"tech-card-body\"><ul><li>Quando você receberia dano que te deixaria Inconsciente, você pode usar sua reação e 3 de Stamina para permanecer com 1 de Saúde.<ul><li>Ao fazer isso, Até o fim do seu próximo turno, você tem +4 em Atacar e seus ataques causam +2d6 de dano.</li><li>Se você estiver em frenesi quando usar essa habilidade, você recupera 2d6 de Saúde, ao invés de 1.</li></ul><p>Você pode usar essa habilidade 1 vez por descanso longo.</p></li></ul></div>",
+      "grupo": "ramo",
+      "ramo": "brutalista-ramo-do-berserker",
+      "tier": 2,
+      "custoTexto": "Reação, 3 Stamina"
     },
     {
       "id": "brutalista-formacao-de-combate",
       "tipo": "tech-card",
       "nome": "Formação de Combate",
-      "corpo": "<div class=\"tech-card-header general\"><h4>Formação de Combate</h4><span class=\"cost\">2 Ações, 3 Stamina</span></div><div class=\"tech-card-body\"><ul><li>Você elaborou algumas formações de combate, que seu grupo pode tirar vantagem em momentos necessários:<ul><li>Formação: Precisão<ul><li>Você e aliados em até 4,5 m de você ganham os seguintes benefícios, você conta como um aliado:<ul><li>2+ Aliados: +2 Atacar</li><li>3+ Aliados: +1 Atacar</li><li>4+ Aliados: +1,5 Movimento</li><li>5+ Aliados: Quando um aliado dentro do alcance acerta um ataque,<br>o próximo aliado a atacar a mesma criatura nesta rodada ganha +2 Atacar.</li></ul></li></ul></li><li>Formação: Degolar<ul><li>Você e aliados em até 4,5 m de você ganham os seguintes benefícios, você conta como um aliado:<ul><li>2+ Aliados: +1 de Dano</li><li>3+ Aliados: +1d6 de Dano</li><li>4+ Aliados: +1d6 de Dano</li><li>5+ Aliados: Quando um aliado dentro do alcance executa uma criatura, ele ganha 1 ação grátis.</li></ul></li></ul></li></ul></li><li>A formação dura até qualquer aliado for removido do alcance, quebrando a formação por completo, ou até o fim do combate.</li></ul></div>"
+      "corpo": "<div class=\"tech-card-header general\"><h4>Formação de Combate</h4><span class=\"cost\">2 Ações, 3 Stamina</span></div><div class=\"tech-card-body\"><ul><li>Você elaborou algumas formações de combate, que seu grupo pode tirar vantagem em momentos necessários:<ul><li>Formação: Precisão<ul><li>Você e aliados em até 4,5 m de você ganham os seguintes benefícios, você conta como um aliado:<ul><li>2+ Aliados: +2 Atacar</li><li>3+ Aliados: +1 Atacar</li><li>4+ Aliados: +1,5 Movimento</li><li>5+ Aliados: Quando um aliado dentro do alcance acerta um ataque,<br>o próximo aliado a atacar a mesma criatura nesta rodada ganha +2 Atacar.</li></ul></li></ul></li><li>Formação: Degolar<ul><li>Você e aliados em até 4,5 m de você ganham os seguintes benefícios, você conta como um aliado:<ul><li>2+ Aliados: +1 de Dano</li><li>3+ Aliados: +1d6 de Dano</li><li>4+ Aliados: +1d6 de Dano</li><li>5+ Aliados: Quando um aliado dentro do alcance executa uma criatura, ele ganha 1 ação grátis.</li></ul></li></ul></li></ul></li><li>A formação dura até qualquer aliado for removido do alcance, quebrando a formação por completo, ou até o fim do combate.</li></ul></div>",
+      "grupo": "ramo",
+      "ramo": "brutalista-ramo-do-general",
+      "tier": 2,
+      "custoTexto": "2 Ações, 3 Stamina"
     },
     {
       "id": "brutalista-o-experiente",
       "tipo": "tech-card",
       "nome": "O Experiente",
-      "corpo": "<div class=\"tech-card-header general\"><h4>O Experiente</h4><span class=\"cost\">Passiva</span></div><div class=\"tech-card-body\"><ul><li>Na primeira vez que uma criatura te ataca em um combate, você tem +2 Defender contra esse ataque.</li><li>Após ser atacado por uma criatura (acertando ou errando), você aprende ela:<ul><li>Você ganha +1 Atacar e +1 Defender permanente contra essa criatura pelo resto do combate.</li><li>Este bônus é cumulativo até +3 (após 3 ataques recebidos dela).</li></ul></li><li>Uma vez por turno, quando você acertar um ataque contra uma criatura que você aprendeu, você pode escolher um dos seguintes efeitos:<ul><li><strong>Ponto Vital:</strong> +1d6 de dano</li><li><strong>Desarmar:</strong> A criatura solta um objeto que esteja segurando (Manobra de Desarmar grátis)</li><li><strong>Desestabilizar:</strong> -2 no próximo ataque da criatura</li></ul></li></ul></div>"
+      "corpo": "<div class=\"tech-card-header general\"><h4>O Experiente</h4><span class=\"cost\">Passiva</span></div><div class=\"tech-card-body\"><ul><li>Na primeira vez que uma criatura te ataca em um combate, você tem +2 Defender contra esse ataque.</li><li>Após ser atacado por uma criatura (acertando ou errando), você aprende ela:<ul><li>Você ganha +1 Atacar e +1 Defender permanente contra essa criatura pelo resto do combate.</li><li>Este bônus é cumulativo até +3 (após 3 ataques recebidos dela).</li></ul></li><li>Uma vez por turno, quando você acertar um ataque contra uma criatura que você aprendeu, você pode escolher um dos seguintes efeitos:<ul><li><strong>Ponto Vital:</strong> +1d6 de dano</li><li><strong>Desarmar:</strong> A criatura solta um objeto que esteja segurando (Manobra de Desarmar grátis)</li><li><strong>Desestabilizar:</strong> -2 no próximo ataque da criatura</li></ul></li></ul></div>",
+      "grupo": "ramo",
+      "ramo": "brutalista-ramo-do-general",
+      "tier": 2,
+      "custoTexto": "Passiva"
     },
     {
       "id": "brutalista-a-ultima-parede",
       "tipo": "ultimate-card",
       "nome": "🛡️ A Última Parede",
-      "corpo": "<div class=\"ultimate-header colosso\"><h4>🛡️ A Última Parede</h4><div><span class=\"ultimate-badge\">ULTIMATE</span><span style=\"margin-left: 0.5rem; color: var(--text-muted); font-size: 0.85rem;\">3 Ações, 5 Stamina</span></div></div><div class=\"ultimate-quote\">\"Enquanto estiver vivo, Eu Não Cairei.\"</div><div class=\"ultimate-body\"><ul><li>Ativação: Você crava os pés no chão e runas douradas surgem por toda sua armadura. Pelo próximo 1 minuto, você tem os seguintes benefícios:<ul><li>Runas:<ul><li>As runas te fazem aumentar de tamanho. Você aumenta seu tamanho em 1 passo.</li><li>Você não pode se mover, ser movido, ser derrubado ou teletransportado por qualquer meio.</li><li>Sua Armadura(Ar) dobra.</li><li>Você tem resistência a todos os tipos de dano.</li><li>Se tiver, você pode usar Guardião para proteger aliados como uma ação livre em até 4,5 m (Ao invés de 1,5)</li><li>Aliados em até 4,5 m de você ganham +4 Defender e +2 em testes de Resistência de qualquer tipo.</li><li>Uma vez por combate, em até 9 metros, dano que deixaria um aliado inconsciente(0 de saúde) pode ser redirecionado a você como uma reação.</li><li>Por fim, ao ativar todos os inimigos em até 9 m devem suceder em um teste de Vontade ou ficam provocados por você e não podem atacar outras criaturas nesta rodada.</li></ul></li></ul></li></ul><div class=\"ultimate-cost\"><h5>💀 O Custo</h5><ul><li>Você não pode atacar enquanto A Última Parede estiver ativa.</li><li>Ao acabar o efeito, você ganha Exaustão 1.</li></ul></div></div>"
+      "corpo": "<div class=\"ultimate-header colosso\"><h4>🛡️ A Última Parede</h4><div><span class=\"ultimate-badge\">ULTIMATE</span><span style=\"margin-left: 0.5rem; color: var(--text-muted); font-size: 0.85rem;\">3 Ações, 5 Stamina</span></div></div><div class=\"ultimate-quote\">\"Enquanto estiver vivo, Eu Não Cairei.\"</div><div class=\"ultimate-body\"><ul><li>Ativação: Você crava os pés no chão e runas douradas surgem por toda sua armadura. Pelo próximo 1 minuto, você tem os seguintes benefícios:<ul><li>Runas:<ul><li>As runas te fazem aumentar de tamanho. Você aumenta seu tamanho em 1 passo.</li><li>Você não pode se mover, ser movido, ser derrubado ou teletransportado por qualquer meio.</li><li>Sua Armadura(Ar) dobra.</li><li>Você tem resistência a todos os tipos de dano.</li><li>Se tiver, você pode usar Guardião para proteger aliados como uma ação livre em até 4,5 m (Ao invés de 1,5)</li><li>Aliados em até 4,5 m de você ganham +4 Defender e +2 em testes de Resistência de qualquer tipo.</li><li>Uma vez por combate, em até 9 metros, dano que deixaria um aliado inconsciente(0 de saúde) pode ser redirecionado a você como uma reação.</li><li>Por fim, ao ativar todos os inimigos em até 9 m devem suceder em um teste de Vontade ou ficam provocados por você e não podem atacar outras criaturas nesta rodada.</li></ul></li></ul></li></ul><div class=\"ultimate-cost\"><h5>💀 O Custo</h5><ul><li>Você não pode atacar enquanto A Última Parede estiver ativa.</li><li>Ao acabar o efeito, você ganha Exaustão 1.</li></ul></div></div>",
+      "grupo": "ultimate",
+      "ramo": "brutalista-ramo-do-colosso",
+      "tier": 3,
+      "custoTexto": "3 Ações, 5 Stamina"
     },
     {
       "id": "brutalista-despertar-a-besta",
       "tipo": "ultimate-card",
       "nome": "🔥 Despertar A Besta",
-      "corpo": "<div class=\"ultimate-header berserker\"><h4>🔥 Despertar A Besta</h4><div><span class=\"ultimate-badge\">ULTIMATE</span><span style=\"margin-left: 0.5rem; color: var(--text-muted); font-size: 0.85rem;\">1 Ação, 5 Stamina</span></div></div><div class=\"ultimate-quote\">\"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHHHH\"</div><div class=\"ultimate-body\"><ul><li>Pré-Requisito: Estar abaixo de 25% de Saúde.</li><li>Ativação: Algo primitivo desperta dentro de você. Por 3 rodadas você recebe os seguintes benefícios:<ul><li>Seus ataques causam +3d6 de dano adicional.</li><li>Você tem vantagem em todos os ataques.</li><li>Sua velocidade de movimento dobra.</li><li>Você é imune a Amedrontado, Enfeitiçado, Atordoado e Inconsciente.</li><li>Enquanto sob o efeito, ao cair para 0 de Saúde pela primeira vez, fica com 1 de saúde ao em vez disso.</li><li>Quando você reduz uma criatura a 0 de Saúde, você recupera 2d10 de Saúde e pode imediatamente se mover até 4,5m e fazer outro ataque como ação livre.</li></ul></li></ul><div class=\"ultimate-cost\"><h5>💀 O Custo</h5><ul><li>Ao final das 3 rodadas, você cai <em>Inconsciente</em> automaticamente, independente da sua Saúde atual.</li><li>Você não pode ser acordado por meios normais por 1 minuto.</li><li>Ao acabar o efeito, você ganha Exaustão 1.</li><li>Você perde permanentemente 2 de Éter.</li></ul></div></div>"
+      "corpo": "<div class=\"ultimate-header berserker\"><h4>🔥 Despertar A Besta</h4><div><span class=\"ultimate-badge\">ULTIMATE</span><span style=\"margin-left: 0.5rem; color: var(--text-muted); font-size: 0.85rem;\">1 Ação, 5 Stamina</span></div></div><div class=\"ultimate-quote\">\"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHHHH\"</div><div class=\"ultimate-body\"><ul><li>Pré-Requisito: Estar abaixo de 25% de Saúde.</li><li>Ativação: Algo primitivo desperta dentro de você. Por 3 rodadas você recebe os seguintes benefícios:<ul><li>Seus ataques causam +3d6 de dano adicional.</li><li>Você tem vantagem em todos os ataques.</li><li>Sua velocidade de movimento dobra.</li><li>Você é imune a Amedrontado, Enfeitiçado, Atordoado e Inconsciente.</li><li>Enquanto sob o efeito, ao cair para 0 de Saúde pela primeira vez, fica com 1 de saúde ao em vez disso.</li><li>Quando você reduz uma criatura a 0 de Saúde, você recupera 2d10 de Saúde e pode imediatamente se mover até 4,5m e fazer outro ataque como ação livre.</li></ul></li></ul><div class=\"ultimate-cost\"><h5>💀 O Custo</h5><ul><li>Ao final das 3 rodadas, você cai <em>Inconsciente</em> automaticamente, independente da sua Saúde atual.</li><li>Você não pode ser acordado por meios normais por 1 minuto.</li><li>Ao acabar o efeito, você ganha Exaustão 1.</li><li>Você perde permanentemente 2 de Éter.</li></ul></div></div>",
+      "grupo": "ultimate",
+      "ramo": "brutalista-ramo-do-berserker",
+      "tier": 3,
+      "custoTexto": "1 Ação, 5 Stamina"
     },
     {
       "id": "brutalista-campo-de-batalha",
       "tipo": "ultimate-card",
       "nome": "👑 Campo de Batalha",
-      "corpo": "<div class=\"ultimate-header general\"><h4>👑 Campo de Batalha</h4><div><span class=\"ultimate-badge\">ULTIMATE</span><span style=\"margin-left: 0.5rem; color: var(--text-muted); font-size: 0.85rem;\">3 Ações, 5 Stamina</span></div></div><div class=\"ultimate-quote\">\"A guerra, marca qualquer um.\"</div><div class=\"ultimate-body\"><ul><li>Ativação: Você proclama uma ordem que ecoa na alma de seus aliados. Aliados em até 18m que possam te ouvir recebem os seguintes benefícios por 1 minuto:<ul><li>Inspiração Absoluta<ul><li>+3 em Atacar, Defender e todos os Testes de Resistência.</li><li>Imunidade a Amedrontado e Enfeitiçado.</li><li>Recuperam 2d6 de Saúde e 1d6 de Stamina imediatamente.</li></ul></li><li>Coordenação de Guerra<ul><li>Pode se mover como uma ação livre e não causa ataques de oportunidade.</li><li>Todos os aliados ganham a seguinte habilidade:<ul><li><strong>Insistir:</strong> Uma vez durante o efeito, cada aliado pode repetir um ataque que errou (ação livre).</li></ul></li><li>Você ganha as seguintes habilidades:<ul><li><strong>Passo Final:</strong> Uma vez durante o efeito, você pode usar sua reação para fazer todos os aliados afetados atacarem simultaneamente o mesmo alvo.</li><li>Se você tiver, Comando tático passa a não custar Stamina.</li></ul></li></ul></li></ul></li></ul><div class=\"ultimate-cost\"><h5>💀 O Custo</h5><ul><li>A cada vez que um aliado afetado por essa habilidade sofrer dano, você perde 1 de Éter. Isso representa a visão de um general vendo seu exercito sofrer.</li></ul></div></div>"
+      "corpo": "<div class=\"ultimate-header general\"><h4>👑 Campo de Batalha</h4><div><span class=\"ultimate-badge\">ULTIMATE</span><span style=\"margin-left: 0.5rem; color: var(--text-muted); font-size: 0.85rem;\">3 Ações, 5 Stamina</span></div></div><div class=\"ultimate-quote\">\"A guerra, marca qualquer um.\"</div><div class=\"ultimate-body\"><ul><li>Ativação: Você proclama uma ordem que ecoa na alma de seus aliados. Aliados em até 18m que possam te ouvir recebem os seguintes benefícios por 1 minuto:<ul><li>Inspiração Absoluta<ul><li>+3 em Atacar, Defender e todos os Testes de Resistência.</li><li>Imunidade a Amedrontado e Enfeitiçado.</li><li>Recuperam 2d6 de Saúde e 1d6 de Stamina imediatamente.</li></ul></li><li>Coordenação de Guerra<ul><li>Pode se mover como uma ação livre e não causa ataques de oportunidade.</li><li>Todos os aliados ganham a seguinte habilidade:<ul><li><strong>Insistir:</strong> Uma vez durante o efeito, cada aliado pode repetir um ataque que errou (ação livre).</li></ul></li><li>Você ganha as seguintes habilidades:<ul><li><strong>Passo Final:</strong> Uma vez durante o efeito, você pode usar sua reação para fazer todos os aliados afetados atacarem simultaneamente o mesmo alvo.</li><li>Se você tiver, Comando tático passa a não custar Stamina.</li></ul></li></ul></li></ul></li></ul><div class=\"ultimate-cost\"><h5>💀 O Custo</h5><ul><li>A cada vez que um aliado afetado por essa habilidade sofrer dano, você perde 1 de Éter. Isso representa a visão de um general vendo seu exercito sofrer.</li></ul></div></div>",
+      "grupo": "ultimate",
+      "ramo": "brutalista-ramo-do-general",
+      "tier": 3,
+      "custoTexto": "3 Ações, 5 Stamina"
     }
   ]
 }

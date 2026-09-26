@@ -75,6 +75,9 @@ GERADORES = ['gerar_sistema.py', 'gerar_magias.py', 'gerar_condicoes.py', 'gerar
 # regenerá-lo aqui sobrescreveria o artefato real. A integridade do bazar.json
 # é checada em checa_bazar_inv().
 FORA_ROUNDTRIP = {'pages/bazar.html'}
+# data/ que um gerador escreve (fora de data/catalogo/): nasce do zero no round-trip
+ARTEFATOS_DATA = ['data/pericias.json']
+FONTES_DOCS = ['docs/ficha-digital/03-respostas-pedro.md']
 
 falhas = []
 
@@ -756,7 +759,8 @@ def checa_fisico(rot, b):
 
 def checa_blocos(root=None):
     """[blocos] F1b: derivados em sincronia com o verbatim, ids das sub-entidades
-    únicos e fora do catálogo, id da raça == catálogo, contagens por Counter."""
+    únicos e fora do catálogo, id da raça == catálogo, contagens por Counter.
+    F1e(c): inclui o grupo/ramo/tier/custoTexto de cada card de classe (blocos.fontes_cards)."""
     root = root or ROOT
     print('[blocos] Blocos classe/raca/origem (data/): derivados, ids, contagens')
     from collections import Counter
@@ -818,7 +822,9 @@ def checa_blocos(root=None):
         for r in ruins:
             print(f'  FALHA  {r}')
     else:
-        print(f'  OK     {len(fontes)} blocos, derivados em sincronia; {len(ids)} ids de sub-entidade '
+        n_cards = sum(len(doc['cards']) for _, _, doc, _ in blocos.fontes_cards(root))
+        print(f'  OK     {len(fontes)} blocos e {n_cards} cards de classe (grupo/ramo/tier/custoTexto), '
+              f'derivados em sincronia; {len(ids)} ids de sub-entidade '
               f'únicos ({n_alq} itens alquímicos, {n_cor} corrupções); {n_marc} marcadores == campos '
               f'verbatim; {len(pend)} pergunta(s) ao balanceamento cobrindo os pendentes')
 
@@ -1200,8 +1206,14 @@ def checa_roundtrip():
     try:
         for d in ('data', 'templates'):
             shutil.copytree(os.path.join(ROOT, d), os.path.join(tmp, d))
+        for f in FONTES_DOCS:            # fonte de gerador fora de data/ (ficha física das perícias)
+            os.makedirs(os.path.dirname(os.path.join(tmp, f)), exist_ok=True)
+            shutil.copy2(os.path.join(ROOT, f), os.path.join(tmp, f))
         # o catálogo é artefato: nasce do zero no tmp, sem herdar o do repo
         shutil.rmtree(os.path.join(tmp, 'data', 'catalogo'), ignore_errors=True)
+        for art in ARTEFATOS_DATA:
+            if os.path.exists(os.path.join(tmp, art)):
+                os.remove(os.path.join(tmp, art))
         for d in ('pages/classes', 'pages/racas'):
             os.makedirs(os.path.join(tmp, d), exist_ok=True)
         for g in GERADORES:
@@ -1235,10 +1247,18 @@ def checa_roundtrip():
                 divergiu += 1
             else:
                 cat_ok += 1
+        for art in ARTEFATOS_DATA:
+            a, b = os.path.join(tmp, art), os.path.join(ROOT, art)
+            if not (os.path.exists(a) and os.path.exists(b) and filecmp.cmp(a, b, shallow=False)):
+                print(f'  FALHA  {art}: difere do gerado (editado à mão? rode build.py)')
+                divergiu += 1
+            else:
+                cat_ok += 1
         if divergiu:
             falhas.append('roundtrip')
         else:
-            print(f'  OK     {n_ok} páginas e {cat_ok} catálogos idênticos ao gerado a partir do JSON')
+            print(f'  OK     {n_ok} páginas e {cat_ok} catálogos (data/catalogo + {", ".join(ARTEFATOS_DATA)}) '
+                  f'idênticos ao gerado a partir do JSON')
     finally:
         shutil.rmtree(tmp, ignore_errors=True)
 

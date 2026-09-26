@@ -27,7 +27,7 @@ import glob, json, os, re, sys
 TOOLS = os.path.dirname(os.path.abspath(__file__))
 if TOOLS not in sys.path:
     sys.path.insert(0, TOOLS)
-from kf_marca import texto          # noqa: E402
+from kf_marca import texto, EMOJI   # noqa: E402
 from shell import slugify           # noqa: E402
 
 RAIZ = os.path.dirname(TOOLS)
@@ -376,6 +376,18 @@ def deriva_classe(nome, b, cards=None, tpl=None):
             d += [(f'caracteristicas.{i}.escala', escala_escolas(f['texto'][1]))]
     for i, r in enumerate(b.get('ramos', [])):
         d += [(f'ramos.{i}.id', f'{nome}-{slugify(r["nome"])}')]
+    # F1e(c): parágrafo dos ramos -> {marcas, tecnicas, porTier}; cabeçalhos de tier
+    regra = ramos_regra(b['ramosTexto']) if b.get('ramosTexto') else None
+    if regra is not None:
+        d += [('ramosRegra', regra)]
+    for i, t in enumerate(b.get('tiers', [])):
+        cab = tier_cabecalho(t)
+        if regra is not None and cab['nivel'] is not None:
+            nv = next((p['nivel'] for p in regra['porTier'] if p['tier'] == cab['tier']), None)
+            if nv != cab['nivel']:
+                raise ValueError(f'{nome}: tier {cab["tier"]} no nível {cab["nivel"]} pelo cabeçalho '
+                                 f'e {nv} pelo parágrafo dos ramos')
+        d += [(f'tiers.{i}.{k}', v) for k, v in cab.items()]
     if b.get('requisitosDeCard') and tpl is not None:
         # o card é o primeiro {{CARD_n}} depois do marcador do requisito, no template
         for i, _ in enumerate(b['requisitosDeCard']):
@@ -388,6 +400,165 @@ def deriva_classe(nome, b, cards=None, tpl=None):
         for j, cat in enumerate(nv['categorias']):
             for k, it in enumerate(cat['itens']):
                 d += [(f'itensAlquimicos.{i}.categorias.{j}.itens.{k}.id', f'{nome}-{slugify(it["nome"])}')]
+    return d
+
+
+# ------------------------------------------------------------------ F1e(c): ramos e tiers
+RE_REGRA_RAMOS = re.compile(r'(\d+) Marcas e (\d+) Técnicas de Ramo \((.+?)\)')
+RE_REGRA_TIER = re.compile(r'^(?:e )?(\d+) (Ultimate )?no Tier (\d+), (?:ao chegar ao|no) nível (\d+)$')
+
+
+def ramos_regra(paragrafos):
+    """'… 3 Marcas e 6 Técnicas de Ramo (3 no Tier 1, ao chegar ao nível 2; 2 no
+    Tier 2, no nível 4; e 1 Ultimate no Tier 3, no nível 5)' -> {marcas, tecnicas,
+    porTier:[{tier, quantidade, nivel, ultimate}]}. Só a frase casada inteira."""
+    achados = [m for p in paragrafos for m in RE_REGRA_RAMOS.finditer(_limpo(p))]
+    if len(achados) != 1:
+        raise ValueError(f'parágrafo dos ramos: {len(achados)} frase(s) de regra (esperado 1)')
+    m = achados[0]
+    por = []
+    for item in m.group(3).split('; '):
+        t = RE_REGRA_TIER.match(item.strip())
+        if not t:
+            raise ValueError(f'parágrafo dos ramos: tier ilegível {item!r}')
+        por.append({'tier': int(t.group(3)), 'quantidade': int(t.group(1)), 'nivel': int(t.group(4)),
+                    'ultimate': bool(t.group(2))})
+    if sum(p['quantidade'] for p in por) != int(m.group(2)):
+        raise ValueError(f'parágrafo dos ramos: {m.group(2)} técnicas, mas os tiers somam '
+                         f'{sum(p["quantidade"] for p in por)}')
+    return {'marcas': int(m.group(1)), 'tecnicas': int(m.group(2)), 'porTier': por}
+
+
+def tier_cabecalho(t):
+    """{'titulo': 'Tier 3 — Ultimates', 'badge': 'Nível 5 • 1x/Dia'} ou {'badge': 'TIER 1'}
+    -> {tier, nivel, usos}; o que o cabeçalho não diz fica None."""
+    tit = _limpo(t.get('titulo') or '')
+    badge = _limpo(t.get('badge') or '')
+    m = re.match(r'^Tier (\d+)\b', tit, re.I) or re.fullmatch(r'TIER (\d+)', badge)
+    if not m:
+        raise ValueError(f'cabeçalho de tier sem número: {t!r}')
+    nv = re.fullmatch(r'Nível (\d+)\+?(?: • (.+))?', badge)
+    if not nv and not re.fullmatch(r'TIER \d+', badge):
+        raise ValueError(f'selo de tier ilegível: {badge!r}')
+    return {'tier': int(m.group(1)), 'nivel': int(nv.group(1)) if nv else None,
+            'usos': nv.group(2) if nv else None}
+
+
+# Grupo de cada card de classe pelo tipo (classe CSS do card)
+GRUPO_CARD = {'technique-card': 'geral', 'tier-technique': 'ramo', 'tech-card': 'ramo',
+              'marca-card': 'marca', 'ultimate-card': 'ultimate'}
+# Custo no cabeçalho do card: um e só um destes por card (o nome do padrão diz o formato)
+CUSTO_CARD = [
+    ('technique-cost', re.compile(r'<div class="technique-cost">(.*?)</div>', re.S)),
+    ('meta', re.compile(r'<p class="meta">(.*?)</p>', re.S)),
+    ('tech-meta', re.compile(r'<span class="tech-meta">(.*?)</span>', re.S)),
+    ('cost', re.compile(r'<span class="cost">(.*?)</span>', re.S)),
+    ('ultimate', re.compile(r'<span class="ultimate-badge">ULTIMATE</span>\s*<span[^>]*>(.*?)</span>', re.S)),
+]
+RE_RAMO_CORPO = re.compile(r'<div class="(?:marca|tech-card|ultimate)-header ([\w-]+)">')
+RE_TOK_TPL = re.compile(r'<(/?)(div|h3|h4)\b([^>]*)>|\{\{CARD_(\d+)\}\}|\{\{classe\.tiers\.(\d+)\.\w+\}\}')
+
+
+def custo_card(corpo):
+    """Texto do custo no cabeçalho do card (verbatim sem tags); None na marca.
+    O .technique-cost do Espadachim tem um <span> por custo: vão unidos por ' · ',
+    o separador que o próprio Espadachim usa no .meta dos cards de tier."""
+    achados = [(k, m) for k, r in CUSTO_CARD for m in r.finditer(corpo)]
+    if len(achados) > 1:
+        raise ValueError(f'card com {len(achados)} custos no cabeçalho: {[k for k, _ in achados]}')
+    if not achados:
+        return None
+    k, m = achados[0]
+    if k == 'technique-cost':
+        return ' · '.join(_limpo(s) for s in re.findall(r'<span[^>]*>(.*?)</span>', m.group(1), re.S))
+    return _limpo(m.group(1))
+
+
+def _nome_curto_ramo(nome):
+    """'🥊 Ramo do Punho' -> 'Punho' (o que os títulos 'Marcas do Punho' / '🥊 Punho' repetem)."""
+    limpo = re.sub(r'\s+', ' ', EMOJI.sub('', _limpo(nome))).strip()
+    return re.sub(r'^Ramo d[aoe]s? ', '', limpo)
+
+
+def contexto_cards(tpl, ramos):
+    """{n: {'ramo': chave|None, 'tier': índice em classe.tiers|None}} de cada {{CARD_n}}
+    pela posição no template: ancestral .ramo-section.ramo-<chave> (Espadachim) ou o
+    último título com var(--ramo-<chave>) na mesma seção; tier = o .tier-section que
+    contém o card, pelo marcador {{classe.tiers.K…}} do seu cabeçalho."""
+    curtos = {r['chave']: _nome_curto_ramo(r['nome']) for r in ramos}
+    pilha, titulo, out = [], None, {}
+    for m in RE_TOK_TPL.finditer(tpl):
+        fecha, tag, attrs, card, tier = m.groups()
+        if tag == 'div':
+            if fecha:
+                if not pilha:
+                    raise ValueError('template: </div> sem abertura')
+                saiu = pilha.pop()
+                if 'tier-section' in saiu['cls']:
+                    titulo = None
+            else:
+                cls = (re.search(r'class="([^"]*)"', attrs) or [None, ''])[1].split()
+                pilha.append({'cls': cls, 'tier': None})
+                if 'tier-section' in cls or 'section-divider' in cls:
+                    titulo = None
+        elif tag in ('h3', 'h4') and not fecha:
+            v = re.search(r'var\(--ramo-([\w-]+)\)', attrs)
+            if v:
+                fim = tpl.index(f'</{tag}>', m.end())
+                if v.group(1) not in curtos:
+                    raise ValueError(f'template: título com var(--ramo-{v.group(1)}) fora dos ramos')
+                if curtos[v.group(1)] not in _limpo(tpl[m.end():fim]):
+                    raise ValueError(f'template: título {tpl[m.end():fim]!r} com a cor do ramo '
+                                     f'{v.group(1)} e sem o nome "{curtos[v.group(1)]}"')
+                titulo = v.group(1)
+        elif tier is not None:
+            ts = next((f for f in reversed(pilha) if 'tier-section' in f['cls']), None)
+            if ts is None:
+                raise ValueError(f'template: marcador de tier {tier} fora de .tier-section')
+            if ts['tier'] not in (None, int(tier)):
+                raise ValueError(f'template: .tier-section com os tiers {ts["tier"]} e {tier}')
+            ts['tier'] = int(tier)
+        elif card is not None:
+            anc = [c[len('ramo-'):] for f in pilha if 'ramo-section' in f['cls']
+                   for c in f['cls'] if c.startswith('ramo-') and c != 'ramo-section']
+            if len(anc) > 1 or (anc and titulo and anc[0] != titulo):
+                raise ValueError(f'template: CARD_{card} com ramos {anc} e título {titulo}')
+            ts = next((f for f in reversed(pilha) if 'tier-section' in f['cls']), None)
+            if ts is not None and ts['tier'] is None:
+                raise ValueError(f'template: CARD_{card} num .tier-section sem cabeçalho de tier')
+            out[int(card)] = {'ramo': anc[0] if anc else titulo, 'tier': ts['tier'] if ts else None}
+    return out
+
+
+def deriva_cards_classe(nome, b, cards, tpl):
+    """[(caminho a partir do doc, valor)]: grupo/ramo/tier/custoTexto de cada card.
+    Duas fontes para o ramo (posição no template e classe do cabeçalho no corpo):
+    divergindo, ou faltando onde o grupo exige, derruba o build."""
+    ctx = contexto_cards(tpl, b['ramos'])
+    ids = {r['chave']: r['id'] for r in b['ramos']}
+    tiers = [tier_cabecalho(t)['tier'] for t in b.get('tiers', [])]
+    if sorted(ctx) != list(range(len(cards))):
+        raise ValueError(f'{nome}: {len(cards)} cards e {len(ctx)} marcadores {{{{CARD_n}}}} no template')
+    d = []
+    for i, c in enumerate(cards):
+        grupo = GRUPO_CARD.get(c['tipo'])
+        if grupo is None:
+            raise ValueError(f'{nome}: card {c["id"]} com tipo {c["tipo"]!r} fora de GRUPO_CARD')
+        corpo = RE_RAMO_CORPO.findall(c['corpo'])
+        fontes_ramo = set(corpo) | ({ctx[i]['ramo']} if ctx[i]['ramo'] else set())
+        if len(corpo) > 1 or len(fontes_ramo) > 1:
+            raise ValueError(f'{nome}: card {c["id"]} com ramos divergentes {sorted(fontes_ramo)}')
+        ramo = next(iter(fontes_ramo), None)
+        if ramo is not None and ramo not in ids:
+            raise ValueError(f'{nome}: card {c["id"]} no ramo {ramo!r}, fora de classe.ramos')
+        tier = tiers[ctx[i]['tier']] if ctx[i]['tier'] is not None else None
+        esperado = {'geral': (False, None), 'marca': (True, None), 'ramo': (True, (1, 2)),
+                    'ultimate': (True, (3,))}[grupo]
+        if (ramo is not None) != esperado[0] or (tier is None) != (esperado[1] is None) \
+                or (tier is not None and tier not in esperado[1]):
+            raise ValueError(f'{nome}: card {c["id"]} ({grupo}) com ramo {ramo} e tier {tier}')
+        d += [(f'cards.{i}.grupo', grupo), (f'cards.{i}.ramo', ids.get(ramo)),
+              (f'cards.{i}.tier', tier), (f'cards.{i}.custoTexto', custo_card(c['corpo']))]
     return d
 
 
@@ -508,10 +679,28 @@ def fontes(raiz=None):
         yield f'origem {card["id"]}', f, doc, card['origem'], (lambda card=card: deriva_origem(card, card['origem'], bazar))
 
 
+def fontes_cards(raiz=None):
+    """Itera (rotulo, arquivo, doc, derivados()) dos cards de classe (F1e(c)); os
+    caminhos dos derivados partem do doc (cards.N.grupo…), não do bloco."""
+    raiz = raiz or RAIZ
+    for c in CLASSES:
+        f = os.path.join(raiz, 'data', 'classes', f'{c}.json')
+        doc = _ler(f)
+        tpl = open(os.path.join(raiz, 'templates', 'classes', f'{c}.template.html'), encoding='utf-8').read()
+        yield f'cards {c}', f, doc, (lambda c=c, doc=doc, tpl=tpl: deriva_cards_classe(c, doc['classe'], doc['cards'], tpl))
+
+
+def _todas(raiz):
+    for rot, f, doc, bloco, der in fontes(raiz):
+        yield rot, f, doc, bloco, der
+    for rot, f, doc, der in fontes_cards(raiz):
+        yield rot, f, doc, doc, der
+
+
 def divergencias(raiz=None):
     """[(rotulo, caminho, no_json, calculado)] dos derivados fora de sincronia."""
     out = []
-    for rot, _, _, bloco, der in fontes(raiz):
+    for rot, _, _, bloco, der in _todas(raiz):
         for cam, v in der():
             try:
                 atual = pega(bloco, cam)
@@ -523,15 +712,20 @@ def divergencias(raiz=None):
 
 
 def regrava(raiz=None):
-    """Recalcula e grava os derivados de todos os blocos."""
-    docs = {}
-    for _, f, doc, bloco, der in fontes(raiz):
-        for cam, v in der():
-            poe(bloco, cam, v)
-        docs[f] = doc
-    for f, doc in docs.items():
-        _grava(f, doc)
-    return len(docs)
+    """Recalcula e grava os derivados de todos os blocos (e, depois, dos cards de classe)."""
+    arquivos = set()
+    for grupo in (fontes, fontes_cards):
+        docs = {}
+        for t in grupo(raiz):
+            f, doc, der = t[1], t[2], t[-1]
+            alvo = t[3] if grupo is fontes else doc
+            for cam, v in der():
+                poe(alvo, cam, v)
+            docs[f] = doc
+        for f, doc in docs.items():
+            _grava(f, doc)
+        arquivos |= set(docs)
+    return len(arquivos)
 
 
 if __name__ == '__main__':

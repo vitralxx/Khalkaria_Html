@@ -95,7 +95,12 @@ test('catálogo: carta rara só com id, tipo, nome, categoria e requisito', () =
   const cartas = catalogo().find((d) => d.tipo === 'carta').entradas;
   const raras = cartas.filter((e) => e.categoria === 'rara');
   assert.equal(raras.length, 59);
-  for (const r of raras) assert.deepEqual(Object.keys(r).sort(), ['categoria', 'id', 'nome', 'req', 'tipo']);
+  // F1e: req normalizado [{attr,min}] + o texto verbatim do requisito (reqTexto); nada de efeito
+  for (const r of raras) {
+    assert.deepEqual(Object.keys(r).sort(), ['categoria', 'id', 'nome', 'req', 'reqTexto', 'tipo']);
+    assert.ok(r.req.length >= 1 && r.req.every((q) => /^(FOR|DES|CON|INT|SAB)$/.test(q.attr) && Number.isInteger(q.min)));
+    assert.equal(r.req.map((q) => `${q.attr} ${q.min}+`).join(', '), r.reqTexto);
+  }
   const limiar = fs.readFileSync(path.join(RAIZ, 'pages', 'limiar.html'), 'utf8');
   // na página, o card raro segue sem o bloco de efeito
   const cardsRaros = limiar.match(/<div class="catalog-card cat-rara"[\s\S]*?\n {8}<\/div>/g) || [];

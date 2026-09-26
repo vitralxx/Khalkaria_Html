@@ -11,36 +11,49 @@ validar.py regenera e compara byte a byte.
   continua verbatim: a separação acontece só aqui.
 - `resumo` é o texto integral da entidade sem tags e sem o título (nada é
   cortado nem reescrito; o nome do campo segue o plano).
-- Campos do tipo: só o que o JSON já tem estruturado. Normalizar custo, ações,
-  requisito etc. é da F1e; efeitos (Mods) e status, da F1d.
+- Campos do tipo (F1e, tools/normaliza.py; o JSON de conteúdo não é reescrito):
+  magia com acoes, intensidadesPermitidas, sustentada/sustentacao e stats com
+  rótulo canônico e porIntensidade; carta com req [{attr,min}]; dor/benefício
+  com custo {dor,sentido}; técnica/marca/ultimate com grupo/ramo/tier/custoTexto
+  (do data/classes, derivados pelo tools/blocos.py). Efeitos (Mods) e status: F1d.
 - Cartas RARAS do Limiar: só id, tipo, nome, categoria e requisito (D11/D33:
   o efeito só entra pelo script de revelação).
 - `item` não tem arquivo aqui: o catálogo do item é o data/bazar.json.
+- data/pericias.json (F1e): as 24 perícias (Sistema + ficha física + decisões),
+  fonte única para a F1d e o schema v3. Também ARTEFATO deste gerador.
 
-Uso: python tools/gerar_catalogo.py [repo_root]
+Uso: python tools/gerar_catalogo.py [repo_root] [--relatorio]
 """
 import glob, json, os, re, sys
+from collections import Counter
 from kf_marca import (TIPO_POR_CLASSE_CSS, TIPO_POR_CLASSE_CSS_RACA, EMOJI,
                       separa_icone, tipo_do_opentag)
 from kf_marca import texto as _texto_s6
-from blocos import preenche
+from blocos import preenche, SLUG_PERICIA
+from shell import slugify
+import normaliza
 
 
 def texto(h):
-    """Normalizador do §6 + sem espaço antes de pontuação.
+    """Normalizador do §6 + sem espaço que é da marcação, não do texto.
 
-    Trocar tag por espaço deixa "Médio , 15 HP" (chip + .sep) e "<em>Oco</em>."
-    vira "Oco ." — espaço que é da marcação, não do texto.
+    Trocar tag por espaço deixa "Médio , 15 HP" (chip + .sep), "<em>Oco</em>."
+    vira "Oco ." e "(<em>3x/…</em>)" vira "( 3x/…)". O texto do .sep fica: é o
+    verbatim do Notion que o CSS só esconde (css/classes.css).
     """
-    return re.sub(r'\s+([,.;:)])', r'\1', _texto_s6(h))
+    return re.sub(r'([(])\s+', r'\1', re.sub(r'\s+([,.;:)])', r'\1', _texto_s6(h)))
+
 
 RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-REPO = sys.argv[1] if len(sys.argv) > 1 else RAIZ
+REPO = next((a for a in sys.argv[1:] if not a.startswith('--')), RAIZ)
 OUT = os.path.join(REPO, 'data', 'catalogo')
+OUT_PERICIAS = os.path.join(REPO, 'data', 'pericias.json')
 
 CLASSES = ['espadachim', 'monge', 'batedor', 'alquimista', 'teurgo', 'artilheiro', 'brutalista']
 RACAS = ['humano', 'anao', 'dryad', 'gruto', 'corrompido', 'automato', 'inseto']
 ESCOLAS = ('destruicao', 'abjuracao', 'alteracao', 'conhecimento')
+# Categoria do Limiar -> atributo do requisito (universal: nenhum; rara: variado)
+ATTR_CATEGORIA = {'forca': 'FOR', 'destreza': 'DES', 'con': 'CON', 'int': 'INT', 'sab': 'SAB'}
 
 
 def ler(rel):
@@ -59,18 +72,52 @@ def base(tipo, id_, nome, icone=None):
     return {'id': id_, 'tipo': tipo, 'nome': limpo, 'icone': icone if icone is not None else ic}
 
 
-def magias(cat):
+def novo_relatorio():
+    return {'acoes': Counter(), 'formatoStat': Counter(), 'casamento': Counter(),
+            'semLeitura': [], 'barraSemMod': [], 'regra3': [], 'rotulado': []}
+
+
+def stat_magia(st, permitidas, rel):
+    chave, rot = normaliza.rotulo(st['caracteristica'])
+    fmt, por, leitura = normaliza.por_intensidade(st['valor'], permitidas)
+    rel['formatoStat'][fmt] += 1
+    rel['casamento'][leitura] += 1
+    return {'caracteristica': st['caracteristica'], 'chave': chave, 'rotulo': rot,
+            'valor': st['valor'], 'mod': st['mod'], 'formato': fmt, 'leitura': leitura,
+            'porIntensidade': por}
+
+
+def magias(cat, rel):
     d = ler('data/magias.json')
     for n in range(1, 6):
         for esc in ESCOLAS:
             for s in d[f'nivel{n}'][esc]:
                 e = base('magia', s['id'], s['nome'])
                 e['resumo'] = texto(s['descricao'])
+                perm, restr = normaliza.intensidades_permitidas(s['nivel'], s['stats'])
+                acao = [st for st in s['stats'] if normaliza.rotulo(st['caracteristica'])[0] == 'acao']
+                if len(acao) > 1:
+                    raise SystemExit(f'gerar_catalogo: {s["id"]} com {len(acao)} stats de ação')
+                ac = normaliza.acoes(acao[0]['valor']) if acao else None
+                rel['acoes'][ac['formato'] if ac else 'sem stat de ação'] += 1
+                sust, sus = normaliza.sustentacao(s)
                 e.update({'nivel': s['nivel'], 'escola': s['escola'], 'custoBase': s['custoBase'],
                           'tradeoff': bool(s.get('tradeoff')),
-                          'stats': [{'caracteristica': st['caracteristica'], 'valor': st['valor'],
-                                     'mod': st['mod']} for st in s['stats']],
+                          'acoes': ac, 'intensidadesPermitidas': perm, 'intensidadeTexto': restr,
+                          'sustentada': sust, 'sustentacao': sus,
+                          'stats': [stat_magia(st, perm, rel) for st in s['stats']],
                           'modulacoes': texto(s['modulacoes']) if s.get('modulacoes') else None})
+                if ac is None:
+                    rel['semLeitura'].append((s['id'], 'Ação', 'sem stat de ação'))
+                for st in e['stats']:
+                    if st['porIntensidade'] is None and (st['mod'] or st['formato'] != 'sem-barras'):
+                        rel['semLeitura'].append((s['id'], st['caracteristica'], st['leitura']))
+                    if st['porIntensidade'] is not None and not st['mod']:
+                        rel['barraSemMod'].append((s['id'], st['caracteristica']))
+                    if st['leitura'] == 'regra-3-barras':
+                        rel['regra3'].append((s['id'], st['caracteristica']))
+                    if st['formato'] == 'rotulado':
+                        rel['rotulado'].append((s['id'], st['caracteristica'], st['leitura']))
                 cat['magia'].append(e)
 
 
@@ -91,18 +138,25 @@ def limiar(cat):
                 # D11/D33: rara sem efeito no site; nem ícone nem resumo aqui
                 _, limpo = separa_icone(card['nome'])
                 cat['carta'].append({'id': card['id'], 'tipo': 'carta', 'nome': limpo,
-                                     'categoria': 'rara', 'req': card.get('req')})
+                                     'categoria': 'rara', 'req': normaliza.req_limiar(card.get('req')),
+                                     'reqTexto': card.get('req')})
                 continue
             e = base('carta', card['id'], card['nome'], icone=card.get('icon'))
             e['resumo'] = texto(card.get('effect', ''))
             e['categoria'] = c['id']
-            e['req'] = card.get('req')
+            e['req'] = normaliza.req_limiar(card.get('req'))
+            e['reqTexto'] = card.get('req')
+            attr = ATTR_CATEGORIA.get(c['id'])
+            if [r['attr'] for r in e['req']] != ([attr] if attr else []):
+                raise SystemExit(f'gerar_catalogo: carta {card["id"]} da categoria {c["id"]} '
+                                 f'com requisito {card.get("req")!r}')
             cat['carta'].append(e)
     for chave, tipo in (('dores', 'dor'), ('beneficios', 'beneficio')):
         for card in d['abismo'][chave]:
             e = base(tipo, card['id'], card['nome'])
             e['resumo'] = texto(card['desc'])
-            e.update({'custo': texto(card['custo']), 'custoTipo': card['tipo']})
+            e.update({'custo': normaliza.custo_abismo(card['custo'], card['tipo']),
+                      'custoTexto': texto(card['custo'])})
             cat[tipo].append(e)
 
 
@@ -112,7 +166,8 @@ def classes(cat):
             tipo = TIPO_POR_CLASSE_CSS[c['tipo']]
             e = base(tipo, c['id'], c['nome'])
             e['resumo'] = texto(sem_titulo(c['corpo']))
-            e.update({'classe': classe, 'card': c['tipo']})
+            e.update({'classe': classe, 'card': c['tipo'], 'grupo': c['grupo'], 'ramo': c['ramo'],
+                      'tier': c['tier'], 'custoTexto': c['custoTexto']})
             cat[tipo].append(e)
 
 
@@ -153,9 +208,38 @@ FONTES = {
 }
 
 
+def _grava(caminho, doc):
+    with open(caminho, 'w', encoding='utf-8', newline='\n') as fh:
+        json.dump(doc, fh, ensure_ascii=False, indent=1)
+        fh.write('\n')
+
+
+def gera_pericias():
+    lista, graus, diverg = normaliza.pericias(
+        ler('data/sistema.json'),
+        open(os.path.join(REPO, 'docs', 'ficha-digital', '03-respostas-pedro.md'), encoding='utf-8').read(),
+        slugify)
+    slugs = [p['slug'] for p in lista]
+    if len(slugs) != 24 or len(set(slugs)) != 24 or set(slugs) != set(SLUG_PERICIA):
+        raise SystemExit(f'gerar_catalogo: perícias {sorted(set(slugs) ^ set(SLUG_PERICIA))} '
+                         f'fora de blocos.PERICIAS, ou repetidas ({len(slugs)})')
+    _grava(OUT_PERICIAS, {
+        'schema': 'pericias/1',
+        'fontes': ['data/sistema.json (Perícias, Proficiência)',
+                   'docs/ficha-digital/03-respostas-pedro.md §4 (ficha física)',
+                   'CLAUDE.md §2 (Ofício(Alquimia)) e §5 (prof_*)', 'D7 e D8a (Pedro, 2026-09-26)'],
+        'modos': {'fixo': 'um atributo', 'maior': 'o maior dos atributos listados, trocável pelo jogador (D7)',
+                  'arma': 'o atributo da arma usada, entre os listados',
+                  'dado': 'só o dado do grau, sem atributo (D8a)'},
+        'graus': graus, 'total': len(lista), 'pericias': lista})
+    return lista, diverg
+
+
 def gerar():
     cat = {t: [] for t in FONTES}
-    for f in (magias, condicoes, limiar, classes, racas, origens):
+    rel = novo_relatorio()
+    magias(cat, rel)
+    for f in (condicoes, limiar, classes, racas, origens):
         f(cat)
     erros = []
     vistos = {}
@@ -176,18 +260,56 @@ def gerar():
         if os.path.basename(velho)[:-5] not in cat:
             os.remove(velho)
     for tipo, ents in cat.items():
-        doc = {'schema': 'catalogo/1', 'tipo': tipo, 'fontes': FONTES[tipo],
-               'total': len(ents), 'entradas': ents}
-        with open(os.path.join(OUT, f'{tipo}.json'), 'w', encoding='utf-8', newline='\n') as fh:
-            json.dump(doc, fh, ensure_ascii=False, indent=1)
-            fh.write('\n')
-    return cat
+        _grava(os.path.join(OUT, f'{tipo}.json'), {'schema': 'catalogo/1', 'tipo': tipo, 'fontes': FONTES[tipo],
+                                                   'total': len(ents), 'entradas': ents})
+    rel['pericias'], rel['divergPericias'] = gera_pericias()
+    return cat, rel
+
+
+def _conta(c):
+    return ', '.join(f'{k} {v}' for k, v in sorted(c.items(), key=lambda kv: (-kv[1], str(kv[0]))))
+
+
+def relatorio(cat, rel):
+    """Relatório por conjunto dos formatos encontrados (F1e). Todo stat, ação,
+    carta e card cai em exatamente um formato: o que não cai derrubou o gerador."""
+    def ids(xs):
+        return ', '.join(':'.join(str(v) for v in x) for x in xs) or '—'
+    grupos = Counter(f'{e["grupo"]}{"/T" + str(e["tier"]) if e["tier"] else ""}'
+                     for t in ('tecnica', 'marca', 'ultimate') for e in cat[t])
+    return [
+        '[F1e] magias: ações por formato: ' + _conta(rel['acoes']),
+        '[F1e] magias: stats por formato: ' + _conta(rel['formatoStat']),
+        '[F1e] magias: leitura por intensidade: ' + _conta(rel['casamento']),
+        '[F1e] magias: intensidades permitidas: ' + _conta(Counter(
+            '/'.join(e['intensidadesPermitidas']) for e in cat['magia'])),
+        '[F1e] magias: sustentadas: ' + ', '.join(e['id'] for e in cat['magia'] if e['sustentada']),
+        '[F1e] magias: rotulados: ' + ids(rel['rotulado']),
+        '[F1e] magias: regra das 3 barras (CLAUDE.md §6): ' + ids(rel['regra3']),
+        '[F1e] magias: barras com ❎ (mod:false no Notion): ' + ids(rel['barraSemMod']),
+        f'[F1e] magias: {len(rel["semLeitura"])} sem leitura (✅ sem barras, barra irregular, sem ação): '
+        + ids(rel['semLeitura']),
+        '[F1e] limiar: cartas por nº de atributos no requisito: ' + _conta(Counter(len(e['req']) for e in cat['carta'])),
+        '[F1e] abismo: custo por sentido: ' + _conta(Counter(
+            f'{t}:{e["custo"]["sentido"]}' for t in ('dor', 'beneficio') for e in cat[t])),
+        '[F1e] classes: cards por grupo/tier: ' + _conta(grupos),
+        '[F1e] perícias: por modo: ' + _conta(Counter(p['modo'] for p in rel['pericias']))
+        + '; Sistema x ficha física: ' + ('; '.join(f'{n} "{s}" x "{f}"' for n, s, f in rel['divergPericias'])
+                                           or 'sem divergência'),
+    ]
 
 
 def main():
-    cat = gerar()
+    try:
+        sys.stdout.reconfigure(errors='replace')
+    except (AttributeError, ValueError):
+        pass
+    cat, rel = gerar()
     print('catálogo gerado: ' + ' · '.join(f'{t} {len(v)}' for t, v in cat.items())
-          + f' -> {os.path.relpath(OUT, REPO)}')
+          + f' -> {os.path.relpath(OUT, REPO)}; {len(rel["pericias"])} perícias -> '
+          + os.path.relpath(OUT_PERICIAS, REPO).replace(os.sep, '/'))
+    if '--relatorio' in sys.argv:
+        print('\n'.join(relatorio(cat, rel)))
 
 
 if __name__ == '__main__':

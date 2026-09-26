@@ -48,6 +48,8 @@ def roda(script):
     # gerar_bazar.py tem outro contrato de CLI (csv, saida) e resolve a raiz
     # sozinho; os demais recebem repo_root em argv[1].
     argv = [] if script == 'gerar_bazar.py' else [ROOT]
+    if script == 'gerar_catalogo.py':
+        argv.append('--relatorio')      # F1e: formatos encontrados, por conjunto
     r = subprocess.run([sys.executable, os.path.join(TOOLS, script)] + argv,
                        capture_output=True, text=True, encoding='utf-8', env=ENV)
     saida = (r.stdout or '') + (r.stderr or '')

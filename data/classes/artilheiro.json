@@ -176,6 +176,56 @@
         "subtitulo": "Flechas e Furtividade",
         "descricao": "Você aprendeu que a caça não é sobre força - é sobre espera. Nas florestas silenciosas, nas montanhas geladas, nos pântanos esquecidos, você observou e aprendeu a ter paciência. A presa nunca sabe que está sendo caçada até que a flecha já tenha deixado o arco."
       }
+    ],
+    "ramosTexto": [
+      "Os ramos são caminhos <strong>irreversíveis</strong>. Você escolherá: <strong>3 Marcas</strong> e <strong>6 Técnicas de Ramo</strong> (3 no Tier 1, ao chegar ao nível 2; 2 no Tier 2, no nível 4; e 1 Ultimate no Tier 3, no nível 5)."
+    ],
+    "ramosRegra": {
+      "marcas": 3,
+      "tecnicas": 6,
+      "porTier": [
+        {
+          "tier": 1,
+          "quantidade": 3,
+          "nivel": 2,
+          "ultimate": false
+        },
+        {
+          "tier": 2,
+          "quantidade": 2,
+          "nivel": 4,
+          "ultimate": false
+        },
+        {
+          "tier": 3,
+          "quantidade": 1,
+          "nivel": 5,
+          "ultimate": true
+        }
+      ]
+    },
+    "tiers": [
+      {
+        "titulo": "Tier 1",
+        "badge": "Nível 2+",
+        "tier": 1,
+        "nivel": 2,
+        "usos": null
+      },
+      {
+        "titulo": "Tier 2",
+        "badge": "Nível 4+",
+        "tier": 2,
+        "nivel": 4,
+        "usos": null
+      },
+      {
+        "titulo": "Tier 3 — Ultimates",
+        "badge": "Nível 5 • 1x/Dia",
+        "tier": 3,
+        "nivel": 5,
+        "usos": "1x/Dia"
+      }
     ]
   },
   "cards": [
@@ -183,235 +233,391 @@
       "id": "artilheiro-respiracao-controlada",
       "tipo": "technique-card",
       "nome": "Respiração Controlada",
-      "corpo": "<h4>Respiração Controlada</h4><span class=\"tech-meta\">Passiva</span><p>Você não perde Concentração ao receber dano à distância (apenas corpo a corpo).</p>"
+      "corpo": "<h4>Respiração Controlada</h4><span class=\"tech-meta\">Passiva</span><p>Você não perde Concentração ao receber dano à distância (apenas corpo a corpo).</p>",
+      "grupo": "geral",
+      "ramo": null,
+      "tier": null,
+      "custoTexto": "Passiva"
     },
     {
       "id": "artilheiro-frieza",
       "tipo": "technique-card",
       "nome": "Frieza",
-      "corpo": "<h4>Frieza</h4><span class=\"tech-meta\">Passiva</span><p>Enquanto tiver 3+ concentração, você tem vantagem em testes de resistência.</p>"
+      "corpo": "<h4>Frieza</h4><span class=\"tech-meta\">Passiva</span><p>Enquanto tiver 3+ concentração, você tem vantagem em testes de resistência.</p>",
+      "grupo": "geral",
+      "ramo": null,
+      "tier": null,
+      "custoTexto": "Passiva"
     },
     {
       "id": "artilheiro-balas-de-ferro",
       "tipo": "technique-card",
       "nome": "Balas de Ferro",
-      "corpo": "<h4>Balas de Ferro</h4><span class=\"tech-meta\">Passiva</span><p>Seus ataques críticos reduzem 3 de Armadura(Ar) ou Armadura Específica(Ae) do alvo no acerto. Você só pode remover Armadura do tipo de dano que sua arma causa.</p>"
+      "corpo": "<h4>Balas de Ferro</h4><span class=\"tech-meta\">Passiva</span><p>Seus ataques críticos reduzem 3 de Armadura(Ar) ou Armadura Específica(Ae) do alvo no acerto. Você só pode remover Armadura do tipo de dano que sua arma causa.</p>",
+      "grupo": "geral",
+      "ramo": null,
+      "tier": null,
+      "custoTexto": "Passiva"
     },
     {
       "id": "artilheiro-artesao-de-municao",
       "tipo": "technique-card",
       "nome": "Artesão de Munição",
-      "corpo": "<h4>Artesão de Munição</h4><span class=\"tech-meta\">Passiva</span><p>Durante descanso curto ou longo, você pode criar 1 munição(Flecha, Munição de Armas de Fogo ou Adagas de lançamento) sem rolar testes.</p>"
+      "corpo": "<h4>Artesão de Munição</h4><span class=\"tech-meta\">Passiva</span><p>Durante descanso curto ou longo, você pode criar 1 munição(Flecha, Munição de Armas de Fogo ou Adagas de lançamento) sem rolar testes.</p>",
+      "grupo": "geral",
+      "ramo": null,
+      "tier": null,
+      "custoTexto": "Passiva"
     },
     {
       "id": "artilheiro-olho-do-atirador",
       "tipo": "technique-card",
       "nome": "Olho do Atirador",
-      "corpo": "<h4>Olho do Atirador</h4><span class=\"tech-meta\">Passiva</span><p>Você pode atirar em criaturas que você não enxerga com -2 (Ao invés de desvantagem)</p>"
+      "corpo": "<h4>Olho do Atirador</h4><span class=\"tech-meta\">Passiva</span><p>Você pode atirar em criaturas que você não enxerga com -2 (Ao invés de desvantagem)</p>",
+      "grupo": "geral",
+      "ramo": null,
+      "tier": null,
+      "custoTexto": "Passiva"
     },
     {
       "id": "artilheiro-sentidos-agucados",
       "tipo": "technique-card",
       "nome": "Sentidos Aguçados",
-      "corpo": "<h4>Sentidos Aguçados</h4><span class=\"tech-meta\">1 Ação • 2 Stamina</span><p>Você pode rolar Percepção com 1 treinamento a mais. Adicionalmente, não pode ser <em>Desprevenido</em> por criaturas que você vê.</p>"
+      "corpo": "<h4>Sentidos Aguçados</h4><span class=\"tech-meta\">1 Ação • 2 Stamina</span><p>Você pode rolar Percepção com 1 treinamento a mais. Adicionalmente, não pode ser <em>Desprevenido</em> por criaturas que você vê.</p>",
+      "grupo": "geral",
+      "ramo": null,
+      "tier": null,
+      "custoTexto": "1 Ação • 2 Stamina"
     },
     {
       "id": "artilheiro-batida-tatica",
       "tipo": "technique-card",
       "nome": "Batida Tática",
-      "corpo": "<h4>Batida Tática</h4><span class=\"tech-meta\">1 Ação • 2 Stamina</span><p>Você pode se mover neste turno sem perder concentração e sem provocar ataques de oportunidade.</p>"
+      "corpo": "<h4>Batida Tática</h4><span class=\"tech-meta\">1 Ação • 2 Stamina</span><p>Você pode se mover neste turno sem perder concentração e sem provocar ataques de oportunidade.</p>",
+      "grupo": "geral",
+      "ramo": null,
+      "tier": null,
+      "custoTexto": "1 Ação • 2 Stamina"
     },
     {
       "id": "artilheiro-tiro-camuflado",
       "tipo": "technique-card",
       "nome": "Tiro Camuflado",
-      "corpo": "<h4>Tiro Camuflado</h4><span class=\"tech-meta\">1 Ação • 3 Stamina</span><p>Deve estar escondido para ativar. Seu próximo ataque é crítico ao acertar.</p>"
+      "corpo": "<h4>Tiro Camuflado</h4><span class=\"tech-meta\">1 Ação • 3 Stamina</span><p>Deve estar escondido para ativar. Seu próximo ataque é crítico ao acertar.</p>",
+      "grupo": "geral",
+      "ramo": null,
+      "tier": null,
+      "custoTexto": "1 Ação • 3 Stamina"
     },
     {
       "id": "artilheiro-tiro-imobilizador",
       "tipo": "technique-card",
       "nome": "Tiro Imobilizador",
-      "corpo": "<h4>Tiro Imobilizador</h4><span class=\"tech-meta\">1 Ação • 2 Stamina, 1 Conc.</span><p>Seu próximo ataque a distância neste turno causa a condição <em>Lento 1</em> caso o alvo falhe em um teste de Fortitude.</p>"
+      "corpo": "<h4>Tiro Imobilizador</h4><span class=\"tech-meta\">1 Ação • 2 Stamina, 1 Conc.</span><p>Seu próximo ataque a distância neste turno causa a condição <em>Lento 1</em> caso o alvo falhe em um teste de Fortitude.</p>",
+      "grupo": "geral",
+      "ramo": null,
+      "tier": null,
+      "custoTexto": "1 Ação • 2 Stamina, 1 Conc."
     },
     {
       "id": "artilheiro-tiro-duplo",
       "tipo": "technique-card",
       "nome": "Tiro Duplo",
-      "corpo": "<h4>Tiro Duplo</h4><span class=\"tech-meta\">1 Ação • 3 Stamina, 2 Conc.</span><p>Seu próximo ataque não tem penalidade de multi-ataque.</p>"
+      "corpo": "<h4>Tiro Duplo</h4><span class=\"tech-meta\">1 Ação • 3 Stamina, 2 Conc.</span><p>Seu próximo ataque não tem penalidade de multi-ataque.</p>",
+      "grupo": "geral",
+      "ramo": null,
+      "tier": null,
+      "custoTexto": "1 Ação • 3 Stamina, 2 Conc."
     },
     {
       "id": "artilheiro-tiro-preciso",
       "tipo": "technique-card",
       "nome": "Tiro Preciso",
-      "corpo": "<h4>Tiro Preciso</h4><span class=\"tech-meta\">1 Ação • 2 Stamina, 2 Conc.</span><p>Seu próximo ataque a distância neste turno tem +2 Atacar e Causa +1d6 de dano.</p>"
+      "corpo": "<h4>Tiro Preciso</h4><span class=\"tech-meta\">1 Ação • 2 Stamina, 2 Conc.</span><p>Seu próximo ataque a distância neste turno tem +2 Atacar e Causa +1d6 de dano.</p>",
+      "grupo": "geral",
+      "ramo": null,
+      "tier": null,
+      "custoTexto": "1 Ação • 2 Stamina, 2 Conc."
     },
     {
       "id": "artilheiro-foco-absoluto",
       "tipo": "technique-card",
       "nome": "Foco Absoluto",
-      "corpo": "<h4>Foco Absoluto</h4><span class=\"tech-meta\">1 Ação • 3 Stamina, 5 Conc.</span><p>Seu próximo ataque tem Vantagem e Margem de Ameaça +1.</p>"
+      "corpo": "<h4>Foco Absoluto</h4><span class=\"tech-meta\">1 Ação • 3 Stamina, 5 Conc.</span><p>Seu próximo ataque tem Vantagem e Margem de Ameaça +1.</p>",
+      "grupo": "geral",
+      "ramo": null,
+      "tier": null,
+      "custoTexto": "1 Ação • 3 Stamina, 5 Conc."
     },
     {
       "id": "artilheiro-tiro-na-cabeca",
       "tipo": "technique-card",
       "nome": "Tiro na Cabeça",
-      "corpo": "<h4>Tiro na Cabeça</h4><span class=\"tech-meta\">2 Ações • 3 Stamina, X Conc.</span><p>Seu próximo ataque causa +1d6 de dano por ponto de Concentração gasto.</p>"
+      "corpo": "<h4>Tiro na Cabeça</h4><span class=\"tech-meta\">2 Ações • 3 Stamina, X Conc.</span><p>Seu próximo ataque causa +1d6 de dano por ponto de Concentração gasto.</p>",
+      "grupo": "geral",
+      "ramo": null,
+      "tier": null,
+      "custoTexto": "2 Ações • 3 Stamina, X Conc."
     },
     {
       "id": "artilheiro-ponto-vital",
       "tipo": "technique-card",
       "nome": "Ponto Vital",
-      "corpo": "<h4>Ponto Vital</h4><span class=\"tech-meta\">Reação • 3 Stamina, 3 Conc.</span><p>Ao acertar um ataque critico, adiciona +2d6 de Dano.</p>"
+      "corpo": "<h4>Ponto Vital</h4><span class=\"tech-meta\">Reação • 3 Stamina, 3 Conc.</span><p>Ao acertar um ataque critico, adiciona +2d6 de Dano.</p>",
+      "grupo": "geral",
+      "ramo": null,
+      "tier": null,
+      "custoTexto": "Reação • 3 Stamina, 3 Conc."
     },
     {
       "id": "artilheiro-tiro-de-reflexo",
       "tipo": "technique-card",
       "nome": "Tiro de Reflexo",
-      "corpo": "<h4>Tiro de Reflexo</h4><span class=\"tech-meta\">Reação • 3 Stamina, 5 Conc.</span><p>Quando um inimigo se mover dentro do seu alcance, você pode atacar ele como uma reação.</p>"
+      "corpo": "<h4>Tiro de Reflexo</h4><span class=\"tech-meta\">Reação • 3 Stamina, 5 Conc.</span><p>Quando um inimigo se mover dentro do seu alcance, você pode atacar ele como uma reação.</p>",
+      "grupo": "geral",
+      "ramo": null,
+      "tier": null,
+      "custoTexto": "Reação • 3 Stamina, 5 Conc."
     },
     {
       "id": "artilheiro-inquieto",
       "tipo": "marca-card",
       "nome": "Inquieto",
-      "corpo": "<div class=\"marca-header vendaval\"><h4>Inquieto</h4><div class=\"quote\">\"Você sempre está andando, correndo, fugindo. Isso te deixa inquieto\"</div></div><div class=\"marca-body\"><p>Você não consegue ficar parado. Seus dedos sempre se movem, seus olhos sempre varrem o ambiente, seus pés sempre prontos para o próximo passo. Outros te acham nervoso, ansioso. Você sabe que está apenas preparado.</p><div class=\"marca-effect\"><p>Para cada combate que você é o primeiro a jogar(Maior iniciativa), ganha +1 permanente em Iniciativa.<br>Ao chegar em +5, essa habilidade fica supérflua.</p></div><div class=\"marca-effect\"><p>Ao rolar Iniciativa, se você tirar o maior valor do combate, você ganha +2 Concentração no início do primeiro turno.</p></div></div>"
+      "corpo": "<div class=\"marca-header vendaval\"><h4>Inquieto</h4><div class=\"quote\">\"Você sempre está andando, correndo, fugindo. Isso te deixa inquieto\"</div></div><div class=\"marca-body\"><p>Você não consegue ficar parado. Seus dedos sempre se movem, seus olhos sempre varrem o ambiente, seus pés sempre prontos para o próximo passo. Outros te acham nervoso, ansioso. Você sabe que está apenas preparado.</p><div class=\"marca-effect\"><p>Para cada combate que você é o primeiro a jogar(Maior iniciativa), ganha +1 permanente em Iniciativa.<br>Ao chegar em +5, essa habilidade fica supérflua.</p></div><div class=\"marca-effect\"><p>Ao rolar Iniciativa, se você tirar o maior valor do combate, você ganha +2 Concentração no início do primeiro turno.</p></div></div>",
+      "grupo": "marca",
+      "ramo": "artilheiro-ramo-do-vendaval",
+      "tier": null,
+      "custoTexto": null
     },
     {
       "id": "artilheiro-colecionador-de-laminas",
       "tipo": "marca-card",
       "nome": "Colecionador de Lâminas",
-      "corpo": "<div class=\"marca-header vendaval\"><h4>Colecionador de Lâminas</h4><div class=\"quote\">\"Cada faca tem uma história. Cada história tem um corpo.\"</div></div><div class=\"marca-body\"><p>Você coleciona armas de arremesso obsessivamente. Cada lâmina tem um nome, uma origem, um propósito.</p><div class=\"marca-effect\"><p>Suas lâminas são naturalmente resistentes, você pode gastar 5 minutos após um combate recuperando 1 <strong>Conjunto de Arremesso</strong>.</p></div><div class=\"marca-effect\"><p>Você pode batizar uma <strong>Arma de Arremesso</strong> em um descanso longo. Você ganha +1 ao atacar com ela.</p></div></div>"
+      "corpo": "<div class=\"marca-header vendaval\"><h4>Colecionador de Lâminas</h4><div class=\"quote\">\"Cada faca tem uma história. Cada história tem um corpo.\"</div></div><div class=\"marca-body\"><p>Você coleciona armas de arremesso obsessivamente. Cada lâmina tem um nome, uma origem, um propósito.</p><div class=\"marca-effect\"><p>Suas lâminas são naturalmente resistentes, você pode gastar 5 minutos após um combate recuperando 1 <strong>Conjunto de Arremesso</strong>.</p></div><div class=\"marca-effect\"><p>Você pode batizar uma <strong>Arma de Arremesso</strong> em um descanso longo. Você ganha +1 ao atacar com ela.</p></div></div>",
+      "grupo": "marca",
+      "ramo": "artilheiro-ramo-do-vendaval",
+      "tier": null,
+      "custoTexto": null
     },
     {
       "id": "artilheiro-vicio-de-poder",
       "tipo": "marca-card",
       "nome": "Vício de Poder",
-      "corpo": "<div class=\"marca-header polvora\"><h4>Vício de Poder</h4><div class=\"quote\">\"O cheiro de pólvora queimada. O zumbido nos ouvidos. O silêncio depois. Nada se compara.\"</div></div><div class=\"marca-body\"><p>Você se acomodou com a presença de sua arma, ela te engrandece e te faz sentir poderoso.</p><div class=\"marca-effect\"><p>Para cada 5 criaturas que você matou com armas à distância, ganha +1 permanente em Atacar.<br>Ao chegar em +5, essa habilidade fica supérflua.</p></div><div class=\"marca-effect\"><p>Se acertar um crítico com uma arma a distância você recupera 1 de Stamina.</p></div><div class=\"marca-effect\"><p>Ao passar <strong>24 horas</strong> sem disparar uma arma a distância, você fica <em>irritado</em>: -1 em testes sociais até disparar novamente.</p></div></div>"
+      "corpo": "<div class=\"marca-header polvora\"><h4>Vício de Poder</h4><div class=\"quote\">\"O cheiro de pólvora queimada. O zumbido nos ouvidos. O silêncio depois. Nada se compara.\"</div></div><div class=\"marca-body\"><p>Você se acomodou com a presença de sua arma, ela te engrandece e te faz sentir poderoso.</p><div class=\"marca-effect\"><p>Para cada 5 criaturas que você matou com armas à distância, ganha +1 permanente em Atacar.<br>Ao chegar em +5, essa habilidade fica supérflua.</p></div><div class=\"marca-effect\"><p>Se acertar um crítico com uma arma a distância você recupera 1 de Stamina.</p></div><div class=\"marca-effect\"><p>Ao passar <strong>24 horas</strong> sem disparar uma arma a distância, você fica <em>irritado</em>: -1 em testes sociais até disparar novamente.</p></div></div>",
+      "grupo": "marca",
+      "ramo": "artilheiro-ramo-da-polvora",
+      "tier": null,
+      "custoTexto": null
     },
     {
       "id": "artilheiro-conhecedor-de-armas-de-fogo",
       "tipo": "marca-card",
       "nome": "Conhecedor de Armas de Fogo",
-      "corpo": "<div class=\"marca-header polvora\"><h4>Conhecedor de Armas de Fogo</h4><div class=\"quote\">\"Armas de fogo acabaram de emergir como tecnologia de ponta. Você está por dentro.\"</div></div><div class=\"marca-body\"><p>Você conhece armas de fogo e o poder de destruição que elas são capazes de causar.</p><div class=\"marca-effect\"><p>Você tem +2 em testes de Vontade.</p></div><div class=\"marca-effect\"><p>Você conhece contatos que vendem armas de fogo e munições especiais em cada lugar do mundo.</p></div></div>"
+      "corpo": "<div class=\"marca-header polvora\"><h4>Conhecedor de Armas de Fogo</h4><div class=\"quote\">\"Armas de fogo acabaram de emergir como tecnologia de ponta. Você está por dentro.\"</div></div><div class=\"marca-body\"><p>Você conhece armas de fogo e o poder de destruição que elas são capazes de causar.</p><div class=\"marca-effect\"><p>Você tem +2 em testes de Vontade.</p></div><div class=\"marca-effect\"><p>Você conhece contatos que vendem armas de fogo e munições especiais em cada lugar do mundo.</p></div></div>",
+      "grupo": "marca",
+      "ramo": "artilheiro-ramo-da-polvora",
+      "tier": null,
+      "custoTexto": null
     },
     {
       "id": "artilheiro-paciencia-inabalavel",
       "tipo": "marca-card",
       "nome": "Paciência Inabalável",
-      "corpo": "<div class=\"marca-header predador\"><h4>Paciência Inabalável</h4><div class=\"quote\">\"Você esperou dias por um único tiro. Esperaria semanas se necessário.\"</div></div><div class=\"marca-body\"><p>O tempo não te afeta como afeta os outros. Você pode ficar imóvel por horas, respirando lentamente, observando.</p><div class=\"marca-effect\"><p>Para cada <strong>5 combates</strong> onde você acumulou 6+ <strong>Concentração</strong>, ganha +1 permanente em <em>Percepção</em>.<br>Ao chegar em +5, essa habilidade fica supérflua.</p></div><div class=\"marca-effect\"><p>Ao ficar imóvel por 1 turno inteiro, você ganha Vantagem no próximo ataque à distância.</p></div><div class=\"marca-effect\"><p>Você tem <strong>+</strong>2 em testes de Sobrevivência.</p></div></div>"
+      "corpo": "<div class=\"marca-header predador\"><h4>Paciência Inabalável</h4><div class=\"quote\">\"Você esperou dias por um único tiro. Esperaria semanas se necessário.\"</div></div><div class=\"marca-body\"><p>O tempo não te afeta como afeta os outros. Você pode ficar imóvel por horas, respirando lentamente, observando.</p><div class=\"marca-effect\"><p>Para cada <strong>5 combates</strong> onde você acumulou 6+ <strong>Concentração</strong>, ganha +1 permanente em <em>Percepção</em>.<br>Ao chegar em +5, essa habilidade fica supérflua.</p></div><div class=\"marca-effect\"><p>Ao ficar imóvel por 1 turno inteiro, você ganha Vantagem no próximo ataque à distância.</p></div><div class=\"marca-effect\"><p>Você tem <strong>+</strong>2 em testes de Sobrevivência.</p></div></div>",
+      "grupo": "marca",
+      "ramo": "artilheiro-ramo-do-predador",
+      "tier": null,
+      "custoTexto": null
     },
     {
       "id": "artilheiro-marca-no-alvo",
       "tipo": "marca-card",
       "nome": "Marca no Alvo",
-      "corpo": "<div class=\"marca-header predador\"><h4>Marca no Alvo</h4><div class=\"quote\">\"Você não esquece um rosto. Especialmente os que você ainda não acertou.\"</div></div><div class=\"marca-body\"><p>Cada alvo que escapa vive na sua mente. Você estuda seus movimentos, imagina o tiro perfeito, planeja o reencontro. Isso te torna um caçador implacável — e um pouco obcecado.</p><div class=\"marca-effect\"><p>Ao <strong>errar</strong> um ataque contra uma criatura, você pode \"marcá-la mentalmente\". Você tem <strong>+1 Atacar cumulativo</strong> contra ela (máx +3) até acertá-la ou ela morrer.</p></div><div class=\"marca-effect\"><p>Se uma criatura marcada <strong>fugir</strong> do combate, você sabe a <strong>direção geral</strong> que ela foi (até 1km).</p></div><div class=\"marca-effect\"><p>Você tem <strong>+2 em Investigação</strong> para encontrar informações sobre criaturas que você marcou.</p></div></div>"
+      "corpo": "<div class=\"marca-header predador\"><h4>Marca no Alvo</h4><div class=\"quote\">\"Você não esquece um rosto. Especialmente os que você ainda não acertou.\"</div></div><div class=\"marca-body\"><p>Cada alvo que escapa vive na sua mente. Você estuda seus movimentos, imagina o tiro perfeito, planeja o reencontro. Isso te torna um caçador implacável — e um pouco obcecado.</p><div class=\"marca-effect\"><p>Ao <strong>errar</strong> um ataque contra uma criatura, você pode \"marcá-la mentalmente\". Você tem <strong>+1 Atacar cumulativo</strong> contra ela (máx +3) até acertá-la ou ela morrer.</p></div><div class=\"marca-effect\"><p>Se uma criatura marcada <strong>fugir</strong> do combate, você sabe a <strong>direção geral</strong> que ela foi (até 1km).</p></div><div class=\"marca-effect\"><p>Você tem <strong>+2 em Investigação</strong> para encontrar informações sobre criaturas que você marcou.</p></div></div>",
+      "grupo": "marca",
+      "ramo": "artilheiro-ramo-do-predador",
+      "tier": null,
+      "custoTexto": null
     },
     {
       "id": "artilheiro-maos-velozes",
       "tipo": "tech-card",
       "nome": "Mãos Velozes",
-      "corpo": "<div class=\"tech-card-header vendaval\"><h4>Mãos Velozes</h4><span class=\"cost\">Passiva</span></div><div class=\"tech-card-body\"><ul><li>Você se torna <strong>Treinado</strong> em <em>Atacar</em>. Se já for <strong>Treinado</strong>, se torna <strong>Experiente</strong> e assim por diante.</li><li>Ao usar <strong>Armas de Arremesso</strong>:<ul><li>Você pode sacar esse tipo de arma como ação livre.</li><li>A penalidade de multi-ataque reduz para -2 em -2. (Ao invés de -5)</li><li>Ao acertar 2+ ataques no mesmo turno e no mesmo alvo, você causa +1d6 de dano Perfurante.</li></ul></li><li>Você pode fabricar <strong>Conjuntos de Arremesso</strong> em descansos curtos e longos.<ul><li>Descanso Curto<ul><li>Como a ação do seu descanso curto, você pode fabricar 1 <strong>Conjunto de Arremesso</strong>.</li></ul></li><li>Descanso Longo<ul><li>Ao realizar um descanso longo, você pode fabricar 2 <strong>Conjunto de Arremesso</strong>.</li></ul></li></ul></li></ul></div>"
+      "corpo": "<div class=\"tech-card-header vendaval\"><h4>Mãos Velozes</h4><span class=\"cost\">Passiva</span></div><div class=\"tech-card-body\"><ul><li>Você se torna <strong>Treinado</strong> em <em>Atacar</em>. Se já for <strong>Treinado</strong>, se torna <strong>Experiente</strong> e assim por diante.</li><li>Ao usar <strong>Armas de Arremesso</strong>:<ul><li>Você pode sacar esse tipo de arma como ação livre.</li><li>A penalidade de multi-ataque reduz para -2 em -2. (Ao invés de -5)</li><li>Ao acertar 2+ ataques no mesmo turno e no mesmo alvo, você causa +1d6 de dano Perfurante.</li></ul></li><li>Você pode fabricar <strong>Conjuntos de Arremesso</strong> em descansos curtos e longos.<ul><li>Descanso Curto<ul><li>Como a ação do seu descanso curto, você pode fabricar 1 <strong>Conjunto de Arremesso</strong>.</li></ul></li><li>Descanso Longo<ul><li>Ao realizar um descanso longo, você pode fabricar 2 <strong>Conjunto de Arremesso</strong>.</li></ul></li></ul></li></ul></div>",
+      "grupo": "ramo",
+      "ramo": "artilheiro-ramo-do-vendaval",
+      "tier": 1,
+      "custoTexto": "Passiva"
     },
     {
       "id": "artilheiro-passo-do-vento",
       "tipo": "tech-card",
       "nome": "Passo do Vento",
-      "corpo": "<div class=\"tech-card-header vendaval\"><h4>Passo do Vento</h4><span class=\"cost\">Passiva</span></div><div class=\"tech-card-body\"><ul><li>Ao utilizar 1 ação para se movimentar, você não perde mais <strong>Concentração</strong>.</li><li>Ao <strong>acertar um ataque</strong>, você pode se mover 1,5 m como <strong>ação livre</strong>.</li><li>Você adiciona sua <strong>Concentração</strong> a sua <strong>Evasão</strong>.</li></ul></div>"
+      "corpo": "<div class=\"tech-card-header vendaval\"><h4>Passo do Vento</h4><span class=\"cost\">Passiva</span></div><div class=\"tech-card-body\"><ul><li>Ao utilizar 1 ação para se movimentar, você não perde mais <strong>Concentração</strong>.</li><li>Ao <strong>acertar um ataque</strong>, você pode se mover 1,5 m como <strong>ação livre</strong>.</li><li>Você adiciona sua <strong>Concentração</strong> a sua <strong>Evasão</strong>.</li></ul></div>",
+      "grupo": "ramo",
+      "ramo": "artilheiro-ramo-do-vendaval",
+      "tier": 1,
+      "custoTexto": "Passiva"
     },
     {
       "id": "artilheiro-vendaval-de-aco",
       "tipo": "tech-card",
       "nome": "Vendaval de Aço",
-      "corpo": "<div class=\"tech-card-header vendaval\"><h4>Vendaval de Aço</h4><span class=\"cost\">2 Ações, 5 Stamina</span></div><div class=\"tech-card-body\"><ul><li>Faça 3 Ataques com Armas de Arremesso sem penalidade de multi-ataque.</li><li>Se 2 ou mais ataques acertarem o mesmo alvo, ele ganha <em>Sangramento 1</em>.</li></ul></div>"
+      "corpo": "<div class=\"tech-card-header vendaval\"><h4>Vendaval de Aço</h4><span class=\"cost\">2 Ações, 5 Stamina</span></div><div class=\"tech-card-body\"><ul><li>Faça 3 Ataques com Armas de Arremesso sem penalidade de multi-ataque.</li><li>Se 2 ou mais ataques acertarem o mesmo alvo, ele ganha <em>Sangramento 1</em>.</li></ul></div>",
+      "grupo": "ramo",
+      "ramo": "artilheiro-ramo-do-vendaval",
+      "tier": 1,
+      "custoTexto": "2 Ações, 5 Stamina"
     },
     {
       "id": "artilheiro-mao-de-ferro",
       "tipo": "tech-card",
       "nome": "Mão de Ferro",
-      "corpo": "<div class=\"tech-card-header polvora\"><h4>Mão de Ferro</h4><span class=\"cost\">Passiva</span></div><div class=\"tech-card-body\"><ul><li>Você se torna <strong>Treinado</strong> em Atacar. Se já for <strong>Treinado</strong>, se torna <strong>Experiente</strong> e assim por diante.</li><li>Ao usar <strong>Armas de Fogo</strong>:<ul><li>Seus ataques causa +2 de dano Perfurante.</li><li>Seus ataques ignoram 2 de Armadura(Ar).</li></ul></li><li>Você pode fabricar <strong>munições de fogo</strong> em descansos curtos e longos.<ul><li>Descanso Curto<ul><li>Como a ação do seu descanso curto, você pode fabricar 1 <strong>Munição de Fogo</strong>.</li></ul></li><li>Descanso Longo<ul><li>Ao realizar um descanso longo, você pode fabricar 2 <strong>Munições de Fogo</strong>.</li></ul></li></ul></li></ul></div>"
+      "corpo": "<div class=\"tech-card-header polvora\"><h4>Mão de Ferro</h4><span class=\"cost\">Passiva</span></div><div class=\"tech-card-body\"><ul><li>Você se torna <strong>Treinado</strong> em Atacar. Se já for <strong>Treinado</strong>, se torna <strong>Experiente</strong> e assim por diante.</li><li>Ao usar <strong>Armas de Fogo</strong>:<ul><li>Seus ataques causa +2 de dano Perfurante.</li><li>Seus ataques ignoram 2 de Armadura(Ar).</li></ul></li><li>Você pode fabricar <strong>munições de fogo</strong> em descansos curtos e longos.<ul><li>Descanso Curto<ul><li>Como a ação do seu descanso curto, você pode fabricar 1 <strong>Munição de Fogo</strong>.</li></ul></li><li>Descanso Longo<ul><li>Ao realizar um descanso longo, você pode fabricar 2 <strong>Munições de Fogo</strong>.</li></ul></li></ul></li></ul></div>",
+      "grupo": "ramo",
+      "ramo": "artilheiro-ramo-da-polvora",
+      "tier": 1,
+      "custoTexto": "Passiva"
     },
     {
       "id": "artilheiro-presenca-da-polvora",
       "tipo": "tech-card",
       "nome": "Presença da Pólvora",
-      "corpo": "<div class=\"tech-card-header polvora\"><h4>Presença da Pólvora</h4><span class=\"cost\">Passiva</span></div><div class=\"tech-card-body\"><ul><li>Você se torna <strong>Treinado</strong> em <em>Intimidação</em>. Se já for treinado se torna <strong>Experiente</strong> e assim por diante.</li><li>Ao acertar um ataque com arma de fogo, criaturas em até 3 m do alvo (Exceto o alvo) devem passar em um teste de Vontade ou ficam <em>Amedrontadas</em> de você por 1 rodada. Ao suceder a criatura fica imune a esse efeito. Com 5 ou mais <strong>Concentração</strong> o efeito também afeta o alvo.</li></ul></div>"
+      "corpo": "<div class=\"tech-card-header polvora\"><h4>Presença da Pólvora</h4><span class=\"cost\">Passiva</span></div><div class=\"tech-card-body\"><ul><li>Você se torna <strong>Treinado</strong> em <em>Intimidação</em>. Se já for treinado se torna <strong>Experiente</strong> e assim por diante.</li><li>Ao acertar um ataque com arma de fogo, criaturas em até 3 m do alvo (Exceto o alvo) devem passar em um teste de Vontade ou ficam <em>Amedrontadas</em> de você por 1 rodada. Ao suceder a criatura fica imune a esse efeito. Com 5 ou mais <strong>Concentração</strong> o efeito também afeta o alvo.</li></ul></div>",
+      "grupo": "ramo",
+      "ramo": "artilheiro-ramo-da-polvora",
+      "tier": 1,
+      "custoTexto": "Passiva"
     },
     {
       "id": "artilheiro-rajada-de-tiros",
       "tipo": "tech-card",
       "nome": "Rajada de Tiros",
-      "corpo": "<div class=\"tech-card-header polvora\"><h4>Rajada de Tiros</h4><span class=\"cost\">1 Ação, 3 Stamina</span></div><div class=\"tech-card-body\"><ul><li>Faça 2 Ataques com uma Arma de Fogo sem penalidade de multi-ataque em até 2 alvos com até 3 m entre sí.</li><li>Se 2 ataques acertarem o mesmo alvo, ele deve passar em <em>Fortitude</em> ou fica <em>Atordoado</em> até o fim do próximo turno dele.</li></ul></div>"
+      "corpo": "<div class=\"tech-card-header polvora\"><h4>Rajada de Tiros</h4><span class=\"cost\">1 Ação, 3 Stamina</span></div><div class=\"tech-card-body\"><ul><li>Faça 2 Ataques com uma Arma de Fogo sem penalidade de multi-ataque em até 2 alvos com até 3 m entre sí.</li><li>Se 2 ataques acertarem o mesmo alvo, ele deve passar em <em>Fortitude</em> ou fica <em>Atordoado</em> até o fim do próximo turno dele.</li></ul></div>",
+      "grupo": "ramo",
+      "ramo": "artilheiro-ramo-da-polvora",
+      "tier": 1,
+      "custoTexto": "1 Ação, 3 Stamina"
     },
     {
       "id": "artilheiro-olho-do-arqueiro",
       "tipo": "tech-card",
       "nome": "Olho do Arqueiro",
-      "corpo": "<div class=\"tech-card-header predador\"><h4>Olho do Arqueiro</h4><span class=\"cost\">Passiva</span></div><div class=\"tech-card-body\"><ul><li>Você se torna <strong>Treinado</strong> em <em>Atacar</em>. Se já for treinado se torna <strong>Experiente</strong> e assim por diante.</li><li>Ao usar <strong>Arcos</strong> ou <strong>Bestas</strong>:<ul><li>O Alcance da arma aumenta em +6 m.</li><li>Ao mirar, seu próximo ataque com arcos ou bestas ganham +2 atacar.</li></ul></li><li>Você pode fabricar <strong>flechas e virotes</strong> em descansos curtos e longos.<ul><li>Descanso Curto<ul><li>Como a ação do seu descanso curto, você pode fabricar 1 munição de <strong>Flecha ou Virote</strong>.</li></ul></li><li>Descanso Longo<ul><li>Ao realizar um descanso longo, você pode fabricar 2 munições de <strong>Flecha ou Virote</strong>.</li></ul></li></ul></li></ul></div>"
+      "corpo": "<div class=\"tech-card-header predador\"><h4>Olho do Arqueiro</h4><span class=\"cost\">Passiva</span></div><div class=\"tech-card-body\"><ul><li>Você se torna <strong>Treinado</strong> em <em>Atacar</em>. Se já for treinado se torna <strong>Experiente</strong> e assim por diante.</li><li>Ao usar <strong>Arcos</strong> ou <strong>Bestas</strong>:<ul><li>O Alcance da arma aumenta em +6 m.</li><li>Ao mirar, seu próximo ataque com arcos ou bestas ganham +2 atacar.</li></ul></li><li>Você pode fabricar <strong>flechas e virotes</strong> em descansos curtos e longos.<ul><li>Descanso Curto<ul><li>Como a ação do seu descanso curto, você pode fabricar 1 munição de <strong>Flecha ou Virote</strong>.</li></ul></li><li>Descanso Longo<ul><li>Ao realizar um descanso longo, você pode fabricar 2 munições de <strong>Flecha ou Virote</strong>.</li></ul></li></ul></li></ul></div>",
+      "grupo": "ramo",
+      "ramo": "artilheiro-ramo-do-predador",
+      "tier": 1,
+      "custoTexto": "Passiva"
     },
     {
       "id": "artilheiro-flechas-do-predador",
       "tipo": "tech-card",
       "nome": "Flechas do Predador",
-      "corpo": "<div class=\"tech-card-header predador\"><h4>Flechas do Predador</h4><span class=\"cost\">Passiva</span></div><div class=\"tech-card-body\"><ul><li>Ao atacar com <strong>arco ou besta</strong>, você pode escolher o tipo de <strong>Flecha</strong> ou <strong>Virote</strong>. Cada tipo tem um efeito adicional ao acertar:<ul><li>Perfurante → Ignora 3 de Armadura(Ar) Adicional.</li><li>Farpada → Alvo recebe <em>Sangramento 1.</em></li><li>Explosão → Alvo é empurrado 1,5 m.</li><li>Incendiária → Alvo recebe 1d4 de dano de <strong>Fogo</strong> Adicional.</li></ul></li></ul></div>"
+      "corpo": "<div class=\"tech-card-header predador\"><h4>Flechas do Predador</h4><span class=\"cost\">Passiva</span></div><div class=\"tech-card-body\"><ul><li>Ao atacar com <strong>arco ou besta</strong>, você pode escolher o tipo de <strong>Flecha</strong> ou <strong>Virote</strong>. Cada tipo tem um efeito adicional ao acertar:<ul><li>Perfurante → Ignora 3 de Armadura(Ar) Adicional.</li><li>Farpada → Alvo recebe <em>Sangramento 1.</em></li><li>Explosão → Alvo é empurrado 1,5 m.</li><li>Incendiária → Alvo recebe 1d4 de dano de <strong>Fogo</strong> Adicional.</li></ul></li></ul></div>",
+      "grupo": "ramo",
+      "ramo": "artilheiro-ramo-do-predador",
+      "tier": 1,
+      "custoTexto": "Passiva"
     },
     {
       "id": "artilheiro-tiro-carregado",
       "tipo": "tech-card",
       "nome": "Tiro Carregado",
-      "corpo": "<div class=\"tech-card-header predador\"><h4>Tiro Carregado</h4><span class=\"cost\">1-3 Ações, 2 Stamina</span></div><div class=\"tech-card-body\"><ul><li>Você prepara um tiro que escala com a quantidade de ações que você utiliza:<ul><li>1 Ação → +1d6 Dano Perfurante</li><li>2 Ações → +2d6 Dano Perfurante</li><li>3 Ações → +3d6 Dano Perfurante, Margem de Crítico +1</li></ul></li><li>Você ganha +1 Concentração por ação gasta.</li></ul></div>"
+      "corpo": "<div class=\"tech-card-header predador\"><h4>Tiro Carregado</h4><span class=\"cost\">1-3 Ações, 2 Stamina</span></div><div class=\"tech-card-body\"><ul><li>Você prepara um tiro que escala com a quantidade de ações que você utiliza:<ul><li>1 Ação → +1d6 Dano Perfurante</li><li>2 Ações → +2d6 Dano Perfurante</li><li>3 Ações → +3d6 Dano Perfurante, Margem de Crítico +1</li></ul></li><li>Você ganha +1 Concentração por ação gasta.</li></ul></div>",
+      "grupo": "ramo",
+      "ramo": "artilheiro-ramo-do-predador",
+      "tier": 1,
+      "custoTexto": "1-3 Ações, 2 Stamina"
     },
     {
       "id": "artilheiro-projetil-envenenado",
       "tipo": "tech-card",
       "nome": "Projétil Envenenado",
-      "corpo": "<div class=\"tech-card-header vendaval\"><h4>Projétil Envenenado</h4><span class=\"cost\">Passiva</span></div><div class=\"tech-card-body\"><ul><li>Durante um descanso curto, você pode aplicar <strong>veneno</strong> em até <strong>5 munições</strong> (flechas, virotes, munições de fogo, ou armas de arremesso).</li><li>Ao acertar com munição envenenada, o alvo deve passar em <strong>Fortitude</strong> ou recebe <em>Envenenamento</em> por <strong>2 rodadas</strong>.<br>Com 5<strong>+ Concentração</strong>, o alvo tem <strong>Desvantagem</strong> no teste.</li></ul></div>"
+      "corpo": "<div class=\"tech-card-header vendaval\"><h4>Projétil Envenenado</h4><span class=\"cost\">Passiva</span></div><div class=\"tech-card-body\"><ul><li>Durante um descanso curto, você pode aplicar <strong>veneno</strong> em até <strong>5 munições</strong> (flechas, virotes, munições de fogo, ou armas de arremesso).</li><li>Ao acertar com munição envenenada, o alvo deve passar em <strong>Fortitude</strong> ou recebe <em>Envenenamento</em> por <strong>2 rodadas</strong>.<br>Com 5<strong>+ Concentração</strong>, o alvo tem <strong>Desvantagem</strong> no teste.</li></ul></div>",
+      "grupo": "ramo",
+      "ramo": "artilheiro-ramo-do-vendaval",
+      "tier": 2,
+      "custoTexto": "Passiva"
     },
     {
       "id": "artilheiro-danca-da-morte",
       "tipo": "tech-card",
       "nome": "Dança da Morte",
-      "corpo": "<div class=\"tech-card-header vendaval\"><h4>Dança da Morte</h4><span class=\"cost\">1 Ação, 4 Stamina, 3 Conc.</span></div><div class=\"tech-card-body\"><ul><li>Até o inicio do seu próximo turno:<ul><li>Você gasta sua reação, para fazer 1 Ataque à Distância como ação livre sempre que uma criatura se mover no seu alcance.</li><li>Se acertar 3 ou mais <strong>ataques</strong> durante a <strong>dança</strong>, recupera 2 <strong>Concentração</strong> adicional.</li></ul></li></ul></div>"
+      "corpo": "<div class=\"tech-card-header vendaval\"><h4>Dança da Morte</h4><span class=\"cost\">1 Ação, 4 Stamina, 3 Conc.</span></div><div class=\"tech-card-body\"><ul><li>Até o inicio do seu próximo turno:<ul><li>Você gasta sua reação, para fazer 1 Ataque à Distância como ação livre sempre que uma criatura se mover no seu alcance.</li><li>Se acertar 3 ou mais <strong>ataques</strong> durante a <strong>dança</strong>, recupera 2 <strong>Concentração</strong> adicional.</li></ul></li></ul></div>",
+      "grupo": "ramo",
+      "ramo": "artilheiro-ramo-do-vendaval",
+      "tier": 2,
+      "custoTexto": "1 Ação, 4 Stamina, 3 Conc."
     },
     {
       "id": "artilheiro-municao-especial",
       "tipo": "tech-card",
       "nome": "Munição Especial",
-      "corpo": "<div class=\"tech-card-header polvora\"><h4>Munição Especial</h4><span class=\"cost\">1 Ação, 2 Stamina</span></div><div class=\"tech-card-body\"><ul><li>Você aprendeu a fabricar munições especiais para <strong>qualquer arma à distância</strong>. As munições são de uso único (Ao invés de uso por cena):<ul><li>Explosiva → Criaturas em 1,5 m do alvo sofrem o dano original da flecha.</li><li>Perfurante → Ignora toda a armadura do alvo.</li><li>Atordoante → Alvo faz Fortitude ou fica Atordoado por 1 Rodada (Não causa dano)</li><li>Incendiária → Alvo fica <em>Em Chamas</em></li></ul></li><li>Durante um descanso curto, você pode criar 1 Munição Especial como ação de descanso curto e durante um descanso longo, você pode criar 2 munições Especiais. 3 munições especiais contam como 1 bugiganga.</li></ul></div>"
+      "corpo": "<div class=\"tech-card-header polvora\"><h4>Munição Especial</h4><span class=\"cost\">1 Ação, 2 Stamina</span></div><div class=\"tech-card-body\"><ul><li>Você aprendeu a fabricar munições especiais para <strong>qualquer arma à distância</strong>. As munições são de uso único (Ao invés de uso por cena):<ul><li>Explosiva → Criaturas em 1,5 m do alvo sofrem o dano original da flecha.</li><li>Perfurante → Ignora toda a armadura do alvo.</li><li>Atordoante → Alvo faz Fortitude ou fica Atordoado por 1 Rodada (Não causa dano)</li><li>Incendiária → Alvo fica <em>Em Chamas</em></li></ul></li><li>Durante um descanso curto, você pode criar 1 Munição Especial como ação de descanso curto e durante um descanso longo, você pode criar 2 munições Especiais. 3 munições especiais contam como 1 bugiganga.</li></ul></div>",
+      "grupo": "ramo",
+      "ramo": "artilheiro-ramo-da-polvora",
+      "tier": 2,
+      "custoTexto": "1 Ação, 2 Stamina"
     },
     {
       "id": "artilheiro-execucao",
       "tipo": "tech-card",
       "nome": "Execução",
-      "corpo": "<div class=\"tech-card-header polvora\"><h4>Execução</h4><span class=\"cost\">1 Ação, 4 Stamina, 5 Conc.</span></div><div class=\"tech-card-body\"><ul><li>Seu próximo ataque a distância:<ul><li>Recebe +4 Atacar.</li><li>O alvo recebe 2d6 de dano perfurante adicional se estiver com menos de 50% de Saúde. Adicionalmente, o ataque é crítico se o alvo estiver com menos de 25% de Saúde.</li></ul></li><li>Se esse ataque matar o alvo, você ganha +3 Concentração.</li></ul></div>"
+      "corpo": "<div class=\"tech-card-header polvora\"><h4>Execução</h4><span class=\"cost\">1 Ação, 4 Stamina, 5 Conc.</span></div><div class=\"tech-card-body\"><ul><li>Seu próximo ataque a distância:<ul><li>Recebe +4 Atacar.</li><li>O alvo recebe 2d6 de dano perfurante adicional se estiver com menos de 50% de Saúde. Adicionalmente, o ataque é crítico se o alvo estiver com menos de 25% de Saúde.</li></ul></li><li>Se esse ataque matar o alvo, você ganha +3 Concentração.</li></ul></div>",
+      "grupo": "ramo",
+      "ramo": "artilheiro-ramo-da-polvora",
+      "tier": 2,
+      "custoTexto": "1 Ação, 4 Stamina, 5 Conc."
     },
     {
       "id": "artilheiro-olhar-revelador",
       "tipo": "tech-card",
       "nome": "Olhar Revelador",
-      "corpo": "<div class=\"tech-card-header predador\"><h4>Olhar Revelador</h4><span class=\"cost\">Passiva</span></div><div class=\"tech-card-body\"><ul><li>Ao acertar a mesma criatura duas vezes você revela:<ul><li>Saúde aproximada da criatura.</li><li>Resistências e Vulnerabilidades.</li><li>Evasão.</li></ul></li><li>Ataques contra alvos revelados causam +1d6 de dano Perfurante.</li></ul></div>"
+      "corpo": "<div class=\"tech-card-header predador\"><h4>Olhar Revelador</h4><span class=\"cost\">Passiva</span></div><div class=\"tech-card-body\"><ul><li>Ao acertar a mesma criatura duas vezes você revela:<ul><li>Saúde aproximada da criatura.</li><li>Resistências e Vulnerabilidades.</li><li>Evasão.</li></ul></li><li>Ataques contra alvos revelados causam +1d6 de dano Perfurante.</li></ul></div>",
+      "grupo": "ramo",
+      "ramo": "artilheiro-ramo-do-predador",
+      "tier": 2,
+      "custoTexto": "Passiva"
     },
     {
       "id": "artilheiro-dois-cordeiros",
       "tipo": "tech-card",
       "nome": "Dois Cordeiros",
-      "corpo": "<div class=\"tech-card-header predador\"><h4>Dois Cordeiros</h4><span class=\"cost\">2 Ações, 4 Stamina, 4 Conc.</span></div><div class=\"tech-card-body\"><ul><li>Você dispara com uma arma a distância em uma linha reta de até 12 m.<ul><li>O Ataque atinge todas as criaturas na linha, faça um teste de atacar contra cada alvo separadamente.</li><li>A cada alvo atingido, o próximo toma dano reduzido em -2.</li></ul></li></ul></div>"
+      "corpo": "<div class=\"tech-card-header predador\"><h4>Dois Cordeiros</h4><span class=\"cost\">2 Ações, 4 Stamina, 4 Conc.</span></div><div class=\"tech-card-body\"><ul><li>Você dispara com uma arma a distância em uma linha reta de até 12 m.<ul><li>O Ataque atinge todas as criaturas na linha, faça um teste de atacar contra cada alvo separadamente.</li><li>A cada alvo atingido, o próximo toma dano reduzido em -2.</li></ul></li></ul></div>",
+      "grupo": "ramo",
+      "ramo": "artilheiro-ramo-do-predador",
+      "tier": 2,
+      "custoTexto": "2 Ações, 4 Stamina, 4 Conc."
     },
     {
       "id": "artilheiro-tempestade-de-aco",
       "tipo": "ultimate-card",
       "nome": "🌀 Tempestade de Aço",
-      "corpo": "<div class=\"ultimate-header vendaval\"><h4>🌀 Tempestade de Aço</h4><div><span class=\"ultimate-badge\">ULTIMATE</span><span style=\"margin-left:0.5rem;color:var(--text-muted);font-size:0.85rem;\">3 Ações, 6 Stamina, 5 Conc.</span></div></div><div class=\"ultimate-quote\">\"Vendaval de lâminas.\"</div><div class=\"ultimate-body\"><ul><li>Ativação: Você desencadeia uma rajada implacável de projéteis em um raio de 6 m em até 12 m de distância<ul><li>Faça <strong>1 ataque à distância</strong> contra cada criatura na área.</li><li>Criaturas atingidas devem passar em <em>Fortitude</em> ou ficam <em>Sangramento 2</em> e <em>Lento 1</em> por 2 rodadas.</li><li>Para cada <strong>2 criaturas atingidas</strong>, você pode fazer <strong>1 ataque adicional</strong> contra qualquer alvo na área.</li></ul></li></ul><div class=\"ultimate-cost\"><h5>💀 O Custo</h5><ul><li>Você gasta toda sua <strong>Concentração</strong>.</li><li>Você gasta 1 munição da arma utilizada.</li><li>Você perde 1d6 de éter.</li></ul></div></div>"
+      "corpo": "<div class=\"ultimate-header vendaval\"><h4>🌀 Tempestade de Aço</h4><div><span class=\"ultimate-badge\">ULTIMATE</span><span style=\"margin-left:0.5rem;color:var(--text-muted);font-size:0.85rem;\">3 Ações, 6 Stamina, 5 Conc.</span></div></div><div class=\"ultimate-quote\">\"Vendaval de lâminas.\"</div><div class=\"ultimate-body\"><ul><li>Ativação: Você desencadeia uma rajada implacável de projéteis em um raio de 6 m em até 12 m de distância<ul><li>Faça <strong>1 ataque à distância</strong> contra cada criatura na área.</li><li>Criaturas atingidas devem passar em <em>Fortitude</em> ou ficam <em>Sangramento 2</em> e <em>Lento 1</em> por 2 rodadas.</li><li>Para cada <strong>2 criaturas atingidas</strong>, você pode fazer <strong>1 ataque adicional</strong> contra qualquer alvo na área.</li></ul></li></ul><div class=\"ultimate-cost\"><h5>💀 O Custo</h5><ul><li>Você gasta toda sua <strong>Concentração</strong>.</li><li>Você gasta 1 munição da arma utilizada.</li><li>Você perde 1d6 de éter.</li></ul></div></div>",
+      "grupo": "ultimate",
+      "ramo": "artilheiro-ramo-do-vendaval",
+      "tier": 3,
+      "custoTexto": "3 Ações, 6 Stamina, 5 Conc."
     },
     {
       "id": "artilheiro-canhao",
       "tipo": "ultimate-card",
       "nome": "🔥 Canhão",
-      "corpo": "<div class=\"ultimate-header polvora\"><h4>🔥 Canhão</h4><div><span class=\"ultimate-badge\">ULTIMATE</span><span style=\"margin-left:0.5rem;color:var(--text-muted);font-size:0.85rem;\">2 Ações, 5 Stamina, 5 Conc.</span></div></div><div class=\"ultimate-quote\">\"Quando tudo falha, puxe o gatilho mais forte.\"</div><div class=\"ultimate-body\"><ul><li>Ativação: Você carrega seu disparo mais devastador que você armazenava, canalizando tudo que resta em um único momento de aniquilação:<ul><li>Faça um ataque à distância com <strong>+6 Atacar</strong></li><li>O ataque causa dano base da arma + 5d6 + sua Concentração atual(Após gastar com a ultimate) em d6s adicionais de dano Perfurante.</li><li>O alvo e todas as criaturas em até <strong>3m dele</strong> devem passar em Fortitude ou ficam <em>Atordoados</em> e <em>Surdos</em> por 1 rodada.</li><li>Se o alvo for morto por este ataque, criaturas em até 9m que presenciaram devem passar em <em>Vontade</em> ou ficam <em>Amedrontadas</em> de você até passar no teste no inicio de cada rodada.</li><li>Independente de acerto ou erro, o barulho pode ser ouvido a até <strong>1km</strong> de distância.</li></ul></li></ul><div class=\"ultimate-cost\"><h5>💀 O Custo</h5><ul><li>Você perde toda sua concentração.</li><li>Sua arma fica inutilizável até o próximo descanso longo.</li><li>Você perde 1d6 de Éter.</li></ul></div></div>"
+      "corpo": "<div class=\"ultimate-header polvora\"><h4>🔥 Canhão</h4><div><span class=\"ultimate-badge\">ULTIMATE</span><span style=\"margin-left:0.5rem;color:var(--text-muted);font-size:0.85rem;\">2 Ações, 5 Stamina, 5 Conc.</span></div></div><div class=\"ultimate-quote\">\"Quando tudo falha, puxe o gatilho mais forte.\"</div><div class=\"ultimate-body\"><ul><li>Ativação: Você carrega seu disparo mais devastador que você armazenava, canalizando tudo que resta em um único momento de aniquilação:<ul><li>Faça um ataque à distância com <strong>+6 Atacar</strong></li><li>O ataque causa dano base da arma + 5d6 + sua Concentração atual(Após gastar com a ultimate) em d6s adicionais de dano Perfurante.</li><li>O alvo e todas as criaturas em até <strong>3m dele</strong> devem passar em Fortitude ou ficam <em>Atordoados</em> e <em>Surdos</em> por 1 rodada.</li><li>Se o alvo for morto por este ataque, criaturas em até 9m que presenciaram devem passar em <em>Vontade</em> ou ficam <em>Amedrontadas</em> de você até passar no teste no inicio de cada rodada.</li><li>Independente de acerto ou erro, o barulho pode ser ouvido a até <strong>1km</strong> de distância.</li></ul></li></ul><div class=\"ultimate-cost\"><h5>💀 O Custo</h5><ul><li>Você perde toda sua concentração.</li><li>Sua arma fica inutilizável até o próximo descanso longo.</li><li>Você perde 1d6 de Éter.</li></ul></div></div>",
+      "grupo": "ultimate",
+      "ramo": "artilheiro-ramo-da-polvora",
+      "tier": 3,
+      "custoTexto": "2 Ações, 5 Stamina, 5 Conc."
     },
     {
       "id": "artilheiro-tiro-predador",
       "tipo": "ultimate-card",
       "nome": "🏹 Tiro Predador",
-      "corpo": "<div class=\"ultimate-header predador\"><h4>🏹 Tiro Predador</h4><div><span class=\"ultimate-badge\">ULTIMATE</span><span style=\"margin-left:0.5rem;color:var(--text-muted);font-size:0.85rem;\">3 Ações, 5 Stamina, 5 Conc.</span></div></div><div class=\"ultimate-quote\">\"Você pode fugir, mas não pode se esconder.\"</div><div class=\"ultimate-body\"><ul><li>Ativação: Você canaliza toda sua concentração, paciência e habilidade em um único disparo que transcende a precisão mortal.<ul><li>O ataque tem alcance ilimitado, desde que você saiba onde está o alvo.</li><li>O ataque ignora qualquer cobertura, Armadura(Ar), Armadura Específica(Ae) e Resistência.</li><li>O ataque é automaticamente crítico se acertar.</li><li>O alvo deve passar em um teste de <em>Fortitude</em>, ou sofre um dos seguintes efeitos a sua escolha:<ul><li>Execução: Se o alvo estiver com menos de 30% da vida, ele instantaneamente morre.</li><li>Incapacitar: O alvo fica <em>Paralisado</em> por 2 Rodadas.</li><li>Marcar: O alvo fica permanentemente Marcado, você sempre sabe sua localização e tem +4 Atacar contra ele até morrer.</li></ul></li></ul></li></ul><div class=\"ultimate-cost\"><h5>💀 O Custo</h5><ul><li>Você perde toda sua concentração.</li><li>Você recebe <em>Exaustão 1.</em></li><li>Você perde 1d6 de éter.</li></ul></div></div>"
+      "corpo": "<div class=\"ultimate-header predador\"><h4>🏹 Tiro Predador</h4><div><span class=\"ultimate-badge\">ULTIMATE</span><span style=\"margin-left:0.5rem;color:var(--text-muted);font-size:0.85rem;\">3 Ações, 5 Stamina, 5 Conc.</span></div></div><div class=\"ultimate-quote\">\"Você pode fugir, mas não pode se esconder.\"</div><div class=\"ultimate-body\"><ul><li>Ativação: Você canaliza toda sua concentração, paciência e habilidade em um único disparo que transcende a precisão mortal.<ul><li>O ataque tem alcance ilimitado, desde que você saiba onde está o alvo.</li><li>O ataque ignora qualquer cobertura, Armadura(Ar), Armadura Específica(Ae) e Resistência.</li><li>O ataque é automaticamente crítico se acertar.</li><li>O alvo deve passar em um teste de <em>Fortitude</em>, ou sofre um dos seguintes efeitos a sua escolha:<ul><li>Execução: Se o alvo estiver com menos de 30% da vida, ele instantaneamente morre.</li><li>Incapacitar: O alvo fica <em>Paralisado</em> por 2 Rodadas.</li><li>Marcar: O alvo fica permanentemente Marcado, você sempre sabe sua localização e tem +4 Atacar contra ele até morrer.</li></ul></li></ul></li></ul><div class=\"ultimate-cost\"><h5>💀 O Custo</h5><ul><li>Você perde toda sua concentração.</li><li>Você recebe <em>Exaustão 1.</em></li><li>Você perde 1d6 de éter.</li></ul></div></div>",
+      "grupo": "ultimate",
+      "ramo": "artilheiro-ramo-do-predador",
+      "tier": 3,
+      "custoTexto": "3 Ações, 5 Stamina, 5 Conc."
     }
   ]
 }

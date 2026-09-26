@@ -64,11 +64,18 @@ tools/sync_notion.py           motor de diff de snapshots do Notion
 tools/gerar_<pagina>.py        geradores JSON -> HTML (7)
 tools/gerar_webp.py            reencode das imagens
 tools/gerar_bazar.py           gerador do Bazar (CSV -> bazar.json com `inv` + página)
-tools/gerar_catalogo.py        data/*.json -> data/catalogo/<tipo>.json (F1a, artefato)
+tools/gerar_catalogo.py        data/*.json -> data/catalogo/<tipo>.json (F1a) + data/pericias.json
+                               (F1e), artefatos; `--relatorio` (o build passa) imprime os
+                               formatos encontrados por conjunto
+tools/normaliza.py             leitura da F1e: ações/intensidades/sustentada/porIntensidade das
+                               magias, req e custo do Limiar, as 24 perícias (tabelas fechadas:
+                               formato novo derruba o build)
 tools/kf_marca.py              marcação entidade -> ficha comum aos geradores (F1a)
 tools/blocos.py                blocos classe/raca/origem (F1b): marcadores {{classe.…}},
                                leitura do verbatim (V/G/R, slugs, ids); `python tools/blocos.py`
-                               regrava os derivados depois de editar um texto
+                               regrava os derivados depois de editar um texto; F1e(c): parágrafo
+                               dos ramos, cabeçalhos de tier e grupo/ramo/tier/custoTexto de cada
+                               card de classe (ramo por 2 fontes: posição no template e corpo)
 tools/alias_ids.json           ids do contrato do balanceamento fora da convenção -> id do site
 tools/componentes-baseline.json piso da contagem de cada classe CSS de componente por
                                página de classe (checagem [componentes] do validar)
@@ -81,6 +88,7 @@ tools/migrar_f1b.py            migração pontual template -> blocos da F1b (já
                                registro de como cada campo foi extraído)
 tools/migrar_f1b_correcao.py   idem, correção da F1b: Progressão, regra de técnicas,
                                requisito de card e status no vocabulário (já rodada)
+tools/migrar_f1e.py            idem, F1e(c): parágrafo dos ramos e cabeçalhos de tier (já rodada)
 tools/pendentes_balanceamento.json  regras perguntadas ao balanceamento, sem resposta
                                (id, rodada, pergunta, campos): selo PENDENTE (balanceamento)
 
@@ -106,12 +114,16 @@ js/bazar-inventario.js         inventário em 2 colunas          │ carregados 
 
 data/*.json                    sistema, magias, condicoes, limiar, origens,
                                racas, bazar
-data/classes/*.json            7 classes: bloco `classe` (F1b) + cards
+data/classes/*.json            7 classes: bloco `classe` (F1b) + cards (com grupo/ramo/tier/
+                               custoTexto derivados, F1e)
 data/racas/*.json              7 raças: bloco `raca` (F1b) + cards
 data/ficha.schema.json         contrato da ficha 2.0 + projeção Bestiário
 data/catalogo/<tipo>.json      ARTEFATO (gerar_catalogo.py): {id, tipo, nome sem emoji,
                                icone, resumo, campos do tipo} por entidade; raras só
-                               id/nome/categoria/req. O item usa o data/bazar.json
+                               id/nome/categoria/req/reqTexto. O item usa o data/bazar.json
+data/pericias.json             ARTEFATO (gerar_catalogo.py, F1e): as 24 perícias {slug, nome, prof,
+                               atributos, modo fixo|maior|arma|dado, dadoPorBonus do Defender} e os
+                               graus; fonte única para a F1d e o schema v3
 data/Bazar_Khalkaria_v26.csv   fonte do Bazar: conteúdo do Pedro, só muda com
                                aprovação dele (gerador, CSS, JS e template do
                                Bazar são do agente desde 2026-09-24)
@@ -221,7 +233,7 @@ classe -> tipo; todo card marcado, menos o `<a>` do índice, abre com o par
 `.ent-add` + `.ent-alca`, ambos `hidden`; alvos do `alias_ids.json` existem), `[fragmentos]` (`pagina.html#id` e
 `bazar.html#item/<id>` com destino) e `[glifos]` (sprite íntegro, um glifo por
 `--ramo-*`, todo `<use href="#g-*">` com símbolo). O round-trip regenera também
-o `data/catalogo/`.
+o `data/catalogo/` e o `data/pericias.json`.
 
 **`[componentes]`.** O sync verbatim de 2026-09-26 trocou cards de companheiro,
 tabelas d100, sub-habilidades, stats de ser/constructo, seções de patrono e

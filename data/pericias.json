@@ -1,0 +1,318 @@
+{
+ "schema": "pericias/1",
+ "fontes": [
+  "data/sistema.json (Perícias, Proficiência)",
+  "docs/ficha-digital/03-respostas-pedro.md §4 (ficha física)",
+  "CLAUDE.md §2 (Ofício(Alquimia)) e §5 (prof_*)",
+  "D7 e D8a (Pedro, 2026-09-26)"
+ ],
+ "modos": {
+  "fixo": "um atributo",
+  "maior": "o maior dos atributos listados, trocável pelo jogador (D7)",
+  "arma": "o atributo da arma usada, entre os listados",
+  "dado": "só o dado do grau, sem atributo (D8a)"
+ },
+ "graus": [
+  {
+   "bonus": 0,
+   "nome": "Leigo"
+  },
+  {
+   "bonus": 2,
+   "nome": "Treinado"
+  },
+  {
+   "bonus": 4,
+   "nome": "Experiente"
+  },
+  {
+   "bonus": 6,
+   "nome": "Mestre"
+  },
+  {
+   "bonus": 8,
+   "nome": "Lendário"
+  }
+ ],
+ "total": 24,
+ "pericias": [
+  {
+   "slug": "atacar",
+   "nome": "Atacar",
+   "prof": "prof_attack",
+   "atributos": [
+    "FOR",
+    "DES"
+   ],
+   "modo": "arma",
+   "textoSistema": "1d20+(Força ou Destreza)",
+   "fichaFisica": "For"
+  },
+  {
+   "slug": "defender",
+   "nome": "Defender",
+   "prof": "prof_defend",
+   "atributos": [],
+   "modo": "dado",
+   "dadoPorBonus": {
+    "0": "1d6",
+    "2": "1d8",
+    "4": "1d10",
+    "6": "1d12",
+    "8": "2d8"
+   },
+   "textoSistema": "1d6 / 1d8 / 1d10 / 1d12 / 2d8",
+   "fichaFisica": "Des/Con"
+  },
+  {
+   "slug": "movimento",
+   "nome": "Movimento",
+   "prof": "prof_movement",
+   "atributos": [
+    "FOR",
+    "DES"
+   ],
+   "modo": "maior",
+   "trocavel": true,
+   "textoSistema": "1d20+(Força ou Destreza)",
+   "fichaFisica": "For/Des"
+  },
+  {
+   "slug": "fortitude",
+   "nome": "Fortitude",
+   "prof": "prof_fortitude",
+   "atributos": [
+    "CON"
+   ],
+   "modo": "fixo",
+   "textoSistema": "1d20+Constituição",
+   "fichaFisica": "Con"
+  },
+  {
+   "slug": "vontade",
+   "nome": "Vontade",
+   "prof": "prof_will",
+   "atributos": [
+    "SAB"
+   ],
+   "modo": "fixo",
+   "textoSistema": "1d20+Sabedoria",
+   "fichaFisica": "Sab"
+  },
+  {
+   "slug": "reflexos",
+   "nome": "Reflexos",
+   "prof": "prof_reflexes",
+   "atributos": [
+    "DES"
+   ],
+   "modo": "fixo",
+   "textoSistema": "1d20+Destreza",
+   "fichaFisica": "Des"
+  },
+  {
+   "slug": "percepcao",
+   "nome": "Percepção",
+   "prof": "prof_perception",
+   "atributos": [
+    "SAB"
+   ],
+   "modo": "fixo",
+   "textoSistema": "1d20+Sabedoria",
+   "fichaFisica": "Sab"
+  },
+  {
+   "slug": "sobrevivencia",
+   "nome": "Sobrevivência",
+   "prof": "prof_survival",
+   "atributos": [
+    "SAB"
+   ],
+   "modo": "fixo",
+   "textoSistema": "1d20+Sabedoria",
+   "fichaFisica": "Sab"
+  },
+  {
+   "slug": "furtividade",
+   "nome": "Furtividade",
+   "prof": "prof_stealth",
+   "atributos": [
+    "DES"
+   ],
+   "modo": "fixo",
+   "textoSistema": "1d20+Destreza",
+   "fichaFisica": "Des"
+  },
+  {
+   "slug": "crime",
+   "nome": "Crime",
+   "prof": "prof_crime",
+   "atributos": [
+    "DES"
+   ],
+   "modo": "fixo",
+   "textoSistema": "1d20+Destreza",
+   "fichaFisica": "Des"
+  },
+  {
+   "slug": "iniciativa",
+   "nome": "Iniciativa",
+   "prof": "prof_initiative",
+   "atributos": [
+    "DES"
+   ],
+   "modo": "fixo",
+   "textoSistema": "1d20+Destreza",
+   "fichaFisica": "Des"
+  },
+  {
+   "slug": "conhecimento",
+   "nome": "Conhecimento",
+   "prof": "prof_knowledge",
+   "atributos": [
+    "INT"
+   ],
+   "modo": "fixo",
+   "textoSistema": "1d20+Inteligência",
+   "fichaFisica": "Int"
+  },
+  {
+   "slug": "medicina",
+   "nome": "Medicina",
+   "prof": "prof_medicine",
+   "atributos": [
+    "INT"
+   ],
+   "modo": "fixo",
+   "textoSistema": "1d20+Inteligência",
+   "fichaFisica": "Int"
+  },
+  {
+   "slug": "investigacao",
+   "nome": "Investigação",
+   "prof": "prof_investigation",
+   "atributos": [
+    "INT"
+   ],
+   "modo": "fixo",
+   "textoSistema": "1d20+Inteligência",
+   "fichaFisica": "Int"
+  },
+  {
+   "slug": "religiao",
+   "nome": "Religião",
+   "prof": "prof_religion",
+   "atributos": [
+    "SAB"
+   ],
+   "modo": "fixo",
+   "textoSistema": "1d20+Sabedoria",
+   "fichaFisica": "Sab"
+  },
+  {
+   "slug": "mistico",
+   "nome": "Místico",
+   "prof": "prof_mystic",
+   "atributos": [
+    "INT"
+   ],
+   "modo": "fixo",
+   "textoSistema": "1d20+Inteligência",
+   "fichaFisica": "Int"
+  },
+  {
+   "slug": "convencimento",
+   "nome": "Convencimento",
+   "prof": "prof_persuasion",
+   "atributos": [
+    "DES",
+    "INT"
+   ],
+   "modo": "maior",
+   "trocavel": true,
+   "textoSistema": "Des ou Int",
+   "fichaFisica": "Des/Int"
+  },
+  {
+   "slug": "intimidacao",
+   "nome": "Intimidação",
+   "prof": "prof_intimidation",
+   "atributos": [
+    "CON",
+    "FOR"
+   ],
+   "modo": "maior",
+   "trocavel": true,
+   "textoSistema": "Con ou For",
+   "fichaFisica": "Con/For"
+  },
+  {
+   "slug": "intuicao",
+   "nome": "Intuição",
+   "prof": "prof_insight",
+   "atributos": [
+    "SAB"
+   ],
+   "modo": "fixo",
+   "textoSistema": "Sabedoria",
+   "fichaFisica": "Sab"
+  },
+  {
+   "slug": "enganacao",
+   "nome": "Enganação",
+   "prof": "prof_deception",
+   "atributos": [
+    "DES",
+    "INT"
+   ],
+   "modo": "maior",
+   "trocavel": true,
+   "textoSistema": "Des ou Int",
+   "fichaFisica": "Des/Int"
+  },
+  {
+   "slug": "motivar",
+   "nome": "Motivar",
+   "prof": "prof_motivate",
+   "atributos": [
+    "SAB"
+   ],
+   "modo": "fixo",
+   "textoSistema": "Sabedoria",
+   "fichaFisica": "Sab"
+  },
+  {
+   "slug": "oficio-engenharia",
+   "nome": "Ofício(Engenharia)",
+   "prof": "prof_craft",
+   "atributos": [
+    "INT"
+   ],
+   "modo": "fixo",
+   "textoSistema": "1d20+Inteligência",
+   "fichaFisica": ""
+  },
+  {
+   "slug": "oficio-ferraria",
+   "nome": "Ofício(Ferraria)",
+   "prof": "prof_craft",
+   "atributos": [
+    "INT"
+   ],
+   "modo": "fixo",
+   "textoSistema": "1d20+Inteligência",
+   "fichaFisica": ""
+  },
+  {
+   "slug": "oficio-alquimia",
+   "nome": "Ofício(Alquimia)",
+   "prof": "prof_craft",
+   "atributos": [
+    "INT"
+   ],
+   "modo": "fixo",
+   "textoSistema": null,
+   "fichaFisica": ""
+  }
+ ]
+}
