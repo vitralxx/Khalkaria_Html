@@ -6,6 +6,38 @@
 
 ---
 
+## Revisão 3 (2026-09-26) — Notion gravado + Pedido 2 (efeitos dos itens)
+
+**D80, D81 e D82 agora estão no Notion** (página Sistema `2b76e3a4`), com o texto que está no
+`ficha-digital-regras.json` como `verbatim`. Status passou a `canonico`. Para destravar a API,
+troquei 6 ícones de callout que ela não aceita mais por emoji: Dinheiro 💰, Superfícies ⛰️,
+Furtividade 👁️, Perseguição 🏃, Khan Sins 🃏, Magias 🪄. O diff da página antes/depois confirma:
+3 blocos adicionados, 6 ícones trocados, nada mais.
+
+**Pedido 2, bloco B — entregue:** `ficha-efeitos-itens.json` (+ `ficha-efeitos-gerador.py` e
+`ficha-efeitos-overrides.json`, que o geram).
+- Os 727 ids, chave `'item-' + slug(nome)`, 0 colisões. **A conta fecha** contra o
+  `data/Bazar_Khalkaria_v26.csv` da main (a coluna Efeito é idêntica à minha; só *Ingredientes*
+  difere, em 109 itens, pela normalização de reagentes do site).
+- `itens` 214 · `armas` 181 · `consumo` 243 · `semEfeitoNaFicha` 115 · `naoParseado` **0**.
+- 369 modificadores/efeitos, todos com alvo declarado em `alvos` e op em `soma|fixa|escolha`.
+  609 entradas `canonico` (gramática fechada sobre o CSV) e 29 `decisao` (revisadas à mão).
+- Índices para o assistente de descanso e o inventário: `fonteDeLuz` (9), `alimento` (4),
+  `empilhaveis` (87).
+- Método: toda frase de todo Efeito cai em modificador, lembrete, estrutural ou sabor. Um
+  detector sinaliza lembrete que carrega número de campo de ficha ou verbo de cura. Os 20 que
+  sobraram são lembretes legítimos: valem para aliados ou inimigos, ou dependem de distância, luz
+  ou alvo escolhido.
+- **7 pendências** no próprio arquivo (`pendencias`). As que precisam do Pedro: manobra
+  "Investida" inexistente (*Grevas Trovejantes*); `Ae(Todos)` com exceção em dois itens e sem
+  exceção no *Anel do Baluarte*; custo de ação para usar consumível não definido no Sistema;
+  grafia "Saude" na *Erva Medicinal*; poção de cura em Autômato.
+
+**Bloco C (raças, origens, Limiar, passivas de classe): não comecei.** O Pedro priorizou o rework
+do Batedor, e o C é o parser do P44, que é um trabalho grande. Vem depois da rodada do Batedor.
+
+---
+
 ## Revisão 2 (2026-09-25) — decisões do Pedro. **Onde conflitar com o resto do arquivo, vale esta seção.**
 
 | Tema | Decisão | Código |

@@ -626,11 +626,12 @@ como ajuste pontual. O que este rework tem que produzir, além do Batedor pronto
 Ver `14-ficha-digital.md`. **Resolvidas pelo Pedro no mesmo dia (D80–D87):** modificador,
 vantagem/desvantagem, custo mínimo de magia, Sangramento, estresse, Ar, Morrendo, +2 atributos.
 
-⚠️ **O Notion não aceitou a edição da página Sistema pela API.** Ela revalida a página inteira e
-recusa ícones de callout que não suporta mais: `/icons/money_yellow.svg` (*Dinheiro*) e
-`/icons/mountain_yellow.svg` (*Superfícies*), e podem existir outros. Nada foi gravado (o erro 400
-recusa a operação inteira). Os textos de D80, D81 e D82 foram entregues ao Pedro para colar à mão.
-**Qualquer edição futura dessa página pela API vai falhar igual** até os ícones serem trocados.
+✅ **D80, D81 e D82 gravadas no Notion em 2026-09-26** (página Sistema `2b76e3a4`), com aceite do
+Pedro. A API do Notion revalida a página inteira a cada edição e recusava 6 ícones de callout
+legados; foram trocados por emoji: *Dinheiro* 💰 · *Superfícies* ⛰️ · *Furtividade* 👁️ ·
+*Perseguição* 🏃 · *Khan Sins* 🃏 · *Magias* 🪄. Diff conferido: 3 blocos adicionados, 6 ícones
+trocados, nada mais. **Lição para as outras páginas:** o erro vem um ícone por vez, na ordem do
+documento; outras páginas antigas devem ter o mesmo problema.
 
 **Continuam abertas:**
 
@@ -645,6 +646,21 @@ recusa a operação inteira). Os textos de D80, D81 e D82 foram entregues ao Ped
 | 7 | Intimidação: CON/FOR ou FOR/SAB? | CON/FOR |
 | 8 | Ordem do Sangramento num acerto que também aplica | Consumir antes de aplicar (D83) |
 | 9 | O dado de Defender soma atributo? | Não, senão conta Destreza duas vezes |
+
+### Pendências abertas pelo mapa de efeitos dos itens (2026-09-26)
+`ficha-efeitos-itens.json`, pedido 2 do agente de HTML (bloco B). 727 itens, conta fechada.
+
+| # | Onde | O quê | Recomendação |
+|---|---|---|---|
+| 1 | *Grevas Trovejantes* | "A manobra Investida concede +1d6 de dano." **Não existe manobra Investida** (são Empurrar, Desarmar, Agarrar) | Trocar por uma manobra que existe, ou por "ao usar Acelerar e atacar" |
+| 2 | `Ae(Todos)` | *Capa Defensiva* e *Capa do Vazio* excluem Força e Primordial; *Anel do Baluarte* não. E não está escrito se `Ae(Todos)` cobre os 3 Ordinários | `Ae(Todos)` = os tipos atípicos, exceto Força e Primordial, nos três |
+| 3 | "+2 Força" sem "testes de" | *Cinturão do Colosso*, *Elixir do Crescimento*, *Elixir do Encolhimento* | Li como valor de atributo (o *Elixir de Força* escreve "testes de Força" quando quer teste) |
+| 4 | Consumível | **O Sistema não define quantas ações custa usar um consumível** | 1 ação em si, 1 ação em outro; arremesso segue o item |
+| 5 | *Erva Medicinal* | "Saude" sem acento no CSV | Corrigir com autorização |
+| 6 | Kits de Manutenção | Só curam Autômato; a ficha bloqueia ou avisa poção de cura em Autômato? | Avisar |
+
+**Bloco C** (raças, origens, Limiar, passivas de classe na mesma gramática): não começado. Vem
+depois da rodada do Batedor.
 
 🔴 **Dois bugs de desenho achados na mesma passada**, ambos da mesma família do bug do Instinto:
 

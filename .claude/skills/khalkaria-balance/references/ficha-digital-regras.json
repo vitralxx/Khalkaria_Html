@@ -1,13 +1,13 @@
 {
   "schemaVersion": "regras-ficha/1.0",
-  "geradoEm": "2026-09-25 (rev. 2: decisões D80–D87 do Pedro)",
+  "geradoEm": "2026-09-26 (rev. 3: D80-D82 gravadas no Notion)",
   "_doc": "Resposta do agente de balanceamento ao pedido docs/ficha-digital/01-pedido-ao-balanceamento.md. O texto com a justificativa de cada regra esta em 14-ficha-digital.md, na mesma numeracao P/C. Nada aqui e canonico so porque esta escrito: leia o campo 'status'.",
   "_status": {
     "canonico": "Esta no Notion ou numa decisao registrada em 09-decisoes-pedro.md. Pode ir para o site.",
     "decisao": "Arbitrado agora, com justificativa. PRECISA ser escrito no Notion pelo Pedro antes de virar regra de mesa.",
     "pedroDecide": "Nao e alcada do balanceamento. O campo 'recomendacao' traz a sugestao e o motivo.",
     "pendente": "O canone nao responde. Valor null, com o motivo no campo 'pendente'.",
-    "aprovado": "O Pedro decidiu (D80–D87). Vale como regra; o texto ainda precisa ser colado no Notion, porque a API recusou a edição da página Sistema (ícones de callout legados)."
+    "aprovado": "(sem uso na rev. 3: as três regras aprovadas já estão no Notion)"
   },
   "fontes": [
     {
@@ -56,9 +56,23 @@
     "semCarisma": true,
     "modificador": {
       "formula": "floor((attr - 10) / 2)",
-      "status": "aprovado",
-      "fonte": "D80",
-      "pendente": "O Pedro disse ao agente de HTML que ja escreveu no Notion. Fetch de 2026-09-25 da pagina 2b76e3a4: ultima edicao 2026-09-22, sem o bloco; busca no workspace tambem nao acha. Troca para 'canonico' quando o fetch mostrar."
+      "status": "canonico",
+      "fonte": "notion-sistema 2b76e3a4, gravado em 2026-09-26 (diff conferido: 3 blocos adicionados, 6 ícones de callout trocados, nada mais) > Atributos Iniciais",
+      "pendente": null,
+      "verbatim": "Modificador de Atributo: é o valor que o atributo soma nas perícias, no dano e no cálculo dos status. Subtraia 10 do atributo e divida por 2, arredondando para baixo. Ou seja, o modificador aumenta a cada 2 pontos de atributo.",
+      "tabela": {
+        "4-5": -3,
+        "6-7": -2,
+        "8-9": -1,
+        "10-11": 0,
+        "12-13": 1,
+        "14-15": 2,
+        "16-17": 3,
+        "18-19": 4,
+        "20-21": 5,
+        "22-23": 6,
+        "24-25": 7
+      }
     },
     "ganhoPorNivel": {
       "pontos": 2,
@@ -1338,7 +1352,7 @@
     "acumulam": false,
     "aplicaDefender": true,
     "aplicaDefenderNota": "Defender nao usa d20. Vantagem em Defender = rolar o DADO DE DEFENDER duas vezes (2x 1d10 para um Experiente), nao 2d20. Se isso nao ficar escrito, alguem vai implementar 2d20.",
-    "status": "aprovado",
+    "status": "canonico",
     "critico": {
       "natural20": "critico",
       "natural1": "falhaCritica",
@@ -1363,10 +1377,11 @@
       "dobraNota": "So os dados DA ARMA. O +1d4 do Sangramento e os dados extras de tecnica NAO dobram. E tambem a premissa do modelo de DPR canonico (coeficiente 1,20 = 1,05 acertos + 0,15 de dados extras do critico); se dobrasse tudo, a regua de preco do Bazar inteira estaria errada.",
       "_colisaoDeTermo": "P25 - ATENCAO: 'critico' tem DUAS definicoes no sistema e a ficha NAO pode ter uma funcao ehCritico() unica. (1) Regra geral: 20/1 natural no d20. (2) Fabricacao (D49): margem de +-10 sobre a CD ('ficar 10 ou mais abaixo da CD' / 'superar a CD em 10 ou mais'). E a D52 acrescenta um terceiro caso: Alquimia perde os reagentes em QUALQUER falha. E a condicao Bebado acrescenta um quarto: '2 natural em qualquer teste conta como falha critica' - a faixa de falha critica tambem e modificavel."
     },
-    "fonte": "D81",
+    "fonte": "notion-sistema 2b76e3a4, gravado em 2026-09-26 (diff conferido: 3 blocos adicionados, 6 ícones de callout trocados, nada mais) > Perícias (depois de Falha Crítica)",
     "criticoNoDadoUsado": true,
     "criticoNota": "Critico e falha critica valem para o dado que voce USOU. Com desvantagem, um 20 no dado descartado nao crita.",
-    "pendente": "O Pedro disse ao agente de HTML que ja escreveu no Notion. Fetch de 2026-09-25 da pagina 2b76e3a4: ultima edicao 2026-09-22, sem o bloco; busca no workspace tambem nao acha. Troca para 'canonico' quando o fetch mostrar."
+    "pendente": null,
+    "verbatim": "Vantagem: Role 2d20 e use o maior resultado. Desvantagem: Role 2d20 e use o menor resultado. Vantagem e desvantagem não se acumulam: várias fontes de vantagem continuam sendo 2d20. Se você tiver vantagem e desvantagem ao mesmo tempo, elas se anulam e você rola normalmente. Crítico e falha crítica valem para o dado que você usou. Na perícia Defender, que usa dado próprio, role esse dado duas vezes."
   },
   "condicoes": [
     {
@@ -2294,7 +2309,7 @@
       "transbordante": 4
     },
     "contidaExisteNoNivel1": false,
-    "contidaExisteNoNivel1Fonte": "D68 - Nivel 1 tem TRES barras (Normal/Forcada/Transbordante), nao quatro.",
+    "contidaExisteNoNivel1Fonte": "D68 e Notion 2b76e3a4 > Magias: 'Magias de Nível 1 não possuem a intensidade Contida.'",
     "regraDas3BarrasNaoValeNoNivel1": "ATENCAO: o CLAUDE.md secao 6 manda expandir 3 valores para 4 repetindo o primeiro. Para o Nivel 1 isso esta ERRADO: a coluna Contida nao deve existir.",
     "tabelaCusto": {
       "1": {
@@ -2458,10 +2473,11 @@
       "valor": 1,
       "excecao": "magia de Nivel 1 em intensidade Normal e sem modulacao = 0 Eter",
       "aplicaDepoisDeReducoes": true,
-      "status": "aprovado",
-      "fonte": "D82",
+      "status": "canonico",
+      "fonte": "notion-sistema 2b76e3a4, gravado em 2026-09-26 (diff conferido: 3 blocos adicionados, 6 ícones de callout trocados, nada mais) > Magias (abaixo da tabela de Intensidade)",
       "verbatimPedro": "seria o caso de modular ou intensificar e o custo de eter ser reduzido por alguma tecnica, apesar de ser um truque o minimo continua sendo 1 igual as outras magias",
-      "nota": "Um piso so, igual para todas. Substitui o modelo de 'dois pisos' da revisao 1."
+      "nota": "Um piso so, igual para todas. Substitui o modelo de 'dois pisos' da revisao 1.",
+      "verbatim": "Custo mínimo: toda conjuração custa no mínimo 1 Éter, mesmo após reduções de técnicas, cartas ou itens. A única exceção é a magia de Nível 1 conjurada em intensidade Normal e sem modulação, que custa 0 Éter. Magias de Nível 1 não possuem a intensidade Contida."
     },
     "exemplosDoPiso": [
       {
@@ -3272,21 +3288,21 @@
       "o": "Modificador de atributo: floor((attr-10)/2)",
       "porque": "NAO esta em lugar nenhum. TODO derivado depende dela.",
       "gravidade": "critica",
-      "status": "decidido: D80"
+      "status": "decidido: D80 · gravado no Notion em 2026-09-26"
     },
     {
       "n": 2,
       "o": "Vantagem e desvantagem, regra geral",
       "porque": "Usada por 6 condicoes, superficies e armas sem requisito. Nunca definida.",
       "gravidade": "critica",
-      "status": "decidido: D81"
+      "status": "decidido: D81 · gravado no Notion em 2026-09-26"
     },
     {
       "n": 3,
       "o": "Piso da Contida (1) e piso do custo final (0)",
       "porque": "Sem o primeiro o tier de truques nasce obsoleto; sem o segundo existe custo negativo.",
       "gravidade": "alta",
-      "status": "decidido: D82"
+      "status": "decidido: D82 · gravado no Notion em 2026-09-26"
     },
     {
       "n": 4,
