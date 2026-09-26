@@ -11,7 +11,7 @@
    "tipo": "condicao",
    "nome": "Morrendo",
    "icone": null,
-   "resumo": "Você está Inconsciente . Você recebe 10% da sua vida máxima de dano biológico no início de cada turno seu. Esse dano não pode ser reduzido por Armadura, Armadura Específica ou Resistência. Ao ultrapassar metade da sua vida máxima em negativos, você morre. Dano/Turno = Vida Máxima × 0.1 Um aliado pode gastar 2 ações para rolar um teste de Medicina (CD 20) para estabilizar você, negando o dano por turno até você remover essa condição, ou ser atacado novamente. Para remover: Você deve ser curado de modo que sua vida fique positiva.",
+   "resumo": "Você está Inconsciente. Você recebe 10% da sua vida máxima de dano biológico no início de cada turno seu. Esse dano não pode ser reduzido por Armadura, Armadura Específica ou Resistência. Ao ultrapassar metade da sua vida máxima em negativos, você morre. Dano/Turno = Vida Máxima × 0.1 Um aliado pode gastar 2 ações para rolar um teste de Medicina (CD 20) para estabilizar você, negando o dano por turno até você remover essa condição, ou ser atacado novamente. Para remover: Você deve ser curado de modo que sua vida fique positiva.",
    "categoria": "criticas"
   },
   {
@@ -99,7 +99,7 @@
    "tipo": "condicao",
    "nome": "Desprevenido",
    "icone": null,
-   "resumo": "Você foi pego de surpresa e não pode reagir a ataques. Além disso, você também está Exposto .",
+   "resumo": "Você foi pego de surpresa e não pode reagir a ataques. Além disso, você também está Exposto.",
    "categoria": "combate"
   },
   {
@@ -187,7 +187,7 @@
    "tipo": "condicao",
    "nome": "Envenenamento",
    "icone": null,
-   "resumo": "-2 em todos os testes que utilizam: Força, Constituição ou Destreza como atributo base. 1d6 de dano Biológico no início de cada turno seu, até o fim do efeito. Acaba ao suceder em um teste de Fortitude CD(20) ou utilizar um Antídoto .",
+   "resumo": "-2 em todos os testes que utilizam: Força, Constituição ou Destreza como atributo base. 1d6 de dano Biológico no início de cada turno seu, até o fim do efeito. Acaba ao suceder em um teste de Fortitude CD(20) ou utilizar um Antídoto.",
    "categoria": "fisicas"
   },
   {

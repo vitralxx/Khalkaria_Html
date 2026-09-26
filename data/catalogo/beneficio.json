@@ -20,7 +20,7 @@
    "tipo": "beneficio",
    "nome": "Pele Morta",
    "icone": null,
-   "resumo": "Você não sangra e é incombustível. Imune a Sangramento e Em Chamas .",
+   "resumo": "Você não sangra e é incombustível. Imune a Sangramento e Em Chamas.",
    "custo": "2 Dor",
    "custoTipo": "spend"
   },

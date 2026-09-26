@@ -117,6 +117,55 @@ class TestSintetico(Base):
         self.assertEqual(self.roda()[0], [])
 
 
+def _card(cid, miolo):
+    return f'<div class="tech-card" data-kf-id="{cid}"><h4>{cid}</h4>{miolo}</div>'
+
+
+CUSTO = '<div class="ultimate-cost"><h5>Preço</h5><p>x</p></div>'
+
+
+class TestPorCard(Base):
+    """O total da página fecha, mas o componente mudou de card: tem de falhar."""
+
+    def setUp(self):
+        super().setUp()
+        self.escreve(validar.BASELINE_COMPONENTES, json.dumps({
+            'classes': ['tech-card', 'ultimate-cost'], 'paginas': {}}))
+        self.pagina(_card('a', CUSTO) + _card('b', CUSTO))
+        self.roda(validar.atualiza_componentes)
+
+    def pagina(self, html):
+        self.escreve('pages/classes/teurgo.html', '<div>' + html + '</div>')
+
+    def test_ok(self):
+        self.assertEqual(self.roda()[0], [])
+        base = json.loads(self.le(validar.BASELINE_COMPONENTES))
+        self.assertEqual(base['cards']['pages/classes/teurgo.html'],
+                         {'a': {'tech-card': 1, 'ultimate-cost': 1},
+                          'b': {'tech-card': 1, 'ultimate-cost': 1}})
+
+    def test_componente_muda_de_card(self):
+        # página continua com 2 .ultimate-cost; o de "a" virou <ul> e "b" ganhou outro
+        self.pagina(_card('a', '<ul><li>Preço: x</li></ul>') + _card('b', CUSTO * 2))
+        f, out = self.roda()
+        self.assertEqual(f, ['componentes'])
+        self.assertIn('card a: .ultimate-cost caiu de 1 para 0', out)
+        self.assertNotIn('.ultimate-cost caiu de 2', out)      # a página não acusa
+
+    def test_card_sumiu(self):
+        self.pagina(_card('b', CUSTO * 2) + '<div class="tech-card">sem id</div>')
+        f, out = self.roda()
+        self.assertEqual(f, ['componentes'])
+        self.assertIn('card a sumiu', out)
+
+    def test_card_aninhado_conta_no_mais_interno(self):
+        html = ('<div class="tech-card" data-kf-id="fora"><br><img src="x">'
+                + _card('dentro', CUSTO) + CUSTO + '</div>')
+        self.assertEqual(validar.conta_por_card(html, ['tech-card', 'ultimate-cost']),
+                         {'dentro': {'tech-card': 1, 'ultimate-cost': 1},
+                          'fora': {'tech-card': 1, 'ultimate-cost': 1}})
+
+
 class TestRepoReal(Base):
     """Baseline e páginas reais copiados; quebra de propósito o que o sync quebrou."""
 
@@ -151,6 +200,22 @@ class TestRepoReal(Base):
     def test_sub_habilidade_some(self):
         self.quebra('teurgo', 'class="sub-ability"', 'class="y"')
         self.assertIn('.sub-ability caiu', self.roda()[1])
+
+    def test_custo_do_receptaculo_muda_de_card(self):
+        # o que a revisão de 0f4d4f9 achou: O Custo do Receptáculo vira lista e a
+        # Manifestação ganha um .ultimate-cost a mais; o total da página não muda
+        self.quebra('teurgo', '<div class="ultimate-cost"><h5>💀 Receptáculo Instável</h5>',
+                    '<div><h5>💀 Receptáculo Instável</h5>')
+        self.quebra('teurgo', '<div class="ultimate-cost"><h5>💀 O Preço</h5>',
+                    '<div class="ultimate-cost"><h5>💀 O Preço</h5><div class="ultimate-cost"></div>')
+        f, out = self.roda()
+        self.assertEqual(f, ['componentes'])
+        self.assertIn('card teurgo-receptaculo-perfeito: .ultimate-cost caiu de 1 para 0', out)
+        self.assertNotIn('teurgo.html: .ultimate-cost caiu', out)
+
+    def test_estrutura_de_tier_vira_lista(self):
+        self.quebra('monge', 'class="tier-section"', 'class="z"')
+        self.assertIn('pages/classes/monge.html: .tier-section caiu', self.roda()[1])
 
 
 if __name__ == '__main__':

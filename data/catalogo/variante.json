@@ -11,7 +11,7 @@
    "tipo": "variante",
    "nome": "Simples",
    "icone": null,
-   "resumo": "Treinado em Sobrevivência . Descansa com +1 nível de comodidade.",
+   "resumo": "Treinado em Sobrevivência. Descansa com +1 nível de comodidade.",
    "raca": "humano",
    "card": "variant-card"
   },
@@ -20,7 +20,7 @@
    "tipo": "variante",
    "nome": "Estudioso",
    "icone": null,
-   "resumo": "Treinado em Conhecimento . +1 idioma conhecido qualquer. 1 vez por descanso longo pode dar uma Hipótese ao falhar em um teste de conhecimento. Ganhando parcialmente a informação.",
+   "resumo": "Treinado em Conhecimento. +1 idioma conhecido qualquer. 1 vez por descanso longo pode dar uma Hipótese ao falhar em um teste de conhecimento. Ganhando parcialmente a informação.",
    "raca": "humano",
    "card": "variant-card"
   },
@@ -29,7 +29,7 @@
    "tipo": "variante",
    "nome": "Rebelde",
    "icone": null,
-   "resumo": "Treinado em Movimento ou Interação Social(Intimidação) . 1 vez por descanso longo, ao falhar em atacar, pode somar 1d4 ao teste.",
+   "resumo": "Treinado em Movimento ou Interação Social(Intimidação). 1 vez por descanso longo, ao falhar em atacar, pode somar 1d4 ao teste.",
    "raca": "humano",
    "card": "variant-card"
   },
@@ -38,7 +38,7 @@
    "tipo": "variante",
    "nome": "Popular",
    "icone": null,
-   "resumo": "Treinado em 1 Interação Social(Qualquer) . Uma vez por descanso longo, pode rolar Interação Social com vantagem.",
+   "resumo": "Treinado em 1 Interação Social(Qualquer). Uma vez por descanso longo, pode rolar Interação Social com vantagem.",
    "raca": "humano",
    "card": "variant-card"
   },

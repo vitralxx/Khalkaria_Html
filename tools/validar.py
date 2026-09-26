@@ -32,8 +32,9 @@ integridade do artefato HTML, que é o que quebra em silêncio:
               de página ou de js/*.js com o seu <symbol>
  [componentes] contagem das classes CSS de componente (companion-card,
               d100-table, sub-ability...) em cada pages/classes/*.html >= o
-              tools/componentes-baseline.json. Um sync que troque componente
-              por <ul> genérico derruba o build; queda legítima (o Notion tirou
+              tools/componentes-baseline.json, por página e por card
+              (data-kf-id). Um sync que troque componente por <ul> genérico,
+              ou o mude de card, derruba o build; queda legítima (o Notion tirou
               o conteúdo) só passa regravando o baseline de propósito
 
 Uso:
@@ -627,12 +628,79 @@ def conta_componentes(html, classes):
     return cont
 
 
+class _PorCard(HTMLParser):
+    """Conta as classes pedidas por card: cada elemento vai para o card
+    (data-kf-id) mais interno que o contém, inclusive ele mesmo."""
+
+    def __init__(self, classes):
+        super().__init__(convert_charrefs=True)
+        self.classes = set(classes)
+        self.pilha = []          # (tag, id do card aberto nela ou None)
+        self.cont = {}
+
+    def _card(self):
+        for _, cid in reversed(self.pilha):
+            if cid:
+                return cid
+        return None
+
+    def _conta(self, attrs, cid):
+        cid = cid or self._card()
+        if not cid:
+            return
+        for k in (dict(attrs).get('class') or '').split():
+            if k in self.classes:
+                d = self.cont.setdefault(cid, {})
+                d[k] = d.get(k, 0) + 1
+
+    def handle_starttag(self, tag, attrs):
+        cid = dict(attrs).get('data-kf-id')
+        self._conta(attrs, cid)
+        if tag not in VOID:
+            self.pilha.append((tag, cid))
+
+    def handle_startendtag(self, tag, attrs):
+        self._conta(attrs, dict(attrs).get('data-kf-id'))
+
+    def handle_endtag(self, tag):
+        for i in range(len(self.pilha) - 1, -1, -1):
+            if self.pilha[i][0] == tag:
+                del self.pilha[i:]
+                return
+
+
+def conta_por_card(html, classes):
+    """{data-kf-id: {classe: n}} — pega componente que muda de card sem mudar a
+    contagem da página (o .ultimate-cost do Receptáculo que virou <ul> enquanto a
+    Manifestação ganhava dois)."""
+    p = _PorCard(classes)
+    p.feed(html)
+    p.close()
+    return {c: dict(sorted(v.items())) for c, v in sorted(p.cont.items())}
+
+
 def _le_baseline(root):
     base = json.load(open(os.path.join(root, BASELINE_COMPONENTES), encoding='utf-8'))
-    classes, pags = base['classes'], base['paginas']
-    if not isinstance(classes, list) or not isinstance(pags, dict):
-        raise ValueError('"classes" tem de ser lista e "paginas" objeto')
-    return base, classes, pags
+    classes, pags, cards = base['classes'], base['paginas'], base.get('cards', {})
+    if not isinstance(classes, list) or not isinstance(pags, dict) or not isinstance(cards, dict):
+        raise ValueError('"classes" tem de ser lista e "paginas"/"cards" objeto')
+    return base, classes, pags, cards
+
+
+def _grava_baseline(root, base):
+    """JSON com indent 2, mas um card por linha (senão são milhares de linhas)."""
+    base = dict(base)
+    cards = base.pop('cards', {})
+    txt = json.dumps(base, ensure_ascii=False, indent=2)
+    if cards:
+        blocos = []
+        for pg, por in cards.items():
+            linhas = ',\n'.join(f'      {json.dumps(c, ensure_ascii=False)}: '
+                                f'{json.dumps(v, ensure_ascii=False)}' for c, v in por.items())
+            blocos.append(f'    {json.dumps(pg)}: {{\n{linhas}\n    }}')
+        txt = txt[:-2] + ',\n  "cards": {\n' + ',\n'.join(blocos) + '\n  }\n}'
+    with open(os.path.join(root, BASELINE_COMPONENTES), 'w', encoding='utf-8', newline='\n') as fh:
+        fh.write(txt + '\n')
 
 
 def atualiza_componentes(root=None):
@@ -640,15 +708,18 @@ def atualiza_componentes(root=None):
     classes mantida). É o "de propósito": rodar só depois de conferir que a queda
     vem do Notion, e dizer no commit qual conteúdo saiu."""
     root = root or ROOT
-    base, classes, _ = _le_baseline(root)
-    pags = {}
+    base, classes, _, _ = _le_baseline(root)
+    pags, cards = {}, {}
     for pg in _paginas_classe(root):
-        cont = conta_componentes(open(os.path.join(root, pg), encoding='utf-8').read(), classes)
+        html = open(os.path.join(root, pg), encoding='utf-8').read()
+        cont = conta_componentes(html, classes)
         pags[pg] = {k: n for k, n in cont.items() if n}
+        cards[pg] = conta_por_card(html, classes)
     base['paginas'] = pags
-    with open(os.path.join(root, BASELINE_COMPONENTES), 'w', encoding='utf-8', newline='\n') as fh:
-        fh.write(json.dumps(base, ensure_ascii=False, indent=2) + '\n')
-    print(f'  baseline regravado: {BASELINE_COMPONENTES} ({len(pags)} páginas)')
+    base['cards'] = cards
+    _grava_baseline(root, base)
+    print(f'  baseline regravado: {BASELINE_COMPONENTES} ({len(pags)} páginas, '
+          f'{sum(len(v) for v in cards.values())} cards)')
 
 
 def checa_componentes(root=None):
@@ -656,12 +727,12 @@ def checa_componentes(root=None):
     root = root or ROOT
     print(f'[componentes] Classes de componente em pages/classes x {BASELINE_COMPONENTES}')
     try:
-        _, classes, pags = _le_baseline(root)
+        _, classes, pags, cards = _le_baseline(root)
     except (OSError, ValueError, KeyError) as e:
         falhas.append('componentes')
         print(f'  FALHA  {BASELINE_COMPONENTES} ilegível: {e}')
         return
-    ruins, subiu, n = [], [], 0
+    ruins, subiu, n, nc = [], [], 0, 0
     for pg in sorted(set(pags) | set(_paginas_classe(root))):
         if pg not in pags:
             ruins.append(f'{pg}: página sem linha no baseline')
@@ -673,7 +744,8 @@ def checa_componentes(root=None):
         if not os.path.exists(caminho):
             ruins.append(f'{pg}: está no baseline e não existe')
             continue
-        cont = conta_componentes(open(caminho, encoding='utf-8').read(), classes)
+        html = open(caminho, encoding='utf-8').read()
+        cont = conta_componentes(html, classes)
         for k in classes:
             esp = pags[pg].get(k, 0)
             if cont[k] < esp:
@@ -681,6 +753,19 @@ def checa_componentes(root=None):
             elif cont[k] > esp:
                 subiu.append(f'{pg}: .{k} {esp} -> {cont[k]}')
         n += 1
+        # por card: o total da página fecha mesmo quando um componente sai de um
+        # card e aparece em outro
+        agora = conta_por_card(html, classes)
+        for cid, esperado in cards.get(pg, {}).items():
+            nc += 1
+            if cid not in agora:
+                ruins.append(f'{pg}: card {cid} sumiu (tinha {esperado})')
+                continue
+            for k, esp in esperado.items():
+                if k not in classes:
+                    ruins.append(f'{pg}: card {cid}: .{k} fora da lista "classes"')
+                elif agora[cid].get(k, 0) < esp:
+                    ruins.append(f'{pg}: card {cid}: .{k} caiu de {esp} para {agora[cid].get(k, 0)}')
     if ruins:
         falhas.append('componentes')
         for r in ruins:
@@ -688,7 +773,7 @@ def checa_componentes(root=None):
         print('         componente virou lista genérica? Restaure no data/classes/*.json. Se o Notion\n'
               '         tirou o conteúdo, rode validar.py . --atualizar-componentes e diga no commit.')
     else:
-        print(f'  OK     {n} páginas, {len(classes)} classes, nenhuma abaixo do baseline')
+        print(f'  OK     {n} páginas, {nc} cards, {len(classes)} classes, nenhuma abaixo do baseline')
     for s in subiu:
         print(f'  AVISO  {s} (acima do baseline: --atualizar-componentes fixa o novo piso)')
 

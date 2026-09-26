@@ -11,7 +11,7 @@
    "tipo": "dor",
    "nome": "Estabanado",
    "icone": null,
-   "resumo": "Você é naturalmente desligado, sempre possui a condição Desorientado .",
+   "resumo": "Você é naturalmente desligado, sempre possui a condição Desorientado.",
    "custo": "+1 Dor",
    "custoTipo": "gain"
   },
@@ -128,7 +128,7 @@
    "tipo": "dor",
    "nome": "Cego",
    "icone": null,
-   "resumo": "Você nasceu ou se tornou cego. Você tem permanentemente a condição Cego .",
+   "resumo": "Você nasceu ou se tornou cego. Você tem permanentemente a condição Cego.",
    "custo": "+5 Dor",
    "custoTipo": "gain"
   },

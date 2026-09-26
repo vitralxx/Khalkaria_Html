@@ -29,7 +29,7 @@
    "tipo": "traco",
    "nome": "Resiliência Anã",
    "icone": null,
-   "resumo": "Uma vez por descanso longo, pode rolar um teste de Fortitude com Vantagem. Você precisa de apenas 4 horas para descansar completamente. Você é imune a Envenenamento .",
+   "resumo": "Uma vez por descanso longo, pode rolar um teste de Fortitude com Vantagem. Você precisa de apenas 4 horas para descansar completamente. Você é imune a Envenenamento.",
    "raca": "anao",
    "card": "trait-card"
   },
@@ -38,7 +38,7 @@
    "tipo": "traco",
    "nome": "Treinamento Anão",
    "icone": null,
-   "resumo": "Anões são treinados a utilizar as armas que fabricam. Você começa treinado em Armas Marciais e Armas à Distância .",
+   "resumo": "Anões são treinados a utilizar as armas que fabricam. Você começa treinado em Armas Marciais e Armas à Distância.",
    "raca": "anao",
    "card": "trait-card"
   },
@@ -65,7 +65,7 @@
    "tipo": "traco",
    "nome": "Amado",
    "icone": null,
-   "resumo": "Você pode tentar encantar uma criatura com sua aparência eloquente. Como 1 ação, uma criatura em até 9m deve fazer um teste de Vontade contra sua CD ou fica Enfeitiçada . A criatura fica enfeitiçada até passar no teste de Vontade no final de cada turno dela ou você atacar ela. Grutos tem vantagem no teste de resistência dessa característica. Você tem +2 em interação social(qualquer) contra criaturas que gostam de você.",
+   "resumo": "Você pode tentar encantar uma criatura com sua aparência eloquente. Como 1 ação, uma criatura em até 9m deve fazer um teste de Vontade contra sua CD ou fica Enfeitiçada. A criatura fica enfeitiçada até passar no teste de Vontade no final de cada turno dela ou você atacar ela. Grutos tem vantagem no teste de resistência dessa característica. Você tem +2 em interação social(qualquer) contra criaturas que gostam de você.",
    "raca": "dryad",
    "card": "trait-card"
   },
@@ -83,7 +83,7 @@
    "tipo": "traco",
    "nome": "Língua Bifurcada",
    "icone": null,
-   "resumo": "Tem vantagem nas perícias de Movimento, Crime, Intimidação e Sobrevivência contra Dryads e outras Criaturas Predáveis, adicionalmente é Imune a Envenenamento .",
+   "resumo": "Tem vantagem nas perícias de Movimento, Crime, Intimidação e Sobrevivência contra Dryads e outras Criaturas Predáveis, adicionalmente é Imune a Envenenamento.",
    "raca": "gruto",
    "card": "trait-card"
   },
@@ -146,7 +146,7 @@
    "tipo": "traco",
    "nome": "Automanutenção",
    "icone": null,
-   "resumo": "Possui mecanismo de automanutenção (cura ao descansar), mas para cura maior deve ser consertado com item Kit de Manutenção . Poções e Elixires não funcionam em você.",
+   "resumo": "Possui mecanismo de automanutenção (cura ao descansar), mas para cura maior deve ser consertado com item Kit de Manutenção. Poções e Elixires não funcionam em você.",
    "raca": "automato",
    "card": "trait-card"
   },

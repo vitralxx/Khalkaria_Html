@@ -11,7 +11,7 @@
    "tipo": "marca",
    "nome": "Disciplina",
    "icone": null,
-   "resumo": "\"Você é frio e age apenas quando necessário.\" Você é friamente disciplinado e segue um conjunto de valores difíceis de quebrar. Para cada 5 combates onde a Marca do Duelo te atacou antes de você atacá-la, você ganha +1 permanentemente em Vontade . (Máx. +5) Na primeira vez em cada combate que você sofre um ataque antes de ter atacado, recupere Stamina igual ao seu Mod. Constituição.",
+   "resumo": "\"Você é frio e age apenas quando necessário.\" Você é friamente disciplinado e segue um conjunto de valores difíceis de quebrar. Para cada 5 combates onde a Marca do Duelo te atacou antes de você atacá-la, você ganha +1 permanentemente em Vontade. (Máx. +5) Na primeira vez em cada combate que você sofre um ataque antes de ter atacado, recupere Stamina igual ao seu Mod. Constituição.",
    "classe": "espadachim",
    "card": "marca-card"
   },
@@ -20,7 +20,7 @@
    "tipo": "marca",
    "nome": "Caça Fardos",
    "icone": null,
-   "resumo": "\"Você busca criaturas indignas, e as assassina com prazer.\" Você é naturalmente benevolente e busca punir criaturas bestiais/monstruosas. Para cada 5 criaturas monstruosas ou malignas que você matou, você ganha +1 permanentemente em Sobrevivência . (Máx. +5) Você consegue localizar a Marca do Duelo em qualquer situação, mesmo que ela esteja invisível ou escondida .",
+   "resumo": "\"Você busca criaturas indignas, e as assassina com prazer.\" Você é naturalmente benevolente e busca punir criaturas bestiais/monstruosas. Para cada 5 criaturas monstruosas ou malignas que você matou, você ganha +1 permanentemente em Sobrevivência. (Máx. +5) Você consegue localizar a Marca do Duelo em qualquer situação, mesmo que ela esteja invisível ou escondida.",
    "classe": "espadachim",
    "card": "marca-card"
   },
@@ -29,7 +29,7 @@
    "tipo": "marca",
    "nome": "Nostalgia",
    "icone": null,
-   "resumo": "\"Como eles ousam ter te desrespeitado?\" Você é rancoroso em seu cerne, guarda mais magoas do que deveria. Para cada 5 criaturas que te causaram dano e que você matou, você ganha +1 permanentemente em Intimidação . (Máx. +5) Ao sofrer dano de uma criatura enquanto não tiver uma Marca do Duelo ativa, ela recebe a Marca do Duelo automaticamente. Adicionalmente, ao sofrer dano de uma criatura pode adicionar a Marca do Duelo a ela como uma reação.",
+   "resumo": "\"Como eles ousam ter te desrespeitado?\" Você é rancoroso em seu cerne, guarda mais magoas do que deveria. Para cada 5 criaturas que te causaram dano e que você matou, você ganha +1 permanentemente em Intimidação. (Máx. +5) Ao sofrer dano de uma criatura enquanto não tiver uma Marca do Duelo ativa, ela recebe a Marca do Duelo automaticamente. Adicionalmente, ao sofrer dano de uma criatura pode adicionar a Marca do Duelo a ela como uma reação.",
    "classe": "espadachim",
    "card": "marca-card"
   },
@@ -38,7 +38,7 @@
    "tipo": "marca",
    "nome": "Vingança",
    "icone": null,
-   "resumo": "\"Raiva. O único prazer que nunca te traiu.\" Você não consegue se controlar em não se vingar quando é desrespeitado. Para cada 5 combates que você terminou com menos da metade da Saúde, você ganha +1 permanentemente em Fortitude . (Máx. +5) Ao ser reduzido a menos de 25% da Saúde, seus ataques causam +2d6 de dano Cortante até o fim do combate.",
+   "resumo": "\"Raiva. O único prazer que nunca te traiu.\" Você não consegue se controlar em não se vingar quando é desrespeitado. Para cada 5 combates que você terminou com menos da metade da Saúde, você ganha +1 permanentemente em Fortitude. (Máx. +5) Ao ser reduzido a menos de 25% da Saúde, seus ataques causam +2d6 de dano Cortante até o fim do combate.",
    "classe": "espadachim",
    "card": "marca-card"
   },
@@ -47,7 +47,7 @@
    "tipo": "marca",
    "nome": "Coragem Líquida",
    "icone": null,
-   "resumo": "\"Seu corpo tropeça, sua lâmina não… Ou talvez\" Você fica corajoso ao estar Bêbado e estranhamente sem vergonha. Para cada 5 combates que você saiu vitorioso e esteve sob a condição Bêbado , você ganha +1 permanentemente em Movimento . (Máx. +5) Uma vez por rodada, se você errar um ataque: pode rolar novamente como ação livre. Porém, se errar de novo, fica exposto .",
+   "resumo": "\"Seu corpo tropeça, sua lâmina não… Ou talvez\" Você fica corajoso ao estar Bêbado e estranhamente sem vergonha. Para cada 5 combates que você saiu vitorioso e esteve sob a condição Bêbado, você ganha +1 permanentemente em Movimento. (Máx. +5) Uma vez por rodada, se você errar um ataque: pode rolar novamente como ação livre. Porém, se errar de novo, fica exposto.",
    "classe": "espadachim",
    "card": "marca-card"
   },
@@ -56,7 +56,7 @@
    "tipo": "marca",
    "nome": "Blefe do Bêbado",
    "icone": null,
-   "resumo": "\"Você consegue extrapolar todos os limites e, às vezes, sair impune com isso.\" Você nunca admite seu vício em bebidas e possui um sério problema com mentiras. Para cada 5 mentiras que você fez alguém acreditar, você ganha +1 permanentemente em Enganação . (Máx. +5) Mentir lhe faz bem. Sempre que suceder em um teste de Enganação, recupere Mod. Constituição de Stamina.",
+   "resumo": "\"Você consegue extrapolar todos os limites e, às vezes, sair impune com isso.\" Você nunca admite seu vício em bebidas e possui um sério problema com mentiras. Para cada 5 mentiras que você fez alguém acreditar, você ganha +1 permanentemente em Enganação. (Máx. +5) Mentir lhe faz bem. Sempre que suceder em um teste de Enganação, recupere Mod. Constituição de Stamina.",
    "classe": "espadachim",
    "card": "marca-card"
   },
@@ -65,7 +65,7 @@
    "tipo": "marca",
    "nome": "Busca Pela Perfeição",
    "icone": null,
-   "resumo": "\"Você treina enquanto outros dormem. Treina enquanto outros comem. Treina enquanto outros vivem.\" Você é obcecado com a perfeição técnica. Você se critica constantemente e tem dificuldade em aceitar \"bom o suficiente\". Para cada 5 combates onde você acertou +3 ataques no mesmo turno, você ganha +1 permanentemente em Atacar . Ao chegar em +5, essa habilidade fica supérflua. Ao errar 2 ataques consecutivos, o próximo possui Vantagem.",
+   "resumo": "\"Você treina enquanto outros dormem. Treina enquanto outros comem. Treina enquanto outros vivem.\" Você é obcecado com a perfeição técnica. Você se critica constantemente e tem dificuldade em aceitar \"bom o suficiente\". Para cada 5 combates onde você acertou +3 ataques no mesmo turno, você ganha +1 permanentemente em Atacar. Ao chegar em +5, essa habilidade fica supérflua. Ao errar 2 ataques consecutivos, o próximo possui Vantagem.",
    "classe": "monge",
    "card": "marca-card"
   },
@@ -83,7 +83,7 @@
    "tipo": "marca",
    "nome": "Apático",
    "icone": null,
-   "resumo": "\"Você não sente mais. Não realmente. As emoções são ecos distantes de uma vida passada.\" O contato com o Vazio corroeu suas emoções. Você raramente demonstra alegria, tristeza ou raiva. Para cada 5 criaturas que você deixou Amedrontada , ganha +1 permanente em Vontade . Ao chegar em +5, essa habilidade fica supérflua. Você é imune a condições que são causadas por emoções (Enfeitiçado e Amedrontado).",
+   "resumo": "\"Você não sente mais. Não realmente. As emoções são ecos distantes de uma vida passada.\" O contato com o Vazio corroeu suas emoções. Você raramente demonstra alegria, tristeza ou raiva. Para cada 5 criaturas que você deixou Amedrontada, ganha +1 permanente em Vontade. Ao chegar em +5, essa habilidade fica supérflua. Você é imune a condições que são causadas por emoções (Enfeitiçado e Amedrontado).",
    "classe": "monge",
    "card": "marca-card"
   },
@@ -92,7 +92,7 @@
    "tipo": "marca",
    "nome": "Sussurros Constantes",
    "icone": null,
-   "resumo": "\"Ele fala com você. Nos sonhos. Nas sombras. No silêncio entre batimentos do coração.\" Algo do Abismo notou você e agora sussurra em sua mente. Você nunca sabe quando está pensando sozinho ou sendo guiado. Uma vez por descanso longo, você pode \"consultar o Abismo\": o Mestre te dá uma informação críptica mas útil sobre a situação atual. Ao ficar com 0 de Éter, ao invés de ficar Oco , você pode aceitar um Pacto Sombrio : recupere metade do seu Éter máximo, mas o Mestre escolhe uma consequência. Você tem Vantagem em Místico para identificar criaturas ou magia relacionadas ao Abismo.",
+   "resumo": "\"Ele fala com você. Nos sonhos. Nas sombras. No silêncio entre batimentos do coração.\" Algo do Abismo notou você e agora sussurra em sua mente. Você nunca sabe quando está pensando sozinho ou sendo guiado. Uma vez por descanso longo, você pode \"consultar o Abismo\": o Mestre te dá uma informação críptica mas útil sobre a situação atual. Ao ficar com 0 de Éter, ao invés de ficar Oco, você pode aceitar um Pacto Sombrio: recupere metade do seu Éter máximo, mas o Mestre escolhe uma consequência. Você tem Vantagem em Místico para identificar criaturas ou magia relacionadas ao Abismo.",
    "classe": "monge",
    "card": "marca-card"
   },
@@ -101,7 +101,7 @@
    "tipo": "marca",
    "nome": "Irmão da Floresta",
    "icone": null,
-   "resumo": "\"Você prefere a companhia de animais. Eles não mentem. Não traem. Não julgam.\" Você formou uma conexão profunda com o mundo animal. Sente-se desconfortável em cidades, ansioso em multidões humanas. Para cada 5 vezes que você invocar um Companheiro Primal, você ganha +1 permanente em Sobrevivência . Ao chegar em +5, essa habilidade fica supérflua. Animais não-hostis não te atacam a menos que provocados. Você pode se aproximar de bestas selvagens sem teste. Quando algum Companheiro Primal morre, você entra em Luto Selvagem : +2 Atacar e +1d6 dano por 2 rodadas.",
+   "resumo": "\"Você prefere a companhia de animais. Eles não mentem. Não traem. Não julgam.\" Você formou uma conexão profunda com o mundo animal. Sente-se desconfortável em cidades, ansioso em multidões humanas. Para cada 5 vezes que você invocar um Companheiro Primal, você ganha +1 permanente em Sobrevivência. Ao chegar em +5, essa habilidade fica supérflua. Animais não-hostis não te atacam a menos que provocados. Você pode se aproximar de bestas selvagens sem teste. Quando algum Companheiro Primal morre, você entra em Luto Selvagem: +2 Atacar e +1d6 dano por 2 rodadas.",
    "classe": "monge",
    "card": "marca-card"
   },
@@ -110,7 +110,7 @@
    "tipo": "marca",
    "nome": "Ciclo da Vida",
    "icone": null,
-   "resumo": "\"Morte não é o fim. É transformação. Você entende isso melhor que qualquer um.\" Você compreende o ciclo natural de vida e morte. Para você, tudo retorna à natureza eventualmente. Ao estar adjacente a uma criatura que morreu neste turno, você instintivamente absorve sua energia vital, recuperando 1d6 de Saúde ou 1d4 de Stamina. Você pode realizar um ritual de 1 minuto em uma criatura morta para devolve-la a natureza, você ganha 1 de Éter ao faze-lo. Você tem +2 em Medicina .",
+   "resumo": "\"Morte não é o fim. É transformação. Você entende isso melhor que qualquer um.\" Você compreende o ciclo natural de vida e morte. Para você, tudo retorna à natureza eventualmente. Ao estar adjacente a uma criatura que morreu neste turno, você instintivamente absorve sua energia vital, recuperando 1d6 de Saúde ou 1d4 de Stamina. Você pode realizar um ritual de 1 minuto em uma criatura morta para devolve-la a natureza, você ganha 1 de Éter ao faze-lo. Você tem +2 em Medicina.",
    "classe": "monge",
    "card": "marca-card"
   },
@@ -137,7 +137,7 @@
    "tipo": "marca",
    "nome": "Coleção de Últimos Suspiros",
    "icone": null,
-   "resumo": "\"Você se lembra de cada um. Não dos rostos - dos sons que fizeram ao partir.\" Você sente prazer em assassinar criaturas sem que elas te reconheçam. Para cada 5 criaturas que você matou enquanto estava Escondido , ganha +1 permanente em Furtividade. Ao chegar em +5, essa habilidade fica supérflua. Ao matar uma criatura sem ser detectado, recupera 1 de Stamina.",
+   "resumo": "\"Você se lembra de cada um. Não dos rostos - dos sons que fizeram ao partir.\" Você sente prazer em assassinar criaturas sem que elas te reconheçam. Para cada 5 criaturas que você matou enquanto estava Escondido, ganha +1 permanente em Furtividade. Ao chegar em +5, essa habilidade fica supérflua. Ao matar uma criatura sem ser detectado, recupera 1 de Stamina.",
    "classe": "batedor",
    "card": "marca-card"
   },
@@ -209,7 +209,7 @@
    "tipo": "marca",
    "nome": "Curandeiro Incansável",
    "icone": null,
-   "resumo": "\"Ninguém morre no meu turno.\" Você tem um senso de dever em curar criaturas. Para cada 5 Criaturas que você retirou a condição Morrendo , ganha +1 permanente em Medicina. Ao chegar em +5, essa habilidade fica supérflua. Ao curar uma criatura que estava com 0 de Saúde e remover a condição morrendo , ela e você também recuperam 2d6 de Stamina.",
+   "resumo": "\"Ninguém morre no meu turno.\" Você tem um senso de dever em curar criaturas. Para cada 5 Criaturas que você retirou a condição Morrendo, ganha +1 permanente em Medicina. Ao chegar em +5, essa habilidade fica supérflua. Ao curar uma criatura que estava com 0 de Saúde e remover a condição morrendo, ela e você também recuperam 2d6 de Stamina.",
    "classe": "alquimista",
    "card": "marca-card"
   },
@@ -254,7 +254,7 @@
    "tipo": "marca",
    "nome": "Casca Rachada",
    "icone": null,
-   "resumo": "\"Às vezes, o melhor a se fazer é deixar transbordar...\" Você pode ficar Oco como uma ação, isso significa que você perde todo seu éter, que fica em 0. Ao estar Oco , seu limite máximo de éter negativo dobra, além disso, você tem +2 de Vontade enquanto nessa condição.",
+   "resumo": "\"Às vezes, o melhor a se fazer é deixar transbordar...\" Você pode ficar Oco como uma ação, isso significa que você perde todo seu éter, que fica em 0. Ao estar Oco, seu limite máximo de éter negativo dobra, além disso, você tem +2 de Vontade enquanto nessa condição.",
    "classe": "teurgo",
    "card": "marca-card"
   },
@@ -290,7 +290,7 @@
    "tipo": "marca",
    "nome": "Colecionador de Lâminas",
    "icone": null,
-   "resumo": "\"Cada faca tem uma história. Cada história tem um corpo.\" Você coleciona armas de arremesso obsessivamente. Cada lâmina tem um nome, uma origem, um propósito. Suas lâminas são naturalmente resistentes, você pode gastar 5 minutos após um combate recuperando 1 Conjunto de Arremesso . Você pode batizar uma Arma de Arremesso em um descanso longo. Você ganha +1 ao atacar com ela.",
+   "resumo": "\"Cada faca tem uma história. Cada história tem um corpo.\" Você coleciona armas de arremesso obsessivamente. Cada lâmina tem um nome, uma origem, um propósito. Suas lâminas são naturalmente resistentes, você pode gastar 5 minutos após um combate recuperando 1 Conjunto de Arremesso. Você pode batizar uma Arma de Arremesso em um descanso longo. Você ganha +1 ao atacar com ela.",
    "classe": "artilheiro",
    "card": "marca-card"
   },
@@ -299,7 +299,7 @@
    "tipo": "marca",
    "nome": "Vício de Poder",
    "icone": null,
-   "resumo": "\"O cheiro de pólvora queimada. O zumbido nos ouvidos. O silêncio depois. Nada se compara.\" Você se acomodou com a presença de sua arma, ela te engrandece e te faz sentir poderoso. Para cada 5 criaturas que você matou com armas à distância, ganha +1 permanente em Atacar. Ao chegar em +5, essa habilidade fica supérflua. Se acertar um crítico com uma arma a distância você recupera 1 de Stamina. Ao passar 24 horas sem disparar uma arma a distância, você fica irritado : -1 em testes sociais até disparar novamente.",
+   "resumo": "\"O cheiro de pólvora queimada. O zumbido nos ouvidos. O silêncio depois. Nada se compara.\" Você se acomodou com a presença de sua arma, ela te engrandece e te faz sentir poderoso. Para cada 5 criaturas que você matou com armas à distância, ganha +1 permanente em Atacar. Ao chegar em +5, essa habilidade fica supérflua. Se acertar um crítico com uma arma a distância você recupera 1 de Stamina. Ao passar 24 horas sem disparar uma arma a distância, você fica irritado: -1 em testes sociais até disparar novamente.",
    "classe": "artilheiro",
    "card": "marca-card"
   },
@@ -317,7 +317,7 @@
    "tipo": "marca",
    "nome": "Paciência Inabalável",
    "icone": null,
-   "resumo": "\"Você esperou dias por um único tiro. Esperaria semanas se necessário.\" O tempo não te afeta como afeta os outros. Você pode ficar imóvel por horas, respirando lentamente, observando. Para cada 5 combates onde você acumulou 6+ Concentração , ganha +1 permanente em Percepção . Ao chegar em +5, essa habilidade fica supérflua. Ao ficar imóvel por 1 turno inteiro, você ganha Vantagem no próximo ataque à distância. Você tem + 2 em testes de Sobrevivência.",
+   "resumo": "\"Você esperou dias por um único tiro. Esperaria semanas se necessário.\" O tempo não te afeta como afeta os outros. Você pode ficar imóvel por horas, respirando lentamente, observando. Para cada 5 combates onde você acumulou 6+ Concentração, ganha +1 permanente em Percepção. Ao chegar em +5, essa habilidade fica supérflua. Ao ficar imóvel por 1 turno inteiro, você ganha Vantagem no próximo ataque à distância. Você tem + 2 em testes de Sobrevivência.",
    "classe": "artilheiro",
    "card": "marca-card"
   },
@@ -344,7 +344,7 @@
    "tipo": "marca",
    "nome": "Imortal",
    "icone": null,
-   "resumo": "\"Cada ferida conta uma história. Cada história te ensinou a sobreviver.\" Você não é do tipo que morre e se tornou apático em relação a morte. Enquanto estiver com ou menos da metade da vida, você tem: +2 Armadura(Ar) Natural Ao ser reduzido a 0 de Saúde, pode escolher não morrer como ação livre voltando a 1 de Saúde. Ao fazer isso, você ganha +1 de Exaustão .",
+   "resumo": "\"Cada ferida conta uma história. Cada história te ensinou a sobreviver.\" Você não é do tipo que morre e se tornou apático em relação a morte. Enquanto estiver com ou menos da metade da vida, você tem: +2 Armadura(Ar) Natural Ao ser reduzido a 0 de Saúde, pode escolher não morrer como ação livre voltando a 1 de Saúde. Ao fazer isso, você ganha +1 de Exaustão.",
    "classe": "brutalista",
    "card": "marca-card"
   },
@@ -353,7 +353,7 @@
    "tipo": "marca",
    "nome": "Contador de Corpos",
    "icone": null,
-   "resumo": "\"Você não lembra dos rostos. Só do número.\" Você busca assassinar criaturas e conta e reconta ativamente suas histórias terríveis. Para cada 10 criaturas que você matou, ganha +1 permanente em Atacar . Ao chegar em +5, essa habilidade fica supérflua. Ao matar uma criatura *brutalmente, você ganha +1 de Stamina e perde 1 de éter.",
+   "resumo": "\"Você não lembra dos rostos. Só do número.\" Você busca assassinar criaturas e conta e reconta ativamente suas histórias terríveis. Para cada 10 criaturas que você matou, ganha +1 permanente em Atacar. Ao chegar em +5, essa habilidade fica supérflua. Ao matar uma criatura *brutalmente, você ganha +1 de Stamina e perde 1 de éter.",
    "classe": "brutalista",
    "card": "marca-card"
   },

@@ -167,13 +167,13 @@ Ordem de carga e responsabilidade de cada camada:
 3. `<style>` inline da página — **apenas o que é dela**. Nas classes, os tokens
    `--ramo-*` de cor, que são a identidade visual de cada uma.
 
-Uma regra idêntica em 2+ páginas pertence a (2), não ao inline.
+Uma regra idêntica em 2+ páginas pertence a (2), não ao inline. `tools/extrair_css.py`
+faz essa extração respeitando o cascade.
 
 `.sep` (`css/classes.css`, `display: none`) guarda texto verbatim do Notion que o
 componente já mostra de outro jeito: a vírgula entre chips de stats, o `:` de um
 título, o prefixo `Lobo:` dentro do card do Lobo. O texto fica no DOM (a
-normalização do §6 e o `sync_notion.py cobertura` o enxergam) e sai da tela. `tools/extrair_css.py`
-faz essa extração respeitando o cascade.
+normalização do §6 e o `sync_notion.py cobertura` o enxergam) e sai da tela.
 
 ## 6. Comandos
 
@@ -217,8 +217,10 @@ o `data/catalogo/`.
 **`[componentes]`.** O sync verbatim de 2026-09-26 trocou cards de companheiro,
 tabelas d100, sub-habilidades, stats de ser/constructo, seções de patrono e
 effect-list por `<ul><li>` genérico, e nada acusou. Agora cada classe CSS listada
-em `tools/componentes-baseline.json` tem um piso por página de classe: se a
-contagem cair, o build falha. Ao recopiar texto do Notion, o texto novo entra
+em `tools/componentes-baseline.json` tem um piso por página de classe e por card
+(`data-kf-id`, contado no card mais interno): se a contagem cair, o build falha.
+O piso por card pega o componente que sai de um card e aparece em outro com o
+total da página igual. Ao recopiar texto do Notion, o texto novo entra
 DENTRO do componente. Se o Notion tirou o conteúdo que o componente embrulhava,
 confira e rode `validar.py . --atualizar-componentes`, dizendo no commit o que saiu.
 

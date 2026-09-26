@@ -21,7 +21,17 @@ Uso: python tools/gerar_catalogo.py [repo_root]
 """
 import glob, json, os, re, sys
 from kf_marca import (TIPO_POR_CLASSE_CSS, TIPO_POR_CLASSE_CSS_RACA, EMOJI,
-                      separa_icone, texto, tipo_do_opentag)
+                      separa_icone, tipo_do_opentag)
+from kf_marca import texto as _texto_s6
+
+
+def texto(h):
+    """Normalizador do §6 + sem espaço antes de pontuação.
+
+    Trocar tag por espaço deixa "Médio , 15 HP" (chip + .sep) e "<em>Oco</em>."
+    vira "Oco ." — espaço que é da marcação, não do texto.
+    """
+    return re.sub(r'\s+([,.;:)])', r'\1', _texto_s6(h))
 
 RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 REPO = sys.argv[1] if len(sys.argv) > 1 else RAIZ

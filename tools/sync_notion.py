@@ -124,18 +124,24 @@ FORA = {
     'limiar': [(r'^## ⭐ Cartas Raras', r'^## <span underline="true">O Abismo')],
 }
 
-def _nz(s):
+def _nz(s, virgula=True):
     s = _html.unescape(s)
     s = s.translate(str.maketrans({'‘': "'", '’': "'", '“': '"', '”': '"', ' ': ' ', '−': '-'}))
     s = re.sub(r'<[^>]+>', ' ', s)
     s = s.replace('\\', '').replace('*', '').replace('`', '')
     s = re.sub(r'\s+', ' ', s).strip().lower()
-    # vírgula entra aqui porque o espaço depois dela não é conteúdo: chip de stats
-    # (<span>Médio</span><span class="sep">,</span><span>15 HP</span>) vira
-    # "Médio , 15 HP" ao trocar tag por espaço, e o Notion escreve "Médio,15 HP"
-    s = re.sub(r'\s*([()+×/=,])\s*', r'\1', s)
+    s = re.sub(r'\s*([()+×/=])\s*', r'\1', s)
     s = re.sub(r'(\d)\s+m\b', r'\1m', s)
-    return re.sub(r'\s+([.,;:)])', r'\1', s)
+    s = re.sub(r'\s+([.,;:)])', r'\1', s)
+    return _vg(s) if virgula else s
+
+def _vg(s):
+    # Espaço depois da vírgula não é conteúdo: chip de stats
+    # (<span>Médio</span><span class="sep">,</span><span>15 HP</span>) vira
+    # "Médio , 15 HP" ao trocar tag por espaço, e o Notion escreve "Médio,15 HP".
+    # Só vale DEPOIS do filtro de tamanho (cmd_cobertura): tirar o espaço antes
+    # encurta a sentença e a joga abaixo do limiar de 25 sem conferir nada.
+    return re.sub(r'\s*,\s*', ',', s)
 
 _ABREV = r'(?<!mod\.)(?<!max\.)(?<!máx\.)(?<!ex\.)(?<!min\.)'
 
@@ -172,11 +178,12 @@ def cmd_cobertura(slug=None):
         site = _nz(re.sub(r'<script.*?</script>|<style.*?</style>', ' ', site, flags=re.S))
         faltam = []
         for f in fragmentos(s):
-            nf = _nz(f)
-            if nf in site:
+            nf = _nz(f, virgula=False)
+            if _vg(nf) in site:
                 continue
+            # limiar de 25 medido com o espaço da vírgula ainda no lugar (ver _vg)
             sents = [x for x in re.split(_ABREV + r'(?<=[.!?])\s+', nf) if len(x) >= 25]
-            ruins = [x for x in sents if x not in site]
+            ruins = [x for x in sents if _vg(x) not in site]
             if ruins:
                 faltam.append((f, ruins))
         total += len(faltam)
