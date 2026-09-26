@@ -17,6 +17,8 @@ integridade do artefato HTML, que é o que quebra em silêncio:
      <symbol> e todo .nav-link com rótulo .nav-rot (o trilho o esconde por clip)
   7. Guarda-fio: as 5 frases de peso do Sistema que o motor de carga codifica
   8. data/bazar.json é ARRAY e todo item traz `inv`
+  9. Guarda-fio: os 3 blocos decididos D80–D82 (modificador, vantagem/
+     desvantagem, custo mínimo de magia) continuam em data/sistema.json
 
 Uso:
   python validar.py [repo_root]
@@ -228,6 +230,55 @@ def checa_regras_inventario(root=None):
         print(f'  OK     {len(FRASES_INVENTARIO)} frases de peso presentes')
 
 
+# Blocos que o Pedro decidiu (D80–D82) e gravou na página Sistema do Notion; a
+# ficha (motor de regras) conta com eles. Se um sync apagar ou reescrever algum,
+# o build falha e o motor tem de ser revisto junto. Frases verbatim do Notion.
+BLOCOS_SISTEMA = {
+    'D80 modificador de atributo': [
+        'Modificador de Atributo:',
+        'Subtraia 10 do atributo e divida por 2, arredondando para baixo',
+    ],
+    'D81 vantagem/desvantagem': [
+        'Vantagem: Role 2d20 e use o maior resultado.',
+        'Desvantagem: Role 2d20 e use o menor resultado.',
+        'Vantagem e desvantagem não se acumulam',
+        'elas se anulam e você rola normalmente',
+        'Crítico e falha crítica valem para o dado que você usou.',
+        'que usa dado próprio, role esse dado duas vezes',
+    ],
+    'D82 custo mínimo de magia': [
+        'toda conjuração custa no mínimo 1 Éter',
+        'A única exceção é a magia de Nível 1 conjurada em intensidade Normal e sem modulação, que custa 0 Éter.',
+        'Magias de Nível 1 não possuem a intensidade Contida.',
+    ],
+}
+
+
+def checa_blocos_sistema(root=None):
+    """[9] Guarda-fio: os blocos D80–D82 do Sistema (snapshot por frase)."""
+    root = root or ROOT
+    print('[9] Guarda-fio dos blocos D80–D82 (data/sistema.json)')
+    f = os.path.join(root, 'data', 'sistema.json')
+    try:
+        dados = json.load(open(f, encoding='utf-8'))
+    except (OSError, ValueError) as e:
+        falhas.append('blocos-sistema')
+        print(f'  FALHA  data/sistema.json ilegível: {e}')
+        return
+    texto = re.sub(r'\s+', ' ', re.sub(r'<[^>]+>', ' ', ' '.join(_textos_html(dados))))
+    texto = re.sub(r' ([:.,])', r'\1', texto)   # "<strong>X</strong>:" vira "X :" ao tirar as tags
+    ruins = 0
+    for bloco, frases in BLOCOS_SISTEMA.items():
+        faltam = [fr for fr in frases if fr not in texto]
+        for fr in faltam:
+            print(f'  FALHA  {bloco}: frase sumiu: "{fr}"')
+        ruins += bool(faltam)
+    if ruins:
+        falhas.append('blocos-sistema')
+    else:
+        print(f'  OK     {len(BLOCOS_SISTEMA)} blocos presentes')
+
+
 def checa_bazar_inv(root=None):
     """[8] Todo item do data/bazar.json traz o campo inv (contrato do inventário)."""
     root = root or ROOT
@@ -298,6 +349,8 @@ if __name__ == '__main__':
     checa_regras_inventario()
     print()
     checa_bazar_inv()
+    print()
+    checa_blocos_sistema()
     print()
     if '--skip-roundtrip' not in FLAGS:
         checa_roundtrip()

@@ -7,7 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400&family=UnifrakturMaguntia&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../css/style.css?v=c30b845c">
+    <link rel="stylesheet" href="../css/style.css?v=b94ed547">
     <script data-nav-boot>(function(){try{var s=JSON.parse(localStorage.getItem('khalkaria_nav')||'{}'),h=document.documentElement;if(s.trilho)h.setAttribute('data-nav','trilho');if(s.fechados&&s.fechados.length)h.setAttribute('data-nav-fechados',s.fechados.join(' '))}catch(e){}})()</script>
 </head>
 <body>
@@ -184,6 +184,33 @@
                             <li><strong>Inteligência</strong></li>
                             <li><strong>Sabedoria</strong></li>
                         </ul>
+
+                        <p><strong>Modificador de Atributo:</strong> é o valor que o atributo soma nas perícias, no dano e no cálculo dos status. Subtraia 10 do atributo e divida por 2, arredondando para baixo. Ou seja, o modificador aumenta a cada 2 pontos de atributo.</p>
+                        <div style="overflow-x: auto;">
+                        <table class="sistema-table">
+                            <thead>
+                                <tr><th>Atributo</th><th>Modificador</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>1 (Mín.)</td><td>-5</td></tr>
+                                <tr><td>2–3</td><td>-4</td></tr>
+                                <tr><td>4–5</td><td>-3</td></tr>
+                                <tr><td>6–7</td><td>-2</td></tr>
+                                <tr><td>8–9</td><td>-1</td></tr>
+                                <tr><td>10–11</td><td>+0</td></tr>
+                                <tr><td>12–13</td><td>+1</td></tr>
+                                <tr><td>14–15</td><td>+2</td></tr>
+                                <tr><td>16–17</td><td>+3</td></tr>
+                                <tr><td>18–19</td><td>+4</td></tr>
+                                <tr><td>20–21</td><td>+5</td></tr>
+                                <tr><td>22–23</td><td>+6</td></tr>
+                                <tr><td>24–25</td><td>+7</td></tr>
+                                <tr><td>26–27</td><td>+8</td></tr>
+                                <tr><td>28–29</td><td>+9</td></tr>
+                                <tr><td>30 (Máx.)</td><td>+10</td></tr>
+                            </tbody>
+                        </table>
+                        </div>
                         
                         <div class="rule-box">
                             <p><strong>Criação de Personagem:</strong></p>
@@ -433,6 +460,17 @@
                         <p><strong style="color: var(--gold);">Crítico:</strong> Se tirar 20 no dado você críta. <span style="color: var(--text-muted);">(a Margem de Ameaça pode aumentar os resultados em que você críta)</span></p>
 
                         <p><strong style="color: var(--accent-red);">Falha Crítica:</strong> Se tirar 1 no dado você falha criticamente.</p>
+
+                        <p><strong>Vantagem:</strong> Role 2d20 e use o maior resultado.</p>
+
+                        <p><strong>Desvantagem:</strong> Role 2d20 e use o menor resultado.</p>
+
+                        <ul>
+                            <li>Vantagem e desvantagem não se acumulam: várias fontes de vantagem continuam sendo 2d20.</li>
+                            <li>Se você tiver vantagem e desvantagem ao mesmo tempo, elas se anulam e você rola normalmente.</li>
+                            <li>Crítico e falha crítica valem para o dado que você usou.</li>
+                            <li>Na perícia <a href="#defender" class="keyword-link">Defender</a>, que usa dado próprio, role esse dado duas vezes.</li>
+                        </ul>
                     </div>
                 </div>
             </section>
@@ -456,13 +494,13 @@
                         
                         <ul>
                             <li><strong>Mover</strong> (1 ação) — Max. 1 vez por turno</li>
+                            <li><strong>Pular</strong> (2 ações) → Pula 1/3 do seu Movimento.</li>
                             <li><strong>Acelerar</strong> (1 ação) → +3 m de movimento nesta rodada.</li>
                             <li><strong>Atacar</strong> (Depende da arma) — Ataques consecutivos somam −5 a cada ataque no mesmo turno.</li>
                             <li><strong>Defender</strong> (1 ação) → +2 <a href="#defender" class="keyword-link">Defender</a> até seu próximo turno.</li>
-                            <li><strong>Defender fora do seu turno</strong> (Reação) → Soma 1d10+mod. Destreza a sua <a href="#evasao" class="keyword-link">evasão</a>.</li>
-                            <li><strong>Conjurar magia simples</strong> (1 ação)</li>
-                            <li><strong>Conjurar magia complexa</strong> (2-3 ações)</li>
-                            <li><strong>Habilidade Específica</strong> (1–3 ações)</li>
+                            <li><strong>Defender fora do seu turno</strong> (Reação) → Soma o dado da perícia <a href="#defender" class="keyword-link">Defender</a> à sua <a href="#evasao" class="keyword-link">evasão</a> contra todos os ataques do agressor nesta rodada.</li>
+                            <li><strong>Conjurar magia</strong> (1-3 ações)</li>
+                            <li><strong>Técnica Específica</strong> (1–3 ações)</li>
                             <li><strong>Outro</strong> (1-3 ações) — dependendo de sua dificuldade ou demora para executar</li>
                             <li>Reações servem para regras/habilidades específicas</li>
                         </ul>
@@ -485,6 +523,7 @@
                                             <li>Caso ele acerte criticamente, ele nega seu dano, ainda sim, te retaliando.</li>
                                             <li>Caso ele falhe criticamente, seu ataque contra ele é crítico.</li>
                                         </ul>
+                                        Você não pode retaliar à distância.
                                     </li>
                                     <li><strong>Defender:</strong> O alvo tenta se defender: O alvo adiciona a rolagem da perícia <em>Defender</em> a sua <em>evasão</em>. Caso o atacante role abaixo da <em>evasão</em> do alvo, o alvo esquiva/bloqueia.</li>
                                 </ul>
@@ -517,27 +556,32 @@
                             
                             <ul>
                                 <li><strong>Corpo a Corpo Pesado</strong> = +Mod. Força
-                                    <br><small>O acerto usa a perícia <em>atacar</em>, dano dá +Mod. de Força.</small></li>
+                                    <br><small>O acerto usa a perícia <em>atacar</em> com Mod. de Força, dano dá +Mod. de Força.</small></li>
                                 <li><strong>Corpo a Corpo Leve</strong> = +Mod. Destreza
-                                    <br><small>O acerto usa a perícia <em>atacar</em>, dano dá +Mod. de Destreza.</small></li>
+                                    <br><small>O acerto usa a perícia <em>atacar</em> com Mod. de Destreza, dano dá +Mod. de Destreza.</small></li>
                                 <li><strong>À Distância</strong> = +Mod. Destreza
-                                    <br><small>O acerto usa a perícia <em>atacar</em>, mas pode ser rolada com destreza.</small></li>
-                                <li><strong>Armas Místicas</strong> = +Mod. Inteligência/Sabedoria</li>
+                                    <br><small>O acerto usa a perícia <em>atacar</em>, com Mod. de Destreza, dano dá +Mod. de Destreza.</small></li>
+                                <li><strong>Armas Místicas</strong> = +Mod. Inteligência/Sabedoria
+                                    <br><small>Quando a magia exige um ataque, o acerto usa a perícia <em>místico</em>, dano dá +Mod. de Inteligência/Sabedoria.</small></li>
                             </ul>
                         </div>
                         
                         <div class="content-card">
                             <h4>Defesa</h4>
-                            <p id="evasao"><strong>Evasão</strong> = Determinada pela sua classe, define se você desvia/resiste do dano</p>
+                            <p id="evasao"><strong>Evasão</strong> = Determinada pela sua classe, define se você desvia/resiste o dano quando alvo de um ataque.</p>
+                            <ul>
+                                <li><strong>Evasão Passiva</strong> — É sua evasão natural. Quando alvo de um ataque, se sua evasão for maior que a rolagem de ataque você desvia/resiste o ataque.</li>
+                                <li><strong>Evasão Ativa</strong> — Quando alvo de um ataque, você pode gastar sua reação para somar o dado da perícia <a href="#defender" class="keyword-link">Defender</a> (conforme seu treinamento) à sua evasão contra todos os ataques do agressor neste turno.</li>
+                            </ul>
                             <p><strong>Armadura (Ar)</strong> = Reduz dano <em>ordinário</em> em uma constante fixa, dependendo da armadura</p>
                             
                             <h4>Resistência, Vulnerabilidade e Armadura Específica (Ae)</h4>
                             <ul>
                                 <li><strong>Resistência</strong> a um dano específico o reduz sempre a metade.</li>
                                 <li><strong>Vulnerabilidade</strong> a um dano específico sempre o dobra.</li>
-                                <li><strong>Armadura Específica</strong> pode ser fornecida por diversos meios e nem sempre representa uma proteção física. Sempre é especializada em resistir a um tipo e uma quantidade de dano específico.<br>
-                                    <code>Ae(Tipo de dano, Quant. de resist.)</code><br>
-                                    <small>Ex.: Ae(Místico, 2), ao receber 10 de dano místico, receba apenas 8.</small></li>
+                                <li><strong>Armadura Específica (Ae)</strong> reduz dano <em>atípico</em> em uma constante fixa.<br>
+                                    <code>Ae(Tipo de dano, Quant. de resist.)</code> é o formato padrão.<br>
+                                    <small>Ex.: Ae(Místico, 2), ao receber 10 de dano místico, recebe apenas 8.</small></li>
                                 <li><strong>Armaduras Pesadas e Leves</strong><br>
                                     Os itens de armadura equipáveis são subdivididos em dois grupos:
                                     <ul>
@@ -584,6 +628,11 @@
                                 <li>Radiante</li>
                                 <li>Trovejante</li>
                                 <li>Necrótico</li>
+                            </ul>
+                        </div>
+                        <div class="damage-category damage-outros">
+                            <h5>Outros</h5>
+                            <ul>
                                 <li>Força</li>
                                 <li>Primordial</li>
                             </ul>
@@ -620,6 +669,11 @@
                                     <td><strong>Agarrar</strong></td>
                                     <td><code>Movimento × Movimento</code></td>
                                     <td>Se ganhar você domina o alvo com no mínimo 1 mão. Atacar contra o alvo possui +2 e o alvo recebe -2 ao Atacar. O alvo fica <a href="condicoes.html#enraizado" class="keyword-link">Enraizado</a> até se livrar do agarrão.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Investida</strong></td>
+                                    <td><code>2 ações · Movimento</code></td>
+                                    <td>Você gasta duas ações para se movimentar até seu Movimento em linha reta. A cada inimigo colidido no seu caminho, faça um teste de <em>Movimento</em> contra ele: em caso de sucesso, você realiza 1 ação: Atacar contra ele e segue para o próximo alvo na trajetória; em caso de falha, você é interceptado, para antes do alvo contra o qual falhou e realiza 1 ação: Atacar contra ele.</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -971,8 +1025,8 @@
                 <div class="subsection" id="municao">
                     <h3 id="equipamento-municao-de-armas">Munição de Armas</h3>
                     <div class="content-card">
-                        <p>Armas a distância requerem <strong>1 munição</strong> para serem usadas pelo combate inteiro.</p>
-                        <p>A munição é descontada por cena e pode ser fabricada por artesãos.</p>
+                        <p>Armas à distância requerem <strong>1 munição</strong> para serem usadas pelo combate inteiro.</p>
+                        <p>A munição é descontada por combate.</p>
                         
                         <h4>Tipos de Munição:</h4>
                         <ul>
@@ -1088,7 +1142,7 @@
                                 <tr><th>Categoria</th><th>Definição</th></tr>
                             </thead>
                             <tbody>
-                                <tr><td><strong>Arma</strong></td><td>Armas são itens equipáveis e utilizadas para causar dano. Toda arma possui um tipo, listado na tabela de armas, definindo seus dados de dano e passivas únicas genéricas. As armas genéricas e algumas armas únicas podem ser fabricadas através da perícia Ofício(Ferraria).</td></tr>
+                                <tr><td><strong>Arma</strong></td><td>Armas são itens equipáveis e utilizadas para causar dano. Toda arma possui um tipo, listado na tabela de armas, definindo seus dados de dano, ações, requisito e efeito ativável. As armas genéricas e algumas armas únicas podem ser fabricadas através da perícia Ofício(Ferraria).</td></tr>
                                 <tr><td><strong>Armadura</strong></td><td>Armaduras são itens equipáveis separados em 2 grupos: Armaduras Pesadas e Armaduras Leves. Você pode equipar até 1 armadura pesada, geralmente oferecem Ar e habilidades únicas. Você pode equipar até 2 armaduras leves, geralmente oferece Ae e passivas diversas. Algumas podem ser fabricadas através da perícia Ofício(Ferraria).</td></tr>
                                 <tr><td><strong>Escudo</strong></td><td>Escudos são itens off-hand que podem ser equipados junto de qualquer arma. Ao utilizar sua reação para se defender, o escudo provê um aumento na perícia Defender. Alguns podem ser fabricados através da perícia Ofício(Ferraria).</td></tr>
                                 <tr><td><strong>Consumível</strong></td><td>Consumíveis são itens utilizáveis que geralmente são gastos após o uso. Alguns podem ser fabricados através da perícia Ofício(Engenharia), a maioria pode ser fabricado pelo Ofício(Alquimia).</td></tr>
@@ -1281,11 +1335,11 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr><td>1</td><td>Cada integrante do grupo perde 2d6+Hostilidade de Saúde e Stamina</td></tr>
-                                <tr><td>2-19</td><td>Cada integrante do grupo perde 1d8+Hostilidade de Saúde e Stamina</td></tr>
-                                <tr><td>20-39</td><td>Cada integrante do grupo perde 1d6+Hostilidade de Saúde e Stamina</td></tr>
-                                <tr><td>40-59</td><td>Cada integrante do grupo perde 1d4+Hostilidade de Stamina</td></tr>
-                                <tr><td>60-79</td><td>Cada integrante do grupo perde 1d3+Hostilidade de Stamina</td></tr>
+                                <tr><td>1</td><td>Cada integrante do grupo perde 4d6+Hostilidade de Saúde e Stamina</td></tr>
+                                <tr><td>2-19</td><td>Cada integrante do grupo perde 2d8+Hostilidade de Saúde e Stamina</td></tr>
+                                <tr><td>20-39</td><td>Cada integrante do grupo perde 2d6+Hostilidade de Saúde e Stamina</td></tr>
+                                <tr><td>40-59</td><td>Cada integrante do grupo perde 1d6+Hostilidade de Stamina</td></tr>
+                                <tr><td>60-79</td><td>Cada integrante do grupo perde 1d4+Hostilidade de Stamina</td></tr>
                                 <tr><td>80-99</td><td>Cada integrante do grupo perde Hostilidade de Stamina</td></tr>
                                 <tr><td>100</td><td>O grupo evita todas as ameaças e consequências do fracasso.</td></tr>
                             </tbody>
@@ -1468,7 +1522,7 @@
                         
                         <div class="subsection">
                             <h4>Ferraria e Engenharia</h4>
-                            <p>Durante um descanso longo, personagens treinados em <strong>Ofício(Ferraria)</strong> ou <strong>Ofício(Engenharia)</strong> podem fabricar itens do Bazar. As regras completas de fabricação estão descritas em <a href="#crafting" class="keyword-link">Sistema de Crafting</a>.</p>
+                            <p>Durante o descanso longo você pode gastar sua ação de descanso para tentar fabricar <strong>UM</strong> item do Bazar. Regra completa em <a href="#crafting" class="keyword-link">O Bazar → Sistema de Crafting</a>.</p>
                         </div>
                         <div class="warning-box">
                             <p>É necessário uma fonte de luz e alimento para cada Jogador. Quem não se alimenta, não se recupera.</p>
@@ -1653,7 +1707,7 @@
                                 <tr><td><strong>Skalia</strong></td><td>Idioma dos Répteis, protegido pela raça</td></tr>
                                 <tr><td><strong>Khazadun</strong></td><td>Idioma dos Anões, impossível de falar sem cordas vocais anãs.</td></tr>
                                 <tr><td><strong>Natural</strong></td><td>Idioma dos Animais, Bestas e Dryads</td></tr>
-                                <tr><td><strong>Abissal</strong></td><td>Idioma Primordial</td></tr>
+                                <tr><td><strong>Abissal</strong></td><td>Idioma raro entendido por poucos, geralmente teurgos pesquisadores</td></tr>
                                 <tr><td><strong>Esquecido</strong></td><td>Idioma Extinto de Criaturas Antigas</td></tr>
                             </tbody>
                         </table>
@@ -1860,6 +1914,11 @@
                         
                         <div class="warning-box">
                             <p><strong>Transbordante:</strong> Vontade CD 15 ou falha no cast e perde o dobro de éter utilizado.</p>
+                        </div>
+
+                        <div class="rule-box">
+                            <p><strong>Custo mínimo:</strong> toda conjuração custa no mínimo 1 Éter, mesmo após reduções de técnicas, cartas ou itens. A única exceção é a magia de Nível 1 conjurada em intensidade Normal e sem modulação, que custa 0 Éter.</p>
+                            <p>Magias de Nível 1 não possuem a intensidade Contida.</p>
                         </div>
                         
                         <h4>Efeito reduzido/ampliado/máximo</h4>
@@ -2103,7 +2162,7 @@
     <!-- BOTÃO VOLTAR AO TOPO -->
     <button class="back-to-top" id="backToTop" title="Voltar ao topo">↑</button>
     
-    <script src="../js/main.js?v=c30b845c"></script>
+    <script src="../js/main.js?v=b94ed547"></script>
     <script>
         // Botão Voltar ao Topo
         const backToTop = document.getElementById('backToTop');
@@ -2152,7 +2211,7 @@
             });
         });
     </script>
-    <script src="../js/utils.js?v=c30b845c"></script>
-    <script src="../js/nav.js?v=c30b845c" data-nav-js></script>
+    <script src="../js/utils.js?v=b94ed547"></script>
+    <script src="../js/nav.js?v=b94ed547" data-nav-js></script>
 </body>
 </html>

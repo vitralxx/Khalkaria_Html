@@ -178,7 +178,9 @@ links/assets locais existentes, round-trip JSON→HTML, consistência das
 1 `nav.js`, 1 `aria-current`, todo glifo `nv-*` com `<symbol>` e todo `.nav-link`
 com `.nav-rot`), as 5 frases de peso
 do Sistema que o motor de carga codifica (guarda-fio contra o Notion mudar a
-regra por baixo) e `inv` em todo item do `data/bazar.json`.
+regra por baixo), `inv` em todo item do `data/bazar.json` e os 3 blocos
+decididos D80–D82 no `data/sistema.json` (modificador, vantagem/desvantagem,
+custo mínimo de magia), por frase verbatim do Notion.
 
 `gerar_bazar.py` falha (código 1, nada gravado) quando uma frase de inventário
 do CSV não casa com o esperado, quando há colisão de id, ingrediente fora do

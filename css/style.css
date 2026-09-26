@@ -1526,6 +1526,7 @@ table.compact th { padding: 0.75rem; font-size: 0.8rem; }
 .damage-elemental { border-left: 3px solid #f97316; }
 .damage-biologico { border-left: 3px solid #84cc16; }
 .damage-mistico { border-left: 3px solid #a855f7; }
+.damage-outros { border-left: 3px solid var(--gold); }
 
 /* Intensidade de Magia - Visual */
 .intensidade-grid {
