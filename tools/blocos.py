@@ -16,8 +16,11 @@ Cada entidade ganha um bloco em data/ com duas espécies de campo:
     para regravar os derivados depois de editar um verbatim.
 
 Nada aqui inventa regra: o que o texto não diz fica None/ausente e o que ainda
-não existe no Notion fica com status PENDENTE (recurso do Espadachim e do
-Teurgo, técnica de raça).
+não existe no Notion fica com status do vocabulário do plano (§3.2):
+`pedroDecide` (recurso do Espadachim e do Teurgo) ou `pendente` com a
+`pergunta` feita ao balanceamento (técnica de raça). Campo derivado que sai
+None porque o texto é omisso (mínimo, início e recarga dos medidores) tem de
+estar coberto por uma pergunta de tools/pendentes_balanceamento.json.
 """
 import glob, json, os, re, sys
 
@@ -87,6 +90,8 @@ def marcadores(txt):
 
 
 # ------------------------------------------------------------------ vocabulário
+# Status que um bloco pode gravar (subconjunto do mapa de status do plano §3.2).
+STATUS_BLOCO = ('pedroDecide', 'pendente')
 # As 24 perícias (CLAUDE.md §2; slug = id do contrato do balanceamento).
 PERICIAS = ['Atacar', 'Defender', 'Movimento', 'Fortitude', 'Vontade', 'Reflexos', 'Percepção',
             'Sobrevivência', 'Furtividade', 'Crime', 'Iniciativa', 'Conhecimento', 'Medicina',
@@ -260,6 +265,65 @@ def escala_escolas(h):
     return out
 
 
+# ------------------------------------------------------------------ medidores
+# Início e recarga do medidor de recurso de classe: só o que o texto DECLARA,
+# com a frase casada inteira (sem ela, None; nada de assumir 0 ou "descanso").
+INICIO_QUANDO = {'todo combate': 'inicioCombate',
+                 'cenas de exploração ou cenas de combate': 'inicioCena'}
+RE_INICIO = re.compile(r'Você começa (.+?) com (\d+) de ')
+RE_RECARGA = [
+    (re.compile(r'^Você recupera todos os \w+ em um descanso longo'),
+     lambda m: {'evento': 'descansoLongo', 'valor': 'max'}),
+    (re.compile(r'^Você pode (.+?) como sua ação de descanso curto, recuperando (\S+) de \w+'),
+     lambda m: {'evento': 'descansoCurto', 'acao': m.group(1), 'formula': m.group(2)}),
+    (re.compile(r'^Você perde toda sua \w+ ao fim do combate\.$'),
+     lambda m: {'evento': 'fimCombate', 'valor': 0}),
+    (re.compile(r'^Ao fim do combate, (se .+?), você perde todo seu \w+\.$'),
+     lambda m: {'evento': 'fimCombate', 'valor': 0, 'condicao': m.group(1)}),
+]
+
+
+def _textos_recurso(rec):
+    """(caminho, texto limpo) de cada string verbatim do recurso, fora medidores e habilidades."""
+    def anda(v, cam):
+        if isinstance(v, str):
+            yield cam, _limpo(v)
+        elif isinstance(v, list):
+            for i, x in enumerate(v):
+                yield from anda(x, f'{cam}.{i}')
+        elif isinstance(v, dict):
+            for k, x in v.items():
+                yield from anda(x, f'{cam}.{k}')
+    for k, v in rec.items():
+        if k not in ('id', 'nome', 'status', 'nota', 'medidores', 'habilidades'):
+            yield from anda(v, f'recurso.{k}')
+
+
+def inicio_medidor(rec):
+    """'Você começa todo combate com 0 de Fluxo' -> {evento, quando, valor, fonte}; None se omisso."""
+    achados = []
+    for cam, t in _textos_recurso(rec):
+        for m in RE_INICIO.finditer(t):
+            if m.group(1) not in INICIO_QUANDO:
+                raise ValueError(f'início de medidor ilegível: {m.group(0)!r} ({cam})')
+            achados.append({'evento': INICIO_QUANDO[m.group(1)], 'quando': m.group(1),
+                            'valor': int(m.group(2)), 'fonte': cam})
+    if len(achados) > 1:
+        raise ValueError(f'medidor com {len(achados)} frases de início: {[a["fonte"] for a in achados]}')
+    return achados[0] if achados else None
+
+
+def recarga_medidor(rec):
+    """Frases de recarga/zeragem por evento -> [{evento, valor|acao+formula, condicao?, fonte}]; None se omisso."""
+    out = []
+    for cam, t in _textos_recurso(rec):
+        for r, faz in RE_RECARGA:
+            m = r.search(t)
+            if m:
+                out.append(faz(m) | {'fonte': cam})
+    return out or None
+
+
 # ------------------------------------------------------------------ Ar natural
 RE_AR = [re.compile(r'Ar (\d+) Natural'), re.compile(r'(\d+) de Armadura \(Ar\) Natural'),
          re.compile(r'^(\+\d+) Armadura \(Ar\) Natural'), re.compile(r'^(\d+) Armadura \(Ar\)$')]
@@ -297,8 +361,11 @@ def deriva_classe(nome, b, cards=None, tpl=None):
     if rec.get('nome'):
         rid = slugify(rec['nome'])
         d += [('recurso.id', rid)]
+        ini, rec_ = inicio_medidor(rec), recarga_medidor(rec)
         for i, _ in enumerate(rec.get('medidores', [])):
-            d += [(f'recurso.medidores.{i}.id', rid), (f'recurso.medidores.{i}.nome', _limpo(rec['nome']))]
+            d += [(f'recurso.medidores.{i}.id', rid), (f'recurso.medidores.{i}.nome', _limpo(rec['nome'])),
+                  (f'recurso.medidores.{i}.min', None),      # nenhum texto declara (pergunta ao balanceamento)
+                  (f'recurso.medidores.{i}.inicio', ini), (f'recurso.medidores.{i}.recarga', rec_)]
         for i, h in enumerate(rec.get('habilidades', [])):
             d += [(f'recurso.habilidades.{i}.id', f'{nome}-{slugify(h["nome"])}')]
     for i, f in enumerate(b.get('caracteristicas', [])):
@@ -309,6 +376,14 @@ def deriva_classe(nome, b, cards=None, tpl=None):
             d += [(f'caracteristicas.{i}.escala', escala_escolas(f['texto'][1]))]
     for i, r in enumerate(b.get('ramos', [])):
         d += [(f'ramos.{i}.id', f'{nome}-{slugify(r["nome"])}')]
+    if b.get('requisitosDeCard') and tpl is not None:
+        # o card é o primeiro {{CARD_n}} depois do marcador do requisito, no template
+        for i, _ in enumerate(b['requisitosDeCard']):
+            depois = tpl.split('{{classe.requisitosDeCard.%d.texto}}' % i, 1)
+            m = re.search(r'\{\{CARD_(\d+)\}\}', depois[1]) if len(depois) == 2 else None
+            if not m:
+                raise ValueError(f'requisito {i} sem card depois do marcador no template de {nome}')
+            d += [(f'requisitosDeCard.{i}.card', cards[int(m.group(1))]['id'])]
     for i, nv in enumerate(b.get('itensAlquimicos', [])):
         for j, cat in enumerate(nv['categorias']):
             for k, it in enumerate(cat['itens']):
@@ -326,7 +401,7 @@ def _stats_card(corpo):
 
 
 def _fisico_card(corpo):
-    m = re.search(r'<div class="variant-physical">(.*?)</div>', corpo, re.S)
+    m = re.search(r'<div class="(?:variant|subspecie)-physical">(.*?)</div>', corpo, re.S)
     if not m:
         return None
     return {k.lower(): v.strip() for k, v in

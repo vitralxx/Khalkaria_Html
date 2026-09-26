@@ -82,6 +82,38 @@
     "V": 5,
     "G": 5,
     "R": 5,
+    "progressao": {
+      "colunas": [
+        "Nível",
+        "Conteúdo"
+      ],
+      "linhas": [
+        [
+          "1",
+          "4 Técnicas"
+        ],
+        [
+          "2",
+          "5 Técnicas, Técnica de Ramo (Tier 1)"
+        ],
+        [
+          "3",
+          "6 Técnicas, 1 Marca"
+        ],
+        [
+          "4",
+          "7 Técnicas, Técnica de Ramo (Tier 1, 2), 2 Marcas"
+        ],
+        [
+          "5",
+          "8 Técnicas, Técnica de Ramo (Tier 1, 2 e 3), 3 Marcas"
+        ]
+      ]
+    },
+    "tecnicas": {
+      "regra": "Toda classe possui técnicas, você pode reatribuí-las livremente ao realizar um descanso longo, respeitando o limite de pontos.",
+      "quantidade": "Você possui 3 Técnicas + Nível."
+    },
     "recurso": {
       "id": "fluxo",
       "nome": "Fluxo",
@@ -115,7 +147,22 @@
         {
           "id": "fluxo",
           "nome": "Fluxo",
-          "max": "5"
+          "min": null,
+          "max": "5",
+          "inicio": {
+            "evento": "inicioCombate",
+            "quando": "todo combate",
+            "valor": 0,
+            "fonte": "recurso.texto.0"
+          },
+          "recarga": [
+            {
+              "evento": "fimCombate",
+              "valor": 0,
+              "condicao": "se passar 1 rodada sem ganhar Fluxo ou receber dano",
+              "fonte": "recurso.regras.0"
+            }
+          ]
         }
       ]
     },

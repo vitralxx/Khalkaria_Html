@@ -280,7 +280,7 @@ O shell injeta tokens, componentes, ficha, `kh-ui.js` e o sprite `partials/glifo
 | `condicao` | `{x, duracaoTurnosSeus, fonte?}` | grupo, tags, `x{tipo,inicial,decrementa}`, `empilhamento` do contrato (lote D20) | `regras.condicoes[].efeitos`, filtrado pelas 29 de `data/condicoes.json` + Agarrado (D17e); Marcado não vira condição |
 | `raca` / `variante` / `subespecie` | `identidade.*`, `{escolhas}` | atributos com "ou", movimento, idiomas, perícias, Ar natural, expectativa de vida, altura, peso, técnica de raça | bloco `raca` (F1b); bloco C |
 | `origem` | `identidade.origem`, `{escolhas, itensImportados}` | sins, treinamento, `itensIniciais[]`, técnica de origem | bloco `origem` (F1b) |
-| `classe` | `identidade.classe` + `ramos` por tier | V/G/R, CD, atributos-chave, treinamento (fixo + 1+Mod.INT), característica de classe com **medidores** `{id, nome, min, max(fórmula), recarga}` | bloco `classe` (F1b) |
+| `classe` | `identidade.classe` + `ramos` por tier | V/G/R, CD, atributos-chave, treinamento (fixo + 1+Mod.INT), característica de classe com **medidores** `{id, nome, min, max(fórmula), inicio, recarga}` | bloco `classe` (F1b) |
 | `item` | entrada `KhInv` + `{equipado, sintonizado, ativo, escolhas, usosGastos, temporarios[]}` | `bazar.json` + `data/efeitos.json` | `data/efeitos.json` |
 
 Soltar raça, origem ou classe fora do assistente preenche a identidade e abre o checklist de escolhas. A ficha **avisa, não bloqueia**.
@@ -503,9 +503,10 @@ F1a–F1f correm em paralelo. F4b, F4c, F5 e F6 correm em paralelo depois da F4.
 
 ### F1b · Conteúdo estruturado (sem visual)
 
-**Entrega:** extração por script, verbatim, para `data/`: bloco `classe` (V/G/R, CD, treinamento, recurso, **medidores** da característica de classe, features, os 94 Itens Alquímicos, ramos com id); bloco `raca` (atributos com "ou", movimento, idiomas, perícias, variantes, Ar natural, expectativa de vida, altura, peso, técnica de raça, limite do Autômato, os 15+15 do Corrompido com id); bloco `origem` (sins, treinamento, `itensIniciais`, técnica). Os templates leem esses blocos. `[conteudo×contrato]`.
+**Entrega:** extração por script, verbatim, para `data/`: bloco `classe` (V/G/R, CD, treinamento, recurso, **medidores** da característica de classe, features, os 95 Itens Alquímicos, ramos com id, tabela de Progressão, regra de técnicas, requisito solto de card); bloco `raca` (atributos com "ou", movimento, idiomas, perícias, variantes, Ar natural, expectativa de vida, altura, peso, técnica de raça, limite do Autômato, os 15+15 do Corrompido com id); bloco `origem` (sins, treinamento, `itensIniciais`, técnica). Os templates leem esses blocos. `[conteudo×contrato]`.
 **Pronto quando:** round-trip byte a byte das 20 páginas; set-diff de entidades = ∅; divergências contra o contrato como AVISO, nunca corrigidas.
 **Testes:** round-trip; set-diff; `Counter` de duplicatas.
+**Correção da revisão:** `[blocos]` exige marcador para todo campo verbatim; medidores com `{id, nome, min, max, inicio, recarga}` (só o que a frase declara; o omisso fica `null` coberto por `tools/pendentes_balanceamento.json`); status no vocabulário do §3.2; físico das subespécies do Inseto. Ficou literal nos templates de classe e vai para a F1e(c): cabeçalhos de tier (`Tier N — … · Nível N • 1x/Dia`) e o parágrafo dos ramos ("3 Marcas e 6 Técnicas de Ramo…").
 
 ### F1c · Cascata (tokens + `@layer`)
 
@@ -531,7 +532,7 @@ F1a–F1f correm em paralelo. F4b, F4c, F5 e F6 correm em paralelo depois da F4.
 
 ### F1e · Normalização de dado (sem visual)
 
-**Entrega:** (a) magias: `acoes`, `intensidadesPermitidas`, `sustentada`, custo por turno da sustentada (texto da magia, D16), `stats[].porIntensidade`; (b) Limiar: `req:[{attr,min}]`, `custo:{dor,sentido}`; (c) classes: `grupo/ramo/tier/custoTexto` por card, com round-trip; (d) `data/pericias.json` (24 slugs + atributo, com os "X ou Y" como lista).
+**Entrega:** (a) magias: `acoes`, `intensidadesPermitidas`, `sustentada`, custo por turno da sustentada (texto da magia, D16), `stats[].porIntensidade`; (b) Limiar: `req:[{attr,min}]`, `custo:{dor,sentido}`; (c) classes: `grupo/ramo/tier/custoTexto` por card, com round-trip, e o que ainda é literal nos templates de classe (cabeçalhos de tier com nível e usos, parágrafo dos ramos); (d) `data/pericias.json` (24 slugs + atributo, com os "X ou Y" como lista).
 **Pronto quando:** relatórios por conjunto sem sobra; round-trip byte a byte; nenhuma página muda.
 **Testes:** set-diff; `Counter`; um fixture por formato de `acoes`.
 
@@ -619,6 +620,8 @@ F1a–F1f correm em paralelo. F4b, F4c, F5 e F6 correm em paralelo depois da F4.
 
 **Com o balanceamento — rodada 4 (enviada, §10):** Stamina negativa × `gastoSemSaldo: proibido`; leitura de "Exaurido e Oco saem ao deixar os negativos nos 2 status" (cada um pelo seu recurso, ou os dois juntos?); D17(b) como o Desnutrido diminui; magias do Teurgo por nível depois do 1º (o dado só traz o nv1 e as escolas 2/3/5); perícias que contam como "interações sociais" na Marca 4; fonte da sustentação "a cada 30 min" fora de combate (D16 não cobriu); Saco de Dormir: qual sentido do `acumula:false`.
 
+**Com o balanceamento — rodada 5 (a enviar):** lista em `tools/pendentes_balanceamento.json` (§10). Os campos ficam `null` e o `[blocos]` FALHA se um deles perder a pergunta.
+
 **Com o Pedro**
 - **Editar o CSV** (D26b: acrescentar "Empilhável: pesa 1 bugiganga a cada 10 unidades." ao `Efeito_Jogador` de Casca de Raiz e Seiva da Vhelor; D25: "Saude" → "Saúde" na Erva Medicinal e "Armas Leves." como requisito do Anel do Esgrimista). Aprovado, mas a permissão da sessão bloqueou: **fica com ele**. Depois, `ESPERADO['empilhavel']` sobe para 87 e o AVISO some.
 - **Ilustrações da ficha física:** recebidas (§9); faltam as molduras de carta e a divisória grossa.
@@ -671,7 +674,7 @@ F1a–F1f correm em paralelo. F4b, F4c, F5 e F6 correm em paralelo depois da F4.
 - Santuário Menor, Invocar Tempestade e Contramedida com 3 valores (regra das 3 barras vale; conferir no Notion). Éter Residual e Magias Pactuadas em `orfasDeContida`.
 - CD sem "Mod." em Brutalista, Espadachim e Artilheiro (P16). Vidente "Interação Social (Intuição)" × a tag `social` sem Intuição.
 - Ofício(Alquimia) falta na tabela de Perícias do Notion e do site, mas é canônica.
-- Itens Alquímicos: 93/94 no Bazar, CDs batem, redação diverge em 76; "Lágrima do Tempo" não está no CSV.
+- Itens Alquímicos: 94/95 no Bazar (nome exato), CDs batem nos 94; redação diverge (76 na contagem da rev. anterior, não refeita com o 95º); "Lágrima do Tempo" não está no CSV.
 - Modulações nos níveis 2-5 sem lista escrita.
 - Exemplo da progressão no contrato (`regras.json:925`) com bônus fora da escala.
 - Schema defasado (resolve na F3).
@@ -692,6 +695,12 @@ F1a–F1f correm em paralelo. F4b, F4c, F5 e F6 correm em paralelo depois da F4.
 7. D17(b): como o Desnutrido **diminui** (`decrementa: null`, `:1549`; pendência n=10, `:3349`)? Se não houver fonte, volta ao Pedro.
 8. Magias do Teurgo por nível depois do 1º: o site só tem "1 + MOD. INT ou SAB magias de nível 1 no primeiro nível" e as escolas 2/3/5; o Alquimista tem "+1 magia/nível". Qual é a do Teurgo?
 9. Aviso: das dúvidas da rodada 3, a 3 (Intimidação) e a 4 (X/Y trocáveis) caíram localmente, e da 5 só importa a faixa depois de "mover 1 ponto" (o contrato já fecha as contagens). A D21 já está no Notion: só conferir.
+
+**Rodada 5 (a enviar; fonte: `tools/pendentes_balanceamento.json`, saída da F1b):**
+1. `tecnica-de-raca`: qual característica de cada raça é a "1 técnica de raça" (03 §2)? A página não distingue; muda com a variante/subespécie?
+2. `medidor-minimo`: mínimo dos medidores de recurso de classe (o texto e o contrato não declaram). 0 em todos? A Concentração pode ficar negativa?
+3. `medidor-inicio-recarga`: início dos Reagentes e da Brutalidade; recarga por evento da Concentração (contrato: `fimCombate`) e do Instinto, onde o texto da classe é omisso.
+4. Aviso: o Fluxo do Monge no site zera ao fim do combate só "se passar 1 rodada sem ganhar Fluxo ou receber dano"; o contrato modela só `fimCombate` (C20/P12). Continua com o Pedro.
 
 **Continuam valendo (enviar em paralelo, sem depender do Pedro):**
 1. **Bloco C** (raças, origens, Limiar, passivas de classe). Trava a F5b e os Mods de raça/origem/carta/técnica.

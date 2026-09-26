@@ -75,6 +75,38 @@
     "V": 4,
     "G": 6,
     "R": 5,
+    "progressao": {
+      "colunas": [
+        "Nível",
+        "Conteúdo"
+      ],
+      "linhas": [
+        [
+          "1",
+          "4 Técnicas"
+        ],
+        [
+          "2",
+          "5 Técnicas, Técnica de Ramo (Tier 1)"
+        ],
+        [
+          "3",
+          "6 Técnicas, 1 Marca"
+        ],
+        [
+          "4",
+          "7 Técnicas, Técnica de Ramo (Tier 1, 2), 2 Marcas"
+        ],
+        [
+          "5",
+          "8 Técnicas, Técnica de Ramo (Tier 1, 2 e 3), 3 Marcas"
+        ]
+      ]
+    },
+    "tecnicas": {
+      "regra": "Toda classe possui técnicas, você pode reatribuí-las livremente ao realizar um descanso longo, respeitando o limite de pontos.",
+      "quantidade": "Você possui 3 Técnicas + Nível."
+    },
     "recurso": {
       "id": "reagentes",
       "nome": "Reagentes",
@@ -86,7 +118,22 @@
         {
           "id": "reagentes",
           "nome": "Reagentes",
-          "max": "(Nível × 3) + Mod.Inteligência"
+          "min": null,
+          "max": "(Nível × 3) + Mod.Inteligência",
+          "inicio": null,
+          "recarga": [
+            {
+              "evento": "descansoLongo",
+              "valor": "max",
+              "fonte": "recurso.recarga.0.texto"
+            },
+            {
+              "evento": "descansoCurto",
+              "acao": "Buscar Reagentes",
+              "formula": "1d4+Nível",
+              "fonte": "recurso.recarga.1.texto"
+            }
+          ]
         }
       ],
       "recarga": [

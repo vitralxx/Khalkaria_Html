@@ -101,7 +101,8 @@ class Contrato(unittest.TestCase):
          'derivados': {'movimento': {'basePorRaca': {'dryad': 10.5}},
                        'armadura': {'arNaturalPorRaca': {'dryad': 2, 'dryad-variante': 3}}}}
     RACA = {'movimento': {'metros': 10.5}, 'caracteristicas': ['dryad-pele'],
-            'arNatural': [{'fonte': 'dryad-pele', 'valor': 2}, {'fonte': 'dryad-cascaferro', 'valor': 1}]}
+            'arNatural': [{'fonte': 'dryad-pele', 'valor': 2, 'soma': False},
+                          {'fonte': 'dryad-cascaferro', 'valor': 1, 'soma': True}]}
 
     def dados(self, classe=None, raca=None):
         return {'classes': {'monge': classe or copy.deepcopy(self.CLASSE)},
@@ -132,9 +133,9 @@ class Contrato(unittest.TestCase):
 
     def test_recurso_pendente_avisa(self):
         c = copy.deepcopy(self.CLASSE)
-        c['recurso'] = {'id': None, 'status': 'PENDENTE PEDRO'}
+        c['recurso'] = {'id': None, 'status': 'pedroDecide'}
         av = validar.compara_contrato(self.dados(classe=c), self.K)
-        self.assertTrue(any('PENDENTE PEDRO' in a for a in av))
+        self.assertTrue(any('pedroDecide' in a for a in av))
 
     def test_movimento_e_ar_natural(self):
         r = copy.deepcopy(self.RACA)
@@ -143,6 +144,46 @@ class Contrato(unittest.TestCase):
         av = ' | '.join(validar.compara_contrato(self.dados(raca=r), self.K))
         self.assertIn('movimento site 9 x contrato 10.5', av)
         self.assertIn('Ar natural dryad-cascaferro: site 4 x contrato 3', av)
+
+    def test_ar_da_variante_absoluto_nao_soma_a_base(self):
+        """'N Armadura (Ar)' (soma False) é o valor da variante, não base + N."""
+        r = copy.deepcopy(self.RACA)
+        r['arNatural'][1] = {'fonte': 'dryad-cascaferro', 'valor': 3, 'soma': False}
+        self.assertEqual(validar.compara_contrato(self.dados(raca=r), self.K), [])
+        r['arNatural'][1]['soma'] = True
+        self.assertTrue(any('site 5 x contrato 3' in a for a in validar.compara_contrato(self.dados(raca=r), self.K)))
+
+    def test_recurso_a_mais_no_contrato_avisa(self):
+        k = copy.deepcopy(self.K)
+        k['classes']['monge']['recursos'].append({'id': 'y', 'max': '3'})
+        av = validar.compara_contrato(self.dados(), k)
+        self.assertTrue(any('recurso "y" no contrato' in a for a in av), av)
+
+    def test_corrupcao_maxima_por_nivel(self):
+        k = copy.deepcopy(self.K)
+        k['progressao'] = {'corrupcaoMax': {'1': 2, '5': 20}}
+        r = copy.deepcopy(self.RACA)
+        r['corrupcao'] = {'maximoPorNivel': [{'nivel': '1', 'maximo': '2'}, {'nivel': '5', 'maximo': '20'}]}
+        self.assertEqual(validar.compara_contrato(self.dados(raca=r), k), [])
+        k['progressao']['corrupcaoMax']['5'] = 99
+        av = validar.compara_contrato(self.dados(raca=r), k)
+        self.assertTrue(any('corrupção máxima por nível' in a for a in av), av)
+
+    def test_inicio_e_recarga_do_medidor(self):
+        k = copy.deepcopy(self.K)
+        k['classes']['monge']['recursos'][0].update(
+            {'inicio': {'evento': 'inicioCombate', 'valor': 0}, 'zeraEm': ['fimCombate', 'falhaEmPericia'],
+             'recupera': [{'evento': 'descansoCurto', 'formula': '1d4+nivel'}]})
+        c = copy.deepcopy(self.CLASSE)
+        c['recurso']['medidores'][0].update(
+            {'min': None, 'inicio': {'evento': 'inicioCombate', 'valor': 0},
+             'recarga': [{'evento': 'fimCombate', 'valor': 0}, {'evento': 'descansoCurto', 'formula': '1d4+Nível'}]})
+        self.assertEqual(validar.compara_contrato(self.dados(classe=c), k), [])
+        c['recurso']['medidores'][0]['inicio'] = None
+        c['recurso']['medidores'][0]['recarga'] = None
+        av = ' | '.join(validar.compara_contrato(self.dados(classe=c), k))
+        self.assertIn('início de fluxo site não declarado', av)
+        self.assertIn('recarga de fluxo site não declarada', av)
 
 
 class Blocos(unittest.TestCase):
@@ -153,6 +194,8 @@ class Blocos(unittest.TestCase):
         self.raiz = tempfile.mkdtemp(prefix='kh_f1b_')
         for d in ('data', 'templates'):
             shutil.copytree(os.path.join(RAIZ, d), os.path.join(self.raiz, d))
+        os.makedirs(os.path.join(self.raiz, 'tools'))
+        shutil.copy(os.path.join(RAIZ, validar.PENDENTES_BAL), os.path.join(self.raiz, validar.PENDENTES_BAL))
         validar.falhas.clear()
 
     def tearDown(self):
@@ -191,6 +234,100 @@ class Blocos(unittest.TestCase):
         saida = self.roda()
         self.assertIn('blocos', validar.falhas)
         self.assertIn('id repetido nos blocos', saida)
+
+    def _json(self, *cam):
+        f = os.path.join(self.raiz, *cam)
+        return f, json.load(open(f, encoding='utf-8'))
+
+    def _grava(self, f, d):
+        json.dump(d, open(f, 'w', encoding='utf-8'), ensure_ascii=False)
+
+    def test_campo_verbatim_trocado_por_literal_no_template_falha(self):
+        """O caso da revisão: o template passa a trazer o texto literal, o JSON diverge
+        (e os derivados até concordam com ele); a página continua dizendo 8."""
+        ft = os.path.join(self.raiz, 'templates', 'classes', 'brutalista.template.html')
+        t = open(ft, encoding='utf-8').read()
+        self.assertEqual(t.count('{{classe.status.saude}}'), 1)
+        open(ft, 'w', encoding='utf-8', newline='\n').write(
+            t.replace('{{classe.status.saude}}', '10 + (8 × Nível) + (Mod.CON × Nível)'))
+        f, d = self._json('data', 'classes', 'brutalista.json')
+        d['classe']['status']['saude'] = '10 + (4 × Nível) + (Mod.CON × Nível)'
+        self._grava(f, d)
+        blocos.regrava(self.raiz)
+        saida = self.roda()
+        self.assertIn('blocos', validar.falhas)
+        self.assertIn("classe brutalista: campo(s) verbatim sem marcador", saida)
+        self.assertIn('status.saude', saida)
+
+    def test_marcador_sem_campo_verbatim_falha(self):
+        sem, orfao = validar.cobertura_marcadores({'cd': {'texto': 'x'}}, [], '{{classe.cd.texto}}{{classe.V}}', 'classe')
+        self.assertEqual((sem, orfao), ([], ['V']))
+
+    def test_raca_sem_fisico_falha(self):
+        f, d = self._json('data', 'racas', 'inseto.json')
+        self.assertEqual(len(d['raca']['variantes']['fisico']), 3)   # as 3 subespécies
+        del d['raca']['variantes']['fisico']['inseto-barata']
+        self.assertEqual(validar.checa_fisico('raça inseto', d['raca']),
+                         ["raça inseto: sem vida/altura/peso na raça nem em toda variante (faltam ['inseto-barata'])"])
+
+    def test_status_fora_do_vocabulario_falha(self):
+        f, d = self._json('data', 'racas', 'anao.json')
+        d['raca']['tecnica']['status'] = 'PENDENTE'
+        self._grava(f, d)
+        saida = self.roda()
+        self.assertIn('blocos', validar.falhas)
+        self.assertIn("tecnica.status = 'PENDENTE' fora do vocabulário", saida)
+
+    def test_pendente_sem_pergunta_conhecida_falha(self):
+        f, d = self._json('data', 'racas', 'anao.json')
+        d['raca']['tecnica']['pergunta'] = 'nao-existe'
+        self._grava(f, d)
+        saida = self.roda()
+        self.assertIn('blocos', validar.falhas)
+        self.assertIn("pendente sem pergunta", saida)
+
+    def test_medidor_omisso_sem_pergunta_falha(self):
+        f, d = self._json(validar.PENDENTES_BAL)
+        d['itens'] = [i for i in d['itens'] if i['id'] != 'medidor-minimo']
+        self._grava(f, d)
+        saida = self.roda()
+        self.assertIn('blocos', validar.falhas)
+        self.assertIn('classe monge: recurso.medidores.0.min = None', saida)
+
+    def test_pergunta_sem_uso_avisa(self):
+        f, d = self._json(validar.PENDENTES_BAL)
+        d['itens'].append({'id': 'respondida', 'rodada': 5, 'pergunta': 'x', 'campos': ['classe nada: y']})
+        self._grava(f, d)
+        saida = self.roda()
+        self.assertNotIn('blocos', validar.falhas, saida)
+        self.assertIn('AVISO  pergunta respondida (rodada 5) sem campo pendente', saida)
+
+
+class Medidores(unittest.TestCase):
+    def test_inicio_e_recarga_so_do_que_o_texto_declara(self):
+        rec = {'texto': ['Momentum. Você começa todo combate com <strong>0 de Fluxo</strong>, você ganha…'],
+               'regras': ['Ao fim do combate, se passar 1 rodada sem ganhar Fluxo, você perde todo seu Fluxo.'],
+               'recarga': [{'rotulo': 'x', 'texto': 'Você pode <em>Buscar Reagentes</em> como sua ação de '
+                                                     'descanso curto, recuperando 1d4+Nível de reagentes.'}]}
+        self.assertEqual(blocos.inicio_medidor(rec), {'evento': 'inicioCombate', 'quando': 'todo combate',
+                                                      'valor': 0, 'fonte': 'recurso.texto.0'})
+        self.assertEqual(blocos.recarga_medidor(rec), [
+            {'evento': 'fimCombate', 'valor': 0, 'condicao': 'se passar 1 rodada sem ganhar Fluxo',
+             'fonte': 'recurso.regras.0'},
+            {'evento': 'descansoCurto', 'acao': 'Buscar Reagentes', 'formula': '1d4+Nível',
+             'fonte': 'recurso.recarga.0.texto'}])
+        self.assertIsNone(blocos.inicio_medidor({'texto': ['Nada declarado.']}))
+        self.assertIsNone(blocos.recarga_medidor({'texto': ['Nada declarado.']}))
+
+    def test_inicio_com_ocasiao_desconhecida_derruba(self):
+        with self.assertRaises(ValueError):
+            blocos.inicio_medidor({'texto': ['Você começa cada descanso com 2 de Fúria.']})
+
+    def test_fisico_da_subespecie(self):
+        corpo = ('<div class="subspecie-physical">\n <strong>Vida:</strong> 50-80 anos · '
+                 '<strong>Altura:</strong> 1,60m - 2,40m · <strong>Peso:</strong> 80kg - 120kg\n</div>')
+        self.assertEqual(blocos._fisico_card(corpo), {'vida': '50-80 anos', 'altura': '1,60m - 2,40m',
+                                                      'peso': '80kg - 120kg'})
 
 
 if __name__ == '__main__':

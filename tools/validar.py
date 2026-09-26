@@ -32,9 +32,16 @@ integridade do artefato HTML, que é o que quebra em silêncio:
               de página ou de js/*.js com o seu <symbol>
  [blocos]     F1b: blocos classe/raca/origem de data/ com os derivados (V/G/R,
               slugs, ids…) iguais ao que o verbatim dá (tools/blocos.py), ids de
-              sub-entidade únicos e fora do catálogo, 15+15 corrupções sem repetir
- [conteudo×contrato] V/G/R, CD, perícias/armas iniciais, recurso de classe,
-              movimento e Ar natural x contrato do balanceamento (branch dele,
+              sub-entidade únicos e fora do catálogo, 15+15 corrupções sem repetir;
+              todo campo verbatim com o seu marcador no template (ou no corpo do
+              card, nas origens) e todo marcador com o seu campo; status só do
+              vocabulário (pedroDecide | pendente + pergunta de
+              tools/pendentes_balanceamento.json), e todo mínimo/início/recarga
+              de medidor que o texto não declara coberto por uma pergunta;
+              vida/altura/peso em toda raça (na raça ou em cada variante)
+ [conteudo×contrato] V/G/R, CD, perícias/armas iniciais, recurso de classe
+              (ids nos dois sentidos, máximo, mínimo, início, recarga), movimento,
+              Ar natural e corrupção máxima x contrato do balanceamento (branch dele,
               ou KH_CONTRATO=<arquivo>): divergência é AVISO, nunca corrigida
  [componentes] contagem das classes CSS de componente (companion-card,
               d100-table, sub-ability...) em cada pages/classes/*.html >= o
@@ -645,6 +652,108 @@ def _ids_de_bloco(root):
     return vistos, rep
 
 
+PENDENTES_BAL = 'tools/pendentes_balanceamento.json'
+# Folhas de texto do bloco que não são verbatim de marcador: a classe CSS do ramo
+# (vai no atributo class do template) e o seletor da escala derivada.
+SEM_MARCADOR = [re.compile(r'^ramos\.\d+\.chave$'), re.compile(r'^caracteristicas\.\d+\.escalaDe$')]
+META_STATUS = ('status', 'nota', 'pergunta')
+RE_MEDIDOR_OMISSO = re.compile(r'^recurso\.medidores\.\d+\.(min|inicio|recarga)$')
+
+
+def _folhas_texto(v, cam=''):
+    """Caminhos das folhas str do bloco; status/nota/pergunta de um dict com status
+    do vocabulário são metadado (não aparecem na página) e ficam de fora."""
+    if isinstance(v, dict):
+        meta = v.get('status') in blocos.STATUS_BLOCO
+        for k, x in v.items():
+            if meta and k in META_STATUS:
+                continue
+            yield from _folhas_texto(x, f'{cam}.{k}' if cam else k)
+    elif isinstance(v, list):
+        for i, x in enumerate(v):
+            yield from _folhas_texto(x, f'{cam}.{i}' if cam else str(i))
+    elif isinstance(v, str):
+        yield cam
+
+
+def cobertura_marcadores(bloco, derivados, txt, ns):
+    """(folhas verbatim sem marcador, marcadores sem folha verbatim) de um bloco.
+    Derivado não conta: ele sai do verbatim, não da página."""
+    dcam = [c for c, _ in derivados]
+    folhas = {f for f in _folhas_texto(bloco)
+              if not any(f == d or f.startswith(d + '.') for d in dcam)
+              and not any(r.match(f) for r in SEM_MARCADOR)}
+    marc = {m[len(ns) + 1:] for m in blocos.marcadores(txt)}
+    return sorted(folhas - marc), sorted(marc - folhas)
+
+
+def _texto_do_bloco(root, rot, doc, b):
+    """(texto com os marcadores, namespace) do bloco: template ou corpo do card."""
+    tipo, nome = rot.split(' ', 1)
+    if tipo == 'origem':
+        return next(c['corpo'] for c in doc['cards'] if c.get('origem') is b), 'origem'
+    pasta, ns = ('classes', 'classe') if tipo == 'classe' else ('racas', 'raca')
+    return open(os.path.join(root, 'templates', pasta, f'{nome}.template.html'), encoding='utf-8').read(), ns
+
+
+def _status_do_bloco(v, cam=''):
+    """(caminho, dict) de todo dict do bloco com 'status' texto (o `status` da
+    classe, com as fórmulas de Saúde/Stamina/Éter, é um dict e não conta)."""
+    if isinstance(v, dict):
+        if isinstance(v.get('status'), str):
+            yield cam, v
+        for k, x in v.items():
+            yield from _status_do_bloco(x, f'{cam}.{k}' if cam else k)
+    elif isinstance(v, list):
+        for i, x in enumerate(v):
+            yield from _status_do_bloco(x, f'{cam}.{i}' if cam else str(i))
+
+
+def carrega_pendentes(root):
+    d = json.load(open(os.path.join(root, PENDENTES_BAL), encoding='utf-8'))
+    return {i['id']: i for i in d['itens']}
+
+
+def checa_pendentes(fontes, pendentes):
+    """(ruins, avisos): status fora do vocabulário, pendente sem pergunta conhecida,
+    medidor omisso sem pergunta que o cubra, pergunta que nada usa."""
+    import fnmatch
+    ruins, usadas = [], set()
+    for rot, _, _, b, der in fontes:
+        for cam, d in _status_do_bloco(b):
+            if d['status'] not in blocos.STATUS_BLOCO:
+                ruins.append(f'{rot}: {cam}.status = {d["status"]!r} fora do vocabulário '
+                             f'{list(blocos.STATUS_BLOCO)} (plano §3.2)')
+            elif d['status'] == 'pendente':
+                if d.get('pergunta') not in pendentes:
+                    ruins.append(f'{rot}: {cam} pendente sem pergunta de {PENDENTES_BAL} ({d.get("pergunta")!r})')
+                else:
+                    usadas.add(d['pergunta'])
+        for cam, v in der():
+            if v is None and RE_MEDIDOR_OMISSO.match(cam):
+                quem = [i for i, p in pendentes.items()
+                        if any(fnmatch.fnmatchcase(f'{rot}: {cam}', c) for c in p.get('campos', []))]
+                if not quem:
+                    ruins.append(f'{rot}: {cam} = None (o texto não declara) sem pergunta em {PENDENTES_BAL}')
+                usadas.update(quem)
+    avisos = [f'pergunta {i} (rodada {p.get("rodada")}) sem campo pendente: respondida? tire de {PENDENTES_BAL}'
+              for i, p in sorted(pendentes.items()) if i not in usadas]
+    return ruins, avisos
+
+
+def checa_fisico(rot, b):
+    """Vida/altura/peso: na raça, ou em cada variante/subespécie (variantes.fisico)."""
+    campos = ('vida', 'altura', 'peso')
+    if all(b.get(k) for k in campos):
+        return []
+    var = b.get('variantes') or {}
+    fis = var.get('fisico') or {}
+    faltam = [i for i in var.get('ids', []) if not all((fis.get(i) or {}).get(k) for k in campos)]
+    if not var.get('ids') or faltam:
+        return [f'{rot}: sem vida/altura/peso na raça nem em toda variante (faltam {faltam or "variantes"})']
+    return []
+
+
 def checa_blocos(root=None):
     """[blocos] F1b: derivados em sincronia com o verbatim, ids das sub-entidades
     únicos e fora do catálogo, id da raça == catálogo, contagens por Counter."""
@@ -670,8 +779,18 @@ def checa_blocos(root=None):
     if colide:
         ruins.append(f'id de bloco que já é entidade do catálogo/Bazar: {colide[:10]}')
     racas_cat = {i for t, i in ents if t == 'raca'}
-    n_cor = n_alq = 0
-    for rot, _, _, b, _ in fontes:
+    n_cor = n_alq = n_marc = 0
+    for rot, _, doc, b, der in fontes:
+        txt, ns = _texto_do_bloco(root, rot, doc, b)
+        sem, orfao = cobertura_marcadores(b, der(), txt, ns)
+        n_marc += len(blocos.marcadores(txt))
+        if sem:
+            ruins.append(f'{rot}: campo(s) verbatim sem marcador {{{{{ns}.…}}}} na página: {sem[:6]}'
+                         f' (texto literal no template? o JSON diverge da página em silêncio)')
+        if orfao:
+            ruins.append(f'{rot}: marcador(es) sem campo verbatim no bloco: {orfao[:6]}')
+        if rot.startswith('raça'):
+            ruins += checa_fisico(rot, b)
         if rot.startswith('raça') and b['id'] not in racas_cat:
             ruins.append(f'{rot}: id {b["id"]} fora do catálogo de raças')
         if 'corrupcao' in b:
@@ -683,13 +802,25 @@ def checa_blocos(root=None):
                 n_cor += len(nomes)
         for nv in b.get('itensAlquimicos', []):
             n_alq += sum(len(c['itens']) for c in nv['categorias'])
+    try:
+        pend = carrega_pendentes(root)
+    except (OSError, ValueError, KeyError, TypeError) as e:
+        pend = None
+        ruins.append(f'{PENDENTES_BAL} ilegível: {e!r}')
+    avisos = []
+    if pend is not None:
+        r2, avisos = checa_pendentes(fontes, pend)
+        ruins += r2
+    for a in avisos:
+        print(f'  AVISO  {a}')
     if ruins:
         falhas.append('blocos')
         for r in ruins:
             print(f'  FALHA  {r}')
     else:
         print(f'  OK     {len(fontes)} blocos, derivados em sincronia; {len(ids)} ids de sub-entidade '
-              f'únicos ({n_alq} itens alquímicos, {n_cor} corrupções)')
+              f'únicos ({n_alq} itens alquímicos, {n_cor} corrupções); {n_marc} marcadores == campos '
+              f'verbatim; {len(pend)} pergunta(s) ao balanceamento cobrindo os pendentes')
 
 
 CONTRATO_REF = 'origin/claude/khalkaria-bazar-balance-lsdfic'
@@ -735,6 +866,36 @@ def _formula_norm(f):
     return re.sub(r'\s+', '', re.sub(r'(?i)nivel', 'nivel', t))
 
 
+EVENTOS_RECARGA = ('fimCombate', 'fimCena', 'descansoLongo', 'descansoCurto')
+
+
+def _compara_medidor(c, rid, med, kr):
+    """Mínimo, início e recarga por evento do medidor (site) x contrato
+    (min, inicio, zeraEm ∩ eventos, recupera). None no site = texto omisso."""
+    av = []
+    if 'min' in kr and med.get('min') != kr['min']:
+        av.append(f'classe {c}: mínimo de {rid} site {med.get("min")} x contrato {kr["min"]}')
+    si, ki = med.get('inicio'), kr.get('inicio')
+    if (si and (si['evento'], si['valor'])) != (ki and (ki.get('evento'), ki.get('valor'))):
+        av.append(f'classe {c}: início de {rid} site '
+                  f'{(si["evento"], si["valor"]) if si else "não declarado"} x contrato '
+                  f'{(ki.get("evento"), ki.get("valor")) if ki else "nenhum"}')
+
+    def chave(e):
+        v = e.get('formula', e.get('valor'))
+        return e['evento'], _formula_norm(v) if isinstance(v, str) and v != 'max' else str(v)
+    site = sorted(chave(e) for e in med.get('recarga') or [])
+    kont = sorted([(z, '0') for z in kr.get('zeraEm', []) if z in EVENTOS_RECARGA] +
+                  [chave(e) for e in kr.get('recupera', [])])
+    if site != kont:
+        av.append(f'classe {c}: recarga de {rid} site {site or "não declarada"} x contrato {kont or "nenhuma"}')
+    for e in med.get('recarga') or []:
+        if e.get('condicao'):
+            av.append(f'classe {c}: {rid} zera em {e["evento"]} só "{e["condicao"]}" no site;'
+                      f' o contrato não modela a condição')
+    return av
+
+
 def compara_contrato(dados, contrato):
     """Divergências (lista de str) entre os blocos do site e o contrato. Nunca corrige:
     quem decide é o Pedro. `dados` = {'classes': {c: bloco}, 'racas': {r: (bloco, cards)}}."""
@@ -764,16 +925,21 @@ def compara_contrato(dados, contrato):
                 av.append(f'classe {c}: armas iniciais site {armas} x contrato {k["armaInicial"]!r}')
         rec = b.get('recurso') or {}
         krec = {r['id']: r for r in k.get('recursos', [])}
-        if not rec.get('id'):
+        srec = {rec['id']} if rec.get('id') else set()
+        if not srec:
             av.append(f'classe {c}: recurso de classe {rec.get("status", "ausente")} no site'
                       f' (Pedro: "Todas têm"); contrato: {sorted(krec) or "nenhum"}')
-        elif rec['id'] not in krec:
-            av.append(f'classe {c}: recurso "{rec["id"]}" no site, contrato tem {sorted(krec) or "nenhum"}')
-        else:
-            kr = krec[rec['id']]
-            smax = rec['medidores'][0]['max'] if rec.get('medidores') else None
+        for x in sorted(srec - set(krec)):
+            av.append(f'classe {c}: recurso "{x}" no site, contrato tem {sorted(krec) or "nenhum"}')
+        for x in sorted(set(krec) - srec) if srec else []:
+            av.append(f'classe {c}: recurso "{x}" no contrato, o site não tem (site: {sorted(srec)})')
+        for rid in sorted(srec & set(krec)):
+            kr = krec[rid]
+            med = rec['medidores'][0] if rec.get('medidores') else {}
+            smax = med.get('max')
             if smax is None or _formula_norm(smax) != _formula_norm(str(kr.get('max'))):
                 av.append(f'classe {c}: máximo de {rec["id"]} site "{smax}" x contrato "{kr.get("max")}"')
+            av += _compara_medidor(c, rid, med, kr)
             if 'gastos' in kr:
                 site = {h['id'][len(c) + 1:]: blocos.texto(h['custo']) for h in rec.get('habilidades', [])}
                 kg = {i: str(v) for i, v in kr['gastos'].items()}
@@ -809,7 +975,17 @@ def compara_contrato(dados, contrato):
             ar_site[r] = base
         for a in b.get('arNatural', []):
             if a['fonte'] not in b.get('caracteristicas', []):
-                ar_site[a['fonte']] = base + a['valor']
+                # "+N" soma à base da raça; "N" (soma False) é o valor da variante
+                ar_site[a['fonte']] = base + a['valor'] if a['soma'] else a['valor']
+        cmax = contrato.get('progressao', {}).get('corrupcaoMax')
+        if 'corrupcao' in b:
+            site = {int(x['nivel']): int(x['maximo']) for x in b['corrupcao'].get('maximoPorNivel', [])}
+            kont = {int(n): v for n, v in (cmax or {}).items()}
+            if site != kont:
+                av.append(f'raça {r}: corrupção máxima por nível site {site} x contrato {kont or "nenhuma"}')
+    if contrato.get('progressao', {}).get('corrupcaoMax') and not any(
+            'corrupcao' in b for b, _ in dados.get('racas', {}).values()):
+        av.append('corrupção máxima por nível no contrato, nenhuma raça do site com tabela de corrupção')
     ar_contrato = {alias.get(k, k): v for k, v in ar_k.items()}
     for k in sorted(set(ar_site) | set(ar_contrato)):
         if ar_site.get(k) != ar_contrato.get(k):
@@ -819,7 +995,8 @@ def compara_contrato(dados, contrato):
 
 def checa_conteudo_contrato(root=None):
     """[conteudo×contrato] V/G/R, CD, perícias e armas iniciais, recurso de classe
-    (id, máximo, gastos), Marca do Duelo, movimento e Ar natural por raça: site x
+    (conjunto de ids nos dois sentidos, máximo, mínimo, início, recarga, gastos),
+    Marca do Duelo, movimento, Ar natural e corrupção máxima por nível: site x
     contrato do balanceamento. Divergência é AVISO ao Pedro, nunca corrigida aqui."""
     root = root or ROOT
     print('[conteudo×contrato] Blocos de data/ x contrato do balanceamento')

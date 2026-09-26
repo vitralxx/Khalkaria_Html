@@ -1,0 +1,32 @@
+{
+  "schemaVersion": "pendentes-balanceamento/1",
+  "nota": "Regras perguntadas ao balanceamento e ainda sem resposta (plano §3.2: selo PENDENTE (balanceamento)). Cada item diz a rodada em que a pergunta vai (plano §8/§10). Campo de bloco com status 'pendente' aponta para um id daqui em 'pergunta'; campo derivado que sai None porque o texto é omisso (mínimo, início e recarga de medidor) é coberto por 'campos' (padrão fnmatch sobre '<bloco>: <caminho>'). O validar.py ([blocos]) FALHA se um pendente não tiver pergunta e AVISA se uma pergunta não cobrir mais nada (respondida: tirar daqui).",
+  "itens": [
+    {
+      "id": "tecnica-de-raca",
+      "rodada": 5,
+      "desde": "2026-09-26",
+      "pergunta": "O Pedro diz que cada raça dá \"1 técnica de raça\" (03-respostas-pedro.md §2). As páginas de raça listam características, sem dizer qual delas é a técnica. Qual é a técnica de raça de cada uma das 7 raças (e, nas raças com variante/subespécie, ela muda com a variante)?",
+      "campos": ["raça *: tecnica"]
+    },
+    {
+      "id": "medidor-minimo",
+      "rodada": 5,
+      "desde": "2026-09-26",
+      "pergunta": "Mínimo dos medidores de recurso de classe (Fluxo, Instinto, Brutalidade, Concentração, Reagentes): o texto das classes não declara e o contrato não tem 'min'. É 0 em todos? A Concentração perde -1/-2/-3 por evento: pode ficar negativa?",
+      "campos": ["classe *: recurso.medidores.*.min"]
+    },
+    {
+      "id": "medidor-inicio-recarga",
+      "rodada": 5,
+      "desde": "2026-09-26",
+      "pergunta": "Onde o texto da classe é omisso: (a) início dos Reagentes (o contrato diz 'criacao = max') e da Brutalidade (o contrato diz 'inicioCombate = 0'); (b) recarga por evento da Concentração (o contrato diz zeraEm 'fimCombate'; a página só diz que começa todo combate com 0) e do Instinto (a página só diz que começa cenas com 0 e lista as perdas). Confirmar para o texto da classe no Notion.",
+      "campos": [
+        "classe alquimista: recurso.medidores.*.inicio",
+        "classe brutalista: recurso.medidores.*.inicio",
+        "classe artilheiro: recurso.medidores.*.recarga",
+        "classe batedor: recurso.medidores.*.recarga"
+      ]
+    }
+  ]
+}

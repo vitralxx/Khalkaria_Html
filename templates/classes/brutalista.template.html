@@ -480,18 +480,18 @@
 
             <div class="section-divider"><h2>📈 Progressão</h2></div>
             <table class="progression-table">
-                <thead><tr><th>Nível</th><th>Conteúdo</th></tr></thead>
+                <thead><tr><th>{{classe.progressao.colunas.0}}</th><th>{{classe.progressao.colunas.1}}</th></tr></thead>
                 <tbody>
-                    <tr><td><span class="level-badge">1</span></td><td>4 Técnicas</td></tr>
-                    <tr><td><span class="level-badge">2</span></td><td>5 Técnicas, Técnica de Ramo (Tier 1)</td></tr>
-                    <tr><td><span class="level-badge">3</span></td><td>6 Técnicas, 1 Marca</td></tr>
-                    <tr><td><span class="level-badge">4</span></td><td>7 Técnicas, Técnica de Ramo (Tier 1, 2), 2 Marcas</td></tr>
-                    <tr><td><span class="level-badge">5</span></td><td>8 Técnicas, Técnica de Ramo (Tier 1, 2 e 3), 3 Marcas</td></tr>
+                    <tr><td><span class="level-badge">{{classe.progressao.linhas.0.0}}</span></td><td>{{classe.progressao.linhas.0.1}}</td></tr>
+                    <tr><td><span class="level-badge">{{classe.progressao.linhas.1.0}}</span></td><td>{{classe.progressao.linhas.1.1}}</td></tr>
+                    <tr><td><span class="level-badge">{{classe.progressao.linhas.2.0}}</span></td><td>{{classe.progressao.linhas.2.1}}</td></tr>
+                    <tr><td><span class="level-badge">{{classe.progressao.linhas.3.0}}</span></td><td>{{classe.progressao.linhas.3.1}}</td></tr>
+                    <tr><td><span class="level-badge">{{classe.progressao.linhas.4.0}}</span></td><td>{{classe.progressao.linhas.4.1}}</td></tr>
                 </tbody>
             </table>
 
             <div class="section-divider"><h2>⚡ Técnicas</h2></div>
-            <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">Toda classe possui técnicas, você pode reatribuí-las livremente ao realizar um descanso longo, respeitando o limite de pontos. <strong>Você possui 3 Técnicas + Nível.</strong></p>
+            <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">{{classe.tecnicas.regra}} <strong>{{classe.tecnicas.quantidade}}</strong></p>
             <div class="techniques-grid">
                 {{CARD_0}}
                 {{CARD_1}}

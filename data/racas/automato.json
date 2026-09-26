@@ -65,7 +65,8 @@
     ],
     "tecnica": {
       "id": null,
-      "status": "PENDENTE",
+      "status": "pendente",
+      "pergunta": "tecnica-de-raca",
       "nota": "Pedro (03-respostas-pedro.md §2): a raça dá \"1 técnica de raça\". A página não distingue qual característica é a técnica: pergunta ao balanceamento, não inventar."
     },
     "arNatural": [],

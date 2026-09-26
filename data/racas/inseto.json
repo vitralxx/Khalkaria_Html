@@ -40,7 +40,8 @@
     ],
     "tecnica": {
       "id": null,
-      "status": "PENDENTE",
+      "status": "pendente",
+      "pergunta": "tecnica-de-raca",
       "nota": "Pedro (03-respostas-pedro.md §2): a raça dá \"1 técnica de raça\". A página não distingue qual característica é a técnica: pergunta ao balanceamento, não inventar."
     },
     "variantes": {
@@ -50,7 +51,23 @@
         "inseto-louva-a-deus",
         "inseto-barata"
       ],
-      "fisico": {},
+      "fisico": {
+        "inseto-besouro": {
+          "vida": "50-80 anos",
+          "altura": "1,60m - 2,40m",
+          "peso": "80kg - 120kg"
+        },
+        "inseto-louva-a-deus": {
+          "vida": "80-120 anos",
+          "altura": "1,40m - 2,20m",
+          "peso": "50kg - 80kg"
+        },
+        "inseto-barata": {
+          "vida": "100-140 anos",
+          "altura": "1,40m - 2,00m",
+          "peso": "40kg - 90kg"
+        }
+      },
       "subespecies": [
         {
           "id": "inseto-besouro",

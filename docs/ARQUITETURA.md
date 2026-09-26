@@ -79,6 +79,10 @@ tools/extrair_css.py           refatoração pontual de CSS (não é build)
 tools/migrar_sistema.py        migração pontual do Sistema (já rodada)
 tools/migrar_f1b.py            migração pontual template -> blocos da F1b (já rodada;
                                registro de como cada campo foi extraído)
+tools/migrar_f1b_correcao.py   idem, correção da F1b: Progressão, regra de técnicas,
+                               requisito de card e status no vocabulário (já rodada)
+tools/pendentes_balanceamento.json  regras perguntadas ao balanceamento, sem resposta
+                               (id, rodada, pergunta, campos): selo PENDENTE (balanceamento)
 
 css/style.css                  design system: tokens :root, layout, globais
 css/classes.css                componentes das 7 páginas de classe
@@ -244,19 +248,25 @@ classe CSS fora do mapa e fora dela derruba o build.
 **Blocos de classe, raça e origem (F1b).** O que antes só existia no scaffold
 do template (CD, treinamento, fórmulas de Saúde/Stamina/Éter, recurso de classe
 com o medidor, Marca do Duelo, Escolas, Arma Humana, os 95 Itens Alquímicos, os
-ramos; stat-box, perícias, dados físicos, tecnologias e as 15+15 corrupções das
+ramos, a tabela de Progressão, a regra de técnicas e o requisito solto de card; stat-box, perícias, dados físicos, tecnologias e as 15+15 corrupções das
 raças; Sins, treinamento, itens iniciais e habilidade das origens) vive em
 `data/`: `classe` em `data/classes/<c>.json`, `raca` em `data/racas/<r>.json` e
 `origem` em cada card de `data/origens.json`. O template (o corpo do card, nas
 origens) mostra cada texto por um marcador `{{classe.cd.texto}}`; o gerador troca
 pelo valor verbatim (`tools/blocos.py preenche`) e derruba o build se o campo
-faltar. Ao lado do verbatim ficam os **derivados** que a ficha consome (V/G/R,
+faltar; o `[blocos]` também exige que todo campo verbatim tenha o seu
+marcador (texto literal no template com o campo órfão no JSON é FALHA). Ao lado do verbatim ficam os **derivados** que a ficha consome (V/G/R,
 atributos com "ou", perícias como slug, escolhas, metros, Ar natural, ids das
-sub-entidades, `itemId` do Bazar nos itens iniciais): o `[blocos]` recalcula e
+sub-entidades, `itemId` do Bazar nos itens iniciais, e nos medidores `min`,
+`inicio` e `recarga` só do que a frase do texto declara): o `[blocos]` recalcula e
 FALHA se divergirem (`python tools/blocos.py` regrava). O que o Notion não diz
-fica `null` + `status` PENDENTE (recurso do Espadachim e do Teurgo, técnica de raça).
+fica `null` + `status` do vocabulário do plano §3.2: `pedroDecide` (recurso do
+Espadachim e do Teurgo) ou `pendente` + `pergunta` (técnica de raça); `min`,
+`inicio` e `recarga` omissos de medidor ficam `null` cobertos por uma pergunta de
+`tools/pendentes_balanceamento.json` (FALHA se não houver).
 `[conteudo×contrato]` compara V/G/R, CD, perícias e armas iniciais, recurso
-(id, máximo, gastos), Marca do Duelo, movimento e Ar natural com o contrato do
+(ids nos dois sentidos, máximo, mínimo, início, recarga, gastos), Marca do Duelo,
+movimento, Ar natural e corrupção máxima por nível com o contrato do
 balanceamento (lido da branch dele por `git show`, ou `KH_CONTRATO=<arquivo>`) e
 só AVISA: quem decide a divergência é o Pedro.
 
