@@ -30,10 +30,16 @@ integridade do artefato HTML, que é o que quebra em silêncio:
  [glifos]     sprite partials/glifos.html íntegro (g-*, viewBox, sem
               duplicata, um glifo por ramo --ramo-*) e todo <use href="#g-*">
               de página ou de js/*.js com o seu <symbol>
+ [componentes] contagem das classes CSS de componente (companion-card,
+              d100-table, sub-ability...) em cada pages/classes/*.html >= o
+              tools/componentes-baseline.json. Um sync que troque componente
+              por <ul> genérico derruba o build; queda legítima (o Notion tirou
+              o conteúdo) só passa regravando o baseline de propósito
 
 Uso:
   python validar.py [repo_root]
   python validar.py . --skip-roundtrip
+  python validar.py . --atualizar-componentes   # regrava o baseline e valida
 Saída: exit 0 = tudo OK; exit 1 = há falhas.
 """
 import os, re, sys, json, glob, shutil, filecmp, subprocess, tempfile
@@ -602,6 +608,91 @@ def checa_bazar_inv(root=None):
         print(f'  OK     {len(itens)} itens com inv')
 
 
+# ---------------------------------------------------------------- componentes
+BASELINE_COMPONENTES = 'tools/componentes-baseline.json'
+RE_CLASSE = re.compile(r'(?<![\w-])class="([^"]*)"')
+
+
+def _paginas_classe(root):
+    return sorted(rel(p, root) for p in glob.glob(os.path.join(root, 'pages', 'classes', '*.html')))
+
+
+def conta_componentes(html, classes):
+    """{classe: nº de elementos com ela} para as classes pedidas."""
+    cont = dict.fromkeys(classes, 0)
+    for m in RE_CLASSE.finditer(html):
+        for k in m.group(1).split():
+            if k in cont:
+                cont[k] += 1
+    return cont
+
+
+def _le_baseline(root):
+    base = json.load(open(os.path.join(root, BASELINE_COMPONENTES), encoding='utf-8'))
+    classes, pags = base['classes'], base['paginas']
+    if not isinstance(classes, list) or not isinstance(pags, dict):
+        raise ValueError('"classes" tem de ser lista e "paginas" objeto')
+    return base, classes, pags
+
+
+def atualiza_componentes(root=None):
+    """Regrava as contagens do baseline a partir das páginas atuais (lista de
+    classes mantida). É o "de propósito": rodar só depois de conferir que a queda
+    vem do Notion, e dizer no commit qual conteúdo saiu."""
+    root = root or ROOT
+    base, classes, _ = _le_baseline(root)
+    pags = {}
+    for pg in _paginas_classe(root):
+        cont = conta_componentes(open(os.path.join(root, pg), encoding='utf-8').read(), classes)
+        pags[pg] = {k: n for k, n in cont.items() if n}
+    base['paginas'] = pags
+    with open(os.path.join(root, BASELINE_COMPONENTES), 'w', encoding='utf-8', newline='\n') as fh:
+        fh.write(json.dumps(base, ensure_ascii=False, indent=2) + '\n')
+    print(f'  baseline regravado: {BASELINE_COMPONENTES} ({len(pags)} páginas)')
+
+
+def checa_componentes(root=None):
+    """[componentes] Classe CSS de componente não cai sem o baseline mudar."""
+    root = root or ROOT
+    print(f'[componentes] Classes de componente em pages/classes x {BASELINE_COMPONENTES}')
+    try:
+        _, classes, pags = _le_baseline(root)
+    except (OSError, ValueError, KeyError) as e:
+        falhas.append('componentes')
+        print(f'  FALHA  {BASELINE_COMPONENTES} ilegível: {e}')
+        return
+    ruins, subiu, n = [], [], 0
+    for pg in sorted(set(pags) | set(_paginas_classe(root))):
+        if pg not in pags:
+            ruins.append(f'{pg}: página sem linha no baseline')
+            continue
+        fora = sorted(set(pags[pg]) - set(classes))
+        if fora:
+            ruins.append(f'{pg}: {fora} no baseline mas fora da lista "classes"')
+        caminho = os.path.join(root, pg)
+        if not os.path.exists(caminho):
+            ruins.append(f'{pg}: está no baseline e não existe')
+            continue
+        cont = conta_componentes(open(caminho, encoding='utf-8').read(), classes)
+        for k in classes:
+            esp = pags[pg].get(k, 0)
+            if cont[k] < esp:
+                ruins.append(f'{pg}: .{k} caiu de {esp} para {cont[k]}')
+            elif cont[k] > esp:
+                subiu.append(f'{pg}: .{k} {esp} -> {cont[k]}')
+        n += 1
+    if ruins:
+        falhas.append('componentes')
+        for r in ruins:
+            print(f'  FALHA  {r}')
+        print('         componente virou lista genérica? Restaure no data/classes/*.json. Se o Notion\n'
+              '         tirou o conteúdo, rode validar.py . --atualizar-componentes e diga no commit.')
+    else:
+        print(f'  OK     {n} páginas, {len(classes)} classes, nenhuma abaixo do baseline')
+    for s in subiu:
+        print(f'  AVISO  {s} (acima do baseline: --atualizar-componentes fixa o novo piso)')
+
+
 def checa_roundtrip():
     print('[5] Round-trip data/*.json -> pages/*.html')
     tmp = tempfile.mkdtemp(prefix='khalkaria_rt_')
@@ -669,6 +760,10 @@ if __name__ == '__main__':
     checa_fragmentos()
     print()
     checa_glifos()
+    print()
+    if '--atualizar-componentes' in FLAGS:
+        atualiza_componentes()
+    checa_componentes()
     print()
     if '--skip-roundtrip' not in FLAGS:
         checa_roundtrip()

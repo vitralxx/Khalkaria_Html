@@ -143,3 +143,8 @@
             border-color: var(--gold-dark);
             transform: translateY(-2px);
         }
+
+/* Texto verbatim do Notion que o componente já mostra de outro jeito: a vírgula
+   entre chips de stats, o ":" de um título, o prefixo "Lobo:" dentro do card do
+   Lobo. Fica no DOM (busca, cópia para a ficha, sync_notion.py cobertura) e sai da tela. */
+.sep { display: none; }

@@ -67,6 +67,8 @@ tools/gerar_bazar.py           gerador do Bazar (CSV -> bazar.json com `inv` + p
 tools/gerar_catalogo.py        data/*.json -> data/catalogo/<tipo>.json (F1a, artefato)
 tools/kf_marca.py              marcação entidade -> ficha comum aos geradores (F1a)
 tools/alias_ids.json           ids do contrato do balanceamento fora da convenção -> id do site
+tools/componentes-baseline.json piso da contagem de cada classe CSS de componente por
+                               página de classe (checagem [componentes] do validar)
 tools/testes/                  testes node do motor KhInv (*.test.js, fixtures/);
                                index.js deixa `node --test tools/testes` rodar no Node 22+;
                                test_*.py: checagens do validar (unittest, no build)
@@ -165,7 +167,12 @@ Ordem de carga e responsabilidade de cada camada:
 3. `<style>` inline da página — **apenas o que é dela**. Nas classes, os tokens
    `--ramo-*` de cor, que são a identidade visual de cada uma.
 
-Uma regra idêntica em 2+ páginas pertence a (2), não ao inline. `tools/extrair_css.py`
+Uma regra idêntica em 2+ páginas pertence a (2), não ao inline.
+
+`.sep` (`css/classes.css`, `display: none`) guarda texto verbatim do Notion que o
+componente já mostra de outro jeito: a vírgula entre chips de stats, o `:` de um
+título, o prefixo `Lobo:` dentro do card do Lobo. O texto fica no DOM (a
+normalização do §6 e o `sync_notion.py cobertura` o enxergam) e sai da tela. `tools/extrair_css.py`
 faz essa extração respeitando o cascade.
 
 ## 6. Comandos
@@ -176,6 +183,8 @@ python tools/build.py magias racas     # alvos específicos
 python tools/build.py --no-check       # sem validar
                                        # (--bazar ainda é aceito, mas é no-op)
 python tools/validar.py                # só valida
+python tools/validar.py . --atualizar-componentes
+                                       # regrava o piso de componentes (queda legítima)
 python tools/gerar_webp.py --force     # reencoda todas as imagens
 python tools/sync_notion.py status     # snapshots do Notion disponíveis
 python tools/sync_notion.py report     # diff: o que mudou no Notion
@@ -204,6 +213,14 @@ classe -> tipo; todo card marcado, menos o `<a>` do índice, abre com o par
 `bazar.html#item/<id>` com destino) e `[glifos]` (sprite íntegro, um glifo por
 `--ramo-*`, todo `<use href="#g-*">` com símbolo). O round-trip regenera também
 o `data/catalogo/`.
+
+**`[componentes]`.** O sync verbatim de 2026-09-26 trocou cards de companheiro,
+tabelas d100, sub-habilidades, stats de ser/constructo, seções de patrono e
+effect-list por `<ul><li>` genérico, e nada acusou. Agora cada classe CSS listada
+em `tools/componentes-baseline.json` tem um piso por página de classe: se a
+contagem cair, o build falha. Ao recopiar texto do Notion, o texto novo entra
+DENTRO do componente. Se o Notion tirou o conteúdo que o componente embrulhava,
+confira e rode `validar.py . --atualizar-componentes`, dizendo no commit o que saiu.
 
 **Marcação entidade -> ficha (F1a).** Todo card de entidade sai do gerador com
 `data-kf-tipo`, `data-kf-id` (= id do JSON) e `data-prever="tipo:id"`, e com o

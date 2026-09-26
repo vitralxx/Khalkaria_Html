@@ -130,7 +130,10 @@ def _nz(s):
     s = re.sub(r'<[^>]+>', ' ', s)
     s = s.replace('\\', '').replace('*', '').replace('`', '')
     s = re.sub(r'\s+', ' ', s).strip().lower()
-    s = re.sub(r'\s*([()+×/=])\s*', r'\1', s)
+    # vírgula entra aqui porque o espaço depois dela não é conteúdo: chip de stats
+    # (<span>Médio</span><span class="sep">,</span><span>15 HP</span>) vira
+    # "Médio , 15 HP" ao trocar tag por espaço, e o Notion escreve "Médio,15 HP"
+    s = re.sub(r'\s*([()+×/=,])\s*', r'\1', s)
     s = re.sub(r'(\d)\s+m\b', r'\1m', s)
     return re.sub(r'\s+([.,;:)])', r'\1', s)
 

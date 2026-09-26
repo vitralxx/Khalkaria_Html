@@ -137,7 +137,7 @@
       "id": "espadachim-sentenca-final",
       "tipo": "ultimate-card",
       "nome": "Sentença Final",
-      "corpo": "<h5>Sentença Final</h5><p class=\"meta\">1 Ação · 10 Stamina · 1x/Dia</p><p class=\"quote\">\"A morte chega para todos os pecadores\"</p><ul><li>Escolha 1 inimigo que esteja com <strong>a Marca do Duelo.</strong> Você e o inimigo são transportados para um plano impossível.<br>A única saída é evidente. A morte de um dos dois:<ul><li>Você e <strong>a Marca do Duelo</strong> são arrancados do campo de batalha para <strong><em>o Plano Místico</em></strong> até a morte de um dos dois.</li><li>Enquanto neste plano, as suas <strong>retaliações</strong> não gastam reação.</li></ul></li></ul><div class=\"ultimate-cost\"><h6>⚠️ O Custo</h6><ul><li>Sua espada foi danificada. Perca 2d10 de Éter.</li><li>A <strong><em>Trama</em></strong> decidiu o seu destino.</li></ul></div>"
+      "corpo": "<h5>Sentença Final</h5><p class=\"meta\">1 Ação · 10 Stamina · 1x/Dia</p><p class=\"quote\">\"A morte chega para todos os pecadores\"</p><p>Escolha 1 inimigo que esteja com <strong>a Marca do Duelo.</strong> Você e o inimigo são transportados para um plano impossível.<br>A única saída é evidente. A morte de um dos dois:</p><div class=\"effect-list\"><ul><li>Você e <strong>a Marca do Duelo</strong> são arrancados do campo de batalha para <strong><em>o Plano Místico</em></strong> até a morte de um dos dois.</li><li>Enquanto neste plano, as suas <strong>retaliações</strong> não gastam reação.</li></ul></div><div class=\"ultimate-cost\"><h6>⚠️ O Custo</h6><ul><li>Sua espada foi danificada. Perca 2d10 de Éter.</li><li>A <strong><em>Trama</em></strong> decidiu o seu destino.</li></ul></div>"
     },
     {
       "id": "espadachim-nostalgia",
@@ -185,7 +185,7 @@
       "id": "espadachim-cicatrizes",
       "tipo": "ultimate-card",
       "nome": "Cicatrizes",
-      "corpo": "<h5>Cicatrizes</h5><p class=\"meta\">1 Ação · 10 Stamina · 1x/Dia</p><p class=\"quote\">\"A dor, nunca foi sua inimiga. Mas sim, sua arma\"</p><ul><li>Você entra em um estado epifânico onde você se desprende das amarras da dor por completo:<ul><li>Durante 3 rodadas você não pode ser reduzido abaixo de 1 de Saúde.</li></ul></li></ul><div class=\"ultimate-cost\"><h6>⚠️ O Custo</h6><ul><li>Enquanto nesse estado, anote todo dano que receber. Ao fim das 3 rodadas, você o recebe como dano <strong>Primordial</strong>.</li><li>A <strong><em>Trama</em></strong> decidiu o seu destino.</li></ul></div>"
+      "corpo": "<h5>Cicatrizes</h5><p class=\"meta\">1 Ação · 10 Stamina · 1x/Dia</p><p class=\"quote\">\"A dor, nunca foi sua inimiga. Mas sim, sua arma\"</p><p>Você entra em um estado epifânico onde você se desprende das amarras da dor por completo:</p><div class=\"effect-list\"><ul><li>Durante 3 rodadas você não pode ser reduzido abaixo de 1 de Saúde.</li></ul></div><div class=\"ultimate-cost\"><h6>⚠️ O Custo</h6><ul><li>Enquanto nesse estado, anote todo dano que receber. Ao fim das 3 rodadas, você o recebe como dano <strong>Primordial</strong>.</li><li>A <strong><em>Trama</em></strong> decidiu o seu destino.</li></ul></div>"
     },
     {
       "id": "espadachim-coragem-liquida",
@@ -233,7 +233,7 @@
       "id": "espadachim-epifania",
       "tipo": "ultimate-card",
       "nome": "Epifania",
-      "corpo": "<h5>Epifania</h5><p class=\"meta\">1 Ação · 5 Stamina · 1x/Dia</p><p class=\"quote\">\"O corpo cambaleia, mas o destino tropeça junto\"</p><ul><li>A bebida que antes corria em suas veias para te embebedar, agora lhe concede vidência sobre o futuro:<ul><li>Role 6d20 abertamente na mesa. Durante os próximos 10 minutos, toda rolagem sua usa esses dados à sua escolha.</li></ul></li></ul><div class=\"ultimate-cost\"><h6>⚠️ O Custo</h6><ul><li>Você bebeu todo seu álcool. Perca 2d10 de Éter.</li><li>A <strong><em>Trama</em></strong> decidiu o seu destino.</li></ul></div>"
+      "corpo": "<h5>Epifania</h5><p class=\"meta\">1 Ação · 5 Stamina · 1x/Dia</p><p class=\"quote\">\"O corpo cambaleia, mas o destino tropeça junto\"</p><p>A bebida que antes corria em suas veias para te embebedar, agora lhe concede vidência sobre o futuro:</p><div class=\"effect-list\"><ul><li>Role 6d20 abertamente na mesa. Durante os próximos 10 minutos, toda rolagem sua usa esses dados à sua escolha.</li></ul></div><div class=\"ultimate-cost\"><h6>⚠️ O Custo</h6><ul><li>Você bebeu todo seu álcool. Perca 2d10 de Éter.</li><li>A <strong><em>Trama</em></strong> decidiu o seu destino.</li></ul></div>"
     }
   ]
 }
