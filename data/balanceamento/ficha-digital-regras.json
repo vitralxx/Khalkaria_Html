@@ -1639,7 +1639,7 @@
    "fonte": "notion-condicoes 3a66e3a4...0b25, gravado em 2026-09-26 (rodada 3, diff conferido) (D83, PD14a)",
    "verbatimPedro": "um alvo com 3 de sangramento quando e acertado recebe 3d4 de dano e fica com sangramento 2, o proximo acerto da 2d4 de dano e assim por diante",
    "ordemNumAcertoQueAplica": "consomeAntes",
-   "nota": "Escala com dificuldade: Dilacerar aplica 1 e cada acerto consome 1, entao um atacante so com Dilacerar mantem o alvo em 1.",
+   "nota": "Escala com dificuldade: Dilacerar aplica 1 e cada acerto consome 1, entao um atacante so com Dilacerar mantem o alvo em 1. [trecho sobre carta rara oculta]",
    "verbatim": "Se o alvo puder sangrar, qualquer ataque contra ele causa +Xd4 de dano Biológico, sendo X o seu Sangramento atual. Ao acertar um ataque em um alvo com essa condição, ela reduz em 1. Por exemplo: um alvo com Sangramento 3 recebe +3d4 no próximo acerto e fica com Sangramento 2. Se o acerto também aplicar Sangramento, o dano e a redução acontecem antes da nova aplicação."
   },
   {
@@ -2232,10 +2232,10 @@
   ],
   "nota": "NAO funda os dois eixos. Um serve para achar o card, o outro para decidir se a condicao pega.",
   "mentalStatus": "canonicoParcial",
-  "mentalFonte": "Correção da rev. 1, que dizia que a lista nunca foi escrita.",
+  "mentalFonte": "[trecho sobre carta rara oculta] Correção da rev. 1, que dizia que a lista nunca foi escrita.",
   "mentalNotas": [
    "Oco conta como mental por implicação: o pacto da Grande Árvore (Teurgo) \"remove alguma condição mental, exceto Oco\".",
-   "Tags são eixo, não partição: pode ter as duas.",
+   "[trecho sobre carta rara oculta] Tags são eixo, não partição: pode ter as duas.",
    "Monge Ápatico dá um subconjunto: \"condições que são causadas por emoções (Enfeitiçado e Amedrontado)\"."
   ]
  },
@@ -3572,7 +3572,8 @@
    "n": 11,
    "o": "Lista das 'condicoes mentais'",
    "porque": "Citada pelo Teurgo e pelo Veterano, nunca escrita.",
-   "gravidade": "media"
+   "gravidade": "media",
+   "status": "[trecho sobre carta rara oculta]"
   },
   {
    "n": 12,

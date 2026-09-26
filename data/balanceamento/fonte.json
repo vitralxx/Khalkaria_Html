@@ -50,22 +50,22 @@
   {
    "arquivo": "ficha-digital-regras.json",
    "caminho": "condicoes.7.nota",
-   "motivo": "1 frase(s) citam rara oculta"
+   "motivo": "1 frase(s) citam rara oculta (viram marcador)"
   },
   {
    "arquivo": "ficha-digital-regras.json",
    "caminho": "taxonomiaDeCondicao.mentalFonte",
-   "motivo": "1 frase(s) citam rara oculta"
+   "motivo": "1 frase(s) citam rara oculta (viram marcador)"
   },
   {
    "arquivo": "ficha-digital-regras.json",
    "caminho": "taxonomiaDeCondicao.mentalNotas.1",
-   "motivo": "1 frase(s) citam rara oculta"
+   "motivo": "1 frase(s) citam rara oculta (viram marcador)"
   },
   {
    "arquivo": "ficha-digital-regras.json",
    "caminho": "pendenciasNotion.10.status",
-   "motivo": "texto cita rara oculta"
+   "motivo": "texto cita rara oculta (vira marcador)"
   }
  ]
 }

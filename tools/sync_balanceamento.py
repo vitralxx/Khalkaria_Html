@@ -14,9 +14,10 @@ branch dele (`origin/claude/khalkaria-bazar-balance-lsdfic`), pasta
      - todo objeto com `"rara": true` sai;
      - todo objeto cuja `fonte`/`id`/`carta` é o id de uma rara oculta sai, e
        toda chave que é id de rara oculta também;
-     - em todo texto, a frase que cita o nome de uma rara oculta sai (o nome
-       dentro do nome de um item do Bazar, ex. "Lâmina Etérea", não conta);
-       texto que fica vazio sai inteiro;
+     - em todo texto, a frase que cita o nome de uma rara oculta vira o
+       MARCADOR fixo (o nome dentro do nome de um item do Bazar, ex. "Lâmina
+       Etérea", não conta); frases citadas seguidas viram um marcador só, e a
+       chave fica mesmo quando o texto inteiro vira marcador;
    e com o texto das Marcas da Vhelor numa fonte só: o bloco `marcasVhelor` do
    arquivo de efeitos é cópia do `marcas-vhelor.json` (o gerador deles copia) e
    vira a referência `{"_fonte": "marcas-vhelor.json"}` (se a cópia divergir do
@@ -52,6 +53,9 @@ FONTE = 'fonte.json'
 MARCAS = 'marcas-vhelor.json'
 EFEITOS = 'ficha-efeitos-itens.json'
 
+# a frase que cita rara oculta vira este marcador (não some): a chave e a posição ficam,
+# e quem lê o dado sabe que ali havia texto (ex.: o status de uma pendência)
+MARCADOR = '[trecho sobre carta rara oculta]'
 _FORA = object()          # sentinela: "sai da projeção" (null do JSON continua null)
 # fim de frase: . ! ? (com aspas/parêntese colados) seguido de espaço, ou fim do texto
 RE_FRASE = re.compile(r'.*?(?:[.!?]+["”)\]]*(?=\s)|$)\s*', re.S)
@@ -140,13 +144,21 @@ def _filtra(v, cam, det, tirados):
                 out.append(y)
         return out
     if isinstance(v, str) and det.cita(v):
-        fica = [f for f in frases(v) if not det.cita(f)]
-        n = len(frases(v)) - len(fica)
-        if not fica:
-            tirados.append((cam, 'texto cita rara oculta'))
-            return _FORA
-        tirados.append((cam, f'{n} frase(s) citam rara oculta'))
-        return ''.join(fica).strip()
+        partes, n = [], 0
+        for f in frases(v):
+            if not det.cita(f):
+                partes.append(f)
+                continue
+            n += 1
+            if partes and partes[-1].startswith(MARCADOR):     # frases citadas seguidas: um marcador só
+                continue
+            partes.append(MARCADOR + f[len(f.rstrip()):])
+        fica = ''.join(partes).strip()
+        if fica == MARCADOR:
+            tirados.append((cam, 'texto cita rara oculta (vira marcador)'))
+        else:
+            tirados.append((cam, f'{n} frase(s) citam rara oculta (viram marcador)'))
+        return fica
     return v
 
 

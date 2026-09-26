@@ -311,9 +311,12 @@ só AVISA: quem decide a divergência é o Pedro.
 **Efeitos de item (F1d).** O verbatim do balanceamento nunca entra no git:
 `tools/sync_balanceamento.py` o copia para `privado/balanceamento/` e publica em
 `data/balanceamento/` a projeção sem rara oculta (objeto `rara:true`, fonte/id/chave
-de rara, frase que cita o nome de uma rara fora de nome ou texto do Bazar). O
+de rara saem; a frase que cita o nome de uma rara fora de nome ou texto do Bazar
+vira o marcador fixo `[trecho sobre carta rara oculta]`, e a chave fica). O
 `[balanceamento]` FALHA com rara na projeção ou `privado/` rastreado e, com o
-privado local, refaz a projeção e compara byte a byte (sem ele, AVISO).
+privado local, refaz a projeção e compara byte a byte, com o fim de linha fora da
+comparação (o `core.autocrlf` reescreve a projeção com CRLF no checkout; sem o
+privado, AVISO).
 `gerar_efeitos.py` compila `data/efeitos.json` pelo `tools/alvos_destino.json`
 (alvo, op, quando, status, recarga, condicao ou opcional fora da lista derruba o
 build) e o round-trip o compara. O `[efeitos]` confere o arquivo do balanceamento

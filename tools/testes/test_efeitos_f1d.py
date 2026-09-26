@@ -152,8 +152,16 @@ class Projecao(unittest.TestCase):
                   'limiar-sangria-precisa': {'a': 1}, 'nulo': None}
         out, tirados = self.projeta(regras)
         r = out['ficha-digital-regras.json']
-        self.assertEqual(r, {'lista': [{'fonte': 'x', 'v': 1}], 'nota': 'Primeira frase.', 'nulo': None})
+        self.assertEqual(r, {'lista': [{'fonte': 'x', 'v': 1}], 'nota': 'Primeira frase. ' + sb.MARCADOR,
+                             'so': sb.MARCADOR, 'nulo': None})
         self.assertEqual(len([t for t in tirados if t[0] == 'ficha-digital-regras.json']), 5)
+
+    def test_frase_citada_vira_marcador_e_chave_fica(self):
+        regras = {'status': 'resolvido: está na rara Sangria Precisa.',
+                  'nota': 'A Sangria Precisa troca. Sangria Precisa de novo. Fica esta. Sangria Precisa no fim.'}
+        r = self.projeta(regras)[0]['ficha-digital-regras.json']
+        self.assertEqual(r['status'], sb.MARCADOR)
+        self.assertEqual(r['nota'], f'{sb.MARCADOR} Fica esta. {sb.MARCADOR}')
 
     def test_nome_de_item_e_texto_do_bazar_nao_contam(self):
         regras = {'a': 'A Lâmina Etérea corta.', 'b': 'Escreva um evento. O Mestre rola os dados.'}
@@ -196,6 +204,36 @@ class ChecagensEmCopia(unittest.TestCase):
     def test_copia_limpa_passa(self):
         for f in (ce.checa_balanceamento, ce.checa_efeitos, ce.checa_vhelor):
             self.assertEqual(f(self.raiz).falhas, [], f.__name__)
+
+    def copia_privado(self):
+        priv = os.path.join(RAIZ, sb.PRIVADO)
+        if not all(os.path.exists(os.path.join(priv, a)) for a in sb.ARQUIVOS):
+            self.skipTest('privado/balanceamento ausente (rode tools/sync_balanceamento.py)')
+        shutil.copytree(priv, os.path.join(self.raiz, sb.PRIVADO))
+
+    def test_projecao_com_crlf_passa(self):
+        # core.autocrlf=true sem .gitattributes: o checkout grava a projeção com CRLF
+        self.copia_privado()
+        for a in sb.ARQUIVOS:
+            p = os.path.join(self.raiz, 'data', 'balanceamento', a)
+            b = open(p, 'rb').read()
+            open(p, 'wb').write(b.replace(b'\n', b'\r\n'))
+        r = ce.checa_balanceamento(self.raiz)
+        self.assertEqual(r.falhas, [])
+        self.assertTrue(any('projeção refeita do privado idêntica' in x for x in r.ok))
+
+    def test_projecao_editada_falha_sem_ok(self):
+        self.copia_privado()
+        self.edita('data/balanceamento/ficha-digital-regras.json', lambda d: d.update(extra=1))
+        r = ce.checa_balanceamento(self.raiz)
+        self.assertTrue(any('projeção publicada difere' in x for x in r.falhas))
+        self.assertFalse(any('projeção refeita do privado idêntica' in x for x in r.ok))
+
+    def test_item_sem_verbatim_falha(self):
+        self.edita('data/balanceamento/ficha-efeitos-itens.json',
+                   lambda d: d['itens']['item-armadura-de-couro'].pop('verbatim'))
+        r = ce.checa_efeitos(self.raiz)
+        self.assertTrue(any('item-armadura-de-couro: sem verbatim' in x for x in r.falhas))
 
     def test_rara_na_projecao_falha(self):
         self.edita('data/balanceamento/ficha-digital-regras.json',

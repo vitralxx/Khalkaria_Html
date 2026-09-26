@@ -1300,6 +1300,12 @@ def checa_roundtrip():
 
 
 if __name__ == '__main__':
+    # saída em pipe/arquivo no Windows vem em cp1252 e as mensagens têm '∪', '∩', '→'...
+    try:
+        sys.stdout.reconfigure(encoding='utf-8', errors='replace')
+        sys.stderr.reconfigure(encoding='utf-8', errors='replace')
+    except (AttributeError, ValueError):
+        pass
     checa_html()
     print()
     checa_sidebar()

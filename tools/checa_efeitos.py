@@ -130,7 +130,10 @@ def checa_balanceamento(root):
             r.falha(f'privado/balanceamento difere do fonte.json ({_lista(dif)}): rode tools/sync_balanceamento.py')
         else:
             proj, tirados = sb.projeta(verbatim, raras, sb.bazar_publico(root))
-            dif = [a for a in sb.ARQUIVOS if open(os.path.join(pub, a), 'rb').read() != proj[a]]
+            # fim de linha fora da comparação: com core.autocrlf=true (sem .gitattributes) o checkout
+            # reescreve a projeção com CRLF; o conteúdo é o mesmo (a serializa() grava LF)
+            dif = [a for a in sb.ARQUIVOS
+                   if open(os.path.join(pub, a), 'rb').read().replace(b'\r\n', b'\n') != proj[a]]
             if dif:
                 r.falha(f'projeção publicada difere da refeita a partir do privado: {_lista(dif)} '
                         '(editada à mão? rode tools/sync_balanceamento.py)')
@@ -138,7 +141,7 @@ def checa_balanceamento(root):
             if fonte.get('projecao') != esperada:
                 r.falha(f'{sb.FONTE}: lista "projecao" difere da refeita ({len(fonte.get("projecao") or [])} x '
                         f'{len(esperada)} cortes)')
-            else:
+            elif not dif:
                 r.ok.append(f'projeção refeita do privado idêntica ({len(esperada)} cortes)')
     else:
         r.aviso('privado/balanceamento ausente: projeção não refeita (rode tools/sync_balanceamento.py '
@@ -230,7 +233,7 @@ def checa_efeitos(root):
                 f'{_lista(sorted(set(por) - (I | A | C)))}; falta {_lista(sorted((I | A | C) - set(por)))}): rode build.py')
 
     # 2. catálogo
-    ruins = []
+    ruins, comparados = [], 0
     for bloco, campos in (('itens', ('nome', 'categoria', 'raridade')), ('consumo', ('nome', 'categoria', 'raridade')),
                           ('armas', ('nome',))):
         for i, x in ef[bloco].items():
@@ -240,7 +243,12 @@ def checa_efeitos(root):
             for k in campos:
                 if x.get(k) != b.get(k):
                     ruins.append(f'{i}.{k}: {x.get(k)!r} x bazar {b.get(k)!r}')
-            if 'verbatim' in x and x['verbatim'] != csv_ef.get(b['nome']):
+            if 'verbatim' not in x:
+                if bloco != 'armas':        # armas não trazem verbatim; itens e consumo trazem todos
+                    ruins.append(f'{i}: sem verbatim no bloco {bloco}')
+                continue
+            comparados += 1
+            if x['verbatim'] != csv_ef.get(b['nome']):
                 ruins.append(f'{i}: verbatim != coluna Efeito do CSV')
     for i, e in por.items():
         if i in bazar and e.get('texto') != bazar[i]['efeito']:
@@ -249,7 +257,7 @@ def checa_efeitos(root):
         r.falha(f'[2] {x}')
     if out.get('fonte', {}).get('shaBazar') != ef['fonte'].get('sha256_16'):
         r.aviso(f'[2] CSV do balanceamento ({ef["fonte"].get("sha256_16")}) != CSV da main '
-                f'({out.get("fonte", {}).get("shaBazar")}); a coluna Efeito bate nos {len(I | C)} com verbatim')
+                f'({out.get("fonte", {}).get("shaBazar")}); a coluna Efeito bate nos {comparados} com verbatim')
     if out.get('fonte', {}).get('shaBalanceamento') != fonte.get('commit'):
         r.falha('[2] data/efeitos.json de outra entrega do balanceamento: rode build.py')
 
