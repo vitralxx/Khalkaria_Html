@@ -187,3 +187,30 @@ test('export Bestiário: type npc, prof_* e weapons só com a arma (sem armadura
   assert.equal(b.inventario, undefined);
   assert.equal(b.sins, undefined);
 });
+
+test('export Bestiário: prof_* sai como GRAU 0-4 (bônus / 2, D5a), Ae em armor_specific, arma sem fonte com atributo vazio', () => {
+  const p = pagina(armazenamento());
+  p.importar({ schemaVersion: '2.0', meta: { nome: 'Grau' },
+    pericias: { atacar: 8, defender: 2, religiao: 6, mistico: 4, oficio: 4 },
+    resistencias: { fogo: { R: true, I: false, ae: 2 }, frio: { R: false, I: true, ae: 0 } },
+    inventario: { sins: 0, bugigangas: [], equipamentos: [] } });
+  p.KF.adicionar(CAT.find((x) => x.nome === 'Adaga de Kali'));
+  p.botao('Exportar p/ Bestiário').click();
+  const b = p.baixados.pop();
+  assert.equal(b.prof_attack, 4);
+  assert.equal(b.prof_defend, 1);
+  assert.equal(b.prof_religion, 3);
+  assert.equal(b.prof_mystic, 2);
+  assert.equal(b.prof_craft, 2);
+  assert.equal(b.prof_will, 0);
+  Object.keys(b).filter((k) => k.startsWith('prof_')).forEach((k) => {
+    assert.ok(Number.isInteger(b[k]) && b[k] >= 0 && b[k] <= 4, k + ' = ' + b[k]);
+  });
+  assert.equal(b.resistances, 'Fogo');
+  assert.equal(b.immunities, 'Frio');
+  assert.equal(b.armor_specific, 'Fogo 2');
+  assert.equal(b.weapons.length, 1);
+  assert.equal(b.weapons[0].atributo, '');
+  // a ficha nativa continua guardando o bônus
+  assert.equal(p.guardado().pericias.atacar, 8);
+});

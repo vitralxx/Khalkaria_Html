@@ -15,7 +15,9 @@
     "atributos.int": "intelligence", "atributos.sab": "wisdom",
     "recursos.saude.max": "health_max", "recursos.stamina.max": "stamina_max", "recursos.eter.max": "ether_max",
     "derivados.evasao": "evasion", "derivados.movimento": "movement", "derivados.armadura": "armor",
-    "resistencias[R]": "resistances (CSV)", "resistencias[I]": "immunities (CSV)",
+    "resistencias[R]": "resistances (CSV)", "resistencias[I]": "immunities (CSV)", "resistencias[ae]": "armor_specific (CSV 'Tipo N', só ae > 0)",
+    "pericias.*": "prof_* (x-prof de cada perícia) como GRAU 0-4 = floor(bônus / 2), limitado a 0..4: 0 Leigo, 2→1 Treinado, 4→2 Experiente, 6→3 Mestre, 8→4 Lendário (D5a, Pedro, 2026-09-26; KhInv.grauPericia). A ficha continua guardando o bônus.",
+    "oficioAttr": "craft_attr",
     "grimorio+tecnicas": "abilities[]",
     "inventario.*[categoria ∋ 'Arma']": "weapons[]",
     "_weapons": "KhInv.armasBestiario: entradas das DUAS colunas cuja categoria, separada por vírgula, contém o token exato 'Arma' (nunca substring: 'Armadura' não é arma). Equipadas primeiro. Cada uma vira $defs/arma. Armaduras não saem em weapons[].",
@@ -66,7 +68,7 @@
 
     "pericias": {
       "type": "object",
-      "description": "22 perícias canônicas. Valor = nível de treinamento (0 Leigo / 2 Treinado / 4 Experiente / 6 Mestre / 8 Lendário). Chaves em slug PT; mapeiam 1:1 para prof_* do Bestiário.",
+      "description": "22 perícias canônicas. Valor = bônus de treinamento (0 Leigo / 2 Treinado / 4 Experiente / 6 Mestre / 8 Lendário). Chaves em slug PT; mapeiam 1:1 para prof_* do Bestiário, que recebe o GRAU 0-4 (bônus / 2; ver x-bestiary).",
       "additionalProperties": false,
       "properties": {
         "atacar":       { "type": "integer", "enum": [0, 2, 4, 6, 8], "default": 0, "x-prof": "prof_attack" },
@@ -83,7 +85,7 @@
         "conhecimento": { "type": "integer", "enum": [0, 2, 4, 6, 8], "default": 0, "x-prof": "prof_knowledge", "x-attr": "int" },
         "medicina":     { "type": "integer", "enum": [0, 2, 4, 6, 8], "default": 0, "x-prof": "prof_medicine", "x-attr": "int" },
         "investigacao": { "type": "integer", "enum": [0, 2, 4, 6, 8], "default": 0, "x-prof": "prof_investigation", "x-attr": "int" },
-        "religiao":     { "type": "integer", "enum": [0, 2, 4, 6, 8], "default": 0, "x-prof": "prof_religion", "x-attr": "int" },
+        "religiao":     { "type": "integer", "enum": [0, 2, 4, 6, 8], "default": 0, "x-prof": "prof_religion", "x-attr": "sab" },
         "mistico":      { "type": "integer", "enum": [0, 2, 4, 6, 8], "default": 0, "x-prof": "prof_mystic", "x-attr": "int" },
         "convencimento":{ "type": "integer", "enum": [0, 2, 4, 6, 8], "default": 0, "x-prof": "prof_persuasion", "x-attr": "melhor(des,int)" },
         "intimidacao":  { "type": "integer", "enum": [0, 2, 4, 6, 8], "default": 0, "x-prof": "prof_intimidation", "x-attr": "melhor(con,for)" },
@@ -124,7 +126,7 @@
 
     "resistencias": {
       "type": "object",
-      "description": "12 tipos de dano. R = Resistência, I = Imunidade. Export: nomes com R -> resistances (CSV), com I -> immunities (CSV).",
+      "description": "12 tipos de dano. R = Resistência, I = Imunidade, ae = Armadura Específica (inteiro). Export: nomes com R -> resistances (CSV), com I -> immunities (CSV), ae > 0 -> armor_specific ('Tipo N', CSV).",
       "additionalProperties": false,
       "propertyNames": {
         "enum": ["ordinario", "fogo", "frio", "eletrico", "veneno", "acido", "psiquico", "forca", "radiante", "trovejante", "necrotico", "primordial"]
@@ -135,7 +137,8 @@
           "additionalProperties": false,
           "properties": {
             "R": { "type": "boolean", "default": false },
-            "I": { "type": "boolean", "default": false }
+            "I": { "type": "boolean", "default": false },
+            "ae": { "type": "integer", "minimum": 0, "default": 0, "description": "Armadura Específica contra este tipo (coluna Ae do drawer)." }
           }
         }
       }
@@ -143,7 +146,7 @@
 
     "inventario": {
       "type": "object",
-      "description": "Duas colunas, nesta ordem: Bugigangas e Equipamentos. Capacidade (derivada): bugigangas = 10 + Mod.FOR (mín. 1) e equipamentos = 2 + Mod.FOR (mín. 1), mais o bônus de inv.capacidade dos itens carregados; o mínimo 1 vale só para a base. Itens equipados não contam. Peso: cada item pesa 1; Efeito com 'Empilhável': 1 bugiganga a cada 10 unidades. Munição: pendente (20:1 no CLAUDE.md × 10:1 no CSV). Acima do máximo e menos que o dobro: Sobrepeso Leve; o dobro ou mais: Sobrepeso Extremo. Sins não pesam. Aquisição NUNCA travada por moeda. Invariante: no máximo uma entrada NÃO equipada por (coluna, id), e toda entrada equipada tem qtd 1.",
+      "description": "Duas colunas, nesta ordem: Bugigangas e Equipamentos. Capacidade (derivada): bugigangas = 10 + Mod.FOR (mín. 1) e equipamentos = 2 + Mod.FOR (mín. 1), mais o bônus de inv.capacidade dos itens carregados; o mínimo 1 vale só para a base. Itens equipados não contam. Peso: cada item pesa 1; item com a propriedade Empilhável (inv.empilhavel do registro), munição incluída: 1 bugiganga a cada 10 unidades (10:1, confirmado pelo Pedro em 2026-09-25). Acima do máximo e menos que o dobro: Sobrepeso Leve; o dobro ou mais: Sobrepeso Extremo. Sins não pesam. Aquisição NUNCA travada por moeda. Invariante: no máximo uma entrada NÃO equipada por (coluna, id), e toda entrada equipada tem qtd 1.",
       "required": ["sins", "bugigangas", "equipamentos"],
       "additionalProperties": false,
       "properties": {
@@ -264,7 +267,7 @@
         },
         "qtd": { "type": "integer", "minimum": 1, "maximum": 9999, "default": 1, "description": "Zero não existe: descer abaixo de 1 remove a entrada." },
         "empilhavel": { "type": "boolean", "description": "Caixa 'Item Empilhável' marcada pelo jogador; vence o registro." },
-        "empilhavelRegistro": { "type": ["boolean", "null"], "description": "O que o registro diz (inv.empilhavel, ou a frase do Efeito). null no avulso." },
+        "empilhavelRegistro": { "type": ["boolean", "null"], "description": "O que o registro diz: inv.empilhavel (dado do build). Só a entrada sem inv (v1 migrada, card sem catálogo) cai na frase do Efeito, até a reconciliação. null no avulso." },
         "equipado": { "type": "boolean", "description": "Só na coluna equipamentos. Equipado não pesa. Limites: 1 Armadura [Pesada] e 2 [Leve] (independentes: pendente Pedro)." },
         "equipadoEm": { "type": ["string", "null"], "description": "ISO 8601 de quando foi equipado, ou null." },
         "sintonizado": { "type": "boolean", "description": "Itens Mágicos; limite de 3. Não muda o peso (pendente Pedro)." },
@@ -303,7 +306,7 @@
         "category": { "type": "string", "description": "arquétipo do catálogo, ex.: 'Pesada Cortante'; '' se não houver" },
         "level": { "type": "string", "enum": ["0", "1", "2", "3"], "default": "0", "description": "o N de um nome terminado em ' +N'" },
         "dado": { "type": "string", "description": "dado base, ex.: '1d12' (hoje sai '')" },
-        "atributo": { "type": "string", "enum": ["Força", "Destreza"] },
+        "atributo": { "type": "string", "enum": ["", "Força", "Destreza"], "description": "'' enquanto a arma não tem fonte de dado (hoje, todas); nunca 'Força' por padrão." },
         "dano": { "type": "string", "description": "tipo de dano (hoje sai '')" },
         "acoes": { "type": "string", "description": "ex.: 'Atacar(2)'" },
         "efeito": { "type": "string" },

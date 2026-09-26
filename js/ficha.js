@@ -22,7 +22,10 @@
     });
     var COLUNAS = ['bugigangas', 'equipamentos'];
     var EQUIP_TOKENS = ['Arma', 'Armadura', 'Escudo'];
-    // mesma regra do RE_EMPILHA de tools/gerar_bazar.py (a Bolsa de Couro diz "Não é empilhável")
+    // Empilhável é dado do build: inv.empilhavel, que o tools/gerar_bazar.py tira
+    // do Efeito com o RE_EMPILHA dele (a Bolsa de Couro diz "Não é empilhável").
+    // A regex daqui é só LEGADO, para o snapshot sem inv (v1 migrada, card sem
+    // catálogo) até a reconciliação trazer o inv do registro.
     var RE_EMPILHA = /(?<!Não é )[Ee]mpilh[aá]vel:\s*pesa 1 bugiganga a cada 10 unidades/;
     var CAMPOS_SNAPSHOT = ['nome', 'categoria', 'raridade', 'arquetipo', 'arte', 'efeito', 'valor'];
 
@@ -33,11 +36,17 @@
       return str(cat).split(',').map(function (t) { return t.trim(); }).filter(Boolean);
     }
     function empilhavelPorTexto(efeito) { return RE_EMPILHA.test(str(efeito)); }
+    function temInv(x) { return !!(x && x.inv && typeof x.inv === 'object' && !Array.isArray(x.inv)); }
+    // o que o registro diz: com inv, só inv.empilhavel (o texto não é lido); sem inv, o legado
+    function empilhavelDe(x) {
+      x = x || {};
+      return temInv(x) ? x.inv.empilhavel === true : empilhavelPorTexto(x.efeito);
+    }
     function colunaCanonica(x) {
       x = x || {};
-      if (x.inv && typeof x.inv === 'object') return x.inv.slot === 'equipamento' ? 'equipamentos' : 'bugigangas';
+      if (temInv(x)) return x.inv.slot === 'equipamento' ? 'equipamentos' : 'bugigangas';
       var equip = tokens(x.categoria).some(function (t) { return EQUIP_TOKENS.indexOf(t) >= 0; });
-      return (equip && !empilhavelPorTexto(x.efeito)) ? 'equipamentos' : 'bugigangas';
+      return (equip && !empilhavelDe(x)) ? 'equipamentos' : 'bugigangas';
     }
     // FOR vazia, nula ou inválida conta como 0 (FOR 0 ou vazia: 5 e 1)
     function modFor(F) { var n = parseInt(F, 10); if (!isFinite(n)) n = 0; return Math.floor((n - 10) / 2); }
@@ -91,7 +100,7 @@
       o.inv = (o.inv && typeof o.inv === 'object' && !Array.isArray(o.inv)) ? clone(o.inv) : null;
       o.qtd = qtdDe(o);
       if (typeof o.empilhavelRegistro !== 'boolean') {
-        o.empilhavelRegistro = o.avulso ? null : (o.inv ? !!o.inv.empilhavel : empilhavelPorTexto(o.efeito));
+        o.empilhavelRegistro = o.avulso ? null : empilhavelDe(o);
       }
       if (typeof o.empilhavel !== 'boolean') o.empilhavel = !!o.empilhavelRegistro;
       o.equipado = o.equipado === true;
@@ -418,7 +427,7 @@
             CAMPOS_SNAPSHOT.forEach(function (k) { e[k] = str(it[k]); });
             if (it.id) e.id = String(it.id);
             e.inv = (it.inv && typeof it.inv === 'object') ? clone(it.inv) : null;
-            var regNovo = e.inv ? !!e.inv.empilhavel : empilhavelPorTexto(e.efeito);
+            var regNovo = empilhavelDe(e);
             if (e.empilhavel === regAntigo) e.empilhavel = regNovo;   // se o jogador divergiu, fica a escolha dele
             e.empilhavelRegistro = regNovo;
             e.orfao = false;
@@ -430,6 +439,8 @@
     }
 
     // ---- Export Bestiário (§5.8): token exato 'Arma', equipadas primeiro ----
+    // atributo: '' enquanto a arma não tem fonte de dado (o arquivo de efeitos,
+    // F1b). Nada de 'Força' fixo nem de tabela manual por arma.
     function armasBestiario(inv) {
       var todas = lista(inv && inv.equipamentos).concat(lista(inv && inv.bugigangas)).filter(function (e) {
         return e && tokens(e.categoria).indexOf('Arma') >= 0;
@@ -438,15 +449,23 @@
         .map(function (e) {
           var arq = str(e.arquetipo);
           var w = { name: str(e.nome), category: arq, level: (/ \+([1-3])$/.exec(str(e.nome)) || [])[1] || '0',
-            dado: '', atributo: 'Força', dano: '', efeito: str(e.efeito) };
+            dado: '', atributo: '', dano: '', efeito: str(e.efeito) };
           if (arq.indexOf('Foco Místico') === 0) w.mystic = true;
           return w;
         });
     }
 
+    // prof_* do Bestiário é o GRAU 0-4 (D5a, 2026-09-26), não o bônus 0/2/4/6/8
+    // que a ficha guarda: grau = bônus / 2, arredondado para baixo, entre 0 e 4
+    // (Leigo 0, Treinado 1, Experiente 2, Mestre 3, Lendário 4).
+    function grauPericia(bonus) {
+      var n = Math.floor(Number(bonus) / 2);
+      return n > 0 ? Math.min(4, n) : 0;
+    }
+
     return {
-      REGRAS: REGRAS, COLUNAS: COLUNAS.slice(),
-      tokens: tokens, empilhavelPorTexto: empilhavelPorTexto, colunaCanonica: colunaCanonica,
+      REGRAS: REGRAS, COLUNAS: COLUNAS.slice(), grauPericia: grauPericia,
+      tokens: tokens, empilhavelPorTexto: empilhavelPorTexto, empilhavelDe: empilhavelDe, colunaCanonica: colunaCanonica,
       modFor: modFor, estado: estado, calcular: calcular, projetar: projetar,
       conflito: conflito, alternar: alternar, trocar: trocar,
       novoUid: novoUid, chave: chave, acha: acha,
@@ -463,7 +482,14 @@
   var LS_KEY = 'khalkaria_ficha';
   var OPEN_KEY = 'khalkaria_ficha_open';
   var BACKUP_KEY = 'khalkaria_ficha_v1_backup';
-  var SCHEMA_VERSION = '2.0';
+  // Guarda contra aba velha (F0). A v3 grava na própria chave e põe o marcador
+  // DONO_KEY = 'v3'; esta v2.1, ao ver o marcador (no load ou pelo evento
+  // storage), fica só-leitura e não escreve mais NADA no storage. A mera
+  // existência de V3_KEY não trava nada. "Voltar a usar a v2" apaga só o marcador.
+  var DONO_KEY = 'khalkaria_ficha_dono';
+  var V3_KEY = 'khalkaria_ficha_v3';
+  var MSG_RO = 'Ficha migrada para a v3. Recarregue a página.';
+  var SCHEMA_VERSION = '2.0';   // a string gravada nunca muda: a v3 usa outra chave
   var DESFAZER_MAX = 20;
 
   // base do site relativo ao próprio ficha.js (…/js/ficha.js -> raiz).
@@ -481,7 +507,7 @@
     ['furtividade','Furtividade','prof_stealth','des'], ['crime','Crime','prof_crime','des'],
     ['iniciativa','Iniciativa','prof_initiative','des'], ['conhecimento','Conhecimento','prof_knowledge','int'],
     ['medicina','Medicina','prof_medicine','int'], ['investigacao','Investigação','prof_investigation','int'],
-    ['religiao','Religião','prof_religion','int'], ['mistico','Místico','prof_mystic','int'],
+    ['religiao','Religião','prof_religion','sab'], ['mistico','Místico','prof_mystic','int'],
     ['convencimento','Convencimento','prof_persuasion','?'], ['intimidacao','Intimidação','prof_intimidation','?'],
     ['intuicao','Intuição','prof_insight','sab'], ['enganacao','Enganação','prof_deception','?'],
     ['motivar','Motivar','prof_motivate','sab'], ['oficio','Ofício(X)','prof_craft','oficio']
@@ -506,6 +532,7 @@
   var renderPendente = false, abrirPendente = null, obsT;
   var conflitoDrawer = null;           // {uid, campo, conflito}: "Trocar por esta" até a próxima mudança
   var migrouAgora = false;             // load() converteu uma v1: o init() mostra o toast de migração
+  var somenteLeitura = false;          // marcador DONO_KEY = 'v3': nada é gravado (confereDono)
 
   function agoraISO() { return new Date().toISOString(); }
   function clone(x) {
@@ -513,6 +540,7 @@
     return x === undefined ? undefined : JSON.parse(JSON.stringify(x));
   }
   function lsGet(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
+  function donoV3() { return lsGet(DONO_KEY) === 'v3'; }
   function temPropria(o, k) { return !!o && Object.prototype.hasOwnProperty.call(o, k); }
 
   // ---------------- estado (ficha v2, spec §5.2) ----------------
@@ -550,13 +578,14 @@
   };
   var MSG_MIGRACAO ='Inventário convertido: 4 listas → 2 colunas. Armaduras e materiais agora pesam; marque o que está Equipado.';
   function guardaBackup(raw) {
-    if (lsGet(BACKUP_KEY) != null) return;   // nunca sobrescreve o backup
+    if (somenteLeitura || lsGet(BACKUP_KEY) != null) return;   // nunca sobrescreve o backup
     try { localStorage.setItem(BACKUP_KEY, raw); } catch (e) {}
   }
 
+  somenteLeitura = donoV3();
   var ficha = load();
   // Só aqui grava o backup (spec §5.6.1). A ficha migrada vai para o storage na
-  // hora, com rev++, para que as outras abas adotem a v2.
+  // hora, com rev++, para que as outras abas adotem a v2. Em só-leitura, só lê.
   function load() {
     var raw = lsGet(LS_KEY);
     if (!raw) return novaFicha();
@@ -565,6 +594,7 @@
     if (!f || typeof f !== 'object' || Array.isArray(f)) { guardaBackup(raw); return novaFicha(); }
     if (f.schemaVersion !== SCHEMA_VERSION) guardaBackup(raw);
     var m = migra(f);
+    if (somenteLeitura) { ultimoGravado = raw; return m; }
     if (f.schemaVersion !== SCHEMA_VERSION) migrouAgora = temItens(m);
     if (f.schemaVersion !== SCHEMA_VERSION || temListasVelhas(f)) {
       m.rev++; m.salvoEm = agoraISO(); grava(m);
@@ -594,6 +624,7 @@
 
   // ---------------- gravação e sincronia (spec §5.5) ----------------
   function grava(f) {
+    if (confereDono()) return false;   // a v3 é dona: esta aba não grava mais
     var s = JSON.stringify(f);
     try { localStorage.setItem(LS_KEY, s); ultimoGravado = s; return true; }
     catch (e) {
@@ -604,10 +635,11 @@
     }
   }
   // campos digitados do drawer: debounce de 200ms, com rev++ no flush
-  function save() { clearTimeout(saveT); saveT = setTimeout(flush, 200); }
+  function save() { if (somenteLeitura) return; clearTimeout(saveT); saveT = setTimeout(flush, 200); }
   function flush() {
     if (saveT == null) return;
     clearTimeout(saveT); saveT = null;
+    if (confereDono()) return;
     ficha.rev++; ficha.salvoEm = agoraISO(); grava(ficha);
   }
   function emite(partes, origem, op, uid) {
@@ -632,6 +664,7 @@
   // velhas que um ficha.js antigo recria). Digitar a mesma ficha em duas abas
   // dentro dos mesmos 200ms: vale a última escrita (aceito).
   function sincroniza() {
+    confereDono();
     var raw = lsGet(LS_KEY);
     if (!raw || raw === ultimoGravado) return false;
     var f;
@@ -655,6 +688,62 @@
     return true;
   }
 
+  // ---------------- guarda contra aba velha (F0) ----------------
+  // Relê o marcador; se mudou, troca de modo. Devolve se está só-leitura.
+  function confereDono() {
+    var v3 = donoV3();
+    if (v3 !== somenteLeitura) mudaModo(v3);
+    return somenteLeitura;
+  }
+  function mudaModo(v3) {
+    somenteLeitura = v3;
+    clearTimeout(saveT); saveT = null;   // o que estava no debounce não vai mais para a v2
+    desfazerPilha = [];
+    conflitoDrawer = null;
+    // voltou para a v2: relê a chave v2 (nada foi gravado enquanto só-leitura)
+    if (!v3) ficha = load();
+    if (body) renderAll();
+    emite(['tudo'], 'dono', v3 ? 'somente-leitura' : 'leitura-escrita');
+  }
+  function baixarTexto(nome, texto) {
+    var blob = new Blob([texto], { type:'application/json' });
+    var a = el('a', { href: URL.createObjectURL(blob), download: nome });
+    document.body.appendChild(a); a.click(); a.remove();
+  }
+  // "Baixar ficha v3 (.json)": o conteúdo cru de V3_KEY, se existir
+  function baixarV3() {
+    var raw = lsGet(V3_KEY);
+    if (!raw) { toast('Não há ficha v3 salva neste navegador'); return false; }
+    var nome = '';
+    try { var f = JSON.parse(raw); nome = (f && f.meta && f.meta.nome) || ''; } catch (e) {}
+    baixarTexto(String(nome || ficha.meta.nome || 'ficha').replace(/\s+/g, '_') + '.v3.khalkaria.json', raw);
+    return true;
+  }
+  // "Voltar a usar a v2": apaga só o marcador (a chave v3 fica intacta)
+  function voltarV2() {
+    try { localStorage.removeItem(DONO_KEY); } catch (e) {}
+    confereDono();
+    if (!somenteLeitura) toast('Ficha v2 em uso de novo');
+  }
+  function faixaSomenteLeitura() {
+    return el('div', { id:'kf-ro', role:'alert' }, [
+      el('p', {}, [MSG_RO]),
+      el('div', { class:'kf-row' }, [
+        el('button', { type:'button', class:'kf-btn sm', 'data-kf-ro':'', title:'Baixar ficha v3 (.json)', onclick: baixarV3 }, ['Baixar ficha v3 (.json)']),
+        el('button', { type:'button', class:'kf-btn sm', 'data-kf-ro':'', title:'Voltar a usar a v2', onclick: voltarV2 }, ['Voltar a usar a v2'])
+      ])
+    ]);
+  }
+  // só-leitura: tudo que edita no drawer fica desabilitado (a faixa não)
+  function travaDrawer() {
+    if (!drawer) return;
+    drawer.classList.toggle('kf-ro', somenteLeitura);
+    if (!somenteLeitura) return;
+    body.querySelectorAll('input,select,textarea,button').forEach(function (x) {
+      if (!x.hasAttribute('data-kf-ro')) x.disabled = true;
+    });
+  }
+
   // ---------------- mutadores (spec §5.3) ----------------
   // sincroniza, snapshot para desfazer, aplica, commit. Sem mudança, nada é
   // gravado nem emitido (ex.: alternar com conflito). Dentro de lote só aplica.
@@ -669,9 +758,18 @@
     if (a.sins !== d.sins) p.push('sins');
     return p.length ? p : ['inventario'];
   }
-  function muta(op, origem, fn) {
-    if (loteN) return fn();
+  // Só-leitura (F0): nenhum mutador aplica nada, nem na memória; o Bazar recebe
+  // {ok:false, erro:'somente-leitura'} (ou null/false, conforme o mutador).
+  var RES_RO = { ok: false, erro: 'somente-leitura' };
+  function bloqueado() {
     sincroniza();
+    if (!somenteLeitura) return false;
+    toast(MSG_RO, 4000);
+    return true;
+  }
+  function muta(op, origem, fn) {
+    if (loteN) return somenteLeitura ? Object.assign({}, RES_RO) : fn();
+    if (bloqueado()) return Object.assign({}, RES_RO);   // bloqueado() já sincronizou
     var antes = JSON.stringify(ficha.inventario);
     var r = fn();
     if (JSON.stringify(ficha.inventario) === antes) return r;
@@ -689,7 +787,7 @@
     if (item.avulso ? !String(item.nome || '').trim() : !(item.id || item.nome)) return null;
     var it = doCatalogo(item);
     var r = muta('adicionar', origem, function () { return KhInv.mesclar(ficha.inventario, it, opts || {}); });
-    return r ? r.uid : null;
+    return r && r.uid ? r.uid : null;
   }
   function quantidade(uid, n, origem) {
     return muta('quantidade', origem, function () { return Object.assign({ uid: uid }, KhInv.quantidade(ficha.inventario, uid, n)); });
@@ -715,7 +813,7 @@
   }
   function lote(fn) {
     if (loteN) return fn();
-    sincroniza();
+    if (bloqueado()) return Object.assign({}, RES_RO);   // fn nem roda
     var antes = JSON.stringify(ficha.inventario), r;
     loteN++;
     try { r = fn(); }
@@ -727,8 +825,7 @@
     return r;
   }
   function desfazer() {
-    sincroniza();
-    if (!desfazerPilha.length) return false;
+    if (bloqueado() || !desfazerPilha.length) return false;
     ficha.inventario = JSON.parse(desfazerPilha.pop());
     commit(['inventario', 'sins'], 'desfazer', 'desfazer');
     return true;
@@ -737,7 +834,7 @@
   // ---------------- catálogo e reconciliação (spec §5.6/§5.7) ----------------
   function naBazar() { return !!(document.body && document.body.hasAttribute('data-bazar')); }
   function reconciliaCatalogo() {
-    if (!idxCatalogo) return;
+    if (!idxCatalogo || somenteLeitura) return;   // em só-leitura nem a memória muda
     if (KhInv.reconciliar(ficha.inventario, idxCatalogo.porId, idxCatalogo.porNome)) {
       commit(['inventario'], 'reconciliacao', 'reconciliar');
     }
@@ -803,7 +900,7 @@
     return (pre || '') + s;
   }
   function addEntidade(campo, ent) {
-    sincroniza();
+    if (bloqueado()) return;
     var lista = ficha[campo];
     // evita duplicar mesmo id
     if (ent.id && lista.some(function (x) { return x.id === ent.id; })) { toast(ent.nome + ' já está na ficha'); return; }
@@ -865,7 +962,10 @@
       '#kf-toast.kf-show{opacity:1;transform:translateX(-50%) translateY(0)}',
       '.kf-addbtn{display:inline-block;margin-left:8px;background:rgba(212,175,55,.12);color:#d4af37;border:1px solid rgba(212,175,55,.4);border-radius:4px;padding:1px 7px;cursor:pointer;font-size:11px;font-family:Cinzel,serif;vertical-align:middle;user-select:none}',
       '.kf-addbtn:hover{background:rgba(212,175,55,.25)}',
-      '.kf-draggable{cursor:grab}'
+      '.kf-draggable{cursor:grab}',
+      '#kf-ro{border:1px solid #e08b2c;border-radius:8px;background:#1f1508;color:#f0d9b5;padding:8px 12px;margin-bottom:10px;font-size:13px}',
+      '#kf-ro p{margin:0 0 6px}',
+      '#kf-drawer.kf-ro #kf-body .kf-drop{opacity:.5}'
     ].join('\n');
     document.head.appendChild(css);
   }
@@ -934,6 +1034,7 @@
   // ---------------- drawer ----------------
   function setOpen(b) {
     drawer.classList.toggle('kf-open', b);
+    if (somenteLeitura) return;
     try { localStorage.setItem(OPEN_KEY, b ? '1' : '0'); } catch (e) {}
   }
   function buildDrawer() {
@@ -1004,6 +1105,7 @@
     function rec(chave, padrao) { return temPropria(estadoSec, chave) ? estadoSec[chave] : padrao; }
     body.innerHTML = '';
     derdispEl = null; cargaEl = null;
+    if (somenteLeitura) body.appendChild(faixaSomenteLeitura());
     // no Bazar o inventário completo está na página: a seção nasce recolhida, com a nota
     var noBazar = naBazar();
     var tituloInv = noBazar
@@ -1037,6 +1139,7 @@
       areaInput(R('lore'),'outros')
     ], rec('lore', true)));
     body.scrollTop = rolagem;
+    travaDrawer();
   }
 
   function numInput(obj, key) {
@@ -1418,6 +1521,7 @@
     getLista(campo).forEach(function (item, i) {
       wrap.appendChild(el('div', { class:'kf-list-item' }, [
         el('span', { class:'kf-x', title:'Remover', onclick: function () {
+          if (bloqueado()) return;
           getLista(campo).splice(i, 1); save(); renderListas(); refreshDerivados(); } }, ['✕']),
         el('span', { class:'kf-nm', html: (item.tipo ? '<span class="kf-tag">'+esc(item.tipo)+'</span>' : '') + esc(item.nome) })
       ]));
@@ -1509,14 +1613,17 @@
     for (var i = 0; i < arr.length; i++) { var n = card.querySelector(arr[i].trim()); if (n) return n; }
     return null;
   }
-  // [seletor, campoFicha, tipo, seletorNome]
+  // [seletor, campoFicha, tipo, seletorNome]. seletorNome é uma lista em ordem
+  // de preferência (q1). Marca e ultimate: o nome é o h4 do header nas 6 classes
+  // com .marca-header/.ultimate-header e o h5 no Espadachim; 'h5' puro pegava o
+  // subtítulo do corpo ("O Custo", "Ativação") ou nada (marcas sem botão).
   var MAPA = [
     ['.spell-card', 'grimorio', 'magia', 'h4'],
     ['.technique-card', 'tecnicas', 'tecnica', 'h4,h5'],
     ['.tier-technique', 'tecnicas', 'tecnica', 'h5'],
     ['.tech-card', 'tecnicas', 'tecnica', 'h4,h5'],
-    ['.ultimate-card', 'tecnicas', 'ultimate', 'h5'],
-    ['.marca-card', 'tecnicas', 'marca', 'h5'],
+    ['.ultimate-card', 'tecnicas', 'ultimate', '.ultimate-header h4,h5'],
+    ['.marca-card', 'tecnicas', 'marca', '.marca-header h4,h5'],
     ['.trait-card', 'tecnicas', 'traço', 'h4,h5'],
     ['.variant-card', 'tecnicas', 'variante', 'h4,h5'],
     ['.variant-physical', 'tecnicas', 'variante', 'h4,h5'],
@@ -1612,6 +1719,8 @@
   // KF.exportar(): grava exportadoEm (o rodapé do inventário lê) e baixa
   function exportJSON() {
     sincroniza();
+    // só-leitura: baixa a v2 como está, sem carimbar exportadoEm (nada é gravado)
+    if (somenteLeitura) { baixar((ficha.meta.nome || 'ficha').replace(/\s+/g,'_') + '.khalkaria.json', ficha); return; }
     ficha.exportadoEm = agoraISO();
     commit(['tudo'], 'local', 'exportar');
     baixar((ficha.meta.nome || 'ficha').replace(/\s+/g,'_') + '.khalkaria.json', ficha);
@@ -1630,6 +1739,7 @@
     verificaPendentes();
   }
   function importJSON() {
+    if (bloqueado()) return;
     var inp = el('input', { type:'file', accept:'.json,application/json' });
     inp.addEventListener('change', function () {
       var fr = new FileReader();
@@ -1637,6 +1747,12 @@
         var f;
         try { f = JSON.parse(fr.result); } catch (e) { f = null; }
         if (!f || typeof f !== 'object' || Array.isArray(f)) { toast('JSON inválido'); return; }
+        // ficha v3 (schemaVersion >= 3) não é rebaixada: a v2 recusa sem tocar em nada
+        if (parseFloat(String(f.schemaVersion)) >= 3) {
+          toast('Esta ficha é da v3 (schemaVersion ' + f.schemaVersion + ') e não pode ser importada aqui. Recarregue a página.', 6000);
+          return;
+        }
+        if (bloqueado()) return;
         var nova = migra(f);
         substitui(nova, 'import');
         if (f.schemaVersion !== SCHEMA_VERSION && temItens(nova)) toast('Ficha importada. ' + MSG_MIGRACAO, 8000);
@@ -1647,6 +1763,7 @@
     inp.click();
   }
   function resetFicha() {
+    if (bloqueado()) return;
     if (!confirm('Nova ficha? A atual será substituída (exporte antes se quiser guardar).')) return;
     substitui(novaFicha(), 'reset'); toast('Nova ficha');
   }
@@ -1660,7 +1777,8 @@
     b.ether_max = ficha.recursos.eter.max;
     b.evasion = ficha.derivadosManuais.evasao; b.movement = ficha.derivadosManuais.movimento;
     b.armor = ficha.derivadosManuais.armadura;
-    PERICIAS.forEach(function (p) { b[p[2]] = ficha.pericias[p[0]] || 0; });
+    // prof_* sai como GRAU 0-4 (D5a): KhInv.grauPericia(bônus 0/2/4/6/8)
+    PERICIAS.forEach(function (p) { b[p[2]] = KhInv.grauPericia(ficha.pericias[p[0]]); });
     b.craft_attr = ATTR_BEST[ficha.oficioAttr] || 'intelligence';
     var rs = [], im = [], ae = [];
     RESIST.forEach(function (r) {
@@ -1692,6 +1810,7 @@
   function init() {
     injectCSS(); injectCSSInventario(); buildDrawer(); decorar();
     if (migrouAgora) { migrouAgora = false; toast(MSG_MIGRACAO, 8000); }
+    if (somenteLeitura) toast(MSG_RO, 6000);
     // conteúdo dinâmico (ex.: Bazar re-renderiza o grid ao filtrar) -> re-decora.
     // Mudança dentro de [data-kf-ignorar] (drawer, toast, inventário do Bazar) não conta.
     try {
@@ -1711,7 +1830,11 @@
   }
 
   // sincronia entre abas e páginas: storage não basta (bfcache precisa de pageshow)
-  window.addEventListener('storage', function (e) { if (e.key === LS_KEY) sincroniza(); });
+  // storage: o marcador DONO_KEY (ou clear(), key null) troca o modo; LS_KEY adota
+  window.addEventListener('storage', function (e) {
+    if (e.key === DONO_KEY || e.key == null) confereDono();
+    if (e.key === LS_KEY) sincroniza();
+  });
   window.addEventListener('pageshow', function () { sincroniza(); });
   window.addEventListener('pagehide', flush);
   document.addEventListener('visibilitychange', function () {
@@ -1744,7 +1867,8 @@
     definirSins: function (n) { return definirSins(n, 'local'); },
     lote: lote,
     desfazer: desfazer,
-    podeDesfazer: function () { return desfazerPilha.length > 0; },
+    podeDesfazer: function () { return !somenteLeitura && desfazerPilha.length > 0; },
+    somenteLeitura: function () { return confereDono(); },
     catalogo: catalogo,
     abrir: abrir,
     exportar: exportJSON

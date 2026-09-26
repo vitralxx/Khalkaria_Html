@@ -612,6 +612,8 @@
   function levarSaco() {
     var k = kf(), saco = BZ.sacoAntigo ? BZ.sacoAntigo() : null;
     if (!k || !saco) return;
+    // ficha só-leitura (migrada para a v3): nada é levado e o saco antigo fica guardado
+    if (typeof k.somenteLeitura === 'function' && k.somenteLeitura()) { BZ.anunciar('Ficha só-leitura: migrada para a v3'); return; }
     var nr = [], levados = 0, un = 0;
     k.lote(function () {
       Object.keys(saco).forEach(function (nome) {

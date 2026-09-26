@@ -268,7 +268,7 @@ hora, `rev++`, redesenha o drawer, emite): `adicionar(item|{avulso,nome},
 'sintonizado')`, `trocar(uid,campo,uids)`, `mover(uid,coluna)`, `remover(uid)`,
 `definirSins(n)`, `lote(fn)`, `desfazer()`/`podeDesfazer()` (20 passos, em
 memória, por página). Integração: `catalogo(array)`, `abrir(secao)`,
-`exportar()`. Passar de um limite (1 Armadura Pesada, 2 Leves, 3 sintonizados)
+`exportar()`, `somenteLeitura()`. Passar de um limite (1 Armadura Pesada, 2 Leves, 3 sintonizados)
 devolve `{ok:false, conflito}` e não muda nada.
 
 **Eventos** (`CustomEvent` em `document`): `kf:pronta` `{versao:'2'}`, uma vez;
@@ -277,6 +277,17 @@ devolve `{ok:false, conflito}` e não muda nada.
 Sincronia entre abas por `storage` + `pageshow` + `visibilitychange` (adota o
 storage quando o `rev` de lá é maior); campos digitados do drawer têm debounce
 de 200ms com flush em `pagehide`.
+
+**Guarda contra aba velha (v2.1).** A string gravada continua `'2.0'`. Se o
+marcador `khalkaria_ficha_dono` vale `'v3'` (no load, no evento `storage` ou
+conferido a cada gravação), a ficha fica só-leitura: faixa "Ficha migrada para
+a v3. Recarregue a página." com "Baixar ficha v3 (.json)" (conteúdo cru de
+`khalkaria_ficha_v3`) e "Voltar a usar a v2" (apaga só o marcador); nenhuma
+escrita no storage (nem backup, nem `khalkaria_ficha_open`, nem pelo Bazar: os
+mutadores devolvem `{ok:false, erro:'somente-leitura'}`, `null` ou `false`). A
+troca de modo emite `kf:mudou` `{partes:['tudo'], origem:'dono'}`. A mera
+existência de `khalkaria_ficha_v3` não trava nada. `importJSON` recusa
+`schemaVersion >= 3`. Testes: `tools/testes/guarda-v3.test.js`.
 
 **`data-kf-ignorar`.** O `MutationObserver` que redecora os cards ignora
 mudanças dentro de `[data-kf-ignorar]`, e `decorarBazar` não decora card ali

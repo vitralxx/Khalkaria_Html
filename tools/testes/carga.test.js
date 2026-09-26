@@ -507,7 +507,8 @@ test('bestiário: equipadas primeiro, nível pelo sufixo +N, Foco Místico vira 
   assert.deepEqual(w.map((x) => x.name), ['Foco de Abjuração +1', 'Adaga de Kali', 'Estilhaços do Abismo']);
   assert.equal(w[0].level, '1'); assert.equal(w[0].mystic, true); assert.equal(w[0].category, 'Foco Místico (Abjuração)');
   assert.equal(w[1].level, '0'); assert.equal('mystic' in w[1], false);
-  assert.equal(w[1].atributo, 'Força'); assert.equal(w[1].dado, ''); assert.equal(w[1].dano, '');
+  assert.equal(w[1].atributo, ''); // sem fonte de dado: '' (nunca 'Força' fixo)
+  assert.equal(w[1].dado, ''); assert.equal(w[1].dano, '');
 });
 
 test('normalizaEntrada: qtd, defaults e chaves da v1', () => {
