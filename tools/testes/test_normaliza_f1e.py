@@ -56,6 +56,52 @@ class Intensidades(unittest.TestCase):
         with self.assertRaises(ValueError):
             normaliza.intensidades_permitidas(2, [{'caracteristica': 'Intensidade', 'valor': 'Quase Normal'}])
 
+    def test_restricao_da_descricao(self):
+        d = 'Toca. Essa magia só pode ser canalizada na <strong>Intensidade:</strong> <em>Normal</em> ou acima.'
+        self.assertEqual(normaliza.intensidades_permitidas(2, [], d),
+                         (T3, 'Essa magia só pode ser canalizada na Intensidade: Normal ou acima'))
+        d = 'Requisito: Deve canalizar com intensidade: Transbordante'
+        self.assertEqual(normaliza.intensidades_permitidas(4, [], d)[0], ['transbordante'])
+        d = 'Esta magia só pode ser conjurada na intensidade <strong>Normal</strong>.'
+        self.assertEqual(normaliza.intensidades_permitidas(2, [], d)[0], ['normal'])
+
+    def test_frase_condicional_nao_restringe(self):
+        d = 'Na intensidade Contida, o morto só responde sim ou não.'
+        self.assertEqual(normaliza.intensidades_permitidas(4, [], d), (T4, None))
+
+    def test_stat_e_descricao_que_divergem_derrubam(self):
+        st = [{'caracteristica': 'Intensidade', 'valor': 'Apenas Transbordante'}]
+        with self.assertRaises(ValueError):
+            normaliza.intensidades_permitidas(5, st, 'Essa magia só pode ser canalizada na Intensidade: Normal')
+        d = 'Essa magia só pode ser canalizada na Intensidade: Transbordante'
+        self.assertEqual(normaliza.intensidades_permitidas(5, st, d), (['transbordante'], 'Apenas Transbordante'))
+
+    def test_frase_fora_da_tabela_derruba(self):
+        with self.assertRaises(ValueError):
+            normaliza.intensidades_permitidas(3, [], 'Só pode ser usada apenas na intensidade Forçada.')
+
+    # Magias sem stat "Intensidade" cuja descrição restringe (achadas por script; revisão da F1e)
+    SO_DESCRICAO = {
+        'magia-santuario-menor': T3, 'magia-contramedida': T3,
+        'magia-reversao-umbral': ['transbordante'],
+        **{i: ['normal'] for i in (
+            'magia-mao-magica', 'magia-lingua-mistica', 'magia-entender-ser', 'magia-dissipar-magia',
+            'magia-aumentar-diminuir-criatura', 'magia-translocacao-arcana', 'magia-impulso-instintivo',
+            'magia-disparo-veloz', 'magia-xadrez')},
+    }
+
+    def test_catalogo_restricao_da_descricao(self):
+        es = {e['id']: e for e in _json('data', 'catalogo', 'magia.json')['entradas']}
+        for i, perm in self.SO_DESCRICAO.items():
+            self.assertEqual(es[i]['intensidadesPermitidas'], perm, i)
+            self.assertIn(es[i]['intensidadeTexto'], es[i]['resumo'], i)
+            for st in es[i]['stats']:
+                self.assertNotIn('contida', st['porIntensidade'] or {}, (i, st['caracteristica']))
+        # só a Invocar Tempestade segue na regra das 3 barras
+        r3 = {(e['id'], st['caracteristica']) for e in es.values() for st in e['stats']
+              if st['leitura'] == 'regra-3-barras'}
+        self.assertEqual({i for i, _ in r3}, {'magia-invocar-tempestade'})
+
 
 class PorIntensidade(unittest.TestCase):
     def test_barras_nivel1(self):

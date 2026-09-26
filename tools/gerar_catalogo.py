@@ -74,7 +74,8 @@ def base(tipo, id_, nome, icone=None):
 
 def novo_relatorio():
     return {'acoes': Counter(), 'formatoStat': Counter(), 'casamento': Counter(),
-            'semLeitura': [], 'barraSemMod': [], 'regra3': [], 'rotulado': []}
+            'semLeitura': [], 'barraSemMod': [], 'regra3': [], 'rotulado': [],
+            'restricaoDescricao': []}
 
 
 def stat_magia(st, permitidas, rel):
@@ -94,7 +95,9 @@ def magias(cat, rel):
             for s in d[f'nivel{n}'][esc]:
                 e = base('magia', s['id'], s['nome'])
                 e['resumo'] = texto(s['descricao'])
-                perm, restr = normaliza.intensidades_permitidas(s['nivel'], s['stats'])
+                perm, restr = normaliza.intensidades_permitidas(s['nivel'], s['stats'], s['descricao'])
+                if restr and not any(st['caracteristica'] == 'Intensidade' for st in s['stats']):
+                    rel['restricaoDescricao'].append((s['id'], '/'.join(perm)))
                 acao = [st for st in s['stats'] if normaliza.rotulo(st['caracteristica'])[0] == 'acao']
                 if len(acao) > 1:
                     raise SystemExit(f'gerar_catalogo: {s["id"]} com {len(acao)} stats de ação')
@@ -283,6 +286,7 @@ def relatorio(cat, rel):
         '[F1e] magias: leitura por intensidade: ' + _conta(rel['casamento']),
         '[F1e] magias: intensidades permitidas: ' + _conta(Counter(
             '/'.join(e['intensidadesPermitidas']) for e in cat['magia'])),
+        '[F1e] magias: restrição de intensidade só na descrição (sem stat): ' + ids(rel['restricaoDescricao']),
         '[F1e] magias: sustentadas: ' + ', '.join(e['id'] for e in cat['magia'] if e['sustentada']),
         '[F1e] magias: rotulados: ' + ids(rel['rotulado']),
         '[F1e] magias: regra das 3 barras (CLAUDE.md §6): ' + ids(rel['regra3']),

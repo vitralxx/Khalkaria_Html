@@ -460,9 +460,12 @@ RE_TOK_TPL = re.compile(r'<(/?)(div|h3|h4)\b([^>]*)>|\{\{CARD_(\d+)\}\}|\{\{clas
 
 
 def custo_card(corpo):
-    """Texto do custo no cabeçalho do card (verbatim sem tags); None na marca.
-    O .technique-cost do Espadachim tem um <span> por custo: vão unidos por ' · ',
-    o separador que o próprio Espadachim usa no .meta dos cards de tier."""
+    """Texto do custo no cabeçalho do card; None na marca. É verbatim sem tags,
+    SALVO no .technique-cost (cards gerais do Espadachim), que tem um <span> por
+    custo e nenhum separador na fonte: ali o ' · ' é DERIVADO (o mesmo que o .meta
+    dos cards de tier usa) e a ordem é a dos <span> ("5 Stamina · 1 Ação"), que é
+    a inversa da dos cards de tier ("1 Ação · 5 Stamina"). Não reordenar: quem
+    precisa de custo estruturado separa por ' · ' nos dois casos."""
     achados = [(k, m) for k, r in CUSTO_CARD for m in r.finditer(corpo)]
     if len(achados) > 1:
         raise ValueError(f'card com {len(achados)} custos no cabeçalho: {[k for k, _ in achados]}')

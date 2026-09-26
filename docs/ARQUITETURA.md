@@ -75,7 +75,10 @@ tools/blocos.py                blocos classe/raca/origem (F1b): marcadores {{cla
                                leitura do verbatim (V/G/R, slugs, ids); `python tools/blocos.py`
                                regrava os derivados depois de editar um texto; F1e(c): parágrafo
                                dos ramos, cabeçalhos de tier e grupo/ramo/tier/custoTexto de cada
-                               card de classe (ramo por 2 fontes: posição no template e corpo)
+                               card de classe (ramo por 2 fontes: posição no template e corpo).
+                               custoTexto é o texto sem tags do custo do cabeçalho; nos cards
+                               gerais do Espadachim (.technique-cost, um <span> por custo) o
+                               separador ' · ' é derivado, não do Notion, e a ordem é a da fonte
 tools/alias_ids.json           ids do contrato do balanceamento fora da convenção -> id do site
 tools/componentes-baseline.json piso da contagem de cada classe CSS de componente por
                                página de classe (checagem [componentes] do validar)
@@ -120,7 +123,10 @@ data/racas/*.json              7 raças: bloco `raca` (F1b) + cards
 data/ficha.schema.json         contrato da ficha 2.0 + projeção Bestiário
 data/catalogo/<tipo>.json      ARTEFATO (gerar_catalogo.py): {id, tipo, nome sem emoji,
                                icone, resumo, campos do tipo} por entidade; raras só
-                               id/nome/categoria/req/reqTexto. O item usa o data/bazar.json
+                               id/nome/categoria/req/reqTexto. O item usa o data/bazar.json.
+                               O resumo MANTÉM o texto dos .sep que o CSS esconde ("Lobo: ",
+                               ":", ";"): é verbatim do Notion (útil para busca e cópia). A
+                               especificação da F1e pedia tirar; decisão em aberto com o Pedro
 data/pericias.json             ARTEFATO (gerar_catalogo.py, F1e): as 24 perícias {slug, nome, prof,
                                atributos, modo fixo|maior|arma|dado, dadoPorBonus do Defender} e os
                                graus; fonte única para a F1d e o schema v3

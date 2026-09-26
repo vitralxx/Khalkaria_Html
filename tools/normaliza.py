@@ -86,21 +86,58 @@ RESTRICAO_INTENSIDADE = {
 }
 
 
-def intensidades_permitidas(nivel, stats):
+# Frase da descrição que restringe a intensidade (tabela fechada; texto sem tags).
+# O grupo 1 é o valor, levado ao mesmo RESTRICAO_INTENSIDADE por RESTRICAO_FRASE.
+RE_RESTRICAO_FRASE = re.compile(
+    r'(?:(?:Essa|Esta) magia (?:só pode ser (?:canalizada|conjurada)|pode ser canalizada apenas) na'
+    r'|Você só pode canalizar essa magia na'
+    r'|Requisito: Deve canalizar com)'
+    r' [Ii]ntensidade:? (Normal ou acima|Normal|Transbordante)(?!\w)')
+RESTRICAO_FRASE = {'Normal': 'Apenas Normal', 'Normal ou acima': 'Normal ou Acima',
+                   'Transbordante': 'Apenas Transbordante'}
+# Toda frase com cara de restrição tem de casar com a tabela acima (senão derruba).
+RE_CANDIDATA_FRASE = re.compile(r'(?:só pode|apenas|[Dd]eve canalizar)[^.;]*?[Ii]ntensidade')
+
+
+def restricao_descricao(descricao):
+    """Frase verbatim (sem tags) da descrição que restringe a intensidade -> (frase, chave
+    de RESTRICAO_INTENSIDADE) ou (None, None). Candidata fora da tabela derruba."""
+    t = texto(descricao)
+    achadas = list(RE_RESTRICAO_FRASE.finditer(t))
+    candidatas = RE_CANDIDATA_FRASE.findall(t)
+    if len(candidatas) != len(achadas):
+        raise ValueError(f'frase de restrição de intensidade ilegível em {t[:80]!r}… '
+                         '(normaliza.RE_RESTRICAO_FRASE)')
+    if len({m.group(1) for m in achadas}) > 1:
+        raise ValueError(f'descrição com restrições de intensidade diferentes: {[m.group(0) for m in achadas]}')
+    if not achadas:
+        return None, None
+    return achadas[0].group(0), RESTRICAO_FRASE[achadas[0].group(1)]
+
+
+def intensidades_permitidas(nivel, stats, descricao=None):
     """Nível 1 não tem Contida (custa 0 na Normal; texto da página de Magias);
-    o stat "Intensidade" restringe. Devolve (lista, texto verbatim|None)."""
+    o stat "Intensidade" e a frase da descrição ("Essa magia só pode ser canalizada
+    na Intensidade: Normal") restringem. Stat e frase que discordam derrubam.
+    Devolve (lista, texto verbatim|None): o valor do stat, ou a frase quando só ela existe."""
     base = INTENSIDADES[1:] if nivel == 1 else list(INTENSIDADES)
     txt = [s['valor'] for s in stats if s['caracteristica'] == 'Intensidade']
     if len(txt) > 1:
         raise ValueError(f'magia com {len(txt)} stats "Intensidade"')
-    if not txt:
+    frase, chave_frase = restricao_descricao(descricao)
+    if not txt and frase is None:
         return base, None
-    if txt[0] not in RESTRICAO_INTENSIDADE:
+    if txt and txt[0] not in RESTRICAO_INTENSIDADE:
         raise ValueError(f'restrição de intensidade ilegível: {txt[0]!r} (normaliza.RESTRICAO_INTENSIDADE)')
-    perm = RESTRICAO_INTENSIDADE[txt[0]]
+    perm_stat = RESTRICAO_INTENSIDADE[txt[0]] if txt else None
+    perm_frase = RESTRICAO_INTENSIDADE[chave_frase] if frase else None
+    if perm_stat and perm_frase and perm_stat != perm_frase:
+        raise ValueError(f'stat "Intensidade" {txt[0]!r} diverge da descrição {frase!r}')
+    perm = perm_stat or perm_frase
+    rotulo_ = txt[0] if txt else frase
     if not set(perm) <= set(base):
-        raise ValueError(f'restrição {txt[0]!r} fora das intensidades do nível {nivel}')
-    return perm, txt[0]
+        raise ValueError(f'restrição {rotulo_!r} fora das intensidades do nível {nivel}')
+    return perm, rotulo_
 
 
 # ------------------------------------------------------------------ barras

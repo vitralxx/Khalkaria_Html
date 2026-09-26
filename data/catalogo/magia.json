@@ -2179,12 +2179,11 @@
     "n": 2
    },
    "intensidadesPermitidas": [
-    "contida",
     "normal",
     "forcada",
     "transbordante"
    ],
-   "intensidadeTexto": null,
+   "intensidadeTexto": "Essa magia só pode ser canalizada na intensidade: Normal ou acima",
    "sustentada": false,
    "sustentacao": null,
    "stats": [
@@ -2205,13 +2204,8 @@
      "valor": "Toque / Toque / 3 / 6 m",
      "mod": true,
      "formato": "barras",
-     "leitura": "direto",
-     "porIntensidade": {
-      "contida": "Toque",
-      "normal": "Toque",
-      "forcada": "3 m",
-      "transbordante": "6 m"
-     }
+     "leitura": "4 valores para 3 intensidades",
+     "porIntensidade": null
     },
     {
      "caracteristica": "Alvo",
@@ -2220,9 +2214,8 @@
      "valor": "1 / 2 / 3 Criatura(s)",
      "mod": true,
      "formato": "barras",
-     "leitura": "regra-3-barras",
+     "leitura": "direto",
      "porIntensidade": {
-      "contida": "1 Criatura(s)",
       "normal": "1 Criatura(s)",
       "forcada": "2 Criatura(s)",
       "transbordante": "3 Criatura(s)"
@@ -2335,12 +2328,9 @@
     "n": 1
    },
    "intensidadesPermitidas": [
-    "contida",
-    "normal",
-    "forcada",
-    "transbordante"
+    "normal"
    ],
-   "intensidadeTexto": null,
+   "intensidadeTexto": "Essa magia só pode ser canalizada na Intensidade: Normal",
    "sustentada": false,
    "sustentacao": null,
    "stats": [
@@ -2954,12 +2944,9 @@
     "n": 1
    },
    "intensidadesPermitidas": [
-    "contida",
-    "normal",
-    "forcada",
-    "transbordante"
+    "normal"
    ],
-   "intensidadeTexto": null,
+   "intensidadeTexto": "Esta magia só pode ser conjurada na intensidade Normal",
    "sustentada": false,
    "sustentacao": null,
    "stats": [
@@ -3012,12 +2999,9 @@
     "n": 1
    },
    "intensidadesPermitidas": [
-    "contida",
-    "normal",
-    "forcada",
-    "transbordante"
+    "normal"
    ],
-   "intensidadeTexto": null,
+   "intensidadeTexto": "Essa magia só pode ser canalizada na Intensidade: Normal",
    "sustentada": false,
    "sustentacao": null,
    "stats": [
@@ -3741,12 +3725,9 @@
     "n": 2
    },
    "intensidadesPermitidas": [
-    "contida",
-    "normal",
-    "forcada",
-    "transbordante"
+    "normal"
    ],
-   "intensidadeTexto": null,
+   "intensidadeTexto": "Você só pode canalizar essa magia na Intensidade: Normal",
    "sustentada": false,
    "sustentacao": null,
    "stats": [
@@ -3809,12 +3790,9 @@
     "n": 2
    },
    "intensidadesPermitidas": [
-    "contida",
-    "normal",
-    "forcada",
-    "transbordante"
+    "normal"
    ],
-   "intensidadeTexto": null,
+   "intensidadeTexto": "Esta magia pode ser canalizada apenas na Intensidade: Normal",
    "sustentada": false,
    "sustentacao": null,
    "stats": [
@@ -4166,12 +4144,9 @@
     "n": 1
    },
    "intensidadesPermitidas": [
-    "contida",
-    "normal",
-    "forcada",
-    "transbordante"
+    "normal"
    ],
-   "intensidadeTexto": null,
+   "intensidadeTexto": "Esta magia pode ser canalizada apenas na Intensidade: Normal",
    "sustentada": false,
    "sustentacao": null,
    "stats": [
@@ -4707,12 +4682,9 @@
     "n": 2
    },
    "intensidadesPermitidas": [
-    "contida",
-    "normal",
-    "forcada",
-    "transbordante"
+    "normal"
    ],
-   "intensidadeTexto": null,
+   "intensidadeTexto": "Essa magia pode ser canalizada apenas na Intensidade: Normal",
    "sustentada": false,
    "sustentacao": null,
    "stats": [
@@ -5044,12 +5016,9 @@
     "n": 1
    },
    "intensidadesPermitidas": [
-    "contida",
-    "normal",
-    "forcada",
-    "transbordante"
+    "normal"
    ],
-   "intensidadeTexto": null,
+   "intensidadeTexto": "Essa magia só pode ser canalizada na Intensidade: Normal",
    "sustentada": false,
    "sustentacao": null,
    "stats": [
@@ -5112,12 +5081,9 @@
     "n": 3
    },
    "intensidadesPermitidas": [
-    "contida",
-    "normal",
-    "forcada",
     "transbordante"
    ],
-   "intensidadeTexto": null,
+   "intensidadeTexto": "Requisito: Deve canalizar com intensidade: Transbordante",
    "sustentada": false,
    "sustentacao": null,
    "stats": [
@@ -5169,12 +5135,11 @@
     "formato": "reacao"
    },
    "intensidadesPermitidas": [
-    "contida",
     "normal",
     "forcada",
     "transbordante"
    ],
-   "intensidadeTexto": null,
+   "intensidadeTexto": "Essa magia só pode ser canalizada na Intensidade: Normal ou acima",
    "sustentada": false,
    "sustentacao": null,
    "stats": [
@@ -5195,9 +5160,8 @@
      "valor": "9 / 13,5 / 18 m",
      "mod": true,
      "formato": "barras",
-     "leitura": "regra-3-barras",
+     "leitura": "direto",
      "porIntensidade": {
-      "contida": "9 m",
       "normal": "9 m",
       "forcada": "13,5 m",
       "transbordante": "18 m"
@@ -5864,12 +5828,9 @@
     "n": 2
    },
    "intensidadesPermitidas": [
-    "contida",
-    "normal",
-    "forcada",
-    "transbordante"
+    "normal"
    ],
-   "intensidadeTexto": null,
+   "intensidadeTexto": "Esta magia pode ser canalizada apenas na Intensidade: Normal",
    "sustentada": false,
    "sustentacao": null,
    "stats": [
