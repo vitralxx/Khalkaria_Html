@@ -17,16 +17,16 @@ Publicado em GitHub Pages: `vitralxx.github.io/Khalkaria_Html/`.
 
 ## 2. Sistema — referência rápida
 
-- **Atributos (5):** FOR, DES, CON, INT, SAB (8–18). Modificador = (Atributo − 10) / 2. **Não existe Carisma.**
-- **Perícias (24, canônicas):** Atacar, Defender, Movimento, Fortitude, Vontade, Reflexos, Percepção, Sobrevivência, Furtividade, Crime, Iniciativa, Conhecimento, Medicina, Investigação, Religião, Místico, Convencimento, Intimidação, Intuição, Enganação, Motivar, **Ofício(Engenharia)**, **Ofício(Ferraria)**, **Ofício(Alquimia)**. Fonte da verdade: ficha física. O genérico `Ofício(X)` deixou de existir em 2026-09: viraram perícias concretas, todas `1d20+Inteligência`, usadas na fabricação. **Ofício(Alquimia)** também é canônica (confirmado pelo Pedro em 2026-09-24) — são 24 perícias no total. Ela **não** entra no mapeamento `prof_*` do Bestiário: inimigos e NPCs não fabricam, crafting é só de jogador.
+- **Atributos (5):** FOR, DES, CON, INT, SAB. Criação: 4d6 descartando o menor, 5 vezes; soma abaixo de 8 rola de novo (por isso 8–18); distribui os 5 valores e pode mover 1 ponto de um atributo para outro (D30, Pedro 2026-09-26). Modificador = floor((Atributo − 10) / 2) (D80). **Não existe Carisma.**
+- **Perícias (24, canônicas):** Atacar, Defender, Movimento, Fortitude, Vontade, Reflexos, Percepção, Sobrevivência, Furtividade, Crime, Iniciativa, Conhecimento, Medicina, Investigação, Religião, Místico, Convencimento, Intimidação, Intuição, Enganação, Motivar, **Ofício(Engenharia)**, **Ofício(Ferraria)**, **Ofício(Alquimia)**. Fonte da verdade: ficha física. O genérico `Ofício(X)` deixou de existir em 2026-09: viraram perícias concretas, todas `1d20+Inteligência`, usadas na fabricação. **Ofício(Alquimia)** também é canônica (confirmado pelo Pedro em 2026-09-24) — são 24 perícias no total. Ela **não** entra no mapeamento `prof_*` do Bestiário: inimigos e NPCs não fabricam, crafting é só de jogador. Atributo de cada perícia, pela ficha física: Atacar FOR · Defender DES/CON · Movimento FOR/DES · Fortitude CON · Vontade SAB · Reflexos DES · Percepção SAB · Sobrevivência SAB · Furtividade DES · Crime DES · Iniciativa DES · Conhecimento INT · Medicina INT · Investigação INT · Religião SAB · Místico INT · Convencimento DES/INT · Intimidação CON/FOR · Intuição SAB · Enganação DES/INT · Motivar SAB · Ofícios INT. Nos "X/Y" vale o maior, com opção de o jogador trocar (D7).
 - **Proficiência de perícia:** escala de 4 níveis — +2 / +4 / +6 / +8 (não é binária).
 - **Recursos:** Saúde, Stamina (todas as classes), Éter (conjuradores), Recurso de Classe específico (ex.: FLUXO no Monge).
 - **Valores de classe:** cada classe tem **Vitalidade**, **Vigor** e **Ressonância** — os multiplicadores que entram no cálculo de Saúde, Stamina e Éter máximos. Vivem nas fórmulas dos `templates/classes/*.template.html`.
 - **Derivados:** Movimento, Evasão, CD.
 - **Inventário:** Equipamentos = 2 + Mod.FOR slots · Bugigangas = 10 + Mod.FOR. Itens com a propriedade **Empilhável** (munição incluída): 10 unidades = 1 de peso (confirmado pelo Pedro em 2026-09-25; o "20 = 1 slot" antigo estava errado). Moedas não pesam. Condições de excesso: *Sobrepeso Leve* / *Sobrepeso Extremo*. Itens que dão capacidade (Mochila Reforçada, do Contrabandista…) somam quando estão no inventário.
 - **Progressão:** a cada nível (2–5) o Limiar dá **+2 pontos de atributo**; além disso, o jogador pode comprar a 6ª carta (+2 Atributo Adicional, 2 pontos do Limiar). Canônico, confirmado pelo Pedro em 2026-09-25.
-- **Magia:** **5 níveis**. Custo base **0/2/4/6/8** Éter — o Nível 1 é gratuito e o Nível 5 exige Foco Primordial. Intensidades: Contida (−2, **mín. 1** — canônico, confirmado em 2026-09-25) / Normal / Forçada (+2) / Transbordante (+4). Exige Treinado em Místico + Foco da escola. Escolas: Destruição, Abjuração, Alteração, Conhecimento.
-- **Resistências:** 12 tipos de dano — Ordinário, Fogo, Frio, Elétrico, Veneno, Ácido, Psíquico, Força, Radiante, Trovejante, Necrótico, Primordial. Cada um com Resistência (R) e Imunidade (I).
+- **Magia:** **5 níveis**. Custo base **0/2/4/6/8** Éter — o Nível 1 é gratuito e o Nível 5 exige Foco Primordial. Intensidades: Contida (−2, **mín. 1** — canônico, confirmado em 2026-09-25) / Normal / Forçada (+2) / Transbordante (+4). O Nível 1 não tem Contida. **Custo mínimo de 1 Éter** por conjuração, depois das reduções; a única de custo 0 é Nível 1 + Normal + sem modulação (D82). Exige Treinado em Místico + Foco da escola. Escolas: Destruição, Abjuração, Alteração, Conhecimento.
+- **Resistências:** **14 tipos** de dano (D63/D67, confirmado pelo Pedro em 2026-09-26) em 4 categorias — Ordinário: Cortante, Contundente, Perfurante · Elemental: Fogo, Frio, Elétrico · Biológico: Veneno, Ácido, Psíquico · Místico: Radiante, Trovejante, Necrótico, Força, Primordial. Cada um com Resistência (R) e Imunidade (I), mais Vulnerabilidade. A ficha física antiga ainda mostra 12 (com "Ordinário" único).
 - **Classes (7):** Espadachim, Batedor, Brutalista, Teurgo, Monge, Alquimista, Artilheiro.
 - **Raças (7):** Humano, Anão, Dryad, Autômato, Gruto, Inseto, Corrompido.
 - **Origens:** **19** (Lenhador e Mineiro entraram em 2026-09).
@@ -37,7 +37,7 @@ Publicado em GitHub Pages: `vitralxx.github.io/Khalkaria_Html/`.
 
 ## 3. Arquitetura atual do repo
 
-Mapa completo e comandos: **`ARQUITETURA.md`**. Resumo:
+Mapa completo e comandos: **`docs/ARQUITETURA.md`**. Documentação do projeto mora em `docs/` (índice em `docs/README.md`). Resumo:
 
 ```
 index.html                  landing (HTML manual)
@@ -51,6 +51,7 @@ tools/validar.py            integridade estrutural (§6 automatizado)
 tools/sync_notion.py        motor de diff dos snapshots do Notion
 pages/*.html                ARTEFATO gerado
 images/*.png (fonte) -> *.webp (servido)
+docs/                       ARQUITETURA.md + ficha-digital/ (pedido, plano, respostas do Pedro)
 ```
 
 **Um comando faz tudo:** `python tools/build.py`
@@ -116,7 +117,7 @@ Ficha de personagem jogável no site, com drag-and-drop de conteúdo das página
 - Exportação compatível com o app **Bestiário Khalkaria** (Flask + SQLite).
 
 **Compatibilidade Bestiário (analisado, v10):** contrato de import = pack de criação v8, endpoints `/api/creature/import` (colar JSON) e `/api/import` (upload). Schema canônico `{"type":"npc"|"monster", "name", <stats>, "prof_*", "weapons":[], "abilities":[]}`; import **tolerante** (filtra chaves desconhecidas, não-destrutivo). O PJ exporta como `type:"npc"`.
-- **Perícias → `prof_*` (1:1):** Atacar→`prof_attack`, Defender→`prof_defend`, Movimento→`prof_movement`, Fortitude→`prof_fortitude`, Vontade→`prof_will`, Reflexos→`prof_reflexes`, Percepção→`prof_perception`, Sobrevivência→`prof_survival`, Furtividade→`prof_stealth`, Crime→`prof_crime`, Iniciativa→`prof_initiative`, Conhecimento→`prof_knowledge`, Medicina→`prof_medicine`, Investigação→`prof_investigation`, Religião→`prof_religion`, Místico→`prof_mystic`, Convencimento→`prof_persuasion`, Intimidação→`prof_intimidation`, Intuição→`prof_insight`, Enganação→`prof_deception`, Motivar→`prof_motivate`, Ofício→`prof_craft`+`craft_attr`. **Decidido (2026-09-24):** fabricação é só de jogador — inimigos e NPCs não craftam —, então as perícias de Ofício não precisam de linha própria no Bestiário. O export segue mandando um `prof_craft` só; a ficha guarda as três (Ferraria, Engenharia, Alquimia) para o filtro do Bazar.
+- **Perícias → `prof_*` (1:1)**, valor = **grau 0–4** (decidido pelo Pedro em 2026-09-26; a compatibilidade com o Bestiário não é prioridade): Atacar→`prof_attack`, Defender→`prof_defend`, Movimento→`prof_movement`, Fortitude→`prof_fortitude`, Vontade→`prof_will`, Reflexos→`prof_reflexes`, Percepção→`prof_perception`, Sobrevivência→`prof_survival`, Furtividade→`prof_stealth`, Crime→`prof_crime`, Iniciativa→`prof_initiative`, Conhecimento→`prof_knowledge`, Medicina→`prof_medicine`, Investigação→`prof_investigation`, Religião→`prof_religion`, Místico→`prof_mystic`, Convencimento→`prof_persuasion`, Intimidação→`prof_intimidation`, Intuição→`prof_insight`, Enganação→`prof_deception`, Motivar→`prof_motivate`, Ofício→`prof_craft`+`craft_attr`. **Decidido (2026-09-24):** fabricação é só de jogador — inimigos e NPCs não craftam —, então as perícias de Ofício não precisam de linha própria no Bestiário. O export segue mandando um `prof_craft` só; a ficha guarda as três (Ferraria, Engenharia, Alquimia) para o filtro do Bazar.
 - **Atributos:** FOR/DES/CON/INT/SAB → `strength/dexterity/constitution/intelligence/wisdom`. **Recursos:** `health_max/stamina_max/ether_max`. **Derivados:** `evasion/movement/armor`. **Resistências:** R→`resistances`, I→`immunities` (strings CSV). **Magias/Técnicas** → `abilities[]`; **armas do inventário** → `weapons[]`.
 - **Só-ficha (descartado no export):** inventário geral, Sins, cartas do Limiar, lore. A ficha nativa é superset; o export é projeção `npc`.
 
@@ -131,7 +132,7 @@ Ficha de personagem jogável no site, com drag-and-drop de conteúdo das página
 4. O Bazar (Bugigangas, Equipamentos por peso, Materiais por raridade)
 5. Grimório (magias por nível 1–4, com Ação/Alvo/Resist./Alcance/Duração)
 
-Prioridade é **funcionar**, não elegância. Replicar a estrutura, não a arte.
+Prioridade é **funcionar**, não elegância. Replicar a estrutura, não a arte. Os campos das 5 páginas (fotos do A4 enviadas pelo Pedro em 2026-09-26) estão transcritos em `docs/ficha-digital/03-respostas-pedro.md` §4. **Plano em curso:** `docs/ficha-digital/02-plano.md` (ficha como hub, fases F0–F7) + as respostas do Pedro no `03`. Todo campo da ficha é editável à mão, inclusive os calculados. Regra que o contrato do balanceamento não fecha é perguntada a ele, não assumida.
 
 ---
 
@@ -155,7 +156,7 @@ re.sub(r'\s+', ' ', re.sub(r'<[^>]+>', ' ', html))
 - Comparação é textual e integral, página por página.
 - Abreviações de estilo ("Mod.Des" vs "Mod. Destreza", "2x" vs "duas vezes", "+2 Int" vs "+2 Inteligência") **não** são divergências. Só sinalizar mudança numérica/mecânica.
 - Typos do Notion corrigidos no HTML são aceitáveis, não são diffs.
-- **Regra das 3 barras:** stats de magia sempre exibem as 4 intensidades. Quando o Notion mostra 3 valores, o HTML expandir para 4 repetindo o primeiro está correto.
+- **Regra das 3 barras:** stats de magia sempre exibem as 4 intensidades. Quando o Notion mostra 3 valores, o HTML expandir para 4 repetindo o primeiro está correto. **Exceção: Nível 1**, que não tem Contida — ali 3 valores são as 3 intensidades reais.
 
 ---
 
