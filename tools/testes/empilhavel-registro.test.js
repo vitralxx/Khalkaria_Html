@@ -2,7 +2,7 @@
 // Empilhável é dado do build (F0): o KhInv decide por inv.empilhavel do item de
 // data/bazar.json e não lê o texto do Efeito quando há inv. A regex do KhInv
 // fica só como legado da entrada sem inv (v1 migrada, card sem catálogo).
-// O resultado sobre o catálogo real não muda: 85 empilháveis (ESPERADO do
+// O resultado sobre o catálogo real não muda: 87 empilháveis (ESPERADO do
 // tools/gerar_bazar.py), o mesmo conjunto que a frase do Efeito dava.
 const test = require('node:test');
 const assert = require('node:assert/strict');
@@ -22,13 +22,13 @@ test('catálogo real: todo item tem inv (o build sempre emite)', () => {
   assert.deepEqual(sem, []);
 });
 
-test('catálogo real: 85 empilháveis, mesmo conjunto de inv.empilhavel e da frase (por conjunto, sem duplicata)', () => {
+test('catálogo real: 87 empilháveis, mesmo conjunto de inv.empilhavel e da frase (por conjunto, sem duplicata)', () => {
   const porInv = BAZAR.filter((it) => it.inv.empilhavel === true);
   const porKhInv = BAZAR.filter((it) => K.normalizaEntrada(K.entradaDeItem(it)).empilhavelRegistro === true);
   const porTexto = BAZAR.filter((it) => K.empilhavelPorTexto(it.efeito));
-  assert.equal(porInv.length, 85);
-  assert.equal(porKhInv.length, 85);
-  assert.equal(ids(porKhInv).size, 85, 'ids distintos');
+  assert.equal(porInv.length, 87);
+  assert.equal(porKhInv.length, 87);
+  assert.equal(ids(porKhInv).size, 87, 'ids distintos');
   const a = ids(porKhInv), b = ids(porInv), c = ids(porTexto);
   assert.deepEqual({ so_khinv: diff(a, b), so_inv: diff(b, a) }, { so_khinv: [], so_inv: [] });
   assert.deepEqual({ so_khinv: diff(a, c), so_texto: diff(c, a) }, { so_khinv: [], so_texto: [] });
