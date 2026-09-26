@@ -263,7 +263,7 @@ BLOCOS_SISTEMA = {
     ],
     'D82 custo mínimo de magia': [
         'toda conjuração custa no mínimo 1 Éter',
-        'A única exceção é a magia de Nível 1 conjurada em intensidade Normal e sem modulação, que custa 0 Éter.',
+        'As exceções são a magia de Nível 1 conjurada em intensidade Normal e sem modulação e as Magias Pactuadas do Teurgo conjuradas em intensidade Contida, que custam 0 Éter.',
         'Magias de Nível 1 não possuem a intensidade Contida.',
     ],
     'D8b/D8c reação Defender e Evasão Ativa': [

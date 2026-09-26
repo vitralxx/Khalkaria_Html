@@ -1562,11 +1562,11 @@
           },
           {
             "caracteristica": "Efeito",
-            "valor": "Encerra magias de Nível 2 ou menor automaticamente",
+            "valor": "Encerra magias de Nível 3 ou menor automaticamente",
             "mod": false
           }
         ],
-        "descricao": "Magias de nível 2 ou menor são automaticamente dissipadas. Para magias de nível superior, faça um teste de Místico com CD 20 + nível da magia. Só pode ser canalizada na <strong>Intensidade:</strong> <em>Normal</em>"
+        "descricao": "Magias de nível 3 ou menor são automaticamente dissipadas. Para magias de nível superior, faça um teste de Místico com CD 20 + nível da magia. Só pode ser canalizada na <strong>Intensidade:</strong> <em>Normal</em>"
       },
       {
         "id": "magia-aumentar-diminuir-criatura",
@@ -1669,11 +1669,11 @@
           },
           {
             "caracteristica": "Efeito",
-            "valor": "Ae (Ordinário): 2 / 5 / 7 / 10",
+            "valor": "Ar: 2 / 5 / 7 / 10",
             "mod": true
           }
         ],
-        "descricao": "Você altera a composição da pele de uma criatura, enrijecendo-a em camadas de uma substância parecida com pedra porosa. A criatura ganha Armadura Específica contra dano Ordinário. A pele toma uma coloração acinzentada e textura granular."
+        "descricao": "Você altera a composição da pele de uma criatura, enrijecendo-a em camadas de uma substância parecida com pedra porosa. A criatura ganha Armadura (Ar) contra dano Ordinário. A pele toma uma coloração acinzentada e textura granular."
       },
       {
         "id": "magia-confundir-sentidos",

@@ -159,6 +159,7 @@
                             <a href="#sobrepeso-extremo">Sobrepeso Extremo</a>
                             <a href="#lento">Lento X</a>
                             <a href="#enraizado">Enraizado</a>
+                            <a href="#agarrado">Agarrado</a>
                         </div>
                     </div>
                     <div class="index-category">
@@ -204,10 +205,10 @@
                         <h4>Morrendo</h4>
                         <ul>
                             <li>Você está <a href="#inconsciente" class="keyword-link">Inconsciente</a>.</li>
-                            <li>Você recebe 10% da sua vida máxima de dano biológico por rodada, ao ultrapassar metade da sua vida máxima em negativos, você morre.</li>
+                            <li>Você recebe 10% da sua vida máxima de dano biológico no início de cada turno seu. Esse dano não pode ser reduzido por Armadura, Armadura Específica ou Resistência. Ao ultrapassar metade da sua vida máxima em negativos, você morre.</li>
                         </ul>
-                        <div class="formula">Dano/Rodada = Vida Máxima × 0.1</div>
-                        <p>Um aliado pode gastar 2 ações para rolar um teste de <em>Medicina</em> (CD 20) para estabilizar você, negando o dano por rodada até você remover essa condição, ou ser atacado novamente.</p>
+                        <div class="formula">Dano/Turno = Vida Máxima × 0.1</div>
+                        <p>Um aliado pode gastar 2 ações para rolar um teste de <em>Medicina</em> (CD 20) para estabilizar você, negando o dano por turno até você remover essa condição, ou ser atacado novamente.</p>
                         <p><strong>Para remover:</strong> Você deve ser curado de modo que sua vida fique positiva.</p>
                     </div>
                     
@@ -223,7 +224,8 @@
                         <h4>Exaurido</h4>
                         <p>Você está com 0 de Stamina, completamente exausto.</p>
                         <ul>
-                            <li>Você não pode rolar perícias, encerra ao realizar qualquer tipo de descanso.</li>
+                            <li>Você não pode rolar perícias.</li>
+                            <li>Encerra quando sua Stamina volta a ficar acima de 0.</li>
                         </ul>
                     </div>
                     
@@ -231,8 +233,9 @@
                         <h4>Oco</h4>
                         <p>Você está vazio por dentro, se manter motivado é um desafio e seus pensamentos estão desconexos da realidade.</p>
                         <ul>
-                            <li>A cada perícia falha, você reduz 5 de Éter. Ao alcançar metade do seu éter máximo nos negativos, você perde seu personagem, que se torna do mestre.</li>
+                            <li>A cada perícia falha, você reduz 5 de Éter. Ao ultrapassar metade do seu éter máximo nos negativos, você perde seu personagem, que se torna do mestre.</li>
                             <li>Você não consegue canalizar magias.</li>
+                            <li>Encerra quando seu Éter volta a ficar acima de 0.</li>
                         </ul>
                     </div>
                     
@@ -253,6 +256,8 @@
                         <h4>Desnutrido X</h4>
                         <p>Você está faminto.</p>
                         <ul>
+                            <li>Você ganha 1 de Desnutrido para cada dia em que descansou sem se alimentar (consumir 1 item do tipo Comida) ou sem luz de fogueira ou outra fonte.</li>
+                            <li>Se alimentar ao descansar em um dia remove 1 de Desnutrido.</li>
                             <li>Você tem desvantagem em testes físicos (Força, Destreza ou Constituição)</li>
                             <li>Você gasta o dobro de Stamina para tudo.</li>
                             <li>Você perde 10 × X de Saúde máxima.</li>
@@ -279,8 +284,9 @@
                     <div class="condicao-card" id="sangramento">
                         <h4>Sangramento X</h4>
                         <ul>
-                            <li>Se o alvo puder sangrar, qualquer ataque contra ele causa +1d4 de dano Biológico.</li>
-                            <li>Ao acertar um ataque em um alvo com essa condição, ela reduz em 1.</li>
+                            <li>Se o alvo puder sangrar, qualquer ataque contra ele causa +Xd4 de dano Biológico, sendo X o seu Sangramento atual.</li>
+                            <li>Ao acertar um ataque em um alvo com essa condição, ela reduz em 1. Por exemplo: um alvo com Sangramento 3 recebe +3d4 no próximo acerto e fica com Sangramento 2.</li>
+                            <li>Se o acerto também aplicar Sangramento, o dano e a redução acontecem antes da nova aplicação.</li>
                         </ul>
                     </div>
                     
@@ -356,6 +362,16 @@
                             <li>Movimento reduzido a 0 metros.</li>
                         </ul>
                     </div>
+                    
+                    <div class="condicao-card" id="agarrado">
+                        <h4>Agarrado</h4>
+                        <p>Você está dominado por uma criatura.</p>
+                        <ul>
+                            <li>Ataques contra você possuem +2 em Atacar.</li>
+                            <li>Você recebe -2 ao Atacar.</li>
+                            <li>Você fica <a href="#enraizado" class="keyword-link">Enraizado</a> até se livrar do agarrão.</li>
+                        </ul>
+                    </div>
                 </div>
             </section>
             
@@ -422,7 +438,7 @@
                         <h4>Envenenamento</h4>
                         <ul>
                             <li>-2 em todos os testes que utilizam: Força, Constituição ou Destreza como atributo base.</li>
-                            <li>1d6 de dano Biológico por rodada até o fim do efeito.</li>
+                            <li>1d6 de dano Biológico no início de cada turno seu, até o fim do efeito.</li>
                             <li>Acaba ao suceder em um teste de Fortitude CD(20) ou utilizar um <em>Antídoto</em>.</li>
                         </ul>
                     </div>
@@ -431,7 +447,7 @@
                         <h4>Em Chamas</h4>
                         <p>Você está em chamas!</p>
                         <ul>
-                            <li>1d6 de dano elemental (fogo) no início de cada turno, até apagar o fogo com 1 ação.</li>
+                            <li>1d6 de dano elemental (fogo) no início de cada turno seu, até apagar o fogo com 1 ação.</li>
                         </ul>
                     </div>
                     
