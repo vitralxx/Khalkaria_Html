@@ -172,7 +172,8 @@ python tools/sync_notion.py report     # diff: o que mudou no Notion
 python tools/sync_notion.py accept     # promove .new -> .base
 ```
 
-`validar.py` checa: tags balanceadas, âncoras `#x` com destino, IDs duplicados,
+`validar.py` checa: tags balanceadas, âncoras `#x` com destino (também
+`outra.html#x`: o id tem de existir na página de destino), IDs duplicados,
 links/assets locais existentes, round-trip JSON→HTML, consistência das
 24 sidebars (página sem `<nav class="sidebar">` é FALHA; e em cada página 1 boot,
 1 `nav.js`, 1 `aria-current`, todo glifo `nv-*` com `<symbol>` e todo `.nav-link`
@@ -180,7 +181,12 @@ com `.nav-rot`), as 5 frases de peso
 do Sistema que o motor de carga codifica (guarda-fio contra o Notion mudar a
 regra por baixo), `inv` em todo item do `data/bazar.json` e os 3 blocos
 decididos D80–D82 no `data/sistema.json` (modificador, vantagem/desvantagem,
-custo mínimo de magia), por frase verbatim do Notion.
+custo mínimo de magia), por frase verbatim do Notion, e o id de todo card de
+classe (`data/classes/*.json`) = `<classe>-` + slug do nome, sem duplicata.
+
+Os índices "Navegação Rápida" de Condições e Sistema saem do gerador
+(`{{IDX_<categoria>}}` no template): um link por card/subseção, na ordem do
+JSON. No Sistema o rótulo é `indice` (curto, opcional) ou `nome` da subseção.
 
 `gerar_bazar.py` falha (código 1, nada gravado) quando uma frase de inventário
 do CSV não casa com o esperado, quando há colisão de id, ingrediente fora do

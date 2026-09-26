@@ -6,6 +6,9 @@
 # categoria (fundamentos, combate, equipamento, exploracao, sobrevivencia,
 # progressao, magia). Cada categoria tem subseções endereçáveis por id:
 #   sistema.categorias[id=combate].conteudo[id=ataques].html
+# O "Índice de Navegação" sai das mesmas subseções: {{IDX_<id>}} recebe um link
+# por subseção, rotulado por `indice` (rótulo curto, opcional) ou por `nome`.
+# Subseção nova no JSON aparece no índice sem edição à mão.
 # Uso: python tools/gerar_sistema.py [repo_root]
 import json, sys, os
 
@@ -20,14 +23,25 @@ def gen_categoria(cat):
     return ''.join(p['html'] for p in cat['conteudo'])
 
 
+def gen_indice(cat, nl):
+    return (nl + ' ' * 28).join(
+        f'<a href="#{p["id"]}">{p.get("indice") or p["nome"]}</a>'
+        for p in cat['conteudo'] if p['tipo'] == 'subsecao')
+
+
 def main():
     page = open(TPL, encoding='utf-8', newline='').read()
+    nl = '\r\n' if '\r\n' in page else '\n'   # o template vem com CRLF do checkout
     data = json.load(open(JSON_SRC, encoding='utf-8'))
     for cat in data['categorias']:
         ph = f'{{{{CAT_{cat["id"]}}}}}'
         if ph not in page:
             raise SystemExit(f'placeholder {ph} ausente no template')
         page = page.replace(ph, gen_categoria(cat))
+        ph = f'{{{{IDX_{cat["id"]}}}}}'
+        if ph not in page:
+            raise SystemExit(f'placeholder {ph} ausente no template')
+        page = page.replace(ph, gen_indice(cat, nl))
     open(OUT, 'w', encoding='utf-8', newline='').write(page)
     n = sum(sum(1 for p in c['conteudo'] if p['tipo'] == 'subsecao') for c in data['categorias'])
     print(f'sistema.html gerado: {len(data["categorias"])} categorias, {n} subseções -> {OUT}')

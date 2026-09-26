@@ -135,6 +135,12 @@ SLOT_EMPILHAVEL = 'bugiganga'
 ESPERADO = {'empilhavel': 85, 'capacidade': 3, 'naoOcupa': 1,
             'armaduras': (27, 23), 'slot': (240, 487)}
 
+# D26b: o Pedro aprovou os dois como Empilháveis, mas a frase ainda não está no
+# Efeito_Jogador do CSV (a edição é dele). Até lá o gerador segue lendo o texto
+# exibido, a contagem fica 85 e cada build avisa pelo nome. Quando o CSV mudar,
+# os dois passam a sair empilháveis: tirar daqui e subir ESPERADO para 87.
+PENDENTE_D26B = ('Casca de Raiz', 'Seiva da Vhelor')
+
 
 def parse_inventario(efeito, cats, arq, fam):
     """Como o item se comporta no inventário — tudo lido do Efeito, nada inventado.
@@ -341,6 +347,15 @@ def main():
         if n[chave] != esperado:
             print(f'AVISO: inv.{chave} = {n[chave]}, esperado {esperado}. Item novo no CSV '
                   f'explica; se não, confira o Efeito e atualize ESPERADO.')
+    inv_por_nome = {i['nome']: i['inv'] for i in itens}
+    pendentes = [p for p in PENDENTE_D26B if not inv_por_nome.get(p, {}).get('empilhavel')]
+    if pendentes:
+        print(f'AVISO: {" e ".join(pendentes)}: Empilhável aprovado pelo Pedro (D26b), '
+              f'edição do CSV pendente')
+    resolvidos = [p for p in PENDENTE_D26B if p not in pendentes]
+    if resolvidos:
+        print(f'AVISO: {" e ".join(resolvidos)} já saem empilháveis do CSV (D26b feita): '
+              f'tire de PENDENTE_D26B e suba ESPERADO["empilhavel"].')
 
     # compacto: é artefato, a fonte legível é o CSV
     json.dump(itens, open(BJSON, 'w', encoding='utf-8', newline=''),

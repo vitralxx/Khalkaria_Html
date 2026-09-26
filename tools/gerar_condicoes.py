@@ -2,9 +2,11 @@
 # -*- coding: utf-8 -*-
 # Gerador reverso de Condições (Rota 1): data/condicoes.json -> pages/condicoes.html
 # Fonte da verdade = data/condicoes.json. NÃO editar pages/condicoes.html à mão.
-# Template: templates/condicoes.template.html (placeholders {{CAT_<id>}} por categoria).
+# Template: templates/condicoes.template.html (placeholders {{CAT_<id>}} por categoria
+# e {{IDX_<id>}} no índice "Navegação Rápida", gerado dos mesmos cards: condição
+# nova no JSON aparece no índice sem edição à mão).
 # Uso: python gerar_condicoes.py [repo_root]
-import json, sys, os
+import json, re, sys, os
 
 RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 REPO = sys.argv[1] if len(sys.argv) > 1 else RAIZ
@@ -17,6 +19,12 @@ def gen_card(cd):
             f'                        <h4>{cd["nome"]}</h4>\n'
             f'                        {cd["corpo"]}\n'
             f'                    </div>')
+
+def gen_idx(cat):
+    # um link por card, na ordem do JSON; o rótulo é o nome do card sem tags
+    return ('\n' + ' ' * 28).join(
+        f'<a href="#{cd["id"]}">{re.sub(r"<[^>]+>", "", cd["nome"])}</a>'
+        for cd in cat['cards'])
 
 def gen_cat(cat):
     return '\n                    \n                    '.join(gen_card(cd) for cd in cat['cards'])
@@ -31,6 +39,10 @@ def main():
         if ph not in page:
             raise SystemExit(f'placeholder {ph} ausente no template')
         page = page.replace(ph, gen_cat(cat))
+        ph = f'{{{{IDX_{cat["id"]}}}}}'
+        if ph not in page:
+            raise SystemExit(f'placeholder {ph} ausente no template')
+        page = page.replace(ph, gen_idx(cat))
         total += len(cat['cards'])
     open(OUT, 'w', encoding='utf-8').write(page)
     print(f'condicoes.html gerado: {total} condições -> {OUT}')

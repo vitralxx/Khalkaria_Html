@@ -19,6 +19,8 @@ integridade do artefato HTML, que é o que quebra em silêncio:
   8. data/bazar.json é ARRAY e todo item traz `inv`
   9. Guarda-fio: os 3 blocos decididos D80–D82 (modificador, vantagem/
      desvantagem, custo mínimo de magia) continuam em data/sistema.json
+ 10. Id de card de classe = '<classe>-' + slug do nome, sem duplicata
+Em 2, também o link para outra página (pagina.html#x): o id x tem de existir lá.
 
 Uso:
   python validar.py [repo_root]
@@ -88,6 +90,8 @@ class Stack(HTMLParser):
 
 def checa_html():
     print('[1-4] Integridade do HTML')
+    ids_por_pagina = {os.path.normpath(f): set(re.findall(r'\bid="([^"]+)"', open(f, encoding='utf-8').read()))
+                      for f in paginas()}
     for f in paginas():
         h = open(f, encoding='utf-8').read()
         probs = []
@@ -116,6 +120,16 @@ def checa_html():
                 faltando.add(url)
         if faltando:
             probs.append(f'links/assets inexistentes: {sorted(faltando)}')
+
+        # âncora em outra página (condicoes.html#exaustao): o id tem de existir lá.
+        # Fragmento com '/' é rota do JS (bazar.html#item/<id>), não id.
+        fora = set()
+        for arq, frag in re.findall(r'href="([^"#?:]+\.html)(?:\?[^"#]*)?#([^"/]+)"', h):
+            alvo = os.path.normpath(os.path.join(base, arq))
+            if alvo in ids_por_pagina and frag not in ids_por_pagina[alvo]:
+                fora.add(f'{arq}#{frag}')
+        if fora:
+            probs.append(f'âncoras sem destino em outra página: {sorted(fora)}')
 
         if probs:
             falhas.append(rel(f))
@@ -279,6 +293,37 @@ def checa_blocos_sistema(root=None):
         print(f'  OK     {len(BLOCOS_SISTEMA)} blocos presentes')
 
 
+def checa_ids_classes(root=None):
+    """[10] Id de card de classe = '<classe>-' + slug do nome (sem emoji), único.
+
+    O id é o que a ficha vai guardar (convenção `<classe>-*`): derivado do nome,
+    estável entre builds, nunca herdado de um nome antigo do card."""
+    root = root or ROOT
+    print('[10] Ids dos cards de classe (data/classes/*.json)')
+    vistos, ruins = {}, []
+    arquivos = sorted(glob.glob(os.path.join(root, 'data', 'classes', '*.json')))
+    for f in arquivos:
+        classe = os.path.basename(f)[:-5]
+        try:
+            cards = json.load(open(f, encoding='utf-8'))['cards']
+        except (OSError, ValueError, KeyError) as e:
+            ruins.append(f'{rel(f)} ilegível: {e}')
+            continue
+        for c in cards:
+            esperado = f'{classe}-{shell.slugify(c.get("nome", ""))}'
+            if c.get('id') != esperado:
+                ruins.append(f'{classe}: "{c.get("nome")}" tem id {c.get("id")!r}, esperado {esperado!r}')
+            if c.get('id') in vistos:
+                ruins.append(f'id duplicado {c.get("id")!r} ({vistos[c["id"]]} e {classe})')
+            vistos[c.get('id')] = classe
+    if ruins:
+        falhas.append('ids-classes')
+        for r in ruins:
+            print(f'  FALHA  {r}')
+    else:
+        print(f'  OK     {len(vistos)} ids derivados do nome, sem duplicata')
+
+
 def checa_bazar_inv(root=None):
     """[8] Todo item do data/bazar.json traz o campo inv (contrato do inventário)."""
     root = root or ROOT
@@ -351,6 +396,8 @@ if __name__ == '__main__':
     checa_bazar_inv()
     print()
     checa_blocos_sistema()
+    print()
+    checa_ids_classes()
     print()
     if '--skip-roundtrip' not in FLAGS:
         checa_roundtrip()

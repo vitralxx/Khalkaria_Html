@@ -104,13 +104,13 @@
       "corpo": "\n                                    <h5>Caça Fardos</h5>\n                                    <p class=\"flavor\">\"Você busca criaturas indignas, e as assassina com prazer.\"</p>\n                                    <p>Você é naturalmente benevolente e busca punir criaturas bestiais/monstruosas.</p>\n                                    <ul>\n                                        <li>Para cada 5 criaturas monstruosas ou malignas que você matou, você ganha <strong>+1 permanente em Sobrevivência</strong>. (Máx. +5)</li>\n                                        <li>Você consegue localizar a <strong>Marca do Duelo</strong> em qualquer situação, mesmo que ela esteja Invisível ou escondida.</li>\n                                    </ul>\n                                "
     },
     {
-      "id": "espadachim-bloquear-e-contra-atacar",
+      "id": "espadachim-parry-perfeito",
       "tipo": "tier-technique",
       "nome": "Parry Perfeito",
       "corpo": "\n                                    <h5>Parry Perfeito</h5>\n                                    <p class=\"meta\">Ação Livre · 3 Stamina</p>\n                                    <p>Ao defender um ataque da <strong>Marca do Duelo</strong> com sucesso, <strong>Retalie</strong> como Ação Livre.</p>\n                                "
     },
     {
-      "id": "espadachim-intocavel",
+      "id": "espadachim-duelista-intocavel",
       "tipo": "tier-technique",
       "nome": "Duelista Intocável",
       "corpo": "\n                                    <h5>Duelista Intocável</h5>\n                                    <p class=\"meta\">Passiva</p>\n                                    <p>Você se torna <em>Treinado</em> em <strong>Defender</strong> (se já for, <em>Experiente</em>, e assim por diante).</p>\n                                    <ul>\n                                        <li>Enquanto não tiver realizado ataques nesta rodada, você ganha <strong>+5 em testes de Defender</strong>.</li>\n                                        <li>Você ignora todo Ar (Armadura) ao <strong>Retaliar</strong>.</li>\n                                    </ul>\n                                "
@@ -122,13 +122,13 @@
       "corpo": "\n                                    <h5>Guardar a Lâmina</h5>\n                                    <p class=\"meta\">1 Ação · 2 Stamina</p>\n                                    <p>Até próximo turno: +2 Defender. Sua primeira retaliação não gasta reação.</p>\n                                "
     },
     {
-      "id": "espadachim-pulso-forte",
+      "id": "espadachim-contra-guarda",
       "tipo": "tier-technique",
       "nome": "Contra-guarda",
       "corpo": "\n                                    <h5>Contra-guarda</h5>\n                                    <p class=\"meta\">Passiva</p>\n                                    <p>Se você não realizou nenhum ataque no seu turno, sua próxima retaliação contra a <strong>Marca do Duelo</strong> causa <strong>dano crítico</strong>.</p>\n                                "
     },
     {
-      "id": "espadachim-vai-e-volta",
+      "id": "espadachim-inimigo-mortal",
       "tipo": "tier-technique",
       "nome": "Inimigo Mortal",
       "corpo": "\n                                    <h5>Inimigo Mortal</h5>\n                                    <p class=\"meta\">1 Ação · 5 Stamina</p>\n                                    <p>Até o início do seu próximo turno, você pode retaliar a <strong>Marca do Duelo</strong> até <strong>2 vezes</strong> sem gastar reação.</p>\n                                "
@@ -164,13 +164,13 @@
       "corpo": "\n                                    <h5>Adrenalina Sanguínea</h5>\n                                    <p class=\"meta\">Passiva</p>\n                                    <p>Quando a <strong>Marca do Duelo</strong> for morta por você:</p>\n                                    <ul>\n                                        <li>Ganhe <strong>1 Ação</strong>.</li>\n                                        <li>Recupere <strong>(Nível)d6 de Saúde</strong>.</li>\n                                    </ul>\n                                "
     },
     {
-      "id": "espadachim-barbaro",
+      "id": "espadachim-sangue-por-aco",
       "tipo": "tier-technique",
       "nome": "Sangue por Aço",
       "corpo": "\n                                    <h5>Sangue por Aço</h5>\n                                    <p class=\"meta\">Ação Livre</p>\n                                    <p>Você pode pagar Saúde no lugar de Stamina em qualquer técnica, na proporção <strong>2 Saúde = 1 Stamina</strong>.</p>\n                                "
     },
     {
-      "id": "espadachim-masoquista",
+      "id": "espadachim-carne-rasgada",
       "tipo": "tier-technique",
       "nome": "Carne Rasgada",
       "corpo": "\n                                    <h5>Carne Rasgada</h5>\n                                    <p class=\"meta\">Passiva</p>\n                                    <p>Ao estar com menos da metade da vida, você ganha:</p>\n                                    <ul>\n                                        <li>Seus ataques contra a <strong>Marca do Duelo</strong> causam <strong>+2d6 de dano Cortante</strong>.</li>\n                                        <li>Você tem <em>resistência</em> a dano <strong>Ordinário</strong> contra a Marca do Duelo.</li>\n                                    </ul>\n                                "
@@ -224,7 +224,7 @@
       "corpo": "\n                                    <h5>Trêbado</h5>\n                                    <p class=\"meta\">Ação Livre · 5 Stamina</p>\n                                    <p>Imediatamente após rolar um dado, você pode gastar <strong>5 de Stamina</strong> como ação livre para rolar novamente esse mesmo teste de perícia. <em>(3x/descanso longo)</em></p>\n                                "
     },
     {
-      "id": "espadachim-destino-incerto",
+      "id": "espadachim-dobrar-a-aposta",
       "tipo": "tier-technique",
       "nome": "Dobrar a Aposta",
       "corpo": "\n                                    <h5>Dobrar a Aposta</h5>\n                                    <p class=\"meta\">Ação Livre · 3 Stamina</p>\n                                    <p>Declare antes de atacar a <strong>Marca do Duelo</strong>:</p>\n                                    <ul>\n                                        <li>Se <strong>acertar</strong>: +4d6 de dano Cortante.</li>\n                                        <li>Se <strong>errar</strong>: receba 2d6 de dano Primordial e fique <em>Exposto</em>.</li>\n                                    </ul>\n                                "
