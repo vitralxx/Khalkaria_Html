@@ -6,6 +6,28 @@
 
 ---
 
+## Revisão 4 (2026-09-26) — o que mudou depois das respostas do Pedro
+
+**Duas células do CSV do Bazar mudaram, com aprovação explícita do Pedro.** Aplique as mesmas duas
+no `data/Bazar_Khalkaria_v26.csv` da main (o resto do arquivo é idêntico):
+
+| Item | Coluna | Antes | Depois |
+|---|---|---|---|
+| Anel do Baluarte | Efeito | `[Leve] Ae(Todos, 3).` | `[Leve] Ae(Todos, 3), (Exceto: Força e Primordial).` |
+| Erva Medicinal | Efeito | `... 1d4+2 de Saude. ...` | `... 1d4+2 de Saúde. ...` |
+
+`ficha-efeitos-itens.json` já foi regenerado com as duas.
+
+**Tempo (D90), novo bloco `tempo` no contrato:** 1 ação = 2 segundos; 3 ações = 6 segundos =
+1 turno. Derivado: 1 minuto = 10 rodadas — use para converter duração em minutos. **Ação não
+definida (inclusive usar consumível sem custo escrito): o mestre decide na hora.** Na ficha,
+`acoes: null` significa isso; não trave nem sugira número.
+
+**Manobra nova (D88): Investida.** O texto entra na página Sistema, seção *Manobras*, quando o Pedro
+fechar três pontos. Aviso aqui quando entrar.
+
+---
+
 ## Revisão 3 (2026-09-26) — Notion gravado + Pedido 2 (efeitos dos itens)
 
 **D80, D81 e D82 agora estão no Notion** (página Sistema `2b76e3a4`), com o texto que está no

@@ -1,6 +1,6 @@
 {
   "schemaVersion": "regras-ficha/1.0",
-  "geradoEm": "2026-09-26 (rev. 3: D80-D82 gravadas no Notion)",
+  "geradoEm": "2026-09-26 (rev. 4: escala de tempo e ações não definidas, D90)",
   "_doc": "Resposta do agente de balanceamento ao pedido docs/ficha-digital/01-pedido-ao-balanceamento.md. O texto com a justificativa de cada regra esta em 14-ficha-digital.md, na mesma numeracao P/C. Nada aqui e canonico so porque esta escrito: leia o campo 'status'.",
   "_status": {
     "canonico": "Esta no Notion ou numa decisao registrada em 09-decisoes-pedro.md. Pode ir para o site.",
@@ -2277,6 +2277,12 @@
         "custo": 3,
         "fonte": "notion-sistema > Furtividade"
       }
+    },
+    "acoesNaoDefinidas": {
+      "regra": "o mestre decide na hora, pela intuição, sem pensar em balanceamento",
+      "fonte": "D90",
+      "verbatimPedro": "ações não definidas são custeadas conforme a intuição do mestre-jogador no momento, sem pensar tanto no balanceamento",
+      "naFicha": "custo de ação null = o mestre decide; a ficha não trava nem sugere número"
     }
   },
   "municao": {
@@ -3445,5 +3451,20 @@
       "custo": "alto",
       "nota": "E a D79 e ja esta em andamento no rework do Batedor. Quando fechar, a 'regua de recurso de classe' vira o molde de Vigario, Vampiro, Necromante e Xama, e o classes.<id>.recursos[] deste contrato deve ser o formato de saida dela."
     }
-  ]
+  ],
+  "tempo": {
+    "acaoSegundos": 2,
+    "turnoSegundos": 6,
+    "acoesPorTurno": 3,
+    "verbatimPedro": "1 ação significa 2 segundos de combate, 3 ações 6 segundos que é 1 turno.",
+    "fonte": "D90 (Pedro, 2026-09-26)",
+    "status": "decisao",
+    "derivado": {
+      "rodadaSegundos": 6,
+      "1 min": "10 rodadas",
+      "10 min": "100 rodadas",
+      "1 h": "600 rodadas",
+      "nota": "Derivado por mim: a rodada tem 6 segundos porque os turnos de todos acontecem nos mesmos 6 segundos da ficção. Serve para a ficha converter duração em minutos ('Dura 1 min') em rodadas."
+    }
+  }
 }

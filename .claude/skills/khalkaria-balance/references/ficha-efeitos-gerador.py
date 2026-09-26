@@ -457,7 +457,7 @@ CONVENCOES = {
  'op': {'soma':'soma ao valor','fixa':'fixa o valor (booleanos: tem ou não tem)','escolha':'o jogador escolhe ao usar/vestir; ver campo escolha'},
  'lembretes': 'frases que dependem de julgamento de mesa (aliados, alvo escolhido, distância, luz, gatilho de combate). Viram texto, nunca número.',
  'usos': "{n, recarga}: recarga = 'longo' | 'curto' | 'combate' | 'cena' | null (uso único ou total de cargas)",
- 'acoesDeConsumivel': "null quando o texto não diz. O Sistema não define o custo de ação para usar consumível (só 'Outro (1-3 ações)'). Ver pendências.",
+ 'acoesDeConsumivel': "null quando o texto não diz = o mestre decide na hora (D90). Referência de tempo: 1 ação = 2 segundos; 3 ações = 6 segundos = 1 turno.",
  'indices': {'empilhaveis':'têm a propriedade Empilhável: 10 unidades = 1 de peso','fonteDeLuz':'servem de fonte de luz para o descanso longo','alimento':'servem de alimento para o descanso longo'},
  'maisInt': "'+Int' em cura de item = mod.INT de quem USA o item (regras-ficha P09)",
 }
@@ -490,12 +490,12 @@ ALVOS = {
  'condicao.exaustao':'nível de Exaustão (op soma, valor negativo remove)',
 }
 PENDENCIAS = [
- {'n':1,'item':'Grevas Trovejantes','o':"'A manobra Investida concede +1d6 de dano.' Não existe manobra Investida no Sistema: as manobras são Empurrar, Desarmar e Agarrar.",'status':'pendente: Pedro'},
- {'n':2,'item':'Ae(Todos)','o':"Capa Defensiva e Capa do Vazio excluem Força e Primordial; o Anel do Baluarte (Ae(Todos, 3)) não exclui. E falta dizer se Ae(Todos) cobre os 3 tipos Ordinários (a D63 diz que Ae é de dano atípico e que o Ordinário é do Ar). Recomendação: Ae(Todos) = os 11 tipos atípicos, exceto Força e Primordial, nos três itens.",'status':'pendente: Pedro'},
+ {'n':1,'item':'Grevas Trovejantes','o':"'A manobra Investida concede +1d6 de dano.' A manobra não existia; o Pedro a criou em 2026-09-26 (D88): 2 ações, linha reta, Movimento × Movimento contra cada inimigo, ataque em quem você ultrapassa. Texto final entra no Notion (Manobras) depois de dois pontos em aberto.",'status':'resolvendo (D88)'},
+ {'n':2,'item':'Ae(Todos)','o':"Resolvido em parte (D89): os três itens com Ae(Todos) excluem Força e Primordial (o Anel do Baluarte foi corrigido no CSV). Continua aberto: Ae(Todos) cobre os 3 tipos Ordinários? A D63 diz que Ae é de dano atípico e que o Ordinário é do Ar.",'status':'pendente: Pedro (só a parte dos Ordinários)'},
  {'n':3,'item':'Cinturão do Colosso, Elixir do Crescimento, Elixir do Encolhimento','o':"'+2 Força' / '+2 Destreza' sem 'testes de': li como valor de atributo, porque o Elixir de Força escreve 'testes de Força' quando quer dizer teste.",'status':'decisao'},
- {'n':4,'item':'Consumíveis','o':"O Sistema não define quantas ações custa usar um consumível (a lista de ações só traz 'Outro (1-3 ações)'). 'acoes' fica null onde o texto não diz. Recomendação: 1 ação para usar em si, 1 ação para aplicar em outro; arremesso segue o texto do item.",'status':'pendente: Pedro'},
- {'n':5,'item':'Erva Medicinal','o':"O CSV escreve 'Saude' sem acento. Correção de digitação no CSV, se o Pedro autorizar.",'status':'pendente: Pedro'},
- {'n':6,'item':'Kits de Manutenção (4)','o':"'Kit de Manutenção de Autômatos': marquei soParaRaca='automato'. A regra de que o Autômato não se cura por meios tradicionais está na página da raça; a ficha deve bloquear ou avisar poção de cura num Autômato?",'status':'pendente: Pedro'},
+ {'n':4,'item':'Consumíveis','o':"Resolvido (D90): o Sistema não fixa custo de ação para o que não está na lista; o mestre decide na hora, pela intuição, sem pensar em balanceamento. Referência de tempo do Pedro: 1 ação = 2 segundos; 3 ações = 6 segundos = 1 turno. 'acoes: null' = o mestre decide.",'status':'resolvido (D90)'},
+ {'n':5,'item':'Erva Medicinal','o':"Corrigido no CSV: 'Saude' -> 'Saúde' (D91).",'status':'resolvido (D91)'},
+ {'n':6,'item':'Kits de Manutenção (4)','o':"'Kit de Manutenção de Autômatos': marquei soParaRaca='automato'. A regra de que o Autômato não se cura por meios tradicionais está na página da raça; a ficha deve bloquear ou avisar poção de cura num Autômato?",'status':'pendente: Pedro (recomendo avisar)'},
  {'n':7,'item':'Armadura do Pantaneiro, Antídoto Universal, Chá de Ervas Amargas','o':"Usam 'Envenenado'; a condição do catálogo é 'Envenenamento' (C16). Mapeado por alias.",'status':'decisao'},
 ]
 
@@ -602,7 +602,7 @@ if __name__ == '__main__':
         sha = hashlib.sha256(open(CSV,'rb').read()).hexdigest()[:16]
         final = {
           'schemaVersion': 'efeitos-itens/1.0',
-          'geradoEm': '2026-09-26',
+          'geradoEm': '2026-09-26 (rev. 2: D89 Anel do Baluarte, D91 Erva Medicinal)',
           'geradoPor': 'ficha-efeitos-gerador.py + ficha-efeitos-overrides.json (branch claude/khalkaria-bazar-balance-lsdfic)',
           'fonte': {'csv': 'references/bazar-v26.csv (= data/Bazar_Khalkaria_v26.csv na main: coluna Efeito idêntica nos 727; só Ingredientes difere, em 109)',
                     'sha256_16': sha, 'itens': len(rows)},

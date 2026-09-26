@@ -526,6 +526,37 @@ cartas". **Errado.** O custo crescente (grátis, 2, 3, 4…) é **por mão, a ca
 grátis ao longo da campanha, não 1. O próprio Limiar diz: *"5-11 Cartas do Limiar escolhidas
 (dependendo de como gastou os pontos)"*.
 
+**D88 — Manobra nova: Investida.** Criada para dar sentido às *Grevas Trovejantes* ("A manobra
+Investida concede +1d6 de dano"), que citavam uma manobra que não existia. Regra do Pedro, verbatim:
+> *"No tormenta é muito roubado, você pode causar dano a todos em uma linha reta. No sistema
+> Khalkaria, você gasta 2 ações e dispara em uma linha reta, você pode fazer uma rolagem de ataque a
+> cada inimigo que ultrapassar caso vença em movimento contra ele, falhar contra um alvo significa
+> não conseguir ultrapassá-lo e sua investida termina antes dele."*
+
+A trava é a disputa de Movimento: com chance igual (50%), a Investida rende em média 0,5 ataque
+contra 1 inimigo, 0,75 contra 2 e 0,875 contra 3 — nunca passa de 1 ataque esperado. Com Movimento
+bem treinado (70%) e 3 inimigos alinhados, 1,5. É a única forma de uma Pesada Brutal (Atacar(3))
+atingir vários inimigos no turno, mas depende de alinhamento: é recompensa de posição, não de dano.
+**Em aberto antes de ir ao Notion:** (a) conta como a ação de Mover do turno? (b) ultrapassar um
+inimigo provoca ataque de oportunidade? (c) o inimigo que te para sofre ataque? (li que não).
+
+**D89 — `Ae(Todos)` exclui Força e Primordial, sempre.** *"Exclui, força e primordial no baluarte."*
+O *Anel do Baluarte* foi corrigido no CSV para `Ae(Todos, 3), (Exceto: Força e Primordial).`, igual à
+*Capa do Vazio*. Os três itens com `Ae(Todos)` agora dizem a mesma coisa.
+⚠️ Continua aberto: `Ae(Todos)` cobre os 3 tipos Ordinários, ou só os atípicos? (D63: o Ordinário é
+do Ar.)
+
+**D90 — Ação não definida: o mestre decide na hora. 1 ação = 2 segundos.**
+> *"Isso é uma brecha do sistema, ações não definidas são custeadas conforme a intuição do
+> mestre-jogador no momento, sem pensar tanto no balanceamento. Mas 1 ação significa 2 segundos de
+> combate, 3 ações 6 segundos que é 1 turno."*
+
+Vale para usar consumível sem custo escrito, e para qualquer ação fora da lista. Consequência que eu
+derivei e marquei como tal: a rodada tem 6 segundos, então **1 minuto = 10 rodadas** — é a conversão
+que a ficha precisa para durações escritas em minutos.
+
+**D91 — *Erva Medicinal*: "Saude" → "Saúde".** Correção de digitação autorizada, aplicada no CSV.
+
 ## D68 — O andar de Nível 1 (truques)
 Todas as magias existentes **sobem 1 nível**: as antigas 1–4 viram 2–5. O novo Nível 1 são os
 20 truques. Consequência limpa: a regra do Teurgo deixa de ser "iguais ou abaixo do seu
@@ -652,11 +683,11 @@ documento; outras páginas antigas devem ter o mesmo problema.
 
 | # | Onde | O quê | Recomendação |
 |---|---|---|---|
-| 1 | *Grevas Trovejantes* | "A manobra Investida concede +1d6 de dano." **Não existe manobra Investida** (são Empurrar, Desarmar, Agarrar) | Trocar por uma manobra que existe, ou por "ao usar Acelerar e atacar" |
-| 2 | `Ae(Todos)` | *Capa Defensiva* e *Capa do Vazio* excluem Força e Primordial; *Anel do Baluarte* não. E não está escrito se `Ae(Todos)` cobre os 3 Ordinários | `Ae(Todos)` = os tipos atípicos, exceto Força e Primordial, nos três |
+| 1 | *Grevas Trovejantes* | "A manobra Investida concede +1d6 de dano." A manobra não existia | ✅ **Criada (D88)**; texto final depende de 3 pontos |
+| 2 | `Ae(Todos)` | Exclusão de Força e Primordial | ✅ **D89**, nos três. Aberto: cobre os Ordinários? |
 | 3 | "+2 Força" sem "testes de" | *Cinturão do Colosso*, *Elixir do Crescimento*, *Elixir do Encolhimento* | Li como valor de atributo (o *Elixir de Força* escreve "testes de Força" quando quer teste) |
-| 4 | Consumível | **O Sistema não define quantas ações custa usar um consumível** | 1 ação em si, 1 ação em outro; arremesso segue o item |
-| 5 | *Erva Medicinal* | "Saude" sem acento no CSV | Corrigir com autorização |
+| 4 | Consumível | Custo de ação não definido | ✅ **D90**: o mestre decide; 1 ação = 2 s |
+| 5 | *Erva Medicinal* | "Saude" sem acento | ✅ **D91**, corrigido |
 | 6 | Kits de Manutenção | Só curam Autômato; a ficha bloqueia ou avisa poção de cura em Autômato? | Avisar |
 
 **Bloco C** (raças, origens, Limiar, passivas de classe na mesma gramática): não começado. Vem
