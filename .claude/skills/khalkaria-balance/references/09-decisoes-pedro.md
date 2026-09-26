@@ -527,18 +527,28 @@ grátis ao longo da campanha, não 1. O próprio Limiar diz: *"5-11 Cartas do Li
 (dependendo de como gastou os pontos)"*.
 
 **D88 — Manobra nova: Investida.** Criada para dar sentido às *Grevas Trovejantes* ("A manobra
-Investida concede +1d6 de dano"), que citavam uma manobra que não existia. Regra do Pedro, verbatim:
-> *"No tormenta é muito roubado, você pode causar dano a todos em uma linha reta. No sistema
-> Khalkaria, você gasta 2 ações e dispara em uma linha reta, você pode fazer uma rolagem de ataque a
-> cada inimigo que ultrapassar caso vença em movimento contra ele, falhar contra um alvo significa
-> não conseguir ultrapassá-lo e sua investida termina antes dele."*
+Investida concede +1d6 de dano"). Texto final no Notion (Sistema > Manobras), verbatim; a primeira
+frase é do Pedro, a segunda são as respostas dele de 2026-09-26, gravadas por mim:
+> *"Você gasta duas ações para se movimentar até seu Movimento em linha reta, a cada inimigo colidido
+> no seu caminho faça um teste de Movimento contra ele, em caso de sucesso você realiza 1 ação:Atacar
+> contra ele e segue para o próximo alvo na trajetória, em caso de falha você é interceptado e para
+> antes do alvo contra qual falhou e realiza 1 ação:Atacar contra ele."*
+> *"A Investida conta como a sua ação de Mover do turno. Ultrapassar inimigos durante a Investida não
+> provoca ataques de oportunidade."*
 
-A trava é a disputa de Movimento: com chance igual (50%), a Investida rende em média 0,5 ataque
-contra 1 inimigo, 0,75 contra 2 e 0,875 contra 3 — nunca passa de 1 ataque esperado. Com Movimento
-bem treinado (70%) e 3 inimigos alinhados, 1,5. É a única forma de uma Pesada Brutal (Atacar(3))
-atingir vários inimigos no turno, mas depende de alinhamento: é recompensa de posição, não de dano.
-**Em aberto antes de ir ao Notion:** (a) conta como a ação de Mover do turno? (b) ultrapassar um
-inimigo provoca ataque de oportunidade? (c) o inimigo que te para sofre ataque? (li que não).
+Respostas do Pedro às minhas três perguntas: (a) conta como Mover: *"Sim conta."* (b) ataque de
+oportunidade ao ultrapassar: *"Não."* (c) quem intercepta: *"Leva ataque sim."*
+
+🔴 **Correção minha:** eu tinha lido que o interceptador não era atacado e calculado "nunca passa de 1
+ataque esperado". Errado. Você sempre ataca o primeiro; o k-ésimo com chance p^(k−1). Ataques
+esperados = 1 + p + p² + … : com 50% na disputa, **1 / 1,5 / 1,75** contra 1 / 2 / 3 inimigos em
+linha; com 70%, **1 / 1,7 / 2,19**.
+
+⚠️ **Em aberto (L13 do `15-ficha-rodada3.md`):** "1 ação:Atacar" dá um ataque por alvo mesmo com
+Atacar(2)/Atacar(3) — a Pesada Brutal ataca por 2 ações em vez de 3 — e, pela D29 (PMA por alvo),
+nenhum desses ataques leva −5. **Colisão de nome (L20):** o Brutalista tem uma técnica geral
+"Investida" (2 ações, 3 Stamina, Fortitude ou (Nível)d6+FOR e Caído) e o *Titã* do Alquimista tem
+uma ação "Investida".
 
 **D89 — `Ae(Todos)` exclui Força e Primordial, sempre.** *"Exclui, força e primordial no baluarte."*
 O *Anel do Baluarte* foi corrigido no CSV para `Ae(Todos, 3), (Exceto: Força e Primordial).`, igual à
@@ -556,6 +566,63 @@ derivei e marquei como tal: a rodada tem 6 segundos, então **1 minuto = 10 roda
 que a ficha precisa para durações escritas em minutos.
 
 **D91 — *Erva Medicinal*: "Saude" → "Saúde".** Correção de digitação autorizada, aplicada no CSV.
+
+## Rodada 3 da ficha digital (2026-09-26) — decisões do plano (PD) e Notion gravado
+
+**Numeração:** `PDn` = decisão n do plano do agente de HTML (`docs/ficha-digital/02-plano.md`),
+respondida pelo Pedro em `docs/ficha-digital/03-respostas-pedro.md` (main 703f665). **Não confundir
+com `Dn` desta memória** (D22 aqui é Margem de Ameaça; PD22 é Ae(Todos)). `Ln` = item do lote de
+revisão em `15-ficha-rodada3.md`.
+
+**Regras decididas pelo Pedro (texto dele entre aspas):**
+- **PD7** — "X ou Y" (Movimento, Convencimento, Enganação, Intimidação, Stamina, Éter, CD do
+  Espadachim): *"Maior mas com escolha de mudar"*. Atacar não é X/Y: segue a arma.
+- **PD8** — *"é ativa 10 + mod. des + Dado Defender"*; o dado não soma atributo; vale *"apenas contra
+  o alvo que te atacou durante o turno dele. Ataques de outros alvos usam sua evasão passiva."*
+- **PD13** — 5ª carta custa 5; total de cartas 4–12; 6ª carta *"SEMPRE custa 2 pontos de limiar,
+  mesmo sendo a primeira carta escolhida, e só pode ser escolhida 1 vez por mão"*, 2 pontos livres em
+  até dois atributos.
+- **PD14a** — Sangramento: num acerto que também aplica, consome antes.
+- **PD15** — Saúde temporária: não soma (fica a maior), gasta primeiro, some no descanso longo.
+- **PD16** — 1 sustentada ativa; *"o padrão é o éter gasto na canalização da magia, mas só se não
+  tiver escrito na descrição da magia."*
+- **PD17** — *"Exposto é removido após ser acertado por um ataque. Você fica desnutrido para cada dia
+  que descansou sem se alimentar (consumir 1 item do tipo comida) ou não teve luz de fogueira ou
+  outras fontes. Exaurido e Oco são removidos quando você sai dos negativos nos 2 status Stamina e
+  Éter."* Agarrado vira condição; Marcado não; "ultrapassar" em Morrendo e Oco.
+- **PD18** — consumível: 1 ação em si ou em outro, arremesso segue o item; *"Apenas 1 magia conjurada
+  por turno e ações livres infinitas."*
+- **PD23** — poção em Autômato: avisar com pop-up. A raça diz mais: *"Poções e Elixires não
+  funcionam em você."*
+- **PD26a** — aplicar as Marcas da Vhelor (texto do Pedro em `marcas-vhelor.json`, fonte única).
+- **PD30** — criação 8–18: *"Se a soma de um valor der menos de 8, role os 4 dados novamente"*.
+- **PD31** — tique de dano no início do turno do afetado; corrigir Ferraria, Pele de Pedra, resíduo
+  da D68.
+- **PD1** — todo campo da ficha é editável à mão, com a conta visível.
+
+✅ **Gravado no Notion em 2026-09-26, diff conferido** (log verbatim em `15-ficha-rodada3.md` §A):
+Condições (Sangramento +Xd4, tiques no início do turno, Morrendo não mitigável, Exaurido/Oco saem
+acima de 0, Desnutrido sobe, card Agarrado); Sistema (rerrolagem < 8, Ferraria, 1 magia por turno,
+consumível, ações livres, Evasão Ativa, Ar soma, Investida (a)(b), Desnutrido); Magias (Pele de
+Pedra Ar, Dissipar Nível 3); Limiar (5ª carta, 6ª carta); 7 classes (Evasão Ativa com Dado de
+Defender). Não gravado: Template (Intimidação For/Sab), que é Notion × Notion.
+
+🔴 **Correções minhas nesta rodada:**
+- **Lento X é intensidade**, não duração (a P27 estava errada): *Bomba Temporal* "Lento 2 (-2
+  Ação/turno, -6 m movimento…)"; *Fusão Primal* "Lento 1, por 1 rodada".
+- **A lista de condições mentais existe:** rara *Santuário Intocável*, "condições mentais
+  (Enfeitiçado, Amedrontado, Confuso, Atordoado)". Minha recomendação antiga (com Descontrolado e
+  Adormecido) cai.
+- **Intimidação:** a tabela do Notion e a ficha A4 dizem Con/For; quem destoa é o Template.
+
+**Achados novos, esperando o Pedro (lote L, `15-ficha-rodada3.md` §E):** Magias Pactuadas "Contida =
+0 (Ao invés de 1)" contra o custo mínimo (L15); Cartucho Arcano "(nível-1)" é resíduo da D68 (L18);
+Muralha Viva "Defender de 3 em 3" contra o dado de Defender (L19); três "Investida" diferentes (L20);
+Resumo do Limiar "14+" contra "16+" (L16); técnicas curto × longo (L22); Stamina negativa (L03);
+Desnutrido não tem regra de descer (L05).
+
+**Estado do Limiar no Notion (2026-09-26):** 127 cartas = 8 universais + 12 × 5 atributos + 59
+raras. O CLAUDE.md ainda diz 170/129/10.
 
 ## D68 — O andar de Nível 1 (truques)
 Todas as magias existentes **sobem 1 nível**: as antigas 1–4 viram 2–5. O novo Nível 1 são os
@@ -668,27 +735,27 @@ documento; outras páginas antigas devem ter o mesmo problema.
 
 | # | Lacuna | Recomendação |
 |---|---|---|
-| 1 | Exposto derivado de Paralisado é contínuo? | Concedido uma vez, consumido no primeiro acerto |
-| 2 | Saída de Exaurido e Oco | `sai: recurso > 0` |
-| 3 | Como o Desnutrido diminui | Comer no descanso longo remove 1 |
-| 4 | Lista das "condições mentais" | Confuso, Amedrontado, Descontrolado, Enfeitiçado, Adormecido |
-| 5 | "1 cast por turno" existe? | *Projétil* diz que ignora uma regra que não está escrita |
-| 6 | Ofício(Ferraria) com o texto da Engenharia | Copiar-colar; escopo da D36 |
-| 7 | Intimidação: CON/FOR ou FOR/SAB? | CON/FOR |
-| 8 | Ordem do Sangramento num acerto que também aplica | Consumir antes de aplicar (D83) |
-| 9 | O dado de Defender soma atributo? | Não, senão conta Destreza duas vezes |
+| 1 | Exposto derivado de Paralisado é contínuo? | ✅ PD17a: sai no primeiro acerto |
+| 2 | Saída de Exaurido e Oco | ✅ gravado (Condições) |
+| 3 | Como o Desnutrido diminui | **Aberto (L05).** Comer no descanso longo remove 1 |
+| 4 | Lista das "condições mentais" | ✅ Existe: *Santuário Intocável* (Enfeitiçado, Amedrontado, Confuso, Atordoado) |
+| 5 | "1 cast por turno" existe? | ✅ PD18, gravado |
+| 6 | Ofício(Ferraria) com o texto da Engenharia | ✅ gravado |
+| 7 | Intimidação: CON/FOR ou FOR/SAB? | ✅ CON/FOR (Sistema + A4); falta o Template (L21) |
+| 8 | Ordem do Sangramento num acerto que também aplica | ✅ PD14a, gravado |
+| 9 | O dado de Defender soma atributo? | ✅ PD8a, gravado |
 
 ### Pendências abertas pelo mapa de efeitos dos itens (2026-09-26)
 `ficha-efeitos-itens.json`, pedido 2 do agente de HTML (bloco B). 727 itens, conta fechada.
 
 | # | Onde | O quê | Recomendação |
 |---|---|---|---|
-| 1 | *Grevas Trovejantes* | "A manobra Investida concede +1d6 de dano." A manobra não existia | ✅ **Criada (D88)**; texto final depende de 3 pontos |
-| 2 | `Ae(Todos)` | Exclusão de Força e Primordial | ✅ **D89**, nos três. Aberto: cobre os Ordinários? |
-| 3 | "+2 Força" sem "testes de" | *Cinturão do Colosso*, *Elixir do Crescimento*, *Elixir do Encolhimento* | Li como valor de atributo (o *Elixir de Força* escreve "testes de Força" quando quer teste) |
+| 1 | *Grevas Trovejantes* | "A manobra Investida concede +1d6 de dano." A manobra não existia | ✅ D88 no Notion; no mapa: `ataque.danoExtra 1d6`, condição `investida` (PD21) |
+| 2 | `Ae(Todos)` | Exclusão de Força e Primordial | ✅ **D89** + PD22: os 11 atípicos menos Força e Primordial; nunca os Ordinários (campo `cobre`) |
+| 3 | "+2 Força" sem "testes de" | *Cinturão do Colosso*, *Elixir do Crescimento*, *Elixir do Encolhimento* | ✅ PD24: valor de atributo |
 | 4 | Consumível | Custo de ação não definido | ✅ **D90**: o mestre decide; 1 ação = 2 s |
 | 5 | *Erva Medicinal* | "Saude" sem acento | ✅ **D91**, corrigido |
-| 6 | Kits de Manutenção | Só curam Autômato; a ficha bloqueia ou avisa poção de cura em Autômato? | Avisar |
+| 6 | Kits de Manutenção | Só curam Autômato; a ficha bloqueia ou avisa poção de cura em Autômato? | ✅ PD23: avisar com pop-up, em toda Poção e Elixir (texto da raça) |
 
 **Bloco C** (raças, origens, Limiar, passivas de classe na mesma gramática): não começado. Vem
 depois da rodada do Batedor.

@@ -46,9 +46,11 @@ Tipo de Craft · Ingredientes · Tags · Lore/Notas · **CD de Craft** · (17 co
 | `01-nucleo-sistema.md` | Regras centrais: perícias, retaliação, dano/defesa, armas, inventário, magia | Notion `2b76e3a4…` |
 | **`13-batedor-diagnostico.md`** | **Projeto ativo:** diagnóstico do Batedor + decisão de escopo + próximo passo | análise + Notion `8706e3a4…` |
 | **`14-ficha-digital.md`** | **Resposta ao agente de HTML:** arbitragem das 21 contradições e das 59 perguntas da ficha digital, com o que precisa ir ao Notion | Notion `2b76e3a4…` + D1–D79 |
-| `ficha-digital-regras.json` | as mesmas regras como dado, no contrato `regras-ficha/1.0` — cada regra com `status` (canônico / decisão / pedroDecide / pendente) | gerado |
+| **`15-ficha-rodada3.md`** | **Rodada 3 da ficha:** log do Notion gravado (antes/depois), respostas C1–C6, **lote PD20 de revisão (L01–L45)** e pendências da main | Notion + `03-respostas-pedro.md` |
+| `ficha-digital-regras.json` | as mesmas regras como dado, no contrato `regras-ficha/1.1` — cada regra com `status` (canônico / aprovado / decisão / pedroDecide / pendente) | gerado |
 | **`ficha-efeitos-itens.json`** | **O que cada um dos 727 itens do Bazar muda na ficha** (pedido 2 do agente de HTML, bloco B): itens · armas · consumo · semEfeito, conta fechada | gerado |
 | `ficha-efeitos-gerador.py` · `ficha-efeitos-overrides.json` | gerador com gramática fechada por frase + detector de falso negativo; exceções revisadas à mão | — |
+| `marcas-vhelor.json` | **fonte única das 7 Marcas da Vhelor** (texto do Pedro, gatilhos por item, efeitos por marca); o gerador copia para o bloco `marcasVhelor` | Pedro (PD26a) |
 | **`12-magias-nivel1.md`** | **As 20 magias de Nível 1**, formato de tabela do Notion | fechado com o Pedro |
 | `magias-nivel1.json` | as mesmas 20 como dado (Rota 1) | gerado |
 | `magias-nivel1-gerador.py` | guarda as 20 e **valida antes de emitir**: 5 por escola, nomes únicos, modulações da escola certa, barras de exatamente 3 valores, nenhuma menção a Contida | — |

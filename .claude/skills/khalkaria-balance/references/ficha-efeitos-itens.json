@@ -1,10 +1,10 @@
 {
- "schemaVersion": "efeitos-itens/1.0",
- "geradoEm": "2026-09-26 (rev. 2: D89 Anel do Baluarte, D91 Erva Medicinal)",
+ "schemaVersion": "efeitos-itens/1.1",
+ "geradoEm": "2026-09-26 (rev. 3: rodada 3 — PD21 Grevas, PD22 Ae(Todos), PD23 Autômato, PD24, PD25, PD26a Marcas da Vhelor)",
  "geradoPor": "ficha-efeitos-gerador.py + ficha-efeitos-overrides.json (branch claude/khalkaria-bazar-balance-lsdfic)",
  "fonte": {
   "csv": "references/bazar-v26.csv (= data/Bazar_Khalkaria_v26.csv na main: coluna Efeito idêntica nos 727; só Ingredientes difere, em 109)",
-  "sha256_16": "f83b4fd80d74c2dd",
+  "sha256_16": "757e69f353f01580",
   "itens": 727
  },
  "contagem": {
@@ -26,6 +26,7 @@
   },
   "status": {
    "canonico": "saiu da gramática fechada sobre o texto do CSV, que é a fonte do Bazar",
+   "aprovado": "leitura decidida pelo Pedro (rodada 3: PD21-PD26 de docs/ficha-digital/03-respostas-pedro.md)",
    "decisao": "leitura minha, revisada à mão (ficha-efeitos-overrides.json ou leitura \"atributo nu\")",
    "pendente": "depende do Pedro"
   },
@@ -43,14 +44,18 @@
    "fonteDeLuz": "servem de fonte de luz para o descanso longo",
    "alimento": "servem de alimento para o descanso longo"
   },
-  "maisInt": "'+Int' em cura de item = mod.INT de quem USA o item (regras-ficha P09)"
+  "maisInt": "'+Int' em cura de item = mod.INT de quem USA o item (regras-ficha P09)",
+  "avisoRaca": "{<raca>: {modo:'confirmar', texto}}: a ficha avisa com pop-up de confirmação e deixa aplicar (PD23). Hoje só 'automato'.",
+  "soParaRaca": "o item só funciona nessa raça (Kits de Manutenção: 'automato')",
+  "marcaVhelor": "{soma, funcionaAteMarca?}: quanto o item move o contador de Marcas da Vhelor ao ser consumido. Textos e efeitos das 7 marcas no bloco 'marcasVhelor' (fonte única: marcas-vhelor.json)",
+  "requisito": "{arma:'leve'} ou {marcaVhelorMin:n}: o item só funciona se a condição valer; a ficha avisa, não bloqueia"
  },
  "alvos": {
   "imunidade.condicao.<id>": "imune a uma condição (id do catálogo de condições). Diferente de imunidade.<tipo>, que é a tipo de dano",
   "imunidade.<tipo>": "imune a um tipo de dano (os 14 da D67)",
   "resistencia.<tipo>": "Resistência (metade) a um tipo de dano",
   "vulnerabilidade.<tipo>": "Vulnerabilidade (dobro) a um tipo de dano",
-  "ae.<tipo|categoria|todos>": "Armadura Específica. 'todos' pode trazer 'excecao'",
+  "ae.<tipo|categoria|todos>": "Armadura Específica. 'todos' = os 11 tipos atípicos menos a 'excecao'; nunca os 3 Ordinários, que são do Ar (PD22). O campo 'cobre' traz a lista final",
   "ar": "Armadura (reduz dano Ordinário). Soma com o Ar racial, sem teto (D85)",
   "pericia.<id>": "as 24 perícias. Em escudo, condicao='reacaoDefender': soma na rolagem do dado de Defender quando usa a reação",
   "testes.<FOR|DES|CON|INT|SAB>": "bônus em todo teste que usa esse atributo",
@@ -66,7 +71,7 @@
   "tamanho": "categoria de tamanho (+1/-1)",
   "margemAmeaca": "na arma, só quando incondicional (Kali, Martelo Trovejante)",
   "dano.corpoACorpo": "dano somado a ataques corpo a corpo",
-  "ataque.danoExtra | ataque.ignoraAr | ataque.bonusAtacar": "linha de ataque da arma empunhada; 'ataques' = quantos ataques o efeito dura",
+  "ataque.danoExtra | ataque.ignoraAr | ataque.bonusAtacar": "linha de ataque da arma empunhada; 'ataques' = quantos ataques o efeito dura; condicao 'investida' = só nos ataques da manobra Investida",
   "capacidade.bugigangas | capacidade.equipamentos": "capacidade de carga",
   "recipiente.bugigangas": "recipiente com capacidade própria; contaPeso=false",
   "permiteSemTreino.<pericia>": "libera a perícia sem treino (Ofícios); pode ter penalidade",
@@ -77,26 +82,26 @@
   {
    "n": 1,
    "item": "Grevas Trovejantes",
-   "o": "'A manobra Investida concede +1d6 de dano.' A manobra não existia; o Pedro a criou em 2026-09-26 (D88): 2 ações, linha reta, Movimento × Movimento contra cada inimigo, ataque em quem você ultrapassa. Texto final entra no Notion (Manobras) depois de dois pontos em aberto.",
-   "status": "resolvendo (D88)"
+   "o": "'A manobra Investida concede +1d6 de dano.' Virou ataque.danoExtra 1d6 com condicao 'investida'. A manobra existe no Notion (Sistema > Manobras, D88).",
+   "status": "resolvido (PD21)"
   },
   {
    "n": 2,
    "item": "Ae(Todos)",
-   "o": "Resolvido em parte (D89): os três itens com Ae(Todos) excluem Força e Primordial (o Anel do Baluarte foi corrigido no CSV). Continua aberto: Ae(Todos) cobre os 3 tipos Ordinários? A D63 diz que Ae é de dano atípico e que o Ordinário é do Ar.",
-   "status": "pendente: Pedro (só a parte dos Ordinários)"
+   "o": "Os três itens com Ae(Todos) cobrem os 11 atípicos menos Força e Primordial, e nunca os 3 Ordinários (campo 'cobre').",
+   "status": "resolvido (PD22)"
   },
   {
    "n": 3,
    "item": "Cinturão do Colosso, Elixir do Crescimento, Elixir do Encolhimento",
-   "o": "'+2 Força' / '+2 Destreza' sem 'testes de': li como valor de atributo, porque o Elixir de Força escreve 'testes de Força' quando quer dizer teste.",
-   "status": "decisao"
+   "o": "'+2 Força' / '+2 Destreza' sem 'testes de' = valor de atributo.",
+   "status": "aprovado (PD24)"
   },
   {
    "n": 4,
    "item": "Consumíveis",
-   "o": "Resolvido (D90): o Sistema não fixa custo de ação para o que não está na lista; o mestre decide na hora, pela intuição, sem pensar em balanceamento. Referência de tempo do Pedro: 1 ação = 2 segundos; 3 ações = 6 segundos = 1 turno. 'acoes: null' = o mestre decide.",
-   "status": "resolvido (D90)"
+   "o": "O Sistema agora diz: 'Usar item consumível (1 ação) → em você ou em outra criatura. Se o item for arremessado, siga o que ele diz.' (PD18). 'acoes: null' no item = vale essa regra.",
+   "status": "resolvido (PD18)"
   },
   {
    "n": 5,
@@ -106,17 +111,196 @@
   },
   {
    "n": 6,
-   "item": "Kits de Manutenção (4)",
-   "o": "'Kit de Manutenção de Autômatos': marquei soParaRaca='automato'. A regra de que o Autômato não se cura por meios tradicionais está na página da raça; a ficha deve bloquear ou avisar poção de cura num Autômato?",
-   "status": "pendente: Pedro (recomendo avisar)"
+   "item": "Poções, Elixires e outras curas em Autômato",
+   "o": "Avisar com pop-up de confirmação (avisoRaca). A raça diz 'Poções e Elixires não funcionam em você': vale para TODA poção e elixir, não só as de cura.",
+   "status": "resolvido (PD23)"
   },
   {
    "n": 7,
    "item": "Armadura do Pantaneiro, Antídoto Universal, Chá de Ervas Amargas",
-   "o": "Usam 'Envenenado'; a condição do catálogo é 'Envenenamento' (C16). Mapeado por alias.",
-   "status": "decisao"
+   "o": "'Envenenado' = condição Envenenamento.",
+   "status": "aprovado (PD24)"
+  },
+  {
+   "n": 8,
+   "item": "Anel do Esgrimista",
+   "o": "'Armas Leves.' virou requisito (PD25). Aberto: com o Sangramento em +Xd4 (D83), 'consumir todos os acúmulos de uma só vez' dá Xd4 uma vez, ou a soma de todos os acertos que eles dariam (Xd4 + (X-1)d4 + ... )? Recomendo Xd4 uma vez e zerar.",
+   "status": "pendente: Pedro"
+  },
+  {
+   "n": 9,
+   "item": "Elixir da Expurgão",
+   "o": "Nome de propósito ou 'Expurgação'? Se mudar, o id muda (item-elixir-da-expurgao -> item-elixir-da-expurgacao) e marcas-vhelor.json acompanha.",
+   "status": "pendente: Pedro"
+  },
+  {
+   "n": 10,
+   "item": "Semente da Vhelor",
+   "o": "'Consumi-la instantaneamente te transforma em um ser pecaminoso': é a Marca 7 (Sucumbência) ou outra coisa? Fica lembrete.",
+   "status": "pendente: Pedro"
   }
  ],
+ "marcasVhelor": {
+  "schemaVersion": "marcas-vhelor/1.0",
+  "_doc": "Fonte única das Marcas da Vhelor (PD26a). O gerador de efeitos copia este arquivo para o bloco 'marcasVhelor' de ficha-efeitos-itens.json e liga cada item ao seu gatilho. Para mudar uma marca, edite só aqui e rode o gerador. Os textos são do Pedro, verbatim (** = negrito, * = itálico, como no original).",
+  "fonte": "docs/ficha-digital/03-respostas-pedro.md §3.1 (main 703f665), decisão PD26a",
+  "privacidade": "Pedro: 'privacidade não é problema'. A ficha pode mostrar a mecânica.",
+  "ui": "Pedro: 'Uma tela corrompida com raízes saturadas com alto contraste mostra esses textos ao ter consumido os itens.'",
+  "regra": "Cada folha, seiva ou casca consumida adiciona **1 Marca da Vhelor**. As Marcas se acumulam e não regridem facilmente.",
+  "min": 0,
+  "max": 7,
+  "acumulam": true,
+  "acumulamNota": "Os efeitos são cumulativos: na Marca 4 valem as Marcas 1, 2, 3 e 4.",
+  "gatilhos": {
+   "item-folha-amarela": {
+    "soma": 1,
+    "fonte": "regra do Pedro ('folha') e CSV: 'Adiciona 1 Marca da Vhelor'"
+   },
+   "item-seiva-da-vhelor": {
+    "soma": 1,
+    "fonte": "regra do Pedro ('seiva')"
+   },
+   "item-casca-de-raiz": {
+    "soma": 1,
+    "fonte": "regra do Pedro ('casca')"
+   },
+   "item-semente-da-vhelor": {
+    "soma": 0,
+    "fonte": "CSV: 'SEM adicionar Marca da Vhelor'"
+   },
+   "item-elixir-da-expurgao": {
+    "soma": -1,
+    "funcionaAteMarca": 4,
+    "fonte": "CSV: 'Remove 1 Marca da Vhelor. Não funciona acima da Marca 4.'"
+   }
+  },
+  "requisitos": {
+   "item-talisma-da-seiva": {
+    "marcaMin": 2,
+    "fonte": "CSV: 'Requisito: Marca da Vhelor 2 ou mais.'"
+   }
+  },
+  "substituiLembretes": [
+   "Adiciona 1 Marca da Vhelor (track de corrupção, ver Substâncias da Grande Árvore)",
+   "Não adiciona Marca da Vhelor",
+   "Remove 1 Marca da Vhelor",
+   "Não funciona acima da Marca 4",
+   "Requisito: Marca da Vhelor 2 ou mais"
+  ],
+  "marcas": [
+   {
+    "n": 1,
+    "texto": "Marca dourada angular surge na pele (cosmética, mas **detectável por cultistas**, que reconhecem os seus). Sonhos ocasionais com a Vhelor.",
+    "modificadores": [],
+    "lembretes": [
+     "Detectável por cultistas",
+     "Sonhos ocasionais com a Vhelor"
+    ]
+   },
+   {
+    "n": 2,
+    "texto": "−10 de Éter máximo permanente (Regras de Magia). Todo amanhecer: teste de Vontade (Atributos e Perícias) com CD crescente ou sente compulsão de consumir mais.",
+    "modificadores": [
+     {
+      "alvo": "eter.max",
+      "op": "soma",
+      "valor": -10,
+      "permanente": true
+     }
+    ],
+    "testes": [
+     {
+      "quando": "todoAmanhecer",
+      "pericia": "vontade",
+      "cd": null,
+      "cdNota": "'CD crescente': o valor não está escrito, o mestre define",
+      "falha": "compulsão de consumir mais"
+     }
+    ],
+    "lembretes": []
+   },
+   {
+    "n": 3,
+    "texto": "**Vício estabelecido.** Sem consumir 1 folha por semana, entra em abstinência: −2 em todas as rolagens e Desorientado até consumir.",
+    "estado": {
+     "id": "abstinencia",
+     "entra": "1 semana sem consumir 1 folha",
+     "sai": "consumir",
+     "manual": true
+    },
+    "modificadores": [
+     {
+      "alvo": "todosOsTestes",
+      "op": "soma",
+      "valor": -2,
+      "incluiAtaque": true,
+      "enquanto": "estado:abstinencia",
+      "nota": "texto: 'todas as rolagens'"
+     }
+    ],
+    "aplicaCondicao": [
+     {
+      "id": "desorientado",
+      "enquanto": "estado:abstinencia"
+     }
+    ],
+    "lembretes": []
+   },
+   {
+    "n": 4,
+    "texto": "Pele clareia visivelmente, perdendo cor até um branco doentio. Olhos perdem foco. −5 em interações sociais (não-corrompidos sentem repulsa instintiva). Ouve sussurros constantes da Vhelor.",
+    "modificadores": [
+     {
+      "alvo": "tag.social",
+      "op": "soma",
+      "valor": -5,
+      "condicao": "contra não-corrompidos",
+      "leitura": "o parêntese diz de onde vem a penalidade; contra corrompidos o mestre decide"
+     }
+    ],
+    "lembretes": [
+     "Ouve sussurros constantes da Vhelor"
+    ]
+   },
+   {
+    "n": 5,
+    "texto": "Em situações de stress ou combate: teste de Vontade ou fica *descontrolado* e age com agressividade pecaminosa involuntária por 1 rodada (ataca o aliado mais próximo, comete crueldade gratuita).",
+    "modificadores": [],
+    "testes": [
+     {
+      "quando": "stressOuCombate",
+      "pericia": "vontade",
+      "cd": null,
+      "cdNota": "não escrita, o mestre define",
+      "falha": {
+       "aplicaCondicao": "descontrolado",
+       "x": 1
+      }
+     }
+    ],
+    "lembretes": []
+   },
+   {
+    "n": 6,
+    "texto": "**Quase-não-retorno.** O GM ganha o direito de ditar 1 ação pecaminosa do personagem por sessão. O personagem sente lucidamente que está se perdendo — e não consegue parar.",
+    "modificadores": [],
+    "lembretes": [
+     "O mestre dita 1 ação pecaminosa do personagem por sessão"
+    ]
+   },
+   {
+    "n": 7,
+    "texto": "**Sucumbência.** O personagem vira NPC sob controle do GM: uma criatura corrompida da Vhelor, agente involuntário de Malkhor. O jogador perde o personagem — que pode reaparecer como mini-boss depois.",
+    "modificadores": [],
+    "estadoFinal": {
+     "id": "sucumbencia-vhelor",
+     "acao": "alertar",
+     "nota": "Mesmo tratamento dos outros estados finais do contrato (regras-ficha > morte.estadosFinais): banner, nunca trava a ficha."
+    },
+    "lembretes": []
+   }
+  ]
+ },
  "itens": {
   "item-armadura-de-couro": {
    "nome": "Armadura de Couro",
@@ -849,6 +1033,17 @@
      "excecao": [
       "forca",
       "primordial"
+     ],
+     "cobre": [
+      "fogo",
+      "frio",
+      "eletrico",
+      "veneno",
+      "acido",
+      "psiquico",
+      "radiante",
+      "trovejante",
+      "necrotico"
      ]
     }
    ],
@@ -2510,14 +2705,19 @@
      "alvo": "ae.trovejante",
      "op": "soma",
      "valor": 7
+    },
+    {
+     "alvo": "ataque.danoExtra",
+     "op": "soma",
+     "valor": "1d6",
+     "condicao": "investida",
+     "nota": "nos ataques feitos durante a manobra Investida (Sistema > Manobras, D88)"
     }
    ],
    "usos": null,
    "duracao": null,
    "acumula": true,
-   "lembretes": [
-    "A manobra Investida concede +1d6 de dano"
-   ],
+   "lembretes": [],
    "status": "canonico",
    "verbatim": "[Leve] Ae(Trovejante, 7). A manobra Investida concede +1d6 de dano."
   },
@@ -2927,11 +3127,15 @@
    "duracao": null,
    "acumula": true,
    "lembretes": [
-    "Armas Leves",
     "Ao acertar um alvo com 3 ou mais acúmulos de Sangramento, você pode consumir todos os acúmulos de uma só vez como ação livre"
    ],
-   "status": "canonico",
-   "verbatim": "Armas Leves. Ao acertar um alvo com 3 ou mais acúmulos de Sangramento, você pode consumir todos os acúmulos de uma só vez como ação livre."
+   "status": "aprovado",
+   "verbatim": "Armas Leves. Ao acertar um alvo com 3 ou mais acúmulos de Sangramento, você pode consumir todos os acúmulos de uma só vez como ação livre.",
+   "requisito": {
+    "arma": "leve",
+    "status": "aprovado",
+    "fonte": "PD25"
+   }
   },
   "item-anel-do-ultimo-suspiro": {
    "nome": "Anel do Último Suspiro",
@@ -3111,7 +3315,7 @@
      "alvo": "atributo.FOR",
      "op": "soma",
      "valor": 2,
-     "leitura": "valor de atributo, não bônus em teste"
+     "leitura": "valor de atributo, não bônus em teste (ratificado na PD24)"
     }
    ],
    "usos": null,
@@ -3120,7 +3324,7 @@
    "lembretes": [
     "Conta como +1 categoria de tamanho para manobras"
    ],
-   "status": "decisao",
+   "status": "aprovado",
    "verbatim": "+2 Força. Conta como +1 categoria de tamanho para manobras."
   },
   "item-colar-da-sanguessuga": {
@@ -3365,11 +3569,14 @@
    "usos": null,
    "duracao": null,
    "acumula": true,
-   "lembretes": [
-    "Requisito: Marca da Vhelor 2 ou mais"
-   ],
+   "lembretes": [],
    "status": "canonico",
-   "verbatim": "Regenera 2 de Saúde por turno fora de combate. Imune a Sangramento. Requisito: Marca da Vhelor 2 ou mais."
+   "verbatim": "Regenera 2 de Saúde por turno fora de combate. Imune a Sangramento. Requisito: Marca da Vhelor 2 ou mais.",
+   "requisito": {
+    "marcaVhelorMin": 2,
+    "status": "aprovado",
+    "fonte": "PD26a"
+   }
   },
   "item-talisma-da-vontade": {
    "nome": "Talismã da Vontade",
@@ -3876,6 +4083,17 @@
      "excecao": [
       "forca",
       "primordial"
+     ],
+     "cobre": [
+      "fogo",
+      "frio",
+      "eletrico",
+      "veneno",
+      "acido",
+      "psiquico",
+      "radiante",
+      "trovejante",
+      "necrotico"
      ]
     }
    ],
@@ -4429,6 +4647,17 @@
      "excecao": [
       "forca",
       "primordial"
+     ],
+     "cobre": [
+      "fogo",
+      "frio",
+      "eletrico",
+      "veneno",
+      "acido",
+      "psiquico",
+      "radiante",
+      "trovejante",
+      "necrotico"
      ]
     }
    ],
@@ -10835,7 +11064,16 @@
    "acoes": null,
    "lembretes": [],
    "status": "canonico",
-   "verbatim": "Recupera 1d4 de Saúde. Sem bônus de atributo. Empilhável: pesa 1 bugiganga a cada 10 unidades."
+   "verbatim": "Recupera 1d4 de Saúde. Sem bônus de atributo. Empilhável: pesa 1 bugiganga a cada 10 unidades.",
+   "avisoRaca": {
+    "automato": {
+     "modo": "confirmar",
+     "status": "decisao",
+     "fonte": "PD23",
+     "texto": "Raça Autômato (Notion): \"Possui mecanismo de automanutenção(cura ao descansar), mas para cura maior deve ser consertado com item Kit de Manutenção. Poções e Elixires não funcionam em você.\"",
+     "leitura": "não é Poção nem Elixir, mas é cura; a raça pede Kit de Manutenção para cura maior. O mestre confirma."
+    }
+   }
   },
   "item-bomba-de-fumaca-caseira": {
    "nome": "Bomba de Fumaça Caseira",
@@ -10892,7 +11130,12 @@
     "Uso repetido cria vínculo onírico permanente (ver Substâncias da Grande Árvore)"
    ],
    "status": "canonico",
-   "verbatim": "Sacia como refeição completa (substitui Comida em um descanso). Ao dormir após consumir, sonha fragmentos do Sonhador. Uso repetido cria vínculo onírico permanente (ver Substâncias da Grande Árvore). Empilhável: pesa 1 bugiganga a cada 10 unidades."
+   "verbatim": "Sacia como refeição completa (substitui Comida em um descanso). Ao dormir após consumir, sonha fragmentos do Sonhador. Uso repetido cria vínculo onírico permanente (ver Substâncias da Grande Árvore). Empilhável: pesa 1 bugiganga a cada 10 unidades.",
+   "marcaVhelor": {
+    "soma": 1,
+    "status": "aprovado",
+    "fonte": "PD26a"
+   }
   },
   "item-cha-de-ervas-amargas": {
    "nome": "Chá de Ervas Amargas",
@@ -10977,7 +11220,16 @@
    "acoes": null,
    "lembretes": [],
    "status": "decisao",
-   "verbatim": "Usada em um teste de Medicina CD 10 para conceder 1d4+2 de Saúde. Empilhável: pesa 1 bugiganga a cada 10 unidades."
+   "verbatim": "Usada em um teste de Medicina CD 10 para conceder 1d4+2 de Saúde. Empilhável: pesa 1 bugiganga a cada 10 unidades.",
+   "avisoRaca": {
+    "automato": {
+     "modo": "confirmar",
+     "status": "decisao",
+     "fonte": "PD23",
+     "texto": "Raça Autômato (Notion): \"Possui mecanismo de automanutenção(cura ao descansar), mas para cura maior deve ser consertado com item Kit de Manutenção. Poções e Elixires não funcionam em você.\"",
+     "leitura": "não é Poção nem Elixir, mas é cura; a raça pede Kit de Manutenção para cura maior. O mestre confirma."
+    }
+   }
   },
   "item-frasco-de-vitriolo": {
    "nome": "Frasco de Vitríolo",
@@ -11637,7 +11889,16 @@
    "acoes": null,
    "lembretes": [],
    "status": "canonico",
-   "verbatim": "Recupera 1d8 de Saúde e 1d8 de Stamina. Você fica Bêbado até o fim da cena."
+   "verbatim": "Recupera 1d8 de Saúde e 1d8 de Stamina. Você fica Bêbado até o fim da cena.",
+   "avisoRaca": {
+    "automato": {
+     "modo": "confirmar",
+     "status": "decisao",
+     "fonte": "PD23",
+     "texto": "Raça Autômato (Notion): \"Possui mecanismo de automanutenção(cura ao descansar), mas para cura maior deve ser consertado com item Kit de Manutenção. Poções e Elixires não funcionam em você.\"",
+     "leitura": "não é Poção nem Elixir, mas é cura; a raça pede Kit de Manutenção para cura maior. O mestre confirma."
+    }
+   }
   },
   "item-destilado-de-arremesso": {
    "nome": "Destilado de Arremesso",
@@ -11725,7 +11986,16 @@
     "Só pode ser bebido enquanto você estiver Bêbado"
    ],
    "status": "canonico",
-   "verbatim": "Só pode ser bebido enquanto você estiver Bêbado. Remove Bêbado e recupera 3d6 de Saúde e Stamina."
+   "verbatim": "Só pode ser bebido enquanto você estiver Bêbado. Remove Bêbado e recupera 3d6 de Saúde e Stamina.",
+   "avisoRaca": {
+    "automato": {
+     "modo": "confirmar",
+     "status": "decisao",
+     "fonte": "PD23",
+     "texto": "Raça Autômato (Notion): \"Possui mecanismo de automanutenção(cura ao descansar), mas para cura maior deve ser consertado com item Kit de Manutenção. Poções e Elixires não funcionam em você.\"",
+     "leitura": "não é Poção nem Elixir, mas é cura; a raça pede Kit de Manutenção para cura maior. O mestre confirma."
+    }
+   }
   },
   "item-fermentado-do-abismo": {
    "nome": "Fermentado do Abismo",
@@ -12068,7 +12338,15 @@
    "acoes": null,
    "lembretes": [],
    "status": "canonico",
-   "verbatim": "+2 testes de Destreza, +1,5m de Movimento. 10 min."
+   "verbatim": "+2 testes de Destreza, +1,5m de Movimento. 10 min.",
+   "avisoRaca": {
+    "automato": {
+     "modo": "confirmar",
+     "status": "canonico",
+     "fonte": "PD23 + página da raça",
+     "texto": "Raça Autômato (Notion): \"Possui mecanismo de automanutenção(cura ao descansar), mas para cura maior deve ser consertado com item Kit de Manutenção. Poções e Elixires não funcionam em você.\""
+    }
+   }
   },
   "item-elixir-de-forca": {
    "nome": "Elixir de Força",
@@ -12097,7 +12375,15 @@
    "acoes": null,
    "lembretes": [],
    "status": "canonico",
-   "verbatim": "+2 em testes de Força, +2 dano corpo a corpo. Duração 10 min."
+   "verbatim": "+2 em testes de Força, +2 dano corpo a corpo. Duração 10 min.",
+   "avisoRaca": {
+    "automato": {
+     "modo": "confirmar",
+     "status": "canonico",
+     "fonte": "PD23 + página da raça",
+     "texto": "Raça Autômato (Notion): \"Possui mecanismo de automanutenção(cura ao descansar), mas para cura maior deve ser consertado com item Kit de Manutenção. Poções e Elixires não funcionam em você.\""
+    }
+   }
   },
   "item-elixir-de-resistencia": {
    "nome": "Elixir de Resistência",
@@ -12126,7 +12412,15 @@
    "acoes": null,
    "lembretes": [],
    "status": "canonico",
-   "verbatim": "+2 Fortitude, +5 de Saúde temporária. 10 min."
+   "verbatim": "+2 Fortitude, +5 de Saúde temporária. 10 min.",
+   "avisoRaca": {
+    "automato": {
+     "modo": "confirmar",
+     "status": "canonico",
+     "fonte": "PD23 + página da raça",
+     "texto": "Raça Autômato (Notion): \"Possui mecanismo de automanutenção(cura ao descansar), mas para cura maior deve ser consertado com item Kit de Manutenção. Poções e Elixires não funcionam em você.\""
+    }
+   }
   },
   "item-elixir-de-eter-menor": {
    "nome": "Elíxir de Éter Menor",
@@ -12790,7 +13084,15 @@
    "acoes": null,
    "lembretes": [],
    "status": "canonico",
-   "verbatim": "Recupera 2d4+Int de Saúde. Consumível."
+   "verbatim": "Recupera 2d4+Int de Saúde. Consumível.",
+   "avisoRaca": {
+    "automato": {
+     "modo": "confirmar",
+     "status": "canonico",
+     "fonte": "PD23 + página da raça",
+     "texto": "Raça Autômato (Notion): \"Possui mecanismo de automanutenção(cura ao descansar), mas para cura maior deve ser consertado com item Kit de Manutenção. Poções e Elixires não funcionam em você.\""
+    }
+   }
   },
   "item-pocao-de-vigor": {
    "nome": "Poção de Vigor",
@@ -12812,7 +13114,15 @@
    "acoes": null,
    "lembretes": [],
    "status": "canonico",
-   "verbatim": "Recupera 1d6 de Stamina."
+   "verbatim": "Recupera 1d6 de Stamina.",
+   "avisoRaca": {
+    "automato": {
+     "modo": "confirmar",
+     "status": "canonico",
+     "fonte": "PD23 + página da raça",
+     "texto": "Raça Autômato (Notion): \"Possui mecanismo de automanutenção(cura ao descansar), mas para cura maior deve ser consertado com item Kit de Manutenção. Poções e Elixires não funcionam em você.\""
+    }
+   }
   },
   "item-pocao-de-vigor-moderada": {
    "nome": "Poção de Vigor Moderada",
@@ -12834,7 +13144,15 @@
    "acoes": null,
    "lembretes": [],
    "status": "canonico",
-   "verbatim": "Recupera 2d6 de Stamina."
+   "verbatim": "Recupera 2d6 de Stamina.",
+   "avisoRaca": {
+    "automato": {
+     "modo": "confirmar",
+     "status": "canonico",
+     "fonte": "PD23 + página da raça",
+     "texto": "Raça Autômato (Notion): \"Possui mecanismo de automanutenção(cura ao descansar), mas para cura maior deve ser consertado com item Kit de Manutenção. Poções e Elixires não funcionam em você.\""
+    }
+   }
   },
   "item-po-revelador": {
    "nome": "Pó Revelador",
@@ -12928,7 +13246,21 @@
    "acoes": null,
    "lembretes": [],
    "status": "canonico",
-   "verbatim": "Recupera 2d6 de Saúde e Stamina e remove Desorientado e Atordoado. Empilhável: pesa 1 bugiganga a cada 10 unidades."
+   "verbatim": "Recupera 2d6 de Saúde e Stamina e remove Desorientado e Atordoado. Empilhável: pesa 1 bugiganga a cada 10 unidades.",
+   "avisoRaca": {
+    "automato": {
+     "modo": "confirmar",
+     "status": "decisao",
+     "fonte": "PD23",
+     "texto": "Raça Autômato (Notion): \"Possui mecanismo de automanutenção(cura ao descansar), mas para cura maior deve ser consertado com item Kit de Manutenção. Poções e Elixires não funcionam em você.\"",
+     "leitura": "não é Poção nem Elixir, mas é cura; a raça pede Kit de Manutenção para cura maior. O mestre confirma."
+    }
+   },
+   "marcaVhelor": {
+    "soma": 1,
+    "status": "aprovado",
+    "fonte": "PD26a"
+   }
   },
   "item-solvente-universal": {
    "nome": "Solvente Universal",
@@ -13190,7 +13522,16 @@
     "Estabiliza um Morrendo imediatamente"
    ],
    "status": "decisao",
-   "verbatim": "Estabiliza um Morrendo imediatamente, cura 2d6+Int e remove até 1 condição física. Gasto após o uso."
+   "verbatim": "Estabiliza um Morrendo imediatamente, cura 2d6+Int e remove até 1 condição física. Gasto após o uso.",
+   "avisoRaca": {
+    "automato": {
+     "modo": "confirmar",
+     "status": "decisao",
+     "fonte": "PD23",
+     "texto": "Raça Autômato (Notion): \"Possui mecanismo de automanutenção(cura ao descansar), mas para cura maior deve ser consertado com item Kit de Manutenção. Poções e Elixires não funcionam em você.\"",
+     "leitura": "não é Poção nem Elixir, mas é cura; a raça pede Kit de Manutenção para cura maior. O mestre confirma."
+    }
+   }
   },
   "item-adrenalina-de-campo": {
    "nome": "Adrenalina de Campo",
@@ -13302,7 +13643,15 @@
     "Escala superfícies como aranha por 10 min"
    ],
    "status": "canonico",
-   "verbatim": "Escala superfícies como aranha por 10 min."
+   "verbatim": "Escala superfícies como aranha por 10 min.",
+   "avisoRaca": {
+    "automato": {
+     "modo": "confirmar",
+     "status": "canonico",
+     "fonte": "PD23 + página da raça",
+     "texto": "Raça Autômato (Notion): \"Possui mecanismo de automanutenção(cura ao descansar), mas para cura maior deve ser consertado com item Kit de Manutenção. Poções e Elixires não funcionam em você.\""
+    }
+   }
   },
   "item-elixir-da-expurgao": {
    "nome": "Elixir da Expurgão",
@@ -13316,12 +13665,23 @@
    "usos": null,
    "duracao": null,
    "acoes": null,
-   "lembretes": [
-    "Remove 1 Marca da Vhelor",
-    "Não funciona acima da Marca 4"
-   ],
+   "lembretes": [],
    "status": "canonico",
-   "verbatim": "Remove 1 Marca da Vhelor. Não funciona acima da Marca 4."
+   "verbatim": "Remove 1 Marca da Vhelor. Não funciona acima da Marca 4.",
+   "avisoRaca": {
+    "automato": {
+     "modo": "confirmar",
+     "status": "canonico",
+     "fonte": "PD23 + página da raça",
+     "texto": "Raça Autômato (Notion): \"Possui mecanismo de automanutenção(cura ao descansar), mas para cura maior deve ser consertado com item Kit de Manutenção. Poções e Elixires não funcionam em você.\""
+    }
+   },
+   "marcaVhelor": {
+    "soma": -1,
+    "funcionaAteMarca": 4,
+    "status": "aprovado",
+    "fonte": "PD26a"
+   }
   },
   "item-elixir-da-visao-verdadeira": {
    "nome": "Elixir da Visão Verdadeira",
@@ -13339,7 +13699,15 @@
     "Vê ilusões, invisibilidade e escuridão mágica"
    ],
    "status": "canonico",
-   "verbatim": "Vê ilusões, invisibilidade e escuridão mágica. Dura 1 min."
+   "verbatim": "Vê ilusões, invisibilidade e escuridão mágica. Dura 1 min.",
+   "avisoRaca": {
+    "automato": {
+     "modo": "confirmar",
+     "status": "canonico",
+     "fonte": "PD23 + página da raça",
+     "texto": "Raça Autômato (Notion): \"Possui mecanismo de automanutenção(cura ao descansar), mas para cura maior deve ser consertado com item Kit de Manutenção. Poções e Elixires não funcionam em você.\""
+    }
+   }
   },
   "item-elixir-das-guelras": {
    "nome": "Elixir das Guelras",
@@ -13357,7 +13725,15 @@
     "Respira debaixo d'água por 30 min"
    ],
    "status": "canonico",
-   "verbatim": "Respira debaixo d'água por 30 min."
+   "verbatim": "Respira debaixo d'água por 30 min.",
+   "avisoRaca": {
+    "automato": {
+     "modo": "confirmar",
+     "status": "canonico",
+     "fonte": "PD23 + página da raça",
+     "texto": "Raça Autômato (Notion): \"Possui mecanismo de automanutenção(cura ao descansar), mas para cura maior deve ser consertado com item Kit de Manutenção. Poções e Elixires não funcionam em você.\""
+    }
+   }
   },
   "item-elixir-das-linguas": {
    "nome": "Elixir das Línguas",
@@ -13375,7 +13751,15 @@
     "Entende qualquer idioma falado por 1h"
    ],
    "status": "canonico",
-   "verbatim": "Entende qualquer idioma falado por 1h."
+   "verbatim": "Entende qualquer idioma falado por 1h.",
+   "avisoRaca": {
+    "automato": {
+     "modo": "confirmar",
+     "status": "canonico",
+     "fonte": "PD23 + página da raça",
+     "texto": "Raça Autômato (Notion): \"Possui mecanismo de automanutenção(cura ao descansar), mas para cura maior deve ser consertado com item Kit de Manutenção. Poções e Elixires não funcionam em você.\""
+    }
+   }
   },
   "item-elixir-do-crescimento": {
    "nome": "Elixir do Crescimento",
@@ -13410,8 +13794,16 @@
    "duracao": "1 min",
    "acoes": null,
    "lembretes": [],
-   "status": "decisao",
-   "verbatim": "+1 tamanho, +1d4 dano, +2 Força. Dura 1 min."
+   "status": "aprovado",
+   "verbatim": "+1 tamanho, +1d4 dano, +2 Força. Dura 1 min.",
+   "avisoRaca": {
+    "automato": {
+     "modo": "confirmar",
+     "status": "canonico",
+     "fonte": "PD23 + página da raça",
+     "texto": "Raça Autômato (Notion): \"Possui mecanismo de automanutenção(cura ao descansar), mas para cura maior deve ser consertado com item Kit de Manutenção. Poções e Elixires não funcionam em você.\""
+    }
+   }
   },
   "item-elixir-do-encolhimento": {
    "nome": "Elixir do Encolhimento",
@@ -13446,8 +13838,16 @@
    "duracao": "1 min",
    "acoes": null,
    "lembretes": [],
-   "status": "decisao",
-   "verbatim": "-1 tamanho, +2 Furtividade, +2 Destreza. Dura 1 min."
+   "status": "aprovado",
+   "verbatim": "-1 tamanho, +2 Furtividade, +2 Destreza. Dura 1 min.",
+   "avisoRaca": {
+    "automato": {
+     "modo": "confirmar",
+     "status": "canonico",
+     "fonte": "PD23 + página da raça",
+     "texto": "Raça Autômato (Notion): \"Possui mecanismo de automanutenção(cura ao descansar), mas para cura maior deve ser consertado com item Kit de Manutenção. Poções e Elixires não funcionam em você.\""
+    }
+   }
   },
   "item-elixir-de-eter-moderado": {
    "nome": "Elíxir de Éter Moderado",
@@ -14131,7 +14531,15 @@
    "acoes": null,
    "lembretes": [],
    "status": "canonico",
-   "verbatim": "Recupera 3d6+Int de Saúde. Consumível."
+   "verbatim": "Recupera 3d6+Int de Saúde. Consumível.",
+   "avisoRaca": {
+    "automato": {
+     "modo": "confirmar",
+     "status": "canonico",
+     "fonte": "PD23 + página da raça",
+     "texto": "Raça Autômato (Notion): \"Possui mecanismo de automanutenção(cura ao descansar), mas para cura maior deve ser consertado com item Kit de Manutenção. Poções e Elixires não funcionam em você.\""
+    }
+   }
   },
   "item-pocao-de-vigor-maior": {
    "nome": "Poção de Vigor Maior",
@@ -14153,7 +14561,15 @@
    "acoes": null,
    "lembretes": [],
    "status": "canonico",
-   "verbatim": "Recupera 3d8 de Stamina."
+   "verbatim": "Recupera 3d8 de Stamina.",
+   "avisoRaca": {
+    "automato": {
+     "modo": "confirmar",
+     "status": "canonico",
+     "fonte": "PD23 + página da raça",
+     "texto": "Raça Autômato (Notion): \"Possui mecanismo de automanutenção(cura ao descansar), mas para cura maior deve ser consertado com item Kit de Manutenção. Poções e Elixires não funcionam em você.\""
+    }
+   }
   },
   "item-po-explosivo": {
    "nome": "Pó Explosivo",
@@ -14514,7 +14930,15 @@
    "acoes": null,
    "lembretes": [],
    "status": "canonico",
-   "verbatim": "+2 em TODOS os atributos. Dura 10 min."
+   "verbatim": "+2 em TODOS os atributos. Dura 10 min.",
+   "avisoRaca": {
+    "automato": {
+     "modo": "confirmar",
+     "status": "canonico",
+     "fonte": "PD23 + página da raça",
+     "texto": "Raça Autômato (Notion): \"Possui mecanismo de automanutenção(cura ao descansar), mas para cura maior deve ser consertado com item Kit de Manutenção. Poções e Elixires não funcionam em você.\""
+    }
+   }
   },
   "item-elixir-de-restauracao": {
    "nome": "Elixir de Restauração",
@@ -14538,7 +14962,15 @@
    "acoes": null,
    "lembretes": [],
    "status": "canonico",
-   "verbatim": "Remove Cego, Surdo, Paralisado ou Atordoado."
+   "verbatim": "Remove Cego, Surdo, Paralisado ou Atordoado.",
+   "avisoRaca": {
+    "automato": {
+     "modo": "confirmar",
+     "status": "canonico",
+     "fonte": "PD23 + página da raça",
+     "texto": "Raça Autômato (Notion): \"Possui mecanismo de automanutenção(cura ao descansar), mas para cura maior deve ser consertado com item Kit de Manutenção. Poções e Elixires não funcionam em você.\""
+    }
+   }
   },
   "item-estilhaco-do-cataclismo": {
    "nome": "Estilhaço do Cataclismo",
@@ -14588,11 +15020,15 @@
    "duracao": null,
    "acoes": null,
    "lembretes": [
-    "Adiciona 1 Marca da Vhelor (track de corrupção, ver Substâncias da Grande Árvore)",
     "Cada folha consumida nutre a Vhelor, fortalecendo-a"
    ],
-   "status": "decisao",
-   "verbatim": "+1 ponto de atributo permanente à escolha. Adiciona 1 Marca da Vhelor (track de corrupção, ver Substâncias da Grande Árvore). Cada folha consumida nutre a Vhelor, fortalecendo-a."
+   "status": "aprovado",
+   "verbatim": "+1 ponto de atributo permanente à escolha. Adiciona 1 Marca da Vhelor (track de corrupção, ver Substâncias da Grande Árvore). Cada folha consumida nutre a Vhelor, fortalecendo-a.",
+   "marcaVhelor": {
+    "soma": 1,
+    "status": "aprovado",
+    "fonte": "PD26a"
+   }
   },
   "item-mutagenico-maior": {
    "nome": "Mutagênico Maior",
@@ -15567,7 +16003,15 @@
    "acoes": null,
    "lembretes": [],
    "status": "canonico",
-   "verbatim": "Recupera 5d8+Int de Saúde. Consumível."
+   "verbatim": "Recupera 5d8+Int de Saúde. Consumível.",
+   "avisoRaca": {
+    "automato": {
+     "modo": "confirmar",
+     "status": "canonico",
+     "fonte": "PD23 + página da raça",
+     "texto": "Raça Autômato (Notion): \"Possui mecanismo de automanutenção(cura ao descansar), mas para cura maior deve ser consertado com item Kit de Manutenção. Poções e Elixires não funcionam em você.\""
+    }
+   }
   },
   "item-sangue-do-dragao": {
    "nome": "Sangue do Dragão",
@@ -15612,11 +16056,15 @@
    "duracao": null,
    "acoes": null,
    "lembretes": [
-    "Não adiciona Marca da Vhelor",
     "Consumi-la instantaneamente te transforma em um ser pecaminoso"
    ],
-   "status": "decisao",
-   "verbatim": "+1 ponto de atributo permanente à escolha, SEM adicionar Marca da Vhelor. Porém, consumi-la instantaneamente te transforma em um ser pecaminoso. Item único."
+   "status": "aprovado",
+   "verbatim": "+1 ponto de atributo permanente à escolha, SEM adicionar Marca da Vhelor. Porém, consumi-la instantaneamente te transforma em um ser pecaminoso. Item único.",
+   "marcaVhelor": {
+    "soma": 0,
+    "status": "aprovado",
+    "fonte": "PD26a"
+   }
   },
   "item-soro-da-guerra": {
    "nome": "Soro da Guerra",
@@ -15769,7 +16217,15 @@
     "Requer Pétala do Sonhador"
    ],
    "status": "canonico",
-   "verbatim": "Não envelhece por 10 anos. Revive 1x se morrer nesse período (1 de Saúde). Requer Pétala do Sonhador."
+   "verbatim": "Não envelhece por 10 anos. Revive 1x se morrer nesse período (1 de Saúde). Requer Pétala do Sonhador.",
+   "avisoRaca": {
+    "automato": {
+     "modo": "confirmar",
+     "status": "canonico",
+     "fonte": "PD23 + página da raça",
+     "texto": "Raça Autômato (Notion): \"Possui mecanismo de automanutenção(cura ao descansar), mas para cura maior deve ser consertado com item Kit de Manutenção. Poções e Elixires não funcionam em você.\""
+    }
+   }
   },
   "item-nucleo-abissal": {
    "nome": "Núcleo Abissal",
@@ -16000,7 +16456,15 @@
    "acoes": null,
    "lembretes": [],
    "status": "canonico",
-   "verbatim": "Recupera 8d10+Int de Saúde e remove 1 condição à escolha."
+   "verbatim": "Recupera 8d10+Int de Saúde e remove 1 condição à escolha.",
+   "avisoRaca": {
+    "automato": {
+     "modo": "confirmar",
+     "status": "canonico",
+     "fonte": "PD23 + página da raça",
+     "texto": "Raça Autômato (Notion): \"Possui mecanismo de automanutenção(cura ao descansar), mas para cura maior deve ser consertado com item Kit de Manutenção. Poções e Elixires não funcionam em você.\""
+    }
+   }
   },
   "item-pocao-de-vigor-suprema": {
    "nome": "Poção de Vigor Suprema",
@@ -16026,7 +16490,15 @@
    "acoes": null,
    "lembretes": [],
    "status": "canonico",
-   "verbatim": "Recupera 5d10 de Stamina e remove todas as condições, incluindo mágicas."
+   "verbatim": "Recupera 5d10 de Stamina e remove todas as condições, incluindo mágicas.",
+   "avisoRaca": {
+    "automato": {
+     "modo": "confirmar",
+     "status": "canonico",
+     "fonte": "PD23 + página da raça",
+     "texto": "Raça Autômato (Notion): \"Possui mecanismo de automanutenção(cura ao descansar), mas para cura maior deve ser consertado com item Kit de Manutenção. Poções e Elixires não funcionam em você.\""
+    }
+   }
   },
   "item-elixir-da-fenix": {
    "nome": "Elixir da Fênix",
@@ -16044,7 +16516,15 @@
     "Criatura morta há menos de 1 minuto ressuscita com 1 de Saúde"
    ],
    "status": "canonico",
-   "verbatim": "Criatura morta há menos de 1 minuto ressuscita com 1 de Saúde."
+   "verbatim": "Criatura morta há menos de 1 minuto ressuscita com 1 de Saúde.",
+   "avisoRaca": {
+    "automato": {
+     "modo": "confirmar",
+     "status": "canonico",
+     "fonte": "PD23 + página da raça",
+     "texto": "Raça Autômato (Notion): \"Possui mecanismo de automanutenção(cura ao descansar), mas para cura maior deve ser consertado com item Kit de Manutenção. Poções e Elixires não funcionam em você.\""
+    }
+   }
   },
   "item-regeneracao-alquimica": {
    "nome": "Regeneração Alquímica",
@@ -16083,7 +16563,15 @@
     "Duração 3 turnos"
    ],
    "status": "canonico",
-   "verbatim": "Transforma em besta de CR igual ao seu nível. Mantém a mente. Duração 3 turnos."
+   "verbatim": "Transforma em besta de CR igual ao seu nível. Mantém a mente. Duração 3 turnos.",
+   "avisoRaca": {
+    "automato": {
+     "modo": "confirmar",
+     "status": "canonico",
+     "fonte": "PD23 + página da raça",
+     "texto": "Raça Autômato (Notion): \"Possui mecanismo de automanutenção(cura ao descansar), mas para cura maior deve ser consertado com item Kit de Manutenção. Poções e Elixires não funcionam em você.\""
+    }
+   }
   },
   "item-essencia-eterea": {
    "nome": "Essência Etérea",
@@ -16122,7 +16610,15 @@
     "Atacar, receber dano ou conjurar cancela"
    ],
    "status": "canonico",
-   "verbatim": "Invisível por 10 min. Atacar, receber dano ou conjurar cancela."
+   "verbatim": "Invisível por 10 min. Atacar, receber dano ou conjurar cancela.",
+   "avisoRaca": {
+    "automato": {
+     "modo": "confirmar",
+     "status": "canonico",
+     "fonte": "PD23 + página da raça",
+     "texto": "Raça Autômato (Notion): \"Possui mecanismo de automanutenção(cura ao descansar), mas para cura maior deve ser consertado com item Kit de Manutenção. Poções e Elixires não funcionam em você.\""
+    }
+   }
   },
   "item-bomba-temporal": {
    "nome": "Bomba Temporal",

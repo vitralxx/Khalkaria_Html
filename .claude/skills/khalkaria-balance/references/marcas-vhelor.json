@@ -1,0 +1,78 @@
+{
+  "schemaVersion": "marcas-vhelor/1.0",
+  "_doc": "Fonte única das Marcas da Vhelor (PD26a). O gerador de efeitos copia este arquivo para o bloco 'marcasVhelor' de ficha-efeitos-itens.json e liga cada item ao seu gatilho. Para mudar uma marca, edite só aqui e rode o gerador. Os textos são do Pedro, verbatim (** = negrito, * = itálico, como no original).",
+  "fonte": "docs/ficha-digital/03-respostas-pedro.md §3.1 (main 703f665), decisão PD26a",
+  "privacidade": "Pedro: 'privacidade não é problema'. A ficha pode mostrar a mecânica.",
+  "ui": "Pedro: 'Uma tela corrompida com raízes saturadas com alto contraste mostra esses textos ao ter consumido os itens.'",
+  "regra": "Cada folha, seiva ou casca consumida adiciona **1 Marca da Vhelor**. As Marcas se acumulam e não regridem facilmente.",
+  "min": 0,
+  "max": 7,
+  "acumulam": true,
+  "acumulamNota": "Os efeitos são cumulativos: na Marca 4 valem as Marcas 1, 2, 3 e 4.",
+  "gatilhos": {
+    "item-folha-amarela": {"soma": 1, "fonte": "regra do Pedro ('folha') e CSV: 'Adiciona 1 Marca da Vhelor'"},
+    "item-seiva-da-vhelor": {"soma": 1, "fonte": "regra do Pedro ('seiva')"},
+    "item-casca-de-raiz": {"soma": 1, "fonte": "regra do Pedro ('casca')"},
+    "item-semente-da-vhelor": {"soma": 0, "fonte": "CSV: 'SEM adicionar Marca da Vhelor'"},
+    "item-elixir-da-expurgao": {"soma": -1, "funcionaAteMarca": 4, "fonte": "CSV: 'Remove 1 Marca da Vhelor. Não funciona acima da Marca 4.'"}
+  },
+  "requisitos": {
+    "item-talisma-da-seiva": {"marcaMin": 2, "fonte": "CSV: 'Requisito: Marca da Vhelor 2 ou mais.'"}
+  },
+  "substituiLembretes": [
+    "Adiciona 1 Marca da Vhelor (track de corrupção, ver Substâncias da Grande Árvore)",
+    "Não adiciona Marca da Vhelor",
+    "Remove 1 Marca da Vhelor",
+    "Não funciona acima da Marca 4",
+    "Requisito: Marca da Vhelor 2 ou mais"
+  ],
+  "marcas": [
+    {
+      "n": 1,
+      "texto": "Marca dourada angular surge na pele (cosmética, mas **detectável por cultistas**, que reconhecem os seus). Sonhos ocasionais com a Vhelor.",
+      "modificadores": [],
+      "lembretes": ["Detectável por cultistas", "Sonhos ocasionais com a Vhelor"]
+    },
+    {
+      "n": 2,
+      "texto": "−10 de Éter máximo permanente (Regras de Magia). Todo amanhecer: teste de Vontade (Atributos e Perícias) com CD crescente ou sente compulsão de consumir mais.",
+      "modificadores": [{"alvo": "eter.max", "op": "soma", "valor": -10, "permanente": true}],
+      "testes": [{"quando": "todoAmanhecer", "pericia": "vontade", "cd": null, "cdNota": "'CD crescente': o valor não está escrito, o mestre define", "falha": "compulsão de consumir mais"}],
+      "lembretes": []
+    },
+    {
+      "n": 3,
+      "texto": "**Vício estabelecido.** Sem consumir 1 folha por semana, entra em abstinência: −2 em todas as rolagens e Desorientado até consumir.",
+      "estado": {"id": "abstinencia", "entra": "1 semana sem consumir 1 folha", "sai": "consumir", "manual": true},
+      "modificadores": [{"alvo": "todosOsTestes", "op": "soma", "valor": -2, "incluiAtaque": true, "enquanto": "estado:abstinencia", "nota": "texto: 'todas as rolagens'"}],
+      "aplicaCondicao": [{"id": "desorientado", "enquanto": "estado:abstinencia"}],
+      "lembretes": []
+    },
+    {
+      "n": 4,
+      "texto": "Pele clareia visivelmente, perdendo cor até um branco doentio. Olhos perdem foco. −5 em interações sociais (não-corrompidos sentem repulsa instintiva). Ouve sussurros constantes da Vhelor.",
+      "modificadores": [{"alvo": "tag.social", "op": "soma", "valor": -5, "condicao": "contra não-corrompidos", "leitura": "o parêntese diz de onde vem a penalidade; contra corrompidos o mestre decide"}],
+      "lembretes": ["Ouve sussurros constantes da Vhelor"]
+    },
+    {
+      "n": 5,
+      "texto": "Em situações de stress ou combate: teste de Vontade ou fica *descontrolado* e age com agressividade pecaminosa involuntária por 1 rodada (ataca o aliado mais próximo, comete crueldade gratuita).",
+      "modificadores": [],
+      "testes": [{"quando": "stressOuCombate", "pericia": "vontade", "cd": null, "cdNota": "não escrita, o mestre define", "falha": {"aplicaCondicao": "descontrolado", "x": 1}}],
+      "lembretes": []
+    },
+    {
+      "n": 6,
+      "texto": "**Quase-não-retorno.** O GM ganha o direito de ditar 1 ação pecaminosa do personagem por sessão. O personagem sente lucidamente que está se perdendo — e não consegue parar.",
+      "modificadores": [],
+      "lembretes": ["O mestre dita 1 ação pecaminosa do personagem por sessão"]
+    },
+    {
+      "n": 7,
+      "texto": "**Sucumbência.** O personagem vira NPC sob controle do GM: uma criatura corrompida da Vhelor, agente involuntário de Malkhor. O jogador perde o personagem — que pode reaparecer como mini-boss depois.",
+      "modificadores": [],
+      "estadoFinal": {"id": "sucumbencia-vhelor", "acao": "alertar", "nota": "Mesmo tratamento dos outros estados finais do contrato (regras-ficha > morte.estadosFinais): banner, nunca trava a ficha."},
+      "lembretes": []
+    }
+  ]
+}

@@ -13,6 +13,7 @@ import csv, json, re, sys, unicodedata, collections, hashlib, os
 AQUI = os.path.dirname(os.path.abspath(__file__))
 CSV = os.path.join(AQUI, 'bazar-v26.csv')
 SAIDA = os.path.join(AQUI, 'ficha-efeitos-itens.json')
+MARCAS = os.path.join(AQUI, 'marcas-vhelor.json')
 
 def slug(s):
     s = unicodedata.normalize('NFKD', s).encode('ascii', 'ignore').decode().lower()
@@ -42,6 +43,10 @@ DANO_ATAQUE = {**TIPOS, 'Bio':'biologico','Biológico':'biologico'}
 CATEG = {'Ordinário':'ordinario','Elemental':'elemental','Biológico':'biologico','Místico':'mistico','Todos':'todos'}
 CAT_TIPOS = {'ordinario':['cortante','contundente','perfurante'],'elemental':['fogo','frio','eletrico'],
  'biologico':['veneno','acido','psiquico'],'mistico':['radiante','trovejante','necrotico','forca','primordial']}
+# PD22: Ae(Todos) = os 11 atípicos (menos a exceção do item); os 3 Ordinários são do Ar
+ATIPICOS = ['fogo','frio','eletrico','veneno','acido','psiquico','radiante','trovejante','necrotico','forca','primordial']
+AUTOMATO_TXT = ('Raça Autômato (Notion): "Possui mecanismo de automanutenção(cura ao descansar), mas para cura maior '
+                'deve ser consertado com item Kit de Manutenção. Poções e Elixires não funcionam em você."')
 CONDICOES = {'Morrendo':'morrendo','Inconsciente':'inconsciente','Exaurido':'exaurido','Oco':'oco',
  'Exaustão':'exaustao','Exausto':'exaustao','Desnutrido':'desnutrido','Exposto':'exposto',
  'Sangramento':'sangramento','Atordoado':'atordoado','Desorientado':'desorientado','Caído':'caido',
@@ -451,6 +456,7 @@ CONVENCOES = {
             'ativado':'o efeito liga ao usar (kits, itens com usos por descanso)',
             'municaoAtiva':'munição escolhida no início do combate: o efeito vale em todos os ataques da arma compatível até o fim do combate (D2, D41)'},
  'status': {'canonico':'saiu da gramática fechada sobre o texto do CSV, que é a fonte do Bazar',
+            'aprovado':'leitura decidida pelo Pedro (rodada 3: PD21-PD26 de docs/ficha-digital/03-respostas-pedro.md)',
             'decisao':'leitura minha, revisada à mão (ficha-efeitos-overrides.json ou leitura "atributo nu")',
             'pendente':'depende do Pedro'},
  'modificador': "{alvo, op, valor} + opcionais: duracao ('10 min', '1 cena', '1 rodada', 'proximoCombate'), condicao (texto curto), enquanto ('condicao:bebado'), ativacao {usos, recarga, acao}, excecao [tipos], momento ('inicioTurno'), ataques (n de ataques que o efeito dura), tipo (tipo de dano), leitura, permanente, rolar, requerTeste, penalidade",
@@ -460,13 +466,17 @@ CONVENCOES = {
  'acoesDeConsumivel': "null quando o texto não diz = o mestre decide na hora (D90). Referência de tempo: 1 ação = 2 segundos; 3 ações = 6 segundos = 1 turno.",
  'indices': {'empilhaveis':'têm a propriedade Empilhável: 10 unidades = 1 de peso','fonteDeLuz':'servem de fonte de luz para o descanso longo','alimento':'servem de alimento para o descanso longo'},
  'maisInt': "'+Int' em cura de item = mod.INT de quem USA o item (regras-ficha P09)",
+ 'avisoRaca': "{<raca>: {modo:'confirmar', texto}}: a ficha avisa com pop-up de confirmação e deixa aplicar (PD23). Hoje só 'automato'.",
+ 'soParaRaca': "o item só funciona nessa raça (Kits de Manutenção: 'automato')",
+ 'marcaVhelor': "{soma, funcionaAteMarca?}: quanto o item move o contador de Marcas da Vhelor ao ser consumido. Textos e efeitos das 7 marcas no bloco 'marcasVhelor' (fonte única: marcas-vhelor.json)",
+ 'requisito': "{arma:'leve'} ou {marcaVhelorMin:n}: o item só funciona se a condição valer; a ficha avisa, não bloqueia",
 }
 ALVOS = {
  'imunidade.condicao.<id>':'imune a uma condição (id do catálogo de condições). Diferente de imunidade.<tipo>, que é a tipo de dano',
  'imunidade.<tipo>':'imune a um tipo de dano (os 14 da D67)',
  'resistencia.<tipo>':'Resistência (metade) a um tipo de dano',
  'vulnerabilidade.<tipo>':'Vulnerabilidade (dobro) a um tipo de dano',
- 'ae.<tipo|categoria|todos>':"Armadura Específica. 'todos' pode trazer 'excecao'",
+ 'ae.<tipo|categoria|todos>':"Armadura Específica. 'todos' = os 11 tipos atípicos menos a 'excecao'; nunca os 3 Ordinários, que são do Ar (PD22). O campo 'cobre' traz a lista final",
  'ar':'Armadura (reduz dano Ordinário). Soma com o Ar racial, sem teto (D85)',
  'pericia.<id>':"as 24 perícias. Em escudo, condicao='reacaoDefender': soma na rolagem do dado de Defender quando usa a reação",
  'testes.<FOR|DES|CON|INT|SAB>':'bônus em todo teste que usa esse atributo',
@@ -482,7 +492,7 @@ ALVOS = {
  'tamanho':'categoria de tamanho (+1/-1)',
  'margemAmeaca':'na arma, só quando incondicional (Kali, Martelo Trovejante)',
  'dano.corpoACorpo':'dano somado a ataques corpo a corpo',
- 'ataque.danoExtra | ataque.ignoraAr | ataque.bonusAtacar':"linha de ataque da arma empunhada; 'ataques' = quantos ataques o efeito dura",
+ 'ataque.danoExtra | ataque.ignoraAr | ataque.bonusAtacar':"linha de ataque da arma empunhada; 'ataques' = quantos ataques o efeito dura; condicao 'investida' = só nos ataques da manobra Investida",
  'capacidade.bugigangas | capacidade.equipamentos':'capacidade de carga',
  'recipiente.bugigangas':'recipiente com capacidade própria; contaPeso=false',
  'permiteSemTreino.<pericia>':'libera a perícia sem treino (Ofícios); pode ter penalidade',
@@ -490,13 +500,16 @@ ALVOS = {
  'condicao.exaustao':'nível de Exaustão (op soma, valor negativo remove)',
 }
 PENDENCIAS = [
- {'n':1,'item':'Grevas Trovejantes','o':"'A manobra Investida concede +1d6 de dano.' A manobra não existia; o Pedro a criou em 2026-09-26 (D88): 2 ações, linha reta, Movimento × Movimento contra cada inimigo, ataque em quem você ultrapassa. Texto final entra no Notion (Manobras) depois de dois pontos em aberto.",'status':'resolvendo (D88)'},
- {'n':2,'item':'Ae(Todos)','o':"Resolvido em parte (D89): os três itens com Ae(Todos) excluem Força e Primordial (o Anel do Baluarte foi corrigido no CSV). Continua aberto: Ae(Todos) cobre os 3 tipos Ordinários? A D63 diz que Ae é de dano atípico e que o Ordinário é do Ar.",'status':'pendente: Pedro (só a parte dos Ordinários)'},
- {'n':3,'item':'Cinturão do Colosso, Elixir do Crescimento, Elixir do Encolhimento','o':"'+2 Força' / '+2 Destreza' sem 'testes de': li como valor de atributo, porque o Elixir de Força escreve 'testes de Força' quando quer dizer teste.",'status':'decisao'},
- {'n':4,'item':'Consumíveis','o':"Resolvido (D90): o Sistema não fixa custo de ação para o que não está na lista; o mestre decide na hora, pela intuição, sem pensar em balanceamento. Referência de tempo do Pedro: 1 ação = 2 segundos; 3 ações = 6 segundos = 1 turno. 'acoes: null' = o mestre decide.",'status':'resolvido (D90)'},
+ {'n':1,'item':'Grevas Trovejantes','o':"'A manobra Investida concede +1d6 de dano.' Virou ataque.danoExtra 1d6 com condicao 'investida'. A manobra existe no Notion (Sistema > Manobras, D88).",'status':'resolvido (PD21)'},
+ {'n':2,'item':'Ae(Todos)','o':"Os três itens com Ae(Todos) cobrem os 11 atípicos menos Força e Primordial, e nunca os 3 Ordinários (campo 'cobre').",'status':'resolvido (PD22)'},
+ {'n':3,'item':'Cinturão do Colosso, Elixir do Crescimento, Elixir do Encolhimento','o':"'+2 Força' / '+2 Destreza' sem 'testes de' = valor de atributo.",'status':'aprovado (PD24)'},
+ {'n':4,'item':'Consumíveis','o':"O Sistema agora diz: 'Usar item consumível (1 ação) → em você ou em outra criatura. Se o item for arremessado, siga o que ele diz.' (PD18). 'acoes: null' no item = vale essa regra.",'status':'resolvido (PD18)'},
  {'n':5,'item':'Erva Medicinal','o':"Corrigido no CSV: 'Saude' -> 'Saúde' (D91).",'status':'resolvido (D91)'},
- {'n':6,'item':'Kits de Manutenção (4)','o':"'Kit de Manutenção de Autômatos': marquei soParaRaca='automato'. A regra de que o Autômato não se cura por meios tradicionais está na página da raça; a ficha deve bloquear ou avisar poção de cura num Autômato?",'status':'pendente: Pedro (recomendo avisar)'},
- {'n':7,'item':'Armadura do Pantaneiro, Antídoto Universal, Chá de Ervas Amargas','o':"Usam 'Envenenado'; a condição do catálogo é 'Envenenamento' (C16). Mapeado por alias.",'status':'decisao'},
+ {'n':6,'item':'Poções, Elixires e outras curas em Autômato','o':"Avisar com pop-up de confirmação (avisoRaca). A raça diz 'Poções e Elixires não funcionam em você': vale para TODA poção e elixir, não só as de cura.",'status':'resolvido (PD23)'},
+ {'n':7,'item':'Armadura do Pantaneiro, Antídoto Universal, Chá de Ervas Amargas','o':"'Envenenado' = condição Envenenamento.",'status':'aprovado (PD24)'},
+ {'n':8,'item':'Anel do Esgrimista','o':"'Armas Leves.' virou requisito (PD25). Aberto: com o Sangramento em +Xd4 (D83), 'consumir todos os acúmulos de uma só vez' dá Xd4 uma vez, ou a soma de todos os acertos que eles dariam (Xd4 + (X-1)d4 + ... )? Recomendo Xd4 uma vez e zerar.",'status':'pendente: Pedro'},
+ {'n':9,'item':'Elixir da Expurgão','o':"Nome de propósito ou 'Expurgação'? Se mudar, o id muda (item-elixir-da-expurgao -> item-elixir-da-expurgacao) e marcas-vhelor.json acompanha.",'status':'pendente: Pedro'},
+ {'n':10,'item':'Semente da Vhelor','o':"'Consumi-la instantaneamente te transforma em um ser pecaminoso': é a Marca 7 (Sucumbência) ou outra coisa? Fica lembrete.",'status':'pendente: Pedro'},
 ]
 
 # ---------------------------------------------------------------- overrides (revisão manual, status 'decisao')
@@ -558,7 +571,7 @@ def main():
     for x in out['itens'].values():
         for m in x['modificadores']:
             if m.pop('_leitura', None):
-                m['leitura'] = 'valor de atributo, não bônus em teste'; x['status'] = 'decisao'
+                m['leitura'] = 'valor de atributo, não bônus em teste (ratificado na PD24)'; x['status'] = 'aprovado'
     # overrides manuais
     usados = set()
     for nid, o in ov.items():
@@ -583,6 +596,34 @@ def main():
         base.update(o); base['status'] = o.get('status', 'decisao')
         out[bloco][nid] = base
         if nid in out['semEfeitoNaFicha']: out['semEfeitoNaFicha'].remove(nid)
+    # PD22: Ae(Todos) explicita os tipos cobertos
+    for bloco in ('itens', 'consumo'):
+        for x in out[bloco].values():
+            for m in x.get('modificadores', []) + x.get('efeito', []):
+                if m.get('alvo') == 'ae.todos':
+                    m['cobre'] = [t for t in ATIPICOS if t not in m.get('excecao', [])]
+    # PD23: Autômato. Poção e Elixir: cânone da raça. Outra cura de Saúde: leitura minha ('cura maior' só com Kit)
+    for nid, c in out['consumo'].items():
+        if c.get('soParaRaca') == 'automato': continue
+        cura = any(e.get('alvo') == 'saude.atual' and e.get('op') == 'soma' for e in c.get('efeito', []))
+        if re.match(r'(Poção|Poções|Elixir)\b', c['nome']):
+            c['avisoRaca'] = {'automato': {'modo': 'confirmar', 'status': 'canonico', 'fonte': 'PD23 + página da raça', 'texto': AUTOMATO_TXT}}
+        elif cura:
+            c['avisoRaca'] = {'automato': {'modo': 'confirmar', 'status': 'decisao', 'fonte': 'PD23', 'texto': AUTOMATO_TXT,
+                                           'leitura': 'não é Poção nem Elixir, mas é cura; a raça pede Kit de Manutenção para cura maior. O mestre confirma.'}}
+    # PD26a: Marcas da Vhelor, fonte única em marcas-vhelor.json
+    mv = json.load(open(MARCAS, encoding='utf-8'))
+    subst = set(mv['substituiLembretes'])
+    for nid, g in list(mv['gatilhos'].items()) + list(mv['requisitos'].items()):
+        bloco = 'consumo' if nid in out['consumo'] else 'itens'
+        if nid not in out[bloco]: raise SystemExit(f'marcas-vhelor: id inexistente {nid}')
+        x = out[bloco][nid]
+        if nid in mv['gatilhos']:
+            x['marcaVhelor'] = {k: v for k, v in g.items() if k != 'fonte'} | {'status': 'aprovado', 'fonte': 'PD26a'}
+        else:
+            x['requisito'] = {'marcaVhelorMin': g['marcaMin'], 'status': 'aprovado', 'fonte': 'PD26a'}
+        x['lembretes'] = [l for l in x.get('lembretes', []) if l not in subst]
+    out['marcasVhelor'] = mv
     return rows, out
 
 if __name__ == '__main__':
@@ -601,13 +642,14 @@ if __name__ == '__main__':
     if '--escrever' in sys.argv:
         sha = hashlib.sha256(open(CSV,'rb').read()).hexdigest()[:16]
         final = {
-          'schemaVersion': 'efeitos-itens/1.0',
-          'geradoEm': '2026-09-26 (rev. 2: D89 Anel do Baluarte, D91 Erva Medicinal)',
+          'schemaVersion': 'efeitos-itens/1.1',
+          'geradoEm': '2026-09-26 (rev. 3: rodada 3 — PD21 Grevas, PD22 Ae(Todos), PD23 Autômato, PD24, PD25, PD26a Marcas da Vhelor)',
           'geradoPor': 'ficha-efeitos-gerador.py + ficha-efeitos-overrides.json (branch claude/khalkaria-bazar-balance-lsdfic)',
           'fonte': {'csv': 'references/bazar-v26.csv (= data/Bazar_Khalkaria_v26.csv na main: coluna Efeito idêntica nos 727; só Ingredientes difere, em 109)',
                     'sha256_16': sha, 'itens': len(rows)},
           'contagem': {k: len(out[k]) for k in ('itens','armas','consumo','semEfeitoNaFicha','naoParseado')},
           'convencoes': CONVENCOES, 'alvos': ALVOS, 'pendencias': PENDENCIAS,
+          'marcasVhelor': out['marcasVhelor'],
           **{k: out[k] for k in ('itens','armas','consumo','semEfeitoNaFicha','naoParseado','empilhaveis','fonteDeLuz','alimento')}}
         json.dump(final, open(SAIDA,'w',encoding='utf-8'), ensure_ascii=False, indent=1)
         print('escrito:', SAIDA)

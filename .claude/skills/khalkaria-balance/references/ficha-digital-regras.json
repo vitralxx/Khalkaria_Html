@@ -1,20 +1,20 @@
 {
-  "schemaVersion": "regras-ficha/1.0",
-  "geradoEm": "2026-09-26 (rev. 4: escala de tempo e ações não definidas, D90)",
+  "schemaVersion": "regras-ficha/1.1",
+  "geradoEm": "2026-09-26 (rev. 5: rodada 3 — decisões PD7–PD31 do Pedro aplicadas, Notion gravado)",
   "_doc": "Resposta do agente de balanceamento ao pedido docs/ficha-digital/01-pedido-ao-balanceamento.md. O texto com a justificativa de cada regra esta em 14-ficha-digital.md, na mesma numeracao P/C. Nada aqui e canonico so porque esta escrito: leia o campo 'status'.",
   "_status": {
     "canonico": "Esta no Notion ou numa decisao registrada em 09-decisoes-pedro.md. Pode ir para o site.",
     "decisao": "Arbitrado agora, com justificativa. PRECISA ser escrito no Notion pelo Pedro antes de virar regra de mesa.",
     "pedroDecide": "Nao e alcada do balanceamento. O campo 'recomendacao' traz a sugestao e o motivo.",
     "pendente": "O canone nao responde. Valor null, com o motivo no campo 'pendente'.",
-    "aprovado": "(sem uso na rev. 3: as três regras aprovadas já estão no Notion)"
+    "aprovado": "Decidido pelo Pedro (03-respostas-pedro.md ou 09-decisoes-pedro.md), ainda sem texto no Notion. Pode ir para o site citando a fonte do campo."
   },
   "fontes": [
     {
       "id": "notion-sistema",
       "uuid": "2b76e3a401d980c0ab7bc27a342f4ee1",
       "titulo": "Sistema Khalkaria",
-      "conferidoEm": "2026-09-25"
+      "conferidoEm": "2026-09-26"
     },
     {
       "id": "notion-condicoes",
@@ -35,6 +35,11 @@
       "id": "decisoes",
       "arquivo": ".claude/skills/khalkaria-balance/references/09-decisoes-pedro.md",
       "nota": "Decisoes D1-D79 do Pedro. Tem precedencia sobre inferencia."
+    },
+    {
+      "id": "respostas-pedro-rodada3",
+      "caminho": "docs/ficha-digital/03-respostas-pedro.md (main 703f665)",
+      "titulo": "Respostas do Pedro às 39 decisões do plano da ficha"
     }
   ],
   "atributos": {
@@ -43,8 +48,17 @@
         8,
         18
       ],
-      "emJogo": "sem teto escrito; +2 por nivel (D87) e cartas levam a 22-24+, e o Abismo leva abaixo de 8",
-      "nota": "A tabela do Notion vai de 4-5 (-3) a 24-25 (+7)."
+      "criacaoStatus": "canonico",
+      "criacaoFonte": "notion-sistema 2b76e3a4, gravado em 2026-09-26 (rodada 3, diff conferido) > Criação de Personagem, passo 1 (PD30)",
+      "criacaoVerbatim": "Role 4d6 5 vezes, retire o pior dado de cada rolagem e anote o valor dos 5 resultados. Se a soma de uma rolagem der menos de 8, role os 4 dados novamente: por isso cada valor fica entre 8 e 18. Distribua os 5 valores dentre seus 5 atributos. Você pode retirar 1 ponto de um atributo e adicionar a outro.",
+      "criacaoNota": "A faixa 8–18 vale para os 5 valores ROLADOS. O ajuste de 1 ponto vem depois e pode levar um atributo a 7 ou 19: não é erro. Pedro (PD30): \"Permita a inserção manual dos atributos caso sejam rolados na vida real.\"",
+      "digitarRolagemDaMesa": true,
+      "absoluta": [
+        1,
+        30
+      ],
+      "absolutaFonte": "notion-sistema > Atributos Iniciais > tabela do modificador: \"1 (Min)\" a \"30 (Máx)\"",
+      "emJogo": "de 1 a 30 (teto e piso da tabela do Notion); +2 por nível (D87), cartas e itens sobem, o Abismo desce"
     },
     "lista": [
       "FOR",
@@ -61,6 +75,8 @@
       "pendente": null,
       "verbatim": "Modificador de Atributo: é o valor que o atributo soma nas perícias, no dano e no cálculo dos status. Subtraia 10 do atributo e divida por 2, arredondando para baixo. Ou seja, o modificador aumenta a cada 2 pontos de atributo.",
       "tabela": {
+        "1": -5,
+        "2-3": -4,
         "4-5": -3,
         "6-7": -2,
         "8-9": -1,
@@ -71,8 +87,12 @@
         "18-19": 4,
         "20-21": 5,
         "22-23": 6,
-        "24-25": 7
-      }
+        "24-25": 7,
+        "26-27": 8,
+        "28-29": 9,
+        "30": 10
+      },
+      "tabelaNota": "Tabela estendida pelo Pedro no Notion: vai de 1 (Min, −5) a 30 (Máx, +10)."
     },
     "ganhoPorNivel": {
       "pontos": 2,
@@ -106,23 +126,28 @@
     "stamina": {
       "max": "8 + classe.G*nivel + escolha(mod.FOR,mod.DES)*nivel",
       "modoEscolha": "maior",
-      "modoEscolhaStatus": "pedroDecide",
-      "modoEscolhaRecomendacao": "P02 - 'maior'. Nao guarda estado, entao nao dessincroniza, e da o mesmo resultado para quem escolheria certo. (Correcao da rev. 1: eu tinha dito que os atributos so mudam pela carta +2 do Limiar. Errado: todo nivel da +2 pontos de atributo, D87.)",
-      "min": 0,
+      "modoEscolhaStatus": "aprovado",
+      "min": null,
       "gastoSemSaldo": "proibido",
       "gastoSemSaldoStatus": "decisao",
       "gastoSemSaldoMotivo": "P07 - nada no canone descreve Stamina negativa. Exaurido (0 Stamina, 'nao pode rolar pericias') E o piso punitivo. Permitir negativo cria recurso infinito sem consequencia escrita.",
       "gatilhos": [
         {
-          "quando": "atual==0",
+          "quando": "atual<=0",
           "condicao": "exaurido"
         }
-      ]
+      ],
+      "modoEscolhaTrocavel": true,
+      "modoEscolhaFonte": "PD7 (docs/ficha-digital/03-respostas-pedro.md (main 703f665)): \"Maior mas com escolha de mudar\"",
+      "minStatus": "pedroDecide",
+      "minPendente": "PD17: o Pedro escreveu \"Exaurido e Oco são removidos quando você sai dos negativos nos 2 status Stamina e Éter\", então a Stamina pode ficar negativa. Nenhum texto dá o piso nem como ela chega lá. Lote PD20, item L03.",
+      "perdaInvoluntariaNegativa": true,
+      "perdaInvoluntariaNota": "Leitura da PD17, parte do item L03: efeitos que TIRAM Stamina (ex.: Exigente, \"Ao falhar qualquer teste, -1 Stamina e Éter\") atravessam o 0, como a perda de Éter do Oco. Gasto voluntário continua travado no saldo."
     },
     "eter": {
       "max": "6 + classe.R*nivel + escolha(mod.INT,mod.SAB)*nivel",
       "modoEscolha": "maior",
-      "modoEscolhaStatus": "pedroDecide",
+      "modoEscolhaStatus": "aprovado",
       "min": "-floor(recurso.eter.max/2)",
       "gastoSemSaldo": "proibido",
       "perdaInvoluntariaNegativa": true,
@@ -133,8 +158,10 @@
           "condicao": "oco"
         }
       ],
-      "perdePersonagemEm": "atual <= -floor(recurso.eter.max/2)",
-      "modoEscolhaRecomendacao": "P02 - 'maior'. Nao guarda estado, entao nao dessincroniza, e da o mesmo resultado para quem escolheria certo. (Correcao da rev. 1: eu tinha dito que os atributos so mudam pela carta +2 do Limiar. Errado: todo nivel da +2 pontos de atributo, D87.)"
+      "perdePersonagemEm": "atual < -floor(recurso.eter.max/2)",
+      "modoEscolhaTrocavel": true,
+      "modoEscolhaFonte": "PD7 (docs/ficha-digital/03-respostas-pedro.md (main 703f665)): \"Maior mas com escolha de mudar\"",
+      "perdePersonagemFonte": "notion-condicoes 3a66e3a4...0b25, gravado em 2026-09-26 (rodada 3, diff conferido) > Oco: \"Ao ultrapassar metade do seu éter máximo nos negativos\" (PD17)"
     },
     "ordemMaximo": [
       {
@@ -262,18 +289,17 @@
       "acumula": "maior",
       "expira": [
         "duracaoPropria",
-        "fimCombate",
         "descansoLongo"
       ],
-      "status": "pedroDecide",
-      "pendente": "P08 - LACUNA REAL. Busca por 'temporar' na pagina Sistema: zero ocorrencias. Saude temporaria so existe como efeito solto de item e tecnica, sem regra geral.",
-      "recomendacao": "'maior', nao 'soma': as fontes ja sao grandes (Monge/Alquimista +20 Saude e +10 Stamina, companheiros 20/25/35) e somar duas num personagem de ~55 de Saude no nivel 5 mais que dobra a vida efetiva por um combate.",
+      "status": "aprovado",
       "modeloExistente": {
         "id": "vampiro-sangue",
         "fonte": "D24",
         "regra": "Sangue = Saude temporaria acima do maximo, teto 5 + (3*nivel)",
         "nota": "E o unico lugar do sistema onde temporario tem teto declarado. Recomendo ao Pedro generalizar a regra a partir dele: pool nomeado com teto explicito. Assim o Vampiro entra sem caso especial."
-      }
+      },
+      "fonte": "PD15 (docs/ficha-digital/03-respostas-pedro.md (main 703f665)): \"Não soma (fica a maior), gasta primeiro, some no descanso longo\"",
+      "staminaNota": "A PD15 fala de Saúde temporária. A Stamina temporária (Metamorfose, \"+10 Stamina Temporária\") segue a mesma regra por analogia; confirmar no lote PD20 (L04)."
     }
   },
   "classes": {
@@ -289,7 +315,9 @@
       "cd": {
         "formula": "10 + escolha(mod.DES,mod.FOR) + mod.CON",
         "modoEscolha": "maior",
-        "modoEscolhaStatus": "pedroDecide"
+        "modoEscolhaStatus": "aprovado",
+        "modoEscolhaTrocavel": true,
+        "modoEscolhaFonte": "PD7"
       },
       "armaInicial": "Marciais",
       "periciasIniciais": [
@@ -626,22 +654,21 @@
       "passiva": "10 + mod.DES",
       "passivaStatus": "canonico",
       "passivaFonte": "notion-sistema > Defesa > Evasao Passiva; D20 (igual nas 7 classes)",
-      "passivaNota": "D20 - os valores diferentes por classe que algumas paginas ainda mostram (Monge 15, Batedor 12, Alquimista 12, Artilheiro 11) estao desatualizados.",
+      "passivaNota": "Conferido em 2026-09-26: as 7 páginas de classe dizem \"Evasão Passiva (Sem reação): 10 + Mod. Destreza\".",
       "ativa": {
         "formula": "evasao.passiva + dado(defender)",
         "custo": "1 reacao",
-        "escopo": "todos os ataques daquele agressor naquele turno",
+        "escopo": "todos os ataques daquele agressor, durante o turno dele; os outros agressores enfrentam a Passiva",
         "status": "canonico",
-        "fonte": "notion-sistema > Defesa > Evasao ativa",
-        "verbatim": "Quando alvo de um ataque, voce pode gastar sua reacao para somar o dado da pericia defender (conforme seu treinamento) a sua evasao contra todos os ataques do agressor neste turno.",
+        "fonte": "notion-sistema 2b76e3a4, gravado em 2026-09-26 (rodada 3, diff conferido) > Defesa > Evasão ativa; > Sua Rodada (PD8)",
+        "verbatim": "Quando alvo de um ataque, você pode gastar sua reação para somar o dado da perícia defender (conforme seu treinamento) à sua evasão contra todos os ataques do agressor neste turno. Ataques de outros agressores continuam contra a sua Evasão Passiva. O dado não soma atributo: a Destreza já está na Evasão Passiva.",
         "dadoSomaAtributo": false,
-        "dadoSomaAtributoStatus": "decisao",
-        "dadoSomaAtributoMotivo": "C01 - a Evasao Passiva ja e 10 + Mod.DES. Somar Mod.DES tambem no dado contaria Destreza duas vezes. Precisa de uma linha no Notion.",
+        "dadoSomaAtributoStatus": "canonico",
         "_obsoletas": [
-          "'10 + Mod.Des + Prof.Defender' das paginas de classe: anterior a regra do dado",
-          "'1d10 + Mod.Destreza' do data/sistema.json: chumba o dado do Experiente E soma Destreza"
+          "\"10 + Mod. Destreza + Treinamento em Defender\" das 7 páginas de classe: trocado no Notion em 2026-09-26 por \"10 + Mod. Destreza + Dado de Defender\"",
+          "\"1d10 + Mod.Destreza\" do data/sistema.json: chumba o dado do Experiente e soma Destreza"
         ],
-        "_divergenciaInterna": "O Notion diz 'neste TURNO' na secao Defesa e 'nesta RODADA' na secao Sua Rodada. Como o escopo ja esta preso a um agressor, a diferenca so aparece se ele atacar fora do proprio turno. Recomendo 'neste turno do agressor'. Impacto baixo."
+        "dadoSomaAtributoFonte": "PD8a, gravado no Notion (Sistema > Defesa)"
       },
       "acaoDefender": {
         "alvo": "pericia.defender",
@@ -824,7 +851,7 @@
       "fonteItemStatus": "pendente",
       "fonteItemNota": "P19 - a gramatica e fechada (D63/D64/D67), entao da para extrair com confianca. O agente de balanceamento pode entregar Ar e Ae parseados em coluna propria para as 50 armaduras e 10 escudos: e o CSV dele. Basta pedir.",
       "acumulaNatural": "soma",
-      "acumulaNaturalStatus": "aprovado",
+      "acumulaNaturalStatus": "canonico",
       "acumulaNaturalAlerta": "P19 - leitura literal (nada diz o contrario), mas o pior caso realista e Anao Caxon (Ar 3 natural) + armadura Pesada Luxaria (Ar 8, teto da D64) = Ar 11. Isso ZERA o dano de uma arma leve sem upgrade (1d6+DES+4 = ~7,5) e corta 76% de uma leve +2 (3d6+4 = ~14,5). O que segura hoje e a D42 (Incomum ignora 3 / Exotico ignora todo o Ar / Luxaria ignora Ar e Ae) e o limite de 1 armadura Pesada equipada.",
       "teto": null,
       "tetoPendente": null,
@@ -888,7 +915,7 @@
         "luxaria": "ignora Ar e Ae",
         "fonte": "D42"
       },
-      "acumulaNaturalFonte": "D85: 'Ar 11 e alto, porem e a Luxaria que carrega esse numero, na raridade Luxaria toda arma leve tem upgrade ao menos +2.'"
+      "acumulaNaturalFonte": "notion-sistema 2b76e3a4, gravado em 2026-09-26 (rodada 3, diff conferido) > Defesa > Armadura(Ar): \"O Ar de fontes diferentes se soma (por exemplo, o Ar natural da raça e o Ar da armadura).\" (D85)"
     },
     "iniciativa": {
       "pericia": "iniciativa",
@@ -936,7 +963,7 @@
         "condicao:confuso (-1)",
         "abismo:lenda-viva (+1 acao)"
       ],
-      "status": "decisao",
+      "status": "aprovado",
       "motivo": "Pedido (a) do agente de HTML: quantos ataques mostrar. Nao e um numero fixo: e o que as acoes compram. Uma Pesada nunca mostra 3 linhas; uma Leve com Atordoado mostra 1.",
       "modificadoresConhecidos": [
         {
@@ -1035,7 +1062,8 @@
           "rara": true
         }
       ],
-      "modificadoresStatus": "parcial: sao as fontes que eu li nesta sessao (Batedor, Artilheiro, Limiar) e as das minhas referencias. A lista completa sai do parser do bloco C (tecnicas de todas as classes, racas, origens, itens), com validacao por conjunto."
+      "modificadoresStatus": "parcial: sao as fontes que eu li nesta sessao (Batedor, Artilheiro, Limiar) e as das minhas referencias. A lista completa sai do parser do bloco C (tecnicas de todas as classes, racas, origens, itens), com validacao por conjunto.",
+      "fonte": "Pedro, pedido 2 do agente de HTML (A): a PMA é display da progressão, não contador por alvo"
     }
   },
   "pericias": [
@@ -1083,7 +1111,9 @@
       "tags": [
         "fisica"
       ],
-      "bestiario": "prof_movement"
+      "bestiario": "prof_movement",
+      "trocavel": true,
+      "trocavelFonte": "PD7"
     },
     {
       "id": "fortitude",
@@ -1230,7 +1260,9 @@
       "tags": [
         "social"
       ],
-      "bestiario": "prof_persuasion"
+      "bestiario": "prof_persuasion",
+      "trocavel": true,
+      "trocavelFonte": "PD7"
     },
     {
       "id": "intimidacao",
@@ -1245,9 +1277,11 @@
         "social"
       ],
       "bestiario": "prof_intimidation",
-      "status": "pedroDecide",
-      "pendente": "C03 - ficha fisica diz (For/Sab), tabela de pericias diz (Con ou For).",
-      "recomendacao": "CON ou FOR. SAB ja carrega 6 pericias (Vontade, Percepcao, Sobrevivencia, Religiao, Intuicao, Motivar) e CON carrega so Fortitude. Khalkaria nao tem Carisma de proposito: as sociais estao espalhadas em DES/INT, FOR/CON e SAB. Mover Intimidacao para SAB junta 7 pericias num atributo e esvazia CON."
+      "status": "canonico",
+      "pendente": "Só a página Notion \"Template - Ficha de Personagem\" (4e66e3a4) diz \"Intimidação (For/Sab)\". Notion × Notion: correção esperando o ok do Pedro.",
+      "trocavel": true,
+      "trocavelFonte": "PD7",
+      "fonte": "notion-sistema > tabela de perícias \"1d20+(Constituição ou Força)\" + ficha física A4 \"Intimidar (Con/For)\""
     },
     {
       "id": "intuicao",
@@ -1269,7 +1303,9 @@
       "tags": [
         "social"
       ],
-      "bestiario": "prof_deception"
+      "bestiario": "prof_deception",
+      "trocavel": true,
+      "trocavelFonte": "PD7"
     },
     {
       "id": "motivar",
@@ -1342,8 +1378,9 @@
     "status": "canonico",
     "modeloDeDado": "Guarde o GRAU (0-4), nao o bonus. Para 23 pericias a ficha renderiza +2*grau; para Defender renderiza o dado. Isso concilia a ficha fisica (que imprime caixas +2/+4/+6/+8 em tudo, inclusive Defender) com a regra, sem campo especial.",
     "calculadaOuManual": "manual",
-    "calculadaOuManualStatus": "decisao",
-    "calculadaOuManualMotivo": "P23 - calcular exige dado estruturado de 259 habilidades de classe, 168 cartas, 7 racas e 19 origens, tudo em prosa. Meio-termo recomendado: o select continua manual, mas ao lado a ficha lista as fontes DA BUILD DO JOGADOR que mencionam treinamento, como checklist. Resolve o problema real (esquecer uma concessao) sem exigir parser confiavel."
+    "calculadaOuManualStatus": "aprovado",
+    "calculadaOuManualMotivo": "P23 - calcular exige dado estruturado de 259 habilidades de classe, 168 cartas, 7 racas e 19 origens, tudo em prosa. Meio-termo recomendado: o select continua manual, mas ao lado a ficha lista as fontes DA BUILD DO JOGADOR que mencionam treinamento, como checklist. Resolve o problema real (esquecer uma concessao) sem exigir parser confiavel.",
+    "calculadaOuManualFonte": "PD1 (docs/ficha-digital/03-respostas-pedro.md (main 703f665)): todo campo da ficha é editável à mão, com a conta visível"
   },
   "testes": {
     "vantagem": "2d20, fica com o maior",
@@ -1408,9 +1445,10 @@
       "morteEm": "recurso.saude.atual < -floor(recurso.saude.max/2)",
       "estabilizar": "2 acoes + Medicina CD 20",
       "desestabiliza": "aoSerAcertado",
-      "status": "aprovado",
+      "status": "canonico",
       "nota": "P52 - 'mitigavel: false' e DECISAO com motivo: um personagem com Ae(Biologico,4) e 55 de Saude maxima levaria 5-4 = 1 por rodada, e o relogio da morte praticamente desligaria. Nao e um ataque, e o corpo falhando. 'desestabiliza: aoSerAcertado' tambem e decisao: o texto diz 'ser atacado novamente', mas desfazer 2 acoes + Medicina CD 20 num ataque que ERROU e um swing enorme decidido por um dado que o medico nao pode influenciar.",
-      "fonte": "D86 (tique nao mitigavel); resto: decisao"
+      "fonte": "notion-condicoes 3a66e3a4...0b25, gravado em 2026-09-26 (rodada 3, diff conferido) (PD31, D86)",
+      "verbatim": "Você recebe 10% da sua vida máxima de dano biológico no início de cada turno seu. Esse dano não pode ser reduzido por Armadura, Armadura Específica ou Resistência. Ao ultrapassar metade da sua vida máxima em negativos, você morre."
     },
     {
       "id": "inconsciente",
@@ -1437,7 +1475,7 @@
       "nome": "Exaurido",
       "grupoUI": "criticas",
       "tags": [],
-      "entra": "recurso.stamina.atual == 0",
+      "entra": "recurso.stamina.atual <= 0",
       "sai": "recurso.stamina.atual > 0",
       "efeitos": [
         {
@@ -1446,8 +1484,9 @@
           "nota": "nao pode rolar pericias"
         }
       ],
-      "status": "decisao",
-      "nota": "P32 - o card diz 'encerra em qualquer descanso', mas o descanso recupera 2 status A ESCOLHA. Quem escolher Saude e Eter sai do descanso com 0 de Stamina e SEM Exaurido, e o gatilho de entrada ('ao reduzir a 0') nao dispara de novo porque ele ja esta em 0. Resultado: 0 de Stamina sem penalidade, para sempre. Recomendo 'sai: stamina > 0', tratando o descanso como o modo normal de sair, nao como a condicao de saida."
+      "status": "canonico",
+      "fonte": "notion-condicoes 3a66e3a4...0b25, gravado em 2026-09-26 (rodada 3, diff conferido) (PD17)",
+      "verbatim": "Você não pode rolar perícias. Encerra quando sua Stamina volta a ficar acima de 0."
     },
     {
       "id": "oco",
@@ -1468,9 +1507,10 @@
           "op": "semAcao"
         }
       ],
-      "perdePersonagemEm": "recurso.eter.atual <= -floor(recurso.eter.max/2)",
-      "status": "decisao",
-      "nota": "Mesmo buraco do Exaurido. E C14: o card diz 'ao ALCANCAR metade' (<=) enquanto o Morrendo diz 'ao ULTRAPASSAR' (<). Recomendo padronizar em 'ultrapassar' nos dois."
+      "perdePersonagemEm": "recurso.eter.atual < -floor(recurso.eter.max/2)",
+      "status": "canonico",
+      "fonte": "notion-condicoes 3a66e3a4...0b25, gravado em 2026-09-26 (rodada 3, diff conferido) (PD17)",
+      "verbatim": "A cada perícia falha, você reduz 5 de Éter. Ao ultrapassar metade do seu éter máximo nos negativos, você perde seu personagem, que se torna do mestre. Você não consegue canalizar magias. Encerra quando seu Éter volta a ficar acima de 0."
     },
     {
       "id": "exaustao",
@@ -1546,7 +1586,7 @@
       "x": {
         "tipo": "intensidade",
         "inicial": 1,
-        "incrementa": "noiteSemComer",
+        "incrementa": "descansoSemComidaOuSemLuz",
         "decrementa": null
       },
       "efeitos": [
@@ -1567,8 +1607,11 @@
       ],
       "morteEm": "recurso.saude.max == 0",
       "status": "pedroDecide",
-      "pendente": "P27 - COMO DIMINUI nao esta escrito em lugar nenhum. So existe a regra de subir (+1 por noite sem comer).",
-      "recomendacao": "Comer num descanso longo remove 1, espelhando a Exaustao."
+      "pendente": "Como o Desnutrido DIMINUI continua sem texto (a PD17 respondeu como sobe). Lote PD20, item L05.",
+      "recomendacao": "Comer num descanso longo com luz remove 1, espelhando a Exaustão.",
+      "incrementaStatus": "canonico",
+      "incrementaFonte": "notion-condicoes 3a66e3a4...0b25, gravado em 2026-09-26 (rodada 3, diff conferido) e notion-sistema 2b76e3a4, gravado em 2026-09-26 (rodada 3, diff conferido) > Necessidades (PD17)",
+      "incrementaVerbatim": "Você ganha 1 de Desnutrido para cada dia em que descansou sem se alimentar (consumir 1 item do tipo Comida) ou sem luz de fogueira ou outra fonte."
     },
     {
       "id": "exposto",
@@ -1584,8 +1627,9 @@
       ],
       "removeEm": "aoSerAcertado",
       "concedidaUmaVez": true,
-      "status": "pedroDecide",
-      "nota": "P31 - CRITICO para o modelo de dados. Exposto e implicada por Desprevenido, Paralisado e Adormecido, mas tem que ser instancia SEPARADA e concedida UMA VEZ, ao entrar no estado. Se fosse derivada continua, seria reaplicada enquanto o alvo estivesse Paralisado e TODO ataque contra um paralisado seria critico - muito alem de 'morte funcional'."
+      "status": "aprovado",
+      "fonte": "PD17a (docs/ficha-digital/03-respostas-pedro.md (main 703f665)): \"Exposto é removido após ser acertado por um ataque.\"",
+      "notaModelo": "Instância concedida UMA vez ao entrar em Desprevenido, Paralisado ou Adormecido, e removida no primeiro acerto. Não é derivada contínua: senão todo ataque contra um paralisado seria crítico."
     },
     {
       "id": "sangramento",
@@ -1608,12 +1652,12 @@
           "escalaComX": true
         }
       ],
-      "status": "aprovado",
-      "fonte": "D83",
+      "status": "canonico",
+      "fonte": "notion-condicoes 3a66e3a4...0b25, gravado em 2026-09-26 (rodada 3, diff conferido) (D83, PD14a)",
       "verbatimPedro": "um alvo com 3 de sangramento quando e acertado recebe 3d4 de dano e fica com sangramento 2, o proximo acerto da 2d4 de dano e assim por diante",
-      "ordemNumAcertoQueAplica": null,
-      "ordemPendente": "Num acerto que aplica Sangramento num alvo que ja sangra: consome antes ou aplica antes? Recomendacao: consumir antes de aplicar. Diferenca de 1d4 por acerto.",
-      "nota": "Escala com dificuldade: Dilacerar aplica 1 e cada acerto consome 1, entao um atacante so com Dilacerar mantem o alvo em 1. Sangria Precisa (rara) troca o dado para d6: Xd6."
+      "ordemNumAcertoQueAplica": "consomeAntes",
+      "nota": "Escala com dificuldade: Dilacerar aplica 1 e cada acerto consome 1, entao um atacante so com Dilacerar mantem o alvo em 1. Sangria Precisa (rara) troca o dado para d6: Xd6.",
+      "verbatim": "Se o alvo puder sangrar, qualquer ataque contra ele causa +Xd4 de dano Biológico, sendo X o seu Sangramento atual. Ao acertar um ataque em um alvo com essa condição, ela reduz em 1. Por exemplo: um alvo com Sangramento 3 recebe +3d4 no próximo acerto e fica com Sangramento 2. Se o acerto também aplicar Sangramento, o dano e a redução acontecem antes da nova aplicação."
     },
     {
       "id": "invisivel",
@@ -1644,7 +1688,8 @@
       "nome": "Atordoado",
       "grupoUI": "combate",
       "tags": [
-        "fisica"
+        "fisica",
+        "mental"
       ],
       "efeitos": [
         {
@@ -1783,25 +1828,25 @@
         "fisica"
       ],
       "x": {
-        "tipo": "duracao",
-        "unidade": "rodadas",
+        "tipo": "intensidade",
         "inicial": "daFonte",
-        "decrementa": "fimDaRodada"
+        "duracao": "daFonte"
       },
       "efeitos": [
         {
           "alvo": "movimento",
           "op": "soma",
-          "valor": -3
+          "valor": "-3 * X"
         },
         {
           "alvo": "acoes",
           "op": "soma",
-          "valor": -1
+          "valor": "-1 * X"
         }
       ],
-      "status": "decisao",
-      "nota": "P27 - X e DURACAO e da para provar: o efeito escrito nao tem X nenhum. Se X fosse intensidade, Lento 3 seria -9 m e -3 ACOES, ou seja, o turno inteiro, mais forte que Paralisado. Uma condicao de Classe S nao se esconde sem aviso numa condicao de movimento."
+      "status": "pedroDecide",
+      "nota": "CORREÇÃO da rev. 1 (P27): eu tinha lido X como duração. Errado. O próprio Notion usa X como intensidade: Bomba Temporal (Alquimista) \"Lento 2 (-2 Ação/turno, -6 m movimento, ...)\"; Fusão Primal (Monge) \"Lento 1, por 1 rodada\" e Tempestade de Aço (Artilheiro) \"Lento 1 por 2 rodadas\" dão a duração À PARTE. O card da condição diz só \"-3 m Movimento, -1 Ação\", sem X. Lote PD20, item L10 (texto do card).",
+      "alerta": "Lento 3 tira as 3 ações: é mais forte que Paralisado em ação, mas nenhuma fonte hoje aplica mais que Lento 2."
     },
     {
       "id": "enraizado",
@@ -2012,10 +2057,14 @@
           "alvo": "danoPorRodada",
           "op": "soma",
           "valor": "1d6",
-          "tipoDano": "biologico"
+          "tipoDano": "biologico",
+          "momento": "inicioTurnoAfetado"
         }
       ],
-      "sai": "Fortitude CD 20 ou Antidoto"
+      "sai": "Fortitude CD 20 ou Antidoto",
+      "status": "canonico",
+      "fonte": "notion-condicoes 3a66e3a4...0b25, gravado em 2026-09-26 (rodada 3, diff conferido) (PD31)",
+      "verbatim": "1d6 de dano Biológico no início de cada turno seu, até o fim do efeito."
     },
     {
       "id": "em-chamas",
@@ -2031,7 +2080,10 @@
           "momento": "inicioTurnoAfetado"
         }
       ],
-      "sai": "1 acao para apagar"
+      "sai": "1 acao para apagar",
+      "status": "canonico",
+      "fonte": "notion-condicoes 3a66e3a4...0b25, gravado em 2026-09-26 (rodada 3, diff conferido) (PD31)",
+      "verbatim": "1d6 de dano elemental(fogo) no início de cada turno seu, até apagar o fogo com 1 ação."
     },
     {
       "id": "enjoado",
@@ -2120,16 +2172,16 @@
         "enraizado"
       ],
       "implicaModo": "derivada",
-      "status": "pedroDecide",
-      "pendente": "C16 - usada no conteudo e ausente do catalogo, MAS o efeito ja esta definido na manobra Agarrar do Notion: 'Atacar contra o alvo +2, alvo -2 ao Atacar, alvo Enraizado'. So falta o card.",
-      "recomendacao": "Promover a condicao com esses tres efeitos exatos. Nada de novo precisa ser inventado."
+      "status": "canonico",
+      "fonte": "notion-condicoes 3a66e3a4...0b25, gravado em 2026-09-26 (rodada 3, diff conferido) (PD17)",
+      "verbatim": "Você está dominado por uma criatura. Ataques contra você possuem +2 em Atacar. Você recebe -2 ao Atacar. Você fica Enraizado até se livrar do agarrão."
     },
     {
       "id": "marcado",
       "nome": "Marcado",
-      "status": "pedroDecide",
-      "pendente": "C16 - usada no conteudo ('+2 Atacar contra ele'), ausente do catalogo.",
-      "recomendacao": "NAO promover. Parece a Marca do Duelo do Espadachim generalizada, e virar condicao generica pisa na identidade da classe: e o unico estado que o Espadachim tem."
+      "status": "aprovado",
+      "fonte": "PD17: \"não promover Marcado\"",
+      "decisao": "Não vira condição genérica. Fica como texto da fonte que a aplica (o efeito mora na técnica ou item)."
     },
     {
       "id": "marcada-a-morte",
@@ -2189,17 +2241,20 @@
       "status": "canonicoParcial"
     },
     "fisicaFonte": "O Limiar define: Embriagado, Sangramento, Lento, Atordoado, Paralisado, Desorientado, Enjoado, Envenenamento",
-    "mental": null,
-    "mentalPendente": "C17/C34 - 'condicoes mentais' e citada pelo Teurgo e pelo Veterano e NUNCA foi listada.",
-    "mentalRecomendacao": [
-      "confuso",
-      "amedrontado",
-      "descontrolado",
+    "mental": [
       "enfeiticado",
-      "adormecido"
+      "amedrontado",
+      "confuso",
+      "atordoado"
     ],
-    "mentalRecomendacaoMotivo": "Bebado fica fora porque o Limiar ja a colocou entre as fisicas.",
-    "nota": "NAO funda os dois eixos. Um serve para achar o card, o outro para decidir se a condicao pega."
+    "nota": "NAO funda os dois eixos. Um serve para achar o card, o outro para decidir se a condicao pega.",
+    "mentalStatus": "canonicoParcial",
+    "mentalFonte": "notion-limiar > rara Santuário Intocável: \"imunes a condições mentais (Enfeitiçado, Amedrontado, Confuso, Atordoado)\". Correção da rev. 1, que dizia que a lista nunca foi escrita.",
+    "mentalNotas": [
+      "Oco conta como mental por implicação: o pacto da Grande Árvore (Teurgo) \"remove alguma condição mental, exceto Oco\".",
+      "Atordoado está nas DUAS listas (mental no Santuário Intocável, física no Avatar do Vazio). Tags são eixo, não partição: pode ter as duas.",
+      "Monge Ápatico dá um subconjunto: \"condições que são causadas por emoções (Enfeitiçado e Amedrontado)\"."
+    ]
   },
   "empilhamento": {
     "entreCondicoes": "soma",
@@ -2238,13 +2293,9 @@
     "pmaFonte": "D29",
     "pmaNota": "MECANICA (D29): -5 cumulativo por ataque no mesmo turno, contado POR ALVO, zera ao trocar de alvo; so vale na acao Atacar. FICHA: nao rastreia alvo, mostra a progressao (ver derivados.progressaoDeAtaques).",
     "acaoLivreMax": null,
-    "acaoLivreStatus": "pendente",
-    "acaoLivrePendente": "P36 - 'Acao Livre' nao existe na lista de Sua Rodada; a palavra so aparece dentro da modulacao Acelerar (3->2->1->Reacao->Acao Livre).",
-    "acaoLivreRecomendacao": "NAO criar limite numerico. O sistema ja limita acao livre pelo RECURSO: Sangue por Aco custa Saude, Oportunista 5 Stamina, Pressagio Eter, efeitos de arma 2-3 Stamina. O recurso e o contador.",
-    "conjuracoesPorTurno": null,
-    "conjuracoesStatus": "pendente",
-    "conjuracoesPendente": "P36 - REGRA FANTASMA. A magia Projetil diz que IGNORA a regra de '1 cast por turno', e a regra NAO existe na pagina Sistema. Magia referenciando regra inexistente e buraco de canone.",
-    "conjuracoesRecomendacao": "Provavelmente existe e caiu. Sem ela, 3 acoes viram 3 truques de Nivel 1 a 0 Eter cada. Feita a conta: 3x Centelha no nivel 5 = 3d4 automaticos = ~7,5 por turno, para sempre, de graca, contra a referencia de DPR de 18-25. E piso infinito, nao pico. Mas piso infinito corroi sistema de atrito, e o Projetil achou que valia mencionar.",
+    "acaoLivreStatus": "canonico",
+    "conjuracoesPorTurno": 1,
+    "conjuracoesStatus": "canonico",
     "escopo": "turno",
     "reacaoNota": "Com a regra de retaliacao ('a criatura pode escolher reagir a cada um deles; ao final do seu turno, ela considera a reacao gasta'), UMA reacao ja cobre TODOS os ataques de UM agressor. A reacao extra (Esquiva Lendaria +1) serve para um SEGUNDO agressor, nao para mais ataques do mesmo.",
     "custoDeAcao": {
@@ -2276,6 +2327,37 @@
       "esconder": {
         "custo": 3,
         "fonte": "notion-sistema > Furtividade"
+      },
+      "usarConsumivel": {
+        "custo": 1,
+        "emSi": true,
+        "emOutraCriatura": true,
+        "arremesso": "segue o texto do item",
+        "status": "canonico",
+        "verbatim": "Usar item consumível (1 ação) → em você ou em outra criatura. Se o item for arremessado, siga o que ele diz.",
+        "fonte": "notion-sistema 2b76e3a4, gravado em 2026-09-26 (rodada 3, diff conferido) > Sua Rodada (PD18)"
+      },
+      "investida": {
+        "custo": 2,
+        "contaComoMover": true,
+        "provocaAtaqueDeOportunidade": false,
+        "status": "canonico",
+        "fonte": "notion-sistema 2b76e3a4, gravado em 2026-09-26 (rodada 3, diff conferido) > Manobras > Investida (D88; (a) e (b) respondidos pelo Pedro em 2026-09-26)",
+        "verbatim": "Você gasta duas ações para se movimentar até seu Movimento em linha reta, a cada inimigo colidido no seu caminho faça um teste de Movimento contra ele, em caso de sucesso você realiza 1 ação:Atacar contra ele e segue para o próximo alvo na trajetória, em caso de falha você é interceptado e para antes do alvo contra qual falhou e realiza 1 ação:Atacar contra ele. A Investida conta como a sua ação de Mover do turno. Ultrapassar inimigos durante a Investida não provoca ataques de oportunidade.",
+        "ataquesEsperados": {
+          "formula": "sum(p^k, k=0..n-1) para n inimigos em linha, p = chance de vencer a disputa de Movimento",
+          "p0.5": {
+            "1": 1.0,
+            "2": 1.5,
+            "3": 1.75
+          },
+          "p0.7": {
+            "1": 1.0,
+            "2": 1.7,
+            "3": 2.19
+          }
+        },
+        "pendente": "Lote PD20, item L13: \"1 ação:Atacar\" com arma que custa Atacar(2)/Atacar(3); e PMA por alvo (D29) nos ataques da Investida."
       }
     },
     "acoesNaoDefinidas": {
@@ -2283,7 +2365,9 @@
       "fonte": "D90",
       "verbatimPedro": "ações não definidas são custeadas conforme a intuição do mestre-jogador no momento, sem pensar tanto no balanceamento",
       "naFicha": "custo de ação null = o mestre decide; a ficha não trava nem sugere número"
-    }
+    },
+    "conjuracoesFonte": "notion-sistema 2b76e3a4, gravado em 2026-09-26 (rodada 3, diff conferido) > Sua Rodada: \"Conjurar magia (1-3 ações), no máximo 1 magia conjurada por turno.\" (PD18)",
+    "acaoLivreFonte": "notion-sistema 2b76e3a4, gravado em 2026-09-26 (rodada 3, diff conferido) > Sua Rodada: \"Ações livres não têm limite por turno.\" (PD18)"
   },
   "municao": {
     "descontoPor": "combate",
@@ -2442,20 +2526,30 @@
       "nota": "P40 - 'utilizado' e o que voce de fato pagou, modulacoes incluidas. E e perda INVOLUNTARIA, entao atravessa o 0 e pode disparar Oco. Numero: um Teurgo nv5 com INT 16 tem Eter maximo 66; Nivel 5 Transbordante + 2 modulacoes = 20 de custo, 40 de perda na falha = 61% do pool num unico teste de Vontade CD 15."
     },
     "sustentada": {
-      "custoPorTurno": "total",
       "maxAtivas": 1,
-      "maxAtivasStatus": "pedroDecide",
-      "maxAtivasMotivo": "P41 - a frase da Sinapsia Coletiva ('Conjurar outra magia sustentada ... dissipa') esta escrita de forma GERAL, dentro de uma magia especifica. Recomendo ler como regra geral, porque e o guarda-corpo padrao contra empilhar buffs e porque a alternativa (cada magia declarar a sua) significa que hoje NENHUMA declara.",
-      "foraCombate": null,
-      "foraCombatePendente": "Nao tenho fonte para 'a cada 30 min'."
+      "maxAtivasStatus": "aprovado",
+      "maxAtivasFonte": "PD16 (docs/ficha-digital/03-respostas-pedro.md (main 703f665)): \"1 ativa\"",
+      "custoPorTurno": "oQueADescricaoDaMagiaDiz|custoDaCanalizacao",
+      "custoPorTurnoStatus": "aprovado",
+      "custoPorTurnoVerbatimPedro": "Toda magia sustentada tem em sua descrição quanto gasta de éter por turno; o padrão é o éter gasto na canalização da magia, mas só se não tiver escrito na descrição da magia.",
+      "foraCombate": "oQueADescricaoDaMagiaDiz",
+      "foraCombateStatus": "aprovado",
+      "foraCombateNota": "Pela mesma regra da PD16: quando a descrição diz (\"Fora de combate, pague o custo da magia a cada 30 minutos em uso\", Sinapsia Coletiva e outras), vale o texto; sem texto, fica a critério do mestre.",
+      "dissipaAo": [
+        "conjurar outra magia sustentada",
+        "ficar atordoado",
+        "ficar incapaz de se concentrar"
+      ],
+      "dissipaFonte": "texto repetido nas magias sustentadas da página Magias (\"Conjurar outra magia sustentada, ser atordoado ou estar incapaz de ativamente se concentrar imediatamente dissipa a magia.\")"
     },
     "requisitos": {
       "validar": "avisar",
-      "validarStatus": "decisao",
+      "validarStatus": "aprovado",
       "regra": "Treinado em Mistico + Foco da escola equipado",
       "focosSimultaneos": 1,
       "motivo": "P42 - 'avisar', nao 'bloquear': a origem Cultista concede 2 magias de Nivel 1 e a raca Corrompido tambem, SEM o gate. Bloquear quebraria as duas builds.",
-      "avisoPorFoco": "Avise tambem por FOCO, nao so por treino: so se pode empunhar 1 Foco por vez. Um Teurgo com 4 escolas aprendidas so conjura a da escola equipada, e ninguem lembra disso na mesa."
+      "avisoPorFoco": "Avise tambem por FOCO, nao so por treino: so se pode empunhar 1 Foco por vez. Um Teurgo com 4 escolas aprendidas so conjura a da escola equipada, e ninguem lembra disso na mesa.",
+      "validarFonte": "PD1 (todo campo editável) e, por analogia, PD23 (\"avisar, com pop-up de confirmação\"): a ficha avisa, não bloqueia"
     },
     "orfasDeContida": {
       "itens": [
@@ -2483,7 +2577,12 @@
       "fonte": "notion-sistema 2b76e3a4, gravado em 2026-09-26 (diff conferido: 3 blocos adicionados, 6 ícones de callout trocados, nada mais) > Magias (abaixo da tabela de Intensidade)",
       "verbatimPedro": "seria o caso de modular ou intensificar e o custo de eter ser reduzido por alguma tecnica, apesar de ser um truque o minimo continua sendo 1 igual as outras magias",
       "nota": "Um piso so, igual para todas. Substitui o modelo de 'dois pisos' da revisao 1.",
-      "verbatim": "Custo mínimo: toda conjuração custa no mínimo 1 Éter, mesmo após reduções de técnicas, cartas ou itens. A única exceção é a magia de Nível 1 conjurada em intensidade Normal e sem modulação, que custa 0 Éter. Magias de Nível 1 não possuem a intensidade Contida."
+      "verbatim": "Custo mínimo: toda conjuração custa no mínimo 1 Éter, mesmo após reduções de técnicas, cartas ou itens. A única exceção é a magia de Nível 1 conjurada em intensidade Normal e sem modulação, que custa 0 Éter. Magias de Nível 1 não possuem a intensidade Contida.",
+      "conflito": {
+        "status": "pedroDecide",
+        "o": "Magias Pactuadas (Teurgo, Arauto T1): \"Ao conjurar uma Magia Pactuada em Intensidade Contida, o custo é 0 de éter (Ao invés de 1)\". O Sistema agora diz \"no mínimo 1 Éter, mesmo após reduções de técnicas\".",
+        "leitura": "A técnica escreve a exceção de propósito (\"Ao invés de 1\"). Lote PD20, item L15."
+      }
     },
     "exemplosDoPiso": [
       {
@@ -3036,7 +3135,8 @@
       "2": {
         "tecnicas": 5,
         "tier": 1,
-        "pontosLimiar": 4
+        "pontosLimiar": 4,
+        "tier1Escolhas": 3
       },
       "3": {
         "tecnicas": 6,
@@ -3047,13 +3147,15 @@
         "tecnicas": 7,
         "tier": 2,
         "marcas": 2,
-        "pontosLimiar": 4
+        "pontosLimiar": 4,
+        "tier2Escolhas": 2
       },
       "5": {
         "tecnicas": 8,
         "tier": 3,
         "marcas": 3,
-        "pontosLimiar": 4
+        "pontosLimiar": 4,
+        "tier3Escolhas": 1
       }
     },
     "tecnicasFormula": "3 + nivel",
@@ -3076,24 +3178,41 @@
       "pontosTotais": 16,
       "porMao": {
         "cartasReveladas": 5,
-        "sextaCartaEspecial": "+2 Atributo Adicional",
         "custoDasCartas": [
           "gratis",
           2,
           3,
           4,
-          "..."
+          5
         ],
-        "sextaCartaCusto": 2
+        "sextaCarta": {
+          "nome": "+2 Atributo Adicional",
+          "custo": 2,
+          "custoFixo": true,
+          "mesmoSendoAPrimeira": true,
+          "maxPorMao": 1,
+          "pontosDeAtributo": 2,
+          "distribuicao": "livre, em até dois atributos"
+        },
+        "sextaCartaOcupaPosicao": null,
+        "sextaCartaOcupaPosicaoPendente": "Pegar a 6ª carta empurra a próxima carta para o custo seguinte (3 em vez de 2)? Lote PD20, item L07."
       },
       "custoEscalonaPorMao": true,
       "cartasGratisNaCampanha": 4,
-      "totalDeCartas": "5-11",
+      "totalDeCartas": "4-12",
       "pontosNaoGastosAcumulam": true,
       "podeQueimar": "1 carta por mao, nunca retorna",
       "status": "canonico",
-      "fonte": "notion-limiar > A Cada Nivel",
-      "_correcao": "A revisao 1 dizia que o orcamento 'fecha exato em 16 pontos / 6 cartas'. ERRADO: o custo crescente e POR MAO, a cada nivel. O proprio Limiar diz '5-11 Cartas do Limiar escolhidas (dependendo de como gastou os pontos)'."
+      "fonte": "notion-limiar 3a66e3a4...f676, gravado em 2026-09-26 (rodada 3, diff conferido) > Escolhendo Suas Cartas (PD13); \"4-12\" já corrigido pelo Pedro",
+      "verbatim": "1ª carta: Grátis! 2ª carta: 2 Pontos do Limiar. 3ª carta: 3 Pontos do Limiar. 4ª carta: 4 Pontos do Limiar. 5ª carta: 5 Pontos do Limiar. 6ª carta (+2 Atributo): Sempre custa 2 Pontos do Limiar, mesmo sendo a primeira carta escolhida, e só pode ser escolhida 1 vez por mão. Os 2 pontos podem ser distribuídos entre dois atributos.",
+      "catalogo": {
+        "total": 127,
+        "universais": 8,
+        "porAtributo": 12,
+        "raras": 59,
+        "conferidoEm": "2026-09-26",
+        "divergencia": "O Resumo da página diz \"FOR 14+\" (e DES/CON/INT/SAB 14+); os cabeçalhos das tabelas e \"Atributo Alto\" dizem 16+. Lote PD20, item L16."
+      }
     },
     "validacoes": {
       "pontosDoLimiar": "avisar",
@@ -3151,6 +3270,101 @@
       "valor": 2,
       "status": "canonico",
       "fonte": "notion-limiar > Bencao Imediata dos Atributos (D87)"
+    },
+    "tecnicasReatribuiveisStatus": "pedroDecide",
+    "tecnicasReatribuiveisFonte": "as 7 páginas de classe: \"Toda classe possui técnicas, você pode reatribuí-las livremente ao realizar um descanso longo, respeitando o limite de pontos.\"",
+    "tecnicasReatribuiveisConflito": "Nota do Pedro na PD4: \"as técnicas das classes que são alteráveis em descansos curtos\". Notion (7 páginas) diz longo. Mantido o Notion até ele confirmar (pergunta C1).",
+    "ramos": {
+      "escolha": "por técnica: cada tier escolhe técnicas de qualquer ramo, misturar é permitido",
+      "irreversivel": true,
+      "porNivel": {
+        "2": {
+          "tier1": 3
+        },
+        "4": {
+          "tier2": 2
+        },
+        "5": {
+          "tier3": 1
+        }
+      },
+      "marcasAcumuladas": {
+        "3": 1,
+        "4": 2,
+        "5": 3
+      },
+      "status": "canonico",
+      "fonte": "as 7 páginas de classe > Ramos",
+      "verbatim": "Os ramos são caminhos, características únicas do seu personagem, diferente das técnicas, são irreversíveis. [...] É extremamente aceitável que você misture os 3 ramos. Ao longo da criação do seu personagem você escolherá: 3 Marcas; 6 Técnicas de Ramo: 3 no Tier 1 (nível 2), 2 no Tier 2 (nível 4) e 1 Ultimate no Tier 3 (nível 5).",
+      "requisitoDeTier3": {
+        "batedor-senhor-das-linhas": "deve ter ao menos Cartógrafo Tier 1 ou 2",
+        "nota": "Único Tier 3 com requisito de ramo escrito (nas 7 classes)."
+      },
+      "tier3Uso": "O Tier 3 provê ultimates, que só podem ser utilizadas 1 vez por dia."
+    },
+    "teurgo": {
+      "escolas": {
+        "1": 2,
+        "3": 3,
+        "5": 5
+      },
+      "escolasLista": [
+        "abjuracao",
+        "destruicao",
+        "conhecimento",
+        "alteracao",
+        "primordial"
+      ],
+      "primordialRequer": "nível 5",
+      "magiasNivel1": "1 + maior(mod.INT, mod.SAB) magias de Nível 1",
+      "magiasNivel1Verbatim": "Escolha 1+MOD. INT ou SAB, magias de nível 1 no primeiro nível.",
+      "substitutasDaFormula": {
+        "grimorio-arcano": {
+          "formula": "3 + mod.INT, +1 por nível seguinte",
+          "troca": "1 magia nova e reordenar por descanso longo"
+        },
+        "canalizador-inato": {
+          "formula": "2 + mod.SAB, +1 por nível seguinte",
+          "troca": "permanentes, não podem ser trocadas",
+          "extra": "+1 treinamento em Místico"
+        },
+        "magias-pactuadas": {
+          "formula": "1 + mod.INT, +1 por nível seguinte",
+          "troca": "ritual de 1 h + preço do pacto"
+        }
+      },
+      "acesso": "magias de nível igual ou abaixo do nível do personagem",
+      "lacuna": "Teurgo SEM nenhuma das 3 técnicas acima: o texto base só cobre o nível 1. Lote PD20, item L14.",
+      "fonte": "notion Teurgo caa6e3a4 > Progressão, Escolas do Primórdio, Tier 1"
+    },
+    "criacao": {
+      "passos": [
+        {
+          "n": 1,
+          "o": "Atributos",
+          "regra": "atributos.faixa (PD30)"
+        },
+        {
+          "n": 2,
+          "o": "Raça",
+          "regra": "atributos base, movimento, perícias (às vezes com escolha), expectativa de vida, altura, peso, características de raça e 1 técnica de raça"
+        },
+        {
+          "n": 3,
+          "o": "Classe",
+          "regra": "V/G/R, treinamento inicial fixo (varia por classe: categoria de arma e perícias) + (1 + Mod. Inteligência) perícias à escolha dentre 5, CD, característica de classe, 3 + Nível técnicas gerais; Teurgo: escolas e magias"
+        },
+        {
+          "n": 4,
+          "o": "Origem",
+          "regra": "itens iniciais, técnicas de origem, treinamento (e Sins)"
+        }
+      ],
+      "fonteDosPassos": "Pedro, §2 de docs/ficha-digital/03-respostas-pedro.md (main 703f665); notion-sistema > Criação de Personagem",
+      "semLimiarNaCriacao": true,
+      "semLimiarFonte": "notion-limiar: \"A Cada Nível (2, 3, 4, 5)\"; Pedro (PD4): \"Cuidado com as 4 técnicas do limiar, isso é só a partir do nível 2.\"",
+      "navegacao": "todo passo alterável e retornável (Pedro, §2)",
+      "dadosPorRacaEOrigem": "vêm do parser do bloco C (raças e origens), próxima entrega"
     }
   },
   "rastrear": {
@@ -3201,14 +3415,9 @@
     "rolagemDeDescanso": "automatico, com desfazer",
     "estadosFinais": "alerta, nunca automatico",
     "_regraDeInterface": "Vale mais que a decisao automatico/lembrete: TODO NUMERO DERIVADO PRECISA MOSTRAR DE ONDE VEIO. Um jogador que ve 'Atacar +5' sem explicacao nao confia; um que ve '+3 DES +4 prof -2 Desorientado' confia e ainda aprende o sistema. Automacao sem rastreabilidade gera desconfianca, e ficha em que ninguem confia volta para o papel.",
-    "rolador": "roladorOpcional",
-    "roladorPadrao": "desligado",
-    "roladorPrioridade": "construir por ultimo",
-    "roladorMotivo": [
-      "O valor esta em dizer O QUE rolar, nao em rolar. Uma linha 'Atacar: 1d20 +7 / PMA -5 neste alvo / desvantagem (Cego)' entrega 90% do beneficio por 10% do trabalho, e funciona com dado fisico na mao. Montar a expressao e onde a ficha e insubstituivel; sortear um numero nao e.",
-      "Rolador cria um problema que dado fisico nao tem: confianca. 'Tirei 20' com dado na mesa e fato publico; com rolador e alegacao.",
-      "Khalkaria e tatil de proposito. O Limiar e mao de cartas, o Abismo e barganha. Tirar o dado da mao do jogador anda contra a estetica do sistema."
-    ],
+    "rolador": "naMesa",
+    "roladorPadrao": "ligadoNaMesa",
+    "roladorPrioridade": "Mesa (F5)",
     "roladorRequisitos": [
       "historico",
       "linha copiavel para o chat do grupo"
@@ -3218,7 +3427,16 @@
       "profundidade": 20,
       "obrigatorio": true,
       "motivo": "P58 - clique errado em 'Descanso Longo' e irrecuperavel sem log, porque ele consome o dia, rola recuperacao, baixa Exaustao e cobra estresse de uma vez. Dano e gasto de recurso tambem: a mesa corrige o tempo todo ('nao, o ataque errou')."
-    }
+    },
+    "roladorEntradaManual": true,
+    "roladorStatus": "aprovado",
+    "roladorFonte": "PD10 (docs/ficha-digital/03-respostas-pedro.md (main 703f665)): a Mesa rola perícias, ataques, magias e dados de dano",
+    "roladorMotivoOriginal": [
+      "O valor esta em dizer O QUE rolar, nao em rolar. Uma linha 'Atacar: 1d20 +7 / PMA -5 neste alvo / desvantagem (Cego)' entrega 90% do beneficio por 10% do trabalho, e funciona com dado fisico na mao. Montar a expressao e onde a ficha e insubstituivel; sortear um numero nao e.",
+      "Rolador cria um problema que dado fisico nao tem: confianca. 'Tirei 20' com dado na mesa e fato publico; com rolador e alegacao.",
+      "Khalkaria e tatil de proposito. O Limiar e mao de cartas, o Abismo e barganha. Tirar o dado da mao do jogador anda contra a estetica do sistema."
+    ],
+    "roladorExpressao": "ver 15-ficha-rodada3.md, C6"
   },
   "eventos": {
     "inicioCombate": [
@@ -3263,7 +3481,7 @@
     ]
   },
   "export": {
-    "exportarEstado": true,
+    "exportarEstado": "soNativo",
     "blocoSeparado": "estadoSessao",
     "campos": [
       "saude.atual",
@@ -3286,7 +3504,10 @@
       "somenteLeitura": true,
       "copiavel": true,
       "motivo": "E o que um mestre pergunta em combate, sempre a mesma coisa. Resolve sem precisar que o Bestiario mude nada."
-    }
+    },
+    "profFormato": "grau",
+    "profFormatoFonte": "PD5a (docs/ficha-digital/03-respostas-pedro.md (main 703f665)): \"Acho que é grau, mas a compatibilidade com o bestiário não é tão importante.\"",
+    "exportarEstadoFonte": "PD5b (docs/ficha-digital/03-respostas-pedro.md (main 703f665)): \"Não, só no nativo\""
   },
   "pendenciasNotion": [
     {
@@ -3342,79 +3563,92 @@
       "n": 8,
       "o": "Exposto derivado de Paralisado: concede uma vez, nao continuamente",
       "porque": "A leitura continua faz todo ataque contra paralisado ser critico.",
-      "gravidade": "alta"
+      "gravidade": "alta",
+      "status": "decidido: PD17a"
     },
     {
       "n": 9,
       "o": "Saida de Exaurido e Oco = recurso > 0",
       "porque": "A leitura literal permite ficar em 0 de Stamina sem penalidade para sempre.",
-      "gravidade": "media"
+      "gravidade": "media",
+      "status": "gravado no Notion (Condições) em 2026-09-26"
     },
     {
       "n": 10,
       "o": "Como o Desnutrido diminui",
       "porque": "So existe a regra de subir.",
-      "gravidade": "media"
+      "gravidade": "media",
+      "status": "ABERTO: a PD17 respondeu como sobe, não como desce (L05)"
     },
     {
       "n": 11,
       "o": "Lista das 'condicoes mentais'",
       "porque": "Citada pelo Teurgo e pelo Veterano, nunca escrita.",
-      "gravidade": "media"
+      "gravidade": "media",
+      "status": "resolvido: a lista existe na rara Santuário Intocável (ver taxonomiaDeCondicao.mental)"
     },
     {
       "n": 12,
       "o": "Promover Agarrado a condicao",
       "porque": "O efeito ja existe na manobra Agarrar; so falta o card.",
-      "gravidade": "media"
+      "gravidade": "media",
+      "status": "gravado no Notion (Condições) em 2026-09-26"
     },
     {
       "n": 13,
       "o": "'1 cast por turno' existe?",
       "porque": "Projetil diz que ignora uma regra que nao esta escrita.",
-      "gravidade": "media"
+      "gravidade": "media",
+      "status": "gravado no Notion (Sistema > Sua Rodada) em 2026-09-26"
     },
     {
       "n": 14,
       "o": "O dado de Defender nao soma atributo",
       "porque": "Uma linha, evita contar Destreza duas vezes.",
-      "gravidade": "media"
+      "gravidade": "media",
+      "status": "gravado no Notion (Sistema > Defesa) em 2026-09-26"
     },
     {
       "n": 15,
       "o": "Descricao do Oficio(Ferraria) esta com o texto da Engenharia",
       "porque": "Correcao de copiar-colar.",
-      "gravidade": "baixa"
+      "gravidade": "baixa",
+      "status": "gravado no Notion (Sistema > tabela de perícias) em 2026-09-26"
     },
     {
       "n": 16,
       "o": "Intimidacao: CON/FOR ou FOR/SAB?",
       "porque": "Ficha fisica e tabela de pericias discordam.",
-      "gravidade": "baixa"
+      "gravidade": "baixa",
+      "status": "resolvido: Con/For (Sistema + ficha A4); falta o Template (Notion × Notion, espera o Pedro)"
     },
     {
       "n": 17,
       "o": "Padronizar ultrapassar/alcancar em Morrendo e Oco",
       "porque": "Uma palavra em cada card.",
-      "gravidade": "baixa"
+      "gravidade": "baixa",
+      "status": "gravado no Notion (Condições) em 2026-09-26"
     },
     {
       "n": 18,
       "o": "Pele de Pedra usa Ae(Ordinario) e deveria ser Ar",
       "porque": "Ja era pendencia (D67).",
-      "gravidade": "baixa"
+      "gravidade": "baixa",
+      "status": "gravado no Notion (Magias) em 2026-09-26"
     },
     {
       "n": 19,
       "o": "Residuo da renumeracao de magia (D68)",
       "porque": "Dissipar Magia, Teurgo x3, Cultista, Corrompido, Desejo Sombrio.",
-      "gravidade": "media"
+      "gravidade": "media",
+      "status": "gravado: Dissipar Magia (Magias) em 2026-09-26; o resto já estava corrigido. NOVO resíduo: Cartucho Arcano (Alquimista) \"(nível-1)\" (L18)"
     },
     {
       "n": 20,
       "o": "Ordem do Sangramento num acerto que tambem aplica",
       "porque": "Consumir antes ou aplicar antes muda 1d4 por acerto.",
-      "gravidade": "baixa"
+      "gravidade": "baixa",
+      "status": "gravado no Notion (Condições) em 2026-09-26"
     }
   ],
   "baixaDePendencia": [
@@ -3458,13 +3692,15 @@
     "acoesPorTurno": 3,
     "verbatimPedro": "1 ação significa 2 segundos de combate, 3 ações 6 segundos que é 1 turno.",
     "fonte": "D90 (Pedro, 2026-09-26)",
-    "status": "decisao",
+    "status": "aprovado",
     "derivado": {
       "rodadaSegundos": 6,
       "1 min": "10 rodadas",
       "10 min": "100 rodadas",
       "1 h": "600 rodadas",
       "nota": "Derivado por mim: a rodada tem 6 segundos porque os turnos de todos acontecem nos mesmos 6 segundos da ficção. Serve para a ficha converter duração em minutos ('Dura 1 min') em rodadas."
-    }
-  }
+    },
+    "statusNota": "Verbatim do Pedro (D90), ainda fora do Notion. Lote PD20, item L17."
+  },
+  "_numeracao": "Dn = decisão n de 09-decisoes-pedro.md (memória do balanceamento). PDn = decisão n do plano docs/ficha-digital/02-plano.md, respondida em 03-respostas-pedro.md. Ln = item do lote de revisão em 15-ficha-rodada3.md."
 }

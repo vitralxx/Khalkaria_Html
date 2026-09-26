@@ -6,6 +6,15 @@
 
 ---
 
+## Revisão 5 (2026-09-26) — rodada 3
+
+A rodada 3 está em **`15-ficha-rodada3.md`**: Notion gravado (Condições, Sistema, Magias, Limiar, 7 classes),
+contrato `regras-ficha/1.1`, efeitos `efeitos-itens/1.1`, `marcas-vhelor.json` e o lote PD20 para o Pedro. Onde este
+arquivo e o 15 discordam, vale o 15. Duas correções que afetam o texto abaixo: **Lento X é intensidade** (P27 estava
+errada) e **a lista de condições mentais existe** (rara *Santuário Intocável*).
+
+---
+
 ## Revisão 4 (2026-09-26) — o que mudou depois das respostas do Pedro
 
 **Duas células do CSV do Bazar mudaram, com aprovação explícita do Pedro.** Aplique as mesmas duas
