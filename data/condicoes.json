@@ -26,12 +26,12 @@
         {
           "id": "exaustao",
           "nome": "Exaustão 1-5",
-          "corpo": "<p>Você está exausto, ações rotineiras se tornam cada vez mais difíceis.</p>\n                        <ul>\n                            <li><strong>Exaustão 1:</strong> Você tem desvantagem em testes físicos (Força, Destreza ou Constituição)</li>\n                            <li><strong>Exaustão 2:</strong> Você causa metade do seu dano total em todos seus ataques.</li>\n                            <li><strong>Exaustão 3:</strong> Você tem desvantagem em todos os testes e seu movimento é cortado pela metade.</li>\n                            <li><strong>Exaustão 4:</strong> Atributos reduzidos pela metade e seu movimento é zerado.</li>\n                            <li><strong>Exaustão 5:</strong> Morte.</li>\n                        </ul>\n                        <p>Ao realizar um descanso longo, você diminui 1 de exaustão.</p>"
+          "corpo": "<p>Você está exausto, ações rotineiras se tornam cada vez mais difíceis.</p>\n                        <ul>\n                            <li><strong>Exaustão 1:</strong> Você tem desvantagem em testes físicos (Testes que possuem Força, Destreza ou Constituição como atributo base)</li>\n                            <li><strong>Exaustão 2:</strong> Você causa metade do seu dano total em todos seus ataques.</li>\n                            <li><strong>Exaustão 3:</strong> Você tem desvantagem em todos os testes e seu movimento é cortado pela metade.</li>\n                            <li><strong>Exaustão 4:</strong> Atributos reduzidos pela metade e seu movimento é zerado.</li>\n                            <li><strong>Exaustão 5:</strong> Morte.</li>\n                        </ul>\n                        <p>Ao realizar um descanso longo, você diminui 1 de exaustão.</p>"
         },
         {
           "id": "desnutrido",
           "nome": "Desnutrido X",
-          "corpo": "<p>Você está faminto.</p>\n                        <ul>\n                            <li>Você ganha 1 de Desnutrido para cada dia em que descansou sem se alimentar (consumir 1 item do tipo Comida) ou sem luz de fogueira ou outra fonte.</li>\n                            <li>Se alimentar ao descansar em um dia remove 1 de Desnutrido.</li>\n                            <li>Você tem desvantagem em testes físicos (Força, Destreza ou Constituição)</li>\n                            <li>Você gasta o dobro de Stamina para tudo.</li>\n                            <li>Você perde 10 × X de Saúde máxima.</li>\n                        </ul>"
+          "corpo": "<p>Você está faminto.</p>\n                        <ul>\n                            <li>Você ganha 1 de Desnutrido para cada dia em que descansou sem se alimentar (consumir 1 item do tipo Comida) ou sem luz de fogueira ou outra fonte.</li>\n                            <li>Se alimentar ao descansar em um dia remove 1 de Desnutrido.</li>\n                            <li>Você tem desvantagem em testes físicos (Testes que possuem Força, Destreza ou Constituição como atributo base)</li>\n                            <li>Você gasta o dobro de Stamina para tudo.</li>\n                            <li>Você perde 10 × X de Saúde máxima.</li>\n                        </ul>"
         }
       ]
     },
@@ -106,7 +106,7 @@
         {
           "id": "confuso",
           "nome": "Confuso",
-          "corpo": "<p>Você perde algumas memórias recentes e tem dificuldade pra assimilar a situação. Você pode gastar 1 ação para se livrar dessa condição. Você pode gastar 1 ação para se livrar dessa condição.</p>\n                        <ul>\n                            <li>-1 Ação</li>\n                        </ul>"
+          "corpo": "<p>Você perde algumas memórias recentes e tem dificuldade pra assimilar a situação. Você pode gastar 1 ação para se livrar dessa condição.</p>\n                        <ul>\n                            <li>-1 Ação</li>\n                        </ul>"
         },
         {
           "id": "amedrontado",

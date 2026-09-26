@@ -597,7 +597,7 @@
                         </div>
                         <div class="stat-card">
                             <div class="label">Estilo</div>
-                            <div class="value">Suporte e Crafting</div>
+                            <div class="value">Suporte, Utilidade, Preparação e Crafting</div>
                         </div>
                     </div>
                 </div>
@@ -689,7 +689,7 @@
                 </p>
                 
                 <p style="color: var(--text-secondary); margin-bottom: 1rem;">
-                    Reagentes são utilizados pelo alquimista para criar todas as suas invenções, sejam elas itens, poções, melhorias ou efeitos especiais. Você conhece fórmulas fundamentais da alquimia — estes itens podem ser criados por qualquer Alquimista, independente do ramo escolhido.
+                    Reagentes são utilizados pelo alquimista para criar todas suas invenções, sendo elas itens, poções, melhorias e efeitos especiais. Você conhece fórmulas fundamentais da alquimia. Estes itens podem ser criados por <strong>qualquer Alquimista</strong>, independente do ramo escolhido.
                 </p>
 
                 <div class="reagentes-grid">
@@ -699,22 +699,22 @@
                     </div>
                     <div class="reagentes-item">
                         <strong>🌙 Descanso Longo:</strong><br>
-                        <span style="color: var(--text-secondary);">Recupera todos os reagentes (com acesso a suprimentos ou natureza)</span>
+                        <span style="color: var(--text-secondary);">Você recupera todos os Reagentes em um descanso longo, assumindo acesso a suprimentos básicos ou natureza.</span>
                     </div>
                     <div class="reagentes-item">
                         <strong>☀️ Descanso Curto:</strong><br>
-                        <span style="color: var(--text-secondary);">Buscar Reagentes: 1d4+Nível</span>
+                        <span style="color: var(--text-secondary);">Você pode <em>Buscar Reagentes</em> como sua ação de descanso curto, recuperando 1d4+Nível de reagentes.</span>
                     </div>
                 </div>
 
                 <div style="margin-top: 1.5rem; padding: 1rem; background: rgba(0,0,0,0.3); border-radius: 8px;">
                     <p style="color: var(--gold); font-family: var(--font-heading); margin-bottom: 0.5rem;">📋 Regras de Criação:</p>
                     <ul style="color: var(--text-secondary); margin: 0; padding-left: 1.25rem; font-size: 0.9rem;">
-                        <li><strong>Tempo Padrão:</strong> 10 minutos</li>
-                        <li><strong>Criação em Lote:</strong> Criando com 10 minutos, pode criar múltiplos itens de uma vez</li>
-                        <li><strong>Durabilidade:</strong> Itens duram até o próximo descanso longo, depois perdem seus efeitos ou apresentam falhas</li>
-                        <li><strong>Desmanche:</strong> Pode reverter itens produzidos por você, recuperando reagentes</li>
-                        <li><strong>Teste de Alquimia:</strong> Role Ofício (Alquimia) contra o CD do item; falha = perde reagentes</li>
+                        <li><strong>Tempo Padrão:</strong> 10 minutos.</li>
+                        <li><strong>Criação em Lote:</strong> Criando com 10 minutos, pode aproveitar e criar múltiplos itens de uma vez.</li>
+                        <li><strong>Durabilidade:</strong> Itens criados duram até o próximo descanso longo, depois perdem seus efeitos ou apresentam falhas.</li>
+                        <li><strong>Desmanche:</strong> Você pode reverter itens produzidos por você, ganhando seus reagentes de volta.</li>
+                        <li><strong>Teste de Alquimia:</strong> Ao criar qualquer item, role um teste de Ofício(Alquimia), ao suceder o CD do item escolhido você o fabrica com sucesso.<br>Em caso de falha, você perde os reagentes e não cria o item.</li>
                     </ul>
                 </div>
             </div>
@@ -783,7 +783,7 @@
                             </tr>
                             <tr>
                                 <td class="item-name">Fogo Alquímico</td>
-                                <td>Arremesso 9m. 2d6 Fogo área 1,5m. Reflexo p/ metade. Queima +1d6 próxima rodada.</td>
+                                <td>Arremesso 9m. 2d6 Fogo em área 1,5m. Reflexo para metade do dano. Queima +1d6 próxima rodada.</td>
                                 <td class="reagent-col">2</td>
                                 <td class="cd-col">10</td>
                             </tr>
@@ -795,14 +795,14 @@
                             </tr>
                             <tr>
                                 <td class="item-name">Frasco Congelante</td>
-                                <td>Arremesso 9m. 2d6 Frio área 1,5m. Superfície fica <em>Escorregadia</em> 1 min.</td>
+                                <td>Arremesso 9m. 2d6 Frio em área 1,5m. Superfície fica <em>Escorregadia</em> 1 min.</td>
                                 <td class="reagent-col">2</td>
                                 <td class="cd-col">10</td>
                             </tr>
                             <tr class="category-row"><td colspan="4">Curativos</td></tr>
                             <tr>
                                 <td class="item-name">Sal Revigorante</td>
-                                <td>Acorda <em>Inconsciente</em> (não com 0 HP). Remove <em>Atordoado</em>, <em>Adormecido</em>.</td>
+                                <td>Acorda <em>Inconsciente</em> (não com 0 de Saúde). Remove <em>Atordoado</em>, <em>Adormecido</em>.</td>
                                 <td class="reagent-col">1</td>
                                 <td class="cd-col">8</td>
                             </tr>
@@ -1097,6 +1097,12 @@
                                 <td>Colocar em estrutura/objeto. Destrói até 3m³ de material não-mágico. 6d6 em criaturas adjacentes.</td>
                                 <td class="reagent-col">6</td>
                                 <td class="cd-col">18</td>
+                            </tr>
+                            <tr>
+                                <td class="item-name">Frasco do Raio</td>
+                                <td>Arremesso 9m. 3d8 Elétrico. Salta para até 2 alvos adicionais em 3m (2d8 cada).</td>
+                                <td class="reagent-col">4</td>
+                                <td class="cd-col">16</td>
                             </tr>
                             <tr class="category-row"><td colspan="4">Curativo</td></tr>
                             <tr>

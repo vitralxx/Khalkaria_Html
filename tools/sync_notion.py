@@ -16,6 +16,9 @@ Comandos:
   seed     copia .new -> .base para quem ainda não tem baseline (sem diff)
   report   diff normalizado .base vs .new (só mudanças). Novos viram baseline.
   accept [slug]   promove .new -> .base (todos, ou um slug)
+  cobertura [slug] Notion atual x página gerada: trechos do Notion que o site não
+                  publica (resumo, omissão, divergência antiga). Rodar em TODO sync,
+                  junto com o report: o report só compara Notion com Notion.
 """
 import sys, os, re, json, difflib
 
@@ -95,7 +98,99 @@ def cmd_accept(slug=None):
             open(path(s, 'base'), 'w', encoding='utf-8').write(open(path(s, 'new'), encoding='utf-8').read())
             print('baseline atualizado:', s)
 
+# ---------------------------------------------------------------------------
+# cobertura: Notion atual x SITE (não snapshot x snapshot).
+# O `report` só enxerga o que mudou no Notion entre duas buscas; texto que o site
+# já tinha resumido, omitido ou deixado para trás passa calado. Aqui cada linha,
+# célula e sentença do snapshot mais recente tem de aparecer na página gerada.
+# ---------------------------------------------------------------------------
+import html as _html
+
+def pagina(slug):
+    """slug do manifesto -> página gerada que publica aquele conteúdo."""
+    topo, _, sub = slug.partition('/')
+    if topo in ('origens',):
+        return os.path.join(ROOT, 'pages', 'origens.html')
+    if topo == 'criacao':
+        return os.path.join(ROOT, 'pages', 'criacao.html')
+    if sub:
+        return os.path.join(ROOT, 'pages', topo, sub + '.html')
+    return os.path.join(ROOT, 'pages', topo + '.html')
+
+# Blocos do Notion que o site NÃO publica por decisão registrada.
+FORA = {
+    # D11/D33: efeito de carta rara só entra pelo script de revelação.
+    # O "Resumo" diz FOR 14+ e o catálogo diz 16+ (CLAUDE.md §9): vale o catálogo.
+    'limiar': [(r'^## ⭐ Cartas Raras', r'^## <span underline="true">O Abismo')],
+}
+
+def _nz(s):
+    s = _html.unescape(s)
+    s = s.translate(str.maketrans({'‘': "'", '’': "'", '“': '"', '”': '"', ' ': ' ', '−': '-'}))
+    s = re.sub(r'<[^>]+>', ' ', s)
+    s = s.replace('\\', '').replace('*', '').replace('`', '')
+    s = re.sub(r'\s+', ' ', s).strip().lower()
+    s = re.sub(r'\s*([()+×/=])\s*', r'\1', s)
+    s = re.sub(r'(\d)\s+m\b', r'\1m', s)
+    return re.sub(r'\s+([.,;:)])', r'\1', s)
+
+_ABREV = r'(?<!mod\.)(?<!max\.)(?<!máx\.)(?<!ex\.)(?<!min\.)'
+
+def fragmentos(slug):
+    p = path(slug, 'new')
+    if not os.path.exists(p):
+        p = path(slug, 'base')
+    t = open(p, encoding='utf-8').read()
+    t = t.replace('\\n', '\n').replace('\\t', '\t').replace('\\"', '"')
+    t = t.split('<content>', 1)[-1]
+    for ini, fim in FORA.get(slug, []):
+        t = re.sub(ini + r'.*?(?=' + fim + ')', '', t, flags=re.S | re.M)
+    t = re.sub(r'<(td|/td|tr[^>]*|/tr|br|summary|/summary|details|/details|li|/li|p|/p)>', '\n', t)
+    t = re.sub(r'<[^>]+>', ' ', t)
+    out = []
+    for linha in t.split('\n'):
+        linha = re.sub(r'^[#>\-\s]+', '', linha.strip())
+        linha = re.sub(r'!?\[([^\]]*)\]\([^)]*\)', r'\1', linha)
+        linha = re.sub(r'^`?Modulações aplicáveis:\s*', '', linha)   # o site dá rótulo próprio à lista
+        if len(linha) < 25 or linha.startswith('$') or linha.endswith(':'):
+            continue          # títulos, rótulos e fórmulas LaTeX (o site as reescreve em <code>)
+        out.append(linha)
+    return out
+
+def cmd_cobertura(slug=None):
+    alvos = [slug] if slug else [s for s in PAGES if os.path.exists(path(s, 'new')) or os.path.exists(path(s, 'base'))]
+    total = 0
+    for s in alvos:
+        pg = pagina(s)
+        if not os.path.exists(pg):
+            print(f'\n=== {s}: página {os.path.relpath(pg, ROOT)} não existe ===')
+            continue
+        site = open(pg, encoding='utf-8').read()
+        site = _nz(re.sub(r'<script.*?</script>|<style.*?</style>', ' ', site, flags=re.S))
+        faltam = []
+        for f in fragmentos(s):
+            nf = _nz(f)
+            if nf in site:
+                continue
+            sents = [x for x in re.split(_ABREV + r'(?<=[.!?])\s+', nf) if len(x) >= 25]
+            ruins = [x for x in sents if x not in site]
+            if ruins:
+                faltam.append((f, ruins))
+        total += len(faltam)
+        if faltam:
+            print(f'\n=== {s}: {len(faltam)} trecho(s) do Notion fora de {os.path.relpath(pg, ROOT)} ===')
+            for f, ruins in faltam:
+                print('  -', f[:220])
+    print(f'\n---\nTrechos do Notion sem correspondência no site: {total}'
+          '\n(abreviação de estilo também aparece aqui; divergência é mudança de número ou regra)')
+
 if __name__ == '__main__':
+    try:
+        sys.stdout.reconfigure(encoding='utf-8')
+    except AttributeError:
+        pass
     cmd = sys.argv[1] if len(sys.argv) > 1 else 'report'
+    arg = sys.argv[2] if len(sys.argv) > 2 else None
     {'status': cmd_status, 'seed': cmd_seed, 'report': cmd_report,
-     'accept': lambda: cmd_accept(sys.argv[2] if len(sys.argv) > 2 else None)}.get(cmd, cmd_report)()
+     'accept': lambda: cmd_accept(arg),
+     'cobertura': lambda: cmd_cobertura(arg)}.get(cmd, cmd_report)()

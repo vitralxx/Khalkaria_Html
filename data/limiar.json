@@ -185,7 +185,7 @@
           ],
           "icon": "💪",
           "req": "FOR 16+",
-          "effect": "Você pode arremessar armas corpo a corpo até 18m causando dano normal + 1d8"
+          "effect": "Você pode arremessar armas corpo a corpo até 18m causando dano normal + 1d8 Contundente"
         },
         {
           "id": "limiar-lutador-de-rua",
@@ -507,7 +507,7 @@
           ],
           "icon": "🛡️",
           "req": "CON 16+",
-          "effect": "Descansos curtos curam 2x mais Saúde. Descansos longos sempre curam completamente. Adicionalmente, recebe +1d4 de cura de todas outras fontes, a não ser descansos."
+          "effect": "Descansos curtos curam 2x mais Saúde. Descansos longos sempre curam saúde completamente. Adicionalmente, recebe +1d4 de cura de todas outras fontes, a não ser descansos."
         },
         {
           "id": "limiar-pacto-sanguinario",
@@ -533,7 +533,7 @@
           ],
           "icon": "🛡️",
           "req": "CON 16+",
-          "effect": "Ao estar em 0 Saúde, você perde apenas 5% da Saúde máxima por rodada (ao invés de 10%). Adicionalmente, testes de medicina para lhe salvar da mortes tem cd 10. (Ao invés de 20)"
+          "effect": "Ao estar em 0 Saúde, você perde apenas 5% da Saúde máxima por rodada (ao invés de 10%). Adicionalmente, testes de medicina para lhe salvar da morte tem CD 10. (Ao invés de 20)"
         },
         {
           "id": "limiar-barbaro",
@@ -1696,7 +1696,7 @@
         "tipo": "gain",
         "iconAttrs": "",
         "iconeSvg": "<svg viewBox=\"0 0 24 24\"><path d=\"M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5 11H7v-2h10v2z\"/></svg>",
-        "desc": "<strong>Braço:</strong> -4 Des e For, não pode usar armas de duas mãos nem à distância.<br><strong>Perna:</strong> -6 Des, -50% Movimento, não pode usar Acelerar."
+        "desc": "Você nasceu sem ou perdeu um membro do seu corpo... Isso dificulta sua vida bastante.<br>Braço: -4 Destreza e Força, não pode usar armas de duas mãos nem à distância.<br>Perna: -6 Destreza, -50% Movimento, não pode usar a ação <strong>Acelerar.</strong>"
       },
       {
         "id": "abismo-cego",
@@ -1852,7 +1852,7 @@
         "tipo": "spend",
         "iconAttrs": "",
         "iconeSvg": "<svg viewBox=\"0 0 24 24\"><path d=\"M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z\" opacity=\"0.5\"/><path d=\"M12 6c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6z\"/></svg>",
-        "desc": "Ao tocar uma criatura morta, absorva um fragmento de conhecimento: ganhe 1 nível de Treinamento temporário em 1 perícia que ela tinha por 24h."
+        "desc": "Ao tocar uma criatura morta, você pode absorver um fragmento de conhecimento: ganhe 1 nível de Treinamento temporário em 1 perícia que ela tinha por 24h."
       },
       {
         "id": "abismo-translocacao",
@@ -1896,7 +1896,7 @@
         "tipo": "spend",
         "iconAttrs": "",
         "iconeSvg": "<svg viewBox=\"0 0 24 24\"><path d=\"M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z\"/></svg>",
-        "desc": "Quando um aliado em 9m seria reduzido a 0 Saúde, use sua reação para transferir o dano para você. 1x/descanso longo."
+        "desc": "Quando um aliado em 9m seria reduzido a 0 Saúde, você pode usar sua reação para transferir o dano para você. 1x/descanso longo."
       },
       {
         "id": "abismo-devorador-de-magos",
@@ -1918,7 +1918,7 @@
         "tipo": "spend",
         "iconAttrs": "",
         "iconeSvg": "<svg viewBox=\"0 0 24 24\"><path d=\"M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z\"/></svg>",
-        "desc": "Ao morrer, você revive uma vez e perde 10 de Saúde ou Stamina máxima. Revive após 1d4 horas, com memórias fragmentadas e desorientado."
+        "desc": "Ao morrer, você revive uma vez e perde 10 de Saúde ou Stamina máxima. Você revive após 1d4 horas, com memórias fragmentadas e desorientado."
       },
       {
         "id": "abismo-senhor-das-sombras",
@@ -1984,7 +1984,7 @@
         "tipo": "spend",
         "iconAttrs": "style=\"background: linear-gradient(135deg, #92400e, #4a1942);\"",
         "iconeSvg": "<svg viewBox=\"0 0 24 24\"><path d=\"M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z\"/></svg>",
-        "desc": "Você é extremamente habilidoso em evadir ataques. Você ganha +5 Evasão e +1 Reação Máxima."
+        "desc": "Você é extremamente habilidoso em evadir ataques, seja desviando deles ou resistindo da melhor maneira possível. Você ganha +5 Evasão e +1 Reação Máxima."
       },
       {
         "id": "abismo-clone-odioso",

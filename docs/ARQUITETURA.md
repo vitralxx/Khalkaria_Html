@@ -14,6 +14,7 @@ Notion (fonte da verdade)
    ▼
 notion_cache/<slug>.new.md           snapshot bruto
    │  tools/sync_notion.py report     diff normalizado .base vs .new
+   │  tools/sync_notion.py cobertura  Notion atual x página gerada
    ▼
 data/*.json                           conteúdo mecânico estruturado
    │  tools/build.py
@@ -170,6 +171,9 @@ python tools/gerar_webp.py --force     # reencoda todas as imagens
 python tools/sync_notion.py status     # snapshots do Notion disponíveis
 python tools/sync_notion.py report     # diff: o que mudou no Notion
 python tools/sync_notion.py accept     # promove .new -> .base
+python tools/sync_notion.py cobertura  # trechos do Notion que o site não publica
+                                       # (o report só compara Notion com Notion:
+                                       # resumo ou omissão antiga no site passa calado)
 ```
 
 `validar.py` checa: tags balanceadas, âncoras `#x` com destino (também

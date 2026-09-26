@@ -109,12 +109,12 @@
                 <h1 class="class-title">Artilheiro</h1>
                 <div class="hero-image"><img src="../../images/artilheiro.png" alt="Artilheiro"></div>
                 <div class="hero-content">
-                    <p class="hero-tagline">"Enquanto outros guerreiros precisam sentir o hálito do inimigo para derrotá-lo, você aprendeu que a verdadeira maestria está na distância. Seu alvo cai antes de perceber que estava em perigo."</p>
-                    <p class="hero-desc">Artilheiros não são covardes que fogem do combate. São predadores pacientes que escolhem o momento perfeito para atacar. Cada tiro é calculado, cada posição é estratégica, cada munição é preciosa.</p>
+                    <p class="hero-tagline">"Enquanto outros guerreiros precisam sentir o hálito do inimigo para derrotá-lo, você aprendeu que a verdadeira maestria está na distância. Seja com a precisão silenciosa de uma flecha, o trovão de pólvora negra, ou o brilho fugaz de uma lâmina arremessada — seu alvo cai antes de perceber que estava em perigo."</p>
+                    <p class="hero-desc">Artilheiros não são covardes que fogem do combate. São predadores pacientes que escolhem o momento perfeito para atacar. Cada tiro é calculado, cada posição é estratégica, cada munição é preciosa. Você não desperdiça nenhum disparo.</p>
                     <div class="quick-stats">
                         <div class="stat-card"><div class="label">Atributos</div><div class="value">Des, Sab, Int/Con</div></div>
                         <div class="stat-card"><div class="label">CD</div><div class="value">10 + Des + Sab</div></div>
-                        <div class="stat-card"><div class="label">Estilo</div><div class="value">Dano à Distância</div></div>
+                        <div class="stat-card"><div class="label">Estilo</div><div class="value">Combate a Distância, Dano pesado e Controle de Terreno</div></div>
                     </div>
                 </div>
             </section>
@@ -149,22 +149,26 @@
             <div class="section-divider"><h2>🎯 Concentração</h2></div>
             <div class="concentracao-box">
                 <h3>🎯 Sistema de Concentração</h3>
-                <p style="color: var(--text-secondary); margin-bottom: 1rem;">Seus disparos ficam precisos à medida que você se concentra nos pontos fracos dos seus inimigos. <strong>Sempre adicione sua Concentração à sua rolagem de ataque!</strong></p>
-                <p style="color: var(--gold-light); margin-bottom: 1.5rem;"><strong>Concentração Máxima: 3 + Mod. Sabedoria</strong> • Começa todo combate com 0.</p>
+                <p style="color: var(--text-secondary); margin-bottom: 1rem;">Seus disparos ficam precisos a medida que você consegue se concentrar nos pontos fracos dos seus inimigos. Por ser um atirador, algumas atitudes aumentam sua concentração, enquanto outras diminuem.</p>
+                <p style="color: var(--gold-light); margin-bottom: 1.5rem;"><strong>Concentração máxima: 3 + Mod. Sabedoria</strong></p>
                 <div class="concentracao-grid">
                     <div class="concentracao-item">
                         <h4 class="conc-gain">✅ Ganhando Concentração</h4>
-                        <ul><li><strong>Atacar:</strong> Acertar → +1 | Crítico → +2</li><li><strong>Mirar:</strong> Gastar 1 ação mirando → +2</li><li><strong>Ficar Parado:</strong> Não se mover no turno → +1</li></ul>
+                        <p style="color: var(--text-secondary);">Você começa todo combate com 0 de concentração e ganha concentração com as seguintes ações:</p>
+                        <ul><li><strong>Atacar:</strong> Ao acertar um ataque → <strong>+1 Concentração, Crítico → +2</strong></li><li><strong>Mirar:</strong> Gaste 1 ação, mirando no seu alvo → <strong>+2 Concentração</strong></li><li><strong>Ficar Parado:</strong> Não se mover no turno → <strong>+1 Concentração</strong></li></ul>
                     </div>
                     <div class="concentracao-item">
                         <h4 class="conc-lose">❌ Perdendo Concentração</h4>
-                        <ul><li><strong>Ser Atacado:</strong> Receber dano → -1</li><li><strong>Se Mover:</strong> Usar 1 ação para mover → -1</li><li><strong>Condição:</strong> Falhar teste de resistência → -2</li><li><strong>Morte:</strong> Aliado cair <em>Morrendo</em> → -3</li></ul>
+                        <p style="color: var(--text-secondary);">Você gasta concentração para utilizar técnicas porém pode perder de outras formas:</p>
+                        <ul><li><strong>Ser atacado:</strong> Ao receber dano → <strong>-1 Concentração</strong></li><li>Se mover: Utilizar 1 ação para se movimentar → <strong>-1 Concentração</strong></li><li><strong>Condição:</strong> Ao falhar em um teste de resistência → <strong>-2 Concentração</strong></li><li><strong>Morte:</strong> Ao ver um aliado cair <em>Morrendo</em> → <strong>-3 Concentração</strong></li></ul>
                     </div>
                 </div>
+                <p style="color: var(--text-secondary); margin-top: 1rem;">Ao estar concentrado, seu acerto aumenta proporcionalmente.<br><strong style="color: #ef4444;">!!</strong> Sempre adicione sua concentração a sua rolagem de ataque.</p>
+                <p style="color: var(--text-secondary);">Algumas técnicas e habilidades podem exigir concentração, ao utiliza-las, diminua sua concentração conforme o requisitado.</p>
             </div>
 
             <div class="section-divider"><h2>⚡ Técnicas</h2></div>
-            <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">Você possui <strong>3 Técnicas + Nível</strong>. Pode reatribuí-las em descanso longo.</p>
+            <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">Toda classe possui técnicas, você pode reatribuí-las livremente ao realizar um descanso longo, respeitando o limite de pontos. <strong>Você possui 3 Técnicas + Nível.</strong></p>
             <div class="techniques-grid">
                 {{CARD_0}}
                 {{CARD_1}}
@@ -186,9 +190,9 @@
             <div class="section-divider"><h2>🌿 Ramos</h2></div>
             <div class="ramos-intro"><p>Os ramos são caminhos <strong>irreversíveis</strong>. Você escolherá: <strong>3 Marcas</strong> e <strong>6 Técnicas de Ramo</strong> (3 no Tier 1, ao chegar ao nível 2; 2 no Tier 2, no nível 4; e 1 Ultimate no Tier 3, no nível 5).</p></div>
             <div class="ramos-grid">
-                <div class="ramo-card vendaval"><h3>🌀 Ramo do Vendaval</h3><div class="subtitle">Adagas de Arremesso e Agilidade</div><p>Você não arremessa facas - você desencadeia um vendaval de aço que corta, perfura e silencia antes que o grito escape.</p></div>
-                <div class="ramo-card polvora"><h3>🔥 Ramo da Pólvora</h3><div class="subtitle">Armas de Fogo e Dano</div><p>O poder absoluto de transformar vida em silêncio com um aperto de dedo. Alguns temem o barulho - você aprendeu a amá-lo.</p></div>
-                <div class="ramo-card predador"><h3>🏹 Ramo do Predador</h3><div class="subtitle">Flechas e Furtividade</div><p>A caça não é sobre força - é sobre espera. A presa nunca sabe que está sendo caçada até que a flecha já tenha deixado o arco.</p></div>
+                <div class="ramo-card vendaval"><h3>🌀 Ramo do Vendaval</h3><div class="subtitle">Adagas de Arremesso e Agilidade</div><p>Uma lâmina é lenta. Duas são rápidas. Dez são uma tempestade. Você não arremessa facas - você desencadeia um vendaval de aço que corta, perfura e silencia antes que o grito escape. Outros atiradores precisam mirar. Você já está arremessando a terceira faca enquanto a primeira ainda voa.</p></div>
+                <div class="ramo-card polvora"><h3>🔥 Ramo da Pólvora</h3><div class="subtitle">Armas de Fogo e Dano</div><p>O primeiro disparo que você ouviu mudou tudo. O poder absoluto de transformar vida em silêncio com um aperto de dedo. Alguns temem o barulho - você aprendeu a amá-lo. É o último aviso que seus inimigos recebem, e a maioria não vive para ouvir o segundo.</p></div>
+                <div class="ramo-card predador"><h3>🏹 Ramo do Predador</h3><div class="subtitle">Flechas e Furtividade</div><p>Você aprendeu que a caça não é sobre força - é sobre espera. Nas florestas silenciosas, nas montanhas geladas, nos pântanos esquecidos, você observou e aprendeu a ter paciência. A presa nunca sabe que está sendo caçada até que a flecha já tenha deixado o arco.</p></div>
             </div>
 
             <div class="section-divider"><h2>🔥 Marcas de Ramo</h2></div>

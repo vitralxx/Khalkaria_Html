@@ -734,7 +734,7 @@
             "mod": true
           }
         ],
-        "descricao": "Você conjura uma explosão gravitacional em um retângulo de 6 m a partir de você. Criaturas afetadas devem fazer um teste de <em>Fortitude</em> ou são empurradas para longe de você."
+        "descricao": "Você conjura uma explosão gravitacional em um retângulo de 6 m a partir de você. Criaturas afetadas pela magia devem fazer um teste de <em>Fortitude</em> ou são empurradas para longe de você."
       },
       {
         "id": "magia-incinerar-area",
@@ -794,7 +794,7 @@
             "mod": true
           }
         ],
-        "descricao": "Você transfere de um simples toque um frio mórbido. Faça um teste de Místico contra a Evasão do alvo, em caso de acerto o alvo recebe dano de frio e fica <em>Lento 1.</em>"
+        "descricao": "Você transfere de um simples toque um frio mórbido. Faça um teste de Místico contra a Evasão do alvo, em caso de acerto o alvo recebe dano de frio e fica <em>Lento 1</em>."
       },
       {
         "id": "magia-raio-eletrico",
@@ -851,7 +851,7 @@
             "mod": true
           }
         ],
-        "descricao": "Você movimenta telepaticamente diversos objetos em volta de você para se defender. Você tem mais <strong>Evasão</strong> até o seu próximo turno."
+        "descricao": "Você movimenta telepaticamente diversos objetos em volta de você para se defender contra um ataque eminente. Você tem mais <strong>Evasão</strong> até o seu próximo turno."
       },
       {
         "id": "magia-solo-sagrado",
@@ -916,7 +916,7 @@
             "mod": true
           }
         ],
-        "descricao": "Você lapida magicamente uma armadura que resiste perfeitamente a um elemento específico. Ao usar, escolha um tipo de dano Atípico, o alvo recebe <strong>Ae</strong> desse tipo de dano até o fim da cena."
+        "descricao": "Você lapida magicamente uma armadura que resiste perfeitamente a um elemento específico. Ao usar, escolha um tipo de dano Atípico, o alvo recebe 5 <strong>Ae</strong> desse tipo de dano até o fim da cena."
       },
       {
         "id": "magia-santuario-menor",
@@ -946,7 +946,7 @@
             "mod": false
           }
         ],
-        "descricao": "Você fornece uma aura divina a um alvo que o previne de tomar qualquer tipo de dano por 3 rodadas. Criaturas que tentarem causar dano devem passar em Vontade ou erram. Caso o alvo ataque a magia se dissipa. Após o uso, o alvo não pode receber os benefícios até o próximo descanso longo. Só pode ser canalizada na <strong>intensidade:</strong> <em>Normal</em> ou acima."
+        "descricao": "Você fornece uma aura divina a um alvo que o previne de tomar qualquer tipo de dano por 3 rodadas. Criaturas que tentarem causar dano ao alvo afetado devem antes passar em um teste de Vontade ou erram o ataque/não causam dano. Caso o alvo afetado ataque alguém durante esse período a magia se dissipa. Após o uso, o alvo não pode receber os benefícios dessa magia até o próximo descanso longo. Essa magia só pode ser canalizada na <strong>intensidade:</strong> <em>Normal</em> ou acima."
       },
       {
         "id": "magia-purificacao-mistica",
@@ -1003,7 +1003,7 @@
             "mod": false
           }
         ],
-        "descricao": "Você cria uma mão espectral que pode manipular objetos leves (até 1 kg), abrir portas, puxar alavancas, etc. A mão não pode atacar e some em 10 minutos. Movimentar a mão em combate gasta 1 ação, interagir também custa 1 ação. Só pode ser canalizada na <strong>Intensidade:</strong> <em>Normal</em>"
+        "descricao": "Você cria uma mão espectral que pode manipular objetos leves (até 1 kg), abrir portas, puxar alavancas, etc. A mão não pode atacar e some em 10 minutos. Movimentar a mão em um combate, gasta 1 ação, interagir com qualquer coisa também custa 1 ação. Essa magia só pode ser canalizada na <strong>Intensidade:</strong> <em>Normal</em>"
       },
       {
         "id": "magia-estimulante-mistico",
@@ -1030,7 +1030,7 @@
           {
             "caracteristica": "Duração",
             "valor": "Próximos 1 / 2 / 3 / 3 ataques",
-            "mod": false
+            "mod": true
           },
           {
             "caracteristica": "Efeito",
@@ -1038,7 +1038,7 @@
             "mod": true
           }
         ],
-        "descricao": "Você aplica um estimulante em uma criatura que aumenta a circulação sanguínea, enrijece a musculatura e aumenta a produção energética do corpo."
+        "descricao": "Você aplica um estimulante em uma criatura que aumenta a circulação sanguínea, enrijece a musculatura e aumenta a produção energética do corpo. O estimulante cessa ao alvo ter atacado 3 vezes."
       },
       {
         "id": "magia-disfarce-ilusorio",
@@ -1195,7 +1195,7 @@
             "mod": true
           }
         ],
-        "descricao": "Você planta um alarme sobre uma superfície que abrange uma área de 1,5 m de raio. Qualquer criatura que passar sobre o alarme o ativa alertando o conjurador. Criaturas que identificarem o alarme podem desarmá-lo ao passar em um teste de Místico contra seu CD."
+        "descricao": "Você planta um alarme sobre uma superfície que abrange uma área de 1,5 m de raio. Qualquer criatura que passar sobre o alarme o ativa alertando o conjurador da magia. Criaturas que identificarem o alarme podem desarmá-lo ao passar em um teste de Místico contra seu CD."
       },
       {
         "id": "magia-mensagem",
@@ -1245,7 +1245,7 @@
             "mod": false
           }
         ],
-        "descricao": "Você profere a habilidade a você e mais uma criatura a falar uma língua mística onde vocês duas conseguem se entender independente da língua original. Ao utilizar em textos, você o traduz para a língua comum. Esta magia só pode ser conjurada na intensidade <strong>Normal</strong>."
+        "descricao": "Você profere a habilidade a você e mais uma criatura a falar uma língua mística onde vocês duas conseguem se entender independente da língua original que falarem. Ao utilizar em textos, você o traduz para a língua comum entendendo o idioma. Esta magia só pode ser conjurada na intensidade <strong>Normal</strong>."
       },
       {
         "id": "magia-entender-ser",
@@ -1280,7 +1280,7 @@
             "mod": false
           }
         ],
-        "descricao": "Você é informado misticamente sobre as propriedades de uma criatura em específico caso ela falhe em um teste de vontade contra a sua CD. Só pode ser canalizada na <strong>Intensidade:</strong> <em>Normal</em>"
+        "descricao": "Você é informado misticamente sobre as propriedades de uma criatura em específico caso ela, antes, falhe em um teste de vontade contra a sua CD. Essa magia só pode ser canalizada na <strong>Intensidade:</strong> <em>Normal</em>"
       }
     ]
   },
@@ -1319,7 +1319,7 @@
             "mod": true
           }
         ],
-        "descricao": "Você conjura uma lança de gelo cristalino que atravessa o ar. Faça um teste de <strong>Místico</strong> contra a evasão do alvo — ele pode bloquear com reação. Ao acertar, o alvo recebe dano de Frio. Adicionalmente, Reflexos ou fica <em>Lento 1</em> por 1 rodada."
+        "descricao": "Você conjura uma lança de gelo cristalino que atravessa o ar em direção a um alvo. Faça um teste de <strong>Místico</strong>, contra a evasão do alvo. O alvo pode bloquear esse ataque se tiver reação. Ao acertar, o alvo recebe 3d8 de dano de Frio. Adicionalmente, Teste de <strong>Reflexos</strong> ou fica <em>Lento 1</em> por 1 rodada."
       },
       {
         "id": "magia-verdades-dolorosas",
@@ -1389,7 +1389,7 @@
             "mod": true
           }
         ],
-        "descricao": "Das suas mangas, você conjura 2 caveiras explosivas que explodem independentemente em uma área de 1,5 m cada. <strong>Reflexos para metade do dano</strong> ou <em>Em chamas</em>."
+        "descricao": "Das suas mangas, você conjura 2 caveiras explosivas que explodem independentemente uma da outra em uma área de 1,5 m cada, causando 2d6 de dano de Fogo. <strong>Reflexos para metade do dano</strong> ou <em>Em chamas</em>."
       },
       {
         "id": "magia-invocar-tempestade",
@@ -1434,7 +1434,7 @@
             "mod": false
           }
         ],
-        "descricao": "Você invoca uma tempestade trovejante. No início de cada rodada, todas as criaturas dentro da área rolam 1d20; as que rolarem mais baixo são acertadas por raios. As criaturas afetadas devem rolar <strong>Fortitude</strong> ou ficam <em>Atordoadas.</em>"
+        "descricao": "Você invoca uma tempestade trovejante em uma área de 36 m por 3 rodadas, no início de cada rodada, todas as criaturas dentro dessa área devem rolar um d20, as 3 criaturas que rolarem mais baixo são acertadas por um raio que causa 4d6 de dano Elétrico. As criaturas afetadas devem rolar <strong>Fortitude</strong> ou ficam <em>Atordoadas</em>."
       },
       {
         "id": "magia-ventania-bizarra",
@@ -1469,7 +1469,7 @@
             "mod": true
           }
         ],
-        "descricao": "Você canaliza ventos extremamente fortes. Criaturas dentro da área devem fazer Fortitude ou recebem dano de Força e ganham <em>Sangramento 1</em>."
+        "descricao": "Você canaliza ventos extremamente fortes em uma área de 4,5 m em até 9 m, criaturas que estiverem dentro dessa área devem fazer um teste de Fortitude ou recebem 2d8 de dano de Força e ganham <em>Sangramento 1</em>. Sucesso = Metade do dano."
       }
     ],
     "abjuracao": [
@@ -1501,7 +1501,7 @@
             "mod": true
           }
         ],
-        "descricao": "Você conjura uma proteção de energia em formato esférico ao seu redor. A barreira é impenetrável por criaturas até quebrar. Resiste igualmente a todos os tipos de dano; dano Primordial causa o dobro de dano à barreira."
+        "descricao": "Você conjura uma proteção de energia de 3 m de raio em formato esférico ao seu redor. A barreira possui 50 de Saúde e é impenetrável por criaturas até quebrar. Ela resiste igualmente a todos os tipos de dano, dano Primordial causa o dobro de dano à barreira."
       },
       {
         "id": "magia-telepatia",
@@ -1536,7 +1536,7 @@
             "mod": true
           }
         ],
-        "descricao": "Você conecta sua mente com a de outra criatura podendo se comunicar telepaticamente. Os afetados não conseguem ler pensamentos uns dos outros, apenas falar e ouvir-se remotamente. As criaturas não precisam falar o mesmo idioma."
+        "descricao": "Você conecta sua mente com a de outra criatura podendo se comunicar telepaticamente a até 36 m. Os afetados pela magia não conseguem ler os pensamentos uns dos outros apenas falar e ouvir-se entre si remotamente. As criaturas não precisam falar o mesmo idioma para se comunicar sob o efeito dessa magia."
       },
       {
         "id": "magia-dissipar-magia",
@@ -1566,7 +1566,7 @@
             "mod": false
           }
         ],
-        "descricao": "Magias de nível 3 ou menor são automaticamente dissipadas. Para magias de nível superior, faça um teste de Místico com CD 20 + nível da magia. Só pode ser canalizada na <strong>Intensidade:</strong> <em>Normal</em>"
+        "descricao": "Você canaliza energia para desestabilizar e encerrar efeitos mágicos. Escolha um efeito mágico ativo ou uma criatura sob efeito de magia. Magias de nível 3 ou menor são automaticamente dissipadas. Para magias de nível superior, faça um teste de Místico com CD 20 + nível da magia. Você só pode canalizar essa magia na <strong>Intensidade:</strong> <em>Normal</em>"
       },
       {
         "id": "magia-aumentar-diminuir-criatura",
@@ -1606,7 +1606,7 @@
             "mod": false
           }
         ],
-        "descricao": "Você canaliza uma energia transformadora que aumenta ou diminui uma criatura em 1 categoria de peso. Alvo não voluntário deve fazer <strong>Vontade</strong> ou é afetado. Só pode ser canalizada na <strong>Intensidade:</strong> Normal"
+        "descricao": "Você canaliza uma energia transformadora que aumenta ou diminui uma criatura em até 9 m. A criatura aumenta/diminui em 1 categoria de peso. Caso o alvo não seja voluntário ele deve fazer um teste de resistência de <strong>Vontade</strong> ou diminui/aumenta. Esta magia pode ser canalizada apenas na <strong>Intensidade:</strong> Normal"
       },
       {
         "id": "magia-personificar-elemento",
@@ -1636,7 +1636,7 @@
             "mod": true
           }
         ],
-        "descricao": "Você transforma as características físicas de um alvo pareando-as a um tipo de dano, garantindo Resistência a esse tipo e fazendo atacantes receberem o mesmo dano de volta."
+        "descricao": "Você transforma as características físicas de um alvo pareando-as a um tipo de dano garantindo-a Resistência a esse tipo de dano e atacantes recebem 1d6 de dano desse mesmo tipo de dano."
       }
     ],
     "alteracao": [
@@ -1673,7 +1673,7 @@
             "mod": true
           }
         ],
-        "descricao": "Você altera a composição da pele de uma criatura, enrijecendo-a em camadas de uma substância parecida com pedra porosa. A criatura ganha Armadura (Ar) contra dano Ordinário. A pele toma uma coloração acinzentada e textura granular."
+        "descricao": "Você altera a composição da pele de uma criatura, enrijecendo-a em camadas de uma substância parecida com pedra porosa. A criatura ganha Armadura (Ar) contra dano Ordinário (Cortante, Contundente e Perfurante) pelo tempo da duração. O efeito é visível, a pele toma uma coloração acinzentada e textura granular."
       },
       {
         "id": "magia-confundir-sentidos",
@@ -1713,7 +1713,7 @@
             "mod": true
           }
         ],
-        "descricao": "Você embaralha as informações sensoriais — sons vêm de direções erradas, distâncias parecem distorcidas. Útil para desorientar perseguidores ou criar oportunidades de fuga."
+        "descricao": "Você embaralha as informações sensoriais que chegam ao cérebro do alvo — sons vêm de direções erradas, distâncias parecem maiores ou menores do que são, rostos se confundem. O alvo não perde a consciência nem fica Atordoado, mas sua percepção do ambiente é profundamente distorcida. Em combate, isso se traduz em dificuldade para localizar alvos à distância e reagir a perigos. Fora de combate, pode afetar completamente a leitura de um ambiente. Útil para desorientar perseguidores ou criar oportunidades de fuga."
       },
       {
         "id": "magia-translocacao-arcana",
@@ -1738,7 +1738,7 @@
             "mod": true
           }
         ],
-        "descricao": "Você dissolve brevemente sua forma física e a reconstrói em outro ponto dentro do alcance que você consiga ver. Instantâneo e silencioso. Não atravessa barreiras sólidas. Pode sair de um Agarrão sem disputar Movimento. Só pode ser canalizada na <strong>Intensidade:</strong> Normal"
+        "descricao": "Você dissolve brevemente sua forma física e a reconstrói em outro ponto dentro do alcance que você consiga ver diretamente. O teleporte é instantâneo e silencioso — sem luz, som ou rastro. Não pode ser usado para atravessar barreiras sólidas, apenas para saltar distâncias. Pode ser usado para sair de um Agarrão sem precisar disputar Movimento, desde que o ponto de destino esteja dentro do alcance. Esta magia pode ser canalizada apenas na <strong>Intensidade:</strong> Normal"
       },
       {
         "id": "magia-transfigurar-arma",
@@ -1773,7 +1773,7 @@
             "mod": true
           }
         ],
-        "descricao": "Você reescreve a natureza do dano de uma arma, impregnando-a com energia mística de um elemento escolhido. A arma mantém seu dado base mas seu tipo de dano muda completamente para o tipo Atípico escolhido e causa dado extra desse mesmo tipo."
+        "descricao": "Você reescreve a natureza do dano de uma arma, impregnando-a com energia mística de um elemento escolhido no momento da conjuração. A arma mantém seu dado base e atributo normal, mas seu tipo de dano muda completamente para o tipo Atípico escolhido (Fogo, Frio, Elétrico, Veneno, Ácido, Psíquico, Radiante, Trovejante ou Necrótico) e causa dado extra desse mesmo tipo. Útil contra criaturas com Resistência ou Vulnerabilidade a tipos específicos. O efeito é visível — a arma emite luz, fumaça ou outro sinal visual do elemento."
       },
       {
         "id": "magia-enraizar",
@@ -1803,7 +1803,7 @@
             "mod": true
           }
         ],
-        "descricao": "Você altera a densidade gravitacional ao redor dos pés de uma criatura, fazendo-os colar ao chão. O alvo fica Enraizado, não pode se mover voluntariamente, mas ainda pode agir. A cada rodada pode gastar 2 ações para refazer Fortitude e tentar se soltar. Criaturas que voam são imunes."
+        "descricao": "Você altera a densidade gravitacional ao redor dos pés de uma criatura, fazendo-o(s) colar ao chão como se fosse(m) parte dele. O alvo fica Enraizado pelo tempo da duração, não pode se mover voluntariamente, mas ainda pode agir normalmente. A cada rodada, pode gastar 2 ações para refazer o teste de Fortitude e tentar se soltar. Criaturas que voam ou não tocam o chão são imunes a esta magia."
       }
     ],
     "conhecimento": [
@@ -1840,7 +1840,7 @@
             "mod": true
           }
         ],
-        "descricao": "Você encanta a si mesmo para sentir a presença de energia mística em uma área, obtendo um mapa mental preciso de tudo dentro dela, mesmo atrás de paredes."
+        "descricao": "Você encanta a si mesmo para sentir a presença de energia mística em uma área de até 30 m através de seus olhos."
       },
       {
         "id": "magia-panico",
@@ -1875,7 +1875,7 @@
             "mod": false
           }
         ],
-        "descricao": "Você planta um clarão de terror puro diretamente na mente do alvo — uma sobrecarga de sinais de ameaça que o sistema nervoso não consegue ignorar. Não é ilusão, portanto não é removida por Purificação Mística. Criaturas sem capacidade emocional são imunes."
+        "descricao": "Você planta um clarão de terror puro diretamente na mente do alvo — não uma ilusão, mas uma sobrecarga de sinais de ameaça que o sistema nervoso não consegue ignorar. O alvo fica Amedrontado de você: tem desvantagem em testes realizados enquanto puder te ver e tenta se afastar. A condição não é uma ilusão e portanto não é removida por Purificação Mística — apenas pelo tempo ou por Dissipar Magia. Criaturas sem capacidade emocional (construtos, mortos-vivos sem Éter) são imunes."
       },
       {
         "id": "magia-historia-do-eter",
@@ -1905,7 +1905,7 @@
             "mod": true
           }
         ],
-        "descricao": "Em Contida, revela apenas se o alvo é mágico. Em Normal revela tudo. Em Forçada/Transbordante revela também a história de uso recente do objeto (últimas 24h / 7 dias). Só pode ser conjurada fora de combate."
+        "descricao": "Você sintoniza sua percepção mística com um objeto ou criatura pelo toque, lendo o padrão de Éter impregnado nele. Em objetos mágicos, revela nome, escola de magia, efeitos, condições de ativação e quaisquer maldições presentes. Em criaturas, revela escola de magia que as criou ou afeta atualmente, condições ativas e tipo de criatura. Na intensidade Contida, revela apenas se o alvo é mágico ou não. Em Normal revela tudo acima. Em Forçada e Transbordante, revela também a história de uso recente do objeto (últimas 24h / 7 dias). Esta magia só pode ser conjurada fora de combate."
       },
       {
         "id": "magia-emprestimo-natural",
@@ -1935,7 +1935,7 @@
             "mod": false
           }
         ],
-        "descricao": "Você amplia drasticamente um único sentido. O efeito colateral é proporcional: com visão ampliada, luz intensa causa Cego; com audição ampliada, sons muito altos causam Atordoado; com olfato ampliado, odores fortes causam Enjoado — sempre por 1 rodada."
+        "descricao": "Você amplia drasticamente um único sentido, sobrecarregando-o com energia mística. Escolha qual sentido aprimorar ao conjurar, o bônus se aplica apenas ao sentido escolhido. O efeito colateral é proporcional: com visão ampliada, luz intensa causa Cego por 1 rodada; com audição ampliada, sons muito altos (como Invocar Tempestade) causam Atordoado por 1 rodada; com olfato ampliado, odores muito fortes causam Enjoado por 1 rodada."
       },
       {
         "id": "magia-impulso-instintivo",
@@ -1970,7 +1970,7 @@
             "mod": false
           }
         ],
-        "descricao": "Você injeta um pensamento ou impulso simples na mente do alvo (\"corra\", \"solte a arma\", \"confie nele\"). O alvo não sabe que foi influenciado. Comandos que coloquem o alvo em perigo direto permitem novo teste de Vontade. Só pode ser canalizada na <strong>Intensidade:</strong> <em>Normal</em>"
+        "descricao": "Você injeta um pensamento ou impulso simples diretamente na mente do alvo — uma frase curta, uma emoção ou uma instrução básica (\"corra\", \"solte a arma\", \"confie nele\"). O alvo não sabe que foi influenciado: percebe o pensamento como próprio. Comandos que coloquem o alvo em perigo direto ou que contradigam seus instintos mais básicos permitem um novo teste de Vontade imediatamente. O alvo pode agir contra o comando se tiver motivação forte o suficiente. Essa magia pode ser canalizada apenas na <strong>Intensidade:</strong> <em>Normal</em>"
       }
     ]
   },
@@ -2009,7 +2009,7 @@
             "mod": true
           }
         ],
-        "descricao": "Você propaga uma Pestilência mística que corrompe e fere qualquer ser afetado a cada turno. Qualquer criatura que receber dano desta magia transmite a Pestilência para a criatura mais próxima em até 9 m. Criaturas que sucederem no teste ficam imunes até o fim do combate."
+        "descricao": "Você propaga uma Pestilência mística que corrompe e fere qualquer ser afetado no início de cada um de seus turnos. Escolha um alvo que você possa ver, o alvo deve realizar um teste de vontade contra a sua CD ou recebe 2d8 de dano Necrótico no início do turno dela. Qualquer criatura que receber dano desta magia transmite a Pestilência para a criatura mais próxima em até 9 m."
       },
       {
         "id": "magia-limiar-perfurante",
@@ -2044,7 +2044,7 @@
             "mod": false
           }
         ],
-        "descricao": "Você conjura um feixe místico que penetra/ignora as defesas de um alvo (Armadura e Ae) causando dano Místico. Ao acerto, o alvo deve suceder em <strong>Fortitude</strong> ou fica <em>Exposto.</em>"
+        "descricao": "Você conjura um feixe místico que penetra/ignora as defesas de um alvo (Armadura (Ar) e Armadura Específica(Ae)) causando 3d10 de dano Místico. Ao acerto, o alvo deve suceder em um teste de <strong>Fortitude</strong> ou fica <em>Exposto</em>."
       },
       {
         "id": "magia-fragmento-estelar",
@@ -2072,14 +2072,9 @@
             "caracteristica": "Dano",
             "valor": "1d6 / 2d6 / 6d6 / 10d6 Radiante (dividido entre todos na área)",
             "mod": true
-          },
-          {
-            "caracteristica": "Resistência",
-            "valor": "Reflexos para metade",
-            "mod": false
           }
         ],
-        "descricao": "Você precipita um fragmento estelar sobre uma área, o dano total é dividido entre todos os inimigos dentro do raio. Na intensidade Transbordante, ao executar um alvo, pode transferir o dano sobrepujante a outros alvos na área como ação livre."
+        "descricao": "Você precipita um fragmento estelar sobre uma área, o dano total é dividido entre todos os inimigos dentro do raio. Ao ser canalizada com intensidade: Transbordante, ao executar um alvo, como ação livre, pode transferir o dano sobrepujante do alvo executado a outros alvos na área imediata da canalização."
       },
       {
         "id": "magia-disparo-veloz",
@@ -2109,7 +2104,7 @@
             "mod": false
           }
         ],
-        "descricao": "Você instintivamente conjura um projetil mágico simples. Caso você acerte o alvo, você recupera metade do éter gasto nessa canalização. Só pode ser canalizada na <strong>Intensidade:</strong> <em>Normal</em>"
+        "descricao": "Você instintivamente conjura um projétil mágico simples. Caso você acerte o alvo, você recupera metade do éter gasto nessa canalização. Essa magia ignora a regra de 1 cast por turno, podendo ser canalizada várias vezes. Essa magia só pode ser canalizada na <strong>Intensidade:</strong> <em>Normal</em>"
       },
       {
         "id": "magia-reversao-umbral",
@@ -2134,7 +2129,7 @@
             "mod": false
           }
         ],
-        "descricao": "Requisito: Deve canalizar com intensidade Transbordante. Você só pode utilizar essa magia uma vez por dia."
+        "descricao": "Requisito: Deve canalizar com intensidade: Transbordante. <br>Você só pode utilizar essa magia uma vez por combate."
       }
     ],
     "abjuracao": [
@@ -2166,7 +2161,7 @@
             "mod": false
           }
         ],
-        "descricao": "Ao detectar a canalização de energia mística próxima, você lança uma interferência que tenta suprimir a conjuração antes que ela se complete. Se vencer, a magia falha e o conjurador perde o Éter gasto. Se perder por 10 ou mais, você perde 2 Éter adicionais. Só pode ser canalizada na <strong>Intensidade:</strong> <em>Normal</em> ou acima."
+        "descricao": "Ao detectar a canalização de energia mística próxima, você lança uma interferência que tenta suprimir a conjuração antes que ela se complete. Faça um teste de Místico disputado contra o conjurador alvo. Se vencer, a magia falha e o conjurador perde o Éter gasto. Se perder por 10 ou mais (falha crítica), você perde 2 Éter adicionais pela interferência falha. Diferente de Dissipar Magia, esta magia atua no momento da conjuração. Essa magia só pode ser canalizada na <strong>Intensidade:</strong> <em>Normal</em> ou acima."
       },
       {
         "id": "magia-ruido-anti-magia",
@@ -2201,7 +2196,7 @@
             "mod": false
           }
         ],
-        "descricao": "Você cria uma zona de interferência mística. Toda criatura que tentar conjurar dentro da área deve fazer Vontade contra sua CD — em falha, a magia não sai e o Éter é desperdiçado. Você mesmo é afetado pela zona. A área é invisível, visível apenas a quem tiver Detectar Magia ativo."
+        "descricao": "Você cria uma zona de interferência mística que torna a conjuração incerta e perigosa. Toda criatura que tentar conjurar uma magia de qualquer nível dentro da área deve primeiro fazer um teste de Vontade contra a sua CD — em falha, a magia não sai e o Éter é desperdiçado. Você mesmo é afetado pela zona: planeje antes de ativá-la. A área é invisível, visível apenas a quem tiver Detectar Magia ativo."
       },
       {
         "id": "magia-armadura-de-espinhos",
@@ -2236,7 +2231,7 @@
             "mod": false
           }
         ],
-        "descricao": "Você reveste uma criatura com energia abjurante reativa. Toda vez que ela for atingida por um ataque corpo a corpo, o atacante recebe dano Perfurante automaticamente, sem possibilidade de esquiva. Ataques à distância ou magias não ativam o efeito."
+        "descricao": "Você reveste uma criatura com uma camada de energia abjurante reativa. Toda vez que ela for atingida por um ataque corpo a corpo, o atacante recebe dano Perfurante automaticamente, sem possibilidade de esquiva. O dano ocorre mesmo que o atacante use a reação de Defender. Ataques à distância ou magias não ativam o efeito."
       },
       {
         "id": "magia-refugio-dos-perdidos",
@@ -2271,7 +2266,7 @@
             "mod": false
           }
         ],
-        "descricao": "Você ergue uma cúpula de energia protetora ao seu redor. Aliados dentro do raio recebem armadura específica contra todos os tipos de dano e bônus em todos os testes de Resistência (Fortitude, Vontade, Reflexos). A cúpula se move com você."
+        "descricao": "Você ergue uma cúpula de energia protetora ao seu redor. Aliados dentro do raio recebem armadura específica contra todos os tipos de dano e bônus em todos os testes de Resistência (Fortitude, Vontade, Reflexos) enquanto permanecerem na área. A cúpula se move com você."
       },
       {
         "id": "magia-laco-da-uniao",
@@ -2306,7 +2301,7 @@
             "mod": false
           }
         ],
-        "descricao": "Você cria um vínculo abjurante entre criaturas voluntárias. Todo dano recebido por qualquer uma é dividido igualmente entre todos. Criaturas não voluntárias devem fazer Vontade a cada turno para se livrar. Se um participante cair Inconsciente ou sair do alcance, o laço se rompe para todos."
+        "descricao": "Você cria um vínculo abjurante entre criaturas voluntárias. Todo dano recebido por qualquer uma delas é dividido igualmente entre todos os participantes do laço — arredondado para cima para o alvo original. Criaturas não voluntárias devem suceder em um teste de vontade contra sua CD para se livrar da magia, em caso de falha o alvo rola novamente no final de cada um de seus turnos. Se um participante cair Inconsciente ou sair do alcance máximo da magia, o laço se rompe imediatamente para todos."
       }
     ],
     "alteracao": [
@@ -2343,7 +2338,7 @@
             "mod": true
           }
         ],
-        "descricao": "Você extrai misticamente uma condição negativa de uma criatura e a implanta em outra. A criatura de origem perde a condição imediatamente. Pode ser usada ofensivamente transferindo condições entre inimigos."
+        "descricao": "Você extrai misticamente uma condição negativa de uma criatura e a implanta em outra. Escolha quais condições transferir (não funciona com condições permanentes como Petrificado por causa não mágica). O alvo de destino pode fazer Vontade contra a sua CD para resistir a cada condição individualmente. A criatura de origem perde a condição imediatamente, independente do resultado do alvo de destino. Pode ser usada ofensivamente transferindo condições entre inimigos."
       },
       {
         "id": "magia-absorver-contusao",
@@ -2373,7 +2368,7 @@
             "mod": true
           }
         ],
-        "descricao": "Você altera a densidade do tecido místico para comprimir e absorver a força de um impacto. O dano absorvido fica armazenado como carga mística — pode ser gasta como ação livre no próximo turno para liberar como dano Contundente em uma criatura a distância de toque. A carga some ao fim do turno seguinte se não usada."
+        "descricao": "Você altera a densidade do tecido místico ao redor do alvo para comprimir e absorver a força de um impacto iminente. O dano não absorvido é aplicado normalmente. O dano absorvido fica armazenado como uma carga mística no próprio alvo — que pode gastá-la como ação livre no próximo turno para liberar o impacto como dano Contundente em uma criatura a distância de toque. A carga some ao fim do turno seguinte se não for usada."
       },
       {
         "id": "magia-pele-de-camaleao",
@@ -2408,7 +2403,7 @@
             "mod": true
           }
         ],
-        "descricao": "Você reconfigura a pele de uma criatura fazendo-a ficar translúcida. A cada ataque esquivado, o alvo perde Evasão. Ao receber dano ou ao ser reduzido a 0 de evasão adicional a magia se dissipa."
+        "descricao": "Você reconfigura a pele de uma criatura fazendo-a ficar translúcida. A criatura ganha +15 de evasão e +5 de furtividade. A cada ataque esquivado, o alvo perde 5 de evasão. Ao receber dano ou ao ser reduzido a 0 de evasão adicional a magia se dissipa."
       },
       {
         "id": "magia-xadrez",
@@ -2443,7 +2438,7 @@
             "mod": false
           }
         ],
-        "descricao": "Você entrelaça as posições de duas criaturas no espaço, fazendo-as trocarem de lugar num piscar de olhos. Criaturas Agarradas ou Enraizadas são imunes. Só pode ser canalizada na <strong>Intensidade:</strong> <em>Normal</em>"
+        "descricao": "Você entrelaça as posições de duas criaturas no espaço, fazendo-as trocarem de lugar num piscar de olhos. Ambas aparecem no exato ponto onde a outra estava. Criaturas voluntárias não têm direito a resistência. Para uso ofensivo, o alvo não voluntário faz Vontade. Criaturas que estejam Agarradas ou Enraizadas são imunes. Esta magia pode ser canalizada apenas na <strong>Intensidade:</strong> <em>Normal</em>"
       },
       {
         "id": "magia-plasmar-terreno",
@@ -2468,7 +2463,7 @@
             "mod": false
           }
         ],
-        "descricao": "Você molda pedra, terra, areia, madeira morta ou qualquer material inorgânico como se fosse argila. Pode criar paredes de até 1,5 m de altura, abrir valas, tampar passagens ou criar cobertura improvisada. O terreno alterado é permanente. Não afeta materiais trabalhados com magia, criaturas vivas, tecido ou osso."
+        "descricao": "Você canaliza a escola da Alteração no ambiente físico, moldando pedra, terra, areia, madeira morta ou qualquer material inorgânico como se fosse argila. Pode criar paredes de até 1,5 m de altura, abrir valas, tampar passagens, nivelar terreno ou criar cobertura improvisada. O terreno alterado é permanente, a magia não precisa ser mantida. Não afeta materiais trabalhados com magia, criaturas vivas, tecido ou osso. O Mestre tem palavra final sobre o que pode ser moldado no contexto da cena."
       }
     ],
     "conhecimento": [
@@ -2505,7 +2500,7 @@
             "mod": true
           }
         ],
-        "descricao": "Você sintoniza seu Éter com os resquícios de consciência ainda presos no cadáver, forçando-os a responder perguntas. O morto só sabe o que sabia em vida. Criaturas que morreram com Éter 0 (Ocas) não possuem resquícios, a magia falha. Na intensidade Contida, o morto só responde sim ou não."
+        "descricao": "Você sintoniza seu Éter com os resquícios de consciência ainda presos no cadáver, forçando-os a responder perguntas. O morto só sabe o que sabia em vida, não tem acesso a eventos posteriores à sua morte. As respostas são honestas mas podem ser incompletas: o morto não é obrigado a elaborar além do que foi perguntado. Criaturas que morreram com Éter 0 (Ocas) não possuem resquícios suficientes, a magia falha. Na intensidade Contida, o morto só responde sim ou não."
       },
       {
         "id": "magia-projecao-astral",
@@ -2540,7 +2535,7 @@
             "mod": false
           }
         ],
-        "descricao": "Você separa sua consciência do corpo físico. A projeção é invisível e intangível, mas pode ser detectada por Detectar Magia. Enquanto projetado, seu corpo fica com Evasão 0 e não pode agir. Na intensidade Contida, a projeção não atravessa paredes e é visível como um espectro translúcido."
+        "descricao": "Você separa sua consciência do corpo físico, enviando-a para explorar o ambiente. A projeção é invisível e intangível, não pode interagir com objetos físicos nem ser atacada por meios comuns, mas pode ser detectada por Detectar Magia e outros tipos de detecção mística. Enquanto projetado, seu corpo fica completamente vulnerável no local onde foi deixado: Evasão 0, não pode agir. Ao retornar ou ter a concentração quebrada (seu corpo sofrer dano), você volta imediatamente. Na intensidade Contida, a projeção não atravessa paredes e é visível como um espectro translúcido."
       },
       {
         "id": "magia-sinapsia-coletiva",
@@ -2575,7 +2570,7 @@
             "mod": false
           }
         ],
-        "descricao": "Você entrelaça as consciências dos participantes em uma rede perceptiva compartilhada. Flanquear ou surpreender o grupo se torna extremamente difícil. Ataques de oportunidade podem ser realizados com base na percepção de um aliado."
+        "descricao": "Você entrelaça as consciências dos participantes em uma rede perceptiva compartilhada. Cada criatura na rede enxerga, ouve e sente o que qualquer outra está sentindo, em combate, isso significa que flanquear ou surpreender o grupo se torna extremamente difícil. Ataques de oportunidade podem ser realizados com base na percepção de um aliado, não apenas da própria. Magia Sustentada: a cada rodada ativa, pague os éter no seu turno. Fora de combate, pague o custo da magia a cada 30 minutos em uso; Conjurar outra magia sustentada, ser atordoado ou estar incapaz de ativamente se concentrar imediatamente dissipa a magia."
       },
       {
         "id": "magia-caco-esquecido",
@@ -2615,7 +2610,7 @@
             "mod": false
           }
         ],
-        "descricao": "Você constrói uma memória completa: imagens, sons, emoções e contexto. O alvo acredita integralmente que viveu aquela experiência. O alvo pode fazer novo teste de Vontade se a memória entrar em conflito com algo que observe. Detectar Magia ou Dissipar Magia revelam e removem a memória."
+        "descricao": "Você não apenas planta um impulso como Voz na Mente, você constrói uma memória completa: imagens, sons, emoções e contexto. O alvo acredita integralmente que viveu aquela experiência. A memória plantada deve ser plausível dentro da vida do alvo, o Mestre pode recusar memórias impossíveis. O alvo pode fazer um novo teste de Vontade se a memória entrar em conflito direto com algo que ele observe com seus próprios olhos. Detectar Magia ou Dissipar Magia revelam e removem a memória. Na intensidade Contida, a memória é vaga e emocional; na Transbordante, é tão detalhada que resiste a evidências contrárias por tempo dobrado."
       },
       {
         "id": "magia-confissao-do-eter",
@@ -2689,7 +2684,7 @@
             "mod": false
           }
         ],
-        "descricao": "Você rasga diretamente a alma do alvo, exigindo concentração absoluta ao longo de duas rodadas inteiras. Se você receber qualquer dano antes de completar a conjuração, ela é cancelada e todo o Éter gasto é perdido. O dano refletido não pode ser reduzido por nenhum meio. Só pode ser canalizada na <strong>Intensidade:</strong> <em>Transbordante.</em>",
+        "descricao": "Você rasga diretamente a alma do alvo, um ato tão violento e primordial que exige concentração absoluta ao longo de duas rodadas inteiras. Gaste as 3 ações do seu primeiro turno iniciando a canalização. Se você receber qualquer dano antes de gastar as 3 ações do turno seguinte para completá-la, a conjuração é cancelada e todo o Éter gasto é perdido. A ruptura da alma é mútua: ao completar a canalização, você também sente o fragmento que arranca — o dano refletido não pode ser reduzido por nenhum meio. Essa magia só pode ser canalizada na <strong>Intensidade:</strong> <em>Transbordante</em>.",
         "tradeoff": true
       },
       {
@@ -2740,7 +2735,7 @@
             "mod": false
           }
         ],
-        "descricao": "Você libera uma praga primordial que não pode ser detida por vontade do conjurador. A criatura inicial é infectada automaticamente. Toda criatura infectada transmite a doença a adjacentes em até 9 m ao sofrer dano. Não existe limite máximo de dados. A Desnutrição do conjurador acumula indefinidamente enquanto a praga viver.",
+        "descricao": "Você libera uma praga primordial que não pode ser detida por vontade do conjurador, apenas pela extinção ou triunfo de todos os seus hospedeiros. A criatura inicial é infectada automaticamente, sem direito a resistência. Toda vez que uma criatura infectada sofrer dano da Pestilência, ela transmite a doença a todas as criaturas adjacentes em até 9 m, também sem teste de resistência. A cada turno que uma criatura passa sem se curar (falhando no teste de Vontade), o dano que ela recebe no próximo turno aumenta em 1 dado. Não existe limite máximo. A Desnutrição do conjurador acumula indefinidamente enquanto a praga viver, curar criaturas ou matar os hospedeiros é a única forma de encerrá-la.",
         "tradeoff": true
       },
       {
@@ -2781,7 +2776,7 @@
             "mod": false
           }
         ],
-        "descricao": "Você canaliza um fragmento da destruição que existia antes do universo ser criado. Uma aura de energia apocalíptica se expande ao seu redor, devastando tudo que respirar dentro dela. Se o seu Éter chegar a 0 enquanto a aura estiver ativa, o colapso é violento e inevitável.",
+        "descricao": "Você canaliza um fragmento da destruição que existia antes do universo ser criado. Uma aura de energia apocalíptica se expande ao seu redor, devastando tudo que respirar dentro dela. Sustentar o Eco não é gratuito — a cada rodada, o primórdio cobra diretamente do seu Éter atual, indo além do custo normal de sustentação. Se o seu Éter chegar a 0 enquanto a aura estiver ativa, o colapso é violento e inevitável. Magia Sustentada: a cada rodada ativa, pague os éter no seu turno; conjurar outra magia sustentada, ser atordoado ou estar incapaz de ativamente se concentrar imediatamente dissipa a magia.",
         "tradeoff": true
       },
       {
@@ -2832,7 +2827,7 @@
             "mod": false
           }
         ],
-        "descricao": "Você não aponta o cometa para longe. Você o chama sobre si mesmo. Um fragmento de estrela primordial despenca diretamente sobre o ponto onde você está. Inimigos na área podem tentar esquivar; você não. O cometa reconhece seu invocador e o devora com indiferença absoluta. Só pode ser canalizada na <strong>Intensidade:</strong> <em>Transbordante.</em>",
+        "descricao": "Você não aponta o cometa para longe. Você o chama sobre si mesmo. Um fragmento de estrela primordial despenca do firmamento diretamente sobre o ponto onde você está e tudo ao seu redor é consumido pelo impacto. Não há outra forma de conjurar esta magia: o conjurador deve estar no epicentro. Inimigos na área podem tentar esquivar; você não. O cometa reconhece seu invocador e o devora com indiferença absoluta. Apenas um mártir tem coragem, ou desespero, suficiente para usá-la. Essa magia só pode ser canalizada na <strong>Intensidade:</strong> <em>Transbordante</em>.",
         "tradeoff": true
       },
       {
@@ -2878,7 +2873,7 @@
             "mod": false
           }
         ],
-        "descricao": "Você invoca uma tempestade de trovões primordiais de magnitude catastrófica. Diferente de Invocar Tempestade, você escolhe o alvo dos raios com precisão cirúrgica. O preço é o silêncio: o som que você está invocando gradualmente destrói sua própria audição enquanto a magia está ativa.",
+        "descricao": "Você invoca uma tempestade de trovões primordiais de magnitude catastrófica. Diferente de Invocar Tempestade, você escolhe o alvo dos raios, o primórdio obedece com precisão cirúrgica. Cada raio causa dano Primordial (True Damage), ignorando toda armadura. Criaturas atingidas devem fazer Fortitude ou ficam Atordoadas. O preço é o silêncio: o som que você está invocando é tão absoluto que gradualmente destrói sua própria audição enquanto a magia está ativa. Magia Sustentada: a cada rodada ativa, pague os éter no seu turno; conjurar outra magia sustentada, ser atordoado ou estar incapaz de ativamente se concentrar imediatamente dissipa a magia.",
         "tradeoff": true
       }
     ],
@@ -2916,7 +2911,7 @@
             "mod": false
           }
         ],
-        "descricao": "Você veste uma armadura tecida com o mesmo primórdio que formou a realidade. Você é quase impenetrável: imune a qualquer dano que não seja Primordial. Ao fim da duração, parte do seu Éter Máximo é cobrado permanentemente. Invocar esta proteção duas vezes sem descanso longo é uma ofensa ao deus, que retira o privilégio da escola inteira por 7 dias.",
+        "descricao": "Você veste uma armadura tecida com o mesmo primórdio que formou a realidade. Por 3 rodadas você é quase impenetrável: imune a qualquer dano que não seja Primordial. Magias de qualquer conjurador até N3 se dissipam antes de te tocar. O preço é proporcional à graça recebida: Kha nunca protege de graça. Ao fim da duração, parte do seu Éter Máximo é cobrado permanentemente. Invocar esta proteção duas vezes sem realizar um descanso longo, é uma ofensa ao deus, ele retira o privilégio da escola inteira por 7 dias.",
         "tradeoff": true
       },
       {
@@ -2957,7 +2952,7 @@
             "mod": false
           }
         ],
-        "descricao": "Você rasga a criatura de todos os planos que ela poderia alcançar, condenando-a a um plano inominável por 3 rodadas. Em caso de sucesso no teste, a energia do exílio se reflete como 4d8 de dano Primordial. Criar uma ruptura tão absoluta deixa sua própria consciência instável por dias. Só pode ser canalizada na <strong>Intensidade:</strong> <em>Transbordante.</em>",
+        "descricao": "Você não apenas bane uma criatura, você a rasga de todos os planos que ela poderia alcançar, condenando-a a um plano inominável onde não há retorno por meios convencionais. O alvo simplesmente deixa de existir neste plano, e em qualquer outro que pudesse reclamá-lo por 3 rodadas. Em caso de sucesso no teste, a energia do exílio se reflete parcialmente como 4d8 de dano Primordial maciço. O custo para o conjurador é existencial: criar uma ruptura tão absoluta entre planos deixa sua própria consciência instável por dias. Perde 1 ação por turno e rola Vontade com desvantagem durante esse período. Essa magia só pode ser canalizada na <strong>Intensidade:</strong> <em>Transbordante</em>.",
         "tradeoff": true
       },
       {
@@ -2993,7 +2988,7 @@
             "mod": false
           }
         ],
-        "descricao": "Você imprime um lacre primordial sobre a alma de uma criatura, condenando-a ao oblívio eterno. Quando ela morrer, não há ressurreição possível — sua alma é aprisionada em um recipiente mágico a sua escolha. Se você morre, a criatura instantaneamente se liberta. Ao usar em recipientes ou portas, cria uma chave mágica que desfaz a magia; o CD para dissipar é seu CD + 20.",
+        "descricao": "Você imprime um lacre primordial sobre a alma de uma criatura, condenando-a ao oblívio eterno. Quando ela morrer, não há ressurreição, não há Palavra de Retorno, não há ritual que a traga de volta, você a prende em um recipiente mágico a sua escolha. Sua alma simplesmente é desfeita no tecido do universo e transposta para um recipiente mágico. Se você morre, a criatura instantaneamente se liberta. O preço de aprisionar tal criatura é a força de vontade que você sustenta para manter a criatura presa, você perde permanentemente (ou até a criatura se libertar) 2 pontos do seu atributo principal (Inteligência ou Sabedoria). Magia não distingue aliado de inimigo, ela apenas usa o canal que você criou. Você também pode utilizar essa magia em recipientes ou portas, criando magicamente uma única chave que desfaz a magia. Caso utilizado em recipientes ou portas, é quase impossível de dissipar essa magia, o CD para tal feito seria seu CD + 20. Você também perde pontos de atributo para objetos.",
         "tradeoff": true
       },
       {
@@ -3024,7 +3019,7 @@
             "mod": false
           }
         ],
-        "descricao": "Durante a próxima rodada você dobra o tecido da realidade ao redor de si mesmo, fazendo com que toda força destrutiva direcionada a você seja revertida em sua origem. O efeito é absoluto, nenhuma fonte de dano é excluída. No início do seu turno seguinte, tudo retorna sobre você, duplicado. Usar isso com planejamento pode virar batalhas. Usar sem planejamento é suicídio. Só pode ser canalizada na <strong>Intensidade:</strong> <em>Transbordante.</em>",
+        "descricao": "Durante a próxima rodada você dobra o tecido da realidade ao redor de si mesmo por um instante, fazendo com que toda força destrutiva direcionada a você seja revertida em sua origem como energia Primordial pura. O efeito é absoluto, nenhuma fonte de dano é excluída. Porém, a conservação primordial é imutável: a energia não desaparece, ela é adiada. No início do seu turno seguinte, tudo retorna sobre você, duplicado. Usar isso com planejamento pode virar batalhas. Usar sem planejamento é suicídio. Essa magia só pode ser canalizada na <strong>Intensidade:</strong> <em>Transbordante</em>.",
         "tradeoff": true
       },
       {
@@ -3065,7 +3060,7 @@
             "mod": true
           }
         ],
-        "descricao": "Você não cura, você implora. O nome de Vytália, deusa da vida, é pronunciado não como uma oração, mas como uma dívida assumida em voz alta. A energia vital que flui para o alvo vem da capacidade máxima do seu próprio reservatório místico, arrancada para sempre. Vytália ouve. Vytália cobre. E Vytália cobra.",
+        "descricao": "Você não cura, você implora. O nome de Vytália, deusa da vida, é pronunciado não como uma oração, mas como uma dívida assumida em voz alta. A energia vital que flui para o alvo não vem do Éter ao redor: vem da capacidade máxima do seu próprio reservatório místico, arrancada para sempre. Vytália ouve. Vytália cobre. E Vytália cobra. Cada uso desta magia é uma pequena morte do que você poderia ter sido.",
         "tradeoff": true
       }
     ],
@@ -3104,11 +3099,11 @@
           },
           {
             "caracteristica": "Trade-Off",
-            "valor": "Enquanto a Réplica vive, seu Éter Máximo é partido ao meio: metade cada. Se a Réplica a qualquer momento chegar a 0 de Saúde: você recebe 3d10 Primordial e fica Atordoado por 1 rodada. Para encerrar, faça Vontade vs seu próprio CD — em falha, a Réplica se torna independente e só pode ser dissipada ao chegar a 0 de Saúde.",
+            "valor": "Enquanto a Réplica vive, seu Éter Máximo é partido ao meio: metade cada. Se a Réplica a qualquer momento chegar a 0 de Saúde: você recebe 3d10 Primordial e fica Atordoado por 1 rodada. Para encerrar essa magia, faça um teste de vontade contra seu próprio CD, caso falhe essa magia deixa de ser Sustentada, a Réplica se torna independente e só pode ser dissipada ao chegar a 0 de Saúde.",
             "mod": false
           }
         ],
-        "descricao": "Cria uma Réplica de você com 50% das suas estatísticas, todos os seus conhecimentos de magia e autonomia para agir. A Réplica obedece comandos simples mas age por conta própria se ignorada. A Alteração primordial não cria ilusões — cria substância. Quando a Réplica morre, você sente.",
+        "descricao": "Cria uma Réplica de você com 50% das suas estatísticas, todos os seus conhecimentos de magia e autonomia para agir. A Réplica obedece comandos simples mas age por conta própria se ignorada. Compartilha seu Éter Máximo dividido ao meio enquanto ativa.<br>A Alteração primordial não cria ilusões — cria substância. Sua Réplica é você, mas menor. Ela pensa como você, lembra como você, e se ressente de existir como você. Enquanto ela vive, seu Éter Máximo é partido ao meio: metade cada. Quando a Réplica morre, você sente. Magia Sustentada: a cada rodada ativa, pague os éter no seu turno; conjurar outra magia sustentada, ser atordoado ou estar incapaz de ativamente se concentrar imediatamente dissipa a magia.",
         "tradeoff": true
       },
       {
@@ -3320,7 +3315,7 @@
             "mod": false
           }
         ],
-        "descricao": "Os mortos não falam. Mas o Éter que eles deixam para trás — esse grita. Cada vida é uma impressão no tecido do mundo, e um conjurador primordial sabe lê-la como se fosse texto. Funciona mesmo em criaturas mortas há anos, desde que o cadáver esteja razoavelmente intacto.",
+        "descricao": "Você extrai do cadáver: toda a sua história de vida relevante, seus segredos, suas motivações, quem o matou e como, o estado emocional nos últimos momentos, e qualquer informação que ele carregava na mente ao morrer. Funciona mesmo em criaturas mortas há anos, desde que o cadáver esteja razoavelmente intacto. Os mortos não falam. Mas o Éter que eles deixam para trás — esse grita. Cada vida é uma impressão no tecido do mundo, e um conjurador primordial sabe lê-la como se fosse texto.",
         "tradeoff": true
       },
       {
@@ -3407,7 +3402,7 @@
             "mod": false
           }
         ],
-        "descricao": "Vytália guarda cada vida que passou por suas mãos como uma deusa cuida de seu rebanho. Acessar esse arquivo não é uma busca, é uma intrusão. Você não foi convidado. E ela sempre sabe quando alguém entra sem permissão.",
+        "descricao": "Você submete um nome ou descrição de uma criatura. Vytália responde com: se a criatura ainda vive, onde está seu fio de vida no tecido do mundo, e se morta, quando e como faleceu. Funciona em qualquer criatura que já existiu, sem limite temporal. Vytália guarda cada vida que passou por suas mãos como uma deusa cuida de seu rebanho. Acessar esse arquivo não é uma busca, é uma intrusão. Você não foi convidado. E ela sempre sabe quando alguém entra sem permissão.",
         "tradeoff": true
       },
       {
@@ -3484,7 +3479,7 @@
             "mod": false
           }
         ],
-        "descricao": "Você derrama todo o seu potencial arcano em uma súplica profana ao deus primordial Kha. Por um instante terrível e sagrado, sua alma toca a mente de Kha e você <em>sente o que não deveria ser sentido</em>: uma verdade arrancada do tecido da realidade. Isso não é visão. Não é profecia. É uma violação. Só pode ser canalizada na <strong>Intensidade:</strong> <em>Transbordante.</em>",
+        "descricao": "Você derrama todo o seu potencial arcano em uma súplica profana ao deus primordial Kha. Aquele que teceu o universo com as próprias mãos e cujos olhos enxergam além do véu do tempo. Por um instante terrível e sagrado, sua alma toca a mente de Kha e você <em>sente o que não deveria ser sentido</em>: uma verdade arrancada do tecido da realidade, um conhecimento que não pertence a você, que jamais pertenceria a nenhum ser mortal. Isso não é visão. Não é profecia. É uma violação. Essa magia só pode ser canalizada na <strong>Intensidade:</strong> <em>Transbordante;</em> caso você falhe no teste de vontade da canalização você perde grande parte de sua memória, recuperando-as ao longo de uma semana.",
         "tradeoff": true
       }
     ]
