@@ -54,6 +54,8 @@ servido são os `.webp` gerados a partir deles.
 index.html                     landing (HTML manual)
 partials/sidebar.html          FONTE ÚNICA da navegação do site (markup + sprite nv-*)
 partials/head-boot.html        <script data-nav-boot> que o shell põe antes de </head>
+partials/glifos.html           sprite g-* (UI da ficha, moldura de raízes, 21 ramos);
+                               INERTE até a F2, quando o shell passa a injetá-lo
 
 tools/build.py                 orquestrador: geradores + shell + validação
 tools/validar.py               integridade estrutural (método §6 do CLAUDE.md)
@@ -62,8 +64,12 @@ tools/sync_notion.py           motor de diff de snapshots do Notion
 tools/gerar_<pagina>.py        geradores JSON -> HTML (7)
 tools/gerar_webp.py            reencode das imagens
 tools/gerar_bazar.py           gerador do Bazar (CSV -> bazar.json com `inv` + página)
+tools/gerar_catalogo.py        data/*.json -> data/catalogo/<tipo>.json (F1a, artefato)
+tools/kf_marca.py              marcação entidade -> ficha comum aos geradores (F1a)
+tools/alias_ids.json           ids do contrato do balanceamento fora da convenção -> id do site
 tools/testes/                  testes node do motor KhInv (*.test.js, fixtures/);
-                               index.js deixa `node --test tools/testes` rodar no Node 22+
+                               index.js deixa `node --test tools/testes` rodar no Node 22+;
+                               test_*.py: checagens do validar (unittest, no build)
 tools/extrair_css.py           refatoração pontual de CSS (não é build)
 tools/migrar_sistema.py        migração pontual do Sistema (já rodada)
 
@@ -92,6 +98,9 @@ data/*.json                    sistema, magias, condicoes, limiar, origens,
 data/classes/*.json            7 classes
 data/racas/*.json              7 raças
 data/ficha.schema.json         contrato da ficha 2.0 + projeção Bestiário
+data/catalogo/<tipo>.json      ARTEFATO (gerar_catalogo.py): {id, tipo, nome sem emoji,
+                               icone, resumo, campos do tipo} por entidade; raras só
+                               id/nome/categoria/req. O item usa o data/bazar.json
 data/Bazar_Khalkaria_v26.csv   fonte do Bazar: conteúdo do Pedro, só muda com
                                aprovação dele (gerador, CSS, JS e template do
                                Bazar são do agente desde 2026-09-24)
@@ -187,6 +196,20 @@ regra por baixo), `inv` em todo item do `data/bazar.json` e os 3 blocos
 decididos D80–D82 no `data/sistema.json` (modificador, vantagem/desvantagem,
 custo mínimo de magia), por frase verbatim do Notion, e o id de todo card de
 classe (`data/classes/*.json`) = `<classe>-` + slug do nome, sem duplicata.
+Desde a F1a também: `[ids]` (id de entidade único no site; `data-kf-*` dos cards
+== catálogo por conjunto; `.ent-add`/`.ent-alca` nascem `hidden`; alvos do
+`alias_ids.json` existem), `[fragmentos]` (`pagina.html#id` e
+`bazar.html#item/<id>` com destino) e `[glifos]` (sprite íntegro, um glifo por
+`--ramo-*`, todo `<use href="#g-*">` com símbolo). O round-trip regenera também
+o `data/catalogo/`.
+
+**Marcação entidade -> ficha (F1a).** Todo card de entidade sai do gerador com
+`data-kf-tipo`, `data-kf-id` (= id do JSON) e `data-prever="tipo:id"`, e com o
+`<button class="ent-add" hidden>` e a alça `.ent-alca` como primeiros filhos
+(inertes até a F4; primeiros filhos para não mexer nos `p:last-child`). Exceções:
+o preview `<a class="raca-card">` do índice não leva botão (botão dentro de link
+é HTML inválido) e o Bazar, renderizado no `js/bazar.js`, não leva `data-prever`
+no card (lá o `data-prever` é o gatilho do cartão, no nome, com o id puro).
 
 Os índices "Navegação Rápida" de Condições e Sistema saem do gerador
 (`{{IDX_<categoria>}}` no template): um link por card/subseção, na ordem do

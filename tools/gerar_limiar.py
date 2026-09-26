@@ -6,6 +6,7 @@
 # catálogo) e {{DORES}}/{{BENEFICIOS}} (O Abismo).
 # Uso: python gerar_limiar.py [repo_root]
 import json, sys, os
+from kf_marca import atributos, controles
 
 RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 REPO = sys.argv[1] if len(sys.argv) > 1 else RAIZ
@@ -14,7 +15,8 @@ JSON_SRC = f'{REPO}/data/limiar.json'
 OUT = f'{REPO}/pages/limiar.html'
 
 def gen_catalog_card(c, cat):
-    lines = [f'        <div class="catalog-card cat-{cat}">']
+    lines = [f'        <div class="catalog-card cat-{cat}"{atributos("carta", c["id"])}>'
+             f'{controles(c["nome"])}']
     for k in c['ordem']:
         v = c['nome'] if k == 'name' else c[k]
         lines.append(f'            <div class="catalog-card-{k}">{v}</div>')
@@ -25,11 +27,12 @@ def gen_catalog(cat):
     return '\n'.join(gen_catalog_card(c, cat['id']) for c in cat['cards'])
 
 def gen_abismo_card(c, cls):
+    tipo = 'beneficio' if cls == 'beneficio-abismo-card' else 'dor'
     icon_cls = 'dor-icon beneficio-icon' if cls == 'beneficio-abismo-card' else 'dor-icon'
     attrs = (' ' + c['tituloAttrs']) if c.get('tituloAttrs') else ''
     ca = (' ' + c['cardAttrs']) if c.get('cardAttrs') else ''
     ia = (' ' + c['iconAttrs']) if c.get('iconAttrs') else ''
-    return (f'<div class="{cls}"{ca}>\n'
+    return (f'<div class="{cls}"{ca}{atributos(tipo, c["id"])}>{controles(c["nome"])}\n'
             f'                        <div class="dor-card-header">\n'
             f'                            <div class="{icon_cls}"{ia}>{c["iconeSvg"]}</div>\n'
             f'                            <div class="dor-card-info">\n'

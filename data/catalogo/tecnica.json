@@ -1,0 +1,1900 @@
+{
+ "schema": "catalogo/1",
+ "tipo": "tecnica",
+ "fontes": [
+  "data/classes/*.json"
+ ],
+ "total": 210,
+ "entradas": [
+  {
+   "id": "espadachim-leitura-de-batalha",
+   "tipo": "tecnica",
+   "nome": "Leitura de Batalha",
+   "icone": null,
+   "resumo": "Passiva Ao atacar um inimigo com a Marca do Duelo você tem +3 atacar.",
+   "classe": "espadachim",
+   "card": "technique-card"
+  },
+  {
+   "id": "espadachim-peso-do-fracasso",
+   "tipo": "tecnica",
+   "nome": "Peso do Fracasso",
+   "icone": null,
+   "resumo": "Passiva Retaliar um inimigo com a Marca do Duelo causa +(Nível)d6 de dano Cortante.",
+   "classe": "espadachim",
+   "card": "technique-card"
+  },
+  {
+   "id": "espadachim-limiar-da-morte",
+   "tipo": "tecnica",
+   "nome": "Limiar da Morte",
+   "icone": null,
+   "resumo": "Passiva Ao estar com ≤ 50% Saúde, seus ataques contra a Marca do Duelo causam +2d6 de dano Cortante.",
+   "classe": "espadachim",
+   "card": "technique-card"
+  },
+  {
+   "id": "espadachim-pedra-de-amolar",
+   "tipo": "tecnica",
+   "nome": "Pedra de Amolar",
+   "icone": null,
+   "resumo": "Descanso Curto Você pode gastar sua ação de descanso curto para Amolar a sua espada, ela passa a causar +1d4 de dano Cortante, porém apenas durante o próximo combate, após isso ela volta ao normal.",
+   "classe": "espadachim",
+   "card": "technique-card"
+  },
+  {
+   "id": "espadachim-respiro-do-espadachim",
+   "tipo": "tecnica",
+   "nome": "Respiro do Espadachim",
+   "icone": null,
+   "resumo": "1 Ação Em combate, recupera Stamina igual ao seu Mod. de Constituição +1d4 e recebe +2 Defender até o início do seu próximo turno. (Max. 1 vez por turno)",
+   "classe": "espadachim",
+   "card": "technique-card"
+  },
+  {
+   "id": "espadachim-lamina-rapida",
+   "tipo": "tecnica",
+   "nome": "Lâmina Rápida",
+   "icone": null,
+   "resumo": "5 Stamina 1 Ação Ataque duas vezes como 1 ação. Esses ataques não podem receber retaliação.",
+   "classe": "espadachim",
+   "card": "technique-card"
+  },
+  {
+   "id": "espadachim-corte-diagonal",
+   "tipo": "tecnica",
+   "nome": "Corte Diagonal",
+   "icone": null,
+   "resumo": "3 Stamina Ação Livre Seu próximo ataque tem +2 no acerto. Adicionalmente, se seu próximo ataque acertar um inimigo com a Marca do Duelo adiciona Sangramento 1 .",
+   "classe": "espadachim",
+   "card": "technique-card"
+  },
+  {
+   "id": "espadachim-x1",
+   "tipo": "tecnica",
+   "nome": "x1",
+   "icone": null,
+   "resumo": "5 Stamina 2 Ações Você foca toda sua concentração em um único alvo em até 9 m que esteja com a Marca do Duelo . Enquanto o alvo estiver isolado por ao menos, 1,5 m de qualquer outro inimigo você recebe os seguintes benefícios contra o inimigo com a Marca do Duelo: • +1d10 dano Cortante • Vantagem ao Atacar. Ao trocar o alvo da Marca do Duelo , você perde os efeitos e precisa utilizar essa Técnica novamente.",
+   "classe": "espadachim",
+   "card": "technique-card"
+  },
+  {
+   "id": "espadachim-oportunista",
+   "tipo": "tecnica",
+   "nome": "Oportunista",
+   "icone": null,
+   "resumo": "5 Stamina Ação Livre Você pode como ação livre reduzir a PMA para -3, ao invés de -5, nesta rodada.",
+   "classe": "espadachim",
+   "card": "technique-card"
+  },
+  {
+   "id": "espadachim-quebrar-postura",
+   "tipo": "tecnica",
+   "nome": "Quebrar Postura",
+   "icone": null,
+   "resumo": "3 Stamina Ação Livre Ao acertar um alvo com a Marca do Duelo , ele perde sua reação até o fim da rodada. O alvo ainda pode bloquear ou retaliar, mas perde a reação logo em seguida se for acertado.",
+   "classe": "espadachim",
+   "card": "technique-card"
+  },
+  {
+   "id": "espadachim-ponto-fraco",
+   "tipo": "tecnica",
+   "nome": "Ponto Fraco",
+   "icone": null,
+   "resumo": "5 Stamina Passiva Ao atacar um inimigo Exposto , você pode como uma ação livre gastar 5 de Stamina para manter a condição no inimigo, mesmo após atacar.",
+   "classe": "espadachim",
+   "card": "technique-card"
+  },
+  {
+   "id": "espadachim-passo-afiado",
+   "tipo": "tecnica",
+   "nome": "Passo Afiado",
+   "icone": null,
+   "resumo": "2 Stamina Ação Livre Quando um inimigo errar você, mova-se 1,5 m sem provocar ataques de oportunidade.",
+   "classe": "espadachim",
+   "card": "technique-card"
+  },
+  {
+   "id": "espadachim-corta-luz",
+   "tipo": "tecnica",
+   "nome": "Corta-Luz",
+   "icone": null,
+   "resumo": "3 Stamina Reação Quando você errar um ataque, pode realizar um segundo ataque contra o mesmo alvo, com −2.",
+   "classe": "espadachim",
+   "card": "technique-card"
+  },
+  {
+   "id": "espadachim-bilhete-de-entrada",
+   "tipo": "tecnica",
+   "nome": "Bilhete de Entrada",
+   "icone": null,
+   "resumo": "5 Stamina Reação Quando um inimigo entrar no seu alcance: pode atacar imediatamente com −5.",
+   "classe": "espadachim",
+   "card": "technique-card"
+  },
+  {
+   "id": "espadachim-brecha",
+   "tipo": "tecnica",
+   "nome": "Brecha",
+   "icone": null,
+   "resumo": "5 Stamina 1 Ação ou Passiva Ao acertar um ataque em um alvo não exposto , pode aplicar Exposto como 1 ação. Adicionalmente, se o alvo já estiver exposto , pode adicionar Sangramento 1 como ação livre. (Max. 1 vez por turno)",
+   "classe": "espadachim",
+   "card": "technique-card"
+  },
+  {
+   "id": "espadachim-parry-perfeito",
+   "tipo": "tecnica",
+   "nome": "Parry Perfeito",
+   "icone": null,
+   "resumo": "Ação Livre · 3 Stamina Ao defender um ataque da Marca do Duelo com sucesso, Retalie como Ação Livre .",
+   "classe": "espadachim",
+   "card": "tier-technique"
+  },
+  {
+   "id": "espadachim-duelista-intocavel",
+   "tipo": "tecnica",
+   "nome": "Duelista Intocável",
+   "icone": null,
+   "resumo": "Passiva Você se torna Treinado em Defender . Se já for Treinado , se torna Experiente e assim por diante. Enquanto não tiver realizado ataques nesta rodada, você ganha +5 em testes de Defender. Você ignora todo Ar (Armadura) ao Retaliar .",
+   "classe": "espadachim",
+   "card": "tier-technique"
+  },
+  {
+   "id": "espadachim-guardar-a-lamina",
+   "tipo": "tecnica",
+   "nome": "Guardar a Lâmina",
+   "icone": null,
+   "resumo": "1 Ação · 2 Stamina Até o início do seu próximo turno você ganha as seguintes vantagens: +2 Defender Sua primeira retaliação não gasta reação",
+   "classe": "espadachim",
+   "card": "tier-technique"
+  },
+  {
+   "id": "espadachim-contra-guarda",
+   "tipo": "tecnica",
+   "nome": "Contra-guarda",
+   "icone": null,
+   "resumo": "Passiva Se você não realizou nenhum ataque no seu turno, sua próxima retaliação contra a Marca do Duelo causa dano crítico .",
+   "classe": "espadachim",
+   "card": "tier-technique"
+  },
+  {
+   "id": "espadachim-inimigo-mortal",
+   "tipo": "tecnica",
+   "nome": "Inimigo Mortal",
+   "icone": null,
+   "resumo": "1 Ação · 5 Stamina Até o início do seu próximo turno, você pode retaliar a Marca do Duelo até 2 vezes sem gastar reação.",
+   "classe": "espadachim",
+   "card": "tier-technique"
+  },
+  {
+   "id": "espadachim-furia-do-verme",
+   "tipo": "tecnica",
+   "nome": "Fúria do Verme",
+   "icone": null,
+   "resumo": "Passiva Você se torna Treinado em Atacar . Se já for Treinado , se torna Experiente e assim por diante. Seus ataques corpo a corpo causam +1d6 de dano Cortante. No fim do seu turno, se você atacou, receba 1d4 de dano Primordial (não reduzível).",
+   "classe": "espadachim",
+   "card": "tier-technique"
+  },
+  {
+   "id": "espadachim-adrenalina-sanguinea",
+   "tipo": "tecnica",
+   "nome": "Adrenalina Sanguínea",
+   "icone": null,
+   "resumo": "Passiva Quando a Marca do Duelo for morta por você: Ganhe 1 Ação. Recupere (Nível)d6 de Saúde.",
+   "classe": "espadachim",
+   "card": "tier-technique"
+  },
+  {
+   "id": "espadachim-sangue-por-aco",
+   "tipo": "tecnica",
+   "nome": "Sangue por Aço",
+   "icone": null,
+   "resumo": "Ação Livre Você pode pagar Saúde no lugar de Stamina em qualquer técnica, na proporção 2 Saúde = 1 Stamina.",
+   "classe": "espadachim",
+   "card": "tier-technique"
+  },
+  {
+   "id": "espadachim-carne-rasgada",
+   "tipo": "tecnica",
+   "nome": "Carne Rasgada",
+   "icone": null,
+   "resumo": "Passiva Ao estar com menos da metade da vida, você ganha os seguintes benefícios: Seus ataques contra a Marca do Duelo causam +2d6 de dano Cortante. Você tem resistência a dano Ordinário contra a Marca do Duelo .",
+   "classe": "espadachim",
+   "card": "tier-technique"
+  },
+  {
+   "id": "espadachim-massacre",
+   "tipo": "tecnica",
+   "nome": "Massacre",
+   "icone": null,
+   "resumo": "1 Ação · 5 Stamina Faça 2 ataques corpo a corpo contra a Marca do Duelo. Se ambos acertarem: Você causa +2d6 de dano Cortante O alvo recebe Sangramento 1 .",
+   "classe": "espadachim",
+   "card": "tier-technique"
+  },
+  {
+   "id": "espadachim-golpe-torto",
+   "tipo": "tecnica",
+   "nome": "Golpe Torto",
+   "icone": null,
+   "resumo": "1 Ação · 3 Stamina Seu próximo ataque possui +2 Atacar, se acertar +3d6 de dano Cortante. Se você errar, você fica exposto .",
+   "classe": "espadachim",
+   "card": "tier-technique"
+  },
+  {
+   "id": "espadachim-beber-ate-cair",
+   "tipo": "tecnica",
+   "nome": "Beber até Cair",
+   "icone": null,
+   "resumo": "1 Ação · 1 Item:Álcool Fique Bêbado. Adicionalmente, você ignora as adversidades da condição Bêbado descritas na tabela de Condições. Os efeitos negativos concedidos por técnicas permanecem.",
+   "classe": "espadachim",
+   "card": "tier-technique"
+  },
+  {
+   "id": "espadachim-sorte-do-bebado",
+   "tipo": "tecnica",
+   "nome": "Sorte do Bêbado",
+   "icone": null,
+   "resumo": "Passiva Você se torna Treinado em Qualquer Perícia à sua escolha. Se já for Treinado , se torna Experiente e assim por diante. Enquanto Bêbado: Você tem margem de crítico +1 em TODAS as rolagens. +2 Atacar +2 Evasão Desvantagem em testes de resistência (Reflexos, Fortitude e Vontade).",
+   "classe": "espadachim",
+   "card": "tier-technique"
+  },
+  {
+   "id": "espadachim-trebado",
+   "tipo": "tecnica",
+   "nome": "Trêbado",
+   "icone": null,
+   "resumo": "Ação Livre · 5 Stamina Imediatamente após rolar um dado, você pode escolher gastar 5 de Stamina como ação livre para rolar novamente esse mesmo teste de perícia. ( 3x/descanso longo)",
+   "classe": "espadachim",
+   "card": "tier-technique"
+  },
+  {
+   "id": "espadachim-dobrar-a-aposta",
+   "tipo": "tecnica",
+   "nome": "Dobrar a Aposta",
+   "icone": null,
+   "resumo": "Ação Livre · 3 Stamina Declare antes de atacar a Marca do Duelo . Se acertar : +4d6 de dano Cortante. Se errar : receba 2d6 de dano Primordial e fique Exposto .",
+   "classe": "espadachim",
+   "card": "tier-technique"
+  },
+  {
+   "id": "monge-evasivo",
+   "tipo": "tecnica",
+   "nome": "Evasivo",
+   "icone": null,
+   "resumo": "Passiva • 1-5 Fluxo Adicione seu Fluxo a sua evasão, tanto ativa quanto passiva.",
+   "classe": "monge",
+   "card": "technique-card"
+  },
+  {
+   "id": "monge-passo-do-vento",
+   "tipo": "tecnica",
+   "nome": "Passo do Vento",
+   "icone": null,
+   "resumo": "Passiva • 3 Fluxo Você não provoca ataques de oportunidade.",
+   "classe": "monge",
+   "card": "technique-card"
+  },
+  {
+   "id": "monge-palma-pura",
+   "tipo": "tecnica",
+   "nome": "Palma Pura",
+   "icone": null,
+   "resumo": "Passiva • 3 Fluxo Seus ataques desarmados ignoram Armadura(Ar).",
+   "classe": "monge",
+   "card": "technique-card"
+  },
+  {
+   "id": "monge-respiracao-do-monge",
+   "tipo": "tecnica",
+   "nome": "Respiração do Monge",
+   "icone": null,
+   "resumo": "Passiva • 3 Fluxo Recupera Níveld4 de Stamina toda rodada que não atacar ninguém. Só funciona em combate.",
+   "classe": "monge",
+   "card": "technique-card"
+  },
+  {
+   "id": "monge-explosao",
+   "tipo": "tecnica",
+   "nome": "Explosão",
+   "icone": null,
+   "resumo": "Passiva • 4 Fluxo Seu movimento é dobrado.",
+   "classe": "monge",
+   "card": "technique-card"
+  },
+  {
+   "id": "monge-silencio-interior",
+   "tipo": "tecnica",
+   "nome": "Silêncio Interior",
+   "icone": null,
+   "resumo": "Passiva • 5 Fluxo Você tem vantagem em todos os testes de resistência (Reflexos, Fortitude e Vontade).",
+   "classe": "monge",
+   "card": "technique-card"
+  },
+  {
+   "id": "monge-andar-nas-paredes",
+   "tipo": "tecnica",
+   "nome": "Andar nas Paredes",
+   "icone": null,
+   "resumo": "Passiva • 5 Fluxo Você pode se mover em superfícies verticais como se fosse chão. Se terminar o turno na parede, cai.",
+   "classe": "monge",
+   "card": "technique-card"
+  },
+  {
+   "id": "monge-quebrar-guarda",
+   "tipo": "tecnica",
+   "nome": "Quebrar Guarda",
+   "icone": null,
+   "resumo": "Passiva • 5 Fluxo Seu primeiro ataque gasta a reação do seu alvo. Ou seja, ele só pode defender ao seu primeiro golpe.",
+   "classe": "monge",
+   "card": "technique-card"
+  },
+  {
+   "id": "monge-transcendencia",
+   "tipo": "tecnica",
+   "nome": "Transcendência",
+   "icone": null,
+   "resumo": "Ação Livre • 5 Stamina • 5 Saúde Como ação livre, gaste 5 de Stamina e 5 de Saúde, durante essa rodada a regra de Penalidade de Multi-Ataque (PMA) não se aplica a você.",
+   "classe": "monge",
+   "card": "technique-card"
+  },
+  {
+   "id": "monge-golpe-sequencial",
+   "tipo": "tecnica",
+   "nome": "Golpe Sequencial",
+   "icone": null,
+   "resumo": "Ação Livre • 5 Stamina, 1 Fluxo Ao usar a ação atacar e acertar um ataque desarmado, pode fazer outro ataque imediatamente contra o mesmo alvo.",
+   "classe": "monge",
+   "card": "technique-card"
+  },
+  {
+   "id": "monge-danca-do-monge",
+   "tipo": "tecnica",
+   "nome": "Dança do Monge",
+   "icone": null,
+   "resumo": "1 Ação • 5 Stamina, 3 Fluxo Faça 3 ataques desarmados contra um ou mais alvos em alcance. 1x/Rodada",
+   "classe": "monge",
+   "card": "technique-card"
+  },
+  {
+   "id": "monge-purificar",
+   "tipo": "tecnica",
+   "nome": "Purificar",
+   "icone": null,
+   "resumo": "1 Ação • 4 Stamina Remova uma condição mágica ou não-mágica de si mesmo ou de uma criatura tocada.",
+   "classe": "monge",
+   "card": "technique-card"
+  },
+  {
+   "id": "monge-golpe-das-mazelas",
+   "tipo": "tecnica",
+   "nome": "Golpe das Mazelas",
+   "icone": null,
+   "resumo": "1 Ação • 3 Stamina O seu próximo ataque desarmado exige Fortitude ao alvo ou Atordoado até o fim do seu próximo turno.",
+   "classe": "monge",
+   "card": "technique-card"
+  },
+  {
+   "id": "monge-queda-suave",
+   "tipo": "tecnica",
+   "nome": "Queda Suave",
+   "icone": null,
+   "resumo": "2 Ações ou Reação • 5 Stamina Você e até 5 criaturas a distância de toque, não tomam dano de queda de até 30 m. por 1 minuto após isso reduz o dano em 5 * Nível. Você pode usar essa técnica só em você como uma reação ao receber dano de queda.",
+   "classe": "monge",
+   "card": "technique-card"
+  },
+  {
+   "id": "monge-apanhar-projetil",
+   "tipo": "tecnica",
+   "nome": "Apanhar Projétil",
+   "icone": null,
+   "resumo": "Reação Ao ser atingido por um ataque à distância, reduza o dano em Níveld10 + Mod. Des. Se reduzir a 0, você pegou o projétil. Pode arremessar de volta ao atacante em um mesmo movimento. Você pode utilizar essa técnica qualquer projétil, porém arremessá-lo de volta depende que seja sólido e leve o suficiente.",
+   "classe": "monge",
+   "card": "technique-card"
+  },
+  {
+   "id": "monge-punho-perfeito",
+   "tipo": "tecnica",
+   "nome": "Punho Perfeito",
+   "icone": null,
+   "resumo": "Passiva Você se torna Treinado em Atacar. Se já for Treinado, se torna Experiente e assim por diante. Seus ataques desarmados causam +1d6 de dano Contundente.",
+   "classe": "monge",
+   "card": "tech-card"
+  },
+  {
+   "id": "monge-fluxo-marcial",
+   "tipo": "tecnica",
+   "nome": "Fluxo Marcial",
+   "icone": null,
+   "resumo": "Passiva Ao acertar dois ataques desarmados no mesmo turno contra o mesmo alvo, o terceiro ataque neste turno tem Vantagem. Você ganha +1 Fluxo adicional ao acertar um ataque desarmado.",
+   "classe": "monge",
+   "card": "tech-card"
+  },
+  {
+   "id": "monge-cadeia-de-golpes",
+   "tipo": "tecnica",
+   "nome": "Cadeia de Golpes",
+   "icone": null,
+   "resumo": "Passiva Ao derrubar uma criatura a 0 Saúde com um ataque desarmado, você pode gastar 3 de Stamina para imediatamente se mover até 3m e fazer outro ataque desarmado contra um alvo diferente como Ação Livre. Esse efeito pode encadear até 2 vezes por turno.",
+   "classe": "monge",
+   "card": "tech-card"
+  },
+  {
+   "id": "monge-toque-da-dor",
+   "tipo": "tecnica",
+   "nome": "Toque da Dor",
+   "icone": null,
+   "resumo": "Passiva Você se torna Treinado em Místico . Se já for Treinado, se torna Experiente e assim por diante. Seus ataques desarmados causam dano Necrótico ao invés de Contundente (você pode trocar entre os dois tipos em um descanso curto). Você cura 1 de Saúde ao acertar um ataque corpo a corpo desarmado.",
+   "classe": "monge",
+   "card": "tech-card"
+  },
+  {
+   "id": "monge-fluxo-invertido",
+   "tipo": "tecnica",
+   "nome": "Fluxo Invertido",
+   "icone": null,
+   "resumo": "Passiva Você ganha fluxo de formas diferentes: +1 Fluxo ao receber dano +2 Fluxo ao falhar em teste de resistência +3 fluxo ao ver um aliado cair para 0 Saúde Ao atingir 5 de Fluxo, você emana uma aura de 1,5 m: Inimigos que começam o turno na aura sofrem 1d6 de dano Necrótico e devem suceder em um teste de Vontade(CD 10+Mod. Sab + Mod. Des) ou ficam Desorientados. Você ainda ganha fluxo das formas normais.",
+   "classe": "monge",
+   "card": "tech-card"
+  },
+  {
+   "id": "monge-forma-do-vazio",
+   "tipo": "tecnica",
+   "nome": "Forma do Vazio",
+   "icone": null,
+   "resumo": "1 Ação, 3 Stamina, 5 Fluxo Até o inicio do seu próximo turno: Você fica Parcialmente Intangível: Ataques físicos tem 50% de chance de falhar contra você. (Role 1d10 → <5 = Acerta) Você pode se mover através de criaturas e objetos finos(Até 10 cm), caso termine seu turno dentro de outro corpo é expulso e recebe 2d6 de dano de Força. Você recebe +5 em testes de furtividade. Ao sair da forma, criaturas em até 1,5 m devem fazer Vontade ou ficam Desorientados.",
+   "classe": "monge",
+   "card": "tech-card"
+  },
+  {
+   "id": "monge-comunhao-selvagem",
+   "tipo": "tecnica",
+   "nome": "Comunhão Selvagem",
+   "icone": null,
+   "resumo": "Passiva Você se torna Treinado em Sobrevivência . Se já for Treinado, se torna Experiente e assim por diante. Você pode se comunicar telepaticamente com animais em até 30 m. Ao estar em ambiente natural você tem +2 na perícia atacar .",
+   "classe": "monge",
+   "card": "tech-card"
+  },
+  {
+   "id": "monge-companheiro-primal",
+   "tipo": "tecnica",
+   "nome": "Companheiro Primal",
+   "icone": null,
+   "resumo": "2 Ações, 5 Stamina Você invoca um espírito animal menor que se manifesta como um Companheiro Primal. Ele dura até o fim do combate ou até ser destruído. Escolha a forma ao invocar: Lobo: Médio,15 HP, Evasão 13, Mov 12m. Ataque: 1d8+Des(Cortante). Ao acertar, o alvo fica Marcado (você tem +2 Atacar contra ele). Urso: Médio, 25 HP, Evasão 11, Mov 9m, Ar 2. Ataque: 1d10+For(Cortante). Pode usar Reação para interceptar ataques contra você(1,5 m), o urso recebe o dano. Falcão: Pequeno, 10 HP, Evasão 15, Mov 18m (voo). Ataque: 1d6+Des(Perfurante). Você vê através dos olhos dele. Ataques causam Sangramento 1. O Companheiro age no seu turno, tem 2 Ações, evasão passiva permanente e usa seu bônus de Atacar. Você só pode ter 1 Companheiro Primal ativo por vez e pode invocá-lo fora de combate por 5 minutos. Ao ser destruído, o companheiro em questão fica indisponível até o próximo descanso curto.",
+   "classe": "monge",
+   "card": "tech-card"
+  },
+  {
+   "id": "monge-fluxo-da-natureza",
+   "tipo": "tecnica",
+   "nome": "Fluxo da Natureza",
+   "icone": null,
+   "resumo": "Passiva Seu companheiro primal compartilha de efeitos aplicados a você por itens e magias. Quando seu Companheiro acerta um ataque, você ganha +1 Fluxo. Seu companheiro causa dano adicional no ataque igual ao seu Fluxo.",
+   "classe": "monge",
+   "card": "tech-card"
+  },
+  {
+   "id": "monge-precisao-letal",
+   "tipo": "tecnica",
+   "nome": "Precisão Letal",
+   "icone": null,
+   "resumo": "Passiva Seus ataques desarmados tem crítico em 19-20. No crítico, teste de Vontade ou escolha um dos efeitos a seguir para aplicar no alvo: Atordoar: Alvo fica Atordoado . Sangrar: Alvo recebe Sangramento 2 . Derrubar: Alvo fica Caído .",
+   "classe": "monge",
+   "card": "tech-card"
+  },
+  {
+   "id": "monge-concentracao-do-mestre",
+   "tipo": "tecnica",
+   "nome": "Concentração do Mestre",
+   "icone": null,
+   "resumo": "Passiva Seu fluxo, só reseta após 2 rodadas sem ganhar fluxo. Ao receber dano, pode negar a perda de fluxo uma quantidade de vezes igual ao seu Mod. de Sabedoria/Descanso Longo.",
+   "classe": "monge",
+   "card": "tech-card"
+  },
+  {
+   "id": "monge-o-terror",
+   "tipo": "tecnica",
+   "nome": "O Terror",
+   "icone": null,
+   "resumo": "1 Ação, 2 Stamina Ao acertar um ataque, pode exigir um teste de Vontade ou o alvo fica Amedrontado. A cada criatura amedrontada no seu campo de visão, você ganha 1 de fluxo permanente(Que não pode ser perdido), até a criatura se livrar dessa condição. Ao atacar uma criatura Amedrontada , o ataque causa +1d8 de dano Necrótico.",
+   "classe": "monge",
+   "card": "tech-card"
+  },
+  {
+   "id": "monge-portal-do-abismo",
+   "tipo": "tecnica",
+   "nome": "Portal do Abismo",
+   "icone": null,
+   "resumo": "2 Ações, 4 Stamina, 3 Fluxo Crie um portal com ponto de entrada de onde você está, até qualquer lugar em até 15 m. Você e aliados se teletransportam normalmente entre os portais. Inimigos que se teletransportarem devem suceder em um teste de Vontade ou sofrem 2d6 de Dano Necrótico e ficam Amedrontados . O portal dura 3 Rodadas, você pode ter apenas 1 portal ativo por vez.",
+   "classe": "monge",
+   "card": "tech-card"
+  },
+  {
+   "id": "monge-companheiro-primal-ii",
+   "tipo": "tecnica",
+   "nome": "Companheiro Primal II",
+   "icone": null,
+   "resumo": "Passiva Você invoca um espírito animal maior que se manifesta como um companheiro primal. Ele dura até o fim do combate ou até ser destruído. Escolha a forma ao invocar: Lobo Sanguíneo: Médio, 25 HP, Evasão 15, Mov 12m, Ataque: Mod. Des + 2, Dano: 2d6+Des(Cortante). Ao acertar, o alvo fica Exposto . Urso Colossal: Grande, 35 HP, Evasão 13, Mov 9m, Ar 3. Ataque: Mod. For + 2, Dano: 1d12+For(Cortante). Ao você ser atacado enquanto o urso estiver a 1,5 m de você e do atacante, ele pode retaliar como ação livre por você enquanto você se defende. Falcão Veloz: Pequeno, 20 HP, Evasão 17, Mov 18m (voo). Ataque: Mod. Des + 2Dano: 1d10+Des(Perfurante). Você vê através dos olhos dele. Ao atacar, aplica Lento 1 . O Companheiro age no seu turno, tem 2 Ações, evasão passiva permanente e usa seu bônus de Atacar. Você só pode ter 1 Companheiro Primal maior ativo por vez e pode invoca-lo fora de combate por 5 minutos. Você pode invocar 1 companheiro primal menor simultaneamente.",
+   "classe": "monge",
+   "card": "tech-card"
+  },
+  {
+   "id": "monge-totem-eterno",
+   "tipo": "tecnica",
+   "nome": "Totem Eterno",
+   "icone": null,
+   "resumo": "2 Ações, 5 Stamina Você invoca um totem natural de 9 m de raio que dura 3 rodadas. O totem instiga a força da natureza a proteger seus aliados e atrapalhar seus inimigos. Aliados nesta área recuperam 1d4+Mod. Sab Saúde por rodada. Inimigos nesta área devem suceder em um teste de Fortitude ou ficam Paralisados até sucederem no final de cada um de seus turnos ou o totem acabar.",
+   "classe": "monge",
+   "card": "tech-card"
+  },
+  {
+   "id": "batedor-atento",
+   "tipo": "tecnica",
+   "nome": "Atento",
+   "icone": null,
+   "resumo": "Passiva Você é imune a condição Desprevenido .",
+   "classe": "batedor",
+   "card": "technique-card"
+  },
+  {
+   "id": "batedor-passo-ciente",
+   "tipo": "tecnica",
+   "nome": "Passo Ciente",
+   "icone": null,
+   "resumo": "Passiva Você não ativa armadilhas de quaisquer tipo e ignora terreno difícil.",
+   "classe": "batedor",
+   "card": "technique-card"
+  },
+  {
+   "id": "batedor-cacador",
+   "tipo": "tecnica",
+   "nome": "Caçador",
+   "icone": null,
+   "resumo": "Passiva Você consegue distinguir peso, numero da pegada, velocidade e direção de criaturas vendo rastros passivamente.",
+   "classe": "batedor",
+   "card": "technique-card"
+  },
+  {
+   "id": "batedor-lider",
+   "tipo": "tecnica",
+   "nome": "Líder",
+   "icone": null,
+   "resumo": "Passiva Você possui a habilidade de memorizar caminhos e traçar trajetos eficientes. Você soma naturalmente +1 ao sucesso do grupo em jornadas já percorridas. Adicionalmente, ao rolar Sobrevivência em jornadas possui +5.",
+   "classe": "batedor",
+   "card": "technique-card"
+  },
+  {
+   "id": "batedor-terreno-ideal",
+   "tipo": "tecnica",
+   "nome": "Terreno Ideal",
+   "icone": null,
+   "resumo": "Passiva/1 Ação • 3 Stamina Você tem facilidade em se adaptar a um ambiente, e enquanto estiver nele recebe os seguintes benefícios: +2 em testes de Sobrevivência +2 em testes de Percepção Pode gastar uma ação para rolar estes testes com vantagem. Terrenos: (Urbano, Natural, Naval, Subterrâneo) Pode escolher 1 no nível 1, 2 no nível 3 e 3 no nível 5.",
+   "classe": "batedor",
+   "card": "technique-card"
+  },
+  {
+   "id": "batedor-lingua-prateada",
+   "tipo": "tecnica",
+   "nome": "Língua Prateada",
+   "icone": null,
+   "resumo": "1 Ação • 2 Stamina Treinado em Convencimento. Adicionalmente, ao suceder em um teste de Convencimento contra um comerciante garante 25% de desconto em um item.",
+   "classe": "batedor",
+   "card": "technique-card"
+  },
+  {
+   "id": "batedor-oportunista",
+   "tipo": "tecnica",
+   "nome": "Oportunista",
+   "icone": null,
+   "resumo": "1 Ação • 2 Stamina Seu próximo ataque causa +1d8 de dano se o alvo estiver Desprevenido .",
+   "classe": "batedor",
+   "card": "technique-card"
+  },
+  {
+   "id": "batedor-curioso",
+   "tipo": "tecnica",
+   "nome": "Curioso",
+   "icone": null,
+   "resumo": "1 Ação • 2 Stamina Ao realizar um teste de Percepção ou Investigação adicione 1d4+Destreza.",
+   "classe": "batedor",
+   "card": "technique-card"
+  },
+  {
+   "id": "batedor-emboscada",
+   "tipo": "tecnica",
+   "nome": "Emboscada",
+   "icone": null,
+   "resumo": "10 Minutos • 5 Stamina Pode preparar um local previamente com armadilhas e distrações rolando um teste de Sobrevivência ou Furtividade : Ao lutar em um ambiente preparado, se o inimigo falhar em um teste de percepção contra seu teste, você e seus aliados recebem +2 em Atacar durante todo o combate e os inimigos ficam Desprevenidos na primeira rodada do combate.",
+   "classe": "batedor",
+   "card": "technique-card"
+  },
+  {
+   "id": "batedor-armadilha-tatica",
+   "tipo": "tecnica",
+   "nome": "Armadilha Tática",
+   "icone": null,
+   "resumo": "1 Ação • 3 Stamina Rapidamente configura uma armadilha no chão, rolando um teste de Furtividade ou Sobrevivência e atribuindo o resultado a ela. Quando um inimigo passar por cima ele deve superar a Furtividade ou Sobrevivência da armadilha rolando Percepção ou recebe 2d6+Mod. Destreza de dano Perfurante e fica Enraizado por 1 rodada.",
+   "classe": "batedor",
+   "card": "technique-card"
+  },
+  {
+   "id": "batedor-maos-rapidas",
+   "tipo": "tecnica",
+   "nome": "Mãos Rápidas",
+   "icone": null,
+   "resumo": "Reação • 2 Stamina Você reduz sua penalidade por ataques consecutivos em -2 durante esse turno. Ou seja, de -5 para -3 e -10 para -8.",
+   "classe": "batedor",
+   "card": "technique-card"
+  },
+  {
+   "id": "batedor-sigiloso",
+   "tipo": "tecnica",
+   "nome": "Sigiloso",
+   "icone": null,
+   "resumo": "Reação • 3 Stamina Ao atacar estando furtivo, pode gastar sua reação para continuar furtivo ao suceder em um teste de furtividade contra a percepção do alvo atacado.",
+   "classe": "batedor",
+   "card": "technique-card"
+  },
+  {
+   "id": "batedor-fantasma",
+   "tipo": "tecnica",
+   "nome": "Fantasma",
+   "icone": null,
+   "resumo": "Ação Livre • 2 Stamina Ao ser atacado e optar por se defender , pode somar seu treinamento de Furtividade na perícia.",
+   "classe": "batedor",
+   "card": "technique-card"
+  },
+  {
+   "id": "batedor-saque",
+   "tipo": "tecnica",
+   "nome": "Saque",
+   "icone": null,
+   "resumo": "Reação Ao eliminar uma criatura, pode saqueá-la, ganhando 1d4 + (Nível * 2) de Sins.",
+   "classe": "batedor",
+   "card": "technique-card"
+  },
+  {
+   "id": "batedor-ocultar-se",
+   "tipo": "tecnica",
+   "nome": "Ocultar-se",
+   "icone": null,
+   "resumo": "1 Ação • 2 Stamina Ao estar fora da linha de visão de todas as criaturas da cena, pode se esconder com 1 ação ao em vez de 2.",
+   "classe": "batedor",
+   "card": "technique-card"
+  },
+  {
+   "id": "batedor-desenhar-mapa-de-exploracao",
+   "tipo": "tecnica",
+   "nome": "Desenhar Mapa de Exploração",
+   "icone": null,
+   "resumo": "Descanso Curto, 5 Stamina Desenhe um Mapa de Exploração . Você pode mapear locais previamente transitados, até um tamanho máximo de até 1 quilômetro quadrado. O Mapa de Exploração é um item de raridade Incomum . Ao estiver com o item:Mapa de Exploração você recebe os seguintes benefícios ao estar no local do mapa: Tem conhecimento geral da geografia da área. +5 em Sobrevivência enquanto na região do mapa. -",
+   "classe": "batedor",
+   "card": "tech-card"
+  },
+  {
+   "id": "batedor-artista-apaixonado",
+   "tipo": "tecnica",
+   "nome": "Artista Apaixonado",
+   "icone": null,
+   "resumo": "Passiva Os mapas que você fabrica contam como mercadoria Incomum.",
+   "classe": "batedor",
+   "card": "tech-card"
+  },
+  {
+   "id": "batedor-escapista",
+   "tipo": "tecnica",
+   "nome": "Escapista",
+   "icone": null,
+   "resumo": "3 Ações, 5 Stamina Você nunca foi acostumado a batalhar, na verdade planejar uma rota de fuga é sua especialidade. Ao possuir um mapa da região em que está batalhando, pode fugir e guiar outros a fugirem do combate sem uma cena de perseguição ao suceder em um teste de Sobrevivência (CD 15).",
+   "classe": "batedor",
+   "card": "tech-card"
+  },
+  {
+   "id": "batedor-golpe-sombrio",
+   "tipo": "tecnica",
+   "nome": "Golpe Sombrio",
+   "icone": null,
+   "resumo": "1 Ação, 2 Stamina Enquanto estiver Escondido , seu próximo ataque: Ignora 1 de Evasão +1d6 de Dano Não pode ser retaliado",
+   "classe": "batedor",
+   "card": "tech-card"
+  },
+  {
+   "id": "batedor-finta",
+   "tipo": "tecnica",
+   "nome": "Finta",
+   "icone": null,
+   "resumo": "1 Ação, 2 Stamina Escolha um alvo em até 1,5 m: Enganação vs Percepção. Sucesso: alvo fica Desorientado por 1 rodada.",
+   "classe": "batedor",
+   "card": "tech-card"
+  },
+  {
+   "id": "batedor-olhar-de-brecha",
+   "tipo": "tecnica",
+   "nome": "Olhar de Brecha",
+   "icone": null,
+   "resumo": "Passiva Você detecta instantes onde inimigos abaixam guarda ou se distraem. Você recebe vantagem no primeiro teste de Furtividade do combate. Adicionalmente, se já estiver escondido no primeiro turno de combate, recebe +2 em Iniciativa .",
+   "classe": "batedor",
+   "card": "tech-card"
+  },
+  {
+   "id": "batedor-bens-diversos",
+   "tipo": "tecnica",
+   "nome": "Bens Diversos",
+   "icone": null,
+   "resumo": "1 Ação, 5 Stamina Você busca na sua mochila por um objeto que possa te ajudar na realização de um teste de perícia qualquer, role um d100: 1 Você machuca sua mão recebendo 1d6 de dano cortante ao tentar buscar na sua mochila. Como isso foi parar ai? 2-19 Você acha um objeto qualquer, que não te ajuda em quase nada. 20-39 Você acha um objeto utilizável, mas não tão adequado pra atividade em questão. +1 na pericia. 40-59 Você acha um objeto conveniente, que te ajuda a suceder na atividade. +2 na pericia. 60-79 Você acha um objeto apropriado para a atividade em questão. +3 na pericia. 80-99 Você acha um objeto quase perfeito, que te ajuda imensamente na atividade. +5 na pericia 100 Você acha o objeto perfeito que soluciona e te faz suceder instantaneamente na perícia.",
+   "classe": "batedor",
+   "card": "tech-card"
+  },
+  {
+   "id": "batedor-agiota",
+   "tipo": "tecnica",
+   "nome": "Agiota",
+   "icone": null,
+   "resumo": "3 Ações, 10 Stamina Você pode tentar convencer uma criatura que consiga te entender a aceitar um empréstimo(monetário ou de bens), voltando para cobra-la 1 dia depois. Ao escolher um alvo, você rola Convencimento vs Vontade , caso suceda você pode escolher quanto dinheiro oferece a criatura recebendo 20% de lucro no dia seguinte se o alvo possuir o dinheiro. Caso o alvo não consiga pagar ele fica Endividado. Você possui +5 em testes de Convencimento contra criaturas endividadas e estas são muito mais suscetíveis a seguirem suas ordens ao falharem em testes de Vontade contra você em uma tentativa de quitarem suas dívidas.",
+   "classe": "batedor",
+   "card": "tech-card"
+  },
+  {
+   "id": "batedor-cara-de-pau",
+   "tipo": "tecnica",
+   "nome": "Cara de Pau",
+   "icone": null,
+   "resumo": "1 Ação, 3 Stamina Você pode rolar Convencimento com 1 nível de treinamento a mais.",
+   "classe": "batedor",
+   "card": "tech-card"
+  },
+  {
+   "id": "batedor-desenhar-mapa-de-combate",
+   "tipo": "tecnica",
+   "nome": "Desenhar Mapa de Combate",
+   "icone": null,
+   "resumo": "5 Minutos, 3 Stamina Você desenha um mapa tático, analisando altitude, tipos de terreno e hostilidades em um espaço de até 300 metros quadrados. Ao estar em um local mapeado por você: Você e seus aliados não podem ser Desprevenido s Pode usar Coordenação (Reação, 3 Stamina) Orienta você ou um aliado em até 9 metros que esteja prestes a rolar um teste de Movimento, Defender ou Atacar. Somando +2 a rolagem. Pode usar Ponto Cego (1 Ação, 4 Stamina) Expõe uma falha de posicionamento de um alvo que tenha se movido nesta rodada dentro do mapa, o alvo fica Exposto . Pode usar Reposicionar (1 Ação, 3 Stamina) Escolha um aliado, podendo ser você, em até 9 m. Ele pode se mover até 4,5 m como uma ação livre sem provocar ataques de oportunidade.",
+   "classe": "batedor",
+   "card": "tech-card"
+  },
+  {
+   "id": "batedor-mapa-mental",
+   "tipo": "tecnica",
+   "nome": "Mapa Mental",
+   "icone": null,
+   "resumo": "1 Ação, 2 Stamina Você mentaliza o esboço de um mapa tático, ganhando seus benefícios nesta rodada. No inicio de cada rodada após essa, faça um teste de percepção(CD 15) para manter-se concentrado no mapa. Em caso de falha, você perde os benefícios.",
+   "classe": "batedor",
+   "card": "tech-card"
+  },
+  {
+   "id": "batedor-cobra",
+   "tipo": "tecnica",
+   "nome": "Cobra",
+   "icone": null,
+   "resumo": "Descanso Curto ou 1 Ação, 2 Stamina Pode criar venenos potentes e imbuir eles nas suas armas. Você pode criar até 2 venenos por descanso curto e 5 Venenos por descanso longo. Gastando 5 Sins por veneno. Você pode adicionar o veneno a uma arma ou munição com 1 ação. A criatura que entrar em contato com o veneno deve suceder em um teste de Fortitude ou ficar Envenenada .",
+   "classe": "batedor",
+   "card": "tech-card"
+  },
+  {
+   "id": "batedor-terror",
+   "tipo": "tecnica",
+   "nome": "Terror",
+   "icone": null,
+   "resumo": "Passiva Ao acertar um crítico, o alvo fica Exposto.",
+   "classe": "batedor",
+   "card": "tech-card"
+  },
+  {
+   "id": "batedor-conexoes-duvidosas",
+   "tipo": "tecnica",
+   "nome": "Conexões Duvidosas",
+   "icone": null,
+   "resumo": "1 Ação, 3 Stamina Você já ouviu falar de muita gente e possivelmente elas te devem algo, ou você que deve... Role um teste de Convencimento CD 20, porém pode ser dificultado dependendo da localização. Só pode ser utilizado 1 vez por localização, porém pode ser usado em diferentes áreas em uma cidade grande. Falha crítica O contato existe, mas te odeia. Ele ativamente trabalha contra você enquanto estiver na cidade. Falha O contato existe, mas você deve algo a ele. Ele só ajuda se você quitar a dívida primeiro (favor, dinheiro ou serviço). Sucesso O contato existe e te deve um favor menor: informação local, desconto em uma compra, esconderijo por uma noite, ou apresentação a alguém importante. Sucesso Crítico O contato te deve um favor maior: acesso a área restrita, item raro por preço justo, aliado temporário para uma missão, ou perdão de uma dívida/crime menor.",
+   "classe": "batedor",
+   "card": "tech-card"
+  },
+  {
+   "id": "batedor-olho-no-lance",
+   "tipo": "tecnica",
+   "nome": "Olho no Lance",
+   "icone": null,
+   "resumo": "Passiva ou 1 Ação, 3 Stamina Passiva Você automaticamente sabe o valor de um item ao examina-lo. Recebe 20% a mais de Sins de todas as fontes. Ou seja, quando saquear 10 Sins , recebe 12. Quando vender um item por 300 Sins recebe 360 Sins . Isso não se aplica a itens já saqueados e repassados a você, apenas quando estiver vasculhando. Por exemplo, não faz sentido alguém te entregar 10 Sins e você magicamente receber 12. Ação Revirar(max. 1x/cena) Ao vasculhar uma sala que pode possuir itens valiosos, pode revira-la com mais cuidado. Role investigação(CD 15): Falha Critica: Ativa uma armadilha. Recebe 1 de dano e não encontra nada. Falha: Não encontra nada além do óbvio. Sucesso: Encontra algo de valor que outros ignorariam. 2d10 Sins em itens vendáveis. Sucesso Crítico: Encontra um saco de Sins , contendo 2d10 Sins .",
+   "classe": "batedor",
+   "card": "tech-card"
+  },
+  {
+   "id": "alquimista-alquimia-rapida",
+   "tipo": "tecnica",
+   "nome": "Alquimia Rápida",
+   "icone": null,
+   "resumo": "1 Min • 2 Stamina Crie um item alquímico em 1 minuto ao invés de 10 minutos.",
+   "classe": "alquimista",
+   "card": "technique-card"
+  },
+  {
+   "id": "alquimista-producao-em-massa",
+   "tipo": "tecnica",
+   "nome": "Produção em Massa",
+   "icone": null,
+   "resumo": "1 Ação • 5 Stamina/Item Ao criar um item alquímico, pode gastar 5 de Stamina para criar +1 desse mesmo item sem reagentes adicionais. Máx. itens adicionais = Nível. Itens criados por Produção em Massa não podem ser vendidos pois são de baixa qualidade. ← betovenon.",
+   "classe": "alquimista",
+   "card": "technique-card"
+  },
+  {
+   "id": "alquimista-alquimia-de-combate",
+   "tipo": "tecnica",
+   "nome": "Alquimia de Combate",
+   "icone": null,
+   "resumo": "1 Ação • 2 Stamina Crie um item alquímico rapidamente como 1 ação, porém com custo adicional de +2 Reagentes.",
+   "classe": "alquimista",
+   "card": "technique-card"
+  },
+  {
+   "id": "alquimista-forcar-invencao",
+   "tipo": "tecnica",
+   "nome": "Forçar Invenção",
+   "icone": null,
+   "resumo": "Reação • 3 Stamina Ao falhar um teste de Ofício(Alquimia), pode rolar novamente, em caso de uma segunda falha sua invenção explode e causa 1d6+Mod. Inteligência de dano Elemental.",
+   "classe": "alquimista",
+   "card": "technique-card"
+  },
+  {
+   "id": "alquimista-arremessador",
+   "tipo": "tecnica",
+   "nome": "Arremessador",
+   "icone": null,
+   "resumo": "1 Ação • 2 Stamina Pode rolar Atacar com +1 Treinamento ao arremessar objetos. Adicionalmente, pode arremessar +3 m além do normal.",
+   "classe": "alquimista",
+   "card": "technique-card"
+  },
+  {
+   "id": "alquimista-economista",
+   "tipo": "tecnica",
+   "nome": "Economista",
+   "icone": null,
+   "resumo": "1 Ação • 2 Stamina Ao criar um item alquímico, você gasta -1 Reagente (mínimo 1).",
+   "classe": "alquimista",
+   "card": "technique-card"
+  },
+  {
+   "id": "alquimista-conserva",
+   "tipo": "tecnica",
+   "nome": "Conserva",
+   "icone": null,
+   "resumo": "1 Min • 5 Stamina Ao criar um item alquímico, você pode cria-lo de forma que não estrague em descansos longos.",
+   "classe": "alquimista",
+   "card": "technique-card"
+  },
+  {
+   "id": "alquimista-ferramentas-improvisadas",
+   "tipo": "tecnica",
+   "nome": "Ferramentas Improvisadas",
+   "icone": null,
+   "resumo": "1 Ação • 2 Stamina Você pode manipular fechaduras, desarmar armadilhas e outras ações mecânicas com ferramentas feitas sob necessidade, pode rolar ofício(Alquimia) com +1 Treinamento nesses casos.",
+   "classe": "alquimista",
+   "card": "technique-card"
+  },
+  {
+   "id": "alquimista-concentrar-se",
+   "tipo": "tecnica",
+   "nome": "Concentrar-se",
+   "icone": null,
+   "resumo": "Passiva Ao criar itens alquímico em 10 minutos(Tempo Padrão), a CD de todos os itens reduzem em -2.",
+   "classe": "alquimista",
+   "card": "technique-card"
+  },
+  {
+   "id": "alquimista-sucateador",
+   "tipo": "tecnica",
+   "nome": "Sucateador",
+   "icone": null,
+   "resumo": "Passiva Ao Buscar Reagentes como sua ação de descanso curto, recupere 2d4+Nível (Ao invés de 1d4). Adicionalmente, ao finalizar um combate recupere uma quantidade de reagentes = ao seu nível.",
+   "classe": "alquimista",
+   "card": "technique-card"
+  },
+  {
+   "id": "alquimista-estoque-oculto",
+   "tipo": "tecnica",
+   "nome": "Estoque Oculto",
+   "icone": null,
+   "resumo": "Passiva Você possui um estoque oculto de reagentes. Você dobra seu mod. Inteligência ao calcular seus reagentes máximos. Ou seja: (Nível * 3) + (2 * Mod. Inteligência)",
+   "classe": "alquimista",
+   "card": "technique-card"
+  },
+  {
+   "id": "alquimista-resistencia-quimica",
+   "tipo": "tecnica",
+   "nome": "Resistência Química",
+   "icone": null,
+   "resumo": "Passiva Você tem Vantagem em testes de resistência contra venenos, doenças e efeitos ácidos/tóxicos.",
+   "classe": "alquimista",
+   "card": "technique-card"
+  },
+  {
+   "id": "alquimista-link-remoto",
+   "tipo": "tecnica",
+   "nome": "Link Remoto",
+   "icone": null,
+   "resumo": "Passiva Você pode ativar seus itens alquímicos de até 30 metros de distância deles.",
+   "classe": "alquimista",
+   "card": "technique-card"
+  },
+  {
+   "id": "alquimista-pocoes-granada",
+   "tipo": "tecnica",
+   "nome": "Poções Granada",
+   "icone": null,
+   "resumo": "Passiva Suas poções podem ser arremessadas e ao acertar agem como se o alvo tivesse consumido ela.",
+   "classe": "alquimista",
+   "card": "technique-card"
+  },
+  {
+   "id": "alquimista-oleo-grosso",
+   "tipo": "tecnica",
+   "nome": "Óleo Grosso",
+   "icone": null,
+   "resumo": "Passiva Seus óleos duram +2 ataques ao serem aplicados em uma arma.",
+   "classe": "alquimista",
+   "card": "technique-card"
+  },
+  {
+   "id": "alquimista-sintonia-arcana",
+   "tipo": "tecnica",
+   "nome": "Sintonia Arcana",
+   "icone": null,
+   "resumo": "Passiva Você se torna Treinado em Místico . Se já for Treinado, se torna Experiente e assim por diante. Você pode usar Éter como substituto de Reagentes na proporção 2:1 ao criar itens alquímicos. Seu Éter máximo aumenta em +Mod. Inteligência.",
+   "classe": "alquimista",
+   "card": "tech-card"
+  },
+  {
+   "id": "alquimista-cartucho-arcano",
+   "tipo": "tecnica",
+   "nome": "Cartucho Arcano",
+   "icone": null,
+   "resumo": "Passiva Você desenvolveu um método de aprisionar magias em recipientes alquímicos. Novo Item Alquímico: Cartucho Arcano Tempo de Criação: 10 min, age como craft de item alquímico Custo de Criação: (Nível da Magia * 2) Reagentes Magias Disponíveis: Você conhece 1 magia + Mod. Inteligência(min. 1) do seu (nível-1) ou menor, após isso você ganha +1 magia por nível. CD da criação: Você rola Místico ao criar Cartuchos Arcanos, o CD da criação é 10 + (2 * Nível da Magia). Usar Cartucho: Qualquer criatura pode conjurar a magia infundida no cartucho, porém usa seus atributos como base dos CDs e ataques da magia respeitando, também, o custo de ações da magia. Limite: Você pode sustentar até (Nível + Mod. Inteligência) de cartuchos ao mesmo tempo. Perdem seus efeitos após um descanso longo.",
+   "classe": "alquimista",
+   "card": "tech-card"
+  },
+  {
+   "id": "alquimista-constructo-menor",
+   "tipo": "tecnica",
+   "nome": "Constructo Menor",
+   "icone": null,
+   "resumo": "3 Ações, 3 Éter + 4 Reagentes Você cria um pequeno constructo alquímico (Minúsculo) que dura até o próximo descanso longo ou até ser destruído. Estatísticas: 10 Saúde, Evasão 12, Movimento 9m, 2 Ações por turno (pode voar ou escalar). O constructo pode: Atacar: 1 Ação, 1d20+Mod. Inteligência, Dano: 1d6+Mod. Inteligência Carregar até 5 Equipamentos e 20 Bugigangas. Espionar e Reportar telepaticamente oque ouve em até 100 m. Entregar itens ou poções a aliados como uma reação. Detonar: 2 Ações, Explode causando 2d6 de dano Elemental em 3 m de raio. Você pode ter apenas 1 constructo por vez. Ao ser destruído, você pode saquear 2 reagentes do Constructo Menor.",
+   "classe": "alquimista",
+   "card": "tech-card"
+  },
+  {
+   "id": "alquimista-bombardeiro",
+   "tipo": "tecnica",
+   "nome": "Bombardeiro",
+   "icone": null,
+   "resumo": "Passiva Você se torna Treinado em Atacar . Se já for Treinado, se torna Experiente e assim por diante. Seus itens alquímicos ofensivos (granadas, bombas e arremessáveis) são fabricados com +1d6 de dano. Os itens Ofensivos, Óleos e Venenos custam -1 reagentes e tem -2 CD para serem fabricados.",
+   "classe": "alquimista",
+   "card": "tech-card"
+  },
+  {
+   "id": "alquimista-toxinas-potentes",
+   "tipo": "tecnica",
+   "nome": "Toxinas Potentes",
+   "icone": null,
+   "resumo": "1 Ação, 3 Stamina Ao uso, infunda óleo em uma arma já infundida por um veneno ou vice versa. Você aplica os 2 bônus de dano e efeitos de cada substância ao ataque.",
+   "classe": "alquimista",
+   "card": "tech-card"
+  },
+  {
+   "id": "alquimista-enxurrada-de-alquimicos",
+   "tipo": "tecnica",
+   "nome": "Enxurrada de Alquímicos",
+   "icone": null,
+   "resumo": "2 Ações, 5 Stamina Você arremessa até 3 itens alquímicos ofensivos simultaneamente, cada item pode atingir um alvo diferente ou o mesmo alvo respeitando seu alcance máximo e rolando Atacar para cada arremesso. Você deve ter os itens preparados de antemão.",
+   "classe": "alquimista",
+   "card": "tech-card"
+  },
+  {
+   "id": "alquimista-anatomista",
+   "tipo": "tecnica",
+   "nome": "Anatomista",
+   "icone": null,
+   "resumo": "Passiva Você se torna Treinado em Medicina . Se já for Treinado, se torna Experiente e assim por diante. Poções de cura que você cria curam +2d4 adicional. Os itens Curativos e Elixires custam -1 Reagentes e tem -2 CD para serem fabricados.",
+   "classe": "alquimista",
+   "card": "tech-card"
+  },
+  {
+   "id": "alquimista-elixir-especial",
+   "tipo": "tecnica",
+   "nome": "Elixir Especial",
+   "icone": null,
+   "resumo": "1 Ação, 3 Stamina, 3 Reagentes Você prepara e administra um elixir especial entre você e seus aliados à distância de toque, pagando 1 reagente por alvo. Escolha um dos 3 efeitos que todos recebem por 1 minuto: Vigor: +2 em Atacar e +1d6 de dano em Ataques. Proteção: +2 em Defender e +2 Armadura(Ar) natural. Velocidade: +3m Movimento e não causa ataques de oportunidade.",
+   "classe": "alquimista",
+   "card": "tech-card"
+  },
+  {
+   "id": "alquimista-tonico-cruel",
+   "tipo": "tecnica",
+   "nome": "Tônico Cruel",
+   "icone": null,
+   "resumo": "1 Ação, 3 Stamina Escolha uma criatura em até 9m. Ela deve fazer um teste de Fortitude: Em caso de falha, escolha um efeito que dura por 1 rodada: Letargia: -2 em Atacar e Defender. Fraqueza: -3m de Movimento e não pode usar Reações. Vulnerabilidade: Perde 2 de Armadura e tem Desvantagem em Fortitude. Ao falhar contra uma criatura, você não pode usar esta habilidade contra a mesma criatura neste combate.",
+   "classe": "alquimista",
+   "card": "tech-card"
+  },
+  {
+   "id": "alquimista-runas-de-protecao",
+   "tipo": "tecnica",
+   "nome": "Runas de Proteção",
+   "icone": null,
+   "resumo": "1 Ação, 2 Éter Você inscreve runas protetoras em uma criatura ou objeto tocado. Dura 1 hora ou até ser consumido. A criatura protegida pode ativar as runas como Reação quando sofrer dano: Absorção: Reduz o dano em 2d8+Mod. Inteligência Retaliação: O atacante sofre 1d8 de dano Místico. Você pode manter um total igual ao seu Mod. de Inteligência de Runas ativas simultaneamente.",
+   "classe": "alquimista",
+   "card": "tech-card"
+  },
+  {
+   "id": "alquimista-constructo-de-combate",
+   "tipo": "tecnica",
+   "nome": "Constructo de Combate",
+   "icone": null,
+   "resumo": "3 Ações, 5 Éter + 6 Reagentes Você cria um constructo alquímico aprimorado (Pequeno) que dura até o próximo descanso longo ou até ser destruído. Estatísticas: 25 Saúde, Evasão 14, Armadura(Ar) 2, Movimento 9 m, 3 ações por turno (pode voar ou escalar) O Constructo pode: Atacar: 1 ação, 1d20+Mod. Inteligência + SEU treinamento em Atacar , Dano: 2d6+Mod. Inteligência Elemental(Escolha o tipo ao criar) Escudo: 1 ação, um aliado a distância de toque ganha +2 Defender até o inicio do próximo turno do constructo. Carregar: Até 10 Equipamentos e 30 Bugigangas. Reparar: 1 Ação, cura 1d8 Saúde a sí (Max. 2x por descanso curto) Espionar e Reportar telepaticamente o que vê/ouve em até 200 m. Detonar: 3 Ações, explode causando 4d6 de dano Elemental em 4,5 m de raio, Reflexo para metade. Você só pode ter 1 constructo ativo por vez. Ao ser destruído, você pode saquear 3 reagentes do Constructo de Combate.",
+   "classe": "alquimista",
+   "card": "tech-card"
+  },
+  {
+   "id": "alquimista-mestre-dos-elementos",
+   "tipo": "tecnica",
+   "nome": "Mestre dos Elementos",
+   "icone": null,
+   "resumo": "Passiva Seus itens que causam dano Elemental ou Biológico ignoram Ae(Armadura Específica) e Resistências. Suas bombas e granadas possuem o alcance de explosão aumentado em 1,5 m.",
+   "classe": "alquimista",
+   "card": "tech-card"
+  },
+  {
+   "id": "alquimista-zona-da-morte",
+   "tipo": "tecnica",
+   "nome": "Zona da Morte",
+   "icone": null,
+   "resumo": "2 Ações, 4 Stamina, 3 Reagentes Você prepara uma área de 4,5 m de raio em até 9 m com substâncias Elementais ou Biológicas: Criaturas que entram ou começam o turno na área sofrem 2d6 de dano (Elemental ou Biológico) a sua escolha. Você pode Detonar as substâncias como 1 ação: Todas as criaturas na área sofrem 4d6 de dano, Reflexo para metade. A zona da morte se dissipa. A zona dura 3 Turnos ou até ser detonada e você pode ter apenas 1 Zona da Morte ativa por vez.",
+   "classe": "alquimista",
+   "card": "tech-card"
+  },
+  {
+   "id": "alquimista-transfusao-vital",
+   "tipo": "tecnica",
+   "nome": "Transfusão Vital",
+   "icone": null,
+   "resumo": "2 Ações, 3 Stamina Você aprendeu a manipular a vitalidade entre você e outras criaturas. Ao utilizar, escolha uma das ações a seguir: Cura uma criatura em alcance de toque em 2d6+Mod. Int, porém você perde 1d6 de Saúde. Você ataca uma criatura com uma seringa de toxinas, causando 2d8+Mod. Int, ao acertar, injeta a seringa de volta em você recuperando Saúde igual ao dano causado.",
+   "classe": "alquimista",
+   "card": "tech-card"
+  },
+  {
+   "id": "alquimista-gas-especial",
+   "tipo": "tecnica",
+   "nome": "Gás Especial",
+   "icone": null,
+   "resumo": "2 Ações, 3 Stamina, 4 Reagentes Você ativa ejetores de gás que inundam um raio de 4,5 m em volta de você de um Gás Especial. Você possui uma mascara que filtra as substâncias danosas e pode prover a qualquer criatura uma copia dessa mascara: Criaturas sem Mascara de Filtro: Criaturas que começam o turno ou entram na área devem fazer um teste de Fortitude ou ficam Enjoados até saírem da área. Se a criatura já estiver enjoada, ela recebe 2d6+Mod. Int de dano Biológico. Criaturas com Mascara de Filtro Criaturas que começam o turno ou entram na área recuperam 1d6+Mod. Inteligência de Saúde por Turno enquanto estiverem na área. A nuvem se move com você e você pode manter essa técnica ativa contanto que pague a Stamina novamente toda rodada enquanto o Gás estiver ativo.",
+   "classe": "alquimista",
+   "card": "tech-card"
+  },
+  {
+   "id": "teurgo-eter-residual",
+   "tipo": "tecnica",
+   "nome": "Éter Residual",
+   "icone": null,
+   "resumo": "Passiva Ao conjurar uma magia contida e seu custo final for ≤1, adicione uma modulação grátis.",
+   "classe": "teurgo",
+   "card": "technique-card"
+  },
+  {
+   "id": "teurgo-reserva-oculta",
+   "tipo": "tecnica",
+   "nome": "Reserva Oculta",
+   "icone": null,
+   "resumo": "Passiva Ao chegar a 0 de Éter, pode conjurar magias pagando em Saúde. (2:1) Ou seja, 2 Saúde = 1 Éter. A restrição da condição Oco (não canalizar) não se aplica enquanto você pagar magias com Saúde por esta técnica.",
+   "classe": "teurgo",
+   "card": "technique-card"
+  },
+  {
+   "id": "teurgo-foco-duplo",
+   "tipo": "tecnica",
+   "nome": "Foco Duplo",
+   "icone": null,
+   "resumo": "Passiva Você pode empunhar dois focos ao mesmo tempo, alternando escolas sem trocar de equipamento.",
+   "classe": "teurgo",
+   "card": "technique-card"
+  },
+  {
+   "id": "teurgo-forca-primordial",
+   "tipo": "tecnica",
+   "nome": "Força Primordial",
+   "icone": null,
+   "resumo": "Passiva Suas magias de dano ignoram 1 de Ae. Adicionalmente, suas magias causam 1 de dano Primordial adicional.",
+   "classe": "teurgo",
+   "card": "technique-card"
+  },
+  {
+   "id": "teurgo-transbordar-controlado",
+   "tipo": "tecnica",
+   "nome": "Transbordar Controlado",
+   "icone": null,
+   "resumo": "Passiva Ao usar intensidade Transbordante, rola vontade com +2.",
+   "classe": "teurgo",
+   "card": "technique-card"
+  },
+  {
+   "id": "teurgo-linguagem-estranha",
+   "tipo": "tecnica",
+   "nome": "Linguagem Estranha",
+   "icone": null,
+   "resumo": "Passiva Você consegue entender de maneira básica e leiga, o idioma Abissal.",
+   "classe": "teurgo",
+   "card": "technique-card"
+  },
+  {
+   "id": "teurgo-encadeamento",
+   "tipo": "tecnica",
+   "nome": "Encadeamento",
+   "icone": null,
+   "resumo": "Passiva • 3 Stamina Ao conjurar uma magia, pode conjurar outra magia se puder pagar pelas ações. A segunda magia custa Éter adicional igual ao número de ações dela.",
+   "classe": "teurgo",
+   "card": "technique-card"
+  },
+  {
+   "id": "teurgo-respiracao-primordial",
+   "tipo": "tecnica",
+   "nome": "Respiração Primordial",
+   "icone": null,
+   "resumo": "5 Minutos Você medita brevemente, restaurando suas forças. Recuperando (nível)d4 Éter. Max. 1x/Descanso Curto.",
+   "classe": "teurgo",
+   "card": "technique-card"
+  },
+  {
+   "id": "teurgo-imbuir-magia",
+   "tipo": "tecnica",
+   "nome": "Imbuir Magia",
+   "icone": null,
+   "resumo": "1 Minuto • 5 Stamina Pode preparar uma magia em um objeto gastando o éter de antemão, designando um gatilho de ativação específico, como: impacto, proximidade, ativação remota… Você pode ativar a magia a qualquer momento com uma reação.",
+   "classe": "teurgo",
+   "card": "technique-card"
+  },
+  {
+   "id": "teurgo-canalizacao-eficiente",
+   "tipo": "tecnica",
+   "nome": "Canalização Eficiente",
+   "icone": null,
+   "resumo": "Ação Livre • 2 Stamina Reduza o custo de uma magia em 1 Éter.",
+   "classe": "teurgo",
+   "card": "technique-card"
+  },
+  {
+   "id": "teurgo-sentir-magia",
+   "tipo": "tecnica",
+   "nome": "Sentir Magia",
+   "icone": null,
+   "resumo": "1 Ação • 2 Stamina Você sente a presença de magia ou efeitos primordiais em até 9m. Porém não consegue diagnosticar nenhuma característica, apenas fica ciente de sua presença.",
+   "classe": "teurgo",
+   "card": "technique-card"
+  },
+  {
+   "id": "teurgo-conjuracao-furtiva",
+   "tipo": "tecnica",
+   "nome": "Conjuração Furtiva",
+   "icone": null,
+   "resumo": "1 Ação • 2 Stamina Você pode conjurar magias de forma silenciosa, sem componente verbal, sonoro e visual. Role um teste de Furtividade vs. Percepção ou Místico das criaturas que podem perceber a magia. Se o alvo receber qualquer tipo de dano ele instantaneamente percebe a magia.",
+   "classe": "teurgo",
+   "card": "technique-card"
+  },
+  {
+   "id": "teurgo-marca-do-primordio",
+   "tipo": "tecnica",
+   "nome": "Marca do Primórdio",
+   "icone": null,
+   "resumo": "1 Ação • 3 Stamina Ao acertar uma criatura com uma magia de dano, pode marcá-la. Caso ela falhe em um teste de Vontade contra sua CD , Magias de dano recebem +1 dado de dano contra essa criatura. No inicio de cada turno, a criatura rola novamente.",
+   "classe": "teurgo",
+   "card": "technique-card"
+  },
+  {
+   "id": "teurgo-concentracao",
+   "tipo": "tecnica",
+   "nome": "Concentração",
+   "icone": null,
+   "resumo": "+1 Ação • 3 Stamina Pode canalizar uma magia com 1 ação adicional, adiciona +1 dado de dano ou uma modulação grátis.",
+   "classe": "teurgo",
+   "card": "technique-card"
+  },
+  {
+   "id": "teurgo-barreira-instintiva",
+   "tipo": "tecnica",
+   "nome": "Barreira Instintiva",
+   "icone": null,
+   "resumo": "Ação Livre • 1-5 Éter Ao receber dano, pode gastar Éter como ação livre para reduzir dano. 1 Éter = 1d4 de dano reduzido, 2 Éter = 2d4 de dano reduzido… (Max. Éter gasto = Nível)",
+   "classe": "teurgo",
+   "card": "technique-card"
+  },
+  {
+   "id": "teurgo-grimorio-arcano",
+   "tipo": "tecnica",
+   "nome": "Grimório Arcano",
+   "icone": null,
+   "resumo": "Passiva Você possui um livro onde armazena grande parte do seu conhecimento arcano, lá estão seus estudos junto com suas magias conhecidas. Essa técnica substitui a fórmula nível 1 de magias disponíveis. Escolha 3+Mod. Inteligência magias em escolas que você é especializado e +1 para cada nível subsequente. Você só pode escolher magias iguais ou abaixo do seu nível. Você pode estudar 1 nova magia e reordenar suas magias de acordo com seu limite máximo de magias em um descanso longo.",
+   "classe": "teurgo",
+   "card": "tech-card"
+  },
+  {
+   "id": "teurgo-tese-arcana",
+   "tipo": "tecnica",
+   "nome": "Tese Arcana",
+   "icone": null,
+   "resumo": "Passiva, 2 Stamina Escolha uma magia que você conhece. Ela se torna sua Tese. Você pode trocar a magia escolhida em um descanso longo. Ao canalizar essa magia, você pode gastar 2 de Stamina para aplicar os seguintes efeitos: Sua Tese Arcana possui uma modulação grátis e sua intensidade é de 1 nível acima ao conjurado.",
+   "classe": "teurgo",
+   "card": "tech-card"
+  },
+  {
+   "id": "teurgo-recuperacao-primordial",
+   "tipo": "tecnica",
+   "nome": "Recuperação Primordial",
+   "icone": null,
+   "resumo": "3 Ações, X Stamina Você gasta 3 ações para revitalizar sua relação com o Místico . Você pode comprar pontos de Éter gastando pontos de Stamina, com uma proporção de 2:1. Ou seja, 2 de Stamina = 1 Éter.",
+   "classe": "teurgo",
+   "card": "tech-card"
+  },
+  {
+   "id": "teurgo-canalizador-inato",
+   "tipo": "tecnica",
+   "nome": "Canalizador Inato",
+   "icone": null,
+   "resumo": "Passiva Você possui magias gravadas em sua essência, padrões internos que atuam da sua essência para canalizar magia. Essa técnica substitui a fórmula nível 1 de magias disponíveis. Escolha 2+Mod. Sabedoria magias em escolas que você é especializado e +1 para cada nível subsequente. Você só pode escolher magias iguais ou abaixo do seu Nível. Essas magias são permanentes e não podem ser trocadas. Você recebe Treinamento adicional na perícia Místico.",
+   "classe": "teurgo",
+   "card": "tech-card"
+  },
+  {
+   "id": "teurgo-natureza-caotica",
+   "tipo": "tecnica",
+   "nome": "Natureza Caótica",
+   "icone": null,
+   "resumo": "Ação Livre, 2 Stamina Ao conjurar qualquer magia, como ação livre gaste 2 de Stamina e role 1d6: 1-2 Você perde +1d4 de Éter e a magia perde 1 de intensidade, se a intensidade for contida, a magia falha. 3-4 A magia é canalizada normalmente. 5-6 A magia ganha +1 de intensidade, se a intensidade já for transbordante, ganha +1 dado de efeito(Cura, Dano) ou +50% de duração/área.",
+   "classe": "teurgo",
+   "card": "tech-card"
+  },
+  {
+   "id": "teurgo-canalizacao-visceral",
+   "tipo": "tecnica",
+   "nome": "Canalização Visceral",
+   "icone": null,
+   "resumo": "Passiva Pode conjurar qualquer magia sem o Foco apropriado, mas ao fazer isso: Recebe dano Primordial em Saúde igual ao (Nível da Magia x 2) Este dano não pode ser reduzido por Armaduras ou Resistências",
+   "classe": "teurgo",
+   "card": "tech-card"
+  },
+  {
+   "id": "teurgo-patrono-primordial",
+   "tipo": "tecnica",
+   "nome": "Patrono Primordial",
+   "icone": null,
+   "resumo": "Passiva \"Você firmou um pacto com algo além da compreensão mortal. Ele te deu poder. Ele espera algo em troca.” Escolha uma entidade primordial como seu Patrono. Esta escolha é permanente e define sua relação com o místico. 🌳 A Grande Árvore A Grande Árvore sussurra para aqueles que se aproximam. Sua voz é gentil, maternal até. Ela oferece alívio, clareza, poder. Ela só quer ajudar. Ela só quer que você floresça. Benefícios: Suas magias de alteração sempre tem intensidade +1. Uma vez por descanso longo, pode beber Seiva , recupera 1d6 de éter e remove alguma condição mental, exceto Oco . Você sente a presença de seres malignos e usuários de seiva em até 18 m. Preço do pacto: Defenda a Grande Árvore de quem quer destruí-la a todo custo. Propague a todo momento os benefícios do uso de Seiva . ⛓️ O Trancafiado No fundo do Abismo, onde as almas pecadoras são aprisionadas para a eternidade, algo mais antigo também foi selado. Ele não é uma alma - ele estava lá antes das almas chegarem. Os séculos o enlouqueceram, ou talvez ele sempre foi assim. Ele odeia sua prisão. Ele odeia os Deuses que o trancaram. E ele sussurra através das correntes para qualquer um que ouça. Benefícios: Suas magias de destruição causam +2 de dano base. Uma vez por descanso longo, pode emprestar um pouco da fúria do seu patrono: Sua próxima magia tem dano dobrado, mas você recebe metade do dano causado em dano Primordial. Você pode ver e falar com mortos que se foram até 1 hora atrás. Preço do Pacto: Que você tente ativamente descobrir informações sobre o abismo e como abri-lo. Que você mate almas pecadoras. Que você espalhe a causa do Trancafiado. Que você se oponha a todos os deuses. 🚪 O Limiar Entre o plano material e o plano místico existe um portão. E no portão existe um guardião. Ele não é bom nem mau - ele é a fronteira. Ele decide o que passa e o que fica. Teurgos que canalizam demais às vezes o sentem observando. Alguns dizem que é um Deus. Outros dizem que é algo que os Deuses criaram para manter a ordem. Talvez ele seja o portão em si. Benefícios: Suas magias de abjuração custam -1 Éter. Uma vez por descanso longo, pode invocar a autoridade do Limiar: Como uma reação, anule completamente uma magia ou efeito mágico de nível igual ou abaixo do seu, antes dela ser canalizada ou após sua materialização. Você sabe instintivamente quando algo cruza entre os planos em até 30m (invocações, possessões, portais) Preço do Pacto: Que você não permita canalização desnecessária de magia. Que você puna teurgos ou criaturas que exponham a existência do plano místico. Que você proteja o plano místico a todo custo.",
+   "classe": "teurgo",
+   "card": "tech-card"
+  },
+  {
+   "id": "teurgo-magias-pactuadas",
+   "tipo": "tecnica",
+   "nome": "Magias Pactuadas",
+   "icone": null,
+   "resumo": "Passiva Você negociou com entidades primordiais temidas por outros, eles te fornecem uma fração de sua essência, por um custo. Essa técnica substitui a fórmula nível 1 de magias disponíveis. Escolha 1+Mod. Inteligência magias em escolas que você é especializado e +1 para cada nível subsequente. Você só pode escolher magias iguais ou abaixo do seu nível. Você pode trocar ou adquirir uma nova magia pactuada: Requer um ritual de ao menos 1 hora. Requer pagamento de preço (definido pelo seu pacto): Componentes raros, Sins, Sacrifício, Acordos. Ao conjurar uma Magia Pactuada em Intensidade Contida, o custo é 0 de éter (Ao invés de 1)",
+   "classe": "teurgo",
+   "card": "tech-card"
+  },
+  {
+   "id": "teurgo-barganha-primordial",
+   "tipo": "tecnica",
+   "nome": "Barganha Primordial",
+   "icone": null,
+   "resumo": "1 Ação Uma vez por descanso longo, pode invocar as forças primordiais e propor uma barganha: Declare o que você quer: Recuperar 1d6 de Éter Próxima magia ganha uma modulação grátis Uma informação sobre algo místico/oculto Outro benefício… As forças declaram um preço pelo seu pedido: Perda de Saúde, Stamina ou Éter Componente material ou Sins Tarefa a ser cumprida futuramente Outro preço…",
+   "classe": "teurgo",
+   "card": "tech-card"
+  },
+  {
+   "id": "teurgo-maestria-arcana",
+   "tipo": "tecnica",
+   "nome": "Maestria Arcana",
+   "icone": null,
+   "resumo": "Passiva Escolha uma escola do primórdio que você é especializado. Você se torna mestre nela. Magias desta escola: Sempre custam -1 Éter. O custo de éter das modulações dessa escola é reduzido em -1. Pode trocar a escola escolhida em um descanso longo.",
+   "classe": "teurgo",
+   "card": "tech-card"
+  },
+  {
+   "id": "teurgo-eterno-aprendiz",
+   "tipo": "tecnica",
+   "nome": "Eterno Aprendiz",
+   "icone": null,
+   "resumo": "Reação, 5 Stamina Ao presenciar uma magia sendo conjurada por outra criatura, pode estudá-la rapidamente, aprendendo-a posteriormente. Ao estudar a magia você sabe exatamente qual magia é, sua intensidade e modulações. Ganha +2 em testes de resistência ou para dissipar a magia. Se você for especializado na escola dessa magia, anote ela. Em um descanso longo você pode tentar aprende-la, rolando um teste de místico (CD 15 + Nível da Magia * 2). Você só pode aprender 1 magia por descanso longo.",
+   "classe": "teurgo",
+   "card": "tech-card"
+  },
+  {
+   "id": "teurgo-surto-primordial",
+   "tipo": "tecnica",
+   "nome": "Surto Primordial",
+   "icone": null,
+   "resumo": "Ação Livre, 2 Stamina Declare antes de conjurar uma magia: A magia é canalizada com intensidade transbordante sem custo adicional de éter. Porém, o teste de Vontade é CD 18 (Ao invés de 15).",
+   "classe": "teurgo",
+   "card": "tech-card"
+  },
+  {
+   "id": "teurgo-extase-destrutivo",
+   "tipo": "tecnica",
+   "nome": "Êxtase Destrutivo",
+   "icone": null,
+   "resumo": "Passiva, 3 Ações, 50% Éter Como 3 ações, você pode assumir a forma do Êxtase, imediatamente você gasta 50% do seu éter máximo. Ao longo de 10 minutos, com 3 ações, você pode restaurar 50% éter máximo. Ao ter 50% de éter ou abaixo: Suas magias de Destruição: Causam +1d6 de dano. Suas magias de Abjuração Fornecem +50% de Efeito (cura, escudo) ou Duração Suas magias de Alteração Afetam +1 alvo adicional e tem +50% de Duração Suas magias de Conhecimento: Têm +50% de Alcance/Área e tem 1 modulação grátis. Ao ter 0 de Éter ou abaixo: Suas magias de Destruição: Causam +2d6 de dano. Suas magias de Abjuração: Têm +100% de Efeito ou Duração e não podem ser dissipadas. Suas magias de Alteração: Têm +100% de Duração e afetam +2 alvos adicionais. Suas magias de Conhecimento: Têm Alcance/Área dobrado e você pode fazer 1 pergunta adicional ao mestre sobre o que detectou.",
+   "classe": "teurgo",
+   "card": "tech-card"
+  },
+  {
+   "id": "teurgo-ritual",
+   "tipo": "tecnica",
+   "nome": "Ritual",
+   "icone": null,
+   "resumo": "10 minutos, 5 Stamina Você pode ritualizar uma magia, aumentando a duração de seus efeitos para 6 horas e alvos para todos que estiverem presentes no ritual, independente de sua duração original ou alvos máximos. O custo de éter é pago normalmente. O efeito da magia dura até 6 horas ou até você estar Oco ou Morrendo. Você pode sustentar apenas 1 Ritual por vez.",
+   "classe": "teurgo",
+   "card": "tech-card"
+  },
+  {
+   "id": "teurgo-invocar-ser",
+   "tipo": "tecnica",
+   "nome": "Invocar Ser",
+   "icone": null,
+   "resumo": "2 Ações, 3 Stamina Você invoca uma criatura mística, que te obedece e parece não pertencer a este plano. Se você possui um patrono, escolha a criatura respectiva dele, caso contrário, escolha a genérica. A Grande Árvore Uma pequena árvore, porém com casca resistente, ela possui folhas jovens amarelas. Nome: Grutto; Saúde: 15+(nível*2); Evasão: 12+Mod. Inteligência; Ataque: 1d20+Mod. Sabedoria; Dano: 1d6+Mod. Inteligência (Dano Primordial); Seiva Dourada: 1d20+Mod. Sabedoria contra Reflexo de todos os alvos em até 3 m. Alvos que falharem, recebem 1d10+Mod. Inteligência de dano Psíquico. Movimento: 6 m; O Trancafiado Uma alma sombria sem forma ou vontade, esse espectro é errático e parece estar furioso a todo momento. Nome: Mortto; Saúde: 10+(nível*2); Evasão: 10+Mod. Inteligência; Ataque: 1d20+Mod. Sabedoria; Dano: 1d8+Mod. Inteligência (Dano Primordial); Atormentar: 1d20+Mod. Sabedoria contra Vontade de um alvo: Caso ele falhe, ele fica Amedrontado por 1 turno. Movimento: 9 m; O Limiar Um cavaleiro guardião, porta um grande escudo que é quase do mesmo tamanho dele. Nome: Terro Saúde: 20+(nível*2); Evasão: 14+Mod. Inteligência Ataque: 1d20+Mod. Sabedoria Dano: 1d4+Mod. Inteligência (Dano Primordial); Chamar Atenção: 1d20+Mod. Sabedoria contra Vontade de um alvo: Caso ele falhe, é obrigado a atacar Terro na próxima rodada pelo menos 1 vez. Movimento: 6 m; Genérico Um ser místico pequeno aleatório de aparência à sua escolha aparece. Nome: Crikko Saúde: 10+(nível*2); Evasão 10+Mod. Inteligência; Ataque: 1d20+Mod. Sabedoria; Dano: 1d6+Mod. Inteligência (Dano Primordial) Movimento: 7,5 m; O Ser age no seu turno ao seu comando, porém possui apenas 2 ações. Movimentar, Atacar ou Utilizar uma Habilidade gasta 1 ação. O Ser dura 10 minutos no nível 4, e tempo indefinido no nível 5, até você dispensá-lo ou ser destruído sendo dissipado. Você pode invocar 1 ser no nível 4 e 2 seres no nível 5. Ao ser destruído, você recebe 1d4 de dano Primordial.",
+   "classe": "teurgo",
+   "card": "tech-card"
+  },
+  {
+   "id": "artilheiro-respiracao-controlada",
+   "tipo": "tecnica",
+   "nome": "Respiração Controlada",
+   "icone": null,
+   "resumo": "Passiva Você não perde Concentração ao receber dano à distância (apenas corpo a corpo).",
+   "classe": "artilheiro",
+   "card": "technique-card"
+  },
+  {
+   "id": "artilheiro-frieza",
+   "tipo": "tecnica",
+   "nome": "Frieza",
+   "icone": null,
+   "resumo": "Passiva Enquanto tiver 3+ concentração, você tem vantagem em testes de resistência.",
+   "classe": "artilheiro",
+   "card": "technique-card"
+  },
+  {
+   "id": "artilheiro-balas-de-ferro",
+   "tipo": "tecnica",
+   "nome": "Balas de Ferro",
+   "icone": null,
+   "resumo": "Passiva Seus ataques críticos reduzem 3 de Armadura(Ar) ou Armadura Específica(Ae) do alvo no acerto. Você só pode remover Armadura do tipo de dano que sua arma causa.",
+   "classe": "artilheiro",
+   "card": "technique-card"
+  },
+  {
+   "id": "artilheiro-artesao-de-municao",
+   "tipo": "tecnica",
+   "nome": "Artesão de Munição",
+   "icone": null,
+   "resumo": "Passiva Durante descanso curto ou longo, você pode criar 1 munição(Flecha, Munição de Armas de Fogo ou Adagas de lançamento) sem rolar testes.",
+   "classe": "artilheiro",
+   "card": "technique-card"
+  },
+  {
+   "id": "artilheiro-olho-do-atirador",
+   "tipo": "tecnica",
+   "nome": "Olho do Atirador",
+   "icone": null,
+   "resumo": "Passiva Você pode atirar em criaturas que você não enxerga com -2 (Ao invés de desvantagem)",
+   "classe": "artilheiro",
+   "card": "technique-card"
+  },
+  {
+   "id": "artilheiro-sentidos-agucados",
+   "tipo": "tecnica",
+   "nome": "Sentidos Aguçados",
+   "icone": null,
+   "resumo": "1 Ação • 2 Stamina Você pode rolar Percepção com 1 treinamento a mais. Adicionalmente, não pode ser Desprevenido por criaturas que você vê.",
+   "classe": "artilheiro",
+   "card": "technique-card"
+  },
+  {
+   "id": "artilheiro-batida-tatica",
+   "tipo": "tecnica",
+   "nome": "Batida Tática",
+   "icone": null,
+   "resumo": "1 Ação • 2 Stamina Você pode se mover neste turno sem perder concentração e sem provocar ataques de oportunidade.",
+   "classe": "artilheiro",
+   "card": "technique-card"
+  },
+  {
+   "id": "artilheiro-tiro-camuflado",
+   "tipo": "tecnica",
+   "nome": "Tiro Camuflado",
+   "icone": null,
+   "resumo": "1 Ação • 3 Stamina Deve estar escondido para ativar. Seu próximo ataque é crítico ao acertar.",
+   "classe": "artilheiro",
+   "card": "technique-card"
+  },
+  {
+   "id": "artilheiro-tiro-imobilizador",
+   "tipo": "tecnica",
+   "nome": "Tiro Imobilizador",
+   "icone": null,
+   "resumo": "1 Ação • 2 Stamina, 1 Conc. Seu próximo ataque a distância neste turno causa a condição Lento 1 caso o alvo falhe em um teste de Fortitude.",
+   "classe": "artilheiro",
+   "card": "technique-card"
+  },
+  {
+   "id": "artilheiro-tiro-duplo",
+   "tipo": "tecnica",
+   "nome": "Tiro Duplo",
+   "icone": null,
+   "resumo": "1 Ação • 3 Stamina, 2 Conc. Seu próximo ataque não tem penalidade de multi-ataque.",
+   "classe": "artilheiro",
+   "card": "technique-card"
+  },
+  {
+   "id": "artilheiro-tiro-preciso",
+   "tipo": "tecnica",
+   "nome": "Tiro Preciso",
+   "icone": null,
+   "resumo": "1 Ação • 2 Stamina, 2 Conc. Seu próximo ataque a distância neste turno tem +2 Atacar e Causa +1d6 de dano.",
+   "classe": "artilheiro",
+   "card": "technique-card"
+  },
+  {
+   "id": "artilheiro-foco-absoluto",
+   "tipo": "tecnica",
+   "nome": "Foco Absoluto",
+   "icone": null,
+   "resumo": "1 Ação • 3 Stamina, 5 Conc. Seu próximo ataque tem Vantagem e Margem de Ameaça +1.",
+   "classe": "artilheiro",
+   "card": "technique-card"
+  },
+  {
+   "id": "artilheiro-tiro-na-cabeca",
+   "tipo": "tecnica",
+   "nome": "Tiro na Cabeça",
+   "icone": null,
+   "resumo": "2 Ações • 3 Stamina, X Conc. Seu próximo ataque causa +1d6 de dano por ponto de Concentração gasto.",
+   "classe": "artilheiro",
+   "card": "technique-card"
+  },
+  {
+   "id": "artilheiro-ponto-vital",
+   "tipo": "tecnica",
+   "nome": "Ponto Vital",
+   "icone": null,
+   "resumo": "Reação • 3 Stamina, 3 Conc. Ao acertar um ataque critico, adiciona +2d6 de Dano.",
+   "classe": "artilheiro",
+   "card": "technique-card"
+  },
+  {
+   "id": "artilheiro-tiro-de-reflexo",
+   "tipo": "tecnica",
+   "nome": "Tiro de Reflexo",
+   "icone": null,
+   "resumo": "Reação • 3 Stamina, 5 Conc. Quando um inimigo se mover dentro do seu alcance, você pode atacar ele como uma reação.",
+   "classe": "artilheiro",
+   "card": "technique-card"
+  },
+  {
+   "id": "artilheiro-maos-velozes",
+   "tipo": "tecnica",
+   "nome": "Mãos Velozes",
+   "icone": null,
+   "resumo": "Passiva Você se torna Treinado em Atacar . Se já for Treinado , se torna Experiente e assim por diante. Ao usar Armas de Arremesso : Você pode sacar esse tipo de arma como ação livre. A penalidade de multi-ataque reduz para -2 em -2. (Ao invés de -5) Ao acertar 2+ ataques no mesmo turno e no mesmo alvo, você causa +1d6 de dano Perfurante. Você pode fabricar Conjuntos de Arremesso em descansos curtos e longos. Descanso Curto Como a ação do seu descanso curto, você pode fabricar 1 Conjunto de Arremesso . Descanso Longo Ao realizar um descanso longo, você pode fabricar 2 Conjunto de Arremesso .",
+   "classe": "artilheiro",
+   "card": "tech-card"
+  },
+  {
+   "id": "artilheiro-passo-do-vento",
+   "tipo": "tecnica",
+   "nome": "Passo do Vento",
+   "icone": null,
+   "resumo": "Passiva Ao utilizar 1 ação para se movimentar, você não perde mais Concentração . Ao acertar um ataque , você pode se mover 1,5 m como ação livre . Você adiciona sua Concentração a sua Evasão .",
+   "classe": "artilheiro",
+   "card": "tech-card"
+  },
+  {
+   "id": "artilheiro-vendaval-de-aco",
+   "tipo": "tecnica",
+   "nome": "Vendaval de Aço",
+   "icone": null,
+   "resumo": "2 Ações, 5 Stamina Faça 3 Ataques com Armas de Arremesso sem penalidade de multi-ataque. Se 2 ou mais ataques acertarem o mesmo alvo, ele ganha Sangramento 1 .",
+   "classe": "artilheiro",
+   "card": "tech-card"
+  },
+  {
+   "id": "artilheiro-mao-de-ferro",
+   "tipo": "tecnica",
+   "nome": "Mão de Ferro",
+   "icone": null,
+   "resumo": "Passiva Você se torna Treinado em Atacar. Se já for Treinado , se torna Experiente e assim por diante. Ao usar Armas de Fogo : Seus ataques causa +2 de dano Perfurante. Seus ataques ignoram 2 de Armadura(Ar). Você pode fabricar munições de fogo em descansos curtos e longos. Descanso Curto Como a ação do seu descanso curto, você pode fabricar 1 Munição de Fogo . Descanso Longo Ao realizar um descanso longo, você pode fabricar 2 Munições de Fogo .",
+   "classe": "artilheiro",
+   "card": "tech-card"
+  },
+  {
+   "id": "artilheiro-presenca-da-polvora",
+   "tipo": "tecnica",
+   "nome": "Presença da Pólvora",
+   "icone": null,
+   "resumo": "Passiva Você se torna Treinado em Intimidação . Se já for treinado se torna Experiente e assim por diante. Ao acertar um ataque com arma de fogo, criaturas em até 3 m do alvo (Exceto o alvo) devem passar em um teste de Vontade ou ficam Amedrontadas de você por 1 rodada. Ao suceder a criatura fica imune a esse efeito. Com 5 ou mais Concentração o efeito também afeta o alvo.",
+   "classe": "artilheiro",
+   "card": "tech-card"
+  },
+  {
+   "id": "artilheiro-rajada-de-tiros",
+   "tipo": "tecnica",
+   "nome": "Rajada de Tiros",
+   "icone": null,
+   "resumo": "1 Ação, 3 Stamina Faça 2 Ataques com uma Arma de Fogo sem penalidade de multi-ataque em até 2 alvos com até 3 m entre sí. Se 2 ataques acertarem o mesmo alvo, ele deve passar em Fortitude ou fica Atordoado até o fim do próximo turno dele.",
+   "classe": "artilheiro",
+   "card": "tech-card"
+  },
+  {
+   "id": "artilheiro-olho-do-arqueiro",
+   "tipo": "tecnica",
+   "nome": "Olho do Arqueiro",
+   "icone": null,
+   "resumo": "Passiva Você se torna Treinado em Atacar . Se já for treinado se torna Experiente e assim por diante. Ao usar Arcos ou Bestas : O Alcance da arma aumenta em +6 m. Ao mirar, seu próximo ataque com arcos ou bestas ganham +2 atacar. Você pode fabricar flechas e virotes em descansos curtos e longos. Descanso Curto Como a ação do seu descanso curto, você pode fabricar 1 munição de Flecha ou Virote . Descanso Longo Ao realizar um descanso longo, você pode fabricar 2 munições de Flecha ou Virote .",
+   "classe": "artilheiro",
+   "card": "tech-card"
+  },
+  {
+   "id": "artilheiro-flechas-do-predador",
+   "tipo": "tecnica",
+   "nome": "Flechas do Predador",
+   "icone": null,
+   "resumo": "Passiva Ao atacar com arco ou besta , você pode escolher o tipo de Flecha ou Virote . Cada tipo tem um efeito adicional ao acertar: Perfurante → Ignora 3 de Armadura(Ar) Adicional. Farpada → Alvo recebe Sangramento 1. Explosão → Alvo é empurrado 1,5 m. Incendiária → Alvo recebe 1d4 de dano de Fogo Adicional.",
+   "classe": "artilheiro",
+   "card": "tech-card"
+  },
+  {
+   "id": "artilheiro-tiro-carregado",
+   "tipo": "tecnica",
+   "nome": "Tiro Carregado",
+   "icone": null,
+   "resumo": "1-3 Ações, 2 Stamina Você prepara um tiro que escala com a quantidade de ações que você utiliza: 1 Ação → +1d6 Dano Perfurante 2 Ações → +2d6 Dano Perfurante 3 Ações → +3d6 Dano Perfurante, Margem de Crítico +1 Você ganha +1 Concentração por ação gasta.",
+   "classe": "artilheiro",
+   "card": "tech-card"
+  },
+  {
+   "id": "artilheiro-projetil-envenenado",
+   "tipo": "tecnica",
+   "nome": "Projétil Envenenado",
+   "icone": null,
+   "resumo": "Passiva Durante um descanso curto, você pode aplicar veneno em até 5 munições (flechas, virotes, munições de fogo, ou armas de arremesso). Ao acertar com munição envenenada, o alvo deve passar em Fortitude ou recebe Envenenamento por 2 rodadas . Com 5 + Concentração , o alvo tem Desvantagem no teste.",
+   "classe": "artilheiro",
+   "card": "tech-card"
+  },
+  {
+   "id": "artilheiro-danca-da-morte",
+   "tipo": "tecnica",
+   "nome": "Dança da Morte",
+   "icone": null,
+   "resumo": "1 Ação, 4 Stamina, 3 Conc. Até o inicio do seu próximo turno: Você gasta sua reação, para fazer 1 Ataque à Distância como ação livre sempre que uma criatura se mover no seu alcance. Se acertar 3 ou mais ataques durante a dança , recupera 2 Concentração adicional.",
+   "classe": "artilheiro",
+   "card": "tech-card"
+  },
+  {
+   "id": "artilheiro-municao-especial",
+   "tipo": "tecnica",
+   "nome": "Munição Especial",
+   "icone": null,
+   "resumo": "1 Ação, 2 Stamina Você aprendeu a fabricar munições especiais para qualquer arma à distância . As munições são de uso único (Ao invés de uso por cena): Explosiva → Criaturas em 1,5 m do alvo sofrem o dano original da flecha. Perfurante → Ignora toda a armadura do alvo. Atordoante → Alvo faz Fortitude ou fica Atordoado por 1 Rodada (Não causa dano) Incendiária → Alvo fica Em Chamas Durante um descanso curto, você pode criar 1 Munição Especial como ação de descanso curto e durante um descanso longo, você pode criar 2 munições Especiais. 3 munições especiais contam como 1 bugiganga.",
+   "classe": "artilheiro",
+   "card": "tech-card"
+  },
+  {
+   "id": "artilheiro-execucao",
+   "tipo": "tecnica",
+   "nome": "Execução",
+   "icone": null,
+   "resumo": "1 Ação, 4 Stamina, 5 Conc. Seu próximo ataque a distância: Recebe +4 Atacar. O alvo recebe 2d6 de dano perfurante adicional se estiver com menos de 50% de Saúde. Adicionalmente, o ataque é crítico se o alvo estiver com menos de 25% de Saúde. Se esse ataque matar o alvo, você ganha +3 Concentração.",
+   "classe": "artilheiro",
+   "card": "tech-card"
+  },
+  {
+   "id": "artilheiro-olhar-revelador",
+   "tipo": "tecnica",
+   "nome": "Olhar Revelador",
+   "icone": null,
+   "resumo": "Passiva Ao acertar a mesma criatura duas vezes você revela: Saúde aproximada da criatura. Resistências e Vulnerabilidades. Evasão. Ataques contra alvos revelados causam +1d6 de dano Perfurante.",
+   "classe": "artilheiro",
+   "card": "tech-card"
+  },
+  {
+   "id": "artilheiro-dois-cordeiros",
+   "tipo": "tecnica",
+   "nome": "Dois Cordeiros",
+   "icone": null,
+   "resumo": "2 Ações, 4 Stamina, 4 Conc. Você dispara com uma arma a distância em uma linha reta de até 12 m. O Ataque atinge todas as criaturas na linha, faça um teste de atacar contra cada alvo separadamente. A cada alvo atingido, o próximo toma dano reduzido em -2.",
+   "classe": "artilheiro",
+   "card": "tech-card"
+  },
+  {
+   "id": "brutalista-bruto",
+   "tipo": "tecnica",
+   "nome": "Bruto",
+   "icone": null,
+   "resumo": "Passiva Seus ataques corpo a corpo ignoram 2 de armadura.",
+   "classe": "brutalista",
+   "card": "technique-card"
+  },
+  {
+   "id": "brutalista-impeto-de-sangue",
+   "tipo": "tecnica",
+   "nome": "Ímpeto de Sangue",
+   "icone": null,
+   "resumo": "Passiva Ao derrubar um inimigo a 0 de Saúde, seu próximo ataque neste turno tem +2 Atacar e +1d6 de dano.",
+   "classe": "brutalista",
+   "card": "technique-card"
+  },
+  {
+   "id": "brutalista-finalizar",
+   "tipo": "tecnica",
+   "nome": "Finalizar",
+   "icone": null,
+   "resumo": "Passiva Ao causar dano em uma criatura, ela instantaneamente morre se estiver com Saúde igual ou menor que sua Brutalidade.",
+   "classe": "brutalista",
+   "card": "technique-card"
+  },
+  {
+   "id": "brutalista-inabalavel",
+   "tipo": "tecnica",
+   "nome": "Inabalável",
+   "icone": null,
+   "resumo": "Passiva Você tem vantagem em testes de Fortitude ou Movimento ao ser movido contra sua vontade.",
+   "classe": "brutalista",
+   "card": "technique-card"
+  },
+  {
+   "id": "brutalista-agarrao",
+   "tipo": "tecnica",
+   "nome": "Agarrão",
+   "icone": null,
+   "resumo": "Passiva Você recebe +2 em testes de Movimento ao realizar a manobra Agarrar . Adicionalmente, ao agarrar um alvo com sucesso, ele recebe 1d6 + mod. Força de dano ao receber ataques.",
+   "classe": "brutalista",
+   "card": "technique-card"
+  },
+  {
+   "id": "brutalista-casca-grossa",
+   "tipo": "tecnica",
+   "nome": "Casca Grossa",
+   "icone": null,
+   "resumo": "Passiva Você tem Armadura(Ar) natural equivalente ao seu Mod. Constituição.",
+   "classe": "brutalista",
+   "card": "technique-card"
+  },
+  {
+   "id": "brutalista-empurrao",
+   "tipo": "tecnica",
+   "nome": "Empurrão",
+   "icone": null,
+   "resumo": "Passiva Ao empurrar um alvo com sucesso, ele recebe 1d6 de dano por cada 3m empurrado. Se colidir com obstáculo sólido, +2d6 de dano.",
+   "classe": "brutalista",
+   "card": "technique-card"
+  },
+  {
+   "id": "brutalista-destruir",
+   "tipo": "tecnica",
+   "nome": "Destruir",
+   "icone": null,
+   "resumo": "Ação Livre • 2+ Stamina Ao acertar um ataque corpo a corpo, pode gastar Stamina para adicionar +1d6 de dano por 2 Stamina gastos. Máximo de dados adicionais = Nível.",
+   "classe": "brutalista",
+   "card": "technique-card"
+  },
+  {
+   "id": "brutalista-ranger-os-dentes",
+   "tipo": "tecnica",
+   "nome": "Ranger os Dentes",
+   "icone": null,
+   "resumo": "Reação • 2+ Stamina Ao receber dano, pode gastar Stamina para reduzir o dano em 1d6 por 2 Stamina gastos. Máximo = Nível.",
+   "classe": "brutalista",
+   "card": "technique-card"
+  },
+  {
+   "id": "brutalista-provocar",
+   "tipo": "tecnica",
+   "nome": "Provocar",
+   "icone": null,
+   "resumo": "1 Ação • 2 Stamina Escolha um inimigo em até 9m que possa te ouvir. Ele deve passar em Vontade ou deve te atacar no próximo turno dele.",
+   "classe": "brutalista",
+   "card": "technique-card"
+  },
+  {
+   "id": "brutalista-hoje-nao",
+   "tipo": "tecnica",
+   "nome": "Hoje Não",
+   "icone": null,
+   "resumo": "1 Ação Uma vez por descanso longo, ao estar abaixo de 25% da sua Saúde, pode recuperar 2d8 + Mod. Constituição de Saúde e 1d8 + Mod. Força de Stamina.",
+   "classe": "brutalista",
+   "card": "technique-card"
+  },
+  {
+   "id": "brutalista-gancho",
+   "tipo": "tecnica",
+   "nome": "Gancho",
+   "icone": null,
+   "resumo": "1 Ação • 3 Stamina Ao acertar seu próximo ataque corpo a corpo, Atordoa o alvo caso ele falhe em um teste de Fortitude",
+   "classe": "brutalista",
+   "card": "technique-card"
+  },
+  {
+   "id": "brutalista-o-proximo",
+   "tipo": "tecnica",
+   "nome": "O Próximo",
+   "icone": null,
+   "resumo": "1 Ação • 3 Stamina Escolha um alvo que você possa ver, você tem +2 atacar contra ele, até o fim do combate. Ao errar um ataque contra esse alvo, você ganha +1 atacar contra ele. (Max +3) Se o alvo morrer, pode gastar 2 Stamina como uma ação livre para trocar o alvo.",
+   "classe": "brutalista",
+   "card": "technique-card"
+  },
+  {
+   "id": "brutalista-golpe-desconcertado",
+   "tipo": "tecnica",
+   "nome": "Golpe Desconcertado",
+   "icone": null,
+   "resumo": "1 Ação • 3 Stamina Você utiliza toda sua força em um golpe forte e amplo porém desconcertado. Declare antes de atacar, você tem vantagem no próximo ataque. Se errar o golpe, você fica exposto até o seu próximo turno.",
+   "classe": "brutalista",
+   "card": "technique-card"
+  },
+  {
+   "id": "brutalista-investida",
+   "tipo": "tecnica",
+   "nome": "Investida",
+   "icone": null,
+   "resumo": "2 Ações • 3 Stamina Pode investir em uma linha reta de no mínimo 4,5 m até 9 m. Alvos no caminho, devem suceder em um teste de Fortitude ou recebem (Nível)d6+Mod. Força e ficam Caidos .",
+   "classe": "brutalista",
+   "card": "technique-card"
+  },
+  {
+   "id": "brutalista-muralha-viva",
+   "tipo": "tecnica",
+   "nome": "Muralha Viva",
+   "icone": null,
+   "resumo": "Passiva Você se torna Treinado em Defender . Se já for Treinado, se torna Experiente e assim por diante. O treinamento da sua pericia Defender aumenta de 3 em 3. (Ao invés de 2 em 2)",
+   "classe": "brutalista",
+   "card": "tech-card"
+  },
+  {
+   "id": "brutalista-guardiao",
+   "tipo": "tecnica",
+   "nome": "Guardião",
+   "icone": null,
+   "resumo": "Passiva Quando um aliado adjacente (até 1,5m) for atacado, você pode usar sua reação para se tornar o alvo do ataque. Você pode usar Defender normalmente contra esse ataque.",
+   "classe": "brutalista",
+   "card": "tech-card"
+  },
+  {
+   "id": "brutalista-postura-defensiva",
+   "tipo": "tecnica",
+   "nome": "Postura Defensiva",
+   "icone": null,
+   "resumo": "1 Ação, 3 Stamina Até o inicio do seu próximo turno: +2 Defender. +2 Armadura(Ar) Natural. Você não pode ser Derrubado ou Empurrado por quase nada. Porém, enquanto em Postura Defensiva: Você não pode se mover. -2 em Atacar .",
+   "classe": "brutalista",
+   "card": "tech-card"
+  },
+  {
+   "id": "brutalista-furia-sanguinaria",
+   "tipo": "tecnica",
+   "nome": "Fúria Sanguinária",
+   "icone": null,
+   "resumo": "Passiva Você se torna Treinado em Atacar . Se já for Treinado, se torna Experiente e assim por diante. Seus ataques corpo a corpo causam dano adicional baseado na sua saúde perdida: Abaixo de 75%: +1 de dano Abaixo de 50%: +3 de dano Abaixo de 25%: +5 de dano",
+   "classe": "brutalista",
+   "card": "tech-card"
+  },
+  {
+   "id": "brutalista-frenesi",
+   "tipo": "tecnica",
+   "nome": "Frenesi",
+   "icone": null,
+   "resumo": "3 Ações, 3 Stamina Você entra em Frenesi até o fim do combate ou até ficar Inconsciente . Durante o Frenesi: +2 em Atacar +1 dado de dano em ataques corpo a corpo Resistência a Dano Ordinário Porém, enquanto em Frenesi: Não pode Defender, apenas contra atacar(retaliar). Fica descontrolado e não pode usar habilidades que exijam paciência ou concentração. Deve atacar uma criatura toda rodada, caso contrário o Frenesi acaba. Você pode usar Frenesi 1 vez por descanso longo no nível 1 e 2 vezes no nível 3.",
+   "classe": "brutalista",
+   "card": "tech-card"
+  },
+  {
+   "id": "brutalista-retaliacao-selvagem",
+   "tipo": "tecnica",
+   "nome": "Retaliação Selvagem",
+   "icone": null,
+   "resumo": "Reação Ao escolher Retaliar como reação contra um ataque inimigo, você recebe os seguintes bônus: +2 em Atacar na retaliação +1d6 de dano na retaliação Se você estiver abaixo de 50% de Saúde, os bônus aumentam para: +4 em Atacar na retaliação +2d6 de dano na retaliação",
+   "classe": "brutalista",
+   "card": "tech-card"
+  },
+  {
+   "id": "brutalista-veterano-de-guerra",
+   "tipo": "tecnica",
+   "nome": "Veterano de Guerra",
+   "icone": null,
+   "resumo": "Passiva Você se torna Treinado em Iniciativa . Se já for Treinado, se torna Experiente e assim por diante. Você não pode ser Desprevenido. No primeiro turno de qualquer combate, você e aliados em até 9m que possam te ouvir têm +2 em Iniciativa.",
+   "classe": "brutalista",
+   "card": "tech-card"
+  },
+  {
+   "id": "brutalista-comando-tatico",
+   "tipo": "tecnica",
+   "nome": "Comando Tático",
+   "icone": null,
+   "resumo": "1 Ação, 2 Stamina Escolha um aliado em até 9m que possa te ouvir e ver. Ele pode imediatamente realizar uma das seguintes ações como reação: Atacar: O aliado faz um ataque com +2 Atacar contra uma criatura em seu alcance. Mover: O aliado se move até seu movimento sem provocar ataques de oportunidade. Defender: O aliado ganha +4 em Defender até o início do próximo turno dele. Você pode usar Comando Tático no máximo 2 vezes por rodada.",
+   "classe": "brutalista",
+   "card": "tech-card"
+  },
+  {
+   "id": "brutalista-leitura-de-combate",
+   "tipo": "tecnica",
+   "nome": "Leitura de Combate",
+   "icone": null,
+   "resumo": "1 Ação, 2 Stamina Escolha uma criatura que você possa ver. Role Percepção contra Enganação dela. Em caso de sucesso, você descobre uma das seguintes informações (sua escolha): Saúde aproximada (acima de 75%, 50-75%, 25-50%, abaixo de 25%) Próxima ação provável (atacar, defender, fugir, conjurar) Fraqueza tática (+2 Atacar contra ela até o fim do seu próximo turno para você e aliados que você informar) Em caso de falha, você não pode usar esta habilidade contra a mesma criatura neste combate.",
+   "classe": "brutalista",
+   "card": "tech-card"
+  },
+  {
+   "id": "brutalista-fortaleza-de-aco",
+   "tipo": "tecnica",
+   "nome": "Fortaleza de Aço",
+   "icone": null,
+   "resumo": "Reação, 2 Stamina Quando você receberia dano, você pode usar sua reação para reduzir esse dano em 1d8 + Mod. Constituição. Se você estiver em Postura Defensiva, a redução aumenta para 2d8 + Mod. Constituição. Você pode usar esta habilidade um número de vezes igual ao seu mod. de Constituição (mínimo 1) por combate.",
+   "classe": "brutalista",
+   "card": "tech-card"
+  },
+  {
+   "id": "brutalista-resistencia-adaptavel",
+   "tipo": "tecnica",
+   "nome": "Resistência Adaptável",
+   "icone": null,
+   "resumo": "Passiva / 3 Stamina Você possui 5 Armadura Específica(Ae) de um tipo de dano escolhido por você. Ao receber dano específico diferente do protegido pela sua Ae, pode gastar 3 de Stamina como uma ação livre para trocar o tipo de dano da Ae para o tipo de dano que foi atacado instantaneamente. Adicionalmente, Você pode trocar a resistência da Ae em um descanso curto livremente.",
+   "classe": "brutalista",
+   "card": "tech-card"
+  },
+  {
+   "id": "brutalista-epifania-sanguinea",
+   "tipo": "tecnica",
+   "nome": "Epifania Sanguínea",
+   "icone": null,
+   "resumo": "Passiva Ao reduzir uma criatura a 0 de Saúde, você recupera 1d6+Mod. Constituição de Saúde. Quando você sofre um acerto crítico, seu próximo ataque causa +1d10 de dano adicional. Ao estar em frenesi, esses bônus dobram.",
+   "classe": "brutalista",
+   "card": "tech-card"
+  },
+  {
+   "id": "brutalista-ignorar-dor",
+   "tipo": "tecnica",
+   "nome": "Ignorar Dor",
+   "icone": null,
+   "resumo": "Reação, 3 Stamina Quando você receberia dano que te deixaria Inconsciente, você pode usar sua reação e 3 de Stamina para permanecer com 1 de Saúde. Ao fazer isso, Até o fim do seu próximo turno, você tem +4 em Atacar e seus ataques causam +2d6 de dano. Se você estiver em frenesi quando usar essa habilidade, você recupera 2d6 de Saúde, ao invés de 1. Você pode usar essa habilidade 1 vez por descanso longo.",
+   "classe": "brutalista",
+   "card": "tech-card"
+  },
+  {
+   "id": "brutalista-formacao-de-combate",
+   "tipo": "tecnica",
+   "nome": "Formação de Combate",
+   "icone": null,
+   "resumo": "2 Ações, 3 Stamina Você elaborou algumas formações de combate, que seu grupo pode tirar vantagem em momentos necessários: Formação: Precisão Você e aliados em até 4,5 m de você ganham os seguintes benefícios, você conta como um aliado: 2+ Aliados: +2 Atacar 3+ Aliados: +1 Atacar 4+ Aliados: +1,5 Movimento 5+ Aliados: Quando um aliado dentro do alcance acerta um ataque, o próximo aliado a atacar a mesma criatura nesta rodada ganha +2 Atacar. Formação: Degolar Você e aliados em até 4,5 m de você ganham os seguintes benefícios, você conta como um aliado: 2+ Aliados: +1 de Dano 3+ Aliados: +1d6 de Dano 4+ Aliados: +1d6 de Dano 5+ Aliados: Quando um aliado dentro do alcance executa uma criatura, ele ganha 1 ação grátis. A formação dura até qualquer aliado for removido do alcance, quebrando a formação por completo, ou até o fim do combate.",
+   "classe": "brutalista",
+   "card": "tech-card"
+  },
+  {
+   "id": "brutalista-o-experiente",
+   "tipo": "tecnica",
+   "nome": "O Experiente",
+   "icone": null,
+   "resumo": "Passiva Na primeira vez que uma criatura te ataca em um combate, você tem +2 Defender contra esse ataque. Após ser atacado por uma criatura (acertando ou errando), você aprende ela: Você ganha +1 Atacar e +1 Defender permanente contra essa criatura pelo resto do combate. Este bônus é cumulativo até +3 (após 3 ataques recebidos dela). Uma vez por turno, quando você acertar um ataque contra uma criatura que você aprendeu, você pode escolher um dos seguintes efeitos: Ponto Vital: +1d6 de dano Desarmar: A criatura solta um objeto que esteja segurando (Manobra de Desarmar grátis) Desestabilizar: -2 no próximo ataque da criatura",
+   "classe": "brutalista",
+   "card": "tech-card"
+  }
+ ]
+}

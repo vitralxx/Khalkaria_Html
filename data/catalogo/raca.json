@@ -1,0 +1,66 @@
+{
+ "schema": "catalogo/1",
+ "tipo": "raca",
+ "fontes": [
+  "data/racas.json"
+ ],
+ "total": 7,
+ "entradas": [
+  {
+   "id": "raca-humano",
+   "tipo": "raca",
+   "nome": "Humano",
+   "icone": null,
+   "resumo": "Adaptáveis, numerosos e determinados. +1 em dois atributos 9m mov. Estilos: Simples, Estudioso, Rebelde, Popular",
+   "pagina": "racas/humano.html"
+  },
+  {
+   "id": "raca-anao",
+   "tipo": "raca",
+   "nome": "Anão",
+   "icone": null,
+   "resumo": "Robustos e inflexíveis como a rocha. +2 Con -1 Des 7,5m mov. Clãs: Krichama, Caxon",
+   "pagina": "racas/anao.html"
+  },
+  {
+   "id": "raca-dryad",
+   "tipo": "raca",
+   "nome": "Dryad",
+   "icone": null,
+   "resumo": "Árvore e carne entrelaçadas. +2 Des/Con -1 Sab 10,5m mov. Subespécies: Florescura, Cascaferro",
+   "pagina": "racas/dryad.html"
+  },
+  {
+   "id": "raca-gruto",
+   "tipo": "raca",
+   "nome": "Gruto",
+   "icone": null,
+   "resumo": "Humanoides reptilianos ancestrais. +2 For/Con -1 Int 9m mov. Linhagens: Rokhan, Skal'ri",
+   "pagina": "racas/gruto.html"
+  },
+  {
+   "id": "raca-corrompido",
+   "tipo": "raca",
+   "nome": "Corrompido",
+   "icone": null,
+   "resumo": "Marcados pelas forças primordiais. +2 Int/Sab -1 Con 9m mov. Graus: Tocado, Alterado, Consumido",
+   "pagina": "racas/corrompido.html"
+  },
+  {
+   "id": "raca-automato",
+   "tipo": "raca",
+   "nome": "Autômato",
+   "icone": null,
+   "resumo": "Seres antigos de tecnologia esquecida. +2 Int -1 Sab 9m mov. Sistema: Tecnologias Tier 1-5",
+   "pagina": "racas/automato.html"
+  },
+  {
+   "id": "raca-inseto",
+   "tipo": "raca",
+   "nome": "Inseto",
+   "icone": null,
+   "resumo": "Insetos humanoides inteligentes. Varia por subespécie Subespécies: Besouro, Louva-a-Deus, Barata",
+   "pagina": "racas/inseto.html"
+  }
+ ]
+}

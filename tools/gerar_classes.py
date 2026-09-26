@@ -7,6 +7,7 @@
 # (hero, stat/formula/progression, ramo/tier headers) com placeholders {{CARD_n}}.
 # Uso: python gerar_classes.py [repo_root] [classe]  (sem classe = todas)
 import json, sys, os
+from kf_marca import TIPO_POR_CLASSE_CSS, atributos, controles
 
 RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 REPO = sys.argv[1] if len(sys.argv) > 1 else RAIZ
@@ -19,7 +20,9 @@ def gen_one(name):
     data = json.load(open(f'{REPO}/data/classes/{name}.json', encoding='utf-8'))
     page = tpl
     for i, c in enumerate(data['cards']):
-        page = page.replace(f'{{{{CARD_{i}}}}}', f'<div class="{c["tipo"]}">{c["corpo"]}</div>')
+        tipo = TIPO_POR_CLASSE_CSS[c['tipo']]
+        page = page.replace(f'{{{{CARD_{i}}}}}', f'<div class="{c["tipo"]}"{atributos(tipo, c["id"])}>'
+                                                 f'{controles(c["nome"])}{c["corpo"]}</div>')
     open(f'{REPO}/pages/classes/{name}.html', 'w', encoding='utf-8').write(page)
     return len(data['cards'])
 

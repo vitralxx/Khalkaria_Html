@@ -1,0 +1,154 @@
+{
+ "schema": "catalogo/1",
+ "tipo": "tecnologia",
+ "fontes": [
+  "data/racas/*.json"
+ ],
+ "total": 16,
+ "entradas": [
+  {
+   "id": "automato-visao-termica",
+   "tipo": "tecnologia",
+   "nome": "Visão Térmica",
+   "icone": null,
+   "resumo": "Você consegue ver em um mapa de calor naturalmente. Treinado em Percepção e pode ver no escuro parcialmente. Não comprável",
+   "raca": "automato",
+   "card": "tech-card"
+  },
+  {
+   "id": "automato-acabamento-refinado",
+   "tipo": "tecnologia",
+   "nome": "Acabamento Refinado",
+   "icone": null,
+   "resumo": "Você não produz barulho algum em suas dobras, ventoinhas e pegadas. Treinado em Furtividade. Não comprável",
+   "raca": "automato",
+   "card": "tech-card"
+  },
+  {
+   "id": "automato-acesso-a-biblioteca-automata",
+   "tipo": "tecnologia",
+   "nome": "Acesso à Biblioteca Autômata",
+   "icone": null,
+   "resumo": "Banco de dados público dos autômatos. Treinado em Conhecimento. Não comprável",
+   "raca": "automato",
+   "card": "tech-card"
+  },
+  {
+   "id": "automato-sensor-de-proximidade",
+   "tipo": "tecnologia",
+   "nome": "Sensor de Proximidade",
+   "icone": null,
+   "resumo": "Detecta mudanças no ar e vibrações. Não pode ser surpreendido. Incomum",
+   "raca": "automato",
+   "card": "tech-card"
+  },
+  {
+   "id": "automato-fibra-de-carbono",
+   "tipo": "tecnologia",
+   "nome": "Fibra de Carbono",
+   "icone": null,
+   "resumo": "Exoesqueleto fabricado com fibra de carbono. +1 Evasão. Incomum",
+   "raca": "automato",
+   "card": "tech-card"
+  },
+  {
+   "id": "automato-suspensoes-lubrificadas",
+   "tipo": "tecnologia",
+   "nome": "Suspensões Lubrificadas",
+   "icone": null,
+   "resumo": "Incrivelmente aerodinâmico e eficiente ao correr. +3m de movimento. Incomum",
+   "raca": "automato",
+   "card": "tech-card"
+  },
+  {
+   "id": "automato-sistema-de-reconhecimento-de-ameacas",
+   "tipo": "tecnologia",
+   "nome": "Sistema de Reconhecimento de Ameaças",
+   "icone": null,
+   "resumo": "Algoritmo de análise de movimentos inimigos. +1 ao atacar criaturas hostis. Pode rolar Atacar com Inteligência ao invés de Força/Destreza. Exótico",
+   "raca": "automato",
+   "card": "tech-card"
+  },
+  {
+   "id": "automato-nucleo-duplo",
+   "tipo": "tecnologia",
+   "nome": "Núcleo-Duplo",
+   "icone": null,
+   "resumo": "Núcleo de energia substituto. Ao ser reduzido a 0 vida, fica com 1. Quebra ao usar; conserto com teste de Ofício(Engenharia) CD 15, uma vez por descanso longo. Exótico",
+   "raca": "automato",
+   "card": "tech-card"
+  },
+  {
+   "id": "automato-braco-balistico",
+   "tipo": "tecnologia",
+   "nome": "Braço Balístico",
+   "icone": null,
+   "resumo": "Mecanismo de disparo oculto no antebraço. Arma a distância simples integrada. Não pode ser desarmado. Recarrega com Munição de Fogo a cada combate, ao invés de Virotes/Flechas. Causa +2d6 de dano de Fogo. Exótico",
+   "raca": "automato",
+   "card": "tech-card"
+  },
+  {
+   "id": "automato-lamina-retratil",
+   "tipo": "tecnologia",
+   "nome": "Lâmina Retrátil",
+   "icone": null,
+   "resumo": "Lâmina afiada emerge do pulso. Arma marcial leve +1 integrada no antebraço. Pega com ação livre. Causa +1d10 de dano Cortante. Luxária",
+   "raca": "automato",
+   "card": "tech-card"
+  },
+  {
+   "id": "automato-capacitores-de-energia",
+   "tipo": "tecnologia",
+   "nome": "Capacitores de Energia",
+   "icone": null,
+   "resumo": "Reserva energética para adrenalina. Sobrecarrega (1 ação): +1d6 dano de Força por 3 rodadas. Ao final, recebe 2d4 dano Elemental (Eletricidade). Luxária",
+   "raca": "automato",
+   "card": "tech-card"
+  },
+  {
+   "id": "automato-auto-reparador",
+   "tipo": "tecnologia",
+   "nome": "Auto-Reparador",
+   "icone": null,
+   "resumo": "Órgão-biônico que aproveita sucata. Cria 1 Kit de Manutenção por descanso longo. Luxária",
+   "raca": "automato",
+   "card": "tech-card"
+  },
+  {
+   "id": "automato-lendas-mecanicas",
+   "tipo": "tecnologia",
+   "nome": "Lendas Mecânicas",
+   "icone": null,
+   "resumo": "Você conhece lendas sobre tecnologias poderosíssimas, porém nem sabe por onde começar a procurar. n/a n/a",
+   "raca": "automato",
+   "card": "tech-card"
+  },
+  {
+   "id": "automato-modulo-de-linguagem",
+   "tipo": "tecnologia",
+   "nome": "Módulo de Linguagem",
+   "icone": null,
+   "resumo": "Tremenda quantidade de informação linguística. Você entende todas as línguas (mas não necessariamente sabe falar elas). Não comprável",
+   "raca": "automato",
+   "card": "tech-card"
+  },
+  {
+   "id": "automato-scanner-de-condicao",
+   "tipo": "tecnologia",
+   "nome": "Scanner de Condição",
+   "icone": null,
+   "resumo": "Lentes que avaliam criaturas. Observar (1 Ação): descobre saúde %, evasão e habilidades já usadas. Não comprável",
+   "raca": "automato",
+   "card": "tech-card"
+  },
+  {
+   "id": "automato-backup",
+   "tipo": "tecnologia",
+   "nome": "Backup",
+   "icone": null,
+   "resumo": "Caixa preta com visor pequeno. Registra todas as memórias. Ao morrer, pode ser importada em um novo corpo de Autômato. Não comprável",
+   "raca": "automato",
+   "card": "tech-card"
+  }
+ ]
+}

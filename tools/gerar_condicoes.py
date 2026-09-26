@@ -7,6 +7,7 @@
 # nova no JSON aparece no índice sem edição à mão).
 # Uso: python gerar_condicoes.py [repo_root]
 import json, re, sys, os
+from kf_marca import atributos, controles
 
 RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 REPO = sys.argv[1] if len(sys.argv) > 1 else RAIZ
@@ -15,7 +16,8 @@ JSON_SRC = f'{REPO}/data/condicoes.json'
 OUT = f'{REPO}/pages/condicoes.html'
 
 def gen_card(cd):
-    return (f'<div class="condicao-card" id="{cd["id"]}">\n'
+    return (f'<div class="condicao-card" id="{cd["id"]}"{atributos("condicao", cd["id"])}>'
+            f'{controles(cd["nome"])}\n'
             f'                        <h4>{cd["nome"]}</h4>\n'
             f'                        {cd["corpo"]}\n'
             f'                    </div>')

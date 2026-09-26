@@ -1,0 +1,37 @@
+{
+ "schema": "catalogo/1",
+ "tipo": "subespecie",
+ "fontes": [
+  "data/racas/*.json"
+ ],
+ "total": 3,
+ "entradas": [
+  {
+   "id": "inseto-besouro",
+   "tipo": "subespecie",
+   "nome": "Besouro",
+   "icone": "🪲",
+   "resumo": "Atributos +2 Con, -1 Int Movimento 7,5m Perícia Fortitude ou Defender Características de Subespécie 2 Armadura (Ar) Escolha um tipo de dano atípico (Exceto: Força e Primordial), você possui Ae(3). Pode alterar o tipo de dano em descansos curtos. Manobras de Combate possuem +2 Movimento. É naturalmente amigo de outros besouros. Vida: 50-80 anos · Altura: 1,60m - 2,40m · Peso: 80kg - 120kg",
+   "raca": "inseto",
+   "card": "subspecie-card"
+  },
+  {
+   "id": "inseto-louva-a-deus",
+   "tipo": "subespecie",
+   "nome": "Louva-a-Deus",
+   "icone": "🦗",
+   "resumo": "Atributos +2 Sab, -1 Con Movimento 9m Perícia Vontade ou Iniciativa Características de Subespécie Você enxerga perfeitamente no escuro. Você pode voar até 1,5m por rodada. Pode atacar com suas garras 1 vez por combate, causando 1d6+Destreza de dano perfurante. Esse ataque nunca tem penalidade de múltiplos ataques. É naturalmente amigo de outros Louva-a-Deuses. Vida: 80-120 anos · Altura: 1,40m - 2,20m · Peso: 50kg - 80kg",
+   "raca": "inseto",
+   "card": "subspecie-card"
+  },
+  {
+   "id": "inseto-barata",
+   "tipo": "subespecie",
+   "nome": "Barata",
+   "icone": "🪳",
+   "resumo": "Atributos +2 Des, -1 Sab Movimento 10,5m Perícia Furtividade ou Crime Características de Subespécie Ao ficar com 0 de saúde ou menos, fica com 1 de saúde. (1x/Descanso Longo) Recupera 1d4 de saúde por rodada se estiver escondido. Usa 2 ações (em vez de 3) para se esconder. Você é imune a Envenenamento. Vida: 100-140 anos · Altura: 1,40m - 2,00m · Peso: 40kg - 90kg",
+   "raca": "inseto",
+   "card": "subspecie-card"
+  }
+ ]
+}

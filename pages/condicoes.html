@@ -7,7 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400&family=UnifrakturMaguntia&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../css/style.css?v=10f91b67">
+    <link rel="stylesheet" href="../css/style.css?v=26b92d20">
     <style>
         .condicao-card {
             background: var(--bg-card);
@@ -201,7 +201,7 @@
                 </div>
                 
                 <div class="condicoes-grid">
-                    <div class="condicao-card" id="morrendo">
+                    <div class="condicao-card" id="morrendo" data-kf-tipo="condicao" data-kf-id="morrendo" data-prever="condicao:morrendo"><button type="button" class="ent-add" hidden aria-keyshortcuts="A" aria-label="Levar para a ficha: Morrendo"></button><span class="ent-alca" hidden aria-hidden="true"></span>
                         <h4>Morrendo</h4>
                         <ul>
                             <li>Você está <a href="#inconsciente" class="keyword-link">Inconsciente</a>.</li>
@@ -212,7 +212,7 @@
                         <p><strong>Para remover:</strong> Você deve ser curado de modo que sua vida fique positiva.</p>
                     </div>
                     
-                    <div class="condicao-card" id="inconsciente">
+                    <div class="condicao-card" id="inconsciente" data-kf-tipo="condicao" data-kf-id="inconsciente" data-prever="condicao:inconsciente"><button type="button" class="ent-add" hidden aria-keyshortcuts="A" aria-label="Levar para a ficha: Inconsciente"></button><span class="ent-alca" hidden aria-hidden="true"></span>
                         <h4>Inconsciente</h4>
                         <ul>
                             <li>Você perde o controle do seu corpo e está desmaiado.</li>
@@ -220,7 +220,7 @@
                         </ul>
                     </div>
                     
-                    <div class="condicao-card" id="exaurido">
+                    <div class="condicao-card" id="exaurido" data-kf-tipo="condicao" data-kf-id="exaurido" data-prever="condicao:exaurido"><button type="button" class="ent-add" hidden aria-keyshortcuts="A" aria-label="Levar para a ficha: Exaurido"></button><span class="ent-alca" hidden aria-hidden="true"></span>
                         <h4>Exaurido</h4>
                         <p>Você está com 0 de Stamina, completamente exausto.</p>
                         <ul>
@@ -229,7 +229,7 @@
                         </ul>
                     </div>
                     
-                    <div class="condicao-card" id="oco">
+                    <div class="condicao-card" id="oco" data-kf-tipo="condicao" data-kf-id="oco" data-prever="condicao:oco"><button type="button" class="ent-add" hidden aria-keyshortcuts="A" aria-label="Levar para a ficha: Oco"></button><span class="ent-alca" hidden aria-hidden="true"></span>
                         <h4>Oco</h4>
                         <p>Você está vazio por dentro, se manter motivado é um desafio e seus pensamentos estão desconexos da realidade.</p>
                         <ul>
@@ -239,7 +239,7 @@
                         </ul>
                     </div>
                     
-                    <div class="condicao-card" id="exaustao">
+                    <div class="condicao-card" id="exaustao" data-kf-tipo="condicao" data-kf-id="exaustao" data-prever="condicao:exaustao"><button type="button" class="ent-add" hidden aria-keyshortcuts="A" aria-label="Levar para a ficha: Exaustão 1-5"></button><span class="ent-alca" hidden aria-hidden="true"></span>
                         <h4>Exaustão 1-5</h4>
                         <p>Você está exausto, ações rotineiras se tornam cada vez mais difíceis.</p>
                         <ul>
@@ -252,7 +252,7 @@
                         <p>Ao realizar um descanso longo, você diminui 1 de exaustão.</p>
                     </div>
                     
-                    <div class="condicao-card" id="desnutrido">
+                    <div class="condicao-card" id="desnutrido" data-kf-tipo="condicao" data-kf-id="desnutrido" data-prever="condicao:desnutrido"><button type="button" class="ent-add" hidden aria-keyshortcuts="A" aria-label="Levar para a ficha: Desnutrido X"></button><span class="ent-alca" hidden aria-hidden="true"></span>
                         <h4>Desnutrido X</h4>
                         <p>Você está faminto.</p>
                         <ul>
@@ -274,14 +274,14 @@
                 </div>
                 
                 <div class="condicoes-grid">
-                    <div class="condicao-card" id="exposto">
+                    <div class="condicao-card" id="exposto" data-kf-tipo="condicao" data-kf-id="exposto" data-prever="condicao:exposto"><button type="button" class="ent-add" hidden aria-keyshortcuts="A" aria-label="Levar para a ficha: Exposto"></button><span class="ent-alca" hidden aria-hidden="true"></span>
                         <h4>Exposto</h4>
                         <ul>
                             <li>O primeiro ataque que acertar essa criatura é crítico. Remove ao acertar.</li>
                         </ul>
                     </div>
                     
-                    <div class="condicao-card" id="sangramento">
+                    <div class="condicao-card" id="sangramento" data-kf-tipo="condicao" data-kf-id="sangramento" data-prever="condicao:sangramento"><button type="button" class="ent-add" hidden aria-keyshortcuts="A" aria-label="Levar para a ficha: Sangramento X"></button><span class="ent-alca" hidden aria-hidden="true"></span>
                         <h4>Sangramento X</h4>
                         <ul>
                             <li>Se o alvo puder sangrar, qualquer ataque contra ele causa +Xd4 de dano Biológico, sendo X o seu Sangramento atual.</li>
@@ -290,21 +290,21 @@
                         </ul>
                     </div>
                     
-                    <div class="condicao-card" id="atordoado">
+                    <div class="condicao-card" id="atordoado" data-kf-tipo="condicao" data-kf-id="atordoado" data-prever="condicao:atordoado"><button type="button" class="ent-add" hidden aria-keyshortcuts="A" aria-label="Levar para a ficha: Atordoado"></button><span class="ent-alca" hidden aria-hidden="true"></span>
                         <h4>Atordoado</h4>
                         <ul>
                             <li>-2 Ações e Evasão até a próxima rodada.</li>
                         </ul>
                     </div>
                     
-                    <div class="condicao-card" id="desorientado">
+                    <div class="condicao-card" id="desorientado" data-kf-tipo="condicao" data-kf-id="desorientado" data-prever="condicao:desorientado"><button type="button" class="ent-add" hidden aria-keyshortcuts="A" aria-label="Levar para a ficha: Desorientado"></button><span class="ent-alca" hidden aria-hidden="true"></span>
                         <h4>Desorientado</h4>
                         <ul>
                             <li>Você recebe -2 ao Atacar e -2 ao Defender até o fim do seu turno.</li>
                         </ul>
                     </div>
                     
-                    <div class="condicao-card" id="caido">
+                    <div class="condicao-card" id="caido" data-kf-tipo="condicao" data-kf-id="caido" data-prever="condicao:caido"><button type="button" class="ent-add" hidden aria-keyshortcuts="A" aria-label="Levar para a ficha: Caído"></button><span class="ent-alca" hidden aria-hidden="true"></span>
                         <h4>Caído</h4>
                         <ul>
                             <li>Você está prostrado e seu movimento se torna 1,5 m.</li>
@@ -313,7 +313,7 @@
                         </ul>
                     </div>
                     
-                    <div class="condicao-card" id="desprevenido">
+                    <div class="condicao-card" id="desprevenido" data-kf-tipo="condicao" data-kf-id="desprevenido" data-prever="condicao:desprevenido"><button type="button" class="ent-add" hidden aria-keyshortcuts="A" aria-label="Levar para a ficha: Desprevenido"></button><span class="ent-alca" hidden aria-hidden="true"></span>
                         <h4>Desprevenido</h4>
                         <ul>
                             <li>Você foi pego de surpresa e não pode reagir a ataques.</li>
@@ -331,7 +331,7 @@
                 </div>
                 
                 <div class="condicoes-grid">
-                    <div class="condicao-card" id="sobrepeso-leve">
+                    <div class="condicao-card" id="sobrepeso-leve" data-kf-tipo="condicao" data-kf-id="sobrepeso-leve" data-prever="condicao:sobrepeso-leve"><button type="button" class="ent-add" hidden aria-keyshortcuts="A" aria-label="Levar para a ficha: Sobrepeso Leve"></button><span class="ent-alca" hidden aria-hidden="true"></span>
                         <h4>Sobrepeso Leve</h4>
                         <ul>
                             <li>Movimento diminuído para a metade.</li>
@@ -339,7 +339,7 @@
                         </ul>
                     </div>
                     
-                    <div class="condicao-card" id="sobrepeso-extremo">
+                    <div class="condicao-card" id="sobrepeso-extremo" data-kf-tipo="condicao" data-kf-id="sobrepeso-extremo" data-prever="condicao:sobrepeso-extremo"><button type="button" class="ent-add" hidden aria-keyshortcuts="A" aria-label="Levar para a ficha: Sobrepeso Extremo"></button><span class="ent-alca" hidden aria-hidden="true"></span>
                         <h4>Sobrepeso Extremo</h4>
                         <ul>
                             <li>Você tem 1,5 m de Movimento.</li>
@@ -347,7 +347,7 @@
                         </ul>
                     </div>
                     
-                    <div class="condicao-card" id="lento">
+                    <div class="condicao-card" id="lento" data-kf-tipo="condicao" data-kf-id="lento" data-prever="condicao:lento"><button type="button" class="ent-add" hidden aria-keyshortcuts="A" aria-label="Levar para a ficha: Lento X"></button><span class="ent-alca" hidden aria-hidden="true"></span>
                         <h4>Lento X</h4>
                         <p>Você está lento.</p>
                         <ul>
@@ -356,14 +356,14 @@
                         </ul>
                     </div>
                     
-                    <div class="condicao-card" id="enraizado">
+                    <div class="condicao-card" id="enraizado" data-kf-tipo="condicao" data-kf-id="enraizado" data-prever="condicao:enraizado"><button type="button" class="ent-add" hidden aria-keyshortcuts="A" aria-label="Levar para a ficha: Enraizado"></button><span class="ent-alca" hidden aria-hidden="true"></span>
                         <h4>Enraizado</h4>
                         <ul>
                             <li>Movimento reduzido a 0 metros.</li>
                         </ul>
                     </div>
                     
-                    <div class="condicao-card" id="agarrado">
+                    <div class="condicao-card" id="agarrado" data-kf-tipo="condicao" data-kf-id="agarrado" data-prever="condicao:agarrado"><button type="button" class="ent-add" hidden aria-keyshortcuts="A" aria-label="Levar para a ficha: Agarrado"></button><span class="ent-alca" hidden aria-hidden="true"></span>
                         <h4>Agarrado</h4>
                         <p>Você está dominado por uma criatura.</p>
                         <ul>
@@ -383,7 +383,7 @@
                 </div>
                 
                 <div class="condicoes-grid">
-                    <div class="condicao-card" id="confuso">
+                    <div class="condicao-card" id="confuso" data-kf-tipo="condicao" data-kf-id="confuso" data-prever="condicao:confuso"><button type="button" class="ent-add" hidden aria-keyshortcuts="A" aria-label="Levar para a ficha: Confuso"></button><span class="ent-alca" hidden aria-hidden="true"></span>
                         <h4>Confuso</h4>
                         <p>Você perde algumas memórias recentes e tem dificuldade pra assimilar a situação. Você pode gastar 1 ação para se livrar dessa condição.</p>
                         <ul>
@@ -391,7 +391,7 @@
                         </ul>
                     </div>
                     
-                    <div class="condicao-card" id="amedrontado">
+                    <div class="condicao-card" id="amedrontado" data-kf-tipo="condicao" data-kf-id="amedrontado" data-prever="condicao:amedrontado"><button type="button" class="ent-add" hidden aria-keyshortcuts="A" aria-label="Levar para a ficha: Amedrontado"></button><span class="ent-alca" hidden aria-hidden="true"></span>
                         <h4>Amedrontado</h4>
                         <p>Você está completamente aterrorizado. E tenta escapar o mais rápido possível.</p>
                         <ul>
@@ -399,7 +399,7 @@
                         </ul>
                     </div>
                     
-                    <div class="condicao-card" id="descontrolado">
+                    <div class="condicao-card" id="descontrolado" data-kf-tipo="condicao" data-kf-id="descontrolado" data-prever="condicao:descontrolado"><button type="button" class="ent-add" hidden aria-keyshortcuts="A" aria-label="Levar para a ficha: Descontrolado X"></button><span class="ent-alca" hidden aria-hidden="true"></span>
                         <h4>Descontrolado X</h4>
                         <p>Você está sedento por sangue e ataca o aliado mais próximo por X rodadas.</p>
                         <ul>
@@ -407,7 +407,7 @@
                         </ul>
                     </div>
                     
-                    <div class="condicao-card" id="enfeiticado">
+                    <div class="condicao-card" id="enfeiticado" data-kf-tipo="condicao" data-kf-id="enfeiticado" data-prever="condicao:enfeiticado"><button type="button" class="ent-add" hidden aria-keyshortcuts="A" aria-label="Levar para a ficha: Enfeitiçado"></button><span class="ent-alca" hidden aria-hidden="true"></span>
                         <h4>Enfeitiçado</h4>
                         <p>Você está enfeitiçado em algo ou alguém.</p>
                         <ul>
@@ -416,7 +416,7 @@
                         </ul>
                     </div>
                     
-                    <div class="condicao-card" id="bebado">
+                    <div class="condicao-card" id="bebado" data-kf-tipo="condicao" data-kf-id="bebado" data-prever="condicao:bebado"><button type="button" class="ent-add" hidden aria-keyshortcuts="A" aria-label="Levar para a ficha: Bêbado"></button><span class="ent-alca" hidden aria-hidden="true"></span>
                         <h4>Bêbado</h4>
                         <p>Você está bêbado.</p>
                         <ul>
@@ -434,7 +434,7 @@
                 </div>
                 
                 <div class="condicoes-grid">
-                    <div class="condicao-card" id="envenenamento">
+                    <div class="condicao-card" id="envenenamento" data-kf-tipo="condicao" data-kf-id="envenenamento" data-prever="condicao:envenenamento"><button type="button" class="ent-add" hidden aria-keyshortcuts="A" aria-label="Levar para a ficha: Envenenamento"></button><span class="ent-alca" hidden aria-hidden="true"></span>
                         <h4>Envenenamento</h4>
                         <ul>
                             <li>-2 em todos os testes que utilizam: Força, Constituição ou Destreza como atributo base.</li>
@@ -443,7 +443,7 @@
                         </ul>
                     </div>
                     
-                    <div class="condicao-card" id="em-chamas">
+                    <div class="condicao-card" id="em-chamas" data-kf-tipo="condicao" data-kf-id="em-chamas" data-prever="condicao:em-chamas"><button type="button" class="ent-add" hidden aria-keyshortcuts="A" aria-label="Levar para a ficha: Em Chamas"></button><span class="ent-alca" hidden aria-hidden="true"></span>
                         <h4>Em Chamas</h4>
                         <p>Você está em chamas!</p>
                         <ul>
@@ -451,7 +451,7 @@
                         </ul>
                     </div>
                     
-                    <div class="condicao-card" id="enjoado">
+                    <div class="condicao-card" id="enjoado" data-kf-tipo="condicao" data-kf-id="enjoado" data-prever="condicao:enjoado"><button type="button" class="ent-add" hidden aria-keyshortcuts="A" aria-label="Levar para a ficha: Enjoado"></button><span class="ent-alca" hidden aria-hidden="true"></span>
                         <h4>Enjoado</h4>
                         <ul>
                             <li>-5 em Fortitude.</li>
@@ -459,7 +459,7 @@
                         </ul>
                     </div>
                     
-                    <div class="condicao-card" id="paralisado">
+                    <div class="condicao-card" id="paralisado" data-kf-tipo="condicao" data-kf-id="paralisado" data-prever="condicao:paralisado"><button type="button" class="ent-add" hidden aria-keyshortcuts="A" aria-label="Levar para a ficha: Paralisado"></button><span class="ent-alca" hidden aria-hidden="true"></span>
                         <h4>Paralisado</h4>
                         <p>Você está imóvel e não consegue controlar seu corpo.</p>
                         <ul>
@@ -468,7 +468,7 @@
                         </ul>
                     </div>
                     
-                    <div class="condicao-card" id="adormecido">
+                    <div class="condicao-card" id="adormecido" data-kf-tipo="condicao" data-kf-id="adormecido" data-prever="condicao:adormecido"><button type="button" class="ent-add" hidden aria-keyshortcuts="A" aria-label="Levar para a ficha: Adormecido"></button><span class="ent-alca" hidden aria-hidden="true"></span>
                         <h4>Adormecido</h4>
                         <p>Você está em sono profundo.</p>
                         <ul>
@@ -487,7 +487,7 @@
                 </div>
                 
                 <div class="condicoes-grid">
-                    <div class="condicao-card" id="cego">
+                    <div class="condicao-card" id="cego" data-kf-tipo="condicao" data-kf-id="cego" data-prever="condicao:cego"><button type="button" class="ent-add" hidden aria-keyshortcuts="A" aria-label="Levar para a ficha: Cego"></button><span class="ent-alca" hidden aria-hidden="true"></span>
                         <h4>Cego</h4>
                         <ul>
                             <li>Você está cego e tem -5 em percepção e desvantagem em ataques.</li>
@@ -495,7 +495,7 @@
                         </ul>
                     </div>
                     
-                    <div class="condicao-card" id="surdo">
+                    <div class="condicao-card" id="surdo" data-kf-tipo="condicao" data-kf-id="surdo" data-prever="condicao:surdo"><button type="button" class="ent-add" hidden aria-keyshortcuts="A" aria-label="Levar para a ficha: Surdo"></button><span class="ent-alca" hidden aria-hidden="true"></span>
                         <h4>Surdo</h4>
                         <ul>
                             <li>Você está surdo e tem -2 em percepção.</li>
@@ -503,7 +503,7 @@
                         </ul>
                     </div>
                     
-                    <div class="condicao-card" id="invisivel">
+                    <div class="condicao-card" id="invisivel" data-kf-tipo="condicao" data-kf-id="invisivel" data-prever="condicao:invisivel"><button type="button" class="ent-add" hidden aria-keyshortcuts="A" aria-label="Levar para a ficha: Invisível"></button><span class="ent-alca" hidden aria-hidden="true"></span>
                         <h4>Invisível</h4>
                         <p>Você está invisível.</p>
                         <ul>
@@ -525,7 +525,7 @@
     
     <button class="back-to-top" id="backToTop" title="Voltar ao topo">↑</button>
     
-    <script src="../js/main.js?v=10f91b67"></script>
+    <script src="../js/main.js?v=26b92d20"></script>
     <script>
         const backToTop = document.getElementById('backToTop');
         window.addEventListener('scroll', () => {
@@ -542,7 +542,7 @@
             });
         });
     </script>
-    <script src="../js/utils.js?v=10f91b67"></script>
-    <script src="../js/nav.js?v=10f91b67" data-nav-js></script>
+    <script src="../js/utils.js?v=26b92d20"></script>
+    <script src="../js/nav.js?v=26b92d20" data-nav-js></script>
 </body>
 </html>

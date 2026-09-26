@@ -1,0 +1,250 @@
+{
+ "schema": "catalogo/1",
+ "tipo": "condicao",
+ "fontes": [
+  "data/condicoes.json"
+ ],
+ "total": 30,
+ "entradas": [
+  {
+   "id": "morrendo",
+   "tipo": "condicao",
+   "nome": "Morrendo",
+   "icone": null,
+   "resumo": "Você está Inconsciente . Você recebe 10% da sua vida máxima de dano biológico no início de cada turno seu. Esse dano não pode ser reduzido por Armadura, Armadura Específica ou Resistência. Ao ultrapassar metade da sua vida máxima em negativos, você morre. Dano/Turno = Vida Máxima × 0.1 Um aliado pode gastar 2 ações para rolar um teste de Medicina (CD 20) para estabilizar você, negando o dano por turno até você remover essa condição, ou ser atacado novamente. Para remover: Você deve ser curado de modo que sua vida fique positiva.",
+   "categoria": "criticas"
+  },
+  {
+   "id": "inconsciente",
+   "tipo": "condicao",
+   "nome": "Inconsciente",
+   "icone": null,
+   "resumo": "Você perde o controle do seu corpo e está desmaiado. Qualquer teste de resistência é instantaneamente fracassado.",
+   "categoria": "criticas"
+  },
+  {
+   "id": "exaurido",
+   "tipo": "condicao",
+   "nome": "Exaurido",
+   "icone": null,
+   "resumo": "Você está com 0 de Stamina, completamente exausto. Você não pode rolar perícias. Encerra quando sua Stamina volta a ficar acima de 0.",
+   "categoria": "criticas"
+  },
+  {
+   "id": "oco",
+   "tipo": "condicao",
+   "nome": "Oco",
+   "icone": null,
+   "resumo": "Você está vazio por dentro, se manter motivado é um desafio e seus pensamentos estão desconexos da realidade. A cada perícia falha, você reduz 5 de Éter. Ao ultrapassar metade do seu éter máximo nos negativos, você perde seu personagem, que se torna do mestre. Você não consegue canalizar magias. Encerra quando seu Éter volta a ficar acima de 0.",
+   "categoria": "criticas"
+  },
+  {
+   "id": "exaustao",
+   "tipo": "condicao",
+   "nome": "Exaustão 1-5",
+   "icone": null,
+   "resumo": "Você está exausto, ações rotineiras se tornam cada vez mais difíceis. Exaustão 1: Você tem desvantagem em testes físicos (Testes que possuem Força, Destreza ou Constituição como atributo base) Exaustão 2: Você causa metade do seu dano total em todos seus ataques. Exaustão 3: Você tem desvantagem em todos os testes e seu movimento é cortado pela metade. Exaustão 4: Atributos reduzidos pela metade e seu movimento é zerado. Exaustão 5: Morte. Ao realizar um descanso longo, você diminui 1 de exaustão.",
+   "categoria": "criticas"
+  },
+  {
+   "id": "desnutrido",
+   "tipo": "condicao",
+   "nome": "Desnutrido X",
+   "icone": null,
+   "resumo": "Você está faminto. Você ganha 1 de Desnutrido para cada dia em que descansou sem se alimentar (consumir 1 item do tipo Comida) ou sem luz de fogueira ou outra fonte. Se alimentar ao descansar em um dia remove 1 de Desnutrido. Você tem desvantagem em testes físicos (Testes que possuem Força, Destreza ou Constituição como atributo base) Você gasta o dobro de Stamina para tudo. Você perde 10 × X de Saúde máxima.",
+   "categoria": "criticas"
+  },
+  {
+   "id": "exposto",
+   "tipo": "condicao",
+   "nome": "Exposto",
+   "icone": null,
+   "resumo": "O primeiro ataque que acertar essa criatura é crítico. Remove ao acertar.",
+   "categoria": "combate"
+  },
+  {
+   "id": "sangramento",
+   "tipo": "condicao",
+   "nome": "Sangramento X",
+   "icone": null,
+   "resumo": "Se o alvo puder sangrar, qualquer ataque contra ele causa +Xd4 de dano Biológico, sendo X o seu Sangramento atual. Ao acertar um ataque em um alvo com essa condição, ela reduz em 1. Por exemplo: um alvo com Sangramento 3 recebe +3d4 no próximo acerto e fica com Sangramento 2. Se o acerto também aplicar Sangramento, o dano e a redução acontecem antes da nova aplicação.",
+   "categoria": "combate"
+  },
+  {
+   "id": "atordoado",
+   "tipo": "condicao",
+   "nome": "Atordoado",
+   "icone": null,
+   "resumo": "-2 Ações e Evasão até a próxima rodada.",
+   "categoria": "combate"
+  },
+  {
+   "id": "desorientado",
+   "tipo": "condicao",
+   "nome": "Desorientado",
+   "icone": null,
+   "resumo": "Você recebe -2 ao Atacar e -2 ao Defender até o fim do seu turno.",
+   "categoria": "combate"
+  },
+  {
+   "id": "caido",
+   "tipo": "condicao",
+   "nome": "Caído",
+   "icone": null,
+   "resumo": "Você está prostrado e seu movimento se torna 1,5 m. Ao ser atacado, não pode retaliar e defende com -2. Encerra ao gastar 1 ação para se levantar.",
+   "categoria": "combate"
+  },
+  {
+   "id": "desprevenido",
+   "tipo": "condicao",
+   "nome": "Desprevenido",
+   "icone": null,
+   "resumo": "Você foi pego de surpresa e não pode reagir a ataques. Além disso, você também está Exposto .",
+   "categoria": "combate"
+  },
+  {
+   "id": "sobrepeso-leve",
+   "tipo": "condicao",
+   "nome": "Sobrepeso Leve",
+   "icone": null,
+   "resumo": "Movimento diminuído para a metade. -2 em perícias com Força, Destreza ou Constituição como atributo base.",
+   "categoria": "movimento"
+  },
+  {
+   "id": "sobrepeso-extremo",
+   "tipo": "condicao",
+   "nome": "Sobrepeso Extremo",
+   "icone": null,
+   "resumo": "Você tem 1,5 m de Movimento. Desvantagem em perícias com Força, Destreza ou Constituição como atributo base.",
+   "categoria": "movimento"
+  },
+  {
+   "id": "lento",
+   "tipo": "condicao",
+   "nome": "Lento X",
+   "icone": null,
+   "resumo": "Você está lento. -3 m Movimento -1 Ação.",
+   "categoria": "movimento"
+  },
+  {
+   "id": "enraizado",
+   "tipo": "condicao",
+   "nome": "Enraizado",
+   "icone": null,
+   "resumo": "Movimento reduzido a 0 metros.",
+   "categoria": "movimento"
+  },
+  {
+   "id": "agarrado",
+   "tipo": "condicao",
+   "nome": "Agarrado",
+   "icone": null,
+   "resumo": "Você está dominado por uma criatura. Ataques contra você possuem +2 em Atacar. Você recebe -2 ao Atacar. Você fica Enraizado até se livrar do agarrão.",
+   "categoria": "movimento"
+  },
+  {
+   "id": "confuso",
+   "tipo": "condicao",
+   "nome": "Confuso",
+   "icone": null,
+   "resumo": "Você perde algumas memórias recentes e tem dificuldade pra assimilar a situação. Você pode gastar 1 ação para se livrar dessa condição. -1 Ação",
+   "categoria": "mentais"
+  },
+  {
+   "id": "amedrontado",
+   "tipo": "condicao",
+   "nome": "Amedrontado",
+   "icone": null,
+   "resumo": "Você está completamente aterrorizado. E tenta escapar o mais rápido possível. Gaste seu turno correndo da criatura/objeto que te colocou nessa condição da forma mais eficiente possível.",
+   "categoria": "mentais"
+  },
+  {
+   "id": "descontrolado",
+   "tipo": "condicao",
+   "nome": "Descontrolado X",
+   "icone": null,
+   "resumo": "Você está sedento por sangue e ataca o aliado mais próximo por X rodadas. Você deve gastar o seu turno atacando a criatura mais próxima.",
+   "categoria": "mentais"
+  },
+  {
+   "id": "enfeiticado",
+   "tipo": "condicao",
+   "nome": "Enfeitiçado",
+   "icone": null,
+   "resumo": "Você está enfeitiçado em algo ou alguém. Você não pode atacar quem te enfeitiçou até se livrar dessa condição. Tem -5 em testes de interação social (Qualquer) contra a criatura que te enfeitiçou.",
+   "categoria": "mentais"
+  },
+  {
+   "id": "bebado",
+   "tipo": "condicao",
+   "nome": "Bêbado",
+   "icone": null,
+   "resumo": "Você está bêbado. Ao rolar um 2 natural em qualquer teste, considere como uma falha crítica. Você tem -2 em Atacar, Defender, Movimento, Reflexos, Fortitude e Vontade.",
+   "categoria": "mentais"
+  },
+  {
+   "id": "envenenamento",
+   "tipo": "condicao",
+   "nome": "Envenenamento",
+   "icone": null,
+   "resumo": "-2 em todos os testes que utilizam: Força, Constituição ou Destreza como atributo base. 1d6 de dano Biológico no início de cada turno seu, até o fim do efeito. Acaba ao suceder em um teste de Fortitude CD(20) ou utilizar um Antídoto .",
+   "categoria": "fisicas"
+  },
+  {
+   "id": "em-chamas",
+   "tipo": "condicao",
+   "nome": "Em Chamas",
+   "icone": null,
+   "resumo": "Você está em chamas! 1d6 de dano elemental (fogo) no início de cada turno seu, até apagar o fogo com 1 ação.",
+   "categoria": "fisicas"
+  },
+  {
+   "id": "enjoado",
+   "tipo": "condicao",
+   "nome": "Enjoado",
+   "icone": null,
+   "resumo": "-5 em Fortitude. -2 Evasão",
+   "categoria": "fisicas"
+  },
+  {
+   "id": "paralisado",
+   "tipo": "condicao",
+   "nome": "Paralisado",
+   "icone": null,
+   "resumo": "Você está imóvel e não consegue controlar seu corpo. Você fica Exposto e não pode realizar nenhuma ação nem reação. Qualquer teste de resistência é instantaneamente fracassado.",
+   "categoria": "fisicas"
+  },
+  {
+   "id": "adormecido",
+   "tipo": "condicao",
+   "nome": "Adormecido",
+   "icone": null,
+   "resumo": "Você está em sono profundo. Você fica Exposto e Inconsciente até acordar. Você não pode fazer nada até acordar.",
+   "categoria": "fisicas"
+  },
+  {
+   "id": "cego",
+   "tipo": "condicao",
+   "nome": "Cego",
+   "icone": null,
+   "resumo": "Você está cego e tem -5 em percepção e desvantagem em ataques. Além disso, você falha automaticamente em todos os testes que dependem da sua visão.",
+   "categoria": "sensoriais"
+  },
+  {
+   "id": "surdo",
+   "tipo": "condicao",
+   "nome": "Surdo",
+   "icone": null,
+   "resumo": "Você está surdo e tem -2 em percepção. Além disso, você falha automaticamente em todos os testes que dependam da sua audição.",
+   "categoria": "sensoriais"
+  },
+  {
+   "id": "invisivel",
+   "tipo": "condicao",
+   "nome": "Invisível",
+   "icone": null,
+   "resumo": "Você está invisível. Passa instantaneamente em testes de Furtividade, caso a criatura não veja invisibilidade. +5 Defender e Atacar contra criaturas que não te veem. Atacar ou receber dano remove essa condição.",
+   "categoria": "sensoriais"
+  }
+ ]
+}

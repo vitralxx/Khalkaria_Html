@@ -106,7 +106,7 @@ def aplica_ancoras(html):
     # escrito à mão, então não há o que proteger.
     corpo_main = RE_TITULO.sub(lambda t: re.sub(r'\s+id="[^"]*"', '', t.group(0), count=1),
                                m.group(0))
-    usados = set(re.findall(r'\bid="([^"]+)"', html[:m.start()] + corpo_main + html[m.end():]))
+    usados = set(re.findall(r'(?<![\w-])id="([^"]+)"', html[:m.start()] + corpo_main + html[m.end():]))
     secao = ['']   # último h2 visto: dá escopo aos h3 ("Tier 1" -> "ramo-X-tier-1")
 
     def marca(t):

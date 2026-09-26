@@ -8,6 +8,7 @@
 # Round-trip contra o HTML original validado no bootstrap (80/80 cards, página inteira
 # normalizada idêntica) — ver método §6 do CLAUDE.md.
 import json, sys, os
+from kf_marca import atributos, controles
 
 RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 REPO = sys.argv[1] if len(sys.argv) > 1 else RAIZ
@@ -32,7 +33,8 @@ def gen_card(s):
         for st in s['stats'])
     mods = (f'<p class="spell-mods"><span class="spell-mods-label">Modulações</span>'
             f'{s["modulacoes"]}</p>') if s.get('modulacoes') else ''
-    return (f'<div class="spell-card"><div class="spell-header" onclick="toggleSpell(this)">'
+    return (f'<div class="spell-card"{atributos("magia", s["id"])}>{controles(s["nome"])}'
+            f'<div class="spell-header" onclick="toggleSpell(this)">'
             f'<span class="spell-dot"></span><h4>🔹 {s["nome"]}</h4>'
             f'<span class="spell-toggle">▶</span></div><div class="spell-body">{tag}'
             f'<table class="spell-table"><thead><tr><th>Característica</th><th>Valor</th>'

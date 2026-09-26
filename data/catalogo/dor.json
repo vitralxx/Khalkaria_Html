@@ -1,0 +1,172 @@
+{
+ "schema": "catalogo/1",
+ "tipo": "dor",
+ "fontes": [
+  "data/limiar.json"
+ ],
+ "total": 18,
+ "entradas": [
+  {
+   "id": "abismo-estabanado",
+   "tipo": "dor",
+   "nome": "Estabanado",
+   "icone": null,
+   "resumo": "Você é naturalmente desligado, sempre possui a condição Desorientado .",
+   "custo": "+1 Dor",
+   "custoTipo": "gain"
+  },
+  {
+   "id": "abismo-gulao",
+   "tipo": "dor",
+   "nome": "Gulão",
+   "icone": null,
+   "resumo": "Você é gordo. Precisa do dobro de comida para sobreviver. Gasta 2 Comidas para descansar.",
+   "custo": "+1 Dor",
+   "custoTipo": "gain"
+  },
+  {
+   "id": "abismo-bagunceiro",
+   "tipo": "dor",
+   "nome": "Bagunceiro",
+   "icone": null,
+   "resumo": "Você é uma zona. Você pode carregar 50% menos bugigangas e equipamentos.",
+   "custo": "+1 Dor",
+   "custoTipo": "gain"
+  },
+  {
+   "id": "abismo-orgulhoso",
+   "tipo": "dor",
+   "nome": "Orgulhoso",
+   "icone": null,
+   "resumo": "Você é corajoso ou apenas orgulhoso. Você não pode fugir de combates.",
+   "custo": "+2 Dor",
+   "custoTipo": "gain"
+  },
+  {
+   "id": "abismo-timido",
+   "tipo": "dor",
+   "nome": "Tímido",
+   "icone": null,
+   "resumo": "Você é introvertido e tem dificuldade em se enturmar. -5 em todas as interações sociais.",
+   "custo": "+2 Dor",
+   "custoTipo": "gain"
+  },
+  {
+   "id": "abismo-perdedor",
+   "tipo": "dor",
+   "nome": "Perdedor",
+   "icone": null,
+   "resumo": "Você tem azar, nasceu pra perder. Você falha criticamente em 1-2 na rolagem natural.",
+   "custo": "+2 Dor",
+   "custoTipo": "gain"
+  },
+  {
+   "id": "abismo-mente-fraca",
+   "tipo": "dor",
+   "nome": "Mente Fraca",
+   "icone": null,
+   "resumo": "Você é perturbado, inseguro. +100% gasto de Éter global.",
+   "custo": "+3 Dor",
+   "custoTipo": "gain"
+  },
+  {
+   "id": "abismo-murcho",
+   "tipo": "dor",
+   "nome": "Murcho",
+   "icone": null,
+   "resumo": "Você é frágil, magrelo, sem constituição. -4 nos atributos Força e Constituição.",
+   "custo": "+3 Dor",
+   "custoTipo": "gain"
+  },
+  {
+   "id": "abismo-obvio",
+   "tipo": "dor",
+   "nome": "Óbvio",
+   "icone": null,
+   "resumo": "Você é muito fácil de acertar, não faz esforço algum para se defender. -5 Evasão.",
+   "custo": "+3 Dor",
+   "custoTipo": "gain"
+  },
+  {
+   "id": "abismo-memoria-ruim",
+   "tipo": "dor",
+   "nome": "Memória Ruim",
+   "icone": null,
+   "resumo": "Você esquece de tudo. Escolha 2 perícias que você é treinado, você perde o treinamento nelas.",
+   "custo": "+4 Dor",
+   "custoTipo": "gain"
+  },
+  {
+   "id": "abismo-sangue-caro",
+   "tipo": "dor",
+   "nome": "Sangue Caro",
+   "icone": null,
+   "resumo": "Você é mesquinho e mimado. Você recupera 50% menos de Saúde de todas as fontes.",
+   "custo": "+4 Dor",
+   "custoTipo": "gain"
+  },
+  {
+   "id": "abismo-perdido",
+   "tipo": "dor",
+   "nome": "Perdido",
+   "icone": null,
+   "resumo": "Você não consegue se orientar direito. Não pode ajudar em jornadas e aumenta os pontos de sucesso necessários em +1.",
+   "custo": "+4 Dor",
+   "custoTipo": "gain"
+  },
+  {
+   "id": "abismo-sem-membro",
+   "tipo": "dor",
+   "nome": "Sem Membro",
+   "icone": null,
+   "resumo": "Você nasceu sem ou perdeu um membro do seu corpo... Isso dificulta sua vida bastante. Braço: -4 Destreza e Força, não pode usar armas de duas mãos nem à distância. Perna: -6 Destreza, -50% Movimento, não pode usar a ação Acelerar.",
+   "custo": "+5 Dor",
+   "custoTipo": "gain"
+  },
+  {
+   "id": "abismo-cego",
+   "tipo": "dor",
+   "nome": "Cego",
+   "icone": null,
+   "resumo": "Você nasceu ou se tornou cego. Você tem permanentemente a condição Cego .",
+   "custo": "+5 Dor",
+   "custoTipo": "gain"
+  },
+  {
+   "id": "abismo-gringo",
+   "tipo": "dor",
+   "nome": "Gringo",
+   "icone": null,
+   "resumo": "Você não nasceu para negociações. +100% Sins gastos ao comprar itens ou equipamentos. OBS: Você deve comprar seus próprios itens, não pode pedir para um companheiro comprar por você.",
+   "custo": "+5 Dor",
+   "custoTipo": "gain"
+  },
+  {
+   "id": "abismo-burro",
+   "tipo": "dor",
+   "nome": "Burro",
+   "icone": null,
+   "resumo": "Você não raciocina nem aprende direito. -50% Xp de todas as fontes.",
+   "custo": "+6 Dor",
+   "custoTipo": "gain"
+  },
+  {
+   "id": "abismo-sacrificio-vivo",
+   "tipo": "dor",
+   "nome": "Sacrifício Vivo",
+   "icone": null,
+   "resumo": "Você escapou de um ritual de sacrifício, onde você era a oferenda. 50% menos de Saúde e Éter máximos.",
+   "custo": "+6 Dor",
+   "custoTipo": "gain"
+  },
+  {
+   "id": "abismo-exigente",
+   "tipo": "dor",
+   "nome": "Exigente",
+   "icone": null,
+   "resumo": "Você não suporta falhar. Ao falhar qualquer teste, -1 Stamina e Éter. Falhar criticamente, -1 Stamina e Éter Máximos.",
+   "custo": "+6 Dor",
+   "custoTipo": "gain"
+  }
+ ]
+}

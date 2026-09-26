@@ -1,0 +1,1035 @@
+{
+ "schema": "catalogo/1",
+ "tipo": "carta",
+ "fontes": [
+  "data/limiar.json"
+ ],
+ "total": 127,
+ "entradas": [
+  {
+   "id": "limiar-alma-resiliente",
+   "tipo": "carta",
+   "nome": "Alma Resiliente",
+   "icone": "🌍",
+   "resumo": "Aumente 1 nível de treinamento em Fortitude, Vontade e Reflexos",
+   "categoria": "universal",
+   "req": null
+  },
+  {
+   "id": "limiar-pernas-incansaveis",
+   "tipo": "carta",
+   "nome": "Pernas Incansáveis",
+   "icone": "🌍",
+   "resumo": "+3m de movimento permanente. Adicionalmente, Acelerar ganha +1,5 m.",
+   "categoria": "universal",
+   "req": null
+  },
+  {
+   "id": "limiar-treinamento-focado",
+   "tipo": "carta",
+   "nome": "Treinamento Focado",
+   "icone": "🌍",
+   "resumo": "Escolha 2 perícias. Aumente 1 nível de treinamento nelas. (Essa carta sempre está no pool universal)",
+   "categoria": "universal",
+   "req": null
+  },
+  {
+   "id": "limiar-reservas-profundas",
+   "tipo": "carta",
+   "nome": "Reservas Profundas",
+   "icone": "🌍",
+   "resumo": "+2d6+8 Stamina máxima permanente",
+   "categoria": "universal",
+   "req": null
+  },
+  {
+   "id": "limiar-poco-arcano",
+   "tipo": "carta",
+   "nome": "Poço Arcano",
+   "icone": "🌍",
+   "resumo": "+2d6+8 Éter máximo permanente",
+   "categoria": "universal",
+   "req": null
+  },
+  {
+   "id": "limiar-sangue-espesso",
+   "tipo": "carta",
+   "nome": "Sangue Espesso",
+   "icone": "🌍",
+   "resumo": "+2d10+5 Saúde máxima permanente",
+   "categoria": "universal",
+   "req": null
+  },
+  {
+   "id": "limiar-olhos-de-aguia",
+   "tipo": "carta",
+   "nome": "Olhos de Águia",
+   "icone": "🌍",
+   "resumo": "Aumente 2 níveis de treinamento em Percepção",
+   "categoria": "universal",
+   "req": null
+  },
+  {
+   "id": "limiar-reflexos-agucados",
+   "tipo": "carta",
+   "nome": "Reflexos Aguçados",
+   "icone": "🌍",
+   "resumo": "Aumente 2 níveis de treinamento em Iniciativa",
+   "categoria": "universal",
+   "req": null
+  },
+  {
+   "id": "limiar-musculos-de-ogro",
+   "tipo": "carta",
+   "nome": "Músculos de Ogro",
+   "icone": "💪",
+   "resumo": "Seus ataques corpo a corpo causam +5 de dano permanente",
+   "categoria": "forca",
+   "req": "FOR 16+"
+  },
+  {
+   "id": "limiar-ossos-densos",
+   "tipo": "carta",
+   "nome": "Ossos Densos",
+   "icone": "💪",
+   "resumo": "Seus ataques corpo a corpo críticos reduzem 1 de Armadura do inimigo até o fim do combate",
+   "categoria": "forca",
+   "req": "FOR 16+"
+  },
+  {
+   "id": "limiar-pontos-vitais",
+   "tipo": "carta",
+   "nome": "Pontos Vitais",
+   "icone": "💪",
+   "resumo": "Ao acertar crítico corpo a corpo, cause +2d6 de dano adicional",
+   "categoria": "forca",
+   "req": "FOR 16+"
+  },
+  {
+   "id": "limiar-garras-de-aco",
+   "tipo": "carta",
+   "nome": "Garras de Éter",
+   "icone": "💪",
+   "resumo": "Seus ataques desarmados causam 1d10 + SAB de dano Cortante (ao invés de 1d4)",
+   "categoria": "forca",
+   "req": "FOR 16+"
+  },
+  {
+   "id": "limiar-coluna-de-tita",
+   "tipo": "carta",
+   "nome": "Coluna de Titã",
+   "icone": "💪",
+   "resumo": "Aumente +1 ponto de força. Adicionalmente, Você ignora sobrepeso leve",
+   "categoria": "forca",
+   "req": "FOR 16+"
+  },
+  {
+   "id": "limiar-sangue-fervente",
+   "tipo": "carta",
+   "nome": "Sangue Fervente",
+   "icone": "💪",
+   "resumo": "Ao reduzir criatura a 0 Saúde corpo a corpo, seu próximo ataque neste turno causa +1d10 de dano de Força",
+   "categoria": "forca",
+   "req": "FOR 16+"
+  },
+  {
+   "id": "limiar-arremesso-brutal",
+   "tipo": "carta",
+   "nome": "Arremesso Brutal",
+   "icone": "💪",
+   "resumo": "Você pode arremessar armas corpo a corpo até 18m causando dano normal + 1d8 Contundente",
+   "categoria": "forca",
+   "req": "FOR 16+"
+  },
+  {
+   "id": "limiar-lutador-de-rua",
+   "tipo": "carta",
+   "nome": "Lutador de Rua",
+   "icone": "💪",
+   "resumo": "+5 em manobras de Agarrar. Criaturas agarradas recebem 2d6 de dano por turno e pode agarrar criaturas de um tamanho acima que o seu.",
+   "categoria": "forca",
+   "req": "FOR 16+"
+  },
+  {
+   "id": "limiar-impacto-sismico",
+   "tipo": "carta",
+   "nome": "Impacto Sísmico",
+   "icone": "💪",
+   "resumo": "Ao empurrar com sucesso, empurre +4,5m adicionais e cause 3d6 de dano de Força caso o alvo colida com qualquer obstáculo",
+   "categoria": "forca",
+   "req": "FOR 16+"
+  },
+  {
+   "id": "limiar-limiar-da-morte",
+   "tipo": "carta",
+   "nome": "Limiar da Morte",
+   "icone": "💪",
+   "resumo": "Como ação livre, nesta rodada você fica vulnerável a dano ordinário, porém causa +2d8 de dano de Força em todos os ataques.",
+   "categoria": "forca",
+   "req": "FOR 16+"
+  },
+  {
+   "id": "limiar-presenca-aterradora",
+   "tipo": "carta",
+   "nome": "Presença Aterradora",
+   "icone": "💪",
+   "resumo": "Aumente 2 níveis de treinamento em Intimidação. Criaturas menores que você têm desvantagem em Vontade contra sua intimidação",
+   "categoria": "forca",
+   "req": "FOR 16+"
+  },
+  {
+   "id": "limiar-quebra-escudos",
+   "tipo": "carta",
+   "nome": "Quebra-Escudos",
+   "icone": "💪",
+   "resumo": "Ao acertar crítico em criaturas de nível igual ou menor que o seu, destrua 1 item que estejam segurando ou vestindo (escudo, arma, armadura)",
+   "categoria": "forca",
+   "req": "FOR 16+"
+  },
+  {
+   "id": "limiar-lamina-fantasma",
+   "tipo": "carta",
+   "nome": "Lâmina Fantasma",
+   "icone": "🎯",
+   "resumo": "Você acerta críticos em 19-20 no d20 (ao invés de apenas 20). Se já possui margem de ameaça aumentada, aumente em +1.",
+   "categoria": "destreza",
+   "req": "DES 16+"
+  },
+  {
+   "id": "limiar-sombra-dancante",
+   "tipo": "carta",
+   "nome": "Sombra Dançante",
+   "icone": "🎯",
+   "resumo": "Você entende a dança da batalha. +1 Evasão permanente, +1 nível de treinamento em Defender",
+   "categoria": "destreza",
+   "req": "DES 16+"
+  },
+  {
+   "id": "limiar-reflexos-de-serpente",
+   "tipo": "carta",
+   "nome": "Reflexos de Serpente",
+   "icone": "🎯",
+   "resumo": "1x/Curto: Force um ataque que te acertaria a causar metade do dano (pode ser declarado após a rolagem)",
+   "categoria": "destreza",
+   "req": "DES 16+"
+  },
+  {
+   "id": "limiar-passos-do-vento",
+   "tipo": "carta",
+   "nome": "Passos do Vento",
+   "icone": "🎯",
+   "resumo": "Seu movimento aumenta em +3 m. Você não provoca ataques de oportunidade. Adicionalmente, saltar custa 1 ação",
+   "categoria": "destreza",
+   "req": "DES 16+"
+  },
+  {
+   "id": "limiar-paciencia",
+   "tipo": "carta",
+   "nome": "Paciência",
+   "icone": "🎯",
+   "resumo": "Os primeiros golpes são apenas para distrair. Ao errar um golpe contra um alvo pode gastar 5 Stamina como ação livre para adicionar Exposto ao alvo.",
+   "categoria": "destreza",
+   "req": "DES 16+"
+  },
+  {
+   "id": "limiar-artilharia",
+   "tipo": "carta",
+   "nome": "Artilharia",
+   "icone": "🎯",
+   "resumo": "+2 em Atacar com armas à distância. Críticos de armas à distância, removem 1 de armadura do alvo até o fim do combate. Adicionalmente, Ignore desvantagem por cobertura parcial ou leve.",
+   "categoria": "destreza",
+   "req": "DES 16+"
+  },
+  {
+   "id": "limiar-dedos-de-ladrao",
+   "tipo": "carta",
+   "nome": "Dedos de Ladrão",
+   "icone": "🎯",
+   "resumo": "Aumente 2 níveis de treinamento em Crime. Você pode tentar furtar objetos de alvos em combate como 1 ação, desde que não estejam os utilizando. Adicionalmente, ao estar em combate, você sempre tem vantagem em Crime.",
+   "categoria": "destreza",
+   "req": "DES 16+"
+  },
+  {
+   "id": "limiar-rapino",
+   "tipo": "carta",
+   "nome": "Rapino",
+   "icone": "🎯",
+   "resumo": "Aumente 2 níveis de treinamento em Enganação. Você não sofre dano de queda de altura inferior a 100 metros e Sempre cai de pé nessas circunstâncias.",
+   "categoria": "destreza",
+   "req": "DES 16+"
+  },
+  {
+   "id": "limiar-corpo-escorregadio",
+   "tipo": "carta",
+   "nome": "Corpo Escorregadio",
+   "icone": "🎯",
+   "resumo": "Aumente 2 níveis de treinamento em Reflexos. +3 em testes para escapar de Agarrões, amarras ou restrições físicas não místicas. Adicionalmente, você pode usar sua reação para somar sua pericia Defender em qualquer teste de Reflexos.",
+   "categoria": "destreza",
+   "req": "DES 16+"
+  },
+  {
+   "id": "limiar-sombras",
+   "tipo": "carta",
+   "nome": "Sombras",
+   "icone": "🎯",
+   "resumo": "Aumente 2 níveis de treinamento em Furtividade. Você pode se esconder mesmo sendo observado se houver sombras ou cobertura leve. Adicionalmente, você gasta -1 ação para se esconder (min. 1)",
+   "categoria": "destreza",
+   "req": "DES 16+"
+  },
+  {
+   "id": "limiar-terceiro-olho",
+   "tipo": "carta",
+   "nome": "Terceiro Olho",
+   "icone": "🎯",
+   "resumo": "Ao acertar dois ataques a distância na mesma criatura, você pode gastar 5 de stamina para realizar outro como ação livre na mesma criatura.",
+   "categoria": "destreza",
+   "req": "DES 16+"
+  },
+  {
+   "id": "limiar-esquiva-abissal",
+   "tipo": "carta",
+   "nome": "Esquiva Abissal",
+   "icone": "🎯",
+   "resumo": "+1 nível de treinamento em Defender. Você pode gastar 10 de Stamina como ação livre para recuperar sua reação. 1x/curto",
+   "categoria": "destreza",
+   "req": "DES 16+"
+  },
+  {
+   "id": "limiar-carne-de-pedra",
+   "tipo": "carta",
+   "nome": "Carne de Pedra",
+   "icone": "🛡️",
+   "resumo": "Reduza todo dano recebido em 5 (mínimo 1); Ae(5, todos) Exceto: Força e Primordial",
+   "categoria": "con",
+   "req": "CON 16+"
+  },
+  {
+   "id": "limiar-coracao-imortal",
+   "tipo": "carta",
+   "nome": "Coração Imortal",
+   "icone": "🛡️",
+   "resumo": "1x/Semana: Ao ser reduzido a 0 Saúde, volte com 50% da Saúde máxima automaticamente",
+   "categoria": "con",
+   "req": "CON 16+"
+  },
+  {
+   "id": "limiar-sangue-regenerador",
+   "tipo": "carta",
+   "nome": "Sangue Regenerador",
+   "icone": "🛡️",
+   "resumo": "Recupere Mod. Con Saúde por rodada durante combate (no início do seu turno)",
+   "categoria": "con",
+   "req": "CON 16+"
+  },
+  {
+   "id": "limiar-pulmoes-titanicos",
+   "tipo": "carta",
+   "nome": "Pulmões Titânicos",
+   "icone": "🛡️",
+   "resumo": "+3d12+8 Saúde máxima permanente",
+   "categoria": "con",
+   "req": "CON 16+"
+  },
+  {
+   "id": "limiar-coracao-da-dor",
+   "tipo": "carta",
+   "nome": "Coração da Dor",
+   "icone": "🛡️",
+   "resumo": "Aumente 2 níveis de treinamento em Fortitude. Você pode reagir a ataques eminentes com uma nova reação, Aceitar a Dor: role um teste de Fortitude, caso o dano (Antes de quaisquer resistências) seja inferior ao seu teste, ignore o dano.",
+   "categoria": "con",
+   "req": "CON 16+"
+  },
+  {
+   "id": "limiar-resistencia-arcana",
+   "tipo": "carta",
+   "nome": "Resistência Arcana",
+   "icone": "🛡️",
+   "resumo": "Escolha 1 tipo de dano atípico (Fogo, Frio, Ácido, Elétrico, Trovejante, Veneno, Necrótico, Psíquico, Radiante). Você tem Resistência a ele. Adicionalmente, ganhe 2 de armadura específica em todos os outros tipos de dano. Exceto: Força e Primordial",
+   "categoria": "con",
+   "req": "CON 16+"
+  },
+  {
+   "id": "limiar-cicatrizacao-acelerada",
+   "tipo": "carta",
+   "nome": "Cicatrização Acelerada",
+   "icone": "🛡️",
+   "resumo": "Descansos curtos curam 2x mais Saúde. Descansos longos sempre curam saúde completamente. Adicionalmente, recebe +1d4 de cura de todas outras fontes, a não ser descansos.",
+   "categoria": "con",
+   "req": "CON 16+"
+  },
+  {
+   "id": "limiar-pacto-sanguinario",
+   "tipo": "carta",
+   "nome": "Pacto Sanguinário",
+   "icone": "🛡️",
+   "resumo": "1x/dia: Recupere metade de sua Stamina como ação livre, mas sacrifique saúde atual equivalente a metade da sua saúde máxima.",
+   "categoria": "con",
+   "req": "CON 16+"
+  },
+  {
+   "id": "limiar-guardiao-teimoso",
+   "tipo": "carta",
+   "nome": "Guardião Teimoso",
+   "icone": "🛡️",
+   "resumo": "Ao estar em 0 Saúde, você perde apenas 5% da Saúde máxima por rodada (ao invés de 10%). Adicionalmente, testes de medicina para lhe salvar da morte tem CD 10. (Ao invés de 20)",
+   "categoria": "con",
+   "req": "CON 16+"
+  },
+  {
+   "id": "limiar-barbaro",
+   "tipo": "carta",
+   "nome": "Bárbaro",
+   "icone": "🛡️",
+   "resumo": "Aumente +1 ponto de atributo em Força e Constituição, porém, reduza -1 ponto de atributo em Inteligência e Sabedoria",
+   "categoria": "con",
+   "req": "CON 16+"
+  },
+  {
+   "id": "limiar-escamas-reativas",
+   "tipo": "carta",
+   "nome": "Escamas Reativas",
+   "icone": "🛡️",
+   "resumo": "Você ganha escamas reativas que se adaptam rapidamente ao serem atacadas. Provendo 10 de Ae ao último tipo de dano atípico que você recebeu APÓS o ataque.",
+   "categoria": "con",
+   "req": "CON 16+"
+  },
+  {
+   "id": "limiar-corpo-duro",
+   "tipo": "carta",
+   "nome": "Corpo Duro",
+   "icone": "🛡️",
+   "resumo": "Qualquer ataque contra você causa 1 de dano de força instantaneamente ao atacante. Adicionalmente, ganhe +1 de comodidade em todos os descansos longos permanentemente.",
+   "categoria": "con",
+   "req": "CON 16+"
+  },
+  {
+   "id": "limiar-mente-tatica",
+   "tipo": "carta",
+   "nome": "Mente Tática",
+   "icone": "📚",
+   "resumo": "Ao rolar qualquer perícia, você pode pagar 5 de Stamina para aumentar 1 nível de treinamento nela. (Acumulativo)",
+   "categoria": "int",
+   "req": "INT 16+"
+  },
+  {
+   "id": "limiar-olhos-analiticos",
+   "tipo": "carta",
+   "nome": "Olhos Analíticos",
+   "icone": "📚",
+   "resumo": "1x/combate (1 ação): Descubra Evasão exata, Saúde atual, resistências, vulnerabilidades e 1 habilidade especial de 1 criatura visível",
+   "categoria": "int",
+   "req": "INT 16+"
+  },
+  {
+   "id": "limiar-cerebro-enciclopedico",
+   "tipo": "carta",
+   "nome": "Cérebro Enciclopédico",
+   "icone": "📚",
+   "resumo": "Aumente 2 níveis de treinamento em Conhecimento. Adicionalmente, Você pode fazer testes de Conhecimento sobre qualquer tópico",
+   "categoria": "int",
+   "req": "INT 16+"
+  },
+  {
+   "id": "limiar-comandante-de-guerra",
+   "tipo": "carta",
+   "nome": "Comandante de Guerra",
+   "icone": "📚",
+   "resumo": "Aumente 2 níveis de treinamento em Motivar. Você pode usar a perícia motivar no lugar de Convencer. Adicionalmente, 1x/rodada (1 ação): Um aliado em 9m ataca imediatamente como reação com +2 em Atacar.",
+   "categoria": "int",
+   "req": "INT 16+"
+  },
+  {
+   "id": "limiar-contra-magica-instintiva",
+   "tipo": "carta",
+   "nome": "Contra-Mágica Instintiva",
+   "icone": "📚",
+   "resumo": "Ao ver magia sendo castada, role Conhecimento CD 15. Sucesso: você sabe exatamente o que faz E pode gastar sua reação para dar +5 em Resistência ao alvo dela. Adicionalmente, aumente sua CD de classe em +1",
+   "categoria": "int",
+   "req": "INT 16+"
+  },
+  {
+   "id": "limiar-decifrador-universal",
+   "tipo": "carta",
+   "nome": "Decifrador Universal",
+   "icone": "📚",
+   "resumo": "Aumente 2 níveis de treinamento em Investigação. Você pode ler QUALQUER idioma escrito após 1 minuto de estudo. Adicionalmente, Você pode fazer testes de Investigação sobre qualquer tópico.",
+   "categoria": "int",
+   "req": "INT 16+"
+  },
+  {
+   "id": "limiar-memoria-absoluta",
+   "tipo": "carta",
+   "nome": "Memória Absoluta",
+   "icone": "📚",
+   "resumo": "Você lembra perfeitamente de tudo. Aumente +1 ponto de atributo em inteligência. Você nunca esquece rostos, nomes ou informações, podendo perguntar ao mestre qualquer coisa que vivenciou a partir de agora.",
+   "categoria": "int",
+   "req": "INT 16+"
+  },
+  {
+   "id": "limiar-felizardo",
+   "tipo": "carta",
+   "nome": "Felizardo",
+   "icone": "📚",
+   "resumo": "Você recebe +10% de Sins de todas as fontes. Adicionalmente, ao rolar d100's quando saquear uma criatura morta POR VOCÊ, sempre some +10 ao dado",
+   "categoria": "int",
+   "req": "INT 16+"
+  },
+  {
+   "id": "limiar-bestiario",
+   "tipo": "carta",
+   "nome": "Bestiário",
+   "icone": "📚",
+   "resumo": "Ao combater uma criatura já conhecida, os ataques contra ela ignoram 3 de Armadura, causam +1d6 de dano e possuem +2 Atacar a todos os aliados em até 18 m de você.",
+   "categoria": "int",
+   "req": "INT 16+"
+  },
+  {
+   "id": "limiar-equilibrio-eterico",
+   "tipo": "carta",
+   "nome": "Equilíbrio Etérico",
+   "icone": "📚",
+   "resumo": "Ao estar com 100% de 2 Status você tem +2 em todas as perícias.",
+   "categoria": "int",
+   "req": "INT 16+"
+  },
+  {
+   "id": "limiar-estudo-intenso",
+   "tipo": "carta",
+   "nome": "Estudo Intenso",
+   "icone": "📚",
+   "resumo": "Adicione +2 ao seu CD de classe. Adicionalmente, escolha uma perícia, aumente 1 nível de treinamento nela.",
+   "categoria": "int",
+   "req": "INT 16+"
+  },
+  {
+   "id": "limiar-campeao-de-vidro",
+   "tipo": "carta",
+   "nome": "Campeão de Vidro",
+   "icone": "📚",
+   "resumo": "Você acumula dano a cada combate em que você não perde saúde. +1 de dano de Força por combate sem perder saúde. Ao perder qualquer saúde, você perde 5 pontos de dano acumulados nessa carta instantaneamente e recebe +5 de dano Primordial.",
+   "categoria": "int",
+   "req": "INT 16+"
+  },
+  {
+   "id": "limiar-olhos-do-oraculo",
+   "tipo": "carta",
+   "nome": "Olhos do Oráculo",
+   "icone": "🔮",
+   "resumo": "Você não pode ser Desprevenido. Aumente 2 níveis de treinamento em Percepção. Você pode ver criaturas invisíveis como silhuetas borradas",
+   "categoria": "sab",
+   "req": "SAB 16+"
+  },
+  {
+   "id": "limiar-premonicao-de-batalha",
+   "tipo": "carta",
+   "nome": "Premonição de Batalha",
+   "icone": "🔮",
+   "resumo": "1x/sessão: Você pode escolher substituir sua Iniciativa por 30 E dar +2 em Iniciativa para todos os aliados em 12m",
+   "categoria": "sab",
+   "req": "SAB 16+"
+  },
+  {
+   "id": "limiar-empatia-transcendental",
+   "tipo": "carta",
+   "nome": "Empatia Transcendental",
+   "icone": "🔮",
+   "resumo": "Aumente 2 níveis de treinamento em Intuição. Você pode sentir emoções ocultas e detectar se alguém esta mentindo automaticamente. Adicionalmente, você pode realizar testes de Intuição para qualquer interação",
+   "categoria": "sab",
+   "req": "SAB 16+"
+  },
+  {
+   "id": "limiar-rastreador-sobrenatural",
+   "tipo": "carta",
+   "nome": "Rastreador Sobrenatural",
+   "icone": "🔮",
+   "resumo": "Aumente 2 níveis de treinamento em Sobrevivência. Você pode rastrear qualquer criatura por até 7 dias. Você sabe direção e distância aproximada de alvos que você já rastreou",
+   "categoria": "sab",
+   "req": "SAB 16+"
+  },
+  {
+   "id": "limiar-maos-abencoadas",
+   "tipo": "carta",
+   "nome": "Mãos Abençoadas",
+   "icone": "🔮",
+   "resumo": "Como uma ação, você pode tocar aliados e realizar teste de Medicina CD 12. Sucesso: cure 3d6+SAB de Saúde. Você pode fazer isso em até 3 aliados por descanso longo",
+   "categoria": "sab",
+   "req": "SAB 16+"
+  },
+  {
+   "id": "limiar-comunhao-primordial",
+   "tipo": "carta",
+   "nome": "Comunhão",
+   "icone": "🔮",
+   "resumo": "Você fala a Língua Natural. Você pode pedir 1 favor pequeno a criaturas naturais 1x/dia (elas cooperam se não for perigoso)",
+   "categoria": "sab",
+   "req": "SAB 16+"
+  },
+  {
+   "id": "limiar-sexto-sentido",
+   "tipo": "carta",
+   "nome": "Sexto Sentido",
+   "icone": "🔮",
+   "resumo": "1x/Descanso Longo: Ao você ou aliado em 9m ser alvo de ataque, como ação livre pode fazer o atacante rerolar com desvantagem",
+   "categoria": "sab",
+   "req": "SAB 16+"
+  },
+  {
+   "id": "limiar-guardiao-da-natureza",
+   "tipo": "carta",
+   "nome": "Guardião da Natureza",
+   "icone": "🔮",
+   "resumo": "Escolha 2 tipos de terreno (Floresta, Montanha, Deserto, Urbano, Subterrâneo, Naval). Neles, você e aliados em 9m têm +3 em Percepção, Sobrevivência, Furtividade e Movimento",
+   "categoria": "sab",
+   "req": "SAB 16+"
+  },
+  {
+   "id": "limiar-instinto-do-predador",
+   "tipo": "carta",
+   "nome": "Instinto do Predador",
+   "icone": "🔮",
+   "resumo": "Ao rolar Iniciativa, você pode declarar 1 criatura como \"Presa\". Você tem +3 em Atacar, +2 em Defender e +1d6 de dano contra ela. Você pode trocar de presa como ação livre",
+   "categoria": "sab",
+   "req": "SAB 16+"
+  },
+  {
+   "id": "limiar-meditacao-transcendental",
+   "tipo": "carta",
+   "nome": "Meditação Transcendental",
+   "icone": "🔮",
+   "resumo": "Você ganha novo tipo de ação: Meditação Transcendental (30min). Recupere 2d6 Stamina e 2d6 Éter",
+   "categoria": "sab",
+   "req": "SAB 16+"
+  },
+  {
+   "id": "limiar-vidente",
+   "tipo": "carta",
+   "nome": "Vidente",
+   "icone": "🔮",
+   "resumo": "1x/sessão: Faça 1 pergunta \"sim/não\" ao Mestre sobre algo que acontecerá nos próximos 10 minutos. Ele responde honestamente. Você pode usar a resposta para se preparar",
+   "categoria": "sab",
+   "req": "SAB 16+"
+  },
+  {
+   "id": "limiar-santuario-espiritual",
+   "tipo": "carta",
+   "nome": "Santuário Espiritual",
+   "icone": "🔮",
+   "resumo": "Aliados em 9m de você têm +3 em todos os testes de Resistência (Fortitude, Vontade, Reflexos) e são imunes a Amedrontado e Enfeitiçado enquanto você estiver consciente",
+   "categoria": "sab",
+   "req": "SAB 16+"
+  },
+  {
+   "id": "limiar-carne-e-aco",
+   "tipo": "carta",
+   "nome": "Carne e Aço",
+   "categoria": "rara",
+   "req": "FOR 18+, CON 18+"
+  },
+  {
+   "id": "limiar-berserker-imortal",
+   "tipo": "carta",
+   "nome": "Berserker Imortal",
+   "categoria": "rara",
+   "req": "FOR 16+, CON 16+"
+  },
+  {
+   "id": "limiar-punhos-do-abismo",
+   "tipo": "carta",
+   "nome": "Punhos do Abismo",
+   "categoria": "rara",
+   "req": "DES 20+, SAB 14+"
+  },
+  {
+   "id": "limiar-carnificina",
+   "tipo": "carta",
+   "nome": "Carnificina",
+   "categoria": "rara",
+   "req": "FOR 18+, DES 16+"
+  },
+  {
+   "id": "limiar-carrasco",
+   "tipo": "carta",
+   "nome": "Carrasco",
+   "categoria": "rara",
+   "req": "FOR 18+, INT 16+"
+  },
+  {
+   "id": "limiar-colossus-primordial",
+   "tipo": "carta",
+   "nome": "Colossus Primordial",
+   "categoria": "rara",
+   "req": "FOR 22+"
+  },
+  {
+   "id": "limiar-devastador-de-enxames",
+   "tipo": "carta",
+   "nome": "Devastador de Enxames",
+   "categoria": "rara",
+   "req": "FOR 20+, CON 16+"
+  },
+  {
+   "id": "limiar-lenda-monge",
+   "tipo": "carta",
+   "nome": "Lenda Monge",
+   "categoria": "rara",
+   "req": "DES 22+, SAB 16+"
+  },
+  {
+   "id": "limiar-assassino-fantasma",
+   "tipo": "carta",
+   "nome": "Assassino Fantasma",
+   "categoria": "rara",
+   "req": "DES 22+, INT 16+"
+  },
+  {
+   "id": "limiar-laminas-dancantes",
+   "tipo": "carta",
+   "nome": "Lâminas Dançantes",
+   "categoria": "rara",
+   "req": "DES 22+, INT 16+"
+  },
+  {
+   "id": "limiar-velocista-umbral",
+   "tipo": "carta",
+   "nome": "Velocista Umbral",
+   "categoria": "rara",
+   "req": "DES 24+"
+  },
+  {
+   "id": "limiar-mestre-dos-mil-cortes",
+   "tipo": "carta",
+   "nome": "Mestre dos Mil Cortes",
+   "categoria": "rara",
+   "req": "DES 20+, INT 14+"
+  },
+  {
+   "id": "limiar-predador-supremo",
+   "tipo": "carta",
+   "nome": "Predador Supremo",
+   "categoria": "rara",
+   "req": "DES 18+, SAB 18+"
+  },
+  {
+   "id": "limiar-fenix-imortal",
+   "tipo": "carta",
+   "nome": "Fênix Imortal",
+   "categoria": "rara",
+   "req": "CON 18+, SAB 16+"
+  },
+  {
+   "id": "limiar-pele-mistica-adaptativa",
+   "tipo": "carta",
+   "nome": "Pele Mística Adaptativa",
+   "categoria": "rara",
+   "req": "CON 20+, INT 16+"
+  },
+  {
+   "id": "limiar-escamas-de-dragao",
+   "tipo": "carta",
+   "nome": "Escamas de Dragão",
+   "categoria": "rara",
+   "req": "CON 20+, FOR 16+"
+  },
+  {
+   "id": "limiar-organismo-mutagenico",
+   "tipo": "carta",
+   "nome": "Organismo Mutagênico",
+   "categoria": "rara",
+   "req": "CON 22+"
+  },
+  {
+   "id": "limiar-duas-mangas",
+   "tipo": "carta",
+   "nome": "Duas Mangas",
+   "categoria": "rara",
+   "req": "INT 22+, DES 16+"
+  },
+  {
+   "id": "limiar-o-mestre",
+   "tipo": "carta",
+   "nome": "O Mestre",
+   "categoria": "rara",
+   "req": "INT 20+, SAB 20+"
+  },
+  {
+   "id": "limiar-modo-analise",
+   "tipo": "carta",
+   "nome": "Modo Análise",
+   "categoria": "rara",
+   "req": "INT 20+, DES 16+"
+  },
+  {
+   "id": "limiar-senhor-do-tempo",
+   "tipo": "carta",
+   "nome": "Senhor do Tempo",
+   "categoria": "rara",
+   "req": "INT 18+, DES 18+"
+  },
+  {
+   "id": "limiar-arquiteto-do-destino",
+   "tipo": "carta",
+   "nome": "Arquiteto do Destino",
+   "categoria": "rara",
+   "req": "SAB 22+"
+  },
+  {
+   "id": "limiar-contra-teurgo-supremo",
+   "tipo": "carta",
+   "nome": "Contra-Teurgo Supremo",
+   "categoria": "rara",
+   "req": "INT 20+, CON 16+"
+  },
+  {
+   "id": "limiar-cerebro-transcendente",
+   "tipo": "carta",
+   "nome": "Cérebro Transcendente",
+   "categoria": "rara",
+   "req": "INT 22+"
+  },
+  {
+   "id": "limiar-mestre-teurgo-supremo",
+   "tipo": "carta",
+   "nome": "Mestre Teurgo Supremo",
+   "categoria": "rara",
+   "req": "INT 22+, SAB 18+, DES 16+"
+  },
+  {
+   "id": "limiar-grande-eter",
+   "tipo": "carta",
+   "nome": "Grande Éter",
+   "categoria": "rara",
+   "req": "INT 22+, SAB 18+"
+  },
+  {
+   "id": "limiar-olhar-dimensional",
+   "tipo": "carta",
+   "nome": "Olhar Dimensional",
+   "categoria": "rara",
+   "req": "SAB 20+"
+  },
+  {
+   "id": "limiar-sudito-da-loucura",
+   "tipo": "carta",
+   "nome": "Súdito da Loucura",
+   "categoria": "rara",
+   "req": "SAB 18+"
+  },
+  {
+   "id": "limiar-devorador-de-almas",
+   "tipo": "carta",
+   "nome": "Devorador de Almas",
+   "categoria": "rara",
+   "req": "INT 16+, SAB 16+"
+  },
+  {
+   "id": "limiar-olhos-de-veluria",
+   "tipo": "carta",
+   "nome": "Olhos de Velúria",
+   "categoria": "rara",
+   "req": "SAB 18+, INT 16+"
+  },
+  {
+   "id": "limiar-guardiao-eterno-da-vida",
+   "tipo": "carta",
+   "nome": "Guardião Eterno da Vida",
+   "categoria": "rara",
+   "req": "SAB 20+, CON 16+"
+  },
+  {
+   "id": "limiar-santuario-intocavel",
+   "tipo": "carta",
+   "nome": "Santuário Intocável",
+   "categoria": "rara",
+   "req": "SAB 18+, CON 14+"
+  },
+  {
+   "id": "limiar-deus-da-guerra",
+   "tipo": "carta",
+   "nome": "Deus da Guerra",
+   "categoria": "rara",
+   "req": "FOR 18+, DES 18+, CON 18+"
+  },
+  {
+   "id": "limiar-onisciencia-de-kha",
+   "tipo": "carta",
+   "nome": "Onisciência de Mundarak",
+   "categoria": "rara",
+   "req": "INT 20+, SAB 20+, DES 16+"
+  },
+  {
+   "id": "limiar-tanque-absoluto",
+   "tipo": "carta",
+   "nome": "Tanque Absoluto",
+   "categoria": "rara",
+   "req": "FOR 16+, CON 16+, SAB 16+"
+  },
+  {
+   "id": "limiar-artista-marcial-supremo",
+   "tipo": "carta",
+   "nome": "Artista Marcial Supremo",
+   "categoria": "rara",
+   "req": "CON 14+, DES 20+, SAB 20+"
+  },
+  {
+   "id": "limiar-destruidor-de-mundos",
+   "tipo": "carta",
+   "nome": "Destruidor de Mundos",
+   "categoria": "rara",
+   "req": "FOR 22+, INT 14+, CON 16+"
+  },
+  {
+   "id": "limiar-imortal-relutante",
+   "tipo": "carta",
+   "nome": "Imortal Relutante",
+   "categoria": "rara",
+   "req": "CON 18+, SAB 18+, INT 18+"
+  },
+  {
+   "id": "limiar-avatar-do-caos",
+   "tipo": "carta",
+   "nome": "Avatar do Caos",
+   "categoria": "rara",
+   "req": "FOR 16+, DES 16+, INT 16+"
+  },
+  {
+   "id": "limiar-furia-titanica",
+   "tipo": "carta",
+   "nome": "Fúria Titânica",
+   "categoria": "rara",
+   "req": "FOR 20+, CON 18+"
+  },
+  {
+   "id": "limiar-investida-cataclismica",
+   "tipo": "carta",
+   "nome": "Investida Cataclísmica",
+   "categoria": "rara",
+   "req": "FOR 22+, CON 16+"
+  },
+  {
+   "id": "limiar-pele-de-basalto",
+   "tipo": "carta",
+   "nome": "Pele de Basalto",
+   "categoria": "rara",
+   "req": "FOR 16+, CON 20+"
+  },
+  {
+   "id": "limiar-esmagador-de-linhas",
+   "tipo": "carta",
+   "nome": "Esmagador de Linhas",
+   "categoria": "rara",
+   "req": "FOR 18+, CON 16+"
+  },
+  {
+   "id": "limiar-estocada-perfeita",
+   "tipo": "carta",
+   "nome": "Estocada Perfeita",
+   "categoria": "rara",
+   "req": "DES 20+, INT 14+"
+  },
+  {
+   "id": "limiar-sangria-precisa",
+   "tipo": "carta",
+   "nome": "Sangria Precisa",
+   "categoria": "rara",
+   "req": "DES 18+, INT 16+"
+  },
+  {
+   "id": "limiar-muralha-de-aco",
+   "tipo": "carta",
+   "nome": "Muralha de Aço",
+   "categoria": "rara",
+   "req": "DES 18+, CON 16+"
+  },
+  {
+   "id": "limiar-duelista-fantasma",
+   "tipo": "carta",
+   "nome": "Duelista Fantasma",
+   "categoria": "rara",
+   "req": "DES 22+, INT 16+"
+  },
+  {
+   "id": "limiar-contra-golpe-encadeado",
+   "tipo": "carta",
+   "nome": "Contra-Golpe Encadeado",
+   "categoria": "rara",
+   "req": "DES 20+, CON 14+"
+  },
+  {
+   "id": "limiar-chuva-de-flechas",
+   "tipo": "carta",
+   "nome": "Chuva de Flechas",
+   "categoria": "rara",
+   "req": "DES 20+, SAB 14+"
+  },
+  {
+   "id": "limiar-tiro-executor",
+   "tipo": "carta",
+   "nome": "Tiro Executor",
+   "categoria": "rara",
+   "req": "DES 18+, SAB 16+"
+  },
+  {
+   "id": "limiar-marca-de-caca-eterica",
+   "tipo": "carta",
+   "nome": "Marca de Caça Etérica",
+   "categoria": "rara",
+   "req": "DES 16+, SAB 16+"
+  },
+  {
+   "id": "limiar-predador-das-sombras",
+   "tipo": "carta",
+   "nome": "Predador das Sombras",
+   "categoria": "rara",
+   "req": "DES 18+, SAB 18+"
+  },
+  {
+   "id": "limiar-rajada-perfeita",
+   "tipo": "carta",
+   "nome": "Rajada Perfeita",
+   "categoria": "rara",
+   "req": "DES 20+, SAB 18+"
+  },
+  {
+   "id": "limiar-corrente-elemental",
+   "tipo": "carta",
+   "nome": "Corrente Elemental",
+   "categoria": "rara",
+   "req": "SAB 20+, CON 16+"
+  },
+  {
+   "id": "limiar-ritmo-incansavel",
+   "tipo": "carta",
+   "nome": "Ritmo Incansável",
+   "categoria": "rara",
+   "req": "SAB 18+, DES 16+"
+  },
+  {
+   "id": "limiar-bombardeio-arcano",
+   "tipo": "carta",
+   "nome": "Bombardeio Arcano",
+   "categoria": "rara",
+   "req": "INT 20+, SAB 14+"
+  },
+  {
+   "id": "limiar-lamina-eterea",
+   "tipo": "carta",
+   "nome": "Lâmina Etérea",
+   "categoria": "rara",
+   "req": "INT 18+, DES 16+"
+  },
+  {
+   "id": "limiar-aniquilacao-teurgica",
+   "tipo": "carta",
+   "nome": "Aniquilação Teúrgica",
+   "categoria": "rara",
+   "req": "INT 22+, SAB 18+"
+  },
+  {
+   "id": "limiar-fenda-dimensional",
+   "tipo": "carta",
+   "nome": "Fenda Dimensional",
+   "categoria": "rara",
+   "req": "INT 18+, SAB 16+"
+  }
+ ]
+}

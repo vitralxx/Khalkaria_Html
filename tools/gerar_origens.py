@@ -5,6 +5,7 @@
 # As 17 origem-card externalizadas como {opentag, corpo}; scaffold no template ({{CARD_n}}).
 # Uso: python gerar_origens.py [repo_root]
 import json, sys, os
+from kf_marca import abre, controles
 
 RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 REPO = sys.argv[1] if len(sys.argv) > 1 else RAIZ
@@ -14,7 +15,8 @@ def main():
     data = json.load(open(f'{REPO}/data/origens.json', encoding='utf-8'))
     page = tpl
     for i, c in enumerate(data['cards']):
-        page = page.replace(f'{{{{CARD_{i}}}}}', f'{c["opentag"]}{c["corpo"]}</{c["tag"]}>')
+        page = page.replace(f'{{{{CARD_{i}}}}}', f'{abre(c["opentag"], "origem", c["id"])}'
+                                                 f'{controles(c["nome"])}{c["corpo"]}</{c["tag"]}>')
     open(f'{REPO}/pages/origens.html', 'w', encoding='utf-8').write(page)
     print(f'origens.html gerado: {len(data["cards"])} origens')
 

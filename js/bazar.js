@@ -541,13 +541,24 @@
     var n = tenho(id);
     return n ? '<span class="bz-selo-n" title="No inventário: ' + n + '">×' + n + '</span>' : '';
   }
+  // F1a: marcação entidade -> ficha. data-kf-tipo/-id no card e botão + alça
+  // inertes (hidden) até a F4. Sem data-prever no card: aqui o data-prever é o
+  // gatilho do cartão (bazar-cartao.js) e fica só no nome, com o id puro.
+  function kfAttrs(it) {
+    return ' data-kf-tipo="item" data-kf-id="' + esc(it.id) + '"';
+  }
+  function kfControles(it) {
+    return '<button type="button" class="ent-add" hidden aria-keyshortcuts="A" aria-label="' +
+      esc('Levar para a ficha: ' + it.nome) + '"></button><span class="ent-alca" hidden aria-hidden="true"></span>';
+  }
   function cardHTML(it, i) {
     var al = alcance(it);
     var reg = it.regiao || (it.unico ? 'Único/Quest' : '');
     return '<article class="item-card ' + classeRar(it.raridade) +
       (al === 'dificil' ? ' dificil' : '') + (al === 'ok' ? ' alcancavel' : '') +
       (it.id === BZ.selecionado ? ' selecionado' : '') +
-      '" data-n="' + esc(it.nome) + '" data-id="' + esc(it.id) + '" style="--i:' + i + '" tabindex="0">' +
+      '" data-n="' + esc(it.nome) + '" data-id="' + esc(it.id) + '"' + kfAttrs(it) +
+      ' style="--i:' + i + '" tabindex="0">' + kfControles(it) +
       '<div class="item-head">' + arte(it, 'item-ico') +
         '<span class="item-name">' + esc(it.nome) + '</span>' + seloHTML(it.id) + '</div>' +
       '<div class="item-chips">' +
@@ -584,10 +595,11 @@
     return lista.map(function (it) {
       var reg = it.regiao || (it.unico ? 'Único/Quest' : '—');
       return '<tr class="item-card ' + classeRar(it.raridade) + (it.id === BZ.selecionado ? ' selecionado' : '') +
-        '" data-n="' + esc(it.nome) + '" data-id="' + esc(it.id) + '" tabindex="0">' +
+        '" data-n="' + esc(it.nome) + '" data-id="' + esc(it.id) + '"' + kfAttrs(it) + ' tabindex="0">' +
         // o flex mora no <div> interno: um <td> com display:flex deixa de ser
         // célula, não estica até a altura da linha e desalinha as bordas
-        '<td class="c-nome" data-prever="' + esc(it.id) + '"><div class="c-nome-in">' + arte(it, 'c-ico') +
+        '<td class="c-nome" data-prever="' + esc(it.id) + '"><div class="c-nome-in">' + kfControles(it) +
+          arte(it, 'c-ico') +
           '<span class="item-name">' + esc(it.nome) + '</span>' + seloHTML(it.id) + '</div></td>' +
         '<td class="c-raridade"><span class="tag-rar">' + icoRar(it.raridade) + esc(it.raridade) + '</span></td>' +
         '<td class="c-categoria">' + esc(it.categoria) + '</td>' +

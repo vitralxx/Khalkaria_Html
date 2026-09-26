@@ -1,0 +1,100 @@
+{
+ "schema": "catalogo/1",
+ "tipo": "variante",
+ "fontes": [
+  "data/racas/*.json"
+ ],
+ "total": 10,
+ "entradas": [
+  {
+   "id": "humano-simples",
+   "tipo": "variante",
+   "nome": "Simples",
+   "icone": null,
+   "resumo": "Treinado em Sobrevivência . Descansa com +1 nível de comodidade.",
+   "raca": "humano",
+   "card": "variant-card"
+  },
+  {
+   "id": "humano-estudioso",
+   "tipo": "variante",
+   "nome": "Estudioso",
+   "icone": null,
+   "resumo": "Treinado em Conhecimento . +1 idioma conhecido qualquer. 1 vez por descanso longo pode dar uma Hipótese ao falhar em um teste de conhecimento. Ganhando parcialmente a informação.",
+   "raca": "humano",
+   "card": "variant-card"
+  },
+  {
+   "id": "humano-rebelde",
+   "tipo": "variante",
+   "nome": "Rebelde",
+   "icone": null,
+   "resumo": "Treinado em Movimento ou Interação Social(Intimidação) . 1 vez por descanso longo, ao falhar em atacar, pode somar 1d4 ao teste.",
+   "raca": "humano",
+   "card": "variant-card"
+  },
+  {
+   "id": "humano-popular",
+   "tipo": "variante",
+   "nome": "Popular",
+   "icone": null,
+   "resumo": "Treinado em 1 Interação Social(Qualquer) . Uma vez por descanso longo, pode rolar Interação Social com vantagem.",
+   "raca": "humano",
+   "card": "variant-card"
+  },
+  {
+   "id": "anao-krichama",
+   "tipo": "variante",
+   "nome": "Krichama",
+   "icone": null,
+   "resumo": "Os mestres ferreiros e armeiros de Khalkaria. Suas forjas ardem há séculos ininterruptos, alimentadas por fogo alquímico e carvão primordial. Cada peça que criam é uma obra-prima, mas apenas para quem pode pagar o preço. Treinado em Ofício (Ferraria) Você tem Ae 5 a dano de Fogo. Durante um descanso longo, você pode fabricar 2 Equipamentos, ao invés de 1.",
+   "raca": "anao",
+   "card": "variant-card"
+  },
+  {
+   "id": "anao-caxon",
+   "tipo": "variante",
+   "nome": "Caxon",
+   "icone": null,
+   "resumo": "Engenheiros, arquitetos e defensores das fortalezas subterrâneas. Constroem muralhas que nunca caem e túneis que atravessam continentes. São os anões mais tradicionalistas, inflexíveis, pragmáticos, brutalmente honestos. Treinado em Ofício (Engenharia) Você tem Ar 3 Natural Durante um descanso longo, você pode fabricar 2 Bugigangas, ao invés de 1.",
+   "raca": "anao",
+   "card": "variant-card"
+  },
+  {
+   "id": "dryad-florescura",
+   "tipo": "variante",
+   "nome": "Florescura",
+   "icone": null,
+   "resumo": "Guardiões da magia antiga. Você segue o legado dos seus ancestrais, louvando o éter a todo custo. Os Florescura protegem a magia e, como consequência de sua linhagem, você é familiar ao místico. Você é treinado em Místico. Você pode conjurar uma ilusão menor naturalmente como 2 ações, sem foco. (um som baixo, cheiro fraco ou uma luz pequena) Escolha 1 magia de nível 1, você pode usá-la sem um foco.",
+   "raca": "dryad",
+   "card": "variant-card"
+  },
+  {
+   "id": "dryad-cascaferro",
+   "tipo": "variante",
+   "nome": "Cascaferro",
+   "icone": null,
+   "resumo": "Protetores da fauna selvagem. Desde pequeno, você esteve conectado à natureza e aprendeu a proteger os menores e necessitados. Você faz parte de uma linhagem que preserva o ciclo natural das plantas e dos animais. Você é treinado em Movimento. Você é treinado em Armas Marciais. +1 Armadura (Ar) Natural e +1 Evasão. Animais são naturalmente amigáveis em relação a você.",
+   "raca": "dryad",
+   "card": "variant-card"
+  },
+  {
+   "id": "gruto-rokhan",
+   "tipo": "variante",
+   "nome": "Rokhan",
+   "icone": null,
+   "resumo": "Você tem escamas que agem como uma armadura natural e é naturalmente forte. Você possui +10 Saúde máxima. 1 Armadura (Ar) Treinado em Fortitude ou Interação Social (Intimidação) Vida: 70-110 anos · Altura: 1,50m - 2,00m · Peso: 100kg - 160kg",
+   "raca": "gruto",
+   "card": "variant-card"
+  },
+  {
+   "id": "gruto-skal-ri",
+   "tipo": "variante",
+   "nome": "Skal'ri",
+   "icone": null,
+   "resumo": "Você é esguio, possui escamas finas e é desproporcionalmente alto. Você possui +5 Éter máximo. +1,5m movimento Treinado em Vontade ou Interação Social (Enganação) Vida: 120-180 anos · Altura: 1,70m - 2,50m · Peso: 70kg - 120kg",
+   "raca": "gruto",
+   "card": "variant-card"
+  }
+ ]
+}

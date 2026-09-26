@@ -1,0 +1,20 @@
+{
+ "_doc": "Ids do contrato do balanceamento (ficha-digital-regras.json, rev. 3, b1b8919) fora da convenção do site (plano §3.2) -> id do site. Validado pelo validar.py [ids]: todo alvo tem de existir no catálogo (data/catalogo/*.json) ou no data/bazar.json, e nenhuma chave pode ser ela mesma um id do site. 'semEntidade' lista os ids do contrato que não são uma entidade do site hoje: saem como AVISO até a fase indicada. gruto-rokhan e inseto-besouro (plano §3.2) já são ids do site e não precisam de alias.",
+ "alias": {
+  "abismo:lenda-viva": "abismo-lenda-viva",
+  "anao-variante": "anao-caxon",
+  "dryad-variante": "dryad-cascaferro",
+  "skalri": "gruto-skal-ri",
+  "suspensoes-lubrificadas": "automato-suspensoes-lubrificadas"
+ },
+ "_notas": {
+  "anao-variante": "regras.json arNaturalPorRaca = 3: a variante com 'Ar 3 Natural' é a Caxon (data/racas/anao.json).",
+  "dryad-variante": "regras.json arNaturalPorRaca = 3 e Evasão +1: a variante com '+1 Armadura (Ar) Natural e +1 Evasão' é a Cascaferro (data/racas/dryad.json)."
+ },
+ "semEntidade": {
+  "batedor-sexto-sentido": "linha da tabela de Instinto do Batedor (característica de classe, no template); vira medidor/entidade na F1b",
+  "passo-tremulo": "não existe no site nem no data/ (nenhuma magia, técnica ou item com esse nome): pergunta ao balanceamento",
+  "escudo": "categoria de item (D62: 'todo escudo, sem exceção'), não uma entidade: resolve-se pela categoria do Bazar na F1d",
+  "acao-acelerar": "ação do Sistema (Sua Rodada); a convenção não tem tipo 'acao': decisão na F1d"
+ }
+}

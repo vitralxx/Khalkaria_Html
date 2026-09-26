@@ -1,0 +1,217 @@
+{
+ "schema": "catalogo/1",
+ "tipo": "beneficio",
+ "fontes": [
+  "data/limiar.json"
+ ],
+ "total": 23,
+ "entradas": [
+  {
+   "id": "abismo-olhos-da-noite",
+   "tipo": "beneficio",
+   "nome": "Olhos da Noite",
+   "icone": null,
+   "resumo": "Você enxerga perfeitamente no escuro até 18m.",
+   "custo": "1 Dor",
+   "custoTipo": "spend"
+  },
+  {
+   "id": "abismo-pele-morta",
+   "tipo": "beneficio",
+   "nome": "Pele Morta",
+   "icone": null,
+   "resumo": "Você não sangra e é incombustível. Imune a Sangramento e Em Chamas .",
+   "custo": "2 Dor",
+   "custoTipo": "spend"
+  },
+  {
+   "id": "abismo-olhar-do-vazio",
+   "tipo": "beneficio",
+   "nome": "Olhar do Vazio",
+   "icone": null,
+   "resumo": "Força uma criatura que te veja a contemplar o vazio, Vontade contra seu CD ou fica Paralisada por 1 rodada. (1x/Descanso Longo)",
+   "custo": "1 Dor",
+   "custoTipo": "spend"
+  },
+  {
+   "id": "abismo-bencao-de-poder",
+   "tipo": "beneficio",
+   "nome": "Benção de Poder",
+   "icone": null,
+   "resumo": "Você ganha uma benção física ou mental. +1 Ponto de Atributo.",
+   "custo": "2 Dor",
+   "custoTipo": "spend"
+  },
+  {
+   "id": "abismo-mestre-das-masmorras",
+   "tipo": "beneficio",
+   "nome": "Mestre das Masmorras",
+   "icone": null,
+   "resumo": "Você pode sentir a presença de criaturas vivas em 30m através de paredes e obstáculos. Adicionalmente, você sempre sabe se um local explorável está completamente saqueado ou se ainda existem camaras não exploradas.",
+   "custo": "2 Dor",
+   "custoTipo": "spend"
+  },
+  {
+   "id": "abismo-assustador",
+   "tipo": "beneficio",
+   "nome": "Assustador",
+   "icone": null,
+   "resumo": "Ao ser atacado, o inimigo deve suceder um teste de Vontade contra seu CD ou fica Amedrontado por 1 rodada. A criatura fica imune ao suceder ou após o efeito.",
+   "custo": "2 Dor",
+   "custoTipo": "spend"
+  },
+  {
+   "id": "abismo-saciado",
+   "tipo": "beneficio",
+   "nome": "Saciado",
+   "icone": null,
+   "resumo": "Você não precisa comer ou beber. (Mas ainda consegue, relutantemente)",
+   "custo": "3 Dor",
+   "custoTipo": "spend"
+  },
+  {
+   "id": "abismo-sussurrador",
+   "tipo": "beneficio",
+   "nome": "Sussurrador",
+   "icone": null,
+   "resumo": "Você pode se comunicar telepaticamente com qualquer criatura que veja em até 9m.",
+   "custo": "3 Dor",
+   "custoTipo": "spend"
+  },
+  {
+   "id": "abismo-devorador-de-almas",
+   "tipo": "beneficio",
+   "nome": "Devorador de Almas",
+   "icone": null,
+   "resumo": "Ao tocar uma criatura morta, você pode absorver um fragmento de conhecimento: ganhe 1 nível de Treinamento temporário em 1 perícia que ela tinha por 24h.",
+   "custo": "3 Dor",
+   "custoTipo": "spend"
+  },
+  {
+   "id": "abismo-translocacao",
+   "tipo": "beneficio",
+   "nome": "Translocação",
+   "icone": null,
+   "resumo": "Você pode se teletransportar em até 9m como 1 ação. 1x/Descanso Longo",
+   "custo": "3 Dor",
+   "custoTipo": "spend"
+  },
+  {
+   "id": "abismo-frio",
+   "tipo": "beneficio",
+   "nome": "Frio",
+   "icone": null,
+   "resumo": "Seus ataques causam +1d6 de dano de Frio. Criaturas acertadas têm -1,5m de movimento até o fim do próximo turno delas.",
+   "custo": "3 Dor",
+   "custoTipo": "spend"
+  },
+  {
+   "id": "abismo-canibal",
+   "tipo": "beneficio",
+   "nome": "Canibal",
+   "icone": null,
+   "resumo": "Você recupera 2d6 Saúde ao comer carne de criaturas que acabou de matar e consegue ver memórias da vida desta criatura.",
+   "custo": "3 Dor",
+   "custoTipo": "spend"
+  },
+  {
+   "id": "abismo-guardiao-da-morte",
+   "tipo": "beneficio",
+   "nome": "Guardião da Morte",
+   "icone": null,
+   "resumo": "Quando um aliado em 9m seria reduzido a 0 Saúde, você pode usar sua reação para transferir o dano para você. 1x/descanso longo.",
+   "custo": "3 Dor",
+   "custoTipo": "spend"
+  },
+  {
+   "id": "abismo-devorador-de-magos",
+   "tipo": "beneficio",
+   "nome": "Devorador de Magos",
+   "icone": null,
+   "resumo": "Ao matar uma criatura mágica ou conjuradora, você pode absorver sua essência (1 ação). Ganhe acesso a 1 magia que ela conhecia por 1 dia ou até ser utilizada pela primeira vez. Você pode conjurar essa magia sem um foco designado.",
+   "custo": "4 Dor",
+   "custoTipo": "spend"
+  },
+  {
+   "id": "abismo-dom-da-ressurreicao",
+   "tipo": "beneficio",
+   "nome": "Dom da Ressurreição",
+   "icone": null,
+   "resumo": "Ao morrer, você revive uma vez e perde 10 de Saúde ou Stamina máxima. Você revive após 1d4 horas, com memórias fragmentadas e desorientado.",
+   "custo": "4 Dor",
+   "custoTipo": "spend"
+  },
+  {
+   "id": "abismo-senhor-das-sombras",
+   "tipo": "beneficio",
+   "nome": "Senhor das Sombras",
+   "icone": null,
+   "resumo": "Você fica invisível em penumbra ou escuridão. Pode se esconder como ação livre nessas condições.",
+   "custo": "4 Dor",
+   "custoTipo": "spend"
+  },
+  {
+   "id": "abismo-pacto-macabro",
+   "tipo": "beneficio",
+   "nome": "Pacto Macabro",
+   "icone": null,
+   "resumo": "Você pode gastar Saúde no lugar de Stamina ou Éter para qualquer técnica ou magia. (1 Saúde = 1 Stamina ou Éter)",
+   "custo": "4 Dor",
+   "custoTipo": "spend"
+  },
+  {
+   "id": "abismo-lenda-viva",
+   "tipo": "beneficio",
+   "nome": "Lenda Viva",
+   "icone": null,
+   "resumo": "Você é extremamente ágil e perspicaz. Nasceu para se aventurar. Possui +1 Ação por rodada.",
+   "custo": "6 Dor",
+   "custoTipo": "spend"
+  },
+  {
+   "id": "abismo-mente-fragmentada",
+   "tipo": "beneficio",
+   "nome": "Mente Fragmentada",
+   "icone": null,
+   "resumo": "Você tem duas consciências. Você ocasionalmente ouve a \"outra voz\" disputando com você. Ao conjurar 1 magia, pode conjurar outra como ação livre.",
+   "custo": "6 Dor",
+   "custoTipo": "spend"
+  },
+  {
+   "id": "abismo-avatar-do-vazio",
+   "tipo": "beneficio",
+   "nome": "Avatar do Vazio",
+   "icone": null,
+   "resumo": "Sua alma é parcialmente vazia e não é inteiramente viva como a de outros. Ganhe resistência a todos os tipos de dano (exceto Radiante e Primordial), imunidade a condições físicas (Embriagado, Sangramento, Lento, Atordoado, Paralisado, Desorientado, Enjoado, Envenenamento).",
+   "custo": "6 Dor",
+   "custoTipo": "spend"
+  },
+  {
+   "id": "abismo-esquiva-lendaria",
+   "tipo": "beneficio",
+   "nome": "Esquiva Lendária",
+   "icone": null,
+   "resumo": "Você é extremamente habilidoso em evadir ataques, seja desviando deles ou resistindo da melhor maneira possível. Você ganha +5 Evasão e +1 Reação Máxima.",
+   "custo": "6 Dor",
+   "custoTipo": "spend"
+  },
+  {
+   "id": "abismo-clone-odioso",
+   "tipo": "beneficio",
+   "nome": "Clone Odioso",
+   "icone": null,
+   "resumo": "Você tem um clone quase exatamente igual a você que compartilha pensamentos, sensações, personalidade, tecnicas e conhecimento. Você pode teletransportar como 3 ações para ele a qualquer momento. E pode controlá-lo livremente. Ele é extremamente igual a você, porem possui faíscas de independência e individualidade.",
+   "custo": "7 Dor",
+   "custoTipo": "spend"
+  },
+  {
+   "id": "abismo-desejo-sombrio",
+   "tipo": "beneficio",
+   "nome": "Desejo Sombrio",
+   "icone": null,
+   "resumo": "Você pode conjurar qualquer magia de nível 1-5 (mesmo que não saiba) ou alterar um evento recente (até 1 minuto atrás) retroativamente. O Mestre decide as consequências. Usar isso pode atrair atenção indesejada. 1x/Campanha.",
+   "custo": "8 Dor",
+   "custoTipo": "spend"
+  }
+ ]
+}

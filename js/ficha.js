@@ -1606,7 +1606,8 @@
   function textoLimpo(node) {
     if (!node) return '';
     var c = node.cloneNode(true);
-    c.querySelectorAll('.icon,.cat-icon,.category-icon,.toggle-icon,.kf-addbtn,.spell-dot,.spell-toggle,svg').forEach(function (x) { x.remove(); });
+    // .ent-add/.ent-alca (F1a): botão e alça da marcação nova nunca entram no nome
+    c.querySelectorAll('.icon,.cat-icon,.category-icon,.toggle-icon,.kf-addbtn,.ent-add,.ent-alca,.spell-dot,.spell-toggle,svg').forEach(function (x) { x.remove(); });
     return c.textContent
       .replace(/[\u{1F000}-\u{1FAFF}\u{2600}-\u{27BF}\u{2B00}-\u{2BFF}\u{2190}-\u{21FF}\u{FE00}-\u{FE0F}\u{DC00}-\u{DFFF}]/gu, '')
       .replace(/\+\s*ficha/g, '').replace(/\s+/g, ' ').trim();

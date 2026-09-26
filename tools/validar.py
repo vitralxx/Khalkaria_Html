@@ -21,7 +21,15 @@ integridade do artefato HTML, que é o que quebra em silêncio:
      desvantagem, custo mínimo de magia), D8b/D8c (reação Defender, Evasão
      Ativa) e D30 (faixa 8–18) continuam em data/sistema.json
  10. Id de card de classe = '<classe>-' + slug do nome, sem duplicata
-Em 2, também o link para outra página (pagina.html#x): o id x tem de existir lá.
+ [ids]        F1a: id de entidade único no site todo; data-kf-tipo/-id de cada
+              card das páginas == catálogo (data/catalogo/*.json) por conjunto,
+              data-prever = tipo:id, botão .ent-add/.ent-alca nascendo hidden;
+              tools/alias_ids.json aponta só para id existente
+ [fragmentos] link para outra página (pagina.html#x): o id x existe lá; rota
+              do Bazar (bazar.html#item/<id>): o id existe no data/bazar.json
+ [glifos]     sprite partials/glifos.html íntegro (g-*, viewBox, sem
+              duplicata, um glifo por ramo --ramo-*) e todo <use href="#g-*">
+              de página ou de js/*.js com o seu <symbol>
 
 Uso:
   python validar.py [repo_root]
@@ -40,7 +48,7 @@ VOID = {'area', 'base', 'br', 'col', 'embed', 'hr', 'img', 'input', 'link',
 
 # páginas geradas por gerador -> script que as produz (para o round-trip)
 GERADORES = ['gerar_sistema.py', 'gerar_magias.py', 'gerar_condicoes.py', 'gerar_limiar.py',
-             'gerar_classes.py', 'gerar_racas.py', 'gerar_origens.py']
+             'gerar_classes.py', 'gerar_racas.py', 'gerar_origens.py', 'gerar_catalogo.py']
 # O Bazar entra no build padrão, mas não no round-trip: o gerador dele lê o CSV
 # e grava data/bazar.json na raiz do repo (não recebe repo_root), então
 # regenerá-lo aqui sobrescreveria o artefato real. A integridade do bazar.json
@@ -50,13 +58,17 @@ FORA_ROUNDTRIP = {'pages/bazar.html'}
 falhas = []
 
 
-def rel(p):
-    return os.path.relpath(p, ROOT).replace(os.sep, '/')
+def rel(p, root=None):
+    try:
+        return os.path.relpath(p, root or ROOT).replace(os.sep, '/')
+    except ValueError:                      # outro drive no Windows (testes em %TEMP%)
+        return p.replace(os.sep, '/')
 
 
-def paginas():
-    fs = sorted(glob.glob(os.path.join(ROOT, 'pages', '**', '*.html'), recursive=True))
-    idx = os.path.join(ROOT, 'index.html')
+def paginas(root=None):
+    root = root or ROOT
+    fs = sorted(glob.glob(os.path.join(root, 'pages', '**', '*.html'), recursive=True))
+    idx = os.path.join(root, 'index.html')
     if os.path.exists(idx):
         fs.append(idx)
     return fs
@@ -91,8 +103,6 @@ class Stack(HTMLParser):
 
 def checa_html():
     print('[1-4] Integridade do HTML')
-    ids_por_pagina = {os.path.normpath(f): set(re.findall(r'\bid="([^"]+)"', open(f, encoding='utf-8').read()))
-                      for f in paginas()}
     for f in paginas():
         h = open(f, encoding='utf-8').read()
         probs = []
@@ -101,7 +111,7 @@ def checa_html():
         probs += p.erros + [f'<{t}> aberta na linha {pos[0]} nunca fechada'
                             for t, pos in p.pilha]
 
-        ids = re.findall(r'\bid="([^"]+)"', h)
+        ids = re.findall(r'(?<![\w-])id="([^"]+)"', h)
         dup = sorted({i for i in ids if ids.count(i) > 1})
         if dup:
             probs.append(f'ids duplicados: {dup}')
@@ -121,16 +131,6 @@ def checa_html():
                 faltando.add(url)
         if faltando:
             probs.append(f'links/assets inexistentes: {sorted(faltando)}')
-
-        # âncora em outra página (condicoes.html#exaustao): o id tem de existir lá.
-        # Fragmento com '/' é rota do JS (bazar.html#item/<id>), não id.
-        fora = set()
-        for arq, frag in re.findall(r'href="([^"#?:]+\.html)(?:\?[^"#]*)?#([^"/]+)"', h):
-            alvo = os.path.normpath(os.path.join(base, arq))
-            if alvo in ids_por_pagina and frag not in ids_por_pagina[alvo]:
-                fora.add(f'{arq}#{frag}')
-        if fora:
-            probs.append(f'âncoras sem destino em outra página: {sorted(fora)}')
 
         if probs:
             falhas.append(rel(f))
@@ -333,6 +333,203 @@ def checa_ids_classes(root=None):
         print(f'  OK     {len(vistos)} ids derivados do nome, sem duplicata')
 
 
+# ---------------------------------------------------------------- F1a
+RE_ID = re.compile(r'(?<![\w-])id="([^"]+)"')
+
+
+def _catalogo(root):
+    """{(tipo, id)} de data/catalogo/*.json; devolve (entradas, problemas)."""
+    ents, probs = [], []
+    for f in sorted(glob.glob(os.path.join(root, 'data', 'catalogo', '*.json'))):
+        try:
+            doc = json.load(open(f, encoding='utf-8'))
+        except (OSError, ValueError) as e:
+            probs.append(f'{rel(f, root)} ilegível: {e}')
+            continue
+        for e in doc.get('entradas', []):
+            ents.append((e.get('tipo'), e.get('id')))
+    if not ents:
+        probs.append('data/catalogo/ vazio (rode python tools/build.py)')
+    return ents, probs
+
+
+def _ids_bazar(root):
+    try:
+        return [i['id'] for i in json.load(open(os.path.join(root, 'data', 'bazar.json'), encoding='utf-8'))]
+    except (OSError, ValueError, KeyError, TypeError):
+        return []
+
+
+def _attr(tag, nome):
+    m = re.search(r'\s' + re.escape(nome) + r'="([^"]*)"', tag)
+    return m.group(1) if m else None
+
+
+def checa_ids(root=None):
+    """[ids] Unicidade global, DOM x catálogo por conjunto, controles hidden, alias."""
+    root = root or ROOT
+    print('[ids] Entidades: data-kf-* das páginas x data/catalogo, alias_ids.json')
+    from collections import Counter
+    ruins, avisos = [], []
+    ents, probs = _catalogo(root)
+    ruins += probs
+    bazar = _ids_bazar(root)
+    todos = Counter([i for _, i in ents] + bazar)
+    dup = sorted(i for i, n in todos.items() if n > 1)
+    if dup:
+        ruins.append(f'id de entidade repetido no site: {dup[:10]}')
+    esperado = set(ents)
+
+    dom = Counter()
+    for f in paginas(root):
+        if os.path.relpath(f, root).replace(os.sep, '/') == 'pages/bazar.html':   # nasce no js/bazar.js
+            continue
+        h = open(f, encoding='utf-8').read()
+        n_cards = n_link = 0
+        for tag in re.findall(r'<[a-z][a-z0-9]*\s[^>]*\bdata-kf-id="[^"]*"[^>]*>', h):
+            tipo, id_, prever = _attr(tag, 'data-kf-tipo'), _attr(tag, 'data-kf-id'), _attr(tag, 'data-prever')
+            dom[(tipo, id_)] += 1
+            if prever != f'{tipo}:{id_}':
+                ruins.append(f'{rel(f, root)}: data-prever="{prever}" em {tipo}:{id_} (esperado "{tipo}:{id_}")')
+            if tag.startswith('<a '):
+                n_link += 1                   # preview do índice de raças: sem botão dentro de link
+            n_cards += 1
+        for cls in ('ent-add', 'ent-alca'):
+            tags = re.findall(r'<[a-z]+\s[^>]*class="' + cls + r'"[^>]*>', h)
+            if len(tags) != n_cards - n_link:
+                ruins.append(f'{rel(f, root)}: {len(tags)} .{cls} para {n_cards - n_link} cards')
+            soltos = [t for t in tags if not re.search(r'\shidden[\s>]', t)]
+            if soltos:
+                ruins.append(f'{rel(f, root)}: {len(soltos)} .{cls} sem hidden (só a F4 os mostra)')
+    rep = sorted(f'{t}:{i}' for (t, i), n in dom.items() if n > 1)
+    if rep:
+        ruins.append(f'card repetido nas páginas: {rep[:10]}')
+    so_json = sorted(f'{t}:{i}' for t, i in esperado - set(dom))
+    so_dom = sorted(f'{t}:{i}' for t, i in set(dom) - esperado)
+    if so_json:
+        ruins.append(f'só no catálogo (card sem data-kf-id): {so_json[:10]}{" …" if len(so_json) > 10 else ""}')
+    if so_dom:
+        ruins.append(f'só nas páginas (data-kf-id sem entrada no catálogo): {so_dom[:10]}')
+    js = os.path.join(root, 'js', 'bazar.js')
+    if os.path.exists(js) and 'data-kf-tipo="item"' not in open(js, encoding='utf-8').read():
+        ruins.append('js/bazar.js: card do Bazar sem data-kf-tipo="item"')
+
+    f = os.path.join(root, 'tools', 'alias_ids.json')
+    try:
+        al = json.load(open(f, encoding='utf-8'))
+        for k, v in al.get('alias', {}).items():
+            if v not in todos:
+                ruins.append(f'alias_ids.json: {k!r} -> {v!r}, que não é id do site')
+            if k in todos:
+                ruins.append(f'alias_ids.json: {k!r} já é id do site (alias sobrando)')
+        for k, motivo in al.get('semEntidade', {}).items():
+            if k in todos:
+                ruins.append(f'alias_ids.json: {k!r} em semEntidade mas já é id do site')
+            avisos.append(f'contrato sem entidade no site: {k} ({motivo})')
+    except (OSError, ValueError) as e:
+        ruins.append(f'tools/alias_ids.json ilegível: {e}')
+
+    for a in avisos:
+        print(f'  AVISO  {a}')
+    if ruins:
+        falhas.append('ids')
+        for r in ruins:
+            print(f'  FALHA  {r}')
+    else:
+        print(f'  OK     {len(todos)} ids únicos ({len(bazar)} do Bazar); '
+              f'{sum(dom.values())} cards == catálogo; alias ok')
+
+
+def checa_fragmentos(root=None):
+    """[fragmentos] Link entre páginas com #id aponta para id que existe lá."""
+    root = root or ROOT
+    print('[fragmentos] Links entre páginas com #fragmento')
+    pags = paginas(root)
+    ids = {os.path.normpath(f): set(RE_ID.findall(open(f, encoding='utf-8').read())) for f in pags}
+    bazar = set(_ids_bazar(root))
+    ruins, n = [], 0
+    for f in pags:
+        h = open(f, encoding='utf-8').read()
+        base = os.path.dirname(f)
+        for arq, frag in re.findall(r'href="([^"#?:]+\.html)(?:\?[^"#]*)?#([^"]+)"', h):
+            n += 1
+            alvo = os.path.normpath(os.path.join(base, arq))
+            if '/' in frag:                   # rota do JS: bazar.html#item/<id>
+                tipo, _, id_ = frag.partition('/')
+                if os.path.basename(alvo) == 'bazar.html' and tipo == 'item' and id_ not in bazar:
+                    ruins.append(f'{rel(f, root)}: {arq}#{frag} (item fora do data/bazar.json)')
+                continue
+            if alvo not in ids:
+                continue                      # arquivo inexistente é do [1-4]
+            if frag not in ids[alvo]:
+                ruins.append(f'{rel(f, root)}: {arq}#{frag}')
+    if ruins:
+        falhas.append('fragmentos')
+        for r in sorted(set(ruins)):
+            print(f'  FALHA  âncora sem destino em outra página: {r}')
+    else:
+        print(f'  OK     {n} links com fragmento, todos com destino')
+
+
+def checa_glifos(root=None):
+    """[glifos] Sprite g-* íntegro e todo <use href="#g-*"> com o seu <symbol>."""
+    root = root or ROOT
+    print('[glifos] Sprite partials/glifos.html e usos de #g-*')
+    ruins = []
+    f = os.path.join(root, 'partials', 'glifos.html')
+    try:
+        sprite = open(f, encoding='utf-8').read()
+    except OSError as e:
+        falhas.append('glifos')
+        print(f'  FALHA  partials/glifos.html ilegível: {e}')
+        return
+    p = Stack(); p.feed(sprite)
+    ruins += [f'glifos.html: {x}' for x in p.erros + [f'<{t}> aberta na linha {pos[0]} nunca fechada'
+                                                     for t, pos in p.pilha]]
+    simbolos = re.findall(r'<symbol\s[^>]*>', sprite)
+    ids = [_attr(s, 'id') for s in simbolos]
+    for s, i in zip(simbolos, ids):
+        if not (i and re.fullmatch(r'g-[a-z0-9]+(?:-[a-z0-9]+)*', i)):
+            ruins.append(f'glifos.html: símbolo com id fora do padrão g-*: {i!r}')
+        if not _attr(s, 'viewBox'):
+            ruins.append(f'glifos.html: {i} sem viewBox')
+    from collections import Counter
+    dup = sorted(i for i, n in Counter(ids).items() if n > 1)
+    if dup:
+        ruins.append(f'glifos.html: símbolos duplicados: {dup}')
+    no_sprite = set(ids)
+
+    # um glifo por ramo: o mesmo slug do token --ramo-<r> das páginas de classe
+    ramos = set()
+    for t in glob.glob(os.path.join(root, 'templates', 'classes', '*.template.html')):
+        ramos |= {r for r in re.findall(r'--ramo-([a-z0-9]+)(?:-dark)?\s*:', open(t, encoding='utf-8').read())}
+    g_ramos = {i[len('g-ramo-'):] for i in no_sprite if i.startswith('g-ramo-')}
+    if ramos - g_ramos:
+        ruins.append(f'ramo sem glifo: {sorted(ramos - g_ramos)}')
+    if g_ramos - ramos:
+        ruins.append(f'glifo de ramo sem ramo: {sorted(g_ramos - ramos)}')
+
+    n_usos = 0
+    for pg in paginas(root):
+        h = open(pg, encoding='utf-8').read()
+        na_pagina = set(re.findall(r'<symbol id="(g-[^"]+)"', h))
+        usos = set(re.findall(r'<use href="#(g-[^"]+)"', h))
+        n_usos += len(usos)
+        if usos - na_pagina:
+            ruins.append(f'{rel(pg, root)}: <use> sem <symbol> na página: {sorted(usos - na_pagina)}')
+    for js in sorted(glob.glob(os.path.join(root, 'js', '**', '*.js'), recursive=True)):
+        usos = set(re.findall(r'href=\\?["\']#(g-[a-z0-9-]+)', open(js, encoding='utf-8').read()))
+        n_usos += len(usos)
+        if usos - no_sprite:
+            ruins.append(f'{rel(js, root)}: glifo sem <symbol> no sprite: {sorted(usos - no_sprite)}')
+    if ruins:
+        falhas.append('glifos')
+        for r in ruins:
+            print(f'  FALHA  {r}')
+    else:
+        print(f'  OK     {len(ids)} símbolos ({len(g_ramos)} ramos); {n_usos} usos de #g-* com símbolo')
+
+
 def checa_bazar_inv(root=None):
     """[8] Todo item do data/bazar.json traz o campo inv (contrato do inventário)."""
     root = root or ROOT
@@ -364,6 +561,8 @@ def checa_roundtrip():
     try:
         for d in ('data', 'templates'):
             shutil.copytree(os.path.join(ROOT, d), os.path.join(tmp, d))
+        # o catálogo é artefato: nasce do zero no tmp, sem herdar o do repo
+        shutil.rmtree(os.path.join(tmp, 'data', 'catalogo'), ignore_errors=True)
         for d in ('pages/classes', 'pages/racas'):
             os.makedirs(os.path.join(tmp, d), exist_ok=True)
         for g in GERADORES:
@@ -387,10 +586,20 @@ def checa_roundtrip():
             else:
                 print(f'  FALHA  {nome}: HTML difere do JSON (editado à mão? rode build.py)')
                 divergiu += 1
+        cat_ok = 0
+        gerados = {os.path.basename(x) for x in glob.glob(os.path.join(tmp, 'data', 'catalogo', '*.json'))}
+        no_repo = {os.path.basename(x) for x in glob.glob(os.path.join(ROOT, 'data', 'catalogo', '*.json'))}
+        for nome in sorted(gerados | no_repo):
+            a, b = os.path.join(tmp, 'data', 'catalogo', nome), os.path.join(ROOT, 'data', 'catalogo', nome)
+            if nome not in gerados or nome not in no_repo or not filecmp.cmp(a, b, shallow=False):
+                print(f'  FALHA  data/catalogo/{nome}: difere do gerado (editado à mão? rode build.py)')
+                divergiu += 1
+            else:
+                cat_ok += 1
         if divergiu:
             falhas.append('roundtrip')
         else:
-            print(f'  OK     {n_ok} páginas idênticas ao gerado a partir do JSON')
+            print(f'  OK     {n_ok} páginas e {cat_ok} catálogos idênticos ao gerado a partir do JSON')
     finally:
         shutil.rmtree(tmp, ignore_errors=True)
 
@@ -407,6 +616,12 @@ if __name__ == '__main__':
     checa_blocos_sistema()
     print()
     checa_ids_classes()
+    print()
+    checa_ids()
+    print()
+    checa_fragmentos()
+    print()
+    checa_glifos()
     print()
     if '--skip-roundtrip' not in FLAGS:
         checa_roundtrip()

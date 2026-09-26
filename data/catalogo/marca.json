@@ -1,0 +1,388 @@
+{
+ "schema": "catalogo/1",
+ "tipo": "marca",
+ "fontes": [
+  "data/classes/*.json"
+ ],
+ "total": 42,
+ "entradas": [
+  {
+   "id": "espadachim-disciplina",
+   "tipo": "marca",
+   "nome": "Disciplina",
+   "icone": null,
+   "resumo": "\"Você é frio e age apenas quando necessário.\" Você é friamente disciplinado e segue um conjunto de valores difíceis de quebrar. Para cada 5 combates onde a Marca do Duelo te atacou antes de você atacá-la, você ganha +1 permanentemente em Vontade . (Máx. +5) Na primeira vez em cada combate que você sofre um ataque antes de ter atacado, recupere Stamina igual ao seu Mod. Constituição.",
+   "classe": "espadachim",
+   "card": "marca-card"
+  },
+  {
+   "id": "espadachim-caca-fardos",
+   "tipo": "marca",
+   "nome": "Caça Fardos",
+   "icone": null,
+   "resumo": "\"Você busca criaturas indignas, e as assassina com prazer.\" Você é naturalmente benevolente e busca punir criaturas bestiais/monstruosas. Para cada 5 criaturas monstruosas ou malignas que você matou, você ganha +1 permanentemente em Sobrevivência . (Máx. +5) Você consegue localizar a Marca do Duelo em qualquer situação, mesmo que ela esteja invisível ou escondida .",
+   "classe": "espadachim",
+   "card": "marca-card"
+  },
+  {
+   "id": "espadachim-nostalgia",
+   "tipo": "marca",
+   "nome": "Nostalgia",
+   "icone": null,
+   "resumo": "\"Como eles ousam ter te desrespeitado?\" Você é rancoroso em seu cerne, guarda mais magoas do que deveria. Para cada 5 criaturas que te causaram dano e que você matou, você ganha +1 permanentemente em Intimidação . (Máx. +5) Ao sofrer dano de uma criatura enquanto não tiver uma Marca do Duelo ativa, ela recebe a Marca do Duelo automaticamente. Adicionalmente, ao sofrer dano de uma criatura pode adicionar a Marca do Duelo a ela como uma reação.",
+   "classe": "espadachim",
+   "card": "marca-card"
+  },
+  {
+   "id": "espadachim-vinganca",
+   "tipo": "marca",
+   "nome": "Vingança",
+   "icone": null,
+   "resumo": "\"Raiva. O único prazer que nunca te traiu.\" Você não consegue se controlar em não se vingar quando é desrespeitado. Para cada 5 combates que você terminou com menos da metade da Saúde, você ganha +1 permanentemente em Fortitude . (Máx. +5) Ao ser reduzido a menos de 25% da Saúde, seus ataques causam +2d6 de dano Cortante até o fim do combate.",
+   "classe": "espadachim",
+   "card": "marca-card"
+  },
+  {
+   "id": "espadachim-coragem-liquida",
+   "tipo": "marca",
+   "nome": "Coragem Líquida",
+   "icone": null,
+   "resumo": "\"Seu corpo tropeça, sua lâmina não… Ou talvez\" Você fica corajoso ao estar Bêbado e estranhamente sem vergonha. Para cada 5 combates que você saiu vitorioso e esteve sob a condição Bêbado , você ganha +1 permanentemente em Movimento . (Máx. +5) Uma vez por rodada, se você errar um ataque: pode rolar novamente como ação livre. Porém, se errar de novo, fica exposto .",
+   "classe": "espadachim",
+   "card": "marca-card"
+  },
+  {
+   "id": "espadachim-blefe-do-bebado",
+   "tipo": "marca",
+   "nome": "Blefe do Bêbado",
+   "icone": null,
+   "resumo": "\"Você consegue extrapolar todos os limites e, às vezes, sair impune com isso.\" Você nunca admite seu vício em bebidas e possui um sério problema com mentiras. Para cada 5 mentiras que você fez alguém acreditar, você ganha +1 permanentemente em Enganação . (Máx. +5) Mentir lhe faz bem. Sempre que suceder em um teste de Enganação, recupere Mod. Constituição de Stamina.",
+   "classe": "espadachim",
+   "card": "marca-card"
+  },
+  {
+   "id": "monge-busca-pela-perfeicao",
+   "tipo": "marca",
+   "nome": "Busca Pela Perfeição",
+   "icone": null,
+   "resumo": "\"Você treina enquanto outros dormem. Treina enquanto outros comem. Treina enquanto outros vivem.\" Você é obcecado com a perfeição técnica. Você se critica constantemente e tem dificuldade em aceitar \"bom o suficiente\". Para cada 5 combates onde você acertou +3 ataques no mesmo turno, você ganha +1 permanentemente em Atacar . Ao chegar em +5, essa habilidade fica supérflua. Ao errar 2 ataques consecutivos, o próximo possui Vantagem.",
+   "classe": "monge",
+   "card": "marca-card"
+  },
+  {
+   "id": "monge-codigo-do-monge",
+   "tipo": "marca",
+   "nome": "Código do Monge",
+   "icone": null,
+   "resumo": "\"Há honra no combate. Sem ela, somos apenas animais.\" Você segue um código rígido de conduta marcial. Quebrar seu código te causa tormento. Ao derrotar um inimigo onde apenas você causou dano a ele e apenas ele causou dano a você, você recupera 5 Stamina e 1 Éter. Você tem +2 em testes de Vontade que te fazem agir contra sua índole. Se você quebrar seu código, você perde 2 de éter e tem -2 atacar até o próximo descanso curto, exemplos de quebra a seguir: Atacar um alvo indefeso, inconsciente ou inocente. Assassinar criaturas humanoides sem necessidade.",
+   "classe": "monge",
+   "card": "marca-card"
+  },
+  {
+   "id": "monge-apatico",
+   "tipo": "marca",
+   "nome": "Apático",
+   "icone": null,
+   "resumo": "\"Você não sente mais. Não realmente. As emoções são ecos distantes de uma vida passada.\" O contato com o Vazio corroeu suas emoções. Você raramente demonstra alegria, tristeza ou raiva. Para cada 5 criaturas que você deixou Amedrontada , ganha +1 permanente em Vontade . Ao chegar em +5, essa habilidade fica supérflua. Você é imune a condições que são causadas por emoções (Enfeitiçado e Amedrontado).",
+   "classe": "monge",
+   "card": "marca-card"
+  },
+  {
+   "id": "monge-sussurros-constantes",
+   "tipo": "marca",
+   "nome": "Sussurros Constantes",
+   "icone": null,
+   "resumo": "\"Ele fala com você. Nos sonhos. Nas sombras. No silêncio entre batimentos do coração.\" Algo do Abismo notou você e agora sussurra em sua mente. Você nunca sabe quando está pensando sozinho ou sendo guiado. Uma vez por descanso longo, você pode \"consultar o Abismo\": o Mestre te dá uma informação críptica mas útil sobre a situação atual. Ao ficar com 0 de Éter, ao invés de ficar Oco , você pode aceitar um Pacto Sombrio : recupere metade do seu Éter máximo, mas o Mestre escolhe uma consequência. Você tem Vantagem em Místico para identificar criaturas ou magia relacionadas ao Abismo.",
+   "classe": "monge",
+   "card": "marca-card"
+  },
+  {
+   "id": "monge-irmao-da-floresta",
+   "tipo": "marca",
+   "nome": "Irmão da Floresta",
+   "icone": null,
+   "resumo": "\"Você prefere a companhia de animais. Eles não mentem. Não traem. Não julgam.\" Você formou uma conexão profunda com o mundo animal. Sente-se desconfortável em cidades, ansioso em multidões humanas. Para cada 5 vezes que você invocar um Companheiro Primal, você ganha +1 permanente em Sobrevivência . Ao chegar em +5, essa habilidade fica supérflua. Animais não-hostis não te atacam a menos que provocados. Você pode se aproximar de bestas selvagens sem teste. Quando algum Companheiro Primal morre, você entra em Luto Selvagem : +2 Atacar e +1d6 dano por 2 rodadas.",
+   "classe": "monge",
+   "card": "marca-card"
+  },
+  {
+   "id": "monge-ciclo-da-vida",
+   "tipo": "marca",
+   "nome": "Ciclo da Vida",
+   "icone": null,
+   "resumo": "\"Morte não é o fim. É transformação. Você entende isso melhor que qualquer um.\" Você compreende o ciclo natural de vida e morte. Para você, tudo retorna à natureza eventualmente. Ao estar adjacente a uma criatura que morreu neste turno, você instintivamente absorve sua energia vital, recuperando 1d6 de Saúde ou 1d4 de Stamina. Você pode realizar um ritual de 1 minuto em uma criatura morta para devolve-la a natureza, você ganha 1 de Éter ao faze-lo. Você tem +2 em Medicina .",
+   "classe": "monge",
+   "card": "marca-card"
+  },
+  {
+   "id": "batedor-colecionador-de-horizontes",
+   "tipo": "marca",
+   "nome": "Colecionador de Horizontes",
+   "icone": null,
+   "resumo": "\"Cada paisagem nova te renova por dentro e relembra sua aspiração.\" Você anseia por novos lugares e busca ativamente explorar o desconhecido. Ao mapear um lugar significativo pela primeira vez (Cidade, Ruina, Bioma…) Recupera 2 de Stamina e ganha 1 de Stamina máxima. O lugar deve possuir características únicas que você nunca mapeou antes, por exemplo: o subúrbio de uma cidade e a área rural dessa mesma cidade, apesar de terem uma paisagem diferente, contam como um único lugar por serem próximos e possuírem elementos geográficos parecidos.",
+   "classe": "batedor",
+   "card": "marca-card"
+  },
+  {
+   "id": "batedor-cicatrizes-da-jornada",
+   "tipo": "marca",
+   "nome": "Cicatrizes da Jornada",
+   "icone": null,
+   "resumo": "\"Cada ferida conta uma história. Cada história te ensinou a sobreviver.\" Você possui cicatrizes que reforçam suas histórias de viagem. Para cada Jornada de Hostilidade 10+ que você completou, ganha +1 permanente em Sobrevivência, Ao chegar em +5, essa habilidade fica supérflua. Ao falhar em um teste de Sobrevivência, pode escolher perder 2d6 de Stamina para transformar em sucesso",
+   "classe": "batedor",
+   "card": "marca-card"
+  },
+  {
+   "id": "batedor-colecao-de-ultimos-suspiros",
+   "tipo": "marca",
+   "nome": "Coleção de Últimos Suspiros",
+   "icone": null,
+   "resumo": "\"Você se lembra de cada um. Não dos rostos - dos sons que fizeram ao partir.\" Você sente prazer em assassinar criaturas sem que elas te reconheçam. Para cada 5 criaturas que você matou enquanto estava Escondido , ganha +1 permanente em Furtividade. Ao chegar em +5, essa habilidade fica supérflua. Ao matar uma criatura sem ser detectado, recupera 1 de Stamina.",
+   "classe": "batedor",
+   "card": "marca-card"
+  },
+  {
+   "id": "batedor-sussurro-final",
+   "tipo": "marca",
+   "nome": "Sussurro Final",
+   "icone": null,
+   "resumo": "\"O sussurro final é sempre o mais verdadeiro.\" Você sabe interrogar pessoas como ninguém. Você fica treinado em Convencimento Ao matar uma criatura em combate corpo a corpo, pode fazer uma pergunta que ela responde com verdade antes de morrer. A resposta é breve (uma frase) e literal.",
+   "classe": "batedor",
+   "card": "marca-card"
+  },
+  {
+   "id": "batedor-homem-de-negocios",
+   "tipo": "marca",
+   "nome": "Homem de Negócios",
+   "icone": null,
+   "resumo": "\"Moedas acabam. Favores rendem juros eternos.\" Você possui um disturbio de mat Para cada 5 negociações bem-sucedidas que resultaram em vantagem significativa, ganha +1 permanente em Convencimento. Ao chegar em +5, essa habilidade fica supérflua. Ao ajudar alguém de forma significativa, pode declarar que a pessoa \"te deve uma\". O mestre registra. Você pode cobrar depois.",
+   "classe": "batedor",
+   "card": "marca-card"
+  },
+  {
+   "id": "batedor-o-palpite",
+   "tipo": "marca",
+   "nome": "O Palpite",
+   "icone": null,
+   "resumo": "\"Você nem sempre acerta, mas eles não sabem disso.\" Ao passar ao menos 1 minuto analisando uma criatura, pode diagnosticar um segredo dela. Esse segredo possui 50% de chance de ser verdade e você não sabe disso. Ao rolar um teste de interação social(qualquer) contra ela pode utilizar esse segredo como ferramenta, caso seja verdade você rola o teste com vantagem, caso seja mentira você rola com desvantagem.",
+   "classe": "batedor",
+   "card": "marca-card"
+  },
+  {
+   "id": "alquimista-pai-de-pet",
+   "tipo": "marca",
+   "nome": "Pai de Pet",
+   "icone": null,
+   "resumo": "\"Meus constructos morreriam por mim e, ao serem reconstruídos, morreriam de novo!\" Você tem um certo afeto pelos seus constructos… afeto até demais. Toda vez que um constructo seu sobreviver a um combate, ganha +1 permanente em Místico. Ao chegar em +5, essa habilidade fica supérflua Efeitos e buffs aplicados em você também afetam seu constructo ativo (e vice-versa). Ao recuperar Stamina ou Éter, o constructo recupera, em vez disso, Saúde.",
+   "classe": "alquimista",
+   "card": "marca-card"
+  },
+  {
+   "id": "alquimista-sobrecarga",
+   "tipo": "marca",
+   "nome": "Sobrecarga",
+   "icone": null,
+   "resumo": "\"O frasco aguenta… Provavelmente.\" Você sente prazer em tirar o máximo de suas invenções, mesmo quando isso significa sobrecarrega-las. Ao usar um Cartucho Arcano, você pode gastar +2 Reagentes para conjurar a magia com um dos seguintes efeitos: Potência: A magia tem intensidade Forçada automaticamente. Modificar: Você pode escolher 1 modulação grátis da escola de magia respectiva da magia. Ao tirar 1 em testes de místico criando cartuchos, ele explode em você causando 1d6 de Dano de Força e você perde 2d4 de éter.",
+   "classe": "alquimista",
+   "card": "marca-card"
+  },
+  {
+   "id": "alquimista-piromaniaco",
+   "tipo": "marca",
+   "nome": "Piromaníaco",
+   "icone": null,
+   "resumo": "\"Cada explosão me ensina a fazer outra maior.\" Você sente prazer em explodir objetos ou criaturas e vê-los queimar. Para cada 10 criaturas que você derrotou com itens alquímicos, ganha +1 permanente em Atacar. Ao chegar em +5, essa habilidade fica supérflua. Ao derrotar uma criatura com um item alquímico, recupera 1 Reagente.",
+   "classe": "alquimista",
+   "card": "marca-card"
+  },
+  {
+   "id": "alquimista-preciosismo",
+   "tipo": "marca",
+   "nome": "Preciosismo",
+   "icone": null,
+   "resumo": "\"Minhas invenções, extremamente calibradas.\" Você é extremamente metódico e organizado, seus experimentos são friamente calculados. Uma vez por descanso longo, você pode causar o dano máximo de um Item alquímico que você criou e arremessou. Itens alquímicos que você cria têm +2 CD nos testes de resistência.",
+   "classe": "alquimista",
+   "card": "marca-card"
+  },
+  {
+   "id": "alquimista-curandeiro-incansavel",
+   "tipo": "marca",
+   "nome": "Curandeiro Incansável",
+   "icone": null,
+   "resumo": "\"Ninguém morre no meu turno.\" Você tem um senso de dever em curar criaturas. Para cada 5 Criaturas que você retirou a condição Morrendo , ganha +1 permanente em Medicina. Ao chegar em +5, essa habilidade fica supérflua. Ao curar uma criatura que estava com 0 de Saúde e remover a condição morrendo , ela e você também recuperam 2d6 de Stamina.",
+   "classe": "alquimista",
+   "card": "marca-card"
+  },
+  {
+   "id": "alquimista-mixologista",
+   "tipo": "marca",
+   "nome": "Mixologista",
+   "icone": null,
+   "resumo": "\"Uma poção é boa. Duas poções juntas? Arte.\" Você sente prazer em consumir e apreciar substâncias e combinações de substâncias novas. Você pode combinar 2 poções ou elixires de buff diferentes em um único frasco (custo +2 Reagentes). O consumidor recebe ambos os efeitos. Você não pode combinar poções ou elixires iguais. Aliados que consumirem suas misturas também recuperam 1d4 de Stamina.",
+   "classe": "alquimista",
+   "card": "marca-card"
+  },
+  {
+   "id": "teurgo-o-duelista",
+   "tipo": "marca",
+   "nome": "O Duelista",
+   "icone": null,
+   "resumo": "\"O duelo arcano é xadrez. Você sempre pensa três jogadas à frente.\" Você tem +2 em Místico, Vontade e Reflexo contra outros Teurgos ou criaturas que conjuram magias. Ao acertar uma criatura ou conjurador com uma magia de dano, você rouba 1d4 de Éter dele.",
+   "classe": "teurgo",
+   "card": "marca-card"
+  },
+  {
+   "id": "teurgo-colecionador-de-teoremas",
+   "tipo": "marca",
+   "nome": "Colecionador de Teoremas",
+   "icone": null,
+   "resumo": "\"Cada magia estudada é uma peça do quebra-cabeça. Você está montando o mapa do universo.\" Para cada 5 magias diferentes que você presenciou sendo conjuradas e anotou em seu grimório, ganha +1 permanente em Místico. Ao chegar em +5, essa habilidade fica supérflua. Ao suceder em um teste de místico para identificar corretamente uma magia (escola, nível e efeito), recupera 1 de Stamina.",
+   "classe": "teurgo",
+   "card": "marca-card"
+  },
+  {
+   "id": "teurgo-cicatrizes-do-fluxo",
+   "tipo": "marca",
+   "nome": "Cicatrizes do Fluxo",
+   "icone": null,
+   "resumo": "\"O poder que corre nas suas veias deixa marcas permanentes.\" Para cada 5 magias que você conjurou com Intensidade Transbordante com sucesso, ganha +1 permanente em Vontade. Ao chegar em +5, essa habilidade fica supérflua. Ao falhar no teste de Vontade de uma magia Transbordante, você conjura a magia porém na sua versão contida, então perde os éter pela falha.",
+   "classe": "teurgo",
+   "card": "marca-card"
+  },
+  {
+   "id": "teurgo-casca-rachada",
+   "tipo": "marca",
+   "nome": "Casca Rachada",
+   "icone": null,
+   "resumo": "\"Às vezes, o melhor a se fazer é deixar transbordar...\" Você pode ficar Oco como uma ação, isso significa que você perde todo seu éter, que fica em 0. Ao estar Oco , seu limite máximo de éter negativo dobra, além disso, você tem +2 de Vontade enquanto nessa condição.",
+   "classe": "teurgo",
+   "card": "marca-card"
+  },
+  {
+   "id": "teurgo-devoto",
+   "tipo": "marca",
+   "nome": "Devoto",
+   "icone": null,
+   "resumo": "\"Sua fé no pacto é absoluta. Seu patrono recompensa devoção.\" Requer Arauto Tier 1 Para cada 3 vezes que você cumpriu uma exigência do Preço do Pacto do seu Patrono (Barganha Primordial), ganha +1 permanente em Místico. Ao chegar em +5, essa habilidade fica supérflua. Adicionalmente, você ganha 50% mais da recompensa ao cumprir uma barganha primordial.",
+   "classe": "teurgo",
+   "card": "marca-card"
+  },
+  {
+   "id": "teurgo-porta-voz",
+   "tipo": "marca",
+   "nome": "Porta-Voz",
+   "icone": null,
+   "resumo": "\"Você não fala com entidades. Você fala POR elas.\" Você pode servir como canal de comunicação para seu Patrono - ele pode falar através de você (com sua permissão) +2 em interação social(Intimidação) quando invoca o nome/autoridade do seu Patrono Uma vez por descanso longo: Pode fazer uma pergunta direta ao seu Patrono.",
+   "classe": "teurgo",
+   "card": "marca-card"
+  },
+  {
+   "id": "artilheiro-inquieto",
+   "tipo": "marca",
+   "nome": "Inquieto",
+   "icone": null,
+   "resumo": "\"Você sempre está andando, correndo, fugindo. Isso te deixa inquieto\" Você não consegue ficar parado. Seus dedos sempre se movem, seus olhos sempre varrem o ambiente, seus pés sempre prontos para o próximo passo. Outros te acham nervoso, ansioso. Você sabe que está apenas preparado. Para cada combate que você é o primeiro a jogar(Maior iniciativa), ganha +1 permanente em Iniciativa. Ao chegar em +5, essa habilidade fica supérflua. Ao rolar Iniciativa, se você tirar o maior valor do combate, você ganha +2 Concentração no início do primeiro turno.",
+   "classe": "artilheiro",
+   "card": "marca-card"
+  },
+  {
+   "id": "artilheiro-colecionador-de-laminas",
+   "tipo": "marca",
+   "nome": "Colecionador de Lâminas",
+   "icone": null,
+   "resumo": "\"Cada faca tem uma história. Cada história tem um corpo.\" Você coleciona armas de arremesso obsessivamente. Cada lâmina tem um nome, uma origem, um propósito. Suas lâminas são naturalmente resistentes, você pode gastar 5 minutos após um combate recuperando 1 Conjunto de Arremesso . Você pode batizar uma Arma de Arremesso em um descanso longo. Você ganha +1 ao atacar com ela.",
+   "classe": "artilheiro",
+   "card": "marca-card"
+  },
+  {
+   "id": "artilheiro-vicio-de-poder",
+   "tipo": "marca",
+   "nome": "Vício de Poder",
+   "icone": null,
+   "resumo": "\"O cheiro de pólvora queimada. O zumbido nos ouvidos. O silêncio depois. Nada se compara.\" Você se acomodou com a presença de sua arma, ela te engrandece e te faz sentir poderoso. Para cada 5 criaturas que você matou com armas à distância, ganha +1 permanente em Atacar. Ao chegar em +5, essa habilidade fica supérflua. Se acertar um crítico com uma arma a distância você recupera 1 de Stamina. Ao passar 24 horas sem disparar uma arma a distância, você fica irritado : -1 em testes sociais até disparar novamente.",
+   "classe": "artilheiro",
+   "card": "marca-card"
+  },
+  {
+   "id": "artilheiro-conhecedor-de-armas-de-fogo",
+   "tipo": "marca",
+   "nome": "Conhecedor de Armas de Fogo",
+   "icone": null,
+   "resumo": "\"Armas de fogo acabaram de emergir como tecnologia de ponta. Você está por dentro.\" Você conhece armas de fogo e o poder de destruição que elas são capazes de causar. Você tem +2 em testes de Vontade. Você conhece contatos que vendem armas de fogo e munições especiais em cada lugar do mundo.",
+   "classe": "artilheiro",
+   "card": "marca-card"
+  },
+  {
+   "id": "artilheiro-paciencia-inabalavel",
+   "tipo": "marca",
+   "nome": "Paciência Inabalável",
+   "icone": null,
+   "resumo": "\"Você esperou dias por um único tiro. Esperaria semanas se necessário.\" O tempo não te afeta como afeta os outros. Você pode ficar imóvel por horas, respirando lentamente, observando. Para cada 5 combates onde você acumulou 6+ Concentração , ganha +1 permanente em Percepção . Ao chegar em +5, essa habilidade fica supérflua. Ao ficar imóvel por 1 turno inteiro, você ganha Vantagem no próximo ataque à distância. Você tem + 2 em testes de Sobrevivência.",
+   "classe": "artilheiro",
+   "card": "marca-card"
+  },
+  {
+   "id": "artilheiro-marca-no-alvo",
+   "tipo": "marca",
+   "nome": "Marca no Alvo",
+   "icone": null,
+   "resumo": "\"Você não esquece um rosto. Especialmente os que você ainda não acertou.\" Cada alvo que escapa vive na sua mente. Você estuda seus movimentos, imagina o tiro perfeito, planeja o reencontro. Isso te torna um caçador implacável — e um pouco obcecado. Ao errar um ataque contra uma criatura, você pode \"marcá-la mentalmente\". Você tem +1 Atacar cumulativo contra ela (máx +3) até acertá-la ou ela morrer. Se uma criatura marcada fugir do combate, você sabe a direção geral que ela foi (até 1km). Você tem +2 em Investigação para encontrar informações sobre criaturas que você marcou.",
+   "classe": "artilheiro",
+   "card": "marca-card"
+  },
+  {
+   "id": "brutalista-cicatrizes-de-ferro",
+   "tipo": "marca",
+   "nome": "Cicatrizes de Ferro",
+   "icone": null,
+   "resumo": "\"Cada golpe que você recebe te ensina a receber o próximo melhor.\" Você sente prazer em sentir dor e busca isso ativamente. Para cada 5 combates ganhos ao longo de sua vida, você ganha +1 Fortitude permanente. Ao chegar em +5, essa habilidade fica supérflua. Ao receber dano protegendo um aliado, você ganha +1 de Stamina.",
+   "classe": "brutalista",
+   "card": "marca-card"
+  },
+  {
+   "id": "brutalista-imortal",
+   "tipo": "marca",
+   "nome": "Imortal",
+   "icone": null,
+   "resumo": "\"Cada ferida conta uma história. Cada história te ensinou a sobreviver.\" Você não é do tipo que morre e se tornou apático em relação a morte. Enquanto estiver com ou menos da metade da vida, você tem: +2 Armadura(Ar) Natural Ao ser reduzido a 0 de Saúde, pode escolher não morrer como ação livre voltando a 1 de Saúde. Ao fazer isso, você ganha +1 de Exaustão .",
+   "classe": "brutalista",
+   "card": "marca-card"
+  },
+  {
+   "id": "brutalista-contador-de-corpos",
+   "tipo": "marca",
+   "nome": "Contador de Corpos",
+   "icone": null,
+   "resumo": "\"Você não lembra dos rostos. Só do número.\" Você busca assassinar criaturas e conta e reconta ativamente suas histórias terríveis. Para cada 10 criaturas que você matou, ganha +1 permanente em Atacar . Ao chegar em +5, essa habilidade fica supérflua. Ao matar uma criatura *brutalmente, você ganha +1 de Stamina e perde 1 de éter.",
+   "classe": "brutalista",
+   "card": "marca-card"
+  },
+  {
+   "id": "brutalista-vicio-em-sangue",
+   "tipo": "marca",
+   "nome": "Vício em Sangue",
+   "icone": null,
+   "resumo": "\"Sangue, presente em nosso nascimento e morte.\" Você começa a se viciar em ver/sentir sangue. Acertos consecutivos fomentam sua loucura. Ao acertar um ataque corpo a corpo, seu próximo ataque tem +1 Atacar, esse bônus é cumulativo até um Max. de +3. Ao errar um ataque, o bônus é reduzido a 0. Ao estar com +3 em atacar, seus acertos críticos causam +1d10 de dano adicional.",
+   "classe": "brutalista",
+   "card": "marca-card"
+  },
+  {
+   "id": "brutalista-olhos-do-estrategista",
+   "tipo": "marca",
+   "nome": "Olhos do Estrategista",
+   "icone": null,
+   "resumo": "\"Você não vê pessoas. Vê peças em um tabuleiro.\" Você tem dificuldade em não pensar logicamente/estrategicamente em situações críticas. Para cada combate vencido onde você usou Comando Tático ou Leitura de Combate pelo menos uma vez, você ganha +1 permanente em Percepção. Ao chegar em +5, essa habilidade fica supérflua. Combates vencidos onde nenhum aliado caiu Morrendo recuperam 1d6 de Stamina a todos os aliados.",
+   "classe": "brutalista",
+   "card": "marca-card"
+  },
+  {
+   "id": "brutalista-plano-do-general",
+   "tipo": "marca",
+   "nome": "Plano do General",
+   "icone": null,
+   "resumo": "\"Um bom General é aquele que sempre tem um plano, até quando o primeiro dá errado.\" Você anseia controlar tudo, quando as coisas não vão conforme seu plano, você perde a cabeça. Você pode elaborar um plano de combate e designar um objetivo a ser alcançado, como por exemplo: “O goblin morrerá no primeiro turno por mim.” “Irei distrair os guardas para o ladino alcançar a porta” “Iremos explodir a ponte enquanto os inimigos passam por ela” Se a condição designada ocorrer de maneira fiel ao seu plano, você e aliados em até 9 m ganham UMA das três recompensas: Vantagem em um teste de sua escolha até o fim do combate. +4 Iniciativa. Os inimigos ficam expostos por 1 rodada.",
+   "classe": "brutalista",
+   "card": "marca-card"
+  }
+ ]
+}

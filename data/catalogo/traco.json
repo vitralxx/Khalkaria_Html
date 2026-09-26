@@ -1,0 +1,181 @@
+{
+ "schema": "catalogo/1",
+ "tipo": "traco",
+ "fontes": [
+  "data/racas/*.json"
+ ],
+ "total": 19,
+ "entradas": [
+  {
+   "id": "humano-persistencia-humana",
+   "tipo": "traco",
+   "nome": "Persistência Humana",
+   "icone": null,
+   "resumo": "Humanos são persistentes, ao falhar em um teste qualquer, como ação livre, pode rolar 1d4 e somar ao teste. (Usos: 1+mod. Sabedoria/descanso longo)",
+   "raca": "humano",
+   "card": "trait-card"
+  },
+  {
+   "id": "anao-visao-no-escuro",
+   "tipo": "traco",
+   "nome": "Visão no Escuro",
+   "icone": null,
+   "resumo": "Você enxerga no escuro em até 18 metros, vendo em tons de cinza metálico.",
+   "raca": "anao",
+   "card": "trait-card"
+  },
+  {
+   "id": "anao-resiliencia-ana",
+   "tipo": "traco",
+   "nome": "Resiliência Anã",
+   "icone": null,
+   "resumo": "Uma vez por descanso longo, pode rolar um teste de Fortitude com Vantagem. Você precisa de apenas 4 horas para descansar completamente. Você é imune a Envenenamento .",
+   "raca": "anao",
+   "card": "trait-card"
+  },
+  {
+   "id": "anao-treinamento-anao",
+   "tipo": "traco",
+   "nome": "Treinamento Anão",
+   "icone": null,
+   "resumo": "Anões são treinados a utilizar as armas que fabricam. Você começa treinado em Armas Marciais e Armas à Distância .",
+   "raca": "anao",
+   "card": "trait-card"
+  },
+  {
+   "id": "dryad-pele-de-casca",
+   "tipo": "traco",
+   "nome": "Pele de Casca",
+   "icone": null,
+   "resumo": "Você recebe 2 de Armadura (Ar) Natural.",
+   "raca": "dryad",
+   "card": "trait-card"
+  },
+  {
+   "id": "dryad-essencia-da-folha",
+   "tipo": "traco",
+   "nome": "Essência da Folha",
+   "icone": null,
+   "resumo": "Ao estar em combate, você recupera 1d4 de Saúde por turno se estiver exposto ao sol.",
+   "raca": "dryad",
+   "card": "trait-card"
+  },
+  {
+   "id": "dryad-amado",
+   "tipo": "traco",
+   "nome": "Amado",
+   "icone": null,
+   "resumo": "Você pode tentar encantar uma criatura com sua aparência eloquente. Como 1 ação, uma criatura em até 9m deve fazer um teste de Vontade contra sua CD ou fica Enfeitiçada . A criatura fica enfeitiçada até passar no teste de Vontade no final de cada turno dela ou você atacar ela. Grutos tem vantagem no teste de resistência dessa característica. Você tem +2 em interação social(qualquer) contra criaturas que gostam de você.",
+   "raca": "dryad",
+   "card": "trait-card"
+  },
+  {
+   "id": "gruto-olhos-reptilianos",
+   "tipo": "traco",
+   "nome": "Olhos Reptilianos",
+   "icone": null,
+   "resumo": "Você enxerga no escuro com perfeita clareza.",
+   "raca": "gruto",
+   "card": "trait-card"
+  },
+  {
+   "id": "gruto-lingua-bifurcada",
+   "tipo": "traco",
+   "nome": "Língua Bifurcada",
+   "icone": null,
+   "resumo": "Tem vantagem nas perícias de Movimento, Crime, Intimidação e Sobrevivência contra Dryads e outras Criaturas Predáveis, adicionalmente é Imune a Envenenamento .",
+   "raca": "gruto",
+   "card": "trait-card"
+  },
+  {
+   "id": "gruto-troca-de-pele",
+   "tipo": "traco",
+   "nome": "Troca de Pele",
+   "icone": null,
+   "resumo": "Troca de pele frequentemente, recuperando +1d6 de saúde em descansos longos.",
+   "raca": "gruto",
+   "card": "trait-card"
+  },
+  {
+   "id": "corrompido-ser-primordial",
+   "tipo": "traco",
+   "nome": "Ser Primordial",
+   "icone": null,
+   "resumo": "Você pode sentir a presença de qualquer misticidade no plano material em até 9m.",
+   "raca": "corrompido",
+   "card": "trait-card"
+  },
+  {
+   "id": "corrompido-receptaculo-natural",
+   "tipo": "traco",
+   "nome": "Receptáculo Natural",
+   "icone": null,
+   "resumo": "Você pode conjurar duas magias de nível 1, de qualquer escola, sem um foco designado. Ao fazer isso, rola Vontade (CD 12), recebendo 1d4 de dano Psíquico em caso de falha. Escolha-as dentre as listas de magia nível 1.",
+   "raca": "corrompido",
+   "card": "trait-card"
+  },
+  {
+   "id": "corrompido-sussurros-1x-descanso-curto",
+   "tipo": "traco",
+   "nome": "Sussurros (1x/Descanso Curto)",
+   "icone": null,
+   "resumo": "Você constantemente ouve fragmentos do plano místico e pode tentar estabelecer uma conversa com essas forças. Role um teste de Vontade (CD 15), se suceder você sustenta uma conversa de até 30 segundos com as vozes da sua cabeça. Se falhar, perde 1d4 de Éter.",
+   "raca": "corrompido",
+   "card": "trait-card"
+  },
+  {
+   "id": "corrompido-natureza-dubia",
+   "tipo": "traco",
+   "nome": "Natureza Dúbia",
+   "icone": null,
+   "resumo": "Você possui -2 em testes de interação social (exceto intimidação) com seres humanoides que desconfiem de você. Emana misticidade naturalmente, sendo facilmente percebido por magias que detectem isso.",
+   "raca": "corrompido",
+   "card": "trait-card"
+  },
+  {
+   "id": "automato-corpo-mecanico",
+   "tipo": "traco",
+   "nome": "Corpo Mecânico",
+   "icone": null,
+   "resumo": "Você é imune a efeitos biológicos: Sangramento, Envenenamento, doenças. É vulnerável (2x dano) a dano elemental. Se alimenta de sucata.",
+   "raca": "automato",
+   "card": "trait-card"
+  },
+  {
+   "id": "automato-automanutencao",
+   "tipo": "traco",
+   "nome": "Automanutenção",
+   "icone": null,
+   "resumo": "Possui mecanismo de automanutenção (cura ao descansar), mas para cura maior deve ser consertado com item Kit de Manutenção . Poções e Elixires não funcionam em você.",
+   "raca": "automato",
+   "card": "trait-card"
+  },
+  {
+   "id": "inseto-garras-naturais",
+   "tipo": "traco",
+   "nome": "Garras Naturais",
+   "icone": null,
+   "resumo": "Você pode escalar paredes, desde que use todos os seus membros.",
+   "raca": "inseto",
+   "card": "trait-card"
+  },
+  {
+   "id": "inseto-antena-sensorial",
+   "tipo": "traco",
+   "nome": "Antena Sensorial",
+   "icone": null,
+   "resumo": "Pode se comunicar com outros insetos remotamente e detector natural à energia mística.",
+   "raca": "inseto",
+   "card": "trait-card"
+  },
+  {
+   "id": "inseto-segregado",
+   "tipo": "traco",
+   "nome": "Segregado",
+   "icone": null,
+   "resumo": "Você sofre -2 em testes de interação social (exceto intimidação) com todas as raças a não ser insetos.",
+   "raca": "inseto",
+   "card": "trait-card"
+  }
+ ]
+}

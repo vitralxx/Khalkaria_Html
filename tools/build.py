@@ -13,7 +13,8 @@ Uso:
 
 Testes do motor: se existir tools/testes/ e houver `node` no PATH, roda
 `node --test` nos tools/testes/**/*.test.js depois dos geradores; falha lá é
-falha do build. Sem node, avisa que pulou.
+falha do build. Sem node, avisa que pulou. Os testes Python das checagens do
+validar (tools/testes/test_*.py) rodam em seguida, com unittest.
 """
 import subprocess, sys, os, re, glob, shutil
 import shell, gerar_webp
@@ -32,6 +33,8 @@ ALVOS = [
     ('origens',   'gerar_origens.py'),
     # o Bazar lê data/condicoes.json (selo de Sobrepeso), por isso vem depois
     ('bazar',     'gerar_bazar.py'),
+    # catálogo por tipo (F1a): lê os data/*.json de conteúdo, vem por último
+    ('catalogo',  'gerar_catalogo.py'),
 ]
 TESTES = os.path.join(TOOLS, 'testes')
 
@@ -81,6 +84,20 @@ def roda_testes():
     return r.returncode == 0
 
 
+def roda_testes_py():
+    """python -m unittest nos tools/testes/test_*.py (checagens do validar)."""
+    if not glob.glob(os.path.join(TESTES, 'test_*.py')):
+        return True
+    print('[>>] testes do validar (python -m unittest)')
+    sys.stdout.flush()
+    r = subprocess.run([sys.executable, '-m', 'unittest', 'discover', '-s', TESTES, '-p', 'test_*.py'],
+                       cwd=ROOT, capture_output=True, text=True, encoding='utf-8', errors='replace', env=ENV)
+    saida = ((r.stdout or '') + (r.stderr or '')).strip().splitlines()
+    for l in (saida if r.returncode else [x for x in saida if x.startswith(('Ran ', 'OK'))]):
+        print('   ', l)
+    return r.returncode == 0
+
+
 def main():
     # saída redirecionada no Windows é cp1252: caractere fora dela vira '?'
     # em vez de derrubar o build no meio (UnicodeEncodeError)
@@ -118,6 +135,8 @@ def main():
     if os.path.isdir(TESTES):
         if not roda_testes():
             falhas.append('testes do motor')
+        if not roda_testes_py():
+            falhas.append('testes do validar')
 
     if falhas:
         raise SystemExit(f'\nFALHA na geração: {", ".join(falhas)}')
