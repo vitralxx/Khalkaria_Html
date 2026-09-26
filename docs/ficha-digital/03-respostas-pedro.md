@@ -167,3 +167,18 @@ bonitos e repaginados, integração de tudo com a ficha."
    texto. Hoje são 5 níveis.
 
 Moldura gótica com raízes, títulos em blackletter (o site já carrega `--font-gothic`).
+
+## 5. Respostas de 2026-09-26 (depois da F0)
+
+| Id | Pergunta | Resposta |
+|---|---|---|
+| D33 | Efeitos das raras já em branches públicas | Oculto só no site; as branches ficam como estão |
+| D34 | Tiers e Marcas no nível 1 | Tiers à vista, travados, com o nível que destrava; escolha na subida |
+| D35 | "4 técnicas do limiar" | "Era cuidado com as draw de cartas do limiar, isso só acontece a partir do nível 2, toda mão você tem 1 carta grátis e pode gastar pontos do limiar ou queimar 1 carta, conforme as regras no notion." |
+| D36 | Uma ficha ou várias por navegador | Várias, com seletor |
+| — | Linhas que só existem no site (Descanso Curto "Outros… Ações criativas a critério do mestre"; abertura do ataque natural em Tamanho) | Ficam |
+| — | "Evasão = Determinada pela sua classe" no Sistema do Notion | "Vale, pode reescrever." Reescrito no Notion e no site: "Sua Evasão base é 10 + Mod. Destreza, igual em todas as classes, e define se você desvia/resiste o dano quando alvo de um ataque." |
+| — | Faixa 8–18: antes ou depois de mover o ponto | "Apenas para o valor rolado, o ponto pode ultrapassar e reduzir superando o limite." |
+| — | Espadachim e Teurgo têm recurso de classe? | "Tem sim, teurgo também. Todas têm." |
+
+Cores de recurso (depois das fotos): Saúde vermelho, **Stamina amarelo**, **Éter verde e roxo**. Recolorir os ícones de Stamina e Éter da ficha física: autorizado.
