@@ -1,5 +1,143 @@
 {
-  "classe": "artilheiro",
+  "classe": {
+    "id": "classe-artilheiro",
+    "nome": "Artilheiro",
+    "atributosChave": {
+      "texto": "Des, Sab, Int/Con",
+      "lista": [
+        [
+          "DES"
+        ],
+        [
+          "SAB"
+        ],
+        [
+          "INT",
+          "CON"
+        ]
+      ]
+    },
+    "cd": {
+      "texto": "10 + Des + Sab",
+      "base": 10,
+      "termos": [
+        [
+          "DES"
+        ],
+        [
+          "SAB"
+        ]
+      ]
+    },
+    "estilo": "Combate a Distância, Dano pesado e Controle de Terreno",
+    "treinamento": {
+      "fixo": {
+        "texto": "Armas à Distância, Atacar, Percepção",
+        "termos": [
+          {
+            "tipo": "arma",
+            "quantidade": 1,
+            "opcoes": [
+              "armas-a-distancia"
+            ]
+          },
+          {
+            "tipo": "pericia",
+            "quantidade": 1,
+            "opcoes": [
+              "atacar"
+            ]
+          },
+          {
+            "tipo": "pericia",
+            "quantidade": 1,
+            "opcoes": [
+              "percepcao"
+            ]
+          }
+        ]
+      },
+      "escolha": {
+        "quantidade": "1 + Mod.Int",
+        "opcoesTexto": "Furtividade, Iniciativa, Ofício (Engenharia), Investigação, Movimento",
+        "opcoes": [
+          "furtividade",
+          "iniciativa",
+          "oficio-engenharia",
+          "investigacao",
+          "movimento"
+        ],
+        "numero": {
+          "base": 1,
+          "atributo": "INT"
+        }
+      }
+    },
+    "status": {
+      "saude": "10 + (4 × Nível) + (Mod.CON × Nível)",
+      "stamina": "8 + (7 × Nível) + ([Mod.FOR OU Mod.DES] × Nível)",
+      "eter": "6 + (4 × Nível) + ([Mod.INT OU Mod.SAB] × Nível)",
+      "evasaoAtiva": "10 + Mod. Destreza + Dado de Defender",
+      "evasaoPassiva": "10 + Mod. Destreza"
+    },
+    "V": 4,
+    "G": 7,
+    "R": 4,
+    "recurso": {
+      "id": "concentracao",
+      "nome": "Concentração",
+      "texto": [
+        "Seus disparos ficam precisos a medida que você consegue se concentrar nos pontos fracos dos seus inimigos. Por ser um atirador, algumas atitudes aumentam sua concentração, enquanto outras diminuem."
+      ],
+      "medidores": [
+        {
+          "id": "concentracao",
+          "nome": "Concentração",
+          "max": "3 + Mod. Sabedoria"
+        }
+      ],
+      "ganhosIntro": "Você começa todo combate com 0 de concentração e ganha concentração com as seguintes ações:",
+      "ganhos": [
+        "<strong>Atacar:</strong> Ao acertar um ataque → <strong>+1 Concentração, Crítico → +2</strong>",
+        "<strong>Mirar:</strong> Gaste 1 ação, mirando no seu alvo → <strong>+2 Concentração</strong>",
+        "<strong>Ficar Parado:</strong> Não se mover no turno → <strong>+1 Concentração</strong>"
+      ],
+      "perdasIntro": "Você gasta concentração para utilizar técnicas porém pode perder de outras formas:",
+      "perdas": [
+        "<strong>Ser atacado:</strong> Ao receber dano → <strong>-1 Concentração</strong>",
+        "Se mover: Utilizar 1 ação para se movimentar → <strong>-1 Concentração</strong>",
+        "<strong>Condição:</strong> Ao falhar em um teste de resistência → <strong>-2 Concentração</strong>",
+        "<strong>Morte:</strong> Ao ver um aliado cair <em>Morrendo</em> → <strong>-3 Concentração</strong>"
+      ],
+      "regras": [
+        "Ao estar concentrado, seu acerto aumenta proporcionalmente.<br><strong style=\"color: #ef4444;\">!!</strong> Sempre adicione sua concentração a sua rolagem de ataque.",
+        "Algumas técnicas e habilidades podem exigir concentração, ao utiliza-las, diminua sua concentração conforme o requisitado."
+      ]
+    },
+    "ramos": [
+      {
+        "id": "artilheiro-ramo-do-vendaval",
+        "chave": "vendaval",
+        "nome": "🌀 Ramo do Vendaval",
+        "subtitulo": "Adagas de Arremesso e Agilidade",
+        "descricao": "Uma lâmina é lenta. Duas são rápidas. Dez são uma tempestade. Você não arremessa facas - você desencadeia um vendaval de aço que corta, perfura e silencia antes que o grito escape. Outros atiradores precisam mirar. Você já está arremessando a terceira faca enquanto a primeira ainda voa."
+      },
+      {
+        "id": "artilheiro-ramo-da-polvora",
+        "chave": "polvora",
+        "nome": "🔥 Ramo da Pólvora",
+        "subtitulo": "Armas de Fogo e Dano",
+        "descricao": "O primeiro disparo que você ouviu mudou tudo. O poder absoluto de transformar vida em silêncio com um aperto de dedo. Alguns temem o barulho - você aprendeu a amá-lo. É o último aviso que seus inimigos recebem, e a maioria não vive para ouvir o segundo."
+      },
+      {
+        "id": "artilheiro-ramo-do-predador",
+        "chave": "predador",
+        "nome": "🏹 Ramo do Predador",
+        "subtitulo": "Flechas e Furtividade",
+        "descricao": "Você aprendeu que a caça não é sobre força - é sobre espera. Nas florestas silenciosas, nas montanhas geladas, nos pântanos esquecidos, você observou e aprendeu a ter paciência. A presa nunca sabe que está sendo caçada até que a flecha já tenha deixado o arco."
+      }
+    ]
+  },
   "cards": [
     {
       "id": "artilheiro-respiracao-controlada",

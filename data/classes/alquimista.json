@@ -1,5 +1,934 @@
 {
-  "classe": "alquimista",
+  "classe": {
+    "id": "classe-alquimista",
+    "nome": "Alquimista",
+    "atributosChave": {
+      "texto": "Int, Des, Sab",
+      "lista": [
+        [
+          "INT"
+        ],
+        [
+          "DES"
+        ],
+        [
+          "SAB"
+        ]
+      ]
+    },
+    "cd": {
+      "texto": "10 + Mod. Inteligência + Mod. Destreza",
+      "base": 10,
+      "termos": [
+        [
+          "INT"
+        ],
+        [
+          "DES"
+        ]
+      ]
+    },
+    "estilo": "Suporte, Utilidade, Preparação e Crafting",
+    "treinamento": {
+      "fixo": {
+        "texto": "Ofício (Alquimia), Conhecimento",
+        "termos": [
+          {
+            "tipo": "pericia",
+            "quantidade": 1,
+            "opcoes": [
+              "oficio-alquimia"
+            ]
+          },
+          {
+            "tipo": "pericia",
+            "quantidade": 1,
+            "opcoes": [
+              "conhecimento"
+            ]
+          }
+        ]
+      },
+      "escolha": {
+        "quantidade": "1 + Mod. Inteligência",
+        "opcoesTexto": "Ofício (Alquimia), Ofício (Engenharia), Ofício (Ferraria), Místico, Medicina",
+        "opcoes": [
+          "oficio-alquimia",
+          "oficio-engenharia",
+          "oficio-ferraria",
+          "mistico",
+          "medicina"
+        ],
+        "numero": {
+          "base": 1,
+          "atributo": "INT"
+        }
+      }
+    },
+    "status": {
+      "saude": "10 + (4 × Nível) + (Mod.CON × Nível)",
+      "stamina": "8 + (6 × Nível) + (Mod.FOR OU Mod.DES × Nível)",
+      "eter": "6 + (5 × Nível) + (Mod.INT OU Mod.SAB × Nível)",
+      "evasaoAtiva": "10 + Mod. Destreza + Dado de Defender",
+      "evasaoPassiva": "10 + Mod. Destreza"
+    },
+    "V": 4,
+    "G": 6,
+    "R": 5,
+    "recurso": {
+      "id": "reagentes",
+      "nome": "Reagentes",
+      "texto": [
+        "Você possui uma Bolsa de Reagentes que representa seus materiais alquímicos, componentes e suprimentos de crafting.",
+        "Reagentes são utilizados pelo alquimista para criar todas suas invenções, sendo elas itens, poções, melhorias e efeitos especiais. Você conhece fórmulas fundamentais da alquimia. Estes itens podem ser criados por <strong>qualquer Alquimista</strong>, independente do ramo escolhido."
+      ],
+      "medidores": [
+        {
+          "id": "reagentes",
+          "nome": "Reagentes",
+          "max": "(Nível × 3) + Mod.Inteligência"
+        }
+      ],
+      "recarga": [
+        {
+          "rotulo": "🌙 Descanso Longo:",
+          "texto": "Você recupera todos os Reagentes em um descanso longo, assumindo acesso a suprimentos básicos ou natureza."
+        },
+        {
+          "rotulo": "☀️ Descanso Curto:",
+          "texto": "Você pode <em>Buscar Reagentes</em> como sua ação de descanso curto, recuperando 1d4+Nível de reagentes."
+        }
+      ],
+      "regrasTitulo": "📋 Regras de Criação:",
+      "regras": [
+        "<strong>Tempo Padrão:</strong> 10 minutos.",
+        "<strong>Criação em Lote:</strong> Criando com 10 minutos, pode aproveitar e criar múltiplos itens de uma vez.",
+        "<strong>Durabilidade:</strong> Itens criados duram até o próximo descanso longo, depois perdem seus efeitos ou apresentam falhas.",
+        "<strong>Desmanche:</strong> Você pode reverter itens produzidos por você, ganhando seus reagentes de volta.",
+        "<strong>Teste de Alquimia:</strong> Ao criar qualquer item, role um teste de Ofício(Alquimia), ao suceder o CD do item escolhido você o fabrica com sucesso.<br>Em caso de falha, você perde os reagentes e não cria o item."
+      ]
+    },
+    "ramos": [
+      {
+        "id": "alquimista-ramo-do-artificer",
+        "chave": "artificer",
+        "nome": "⚙️ Ramo do Artificer",
+        "subtitulo": "Utilidade e Infusão Mágica",
+        "descricao": "Você cruzou a fronteira entre alquimia e místicidade. Onde outros veem limite, você vê oportunidade. Éter não é apenas combustível - é um ingrediente. Suas criações brilham com runas, seus itens pensam, suas invenções desafiam as leis naturais. Você não é apenas um alquimista; é um inventor que dobra a realidade."
+      },
+      {
+        "id": "alquimista-ramo-do-bombardeiro",
+        "chave": "bombardeiro",
+        "nome": "💣 Ramo do Bombardeiro",
+        "subtitulo": "Combate e Toxinas",
+        "descricao": "Você dominou a arte da destruição química. Seus frascos brilham com cores que prometem dor. Seu sorriso aparece quando algo explode. Enquanto outros alquimistas criam para curar ou construir, você cria para um único propósito: aniquilação eficiente."
+      },
+      {
+        "id": "alquimista-ramo-do-boticario",
+        "chave": "boticario",
+        "nome": "💊 Ramo do Boticário",
+        "subtitulo": "Cura e Abjuração",
+        "descricao": "Você é a linha entre a vida e a morte das criaturas. Suas poções fecham feridas que magia não alcança, seus elixires transformam covardes em heróis, seus tônicos enfraquecem gigantes. Você traz esperança - e ocasionalmente, a ruína silenciosa dos inimigos através de debilitações precisas."
+      }
+    ],
+    "itensAlquimicos": [
+      {
+        "nome": "🧪 Nível 1",
+        "faixaCd": "CD 8-10",
+        "categorias": [
+          {
+            "nome": "Ofensivos",
+            "itens": [
+              {
+                "id": "alquimista-bomba-de-luz",
+                "nome": "Bomba de Luz",
+                "efeito": "Arremesso 9m. Flash 6m raio. Reflexo ou <em>Cego</em> 1 rodada.",
+                "reagentes": "1",
+                "cd": "8"
+              },
+              {
+                "id": "alquimista-po-de-espirro",
+                "nome": "Pó de Espirro",
+                "efeito": "Arremesso 3m. Fortitude ou <em>Desorientado</em> 1 rodada.",
+                "reagentes": "1",
+                "cd": "8"
+              },
+              {
+                "id": "alquimista-fogo-alquimico",
+                "nome": "Fogo Alquímico",
+                "efeito": "Arremesso 9m. 2d6 Fogo em área 1,5m. Reflexo para metade do dano. Queima +1d6 próxima rodada.",
+                "reagentes": "2",
+                "cd": "10"
+              },
+              {
+                "id": "alquimista-acido-corrosivo",
+                "nome": "Ácido Corrosivo",
+                "efeito": "Arremesso 9m. 2d8 Ácido, 1 alvo. Ignora 2 de Armadura Específica.",
+                "reagentes": "2",
+                "cd": "10"
+              },
+              {
+                "id": "alquimista-frasco-congelante",
+                "nome": "Frasco Congelante",
+                "efeito": "Arremesso 9m. 2d6 Frio em área 1,5m. Superfície fica <em>Escorregadia</em> 1 min.",
+                "reagentes": "2",
+                "cd": "10"
+              }
+            ]
+          },
+          {
+            "nome": "Curativos",
+            "itens": [
+              {
+                "id": "alquimista-sal-revigorante",
+                "nome": "Sal Revigorante",
+                "efeito": "Acorda <em>Inconsciente</em> (não com 0 de Saúde). Remove <em>Atordoado</em>, <em>Adormecido</em>.",
+                "reagentes": "1",
+                "cd": "8"
+              },
+              {
+                "id": "alquimista-balsamo-estabilizador",
+                "nome": "Bálsamo Estabilizador",
+                "efeito": "Criatura <em>Morrendo</em> fica estável e ganha 1 HP após 1 minuto.",
+                "reagentes": "2",
+                "cd": "8"
+              },
+              {
+                "id": "alquimista-pocao-de-cura-menor",
+                "nome": "Poção de Cura Menor",
+                "efeito": "Recupera 2d4+Int de Saúde.",
+                "reagentes": "2",
+                "cd": "10"
+              },
+              {
+                "id": "alquimista-pocao-de-vigor",
+                "nome": "Poção de Vigor",
+                "efeito": "Recupera 1d6 de Stamina.",
+                "reagentes": "2",
+                "cd": "10"
+              },
+              {
+                "id": "alquimista-antidoto-simples",
+                "nome": "Antídoto Simples",
+                "efeito": "Remove <em>Envenenamento</em> de venenos não-mágicos.",
+                "reagentes": "2",
+                "cd": "10"
+              }
+            ]
+          },
+          {
+            "nome": "Utilidades",
+            "itens": [
+              {
+                "id": "alquimista-bastao-de-luz",
+                "nome": "Bastão de Luz",
+                "efeito": "Luz brilhante 6m + fraca 6m. Dura 4 horas.",
+                "reagentes": "1",
+                "cd": "8"
+              },
+              {
+                "id": "alquimista-tinta-invisivel",
+                "nome": "Tinta Invisível",
+                "efeito": "Só aparece com calor ou reagente específico.",
+                "reagentes": "1",
+                "cd": "8"
+              },
+              {
+                "id": "alquimista-po-revelador",
+                "nome": "Pó Revelador",
+                "efeito": "Revela magia remanescente utilizada a menos de 1 hora.",
+                "reagentes": "1",
+                "cd": "8"
+              },
+              {
+                "id": "alquimista-fumaca-densa",
+                "nome": "Fumaça Densa",
+                "efeito": "Nuvem 4,5m raio. Obscurecimento total por 1 min.",
+                "reagentes": "2",
+                "cd": "10"
+              },
+              {
+                "id": "alquimista-sangue-falso",
+                "nome": "Sangue Falso",
+                "efeito": "Pode se fingir de morto. Medicina CD 18 para perceber. Duração 1 hora.",
+                "reagentes": "2",
+                "cd": "10"
+              },
+              {
+                "id": "alquimista-catalisador-termico",
+                "nome": "Catalisador Térmico",
+                "efeito": "Mantém temperatura fixa em recipiente por 24h (0° até 100°).",
+                "reagentes": "1",
+                "cd": "10"
+              }
+            ]
+          },
+          {
+            "nome": "Venenos",
+            "itens": [
+              {
+                "id": "alquimista-veneno-fraco",
+                "nome": "Veneno Fraco",
+                "efeito": "Arma: próximos 3 ataques, +1d4 Biológico. Fortitude ou <em>Enjoado</em> 1 min.",
+                "reagentes": "2",
+                "cd": "10"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "nome": "🧪 Nível 2",
+        "faixaCd": "CD 12-14",
+        "categorias": [
+          {
+            "nome": "Ofensivos",
+            "itens": [
+              {
+                "id": "alquimista-bomba-de-concussao",
+                "nome": "Bomba de Concussão",
+                "efeito": "Arremesso 9m. 1d6 Contundente em 3m raio. Fortitude ou <em>Surdo</em> 1 min.",
+                "reagentes": "2",
+                "cd": "12"
+              },
+              {
+                "id": "alquimista-granada-toxica",
+                "nome": "Granada Tóxica",
+                "efeito": "Arremesso 9m. Nuvem 3m por 2 rodadas. 1d8 Veneno/turno + Fortitude ou <em>Enjoado</em>.",
+                "reagentes": "3",
+                "cd": "12"
+              },
+              {
+                "id": "alquimista-bola-de-eletricidade",
+                "nome": "Bola de Eletricidade",
+                "efeito": "Arremesso 9m. 2d6 Elétrico. Armadura metálica: +1d6 e <em>Atordoado</em> 1 rodada (Fort. nega).",
+                "reagentes": "3",
+                "cd": "12"
+              },
+              {
+                "id": "alquimista-po-explosivo",
+                "nome": "Pó Explosivo",
+                "efeito": "Espalhar em 3m. Detona com fogo/impacto: 3d6 Fogo. Pode ser armadilha.",
+                "reagentes": "3",
+                "cd": "14"
+              },
+              {
+                "id": "alquimista-tinta-de-cegueira",
+                "nome": "Tinta de Cegueira",
+                "efeito": "Arremesso 4,5m. Reflexo ou <em>Cego</em> 2 rodadas.",
+                "reagentes": "2",
+                "cd": "12"
+              }
+            ]
+          },
+          {
+            "nome": "Curativos",
+            "itens": [
+              {
+                "id": "alquimista-pocao-de-cura-moderada",
+                "nome": "Poção de Cura Moderada",
+                "efeito": "Recupera 3d6+Int de Saúde.",
+                "reagentes": "4",
+                "cd": "12"
+              },
+              {
+                "id": "alquimista-emplastro-de-regeneracao",
+                "nome": "Emplastro de Regeneração",
+                "efeito": "Aplicar em ferimento. Recupera 1d4 Saúde/turno por 3 rodadas.",
+                "reagentes": "3",
+                "cd": "12"
+              },
+              {
+                "id": "alquimista-antidoto-universal",
+                "nome": "Antídoto Universal",
+                "efeito": "Remove <em>Envenenamento</em>, <em>Enjoado</em> ou doença não-mágica.",
+                "reagentes": "3",
+                "cd": "14"
+              },
+              {
+                "id": "alquimista-tonico-anti-exaustao",
+                "nome": "Tônico Anti-Exaustão",
+                "efeito": "Remove 1 nível de <em>Exaustão</em>. 1x por descanso longo por criatura.",
+                "reagentes": "3",
+                "cd": "14"
+              }
+            ]
+          },
+          {
+            "nome": "Elixires e Óleos",
+            "itens": [
+              {
+                "id": "alquimista-elixir-de-forca",
+                "nome": "Elixir de Força",
+                "efeito": "+2 testes de Força como atributo principal, +2 dano corpo a corpo. Duração 10 min.",
+                "reagentes": "3",
+                "cd": "12"
+              },
+              {
+                "id": "alquimista-elixir-de-agilidade",
+                "nome": "Elixir de Agilidade",
+                "efeito": "+2 testes de Destreza como atributo principal, +1,5m Movimento. Duração 10 min.",
+                "reagentes": "3",
+                "cd": "12"
+              },
+              {
+                "id": "alquimista-elixir-de-resistencia",
+                "nome": "Elixir de Resistência",
+                "efeito": "+2 Fortitude, +5 Saúde temporária. Duração 10 min.",
+                "reagentes": "3",
+                "cd": "12"
+              },
+              {
+                "id": "alquimista-oleo-flamejante",
+                "nome": "Óleo Flamejante",
+                "efeito": "Arma: próximos 3 ataques +1d6 Fogo. Duração 1 min.",
+                "reagentes": "2",
+                "cd": "12"
+              },
+              {
+                "id": "alquimista-oleo-congelante",
+                "nome": "Óleo Congelante",
+                "efeito": "Arma: próximos 3 ataques +1d6 Frio. Crítico = <em>Lento 1</em> (máx. 1x/alvo) por 1 rodada. Duração 1 Min.",
+                "reagentes": "2",
+                "cd": "12"
+              },
+              {
+                "id": "alquimista-oleo-corrosivo",
+                "nome": "Óleo Corrosivo",
+                "efeito": "Arma: próximos 3 ataques ignoram 5 Armadura. Duração 1 min.",
+                "reagentes": "2",
+                "cd": "12"
+              },
+              {
+                "id": "alquimista-couro-liquido",
+                "nome": "Couro Líquido",
+                "efeito": "+2 Armadura (Ar) Natural. Duração 10 min.",
+                "reagentes": "3",
+                "cd": "14"
+              }
+            ]
+          },
+          {
+            "nome": "Utilidades",
+            "itens": [
+              {
+                "id": "alquimista-detector-de-magia",
+                "nome": "Detector de Magia",
+                "efeito": "Frasco brilha azul a menos de 3m de magia/éter. Dura 1 hora.",
+                "reagentes": "2",
+                "cd": "12"
+              },
+              {
+                "id": "alquimista-cola-universal",
+                "nome": "Cola Universal",
+                "efeito": "Gruda superfícies (Força CD 20 separa). Pode <em>Enraizar</em> (Fort. nega).",
+                "reagentes": "2",
+                "cd": "12"
+              },
+              {
+                "id": "alquimista-solvente-universal",
+                "nome": "Solvente Universal",
+                "efeito": "Dissolve cola, resina, adesivo. Remove <em>Enraizado</em> por cola.",
+                "reagentes": "2",
+                "cd": "12"
+              },
+              {
+                "id": "alquimista-marcador-rastreavel",
+                "nome": "Marcador Rastreável",
+                "efeito": "Líquido invisível. Você detecta a até 100m por 24h.",
+                "reagentes": "2",
+                "cd": "12"
+              },
+              {
+                "id": "alquimista-agua-regia",
+                "nome": "Água-Régia",
+                "efeito": "Dissolve metal não-mágico. Abre qualquer fechadura mundana em 3 min.",
+                "reagentes": "3",
+                "cd": "14"
+              },
+              {
+                "id": "alquimista-corda-liquida",
+                "nome": "Corda Líquida",
+                "efeito": "Enrijece em 6 seg. Vira corda 9m (200kg). Dura 1 hora.",
+                "reagentes": "2",
+                "cd": "12"
+              },
+              {
+                "id": "alquimista-espuma-seladora",
+                "nome": "Espuma Seladora",
+                "efeito": "Sela buracos até 50cm, cria cobertura improvisada.",
+                "reagentes": "2",
+                "cd": "12"
+              }
+            ]
+          },
+          {
+            "nome": "Venenos",
+            "itens": [
+              {
+                "id": "alquimista-veneno-padrao",
+                "nome": "Veneno Padrão",
+                "efeito": "3 ataques. +1d6 Biológico. Fortitude ou <em>Envenenamento</em> 1 min. Duração 1 min.",
+                "reagentes": "3",
+                "cd": "12"
+              },
+              {
+                "id": "alquimista-sonifero",
+                "nome": "Sonífero",
+                "efeito": "Ingerido/inalado. Vontade ou <em>Adormecido</em> 1 hora. Dano acorda.",
+                "reagentes": "3",
+                "cd": "14"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "nome": "🧪 Nível 3",
+        "faixaCd": "CD 16-18",
+        "categorias": [
+          {
+            "nome": "Ofensivos",
+            "itens": [
+              {
+                "id": "alquimista-napalm-alquimico",
+                "nome": "Napalm Alquímico",
+                "efeito": "Arremesso 9m. 3d6 Fogo em área 3m, Reflexo para metade. Queima <strong>2d6/turno por 3 rodadas</strong>. Água não apaga.",
+                "reagentes": "4",
+                "cd": "16"
+              },
+              {
+                "id": "alquimista-bomba-de-fragmentacao",
+                "nome": "Bomba de Fragmentação",
+                "efeito": "Arremesso 9m. 4d6 Perfurante em 4,5m raio. Reflexo para metade.",
+                "reagentes": "4",
+                "cd": "16"
+              },
+              {
+                "id": "alquimista-gas-necrotico",
+                "nome": "Gás Necrótico",
+                "efeito": "Nuvem 6m raio. 2d8 Necrótico/turno. Cura que criaturas na área receberiam é reduzida pela metade. Dura 3 rodadas.",
+                "reagentes": "5",
+                "cd": "16"
+              },
+              {
+                "id": "alquimista-bomba-de-vacuo",
+                "nome": "Bomba de Vácuo",
+                "efeito": "Arremesso 9m. 2d10 Força em 3m. Criaturas são puxadas 3m para o centro. Fortitude nega puxão.",
+                "reagentes": "5",
+                "cd": "18"
+              },
+              {
+                "id": "alquimista-carga-de-implosao",
+                "nome": "Carga de Implosão",
+                "efeito": "Colocar em estrutura/objeto. Destrói até 3m³ de material não-mágico. 6d6 em criaturas adjacentes.",
+                "reagentes": "6",
+                "cd": "18"
+              },
+              {
+                "id": "alquimista-frasco-do-raio",
+                "nome": "Frasco do Raio",
+                "efeito": "Arremesso 9m. 3d8 Elétrico. Salta para até 2 alvos adicionais em 3m (2d8 cada).",
+                "reagentes": "4",
+                "cd": "16"
+              }
+            ]
+          },
+          {
+            "nome": "Curativo",
+            "itens": [
+              {
+                "id": "alquimista-pocao-de-cura-maior",
+                "nome": "Poção de Cura Maior",
+                "efeito": "Recupera <strong>4d8+Int</strong> de Saúde.",
+                "reagentes": "6",
+                "cd": "16"
+              },
+              {
+                "id": "alquimista-elixir-de-restauracao",
+                "nome": "Elixir de Restauração",
+                "efeito": "Remove <em>Cego</em>, <em>Surdo</em>, <em>Paralisado</em> ou <em>Atordoado</em>.",
+                "reagentes": "5",
+                "cd": "16"
+              },
+              {
+                "id": "alquimista-adrenalina-de-campo",
+                "nome": "Adrenalina de Campo",
+                "efeito": "Criatura inconsciente acorda com metade da Saúde máxima instantaneamente. Recebe Exaustão 1 após 1 hora.",
+                "reagentes": "4",
+                "cd": "16"
+              },
+              {
+                "id": "alquimista-pocao-de-vigor-maior",
+                "nome": "Poção de Vigor Maior",
+                "efeito": "Recupera 2d6 de Stamina.",
+                "reagentes": "6",
+                "cd": "18"
+              }
+            ]
+          },
+          {
+            "nome": "Elixir e Óleo (CD 16-18)",
+            "itens": [
+              {
+                "id": "alquimista-elixir-do-crescimento",
+                "nome": "Elixir do Crescimento",
+                "efeito": "+1 categoria de tamanho. +1d4 dano, +2 For, -2 Des, +1,5m alcance. Duração 1 min.",
+                "reagentes": "5",
+                "cd": "16"
+              },
+              {
+                "id": "alquimista-elixir-do-encolhimento",
+                "nome": "Elixir do Encolhimento",
+                "efeito": "-1 categoria de tamanho. +2 Furtividade, +2 Des, -2 For. Passa em frestas. Duração 1 min.",
+                "reagentes": "5",
+                "cd": "16"
+              },
+              {
+                "id": "alquimista-extrato-de-velocidade",
+                "nome": "Extrato de Velocidade",
+                "efeito": "+1 Ação por turno. Duração 3 turnos. Exaustão 1 após efeito.",
+                "reagentes": "6",
+                "cd": "18"
+              },
+              {
+                "id": "alquimista-mutagenico-menor",
+                "nome": "Mutagênico Menor",
+                "efeito": "Escolha: +4 For/-2 Int OU +4 Des/-2 For OU +4 Con/-2 Sab. Duração 10 min.",
+                "reagentes": "5",
+                "cd": "16"
+              },
+              {
+                "id": "alquimista-elixir-da-visao-verdadeira",
+                "nome": "Elixir da Visão Verdadeira",
+                "efeito": "Vê através de ilusões, escuridão mágica, invisibilidade em 9m. Duração 1 min.",
+                "reagentes": "5",
+                "cd": "18"
+              },
+              {
+                "id": "alquimista-elixir-aranha",
+                "nome": "Elixir Aranha",
+                "efeito": "Escala superfícies como aranha. Mãos livres não necessárias.",
+                "reagentes": "4",
+                "cd": "16"
+              },
+              {
+                "id": "alquimista-oleo-do-cacador",
+                "nome": "Óleo do Caçador",
+                "efeito": "Arma: +2 Atacar e +2d6 dano contra uma criatura. Duração 1 hora.",
+                "reagentes": "4",
+                "cd": "16"
+              }
+            ]
+          },
+          {
+            "nome": "Utilidades",
+            "itens": [
+              {
+                "id": "alquimista-elixir-das-guelras",
+                "nome": "Elixir das Guelras",
+                "efeito": "Respira debaixo d'água. Duração 30 min.",
+                "reagentes": "4",
+                "cd": "16"
+              },
+              {
+                "id": "alquimista-tintura-fantasma",
+                "nome": "Tintura Fantasma",
+                "efeito": "Translúcido, recebe metade de todo dano. +4 Furtividade. Atacar cancela. Duração 1 min.",
+                "reagentes": "4",
+                "cd": "16"
+              },
+              {
+                "id": "alquimista-bomba-de-eter",
+                "nome": "Bomba de Éter",
+                "efeito": "Arremesso 9m. Drena 1d6 Éter em 3m. Você recupera metade.",
+                "reagentes": "5",
+                "cd": "18"
+              },
+              {
+                "id": "alquimista-elixir-das-linguas",
+                "nome": "Elixir das Línguas",
+                "efeito": "Entende e fala qualquer idioma. Duração 1 hora.",
+                "reagentes": "4",
+                "cd": "16"
+              },
+              {
+                "id": "alquimista-acido-dimensional",
+                "nome": "Ácido Dimensional",
+                "efeito": "Corrói barreiras mágicas, campos de força. Anula 1 efeito de barreira.",
+                "reagentes": "6",
+                "cd": "18"
+              }
+            ]
+          },
+          {
+            "nome": "Venenos",
+            "itens": [
+              {
+                "id": "alquimista-veneno-paralisante",
+                "nome": "Veneno Paralisante",
+                "efeito": "1 ataque. Fortitude ou <em>Paralisado</em> 2 rodadas. Duração 1 min.",
+                "reagentes": "5",
+                "cd": "16"
+              },
+              {
+                "id": "alquimista-soro-da-verdade",
+                "nome": "Soro da Verdade",
+                "efeito": "Ingerido. Vontade ou não pode mentir por 10 min.",
+                "reagentes": "5",
+                "cd": "16"
+              },
+              {
+                "id": "alquimista-veneno-hemorragico",
+                "nome": "Veneno Hemorrágico",
+                "efeito": "3 ataques. +2d6 Biológico. Alvo sangra 1d6/turno por 3 rodadas (Medicina estanca).",
+                "reagentes": "5",
+                "cd": "16"
+              },
+              {
+                "id": "alquimista-toxina-mental",
+                "nome": "Toxina Mental",
+                "efeito": "1 ataque. Vontade ou <em>Confuso</em> por 1 minuto.",
+                "reagentes": "5",
+                "cd": "18"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "nome": "🧪 Nível 4",
+        "faixaCd": "CD 20-22",
+        "categorias": [
+          {
+            "nome": "Ofensivos",
+            "itens": [
+              {
+                "id": "alquimista-bomba-de-plasma",
+                "nome": "Bomba de Plasma",
+                "efeito": "Arremesso 12m. 6d6 Fogo + 6d6 Elétrico em 6m raio. Reflexo para metade. Ignora Resistência a Fogo.",
+                "reagentes": "8",
+                "cd": "20"
+              },
+              {
+                "id": "alquimista-praga-alquimica",
+                "nome": "Praga Alquímica",
+                "efeito": "Arremesso 9m. Fortitude ou 3d8 Biológico em 4,5m. Criaturas afetadas <strong>espalham</strong> a praga (1d8/turno) ao tocar outros por 1 min.",
+                "reagentes": "8",
+                "cd": "20"
+              },
+              {
+                "id": "alquimista-bomba-gravitacional",
+                "nome": "Bomba Gravitacional",
+                "efeito": "Arremesso 9m. Cria zona de gravidade intensa 6m raio por 3 rodadas. Criaturas: <strong>Movimento reduzido pela metade</strong>, -4 Reflexo, voar impossível, 2d6 Contundente/turno.",
+                "reagentes": "10",
+                "cd": "22"
+              },
+              {
+                "id": "alquimista-fogo-negro",
+                "nome": "Fogo Negro",
+                "efeito": "Arremesso 9m. 4d10 Fogo + 4d10 Necrótico em 3m. Reflexo para metade. Chamas negras. Cura é impossível na área por 1 min.",
+                "reagentes": "10",
+                "cd": "22"
+              },
+              {
+                "id": "alquimista-dissolucao-total",
+                "nome": "Dissolução Total",
+                "efeito": "Aplicar em criatura/objeto. 8d6 Biológico. Ignora toda Armadura. Desintegra matéria morta.",
+                "reagentes": "8",
+                "cd": "20"
+              }
+            ]
+          },
+          {
+            "nome": "Curativos",
+            "itens": [
+              {
+                "id": "alquimista-pocao-de-cura-suprema",
+                "nome": "Poção de Cura Suprema",
+                "efeito": "Recupera 6d8+Int de Saúde + remove 1 condição à escolha.",
+                "reagentes": "10",
+                "cd": "20"
+              },
+              {
+                "id": "alquimista-pocao-de-vigor-suprema",
+                "nome": "Poção de Vigor Suprema",
+                "efeito": "Recupera 3d8 de Stamina + remove todas as condições (Incluindo Mágicas).",
+                "reagentes": "10",
+                "cd": "20"
+              },
+              {
+                "id": "alquimista-elixir-da-fenix",
+                "nome": "Elixir da Fênix",
+                "efeito": "Criatura morta há menos de 1 minuto <strong>ressuscita</strong> com 1 HP.",
+                "reagentes": "12",
+                "cd": "22"
+              },
+              {
+                "id": "alquimista-regeneracao-alquimica",
+                "nome": "Regeneração Alquímica",
+                "efeito": "Regenera membro perdido há até 1 hora em 24 horas. Requer repouso.",
+                "reagentes": "8",
+                "cd": "20"
+              }
+            ]
+          },
+          {
+            "nome": "Elixir e Óleo",
+            "itens": [
+              {
+                "id": "alquimista-mutagenico-maior",
+                "nome": "Mutagênico Maior",
+                "efeito": "+6 em um Atributo, -2 em dois outros. Transformação física visível. Duração 1 Hora.",
+                "reagentes": "8",
+                "cd": "20"
+              },
+              {
+                "id": "alquimista-elixir-da-perfeicao",
+                "nome": "Elixir da Perfeição",
+                "efeito": "+2 em Todos os atributos. Duração 10 min.",
+                "reagentes": "10",
+                "cd": "22"
+              },
+              {
+                "id": "alquimista-elixir-da-forma-bestial",
+                "nome": "Elixir da Forma Bestial",
+                "efeito": "Transforma em besta de CR igual ao seu nível. Mantém mente. Duração 3 turnos.",
+                "reagentes": "8",
+                "cd": "20"
+              },
+              {
+                "id": "alquimista-sangue-do-dragao",
+                "nome": "Sangue do Dragão",
+                "efeito": "Resistência a <strong>todo dano elemental</strong>. Sopro 1x (4d6 elemento à escolha, cone 9m). Duração 1 hora.",
+                "reagentes": "12",
+                "cd": "22"
+              },
+              {
+                "id": "alquimista-soro-da-guerra",
+                "nome": "Soro da Guerra",
+                "efeito": "+2 Atacar, +2 Defender, +2d6 dano, +3m Movimento, Vantagem em Fortitude.",
+                "reagentes": "8",
+                "cd": "22"
+              }
+            ]
+          },
+          {
+            "nome": "Utilidades",
+            "itens": [
+              {
+                "id": "alquimista-essencia-eterea",
+                "nome": "Essência Etérea",
+                "efeito": "Torna-se Incorpóreo por 1 minuto. Atravessa paredes finas. Não pode interagir fisicamente.",
+                "reagentes": "8",
+                "cd": "20"
+              },
+              {
+                "id": "alquimista-pocao-da-invisibilidade",
+                "nome": "Poção da Invisibilidade",
+                "efeito": "<em>Invisível</em> por 10 min. Atacar, receber dano ou conjurar cancela.",
+                "reagentes": "8",
+                "cd": "20"
+              },
+              {
+                "id": "alquimista-bomba-temporal",
+                "nome": "Bomba Temporal",
+                "efeito": "Área 6m. Criaturas afetadas: <em>Lento 2</em> (-2 Ação/turno, -6 m movimento, sem reação, -4 Reflexo) por 3 rodadas. Vontade nega.",
+                "reagentes": "12",
+                "cd": "22"
+              },
+              {
+                "id": "alquimista-extrato-de-clarividencia",
+                "nome": "Extrato de Clarividência",
+                "efeito": "Vê e ouve local que você conhece a até 1km por 10 min.",
+                "reagentes": "8",
+                "cd": "20"
+              },
+              {
+                "id": "alquimista-tinta-do-destino",
+                "nome": "Tinta do Destino",
+                "efeito": "Escreva um evento simples. 50% chance de acontecer nas próximas 24h. Mestre rola os dados. O evento não pode incluir diretamente a morte de uma criatura ou fenômenos/eventos maiores do que a queda de uma árvore média, por exemplo.",
+                "reagentes": "10",
+                "cd": "22"
+              }
+            ]
+          },
+          {
+            "nome": "Venenos",
+            "itens": [
+              {
+                "id": "alquimista-veneno-letal",
+                "nome": "Veneno Letal",
+                "efeito": "1 ataque. 6d6 Biológico. Fortitude ou +6d6 e Inconsciente. Duração 1 min.",
+                "reagentes": "8",
+                "cd": "20"
+              },
+              {
+                "id": "alquimista-veneno-da-alma",
+                "nome": "Veneno da Alma",
+                "efeito": "1 ataque. 4d6 Necrótico. Vontade ou <strong>Éter máximo reduzido pela metade</strong> por 24h. Duração 1 min.",
+                "reagentes": "10",
+                "cd": "22"
+              },
+              {
+                "id": "alquimista-paralisia-total",
+                "nome": "Paralisia Total",
+                "efeito": "1 ataque. Fortitude ou <em>Paralisado</em> por 1 hora. Duração 1 min.",
+                "reagentes": "8",
+                "cd": "20"
+              },
+              {
+                "id": "alquimista-amnesia-liquida",
+                "nome": "Amnésia Líquida",
+                "efeito": "Ingerido. Vontade ou perde memórias das últimas 24h.",
+                "reagentes": "8",
+                "cd": "20"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "nome": "🧪 Nível 5",
+        "faixaCd": "CD 24+",
+        "categorias": [
+          {
+            "nome": "Lendários",
+            "itens": [
+              {
+                "id": "alquimista-elixir-da-imortalidade",
+                "nome": "Elixir da Imortalidade",
+                "efeito": "Não envelhece por 10 anos. Revive 1x se morrer nesse período (1 HP). Requer <em>Coração da Árvore</em>.",
+                "reagentes": "15",
+                "cd": "24"
+              },
+              {
+                "id": "alquimista-nucleo-abissal",
+                "nome": "Núcleo Abissal",
+                "efeito": "10d10 Força em 9m raio. Reflexos ou Morte Instantânea no centro da bomba. Tudo é empurrado <strong>para o centro</strong> e comprimido. Requer <em>Grilhões do Abismo</em>.",
+                "reagentes": "15",
+                "cd": "24"
+              },
+              {
+                "id": "alquimista-soro-do-homunculo",
+                "nome": "Soro do Homúnculo",
+                "efeito": "Ao injetar transforma uma criatura em servo alquímico leal pra sempre. Requer <em>Sangue Primordial</em>.",
+                "reagentes": "15",
+                "cd": "24"
+              },
+              {
+                "id": "alquimista-lagrima-do-tempo",
+                "nome": "Lágrima do Tempo",
+                "efeito": "Reverte objeto/criatura/local ao estado de até 1000 anos atrás. 1 uso. Requer <em>Lágrima de Velúria</em>.",
+                "reagentes": "20",
+                "cd": "26"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
   "cards": [
     {
       "id": "alquimista-alquimia-rapida",

@@ -1,5 +1,303 @@
 {
   "source": "racas/corrompido",
+  "raca": {
+    "id": "raca-corrompido",
+    "nome": "Corrompido",
+    "atributos": {
+      "texto": "+2 Inteligência ou Sabedoria, -1 Constituição ou Força",
+      "bonus": [
+        {
+          "valor": 2,
+          "opcoes": [
+            "INT",
+            "SAB"
+          ]
+        },
+        {
+          "valor": -1,
+          "opcoes": [
+            "CON",
+            "FOR"
+          ]
+        }
+      ]
+    },
+    "alternativo": {
+      "texto": "+2 Destreza, -1 Constituição ou Força",
+      "bonus": [
+        {
+          "valor": 2,
+          "opcoes": [
+            "DES"
+          ]
+        },
+        {
+          "valor": -1,
+          "opcoes": [
+            "CON",
+            "FOR"
+          ]
+        }
+      ]
+    },
+    "movimento": {
+      "texto": "9 metros",
+      "metros": 9
+    },
+    "idiomas": {
+      "texto": "Comum",
+      "lista": [
+        "Comum"
+      ]
+    },
+    "pericias": {
+      "itens": [
+        {
+          "texto": "Vontade ou Místico"
+        }
+      ],
+      "escolhas": [
+        {
+          "quantidade": 1,
+          "opcoes": [
+            "vontade",
+            "mistico"
+          ]
+        }
+      ]
+    },
+    "vida": "50 anos",
+    "altura": "1,50m - 1,90m",
+    "peso": "60kg - 95kg",
+    "caracteristicas": [
+      "corrompido-ser-primordial",
+      "corrompido-receptaculo-natural",
+      "corrompido-sussurros-1x-descanso-curto",
+      "corrompido-natureza-dubia"
+    ],
+    "tecnica": {
+      "id": null,
+      "status": "PENDENTE",
+      "nota": "Pedro (03-respostas-pedro.md §2): a raça dá \"1 técnica de raça\". A página não distingue qual característica é a técnica: pergunta ao balanceamento, não inventar."
+    },
+    "arNatural": [],
+    "corrupcao": {
+      "titulo": "A Corrupção",
+      "intro": "Corrompidos diferem no quanto as forças primordiais os transformaram. Equilibre os pontos para que sempre fiquem positivos ou iguais a 0. Você pode gastar um máximo de pontos de corrupção equivalente ao indicado na tabela abaixo. Corrupções Negativas são permanentes — pegou, e ela está permanentemente marcada no seu corpo. Contudo, corrupções positivas podem ser reorganizadas em um descanso longo.",
+      "maximoPorNivel": [
+        {
+          "nivel": "1",
+          "maximo": "2"
+        },
+        {
+          "nivel": "2",
+          "maximo": "5"
+        },
+        {
+          "nivel": "3",
+          "maximo": "9"
+        },
+        {
+          "nivel": "4",
+          "maximo": "14"
+        },
+        {
+          "nivel": "5",
+          "maximo": "20"
+        }
+      ],
+      "poderes": {
+        "titulo": "Corrupções — poderes (reorganizáveis em descanso longo)",
+        "itens": [
+          {
+            "id": "corrompido-sangue-morto",
+            "nome": "Sangue Morto",
+            "efeito": "+5 Éter Máximo. +5 Stamina Máxima.",
+            "custo": "-1"
+          },
+          {
+            "id": "corrompido-carne-protetora",
+            "nome": "Carne Protetora",
+            "efeito": "Agressores recebem 1d4 de dano Necrótico ao te acertarem.",
+            "custo": "-1"
+          },
+          {
+            "id": "corrompido-sede-eterica",
+            "nome": "Sede Etérica",
+            "efeito": "Ao reduzir uma criatura a 0 de Saúde, recupere 1d4 de Éter ou Stamina.",
+            "custo": "-1"
+          },
+          {
+            "id": "corrompido-premonicao-eterica",
+            "nome": "Premonição Etérica",
+            "efeito": "+1 Evasão. Seu dado da perícia Defender se torna um 2d6, ao invés de 1d10.",
+            "custo": "-2"
+          },
+          {
+            "id": "corrompido-reservatorio-de-eter",
+            "nome": "Reservatório de Éter",
+            "efeito": "1x/Descanso curto, concentrando-se por 5 min. Você restaura (Nível)d8 de Stamina e Éter.",
+            "custo": "-2"
+          },
+          {
+            "id": "corrompido-receptaculo-menor",
+            "nome": "Receptáculo Menor",
+            "efeito": "Pode conjurar magias com 1 modulação grátis da respectiva escola da magia. Usos (1+Mod. Sabedoria)/Descanso Longo.",
+            "custo": "-2"
+          },
+          {
+            "id": "corrompido-chama-de-eter",
+            "nome": "Chama de Éter",
+            "efeito": "Ataques desarmados causam +1d6 de dano Necrótico.",
+            "custo": "-2"
+          },
+          {
+            "id": "corrompido-morto",
+            "nome": "Morto",
+            "efeito": "Você não precisa respirar para sobreviver. Adicionalmente, ao ser reduzido a 0 de saúde, fica com 1 de saúde 1x/descanso longo.",
+            "custo": "-2"
+          },
+          {
+            "id": "corrompido-escola-visceral",
+            "nome": "Escola Visceral",
+            "efeito": "Escolha uma escola de magia: magias dessa escola custam -2 éter e modulações custam -2 de éter (mín. 1).",
+            "custo": "-3"
+          },
+          {
+            "id": "corrompido-receptaculo-maior",
+            "nome": "Receptáculo Maior",
+            "efeito": "Pode conjurar magias na intensidade <em>Transbordante</em> sem rolar Vontade.",
+            "custo": "-3"
+          },
+          {
+            "id": "corrompido-vigor-mistico",
+            "nome": "Vigor Místico",
+            "efeito": "Você recebe +5 Saúde por nível.",
+            "custo": "-3"
+          },
+          {
+            "id": "corrompido-asas-do-monarca",
+            "nome": "Asas do Monarca",
+            "efeito": "Você desenvolve asas necróticas, feitas de uma combinação de éter e da sua pele necrosada. 1 ação, 3 m de voo.",
+            "custo": "-3"
+          },
+          {
+            "id": "corrompido-braco-necrosado",
+            "nome": "Braço Necrosado",
+            "efeito": "Alcance corpo a corpo +1,5 m. Adicionalmente, você tem vantagem na manobra de agarrar.",
+            "custo": "-3"
+          },
+          {
+            "id": "corrompido-sangue-de-eter",
+            "nome": "Sangue de Éter",
+            "efeito": "Você pode gastar éter na proporção 2:1 para ganhar stamina. Adicionalmente, +10 Éter máximo.",
+            "custo": "-4"
+          },
+          {
+            "id": "corrompido-coringa",
+            "nome": "Coringa",
+            "efeito": "Você pode canalizar Disfarce Ilusório passivamente com duração infinita. Ao estar sob o efeito dessa magia você perde penalidades na perícia interação social oriundas da corrupção.",
+            "custo": "-5"
+          }
+        ]
+      },
+      "adversidades": {
+        "titulo": "Adversidades — permanentes (concedem pontos)",
+        "itens": [
+          {
+            "id": "corrompido-eter-chamativo",
+            "nome": "Éter Chamativo",
+            "efeito": "Qualquer criatura que tenha o mínimo domínio sobre o éter percebe sua presença em 30 m sem testes.",
+            "custo": "+1"
+          },
+          {
+            "id": "corrompido-fome-bizarra",
+            "nome": "Fome Bizarra",
+            "efeito": "Exige 2 Comidas para Descanso Longo, ou fica <em>Desnutrido</em>.",
+            "custo": "+1"
+          },
+          {
+            "id": "corrompido-pele-fraca",
+            "nome": "Pele Fraca",
+            "efeito": "-1 Constituição.",
+            "custo": "+1"
+          },
+          {
+            "id": "corrompido-mente-fraca",
+            "nome": "Mente Fraca",
+            "efeito": "-1 Sabedoria.",
+            "custo": "+1"
+          },
+          {
+            "id": "corrompido-passo-tremulo",
+            "nome": "Passo Trêmulo",
+            "efeito": "Movimento reduzido em -3 m.",
+            "custo": "+1"
+          },
+          {
+            "id": "corrompido-difusao-de-eter",
+            "nome": "Difusão de Éter",
+            "efeito": "-10 Éter máximo.",
+            "custo": "+1"
+          },
+          {
+            "id": "corrompido-sono-perturbado",
+            "nome": "Sono Perturbado",
+            "efeito": "-1 Comodidade de Descanso.",
+            "custo": "+2"
+          },
+          {
+            "id": "corrompido-peso-morto",
+            "nome": "Peso Morto",
+            "efeito": "Em testes de jornada, não pode contribuir; além disso, aumenta a hostilidade da jornada em 5.",
+            "custo": "+2"
+          },
+          {
+            "id": "corrompido-sussurros-intensos",
+            "nome": "Sussurros Intensos",
+            "efeito": "Você tem desvantagem em Percepção.",
+            "custo": "+2"
+          },
+          {
+            "id": "corrompido-metabolismo-anormal",
+            "nome": "Metabolismo Anormal",
+            "efeito": "Você não se beneficia de consumíveis como poções e elixires; no entanto, ainda consegue utilizar pergaminhos.",
+            "custo": "+3"
+          },
+          {
+            "id": "corrompido-a-criatura",
+            "nome": "A Criatura",
+            "efeito": "-2 em Interação Social (exceto Intimidação). Adicionalmente, itens são 50% mais caros para você; se comerciantes te perceberem com o resto do grupo, todo o grupo fica com o aumento do preço.",
+            "custo": "+3"
+          },
+          {
+            "id": "corrompido-as-vozes",
+            "nome": "As Vozes",
+            "efeito": "Ao rolar 1 natural em qualquer dado, perde 2d4+nível de éter.",
+            "custo": "+3"
+          },
+          {
+            "id": "corrompido-aberracao-social",
+            "nome": "Aberração Social",
+            "efeito": "-5 em Interação Social (exceto Intimidação). Adicionalmente, você está sendo ativamente caçado por uma facção de Kharavel.",
+            "custo": "+4"
+          },
+          {
+            "id": "corrompido-pele-morta",
+            "nome": "Pele Morta",
+            "efeito": "Você é vulnerável a todos os tipos de dano não místicos, mas tem Armadura Específica (Místico, 5), exceto Força e Primordial.",
+            "custo": "+5"
+          },
+          {
+            "id": "corrompido-cicatrizacao-efemera",
+            "nome": "Cicatrização Efêmera",
+            "efeito": "Ao recuperar saúde de qualquer fonte, recupere apenas metade.",
+            "custo": "+5"
+          }
+        ]
+      }
+    }
+  },
   "cards": [
     {
       "id": "corrompido-ser-primordial",

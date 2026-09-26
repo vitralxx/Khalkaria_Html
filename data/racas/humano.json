@@ -1,5 +1,89 @@
 {
   "source": "racas/humano",
+  "raca": {
+    "id": "raca-humano",
+    "nome": "Humano",
+    "atributos": {
+      "texto": "+1 em dois atributos.",
+      "bonus": [
+        {
+          "valor": 1,
+          "quantidade": 2,
+          "opcoes": "qualquer"
+        }
+      ]
+    },
+    "alternativo": {
+      "texto": "+2 Sabedoria",
+      "bonus": [
+        {
+          "valor": 2,
+          "opcoes": [
+            "SAB"
+          ]
+        }
+      ]
+    },
+    "movimento": {
+      "texto": "9 metros",
+      "metros": 9
+    },
+    "idiomas": {
+      "texto": "Comum",
+      "lista": [
+        "Comum"
+      ]
+    },
+    "pericias": {
+      "itens": [
+        {
+          "texto": "1 Interação Social (Qualquer)"
+        },
+        {
+          "texto": "+1 Qualquer"
+        }
+      ],
+      "escolhas": [
+        {
+          "quantidade": 1,
+          "opcoes": [
+            "convencimento",
+            "intimidacao",
+            "intuicao",
+            "enganacao",
+            "motivar"
+          ]
+        },
+        {
+          "quantidade": 1,
+          "opcoes": "qualquer"
+        }
+      ]
+    },
+    "vida": "60-100 anos",
+    "altura": "1,40m - 2,00m",
+    "peso": "40kg - 120kg",
+    "caracteristicas": [
+      "humano-persistencia-humana"
+    ],
+    "tecnica": {
+      "id": null,
+      "status": "PENDENTE",
+      "nota": "Pedro (03-respostas-pedro.md §2): a raça dá \"1 técnica de raça\". A página não distingue qual característica é a técnica: pergunta ao balanceamento, não inventar."
+    },
+    "variantes": {
+      "titulo": "Estilo de Vida",
+      "intro": "Humanos são seres extremamente flexíveis, se adaptando as suas vivências. Escolha um dos estilos de vida abaixo:",
+      "ids": [
+        "humano-simples",
+        "humano-estudioso",
+        "humano-rebelde",
+        "humano-popular"
+      ],
+      "fisico": {}
+    },
+    "arNatural": []
+  },
   "cards": [
     {
       "id": "humano-persistencia-humana",

@@ -7,7 +7,77 @@
       "tipo": "origem-card",
       "opentag": "<div class=\"origem-card\" id=\"academico\">",
       "nome": "📚 Acadêmico",
-      "corpo": "\n                <div class=\"origem-header\" onclick=\"this.parentElement.classList.toggle('active')\">\n                    <h3><span class=\"icon\">📚</span> Acadêmico</h3>\n                    <div style=\"display:flex;align-items:center;gap:1rem\">\n                        <span class=\"origem-sins\">💰 3d6+10</span>\n                        <span class=\"toggle-icon\">▼</span>\n                    </div>\n                </div>\n                <div class=\"origem-body\">\n                    <p class=\"origem-desc\">Você passou anos estudando. História, alquimia, política, bestas, ruínas — o conhecimento era seu refúgio e sua arma. Mas em Khalkaria, saber demais é perigoso. Cada resposta abria dez perguntas novas, cada descoberta revelava camadas mais profundas de escuridão. Agora o mundo te chama para fora das bibliotecas, para aplicar o que aprendeu. Sua mente é afiada. Você sabe coisas que outros nem imaginam que existem. A única questão é se o que você sabe vai te salvar — ou te condenar.</p>\n                    <div class=\"origem-grid\">\n                        <div class=\"origem-section\">\n                            <h4>🎯 Treinamento</h4>\n                            <p>Conhecimento</p>\n                        </div>\n                        <div class=\"origem-section\">\n                            <h4>🎒 Itens Iniciais</h4>\n                            <ul>\n                                <li>Roupas de Acadêmico</li>\n                                <li>1 Arma Leve ou Mística (1 Equipamento)</li>\n                                <li>1 Livro de Estudos (1 Bugiganga)</li>\n                                <li>1 <a href=\"bazar.html?item=Tinta + Pena\" class=\"item-link\">Tinta + Pena</a> (1 Bugiganga)</li>\n                                <li>10 <a href=\"bazar.html?item=Vela de Sebo\" class=\"item-link\">Vela de Sebo</a> (1 Bugiganga)</li>\n                                <li>1 Comida (1 Bugiganga)</li>\n                            </ul>\n                        </div>\n                    </div>\n                    <div class=\"habilidade-box\">\n                        <h4>✨ Letrado</h4>\n                        <p>Você sabe ler e escrever em 2 idiomas adicionais além do comum. Pode identificar línguas quando escutada ou lida por você.</p>\n                    </div>\n                </div>\n            "
+      "corpo": "\n                <div class=\"origem-header\" onclick=\"this.parentElement.classList.toggle('active')\">\n                    <h3><span class=\"icon\">📚</span> Acadêmico</h3>\n                    <div style=\"display:flex;align-items:center;gap:1rem\">\n                        <span class=\"origem-sins\">💰 {{origem.sins}}</span>\n                        <span class=\"toggle-icon\">▼</span>\n                    </div>\n                </div>\n                <div class=\"origem-body\">\n                    <p class=\"origem-desc\">Você passou anos estudando. História, alquimia, política, bestas, ruínas — o conhecimento era seu refúgio e sua arma. Mas em Khalkaria, saber demais é perigoso. Cada resposta abria dez perguntas novas, cada descoberta revelava camadas mais profundas de escuridão. Agora o mundo te chama para fora das bibliotecas, para aplicar o que aprendeu. Sua mente é afiada. Você sabe coisas que outros nem imaginam que existem. A única questão é se o que você sabe vai te salvar — ou te condenar.</p>\n                    <div class=\"origem-grid\">\n                        <div class=\"origem-section\">\n                            <h4>🎯 Treinamento</h4>\n                            <p>{{origem.treinamento.texto}}</p>\n                        </div>\n                        <div class=\"origem-section\">\n                            <h4>🎒 Itens Iniciais</h4>\n                            <ul>\n                                <li>{{origem.itensIniciais.0.texto}}</li>\n                                <li>{{origem.itensIniciais.1.texto}}</li>\n                                <li>{{origem.itensIniciais.2.texto}}</li>\n                                <li>{{origem.itensIniciais.3.texto}}</li>\n                                <li>{{origem.itensIniciais.4.texto}}</li>\n                                <li>{{origem.itensIniciais.5.texto}}</li>\n                            </ul>\n                        </div>\n                    </div>\n                    <div class=\"habilidade-box\">\n                        <h4>{{origem.habilidade.nome}}</h4>\n                        {{origem.habilidade.texto}}\n                    </div>\n                </div>\n            ",
+      "origem": {
+        "sins": "3d6+10",
+        "treinamento": {
+          "texto": "Conhecimento",
+          "termos": [
+            {
+              "tipo": "pericia",
+              "quantidade": 1,
+              "opcoes": [
+                "conhecimento"
+              ]
+            }
+          ]
+        },
+        "itensIniciais": [
+          {
+            "texto": "Roupas de Acadêmico",
+            "nome": "Roupas de Acadêmico",
+            "quantidade": null,
+            "slot": null,
+            "nota": null,
+            "itemId": null
+          },
+          {
+            "texto": "1 Arma Leve ou Mística (1 Equipamento)",
+            "nome": "Arma Leve ou Mística",
+            "quantidade": 1,
+            "slot": "1 Equipamento",
+            "nota": null,
+            "itemId": null
+          },
+          {
+            "texto": "1 Livro de Estudos (1 Bugiganga)",
+            "nome": "Livro de Estudos",
+            "quantidade": 1,
+            "slot": "1 Bugiganga",
+            "nota": null,
+            "itemId": null
+          },
+          {
+            "texto": "1 <a href=\"bazar.html?item=Tinta + Pena\" class=\"item-link\">Tinta + Pena</a> (1 Bugiganga)",
+            "nome": "Tinta + Pena",
+            "quantidade": 1,
+            "slot": "1 Bugiganga",
+            "nota": null,
+            "itemId": "item-tinta-pena"
+          },
+          {
+            "texto": "10 <a href=\"bazar.html?item=Vela de Sebo\" class=\"item-link\">Vela de Sebo</a> (1 Bugiganga)",
+            "nome": "Vela de Sebo",
+            "quantidade": 10,
+            "slot": "1 Bugiganga",
+            "nota": null,
+            "itemId": "item-vela-de-sebo"
+          },
+          {
+            "texto": "1 Comida (1 Bugiganga)",
+            "nome": "Comida",
+            "quantidade": 1,
+            "slot": "1 Bugiganga",
+            "nota": null,
+            "itemId": null
+          }
+        ],
+        "habilidade": {
+          "id": "origem-academico-letrado",
+          "nome": "✨ Letrado",
+          "texto": "<p>Você sabe ler e escrever em 2 idiomas adicionais além do comum. Pode identificar línguas quando escutada ou lida por você.</p>"
+        }
+      }
     },
     {
       "id": "origem-ferreiro",
@@ -15,7 +85,77 @@
       "tipo": "origem-card",
       "opentag": "<div class=\"origem-card\" id=\"ferreiro\">",
       "nome": "⚒️ Ferreiro",
-      "corpo": "\n                <div class=\"origem-header\" onclick=\"this.parentElement.classList.toggle('active')\">\n                    <h3><span class=\"icon\">⚒️</span> Ferreiro</h3>\n                    <div style=\"display:flex;align-items:center;gap:1rem\">\n                        <span class=\"origem-sins\">💰 2d6+10</span>\n                        <span class=\"toggle-icon\">▼</span>\n                    </div>\n                </div>\n                <div class=\"origem-body\">\n                    <p class=\"origem-desc\">O calor da forja nunca cessou. O fogo escolheu você como artista. Você aprendeu a ler o metal pela cor, a domar o ferro a marteladas, a transformar minério bruto em lâmina e escudo. Numa terra que devora os despreparados, você é a mão que arma os sobreviventes e sabe que toda matéria um dia pode virar arma.</p>\n                    <div class=\"origem-grid\">\n                        <div class=\"origem-section\">\n                            <h4>🎯 Treinamento</h4>\n                            <p>Ofício(Ferraria)</p>\n                        </div>\n                        <div class=\"origem-section\">\n                            <h4>🎒 Itens Iniciais</h4>\n                            <ul>\n                                <li>Roupas Básicas</li>\n                                <li>1 Arma leve ou pesada qualquer, exceto focos mágicos. (1 Equipamento)</li>\n                                <li>1 <a href=\"bazar.html?item=Kit de Ferramentas Básico\" class=\"item-link\">Kit de Ferramentas Básico</a> (1 Bugiganga)</li>\n                                <li>2 Barras de Ferro (1 Bugiganga)</li>\n                                <li>1 <a href=\"bazar.html?item=Couro de Caça\" class=\"item-link\">Couro de Caça</a> (1 Bugiganga)</li>\n                                <li>1 Comida (1 Bugiganga)</li>\n                            </ul>\n                        </div>\n                    </div>\n                    <div class=\"habilidade-box\">\n                        <h4>✨ A Forja</h4>\n                        <p>Você ignora as adversidades de uma falha crítica na fabricação de Armas, Armaduras e Escudos. A cada vez que você fabricar um item de raridade acima de ordinário que nunca havia fabricado antes, ganhe 1 nível de treinamento na perícia Ofício(Ferraria). Você pode fabricar Armas, Armaduras e Escudos em descansos curtos, com um aumento de +2 na CD de fabricação.</p>\n                    </div>\n                </div>\n            "
+      "corpo": "\n                <div class=\"origem-header\" onclick=\"this.parentElement.classList.toggle('active')\">\n                    <h3><span class=\"icon\">⚒️</span> Ferreiro</h3>\n                    <div style=\"display:flex;align-items:center;gap:1rem\">\n                        <span class=\"origem-sins\">💰 {{origem.sins}}</span>\n                        <span class=\"toggle-icon\">▼</span>\n                    </div>\n                </div>\n                <div class=\"origem-body\">\n                    <p class=\"origem-desc\">O calor da forja nunca cessou. O fogo escolheu você como artista. Você aprendeu a ler o metal pela cor, a domar o ferro a marteladas, a transformar minério bruto em lâmina e escudo. Numa terra que devora os despreparados, você é a mão que arma os sobreviventes e sabe que toda matéria um dia pode virar arma.</p>\n                    <div class=\"origem-grid\">\n                        <div class=\"origem-section\">\n                            <h4>🎯 Treinamento</h4>\n                            <p>{{origem.treinamento.texto}}</p>\n                        </div>\n                        <div class=\"origem-section\">\n                            <h4>🎒 Itens Iniciais</h4>\n                            <ul>\n                                <li>{{origem.itensIniciais.0.texto}}</li>\n                                <li>{{origem.itensIniciais.1.texto}}</li>\n                                <li>{{origem.itensIniciais.2.texto}}</li>\n                                <li>{{origem.itensIniciais.3.texto}}</li>\n                                <li>{{origem.itensIniciais.4.texto}}</li>\n                                <li>{{origem.itensIniciais.5.texto}}</li>\n                            </ul>\n                        </div>\n                    </div>\n                    <div class=\"habilidade-box\">\n                        <h4>{{origem.habilidade.nome}}</h4>\n                        {{origem.habilidade.texto}}\n                    </div>\n                </div>\n            ",
+      "origem": {
+        "sins": "2d6+10",
+        "treinamento": {
+          "texto": "Ofício(Ferraria)",
+          "termos": [
+            {
+              "tipo": "pericia",
+              "quantidade": 1,
+              "opcoes": [
+                "oficio-ferraria"
+              ]
+            }
+          ]
+        },
+        "itensIniciais": [
+          {
+            "texto": "Roupas Básicas",
+            "nome": "Roupas Básicas",
+            "quantidade": null,
+            "slot": null,
+            "nota": null,
+            "itemId": null
+          },
+          {
+            "texto": "1 Arma leve ou pesada qualquer, exceto focos mágicos. (1 Equipamento)",
+            "nome": "Arma leve ou pesada qualquer, exceto focos mágicos.",
+            "quantidade": 1,
+            "slot": "1 Equipamento",
+            "nota": null,
+            "itemId": null
+          },
+          {
+            "texto": "1 <a href=\"bazar.html?item=Kit de Ferramentas Básico\" class=\"item-link\">Kit de Ferramentas Básico</a> (1 Bugiganga)",
+            "nome": "Kit de Ferramentas Básico",
+            "quantidade": 1,
+            "slot": "1 Bugiganga",
+            "nota": null,
+            "itemId": "item-kit-de-ferramentas-basico"
+          },
+          {
+            "texto": "2 Barras de Ferro (1 Bugiganga)",
+            "nome": "Barras de Ferro",
+            "quantidade": 2,
+            "slot": "1 Bugiganga",
+            "nota": null,
+            "itemId": null
+          },
+          {
+            "texto": "1 <a href=\"bazar.html?item=Couro de Caça\" class=\"item-link\">Couro de Caça</a> (1 Bugiganga)",
+            "nome": "Couro de Caça",
+            "quantidade": 1,
+            "slot": "1 Bugiganga",
+            "nota": null,
+            "itemId": "item-couro-de-caca"
+          },
+          {
+            "texto": "1 Comida (1 Bugiganga)",
+            "nome": "Comida",
+            "quantidade": 1,
+            "slot": "1 Bugiganga",
+            "nota": null,
+            "itemId": null
+          }
+        ],
+        "habilidade": {
+          "id": "origem-ferreiro-a-forja",
+          "nome": "✨ A Forja",
+          "texto": "<p>Você ignora as adversidades de uma falha crítica na fabricação de Armas, Armaduras e Escudos. A cada vez que você fabricar um item de raridade acima de ordinário que nunca havia fabricado antes, ganhe 1 nível de treinamento na perícia Ofício(Ferraria). Você pode fabricar Armas, Armaduras e Escudos em descansos curtos, com um aumento de +2 na CD de fabricação.</p>"
+        }
+      }
     },
     {
       "id": "origem-artesao",
@@ -23,7 +163,85 @@
       "tipo": "origem-card",
       "opentag": "<div class=\"origem-card\" id=\"artesao\">",
       "nome": "🔧 Artesão",
-      "corpo": "\n                <div class=\"origem-header\" onclick=\"this.parentElement.classList.toggle('active')\">\n                    <h3><span class=\"icon\">🔧</span> Artesão</h3>\n                    <div style=\"display:flex;align-items:center;gap:1rem\">\n                        <span class=\"origem-sins\">💰 2d6+10</span>\n                        <span class=\"toggle-icon\">▼</span>\n                    </div>\n                </div>\n                <div class=\"origem-body\">\n                    <p class=\"origem-desc\">Couro, madeira, tecido, engrenagem, em suas mãos, tudo vira algo útil. Você não forja lâminas, mas constrói o que mantém um grupo vivo: a bolsa que carrega o saque, a corda que salva da queda, o mecanismo que abre as portas certas. Onde outros veem lixo, você vê possibilidade.</p>\n                    <div class=\"origem-grid\">\n                        <div class=\"origem-section\">\n                            <h4>🎯 Treinamento</h4>\n                            <p>Ofício(Engenharia)</p>\n                        </div>\n                        <div class=\"origem-section\">\n                            <h4>🎒 Itens Iniciais</h4>\n                            <ul>\n                                <li>Roupas Básicas</li>\n                                <li>1 Arma leve ou À Distância (1 Equipamento)</li>\n                                <li>1 <a href=\"bazar.html?item=Ferramentas de Artesão\" class=\"item-link\">Ferramentas de Artesão</a> (1 Bugiganga)</li>\n                                <li>1 <a href=\"bazar.html?item=Bolsa de Couro\" class=\"item-link\">Bolsa de Couro</a> (1 Bugiganga)</li>\n                                <li>2 Peças Mecânicas (1 Bugiganga)</li>\n                                <li>1 <a href=\"bazar.html?item=Tecido Resistente\" class=\"item-link\">Tecido Resistente</a> (1 Bugiganga)</li>\n                                <li>1 Comida (1 Bugiganga)</li>\n                            </ul>\n                        </div>\n                    </div>\n                    <div class=\"habilidade-box\">\n                        <h4>✨ A Forja</h4>\n                        <p>Você ignora as adversidades de uma falha crítica na fabricação de Bugigangas, Consumíveis e Munições. A cada vez que você fabricar um item de raridade acima de ordinário que nunca havia fabricado antes, ganhe 1 nível de treinamento na perícia Ofício(Engenharia). Você pode fabricar Bugigangas, Consumíveis e Munições em descansos curtos, com um aumento de +2 na CD de fabricação.</p>\n                    </div>\n                </div>\n            "
+      "corpo": "\n                <div class=\"origem-header\" onclick=\"this.parentElement.classList.toggle('active')\">\n                    <h3><span class=\"icon\">🔧</span> Artesão</h3>\n                    <div style=\"display:flex;align-items:center;gap:1rem\">\n                        <span class=\"origem-sins\">💰 {{origem.sins}}</span>\n                        <span class=\"toggle-icon\">▼</span>\n                    </div>\n                </div>\n                <div class=\"origem-body\">\n                    <p class=\"origem-desc\">Couro, madeira, tecido, engrenagem, em suas mãos, tudo vira algo útil. Você não forja lâminas, mas constrói o que mantém um grupo vivo: a bolsa que carrega o saque, a corda que salva da queda, o mecanismo que abre as portas certas. Onde outros veem lixo, você vê possibilidade.</p>\n                    <div class=\"origem-grid\">\n                        <div class=\"origem-section\">\n                            <h4>🎯 Treinamento</h4>\n                            <p>{{origem.treinamento.texto}}</p>\n                        </div>\n                        <div class=\"origem-section\">\n                            <h4>🎒 Itens Iniciais</h4>\n                            <ul>\n                                <li>{{origem.itensIniciais.0.texto}}</li>\n                                <li>{{origem.itensIniciais.1.texto}}</li>\n                                <li>{{origem.itensIniciais.2.texto}}</li>\n                                <li>{{origem.itensIniciais.3.texto}}</li>\n                                <li>{{origem.itensIniciais.4.texto}}</li>\n                                <li>{{origem.itensIniciais.5.texto}}</li>\n                                <li>{{origem.itensIniciais.6.texto}}</li>\n                            </ul>\n                        </div>\n                    </div>\n                    <div class=\"habilidade-box\">\n                        <h4>{{origem.habilidade.nome}}</h4>\n                        {{origem.habilidade.texto}}\n                    </div>\n                </div>\n            ",
+      "origem": {
+        "sins": "2d6+10",
+        "treinamento": {
+          "texto": "Ofício(Engenharia)",
+          "termos": [
+            {
+              "tipo": "pericia",
+              "quantidade": 1,
+              "opcoes": [
+                "oficio-engenharia"
+              ]
+            }
+          ]
+        },
+        "itensIniciais": [
+          {
+            "texto": "Roupas Básicas",
+            "nome": "Roupas Básicas",
+            "quantidade": null,
+            "slot": null,
+            "nota": null,
+            "itemId": null
+          },
+          {
+            "texto": "1 Arma leve ou À Distância (1 Equipamento)",
+            "nome": "Arma leve ou À Distância",
+            "quantidade": 1,
+            "slot": "1 Equipamento",
+            "nota": null,
+            "itemId": null
+          },
+          {
+            "texto": "1 <a href=\"bazar.html?item=Ferramentas de Artesão\" class=\"item-link\">Ferramentas de Artesão</a> (1 Bugiganga)",
+            "nome": "Ferramentas de Artesão",
+            "quantidade": 1,
+            "slot": "1 Bugiganga",
+            "nota": null,
+            "itemId": "item-ferramentas-de-artesao"
+          },
+          {
+            "texto": "1 <a href=\"bazar.html?item=Bolsa de Couro\" class=\"item-link\">Bolsa de Couro</a> (1 Bugiganga)",
+            "nome": "Bolsa de Couro",
+            "quantidade": 1,
+            "slot": "1 Bugiganga",
+            "nota": null,
+            "itemId": "item-bolsa-de-couro"
+          },
+          {
+            "texto": "2 Peças Mecânicas (1 Bugiganga)",
+            "nome": "Peças Mecânicas",
+            "quantidade": 2,
+            "slot": "1 Bugiganga",
+            "nota": null,
+            "itemId": null
+          },
+          {
+            "texto": "1 <a href=\"bazar.html?item=Tecido Resistente\" class=\"item-link\">Tecido Resistente</a> (1 Bugiganga)",
+            "nome": "Tecido Resistente",
+            "quantidade": 1,
+            "slot": "1 Bugiganga",
+            "nota": null,
+            "itemId": "item-tecido-resistente"
+          },
+          {
+            "texto": "1 Comida (1 Bugiganga)",
+            "nome": "Comida",
+            "quantidade": 1,
+            "slot": "1 Bugiganga",
+            "nota": null,
+            "itemId": null
+          }
+        ],
+        "habilidade": {
+          "id": "origem-artesao-a-forja",
+          "nome": "✨ A Forja",
+          "texto": "<p>Você ignora as adversidades de uma falha crítica na fabricação de Bugigangas, Consumíveis e Munições. A cada vez que você fabricar um item de raridade acima de ordinário que nunca havia fabricado antes, ganhe 1 nível de treinamento na perícia Ofício(Engenharia). Você pode fabricar Bugigangas, Consumíveis e Munições em descansos curtos, com um aumento de +2 na CD de fabricação.</p>"
+        }
+      }
     },
     {
       "id": "origem-lenhador",
@@ -31,7 +249,77 @@
       "tipo": "origem-card",
       "opentag": "<div class=\"origem-card\" id=\"lenhador\">",
       "nome": "🪓 Lenhador",
-      "corpo": "\n                <div class=\"origem-header\" onclick=\"this.parentElement.classList.toggle('active')\">\n                    <h3><span class=\"icon\">🪓</span> Lenhador</h3>\n                    <div style=\"display:flex;align-items:center;gap:1rem\">\n                        <span class=\"origem-sins\">💰 2d6+5</span>\n                        <span class=\"toggle-icon\">▼</span>\n                    </div>\n                </div>\n                <div class=\"origem-body\">\n                    <p class=\"origem-desc\">Você está acostumado a derrubar suas florestas com o seu machado. Porém, a floresta de Kharavel não é sua. Você aprendeu isso na primeira vez que abriu um tronco e achou a veia amarela correndo por dentro dele. Você lê a árvore antes de tocá-la: o lado que o vento castigou, a raiz que já apodreceu, e o amarelo na folha que diz que aquela madeira não serve para casa nenhuma. Machado é paciência — golpe errado custa o dia, às vezes a perna, às vezes muito mais do que isso. Você conhece o peso de cada madeira pelo braço e sabe que nenhuma delas cai calada. Numa terra onde a maior árvore de todas cresce para dentro de tudo, você é quem separa o que ainda é madeira do que já é corrupção.</p>\n                    <div class=\"origem-grid\">\n                        <div class=\"origem-section\">\n                            <h4>🎯 Treinamento</h4>\n                            <p>Sobrevivência</p>\n                        </div>\n                        <div class=\"origem-section\">\n                            <h4>🎒 Itens Iniciais</h4>\n                            <ul>\n                                <li>Roupas Básicas</li>\n                                <li>1 Arma Pesada (1 Equipamento)</li>\n                                <li>1 Kit de Ferramentas (1 Bugiganga)</li>\n                                <li>1 <a href=\"bazar.html?item=Bolsa de Couro\" class=\"item-link\">Bolsa de Couro</a> (1 Bugiganga)</li>\n                                <li>1 <a href=\"bazar.html?item=Madeira Comum\" class=\"item-link\">Madeira Comum</a> (1 Bugiganga)</li>\n                                <li>2 Comidas (2 Bugigangas)</li>\n                            </ul>\n                        </div>\n                    </div>\n                    <div class=\"habilidade-box\">\n                        <h4>✨ Lenhar</h4>\n                        <ul>\n                            <li>Você pode arremessar armas pesadas como 3 ações; no acerto, você causa o dano máximo da arma. <strong>1x/Combate</strong>.</li>\n                            <li>Você pode cortar árvores e adquirir madeira como uma ação de descanso longo. Ao fazer isso, role um teste de <strong>Sobrevivência</strong>:</li>\n                        </ul>\n                        <ul class=\"faixas\">\n                            <li><b>10+</b> <span>2 Madeiras Comum</span></li>\n                            <li><b>15+</b> <span>4 Madeiras Comum</span></li>\n                            <li><b>20+</b> <span>2 Madeiras Nobres</span></li>\n                            <li><b>25+</b> <span>4 Madeiras Nobres</span></li>\n                            <li><b>30+</b> <span>2 Madeiras Místicas</span></li>\n                        </ul>\n                    </div>\n                </div>\n            "
+      "corpo": "\n                <div class=\"origem-header\" onclick=\"this.parentElement.classList.toggle('active')\">\n                    <h3><span class=\"icon\">🪓</span> Lenhador</h3>\n                    <div style=\"display:flex;align-items:center;gap:1rem\">\n                        <span class=\"origem-sins\">💰 {{origem.sins}}</span>\n                        <span class=\"toggle-icon\">▼</span>\n                    </div>\n                </div>\n                <div class=\"origem-body\">\n                    <p class=\"origem-desc\">Você está acostumado a derrubar suas florestas com o seu machado. Porém, a floresta de Kharavel não é sua. Você aprendeu isso na primeira vez que abriu um tronco e achou a veia amarela correndo por dentro dele. Você lê a árvore antes de tocá-la: o lado que o vento castigou, a raiz que já apodreceu, e o amarelo na folha que diz que aquela madeira não serve para casa nenhuma. Machado é paciência — golpe errado custa o dia, às vezes a perna, às vezes muito mais do que isso. Você conhece o peso de cada madeira pelo braço e sabe que nenhuma delas cai calada. Numa terra onde a maior árvore de todas cresce para dentro de tudo, você é quem separa o que ainda é madeira do que já é corrupção.</p>\n                    <div class=\"origem-grid\">\n                        <div class=\"origem-section\">\n                            <h4>🎯 Treinamento</h4>\n                            <p>{{origem.treinamento.texto}}</p>\n                        </div>\n                        <div class=\"origem-section\">\n                            <h4>🎒 Itens Iniciais</h4>\n                            <ul>\n                                <li>{{origem.itensIniciais.0.texto}}</li>\n                                <li>{{origem.itensIniciais.1.texto}}</li>\n                                <li>{{origem.itensIniciais.2.texto}}</li>\n                                <li>{{origem.itensIniciais.3.texto}}</li>\n                                <li>{{origem.itensIniciais.4.texto}}</li>\n                                <li>{{origem.itensIniciais.5.texto}}</li>\n                            </ul>\n                        </div>\n                    </div>\n                    <div class=\"habilidade-box\">\n                        <h4>{{origem.habilidade.nome}}</h4>\n                        {{origem.habilidade.texto}}\n                    </div>\n                </div>\n            ",
+      "origem": {
+        "sins": "2d6+5",
+        "treinamento": {
+          "texto": "Sobrevivência",
+          "termos": [
+            {
+              "tipo": "pericia",
+              "quantidade": 1,
+              "opcoes": [
+                "sobrevivencia"
+              ]
+            }
+          ]
+        },
+        "itensIniciais": [
+          {
+            "texto": "Roupas Básicas",
+            "nome": "Roupas Básicas",
+            "quantidade": null,
+            "slot": null,
+            "nota": null,
+            "itemId": null
+          },
+          {
+            "texto": "1 Arma Pesada (1 Equipamento)",
+            "nome": "Arma Pesada",
+            "quantidade": 1,
+            "slot": "1 Equipamento",
+            "nota": null,
+            "itemId": null
+          },
+          {
+            "texto": "1 Kit de Ferramentas (1 Bugiganga)",
+            "nome": "Kit de Ferramentas",
+            "quantidade": 1,
+            "slot": "1 Bugiganga",
+            "nota": null,
+            "itemId": null
+          },
+          {
+            "texto": "1 <a href=\"bazar.html?item=Bolsa de Couro\" class=\"item-link\">Bolsa de Couro</a> (1 Bugiganga)",
+            "nome": "Bolsa de Couro",
+            "quantidade": 1,
+            "slot": "1 Bugiganga",
+            "nota": null,
+            "itemId": "item-bolsa-de-couro"
+          },
+          {
+            "texto": "1 <a href=\"bazar.html?item=Madeira Comum\" class=\"item-link\">Madeira Comum</a> (1 Bugiganga)",
+            "nome": "Madeira Comum",
+            "quantidade": 1,
+            "slot": "1 Bugiganga",
+            "nota": null,
+            "itemId": "item-madeira-comum"
+          },
+          {
+            "texto": "2 Comidas (2 Bugigangas)",
+            "nome": "Comidas",
+            "quantidade": 2,
+            "slot": "2 Bugigangas",
+            "nota": null,
+            "itemId": null
+          }
+        ],
+        "habilidade": {
+          "id": "origem-lenhador-lenhar",
+          "nome": "✨ Lenhar",
+          "texto": "<ul>\n                            <li>Você pode arremessar armas pesadas como 3 ações; no acerto, você causa o dano máximo da arma. <strong>1x/Combate</strong>.</li>\n                            <li>Você pode cortar árvores e adquirir madeira como uma ação de descanso longo. Ao fazer isso, role um teste de <strong>Sobrevivência</strong>:</li>\n                        </ul>\n                        <ul class=\"faixas\">\n                            <li><b>10+</b> <span>2 Madeiras Comum</span></li>\n                            <li><b>15+</b> <span>4 Madeiras Comum</span></li>\n                            <li><b>20+</b> <span>2 Madeiras Nobres</span></li>\n                            <li><b>25+</b> <span>4 Madeiras Nobres</span></li>\n                            <li><b>30+</b> <span>2 Madeiras Místicas</span></li>\n                        </ul>"
+        }
+      }
     },
     {
       "id": "origem-mineiro",
@@ -39,7 +327,77 @@
       "tipo": "origem-card",
       "opentag": "<div class=\"origem-card\" id=\"mineiro\">",
       "nome": "⛏️ Mineiro",
-      "corpo": "\n                <div class=\"origem-header\" onclick=\"this.parentElement.classList.toggle('active')\">\n                    <h3><span class=\"icon\">⛏️</span> Mineiro</h3>\n                    <div style=\"display:flex;align-items:center;gap:1rem\">\n                        <span class=\"origem-sins\">💰 2d6+5</span>\n                        <span class=\"toggle-icon\">▼</span>\n                    </div>\n                </div>\n                <div class=\"origem-body\">\n                    <p class=\"origem-desc\">Toda pedra tem uma direção. Você aprendeu a seguir o veio para onde ele vai, e não para onde você queria que fosse; a escorar o teto antes de abrir o próximo metro; a desconfiar quando a chama da lamparina encolhe, porque o ar ruim mata antes do desabamento. Reconhece minério ruim pelo peso e pelo jeito que quebra. Sabe que o salário do dia é o que você consegue carregar na subida. O que Kharavel tem de valor está enterrado fundo, e alguém precisa descer.</p>\n                    <div class=\"origem-grid\">\n                        <div class=\"origem-section\">\n                            <h4>🎯 Treinamento</h4>\n                            <p>Sobrevivência</p>\n                        </div>\n                        <div class=\"origem-section\">\n                            <h4>🎒 Itens Iniciais</h4>\n                            <ul>\n                                <li>Roupas Básicas</li>\n                                <li>1 Arma Pesada (1 Equipamento)</li>\n                                <li>1 Kit de Ferramentas (1 Bugiganga)</li>\n                                <li>1 <a href=\"bazar.html?item=Bolsa de Couro\" class=\"item-link\">Bolsa de Couro</a> (1 Bugiganga)</li>\n                                <li>1 <a href=\"bazar.html?item=Madeira Comum\" class=\"item-link\">Madeira Comum</a> (1 Bugiganga)</li>\n                                <li>2 Comidas (2 Bugigangas)</li>\n                            </ul>\n                        </div>\n                    </div>\n                    <div class=\"habilidade-box\">\n                        <h4>✨ Minerar</h4>\n                        <ul>\n                            <li>Você pode gastar +1 ação no ataque padrão da sua arma equipada para receber <strong>+2 de Margem de Ameaça</strong>. <strong>1x/Turno</strong>.</li>\n                            <li>Você pode minerar em sítios de mineração e adquirir minerais como uma ação de descanso longo. Ao fazer isso, role um teste de <strong>Sobrevivência</strong>:</li>\n                        </ul>\n                        <ul class=\"faixas\">\n                            <li><b>10+</b> <span>2 Cobres</span></li>\n                            <li><b>15+</b> <span>1 Cobre e 1 Ferro</span></li>\n                            <li><b>20+</b> <span>2 Ferros</span></li>\n                            <li><b>25+</b> <span>1 Ferro e 1 Kali</span></li>\n                            <li><b>30+</b> <span>2 Kali</span></li>\n                        </ul>\n                    </div>\n                </div>\n            "
+      "corpo": "\n                <div class=\"origem-header\" onclick=\"this.parentElement.classList.toggle('active')\">\n                    <h3><span class=\"icon\">⛏️</span> Mineiro</h3>\n                    <div style=\"display:flex;align-items:center;gap:1rem\">\n                        <span class=\"origem-sins\">💰 {{origem.sins}}</span>\n                        <span class=\"toggle-icon\">▼</span>\n                    </div>\n                </div>\n                <div class=\"origem-body\">\n                    <p class=\"origem-desc\">Toda pedra tem uma direção. Você aprendeu a seguir o veio para onde ele vai, e não para onde você queria que fosse; a escorar o teto antes de abrir o próximo metro; a desconfiar quando a chama da lamparina encolhe, porque o ar ruim mata antes do desabamento. Reconhece minério ruim pelo peso e pelo jeito que quebra. Sabe que o salário do dia é o que você consegue carregar na subida. O que Kharavel tem de valor está enterrado fundo, e alguém precisa descer.</p>\n                    <div class=\"origem-grid\">\n                        <div class=\"origem-section\">\n                            <h4>🎯 Treinamento</h4>\n                            <p>{{origem.treinamento.texto}}</p>\n                        </div>\n                        <div class=\"origem-section\">\n                            <h4>🎒 Itens Iniciais</h4>\n                            <ul>\n                                <li>{{origem.itensIniciais.0.texto}}</li>\n                                <li>{{origem.itensIniciais.1.texto}}</li>\n                                <li>{{origem.itensIniciais.2.texto}}</li>\n                                <li>{{origem.itensIniciais.3.texto}}</li>\n                                <li>{{origem.itensIniciais.4.texto}}</li>\n                                <li>{{origem.itensIniciais.5.texto}}</li>\n                            </ul>\n                        </div>\n                    </div>\n                    <div class=\"habilidade-box\">\n                        <h4>{{origem.habilidade.nome}}</h4>\n                        {{origem.habilidade.texto}}\n                    </div>\n                </div>\n            ",
+      "origem": {
+        "sins": "2d6+5",
+        "treinamento": {
+          "texto": "Sobrevivência",
+          "termos": [
+            {
+              "tipo": "pericia",
+              "quantidade": 1,
+              "opcoes": [
+                "sobrevivencia"
+              ]
+            }
+          ]
+        },
+        "itensIniciais": [
+          {
+            "texto": "Roupas Básicas",
+            "nome": "Roupas Básicas",
+            "quantidade": null,
+            "slot": null,
+            "nota": null,
+            "itemId": null
+          },
+          {
+            "texto": "1 Arma Pesada (1 Equipamento)",
+            "nome": "Arma Pesada",
+            "quantidade": 1,
+            "slot": "1 Equipamento",
+            "nota": null,
+            "itemId": null
+          },
+          {
+            "texto": "1 Kit de Ferramentas (1 Bugiganga)",
+            "nome": "Kit de Ferramentas",
+            "quantidade": 1,
+            "slot": "1 Bugiganga",
+            "nota": null,
+            "itemId": null
+          },
+          {
+            "texto": "1 <a href=\"bazar.html?item=Bolsa de Couro\" class=\"item-link\">Bolsa de Couro</a> (1 Bugiganga)",
+            "nome": "Bolsa de Couro",
+            "quantidade": 1,
+            "slot": "1 Bugiganga",
+            "nota": null,
+            "itemId": "item-bolsa-de-couro"
+          },
+          {
+            "texto": "1 <a href=\"bazar.html?item=Madeira Comum\" class=\"item-link\">Madeira Comum</a> (1 Bugiganga)",
+            "nome": "Madeira Comum",
+            "quantidade": 1,
+            "slot": "1 Bugiganga",
+            "nota": null,
+            "itemId": "item-madeira-comum"
+          },
+          {
+            "texto": "2 Comidas (2 Bugigangas)",
+            "nome": "Comidas",
+            "quantidade": 2,
+            "slot": "2 Bugigangas",
+            "nota": null,
+            "itemId": null
+          }
+        ],
+        "habilidade": {
+          "id": "origem-mineiro-minerar",
+          "nome": "✨ Minerar",
+          "texto": "<ul>\n                            <li>Você pode gastar +1 ação no ataque padrão da sua arma equipada para receber <strong>+2 de Margem de Ameaça</strong>. <strong>1x/Turno</strong>.</li>\n                            <li>Você pode minerar em sítios de mineração e adquirir minerais como uma ação de descanso longo. Ao fazer isso, role um teste de <strong>Sobrevivência</strong>:</li>\n                        </ul>\n                        <ul class=\"faixas\">\n                            <li><b>10+</b> <span>2 Cobres</span></li>\n                            <li><b>15+</b> <span>1 Cobre e 1 Ferro</span></li>\n                            <li><b>20+</b> <span>2 Ferros</span></li>\n                            <li><b>25+</b> <span>1 Ferro e 1 Kali</span></li>\n                            <li><b>30+</b> <span>2 Kali</span></li>\n                        </ul>"
+        }
+      }
     },
     {
       "id": "origem-exilado",
@@ -47,7 +405,84 @@
       "tipo": "origem-card",
       "opentag": "<div class=\"origem-card\" id=\"exilado\">",
       "nome": "🔭 Exilado",
-      "corpo": "\n                <div class=\"origem-header\" onclick=\"this.parentElement.classList.toggle('active')\">\n                    <h3><span class=\"icon\">🔭</span> Exilado</h3>\n                    <div style=\"display:flex;align-items:center;gap:1rem\">\n                        <span class=\"origem-sins\">💰 1d6</span>\n                        <span class=\"toggle-icon\">▼</span>\n                    </div>\n                </div>\n                <div class=\"origem-body\">\n                    <p class=\"origem-desc\">Algo te expulsou. Um crime, uma traição, uma verdade que não deveria ter descoberto. Você deixou tudo para trás — nome, lar, identidade — e sumiu nas bordas do mapa. Cada fogueira solitária é um lembrete do que você perdeu. Cada pegada apagada é uma oração para que o passado não te alcance. Você sobreviveu até aqui. Mas em Khalkaria, o exílio nunca é permanente. Cedo ou tarde, o que você fugiu vem cobrar.</p>\n                    <div class=\"origem-grid\">\n                        <div class=\"origem-section\">\n                            <h4>🎯 Treinamento</h4>\n                            <p>Sobrevivência, Armas à Distância</p>\n                        </div>\n                        <div class=\"origem-section\">\n                            <h4>🎒 Itens Iniciais</h4>\n                            <ul>\n                                <li>Manto Surrado (1 Equipamento)</li>\n                                <li>1 Arma Leve, Pesada, à Distância ou Mística (1 Equipamento)</li>\n                                <li>1 <a href=\"bazar.html?item=Mochila Reforçada\" class=\"item-link\">Mochila Reforçada</a> (1 Bugiganga) — Quando equipada, +3 Espaços de Bugiganga e +1 de Equipamento</li>\n                                <li>1 Cantil (1 Bugiganga)</li>\n                                <li>1 <a href=\"bazar.html?item=Kit de Ferramentas Básico\" class=\"item-link\">Kit de Ferramentas Básico</a> (1 Bugiganga)</li>\n                                <li>2 Comidas (2 Bugigangas)</li>\n                            </ul>\n                        </div>\n                    </div>\n                    <div class=\"habilidade-box\">\n                        <h4>✨ Nômade</h4>\n                        <p>Você aprendeu a tirar o máximo de proveito dos seus descansos. Ao descansar, sua qualidade de descanso é de sempre +1. Adicionalmente, você rola testes de Jornada com +2.</p>\n                    </div>\n                </div>\n            "
+      "corpo": "\n                <div class=\"origem-header\" onclick=\"this.parentElement.classList.toggle('active')\">\n                    <h3><span class=\"icon\">🔭</span> Exilado</h3>\n                    <div style=\"display:flex;align-items:center;gap:1rem\">\n                        <span class=\"origem-sins\">💰 {{origem.sins}}</span>\n                        <span class=\"toggle-icon\">▼</span>\n                    </div>\n                </div>\n                <div class=\"origem-body\">\n                    <p class=\"origem-desc\">Algo te expulsou. Um crime, uma traição, uma verdade que não deveria ter descoberto. Você deixou tudo para trás — nome, lar, identidade — e sumiu nas bordas do mapa. Cada fogueira solitária é um lembrete do que você perdeu. Cada pegada apagada é uma oração para que o passado não te alcance. Você sobreviveu até aqui. Mas em Khalkaria, o exílio nunca é permanente. Cedo ou tarde, o que você fugiu vem cobrar.</p>\n                    <div class=\"origem-grid\">\n                        <div class=\"origem-section\">\n                            <h4>🎯 Treinamento</h4>\n                            <p>{{origem.treinamento.texto}}</p>\n                        </div>\n                        <div class=\"origem-section\">\n                            <h4>🎒 Itens Iniciais</h4>\n                            <ul>\n                                <li>{{origem.itensIniciais.0.texto}}</li>\n                                <li>{{origem.itensIniciais.1.texto}}</li>\n                                <li>{{origem.itensIniciais.2.texto}}</li>\n                                <li>{{origem.itensIniciais.3.texto}}</li>\n                                <li>{{origem.itensIniciais.4.texto}}</li>\n                                <li>{{origem.itensIniciais.5.texto}}</li>\n                            </ul>\n                        </div>\n                    </div>\n                    <div class=\"habilidade-box\">\n                        <h4>{{origem.habilidade.nome}}</h4>\n                        {{origem.habilidade.texto}}\n                    </div>\n                </div>\n            ",
+      "origem": {
+        "sins": "1d6",
+        "treinamento": {
+          "texto": "Sobrevivência, Armas à Distância",
+          "termos": [
+            {
+              "tipo": "pericia",
+              "quantidade": 1,
+              "opcoes": [
+                "sobrevivencia"
+              ]
+            },
+            {
+              "tipo": "arma",
+              "quantidade": 1,
+              "opcoes": [
+                "armas-a-distancia"
+              ]
+            }
+          ]
+        },
+        "itensIniciais": [
+          {
+            "texto": "Manto Surrado (1 Equipamento)",
+            "nome": "Manto Surrado",
+            "quantidade": null,
+            "slot": "1 Equipamento",
+            "nota": null,
+            "itemId": null
+          },
+          {
+            "texto": "1 Arma Leve, Pesada, à Distância ou Mística (1 Equipamento)",
+            "nome": "Arma Leve, Pesada, à Distância ou Mística",
+            "quantidade": 1,
+            "slot": "1 Equipamento",
+            "nota": null,
+            "itemId": null
+          },
+          {
+            "texto": "1 <a href=\"bazar.html?item=Mochila Reforçada\" class=\"item-link\">Mochila Reforçada</a> (1 Bugiganga) — Quando equipada, +3 Espaços de Bugiganga e +1 de Equipamento",
+            "nome": "Mochila Reforçada",
+            "quantidade": 1,
+            "slot": "1 Bugiganga",
+            "nota": "Quando equipada, +3 Espaços de Bugiganga e +1 de Equipamento",
+            "itemId": "item-mochila-reforcada"
+          },
+          {
+            "texto": "1 Cantil (1 Bugiganga)",
+            "nome": "Cantil",
+            "quantidade": 1,
+            "slot": "1 Bugiganga",
+            "nota": null,
+            "itemId": "item-cantil"
+          },
+          {
+            "texto": "1 <a href=\"bazar.html?item=Kit de Ferramentas Básico\" class=\"item-link\">Kit de Ferramentas Básico</a> (1 Bugiganga)",
+            "nome": "Kit de Ferramentas Básico",
+            "quantidade": 1,
+            "slot": "1 Bugiganga",
+            "nota": null,
+            "itemId": "item-kit-de-ferramentas-basico"
+          },
+          {
+            "texto": "2 Comidas (2 Bugigangas)",
+            "nome": "Comidas",
+            "quantidade": 2,
+            "slot": "2 Bugigangas",
+            "nota": null,
+            "itemId": null
+          }
+        ],
+        "habilidade": {
+          "id": "origem-exilado-nomade",
+          "nome": "✨ Nômade",
+          "texto": "<p>Você aprendeu a tirar o máximo de proveito dos seus descansos. Ao descansar, sua qualidade de descanso é de sempre +1. Adicionalmente, você rola testes de Jornada com +2.</p>"
+        }
+      }
     },
     {
       "id": "origem-acolito",
@@ -55,7 +490,76 @@
       "tipo": "origem-card",
       "opentag": "<div class=\"origem-card\" id=\"acolito\">",
       "nome": "⛪ Acólito",
-      "corpo": "\n                <div class=\"origem-header\" onclick=\"this.parentElement.classList.toggle('active')\">\n                    <h3><span class=\"icon\">⛪</span> Acólito</h3>\n                    <div style=\"display:flex;align-items:center;gap:1rem\">\n                        <span class=\"origem-sins\">💰 2d6</span>\n                        <span class=\"toggle-icon\">▼</span>\n                    </div>\n                </div>\n                <div class=\"origem-body\">\n                    <p class=\"origem-desc\">Você cresceu nos templos. Aprendeu os rituais, os dogmas, os gestos sagrados. Mas também viu o que não deveria — sussurros entre sacerdotes, símbolos escondidos, rituais que não combinavam com os sermões. Sua fé já foi inabalável. Agora carrega rachaduras que você não sabe se quer consertar. Não importa. O treinamento ficou. Você sabe como templos funcionam, como fiéis pensam, e que nem tudo que é divino é bom. O mundo lá fora é brutal. Mas você aprendeu que sobreviver exige mais que espada — exige algo em que se apoiar, mesmo que esse algo esteja quebrado.</p>\n                    <div class=\"origem-grid\">\n                        <div class=\"origem-section\">\n                            <h4>🎯 Treinamento</h4>\n                            <p>Religião, Armas Marciais</p>\n                        </div>\n                        <div class=\"origem-section\">\n                            <h4>🎒 Itens Iniciais</h4>\n                            <ul>\n                                <li>Vestes Religiosas (1 Equipamento)</li>\n                                <li>1 Arma Leve, Pesada, Marcial ou Mística (1 Equipamento)</li>\n                                <li>1 Livro de Orações (1 Bugiganga)</li>\n                                <li>5 Incensos (1 Bugiganga)</li>\n                                <li>1 Comida (1 Bugiganga)</li>\n                            </ul>\n                        </div>\n                    </div>\n                    <div class=\"habilidade-box\">\n                        <h4>✨ Palavra de Fé</h4>\n                        <p>Você pode passar 10 minutos orientando e motivando criaturas em uma área de 3 m. Se uma ou mais criaturas estiverem afetadas por alguma condição/maldição, você exige um teste de resistência para se livrar do efeito. Adicionalmente, ela recupera 1d6+4 Éter. As criaturas afetadas não podem se beneficiar dessa habilidade até o seu próximo descanso longo.</p>\n                    </div>\n                </div>\n            "
+      "corpo": "\n                <div class=\"origem-header\" onclick=\"this.parentElement.classList.toggle('active')\">\n                    <h3><span class=\"icon\">⛪</span> Acólito</h3>\n                    <div style=\"display:flex;align-items:center;gap:1rem\">\n                        <span class=\"origem-sins\">💰 {{origem.sins}}</span>\n                        <span class=\"toggle-icon\">▼</span>\n                    </div>\n                </div>\n                <div class=\"origem-body\">\n                    <p class=\"origem-desc\">Você cresceu nos templos. Aprendeu os rituais, os dogmas, os gestos sagrados. Mas também viu o que não deveria — sussurros entre sacerdotes, símbolos escondidos, rituais que não combinavam com os sermões. Sua fé já foi inabalável. Agora carrega rachaduras que você não sabe se quer consertar. Não importa. O treinamento ficou. Você sabe como templos funcionam, como fiéis pensam, e que nem tudo que é divino é bom. O mundo lá fora é brutal. Mas você aprendeu que sobreviver exige mais que espada — exige algo em que se apoiar, mesmo que esse algo esteja quebrado.</p>\n                    <div class=\"origem-grid\">\n                        <div class=\"origem-section\">\n                            <h4>🎯 Treinamento</h4>\n                            <p>{{origem.treinamento.texto}}</p>\n                        </div>\n                        <div class=\"origem-section\">\n                            <h4>🎒 Itens Iniciais</h4>\n                            <ul>\n                                <li>{{origem.itensIniciais.0.texto}}</li>\n                                <li>{{origem.itensIniciais.1.texto}}</li>\n                                <li>{{origem.itensIniciais.2.texto}}</li>\n                                <li>{{origem.itensIniciais.3.texto}}</li>\n                                <li>{{origem.itensIniciais.4.texto}}</li>\n                            </ul>\n                        </div>\n                    </div>\n                    <div class=\"habilidade-box\">\n                        <h4>{{origem.habilidade.nome}}</h4>\n                        {{origem.habilidade.texto}}\n                    </div>\n                </div>\n            ",
+      "origem": {
+        "sins": "2d6",
+        "treinamento": {
+          "texto": "Religião, Armas Marciais",
+          "termos": [
+            {
+              "tipo": "pericia",
+              "quantidade": 1,
+              "opcoes": [
+                "religiao"
+              ]
+            },
+            {
+              "tipo": "arma",
+              "quantidade": 1,
+              "opcoes": [
+                "armas-marciais"
+              ]
+            }
+          ]
+        },
+        "itensIniciais": [
+          {
+            "texto": "Vestes Religiosas (1 Equipamento)",
+            "nome": "Vestes Religiosas",
+            "quantidade": null,
+            "slot": "1 Equipamento",
+            "nota": null,
+            "itemId": null
+          },
+          {
+            "texto": "1 Arma Leve, Pesada, Marcial ou Mística (1 Equipamento)",
+            "nome": "Arma Leve, Pesada, Marcial ou Mística",
+            "quantidade": 1,
+            "slot": "1 Equipamento",
+            "nota": null,
+            "itemId": null
+          },
+          {
+            "texto": "1 Livro de Orações (1 Bugiganga)",
+            "nome": "Livro de Orações",
+            "quantidade": 1,
+            "slot": "1 Bugiganga",
+            "nota": null,
+            "itemId": null
+          },
+          {
+            "texto": "5 Incensos (1 Bugiganga)",
+            "nome": "Incensos",
+            "quantidade": 5,
+            "slot": "1 Bugiganga",
+            "nota": null,
+            "itemId": null
+          },
+          {
+            "texto": "1 Comida (1 Bugiganga)",
+            "nome": "Comida",
+            "quantidade": 1,
+            "slot": "1 Bugiganga",
+            "nota": null,
+            "itemId": null
+          }
+        ],
+        "habilidade": {
+          "id": "origem-acolito-palavra-de-fe",
+          "nome": "✨ Palavra de Fé",
+          "texto": "<p>Você pode passar 10 minutos orientando e motivando criaturas em uma área de 3 m. Se uma ou mais criaturas estiverem afetadas por alguma condição/maldição, você exige um teste de resistência para se livrar do efeito. Adicionalmente, ela recupera 1d6+4 Éter. As criaturas afetadas não podem se beneficiar dessa habilidade até o seu próximo descanso longo.</p>"
+        }
+      }
     },
     {
       "id": "origem-andarilho",
@@ -63,7 +567,85 @@
       "tipo": "origem-card",
       "opentag": "<div class=\"origem-card\" id=\"andarilho\">",
       "nome": "🚶 Andarilho",
-      "corpo": "\n                <div class=\"origem-header\" onclick=\"this.parentElement.classList.toggle('active')\">\n                    <h3><span class=\"icon\">🚶</span> Andarilho</h3>\n                    <div style=\"display:flex;align-items:center;gap:1rem\">\n                        <span class=\"origem-sins\">💰 2d6+5</span>\n                        <span class=\"toggle-icon\">▼</span>\n                    </div>\n                </div>\n                <div class=\"origem-body\">\n                    <p class=\"origem-desc\">Você não tem lar. Você tem direções. Cada estrada é um convite, cada cidade um capítulo, cada rosto novo uma história que talvez você conte em outra taverna, em outra terra. Alguns te chamam de livre. Alguns te chamam de fugitivo. Talvez sejam a mesma coisa. Você aprendeu que ficar tempo demais em um lugar traz problemas — perguntas surgem, rostos te reconhecem, o passado alcança. Então você anda. Sempre. Viu mais do mundo do que a maioria verá em dez vidas. E ainda não sabe se está fugindo de algo ou procurando algo. Só sabe que parar nunca parece certo.</p>\n                    <div class=\"origem-grid\">\n                        <div class=\"origem-section\">\n                            <h4>🎯 Treinamento</h4>\n                            <p>Sobrevivência ou Percepção, Armas À Distância</p>\n                        </div>\n                        <div class=\"origem-section\">\n                            <h4>🎒 Itens Iniciais</h4>\n                            <ul>\n                                <li>Manto Surrado (1 Equipamento)</li>\n                                <li>1 Arma Leve ou à Distância (1 Equipamento)</li>\n                                <li>1 <a href=\"bazar.html?item=Mochila Reforçada\" class=\"item-link\">Mochila Reforçada</a> (1 Bugiganga) — Quando equipada, +3 Espaços de Bugiganga e +1 de Equipamento</li>\n                                <li>1 Mapa da sua rota (1 Bugiganga)</li>\n                                <li>1 Instrumento simples ou Jogo de cartas (1 Bugiganga)</li>\n                                <li>3 Comidas (3 Bugigangas)</li>\n                            </ul>\n                        </div>\n                    </div>\n                    <div class=\"habilidade-box\">\n                        <h4>✨ Estradas Sem Fim</h4>\n                        <p>Você é excepcionalmente resistente ao cansaço, +10 Stamina Máxima. Você é familiar a jornadas longas. Ao guiar expedições, pode gastar 3 Stamina para reduzir a hostilidade da jornada em -5.</p>\n                    </div>\n                </div>\n            "
+      "corpo": "\n                <div class=\"origem-header\" onclick=\"this.parentElement.classList.toggle('active')\">\n                    <h3><span class=\"icon\">🚶</span> Andarilho</h3>\n                    <div style=\"display:flex;align-items:center;gap:1rem\">\n                        <span class=\"origem-sins\">💰 {{origem.sins}}</span>\n                        <span class=\"toggle-icon\">▼</span>\n                    </div>\n                </div>\n                <div class=\"origem-body\">\n                    <p class=\"origem-desc\">Você não tem lar. Você tem direções. Cada estrada é um convite, cada cidade um capítulo, cada rosto novo uma história que talvez você conte em outra taverna, em outra terra. Alguns te chamam de livre. Alguns te chamam de fugitivo. Talvez sejam a mesma coisa. Você aprendeu que ficar tempo demais em um lugar traz problemas — perguntas surgem, rostos te reconhecem, o passado alcança. Então você anda. Sempre. Viu mais do mundo do que a maioria verá em dez vidas. E ainda não sabe se está fugindo de algo ou procurando algo. Só sabe que parar nunca parece certo.</p>\n                    <div class=\"origem-grid\">\n                        <div class=\"origem-section\">\n                            <h4>🎯 Treinamento</h4>\n                            <p>{{origem.treinamento.texto}}</p>\n                        </div>\n                        <div class=\"origem-section\">\n                            <h4>🎒 Itens Iniciais</h4>\n                            <ul>\n                                <li>{{origem.itensIniciais.0.texto}}</li>\n                                <li>{{origem.itensIniciais.1.texto}}</li>\n                                <li>{{origem.itensIniciais.2.texto}}</li>\n                                <li>{{origem.itensIniciais.3.texto}}</li>\n                                <li>{{origem.itensIniciais.4.texto}}</li>\n                                <li>{{origem.itensIniciais.5.texto}}</li>\n                            </ul>\n                        </div>\n                    </div>\n                    <div class=\"habilidade-box\">\n                        <h4>{{origem.habilidade.nome}}</h4>\n                        {{origem.habilidade.texto}}\n                    </div>\n                </div>\n            ",
+      "origem": {
+        "sins": "2d6+5",
+        "treinamento": {
+          "texto": "Sobrevivência ou Percepção, Armas À Distância",
+          "termos": [
+            {
+              "tipo": "pericia",
+              "quantidade": 1,
+              "opcoes": [
+                "sobrevivencia",
+                "percepcao"
+              ]
+            },
+            {
+              "tipo": "arma",
+              "quantidade": 1,
+              "opcoes": [
+                "armas-a-distancia"
+              ]
+            }
+          ]
+        },
+        "itensIniciais": [
+          {
+            "texto": "Manto Surrado (1 Equipamento)",
+            "nome": "Manto Surrado",
+            "quantidade": null,
+            "slot": "1 Equipamento",
+            "nota": null,
+            "itemId": null
+          },
+          {
+            "texto": "1 Arma Leve ou à Distância (1 Equipamento)",
+            "nome": "Arma Leve ou à Distância",
+            "quantidade": 1,
+            "slot": "1 Equipamento",
+            "nota": null,
+            "itemId": null
+          },
+          {
+            "texto": "1 <a href=\"bazar.html?item=Mochila Reforçada\" class=\"item-link\">Mochila Reforçada</a> (1 Bugiganga) — Quando equipada, +3 Espaços de Bugiganga e +1 de Equipamento",
+            "nome": "Mochila Reforçada",
+            "quantidade": 1,
+            "slot": "1 Bugiganga",
+            "nota": "Quando equipada, +3 Espaços de Bugiganga e +1 de Equipamento",
+            "itemId": "item-mochila-reforcada"
+          },
+          {
+            "texto": "1 Mapa da sua rota (1 Bugiganga)",
+            "nome": "Mapa da sua rota",
+            "quantidade": 1,
+            "slot": "1 Bugiganga",
+            "nota": null,
+            "itemId": null
+          },
+          {
+            "texto": "1 Instrumento simples ou Jogo de cartas (1 Bugiganga)",
+            "nome": "Instrumento simples ou Jogo de cartas",
+            "quantidade": 1,
+            "slot": "1 Bugiganga",
+            "nota": null,
+            "itemId": null
+          },
+          {
+            "texto": "3 Comidas (3 Bugigangas)",
+            "nome": "Comidas",
+            "quantidade": 3,
+            "slot": "3 Bugigangas",
+            "nota": null,
+            "itemId": null
+          }
+        ],
+        "habilidade": {
+          "id": "origem-andarilho-estradas-sem-fim",
+          "nome": "✨ Estradas Sem Fim",
+          "texto": "<p>Você é excepcionalmente resistente ao cansaço, +10 Stamina Máxima. Você é familiar a jornadas longas. Ao guiar expedições, pode gastar 3 Stamina para reduzir a hostilidade da jornada em -5.</p>"
+        }
+      }
     },
     {
       "id": "origem-criminoso",
@@ -71,7 +653,70 @@
       "tipo": "origem-card",
       "opentag": "<div class=\"origem-card\" id=\"criminoso\">",
       "nome": "💸 Criminoso",
-      "corpo": "\n                <div class=\"origem-header\" onclick=\"this.parentElement.classList.toggle('active')\">\n                    <h3><span class=\"icon\">💸</span> Criminoso</h3>\n                    <div style=\"display:flex;align-items:center;gap:1rem\">\n                        <span class=\"origem-sins\">💰 4d6</span>\n                        <span class=\"toggle-icon\">▼</span>\n                    </div>\n                </div>\n                <div class=\"origem-body\">\n                    <p class=\"origem-desc\">Você não nasceu criminoso. O mundo te fez um. Quando as regras só protegem quem tem ouro, quebrar as regras vira sobrevivência. Você roubou, enganou, talvez pior. Cada crime deixou algo para trás — uma cicatriz, uma dívida, um rosto que te visita nos sonhos. Houve um primeiro crime, um momento em que voltar ainda era possível. Esse momento passou. Agora você conhece o submundo como outros conhecem suas casas. Sabe onde encontrar o que não deveria ser encontrado. E sabe que o passado não te persegue — ele caminha do seu lado, esperando a hora de cobrar.</p>\n                    <div class=\"origem-grid\">\n                        <div class=\"origem-section\">\n                            <h4>🎯 Treinamento</h4>\n                            <p>Furtividade ou Crime</p>\n                        </div>\n                        <div class=\"origem-section\">\n                            <h4>🎒 Itens Iniciais</h4>\n                            <ul>\n                                <li>Roupas Discretas (1 Equipamento)</li>\n                                <li>1 Arma Leve ou à Distância (1 Equipamento)</li>\n                                <li>1 <a href=\"bazar.html?item=Kit de Crime\" class=\"item-link\">Kit de Crime</a> (1 Bugiganga)</li>\n                                <li>1 <a href=\"bazar.html?item=Corda Reforçada (15m)\" class=\"item-link\">Corda Reforçada (15m)</a> (1 Bugiganga)</li>\n                                <li>1 Comida (1 Bugiganga)</li>\n                            </ul>\n                        </div>\n                    </div>\n                    <div class=\"habilidade-box\">\n                        <h4>✨ Ilegal</h4>\n                        <p>Você saqueia 5 Sins a cada criatura morta por você como ação livre. Você pode gastar 2 de Stamina para realizar testes de Crime com um treinamento a mais. Adicionalmente, você pode gastar 1d4 horas para encontrar um contato criminal que pode te fornecer informações, esconderijo ou itens ilegais.</p>\n                    </div>\n                </div>\n            "
+      "corpo": "\n                <div class=\"origem-header\" onclick=\"this.parentElement.classList.toggle('active')\">\n                    <h3><span class=\"icon\">💸</span> Criminoso</h3>\n                    <div style=\"display:flex;align-items:center;gap:1rem\">\n                        <span class=\"origem-sins\">💰 {{origem.sins}}</span>\n                        <span class=\"toggle-icon\">▼</span>\n                    </div>\n                </div>\n                <div class=\"origem-body\">\n                    <p class=\"origem-desc\">Você não nasceu criminoso. O mundo te fez um. Quando as regras só protegem quem tem ouro, quebrar as regras vira sobrevivência. Você roubou, enganou, talvez pior. Cada crime deixou algo para trás — uma cicatriz, uma dívida, um rosto que te visita nos sonhos. Houve um primeiro crime, um momento em que voltar ainda era possível. Esse momento passou. Agora você conhece o submundo como outros conhecem suas casas. Sabe onde encontrar o que não deveria ser encontrado. E sabe que o passado não te persegue — ele caminha do seu lado, esperando a hora de cobrar.</p>\n                    <div class=\"origem-grid\">\n                        <div class=\"origem-section\">\n                            <h4>🎯 Treinamento</h4>\n                            <p>{{origem.treinamento.texto}}</p>\n                        </div>\n                        <div class=\"origem-section\">\n                            <h4>🎒 Itens Iniciais</h4>\n                            <ul>\n                                <li>{{origem.itensIniciais.0.texto}}</li>\n                                <li>{{origem.itensIniciais.1.texto}}</li>\n                                <li>{{origem.itensIniciais.2.texto}}</li>\n                                <li>{{origem.itensIniciais.3.texto}}</li>\n                                <li>{{origem.itensIniciais.4.texto}}</li>\n                            </ul>\n                        </div>\n                    </div>\n                    <div class=\"habilidade-box\">\n                        <h4>{{origem.habilidade.nome}}</h4>\n                        {{origem.habilidade.texto}}\n                    </div>\n                </div>\n            ",
+      "origem": {
+        "sins": "4d6",
+        "treinamento": {
+          "texto": "Furtividade ou Crime",
+          "termos": [
+            {
+              "tipo": "pericia",
+              "quantidade": 1,
+              "opcoes": [
+                "furtividade",
+                "crime"
+              ]
+            }
+          ]
+        },
+        "itensIniciais": [
+          {
+            "texto": "Roupas Discretas (1 Equipamento)",
+            "nome": "Roupas Discretas",
+            "quantidade": null,
+            "slot": "1 Equipamento",
+            "nota": null,
+            "itemId": null
+          },
+          {
+            "texto": "1 Arma Leve ou à Distância (1 Equipamento)",
+            "nome": "Arma Leve ou à Distância",
+            "quantidade": 1,
+            "slot": "1 Equipamento",
+            "nota": null,
+            "itemId": null
+          },
+          {
+            "texto": "1 <a href=\"bazar.html?item=Kit de Crime\" class=\"item-link\">Kit de Crime</a> (1 Bugiganga)",
+            "nome": "Kit de Crime",
+            "quantidade": 1,
+            "slot": "1 Bugiganga",
+            "nota": null,
+            "itemId": "item-kit-de-crime"
+          },
+          {
+            "texto": "1 <a href=\"bazar.html?item=Corda Reforçada (15m)\" class=\"item-link\">Corda Reforçada (15m)</a> (1 Bugiganga)",
+            "nome": "Corda Reforçada (15m)",
+            "quantidade": 1,
+            "slot": "1 Bugiganga",
+            "nota": null,
+            "itemId": "item-corda-reforcada-15m"
+          },
+          {
+            "texto": "1 Comida (1 Bugiganga)",
+            "nome": "Comida",
+            "quantidade": 1,
+            "slot": "1 Bugiganga",
+            "nota": null,
+            "itemId": null
+          }
+        ],
+        "habilidade": {
+          "id": "origem-criminoso-ilegal",
+          "nome": "✨ Ilegal",
+          "texto": "<p>Você saqueia 5 Sins a cada criatura morta por você como ação livre. Você pode gastar 2 de Stamina para realizar testes de Crime com um treinamento a mais. Adicionalmente, você pode gastar 1d4 horas para encontrar um contato criminal que pode te fornecer informações, esconderijo ou itens ilegais.</p>"
+        }
+      }
     },
     {
       "id": "origem-cultista",
@@ -79,7 +724,78 @@
       "tipo": "origem-card",
       "opentag": "<div class=\"origem-card\" id=\"cultista\">",
       "nome": "👥 Cultista",
-      "corpo": "\n                <div class=\"origem-header\" onclick=\"this.parentElement.classList.toggle('active')\">\n                    <h3><span class=\"icon\">👥</span> Cultista</h3>\n                    <div style=\"display:flex;align-items:center;gap:1rem\">\n                        <span class=\"origem-sins\">💰 2d6</span>\n                        <span class=\"toggle-icon\">▼</span>\n                    </div>\n                </div>\n                <div class=\"origem-body\">\n                    <p class=\"origem-desc\">Houve promessas. Poder, conhecimento, respostas para perguntas que te consumiam. O culto parecia ter tudo isso. E tinha — junto com coisas que você não esperava. Rituais que exigiam mais do que velas e palavras. Verdades que você queria desaprender. Rostos que sumiram depois de certas noites. Você saiu. Ou acha que saiu. Os símbolos ainda estão na sua pele, as vozes ainda sussurram quando você está cansado, e às vezes você faz os gestos sem perceber. O culto não te deixou. Talvez nunca deixe.</p>\n                    <div class=\"origem-grid\">\n                        <div class=\"origem-section\">\n                            <h4>🎯 Treinamento</h4>\n                            <p>Religião ou Místico</p>\n                        </div>\n                        <div class=\"origem-section\">\n                            <h4>🎒 Itens Iniciais</h4>\n                            <ul>\n                                <li>Manto com Capuz (1 Equipamento)</li>\n                                <li>1 Arma Leve ou Mística (1 Equipamento)</li>\n                                <li>1 Pergaminho de Conhecimento nvl 1 à escolha (1 Bugiganga)</li>\n                                <li>1 Símbolo do seu antigo culto (1 Bugiganga)</li>\n                                <li>3 Velas Negras (1 Bugiganga)</li>\n                                <li>1 Comida (1 Bugiganga)</li>\n                            </ul>\n                        </div>\n                    </div>\n                    <div class=\"habilidade-box\">\n                        <h4>✨ Segredos Proibidos</h4>\n                        <p>Você conhece e consegue canalizar 2 magias de nível 1 de qualquer escola, porém deve canalizá-las através de um foco. Uma vez por descanso longo, você pode gastar 3 Stamina para rolar um teste de Místico ou Religião com um nível de treinamento a mais. Adicionalmente, você tem facilidade em identificar outros cultistas, símbolos e rituais.</p>\n                    </div>\n                </div>\n            "
+      "corpo": "\n                <div class=\"origem-header\" onclick=\"this.parentElement.classList.toggle('active')\">\n                    <h3><span class=\"icon\">👥</span> Cultista</h3>\n                    <div style=\"display:flex;align-items:center;gap:1rem\">\n                        <span class=\"origem-sins\">💰 {{origem.sins}}</span>\n                        <span class=\"toggle-icon\">▼</span>\n                    </div>\n                </div>\n                <div class=\"origem-body\">\n                    <p class=\"origem-desc\">Houve promessas. Poder, conhecimento, respostas para perguntas que te consumiam. O culto parecia ter tudo isso. E tinha — junto com coisas que você não esperava. Rituais que exigiam mais do que velas e palavras. Verdades que você queria desaprender. Rostos que sumiram depois de certas noites. Você saiu. Ou acha que saiu. Os símbolos ainda estão na sua pele, as vozes ainda sussurram quando você está cansado, e às vezes você faz os gestos sem perceber. O culto não te deixou. Talvez nunca deixe.</p>\n                    <div class=\"origem-grid\">\n                        <div class=\"origem-section\">\n                            <h4>🎯 Treinamento</h4>\n                            <p>{{origem.treinamento.texto}}</p>\n                        </div>\n                        <div class=\"origem-section\">\n                            <h4>🎒 Itens Iniciais</h4>\n                            <ul>\n                                <li>{{origem.itensIniciais.0.texto}}</li>\n                                <li>{{origem.itensIniciais.1.texto}}</li>\n                                <li>{{origem.itensIniciais.2.texto}}</li>\n                                <li>{{origem.itensIniciais.3.texto}}</li>\n                                <li>{{origem.itensIniciais.4.texto}}</li>\n                                <li>{{origem.itensIniciais.5.texto}}</li>\n                            </ul>\n                        </div>\n                    </div>\n                    <div class=\"habilidade-box\">\n                        <h4>{{origem.habilidade.nome}}</h4>\n                        {{origem.habilidade.texto}}\n                    </div>\n                </div>\n            ",
+      "origem": {
+        "sins": "2d6",
+        "treinamento": {
+          "texto": "Religião ou Místico",
+          "termos": [
+            {
+              "tipo": "pericia",
+              "quantidade": 1,
+              "opcoes": [
+                "religiao",
+                "mistico"
+              ]
+            }
+          ]
+        },
+        "itensIniciais": [
+          {
+            "texto": "Manto com Capuz (1 Equipamento)",
+            "nome": "Manto com Capuz",
+            "quantidade": null,
+            "slot": "1 Equipamento",
+            "nota": null,
+            "itemId": null
+          },
+          {
+            "texto": "1 Arma Leve ou Mística (1 Equipamento)",
+            "nome": "Arma Leve ou Mística",
+            "quantidade": 1,
+            "slot": "1 Equipamento",
+            "nota": null,
+            "itemId": null
+          },
+          {
+            "texto": "1 Pergaminho de Conhecimento nvl 1 à escolha (1 Bugiganga)",
+            "nome": "Pergaminho de Conhecimento nvl 1 à escolha",
+            "quantidade": 1,
+            "slot": "1 Bugiganga",
+            "nota": null,
+            "itemId": null
+          },
+          {
+            "texto": "1 Símbolo do seu antigo culto (1 Bugiganga)",
+            "nome": "Símbolo do seu antigo culto",
+            "quantidade": 1,
+            "slot": "1 Bugiganga",
+            "nota": null,
+            "itemId": null
+          },
+          {
+            "texto": "3 Velas Negras (1 Bugiganga)",
+            "nome": "Velas Negras",
+            "quantidade": 3,
+            "slot": "1 Bugiganga",
+            "nota": null,
+            "itemId": null
+          },
+          {
+            "texto": "1 Comida (1 Bugiganga)",
+            "nome": "Comida",
+            "quantidade": 1,
+            "slot": "1 Bugiganga",
+            "nota": null,
+            "itemId": null
+          }
+        ],
+        "habilidade": {
+          "id": "origem-cultista-segredos-proibidos",
+          "nome": "✨ Segredos Proibidos",
+          "texto": "<p>Você conhece e consegue canalizar 2 magias de nível 1 de qualquer escola, porém deve canalizá-las através de um foco. Uma vez por descanso longo, você pode gastar 3 Stamina para rolar um teste de Místico ou Religião com um nível de treinamento a mais. Adicionalmente, você tem facilidade em identificar outros cultistas, símbolos e rituais.</p>"
+        }
+      }
     },
     {
       "id": "origem-soldado",
@@ -87,7 +803,84 @@
       "tipo": "origem-card",
       "opentag": "<div class=\"origem-card\" id=\"soldado\">",
       "nome": "🪖 Soldado",
-      "corpo": "\n                <div class=\"origem-header\" onclick=\"this.parentElement.classList.toggle('active')\">\n                    <h3><span class=\"icon\">🪖</span> Soldado</h3>\n                    <div style=\"display:flex;align-items:center;gap:1rem\">\n                        <span class=\"origem-sins\">💰 2d6+10</span>\n                        <span class=\"toggle-icon\">▼</span>\n                    </div>\n                </div>\n                <div class=\"origem-body\">\n                    <p class=\"origem-desc\">Você vestiu a farda, seguiu as ordens, marchou quando mandaram marchar. Havia honra nisso — ou pelo menos era o que diziam. Disciplina, camaradagem, propósito. Você aprendeu a lutar em formação, a confiar no soldado ao seu lado, a matar sem hesitar quando necessário. A guerra te moldou em algo mais duro, mais eficiente, mais difícil de quebrar. Mas a guerra terminou para o mundo, junto com seu ganha-pão. Agora, cada barulho alto é uma emboscada, cada sombra esconde inimigos, cada sono é interrompido por memórias que você queria enterrar. Você sobreviveu. Agora está tentando descobrir se valeu a pena.</p>\n                    <div class=\"origem-grid\">\n                        <div class=\"origem-section\">\n                            <h4>🎯 Treinamento</h4>\n                            <p>Fortitude ou Vontade, Armas à Distância, Armas Marciais</p>\n                        </div>\n                        <div class=\"origem-section\">\n                            <h4>🎒 Itens Iniciais</h4>\n                            <ul>\n                                <li>Roupas Básicas (1 Equipamento)</li>\n                                <li>1 Arma Leve, Pesada ou à Distância (1 Equipamento)</li>\n                                <li>1 <a href=\"bazar.html?item=Armadura de Couro\" class=\"item-link\">Armadura de Couro</a> (1 Equipamento) — Armadura(Ar) 2</li>\n                                <li>1 Símbolo do seu antigo batalhão (1 Bugiganga)</li>\n                                <li>2 Comidas (2 Bugigangas)</li>\n                            </ul>\n                        </div>\n                    </div>\n                    <div class=\"habilidade-box\">\n                        <h4>✨ Veterano</h4>\n                        <p>Você não quebra facilmente. Você tem vantagem em testes de resistência contra condições mentais. Além disso, você tem reputação militar básica.</p>\n                    </div>\n                </div>\n            "
+      "corpo": "\n                <div class=\"origem-header\" onclick=\"this.parentElement.classList.toggle('active')\">\n                    <h3><span class=\"icon\">🪖</span> Soldado</h3>\n                    <div style=\"display:flex;align-items:center;gap:1rem\">\n                        <span class=\"origem-sins\">💰 {{origem.sins}}</span>\n                        <span class=\"toggle-icon\">▼</span>\n                    </div>\n                </div>\n                <div class=\"origem-body\">\n                    <p class=\"origem-desc\">Você vestiu a farda, seguiu as ordens, marchou quando mandaram marchar. Havia honra nisso — ou pelo menos era o que diziam. Disciplina, camaradagem, propósito. Você aprendeu a lutar em formação, a confiar no soldado ao seu lado, a matar sem hesitar quando necessário. A guerra te moldou em algo mais duro, mais eficiente, mais difícil de quebrar. Mas a guerra terminou para o mundo, junto com seu ganha-pão. Agora, cada barulho alto é uma emboscada, cada sombra esconde inimigos, cada sono é interrompido por memórias que você queria enterrar. Você sobreviveu. Agora está tentando descobrir se valeu a pena.</p>\n                    <div class=\"origem-grid\">\n                        <div class=\"origem-section\">\n                            <h4>🎯 Treinamento</h4>\n                            <p>{{origem.treinamento.texto}}</p>\n                        </div>\n                        <div class=\"origem-section\">\n                            <h4>🎒 Itens Iniciais</h4>\n                            <ul>\n                                <li>{{origem.itensIniciais.0.texto}}</li>\n                                <li>{{origem.itensIniciais.1.texto}}</li>\n                                <li>{{origem.itensIniciais.2.texto}}</li>\n                                <li>{{origem.itensIniciais.3.texto}}</li>\n                                <li>{{origem.itensIniciais.4.texto}}</li>\n                            </ul>\n                        </div>\n                    </div>\n                    <div class=\"habilidade-box\">\n                        <h4>{{origem.habilidade.nome}}</h4>\n                        {{origem.habilidade.texto}}\n                    </div>\n                </div>\n            ",
+      "origem": {
+        "sins": "2d6+10",
+        "treinamento": {
+          "texto": "Fortitude ou Vontade, Armas à Distância, Armas Marciais",
+          "termos": [
+            {
+              "tipo": "pericia",
+              "quantidade": 1,
+              "opcoes": [
+                "fortitude",
+                "vontade"
+              ]
+            },
+            {
+              "tipo": "arma",
+              "quantidade": 1,
+              "opcoes": [
+                "armas-a-distancia"
+              ]
+            },
+            {
+              "tipo": "arma",
+              "quantidade": 1,
+              "opcoes": [
+                "armas-marciais"
+              ]
+            }
+          ]
+        },
+        "itensIniciais": [
+          {
+            "texto": "Roupas Básicas (1 Equipamento)",
+            "nome": "Roupas Básicas",
+            "quantidade": null,
+            "slot": "1 Equipamento",
+            "nota": null,
+            "itemId": null
+          },
+          {
+            "texto": "1 Arma Leve, Pesada ou à Distância (1 Equipamento)",
+            "nome": "Arma Leve, Pesada ou à Distância",
+            "quantidade": 1,
+            "slot": "1 Equipamento",
+            "nota": null,
+            "itemId": null
+          },
+          {
+            "texto": "1 <a href=\"bazar.html?item=Armadura de Couro\" class=\"item-link\">Armadura de Couro</a> (1 Equipamento) — Armadura(Ar) 2",
+            "nome": "Armadura de Couro",
+            "quantidade": 1,
+            "slot": "1 Equipamento",
+            "nota": "Armadura(Ar) 2",
+            "itemId": "item-armadura-de-couro"
+          },
+          {
+            "texto": "1 Símbolo do seu antigo batalhão (1 Bugiganga)",
+            "nome": "Símbolo do seu antigo batalhão",
+            "quantidade": 1,
+            "slot": "1 Bugiganga",
+            "nota": null,
+            "itemId": null
+          },
+          {
+            "texto": "2 Comidas (2 Bugigangas)",
+            "nome": "Comidas",
+            "quantidade": 2,
+            "slot": "2 Bugigangas",
+            "nota": null,
+            "itemId": null
+          }
+        ],
+        "habilidade": {
+          "id": "origem-soldado-veterano",
+          "nome": "✨ Veterano",
+          "texto": "<p>Você não quebra facilmente. Você tem vantagem em testes de resistência contra condições mentais. Além disso, você tem reputação militar básica.</p>"
+        }
+      }
     },
     {
       "id": "origem-refugiado",
@@ -95,7 +888,70 @@
       "tipo": "origem-card",
       "opentag": "<div class=\"origem-card\" id=\"refugiado\">",
       "nome": "💥 Refugiado",
-      "corpo": "\n                <div class=\"origem-header\" onclick=\"this.parentElement.classList.toggle('active')\">\n                    <h3><span class=\"icon\">💥</span> Refugiado</h3>\n                    <div style=\"display:flex;align-items:center;gap:1rem\">\n                        <span class=\"origem-sins\">💰 2d6</span>\n                        <span class=\"toggle-icon\">▼</span>\n                    </div>\n                </div>\n                <div class=\"origem-body\">\n                    <p class=\"origem-desc\">Você já teve um lar. Teve rua, vizinhos, cheiro de comida e barulho de mercado. Um dia, tudo virou fumaça. Desde então, você carrega o hábito de olhar duas vezes para cada porta de saída e dormir com metade do corpo pronto pra correr. Seu corpo aprendeu a viver com pouco, sua mente aprendeu a não se apegar a nada que pegue fogo.</p>\n                    <div class=\"origem-grid\">\n                        <div class=\"origem-section\">\n                            <h4>🎯 Treinamento</h4>\n                            <p>Percepção ou Movimento, Reflexos ou Sobrevivência</p>\n                        </div>\n                        <div class=\"origem-section\">\n                            <h4>🎒 Itens Iniciais</h4>\n                            <ul>\n                                <li>Trapos Velhos (1 Equipamento)</li>\n                                <li>1 Arma Leve ou à Distância (1 Equipamento)</li>\n                                <li>1 Item da sua cidade original (1 Bugiganga)</li>\n                                <li>2 Comida (2 Bugigangas)</li>\n                            </ul>\n                        </div>\n                    </div>\n                    <div class=\"habilidade-box\">\n                        <h4>✨ Fugaz</h4>\n                        <p>Você tem facilidade para escapar de perigos. Ao suceder em um teste de resistência, você ignora o dano, ao invés de reduzir à metade em magias/técnicas que utilizam essa mecânica. Adicionalmente, Você começa cenas de perseguição com 1 sucesso.</p>\n                    </div>\n                </div>\n            "
+      "corpo": "\n                <div class=\"origem-header\" onclick=\"this.parentElement.classList.toggle('active')\">\n                    <h3><span class=\"icon\">💥</span> Refugiado</h3>\n                    <div style=\"display:flex;align-items:center;gap:1rem\">\n                        <span class=\"origem-sins\">💰 {{origem.sins}}</span>\n                        <span class=\"toggle-icon\">▼</span>\n                    </div>\n                </div>\n                <div class=\"origem-body\">\n                    <p class=\"origem-desc\">Você já teve um lar. Teve rua, vizinhos, cheiro de comida e barulho de mercado. Um dia, tudo virou fumaça. Desde então, você carrega o hábito de olhar duas vezes para cada porta de saída e dormir com metade do corpo pronto pra correr. Seu corpo aprendeu a viver com pouco, sua mente aprendeu a não se apegar a nada que pegue fogo.</p>\n                    <div class=\"origem-grid\">\n                        <div class=\"origem-section\">\n                            <h4>🎯 Treinamento</h4>\n                            <p>{{origem.treinamento.texto}}</p>\n                        </div>\n                        <div class=\"origem-section\">\n                            <h4>🎒 Itens Iniciais</h4>\n                            <ul>\n                                <li>{{origem.itensIniciais.0.texto}}</li>\n                                <li>{{origem.itensIniciais.1.texto}}</li>\n                                <li>{{origem.itensIniciais.2.texto}}</li>\n                                <li>{{origem.itensIniciais.3.texto}}</li>\n                            </ul>\n                        </div>\n                    </div>\n                    <div class=\"habilidade-box\">\n                        <h4>{{origem.habilidade.nome}}</h4>\n                        {{origem.habilidade.texto}}\n                    </div>\n                </div>\n            ",
+      "origem": {
+        "sins": "2d6",
+        "treinamento": {
+          "texto": "Percepção ou Movimento, Reflexos ou Sobrevivência",
+          "termos": [
+            {
+              "tipo": "pericia",
+              "quantidade": 1,
+              "opcoes": [
+                "percepcao",
+                "movimento"
+              ]
+            },
+            {
+              "tipo": "pericia",
+              "quantidade": 1,
+              "opcoes": [
+                "reflexos",
+                "sobrevivencia"
+              ]
+            }
+          ]
+        },
+        "itensIniciais": [
+          {
+            "texto": "Trapos Velhos (1 Equipamento)",
+            "nome": "Trapos Velhos",
+            "quantidade": null,
+            "slot": "1 Equipamento",
+            "nota": null,
+            "itemId": null
+          },
+          {
+            "texto": "1 Arma Leve ou à Distância (1 Equipamento)",
+            "nome": "Arma Leve ou à Distância",
+            "quantidade": 1,
+            "slot": "1 Equipamento",
+            "nota": null,
+            "itemId": null
+          },
+          {
+            "texto": "1 Item da sua cidade original (1 Bugiganga)",
+            "nome": "Item da sua cidade original",
+            "quantidade": 1,
+            "slot": "1 Bugiganga",
+            "nota": null,
+            "itemId": null
+          },
+          {
+            "texto": "2 Comida (2 Bugigangas)",
+            "nome": "Comida",
+            "quantidade": 2,
+            "slot": "2 Bugigangas",
+            "nota": null,
+            "itemId": null
+          }
+        ],
+        "habilidade": {
+          "id": "origem-refugiado-fugaz",
+          "nome": "✨ Fugaz",
+          "texto": "<p>Você tem facilidade para escapar de perigos. Ao suceder em um teste de resistência, você ignora o dano, ao invés de reduzir à metade em magias/técnicas que utilizam essa mecânica. Adicionalmente, Você começa cenas de perseguição com 1 sucesso.</p>"
+        }
+      }
     },
     {
       "id": "origem-mercador",
@@ -103,7 +959,77 @@
       "tipo": "origem-card",
       "opentag": "<div class=\"origem-card\" id=\"mercador\">",
       "nome": "🪙 Mercador",
-      "corpo": "\n                <div class=\"origem-header\" onclick=\"this.parentElement.classList.toggle('active')\">\n                    <h3><span class=\"icon\">🪙</span> Mercador</h3>\n                    <div style=\"display:flex;align-items:center;gap:1rem\">\n                        <span class=\"origem-sins\">💰 4d6+15</span>\n                        <span class=\"toggle-icon\">▼</span>\n                    </div>\n                </div>\n                <div class=\"origem-body\">\n                    <p class=\"origem-desc\">Rotas comerciais não se fazem em segurança. Você viajou entre cidades, atravessou fronteiras hostis, negociou com pessoas que outros não ousariam olhar nos olhos. Cada viagem era um risco, cada negócio uma aposta. Você aprendeu a ler pessoas tão bem quanto lê contratos — talvez melhor. O sorriso, a hesitação, o suor nas mãos. Tudo conta uma história. Tudo tem um preço. E você sempre soube calcular se o risco valia o retorno.</p>\n                    <div class=\"origem-grid\">\n                        <div class=\"origem-section\">\n                            <h4>🎯 Treinamento</h4>\n                            <p>Convencimento</p>\n                        </div>\n                        <div class=\"origem-section\">\n                            <h4>🎒 Itens Iniciais</h4>\n                            <ul>\n                                <li>Roupas de Qualidade (1 Equipamento)</li>\n                                <li>1 Arma Leve ou Mística (1 Equipamento)</li>\n                                <li>1 Livro de Anotações (1 Bugiganga)</li>\n                                <li>1 <a href=\"bazar.html?item=Tinta + Pena\" class=\"item-link\">Tinta + Pena</a> (1 Bugiganga)</li>\n                                <li>1 <a href=\"bazar.html?item=Mochila Reforçada\" class=\"item-link\">Mochila Reforçada</a> (1 Bugiganga) — Quando equipada, +3 Espaços de Bugiganga e +1 de Equipamento</li>\n                                <li>2 Comidas (2 Bugiganga)</li>\n                            </ul>\n                        </div>\n                    </div>\n                    <div class=\"habilidade-box\">\n                        <h4>✨ Negociador</h4>\n                        <p>Você vende itens 10% mais caro e compra 10% mais barato.</p>\n                    </div>\n                </div>\n            "
+      "corpo": "\n                <div class=\"origem-header\" onclick=\"this.parentElement.classList.toggle('active')\">\n                    <h3><span class=\"icon\">🪙</span> Mercador</h3>\n                    <div style=\"display:flex;align-items:center;gap:1rem\">\n                        <span class=\"origem-sins\">💰 {{origem.sins}}</span>\n                        <span class=\"toggle-icon\">▼</span>\n                    </div>\n                </div>\n                <div class=\"origem-body\">\n                    <p class=\"origem-desc\">Rotas comerciais não se fazem em segurança. Você viajou entre cidades, atravessou fronteiras hostis, negociou com pessoas que outros não ousariam olhar nos olhos. Cada viagem era um risco, cada negócio uma aposta. Você aprendeu a ler pessoas tão bem quanto lê contratos — talvez melhor. O sorriso, a hesitação, o suor nas mãos. Tudo conta uma história. Tudo tem um preço. E você sempre soube calcular se o risco valia o retorno.</p>\n                    <div class=\"origem-grid\">\n                        <div class=\"origem-section\">\n                            <h4>🎯 Treinamento</h4>\n                            <p>{{origem.treinamento.texto}}</p>\n                        </div>\n                        <div class=\"origem-section\">\n                            <h4>🎒 Itens Iniciais</h4>\n                            <ul>\n                                <li>{{origem.itensIniciais.0.texto}}</li>\n                                <li>{{origem.itensIniciais.1.texto}}</li>\n                                <li>{{origem.itensIniciais.2.texto}}</li>\n                                <li>{{origem.itensIniciais.3.texto}}</li>\n                                <li>{{origem.itensIniciais.4.texto}}</li>\n                                <li>{{origem.itensIniciais.5.texto}}</li>\n                            </ul>\n                        </div>\n                    </div>\n                    <div class=\"habilidade-box\">\n                        <h4>{{origem.habilidade.nome}}</h4>\n                        {{origem.habilidade.texto}}\n                    </div>\n                </div>\n            ",
+      "origem": {
+        "sins": "4d6+15",
+        "treinamento": {
+          "texto": "Convencimento",
+          "termos": [
+            {
+              "tipo": "pericia",
+              "quantidade": 1,
+              "opcoes": [
+                "convencimento"
+              ]
+            }
+          ]
+        },
+        "itensIniciais": [
+          {
+            "texto": "Roupas de Qualidade (1 Equipamento)",
+            "nome": "Roupas de Qualidade",
+            "quantidade": null,
+            "slot": "1 Equipamento",
+            "nota": null,
+            "itemId": null
+          },
+          {
+            "texto": "1 Arma Leve ou Mística (1 Equipamento)",
+            "nome": "Arma Leve ou Mística",
+            "quantidade": 1,
+            "slot": "1 Equipamento",
+            "nota": null,
+            "itemId": null
+          },
+          {
+            "texto": "1 Livro de Anotações (1 Bugiganga)",
+            "nome": "Livro de Anotações",
+            "quantidade": 1,
+            "slot": "1 Bugiganga",
+            "nota": null,
+            "itemId": null
+          },
+          {
+            "texto": "1 <a href=\"bazar.html?item=Tinta + Pena\" class=\"item-link\">Tinta + Pena</a> (1 Bugiganga)",
+            "nome": "Tinta + Pena",
+            "quantidade": 1,
+            "slot": "1 Bugiganga",
+            "nota": null,
+            "itemId": "item-tinta-pena"
+          },
+          {
+            "texto": "1 <a href=\"bazar.html?item=Mochila Reforçada\" class=\"item-link\">Mochila Reforçada</a> (1 Bugiganga) — Quando equipada, +3 Espaços de Bugiganga e +1 de Equipamento",
+            "nome": "Mochila Reforçada",
+            "quantidade": 1,
+            "slot": "1 Bugiganga",
+            "nota": "Quando equipada, +3 Espaços de Bugiganga e +1 de Equipamento",
+            "itemId": "item-mochila-reforcada"
+          },
+          {
+            "texto": "2 Comidas (2 Bugiganga)",
+            "nome": "Comidas",
+            "quantidade": 2,
+            "slot": "2 Bugiganga",
+            "nota": null,
+            "itemId": null
+          }
+        ],
+        "habilidade": {
+          "id": "origem-mercador-negociador",
+          "nome": "✨ Negociador",
+          "texto": "<p>Você vende itens 10% mais caro e compra 10% mais barato.</p>"
+        }
+      }
     },
     {
       "id": "origem-marinheiro",
@@ -111,7 +1037,91 @@
       "tipo": "origem-card",
       "opentag": "<div class=\"origem-card\" id=\"marinheiro\">",
       "nome": "⚓ Marinheiro",
-      "corpo": "\n                <div class=\"origem-header\" onclick=\"this.parentElement.classList.toggle('active')\">\n                    <h3><span class=\"icon\">⚓</span> Marinheiro</h3>\n                    <div style=\"display:flex;align-items:center;gap:1rem\">\n                        <span class=\"origem-sins\">💰 2d6+5</span>\n                        <span class=\"toggle-icon\">▼</span>\n                    </div>\n                </div>\n                <div class=\"origem-body\">\n                    <p class=\"origem-desc\">Você viveu no balanço das ondas, dormiu com o cheiro de sal, e aprendeu que o mar não perdoa erros. Tempestades, monstros marinhos, motins — você viu de tudo e ainda está aqui. A terra firme parece estranha agora. Parada demais. Segura demais. Mas você aprendeu coisas no mar que a maioria nunca aprenderá: ler o clima antes dele virar, confiar na tripulação ou morrer sozinho, e nunca, jamais, subestimar o que está abaixo da superfície.</p>\n                    <div class=\"origem-grid\">\n                        <div class=\"origem-section\">\n                            <h4>🎯 Treinamento</h4>\n                            <p>Movimento, Sobrevivência, Armas à Distância</p>\n                        </div>\n                        <div class=\"origem-section\">\n                            <h4>🎒 Itens Iniciais</h4>\n                            <ul>\n                                <li>Roupa de Marinheiro (1 Equipamento)</li>\n                                <li>1 Arma Leve ou à Distância (1 Equipamento)</li>\n                                <li>1 <a href=\"bazar.html?item=Luneta\" class=\"item-link\">Luneta</a> (1 Bugiganga)</li>\n                                <li>1 <a href=\"bazar.html?item=Garrafa de Rum Forte\" class=\"item-link\">Garrafa de Rum Forte</a> (1 Bugiganga)</li>\n                                <li>1 <a href=\"bazar.html?item=Corda Reforçada (15m)\" class=\"item-link\">Corda Reforçada (15m)</a> (1 Bugiganga)</li>\n                                <li>2 Comidas (2 Bugiganga)</li>\n                            </ul>\n                        </div>\n                    </div>\n                    <div class=\"habilidade-box\">\n                        <h4>✨ Lobo do Mar</h4>\n                        <p>Você sabe navegar, dar nós e ler o clima. Você tem 50% de desconto em passagens de transporte marítimo e na compra de embarcações pessoais.</p>\n                    </div>\n                </div>\n            "
+      "corpo": "\n                <div class=\"origem-header\" onclick=\"this.parentElement.classList.toggle('active')\">\n                    <h3><span class=\"icon\">⚓</span> Marinheiro</h3>\n                    <div style=\"display:flex;align-items:center;gap:1rem\">\n                        <span class=\"origem-sins\">💰 {{origem.sins}}</span>\n                        <span class=\"toggle-icon\">▼</span>\n                    </div>\n                </div>\n                <div class=\"origem-body\">\n                    <p class=\"origem-desc\">Você viveu no balanço das ondas, dormiu com o cheiro de sal, e aprendeu que o mar não perdoa erros. Tempestades, monstros marinhos, motins — você viu de tudo e ainda está aqui. A terra firme parece estranha agora. Parada demais. Segura demais. Mas você aprendeu coisas no mar que a maioria nunca aprenderá: ler o clima antes dele virar, confiar na tripulação ou morrer sozinho, e nunca, jamais, subestimar o que está abaixo da superfície.</p>\n                    <div class=\"origem-grid\">\n                        <div class=\"origem-section\">\n                            <h4>🎯 Treinamento</h4>\n                            <p>{{origem.treinamento.texto}}</p>\n                        </div>\n                        <div class=\"origem-section\">\n                            <h4>🎒 Itens Iniciais</h4>\n                            <ul>\n                                <li>{{origem.itensIniciais.0.texto}}</li>\n                                <li>{{origem.itensIniciais.1.texto}}</li>\n                                <li>{{origem.itensIniciais.2.texto}}</li>\n                                <li>{{origem.itensIniciais.3.texto}}</li>\n                                <li>{{origem.itensIniciais.4.texto}}</li>\n                                <li>{{origem.itensIniciais.5.texto}}</li>\n                            </ul>\n                        </div>\n                    </div>\n                    <div class=\"habilidade-box\">\n                        <h4>{{origem.habilidade.nome}}</h4>\n                        {{origem.habilidade.texto}}\n                    </div>\n                </div>\n            ",
+      "origem": {
+        "sins": "2d6+5",
+        "treinamento": {
+          "texto": "Movimento, Sobrevivência, Armas à Distância",
+          "termos": [
+            {
+              "tipo": "pericia",
+              "quantidade": 1,
+              "opcoes": [
+                "movimento"
+              ]
+            },
+            {
+              "tipo": "pericia",
+              "quantidade": 1,
+              "opcoes": [
+                "sobrevivencia"
+              ]
+            },
+            {
+              "tipo": "arma",
+              "quantidade": 1,
+              "opcoes": [
+                "armas-a-distancia"
+              ]
+            }
+          ]
+        },
+        "itensIniciais": [
+          {
+            "texto": "Roupa de Marinheiro (1 Equipamento)",
+            "nome": "Roupa de Marinheiro",
+            "quantidade": null,
+            "slot": "1 Equipamento",
+            "nota": null,
+            "itemId": null
+          },
+          {
+            "texto": "1 Arma Leve ou à Distância (1 Equipamento)",
+            "nome": "Arma Leve ou à Distância",
+            "quantidade": 1,
+            "slot": "1 Equipamento",
+            "nota": null,
+            "itemId": null
+          },
+          {
+            "texto": "1 <a href=\"bazar.html?item=Luneta\" class=\"item-link\">Luneta</a> (1 Bugiganga)",
+            "nome": "Luneta",
+            "quantidade": 1,
+            "slot": "1 Bugiganga",
+            "nota": null,
+            "itemId": "item-luneta"
+          },
+          {
+            "texto": "1 <a href=\"bazar.html?item=Garrafa de Rum Forte\" class=\"item-link\">Garrafa de Rum Forte</a> (1 Bugiganga)",
+            "nome": "Garrafa de Rum Forte",
+            "quantidade": 1,
+            "slot": "1 Bugiganga",
+            "nota": null,
+            "itemId": null
+          },
+          {
+            "texto": "1 <a href=\"bazar.html?item=Corda Reforçada (15m)\" class=\"item-link\">Corda Reforçada (15m)</a> (1 Bugiganga)",
+            "nome": "Corda Reforçada (15m)",
+            "quantidade": 1,
+            "slot": "1 Bugiganga",
+            "nota": null,
+            "itemId": "item-corda-reforcada-15m"
+          },
+          {
+            "texto": "2 Comidas (2 Bugiganga)",
+            "nome": "Comidas",
+            "quantidade": 2,
+            "slot": "2 Bugiganga",
+            "nota": null,
+            "itemId": null
+          }
+        ],
+        "habilidade": {
+          "id": "origem-marinheiro-lobo-do-mar",
+          "nome": "✨ Lobo do Mar",
+          "texto": "<p>Você sabe navegar, dar nós e ler o clima. Você tem 50% de desconto em passagens de transporte marítimo e na compra de embarcações pessoais.</p>"
+        }
+      }
     },
     {
       "id": "origem-nobre",
@@ -119,7 +1129,82 @@
       "tipo": "origem-card",
       "opentag": "<div class=\"origem-card\" id=\"nobre\">",
       "nome": "🏰 Nobre",
-      "corpo": "\n                <div class=\"origem-header\" onclick=\"this.parentElement.classList.toggle('active')\">\n                    <h3><span class=\"icon\">🏰</span> Nobre</h3>\n                    <div style=\"display:flex;align-items:center;gap:1rem\">\n                        <span class=\"origem-sins\">💰 2d6+5</span>\n                        <span class=\"toggle-icon\">▼</span>\n                    </div>\n                </div>\n                <div class=\"origem-body\">\n                    <p class=\"origem-desc\">Você nasceu em berço de ouro, aprendeu etiqueta antes de andar, e conheceu o poder antes de entendê-lo. Depois, perdeu tudo. Guerra, traição, dívidas, escândalo — não importa o motivo. O que importa é que o título virou peso, o nome virou piada, e os antigos aliados viraram desconhecidos. Mas o treinamento ficou. Você ainda sabe como falar com lordes, como se portar em cortes, como identificar quem realmente manda em uma sala. O mundo te tirou tudo, menos o que está na sua cabeça. E isso, por enquanto, é suficiente.</p>\n                    <div class=\"origem-grid\">\n                        <div class=\"origem-section\">\n                            <h4>🎯 Treinamento</h4>\n                            <p>Intuição ou Conhecimento, 1 Perícia à sua escolha, Armas Marciais</p>\n                        </div>\n                        <div class=\"origem-section\">\n                            <h4>🎒 Itens Iniciais</h4>\n                            <ul>\n                                <li>Roupas Finas (1 Equipamento)</li>\n                                <li>1 Arma Qualquer (1 Equipamento)</li>\n                                <li>1 Relógio de Sol Portátil (1 Bugiganga)</li>\n                                <li>1 Anel de Família (1 Bugiganga)</li>\n                                <li>1 Comida (1 Bugiganga)</li>\n                            </ul>\n                        </div>\n                    </div>\n                    <div class=\"habilidade-box\">\n                        <h4>✨ Educação Privilegiada</h4>\n                        <p>Escolha um idioma, você conhece a língua. Você é facilmente reconhecido como alguém nobre por outras criaturas. Comerciantes cobram 5% a mais e compram seus itens por 5% a menos. Aliados próximos compartilham desse debuff.</p>\n                    </div>\n                </div>\n            "
+      "corpo": "\n                <div class=\"origem-header\" onclick=\"this.parentElement.classList.toggle('active')\">\n                    <h3><span class=\"icon\">🏰</span> Nobre</h3>\n                    <div style=\"display:flex;align-items:center;gap:1rem\">\n                        <span class=\"origem-sins\">💰 {{origem.sins}}</span>\n                        <span class=\"toggle-icon\">▼</span>\n                    </div>\n                </div>\n                <div class=\"origem-body\">\n                    <p class=\"origem-desc\">Você nasceu em berço de ouro, aprendeu etiqueta antes de andar, e conheceu o poder antes de entendê-lo. Depois, perdeu tudo. Guerra, traição, dívidas, escândalo — não importa o motivo. O que importa é que o título virou peso, o nome virou piada, e os antigos aliados viraram desconhecidos. Mas o treinamento ficou. Você ainda sabe como falar com lordes, como se portar em cortes, como identificar quem realmente manda em uma sala. O mundo te tirou tudo, menos o que está na sua cabeça. E isso, por enquanto, é suficiente.</p>\n                    <div class=\"origem-grid\">\n                        <div class=\"origem-section\">\n                            <h4>🎯 Treinamento</h4>\n                            <p>{{origem.treinamento.texto}}</p>\n                        </div>\n                        <div class=\"origem-section\">\n                            <h4>🎒 Itens Iniciais</h4>\n                            <ul>\n                                <li>{{origem.itensIniciais.0.texto}}</li>\n                                <li>{{origem.itensIniciais.1.texto}}</li>\n                                <li>{{origem.itensIniciais.2.texto}}</li>\n                                <li>{{origem.itensIniciais.3.texto}}</li>\n                                <li>{{origem.itensIniciais.4.texto}}</li>\n                            </ul>\n                        </div>\n                    </div>\n                    <div class=\"habilidade-box\">\n                        <h4>{{origem.habilidade.nome}}</h4>\n                        {{origem.habilidade.texto}}\n                    </div>\n                </div>\n            ",
+      "origem": {
+        "sins": "2d6+5",
+        "treinamento": {
+          "texto": "Intuição ou Conhecimento, 1 Perícia à sua escolha, Armas Marciais",
+          "termos": [
+            {
+              "tipo": "pericia",
+              "quantidade": 1,
+              "opcoes": [
+                "intuicao",
+                "conhecimento"
+              ]
+            },
+            {
+              "tipo": "pericia",
+              "quantidade": 1,
+              "opcoes": "qualquer"
+            },
+            {
+              "tipo": "arma",
+              "quantidade": 1,
+              "opcoes": [
+                "armas-marciais"
+              ]
+            }
+          ]
+        },
+        "itensIniciais": [
+          {
+            "texto": "Roupas Finas (1 Equipamento)",
+            "nome": "Roupas Finas",
+            "quantidade": null,
+            "slot": "1 Equipamento",
+            "nota": null,
+            "itemId": null
+          },
+          {
+            "texto": "1 Arma Qualquer (1 Equipamento)",
+            "nome": "Arma Qualquer",
+            "quantidade": 1,
+            "slot": "1 Equipamento",
+            "nota": null,
+            "itemId": null
+          },
+          {
+            "texto": "1 Relógio de Sol Portátil (1 Bugiganga)",
+            "nome": "Relógio de Sol Portátil",
+            "quantidade": 1,
+            "slot": "1 Bugiganga",
+            "nota": null,
+            "itemId": null
+          },
+          {
+            "texto": "1 Anel de Família (1 Bugiganga)",
+            "nome": "Anel de Família",
+            "quantidade": 1,
+            "slot": "1 Bugiganga",
+            "nota": null,
+            "itemId": null
+          },
+          {
+            "texto": "1 Comida (1 Bugiganga)",
+            "nome": "Comida",
+            "quantidade": 1,
+            "slot": "1 Bugiganga",
+            "nota": null,
+            "itemId": null
+          }
+        ],
+        "habilidade": {
+          "id": "origem-nobre-educacao-privilegiada",
+          "nome": "✨ Educação Privilegiada",
+          "texto": "<p>Escolha um idioma, você conhece a língua. Você é facilmente reconhecido como alguém nobre por outras criaturas. Comerciantes cobram 5% a mais e compram seus itens por 5% a menos. Aliados próximos compartilham desse debuff.</p>"
+        }
+      }
     },
     {
       "id": "origem-vidente",
@@ -127,7 +1212,77 @@
       "tipo": "origem-card",
       "opentag": "<div class=\"origem-card\" id=\"vidente\">",
       "nome": "👁️ Vidente",
-      "corpo": "\n                <div class=\"origem-header\" onclick=\"this.parentElement.classList.toggle('active')\">\n                    <h3><span class=\"icon\">👁️</span> Vidente</h3>\n                    <div style=\"display:flex;align-items:center;gap:1rem\">\n                        <span class=\"origem-sins\">💰 1d6+4</span>\n                        <span class=\"toggle-icon\">▼</span>\n                    </div>\n                </div>\n                <div class=\"origem-body\">\n                    <p class=\"origem-desc\">As visões começaram sem aviso. Sempre que você dorme elas surgem. Fragmentos de futuros possíveis, ecos de passados esquecidos, imagens que não fazem sentido até ser tarde demais. Você não pediu por isso. Não sabe de onde vem. Alguns te chamam de abençoado, outros de amaldiçoado — você só sabe que não consegue parar. As visões vêm quando querem, mostram o que querem, e te deixam com mais perguntas do que respostas. O futuro é um rio turvo. Você apenas vê pedaços da correnteza.</p>\n                    <div class=\"origem-grid\">\n                        <div class=\"origem-section\">\n                            <h4>🎯 Treinamento</h4>\n                            <p>Interação Social(Intuição)</p>\n                        </div>\n                        <div class=\"origem-section\">\n                            <h4>🎒 Itens Iniciais</h4>\n                            <ul>\n                                <li>Manto com Capuz (1 Equipamento)</li>\n                                <li>1 Arma Leve (1 Equipamento)</li>\n                                <li>1 Diário (1 Bugiganga)</li>\n                                <li>1 <a href=\"bazar.html?item=Tinta + Pena\" class=\"item-link\">Tinta + Pena</a> (1 Bugiganga)</li>\n                                <li>1 Venda (1 Bugiganga)</li>\n                                <li>1 Comida (1 Bugiganga)</li>\n                            </ul>\n                        </div>\n                    </div>\n                    <div class=\"habilidade-box\">\n                        <h4>✨ Vidência</h4>\n                        <p>Ao dormir, você recebe informações aleatórias sobre o dia de amanhã. Adicionalmente, não pode ser Desprevenido enquanto estiver consciente.</p>\n                    </div>\n                </div>\n            "
+      "corpo": "\n                <div class=\"origem-header\" onclick=\"this.parentElement.classList.toggle('active')\">\n                    <h3><span class=\"icon\">👁️</span> Vidente</h3>\n                    <div style=\"display:flex;align-items:center;gap:1rem\">\n                        <span class=\"origem-sins\">💰 {{origem.sins}}</span>\n                        <span class=\"toggle-icon\">▼</span>\n                    </div>\n                </div>\n                <div class=\"origem-body\">\n                    <p class=\"origem-desc\">As visões começaram sem aviso. Sempre que você dorme elas surgem. Fragmentos de futuros possíveis, ecos de passados esquecidos, imagens que não fazem sentido até ser tarde demais. Você não pediu por isso. Não sabe de onde vem. Alguns te chamam de abençoado, outros de amaldiçoado — você só sabe que não consegue parar. As visões vêm quando querem, mostram o que querem, e te deixam com mais perguntas do que respostas. O futuro é um rio turvo. Você apenas vê pedaços da correnteza.</p>\n                    <div class=\"origem-grid\">\n                        <div class=\"origem-section\">\n                            <h4>🎯 Treinamento</h4>\n                            <p>{{origem.treinamento.texto}}</p>\n                        </div>\n                        <div class=\"origem-section\">\n                            <h4>🎒 Itens Iniciais</h4>\n                            <ul>\n                                <li>{{origem.itensIniciais.0.texto}}</li>\n                                <li>{{origem.itensIniciais.1.texto}}</li>\n                                <li>{{origem.itensIniciais.2.texto}}</li>\n                                <li>{{origem.itensIniciais.3.texto}}</li>\n                                <li>{{origem.itensIniciais.4.texto}}</li>\n                                <li>{{origem.itensIniciais.5.texto}}</li>\n                            </ul>\n                        </div>\n                    </div>\n                    <div class=\"habilidade-box\">\n                        <h4>{{origem.habilidade.nome}}</h4>\n                        {{origem.habilidade.texto}}\n                    </div>\n                </div>\n            ",
+      "origem": {
+        "sins": "1d6+4",
+        "treinamento": {
+          "texto": "Interação Social(Intuição)",
+          "termos": [
+            {
+              "tipo": "pericia",
+              "quantidade": 1,
+              "opcoes": [
+                "intuicao"
+              ]
+            }
+          ]
+        },
+        "itensIniciais": [
+          {
+            "texto": "Manto com Capuz (1 Equipamento)",
+            "nome": "Manto com Capuz",
+            "quantidade": null,
+            "slot": "1 Equipamento",
+            "nota": null,
+            "itemId": null
+          },
+          {
+            "texto": "1 Arma Leve (1 Equipamento)",
+            "nome": "Arma Leve",
+            "quantidade": 1,
+            "slot": "1 Equipamento",
+            "nota": null,
+            "itemId": null
+          },
+          {
+            "texto": "1 Diário (1 Bugiganga)",
+            "nome": "Diário",
+            "quantidade": 1,
+            "slot": "1 Bugiganga",
+            "nota": null,
+            "itemId": null
+          },
+          {
+            "texto": "1 <a href=\"bazar.html?item=Tinta + Pena\" class=\"item-link\">Tinta + Pena</a> (1 Bugiganga)",
+            "nome": "Tinta + Pena",
+            "quantidade": 1,
+            "slot": "1 Bugiganga",
+            "nota": null,
+            "itemId": "item-tinta-pena"
+          },
+          {
+            "texto": "1 Venda (1 Bugiganga)",
+            "nome": "Venda",
+            "quantidade": 1,
+            "slot": "1 Bugiganga",
+            "nota": null,
+            "itemId": null
+          },
+          {
+            "texto": "1 Comida (1 Bugiganga)",
+            "nome": "Comida",
+            "quantidade": 1,
+            "slot": "1 Bugiganga",
+            "nota": null,
+            "itemId": null
+          }
+        ],
+        "habilidade": {
+          "id": "origem-vidente-videncia",
+          "nome": "✨ Vidência",
+          "texto": "<p>Ao dormir, você recebe informações aleatórias sobre o dia de amanhã. Adicionalmente, não pode ser Desprevenido enquanto estiver consciente.</p>"
+        }
+      }
     },
     {
       "id": "origem-amaldicoado",
@@ -135,7 +1290,50 @@
       "tipo": "origem-card",
       "opentag": "<div class=\"origem-card\" id=\"amaldicoado\">",
       "nome": "👻 Amaldiçoado",
-      "corpo": "\n                <div class=\"origem-header\" onclick=\"this.parentElement.classList.toggle('active')\">\n                    <h3><span class=\"icon\">👻</span> Amaldiçoado</h3>\n                    <div style=\"display:flex;align-items:center;gap:1rem\">\n                        <span class=\"origem-sins\">💰 1d6</span>\n                        <span class=\"toggle-icon\">▼</span>\n                    </div>\n                </div>\n                <div class=\"origem-body\">\n                    <p class=\"origem-desc\">Você não tem memórias de infância. Não tem pais, não tem lar, não tem origem que faça sentido. O que você tem são marcas que não deveriam estar na sua pele, sonhos que não parecem seus, e sussurros que ninguém mais ouve. Algo está errado com você — sempre esteve. Seu sangue queima às vezes, sem motivo. Estranhos te olham como se te reconhecessem. Símbolos que você nunca viu parecem familiares. Você não sabe o que aconteceu, não sabe o que você é. Só sabe que as respostas existem em algum lugar. E que talvez você não queira encontrá-las.</p>\n                    <div class=\"origem-grid\">\n                        <div class=\"origem-section\">\n                            <h4>🎯 Treinamento</h4>\n                            <p>Místico, 1 Perícia à sua escolha</p>\n                        </div>\n                        <div class=\"origem-section\">\n                            <h4>🎒 Itens Iniciais</h4>\n                            <ul>\n                                <li>Trapos Velhos (1 Equipamento)</li>\n                                <li>1 Bilhete Rasgado com seu Nome (1 Bugiganga)</li>\n                            </ul>\n                        </div>\n                    </div>\n                    <div class=\"habilidade-box\">\n                        <h4>✨ Local</h4>\n                        <p>Você não lembra de muita coisa. Na verdade não lembra de absolutamente nada. Mas sabe, você precisa ir até um certo local. Suas respostas lhe esperam lá.</p>\n                    </div>\n                </div>\n            "
+      "corpo": "\n                <div class=\"origem-header\" onclick=\"this.parentElement.classList.toggle('active')\">\n                    <h3><span class=\"icon\">👻</span> Amaldiçoado</h3>\n                    <div style=\"display:flex;align-items:center;gap:1rem\">\n                        <span class=\"origem-sins\">💰 {{origem.sins}}</span>\n                        <span class=\"toggle-icon\">▼</span>\n                    </div>\n                </div>\n                <div class=\"origem-body\">\n                    <p class=\"origem-desc\">Você não tem memórias de infância. Não tem pais, não tem lar, não tem origem que faça sentido. O que você tem são marcas que não deveriam estar na sua pele, sonhos que não parecem seus, e sussurros que ninguém mais ouve. Algo está errado com você — sempre esteve. Seu sangue queima às vezes, sem motivo. Estranhos te olham como se te reconhecessem. Símbolos que você nunca viu parecem familiares. Você não sabe o que aconteceu, não sabe o que você é. Só sabe que as respostas existem em algum lugar. E que talvez você não queira encontrá-las.</p>\n                    <div class=\"origem-grid\">\n                        <div class=\"origem-section\">\n                            <h4>🎯 Treinamento</h4>\n                            <p>{{origem.treinamento.texto}}</p>\n                        </div>\n                        <div class=\"origem-section\">\n                            <h4>🎒 Itens Iniciais</h4>\n                            <ul>\n                                <li>{{origem.itensIniciais.0.texto}}</li>\n                                <li>{{origem.itensIniciais.1.texto}}</li>\n                            </ul>\n                        </div>\n                    </div>\n                    <div class=\"habilidade-box\">\n                        <h4>{{origem.habilidade.nome}}</h4>\n                        {{origem.habilidade.texto}}\n                    </div>\n                </div>\n            ",
+      "origem": {
+        "sins": "1d6",
+        "treinamento": {
+          "texto": "Místico, 1 Perícia à sua escolha",
+          "termos": [
+            {
+              "tipo": "pericia",
+              "quantidade": 1,
+              "opcoes": [
+                "mistico"
+              ]
+            },
+            {
+              "tipo": "pericia",
+              "quantidade": 1,
+              "opcoes": "qualquer"
+            }
+          ]
+        },
+        "itensIniciais": [
+          {
+            "texto": "Trapos Velhos (1 Equipamento)",
+            "nome": "Trapos Velhos",
+            "quantidade": null,
+            "slot": "1 Equipamento",
+            "nota": null,
+            "itemId": null
+          },
+          {
+            "texto": "1 Bilhete Rasgado com seu Nome (1 Bugiganga)",
+            "nome": "Bilhete Rasgado com seu Nome",
+            "quantidade": 1,
+            "slot": "1 Bugiganga",
+            "nota": null,
+            "itemId": null
+          }
+        ],
+        "habilidade": {
+          "id": "origem-amaldicoado-local",
+          "nome": "✨ Local",
+          "texto": "<p>Você não lembra de muita coisa. Na verdade não lembra de absolutamente nada. Mas sabe, você precisa ir até um certo local. Suas respostas lhe esperam lá.</p>"
+        }
+      }
     },
     {
       "id": "origem-escravo",
@@ -143,7 +1341,70 @@
       "tipo": "origem-card",
       "opentag": "<div class=\"origem-card\" id=\"escravo\">",
       "nome": "⛓️ Escravo",
-      "corpo": "\n                <div class=\"origem-header\" onclick=\"this.parentElement.classList.toggle('active')\">\n                    <h3><span class=\"icon\">⛓️</span> Escravo</h3>\n                    <div style=\"display:flex;align-items:center;gap:1rem\">\n                        <span class=\"origem-sins\">💰 1d4</span>\n                        <span class=\"toggle-icon\">▼</span>\n                    </div>\n                </div>\n                <div class=\"origem-body\">\n                    <p class=\"origem-desc\">Você foi propriedade. Um nome em um registro, uma ferramenta com pulso, algo a ser comprado, vendido e usado. Não importa como começou — dívida, nascimento, captura. O que importa é que você aprendeu a sobreviver sob o chicote, a ler mestres antes que a raiva deles estourasse, a esconder força atrás de obediência. Agora você é livre. Comprou sua liberdade, fugiu, ou seu dono simplesmente morreu. O mundo diz que você é igual aos outros agora. Seu corpo ainda carrega as marcas que dizem o contrário. Mas você sabe algo que os livres não sabem: nada que vier pode ser pior do que o que já passou.</p>\n                    <div class=\"origem-grid\">\n                        <div class=\"origem-section\">\n                            <h4>🎯 Treinamento</h4>\n                            <p>Movimento ou Defender</p>\n                        </div>\n                        <div class=\"origem-section\">\n                            <h4>🎒 Itens Iniciais</h4>\n                            <ul>\n                                <li>Roupas Simples (1 Equipamento)</li>\n                                <li>1 Arma Leve (1 Equipamento)</li>\n                                <li>1 Arma Pesada (1 Equipamento)</li>\n                                <li>1 <a href=\"bazar.html?item=Bolsa de Couro\" class=\"item-link\">Bolsa de Couro</a> (1 Bugiganga) — Quando equipada, +2 Espaços de Bugiganga</li>\n                                <li>3 Comidas (3 Bugigangas)</li>\n                            </ul>\n                        </div>\n                    </div>\n                    <div class=\"habilidade-box\">\n                        <h4>✨ Liberdade</h4>\n                        <p>+1 Vitalidade. Você tem vantagem em quaisquer testes de resistência que te restrinjam, movimente contra sua vontade ou faça fazer algo contra sua vontade.</p>\n                    </div>\n                </div>\n            "
+      "corpo": "\n                <div class=\"origem-header\" onclick=\"this.parentElement.classList.toggle('active')\">\n                    <h3><span class=\"icon\">⛓️</span> Escravo</h3>\n                    <div style=\"display:flex;align-items:center;gap:1rem\">\n                        <span class=\"origem-sins\">💰 {{origem.sins}}</span>\n                        <span class=\"toggle-icon\">▼</span>\n                    </div>\n                </div>\n                <div class=\"origem-body\">\n                    <p class=\"origem-desc\">Você foi propriedade. Um nome em um registro, uma ferramenta com pulso, algo a ser comprado, vendido e usado. Não importa como começou — dívida, nascimento, captura. O que importa é que você aprendeu a sobreviver sob o chicote, a ler mestres antes que a raiva deles estourasse, a esconder força atrás de obediência. Agora você é livre. Comprou sua liberdade, fugiu, ou seu dono simplesmente morreu. O mundo diz que você é igual aos outros agora. Seu corpo ainda carrega as marcas que dizem o contrário. Mas você sabe algo que os livres não sabem: nada que vier pode ser pior do que o que já passou.</p>\n                    <div class=\"origem-grid\">\n                        <div class=\"origem-section\">\n                            <h4>🎯 Treinamento</h4>\n                            <p>{{origem.treinamento.texto}}</p>\n                        </div>\n                        <div class=\"origem-section\">\n                            <h4>🎒 Itens Iniciais</h4>\n                            <ul>\n                                <li>{{origem.itensIniciais.0.texto}}</li>\n                                <li>{{origem.itensIniciais.1.texto}}</li>\n                                <li>{{origem.itensIniciais.2.texto}}</li>\n                                <li>{{origem.itensIniciais.3.texto}}</li>\n                                <li>{{origem.itensIniciais.4.texto}}</li>\n                            </ul>\n                        </div>\n                    </div>\n                    <div class=\"habilidade-box\">\n                        <h4>{{origem.habilidade.nome}}</h4>\n                        {{origem.habilidade.texto}}\n                    </div>\n                </div>\n            ",
+      "origem": {
+        "sins": "1d4",
+        "treinamento": {
+          "texto": "Movimento ou Defender",
+          "termos": [
+            {
+              "tipo": "pericia",
+              "quantidade": 1,
+              "opcoes": [
+                "movimento",
+                "defender"
+              ]
+            }
+          ]
+        },
+        "itensIniciais": [
+          {
+            "texto": "Roupas Simples (1 Equipamento)",
+            "nome": "Roupas Simples",
+            "quantidade": null,
+            "slot": "1 Equipamento",
+            "nota": null,
+            "itemId": null
+          },
+          {
+            "texto": "1 Arma Leve (1 Equipamento)",
+            "nome": "Arma Leve",
+            "quantidade": 1,
+            "slot": "1 Equipamento",
+            "nota": null,
+            "itemId": null
+          },
+          {
+            "texto": "1 Arma Pesada (1 Equipamento)",
+            "nome": "Arma Pesada",
+            "quantidade": 1,
+            "slot": "1 Equipamento",
+            "nota": null,
+            "itemId": null
+          },
+          {
+            "texto": "1 <a href=\"bazar.html?item=Bolsa de Couro\" class=\"item-link\">Bolsa de Couro</a> (1 Bugiganga) — Quando equipada, +2 Espaços de Bugiganga",
+            "nome": "Bolsa de Couro",
+            "quantidade": 1,
+            "slot": "1 Bugiganga",
+            "nota": "Quando equipada, +2 Espaços de Bugiganga",
+            "itemId": "item-bolsa-de-couro"
+          },
+          {
+            "texto": "3 Comidas (3 Bugigangas)",
+            "nome": "Comidas",
+            "quantidade": 3,
+            "slot": "3 Bugigangas",
+            "nota": null,
+            "itemId": null
+          }
+        ],
+        "habilidade": {
+          "id": "origem-escravo-liberdade",
+          "nome": "✨ Liberdade",
+          "texto": "<p>+1 Vitalidade. Você tem vantagem em quaisquer testes de resistência que te restrinjam, movimente contra sua vontade ou faça fazer algo contra sua vontade.</p>"
+        }
+      }
     },
     {
       "id": "origem-cacador",
@@ -151,7 +1412,76 @@
       "tipo": "origem-card",
       "opentag": "<div class=\"origem-card\" id=\"cacador\">",
       "nome": "🎣 Caçador",
-      "corpo": "\n                <div class=\"origem-header\" onclick=\"this.parentElement.classList.toggle('active')\">\n                    <h3><span class=\"icon\">🎣</span> Caçador</h3>\n                    <div style=\"display:flex;align-items:center;gap:1rem\">\n                        <span class=\"origem-sins\">💰 3d6+4</span>\n                        <span class=\"toggle-icon\">▼</span>\n                    </div>\n                </div>\n                <div class=\"origem-body\">\n                    <p class=\"origem-desc\">Existe a presa e o predador, e você aprendeu isso cedo como regra de sobrevivência. Guiado por mentores, chefes ou pela solidão, você caçou para viver, vender couro e garantir carne, entendendo que a caça vai muito além do tiro: rastrear é ler sinais mínimos do mundo, emboscar é ter paciência e controle, e esfolar é ter estômago para a parte crua do ofício. Com o tempo, você deixou de ver isso como violência vazia e passou a se reconhecer como agente do ciclo natural, alguém que sabe ouvir o vento, medir o risco, escolher o momento e seguir a trilha até o fim.</p>\n                    <div class=\"origem-grid\">\n                        <div class=\"origem-section\">\n                            <h4>🎯 Treinamento</h4>\n                            <p>Sobrevivência, Armas à Distância</p>\n                        </div>\n                        <div class=\"origem-section\">\n                            <h4>🎒 Itens Iniciais</h4>\n                            <ul>\n                                <li>Vestes Robustas (1 Equipamento)</li>\n                                <li>1 Arma Simples (1 Equipamento)</li>\n                                <li>1 Arma à Distância (1 Equipamento)</li>\n                                <li>1 <a href=\"bazar.html?item=Mochila Reforçada\" class=\"item-link\">Mochila Reforçada</a> (1 Bugiganga) — Quando equipada, +3 Espaços de Bugiganga e +1 de Equipamento</li>\n                                <li>1 Comida (1 Bugiganga)</li>\n                            </ul>\n                        </div>\n                    </div>\n                    <div class=\"habilidade-box\">\n                        <h4>✨ Caçar</h4>\n                        <p>Você pode caçar animais em descansos longos. Ao fazer isso, role um teste de sobrevivência:</p>\n                        <ul>\n                            <li>10 ou mais: 1 Couro de Caça e 1 Comida.</li>\n                            <li>15 ou mais: 2 Couros de Caça e 1 Comida.</li>\n                            <li>20 ou mais: 1 Couro Refinado e 2 Comidas.</li>\n                            <li>25 ou mais: 2 Couros Refinados e 2 Comidas.</li>\n                            <li>30 ou mais: 1 Couro Bestial e 3 Comidas.</li>\n                        </ul>\n                    </div>\n                </div>\n            "
+      "corpo": "\n                <div class=\"origem-header\" onclick=\"this.parentElement.classList.toggle('active')\">\n                    <h3><span class=\"icon\">🎣</span> Caçador</h3>\n                    <div style=\"display:flex;align-items:center;gap:1rem\">\n                        <span class=\"origem-sins\">💰 {{origem.sins}}</span>\n                        <span class=\"toggle-icon\">▼</span>\n                    </div>\n                </div>\n                <div class=\"origem-body\">\n                    <p class=\"origem-desc\">Existe a presa e o predador, e você aprendeu isso cedo como regra de sobrevivência. Guiado por mentores, chefes ou pela solidão, você caçou para viver, vender couro e garantir carne, entendendo que a caça vai muito além do tiro: rastrear é ler sinais mínimos do mundo, emboscar é ter paciência e controle, e esfolar é ter estômago para a parte crua do ofício. Com o tempo, você deixou de ver isso como violência vazia e passou a se reconhecer como agente do ciclo natural, alguém que sabe ouvir o vento, medir o risco, escolher o momento e seguir a trilha até o fim.</p>\n                    <div class=\"origem-grid\">\n                        <div class=\"origem-section\">\n                            <h4>🎯 Treinamento</h4>\n                            <p>{{origem.treinamento.texto}}</p>\n                        </div>\n                        <div class=\"origem-section\">\n                            <h4>🎒 Itens Iniciais</h4>\n                            <ul>\n                                <li>{{origem.itensIniciais.0.texto}}</li>\n                                <li>{{origem.itensIniciais.1.texto}}</li>\n                                <li>{{origem.itensIniciais.2.texto}}</li>\n                                <li>{{origem.itensIniciais.3.texto}}</li>\n                                <li>{{origem.itensIniciais.4.texto}}</li>\n                            </ul>\n                        </div>\n                    </div>\n                    <div class=\"habilidade-box\">\n                        <h4>{{origem.habilidade.nome}}</h4>\n                        {{origem.habilidade.texto}}\n                    </div>\n                </div>\n            ",
+      "origem": {
+        "sins": "3d6+4",
+        "treinamento": {
+          "texto": "Sobrevivência, Armas à Distância",
+          "termos": [
+            {
+              "tipo": "pericia",
+              "quantidade": 1,
+              "opcoes": [
+                "sobrevivencia"
+              ]
+            },
+            {
+              "tipo": "arma",
+              "quantidade": 1,
+              "opcoes": [
+                "armas-a-distancia"
+              ]
+            }
+          ]
+        },
+        "itensIniciais": [
+          {
+            "texto": "Vestes Robustas (1 Equipamento)",
+            "nome": "Vestes Robustas",
+            "quantidade": null,
+            "slot": "1 Equipamento",
+            "nota": null,
+            "itemId": null
+          },
+          {
+            "texto": "1 Arma Simples (1 Equipamento)",
+            "nome": "Arma Simples",
+            "quantidade": 1,
+            "slot": "1 Equipamento",
+            "nota": null,
+            "itemId": null
+          },
+          {
+            "texto": "1 Arma à Distância (1 Equipamento)",
+            "nome": "Arma à Distância",
+            "quantidade": 1,
+            "slot": "1 Equipamento",
+            "nota": null,
+            "itemId": null
+          },
+          {
+            "texto": "1 <a href=\"bazar.html?item=Mochila Reforçada\" class=\"item-link\">Mochila Reforçada</a> (1 Bugiganga) — Quando equipada, +3 Espaços de Bugiganga e +1 de Equipamento",
+            "nome": "Mochila Reforçada",
+            "quantidade": 1,
+            "slot": "1 Bugiganga",
+            "nota": "Quando equipada, +3 Espaços de Bugiganga e +1 de Equipamento",
+            "itemId": "item-mochila-reforcada"
+          },
+          {
+            "texto": "1 Comida (1 Bugiganga)",
+            "nome": "Comida",
+            "quantidade": 1,
+            "slot": "1 Bugiganga",
+            "nota": null,
+            "itemId": null
+          }
+        ],
+        "habilidade": {
+          "id": "origem-cacador-cacar",
+          "nome": "✨ Caçar",
+          "texto": "<p>Você pode caçar animais em descansos longos. Ao fazer isso, role um teste de sobrevivência:</p>\n                        <ul>\n                            <li>10 ou mais: 1 Couro de Caça e 1 Comida.</li>\n                            <li>15 ou mais: 2 Couros de Caça e 1 Comida.</li>\n                            <li>20 ou mais: 1 Couro Refinado e 2 Comidas.</li>\n                            <li>25 ou mais: 2 Couros Refinados e 2 Comidas.</li>\n                            <li>30 ou mais: 1 Couro Bestial e 3 Comidas.</li>\n                        </ul>"
+        }
+      }
     }
   ]
 }

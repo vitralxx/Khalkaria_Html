@@ -1,5 +1,165 @@
 {
-  "classe": "teurgo",
+  "classe": {
+    "id": "classe-teurgo",
+    "nome": "Teurgo",
+    "atributosChave": {
+      "texto": "Int, Sab, Con",
+      "lista": [
+        [
+          "INT"
+        ],
+        [
+          "SAB"
+        ],
+        [
+          "CON"
+        ]
+      ]
+    },
+    "cd": {
+      "texto": "10 + Mod. Inteligência + Mod. Sabedoria",
+      "base": 10,
+      "termos": [
+        [
+          "INT"
+        ],
+        [
+          "SAB"
+        ]
+      ]
+    },
+    "estilo": "Contato com o Éter, Conjuração Versátil e Combate a Distância",
+    "treinamento": {
+      "fixo": {
+        "texto": "Armas Místicas, Místico, Conhecimento",
+        "termos": [
+          {
+            "tipo": "arma",
+            "quantidade": 1,
+            "opcoes": [
+              "armas-misticas"
+            ]
+          },
+          {
+            "tipo": "pericia",
+            "quantidade": 1,
+            "opcoes": [
+              "mistico"
+            ]
+          },
+          {
+            "tipo": "pericia",
+            "quantidade": 1,
+            "opcoes": [
+              "conhecimento"
+            ]
+          }
+        ]
+      },
+      "escolha": {
+        "quantidade": "1 + Mod. Inteligência",
+        "opcoesTexto": "Religião, Vontade, Percepção, Medicina, Investigação",
+        "opcoes": [
+          "religiao",
+          "vontade",
+          "percepcao",
+          "medicina",
+          "investigacao"
+        ],
+        "numero": {
+          "base": 1,
+          "atributo": "INT"
+        }
+      }
+    },
+    "status": {
+      "saude": "10 + (3 × Nível) + (Mod.CON × Nível)",
+      "stamina": "8 + (3 × Nível) + (Mod.FOR OU Mod.DES × Nível)",
+      "eter": "6 + (9 × Nível) + (Mod.INT OU Mod.SAB × Nível)",
+      "evasaoAtiva": "10 + Mod. Destreza + Dado de Defender",
+      "evasaoPassiva": "10 + Mod. Destreza"
+    },
+    "V": 3,
+    "G": 3,
+    "R": 9,
+    "recurso": {
+      "id": null,
+      "nome": null,
+      "status": "PENDENTE PEDRO",
+      "nota": "Pedro, 2026-09-26 (docs/ficha-digital/03-respostas-pedro.md): \"Tem sim, teurgo também. Todas têm.\" O nome e a mecânica ainda não estão no Notion nem no contrato do balanceamento: campo em aberto, não inventar."
+    },
+    "caracteristicas": [
+      {
+        "id": "teurgo-escolas-do-primordio",
+        "nome": "✨ Escolas do Primórdio",
+        "texto": [
+          "O Teurgo não domina toda a magia - ele se especializa em <strong>Escolas</strong> que representam diferentes manifestações do Éter. Cada escola requer um <strong>Foco</strong> específico para ser conjurada.",
+          "Você tem o domínio sobre 2 Escolas de magia no nível 1, +1 no nível 3 e +2 no nível 5"
+        ],
+        "magiasIniciais": "Escolha 1+MOD. INT ou SAB, magias de nível 1 no primeiro nível.",
+        "escolas": [
+          {
+            "nome": "🛡️ Abjuração",
+            "descricao": "Proteção, banimento, anulação."
+          },
+          {
+            "nome": "💥 Destruição",
+            "descricao": "Dano, destruição, elementos."
+          },
+          {
+            "nome": "📖 Conhecimento",
+            "descricao": "Adivinhação, detecção, comunicação."
+          },
+          {
+            "nome": "🔄 Alteração",
+            "descricao": "Transformação, manipulação, enganação."
+          },
+          {
+            "nome": "🌟 Primordial",
+            "descricao": "Magia selvagem e bruta, intenção incompreendida. <em>(Requer nível 5)</em>"
+          }
+        ],
+        "escalaDe": "escolas",
+        "escala": [
+          {
+            "nivel": 1,
+            "valor": "2"
+          },
+          {
+            "nivel": 3,
+            "valor": "+1"
+          },
+          {
+            "nivel": 5,
+            "valor": "+2"
+          }
+        ]
+      }
+    ],
+    "ramos": [
+      {
+        "id": "teurgo-ramo-do-academico",
+        "chave": "academico",
+        "nome": "📖 Ramo do Acadêmico",
+        "subtitulo": "Conhecimento e Equilíbrio Mental",
+        "descricao": "A magia nunca foi mistério para você - foi problema a ser resolvido. Enquanto outros temem o desconhecido, você o disseca, cataloga e domina. Cada fenômeno tem uma explicação. Cada força segue regras. Seus grimórios estão cheios de anotações, teoremas e correções. O que chamam de milagre, você chama de ciência ainda não compreendida."
+      },
+      {
+        "id": "teurgo-ramo-do-receptaculo",
+        "chave": "receptaculo",
+        "nome": "🌀 Ramo do Receptáculo",
+        "subtitulo": "Natureza Mística e Caótica",
+        "descricao": "Você não escolheu a magia. Ela escolheu você. Desde jovem, o plano místico sussurra no limite da sua percepção - vozes sem forma, visões sem contexto, poder sem explicação. Você aprendeu a se abrir, a se esvaziar, a deixar que o outro lado flua através de você. É perigoso. É intoxicante. E você não consegue mais parar."
+      },
+      {
+        "id": "teurgo-ramo-do-arauto",
+        "chave": "arauto",
+        "nome": "🔱 Ramo do Arauto",
+        "subtitulo": "Rituais Prolongados e Pactos",
+        "descricao": "O poder verdadeiro não é tomado - é negociado. Você entendeu isso cedo. Através de rituais meticulosos, círculos perfeitamente traçados e palavras pronunciadas na ordem exata, você firma acordos com forças que outros nem sabem que existem. Cada pacto tem um preço. Cada cerimônia deixa uma marca. Mas o que você recebe em troca... vale cada cicatriz."
+      }
+    ]
+  },
   "cards": [
     {
       "id": "teurgo-eter-residual",

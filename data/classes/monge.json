@@ -1,5 +1,158 @@
 {
-  "classe": "monge",
+  "classe": {
+    "id": "classe-monge",
+    "nome": "Monge",
+    "atributosChave": {
+      "texto": "Des, Sab, For",
+      "lista": [
+        [
+          "DES"
+        ],
+        [
+          "SAB"
+        ],
+        [
+          "FOR"
+        ]
+      ]
+    },
+    "cd": {
+      "texto": "10 + Mod. Destreza + Mod. Sabedoria",
+      "base": 10,
+      "termos": [
+        [
+          "DES"
+        ],
+        [
+          "SAB"
+        ]
+      ]
+    },
+    "estilo": "Combate Versátil, Utilidade e Resistência Mental",
+    "treinamento": {
+      "fixo": {
+        "texto": "Armas Marciais, Movimento, Atacar",
+        "termos": [
+          {
+            "tipo": "arma",
+            "quantidade": 1,
+            "opcoes": [
+              "armas-marciais"
+            ]
+          },
+          {
+            "tipo": "pericia",
+            "quantidade": 1,
+            "opcoes": [
+              "movimento"
+            ]
+          },
+          {
+            "tipo": "pericia",
+            "quantidade": 1,
+            "opcoes": [
+              "atacar"
+            ]
+          }
+        ]
+      },
+      "escolha": {
+        "quantidade": "1 + Mod. Inteligência",
+        "opcoesTexto": "Vontade, Defender, Iniciativa, Religião, Percepção",
+        "opcoes": [
+          "vontade",
+          "defender",
+          "iniciativa",
+          "religiao",
+          "percepcao"
+        ],
+        "numero": {
+          "base": 1,
+          "atributo": "INT"
+        }
+      }
+    },
+    "status": {
+      "saude": "10 + (5 × Nível) + (Mod.CON × Nível)",
+      "stamina": "8 + (5 × Nível) + ([Mod.FOR OU Mod.DES] × Nível)",
+      "eter": "6 + (5 × Nível) + ([Mod.INT OU Mod.SAB] × Nível)",
+      "evasaoAtiva": "10 + Mod. Destreza + Dado de Defender",
+      "evasaoPassiva": "10 + Mod. Destreza"
+    },
+    "V": 5,
+    "G": 5,
+    "R": 5,
+    "recurso": {
+      "id": "fluxo",
+      "nome": "Fluxo",
+      "texto": [
+        "Momentum de combate que acumula ao acertar, esquivar e derrubar - quanto mais você luta, mais afiada fica sua mente e corpo. Você começa todo combate com <strong>0 de Fluxo</strong>, você ganha fluxo da seguinte maneira:"
+      ],
+      "ganhos": [
+        {
+          "rotulo": "⚔️ Acerto:",
+          "texto": "Acertar um ataque corpo a corpo → +1 Fluxo : Max 2x por rodada"
+        },
+        {
+          "rotulo": "🛡️ Defender-se:",
+          "texto": "Esquivar ou Bloquear um ataque → +1 Fluxo : Max 1x por rodada"
+        },
+        {
+          "rotulo": "💫 Condição:",
+          "texto": "Adicionar qualquer condição a um inimigo → +1 Fluxo"
+        },
+        {
+          "rotulo": "🏃 Mover-se:",
+          "texto": "→ +1 Fluxo : Max 1x por rodada"
+        }
+      ],
+      "regras": [
+        "Ao fim do combate, se passar 1 rodada sem ganhar Fluxo ou receber dano, você perde todo seu Fluxo.",
+        "Você não pode perder fluxo de nenhuma outra forma.<br>Por isso, ao ser exigido fluxo em qualquer técnica este “custo” é apenas o requisito e não é gasto.",
+        "Fora de combate, você pode utilizar técnicas que exigem fluxo livremente com 1 minuto de preparo."
+      ],
+      "medidores": [
+        {
+          "id": "fluxo",
+          "nome": "Fluxo",
+          "max": "5"
+        }
+      ]
+    },
+    "caracteristicas": [
+      {
+        "id": "monge-arma-humana",
+        "nome": "👊 Arma Humana",
+        "texto": [
+          "Seus ataques desarmados causam <strong>1d8</strong> de dano (ao invés de 1d4).",
+          "Cartas do Limiar e itens podem, recorrentemente, substituir isso."
+        ]
+      }
+    ],
+    "ramos": [
+      {
+        "id": "monge-ramo-do-punho",
+        "chave": "punho",
+        "nome": "🥊 Ramo do Punho",
+        "subtitulo": "Dano e Velocidade",
+        "descricao": "Seus mestres te ensinaram que o corpo é a arma perfeita. Cada movimento é calculado, cada golpe é preciso, cada respiração alimenta o próximo ataque. Você é o que séculos de disciplina marcial produziram - um guerreiro que não precisa de nada além de si mesmo."
+      },
+      {
+        "id": "monge-ramo-do-vazio",
+        "chave": "vazio",
+        "nome": "🌑 Ramo do Vazio",
+        "subtitulo": "Caos e Fluxo Dissonante",
+        "descricao": "Você olhou para o Abismo. E ele olhou de volta. Onde outros monges buscam harmonia, você abraçou a dissonância. Seu Fluxo não vem da paz - vem da entropia, da desordem, do nada que consome tudo. Você não luta contra o caos. Você é o caos."
+      },
+      {
+        "id": "monge-ramo-do-naturalista",
+        "chave": "naturalista",
+        "nome": "🌿 Ramo do Naturalista",
+        "subtitulo": "Comunhão e Companheiros Primais",
+        "descricao": "Você não encontrou seu Fluxo em um monastério - encontrou na floresta, nas montanhas, no uivo do lobo e no rugido do urso. A natureza é seu templo, e suas criaturas são seus irmãos de batalha. Onde outros monges olham para dentro, você olha ao redor."
+      }
+    ]
+  },
   "cards": [
     {
       "id": "monge-evasivo",

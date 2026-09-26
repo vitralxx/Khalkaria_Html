@@ -8,6 +8,7 @@
 # Uso: python gerar_racas.py [repo_root]
 import json, sys, os
 from kf_marca import TIPO_POR_CLASSE_CSS_RACA, abre, controles, tipo_do_opentag
+from blocos import preenche
 
 RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 REPO = sys.argv[1] if len(sys.argv) > 1 else RAIZ
@@ -17,7 +18,8 @@ PAGES = ['racas'] + [f'racas/{r}' for r in
 def gen(page_rel):
     tpl = open(f'{REPO}/templates/{page_rel}.template.html', encoding='utf-8').read()
     data = json.load(open(f'{REPO}/data/{page_rel}.json', encoding='utf-8'))
-    page = tpl
+    # F1b: a página de cada raça lê o bloco `raca` (o índice não tem bloco)
+    page = preenche(tpl, 'raca', data['raca'], page_rel) if 'raca' in data else tpl
     for i, c in enumerate(data['cards']):
         tipo = tipo_do_opentag(c['opentag'], TIPO_POR_CLASSE_CSS_RACA)
         if tipo is None:            # rule-box/warning: regra da página, não entidade

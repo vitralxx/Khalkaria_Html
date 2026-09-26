@@ -23,6 +23,7 @@ import glob, json, os, re, sys
 from kf_marca import (TIPO_POR_CLASSE_CSS, TIPO_POR_CLASSE_CSS_RACA, EMOJI,
                       separa_icone, tipo_do_opentag)
 from kf_marca import texto as _texto_s6
+from blocos import preenche
 
 
 def texto(h):
@@ -136,7 +137,8 @@ def racas(cat):
 def origens(cat):
     for c in ler('data/origens.json')['cards']:
         e = base('origem', c['id'], c['nome'])
-        e['resumo'] = texto(sem_titulo(c['corpo'], ('h3',)))
+        corpo = preenche(c['corpo'], 'origem', c['origem'], c['id'])   # F1b: corpo com {{origem.…}}
+        e['resumo'] = texto(sem_titulo(corpo, ('h3',)))
         cat['origem'].append(e)
 
 

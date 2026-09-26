@@ -1,5 +1,169 @@
 {
   "source": "racas/inseto",
+  "raca": {
+    "id": "raca-inseto",
+    "nome": "Inseto",
+    "atributos": {
+      "texto": "Varia por Subespécie",
+      "bonus": null
+    },
+    "movimento": {
+      "texto": "Varia",
+      "metros": null
+    },
+    "idiomas": {
+      "texto": "Comum, Natural",
+      "lista": [
+        "Comum",
+        "Natural"
+      ]
+    },
+    "pericias": {
+      "itens": [
+        {
+          "texto": "Movimento"
+        }
+      ],
+      "escolhas": [
+        {
+          "quantidade": 1,
+          "opcoes": [
+            "movimento"
+          ]
+        }
+      ]
+    },
+    "caracteristicas": [
+      "inseto-garras-naturais",
+      "inseto-antena-sensorial",
+      "inseto-segregado"
+    ],
+    "tecnica": {
+      "id": null,
+      "status": "PENDENTE",
+      "nota": "Pedro (03-respostas-pedro.md §2): a raça dá \"1 técnica de raça\". A página não distingue qual característica é a técnica: pergunta ao balanceamento, não inventar."
+    },
+    "variantes": {
+      "titulo": "Escolha uma Subespécie",
+      "ids": [
+        "inseto-besouro",
+        "inseto-louva-a-deus",
+        "inseto-barata"
+      ],
+      "fisico": {},
+      "subespecies": [
+        {
+          "id": "inseto-besouro",
+          "atributos": {
+            "texto": "+2 Con, -1 Int",
+            "bonus": [
+              {
+                "valor": 2,
+                "opcoes": [
+                  "CON"
+                ]
+              },
+              {
+                "valor": -1,
+                "opcoes": [
+                  "INT"
+                ]
+              }
+            ]
+          },
+          "movimento": {
+            "texto": "7,5m",
+            "metros": 7.5
+          },
+          "pericias": {
+            "texto": "Fortitude ou Defender",
+            "escolha": {
+              "quantidade": 1,
+              "opcoes": [
+                "fortitude",
+                "defender"
+              ]
+            }
+          }
+        },
+        {
+          "id": "inseto-louva-a-deus",
+          "atributos": {
+            "texto": "+2 Sab, -1 Con",
+            "bonus": [
+              {
+                "valor": 2,
+                "opcoes": [
+                  "SAB"
+                ]
+              },
+              {
+                "valor": -1,
+                "opcoes": [
+                  "CON"
+                ]
+              }
+            ]
+          },
+          "movimento": {
+            "texto": "9m",
+            "metros": 9
+          },
+          "pericias": {
+            "texto": "Vontade ou Iniciativa",
+            "escolha": {
+              "quantidade": 1,
+              "opcoes": [
+                "vontade",
+                "iniciativa"
+              ]
+            }
+          }
+        },
+        {
+          "id": "inseto-barata",
+          "atributos": {
+            "texto": "+2 Des, -1 Sab",
+            "bonus": [
+              {
+                "valor": 2,
+                "opcoes": [
+                  "DES"
+                ]
+              },
+              {
+                "valor": -1,
+                "opcoes": [
+                  "SAB"
+                ]
+              }
+            ]
+          },
+          "movimento": {
+            "texto": "10,5m",
+            "metros": 10.5
+          },
+          "pericias": {
+            "texto": "Furtividade ou Crime",
+            "escolha": {
+              "quantidade": 1,
+              "opcoes": [
+                "furtividade",
+                "crime"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "arNatural": [
+      {
+        "fonte": "inseto-besouro",
+        "valor": 2,
+        "soma": false
+      }
+    ]
+  },
   "cards": [
     {
       "id": "inseto-garras-naturais",

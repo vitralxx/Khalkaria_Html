@@ -41,7 +41,7 @@
                     <img src="../../images/racas/automato.png" alt="Autômato">
                 </div>
                 <div class="raca-info">
-                    <h1>Autômato</h1>
+                    <h1>{{raca.nome}}</h1>
                     <p class="raca-tagline">Seres antigos que carregam tecnologias esquecidas e sigilosas.</p>
                     
                     <p>Os autômatos conseguem falar, sentir e ter sua própria personalidade. Carregam tecnologias antigas para a manutenção da espécie.</p>
@@ -49,26 +49,26 @@
                     <div class="stats-grid">
                         <div class="stat-box">
                             <div class="label">Atributos</div>
-                            <div class="value">+2 Int, -1 Sab</div>
+                            <div class="value">{{raca.atributos.texto}}</div>
                         </div>
                         <div class="stat-box">
                             <div class="label">Alternativo</div>
-                            <div class="value">+2 Con, -1 Int</div>
+                            <div class="value">{{raca.alternativo.texto}}</div>
                         </div>
                         <div class="stat-box">
                             <div class="label">Movimento</div>
-                            <div class="value">9 metros</div>
+                            <div class="value">{{raca.movimento.texto}}</div>
                         </div>
                         <div class="stat-box">
                             <div class="label">Perícia</div>
-                            <div class="value">Ofício (Engenharia)</div>
+                            <div class="value">{{raca.pericias.itens.0.texto}}</div>
                         </div>
                     </div>
                     
                     <div class="physical-data">
-                        <span><strong>Vida:</strong> Indefinido</span>
-                        <span><strong>Altura:</strong> 1,30m - 2,50m</span>
-                        <span><strong>Peso:</strong> 100kg - 160kg</span>
+                        <span><strong>Vida:</strong> {{raca.vida}}</span>
+                        <span><strong>Altura:</strong> {{raca.altura}}</span>
+                        <span><strong>Peso:</strong> {{raca.peso}}</span>
                     </div>
                 </div>
             </div>
@@ -85,11 +85,11 @@
             </div>
             
             <div class="variant-section">
-                <h3>Sistema de Tecnologias</h3>
-                <p style="color: var(--text-muted); margin-bottom: 0.5rem;"><strong>Começa com 2 tecnologias Tier 1.</strong> Limite de tecnologias equipadas: <strong>2 + mod. Constituição</strong>.</p>
-                <p style="color: var(--text-muted); margin-bottom: 1rem;">Pode substituir tecnologias em descansos curtos.</p>
+                <h3>{{raca.tecnologias.titulo}}</h3>
+                <p style="color: var(--text-muted); margin-bottom: 0.5rem;"><strong>{{raca.tecnologias.iniciais}}</strong> Limite de tecnologias equipadas: <strong>{{raca.tecnologias.limite}}</strong>.</p>
+                <p style="color: var(--text-muted); margin-bottom: 1rem;">{{raca.tecnologias.substituicao}}</p>
                 
-                <div class="tier-header">⚙️ Tier 1 — Inicial</div>
+                <div class="tier-header">{{raca.tecnologias.tiers.0.titulo}}</div>
                 
                 {{CARD_2}}
                 
@@ -97,7 +97,7 @@
                 
                 {{CARD_4}}
                 
-                <div class="tier-header">⚙️ Tier 2 — Item Incomum</div>
+                <div class="tier-header">{{raca.tecnologias.tiers.1.titulo}}</div>
                 
                 {{CARD_5}}
                 
@@ -105,7 +105,7 @@
                 
                 {{CARD_7}}
                 
-                <div class="tier-header">⚙️ Tier 3 — Item Exótico</div>
+                <div class="tier-header">{{raca.tecnologias.tiers.2.titulo}}</div>
                 
                 {{CARD_8}}
                 
@@ -113,7 +113,7 @@
                 
                 {{CARD_10}}
                 
-                <div class="tier-header">⚙️ Tier 4 — Item Luxária</div>
+                <div class="tier-header">{{raca.tecnologias.tiers.3.titulo}}</div>
                 
                 {{CARD_11}}
                 
@@ -121,7 +121,7 @@
                 
                 {{CARD_13}}
                 
-                <div class="tier-header">⚙️ Tier 5 — Lendário</div>
+                <div class="tier-header">{{raca.tecnologias.tiers.4.titulo}}</div>
                 
                 {{CARD_14}}
                 

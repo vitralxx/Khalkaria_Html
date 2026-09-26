@@ -8,6 +8,7 @@
 # Uso: python gerar_classes.py [repo_root] [classe]  (sem classe = todas)
 import json, sys, os
 from kf_marca import TIPO_POR_CLASSE_CSS, atributos, controles
+from blocos import preenche
 
 RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 REPO = sys.argv[1] if len(sys.argv) > 1 else RAIZ
@@ -18,7 +19,8 @@ CLASSES = [ONE] if ONE else ['espadachim', 'monge', 'batedor', 'alquimista',
 def gen_one(name):
     tpl = open(f'{REPO}/templates/classes/{name}.template.html', encoding='utf-8').read()
     data = json.load(open(f'{REPO}/data/classes/{name}.json', encoding='utf-8'))
-    page = tpl
+    # F1b: o scaffold lê o bloco `classe` (V/G/R, CD, treinamento, recurso…)
+    page = preenche(tpl, 'classe', data['classe'], f'templates/classes/{name}')
     for i, c in enumerate(data['cards']):
         tipo = TIPO_POR_CLASSE_CSS[c['tipo']]
         page = page.replace(f'{{{{CARD_{i}}}}}', f'<div class="{c["tipo"]}"{atributos(tipo, c["id"])}>'

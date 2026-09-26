@@ -539,7 +539,7 @@
         <main class="main-content">
             <!-- HERO SECTION -->
             <section class="class-hero">
-                <h1 class="class-title">Monge</h1>
+                <h1 class="class-title">{{classe.nome}}</h1>
                 <div class="hero-image">
                     <img src="../../images/monge.png" alt="Monge">
                 </div>
@@ -554,15 +554,15 @@
                     <div class="quick-stats">
                         <div class="stat-card">
                             <div class="label">Atributos</div>
-                            <div class="value">Des, Sab, For</div>
+                            <div class="value">{{classe.atributosChave.texto}}</div>
                         </div>
                         <div class="stat-card">
                             <div class="label">CD</div>
-                            <div class="value">10 + Mod. Destreza + Mod. Sabedoria</div>
+                            <div class="value">{{classe.cd.texto}}</div>
                         </div>
                         <div class="stat-card">
                             <div class="label">Estilo</div>
-                            <div class="value">Combate Versátil, Utilidade e Resistência Mental</div>
+                            <div class="value">{{classe.estilo}}</div>
                         </div>
                     </div>
                 </div>
@@ -574,8 +574,8 @@
             </div>
             
             <div class="ramos-intro">
-                <p><strong>Você começa treinado em:</strong> Armas Marciais, Movimento, Atacar</p>
-                <p><strong>Escolha (1 + Mod. Inteligência) perícias:</strong> Vontade, Defender, Iniciativa, Religião, Percepção</p>
+                <p><strong>Você começa treinado em:</strong> {{classe.treinamento.fixo.texto}}</p>
+                <p><strong>Escolha ({{classe.treinamento.escolha.quantidade}}) perícias:</strong> {{classe.treinamento.escolha.opcoesTexto}}</p>
             </div>
 
             <!-- STATUS -->
@@ -586,23 +586,23 @@
             <div class="formula-grid">
                 <div class="formula-card">
                     <h4>❤️ Saúde</h4>
-                    <code>10 + (5 × Nível) + (Mod.CON × Nível)</code>
+                    <code>{{classe.status.saude}}</code>
                 </div>
                 <div class="formula-card">
                     <h4>⚡ Stamina</h4>
-                    <code>8 + (5 × Nível) + ([Mod.FOR OU Mod.DES] × Nível)</code>
+                    <code>{{classe.status.stamina}}</code>
                 </div>
                 <div class="formula-card">
                     <h4>✨ Éter</h4>
-                    <code>6 + (5 × Nível) + ([Mod.INT OU Mod.SAB] × Nível)</code>
+                    <code>{{classe.status.eter}}</code>
                 </div>
                 <div class="formula-card">
                     <h4>🛡️ Evasão Ativa</h4>
-                    <code>10 + Mod. Destreza + Dado de Defender</code>
+                    <code>{{classe.status.evasaoAtiva}}</code>
                 </div>
                 <div class="formula-card">
                     <h4>🛡️ Evasão Passiva</h4>
-                    <code>10 + Mod. Destreza</code>
+                    <code>{{classe.status.evasaoPassiva}}</code>
                 </div>
             </div>
 
@@ -648,12 +648,12 @@
             </div>
 
             <div class="trait-box">
-                <h3>👊 Arma Humana</h3>
+                <h3>{{classe.caracteristicas.0.nome}}</h3>
                 <p style="color: var(--text-secondary); margin: 0;">
-                    Seus ataques desarmados causam <strong>1d8</strong> de dano (ao invés de 1d4).
+                    {{classe.caracteristicas.0.texto.0}}
                 </p>
                 <p style="color: var(--text-muted); margin: 0.75rem 0 0 0;">
-                    Cartas do Limiar e itens podem, recorrentemente, substituir isso.
+                    {{classe.caracteristicas.0.texto.1}}
                 </p>
             </div>
 
@@ -663,37 +663,37 @@
             </div>
 
             <div class="fluxo-box">
-                <h3>🌀 Sistema de Fluxo</h3>
+                <h3>🌀 Sistema de {{classe.recurso.nome}}</h3>
                 <p style="color: var(--text-secondary); margin-bottom: 1rem;">
-                    Momentum de combate que acumula ao acertar, esquivar e derrubar - quanto mais você luta, mais afiada fica sua mente e corpo. Você começa todo combate com <strong>0 de Fluxo</strong>, você ganha fluxo da seguinte maneira:
+                    {{classe.recurso.texto.0}}
                 </p>
                 
                 <div class="fluxo-grid">
                     <div class="fluxo-item">
-                        <strong>⚔️ Acerto:</strong><br>
-                        <span>Acertar um ataque corpo a corpo → +1 Fluxo : Max 2x por rodada</span>
+                        <strong>{{classe.recurso.ganhos.0.rotulo}}</strong><br>
+                        <span>{{classe.recurso.ganhos.0.texto}}</span>
                     </div>
                     <div class="fluxo-item">
-                        <strong>🛡️ Defender-se:</strong><br>
-                        <span>Esquivar ou Bloquear um ataque → +1 Fluxo : Max 1x por rodada</span>
+                        <strong>{{classe.recurso.ganhos.1.rotulo}}</strong><br>
+                        <span>{{classe.recurso.ganhos.1.texto}}</span>
                     </div>
                     <div class="fluxo-item">
-                        <strong>💫 Condição:</strong><br>
-                        <span>Adicionar qualquer condição a um inimigo → +1 Fluxo</span>
+                        <strong>{{classe.recurso.ganhos.2.rotulo}}</strong><br>
+                        <span>{{classe.recurso.ganhos.2.texto}}</span>
                     </div>
                     <div class="fluxo-item">
-                        <strong>🏃 Mover-se:</strong><br>
-                        <span>→ +1 Fluxo : Max 1x por rodada</span>
+                        <strong>{{classe.recurso.ganhos.3.rotulo}}</strong><br>
+                        <span>{{classe.recurso.ganhos.3.texto}}</span>
                     </div>
                 </div>
 
                 <div style="margin-top: 1.5rem; padding: 1rem; background: rgba(0,0,0,0.3); border-radius: 8px;">
                     <p style="color: var(--text-secondary); margin: 0 0 0.5rem 0;"><strong style="color: var(--gold);">⚠️ Importante:</strong></p>
                     <ul style="color: var(--text-secondary); margin: 0; padding-left: 1.25rem;">
-                        <li>Ao fim do combate, se passar 1 rodada sem ganhar Fluxo ou receber dano, você perde todo seu Fluxo.</li>
-                        <li>Você não pode perder fluxo de nenhuma outra forma.<br>Por isso, ao ser exigido fluxo em qualquer técnica este “custo” é apenas o requisito e não é gasto.</li>
-                        <li>Fora de combate, você pode utilizar técnicas que exigem fluxo livremente com 1 minuto de preparo.</li>
-                        <li><strong>Máximo: 5</strong></li>
+                        <li>{{classe.recurso.regras.0}}</li>
+                        <li>{{classe.recurso.regras.1}}</li>
+                        <li>{{classe.recurso.regras.2}}</li>
+                        <li><strong>Máximo: {{classe.recurso.medidores.0.max}}</strong></li>
                     </ul>
                 </div>
             </div>
@@ -739,19 +739,19 @@
 
             <div class="ramos-grid">
                 <div class="ramo-card punho">
-                    <h3>🥊 Ramo do Punho</h3>
-                    <div class="subtitle">Dano e Velocidade</div>
-                    <p>Seus mestres te ensinaram que o corpo é a arma perfeita. Cada movimento é calculado, cada golpe é preciso, cada respiração alimenta o próximo ataque. Você é o que séculos de disciplina marcial produziram - um guerreiro que não precisa de nada além de si mesmo.</p>
+                    <h3>{{classe.ramos.0.nome}}</h3>
+                    <div class="subtitle">{{classe.ramos.0.subtitulo}}</div>
+                    <p>{{classe.ramos.0.descricao}}</p>
                 </div>
                 <div class="ramo-card vazio">
-                    <h3>🌑 Ramo do Vazio</h3>
-                    <div class="subtitle">Caos e Fluxo Dissonante</div>
-                    <p>Você olhou para o Abismo. E ele olhou de volta. Onde outros monges buscam harmonia, você abraçou a dissonância. Seu Fluxo não vem da paz - vem da entropia, da desordem, do nada que consome tudo. Você não luta contra o caos. Você é o caos.</p>
+                    <h3>{{classe.ramos.1.nome}}</h3>
+                    <div class="subtitle">{{classe.ramos.1.subtitulo}}</div>
+                    <p>{{classe.ramos.1.descricao}}</p>
                 </div>
                 <div class="ramo-card naturalista">
-                    <h3>🌿 Ramo do Naturalista</h3>
-                    <div class="subtitle">Comunhão e Companheiros Primais</div>
-                    <p>Você não encontrou seu Fluxo em um monastério - encontrou na floresta, nas montanhas, no uivo do lobo e no rugido do urso. A natureza é seu templo, e suas criaturas são seus irmãos de batalha. Onde outros monges olham para dentro, você olha ao redor.</p>
+                    <h3>{{classe.ramos.2.nome}}</h3>
+                    <div class="subtitle">{{classe.ramos.2.subtitulo}}</div>
+                    <p>{{classe.ramos.2.descricao}}</p>
                 </div>
             </div>
 

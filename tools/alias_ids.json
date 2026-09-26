@@ -12,8 +12,8 @@
   "dryad-variante": "regras.json arNaturalPorRaca = 3 e Evasão +1: a variante com '+1 Armadura (Ar) Natural e +1 Evasão' é a Cascaferro (data/racas/dryad.json)."
  },
  "semEntidade": {
-  "batedor-sexto-sentido": "linha da tabela de Instinto do Batedor (característica de classe, no template); vira medidor/entidade na F1b",
-  "passo-tremulo": "não existe no site nem no data/ (nenhuma magia, técnica ou item com esse nome): pergunta ao balanceamento",
+  "batedor-sexto-sentido": "F1b: habilidade do Instinto em data/classes/batedor.json (classe.recurso.habilidades, id batedor-sexto-sentido); fora do catálogo até virar card levável (F4)",
+  "passo-tremulo": "F1b: é a adversidade Passo Trêmulo do Corrompido (-3 m de movimento), em data/racas/corrompido.json (raca.corrupcao.adversidades, id corrompido-passo-tremulo); vira alias quando a tabela de corrupção for entidade (tipo corrupcao, F4)",
   "escudo": "categoria de item (D62: 'todo escudo, sem exceção'), não uma entidade: resolve-se pela categoria do Bazar na F1d",
   "acao-acelerar": "ação do Sistema (Sua Rodada); a convenção não tem tipo 'acao': decisão na F1d"
  }

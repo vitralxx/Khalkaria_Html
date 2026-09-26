@@ -433,7 +433,7 @@
         <main class="main-content">
             <!-- HERO SECTION -->
             <section class="class-hero">
-                <h1 class="class-title">Espadachim</h1>
+                <h1 class="class-title">{{classe.nome}}</h1>
                 <div class="hero-image">
                     <img src="../../images/espadachim.png" alt="Espadachim">
                 </div>
@@ -457,15 +457,15 @@
                     <div class="quick-stats">
                         <div class="stat-card">
                             <div class="label">Atributos</div>
-                            <div class="value">Des, For, Con</div>
+                            <div class="value">{{classe.atributosChave.texto}}</div>
                         </div>
                         <div class="stat-card">
                             <div class="label">CD</div>
-                            <div class="value">10 + (Destreza ou Força) + Constituição</div>
+                            <div class="value">{{classe.cd.texto}}</div>
                         </div>
                         <div class="stat-card">
                             <div class="label">Estilo</div>
-                            <div class="value">Combate Acima de Tudo</div>
+                            <div class="value">{{classe.estilo}}</div>
                         </div>
                     </div>
                 </div>
@@ -473,42 +473,42 @@
 
             <!-- TREINAMENTO -->
             <div class="proficiency-box">
-                <h3>⚔️ Proficiência com Espadas</h3>
-                <p>Acostumado a se sustentar em apenas um tipo de dano, possui especialidade em causar dano cortante. Você ignora Ar (Armadura) em ataques com espada igual ao seu nível, adicionalmente você ignora resistência a dano Cortante a partir do nível 3.</p>
+                <h3>{{classe.caracteristicas.0.nome}}</h3>
+                <p>{{classe.caracteristicas.0.texto.0}}</p>
             </div>
 
             <!-- MARCA DO DUELO -->
             <div class="proficiency-box">
-                <h3>🎯 Marca do Duelo</h3>
-                <p>O Espadachim é o mestre duelista, mantendo foco unitário em um único alvo antes de partir para o próximo. Ele marca o próximo alvo que pretende assassinar. Você pode manter <strong>1 Marca do Duelo</strong> ativa:</p>
+                <h3>{{classe.caracteristicas.1.nome}}</h3>
+                <p>{{classe.caracteristicas.1.texto.0}}</p>
                 <ul>
-                    <li>Marque uma criatura que você possa ver com <strong>1 ação</strong>, em até <strong>9 m</strong>.</li>
-                    <li>Contra o alvo marcado você tem <strong>+1 Atacar e +1 Defender</strong>. No nível 3, <strong>+2 Atacar e +2 Defender</strong>. No nível 5, <strong>+3 Atacar e +3 Defender</strong>.</li>
-                    <li>Se o alvo marcado morrer, você pode marcar um novo alvo como <strong>reação</strong> imediatamente.</li>
-                    <li>Você só pode ter uma Marca ativa.</li>
+                    <li>{{classe.caracteristicas.1.itens.0}}</li>
+                    <li>{{classe.caracteristicas.1.itens.1}}</li>
+                    <li>{{classe.caracteristicas.1.itens.2}}</li>
+                    <li>{{classe.caracteristicas.1.itens.3}}</li>
                 </ul>
             </div>
 
             <div class="formula-grid">
                 <div class="formula-card">
                     <h4>❤️ Saúde</h4>
-                    <code>10 + (6 × Nível) + (Mod.CON × Nível)</code>
+                    <code>{{classe.status.saude}}</code>
                 </div>
                 <div class="formula-card">
                     <h4>⚡ Stamina</h4>
-                    <code>8 + (6 × Nível) + ([Mod.FOR OU Mod.DES] × Nível)</code>
+                    <code>{{classe.status.stamina}}</code>
                 </div>
                 <div class="formula-card">
                     <h4>💫 Éter</h4>
-                    <code>6 + (3 × Nível) + ([Mod.INT OU Mod.SAB] × Nível)</code>
+                    <code>{{classe.status.eter}}</code>
                 </div>
                 <div class="formula-card">
                     <h4>🛡️ Evasão Ativa</h4>
-                    <code>10 + Mod. Destreza + Dado de Defender</code>
+                    <code>{{classe.status.evasaoAtiva}}</code>
                 </div>
                 <div class="formula-card">
                     <h4>🛡️ Evasão Passiva</h4>
-                    <code>10 + Mod. Destreza</code>
+                    <code>{{classe.status.evasaoPassiva}}</code>
                 </div>
             </div>
 
@@ -558,9 +558,9 @@
 
             <div class="content-card" style="margin-top: 1rem;">
                 <h4 style="color: var(--gold); margin-bottom: 0.5rem;">Treinamentos Iniciais</h4>
-                <p style="color: var(--text-secondary);">Armas Marciais, Atacar, Defender</p>
+                <p style="color: var(--text-secondary);">{{classe.treinamento.fixo.texto}}</p>
                 <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.5rem;">
-                    + Escolha (1 + Mod.Int) dentre: Movimento, Fortitude, Sobrevivência, Intimidação, Reflexos
+                    + Escolha ({{classe.treinamento.escolha.quantidade}}) dentre: {{classe.treinamento.escolha.opcoesTexto}}
                 </p>
             </div>
 
@@ -618,8 +618,8 @@
                 <!-- GUARDA-LÂMINA -->
                 <div class="ramo-section ramo-guarda">
                     <div class="ramo-header">
-                        <h3>🛡️ Ramo do Guarda-Lâmina</h3>
-                        <p>Você jurou um voto que transcende meras palavras — sua lâmina permanece embainhada até que o sangue precise ser derramado. Num mundo onde a violência é moeda corrente e a morte espreita em cada esquina escura, você aprendeu que revelar sua arma cedo demais é desperdiçar o elemento surpresa. Sua filosofia é simples: observe, aguarde, e quando a lâmina finalmente cantar, que seja o último som que seu inimigo ouvirá. Você não busca glória nos campos de batalha — busca justiça silenciosa, executada com precisão cirúrgica. Aqueles que subestimam sua contenção descobrem tarde demais que a paciência do Guarda-Lâmina é apenas a calmaria antes da tempestade de aço.</p>
+                        <h3>{{classe.ramos.0.nome}}</h3>
+                        <p>{{classe.ramos.0.descricao}}</p>
                     </div>
                     <div class="ramo-body">
                         <!-- MARCAS -->
@@ -670,8 +670,8 @@
                 <!-- OPRIMIDO -->
                 <div class="ramo-section ramo-oprimido">
                     <div class="ramo-header">
-                        <h3>💢 Ramo do Oprimido</h3>
-                        <p>Você cresceu sob o peso do desprezo alheio. Cada insulto, cada olhar de desdém, cada porta fechada alimentou a brasa que agora arde como forja em seu peito. Num mundo onde os fortes pisoteiam os fracos e a corrupção rasteja até os corações mais nobres, você aprendeu que gentileza é fraqueza e piedade é luxo. Sua lâmina não conhece contenção — ela existe para fazer seus opressores provarem o gosto do próprio sangue misturado ao metal que você empunha com ódio concentrado. Você não luta por honra ou justiça; luta porque a raiva é a única emoção que nunca te traiu, e cada golpe que desfere é uma declaração visceral de que você se recusa a ser quebrado novamente.</p>
+                        <h3>{{classe.ramos.1.nome}}</h3>
+                        <p>{{classe.ramos.1.descricao}}</p>
                     </div>
                     <div class="ramo-body">
                         <!-- MARCAS -->
@@ -722,8 +722,8 @@
                 <!-- EXILADO BÊBADO -->
                 <div class="ramo-section ramo-exilado">
                     <div class="ramo-header">
-                        <h3>🍺 Ramo do Exilado Bêbado</h3>
-                        <p>A sociedade nunca soube o que fazer com você. Talvez tenha sido alguma substância proibida que primeiro tocou seus lábios, ou talvez você simplesmente tenha nascido deslocado — um estranho em qualquer lugar que pisasse. O álcool, ironicamente, tornou-se sua âncora: onde outros perdem controle, você encontra clareza. Cada gole acalma os tremores de um passado que prefere esquecer e aguça seus sentidos para o presente que importa. Nas tavernas e vielas sombrias, dizem que você luta melhor embriagado do que a maioria dos soldados sóbrios — e estão certos. Sua lâmina dança com uma imprevisibilidade calculada, cada movimento aparentemente descuidado escondendo uma precisão mortal que só você compreende.</p>
+                        <h3>{{classe.ramos.2.nome}}</h3>
+                        <p>{{classe.ramos.2.descricao}}</p>
                     </div>
                     <div class="ramo-body">
                         <!-- MARCAS -->

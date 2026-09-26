@@ -30,6 +30,12 @@ integridade do artefato HTML, que é o que quebra em silêncio:
  [glifos]     sprite partials/glifos.html íntegro (g-*, viewBox, sem
               duplicata, um glifo por ramo --ramo-*) e todo <use href="#g-*">
               de página ou de js/*.js com o seu <symbol>
+ [blocos]     F1b: blocos classe/raca/origem de data/ com os derivados (V/G/R,
+              slugs, ids…) iguais ao que o verbatim dá (tools/blocos.py), ids de
+              sub-entidade únicos e fora do catálogo, 15+15 corrupções sem repetir
+ [conteudo×contrato] V/G/R, CD, perícias/armas iniciais, recurso de classe,
+              movimento e Ar natural x contrato do balanceamento (branch dele,
+              ou KH_CONTRATO=<arquivo>): divergência é AVISO, nunca corrigida
  [componentes] contagem das classes CSS de componente (companion-card,
               d100-table, sub-ability...) em cada pages/classes/*.html >= o
               tools/componentes-baseline.json, por página e por card
@@ -44,7 +50,7 @@ Uso:
 Saída: exit 0 = tudo OK; exit 1 = há falhas.
 """
 import os, re, sys, json, glob, shutil, filecmp, subprocess, tempfile
-import shell
+import shell, blocos
 from kf_marca import NAO_ENTIDADE
 from html.parser import HTMLParser
 
@@ -609,6 +615,239 @@ def checa_bazar_inv(root=None):
         print(f'  OK     {len(itens)} itens com inv')
 
 
+# ---------------------------------------------------------------- F1b
+def _ids_de_bloco(root):
+    """{id: onde} das sub-entidades com id dentro dos blocos (recurso, características,
+    ramos, itens alquímicos, corrupções, habilidades de origem) + lista de repetidos."""
+    vistos, rep = {}, []
+
+    def anota(i, onde):
+        if i in vistos:
+            rep.append(f'{i} ({vistos[i]} e {onde})')
+        vistos[i] = onde
+    for rot, _, _, b, _ in blocos.fontes(root):
+        rec = b.get('recurso') or {}
+        for h in rec.get('habilidades', []):
+            anota(h['id'], f'{rot} recurso')
+        for chave in ('caracteristicas', 'ramos'):
+            for x in b.get(chave, []) if isinstance(b.get(chave), list) else []:
+                if isinstance(x, dict):
+                    anota(x['id'], f'{rot} {chave}')
+        for nv in b.get('itensAlquimicos', []):
+            for cat in nv['categorias']:
+                for it in cat['itens']:
+                    anota(it['id'], f'{rot} itensAlquimicos')
+        for g in ('poderes', 'adversidades'):
+            for it in (b.get('corrupcao') or {}).get(g, {}).get('itens', []):
+                anota(it['id'], f'{rot} corrupcao.{g}')
+        if 'habilidade' in b:
+            anota(b['habilidade']['id'], f'{rot} habilidade')
+    return vistos, rep
+
+
+def checa_blocos(root=None):
+    """[blocos] F1b: derivados em sincronia com o verbatim, ids das sub-entidades
+    únicos e fora do catálogo, id da raça == catálogo, contagens por Counter."""
+    root = root or ROOT
+    print('[blocos] Blocos classe/raca/origem (data/): derivados, ids, contagens')
+    from collections import Counter
+    ruins = []
+    try:
+        div = blocos.divergencias(root)
+        ids, rep = _ids_de_bloco(root)
+        fontes = list(blocos.fontes(root))
+    except (OSError, ValueError, KeyError, TypeError) as e:
+        falhas.append('blocos')
+        print(f'  FALHA  blocos ilegíveis: {e!r}')
+        return
+    for rot, cam, atual, calc in div[:15]:
+        ruins.append(f'{rot}: {cam} = {json.dumps(atual, ensure_ascii=False)[:80]}, '
+                     f'o verbatim dá {json.dumps(calc, ensure_ascii=False)[:80]} (rode python tools/blocos.py)')
+    ruins += [f'id repetido nos blocos: {r}' for r in rep]
+    ents, _ = _catalogo(root)
+    no_site = {i for _, i in ents} | set(_ids_bazar(root))
+    colide = sorted(set(ids) & no_site)
+    if colide:
+        ruins.append(f'id de bloco que já é entidade do catálogo/Bazar: {colide[:10]}')
+    racas_cat = {i for t, i in ents if t == 'raca'}
+    n_cor = n_alq = 0
+    for rot, _, _, b, _ in fontes:
+        if rot.startswith('raça') and b['id'] not in racas_cat:
+            ruins.append(f'{rot}: id {b["id"]} fora do catálogo de raças')
+        if 'corrupcao' in b:
+            for g in ('poderes', 'adversidades'):
+                nomes = [it['nome'] for it in b['corrupcao'][g]['itens']]
+                dup = [n for n, k in Counter(nomes).items() if k > 1]
+                if dup:
+                    ruins.append(f'{rot}: {g} repetidos {dup}')
+                n_cor += len(nomes)
+        for nv in b.get('itensAlquimicos', []):
+            n_alq += sum(len(c['itens']) for c in nv['categorias'])
+    if ruins:
+        falhas.append('blocos')
+        for r in ruins:
+            print(f'  FALHA  {r}')
+    else:
+        print(f'  OK     {len(fontes)} blocos, derivados em sincronia; {len(ids)} ids de sub-entidade '
+              f'únicos ({n_alq} itens alquímicos, {n_cor} corrupções)')
+
+
+CONTRATO_REF = 'origin/claude/khalkaria-bazar-balance-lsdfic'
+CONTRATO_ARQ = '.claude/skills/khalkaria-balance/references/ficha-digital-regras.json'
+
+
+def carrega_contrato(root=None):
+    """Contrato do balanceamento (ficha-digital-regras.json) direto da branch dele;
+    KH_CONTRATO=<arquivo> usa um arquivo local. (None, motivo) se não der."""
+    local = os.environ.get('KH_CONTRATO')
+    try:
+        if local:
+            return json.load(open(local, encoding='utf-8')), local
+        r = subprocess.run(['git', '-C', root or ROOT, 'show', f'{CONTRATO_REF}:{CONTRATO_ARQ}'],
+                           capture_output=True, encoding='utf-8', errors='replace',
+                           env=dict(os.environ, MSYS_NO_PATHCONV='1'))
+        if r.returncode:
+            return None, (r.stderr or '').strip()[:160]
+        return json.loads(r.stdout), f'{CONTRATO_REF} ({json.loads(r.stdout).get("schemaVersion")})'
+    except (OSError, ValueError) as e:
+        return None, repr(e)
+
+
+def _cd_contrato(formula):
+    """'10 + escolha(mod.DES,mod.FOR) + mod.CON' -> (10, [{DES, FOR}, {CON}])."""
+    partes = [p.strip() for p in formula.split(' + ')]
+    termos = []
+    for p in partes[1:]:
+        termos.append(frozenset(re.findall(r'mod\.([A-Z]{3})', p)))
+    return int(partes[0]), sorted(termos, key=sorted)
+
+
+def _formula_norm(f):
+    """Normaliza fórmula de máximo para comparar site x contrato:
+    '(Nível × 3) + Mod.Inteligência' e '(nivel * 3) + mod.INT' -> '(nivel*3)+mod.INT'."""
+    import unicodedata
+    t = unicodedata.normalize('NFKD', f)
+    t = ''.join(c for c in t if not unicodedata.combining(c)).replace('×', '*')
+    t = re.sub(r'mod\.\s*([A-Za-z]+)', lambda m: 'mod.' + blocos.atributo(
+        unicodedata.normalize('NFC', {'forca': 'força', 'constituicao': 'constituição',
+                                      'inteligencia': 'inteligência'}.get(m.group(1).lower(), m.group(1)))),
+               t, flags=re.I)
+    return re.sub(r'\s+', '', re.sub(r'(?i)nivel', 'nivel', t))
+
+
+def compara_contrato(dados, contrato):
+    """Divergências (lista de str) entre os blocos do site e o contrato. Nunca corrige:
+    quem decide é o Pedro. `dados` = {'classes': {c: bloco}, 'racas': {r: (bloco, cards)}}."""
+    av = []
+    cls = contrato.get('classes', {})
+    for c, b in sorted(dados.get('classes', {}).items()):
+        k = cls.get(c)
+        if not isinstance(k, dict):
+            av.append(f'classe {c}: sem entrada no contrato')
+            continue
+        for x in ('V', 'G', 'R'):
+            if k.get(x) != b.get(x):
+                av.append(f'classe {c}: {x} site {b.get(x)} x contrato {k.get(x)}')
+        if 'cd' in k:
+            base, termos = _cd_contrato(k['cd']['formula'])
+            site = sorted((frozenset(t) for t in b['cd']['termos']), key=sorted)
+            if base != b['cd']['base'] or termos != site:
+                av.append(f'classe {c}: CD site "{b["cd"]["texto"]}" x contrato "{k["cd"]["formula"]}"')
+        fixo = b['treinamento']['fixo']['termos']
+        per = {o for t in fixo if t['tipo'] == 'pericia' and isinstance(t['opcoes'], list) for o in t['opcoes']}
+        if 'periciasIniciais' in k and set(k['periciasIniciais']) != per:
+            av.append(f'classe {c}: perícias iniciais site {sorted(per)} x contrato {sorted(k["periciasIniciais"])}')
+        if 'armaInicial' in k:
+            armas = sorted(o for t in fixo if t['tipo'] == 'arma' for o in t['opcoes'])
+            esperado = [shell.slugify('Armas ' + k['armaInicial'])] if k['armaInicial'] else []
+            if armas != esperado:
+                av.append(f'classe {c}: armas iniciais site {armas} x contrato {k["armaInicial"]!r}')
+        rec = b.get('recurso') or {}
+        krec = {r['id']: r for r in k.get('recursos', [])}
+        if not rec.get('id'):
+            av.append(f'classe {c}: recurso de classe {rec.get("status", "ausente")} no site'
+                      f' (Pedro: "Todas têm"); contrato: {sorted(krec) or "nenhum"}')
+        elif rec['id'] not in krec:
+            av.append(f'classe {c}: recurso "{rec["id"]}" no site, contrato tem {sorted(krec) or "nenhum"}')
+        else:
+            kr = krec[rec['id']]
+            smax = rec['medidores'][0]['max'] if rec.get('medidores') else None
+            if smax is None or _formula_norm(smax) != _formula_norm(str(kr.get('max'))):
+                av.append(f'classe {c}: máximo de {rec["id"]} site "{smax}" x contrato "{kr.get("max")}"')
+            if 'gastos' in kr:
+                site = {h['id'][len(c) + 1:]: blocos.texto(h['custo']) for h in rec.get('habilidades', [])}
+                kg = {i: str(v) for i, v in kr['gastos'].items()}
+                if site != kg:
+                    av.append(f'classe {c}: gastos de {rec["id"]} site {site} x contrato {kg}')
+        for e in k.get('estados', []):
+            car = {f['id'][len(c) + 1:]: f for f in b.get('caracteristicas', [])}
+            if e['id'] not in car:
+                av.append(f'classe {c}: estado "{e["id"]}" do contrato sem característica no site')
+            elif 'bonus' in e and 'escala' in car[e['id']]:
+                site = {str(x['nivel']): f'{x["atacar"]:+d}/{x["defender"]:+d}' for x in car[e['id']]['escala']}
+                if site != e['bonus']:
+                    av.append(f'classe {c}: escala de {e["id"]} site {site} x contrato {e["bonus"]}')
+    for c in sorted(set(k for k in cls if not k.startswith('_')) - set(dados.get('classes', {}))):
+        av.append(f'classe {c}: no contrato, sem bloco no site')
+
+    der = contrato.get('derivados', {})
+    base_mov = der.get('movimento', {}).get('basePorRaca', {})
+    ar_k = der.get('armadura', {}).get('arNaturalPorRaca', {})
+    alias = dados.get('alias', {})
+    ar_site = {}
+    for r, (b, cards) in sorted(dados.get('racas', {}).items()):
+        km = base_mov.get(r)
+        if isinstance(km, dict):
+            subs = {s['id']: s['movimento']['metros'] for s in b.get('variantes', {}).get('subespecies', [])}
+            for sub, v in km.items():
+                if subs.get(f'{r}-{sub}') != v:
+                    av.append(f'raça {r}-{sub}: movimento site {subs.get(f"{r}-{sub}")} x contrato {v}')
+        elif km != b['movimento']['metros']:
+            av.append(f'raça {r}: movimento site {b["movimento"]["metros"]} x contrato {km}')
+        base = sum(a['valor'] for a in b.get('arNatural', []) if a['fonte'] in b.get('caracteristicas', []))
+        if base:
+            ar_site[r] = base
+        for a in b.get('arNatural', []):
+            if a['fonte'] not in b.get('caracteristicas', []):
+                ar_site[a['fonte']] = base + a['valor']
+    ar_contrato = {alias.get(k, k): v for k, v in ar_k.items()}
+    for k in sorted(set(ar_site) | set(ar_contrato)):
+        if ar_site.get(k) != ar_contrato.get(k):
+            av.append(f'Ar natural {k}: site {ar_site.get(k)} x contrato {ar_contrato.get(k)}')
+    return av
+
+
+def checa_conteudo_contrato(root=None):
+    """[conteudo×contrato] V/G/R, CD, perícias e armas iniciais, recurso de classe
+    (id, máximo, gastos), Marca do Duelo, movimento e Ar natural por raça: site x
+    contrato do balanceamento. Divergência é AVISO ao Pedro, nunca corrigida aqui."""
+    root = root or ROOT
+    print('[conteudo×contrato] Blocos de data/ x contrato do balanceamento')
+    contrato, origem = carrega_contrato(root)
+    if contrato is None:
+        print(f'  AVISO  contrato indisponível ({origem}): comparação pulada')
+        return
+    try:
+        dados = {'classes': {}, 'racas': {}}
+        for rot, _, doc, b, _ in blocos.fontes(root):
+            if rot.startswith('classe'):
+                dados['classes'][rot.split()[1]] = b
+            elif rot.startswith('raça'):
+                dados['racas'][rot.split()[1]] = (b, doc['cards'])
+        try:
+            dados['alias'] = json.load(open(os.path.join(root, 'tools', 'alias_ids.json'), encoding='utf-8'))['alias']
+        except (OSError, ValueError, KeyError):
+            dados['alias'] = {}
+        av = compara_contrato(dados, contrato)
+    except (OSError, ValueError, KeyError, TypeError) as e:
+        print(f'  AVISO  comparação interrompida: {e!r}')
+        return
+    for a in av:
+        print(f'  AVISO  {a}')
+    print(f'  OK     {len(dados["classes"])} classes e {len(dados["racas"])} raças comparadas com '
+          f'{origem}: {len(av)} divergência(s) para o Pedro')
+
+
 # ---------------------------------------------------------------- componentes
 BASELINE_COMPONENTES = 'tools/componentes-baseline.json'
 RE_CLASSE = re.compile(r'(?<![\w-])class="([^"]*)"')
@@ -845,6 +1084,10 @@ if __name__ == '__main__':
     checa_fragmentos()
     print()
     checa_glifos()
+    print()
+    checa_blocos()
+    print()
+    checa_conteudo_contrato()
     print()
     if '--atualizar-componentes' in FLAGS:
         atualiza_componentes()

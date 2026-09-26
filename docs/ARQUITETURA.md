@@ -66,6 +66,9 @@ tools/gerar_webp.py            reencode das imagens
 tools/gerar_bazar.py           gerador do Bazar (CSV -> bazar.json com `inv` + página)
 tools/gerar_catalogo.py        data/*.json -> data/catalogo/<tipo>.json (F1a, artefato)
 tools/kf_marca.py              marcação entidade -> ficha comum aos geradores (F1a)
+tools/blocos.py                blocos classe/raca/origem (F1b): marcadores {{classe.…}},
+                               leitura do verbatim (V/G/R, slugs, ids); `python tools/blocos.py`
+                               regrava os derivados depois de editar um texto
 tools/alias_ids.json           ids do contrato do balanceamento fora da convenção -> id do site
 tools/componentes-baseline.json piso da contagem de cada classe CSS de componente por
                                página de classe (checagem [componentes] do validar)
@@ -74,6 +77,8 @@ tools/testes/                  testes node do motor KhInv (*.test.js, fixtures/)
                                test_*.py: checagens do validar (unittest, no build)
 tools/extrair_css.py           refatoração pontual de CSS (não é build)
 tools/migrar_sistema.py        migração pontual do Sistema (já rodada)
+tools/migrar_f1b.py            migração pontual template -> blocos da F1b (já rodada;
+                               registro de como cada campo foi extraído)
 
 css/style.css                  design system: tokens :root, layout, globais
 css/classes.css                componentes das 7 páginas de classe
@@ -97,8 +102,8 @@ js/bazar-inventario.js         inventário em 2 colunas          │ carregados 
 
 data/*.json                    sistema, magias, condicoes, limiar, origens,
                                racas, bazar
-data/classes/*.json            7 classes
-data/racas/*.json              7 raças
+data/classes/*.json            7 classes: bloco `classe` (F1b) + cards
+data/racas/*.json              7 raças: bloco `raca` (F1b) + cards
 data/ficha.schema.json         contrato da ficha 2.0 + projeção Bestiário
 data/catalogo/<tipo>.json      ARTEFATO (gerar_catalogo.py): {id, tipo, nome sem emoji,
                                icone, resumo, campos do tipo} por entidade; raras só
@@ -235,6 +240,25 @@ o `marcacao-bazar.test.js` roda o render do card e da linha da Lista sobre o
 `data/bazar.json` inteiro. Card que não é entidade (regra da página) só existe
 pela allowlist `NAO_ENTIDADE` do `tools/kf_marca.py` (`rule-box`, `warning`):
 classe CSS fora do mapa e fora dela derruba o build.
+
+**Blocos de classe, raça e origem (F1b).** O que antes só existia no scaffold
+do template (CD, treinamento, fórmulas de Saúde/Stamina/Éter, recurso de classe
+com o medidor, Marca do Duelo, Escolas, Arma Humana, os 95 Itens Alquímicos, os
+ramos; stat-box, perícias, dados físicos, tecnologias e as 15+15 corrupções das
+raças; Sins, treinamento, itens iniciais e habilidade das origens) vive em
+`data/`: `classe` em `data/classes/<c>.json`, `raca` em `data/racas/<r>.json` e
+`origem` em cada card de `data/origens.json`. O template (o corpo do card, nas
+origens) mostra cada texto por um marcador `{{classe.cd.texto}}`; o gerador troca
+pelo valor verbatim (`tools/blocos.py preenche`) e derruba o build se o campo
+faltar. Ao lado do verbatim ficam os **derivados** que a ficha consome (V/G/R,
+atributos com "ou", perícias como slug, escolhas, metros, Ar natural, ids das
+sub-entidades, `itemId` do Bazar nos itens iniciais): o `[blocos]` recalcula e
+FALHA se divergirem (`python tools/blocos.py` regrava). O que o Notion não diz
+fica `null` + `status` PENDENTE (recurso do Espadachim e do Teurgo, técnica de raça).
+`[conteudo×contrato]` compara V/G/R, CD, perícias e armas iniciais, recurso
+(id, máximo, gastos), Marca do Duelo, movimento e Ar natural com o contrato do
+balanceamento (lido da branch dele por `git show`, ou `KH_CONTRATO=<arquivo>`) e
+só AVISA: quem decide a divergência é o Pedro.
 
 Os índices "Navegação Rápida" de Condições e Sistema saem do gerador
 (`{{IDX_<categoria>}}` no template): um link por card/subseção, na ordem do

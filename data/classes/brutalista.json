@@ -1,5 +1,130 @@
 {
-  "classe": "brutalista",
+  "classe": {
+    "id": "classe-brutalista",
+    "nome": "Brutalista",
+    "atributosChave": {
+      "texto": "For, Con, Des",
+      "lista": [
+        [
+          "FOR"
+        ],
+        [
+          "CON"
+        ],
+        [
+          "DES"
+        ]
+      ]
+    },
+    "cd": {
+      "texto": "10 + Força + Constituição",
+      "base": 10,
+      "termos": [
+        [
+          "FOR"
+        ],
+        [
+          "CON"
+        ]
+      ]
+    },
+    "estilo": "Corpo a Corpo Pesado, Tanque e Utilidade",
+    "treinamento": {
+      "fixo": {
+        "texto": "Fortitude, Atacar",
+        "termos": [
+          {
+            "tipo": "pericia",
+            "quantidade": 1,
+            "opcoes": [
+              "fortitude"
+            ]
+          },
+          {
+            "tipo": "pericia",
+            "quantidade": 1,
+            "opcoes": [
+              "atacar"
+            ]
+          }
+        ]
+      },
+      "escolha": {
+        "quantidade": "1 + Mod. Inteligência",
+        "opcoesTexto": "Defender, Movimento, Iniciativa, Intimidação, Medicina",
+        "opcoes": [
+          "defender",
+          "movimento",
+          "iniciativa",
+          "intimidacao",
+          "medicina"
+        ],
+        "numero": {
+          "base": 1,
+          "atributo": "INT"
+        }
+      }
+    },
+    "status": {
+      "saude": "10 + (8 × Nível) + (Mod.CON × Nível)",
+      "stamina": "8 + (4 × Nível) + (Mod.FOR OU Mod.DES × Nível)",
+      "eter": "6 + (3 × Nível) + (Mod.INT OU Mod.SAB × Nível)",
+      "evasaoAtiva": "10 + Mod. Destreza + Dado de Defender",
+      "evasaoPassiva": "10 + Mod. Destreza"
+    },
+    "V": 8,
+    "G": 4,
+    "R": 3,
+    "recurso": {
+      "id": "brutalidade",
+      "nome": "Brutalidade",
+      "texto": [
+        "<em>Cada golpe que você recebe te deixa mais determinado. A dor não te enfraquece - te transforma em fúria pura.</em><br>A <strong>Brutalidade</strong> representa sua resiliência e raiva acumuladas."
+      ],
+      "ganhos": [
+        "<strong>Dano:</strong> Ao receber 5+ Dano de uma única fonte → +1 Brutalidade"
+      ],
+      "efeitoPassivo": [
+        "Seus ataques causam +1 de dano por ponto de <strong>Brutalidade</strong> acumulado."
+      ],
+      "gastoAtivo": [
+        "Você pode gastar toda sua <strong>Brutalidade</strong> para recuperar <em><strong>x</strong>d4 Stamina</em>, sendo <em><strong>x</strong></em> igual ao seus pontos de <strong>Brutalidade</strong>."
+      ],
+      "medidores": [
+        {
+          "id": "brutalidade",
+          "nome": "Brutalidade",
+          "max": "5"
+        }
+      ],
+      "perdas": [
+        "Você perde toda sua brutalidade ao fim do combate."
+      ]
+    },
+    "ramos": [
+      {
+        "id": "brutalista-ramo-do-colosso",
+        "chave": "colosso",
+        "nome": "🛡️ Ramo do Colosso",
+        "subtitulo": "Tanque e Protetor",
+        "descricao": "Você não aprendeu a desviar de golpes - aprendeu a recebê-los e continuar de pé. Onde outros veem perigo, você vê seu propósito. Seu corpo é a muralha que separa seus aliados da morte, e cada cicatriz é prova de que essa muralha nunca caiu."
+      },
+      {
+        "id": "brutalista-ramo-do-berserker",
+        "chave": "berserker",
+        "nome": "🔥 Ramo do Berserker",
+        "subtitulo": "Dano e Fúria",
+        "descricao": "A primeira vez que você sentiu a fúria, achou que ia morrer. O sangue fervendo, a visão vermelha, o mundo reduzido a um único pensamento: destruir. Você não morreu. Seus inimigos morreram. Agora você entende. A raiva não é sua fraqueza - é seu combustível."
+      },
+      {
+        "id": "brutalista-ramo-do-general",
+        "chave": "general",
+        "nome": "👑 Ramo do General",
+        "subtitulo": "Utilidade e Tática",
+        "descricao": "Guerras não são vencidas pelo mais forte - são vencidas pelo mais preparado. Você aprendeu isso nos campos de batalha, nos becos, nas arenas. Força bruta é ferramenta, não estratégia. O verdadeiro guerreiro lê o combate como outros leem livros."
+      }
+    ]
+  },
   "cards": [
     {
       "id": "brutalista-bruto",

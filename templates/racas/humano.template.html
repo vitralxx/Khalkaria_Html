@@ -165,7 +165,7 @@
                     <img src="../../images/racas/humano.png" alt="Humano">
                 </div>
                 <div class="raca-info">
-                    <h1>Humano</h1>
+                    <h1>{{raca.nome}}</h1>
                     <p class="raca-tagline">Adaptáveis, numerosos e determinados.</p>
                     
                     <p>Os humanos são adaptáveis, numerosos e determinados. Grandes cidades, vilas remotas e desertos longínquos: eles sobrevivem em qualquer lugar. Por isso dominam o mundo — não por força, mas por insistência.</p>
@@ -173,26 +173,26 @@
                     <div class="stats-grid">
                         <div class="stat-box">
                             <div class="label">Atributos</div>
-                            <div class="value">+1 em dois atributos.</div>
+                            <div class="value">{{raca.atributos.texto}}</div>
                         </div>
                         <div class="stat-box">
                             <div class="label">Alternativo</div>
-                            <div class="value">+2 Sabedoria</div>
+                            <div class="value">{{raca.alternativo.texto}}</div>
                         </div>
                         <div class="stat-box">
                             <div class="label">Movimento</div>
-                            <div class="value">9 metros</div>
+                            <div class="value">{{raca.movimento.texto}}</div>
                         </div>
                         <div class="stat-box">
                             <div class="label">Idiomas</div>
-                            <div class="value">Comum</div>
+                            <div class="value">{{raca.idiomas.texto}}</div>
                         </div>
                     </div>
                     
                     <div class="physical-data">
-                        <span><strong>Vida:</strong> 60-100 anos</span>
-                        <span><strong>Altura:</strong> 1,40m - 2,00m</span>
-                        <span><strong>Peso:</strong> 40kg - 120kg</span>
+                        <span><strong>Vida:</strong> {{raca.vida}}</span>
+                        <span><strong>Altura:</strong> {{raca.altura}}</span>
+                        <span><strong>Peso:</strong> {{raca.peso}}</span>
                     </div>
                 </div>
             </div>
@@ -200,8 +200,8 @@
             <h3 style="color: var(--gold); font-family: var(--font-heading); margin-bottom: 1rem;">Perícias de Raça</h3>
             <div class="content-card">
                 <ul>
-                    <li>1 Interação Social (Qualquer)</li>
-                    <li>+1 Qualquer</li>
+                    <li>{{raca.pericias.itens.0.texto}}</li>
+                    <li>{{raca.pericias.itens.1.texto}}</li>
                 </ul>
             </div>
             
@@ -215,8 +215,8 @@
             </div>
             
             <div class="variant-section">
-                <h3>Estilo de Vida</h3>
-                <p style="color: var(--text-muted); margin-bottom: 1rem;">Humanos são seres extremamente flexíveis, se adaptando as suas vivências. Escolha um dos estilos de vida abaixo:</p>
+                <h3>{{raca.variantes.titulo}}</h3>
+                <p style="color: var(--text-muted); margin-bottom: 1rem;">{{raca.variantes.intro}}</p>
                 
                 {{CARD_1}}
                 

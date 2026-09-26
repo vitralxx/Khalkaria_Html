@@ -34,7 +34,7 @@
                     <img src="../../images/racas/dryad.png" alt="Dryad">
                 </div>
                 <div class="raca-info">
-                    <h1>Dryad</h1>
+                    <h1>{{raca.nome}}</h1>
                     <p class="raca-tagline">Árvore e carne entrelaçadas.</p>
                     
                     <p>Seres humanoides com pele de casca, sangue de seiva e olhos que refletem a floresta. Tem profunda ligação com a natureza, apesar de se afastarem cada vez mais de suas essências. São seres universalmente gostados entre quase todas as raças, buscando a preservação do ciclo natural.</p>
@@ -42,33 +42,33 @@
                     <div class="stats-grid">
                         <div class="stat-box">
                             <div class="label">Atributos</div>
-                            <div class="value">+2 Destreza ou Constituição, -1 Sabedoria ou Inteligência</div>
+                            <div class="value">{{raca.atributos.texto}}</div>
                         </div>
                         <div class="stat-box">
                             <div class="label">Alternativo</div>
-                            <div class="value">+2 Sabedoria ou Inteligência, -1 Força ou Constituição</div>
+                            <div class="value">{{raca.alternativo.texto}}</div>
                         </div>
                         <div class="stat-box">
                             <div class="label">Movimento</div>
-                            <div class="value">10,5 metros</div>
+                            <div class="value">{{raca.movimento.texto}}</div>
                         </div>
                         <div class="stat-box">
                             <div class="label">Idiomas</div>
-                            <div class="value">Comum, Natural</div>
+                            <div class="value">{{raca.idiomas.texto}}</div>
                         </div>
                     </div>
                     
                     <div class="physical-data">
-                        <span><strong>Vida:</strong> 100-150 anos</span>
-                        <span><strong>Altura:</strong> 1,20m - 2,10m</span>
-                        <span><strong>Peso:</strong> 30kg - 120kg</span>
+                        <span><strong>Vida:</strong> {{raca.vida}}</span>
+                        <span><strong>Altura:</strong> {{raca.altura}}</span>
+                        <span><strong>Peso:</strong> {{raca.peso}}</span>
                     </div>
                 </div>
             </div>
             
             <h3 class="section-title">Perícias de Raça</h3>
             <div class="content-card">
-                <p>Sobrevivência</p>
+                <p>{{raca.pericias.itens.0.texto}}</p>
             </div>
             
             <h3 class="section-title">Características de Raça</h3>
@@ -85,8 +85,8 @@
             </div>
             
             <div class="variant-section">
-                <h3>Subespécie</h3>
-                <p style="color: var(--text-muted); margin-bottom: 1rem;">Dryads diferem entre 2 famílias principais:</p>
+                <h3>{{raca.variantes.titulo}}</h3>
+                <p style="color: var(--text-muted); margin-bottom: 1rem;">{{raca.variantes.intro}}</p>
                 
                 {{CARD_3}}
                 

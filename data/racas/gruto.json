@@ -1,5 +1,108 @@
 {
   "source": "racas/gruto",
+  "raca": {
+    "id": "raca-gruto",
+    "nome": "Gruto",
+    "atributos": {
+      "texto": "+2 Força ou Constituição, -1 Inteligência",
+      "bonus": [
+        {
+          "valor": 2,
+          "opcoes": [
+            "FOR",
+            "CON"
+          ]
+        },
+        {
+          "valor": -1,
+          "opcoes": [
+            "INT"
+          ]
+        }
+      ]
+    },
+    "alternativo": {
+      "texto": "+2 Destreza ou Inteligência, -1 Constituição",
+      "bonus": [
+        {
+          "valor": 2,
+          "opcoes": [
+            "DES",
+            "INT"
+          ]
+        },
+        {
+          "valor": -1,
+          "opcoes": [
+            "CON"
+          ]
+        }
+      ]
+    },
+    "movimento": {
+      "texto": "9 metros",
+      "metros": 9
+    },
+    "idiomas": {
+      "texto": "Comum, Skalia",
+      "lista": [
+        "Comum",
+        "Skalia"
+      ]
+    },
+    "pericias": {
+      "itens": [
+        {
+          "texto": "Percepção"
+        }
+      ],
+      "escolhas": [
+        {
+          "quantidade": 1,
+          "opcoes": [
+            "percepcao"
+          ]
+        }
+      ]
+    },
+    "caracteristicas": [
+      "gruto-olhos-reptilianos",
+      "gruto-lingua-bifurcada",
+      "gruto-troca-de-pele"
+    ],
+    "tecnica": {
+      "id": null,
+      "status": "PENDENTE",
+      "nota": "Pedro (03-respostas-pedro.md §2): a raça dá \"1 técnica de raça\". A página não distingue qual característica é a técnica: pergunta ao balanceamento, não inventar."
+    },
+    "variantes": {
+      "titulo": "Linhagem Réptil",
+      "intro": "Grutos diferem entre 2 principais linhagens genéticas:",
+      "ids": [
+        "gruto-rokhan",
+        "gruto-skal-ri"
+      ],
+      "fisico": {
+        "gruto-rokhan": {
+          "vida": "70-110 anos",
+          "altura": "1,50m - 2,00m",
+          "peso": "100kg - 160kg"
+        },
+        "gruto-skal-ri": {
+          "vida": "120-180 anos",
+          "altura": "1,70m - 2,50m",
+          "peso": "70kg - 120kg"
+        }
+      }
+    },
+    "arNatural": [
+      {
+        "fonte": "gruto-rokhan",
+        "valor": 1,
+        "soma": false
+      }
+    ]
+  },
   "cards": [
     {
       "id": "gruto-olhos-reptilianos",

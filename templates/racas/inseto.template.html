@@ -40,7 +40,7 @@
                     <img src="../../images/racas/inseto.png" alt="Inseto">
                 </div>
                 <div class="raca-info">
-                    <h1>Inseto</h1>
+                    <h1>{{raca.nome}}</h1>
                     <p class="raca-tagline">Insetos humanoides inteligentes, segregados em diversos clãs.</p>
                     
                     <p>Os insetoides são bastante modulares e cada subespécie possui suas características genéticas. A maioria dos insetos são universalmente odiados por outras raças.</p>
@@ -48,19 +48,19 @@
                     <div class="stats-grid">
                         <div class="stat-box">
                             <div class="label">Atributos</div>
-                            <div class="value">Varia por Subespécie</div>
+                            <div class="value">{{raca.atributos.texto}}</div>
                         </div>
                         <div class="stat-box">
                             <div class="label">Movimento</div>
-                            <div class="value">Varia</div>
+                            <div class="value">{{raca.movimento.texto}}</div>
                         </div>
                         <div class="stat-box">
                             <div class="label">Perícia</div>
-                            <div class="value">Movimento</div>
+                            <div class="value">{{raca.pericias.itens.0.texto}}</div>
                         </div>
                         <div class="stat-box">
                             <div class="label">Idiomas</div>
-                            <div class="value">Comum, Natural</div>
+                            <div class="value">{{raca.idiomas.texto}}</div>
                         </div>
                     </div>
                 </div>
@@ -80,7 +80,7 @@
             </div>
             
             <div class="variant-section">
-                <h3>Escolha uma Subespécie</h3>
+                <h3>{{raca.variantes.titulo}}</h3>
                 
                 <!-- BESOURO -->
                 {{CARD_3}}

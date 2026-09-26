@@ -1,5 +1,155 @@
 {
-  "classe": "espadachim",
+  "classe": {
+    "id": "classe-espadachim",
+    "nome": "Espadachim",
+    "atributosChave": {
+      "texto": "Des, For, Con",
+      "lista": [
+        [
+          "DES"
+        ],
+        [
+          "FOR"
+        ],
+        [
+          "CON"
+        ]
+      ]
+    },
+    "cd": {
+      "texto": "10 + (Destreza ou Força) + Constituição",
+      "base": 10,
+      "termos": [
+        [
+          "DES",
+          "FOR"
+        ],
+        [
+          "CON"
+        ]
+      ]
+    },
+    "estilo": "Combate Acima de Tudo",
+    "treinamento": {
+      "fixo": {
+        "texto": "Armas Marciais, Atacar, Defender",
+        "termos": [
+          {
+            "tipo": "arma",
+            "quantidade": 1,
+            "opcoes": [
+              "armas-marciais"
+            ]
+          },
+          {
+            "tipo": "pericia",
+            "quantidade": 1,
+            "opcoes": [
+              "atacar"
+            ]
+          },
+          {
+            "tipo": "pericia",
+            "quantidade": 1,
+            "opcoes": [
+              "defender"
+            ]
+          }
+        ]
+      },
+      "escolha": {
+        "quantidade": "1 + Mod.Int",
+        "opcoesTexto": "Movimento, Fortitude, Sobrevivência, Intimidação, Reflexos",
+        "opcoes": [
+          "movimento",
+          "fortitude",
+          "sobrevivencia",
+          "intimidacao",
+          "reflexos"
+        ],
+        "numero": {
+          "base": 1,
+          "atributo": "INT"
+        }
+      }
+    },
+    "status": {
+      "saude": "10 + (6 × Nível) + (Mod.CON × Nível)",
+      "stamina": "8 + (6 × Nível) + ([Mod.FOR OU Mod.DES] × Nível)",
+      "eter": "6 + (3 × Nível) + ([Mod.INT OU Mod.SAB] × Nível)",
+      "evasaoAtiva": "10 + Mod. Destreza + Dado de Defender",
+      "evasaoPassiva": "10 + Mod. Destreza"
+    },
+    "V": 6,
+    "G": 6,
+    "R": 3,
+    "recurso": {
+      "id": null,
+      "nome": null,
+      "status": "PENDENTE PEDRO",
+      "nota": "Pedro, 2026-09-26 (docs/ficha-digital/03-respostas-pedro.md): \"Tem sim, teurgo também. Todas têm.\" O nome e a mecânica ainda não estão no Notion nem no contrato do balanceamento: campo em aberto, não inventar."
+    },
+    "caracteristicas": [
+      {
+        "id": "espadachim-proficiencia-com-espadas",
+        "nome": "⚔️ Proficiência com Espadas",
+        "texto": [
+          "Acostumado a se sustentar em apenas um tipo de dano, possui especialidade em causar dano cortante. Você ignora Ar (Armadura) em ataques com espada igual ao seu nível, adicionalmente você ignora resistência a dano Cortante a partir do nível 3."
+        ]
+      },
+      {
+        "id": "espadachim-marca-do-duelo",
+        "nome": "🎯 Marca do Duelo",
+        "texto": [
+          "O Espadachim é o mestre duelista, mantendo foco unitário em um único alvo antes de partir para o próximo. Ele marca o próximo alvo que pretende assassinar. Você pode manter <strong>1 Marca do Duelo</strong> ativa:"
+        ],
+        "itens": [
+          "Marque uma criatura que você possa ver com <strong>1 ação</strong>, em até <strong>9 m</strong>.",
+          "Contra o alvo marcado você tem <strong>+1 Atacar e +1 Defender</strong>. No nível 3, <strong>+2 Atacar e +2 Defender</strong>. No nível 5, <strong>+3 Atacar e +3 Defender</strong>.",
+          "Se o alvo marcado morrer, você pode marcar um novo alvo como <strong>reação</strong> imediatamente.",
+          "Você só pode ter uma Marca ativa."
+        ],
+        "escalaDe": "marca-do-duelo",
+        "escala": [
+          {
+            "nivel": 1,
+            "atacar": 1,
+            "defender": 1
+          },
+          {
+            "nivel": 3,
+            "atacar": 2,
+            "defender": 2
+          },
+          {
+            "nivel": 5,
+            "atacar": 3,
+            "defender": 3
+          }
+        ]
+      }
+    ],
+    "ramos": [
+      {
+        "id": "espadachim-ramo-do-guarda-lamina",
+        "chave": "guarda",
+        "nome": "🛡️ Ramo do Guarda-Lâmina",
+        "descricao": "Você jurou um voto que transcende meras palavras — sua lâmina permanece embainhada até que o sangue precise ser derramado. Num mundo onde a violência é moeda corrente e a morte espreita em cada esquina escura, você aprendeu que revelar sua arma cedo demais é desperdiçar o elemento surpresa. Sua filosofia é simples: observe, aguarde, e quando a lâmina finalmente cantar, que seja o último som que seu inimigo ouvirá. Você não busca glória nos campos de batalha — busca justiça silenciosa, executada com precisão cirúrgica. Aqueles que subestimam sua contenção descobrem tarde demais que a paciência do Guarda-Lâmina é apenas a calmaria antes da tempestade de aço."
+      },
+      {
+        "id": "espadachim-ramo-do-oprimido",
+        "chave": "oprimido",
+        "nome": "💢 Ramo do Oprimido",
+        "descricao": "Você cresceu sob o peso do desprezo alheio. Cada insulto, cada olhar de desdém, cada porta fechada alimentou a brasa que agora arde como forja em seu peito. Num mundo onde os fortes pisoteiam os fracos e a corrupção rasteja até os corações mais nobres, você aprendeu que gentileza é fraqueza e piedade é luxo. Sua lâmina não conhece contenção — ela existe para fazer seus opressores provarem o gosto do próprio sangue misturado ao metal que você empunha com ódio concentrado. Você não luta por honra ou justiça; luta porque a raiva é a única emoção que nunca te traiu, e cada golpe que desfere é uma declaração visceral de que você se recusa a ser quebrado novamente."
+      },
+      {
+        "id": "espadachim-ramo-do-exilado-bebado",
+        "chave": "exilado",
+        "nome": "🍺 Ramo do Exilado Bêbado",
+        "descricao": "A sociedade nunca soube o que fazer com você. Talvez tenha sido alguma substância proibida que primeiro tocou seus lábios, ou talvez você simplesmente tenha nascido deslocado — um estranho em qualquer lugar que pisasse. O álcool, ironicamente, tornou-se sua âncora: onde outros perdem controle, você encontra clareza. Cada gole acalma os tremores de um passado que prefere esquecer e aguça seus sentidos para o presente que importa. Nas tavernas e vielas sombrias, dizem que você luta melhor embriagado do que a maioria dos soldados sóbrios — e estão certos. Sua lâmina dança com uma imprevisibilidade calculada, cada movimento aparentemente descuidado escondendo uma precisão mortal que só você compreende."
+      }
+    ]
+  },
   "cards": [
     {
       "id": "espadachim-leitura-de-batalha",

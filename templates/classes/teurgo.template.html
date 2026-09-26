@@ -564,7 +564,7 @@
         <main class="main-content">
             <!-- HERO SECTION -->
             <section class="class-hero">
-                <h1 class="class-title">Teurgo</h1>
+                <h1 class="class-title">{{classe.nome}}</h1>
                 <div class="hero-image">
                     <img src="../../images/teurgo.png" alt="Teurgo">
                 </div>
@@ -579,15 +579,15 @@
                     <div class="quick-stats">
                         <div class="stat-card">
                             <div class="label">Atributos</div>
-                            <div class="value">Int, Sab, Con</div>
+                            <div class="value">{{classe.atributosChave.texto}}</div>
                         </div>
                         <div class="stat-card">
                             <div class="label">CD</div>
-                            <div class="value">10 + Mod. Inteligência + Mod. Sabedoria</div>
+                            <div class="value">{{classe.cd.texto}}</div>
                         </div>
                         <div class="stat-card">
                             <div class="label">Estilo</div>
-                            <div class="value">Contato com o Éter, Conjuração Versátil e Combate a Distância</div>
+                            <div class="value">{{classe.estilo}}</div>
                         </div>
                     </div>
                 </div>
@@ -599,8 +599,8 @@
             </div>
             
             <div class="ramos-intro">
-                <p><strong>Você começa treinado em:</strong> Armas Místicas, Místico, Conhecimento</p>
-                <p><strong>Escolha (1 + Mod. Inteligência) perícias:</strong> Religião, Vontade, Percepção, Medicina, Investigação</p>
+                <p><strong>Você começa treinado em:</strong> {{classe.treinamento.fixo.texto}}</p>
+                <p><strong>Escolha ({{classe.treinamento.escolha.quantidade}}) perícias:</strong> {{classe.treinamento.escolha.opcoesTexto}}</p>
             </div>
 
             <!-- STATUS -->
@@ -611,23 +611,23 @@
             <div class="formula-grid">
                 <div class="formula-card">
                     <h4>❤️ Saúde</h4>
-                    <code>10 + (3 × Nível) + (Mod.CON × Nível)</code>
+                    <code>{{classe.status.saude}}</code>
                 </div>
                 <div class="formula-card">
                     <h4>⚡ Stamina</h4>
-                    <code>8 + (3 × Nível) + (Mod.FOR OU Mod.DES × Nível)</code>
+                    <code>{{classe.status.stamina}}</code>
                 </div>
                 <div class="formula-card">
                     <h4>✨ Éter</h4>
-                    <code>6 + (9 × Nível) + (Mod.INT OU Mod.SAB × Nível)</code>
+                    <code>{{classe.status.eter}}</code>
                 </div>
                 <div class="formula-card">
                     <h4>🛡️ Evasão Ativa</h4>
-                    <code>10 + Mod. Destreza + Dado de Defender</code>
+                    <code>{{classe.status.evasaoAtiva}}</code>
                 </div>
                 <div class="formula-card">
                     <h4>🛡️ Evasão Passiva</h4>
-                    <code>10 + Mod. Destreza</code>
+                    <code>{{classe.status.evasaoPassiva}}</code>
                 </div>
             </div>
 
@@ -673,34 +673,34 @@
             </div>
 
             <div class="escolas-box">
-                <h3>✨ Escolas do Primórdio</h3>
+                <h3>{{classe.caracteristicas.0.nome}}</h3>
                 <p style="color: var(--text-secondary); margin-bottom: 1rem;">
-                    O Teurgo não domina toda a magia - ele se especializa em <strong>Escolas</strong> que representam diferentes manifestações do Éter. Cada escola requer um <strong>Foco</strong> específico para ser conjurada.
+                    {{classe.caracteristicas.0.texto.0}}
                 </p>
                 <p style="color: var(--gold-light); margin-bottom: 1rem;">
-                    <strong>Você tem o domínio sobre 2 Escolas de magia no nível 1, +1 no nível 3 e +2 no nível 5</strong>
+                    <strong>{{classe.caracteristicas.0.texto.1}}</strong>
                 </p>
-                <p><strong>Magias Disponíveis:</strong> Escolha 1+MOD. INT ou SAB, magias de nível 1 no primeiro nível.</p>
+                <p><strong>Magias Disponíveis:</strong> {{classe.caracteristicas.0.magiasIniciais}}</p>
                 <div class="escolas-grid">
                     <div class="escola-item">
-                        <strong>🛡️ Abjuração</strong>
-                        <span>Proteção, banimento, anulação.</span>
+                        <strong>{{classe.caracteristicas.0.escolas.0.nome}}</strong>
+                        <span>{{classe.caracteristicas.0.escolas.0.descricao}}</span>
                     </div>
                     <div class="escola-item">
-                        <strong>💥 Destruição</strong>
-                        <span>Dano, destruição, elementos.</span>
+                        <strong>{{classe.caracteristicas.0.escolas.1.nome}}</strong>
+                        <span>{{classe.caracteristicas.0.escolas.1.descricao}}</span>
                     </div>
                     <div class="escola-item">
-                        <strong>📖 Conhecimento</strong>
-                        <span>Adivinhação, detecção, comunicação.</span>
+                        <strong>{{classe.caracteristicas.0.escolas.2.nome}}</strong>
+                        <span>{{classe.caracteristicas.0.escolas.2.descricao}}</span>
                     </div>
                     <div class="escola-item">
-                        <strong>🔄 Alteração</strong>
-                        <span>Transformação, manipulação, enganação.</span>
+                        <strong>{{classe.caracteristicas.0.escolas.3.nome}}</strong>
+                        <span>{{classe.caracteristicas.0.escolas.3.descricao}}</span>
                     </div>
                     <div class="escola-item">
-                        <strong>🌟 Primordial</strong>
-                        <span>Magia selvagem e bruta, intenção incompreendida. <em>(Requer nível 5)</em></span>
+                        <strong>{{classe.caracteristicas.0.escolas.4.nome}}</strong>
+                        <span>{{classe.caracteristicas.0.escolas.4.descricao}}</span>
                     </div>
                 </div>
             </div>
@@ -746,19 +746,19 @@
 
             <div class="ramos-grid">
                 <div class="ramo-card academico">
-                    <h3>📖 Ramo do Acadêmico</h3>
-                    <div class="subtitle">Conhecimento e Equilíbrio Mental</div>
-                    <p>A magia nunca foi mistério para você - foi problema a ser resolvido. Enquanto outros temem o desconhecido, você o disseca, cataloga e domina. Cada fenômeno tem uma explicação. Cada força segue regras. Seus grimórios estão cheios de anotações, teoremas e correções. O que chamam de milagre, você chama de ciência ainda não compreendida.</p>
+                    <h3>{{classe.ramos.0.nome}}</h3>
+                    <div class="subtitle">{{classe.ramos.0.subtitulo}}</div>
+                    <p>{{classe.ramos.0.descricao}}</p>
                 </div>
                 <div class="ramo-card receptaculo">
-                    <h3>🌀 Ramo do Receptáculo</h3>
-                    <div class="subtitle">Natureza Mística e Caótica</div>
-                    <p>Você não escolheu a magia. Ela escolheu você. Desde jovem, o plano místico sussurra no limite da sua percepção - vozes sem forma, visões sem contexto, poder sem explicação. Você aprendeu a se abrir, a se esvaziar, a deixar que o outro lado flua através de você. É perigoso. É intoxicante. E você não consegue mais parar.</p>
+                    <h3>{{classe.ramos.1.nome}}</h3>
+                    <div class="subtitle">{{classe.ramos.1.subtitulo}}</div>
+                    <p>{{classe.ramos.1.descricao}}</p>
                 </div>
                 <div class="ramo-card arauto">
-                    <h3>🔱 Ramo do Arauto</h3>
-                    <div class="subtitle">Rituais Prolongados e Pactos</div>
-                    <p>O poder verdadeiro não é tomado - é negociado. Você entendeu isso cedo. Através de rituais meticulosos, círculos perfeitamente traçados e palavras pronunciadas na ordem exata, você firma acordos com forças que outros nem sabem que existem. Cada pacto tem um preço. Cada cerimônia deixa uma marca. Mas o que você recebe em troca... vale cada cicatriz.</p>
+                    <h3>{{classe.ramos.2.nome}}</h3>
+                    <div class="subtitle">{{classe.ramos.2.subtitulo}}</div>
+                    <p>{{classe.ramos.2.descricao}}</p>
                 </div>
             </div>
 

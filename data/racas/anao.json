@@ -1,5 +1,107 @@
 {
   "source": "racas/anao",
+  "raca": {
+    "id": "raca-anao",
+    "nome": "Anão",
+    "atributos": {
+      "texto": "+2 Constituição, -1 Inteligência",
+      "bonus": [
+        {
+          "valor": 2,
+          "opcoes": [
+            "CON"
+          ]
+        },
+        {
+          "valor": -1,
+          "opcoes": [
+            "INT"
+          ]
+        }
+      ]
+    },
+    "alternativo": {
+      "texto": "+1 Inteligência, +1 Destreza, -1 Força",
+      "bonus": [
+        {
+          "valor": 1,
+          "opcoes": [
+            "INT"
+          ]
+        },
+        {
+          "valor": 1,
+          "opcoes": [
+            "DES"
+          ]
+        },
+        {
+          "valor": -1,
+          "opcoes": [
+            "FOR"
+          ]
+        }
+      ]
+    },
+    "movimento": {
+      "texto": "7,5 metros",
+      "metros": 7.5
+    },
+    "idiomas": {
+      "texto": "Comum, Khazadun",
+      "lista": [
+        "Comum",
+        "Khazadun"
+      ]
+    },
+    "pericias": {
+      "itens": [
+        {
+          "texto": "Fortitude ou Ofício (Qualquer)"
+        }
+      ],
+      "escolhas": [
+        {
+          "quantidade": 1,
+          "opcoes": [
+            "fortitude",
+            "oficio-engenharia",
+            "oficio-ferraria",
+            "oficio-alquimia"
+          ]
+        }
+      ]
+    },
+    "vida": "200-350 anos",
+    "altura": "1,20m - 1,50m",
+    "peso": "70kg - 95kg",
+    "caracteristicas": [
+      "anao-visao-no-escuro",
+      "anao-resiliencia-ana",
+      "anao-treinamento-anao"
+    ],
+    "tecnica": {
+      "id": null,
+      "status": "PENDENTE",
+      "nota": "Pedro (03-respostas-pedro.md §2): a raça dá \"1 técnica de raça\". A página não distingue qual característica é a técnica: pergunta ao balanceamento, não inventar."
+    },
+    "variantes": {
+      "titulo": "Clãs Ancestrais",
+      "intro": "Anões se identificam mais por clã do que por indivíduo. Escolha um:",
+      "ids": [
+        "anao-krichama",
+        "anao-caxon"
+      ],
+      "fisico": {}
+    },
+    "arNatural": [
+      {
+        "fonte": "anao-caxon",
+        "valor": 3,
+        "soma": false
+      }
+    ]
+  },
   "cards": [
     {
       "id": "anao-visao-no-escuro",

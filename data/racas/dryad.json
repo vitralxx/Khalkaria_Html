@@ -1,5 +1,107 @@
 {
   "source": "racas/dryad",
+  "raca": {
+    "id": "raca-dryad",
+    "nome": "Dryad",
+    "atributos": {
+      "texto": "+2 Destreza ou Constituição, -1 Sabedoria ou Inteligência",
+      "bonus": [
+        {
+          "valor": 2,
+          "opcoes": [
+            "DES",
+            "CON"
+          ]
+        },
+        {
+          "valor": -1,
+          "opcoes": [
+            "SAB",
+            "INT"
+          ]
+        }
+      ]
+    },
+    "alternativo": {
+      "texto": "+2 Sabedoria ou Inteligência, -1 Força ou Constituição",
+      "bonus": [
+        {
+          "valor": 2,
+          "opcoes": [
+            "SAB",
+            "INT"
+          ]
+        },
+        {
+          "valor": -1,
+          "opcoes": [
+            "FOR",
+            "CON"
+          ]
+        }
+      ]
+    },
+    "movimento": {
+      "texto": "10,5 metros",
+      "metros": 10.5
+    },
+    "idiomas": {
+      "texto": "Comum, Natural",
+      "lista": [
+        "Comum",
+        "Natural"
+      ]
+    },
+    "pericias": {
+      "itens": [
+        {
+          "texto": "Sobrevivência"
+        }
+      ],
+      "escolhas": [
+        {
+          "quantidade": 1,
+          "opcoes": [
+            "sobrevivencia"
+          ]
+        }
+      ]
+    },
+    "vida": "100-150 anos",
+    "altura": "1,20m - 2,10m",
+    "peso": "30kg - 120kg",
+    "caracteristicas": [
+      "dryad-pele-de-casca",
+      "dryad-essencia-da-folha",
+      "dryad-amado"
+    ],
+    "tecnica": {
+      "id": null,
+      "status": "PENDENTE",
+      "nota": "Pedro (03-respostas-pedro.md §2): a raça dá \"1 técnica de raça\". A página não distingue qual característica é a técnica: pergunta ao balanceamento, não inventar."
+    },
+    "variantes": {
+      "titulo": "Subespécie",
+      "intro": "Dryads diferem entre 2 famílias principais:",
+      "ids": [
+        "dryad-florescura",
+        "dryad-cascaferro"
+      ],
+      "fisico": {}
+    },
+    "arNatural": [
+      {
+        "fonte": "dryad-pele-de-casca",
+        "valor": 2,
+        "soma": false
+      },
+      {
+        "fonte": "dryad-cascaferro",
+        "valor": 1,
+        "soma": true
+      }
+    ]
+  },
   "cards": [
     {
       "id": "dryad-pele-de-casca",

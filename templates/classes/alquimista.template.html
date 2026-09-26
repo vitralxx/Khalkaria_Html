@@ -574,7 +574,7 @@
         <main class="main-content">
             <!-- HERO SECTION -->
             <section class="class-hero">
-                <h1 class="class-title">Alquimista</h1>
+                <h1 class="class-title">{{classe.nome}}</h1>
                 <div class="hero-image">
                     <img src="../../images/alquimista.png" alt="Alquimista">
                 </div>
@@ -589,15 +589,15 @@
                     <div class="quick-stats">
                         <div class="stat-card">
                             <div class="label">Atributos</div>
-                            <div class="value">Int, Des, Sab</div>
+                            <div class="value">{{classe.atributosChave.texto}}</div>
                         </div>
                         <div class="stat-card">
                             <div class="label">CD</div>
-                            <div class="value">10 + Mod. Inteligência + Mod. Destreza</div>
+                            <div class="value">{{classe.cd.texto}}</div>
                         </div>
                         <div class="stat-card">
                             <div class="label">Estilo</div>
-                            <div class="value">Suporte, Utilidade, Preparação e Crafting</div>
+                            <div class="value">{{classe.estilo}}</div>
                         </div>
                     </div>
                 </div>
@@ -609,8 +609,8 @@
             </div>
             
             <div class="ramos-intro">
-                <p><strong>Você começa treinado em:</strong> Ofício (Alquimia), Conhecimento</p>
-                <p><strong>Escolha (1 + Mod. Inteligência) perícias:</strong> Ofício (Alquimia), Ofício (Engenharia), Ofício (Ferraria), Místico, Medicina</p>
+                <p><strong>Você começa treinado em:</strong> {{classe.treinamento.fixo.texto}}</p>
+                <p><strong>Escolha ({{classe.treinamento.escolha.quantidade}}) perícias:</strong> {{classe.treinamento.escolha.opcoesTexto}}</p>
             </div>
 
             <!-- STATUS -->
@@ -621,23 +621,23 @@
             <div class="formula-grid">
                 <div class="formula-card">
                     <h4>❤️ Saúde</h4>
-                    <code>10 + (4 × Nível) + (Mod.CON × Nível)</code>
+                    <code>{{classe.status.saude}}</code>
                 </div>
                 <div class="formula-card">
                     <h4>⚡ Stamina</h4>
-                    <code>8 + (6 × Nível) + (Mod.FOR OU Mod.DES × Nível)</code>
+                    <code>{{classe.status.stamina}}</code>
                 </div>
                 <div class="formula-card">
                     <h4>✨ Éter</h4>
-                    <code>6 + (5 × Nível) + (Mod.INT OU Mod.SAB × Nível)</code>
+                    <code>{{classe.status.eter}}</code>
                 </div>
                 <div class="formula-card">
                     <h4>🛡️ Evasão Ativa</h4>
-                    <code>10 + Mod. Destreza + Dado de Defender</code>
+                    <code>{{classe.status.evasaoAtiva}}</code>
                 </div>
                 <div class="formula-card">
                     <h4>🛡️ Evasão Passiva</h4>
-                    <code>10 + Mod. Destreza</code>
+                    <code>{{classe.status.evasaoPassiva}}</code>
                 </div>
             </div>
 
@@ -683,38 +683,38 @@
             </div>
 
             <div class="reagentes-box">
-                <h3>🧪 Sistema de Reagentes</h3>
+                <h3>🧪 Sistema de {{classe.recurso.nome}}</h3>
                 <p style="color: var(--text-secondary); margin-bottom: 1rem;">
-                    Você possui uma Bolsa de Reagentes que representa seus materiais alquímicos, componentes e suprimentos de crafting.
+                    {{classe.recurso.texto.0}}
                 </p>
                 
                 <p style="color: var(--text-secondary); margin-bottom: 1rem;">
-                    Reagentes são utilizados pelo alquimista para criar todas suas invenções, sendo elas itens, poções, melhorias e efeitos especiais. Você conhece fórmulas fundamentais da alquimia. Estes itens podem ser criados por <strong>qualquer Alquimista</strong>, independente do ramo escolhido.
+                    {{classe.recurso.texto.1}}
                 </p>
 
                 <div class="reagentes-grid">
                     <div class="reagentes-item">
                         <strong>📦 Máximo:</strong><br>
-                        <span style="color: var(--text-secondary);">(Nível × 3) + Mod.Inteligência</span>
+                        <span style="color: var(--text-secondary);">{{classe.recurso.medidores.0.max}}</span>
                     </div>
                     <div class="reagentes-item">
-                        <strong>🌙 Descanso Longo:</strong><br>
-                        <span style="color: var(--text-secondary);">Você recupera todos os Reagentes em um descanso longo, assumindo acesso a suprimentos básicos ou natureza.</span>
+                        <strong>{{classe.recurso.recarga.0.rotulo}}</strong><br>
+                        <span style="color: var(--text-secondary);">{{classe.recurso.recarga.0.texto}}</span>
                     </div>
                     <div class="reagentes-item">
-                        <strong>☀️ Descanso Curto:</strong><br>
-                        <span style="color: var(--text-secondary);">Você pode <em>Buscar Reagentes</em> como sua ação de descanso curto, recuperando 1d4+Nível de reagentes.</span>
+                        <strong>{{classe.recurso.recarga.1.rotulo}}</strong><br>
+                        <span style="color: var(--text-secondary);">{{classe.recurso.recarga.1.texto}}</span>
                     </div>
                 </div>
 
                 <div style="margin-top: 1.5rem; padding: 1rem; background: rgba(0,0,0,0.3); border-radius: 8px;">
-                    <p style="color: var(--gold); font-family: var(--font-heading); margin-bottom: 0.5rem;">📋 Regras de Criação:</p>
+                    <p style="color: var(--gold); font-family: var(--font-heading); margin-bottom: 0.5rem;">{{classe.recurso.regrasTitulo}}</p>
                     <ul style="color: var(--text-secondary); margin: 0; padding-left: 1.25rem; font-size: 0.9rem;">
-                        <li><strong>Tempo Padrão:</strong> 10 minutos.</li>
-                        <li><strong>Criação em Lote:</strong> Criando com 10 minutos, pode aproveitar e criar múltiplos itens de uma vez.</li>
-                        <li><strong>Durabilidade:</strong> Itens criados duram até o próximo descanso longo, depois perdem seus efeitos ou apresentam falhas.</li>
-                        <li><strong>Desmanche:</strong> Você pode reverter itens produzidos por você, ganhando seus reagentes de volta.</li>
-                        <li><strong>Teste de Alquimia:</strong> Ao criar qualquer item, role um teste de Ofício(Alquimia), ao suceder o CD do item escolhido você o fabrica com sucesso.<br>Em caso de falha, você perde os reagentes e não cria o item.</li>
+                        <li>{{classe.recurso.regras.0}}</li>
+                        <li>{{classe.recurso.regras.1}}</li>
+                        <li>{{classe.recurso.regras.2}}</li>
+                        <li>{{classe.recurso.regras.3}}</li>
+                        <li>{{classe.recurso.regras.4}}</li>
                     </ul>
                 </div>
             </div>
@@ -755,8 +755,8 @@
             <div class="alchemy-section">
                 <div class="alchemy-level">
                     <div class="alchemy-level-header">
-                        <h4>🧪 Nível 1</h4>
-                        <span class="cd-range">CD 8-10</span>
+                        <h4>{{classe.itensAlquimicos.0.nome}}</h4>
+                        <span class="cd-range">{{classe.itensAlquimicos.0.faixaCd}}</span>
                     </div>
                     <table class="alchemy-table">
                         <thead>
@@ -768,111 +768,111 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="category-row"><td colspan="4">Ofensivos</td></tr>
+                            <tr class="category-row"><td colspan="4">{{classe.itensAlquimicos.0.categorias.0.nome}}</td></tr>
                             <tr>
-                                <td class="item-name">Bomba de Luz</td>
-                                <td>Arremesso 9m. Flash 6m raio. Reflexo ou <em>Cego</em> 1 rodada.</td>
-                                <td class="reagent-col">1</td>
-                                <td class="cd-col">8</td>
+                                <td class="item-name">{{classe.itensAlquimicos.0.categorias.0.itens.0.nome}}</td>
+                                <td>{{classe.itensAlquimicos.0.categorias.0.itens.0.efeito}}</td>
+                                <td class="reagent-col">{{classe.itensAlquimicos.0.categorias.0.itens.0.reagentes}}</td>
+                                <td class="cd-col">{{classe.itensAlquimicos.0.categorias.0.itens.0.cd}}</td>
                             </tr>
                             <tr>
-                                <td class="item-name">Pó de Espirro</td>
-                                <td>Arremesso 3m. Fortitude ou <em>Desorientado</em> 1 rodada.</td>
-                                <td class="reagent-col">1</td>
-                                <td class="cd-col">8</td>
+                                <td class="item-name">{{classe.itensAlquimicos.0.categorias.0.itens.1.nome}}</td>
+                                <td>{{classe.itensAlquimicos.0.categorias.0.itens.1.efeito}}</td>
+                                <td class="reagent-col">{{classe.itensAlquimicos.0.categorias.0.itens.1.reagentes}}</td>
+                                <td class="cd-col">{{classe.itensAlquimicos.0.categorias.0.itens.1.cd}}</td>
                             </tr>
                             <tr>
-                                <td class="item-name">Fogo Alquímico</td>
-                                <td>Arremesso 9m. 2d6 Fogo em área 1,5m. Reflexo para metade do dano. Queima +1d6 próxima rodada.</td>
-                                <td class="reagent-col">2</td>
-                                <td class="cd-col">10</td>
+                                <td class="item-name">{{classe.itensAlquimicos.0.categorias.0.itens.2.nome}}</td>
+                                <td>{{classe.itensAlquimicos.0.categorias.0.itens.2.efeito}}</td>
+                                <td class="reagent-col">{{classe.itensAlquimicos.0.categorias.0.itens.2.reagentes}}</td>
+                                <td class="cd-col">{{classe.itensAlquimicos.0.categorias.0.itens.2.cd}}</td>
                             </tr>
                             <tr>
-                                <td class="item-name">Ácido Corrosivo</td>
-                                <td>Arremesso 9m. 2d8 Ácido, 1 alvo. Ignora 2 de Armadura Específica.</td>
-                                <td class="reagent-col">2</td>
-                                <td class="cd-col">10</td>
+                                <td class="item-name">{{classe.itensAlquimicos.0.categorias.0.itens.3.nome}}</td>
+                                <td>{{classe.itensAlquimicos.0.categorias.0.itens.3.efeito}}</td>
+                                <td class="reagent-col">{{classe.itensAlquimicos.0.categorias.0.itens.3.reagentes}}</td>
+                                <td class="cd-col">{{classe.itensAlquimicos.0.categorias.0.itens.3.cd}}</td>
                             </tr>
                             <tr>
-                                <td class="item-name">Frasco Congelante</td>
-                                <td>Arremesso 9m. 2d6 Frio em área 1,5m. Superfície fica <em>Escorregadia</em> 1 min.</td>
-                                <td class="reagent-col">2</td>
-                                <td class="cd-col">10</td>
+                                <td class="item-name">{{classe.itensAlquimicos.0.categorias.0.itens.4.nome}}</td>
+                                <td>{{classe.itensAlquimicos.0.categorias.0.itens.4.efeito}}</td>
+                                <td class="reagent-col">{{classe.itensAlquimicos.0.categorias.0.itens.4.reagentes}}</td>
+                                <td class="cd-col">{{classe.itensAlquimicos.0.categorias.0.itens.4.cd}}</td>
                             </tr>
-                            <tr class="category-row"><td colspan="4">Curativos</td></tr>
+                            <tr class="category-row"><td colspan="4">{{classe.itensAlquimicos.0.categorias.1.nome}}</td></tr>
                             <tr>
-                                <td class="item-name">Sal Revigorante</td>
-                                <td>Acorda <em>Inconsciente</em> (não com 0 de Saúde). Remove <em>Atordoado</em>, <em>Adormecido</em>.</td>
-                                <td class="reagent-col">1</td>
-                                <td class="cd-col">8</td>
-                            </tr>
-                            <tr>
-                                <td class="item-name">Bálsamo Estabilizador</td>
-                                <td>Criatura <em>Morrendo</em> fica estável e ganha 1 HP após 1 minuto.</td>
-                                <td class="reagent-col">2</td>
-                                <td class="cd-col">8</td>
+                                <td class="item-name">{{classe.itensAlquimicos.0.categorias.1.itens.0.nome}}</td>
+                                <td>{{classe.itensAlquimicos.0.categorias.1.itens.0.efeito}}</td>
+                                <td class="reagent-col">{{classe.itensAlquimicos.0.categorias.1.itens.0.reagentes}}</td>
+                                <td class="cd-col">{{classe.itensAlquimicos.0.categorias.1.itens.0.cd}}</td>
                             </tr>
                             <tr>
-                                <td class="item-name">Poção de Cura Menor</td>
-                                <td>Recupera 2d4+Int de Saúde.</td>
-                                <td class="reagent-col">2</td>
-                                <td class="cd-col">10</td>
+                                <td class="item-name">{{classe.itensAlquimicos.0.categorias.1.itens.1.nome}}</td>
+                                <td>{{classe.itensAlquimicos.0.categorias.1.itens.1.efeito}}</td>
+                                <td class="reagent-col">{{classe.itensAlquimicos.0.categorias.1.itens.1.reagentes}}</td>
+                                <td class="cd-col">{{classe.itensAlquimicos.0.categorias.1.itens.1.cd}}</td>
                             </tr>
                             <tr>
-                                <td class="item-name">Poção de Vigor</td>
-                                <td>Recupera 1d6 de Stamina.</td>
-                                <td class="reagent-col">2</td>
-                                <td class="cd-col">10</td>
+                                <td class="item-name">{{classe.itensAlquimicos.0.categorias.1.itens.2.nome}}</td>
+                                <td>{{classe.itensAlquimicos.0.categorias.1.itens.2.efeito}}</td>
+                                <td class="reagent-col">{{classe.itensAlquimicos.0.categorias.1.itens.2.reagentes}}</td>
+                                <td class="cd-col">{{classe.itensAlquimicos.0.categorias.1.itens.2.cd}}</td>
                             </tr>
                             <tr>
-                                <td class="item-name">Antídoto Simples</td>
-                                <td>Remove <em>Envenenamento</em> de venenos não-mágicos.</td>
-                                <td class="reagent-col">2</td>
-                                <td class="cd-col">10</td>
-                            </tr>
-                            <tr class="category-row"><td colspan="4">Utilidades</td></tr>
-                            <tr>
-                                <td class="item-name">Bastão de Luz</td>
-                                <td>Luz brilhante 6m + fraca 6m. Dura 4 horas.</td>
-                                <td class="reagent-col">1</td>
-                                <td class="cd-col">8</td>
+                                <td class="item-name">{{classe.itensAlquimicos.0.categorias.1.itens.3.nome}}</td>
+                                <td>{{classe.itensAlquimicos.0.categorias.1.itens.3.efeito}}</td>
+                                <td class="reagent-col">{{classe.itensAlquimicos.0.categorias.1.itens.3.reagentes}}</td>
+                                <td class="cd-col">{{classe.itensAlquimicos.0.categorias.1.itens.3.cd}}</td>
                             </tr>
                             <tr>
-                                <td class="item-name">Tinta Invisível</td>
-                                <td>Só aparece com calor ou reagente específico.</td>
-                                <td class="reagent-col">1</td>
-                                <td class="cd-col">8</td>
+                                <td class="item-name">{{classe.itensAlquimicos.0.categorias.1.itens.4.nome}}</td>
+                                <td>{{classe.itensAlquimicos.0.categorias.1.itens.4.efeito}}</td>
+                                <td class="reagent-col">{{classe.itensAlquimicos.0.categorias.1.itens.4.reagentes}}</td>
+                                <td class="cd-col">{{classe.itensAlquimicos.0.categorias.1.itens.4.cd}}</td>
+                            </tr>
+                            <tr class="category-row"><td colspan="4">{{classe.itensAlquimicos.0.categorias.2.nome}}</td></tr>
+                            <tr>
+                                <td class="item-name">{{classe.itensAlquimicos.0.categorias.2.itens.0.nome}}</td>
+                                <td>{{classe.itensAlquimicos.0.categorias.2.itens.0.efeito}}</td>
+                                <td class="reagent-col">{{classe.itensAlquimicos.0.categorias.2.itens.0.reagentes}}</td>
+                                <td class="cd-col">{{classe.itensAlquimicos.0.categorias.2.itens.0.cd}}</td>
                             </tr>
                             <tr>
-                                <td class="item-name">Pó Revelador</td>
-                                <td>Revela magia remanescente utilizada a menos de 1 hora.</td>
-                                <td class="reagent-col">1</td>
-                                <td class="cd-col">8</td>
+                                <td class="item-name">{{classe.itensAlquimicos.0.categorias.2.itens.1.nome}}</td>
+                                <td>{{classe.itensAlquimicos.0.categorias.2.itens.1.efeito}}</td>
+                                <td class="reagent-col">{{classe.itensAlquimicos.0.categorias.2.itens.1.reagentes}}</td>
+                                <td class="cd-col">{{classe.itensAlquimicos.0.categorias.2.itens.1.cd}}</td>
                             </tr>
                             <tr>
-                                <td class="item-name">Fumaça Densa</td>
-                                <td>Nuvem 4,5m raio. Obscurecimento total por 1 min.</td>
-                                <td class="reagent-col">2</td>
-                                <td class="cd-col">10</td>
+                                <td class="item-name">{{classe.itensAlquimicos.0.categorias.2.itens.2.nome}}</td>
+                                <td>{{classe.itensAlquimicos.0.categorias.2.itens.2.efeito}}</td>
+                                <td class="reagent-col">{{classe.itensAlquimicos.0.categorias.2.itens.2.reagentes}}</td>
+                                <td class="cd-col">{{classe.itensAlquimicos.0.categorias.2.itens.2.cd}}</td>
                             </tr>
                             <tr>
-                                <td class="item-name">Sangue Falso</td>
-                                <td>Pode se fingir de morto. Medicina CD 18 para perceber. Duração 1 hora.</td>
-                                <td class="reagent-col">2</td>
-                                <td class="cd-col">10</td>
+                                <td class="item-name">{{classe.itensAlquimicos.0.categorias.2.itens.3.nome}}</td>
+                                <td>{{classe.itensAlquimicos.0.categorias.2.itens.3.efeito}}</td>
+                                <td class="reagent-col">{{classe.itensAlquimicos.0.categorias.2.itens.3.reagentes}}</td>
+                                <td class="cd-col">{{classe.itensAlquimicos.0.categorias.2.itens.3.cd}}</td>
                             </tr>
                             <tr>
-                                <td class="item-name">Catalisador Térmico</td>
-                                <td>Mantém temperatura fixa em recipiente por 24h (0° até 100°).</td>
-                                <td class="reagent-col">1</td>
-                                <td class="cd-col">10</td>
+                                <td class="item-name">{{classe.itensAlquimicos.0.categorias.2.itens.4.nome}}</td>
+                                <td>{{classe.itensAlquimicos.0.categorias.2.itens.4.efeito}}</td>
+                                <td class="reagent-col">{{classe.itensAlquimicos.0.categorias.2.itens.4.reagentes}}</td>
+                                <td class="cd-col">{{classe.itensAlquimicos.0.categorias.2.itens.4.cd}}</td>
                             </tr>
-                            <tr class="category-row"><td colspan="4">Venenos</td></tr>
                             <tr>
-                                <td class="item-name">Veneno Fraco</td>
-                                <td>Arma: próximos 3 ataques, +1d4 Biológico. Fortitude ou <em>Enjoado</em> 1 min.</td>
-                                <td class="reagent-col">2</td>
-                                <td class="cd-col">10</td>
+                                <td class="item-name">{{classe.itensAlquimicos.0.categorias.2.itens.5.nome}}</td>
+                                <td>{{classe.itensAlquimicos.0.categorias.2.itens.5.efeito}}</td>
+                                <td class="reagent-col">{{classe.itensAlquimicos.0.categorias.2.itens.5.reagentes}}</td>
+                                <td class="cd-col">{{classe.itensAlquimicos.0.categorias.2.itens.5.cd}}</td>
+                            </tr>
+                            <tr class="category-row"><td colspan="4">{{classe.itensAlquimicos.0.categorias.3.nome}}</td></tr>
+                            <tr>
+                                <td class="item-name">{{classe.itensAlquimicos.0.categorias.3.itens.0.nome}}</td>
+                                <td>{{classe.itensAlquimicos.0.categorias.3.itens.0.efeito}}</td>
+                                <td class="reagent-col">{{classe.itensAlquimicos.0.categorias.3.itens.0.reagentes}}</td>
+                                <td class="cd-col">{{classe.itensAlquimicos.0.categorias.3.itens.0.cd}}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -881,8 +881,8 @@
                 <!-- NÍVEL 2 -->
                 <div class="alchemy-level">
                     <div class="alchemy-level-header">
-                        <h4>🧪 Nível 2</h4>
-                        <span class="cd-range">CD 12-14</span>
+                        <h4>{{classe.itensAlquimicos.1.nome}}</h4>
+                        <span class="cd-range">{{classe.itensAlquimicos.1.faixaCd}}</span>
                     </div>
                     <table class="alchemy-table">
                         <thead>
@@ -894,168 +894,168 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="category-row"><td colspan="4">Ofensivos</td></tr>
+                            <tr class="category-row"><td colspan="4">{{classe.itensAlquimicos.1.categorias.0.nome}}</td></tr>
                             <tr>
-                                <td class="item-name">Bomba de Concussão</td>
-                                <td>Arremesso 9m. 1d6 Contundente em 3m raio. Fortitude ou <em>Surdo</em> 1 min.</td>
-                                <td class="reagent-col">2</td>
-                                <td class="cd-col">12</td>
+                                <td class="item-name">{{classe.itensAlquimicos.1.categorias.0.itens.0.nome}}</td>
+                                <td>{{classe.itensAlquimicos.1.categorias.0.itens.0.efeito}}</td>
+                                <td class="reagent-col">{{classe.itensAlquimicos.1.categorias.0.itens.0.reagentes}}</td>
+                                <td class="cd-col">{{classe.itensAlquimicos.1.categorias.0.itens.0.cd}}</td>
                             </tr>
                             <tr>
-                                <td class="item-name">Granada Tóxica</td>
-                                <td>Arremesso 9m. Nuvem 3m por 2 rodadas. 1d8 Veneno/turno + Fortitude ou <em>Enjoado</em>.</td>
-                                <td class="reagent-col">3</td>
-                                <td class="cd-col">12</td>
+                                <td class="item-name">{{classe.itensAlquimicos.1.categorias.0.itens.1.nome}}</td>
+                                <td>{{classe.itensAlquimicos.1.categorias.0.itens.1.efeito}}</td>
+                                <td class="reagent-col">{{classe.itensAlquimicos.1.categorias.0.itens.1.reagentes}}</td>
+                                <td class="cd-col">{{classe.itensAlquimicos.1.categorias.0.itens.1.cd}}</td>
                             </tr>
                             <tr>
-                                <td class="item-name">Bola de Eletricidade</td>
-                                <td>Arremesso 9m. 2d6 Elétrico. Armadura metálica: +1d6 e <em>Atordoado</em> 1 rodada (Fort. nega).</td>
-                                <td class="reagent-col">3</td>
-                                <td class="cd-col">12</td>
+                                <td class="item-name">{{classe.itensAlquimicos.1.categorias.0.itens.2.nome}}</td>
+                                <td>{{classe.itensAlquimicos.1.categorias.0.itens.2.efeito}}</td>
+                                <td class="reagent-col">{{classe.itensAlquimicos.1.categorias.0.itens.2.reagentes}}</td>
+                                <td class="cd-col">{{classe.itensAlquimicos.1.categorias.0.itens.2.cd}}</td>
                             </tr>
                             <tr>
-                                <td class="item-name">Pó Explosivo</td>
-                                <td>Espalhar em 3m. Detona com fogo/impacto: 3d6 Fogo. Pode ser armadilha.</td>
-                                <td class="reagent-col">3</td>
-                                <td class="cd-col">14</td>
+                                <td class="item-name">{{classe.itensAlquimicos.1.categorias.0.itens.3.nome}}</td>
+                                <td>{{classe.itensAlquimicos.1.categorias.0.itens.3.efeito}}</td>
+                                <td class="reagent-col">{{classe.itensAlquimicos.1.categorias.0.itens.3.reagentes}}</td>
+                                <td class="cd-col">{{classe.itensAlquimicos.1.categorias.0.itens.3.cd}}</td>
                             </tr>
                             <tr>
-                                <td class="item-name">Tinta de Cegueira</td>
-                                <td>Arremesso 4,5m. Reflexo ou <em>Cego</em> 2 rodadas.</td>
-                                <td class="reagent-col">2</td>
-                                <td class="cd-col">12</td>
+                                <td class="item-name">{{classe.itensAlquimicos.1.categorias.0.itens.4.nome}}</td>
+                                <td>{{classe.itensAlquimicos.1.categorias.0.itens.4.efeito}}</td>
+                                <td class="reagent-col">{{classe.itensAlquimicos.1.categorias.0.itens.4.reagentes}}</td>
+                                <td class="cd-col">{{classe.itensAlquimicos.1.categorias.0.itens.4.cd}}</td>
                             </tr>
-                            <tr class="category-row"><td colspan="4">Curativos</td></tr>
+                            <tr class="category-row"><td colspan="4">{{classe.itensAlquimicos.1.categorias.1.nome}}</td></tr>
                             <tr>
-                                <td class="item-name">Poção de Cura Moderada</td>
-                                <td>Recupera 3d6+Int de Saúde.</td>
-                                <td class="reagent-col">4</td>
-                                <td class="cd-col">12</td>
-                            </tr>
-                            <tr>
-                                <td class="item-name">Emplastro de Regeneração</td>
-                                <td>Aplicar em ferimento. Recupera 1d4 Saúde/turno por 3 rodadas.</td>
-                                <td class="reagent-col">3</td>
-                                <td class="cd-col">12</td>
+                                <td class="item-name">{{classe.itensAlquimicos.1.categorias.1.itens.0.nome}}</td>
+                                <td>{{classe.itensAlquimicos.1.categorias.1.itens.0.efeito}}</td>
+                                <td class="reagent-col">{{classe.itensAlquimicos.1.categorias.1.itens.0.reagentes}}</td>
+                                <td class="cd-col">{{classe.itensAlquimicos.1.categorias.1.itens.0.cd}}</td>
                             </tr>
                             <tr>
-                                <td class="item-name">Antídoto Universal</td>
-                                <td>Remove <em>Envenenamento</em>, <em>Enjoado</em> ou doença não-mágica.</td>
-                                <td class="reagent-col">3</td>
-                                <td class="cd-col">14</td>
+                                <td class="item-name">{{classe.itensAlquimicos.1.categorias.1.itens.1.nome}}</td>
+                                <td>{{classe.itensAlquimicos.1.categorias.1.itens.1.efeito}}</td>
+                                <td class="reagent-col">{{classe.itensAlquimicos.1.categorias.1.itens.1.reagentes}}</td>
+                                <td class="cd-col">{{classe.itensAlquimicos.1.categorias.1.itens.1.cd}}</td>
                             </tr>
                             <tr>
-                                <td class="item-name">Tônico Anti-Exaustão</td>
-                                <td>Remove 1 nível de <em>Exaustão</em>. 1x por descanso longo por criatura.</td>
-                                <td class="reagent-col">3</td>
-                                <td class="cd-col">14</td>
-                            </tr>
-                            <tr class="category-row"><td colspan="4">Elixires e Óleos</td></tr>
-                            <tr>
-                                <td class="item-name">Elixir de Força</td>
-                                <td>+2 testes de Força como atributo principal, +2 dano corpo a corpo. Duração 10 min.</td>
-                                <td class="reagent-col">3</td>
-                                <td class="cd-col">12</td>
+                                <td class="item-name">{{classe.itensAlquimicos.1.categorias.1.itens.2.nome}}</td>
+                                <td>{{classe.itensAlquimicos.1.categorias.1.itens.2.efeito}}</td>
+                                <td class="reagent-col">{{classe.itensAlquimicos.1.categorias.1.itens.2.reagentes}}</td>
+                                <td class="cd-col">{{classe.itensAlquimicos.1.categorias.1.itens.2.cd}}</td>
                             </tr>
                             <tr>
-                                <td class="item-name">Elixir de Agilidade</td>
-                                <td>+2 testes de Destreza como atributo principal, +1,5m Movimento. Duração 10 min.</td>
-                                <td class="reagent-col">3</td>
-                                <td class="cd-col">12</td>
+                                <td class="item-name">{{classe.itensAlquimicos.1.categorias.1.itens.3.nome}}</td>
+                                <td>{{classe.itensAlquimicos.1.categorias.1.itens.3.efeito}}</td>
+                                <td class="reagent-col">{{classe.itensAlquimicos.1.categorias.1.itens.3.reagentes}}</td>
+                                <td class="cd-col">{{classe.itensAlquimicos.1.categorias.1.itens.3.cd}}</td>
+                            </tr>
+                            <tr class="category-row"><td colspan="4">{{classe.itensAlquimicos.1.categorias.2.nome}}</td></tr>
+                            <tr>
+                                <td class="item-name">{{classe.itensAlquimicos.1.categorias.2.itens.0.nome}}</td>
+                                <td>{{classe.itensAlquimicos.1.categorias.2.itens.0.efeito}}</td>
+                                <td class="reagent-col">{{classe.itensAlquimicos.1.categorias.2.itens.0.reagentes}}</td>
+                                <td class="cd-col">{{classe.itensAlquimicos.1.categorias.2.itens.0.cd}}</td>
                             </tr>
                             <tr>
-                                <td class="item-name">Elixir de Resistência</td>
-                                <td>+2 Fortitude, +5 Saúde temporária. Duração 10 min.</td>
-                                <td class="reagent-col">3</td>
-                                <td class="cd-col">12</td>
+                                <td class="item-name">{{classe.itensAlquimicos.1.categorias.2.itens.1.nome}}</td>
+                                <td>{{classe.itensAlquimicos.1.categorias.2.itens.1.efeito}}</td>
+                                <td class="reagent-col">{{classe.itensAlquimicos.1.categorias.2.itens.1.reagentes}}</td>
+                                <td class="cd-col">{{classe.itensAlquimicos.1.categorias.2.itens.1.cd}}</td>
                             </tr>
                             <tr>
-                                <td class="item-name">Óleo Flamejante</td>
-                                <td>Arma: próximos 3 ataques +1d6 Fogo. Duração 1 min.</td>
-                                <td class="reagent-col">2</td>
-                                <td class="cd-col">12</td>
+                                <td class="item-name">{{classe.itensAlquimicos.1.categorias.2.itens.2.nome}}</td>
+                                <td>{{classe.itensAlquimicos.1.categorias.2.itens.2.efeito}}</td>
+                                <td class="reagent-col">{{classe.itensAlquimicos.1.categorias.2.itens.2.reagentes}}</td>
+                                <td class="cd-col">{{classe.itensAlquimicos.1.categorias.2.itens.2.cd}}</td>
                             </tr>
                             <tr>
-                                <td class="item-name">Óleo Congelante</td>
-                                <td>Arma: próximos 3 ataques +1d6 Frio. Crítico = <em>Lento 1</em> (máx. 1x/alvo) por 1 rodada. Duração 1 Min.</td>
-                                <td class="reagent-col">2</td>
-                                <td class="cd-col">12</td>
+                                <td class="item-name">{{classe.itensAlquimicos.1.categorias.2.itens.3.nome}}</td>
+                                <td>{{classe.itensAlquimicos.1.categorias.2.itens.3.efeito}}</td>
+                                <td class="reagent-col">{{classe.itensAlquimicos.1.categorias.2.itens.3.reagentes}}</td>
+                                <td class="cd-col">{{classe.itensAlquimicos.1.categorias.2.itens.3.cd}}</td>
                             </tr>
                             <tr>
-                                <td class="item-name">Óleo Corrosivo</td>
-                                <td>Arma: próximos 3 ataques ignoram 5 Armadura. Duração 1 min.</td>
-                                <td class="reagent-col">2</td>
-                                <td class="cd-col">12</td>
+                                <td class="item-name">{{classe.itensAlquimicos.1.categorias.2.itens.4.nome}}</td>
+                                <td>{{classe.itensAlquimicos.1.categorias.2.itens.4.efeito}}</td>
+                                <td class="reagent-col">{{classe.itensAlquimicos.1.categorias.2.itens.4.reagentes}}</td>
+                                <td class="cd-col">{{classe.itensAlquimicos.1.categorias.2.itens.4.cd}}</td>
                             </tr>
                             <tr>
-                                <td class="item-name">Couro Líquido</td>
-                                <td>+2 Armadura (Ar) Natural. Duração 10 min.</td>
-                                <td class="reagent-col">3</td>
-                                <td class="cd-col">14</td>
-                            </tr>
-                            <tr class="category-row"><td colspan="4">Utilidades</td></tr>
-                            <tr>
-                                <td class="item-name">Detector de Magia</td>
-                                <td>Frasco brilha azul a menos de 3m de magia/éter. Dura 1 hora.</td>
-                                <td class="reagent-col">2</td>
-                                <td class="cd-col">12</td>
+                                <td class="item-name">{{classe.itensAlquimicos.1.categorias.2.itens.5.nome}}</td>
+                                <td>{{classe.itensAlquimicos.1.categorias.2.itens.5.efeito}}</td>
+                                <td class="reagent-col">{{classe.itensAlquimicos.1.categorias.2.itens.5.reagentes}}</td>
+                                <td class="cd-col">{{classe.itensAlquimicos.1.categorias.2.itens.5.cd}}</td>
                             </tr>
                             <tr>
-                                <td class="item-name">Cola Universal</td>
-                                <td>Gruda superfícies (Força CD 20 separa). Pode <em>Enraizar</em> (Fort. nega).</td>
-                                <td class="reagent-col">2</td>
-                                <td class="cd-col">12</td>
+                                <td class="item-name">{{classe.itensAlquimicos.1.categorias.2.itens.6.nome}}</td>
+                                <td>{{classe.itensAlquimicos.1.categorias.2.itens.6.efeito}}</td>
+                                <td class="reagent-col">{{classe.itensAlquimicos.1.categorias.2.itens.6.reagentes}}</td>
+                                <td class="cd-col">{{classe.itensAlquimicos.1.categorias.2.itens.6.cd}}</td>
+                            </tr>
+                            <tr class="category-row"><td colspan="4">{{classe.itensAlquimicos.1.categorias.3.nome}}</td></tr>
+                            <tr>
+                                <td class="item-name">{{classe.itensAlquimicos.1.categorias.3.itens.0.nome}}</td>
+                                <td>{{classe.itensAlquimicos.1.categorias.3.itens.0.efeito}}</td>
+                                <td class="reagent-col">{{classe.itensAlquimicos.1.categorias.3.itens.0.reagentes}}</td>
+                                <td class="cd-col">{{classe.itensAlquimicos.1.categorias.3.itens.0.cd}}</td>
                             </tr>
                             <tr>
-                                <td class="item-name">Solvente Universal</td>
-                                <td>Dissolve cola, resina, adesivo. Remove <em>Enraizado</em> por cola.</td>
-                                <td class="reagent-col">2</td>
-                                <td class="cd-col">12</td>
+                                <td class="item-name">{{classe.itensAlquimicos.1.categorias.3.itens.1.nome}}</td>
+                                <td>{{classe.itensAlquimicos.1.categorias.3.itens.1.efeito}}</td>
+                                <td class="reagent-col">{{classe.itensAlquimicos.1.categorias.3.itens.1.reagentes}}</td>
+                                <td class="cd-col">{{classe.itensAlquimicos.1.categorias.3.itens.1.cd}}</td>
                             </tr>
                             <tr>
-                                <td class="item-name">Marcador Rastreável</td>
-                                <td>Líquido invisível. Você detecta a até 100m por 24h.</td>
-                                <td class="reagent-col">2</td>
-                                <td class="cd-col">12</td>
+                                <td class="item-name">{{classe.itensAlquimicos.1.categorias.3.itens.2.nome}}</td>
+                                <td>{{classe.itensAlquimicos.1.categorias.3.itens.2.efeito}}</td>
+                                <td class="reagent-col">{{classe.itensAlquimicos.1.categorias.3.itens.2.reagentes}}</td>
+                                <td class="cd-col">{{classe.itensAlquimicos.1.categorias.3.itens.2.cd}}</td>
                             </tr>
                             <tr>
-                                <td class="item-name">Água-Régia</td>
-                                <td>Dissolve metal não-mágico. Abre qualquer fechadura mundana em 3 min.</td>
-                                <td class="reagent-col">3</td>
-                                <td class="cd-col">14</td>
+                                <td class="item-name">{{classe.itensAlquimicos.1.categorias.3.itens.3.nome}}</td>
+                                <td>{{classe.itensAlquimicos.1.categorias.3.itens.3.efeito}}</td>
+                                <td class="reagent-col">{{classe.itensAlquimicos.1.categorias.3.itens.3.reagentes}}</td>
+                                <td class="cd-col">{{classe.itensAlquimicos.1.categorias.3.itens.3.cd}}</td>
                             </tr>
                             <tr>
-                                <td class="item-name">Corda Líquida</td>
-                                <td>Enrijece em 6 seg. Vira corda 9m (200kg). Dura 1 hora.</td>
-                                <td class="reagent-col">2</td>
-                                <td class="cd-col">12</td>
+                                <td class="item-name">{{classe.itensAlquimicos.1.categorias.3.itens.4.nome}}</td>
+                                <td>{{classe.itensAlquimicos.1.categorias.3.itens.4.efeito}}</td>
+                                <td class="reagent-col">{{classe.itensAlquimicos.1.categorias.3.itens.4.reagentes}}</td>
+                                <td class="cd-col">{{classe.itensAlquimicos.1.categorias.3.itens.4.cd}}</td>
                             </tr>
                             <tr>
-                                <td class="item-name">Espuma Seladora</td>
-                                <td>Sela buracos até 50cm, cria cobertura improvisada.</td>
-                                <td class="reagent-col">2</td>
-                                <td class="cd-col">12</td>
-                            </tr>
-                            <tr class="category-row"><td colspan="4">Venenos</td></tr>
-                            <tr>
-                                <td class="item-name">Veneno Padrão</td>
-                                <td>3 ataques. +1d6 Biológico. Fortitude ou <em>Envenenamento</em> 1 min. Duração 1 min.</td>
-                                <td class="reagent-col">3</td>
-                                <td class="cd-col">12</td>
+                                <td class="item-name">{{classe.itensAlquimicos.1.categorias.3.itens.5.nome}}</td>
+                                <td>{{classe.itensAlquimicos.1.categorias.3.itens.5.efeito}}</td>
+                                <td class="reagent-col">{{classe.itensAlquimicos.1.categorias.3.itens.5.reagentes}}</td>
+                                <td class="cd-col">{{classe.itensAlquimicos.1.categorias.3.itens.5.cd}}</td>
                             </tr>
                             <tr>
-                                <td class="item-name">Sonífero</td>
-                                <td>Ingerido/inalado. Vontade ou <em>Adormecido</em> 1 hora. Dano acorda.</td>
-                                <td class="reagent-col">3</td>
-                                <td class="cd-col">14</td>
+                                <td class="item-name">{{classe.itensAlquimicos.1.categorias.3.itens.6.nome}}</td>
+                                <td>{{classe.itensAlquimicos.1.categorias.3.itens.6.efeito}}</td>
+                                <td class="reagent-col">{{classe.itensAlquimicos.1.categorias.3.itens.6.reagentes}}</td>
+                                <td class="cd-col">{{classe.itensAlquimicos.1.categorias.3.itens.6.cd}}</td>
+                            </tr>
+                            <tr class="category-row"><td colspan="4">{{classe.itensAlquimicos.1.categorias.4.nome}}</td></tr>
+                            <tr>
+                                <td class="item-name">{{classe.itensAlquimicos.1.categorias.4.itens.0.nome}}</td>
+                                <td>{{classe.itensAlquimicos.1.categorias.4.itens.0.efeito}}</td>
+                                <td class="reagent-col">{{classe.itensAlquimicos.1.categorias.4.itens.0.reagentes}}</td>
+                                <td class="cd-col">{{classe.itensAlquimicos.1.categorias.4.itens.0.cd}}</td>
+                            </tr>
+                            <tr>
+                                <td class="item-name">{{classe.itensAlquimicos.1.categorias.4.itens.1.nome}}</td>
+                                <td>{{classe.itensAlquimicos.1.categorias.4.itens.1.efeito}}</td>
+                                <td class="reagent-col">{{classe.itensAlquimicos.1.categorias.4.itens.1.reagentes}}</td>
+                                <td class="cd-col">{{classe.itensAlquimicos.1.categorias.4.itens.1.cd}}</td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
 
                     <div class="alchemy-level-header">
-                        <h4>🧪 Nível 3</h4>
-                        <span class="cd-range">CD 16-18</span>
+                        <h4>{{classe.itensAlquimicos.2.nome}}</h4>
+                        <span class="cd-range">{{classe.itensAlquimicos.2.faixaCd}}</span>
                     </div>
                     <table class="alchemy-table">
                         <thead>
@@ -1067,172 +1067,172 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="category-row"><td colspan="4">Ofensivos</td></tr>
+                            <tr class="category-row"><td colspan="4">{{classe.itensAlquimicos.2.categorias.0.nome}}</td></tr>
                             <tr>
-                                <td class="item-name">Napalm Alquímico</td>
-                                <td>Arremesso 9m. 3d6 Fogo em área 3m, Reflexo para metade. Queima <strong>2d6/turno por 3 rodadas</strong>. Água não apaga.</td>
-                                <td class="reagent-col">4</td>
-                                <td class="cd-col">16</td>
+                                <td class="item-name">{{classe.itensAlquimicos.2.categorias.0.itens.0.nome}}</td>
+                                <td>{{classe.itensAlquimicos.2.categorias.0.itens.0.efeito}}</td>
+                                <td class="reagent-col">{{classe.itensAlquimicos.2.categorias.0.itens.0.reagentes}}</td>
+                                <td class="cd-col">{{classe.itensAlquimicos.2.categorias.0.itens.0.cd}}</td>
                             </tr>
                             <tr>
-                                <td class="item-name">Bomba de Fragmentação</td>
-                                <td>Arremesso 9m. 4d6 Perfurante em 4,5m raio. Reflexo para metade.</td>
-                                <td class="reagent-col">4</td>
-                                <td class="cd-col">16</td>
+                                <td class="item-name">{{classe.itensAlquimicos.2.categorias.0.itens.1.nome}}</td>
+                                <td>{{classe.itensAlquimicos.2.categorias.0.itens.1.efeito}}</td>
+                                <td class="reagent-col">{{classe.itensAlquimicos.2.categorias.0.itens.1.reagentes}}</td>
+                                <td class="cd-col">{{classe.itensAlquimicos.2.categorias.0.itens.1.cd}}</td>
                             </tr>
                             <tr>
-                                <td class="item-name">Gás Necrótico</td>
-                                <td>Nuvem 6m raio. 2d8 Necrótico/turno. Cura que criaturas na área receberiam é reduzida pela metade. Dura 3 rodadas.</td>
-                                <td class="reagent-col">5</td>
-                                <td class="cd-col">16</td>
+                                <td class="item-name">{{classe.itensAlquimicos.2.categorias.0.itens.2.nome}}</td>
+                                <td>{{classe.itensAlquimicos.2.categorias.0.itens.2.efeito}}</td>
+                                <td class="reagent-col">{{classe.itensAlquimicos.2.categorias.0.itens.2.reagentes}}</td>
+                                <td class="cd-col">{{classe.itensAlquimicos.2.categorias.0.itens.2.cd}}</td>
                             </tr>
                             <tr>
-                                <td class="item-name">Bomba de Vácuo</td>
-                                <td>Arremesso 9m. 2d10 Força em 3m. Criaturas são puxadas 3m para o centro. Fortitude nega puxão.</td>
-                                <td class="reagent-col">5</td>
-                                <td class="cd-col">18</td>
+                                <td class="item-name">{{classe.itensAlquimicos.2.categorias.0.itens.3.nome}}</td>
+                                <td>{{classe.itensAlquimicos.2.categorias.0.itens.3.efeito}}</td>
+                                <td class="reagent-col">{{classe.itensAlquimicos.2.categorias.0.itens.3.reagentes}}</td>
+                                <td class="cd-col">{{classe.itensAlquimicos.2.categorias.0.itens.3.cd}}</td>
                             </tr>
                             <tr>
-                                <td class="item-name">Carga de Implosão</td>
-                                <td>Colocar em estrutura/objeto. Destrói até 3m³ de material não-mágico. 6d6 em criaturas adjacentes.</td>
-                                <td class="reagent-col">6</td>
-                                <td class="cd-col">18</td>
+                                <td class="item-name">{{classe.itensAlquimicos.2.categorias.0.itens.4.nome}}</td>
+                                <td>{{classe.itensAlquimicos.2.categorias.0.itens.4.efeito}}</td>
+                                <td class="reagent-col">{{classe.itensAlquimicos.2.categorias.0.itens.4.reagentes}}</td>
+                                <td class="cd-col">{{classe.itensAlquimicos.2.categorias.0.itens.4.cd}}</td>
                             </tr>
                             <tr>
-                                <td class="item-name">Frasco do Raio</td>
-                                <td>Arremesso 9m. 3d8 Elétrico. Salta para até 2 alvos adicionais em 3m (2d8 cada).</td>
-                                <td class="reagent-col">4</td>
-                                <td class="cd-col">16</td>
+                                <td class="item-name">{{classe.itensAlquimicos.2.categorias.0.itens.5.nome}}</td>
+                                <td>{{classe.itensAlquimicos.2.categorias.0.itens.5.efeito}}</td>
+                                <td class="reagent-col">{{classe.itensAlquimicos.2.categorias.0.itens.5.reagentes}}</td>
+                                <td class="cd-col">{{classe.itensAlquimicos.2.categorias.0.itens.5.cd}}</td>
                             </tr>
-                            <tr class="category-row"><td colspan="4">Curativo</td></tr>
+                            <tr class="category-row"><td colspan="4">{{classe.itensAlquimicos.2.categorias.1.nome}}</td></tr>
                             <tr>
-                                <td class="item-name">Poção de Cura Maior</td>
-                                <td>Recupera <strong>4d8+Int</strong> de Saúde.</td>
-                                <td class="reagent-col">6</td>
-                                <td class="cd-col">16</td>
-                            </tr>
-                            <tr>
-                                <td class="item-name">Elixir de Restauração</td>
-                                <td>Remove <em>Cego</em>, <em>Surdo</em>, <em>Paralisado</em> ou <em>Atordoado</em>.</td>
-                                <td class="reagent-col">5</td>
-                                <td class="cd-col">16</td>
+                                <td class="item-name">{{classe.itensAlquimicos.2.categorias.1.itens.0.nome}}</td>
+                                <td>{{classe.itensAlquimicos.2.categorias.1.itens.0.efeito}}</td>
+                                <td class="reagent-col">{{classe.itensAlquimicos.2.categorias.1.itens.0.reagentes}}</td>
+                                <td class="cd-col">{{classe.itensAlquimicos.2.categorias.1.itens.0.cd}}</td>
                             </tr>
                             <tr>
-                                <td class="item-name">Adrenalina de Campo</td>
-                                <td>Criatura inconsciente acorda com metade da Saúde máxima instantaneamente. Recebe Exaustão 1 após 1 hora.</td>
-                                <td class="reagent-col">4</td>
-                                <td class="cd-col">16</td>
+                                <td class="item-name">{{classe.itensAlquimicos.2.categorias.1.itens.1.nome}}</td>
+                                <td>{{classe.itensAlquimicos.2.categorias.1.itens.1.efeito}}</td>
+                                <td class="reagent-col">{{classe.itensAlquimicos.2.categorias.1.itens.1.reagentes}}</td>
+                                <td class="cd-col">{{classe.itensAlquimicos.2.categorias.1.itens.1.cd}}</td>
                             </tr>
                             <tr>
-                                <td class="item-name">Poção de Vigor Maior</td>
-                                <td>Recupera 2d6 de Stamina.</td>
-                                <td class="reagent-col">6</td>
-                                <td class="cd-col">18</td>
-                            </tr>
-                            <tr class="category-row"><td colspan="4">Elixir e Óleo (CD 16-18)</td></tr>
-                            <tr>
-                                <td class="item-name">Elixir do Crescimento</td>
-                                <td>+1 categoria de tamanho. +1d4 dano, +2 For, -2 Des, +1,5m alcance. Duração 1 min.</td>
-                                <td class="reagent-col">5</td>
-                                <td class="cd-col">16</td>
+                                <td class="item-name">{{classe.itensAlquimicos.2.categorias.1.itens.2.nome}}</td>
+                                <td>{{classe.itensAlquimicos.2.categorias.1.itens.2.efeito}}</td>
+                                <td class="reagent-col">{{classe.itensAlquimicos.2.categorias.1.itens.2.reagentes}}</td>
+                                <td class="cd-col">{{classe.itensAlquimicos.2.categorias.1.itens.2.cd}}</td>
                             </tr>
                             <tr>
-                                <td class="item-name">Elixir do Encolhimento</td>
-                                <td>-1 categoria de tamanho. +2 Furtividade, +2 Des, -2 For. Passa em frestas. Duração 1 min.</td>
-                                <td class="reagent-col">5</td>
-                                <td class="cd-col">16</td>
+                                <td class="item-name">{{classe.itensAlquimicos.2.categorias.1.itens.3.nome}}</td>
+                                <td>{{classe.itensAlquimicos.2.categorias.1.itens.3.efeito}}</td>
+                                <td class="reagent-col">{{classe.itensAlquimicos.2.categorias.1.itens.3.reagentes}}</td>
+                                <td class="cd-col">{{classe.itensAlquimicos.2.categorias.1.itens.3.cd}}</td>
+                            </tr>
+                            <tr class="category-row"><td colspan="4">{{classe.itensAlquimicos.2.categorias.2.nome}}</td></tr>
+                            <tr>
+                                <td class="item-name">{{classe.itensAlquimicos.2.categorias.2.itens.0.nome}}</td>
+                                <td>{{classe.itensAlquimicos.2.categorias.2.itens.0.efeito}}</td>
+                                <td class="reagent-col">{{classe.itensAlquimicos.2.categorias.2.itens.0.reagentes}}</td>
+                                <td class="cd-col">{{classe.itensAlquimicos.2.categorias.2.itens.0.cd}}</td>
                             </tr>
                             <tr>
-                                <td class="item-name">Extrato de Velocidade</td>
-                                <td>+1 Ação por turno. Duração 3 turnos. Exaustão 1 após efeito.</td>
-                                <td class="reagent-col">6</td>
-                                <td class="cd-col">18</td>
+                                <td class="item-name">{{classe.itensAlquimicos.2.categorias.2.itens.1.nome}}</td>
+                                <td>{{classe.itensAlquimicos.2.categorias.2.itens.1.efeito}}</td>
+                                <td class="reagent-col">{{classe.itensAlquimicos.2.categorias.2.itens.1.reagentes}}</td>
+                                <td class="cd-col">{{classe.itensAlquimicos.2.categorias.2.itens.1.cd}}</td>
                             </tr>
                             <tr>
-                                <td class="item-name">Mutagênico Menor</td>
-                                <td>Escolha: +4 For/-2 Int OU +4 Des/-2 For OU +4 Con/-2 Sab. Duração 10 min.</td>
-                                <td class="reagent-col">5</td>
-                                <td class="cd-col">16</td>
+                                <td class="item-name">{{classe.itensAlquimicos.2.categorias.2.itens.2.nome}}</td>
+                                <td>{{classe.itensAlquimicos.2.categorias.2.itens.2.efeito}}</td>
+                                <td class="reagent-col">{{classe.itensAlquimicos.2.categorias.2.itens.2.reagentes}}</td>
+                                <td class="cd-col">{{classe.itensAlquimicos.2.categorias.2.itens.2.cd}}</td>
                             </tr>
                             <tr>
-                                <td class="item-name">Elixir da Visão Verdadeira</td>
-                                <td>Vê através de ilusões, escuridão mágica, invisibilidade em 9m. Duração 1 min.</td>
-                                <td class="reagent-col">5</td>
-                                <td class="cd-col">18</td>
+                                <td class="item-name">{{classe.itensAlquimicos.2.categorias.2.itens.3.nome}}</td>
+                                <td>{{classe.itensAlquimicos.2.categorias.2.itens.3.efeito}}</td>
+                                <td class="reagent-col">{{classe.itensAlquimicos.2.categorias.2.itens.3.reagentes}}</td>
+                                <td class="cd-col">{{classe.itensAlquimicos.2.categorias.2.itens.3.cd}}</td>
                             </tr>
                             <tr>
-                                <td class="item-name">Elixir Aranha</td>
-                                <td>Escala superfícies como aranha. Mãos livres não necessárias.</td>
-                                <td class="reagent-col">4</td>
-                                <td class="cd-col">16</td>
+                                <td class="item-name">{{classe.itensAlquimicos.2.categorias.2.itens.4.nome}}</td>
+                                <td>{{classe.itensAlquimicos.2.categorias.2.itens.4.efeito}}</td>
+                                <td class="reagent-col">{{classe.itensAlquimicos.2.categorias.2.itens.4.reagentes}}</td>
+                                <td class="cd-col">{{classe.itensAlquimicos.2.categorias.2.itens.4.cd}}</td>
                             </tr>
                             <tr>
-                                <td class="item-name">Óleo do Caçador</td>
-                                <td>Arma: +2 Atacar e +2d6 dano contra uma criatura. Duração 1 hora.</td>
-                                <td class="reagent-col">4</td>
-                                <td class="cd-col">16</td>
-                            </tr>
-                            <tr class="category-row"><td colspan="4">Utilidades</td></tr>
-                            <tr>
-                                <td class="item-name">Elixir das Guelras</td>
-                                <td>Respira debaixo d'água. Duração 30 min.</td>
-                                <td class="reagent-col">4</td>
-                                <td class="cd-col">16</td>
+                                <td class="item-name">{{classe.itensAlquimicos.2.categorias.2.itens.5.nome}}</td>
+                                <td>{{classe.itensAlquimicos.2.categorias.2.itens.5.efeito}}</td>
+                                <td class="reagent-col">{{classe.itensAlquimicos.2.categorias.2.itens.5.reagentes}}</td>
+                                <td class="cd-col">{{classe.itensAlquimicos.2.categorias.2.itens.5.cd}}</td>
                             </tr>
                             <tr>
-                                <td class="item-name">Tintura Fantasma</td>
-                                <td>Translúcido, recebe metade de todo dano. +4 Furtividade. Atacar cancela. Duração 1 min.</td>
-                                <td class="reagent-col">4</td>
-                                <td class="cd-col">16</td>
+                                <td class="item-name">{{classe.itensAlquimicos.2.categorias.2.itens.6.nome}}</td>
+                                <td>{{classe.itensAlquimicos.2.categorias.2.itens.6.efeito}}</td>
+                                <td class="reagent-col">{{classe.itensAlquimicos.2.categorias.2.itens.6.reagentes}}</td>
+                                <td class="cd-col">{{classe.itensAlquimicos.2.categorias.2.itens.6.cd}}</td>
+                            </tr>
+                            <tr class="category-row"><td colspan="4">{{classe.itensAlquimicos.2.categorias.3.nome}}</td></tr>
+                            <tr>
+                                <td class="item-name">{{classe.itensAlquimicos.2.categorias.3.itens.0.nome}}</td>
+                                <td>{{classe.itensAlquimicos.2.categorias.3.itens.0.efeito}}</td>
+                                <td class="reagent-col">{{classe.itensAlquimicos.2.categorias.3.itens.0.reagentes}}</td>
+                                <td class="cd-col">{{classe.itensAlquimicos.2.categorias.3.itens.0.cd}}</td>
                             </tr>
                             <tr>
-                                <td class="item-name">Bomba de Éter</td>
-                                <td>Arremesso 9m. Drena 1d6 Éter em 3m. Você recupera metade.</td>
-                                <td class="reagent-col">5</td>
-                                <td class="cd-col">18</td>
+                                <td class="item-name">{{classe.itensAlquimicos.2.categorias.3.itens.1.nome}}</td>
+                                <td>{{classe.itensAlquimicos.2.categorias.3.itens.1.efeito}}</td>
+                                <td class="reagent-col">{{classe.itensAlquimicos.2.categorias.3.itens.1.reagentes}}</td>
+                                <td class="cd-col">{{classe.itensAlquimicos.2.categorias.3.itens.1.cd}}</td>
                             </tr>
                             <tr>
-                                <td class="item-name">Elixir das Línguas</td>
-                                <td>Entende e fala qualquer idioma. Duração 1 hora.</td>
-                                <td class="reagent-col">4</td>
-                                <td class="cd-col">16</td>
+                                <td class="item-name">{{classe.itensAlquimicos.2.categorias.3.itens.2.nome}}</td>
+                                <td>{{classe.itensAlquimicos.2.categorias.3.itens.2.efeito}}</td>
+                                <td class="reagent-col">{{classe.itensAlquimicos.2.categorias.3.itens.2.reagentes}}</td>
+                                <td class="cd-col">{{classe.itensAlquimicos.2.categorias.3.itens.2.cd}}</td>
                             </tr>
                             <tr>
-                                <td class="item-name">Ácido Dimensional</td>
-                                <td>Corrói barreiras mágicas, campos de força. Anula 1 efeito de barreira.</td>
-                                <td class="reagent-col">6</td>
-                                <td class="cd-col">18</td>
-                            </tr>
-                            <tr class="category-row"><td colspan="4">Venenos</td></tr>
-                            <tr>
-                                <td class="item-name">Veneno Paralisante</td>
-                                <td>1 ataque. Fortitude ou <em>Paralisado</em> 2 rodadas. Duração 1 min.</td>
-                                <td class="reagent-col">5</td>
-                                <td class="cd-col">16</td>
+                                <td class="item-name">{{classe.itensAlquimicos.2.categorias.3.itens.3.nome}}</td>
+                                <td>{{classe.itensAlquimicos.2.categorias.3.itens.3.efeito}}</td>
+                                <td class="reagent-col">{{classe.itensAlquimicos.2.categorias.3.itens.3.reagentes}}</td>
+                                <td class="cd-col">{{classe.itensAlquimicos.2.categorias.3.itens.3.cd}}</td>
                             </tr>
                             <tr>
-                                <td class="item-name">Soro da Verdade</td>
-                                <td>Ingerido. Vontade ou não pode mentir por 10 min.</td>
-                                <td class="reagent-col">5</td>
-                                <td class="cd-col">16</td>
+                                <td class="item-name">{{classe.itensAlquimicos.2.categorias.3.itens.4.nome}}</td>
+                                <td>{{classe.itensAlquimicos.2.categorias.3.itens.4.efeito}}</td>
+                                <td class="reagent-col">{{classe.itensAlquimicos.2.categorias.3.itens.4.reagentes}}</td>
+                                <td class="cd-col">{{classe.itensAlquimicos.2.categorias.3.itens.4.cd}}</td>
+                            </tr>
+                            <tr class="category-row"><td colspan="4">{{classe.itensAlquimicos.2.categorias.4.nome}}</td></tr>
+                            <tr>
+                                <td class="item-name">{{classe.itensAlquimicos.2.categorias.4.itens.0.nome}}</td>
+                                <td>{{classe.itensAlquimicos.2.categorias.4.itens.0.efeito}}</td>
+                                <td class="reagent-col">{{classe.itensAlquimicos.2.categorias.4.itens.0.reagentes}}</td>
+                                <td class="cd-col">{{classe.itensAlquimicos.2.categorias.4.itens.0.cd}}</td>
                             </tr>
                             <tr>
-                                <td class="item-name">Veneno Hemorrágico</td>
-                                <td>3 ataques. +2d6 Biológico. Alvo sangra 1d6/turno por 3 rodadas (Medicina estanca).</td>
-                                <td class="reagent-col">5</td>
-                                <td class="cd-col">16</td>
+                                <td class="item-name">{{classe.itensAlquimicos.2.categorias.4.itens.1.nome}}</td>
+                                <td>{{classe.itensAlquimicos.2.categorias.4.itens.1.efeito}}</td>
+                                <td class="reagent-col">{{classe.itensAlquimicos.2.categorias.4.itens.1.reagentes}}</td>
+                                <td class="cd-col">{{classe.itensAlquimicos.2.categorias.4.itens.1.cd}}</td>
                             </tr>
                             <tr>
-                                <td class="item-name">Toxina Mental</td>
-                                <td>1 ataque. Vontade ou <em>Confuso</em> por 1 minuto.</td>
-                                <td class="reagent-col">5</td>
-                                <td class="cd-col">18</td>
+                                <td class="item-name">{{classe.itensAlquimicos.2.categorias.4.itens.2.nome}}</td>
+                                <td>{{classe.itensAlquimicos.2.categorias.4.itens.2.efeito}}</td>
+                                <td class="reagent-col">{{classe.itensAlquimicos.2.categorias.4.itens.2.reagentes}}</td>
+                                <td class="cd-col">{{classe.itensAlquimicos.2.categorias.4.itens.2.cd}}</td>
+                            </tr>
+                            <tr>
+                                <td class="item-name">{{classe.itensAlquimicos.2.categorias.4.itens.3.nome}}</td>
+                                <td>{{classe.itensAlquimicos.2.categorias.4.itens.3.efeito}}</td>
+                                <td class="reagent-col">{{classe.itensAlquimicos.2.categorias.4.itens.3.reagentes}}</td>
+                                <td class="cd-col">{{classe.itensAlquimicos.2.categorias.4.itens.3.cd}}</td>
                             </tr>
                         </tbody>
                     </table>
                     <div class="alchemy-level-header">
-                        <h4>🧪 Nível 4</h4>
-                        <span class="cd-range">CD 20-22</span>
+                        <h4>{{classe.itensAlquimicos.3.nome}}</h4>
+                        <span class="cd-range">{{classe.itensAlquimicos.3.faixaCd}}</span>
                     </div>
                     <table class="alchemy-table">
                         <thead>
@@ -1244,154 +1244,154 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="category-row"><td colspan="4">Ofensivos</td></tr>
+                            <tr class="category-row"><td colspan="4">{{classe.itensAlquimicos.3.categorias.0.nome}}</td></tr>
                             <tr>
-                                <td class="item-name">Bomba de Plasma</td>
-                                <td>Arremesso 12m. 6d6 Fogo + 6d6 Elétrico em 6m raio. Reflexo para metade. Ignora Resistência a Fogo.</td>
-                                <td class="reagent-col">8</td>
-                                <td class="cd-col">20</td>
+                                <td class="item-name">{{classe.itensAlquimicos.3.categorias.0.itens.0.nome}}</td>
+                                <td>{{classe.itensAlquimicos.3.categorias.0.itens.0.efeito}}</td>
+                                <td class="reagent-col">{{classe.itensAlquimicos.3.categorias.0.itens.0.reagentes}}</td>
+                                <td class="cd-col">{{classe.itensAlquimicos.3.categorias.0.itens.0.cd}}</td>
                             </tr>
                             <tr>
-                                <td class="item-name">Praga Alquímica</td>
-                                <td>Arremesso 9m. Fortitude ou 3d8 Biológico em 4,5m. Criaturas afetadas <strong>espalham</strong> a praga (1d8/turno) ao tocar outros por 1 min.</td>
-                                <td class="reagent-col">8</td>
-                                <td class="cd-col">20</td>
+                                <td class="item-name">{{classe.itensAlquimicos.3.categorias.0.itens.1.nome}}</td>
+                                <td>{{classe.itensAlquimicos.3.categorias.0.itens.1.efeito}}</td>
+                                <td class="reagent-col">{{classe.itensAlquimicos.3.categorias.0.itens.1.reagentes}}</td>
+                                <td class="cd-col">{{classe.itensAlquimicos.3.categorias.0.itens.1.cd}}</td>
                             </tr>
                             <tr>
-                                <td class="item-name">Bomba Gravitacional</td>
-                                <td>Arremesso 9m. Cria zona de gravidade intensa 6m raio por 3 rodadas. Criaturas: <strong>Movimento reduzido pela metade</strong>, -4 Reflexo, voar impossível, 2d6 Contundente/turno.</td>
-                                <td class="reagent-col">10</td>
-                                <td class="cd-col">22</td>
+                                <td class="item-name">{{classe.itensAlquimicos.3.categorias.0.itens.2.nome}}</td>
+                                <td>{{classe.itensAlquimicos.3.categorias.0.itens.2.efeito}}</td>
+                                <td class="reagent-col">{{classe.itensAlquimicos.3.categorias.0.itens.2.reagentes}}</td>
+                                <td class="cd-col">{{classe.itensAlquimicos.3.categorias.0.itens.2.cd}}</td>
                             </tr>
                             <tr>
-                                <td class="item-name">Fogo Negro</td>
-                                <td>Arremesso 9m. 4d10 Fogo + 4d10 Necrótico em 3m. Reflexo para metade. Chamas negras. Cura é impossível na área por 1 min.</td>
-                                <td class="reagent-col">10</td>
-                                <td class="cd-col">22</td>
+                                <td class="item-name">{{classe.itensAlquimicos.3.categorias.0.itens.3.nome}}</td>
+                                <td>{{classe.itensAlquimicos.3.categorias.0.itens.3.efeito}}</td>
+                                <td class="reagent-col">{{classe.itensAlquimicos.3.categorias.0.itens.3.reagentes}}</td>
+                                <td class="cd-col">{{classe.itensAlquimicos.3.categorias.0.itens.3.cd}}</td>
                             </tr>
                             <tr>
-                                <td class="item-name">Dissolução Total</td>
-                                <td>Aplicar em criatura/objeto. 8d6 Biológico. Ignora toda Armadura. Desintegra matéria morta.</td>
-                                <td class="reagent-col">8</td>
-                                <td class="cd-col">20</td>
+                                <td class="item-name">{{classe.itensAlquimicos.3.categorias.0.itens.4.nome}}</td>
+                                <td>{{classe.itensAlquimicos.3.categorias.0.itens.4.efeito}}</td>
+                                <td class="reagent-col">{{classe.itensAlquimicos.3.categorias.0.itens.4.reagentes}}</td>
+                                <td class="cd-col">{{classe.itensAlquimicos.3.categorias.0.itens.4.cd}}</td>
                             </tr>
-                            <tr class="category-row"><td colspan="4">Curativos</td></tr>
+                            <tr class="category-row"><td colspan="4">{{classe.itensAlquimicos.3.categorias.1.nome}}</td></tr>
                             <tr>
-                                <td class="item-name">Poção de Cura Suprema</td>
-                                <td>Recupera 6d8+Int de Saúde + remove 1 condição à escolha.</td>
-                                <td class="reagent-col">10</td>
-                                <td class="cd-col">20</td>
-                            </tr>
-                            <tr>
-                                <td class="item-name">Poção de Vigor Suprema</td>
-                                <td>Recupera 3d8 de Stamina + remove todas as condições (Incluindo Mágicas).</td>
-                                <td class="reagent-col">10</td>
-                                <td class="cd-col">20</td>
+                                <td class="item-name">{{classe.itensAlquimicos.3.categorias.1.itens.0.nome}}</td>
+                                <td>{{classe.itensAlquimicos.3.categorias.1.itens.0.efeito}}</td>
+                                <td class="reagent-col">{{classe.itensAlquimicos.3.categorias.1.itens.0.reagentes}}</td>
+                                <td class="cd-col">{{classe.itensAlquimicos.3.categorias.1.itens.0.cd}}</td>
                             </tr>
                             <tr>
-                                <td class="item-name">Elixir da Fênix</td>
-                                <td>Criatura morta há menos de 1 minuto <strong>ressuscita</strong> com 1 HP.</td>
-                                <td class="reagent-col">12</td>
-                                <td class="cd-col">22</td>
+                                <td class="item-name">{{classe.itensAlquimicos.3.categorias.1.itens.1.nome}}</td>
+                                <td>{{classe.itensAlquimicos.3.categorias.1.itens.1.efeito}}</td>
+                                <td class="reagent-col">{{classe.itensAlquimicos.3.categorias.1.itens.1.reagentes}}</td>
+                                <td class="cd-col">{{classe.itensAlquimicos.3.categorias.1.itens.1.cd}}</td>
                             </tr>
                             <tr>
-                                <td class="item-name">Regeneração Alquímica</td>
-                                <td>Regenera membro perdido há até 1 hora em 24 horas. Requer repouso.</td>
-                                <td class="reagent-col">8</td>
-                                <td class="cd-col">20</td>
-                            </tr>
-                            <tr class="category-row"><td colspan="4">Elixir e Óleo</td></tr>
-                            <tr>
-                                <td class="item-name">Mutagênico Maior</td>
-                                <td>+6 em um Atributo, -2 em dois outros. Transformação física visível. Duração 1 Hora.</td>
-                                <td class="reagent-col">8</td>
-                                <td class="cd-col">20</td>
+                                <td class="item-name">{{classe.itensAlquimicos.3.categorias.1.itens.2.nome}}</td>
+                                <td>{{classe.itensAlquimicos.3.categorias.1.itens.2.efeito}}</td>
+                                <td class="reagent-col">{{classe.itensAlquimicos.3.categorias.1.itens.2.reagentes}}</td>
+                                <td class="cd-col">{{classe.itensAlquimicos.3.categorias.1.itens.2.cd}}</td>
                             </tr>
                             <tr>
-                                <td class="item-name">Elixir da Perfeição</td>
-                                <td>+2 em Todos os atributos. Duração 10 min.</td>
-                                <td class="reagent-col">10</td>
-                                <td class="cd-col">22</td>
+                                <td class="item-name">{{classe.itensAlquimicos.3.categorias.1.itens.3.nome}}</td>
+                                <td>{{classe.itensAlquimicos.3.categorias.1.itens.3.efeito}}</td>
+                                <td class="reagent-col">{{classe.itensAlquimicos.3.categorias.1.itens.3.reagentes}}</td>
+                                <td class="cd-col">{{classe.itensAlquimicos.3.categorias.1.itens.3.cd}}</td>
+                            </tr>
+                            <tr class="category-row"><td colspan="4">{{classe.itensAlquimicos.3.categorias.2.nome}}</td></tr>
+                            <tr>
+                                <td class="item-name">{{classe.itensAlquimicos.3.categorias.2.itens.0.nome}}</td>
+                                <td>{{classe.itensAlquimicos.3.categorias.2.itens.0.efeito}}</td>
+                                <td class="reagent-col">{{classe.itensAlquimicos.3.categorias.2.itens.0.reagentes}}</td>
+                                <td class="cd-col">{{classe.itensAlquimicos.3.categorias.2.itens.0.cd}}</td>
                             </tr>
                             <tr>
-                                <td class="item-name">Elixir da Forma Bestial</td>
-                                <td>Transforma em besta de CR igual ao seu nível. Mantém mente. Duração 3 turnos.</td>
-                                <td class="reagent-col">8</td>
-                                <td class="cd-col">20</td>
+                                <td class="item-name">{{classe.itensAlquimicos.3.categorias.2.itens.1.nome}}</td>
+                                <td>{{classe.itensAlquimicos.3.categorias.2.itens.1.efeito}}</td>
+                                <td class="reagent-col">{{classe.itensAlquimicos.3.categorias.2.itens.1.reagentes}}</td>
+                                <td class="cd-col">{{classe.itensAlquimicos.3.categorias.2.itens.1.cd}}</td>
                             </tr>
                             <tr>
-                                <td class="item-name">Sangue do Dragão</td>
-                                <td>Resistência a <strong>todo dano elemental</strong>. Sopro 1x (4d6 elemento à escolha, cone 9m). Duração 1 hora.</td>
-                                <td class="reagent-col">12</td>
-                                <td class="cd-col">22</td>
+                                <td class="item-name">{{classe.itensAlquimicos.3.categorias.2.itens.2.nome}}</td>
+                                <td>{{classe.itensAlquimicos.3.categorias.2.itens.2.efeito}}</td>
+                                <td class="reagent-col">{{classe.itensAlquimicos.3.categorias.2.itens.2.reagentes}}</td>
+                                <td class="cd-col">{{classe.itensAlquimicos.3.categorias.2.itens.2.cd}}</td>
                             </tr>
                             <tr>
-                                <td class="item-name">Soro da Guerra</td>
-                                <td>+2 Atacar, +2 Defender, +2d6 dano, +3m Movimento, Vantagem em Fortitude.</td>
-                                <td class="reagent-col">8</td>
-                                <td class="cd-col">22</td>
-                            </tr>
-                            <tr class="category-row"><td colspan="4">Utilidades</td></tr>
-                            <tr>
-                                <td class="item-name">Essência Etérea</td>
-                                <td>Torna-se Incorpóreo por 1 minuto. Atravessa paredes finas. Não pode interagir fisicamente.</td>
-                                <td class="reagent-col">8</td>
-                                <td class="cd-col">20</td>
+                                <td class="item-name">{{classe.itensAlquimicos.3.categorias.2.itens.3.nome}}</td>
+                                <td>{{classe.itensAlquimicos.3.categorias.2.itens.3.efeito}}</td>
+                                <td class="reagent-col">{{classe.itensAlquimicos.3.categorias.2.itens.3.reagentes}}</td>
+                                <td class="cd-col">{{classe.itensAlquimicos.3.categorias.2.itens.3.cd}}</td>
                             </tr>
                             <tr>
-                                <td class="item-name">Poção da Invisibilidade</td>
-                                <td><em>Invisível</em> por 10 min. Atacar, receber dano ou conjurar cancela.</td>
-                                <td class="reagent-col">8</td>
-                                <td class="cd-col">20</td>
+                                <td class="item-name">{{classe.itensAlquimicos.3.categorias.2.itens.4.nome}}</td>
+                                <td>{{classe.itensAlquimicos.3.categorias.2.itens.4.efeito}}</td>
+                                <td class="reagent-col">{{classe.itensAlquimicos.3.categorias.2.itens.4.reagentes}}</td>
+                                <td class="cd-col">{{classe.itensAlquimicos.3.categorias.2.itens.4.cd}}</td>
+                            </tr>
+                            <tr class="category-row"><td colspan="4">{{classe.itensAlquimicos.3.categorias.3.nome}}</td></tr>
+                            <tr>
+                                <td class="item-name">{{classe.itensAlquimicos.3.categorias.3.itens.0.nome}}</td>
+                                <td>{{classe.itensAlquimicos.3.categorias.3.itens.0.efeito}}</td>
+                                <td class="reagent-col">{{classe.itensAlquimicos.3.categorias.3.itens.0.reagentes}}</td>
+                                <td class="cd-col">{{classe.itensAlquimicos.3.categorias.3.itens.0.cd}}</td>
                             </tr>
                             <tr>
-                                <td class="item-name">Bomba Temporal</td>
-                                <td>Área 6m. Criaturas afetadas: <em>Lento 2</em> (-2 Ação/turno, -6 m movimento, sem reação, -4 Reflexo) por 3 rodadas. Vontade nega.</td>
-                                <td class="reagent-col">12</td>
-                                <td class="cd-col">22</td>
+                                <td class="item-name">{{classe.itensAlquimicos.3.categorias.3.itens.1.nome}}</td>
+                                <td>{{classe.itensAlquimicos.3.categorias.3.itens.1.efeito}}</td>
+                                <td class="reagent-col">{{classe.itensAlquimicos.3.categorias.3.itens.1.reagentes}}</td>
+                                <td class="cd-col">{{classe.itensAlquimicos.3.categorias.3.itens.1.cd}}</td>
                             </tr>
                             <tr>
-                                <td class="item-name">Extrato de Clarividência</td>
-                                <td>Vê e ouve local que você conhece a até 1km por 10 min.</td>
-                                <td class="reagent-col">8</td>
-                                <td class="cd-col">20</td>
+                                <td class="item-name">{{classe.itensAlquimicos.3.categorias.3.itens.2.nome}}</td>
+                                <td>{{classe.itensAlquimicos.3.categorias.3.itens.2.efeito}}</td>
+                                <td class="reagent-col">{{classe.itensAlquimicos.3.categorias.3.itens.2.reagentes}}</td>
+                                <td class="cd-col">{{classe.itensAlquimicos.3.categorias.3.itens.2.cd}}</td>
                             </tr>
                             <tr>
-                                <td class="item-name">Tinta do Destino</td>
-                                <td>Escreva um evento simples. 50% chance de acontecer nas próximas 24h. Mestre rola os dados. O evento não pode incluir diretamente a morte de uma criatura ou fenômenos/eventos maiores do que a queda de uma árvore média, por exemplo.</td>
-                                <td class="reagent-col">10</td>
-                                <td class="cd-col">22</td>
-                            </tr>
-                            <tr class="category-row"><td colspan="4">Venenos</td></tr>
-                            <tr>
-                                <td class="item-name">Veneno Letal</td>
-                                <td>1 ataque. 6d6 Biológico. Fortitude ou +6d6 e Inconsciente. Duração 1 min.</td>
-                                <td class="reagent-col">8</td>
-                                <td class="cd-col">20</td>
+                                <td class="item-name">{{classe.itensAlquimicos.3.categorias.3.itens.3.nome}}</td>
+                                <td>{{classe.itensAlquimicos.3.categorias.3.itens.3.efeito}}</td>
+                                <td class="reagent-col">{{classe.itensAlquimicos.3.categorias.3.itens.3.reagentes}}</td>
+                                <td class="cd-col">{{classe.itensAlquimicos.3.categorias.3.itens.3.cd}}</td>
                             </tr>
                             <tr>
-                                <td class="item-name">Veneno da Alma</td>
-                                <td>1 ataque. 4d6 Necrótico. Vontade ou <strong>Éter máximo reduzido pela metade</strong> por 24h. Duração 1 min.</td>
-                                <td class="reagent-col">10</td>
-                                <td class="cd-col">22</td>
+                                <td class="item-name">{{classe.itensAlquimicos.3.categorias.3.itens.4.nome}}</td>
+                                <td>{{classe.itensAlquimicos.3.categorias.3.itens.4.efeito}}</td>
+                                <td class="reagent-col">{{classe.itensAlquimicos.3.categorias.3.itens.4.reagentes}}</td>
+                                <td class="cd-col">{{classe.itensAlquimicos.3.categorias.3.itens.4.cd}}</td>
+                            </tr>
+                            <tr class="category-row"><td colspan="4">{{classe.itensAlquimicos.3.categorias.4.nome}}</td></tr>
+                            <tr>
+                                <td class="item-name">{{classe.itensAlquimicos.3.categorias.4.itens.0.nome}}</td>
+                                <td>{{classe.itensAlquimicos.3.categorias.4.itens.0.efeito}}</td>
+                                <td class="reagent-col">{{classe.itensAlquimicos.3.categorias.4.itens.0.reagentes}}</td>
+                                <td class="cd-col">{{classe.itensAlquimicos.3.categorias.4.itens.0.cd}}</td>
                             </tr>
                             <tr>
-                                <td class="item-name">Paralisia Total</td>
-                                <td>1 ataque. Fortitude ou <em>Paralisado</em> por 1 hora. Duração 1 min.</td>
-                                <td class="reagent-col">8</td>
-                                <td class="cd-col">20</td>
+                                <td class="item-name">{{classe.itensAlquimicos.3.categorias.4.itens.1.nome}}</td>
+                                <td>{{classe.itensAlquimicos.3.categorias.4.itens.1.efeito}}</td>
+                                <td class="reagent-col">{{classe.itensAlquimicos.3.categorias.4.itens.1.reagentes}}</td>
+                                <td class="cd-col">{{classe.itensAlquimicos.3.categorias.4.itens.1.cd}}</td>
                             </tr>
                             <tr>
-                                <td class="item-name">Amnésia Líquida</td>
-                                <td>Ingerido. Vontade ou perde memórias das últimas 24h.</td>
-                                <td class="reagent-col">8</td>
-                                <td class="cd-col">20</td>
+                                <td class="item-name">{{classe.itensAlquimicos.3.categorias.4.itens.2.nome}}</td>
+                                <td>{{classe.itensAlquimicos.3.categorias.4.itens.2.efeito}}</td>
+                                <td class="reagent-col">{{classe.itensAlquimicos.3.categorias.4.itens.2.reagentes}}</td>
+                                <td class="cd-col">{{classe.itensAlquimicos.3.categorias.4.itens.2.cd}}</td>
+                            </tr>
+                            <tr>
+                                <td class="item-name">{{classe.itensAlquimicos.3.categorias.4.itens.3.nome}}</td>
+                                <td>{{classe.itensAlquimicos.3.categorias.4.itens.3.efeito}}</td>
+                                <td class="reagent-col">{{classe.itensAlquimicos.3.categorias.4.itens.3.reagentes}}</td>
+                                <td class="cd-col">{{classe.itensAlquimicos.3.categorias.4.itens.3.cd}}</td>
                             </tr>
                         </tbody>
                     </table>
                     <div class="alchemy-level-header">
-                        <h4>🧪 Nível 5</h4>
-                        <span class="cd-range">CD 24+</span>
+                        <h4>{{classe.itensAlquimicos.4.nome}}</h4>
+                        <span class="cd-range">{{classe.itensAlquimicos.4.faixaCd}}</span>
                     </div>
                     <table class="alchemy-table">
                         <thead>
@@ -1403,30 +1403,30 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="category-row"><td colspan="4">Lendários</td></tr>
+                            <tr class="category-row"><td colspan="4">{{classe.itensAlquimicos.4.categorias.0.nome}}</td></tr>
                             <tr>
-                                <td class="item-name">Elixir da Imortalidade</td>
-                                <td>Não envelhece por 10 anos. Revive 1x se morrer nesse período (1 HP). Requer <em>Coração da Árvore</em>.</td>
-                                <td class="reagent-col">15</td>
-                                <td class="cd-col">24</td>
+                                <td class="item-name">{{classe.itensAlquimicos.4.categorias.0.itens.0.nome}}</td>
+                                <td>{{classe.itensAlquimicos.4.categorias.0.itens.0.efeito}}</td>
+                                <td class="reagent-col">{{classe.itensAlquimicos.4.categorias.0.itens.0.reagentes}}</td>
+                                <td class="cd-col">{{classe.itensAlquimicos.4.categorias.0.itens.0.cd}}</td>
                             </tr>
                             <tr>
-                                <td class="item-name">Núcleo Abissal</td>
-                                <td>10d10 Força em 9m raio. Reflexos ou Morte Instantânea no centro da bomba. Tudo é empurrado <strong>para o centro</strong> e comprimido. Requer <em>Grilhões do Abismo</em>.</td>
-                                <td class="reagent-col">15</td>
-                                <td class="cd-col">24</td>
+                                <td class="item-name">{{classe.itensAlquimicos.4.categorias.0.itens.1.nome}}</td>
+                                <td>{{classe.itensAlquimicos.4.categorias.0.itens.1.efeito}}</td>
+                                <td class="reagent-col">{{classe.itensAlquimicos.4.categorias.0.itens.1.reagentes}}</td>
+                                <td class="cd-col">{{classe.itensAlquimicos.4.categorias.0.itens.1.cd}}</td>
                             </tr>
                             <tr>
-                                <td class="item-name">Soro do Homúnculo</td>
-                                <td>Ao injetar transforma uma criatura em servo alquímico leal pra sempre. Requer <em>Sangue Primordial</em>.</td>
-                                <td class="reagent-col">15</td>
-                                <td class="cd-col">24</td>
+                                <td class="item-name">{{classe.itensAlquimicos.4.categorias.0.itens.2.nome}}</td>
+                                <td>{{classe.itensAlquimicos.4.categorias.0.itens.2.efeito}}</td>
+                                <td class="reagent-col">{{classe.itensAlquimicos.4.categorias.0.itens.2.reagentes}}</td>
+                                <td class="cd-col">{{classe.itensAlquimicos.4.categorias.0.itens.2.cd}}</td>
                             </tr>
                             <tr>
-                                <td class="item-name">Lágrima do Tempo</td>
-                                <td>Reverte objeto/criatura/local ao estado de até 1000 anos atrás. 1 uso. Requer <em>Lágrima de Velúria</em>.</td>
-                                <td class="reagent-col">20</td>
-                                <td class="cd-col">26</td>
+                                <td class="item-name">{{classe.itensAlquimicos.4.categorias.0.itens.3.nome}}</td>
+                                <td>{{classe.itensAlquimicos.4.categorias.0.itens.3.efeito}}</td>
+                                <td class="reagent-col">{{classe.itensAlquimicos.4.categorias.0.itens.3.reagentes}}</td>
+                                <td class="cd-col">{{classe.itensAlquimicos.4.categorias.0.itens.3.cd}}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -1446,19 +1446,19 @@
 
             <div class="ramos-grid">
                 <div class="ramo-card artificer">
-                    <h3>⚙️ Ramo do Artificer</h3>
-                    <div class="subtitle">Utilidade e Infusão Mágica</div>
-                    <p>Você cruzou a fronteira entre alquimia e místicidade. Onde outros veem limite, você vê oportunidade. Éter não é apenas combustível - é um ingrediente. Suas criações brilham com runas, seus itens pensam, suas invenções desafiam as leis naturais. Você não é apenas um alquimista; é um inventor que dobra a realidade.</p>
+                    <h3>{{classe.ramos.0.nome}}</h3>
+                    <div class="subtitle">{{classe.ramos.0.subtitulo}}</div>
+                    <p>{{classe.ramos.0.descricao}}</p>
                 </div>
                 <div class="ramo-card bombardeiro">
-                    <h3>💣 Ramo do Bombardeiro</h3>
-                    <div class="subtitle">Combate e Toxinas</div>
-                    <p>Você dominou a arte da destruição química. Seus frascos brilham com cores que prometem dor. Seu sorriso aparece quando algo explode. Enquanto outros alquimistas criam para curar ou construir, você cria para um único propósito: aniquilação eficiente.</p>
+                    <h3>{{classe.ramos.1.nome}}</h3>
+                    <div class="subtitle">{{classe.ramos.1.subtitulo}}</div>
+                    <p>{{classe.ramos.1.descricao}}</p>
                 </div>
                 <div class="ramo-card boticario">
-                    <h3>💊 Ramo do Boticário</h3>
-                    <div class="subtitle">Cura e Abjuração</div>
-                    <p>Você é a linha entre a vida e a morte das criaturas. Suas poções fecham feridas que magia não alcança, seus elixires transformam covardes em heróis, seus tônicos enfraquecem gigantes. Você traz esperança - e ocasionalmente, a ruína silenciosa dos inimigos através de debilitações precisas.</p>
+                    <h3>{{classe.ramos.2.nome}}</h3>
+                    <div class="subtitle">{{classe.ramos.2.subtitulo}}</div>
+                    <p>{{classe.ramos.2.descricao}}</p>
                 </div>
             </div>
 

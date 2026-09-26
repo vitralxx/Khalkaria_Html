@@ -36,7 +36,7 @@
                     <img src="../../images/racas/anao.png" alt="Anão">
                 </div>
                 <div class="raca-info">
-                    <h1>Anão</h1>
+                    <h1>{{raca.nome}}</h1>
                     <p class="raca-tagline">Baixos, robustos e inflexíveis como a rocha que os criou.</p>
                     
                     <p>Os anões de Khalkaria não são um povo de sorrisos fáceis ou palavras vazias — cada sílaba que pronunciam carrega o peso de séculos de tradição forjada no fogo e na bigorna. Suas cidades subterrâneas são verdadeiras fortalezas de ferro e pedra, escavadas nas entranhas das montanhas mais hostis do continente.</p>
@@ -44,33 +44,33 @@
                     <div class="stats-grid">
                         <div class="stat-box">
                             <div class="label">Atributos</div>
-                            <div class="value">+2 Constituição, -1 Inteligência</div>
+                            <div class="value">{{raca.atributos.texto}}</div>
                         </div>
                         <div class="stat-box">
                             <div class="label">Alternativo</div>
-                            <div class="value">+1 Inteligência, +1 Destreza, -1 Força</div>
+                            <div class="value">{{raca.alternativo.texto}}</div>
                         </div>
                         <div class="stat-box">
                             <div class="label">Movimento</div>
-                            <div class="value">7,5 metros</div>
+                            <div class="value">{{raca.movimento.texto}}</div>
                         </div>
                         <div class="stat-box">
                             <div class="label">Idiomas</div>
-                            <div class="value">Comum, Khazadun</div>
+                            <div class="value">{{raca.idiomas.texto}}</div>
                         </div>
                     </div>
                     
                     <div class="physical-data">
-                        <span><strong>Vida:</strong> 200-350 anos</span>
-                        <span><strong>Altura:</strong> 1,20m - 1,50m</span>
-                        <span><strong>Peso:</strong> 70kg - 95kg</span>
+                        <span><strong>Vida:</strong> {{raca.vida}}</span>
+                        <span><strong>Altura:</strong> {{raca.altura}}</span>
+                        <span><strong>Peso:</strong> {{raca.peso}}</span>
                     </div>
                 </div>
             </div>
             
             <h3 class="section-title">Perícias de Raça</h3>
             <div class="content-card">
-                <p>Fortitude ou Ofício (Qualquer)</p>
+                <p>{{raca.pericias.itens.0.texto}}</p>
             </div>
             
             <h3 class="section-title">Características de Raça</h3>
@@ -87,8 +87,8 @@
             </div>
             
             <div class="variant-section">
-                <h3>Clãs Ancestrais</h3>
-                <p style="color: var(--text-muted); margin-bottom: 1rem;">Anões se identificam mais por clã do que por indivíduo. Escolha um:</p>
+                <h3>{{raca.variantes.titulo}}</h3>
+                <p style="color: var(--text-muted); margin-bottom: 1rem;">{{raca.variantes.intro}}</p>
                 
                 {{CARD_3}}
                 

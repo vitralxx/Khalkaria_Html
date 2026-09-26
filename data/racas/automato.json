@@ -1,5 +1,124 @@
 {
   "source": "racas/automato",
+  "raca": {
+    "id": "raca-automato",
+    "nome": "Autômato",
+    "atributos": {
+      "texto": "+2 Int, -1 Sab",
+      "bonus": [
+        {
+          "valor": 2,
+          "opcoes": [
+            "INT"
+          ]
+        },
+        {
+          "valor": -1,
+          "opcoes": [
+            "SAB"
+          ]
+        }
+      ]
+    },
+    "alternativo": {
+      "texto": "+2 Con, -1 Int",
+      "bonus": [
+        {
+          "valor": 2,
+          "opcoes": [
+            "CON"
+          ]
+        },
+        {
+          "valor": -1,
+          "opcoes": [
+            "INT"
+          ]
+        }
+      ]
+    },
+    "movimento": {
+      "texto": "9 metros",
+      "metros": 9
+    },
+    "pericias": {
+      "itens": [
+        {
+          "texto": "Ofício (Engenharia)"
+        }
+      ],
+      "escolhas": [
+        {
+          "quantidade": 1,
+          "opcoes": [
+            "oficio-engenharia"
+          ]
+        }
+      ]
+    },
+    "vida": "Indefinido",
+    "altura": "1,30m - 2,50m",
+    "peso": "100kg - 160kg",
+    "caracteristicas": [
+      "automato-corpo-mecanico",
+      "automato-automanutencao"
+    ],
+    "tecnica": {
+      "id": null,
+      "status": "PENDENTE",
+      "nota": "Pedro (03-respostas-pedro.md §2): a raça dá \"1 técnica de raça\". A página não distingue qual característica é a técnica: pergunta ao balanceamento, não inventar."
+    },
+    "arNatural": [],
+    "tecnologias": {
+      "titulo": "Sistema de Tecnologias",
+      "iniciais": "Começa com 2 tecnologias Tier 1.",
+      "limite": "2 + mod. Constituição",
+      "substituicao": "Pode substituir tecnologias em descansos curtos.",
+      "tiers": [
+        {
+          "titulo": "⚙️ Tier 1 — Inicial",
+          "ids": [
+            "automato-visao-termica",
+            "automato-acabamento-refinado",
+            "automato-acesso-a-biblioteca-automata"
+          ]
+        },
+        {
+          "titulo": "⚙️ Tier 2 — Item Incomum",
+          "ids": [
+            "automato-sensor-de-proximidade",
+            "automato-fibra-de-carbono",
+            "automato-suspensoes-lubrificadas"
+          ]
+        },
+        {
+          "titulo": "⚙️ Tier 3 — Item Exótico",
+          "ids": [
+            "automato-sistema-de-reconhecimento-de-ameacas",
+            "automato-nucleo-duplo",
+            "automato-braco-balistico"
+          ]
+        },
+        {
+          "titulo": "⚙️ Tier 4 — Item Luxária",
+          "ids": [
+            "automato-lamina-retratil",
+            "automato-capacitores-de-energia",
+            "automato-auto-reparador"
+          ]
+        },
+        {
+          "titulo": "⚙️ Tier 5 — Lendário",
+          "ids": [
+            "automato-lendas-mecanicas",
+            "automato-modulo-de-linguagem",
+            "automato-scanner-de-condicao",
+            "automato-backup"
+          ]
+        }
+      ]
+    }
+  },
   "cards": [
     {
       "id": "automato-corpo-mecanico",

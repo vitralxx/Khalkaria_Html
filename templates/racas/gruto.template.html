@@ -35,7 +35,7 @@
                     <img src="../../images/racas/gruto.png" alt="Gruto">
                 </div>
                 <div class="raca-info">
-                    <h1>Gruto</h1>
+                    <h1>{{raca.nome}}</h1>
                     <p class="raca-tagline">Humanoides reptilianos descendentes de antigas linhagens escamadas.</p>
                     
                     <p>Os grutos parecem humanos à distância. No entanto, seus olhos reptilianos, língua bífida e escamas sutis revelam sua origem primordial. Possuem diferentes vertentes, algumas mais robustas, outras mais esguias e ágeis. Mas crescem aprendendo o mesmo idioma ancestral <strong>Skalia</strong> — uma língua marcada por chiados, estalos e pausas profundas.</p>
@@ -43,19 +43,19 @@
                     <div class="stats-grid">
                         <div class="stat-box">
                             <div class="label">Atributos</div>
-                            <div class="value">+2 Força ou Constituição, -1 Inteligência</div>
+                            <div class="value">{{raca.atributos.texto}}</div>
                         </div>
                         <div class="stat-box">
                             <div class="label">Alternativo</div>
-                            <div class="value">+2 Destreza ou Inteligência, -1 Constituição</div>
+                            <div class="value">{{raca.alternativo.texto}}</div>
                         </div>
                         <div class="stat-box">
                             <div class="label">Movimento</div>
-                            <div class="value">9 metros</div>
+                            <div class="value">{{raca.movimento.texto}}</div>
                         </div>
                         <div class="stat-box">
                             <div class="label">Idiomas</div>
-                            <div class="value">Comum, Skalia</div>
+                            <div class="value">{{raca.idiomas.texto}}</div>
                         </div>
                     </div>
                 </div>
@@ -63,7 +63,7 @@
             
             <h3 class="section-title">Perícias de Raça</h3>
             <div class="content-card">
-                <p>Percepção</p>
+                <p>{{raca.pericias.itens.0.texto}}</p>
             </div>
             
             <h3 class="section-title">Características de Raça</h3>
@@ -80,8 +80,8 @@
             </div>
             
             <div class="variant-section">
-                <h3>Linhagem Réptil</h3>
-                <p style="color: var(--text-muted); margin-bottom: 1rem;">Grutos diferem entre 2 principais linhagens genéticas:</p>
+                <h3>{{raca.variantes.titulo}}</h3>
+                <p style="color: var(--text-muted); margin-bottom: 1rem;">{{raca.variantes.intro}}</p>
                 
                 {{CARD_3}}
                 
