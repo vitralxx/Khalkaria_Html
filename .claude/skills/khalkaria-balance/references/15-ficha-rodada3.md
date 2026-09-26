@@ -19,6 +19,32 @@ lote de revisão da seção E. Exemplo do problema que isso evita: D22 é Margem
 
 ---
 
+## Revisão 1 (2026-09-26) — o Pedro respondeu parte do lote
+
+Respostas dele, verbatim, e o que mudou. Os números D92–D97 são novos na memória (`09-decisoes-pedro.md`).
+
+| L | Resposta do Pedro | Efeito | Notion |
+|---|---|---|---|
+| L22 | "Longo" | **D92.** Técnicas gerais trocam no descanso longo; `tecnicasReatribuiveisStatus: canonico` | já dizia (7 classes) |
+| L03 | "Não." (a Stamina fica negativa?) | **D93.** `stamina.min: 0`; perdas param em 0. Só o Éter atravessa o 0 | Sistema > Status: "A Stamina não fica negativa." |
+| L05 | "Se alimentar ao descansar em um dia remove 1 de desnutrido." | **D94.** `desnutrido.x.decrementa: "alimentarAoDescansar"` (−1) | Condições > Desnutrido e Sistema > Necessidades |
+| L07 | "Não" (a 6ª carta ocupa lugar na fila?) | **D95.** `sextaCartaOcupaPosicao: false` | Limiar: "Ela não ocupa lugar na sequência de custo das outras cartas." |
+| L15 | "De fato são custo 0" | **D96.** Magias Pactuadas em Contida custam 0; `custoMinimo.excecoes` com as duas | Sistema > Custo mínimo: "As exceções são a magia de Nível 1 conjurada em intensidade Normal e sem modulação e as *Magias Pactuadas* do Teurgo conjuradas em intensidade Contida, que custam 0 Éter." |
+| L36 | "Sim, a quantidade de dados dobram." | **D97.** No crítico dobram também os dados extras impressos na própria arma; convenção `critico` no arquivo de efeitos | Sistema > Dano Crítico: "…os dados de dano extra escritos na própria arma também dobram." |
+| L45 | — | Apareceu gravado no Notion por outra mão: "Sua Evasão base é 10 + Mod. Destreza, igual em todas as classes, e define se você desvia/resiste…" | Sistema > Defesa |
+
+Diff conferido no Sistema: as 4 edições acima e a do L45, nada mais.
+
+**Ainda em aberto, com a resposta dele:**
+- **L14, Teurgo:** "Todo tier 1 do teurgo tem uma maneira de obter magias diferente." Falta: pegar uma das três técnicas de grimório no nível 2 é obrigatório? Ou quem não pega fica com as 1 + Mod do nível 1?
+- **L35, Morrendo:** "Apenas some o dano a saúde em negativos." Leitura provável: o estabilizado que é acertado soma o dano no negativo e **continua estável**, e o "ou ser atacado novamente" sai do card. Falta confirmar.
+- **L39, Semente da Vhelor:** "1> marca da vhelor." É "+1 Marca" (então o "SEM adicionar Marca" do CSV sai) ou "Marca 1"? `marcas-vhelor.json` não mudou até ele dizer.
+- **L20, as três Investidas:** "Bom revisar." Proposta enviada a ele: só renomear as duas antigas (a técnica do Brutalista e a ação do Titã) e deixar "Investida" para a manobra, que é a que as Grevas citam. Nada muda no Notion até ele escolher os nomes.
+
+Continuam sem resposta: a Parte 1 inteira (aceite em bloco), e L13, L37, L38, L40, L43 e a Parte 3 (menos o L20).
+
+---
+
 ## 0. O que ler primeiro
 
 1. **Notion gravado e conferido** em 11 páginas: Condições, Sistema, Magias, O Limiar e as 7 classes.
@@ -115,7 +141,7 @@ como estava. A Evasão Passiva ("10 + Mod. Destreza") já estava igual nas 7.
 ## B. Arquivo de efeitos (`efeitos-itens/1.1`)
 
 Contagem igual à 1.0: itens 214 · armas 181 · consumo 243 · semEfeitoNaFicha 115 · naoParseado 0; a
-conta fecha nos 727. Rodar o gerador duas vezes dá o mesmo arquivo (sha256 `59a707d7a8831968…`).
+conta fecha nos 727. Rodar o gerador duas vezes dá o mesmo arquivo (sha256 `5f724fcbdfe16262…`, depois da Revisão 1).
 
 - **PD21 — Grevas Trovejantes:** o lembrete virou modificador:
   `{"alvo":"ataque.danoExtra","op":"soma","valor":"1d6","condicao":"investida"}`. `condicao:"investida"`

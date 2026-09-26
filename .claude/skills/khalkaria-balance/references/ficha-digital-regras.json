@@ -1,6 +1,6 @@
 {
   "schemaVersion": "regras-ficha/1.1",
-  "geradoEm": "2026-09-26 (rev. 5: rodada 3 — decisões PD7–PD31 do Pedro aplicadas, Notion gravado)",
+  "geradoEm": "2026-09-26 (rev. 6: respostas do Pedro ao lote, D92–D97, gravadas no Notion)",
   "_doc": "Resposta do agente de balanceamento ao pedido docs/ficha-digital/01-pedido-ao-balanceamento.md. O texto com a justificativa de cada regra esta em 14-ficha-digital.md, na mesma numeracao P/C. Nada aqui e canonico so porque esta escrito: leia o campo 'status'.",
   "_status": {
     "canonico": "Esta no Notion ou numa decisao registrada em 09-decisoes-pedro.md. Pode ir para o site.",
@@ -127,10 +127,10 @@
       "max": "8 + classe.G*nivel + escolha(mod.FOR,mod.DES)*nivel",
       "modoEscolha": "maior",
       "modoEscolhaStatus": "aprovado",
-      "min": null,
+      "min": 0,
       "gastoSemSaldo": "proibido",
-      "gastoSemSaldoStatus": "decisao",
-      "gastoSemSaldoMotivo": "P07 - nada no canone descreve Stamina negativa. Exaurido (0 Stamina, 'nao pode rolar pericias') E o piso punitivo. Permitir negativo cria recurso infinito sem consequencia escrita.",
+      "gastoSemSaldoStatus": "canonico",
+      "gastoSemSaldoMotivo": "Segue da D93: se a Stamina não fica negativa, não existe gasto além do saldo.",
       "gatilhos": [
         {
           "quando": "atual<=0",
@@ -139,10 +139,10 @@
       ],
       "modoEscolhaTrocavel": true,
       "modoEscolhaFonte": "PD7 (docs/ficha-digital/03-respostas-pedro.md (main 703f665)): \"Maior mas com escolha de mudar\"",
-      "minStatus": "pedroDecide",
-      "minPendente": "PD17: o Pedro escreveu \"Exaurido e Oco são removidos quando você sai dos negativos nos 2 status Stamina e Éter\", então a Stamina pode ficar negativa. Nenhum texto dá o piso nem como ela chega lá. Lote PD20, item L03.",
-      "perdaInvoluntariaNegativa": true,
-      "perdaInvoluntariaNota": "Leitura da PD17, parte do item L03: efeitos que TIRAM Stamina (ex.: Exigente, \"Ao falhar qualquer teste, -1 Stamina e Éter\") atravessam o 0, como a perda de Éter do Oco. Gasto voluntário continua travado no saldo."
+      "minStatus": "canonico",
+      "minFonte": "notion-sistema > Status > Stamina: \"A Stamina não fica negativa.\" (D93, resposta do Pedro ao L03: \"Não.\")",
+      "perdaInvoluntariaNegativa": false,
+      "perdaInvoluntariaNota": "D93: perdas que tiram Stamina (ex.: Exigente, \"-1 Stamina e Éter\" ao falhar) param em 0; o excesso se perde. Só o Éter atravessa o 0."
     },
     "eter": {
       "max": "6 + classe.R*nivel + escolha(mod.INT,mod.SAB)*nivel",
@@ -654,7 +654,7 @@
       "passiva": "10 + mod.DES",
       "passivaStatus": "canonico",
       "passivaFonte": "notion-sistema > Defesa > Evasao Passiva; D20 (igual nas 7 classes)",
-      "passivaNota": "Conferido em 2026-09-26: as 7 páginas de classe dizem \"Evasão Passiva (Sem reação): 10 + Mod. Destreza\".",
+      "passivaNota": "Conferido em 2026-09-26: as 7 páginas de classe dizem \"Evasão Passiva (Sem reação): 10 + Mod. Destreza\", e o Sistema > Defesa agora diz \"Sua Evasão base é 10 + Mod. Destreza, igual em todas as classes\" (L45, gravado por outra mão).",
       "ativa": {
         "formula": "evasao.passiva + dado(defender)",
         "custo": "1 reacao",
@@ -1410,6 +1410,8 @@
         "fonte": "notion-sistema (registrado; da baixa na pendencia D31)"
       },
       "dobra": "dadosArma",
+      "dobraIncluiDadosImpressosNaArma": true,
+      "dobraIncluiFonte": "notion-sistema > Dano Crítico: \"os dados de dano extra escritos na própria arma também dobram.\" (D97, resposta do Pedro ao L36: \"Sim, a quantidade de dados dobram.\")",
       "dobraVerbatim": "Dano Critico: Role o dobro de dados da arma + Mod. Atributo da arma",
       "dobraNota": "So os dados DA ARMA. O +1d4 do Sangramento e os dados extras de tecnica NAO dobram. E tambem a premissa do modelo de DPR canonico (coeficiente 1,20 = 1,05 acertos + 0,15 de dados extras do critico); se dobrasse tudo, a regua de preco do Bazar inteira estaria errada.",
       "_colisaoDeTermo": "P25 - ATENCAO: 'critico' tem DUAS definicoes no sistema e a ficha NAO pode ter uma funcao ehCritico() unica. (1) Regra geral: 20/1 natural no d20. (2) Fabricacao (D49): margem de +-10 sobre a CD ('ficar 10 ou mais abaixo da CD' / 'superar a CD em 10 ou mais'). E a D52 acrescenta um terceiro caso: Alquimia perde os reagentes em QUALQUER falha. E a condicao Bebado acrescenta um quarto: '2 natural em qualquer teste conta como falha critica' - a faixa de falha critica tambem e modificavel."
@@ -1445,6 +1447,8 @@
       "morteEm": "recurso.saude.atual < -floor(recurso.saude.max/2)",
       "estabilizar": "2 acoes + Medicina CD 20",
       "desestabiliza": "aoSerAcertado",
+      "desestabilizaStatus": "pedroDecide",
+      "desestabilizaRespostaPedro": "\"Apenas some o dano a saúde em negativos.\" (2026-09-26, sobre L35). Leitura provável: acertado estabilizado, o dano soma no negativo e ele continua estável; aí o \"ou ser atacado novamente\" do card sai. Falta ele confirmar.",
       "status": "canonico",
       "nota": "P52 - 'mitigavel: false' e DECISAO com motivo: um personagem com Ae(Biologico,4) e 55 de Saude maxima levaria 5-4 = 1 por rodada, e o relogio da morte praticamente desligaria. Nao e um ataque, e o corpo falhando. 'desestabiliza: aoSerAcertado' tambem e decisao: o texto diz 'ser atacado novamente', mas desfazer 2 acoes + Medicina CD 20 num ataque que ERROU e um swing enorme decidido por um dado que o medico nao pode influenciar.",
       "fonte": "notion-condicoes 3a66e3a4...0b25, gravado em 2026-09-26 (rodada 3, diff conferido) (PD31, D86)",
@@ -1587,7 +1591,10 @@
         "tipo": "intensidade",
         "inicial": 1,
         "incrementa": "descansoSemComidaOuSemLuz",
-        "decrementa": null
+        "decrementa": "alimentarAoDescansar",
+        "decrementaPor": 1,
+        "decrementaVerbatim": "Se alimentar ao descansar em um dia remove 1 de Desnutrido.",
+        "decrementaFonte": "notion-condicoes e notion-sistema > Necessidades, gravado em 2026-09-26 (D94, resposta do Pedro ao L05)"
       },
       "efeitos": [
         {
@@ -1606,9 +1613,8 @@
         }
       ],
       "morteEm": "recurso.saude.max == 0",
-      "status": "pedroDecide",
-      "pendente": "Como o Desnutrido DIMINUI continua sem texto (a PD17 respondeu como sobe). Lote PD20, item L05.",
-      "recomendacao": "Comer num descanso longo com luz remove 1, espelhando a Exaustão.",
+      "status": "canonico",
+      "statusFonte": "sobe (PD17) e desce (D94) gravados no Notion em 2026-09-26",
       "incrementaStatus": "canonico",
       "incrementaFonte": "notion-condicoes 3a66e3a4...0b25, gravado em 2026-09-26 (rodada 3, diff conferido) e notion-sistema 2b76e3a4, gravado em 2026-09-26 (rodada 3, diff conferido) > Necessidades (PD17)",
       "incrementaVerbatim": "Você ganha 1 de Desnutrido para cada dia em que descansou sem se alimentar (consumir 1 item do tipo Comida) ou sem luz de fogueira ou outra fonte."
@@ -2571,17 +2577,21 @@
     },
     "custoMinimo": {
       "valor": 1,
-      "excecao": "magia de Nivel 1 em intensidade Normal e sem modulacao = 0 Eter",
+      "excecao": "magia de Nivel 1 em intensidade Normal e sem modulacao = 0 Eter; Magias Pactuadas (Teurgo) em intensidade Contida = 0 Eter (D96)",
+      "excecoes": [
+        "nivel1-normal-sem-modulacao",
+        "magias-pactuadas-contida"
+      ],
       "aplicaDepoisDeReducoes": true,
       "status": "canonico",
       "fonte": "notion-sistema 2b76e3a4, gravado em 2026-09-26 (diff conferido: 3 blocos adicionados, 6 ícones de callout trocados, nada mais) > Magias (abaixo da tabela de Intensidade)",
       "verbatimPedro": "seria o caso de modular ou intensificar e o custo de eter ser reduzido por alguma tecnica, apesar de ser um truque o minimo continua sendo 1 igual as outras magias",
       "nota": "Um piso so, igual para todas. Substitui o modelo de 'dois pisos' da revisao 1.",
-      "verbatim": "Custo mínimo: toda conjuração custa no mínimo 1 Éter, mesmo após reduções de técnicas, cartas ou itens. A única exceção é a magia de Nível 1 conjurada em intensidade Normal e sem modulação, que custa 0 Éter. Magias de Nível 1 não possuem a intensidade Contida.",
-      "conflito": {
-        "status": "pedroDecide",
-        "o": "Magias Pactuadas (Teurgo, Arauto T1): \"Ao conjurar uma Magia Pactuada em Intensidade Contida, o custo é 0 de éter (Ao invés de 1)\". O Sistema agora diz \"no mínimo 1 Éter, mesmo após reduções de técnicas\".",
-        "leitura": "A técnica escreve a exceção de propósito (\"Ao invés de 1\"). Lote PD20, item L15."
+      "verbatim": "Custo mínimo: toda conjuração custa no mínimo 1 Éter, mesmo após reduções de técnicas, cartas ou itens. As exceções são a magia de Nível 1 conjurada em intensidade Normal e sem modulação e as Magias Pactuadas do Teurgo conjuradas em intensidade Contida, que custam 0 Éter. Magias de Nível 1 não possuem a intensidade Contida.",
+      "verbatimFonte": "notion-sistema, exceção das Magias Pactuadas gravada em 2026-09-26 (D96)",
+      "conflitoResolvido": {
+        "o": "Magias Pactuadas (Teurgo, Arauto T1): \"Ao conjurar uma Magia Pactuada em Intensidade Contida, o custo é 0 de éter (Ao invés de 1)\".",
+        "decisao": "D96, resposta do Pedro ao L15: \"De fato são custo 0\". A técnica vale; o Sistema agora lista as duas exceções."
       }
     },
     "exemplosDoPiso": [
@@ -3194,8 +3204,8 @@
           "pontosDeAtributo": 2,
           "distribuicao": "livre, em até dois atributos"
         },
-        "sextaCartaOcupaPosicao": null,
-        "sextaCartaOcupaPosicaoPendente": "Pegar a 6ª carta empurra a próxima carta para o custo seguinte (3 em vez de 2)? Lote PD20, item L07."
+        "sextaCartaOcupaPosicao": false,
+        "sextaCartaOcupaPosicaoFonte": "notion-limiar: \"Ela não ocupa lugar na sequência de custo das outras cartas.\" (D95, resposta do Pedro ao L07: \"Não\")"
       },
       "custoEscalonaPorMao": true,
       "cartasGratisNaCampanha": 4,
@@ -3204,7 +3214,7 @@
       "podeQueimar": "1 carta por mao, nunca retorna",
       "status": "canonico",
       "fonte": "notion-limiar 3a66e3a4...f676, gravado em 2026-09-26 (rodada 3, diff conferido) > Escolhendo Suas Cartas (PD13); \"4-12\" já corrigido pelo Pedro",
-      "verbatim": "1ª carta: Grátis! 2ª carta: 2 Pontos do Limiar. 3ª carta: 3 Pontos do Limiar. 4ª carta: 4 Pontos do Limiar. 5ª carta: 5 Pontos do Limiar. 6ª carta (+2 Atributo): Sempre custa 2 Pontos do Limiar, mesmo sendo a primeira carta escolhida, e só pode ser escolhida 1 vez por mão. Os 2 pontos podem ser distribuídos entre dois atributos.",
+      "verbatim": "1ª carta: Grátis! 2ª carta: 2 Pontos do Limiar. 3ª carta: 3 Pontos do Limiar. 4ª carta: 4 Pontos do Limiar. 5ª carta: 5 Pontos do Limiar. 6ª carta (+2 Atributo): Sempre custa 2 Pontos do Limiar, mesmo sendo a primeira carta escolhida, e só pode ser escolhida 1 vez por mão. Os 2 pontos podem ser distribuídos entre dois atributos. Ela não ocupa lugar na sequência de custo das outras cartas.",
       "catalogo": {
         "total": 127,
         "universais": 8,
@@ -3271,9 +3281,9 @@
       "status": "canonico",
       "fonte": "notion-limiar > Bencao Imediata dos Atributos (D87)"
     },
-    "tecnicasReatribuiveisStatus": "pedroDecide",
+    "tecnicasReatribuiveisStatus": "canonico",
     "tecnicasReatribuiveisFonte": "as 7 páginas de classe: \"Toda classe possui técnicas, você pode reatribuí-las livremente ao realizar um descanso longo, respeitando o limite de pontos.\"",
-    "tecnicasReatribuiveisConflito": "Nota do Pedro na PD4: \"as técnicas das classes que são alteráveis em descansos curtos\". Notion (7 páginas) diz longo. Mantido o Notion até ele confirmar (pergunta C1).",
+    "tecnicasReatribuiveisConfirmacao": "D92, resposta do Pedro ao L22 (2026-09-26): \"Longo\". A nota da PD4 (\"alteráveis em descansos curtos\") não vale.",
     "ramos": {
       "escolha": "por técnica: cada tier escolhe técnicas de qualquer ramo, misturar é permitido",
       "irreversivel": true,
@@ -3335,6 +3345,7 @@
       },
       "acesso": "magias de nível igual ou abaixo do nível do personagem",
       "lacuna": "Teurgo SEM nenhuma das 3 técnicas acima: o texto base só cobre o nível 1. Lote PD20, item L14.",
+      "lacunaRespostaPedro": "\"Todo tier 1 do teurgo tem uma maneira de obter magias diferente.\" (2026-09-26). Falta confirmar: pegar uma das 3 é obrigatório no nível 2, ou quem não pega fica com as 1 + Mod do nível 1?",
       "fonte": "notion Teurgo caa6e3a4 > Progressão, Escolas do Primórdio, Tier 1"
     },
     "criacao": {

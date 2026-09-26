@@ -470,6 +470,7 @@ CONVENCOES = {
  'soParaRaca': "o item só funciona nessa raça (Kits de Manutenção: 'automato')",
  'marcaVhelor': "{soma, funcionaAteMarca?}: quanto o item move o contador de Marcas da Vhelor ao ser consumido. Textos e efeitos das 7 marcas no bloco 'marcasVhelor' (fonte única: marcas-vhelor.json)",
  'requisito': "{arma:'leve'} ou {marcaVhelorMin:n}: o item só funciona se a condição valer; a ficha avisa, não bloqueia",
+ 'critico': "no crítico dobram os dados da arma, inclusive os de dano extra escritos na própria arma (D97, no Notion); extras de fora da arma (óleo, técnica, Sangramento) não dobram (regras-ficha > testes.critico)",
 }
 ALVOS = {
  'imunidade.condicao.<id>':'imune a uma condição (id do catálogo de condições). Diferente de imunidade.<tipo>, que é a tipo de dano',
@@ -643,7 +644,7 @@ if __name__ == '__main__':
         sha = hashlib.sha256(open(CSV,'rb').read()).hexdigest()[:16]
         final = {
           'schemaVersion': 'efeitos-itens/1.1',
-          'geradoEm': '2026-09-26 (rev. 3: rodada 3 — PD21 Grevas, PD22 Ae(Todos), PD23 Autômato, PD24, PD25, PD26a Marcas da Vhelor)',
+          'geradoEm': '2026-09-26 (rev. 4: rodada 3 — PD21 Grevas, PD22 Ae(Todos), PD23 Autômato, PD24, PD25, PD26a Marcas da Vhelor; convenção de crítico D97)',
           'geradoPor': 'ficha-efeitos-gerador.py + ficha-efeitos-overrides.json (branch claude/khalkaria-bazar-balance-lsdfic)',
           'fonte': {'csv': 'references/bazar-v26.csv (= data/Bazar_Khalkaria_v26.csv na main: coluna Efeito idêntica nos 727; só Ingredientes difere, em 109)',
                     'sha256_16': sha, 'itens': len(rows)},

@@ -567,6 +567,35 @@ que a ficha precisa para durações escritas em minutos.
 
 **D91 — *Erva Medicinal*: "Saude" → "Saúde".** Correção de digitação autorizada, aplicada no CSV.
 
+**D92–D97 — Respostas do Pedro ao lote PD20 (2026-09-26).** Todas gravadas no Notion no mesmo dia,
+diff conferido. Verbatim do Pedro:
+- **D92 (L22) — Técnicas gerais trocam no descanso LONGO.** *"Longo"*. O Notion já dizia isso nas 7
+  classes; a nota "alteráveis em descansos curtos" da PD4 não vale.
+- **D93 (L03) — A Stamina NÃO fica negativa.** *"Não."* Perdas que tiram Stamina param em 0; só o Éter
+  atravessa o 0. Sistema > Status: "A Stamina não fica negativa."
+- **D94 (L05) — O Desnutrido desce ao se alimentar.** *"Se alimentar ao descansar em um dia remove 1
+  de desnutrido."* Em Condições e em Sistema > Necessidades.
+- **D95 (L07) — A 6ª carta (+2 Atributo) não ocupa lugar na fila de custo.** *"Não"*. Pegar a grátis e
+  a +2 Atributo não encarece a próxima.
+- **D96 (L15) — Magias Pactuadas em Contida custam 0 Éter.** *"De fato são custo 0"*. É a segunda
+  exceção ao custo mínimo 1, agora escrita no Sistema ao lado da do Nível 1.
+- **D97 (L36) — No crítico, os dados extras impressos na própria arma também dobram.** *"Sim, a
+  quantidade de dados dobram."* Impacto pequeno no DPR: com 5% de crítico, uma arma Luxária +2d8
+  ganha ~0,45 por ataque. Extras de fora da arma (óleo, técnica, Sangramento) continuam sem dobrar
+  (leitura minha do "dobro de dados da arma", não perguntada).
+
+**Respondidos, mas ainda ambíguos (perguntei de novo):**
+- L14 Teurgo: *"Todo tier 1 do teurgo tem uma maneira de obter magias diferente."* Pegar uma das 3
+  técnicas de grimório no nível 2 é obrigatório, ou quem não pega fica com as 1 + Mod do nível 1?
+- L35 Morrendo: *"Apenas some o dano a saúde em negativos."* Provável: acertado estabilizado, o dano
+  soma no negativo e ele continua estável (sai o "ou ser atacado novamente").
+- L39 Semente: *"1> marca da vhelor."* +1 Marca (contra o "SEM adicionar Marca" do CSV) ou Marca 1?
+- L20 três "Investida" (manobra, técnica do Brutalista, ação do Titã): *"Bom revisar."* Propus
+  renomear as duas antigas; espera os nomes dele.
+
+**Visto no Notion, não fui eu:** o L45 ("Sua Evasão base é 10 + Mod. Destreza, igual em todas as
+classes…") apareceu gravado no Sistema > Defesa entre as minhas duas passadas.
+
 ## Rodada 3 da ficha digital (2026-09-26) — decisões do plano (PD) e Notion gravado
 
 **Numeração:** `PDn` = decisão n do plano do agente de HTML (`docs/ficha-digital/02-plano.md`),
