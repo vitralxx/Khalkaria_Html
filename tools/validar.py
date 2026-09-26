@@ -49,6 +49,14 @@ integridade do artefato HTML, que é o que quebra em silêncio:
               (data-kf-id). Um sync que troque componente por <ul> genérico,
               ou o mude de card, derruba o build; queda legítima (o Notion tirou
               o conteúdo) só passa regravando o baseline de propósito
+ [balanceamento] F1d: data/balanceamento/ é a projeção publicada da entrega do
+              balanceamento sem rara oculta (D3, D11/D33); com o privado local,
+              refeita byte a byte (tools/checa_efeitos.py)
+ [efeitos]    F1d: data/balanceamento/ficha-efeitos-itens.json x bazar.json/CSV
+              e data/efeitos.json: conjunto, catálogo, vocabulário fechado
+              (tools/alvos_destino.json), inventário, armas, lembretes,
+              contagens, integridade de Mod (tools/checa_efeitos.py)
+ [vhelor]     F1d: as 7 Marcas da Vhelor iguais ao texto do Pedro e numa fonte só
 
 Uso:
   python validar.py [repo_root]
@@ -57,7 +65,7 @@ Uso:
 Saída: exit 0 = tudo OK; exit 1 = há falhas.
 """
 import os, re, sys, json, glob, shutil, filecmp, subprocess, tempfile
-import shell, blocos
+import shell, blocos, checa_efeitos
 from kf_marca import NAO_ENTIDADE
 from html.parser import HTMLParser
 
@@ -69,14 +77,15 @@ VOID = {'area', 'base', 'br', 'col', 'embed', 'hr', 'img', 'input', 'link',
 
 # páginas geradas por gerador -> script que as produz (para o round-trip)
 GERADORES = ['gerar_sistema.py', 'gerar_magias.py', 'gerar_condicoes.py', 'gerar_limiar.py',
-             'gerar_classes.py', 'gerar_racas.py', 'gerar_origens.py', 'gerar_catalogo.py']
+             'gerar_classes.py', 'gerar_racas.py', 'gerar_origens.py', 'gerar_efeitos.py',
+             'gerar_catalogo.py']
 # O Bazar entra no build padrão, mas não no round-trip: o gerador dele lê o CSV
 # e grava data/bazar.json na raiz do repo (não recebe repo_root), então
 # regenerá-lo aqui sobrescreveria o artefato real. A integridade do bazar.json
 # é checada em checa_bazar_inv().
 FORA_ROUNDTRIP = {'pages/bazar.html'}
 # data/ que um gerador escreve (fora de data/catalogo/): nasce do zero no round-trip
-ARTEFATOS_DATA = ['data/pericias.json']
+ARTEFATOS_DATA = ['data/pericias.json', 'data/efeitos.json']
 FONTES_DOCS = ['docs/ficha-digital/03-respostas-pedro.md']
 
 falhas = []
@@ -1200,6 +1209,33 @@ def checa_componentes(root=None):
         print(f'  AVISO  {s} (acima do baseline: --atualizar-componentes fixa o novo piso)')
 
 
+# ---------------------------------------------------------------- F1d
+def _imprime(rot, r):
+    for x in r.falhas:
+        print(f'  FALHA  {x}')
+    for x in r.avisos:
+        print(f'  AVISO  {x}')
+    for x in r.ok:
+        print(f'  OK     {x}')
+    if r.falhas:
+        falhas.append(rot)
+
+
+def checa_balanceamento(root=None):
+    print('[balanceamento] data/balanceamento/: projeção publicada, sem rara oculta')
+    _imprime('balanceamento', checa_efeitos.checa_balanceamento(root or ROOT))
+
+
+def checa_efeitos_itens(root=None):
+    print('[efeitos] Efeitos de item: arquivo do balanceamento x Bazar x data/efeitos.json')
+    _imprime('efeitos', checa_efeitos.checa_efeitos(root or ROOT))
+
+
+def checa_vhelor(root=None):
+    print('[vhelor] Marcas da Vhelor (data/balanceamento/marcas-vhelor.json)')
+    _imprime('vhelor', checa_efeitos.checa_vhelor(root or ROOT))
+
+
 def checa_roundtrip():
     print('[5] Round-trip data/*.json -> pages/*.html')
     tmp = tempfile.mkdtemp(prefix='khalkaria_rt_')
@@ -1285,6 +1321,12 @@ if __name__ == '__main__':
     checa_blocos()
     print()
     checa_conteudo_contrato()
+    print()
+    checa_balanceamento()
+    print()
+    checa_efeitos_itens()
+    print()
+    checa_vhelor()
     print()
     if '--atualizar-componentes' in FLAGS:
         atualiza_componentes()

@@ -13,3 +13,6 @@ __pycache__/
 preview.txt
 site_v24/
 *.tmp
+
+# Verbatim do balanceamento e raras (F1d/F1f, plano M6): nunca versionado
+privado/

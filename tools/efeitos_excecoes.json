@@ -1,0 +1,10 @@
+{
+ "schemaVersion": "efeitos-excecoes/1",
+ "_doc": "Defeitos de parse CONHECIDOS do arquivo de efeitos do balanceamento (plano §7 F1d; errata pedida na §10, 'Erratas do arquivo de efeitos'). O tools/gerar_efeitos.py transforma a frase em lembrete (verbatim do CSV, sem o ponto final) e tira do automático o dano extra que perdeu o qualificador; o validar.py ([efeitos]) dá AVISO para cada defeito desta lista e FALHA para defeito fora dela. Quando a errata chegar e o defeito sumir do arquivo, a entrada daqui vira FALHA ('exceção obsoleta'): apague-a. defeito: 'qualificador' = o dano extra entrou sem o qualificador da frase; 'perdido' = a frase de dano extra não virou nada; 'modComoLembrete' = número de campo ficou só como lembrete.",
+ "itens": {
+  "item-bastao-de-karmath": {"defeito": "qualificador", "frase": "+ 1d6 Radiante contra Teurgos, Corrompidos e Mortos-Vivos."},
+  "item-machado-da-furia": {"defeito": "qualificador", "frase": "+ 2d8 Trovejante 1x/alvo."},
+  "item-adaga-dimensional": {"defeito": "perdido", "frase": "+ 1d6 de tipo variável: Altere em um descanso curto — 1 Radiante, 2 Trovejante, 3 Necrótico, 4 Força."},
+  "item-foco-do-vidente": {"defeito": "modComoLembrete", "frase": "+2 em Investigação e Conhecimento enquanto equipado."}
+ }
+}

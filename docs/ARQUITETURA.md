@@ -94,6 +94,17 @@ tools/migrar_f1b_correcao.py   idem, correção da F1b: Progressão, regra de t�
 tools/migrar_f1e.py            idem, F1e(c): parágrafo dos ramos e cabeçalhos de tier (já rodada)
 tools/pendentes_balanceamento.json  regras perguntadas ao balanceamento, sem resposta
                                (id, rodada, pergunta, campos): selo PENDENTE (balanceamento)
+tools/sync_balanceamento.py    F1d: entrega do balanceamento (git show da branch dele) ->
+                               privado/balanceamento/ (verbatim, gitignored) + data/balanceamento/
+                               (projeção publicada sem rara oculta) + fonte.json (commit de origem).
+                               Manual: rodar quando o balanceamento entregar; depois build.py
+tools/gerar_efeitos.py         F1d: data/balanceamento + bazar.json -> data/efeitos.json (artefato)
+tools/alvos_destino.json       F1d: vocabulário fechado dos efeitos (26 famílias de alvo ->
+                               alvo do site + destino campo|lembrete|adiado; ops, quando, status,
+                               condicao, opcionais, duração, treino)
+tools/efeitos_excecoes.json    F1d: defeitos de parse conhecidos do arquivo de efeitos (viram
+                               lembrete; AVISO até a errata, FALHA quando ficam obsoletos)
+tools/checa_efeitos.py         F1d: checagens [balanceamento], [efeitos] e [vhelor] do validar
 
 css/style.css                  design system: tokens :root, layout, globais
 css/classes.css                componentes das 7 páginas de classe
@@ -130,6 +141,15 @@ data/catalogo/<tipo>.json      ARTEFATO (gerar_catalogo.py): {id, tipo, nome sem
 data/pericias.json             ARTEFATO (gerar_catalogo.py, F1e): as 24 perícias {slug, nome, prof,
                                atributos, modo fixo|maior|arma|dado, dadoPorBonus do Defender} e os
                                graus; fonte única para a F1d e o schema v3
+data/balanceamento/            F1d: projeção PUBLICADA (D3) da entrega do balanceamento
+                               (regras-ficha, efeitos-itens, overrides, marcas-vhelor) sem nada
+                               de carta rara oculta (D11/D33) e com o texto das Marcas da Vhelor
+                               só em marcas-vhelor.json; fonte.json = ref, commit, sha256 do
+                               verbatim e cada corte. Só muda pelo tools/sync_balanceamento.py
+data/efeitos.json              ARTEFATO (gerar_efeitos.py, F1d): {porId: item -> quando, slot,
+                               acumulaCopia, usos, mods[] no formato Mod do site, arma?,
+                               consumo?, requisito, lembretes, texto, status} para os 612 itens
+                               com efeito; nenhuma página lê ainda
 data/Bazar_Khalkaria_v26.csv   fonte do Bazar: conteúdo do Pedro, só muda com
                                aprovação dele (gerador, CSS, JS e template do
                                Bazar são do agente desde 2026-09-24)
@@ -287,6 +307,21 @@ Espadachim e do Teurgo) ou `pendente` + `pergunta` (técnica de raça); `min`,
 movimento, Ar natural e corrupção máxima por nível com o contrato do
 balanceamento (lido da branch dele por `git show`, ou `KH_CONTRATO=<arquivo>`) e
 só AVISA: quem decide a divergência é o Pedro.
+
+**Efeitos de item (F1d).** O verbatim do balanceamento nunca entra no git:
+`tools/sync_balanceamento.py` o copia para `privado/balanceamento/` e publica em
+`data/balanceamento/` a projeção sem rara oculta (objeto `rara:true`, fonte/id/chave
+de rara, frase que cita o nome de uma rara fora de nome ou texto do Bazar). O
+`[balanceamento]` FALHA com rara na projeção ou `privado/` rastreado e, com o
+privado local, refaz a projeção e compara byte a byte (sem ele, AVISO).
+`gerar_efeitos.py` compila `data/efeitos.json` pelo `tools/alvos_destino.json`
+(alvo, op, quando, status, recarga, condicao ou opcional fora da lista derruba o
+build) e o round-trip o compara. O `[efeitos]` confere o arquivo do balanceamento
+contra o `bazar.json` e o CSV (partição dos 727, nome/categoria/raridade, verbatim
+== coluna Efeito, capacidade/acumula/empilhável/armadura contra o `inv`, armas
+re-extraídas do texto, dano extra com qualificador, Mods íntegros); os defeitos de
+parse conhecidos ficam em `tools/efeitos_excecoes.json`. O `[vhelor]` exige as 7
+Marcas iguais ao texto do Pedro (03 §3.1) e numa fonte só.
 
 Os índices "Navegação Rápida" de Condições e Sistema saem do gerador
 (`{{IDX_<categoria>}}` no template): um link por card/subseção, na ordem do

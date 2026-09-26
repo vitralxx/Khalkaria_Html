@@ -1,0 +1,56 @@
+{
+ "schemaVersion": "alvos-destino/1",
+ "_doc": "Vocabulário fechado dos efeitos de item (F1d, plano §3.2 e §4). 'familias' tem EXATAMENTE as 26 chaves do bloco 'alvos' de data/balanceamento/ficha-efeitos-itens.json (o validar.py compara por conjunto): cada uma diz os padrões de alvo que cobre, o alvo no namespace do site (mesma tabela para o gerador do contrato, F3) e o destino na ficha: {campo}, {lembrete} ou {adiado: fase}. 'foraDoArquivoDeEfeitos' são alvos que só as Marcas da Vhelor usam. Alvo que não casa padrão nenhum, op, quando, status, recarga, condicao ou opcional fora das listas derrubam o gerar_efeitos.py. Placeholders: <tipo> = os 14 tipos de dano, <categoria> = as 4 categorias, <ATTR> = FOR|DES|CON|INT|SAB, <pericia> = slug (conferido contra data/pericias.json no validar), <condicao> = id (conferido contra data/condicoes.json), <tag> = tag de perícia.",
+ "placeholders": {
+  "<tipo>": ["cortante", "contundente", "perfurante", "fogo", "frio", "eletrico", "veneno", "acido", "psiquico", "radiante", "trovejante", "necrotico", "forca", "primordial"],
+  "<categoria>": ["ordinario", "elemental", "biologico", "mistico"],
+  "<ATTR>": ["FOR", "DES", "CON", "INT", "SAB"],
+  "<VGR>": ["V", "G", "R"],
+  "<r>": ["saude", "stamina", "eter"],
+  "<pericia>": "slug",
+  "<condicao>": "slug",
+  "<tag>": "slug"
+ },
+ "familias": {
+  "imunidade.condicao.<id>": {"padroes": {"imunidade.condicao.<condicao>": "imunidade.condicao.<condicao>"}, "destino": {"campo": "imunidades a condição"}},
+  "imunidade.<tipo>": {"padroes": {"imunidade.<tipo>": "imunidade.<tipo>"}, "semSufixo": "imunidade", "destino": {"campo": "resistências (I)"}},
+  "resistencia.<tipo>": {"padroes": {"resistencia.<tipo>": "resistencia.<tipo>"}, "semSufixo": "resistencia", "destino": {"campo": "resistências (R)"}},
+  "vulnerabilidade.<tipo>": {"padroes": {"vulnerabilidade.<tipo>": "vulnerabilidade.<tipo>"}, "destino": {"campo": "resistências (V)"}},
+  "ae.<tipo|categoria|todos>": {"padroes": {"ae.<tipo>": "ae.<tipo>", "ae.<categoria>": "ae.<categoria>", "ae.todos": "ae.todos"}, "destino": {"campo": "Armadura Específica"}},
+  "ar": {"padroes": {"ar": "ar"}, "destino": {"campo": "Armadura"}},
+  "pericia.<id>": {"padroes": {"pericia.<pericia>": "pericia.<pericia>"}, "destino": {"campo": "perícia"}},
+  "testes.<FOR|DES|CON|INT|SAB>": {"padroes": {"testes.<ATTR>": "testes.<ATTR>"}, "destino": {"campo": "soma em toda perícia daquele atributo"}},
+  "atributo.<FOR|DES|CON|INT|SAB>": {"padroes": {"atributo.<ATTR>": "atributo.<ATTR>"}, "semSufixo": "atributo", "destino": {"campo": "atributo"}},
+  "classe.<V|G|R>": {"padroes": {"classe.<VGR>": "classe.<VGR>"}, "destino": {"campo": "termo do coeficiente de Vitalidade/Vigor/Ressonância"}},
+  "saude.max | stamina.max | eter.max": {"padroes": {"<r>.max": "recurso.<r>.max"}, "destino": {"campo": "recurso máximo"}},
+  "saude.atual | stamina.atual | eter.atual": {"padroes": {"<r>.atual": "recurso.<r>.atual"}, "destino": {"campo": "recurso atual"}},
+  "saude.temporaria": {"padroes": {"saude.temporaria": "recurso.saude.temporaria"}, "destino": {"campo": "Saúde temporária (D15)"}},
+  "regeneracao.saude": {"padroes": {"regeneracao.saude": "regeneracao.saude"}, "destino": {"adiado": "F5"}},
+  "evasao.passiva": {"padroes": {"evasao.passiva": "evasao.passiva"}, "destino": {"campo": "Evasão (a Ativa deriva dela)"}},
+  "movimento": {"padroes": {"movimento": "movimento"}, "destino": {"campo": "Movimento"}},
+  "acoes": {"padroes": {"acoes": "acoes"}, "destino": {"campo": "ações por turno"}},
+  "tamanho": {"padroes": {"tamanho": "tamanho"}, "destino": {"lembrete": true}},
+  "margemAmeaca": {"padroes": {"margemAmeaca": "margemAmeaca"}, "destino": {"campo": "linha de ataque"}},
+  "dano.corpoACorpo": {"padroes": {"dano.corpoACorpo": "dano.corpoACorpo"}, "destino": {"lembrete": true}},
+  "ataque.danoExtra | ataque.ignoraAr | ataque.bonusAtacar": {"padroes": {"ataque.danoExtra": "ataque.danoExtra", "ataque.ignoraAr": "ataque.ignoraAr", "ataque.bonusAtacar": "ataque.bonusAtacar"}, "destino": {"campo": "linha de ataque"}},
+  "capacidade.bugigangas | capacidade.equipamentos": {"padroes": {"capacidade.bugigangas": "capacidade.bugigangas", "capacidade.equipamentos": "capacidade.equipamentos"}, "destino": {"campo": "capacidade do inventário"}},
+  "recipiente.bugigangas": {"padroes": {"recipiente.bugigangas": "recipiente.bugigangas"}, "destino": {"adiado": "F6"}},
+  "permiteSemTreino.<pericia>": {"padroes": {"permiteSemTreino.<pericia>": "permiteSemTreino.<pericia>"}, "destino": {"campo": "libera grau 0 com a penalidade"}},
+  "descanso.comodidade": {"padroes": {"descanso.comodidade": "descanso.comodidade"}, "destino": {"lembrete": true}},
+  "condicao.exaustao": {"padroes": {"condicao.exaustao": "condicao.exaustao"}, "destino": {"campo": "nível da condição Exaustão"}}
+ },
+ "foraDoArquivoDeEfeitos": {
+  "todosOsTestes": {"padroes": {"todosOsTestes": "todosOsTestes"}, "usadoPor": "marcas-vhelor.json (Marca 3)", "destino": {"campo": "toda rolagem"}},
+  "tag.<tag>": {"padroes": {"tag.<tag>": "tag.<tag>"}, "usadoPor": "marcas-vhelor.json (Marca 4)", "destino": {"campo": "perícias com a tag", "pendente": "rodada 4 (plano §10, item 4): quais perícias são 'interações sociais'"}}
+ },
+ "ops": ["soma", "multiplica", "fixa", "minimo", "maximo", "vantagem", "desvantagem", "falhaAuto", "semAcao", "semReacao", "lembrete", "escolha"],
+ "quando": ["carregado", "equipado", "sintonizado", "municaoAtiva", "ativado"],
+ "status": ["canonico", "aprovado", "decisao", "pendente"],
+ "condicao": ["reacaoDefender", "emCombate", "foraDeCombate", "descansoAoArLivre", "investida"],
+ "opcionais": ["condicao", "duracao", "tipo", "escolha", "ataques", "excecao", "momento", "ativacao", "enquanto", "permanente", "leitura", "penalidade", "contaPeso", "requerTeste", "rolar", "todos", "cobre", "nota"],
+ "duracao": "^(\\d+ (min|h|cena|rodada|rodadas|turno|turnos)|proximoCombate)$",
+ "treino": {
+  "Treinado em Armas Marciais": "armas-marciais",
+  "Treinamento À Distância": "armas-a-distancia"
+ }
+}
