@@ -86,7 +86,9 @@ tools/testes/                  testes node do motor KhInv (*.test.js, fixtures/)
                                index.js deixa `node --test tools/testes` rodar no Node 22+;
                                test_*.py: checagens do validar (unittest, no build)
 tools/estilo/                  conferência de estilo computado (não é build; §6): servidor.py,
-                               captura.js, rodar.html, roteiro.json, diff.py, revisado.json
+                               captura.js, rodar.html, roteiro.json, diff.py, revisado.json;
+                               cascata declarada: cascata.js/.html, cascata_diff.py,
+                               regras.html, pares.py
 tools/testes/estilo/antes/     linha de base do estilo computado (52 capturas .json.gz)
 tools/extrair_css.py           refatoração pontual de CSS (não é build)
 tools/migrar_sistema.py        migração pontual do Sistema (já rodada)
@@ -431,6 +433,28 @@ python tools/estilo/diff.py antes depois --revisado tools/estilo/revisado.json
   de barra de rolagem (`::-webkit-scrollbar`), `::marker`/`::placeholder`,
   propriedades customizadas (`--*`) por si (só pelo efeito nas propriedades
   reais), nem lotes do Bazar além do primeiro (a rolagem infinita não é disparada).
+
+**Cascata declarada** (complemento, feito na F1c): o `diff.py` não vê `:hover`,
+`:focus`, outras larguras, `prefers-reduced-motion` nem classes de estado que o JS
+ainda não pôs. Dois instrumentos cobrem isso:
+
+```bash
+# vencedor DECLARADO por elemento x propriedade: :hover/:focus/:active ligados,
+# roteiro + 1000/800/390 px, passada normal e com reduced-motion
+#   http://127.0.0.1:8898/tools/estilo/cascata.html?rotulo=cascata-depois  (window.__cascata)
+python tools/estilo/cascata_diff.py <cascata-antes> tools/testes/estilo/cascata-depois
+# todas as regras de cada página, todas as @media (window.__regras)
+#   http://127.0.0.1:8898/tools/estilo/regras.html?rotulo=regras-depois
+python tools/estilo/pares.py tools/testes/estilo/regras-depois tools/testes/estilo/cascata-depois [--estrito]
+```
+
+- `cascata_diff.py` compara duas rodadas; o "antes" é o commit anterior, servido
+  de um `git worktree` noutra porta (`servidor.py --porta 8897`). Na F1c sobraram
+  só o `z-index` escrito como `var()` (mesmo valor) e o movimento reduzido global.
+- `pares.py` é estático: acha pares cuja vencedora muda com `@layer` e que podem
+  casar o mesmo elemento capturado (ancestrais conferidos; classe que só o JS põe
+  conta como curinga). Na F1c sobraram as 3 pontes documentadas e falsos positivos
+  de id.
 
 ## 7. Dívidas restantes
 

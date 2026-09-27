@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Cascata — roteiro</title>
+<style>
+  body { margin: 0; font: 13px/1.4 monospace; background: #111; color: #ddd; }
+  #log { position: fixed; right: 0; top: 0; width: 420px; max-height: 100vh; overflow: auto; background: #000c; padding: 8px; z-index: 2; white-space: pre-wrap; }
+  iframe { position: absolute; left: 0; top: 0; border: 0; background: #fff; }
+</style>
+</head>
+<body>
+<div id="log"></div>
+<script src="cascata.js"></script>
+<script>
+(function () {
+  var q = new URLSearchParams(location.search);
+  var rotulo = q.get('rotulo'), so = q.get('so') || '';
+  var logEl = document.getElementById('log');
+  var P = window.__cascata = { feito: 0, total: 0, fim: false, erros: [] };
+  function log(s) { logEl.textContent += s + '\n'; }
+  var EXTRA = {
+    'estreito': { viewport: [1000, 800], localStorage: { khalkaria_splash_seen: '1' } },
+    'tablet': { viewport: [800, 900], localStorage: { khalkaria_splash_seen: '1' } },
+    'celular': { viewport: [390, 844], localStorage: { khalkaria_splash_seen: '1' } }
+  };
+  function nomeDe(pagina, estado) {
+    return pagina.split('#')[0].replace(/^pages\//, '').replace(/\.html$/, '').replace(/\//g, '-') + '.' + estado;
+  }
+  function tarefas(R) {
+    var t = [], est = Object.assign({}, R.estados, EXTRA);
+    R.paginas.forEach(function (pg) {
+      Object.keys(est).forEach(function (en) {
+        var pp = (R.porPagina || {})[pg] || {};
+        t.push({ pagina: pg, estado: en, viewport: est[en].viewport, localStorage: est[en].localStorage,
+          esperar: [est[en].esperar, pp.esperar].filter(Boolean), minimo: pp.minimo || 600 });
+      });
+    });
+    (R.extras || []).forEach(function (x) {
+      t.push({ pagina: x.pagina, estado: x.estado, viewport: x.viewport, localStorage: x.localStorage,
+        esperar: [x.esperar].filter(Boolean), minimo: x.minimo || 600 });
+    });
+    t.forEach(function (x) { x.nome = nomeDe(x.pagina, x.estado); });
+    return t.filter(function (x) { return !so || x.nome.indexOf(so) >= 0; });
+  }
+  function dorme(ms) { return new Promise(function (r) { setTimeout(r, ms); }); }
+  function espera(w, sel) {
+    return new Promise(function (res) {
+      var t0 = Date.now();
+      (function passo() { if (w.document.querySelector(sel) || Date.now() - t0 > 8000) return res(); setTimeout(passo, 50); })();
+    });
+  }
+  function compacta(r) {
+    var tab = [], idx = new Map();
+    function i(s) { var k = idx.get(s); if (k === undefined) { k = tab.length; tab.push(s); idx.set(s, k); } return k; }
+    var els = {};
+    Object.keys(r.els).forEach(function (c) {
+      var o = {}; Object.keys(r.els[c]).forEach(function (p) { o[p] = [i(r.els[c][p][0]), i(r.els[c][p][1])]; });
+      els[c] = o;
+    });
+    return { camadas: r.camadas, regras: r.regras, erros: r.erros, tab: tab, els: els };
+  }
+  function uma(t) {
+    try { localStorage.clear(); } catch (e) {}
+    Object.keys(t.localStorage || {}).forEach(function (k) { localStorage.setItem(k, t.localStorage[k]); });
+    var f = document.createElement('iframe');
+    f.width = t.viewport[0]; f.height = t.viewport[1];
+    f.style.width = t.viewport[0] + 'px'; f.style.height = t.viewport[1] + 'px';
+    var carregou = new Promise(function (r) { f.onload = r; });
+    f.src = '../../' + t.pagina;
+    document.body.appendChild(f);
+    return carregou.then(function () {
+      var w = f.contentWindow;
+      return t.esperar.reduce(function (p, s) { return p.then(function () { return espera(w, s); }); }, Promise.resolve())
+        .then(function () { return dorme(t.minimo + 800); })
+        .then(function () {
+          var corpo = JSON.stringify({ normal: compacta(KhCascata.analisar(w, false)), reduzido: compacta(KhCascata.analisar(w, true)) });
+          return fetch('/__captura?rotulo=' + rotulo + '&nome=' + t.nome, { method: 'POST', body: corpo }).then(function (r) { return r.json(); });
+        });
+    }).then(function (r) { f.remove(); try { localStorage.clear(); } catch (e) {} return r; },
+            function (e) { f.remove(); throw e; });
+  }
+  fetch('roteiro.json', { cache: 'no-store' }).then(function (r) { return r.json(); }).then(function (R) {
+    var lista = tarefas(R); P.total = lista.length;
+    return lista.reduce(function (p, t) {
+      return p.then(function () {
+        return uma(t).then(function (r) { P.feito++; log(P.feito + '/' + P.total + ' ' + t.nome + ' ' + (r.bytes || r.erro)); },
+          function (e) { P.feito++; P.erros.push(t.nome + ': ' + e); log('ERRO ' + t.nome + ' ' + e); });
+      });
+    }, Promise.resolve());
+  }).then(function () { P.fim = true; }, function (e) { P.fim = true; P.erros.push(String(e)); });
+})();
+</script>
+</body>
+</html>

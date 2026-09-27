@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-BR"><head><meta charset="UTF-8"><title>regras</title></head>
+<body>
+<script src="cascata.js"></script>
+<script>
+/* Despeja todas as regras de estilo de cada página (todas as media), com camada,
+   ordem, especificidade por seletor e declarações longhand. */
+(function () {
+  var P = window.__regras = { feito: 0, total: 0, fim: false, erros: [] };
+  var rotulo = new URLSearchParams(location.search).get('rotulo');
+  function dump(win) {
+    var out = [], camadas = [], ordem = 0;
+    function camada(n) { if (camadas.indexOf(n) < 0) camadas.push(n); return n; }
+    function andar(lista, cam, media, origem) {
+      for (var i = 0; i < lista.length; i++) {
+        var r = lista[i], t = r.constructor.name;
+        if (t === 'CSSImportRule') { try { andar(r.styleSheet.cssRules, cam, media, origem); } catch (e) {} }
+        else if (t === 'CSSLayerStatementRule') r.nameList.forEach(function (n) { camada(n); });
+        else if (t === 'CSSLayerBlockRule') andar(r.cssRules, camada(r.name), media, origem);
+        else if (t === 'CSSMediaRule') andar(r.cssRules, cam, media.concat([r.conditionText || r.media.mediaText]), origem);
+        else if (t === 'CSSSupportsRule' || t === 'CSSContainerRule') andar(r.cssRules, cam, media.concat(['@' + r.conditionText]), origem);
+        else if (t === 'CSSStyleRule') {
+          var props = [];
+          for (var k = 0; k < r.style.length; k++) { var p = r.style[k]; props.push([p, r.style.getPropertyValue(p) || ('{pend:' + r.style.cssText + '}'), r.style.getPropertyPriority(p) === 'important' ? 1 : 0]); }
+          var sels = KhCascata.splitTop(r.selectorText, ',').map(function (s) { return [s, KhCascata.spec(s)]; });
+          out.push({ sels: sels, cam: cam, ordem: ordem++, media: media, origem: origem, props: props });
+        }
+      }
+    }
+    Array.prototype.forEach.call(win.document.styleSheets, function (ss) {
+      var o = ss.href ? ss.href.replace(/^.*\//, '').replace(/\?.*$/, '') : ('<style' + (ss.ownerNode && ss.ownerNode.id ? '#' + ss.ownerNode.id : '') + '>');
+      try { andar(ss.cssRules, '', [], o); } catch (e) {}
+    });
+    return { camadas: camadas, regras: out };
+  }
+  fetch('roteiro.json').then(function (r) { return r.json(); }).then(function (R) {
+    P.total = R.paginas.length;
+    return R.paginas.reduce(function (p, pg) {
+      return p.then(function () {
+        localStorage.clear(); localStorage.setItem('khalkaria_splash_seen', '1'); localStorage.setItem('khalkaria_ficha_open', '1');
+        var f = document.createElement('iframe'); f.width = 1920; f.height = 1080;
+        var ok = new Promise(function (r) { f.onload = r; });
+        f.src = '../../' + pg; document.body.appendChild(f);
+        return ok.then(function () { return new Promise(function (r) { setTimeout(r, pg.indexOf('bazar') >= 0 ? 3000 : 1500); }); })
+          .then(function () {
+            var nome = pg.replace(/^pages\//, '').replace(/\.html$/, '').replace(/\//g, '-');
+            return fetch('/__captura?rotulo=' + rotulo + '&nome=' + nome, { method: 'POST', body: JSON.stringify(dump(f.contentWindow)) });
+          }).then(function () { f.remove(); P.feito++; }, function (e) { f.remove(); P.feito++; P.erros.push(pg + ' ' + e); });
+      });
+    }, Promise.resolve());
+  }).then(function () { P.fim = true; });
+})();
+</script>
+</body></html>
