@@ -204,3 +204,10 @@ Itens em `15-ficha-rodada3.md` §E (branch do balanceamento). Os que o Pedro res
 | L43 | Como o balanceamento recomenda | "Os pergaminhos não foram ajustados à nova lógica de magia, peça pro balanceamento ajustar e te mandar o csv do bazar novo." |
 | L16, L18, L21 | Vale o primeiro | — |
 | L19 | Vale o primeiro | "Essa técnica do brutalista está desatualizada, preciso de um log de todas as técnicas do sistema e se elas estão funcionando na ficha interativa ou não." |
+
+## 7. Respostas de 2026-09-26 (depois da F1c)
+
+- **Bazar, cards:** "Preciso de uma representação visual melhor em cada card de carta no bazar, todos os chips têm a mesma paleta, e as raridades também, melhora a intuitividade e organiza a coisa, adiciona opção de diminuir e aumentar o tamanho da escala dos cards."
+- **Foco e movimento:** "Sim contorno de foco e movimento reduzido, como opção o movimento reduzido, contorno âmbar pode deixar nos links, botões e campos brilhando sutilmente no teclado destaca." → foco âmbar com brilho sutil só no teclado (`:focus-visible`); movimento reduzido como **opção** do usuário.
+- **Ficha × site:** "A ficha pode empurrar o site para a direita em vez de abrir por cima, um esquema de abas reordenáveis pode ser implementado." → a ficha empurra o conteúdo em vez de sobrepor; abas da ficha reordenáveis.
+- **.gitattributes:** "Faz." (feito, c6dc56f).
