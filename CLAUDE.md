@@ -44,7 +44,10 @@ Mapa completo e comandos: **`docs/ARQUITETURA.md`**. Documentação do projeto m
 index.html                  landing (HTML manual)
 partials/sidebar.html       FONTE ÚNICA da navegação
 css/style.css               design system  |  css/classes.css, css/racas.css
-js/main.js  js/utils.js  js/ficha.js
+js/main.js  js/utils.js
+js/ficha/*.js + js/ficha/ORDEM   FONTE da Ficha (tools/ficha_js.py concatena)
+js/ficha.js                 ARTEFATO gerado — não editar
+css/ficha.css               CSS da Ficha (shell injeta, sem camada)
 data/*.json                 conteúdo + data/Bazar_Khalkaria_v26.csv
 templates/*.template.html   scaffold com {{CAT_x}} / {{CARD_n}} / <!--SIDEBAR-->
 tools/build.py              fase 1 geradores + fase 2 shell + validação
@@ -190,6 +193,7 @@ Sistema → Magias → Condições → Limiar → 7 Classes → 7 Raças → Ori
 
 - Não inventar conteúdo canônico nem preencher lacunas em silêncio.
 - Não editar HTML de conteúdo à mão após a migração para JSON.
+- Não editar `js/ficha.js` (artefato de `js/ficha/*.js`; o `[artefato-js]` do validar derruba).
 - Não usar IDs de âncora gerados por índice, nem escrever id em h2/h3 à mão (é do build).
 - Não editar a `<nav class="sidebar">` dentro das páginas — só `partials/sidebar.html`.
 - Não travar aquisição de item do Bazar por dinheiro.

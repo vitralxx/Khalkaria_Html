@@ -587,11 +587,11 @@ python tools/estilo/pares.py tools/testes/estilo/regras-depois tools/testes/esti
    Bestiário (`🐲`) ainda são emoji; a UI nova do inventário não usa nenhum.
    Trocar por SVG junto com o item 3.
 7. **Schema × código em `tecnicas`/`grimorio`.** O `ficha.schema.json` descreve
-   objetos (`gerais/ramo/…`, `nivel1..4`); o `ficha.js` grava arrays planos.
+   objetos (`gerais/ramo/…`, `nivel1..4`); o `js/ficha/ficha-v2.js` grava arrays planos.
    Idem `derivados` (schema, e o `x-bestiary` lê `derivados.evasao`) ×
    `derivadosManuais` (código). Fora do Bazar v3: fica para quando a ficha
    ganhar as páginas 2 e 5 da ficha física.
-8. **22 perícias na Ficha × 24 canônicas.** `PERICIAS` no `ficha.js` e o schema
+8. **22 perícias na Ficha × 24 canônicas.** `PERICIAS` no `js/ficha/ficha-v2.js` e o schema
    ainda têm um `Ofício(X)` genérico; o CLAUDE.md §2 tem Ofício(Engenharia),
    (Ferraria) e (Alquimia). O export segue com um `prof_craft` só (decidido).
 9. **Busca do drawer varre o `bazar.json` inteiro** (~654 KB, efeito incluso) a
@@ -601,12 +601,12 @@ python tools/estilo/pares.py tools/testes/estilo/regras-depois tools/testes/esti
 
 ## 8. Contrato da Ficha Interativa
 
-`js/ficha.js` + `data/ficha.schema.json`. Persistência em `localStorage`
+`js/ficha/*.js` (fonte; `js/ficha.js` é o artefato) + `data/ficha.schema.json`. Persistência em `localStorage`
 (`khalkaria_ficha`) com re-hidratação por página — **não** é SPA.
 Dois exports: nativo (`.khalkaria.json`, superset) e projeção Bestiário
 (`.bestiario.json`, `type:"npc"`, mapeamento `prof_*` no CLAUDE.md §5).
-Cards viram arrastáveis pela tabela `MAPA` em `ficha.js` — ao criar um novo
-tipo de card de conteúdo, registrar o seletor lá.
+Cards viram arrastáveis pela tabela `MAPA` em `js/ficha/ficha-v2.js` — ao criar um
+novo tipo de card de conteúdo, registrar o seletor lá, nunca no `js/ficha.js`.
 
 **Estrutura (F2a).** Fontes em `js/ficha/*.js`, concatenadas em `js/ficha.js`
 (artefato) na ordem de `js/ficha/ORDEM`; o `[artefato-js]` do validar falha se o

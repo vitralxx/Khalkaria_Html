@@ -105,21 +105,21 @@ Enviada; o site trabalha em paralelo e usa selo **PENDENTE (balanceamento)** no 
 
 | Peça | Onde | Veredito |
 |---|---|---|
-| Motor de carga `KhInv` (46 testes) | `js/ficha.js:17-458`, `tools/testes/carga.test.js` | **Reaproveitar**. Falta `armaComBeneficio:1` (`regras.json:913`); lê `inv.empilhavel` a partir da F0 |
-| Gravação/sync v2 | `ficha.js:596-656` | **Reaproveitar** (QuotaExceeded com toast em `:596-605`) |
-| Migração v1→v2, `importJSON` sem guarda | `ficha.js:368, 569-570, 1632-1648` | **Blindar** na F0 (em curso) |
-| `guardaBackup` | `ficha.js:465, 552-555` | **Substituir** por backup baixável na F3 |
-| `muta`/`lote`/`desfazer` (20 passos, só inventário) | `ficha.js:661-735` | **Generalizar**: várias partes, log persistente |
-| API `window.KF` v2, `kf:pronta`/`kf:mudou` | `ficha.js:1727-1752` | **Manter** a assinatura e **estender** |
-| Capacidade de mochila | `gerar_bazar.py:121-186`, `ficha.js:149-166` | **Protótipo** do padrão de efeitos |
+| Motor de carga `KhInv` (46 testes) | `js/ficha/kh-inv.js`, `tools/testes/carga.test.js` | **Reaproveitar**. Falta `armaComBeneficio:1` (`regras.json:913`); lê `inv.empilhavel` a partir da F0 |
+| Gravação/sync v2 | `ficha-v2.js`: `grava`, `save`/`flush`, `sincroniza` | **Reaproveitar** (QuotaExceeded com toast em `grava`) |
+| Migração v1→v2, `importJSON` sem guarda | `kh-inv.js`: `migrarV1`; `ficha-v2.js`: `migra`, `importJSON` | **Blindar** na F0 (em curso) |
+| `guardaBackup` | `ficha-v2.js`: `guardaBackup` | **Substituir** por backup baixável na F3 |
+| `muta`/`lote`/`desfazer` (20 passos, só inventário) | `ficha-v2.js`: `muta`, `lote`, `desfazer` | **Generalizar**: várias partes, log persistente |
+| API `window.KF` v2, `kf:pronta`/`kf:mudou` | `ficha-v2.js`: `raiz.KF` (contrato: `tools/testes/kf-contrato.test.js`) | **Manter** a assinatura e **estender** |
+| Capacidade de mochila | `gerar_bazar.py:121-186`, `kh-inv.js`: `calcular` (bônus de capacidade) | **Protótipo** do padrão de efeitos |
 | Pop-up, filtros, busca, toast, painel do Bazar | `bazar-cartao.js`, `bazar.js`, `bazar-inventario.js`, `bazar-receita.js` | **Extrair** para `kh-ui.js` |
 | Harness de teste (vm + DOM falso, sem motor de CSS) | `tools/testes/*.test.js` (95 hoje), `build.py:56-120` | **Reaproveitar** |
-| Estado v2 (22 perícias, bônus guardado, `derivadosManuais`) | `ficha.js:476-488, 519-535` | **Reescrever** (v3); `derivadosManuais` vira `ajustes` (M2) |
-| Resistências (12 tipos, R/I/ae) | `ficha.js:493-495, 533` | **Reescrever**: 14 tipos + categorias + Todos, camadas R/I/V/Ae |
-| Derivados digitados | `ficha.js:1093-1125` | **Reescrever** com `KhRegras` + `KhEfeitos` |
-| DnD por `MAPA` e nome raspado | `ficha.js:1499-1604` | Hotfix na F0; **reescrever** na F4 (ids dos geradores) |
-| UI do drawer, CSS injetado | `ficha.js:823-1469` | **Reescrever**; CSS para `css/ficha.css` |
-| Export Bestiário | `ficha.js:433-445, 1655-1678` | F0 corrige atributo e passa `prof_*` a grau (D5a) |
+| Estado v2 (22 perícias, bônus guardado, `derivadosManuais`) | `ficha-v2.js`: `PERICIAS`, `novaFicha` | **Reescrever** (v3); `derivadosManuais` vira `ajustes` (M2) |
+| Resistências (12 tipos, R/I/ae) | `ficha-v2.js`: `RESIST` | **Reescrever**: 14 tipos + categorias + Todos, camadas R/I/V/Ae |
+| Derivados digitados | `ficha-v2.js`: `renderDerivados`, `refreshDerivados` | **Reescrever** com `KhRegras` + `KhEfeitos` |
+| DnD por `MAPA` e nome raspado | `ficha-v2.js`: `MAPA`, `decorar*` | Hotfix na F0; **reescrever** na F4 (ids dos geradores) |
+| UI do drawer, CSS injetado | `ficha-v2.js`: `buildDrawer` e os `render*` | **Reescrever**; CSS já em `css/ficha.css` (F2a) |
+| Export Bestiário | `kh-inv.js`: `armasBestiario`; `ficha-v2.js`: `exportBestiario` | F0 corrige atributo e passa `prof_*` a grau (D5a) |
 | `data/ficha.schema.json` | 6 divergências com o código | F0 mínimo; v3 na F3 |
 | Conteúdo de classe/raça/origem | só HTML nos templates | **Extrair** para `data/` na F1b |
 | Contrato e efeitos do balanceamento | `scratchpad/bal/` | **Integrar** verbatim em `data/balanceamento/` (D3) |
@@ -170,7 +170,7 @@ Sem ESM e sem SPA; o Bazar exige `KF` síncrono. Fontes em `js/ficha/*.js`, cada
 | `ui-drawer`, `ui-pagina`, `ui-nucleo`, `ui-tecnicas`, `ui-cartas`, `ui-inventario` (componente único, também no Bazar), `ui-grimorio`, `ui-mesa`, `ui-criacao`, `ui-nivel`, `ui-vhelor` | Render; todo derivado usa o componente "conta" com edição (M2) | não |
 | `js/kh-ui.js` (fora do bundle; o shell injeta antes do primeiro `<script src>` local) | `KhPrever`, `KhTeclas`, `KhFiltros`, `KhBusca`, `KhToast`, `KhPainel`, `KhLevar`, `KhDados` | — |
 
-**API `KF` v3.** Contrato fechado: os 23 membros de `ficha.js:1727-1751` com a semântica preservada, guardados por `tools/testes/kf-contrato.test.js`. Pontos sensíveis: `versao:'3'` e `bazar.js:179` passam a `>=2` no mesmo commit; `desfazer()` sem argumento continua só-inventário (a Mesa usa `desfazer({partes})`); `abrir()` mantém os aliases `inventario` e `atributos`; `exportar()` devolve Promise. Os 23 membros agem sobre a **ficha ativa da aba** (D36).
+**API `KF` v3.** Contrato fechado: os 23 membros da `KF` v2 (`ficha-v2.js`, `raiz.KF`) com a semântica preservada; a referência é `tools/testes/kf-contrato.test.js`. Pontos sensíveis: `versao:'3'` e `bazar.js:179` passam a `>=2` no mesmo commit; `desfazer()` sem argumento continua só-inventário (a Mesa usa `desfazer({partes})`); `abrir()` mantém os aliases `inventario` e `atributos`; `exportar()` devolve Promise. Os 23 membros agem sobre a **ficha ativa da aba** (D36).
 
 Novos: `levar(ref, opcoes)`, `remover(ref|uid)`, `tem(ref)`, `decorar(raiz)`, `derivados()`, `ajustar(caminho, ajuste)`, `desajustar(caminho)`, `rolar(expressao, contexto)`, `aplicarCondicao(id, {x, duracao})`, `recurso(nome, delta)`, `evento(nome)`, `fuiAtacado(agressor)`, `fuiAcertado()`, `usar(uid)`, `ativar(uid)`, `modo('ficha'|'mesa')`, `fichas()`, `trocar(id)`, `criarFicha(dados)`, `duplicar(id)`, `excluir(id)`, `exportarTodas()`, `REGRAS`, `colunaCanonica`, `pesoTexto`.
 
@@ -182,7 +182,7 @@ Novos: `levar(ref, opcoes)`, `remover(ref|uid)`, `tem(ref)`, `decorar(raiz)`, `d
 - **Ficha ativa:** por aba, em `sessionStorage` (`khalkaria_ficha_ativa`), para que trocar numa aba não arraste as outras; a última escolhida fica em `ultimaAtiva` e é a que abre numa aba nova.
 - **Seletor** no drawer e na página da ficha: lista com nome, classe, nível e data; **Criar** (abre o assistente, M3), **Trocar**, **Duplicar** (id novo, nome "(cópia)", sem log nem sessão), **Excluir** (confirmação e export automático do `.khalkaria.json` antes; apaga a ficha, o log, a sessão e o rascunho de subida daquele id; excluir a ativa troca para a mais recente; sem fichas, a página oferece Criar e Importar).
 - **Export/Import:** Exportar = a ficha ativa (`<nome>.khalkaria.json`); **Exportar todas** = `khalkaria-fichas.json` `{schema:'fichas/1', fichas:[…]}`. Importar aceita os dois formatos e cada ficha entra como ficha **nova** no índice; se o id já existe no navegador, pergunta: atualizar aquela ficha (com export automático dela antes) ou importar como cópia com id novo.
-- **Quota:** o seletor mostra o uso (soma das chaves `khalkaria_*` contra os ~5 MB da origem). Em QuotaExceeded, apaga nesta ordem os logs de desfazer das fichas inativas, o da ativa e `khalkaria_ficha_v1_backup`, nunca ficha nem índice; se ainda não couber, o toast de export (`ficha.js:596-605`) oferece "Exportar todas".
+- **Quota:** o seletor mostra o uso (soma das chaves `khalkaria_*` contra os ~5 MB da origem). Em QuotaExceeded, apaga nesta ordem os logs de desfazer das fichas inativas, o da ativa e `khalkaria_ficha_v1_backup`, nunca ficha nem índice; se ainda não couber, o toast de export (`ficha-v2.js`: `grava`) oferece "Exportar todas".
 - **Entre abas:** o evento `storage` em `khalkaria_ficha_v3:<id>` só re-hidrata as abas cuja ativa é aquele id; mudança no índice só atualiza o seletor; se outra aba excluir a ficha ativa desta, esta fica só-leitura com "Baixar ficha" e "Trocar".
 
 **Log de desfazer:** uma chave por ficha, `khalkaria_ficha_v3_log:<id>`; cada passo é patch inverso por parte `{revPorParte, partes, antes, rotulo}`; teto de 20 passos **e** 256 KB por ficha (a quota de 5 MB é por origem, compartilhada em `vitralxx.github.io`); desfaz só o **topo** da pilha e só se o `rev` de cada parte do passo não mudou desde ele (`revPorParte`), senão avisa "outra aba mudou a ficha"; não vai no export; em QuotaExceeded segue a ordem de limpeza do armazenamento (acima).
