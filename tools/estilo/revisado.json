@@ -1,0 +1,4 @@
+{
+  "_doc": "Diferenças de estilo computado intencionais, aceitas pelo tools/estilo/diff.py --revisado. Cada item: pagina (glob do nome da captura, ex. 'bazar.*'), caminho (glob do caminho do elemento), prop (glob; pseudo-elemento = '::before content'), antes/depois (valor exato, opcionais) e motivo (obrigatório). A F1c não tem nenhuma: só entra aqui diferença que o Pedro aprovou.",
+  "revisadas": []
+}

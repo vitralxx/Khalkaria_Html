@@ -1,0 +1,78 @@
+{
+  "_doc": "Roteiro fixo da conferência de estilo (tools/estilo/rodar.html). Cada captura = página x estado; nome do arquivo = <página sem pasta e sem .html, com / trocada por ->.<estado>. Antes de cada captura o localStorage é LIMPO e recebe só as chaves do estado. 'esperar' = seletor que tem de existir; 'minimo' = ms depois do load; 'volateis' = [{seletor, props}] que um script anima quadro a quadro (gravados como '(volátil)').",
+  "paginas": [
+    "index.html",
+    "pages/bazar.html",
+    "pages/classes.html",
+    "pages/condicoes.html",
+    "pages/criacao.html",
+    "pages/limiar.html",
+    "pages/magias.html",
+    "pages/origens.html",
+    "pages/racas.html",
+    "pages/sistema.html",
+    "pages/classes/alquimista.html",
+    "pages/classes/artilheiro.html",
+    "pages/classes/batedor.html",
+    "pages/classes/brutalista.html",
+    "pages/classes/espadachim.html",
+    "pages/classes/monge.html",
+    "pages/classes/teurgo.html",
+    "pages/racas/anao.html",
+    "pages/racas/automato.html",
+    "pages/racas/corrompido.html",
+    "pages/racas/dryad.html",
+    "pages/racas/gruto.html",
+    "pages/racas/humano.html",
+    "pages/racas/inseto.html"
+  ],
+  "estados": {
+    "nav-aberta": {
+      "viewport": [1366, 900],
+      "localStorage": { "khalkaria_splash_seen": "1" },
+      "esperar": "#kf-toggle"
+    },
+    "trilho-ficha": {
+      "viewport": [1920, 1080],
+      "localStorage": {
+        "khalkaria_splash_seen": "1",
+        "khalkaria_nav": "{\"v\":1,\"trilho\":true,\"fechados\":[]}",
+        "khalkaria_ficha_open": "1"
+      },
+      "esperar": "#kf-drawer.kf-open"
+    }
+  },
+  "porPagina": {
+    "pages/bazar.html": { "esperar": "#bz-resultados > *", "minimo": 2000 },
+    "pages/limiar.html": {
+      "_volateis": "animateTree() do template move cada path da árvore por rAF (translateX = sen(quadro)): valor muda a cada quadro",
+      "volateis": [{ "seletor": ".transition-tree path", "props": ["transform"] }]
+    }
+  },
+  "extras": [
+    {
+      "pagina": "pages/bazar.html", "estado": "inv-painel",
+      "viewport": [1920, 1080],
+      "localStorage": { "khalkaria_splash_seen": "1", "khalkaria_bazar_estado": "{\"v\":2,\"inv\":\"painel\"}" },
+      "esperar": "#bz-mesa[data-inv=painel] #bz-resultados > *", "minimo": 2000
+    },
+    {
+      "pagina": "pages/bazar.html", "estado": "inv-trilho",
+      "viewport": [1920, 1080],
+      "localStorage": { "khalkaria_splash_seen": "1", "khalkaria_bazar_estado": "{\"v\":2,\"inv\":\"trilho\"}" },
+      "esperar": "#bz-mesa[data-inv=trilho] #bz-resultados > *", "minimo": 2000
+    },
+    {
+      "pagina": "pages/bazar.html", "estado": "inv-amplo",
+      "viewport": [1920, 1080],
+      "localStorage": { "khalkaria_splash_seen": "1", "khalkaria_bazar_estado": "{\"v\":2,\"inv\":\"amplo\"}" },
+      "esperar": "#bz-mesa[data-inv=amplo] #bz-resultados > *", "minimo": 2000
+    },
+    {
+      "pagina": "pages/bazar.html#item/item-lanca-venenosa", "estado": "receita",
+      "viewport": [1920, 1080],
+      "localStorage": { "khalkaria_splash_seen": "1", "khalkaria_bazar_estado": "{\"v\":2,\"inv\":\"painel\"}" },
+      "esperar": "#bz-receita:not([hidden])", "minimo": 2000
+    }
+  ]
+}

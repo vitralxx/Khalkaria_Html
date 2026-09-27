@@ -85,6 +85,9 @@ tools/componentes-baseline.json piso da contagem de cada classe CSS de component
 tools/testes/                  testes node do motor KhInv (*.test.js, fixtures/);
                                index.js deixa `node --test tools/testes` rodar no Node 22+;
                                test_*.py: checagens do validar (unittest, no build)
+tools/estilo/                  conferência de estilo computado (não é build; §6): servidor.py,
+                               captura.js, rodar.html, roteiro.json, diff.py, revisado.json
+tools/testes/estilo/antes/     linha de base do estilo computado (52 capturas .json.gz)
 tools/extrair_css.py           refatoração pontual de CSS (não é build)
 tools/migrar_sistema.py        migração pontual do Sistema (já rodada)
 tools/migrar_f1b.py            migração pontual template -> blocos da F1b (já rodada;
@@ -342,6 +345,57 @@ Com `node` no PATH e a pasta `tools/testes/`, o build roda `node --test` nos
 do motor pulados". À mão: `node --test tools/testes` (ou
 `node --test "tools/testes/*.test.js"`). Teste novo só precisa se chamar
 `tools/testes/*.test.js`.
+
+### Conferência de estilo computado (`tools/estilo/`)
+
+Para mudança de CSS que **não pode** mexer no visual (F1c: tokens, camadas,
+arquivos novos). Compara o `getComputedStyle` de todo elemento das páginas antes
+e depois. Não roda no build: precisa de navegador.
+
+```bash
+python tools/estilo/servidor.py        # serve o repo em 127.0.0.1:8898 (sem cache) e grava
+                                       # POST /__captura?rotulo=R&nome=N em
+                                       # tools/testes/estilo/R/N.json.gz
+# no navegador: http://127.0.0.1:8898/tools/estilo/rodar.html?rotulo=depois
+#   (?so=bazar filtra pelo nome; progresso em window.__estilo = {feito,total,fim,erros})
+python tools/estilo/diff.py antes depois --revisado tools/estilo/revisado.json
+                                       # 0 = idêntico (ou só diferenças revisadas); 1 = sobrou
+                                       # --max 0 lista tudo; --resumo só contagens; --so bazar
+```
+
+- **Roteiro** (`roteiro.json`): as 24 páginas em dois estados — `nav-aberta`
+  (1366×900, nav aberta, ficha fechada) e `trilho-ficha` (1920×1080, nav em trilho
+  por `khalkaria_nav`, drawer aberto por `khalkaria_ficha_open=1`) — mais o Bazar
+  em `inv-painel`, `inv-trilho`, `inv-amplo` (`khalkaria_bazar_estado.inv`) e
+  `receita` (`#item/item-lanca-venenosa`), todos em 1920×1080: 52 capturas.
+  Antes de cada uma o `localStorage` é limpo e recebe só as chaves do estado
+  (sempre `khalkaria_splash_seen=1`).
+- **`rodar.html`** abre cada página num `<iframe>` do tamanho do estado: o
+  viewport é o do iframe, não o da janela, então o painel do navegador pode estar
+  minimizado ou de qualquer tamanho.
+- **`captura.js`** espera o load + `minimo` ms (600; 2000 no Bazar), o seletor
+  `esperar`, as fontes, as imagens (lazy vira eager) e o DOM ficar 800 ms sem
+  mutação; termina as transições, para as animações CSS infinitas e o SMIL no
+  tempo 0; percorre `<html>`, `<body>` e todos os descendentes do body (visíveis
+  e ocultos, sem script/style/template) e grava ~75 propriedades computadas +
+  `width`/`height`, e `::before`/`::after` (content, display, color, fundo,
+  width, height) quando têm `content`. Caminho estável de cada elemento:
+  `tag#id.classes:n` (n = posição entre irmãos da mesma tag). Formato
+  `kh-estilo/1` comprimido (dicionário de valores e de linhas de estilo
+  repetidas) e gzip com mtime 0: as 52 capturas somam ~1 MB e entram no git.
+  Também serve colada no console: `await KhEstilo.capturar(window, {rotulo, nome})`.
+- **Voláteis:** propriedade que um script da página anima quadro a quadro não é
+  comparável. `porPagina.<p>.volateis` no roteiro grava `(volátil)` no lugar do
+  valor. Hoje só `transform` dos `.transition-tree path` do Limiar (`animateTree()`).
+- **`revisado.json`:** diferenças intencionais, cada uma com `pagina`, `caminho`,
+  `prop` (globs), `antes`/`depois` opcionais e `motivo` obrigatório. Regra que
+  não casa com nada sai como aviso.
+- **Determinismo:** a linha de base foi capturada duas vezes (`antes`, `antes2`)
+  com `diff.py antes antes2` = 0 diferenças. Só `antes/` fica no git.
+- Não cobre: `:hover`/`:focus` (nada tem foco nem mouse em cima), pseudo-elementos
+  de barra de rolagem (`::-webkit-scrollbar`), `::marker`/`::placeholder`,
+  propriedades customizadas (`--*`) por si (só pelo efeito nas propriedades
+  reais), nem lotes do Bazar além do primeiro (a rolagem infinita não é disparada).
 
 ## 7. Dívidas restantes
 

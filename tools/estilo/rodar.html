@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Conferência de estilo — roteiro</title>
+<style>
+  body { margin: 0; font: 13px/1.4 monospace; background: #111; color: #ddd; }
+  #log { position: fixed; right: 0; top: 0; width: 420px; max-height: 100vh; overflow: auto;
+         background: #000c; padding: 8px; z-index: 2; white-space: pre-wrap; }
+  iframe { position: absolute; left: 0; top: 0; border: 0; background: #fff; }
+</style>
+</head>
+<body>
+<div id="log"></div>
+<script src="captura.js"></script>
+<script>
+/* Roda o roteiro (roteiro.json) numa página só: cada captura abre a página num
+   <iframe> do tamanho do estado, com o localStorage limpo e montado, e grava
+   pelo servidor.py.  ?rotulo=antes (obrigatório)  ?so=bazar (filtra pelo nome)
+   Progresso em window.__estilo = {feito, total, fim, erros[], itens[]}. */
+(function () {
+  var q = new URLSearchParams(location.search);
+  var rotulo = q.get('rotulo');
+  var so = q.get('so') || '';
+  var logEl = document.getElementById('log');
+  var P = window.__estilo = { feito: 0, total: 0, fim: false, erros: [], itens: [] };
+  function log(s) { logEl.textContent += s + '\n'; logEl.scrollTop = 1e9; }
+  if (!rotulo) { log('falta ?rotulo='); P.fim = true; P.erros.push('sem rotulo'); return; }
+
+  function nomeDe(pagina, estado) {
+    var p = pagina.split('#')[0].replace(/^pages\//, '').replace(/\.html$/, '').replace(/\//g, '-');
+    return p + '.' + estado;
+  }
+  function tarefas(R) {
+    var t = [];
+    R.paginas.forEach(function (pg) {
+      Object.keys(R.estados).forEach(function (en) {
+        var e = Object.assign({}, R.estados[en], (R.porPagina || {})[pg] || {});
+        // o esperar da página soma ao do estado (os dois têm de existir)
+        var esp = [R.estados[en].esperar, ((R.porPagina || {})[pg] || {}).esperar].filter(Boolean);
+        t.push({ pagina: pg, estado: en, viewport: e.viewport, localStorage: e.localStorage,
+          esperar: esp, minimo: e.minimo, quieto: e.quieto, volateis: e.volateis });
+      });
+    });
+    (R.extras || []).forEach(function (x) {
+      t.push({ pagina: x.pagina, estado: x.estado, viewport: x.viewport, localStorage: x.localStorage,
+        esperar: [x.esperar].filter(Boolean), minimo: x.minimo, quieto: x.quieto, volateis: x.volateis });
+    });
+    t.forEach(function (x) { x.nome = nomeDe(x.pagina, x.estado); });
+    return t.filter(function (x) { return !so || x.nome.indexOf(so) >= 0; });
+  }
+
+  function uma(t) {
+    try { localStorage.clear(); } catch (e) {}
+    Object.keys(t.localStorage || {}).forEach(function (k) { localStorage.setItem(k, t.localStorage[k]); });
+    var f = document.createElement('iframe');
+    f.width = t.viewport[0]; f.height = t.viewport[1];
+    f.style.width = t.viewport[0] + 'px'; f.style.height = t.viewport[1] + 'px';
+    var carregou = new Promise(function (r) { f.onload = r; });
+    f.src = '../../' + t.pagina;
+    document.body.appendChild(f);
+    return carregou.then(function () {
+      var w = f.contentWindow;
+      // os seletores extras vão em sequência: o primeiro pela captura, os outros antes
+      var extra = t.esperar.slice(1);
+      var pre = extra.reduce(function (p, sel) {
+        return p.then(function () {
+          return new Promise(function (res) {
+            var t0 = Date.now();
+            (function passo() {
+              if (w.document.querySelector(sel) || Date.now() - t0 > 15000) return res();
+              setTimeout(passo, 50);
+            })();
+          });
+        });
+      }, Promise.resolve());
+      return pre.then(function () {
+        return KhEstilo.capturar(w, { rotulo: rotulo, nome: t.nome, esperar: t.esperar[0],
+          minimo: t.minimo, quieto: t.quieto, volateis: t.volateis, url: location.origin });
+      });
+    }).then(function (r) {
+      f.remove();
+      try { localStorage.clear(); } catch (e) {}
+      return r;
+    }, function (e) { f.remove(); throw e; });
+  }
+
+  fetch('roteiro.json', { cache: 'no-store' }).then(function (r) { return r.json(); }).then(function (R) {
+    var lista = tarefas(R);
+    P.total = lista.length;
+    log('rotulo=' + rotulo + ' · ' + lista.length + ' capturas');
+    return lista.reduce(function (p, t) {
+      return p.then(function () {
+        return uma(t).then(function (r) {
+          P.feito++;
+          P.itens.push({ nome: t.nome, bytes: r.bytes, elementos: r.elementos, avisos: r.avisos, erro: r.erro });
+          if (r.erro) P.erros.push(t.nome + ': ' + r.erro);
+          (r.avisos || []).forEach(function (a) { P.erros.push(t.nome + ': ' + a); });
+          log(P.feito + '/' + P.total + ' ' + t.nome + ' · ' + r.elementos + ' el · ' +
+            Math.round((r.bytes || 0) / 1024) + ' KB' + (r.avisos && r.avisos.length ? ' · AVISO ' + r.avisos.join('; ') : ''));
+        }, function (e) {
+          P.feito++; P.erros.push(t.nome + ': ' + e); log('ERRO ' + t.nome + ': ' + e);
+        });
+      });
+    }, Promise.resolve());
+  }).then(function () { P.fim = true; log('fim · ' + P.erros.length + ' aviso(s)/erro(s)'); },
+          function (e) { P.fim = true; P.erros.push(String(e)); log('ERRO ' + e); });
+})();
+</script>
+</body>
+</html>
