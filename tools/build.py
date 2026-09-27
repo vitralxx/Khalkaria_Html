@@ -17,7 +17,7 @@ falha do build. Sem node, avisa que pulou. Os testes Python das checagens do
 validar (tools/testes/test_*.py) rodam em seguida, com unittest.
 """
 import subprocess, sys, os, re, glob, shutil
-import shell, gerar_webp
+import shell, gerar_webp, ficha_js
 
 TOOLS = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(TOOLS)
@@ -122,6 +122,15 @@ def main():
             raise SystemExit(f'alvo desconhecido: {sorted(desconhecidos)}')
 
     falhas = []
+    # js/ficha.js é artefato (F2a): concatena js/ficha/*.js na ordem do ORDEM.
+    # Antes dos geradores: o gerar_bazar.py e o shell leem o js/ficha.js na versão.
+    print('[>>] js/ficha.js (concatena js/ficha/*.js, js/ficha/ORDEM)')
+    try:
+        print('    ' + ('regravado' if ficha_js.grava(ROOT) else 'já confere'))
+    except ValueError as e:
+        print(f'    FALHA  {e}')
+        falhas.append('js/ficha.js')
+
     for nome, script in alvos:
         if script is None:
             print(f'[--] {nome}: sem gerador (HTML manual — migração pendente)')

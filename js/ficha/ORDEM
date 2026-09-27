@@ -1,0 +1,6 @@
+# Ordem de concatenação de js/ficha.js (tools/ficha_js.py; o build grava, o
+# validar [artefato-js] confere). Um arquivo de js/ficha/ por linha; # comenta.
+# Cada fonte é uma IIFE que registra window.KhX e, no node, exporta por
+# module.exports; quem depende de outro módulo vem depois dele.
+kh-inv.js
+ficha-v2.js

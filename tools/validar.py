@@ -57,6 +57,9 @@ integridade do artefato HTML, que é o que quebra em silêncio:
               (tools/alvos_destino.json), inventário, armas, lembretes,
               contagens, integridade de Mod (tools/checa_efeitos.py)
  [vhelor]     F1d: as 7 Marcas da Vhelor iguais ao texto do Pedro e numa fonte só
+ [artefato-js] F2a: js/ficha.js é exatamente a concatenação de js/ficha/*.js na
+              ordem de js/ficha/ORDEM (tools/ficha_js.py); fonte fora do
+              manifesto, arquivo ausente ou repetido também é FALHA
 
 Uso:
   python validar.py [repo_root]
@@ -65,7 +68,7 @@ Uso:
 Saída: exit 0 = tudo OK; exit 1 = há falhas.
 """
 import os, re, sys, json, glob, shutil, filecmp, subprocess, tempfile
-import shell, blocos, checa_efeitos
+import shell, blocos, checa_efeitos, ficha_js
 from kf_marca import NAO_ENTIDADE
 from html.parser import HTMLParser
 
@@ -1281,6 +1284,20 @@ def checa_estilo(root=None):
         falhas.append('estilo')
 
 
+def checa_artefato_js(root=None):
+    """[artefato-js] F2a: js/ficha.js == concat(js/ficha/ORDEM). CRLF x LF não
+    conta (checkout antigo com core.autocrlf)."""
+    print('[artefato-js] js/ficha.js x concatenação de js/ficha/*.js (js/ficha/ORDEM)')
+    root = root or ROOT
+    probs = ficha_js.confere(root)
+    for x in probs:
+        print(f'  FALHA  {x}')
+    if probs:
+        falhas.append('artefato-js')
+    else:
+        print(f'  OK     js/ficha.js = {" + ".join(ficha_js.ordem(root))} (artefato; fonte em js/ficha/)')
+
+
 def checa_roundtrip():
     print('[5] Round-trip data/*.json -> pages/*.html')
     tmp = tempfile.mkdtemp(prefix='khalkaria_rt_')
@@ -1368,6 +1385,8 @@ if __name__ == '__main__':
     checa_fragmentos()
     print()
     checa_glifos()
+    print()
+    checa_artefato_js()
     print()
     checa_blocos()
     print()

@@ -58,7 +58,10 @@ partials/head-boot.html        <script data-nav-boot> que o shell põe antes de 
 partials/glifos.html           sprite g-* (UI da ficha, moldura de raízes, 21 ramos);
                                INERTE até a F2, quando o shell passa a injetá-lo
 
-tools/build.py                 orquestrador: geradores + shell + validação
+tools/build.py                 orquestrador: js/ficha.js + geradores + shell + validação
+tools/ficha_js.py              F2a: concatena js/ficha/*.js na ordem de js/ficha/ORDEM em
+                               js/ficha.js (o build grava antes dos geradores; o validar
+                               [artefato-js] confere; --checar só confere)
 tools/validar.py               integridade estrutural (método §6 do CLAUDE.md)
 tools/shell.py                 fase 2: navegação, webp, âncoras determinísticas
 tools/sync_notion.py           motor de diff de snapshots do Notion
@@ -132,10 +135,17 @@ js/nav.js                      navegação lateral: trilho de 64px, atalho \, di
                                grupos recolhíveis, menu mobile (injetado pelo shell
                                em TODAS as páginas, inclusive o Bazar)
 js/utils.js                    sidebar direita (índice, recentes, busca)
-js/ficha.js                    Ficha Interativa: no topo o motor PURO KhInv
-                               (carga, migração, reconciliação, export de armas;
-                               sem DOM, testável no node), depois o drawer, o
-                               estado v2 e a API window.KF (§8)
+js/ficha/                      FONTE da Ficha Interativa (F2a), um módulo por arquivo,
+                               cada um uma IIFE (window.KhX; module.exports no node):
+js/ficha/ORDEM                   manifesto: ordem de concatenação (dependência antes)
+js/ficha/kh-inv.js               KhInv, motor PURO (carga, migração, reconciliação,
+                                 export de armas; sem DOM, testável no node)
+js/ficha/ficha-v2.js             drawer, estado v2, decoração dos cards e a API
+                                 window.KF (§8); no node não roda
+js/ficha.js                    ARTEFATO (tools/ficha_js.py): concatenação de js/ficha/
+                               na ordem do ORDEM, cabeçalho "gerado — não editar". É o
+                               único arquivo que o site carrega (main.js injeta; o
+                               Bazar carrega direto)
 js/bazar.js                    núcleo do Bazar: catálogo, filtros, Bancada
 js/bazar-cartao.js             pop-up do card (BZ.cartao)       ┐ módulos do Bazar v3,
 js/bazar-receita.js            painel de receita (BZ.receita)   │ registrados em window.BZ e
@@ -334,7 +344,9 @@ classe -> tipo; todo card marcado, menos o `<a>` do índice, abre com o par
 `.ent-add` + `.ent-alca`, ambos `hidden`; alvos do `alias_ids.json` existem), `[fragmentos]` (`pagina.html#id` e
 `bazar.html#item/<id>` com destino) e `[glifos]` (sprite íntegro, um glifo por
 `--ramo-*`, todo `<use href="#g-*">` com símbolo). O round-trip regenera também
-o `data/catalogo/` e o `data/pericias.json`.
+o `data/catalogo/` e o `data/pericias.json`. Desde a F2a, `[artefato-js]`: `js/ficha.js` ==
+concatenação de `js/ficha/*.js` na ordem do `js/ficha/ORDEM` (fonte fora do
+manifesto, ausente ou repetida também é FALHA).
 
 **`[componentes]`.** O sync verbatim de 2026-09-26 trocou cards de companheiro,
 tabelas d100, sub-habilidades, stats de ser/constructo, seções de patrono e
@@ -576,11 +588,18 @@ Dois exports: nativo (`.khalkaria.json`, superset) e projeção Bestiário
 Cards viram arrastáveis pela tabela `MAPA` em `ficha.js` — ao criar um novo
 tipo de card de conteúdo, registrar o seletor lá.
 
-**Estrutura do arquivo.** Um IIFE só. No topo, `KhInv` (motor puro); no node
-o arquivo exporta só ele (`module.exports`) e para ali, e é isso que os testes
-de `tools/testes/` carregam. No navegador vira `window.KhInv`, e o resto monta
-estado, drawer e `window.KF`. A `KF` existe no fim do corpo síncrono, antes do
-`init()`: todo mutador que redesenha testa `if (body)`.
+**Estrutura (F2a).** Fontes em `js/ficha/*.js`, concatenadas em `js/ficha.js`
+(artefato) na ordem de `js/ficha/ORDEM`; o `[artefato-js]` do validar falha se o
+artefato não for exatamente a concatenação (CRLF × LF não conta). Cada fonte é
+uma IIFE. `kh-inv.js` vem primeiro: no node exporta o `KhInv`
+(`module.exports`) e para; no navegador vira `window.KhInv`. `ficha-v2.js` lê
+`window.KhInv`, monta estado, drawer e `window.KF`, e no node retorna na
+primeira linha (nada toca em window/document). Por isso `require('js/ficha.js')`
+nos testes devolve o `KhInv` e o `vm` com window/document falsos roda a ficha
+inteira. A `KF` existe no fim do corpo síncrono, antes do `init()`: todo mutador
+que redesenha testa `if (body)`. `tools/testes/kf-contrato.test.js` congela os
+nomes, tipos e aridades dos 24 membros da `KF` v2 (`versao` + 23 funções) e o
+`kf:pronta`.
 
 **Ficha v2** (`schemaVersion:'2.0'`, `rev`, `salvoEm`, `exportadoEm`,
 `migradoEm`). Inventário = `{sins, bugigangas[], equipamentos[]}` de entradas
