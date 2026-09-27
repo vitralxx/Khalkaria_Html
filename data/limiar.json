@@ -1,4 +1,7 @@
 {
+  "regras": {
+    "catalogo": "A cada nível, o Limiar revela cartas baseadas nos seus atributos. Abaixo, o catálogo completo de todas as cartas disponíveis. Bônus de máximo com dado (ex.: \"+2d6+8 Stamina máxima\") são rolados uma vez, ao receber a carta, e o valor fica anotado."
+  },
   "catalogo": [
     {
       "id": "universal",

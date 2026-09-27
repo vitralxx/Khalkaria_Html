@@ -4,10 +4,12 @@
 # Fonte da verdade = data/condicoes.json. NÃO editar pages/condicoes.html à mão.
 # Template: templates/condicoes.template.html (placeholders {{CAT_<id>}} por categoria
 # e {{IDX_<id>}} no índice "Navegação Rápida", gerado dos mesmos cards: condição
-# nova no JSON aparece no índice sem edição à mão).
+# nova no JSON aparece no índice sem edição à mão) e {{REGRA_<chave>}} para o texto
+# de `regras` no JSON (tools/regras_pagina.py).
 # Uso: python gerar_condicoes.py [repo_root]
 import json, re, sys, os
 from kf_marca import atributos, controles
+import regras_pagina
 
 RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 REPO = sys.argv[1] if len(sys.argv) > 1 else RAIZ
@@ -34,7 +36,7 @@ def gen_cat(cat):
 def main():
     template = open(TPL, encoding='utf-8').read()
     data = json.load(open(JSON_SRC, encoding='utf-8'))
-    page = template
+    page = regras_pagina.preenche(template, data['regras'], 'gerar_condicoes')
     total = 0
     for cat in data['categorias']:
         ph = f'{{{{CAT_{cat["id"]}}}}}'

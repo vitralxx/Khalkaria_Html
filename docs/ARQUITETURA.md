@@ -72,6 +72,9 @@ tools/normaliza.py             leitura da F1e: ações/intensidades/sustentada/p
                                magias, req e custo do Limiar, as 24 perícias (tabelas fechadas:
                                formato novo derruba o build)
 tools/kf_marca.py              marcação entidade -> ficha comum aos geradores (F1a)
+tools/regras_pagina.py         texto de regra fora dos cards (Condições, Magias, Limiar): chave
+                               `regras` do JSON da página -> marcador {{REGRA_<chave>}} do
+                               template; marcador sem chave ou chave sem marcador = FALHA
 tools/blocos.py                blocos classe/raca/origem (F1b): marcadores {{classe.…}},
                                leitura do verbatim (V/G/R, slugs, ids); `python tools/blocos.py`
                                regrava os derivados depois de editar um texto; F1e(c): parágrafo

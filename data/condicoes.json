@@ -1,4 +1,7 @@
 {
+  "regras": {
+    "empilhamento": "Condições diferentes somam seus efeitos. A mesma condição aplicada de novo renova a duração; se ela tiver X, os X se somam."
+  },
   "categorias": [
     {
       "id": "criticas",

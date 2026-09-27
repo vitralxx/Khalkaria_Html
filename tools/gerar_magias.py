@@ -4,11 +4,13 @@
 # Fonte da verdade = data/magias.json. NÃO editar pages/magias.html à mão.
 # Uso: python gerar_magias.py [repo_root]
 # Template: templates/magias.template.html (contém <style>, sidebar e as seções
-# introdutórias como literal; placeholders {{NIVEL_1..5}} recebem as magias do JSON).
+# introdutórias como literal; placeholders {{NIVEL_1..5}} recebem as magias do JSON e
+# {{REGRA_<chave>}} o texto de `regras` no JSON, via tools/regras_pagina.py).
 # Round-trip contra o HTML original validado no bootstrap (80/80 cards, página inteira
 # normalizada idêntica) — ver método §6 do CLAUDE.md.
 import json, sys, os
 from kf_marca import atributos, controles
+import regras_pagina
 
 RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 REPO = sys.argv[1] if len(sys.argv) > 1 else RAIZ
@@ -58,7 +60,7 @@ def gen_level(data, n):
 def main():
     template = open(TPL, encoding='utf-8').read()
     data = json.load(open(JSON_SRC, encoding='utf-8'))
-    page = template
+    page = regras_pagina.preenche(template, data['regras'], 'gerar_magias')
     total = 0
     for n in range(1, NIVEIS + 1):
         marker = f'{{{{NIVEL_{n}}}}}'

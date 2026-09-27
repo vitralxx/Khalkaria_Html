@@ -229,7 +229,8 @@ def gerar(root=None):
 
     texto = {x['id']: x['efeito'] for x in bazar}
     id_por_nome = {x['nome']: x['id'] for x in bazar}
-    magia_id = {x['nome']: x['id'] for nivel in magias.values() for esc in nivel.values() for x in esc}
+    magia_id = {x['nome']: x['id'] for k, nivel in magias.items() if k.startswith('nivel')
+                for esc in nivel.values() for x in esc}
     for q in ef['itens'].values():
         if q['quando'] not in voc.d['quando']:
             raise Falha(f'{q["nome"]}: quando {q["quando"]!r} fora do vocabulário')

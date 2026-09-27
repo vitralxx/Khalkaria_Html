@@ -145,7 +145,7 @@ class PorIntensidade(unittest.TestCase):
     def test_decomposicao_sem_perda_nas_magias(self):
         d = _json('data', 'magias.json')
         n = 0
-        for nv in d.values():
+        for nv in (v for k, v in d.items() if k.startswith('nivel')):
             for esc in nv.values():
                 for s in esc:
                     for st in s['stats']:

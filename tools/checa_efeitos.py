@@ -194,7 +194,8 @@ def checa_efeitos(root):
     pericias = _j(root, 'data', 'pericias.json')
     slugs = {p['slug'] for p in pericias['pericias']}
     conds = {c['id'] for g in _j(root, 'data', 'condicoes.json')['categorias'] for c in g['cards']}
-    magias = {x['id'] for n in _j(root, 'data', 'magias.json').values() for e in n.values() for x in e}
+    magias = {x['id'] for k, n in _j(root, 'data', 'magias.json').items() if k.startswith('nivel')
+              for e in n.values() for x in e}
     dest = json.load(open(ge.DESTINO, encoding='utf-8'))
     voc = ge.Vocab(dest)
     exc = json.load(open(ge.EXCECOES, encoding='utf-8'))['itens']

@@ -1,4 +1,10 @@
 {
+  "regras": {
+    "custoMinimo": "<strong>Custo mínimo:</strong> toda conjuração custa no mínimo 1 Éter, mesmo após reduções de técnicas, cartas ou itens. As exceções são a magia de Nível 1 conjurada em intensidade Normal e sem modulação e as <em>Magias Pactuadas</em> do Teurgo conjuradas em intensidade Contida, que custam 0 Éter.",
+    "nivel1SemContida": "Magias de Nível 1 não possuem a intensidade Contida.",
+    "transbordante": "<strong>Transbordante:</strong> o Éter utilizado é o custo total que você pagou, com modulações. A perda pode deixar seu Éter negativo.",
+    "sustentada": "<strong>Magia sustentada:</strong> você só pode sustentar 1 magia por vez. O custo por turno é o que a magia diz; se não disser, é o custo da canalização."
+  },
   "nivel1": {
     "destruicao": [
       {

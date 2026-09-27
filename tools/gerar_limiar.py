@@ -3,10 +3,12 @@
 # Gerador reverso do Limiar (Rota 1): data/limiar.json -> pages/limiar.html
 # Fonte da verdade = data/limiar.json. NÃO editar pages/limiar.html à mão.
 # Template: templates/limiar.template.html — placeholders {{CAT_<id>}} (7 seções de
-# catálogo) e {{DORES}}/{{BENEFICIOS}} (O Abismo).
+# catálogo), {{DORES}}/{{BENEFICIOS}} (O Abismo) e {{REGRA_<chave>}} (texto de `regras`
+# no JSON, via tools/regras_pagina.py).
 # Uso: python gerar_limiar.py [repo_root]
 import json, sys, os
 from kf_marca import atributos, controles
+import regras_pagina
 
 RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 REPO = sys.argv[1] if len(sys.argv) > 1 else RAIZ
@@ -49,7 +51,7 @@ def gen_abismo(cards, cls):
 def main():
     template = open(TPL, encoding='utf-8').read()
     data = json.load(open(JSON_SRC, encoding='utf-8'))
-    page = template
+    page = regras_pagina.preenche(template, data['regras'], 'gerar_limiar')
     for cat in data['catalogo']:
         page = page.replace(f'{{{{CAT_{cat["id"]}}}}}', gen_catalog(cat))
     page = page.replace('{{DORES}}', gen_abismo(data['abismo']['dores'], 'dor-card'))
