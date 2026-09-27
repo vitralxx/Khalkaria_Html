@@ -347,6 +347,23 @@ o `marcacao-bazar.test.js` roda o render do card e da linha da Lista sobre o
 pela allowlist `NAO_ENTIDADE` do `tools/kf_marca.py` (`rule-box`, `warning`):
 classe CSS fora do mapa e fora dela derruba o build.
 
+**Card do Bazar (2026-09, "heráldica").** Lei de cor: cor forte só na raridade
+(filete no topo, moldura `--moldura`, brilho `--rbr`, medalhão `.bz-med` com a
+gema `.bz-gema`, rótulo `.item-rar` em `--rtx`); o matiz de calor só na marca
+`.calor` da Região (o mesmo `--r`/número da trilha de filtro); âmbar só para
+interação e para o aviso "difícil". Chips numa fileira, uma forma por família
+(`tokens.css`, `--chip-*`): `.tag-cat` selo de canto vivo com glifo, `.tag-arq`
+fio de aço, `.tag-of` pílula de cobre com a CD (`.item-cd`) num selo. Tags em
+texto (`.item-tags`), rodapé em tabela (Valor, CR, Espaço). A Lista usa as
+mesmas peças (`medHTML`, `rarHTML`, `regHTML`, `catHTML`, `ofHTML` no
+`bazar.js`); o painel de receita e o pop-up usam `.tag-cat`/`.tag-arq` e mantêm
+o `.tag-rar` em caixa. **Escala** P/M/G/GG: radiogroup `#bz-escala` na barra
+(setas, atalhos `-` e `=`/`+`), `E.escala` em `khalkaria_bazar_estado` (não vai
+para a ficha), aplicada em `#bz-registro[data-escala]` como `--col` (mínimo da
+coluna), `--k` (fator do texto; o card é todo em `em`) e `--linhas` (efeito);
+trocar de passo é só CSS. O "+ inventário" do `ficha.js` não escala (CSS dele
+fica fora de camada com `font-size` fixo).
+
 **Blocos de classe, raça e origem (F1b).** O que antes só existia no scaffold
 do template (CD, treinamento, fórmulas de Saúde/Stamina/Éter, recurso de classe
 com o medidor, Marca do Duelo, Escolas, Arma Humana, os 95 Itens Alquímicos, os

@@ -27,6 +27,8 @@ function carregaRender() {
     'function svg() { return ""; }',
     'function icoRar() { return ""; }',
     'function classeRar(r) { return "rar-x"; }',
+    'function icoCat() { return "ico-material"; }',
+    'var V = { regioes: [] }, ICO_OF = {}, PERICIA = {}, window = {};',
     'function esc(s) { return String(s == null ? "" : s).replace(/&/g, "&amp;").replace(/</g, "&lt;")' +
       '.replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }'
   ].join('\n');
@@ -55,6 +57,14 @@ test('Bazar: card e linha da Lista marcados, com botão e alça hidden', () => {
     const card = R.cardHTML(it, i);
     const abre = confereMarcacao(card, 'article', it, 'card');
     assert.match(card.slice(abre.length), PAR, `${it.id}: botão + alça não são os primeiros filhos do card`);
+
+    // contrato da ficha no card: .item-name com data-prever (gatilho do pop-up),
+    // .item-valor e, se craftável com CD, o .item-cd dentro da pílula de ofício
+    assert.ok(card.includes('<span class="item-name" data-prever="' + it.id + '">'), `${it.id}: card sem .item-name[data-prever]`);
+    assert.ok(card.includes('class="v item-valor"'), `${it.id}: card sem .item-valor`);
+    if (it.craft && it.craft !== 'Não-craftável' && it.cd != null) {
+      assert.match(card, new RegExp('<span class="tag-of"[^>]*>[^]*?<b class="item-cd">CD ' + it.cd + '</b></span>'), `${it.id}: CD fora da pílula de ofício`);
+    }
 
     const linha = R.linhasHTML([it]);
     confereMarcacao(linha, 'tr', it, 'linha');

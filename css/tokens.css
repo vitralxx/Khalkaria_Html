@@ -46,6 +46,20 @@
     --rar-incomum: #6ee7a0; --rar-incomum-bg: #1e3a2a; --rar-incomum-bd: #2d5a3d;
     --rar-exotico: #c084fc; --rar-exotico-bg: #2a1e4a; --rar-exotico-bd: #6d4aa0;
     --rar-luxaria: #f4d03f; --rar-luxaria-bg: #4a3a1e; --rar-luxaria-bd: #d4af37;
+    /* texto de raridade com AA sobre o card (#15151f): só o Lixo muda (#8b6b6b dá
+       3.81:1 e fica só em gráfico; #b08e8e dá 6.13:1, mesmo matiz) */
+    --rar-lixo-txt: #b08e8e;
+    /* brilho do topo do card do Bazar, crescendo com a raridade */
+    --rar-lixo-brilho: transparent; --rar-ordinario-brilho: #b8b5ad0f; --rar-incomum-brilho: #6ee7a01c;
+    --rar-exotico-brilho: #c084fc29; --rar-luxaria-brilho: #f4d03f33;
+    /* chips do Bazar: cada família com forma e paleta próprias (texto / fundo /
+       borda; contraste do texto sobre o próprio fundo, AA) */
+    --chip-cat: #c9c4b8; --chip-cat-bg: #1c1b24; --chip-cat-bd: #3a3845;                          /* 10.42:1 */
+    --chip-arq: #a9c1dc; --chip-arq-bg: #161d27; --chip-arq-bd: #34465c; --chip-arq-fio: #7f98b6;  /* 9.16:1 */
+    --chip-of: #e8a27c; --chip-of-bg: #23170f; --chip-of-bd: #6a4026;                             /* 8.24:1 */
+    --chip-of-cd: #f6d2b8; --chip-of-cd-bg: #3d2717;                                               /* 9.88:1 */
+    --chip-tag: #948f87;                                                                           /* 5.64:1 */
+    --chip-quest: #8f86a8; --chip-quest-bg: #1b1826;   /* Único/Quest: fora do roxo do Exótico */
 
     /* espaçamento */
     --esp-1: .25rem;

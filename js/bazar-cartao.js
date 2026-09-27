@@ -112,7 +112,7 @@
           '<p class="bz-ct-nome">' + esc(it.nome) + '</p>' +
           '<div class="item-chips">' +
             '<span class="tag-rar">' + U.icoRar(it.raridade) + esc(it.raridade) + '</span>' +
-            '<span class="tag-cat">' + esc(it.categoria) + '</span>' +
+            '<span class="tag-cat">' + U.svg(U.icoCat(it)) + esc(it.categoria) + '</span>' +
             (it.arquetipo ? '<span class="tag-arq">' + esc(it.arquetipo) + '</span>' : '') +
           '</div>' +
         '</div>' +

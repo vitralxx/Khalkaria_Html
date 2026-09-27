@@ -123,6 +123,9 @@
   };
   var OFICIOS_CD = ['Ferraria', 'Engenharia', 'Alquimia', 'Sobrevivência'];
   var FILTROS = ['cat', 'rar', 'reg', 'of', 'arq'];
+  // escala dos cards (conveniência por visitante; não vai para a ficha)
+  var ESCALAS = ['p', 'm', 'g', 'gg'];
+  var NOME_ESCALA = { p: 'pequena', m: 'média', g: 'grande', gg: 'muito grande' };
 
   // estado persistido (spec §7). O objeto E nunca é reatribuído (BZ.E aponta para ele).
   var E = {
@@ -130,7 +133,7 @@
     cat: [], rar: [], reg: [], of: [], arq: [],
     bancada: false,
     mods: { 'Ferraria': 0, 'Engenharia': 0, 'Alquimia': 0, 'Sobrevivência': 0 },
-    fecho: false, filtrosAbertos: false,
+    fecho: false, filtrosAbertos: false, escala: 'm',
     inv: 'painel', colRecolhida: { bugigangas: false, equipamentos: false },
     sacoMigrado: false, avisoMigracaoVisto: false
   };
@@ -226,6 +229,7 @@
     E.dir = E.dir === -1 ? -1 : 1;
     E.q = typeof E.q === 'string' ? E.q : '';
     E.bancada = !!E.bancada; E.fecho = !!E.fecho;
+    if (ESCALAS.indexOf(E.escala) < 0) E.escala = 'm';
     E.sacoMigrado = !!E.sacoMigrado; E.avisoMigracaoVisto = !!E.avisoMigracaoVisto;
     // 1ª visita: filtros abertos só se a janela é alta; inventário em trilho abaixo de 1280px
     if (!('filtrosAbertos' in g)) E.filtrosAbertos = window.innerHeight >= 900;
@@ -539,7 +543,56 @@
   // ------------------------------------------------------------ render
   function seloHTML(id) {
     var n = tenho(id);
-    return n ? '<span class="bz-selo-n" title="No inventário: ' + n + '">×' + n + '</span>' : '';
+    return n ? '<span class="bz-selo-n" title="No inventário: ' + n + '">' + svg('ico-saco') + '×' + n + '</span>' : '';
+  }
+  // Peças do card e da Lista: uma família de informação, uma forma.
+  // medalhão (arte ou glifo da categoria) com a gema da raridade
+  function medHTML(it) {
+    return '<span class="bz-med">' + arte(it, 'item-ico') +
+      '<span class="bz-gema" aria-hidden="true">' + icoRar(it.raridade) + '</span></span>';
+  }
+  function rarHTML(it) {
+    return '<span class="item-rar">' + icoRar(it.raridade) + esc(it.raridade) + '</span>';
+  }
+  function unicoHTML() { return '<span class="item-unico">Único</span>'; }
+  // Região: marca de calor 1–8 (a mesma da trilha de filtro) + nome neutro
+  function regHTML(it) {
+    if (it.regiao) {
+      var regs = V.regioes || [], i = regs.indexOf(it.regiao);
+      return '<span class="item-reg">' + (i >= 0
+        ? '<span class="calor" style="--r:' + i + '" aria-hidden="true" title="Região ' + (i + 1) + ' de ' +
+          regs.length + ', da menos à mais perigosa">' + (i + 1) + '</span>' : '') + esc(it.regiao) + '</span>';
+    }
+    if (it.unico) return '<span class="item-reg quest"><span class="calor calor-quest" aria-hidden="true">—</span>Único/Quest</span>';
+    return '';
+  }
+  function catHTML(it) {
+    return '<span class="tag-cat">' + svg(icoCat(it)) + esc(it.categoria) + '</span>';
+  }
+  function arqHTML(it) {
+    return it.arquetipo ? '<span class="tag-arq">' + esc(it.arquetipo) + '</span>' : '';
+  }
+  function craftavel(it) { return !!it.craft && it.craft !== 'Não-craftável'; }
+  function ofHTML(it, comCd) {
+    if (!craftavel(it)) return '';
+    return '<span class="tag-of" title="' + esc((PERICIA[it.craft] || it.craft) + (it.cd != null ? ', CD ' + it.cd : '')) + '">' + (ICO_OF[it.craft] ? svg(ICO_OF[it.craft]) : '') + '<span class="of-nome">' + esc(it.craft) + '</span>' +
+      (comCd && it.cd != null ? '<b class="item-cd">CD ' + it.cd + '</b>' : '') + '</span>';
+  }
+  function tagsHTML(it) {
+    var t = it.tags || [];
+    return t.length ? '<p class="item-tags">' + t.map(function (x) { return '<span>' + esc(x) + '</span>'; }).join('') + '</p>' : '';
+  }
+  // Espaço no inventário: Equip. | Bugig. (+ empilhável)
+  function espacoHTML(it) {
+    var inv = it.inv;
+    if (!inv) return '';
+    var pilha = (window.KhInv && window.KhInv.REGRAS && window.KhInv.REGRAS.PILHA) || 10;
+    var fora = inv.ocupa === false, eq = inv.slot === 'equipamento';
+    var nome = fora ? 'Não ocupa espaço' : eq ? 'Equipamento' : 'Bugiganga';
+    var emp = inv.empilhavel ? pilha + ' unidades = 1 de peso' : '';
+    return '<span class="m-slot"><b>Espaço</b><span class="v" title="' + esc(nome + (emp ? ', empilhável: ' + emp : '')) + '">' +
+      (fora ? '—' : eq ? 'Equip.' : 'Bugig.') +
+      (emp ? svg('ico-empilhavel') + '<span class="bz-sr"> empilhável, ' + emp + '</span>' : '') + '</span></span>';
   }
   // F1a: marcação entidade -> ficha. data-kf-tipo/-id no card e botão + alça
   // inertes (hidden) até a F4. Sem data-prever no card: aqui o data-prever é o
@@ -553,30 +606,27 @@
   }
   function cardHTML(it, i) {
     var al = alcance(it);
-    var reg = it.regiao || (it.unico ? 'Único/Quest' : '');
     return '<article class="item-card ' + classeRar(it.raridade) +
       (al === 'dificil' ? ' dificil' : '') + (al === 'ok' ? ' alcancavel' : '') +
-      (it.id === BZ.selecionado ? ' selecionado' : '') +
+      (it.id === BZ.selecionado ? ' selecionado' : '') + (tenho(it.id) ? ' na-mochila' : '') +
       '" data-n="' + esc(it.nome) + '" data-id="' + esc(it.id) + '"' + kfAttrs(it) +
       ' style="--i:' + i + '" tabindex="0">' + kfControles(it) +
-      '<div class="item-head">' + arte(it, 'item-ico') +
-        '<span class="item-name">' + esc(it.nome) + '</span>' + seloHTML(it.id) + '</div>' +
-      '<div class="item-chips">' +
-        '<span class="tag-rar">' + icoRar(it.raridade) + esc(it.raridade) + '</span>' +
-        '<span class="tag-cat">' + esc(it.categoria) + '</span>' +
-        (it.arquetipo ? '<span class="tag-arq">' + esc(it.arquetipo) + '</span>' : '') +
-        (reg ? '<span class="tag-reg">' + esc(reg) + '</span>' : '') +
-        (it.craft && it.craft !== 'Não-craftável'
-          ? '<span class="tag-of">' + esc(it.craft) + (it.cd != null ? ' CD ' + it.cd : '') + '</span>' : '') +
-      '</div>' +
+      '<div class="item-head">' + medHTML(it) +
+        '<div class="item-tit"><span class="item-name" data-prever="' + esc(it.id) + '">' + esc(it.nome) + '</span>' +
+          // Único/Quest já aparece na Região; o selo "Único" só entra quando ela não diz
+          '<p class="item-sub">' + rarHTML(it).replace('</span>', (it.unico && it.regiao ? unicoHTML() : '') + '</span>') +
+          regHTML(it) + '</p></div>' +
+        seloHTML(it.id) + '</div>' +
+      '<div class="item-chips">' + catHTML(it) + arqHTML(it) + ofHTML(it, true) + '</div>' +
+      tagsHTML(it) +
       '<p class="item-efeito">' + esc(it.efeito) + '</p>' +
       (al === 'dificil'
         ? '<p class="item-aviso">' + svg('ico-aviso', 'bz-ico-aviso') + 'CD ' + it.cd +
           ' — acima da sua régua confortável (' + (10 + (+E.mods[it.craft] || 0)) + '), ainda alcançável.</p>' : '') +
       '<div class="item-meta">' +
-        '<span><b>Valor</b> <span class="item-valor">' + esc(it.valor) + '</span></span>' +
-        (it.cr ? '<span><b>CR</b> ' + esc(it.cr) + '</span>' : '') +
-        (it.cd != null ? '<span><b>CD</b> <span class="item-cd">' + it.cd + '</span></span>' : '') +
+        '<span><b>Valor</b><span class="v item-valor">' + esc(it.valor) + '</span></span>' +
+        (it.cr ? '<span><b>CR</b><span class="v">' + esc(it.cr) + '</span></span>' : '') +
+        espacoHTML(it) +
       '</div></article>';
   }
 
@@ -593,21 +643,22 @@
   }
   function linhasHTML(lista) {
     return lista.map(function (it) {
-      var reg = it.regiao || (it.unico ? 'Único/Quest' : '—');
       return '<tr class="item-card ' + classeRar(it.raridade) + (it.id === BZ.selecionado ? ' selecionado' : '') +
+        (tenho(it.id) ? ' na-mochila' : '') +
         '" data-n="' + esc(it.nome) + '" data-id="' + esc(it.id) + '"' + kfAttrs(it) + ' tabindex="0">' +
         // o flex mora no <div> interno: um <td> com display:flex deixa de ser
         // célula, não estica até a altura da linha e desalinha as bordas
         '<td class="c-nome" data-prever="' + esc(it.id) + '"><div class="c-nome-in">' + kfControles(it) +
-          arte(it, 'c-ico') +
-          '<span class="item-name">' + esc(it.nome) + '</span>' + seloHTML(it.id) + '</div></td>' +
-        '<td class="c-raridade"><span class="tag-rar">' + icoRar(it.raridade) + esc(it.raridade) + '</span></td>' +
-        '<td class="c-categoria">' + esc(it.categoria) + '</td>' +
+          medHTML(it) +
+          '<span class="c-nome-tx"><span class="item-name">' + esc(it.nome) + '</span>' + arqHTML(it) + '</span>' +
+          seloHTML(it.id) + '</div></td>' +
+        '<td class="c-raridade">' + rarHTML(it) + (it.unico ? unicoHTML() : '') + '</td>' +
+        '<td class="c-categoria">' + catHTML(it) + '</td>' +
         '<td class="c-efeito"><span>' + esc(it.efeito) + '</span></td>' +
         '<td class="c-valor">' + esc(it.valor) + '</td>' +
         '<td class="c-obtencao">' + esc(it.obtencao) + '</td>' +
-        '<td class="c-regiao">' + esc(reg) + '</td>' +
-        '<td class="c-craft">' + esc(it.craft) + '</td>' +
+        '<td class="c-regiao">' + (regHTML(it) || '—') + '</td>' +
+        '<td class="c-craft">' + (craftavel(it) ? ofHTML(it, false) : '<span class="of-fora">' + esc(it.craft || '—') + '</span>') + '</td>' +
         '<td class="c-cd">' + (it.cd == null ? '—' : it.cd) + '</td></tr>';
     }).join('');
   }
@@ -706,14 +757,16 @@
     var n = tenho(id);
     cardsDe(id).forEach(function (c) {
       var s = c.querySelector('.bz-selo-n');
+      c.classList.toggle('na-mochila', !!n);
       if (!n) { if (s) s.remove(); return; }
       if (!s) {
         s = document.createElement('span');
         s.className = 'bz-selo-n';
+        // no card, antes do "+ inventário" que o ficha.js pendura no fim do .item-head
         var alvo = c.querySelector('.item-head') || c.querySelector('.c-nome-in') || c;
-        alvo.appendChild(s);
+        alvo.insertBefore(s, alvo.querySelector(':scope > .kf-addbtn'));
       }
-      s.textContent = '×' + n;
+      s.innerHTML = svg('ico-saco') + '×' + n;
       s.title = 'No inventário: ' + n;
     });
   }
@@ -769,6 +822,33 @@
       f.disabled = true;
       f.title = 'Recarregue a página (Ctrl+F5) para atualizar a ficha';
     }
+  }
+
+  // ------------------------------------------------------------ escala dos cards
+  // P/M/G/GG no #bz-registro[data-escala] (o #bz-resultados tem a classe
+  // reescrita a cada render). Só CSS: trocar de passo não re-renderiza.
+  function aplicaEscala(focar) {
+    $('#bz-registro').setAttribute('data-escala', E.escala);
+    document.querySelectorAll('#bz-escala .bz-esc').forEach(function (b) {
+      var on = b.dataset.escala === E.escala;
+      b.setAttribute('aria-checked', String(on));
+      b.tabIndex = on ? 0 : -1;
+      if (on && focar) b.focus();
+    });
+  }
+  function defineEscala(v, focar) {
+    if (ESCALAS.indexOf(v) < 0) return false;
+    var mudou = v !== E.escala;
+    E.escala = v;
+    aplicaEscala(focar);
+    if (mudou) { salvar(); anunciar('Escala dos cards: ' + NOME_ESCALA[v]); }
+    return mudou;
+  }
+  // d = -1 menor, +1 maior; nos extremos não faz nada
+  function passoEscala(d, focar) {
+    var i = ESCALAS.indexOf(E.escala) + d;
+    if (i < 0 || i >= ESCALAS.length) return false;
+    return defineEscala(ESCALAS[i], focar);
   }
 
   // estado do inventário na mesa: painel | trilho | amplo (o inventário é quem alterna)
@@ -877,6 +957,26 @@
         render();
       });
     });
+
+    $('#bz-escala').addEventListener('click', function (e) {
+      var b = e.target.closest('.bz-esc');
+      if (b) defineEscala(b.dataset.escala);
+    });
+    // radiogroup: setas trocam o passo (e o foco) dentro do grupo, sem dar a volta
+    $('#bz-escala').addEventListener('keydown', function (e) {
+      if (e.ctrlKey || e.metaKey || e.altKey) return;
+      var k = e.key, d = 0;
+      if (k === 'ArrowLeft' || k === 'ArrowUp') d = -1;
+      else if (k === 'ArrowRight' || k === 'ArrowDown') d = 1;
+      else if (k === 'Home') { e.preventDefault(); defineEscala(ESCALAS[0], true); return; }
+      else if (k === 'End') { e.preventDefault(); defineEscala(ESCALAS[ESCALAS.length - 1], true); return; }
+      else return;
+      e.preventDefault();
+      passoEscala(d, true);
+    });
+    atalho('-', function () { passoEscala(-1); });
+    atalho('=', function () { passoEscala(1); });
+    atalho('+', function () { passoEscala(1); });
 
     document.querySelector('.bz-tool-toggle[data-tool="bancada"]').addEventListener('click', function () {
       E.bancada = !E.bancada;
@@ -998,6 +1098,7 @@
       b.classList.toggle('active', b.dataset.view === E.vista);
     });
     $('#bz-mesa').setAttribute('data-inv', E.inv);
+    aplicaEscala(false);
     $('#bz-filtros-caixa').hidden = !E.filtrosAbertos;
     aplicaFerramentas();
     montarFiltros(); montarMods();

@@ -46,12 +46,13 @@
     :root { --bz-rc-w: 400px; --bz-inv-w: 640px; }
 }
 
-/* cores de raridade — convenção fixa do sistema */
-.rar-lixo       { --rc: var(--rar-lixo); --rbg: var(--rar-lixo-bg); --rbd: var(--rar-lixo-bd); }
-.rar-ordinario  { --rc: var(--rar-ordinario); --rbg: var(--rar-ordinario-bg); --rbd: var(--rar-ordinario-bd); }
-.rar-incomum    { --rc: var(--rar-incomum); --rbg: var(--rar-incomum-bg); --rbd: var(--rar-incomum-bd); }
-.rar-exotico    { --rc: var(--rar-exotico); --rbg: var(--rar-exotico-bg); --rbd: var(--rar-exotico-bd); }
-.rar-luxaria    { --rc: var(--rar-luxaria); --rbg: var(--rar-luxaria-bg); --rbd: var(--rar-luxaria-bd); }
+/* cores de raridade — convenção fixa do sistema. --rtx = texto (AA), --rbr =
+   brilho do topo do card, --moldura = quanto da cor entra na borda do card */
+.rar-lixo       { --rc: var(--rar-lixo); --rtx: var(--rar-lixo-txt); --rbg: var(--rar-lixo-bg); --rbd: var(--rar-lixo-bd); --rbr: var(--rar-lixo-brilho); --moldura: 30%; }
+.rar-ordinario  { --rc: var(--rar-ordinario); --rtx: var(--rar-ordinario); --rbg: var(--rar-ordinario-bg); --rbd: var(--rar-ordinario-bd); --rbr: var(--rar-ordinario-brilho); --moldura: 40%; }
+.rar-incomum    { --rc: var(--rar-incomum); --rtx: var(--rar-incomum); --rbg: var(--rar-incomum-bg); --rbd: var(--rar-incomum-bd); --rbr: var(--rar-incomum-brilho); --moldura: 55%; }
+.rar-exotico    { --rc: var(--rar-exotico); --rtx: var(--rar-exotico); --rbg: var(--rar-exotico-bg); --rbd: var(--rar-exotico-bd); --rbr: var(--rar-exotico-brilho); --moldura: 65%; }
+.rar-luxaria    { --rc: var(--rar-luxaria); --rtx: var(--rar-luxaria); --rbg: var(--rar-luxaria-bg); --rbd: var(--rar-luxaria-bd); --rbr: var(--rar-luxaria-brilho); --moldura: 60%; }
 
 .bz-sprite { position: absolute; width: 0; height: 0; overflow: hidden; }
 .bz-sr {
@@ -259,6 +260,34 @@ body.bz-rc-aberta .bazar-page { margin-left: var(--bz-rc-w); }
     color: #120d06;
     font-weight: 600;
 }
+/* escala dos cards: 4 passos (radiogroup, setas dentro, atalhos − e =) */
+.bz-escala {
+    display: flex; align-items: stretch;
+    height: 34px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 7px;
+    overflow: hidden;
+}
+.bz-esc {
+    display: inline-flex; align-items: center; gap: .32rem;
+    padding: 0 .5rem;
+    background: none;
+    border: 0; border-left: 1px solid var(--border-color);
+    color: var(--text-secondary);
+    font-family: var(--font-heading); font-size: .7rem; font-weight: 600; letter-spacing: .06em;
+    cursor: pointer;
+    transition: color .2s, background .2s;
+}
+.bz-esc:first-child { border-left: 0; }
+.bz-esc-q { width: var(--q, 9px); height: var(--q, 9px); flex: 0 0 auto; border: 1px solid currentColor; border-radius: 2px; opacity: .8; }
+.bz-esc[data-escala="p"] { --q: 7px; }
+.bz-esc[data-escala="g"] { --q: 11px; }
+.bz-esc[data-escala="gg"] { --q: 13px; }
+.bz-esc:hover { color: var(--text-primary); background: #ffffff08; }
+.bz-esc[aria-checked="true"] { color: #f4f1ea; background: #241809; box-shadow: inset 0 -2px 0 var(--amber); }
+.bz-esc[aria-checked="true"] .bz-esc-q { background: var(--amber); border-color: var(--amber); opacity: 1; }
+.bz-esc:focus-visible { outline: 2px solid var(--amber); outline-offset: -2px; box-shadow: inset 0 0 12px -4px #e08b2c80; }
 .bz-filtros-btn { font-family: var(--font-heading); font-size: .8rem; letter-spacing: .04em; }
 .bz-filtros-btn[aria-expanded="true"] { border-color: var(--amber-dim); color: var(--text-primary); }
 .bz-filtros-btn.tem .bz-filtros-n { color: var(--amber); }
@@ -557,27 +586,43 @@ body.bz-rc-aberta .bazar-page { margin-left: var(--bz-rc-w); }
 }
 .bz-limpar-tudo:hover { color: #ff8080; }
 
-/* ---------------------------------------------------------- resultados */
+/* ---------------------------------------------------------- resultados
+   Escala dos cards (P/M/G/GG, controle .bz-escala na barra; E.escala no
+   estado): #bz-registro[data-escala] dá o mínimo da coluna (--col), o fator do
+   texto (--k) e as linhas do efeito (--linhas). Por dentro do card tudo é em em,
+   então o card inteiro escala junto. Trocar o passo não re-renderiza nada. */
+.bz-registro { --col: 260px; --k: 1; --linhas: 4; }
+.bz-registro[data-escala="p"] { --col: 200px; --k: .9; --linhas: 3; }
+.bz-registro[data-escala="g"] { --col: 310px; --k: 1.1; --linhas: 5; }
+.bz-registro[data-escala="gg"] { --col: 420px; --k: 1.22; --linhas: 6; }
+/* raridade de reserva (item importado com raridade desconhecida): herdada; o
+   .rar-* do próprio card sobrepõe */
+.bz-resultados { --rc: var(--rar-ordinario); --rtx: var(--rar-ordinario); --rbg: var(--rar-ordinario-bg); --rbd: var(--rar-ordinario-bd); --rbr: transparent; --moldura: 40%; }
 .bz-resultados.cards {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(min(var(--col), 100%), 1fr));
     gap: var(--bz-gap);
-}
-@media (min-width: 1800px) {
-    .bz-resultados.cards { grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
 }
 .bz-vazio { text-align: center; color: var(--text-muted); font-style: italic; padding: 3rem 0; }
 
+/* ---------------------------------------------------------- card (heráldica)
+   Lei de cor: cor forte só na raridade (filete, moldura, medalhão, gema e
+   rótulo); o matiz de calor só na marca .calor da Região; âmbar só para
+   interação (foco, selecionado) e para o aviso "difícil" da Bancada. Cada
+   família de chip tem uma forma: categoria = selo de canto vivo, arquétipo =
+   fio de aço à esquerda, ofício = pílula de cobre com a CD num selo. */
 .cards .item-card {
-    --rc: #b8b5ad; --rbg: #2a2a35; --rbd: #6b6560;
     content-visibility: auto;
-    contain-intrinsic-size: auto 210px;
+    contain-intrinsic-size: auto calc(230px * var(--k));
     position: relative;
-    display: flex; flex-direction: column; gap: .5rem;
-    padding: 1rem 1.1rem 1rem 1.25rem;
-    background: linear-gradient(145deg, var(--bg-card), #101019);
-    border: 1px solid var(--border-color);
-    border-left: 3px solid var(--rbd);
+    display: flex; flex-direction: column; gap: .6em;
+    min-width: 0;
+    padding: 1.05em 1.1em .9em;
+    font-size: calc(1rem * var(--k));
+    background:
+        radial-gradient(130% 70% at 50% -12%, var(--rbr), transparent 62%),
+        linear-gradient(160deg, var(--bg-card), #101019);
+    border: 1px solid color-mix(in srgb, var(--rbd) var(--moldura), var(--border-color));
     border-radius: 9px;
     cursor: pointer;
     transition: transform .22s var(--bz-mola), border-color .22s, box-shadow .22s;
@@ -588,105 +633,284 @@ body.bz-rc-aberta .bazar-page { margin-left: var(--bz-rc-w); }
     animation-delay: calc(var(--i, 0) * 14ms);
 }
 @keyframes bz-surge { from { opacity: 0; transform: translateY(10px); } }
-.cards .item-card:hover {
-    transform: translateY(-3px);
-    border-color: var(--rbd);
-    border-left-color: var(--rc);
-    box-shadow: var(--bz-sombra), 0 0 0 1px var(--rbd) inset;
-}
-.cards .item-card:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
-/* fio de luz que corre na borda superior no hover */
-.cards .item-card::after {
+/* filete da raridade no topo, pontas apagadas (dentro da borda: o
+   content-visibility recorta o que passa da caixa) */
+.cards .item-card::before {
     content: '';
-    position: absolute; inset: 0 0 auto; height: 1px;
-    background: linear-gradient(90deg, transparent, var(--rc), transparent);
-    opacity: 0; transform: scaleX(.4);
-    transition: opacity .3s, transform .45s var(--bz-mola);
-    border-radius: 9px 9px 0 0;
+    position: absolute; left: 10px; right: 10px; top: 0; height: 3px;
+    border-radius: 0 0 3px 3px;
+    background: linear-gradient(90deg, transparent, var(--rc) 16%, var(--rc) 84%, transparent);
+    opacity: .75;
+    pointer-events: none;
+    transition: opacity .22s, left .3s var(--bz-mola), right .3s var(--bz-mola);
 }
-.cards .item-card:hover::after { opacity: .85; transform: scaleX(1); }
-/* card com a receita aberta no painel */
-.cards .item-card.selecionado {
-    border-color: var(--amber-dim);
-    box-shadow: inset 3px 0 0 var(--amber), 0 0 22px -8px var(--amber);
+/* Lixo: filete tracejado e apagado */
+.cards .item-card.rar-lixo::before {
+    height: 2px; opacity: .6;
+    background: repeating-linear-gradient(90deg, var(--rc) 0 6px, transparent 6px 10px);
 }
-
-.item-head { display: flex; align-items: flex-start; gap: .55rem; }
-.item-ico { width: 22px; height: 22px; flex: 0 0 auto; color: var(--rc); opacity: .85; margin-top: .1rem; }
-.item-name {
-    color: var(--gold); font-family: var(--font-heading);
-    font-size: 1.06rem; font-weight: 600; line-height: 1.25; flex: 1;
-}
-.cards .item-card:hover .item-name { color: var(--gold-light); }
-/* ×N: o que já está no inventário */
-.bz-selo-n {
-    flex: 0 0 auto;
-    align-self: flex-start;
-    font-family: var(--bz-mono);
-    font-variant-numeric: tabular-nums;
-    font-size: .72rem;
-    line-height: 1;
-    padding: .2rem .38rem;
-    border-radius: 4px;
-    color: var(--bz-tem);
-    background: var(--bz-tem-bg);
-    border: 1px solid #2d5a3d;
-}
-
-.item-chips { display: flex; flex-wrap: wrap; gap: .3rem; }
-.tag-rar, .tag-cat, .tag-arq, .tag-reg, .tag-of {
-    display: inline-flex; align-items: center; gap: .28rem;
-    font-size: .68rem; letter-spacing: .05em; text-transform: uppercase;
-    font-family: var(--font-heading);
-    padding: .12rem .45rem; border-radius: 4px;
-    border: 1px solid var(--border-color); color: var(--text-muted);
-}
-.tag-rar { color: var(--rc); background: var(--rbg); border-color: var(--rbd); }
-.tag-rar svg { width: 11px; height: 11px; }
-.tag-arq { color: var(--roxo-claro); border-color: var(--roxo); background: #1e163208; }
-.tag-reg { color: #c9b07a; }
-.tag-of  { color: var(--amber); border-color: var(--amber-dim); }
-
-.item-efeito {
-    margin: 0;
-    color: var(--text-primary); font-size: .93rem; line-height: 1.55;
-    display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical;
-    overflow: hidden;
-}
-.item-meta {
-    display: flex; flex-wrap: wrap; gap: .25rem .9rem;
-    font-size: .8rem; color: var(--text-secondary);
-    border-top: 1px dashed var(--border-color); padding-top: .5rem; margin-top: auto;
-}
-.item-meta b { color: var(--text-muted); font-weight: 400; }
-.item-valor { font-family: var(--bz-mono); color: var(--gold-light); }
-.item-cd { font-family: var(--bz-mono); }
-
-/* estados vindos da Bancada */
-.cards .item-card.dificil { border-left-style: dashed; }
-.item-aviso {
-    display: flex; align-items: center; gap: .35rem;
-    margin: 0;
-    font-size: .76rem; color: var(--amber);
-    background: #e08b2c14; border: 1px solid var(--amber-dim);
-    border-radius: 6px; padding: .22rem .5rem;
-}
-.bz-ico-aviso { width: 14px; height: 14px; flex: 0 0 auto; }
-.cards .item-card.alcancavel { border-left-color: #6ee7a0; }
-.cards .item-card.alcancavel .item-cd { color: #6ee7a0; }
-
-/* Luxária ganha um brilho lento, para destacar no meio da grade */
+/* Luxária: filete duplo, cantos em L e a varredura lenta que já existia */
 .cards .item-card.rar-luxaria::before {
-    content: ''; position: absolute; inset: -1px; border-radius: 9px; pointer-events: none;
-    background: linear-gradient(115deg, transparent 38%, #f4d03f14 50%, transparent 62%);
+    height: 5px; opacity: .85;
+    background:
+        linear-gradient(90deg, transparent, var(--rc) 12%, var(--rc) 88%, transparent) top / 100% 2px no-repeat,
+        linear-gradient(90deg, transparent 20%, var(--rbd) 35%, var(--rbd) 65%, transparent 80%) bottom / 100% 1px no-repeat;
+}
+.cards .item-card.rar-luxaria {
+    background:
+        linear-gradient(var(--rbd), var(--rbd)) left 5px top 5px / 10px 1px no-repeat,
+        linear-gradient(var(--rbd), var(--rbd)) left 5px top 5px / 1px 10px no-repeat,
+        linear-gradient(var(--rbd), var(--rbd)) right 5px top 5px / 10px 1px no-repeat,
+        linear-gradient(var(--rbd), var(--rbd)) right 5px top 5px / 1px 10px no-repeat,
+        linear-gradient(var(--rbd), var(--rbd)) left 5px bottom 5px / 10px 1px no-repeat,
+        linear-gradient(var(--rbd), var(--rbd)) left 5px bottom 5px / 1px 10px no-repeat,
+        linear-gradient(var(--rbd), var(--rbd)) right 5px bottom 5px / 10px 1px no-repeat,
+        linear-gradient(var(--rbd), var(--rbd)) right 5px bottom 5px / 1px 10px no-repeat,
+        radial-gradient(130% 70% at 50% -12%, var(--rbr), transparent 62%),
+        linear-gradient(160deg, var(--bg-card), #101019);
+}
+.cards .item-card.rar-luxaria::after {
+    content: ''; position: absolute; inset: 0; border-radius: 9px; pointer-events: none;
+    background: linear-gradient(115deg, transparent 38%, #f4d03f12 50%, transparent 62%);
     background-size: 280% 100%;
     animation: bz-brilho 7s linear infinite;
 }
 @keyframes bz-brilho { from { background-position: 180% 0; } to { background-position: -80% 0; } }
 
-/* ---------------------------------------------------------- lista (9 colunas, sem rolagem horizontal) */
+.cards .item-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--rbd);
+    box-shadow: var(--bz-sombra), 0 0 26px -12px var(--rc);
+}
+.cards .item-card:hover::before { opacity: 1; left: 0; right: 0; }
+/* card com a receita aberta no painel */
+.cards .item-card.selecionado {
+    border-color: var(--amber-dim);
+    box-shadow: inset 3px 0 0 var(--amber), 0 0 22px -8px var(--amber);
+}
+/* foco de teclado: depois do hover e do selecionado, para o anel sempre aparecer */
+.cards .item-card:focus-visible { outline: 2px solid var(--amber); outline-offset: 3px; box-shadow: var(--foco-anel); }
+.cards .item-card.selecionado:focus-visible { box-shadow: inset 3px 0 0 var(--amber), var(--foco-anel); }
+
+/* cabeçalho: medalhão com gema | nome e linha de identidade | fita ×N */
+.item-head { display: flex; align-items: flex-start; gap: .7em; min-width: 0; }
+.bz-med {
+    position: relative;
+    flex: 0 0 auto;
+    width: 2.75em; height: 2.75em;
+    display: grid; place-items: center;
+    border-radius: 26%;
+    background: var(--bz-raiz);
+    border: 1px solid var(--rbd);
+    box-shadow: inset 0 0 12px -4px #000, 0 1px 3px #0009;
+    color: var(--rc);
+    transition: transform .28s var(--bz-mola), border-color .22s;
+}
+.bz-med .item-ico { width: 1.45em; height: 1.45em; opacity: .9; }
+.bz-med .bz-arte { width: 100%; height: 100%; border: 0; border-radius: inherit; box-shadow: none; opacity: 1; }
+.cards .item-card:hover .bz-med { transform: scale(1.06) rotate(-2deg); border-color: var(--rc); }
+/* gema: losango na quina do medalhão com o glifo da raridade */
+.bz-gema {
+    position: absolute; right: -.45em; bottom: -.45em;
+    width: 1.3em; height: 1.3em;
+    display: grid; place-items: center;
+    background: var(--rbg);
+    border: 1px solid var(--rbd);
+    border-radius: 3px;
+    transform: rotate(45deg);
+    color: var(--rc);
+    box-shadow: 0 0 0 2px #101019;
+}
+.bz-gema svg { width: .8em; height: .8em; transform: rotate(-45deg); }
+.rar-exotico .bz-gema { box-shadow: 0 0 0 2px #101019, 0 0 8px -1px #c084fc80; }
+.rar-luxaria .bz-gema { box-shadow: 0 0 0 2px #101019, 0 0 10px 0 #f4d03f80; }
+.na-mochila .bz-med { outline: 1px solid #4a4858; outline-offset: 2px; }
+
+.item-tit { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: .2em; }
+.item-name {
+    color: var(--gold); font-family: var(--font-heading);
+    font-size: 1.06em; font-weight: 600; line-height: 1.25;
+    overflow-wrap: break-word;
+}
+.cards .item-card:hover .item-name { color: var(--gold-light); }
+/* linha de identidade: raridade e região (quebra se faltar largura; sem ponto
+   separador, que ficaria solto no começo da 2ª linha) */
+.item-sub {
+    display: flex; flex-wrap: wrap; align-items: center; gap: .2em .9em;
+    margin: 0;
+    font-size: max(.74em, 11px); line-height: 1.35;
+    color: var(--text-secondary);
+}
+.item-rar {
+    display: inline-flex; align-items: center; gap: .4em;
+    font-family: var(--font-heading); font-weight: 600;
+    letter-spacing: .14em; text-transform: uppercase;
+    color: var(--rtx);
+    white-space: nowrap;
+}
+.item-rar svg { width: 1.15em; height: 1.15em; flex: 0 0 auto; }
+.item-unico {
+    display: inline-block;
+    margin-left: .45em;
+    padding: 0 .35em;
+    font-family: var(--font-heading); font-weight: 600;
+    letter-spacing: .12em; text-transform: uppercase;
+    line-height: 1.35;
+    color: var(--chip-quest);
+    background: var(--chip-quest-bg);
+    border: 1px solid #3a3450;
+    border-radius: 3px;
+    white-space: nowrap;
+}
+.item-reg {
+    display: inline-flex; align-items: center; gap: .45em;
+    font-family: var(--font-body); font-size: 1.12em;
+    color: var(--text-secondary);
+}
+.item-reg.quest { color: var(--chip-quest); }
+/* calor 1–8: o número e o matiz da trilha de Região dos filtros */
+.calor {
+    --h: calc(190deg - var(--r, 0) * 24deg);
+    display: inline-grid; place-items: center;
+    min-width: 1.45em; height: 1.4em;
+    padding: 0 .25em;
+    font-family: var(--bz-mono); font-size: .82em; font-weight: 600; line-height: 1;
+    font-variant-numeric: tabular-nums;
+    color: hsl(var(--h) 60% 66%);
+    background: hsl(var(--h) 40% 13%);
+    border-bottom: 2px solid hsl(var(--h) 50% 40%);
+    border-radius: 3px 3px 1px 1px;
+}
+.calor-quest { color: var(--chip-quest); background: var(--chip-quest-bg); border-bottom: 2px dashed #6a6280; }
+
+/* ×N: o que já está no inventário (fita neutra com o saco) */
+.bz-selo-n {
+    flex: 0 0 auto;
+    align-self: flex-start;
+    display: inline-flex; align-items: center; gap: .25em;
+    font-family: var(--bz-mono);
+    font-variant-numeric: tabular-nums;
+    font-size: max(.74em, 11px);
+    line-height: 1;
+    padding: .28em .45em .28em .35em;
+    border-radius: 4px;
+    color: var(--text-primary);
+    background: #24222c;
+    border: 1px solid #4a4858;
+}
+.bz-selo-n svg { width: 1.2em; height: 1.2em; color: var(--text-secondary); }
+
+/* "+ inventário" (o ficha.js pendura no .item-head): no card desce para o
+   canto do rodapé, que reserva o espaço à direita. O CSS da Ficha fica fora de
+   camada e fixa o tamanho do botão: ele não escala (aceito). */
+.cards .item-card .kf-addbtn { position: absolute; right: 1.1em; bottom: .85em; }
+
+/* chips: UMA fileira, uma família por forma e paleta */
+.item-chips { display: flex; flex-wrap: wrap; align-items: center; gap: .3em .35em; min-width: 0; }
+.tag-cat, .tag-arq, .tag-of {
+    display: inline-flex; align-items: center; gap: .35em;
+    min-width: 0;
+    font-family: var(--font-heading); font-size: max(.66em, 11px); font-weight: 600;
+    letter-spacing: .07em; text-transform: uppercase; line-height: 1.2;
+}
+.tag-cat svg, .tag-of svg { width: 1.25em; height: 1.25em; flex: 0 0 auto; }
+/* CATEGORIA: selo neutro de canto vivo, glifo da categoria */
+.tag-cat {
+    padding: .28em .55em;
+    color: var(--chip-cat); background: var(--chip-cat-bg);
+    border: 1px solid var(--chip-cat-bd); border-radius: 2px;
+}
+.tag-cat:has(svg) { padding-left: .4em; }
+.tag-cat svg { color: var(--text-muted-forte); }
+/* ARQUÉTIPO: aço, fio de 3px à esquerda */
+.tag-arq {
+    padding: .28em .55em .28em .5em;
+    color: var(--chip-arq); background: var(--chip-arq-bg);
+    border: 1px solid var(--chip-arq-bd); border-left: 3px solid var(--chip-arq-fio);
+    border-radius: 0 3px 3px 0;
+}
+/* OFÍCIO: pílula de cobre, glifo do ofício e a CD num selo mono */
+.tag-of {
+    padding: 0 0 0 .45em;
+    overflow: hidden;
+    color: var(--chip-of); background: var(--chip-of-bg);
+    border: 1px solid var(--chip-of-bd); border-radius: 999px;
+}
+.tag-of > svg { margin: .28em 0; }
+.tag-of .item-cd {
+    align-self: stretch;
+    display: inline-flex; align-items: center;
+    margin-left: .15em;
+    padding: .28em .6em .28em .5em;
+    font-family: var(--bz-mono); font-weight: 400; letter-spacing: 0;
+    color: var(--chip-of-cd); background: var(--chip-of-cd-bg);
+    border-left: 1px solid var(--chip-of-bd);
+}
+.tag-of:not(:has(.item-cd)) { padding-right: .6em; }
+.of-fora { font-style: italic; color: var(--text-muted-forte); }
+/* Bancada: o estado mora na CD, não na borda (a borda é da raridade) */
+.alcancavel .tag-of .item-cd { color: var(--bz-tem); background: var(--bz-tem-bg); }
+.dificil .tag-of { border-style: dashed; }
+.dificil .tag-of .item-cd { color: var(--bz-leve); background: #2a1a0a; border-left: 1px dashed var(--bz-leve); }
+
+/* tags: texto discreto, separado por ponto, sem caixa e sem clique */
+.item-tags {
+    display: flex; flex-wrap: wrap; gap: 0 .6em;
+    margin: 0;
+    font-family: var(--font-body); font-style: italic;
+    font-size: max(.84em, 12px); line-height: 1.3;
+    color: var(--chip-tag);
+}
+.item-tags span + span::before { content: '·'; margin-right: .6em; font-style: normal; color: #4a4858; }
+
+.item-efeito {
+    margin: 0;
+    color: var(--text-primary); font-size: .93em; line-height: 1.55;
+    display: -webkit-box; -webkit-line-clamp: var(--linhas, 4); -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+/* rodapé em tabela: rótulo em cima, valor embaixo */
+.item-meta {
+    display: flex; flex-wrap: wrap; align-items: flex-end; gap: .3em 1.2em;
+    margin-top: auto;
+    padding: .55em 7.4em 0 0;
+    min-height: 2.9em;
+    font-size: .8em;
+    color: var(--text-secondary);
+    border-top: 1px dashed var(--border-color);
+}
+.item-meta > span { display: flex; flex-direction: column; gap: .1em; min-width: 0; }
+.item-meta b {
+    font-family: var(--font-heading); font-size: .8em; font-weight: 400;
+    letter-spacing: .12em; text-transform: uppercase;
+    color: var(--text-muted-forte);
+}
+.item-meta .v {
+    display: inline-flex; align-items: center; gap: .3em;
+    font-family: var(--bz-mono); font-variant-numeric: tabular-nums;
+    color: var(--text-secondary);
+    white-space: nowrap;
+}
+.item-meta .v svg { width: 1.25em; height: 1.25em; color: var(--text-muted-forte); }
+.item-valor { font-family: var(--bz-mono); color: var(--gold-light); }
+.item-meta .item-valor { color: var(--gold-light); }
+.item-cd { font-family: var(--bz-mono); }
+
+/* aviso da Bancada ("difícil") */
+.item-aviso {
+    display: flex; align-items: center; gap: .35em;
+    margin: 0;
+    font-size: .78em; color: var(--amber);
+    background: #e08b2c14; border: 1px solid var(--amber-dim);
+    border-radius: 6px; padding: .25em .55em;
+}
+.bz-ico-aviso { width: 14px; height: 14px; flex: 0 0 auto; }
+
+/* ---------------------------------------------------------- lista (9 colunas, sem rolagem horizontal)
+   A mesma linguagem do card: filete e medalhão com gema na 1ª célula, rótulo
+   de raridade, selo de categoria, calor na Região, pílula de ofício. */
 .bz-resultados.lista { display: block; }
-.bz-tabela { width: 100%; border-collapse: collapse; font-size: .88rem; }
+.bz-tabela { width: 100%; border-collapse: collapse; font-size: calc(.88rem * var(--k)); }
 .bz-tabela thead th {
     position: sticky; top: var(--bz-bar-h); z-index: 2;
     background: var(--bg-tertiary);
@@ -707,14 +931,17 @@ body.bz-rc-aberta .bazar-page { margin-left: var(--bz-rc-w); }
     cursor: pointer;
     transition: background .16s;
 }
-.bz-tabela tbody tr:hover { background: #ffffff07; }
-.bz-tabela tbody tr:focus-visible { outline: 2px solid var(--amber); outline-offset: -2px; }
+.bz-tabela tbody tr:hover { background: color-mix(in srgb, var(--rc) 5%, transparent); }
+.bz-tabela tbody tr:focus-visible { outline: 2px solid var(--amber); outline-offset: -2px; box-shadow: inset 0 0 18px -6px #e08b2c80; }
 .bz-tabela tbody tr.selecionado { background: #e08b2c10; box-shadow: inset 3px 0 0 var(--amber); }
 /* anywhere: palavra longa ("Desfragmentadora", "Sobrevivência") não fixa o
    mínimo da coluna; a tabela só quebra no meio da palavra se faltar largura.
    Células nowrap (Raridade, Valor, CD) não são afetadas. */
-.bz-tabela td { padding: .5rem .6rem; vertical-align: top; color: var(--text-secondary); overflow-wrap: anywhere; }
-.bz-tabela td.c-nome { color: var(--gold); font-family: var(--font-heading); }
+.bz-tabela td { padding: .5em .6em; vertical-align: top; color: var(--text-secondary); overflow-wrap: anywhere; }
+/* filete da raridade na 1ª célula (o <tr> não aceita pseudo de forma confiável) */
+.bz-tabela td.c-nome { color: var(--gold); font-family: var(--font-heading); box-shadow: inset 3px 0 0 var(--rc); }
+.bz-tabela tr.rar-lixo td.c-nome { box-shadow: inset 2px 0 0 color-mix(in srgb, var(--rc) 70%, transparent); }
+.bz-tabela tr.selecionado td.c-nome { box-shadow: none; }
 .bz-tabela tr:hover td.c-nome { color: var(--gold-light); }
 .bz-tabela td.c-efeito { color: var(--text-primary); min-width: 8rem; }
 /* duas linhas na lista mantêm a tabela escaneável; o texto inteiro fica no painel */
@@ -724,9 +951,24 @@ body.bz-rc-aberta .bazar-page { margin-left: var(--bz-rc-w); }
     font-family: var(--bz-mono);
     white-space: nowrap; color: var(--gold-light);
 }
-.bz-tabela td.c-raridade { white-space: nowrap; }
-.bz-tabela td.c-nome .item-name { font-size: .92rem; }
+.bz-tabela td.c-cd { color: var(--text-secondary); }
+.bz-tabela td.c-raridade { white-space: nowrap; font-size: .82em; }
+.bz-tabela td.c-raridade .item-unico { display: table; margin: .35em 0 0; }
+.bz-tabela td.c-regiao .item-reg { font-size: 1em; align-items: flex-start; }
+.bz-tabela td.c-regiao .calor { flex: 0 0 auto; margin-top: .1em; }
+.bz-tabela td.c-categoria .tag-cat, .bz-tabela td.c-craft .tag-of { font-size: max(.72em, 11px); }
+.bz-tabela td.c-craft .of-fora { font-size: .92em; }
+.bz-tabela td.c-craft { white-space: nowrap; overflow-wrap: normal; }
+.bz-tabela td.c-nome .item-name { font-size: 1.04em; overflow-wrap: normal; }
 .bz-tabela td.c-nome .bz-selo-n { margin-left: .3rem; }
+/* o <td> continua célula de tabela (estica até a altura da linha e alinha a
+   borda com as vizinhas); o arranjo em linha fica no contêiner interno */
+.bz-tabela .c-nome-in { display: flex; align-items: center; gap: .3rem .6em; min-height: 24px; }
+.bz-tabela .c-nome-tx { display: flex; flex-direction: column; align-items: flex-start; gap: .3em; min-width: 0; }
+.bz-tabela .c-nome-tx .tag-arq { font-size: max(.62em, 10.5px); padding: .15em .45em .15em .4em; }
+.bz-tabela .bz-med { width: 2em; height: 2em; margin-right: .2em; }
+.bz-tabela .bz-med .item-ico { width: 1.2em; height: 1.2em; }
+.bz-tabela .bz-gema { width: 1em; height: 1em; right: -.35em; bottom: -.35em; }
 @container registro (max-width: 899px) {
     .bz-tabela .c-obtencao, .bz-tabela .c-regiao { display: none; }
 }
@@ -736,10 +978,28 @@ body.bz-rc-aberta .bazar-page { margin-left: var(--bz-rc-w); }
    da tabela (títulos nowrap + Raridade/Valor/CD + 8rem de Efeito) cabe */
 @container registro (max-width: 699px) {
     .bz-tabela .c-categoria { display: none; }
+    /* Ofício estreito: a pílula fica só com o glifo; o nome segue para leitor de tela */
+    .bz-tabela td.c-craft .of-nome {
+        position: absolute; width: 1px; height: 1px; margin: -1px;
+        overflow: hidden; clip-path: inset(50%); white-space: nowrap;
+    }
+    .bz-tabela td.c-craft .tag-of { padding: 0 .4em; }
+    .bz-tabela td.c-craft .of-fora { white-space: normal; }
 }
 @container registro (max-width: 639px) {
     .bz-tabela .c-craft { display: none; }
 }
+
+/* rótulo de raridade em caixa: só no painel de receita e no pop-up (no card e
+   na Lista a raridade é o .item-rar, sem caixa) */
+.tag-rar {
+    display: inline-flex; align-items: center; gap: .28rem;
+    font-family: var(--font-heading); font-size: .68rem;
+    letter-spacing: .05em; text-transform: uppercase;
+    padding: .12rem .45rem; border-radius: 4px;
+    color: var(--rtx, var(--rc)); background: var(--rbg); border: 1px solid var(--rbd);
+}
+.tag-rar svg { width: 11px; height: 11px; }
 
 /* ---------------------------------------------------------- inventário (casca; §4 preenche) */
 .bz-inv {
@@ -1805,16 +2065,7 @@ svg.bz-rc-uso-ico { width: 16px; height: 16px; margin: 0 3px; }
     box-shadow: inset 0 0 12px -4px #000, 0 1px 3px #0009;
     flex: 0 0 auto;
 }
-.item-ico.bz-arte { width: 40px; height: 40px; margin-top: 0; opacity: 1; }
-
-/* na visão Cards, a arte cresce de leve junto com o hover do card */
-.cards .item-card .bz-arte { transition: transform .28s var(--bz-mola), border-color .22s; }
-.cards .item-card:hover .bz-arte { transform: scale(1.08) rotate(-2deg); border-color: var(--rc); }
-
-/* lista: medalhão pequeno antes do nome */
-/* o <td> continua célula de tabela (estica até a altura da linha e alinha a
-   borda com as vizinhas); o arranjo em linha fica no contêiner interno */
-.bz-tabela .c-nome-in { display: flex; align-items: center; flex-wrap: wrap; gap: .3rem .45rem; min-height: 24px; }
+/* no card e na Lista a arte mora no medalhão .bz-med (tamanho e hover lá) */
 /* O style.css dá `table { overflow: hidden }` a todas as tabelas do site. Aqui
    isso fazia da própria tabela o contêiner do sticky: o cabeçalho grudava
    93 px ABAIXO do topo da tabela, no meio das linhas. `clip` recorta igual
@@ -1822,9 +2073,6 @@ svg.bz-rc-uso-ico { width: 16px; height: 16px; margin: 0 3px; }
 .bz-tabela { overflow: clip; }
 /* o Nome é a coluna que se lê primeiro: nunca espremido abaixo de 10rem */
 .bz-tabela th.c-nome, .bz-tabela td.c-nome { min-width: 10.5rem; }
-.bz-tabela td.c-nome .item-name { overflow-wrap: normal; }
-.c-ico { width: 24px; height: 24px; }
-.c-ico:not(.bz-arte) { color: var(--rc); opacity: .8; }
 
 /* sentinela do carregamento por lote */
 .bz-sentinela { height: 1px; margin-top: -1px; }
@@ -1906,14 +2154,14 @@ svg.bz-rc-uso-ico { width: 16px; height: 16px; margin: 0 3px; }
 :root[data-movimento="reduzido"] .bz-primeira.cards .item-card, :root[data-movimento="reduzido"] .bz-rc.bz-rc-entra, :root[data-movimento="reduzido"] .bz-rc.bz-rc-sai { animation: none; }
 :root[data-movimento="reduzido"] .bz-rc-raizes.anima path, :root[data-movimento="reduzido"] .bz-rc-raizes.anima .bz-rc-raiz-no { animation: none; stroke-dashoffset: 0; }
 :root[data-movimento="reduzido"] body.bz-rc-aberta .bz-rc-borda { animation: none; stroke-dashoffset: 0; }
-:root[data-movimento="reduzido"] .cards .item-card.rar-luxaria::before { animation: none; opacity: 0; }
+:root[data-movimento="reduzido"] .cards .item-card.rar-luxaria::after { animation: none; opacity: 0; }
 :root[data-movimento="reduzido"] .bz-regua.bz-piora::before { animation: none; }
 :root[data-movimento="reduzido"] .bz-slot.bz-pisca::after { animation: none; opacity: 0; }
 :root[data-movimento="reduzido"] .bz-slot.bz-pisca { box-shadow: inset 2px 0 0 var(--amber), inset 0 1px 0 #ffffff05, inset 0 0 0 1px #0008; }
 :root[data-movimento="reduzido"] .bz-slot.bz-sai { transition: none; }
 /* sem deslocamento no hover nem escala no pop-up */
 :root[data-movimento="reduzido"] .cards .item-card:hover, :root[data-movimento="reduzido"] .bz-seg,
-:root[data-movimento="reduzido"] .cards .item-card:hover .bz-arte, :root[data-movimento="reduzido"] .cards .item-card::after,
+:root[data-movimento="reduzido"] .cards .item-card:hover .bz-med, :root[data-movimento="reduzido"] .cards .item-card::after,
 :root[data-movimento="reduzido"] .bz-cartao, :root[data-movimento="reduzido"] .bz-cartao.sai { transform: none; }
 }
 

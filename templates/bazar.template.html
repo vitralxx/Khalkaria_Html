@@ -104,6 +104,7 @@
       <symbol id="ico-equipado" viewBox="0 0 24 24"><rect x="4.4" y="7.4" width="15.2" height="9.2" rx="1.6" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M12 7.4v9.2M12 12h5" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></symbol>
       <symbol id="ico-sintonia" viewBox="0 0 24 24"><ellipse cx="12" cy="13" rx="7" ry="5.4" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M12 3.6l1.4 2.6L12 8.4l-1.4-2.2Z" fill="none" stroke="currentColor" stroke-width="1" stroke-linejoin="round"/></symbol>
       <symbol id="ico-empilhavel" viewBox="0 0 24 24"><ellipse cx="12" cy="7" rx="6.4" ry="2.4" fill="none" stroke="currentColor" stroke-width="1.1"/><path d="M5.6 7v3.6c0 1.3 2.9 2.4 6.4 2.4s6.4-1.1 6.4-2.4V7M5.6 10.6v3.6c0 1.3 2.9 2.4 6.4 2.4s6.4-1.1 6.4-2.4v-3.6M5.6 14.2v3.2c0 1.3 2.9 2.4 6.4 2.4s6.4-1.1 6.4-2.4v-3.2" fill="none" stroke="currentColor" stroke-width="1.1"/></symbol>
+      <symbol id="ico-saco" viewBox="0 0 24 24"><path d="M8.5 5.5h7L14 8c3.3 1.2 5.5 4.3 5.5 7.7 0 3.3-2.8 5.3-7.5 5.3s-7.5-2-7.5-5.3C4.5 12.3 6.7 9.2 10 8Z" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><path d="M10 8h4" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" opacity=".7"/></symbol>
       <symbol id="saco-vazio" viewBox="0 0 48 48"><path pathLength="1" d="M17 11h14l-3 5c6.6 2.4 11 8.6 11 15.4C39 38 33.4 42 24 42S9 38 9 31.4C9 24.6 13.4 18.4 20 16Z" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><path pathLength="1" d="M20 16h8M18.6 7.4c1.8 1.2 3.6 1.2 5.4 0s3.6-1.2 5.4 0" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" opacity=".7"/></symbol>
 
       <!-- raízes gravadas (spec §10): preto sobre preto, nunca sobre texto ou
@@ -133,7 +134,7 @@
 
         <main class="main-content bazar-page">
             <div class="bz-mesa" id="bz-mesa" data-inv="painel">
-                <section class="bz-registro" id="bz-registro" aria-label="Registro de itens">
+                <section class="bz-registro" id="bz-registro" data-escala="m" aria-label="Registro de itens">
                     <header class="bz-topo">
                         <h1 class="bz-topo-titulo">O Bazar<span class="bz-topo-sub">Registro de Kharavel</span></h1>
                         <p class="bz-topo-meta"><span id="bz-total">{{TOTAL}}</span> itens · <span id="bz-visiveis">{{TOTAL}}</span> em exibição</p>
@@ -160,6 +161,12 @@
                             <div class="bz-views" role="group" aria-label="Modo de exibição">
                                 <button type="button" class="bz-view active" data-view="cards">Cards</button>
                                 <button type="button" class="bz-view" data-view="lista">Lista</button>
+                            </div>
+                            <div class="bz-escala" id="bz-escala" role="radiogroup" aria-label="Escala dos cards" aria-keyshortcuts="- =">
+                                <button type="button" class="bz-esc" role="radio" data-escala="p" aria-checked="false" tabindex="-1" aria-label="Pequena" title="Escala pequena · − menor, = maior"><span class="bz-esc-q" aria-hidden="true"></span>P</button>
+                                <button type="button" class="bz-esc" role="radio" data-escala="m" aria-checked="true" tabindex="0" aria-label="Média" title="Escala média · − menor, = maior"><span class="bz-esc-q" aria-hidden="true"></span>M</button>
+                                <button type="button" class="bz-esc" role="radio" data-escala="g" aria-checked="false" tabindex="-1" aria-label="Grande" title="Escala grande · − menor, = maior"><span class="bz-esc-q" aria-hidden="true"></span>G</button>
+                                <button type="button" class="bz-esc" role="radio" data-escala="gg" aria-checked="false" tabindex="-1" aria-label="Muito grande" title="Escala muito grande · − menor, = maior"><span class="bz-esc-q" aria-hidden="true"></span>GG</button>
                             </div>
                             <button type="button" class="bz-filtros-btn" id="bz-filtros-btn" aria-expanded="false" aria-controls="bz-filtros-caixa">
                                 Filtros <span class="bz-filtros-n" id="bz-filtros-n"></span>

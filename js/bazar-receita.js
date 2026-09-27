@@ -61,11 +61,16 @@
     if (!(n >= 1)) n = 1;
     return Math.min(n, QTD_MAX);
   }
+  // a mesma linguagem do card: selo de categoria (com glifo), aço do arquétipo;
+  // as tags vão numa linha discreta abaixo (tagsHTML), não como chips
   function chipsHTML(it) {
     return '<span class="tag-rar">' + U.icoRar(it.raridade) + esc(it.raridade) + '</span>' +
-      '<span class="tag-cat">' + esc(it.categoria) + '</span>' +
-      (it.arquetipo ? '<span class="tag-arq">' + esc(it.arquetipo) + '</span>' : '') +
-      (it.tags || []).map(function (t) { return '<span class="tag-cat">' + esc(t) + '</span>'; }).join('');
+      '<span class="tag-cat">' + U.svg(U.icoCat(it)) + esc(it.categoria) + '</span>' +
+      (it.arquetipo ? '<span class="tag-arq">' + esc(it.arquetipo) + '</span>' : '');
+  }
+  function tagsHTML(it) {
+    var t = it.tags || [];
+    return t.length ? '<p class="item-tags">' + t.map(function (x) { return '<span>' + esc(x) + '</span>'; }).join('') + '</p>' : '';
   }
   function oficioTexto(it) { return (U.PERICIA && U.PERICIA[it.craft]) || it.craft || ''; }
   function temReceita(it) { return !!(it.ing && it.ing.length); }
@@ -76,7 +81,7 @@
       '<span class="bz-rc-medalhao">' + arte(it, 'bz-rc-ico') + '</span>' +
       '<div class="bz-rc-titulo">' +
         '<h2 id="bz-rc-nome" class="bz-rc-nome" tabindex="-1">' + esc(it.nome) + '</h2>' +
-        '<div class="item-chips">' + chipsHTML(it) + '</div>' +
+        '<div class="item-chips">' + chipsHTML(it) + '</div>' + tagsHTML(it) +
         '<div class="bz-rc-selo" id="bz-rc-selo"></div>' +
       '</div></header>';
   }
