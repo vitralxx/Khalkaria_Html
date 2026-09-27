@@ -141,13 +141,14 @@ def arvore(caminho):
 
 
 def _casa_simples(n, sel):
-    m = re.fullmatch(r'([a-z0-9]*)((?:\.[\w-]+)*)', sel)
+    m = re.fullmatch(r'([a-z0-9]*)((?:\.[\w-]+)*)((?::not\(\.[\w-]+\))*)', sel)
     if not m:
         raise ValueError(f'seletor fora do subconjunto emulado: {sel!r}')
     tag, cls = m.group(1), [c for c in m.group(2).split('.') if c]
+    nao = re.findall(r':not\(\.([\w-]+)\)', m.group(3))
     if tag and n.tag != tag:
         return False
-    return all(c in n.classes for c in cls)
+    return all(c in n.classes for c in cls) and not any(c in n.classes for c in nao)
 
 
 def _casa(n, seletor):
@@ -205,7 +206,34 @@ def mapa_ficha():
     if not linhas:
         raise SystemExit('js/ficha.js: MAPA vazio')
     tem_corr = "querySelectorAll('.corr-table tr')" in js
-    return linhas, tem_corr
+    d = re.search(r"var descNode = q1\(card, '([^']*)'\)", js)
+    if not d:
+        raise SystemExit('js/ficha.js: seletor da descrição (descNode) não encontrado')
+    return linhas, tem_corr, d.group(1)
+
+
+# O que não é mecânica dentro do card: nome, custo, citação, ambientação, preço, botões.
+_FORA_TAG = {'h3', 'h4', 'h5', 'svg', 'button'}
+_FORA_SUB = ('header', 'quote', 'flavor')
+_FORA_CLS = {'cost', 'tech-meta', 'technique-cost', 'price', 'meta', 'action', 'stamina', 'ultimate-badge',
+             'kf-addbtn', 'ent-alca', 'ent-add'}
+COBERTURA_COMPLETA = 0.9
+
+
+def _fora_da_mecanica(f):
+    return f.tag in _FORA_TAG or bool(f.classes & _FORA_CLS) or any(s in c for c in f.classes for s in _FORA_SUB)
+
+
+def _palavras(t):
+    return Counter(re.findall(r'\w+', t.lower()))
+
+
+def cobertura(descricao, referencia):
+    """Fração das palavras da referência (a mecânica do card) que a descrição levada contém."""
+    ref = _palavras(referencia)
+    if not ref:
+        return 1.0
+    return sum((_palavras(descricao) & ref).values()) / sum(ref.values())
 
 
 def carrega_ficha(raiz):
@@ -217,8 +245,8 @@ def carrega_ficha(raiz):
     return False
 
 
-def decorar(raiz, mapa, tem_corr):
-    """Emula decorar() + decorarCorrupcao(): devolve os botões que a v2.1 poria."""
+def decorar(raiz, mapa, tem_corr, sel_desc):
+    """Emula decorar() + decorarCorrupcao(): devolve os botões que a v2.1 poria, com a descrição que ela grava."""
     marcado = set()
     botoes = []
     for sel, campo, tipo, sel_nome in mapa:
@@ -229,8 +257,10 @@ def decorar(raiz, mapa, tem_corr):
             if not nome:
                 continue
             marcado.add(id(card))
+            corpo = re.sub(r'\s+', ' ', _EMOJI.sub('', card.texto(_fora_da_mecanica))).strip()
             botoes.append({'kfId': card.attrs.get('data-kf-id'), 'seletor': sel, 'campo': campo,
-                           'tipo': tipo, 'nome': nome})
+                           'tipo': tipo, 'nome': nome, 'descricao': texto_limpo(q1(card, sel_desc)),
+                           'corpo': corpo})
     if tem_corr:
         for tr in seleciona(raiz, '.corr-table tr'):
             tds = [f for f in tr.filhos if isinstance(f, No) and f.tag == 'td']
@@ -244,8 +274,10 @@ def decorar(raiz, mapa, tem_corr):
             while a is not None and 'corr-block' not in a.classes:
                 a = a.pai
             tipo = 'adversidade' if (a is not None and 'adv' in a.classes) else 'corrupção'
+            desc = texto_limpo(tds[1])
             botoes.append({'kfId': None, 'seletor': '.corr-table tr', 'campo': 'tecnicas', 'tipo': tipo,
-                           'nome': nome + (' (' + custo + ')' if custo else ''), 'nomeBase': nome})
+                           'nome': nome + (' (' + custo + ')' if custo else ''), 'nomeBase': nome,
+                           'descricao': desc, 'corpo': desc})
     return botoes
 
 
@@ -436,10 +468,22 @@ class Vocabulario:
 
 
 # =================================================================== 1 levável
+def checa_descricao(e, b):
+    """Quanto da mecânica chega à ficha no campo descrição da v2.1 (seletor descNode do js/ficha.js).
+    Referência: o texto do card sem nome, custo, citação e ambientação; na origem, o texto da habilidade."""
+    if b is None:
+        return None
+    ref = texto_puro(e['html']) if e['tipo'] == 'habilidade-de-origem' else b['corpo']
+    c = cobertura(b['descricao'], ref)
+    st = 'vazia' if not b['descricao'] or c == 0 else ('completa' if c >= COBERTURA_COMPLETA else 'parcial')
+    return OrderedDict([('status', st), ('cobertura', round(c, 2)), ('texto', b['descricao'][:160])])
+
+
 def checa_levavel(e, pag, catalogo):
     kf = pag['kfIds']
     cat = catalogo.get(e['id'] if e['tipo'] != 'habilidade-de-origem' else e['dono'])
     notas = []
+    b = None
     if e['tipo'] == 'habilidade-de-origem':
         # vai junto com o card da origem (um botão por origem, não por habilidade)
         b = pag['porKf'].get(e['dono'])
@@ -482,6 +526,13 @@ def checa_levavel(e, pag, catalogo):
         status = 'ok' if tudo and not erro else ('parcial' if r['botaoV21'] or r['kfId'] else 'nao')
         if not pag['ficha']:
             notas.append('a página não carrega js/ficha.js nem js/main.js')
+    r['descricaoV21'] = checa_descricao(e, b)
+    if r['descricaoV21'] and r['descricaoV21']['status'] != 'completa':
+        notas.append('A descrição que a v2.1 grava (primeiro <p> do card) não traz a mecânica: '
+                     + ('vai vazia.' if r['descricaoV21']['status'] == 'vazia' else
+                        f"leva {r['descricaoV21']['cobertura']:.0%} do texto do card."))
+        if status == 'ok':
+            status = 'parcial'
     r['status'] = status
     r['notas'] = notas
     return r
@@ -929,11 +980,11 @@ def catalogo_por_id():
     return out
 
 
-def paginas(entradas, mapa, tem_corr):
+def paginas(entradas, mapa, tem_corr, sel_desc):
     out = {}
     for pg in sorted({e['pagina'] for e in entradas}):
         raiz = arvore(RAIZ / pg)
-        botoes = decorar(raiz, mapa, tem_corr)
+        botoes = decorar(raiz, mapa, tem_corr, sel_desc)
         out[pg] = {
             'ficha': carrega_ficha(raiz),
             'kfIds': {n.attrs['data-kf-id'] for n in raiz.descendentes() if n.attrs.get('data-kf-id')},
@@ -956,20 +1007,50 @@ def _alerta_geral(r):
         motivos.append('referencias:alerta')
     if r['obsoletas']['status'] in ('obsoleto', 'revisar'):
         motivos.append('obsoletas:' + r['obsoletas']['status'])
+    grav = {a['gravidade'] for a in r.get('achados', [])}
+    for g in ('alta', 'media'):
+        if g in grav:
+            motivos.append('regra:' + g)
+            break
     return motivos
+
+
+ACHADOS = RAIZ / 'docs' / 'ficha-digital' / 'log-tecnicas-achados.json'
+_CAMPOS_ACHADO = ('id', 'tipo', 'gravidade', 'paraQuem', 'trecho', 'regraAtual')
+
+
+def carrega_achados(ids):
+    """Achados de regra (leitura humana, conferida). Opcional: sem o arquivo, o log sai sem eles."""
+    if not ACHADOS.exists():
+        return None, {}, []
+    with open(ACHADOS, encoding='utf-8') as f:
+        doc = json.load(f)
+    por_tec, gerais = {}, []
+    for a in doc['achados']:
+        fora = [t for t in a['tecnicas'] if t not in ids]
+        if fora:
+            raise SystemExit(f"{ACHADOS.name}: achado {a['id']} cita técnica fora do inventário: {fora}")
+        item = OrderedDict((k, a[k]) for k in _CAMPOS_ACHADO)
+        if not a['tecnicas']:
+            gerais.append(OrderedDict([('id', a['id']), ('nome', a['nome']), ('fonte', a['fonte'])]
+                                      + [(k, a[k]) for k in _CAMPOS_ACHADO[1:]]))
+        for t in a['tecnicas']:
+            por_tec.setdefault(t, []).append(item)
+    return doc['schema'], por_tec, gerais
 
 
 def gerar():
     voc = Vocabulario()
     versao_obs, regras_obs = carrega_obsoletas()
-    mapa, tem_corr = mapa_ficha()
+    mapa, tem_corr, sel_desc = mapa_ficha()
     ent = inventario()
     ids = Counter(e['id'] for e in ent)
     dup = sorted(i for i, n in ids.items() if n > 1)
     if dup:
         raise SystemExit(f'id repetido no inventário: {dup}')
     cat = catalogo_por_id()
-    pags = paginas(ent, mapa, tem_corr)
+    pags = paginas(ent, mapa, tem_corr, sel_desc)
+    schema_ach, achados, achados_gerais = carrega_achados(set(ids))
     tecnicas = []
     for e in ent:
         r = OrderedDict()
@@ -989,6 +1070,8 @@ def gerar():
         r['referencias'] = checa_referencias(e, voc)
         r['obsoletas'] = checa_obsoletas(e, regras_obs)
         r['automacao'] = checa_automacao(e, voc)
+        if schema_ach:
+            r['achados'] = achados.get(e['id'], [])
         motivos = _alerta_geral(r)
         r['status'] = 'alerta' if motivos else 'ok'
         r['motivos'] = motivos
@@ -1009,11 +1092,18 @@ def gerar():
             ('tecnicas', ['data/classes/*.json', 'data/racas/*.json', 'data/origens.json']),
             ('ficha', 'js/ficha.js (MAPA, decorar, decorarCorrupcao, textoLimpo) sobre pages/**/*.html'),
             ('regrasObsoletas', f'tools/regras_obsoletas.json (versao {versao_obs})'),
+            ('achados', f'docs/ficha-digital/log-tecnicas-achados.json ({schema_ach})' if schema_ach else None),
             ('automacao', AUTOMACAO_FONTE),
         ])),
         ('notasDeMetodo', [
             'status da técnica: "alerta" quando alguma checagem acusa (levavel != ok, custo parcial/nao, recarga alerta, '
-            'referencias alerta, obsoletas obsoleto/revisar); o campo motivos lista quais.',
+            'referencias alerta, obsoletas obsoleto/revisar, achado de regra de gravidade alta ou media); o campo motivos '
+            'lista quais.',
+            'levavel.descricaoV21: o texto que a v2.1 grava no campo descrição (seletor descNode do js/ficha.js, lido do '
+            f'arquivo) comparado, por palavras, com o card sem nome, custo, citação e ambientação. "completa" a partir de '
+            f'{COBERTURA_COMPLETA:.0%}; "parcial" ou "vazia" rebaixam levavel de ok para parcial: a técnica vai, a mecânica não.',
+            'achados: conflitos de regra lidos à mão e conferidos (trecho verbatim + regra atual + fonte), vindos de '
+            'docs/ficha-digital/log-tecnicas-achados.json. Os que não são de uma técnica ficam em achadosGerais.',
             'levavel "parcial": a v2.1 leva, mas não como entidade própria (habilidade de origem vai com o card da origem; '
             'Corrupção vai pela linha da tabela, sem id nem catálogo). "nao": bloco da classe, sem seletor no MAPA.',
             'referencias.condicoes/magias/itens/pericias são casamento por nome (informação): pode haver homônimo '
@@ -1028,30 +1118,57 @@ def gerar():
             'Técnica de raça ("1 técnica de raça", 03-respostas-pedro.md §2): raca.tecnica.status = pendente nas 7 raças; '
             'a página não diz qual característica é a técnica',
         ]),
-        ('resumo', resumo(tecnicas)),
+        ('resumo', resumo(tecnicas, achados_gerais if schema_ach else None)),
+        ('achadosGerais', achados_gerais),
         ('tecnicas', tecnicas),
     ])
 
 
-def resumo(tecnicas):
+def _desc(t):
+    d = t['levavel'].get('descricaoV21')
+    return d['status'] if d else 'semBotao'
+
+
+def _grav(t):
+    g = {a['gravidade'] for a in t.get('achados', [])}
+    return next((x for x in ('alta', 'media', 'baixa') if x in g), 'nenhum')
+
+
+def resumo(tecnicas, achados_gerais=None):
+    com_achados = achados_gerais is not None
     por_fonte = OrderedDict()
     for t in tecnicas:
         f = t['fonte'].split(' > ')[0]
         s = por_fonte.setdefault(f, OrderedDict([('total', 0), ('ok', 0), ('alerta', 0),
-                                                 ('levavel', Counter()), ('custo', Counter()), ('recarga', Counter()),
-                                                 ('referencias', Counter()), ('obsoletas', Counter())]))
+                                                 ('levavel', Counter()), ('descricaoV21', Counter()), ('custo', Counter()),
+                                                 ('recarga', Counter()), ('referencias', Counter()),
+                                                 ('obsoletas', Counter())]
+                                                + ([('achadoMaisGrave', Counter())] if com_achados else [])))
         s['total'] += 1
         s[t['status']] += 1
         for k in ('levavel', 'custo', 'recarga', 'referencias', 'obsoletas'):
             s[k][t[k]['status']] += 1
+        s['descricaoV21'][_desc(t)] += 1
+        if com_achados:
+            s['achadoMaisGrave'][_grav(t)] += 1
     for s in por_fonte.values():
-        for k in ('levavel', 'custo', 'recarga', 'referencias', 'obsoletas'):
-            s[k] = OrderedDict(sorted(s[k].items()))
+        for k in ('levavel', 'descricaoV21', 'custo', 'recarga', 'referencias', 'obsoletas', 'achadoMaisGrave'):
+            if k in s:
+                s[k] = OrderedDict(sorted(s[k].items()))
     geral = OrderedDict([('total', len(tecnicas)),
                          ('ok', sum(t['status'] == 'ok' for t in tecnicas)),
                          ('alerta', sum(t['status'] == 'alerta' for t in tecnicas))])
     for k in ('levavel', 'custo', 'recarga', 'referencias', 'obsoletas'):
         geral[k] = OrderedDict(sorted(Counter(t[k]['status'] for t in tecnicas).items()))
+    geral['descricaoV21'] = OrderedDict(sorted(Counter(_desc(t) for t in tecnicas).items()))
+    if com_achados:
+        geral['achadoMaisGrave'] = OrderedDict(sorted(Counter(_grav(t) for t in tecnicas).items()))
+        unicos = {a['id']: a for t in tecnicas for a in t['achados']}
+        geral['achados'] = OrderedDict([
+            ('porTecnica', len(unicos)), ('gerais', len(achados_gerais)),
+            ('porGravidade', OrderedDict(sorted(Counter(a['gravidade'] for a in list(unicos.values()) + achados_gerais).items()))),
+            ('porDestino', OrderedDict(sorted(Counter(a['paraQuem'] for a in list(unicos.values()) + achados_gerais).items()))),
+        ])
     geral['porTipo'] = OrderedDict(sorted(Counter(t['tipo'] for t in tecnicas).items()))
     geral['automacao'] = OrderedDict(sorted(Counter(t['automacao']['status'] for t in tecnicas).items()))
     regras = Counter(a['regra'] for t in tecnicas for a in t['obsoletas']['achados'])
