@@ -87,6 +87,7 @@
    "_adicionarModificadores":[{"alvo":"ataque.danoExtra","op":"soma","valor":"1d6","condicao":"investida","nota":"nos ataques feitos durante a manobra Investida (Sistema > Manobras, D88)"}],
    "_removerLembretes":["A manobra Investida concede +1d6 de dano"]},
  "item-anel-do-esgrimista": {"_bloco":"itens","status":"aprovado",
-   "_merge":{"requisito":{"arma":"leve","status":"aprovado","fonte":"PD25"}},
+   "_merge":{"requisito":{"arma":"leve","status":"aprovado","fonte":"PD25"},
+             "consumirSangramento":{"minAcumulos":3,"acao":"livre","dano":"Xd4","x":"acumulosDeSangramento","vezes":1,"depois":"sangramentoZera","status":"aprovado","fonte":"L37 (Pedro: 'como o balanceamento recomenda'): Xd4 uma vez e zera"}},
    "_removerLembretes":["Armas Leves"]}
 }

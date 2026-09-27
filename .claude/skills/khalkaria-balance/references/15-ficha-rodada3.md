@@ -19,6 +19,13 @@ lote de revisão da seção E. Exemplo do problema que isso evita: D22 é Margem
 
 ---
 
+## Revisão 2 (2026-09-27) — o lote inteiro foi respondido
+
+O Pedro respondeu o resto do lote em `docs/ficha-digital/03-respostas-pedro.md` §6. Tudo o que era
+texto aprovado foi gravado no Notion (8 páginas, diff conferido), e o contrato foi para a rev. 7. O
+log está em `16-log-tecnicas.md` §3. Seguem abertos L14, L35 e L39; a L20 virou a pergunta T10 e a
+L19, a T9.
+
 ## Revisão 1 (2026-09-26) — o Pedro respondeu parte do lote
 
 Respostas dele, verbatim, e o que mudou. Os números D92–D97 são novos na memória (`09-decisoes-pedro.md`).

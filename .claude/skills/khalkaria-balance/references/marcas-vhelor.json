@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "marcas-vhelor/1.0",
+  "schemaVersion": "marcas-vhelor/1.1",
   "_doc": "Fonte única das Marcas da Vhelor (PD26a). O gerador de efeitos copia este arquivo para o bloco 'marcasVhelor' de ficha-efeitos-itens.json e liga cada item ao seu gatilho. Para mudar uma marca, edite só aqui e rode o gerador. Os textos são do Pedro, verbatim (** = negrito, * = itálico, como no original).",
   "fonte": "docs/ficha-digital/03-respostas-pedro.md §3.1 (main 703f665), decisão PD26a",
   "privacidade": "Pedro: 'privacidade não é problema'. A ficha pode mostrar a mecânica.",
@@ -14,7 +14,7 @@
     "item-seiva-da-vhelor": {"soma": 1, "fonte": "regra do Pedro ('seiva')"},
     "item-casca-de-raiz": {"soma": 1, "fonte": "regra do Pedro ('casca')"},
     "item-semente-da-vhelor": {"soma": 0, "fonte": "CSV: 'SEM adicionar Marca da Vhelor'"},
-    "item-elixir-da-expurgao": {"soma": -1, "funcionaAteMarca": 4, "fonte": "CSV: 'Remove 1 Marca da Vhelor. Não funciona acima da Marca 4.'"}
+    "item-elixir-da-expurgacao": {"soma": -1, "funcionaAteMarca": 4, "fonte": "CSV: 'Remove 1 Marca da Vhelor. Não funciona acima da Marca 4.' Nome corrigido para 'Elixir da Expurgação' (L38, Pedro)."}
   },
   "requisitos": {
     "item-talisma-da-seiva": {"marcaMin": 2, "fonte": "CSV: 'Requisito: Marca da Vhelor 2 ou mais.'"}

@@ -508,8 +508,8 @@ PENDENCIAS = [
  {'n':5,'item':'Erva Medicinal','o':"Corrigido no CSV: 'Saude' -> 'Saúde' (D91).",'status':'resolvido (D91)'},
  {'n':6,'item':'Poções, Elixires e outras curas em Autômato','o':"Avisar com pop-up de confirmação (avisoRaca). A raça diz 'Poções e Elixires não funcionam em você': vale para TODA poção e elixir, não só as de cura.",'status':'resolvido (PD23)'},
  {'n':7,'item':'Armadura do Pantaneiro, Antídoto Universal, Chá de Ervas Amargas','o':"'Envenenado' = condição Envenenamento.",'status':'aprovado (PD24)'},
- {'n':8,'item':'Anel do Esgrimista','o':"'Armas Leves.' virou requisito (PD25). Aberto: com o Sangramento em +Xd4 (D83), 'consumir todos os acúmulos de uma só vez' dá Xd4 uma vez, ou a soma de todos os acertos que eles dariam (Xd4 + (X-1)d4 + ... )? Recomendo Xd4 uma vez e zerar.",'status':'pendente: Pedro'},
- {'n':9,'item':'Elixir da Expurgão','o':"Nome de propósito ou 'Expurgação'? Se mudar, o id muda (item-elixir-da-expurgao -> item-elixir-da-expurgacao) e marcas-vhelor.json acompanha.",'status':'pendente: Pedro'},
+ {'n':8,'item':'Anel do Esgrimista','o':"'Armas Leves.' virou requisito (PD25). 'Consumir todos os acúmulos de uma só vez' = Xd4 uma vez (X = acúmulos) e o Sangramento zera (campo consumirSangramento).",'status':'resolvido (L37)'},
+ {'n':9,'item':'Elixir da Expurgação','o':"Nome corrigido no CSV ('Expurgão' -> 'Expurgação'); o id passa a item-elixir-da-expurgacao e marcas-vhelor.json acompanha.",'status':'resolvido (L38)'},
  {'n':10,'item':'Semente da Vhelor','o':"'Consumi-la instantaneamente te transforma em um ser pecaminoso': é a Marca 7 (Sucumbência) ou outra coisa? Fica lembrete.",'status':'pendente: Pedro'},
 ]
 
@@ -644,9 +644,9 @@ if __name__ == '__main__':
         sha = hashlib.sha256(open(CSV,'rb').read()).hexdigest()[:16]
         final = {
           'schemaVersion': 'efeitos-itens/1.1',
-          'geradoEm': '2026-09-26 (rev. 4: rodada 3 — PD21 Grevas, PD22 Ae(Todos), PD23 Autômato, PD24, PD25, PD26a Marcas da Vhelor; convenção de crítico D97)',
+          'geradoEm': '2026-09-27 (rev. 5: L37 Anel do Esgrimista, L38 Elixir da Expurgação; CSV igual ao da main. rev. 4: rodada 3 — PD21 Grevas, PD22 Ae(Todos), PD23 Autômato, PD24, PD25, PD26a Marcas da Vhelor; convenção de crítico D97)',
           'geradoPor': 'ficha-efeitos-gerador.py + ficha-efeitos-overrides.json (branch claude/khalkaria-bazar-balance-lsdfic)',
-          'fonte': {'csv': 'references/bazar-v26.csv (= data/Bazar_Khalkaria_v26.csv na main: coluna Efeito idêntica nos 727; só Ingredientes difere, em 109)',
+          'fonte': {'csv': 'references/bazar-v26.csv = data/Bazar_Khalkaria_v26.csv da main (751abae) + L38 (1 célula: Nome do Elixir da Expurgação)',
                     'sha256_16': sha, 'itens': len(rows)},
           'contagem': {k: len(out[k]) for k in ('itens','armas','consumo','semEfeitoNaFicha','naoParseado')},
           'convencoes': CONVENCOES, 'alvos': ALVOS, 'pendencias': PENDENCIAS,

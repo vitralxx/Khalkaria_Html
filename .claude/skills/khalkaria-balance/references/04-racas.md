@@ -1,4 +1,6 @@
 # Raças (7) — Notion `3a66e3a4…a11c8a24` + `data/racas/*.json`
+> ⚠️ **Superado em 2026-09-27 (Log de Técnicas, achado `balanceamento-ref-racas`).** Este arquivo é anterior à última sincronização do Notion e diverge do site em vários pontos. Vale `data/racas/*.json` (vindo do Notion). Reauditoria na fila (bloco C). Nada no contrato da ficha sai daqui.
+
 (Lobisomem ignorado por instrução do Pedro.)
 
 ## Base

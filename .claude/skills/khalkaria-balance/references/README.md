@@ -47,6 +47,8 @@ Tipo de Craft · Ingredientes · Tags · Lore/Notas · **CD de Craft** · (17 co
 | **`13-batedor-diagnostico.md`** | **Projeto ativo:** diagnóstico do Batedor + decisão de escopo + próximo passo | análise + Notion `8706e3a4…` |
 | **`14-ficha-digital.md`** | **Resposta ao agente de HTML:** arbitragem das 21 contradições e das 59 perguntas da ficha digital, com o que precisa ir ao Notion | Notion `2b76e3a4…` + D1–D79 |
 | **`15-ficha-rodada3.md`** | **Rodada 3 da ficha:** log do Notion gravado (antes/depois), respostas C1–C6, **lote PD20 de revisão (L01–L45)** e pendências da main | Notion + `03-respostas-pedro.md` |
+| **`16-log-tecnicas.md`** | **Resposta ao Log de Técnicas:** 15 princípios de leitura (G1–G15), 19 perguntas ao Pedro com recomendação (T1–T19), o lote L aplicado no Notion e a resposta a cada um dos 110 achados do balanceamento | artefato do agente de HTML + Notion |
+| `log-tecnicas-respostas.json` | as mesmas respostas como dado (`log-tecnicas-respostas/1`): uma entrada por id de achado, com status, princípio e pergunta | gerado |
 | `ficha-digital-regras.json` | as mesmas regras como dado, no contrato `regras-ficha/1.1` — cada regra com `status` (canônico / aprovado / decisão / pedroDecide / pendente) | gerado |
 | **`ficha-efeitos-itens.json`** | **O que cada um dos 727 itens do Bazar muda na ficha** (pedido 2 do agente de HTML, bloco B): itens · armas · consumo · semEfeito, conta fechada | gerado |
 | `ficha-efeitos-gerador.py` · `ficha-efeitos-overrides.json` | gerador com gramática fechada por frase + detector de falso negativo; exceções revisadas à mão | — |
@@ -57,8 +59,8 @@ Tipo de Craft · Ingredientes · Tags · Lore/Notas · **CD de Craft** · (17 co
 | `prompt-slides-magias.md` | prompt pronto para o Claude Design: 8 slides (M1–M8) | — |
 | `prompt-slides-17-24.md` | prompt pronto para o Claude Design: a seção do Bazar | — |
 | `02-condicoes.md` | 30 condições ordenadas por impacto em combate | Notion `3a66e3a4…ceef0b25` |
-| `03-origens.md` | 17 origens + Sins iniciais (âncora de preço) | Notion `3a66e3a4…cb77002a` |
-| `04-racas.md` | 7 raças + régua raridade→poder das Tecnologias do Autômato | `data/racas/*.json` |
+| `03-origens.md` | 17 origens + Sins iniciais (âncora de preço). ⚠️ **Superado** (2026-09-27): diverge do site; vale `data/origens.json` | Notion `3a66e3a4…cb77002a` |
+| `04-racas.md` | 7 raças + régua raridade→poder das Tecnologias do Autômato. ⚠️ **Superado** (2026-09-27): diverge do site; vale `data/racas/*.json` | `data/racas/*.json` |
 | `05-classes.md` | 7 classes, orçamento de 15 pontos, régua de preço canônica | `data/classes/*.json` |
 | `06-magias.md` | 80 magias, escala de dano | `data/magias.json` |
 | `07-limiar.md` | 170 cartas, âncoras de preço | `data/limiar.json` |

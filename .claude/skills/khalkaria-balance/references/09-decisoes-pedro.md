@@ -653,6 +653,50 @@ Desnutrido não tem regra de descer (L05).
 **Estado do Limiar no Notion (2026-09-26):** 127 cartas = 8 universais + 12 × 5 atributos + 59
 raras. O CLAUDE.md ainda diz 170/129/10.
 
+## Log de Técnicas (2026-09-27) — lote L aplicado, leituras G e perguntas T
+
+Resposta completa em `16-log-tecnicas.md` e `log-tecnicas-respostas.json` (uma entrada por achado do
+artefato do agente de HTML: 110 do balanceamento, 41 do Pedro, 9 do site).
+
+**Lote L respondido pelo Pedro (`03-respostas-pedro.md` §6) e gravado no Notion, diff conferido:**
+Sistema (L01, L04, L06, L08, L17, L24, L25, L26, L28, L29, L30, L31, L32, L33, L34, L41, L42), Magias
+(L28, L42 e a cópia do custo mínimo/"Nível 1 sem Contida", que só estava no Sistema), Condições (L10,
+L11, L12, L27), Limiar (L09, L16), Monge (L23), Alquimista (L18), Template (L21), Cultista (L43).
+Variantes do Pedro, verbatim:
+- **L08:** *"É a inteligência de quem craftou o item em poções."* → `atributoCuraItem: fabricante`.
+  Elixir, kit e poção comprada ficaram como pergunta (T19).
+- **L23:** *"Porém ainda tem, se receber dano que zera seu fluxo."* → o Fluxo zera ao receber dano, após
+  1 rodada sem ganhar e no fim do combate. **Mantive o gatilho da rodada sem ganhar** porque a
+  Concentração do Mestre depende dele ("só reseta após 2 rodadas"); se era para sair, sai dos dois.
+- **L26:** *"Ae(Todos) sempre exclui dano de força e primordial, porém abrange todos os danos
+  atípicos (não inclui cortante, contundente, perfurante)."*
+- **L29:** *"a notação oficial nas técnicas é 1x/Descanso Longo e não 1x/dia; 1x/sessão de fato existe
+  na terminologia, 1x/semana também e 1x/campanha também."*
+- **L30:** *"Nenhuma condição que exige descanso longo para ser removida é removida ao descansar sem
+  comida ou uma fonte de luz."* → a Exaustão também não baixa.
+- **L34:** *"Ae(x, categoria) sempre abrange todos os tipos de dano dentro daquela categoria. Quando um
+  dano é dado como uma categoria é da escolha do jogador, qualquer tipo de dano da categoria."* →
+  **derruba a minha P51** ("dano de categoria só é reduzido por Ae de categoria").
+- **L38:** *"Elixir da Expurgação"* (CSV e id corrigidos). **L43:** os 100 pergaminhos já estavam nos
+  níveis novos (D71); o resíduo era o item inicial do Cultista, "nvl 1" → "nvl 2".
+- **L13, L37, L40:** como recomendei. **L16, L18, L21:** vale o primeiro. **L19:** Muralha Viva
+  desatualizada, texto novo proposto (T9).
+
+**Leituras minhas (G1–G15, a ficha implementa; o Pedro pode revisar):** G1 retaliação livre (fora da
+reação, pode acompanhar o Defender); G2 ação livre não acumula consigo e só vale fora do turno com
+gatilho; G3 PMA também em ataque de técnica; G5 Defender é dado; G8 durações ausentes; G9 custo exige
+saldo; G12 "Passiva" com custo = por uso (a P45 caiu); G13 intensidade; G14 custo de magia; G15 itens
+alquímicos. Os três primeiros são a pergunta T1.
+
+**Achados no próprio Notion (não é erro do site):** Homem de Negócios cortado ("Você possui um
+disturbio de mat"); bullet vazio no Mapa de Exploração; asterisco sem nota em "brutalmente"
+(Contador de Corpos). Estão nas perguntas T8 e T9.
+
+**CSV:** a main trocou a notação de Ingredientes ("2x Reagente Alquímico (x1)") em 109 linhas no
+rebuild do Bazar (a36ef3e). Adotei a da main; a única diferença agora é o L38.
+
+**Abertas com o Pedro:** T1–T19 (em `16-log-tecnicas.md` §2) e, do lote anterior, L14, L35, L39.
+
 ## D68 — O andar de Nível 1 (truques)
 Todas as magias existentes **sobem 1 nível**: as antigas 1–4 viram 2–5. O novo Nível 1 são os
 20 truques. Consequência limpa: a regra do Teurgo deixa de ser "iguais ou abaixo do seu
@@ -879,8 +923,11 @@ Místico).
 deixa de existir como forma — gerava dupla interpretação na mesa. Quem quer 1 tipo escreve
 `Ae(<tipo>, N)` e usa a escada de 1 tipo. As 4 categorias são as da página *Tipos de Dano*:
 `Ordinário` (Cortante · Contundente · Perfurante) · `Elemental` (Fogo · Frio · Elétrico) ·
-`Biológico` (Veneno · Ácido · Psíquico) · `Místico` (Radiante · Trovejante · Necrótico · Força ·
-Primordial). **`Ae(Ordinário, N)` continua não existindo: é `Ar N`.**
+`Biológico` (Veneno · Ácido · Psíquico) · `Místico` (Radiante · Trovejante · Necrótico).
+🔴 **Correção (2026-09-27, Log de Técnicas):** eu tinha escrito Força e Primordial dentro de Místico. O
+Sistema do Notion (Defesa › Tipos de Dano) põe os dois numa coluna à parte, **Outros**. Vale o
+Sistema: Místico tem 3 tipos, Atípico tem 9, e Força/Primordial não entram em Ae de categoria.
+**`Ae(Ordinário, N)` continua não existindo: é `Ar N`.**
 Corrigidos na v26: `Escudo Rúnico de Guerra` (Ae(Ordinário,2) → **Ar 2**) e
 `Anel de Proteção Elemental` (Ae(elemento à escolha,4) → **Ae(Elemental, 4)**).
 Pendente no Notion (do Pedro): a magia **Pele de Pedra** usa `Ae (Ordinário): 2/5/7/10` e a própria

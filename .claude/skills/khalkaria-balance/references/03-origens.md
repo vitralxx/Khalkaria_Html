@@ -1,4 +1,6 @@
 # Origens (17) — Notion `3a66e3a4…cb77002a` (🟡 Em desenvolvimento)
+> ⚠️ **Superado em 2026-09-27 (Log de Técnicas, achado `balanceamento-ref-origens`).** Este arquivo é anterior à última sincronização do Notion e diverge do site em vários pontos. Vale `data/origens.json` (vindo do Notion). Reauditoria na fila (bloco C). Nada no contrato da ficha sai daqui.
+
 Verificado por conjunto contra o índice do Notion: **17/17, sem divergência.**
 
 ## 🔑 Sins iniciais — a âncora de preço de todo o Bazar
