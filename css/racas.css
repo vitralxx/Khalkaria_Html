@@ -1,6 +1,7 @@
 /* Estilos compartilhados das 7 páginas de raça. Gerado por tools/extrair_css.py — carregado
    depois de style.css; o <style> de cada página guarda só o que é dela. */
 
+@layer paginas {
 .raca-header{display:grid;grid-template-columns:300px 1fr;gap:2rem;margin-bottom:2rem}
 
 .raca-image-container{background:var(--bg-tertiary);border:1px solid var(--border-color);border-radius:12px;height:400px;display:flex;align-items:center;justify-content:center;color:var(--text-muted);overflow:hidden}
@@ -32,3 +33,4 @@
 .nav-racas{display:flex;justify-content:space-between;margin-top:2rem;padding-top:1rem;border-top:1px solid var(--border-color)}
 
 .nav-racas a{color:var(--gold);text-decoration:none}
+}

@@ -7,45 +7,35 @@
    painel de receita fixo à esquerda cobrindo a nav quando aberto.
    ============================================================ */
 
+@layer paginas {
 :root {
-    --amber: #e08b2c;
-    --amber-dim: #8a5518;
-    --roxo: #6d4aa0;
-    --roxo-claro: #c084fc;
+    /* aliases dos tokens do site (css/style.css, camada base; F1c): mesmo valor */
     --bz-raiz: #16161d;          /* preto sobre preto: textura, não desenho */
-    --bz-sombra: 0 18px 40px -22px #000;
-    --bz-mola: cubic-bezier(.34, 1.4, .5, 1);
+    --bz-sombra: var(--sombra-painel);
+    --bz-mola: var(--mola);
 
     /* mesa (1366 como base; 1920 no breakpoint de 1800px) */
     --bz-bar-h: 52px;
     --bz-rc-w: 340px;
     --bz-inv-w: 360px;
-    --bz-mono: ui-monospace, "Cascadia Mono", Consolas, monospace;
-    --bz-painel: linear-gradient(180deg, #13111a, #0c0b10);
-    --bz-grao: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)' opacity='.04'/%3E%3C/svg%3E");
-    --bz-raiz-traco: #2b2320;
-    --bz-raiz-funda: #1b1820;
-    --bz-tem: #6ee7a0;
-    --bz-tem-bg: #1e3a2a;
-    --bz-leve: #e08b2c;
-    --bz-extremo: #8b2635;
-    --bz-extremo-vivo: #b3261e;
+    --bz-mono: var(--mono);
+    --bz-painel: var(--painel);
+    --bz-grao: var(--grao);
+    --bz-raiz-traco: var(--raiz-traco);
+    --bz-raiz-funda: var(--raiz-funda);
+    --bz-tem: var(--tem);
+    --bz-tem-bg: var(--tem-bg);
+    --bz-leve: var(--leve);
+    --bz-extremo: var(--extremo);
+    --bz-extremo-vivo: var(--extremo-vivo);
 
     /* texto discreto com contraste >= 4.5:1 sobre os painéis (#0c0b10–#15151f).
        O --text-muted do style.css (#6b6560) fica em ~3.3:1; aqui ele é
        sobreposto só dentro da mesa, do painel e do pop-up (§11). */
-    --bz-muted: #8a8580;
+    --bz-muted: var(--text-muted-forte);
     /* cantos de livro-razão: L de 10px, 1px --amber-dim a 40% */
-    --bz-canto: #8a551866;
-    --bz-cantos:
-        linear-gradient(var(--bz-canto), var(--bz-canto)) left top / 10px 1px no-repeat,
-        linear-gradient(var(--bz-canto), var(--bz-canto)) left top / 1px 10px no-repeat,
-        linear-gradient(var(--bz-canto), var(--bz-canto)) right top / 10px 1px no-repeat,
-        linear-gradient(var(--bz-canto), var(--bz-canto)) right top / 1px 10px no-repeat,
-        linear-gradient(var(--bz-canto), var(--bz-canto)) left bottom / 10px 1px no-repeat,
-        linear-gradient(var(--bz-canto), var(--bz-canto)) left bottom / 1px 10px no-repeat,
-        linear-gradient(var(--bz-canto), var(--bz-canto)) right bottom / 10px 1px no-repeat,
-        linear-gradient(var(--bz-canto), var(--bz-canto)) right bottom / 1px 10px no-repeat;
+    --bz-canto: var(--canto);
+    --bz-cantos: var(--cantos);
 }
 .bazar-page, .bz-rc, .bz-cartao { --text-muted: var(--bz-muted); }
 /* foco de base na mesa e no painel; as regras específicas abaixo (linhas com
@@ -56,11 +46,11 @@
 }
 
 /* cores de raridade — convenção fixa do sistema */
-.rar-lixo       { --rc: #8b6b6b; --rbg: #2a1a1a; --rbd: #5a3535; }
-.rar-ordinario  { --rc: #b8b5ad; --rbg: #2a2a35; --rbd: #6b6560; }
-.rar-incomum    { --rc: #6ee7a0; --rbg: #1e3a2a; --rbd: #2d5a3d; }
-.rar-exotico    { --rc: #c084fc; --rbg: #2a1e4a; --rbd: #6d4aa0; }
-.rar-luxaria    { --rc: #f4d03f; --rbg: #4a3a1e; --rbd: #d4af37; }
+.rar-lixo       { --rc: var(--rar-lixo); --rbg: var(--rar-lixo-bg); --rbd: var(--rar-lixo-bd); }
+.rar-ordinario  { --rc: var(--rar-ordinario); --rbg: var(--rar-ordinario-bg); --rbd: var(--rar-ordinario-bd); }
+.rar-incomum    { --rc: var(--rar-incomum); --rbg: var(--rar-incomum-bg); --rbd: var(--rar-incomum-bd); }
+.rar-exotico    { --rc: var(--rar-exotico); --rbg: var(--rar-exotico-bg); --rbd: var(--rar-exotico-bd); }
+.rar-luxaria    { --rc: var(--rar-luxaria); --rbg: var(--rar-luxaria-bg); --rbd: var(--rar-luxaria-bd); }
 
 .bz-sprite { position: absolute; width: 0; height: 0; overflow: hidden; }
 .bz-sr {
@@ -167,7 +157,7 @@ body.bz-rc-aberta .bazar-page { margin-left: var(--bz-rc-w); }
 .bz-bar {
     position: sticky;
     top: 0;
-    z-index: 30;
+    z-index: var(--z-sticky);
     min-height: var(--bz-bar-h);
     display: flex;
     flex-direction: column;
@@ -891,7 +881,7 @@ a.bz-cond:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; 
 }
 .bz-cb-input:focus { outline: 2px solid var(--amber); outline-offset: 0; border-color: transparent; }
 .bz-cb-lista {
-    position: absolute; left: 0; right: 0; top: calc(100% + 4px); z-index: 40;
+    position: absolute; left: 0; right: 0; top: calc(100% + 4px); z-index: var(--z-lista);
     margin: 0; padding: .25rem 0; list-style: none; max-height: 320px; overflow-y: auto;
     background: #0e0d13; border: 1px solid var(--border-color); border-radius: 8px;
     box-shadow: var(--bz-sombra);
@@ -1197,7 +1187,7 @@ svg.bz-slot-ico { width: 20px; height: 20px; }
     left: 0; top: 0;
     width: var(--bz-rc-w);
     height: 100vh;
-    z-index: 110;
+    z-index: var(--z-painel-esq);
     overflow-y: auto;
     overscroll-behavior: contain;
     background: var(--bz-grao), var(--bz-painel);
@@ -1220,7 +1210,7 @@ svg.bz-slot-ico { width: 20px; height: 20px; }
     left: calc(var(--bz-rc-w) - 8px);
     width: 16px;
     height: 100vh;
-    z-index: 111;
+    z-index: calc(var(--z-painel-esq) + 1);
     pointer-events: none;
     overflow: visible;
     color: var(--bz-raiz-funda);
@@ -1704,7 +1694,7 @@ svg.bz-rc-uso-ico { width: 16px; height: 16px; margin: 0 3px; }
 .bz-cartao {
     /* --rc/--rbg/--rbd vêm da .rar-* que o JS põe no nó (sem padrão aqui:
        esta regra vem depois das .rar-* e as sobreporia) */
-    position: fixed; left: 0; top: 0; z-index: 400;
+    position: fixed; left: 0; top: 0; z-index: var(--z-popover);
     width: 340px; max-height: 70vh;
     display: flex; flex-direction: column;
     pointer-events: none;
@@ -1906,7 +1896,7 @@ svg.bz-rc-uso-ico { width: 16px; height: 16px; margin: 0 3px; }
 .item-falta .bz-ico-aviso { width: 13px; height: 13px; align-self: center; color: var(--amber); }
 
 /* ---------------------------------------------------------- acessibilidade: movimento reduzido
-   Tudo instantâneo. As raízes nascem prontas; o piscar vira um marcador
+   As raízes nascem prontas; o piscar vira um marcador
    âmbar fixo de 2px à esquerda por 1,5s (o JS mantém a classe esse tempo). */
 @media (prefers-reduced-motion: reduce) {
     .bz-primeira.cards .item-card, .bz-rc.bz-rc-entra, .bz-rc.bz-rc-sai { animation: none; }
@@ -1921,12 +1911,11 @@ svg.bz-rc-uso-ico { width: 16px; height: 16px; margin: 0 3px; }
     .cards .item-card:hover, .bz-seg,
     .cards .item-card:hover .bz-arte, .cards .item-card::after,
     .bz-cartao, .bz-cartao.sai { transform: none; }
-    *, *::before, *::after {
-        transition-duration: .01ms !important;
-        transition-delay: 0s !important;
-        animation-duration: .01ms !important;
-        animation-delay: 0s !important;
-        animation-iteration-count: 1 !important;
-        scroll-behavior: auto !important;
-    }
+    /* o *{…!important} que deixa tudo instantâneo é global: reset do style.css */
 }
+}
+
+/* PONTE (F1c), sem camada: o .kf-draggable {cursor: grab} que o ficha.js injeta
+   não tem camada e venceria o cursor destes cards, que ganhavam pela especificidade.
+   Sai quando o CSS da Ficha for para css/ficha.css numa camada (F2). */
+.cards .item-card.kf-draggable, .bz-tabela tbody tr.kf-draggable { cursor: pointer; }

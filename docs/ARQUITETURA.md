@@ -109,10 +109,13 @@ tools/efeitos_excecoes.json    F1d: defeitos de parse conhecidos do arquivo de e
                                lembrete; AVISO até a errata, FALHA quando ficam obsoletos)
 tools/checa_efeitos.py         F1d: checagens [balanceamento], [efeitos] e [vhelor] do validar
 
-css/style.css                  design system: tokens :root, layout, globais
-css/classes.css                componentes das 7 páginas de classe
-css/racas.css                  componentes das 7 páginas de raça
-css/bazar.css                  só a página do Bazar (tokens --bz-* no :root dele)
+css/style.css                  design system: declara as @layer (§5), tokens :root do site
+                               (escalas --esp/--raio/--dur/--z, --recurso-*, --classe-*,
+                               --ramo-<c>-<r>, --rar-*), reset, layout, globais
+css/classes.css                componentes das 7 páginas de classe (camada paginas)
+css/racas.css                  componentes das 7 páginas de raça (camada paginas)
+css/bazar.css                  só a página do Bazar (camada paginas; --bz-* são aliases
+                               dos tokens do site)
 js/main.js                     splash, smooth scroll, fade-in
                                + auto-injeta ficha.js em todas as páginas
 js/nav.js                      navegação lateral: trilho de 64px, atalho \, dica,
@@ -219,6 +222,38 @@ Ordem de carga e responsabilidade de cada camada:
 
 Uma regra idêntica em 2+ páginas pertence a (2), não ao inline. `tools/extrair_css.py`
 faz essa extração respeitando o cascade.
+
+**Camadas (F1c).** `style.css` abre com
+`@layer reset, base, layout, componentes, paginas, estados;` (precedência crescente):
+
+| Camada | O que tem |
+|---|---|
+| `reset` | `box-sizing`/margem zero, barra de rolagem, e o `*{…!important}` global de `prefers-reduced-motion` |
+| `base` | tokens `:root`, `html`/`body`, tipografia e tabela por elemento, `:focus-visible` global |
+| `layout` | a moldura: `.app-container`, `.main-content`, `.right-bar`, botão do menu mobile |
+| `componentes` | a nav (com o trilho), cards, badges, splash, tabela compacta, blocos de classe/raça genéricos e do Sistema, itens da right-bar, utilitários, `a:hover` |
+| `paginas` | `classes.css`, `racas.css`, `bazar.css`, a landing do index |
+| `estados` | sobreposições de estado (hoje: movimento reduzido da nav) |
+
+Regras da migração, todas medidas com `tools/estilo/` (diff 0):
+- **CSS sem camada vence qualquer camada.** Os `<style>` dos templates e o CSS que o
+  `ficha.js` injeta ficam fora de camada de propósito até a F7.
+- **A camada vence a especificidade.** Regra que ganhava de outra por especificidade
+  tem de ficar na camada do rival (ou acima): por isso a nav é `componentes` e o
+  `a:hover` (0,1,1, contra os links de classe da nav, da right-bar e do Sistema) fica
+  lá; `tr:last-child td` e `tr:hover td` ficam **sem camada**, porque vencem o `td`
+  dos `<style>` de template; a `@media (max-width: 900px)` é repartida pela camada de
+  cada regra que ela sobrepõe. Nenhuma regra mudou de ordem dentro da camada.
+- **Pontes** (fim do `style.css`, sem camada): reafirmam o que uma regra em camada
+  ganhava de um `<style>` de template (hoje só o sublinhado do `a:hover` nos cards-link
+  de `racas.html` e `criacao.html`); no fim do `bazar.css`, o cursor dos cards e
+  linhas do Bazar contra o `.kf-draggable` que o `ficha.js` injeta sem camada.
+  Saem quando o CSS de template e o da Ficha entrarem em camada (F2/F7).
+- **`!important` inverte:** o de `reset` vence o de todas as outras camadas (é o
+  do movimento reduzido); o de uma camada vence o `!important` sem camada.
+- Token novo não troca valor: as páginas passam a ler `--recurso-*`, `--classe-*` e
+  `--ramo-*` na F7. Já ligados (valor idêntico): `--z-*` da nav, dica, right-bar e
+  Bazar, e os `--bz-*`.
 
 `.sep` (`css/classes.css`, `display: none`) guarda texto verbatim do Notion que o
 componente já mostra de outro jeito: a vírgula entre chips de stats, o `:` de um

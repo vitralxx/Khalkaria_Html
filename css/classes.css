@@ -1,6 +1,7 @@
 /* Estilos compartilhados das 7 páginas de classe. Gerado por tools/extrair_css.py — carregado
    depois de style.css; o <style> de cada página guarda só o que é dela. */
 
+@layer paginas {
 .class-hero {
             position: relative;
             margin-bottom: 3rem;
@@ -148,3 +149,4 @@
    entre chips de stats, o ":" de um título, o prefixo "Lobo:" dentro do card do
    Lobo. Fica no DOM (busca, cópia para a ficha, sync_notion.py cobertura) e sai da tela. */
 .sep { display: none; }
+}

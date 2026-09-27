@@ -3,8 +3,15 @@
    Design: Dark Fantasy Medieval
    ============================ */
 
+/* Camadas da cascata (F1c, plano §3.3), em precedência crescente. CSS sem
+   camada (os <style> dos templates, o CSS que o ficha.js injeta e as poucas
+   regras soltas abaixo) vence todas; !important numa camada inverte a ordem
+   (o de reset vence tudo). Mapa e regras da migração: docs/ARQUITETURA.md §5. */
+@layer reset, base, layout, componentes, paginas, estados;
+
 @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400&family=UnifrakturMaguntia&display=swap');
 
+@layer base {
 :root {
     --bg-primary: #0a0a0c;
     --bg-secondary: #12121a;
@@ -41,6 +48,109 @@
     --transition: all 0.3s ease;
 }
 
+/* ---------------------------------------------------------------- TOKENS
+   Nível do site (F1c, plano §3.3). Criados sem trocar o que as páginas leem:
+   elas continuam no hex de hoje e passam aos tokens família a família na F7.
+   Exceções já ligadas, com valor idêntico: z-index da nav, dica, right-bar e
+   Bazar (--z-*) e os --bz-* do bazar.css (aliases dos promovidos abaixo). */
+:root {
+    /* promovidos do bazar.css */
+    --mono: ui-monospace, "Cascadia Mono", Consolas, monospace;
+    --painel: linear-gradient(180deg, #13111a, #0c0b10);
+    --sombra-painel: 0 18px 40px -22px #000;
+    --mola: cubic-bezier(.34, 1.4, .5, 1);
+    /* cantos de livro-razão: L de 10px, 1px --amber-dim a 40% */
+    --canto: #8a551866;
+    --cantos:
+        linear-gradient(var(--canto), var(--canto)) left top / 10px 1px no-repeat,
+        linear-gradient(var(--canto), var(--canto)) left top / 1px 10px no-repeat,
+        linear-gradient(var(--canto), var(--canto)) right top / 10px 1px no-repeat,
+        linear-gradient(var(--canto), var(--canto)) right top / 1px 10px no-repeat,
+        linear-gradient(var(--canto), var(--canto)) left bottom / 10px 1px no-repeat,
+        linear-gradient(var(--canto), var(--canto)) left bottom / 1px 10px no-repeat,
+        linear-gradient(var(--canto), var(--canto)) right bottom / 10px 1px no-repeat,
+        linear-gradient(var(--canto), var(--canto)) right bottom / 1px 10px no-repeat;
+    /* carga do inventário: cabe / Sobrepeso Leve / Sobrepeso Extremo */
+    --tem: #6ee7a0;
+    --tem-bg: #1e3a2a;
+    --leve: #e08b2c;
+    --extremo: #8b2635;
+    --extremo-vivo: #b3261e;
+    /* raridade: cor, fundo, borda — convenção fixa do sistema */
+    --rar-lixo: #8b6b6b; --rar-lixo-bg: #2a1a1a; --rar-lixo-bd: #5a3535;
+    --rar-ordinario: #b8b5ad; --rar-ordinario-bg: #2a2a35; --rar-ordinario-bd: #6b6560;
+    --rar-incomum: #6ee7a0; --rar-incomum-bg: #1e3a2a; --rar-incomum-bd: #2d5a3d;
+    --rar-exotico: #c084fc; --rar-exotico-bg: #2a1e4a; --rar-exotico-bd: #6d4aa0;
+    --rar-luxaria: #f4d03f; --rar-luxaria-bg: #4a3a1e; --rar-luxaria-bd: #d4af37;
+
+    /* espaçamento */
+    --esp-1: .25rem;
+    --esp-2: .5rem;
+    --esp-3: .75rem;
+    --esp-4: 1rem;
+    --esp-5: 1.5rem;
+    --esp-6: 2rem;
+    --esp-7: 3rem;
+    /* raio */
+    --raio-1: 4px;
+    --raio-2: 6px;
+    --raio-3: 8px;
+    --raio-4: 12px;
+    --raio-5: 16px;
+    --raio-pilula: 20px;
+    --raio-circulo: 50%;
+    /* duração */
+    --dur-rapida: .15s;
+    --dur-curta: .2s;
+    --dur-media: .3s;
+    --dur-longa: .6s;
+    /* z-index: escala única (fora dela hoje: splash 9999, voltar-ao-topo 1000,
+       menu mobile 200, borda da receita 111 = painel-esq + 1, Ficha 99998–100000) */
+    --z-sticky: 30;
+    --z-lista: 40;
+    --z-rightbar: 50;
+    --z-nav: 100;
+    --z-dica: 105;
+    --z-painel-esq: 110;
+    --z-ficha: 120;
+    --z-popover: 400;
+    --z-toast: 500;
+    --z-overlay: 800;
+    --z-splash: 900;
+    /* larguras dos painéis laterais */
+    --esq-w: 340px;
+    --dir-w: 240px;
+
+    /* recursos — lei de cor (D28): Saúde vermelho, Stamina amarelo, Éter verde e roxo */
+    --recurso-saude: #ef4444;
+    --recurso-stamina: #fbbf24;
+    --recurso-eter-verde: #22c55e;
+    --recurso-eter-roxo: #8b5cf6;
+    --recurso-eter: var(--recurso-eter-roxo);
+
+    /* classes e ramos (M7): valores de hoje (toda página de classe usa o ouro; os
+       ramos, a cor do :root de cada templates/classes/<c>.template.html) */
+    --classe-alquimista: #d4af37;
+    --classe-artilheiro: #d4af37;
+    --classe-batedor: #d4af37;
+    --classe-brutalista: #d4af37;
+    --classe-espadachim: #d4af37;
+    --classe-monge: #d4af37;
+    --classe-teurgo: #d4af37;
+    --ramo-alquimista-artificer: #8b5cf6; --ramo-alquimista-artificer-escuro: #4c1d95; --ramo-alquimista-bombardeiro: #ef4444; --ramo-alquimista-bombardeiro-escuro: #7f1d1d; --ramo-alquimista-boticario: #22c55e; --ramo-alquimista-boticario-escuro: #14532d;
+    --ramo-artilheiro-vendaval: #06b6d4; --ramo-artilheiro-vendaval-escuro: #164e63; --ramo-artilheiro-polvora: #f97316; --ramo-artilheiro-polvora-escuro: #7c2d12; --ramo-artilheiro-predador: #22c55e; --ramo-artilheiro-predador-escuro: #14532d;
+    --ramo-batedor-cartografo: #3b82f6; --ramo-batedor-cartografo-escuro: #1e3a5f; --ramo-batedor-semnome: #6b7280; --ramo-batedor-semnome-escuro: #374151; --ramo-batedor-trambiqueiro: #f59e0b; --ramo-batedor-trambiqueiro-escuro: #78350f;
+    --ramo-brutalista-colosso: #3b82f6; --ramo-brutalista-colosso-escuro: #1e3a5f; --ramo-brutalista-berserker: #ef4444; --ramo-brutalista-berserker-escuro: #7f1d1d; --ramo-brutalista-general: #a855f7; --ramo-brutalista-general-escuro: #581c87;
+    --ramo-espadachim-guarda: #4a9eff; --ramo-espadachim-guarda-escuro: #1e3a5f; --ramo-espadachim-oprimido: #ff4a4a; --ramo-espadachim-oprimido-escuro: #5f1e1e; --ramo-espadachim-exilado: #a855f7; --ramo-espadachim-exilado-escuro: #4a1e5f;
+    --ramo-monge-punho: #ff6b35; --ramo-monge-punho-escuro: #5f2a1e; --ramo-monge-vazio: #8b5cf6; --ramo-monge-vazio-escuro: #3b1e5f; --ramo-monge-naturalista: #22c55e; --ramo-monge-naturalista-escuro: #1e5f3a;
+    --ramo-teurgo-academico: #3b82f6; --ramo-teurgo-academico-escuro: #1e3a5f; --ramo-teurgo-receptaculo: #a855f7; --ramo-teurgo-receptaculo-escuro: #4c1d95; --ramo-teurgo-arauto: #f59e0b; --ramo-teurgo-arauto-escuro: #78350f;
+}
+@media (min-width: 1800px) {
+    :root { --esq-w: 400px; }
+}
+}
+
+@layer reset {
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 /* Scrollbar - 4px fino */
@@ -50,6 +160,22 @@
 ::-webkit-scrollbar-thumb:hover { background: var(--gold); }
 * { scrollbar-width: thin; scrollbar-color: var(--gold-dark) transparent; }
 
+/* movimento reduzido, global: tudo instantâneo (veio do bazar.css). No reset,
+   o !important vence o de qualquer outra camada; as sobreposições por
+   componente ficam na camada do componente ou em estados. */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        transition-duration: .01ms !important;
+        transition-delay: 0s !important;
+        animation-duration: .01ms !important;
+        animation-delay: 0s !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+    }
+}
+}
+
+@layer base {
 html { scroll-behavior: smooth; }
 body {
     font-family: var(--font-body);
@@ -60,6 +186,12 @@ body {
     min-height: 100vh;
 }
 
+/* foco de teclado, global; as regras de foco da nav, do Bazar e dos campos
+   ficam nas camadas de cima e prevalecem */
+:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
+}
+
+@layer componentes {
 /* ============================
    SPLASH SCREEN
    ============================ */
@@ -108,12 +240,17 @@ body {
     0%, 100% { text-shadow: 0 0 30px rgba(212, 175, 55, 0.5), 0 0 60px rgba(212, 175, 55, 0.3); }
     50% { text-shadow: 0 0 40px rgba(212, 175, 55, 0.8), 0 0 80px rgba(212, 175, 55, 0.5); }
 }
+}
 
+@layer layout {
 /* ============================
    LAYOUT
    ============================ */
 .app-container { display: flex; min-height: 100vh; }
+}
 
+/* a nav é componente: a moldura (largura --nav-w, main-content) fica em layout */
+@layer componentes {
 /* ----------------------------------------------------------------
    NAVEGAÇÃO LATERAL — índice de "registro de mundo".
    Markup: partials/sidebar.html (fonte única). Comportamento: js/nav.js.
@@ -131,7 +268,7 @@ body {
     height: 100vh;
     overflow-y: auto;
     overflow-x: hidden;
-    z-index: 100;
+    z-index: var(--z-nav);
     border-right: 1px solid var(--raiz-traco);
     /* raiz vertical na borda direita (camada de fundo, não ::before: um
        ::before absoluto rolaria com o conteúdo e cobriria só a 1ª tela) */
@@ -328,7 +465,7 @@ html[data-nav-fechados~="classes"] .nav-grupo[data-grupo="classes"]:not(:has(.ac
    (100), abaixo da receita do Bazar (110), do cartão (400) e da Ficha. */
 .nav-dica {
     position: fixed;
-    z-index: 105;
+    z-index: var(--z-dica);
     left: calc(var(--nav-w) + 8px);
     top: 0;
     transform: translateY(-50%);
@@ -432,7 +569,9 @@ html[data-nav-fechados~="classes"] .nav-grupo[data-grupo="classes"]:not(:has(.ac
     from { opacity: 0; transform: translateX(-4px); }
     to { opacity: 1; transform: none; }
 }
+}
 
+@layer estados {
 @media (prefers-reduced-motion: reduce) {
     .sidebar, .sidebar *, .sidebar *::before, .sidebar *::after,
     .nav-dica, .menu-toggle {
@@ -440,7 +579,9 @@ html[data-nav-fechados~="classes"] .nav-grupo[data-grupo="classes"]:not(:has(.ac
         animation: none !important;
     }
 }
+}
 
+@layer layout {
 /* Main Content - Expandido */
 .main-content {
     flex: 1;
@@ -448,7 +589,9 @@ html[data-nav-fechados~="classes"] .nav-grupo[data-grupo="classes"]:not(:has(.ac
     padding: 3rem 4rem;
     max-width: 1400px;
 }
+}
 
+@layer base {
 /* ============================
    TYPOGRAPHY
    ============================ */
@@ -485,7 +628,15 @@ p { margin-bottom: 1rem; }
 strong { color: var(--gold-light); font-weight: 600; }
 em { color: var(--text-secondary); }
 a { color: var(--gold); text-decoration: none; transition: var(--transition); }
+}
+
+/* a:hover (0,1,1) vence .nav-link/.rb-link/.keyword-link (0,1,0) e perde para os
+   :hover/.active deles (0,2,0): fica na camada deles, senão a camada inverteria */
+@layer componentes {
 a:hover { color: var(--gold-light); text-decoration: underline; }
+}
+
+@layer base {
 
 ul, ol { margin: 1rem 0 1rem 1.5rem; }
 li { margin-bottom: 0.5rem; }
@@ -499,7 +650,9 @@ blockquote {
     font-style: italic;
     color: var(--text-secondary);
 }
+}
 
+@layer componentes {
 .separator-ornament {
     text-align: center;
     margin: 2rem 0;
@@ -508,9 +661,13 @@ blockquote {
     font-size: 1.5rem;
     letter-spacing: 1rem;
 }
+}
 
+@layer base {
 hr { border: none; border-top: 1px solid var(--border-color); margin: 2rem 0; }
+}
 
+@layer componentes {
 /* ============================
    CARDS & BOXES
    ============================ */
@@ -583,7 +740,9 @@ hr { border: none; border-top: 1px solid var(--border-color); margin: 2rem 0; }
 .badge.passiva { background: var(--accent-blue); color: white; }
 .badge.acao { background: #5a4a2c; color: var(--gold-light); }
 .badge.reacao { background: #4a2c4a; color: #d4a5d4; }
+}
 
+@layer base {
 /* ============================
    TABLES
    ============================ */
@@ -611,9 +770,13 @@ td {
     font-size: 0.95rem;
     vertical-align: top;
 }
+}
+/* sem camada de propósito: (0,1,2) vence o td dos <style> de template
+   (.progression-table td, .d100-table td…), que também não têm camada */
 tr:last-child td { border-bottom: none; }
 tr:hover td { background: rgba(212, 175, 55, 0.05); }
 
+@layer componentes {
 /* Table compacta para técnicas */
 table.compact td { padding: 0.5rem 0.75rem; font-size: 0.9rem; }
 table.compact th { padding: 0.75rem; font-size: 0.8rem; }
@@ -1055,7 +1218,9 @@ table.compact th { padding: 0.75rem; font-size: 0.8rem; }
     padding-bottom: 0.5rem;
     border-bottom: 1px solid var(--border-color);
 }
+}
 
+@layer layout {
 /* ============================
    MOBILE
    ============================ */
@@ -1072,14 +1237,25 @@ table.compact th { padding: 0.75rem; font-size: 0.8rem; }
     font-family: var(--font-heading);
     cursor: pointer;
 }
+}
 
+/* mobile: cada parte fica na camada da regra que ela sobrepõe */
+@layer layout {
 @media (max-width: 900px) {
     .menu-toggle { display: block; }
+    .main-content { margin-left: 0; padding: 5rem 1.5rem 2rem; }
+}
+}
+@layer base {
+@media (max-width: 900px) {
+    h1 { font-size: 1.8rem; }
+}
+}
+@layer componentes {
+@media (max-width: 900px) {
     .sidebar { width: var(--nav-w-aberta); transform: translateX(-100%); transition: transform 0.3s ease; }
     .nav-recolher { display: none; }
     .sidebar.open { transform: translateX(0); }
-    .main-content { margin-left: 0; padding: 5rem 1.5rem 2rem; }
-    h1 { font-size: 1.8rem; }
     .class-hero { margin: -5rem -1.5rem 2rem; padding: 2rem; }
     .class-hero-content { grid-template-columns: 1fr; }
     .class-hero-text h1 { font-size: 2.5rem; }
@@ -1088,7 +1264,9 @@ table.compact th { padding: 0.75rem; font-size: 0.8rem; }
     .index-hero h1 { font-size: 2.5rem; }
     .splash-logo { font-size: 3rem; }
 }
+}
 
+@layer componentes {
 /* ============================
    ANIMATIONS
    ============================ */
@@ -1558,7 +1736,9 @@ table.compact th { padding: 0.75rem; font-size: 0.8rem; }
     color: var(--text-secondary);
 }
 
+}
 
+@layer layout {
 /* ============================
    RIGHT SIDEBAR (Utilidades)
    ============================ */
@@ -1571,13 +1751,16 @@ table.compact th { padding: 0.75rem; font-size: 0.8rem; }
     padding: 2rem 1.25rem;
     background: linear-gradient(180deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
     border-left: 1px solid var(--border-color);
-    z-index: 50;
+    z-index: var(--z-rightbar);
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
 }
 /* Abre espaço à direita para o conteúdo não ficar deserto */
 .main-content { margin-right: 240px; max-width: none; }
+}
+
+@layer componentes {
 .rb-block { display: flex; flex-direction: column; gap: 0.5rem; }
 .rb-title {
     font-family: var(--font-heading);
@@ -1629,14 +1812,21 @@ table.compact th { padding: 0.75rem; font-size: 0.8rem; }
 }
 .rb-top:hover { background: var(--gold-dark); color: #15151f; }
 
+}
+
+@layer layout {
 @media (max-width: 1100px) {
     .right-bar { display: none; }
     .main-content { margin-right: 0; }
 }
+}
 
+@layer componentes {
 .item-link { color: var(--gold-light); text-decoration: none; border-bottom: 1px dotted var(--gold-dark); transition: var(--transition); }
 .item-link:hover { color: var(--gold); border-bottom-style: solid; }
+}
 
+@layer paginas {
 /* ============================
    LANDING IMAGE (index)
    ============================ */
@@ -1694,3 +1884,11 @@ table.compact th { padding: 0.75rem; font-size: 0.8rem; }
 }
 .index-nav-card { transition: var(--transition); }
 .index-nav-card:hover { transform: translateY(-4px); border-color: var(--gold); }
+}
+
+/* ---------------------------------------------------------------- PONTES (F1c)
+   Sem camada. O a:hover (0,1,1) vencia o text-decoration:none dos cards-link dos
+   <style> de template (0,1,0); com o a:hover em camada, o template venceria.
+   Reafirmado só onde valia (racas.html, criacao.html). Sai quando o <style> do
+   template for para css/paginas/ (F7). */
+a.raca-card:hover, a.hub-card:hover { text-decoration: underline; }
