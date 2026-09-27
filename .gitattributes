@@ -1,0 +1,17 @@
+# Fim de linha LF em tudo que é texto, em qualquer máquina. O build compara
+# páginas, catálogos e a projeção do balanceamento byte a byte; com
+# core.autocrlf=true no Windows, um checkout novo trazia CRLF e quebrava essas
+# comparações (achado da F1d, 2026-09-26).
+* text=auto eol=lf
+
+# binários: nunca converter
+*.png  binary
+*.webp binary
+*.jpg  binary
+*.jpeg binary
+*.gif  binary
+*.ico  binary
+*.gz   binary
+*.zip  binary
+*.woff binary
+*.woff2 binary
