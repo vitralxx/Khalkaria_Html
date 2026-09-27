@@ -87,11 +87,16 @@
       });
     } catch (e) {}
 
+    // movimento reduzido (opção da nav, html[data-movimento]): salto seco
+    function rolagem() {
+      return document.documentElement.getAttribute('data-movimento') === 'reduzido' ? 'auto' : 'smooth';
+    }
+
     // Smooth scroll no índice
     aside.querySelectorAll('.rb-index a').forEach(function (a) {
       a.addEventListener('click', function (e) {
         var t = document.getElementById(this.getAttribute('href').slice(1));
-        if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+        if (t) { e.preventDefault(); t.scrollIntoView({ behavior: rolagem(), block: 'start' }); }
       });
     });
 
@@ -107,7 +112,7 @@
 
     // Botão topo
     aside.querySelector('.rb-top').addEventListener('click', function () {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      window.scrollTo({ top: 0, behavior: rolagem() });
     });
 
     // Mini-bazar: Enter abre bazar.html?q=

@@ -37,6 +37,9 @@
     --leve: #e08b2c;
     --extremo: #8b2635;
     --extremo-vivo: #b3261e;
+    /* foco de teclado (site todo): contorno âmbar 2px + halo translúcido parado.
+       Só em :focus-visible (style.css, base); nunca respira (é movimento). */
+    --foco-anel: 0 0 0 4px #e08b2c24, 0 0 16px -2px #e08b2c73;
     /* raridade: cor, fundo, borda — convenção fixa do sistema */
     --rar-lixo: #8b6b6b; --rar-lixo-bg: #2a1a1a; --rar-lixo-bd: #5a3535;
     --rar-ordinario: #b8b5ad; --rar-ordinario-bg: #2a2a35; --rar-ordinario-bd: #6b6560;

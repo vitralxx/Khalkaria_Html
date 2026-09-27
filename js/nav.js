@@ -7,6 +7,9 @@
 // lido e gravado sempre em try/catch: sem storage a nav abre no padrão e
 // funciona. O partials/head-boot.html aplica o mesmo estado no <html> antes do
 // primeiro paint; aqui só se sincroniza a aria e se ligam os eventos.
+// Movimento reduzido: 'khalkaria_movimento' = 'reduzido' | 'normal' (sem chave:
+// segue o prefers-reduced-motion do sistema). Vira html[data-movimento], que o
+// CSS do site todo lê; o botão "Reduzir movimento" fica no rodapé da nav.
 (function () {
   'use strict';
   var CHAVE = 'khalkaria_nav';
@@ -94,6 +97,7 @@
   var mqDesk = window.matchMedia('(min-width: 901px)');
   var mqCalma = window.matchMedia('(prefers-reduced-motion: reduce)');
   var tAnima = 0;
+  function calmo() { return html.getAttribute('data-movimento') === 'reduzido'; }
 
   function emTrilho() { return html.getAttribute('data-nav') === 'trilho'; }
 
@@ -109,7 +113,7 @@
       var u = btn.querySelector('use');
       if (u) u.setAttribute('href', trilho ? '#nv-expandir' : '#nv-recolher');
     }
-    if (animar && era && !trilho && !mqCalma.matches) {
+    if (animar && era && !trilho && !calmo()) {
       html.classList.add('nav-anima');
       clearTimeout(tAnima);
       tAnima = setTimeout(function () { html.classList.remove('nav-anima'); }, 200);
@@ -122,6 +126,35 @@
     gravar();
   }
   if (btn) btn.addEventListener('click', alterna);
+
+  // ---------- Movimento reduzido (opção do visitante) ----------
+  var CHAVE_MOV = 'khalkaria_movimento';
+  var btnMov = nav.querySelector('.nav-mov');
+  function movSalvo() {
+    try {
+      var m = localStorage.getItem(CHAVE_MOV);
+      return m === 'reduzido' || m === 'normal' ? m : '';
+    } catch (err) { return ''; }
+  }
+  function aplicaMov() {
+    var m = movSalvo();
+    var red = m ? m === 'reduzido' : mqCalma.matches;
+    html.setAttribute('data-movimento', red ? 'reduzido' : 'normal');
+    if (btnMov) btnMov.setAttribute('aria-pressed', red ? 'true' : 'false');
+  }
+  if (btnMov) {
+    btnMov.addEventListener('click', function () {
+      try { localStorage.setItem(CHAVE_MOV, calmo() ? 'normal' : 'reduzido'); } catch (err) {}
+      // sem storage a escolha vale só nesta página
+      if (!movSalvo()) html.setAttribute('data-movimento', calmo() ? 'normal' : 'reduzido');
+      else aplicaMov();
+      if (btnMov) btnMov.setAttribute('aria-pressed', calmo() ? 'true' : 'false');
+    });
+  }
+  // sem escolha salva, acompanha o sistema
+  var aoMudarCalma = function () { if (!movSalvo()) aplicaMov(); };
+  if (mqCalma.addEventListener) mqCalma.addEventListener('change', aoMudarCalma);
+  else if (mqCalma.addListener) mqCalma.addListener(aoMudarCalma);
 
   // ---------- Dica do trilho ----------
   // Um único elemento no <body> (fora da nav: nada de fixed dentro dela).
@@ -235,6 +268,7 @@
 
   // ---------- Outras abas ----------
   window.addEventListener('storage', function (e) {
+    if (e.key === CHAVE_MOV || e.key === null) aplicaMov();
     if (e.key !== CHAVE && e.key !== null) return;
     estado = ler();
     aplica(estado.trilho, false);
@@ -243,4 +277,5 @@
 
   aplica(estado.trilho, false);
   aplicaGrupos();
+  aplicaMov();
 })();

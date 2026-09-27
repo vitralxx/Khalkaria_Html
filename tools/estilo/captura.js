@@ -237,6 +237,15 @@
       .then(function (q) { meta.mutacoes = q.mutacoes; if (q.esgotou) avisos.push('DOM não aquietou'); })
       .then(function () { return doc.fonts ? doc.fonts.ready : null; })
       .then(function () {
+        // content-visibility:auto (cards do Bazar) depende de o documento estar
+        // visível e da distância à viewport: com o painel do navegador oculto nada
+        // é "relevante" e tudo sai com o tamanho intrínseco. Na captura tudo é
+        // renderizado, e a medida não depende do painel nem da rolagem.
+        var cv = doc.createElement('style');
+        cv.setAttribute('data-kh-estilo', '');
+        cv.textContent = '*{content-visibility:visible!important}';
+        (doc.head || doc.documentElement).appendChild(cv);
+        void doc.documentElement.offsetHeight;
         meta.animacoes = assentaAnimacoes(doc);
         var r = coleta(win, opts.volateis);
         r.pagina = win.location.pathname.replace(/^\//, '') + win.location.hash;

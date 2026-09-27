@@ -1059,7 +1059,10 @@
     if (lsGet(OPEN_KEY) === '1') {
       var prev = drawer.style.transition; drawer.style.transition = 'none';
       drawer.classList.add('kf-open');
-      requestAnimationFrame(function () { drawer.style.transition = prev; });
+      // reflow síncrono em vez de rAF: com a aba oculta o rAF não roda e o
+      // drawer ficaria sem transição até ela aparecer
+      void drawer.offsetWidth;
+      drawer.style.transition = prev;
     }
   }
 

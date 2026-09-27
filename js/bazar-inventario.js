@@ -195,8 +195,13 @@
   var ultimoEstado = { bugigangas: null, equipamentos: null }, ultimaCond = null, condT = null;
   var naoReconhecidos = null; // nomes da Mochila antiga que o "Levar" não achou
   var toastT = null, toastUid = '';
-  var reduzMov = false;
-  try { reduzMov = window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) {}
+  // movimento reduzido: a opção do site (html[data-movimento], js/nav.js), lida
+  // na hora; sem o atributo, o sistema
+  function reduzMov() {
+    var m = document.documentElement.getAttribute('data-movimento');
+    if (m) return m === 'reduzido';
+    try { return window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) { return false; }
+  }
 
   // ------------------------------------------------------------ utilidades
   function kf() { return U.kf(); }
@@ -540,7 +545,7 @@
     x.sec.setAttribute('data-estado', col.estado);
     pintaRegua(x.regua, c, col);
     var antes = ultimoEstado[c];
-    if (antes && ORD_ESTADO[col.estado] > ORD_ESTADO[antes] && !reduzMov) {
+    if (antes && ORD_ESTADO[col.estado] > ORD_ESTADO[antes] && !reduzMov()) {
       x.regua.classList.remove('bz-piora');
       void x.regua.offsetWidth;
       x.regua.classList.add('bz-piora');
@@ -720,7 +725,7 @@
       if (li) { li.classList.remove('bz-sai'); li.style.height = ''; }
       redesenha();   // recusado (ex.: a ficha virou só-leitura durante a animação)
     }
-    if (!li || reduzMov) { fim(); return; }
+    if (!li || reduzMov()) { fim(); return; }
     saindo[uid] = true;
     li.style.height = li.offsetHeight + 'px';
     void li.offsetHeight;

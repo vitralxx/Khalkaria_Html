@@ -59,6 +59,33 @@
 ::-webkit-scrollbar-thumb { background: var(--gold-dark); border-radius: 2px; }
 ::-webkit-scrollbar-thumb:hover { background: var(--gold); }
 * { scrollbar-width: thin; scrollbar-color: var(--gold-dark) transparent; }
+
+/* MOVIMENTO REDUZIDO (site todo): opção do visitante na nav ("Reduzir
+   movimento", js/nav.js). O partials/head-boot.html põe html[data-movimento]
+   antes da pintura: "reduzido" pela escolha salva ou, sem escolha, pelo
+   prefers-reduced-motion do sistema; "normal" no resto. A @media só vale sem o
+   atributo (script não rodou). Fica no reset: !important aqui vence o de todas
+   as camadas e o CSS sem camada (templates, ficha.js). */
+:root[data-movimento="reduzido"], :root[data-movimento="reduzido"] *,
+:root[data-movimento="reduzido"] *::before, :root[data-movimento="reduzido"] *::after {
+    transition-duration: .01ms !important;
+    transition-delay: 0s !important;
+    animation-duration: .01ms !important;
+    animation-delay: 0s !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+}
+@media (prefers-reduced-motion: reduce) {
+    :root:not([data-movimento]), :root:not([data-movimento]) *,
+    :root:not([data-movimento]) *::before, :root:not([data-movimento]) *::after {
+        transition-duration: .01ms !important;
+        transition-delay: 0s !important;
+        animation-duration: .01ms !important;
+        animation-delay: 0s !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+    }
+}
 }
 
 @layer base {
@@ -70,6 +97,14 @@ body {
     line-height: 1.7;
     font-size: 17px;
     min-height: 100vh;
+}
+/* FOCO DE TECLADO (site todo): contorno âmbar com halo sutil e parado, só em
+   :focus-visible (o clique de mouse num botão não acende). Especificidade 0,1,0
+   na camada base: o foco próprio de cada componente continua valendo. */
+:where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+    outline: 2px solid var(--amber);
+    outline-offset: 2px;
+    box-shadow: var(--foco-anel);
 }
 }
 
@@ -341,7 +376,50 @@ html[data-nav-fechados~="classes"] .nav-grupo[data-grupo="classes"]:not(:has(.ac
     clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 80%, 0 100%);
 }
 
-.sidebar :focus-visible { outline: 2px solid var(--amber); outline-offset: -2px; }
+.sidebar :focus-visible {
+    outline: 2px solid var(--amber); outline-offset: -2px;
+    /* halo para dentro: a nav corta o que passa da borda */
+    box-shadow: inset 0 0 14px -4px #e08b2c73;
+}
+
+/* Rodapé da nav: preferências do visitante (hoje só "Reduzir movimento").
+   É um <button> com o desenho do .nav-link; aria-pressed diz o estado. */
+.nav-rodape {
+    margin-top: 0.4rem;
+    padding: 0.5rem 0 0.9rem;
+    border-top: 1px solid var(--raiz-traco);
+}
+button.nav-link {
+    width: 100%;
+    background: none;
+    border: 0;
+    font: inherit;
+    text-align: left;
+    cursor: pointer;
+}
+.nav-mov-estado {
+    position: absolute;
+    right: 1rem; top: 50%;
+    width: 22px; height: 12px;
+    margin-top: -6px;
+    border: 1px solid var(--raiz-traco);
+    border-radius: 6px;
+    background: #0c0b10;
+    transition: border-color .15s, background-color .15s;
+}
+.nav-mov-estado::after {
+    content: '';
+    position: absolute;
+    left: 2px; top: 2px;
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--text-muted-forte);
+    transition: transform .15s, background-color .15s;
+}
+.nav-mov[aria-pressed="true"] { color: var(--text-primary); }
+.nav-mov[aria-pressed="true"] .nav-ico { color: var(--amber); }
+.nav-mov[aria-pressed="true"] .nav-mov-estado { border-color: var(--amber-dim); background: #241809; }
+.nav-mov[aria-pressed="true"] .nav-mov-estado::after { transform: translateX(10px); background: var(--amber); }
 
 /* Dica do trilho: fora da nav (no <body>), fixed, z 105 — acima da nav
    (100), abaixo da receita do Bazar (110), do cartão (400) e da Ficha. */
@@ -440,6 +518,17 @@ html[data-nav-fechados~="classes"] .nav-grupo[data-grupo="classes"]:not(:has(.ac
     html[data-nav="trilho"] .nav-mono { width: 26px; height: 26px; font-size: 0.6rem; }
     html[data-nav="trilho"] .nav-link.active { background: #d4af3718; }
     html[data-nav="trilho"] .nav-link.active::after { right: 4px; }
+    html[data-nav="trilho"] .nav-mov-estado { display: none; }
+    /* no trilho o estado ligado fica no glifo e numa fita âmbar à direita */
+    html[data-nav="trilho"] .nav-mov[aria-pressed="true"]::after {
+        content: '';
+        position: absolute;
+        right: 4px; top: 50%;
+        width: 3px; height: 16px;
+        margin-top: -8px;
+        border-radius: 2px;
+        background: var(--amber);
+    }
 
     /* ao expandir (nav.js põe html.nav-anima por 200ms): só opacidade e 4px */
     html.nav-anima .nav-rot,
@@ -454,9 +543,18 @@ html[data-nav-fechados~="classes"] .nav-grupo[data-grupo="classes"]:not(:has(.ac
 }
 
 @layer estados {
+/* movimento reduzido na nav: a opção do visitante (html[data-movimento]) ou,
+   sem o atributo (script não rodou), o sistema */
+:root[data-movimento="reduzido"] .sidebar, :root[data-movimento="reduzido"] .sidebar *,
+:root[data-movimento="reduzido"] .sidebar *::before, :root[data-movimento="reduzido"] .sidebar *::after,
+:root[data-movimento="reduzido"] .nav-dica, :root[data-movimento="reduzido"] .menu-toggle {
+    transition: none !important;
+    animation: none !important;
+}
 @media (prefers-reduced-motion: reduce) {
-    .sidebar, .sidebar *, .sidebar *::before, .sidebar *::after,
-    .nav-dica, .menu-toggle {
+    :root:not([data-movimento]) .sidebar, :root:not([data-movimento]) .sidebar *,
+    :root:not([data-movimento]) .sidebar *::before, :root:not([data-movimento]) .sidebar *::after,
+    :root:not([data-movimento]) .nav-dica, :root:not([data-movimento]) .menu-toggle {
         transition: none !important;
         animation: none !important;
     }

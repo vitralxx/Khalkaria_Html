@@ -46,7 +46,8 @@ document.addEventListener('DOMContentLoaded', function() {
             if (target) {
                 e.preventDefault();
                 target.scrollIntoView({
-                    behavior: 'smooth',
+                    // movimento reduzido (opção da nav): salto seco
+                    behavior: document.documentElement.getAttribute('data-movimento') === 'reduzido' ? 'auto' : 'smooth',
                     block: 'start'
                 });
             }

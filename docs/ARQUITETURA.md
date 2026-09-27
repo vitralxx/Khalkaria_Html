@@ -54,6 +54,7 @@ servido são os `.webp` gerados a partir deles.
 index.html                     landing (HTML manual)
 partials/sidebar.html          FONTE ÚNICA da navegação do site (markup + sprite nv-*)
 partials/head-boot.html        <script data-nav-boot> que o shell põe antes de </head>
+                               (estado da nav e html[data-movimento] antes do paint)
 partials/glifos.html           sprite g-* (UI da ficha, moldura de raízes, 21 ramos);
                                INERTE até a F2, quando o shell passa a injetá-lo
 
@@ -211,6 +212,17 @@ porque o Bazar não carrega `main.js` (que injetaria o `ficha.js` pela segunda v
 - **Atalho `\`** (tecla própria no ABNT2) alterna o trilho; ignorado em campo de
   texto, com Ctrl/Alt/Meta, dentro da Ficha e no mobile. Esc só é consumido com a
   dica ou o menu mobile abertos, para não engolir o Esc do Bazar e da Ficha.
+- **Movimento reduzido** (opção do visitante): botão "Reduzir movimento" no rodapé
+  da nav (`.nav-mov`, `aria-pressed`). localStorage `khalkaria_movimento` =
+  `reduzido`|`normal`; sem a chave, segue o `prefers-reduced-motion` do sistema.
+  O boot do `<head>` põe `html[data-movimento]` antes do paint; o `*{…!important}`
+  que zera transições e animações está no `reset` do `style.css` (vence tudo, CSS
+  sem camada inclusive) e a `@media` só vale sem o atributo (script não rodou). JS
+  que anima lê o atributo: `nav.js`, `bazar-inventario.js`, rolagem suave do
+  `main.js`/`utils.js` e a árvore do Limiar.
+- **Foco de teclado** (site todo): `:where(a,button,input,select,textarea,summary,
+  [tabindex]):focus-visible` na `base`, contorno âmbar 2px + halo parado
+  `--foco-anel` (`tokens.css`); o foco próprio de cada componente continua valendo.
 - **Grupos** Raças e Classes recolhem pelo cabeçalho (`html[data-nav-fechados]`);
   o grupo da página atual nunca fecha.
 - **Dica** do trilho: um `#nav-dica` fixed no `<body>`, z 105 (acima da nav,
@@ -237,7 +249,7 @@ faz essa extração respeitando o cascade.
 
 | Camada | O que tem |
 |---|---|
-| `reset` | `box-sizing`/margem zero, barra de rolagem |
+| `reset` | `box-sizing`/margem zero, barra de rolagem, movimento reduzido do site (`*{…!important}`) |
 | `base` | tokens (`css/tokens.css`) e paleta `:root`, `html`/`body`, tipografia e tabela por elemento |
 | `layout` | a moldura: `.app-container`, `.main-content`, `.right-bar`, botão do menu mobile |
 | `componentes` | a nav (com o trilho), cards, badges, splash, tabela compacta, blocos de classe/raça genéricos e do Sistema, itens da right-bar, utilitários, `a:hover` |
@@ -256,17 +268,15 @@ Regras da migração, todas medidas com `tools/estilo/` (diff 0):
 - **Pontes** (fim do `style.css`, sem camada): reafirmam o que uma regra em camada
   ganhava de um `<style>` de template (hoje só o sublinhado do `a:hover` nos cards-link
   de `racas.html` e `criacao.html`); no fim do `bazar.css`, o cursor dos cards e
-  linhas do Bazar contra o `.kf-draggable` que o `ficha.js` injeta sem camada, e o
-  `*{…!important}` de movimento reduzido, que continua só no Bazar e sem camada (a
-  nav, com `!important` na camada `estados`, segue vencendo como vencia).
-  Saem quando o CSS de template e o da Ficha entrarem em camada (F2/F7).
+  linhas do Bazar contra o `.kf-draggable` que o `ficha.js` injeta sem camada.
+  (O `*{…!important}` de movimento reduzido saiu daqui: virou opção do site, no
+  `reset`.) Saem quando o CSS de template e o da Ficha entrarem em camada (F2/F7).
 - **`!important` inverte:** o de `reset` vence o de todas as outras camadas; o de
   uma camada vence o `!important` sem camada.
-- **Esperam o Pedro** (mudam o visual, ficaram fora da F1c): o `:focus-visible`
-  global (âmbar, 2px, na `base`: mudaria o anel de foco de links, botões e campos
-  da Ficha, e os campos de texto casam `:focus-visible` também no clique) e o
-  movimento reduzido global (o `*{…!important}` no `reset`: nas outras 23 páginas
-  as animações infinitas do Limiar parariam e as transições ficariam instantâneas).
+- **Aprovados pelo Pedro depois da F1c** (2026-09): o `:focus-visible` global
+  (âmbar, 2px e halo `--foco-anel`, na `base`; campos de texto casam
+  `:focus-visible` também no clique) e o movimento reduzido global, agora como
+  opção do visitante (`html[data-movimento]`, `*{…!important}` no `reset`).
 - Token novo não troca valor: as páginas passam a ler `--recurso-*`, `--classe-*` e
   `--ramo-*` na F7. Já ligados (valor idêntico): `--z-*` da nav, dica, right-bar e
   Bazar, e os `--bz-*`.
@@ -434,8 +444,10 @@ python tools/estilo/diff.py antes depois --revisado tools/estilo/revisado.json
   minimizado ou de qualquer tamanho.
 - **`captura.js`** espera o load + `minimo` ms (600; 2000 no Bazar), o seletor
   `esperar`, as fontes, as imagens (lazy vira eager) e o DOM ficar 800 ms sem
-  mutação; termina as transições, para as animações CSS infinitas e o SMIL no
-  tempo 0; percorre `<html>`, `<body>` e todos os descendentes do body (visíveis
+  mutação; força `content-visibility: visible` (os cards do Bazar usam `auto`,
+  que num painel oculto ou longe da viewport sai com o tamanho intrínseco: assim a
+  captura não depende do painel estar à vista); termina as transições, para as
+  animações CSS infinitas e o SMIL no tempo 0; percorre `<html>`, `<body>` e todos os descendentes do body (visíveis
   e ocultos, sem script/style/template) e grava ~75 propriedades computadas +
   `width`/`height`, e `::before`/`::after` (content, display, color, fundo,
   width, height) quando têm `content`. Caminho estável de cada elemento:

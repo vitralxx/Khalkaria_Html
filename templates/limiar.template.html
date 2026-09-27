@@ -1002,6 +1002,12 @@
         let distortionFrame = 0;
         
         function animateTree() {
+            // movimento reduzido (opção da nav, html[data-movimento]): árvore parada
+            if (document.documentElement.getAttribute('data-movimento') === 'reduzido') {
+                treePaths.forEach(path => { path.style.transform = ''; });
+                requestAnimationFrame(animateTree);
+                return;
+            }
             distortionFrame += 0.02;
             treePaths.forEach((path, i) => {
                 const offset = Math.sin(distortionFrame + i * 0.5) * 2;

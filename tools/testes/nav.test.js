@@ -88,6 +88,7 @@ function monta(opc) {
     new El('div', { class: 'nav-section' }, [link('index.html', 'Início', false)]),
     new El('div', { class: 'nav-section nav-grupo', 'data-grupo': 'racas' }, [cab('Raças (7)'), new El('div', { class: 'nav-grupo-lista' }, [link('humano.html', 'Humano', !!opc.ativoRaca)])]),
     new El('div', { class: 'nav-section nav-grupo', 'data-grupo': 'classes' }, [cab('Classes (7)'), new El('div', { class: 'nav-grupo-lista' }, [link('monge.html', 'Monge', false)])]),
+    new El('div', { class: 'nav-rodape' }, [new El('button', { class: 'nav-link nav-mov', 'aria-pressed': 'false' }, [new El('span', { class: 'nav-rot' })])]),
   ]);
   const busca = new El('input', { type: 'search' });
   const drawer = new El('div', { id: 'kf-drawer' }, [new El('button', {})]);
@@ -98,13 +99,17 @@ function monta(opc) {
   doc.documentElement = htmlEl; doc.body = body; doc.activeElement = body;
   doc.createElement = (t) => new El(t);
   const loja = {}; if (opc.salvo !== undefined) loja.khalkaria_nav = opc.salvo;
+  if (opc.mov !== undefined) loja.khalkaria_movimento = opc.mov;
   const localStorage = opc.semStorage
     ? { getItem() { throw new Error('bloqueado'); }, setItem() { throw new Error('bloqueado'); } }
     : { getItem: (k) => (k in loja ? loja[k] : null), setItem: (k, v) => { loja[k] = String(v); } };
   const win = new El('window');
-  const mq = (q) => ({ matches: q.includes('min-width') ? opc.largura !== 'mobile' : !!opc.calmo, addEventListener() {} });
+  const ouvMq = [];
+  const mq = (q) => ({ matches: q.includes('min-width') ? opc.largura !== 'mobile' : !!opc.calmo,
+    addEventListener(t, fn) { if (!q.includes('min-width')) ouvMq.push(fn); } });
   const timers = [];
-  amb = { doc, nav, btn, use, busca, drawer, toggle, htmlEl, loja, win, timers };
+  const mov = nav.querySelector('.nav-mov');
+  amb = { doc, nav, btn, use, busca, drawer, toggle, htmlEl, loja, win, timers, mov, ouvMq };
   const ctx = {
     document: doc, window: Object.assign(win, { matchMedia: mq }), localStorage, JSON,
     setTimeout: (fn) => { timers.push(fn); return timers.length; }, clearTimeout() {},
@@ -207,6 +212,48 @@ test('menu mobile: clique em link fecha', () => {
   assert.strictEqual(a.toggle.getAttribute('aria-expanded'), 'true');
   clica(a, a.nav.querySelector('a'));
   assert.ok(!a.nav.classList.contains('open'));
+});
+
+test('movimento: sem escolha segue o sistema; o botão alterna, grava e vence o sistema', () => {
+  let a = monta();
+  assert.strictEqual(a.htmlEl.getAttribute('data-movimento'), 'normal');
+  assert.strictEqual(a.mov.getAttribute('aria-pressed'), 'false');
+  clica(a, a.mov);
+  assert.strictEqual(a.htmlEl.getAttribute('data-movimento'), 'reduzido');
+  assert.strictEqual(a.mov.getAttribute('aria-pressed'), 'true');
+  assert.strictEqual(a.loja.khalkaria_movimento, 'reduzido');
+  clica(a, a.mov);
+  assert.strictEqual(a.htmlEl.getAttribute('data-movimento'), 'normal');
+  assert.strictEqual(a.loja.khalkaria_movimento, 'normal');
+  a = monta({ calmo: true });
+  assert.strictEqual(a.htmlEl.getAttribute('data-movimento'), 'reduzido', 'sistema pede calma');
+  clica(a, a.mov);
+  assert.strictEqual(a.htmlEl.getAttribute('data-movimento'), 'normal', 'a escolha vence o sistema');
+  a.ouvMq.forEach((fn) => fn());
+  assert.strictEqual(a.htmlEl.getAttribute('data-movimento'), 'normal', 'com escolha salva, a mudança do sistema não mexe');
+  a = monta({ mov: 'reduzido' });
+  assert.strictEqual(a.mov.getAttribute('aria-pressed'), 'true');
+  a = monta({ semStorage: true });
+  clica(a, a.mov);
+  assert.strictEqual(a.htmlEl.getAttribute('data-movimento'), 'reduzido', 'sem storage vale nesta página');
+  assert.strictEqual(a.mov.getAttribute('aria-pressed'), 'true');
+});
+
+test('boot do <head>: movimento pela escolha salva ou pelo sistema', () => {
+  const boot = fs.readFileSync(path.join(__dirname, '..', '..', 'partials', 'head-boot.html'), 'utf8');
+  const js = boot.replace(/^<script[^>]*>|<\/script>\s*$/g, '');
+  const roda = (salvo, calmo, semStorage) => {
+    const htmlEl = new El('html');
+    vm.runInNewContext(js, { document: { documentElement: htmlEl }, JSON,
+      matchMedia: () => ({ matches: calmo }),
+      localStorage: { getItem: (k) => { if (semStorage) throw new Error('x'); return k === 'khalkaria_movimento' ? salvo : null; } } });
+    return htmlEl.getAttribute('data-movimento');
+  };
+  assert.strictEqual(roda(null, false), 'normal');
+  assert.strictEqual(roda(null, true), 'reduzido');
+  assert.strictEqual(roda('reduzido', false), 'reduzido');
+  assert.strictEqual(roda('normal', true), 'normal');
+  assert.strictEqual(roda(null, true, true), 'reduzido');
 });
 
 test('boot do <head> casa com o formato gravado pelo nav.js', () => {

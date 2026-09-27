@@ -38,9 +38,10 @@
     --bz-cantos: var(--cantos);
 }
 .bazar-page, .bz-rc, .bz-cartao { --text-muted: var(--bz-muted); }
-/* foco de base na mesa e no painel; as regras específicas abaixo (linhas com
-   outline para dentro, campos) vêm depois e prevalecem */
-.bazar-page :focus-visible, .bz-rc :focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
+/* foco de base na mesa e no painel (o mesmo do site: âmbar com halo parado);
+   as regras específicas abaixo (linhas com outline para dentro, campos) vêm
+   depois e prevalecem */
+.bazar-page :focus-visible, .bz-rc :focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; box-shadow: var(--foco-anel); }
 @media (min-width: 1800px) {
     :root { --bz-rc-w: 400px; --bz-inv-w: 640px; }
 }
@@ -1896,43 +1897,27 @@ svg.bz-rc-uso-ico { width: 16px; height: 16px; margin: 0 3px; }
 .item-falta .bz-ico-aviso { width: 13px; height: 13px; align-self: center; color: var(--amber); }
 
 /* ---------------------------------------------------------- acessibilidade: movimento reduzido
+   Opção do visitante (html[data-movimento="reduzido"], botão na nav; sem
+   escolha salva, o head-boot segue o prefers-reduced-motion do sistema). O
+   Bazar precisa de JS, então não há o caso "sem atributo" aqui.
    As raízes nascem prontas; o piscar vira um marcador
-   âmbar fixo de 2px à esquerda por 1,5s (o JS mantém a classe esse tempo). */
-@media (prefers-reduced-motion: reduce) {
-    .bz-primeira.cards .item-card, .bz-rc.bz-rc-entra, .bz-rc.bz-rc-sai { animation: none; }
-    .bz-rc-raizes.anima path, .bz-rc-raizes.anima .bz-rc-raiz-no { animation: none; stroke-dashoffset: 0; }
-    body.bz-rc-aberta .bz-rc-borda { animation: none; stroke-dashoffset: 0; }
-    .cards .item-card.rar-luxaria::before { animation: none; opacity: 0; }
-    .bz-regua.bz-piora::before { animation: none; }
-    .bz-slot.bz-pisca::after { animation: none; opacity: 0; }
-    .bz-slot.bz-pisca { box-shadow: inset 2px 0 0 var(--amber), inset 0 1px 0 #ffffff05, inset 0 0 0 1px #0008; }
-    .bz-slot.bz-sai { transition: none; }
-    /* sem deslocamento no hover nem escala no pop-up */
-    .cards .item-card:hover, .bz-seg,
-    .cards .item-card:hover .bz-arte, .cards .item-card::after,
-    .bz-cartao, .bz-cartao.sai { transform: none; }
-    /* o *{…!important} que deixa tudo instantâneo fica no fim do arquivo, sem camada */
-}
+   âmbar fixo de 2px à esquerda por 1,5s (o JS mantém a classe esse tempo).
+   O *{…!important} que deixa tudo instantâneo é do site todo (style.css, reset). */
+:root[data-movimento="reduzido"] .bz-primeira.cards .item-card, :root[data-movimento="reduzido"] .bz-rc.bz-rc-entra, :root[data-movimento="reduzido"] .bz-rc.bz-rc-sai { animation: none; }
+:root[data-movimento="reduzido"] .bz-rc-raizes.anima path, :root[data-movimento="reduzido"] .bz-rc-raizes.anima .bz-rc-raiz-no { animation: none; stroke-dashoffset: 0; }
+:root[data-movimento="reduzido"] body.bz-rc-aberta .bz-rc-borda { animation: none; stroke-dashoffset: 0; }
+:root[data-movimento="reduzido"] .cards .item-card.rar-luxaria::before { animation: none; opacity: 0; }
+:root[data-movimento="reduzido"] .bz-regua.bz-piora::before { animation: none; }
+:root[data-movimento="reduzido"] .bz-slot.bz-pisca::after { animation: none; opacity: 0; }
+:root[data-movimento="reduzido"] .bz-slot.bz-pisca { box-shadow: inset 2px 0 0 var(--amber), inset 0 1px 0 #ffffff05, inset 0 0 0 1px #0008; }
+:root[data-movimento="reduzido"] .bz-slot.bz-sai { transition: none; }
+/* sem deslocamento no hover nem escala no pop-up */
+:root[data-movimento="reduzido"] .cards .item-card:hover, :root[data-movimento="reduzido"] .bz-seg,
+:root[data-movimento="reduzido"] .cards .item-card:hover .bz-arte, :root[data-movimento="reduzido"] .cards .item-card::after,
+:root[data-movimento="reduzido"] .bz-cartao, :root[data-movimento="reduzido"] .bz-cartao.sai { transform: none; }
 }
 
 /* PONTE (F1c), sem camada: o .kf-draggable {cursor: grab} que o ficha.js injeta
    não tem camada e venceria o cursor destes cards, que ganhavam pela especificidade.
    Sai quando o CSS da Ficha for para css/ficha.css numa camada (F2). */
 .cards .item-card.kf-draggable, .bz-tabela tbody tr.kf-draggable { cursor: pointer; }
-
-/* PONTE (F1c), sem camada: o *{…!important} de movimento reduzido que deixa
-   tudo instantâneo. Fica só no Bazar e sem camada, como era antes da F1c:
-   !important sem camada perde para o !important de qualquer camada, então o
-   `transition/animation: none` da nav (camada estados) segue vencendo, como
-   vencia pela especificidade. Levá-lo ao reset do style.css (global, plano
-   §3.3) muda as outras 23 páginas com movimento reduzido: espera o Pedro. */
-@media (prefers-reduced-motion: reduce) {
-    *, *::before, *::after {
-        transition-duration: .01ms !important;
-        transition-delay: 0s !important;
-        animation-duration: .01ms !important;
-        animation-delay: 0s !important;
-        animation-iteration-count: 1 !important;
-        scroll-behavior: auto !important;
-    }
-}
