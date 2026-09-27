@@ -655,6 +655,9 @@
     if (!m) return false;
     var id;
     try { id = decodeURIComponent(m[1]); } catch (e) { return false; }
+    // link antigo de item renomeado (data/bazar-renomeados.json): abre o atual,
+    // e o abrir() regrava a URL com o id novo
+    if (!D.porId[id] && D.idAtual && D.idAtual[id]) id = D.idAtual[id];
     if (!D.porId[id]) return false;
     if (aberto && atual === id) return true;
     return abrir(id, { via: 'hash' });

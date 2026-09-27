@@ -2,24 +2,24 @@
  "schemaVersion": "balanceamento-fonte/1",
  "_doc": "Gerado por tools/sync_balanceamento.py: não editar à mão. Os arquivos ao lado são a PROJEÇÃO publicada (D3) da entrega do balanceamento, sem carta rara não revelada (D11/D33); o verbatim fica em privado/balanceamento/ (gitignored).",
  "ref": "origin/claude/khalkaria-bazar-balance-lsdfic",
- "commit": "f1d0d478019a9c8dc46211e5b2117317de7b5aa9",
+ "commit": "2a4757814050a0859a6145215e95020d3145472f",
  "pasta": ".claude/skills/khalkaria-balance/references",
  "arquivos": {
   "ficha-digital-regras.json": {
    "schemaVersion": "regras-ficha/1.1",
-   "sha256": "2e3e75f552caf07978736a319c02bf2a826720bc691b3faf8ef53987f888b918"
+   "sha256": "743e20f3105b5c72be93f8ca2f618481f59d929c0f49f4c1ae8eea5df13d59eb"
   },
   "ficha-efeitos-itens.json": {
    "schemaVersion": "efeitos-itens/1.1",
-   "sha256": "5f724fcbdfe16262ce7b52927cbb8eb7f4e3235a4c13381f8a61ecefd0c8e25d"
+   "sha256": "d67d5f4dc50858146a3dda50132adbe9c1a224eeb5fc36e1aa0120afb8418b36"
   },
   "ficha-efeitos-overrides.json": {
    "schemaVersion": null,
-   "sha256": "1036f4d0f5524f3afa2a4562c198f113127ec37281724468e6b11a016bdf35bf"
+   "sha256": "d02223fca2948494c589cbec01becef162d927fca647f8b37e253dd1fe2ad100"
   },
   "marcas-vhelor.json": {
-   "schemaVersion": "marcas-vhelor/1.0",
-   "sha256": "935bb5571940795d42e5f2cd5b00d49ca94fd01a322551f608b98dc025938238"
+   "schemaVersion": "marcas-vhelor/1.1",
+   "sha256": "9b09304c3e8d07456841d24d7836b918af9938296efdf5341a98d59396eeab5f"
   }
  },
  "raras": {
@@ -34,6 +34,11 @@
   },
   {
    "arquivo": "ficha-digital-regras.json",
+   "caminho": "derivados.progressaoDeAtaques.modificadoresConhecidos.8",
+   "motivo": "objeto rara:true"
+  },
+  {
+   "arquivo": "ficha-digital-regras.json",
    "caminho": "derivados.progressaoDeAtaques.modificadoresConhecidos.9",
    "motivo": "objeto rara:true"
   },
@@ -44,28 +49,8 @@
   },
   {
    "arquivo": "ficha-digital-regras.json",
-   "caminho": "derivados.progressaoDeAtaques.modificadoresConhecidos.11",
-   "motivo": "objeto rara:true"
-  },
-  {
-   "arquivo": "ficha-digital-regras.json",
    "caminho": "condicoes.7.nota",
    "motivo": "1 frase(s) citam rara oculta (viram marcador)"
-  },
-  {
-   "arquivo": "ficha-digital-regras.json",
-   "caminho": "taxonomiaDeCondicao.mentalFonte",
-   "motivo": "1 frase(s) citam rara oculta (viram marcador)"
-  },
-  {
-   "arquivo": "ficha-digital-regras.json",
-   "caminho": "taxonomiaDeCondicao.mentalNotas.1",
-   "motivo": "1 frase(s) citam rara oculta (viram marcador)"
-  },
-  {
-   "arquivo": "ficha-digital-regras.json",
-   "caminho": "pendenciasNotion.10.status",
-   "motivo": "texto cita rara oculta (vira marcador)"
   }
  ]
 }

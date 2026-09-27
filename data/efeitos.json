@@ -2,10 +2,10 @@
  "schemaVersion": "efeitos/1",
  "_doc": "ARTEFATO de tools/gerar_efeitos.py (F1d): não editar à mão. Fonte: data/balanceamento/ficha-efeitos-itens.json (projeção publicada da entrega do balanceamento) + data/bazar.json. Vocabulário e destino dos alvos: tools/alvos_destino.json. Texto das Marcas da Vhelor: data/balanceamento/marcas-vhelor.json.",
  "fonte": {
-  "shaBalanceamento": "f1d0d478019a9c8dc46211e5b2117317de7b5aa9",
+  "shaBalanceamento": "2a4757814050a0859a6145215e95020d3145472f",
   "efeitosItens": "efeitos-itens/1.1",
-  "shaBazar": "94492094547a87de",
-  "shaBazarDoBalanceamento": "757e69f353f01580"
+  "shaBazar": "d97ad6c78f2a6eb5",
+  "shaBazarDoBalanceamento": "d97ad6c78f2a6eb5"
  },
  "contagem": {
   "porId": 612,
@@ -8748,7 +8748,7 @@
    "texto": "Escala superfícies como aranha por 10 min.",
    "status": "canonico"
   },
-  "item-elixir-da-expurgao": {
+  "item-elixir-da-expurgacao": {
    "quando": null,
    "slot": null,
    "acumulaCopia": true,

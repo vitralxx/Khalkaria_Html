@@ -407,16 +407,25 @@
     // ---- Reconciliação com o catálogo (§5.7); muda inv no lugar, devolve se mudou ----
     function indexar(catalogo) {
       var porId = {}, porNome = {};
-      lista(catalogo).forEach(function (it) {
+      var cat = lista(catalogo);
+      cat.forEach(function (it) {
         if (!it) return;
         if (it.id && !porId[it.id]) porId[it.id] = it;
         if (it.nome && !porNome[it.nome]) porNome[it.nome] = it;
+      });
+      // nome corrigido no CSV muda o id (data/bazar-renomeados.json): o id e o
+      // nome antigos resolvem para o item atual, depois dos atuais (o atual vence)
+      cat.forEach(function (it) {
+        if (!it) return;
+        lista(it.idsAntigos).forEach(function (a) { if (a && !porId[a]) porId[a] = it; });
+        lista(it.nomesAntigos).forEach(function (a) { if (a && !porNome[a]) porNome[a] = it; });
       });
       return { porId: porId, porNome: porNome };
     }
     function reconciliar(inv, porId, porNome) {
       var mudou = false;
       COLUNAS.forEach(function (c) {
+        var renomeou = false;
         lista(inv && inv[c]).forEach(function (e) {
           if (!e || e.avulso) return;
           var antes = JSON.stringify(e);
@@ -424,6 +433,7 @@
           if (!it) e.orfao = true;   // nunca apagado: pesa pelo snapshot
           else {
             var regAntigo = e.empilhavelRegistro;
+            if (it.id && e.id && e.id !== String(it.id)) renomeou = true;
             CAMPOS_SNAPSHOT.forEach(function (k) { e[k] = str(it[k]); });
             if (it.id) e.id = String(it.id);
             e.inv = (it.inv && typeof it.inv === 'object') ? clone(it.inv) : null;
@@ -434,6 +444,9 @@
           }
           if (JSON.stringify(e) !== antes) mudou = true;
         });
+        // o id antigo, já trocado pelo atual, pode ter caído junto de uma entrada
+        // livre do mesmo item: soma as duas (equipada/sintonizada fica separada)
+        if (renomeou) inv[c] = fundir(inv[c]);
       });
       return mudou;
     }

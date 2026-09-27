@@ -166,6 +166,11 @@ data/efeitos.json              ARTEFATO (gerar_efeitos.py, F1d): {porId: item ->
 data/Bazar_Khalkaria_v26.csv   fonte do Bazar: conteúdo do Pedro, só muda com
                                aprovação dele (gerador, CSS, JS e template do
                                Bazar são do agente desde 2026-09-24)
+data/bazar-renomeados.json     {id antigo: {novo, nomeAntigo, data, motivo}}: nome
+                               corrigido no CSV muda o id; o gerador grava
+                               idsAntigos/nomesAntigos no item e a ficha
+                               (KhInv.reconciliar) e o #item/<id> resolvem o antigo.
+                               Linha nunca sai (ficha exportada pode voltar)
 templates/bazar.template.html  scaffold do Bazar ({{VER}}, {{VOCAB}}…)
 
 templates/                     scaffold + <style> por página

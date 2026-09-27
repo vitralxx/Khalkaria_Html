@@ -107,6 +107,7 @@
   var ITENS = [];
   var porNome = {};      // nome -> item
   var porId = {};        // id -> item
+  var idAtual = {};      // id antigo (data/bazar-renomeados.json) -> id atual
   var usadoEm = {};      // nome do ingrediente -> [nomes de receita]
   var filhos = {};       // nome -> [nomes que evoluem dele]
 
@@ -253,6 +254,7 @@
     ITENS.forEach(function (it) {
       porNome[it.nome] = it;
       if (it.id) porId[it.id] = it;
+      (it.idsAntigos || []).forEach(function (a) { idAtual[a] = it.id; });
       it._rar = ORD_RAR.indexOf(it.raridade);
       it._valor = pesoValor(it.valor);
     });
@@ -1126,7 +1128,7 @@
 
   // ------------------------------------------------------------ window.BZ (síncrono)
   var BZ = window.BZ = {
-    dados: { ITENS: ITENS, porNome: porNome, porId: porId, usadoEm: usadoEm, filhos: filhos },
+    dados: { ITENS: ITENS, porNome: porNome, porId: porId, idAtual: idAtual, usadoEm: usadoEm, filhos: filhos },
     util: {
       esc: esc, semAcento: semAcento, svg: svg, arte: arte, classeRar: classeRar,
       icoCat: icoCat, icoRar: icoRar, ondeAchar: ondeAchar, pesoTexto: pesoTexto,

@@ -1,0 +1,11 @@
+{
+ "_doc": "Ids do Bazar que mudaram porque o nome do item mudou no CSV (o id é slug do nome, tools/gerar_bazar.py). Chave = id antigo; 'novo' = id atual. O gerador confere (FALHA se o antigo voltou a ser id do catálogo ou se o novo não existe; encadeamento a->b->c resolve até o fim) e grava no item atual de data/bazar.json 'idsAntigos' e 'nomesAntigos'. A ficha (KhInv.indexar/reconciliar, js/ficha.js) e o Bazar (#item/<id>, js/bazar.js) resolvem o antigo para o novo, sem perder quantidade, equipado ou sintonizado. Nunca apagar uma linha: ficha exportada com o id antigo pode voltar por import a qualquer momento.",
+ "renomeados": {
+  "item-elixir-da-expurgao": {
+   "novo": "item-elixir-da-expurgacao",
+   "nomeAntigo": "Elixir da Expurgão",
+   "data": "2026-09-27",
+   "motivo": "L38 (lote L, aprovado pelo Pedro): typo no nome do CSV, 'Expurgão' -> 'Expurgação'. Entrega do balanceamento 2a47578."
+  }
+ }
+}

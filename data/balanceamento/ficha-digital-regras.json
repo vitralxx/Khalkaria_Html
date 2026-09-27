@@ -1,6 +1,6 @@
 {
  "schemaVersion": "regras-ficha/1.1",
- "geradoEm": "2026-09-26 (rev. 6: respostas do Pedro ao lote, D92–D97, gravadas no Notion)",
+ "geradoEm": "2026-09-27 (rev. 7: lote L respondido pelo Pedro e gravado no Notion; correções do Log de Técnicas, ver 16-log-tecnicas.md)",
  "_doc": "Resposta do agente de balanceamento ao pedido docs/ficha-digital/01-pedido-ao-balanceamento.md. O texto com a justificativa de cada regra esta em 14-ficha-digital.md, na mesma numeracao P/C. Nada aqui e canonico so porque esta escrito: leia o campo 'status'.",
  "_status": {
   "canonico": "Esta no Notion ou numa decisao registrada em 09-decisoes-pedro.md. Pode ir para o site.",
@@ -142,7 +142,8 @@
    "minStatus": "canonico",
    "minFonte": "notion-sistema > Status > Stamina: \"A Stamina não fica negativa.\" (D93, resposta do Pedro ao L03: \"Não.\")",
    "perdaInvoluntariaNegativa": false,
-   "perdaInvoluntariaNota": "D93: perdas que tiram Stamina (ex.: Exigente, \"-1 Stamina e Éter\" ao falhar) param em 0; o excesso se perde. Só o Éter atravessa o 0."
+   "perdaInvoluntariaNota": "D93: perdas que tiram Stamina (ex.: Exigente, \"-1 Stamina e Éter\" ao falhar) param em 0; o excesso se perde. Só o Éter atravessa o 0.",
+   "gastoSemSaldoFonte": "D93 e L01 (notion-sistema > Status > Regras dos status)"
   },
   "eter": {
    "max": "6 + classe.R*nivel + escolha(mod.INT,mod.SAB)*nivel",
@@ -161,7 +162,9 @@
    "perdePersonagemEm": "atual < -floor(recurso.eter.max/2)",
    "modoEscolhaTrocavel": true,
    "modoEscolhaFonte": "PD7 (docs/ficha-digital/03-respostas-pedro.md (main 703f665)): \"Maior mas com escolha de mudar\"",
-   "perdePersonagemFonte": "notion-condicoes 3a66e3a4...0b25, gravado em 2026-09-26 (rodada 3, diff conferido) > Oco: \"Ao ultrapassar metade do seu éter máximo nos negativos\" (PD17)"
+   "perdePersonagemFonte": "notion-condicoes 3a66e3a4...0b25, gravado em 2026-09-26 (rodada 3, diff conferido) > Oco: \"Ao ultrapassar metade do seu éter máximo nos negativos\" (PD17)",
+   "gastoSemSaldoStatus": "canonico",
+   "gastoSemSaldoFonte": "L01, notion-sistema > Status > Regras dos status: \"Você não pode gastar Stamina ou Éter que não tem.\" (gravado no Notion em 2026-09-27 (diff conferido))"
   },
   "ordemMaximo": [
    {
@@ -222,7 +225,7 @@
     "formula": "max(0, valor)"
    }
   ],
-  "ordemMaximoStatus": "decisao",
+  "ordemMaximoStatus": "aprovado",
   "ordemMaximoMotivo": "P03 - percentual ANTES de reducao permanente: Sacrificio Vivo corta o maximo que voce teria; Armadura de Kha e divida fixa de 8. Se a divida viesse antes da metade, custaria efetivamente 4, e a carta de trade-off ficaria mais barata para quem pegou a carta mais punitiva. Condicao por ultimo porque e reversivel.",
   "arredondamento": "floor, uma vez, no fim",
   "bonusRolados": {
@@ -269,17 +272,18 @@
      "acumula": true
     }
    },
-   "status": "decisao"
+   "status": "canonico",
+   "fonte": "L09, notion-limiar > Catálogo: \"Bônus de máximo com dado (ex.: \\\"+2d6+8 Stamina máxima\\\") são rolados uma vez, ao receber a carta, e o valor fica anotado.\" (gravado no Notion em 2026-09-27 (diff conferido))"
   },
   "aoReduzirMax": "corta",
   "aoAumentarMax": "somaDiferenca",
   "grampoObrigatorio": "atual = min(atual, max(0, novoMax))",
   "grampoMotivo": "P06/P28 - Exaustao 4 divide CON, o que derruba a Saude maxima, o que sob 'corta' fatia a Saude atual. SEM o grampo em max(0,novoMax) a Exaustao 4 empurraria o personagem abaixo de -max/2 e mataria no recalculo, sem dano nenhum. Morte vem de dano, nunca de recalculo de maximo.",
-  "aoReduzirMaxStatus": "decisao",
+  "aoReduzirMaxStatus": "canonico",
   "curaPassaMax": false,
-  "atributoCuraItem": "usuario",
-  "atributoCuraItemMotivo": "P09 - funciona nos dois casos: a pocao que voce bebe (usuario = alvo) e o Kit de Trauma aplicado no aliado caido, que nao pode usar o INT de um inconsciente. Efeito colateral bom: INT alto faz curandeiro melhor, e Medicina ja e pericia de INT.",
-  "curaStatus": "decisao",
+  "atributoCuraItem": "fabricante",
+  "atributoCuraItemMotivo": "L08, Pedro: \"É a inteligência de quem craftou o item em poções.\" Gravado no Notion (Sistema > Status > Regras dos status): \"O \\\"+Int\\\" das poções usa a Inteligência de quem fabricou a poção.\" O item precisa guardar o Mod.INT de quem o fez. Elixir segue a poção por analogia (mesma família de Alquimia). Kit (Manutenção, Trauma) é aplicado na hora, muitas vezes num aliado caído, e fica com quem usa. Item comprado sem fabricante conhecido soma +0, salvo o mestre dizer outro valor. Elixir, kit e item comprado: pergunta T19 do 16-log-tecnicas.md.",
+  "curaStatus": "canonico",
   "temporario": {
    "recursos": [
     "saude",
@@ -291,16 +295,30 @@
     "duracaoPropria",
     "descansoLongo"
    ],
-   "status": "aprovado",
+   "status": "canonico",
    "modeloExistente": {
     "id": "vampiro-sangue",
     "fonte": "D24",
     "regra": "Sangue = Saude temporaria acima do maximo, teto 5 + (3*nivel)",
     "nota": "E o unico lugar do sistema onde temporario tem teto declarado. Recomendo ao Pedro generalizar a regra a partir dele: pool nomeado com teto explicito. Assim o Vampiro entra sem caso especial."
    },
-   "fonte": "PD15 (docs/ficha-digital/03-respostas-pedro.md (main 703f665)): \"Não soma (fica a maior), gasta primeiro, some no descanso longo\"",
-   "staminaNota": "A PD15 fala de Saúde temporária. A Stamina temporária (Metamorfose, \"+10 Stamina Temporária\") segue a mesma regra por analogia; confirmar no lote PD20 (L04)."
-  }
+   "fonte": "PD15 e L41/L04, notion-sistema > Status > Regras dos status: \"Saúde temporária não soma com outra (fica a maior), é gasta antes da Saúde e some no descanso longo. Stamina temporária segue a mesma regra.\" (gravado no Notion em 2026-09-27 (diff conferido))",
+   "staminaNota": "L04 aceito: a Stamina temporária segue a mesma regra (gravado)."
+  },
+  "ordemMaximoFonte": "L02 (Pedro: aceito, \"achei meio confuso esse texto\"). Regra só da ficha, sem texto no Notion.",
+  "aoReduzirMaxFonte": "L06, notion-sistema > Status > Regras dos status: \"Se um máximo diminuir, o valor atual acompanha até o novo máximo (nunca abaixo de 0 por isso). Se aumentar, o atual sobe o mesmo tanto.\" (gravado no Notion em 2026-09-27 (diff conferido))",
+  "atributoCuraItemPorTipo": {
+   "pocao": "fabricante",
+   "elixir": "fabricante",
+   "kit": "usuario"
+  },
+  "atributoCuraItemStatusPorTipo": {
+   "pocao": "canonico",
+   "elixir": "decisao",
+   "kit": "decisao"
+  },
+  "atributoCuraItemSemFabricante": 0,
+  "curaFonte": "L08, notion-sistema > Status > Regras dos status: \"A cura não passa do máximo.\" (gravado no Notion em 2026-09-27 (diff conferido))"
  },
  "classes": {
   "_orcamento": {
@@ -337,7 +355,12 @@
      },
      "rastrear": "essencial"
     }
-   ]
+   ],
+   "recursoDeClasse": {
+    "status": "pedroDecide",
+    "pergunta": "T6 do 16-log-tecnicas",
+    "nota": "Pedro (03-respostas §5): \"Tem sim, teurgo também. Todas têm.\" Nome e regra não estão no Notion. Até lá a ficha mostra um contador livre (nome e atual/máx editáveis)."
+   }
   },
   "batedor": {
    "V": 4,
@@ -461,7 +484,12 @@
     "conhecimento"
    ],
    "recursos": [],
-   "nota": "Sem contador proprio: o recurso e o Eter, e o eixo de build sao as Escolas (2/3/5 por nivel)."
+   "nota": "Sem contador proprio: o recurso e o Eter, e o eixo de build sao as Escolas (2/3/5 por nivel).",
+   "recursoDeClasse": {
+    "status": "pedroDecide",
+    "pergunta": "T6 do 16-log-tecnicas",
+    "nota": "Pedro (03-respostas §5): \"Tem sim, teurgo também. Todas têm.\" Nome e regra não estão no Notion. Até lá a ficha mostra um contador livre (nome e atual/máx editáveis)."
+   }
   },
   "monge": {
    "V": 5,
@@ -473,7 +501,7 @@
    "armaInicial": "Marciais",
    "periciasIniciais": [
     "movimento",
-    "vontade"
+    "atacar"
    ],
    "recursos": [
     {
@@ -515,14 +543,42 @@
       }
      ],
      "zeraEm": [
+      "aoReceberDano",
+      "rodadaSemGanhar",
       "fimCombate"
      ],
      "custoEmTecnicas": "requisito",
      "custoEmTecnicasFonte": "texto da classe: 'o custo em tecnicas e apenas requisito, nao e gasto'",
-     "_clausulaMorta": "C20/P12 - 'se passar 1 rodada sem ganhar Fluxo ou receber dano' NUNCA dispara em combate, porque MOVER-SE ja da Fluxo. Um Monge que nao ganha Fluxo numa rodada e um que nao atacou, nao esquivou, nao aplicou condicao, nao andou e nao levou dano. Modelar so 'fimCombate'. Recomendacao ao Pedro: reescrever como 'Fora de combate, voce perde todo o Fluxo apos 1 rodada sem ganha-lo nem receber dano', ou apagar a segunda metade.",
-     "status": "decisao"
+     "status": "canonico",
+     "rodadaSemGanharN": 1,
+     "zeraEmFonte": "L23, Pedro: \"Porém ainda tem, se receber dano que zera seu fluxo.\" Gravado em notion-monge > Fluxo: \"Você perde todo o seu Fluxo ao receber dano, ao passar 1 rodada sem ganhar Fluxo e ao fim do combate.\" (gravado no Notion em 2026-09-27 (diff conferido)). O gatilho da rodada sem ganhar ficou porque a Concentração do Mestre depende dele.",
+     "excecoes": [
+      {
+       "fonte": "monge-concentracao-do-mestre",
+       "rodadaSemGanharN": 2,
+       "negaZeraPorDano": {
+        "usos": "mod.SAB",
+        "recarga": "descansoLongo"
+       },
+       "status": "canonico"
+      },
+      {
+       "fonte": "monge-fluxo-invertido",
+       "aoReceberDano": "+1 em vez de zerar",
+       "status": "pedroDecide",
+       "pergunta": "T12",
+       "provisorio": true
+      },
+      {
+       "fonte": "monge-insurgencia|monge-fusao-primal",
+       "perdeTudo": "custo da ultimate",
+       "status": "pedroDecide",
+       "pergunta": "T12 (o texto da classe diz \"não pode perder fluxo de nenhuma outra forma\")"
+      }
+     ]
     }
-   ]
+   ],
+   "periciasIniciaisFonte": "notion-monge > Treinamento: \"Armas Marciais, Movimento, Atacar\"; Vontade está só na lista de escolha. Corrigido na rev. 7."
   },
   "alquimista": {
    "V": 4,
@@ -622,10 +678,11 @@
       "fimCombate"
      ],
      "custoEmTecnicas": "porTecnica",
-     "custoEmTecnicasPadrao": "requisito",
-     "_alertaDeDesenho": "C15/P11 - mesmo padrao do bug do Instinto: o teto nao alcanca os proprios gastadores. SAB 12 -> max 4, e Foco Absoluto (5 Conc.) e Tiro de Reflexo (5) ficam INALCANCAVEIS; Paciencia Inabalavel (6+) exige SAB 16. Nao e gate de build, e armadilha, porque a pagina nao avisa. E o texto nao diz se cada tecnica GASTA ou so EXIGE: 'soma sempre ao ataque' sugere requisito, mas Tiro na Cabeca fala em 'ponto de Concentracao gasto'. Entra na regua de recurso de classe da D79.",
+     "custoEmTecnicasPadrao": "gasta",
+     "_alertaDeDesenho": "Resolvido no 16-log-tecnicas: não é bug. SAB é atributo-chave do Artilheiro (Des, Sab, Int/Con); com SAB 14 na criação (Mod +2) o teto é 5 e todos os gastadores de 5 ficam alcançáveis. SAB 12 fica abaixo por escolha de build; Paciência Inabalável (6+) pede Mod +3. A régua de recurso de classe (D79) segue com o Pedro; recomendação: não mexer no teto, porque ele também é o bônus de ataque.",
      "regraDaFicha": "Mostrar a tecnica acima do teto DESABILITADA COM O MOTIVO ESCRITO ('requer 5 Conc.; seu maximo e 4'). Nunca esconder e nunca bloquear em silencio.",
-     "status": "canonico-com-bug-conhecido"
+     "status": "canonico",
+     "custoEmTecnicasFonte": "texto da classe (notion-artilheiro): \"Você gasta concentração para utilizar técnicas\" e \"ao utilizá-las, diminua sua concentração conforme o requisitado\". Como a Concentração soma no ataque, gastar baixa o acerto."
     }
    ]
   },
@@ -677,9 +734,10 @@
     "duracao": "inicioProximoTurnoProprio",
     "acumula": false,
     "status": "canonico",
-    "acumulaStatus": "decisao",
+    "acumulaStatus": "canonico",
     "fonte": "notion-sistema > Sua Rodada: 'Defender (1 acao) -> +2 Defender ate seu proximo turno'",
-    "nota": "P15 - o alvo e a PERICIA (a rolagem), nao a Evasao: somar direto na Evasao seria buff incondicional. 'acumula: false' porque a acao ja e fraca (1 de 3 acoes por +2 numa reacao que talvez nem aconteca); deixar acumular convidaria a gastar 2 ou 3 acoes nisso."
+    "nota": "P15 - o alvo e a PERICIA (a rolagem), nao a Evasao: somar direto na Evasao seria buff incondicional. 'acumula: false' porque a acao ja e fraca (1 de 3 acoes por +2 numa reacao que talvez nem aconteca); deixar acumular convidaria a gastar 2 ou 3 acoes nisso.",
+    "acumulaFonte": "L24, notion-sistema > Sua Rodada: \"Defender (1 ação) → +2 Defender até seu próximo turno. Não acumula com ela mesma.\" (gravado no Notion em 2026-09-27 (diff conferido))"
    },
    "modificadores": [
     {
@@ -710,7 +768,8 @@
     {
      "fonte": "batedor-sexto-sentido",
      "valor": 2,
-     "duracao": "turno"
+     "duracao": "turnoEmCurso",
+     "duracaoNota": "Ação livre defensiva: vale no turno em curso, de qualquer criatura (16-log-tecnicas, G2). O +2 entra na Evasão base; a Ativa sobe junto."
     },
     {
      "fonte": "condicao:atordoado",
@@ -719,6 +778,13 @@
     {
      "fonte": "condicao:enjoado",
      "valor": -2
+    },
+    {
+     "fonte": "corrompido-premonicao-eterica",
+     "valor": 1,
+     "extra": "dado de Defender = 2d6 quando o dado do seu grau for menor (Leigo a Mestre); o Lendário mantém 2d8",
+     "status": "decisao",
+     "fonte16": "16-log-tecnicas, achado corrompido-premonicao-eterica (G5)"
     }
    ],
    "porArmaduraOuEscudo": {
@@ -770,7 +836,7 @@
    "passo": 1.5,
    "arredonda": "floorParaMultiploDe1.5",
    "piso": 0,
-   "status": "decisao",
+   "status": "canonico",
    "motivo": "P18 - 'fixo vence tudo, e entre fixos vale o menor' e a unica regra nao arbitraria para quem esta Caido (=1,5) e Enraizado (=0) ao mesmo tempo. O arredondamento e necessario, nao cosmetico: todo valor base e soma e multiplo de 1,5, mas 10,5 * 0,5 = 5,25 nao e. Uma Dryad com Sobrepeso Leve produz a unica fracao do sistema.",
    "somas": [
     {
@@ -844,7 +910,8 @@
      "nivel": 4,
      "valor": 0
     }
-   ]
+   ],
+   "fonte": "L25, notion-sistema > Sua Rodada > Mover: \"Efeitos que fixam o Movimento (Caído 1,5 m, Enraizado 0 m) vencem somas e multiplicações; se dois fixam, vale o menor. O resultado arredonda para baixo, em múltiplos de 1,5 m.\" (gravado no Notion em 2026-09-27 (diff conferido))"
   },
   "armadura": {
    "fonteItem": "texto do campo Efeito do CSV do Bazar, na forma 'Ar N' e 'Ae(Tipo, N)'. NAO existe coluna dedicada.",
@@ -856,7 +923,7 @@
    "teto": null,
    "tetoPendente": null,
    "aeMesmoTipo": "soma",
-   "aeMesmoTipoStatus": "decisao",
+   "aeMesmoTipoStatus": "canonico",
    "aeCamadasSomam": true,
    "aeCamadasNota": "Ae(tipo) + Ae(categoria) + Ae(Todos) somam. Cada camada foi precificada de forma independente na D67 e os limites de equipar (1 pesada + 2 leves + 3 sintonizados) ja sao o teto real.",
    "arNaturalPorRaca": {
@@ -915,7 +982,35 @@
     "luxaria": "ignora Ar e Ae",
     "fonte": "D42"
    },
-   "acumulaNaturalFonte": "notion-sistema 2b76e3a4, gravado em 2026-09-26 (rodada 3, diff conferido) > Defesa > Armadura(Ar): \"O Ar de fontes diferentes se soma (por exemplo, o Ar natural da raça e o Ar da armadura).\" (D85)"
+   "acumulaNaturalFonte": "notion-sistema 2b76e3a4, gravado em 2026-09-26 (rodada 3, diff conferido) > Defesa > Armadura(Ar): \"O Ar de fontes diferentes se soma (por exemplo, o Ar natural da raça e o Ar da armadura).\" (D85)",
+   "aeMesmoTipoFonte": "L26, notion-sistema > Defesa > Ae: \"Ae do mesmo tipo vinda de fontes diferentes se soma, como o Ar.\" (gravado no Notion em 2026-09-27 (diff conferido))",
+   "aeTodos": {
+    "cobre": [
+     "fogo",
+     "frio",
+     "eletrico",
+     "veneno",
+     "acido",
+     "psiquico",
+     "radiante",
+     "trovejante",
+     "necrotico"
+    ],
+    "nuncaCobre": [
+     "forca",
+     "primordial",
+     "cortante",
+     "contundente",
+     "perfurante"
+    ],
+    "status": "canonico",
+    "fonte": "L26 (Pedro: \"Ae(Todos) sempre exclui dano de força e primordial, porém abrange todos os danos atípicos (não inclui cortante, contundente, perfurante)\") e D89; notion-sistema > Defesa > Ae (gravado no Notion em 2026-09-27 (diff conferido))"
+   },
+   "aeCategoria": {
+    "regra": "Ae de uma categoria cobre todos os tipos dela",
+    "status": "canonico",
+    "fonte": "L34 (Pedro: \"Ae(x, categoria) sempre abrange todos os tipos de dano dentro daquela categoria\"), notion-sistema > Defesa > Ae (gravado no Notion em 2026-09-27 (diff conferido))"
+   }
   },
   "iniciativa": {
    "pericia": "iniciativa",
@@ -1022,14 +1117,6 @@
      "valor": 0,
      "escopo": "proxima rolagem de Atacar no turno",
      "custo": "acao livre; se acertar, perde Eter = n de dados da arma (D70)"
-    },
-    {
-     "fonte": "monge-golpe-sequencial",
-     "alvo": "pma",
-     "op": "fixa",
-     "valor": 0,
-     "escopo": "1 ataque desarmado extra",
-     "custo": "acao livre, 5 Stamina, 1 Fluxo"
     },
     {
      "fonte": "inseto-louva-a-deus",
@@ -1554,8 +1641,9 @@
    "metadeAtributo": "atributo",
    "arred": "floor",
    "recalculaMax": true,
-   "status": "decisao",
-   "nota": "P28 - divide o ATRIBUTO (e o que o texto diz; dividir o modificador seria quase inocuo). FOR 16 -> 8 -> mod -1. E devastador, e devia ser: Exaustao 4 e um degrau da morte. ATENCAO ao grampo obrigatorio em recursos.grampoObrigatorio: a queda de CON derruba a Saude maxima, e sem max(0,novoMax) a Exaustao 4 mataria no recalculo, sem dano nenhum."
+   "status": "canonico",
+   "nota": "P28 - divide o ATRIBUTO (e o que o texto diz; dividir o modificador seria quase inocuo). FOR 16 -> 8 -> mod -1. E devastador, e devia ser: Exaustao 4 e um degrau da morte. ATENCAO ao grampo obrigatorio em recursos.grampoObrigatorio: a queda de CON derruba a Saude maxima, e sem max(0,novoMax) a Exaustao 4 mataria no recalculo, sem dano nenhum.",
+   "fonte": "L12, notion-condicoes > Exaustão 4: \"Seus atributos (o valor, não o modificador) caem pela metade, arredondando para baixo, e seus máximos são recalculados. Seu movimento é zerado.\" (gravado no Notion em 2026-09-27 (diff conferido))"
   },
   {
    "id": "desnutrido",
@@ -1689,8 +1777,9 @@
    "duracao": {
     "ate": "inicioProximoTurnoAfetado"
    },
-   "status": "decisao",
-   "nota": "P29 - '-2 Acoes e Evasao' = -2 nos dois, nao 'perde a Evasao': perder a Evasao inteira poria Atordoado acima de Paralisado, e o proprio site ja le -2. A duracao conta a partir do AFETADO: 'ate a proxima rodada' lido como o contador de rodada viraria faria a mesma condicao valer quase nada em quem age por ultimo na iniciativa e um turno inteiro em quem age primeiro. A D32 ja abriu o precedente com 'Desorientado dura 1 turno'."
+   "status": "canonico",
+   "nota": "P29 - '-2 Acoes e Evasao' = -2 nos dois, nao 'perde a Evasao': perder a Evasao inteira poria Atordoado acima de Paralisado, e o proprio site ja le -2. A duracao conta a partir do AFETADO: 'ate a proxima rodada' lido como o contador de rodada viraria faria a mesma condicao valer quase nada em quem age por ultimo na iniciativa e um turno inteiro em quem age primeiro. A D32 ja abriu o precedente com 'Desorientado dura 1 turno'.",
+   "fonte": "L11, notion-condicoes > Atordoado: \"−2 Ações e −2 de Evasão até o início do seu próximo turno.\" (gravado no Notion em 2026-09-27 (diff conferido))"
   },
   {
    "id": "desorientado",
@@ -1813,7 +1902,14 @@
    "x": {
     "tipo": "intensidade",
     "inicial": "daFonte",
-    "duracao": "daFonte"
+    "duracao": "daFonte",
+    "inicialPadrao": 1,
+    "duracaoPadrao": {
+     "ate": "fimProximoTurnoAfetado",
+     "rodadas": 1
+    },
+    "padraoStatus": "decisao",
+    "padraoNota": "G8 do 16-log-tecnicas: fonte que não diz X aplica Lento 1; fonte que não diz duração dura 1 rodada (até o fim do próximo turno do alvo)."
    },
    "efeitos": [
     {
@@ -1827,9 +1923,10 @@
      "valor": "-1 * X"
     }
    ],
-   "status": "pedroDecide",
+   "status": "canonico",
    "nota": "CORREÇÃO da rev. 1 (P27): eu tinha lido X como duração. Errado. O próprio Notion usa X como intensidade: Bomba Temporal (Alquimista) \"Lento 2 (-2 Ação/turno, -6 m movimento, ...)\"; Fusão Primal (Monge) \"Lento 1, por 1 rodada\" e Tempestade de Aço (Artilheiro) \"Lento 1 por 2 rodadas\" dão a duração À PARTE. O card da condição diz só \"-3 m Movimento, -1 Ação\", sem X. Lote PD20, item L10 (texto do card).",
-   "alerta": "Lento 3 tira as 3 ações: é mais forte que Paralisado em ação, mas nenhuma fonte hoje aplica mais que Lento 2."
+   "alerta": "Lento 3 tira as 3 ações: é mais forte que Paralisado em ação, mas nenhuma fonte hoje aplica mais que Lento 2.",
+   "fonte": "L10, notion-condicoes > Lento X: \"−3 m de Movimento e −1 Ação para cada ponto de X.\" (gravado no Notion em 2026-09-27 (diff conferido))"
   },
   {
    "id": "enraizado",
@@ -2232,19 +2329,21 @@
   ],
   "nota": "NAO funda os dois eixos. Um serve para achar o card, o outro para decidir se a condicao pega.",
   "mentalStatus": "canonicoParcial",
-  "mentalFonte": "[trecho sobre carta rara oculta] Correção da rev. 1, que dizia que a lista nunca foi escrita.",
+  "mentalFonte": "notion-limiar: a única lista escrita de \"condições mentais\" está no texto de uma carta rara (não reproduzido aqui). A página Condições do Notion não tem seção \"Condições Mentais\". Correção da rev. 1, que dizia que a lista nunca foi escrita.",
   "mentalNotas": [
    "Oco conta como mental por implicação: o pacto da Grande Árvore (Teurgo) \"remove alguma condição mental, exceto Oco\".",
-   "[trecho sobre carta rara oculta] Tags são eixo, não partição: pode ter as duas.",
-   "Monge Ápatico dá um subconjunto: \"condições que são causadas por emoções (Enfeitiçado e Amedrontado)\"."
+   "Monge Ápatico dá um subconjunto: \"condições que são causadas por emoções (Enfeitiçado e Amedrontado)\".",
+   "Atordoado está nas DUAS listas (mental na lista do Limiar, física no Avatar do Vazio). Tags são eixo, não partição: pode ter as duas.",
+   "O grupoUI \"mentais\" do site (Confuso, Amedrontado, Descontrolado, Enfeitiçado, Bêbado) é agrupamento de interface e não bate com a lista: tem Descontrolado e Bêbado, não tem Atordoado. Para imunidade e vantagem (\"condições mentais\": Veterano, Grande Árvore) vale a tag, não o grupo. Confirmação pedida ao Pedro (T16)."
   ]
  },
  "empilhamento": {
   "entreCondicoes": "soma",
   "mesmaCondicao": "renovaDuracao",
   "mesmaCondicaoComX": "somaX",
-  "status": "decisao",
-  "alerta": "P26 - as penalidades nao tem teto. Bebado + Desorientado + Envenenado + Sobrepeso Leve = Atacar -8, e ainda com desvantagem se houver Exaustao 1. Contra Evasao tipica de 13-14 e acerto quase impossivel. E a leitura literal e eu nao invento teto, mas e onde mora a espiral da morte, e a ficha vai deixar isso visivel pela primeira vez porque hoje ninguem soma."
+  "status": "canonico",
+  "alerta": "P26 - as penalidades nao tem teto. Bebado + Desorientado + Envenenado + Sobrepeso Leve = Atacar -8, e ainda com desvantagem se houver Exaustao 1. Contra Evasao tipica de 13-14 e acerto quase impossivel. E a leitura literal e eu nao invento teto, mas e onde mora a espiral da morte, e a ficha vai deixar isso visivel pela primeira vez porque hoje ninguem soma.",
+  "fonte": "L27, notion-condicoes, topo: \"Condições diferentes somam seus efeitos. A mesma condição aplicada de novo renova a duração; se ela tiver X, os X se somam.\" (gravado no Notion em 2026-09-27 (diff conferido))"
  },
  "multiplicadoresGlobaisDeCusto": {
   "ordem": "custoFinal = max(piso, (base + ajustes fixos) * PRODUTO(multiplicadores)), com floor",
@@ -2274,7 +2373,7 @@
   "pmaEscopo": "porAlvo",
   "pmaStatus": "canonico",
   "pmaFonte": "D29",
-  "pmaNota": "MECANICA (D29): -5 cumulativo por ataque no mesmo turno, contado POR ALVO, zera ao trocar de alvo; so vale na acao Atacar. FICHA: nao rastreia alvo, mostra a progressao (ver derivados.progressaoDeAtaques).",
+  "pmaNota": "MECANICA (D29): -5 cumulativo por ataque no mesmo turno, contado POR ALVO, zera ao trocar de alvo. Vale para todo ataque, inclusive os de técnica, salvo quando o texto isenta (\"sem penalidade de multi-ataque\", Transcendência, Rajada de Tiros...). G3 do 16-log-tecnicas: a Transcendência do Monge existe para suspender a PMA, o que só faz sentido se os ataques de técnica a sofrem. FICHA: não rastreia alvo, mostra a progressão (ver derivados.progressaoDeAtaques). O nome \"PMA\" ainda não está definido no Sistema (pergunta T5).",
   "acaoLivreMax": null,
   "acaoLivreStatus": "canonico",
   "conjuracoesPorTurno": 1,
@@ -2350,7 +2449,8 @@
    "naFicha": "custo de ação null = o mestre decide; a ficha não trava nem sugere número"
   },
   "conjuracoesFonte": "notion-sistema 2b76e3a4, gravado em 2026-09-26 (rodada 3, diff conferido) > Sua Rodada: \"Conjurar magia (1-3 ações), no máximo 1 magia conjurada por turno.\" (PD18)",
-  "acaoLivreFonte": "notion-sistema 2b76e3a4, gravado em 2026-09-26 (rodada 3, diff conferido) > Sua Rodada: \"Ações livres não têm limite por turno.\" (PD18)"
+  "acaoLivreFonte": "notion-sistema 2b76e3a4, gravado em 2026-09-26 (rodada 3, diff conferido) > Sua Rodada: \"Ações livres não têm limite por turno.\" (PD18)",
+  "pmaEmTecnicaStatus": "decisao"
  },
  "municao": {
   "descontoPor": "combate",
@@ -2440,15 +2540,18 @@
     "etapa": 5,
     "op": "- descontos fixos",
     "exemplos": [
-     "Escola Visceral -2",
+     "Escola Visceral: -2 no custo da magia e -2 em CADA modulação (cada modulação com piso 1) — aplicar antes do piso global",
      "Patrono O Limiar -1 (abjuracao)",
      "Canalizacao Eficiente -1 por 2 Stamina"
-    ]
+    ],
+    "escolaVisceralExemplo": "Nível 3 Normal (4) + Ancorar (+2): (4-2) + max(1, 2-2) = 3"
    },
    {
     "etapa": 6,
     "op": "PISO = 1",
-    "excecao": "Nivel 1 + Normal + sem modulacao = 0 (e descontos nao se aplicam a ela)"
+    "excecao": "Nivel 1 + Normal + sem modulacao = 0 (e descontos nao se aplicam a ela); Magias Pactuadas em Contida = 0 (D96)",
+    "modulacaoGratisContaComoModulacao": true,
+    "modulacaoGratisNota": "Receptáculo Menor e afins: a modulação grátis zera o custo DELA, mas a magia continua modulada, então a exceção do Nível 1 não vale e o piso 1 se aplica (16-log-tecnicas, resolvido)."
    }
   ],
   "ordemCustoMotivo": "P39 - desconto DEPOIS de multiplicador: se viesse antes, a Mente Fraca dobraria um custo ja descontado, e cada ponto de desconto valeria o DOBRO justamente para quem carrega a maldicao. Desconto e dinheiro no bolso do jogador; aplica por ultimo.",
@@ -2505,15 +2608,16 @@
    "falha": "o cast falha e voce perde o dobro do Eter utilizado",
    "base": "custoTotal",
    "podeNegativar": true,
-   "status": "decisao",
-   "nota": "P40 - 'utilizado' e o que voce de fato pagou, modulacoes incluidas. E e perda INVOLUNTARIA, entao atravessa o 0 e pode disparar Oco. Numero: um Teurgo nv5 com INT 16 tem Eter maximo 66; Nivel 5 Transbordante + 2 modulacoes = 20 de custo, 40 de perda na falha = 61% do pool num unico teste de Vontade CD 15."
+   "status": "canonico",
+   "nota": "P40 - 'utilizado' e o que voce de fato pagou, modulacoes incluidas. E e perda INVOLUNTARIA, entao atravessa o 0 e pode disparar Oco. Numero: um Teurgo nv5 com INT 16 tem Eter maximo 66; Nivel 5 Transbordante + 2 modulacoes = 20 de custo, 40 de perda na falha = 61% do pool num unico teste de Vontade CD 15.",
+   "fonte": "L28, notion-magias e notion-sistema > Intensidade: \"o Éter utilizado é o custo total que você pagou, com modulações. A perda pode deixar seu Éter negativo.\" (gravado no Notion em 2026-09-27 (diff conferido))"
   },
   "sustentada": {
    "maxAtivas": 1,
-   "maxAtivasStatus": "aprovado",
+   "maxAtivasStatus": "canonico",
    "maxAtivasFonte": "PD16 (docs/ficha-digital/03-respostas-pedro.md (main 703f665)): \"1 ativa\"",
    "custoPorTurno": "oQueADescricaoDaMagiaDiz|custoDaCanalizacao",
-   "custoPorTurnoStatus": "aprovado",
+   "custoPorTurnoStatus": "canonico",
    "custoPorTurnoVerbatimPedro": "Toda magia sustentada tem em sua descrição quanto gasta de éter por turno; o padrão é o éter gasto na canalização da magia, mas só se não tiver escrito na descrição da magia.",
    "foraCombate": "oQueADescricaoDaMagiaDiz",
    "foraCombateStatus": "aprovado",
@@ -2523,7 +2627,9 @@
     "ficar atordoado",
     "ficar incapaz de se concentrar"
    ],
-   "dissipaFonte": "texto repetido nas magias sustentadas da página Magias (\"Conjurar outra magia sustentada, ser atordoado ou estar incapaz de ativamente se concentrar imediatamente dissipa a magia.\")"
+   "dissipaFonte": "texto repetido nas magias sustentadas da página Magias (\"Conjurar outra magia sustentada, ser atordoado ou estar incapaz de ativamente se concentrar imediatamente dissipa a magia.\")",
+   "fonte": "L42, notion-magias e notion-sistema: \"você só pode sustentar 1 magia por vez. O custo por turno é o que a magia diz; se não disser, é o custo da canalização.\" (gravado no Notion em 2026-09-27 (diff conferido))",
+   "ritualNaoOcupa": "O Ritual (Teurgo) tem vaga própria (\"1 Ritual por vez\") e não cobra Éter por turno (16-log-tecnicas, decisao)."
   },
   "requisitos": {
    "validar": "avisar",
@@ -2587,7 +2693,20 @@
     "conta": "0 (excecao)",
     "custo": 0
    }
-  ]
+  ],
+  "intensidadeSubidaPorTecnica": {
+   "custo": "intensidadeDeclarada",
+   "testeVontadeAoChegarTransbordante": false,
+   "teto": "transbordante",
+   "abaixoDaMenor": "falha",
+   "menorIntensidade": {
+    "nivel1": "normal",
+    "outros": "contida"
+   },
+   "status": "pedroDecide",
+   "pergunta": "T4 do 16-log-tecnicas (Tese Arcana, Patrono Primordial, Natureza Caótica)",
+   "provisorio": "a ficha usa estes valores até o Pedro responder"
+  }
  },
  "recargas": {
   "turno": "fimTurno",
@@ -2601,12 +2720,13 @@
   "semana": "manual",
   "campanha": "manual",
   "porLocalizacao": "manual",
-  "status": "decisao",
+  "status": "canonico",
   "notas": {
    "dia": "CANONICO: 'O grupo pode fazer ate dois descansos curtos e UM DESCANSO LONGO QUE FINALIZA O DIA'. Mas mantenha 'dia' e 'longo' como enums SEPARADOS, porque o inverso nao e verdade: um dia pode passar SEM descanso longo, e e assim que se ganha Exaustao ('1 dia sem descansar e tolerado; o segundo -> Exausto 1').",
    "cena": "cena != combate. Municao gasta por cena de combate (D2) e ai coincidem, mas o Instinto do Batedor tem '1x por pericia por cena', que cobre pericia fora de combate. Uma cena pode conter a aproximacao furtiva, a negociacao e a briga.",
    "rodada": "rodada != turno. '2x/rodada' (Fluxo) conta tambem os ganhos no turno dos outros (esquivar, ser acertado). '1x/turno' e so o seu. Nao unifique."
-  }
+  },
+  "fonte": "L29, notion-sistema > Descanso > Usos por descanso: \"A notação oficial é \\\"1x/Descanso Longo\\\". Onde estiver \\\"1x/dia\\\", vale o mesmo: o uso volta no descanso longo. \\\"1x/sessão\\\", \\\"1x/semana\\\" e \\\"1x/campanha\\\" também existem e são marcados à mão.\" (gravado no Notion em 2026-09-27 (diff conferido))"
  },
  "vocabulario": {
   "_doc": "P44 - a gramatica que o balanceamento define. O bloco 'itens' preenchido NAO vem digitado a mao: ver 'itensMetodo'.",
@@ -2669,8 +2789,10 @@
    "variavel": "{min, max|null} - campo de valor ou slider. Cobre '2+ Stamina', 'X Stamina', '1-5 Eter'",
    "percentual": "{fator, base: 'maximo'} - '50% Eter' e do MAXIMO, nao do atual: do atual seria paradoxo de Zenao, nunca chega a zero",
    "porUnidade": "{valor} - '5 Stamina/Item', pergunta a quantidade",
-   "reserva": "P45 - a Stamina fica COMPROMETIDA enquanto a passiva esta ligada, reduzindo o maximo efetivo, e volta ao desligar. E a unica leitura em que 'Passiva' e 'custo' significam algo juntos. Cobre 'Ponto Fraco: 5 Stamina Passiva', 'Encadeamento: Passiva - 3 Stamina', 'Tese Arcana: Passiva, 2 Stamina'. STATUS: pedroDecide - e interpretacao, nao canone.",
-   "requisito": "confere se o valor atual basta, nao desconta"
+   "reserva": "Sem uso hoje. A leitura P45 (Stamina comprometida enquanto a passiva está ligada) caiu: \"Passiva\" com custo escrito no corpo é custo POR USO (G12 do 16-log-tecnicas; Ponto Fraco, Brecha, Encadeamento, Tese Arcana, Cadeia de Golpes, Língua Prateada). O tipo fica no enum para uma técnica futura que declare reserva de verdade.",
+   "requisito": "confere se o valor atual basta, nao desconta",
+   "passivaComCusto": "porUso",
+   "passivaComCustoStatus": "decisao"
   },
   "momentoDoDesconto": "na confirmacao do 'usar', com desfazer disponivel"
  },
@@ -2814,8 +2936,8 @@
     "1 alimento por jogador"
    ],
    "semAlimento": "corta o Xd8 de quem nao comeu",
-   "semAlimentoStatus": "decisao",
-   "semAlimentoNota": "Recomendo que corte SO a recuperacao de status, nao o resto: o dia vira igual, os usos de 'dia' recarregam, a Exaustao baixa. 'Quem nao se alimenta, nao se recupera' fala de recuperacao.",
+   "semAlimentoStatus": "canonico",
+   "semAlimentoNota": "L30 (Pedro: \"Nenhuma condição que exige descanso longo para ser removida é removida ao descansar sem comida ou uma fonte de luz.\"). Quem não se alimenta não recupera status; sem comida ou sem luz, as condições de descanso longo ficam; o dia termina e os usos por descanso longo voltam. Gravado em notion-sistema > Descanso Longo (gravado no Notion em 2026-09-27 (diff conferido)).",
    "recupera": {
     "dado": "Xd8",
     "X": "comodidade",
@@ -2841,7 +2963,11 @@
     {
      "alvo": "condicao.exaustao",
      "op": "soma",
-     "valor": -1
+     "valor": -1,
+     "exige": [
+      "alimento",
+      "fonteDeLuz"
+     ]
     },
     {
      "alvo": "estresse",
@@ -2890,7 +3016,8 @@
      "op": "soma",
      "valor": 1
     }
-   ]
+   ],
+   "semAlimentoOuLuz": "nenhuma condição que exige descanso longo para sair é removida (inclui a Exaustão -1)"
   },
   "ordem": "recuperar PRIMEIRO, liberar estresse DEPOIS - voce nao pode cobrar um custo que o personagem ainda nao tem",
   "statusElegiveis": [
@@ -2900,7 +3027,7 @@
   ],
   "statusElegiveisNota": "P47 - sao os 3 UNIVERSAIS, nao o recurso de classe. Fluxo, Brutalidade e Concentracao comecam em 0 por desenho: 'recuperar' nao faz sentido. Reagentes tem regra propria.",
   "modo": "umaPorStatus",
-  "modoStatus": "decisao",
+  "modoStatus": "canonico",
   "modoMotivo": "Mecanicamente quase indiferente (mesmo valor esperado, muda so a variancia), mas e como toda mesa le e remove uma correlacao artificial entre dois recursos independentes.",
   "estresse": {
    "ganha": "+1 nos DOIS ao atacar um aliado, mesmo errando",
@@ -2953,7 +3080,8 @@
    ],
    "status": "canonico",
    "nota": "C09 - vale o Notion. O data/sistema.json tem 2d6/1d8/1d6/1d4/1d3, que e a tabela antiga. Nao e diferenca cosmetica: a primeira faixa vai de media 7 para media 14, DOBRA."
-  }
+  },
+  "modoFonte": "L31, notion-sistema > Descanso Longo: \"Role Xd8 separadamente para cada um dos 2 status.\" (gravado no Notion em 2026-09-27 (diff conferido))"
  },
  "dano": {
   "formula": "dados da arma + Mod. Atributo da arma",
@@ -3000,10 +3128,10 @@
   "ordemMotivo": "P50 - Resistencia ANTES de Ar: resistencia e propriedade de como o dano te afeta, Ar e o que ele tem que atravessar. Metade depois da subtracao faria a armadura render o dobro para quem ja e resistente, dois descontos no mesmo eixo. E a ordem inversa produz valores negativos no meio do calculo.",
   "arredondamento": "floor, uma vez, na etapa 4",
   "minimo": 0,
-  "minimoStatus": "decisao",
+  "minimoStatus": "canonico",
   "minimoMotivo": "0, nao 1. O canone descreve Ar como 'reduz dano ordinario em uma constante fixa', sem piso. E a D42 (Incomum ignora 3 / Exotico ignora todo o Ar / Luxaria ignora Ar e Ae) existe PORQUE Ar pode zerar: e a contrajogada. Piso de 1 esvaziaria essa escada inteira.",
   "imunidade": "zera",
-  "imunidadeStatus": "decisao",
+  "imunidadeStatus": "canonico",
   "imunidadePendente": "Imunidade nunca foi definida no Notion. 'Zera' e a unica leitura.",
   "categorias": {
    "ordinario": [
@@ -3024,28 +3152,26 @@
    "mistico": [
     "radiante",
     "trovejante",
-    "necrotico",
+    "necrotico"
+   ],
+   "outros": [
     "forca",
     "primordial"
    ]
   },
   "totalDeTipos": 14,
-  "categoriasFonte": "D63/D67, pagina Tipos de Dano",
+  "categoriasFonte": "notion-sistema > Defesa > Tipos de Dano: Ordinário | Atípico (Elemental, Biológico, Místico) | Outros (Força, Primordial). CORREÇÃO da rev. 7: a D67 punha Força e Primordial dentro de Místico; o Sistema põe em \"Outros\". Atípico = os 9 de Elemental, Biológico e Místico.",
   "gradeNota": "C18 - a grade atual tem 12 porque colapsa os 3 ordinarios numa linha 'Ordinario'. Mas a D63 garante que Ae(Cortante, 5) existe, entao os tres precisam de linha propria. Ar NAO e linha da grade: e escalar a parte que reduz a categoria Ordinario inteira.",
   "aliasesDeTipo": {
    "gelo": "frio",
    "eletricidade": "eletrico"
   },
   "danoGenericoDeCategoria": {
-   "regra": "Dano escrito como categoria ('dano Biologico', '1d12 Mistico') e reduzido por Ae(categoria) e Ae(Todos), NAO por Ae de um tipo especifico daquela categoria.",
-   "status": "decisao",
-   "motivo": "P51 - e a regra que faz a escada da D67 significar alguma coisa: pagar por abrangencia tem que comprar abrangencia.",
-   "exemplo": {
-    "tem": "Ae(Veneno,5)",
-    "reduzDanoBiologicoGenerico": false,
-    "tem2": "Ae(Biologico,4)",
-    "reduz2": true
-   }
+   "regra": "Dano escrito como categoria (\"dano Biológico\", \"1d8 de dano Místico\") é de UM tipo da categoria, à escolha de quem causa o dano. Depois disso, mitiga como aquele tipo (Ae do tipo, Ae da categoria e Ae(Todos) valem).",
+   "escolhe": "quemCausa",
+   "status": "canonico",
+   "fonte": "L34, Pedro: \"Quando um dano é dado como uma categoria é da escolha do jogador, qualquer tipo de dano da categoria.\" Gravado em notion-sistema > Defesa > Ae (gravado no Notion em 2026-09-27 (diff conferido)).",
+   "substitui": "P51 (rev. anteriores): \"só Ae da categoria ou Ae(Todos) reduzem\". Caiu com a resposta do Pedro."
   },
   "camadasDaGrade": [
    "R",
@@ -3053,7 +3179,9 @@
    "V",
    "Ae"
   ],
-  "arForaDaGrade": true
+  "arForaDaGrade": true,
+  "minimoFonte": "L32, notion-sistema > Defesa: \"Depois das reduções, o dano pode chegar a 0: não há dano mínimo.\" (gravado no Notion em 2026-09-27 (diff conferido))",
+  "imunidadeFonte": "L33, notion-sistema > Defesa: \"Imunidade a um tipo de dano: o dano desse tipo é 0.\" (gravado no Notion em 2026-09-27 (diff conferido))"
  },
  "morte": {
   "morrendo": {
@@ -3573,7 +3701,7 @@
    "o": "Lista das 'condicoes mentais'",
    "porque": "Citada pelo Teurgo e pelo Veterano, nunca escrita.",
    "gravidade": "media",
-   "status": "[trecho sobre carta rara oculta]"
+   "status": "resolvido: a lista está em taxonomiaDeCondicao.mental (fonte: Limiar)"
   },
   {
    "n": 12,
@@ -3680,7 +3808,7 @@
   "acoesPorTurno": 3,
   "verbatimPedro": "1 ação significa 2 segundos de combate, 3 ações 6 segundos que é 1 turno.",
   "fonte": "D90 (Pedro, 2026-09-26)",
-  "status": "aprovado",
+  "status": "canonico",
   "derivado": {
    "rodadaSegundos": 6,
    "1 min": "10 rodadas",
@@ -3688,7 +3816,19 @@
    "1 h": "600 rodadas",
    "nota": "Derivado por mim: a rodada tem 6 segundos porque os turnos de todos acontecem nos mesmos 6 segundos da ficção. Serve para a ficha converter duração em minutos ('Dura 1 min') em rodadas."
   },
-  "statusNota": "Verbatim do Pedro (D90), ainda fora do Notion. Lote PD20, item L17."
+  "statusNota": "L17, notion-sistema > Sua Rodada: \"1 ação equivale a 2 segundos; um turno, 3 ações, são 6 segundos. Ações fora desta lista custam o que o mestre decidir na hora.\" (gravado no Notion em 2026-09-27 (diff conferido))"
  },
- "_numeracao": "Dn = decisão n de 09-decisoes-pedro.md (memória do balanceamento). PDn = decisão n do plano docs/ficha-digital/02-plano.md, respondida em 03-respostas-pedro.md. Ln = item do lote de revisão em 15-ficha-rodada3.md."
+ "_numeracao": "Dn = decisão n de 09-decisoes-pedro.md (memória do balanceamento). PDn = decisão n do plano docs/ficha-digital/02-plano.md, respondida em 03-respostas-pedro.md. Ln = item do lote de revisão em 15-ficha-rodada3.md. Gn = princípio de leitura do 16-log-tecnicas.md (G1 retaliação livre, G2 ação livre, G3 PMA em técnica...). Tn = pergunta aberta ao Pedro no mesmo arquivo.",
+ "condicoesDuracaoPadrao": {
+  "semDuracao": {
+   "ate": "fimProximoTurnoAfetado",
+   "rodadas": 1
+  },
+  "semX": 1,
+  "tecnicaSemDuracao": {
+   "ate": "inicioProximoTurnoProprio"
+  },
+  "status": "decisao",
+  "fonte": "G8 do 16-log-tecnicas"
+ }
 }

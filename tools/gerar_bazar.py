@@ -21,6 +21,10 @@ Cada item ganha também `inv` (como se comporta no inventário, lido do Efeito:
 slot, empilhavel, armadura, capacidade/acumula, ocupa, recipiente). Frase de
 inventário que não casa com o esperado é FALHA (sai com código 1, nada gravado).
 
+Nome corrigido no CSV muda o id (slug do nome): data/bazar-renomeados.json
+guarda {id antigo: novo} e o item atual ganha `idsAntigos`/`nomesAntigos`, que a
+ficha e o Bazar usam para resolver ficha salva ou link com o id antigo.
+
 Placeholders do template: {{VOCAB}} (inclui as condições de Sobrepeso de
 data/condicoes.json), {{TOTAL}} e {{VER}} (hash dos assets do Bazar, cache-bust).
 
@@ -34,6 +38,7 @@ CSV = sys.argv[1] if len(sys.argv) > 1 else os.path.join(RAIZ, 'data', 'Bazar_Kh
 OUT = sys.argv[2] if len(sys.argv) > 2 else os.path.join(RAIZ, 'pages', 'bazar.html')
 TPL = os.path.join(RAIZ, 'templates', 'bazar.template.html')
 BJSON = os.path.join(RAIZ, 'data', 'bazar.json')
+RENOMEADOS = os.path.join(RAIZ, 'data', 'bazar-renomeados.json')
 
 # ---------------------------------------------------------------- vocabulário
 CATEGORIAS = ['Arma', 'Armadura', 'Escudo', 'Consumível', 'Munição',
@@ -259,6 +264,49 @@ def versao_assets():
 ARTE = os.path.join(RAIZ, 'data', 'icones-materiais.json')
 
 
+def aplica_renomeados(itens, caminho=None):
+    """data/bazar-renomeados.json -> 'idsAntigos'/'nomesAntigos' no item atual.
+
+    O id é slug do nome: nome corrigido no CSV muda o id, e a ficha salva (ou
+    exportada) com o id antigo ficaria órfã. O mapa {antigo: {novo, nomeAntigo,
+    data, motivo}} resolve encadeado (a->b->c vai direto para c). Devolve as
+    falhas: antigo que voltou a ser id do catálogo, novo que não existe, ciclo.
+    """
+    caminho = caminho or RENOMEADOS
+    if not os.path.exists(caminho):
+        return []
+    try:
+        with open(caminho, encoding='utf-8') as f:
+            mapa = json.load(f).get('renomeados', {})
+    except (OSError, ValueError) as e:
+        return [f'bazar-renomeados.json ilegível: {e}']
+    por_id = {it['id']: it for it in itens}
+    falhas = []
+    for antigo, reg in mapa.items():
+        novo = reg.get('novo') if isinstance(reg, dict) else None
+        if not novo:
+            falhas.append(f'bazar-renomeados.json: {antigo!r} sem "novo"')
+            continue
+        if antigo in por_id:
+            falhas.append(f'bazar-renomeados.json: {antigo!r} é id atual do catálogo (renomeação desfeita?)')
+            continue
+        vistos = {antigo}
+        while novo in mapa and novo not in por_id:
+            if novo in vistos:
+                break
+            vistos.add(novo)
+            novo = mapa[novo].get('novo') if isinstance(mapa[novo], dict) else None
+        alvo = por_id.get(novo)
+        if not alvo:
+            falhas.append(f'bazar-renomeados.json: {antigo!r} -> {novo!r}, que não é id do catálogo')
+            continue
+        alvo.setdefault('idsAntigos', []).append(antigo)
+        nome = (reg.get('nomeAntigo') or '').strip()
+        if nome and nome != alvo['nome'] and nome not in alvo.setdefault('nomesAntigos', []):
+            alvo['nomesAntigos'].append(nome)
+    return falhas
+
+
 def carrega_arte():
     """Material -> images/materiais/<slug>.webp, quando a arte existe."""
     if not os.path.exists(ARTE):
@@ -325,6 +373,7 @@ def main():
         })
 
     falhas += validar_inventario(itens, nomes)
+    falhas += aplica_renomeados(itens)
     condicoes, falhas_cond = carrega_condicoes()
     falhas += falhas_cond
     if falhas:
