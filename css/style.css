@@ -121,7 +121,9 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    z-index: 9999;
+    /* abaixo da Ficha, como sempre esteve: a escala põe o splash no topo
+       (--z-splash), e isso só muda quando a F7 ligar os dois (plano §3.3) */
+    z-index: calc(var(--z-ficha) - 1);
     cursor: pointer;
     transition: opacity 0.8s ease, visibility 0.8s ease;
 }
@@ -1561,7 +1563,7 @@ table.compact th { padding: 0.75rem; font-size: 0.8rem; }
     opacity: 0;
     visibility: hidden;
     transition: all 0.3s;
-    z-index: 1000;
+    z-index: var(--z-topo);
 }
 .back-to-top.visible {
     opacity: 1;

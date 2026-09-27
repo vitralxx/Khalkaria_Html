@@ -1,4 +1,37 @@
 {
-  "_doc": "Diferenças de estilo computado intencionais, aceitas pelo tools/estilo/diff.py --revisado. Cada item: pagina (glob do nome da captura, ex. 'bazar.*'), caminho (glob do caminho do elemento), prop (glob; pseudo-elemento = '::before content'), antes/depois (valor exato, opcionais) e motivo (obrigatório). A F1c não tem nenhuma: só entra aqui diferença que o Pedro aprovou.",
-  "revisadas": []
+  "_doc": "Diferenças de estilo computado intencionais, aceitas pelo tools/estilo/diff.py --revisado. Cada item: pagina (glob do nome da captura, ex. 'bazar.*'), caminho (glob do caminho do elemento), prop (glob; pseudo-elemento = '::before content'), antes/depois (valor exato, opcionais) e motivo (obrigatório). A F1c não tem nenhuma. A F2a tem só a troca de número do z-index (a ordem do empilhamento não muda). Só entra aqui diferença que o Pedro aprovou ou que o plano manda.",
+  "revisadas": [
+    {
+      "pagina": "*",
+      "caminho": "*>button#kf-toggle:*",
+      "prop": "z-index",
+      "antes": "99998",
+      "depois": "600",
+      "motivo": "F2a (plano §3.3, 'z-index na escala'): a Ficha passa aos tokens --z-* e quem estava entre ela e o resto desce junto; mesmo empilhamento de antes (voltar-ao-topo < splash < botão da Ficha < drawer < toast), outros números: botão lateral = var(--z-ficha)"
+    },
+    {
+      "pagina": "*",
+      "caminho": "*>div#kf-drawer.*",
+      "prop": "z-index",
+      "antes": "99999",
+      "depois": "601",
+      "motivo": "F2a (plano §3.3, 'z-index na escala'): a Ficha passa aos tokens --z-* e quem estava entre ela e o resto desce junto; mesmo empilhamento de antes (voltar-ao-topo < splash < botão da Ficha < drawer < toast), outros números: drawer = calc(var(--z-ficha) + 1)"
+    },
+    {
+      "pagina": "index.*",
+      "caminho": "*>div.splash-screen*",
+      "prop": "z-index",
+      "antes": "9999",
+      "depois": "599",
+      "motivo": "F2a (plano §3.3, 'z-index na escala'): a Ficha passa aos tokens --z-* e quem estava entre ela e o resto desce junto; mesmo empilhamento de antes (voltar-ao-topo < splash < botão da Ficha < drawer < toast), outros números: o splash segue ABAIXO da Ficha, calc(var(--z-ficha) - 1); a escala o põe no topo só na F7"
+    },
+    {
+      "pagina": "*",
+      "caminho": "*.back-to-top*",
+      "prop": "z-index",
+      "antes": "1000",
+      "depois": "450",
+      "motivo": "F2a (plano §3.3, 'z-index na escala'): a Ficha passa aos tokens --z-* e quem estava entre ela e o resto desce junto; mesmo empilhamento de antes (voltar-ao-topo < splash < botão da Ficha < drawer < toast), outros números: voltar-ao-topo = var(--z-topo), abaixo do splash e da Ficha como antes"
+    }
+  ]
 }

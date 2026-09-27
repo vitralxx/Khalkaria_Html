@@ -40,8 +40,13 @@ reaplicar não muda o resultado.
      css/style.css em todas as páginas. O tokens.css abre declarando a ordem das
      @layer, por isso tem de vir antes de qualquer outro CSS do site.
 
+  9. FICHA CSS — <link href="…css/ficha.css" data-ficha-css> logo antes de
+     </head> (depois do boot e do <style> do template) em todas as páginas.
+     É o CSS que o js/ficha.js injetava no fim do <head> (F2a): sem camada e
+     no mesmo lugar da ordem, para o visual não mudar.
+
   A nav marcada: o link da página atual ganha .active E aria-current="page".
-  Os passos 6, 7 e 8 rodam antes do 4, para receberem ?v= também.
+  Os passos 6, 7, 8 e 9 rodam antes do 4, para receberem ?v= também.
 """
 import hashlib, os, re, sys, unicodedata
 
@@ -237,6 +242,20 @@ def aplica_tokens(html):
                                   f'data-tokens>{m.group(4)}{m.group(1)}{m.group(2)}{m.group(4)}', html, count=1)
 
 
+# 9. FICHA CSS — css/ficha.css (F2a) logo antes de </head>, em todas as páginas.
+#    Era o <style> que o js/ficha.js punha no fim do <head> no init: fica sem
+#    camada e depois do <style> do template, a mesma posição na cascata. Roda
+#    depois do boot (que também entra antes de </head>) para o link ficar por último.
+RE_FICHA_CSS = re.compile(r'[ \t]*<link rel="stylesheet" href="[^"]*css/ficha\.css[^"]*" data-ficha-css>\r?\n')
+
+
+def aplica_ficha_css(html, pagina_rel):
+    prefixo = '../' * pagina_rel.count('/')
+    html = RE_FICHA_CSS.sub('', html)
+    return html.replace('</head>',
+                        f'    <link rel="stylesheet" href="{prefixo}css/ficha.css" data-ficha-css>\n</head>', 1)
+
+
 def paginas(raiz):
     fs = []
     for dirpath, _, nomes in os.walk(os.path.join(raiz, 'pages')):
@@ -259,8 +278,9 @@ def aplicar(raiz=RAIZ, verboso=True):
         rel = os.path.relpath(f, raiz).replace(os.sep, '/')
         antes = open(f, encoding='utf-8', newline='').read()
         depois = aplica_webp(aplica_ancoras(aplica_sidebar(antes, rel, modelo)), rel)
-        # boot, nav.js e tokens ANTES da versão, para ganharem ?v= também
+        # boot, nav.js, tokens e ficha.css ANTES da versão, para ganharem ?v= também
         depois = aplica_tokens(aplica_navjs(aplica_boot(depois, boot), rel))
+        depois = aplica_ficha_css(depois, rel)
         depois = aplica_totais(aplica_versao(depois, versao), total)
         n_ver += len(RE_ASSET.findall(depois))
         if depois != antes:

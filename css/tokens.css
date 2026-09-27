@@ -83,10 +83,11 @@
     --dur-media: .3s;
     --dur-longa: .6s;
     /* z-index: escala única, na ordem do empilhamento de hoje (a F7 troca o
-       literal pelo nome sem inverter ninguém). Ainda literais: menu mobile 200,
-       voltar-ao-topo 1000, splash 9999, Ficha 99998–100000 (ficha.js); a borda
-       da receita é painel-esq + 1. Hoje a Ficha fica ACIMA do splash; a escala
-       põe o splash no topo (plano §3.3), e isso muda quando a F7 ligar os dois. */
+       literal pelo nome sem inverter ninguém). Ainda literal: menu mobile 200; a borda da receita é painel-esq + 1.
+       Ligados na F2a (css/ficha.css): botão da Ficha --z-ficha, drawer +1, toast
+       --z-toast; voltar-ao-topo --z-topo. O splash fica ABAIXO da Ficha, como
+       sempre esteve (calc(--z-ficha - 1)); a escala põe o splash no topo
+       (plano §3.3), e isso muda quando a F7 ligar os dois. */
     --z-sticky: 30;
     --z-lista: 40;
     --z-rightbar: 50;

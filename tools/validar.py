@@ -178,11 +178,12 @@ def checa_html():
 
 
 def checa_nav_pagina(h, nav):
-    """Contrato da nav (shell.py passos 1, 6 e 7) numa página já montada."""
+    """Contrato da nav (shell.py passos 1, 6, 7, 8 e 9) numa página já montada."""
     probs = []
     for marca, oque in (('data-nav-boot', 'boot da nav no <head>'),
                         ('data-nav-js', '<script> do js/nav.js'),
-                        ('data-tokens', '<link> do css/tokens.css')):
+                        ('data-tokens', '<link> do css/tokens.css'),
+                        ('data-ficha-css', '<link> do css/ficha.css')):
         n = h.count(marca)
         if n != 1:
             probs.append(f'{n}× {oque} (esperado 1)')

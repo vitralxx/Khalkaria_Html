@@ -1,0 +1,110 @@
+/* Ficha Interativa (drawer, botão lateral, toast, "+ ficha" dos cards).
+   Era o CSS que o js/ficha.js injetava (injectCSS + injectCSSInventario, F2a:
+   mesmo texto, mesma ordem). O shell o põe em todas as páginas logo antes do
+   </head>, depois do <style> do template: fica SEM CAMADA de propósito, como o
+   <style> injetado ficava (vence as @layer e empata com os <style> dos
+   templates pela ordem). Entra em camada junto com os <style> dos templates (F7);
+   até lá valem as pontes do fim do style.css e do bazar.css.
+   z-index na escala de css/tokens.css: botão lateral --z-ficha, drawer um acima,
+   toast --z-toast (o splash e o voltar-ao-topo ficam abaixo, como hoje).
+   Cores em hex, como o drawer v2: os tokens entram com a UI nova (F3/F4). */
+
+/* ---- drawer, botão lateral, toast e cards (era o injectCSS) ---- */
+#kf-toggle{position:fixed;right:0;top:40%;z-index:var(--z-ficha);background:#1a1a22;color:#d4af37;border:1px solid #d4af37;border-right:none;border-radius:8px 0 0 8px;padding:10px 8px;cursor:pointer;font-family:Cinzel,serif;font-size:12px;letter-spacing:1px;writing-mode:vertical-rl;text-orientation:mixed;box-shadow:-2px 2px 12px rgba(0,0,0,.4)}
+#kf-toggle:hover{background:#24242e}
+#kf-drawer{position:fixed;top:0;right:0;height:100vh;width:420px;max-width:92vw;z-index:calc(var(--z-ficha) + 1);background:#12121a;border-left:1px solid #2a2a35;box-shadow:-6px 0 24px rgba(0,0,0,.5);transform:translateX(100%);transition:transform .25s ease;display:flex;flex-direction:column;font-family:"Crimson Text",Georgia,serif;color:#d8d4cc}
+#kf-drawer.kf-open{transform:translateX(0)}
+#kf-head{display:flex;align-items:center;gap:8px;padding:12px 14px;border-bottom:1px solid #2a2a35;background:#0d0d14}
+#kf-head h2{font-family:Cinzel,serif;font-size:15px;color:#d4af37;margin:0;flex:1}
+#kf-body{overflow-y:auto;padding:10px 14px 40px;flex:1}
+.kf-sec{border:1px solid #2a2a35;border-radius:8px;margin-bottom:10px;overflow:hidden}
+.kf-sec>h3{font-family:Cinzel,serif;font-size:12px;letter-spacing:1px;color:#c9a94a;background:#1a1a22;margin:0;padding:9px 12px;cursor:pointer;display:flex;justify-content:space-between}
+.kf-sec>.kf-secbody{padding:10px 12px;display:block}
+.kf-sec.kf-collapsed>.kf-secbody{display:none}
+.kf-row{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:6px;align-items:center}
+.kf-row label{font-size:12px;color:#9a968e;min-width:64px}
+.kf-drawer input,.kf-drawer select,#kf-drawer input,#kf-drawer select,#kf-drawer textarea{background:#0d0d14;border:1px solid #2a2a35;color:#e6e2da;border-radius:5px;padding:4px 6px;font-size:13px;font-family:inherit}
+#kf-drawer input[type=number]{width:56px}
+#kf-drawer input[type=text]{flex:1;min-width:60px}
+.kf-attrs{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;text-align:center}
+.kf-attrs .kf-a label{display:block;font-size:11px;color:#c9a94a;min-width:0}
+.kf-attrs .kf-a input{width:100%;text-align:center}
+.kf-attrs .kf-mod{font-size:12px;color:#7dcea0;margin-top:2px}
+.kf-per{display:flex;align-items:center;gap:6px;font-size:12px;margin-bottom:3px}
+.kf-per span{flex:1}
+.kf-per select{width:96px}
+.kf-res{display:grid;grid-template-columns:1fr auto auto 46px;gap:3px 8px;font-size:12px;align-items:center}
+.kf-res .kf-rh{color:#9a968e;font-size:10px;text-align:center}
+#kf-drawer .kf-res input[type=number]{width:42px;padding:2px 4px}
+.kf-list-item{display:flex;gap:6px;align-items:flex-start;font-size:12px;padding:4px 6px;border:1px solid #23232d;border-radius:5px;margin-bottom:4px;background:#0d0d14}
+.kf-list-item .kf-x{color:#c0392b;cursor:pointer;font-weight:bold;flex-shrink:0}
+.kf-list-item .kf-nm{flex:1}
+.kf-tag{font-size:9px;color:#8a8a8a;border:1px solid #2a2a35;border-radius:3px;padding:0 4px;margin-right:4px;text-transform:uppercase}
+.kf-btn{background:#1a1a22;color:#d4af37;border:1px solid #d4af37;border-radius:5px;padding:5px 10px;cursor:pointer;font-size:12px;font-family:Cinzel,serif}
+.kf-btn:hover{background:#24242e}.kf-btn.sm{padding:2px 7px;font-size:11px}
+.kf-derdisp{display:grid;grid-template-columns:1fr 1fr;gap:4px 12px;font-size:12px}
+.kf-derdisp b{color:#d4af37}
+.kf-warn{color:#e67e22}.kf-ok{color:#7dcea0}
+.kf-drop{border:1px dashed #3a3a45;border-radius:6px;padding:8px;text-align:center;font-size:11px;color:#7a766e;margin-bottom:6px}
+.kf-drop.kf-over{border-color:#d4af37;color:#d4af37;background:rgba(212,175,55,.06)}
+#kf-toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%) translateY(20px);background:#1a1a22;color:#d4af37;border:1px solid #d4af37;border-radius:6px;padding:8px 16px;z-index:var(--z-toast);opacity:0;transition:all .2s;font-family:Cinzel,serif;font-size:13px;pointer-events:none}
+#kf-toast.kf-show{opacity:1;transform:translateX(-50%) translateY(0)}
+.kf-addbtn{display:inline-block;margin-left:8px;background:rgba(212,175,55,.12);color:#d4af37;border:1px solid rgba(212,175,55,.4);border-radius:4px;padding:1px 7px;cursor:pointer;font-size:11px;font-family:Cinzel,serif;vertical-align:middle;user-select:none}
+.kf-addbtn:hover{background:rgba(212,175,55,.25)}
+.kf-draggable{cursor:grab}
+#kf-ro{border:1px solid #e08b2c;border-radius:8px;background:#1f1508;color:#f0d9b5;padding:8px 12px;margin-bottom:10px;font-size:13px}
+#kf-ro p{margin:0 0 6px}
+#kf-drawer.kf-ro #kf-body .kf-drop{opacity:.5}
+
+/* ---- inventário do drawer (§4.11; era o injectCSSInventario) ---- */
+.kf-sec-nota{font-family:"Crimson Text",Georgia,serif;font-size:12px;font-style:italic;letter-spacing:0;color:#8a857c}
+.kf-carga{margin:2px 0 10px}
+.kf-carga-topo{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:4px}
+.kf-peso{font-size:12px;color:#9a968e;line-height:1.2}
+.kf-peso b{font-family:ui-monospace,"Cascadia Mono",Consolas,monospace;font-variant-numeric:tabular-nums;font-size:1.25rem;color:#e6e2da;margin-left:6px;font-weight:600}
+.kf-peso small{display:block;font-size:11px;color:#8a857c}
+.kf-cond{margin-left:auto;font-family:Cinzel,serif;font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:3px 8px;border-radius:3px;text-decoration:none;white-space:nowrap}
+.kf-cond-nenhuma{color:#8a857c;border:1px solid #2a2a35}
+.kf-cond-leve{color:#120d06;background:#e08b2c}
+.kf-cond-extremo{color:#ffe9e4;background:#8b2635}
+a.kf-cond:hover,a.kf-cond:focus-visible{text-decoration:underline}
+.kf-carga-col{margin-top:8px}
+.kf-carga-lin{display:flex;align-items:baseline;gap:8px;font-size:12px}
+.kf-carga-nome{font-family:Cinzel,serif;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#c9a94a}
+.kf-carga-num{font-family:ui-monospace,"Cascadia Mono",Consolas,monospace;font-variant-numeric:tabular-nums;color:#9a968e;cursor:help}
+.kf-carga-num b{font-size:14px;color:#f0d77a}
+.kf-est-leve .kf-carga-num b{color:#e08b2c}.kf-est-extremo .kf-carga-num b{color:#ff6b5a}
+.kf-carga-est{margin-left:auto;font-style:italic;font-size:12px;color:#9a968e}
+.kf-est-leve .kf-carga-est{color:#e08b2c}.kf-est-extremo .kf-carga-est{color:#ff6b5a}
+.kf-regua{position:relative;height:8px;border-radius:2px;background:#0a0a10;box-shadow:inset 0 0 0 1px #2a2a35;margin:4px 14px 0 0}
+.kf-regua-ok{position:absolute;left:0;top:0;bottom:0;background:linear-gradient(90deg,#9c7c1f,#d4af37);border-radius:2px 0 0 2px;transition:width .2s ease-out}
+.kf-regua-exc{position:absolute;left:50%;top:0;bottom:0;background:repeating-linear-gradient(45deg,#e08b2c 0 3px,#a8661d 3px 6px);transition:width .2s ease-out}
+.kf-est-extremo .kf-regua-exc{background:repeating-linear-gradient(45deg,#b3261e 0 3px,#6e1712 3px 6px)}
+.kf-regua-marco{position:absolute;left:50%;top:-2px;bottom:-2px;width:2px;margin-left:-1px;background:#f0d77a}
+.kf-regua-mais{position:absolute;left:100%;top:-4px;margin-left:3px;font-family:ui-monospace,"Cascadia Mono",Consolas,monospace;font-size:10px;color:#ff6b5a}
+.kf-inv-cab{font-family:Cinzel,serif;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#c9a94a;margin:10px 0 4px;padding-bottom:2px;border-bottom:1px solid #2a2a35}
+.kf-inv-vazio{font-size:12px;font-style:italic;color:#8a857c;padding:2px 0 6px}
+.kf-inv-item{background:#101017;border:1px solid #23232d;border-left:3px solid #3a3a45;border-radius:4px;padding:5px 7px;margin-bottom:4px;font-size:12px}
+.kf-inv-item.kf-equipado{border-left-color:#d4af37;background:#15140f}
+.kf-inv-l1{display:flex;align-items:flex-start;gap:6px}
+.kf-inv-nome{flex:1;min-width:0;font-family:Cinzel,serif;font-size:12.5px;line-height:1.25;color:#e6e2da}
+.kf-inv-nome.kf-orfao{font-style:italic}
+.kf-inv-peso{font-family:ui-monospace,"Cascadia Mono",Consolas,monospace;font-variant-numeric:tabular-nums;color:#9a968e;white-space:nowrap;cursor:help}
+.kf-inv-x{background:none;border:none;color:#e06b5a;opacity:.45;cursor:pointer;font-size:16px;line-height:1;padding:0 2px}
+.kf-inv-x:hover,.kf-inv-x:focus-visible{opacity:1}
+.kf-inv-l2{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:4px}
+.kf-step{display:inline-flex;align-items:center;border:1px solid #2a2a35;border-radius:4px;overflow:hidden}
+.kf-step button{background:#1a1a22;color:#d4af37;border:none;width:22px;height:22px;padding:0;cursor:pointer;font-size:14px;line-height:1}
+.kf-step button:hover{background:#24242e}
+.kf-step button:disabled{color:#5a5650;cursor:not-allowed;background:#1a1a22}
+#kf-drawer .kf-step input[type=text]{flex:none;min-width:0;width:4.4ch;text-align:center;border:none;border-radius:0;padding:2px 0;font-family:ui-monospace,"Cascadia Mono",Consolas,monospace;font-variant-numeric:tabular-nums}
+.kf-inv-cx{display:inline-flex;align-items:center;gap:4px;font-size:12.5px;color:#c8c4bc;cursor:pointer}
+#kf-drawer .kf-inv-cx input{margin:0;padding:0;accent-color:#e08b2c}
+.kf-dif{display:inline-block;width:5px;height:5px;border-radius:50%;background:#e08b2c;margin-left:2px}
+.kf-inv-tags{display:flex;flex-wrap:wrap;gap:4px;margin-top:4px}
+.kf-inv-tags .kf-tag{margin:0}
+button.kf-tag{background:none;color:#e08b2c;border-color:#e08b2c66;cursor:pointer;font-family:inherit}
+.kf-inv-aviso{margin:5px 0 0;font-size:12px;color:#e08b2c}
+.kf-inv-aviso .kf-btn{margin-left:6px}
+#kf-drawer .kf-inv-item button:focus-visible,#kf-drawer .kf-inv-item input:focus-visible{outline:2px solid #e08b2c;outline-offset:1px}
+#kf-toast{max-width:min(560px,90vw);text-align:center;line-height:1.35}

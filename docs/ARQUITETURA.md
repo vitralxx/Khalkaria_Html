@@ -129,6 +129,9 @@ css/classes.css                componentes das 7 páginas de classe (camada pagi
 css/racas.css                  componentes das 7 páginas de raça (camada paginas)
 css/bazar.css                  só a página do Bazar (camada paginas; --bz-* são aliases
                                dos tokens do site)
+css/ficha.css                  F2a: drawer, botão lateral, toast e "+ ficha" dos cards (o
+                               CSS que o ficha.js injetava); SEM camada, o shell o põe
+                               em todas as páginas logo antes de </head>
 js/main.js                     splash, smooth scroll, fade-in
                                + auto-injeta ficha.js em todas as páginas
 js/nav.js                      navegação lateral: trilho de 64px, atalho \, dica,
@@ -216,8 +219,9 @@ do Bazar. O `bazar.json` é buscado com `?v=<hash do arquivo>` (`BZ_VOCAB.dados`
 as 24 páginas, reescreve os `href` (que têm de ser o 1º atributo do `<a>`) e marca
 o link atual com `.active` + `aria-current="page"`. Também injeta
 `partials/head-boot.html` antes de `</head>`, `js/nav.js` antes de `</body>` e o
-`<link data-tokens>` do `css/tokens.css` logo antes do `style.css` (tudo antes do
-`?v=`, que os dois também ganham). O `nav.js` é separado do `main.js`
+`<link data-tokens>` do `css/tokens.css` logo antes do `style.css` e o
+`<link data-ficha-css>` do `css/ficha.css` logo antes de `</head>` (tudo antes do
+`?v=`, que eles também ganham). O `nav.js` é separado do `main.js`
 porque o Bazar não carrega `main.js` (que injetaria o `ficha.js` pela segunda vez).
 
 - **Largura:** a única variável que o layout lê é `--nav-w` (`style.css`):
@@ -248,6 +252,11 @@ porque o Bazar não carrega `main.js` (que injetaria o `ficha.js` pela segunda v
   o grupo da página atual nunca fecha.
 - **Dica** do trilho: um `#nav-dica` fixed no `<body>`, z 105 (acima da nav,
   abaixo da receita do Bazar, do cartão e da Ficha).
+- **Empilhamento** (`--z-*` de `tokens.css`, F2a): … popover do Bazar 400 <
+  voltar-ao-topo `--z-topo` 450 < splash 599 (`calc(--z-ficha - 1)`: abaixo da
+  Ficha, como sempre esteve) < botão da Ficha `--z-ficha` 600 < drawer 601 < toast
+  `--z-toast` 700. A mesma ordem de antes (1000 / 9999 / 99998 / 99999 / 100000),
+  com outros números; o `revisado.json` do portão registra a troca.
 
 ## 5. Convenção de CSS
 
@@ -278,8 +287,11 @@ faz essa extração respeitando o cascade.
 | `estados` | sobreposições de estado (hoje: movimento reduzido da nav) |
 
 Regras da migração, todas medidas com `tools/estilo/` (diff 0):
-- **CSS sem camada vence qualquer camada.** Os `<style>` dos templates e o CSS que o
-  `ficha.js` injeta ficam fora de camada de propósito até a F7.
+- **CSS sem camada vence qualquer camada.** Os `<style>` dos templates e o
+  `css/ficha.css` ficam fora de camada de propósito até a F7. O `ficha.css` (F2a:
+  o texto que o `ficha.js` injetava, mesma ordem) entra pelo shell como último
+  CSS do `<head>`, depois do `<style>` do template: a mesma posição na cascata do
+  `<style>` que o `init()` punha no fim do `<head>`, por isso o visual não muda.
 - **A camada vence a especificidade.** Regra que ganhava de outra por especificidade
   tem de ficar na camada do rival (ou acima): por isso a nav é `componentes` e o
   `a:hover` (0,1,1, contra os links de classe da nav, da right-bar e do Sistema) fica
@@ -289,7 +301,7 @@ Regras da migração, todas medidas com `tools/estilo/` (diff 0):
 - **Pontes** (fim do `style.css`, sem camada): reafirmam o que uma regra em camada
   ganhava de um `<style>` de template (hoje só o sublinhado do `a:hover` nos cards-link
   de `racas.html` e `criacao.html`); no fim do `bazar.css`, o cursor dos cards e
-  linhas do Bazar contra o `.kf-draggable` que o `ficha.js` injeta sem camada.
+  linhas do Bazar contra o `.kf-draggable` do `css/ficha.css` (sem camada).
   (O `*{…!important}` de movimento reduzido saiu daqui: virou opção do site, no
   `reset`.) Saem quando o CSS de template e o da Ficha entrarem em camada (F2/F7).
 - **`!important` inverte:** o de `reset` vence o de todas as outras camadas; o de
@@ -384,8 +396,8 @@ o `.tag-rar` em caixa. **Escala** P/M/G/GG: radiogroup `#bz-escala` na barra
 (setas, atalhos `-` e `=`/`+`), `E.escala` em `khalkaria_bazar_estado` (não vai
 para a ficha), aplicada em `#bz-registro[data-escala]` como `--col` (mínimo da
 coluna), `--k` (fator do texto; o card é todo em `em`) e `--linhas` (efeito);
-trocar de passo é só CSS. O "+ inventário" do `ficha.js` não escala (CSS dele
-fica fora de camada com `font-size` fixo).
+trocar de passo é só CSS. O "+ inventário" do `ficha.js` não escala (o
+`css/ficha.css` fica fora de camada com `font-size` fixo).
 **Lista estreita** (`@container registro`): com as 9 colunas o mínimo da tabela
 é ~1030 (P) a ~1070 px (GG). Até 1099 sai a Região (o nome dela já está na
 Obtenção) e a Categoria fica só com o glifo (`.cat-nome` e o cabeçalho longo
@@ -466,8 +478,16 @@ O `servidor.py` grava em `<rótulo>/_css.txt` o hash do `css/**` a cada captura;
 build FALHA se o `css/**` de agora não bate com o `depois/_css.txt` (CSS mudou sem
 recaptura) ou se `diff.py antes depois --revisado` sobra diferença. Mudou CSS:
 rodar o roteiro com `?rotulo=depois` e commitar `depois/` junto do CSS. O hash
-cobre só `css/**`: o CSS que o `ficha.js` injeta e os `<style>` de template não
-entram (recapturar à mão quando mexer neles).
+cobre só `css/**` (o `css/ficha.css` inclusive, desde a F2a): os `<style>` de
+template e o `style` que um script põe em runtime não entram (recapturar à mão
+quando mexer neles).
+
+**Linha de base por fase.** O `antes/` é o estado imediatamente anterior à mudança
+de CSS, não o da F1c para sempre: conteúdo que muda depois (sync do Notion) não
+refaz a captura, porque o carimbo só olha `css/**`. Na F2a o `antes/` foi
+recapturado do commit anterior (`70b4784`, ficha.js ainda injetando o CSS) num
+`git worktree` servido por `servidor.py --porta 8897`, e o par fechou com só as
+116 trocas de número de z-index do `revisado.json` (ordem igual).
 
 ```bash
 python tools/estilo/servidor.py        # serve o repo em 127.0.0.1:8898 (sem cache) e grava
@@ -554,10 +574,10 @@ python tools/estilo/pares.py tools/testes/estilo/regras-depois tools/testes/esti
    fora por decisão do Pedro (é oculta) e está registrada na chave `_ignorar`
    do manifesto, para que a ausência não pareça esquecimento numa varredura
    futura.
-3. **`js/ficha.js` injeta o próprio CSS** (`injectCSS`, ~50 linhas, e desde o
-   Bazar v3 também `injectCSSInventario`, o bloco `#kf-css-inv` do inventário
-   do drawer). Funciona, mas deixa a ficha fora do design system (cores em hex,
-   sem tokens) — mover os dois para `css/ficha.css`.
+3. ~~**`js/ficha.js` injeta o próprio CSS**~~ Resolvido na F2a: `injectCSS` e
+   `injectCSSInventario` viraram `css/ficha.css` (mesmo texto; z-index na escala
+   `--z-*`). Continua fora de camada e com cores em hex: tokens com a UI nova
+   (F3/F4), camada na F7.
 4. ~~**Raças não estão na navegação.**~~ Resolvido: a nav lista as 7 raças e as
    7 classes, em grupos recolhíveis.
 5. **Restam ~120 KB de CSS inline** nos templates de classe e raça. É CSS
