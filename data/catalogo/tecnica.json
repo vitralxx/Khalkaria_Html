@@ -1389,7 +1389,7 @@
    "tipo": "tecnica",
    "nome": "Cartucho Arcano",
    "icone": null,
-   "resumo": "Passiva Você desenvolveu um método de aprisionar magias em recipientes alquímicos. Novo Item Alquímico: Cartucho Arcano Tempo de Criação: 10 min, age como craft de item alquímico Custo de Criação: (Nível da Magia * 2) Reagentes Magias Disponíveis: Você conhece 1 magia + Mod. Inteligência(min. 1) do seu (nível-1) ou menor, após isso você ganha +1 magia por nível. CD da criação: Você rola Místico ao criar Cartuchos Arcanos, o CD da criação é 10 + (2 * Nível da Magia). Usar Cartucho: Qualquer criatura pode conjurar a magia infundida no cartucho, porém usa seus atributos como base dos CDs e ataques da magia respeitando, também, o custo de ações da magia. Limite: Você pode sustentar até (Nível + Mod. Inteligência) de cartuchos ao mesmo tempo. Perdem seus efeitos após um descanso longo.",
+   "resumo": "Passiva Você desenvolveu um método de aprisionar magias em recipientes alquímicos. Novo Item Alquímico: Cartucho Arcano Tempo de Criação: 10 min, age como craft de item alquímico Custo de Criação: (Nível da Magia * 2) Reagentes Magias Disponíveis: Você conhece 1 magia + Mod. Inteligência(min. 1) do seu nível ou menor, após isso você ganha +1 magia por nível. CD da criação: Você rola Místico ao criar Cartuchos Arcanos, o CD da criação é 10 + (2 * Nível da Magia). Usar Cartucho: Qualquer criatura pode conjurar a magia infundida no cartucho, porém usa seus atributos como base dos CDs e ataques da magia respeitando, também, o custo de ações da magia. Limite: Você pode sustentar até (Nível + Mod. Inteligência) de cartuchos ao mesmo tempo. Perdem seus efeitos após um descanso longo.",
    "classe": "alquimista",
    "card": "tech-card",
    "grupo": "ramo",

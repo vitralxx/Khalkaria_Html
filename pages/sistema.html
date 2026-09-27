@@ -252,6 +252,16 @@
                             </div>
                         </div>
 
+                        <div class="rule-box">
+                            <p><strong>Regras dos status:</strong></p>
+                            <ul>
+                                <li>Você não pode gastar Stamina ou Éter que não tem.</li>
+                                <li>Se um máximo diminuir, o valor atual acompanha até o novo máximo (nunca abaixo de 0 por isso). Se aumentar, o atual sobe o mesmo tanto.</li>
+                                <li>A cura não passa do máximo. O "+Int" das poções usa a Inteligência de quem fabricou a poção.</li>
+                                <li>Saúde temporária não soma com outra (fica a maior), é gasta antes da Saúde e some no descanso longo. Stamina temporária segue a mesma regra.</li>
+                            </ul>
+                        </div>
+
                         <p style="margin-top:1.25rem;">Além dos 3 status universais, cada classe possui 3 valores personalizados:</p>
 
                         <div class="status-list">
@@ -500,11 +510,15 @@
                         <p>Você possui <strong>3 ações</strong> e <strong>1 reação</strong> por turno, alguns exemplos dentre as listadas abaixo:</p>
                         
                         <ul>
-                            <li><strong>Mover</strong> (1 ação) — Max. 1 vez por turno</li>
+                            <li><strong>Mover</strong> (1 ação) — Max. 1 vez por turno
+                                <ul>
+                                    <li>Efeitos que fixam o Movimento (<a href="condicoes.html#caido" class="keyword-link">Caído</a> 1,5 m, <a href="condicoes.html#enraizado" class="keyword-link">Enraizado</a> 0 m) vencem somas e multiplicações; se dois fixam, vale o menor. O resultado arredonda para baixo, em múltiplos de 1,5 m.</li>
+                                </ul>
+                            </li>
                             <li><strong>Pular</strong> (2 ações) → Pula 1/3 do seu Movimento.</li>
                             <li><strong>Acelerar</strong> (1 ação) → +3 m de movimento nesta rodada.</li>
                             <li><strong>Atacar</strong> (Depende da arma) — Ataques consecutivos somam −5 a cada ataque no mesmo turno.</li>
-                            <li><strong>Defender</strong> (1 ação) → +2 <a href="#defender" class="keyword-link">Defender</a> até seu próximo turno.</li>
+                            <li><strong>Defender</strong> (1 ação) → +2 <a href="#defender" class="keyword-link">Defender</a> até seu próximo turno. Não acumula com ela mesma.</li>
                             <li><strong>Defender fora do seu turno</strong> (Reação) → Soma o dado da perícia <a href="#defender" class="keyword-link">Defender</a> à sua <a href="#evasao" class="keyword-link">evasão</a> contra todos os ataques do agressor neste turno.</li>
                             <li><strong>Conjurar magia</strong> (1-3 ações), no máximo 1 magia conjurada por turno.</li>
                             <li><strong>Usar item consumível</strong> (1 ação) → em você ou em outra criatura. Se o item for arremessado, siga o que ele diz.</li>
@@ -512,6 +526,7 @@
                             <li><strong>Outro</strong> (1-3 ações) — dependendo de sua dificuldade ou demora para executar</li>
                             <li>Reações servem para regras/habilidades específicas</li>
                             <li>Ações livres não têm limite por turno.</li>
+                            <li>1 ação equivale a 2 segundos; um turno, 3 ações, são 6 segundos. Ações fora desta lista custam o que o mestre decidir na hora.</li>
                         </ul>
                     </div>
                 </div>
@@ -589,9 +604,16 @@
                             <ul>
                                 <li><strong>Resistência</strong> a um dano específico o reduz sempre a metade.</li>
                                 <li><strong>Vulnerabilidade</strong> a um dano específico sempre o dobra.</li>
+                                <li><strong>Imunidade</strong> a um tipo de dano: o dano desse tipo é 0.</li>
+                                <li>Depois das reduções, o dano pode chegar a 0: não há dano mínimo.</li>
                                 <li><strong>Armadura Específica (Ae)</strong> reduz dano <em>atípico</em> em uma constante fixa.<br>
                                     <code>Ae(Tipo de dano, Quant. de resist.)</code> é o formato padrão.<br>
-                                    <small>Ex.: Ae(Místico, 2), ao receber 10 de dano místico, recebe apenas 8.</small></li>
+                                    <small>Ex.: Ae(Místico, 2), ao receber 10 de dano místico, recebe apenas 8.</small>
+                                    <ul>
+                                        <li>Ae do mesmo tipo vinda de fontes diferentes se soma, como o Ar.</li>
+                                        <li>Ae de uma categoria cobre todos os tipos dela. Dano escrito por categoria (ex.: "dano Biológico") é de um tipo da categoria, à escolha do jogador.</li>
+                                        <li>Ae(Todos) abrange todos os danos atípicos e nunca inclui Força e Primordial nem os Ordinários (Cortante, Contundente e Perfurante).</li>
+                                    </ul></li>
                                 <li><strong>Armaduras Pesadas e Leves</strong><br>
                                     Os itens de armadura equipáveis são subdivididos em dois grupos:
                                     <ul>
@@ -1529,15 +1551,19 @@
                         <p>O grupo pode fazer até <strong>dois descansos curtos</strong> e <strong>um descanso longo</strong> que finaliza o dia.</p>
                         
                         <h4>Descanso Longo <small style="color: var(--text-muted);">(Max. 1 por dia)</small></h4>
-                        <p>O grupo dorme por no mínimo <strong>8 horas</strong>, e recupera <strong>Xd8 de 2 Status</strong> a escolha de cada jogador, sendo X o nível de comodidade do descanso.</p>
+                        <p>O grupo dorme por no mínimo <strong>8 horas</strong>, e recupera <strong>Xd8 de 2 Status</strong> a escolha de cada jogador, sendo X o nível de comodidade do descanso. Role Xd8 separadamente para cada um dos 2 status.</p>
                         
                         
                         <div class="subsection">
                             <h4>Ferraria e Engenharia</h4>
                             <p>Durante o descanso longo você pode gastar sua ação de descanso para tentar fabricar <strong>UM</strong> item do Bazar. Regra completa em <a href="#crafting" class="keyword-link">O Bazar → Sistema de Crafting</a>.</p>
                         </div>
+                        <div class="subsection">
+                            <h4>Usos por descanso</h4>
+                            <p>A notação oficial é "1x/Descanso Longo". Onde estiver "1x/dia", vale o mesmo: o uso volta no descanso longo. "1x/sessão", "1x/semana" e "1x/campanha" também existem e são marcados à mão.</p>
+                        </div>
                         <div class="warning-box">
-                            <p>É necessário uma fonte de luz e alimento para cada Jogador. Quem não se alimenta, não se recupera.</p>
+                            <p>É necessário uma fonte de luz e alimento para cada Jogador. Quem não se alimenta, não se recupera. Sem alimento ou sem fonte de luz, nenhuma condição que exige descanso longo para ser removida é removida; o resto do descanso vale normalmente (o dia termina e os usos por descanso longo voltam).</p>
                         </div>
                         
                         <table class="sistema-table">
@@ -1931,6 +1957,8 @@
                         <div class="rule-box">
                             <p><strong>Custo mínimo:</strong> toda conjuração custa no mínimo 1 Éter, mesmo após reduções de técnicas, cartas ou itens. As exceções são a magia de Nível 1 conjurada em intensidade Normal e sem modulação e as <em>Magias Pactuadas</em> do Teurgo conjuradas em intensidade Contida, que custam 0 Éter.</p>
                             <p>Magias de Nível 1 não possuem a intensidade Contida.</p>
+                            <p><strong>Transbordante:</strong> o Éter utilizado é o custo total que você pagou, com modulações. A perda pode deixar seu Éter negativo.</p>
+                            <p><strong>Magia sustentada:</strong> você só pode sustentar 1 magia por vez. O custo por turno é o que a magia diz; se não disser, é o custo da canalização.</p>
                         </div>
                         
                         <h4>Efeito reduzido/ampliado/máximo</h4>

@@ -26,7 +26,7 @@
         {
           "id": "exaustao",
           "nome": "Exaustão 1-5",
-          "corpo": "<p>Você está exausto, ações rotineiras se tornam cada vez mais difíceis.</p>\n                        <ul>\n                            <li><strong>Exaustão 1:</strong> Você tem desvantagem em testes físicos (Testes que possuem Força, Destreza ou Constituição como atributo base)</li>\n                            <li><strong>Exaustão 2:</strong> Você causa metade do seu dano total em todos seus ataques.</li>\n                            <li><strong>Exaustão 3:</strong> Você tem desvantagem em todos os testes e seu movimento é cortado pela metade.</li>\n                            <li><strong>Exaustão 4:</strong> Atributos reduzidos pela metade e seu movimento é zerado.</li>\n                            <li><strong>Exaustão 5:</strong> Morte.</li>\n                        </ul>\n                        <p>Ao realizar um descanso longo, você diminui 1 de exaustão.</p>"
+          "corpo": "<p>Você está exausto, ações rotineiras se tornam cada vez mais difíceis.</p>\n                        <ul>\n                            <li><strong>Exaustão 1:</strong> Você tem desvantagem em testes físicos (Testes que possuem Força, Destreza ou Constituição como atributo base)</li>\n                            <li><strong>Exaustão 2:</strong> Você causa metade do seu dano total em todos seus ataques.</li>\n                            <li><strong>Exaustão 3:</strong> Você tem desvantagem em todos os testes e seu movimento é cortado pela metade.</li>\n                            <li><strong>Exaustão 4:</strong> Seus atributos (o valor, não o modificador) caem pela metade, arredondando para baixo, e seus máximos são recalculados. Seu movimento é zerado.</li>\n                            <li><strong>Exaustão 5:</strong> Morte.</li>\n                        </ul>\n                        <p>Ao realizar um descanso longo, você diminui 1 de exaustão.</p>"
         },
         {
           "id": "desnutrido",
@@ -51,7 +51,7 @@
         {
           "id": "atordoado",
           "nome": "Atordoado",
-          "corpo": "<ul>\n                            <li>-2 Ações e Evasão até a próxima rodada.</li>\n                        </ul>"
+          "corpo": "<ul>\n                            <li>−2 Ações e −2 de Evasão até o início do seu próximo turno.</li>\n                        </ul>"
         },
         {
           "id": "desorientado",
@@ -86,7 +86,7 @@
         {
           "id": "lento",
           "nome": "Lento X",
-          "corpo": "<p>Você está lento.</p>\n                        <ul>\n                            <li>-3 m Movimento</li>\n                            <li>-1 Ação.</li>\n                        </ul>"
+          "corpo": "<p>Você está lento.</p>\n                        <ul>\n                            <li>−3 m de Movimento e −1 Ação para cada ponto de X.</li>\n                        </ul>"
         },
         {
           "id": "enraizado",

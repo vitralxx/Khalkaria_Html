@@ -43,7 +43,7 @@
    "tipo": "condicao",
    "nome": "Exaustão 1-5",
    "icone": null,
-   "resumo": "Você está exausto, ações rotineiras se tornam cada vez mais difíceis. Exaustão 1: Você tem desvantagem em testes físicos (Testes que possuem Força, Destreza ou Constituição como atributo base) Exaustão 2: Você causa metade do seu dano total em todos seus ataques. Exaustão 3: Você tem desvantagem em todos os testes e seu movimento é cortado pela metade. Exaustão 4: Atributos reduzidos pela metade e seu movimento é zerado. Exaustão 5: Morte. Ao realizar um descanso longo, você diminui 1 de exaustão.",
+   "resumo": "Você está exausto, ações rotineiras se tornam cada vez mais difíceis. Exaustão 1: Você tem desvantagem em testes físicos (Testes que possuem Força, Destreza ou Constituição como atributo base) Exaustão 2: Você causa metade do seu dano total em todos seus ataques. Exaustão 3: Você tem desvantagem em todos os testes e seu movimento é cortado pela metade. Exaustão 4: Seus atributos (o valor, não o modificador) caem pela metade, arredondando para baixo, e seus máximos são recalculados. Seu movimento é zerado. Exaustão 5: Morte. Ao realizar um descanso longo, você diminui 1 de exaustão.",
    "categoria": "criticas"
   },
   {
@@ -75,7 +75,7 @@
    "tipo": "condicao",
    "nome": "Atordoado",
    "icone": null,
-   "resumo": "-2 Ações e Evasão até a próxima rodada.",
+   "resumo": "−2 Ações e −2 de Evasão até o início do seu próximo turno.",
    "categoria": "combate"
   },
   {
@@ -123,7 +123,7 @@
    "tipo": "condicao",
    "nome": "Lento X",
    "icone": null,
-   "resumo": "Você está lento. -3 m Movimento -1 Ação.",
+   "resumo": "Você está lento. −3 m de Movimento e −1 Ação para cada ponto de X.",
    "categoria": "movimento"
   },
   {

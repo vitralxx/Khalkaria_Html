@@ -139,7 +139,7 @@
         }
       ],
       "regras": [
-        "Ao fim do combate, se passar 1 rodada sem ganhar Fluxo ou receber dano, você perde todo seu Fluxo.",
+        "Você perde todo o seu Fluxo ao receber dano, ao passar 1 rodada sem ganhar Fluxo e ao fim do combate.",
         "Você não pode perder fluxo de nenhuma outra forma.<br>Por isso, ao ser exigido fluxo em qualquer técnica este “custo” é apenas o requisito e não é gasto.",
         "Fora de combate, você pode utilizar técnicas que exigem fluxo livremente com 1 minuto de preparo."
       ],
@@ -157,9 +157,18 @@
           },
           "recarga": [
             {
+              "evento": "aoReceberDano",
+              "valor": 0,
+              "fonte": "recurso.regras.0"
+            },
+            {
+              "evento": "rodadaSemGanhar",
+              "valor": 0,
+              "fonte": "recurso.regras.0"
+            },
+            {
               "evento": "fimCombate",
               "valor": 0,
-              "condicao": "se passar 1 rodada sem ganhar Fluxo ou receber dano",
               "fonte": "recurso.regras.0"
             }
           ]

@@ -882,7 +882,8 @@ def _formula_norm(f):
     return re.sub(r'\s+', '', re.sub(r'(?i)nivel', 'nivel', t))
 
 
-EVENTOS_RECARGA = ('fimCombate', 'fimCena', 'descansoLongo', 'descansoCurto')
+EVENTOS_RECARGA = ('fimCombate', 'fimCena', 'descansoLongo', 'descansoCurto',
+                   'aoReceberDano', 'rodadaSemGanhar')
 
 
 def _compara_medidor(c, rid, med, kr):

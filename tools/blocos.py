@@ -280,7 +280,23 @@ RE_RECARGA = [
      lambda m: {'evento': 'fimCombate', 'valor': 0}),
     (re.compile(r'^Ao fim do combate, (se .+?), você perde todo seu \w+\.$'),
      lambda m: {'evento': 'fimCombate', 'valor': 0, 'condicao': m.group(1)}),
+    # Monge (lote L, L23): "Você perde todo o seu Fluxo ao receber dano, ao passar
+    # 1 rodada sem ganhar Fluxo e ao fim do combate." -> um evento por gatilho
+    (re.compile(r'^Você perde todo o seu (\w+) (ao .+)\.$'),
+     lambda m: [_gatilho_zera(g, m.group(1)) for g in re.split(r',\s*|\s+e\s+(?=ao )', m.group(2))]),
 ]
+
+# gatilho de zeragem -> evento (nomes do zeraEm do contrato regras-ficha)
+GATILHOS_ZERA = {'ao receber dano': 'aoReceberDano',
+                 'ao passar 1 rodada sem ganhar {r}': 'rodadaSemGanhar',
+                 'ao fim do combate': 'fimCombate'}
+
+
+def _gatilho_zera(g, recurso):
+    for frase, ev in GATILHOS_ZERA.items():
+        if g == frase.format(r=recurso):
+            return {'evento': ev, 'valor': 0}
+    raise ValueError(f'gatilho de zeragem ilegível: {g!r}')
 
 
 def _textos_recurso(rec):
@@ -320,7 +336,8 @@ def recarga_medidor(rec):
         for r, faz in RE_RECARGA:
             m = r.search(t)
             if m:
-                out.append(faz(m) | {'fonte': cam})
+                ev = faz(m)
+                out += [e | {'fonte': cam} for e in (ev if isinstance(ev, list) else [ev])]
     return out or None
 
 
