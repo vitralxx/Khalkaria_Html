@@ -9,6 +9,8 @@ const path = require('path');
 const vm = require('vm');
 
 const FONTE = fs.readFileSync(path.join(__dirname, '..', '..', 'js', 'nav.js'), 'utf8');
+// o teclado do nav.js passa pelo KhTeclas (js/kh-ui.js), que o shell injeta antes
+const KHUI = fs.readFileSync(path.join(__dirname, '..', '..', 'js', 'kh-ui.js'), 'utf8');
 
 // ---------- DOM mínimo ----------
 function casaSimples(el, sel) {
@@ -114,7 +116,9 @@ function monta(opc) {
     document: doc, window: Object.assign(win, { matchMedia: mq }), localStorage, JSON,
     setTimeout: (fn) => { timers.push(fn); return timers.length; }, clearTimeout() {},
   };
-  vm.runInNewContext(FONTE, ctx);
+  vm.createContext(ctx);
+  if (!opc.semKhUi) vm.runInContext(KHUI, ctx);
+  vm.runInContext(FONTE, ctx);
   return amb;
 }
 const tecla = (a, alvo, key, extra) => despacha(a.doc, alvo || a.doc.body, evento('keydown', Object.assign({ key }, extra)));
@@ -169,6 +173,20 @@ test('Esc só é consumido com dica visível ou menu mobile aberto', () => {
   assert.ok(a.nav.classList.contains('open'));
   assert.ok(tecla(a, null, 'Escape').defaultPrevented);
   assert.ok(!a.nav.classList.contains('open'));
+});
+
+test('sem o kh-ui.js (cache velho): a nav carrega sem lançar, só sem teclado', () => {
+  const a = monta({ semKhUi: true });
+  assert.ok(!tecla(a, null, '\\').defaultPrevented);
+  assert.strictEqual(a.htmlEl.getAttribute('data-nav'), null);
+  clica(a, a.btn);
+  assert.strictEqual(a.htmlEl.getAttribute('data-nav'), 'trilho');
+});
+
+test('"\\" fica no registro único (KhTeclas), na fase de captura', () => {
+  const a = monta();
+  const lista = a.win.KhTeclas.lista();
+  assert.strictEqual(JSON.stringify(lista.map((x) => [x.tecla, x.fase])), JSON.stringify([['\\', 'captura']]));
 });
 
 test('dica não aparece com a nav aberta', () => {

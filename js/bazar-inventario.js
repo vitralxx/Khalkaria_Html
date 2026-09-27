@@ -194,7 +194,7 @@
   var piscaPend = '', focoPend = null, renderT = null;
   var ultimoEstado = { bugigangas: null, equipamentos: null }, ultimaCond = null, condT = null;
   var naoReconhecidos = null; // nomes da Mochila antiga que o "Levar" não achou
-  var toastT = null, toastUid = '';
+  var toastUid = '';
   // movimento reduzido: a opção do site (html[data-movimento], js/nav.js), lida
   // na hora; sem o atributo, o sistema
   function reduzMov() {
@@ -647,32 +647,25 @@
     el.exp.classList.toggle('velha', t.velha);
     trocaHTML(el.exp, '<span>' + esc(t.txt) + '</span> · <button type="button" class="bz-inv-exportar" id="bz-inv-exportar">Exportar ficha</button>');
   }
-  function toast(msg, desfazer, uid) {
-    clearTimeout(toastT);
-    toastUid = uid || '';
-    el.toast.innerHTML = '<span>' + esc(msg) + '</span>' +
-      (desfazer ? ' · <button type="button" class="bz-toast-btn" data-toast-desfazer title="Desfazer (Ctrl+Z)" aria-keyshortcuts="Control+Z">Desfazer</button>' : '');
-    el.toast.classList.add('on');
-    toastT = setTimeout(fechaToast, TOAST_MS);
-  }
-  function fechaToast() {
-    clearTimeout(toastT);
-    el.toast.classList.remove('on');
-    if (el.toast.contains(document.activeElement)) {
+  // toast com Desfazer: KhToast (js/kh-ui.js) sobre o #bz-toast. Ao fechar com
+  // o foco no botão Desfazer (que some), o foco volta à linha ativa ou ao campo.
+  var toastUi = window.KhToast && window.KhToast.criar(el.toast, {
+    ms: TOAST_MS, classeBotao: 'bz-toast-btn',
+    aoPerderFoco: function () {
       var li = linhaDe(ativo.bugigangas) || linhaDe(ativo.equipamentos);
       if (li) li.focus({ preventScroll: true }); else el.cb.focus({ preventScroll: true });
     }
-    el.toast.innerHTML = '';
+  });
+  function toast(msg, desfazer, uid) {
+    toastUid = uid || '';
+    if (toastUi) toastUi.mostrar(msg, { desfazer: !!desfazer });
   }
   function desfazer(daTecla) {
     var k = kf();
     if (!k || !k.desfazer()) { if (daTecla) BZ.anunciar('Nada a desfazer'); return false; }
     if (toastUid && aside.contains(document.activeElement)) focoPend = { uid: toastUid, acao: '' };
     conflito = null;
-    clearTimeout(toastT);
-    el.toast.innerHTML = '<span>Desfeito</span>';
-    el.toast.classList.add('on');
-    toastT = setTimeout(fechaToast, 2000);
+    if (toastUi) toastUi.mostrar('Desfeito', { ms: 2000 });
     return true;
   }
 
@@ -1096,14 +1089,14 @@
     if (vis && nome && BZ.cartao) BZ.cartao.agendar(nome, { modo: 'teclado', desc: t, foco: t });
   });
 
-  // Ctrl+Z desfaz (foco fora de campo de texto)
-  document.addEventListener('keydown', function (e) {
-    if (e.defaultPrevented || !(e.ctrlKey || e.metaKey) || e.shiftKey || e.altKey) return;
-    if ((e.key || '').toLowerCase() !== 'z' || U.emCampo(e.target)) return;
-    if (e.target && e.target.closest && e.target.closest('#kf-drawer')) return;
-    e.preventDefault();
-    desfazer(true);
-  });
+  // Ctrl+Z desfaz (foco fora de campo: U.emCampo; fora do drawer da Ficha)
+  if (window.KhTeclas) {
+    window.KhTeclas.atalho('Ctrl+z', function () { desfazer(true); }, {
+      emCampo: function (e) { return U.emCampo(e.target); },
+      quando: function (e) { return !(e.target && e.target.closest && e.target.closest('#kf-drawer')); },
+      descricao: 'Desfazer no inventário'
+    });
+  }
 
   // Esc em camadas: pop-up (10) > combobox (20) > painel de receita (30)
   BZ.camadaEsc(20, function () {

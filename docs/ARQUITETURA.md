@@ -19,7 +19,7 @@ notion_cache/<slug>.new.md           snapshot bruto
 data/*.json                           conteúdo mecânico estruturado
    │  tools/build.py
    │    fase 1: geradores   data + templates -> pages/*.html
-   │    fase 2: shell       navegação única, boot da nav, nav.js, tokens.css, webp,
+   │    fase 2: shell       navegação única, boot da nav, nav.js, kh-ui.js, tokens.css, webp,
    │                        âncoras estáveis, ?v= nos assets
    ▼
 pages/*.html                          ARTEFATO — nunca editar à mão
@@ -132,11 +132,17 @@ css/bazar.css                  só a página do Bazar (camada paginas; --bz-* s�
 css/ficha.css                  F2a: drawer, botão lateral, toast e "+ ficha" dos cards (o
                                CSS que o ficha.js injetava); SEM camada, o shell o põe
                                em todas as páginas logo antes de </head>
+js/kh-ui.js                    F2b: biblioteca comum (fora do bundle da ficha; o shell a
+                               põe SÍNCRONA antes do 1º <script src> local de toda página):
+                               KhTeclas (registro único de atalhos e camadas do Esc, um
+                               ouvinte por fase), KhPrever (motor do pop-up [data-prever=
+                               "tipo:id"], resolvedor por tipo; inerte até montar),
+                               KhToast (toast com Desfazer). Teste: kh-ui.test.js
 js/main.js                     splash, smooth scroll, fade-in
                                + auto-injeta ficha.js em todas as páginas
-js/nav.js                      navegação lateral: trilho de 64px, atalho \, dica,
-                               grupos recolhíveis, menu mobile (injetado pelo shell
-                               em TODAS as páginas, inclusive o Bazar)
+js/nav.js                      navegação lateral: trilho de 64px, atalho \ (KhTeclas,
+                               fase de captura), dica, grupos recolhíveis, menu mobile
+                               (injetado pelo shell em TODAS as páginas, inclusive o Bazar)
 js/utils.js                    sidebar direita (índice, recentes, busca)
 js/ficha/                      FONTE da Ficha Interativa (F2a), um módulo por arquivo,
                                cada um uma IIFE (window.KhX; module.exports no node):
@@ -150,7 +156,8 @@ js/ficha.js                    ARTEFATO (tools/ficha_js.py): concatenação de j
                                único arquivo que o site carrega (main.js injeta; o
                                Bazar carrega direto)
 js/bazar.js                    núcleo do Bazar: catálogo, filtros, Bancada
-js/bazar-cartao.js             pop-up do card (BZ.cartao)       ┐ módulos do Bazar v3,
+js/bazar-cartao.js             pop-up do card (BZ.cartao: conteúdo ┐ módulos do Bazar v3,
+                               e resolvedores do KhPrever)      │
 js/bazar-receita.js            painel de receita (BZ.receita)   │ registrados em window.BZ e
 js/bazar-inventario.js         inventário em 2 colunas          │ carregados depois do bazar.js,
                                (BZ.inventario)                  ┘ todos com ?v={{VER}}
@@ -220,8 +227,9 @@ as 24 páginas, reescreve os `href` (que têm de ser o 1º atributo do `<a>`) e 
 o link atual com `.active` + `aria-current="page"`. Também injeta
 `partials/head-boot.html` antes de `</head>`, `js/nav.js` antes de `</body>` e o
 `<link data-tokens>` do `css/tokens.css` logo antes do `style.css` e o
-`<link data-ficha-css>` do `css/ficha.css` logo antes de `</head>` (tudo antes do
-`?v=`, que eles também ganham). O `nav.js` é separado do `main.js`
+`<link data-ficha-css>` do `css/ficha.css` logo antes de `</head>` e o
+`<script data-kh-ui>` do `js/kh-ui.js` logo antes do primeiro `<script src>` local
+(tudo antes do `?v=`, que eles também ganham). O `nav.js` é separado do `main.js`
 porque o Bazar não carrega `main.js` (que injetaria o `ficha.js` pela segunda vez).
 
 - **Largura:** a única variável que o layout lê é `--nav-w` (`style.css`):
@@ -342,7 +350,7 @@ python tools/sync_notion.py cobertura  # trechos do Notion que o site não publi
 `outra.html#x`: o id tem de existir na página de destino), IDs duplicados,
 links/assets locais existentes, round-trip JSON→HTML, consistência das
 24 sidebars (página sem `<nav class="sidebar">` é FALHA; e em cada página 1 boot,
-1 `nav.js`, 1 `aria-current`, todo glifo `nv-*` com `<symbol>` e todo `.nav-link`
+1 `nav.js`, 1 `kh-ui.js` antes de todo outro script local, 1 `aria-current`, todo glifo `nv-*` com `<symbol>` e todo `.nav-link`
 com `.nav-rot`), as 5 frases de peso
 do Sistema que o motor de carga codifica (guarda-fio contra o Notion mudar a
 regra por baixo), `inv` em todo item do `data/bazar.json` e os 3 blocos

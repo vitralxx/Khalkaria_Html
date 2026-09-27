@@ -45,8 +45,12 @@ reaplicar não muda o resultado.
      É o CSS que o js/ficha.js injetava no fim do <head> (F2a): sem camada e
      no mesmo lugar da ordem, para o visual não mudar.
 
+  10. KH-UI    — <script src="…js/kh-ui.js" data-kh-ui> logo antes do PRIMEIRO
+     <script src> local (js/…) de cada página, síncrono: KhTeclas, KhPrever e
+     KhToast (F2b) existem antes de ficha.js, bazar*.js, main.js e nav.js.
+
   A nav marcada: o link da página atual ganha .active E aria-current="page".
-  Os passos 6, 7, 8 e 9 rodam antes do 4, para receberem ?v= também.
+  Os passos 6 a 10 rodam antes do 4, para receberem ?v= também.
 """
 import hashlib, os, re, sys, unicodedata
 
@@ -256,6 +260,22 @@ def aplica_ficha_css(html, pagina_rel):
                         f'    <link rel="stylesheet" href="{prefixo}css/ficha.css" data-ficha-css>\n</head>', 1)
 
 
+# 10. KH-UI — js/kh-ui.js antes do primeiro <script src> local. Toda página tem
+#     pelo menos o nav.js (passo 7), então sempre há onde pôr.
+RE_KHUI = re.compile(r'[ \t]*<script src="[^"]*js/kh-ui\.js[^"]*" data-kh-ui></script>\r?\n')
+RE_SCRIPT_LOCAL = re.compile(r'([ \t]*)<script src="(?:\.\./)*js/[^"]+"')
+
+
+def aplica_khui(html, pagina_rel):
+    prefixo = '../' * pagina_rel.count('/')
+    html = RE_KHUI.sub('', html)
+    m = RE_SCRIPT_LOCAL.search(html)
+    if not m:
+        return html
+    return (html[:m.start()] + f'{m.group(1)}<script src="{prefixo}js/kh-ui.js" data-kh-ui></script>\n'
+            + html[m.start():])
+
+
 def paginas(raiz):
     fs = []
     for dirpath, _, nomes in os.walk(os.path.join(raiz, 'pages')):
@@ -281,6 +301,7 @@ def aplicar(raiz=RAIZ, verboso=True):
         # boot, nav.js, tokens e ficha.css ANTES da versão, para ganharem ?v= também
         depois = aplica_tokens(aplica_navjs(aplica_boot(depois, boot), rel))
         depois = aplica_ficha_css(depois, rel)
+        depois = aplica_khui(depois, rel)
         depois = aplica_totais(aplica_versao(depois, versao), total)
         n_ver += len(RE_ASSET.findall(depois))
         if depois != antes:

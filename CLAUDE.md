@@ -68,7 +68,9 @@ o navegador serve JS antigo depois do deploy). O id de título pertence ao build
 é sempre recalculado — não escrever id em h2/h3 à mão, nem `?v=` em asset à mão.
 O shell também injeta `partials/head-boot.html` (estado da nav antes do paint) e
 `js/nav.js` (trilho de 64px, atalho `\`, grupos, menu mobile); a largura da nav no
-layout é só `--nav-w`.
+layout é só `--nav-w`. E o `js/kh-ui.js` (F2b: `KhTeclas`, `KhPrever`, `KhToast`),
+síncrono, antes do primeiro script local: atalho de teclado novo vai no `KhTeclas`,
+não num `keydown` solto.
 
 **O Bazar entrou em escopo em 2026-09-24.** `tools/gerar_bazar.py`, `css/bazar.css`,
 `js/bazar.js` e `templates/bazar.template.html` são do agente de HTML. O CSV

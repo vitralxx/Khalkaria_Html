@@ -1,7 +1,8 @@
 // Khalkaria — navegação lateral.
 // Injetado pelo build (tools/shell.py) antes de </body> em TODAS as páginas,
-// inclusive o Bazar (que não carrega main.js). Autocontido: não depende de
-// main.js nem de utils.js. O markup é partials/sidebar.html.
+// inclusive o Bazar (que não carrega main.js). Não depende de main.js nem de
+// utils.js; o teclado passa pelo KhTeclas do js/kh-ui.js (que o shell injeta
+// antes). O markup é partials/sidebar.html.
 //
 // Estado em localStorage 'khalkaria_nav' = {v:1, trilho:bool, fechados:[…]},
 // lido e gravado sempre em try/catch: sem storage a nav abre no padrão e
@@ -224,40 +225,32 @@
   else if (mqDesk.addListener) mqDesk.addListener(aoMudarDesk);
 
   // ---------- Teclado ----------
+  // Pelo registro único do site (KhTeclas, js/kh-ui.js), na fase de CAPTURA:
+  // roda antes do Bazar, que sai quando e.defaultPrevented.
   // "\" alterna o trilho (tecla própria no ABNT2). Não colide com os atalhos
-  // do Bazar (/ i Shift+I [ ] Esc Ctrl+Z) nem do navegador. Captura: roda antes
-  // do Bazar, que sai quando e.defaultPrevented.
+  // do Bazar (/ i Shift+I [ ] Esc Ctrl+Z) nem do navegador. Ignorado em campo
+  // de texto, repetido, no drawer da Ficha e no mobile.
   // Esc só é consumido se houver o que fechar aqui (dica visível ou menu
   // mobile aberto); do contrário passa intacto para o Bazar e a Ficha.
-  function emCampo(t) {
-    if (!t || t.nodeType !== 1) return false;
-    if (t.isContentEditable) return true;
-    var tag = t.tagName;
-    if (tag === 'TEXTAREA' || tag === 'SELECT') return true;
-    if (tag !== 'INPUT') return false;
-    var ty = (t.getAttribute('type') || 'text').toLowerCase();
-    return ['button', 'checkbox', 'radio', 'submit', 'reset', 'range', 'color', 'file', 'image'].indexOf(ty) < 0;
-  }
-  document.addEventListener('keydown', function (e) {
-    if (e.defaultPrevented) return;
-    if (e.key === 'Escape') {
-      if (!dica.hidden) {
-        escondeDica(true);
-        e.preventDefault();
-      } else if (nav.classList.contains('open')) {
+  var T = window.KhTeclas;
+  if (T) {
+    T.camadaEsc(0, function () {
+      if (!dica.hidden) { escondeDica(true); return true; }
+      if (nav.classList.contains('open')) {
         fechaMobile();
         if (toggle) toggle.focus();
-        e.preventDefault();
+        return true;
       }
-      return;
-    }
-    if (e.key !== '\\' || e.ctrlKey || e.metaKey || e.altKey || e.repeat) return;
-    if (emCampo(e.target) || emCampo(document.activeElement)) return;
-    if (e.target && e.target.closest && e.target.closest('#kf-drawer')) return;
-    if (!mqDesk.matches) return;
-    e.preventDefault();
-    alterna();
-  }, true);
+      return false;
+    }, { fase: 'captura' });
+    T.atalho('\\', function () { alterna(); }, {
+      fase: 'captura', repetir: false, descricao: 'Recolher/expandir a navegação',
+      quando: function (e) {
+        if (e.target && e.target.closest && e.target.closest('#kf-drawer')) return false;
+        return mqDesk.matches;
+      }
+    });
+  }
 
   // ---------- Página atual à vista ----------
   var ativo = nav.querySelector('.nav-link.active');

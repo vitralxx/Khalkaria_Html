@@ -868,13 +868,27 @@
   }
 
   // ------------------------------------------------------------ teclado global
-  var camadasEsc = [];      // {p, fn}: fn(e) devolve true se consumiu o Esc
-  var atalhos = {};         // tecla -> fn(e); devolver false deixa o evento seguir
-  function camadaEsc(p, fn) {
-    camadasEsc.push({ p: p, fn: fn });
-    camadasEsc.sort(function (a, b) { return a.p - b.p; });
+  // Registro único do site (KhTeclas, js/kh-ui.js), na fase de bolha.
+  // Esc em camadas (menor primeiro); o drawer da Ficha e a busca com texto
+  // cuidam do próprio Esc, então nenhuma camada do Bazar o consome ali.
+  // Atalhos de uma tecla: sem Ctrl/Cmd/Alt e fora de campo (U.emCampo: todo
+  // input conta, inclusive checkbox); fn devolve false para deixar o evento seguir.
+  // Como antes da extração, o teclado do Bazar só vale depois de ligar() (o
+  // catálogo carregou): camadas e atalhos registrados antes ficam inertes até lá.
+  var T = window.KhTeclas;
+  var teclasLigadas = false;
+  function escLivre(e) {
+    var alvo = e.target;
+    if (alvo && alvo.closest && alvo.closest('#kf-drawer')) return true;
+    return !!(alvo && alvo.id === 'bz-search' && alvo.value);
   }
-  function atalho(tecla, fn) { atalhos[tecla] = fn; }
+  function camadaEsc(p, fn) {
+    if (T) T.camadaEsc(p, function (e) { return teclasLigadas && !escLivre(e) && fn(e); });
+  }
+  function foraDeCampo(e) { return emCampo(e.target); }
+  function atalho(tecla, fn) {
+    if (T) T.atalho(tecla, fn, { emCampo: foraDeCampo, quando: function () { return teclasLigadas; } });
+  }
 
   // ------------------------------------------------------------ eventos
   function alterna(lista, v) {
@@ -887,6 +901,7 @@
 
   function ligar() {
     var t;
+    teclasLigadas = true;
     $('#bz-search').addEventListener('input', function () {
       clearTimeout(t);
       var v = this.value;
@@ -1038,24 +1053,7 @@
       if (c && e.target === c) { e.preventDefault(); abreItem(c.dataset.id, { via: 'catalogo', teclado: true }); }
     });
 
-    document.addEventListener('keydown', function (e) {
-      if (e.defaultPrevented) return;
-      var alvo = e.target;
-      if (e.key === 'Escape') {
-        // o drawer da Ficha e a busca com texto cuidam do próprio Esc
-        if (alvo && alvo.closest && alvo.closest('#kf-drawer')) return;
-        if (alvo && alvo.id === 'bz-search' && alvo.value) return;
-        for (var i = 0; i < camadasEsc.length; i++) {
-          if (camadasEsc[i].fn(e)) { e.preventDefault(); return; }
-        }
-        return;
-      }
-      if (e.ctrlKey || e.metaKey || e.altKey) return;
-      if (emCampo(alvo)) return;
-      if (e.key === '/') { e.preventDefault(); $('#bz-search').focus(); return; }
-      var f = atalhos[e.key];
-      if (f && f(e) !== false) e.preventDefault();
-    });
+    atalho('/', function () { $('#bz-search').focus(); });
 
     // a barra fixa pode ganhar a 2ª linha (filtros ativos): o thead da Lista gruda logo abaixo dela
     if (window.ResizeObserver) {
