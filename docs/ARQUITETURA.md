@@ -19,7 +19,8 @@ notion_cache/<slug>.new.md           snapshot bruto
 data/*.json                           conteúdo mecânico estruturado
    │  tools/build.py
    │    fase 1: geradores   data + templates -> pages/*.html
-   │    fase 2: shell       navegação única, boot da nav, nav.js, kh-ui.js, tokens.css, webp,
+   │    fase 2: shell       navegação única, boot da nav, nav.js, kh-ui.js, tokens.css,
+   │                        componentes.css, webp,
    │                        âncoras estáveis, ?v= nos assets
    ▼
 pages/*.html                          ARTEFATO — nunca editar à mão
@@ -125,6 +126,12 @@ css/tokens.css                 tokens do site (camada base; o shell o põe antes
                                --ramo-<c>-<r>, --rar-*, promovidos do Bazar
 css/style.css                  design system: declara as @layer (§5), paleta :root, reset,
                                layout, globais
+css/componentes.css            F2b: componentes comuns (camada componentes; o shell o põe
+                               logo depois do style.css em todas as páginas): chip por
+                               família, botão, stepper, conta com dica de fórmula, régua de
+                               carga, alvo de soltura, toast, popover. Classe genérica .kh-*
+                               e, no mesmo seletor, a do Bazar (que consome daqui sem
+                               trocar classe no DOM); stepper e alvo só em .kh-*
 css/classes.css                componentes das 7 páginas de classe (camada paginas)
 css/racas.css                  componentes das 7 páginas de raça (camada paginas)
 css/bazar.css                  só a página do Bazar (camada paginas; --bz-* são aliases
@@ -227,7 +234,8 @@ as 24 páginas, reescreve os `href` (que têm de ser o 1º atributo do `<a>`) e 
 o link atual com `.active` + `aria-current="page"`. Também injeta
 `partials/head-boot.html` antes de `</head>`, `js/nav.js` antes de `</body>` e o
 `<link data-tokens>` do `css/tokens.css` logo antes do `style.css` e o
-`<link data-ficha-css>` do `css/ficha.css` logo antes de `</head>` e o
+`<link data-ficha-css>` do `css/ficha.css` logo antes de `</head>`, o
+`<link data-componentes>` do `css/componentes.css` logo depois do `style.css` e o
 `<script data-kh-ui>` do `js/kh-ui.js` logo antes do primeiro `<script src>` local
 (tudo antes do `?v=`, que eles também ganham). O `nav.js` é separado do `main.js`
 porque o Bazar não carrega `main.js` (que injetaria o `ficha.js` pela segunda vez).
@@ -274,6 +282,11 @@ Ordem de carga e responsabilidade de cada camada:
    porque carrega primeiro.
 1. `css/style.css` — design system. Paleta `:root`, layout da aplicação,
    componentes usados em todo o site. É o que se edita para mudar a cara do site.
+1b. `css/componentes.css` (F2b) — componentes comuns da ficha nova e do Bazar,
+   camada `componentes`, depois das regras da mesma camada do `style.css`. Regra
+   que desce de `paginas` para cá só entra se não trocar a vencedora de nenhuma
+   propriedade em nenhum estado (a camada vence a especificidade): por isso o
+   `.bz-stepper` e o `.bz-alvo` ficaram no `bazar.css` (ver o topo do arquivo).
 2. `css/classes.css` / `css/racas.css` — componentes que existem só nessas
    famílias de página (`.class-hero`, `.raca-header`…), iguais em todas elas.
 3. `<style>` inline da página — **apenas o que é dela**. Nas classes, os tokens
@@ -290,7 +303,7 @@ faz essa extração respeitando o cascade.
 | `reset` | `box-sizing`/margem zero, barra de rolagem, movimento reduzido do site (`*{…!important}`) |
 | `base` | tokens (`css/tokens.css`) e paleta `:root`, `html`/`body`, tipografia e tabela por elemento |
 | `layout` | a moldura: `.app-container`, `.main-content`, `.right-bar`, botão do menu mobile |
-| `componentes` | a nav (com o trilho), cards, badges, splash, tabela compacta, blocos de classe/raça genéricos e do Sistema, itens da right-bar, utilitários, `a:hover` |
+| `componentes` | `css/componentes.css` (F2b); a nav (com o trilho), cards, badges, splash, tabela compacta, blocos de classe/raça genéricos e do Sistema, itens da right-bar, utilitários, `a:hover` |
 | `paginas` | `classes.css`, `racas.css`, `bazar.css`, a landing do index |
 | `estados` | sobreposições de estado (hoje: movimento reduzido da nav) |
 
@@ -350,7 +363,7 @@ python tools/sync_notion.py cobertura  # trechos do Notion que o site não publi
 `outra.html#x`: o id tem de existir na página de destino), IDs duplicados,
 links/assets locais existentes, round-trip JSON→HTML, consistência das
 24 sidebars (página sem `<nav class="sidebar">` é FALHA; e em cada página 1 boot,
-1 `nav.js`, 1 `kh-ui.js` antes de todo outro script local, 1 `aria-current`, todo glifo `nv-*` com `<symbol>` e todo `.nav-link`
+1 `nav.js`, 1 `kh-ui.js` antes de todo outro script local, 1 `componentes.css`, 1 `aria-current`, todo glifo `nv-*` com `<symbol>` e todo `.nav-link`
 com `.nav-rot`), as 5 frases de peso
 do Sistema que o motor de carga codifica (guarda-fio contra o Notion mudar a
 regra por baixo), `inv` em todo item do `data/bazar.json` e os 3 blocos
@@ -496,6 +509,16 @@ refaz a captura, porque o carimbo só olha `css/**`. Na F2a o `antes/` foi
 recapturado do commit anterior (`70b4784`, ficha.js ainda injetando o CSS) num
 `git worktree` servido por `servidor.py --porta 8897`, e o par fechou com só as
 116 trocas de número de z-index do `revisado.json` (ordem igual).
+Na F2b (`css/componentes.css`) o `antes/` ficou o mesmo: o `depois/` novo deu 0
+diferença contra o `depois/` da F2a nas 54 capturas; os estados que o roteiro não
+pega (pop-up aberto nas 4 setas e saindo, toast com Desfazer, régua em
+leve/extremo/piora/entalhes, alvo de soltura, chips de card, Lista e receita)
+foram capturados à mão no commit anterior (worktree na 8897) e no novo: 0
+diferença; na cascata declarada (hover/foco/larguras/movimento reduzido) a única
+troca é o texto `var(--bz-x)` -> `var(--x)` (o token de que o `--bz-x` é alias,
+mesmo valor): nenhum valor declarado mudou. O `meta.animacoes` de 4 capturas do Bazar mudou (17 -> 12…): é o
+tempo do navegador com o painel oculto, e o commit anterior dá os mesmos números
+nas mesmas condições.
 
 ```bash
 python tools/estilo/servidor.py        # serve o repo em 127.0.0.1:8898 (sem cache) e grava

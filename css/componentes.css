@@ -1,0 +1,258 @@
+/* ============================
+   KHALKARIA RPG - COMPONENTES
+   ============================ */
+
+/* Componentes comuns do site (F2b, plano §3.3), extraídos do bazar.css para a
+   ficha nova usar. O shell (tools/shell.py) injeta este arquivo em todas as
+   páginas logo depois do style.css, com ?v=; tudo na camada `componentes`
+   (a ordem das camadas vem do tokens.css), depois das regras da mesma camada
+   do style.css e abaixo do CSS de página.
+
+   Cada componente tem a classe genérica (.kh-*) e, no mesmo seletor, a classe
+   que o Bazar já usa: o Bazar consome daqui sem trocar classe no DOM (trocar
+   mudaria o caminho de cada elemento no portão [estilo]). Os --bz-* do Bazar
+   viram os tokens de que eles são alias (mesmo valor computado).
+
+   Só entrou o que muda de camada (paginas -> componentes) sem trocar a
+   vencedora de nenhuma propriedade, em nenhum estado. Ficaram no bazar.css,
+   com a versão genérica aqui ao lado:
+     - stepper: o .bz-slot-step (compacto, bazar.css) perde para o .bz-stepper
+       por ordem hoje; em camadas diferentes a vencedora inverteria;
+     - alvo de soltura: .bz-inv-cab {background} e .bz-trilho:focus-visible
+       venceriam o .bz-alvo pela camada.
+   A F7 passa o DOM do Bazar para as classes .kh-* e apaga o seletor duplo. */
+
+@layer componentes {
+
+/* ---------------------------------------------------------- chip por família
+   UMA fileira, uma forma por família (lei de cor: tokens --chip-*):
+   .kh-chip-cat  selo neutro de canto vivo, com glifo (categoria)
+   .kh-chip-arq  aço, fio de 3px à esquerda (arquétipo)
+   .kh-chip-of   pílula de cobre, glifo e o número num selo mono (ofício + CD) */
+.kh-chips, .item-chips { display: flex; flex-wrap: wrap; align-items: center; gap: .3em .35em; min-width: 0; }
+.kh-chip, .tag-cat, .tag-arq, .tag-of {
+    display: inline-flex; align-items: center; gap: .35em;
+    min-width: 0;
+    font-family: var(--font-heading); font-size: max(.66em, 11px); font-weight: 600;
+    letter-spacing: .07em; text-transform: uppercase; line-height: 1.2;
+}
+.kh-chip-cat svg, .kh-chip-of svg, .tag-cat svg, .tag-of svg { width: 1.25em; height: 1.25em; flex: 0 0 auto; }
+.kh-chip-cat, .tag-cat {
+    padding: .28em .55em;
+    color: var(--chip-cat); background: var(--chip-cat-bg);
+    border: 1px solid var(--chip-cat-bd); border-radius: 2px;
+}
+.kh-chip-cat:has(svg), .tag-cat:has(svg) { padding-left: .4em; }
+.kh-chip-cat svg, .tag-cat svg { color: var(--text-muted-forte); }
+.kh-chip-arq, .tag-arq {
+    padding: .28em .55em .28em .5em;
+    color: var(--chip-arq); background: var(--chip-arq-bg);
+    border: 1px solid var(--chip-arq-bd); border-left: 3px solid var(--chip-arq-fio);
+    border-radius: 0 3px 3px 0;
+}
+.kh-chip-of, .tag-of {
+    padding: 0 0 0 .45em;
+    overflow: hidden;
+    color: var(--chip-of); background: var(--chip-of-bg);
+    border: 1px solid var(--chip-of-bd); border-radius: 999px;
+}
+.kh-chip-of > svg, .tag-of > svg { margin: .28em 0; }
+.kh-chip-n, .tag-of .item-cd {
+    align-self: stretch;
+    display: inline-flex; align-items: center;
+    margin-left: .15em;
+    padding: .28em .6em .28em .5em;
+    font-family: var(--mono); font-weight: 400; letter-spacing: 0;
+    color: var(--chip-of-cd); background: var(--chip-of-cd-bg);
+    border-left: 1px solid var(--chip-of-bd);
+}
+.kh-chip-of:not(:has(.kh-chip-n)), .tag-of:not(:has(.item-cd)) { padding-right: .6em; }
+
+/* ---------------------------------------------------------- botão (pequeno, de ação)
+   .forte = a ação principal da faixa */
+.kh-btn, .bz-faixa-btn, .bz-inv-exportar, .bz-toast-btn, .bz-slot-trocar {
+    font-family: var(--font-heading); font-size: .7rem; letter-spacing: .06em;
+    padding: .2rem .5rem; border-radius: 5px; cursor: pointer;
+    background: var(--bg-tertiary); color: var(--gold); border: 1px solid var(--amber-dim);
+}
+.kh-btn.forte, .bz-faixa-btn.forte { background: var(--amber); color: #120d06; border-color: var(--amber); }
+.kh-btn:focus-visible,
+.bz-faixa-btn:focus-visible, .bz-inv-exportar:focus-visible, .bz-toast-btn:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
+
+/* ---------------------------------------------------------- stepper (−  n  +)
+   Só a versão genérica: o Bazar segue com o .bz-stepper do bazar.css (ver topo). */
+.kh-stepper {
+    display: inline-flex; align-items: stretch;
+    height: 32px;
+    border: 1px solid var(--border-color);
+    border-radius: 7px;
+    overflow: hidden;
+    background: var(--bg-primary);
+}
+.kh-stepper button {
+    width: 28px;
+    background: var(--bg-tertiary);
+    border: 0;
+    color: var(--text-secondary);
+    font-size: 1rem;
+    cursor: pointer;
+}
+.kh-stepper button:hover { color: var(--gold-light); background: #22222e; }
+.kh-stepper input {
+    width: 4.4ch;
+    border: 0;
+    border-left: 1px solid var(--border-color);
+    border-right: 1px solid var(--border-color);
+    background: transparent;
+    color: var(--gold-light);
+    text-align: center;
+    font-family: var(--mono);
+    font-variant-numeric: tabular-nums;
+    font-size: .92rem;
+}
+
+/* ---------------------------------------------------------- conta com tooltip de fórmula
+   O número (.kh-conta, focável) mostra a fórmula (.kh-conta-dica) no hover E no
+   foco por teclado; a dica nunca intercepta o ponteiro. Presa ao contêiner
+   posicionado mais próximo, na largura dele. No Bazar: a capacidade da coluna.
+   [data-ajustado]: o valor tem ajuste manual (M2); marca provisória, o visual
+   fecha com o Pedro na F4. */
+.kh-conta { cursor: help; }
+.kh-conta:focus-visible, .bz-col-num:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
+.kh-conta[data-ajustado] { text-decoration: underline dotted var(--amber); text-underline-offset: 3px; }
+.kh-conta-dica, .bz-col-conta {
+    display: none; position: absolute; left: .85rem; right: .85rem; top: calc(100% - 2px); z-index: 5;
+    padding: .3rem .55rem; border-radius: 5px; pointer-events: none;
+    background: #0c0b10; border: 1px solid var(--amber-dim); box-shadow: 0 4px 12px #0009;
+    font-family: var(--mono); font-size: .8rem; line-height: 1.35; color: var(--text-primary);
+    white-space: normal;
+}
+.kh-conta:hover .kh-conta-dica, .kh-conta:focus-visible .kh-conta-dica,
+.bz-col-num:hover .bz-col-conta, .bz-col-num:focus-visible .bz-col-conta { display: block; }
+
+/* ---------------------------------------------------------- régua de carga
+   0 a 2×max: dourado até o max (-ok), âmbar hachurado até 2×max (-exc);
+   passou de 2×max, [data-estado="extremo"]: listrado em brasa e o "+N" (-mais).
+   Entalhes por cima: .segmentada (um por unidade, --bz-n) ou .ticada (a cada 5,
+   --bz-t). -marco no max. Ao PIORAR de faixa, .bz-piora: um brilho de 700ms. */
+.kh-regua-linha, .bz-regua-linha { flex: 0 0 100%; display: flex; align-items: center; gap: 3px; }
+.kh-regua, .bz-regua {
+    position: relative; flex: 1 1 auto; min-width: 0; height: 8px; border-radius: 2px;
+    background: #0b0a0f; box-shadow: inset 0 0 0 1px #ffffff0d;
+}
+.kh-regua-ok, .kh-regua-exc, .bz-regua-ok, .bz-regua-exc { position: absolute; top: 0; bottom: 0; left: 0; border-radius: 2px; transition: width .2s ease-out; }
+.kh-regua-ok, .bz-regua-ok { background: linear-gradient(90deg, var(--gold-dark), var(--gold)); }
+.kh-regua-exc, .bz-regua-exc { background: repeating-linear-gradient(45deg, var(--leve) 0 3px, #8a5518 3px 6px); }
+.kh-regua[data-estado="extremo"] .kh-regua-exc,
+.bz-regua[data-estado="extremo"] .bz-regua-exc { background: repeating-linear-gradient(45deg, var(--extremo-vivo) 0 3px, #5a1e26 3px 6px); }
+.kh-regua-entalhes, .bz-regua-entalhes { position: absolute; inset: 0; border-radius: 2px; pointer-events: none; }
+.kh-regua.segmentada .kh-regua-entalhes, .bz-regua.segmentada .bz-regua-entalhes {
+    background: repeating-linear-gradient(90deg, transparent 0 calc(100% / var(--bz-n) - 1px), #000a calc(100% / var(--bz-n) - 1px) calc(100% / var(--bz-n)));
+}
+.kh-regua.ticada .kh-regua-entalhes, .bz-regua.ticada .bz-regua-entalhes {
+    background: repeating-linear-gradient(90deg, transparent 0 calc(100% / var(--bz-t) - 1px), #000c calc(100% / var(--bz-t) - 1px) calc(100% / var(--bz-t)));
+}
+.kh-regua-marco, .bz-regua-marco { position: absolute; top: -2px; bottom: -2px; left: calc(50% - 1px); width: 2px; background: var(--gold-light); }
+.kh-regua::after, .bz-regua::after {
+    content: ""; position: absolute; top: -2px; bottom: -2px; right: 0;
+    border-right: 1px dashed var(--text-muted);
+}
+.kh-regua-mais, .bz-regua-mais {
+    position: absolute; right: 2px; top: -15px;
+    font-family: var(--mono); font-variant-numeric: tabular-nums; font-size: .68rem; color: #ff6b5a;
+}
+.kh-regua::before, .bz-regua::before {
+    content: ""; position: absolute; inset: -2px; border-radius: 3px; pointer-events: none;
+    box-shadow: 0 0 10px 1px var(--bz-brilho, var(--leve));
+    opacity: 0;
+}
+.kh-regua[data-estado="extremo"], .bz-regua[data-estado="extremo"] { --bz-brilho: var(--extremo-vivo); }
+.kh-regua.bz-piora::before, .bz-regua.bz-piora::before { animation: bz-piora .7s ease-out; }
+@keyframes bz-piora { 30% { opacity: 1; } }
+
+/* ---------------------------------------------------------- alvo de soltura
+   Só a versão genérica: o Bazar segue com o .bz-alvo do bazar.css (ver topo). */
+.kh-alvo { outline: 1px dashed var(--amber); outline-offset: -3px; background: #e08b2c0f; }
+.kh-alvo-aviso { display: none; margin: 0; padding: .3rem .85rem; font-size: .82rem; font-style: italic; color: var(--amber); }
+.kh-alvo .kh-alvo-aviso { display: block; }
+
+/* ---------------------------------------------------------- toast
+   Preso ao rodapé do contêiner (acima dele); .on mostra. JS: KhToast (js/kh-ui.js). */
+.kh-toast, .bz-toast {
+    position: absolute; left: .5rem; right: .5rem; bottom: calc(100% + 6px);
+    display: none; align-items: center; gap: .35rem; flex-wrap: wrap;
+    padding: .45rem .65rem; border-radius: 6px;
+    background: #1a1622; border: 1px solid var(--amber-dim); color: var(--text-primary);
+    font-size: .86rem; box-shadow: var(--sombra-painel); z-index: 5;
+}
+.kh-toast.on, .bz-toast.on { display: flex; }
+
+/* ---------------------------------------------------------- popover
+   Um nó só, fixo, sem ponteiro (JS: KhPrever, js/kh-ui.js). A raiz não corta
+   (a seta fica para fora). --rc/--rbg/--rbd vêm de uma classe de família no nó
+   (no Bazar, a .rar-* da raridade): sem padrão aqui. .vis entra, .sai sai;
+   [data-seta] = esq | dir | cima | baixo, com --seta-x/--seta-y do JS. */
+.kh-popover, .bz-cartao {
+    position: fixed; left: 0; top: 0; z-index: var(--z-popover);
+    width: 340px; max-height: 70vh;
+    display: flex; flex-direction: column;
+    pointer-events: none;
+    background: var(--grao), var(--painel);
+    border: 1px solid var(--rbd);
+    border-radius: 8px;
+    box-shadow: 0 18px 40px -14px #000, inset 0 1px 0 #ffffff05, 0 0 0 1px #0008;
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    opacity: 0;
+    transform: scale(.97);
+    transform-origin: 0 50%;
+    transition: opacity .12s ease-out, transform .12s ease-out;
+}
+.kh-popover[hidden], .bz-cartao[hidden] { display: none; }
+.kh-popover.vis, .bz-cartao.vis { opacity: 1; transform: none; }
+.kh-popover.sai, .bz-cartao.sai { opacity: 0; transform: scale(.97); transition-duration: .08s; }
+.kh-popover[data-seta="esq"], .bz-cartao[data-seta="esq"]     { transform-origin: 0 var(--seta-y, 50%); }
+.kh-popover[data-seta="dir"], .bz-cartao[data-seta="dir"]     { transform-origin: 100% var(--seta-y, 50%); }
+.kh-popover[data-seta="cima"], .bz-cartao[data-seta="cima"]   { transform-origin: var(--seta-x, 50%) 0; }
+.kh-popover[data-seta="baixo"], .bz-cartao[data-seta="baixo"] { transform-origin: var(--seta-x, 50%) 100%; }
+
+/* seta de 8px em ponta de raiz: ::before é o aro (--rbd), ::after o miolo */
+.kh-popover::before, .kh-popover::after,
+.bz-cartao::before, .bz-cartao::after { content: ""; position: absolute; pointer-events: none; }
+.kh-popover[data-seta="esq"]::before, .kh-popover[data-seta="esq"]::after,
+.kh-popover[data-seta="dir"]::before, .kh-popover[data-seta="dir"]::after,
+.bz-cartao[data-seta="esq"]::before, .bz-cartao[data-seta="esq"]::after,
+.bz-cartao[data-seta="dir"]::before, .bz-cartao[data-seta="dir"]::after {
+    width: 9px; height: 16px; top: calc(var(--seta-y, 50%) - 8px);
+}
+.kh-popover[data-seta="cima"]::before, .kh-popover[data-seta="cima"]::after,
+.kh-popover[data-seta="baixo"]::before, .kh-popover[data-seta="baixo"]::after,
+.bz-cartao[data-seta="cima"]::before, .bz-cartao[data-seta="cima"]::after,
+.bz-cartao[data-seta="baixo"]::before, .bz-cartao[data-seta="baixo"]::after {
+    width: 16px; height: 9px; left: calc(var(--seta-x, 50%) - 8px);
+}
+.kh-popover::before, .bz-cartao::before { background: var(--rbd); }
+.kh-popover::after, .bz-cartao::after { background: #13111a; }
+.kh-popover[data-seta="esq"]::before, .kh-popover[data-seta="esq"]::after,
+.bz-cartao[data-seta="esq"]::before, .bz-cartao[data-seta="esq"]::after {
+    left: -9px; clip-path: polygon(100% 0, 55% 30%, 0 58%, 50% 64%, 100% 100%);
+}
+.kh-popover[data-seta="esq"]::after, .bz-cartao[data-seta="esq"]::after { left: -7px; }
+.kh-popover[data-seta="dir"]::before, .kh-popover[data-seta="dir"]::after,
+.bz-cartao[data-seta="dir"]::before, .bz-cartao[data-seta="dir"]::after {
+    right: -9px; clip-path: polygon(0 0, 45% 30%, 100% 58%, 50% 64%, 0 100%);
+}
+.kh-popover[data-seta="dir"]::after, .bz-cartao[data-seta="dir"]::after { right: -7px; background: #0e0d12; }
+.kh-popover[data-seta="cima"]::before, .kh-popover[data-seta="cima"]::after,
+.bz-cartao[data-seta="cima"]::before, .bz-cartao[data-seta="cima"]::after {
+    top: -9px; clip-path: polygon(0 100%, 30% 55%, 58% 0, 64% 50%, 100% 100%);
+}
+.kh-popover[data-seta="cima"]::after, .bz-cartao[data-seta="cima"]::after { top: -7px; }
+.kh-popover[data-seta="baixo"]::before, .kh-popover[data-seta="baixo"]::after,
+.bz-cartao[data-seta="baixo"]::before, .bz-cartao[data-seta="baixo"]::after {
+    bottom: -9px; clip-path: polygon(0 0, 30% 45%, 58% 100%, 64% 50%, 100% 0);
+}
+.kh-popover[data-seta="baixo"]::after, .bz-cartao[data-seta="baixo"]::after { bottom: -7px; background: #0c0b10; }
+.kh-popover p, .bz-cartao p { margin: 0; }
+
+}

@@ -49,8 +49,12 @@ reaplicar não muda o resultado.
      <script src> local (js/…) de cada página, síncrono: KhTeclas, KhPrever e
      KhToast (F2b) existem antes de ficha.js, bazar*.js, main.js e nav.js.
 
+  11. COMPONENTES — <link href="…css/componentes.css" data-componentes> logo
+     depois do link do css/style.css (camada componentes; F2b): as regras dele
+     vêm depois das da mesma camada no style.css, e antes do CSS da página.
+
   A nav marcada: o link da página atual ganha .active E aria-current="page".
-  Os passos 6 a 10 rodam antes do 4, para receberem ?v= também.
+  Os passos 6 a 11 rodam antes do 4, para receberem ?v= também.
 """
 import hashlib, os, re, sys, unicodedata
 
@@ -276,6 +280,16 @@ def aplica_khui(html, pagina_rel):
             + html[m.start():])
 
 
+# 11. COMPONENTES — css/componentes.css logo depois do style.css (F2b).
+RE_COMPONENTES = re.compile(r'[ \t]*<link rel="stylesheet" href="[^"]*css/componentes\.css[^"]*" data-componentes>\r?\n')
+
+
+def aplica_componentes(html):
+    html = RE_COMPONENTES.sub('', html)
+    return RE_STYLE.sub(lambda m: f'{m.group(1)}{m.group(2)}{m.group(4)}{m.group(1)}<link rel="stylesheet" '
+                                  f'href="{m.group(3)}css/componentes.css" data-componentes>{m.group(4)}', html, count=1)
+
+
 def paginas(raiz):
     fs = []
     for dirpath, _, nomes in os.walk(os.path.join(raiz, 'pages')):
@@ -301,7 +315,7 @@ def aplicar(raiz=RAIZ, verboso=True):
         # boot, nav.js, tokens e ficha.css ANTES da versão, para ganharem ?v= também
         depois = aplica_tokens(aplica_navjs(aplica_boot(depois, boot), rel))
         depois = aplica_ficha_css(depois, rel)
-        depois = aplica_khui(depois, rel)
+        depois = aplica_componentes(aplica_khui(depois, rel))
         depois = aplica_totais(aplica_versao(depois, versao), total)
         n_ver += len(RE_ASSET.findall(depois))
         if depois != antes:

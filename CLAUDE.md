@@ -43,7 +43,7 @@ Mapa completo e comandos: **`docs/ARQUITETURA.md`**. Documentação do projeto m
 ```
 index.html                  landing (HTML manual)
 partials/sidebar.html       FONTE ÚNICA da navegação
-css/style.css               design system  |  css/classes.css, css/racas.css
+css/style.css               design system  |  css/componentes.css (F2b)  |  css/classes.css, css/racas.css
 js/main.js  js/utils.js
 js/ficha/*.js + js/ficha/ORDEM   FONTE da Ficha (tools/ficha_js.py concatena)
 js/ficha.js                 ARTEFATO gerado — não editar
