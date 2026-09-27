@@ -214,7 +214,9 @@
 
   /* opts: rotulo, nome (POST só com os dois), esperar (seletor), minimo (ms depois
      do load, padrão 600), quieto (ms sem mutação, padrão 800), teto (ms, padrão 15000),
-     url (servidor; padrão a origem da página), volateis ([{seletor, props}]) */
+     url (servidor; padrão a origem da página), volateis ([{seletor, props}]),
+     cabe ([seletor]: cada um tem de ter scrollWidth <= clientWidth; vai em
+     meta.cabe e o diff.py reprova a captura que transborda) */
   function capturar(win, opts) {
     opts = opts || {};
     var doc = win.document;
@@ -247,6 +249,15 @@
         (doc.head || doc.documentElement).appendChild(cv);
         void doc.documentElement.offsetHeight;
         meta.animacoes = assentaAnimacoes(doc);
+        if (opts.cabe && opts.cabe.length) {
+          meta.cabe = opts.cabe.map(function (sel) {
+            var el = doc.querySelector(sel);
+            var m = { seletor: sel, scroll: el ? el.scrollWidth : null, client: el ? el.clientWidth : null };
+            if (!el) avisos.push('cabe: seletor não existe: ' + sel);
+            else if (m.scroll > m.client) avisos.push('cabe: ' + sel + ' transborda (' + m.scroll + ' > ' + m.client + ')');
+            return m;
+          });
+        }
         var r = coleta(win, opts.volateis);
         r.pagina = win.location.pathname.replace(/^\//, '') + win.location.hash;
         r.nome = opts.nome || '';

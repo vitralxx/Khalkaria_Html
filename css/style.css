@@ -385,9 +385,14 @@ html[data-nav-fechados~="classes"] .nav-grupo[data-grupo="classes"]:not(:has(.ac
 /* Rodapé da nav: preferências do visitante (hoje só "Reduzir movimento").
    É um <button> com o desenho do .nav-link; aria-pressed diz o estado. */
 .nav-rodape {
+    /* preso ao pé da nav (aberta e trilho): com os grupos abertos a lista passa
+       da dobra e a preferência não pode depender de rolar a nav */
+    position: sticky; bottom: 0; z-index: 1;
     margin-top: 0.4rem;
     padding: 0.5rem 0 0.9rem;
     border-top: 1px solid var(--raiz-traco);
+    background: #0b0b0e;
+    box-shadow: 0 -10px 14px -8px #000000b3;
 }
 button.nav-link {
     width: 100%;

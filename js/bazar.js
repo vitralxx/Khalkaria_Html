@@ -566,8 +566,12 @@
     if (it.unico) return '<span class="item-reg quest"><span class="calor calor-quest" aria-hidden="true">—</span>Único/Quest</span>';
     return '';
   }
-  function catHTML(it) {
-    return '<span class="tag-cat">' + svg(icoCat(it)) + esc(it.categoria) + '</span>';
+  // na Lista o nome ganha <span class="cat-nome"> + title: com o registro
+  // estreito a célula fica só com o glifo (o nome segue para leitor de tela)
+  function catHTML(it, lista) {
+    return lista
+      ? '<span class="tag-cat" title="' + esc(it.categoria) + '">' + svg(icoCat(it)) + '<span class="cat-nome">' + esc(it.categoria) + '</span></span>'
+      : '<span class="tag-cat">' + svg(icoCat(it)) + esc(it.categoria) + '</span>';
   }
   function arqHTML(it) {
     return it.arquetipo ? '<span class="tag-arq">' + esc(it.arquetipo) + '</span>' : '';
@@ -631,14 +635,16 @@
   }
 
   var COLS = [
-    ['nome', 'Nome'], ['raridade', 'Raridade'], ['categoria', 'Categoria'],
+    ['nome', 'Nome'], ['raridade', 'Raridade'], ['categoria', 'Categoria', 'Cat.'],
     ['efeito', 'Efeito'], ['valor', 'Valor'], ['obtencao', 'Obtenção'],
     ['regiao', 'Região'], ['craft', 'Ofício'], ['cd', 'CD']
   ];
   function cabecalhoHTML() {
     return '<table class="bz-tabela"><thead><tr>' + COLS.map(function (c) {
       var sort = E.ordem === c[0] ? ' aria-sort="' + (E.dir > 0 ? 'ascending' : 'descending') + '"' : '';
-      return '<th class="c-' + c[0] + '" data-col="' + c[0] + '"' + sort + '>' + c[1] + '</th>';
+      // c[2]: rótulo curto para o registro estreito (o longo segue para leitor de tela)
+      var rot = c[2] ? '<span class="th-longo">' + c[1] + '</span><span class="th-curto" aria-hidden="true">' + c[2] + '</span>' : c[1];
+      return '<th class="c-' + c[0] + '" data-col="' + c[0] + '"' + sort + '>' + rot + '</th>';
     }).join('') + '</tr></thead><tbody></tbody></table>';
   }
   function linhasHTML(lista) {
@@ -653,7 +659,7 @@
           '<span class="c-nome-tx"><span class="item-name">' + esc(it.nome) + '</span>' + arqHTML(it) + '</span>' +
           seloHTML(it.id) + '</div></td>' +
         '<td class="c-raridade">' + rarHTML(it) + (it.unico ? unicoHTML() : '') + '</td>' +
-        '<td class="c-categoria">' + catHTML(it) + '</td>' +
+        '<td class="c-categoria">' + catHTML(it, true) + '</td>' +
         '<td class="c-efeito"><span>' + esc(it.efeito) + '</span></td>' +
         '<td class="c-valor">' + esc(it.valor) + '</td>' +
         '<td class="c-obtencao">' + esc(it.obtencao) + '</td>' +
@@ -974,9 +980,12 @@
       e.preventDefault();
       passoEscala(d, true);
     });
-    atalho('-', function () { passoEscala(-1); });
-    atalho('=', function () { passoEscala(1); });
-    atalho('+', function () { passoEscala(1); });
+    // com o foco dentro do radiogroup, o foco acompanha o passo (senão ficam
+    // dois botões destacados: o focado, com tabindex -1, e o marcado)
+    function focoNaEscala() { var a = document.activeElement; return !!(a && a.closest && a.closest('#bz-escala')); }
+    atalho('-', function () { passoEscala(-1, focoNaEscala()); });
+    atalho('=', function () { passoEscala(1, focoNaEscala()); });
+    atalho('+', function () { passoEscala(1, focoNaEscala()); });
 
     document.querySelector('.bz-tool-toggle[data-tool="bancada"]').addEventListener('click', function () {
       E.bancada = !E.bancada;

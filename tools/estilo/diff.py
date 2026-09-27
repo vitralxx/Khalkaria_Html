@@ -209,14 +209,27 @@ def main():
         if len(mostra) < len(abertas):
             print('    … mais %d (use --max 0)' % (len(abertas) - len(mostra)))
 
+    # meta.cabe (roteiro "cabe"): elemento que transborda na horizontal na
+    # captura "depois" reprova, com ou sem diferença de estilo
+    transborda = 0
+    for nome in nomes:
+        if nome not in lb:
+            continue
+        for m in (carrega(lb[nome]).get('meta') or {}).get('cabe') or []:
+            if m.get('scroll') is None or m['scroll'] > m['client']:
+                transborda += 1
+                print('[CABE] %s: %s scrollWidth %s > clientWidth %s'
+                      % (nome, m.get('seletor'), m.get('scroll'), m.get('client')))
+
     for i, x in enumerate(regras):
         if not usadas[id(x)]:
             print('[aviso] revisado #%d não casou com nada: %s' % (i, x.get('motivo')))
     if por_prop:
         print('por propriedade: ' + ', '.join('%s %d' % kv for kv in por_prop.most_common(15)))
-    print('RESUMO: %d captura(s), %d diferença(s) não revisada(s), %d revisada(s), %d faltando'
-          % (len(nomes), total, total_rev, faltando))
-    return 1 if (total or faltando) else 0
+    print('RESUMO: %d captura(s), %d diferença(s) não revisada(s), %d revisada(s), %d faltando%s'
+          % (len(nomes), total, total_rev, faltando,
+             ', %d transbordando' % transborda if transborda else ''))
+    return 1 if (total or faltando or transborda) else 0
 
 
 if __name__ == '__main__':

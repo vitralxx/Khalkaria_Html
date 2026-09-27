@@ -774,7 +774,7 @@ body.bz-rc-aberta .bazar-page { margin-left: var(--bz-rc-w); }
     display: inline-grid; place-items: center;
     min-width: 1.45em; height: 1.4em;
     padding: 0 .25em;
-    font-family: var(--bz-mono); font-size: .82em; font-weight: 600; line-height: 1;
+    font-family: var(--bz-mono); font-size: max(.82em, 10.5px); font-weight: 600; line-height: 1;
     font-variant-numeric: tabular-nums;
     color: hsl(var(--h) 60% 66%);
     background: hsl(var(--h) 40% 13%);
@@ -881,7 +881,7 @@ body.bz-rc-aberta .bazar-page { margin-left: var(--bz-rc-w); }
 }
 .item-meta > span { display: flex; flex-direction: column; gap: .1em; min-width: 0; }
 .item-meta b {
-    font-family: var(--font-heading); font-size: .8em; font-weight: 400;
+    font-family: var(--font-heading); font-size: max(.8em, 10.5px); font-weight: 400;
     letter-spacing: .12em; text-transform: uppercase;
     color: var(--text-muted-forte);
 }
@@ -921,6 +921,7 @@ body.bz-rc-aberta .bazar-page { margin-left: var(--bz-rc-w); }
     border-bottom: 1px solid var(--amber-dim); cursor: pointer;
     transition: color .2s, background .2s;
 }
+.bz-tabela th .th-curto { display: none; }
 .bz-tabela thead th:hover { color: var(--amber); background: #221a12; }
 .bz-tabela thead th[aria-sort]::after { content: ' ↑'; color: var(--amber); }
 .bz-tabela thead th[aria-sort="descending"]::after { content: ' ↓'; }
@@ -969,22 +970,49 @@ body.bz-rc-aberta .bazar-page { margin-left: var(--bz-rc-w); }
 .bz-tabela .bz-med { width: 2em; height: 2em; margin-right: .2em; }
 .bz-tabela .bz-med .item-ico { width: 1.2em; height: 1.2em; }
 .bz-tabela .bz-gema { width: 1em; height: 1em; right: -.35em; bottom: -.35em; }
+/* Categoria e Região não quebram no meio da palavra ("CONSU/MÍVEL", "Terr/as"):
+   o selo não quebra e o nome da região só quebra entre palavras */
+.bz-tabela td.c-categoria, .bz-tabela td.c-regiao { overflow-wrap: normal; }
+.bz-tabela td.c-categoria .tag-cat { white-space: nowrap; }
+/* Com as 9 colunas o mínimo da tabela é ~1030 (P) a ~1070 px (GG). Abaixo de
+   1100 (1920 com o inventário em painel = 918; 1366 em trilho = 956) sai a
+   Região, cujo nome já está no texto da Obtenção, e a Categoria fica só com o
+   glifo (nome no title e para leitor de tela): o mínimo cai para ~830–860. */
+@container registro (max-width: 1099px) {
+    .bz-tabela .c-regiao { display: none; }
+    .bz-tabela td.c-categoria .cat-nome {
+        position: absolute; width: 1px; height: 1px; margin: -1px;
+        overflow: hidden; clip-path: inset(50%); white-space: nowrap;
+    }
+    .bz-tabela td.c-categoria .tag-cat { padding: .28em .4em; }
+    .bz-tabela th .th-longo {
+        position: absolute; width: 1px; height: 1px; margin: -1px;
+        overflow: hidden; clip-path: inset(50%); white-space: nowrap;
+    }
+    .bz-tabela th .th-curto { display: inline; }
+}
 @container registro (max-width: 899px) {
-    .bz-tabela .c-obtencao, .bz-tabela .c-regiao { display: none; }
+    .bz-tabela .c-obtencao { display: none; }
 }
 /* Larguras do registro (ver a tabela no bloco de filtros): 577/637/853 em
    1366 e 791/911/1127 em 1920 (receita aberta / nav 280 / nav em trilho 64).
    577px (1366, receita aberta) e 637px (nav aberta): sem Categoria o mínimo
    da tabela (títulos nowrap + Raridade/Valor/CD + 8rem de Efeito) cabe */
-@container registro (max-width: 699px) {
-    .bz-tabela .c-categoria { display: none; }
-    /* Ofício estreito: a pílula fica só com o glifo; o nome segue para leitor de tela */
+/* Ofício estreito: a pílula fica só com o glifo; o nome segue para leitor de
+   tela. Desde 799 (e não 699): em GG, de 700 a 760, a pílula inteira
+   transbordava o registro. */
+@container registro (max-width: 799px) {
     .bz-tabela td.c-craft .of-nome {
         position: absolute; width: 1px; height: 1px; margin: -1px;
         overflow: hidden; clip-path: inset(50%); white-space: nowrap;
     }
     .bz-tabela td.c-craft .tag-of { padding: 0 .4em; }
     .bz-tabela td.c-craft .of-fora { white-space: normal; }
+}
+@container registro (max-width: 699px) {
+    .bz-tabela .c-categoria { display: none; }
+    /* GG de 640 a 650 ainda passava do registro com 8rem */
+    .bz-tabela td.c-efeito { min-width: 6.5rem; }
 }
 @container registro (max-width: 639px) {
     .bz-tabela .c-craft { display: none; }

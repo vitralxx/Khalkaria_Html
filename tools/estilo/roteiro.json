@@ -69,6 +69,21 @@
       "esperar": "#bz-mesa[data-inv=amplo] #bz-resultados > *", "minimo": 2000
     },
     {
+      "_cabe": "Lista em GG (o mínimo mais largo da tabela) nos dois registros largos que já quebraram: 1920 com inventário em painel e 1366 com a nav aberta e o inventário em trilho (registro de 956). 'cabe' = seletores que não podem transbordar na horizontal (o diff.py reprova).",
+      "pagina": "pages/bazar.html", "estado": "lista-painel",
+      "viewport": [1920, 1080],
+      "localStorage": { "khalkaria_splash_seen": "1", "khalkaria_bazar_estado": "{\"v\":2,\"inv\":\"painel\",\"vista\":\"lista\",\"escala\":\"gg\"}" },
+      "esperar": "#bz-mesa[data-inv=painel] .bz-tabela tbody tr", "minimo": 2000,
+      "cabe": ["#bz-registro"]
+    },
+    {
+      "pagina": "pages/bazar.html", "estado": "lista-inv-trilho-1366",
+      "viewport": [1366, 900],
+      "localStorage": { "khalkaria_splash_seen": "1", "khalkaria_bazar_estado": "{\"v\":2,\"inv\":\"trilho\",\"vista\":\"lista\",\"escala\":\"gg\"}" },
+      "esperar": "#bz-mesa[data-inv=trilho] .bz-tabela tbody tr", "minimo": 2000,
+      "cabe": ["#bz-registro"]
+    },
+    {
       "pagina": "pages/bazar.html#item/item-lanca-venenosa", "estado": "receita",
       "viewport": [1920, 1080],
       "localStorage": { "khalkaria_splash_seen": "1", "khalkaria_bazar_estado": "{\"v\":2,\"inv\":\"painel\"}" },

@@ -90,7 +90,7 @@ tools/estilo/                  conferência de estilo computado (captura no nave
                                captura.js, rodar.html, roteiro.json, diff.py, revisado.json;
                                cascata declarada: cascata.js/.html, cascata_diff.py,
                                regras.html, pares.py
-tools/testes/estilo/antes/     linha de base do estilo computado (52 capturas .json.gz)
+tools/testes/estilo/antes/     linha de base do estilo computado (54 capturas .json.gz)
 tools/testes/estilo/depois/    captura do CSS atual + _css.txt (hash do css/**); o validar
                                [estilo] compara com antes/ e com o css/** de agora
 tools/extrair_css.py           refatoração pontual de CSS (não é build)
@@ -213,13 +213,16 @@ porque o Bazar não carrega `main.js` (que injetaria o `ficha.js` pela segunda v
   texto, com Ctrl/Alt/Meta, dentro da Ficha e no mobile. Esc só é consumido com a
   dica ou o menu mobile abertos, para não engolir o Esc do Bazar e da Ficha.
 - **Movimento reduzido** (opção do visitante): botão "Reduzir movimento" no rodapé
-  da nav (`.nav-mov`, `aria-pressed`). localStorage `khalkaria_movimento` =
+  da nav (`.nav-mov`, `aria-pressed`); o `.nav-rodape` é `sticky` no pé da nav,
+  à vista mesmo com a lista mais alta que a janela. localStorage `khalkaria_movimento` =
   `reduzido`|`normal`; sem a chave, segue o `prefers-reduced-motion` do sistema.
   O boot do `<head>` põe `html[data-movimento]` antes do paint; o `*{…!important}`
   que zera transições e animações está no `reset` do `style.css` (vence tudo, CSS
   sem camada inclusive) e a `@media` só vale sem o atributo (script não rodou). JS
   que anima lê o atributo: `nav.js`, `bazar-inventario.js`, rolagem suave do
-  `main.js`/`utils.js` e a árvore do Limiar.
+  `main.js`/`utils.js` e a árvore do Limiar. Rolagem por script usa
+  `window.KH_rolagem()` (`main.js`: `'auto'` com movimento reduzido, senão
+  `'smooth'`), inclusive nos scripts inline de sistema, condições e limiar.
 - **Foco de teclado** (site todo): `:where(a,button,input,select,textarea,summary,
   [tabindex]):focus-visible` na `base`, contorno âmbar 2px + halo parado
   `--foco-anel` (`tokens.css`); o foco próprio de cada componente continua valendo.
@@ -363,6 +366,14 @@ para a ficha), aplicada em `#bz-registro[data-escala]` como `--col` (mínimo da
 coluna), `--k` (fator do texto; o card é todo em `em`) e `--linhas` (efeito);
 trocar de passo é só CSS. O "+ inventário" do `ficha.js` não escala (CSS dele
 fica fora de camada com `font-size` fixo).
+**Lista estreita** (`@container registro`): com as 9 colunas o mínimo da tabela
+é ~1030 (P) a ~1070 px (GG). Até 1099 sai a Região (o nome dela já está na
+Obtenção) e a Categoria fica só com o glifo (`.cat-nome` e o cabeçalho longo
+`.th-longo` vão para leitor de tela, cabeçalho curto "Cat."); até 899 sai a
+Obtenção; até 799 o Ofício fica só com o glifo; até 699 sai a Categoria e o
+Efeito aceita 6.5rem; até 639 sai o Ofício. Categoria e Região nunca quebram no
+meio da palavra. O portão de estilo confere que `#bz-registro` não transborda
+(`cabe` no roteiro).
 
 **Blocos de classe, raça e origem (F1b).** O que antes só existia no scaffold
 do template (CD, treinamento, fórmulas de Saúde/Stamina/Éter, recurso de classe
@@ -453,7 +464,11 @@ python tools/estilo/diff.py antes depois --revisado tools/estilo/revisado.json
   (1366×900, nav aberta, ficha fechada) e `trilho-ficha` (1920×1080, nav em trilho
   por `khalkaria_nav`, drawer aberto por `khalkaria_ficha_open=1`) — mais o Bazar
   em `inv-painel`, `inv-trilho`, `inv-amplo` (`khalkaria_bazar_estado.inv`) e
-  `receita` (`#item/item-lanca-venenosa`), todos em 1920×1080: 52 capturas.
+  `receita` (`#item/item-lanca-venenosa`), todos em 1920×1080, e a Lista em GG
+  em `lista-painel` (1920×1080) e `lista-inv-trilho-1366` (1366×900, nav aberta,
+  inventário em trilho): 54 capturas. `cabe` (só nos extras) lista seletores que
+  não podem transbordar na horizontal: a captura grava `meta.cabe` e o `diff.py`
+  reprova (`[CABE]`) o que tiver `scrollWidth > clientWidth` no "depois".
   Antes de cada uma o `localStorage` é limpo e recebe só as chaves do estado
   (sempre `khalkaria_splash_seen=1`).
 - **`rodar.html`** abre cada página num `<iframe>` do tamanho do estado: o
@@ -470,7 +485,7 @@ python tools/estilo/diff.py antes depois --revisado tools/estilo/revisado.json
   width, height) quando têm `content`. Caminho estável de cada elemento:
   `tag#id.classes:n` (n = posição entre irmãos da mesma tag). Formato
   `kh-estilo/1` comprimido (dicionário de valores e de linhas de estilo
-  repetidas) e gzip com mtime 0: as 52 capturas somam ~1 MB e entram no git.
+  repetidas) e gzip com mtime 0: as 54 capturas somam ~1 MB e entram no git.
   Também serve colada no console: `await KhEstilo.capturar(window, {rotulo, nome})`.
 - **Voláteis:** propriedade que um script da página anima quadro a quadro não é
   comparável. `porPagina.<p>.volateis` no roteiro grava `(volátil)` no lugar do

@@ -1,5 +1,13 @@
 // Khalkaria RPG - Main JavaScript
 
+// Comportamento de rolagem por script: salto seco com o movimento reduzido
+// (opção da nav, html[data-movimento]); o scroll-behavior do CSS não vale para
+// scrollTo/scrollIntoView com behavior explícito. Usado também pelos scripts
+// inline de sistema, condições e limiar.
+window.KH_rolagem = function () {
+    return document.documentElement.getAttribute('data-movimento') === 'reduzido' ? 'auto' : 'smooth';
+};
+
 // Carrega a Ficha Interativa (js/ficha.js), resolvida relativa a este script.
 // Assim a ficha aparece em todas as páginas sem editar cada HTML.
 (function () {
@@ -46,8 +54,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (target) {
                 e.preventDefault();
                 target.scrollIntoView({
-                    // movimento reduzido (opção da nav): salto seco
-                    behavior: document.documentElement.getAttribute('data-movimento') === 'reduzido' ? 'auto' : 'smooth',
+                    behavior: window.KH_rolagem(),
                     block: 'start'
                 });
             }

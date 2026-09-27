@@ -44,7 +44,8 @@
     });
     (R.extras || []).forEach(function (x) {
       t.push({ pagina: x.pagina, estado: x.estado, viewport: x.viewport, localStorage: x.localStorage,
-        esperar: [x.esperar].filter(Boolean), minimo: x.minimo, quieto: x.quieto, volateis: x.volateis });
+        esperar: [x.esperar].filter(Boolean), minimo: x.minimo, quieto: x.quieto, volateis: x.volateis,
+        cabe: x.cabe });
     });
     t.forEach(function (x) { x.nome = nomeDe(x.pagina, x.estado); });
     return t.filter(function (x) { return !so || x.nome.indexOf(so) >= 0; });
@@ -76,7 +77,7 @@
       }, Promise.resolve());
       return pre.then(function () {
         return KhEstilo.capturar(w, { rotulo: rotulo, nome: t.nome, esperar: t.esperar[0],
-          minimo: t.minimo, quieto: t.quieto, volateis: t.volateis, url: location.origin });
+          minimo: t.minimo, quieto: t.quieto, volateis: t.volateis, cabe: t.cabe, url: location.origin });
       });
     }).then(function (r) {
       f.remove();
