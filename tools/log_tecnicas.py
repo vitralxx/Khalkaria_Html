@@ -206,9 +206,17 @@ def mapa_ficha():
     if not linhas:
         raise SystemExit('js/ficha.js: MAPA vazio')
     tem_corr = "querySelectorAll('.corr-table tr')" in js
-    d = re.search(r"var descNode = q1\(card, '([^']*)'\)", js)
-    if not d:
-        raise SystemExit('js/ficha.js: seletor da descrição (descNode) não encontrado')
+    d = re.search(r"var DESC_PROPRIA = '([^']*)'", js)
+    f = re.search(r"var FORA_DA_MECANICA = '([^']*)'", js)
+    if not d or not f:
+        raise SystemExit('js/ficha.js: DESC_PROPRIA/FORA_DA_MECANICA (descricaoCard) não encontrados')
+    # a lista do JS tem de ser a regra de _fora_da_mecanica, menos o h5: o JS só tira o h5 que
+    # é o nome do card e mantém os do corpo (a descrição fica ⊇ o corpo que o log mede)
+    js_fora = {s.strip() for s in f.group(1).split(',')}
+    py_fora = ((_FORA_TAG - {'h5'}) | {'.' + c for c in _FORA_CLS} | {'[class*="%s"]' % s for s in _FORA_SUB})
+    if js_fora != py_fora:
+        raise SystemExit('js/ficha.js: FORA_DA_MECANICA diverge de _fora_da_mecanica: '
+                         f'só no JS {sorted(js_fora - py_fora)}, só aqui {sorted(py_fora - js_fora)}')
     return linhas, tem_corr, d.group(1)
 
 
@@ -258,9 +266,17 @@ def decorar(raiz, mapa, tem_corr, sel_desc):
                 continue
             marcado.add(id(card))
             corpo = re.sub(r'\s+', ' ', _EMOJI.sub('', card.texto(_fora_da_mecanica))).strip()
+            # js/ficha.js descricaoCard: nó próprio (DESC_PROPRIA) ou o card sem o que não é mecânica
+            propria = q1(card, sel_desc)
+            if propria is not None:
+                descricao = texto_limpo(propria)
+            else:
+                no_nome = q1(card, sel_nome)
+                t = card.texto(lambda f: f is no_nome or (f.tag != 'h5' and _fora_da_mecanica(f))
+                               or bool(f.classes & _REMOVE_CLS))
+                descricao = re.sub(r'\s+', ' ', re.sub(r'\+\s*ficha', '', _EMOJI.sub('', t))).strip()
             botoes.append({'kfId': card.attrs.get('data-kf-id'), 'seletor': sel, 'campo': campo,
-                           'tipo': tipo, 'nome': nome, 'descricao': texto_limpo(q1(card, sel_desc)),
-                           'corpo': corpo})
+                           'tipo': tipo, 'nome': nome, 'descricao': descricao, 'corpo': corpo})
     if tem_corr:
         for tr in seleciona(raiz, '.corr-table tr'):
             tds = [f for f in tr.filhos if isinstance(f, No) and f.tag == 'td']

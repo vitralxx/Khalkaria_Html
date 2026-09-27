@@ -1617,6 +1617,28 @@
     for (var i = 0; i < arr.length; i++) { var n = card.querySelector(arr[i].trim()); if (n) return n; }
     return null;
   }
+  // Descrição levada para a ficha: o nó próprio quando o card tem (magia, carta,
+  // dor); senão o card inteiro menos o que não é mecânica (títulos, custo,
+  // citação, ambientação, botões). Antes era o 1º <p> do card, e 205 técnicas com
+  // a mecânica em lista chegavam vazias (log de técnicas, 2026-09-26). O
+  // tools/log_tecnicas.py lê estas duas listas daqui para conferir.
+  // O h5 do corpo fica (subtítulos como "Lobo", "O Custo"); só sai o nó do nome.
+  var DESC_PROPRIA = '.spell-desc,.dor-card-desc,.catalog-card-effect';
+  var FORA_DA_MECANICA = 'h3,h4,svg,button,[class*="header"],[class*="quote"],[class*="flavor"],.cost,.tech-meta,.technique-cost,.price,.meta,.action,.stamina,.ultimate-badge,.kf-addbtn,.ent-add,.ent-alca';
+  function descricaoCard(card, seletorNome) {
+    var propria = q1(card, DESC_PROPRIA);
+    if (propria) return textoLimpo(propria);
+    var c = card.cloneNode(true);
+    var nome = q1(c, seletorNome);
+    if (nome) nome.remove();
+    c.querySelectorAll(FORA_DA_MECANICA).forEach(function (x) { x.remove(); });
+    // blocos colavam ("diante.O treinamento", "invocar:Médio"): espaço antes e depois de cada um
+    c.querySelectorAll('li,p,div,tr,td,h5,h6,span').forEach(function (x) {
+      x.insertBefore(document.createTextNode(' '), x.firstChild);
+      x.appendChild(document.createTextNode(' '));
+    });
+    return textoLimpo(c).replace(/\s+([,.;:)])/g, '$1').replace(/\(\s+/g, '(');
+  }
   // [seletor, campoFicha, tipo, seletorNome]. seletorNome é uma lista em ordem
   // de preferência (q1). Marca e ultimate: o nome é o h4 do header nas 6 classes
   // com .marca-header/.ultimate-header e o h5 no Espadachim; 'h5' puro pegava o
@@ -1645,9 +1667,8 @@
         var nome = textoLimpo(nomeNode);
         if (!nome) return;
         card.setAttribute('data-kf', '1');
-        var descNode = q1(card, '.spell-desc,.dor-card-desc,.catalog-card-effect,.habilidade-box,p:not(.meta):not(.flavor):not(.quote)');
         var ent = { id: slug(nome, m[2] + '-'), tipo: m[2], nome: nome,
-          descricao: descNode ? textoLimpo(descNode) : '' };
+          descricao: descricaoCard(card, m[3]) };
         var btn = el('span', { class:'kf-addbtn', title:'Adicionar à ficha',
           onclick: function (e) { e.stopPropagation(); e.preventDefault(); addEntidade(m[1], ent); } }, ['+ ficha']);
         (nomeNode || card).appendChild(btn);
