@@ -236,11 +236,11 @@ Resposta do Pedro que ainda não chegou ao contrato (0.1) entra no `tools/deciso
 
 ### 3.3 CSS
 
-`@layer reset, base, layout, componentes, paginas, estados` no topo de `style.css`. Os `<style>` inline dos templates ficam fora de camada durante a migração, medido (F1c). Do `reduced-motion`, só o bloco `*{…!important}` vai para `reset`; as sobreposições por componente ficam na camada do componente ou em `estados`.
+`@layer reset, base, layout, componentes, paginas, estados` no topo de `style.css` (e de `tokens.css`, que carrega antes). Os `<style>` inline dos templates ficam fora de camada durante a migração, medido (F1c). Do `reduced-motion`, só o bloco `*{…!important}` vai para `reset`; as sobreposições por componente ficam na camada do componente ou em `estados`. **Na F1c ficaram de fora, esperando o Pedro** (mudam o visual): o `*{…!important}` global (segue só no `bazar.css`, sem camada) e o `:focus-visible` global.
 
 | Arquivo | Conteúdo | Fase |
 |---|---|---|
-| `css/tokens.css` | Promove de `bazar.css:10-63` (`--mono`, `--painel`, `--sombra-*`, `--mola`, `--cantos`, `--tem/--leve/--extremo`, `--rar-*`); escalas `--esp-*`, `--raio-*`, `--dur-*`, `--z-*` (sticky 30, lista 40, rightbar 50, nav 100, dica 105, painel-esq 110, ficha 120, popover 400, toast 500, overlay 800, splash 900); `--recurso-saude/stamina/eter` já com a paleta da D28 corrigida (Saúde vermelho, Stamina amarelo, Éter verde e roxo); `--classe-<c>` e `--ramo-<c>-<r>` (M7); `--esq-w`, `--dir-w` | F1c |
+| `css/tokens.css` | Promove de `bazar.css:10-63` (`--mono`, `--painel`, `--sombra-*`, `--mola`, `--cantos`, `--tem/--leve/--extremo`, `--rar-*`); escalas `--esp-*`, `--raio-*`, `--dur-*`, `--z-*` (sticky 30, lista 40, rightbar 50, nav 100, dica 105, painel-esq 110, menu-mobile 200, popover 400, topo 450, ficha 600, toast 700, overlay 800, splash 900: a ordem do empilhamento de hoje, para a F7 trocar literal por nome sem inverter ninguém; a exceção é o splash, hoje abaixo da Ficha e na escala acima de tudo); `--recurso-saude/stamina/eter` já com a paleta da D28 corrigida (Saúde vermelho, Stamina amarelo, Éter verde e roxo); `--classe-<c>` e `--ramo-<c>-<r>` (M7); `--esq-w`, `--dir-w` | F1c |
 | `css/componentes.css` | F2: conta (com estado "ajustado"), selo, régua, botão, stepper, alvo de soltura, toast, popover, `.ent`/`.ent-add`, dado/rolagem. Depois: chip, tabela v3, caixa de regra, trilha de filtros | F2, cresce na F7 |
 | `css/ficha.css` | Drawer, trilho, página da ficha (moldura gótica), Mesa, assistente, overlay da Vhelor | F2 → F6 |
 | `css/paginas/*.css` | Destino dos `<style>` dos templates, uma família por entrega | F7 |
@@ -385,7 +385,7 @@ A subida tem **rascunho próprio**, como a criação, um por ficha: `khalkaria_n
 
 **Fase:** F4b (a comparação de Ar/Ae completa depende da F6; antes, só peso e slot).
 
-**Testes:** o painel da direita não renderiza no modo ficha e volta ao fechar; os filtros novos por fixture; arrastar para "Leves" com 3 ocupados avisa (não bloqueia); par `antes/depois` de estilo do Bazar nos dois modos (portão manual da F1c); `bazar-*.test.js` verdes.
+**Testes:** o painel da direita não renderiza no modo ficha e volta ao fechar; os filtros novos por fixture; arrastar para "Leves" com 3 ocupados avisa (não bloqueia); par `antes/depois` de estilo do Bazar nos dois modos (portão `[estilo]` da F1c); `bazar-*.test.js` verdes.
 
 ### M5 · Marcas da Vhelor (D26a)
 
@@ -444,7 +444,7 @@ A mesma estética de ramo serve à tela por ramo do M3 (travada na criação, se
 
 **Fase:** tokens na F1c; página de classe na F7 (família Classes); prova de estética antes.
 
-**Testes:** round-trip byte a byte do conteúdo das 7 classes; set-diff de técnicas por página = ∅; `[conteudo×contrato]` sem erro novo; par `antes/depois` de estilo por classe (portão manual da F1c); nenhum hex de recurso fora de `tokens.css` (grep no build); Limiar com animação e sem ela em reduced-motion.
+**Testes:** round-trip byte a byte do conteúdo das 7 classes; set-diff de técnicas por página = ∅; `[conteudo×contrato]` sem erro novo; par `antes/depois` de estilo por classe (portão `[estilo]` da F1c); nenhum hex de recurso fora de `tokens.css` (grep no build); Limiar com animação e sem ela em reduced-motion.
 
 ---
 
@@ -510,9 +510,9 @@ F1a–F1f correm em paralelo. F4b, F4c, F5 e F6 correm em paralelo depois da F4.
 
 ### F1c · Cascata (tokens + `@layer`)
 
-**Entrega:** tokens promovidos (`--recurso-*` já com a paleta da D28; `--classe-*` e `--ramo-*` com os valores de hoje), `@layer`, reduced-motion e foco globais, escala de z-index. As páginas continuam lendo o hex de hoje; passam a ler `--recurso-*` família a família na F7, por isso o diff da F1c continua 0.
+**Entrega:** tokens promovidos em `css/tokens.css` (`--recurso-*` já com a paleta da D28; `--classe-*` e `--ramo-*` com os valores de hoje), `@layer`, escala de z-index. Reduced-motion e foco globais **saíram da F1c** (a revisão mediu efeito visual: o anel de foco de links, botões e campos da Ficha mudaria, e as animações das 23 páginas fora do Bazar parariam com movimento reduzido); entram quando o Pedro aprovar, com as entradas no `revisado.json`. As páginas continuam lendo o hex de hoje; passam a ler `--recurso-*` família a família na F7, por isso o diff da F1c continua 0.
 **Pronto quando:** diff do `getComputedStyle` nas 24 páginas = 0 fora de `tools/estilo/revisado.json`; os 16 `!important` do `bazar.css` e os 2 do `style.css` revistos.
-**Portão manual com artefato** (o build não tem motor de CSS e não gera o estado atual): `tools/estilo/captura.js` roda no painel do navegador **antes e depois** da mudança e grava `tools/testes/estilo/<pagina>.<estado>.{antes,depois}.json` (1366 e 1920 px; drawer fechado/trilho/aberto; hover e foco forçados; disclosures; reduced-motion). `tools/estilo/diff.py`, no build, compara o par e FALHA se houver diff fora de `revisado.json`. A fase só fecha com o par `depois` commitado no mesmo commit do CSS; commit que mexe em `css/**` sem par novo FALHA.
+**Portão com artefato** (o build não tem motor de CSS e não gera o estado atual): `tools/estilo/captura.js` roda no painel do navegador **antes e depois** da mudança e grava `tools/testes/estilo/{antes,depois}/<pagina>.<estado>.json.gz` (1366 e 1920 px; drawer fechado/trilho/aberto; disclosures). `antes/` e `depois/` são versionados. O `[estilo]` do `validar.py`, no build, roda `diff.py antes depois --revisado` e FALHA se houver diff fora de `revisado.json`, e FALHA se o `css/**` mudou depois da captura `depois` (carimbo `depois/_css.txt`, que o `servidor.py` grava). Hover, foco e reduced-motion não entram no `getComputedStyle` do roteiro: ficam com a cascata declarada (`tools/estilo/cascata.*`, manual, `ARQUITETURA.md §6`).
 **Testes:** `diff.py` sobre os pares.
 
 ### F1d · Efeitos compilados (só dado)
@@ -598,7 +598,7 @@ F1a–F1f correm em paralelo. F4b, F4c, F5 e F6 correm em paralelo depois da F4.
 
 **Entrega:** uma família por entrega: Condições → Magias → Classes (M7, depois da prova de estética aprovada) → Raças → Limiar (animação mantida) → Origens → Sistema → index/criacao/classes.html (§6). Lei de cor aplicada família a família.
 **Pronto quando:** zero `<style>` no template da família, zero emoji como ícone, zero hex de recurso fora dos tokens, filtros/busca/hover conforme o Bazar.
-**Testes:** round-trip byte a byte do conteúdo; set-diff de entidades; pares `antes/depois` de estilo das outras famílias sem diff (portão manual da F1c).
+**Testes:** round-trip byte a byte do conteúdo; set-diff de entidades; pares `antes/depois` de estilo das outras famílias sem diff (portão `[estilo]` da F1c).
 
 ---
 

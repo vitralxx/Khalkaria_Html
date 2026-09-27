@@ -1911,7 +1911,7 @@ svg.bz-rc-uso-ico { width: 16px; height: 16px; margin: 0 3px; }
     .cards .item-card:hover, .bz-seg,
     .cards .item-card:hover .bz-arte, .cards .item-card::after,
     .bz-cartao, .bz-cartao.sai { transform: none; }
-    /* o *{…!important} que deixa tudo instantâneo é global: reset do style.css */
+    /* o *{…!important} que deixa tudo instantâneo fica no fim do arquivo, sem camada */
 }
 }
 
@@ -1919,3 +1919,20 @@ svg.bz-rc-uso-ico { width: 16px; height: 16px; margin: 0 3px; }
    não tem camada e venceria o cursor destes cards, que ganhavam pela especificidade.
    Sai quando o CSS da Ficha for para css/ficha.css numa camada (F2). */
 .cards .item-card.kf-draggable, .bz-tabela tbody tr.kf-draggable { cursor: pointer; }
+
+/* PONTE (F1c), sem camada: o *{…!important} de movimento reduzido que deixa
+   tudo instantâneo. Fica só no Bazar e sem camada, como era antes da F1c:
+   !important sem camada perde para o !important de qualquer camada, então o
+   `transition/animation: none` da nav (camada estados) segue vencendo, como
+   vencia pela especificidade. Levá-lo ao reset do style.css (global, plano
+   §3.3) muda as outras 23 páginas com movimento reduzido: espera o Pedro. */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        transition-duration: .01ms !important;
+        transition-delay: 0s !important;
+        animation-duration: .01ms !important;
+        animation-delay: 0s !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+    }
+}

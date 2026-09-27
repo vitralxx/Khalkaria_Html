@@ -36,8 +36,12 @@ reaplicar não muda o resultado.
   7. NAV.JS    — <script src="…js/nav.js" data-nav-js> antes de </body> em
      todas as páginas (inclusive o Bazar, que não carrega main.js).
 
+  8. TOKENS   — <link href="…css/tokens.css" data-tokens> logo antes do link do
+     css/style.css em todas as páginas. O tokens.css abre declarando a ordem das
+     @layer, por isso tem de vir antes de qualquer outro CSS do site.
+
   A nav marcada: o link da página atual ganha .active E aria-current="page".
-  Os passos 6 e 7 rodam antes do 4, para o nav.js receber ?v= também.
+  Os passos 6, 7 e 8 rodam antes do 4, para receberem ?v= também.
 """
 import hashlib, os, re, sys, unicodedata
 
@@ -220,6 +224,19 @@ def aplica_navjs(html, pagina_rel):
                         f'    <script src="{prefixo}js/nav.js" data-nav-js></script>\n</body>', 1)
 
 
+# 8. TOKENS — css/tokens.css (camada base; F1c) logo antes do style.css, em
+#    todas as páginas. O tokens.css abre com a mesma declaração de ordem das
+#    @layer do style.css, então a precedência não depende de qual vem antes.
+RE_TOKENS = re.compile(r'[ \t]*<link rel="stylesheet" href="[^"]*css/tokens\.css[^"]*" data-tokens>\r?\n')
+RE_STYLE = re.compile(r'([ \t]*)(<link rel="stylesheet" href="((?:\.\./)*)css/style\.css[^"]*">)(\r?\n)')
+
+
+def aplica_tokens(html):
+    html = RE_TOKENS.sub('', html)
+    return RE_STYLE.sub(lambda m: f'{m.group(1)}<link rel="stylesheet" href="{m.group(3)}css/tokens.css" '
+                                  f'data-tokens>{m.group(4)}{m.group(1)}{m.group(2)}{m.group(4)}', html, count=1)
+
+
 def paginas(raiz):
     fs = []
     for dirpath, _, nomes in os.walk(os.path.join(raiz, 'pages')):
@@ -242,8 +259,8 @@ def aplicar(raiz=RAIZ, verboso=True):
         rel = os.path.relpath(f, raiz).replace(os.sep, '/')
         antes = open(f, encoding='utf-8', newline='').read()
         depois = aplica_webp(aplica_ancoras(aplica_sidebar(antes, rel, modelo)), rel)
-        # boot e nav.js ANTES da versão, para o nav.js ganhar ?v= também
-        depois = aplica_navjs(aplica_boot(depois, boot), rel)
+        # boot, nav.js e tokens ANTES da versão, para ganharem ?v= também
+        depois = aplica_tokens(aplica_navjs(aplica_boot(depois, boot), rel))
         depois = aplica_totais(aplica_versao(depois, versao), total)
         n_ver += len(RE_ASSET.findall(depois))
         if depois != antes:

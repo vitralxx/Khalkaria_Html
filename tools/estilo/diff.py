@@ -32,6 +32,25 @@ SUFIXOS = ('.json.gz', '.json')
 AUSENTE = '(ausente)'
 
 
+CARIMBO = '_css.txt'
+
+
+def hash_css(raiz=RAIZ):
+    """12 hex do sha1 de css/**/*.css (caminho + conteúdo, CRLF -> LF). O
+    servidor.py grava no <rotulo>/_css.txt a cada captura; o validar.py
+    ([estilo]) compara com o css/** de agora: CSS mudou sem recaptura = FALHA."""
+    import hashlib
+    h = hashlib.sha1()
+    base = os.path.join(raiz, 'css')
+    arqs = []
+    for dp, _, ns in os.walk(base):
+        arqs += [os.path.join(dp, n) for n in ns if n.endswith('.css')]
+    for f in sorted(arqs, key=lambda f: os.path.relpath(f, base).replace(os.sep, '/')):
+        h.update(os.path.relpath(f, base).replace(os.sep, '/').encode('utf-8'))
+        h.update(open(f, 'rb').read().replace(b'\r\n', b'\n'))
+    return h.hexdigest()[:12]
+
+
 def pasta(arg):
     if os.path.isdir(arg):
         return arg

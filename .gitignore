@@ -17,7 +17,8 @@ site_v24/
 # Verbatim do balanceamento e raras (F1d/F1f, plano M6): nunca versionado
 privado/
 
-# Capturas de estilo computado (tools/estilo/): só a linha de base é versionada;
-# antes2/depois/etc. são rodadas locais de conferência
+# Capturas de estilo computado (tools/estilo/): o par antes/depois é versionado
+# (portão da F1c, validar.py [estilo]); as outras pastas são rodadas locais
 tools/testes/estilo/*
 !tools/testes/estilo/antes/
+!tools/testes/estilo/depois/

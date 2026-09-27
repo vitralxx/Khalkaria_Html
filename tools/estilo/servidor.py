@@ -7,6 +7,7 @@ Serve a raiz do repo em http://127.0.0.1:8898 (sem cache) e recebe as capturas:
          corpo = JSON da captura (tools/estilo/captura.js)
       -> grava tools/testes/estilo/<rotulo>/<nome>.json.gz
          (gzip com mtime 0: mesma captura, mesmos bytes; o diff.py lê direto)
+      e regrava tools/testes/estilo/<rotulo>/_css.txt com o hash do css/**
 
 rotulo e nome aceitam só [A-Za-z0-9._-] (sem "..").
 
@@ -21,6 +22,9 @@ import os
 import re
 import sys
 from urllib.parse import urlparse, parse_qs
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from diff import hash_css, CARIMBO  # noqa: E402
 
 RAIZ = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 SAIDA = os.path.join(RAIZ, 'tools', 'testes', 'estilo')
@@ -69,6 +73,9 @@ class Handler(http.server.SimpleHTTPRequestHandler):
         texto = json.dumps(dado, ensure_ascii=False, separators=(',', ':')) + '\n'
         with open(destino, 'wb') as f:
             f.write(gzip.compress(texto.encode('utf-8'), compresslevel=9, mtime=0))
+        # carimbo do css/** desta rodada (validar.py [estilo]: CSS sem recaptura FALHA)
+        with open(os.path.join(pasta, CARIMBO), 'w', encoding='utf-8', newline='\n') as f:
+            f.write(hash_css() + '\n')
         return self._resposta(200, {'ok': True, 'arquivo': os.path.relpath(destino, RAIZ),
                                     'bytes': os.path.getsize(destino)})
 

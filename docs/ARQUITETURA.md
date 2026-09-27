@@ -19,8 +19,8 @@ notion_cache/<slug>.new.md           snapshot bruto
 data/*.json                           conteúdo mecânico estruturado
    │  tools/build.py
    │    fase 1: geradores   data + templates -> pages/*.html
-   │    fase 2: shell       navegação única, boot da nav, nav.js, webp, âncoras
-   │                        estáveis, ?v= nos assets
+   │    fase 2: shell       navegação única, boot da nav, nav.js, tokens.css, webp,
+   │                        âncoras estáveis, ?v= nos assets
    ▼
 pages/*.html                          ARTEFATO — nunca editar à mão
    │  tools/validar.py
@@ -85,11 +85,13 @@ tools/componentes-baseline.json piso da contagem de cada classe CSS de component
 tools/testes/                  testes node do motor KhInv (*.test.js, fixtures/);
                                index.js deixa `node --test tools/testes` rodar no Node 22+;
                                test_*.py: checagens do validar (unittest, no build)
-tools/estilo/                  conferência de estilo computado (não é build; §6): servidor.py,
+tools/estilo/                  conferência de estilo computado (captura no navegador; §6): servidor.py,
                                captura.js, rodar.html, roteiro.json, diff.py, revisado.json;
                                cascata declarada: cascata.js/.html, cascata_diff.py,
                                regras.html, pares.py
 tools/testes/estilo/antes/     linha de base do estilo computado (52 capturas .json.gz)
+tools/testes/estilo/depois/    captura do CSS atual + _css.txt (hash do css/**); o validar
+                               [estilo] compara com antes/ e com o css/** de agora
 tools/extrair_css.py           refatoração pontual de CSS (não é build)
 tools/migrar_sistema.py        migração pontual do Sistema (já rodada)
 tools/migrar_f1b.py            migração pontual template -> blocos da F1b (já rodada;
@@ -111,9 +113,11 @@ tools/efeitos_excecoes.json    F1d: defeitos de parse conhecidos do arquivo de e
                                lembrete; AVISO até a errata, FALHA quando ficam obsoletos)
 tools/checa_efeitos.py         F1d: checagens [balanceamento], [efeitos] e [vhelor] do validar
 
-css/style.css                  design system: declara as @layer (§5), tokens :root do site
-                               (escalas --esp/--raio/--dur/--z, --recurso-*, --classe-*,
-                               --ramo-<c>-<r>, --rar-*), reset, layout, globais
+css/tokens.css                 tokens do site (camada base; o shell o põe antes do style.css):
+                               escalas --esp/--raio/--dur/--z, --recurso-*, --classe-*,
+                               --ramo-<c>-<r>, --rar-*, promovidos do Bazar
+css/style.css                  design system: declara as @layer (§5), paleta :root, reset,
+                               layout, globais
 css/classes.css                componentes das 7 páginas de classe (camada paginas)
 css/racas.css                  componentes das 7 páginas de raça (camada paginas)
 css/bazar.css                  só a página do Bazar (camada paginas; --bz-* são aliases
@@ -192,8 +196,9 @@ do Bazar. O `bazar.json` é buscado com `?v=<hash do arquivo>` (`BZ_VOCAB.dados`
 **Navegação lateral.** Markup só em `partials/sidebar.html`; o shell a copia para
 as 24 páginas, reescreve os `href` (que têm de ser o 1º atributo do `<a>`) e marca
 o link atual com `.active` + `aria-current="page"`. Também injeta
-`partials/head-boot.html` antes de `</head>` e `js/nav.js` antes de `</body>`
-(antes do `?v=`, que o `nav.js` também ganha). O `nav.js` é separado do `main.js`
+`partials/head-boot.html` antes de `</head>`, `js/nav.js` antes de `</body>` e o
+`<link data-tokens>` do `css/tokens.css` logo antes do `style.css` (tudo antes do
+`?v=`, que os dois também ganham). O `nav.js` é separado do `main.js`
 porque o Bazar não carrega `main.js` (que injetaria o `ficha.js` pela segunda vez).
 
 - **Largura:** a única variável que o layout lê é `--nav-w` (`style.css`):
@@ -215,7 +220,9 @@ porque o Bazar não carrega `main.js` (que injetaria o `ficha.js` pela segunda v
 
 Ordem de carga e responsabilidade de cada camada:
 
-1. `css/style.css` — design system. Tokens `:root`, layout da aplicação,
+0. `css/tokens.css` — tokens do site (F1c). Declara a ordem das `@layer` também,
+   porque carrega primeiro.
+1. `css/style.css` — design system. Paleta `:root`, layout da aplicação,
    componentes usados em todo o site. É o que se edita para mudar a cara do site.
 2. `css/classes.css` / `css/racas.css` — componentes que existem só nessas
    famílias de página (`.class-hero`, `.raca-header`…), iguais em todas elas.
@@ -230,8 +237,8 @@ faz essa extração respeitando o cascade.
 
 | Camada | O que tem |
 |---|---|
-| `reset` | `box-sizing`/margem zero, barra de rolagem, e o `*{…!important}` global de `prefers-reduced-motion` |
-| `base` | tokens `:root`, `html`/`body`, tipografia e tabela por elemento, `:focus-visible` global |
+| `reset` | `box-sizing`/margem zero, barra de rolagem |
+| `base` | tokens (`css/tokens.css`) e paleta `:root`, `html`/`body`, tipografia e tabela por elemento |
 | `layout` | a moldura: `.app-container`, `.main-content`, `.right-bar`, botão do menu mobile |
 | `componentes` | a nav (com o trilho), cards, badges, splash, tabela compacta, blocos de classe/raça genéricos e do Sistema, itens da right-bar, utilitários, `a:hover` |
 | `paginas` | `classes.css`, `racas.css`, `bazar.css`, a landing do index |
@@ -249,10 +256,17 @@ Regras da migração, todas medidas com `tools/estilo/` (diff 0):
 - **Pontes** (fim do `style.css`, sem camada): reafirmam o que uma regra em camada
   ganhava de um `<style>` de template (hoje só o sublinhado do `a:hover` nos cards-link
   de `racas.html` e `criacao.html`); no fim do `bazar.css`, o cursor dos cards e
-  linhas do Bazar contra o `.kf-draggable` que o `ficha.js` injeta sem camada.
+  linhas do Bazar contra o `.kf-draggable` que o `ficha.js` injeta sem camada, e o
+  `*{…!important}` de movimento reduzido, que continua só no Bazar e sem camada (a
+  nav, com `!important` na camada `estados`, segue vencendo como vencia).
   Saem quando o CSS de template e o da Ficha entrarem em camada (F2/F7).
-- **`!important` inverte:** o de `reset` vence o de todas as outras camadas (é o
-  do movimento reduzido); o de uma camada vence o `!important` sem camada.
+- **`!important` inverte:** o de `reset` vence o de todas as outras camadas; o de
+  uma camada vence o `!important` sem camada.
+- **Esperam o Pedro** (mudam o visual, ficaram fora da F1c): o `:focus-visible`
+  global (âmbar, 2px, na `base`: mudaria o anel de foco de links, botões e campos
+  da Ficha, e os campos de texto casam `:focus-visible` também no clique) e o
+  movimento reduzido global (o `*{…!important}` no `reset`: nas outras 23 páginas
+  as animações infinitas do Limiar parariam e as transições ficariam instantâneas).
 - Token novo não troca valor: as páginas passam a ler `--recurso-*`, `--classe-*` e
   `--ramo-*` na F7. Já ligados (valor idêntico): `--z-*` da nav, dica, right-bar e
   Bazar, e os `--bz-*`.
@@ -387,7 +401,15 @@ do motor pulados". À mão: `node --test tools/testes` (ou
 
 Para mudança de CSS que **não pode** mexer no visual (F1c: tokens, camadas,
 arquivos novos). Compara o `getComputedStyle` de todo elemento das páginas antes
-e depois. Não roda no build: precisa de navegador.
+e depois. A captura precisa de navegador; a comparação roda no build.
+
+**Portão (`[estilo]` no `validar.py`).** `antes/` e `depois/` são versionados.
+O `servidor.py` grava em `<rótulo>/_css.txt` o hash do `css/**` a cada captura; o
+build FALHA se o `css/**` de agora não bate com o `depois/_css.txt` (CSS mudou sem
+recaptura) ou se `diff.py antes depois --revisado` sobra diferença. Mudou CSS:
+rodar o roteiro com `?rotulo=depois` e commitar `depois/` junto do CSS. O hash
+cobre só `css/**`: o CSS que o `ficha.js` injeta e os `<style>` de template não
+entram (recapturar à mão quando mexer neles).
 
 ```bash
 python tools/estilo/servidor.py        # serve o repo em 127.0.0.1:8898 (sem cache) e grava

@@ -76,7 +76,7 @@ def analisa(sel):
 
 # elementos por página: (tag, id, classes, classes_anc, ids_anc)
 paginas = collections.defaultdict(set)
-for n in os.listdir(CAPS):
+for n in (n for n in os.listdir(CAPS) if n.endswith('.json.gz')):
     pg = n.split('.')[0]
     d = json.loads(gzip.open(os.path.join(CAPS, n)).read())['normal']
     for cam in d['els']:
@@ -128,7 +128,7 @@ def casa_fn(els):
     return conj
 
 acum = collections.Counter(); ex = {}
-for n in sorted(os.listdir(REG)):
+for n in sorted(n for n in os.listdir(REG) if n.endswith('.json.gz')):
     pg = n.split('.')[0]
     els = list(paginas.get(pg, ()))
     if not els:

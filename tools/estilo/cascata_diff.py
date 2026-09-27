@@ -21,7 +21,7 @@ ign_prefix = () if '--com-var' in sys.argv else ('--',)
 tot = collections.Counter()
 NOVAS = {'style.css :focus-visible', 'style.css *', 'style.css ::before', 'style.css ::after'}
 exemplos = collections.defaultdict(list)
-for nome in sorted(os.listdir(A)):
+for nome in sorted(n for n in os.listdir(A) if n.endswith('.json.gz')):
     if so and so not in nome:
         continue
     fb = os.path.join(B, nome)

@@ -178,7 +178,8 @@ def checa_nav_pagina(h, nav):
     """Contrato da nav (shell.py passos 1, 6 e 7) numa página já montada."""
     probs = []
     for marca, oque in (('data-nav-boot', 'boot da nav no <head>'),
-                        ('data-nav-js', '<script> do js/nav.js')):
+                        ('data-nav-js', '<script> do js/nav.js'),
+                        ('data-tokens', '<link> do css/tokens.css')):
         n = h.count(marca)
         if n != 1:
             probs.append(f'{n}× {oque} (esperado 1)')
@@ -1236,6 +1237,49 @@ def checa_vhelor(root=None):
     _imprime('vhelor', checa_efeitos.checa_vhelor(root or ROOT))
 
 
+def checa_estilo(root=None):
+    """Portão da F1c (plano §F1c): o par de capturas de estilo computado
+    antes/depois está versionado; aqui só se compara, o build não tem motor de
+    CSS para capturar. FALHA se (1) o css/** mudou depois da última captura
+    'depois' (carimbo _css.txt que o servidor.py grava) ou (2) o diff.py acha
+    diferença fora do tools/estilo/revisado.json."""
+    print('[estilo] Estilo computado: par antes/depois (tools/testes/estilo/) x css/**')
+    root = root or ROOT
+    est = os.path.join(root, 'tools', 'estilo')
+    base = os.path.join(root, 'tools', 'testes', 'estilo')
+    sys.path.insert(0, est)
+    try:
+        import diff as estilo_diff
+    finally:
+        sys.path.remove(est)
+    probs = []
+    carimbo = os.path.join(base, 'depois', estilo_diff.CARIMBO)
+    if not os.path.isfile(carimbo):
+        probs.append('tools/testes/estilo/depois/ sem _css.txt: rode o roteiro '
+                     '(tools/estilo/servidor.py + rodar.html?rotulo=depois)')
+    else:
+        gravado = open(carimbo, encoding='utf-8').read().strip()
+        agora = estilo_diff.hash_css(root)
+        if gravado != agora:
+            probs.append(f'css/** mudou depois da captura "depois" ({gravado} -> {agora}): '
+                         f'recapture (rodar.html?rotulo=depois) e commite o par com o CSS')
+    if not probs:
+        r = subprocess.run([sys.executable, os.path.join(est, 'diff.py'), 'antes', 'depois',
+                            '--revisado', os.path.join(est, 'revisado.json'), '--resumo'],
+                           cwd=root, capture_output=True, text=True, encoding='utf-8', errors='replace')
+        linhas = [l for l in r.stdout.splitlines() if l.strip()]
+        resumo = next((l for l in reversed(linhas) if l.startswith('RESUMO')), r.stderr.strip()[-200:])
+        if r.returncode != 0:
+            probs.append(f'diff.py antes x depois: {resumo}')
+            probs += ['  ' + l for l in linhas if l.startswith(('[DIF]', '[FALTA]'))][:10]
+        else:
+            print(f'  OK     {resumo[len("RESUMO: "):]} (carimbo do css/** confere)')
+    for x in probs:
+        print(f'  FALHA  {x}')
+    if probs:
+        falhas.append('estilo')
+
+
 def checa_roundtrip():
     print('[5] Round-trip data/*.json -> pages/*.html')
     tmp = tempfile.mkdtemp(prefix='khalkaria_rt_')
@@ -1333,6 +1377,8 @@ if __name__ == '__main__':
     checa_efeitos_itens()
     print()
     checa_vhelor()
+    print()
+    checa_estilo()
     print()
     if '--atualizar-componentes' in FLAGS:
         atualiza_componentes()
