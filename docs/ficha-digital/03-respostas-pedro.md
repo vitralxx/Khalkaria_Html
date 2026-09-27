@@ -184,3 +184,23 @@ Moldura gótica com raízes, títulos em blackletter (o site já carrega `--font
 Cores de recurso (depois das fotos): Saúde vermelho, **Stamina amarelo**, **Éter verde e roxo**. Recolorir os ícones de Stamina e Éter da ficha física: autorizado.
 
 **Tooltip de fórmula (2026-09-26):** "quero tudo que tenha cálculos com tooltip mostrando a fórmula." Todo número calculado, na ficha e no site, mostra a fórmula simbólica e a conta com os números (plano, M2).
+
+## 6. Lote de revisão do balanceamento (L01–L45), respostas de 2026-09-26
+
+Itens em `15-ficha-rodada3.md` §E (branch do balanceamento). Os que o Pedro respondeu direto ao balanceamento viraram D92–D97 (L03, L05, L07, L15, L22, L36); L14, L35, L39 e L20 seguem com ele; a L45 foi feita pelo agente de HTML.
+
+| L | Resposta | Nota do Pedro |
+|---|---|---|
+| L01, L04, L06, L09, L10, L11, L12, L17, L24, L25, L27, L28, L31, L32, L33, L41, L42 | Aceito | — |
+| L02 | Aceito | "Achei meio confuso esse texto." |
+| L08 | Outra | "É a inteligência de quem craftou o item em poções." |
+| L23 | Outra | "Porém ainda tem, se receber dano que zera seu fluxo." |
+| L26 | Aceito | "Sim se soma e Ae(Todos) sempre exclui dano de força e primordial, porém abrange todos os danos atípicos (não inclui cortante, contundente, perfurante)." |
+| L29 | Aceito | "Geralmente a notação oficial nas técnicas é 1x/Descanso Longo e não 1x/dia; 1x/sessão de fato existe na terminologia, 1x/semana também e 1x/campanha também." |
+| L30 | Aceito | "Nenhuma condição que exige descanso longo para ser removida é removida ao descansar sem comida ou uma fonte de luz." |
+| L34 | Aceito | "Ae(x, categoria) sempre abrange todos os tipos de dano dentro daquela categoria. Quando um dano é dado como uma categoria é da escolha do jogador, qualquer tipo de dano da categoria." |
+| L13, L37, L40 | Como o balanceamento recomenda | — |
+| L38 | Como o balanceamento recomenda | O nome é "Elixir da Expurgação". |
+| L43 | Como o balanceamento recomenda | "Os pergaminhos não foram ajustados à nova lógica de magia, peça pro balanceamento ajustar e te mandar o csv do bazar novo." |
+| L16, L18, L21 | Vale o primeiro | — |
+| L19 | Vale o primeiro | "Essa técnica do brutalista está desatualizada, preciso de um log de todas as técnicas do sistema e se elas estão funcionando na ficha interativa ou não." |
