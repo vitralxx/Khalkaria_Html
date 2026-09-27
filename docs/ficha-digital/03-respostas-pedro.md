@@ -209,5 +209,5 @@ Itens em `15-ficha-rodada3.md` §E (branch do balanceamento). Os que o Pedro res
 
 - **Bazar, cards:** "Preciso de uma representação visual melhor em cada card de carta no bazar, todos os chips têm a mesma paleta, e as raridades também, melhora a intuitividade e organiza a coisa, adiciona opção de diminuir e aumentar o tamanho da escala dos cards."
 - **Foco e movimento:** "Sim contorno de foco e movimento reduzido, como opção o movimento reduzido, contorno âmbar pode deixar nos links, botões e campos brilhando sutilmente no teclado destaca." → foco âmbar com brilho sutil só no teclado (`:focus-visible`); movimento reduzido como **opção** do usuário.
-- **Ficha × site:** "A ficha pode empurrar o site para a direita em vez de abrir por cima, um esquema de abas reordenáveis pode ser implementado." → a ficha empurra o conteúdo em vez de sobrepor; abas da ficha reordenáveis.
+- **Ficha × site:** "A ficha pode empurrar o site para a direita em vez de abrir por cima, um esquema de abas reordenáveis pode ser implementado." → a ficha empurra o conteúdo em vez de sobrepor; abas da ficha reordenáveis. Lado confirmado: **a ficha à direita** (onde o painel já abre hoje), apertando o conteúdo.
 - **.gitattributes:** "Faz." (feito, c6dc56f).
