@@ -1,0 +1,1641 @@
+{
+ "origem": {
+  "branch": "claude/khalkaria-bazar-balance-lsdfic",
+  "commit": "2a4757814050a0859a6145215e95020d3145472f",
+  "arquivo": ".claude/skills/khalkaria-balance/references/log-tecnicas-respostas.json",
+  "texto": ".claude/skills/khalkaria-balance/references/16-log-tecnicas.md",
+  "copiadoEm": "2026-09-27",
+  "nota": "Cópia verbatim do arquivo da branch do balanceamento; só esta chave \"origem\" foi acrescentada. Não editar à mão: recopiar do commit de origem."
+ },
+ "schemaVersion": "log-tecnicas-respostas/1",
+ "geradoEm": "2026-09-27",
+ "_doc": "Resposta do agente de balanceamento ao Log de Técnicas (artefato https://claude.ai/artifact/L4ftxMddmAPHWwG8U1VukL; main da5e73d, docs/ficha-digital/log-tecnicas-achados.json). Uma entrada por achado, pelo id. status: resolvido (regra escrita ou corrigida agora) | decisao (leitura do balanceamento; a ficha implementa, o Pedro pode revisar) | pedroDecide (espera o Pedro; a ficha usa o provisório indicado). principio = Gn de principios; perguntaPedro = Tn de perguntasPedro. Texto com a justificativa: 16-log-tecnicas.md.",
+ "fonte": {
+  "artefato": "https://claude.ai/artifact/L4ftxMddmAPHWwG8U1VukL",
+  "achados": "main da5e73d docs/ficha-digital/log-tecnicas-achados.json (160: balanceamento 110, pedro 41, site 9)"
+ },
+ "principios": {
+  "G1": {
+   "nome": "Retaliação livre",
+   "regra": "\"Retaliar sem gastar reação\" e \"retalie como ação livre\" são retaliações feitas fora da reação: rolagem de Atacar contra aquele ataque, só corpo a corpo. Podem acontecer sem reação disponível e acompanhar o Defender no mesmo ataque. É a leitura que dá efeito às técnicas escritas no modelo antigo (1 reação por ataque) sem mudar o texto.",
+   "pergunta": "T1"
+  },
+  "G2": {
+   "nome": "Ação livre",
+   "regra": "Uma técnica não acumula consigo no mesmo gatilho. Efeito de \"próximo ataque\" vale uma vez por ataque; para o ataque seguinte, reativa e paga de novo. Ação livre só vale fora do seu turno quando tem gatilho de fora (\"ao ser atacado\") ou efeito que só serve fora dele. Técnica que troca o custo de uma ação para ação livre não tira o limite da ação: Mover continua 1 vez por turno.",
+   "pergunta": "T1"
+  },
+  "G3": {
+   "nome": "PMA em técnica",
+   "regra": "Ataques de técnica contra o mesmo alvo levam o −5 cumulativo (D29), salvo quando o texto diz \"sem penalidade de multi-ataque\". A Transcendência do Monge existe para suspender a PMA, o que só faz sentido se os ataques de técnica a sofrem. Ataque extra dado por técnica entra na sequência do turno.",
+   "pergunta": "T1"
+  },
+  "G4": {
+   "nome": "Custo de ataque de técnica × arma",
+   "regra": "Técnica que dá N ataques \"como 1 ação\" com arma de Atacar(2)/(3): pergunta T2. Até lá a ficha mostra o custo do texto com aviso.",
+   "pergunta": "T2"
+  },
+  "G5": {
+   "nome": "Defender é dado",
+   "regra": "\"+N Defender\" soma N à rolagem do dado de Defender. \"Somar o treino de outra perícia no Defender\" soma o bônus fixo daquela perícia (+2/+4/+6/+8 pelo grau). \"Seu dado de Defender vira X\" só vale quando X é melhor que o dado do seu grau.",
+   "pergunta": null
+  },
+  "G6": {
+   "nome": "1x/dia",
+   "regra": "\"1x/dia\" = \"1x/Descanso Longo\" (L29, gravado no Sistema). Normalizar o texto nas 7 classes é a pergunta T5.",
+   "pergunta": "T5"
+  },
+  "G7": {
+   "nome": "Termos",
+   "regra": "Margem de Crítico = Margem de Ameaça. Surpreendido = Desprevenido. Derrubado = Caído. Adagas de lançamento = Conjunto de Arremesso. \"Marcial leve\" = chassi Marcial Precisa. \"+1 Treinamento\" = +1 grau. \"Condição mágica ou não-mágica\" = qualquer condição. Álcool = Bebida que deixa Bêbado. Sucata = item da categoria Lixo. Espada, provisório: arma corpo a corpo que causa Cortante (T3).",
+   "pergunta": null
+  },
+  "G8": {
+   "nome": "Durações ausentes",
+   "regra": "Técnica sem duração vale até o início do seu próximo turno. Condição sem duração dura 1 rodada, até o fim do próximo turno do alvo. Condição sem X é X = 1.",
+   "pergunta": null
+  },
+  "G9": {
+   "nome": "Custo exige saldo",
+   "regra": "Não se paga com o que não se tem (L01, gravado; D93). Custo aleatório (2d6) rola ao declarar; se o saldo não cobre, o efeito não acontece e nada é gasto.",
+   "pergunta": null
+  },
+  "G10": {
+   "nome": "Fluxo",
+   "regra": "Zera ao receber dano, após 1 rodada sem ganhar Fluxo e no fim do combate (L23, gravado no Monge). Custo em Fluxo nas técnicas é requisito, não gasto (texto da classe). Fluxo Invertido e as ultimates que tiram Fluxo: T12.",
+   "pergunta": "T12"
+  },
+  "G11": {
+   "nome": "Contrato corrigido (rev. 7)",
+   "regra": "Artilheiro gasta Concentração (não só exige). Monge começa com Movimento e Atacar (e Armas Marciais). Categorias de dano pelo Sistema: Místico = Radiante, Trovejante, Necrótico; Força e Primordial em \"Outros\" (a D67 estava errada). Texto de carta rara tirado dos campos de nota (n11, mentalFonte). Referências 03-origens e 04-racas marcadas como superadas.",
+   "pergunta": null
+  },
+  "G12": {
+   "nome": "\"Passiva\" com custo no corpo",
+   "regra": "O custo é pago por uso: Ponto Fraco, Brecha, Cadeia de Golpes, Encadeamento, Tese Arcana, Língua Prateada, Munição Especial. A leitura de Stamina \"reservada\" (P45) caiu.",
+   "pergunta": null
+  },
+  "G13": {
+   "nome": "Intensidade",
+   "regra": "Paga-se a intensidade declarada. Cair abaixo da menor intensidade que a magia tem = a magia falha. \"Versão contida\" = a menor intensidade disponível (Normal numa magia de Nível 1, que não tem Contida). Intensidade subida por técnica: T4.",
+   "pergunta": "T4"
+  },
+  "G14": {
+   "nome": "Custo de magia",
+   "regra": "Modulação grátis zera o custo dela, mas a magia continua modulada: o piso de 1 Éter vale. Escola Visceral: −2 na magia e −2 em cada modulação, cada modulação com piso 1, depois o piso global. A ficha casa técnica e Dor por id, nunca por nome (Mente Fraca).",
+   "pergunta": null
+  },
+  "G15": {
+   "nome": "Itens alquímicos",
+   "regra": "O CSV do Bazar é a fonte do item; a tabela da classe diverge em 2 itens (T13). \"Queima\" e \"sangra por turno\" de item são tiques do item, não as condições Em Chamas e Sangramento. Descontos de Reagente somam, com piso 1 por item. Sintonia Arcana: 2 Éter = 1 Reagente.",
+   "pergunta": "T13"
+  }
+ },
+ "perguntasPedro": {
+  "T1": {
+   "tema": "Princípios G1–G3",
+   "pergunta": "Aprova as três leituras: retaliação livre (G1), ação livre que não acumula consigo e só vale fora do turno com gatilho (G2), PMA também nos ataques de técnica (G3)?",
+   "recomendacao": "Aprovar. Dão efeito ao texto que você já escreveu, sem reescrever técnica."
+  },
+  "T2": {
+   "tema": "N ataques \"como 1 ação\" com arma pesada",
+   "pergunta": "Lâmina Rápida, Massacre e Rajada de Tiros com arma de Atacar(2)/(3): (a) literal, 1 ação sempre; (b) os ataques custam juntos o Atacar(n) da arma; (c) só armas de Atacar(1).",
+   "recomendacao": "(b). Toda arma de fogo do Bazar é Atacar(2): no literal, a Rajada dá 4 vezes a taxa normal de tiros e 3 Rajadas por turno somam 6 tiros."
+  },
+  "T3": {
+   "tema": "\"Espada\"",
+   "pergunta": "Proficiência com Espadas e Pedra de Amolar citam \"espada\", que o Bazar não tem. Qual regra?",
+   "recomendacao": "Arma corpo a corpo que causa dano Cortante. Casa com o \"ignora resistência a Cortante\" e não pede mudança no CSV; custo: machados e foices de chassi Cortante contam. Alternativa: tag \"Espada\" no CSV."
+  },
+  "T4": {
+   "tema": "Intensidade subida por técnica",
+   "pergunta": "Tese Arcana, Patrono Primordial e Natureza Caótica sobem a intensidade. Paga a declarada ou a resultante? Chegar a Transbordante assim pede o teste de Vontade?",
+   "recomendacao": "Paga a declarada; sem teste, porque o teste é o risco de quem escolhe forçar; teto Transbordante (Transbordante+ só onde o texto diz)."
+  },
+  "T5": {
+   "tema": "Normalização de termos (só texto)",
+   "pergunta": "\"1x/Dia\" → \"1x/Descanso Longo\" nas ultimates e no cabeçalho do Tier 3 das 7 classes; \"Margem de Crítico\" → \"Margem de Ameaça\" (Sorte do Bêbado, Golpe Instinto, Tiro Carregado); \"surpreendido\" → \"Desprevenido\" (Sensor de Proximidade); \"Adagas de lançamento\" → \"Conjunto de Arremesso\" e \"Flecha\" → \"Virotes/Flechas\" (Artesão de Munição); \"Derrubado\" → \"Caído\" (Postura Defensiva); \"Caidos\" → \"Caído\" (Investida); e definir no Sistema > Sua Rodada: \"Penalidade de Multi-Ataque (PMA): −5 cumulativo a cada ataque depois do primeiro contra o mesmo alvo, no mesmo turno\" (D29).",
+   "recomendacao": "Sim. Eu gravo e confiro o diff de cada página."
+  },
+  "T6": {
+   "tema": "Recurso de classe do Espadachim e do Teurgo",
+   "pergunta": "Você disse \"todas têm\", mas o Notion não traz nome nem regra desses dois. Quais são (nome, máximo, como ganha, como perde)? Ou o do Teurgo é o próprio Éter?",
+   "recomendacao": "Até você escrever, a ficha mostra um contador livre (nome e atual/máx editáveis)."
+  },
+  "T7": {
+   "tema": "Coragem Líquida",
+   "pergunta": "\"+1 permanentemente em Movimento\": na perícia ou em metros?",
+   "recomendacao": "Na perícia: as outras 5 marcas do Espadachim dão perícia."
+  },
+  "T8": {
+   "tema": "Batedor",
+   "pergunta": "(a) Ocultar-se diz \"com 1 ação ao invés de 2\", mas Esconder custa 3 hoje. (b) Homem de Negócios está cortado no próprio Notion: \"Você possui um disturbio de mat…\". (c) Desenhar Mapa de Exploração tem um bullet vazio \"-\" no Notion: faltou um benefício? (d) Artista Apaixonado: \"mercadoria Incomum\" muda o quê, se o mapa já é Incomum? (e) Senhor das Linhas: não há regra de flanqueio no Sistema, e a armadilha não tem tipo de dano.",
+   "recomendacao": "(a) Custo final 1 ação e corrigir o \"2\" para \"3\". (b) e (c) Preciso do texto. (d) Vender pelo preço de Incomum do Bazar. (e) Tirar \"Não pode ser flanqueado\"; armadilha Perfurante."
+  },
+  "T9": {
+   "tema": "Brutalista",
+   "pergunta": "(a) Muralha Viva (L19). (b) Frenesi: \"no nível 1\" e \"descontrolado\". (c) Contador de Corpos: o asterisco de \"brutalmente\" não tem nota no Notion. (d) Imortal: \"pode escolher não morrer\" é do modelo antigo.",
+   "recomendacao": "(a) \"Some +1 à rolagem de Defender para cada grau de treinamento (Treinado +1, Experiente +2, Mestre +3, Lendário +4)\", a tradução exata do \"3 em 3\". (b) \"No nível 2\"; \"descontrolado\" é adjetivo, não a condição; para travar algo preciso da lista, no mínimo \"não conjura nem sustenta magia\". (c) Matar com acerto crítico ou pelo Finalizar. (d) \"Ao cair a 0 ou menos de Saúde, pode, como ação livre, ficar com 1 de Saúde em vez de entrar em Morrendo. Ao fazer isso, ganha +1 de Exaustão.\""
+  },
+  "T10": {
+   "tema": "Investida (L20)",
+   "pergunta": "Nomes para as duas regras antigas, e a do Brutalista conta como o Mover do turno?",
+   "recomendacao": "Técnica do Brutalista → \"Atropelar\"; ação do Titã → \"Avalanche\". Conta como Mover. \"Investida\" fica só para a manobra, que é a que as Grevas citam."
+  },
+  "T11": {
+   "tema": "Teurgo",
+   "pergunta": "(a) Encadeamento é exceção ao \"1 magia por turno\"? (b) Manifestação do Patrono: CDs sem número, \"Banido\" e os 6 Efeitos Caóticos. (c) Receptáculo Perfeito: \"chegar em 50%\" e a Casca Rachada. (d) Devoto: requisito é Patrono Primordial ou Barganha Primordial? (e) Grande Árvore: a Seiva do patrono soma Marca da Vhelor?",
+   "recomendacao": "(a) Sim, escrever a exceção; 3 Stamina por uso. (b) \"Contra sua CD\" (D57); Banido fica efeito da ultimate; sorteio 1d6. (c) \"Ultrapassar\", e a Casca Rachada dobra esse limite também. (d) Preciso da resposta. (e) Não: somar tiraria 10 de Éter máximo do próprio devoto na Marca 2."
+  },
+  "T12": {
+   "tema": "Monge",
+   "pergunta": "(a) Fluxo Invertido contra o \"dano zera o Fluxo\". (b) \"Não pode perder fluxo de nenhuma outra forma\" contra as ultimates que tiram Fluxo. (c) Forma do Vazio: \"1d10 <5 acerta\" dá 40%, não 50%; e o que são \"ataques físicos\"? (d) Queda Suave: o que é o \"1 minuto\" e quando vale o \"5 × Nível\"? (e) O ataque desarmado base (1d4) não tem tipo, atributo nem Atacar(n).",
+   "recomendacao": "(a) Com Fluxo Invertido, o dano dá +1 no lugar de zerar. (b) Acrescentar \"exceto quando o texto de uma técnica diz que você perde Fluxo\". (c) \"≤5 acerta\"; ataques de arma e desarmados, de qualquer tipo de dano. (d) Por 1 minuto, quedas até 30 m sem dano; acima de 30 m, o dano cai 5 × Nível. (e) \"1d4 Contundente (Destreza), Atacar(1), corpo a corpo\", o perfil do chassi Leve."
+  },
+  "T13": {
+   "tema": "Alquimista",
+   "pergunta": "(a) Cartucho Arcano depois da D68: custo e CD subiram 2 sozinhos. (b) Elixir Especial: \"3 Reagentes\" no cabeçalho, \"1 por alvo\" no corpo. (c) Curandeiro Incansável: \"que estava com 0 de Saúde\". (d) Tabela da classe × CSV: Soro da Guerra (o CSV dura 1 min e não tem \"Vantagem em Fortitude\") e Veneno Hemorrágico (o CSV não tem \"Medicina estanca\"). (e) Essência Etérea: \"Incorpóreo\" não é condição.",
+   "recomendacao": "(a) Reagentes = custo base de Éter da magia; CD = 10 + custo base; Nível 5 pede Foco Primordial para criar. (b) 1 por alvo. (c) \"Que estava Morrendo\". (d) Vale o CSV; se quiser os extras, eles entram no CSV. (e) Fica efeito do item."
+  },
+  "T14": {
+   "tema": "Artilheiro",
+   "pergunta": "(a) Munição Especial: \"3 = 1 bugiganga\" contra a regra \"10 = 1\". (b) Projétil Envenenado vale o combate inteiro pela regra da munição (D2/D41).",
+   "recomendacao": "(a) Alinhar a 10, salvo peso maior proposital. (b) É o que a regra diz; se for forte demais, basta \"uso único\"."
+  },
+  "T15": {
+   "tema": "Raças",
+   "pergunta": "(a) Autômato, Achar Tecnologias em Lojas: o d12 não fecha com a lista. (b) Gruto: \"Criaturas Predáveis\" não está definido. (c) Corrompido: pela tabela, \"negativas são permanentes\" aponta para os poderes. (d) As Vozes: \"1 natural em qualquer dado\". (e) Receptáculo Natural e Cultista conjuram sem Treinado em Místico?",
+   "recomendacao": "(a) 1d10 sobre as 9 compráveis, rerolando o 10 e os repetidos. (b) Sugestão: Dryads e criaturas menores que você. (c) \"Adversidades (custo +) são permanentes; poderes (custo −) podem ser reorganizados no descanso longo.\" (d) Só o d20: num 4d6 de dano, 52% das rolagens têm um 1. (e) Sim: o traço dá a conjuração das 2 magias."
+  },
+  "T16": {
+   "tema": "Origens e condições mentais",
+   "pergunta": "(a) A Forja: +1 grau por item inédito ou por raridade inédita? (b) Caçador: \"1 Arma Simples\" não existe. (c) Mineiro: itens iguais aos do Lenhador. (d) \"Condições mentais\" = Enfeitiçado, Amedrontado, Confuso, Atordoado, a única lista escrita (no Limiar). Descontrolado e Bêbado ficam de fora?",
+   "recomendacao": "(a) Por raridade (Incomum, Exótico, Luxária: até +3); por item, 4 fabricações levam a Lendário. (b) \"Arma Distância Simples\". (c) \"Cobre\" no lugar de \"Madeira Comum\". (d) Sim."
+  },
+  "T17": {
+   "tema": "Produção em Massa",
+   "pergunta": "O texto termina com \"← betovenon.\": crédito intencional ou sai?",
+   "recomendacao": "—"
+  },
+  "T18": {
+   "tema": "Confirmações rápidas (a ficha já usa)",
+   "pergunta": "Epifania: cada d20 do conjunto vale uma rolagem e sai. Cobra: a dose dura até o 1º acerto. Primordial é o Nível 5 das escolas, não uma 5ª lista (o Foco Primordial diz \"todas as magias de nível 5\"). O Próximo: teto +3 no total.",
+   "recomendacao": "Confirmar."
+  },
+  "T19": {
+   "tema": "\"+Int\" de cura (L08)",
+   "pergunta": "Gravei no Sistema o que você disse para poções: Int de quem fabricou. E os elixires, os kits de Manutenção e Trauma, e a poção comprada sem fabricante conhecido?",
+   "recomendacao": "Elixir igual à poção; kit com a Int de quem usa, porque é aplicado na hora; poção comprada soma +0, salvo o mestre dizer outro valor."
+  }
+ },
+ "respostas": {
+  "espadachim-inimigo-mortal": {
+   "status": "decisao",
+   "resposta": "Leitura G1: \"retaliar sem gastar reação\" é retaliação livre, feita fora da reação. Até o início do seu próximo turno, até 2 retaliações livres contra a Marca. Você pode retaliar mesmo sem reação e pode Defender (reação) e retaliar o mesmo ataque. A reação fica intacta para outro agressor se você não a usou.",
+   "acao": "ficha: contador \"retaliação livre\" = 2 (alvo: Marca), zera no início do seu turno",
+   "principio": "G1",
+   "perguntaPedro": "T1",
+   "paraQuem": "balanceamento",
+   "nome": "Inimigo Mortal"
+  },
+  "espadachim-quebrar-postura": {
+   "status": "decisao",
+   "resposta": "O alvo reage normalmente ao ataque que o acertou. Depois desse acerto, fica sem reação até o início do próximo turno dele, que é o ponto em que a reação volta; \"fim da rodada\" é termo do modelo antigo. Seus ataques seguintes neste turno perdem o dado de Defender dele e não podem ser retaliados, e os de outros agressores vão contra a Evasão Passiva.",
+   "acao": "ficha: estado \"sem reação\" na Marca até o turno dela (mesa marca)",
+   "principio": "G1",
+   "perguntaPedro": "T1",
+   "paraQuem": "balanceamento",
+   "nome": "Quebrar Postura"
+  },
+  "espadachim-guardar-a-lamina": {
+   "status": "decisao",
+   "resposta": "\"+2 Defender\" soma 2 à rolagem do dado de Defender (G5). \"Sua primeira retaliação não gasta reação\" = a primeira retaliação até o início do seu próximo turno é livre (G1).",
+   "acao": "ficha: +2 no dado de Defender; contador \"retaliação livre\" = 1",
+   "principio": "G1",
+   "perguntaPedro": "T1",
+   "paraQuem": "balanceamento",
+   "nome": "Guardar a Lâmina"
+  },
+  "espadachim-sentenca-final": {
+   "status": "decisao",
+   "resposta": "Com a G1, a técnica tem efeito: no plano, toda retaliação é livre, então você pode Defender (reação) e retaliar cada ataque da Marca. Se o Pedro recusar a G1, ela fica nula no modelo atual e precisa ser reescrita.",
+   "acao": "ficha: retaliação livre ilimitada enquanto no plano",
+   "principio": "G1",
+   "perguntaPedro": "T1",
+   "paraQuem": "balanceamento",
+   "nome": "Sentença Final"
+  },
+  "espadachim-parry-perfeito": {
+   "status": "decisao",
+   "resposta": "Gatilho: um ataque da Marca erra contra sua Evasão Ativa. Efeito: retaliação livre. Role Atacar contra a rolagem do ataque defendido; se passar, você a acerta com a arma empunhada, só corpo a corpo. O ataque dela já errou, então você não sofre dano. Dispara uma vez por ataque defendido, pagando 3 Stamina a cada uso. O teto natural é o número de ataques da Marca e a sua Stamina. Não usa reação.",
+   "acao": "ficha: botão de uso por ataque defendido (3 Stamina cada)",
+   "principio": "G1",
+   "perguntaPedro": "T1",
+   "paraQuem": "balanceamento",
+   "nome": "Parry Perfeito"
+  },
+  "espadachim-corte-diagonal": {
+   "status": "decisao",
+   "resposta": "Não acumula consigo (G2). Cada ataque recebe uma ativação só: no máximo +2 e Sangramento 1 por ataque. Pode ativar de novo para o ataque seguinte, pagando de novo. O Sangramento de ataques diferentes soma pela regra da condição.",
+   "acao": "ficha: flag \"próximo ataque\" booleana, não contador",
+   "principio": "G2",
+   "perguntaPedro": null,
+   "paraQuem": "balanceamento",
+   "nome": "Corte Diagonal"
+  },
+  "espadachim-dobrar-a-aposta": {
+   "status": "decisao",
+   "resposta": "Uma declaração por ataque (G2). Pode declarar em cada ataque contra a Marca no turno, pagando 3 Stamina a cada vez. Os +4d6 não dobram no crítico (D97: só dados da arma).",
+   "acao": "ficha: flag booleana por ataque",
+   "principio": "G2",
+   "perguntaPedro": null,
+   "paraQuem": "balanceamento",
+   "nome": "Dobrar a Aposta"
+  },
+  "espadachim-lamina-rapida": {
+   "status": "pedroDecide",
+   "resposta": "PMA: o 2º ataque leva −5 (G3; o texto não diz \"sem penalidade de multi-ataque\"). Custo com arma de Atacar(2)/(3): pergunta T2. Minha recomendação é que os 2 ataques custem juntos o Atacar(n) da arma, o que mantém a técnica valendo \"2 ataques pelo preço de 1\" em qualquer arma. No literal, uma Pesada Brutal faria 2 ataques por 1 ação, economizando 5 ações.",
+   "acao": "ficha: mostra \"1 Ação\" do texto + aviso até a T2",
+   "principio": "G3",
+   "perguntaPedro": "T2",
+   "paraQuem": "balanceamento",
+   "nome": "Lâmina Rápida"
+  },
+  "espadachim-massacre": {
+   "status": "pedroDecide",
+   "resposta": "Custo com arma pesada: mesma T2. O 2º ataque leva −5 (G3). Os +2d6 e o Sangramento 1 valem uma vez, no 2º acerto, só se os dois acertarem. Os +2d6 não dobram no crítico (D97).",
+   "acao": "ficha: como Lâmina Rápida",
+   "principio": "G3",
+   "perguntaPedro": "T2",
+   "paraQuem": "balanceamento",
+   "nome": "Massacre"
+  },
+  "espadachim-proficiencia-com-espadas": {
+   "status": "pedroDecide",
+   "resposta": "\"Espada\" não existe no Bazar. Pergunta T3. Recomendo \"arma corpo a corpo que causa dano Cortante\": Leve Cortante, Marcial Precisa, Pesada Cortante, e Leve Ágil, Marcial Versátil e Pesada Brutal quando o jogador escolhe Cortante. É automatizável, casa com o \"ignora resistência a Cortante\" do nível 3 e não exige mexer no CSV. Custo: machados e foices de chassi Cortante contam como espada.",
+   "acao": "ficha: provisório = corpo a corpo + Cortante",
+   "principio": "G7",
+   "perguntaPedro": "T3",
+   "paraQuem": "balanceamento",
+   "nome": "Proficiência com Espadas (característica de classe)"
+  },
+  "espadachim-sorte-do-bebado": {
+   "status": "decisao",
+   "resposta": "Margem de crítico = Margem de Ameaça (G7). O +1 vale em toda rolagem de d20 (contrato testes.critico.escopo), inclusive fabricação pela regra geral do 20 natural; o crítico por margem de ±10 da D49 não muda. Não mexe no dado de Defender nem no dano, que não são d20. \"+2 Evasão\" entra na Evasão base (Passiva), e a Ativa sobe junto porque soma o dado à Passiva.",
+   "acao": "ficha: margemDeAmeaca −1 em todo d20; evasao.base +2",
+   "principio": "G7",
+   "perguntaPedro": null,
+   "paraQuem": "balanceamento",
+   "nome": "Sorte do Bêbado"
+  },
+  "espadachim-beber-ate-cair": {
+   "status": "decisao",
+   "resposta": "\"Item:Álcool\" = consumível de tag Bebida que deixa Bêbado: Cerveja de Taverna, Vinho Aguado, Aguardente de Raiz, Licor de Ferro, Fermentado do Abismo e Última Rodada. Café Preto não conta. O efeito próprio da bebida também vale. O Bêbado dura o que a bebida diz (quase todas até o fim da cena; Última Rodada até o descanso longo). A 1 Ação da técnica já inclui beber.",
+   "acao": "ficha: filtro Tags∋Bebida e Efeito menciona \"Bêbado\" sem \"Remove\"",
+   "principio": "G7",
+   "perguntaPedro": null,
+   "paraQuem": "balanceamento",
+   "nome": "Beber até Cair"
+  },
+  "espadachim-ponto-fraco": {
+   "status": "resolvido",
+   "resposta": "\"Passiva\" com custo no corpo = custo por uso (G12): 5 Stamina a cada vez que você mantém o Exposto. O contrato estava errado ao usar Ponto Fraco como exemplo de Stamina reservada; corrigido.",
+   "acao": "contrato: exemplo removido de vocabulario.custoTipoDetalhe.reserva",
+   "principio": "G12",
+   "perguntaPedro": null,
+   "paraQuem": "balanceamento",
+   "nome": "Ponto Fraco"
+  },
+  "espadachim-brecha": {
+   "status": "decisao",
+   "resposta": "Os dois modos custam 5 Stamina, e o limite é 1 uso por turno somando os dois. O Sangramento confere o Exposto no momento do acerto, antes de o Exposto sair. Esse acerto é crítico, aplica Sangramento 1 e remove o Exposto.",
+   "acao": "ficha: 1 uso/turno, 5 Stamina em qualquer modo",
+   "principio": "G12",
+   "perguntaPedro": null,
+   "paraQuem": "balanceamento",
+   "nome": "Brecha"
+  },
+  "espadachim-oportunista": {
+   "paraQuem": "pedro",
+   "status": "pedroDecide",
+   "resposta": "\"PMA\" definido no Sistema pela D29. \"Nesta rodada\" = neste turno, porque a PMA é por turno. Com isso a técnica funciona como está.",
+   "acao": "aguarda Pedro",
+   "principio": null,
+   "perguntaPedro": "T5",
+   "nome": "Oportunista"
+  },
+  "espadachim-pedra-de-amolar": {
+   "status": "pedroDecide",
+   "resposta": "\"Espada\": mesma T3, com o mesmo provisório (corpo a corpo + Cortante). O jogador escolhe a arma ao amolar. +1d4 Cortante até o fim do próximo combate; não dobra no crítico (D97).",
+   "acao": "ficha: bônus preso à arma escolhida, some no fim do próximo combate",
+   "principio": "G7",
+   "perguntaPedro": "T3",
+   "paraQuem": "balanceamento",
+   "nome": "Pedra de Amolar"
+  },
+  "espadachim-coragem-liquida": {
+   "paraQuem": "pedro",
+   "status": "pedroDecide",
+   "resposta": "+1 na perícia Movimento: as outras 5 marcas do Espadachim dão perícia.",
+   "acao": "aguarda Pedro",
+   "principio": null,
+   "perguntaPedro": "T7",
+   "nome": "Coragem Líquida"
+  },
+  "espadachim-epifania": {
+   "status": "decisao",
+   "resposta": "Só rolagens de d20: Defender e dano não são d20. Cada dado substitui uma rolagem e sai do conjunto; acabados os 6, você volta a rolar, como em outras vidências. Se os dados pudessem ser reusados, seriam 10 minutos de 18+ garantido. 10 min = 100 rodadas (D90).",
+   "acao": "ficha: pool de 6 valores, cada um consumido ao usar",
+   "principio": null,
+   "perguntaPedro": "T18",
+   "paraQuem": "balanceamento",
+   "nome": "Epifania"
+  },
+  "notacao-1x-dia": {
+   "paraQuem": "pedro",
+   "status": "pedroDecide",
+   "resposta": "Trocar \"1x/Dia\" por \"1x/Descanso Longo\" nas ultimates e no cabeçalho do Tier 3 das 7 classes. É só texto: a ficha já recarrega no descanso longo (L29).",
+   "acao": "aguarda Pedro",
+   "principio": null,
+   "perguntaPedro": "T5",
+   "nome": "Ultimates: recarga escrita \"1x/Dia\""
+  },
+  "espadachim-recurso": {
+   "paraQuem": "pedro",
+   "status": "pedroDecide",
+   "resposta": "Preciso do texto (nome, máximo, ganho, perda). Até lá a ficha mostra um contador livre, com nome e atual/máx editáveis.",
+   "acao": "aguarda Pedro",
+   "principio": null,
+   "perguntaPedro": "T6",
+   "nome": "Recurso de Classe do Espadachim"
+  },
+  "espadachim-marca-do-duelo": {
+   "paraQuem": "site",
+   "status": "doAgenteDeHtml",
+   "resposta": "Concordo: a Marca do Duelo entra na ficha como estado (contrato classes.espadachim.estados, rastrear: essencial, +1/+2/+3 por nível).",
+   "acao": "site",
+   "principio": null,
+   "perguntaPedro": null,
+   "nome": "Marca do Duelo / Proficiência com Espadas (características sem data-kf)"
+  },
+  "batedor-ocultar-se": {
+   "paraQuem": "pedro",
+   "status": "pedroDecide",
+   "resposta": "Custo final 1 ação. Corrigir \"ao invés de 2\" para \"ao invés de 3\", o custo atual de Esconder.",
+   "acao": "aguarda Pedro",
+   "principio": null,
+   "perguntaPedro": "T8",
+   "nome": "Ocultar-se"
+  },
+  "batedor-homem-de-negocios": {
+   "paraQuem": "pedro",
+   "status": "pedroDecide",
+   "resposta": "A frase está cortada no próprio Notion (\"Você possui um disturbio de mat\"). Preciso do resto.",
+   "acao": "aguarda Pedro",
+   "principio": null,
+   "perguntaPedro": "T8",
+   "nome": "Homem de Negócios"
+  },
+  "batedor-fantasma": {
+   "status": "decisao",
+   "resposta": "Defender é dado (G5): \"somar o treinamento de Furtividade\" soma o bônus fixo de Furtividade (+2/+4/+6/+8 pelo grau) à rolagem do dado de Defender. O gatilho \"ao ser atacado\" já é fora do seu turno, então a ação livre vale no turno do agressor (G2). Um pagamento de 2 Stamina por reação de Defender, e ele vale para todos os ataques daquele agressor no turno. O Batedor está em rework (D79); a leitura vale para o texto atual.",
+   "acao": "ficha: +bônus de treino de Furtividade no Defender",
+   "principio": "G5",
+   "perguntaPedro": null,
+   "paraQuem": "balanceamento",
+   "nome": "Fantasma"
+  },
+  "batedor-sexto-sentido": {
+   "status": "decisao",
+   "resposta": "O +2 entra na Evasão base (Passiva), e a Ativa sobe junto. Ação livre defensiva usável no turno de qualquer criatura (G2): \"durante esse turno\" é o turno em curso, de quem for. No próprio turno o efeito não serve para nada.",
+   "acao": "contrato/ficha: duração = turno em curso (qualquer criatura)",
+   "principio": "G2",
+   "perguntaPedro": null,
+   "paraQuem": "balanceamento",
+   "nome": "Sexto Sentido (habilidade de Instinto)"
+  },
+  "batedor-recurso-instinto": {
+   "status": "pedroDecide",
+   "resposta": "O ganho e a perda do Instinto estão no rework do Batedor (D79, perguntas P1–P6 em aberto). Para o texto atual: Defender não é \"perícia com sucesso/falha\", porque não tem CD e o resultado é a Evasão. A esquiva conta pelo gatilho próprio (\"Ao esquivar\"), sem contar duas vezes.",
+   "acao": "ficha: Instinto manual (sem automação) até o rework",
+   "principio": null,
+   "perguntaPedro": "rework do Batedor (P1–P6)",
+   "paraQuem": "balanceamento",
+   "nome": "Instinto (ganho/perda por perícia)"
+  },
+  "batedor-silencio": {
+   "status": "decisao",
+   "resposta": "(1) A ultimate dura até o fim do combate, como as irmãs (Senhor das Linhas, Suborno). A obsessão do custo segue o texto: dura até matar ou passar na Vontade. (2) O 1d6 de Éter é pago ao ativar, como todo \"O Custo\" de ultimate. (3) Cada marcação aplica Exposto, e remarcar na rodada seguinte reaplica. O Exposto sai no primeiro acerto, pela regra da condição. (4) Marcada à Morte é estado de classe (PD17): a palavra \"condição\" do texto é solta e não muda a regra.",
+   "acao": "ficha: estado de classe com X; Exposto reaplicado a cada marcação",
+   "principio": null,
+   "perguntaPedro": null,
+   "paraQuem": "balanceamento",
+   "nome": "Silêncio"
+  },
+  "batedor-cicatrizes-da-jornada": {
+   "status": "decisao",
+   "resposta": "Gasto sem saldo é proibido (contrato stamina.gastoSemSaldo, D93). Custo aleatório (G9): rola o 2d6 ao declarar. Se a Stamina atual não cobre o resultado, a conversão não acontece e nada é gasto. Com 0 de Stamina não dá para declarar.",
+   "acao": "ficha: valida saldo ≥ resultado antes de converter",
+   "principio": "G9",
+   "perguntaPedro": null,
+   "paraQuem": "balanceamento",
+   "nome": "Cicatrizes da Jornada"
+  },
+  "batedor-mapa-mental": {
+   "status": "decisao",
+   "resposta": "\"Seus benefícios\" = os do mapa tático do Desenhar Mapa de Combate: aliados não ficam Desprevenidos e Coordenação, Ponto Cego e Reposicionar ficam liberados, cada um com o próprio custo. Mapa Mental não exige ter o Desenhar: o esboço mental faz as vezes do mapa desenhado. A ficha lista os benefícios a partir do texto do Desenhar.",
+   "acao": "ficha: ao ativar, mostra as 3 sub-habilidades do Desenhar Mapa de Combate",
+   "principio": null,
+   "perguntaPedro": null,
+   "paraQuem": "balanceamento",
+   "nome": "Mapa Mental"
+  },
+  "batedor-golpe-instinto": {
+   "status": "decisao",
+   "resposta": "Vale o número: a margem cai 3 a partir da margem da arma. O \"(17-20)\" é o exemplo com margem 20; com margem 19, fica 16-20. Margem de crítico = Margem de Ameaça (G7).",
+   "acao": "ficha: margemDeAmeaca −3 no próximo ataque",
+   "principio": "G7",
+   "perguntaPedro": null,
+   "paraQuem": "balanceamento",
+   "nome": "Golpe Instinto (habilidade de Instinto)"
+  },
+  "batedor-senhor-das-linhas": {
+   "paraQuem": "pedro",
+   "status": "pedroDecide",
+   "resposta": "Flanqueio não existe no Sistema: tirar \"Não pode ser flanqueado\" ou criar a regra. A armadilha causa Perfurante.",
+   "acao": "aguarda Pedro",
+   "principio": null,
+   "perguntaPedro": "T8",
+   "nome": "Senhor das Linhas"
+  },
+  "batedor-desenhar-mapa-de-exploracao": {
+   "paraQuem": "pedro",
+   "status": "pedroDecide",
+   "resposta": "O \"-\" vazio está no Notion: faltou um 3º benefício? O mapa não é item do Bazar; a ficha o adiciona como item manual Incomum.",
+   "acao": "aguarda Pedro",
+   "principio": null,
+   "perguntaPedro": "T8",
+   "nome": "Desenhar Mapa de Exploração"
+  },
+  "batedor-artista-apaixonado": {
+   "paraQuem": "pedro",
+   "status": "pedroDecide",
+   "resposta": "\"Mercadoria Incomum\" muda o quê, se o mapa já é Incomum? Sugestão: vende pelo preço de Incomum do Bazar. Se não mudar nada, a técnica sai ou ganha outro efeito.",
+   "acao": "aguarda Pedro",
+   "principio": null,
+   "perguntaPedro": "T8",
+   "nome": "Artista Apaixonado"
+  },
+  "batedor-lingua-prateada": {
+   "status": "decisao",
+   "resposta": "O treino em Convencimento é passivo e sem custo. A 1 Ação e os 2 Stamina pagam o uso ativo, o teste de Convencimento com o comerciante; se passar, 25% de desconto em um item (G12).",
+   "acao": "ficha: treino fixo; botão de uso com custo",
+   "principio": "G12",
+   "perguntaPedro": null,
+   "paraQuem": "balanceamento",
+   "nome": "Língua Prateada"
+  },
+  "batedor-cobra": {
+   "status": "decisao",
+   "resposta": "Dois usos. Criar venenos no descanso (até 2 no curto, 5 no longo, 5 Sins cada) não custa Stamina. Aplicar na arma ou munição custa 1 Ação e 2 Stamina. A Fortitude é contra a sua CD (D57: a CD é sempre a do portador; Batedor 10 + DES + SAB). \"Envenenada\" = Envenenamento. O texto não diz quanto dura a dose; provisório: vale até o primeiro acerto.",
+   "acao": "ficha: custo só no \"aplicar\"; CD da classe",
+   "principio": null,
+   "perguntaPedro": "T18",
+   "paraQuem": "balanceamento",
+   "nome": "Cobra"
+  },
+  "batedor-agiota": {
+   "paraQuem": "site",
+   "status": "doAgenteDeHtml",
+   "resposta": "Concordo: \"Endividado\" é efeito da técnica (como Marcado, PD17), não condição.",
+   "acao": "site",
+   "principio": null,
+   "perguntaPedro": null,
+   "nome": "Agiota"
+  },
+  "brutalista-muralha-viva": {
+   "paraQuem": "pedro",
+   "status": "pedroDecide",
+   "resposta": "Texto proposto (L19): \"Some +1 à rolagem de Defender para cada grau de treinamento (Treinado +1, Experiente +2, Mestre +3, Lendário +4).\" É a tradução exata do \"3 em 3\" antigo, que dava +1 por grau acima do normal.",
+   "acao": "aguarda Pedro",
+   "principio": null,
+   "perguntaPedro": "T9",
+   "nome": "Muralha Viva"
+  },
+  "brutalista-guardiao": {
+   "status": "decisao",
+   "resposta": "A mesma reação cobre interceptar e defender. Ao interceptar, você vira o alvo daquele agressor, e no modelo atual uma reação cobre todos os ataques dele no turno, então o Defender sai dessa reação sem precisar de uma 2ª. O \"Passiva\" do cabeçalho só diz que não há custo de ativação; a técnica usa a reação pelo texto.",
+   "acao": "ficha: 1 reação; Defender liberado contra o ataque interceptado",
+   "principio": "G1",
+   "perguntaPedro": null,
+   "paraQuem": "balanceamento",
+   "nome": "Guardião"
+  },
+  "brutalista-frenesi": {
+   "paraQuem": "pedro",
+   "status": "pedroDecide",
+   "resposta": "\"No nível 1\" → \"no nível 2\": o Tier 1 só abre no 2. Os 2 usos no nível 3 ficam.",
+   "acao": "aguarda Pedro",
+   "principio": null,
+   "perguntaPedro": "T9",
+   "nome": "Frenesi"
+  },
+  "brutalista-frenesi-2": {
+   "paraQuem": "pedro",
+   "status": "pedroDecide",
+   "resposta": "\"Descontrolado\" como adjetivo, não a condição, que faria o Brutalista atacar aliados. Para a ficha travar algo, preciso da lista \"paciência ou concentração\"; o mínimo seria \"não conjura nem sustenta magias\".",
+   "acao": "aguarda Pedro",
+   "principio": null,
+   "perguntaPedro": "T9",
+   "nome": "Frenesi"
+  },
+  "brutalista-investida": {
+   "paraQuem": "pedro",
+   "status": "pedroDecide",
+   "resposta": "L20: renomear para \"Atropelar\". Conta como o Mover do turno. \"Caidos\" → Caído (corrijo junto).",
+   "acao": "aguarda Pedro",
+   "principio": null,
+   "perguntaPedro": "T10",
+   "nome": "Investida"
+  },
+  "brutalista-resistencia-adaptavel": {
+   "status": "decisao",
+   "resposta": "Tipos válidos: os 9 atípicos (Fogo, Frio, Elétrico, Veneno, Ácido, Psíquico, Radiante, Trovejante, Necrótico). Ordinário fica de fora, porque Ae só reduz dano atípico (Sistema) e o Ordinário já tem o Ar. Força e Primordial ficam de fora (D63; mesma linha da L26/D89). A troca \"instantaneamente\" já reduz o golpe que a disparou: é o que dá sentido à palavra.",
+   "acao": "ficha: seletor com os 9 atípicos; troca aplica no golpe atual",
+   "principio": null,
+   "perguntaPedro": null,
+   "paraQuem": "balanceamento",
+   "nome": "Resistência Adaptável"
+  },
+  "brutalista-formacao-de-combate": {
+   "status": "decisao",
+   "resposta": "Os degraus somam: 3 aliados dão +2 +1 = +3 Atacar, e em Degolar 4 aliados dão +1 +1d6 +1d6. \"+1,5 Movimento\" são +1,5 m no Movimento derivado. \"Executa uma criatura\" = a reduz a 0 de Saúde, não a propriedade de arma Executar. \"1 ação grátis\" = 1 ação extra na hora, e isso é de mesa. Você conta na contagem de aliados.",
+   "acao": "ficha: soma cumulativa por degrau",
+   "principio": null,
+   "perguntaPedro": null,
+   "paraQuem": "balanceamento",
+   "nome": "Formação de Combate"
+  },
+  "brutalista-a-ultima-parede": {
+   "status": "decisao",
+   "resposta": "\"Resistência a todos os tipos\" = metade do dano em cada tipo (Sistema: \"Resistência... o reduz sempre a metade\"). Força e Primordial ficam de fora, na mesma linha da L26/D89 (\"todos\" nunca inclui os dois). \"Ganha Exaustão 1\" = +1 nível (contrato empilhamento.mesmaCondicaoComX = somaX; igual ao \"+1 de Exaustão\" da Imortal).",
+   "acao": "ficha: R em 10 tipos (Ordinário + 9 atípicos); Exaustão +1 ao fim",
+   "principio": null,
+   "perguntaPedro": null,
+   "paraQuem": "balanceamento",
+   "nome": "A Última Parede"
+  },
+  "brutalista-despertar-a-besta": {
+   "status": "decisao",
+   "resposta": "\"Perde permanentemente 2 de Éter\" = −2 no Éter máximo, cumulativo a cada uso, gravado como redução permanente (L02). Na 2ª queda a 0 durante o efeito, ele entra em Morrendo (tique e cura do negativo valem), mas a imunidade a Inconsciente o deixa agindo. Ao fim das 3 rodadas, o custo o derruba Inconsciente, porque a imunidade acabou junto com o efeito.",
+   "acao": "ficha: eter.max −2 permanente por uso; Morrendo sem Inconsciente enquanto ativa",
+   "principio": null,
+   "perguntaPedro": null,
+   "paraQuem": "balanceamento",
+   "nome": "Despertar A Besta"
+  },
+  "brutalista-campo-de-batalha": {
+   "status": "decisao",
+   "resposta": "A técnica troca só o custo do Mover para ação livre. O limite \"Mover 1 vez por turno\" continua (G2): cada aliado ganha 1 Mover livre por turno, sem ataque de oportunidade.",
+   "acao": "ficha: nada a automatizar",
+   "principio": "G2",
+   "perguntaPedro": null,
+   "paraQuem": "balanceamento",
+   "nome": "Campo de Batalha"
+  },
+  "brutalista-postura-defensiva": {
+   "status": "decisao",
+   "resposta": "Derrubado = Caído (G7). Enquanto a postura durar: imune a Caído e a ser empurrado (manobra Empurrar e efeitos que deslocam). O \"quase nada\" é a exceção da mesa para forças extremas.",
+   "acao": "ficha: imunidade a Caído + nota \"não pode ser empurrado\"",
+   "principio": "G7",
+   "perguntaPedro": null,
+   "paraQuem": "balanceamento",
+   "nome": "Postura Defensiva"
+  },
+  "brutalista-veterano-de-guerra": {
+   "status": "decisao",
+   "resposta": "+2 na rolagem de Iniciativa do início do combate, para você e os aliados em até 9 m que te ouvem.",
+   "acao": "ficha: +2 Iniciativa (bônus de início de combate)",
+   "principio": null,
+   "perguntaPedro": null,
+   "paraQuem": "balanceamento",
+   "nome": "Veterano de Guerra"
+  },
+  "brutalista-plano-do-general": {
+   "status": "decisao",
+   "resposta": "\"+4 Iniciativa\" soma 4 ao valor de Iniciativa já rolado e reordena a fila a partir da próxima rodada; vale até o fim do combate. Elaborar o plano não tem custo escrito, então fica com a mesa (D90: ação não definida é do mestre).",
+   "acao": "ficha: +4 no valor de Iniciativa (mesa reordena)",
+   "principio": null,
+   "perguntaPedro": null,
+   "paraQuem": "balanceamento",
+   "nome": "Plano do General"
+  },
+  "brutalista-o-proximo": {
+   "status": "decisao",
+   "resposta": "Teto de +3 no total: +2 da ativação e no máximo +1 por erro. Se o teto fosse só do acúmulo, o total chegaria a +5 por 1 ação e 3 Stamina, acima de qualquer bônus de Atacar de técnica geral. Na troca de alvo, o bônus volta a +2.",
+   "acao": "ficha: contador 2..3",
+   "principio": null,
+   "perguntaPedro": null,
+   "paraQuem": "balanceamento",
+   "nome": "O Próximo"
+  },
+  "brutalista-agarrao": {
+   "status": "decisao",
+   "resposta": "Só no acerto e de qualquer atacante, porque o alvo preso fica exposto a todos. O dano é do agarrador: Contundente, usa o Mod.FOR dele e o Ar reduz. Não dobra no crítico (D97). Dura enquanto o Agarrado durar.",
+   "acao": "ficha: nota no alvo; rolagem manual",
+   "principio": null,
+   "perguntaPedro": null,
+   "paraQuem": "balanceamento",
+   "nome": "Agarrão"
+  },
+  "brutalista-epifania-sanguinea": {
+   "status": "decisao",
+   "resposta": "\"Os bônus dobram\" = dobra dados e modificador: 2d6 + 2×Mod.CON de cura e +2d10 de dano. É dobrar o bônus inteiro. A D97 fala do crítico de arma, que é outra regra.",
+   "acao": "ficha: fórmula alternativa quando em frenesi",
+   "principio": null,
+   "perguntaPedro": null,
+   "paraQuem": "balanceamento",
+   "nome": "Epifania Sanguínea"
+  },
+  "brutalista-contador-de-corpos": {
+   "paraQuem": "pedro",
+   "status": "pedroDecide",
+   "resposta": "A nota do asterisco não existe no Notion. Sugestão: \"brutalmente\" = matar com acerto crítico ou pelo Finalizar.",
+   "acao": "aguarda Pedro",
+   "principio": null,
+   "perguntaPedro": "T9",
+   "nome": "Contador de Corpos"
+  },
+  "brutalista-imortal": {
+   "paraQuem": "pedro",
+   "status": "pedroDecide",
+   "resposta": "Reescrever: \"Ao cair a 0 ou menos de Saúde, pode, como ação livre, ficar com 1 de Saúde em vez de entrar em Morrendo. Ao fazer isso, ganha +1 de Exaustão.\"",
+   "acao": "aguarda Pedro",
+   "principio": null,
+   "perguntaPedro": "T9",
+   "nome": "Imortal"
+  },
+  "teurgo-extase-destrutivo": {
+   "status": "decisao",
+   "resposta": "Não é contradição: é sinergia do ramo. Com Éter ≤ 0 o Teurgo está Oco e não canaliza, e o degrau \"0 ou abaixo\" só dispara com algo que libere a conjuração no Oco: Reserva Oculta, que paga em Saúde, ou Receptáculo Perfeito, a ultimate do mesmo ramo. Ativar gastando 50% do Éter máximo pode deixá-lo Oco na hora, e esse é o risco que o ramo vende. A trava do Oco continua.",
+   "acao": "ficha: degraus calculados pelo Éter atual; nota \"≤0 exige Reserva Oculta ou Receptáculo Perfeito\"",
+   "principio": "G13",
+   "perguntaPedro": null,
+   "paraQuem": "balanceamento",
+   "nome": "Êxtase Destrutivo"
+  },
+  "teurgo-extase-destrutivo-2": {
+   "status": "decisao",
+   "resposta": "Os bônus são passivos e dependem do nível de Éter (\"Ao ter 50%... / 0 ou abaixo\"); por isso o cabeçalho diz \"Passiva\". A \"forma do Êxtase\" é o jeito ativo de chegar ao degrau: 3 ações e o gasto imediato de 50% do Éter máximo. A restauração é o reembolso: uma vez por ativação, em até 10 minutos, com 3 ações, recupera 50% do Éter máximo, sem passar do máximo. Não há estado ligado/desligado para a ficha guardar, só o reembolso pendente.",
+   "acao": "ficha: botão \"Êxtase\" (−50% Éter máx.) + botão \"Restaurar\" (1 vez, 10 min)",
+   "principio": null,
+   "perguntaPedro": null,
+   "paraQuem": "balanceamento",
+   "nome": "Êxtase Destrutivo"
+  },
+  "teurgo-encadeamento": {
+   "paraQuem": "pedro",
+   "status": "pedroDecide",
+   "resposta": "É exceção ao \"1 magia por turno\": escrever isso, como o Receptáculo Perfeito escreve. 3 Stamina por uso.",
+   "acao": "aguarda Pedro",
+   "principio": null,
+   "perguntaPedro": "T11",
+   "nome": "Encadeamento"
+  },
+  "teurgo-manifestacao-do-patrono": {
+   "paraQuem": "pedro",
+   "status": "pedroDecide",
+   "resposta": "As CDs sem número viram \"contra sua CD\" (D57).",
+   "acao": "aguarda Pedro",
+   "principio": null,
+   "perguntaPedro": "T11",
+   "nome": "Manifestação do Patrono"
+  },
+  "teurgo-manifestacao-do-patrono-2": {
+   "paraQuem": "pedro",
+   "status": "pedroDecide",
+   "resposta": "\"Banido\" fica efeito da ultimate (como Marcado e Endividado), não condição nova.",
+   "acao": "aguarda Pedro",
+   "principio": null,
+   "perguntaPedro": "T11",
+   "nome": "Manifestação do Patrono"
+  },
+  "teurgo-manifestacao-do-patrono-3": {
+   "paraQuem": "pedro",
+   "status": "pedroDecide",
+   "resposta": "Sorteio com 1d6 na ordem da lista.",
+   "acao": "aguarda Pedro",
+   "principio": null,
+   "perguntaPedro": "T11",
+   "nome": "Manifestação do Patrono"
+  },
+  "teurgo-natureza-caotica": {
+   "status": "decisao",
+   "resposta": "G13. Você paga o Éter da intensidade que declarou; a rolagem mexe no efeito, não no custo. No 1-2, cair abaixo da menor intensidade que a magia tem faz a magia falhar. Numa magia de Nível 1, que não tem Contida (D68), cair de Normal falha. No 5-6, subir para Transbordante segue a resposta da T4.",
+   "acao": "ficha: custo = intensidade declarada",
+   "principio": "G13",
+   "perguntaPedro": "T4",
+   "paraQuem": "balanceamento",
+   "nome": "Natureza Caótica"
+  },
+  "teurgo-tese-arcana": {
+   "status": "pedroDecide",
+   "resposta": "Pergunta T4 (intensidade subida por técnica). Recomendo: paga os 2 Stamina e o Éter da intensidade conjurada; a intensidade sobe 1 sem custo extra e sem o teste de Vontade, porque o teste é o risco de quem escolhe forçar. A modulação grátis dispensa o Éter de uma modulação. Declarada Transbordante, o teste declarado vale e o +1 não passa do teto.",
+   "acao": "ficha: provisório = recomendação",
+   "principio": "G13",
+   "perguntaPedro": "T4",
+   "paraQuem": "balanceamento",
+   "nome": "Tese Arcana"
+  },
+  "teurgo-patrono-primordial": {
+   "status": "pedroDecide",
+   "resposta": "Mesma T4 e mesma recomendação da Tese Arcana: paga a intensidade conjurada, sobe 1, sem teste. Numa Alteração já Transbordante, não há efeito extra; Transbordante+ só existe onde o texto diz (Receptáculo Perfeito).",
+   "acao": "ficha: provisório = recomendação",
+   "principio": "G13",
+   "perguntaPedro": "T4",
+   "paraQuem": "balanceamento",
+   "nome": "Patrono Primordial"
+  },
+  "teurgo-patrono-primordial-2": {
+   "paraQuem": "pedro",
+   "status": "pedroDecide",
+   "resposta": "Não soma Marca da Vhelor. A Seiva do patrono não é o item do Bazar, e somar tiraria 10 de Éter máximo do próprio devoto na Marca 2.",
+   "acao": "aguarda Pedro",
+   "principio": null,
+   "perguntaPedro": "T11",
+   "nome": "Patrono Primordial"
+  },
+  "teurgo-cicatrizes-do-fluxo": {
+   "status": "decisao",
+   "resposta": "\"Versão contida\" = a menor intensidade que a magia tem (G13): Contida, ou Normal numa magia de Nível 1. A perda de Éter segue a falha do Transbordante e a L28: o dobro do custo total pago, com modulações.",
+   "acao": "ficha: intensidade mínima por nível",
+   "principio": "G13",
+   "perguntaPedro": null,
+   "paraQuem": "balanceamento",
+   "nome": "Cicatrizes do Fluxo"
+  },
+  "teurgo-grimorio-arcano": {
+   "status": "pedroDecide",
+   "resposta": "Depende da L14, ainda com o Pedro: pegar uma técnica de grimório no nível 2 é obrigatório? Leitura para o texto atual: \"substitui a fórmula nível 1\" vale retroativo. No nível N o Teurgo conhece 3 + Mod.INT + (N − 1) magias. Quem não pega técnica de grimório fica na fórmula base da classe até a L14 fechar.",
+   "acao": "ficha: provisório = leitura acima",
+   "principio": null,
+   "perguntaPedro": "L14",
+   "paraQuem": "balanceamento",
+   "nome": "Grimório Arcano"
+  },
+  "teurgo-escolas-do-primordio": {
+   "status": "decisao",
+   "resposta": "Primordial não é uma 5ª lista de magias: é o Nível 5 das escolas (Sistema: \"Magias Nível 5 — 8 Éter — requer Foco Primordial\"). Dominar Primordial libera o Nível 5 das escolas dominadas, com Foco Primordial e Experiente em Místico. No nível 5 o Teurgo chega a 5 domínios (2 + 1 + 2), que são as 4 escolas mais Primordial, então não há escolha a errar. É por isso que o contrato conta 5 escolas.",
+   "acao": "ficha: \"Primordial\" = chave do Nível 5, sem lista própria",
+   "principio": null,
+   "perguntaPedro": "T18",
+   "paraQuem": "balanceamento",
+   "nome": "Escolas do Primórdio"
+  },
+  "teurgo-recurso": {
+   "paraQuem": "pedro",
+   "status": "pedroDecide",
+   "resposta": "Mesma pergunta do Espadachim: nome e regra, ou \"o recurso é o Éter\" (o que o contrato dizia).",
+   "acao": "aguarda Pedro",
+   "principio": null,
+   "perguntaPedro": "T6",
+   "nome": "Recurso de Classe do Teurgo"
+  },
+  "teurgo-ritual": {
+   "status": "decisao",
+   "resposta": "A magia ritualizada não ocupa a vaga da sustentada (L42/PD16), porque tem vaga própria (\"1 Ritual por vez\"). Também não cobra Éter por turno: o custo \"pago normalmente\" é o da conjuração, uma vez, ao fim dos 10 minutos. A duração vira 6 horas fixas e acaba antes se você ficar Oco ou Morrendo.",
+   "acao": "ficha: slot \"Ritual\" separado do slot \"Sustentada\"",
+   "principio": null,
+   "perguntaPedro": null,
+   "paraQuem": "balanceamento",
+   "nome": "Ritual"
+  },
+  "teurgo-receptaculo-perfeito": {
+   "paraQuem": "pedro",
+   "status": "pedroDecide",
+   "resposta": "\"Ao chegar em 50%\" → \"ao ultrapassar 50%\" (PD17). A Casca Rachada dobra esse limite também. Morrer em vez de passar o personagem ao mestre é regra da ultimate e fica.",
+   "acao": "aguarda Pedro",
+   "principio": null,
+   "perguntaPedro": "T11",
+   "nome": "Receptáculo Perfeito"
+  },
+  "teurgo-marca-do-primordio": {
+   "status": "decisao",
+   "resposta": "A 1 Ação é gasta logo depois do acerto, no mesmo turno, para marcar. A Vontade é contra a sua CD (D57). O +1 dado vale só para as suas magias de dano, porque a marca é sua. No início de cada turno do alvo ele rola de novo, e um sucesso encerra a marca. Marcado é estado de classe (PD17), não condição.",
+   "acao": "ficha: estado no alvo; +1 dado nas suas magias de dano",
+   "principio": null,
+   "perguntaPedro": null,
+   "paraQuem": "balanceamento",
+   "nome": "Marca do Primórdio"
+  },
+  "teurgo-devoto": {
+   "paraQuem": "pedro",
+   "status": "pedroDecide",
+   "resposta": "O requisito é Patrono Primordial ou Barganha Primordial? O \"Preço do Pacto\" é do Patrono Primordial.",
+   "acao": "aguarda Pedro",
+   "principio": null,
+   "perguntaPedro": "T11",
+   "nome": "Devoto"
+  },
+  "teurgo-teorema-absoluto": {
+   "paraQuem": "site",
+   "status": "doAgenteDeHtml",
+   "resposta": "Concordo: dois modos, Conjuração Impecável (1 Ação) e Anulação Suprema (Reação).",
+   "acao": "site",
+   "principio": null,
+   "perguntaPedro": null,
+   "nome": "Teorema Absoluto"
+  },
+  "monge-recurso-fluxo": {
+   "status": "resolvido",
+   "resposta": "L23 respondida (\"Porém ainda tem, se receber dano que zera seu fluxo\"). O Fluxo zera em 3 casos: ao receber dano, ao passar 1 rodada sem ganhar Fluxo e ao fim do combate. Mantive o gatilho da rodada sem ganhar porque a Concentração do Mestre depende dele (\"só reseta após 2 rodadas sem ganhar fluxo\"). Texto do Notion reescrito; contrato corrigido: zeraEm = [aoReceberDano, rodadaSemGanhar, fimCombate], sem _clausulaMorta.",
+   "acao": "contrato + Notion (Monge)",
+   "principio": "G10",
+   "perguntaPedro": null,
+   "paraQuem": "balanceamento",
+   "nome": "Fluxo (Característica/Recurso de Classe)"
+  },
+  "monge-quebrar-guarda": {
+   "status": "decisao",
+   "resposta": "No modelo atual: o alvo só reage (Defender ou retaliar) ao seu 1º ataque do turno. Do 2º em diante, seus ataques vão contra a Evasão Passiva dele e não podem ser retaliados. A reação dele fica gasta até o turno dele, então outros agressores também enfrentam a Passiva. Isso preserva o \"ele só pode defender ao seu primeiro golpe\".",
+   "acao": "ficha: nada a automatizar (mesa)",
+   "principio": "G1",
+   "perguntaPedro": null,
+   "paraQuem": "balanceamento",
+   "nome": "Quebrar Guarda"
+  },
+  "monge-treinamento-contrato": {
+   "status": "resolvido",
+   "resposta": "O contrato estava errado. Corrigido: periciasIniciais = [movimento, atacar] + Armas Marciais; Vontade fica na lista de escolha.",
+   "acao": "contrato corrigido",
+   "principio": "G11",
+   "perguntaPedro": null,
+   "paraQuem": "balanceamento",
+   "nome": "Treinamento fixo (contrato)"
+  },
+  "monge-arma-humana": {
+   "status": "pedroDecide",
+   "resposta": "O ataque desarmado base não existe no Sistema. Pergunta T12. Recomendo: \"Ataque desarmado: 1d4 Contundente (Destreza), Atacar(1), corpo a corpo\", o mesmo perfil do chassi Leve (Sistema: corpo a corpo leve usa Destreza). A Arma Humana troca o 1d4 por 1d8, e Punho Perfeito e Toque da Dor passam a ter onde se apoiar.",
+   "acao": "ficha: provisório = recomendação",
+   "principio": null,
+   "perguntaPedro": "T12",
+   "paraQuem": "balanceamento",
+   "nome": "Arma Humana"
+  },
+  "monge-concentracao-do-mestre": {
+   "status": "resolvido",
+   "resposta": "Com a G10 os dois itens têm alvo. O 1º muda o gatilho de inatividade de 1 para 2 rodadas. O 2º anula o zeramento por dano Mod.SAB vezes por descanso longo; quando a Saúde cai, a ficha pergunta se quer gastar um uso.",
+   "acao": "ficha: contador Mod.SAB/descanso longo; inatividade = 2 rodadas",
+   "principio": "G10",
+   "perguntaPedro": null,
+   "paraQuem": "balanceamento",
+   "nome": "Concentração do Mestre"
+  },
+  "monge-fluxo-invertido": {
+   "status": "pedroDecide",
+   "resposta": "Pergunta T12. Recomendo que, com Fluxo Invertido, o dano dê +1 no lugar de zerar. Na ordem \"zera e ganha 1\", o Fluxo do ramo do Vazio nunca passa de 1 sob ataque, e a aura dos 5 de Fluxo fica inalcançável justo para quem ganha Fluxo apanhando. A Concentração do Mestre (Punho) já mostra que técnica pode anular o zeramento.",
+   "acao": "ficha: provisório = recomendação",
+   "principio": "G10",
+   "perguntaPedro": "T12",
+   "paraQuem": "balanceamento",
+   "nome": "Fluxo Invertido"
+  },
+  "monge-totem-eterno": {
+   "status": "decisao",
+   "resposta": "O texto específico vence o geral: o Totem dá o próprio teste no fim de cada turno do alvo, e o \"teste de resistência fracassa\" do Paralisado vale contra os outros efeitos. Sucesso encerra a paralisia do totem; enquanto paralisado, o alvo fica Exposto (condição).",
+   "acao": "ficha: nada a automatizar",
+   "principio": null,
+   "perguntaPedro": null,
+   "paraQuem": "balanceamento",
+   "nome": "Totem Eterno"
+  },
+  "monge-transcendencia-suprema": {
+   "status": "decisao",
+   "resposta": "\"Fica Exaurido\" como custo = a Stamina vai a 0, porque Exaurido é o estado de Stamina 0 e a condição vem junto. Somam-se Exaustão +1 e −1d6 de Éter.",
+   "acao": "ficha: ao fim, stamina = 0; exaustao +1; eter −1d6",
+   "principio": null,
+   "perguntaPedro": null,
+   "paraQuem": "balanceamento",
+   "nome": "Transcendência Suprema"
+  },
+  "monge-forma-do-vazio": {
+   "paraQuem": "pedro",
+   "status": "pedroDecide",
+   "resposta": "\"1d10 <5 acerta\" dá 40%, não 50%: trocar para \"≤5 acerta\". \"Ataques físicos\" = ataques de arma e desarmados, de qualquer tipo de dano.",
+   "acao": "aguarda Pedro",
+   "principio": null,
+   "perguntaPedro": "T12",
+   "nome": "Forma do Vazio"
+  },
+  "monge-companheiro-primal-ii": {
+   "status": "decisao",
+   "resposta": "\"Passiva\" = é o upgrade do Companheiro Primal. Invoca pelo custo do CP I (2 Ações, 5 Stamina) e escolhe a forma maior. O acerto é \"usa seu bônus de Atacar\" + 2: d20 + seu treino de Atacar + o seu Mod. do atributo da forma (DES ou FOR) + 2. O \"Mod. Des + 2\" do bloco é essa conta abreviada.",
+   "acao": "ficha: custo do CP I; acerto = treino Atacar + Mod. + 2",
+   "principio": null,
+   "perguntaPedro": null,
+   "paraQuem": "balanceamento",
+   "nome": "Companheiro Primal II"
+  },
+  "monge-golpe-sequencial": {
+   "status": "decisao",
+   "resposta": "O ataque extra não dispara a técnica de novo: o gatilho é \"ao usar a ação atacar e acertar\", e o extra vem da técnica, não da ação. É no máximo 1 extra por ação Atacar. O extra conta na PMA (G3): contra o mesmo alvo leva o −5 seguinte. O \"pma 0\" do contrato foi removido.",
+   "acao": "contrato corrigido; ficha: 1 extra por ação Atacar",
+   "principio": "G3",
+   "perguntaPedro": null,
+   "paraQuem": "balanceamento",
+   "nome": "Golpe Sequencial"
+  },
+  "monge-fusao-primal": {
+   "status": "decisao",
+   "resposta": "O Mover como ação livre continua 1 vez por turno (G2). Contra alvo Lento X: +X no Atacar e +X no dano. O \"Cortante\" fica como escrito; Cortante e Perfurante são Ordinário e o Ar reduz igual, então o tipo só muda contra resistência de tipo específico.",
+   "acao": "ficha: nada a automatizar",
+   "principio": "G2",
+   "perguntaPedro": null,
+   "paraQuem": "balanceamento",
+   "nome": "Fusão Primal (Falcão)"
+  },
+  "monge-o-terror": {
+   "status": "decisao",
+   "resposta": "A ativação (1 Ação, 2 Stamina) abre o modo até o início do seu próximo turno (G8). Nesse intervalo, seus acertos podem exigir Vontade contra a sua CD (D57) ou Amedrontado. O Fluxo permanente por criatura amedrontada e o +1d8 Necrótico contra Amedrontada são passivos. A Insurgência (\"ativa permanentemente\") mantém o modo ligado pelas 3 rodadas dela.",
+   "acao": "ficha: estado \"O Terror\" até o próximo turno",
+   "principio": "G8",
+   "perguntaPedro": null,
+   "paraQuem": "balanceamento",
+   "nome": "O Terror"
+  },
+  "monge-sussurros-constantes": {
+   "status": "decisao",
+   "resposta": "Gatilho: quando o Éter chega a 0 ou menos, que é o momento em que você ficaria Oco. \"Recupere metade\" soma metade do Éter máximo ao valor atual: de −3, com máximo 20, vai a 7. Não há limite de usos escrito; o limitador é a consequência que o Mestre escolhe a cada pacto. Pacto Sombrio é narrativo, não condição.",
+   "acao": "ficha: prompt ao cruzar 0; eter += floor(max/2)",
+   "principio": null,
+   "perguntaPedro": null,
+   "paraQuem": "balanceamento",
+   "nome": "Sussurros Constantes"
+  },
+  "monge-insurgencia": {
+   "status": "decisao",
+   "resposta": "\"Ignoram Armadura/Resistência\" = ignoram Ar, Ae e Resistência, os três redutores; só a Imunidade continua valendo. Vale para o dano inteiro dos ataques, não só os +2d8. Custo: perde floor(Éter atual / 2) se o Éter for positivo; com Éter ≤ 0 não há metade a perder.",
+   "acao": "ficha: nota; custo calculado",
+   "principio": null,
+   "perguntaPedro": null,
+   "paraQuem": "balanceamento",
+   "nome": "Insurgência"
+  },
+  "monge-perda-de-fluxo-ultimates": {
+   "paraQuem": "pedro",
+   "status": "pedroDecide",
+   "resposta": "Acrescentar \"exceto quando o texto de uma técnica diz que você perde Fluxo\" a \"Você não pode perder fluxo de nenhuma outra forma\" (Insurgência, Fusão Primal). A frase seguinte, que diz que o custo em Fluxo é só requisito, fica como está.",
+   "acao": "aguarda Pedro",
+   "principio": null,
+   "perguntaPedro": "T12",
+   "nome": "Insurgência / Fusão Primal (perda de Fluxo)"
+  },
+  "monge-fluxo-marcial": {
+   "status": "decisao",
+   "resposta": "\"Adicional\" pendura no mesmo gatilho, então herda o teto: cada um dos 2 acertos que contam na rodada dá +2 (máx. +4 por rodada). O Fluxo da Natureza é gatilho próprio (acerto do Companheiro) e fica fora desse teto.",
+   "acao": "ficha: ganho por acerto = 2, teto de 2 gatilhos/rodada",
+   "principio": null,
+   "perguntaPedro": null,
+   "paraQuem": "balanceamento",
+   "nome": "Fluxo Marcial"
+  },
+  "monge-cadeia-de-golpes": {
+   "status": "decisao",
+   "resposta": "Custo por uso (G12): 3 Stamina a cada encadeamento, até 2 por turno. Os 3 m são movimento da técnica, não a ação Mover, e não contam no limite de 1 Mover por turno. Ataque de oportunidade segue a regra normal.",
+   "acao": "ficha: custo 3 Stamina por uso",
+   "principio": "G12",
+   "perguntaPedro": null,
+   "paraQuem": "balanceamento",
+   "nome": "Cadeia de Golpes"
+  },
+  "monge-danca-do-monge": {
+   "status": "decisao",
+   "resposta": "Os 3 ataques levam PMA por alvo (G3). Três no mesmo alvo ficam 0/−5/−10; espalhados, cada alvo começa do 0. A Transcendência, técnica geral do próprio Monge, existe para suspender a PMA na rodada, o que só faz sentido se os ataques de técnica a sofrem. O contrato dizia \"só vale na ação Atacar\"; corrigido.",
+   "acao": "contrato corrigido (turno.pmaNota)",
+   "principio": "G3",
+   "perguntaPedro": null,
+   "paraQuem": "balanceamento",
+   "nome": "Dança do Monge"
+  },
+  "monge-purificar": {
+   "status": "decisao",
+   "resposta": "\"Mágica ou não-mágica\" = qualquer condição. Ficam de fora as que dependem de um valor ou têm saída própria: Morrendo (Saúde ≤ 0), Oco (Éter ≤ 0), Exaurido (Stamina 0), Desnutrido, Sobrepeso e Exaustão (sai no descanso longo). Removê-las não muda o valor, e elas voltariam na hora.",
+   "acao": "ficha: lista de condições menos as 6 exclusões",
+   "principio": "G7",
+   "perguntaPedro": null,
+   "paraQuem": "balanceamento",
+   "nome": "Purificar"
+  },
+  "monge-queda-suave": {
+   "paraQuem": "pedro",
+   "status": "pedroDecide",
+   "resposta": "Por 1 minuto, quedas de até 30 m não causam dano a você e a até 5 criaturas tocadas; acima de 30 m, o dano cai 5 × Nível. Dano de queda é do mestre (o Sistema não define).",
+   "acao": "aguarda Pedro",
+   "principio": null,
+   "perguntaPedro": "T12",
+   "nome": "Queda Suave"
+  },
+  "monge-transcendencia": {
+   "paraQuem": "pedro",
+   "status": "pedroDecide",
+   "resposta": "Resolvido pela definição de PMA no Sistema (T5). \"Durante essa rodada\" = neste turno.",
+   "acao": "aguarda Pedro",
+   "principio": null,
+   "perguntaPedro": "T5",
+   "nome": "Transcendência"
+  },
+  "monge-irmao-da-floresta": {
+   "paraQuem": "site",
+   "status": "doAgenteDeHtml",
+   "resposta": "Concordo: \"Luto Selvagem\" é estado temporário da marca, não condição.",
+   "acao": "site",
+   "principio": null,
+   "perguntaPedro": null,
+   "nome": "Irmão da Floresta"
+  },
+  "monge-companheiro-primal": {
+   "status": "decisao",
+   "resposta": "O companheiro usa os seus modificadores: \"+Des\" e \"+For\" são os do Monge. \"Evasão passiva permanente\" = ele fica sempre na Evasão fixa do bloco (13/11/15) e nunca ganha Evasão Ativa. Acerto: seu treino de Atacar + o seu Mod. do atributo da forma.",
+   "acao": "ficha: dano = dado + seu Mod.; Evasão fixa",
+   "principio": null,
+   "perguntaPedro": null,
+   "paraQuem": "balanceamento",
+   "nome": "Companheiro Primal"
+  },
+  "alquimista-cartucho-arcano": {
+   "paraQuem": "pedro",
+   "status": "resolvido",
+   "resposta": "L18 já respondida (\"vale o primeiro\"): gravo \"do seu nível ou menor\" no Notion.",
+   "acao": "Notion (Alquimista)",
+   "principio": null,
+   "perguntaPedro": "L18",
+   "nome": "Cartucho Arcano"
+  },
+  "alquimista-cartucho-arcano-2": {
+   "status": "pedroDecide",
+   "resposta": "Pergunta T13. A D68 subiu as magias 1 nível e manteve o Éter (a antiga Nível 4 e a nova Nível 5 custam 8). Por isso \"(Nível × 2) Reagentes\" e \"CD 10 + 2 × Nível\" subiram 2 sem ninguém editar. Recomendo amarrar ao custo base de Éter: Reagentes = custo base de Éter da magia; CD = 10 + custo base. Isso devolve os números de antes da D68. Cartucho de Nível 5: quem cria precisa dos mesmos requisitos de conjurar (Foco Primordial e Experiente em Místico).",
+   "acao": "ficha: provisório = fórmula atual do texto + aviso",
+   "principio": null,
+   "perguntaPedro": "T13",
+   "paraQuem": "balanceamento",
+   "nome": "Cartucho Arcano"
+  },
+  "alquimista-cartucho-arcano-3": {
+   "status": "decisao",
+   "resposta": "Usar o cartucho é conjurar: conta como a magia do turno (1 por turno) e paga as ações da magia. A intensidade é Normal; a Sobrecarga (\"Forçada automaticamente\") só faz sentido se o padrão for Normal. Não custa Éter a quem usa, porque o custo foi pago em Reagentes na criação.",
+   "acao": "ficha: cartucho = conjuração sem Éter, intensidade Normal",
+   "principio": null,
+   "perguntaPedro": null,
+   "paraQuem": "balanceamento",
+   "nome": "Cartucho Arcano"
+  },
+  "alquimista-elixir-especial": {
+   "status": "pedroDecide",
+   "resposta": "Pergunta T13. Recomendo que valha o corpo: 1 Reagente por alvo. O \"3 Reagentes\" do cabeçalho é o caso de 3 alvos e deveria virar \"1 Reagente/alvo\". Somar os dois (3 + 1 por alvo) encarece um Tier 1 que já custa ação e Stamina.",
+   "acao": "ficha: provisório = 1 Reagente por alvo",
+   "principio": null,
+   "perguntaPedro": "T13",
+   "paraQuem": "balanceamento",
+   "nome": "Elixir Especial"
+  },
+  "alquimista-enxurrada-de-alquimicos": {
+   "status": "decisao",
+   "resposta": "A técnica acrescenta uma rolagem de Atacar a cada arremesso, e essa é a diferença para o arremesso comum (\"siga o que o item diz\"). Se acertar, o item faz o que diz, inclusive o teste para metade. Se errar, o item não pega no alvo, e para onde ele cai é da mesa. PMA por alvo (G3): dois itens no mesmo alvo ficam 0/−5.",
+   "acao": "ficha: 3 rolagens de Atacar com progressão PMA",
+   "principio": "G3",
+   "perguntaPedro": null,
+   "paraQuem": "balanceamento",
+   "nome": "Enxurrada de Alquímicos"
+  },
+  "alquimista-preciosismo": {
+   "status": "decisao",
+   "resposta": "A CD do item é a de quem usa (D57: \"A CD é sempre a do portador, sem exceção\"). Preciosismo soma +2 a essa CD quando o item foi feito por você. A coluna \"CD\" da tabela é a de criação, outra coisa.",
+   "acao": "ficha: flag \"feito por mim\" no item → +2 na CD de resistência",
+   "principio": null,
+   "perguntaPedro": null,
+   "paraQuem": "balanceamento",
+   "nome": "Preciosismo"
+  },
+  "alquimista-apocalipse-alquimico": {
+   "status": "decisao",
+   "resposta": "Lento sem X = Lento 1 (G8). Cego, Atordoado e Lento sem duração ficam com 1 rodada, igual à explosão principal (\"por 1 rodada\"). Os 8d6 se dividem igual, 4d6 de cada tipo escolhido, e cada metade passa pela mitigação do próprio tipo.",
+   "acao": "ficha: 2 rolagens de 4d6 com tipos separados",
+   "principio": "G8",
+   "perguntaPedro": null,
+   "paraQuem": "balanceamento",
+   "nome": "Apocalipse Alquímico"
+  },
+  "alquimista-tita": {
+   "paraQuem": "pedro",
+   "status": "pedroDecide",
+   "resposta": "L20: renomear a ação do Titã para \"Avalanche\".",
+   "acao": "aguarda Pedro",
+   "principio": null,
+   "perguntaPedro": "T10",
+   "nome": "Titã"
+  },
+  "alquimista-curandeiro-incansavel": {
+   "paraQuem": "pedro",
+   "status": "pedroDecide",
+   "resposta": "\"Que estava com 0 de Saúde e remover a condição morrendo\" → \"que estava Morrendo e remover a condição\".",
+   "acao": "aguarda Pedro",
+   "principio": null,
+   "perguntaPedro": "T13",
+   "nome": "Curandeiro Incansável"
+  },
+  "alquimista-bombardeiro": {
+   "status": "decisao",
+   "resposta": "Os descontos somam, e o piso é 1 Reagente por item, o mesmo do Economista, que é o único que escreve o piso e vale para todos. As reduções de CD de fabricação também somam. Vale igual para o Anatomista.",
+   "acao": "ficha: custo = max(1, base − descontos)",
+   "principio": null,
+   "perguntaPedro": null,
+   "paraQuem": "balanceamento",
+   "nome": "Bombardeiro"
+  },
+  "alquimista-transfusao-vital": {
+   "status": "decisao",
+   "resposta": "O dano é Veneno (seringa de toxinas). O ataque rola Atacar com Mod.INT, o mesmo atributo do dano. \"Dano causado\" = o que sobra depois da mitigação: você recupera o que de fato tirou.",
+   "acao": "ficha: tipo Veneno; cura = dano final",
+   "principio": null,
+   "perguntaPedro": null,
+   "paraQuem": "balanceamento",
+   "nome": "Transfusão Vital"
+  },
+  "alquimista-constructo-menor": {
+   "status": "decisao",
+   "resposta": "O dano é Contundente (Ordinário, e o Ar reduz). O Constructo de Combate tem tipo escrito; o Menor fica no neutro. O acerto é o do texto: 1d20 + Mod.INT, sem treino. Sugestão para a ficha: um medidor de Saúde do constructo ativo, já que \"apenas 1 por vez\".",
+   "acao": "ficha: tipo Contundente; medidor de Saúde do constructo (sugestão)",
+   "principio": null,
+   "perguntaPedro": null,
+   "paraQuem": "balanceamento",
+   "nome": "Constructo Menor"
+  },
+  "alquimista-pai-de-pet": {
+   "status": "decisao",
+   "resposta": "O +1 em Místico é seu, até +5, pelo molde das Marcas (Cicatrizes da Jornada usa a mesma frase \"+1 permanente... ao chegar em +5, fica supérflua\"); o gatilho é o constructo sobreviver ao combate. \"Em vez disso\" fala do constructo: o que você recupera em Stamina ou Éter também chega a ele como Saúde, porque ele não tem esses recursos. Você continua recuperando os seus. É o que a frase anterior monta (\"efeitos em você também afetam seu constructo\").",
+   "acao": "ficha: contador +1..+5 em Místico",
+   "principio": null,
+   "perguntaPedro": null,
+   "paraQuem": "balanceamento",
+   "nome": "Pai de Pet"
+  },
+  "alquimista-arremessador": {
+   "status": "decisao",
+   "resposta": "\"+1 Treinamento\" = +1 grau (Leigo → Treinado = +2, e assim por diante; teto Lendário). A 1 Ação e os 2 Stamina são o custo de um arremesso com a técnica, e a ação é o próprio arremesso. O \"+1 Treinamento\" da Ferramentas Improvisadas é o mesmo +1 grau.",
+   "acao": "ficha: +1 grau em Atacar só no arremesso com a técnica",
+   "principio": null,
+   "perguntaPedro": null,
+   "paraQuem": "balanceamento",
+   "nome": "Arremessador"
+  },
+  "alquimista-sintonia-arcana": {
+   "status": "decisao",
+   "resposta": "2 Éter = 1 Reagente. O primeiro número é o que você paga, como no \"2 Saúde = 1 Stamina\" do Espadachim e no \"(2:1) 2 Saúde = 1 Éter\" da Reserva Oculta. O piso de 1 Reagente por item (ver Bombardeiro) vale depois da troca.",
+   "acao": "ficha: conversor 2:1",
+   "principio": null,
+   "perguntaPedro": null,
+   "paraQuem": "balanceamento",
+   "nome": "Sintonia Arcana"
+  },
+  "alquimista-veneno-hemorragico": {
+   "status": "decisao",
+   "resposta": "O CSV do Bazar é a fonte do item e diz o mesmo: \"+2d6 Bio por 3 ataques. Alvo Sangra 1d6/turno por 3 rodadas.\" O sangramento do item é dano por tique (1d6 no início de cada turno do alvo, 3 rodadas), separado da condição Sangramento X (D83). O tipo é Biológico por categoria (L34: o jogador escolhe Veneno, Ácido ou Psíquico). O \"Medicina estanca\" só existe na tabela da classe e não no CSV; vai para o Pedro como divergência (T13).",
+   "acao": "ficha: efeito de tique próprio, não condição",
+   "principio": null,
+   "perguntaPedro": "T13",
+   "paraQuem": "balanceamento",
+   "nome": "Veneno Hemorrágico (item alquímico da característica de classe)"
+  },
+  "alquimista-bomba-temporal": {
+   "status": "decisao",
+   "resposta": "O CSV diz \"Lento 2 (1 Ação por turno, −6 m de movimento, sem reação, −4 Reflexo) por 3 rodadas. Vontade nega\". Lento 2 pela L10 dá −6 m e −2 ações, o que deixa 1 ação: bate. \"Sem reação\" e \"−4 Reflexo\" são extras do item somados à condição. O card de Lento está completo.",
+   "acao": "ficha: Lento 2 + 2 modificadores do item",
+   "principio": null,
+   "perguntaPedro": null,
+   "paraQuem": "balanceamento",
+   "nome": "Bomba Temporal (item alquímico da característica de classe)"
+  },
+  "alquimista-essencia-eterea": {
+   "paraQuem": "pedro",
+   "status": "pedroDecide",
+   "resposta": "\"Incorpóreo\" fica efeito do item, descrito no CSV, não condição nova.",
+   "acao": "aguarda Pedro",
+   "principio": null,
+   "perguntaPedro": "T13",
+   "nome": "Essência Etérea (item alquímico da característica de classe)"
+  },
+  "alquimista-soro-da-guerra": {
+   "status": "resolvido",
+   "resposta": "O CSV, fonte dos itens, diz \"Dura 1 min.\" A ficha usa o CSV. A tabela da classe não traz a duração e acrescenta \"Vantagem em Fortitude\", que o CSV não tem; divergência para o Pedro (T13).",
+   "acao": "ficha: duração 1 min (10 rodadas)",
+   "principio": null,
+   "perguntaPedro": "T13",
+   "paraQuem": "balanceamento",
+   "nome": "Soro da Guerra (item alquímico da característica de classe)"
+  },
+  "alquimista-fogo-alquimico": {
+   "status": "decisao",
+   "resposta": "A queima do item é um tique, não a condição Em Chamas, que dura até apagar. No Fogo Alquímico é 1d6 Fogo no início do próximo turno do alvo, uma vez. No Napalm são 2d6 por turno por 3 rodadas, e \"Água não apaga\".",
+   "acao": "ficha: tique do item, com duração fixa",
+   "principio": null,
+   "perguntaPedro": null,
+   "paraQuem": "balanceamento",
+   "nome": "Fogo Alquímico (item alquímico da característica de classe)"
+  },
+  "alquimista-producao-em-massa": {
+   "paraQuem": "site",
+   "status": "doAgenteDeHtml",
+   "resposta": "Perguntei ao Pedro (T17).",
+   "acao": "site",
+   "principio": null,
+   "perguntaPedro": "T17",
+   "nome": "Produção em Massa"
+  },
+  "artilheiro-concentracao-gasta-ou-exige": {
+   "status": "resolvido",
+   "resposta": "Gasta. O texto da classe diz \"Você gasta concentração para utilizar técnicas\" e \"diminua sua concentração conforme o requisitado\". O contrato estava errado; corrigido: custoEmTecnicasPadrao = \"gasta\". Como a Concentração soma no ataque, gastar baixa o acerto, e esse é o preço da técnica.",
+   "acao": "contrato corrigido",
+   "principio": "G11",
+   "perguntaPedro": null,
+   "paraQuem": "balanceamento",
+   "nome": "Concentração (Característica de Classe) — gasta ou só exige"
+  },
+  "artilheiro-teto-de-concentracao": {
+   "status": "decisao",
+   "resposta": "Não é bug de ficha. SAB é atributo-chave do Artilheiro (Des, Sab, Int/Con), e com SAB 14 na criação (Mod +2) o teto chega a 5, o que alcança todos os gastadores de 5. SAB 12 fica abaixo por escolha de build. Paciência (6+) pede Mod +3. A regra da ficha (desabilitado com o motivo escrito) basta. A régua de recurso de classe (D79) segue com o Pedro; minha recomendação é não mexer no teto, porque ele também é o bônus de ataque.",
+   "acao": "contrato: status \"canonico\" + nota de build",
+   "principio": null,
+   "perguntaPedro": null,
+   "paraQuem": "balanceamento",
+   "nome": "Teto de Concentração abaixo dos custos das técnicas"
+  },
+  "artilheiro-danca-da-morte": {
+   "status": "decisao",
+   "resposta": "Gastar a reação é a entrada. Você compromete a reação até o início do seu próximo turno e, em troca, faz 1 ataque à distância livre toda vez que uma criatura se move no seu alcance. Por isso o texto prevê 3+ acertos. Enquanto dança, você não tem reação para Defender nem retaliar.",
+   "acao": "ficha: estado \"Dança\" consome a reação",
+   "principio": "G1",
+   "perguntaPedro": null,
+   "paraQuem": "balanceamento",
+   "nome": "Dança da Morte"
+  },
+  "artilheiro-projetil-envenenado": {
+   "status": "decisao",
+   "resposta": "Segue a regra da munição (D2, D41): o efeito vale o combate inteiro, em cada acerto. A Munição Especial diz \"uso único\" justamente porque foge dessa regra, e esta técnica não diz. São até 5 combates envenenados por descanso curto. É forte; se o Pedro quiser menos, basta escrever \"uso único\".",
+   "acao": "ficha: munição com efeito de cena",
+   "principio": null,
+   "perguntaPedro": "T14",
+   "paraQuem": "balanceamento",
+   "nome": "Projétil Envenenado"
+  },
+  "artilheiro-municao-especial": {
+   "paraQuem": "pedro",
+   "status": "pedroDecide",
+   "resposta": "Alinhar a \"10 = 1 bugiganga\", como toda munição, a menos que o peso maior seja proposital.",
+   "acao": "aguarda Pedro",
+   "principio": null,
+   "perguntaPedro": "T14",
+   "nome": "Munição Especial — peso"
+  },
+  "artilheiro-municao-especial-2": {
+   "status": "decisao",
+   "resposta": "A 1 Ação e os 2 Stamina pagam carregar uma munição especial para o próximo disparo; a fabricação no descanso não custa nada disso (G12). A D41 (\"munição nunca custa ação\") vale para a munição do Bazar, que é de cena. Esta técnica cria munição de uso único e declara o próprio custo.",
+   "acao": "ficha: botão \"carregar especial\" (1 ação, 2 Stamina)",
+   "principio": "G12",
+   "perguntaPedro": null,
+   "paraQuem": "balanceamento",
+   "nome": "Munição Especial — custo sem uso definido"
+  },
+  "artilheiro-rajada-de-tiros": {
+   "status": "pedroDecide",
+   "resposta": "Pergunta T2 (a mesma da Lâmina Rápida). Toda arma de fogo do Bazar é Atacar(2). No literal, a Rajada dá 2 tiros de Distância Pesada por 1 ação, 4 vezes a taxa normal, e 3 Rajadas por turno somariam 6 tiros. Recomendação: os 2 tiros custam juntos o Atacar(n) da arma, 2 ações com arma de fogo. A PMA não entra, porque o texto isenta. A L13 é da manobra Investida e não se estende aqui.",
+   "acao": "ficha: mostra \"1 Ação\" + aviso até a T2",
+   "principio": "G4",
+   "perguntaPedro": "T2",
+   "paraQuem": "balanceamento",
+   "nome": "Rajada de Tiros"
+  },
+  "artilheiro-tiro-carregado": {
+   "status": "decisao",
+   "resposta": "As ações do Tiro Carregado incluem o disparo, e o mínimo é o Atacar(n) da arma. Com arma de Atacar(1): 1 ação dá o tiro com +1d6, 3 ações dão +3d6 e +1 de margem. Com Distância Pesada (Atacar(2)): de 2 ações (+2d6) a 3 (+3d6). O tiro não fica guardado para o turno seguinte. +1 Concentração por ação gasta.",
+   "acao": "ficha: seletor 1–3 ações com mínimo = Atacar(n)",
+   "principio": null,
+   "perguntaPedro": null,
+   "paraQuem": "balanceamento",
+   "nome": "Tiro Carregado — ações"
+  },
+  "artilheiro-tiro-carregado-2": {
+   "paraQuem": "pedro",
+   "status": "pedroDecide",
+   "resposta": "\"Margem de Crítico\" → \"Margem de Ameaça\" (normalização de termo).",
+   "acao": "aguarda Pedro",
+   "principio": null,
+   "perguntaPedro": "T5",
+   "nome": "Tiro Carregado — termo"
+  },
+  "artilheiro-sentidos-agucados": {
+   "status": "decisao",
+   "resposta": "Técnica ativa sem duração vale até o início do seu próximo turno (G8). \"1 treinamento a mais\" = +1 grau em Percepção. A imunidade a Desprevenido vale no mesmo intervalo.",
+   "acao": "ficha: estado até o próximo turno",
+   "principio": "G8",
+   "perguntaPedro": null,
+   "paraQuem": "balanceamento",
+   "nome": "Sentidos Aguçados"
+  },
+  "artilheiro-tiro-imobilizador": {
+   "status": "decisao",
+   "resposta": "Condição sem duração dura 1 rodada, até o fim do próximo turno do alvo (G8). A Fortitude é contra a sua CD (D57).",
+   "acao": "contrato: lento.duracao \"daFonte\" → padrão 1 rodada quando a fonte não diz",
+   "principio": "G8",
+   "perguntaPedro": null,
+   "paraQuem": "balanceamento",
+   "nome": "Tiro Imobilizador"
+  },
+  "artilheiro-tempestade-de-aco": {
+   "status": "decisao",
+   "resposta": "\"Por 2 rodadas\" vale só para o Lento. O Sangramento não tem duração: cai 1 a cada acerto (D83). É a leitura que o contrato já tem.",
+   "acao": "ficha: nada novo",
+   "principio": null,
+   "perguntaPedro": null,
+   "paraQuem": "balanceamento",
+   "nome": "Tempestade de Aço"
+  },
+  "artilheiro-artesao-de-municao": {
+   "paraQuem": "pedro",
+   "status": "pedroDecide",
+   "resposta": "\"Flecha\" → \"Virotes/Flechas\" e \"Adagas de lançamento\" → \"Conjunto de Arremesso\" (nomes do Bazar).",
+   "acao": "aguarda Pedro",
+   "principio": null,
+   "perguntaPedro": "T5",
+   "nome": "Artesão de Munição"
+  },
+  "artilheiro-balas-de-ferro": {
+   "status": "decisao",
+   "resposta": "A redução começa no próprio acerto crítico e fica no alvo até o fim do combate. Acumula a cada crítico, com piso 0. Só reduz a defesa do tipo que a arma causa: arma Perfurante tira Ar (Ordinário).",
+   "acao": "ficha (Mesa): contador de redução no alvo até o fim do combate",
+   "principio": null,
+   "perguntaPedro": null,
+   "paraQuem": "balanceamento",
+   "nome": "Balas de Ferro"
+  },
+  "artilheiro-maos-velozes": {
+   "status": "decisao",
+   "resposta": "Uma vez por turno por alvo, no 2º acerto. \"Ao acertar 2+ ataques\" é a condição, e a condição dispara o bônus uma vez. Com o Vendaval (3 ataques) fica +1d6, não +2d6.",
+   "acao": "ficha (Mesa): +1d6 no 2º acerto no mesmo alvo",
+   "principio": null,
+   "perguntaPedro": null,
+   "paraQuem": "balanceamento",
+   "nome": "Mãos Velozes"
+  },
+  "corrompido-premonicao-eterica": {
+   "status": "decisao",
+   "resposta": "No modelo atual (G5): o dado de Defender vira 2d6 quando o seu dado de treino é menor. Vale de Leigo a Mestre (1d12 tem média 6,5 contra 7 do 2d6); o Lendário mantém 2d8, porque a técnica nunca piora. O +1 Evasão entra na Evasão base. Contrato: +1 incluído em derivados.evasao.modificadores.",
+   "acao": "contrato + ficha: dado = melhor(2d6, dado do grau)",
+   "principio": "G5",
+   "perguntaPedro": null,
+   "paraQuem": "balanceamento",
+   "nome": "Premonição Etérica"
+  },
+  "automato-lamina-retratil": {
+   "status": "decisao",
+   "resposta": "\"Marcial leve\" = chassi Marcial Precisa, a marcial de Destreza. A arma é Marcial Precisa +1: 2d8 Cortante (Destreza), +1 em Atacar, Atacar(1) e Executar, mais o +1d10 Cortante impresso, que dobra no crítico (D97: dado escrito na arma). Pede treino em Armas Marciais, como toda marcial.",
+   "acao": "ficha: montar como Marcial Precisa +1 com +1d10",
+   "principio": "G7",
+   "perguntaPedro": null,
+   "paraQuem": "balanceamento",
+   "nome": "Lâmina Retrátil"
+  },
+  "corrompido-receptaculo-menor": {
+   "status": "resolvido",
+   "resposta": "A modulação \"grátis\" zera o custo dela, mas a magia continua modulada. A exceção do piso da D96 exige \"sem modulação\", então um truque Normal com a modulação grátis custa 1. Contrato: a ordemCusto ganhou a etapa \"modulação zerada conta como modulação\".",
+   "acao": "contrato corrigido (magia.ordemCusto)",
+   "principio": "G14",
+   "perguntaPedro": null,
+   "paraQuem": "balanceamento",
+   "nome": "Receptáculo Menor"
+  },
+  "corrompido-escola-visceral": {
+   "status": "decisao",
+   "resposta": "Dois descontos: −2 no custo da magia e −2 em cada modulação. O \"(mín. 1)\" vale para cada modulação, e depois vem o piso global de 1 (D96). O exemplo do achado fica em 2 + max(1, 0) = 3. O contrato aplicava um desconto só e foi corrigido.",
+   "acao": "contrato corrigido (magia.ordemCusto etapa 5)",
+   "principio": "G14",
+   "perguntaPedro": null,
+   "paraQuem": "balanceamento",
+   "nome": "Escola Visceral"
+  },
+  "corrompido-receptaculo-natural": {
+   "status": "decisao",
+   "resposta": "O traço dá a conjuração dessas 2 magias, e o texto específico vence o requisito geral de Treinado em Místico, como a memória já lê o Cultista (\"destrava conjuração\"). O requisito do Sistema continua para qualquer outra magia. A rolagem de Místico, quando a magia pede, usa o grau que o personagem tiver.",
+   "acao": "ficha: 2 magias liberadas sem foco e sem exigir treino",
+   "principio": null,
+   "perguntaPedro": "T15",
+   "paraQuem": "balanceamento",
+   "nome": "Receptáculo Natural"
+  },
+  "origem-cultista": {
+   "status": "decisao",
+   "resposta": "Mesma leitura do Receptáculo Natural. \"Você conhece e consegue canalizar\" dá a conjuração das 2 magias mesmo com Religião no lugar de Místico. O foco continua obrigatório, porque o texto pede.",
+   "acao": "ficha: 2 magias liberadas com foco",
+   "principio": null,
+   "perguntaPedro": "T15",
+   "paraQuem": "balanceamento",
+   "nome": "Segredos Proibidos"
+  },
+  "automato-corpo-mecanico-imunidade": {
+   "status": "decisao",
+   "resposta": "A imunidade é aos efeitos citados: as condições Sangramento e Envenenamento e doenças. Não é imunidade aos tipos de dano, então a grade não marca I em Veneno, Ácido ou Psíquico. O tique do Morrendo continua valendo, porque é a regra de morrer e não um efeito biológico. Sem ele o Autômato nunca morreria sangrando.",
+   "acao": "ficha: imunidade a 2 condições + doenças; grade inalterada",
+   "principio": null,
+   "perguntaPedro": null,
+   "paraQuem": "balanceamento",
+   "nome": "Corpo Mecânico"
+  },
+  "corrompido-pele-morta": {
+   "status": "resolvido",
+   "resposta": "Vale o Sistema: Místico = Radiante, Trovejante, Necrótico; Força e Primordial são \"Outros\". A Ae(Místico, 5) cobre os 3. A vulnerabilidade cobre os tipos não místicos das categorias: Ordinário, Elemental e Biológico. Força e Primordial ficam neutros, que é o que o \"exceto\" queria dizer quando os dois eram Místico. D67 corrigida na memória; contrato dano.categorias alinhado ao Sistema.",
+   "acao": "contrato + memória corrigidos",
+   "principio": "G11",
+   "perguntaPedro": null,
+   "paraQuem": "balanceamento",
+   "nome": "Pele Morta"
+  },
+  "corrompido-as-vozes": {
+   "status": "pedroDecide",
+   "resposta": "Pergunta T15. Recomendo que o gatilho seja só o d20. \"Falha crítica\" é conceito do d20, e em \"qualquer dado\" um 4d6 de dano tem 52% de ter um 1: o Éter do Corrompido some em um combate, a 2d4 + nível por gatilho. Se a intenção é ser brutal, a Pele Morta mostra que adversidade pode ser; aí vale o literal.",
+   "acao": "ficha: provisório = só d20",
+   "principio": null,
+   "perguntaPedro": "T15",
+   "paraQuem": "balanceamento",
+   "nome": "As Vozes"
+  },
+  "origem-a-forja": {
+   "status": "pedroDecide",
+   "resposta": "Pergunta T16. O texto conta por item inédito acima de Ordinário, e o teto natural é o Lendário. Com isso, 4 itens diferentes levam de Leigo a Lendário. Recomendo contar por raridade inédita (Incomum, Exótico, Luxária: no máximo +3 graus), como o meu 03-origens lia. No Artesão, a imunidade à falha crítica e o ganho valem só para o que se fabrica com o Ofício nomeado (Engenharia); consumível feito com Alquimia fica de fora.",
+   "acao": "ficha: provisório = literal (por item) com teto Lendário",
+   "principio": null,
+   "perguntaPedro": "T16",
+   "paraQuem": "balanceamento",
+   "nome": "A Forja (Ferreiro e Artesão)"
+  },
+  "origem-acolito": {
+   "status": "decisao",
+   "resposta": "A criatura repete o teste de resistência que a condição pediu, com a mesma perícia e a mesma CD, a de quem aplicou (D57). Condição que não teve teste de entrada fica com a mesa. \"Maldição\" é termo narrativo, também da mesa.",
+   "acao": "ficha: nada a automatizar",
+   "principio": "G7",
+   "perguntaPedro": null,
+   "paraQuem": "balanceamento",
+   "nome": "Palavra de Fé"
+  },
+  "automato-sensor-de-proximidade": {
+   "paraQuem": "pedro",
+   "status": "pedroDecide",
+   "resposta": "\"Não pode ser surpreendido\" → \"Não pode ser Desprevenido\".",
+   "acao": "aguarda Pedro",
+   "principio": null,
+   "perguntaPedro": "T5",
+   "nome": "Sensor de Proximidade"
+  },
+  "automato-corpo-mecanico-sucata": {
+   "status": "decisao",
+   "resposta": "Sucata = itens da categoria Lixo do Bazar (48 itens, e é ali que \"sucata\" aparece). Para o Autômato, 1 item Lixo conta como 1 Comida no descanso (Desnutrido).",
+   "acao": "ficha: Autômato aceita Lixo como Comida",
+   "principio": "G7",
+   "perguntaPedro": null,
+   "paraQuem": "balanceamento",
+   "nome": "Corpo Mecânico (alimentação)"
+  },
+  "automato-capacitores-de-energia": {
+   "status": "decisao",
+   "resposta": "Sem limite de usos escrito. Não reativa enquanto está ativo (G2: não acumula consigo) e pode reativar depois que acaba. O limitador é o próprio custo: 2d4 Elétrico no fim, dobrado pela vulnerabilidade do Autômato.",
+   "acao": "ficha: estado de 3 rodadas; bloqueia reativar enquanto ativo",
+   "principio": "G2",
+   "perguntaPedro": null,
+   "paraQuem": "balanceamento",
+   "nome": "Capacitores de Energia"
+  },
+  "automato-achar-tecnologias-em-lojas": {
+   "paraQuem": "pedro",
+   "status": "pedroDecide",
+   "resposta": "O d12 não fecha com a lista (6 não compráveis no Tier 1 + 9 compráveis). Sugestão: 1d10 sobre as 9 compráveis na ordem da lista, rerolando o 10 e os repetidos.",
+   "acao": "aguarda Pedro",
+   "principio": null,
+   "perguntaPedro": "T15",
+   "nome": "Achar Tecnologias em Lojas"
+  },
+  "gruto-lingua-bifurcada": {
+   "paraQuem": "pedro",
+   "status": "pedroDecide",
+   "resposta": "Preciso da definição de \"Criaturas Predáveis\". Sugestão: Dryads e criaturas menores que você.",
+   "acao": "aguarda Pedro",
+   "principio": null,
+   "perguntaPedro": "T15",
+   "nome": "Língua Bifurcada"
+  },
+  "raca-corrompido": {
+   "paraQuem": "pedro",
+   "status": "pedroDecide",
+   "resposta": "Reescrever pelo sinal da tabela: \"Adversidades (custo +) são permanentes; poderes (custo −) podem ser reorganizados no descanso longo.\"",
+   "acao": "aguarda Pedro",
+   "principio": null,
+   "perguntaPedro": "T15",
+   "nome": "A Corrupção (convenção de sinal)"
+  },
+  "corrompido-mente-fraca": {
+   "paraQuem": "pedro",
+   "status": "resolvido",
+   "resposta": "Sem ação no texto: a ficha casa por id, não por nome, e a colisão com a Dor do Abismo some. Renomear é opcional.",
+   "acao": "ficha: casar por id (G14)",
+   "principio": null,
+   "perguntaPedro": "-",
+   "nome": "Mente Fraca"
+  },
+  "origem-cacador-itens": {
+   "paraQuem": "pedro",
+   "status": "pedroDecide",
+   "resposta": "\"1 Arma Simples\" → \"1 Arma Distância Simples\" (arco do caçador).",
+   "acao": "aguarda Pedro",
+   "principio": null,
+   "perguntaPedro": "T16",
+   "nome": "Itens iniciais do Caçador"
+  },
+  "origem-mineiro-itens": {
+   "paraQuem": "pedro",
+   "status": "pedroDecide",
+   "resposta": "Parece cópia do Lenhador. Trocar \"Madeira Comum\" por \"Cobre\" (Material Ordinário mineral do Bazar).",
+   "acao": "aguarda Pedro",
+   "principio": null,
+   "perguntaPedro": "T16",
+   "nome": "Itens iniciais do Mineiro"
+  },
+  "origens-itens-bazar": {
+   "paraQuem": "site",
+   "status": "doAgenteDeHtml",
+   "resposta": "Sem nota do balanceamento.",
+   "acao": "site",
+   "principio": null,
+   "perguntaPedro": null,
+   "nome": "Itens iniciais: vínculos com o Bazar"
+  },
+  "ficha-v21-descricao": {
+   "paraQuem": "site",
+   "status": "doAgenteDeHtml",
+   "resposta": "Sem nota do balanceamento.",
+   "acao": "site",
+   "principio": null,
+   "perguntaPedro": null,
+   "nome": "Ficha v2.1 leva a técnica sem a mecânica"
+  },
+  "corrompido-corrupcoes-sem-kf": {
+   "paraQuem": "site",
+   "status": "doAgenteDeHtml",
+   "resposta": "Sem nota do balanceamento.",
+   "acao": "site",
+   "principio": null,
+   "perguntaPedro": null,
+   "nome": "Corrupções sem data-kf-id"
+  },
+  "ficha-sem-vulnerabilidade": {
+   "paraQuem": "site",
+   "status": "doAgenteDeHtml",
+   "resposta": "O contrato já mitiga vulnerabilidade (dano.ordemMitigacao etapa 2). Falta o schema da ficha ter V por tipo: Autômato (Elétrico) e Pele Morta (Ordinário, Elemental e Biológico; ver o achado corrompido-pele-morta).",
+   "acao": "site",
+   "principio": null,
+   "perguntaPedro": null,
+   "nome": "Ficha sem camada de Vulnerabilidade"
+  },
+  "balanceamento-ref-racas": {
+   "status": "resolvido",
+   "resposta": "Procede. O 04-racas.md é anterior à última sincronização e está desatualizado; vale o data/racas (Notion). O contrato não tira números de raça dessa referência. Marquei o arquivo como superado e a reauditoria entra na fila (bloco C).",
+   "acao": "referência marcada como superada",
+   "principio": null,
+   "perguntaPedro": null,
+   "paraQuem": "balanceamento",
+   "nome": "Referência de raças do balanceamento desatualizada"
+  },
+  "balanceamento-ref-origens": {
+   "status": "resolvido",
+   "resposta": "Procede, com o mesmo tratamento: 03-origens.md marcado como superado; vale o data/origens.json. A leitura do A Forja por raridade virou recomendação (T16), não regra.",
+   "acao": "referência marcada como superada",
+   "principio": null,
+   "perguntaPedro": "T16",
+   "paraQuem": "balanceamento",
+   "nome": "Referência de origens do balanceamento desatualizada"
+  },
+  "origem-soldado": {
+   "status": "resolvido",
+   "resposta": "A página Condições do Notion não tem seção \"Condições Mentais\"; o grupo \"mentais\" do site é agrupamento de interface. A única lista escrita no Notion está no Limiar e é a do contrato: Enfeitiçado, Amedrontado, Confuso, Atordoado. O n11 foi reescrito sem citar efeito de carta rara, e a censura não precisa mais cortar. Para o site: o grupo \"Condições Mentais\" da página de Condições não bate com essa lista (tem Descontrolado e Bêbado, não tem Atordoado); alinhar ou renomear o grupo. Confirmação com o Pedro em T16.",
+   "acao": "contrato corrigido (n11, taxonomiaDeCondicao.mentalFonte)",
+   "principio": null,
+   "perguntaPedro": "T16",
+   "paraQuem": "balanceamento",
+   "nome": "Veterano: pendência com texto corrompido no contrato"
+  }
+ },
+ "contagem": {
+  "balanceamento.decisao": 84,
+  "balanceamento.pedroDecide": 15,
+  "balanceamento.resolvido": 11,
+  "pedro.pedroDecide": 39,
+  "pedro.resolvido": 2,
+  "site.doAgenteDeHtml": 9
+ }
+}

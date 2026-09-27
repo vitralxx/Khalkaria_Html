@@ -29,6 +29,12 @@ Checagens:
   5 obsoletas   tools/regras_obsoletas.json (tabela versionada)
   6 automacao   hoje tudo manual (decisão do Pedro); `numeros` = campos citados
 
+Achados de regra (docs/ficha-digital/log-tecnicas-achados.json, leitura humana)
+entram por técnica, cada um com a resposta do balanceamento
+(docs/ficha-digital/log-tecnicas-respostas.json, cópia verbatim da branch dele)
+e com trechoAtual: se o trecho citado saiu do data/ (o Notion corrigiu), o
+achado vira resolvido, com a evidência.
+
 Uso:  python tools/log_tecnicas.py [--saida caminho.json] [--resumo]
 """
 import argparse
@@ -1023,7 +1029,7 @@ def _alerta_geral(r):
         motivos.append('referencias:alerta')
     if r['obsoletas']['status'] in ('obsoleto', 'revisar'):
         motivos.append('obsoletas:' + r['obsoletas']['status'])
-    grav = {a['gravidade'] for a in r.get('achados', [])}
+    grav = {a['gravidade'] for a in r.get('achados', []) if not _resolvido(a)}
     for g in ('alta', 'media'):
         if g in grav:
             motivos.append('regra:' + g)
@@ -1031,28 +1037,193 @@ def _alerta_geral(r):
     return motivos
 
 
+def _resolvido(a):
+    return a.get('resposta', {}).get('status') == 'resolvido'
+
+
 ACHADOS = RAIZ / 'docs' / 'ficha-digital' / 'log-tecnicas-achados.json'
 _CAMPOS_ACHADO = ('id', 'tipo', 'gravidade', 'paraQuem', 'trecho', 'regraAtual')
 
 
-def carrega_achados(ids):
-    """Achados de regra (leitura humana, conferida). Opcional: sem o arquivo, o log sai sem eles."""
+def carrega_achados(ids, ent_por_id=None):
+    """Achados de regra (leitura humana, conferida). Opcional: sem o arquivo, o log sai sem eles.
+    Com as respostas do balanceamento, cada achado leva trechoAtual (o trecho ainda está no texto?) e resposta."""
     if not ACHADOS.exists():
-        return None, {}, []
+        return None, {}, [], None
     with open(ACHADOS, encoding='utf-8') as f:
         doc = json.load(f)
+    resp = carrega_respostas([a['id'] for a in doc['achados']])
+    corpus = CorpusAtual() if resp else None
     por_tec, gerais = {}, []
     for a in doc['achados']:
         fora = [t for t in a['tecnicas'] if t not in ids]
         if fora:
             raise SystemExit(f"{ACHADOS.name}: achado {a['id']} cita técnica fora do inventário: {fora}")
-        item = OrderedDict((k, a[k]) for k in _CAMPOS_ACHADO)
+        extra = []
+        if resp:
+            tr = checa_trecho(a, corpus, ent_por_id)
+            extra = [('trechoAtual', tr), ('resposta', resposta_do_achado(a, resp, tr))]
+        item = OrderedDict([(k, a[k]) for k in _CAMPOS_ACHADO] + extra)
         if not a['tecnicas']:
             gerais.append(OrderedDict([('id', a['id']), ('nome', a['nome']), ('fonte', a['fonte'])]
-                                      + [(k, a[k]) for k in _CAMPOS_ACHADO[1:]]))
+                                      + [(k, a[k]) for k in _CAMPOS_ACHADO[1:]] + extra))
         for t in a['tecnicas']:
             por_tec.setdefault(t, []).append(item)
-    return doc['schema'], por_tec, gerais
+    return doc['schema'], por_tec, gerais, resp
+
+
+# =================================================================== respostas do balanceamento
+RESPOSTAS = RAIZ / 'docs' / 'ficha-digital' / 'log-tecnicas-respostas.json'
+# status do balanceamento -> status no log
+STATUS_RESPOSTA = {'resolvido': 'resolvido', 'decisao': 'leitura', 'pedroDecide': 'esperandoPedro',
+                   'doAgenteDeHtml': 'doSite'}
+
+
+def carrega_respostas(ids_achados):
+    """Resposta do balanceamento a cada achado (cópia verbatim da branch dele). Opcional."""
+    if not RESPOSTAS.exists():
+        return None
+    with open(RESPOSTAS, encoding='utf-8') as f:
+        doc = json.load(f)
+    ids = set(doc['respostas'])
+    if ids != set(ids_achados):
+        raise SystemExit(f'{RESPOSTAS.name}: respostas e achados não batem: só nas respostas '
+                         f'{sorted(ids - set(ids_achados))}, só nos achados {sorted(set(ids_achados) - ids)}')
+    fora = sorted({r['status'] for r in doc['respostas'].values()} - set(STATUS_RESPOSTA))
+    if fora:
+        raise SystemExit(f'{RESPOSTAS.name}: status desconhecido {fora}')
+    return doc
+
+
+# --- o trecho do achado ainda está no texto? (o Notion pode ter corrigido depois do achado)
+# Separadores que os achados usam para juntar pedaços de um card: fortes (elipse, bloco, tag) e fracos
+# (os do cabeçalho do card e das listas). Um pedaço conta como achado se ele inteiro, ou todos os seus
+# subpedaços, ou todas as citações entre aspas dentro dele, estão no texto atual.
+_SEP_FORTE = re.compile(r'\[\.\.\.\]|\.\.\.|…|\s\|\s|<[^>]+>')
+_SEP_FRACO = re.compile(r'\s(?:/|·|—|•)\s')
+_ASPAS = re.compile(r'["“]([^"“”]{8,}?)["”]')
+_BLOCO_TAG = re.compile(r'(?i)<\s*/?\s*(?:br|li|p|div|h[1-6]|ul|ol|tr|td|th|table)\b[^>]*>')
+_MIN_FRAG = 8
+
+
+def _norm_busca(s, html_=True):
+    if html_:
+        s = re.sub(r'<[^>]+>', '', _BLOCO_TAG.sub(' ', s))
+        s = htmlmod.unescape(s)
+    s = re.sub(r'[“”"\'’«»*`]', '', chave(s))
+    s = re.sub(r'\s+', ' ', s)
+    s = re.sub(r'\s+([.,;:!?)])', r'\1', s)
+    return re.sub(r'([(])\s+', r'\1', s).strip()
+
+
+def _strings(v):
+    if isinstance(v, str):
+        yield v
+    elif isinstance(v, list):
+        for x in v:
+            yield from _strings(x)
+    elif isinstance(v, dict):
+        for x in v.values():
+            yield from _strings(x)
+
+
+class CorpusAtual:
+    """Texto atual onde um trecho de achado pode estar: toda string de data/**/*.json (HTML, sem tags)
+    e o código de js/*.js (sem tirar '<', que lá é código)."""
+
+    def __init__(self):
+        self.textos = OrderedDict()
+        for p in sorted((RAIZ / 'data').rglob('*.json')):
+            with open(p, encoding='utf-8') as f:
+                d = json.load(f)
+            self.textos[p.relative_to(RAIZ).as_posix()] = ' ¦ '.join(_norm_busca(s) for s in _strings(d))
+        for p in sorted((RAIZ / 'js').glob('*.js')):
+            self.textos[p.relative_to(RAIZ).as_posix()] = _norm_busca(p.read_text(encoding='utf-8'), html_=False)
+
+    def onde(self, frag):
+        return [k for k, t in self.textos.items() if frag in t]
+
+
+def _frags(s):
+    return [f for f in (_norm_busca(x).strip(' .,;:-') for x in _SEP_FRACO.split(s)) if len(f) >= _MIN_FRAG]
+
+
+def _pedaco_presente(p, corpus):
+    """(presente, arquivos) de um pedaço, tentando as decomposições em ordem."""
+    cands = [[f] for f in [_norm_busca(p).strip(' .,;:-')] if len(f) >= _MIN_FRAG]
+    cands.append(_frags(p))
+    aspas = _ASPAS.findall(p)
+    if aspas:
+        cands.append([f for a in aspas for f in [_norm_busca(a).strip(' .,;:-')] if len(f) >= _MIN_FRAG])
+        cands.append([f for a in aspas for f in _frags(a)])
+    for c in cands:
+        if not c:
+            continue
+        ondes = [corpus.onde(f) for f in c]
+        if all(ondes):
+            return True, sorted({o for x in ondes for o in x})
+    return False, []
+
+
+def _bloco_mais_parecido(trecho, tecnicas, ent_por_id):
+    """Evidência: o bloco (li/p) do texto atual da técnica que mais divide palavras com o trecho."""
+    ref = _palavras(texto_puro(trecho))
+    melhor = (0, '', None)
+    for tid in tecnicas:
+        e = ent_por_id[tid]
+        for b in texto_blocos(e['html']).split(' | '):
+            b = b.strip()
+            if not b:
+                continue
+            n = sum((_palavras(b) & ref).values())
+            if n > melhor[0]:
+                melhor = (n, b, tid)
+    return melhor[1] or None, melhor[2]
+
+
+def checa_trecho(a, corpus, ent_por_id):
+    pedacos = [p for p in _SEP_FORTE.split(a['trecho']) if len(_norm_busca(p).strip(' .,;:-')) >= _MIN_FRAG]
+    res = [_pedaco_presente(p, corpus) for p in pedacos]
+    n_ok = sum(1 for ok, _ in res if ok)
+    status = 'presente' if n_ok == len(res) else ('ausente' if n_ok == 0 else 'parcial')
+    out = OrderedDict([('status', status), ('pedacos', len(res)), ('encontrados', n_ok),
+                       ('em', sorted({o for _, os_ in res for o in os_}))])
+    if status != 'presente':
+        out['faltam'] = [p.strip() for p, (ok, _) in zip(pedacos, res) if not ok]
+        if a['tecnicas']:
+            bloco, tid = _bloco_mais_parecido(a['trecho'], a['tecnicas'], ent_por_id)
+            out['textoAtual'] = OrderedDict([('tecnica', tid), ('fonte', ent_por_id[tid]['fonte'] if tid else None),
+                                             ('bloco', bloco)])
+    return out
+
+
+def resposta_do_achado(a, doc, trecho):
+    r = doc['respostas'][a['id']]
+    status = STATUS_RESPOSTA[r['status']]
+    out = OrderedDict([('status', status), ('statusBalanceamento', r['status']), ('texto', r['resposta']),
+                       ('acao', r['acao'])])
+    if r.get('principio'):
+        g = doc['principios'].get(r['principio'])
+        out['principio'] = OrderedDict([('id', r['principio']), ('nome', g['nome'] if g else None)])
+    pp = r.get('perguntaPedro')
+    if pp and pp in doc['perguntasPedro']:
+        t = doc['perguntasPedro'][pp]
+        out['perguntaPedro'] = OrderedDict([('id', pp), ('tema', t['tema']), ('pergunta', t['pergunta']),
+                                            ('recomendacao', t['recomendacao'])])
+    elif pp and pp != '-':
+        out['perguntaPedro'] = OrderedDict([('id', pp)])       # L14, L18, rework do Batedor: fora das T
+    if trecho['status'] == 'ausente':
+        # o texto que o achado cita saiu do data/ (e do js/): a fonte foi corrigida depois do achado
+        out['status'] = 'resolvido'
+        out['resolvidoPor'] = 'textoCorrigido'
+        ev = 'O trecho citado não está mais em data/ nem em js/'
+        if trecho.get('textoAtual') and trecho['textoAtual']['bloco']:
+            ev += f" (texto atual em {trecho['textoAtual']['fonte']}: \"{trecho['textoAtual']['bloco']}\")"
+        out['evidencia'] = ev + '.'
+    elif trecho['status'] == 'parcial':
+        out['evidencia'] = ('Parte do trecho citado não está mais no texto atual: '
+                            + ' / '.join(f'"{f}"' for f in trecho['faltam']) + '. Conferir se o achado ainda vale.')
+    return out
 
 
 def gerar():
@@ -1066,7 +1237,7 @@ def gerar():
         raise SystemExit(f'id repetido no inventário: {dup}')
     cat = catalogo_por_id()
     pags = paginas(ent, mapa, tem_corr, sel_desc)
-    schema_ach, achados, achados_gerais = carrega_achados(set(ids))
+    schema_ach, achados, achados_gerais, resp = carrega_achados(set(ids), {e['id']: e for e in ent})
     tecnicas = []
     for e in ent:
         r = OrderedDict()
@@ -1109,6 +1280,8 @@ def gerar():
             ('ficha', 'js/ficha.js (MAPA, decorar, decorarCorrupcao, textoLimpo) sobre pages/**/*.html'),
             ('regrasObsoletas', f'tools/regras_obsoletas.json (versao {versao_obs})'),
             ('achados', f'docs/ficha-digital/log-tecnicas-achados.json ({schema_ach})' if schema_ach else None),
+            ('respostas', OrderedDict([('arquivo', f"docs/ficha-digital/log-tecnicas-respostas.json ({resp['schemaVersion']})"),
+                                       ('origem', resp['origem'])]) if resp else None),
             ('automacao', AUTOMACAO_FONTE),
         ])),
         ('notasDeMetodo', [
@@ -1120,6 +1293,18 @@ def gerar():
             f'{COBERTURA_COMPLETA:.0%}; "parcial" ou "vazia" rebaixam levavel de ok para parcial: a técnica vai, a mecânica não.',
             'achados: conflitos de regra lidos à mão e conferidos (trecho verbatim + regra atual + fonte), vindos de '
             'docs/ficha-digital/log-tecnicas-achados.json. Os que não são de uma técnica ficam em achadosGerais.',
+            'achados[].resposta: a resposta do balanceamento (docs/ficha-digital/log-tecnicas-respostas.json, cópia '
+            'verbatim da branch dele). status: resolvido (regra escrita/corrigida, ou texto corrigido na fonte) | '
+            'leitura (leitura do balanceamento; a ficha implementa, o Pedro pode revisar) | esperandoPedro (a ficha usa '
+            'o provisório) | doSite (conserto do agente de HTML). statusBalanceamento guarda o status original; '
+            'perguntaPedro traz a pergunta Tn com a recomendação; principio, a leitura Gn.',
+            'achados[].trechoAtual: o trecho citado ainda está no texto? Procurado em toda string de data/**/*.json '
+            '(sem tags) e em js/*.js, normalizado (sem acento, sem aspas, espaço colapsado), por pedaços: o trecho é '
+            'quebrado nas elipses e tags, e cada pedaço vale se ele inteiro, ou todos os subpedaços (" · ", " / ", '
+            '" — ", " • "), ou todas as citações entre aspas dele estão no texto. "ausente" = o texto foi corrigido '
+            'depois do achado: a resposta vira resolvido (resolvidoPor textoCorrigido) com a evidência e o bloco '
+            'atual mais parecido; "parcial" mantém o status e pede conferência.',
+            'achado resolvido não conta para o alerta da técnica (regra:alta/media).',
             'levavel "parcial": a v2.1 leva, mas não como entidade própria (habilidade de origem vai com o card da origem; '
             'Corrupção vai pela linha da tabela, sem id nem catálogo). "nao": bloco da classe, sem seletor no MAPA.',
             'referencias.condicoes/magias/itens/pericias são casamento por nome (informação): pode haver homônimo '
@@ -1135,6 +1320,8 @@ def gerar():
             'a página não diz qual característica é a técnica',
         ]),
         ('resumo', resumo(tecnicas, achados_gerais if schema_ach else None)),
+        ('principios', resp['principios'] if resp else None),
+        ('perguntasPedro', resp['perguntasPedro'] if resp else None),
         ('achadosGerais', achados_gerais),
         ('tecnicas', tecnicas),
     ])
@@ -1146,7 +1333,8 @@ def _desc(t):
 
 
 def _grav(t):
-    g = {a['gravidade'] for a in t.get('achados', [])}
+    """Gravidade do achado aberto mais grave (resolvido não conta)."""
+    g = {a['gravidade'] for a in t.get('achados', []) if not _resolvido(a)}
     return next((x for x in ('alta', 'media', 'baixa') if x in g), 'nenhum')
 
 
@@ -1185,6 +1373,18 @@ def resumo(tecnicas, achados_gerais=None):
             ('porGravidade', OrderedDict(sorted(Counter(a['gravidade'] for a in list(unicos.values()) + achados_gerais).items()))),
             ('porDestino', OrderedDict(sorted(Counter(a['paraQuem'] for a in list(unicos.values()) + achados_gerais).items()))),
         ])
+        todos = list(unicos.values()) + achados_gerais
+        if todos and 'resposta' in todos[0]:
+            geral['achados']['porResposta'] = OrderedDict(sorted(Counter(a['resposta']['status'] for a in todos).items()))
+            geral['achados']['porDestinoEResposta'] = OrderedDict(
+                (d, OrderedDict(sorted(Counter(a['resposta']['status'] for a in todos if a['paraQuem'] == d).items())))
+                for d in sorted({a['paraQuem'] for a in todos}))
+            geral['achados']['trechoAtual'] = OrderedDict(sorted(Counter(a['trechoAtual']['status'] for a in todos).items()))
+            geral['achados']['resolvidosPeloTexto'] = sorted(a['id'] for a in todos
+                                                            if a['resposta'].get('resolvidoPor') == 'textoCorrigido')
+            geral['achados']['perguntasPedro'] = OrderedDict(sorted(
+                Counter(a['resposta']['perguntaPedro']['id'] for a in todos if a['resposta'].get('perguntaPedro')).items(),
+                key=lambda kv: (kv[0][0], int(kv[0][1:]) if kv[0][1:].isdigit() else 0)))
     geral['porTipo'] = OrderedDict(sorted(Counter(t['tipo'] for t in tecnicas).items()))
     geral['automacao'] = OrderedDict(sorted(Counter(t['automacao']['status'] for t in tecnicas).items()))
     regras = Counter(a['regra'] for t in tecnicas for a in t['obsoletas']['achados'])
