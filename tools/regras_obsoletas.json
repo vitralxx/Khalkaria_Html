@@ -1,0 +1,175 @@
+{
+  "schema": "regras-obsoletas/1",
+  "versao": "2026-09-26.1",
+  "_doc": "Padrões de regra obsoleta que tools/log_tecnicas.py procura no texto de cada técnica. Regex Python, aplicada ao texto puro (tags trocadas por espaço, blocos separados por ' | '). 'campo' diz onde procurar: texto (corpo), custo (custoTexto), nome, ou tudo (texto + custo + nome). 'severidade': obsoleto = contradiz regra atual com fonte; revisar = provável resíduo, o Pedro/balanceamento confirma; info = não é erro, só registro. 'exceto' (opcional) descarta o achado se casar com o trecho. Acrescentar regra = nova linha aqui e subir 'versao'. Nunca corrigir o texto canônico a partir daqui: a correção é do Pedro.",
+  "regras": [
+    {
+      "id": "defender-degrau-de-bonus",
+      "padrao": "(?i)de\\s+[2-4]\\s+em\\s+[2-4]",
+      "campo": "texto",
+      "severidade": "obsoleto",
+      "regraAtual": "Defender escala por DADO, não por bônus: Leigo 1d6, depois 1d8 / 1d10 / 1d12 / 2d8. \"Seus treinamentos aumentam o tipo de dado da rolagem em vez de adicionarem modificadores.\"",
+      "fonte": "data/sistema.json (Perícias > Defender — regra especial); data/pericias.json (Defender, modo dado); L19 \"Vale o primeiro\" (03-respostas-pedro.md §6)"
+    },
+    {
+      "id": "defender-prof",
+      "padrao": "(?i)prof(?:\\.|ici[eê]ncia)?\\s*(?:em\\s+|de\\s+)?defender",
+      "campo": "tudo",
+      "severidade": "obsoleto",
+      "regraAtual": "Evasão Ativa = 10 + Mod. Destreza + Dado de Defender; o dado não soma atributo nem proficiência fixa.",
+      "fonte": "PD8a/PD8b (03-respostas-pedro.md §3, D8a/D8b); data/sistema.json (Defesa > Evasão Ativa)"
+    },
+    {
+      "id": "defender-dado-fixo",
+      "padrao": "(?i)defender[^|.]{0,40}(?:ao inv[eé]s de|em vez de)\\s+\\d+d\\d+",
+      "campo": "texto",
+      "severidade": "revisar",
+      "regraAtual": "O dado de Defender depende do grau de treino (1d6 / 1d8 / 1d10 / 1d12 / 2d8); não existe um dado fixo de referência para trocar.",
+      "fonte": "data/sistema.json (Perícias > Defender); data/pericias.json"
+    },
+    {
+      "id": "defender-mais-mod",
+      "padrao": "(?i)1d10\\s*\\+\\s*mod\\.?\\s*(?:des|destreza|con|constitui)",
+      "campo": "tudo",
+      "severidade": "obsoleto",
+      "regraAtual": "O dado de Defender não soma atributo: a Destreza já está na Evasão Passiva.",
+      "fonte": "PD8a (03-respostas-pedro.md §3); data/sistema.json (Defesa > Evasão Ativa)"
+    },
+    {
+      "id": "defender-bonus-plano",
+      "padrao": "[+−-]\\s*\\d+\\s*(?:em\\s+|de\\s+|no\\s+)?Defender",
+      "campo": "texto",
+      "severidade": "info",
+      "regraAtual": "Bônus plano em Defender soma na rolagem do dado (a própria ação Defender dá +2). Válido; só é obsoleto se o texto tratar o bônus como degrau de treino.",
+      "fonte": "data/sistema.json (Sua Rodada: \"Defender (1 ação) → +2 Defender\"); 15-ficha-rodada3.md C2 (branch do balanceamento)"
+    },
+    {
+      "id": "ae-ordinario",
+      "padrao": "(?i)Ae\\s*\\(\\s*(?:ordin[aá]rio|cortante|contundente|perfurante)",
+      "campo": "tudo",
+      "severidade": "obsoleto",
+      "regraAtual": "O dano Ordinário é reduzido pelo Ar (Armadura), que cobre os 3 ordinários de uma vez; Ae é sempre de um tipo atípico ou categoria.",
+      "fonte": "D63/D67 (09-decisoes-pedro.md); contrato dano.gradeNota"
+    },
+    {
+      "id": "ae-todos-sem-excecao",
+      "padrao": "(?i)Ae\\s*\\(\\s*todos(?![^|]{0,60}exceto)",
+      "campo": "tudo",
+      "severidade": "revisar",
+      "regraAtual": "Ae(Todos) sempre exclui Força e Primordial e cobre só os atípicos (nunca cortante, contundente, perfurante).",
+      "fonte": "D89; PD22; L26 (Pedro: \"Ae(Todos) sempre exclui dano de força e primordial\")"
+    },
+    {
+      "id": "nivel-menos-1",
+      "padrao": "(?i)\\(?\\s*n[ií]vel\\s*[-−–]\\s*1\\s*\\)?",
+      "campo": "tudo",
+      "severidade": "obsoleto",
+      "regraAtual": "Resíduo da renumeração das magias (D68: Nível 1 virou truque e tudo subiu +1). Vale a regra do Teurgo: magias \"iguais ou abaixo do seu nível\".",
+      "fonte": "L18 \"Vale o primeiro\" (03-respostas-pedro.md §6); D68"
+    },
+    {
+      "id": "magia-nivel-1-pre-D68",
+      "padrao": "(?i)magias?\\s+(?:de\\s+)?n[ií]vel\\s*1\\b|pergaminho[^|.]{0,30}n(?:[ií]ve)?l\\.?\\s*1\\b",
+      "campo": "texto",
+      "severidade": "revisar",
+      "regraAtual": "Desde a D68, Nível 1 é o andar dos truques (custo 0 na Normal). Texto escrito antes da renumeração pode querer dizer o Nível 2 atual. Pode estar certo: confirmar caso a caso.",
+      "fonte": "D68 (09-decisoes-pedro.md); L43 (Pedro: \"Os pergaminhos não foram ajustados a nova lógica de magia\")"
+    },
+    {
+      "id": "magia-teto-nivel-4",
+      "padrao": "(?i)magias?[^|.]{0,40}n[ií]ve(?:l|is)\\s*(?:1\\s*(?:a|-|–|até)\\s*)?4\\b(?!\\s*(?:ou|e|a)\\s*5)",
+      "campo": "texto",
+      "severidade": "obsoleto",
+      "regraAtual": "A magia tem 5 níveis (custo base 0/2/4/6/8 Éter; o Nível 5 exige Foco Primordial).",
+      "fonte": "data/magias.json; CLAUDE.md §2 (Magia)"
+    },
+    {
+      "id": "oficio-generico",
+      "padrao": "(?i)of[ií]cio\\s*\\(\\s*(?:x|qualquer|\\?)\\s*\\)|of[ií]cio(?!\\s*\\(\\s*(?:engenharia|ferraria|alquimia)\\s*\\))",
+      "campo": "tudo",
+      "severidade": "obsoleto",
+      "regraAtual": "Ofício genérico deixou de existir: são 3 perícias concretas, Ofício(Engenharia), Ofício(Ferraria) e Ofício(Alquimia), todas 1d20+Inteligência.",
+      "fonte": "data/pericias.json (24 perícias); contrato periciasNota (C11)"
+    },
+    {
+      "id": "carisma",
+      "padrao": "(?i)\\bcarisma\\b|Mod\\.?\\s*Car\\b",
+      "campo": "tudo",
+      "severidade": "obsoleto",
+      "regraAtual": "Não existe Carisma. Atributos: FOR, DES, CON, INT, SAB.",
+      "fonte": "CLAUDE.md §2 (Atributos); contrato atributos"
+    },
+    {
+      "id": "municao-20",
+      "padrao": "(?i)\\b20\\s*(?:unidades|muni[cç](?:ão|ões)|flechas|virotes|balas)|20\\s*=\\s*1\\s*slot",
+      "campo": "tudo",
+      "severidade": "obsoleto",
+      "regraAtual": "Empilhável (munição incluída): 10 unidades = 1 de peso; 1 munição gasta por cena de combate, não por disparo.",
+      "fonte": "contrato municao (D2, D41, A1); CLAUDE.md §2 (Inventário, confirmado em 2026-09-25)"
+    },
+    {
+      "id": "sangramento-dado-fixo",
+      "padrao": "(?i)sangramento[^|.]{0,30}\\b\\d+d\\d+|\\b\\d+d\\d+[^|.]{0,20}(?:de\\s+)?sangramento",
+      "campo": "texto",
+      "severidade": "revisar",
+      "regraAtual": "Sangramento X causa +Xd4 por acerto e cada acerto remove 1 (Sangria Precisa troca para d6). Consome antes de aplicar.",
+      "fonte": "D83; PD14a (09-decisoes-pedro.md)"
+    },
+    {
+      "id": "recarga-por-dia",
+      "padrao": "(?i)\\b(?:\\d+|uma|duas|tr[eê]s)\\s*(?:x|vez(?:es)?)\\s*(?:/|por|ao)\\s*dia\\b|/\\s*dia\\b|\\bpor\\s+dia\\b",
+      "campo": "tudo",
+      "severidade": "obsoleto",
+      "regraAtual": "A notação oficial é \"1x/Descanso Longo\" (\"1x/dia\" é antiga). Existem também 1x/sessão, 1x/semana e 1x/campanha, marcados à mão.",
+      "fonte": "L29 (Pedro: \"Geralmente a notação oficial nas técnicas é 1x/Descanso Longo e não 1x/dia\"); contrato recargas"
+    },
+    {
+      "id": "stamina-negativa",
+      "padrao": "(?i)stamina[^|.]{0,40}negativ|negativ[^|.]{0,30}stamina",
+      "campo": "texto",
+      "severidade": "revisar",
+      "regraAtual": "A Stamina não fica negativa; perdas param em 0. Só o Éter atravessa o 0.",
+      "fonte": "D93 (L03); contrato recursos.stamina.min"
+    },
+    {
+      "id": "intimidacao-for-sab",
+      "padrao": "(?i)intimida(?:ção|r)\\s*\\(\\s*for\\s*/\\s*sab",
+      "campo": "tudo",
+      "severidade": "obsoleto",
+      "regraAtual": "Intimidação é 1d20+(Constituição ou Força).",
+      "fonte": "L21 \"Vale o primeiro\" (03-respostas-pedro.md §6); contrato pericias.intimidacao"
+    },
+    {
+      "id": "evasao-por-classe",
+      "padrao": "(?i)evas[aã]o[^|.]{0,20}determinada pela (?:sua )?classe",
+      "campo": "tudo",
+      "severidade": "obsoleto",
+      "regraAtual": "Sua Evasão base é 10 + Mod. Destreza, igual em todas as classes.",
+      "fonte": "L45; 03-respostas-pedro.md §5"
+    },
+    {
+      "id": "fluxo-perda-clausula-morta",
+      "padrao": "(?i)se passar 1 rodada sem ganhar fluxo ou receber dano",
+      "campo": "texto",
+      "severidade": "revisar",
+      "regraAtual": "L23, resposta \"Outra\" do Pedro: \"Porém ainda tem, se receber dano que zera seu fluxo.\" O texto proposto pelo balanceamento (\"Ao fim do combate, você perde todo o seu Fluxo.\") não foi aceito como está; falta o texto final com a perda por dano. Choca também com \"Você não pode perder fluxo de nenhuma outra forma\".",
+      "fonte": "L23 (03-respostas-pedro.md §6); contrato classes.monge._clausulaMorta"
+    },
+    {
+      "id": "investida-colisao-de-nome",
+      "padrao": "^Investida$",
+      "campo": "nome",
+      "severidade": "revisar",
+      "regraAtual": "\"Investida\" agora é a manobra do Sistema (2 ações, conta como Mover). A técnica do Brutalista e a ação do Titã têm o mesmo nome com regras diferentes; renomear está com o Pedro.",
+      "fonte": "D88; L20 (Pedro: \"Bom revisar.\"), 09-decisoes-pedro.md"
+    },
+    {
+      "id": "investida-citada",
+      "padrao": "Investida",
+      "campo": "texto",
+      "severidade": "info",
+      "regraAtual": "Texto cita \"Investida\": pode ser a manobra do Sistema (D88) ou uma ação própria da técnica (L20, pendente).",
+      "fonte": "D88; L20"
+    }
+  ]
+}
