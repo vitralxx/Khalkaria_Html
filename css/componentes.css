@@ -13,13 +13,17 @@
    mudaria o caminho de cada elemento no portão [estilo]). Os --bz-* do Bazar
    viram os tokens de que eles são alias (mesmo valor computado).
 
+   Variáveis e classes de estado do componente têm nome genérico (--kh-n,
+   .kh-piora); a classe de estado do Bazar entra no seletor duplo. O movimento
+   reduzido de cada componente fica aqui, junto dele.
+
    Só entrou o que muda de camada (paginas -> componentes) sem trocar a
-   vencedora de nenhuma propriedade, em nenhum estado. Ficaram no bazar.css,
-   com a versão genérica aqui ao lado:
-     - stepper: o .bz-slot-step (compacto, bazar.css) perde para o .bz-stepper
-       por ordem hoje; em camadas diferentes a vencedora inverteria;
-     - alvo de soltura: .bz-inv-cab {background} e .bz-trilho:focus-visible
-       venceriam o .bz-alvo pela camada.
+   vencedora de nenhuma propriedade, em nenhum estado. Único resto no
+   bazar.css: o alvo de soltura do cabeçalho e do trilho do inventário
+   (.bz-inv-cab.bz-alvo, .bz-trilho.bz-alvo), porque o .bz-inv-cab {background}
+   e o .bz-trilho:focus-visible {outline}, na camada paginas, venceriam o alvo
+   pela camada (e no estado trilho o fundo do alvo perde para o
+   .bz-mesa[data-inv="trilho"] .bz-trilho {background: none}, de propósito).
    A F7 passa o DOM do Bazar para as classes .kh-* e apaga o seletor duplo. */
 
 @layer componentes {
@@ -80,8 +84,9 @@
 .bz-faixa-btn:focus-visible, .bz-inv-exportar:focus-visible, .bz-toast-btn:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
 
 /* ---------------------------------------------------------- stepper (−  n  +)
-   Só a versão genérica: o Bazar segue com o .bz-stepper do bazar.css (ver topo). */
-.kh-stepper {
+   No Bazar: a quantidade da receita e a de cada linha do inventário
+   (.bz-slot-step, que só acrescenta o estado travado no bazar.css). */
+.kh-stepper, .bz-stepper {
     display: inline-flex; align-items: stretch;
     height: 32px;
     border: 1px solid var(--border-color);
@@ -89,7 +94,7 @@
     overflow: hidden;
     background: var(--bg-primary);
 }
-.kh-stepper button {
+.kh-stepper button, .bz-stepper button {
     width: 28px;
     background: var(--bg-tertiary);
     border: 0;
@@ -97,8 +102,8 @@
     font-size: 1rem;
     cursor: pointer;
 }
-.kh-stepper button:hover { color: var(--gold-light); background: #22222e; }
-.kh-stepper input {
+.kh-stepper button:hover, .bz-stepper button:hover { color: var(--gold-light); background: #22222e; }
+.kh-stepper input, .bz-stepper input {
     width: 4.4ch;
     border: 0;
     border-left: 1px solid var(--border-color);
@@ -133,8 +138,9 @@
 /* ---------------------------------------------------------- régua de carga
    0 a 2×max: dourado até o max (-ok), âmbar hachurado até 2×max (-exc);
    passou de 2×max, [data-estado="extremo"]: listrado em brasa e o "+N" (-mais).
-   Entalhes por cima: .segmentada (um por unidade, --bz-n) ou .ticada (a cada 5,
-   --bz-t). -marco no max. Ao PIORAR de faixa, .bz-piora: um brilho de 700ms. */
+   Entalhes por cima: .segmentada (um por unidade, --kh-n) ou .ticada (a cada 5,
+   --kh-t), as duas contagens postas pelo JS no nó da régua. -marco no max. Ao
+   PIORAR de faixa, .kh-piora (no Bazar, .bz-piora): um brilho de 700ms. */
 .kh-regua-linha, .bz-regua-linha { flex: 0 0 100%; display: flex; align-items: center; gap: 3px; }
 .kh-regua, .bz-regua {
     position: relative; flex: 1 1 auto; min-width: 0; height: 8px; border-radius: 2px;
@@ -147,10 +153,10 @@
 .bz-regua[data-estado="extremo"] .bz-regua-exc { background: repeating-linear-gradient(45deg, var(--extremo-vivo) 0 3px, #5a1e26 3px 6px); }
 .kh-regua-entalhes, .bz-regua-entalhes { position: absolute; inset: 0; border-radius: 2px; pointer-events: none; }
 .kh-regua.segmentada .kh-regua-entalhes, .bz-regua.segmentada .bz-regua-entalhes {
-    background: repeating-linear-gradient(90deg, transparent 0 calc(100% / var(--bz-n) - 1px), #000a calc(100% / var(--bz-n) - 1px) calc(100% / var(--bz-n)));
+    background: repeating-linear-gradient(90deg, transparent 0 calc(100% / var(--kh-n) - 1px), #000a calc(100% / var(--kh-n) - 1px) calc(100% / var(--kh-n)));
 }
 .kh-regua.ticada .kh-regua-entalhes, .bz-regua.ticada .bz-regua-entalhes {
-    background: repeating-linear-gradient(90deg, transparent 0 calc(100% / var(--bz-t) - 1px), #000c calc(100% / var(--bz-t) - 1px) calc(100% / var(--bz-t)));
+    background: repeating-linear-gradient(90deg, transparent 0 calc(100% / var(--kh-t) - 1px), #000c calc(100% / var(--kh-t) - 1px) calc(100% / var(--kh-t)));
 }
 .kh-regua-marco, .bz-regua-marco { position: absolute; top: -2px; bottom: -2px; left: calc(50% - 1px); width: 2px; background: var(--gold-light); }
 .kh-regua::after, .bz-regua::after {
@@ -163,18 +169,22 @@
 }
 .kh-regua::before, .bz-regua::before {
     content: ""; position: absolute; inset: -2px; border-radius: 3px; pointer-events: none;
-    box-shadow: 0 0 10px 1px var(--bz-brilho, var(--leve));
+    box-shadow: 0 0 10px 1px var(--kh-brilho, var(--leve));
     opacity: 0;
 }
-.kh-regua[data-estado="extremo"], .bz-regua[data-estado="extremo"] { --bz-brilho: var(--extremo-vivo); }
-.kh-regua.bz-piora::before, .bz-regua.bz-piora::before { animation: bz-piora .7s ease-out; }
-@keyframes bz-piora { 30% { opacity: 1; } }
+.kh-regua[data-estado="extremo"], .bz-regua[data-estado="extremo"] { --kh-brilho: var(--extremo-vivo); }
+.kh-regua.kh-piora::before, .bz-regua.bz-piora::before { animation: kh-piora .7s ease-out; }
+@keyframes kh-piora { 30% { opacity: 1; } }
+:root[data-movimento="reduzido"] .kh-regua.kh-piora::before,
+:root[data-movimento="reduzido"] .bz-regua.bz-piora::before { animation: none; }
 
 /* ---------------------------------------------------------- alvo de soltura
-   Só a versão genérica: o Bazar segue com o .bz-alvo do bazar.css (ver topo). */
-.kh-alvo { outline: 1px dashed var(--amber); outline-offset: -3px; background: #e08b2c0f; }
-.kh-alvo-aviso { display: none; margin: 0; padding: .3rem .85rem; font-size: .82rem; font-style: italic; color: var(--amber); }
-.kh-alvo .kh-alvo-aviso { display: block; }
+   .kh-alvo marca o contêiner que recebe a soltura; .kh-alvo-aviso ("Solte
+   aqui…") só aparece nele. No Bazar: a coluna do inventário (.bz-col.bz-alvo,
+   .bz-col-solte); o cabeçalho e o trilho ficam no bazar.css (ver topo). */
+.kh-alvo, .bz-col.bz-alvo { outline: 1px dashed var(--amber); outline-offset: -3px; background: #e08b2c0f; }
+.kh-alvo-aviso, .bz-col-solte { display: none; margin: 0; padding: .3rem .85rem; font-size: .82rem; font-style: italic; color: var(--amber); }
+.kh-alvo .kh-alvo-aviso, .bz-col.bz-alvo .bz-col-solte { display: block; }
 
 /* ---------------------------------------------------------- toast
    Preso ao rodapé do contêiner (acima dele); .on mostra. JS: KhToast (js/kh-ui.js). */
@@ -254,5 +264,8 @@
 }
 .kh-popover[data-seta="baixo"]::after, .bz-cartao[data-seta="baixo"]::after { bottom: -7px; background: #0c0b10; }
 .kh-popover p, .bz-cartao p { margin: 0; }
+/* movimento reduzido: sem escala na entrada nem na saída */
+:root[data-movimento="reduzido"] .kh-popover, :root[data-movimento="reduzido"] .kh-popover.sai,
+:root[data-movimento="reduzido"] .bz-cartao, :root[data-movimento="reduzido"] .bz-cartao.sai { transform: none; }
 
 }

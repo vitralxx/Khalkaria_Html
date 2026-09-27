@@ -131,7 +131,8 @@ css/componentes.css            F2b: componentes comuns (camada componentes; o sh
                                família, botão, stepper, conta com dica de fórmula, régua de
                                carga, alvo de soltura, toast, popover. Classe genérica .kh-*
                                e, no mesmo seletor, a do Bazar (que consome daqui sem
-                               trocar classe no DOM); stepper e alvo só em .kh-*
+                               trocar classe no DOM); o movimento reduzido de cada
+                               componente mora junto dele
 css/classes.css                componentes das 7 páginas de classe (camada paginas)
 css/racas.css                  componentes das 7 páginas de raça (camada paginas)
 css/bazar.css                  só a página do Bazar (camada paginas; --bz-* são aliases
@@ -286,7 +287,8 @@ Ordem de carga e responsabilidade de cada camada:
    camada `componentes`, depois das regras da mesma camada do `style.css`. Regra
    que desce de `paginas` para cá só entra se não trocar a vencedora de nenhuma
    propriedade em nenhum estado (a camada vence a especificidade): por isso o
-   `.bz-stepper` e o `.bz-alvo` ficaram no `bazar.css` (ver o topo do arquivo).
+   alvo de soltura do cabeçalho e do trilho do inventário (`.bz-inv-cab.bz-alvo`,
+   `.bz-trilho.bz-alvo`) ficou no `bazar.css` (ver o topo do arquivo).
 2. `css/classes.css` / `css/racas.css` — componentes que existem só nessas
    famílias de página (`.class-hero`, `.raca-header`…), iguais em todas elas.
 3. `<style>` inline da página — **apenas o que é dela**. Nas classes, os tokens
@@ -519,6 +521,16 @@ troca é o texto `var(--bz-x)` -> `var(--x)` (o token de que o `--bz-x` é alias
 mesmo valor): nenhum valor declarado mudou. O `meta.animacoes` de 4 capturas do Bazar mudou (17 -> 12…): é o
 tempo do navegador com o painel oculto, e o commit anterior dá os mesmos números
 nas mesmas condições.
+Na correção da F2b o stepper, o alvo da coluna e o movimento reduzido da
+régua e do pop-up desceram do `bazar.css` para cá (e `--bz-n/--bz-t` viraram
+`--kh-n/--kh-t`, postos pelo `bazar-inventario.js`): o `depois/` deu 0 diferença
+contra o anterior nas 54 capturas, e a captura à mão dos estados fora do
+roteiro (inventário com linhas, travado, leve, extremo, piora com e sem
+movimento reduzido, alvo no painel e no trilho, pop-up nas 4 setas em vis/sai
+com e sem movimento reduzido) deu 0 diferença, fora o nome da animação da
+piora (`bz-piora` -> `kh-piora`, mesmos quadros). As regras de tamanho do
+`.bz-slot-step` (24px) nunca venciam o `.bz-stepper` (a linha media 32px) e
+saíram.
 
 ```bash
 python tools/estilo/servidor.py        # serve o repo em 127.0.0.1:8898 (sem cache) e grava

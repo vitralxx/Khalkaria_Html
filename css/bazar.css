@@ -1203,10 +1203,10 @@ svg.bz-cb-ico { width: 18px; height: 18px; }
     .bz-col.recolhida .bz-col-lista { display: block; }
 }
 
-/* soltura */
-.bz-col-solte { display: none; margin: 0; padding: .3rem .85rem; font-size: .82rem; font-style: italic; color: var(--amber); }
-.bz-col.bz-alvo { outline: 1px dashed var(--amber); outline-offset: -3px; background: #e08b2c0f; }
-.bz-col.bz-alvo .bz-col-solte { display: block; }
+/* soltura: o alvo da coluna (.bz-col.bz-alvo, .bz-col-solte) é o componente
+   alvo de soltura (css/componentes.css). O do cabeçalho e o do trilho ficam
+   aqui, na camada paginas: o .bz-inv-cab {background} e o
+   .bz-trilho:focus-visible {outline} venceriam o componente pela camada. */
 .bz-inv-cab.bz-alvo, .bz-trilho.bz-alvo { outline: 1px dashed var(--amber); outline-offset: -3px; background: #e08b2c0f; }
 
 /* grupos */
@@ -1296,9 +1296,8 @@ svg.bz-slot-ico { width: 20px; height: 20px; }
     opacity: .45;
 }
 .bz-slot-x:hover, .bz-slot-x:focus-visible, .bz-slot:hover .bz-slot-x { opacity: 1; color: #ff6b5a; }
-.bz-slot-step { height: 24px; }
-.bz-slot-step button { width: 22px; font-size: .9rem; }
-.bz-slot-step input { width: 3.2ch; font-size: .82rem; }
+/* o stepper da linha é o componente (css/componentes.css), no tamanho dele;
+   aqui só o estado travado */
 .bz-slot-step button:disabled { opacity: .35; cursor: not-allowed; }
 .bz-slot-step input[readonly] { color: var(--text-secondary); }
 .bz-slot-cx {
@@ -1527,35 +1526,6 @@ body.bz-rc-aberta .bz-rc-borda {
     border-radius: 8px;
 }
 .bz-rc-guardar-linha { display: flex; align-items: center; gap: .5rem; flex-wrap: wrap; }
-.bz-stepper {
-    display: inline-flex; align-items: stretch;
-    height: 32px;
-    border: 1px solid var(--border-color);
-    border-radius: 7px;
-    overflow: hidden;
-    background: var(--bg-primary);
-}
-.bz-stepper button {
-    width: 28px;
-    background: var(--bg-tertiary);
-    border: 0;
-    color: var(--text-secondary);
-    font-size: 1rem;
-    cursor: pointer;
-}
-.bz-stepper button:hover { color: var(--gold-light); background: #22222e; }
-.bz-stepper input {
-    width: 4.4ch;
-    border: 0;
-    border-left: 1px solid var(--border-color);
-    border-right: 1px solid var(--border-color);
-    background: transparent;
-    color: var(--gold-light);
-    text-align: center;
-    font-family: var(--bz-mono);
-    font-variant-numeric: tabular-nums;
-    font-size: .92rem;
-}
 .bz-rc-guardar-grupo { position: relative; display: inline-flex; flex: 1 1 auto; }
 .bz-rc-guardar-btn {
     flex: 1 1 auto;
@@ -2029,14 +1999,12 @@ svg.bz-rc-uso-ico { width: 16px; height: 16px; margin: 0 3px; }
 :root[data-movimento="reduzido"] .bz-rc-raizes.anima path, :root[data-movimento="reduzido"] .bz-rc-raizes.anima .bz-rc-raiz-no { animation: none; stroke-dashoffset: 0; }
 :root[data-movimento="reduzido"] body.bz-rc-aberta .bz-rc-borda { animation: none; stroke-dashoffset: 0; }
 :root[data-movimento="reduzido"] .cards .item-card.rar-luxaria::after { animation: none; opacity: 0; }
-:root[data-movimento="reduzido"] .bz-regua.bz-piora::before { animation: none; }
 :root[data-movimento="reduzido"] .bz-slot.bz-pisca::after { animation: none; opacity: 0; }
 :root[data-movimento="reduzido"] .bz-slot.bz-pisca { box-shadow: inset 2px 0 0 var(--amber), inset 0 1px 0 #ffffff05, inset 0 0 0 1px #0008; }
 :root[data-movimento="reduzido"] .bz-slot.bz-sai { transition: none; }
-/* sem deslocamento no hover nem escala no pop-up */
+/* sem deslocamento no hover (a régua e o pop-up têm o deles no css/componentes.css) */
 :root[data-movimento="reduzido"] .cards .item-card:hover, :root[data-movimento="reduzido"] .bz-seg,
-:root[data-movimento="reduzido"] .cards .item-card:hover .bz-med, :root[data-movimento="reduzido"] .cards .item-card::after,
-:root[data-movimento="reduzido"] .bz-cartao, :root[data-movimento="reduzido"] .bz-cartao.sai { transform: none; }
+:root[data-movimento="reduzido"] .cards .item-card:hover .bz-med, :root[data-movimento="reduzido"] .cards .item-card::after { transform: none; }
 }
 
 /* PONTE (F1c), sem camada: o .kf-draggable {cursor: grab} que o ficha.js injeta

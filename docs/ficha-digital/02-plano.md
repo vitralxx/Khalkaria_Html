@@ -241,7 +241,7 @@ Resposta do Pedro que ainda não chegou ao contrato (0.1) entra no `tools/deciso
 | Arquivo | Conteúdo | Fase |
 |---|---|---|
 | `css/tokens.css` | Promove de `bazar.css:10-63` (`--mono`, `--painel`, `--sombra-*`, `--mola`, `--cantos`, `--tem/--leve/--extremo`, `--rar-*`); escalas `--esp-*`, `--raio-*`, `--dur-*`, `--z-*` (sticky 30, lista 40, rightbar 50, nav 100, dica 105, painel-esq 110, menu-mobile 200, popover 400, topo 450, ficha 600, toast 700, overlay 800, splash 900: a ordem do empilhamento de hoje, para a F7 trocar literal por nome sem inverter ninguém; a exceção é o splash, hoje abaixo da Ficha e na escala acima de tudo); `--recurso-saude/stamina/eter` já com a paleta da D28 corrigida (Saúde vermelho, Stamina amarelo, Éter verde e roxo); `--classe-<c>` e `--ramo-<c>-<r>` (M7); `--esq-w`, `--dir-w` | F1c |
-| `css/componentes.css` | F2: conta (com estado "ajustado"), selo, régua, botão, stepper, alvo de soltura, toast, popover, `.ent`/`.ent-add`, dado/rolagem. Depois: chip, tabela v3, caixa de regra, trilha de filtros | F2, cresce na F7 |
+| `css/componentes.css` | F2: conta (com estado "ajustado"), selo, régua, botão, stepper, alvo de soltura, toast, popover, `.ent`/`.ent-add`, dado/rolagem. Depois: chip, tabela v3, caixa de regra, trilha de filtros. Dívida até a F7: o alvo de soltura do cabeçalho e do trilho do inventário do Bazar (`.bz-inv-cab.bz-alvo`, `.bz-trilho.bz-alvo`) repete as declarações do `.kh-alvo` no `bazar.css`, porque a regra de página do mesmo elemento venceria o componente pela camada | F2, cresce na F7 |
 | `css/ficha.css` | Drawer, trilho, página da ficha (moldura gótica), Mesa, assistente, overlay da Vhelor | F2 → F6 |
 | `css/paginas/*.css` | Destino dos `<style>` dos templates, uma família por entrega | F7 |
 

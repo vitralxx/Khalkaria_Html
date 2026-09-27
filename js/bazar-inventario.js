@@ -312,8 +312,8 @@
     var total = Math.max(1, 2 * col.max);
     no.classList.toggle('segmentada', total <= 40);
     no.classList.toggle('ticada', total > 40);
-    no.style.setProperty('--bz-n', String(total));
-    no.style.setProperty('--bz-t', String(total / 5));
+    no.style.setProperty('--kh-n', String(total));
+    no.style.setProperty('--kh-t', String(total / 5));
     trocaHTML(no, reguaHTML(col));
   }
 
