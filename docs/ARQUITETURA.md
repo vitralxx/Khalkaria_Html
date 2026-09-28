@@ -92,7 +92,7 @@ tools/componentes-baseline.json piso da contagem de cada classe CSS de component
                                página de classe (checagem [componentes] do validar)
 tools/gerar_regras_ficha.py    F3b: contrato regras-ficha + blocos do site -> js/ficha/00-regras-dados.js
                                (AST com status/fonte por nó; status desconhecido derruba o build)
-tools/testes/                  testes node do motor KhInv, do KhEstado e do KhRegras (*.test.js, fixtures/);
+tools/testes/                  testes node do motor KhInv, do KhEstado, do KhRegras e da prévia (*.test.js, fixtures/);
                                index.js deixa `node --test tools/testes` rodar no Node 22+;
                                esquema-min.js: validador mínimo de JSON Schema (sem pip) dos
                                testes do schema v3; estado-apoio.js: catálogo real + storage falso;
@@ -144,6 +144,9 @@ css/bazar.css                  só a página do Bazar (camada paginas; --bz-* s�
 css/ficha.css                  F2a: drawer, botão lateral, toast e "+ ficha" dos cards (o
                                CSS que o ficha.js injetava); SEM camada, o shell o põe
                                em todas as páginas logo antes de </head>
+css/ficha-previa.css           F3c: painel da prévia da ficha v3 (tudo sob .kf3, SEM
+                               camada). O shell NÃO o injeta: só o kh-previa.js o pede,
+                               com a prévia ligada (?ficha=v3)
 js/kh-ui.js                    F2b: biblioteca comum (fora do bundle da ficha; o shell a
                                põe SÍNCRONA antes do 1º <script src> local de toda página):
                                KhTeclas (registro único de atalhos e camadas do Esc, um
@@ -176,6 +179,10 @@ js/ficha/kh-regras.js            KhRegras (F3b), PURO: grafo de derivados em ord
                                  fórmula do tooltip. MODO SOMBRA: nada chama no site
 js/ficha/ficha-v2.js             drawer, estado v2, decoração dos cards e a API
                                  window.KF (§8); no node não roda
+js/ficha/kh-previa.js            KhPrevia (F3c): PRÉVIA ESCONDIDA da v3 (?ficha=v3), painel
+                                 à direita só-leitura com a v2 migrada e calculada em
+                                 memória; partes puras (ativacao, calcular, render)
+                                 testadas em previa.test.js. Sem ativação não faz nada
 js/ficha.js                    ARTEFATO (tools/ficha_js.py): concatenação de js/ficha/
                                na ordem do ORDEM, cabeçalho "gerado — não editar". É o
                                único arquivo que o site carrega (main.js injeta; o
@@ -763,7 +770,9 @@ carregados (nada os chama até a F4). No node, carregados sozinhos, exportam por
   `evasao.passiva|ativa`, `cd`, `movimento`, `acoes`, `capacidade.*`, `carga`
   (Sobrepeso automático), `ar`, `ae.<tipo|categoria|todos>`,
   `resistencia|imunidade|vulnerabilidade.<tipo>`, `defesa.<tipo>` (redução fixa
-  por tipo), `magia.<id>.custo`, `ataque.<uid>.atacar|dano` (progressão da PMA em
+  por tipo), `magia.<id>.custo` (com `porIntensidade`: a mesma conta nas 4
+  intensidades, `{intensidade, nome, escolhida, permitida, no}`; o ajuste manual
+  vale só para a escolhida), `ataque.<uid>.atacar|dano` (progressão da PMA em
   `progressao`), `limiar.saldo`, `morrendo.tique`, `recurso.stamina.disponivel`
   (atual − comprometida, D19). Os caminhos ajustáveis são os do
   `KhEstado.PADRAO_AJUSTE`; `carga`, `defesa.*`, `morrendo.tique` e
@@ -789,6 +798,29 @@ carregados (nada os chama até a F4). No node, carregados sozinhos, exportam por
   ficam expostos para a Mesa (F5).
 - A capacidade vem do `KhInv` (`inv.capacidade`) até a F6: os Mods `capacidade.*`
   de `data/efeitos.json` ficam na trilha, inativos, para não contar duas vezes.
+
+**Prévia da ficha v3 (F3c, modo sombra).** Para o Pedro conferir o motor antes
+da F4. Liga com `?ficha=v3` em qualquer página (grava `khalkaria_ficha_previa=1`,
+para seguir pela navegação) ou com essa chave já gravada; "Sair da prévia" a
+apaga, "Recolher" vira uma aba abaixo do botão da Ficha (lembrado por aba em
+`sessionStorage.khalkaria_ficha_previa_recolhida`). Sem ativação: nenhum nó,
+CSS, fetch ou ouvinte (o `[estilo]` fica em 0 diferença). Ligada, o
+`kh-previa.js` pede `css/ficha-previa.css` e, com o `?v=` do `ficha.js`,
+`data/catalogo/*.json`, `data/classes/*.json`, `data/racas/*.json`,
+`data/efeitos.json` e `partials/glifos.html` (o sprite g-*, que o shell ainda não
+injeta); o que falhar vira aviso no painel. Monta o índice
+(`KhEstado.entradasDeCatalogo` + `indiceCatalogo`), lê a v2 por
+`KhEstado.sombra(localStorage, {catalogo, calculado: KhRegras.calculados})` e
+avalia com `KhRegras.avaliar`. Nada é gravado: nem ficha, nem índice, nem chave
+v3, nem o marcador. Mostra identidade, atributos e modificadores, as 24
+perícias, os 4 máximos, Evasão Passiva/Ativa, CD, Movimento, ações, carga,
+Ar/Ae e R/I/V/redução dos 14 tipos, custo de magia nas 4 intensidades
+(`porIntensidade` do nó `magia.<id>.custo`), Atacar com a progressão da PMA e o
+dano, pontos do Limiar, ajustes e avisos da migração. Cada número é um
+`.kh-conta` focável com a `.kh-conta-dica` (`role="tooltip"`, `aria-describedby`):
+fórmula simbólica, numérica, cada termo com valor, fonte e selo (e o motivo
+quando não entra) e o ajuste migrado. Redesenha no `kf:mudou` da v2 e no
+`storage` da `khalkaria_ficha`. O painel tem `data-kf-ignorar`.
 
 **`data-kf-ignorar`.** O `MutationObserver` que redecora os cards ignora
 mudanças dentro de `[data-kf-ignorar]`, e `decorarBazar` não decora card ali
