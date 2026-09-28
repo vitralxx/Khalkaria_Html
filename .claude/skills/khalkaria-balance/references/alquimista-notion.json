@@ -134,6 +134,11 @@
   "reagentes": 4,
   "cd": 12
  },
+ "Poção de Vigor Moderada": {
+  "nivel": 2,
+  "reagentes": 4,
+  "cd": 12
+ },
  "Emplastro de Regeneração": {
   "nivel": 2,
   "reagentes": 3,
@@ -401,7 +406,7 @@
  },
  "Café Preto": {
   "nivel": 3,
-  "reagentes": 4,
+  "reagentes": 5,
   "cd": 17
  },
  "Licor de Ferro": {
