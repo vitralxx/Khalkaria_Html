@@ -90,8 +90,10 @@ tools/blocos.py                blocos classe/raca/origem (F1b): marcadores {{cla
 tools/alias_ids.json           ids do contrato do balanceamento fora da convenção -> id do site
 tools/componentes-baseline.json piso da contagem de cada classe CSS de componente por
                                página de classe (checagem [componentes] do validar)
-tools/testes/                  testes node do motor KhInv (*.test.js, fixtures/);
+tools/testes/                  testes node do motor KhInv e do KhEstado (*.test.js, fixtures/);
                                index.js deixa `node --test tools/testes` rodar no Node 22+;
+                               esquema-min.js: validador mínimo de JSON Schema (sem pip) dos
+                               testes do schema v3; estado-apoio.js: catálogo real + storage falso;
                                test_*.py: checagens do validar (unittest, no build)
 tools/estilo/                  conferência de estilo computado (captura no navegador; §6): servidor.py,
                                captura.js, rodar.html, roteiro.json, diff.py, revisado.json;
@@ -157,6 +159,10 @@ js/ficha/                      FONTE da Ficha Interativa (F2a), um módulo por a
 js/ficha/ORDEM                   manifesto: ordem de concatenação (dependência antes)
 js/ficha/kh-inv.js               KhInv, motor PURO (carga, migração, reconciliação,
                                  export de armas; sem DOM, testável no node)
+js/ficha/kh-estado.js            KhEstado (F3a), PURO: estado v3, migração 1.0→2.0→3.0,
+                                 ajustes (modelo M2), várias fichas (D36) sobre storage
+                                 injetado, export/import, guarda de versão. MODO SOMBRA:
+                                 nada instancia o armazém no site até a F4
 js/ficha/ficha-v2.js             drawer, estado v2, decoração dos cards e a API
                                  window.KF (§8); no node não roda
 js/ficha.js                    ARTEFATO (tools/ficha_js.py): concatenação de js/ficha/
@@ -175,7 +181,9 @@ data/*.json                    sistema, magias, condicoes, limiar, origens,
 data/classes/*.json            7 classes: bloco `classe` (F1b) + cards (com grupo/ramo/tier/
                                custoTexto derivados, F1e)
 data/racas/*.json              7 raças: bloco `raca` (F1b) + cards
-data/ficha.schema.json         contrato da ficha 2.0 + projeção Bestiário
+data/ficha.schema.json         contrato da ficha v3 ('3.0', F3a) + índice e "exportar todas"
+                               (fichas/1) em $defs; validado nos testes (esquema-min.js)
+data/ficha-v2.schema.json      contrato da ficha 2.0 (ativa até a F4) + projeção Bestiário
 data/catalogo/<tipo>.json      ARTEFATO (gerar_catalogo.py): {id, tipo, nome sem emoji,
                                icone, resumo, campos do tipo} por entidade; raras só
                                id/nome/categoria/req/reqTexto. O item usa o data/bazar.json.
@@ -644,7 +652,7 @@ python tools/estilo/pares.py tools/testes/estilo/regras-depois tools/testes/esti
 
 ## 8. Contrato da Ficha Interativa
 
-`js/ficha/*.js` (fonte; `js/ficha.js` é o artefato) + `data/ficha.schema.json`. Persistência em `localStorage`
+`js/ficha/*.js` (fonte; `js/ficha.js` é o artefato) + `data/ficha-v2.schema.json` (a v3 que vem na F4: `data/ficha.schema.json`). Persistência em `localStorage`
 (`khalkaria_ficha`) com re-hidratação por página — **não** é SPA.
 Dois exports: nativo (`.khalkaria.json`, superset) e projeção Bestiário
 (`.bestiario.json`, `type:"npc"`, mapeamento `prof_*` no CLAUDE.md §5).
@@ -655,7 +663,9 @@ novo tipo de card de conteúdo, registrar o seletor lá, nunca no `js/ficha.js`.
 (artefato) na ordem de `js/ficha/ORDEM`; o `[artefato-js]` do validar falha se o
 artefato não for exatamente a concatenação (CRLF × LF não conta). Cada fonte é
 uma IIFE. `kh-inv.js` vem primeiro: no node exporta o `KhInv`
-(`module.exports`) e para; no navegador vira `window.KhInv`. `ficha-v2.js` lê
+(`module.exports`) e para; no navegador vira `window.KhInv`. `kh-estado.js`
+(F3a) vem depois dele: vira `window.KhEstado`; no node exporta o `KhEstado`
+quando carregado sozinho e, dentro do artefato, não sobrescreve o `KhInv`. `ficha-v2.js` lê
 `window.KhInv`, monta estado, drawer e `window.KF`, e no node retorna na
 primeira linha (nada toca em window/document). Por isso `require('js/ficha.js')`
 nos testes devolve o `KhInv` e o `vm` com window/document falsos roda a ficha
