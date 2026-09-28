@@ -6,4 +6,7 @@
 00-regras-dados.js
 kh-inv.js
 kh-estado.js
+kh-efeitos.js
+kh-ajustes.js
+kh-regras.js
 ficha-v2.js
