@@ -154,7 +154,7 @@
         }
         if (escolhidos.length < n) {
           out.mods.push(desliga(mod({ alvo: 'atributo.?', op: 'soma', valor: b.valor, fonte: fonte, status: r.st, fo: r.fo,
-            etapa: 'raca', escolha: chave }), 'escolha pendente: ' + (b.opcoes === 'qualquer' ? n + ' atributo(s) à escolha' : lista(b.opcoes).join(' ou ')) +
+            etapa: 'raca', escolha: chave }), (migrado ? 'já no total digitado na v2 (migração); ' : '') + 'escolha pendente: ' + (b.opcoes === 'qualquer' ? n + ' atributo(s) à escolha' : lista(b.opcoes).join(' ou ')) +
             ' (identidade.escolhas["' + chave + '"])'));
           return;
         }

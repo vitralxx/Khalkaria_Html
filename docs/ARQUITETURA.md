@@ -44,7 +44,14 @@ index.html   css/   js/   images/*.webp   pages/   data/bazar.json
 baixa e entrega à Ficha por `KF.catalogo(ITENS)` (um fetch só). Fora dela, o
 `ficha.js` faz um fetch preguiçoso único quando precisa: busca do drawer, card
 de item a decorar ou entrada do inventário ainda sem `inv` (migrada da v1).
-Todo o resto — `tools/`, `templates/`, `data/*.json`, `partials/`,
+Exceção (F3c): com a **prévia da ficha v3** ligada (`?ficha=v3`, §8), o
+`kh-previa.js` baixa também `data/catalogo/*.json`, `data/classes/*.json`,
+`data/racas/*.json`, `data/efeitos.json` e `partials/glifos.html` (~1,5 MB, com
+o `?v=` do `ficha.js`) e o `css/ficha-previa.css`; sem a prévia, nada disso é
+pedido. O Pages publica o repo inteiro pelo Jekyll padrão (sem `_config.yml`
+nem `.nojekyll`: só o que começa com `_` ou `.` fica de fora), então esses
+arquivos estão no ar.
+Todo o resto — `tools/`, `templates/`, os outros `data/*.json`, `partials/`,
 `notion_cache/`, o CSV, os `.md` — é build-time e não afeta o site publicado.
 Os `.png` continuam no repo porque são a **fonte** das imagens; o que é
 servido são os `.webp` gerados a partir deles.
@@ -819,8 +826,11 @@ Ar/Ae e R/I/V/redução dos 14 tipos, custo de magia nas 4 intensidades
 dano, pontos do Limiar, ajustes e avisos da migração. Cada número é um
 `.kh-conta` focável com a `.kh-conta-dica` (`role="tooltip"`, `aria-describedby`):
 fórmula simbólica, numérica, cada termo com valor, fonte e selo (e o motivo
-quando não entra) e o ajuste migrado. Redesenha no `kf:mudou` da v2 e no
-`storage` da `khalkaria_ficha`. O painel tem `data-kf-ignorar`.
+quando não entra) e o ajuste migrado. Redesenha 350 ms depois (o drawer grava o
+que se digita com debounce de 200 ms) do `kf:mudou` da v2, de `input`/`change`
+dentro do `#kf-drawer` (vários campos só gravam, sem `kf:mudou`) e do `storage`
+da `khalkaria_ficha`. O painel tem `data-kf-ignorar`. Expandido, cobre o botão
+da Ficha v2 (mesmo `--z-ficha`, depois no DOM): "Recolher" o libera.
 
 **`data-kf-ignorar`.** O `MutationObserver` que redecora os cards ignora
 mudanças dentro de `[data-kf-ignorar]`, e `decorarBazar` não decora card ali

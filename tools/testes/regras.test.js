@@ -164,6 +164,15 @@ test('atributo: raça com "ou" pela escolha, escolha pendente fica na trilha, mi
   f.atributos.migradoTotal = true; f.atributos.nivelMigrado = 3;
   r = R.avaliar(f);
   assert.equal(val(r, 'atributo.CON.total'), 16, 'total migrado da v2: raça e níveis já dentro');
+  // migrado com a escolha da raça pendente: a trilha diz que o bônus já está no total
+  const g = ficha({ raca: 'humano', nivel: 2, attrs: { FOR: 10 } });
+  g.atributos.migradoTotal = true; g.atributos.nivelMigrado = 2;
+  r = R.avaliar(g);
+  assert.match(termo(r.nos['atributo.FOR.total'], /Humano/).motivo, /^já no total digitado na v2 \(migração\); escolha pendente/);
+  g.identidade.escolhas = { 'raca.atributos.0': ['FOR', 'DES'] };
+  r = R.avaliar(g);
+  assert.equal(val(r, 'atributo.FOR.total'), 10, 'a escolha feita depois da migração não soma de novo');
+  assert.equal(termo(r.nos['atributo.FOR.total'], /Humano/).motivo, 'já no total digitado na v2 (migração)');
 });
 
 test('Exaustão 4 divide o atributo (floor) e isso cascateia no máximo', () => {

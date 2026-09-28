@@ -1709,7 +1709,7 @@
         }
         if (escolhidos.length < n) {
           out.mods.push(desliga(mod({ alvo: 'atributo.?', op: 'soma', valor: b.valor, fonte: fonte, status: r.st, fo: r.fo,
-            etapa: 'raca', escolha: chave }), 'escolha pendente: ' + (b.opcoes === 'qualquer' ? n + ' atributo(s) à escolha' : lista(b.opcoes).join(' ou ')) +
+            etapa: 'raca', escolha: chave }), (migrado ? 'já no total digitado na v2 (migração); ' : '') + 'escolha pendente: ' + (b.opcoes === 'qualquer' ? n + ' atributo(s) à escolha' : lista(b.opcoes).join(' ou ')) +
             ' (identidade.escolhas["' + chave + '"])'));
           return;
         }
@@ -5029,9 +5029,14 @@
         corpo.innerHTML = render(res).html;
         corpo.scrollTop = topo;
       }
-      function agenda() { clearTimeout(t); t = setTimeout(desenha, 150); }
+      // 350 ms: depois do debounce de 200 ms com que o drawer v2 grava o que se digita
+      function agenda() { clearTimeout(t); t = setTimeout(desenha, 350); }
       function aoStorage(e) { if (e && e.key === CHAVE_V2) agenda(); }
+      // campos digitados do drawer v2: vários só gravam (save), sem kf:mudou
+      function aoCampo(e) { if (e && e.target && e.target.closest && e.target.closest('#kf-drawer')) agenda(); }
       doc.addEventListener('kf:mudou', agenda);
+      doc.addEventListener('input', aoCampo, true);
+      doc.addEventListener('change', aoCampo, true);
       win.addEventListener('storage', aoStorage);
 
       var btR = painel.querySelector('.kf3-recolher'), ss = null;
@@ -5052,6 +5057,8 @@
         try { ss.removeItem(CHAVE_RECOLHIDA); } catch (e) { /* nada */ }
         clearTimeout(t);
         doc.removeEventListener('kf:mudou', agenda);
+        doc.removeEventListener('input', aoCampo, true);
+        doc.removeEventListener('change', aoCampo, true);
         win.removeEventListener('storage', aoStorage);
         painel.remove();
         link.remove();
