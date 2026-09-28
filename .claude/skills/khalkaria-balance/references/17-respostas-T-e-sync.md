@@ -53,7 +53,7 @@ Permissões: o Pedro pediu, e `.claude/settings.json` libera `notion-fetch`, `no
 - **Caçador** (origem, `b8f6e3a4…`): "1 Arma Distância Simples" (⚠️ ver pergunta 6).
 - **Mineiro** (origem, `3dc6e3a4…`): "1 Cobre (1 Bugiganga)".
 - **Varredura por script** dos dumps das 7 classes: nenhum resíduo de "por dia", "Margem de Crítico", "surpreendido", "Adagas de lançamento" ou "Investida" fora da manobra. Os 2 que sobram são do Batedor (cabeçalho do Tier 3 e Golpe Instinto), que entra no rework.
-- **Batedor**: nada até o rework.
+- **Batedor**: nada até o rework. Retrato da página antes do rework em `references/batedor-notion-antes-do-rework.txt` (última edição no Notion: 2026-09-26 07:16); o log do novo Batedor sai do diff com `ndiff.py`, mais o diagnóstico do `13-batedor-diagnostico.md`.
 
 IDs das páginas novas: Raças `3a66e3a401d980318836edcfa11c8a24` (Gruto `9696e3a401d983b4b6e48199671689f4`); Origens `3a66e3a401d9808aa877f7e7cb77002a` (Caçador `b8f6e3a401d9823884ac812414e85095`, Mineiro `3dc6e3a401d98042b6b0cd0ebff875d6`).
 

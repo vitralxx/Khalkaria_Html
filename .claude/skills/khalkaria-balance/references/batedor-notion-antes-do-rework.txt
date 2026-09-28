@@ -1,0 +1,491 @@
+# Batedor no Notion (8706e3a4…), retrato de 2026-09-28 (última edição 2026-09-26 07:16), antes do rework do Pedro.
+# Base para o diff do log do novo Batedor: python3 scripts/log-tecnicas/ndiff.py <este arquivo> <dump novo>. URLs S3 sem a query string.
+Here is the result of "fetch" for the Page with URL https://app.notion.com/p/8706e3a401d9823a91fd81f689a6fbe7 as of 2026-09-26T07:16:52.880Z:
+<page url="https://app.notion.com/p/8706e3a401d9823a91fd81f689a6fbe7" icon="🧭">
+<ancestor-path>
+<parent-page url="https://app.notion.com/p/3a66e3a401d9809b8eceec1f30be9fd2" title="Classes"/>
+<ancestor-2-page url="https://app.notion.com/p/2b76e3a401d980c0ab7bc27a342f4ee1" title="Sistema Khalkaria"/>
+</ancestor-path>
+<properties>
+{"title":"Batedor"}
+</properties>
+<iconMetadata>{"type":"emoji","emoji":"🧭"}</iconMetadata>
+<content>
+**Status:** 🟢 Pronto
+<columns>
+	<column ratio="62.5">
+		![](https://prod-files-secure.s3.us-west-2.amazonaws.com/8689dceb-63e7-4cbf-b007-b954c203eaaa/9dc902ff-bcae-48db-8a07-1cdf54f34bef/klhZx9wQAfYc0HCZ.png)
+	</column>
+	<column ratio="29.17">
+		Desde pequeno, você era curioso… curioso demais para o gosto dos adultos. Onde outros enxergavam perigo, você enxergava caminhos.<br>Onde todos recuavam, você avançava — não por coragem ingênua, mas por um instinto silencioso que sempre te guiou através da mata fechada, dos becos tortuosos e dos territórios proibidos.
+		# <span underline="true">Progressão</span>
+		<table>
+		<colgroup>
+		<col width="52">
+		<col width="373">
+		</colgroup>
+<tr>
+<td>Level</td>
+<td>Conteúdo</td>
+</tr>
+<tr>
+<td>1</td>
+<td>4 Técnicas</td>
+</tr>
+<tr>
+<td>2</td>
+<td>5 Técnicas, Técnica de Ramo(Tier 1)</td>
+</tr>
+<tr>
+<td>3</td>
+<td>6 Técnicas, 1 Marca</td>
+</tr>
+<tr>
+<td>4</td>
+<td>7 Técnicas, Técnica de Ramo(Tier 1, 2), 2 Marcas</td>
+</tr>
+<tr>
+<td>5</td>
+<td>8 Técnicas, Técnica de Ramo(Tier 1, 2 e 3), 3 Marcas</td>
+</tr>
+		</table>
+	</column>
+	<column ratio="8.33">
+		<empty-block/>
+	</column>
+</columns>
+<columns>
+	<column>
+		# <span underline="true">Status iniciais:</span>
+		- Saúde: 
+			- $`10 + (4 × Nível) + (Mod.CON × Nível)`$
+		- Stamina: 
+			- $`8 + (7 × Nível) + (Mod.FOR OU Mod.DES × Nível)`$
+		- Éter: 
+			- $`6 + (4 × Nível) + (Mod.INT OU Mod.SAB × Nível)`$
+		- Evasão Ativa (Reação)
+			- 10 + Mod. Destreza + Dado de Defender
+		- Evasão Passiva (Sem reação)
+			- 10 + Mod. Destreza
+			<empty-block/>
+		<empty-block/>
+	</column>
+	<column ratio="62.5">
+		# <span underline="true">Treinamento:</span>
+		Você começa treinado em: 
+		- Armas à Distância
+		- Sobrevivência
+		- Percepção
+		Além disso, você pode escolher (1 + Mod. Inteligência) Pericias para ser treinado dentre as seguintes:
+		- Crime
+		- Religião
+		- Iniciativa
+		- Medicina
+		- Furtividade
+	</column>
+	<column>
+		<span underline="true">Atributos Recomendados:</span>
+		- Destreza, Sabedoria e Inteligência
+		<span underline="true">Play Style:</span>
+		- Exploração, Controle de Terreno e Furtividade
+		<span underline="true">CD:</span>
+		- 10 + Mod. Destreza + Mod. Sabedoria
+	</column>
+</columns>
+---
+<columns>
+	<column ratio="50">
+		# <span underline="true">Técnicas:</span>
+		Toda classe possui técnicas, você pode reatribuí-las livremente ao realizar um descanso longo, respeitando o limite de pontos.
+		Você possui 3 Técnicas + Nível
+		<table header-row="true">
+		<colgroup>
+		<col width="122.66667175292969">
+		<col width="581.6499938964844">
+		<col width="84.64999389648438">
+		<col width="91.61249542236328">
+		</colgroup>
+<tr>
+<td>Técnica</td>
+<td>Descrição</td>
+<td>Custo</td>
+<td>Ação</td>
+</tr>
+<tr>
+<td>Atento</td>
+<td>Você é imune a condição D*esprevenido*.</td>
+<td>—</td>
+<td>Passiva</td>
+</tr>
+<tr>
+<td>Passo Ciente</td>
+<td>Você não ativa armadilhas de quaisquer tipo e ignora terreno difícil. </td>
+<td>n/a</td>
+<td>Passiva</td>
+</tr>
+<tr>
+<td>Caçador</td>
+<td>Você consegue distinguir peso, numero da pegada, velocidade e direção de criaturas vendo rastros passivamente.</td>
+<td>n/a</td>
+<td>Passiva</td>
+</tr>
+<tr>
+<td>Líder</td>
+<td>Você possui a habilidade de memorizar caminhos e traçar trajetos eficientes. Você soma naturalmente +1 ao sucesso do grupo em jornadas já percorridas. Adicionalmente, ao rolar *Sobrevivência *em jornadas possui +5.</td>
+<td>n/a</td>
+<td>Passiva</td>
+</tr>
+<tr>
+<td>Terreno Ideal</td>
+<td>Você tem facilidade em se adaptar a um ambiente, e enquanto estiver nele recebe os seguintes benefícios:<br>+2 em testes de Sobrevivência<br>+2 em testes de Percepção<br>Pode gastar uma ação para rolar estes testes com vantagem.<br><br>Terrenos: (Urbano, Natural, Naval, Subterrâneo) <br>Pode escolher 1 no nível 1, 2 no nível 3 e 3 no nível 5.</td>
+<td>3 Stamina</td>
+<td>Passiva ou 1 Ação</td>
+</tr>
+<tr>
+<td>Língua Prateada</td>
+<td>Treinado em Convencimento. Adicionalmente, ao suceder em um teste de *Convencimento* contra um comerciante garante 25% de desconto em um item.</td>
+<td>2 Stamina</td>
+<td>1 Ação</td>
+</tr>
+<tr>
+<td>Oportunista</td>
+<td>Seu próximo ataque causa +1d8 de dano se o alvo estiver *Desprevenido*.</td>
+<td>2 Stamina</td>
+<td>1 Ação</td>
+</tr>
+<tr>
+<td>Curioso</td>
+<td>Ao realizar um teste de *Percepção *ou *Investigação* adicione 1d4+Destreza.</td>
+<td>2 Stamina</td>
+<td>1 Ação</td>
+</tr>
+<tr>
+<td>Emboscada</td>
+<td>Pode preparar um local previamente com armadilhas e distrações rolando um teste de* Sobrevivência* ou* Furtividade*: Ao lutar em um ambiente preparado, se o inimigo falhar em um teste de *percepção *contra seu teste, você e seus aliados recebem +2 em Atacar durante todo o combate e os inimigos ficam Desprevenidos na primeira rodada do combate.</td>
+<td>5 Stamina</td>
+<td>10 Minutos</td>
+</tr>
+<tr>
+<td>Armadilha Tática</td>
+<td>Rapidamente configura uma armadilha no chão, rolando um teste de *Furtividade *ou *Sobrevivência *e atribuindo o resultado a ela. Quando um inimigo passar por cima ele deve superar a *Furtividade *ou *Sobrevivência *da armadilha rolando *Percepção *ou recebe 2d6+Mod. Destreza de dano Perfurante e fica *Enraizado* por 1 rodada.</td>
+<td>3 Stamina</td>
+<td>1 Ações</td>
+</tr>
+<tr>
+<td>Fantasma</td>
+<td>Ao ser atacado e optar por se **defender**, pode somar seu treinamento de **Furtividade **na perícia.</td>
+<td>2 Stamina</td>
+<td>Ação Livre</td>
+</tr>
+<tr>
+<td>Mãos Rápidas</td>
+<td>Você reduz sua penalidade por ataques consecutivos em -2 durante esse turno. Ou seja, de -5 para -3 e -10 para -8.</td>
+<td>2 Stamina</td>
+<td>Reação</td>
+</tr>
+<tr>
+<td>Sigiloso</td>
+<td>Ao atacar estando furtivo, pode gastar sua reação para continuar furtivo ao suceder em um teste de furtividade contra a percepção do alvo atacado.</td>
+<td>3 Stamina</td>
+<td>Reação</td>
+</tr>
+<tr>
+<td>Saque</td>
+<td>Ao eliminar uma criatura, pode saqueá-la, ganhando 1d4 + (Nível \* 2) de Sins.</td>
+<td>n/a</td>
+<td>Reação</td>
+</tr>
+<tr>
+<td>Ocultar-se</td>
+<td>Ao estar fora da linha de visão de todas as criaturas da cena, pode se esconder com 1 ação ao em vez de 2.</td>
+<td>2 Stamina</td>
+<td>1 Ação</td>
+</tr>
+		</table>
+	</column>
+	<column ratio="50">
+		# <span underline="true">Instinto:</span>
+		**Instinto** é a manifestação mecânica da sua atenção aguçada e experiência como explorador. Quanto mais você observa, investiga e interage com o ambiente, mais afiado fica seu sexto sentido — até o momento onde você age antes mesmo do perigo se manifestar.
+		- Você começa cenas de exploração ou cenas de combate com 0 de **Instinto**, *contudo*, se estiver em uma cena de exploração e começar um combate pode sustentar seu **Instinto**.
+			- Você <span underline="true">ganha</span> **Instinto **das seguintes maneiras:
+				- Perícia: Ao suceder em qualquer perícia → +1 Instinto : Máx. 2x por rodada, Máx. 1x/perícia a cada cena 
+				- Acerto: Ao acertar qualquer inimigo → +1 Instinto : Máx 1x/rodada
+				- Esquiva: Ao esquivar de qualquer ataque → +1 Instinto : Máx 1x/Rodada
+			- Você <span underline="true">perde</span> TODO seu **instinto** das seguintes maneiras:
+				- Dano: Ao receber dano maior que metade da sua vida máxima de qualquer fonte → = 0 Instinto
+				- Condição: Ao ficar Atordoado, Desorientado ou Desprevenido → = 0 Instinto
+				- Pericia: Ao falhar qualquer perícia → = 0 Instinto
+				- Tempo: Ao ficar 10 minutos sem ganhar instinto → = 0 Instinto
+			- Você pode utilizar seu Instinto para ganhar os seguintes benefícios:
+				<table>
+				<colgroup>
+				<col width="127.29373931884766">
+				<col width="58.324981689453125">
+				<col width="497.27496337890625">
+				<col width="83.99999237060547">
+				</colgroup>
+<tr>
+<td>Hab. de Instinto</td>
+<td>Custo</td>
+<td>Descrição</td>
+<td>Ação</td>
+</tr>
+<tr>
+<td>Pressentimento</td>
+<td>X</td>
+<td>Adicione +X a qualquer perícia ao menos treinada.</td>
+<td>Ação Livre</td>
+</tr>
+<tr>
+<td>Sexto Sentido</td>
+<td>2</td>
+<td>Adicione +2 à sua evasão durante esse turno.</td>
+<td>Ação Livre</td>
+</tr>
+<tr>
+<td>Segundo Fôlego</td>
+<td>3</td>
+<td>Você pode rolar novamente sua Iniciativa e usar o novo resultado (se preferir).</td>
+<td>Ação Livre</td>
+</tr>
+<tr>
+<td>Golpe Instinto</td>
+<td>4</td>
+<td>Reduz a margem de crítico do seu próximo ataque em 3 (17-20).</td>
+<td>1 Ação</td>
+</tr>
+<tr>
+<td>Instinto Reativo</td>
+<td>5</td>
+<td>Você pode usar sua Reação mesmo que já a tenha gastado nesta rodada.</td>
+<td>Ação Livre</td>
+</tr>
+				</table>
+			- **Máximo: 5 Instinto**
+		# <span underline="true">Ramos:</span>
+		Os ramos são caminhos, características únicas do seu personagem, diferente das técnicas, são irreversíveis. 
+		Você possui **Marcas de Ramo**:
+		- Que construiu ao longo da sua vida, moldando sua PERSONALIDADE.
+		Você possui **Técnicas de Ramo**:
+		- Que aprendeu ao longo do seu treinamento definindo seu ESTILO DE AGIR.
+		É extremamente aceitável que você misture os 3 ramos.
+		> <span underline="true">Ao longo da criação do seu personagem você escolhera:</span>
+			- 3 Marcas
+			- 6 Técnicas de Ramo: 3 no Tier 1 (nível 2), 2 no Tier 2 (nível 4) e 1 Ultimate no Tier 3 (nível 5)
+		Ramos do Batedor:
+		- Você consegue distinguir 3 ramos de inspiração que definem sua vida:
+			- <span color="blue">Ramo do Cartógrafo (Exploração e Sobrevivência)</span>
+				- Estar em um local desconhecido é o que te cativa e mapeá-lo é como você expressa sua arte. Você vive pela emoção de descobrir coisas novas e suas aventuras te trouxeram ensinamentos de sobrevivência valiosos.
+			- <span color="green">Ramo do Trambiqueiro (Dinheiro e Interação Social)</span>
+				- Viajar o mundo custa caro e você faz questão de pagar esse preço. Ao longo de suas aventuras você sempre esteve de olho em bugigangas compráveis, a lábia de comerciante, veio naturalmente após isso.
+			- <span color="red"> Ramo do Sem-Nome (Furtividade e Assassinato)</span>
+				- Ninguém lembra do seu rosto e é assim como você prefere. O capuz caiu sobre sua cabeça pela primeira vez para se proteger do sol, mas, com o tempo, tornou-se algo maior: um abrigo, um disfarce, uma segunda pele.
+				<empty-block/>
+	</column>
+</columns>
+<columns>
+	<column ratio="50">
+		# <span underline="true">**Marcas de Ramo**</span>
+		- <span color="blue">Marcas do Cartógrafo</span>
+			- <span underline="true">Colecionador de Horizontes</span>
+				> *“Cada paisagem nova te renova por dentro e relembra sua aspiração.”*
+				Você anseia por novos lugares e busca ativamente explorar o desconhecido.
+				- Ao mapear um lugar significativo pela primeira vez (Cidade, Ruina, Bioma…)<br>Recupera 2 de Stamina e ganha 1 de Stamina máxima.
+				- O lugar deve possuir características únicas que você nunca mapeou antes, por exemplo:<br>o subúrbio de uma cidade e a área rural dessa mesma cidade, apesar de terem uma paisagem diferente,<br>contam como um único lugar por serem próximos e possuírem elementos geográficos parecidos.
+			- <span underline="true">Cicatrizes da Jornada</span>
+				> *"Cada ferida conta uma história. Cada história te ensinou a sobreviver.”*
+				Você possui cicatrizes que reforçam suas histórias de viagem.
+				- Para cada Jornada de Hostilidade 10+ que você completou, ganha +1 permanente em Sobrevivência,<br>Ao chegar em +5, essa habilidade fica supérflua.
+				- Ao falhar em um teste de Sobrevivência, pode escolher perder 2d6 de Stamina para transformar em sucesso
+		- <span color="red">Marcas do Sem-Nome</span>
+			- <span underline="true">Coleção de Últimos Suspiros</span>
+				> *"Você se lembra de cada um. Não dos rostos - dos sons que fizeram ao partir.”*
+				Você sente prazer em assassinar criaturas sem que elas te reconheçam.
+				- Para cada 5 criaturas que você matou enquanto estava *Escondido*, ganha +1 permanente em Furtividade.<br>Ao chegar em +5, essa habilidade fica supérflua.
+				- Ao matar uma criatura sem ser detectado, recupera 1 de Stamina.<br>
+			- <span underline="true">Sussurro Final</span>
+				> *"O sussurro final é sempre o mais verdadeiro.”*
+				Você sabe interrogar pessoas como ninguém.
+				- Você fica treinado em Convencimento
+				- Ao matar uma criatura em combate corpo a corpo, pode fazer uma pergunta que <br>ela responde com verdade antes de morrer. A resposta é breve (uma frase) e literal.
+		- <span color="green">Marcas do Trambiqueiro</span>
+			- <span underline="true">Homem de Negócios</span>
+				> *"Moedas acabam. Favores rendem juros eternos.”*
+				Você possui um disturbio de mat
+				- Para cada 5 negociações bem-sucedidas que resultaram em vantagem significativa, ganha +1 permanente em Convencimento.<br>Ao chegar em +5, essa habilidade fica supérflua.
+				- Ao ajudar alguém de forma significativa, pode declarar que a pessoa "te deve uma". <br>O mestre registra. Você pode cobrar depois.
+			- <span underline="true">O Palpite</span>
+				> *“Você nem sempre acerta, mas eles não sabem disso.”*
+				- Ao passar ao menos 1 minuto analisando uma criatura, pode diagnosticar um segredo dela.<br>Esse segredo possui 50% de chance de ser verdade e você não sabe disso.
+				- Ao rolar um teste de interação social(qualquer) contra ela pode utilizar esse segredo como ferramenta,<br>caso seja verdade você rola o teste com vantagem, caso seja mentira você rola com desvantagem.
+		---
+		### **Tier 2**
+		<span color="blue">Cartógrafo</span>
+		- <span underline="true">Desenhar Mapa de Combate (5 Minutos, 3 Stamina)</span>
+			- Você desenha um mapa tático, analisando altitude, tipos de terreno e hostilidades em um espaço de até 300 metros quadrados. Ao estar em um local mapeado por você:
+				- Você e seus aliados não podem ser *Desprevenido*s
+				- Pode usar *Coordenação *(Reação, 3 Stamina)
+					- Orienta você ou um aliado em até 9 metros que esteja prestes a rolar um teste de Movimento, Defender ou Atacar. Somando +2 a rolagem.
+				- Pode usar *Ponto Cego *(1 Ação, 4 Stamina)
+					- Expõe uma falha de posicionamento de um alvo que tenha se movido nesta rodada dentro do mapa, o alvo fica *Exposto*.
+				- Pode usar *Reposicionar *(1 Ação, 3 Stamina)
+					- Escolha um aliado, podendo ser você, em até 9 m. Ele pode se mover até 4,5 m como uma ação livre sem provocar ataques de oportunidade.
+		- <span underline="true">Mapa Mental (1 Ação, 2 </span><span underline="true">*Stamina*</span><span underline="true">)</span>
+			- Você mentaliza o esboço de um mapa tático, ganhando seus benefícios nesta rodada. No inicio de cada rodada após essa, faça um teste de percepção(CD 15) para manter-se concentrado no mapa. Em caso de falha, você perde os benefícios.
+		<span color="red">Sem-Nome</span>
+		- <span underline="true">Cobra (Descanso Curto ou 1 Ação, 2 </span><span underline="true">*Stamina*</span><span underline="true">)</span>
+			- Pode criar venenos potentes e imbuir eles nas suas armas.<br>Você pode criar até 2 venenos por descanso curto e  5 Venenos por descanso longo. Gastando 5 **Sins **por veneno.<br>Você pode adicionar o veneno a uma arma ou munição com 1 ação.<br>A criatura que entrar em contato com o veneno deve suceder em um teste de Fortitude ou ficar *Envenenada*.
+		- <span underline="true">Terror (Passiva)</span>
+			- Ao acertar um crítico, o alvo fica *Exposto.*
+		<span color="green">Trambiqueiro</span>
+		- <span underline="true">Conexões Duvidosas (1 Ação, 3 Stamina)</span>
+			- Você já ouviu falar de muita gente e possivelmente elas te devem algo, ou você que deve... <br>Role um teste de *Convencimento *CD 20, porém pode ser dificultado dependendo da localização.<br>Só pode ser utilizado 1 vez por localização, porém pode ser usado em diferentes áreas em uma cidade grande.
+				- Falha crítica
+					- O contato existe, mas te odeia. Ele ativamente trabalha contra você enquanto estiver na cidade.
+				- Falha
+					- O contato existe, mas você deve algo a ele. Ele só ajuda se você quitar a dívida primeiro (favor, dinheiro ou serviço).
+				- Sucesso
+					- O contato existe e te deve um favor menor: informação local, desconto em uma compra, esconderijo por uma noite, ou apresentação a alguém importante.
+				- Sucesso Crítico
+					- O contato te deve um favor maior: acesso a área restrita, item raro por preço justo, aliado temporário para uma missão, ou perdão de uma dívida/crime menor.
+		- <span underline="true">Olho no Lance (1 ação, 3 stamina ou passiva)</span>
+			- Passiva
+				- Você automaticamente sabe o valor de um item ao examina-lo.
+				- Recebe 20% a mais de **Sins **de todas as fontes. Ou seja, quando saquear 10 **Sins**, recebe 12. Quando vender um item por 300 **Sins **recebe 360 **Sins**. Isso não se aplica a itens já saqueados e repassados a você, apenas quando estiver vasculhando. Por exemplo, não faz sentido alguém te entregar 10 Sins e você magicamente receber 12.
+			- Ação
+				- Revirar(max. 1x/cena)
+					- Ao vasculhar uma sala que pode possuir itens valiosos, pode revira-la com mais cuidado. <br>Role investigação(CD 15):
+						- Falha Critica:
+							- Ativa uma armadilha. Recebe 1 de dano e não encontra nada.
+						- Falha:
+							- Não encontra nada além do óbvio.
+						- Sucesso:
+							- Encontra algo de valor que outros ignorariam. 2d10 **Sins **em itens vendáveis.
+						- Sucesso Crítico:
+							- Encontra um saco de **Sins**, contendo 2d10 **Sins**.
+			<empty-block/>
+	</column>
+	<column ratio="50">
+		# <span underline="true">Técnicas de Ramo</span>
+		### **Tier 1**
+		<span color="blue">Cartógrafo</span>
+		- <span underline="true">Desenhar Mapa de Exploração (Descanso Curto, 5 Stamina)</span>
+			- Desenhe um *Mapa de Exploração*. Você pode mapear locais previamente transitados, até um tamanho máximo de até 1 quilômetro quadrado. O *Mapa de Exploração* é um item de raridade **Incomum**.<br>Ao estiver com o *item:Mapa de Exploração você recebe* os seguintes benefícios ao estar no local do mapa:
+				- Tem conhecimento geral da geografia da área.
+				- +5 *em Sobrevivência *enquanto na região do mapa.
+				-
+		- <span underline="true">Artista Apaixonado (Passiva)</span>
+			- Os mapas que você fabrica contam como mercadoria Incomum.
+		- <span underline="true">Escapista (3 Ações, 5 Stamina)</span>
+			- Você nunca foi acostumado a batalhar, na verdade planejar uma rota de fuga é sua especialidade. Ao possuir um mapa da região em que está batalhando, pode fugir e guiar outros a fugirem do combate sem uma cena de perseguição ao suceder em um teste de Sobrevivência (CD 15).
+		<span color="red">Sem-Nome</span>
+		- <span underline="true">Golpe Sombrio (1 Ação, 2 Stamina)</span>
+			- Enquanto estiver *Escondido*, seu próximo ataque:
+				- Ignora 1 de *Evasão*
+				- +1d6 de Dano
+				- Não pode ser retaliado
+		- <span underline="true">Finta (1 Ação, 2 Stamina)</span>
+			- Escolha um alvo em até 1,5 m: Enganação vs Percepção. Sucesso: alvo fica *Desorientado* por 1 rodada. 
+		- <span underline="true">Olhar de Brecha (Passiva)</span>
+			- Você detecta instantes onde inimigos abaixam guarda ou se distraem.<br>Você recebe vantagem no primeiro teste de *Furtividade *do combate.<br>Adicionalmente, se já estiver escondido no primeiro turno de combate, recebe +2 em *Iniciativa*.
+		<span color="green">Trambiqueiro</span>
+		- <span underline="true">Bens Diversos (1 Ação, 5 Stamina)</span>
+			- Você busca na sua mochila por um objeto que possa te ajudar na realização de um teste de perícia qualquer, role um d100:
+				- 1
+					- Você machuca sua mão recebendo 1d6 de dano cortante ao tentar buscar na sua mochila. Como isso foi parar ai?
+				- 2-19
+					- Você acha um objeto qualquer, que não te ajuda em quase nada.
+				- 20-39
+					- Você acha um objeto utilizável, mas não tão adequado pra atividade em questão. +1 na pericia.
+				- 40-59
+					- Você acha um objeto conveniente, que te ajuda a suceder na atividade. +2 na pericia.
+				- 60-79
+					- Você acha um objeto apropriado para a atividade em questão. +3 na pericia. 
+				- 80-99
+					- Você acha um objeto quase perfeito, que te ajuda imensamente na atividade. +5 na pericia
+				- 100
+					- Você acha o objeto perfeito que soluciona e te faz suceder instantaneamente na perícia.
+		- <span underline="true">Agiota (3 Ações, 10 Stamina)</span>
+			- Você pode tentar convencer uma criatura que consiga te entender a aceitar um empréstimo(monetário ou de bens), voltando para cobra-la 1 dia depois.<br>Ao escolher um alvo, você rola *Convencimento* vs *Vontade*, caso suceda você pode escolher quanto dinheiro oferece a criatura recebendo 20% de lucro no dia seguinte se o alvo possuir o dinheiro. Caso o alvo não consiga pagar ele fica Endividado. <br>Você possui +5 em testes de Convencimento contra criaturas endividadas e estas são muito mais suscetíveis a seguirem suas ordens ao falharem em testes de Vontade contra você em uma tentativa de quitarem suas dívidas.
+		- <span underline="true">Cara de Pau (1 Ação, 3 Stamina)</span>
+			- Você pode rolar *Convencimento* com 1 nível de treinamento a mais.
+		### **Tier 3**
+		O Tier 3 provê ultimates, que só podem ser utilizadas 1 vez por dia.
+		<span color="blue">Cartógrafo</span>
+		Requisito: deve ter ao menos Cartógrafo Tier 1 ou 2.
+		> “Minha arte, pode descobrir todos os segredos.”
+		- <span underline="true">Senhor das Linhas (1 Ação, 5 Stamina, Ultimate)</span>
+			Você sente uma energia primordial emanar de sua caneta ao guia-la por um papel, suas movimentações revelam informações extraordinárias. Você não sabe de onde vem esse poder, mas utiliza-o como se fosse seu. Você acaba de desenhar uma obra-prima, um mapa com informações impossíveis de compreender, mas você entende tudo, perfeitamente:
+			- **Onisciência:**
+				Você sente um calafrio, quase que sobrenatural:
+				- Sua mão é guiada pelo mapa por uma força maior expondo a posição de todas as criaturas em até 60 metros. <br>Você conhece a localização de todas as criaturas em até 60 metros. Incluindo criaturas, invisíveis, escondidas…
+				- Você sabe a intenção de movimento/ataque de cada criatura em um raio de 60 metros.
+				- Não pode ser flanqueado.
+			- **Comandante de Campo:**
+				Essa energia te faz raciocinar extremamente rápido, nesse estado, você consegue identificar estratégias e movimentações que outros não conseguem:
+				- “Ali!” (1 Ação)
+					- Um aliado em até 12m pode se mover até 6m como reação, sem ataques de oportunidade
+				- “Abaixa” (1 Ação)
+					- Um aliado em até 12m ganha +4 Evasão contra o próximo ataque que receber
+				- *"Agora!" (2 Ações)*
+					- Todos os aliados em até 12m ganham +2 atacar e +1d6 no próximo ataque.
+			- **Manipular Mapa:**
+				Esse mapa, parece ter influência real em seus arredores, e você sente que consegue controla-lo.<br>Ao usar qualquer uma das seguintes habilidades, faça um teste de *Vontade*(CD 15), ao falhar você perde 1d6 de éter:
+				- Criar Armadilha (1 Ação)
+					- Declare um ponto em até 12m de você, a primeira criatura que pisar recebe 3d6 dano e deve passar em um teste de Movimento ou fica *Enraizada* por 1 rodada.
+				- Tremor Localizado (1 Ação)
+					- Todos os inimigos em até 9m de você sentem o chão tremer, eles devem passar em um teste de Movimento ou ficam *Desorientados.*
+				- Fuga Instantânea (3 Ações)
+					- Você descobre uma rota de fuga perfeita, se ela não existir o seu mapa esculpe um caminho a força para que você e seus aliados consigam fugir da batalha.
+		- O custo:
+			- Ao fim do combate, sua ultimate cessa e seu mapa da região utilizada é desintegrado, virando pó rapidamente.
+			- Perca 2d6 de Éter
+			- Você sente que roubou magia, de onde não devia.
+		<span color="red">Sem-Nome</span>
+		> “Eles morrerão antes de entender o que você é”
+		- <span underline="true">Silêncio (1 Ação, 5 </span><span underline="true">*Stamina, Ultimate*</span><span underline="true">)</span>
+			- Escolha uma criatura em sua visão por rodada, ela recebe *Marcada à Morte 1*, essa condição soma ao ser aplicada novamente, ficando,* Marcada à Morte 2 *por exemplo:
+				- Você sabe a localização de todas as criaturas marcadas por você e a saúde exata delas.
+				- Você tem +1 em todos os testes contra uma criatura *Marcado à Morte*. Acumulável, ou seja, *Marcado à Morte 2*, te fornece +2 em todos os testes.
+				- Seus ataques ignoram 1 de evasão contra criaturas *Marcadas à Morte. *Acumulável,* ou seja, Marcado à Morte 2*, te faz ignorar 2 de evasão.
+				- Você tem +1 dado de dano ao critar contra uma criatura *Marcada à Morte*. Acumulável, ou seja, *Marcado à Morte 2*, te da +2 dados.
+				- Alvos marcados ficam *Expostos*, porém ainda remove a condição ao atacar.
+				- Ao acertar um ataque furtivo, o ataque automaticamente é crítico.
+			- O Custo
+				- Você não pode critar contra alvos não marcados.
+				- Você fica obcecado por todos seus alvos marcados e para desistir de mata-los, deve fazer um teste de *Vontade*(CD 20) para se controlar.
+				- Você perde 1d6 de éter.
+		<span color="green">Trambiqueiro</span>
+		> “Todo mundo tem um preço.”
+		- <span underline="true">Suborno Irrecusável (2 Ações, 5 Stamina, Ultimate)</span>
+			*“Vamos ser razoáveis aqui. Quanto vai custar pra você olhar pro outro lado?”*
+			- Escolha uma criatura inteligente que possa te entender e que não seja diretamente leal a algo maior que dinheiro (fanatismo religioso, amor verdadeiro, honra inabalável) Role *Convencimento* com +5 vs Vontade do alvo:
+				- Falha Crítica
+					- O alvo fica enfurecido com a tentativa. +2 Atacar contra você até o fim do combate.
+				- Falha
+					- O alvo hesita, ficando *Atordoado* por 1 rodada enquanto considera a proposta.
+				- Sucesso
+					- O alvo muda de lado até o fim do combate/cena.
+				- Sucesso Crítico
+					- O alvo muda de lado permanentemente (ou até você traí-lo). <br>Ele luta por você, fornece informações, abre portas…
+			- O Custo:
+				- Se perceber que foi manipulada, a criatura tenta te atacar.
+				- Perca 1d6 de éter.
+		- <span underline="true">Esquemas (Ação Livre, 5 Stamina, Ultimate)</span>
+			*“Ah, isso? Eu já tinha pensado nisso.”*
+			- A qualquer momento você pode declarar uma preparação que fez e preparou previamente, antes da cena atual.<br>Exemplo:
+				- *"Eu já tinha subornado um dos guardas. Ele deixa a porta dos fundos aberta.”*
+				- *"Eu escondi armas naquela sala ontem à noite.”*
+				- *"Eu contratei mercenários. Eles chegam agora."*
+			- Role um teste de *Convencimento*, a CD varia dependendo da viabilidade da preparação proposta. Se suceder isso realmente aconteceu, se não algo do seu plano deu errado.
+			- O Custo:
+				- Seus pecados estão sendo observados.
+				- Perca 1d6 de éter.
+	</column>
+</columns>
+<empty-block/>
+<empty-block/>
+<empty-block/>
+<empty-block/>
+</content>
+</page>
