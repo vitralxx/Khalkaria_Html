@@ -38,41 +38,40 @@ Permissões: o Pedro pediu, e `.claude/settings.json` libera `notion-fetch`, `no
 
 ---
 
-## 2. Andamento
+## 2. Andamento (2026-09-28, fim da rodada)
 
-### Feito e conferido (fetch + diff)
+### Notion: tudo gravado e conferido por fetch
 - **Sistema** (`2b76e3a4…`): Atacar ganhou a definição de PMA (D29 + D100) e o custo de técnica multi-ataque (D101); ações livres com "cada técnica usada como ação livre só pode ser usada 1 vez por turno, salvo texto" (D99); retaliação que não gasta reação preserva a reação (D98); **Desarmado** "1d4 de dano Contundente, Atacar com Mod. de Destreza, dano +Mod. de Destreza, custa 1 ação" (T12); "+Int" de poções, elixires e kits = quem fabricou, item comprado soma a média da raridade (D117); Transbordante + "Quando uma técnica sobe a intensidade, você paga a intensidade que declarou e não rola o teste de Vontade" (D103).
 - **Magias** (`3a66e3a4…9fcb`): a mesma frase do Transbordante (D103).
-
-### Gravado (a API aceitou), falta conferir por fetch
 - **Espadachim**: Tier 3 "1 vez por descanso longo"; Sorte do Bêbado "margem de ameaça +1"; Proficiência com Espadas "espada (arma corpo a corpo que causa dano Cortante)".
-- **Brutalista**: Tier 3 "1 vez por descanso longo"; Postura Defensiva "derrubado (*Caído*) ou empurrado"; técnica geral **Investida → Atropelar**, "*Caídos*. Conta como o Mover do turno."
-- **Teurgo**: Tier 3 "1 vez por descanso longo"; Encadeamento "É uma exceção ao limite de 1 magia por turno. Os 3 de Stamina são pagos a cada uso."; Manifestação do Patrono "Fortitude contra sua CD", "Reflexo contra sua CD", "Vontade contra sua CD", "Efeito Caótico (role 1d6)"; Receptáculo Perfeito "Ao ultrapassar 50% do éter máximo nos negativos (a *Casca Rachada* dobra esse limite)".
-- **Monge**: Tier 3 "1 vez por descanso longo"; Fluxo "…exceto quando o texto de uma técnica diz que você perde Fluxo."; Fluxo Invertido "+1 Fluxo ao receber dano (em vez de perder todo o Fluxo)"; Forma do Vazio "Ataques físicos (de arma e desarmados) têm 50%…"; Queda Suave "Por 1 minuto, você e até 5 criaturas à distância de toque não tomam dano de queda de até 30 m; em quedas maiores, o dano é reduzido em 5 × Nível."
+- **Brutalista**: Tier 3; Postura Defensiva "derrubado (*Caído*) ou empurrado"; técnica geral **Investida → Atropelar**, "ficam *Caídos*. Conta como o Mover do turno."
+- **Teurgo**: Tier 3; Encadeamento "É uma exceção ao limite de 1 magia por turno. Os 3 de Stamina são pagos a cada uso."; Manifestação do Patrono "Fortitude/Reflexo/Vontade contra sua CD", "Efeito Caótico (role 1d6)"; Receptáculo Perfeito "Ao ultrapassar 50% do éter máximo nos negativos (a *Casca Rachada* dobra esse limite)".
+- **Monge**: Tier 3; Fluxo "…exceto quando o texto de uma técnica diz que você perde Fluxo."; Fluxo Invertido "+1 Fluxo ao receber dano (em vez de perder todo o Fluxo)"; Forma do Vazio "Ataques físicos (de arma e desarmados)"; Queda Suave "Por 1 minuto, você e até 5 criaturas à distância de toque não tomam dano de queda de até 30 m; em quedas maiores, o dano é reduzido em 5 × Nível."
+- **Alquimista** (`eac6e3a4…`): Tier 3 "1 vez por descanso longo"; Titã "- Avalanche:"; Cartucho Arcano "Custo de Criação: Reagentes iguais ao custo base de Éter da magia" e "o CD da criação é 10 + o custo base de Éter da magia. Cartuchos de magia de Nível 5 exigem Foco Primordial para serem criados." (texto aprovado na T13a, **sem** o "mínimo 1", que é pergunta); Elixir Especial "(1 Ação, 3 Stamina, 1 Reagente por alvo)"; Curandeiro Incansável "Ao curar uma criatura que estava *Morrendo* e remover a condição"; tabela: Soro da Guerra "+2 Atacar, +2 Defender, +2d6 dano, +3m Movimento, Vantagem em Fortitude. Duração 1 min.".
+- **Artilheiro** (`d896e3a4…`): Tier 3; Tiro Carregado "Margem de Ameaça +1"; Artesão de Munição "(Virotes/Flechas, Munição de Armas de Fogo ou Conjunto de Arremesso)"; Munição Especial "10 munições especiais contam como 1 bugiganga".
+- **Autômato** (`80c6e3a4…`): Sensor de Proximidade "Não pode ser *Desprevenido*."; Achar Tecnologias "+ As tecnologias de Tier 5 não podem ser obtidas em lojas e não entram na rolagem." (o d12 fecha com as 12 tecnologias dos Tiers 1–4).
+- **Caçador** (origem, `b8f6e3a4…`): "1 Arma Distância Simples" (⚠️ ver pergunta 6).
+- **Mineiro** (origem, `3dc6e3a4…`): "1 Cobre (1 Bugiganga)".
+- **Varredura por script** dos dumps das 7 classes: nenhum resíduo de "por dia", "Margem de Crítico", "surpreendido", "Adagas de lançamento" ou "Investida" fora da manobra. Os 2 que sobram são do Batedor (cabeçalho do Tier 3 e Golpe Instinto), que entra no rework.
+- **Batedor**: nada até o rework.
 
-### Pendente — Notion
-- **Monge, Forma do Vazio:** "(Role 1d10 → \<5 = Acerta)" → "≤5". O `old_str` não casou nem com `\<` nem com `<` (o fetch mostra `\<`). Tentar outro trecho (ex.: substituir o bullet inteiro a partir de "Você fica Parcialmente Intangível").
-- **Alquimista** (`eac6e3a4…`): Tier 3 "1 vez por descanso longo"; Titã "- Investida:" → "- Avalanche:"; Cartucho Arcano "Custo de Criação: (Nível da Magia \* 2) Reagentes" → "Reagentes iguais ao custo base de Éter da magia (mínimo 1)" e "o CD da criação é 10 + (2 \* Nível da Magia)" → "10 + o custo base de Éter da magia", mais "Cartuchos de magia de Nível 5 exigem Foco Primordial para serem criados." (o "mínimo 1" é meu: sem ele o cartucho de truque sairia grátis; avisar o Pedro); Elixir Especial "(1 Ação, 3 Stamina, 3 Reagentes)" → "(1 Ação, 3 Stamina, 1 Reagente por alvo)"; Curandeiro Incansável "que estava com 0 de Saúde e remover a condição *morrendo*" → "que estava *Morrendo* e remover a condição"; tabela: Veneno Hemorrágico → "3 ataques. +1d6 Biológico. Alvo recebe *Sangramento 3* no terceiro ataque."; Soro da Guerra + "Duração 1 min." (igualar ao CSV).
-- **Artilheiro** (`d896e3a4…`): Tier 3 "1 vez por descanso longo"; Tiro Carregado "Margem de Crítico +1" → "Margem de Ameaça +1"; Artesão de Munição "(Flecha, Munição de Armas de Fogo ou Adagas de lançamento)" → "(Virotes/Flechas, Munição de Fogo ou Conjunto de Arremesso)"; Munição Especial "3 munições especiais contam como 1 bugiganga" → "10 …"; conferir e registrar o "1x/Alvo." do Pedro no Projétil Envenenado.
-- **Autômato** (`80c6e3a4…`): Sensor de Proximidade "Não pode ser surpreendido" → "Não pode ser Desprevenido"; Achar Tecnologias em Lojas: ver o texto e a lista (D113).
-- **Gruto** (buscar a página): Língua Bifurcada "Criaturas Predáveis" → "Criaturas Predáveis (animais selvagens)".
-- **Caçador** (origem, buscar): "1 Arma Simples" → "1 Arma Distância Simples".
-- **Mineiro** (origem, buscar): "Madeira Comum" → "Cobre".
-- Batedor: nada até o rework.
+IDs das páginas novas: Raças `3a66e3a401d980318836edcfa11c8a24` (Gruto `9696e3a401d983b4b6e48199671689f4`); Origens `3a66e3a401d9808aa877f7e7cb77002a` (Caçador `b8f6e3a401d9823884ac812414e85095`, Mineiro `3dc6e3a401d98042b6b0cd0ebff875d6`).
 
-### Pendente — arquivos
-- **CSV** (`references/bazar-v26.csv` e `Bazar_Khalkaria_v26.csv`, iguais): Soro da Guerra `Efeito` → "+2 Atacar/Defender, +2d6 dano, +3m Movimento, Vantagem em Fortitude. Dura 1 min."; Veneno Hemorrágico `Efeito` → "3 ataques. +1d6 Biológico. Alvo recebe Sangramento 3 no terceiro ataque." Depois regerar `ficha-efeitos-itens.json` (`python3 ficha-efeitos-gerador.py --escrever`, conferir `naoParseado: 0` e reprodutibilidade) e registrar a mudança nos overrides se o parser não pegar "Vantagem em Fortitude"/"Sangramento 3".
-- **Contrato rev. 8** (`ficha-digital-regras.json`, dump com `indent=2, ensure_ascii=False`): D98 (retaliação preserva reação), D99 (`turno.acaoLivreTecnicaMaxPorTurno: 1`), D100 (PMA canônica em técnica), D101 (custo multi-ataque), D102 (espada), D103 (`magia.intensidadeSubidaPorTecnica` → canônico), D105 (`recursoDeClasse` Espadachim/Teurgo = características), D110 (Fluxo Invertido e exceção das ultimates → canônico), D117 (`atributoCuraItemPorTipo` tudo "fabricante"; `atributoCuraItemSemFabricante: "mediaDaRaridade"`, tabela pendente), ataque desarmado base.
-- **`16-log-tecnicas.md` e `log-tecnicas-respostas.json`**: marcar as T respondidas, mudar G1/G2 (G1 vira D98; G2 vira D99: 1x/turno, não "1 por ataque") e revisar as respostas afetadas: Parry Perfeito, Corte Diagonal, Dobrar a Aposta, Golpe Sequencial, Fantasma, Sexto Sentido, Resistência Adaptável (todas ação livre → 1x/turno), Inimigo Mortal/Guardar a Lâmina/Sentença Final (D98), Lâmina Rápida/Massacre/Rajada (D101), espada (D102), Tese/Patrono/Natureza (D103), recurso de classe (D105), Veneno Hemorrágico e Soro (D111), +Int (D117).
-- **Memória**: `09-decisoes-pedro.md` já aponta para este arquivo (seção "Respostas T1–T19").
+### Arquivos (commit desta rodada)
+- **CSV** (`references/bazar-v26.csv` = `Bazar_Khalkaria_v26.csv`, 727 itens, 29 colunas): Soro da Guerra "+2 Atacar/Defender, +2d6 dano, +3m Movimento, Vantagem em Fortitude. Dura 1 min."; Veneno Hemorrágico "3 ataques. +1d6 Biológico. Alvo recebe Sangramento 3 no terceiro ataque." (D111).
+- **Efeitos rev. 6**: overrides do Soro (lembrete "Vantagem em Fortitude": a gramática não tem vantagem) e do Veneno Hemorrágico (dano extra 1d6 biológico por 3 ataques + lembrete do Sangramento 3; o parser mandava tudo para lembrete). Convenção `maisInt` corrigida para "de quem FABRICOU" (dizia "de quem USA", resíduo de antes da L08). Pendências 11 (resolvida) e 12 (tabela da média). `naoParseado` 0, reprodutível.
+- **Contrato rev. 8** (`scripts/log-tecnicas/contrato_rev8.py`, roda sobre a rev. 7 e recusa rodar duas vezes): `turno.acaoLivreTecnicaMaxPorTurno: 1` (D99); `turno.retaliacaoSemGastarReacao` (D98); PMA em técnica canônica (D100); `turno.multiAtaqueComoUmaAcao` (D101); `turno.conjuracoesExcecoes` (Encadeamento, Receptáculo Perfeito); `dano.desarmado` + `custoDeAcao.desarmado` (T12e; Arma Humana 1d8); `magia.intensidadeSubidaPorTecnica` canônico (D103); `classes.espadachim.espada` (D102); `recursoDeClasse` do Espadachim e do Teurgo canônico, **não é contador** (D105); exceções do Fluxo canônicas (D110); cura de item: tudo `fabricante`, **`atributoCuraItemSemFabricante` mudou de tipo: 0 → "mediaDaRaridade"**, e `atributoCuraItemMediaDaRaridade` novo (proposta +1/+2/+3/+4, `pedroDecide`); Rajada de Tiros com custo pela arma; nota do Sangramento sem nome de carta rara (resíduo antigo).
+- **16 + JSON, Revisão 1** (`scripts/log-tecnicas/resp_rev1.py`): 75 achados revisados; cada um guarda `statusRev0` e `revisao1`; `perguntasPedro[T]` com a resposta verbatim; `principios[G]` com `estadoRev1`. Balanceamento: 33 resolvidos, 73 leitura minha, 4 com o Pedro. Achados do Pedro: 34 resolvidos, 7 abertos (5 do Batedor).
 
 ### Perguntas que continuam com o Pedro
-1. Coragem Líquida: "a cada combate" (chat) ou "a cada 5 combates" (Notion)?
-2. Tabela da "média da raridade" do +Int de item comprado (proposta: +1/+2/+3/+4).
-3. Condições mentais: qual lista vale (a do Santuário Intocável ou a do site)?
-4. T15 (d) As Vozes e (e) conjuração sem Místico: ficaram sem resposta (provisório: só d20; o traço libera).
-5. Cartucho Arcano: confirmar o "mínimo 1 Reagente".
-6. Do lote anterior: L14, L35, L39.
+1. **Coragem Líquida:** "a cada combate" (chat) ou "a cada 5 combates" (Notion)? A ficha usa o Notion.
+2. **Média da raridade:** tabela do +Int de item comprado. Proposta: Ordinário +1, Incomum +2, Exótico +3, Luxária +4.
+3. **Condições mentais** (resposta ao "onde?"): a única lista escrita está na rara *Santuário Intocável* do Limiar ("imunes a condições mentais (Enfeitiçado, Amedrontado, Confuso, Atordoado)"); a página Condições não tem seção; o site agrupa outra lista (Confuso, Amedrontado, Descontrolado, Enfeitiçado, Bêbado). Usam o termo: origem Soldado (Veterano), Patrono Primordial e Manifestação do Patrono (Grande Árvore). Qual lista vale?
+4. **T15 (d) e (e):** As Vozes, só o d20? Receptáculo Natural e Cultista conjuram sem Treinado em Místico? (provisório: só d20; o traço libera)
+5. **Cartucho Arcano:** "mínimo 1 Reagente"? Pelo texto gravado, o cartucho de truque custa 0 e tem CD 10.
+6. **Caçador:** com "1 Arma Distância Simples", ele tem duas armas à distância (já tinha "1 Arma à Distância"). Se a "Arma Simples" era a faca de esfolar, o certo é "1 Arma Leve". Minha recomendação não viu a segunda linha.
+7. **D99 "quase toda":** ao pé da letra, passam a 1 vez por turno: Destruir, Barreira Instintiva, Sangue por Aço, Passo Afiado, Trêbado, Golpe Sequencial e as passivas com efeito de ação livre (Passo do Vento do Artilheiro, Ponto Fraco, Resistência Adaptável). Alguma é exceção?
+8. **Do lote anterior:** L14, L35, L39.
 
 ---
 
@@ -81,26 +80,37 @@ Permissões: o Pedro pediu, e `.claude/settings.json` libera `notion-fetch`, `no
 Tudo o que mudou no Notion desde o último sync do site. Regerar `data/*.json` e as páginas destas fontes.
 
 ### 3.1 Edições do balanceamento
-- **2026-09-26** — ver `15-ficha-rodada3.md` §A (Condições, Sistema, Magias, Limiar, 7 classes) e §Revisão 1 (D92–D97).
-- **2026-09-27** — ver `16-log-tecnicas.md` §3 (lote L: Sistema, Magias, Condições, Limiar, Monge, Alquimista, Template da ficha, Cultista).
-- **2026-09-28** — §2 acima ("Feito e conferido" e "Gravado"): Sistema, Magias, Espadachim, Brutalista, Teurgo, Monge. Os itens "pendentes" entram aqui quando forem gravados.
+- **2026-09-26**: ver `15-ficha-rodada3.md` §A (Condições, Sistema, Magias, Limiar, 7 classes) e §Revisão 1 (D92–D97).
+- **2026-09-27**: ver `16-log-tecnicas.md` §3 (lote L: Sistema, Magias, Condições, Limiar, Monge, Alquimista, Template da ficha, Cultista).
+- **2026-09-28**: §2 acima: Sistema, Magias, Espadachim, Brutalista, Teurgo, Monge, Alquimista, Artilheiro, Autômato, Caçador, Mineiro.
 
-### 3.2 Edições do Pedro (vistas no fetch de 2026-09-28)
+### 3.2 Edições do Pedro (vistas nos fetches de 2026-09-28)
 - **Brutalista, Muralha Viva:** 2º item agora "Você recebe+1 na perícia *Defender* a cada treinamento dessa perícia." (era "O treinamento da sua perícia Defender aumenta de 3 em 3 (Ao invés de 2 em 2)").
 - **Brutalista, Frenesi:** "Fica descontrolado e não pode usar habilidades…" → "Não pode usar habilidades que exijam paciência ou concentração."; "1 vez por descanso longo no nível 1 e 2 vezes no nível 3" → "no nível 2 e 2 vezes no nível 4".
 - **Brutalista, Contador de Corpos:** "+1 de Stamina" → "1d6 de Stamina"; nota nova "\*Brutalmente: Com **crítico** ou *efeito de arma:* Executar."
 - **Brutalista, Imortal:** o bloco "Enquanto estiver com ou menos da metade da vida: +2 Armadura(Ar) Natural" foi trocado por "Incansável — Você recebe +1 em todas as perícias por nível de exaustão."; "Ao ser reduzido a 0 de Saúde" → "a 0 de Saúde ou menos".
-- **Artilheiro, Projétil Envenenado:** "1x/Alvo." adicionado (texto exato a conferir no próximo fetch).
+- **Artilheiro, Projétil Envenenado:** "…ou recebe *Envenenamento* por **2 rodadas**.  1x/Alvo." (conferido).
+- **Alquimista, tabela de itens:** Veneno Hemorrágico "3 ataques. +1d6 Biológico. Alvo recebe Sangramento 3 no terceiro ataque."
+- **Gruto, Língua Bifurcada:** "Criaturas Predáveis" → "Dryads e Animais selvagens".
+- **Monge, Forma do Vazio:** "(Role 1d10 → ≤5 = Acerta)". A minha gravação desse trecho tinha falhado; a mudança é do Pedro.
+
+### 3.3 Arquivos de dado desta rodada
+- `ficha-digital-regras.json` **rev. 8**: atenção à mudança de tipo em `recursos.atributoCuraItemSemFabricante` (número 0 → string "mediaDaRaridade") e ao campo novo `recursos.atributoCuraItemMediaDaRaridade`. `recursoDeClasse` do Espadachim e do Teurgo deixou de pedir contador livre.
+- `ficha-efeitos-itens.json` **rev. 6**: `item-soro-da-guerra` (lembrete novo) e `item-veneno-hemorragico` (efeito novo); convenção `maisInt`.
+- `log-tecnicas-respostas.json` **Revisão 1**: campos novos `statusRev0`, `revisao1`, `perguntasPedro[T].respostaPedro/decisao/estado`, `principios[G].estadoRev1/revisao1`, `revisao.abertas`, `contagemRev0`.
+- `Bazar_Khalkaria_v26.csv`: 2 células de Efeito (D111). Regerar o Bazar.
+- Páginas a regerar: Sistema, Magias, 6 classes (menos Batedor), Raças (Autômato, Gruto), Origens (Caçador, Mineiro).
 
 ---
 
 ## 4. Ferramentas no repo
 
-- `scripts/log-tecnicas/build16.py` (+ `resp_a/b/c/p.py`, `log_achados.json`) gera
-  `references/16-log-tecnicas.md` e `references/log-tecnicas-respostas.json` byte a byte. A
-  **Revisão 1** do 16 (G1→D98, G2→D99 etc.) se faz editando os `resp_*.py` e rodando
-  `python3 .claude/skills/khalkaria-balance/scripts/log-tecnicas/build16.py`.
+- `scripts/log-tecnicas/build16.py` (+ `resp_a/b/c/p.py`, `resp_rev1.py`, `log_achados.json`) gera
+  `references/16-log-tecnicas.md` e `references/log-tecnicas-respostas.json` byte a byte. Uma nova revisão
+  se faz num `resp_rev2.py` no mesmo formato, ligado no `build16.py`.
+- `scripts/log-tecnicas/contrato_rev8.py`: patch rev. 7 → rev. 8 do contrato (histórico; não roda de novo).
 - `scripts/log-tecnicas/ndiff.py antigo novo [saida]`: diff de dois dumps do `notion-fetch` (ignora a
   query string das URLs S3). Uso: conferir cada gravação no Notion.
 - Contrato: `ficha-digital-regras.json` se grava com `json.dumps(d, ensure_ascii=False, indent=2)` sem
-  newline final. Efeitos: `ficha-efeitos-gerador.py --escrever` (rev. 5, sha256 16 = `d67d5f4dc5085814`).
+  newline final. Efeitos: `ficha-efeitos-gerador.py --escrever` (rev. 6; sha256 do CSV no campo `fonte`).
+- Carta rara: nenhum nome nem efeito de rara em campo de nota dos 3 JSON (o sync do site apaga a frase). Conferir por conjunto contra `data/limiar.json` (entradas com `req` e sem `effect`).

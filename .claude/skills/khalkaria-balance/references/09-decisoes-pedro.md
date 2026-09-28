@@ -720,6 +720,10 @@ Texto verbatim, andamento, pendências e **log de sincronização do Notion** em
 - **D117** "+Int" de poção/elixir/kit = Mod.INT de quem fabricou, gravado no item; comprado soma a
   "média da raridade" (tabela pendente; proposta +1/+2/+3/+4).
 - **Batedor:** rework inteiro vem do Pedro; depois, log do novo Batedor para o agente de HTML.
+- **Aplicado em 2026-09-28** (conferido por fetch): Notion em 11 páginas, CSV (D111), efeitos rev. 6, contrato rev. 8,
+  `16-log-tecnicas` Revisão 1. A convenção `maisInt` dos efeitos dizia "quem USA": corrigida para "quem fabricou".
+- **D99 ao pé da letra** põe em 1 vez por turno Destruir, Barreira Instintiva, Sangue por Aço, Passo Afiado, Trêbado e
+  Golpe Sequencial; o Pedro disse "quase toda", então as exceções são pergunta. Abertas: `17-respostas-T-e-sync.md` §2.
 
 ## D68 — O andar de Nível 1 (truques)
 Todas as magias existentes **sobem 1 nível**: as antigas 1–4 viram 2–5. O novo Nível 1 são os
