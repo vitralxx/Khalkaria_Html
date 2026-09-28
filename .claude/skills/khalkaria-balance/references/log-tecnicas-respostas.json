@@ -1,6 +1,6 @@
 {
  "schemaVersion": "log-tecnicas-respostas/1",
- "geradoEm": "2026-09-27; revisão 1 em 2026-09-28",
+ "geradoEm": "2026-09-27; revisões 1 e 2 em 2026-09-28",
  "_doc": "Resposta do agente de balanceamento ao Log de Técnicas (artefato https://claude.ai/artifact/L4ftxMddmAPHWwG8U1VukL; main da5e73d, docs/ficha-digital/log-tecnicas-achados.json). Uma entrada por achado, pelo id. status: resolvido (regra escrita ou corrigida agora) | decisao (leitura do balanceamento; a ficha implementa, o Pedro pode revisar) | pedroDecide (espera o Pedro; a ficha usa o provisório indicado). principio = Gn de principios; perguntaPedro = Tn de perguntasPedro. Texto com a justificativa: 16-log-tecnicas.md.",
  "fonte": {
   "artefato": "https://claude.ai/artifact/L4ftxMddmAPHWwG8U1VukL",
@@ -426,14 +426,16 @@
   },
   "espadachim-coragem-liquida": {
    "paraQuem": "pedro",
-   "status": "pedroDecide",
+   "status": "resolvido",
    "resposta": "+1 na perícia Movimento: as outras 5 marcas do Espadachim dão perícia.",
    "acao": "aguarda Pedro",
    "principio": null,
    "perguntaPedro": "T7",
    "nome": "Coragem Líquida",
    "statusRev0": "pedroDecide",
-   "revisao1": "D106: +1 na perícia Movimento. Aberto: o Notion diz \"a cada 5 combates\" e o Pedro escreveu \"a cada combate\". A ficha usa o Notion até ele confirmar."
+   "revisao1": "D106: +1 na perícia Movimento. Aberto: o Notion diz \"a cada 5 combates\" e o Pedro escreveu \"a cada combate\". A ficha usa o Notion até ele confirmar.",
+   "statusRev1": "pedroDecide",
+   "revisao2": "D120: a cada 5 combates vitoriosos sob Bêbado, +1 permanente na perícia Movimento (máx. +5). É o que o Notion já diz; nada a gravar."
   },
   "espadachim-epifania": {
    "status": "resolvido",
@@ -1241,7 +1243,7 @@
    "nome": "Cartucho Arcano"
   },
   "alquimista-cartucho-arcano-2": {
-   "status": "pedroDecide",
+   "status": "resolvido",
    "resposta": "Pergunta T13. A D68 subiu as magias 1 nível e manteve o Éter (a antiga Nível 4 e a nova Nível 5 custam 8). Por isso \"(Nível × 2) Reagentes\" e \"CD 10 + 2 × Nível\" subiram 2 sem ninguém editar. Recomendo amarrar ao custo base de Éter: Reagentes = custo base de Éter da magia; CD = 10 + custo base. Isso devolve os números de antes da D68. Cartucho de Nível 5: quem cria precisa dos mesmos requisitos de conjurar (Foco Primordial e Experiente em Místico).",
    "acao": "ficha: provisório = fórmula atual do texto + aviso",
    "principio": null,
@@ -1249,7 +1251,9 @@
    "paraQuem": "balanceamento",
    "nome": "Cartucho Arcano",
    "statusRev0": "pedroDecide",
-   "revisao1": "Gravado no Notion (2026-09-28): Reagentes iguais ao custo base de Éter da magia; CD 10 + o custo base; Nível 5 exige Foco Primordial. Aberto: assim o cartucho de truque (Nível 1, 0 Éter) custa 0 Reagente; o \"mínimo 1\" é proposta minha. A ficha usa o texto gravado."
+   "revisao1": "Gravado no Notion (2026-09-28): Reagentes iguais ao custo base de Éter da magia; CD 10 + o custo base; Nível 5 exige Foco Primordial. Aberto: assim o cartucho de truque (Nível 1, 0 Éter) custa 0 Reagente; o \"mínimo 1\" é proposta minha. A ficha usa o texto gravado.",
+   "statusRev1": "pedroDecide",
+   "revisao2": "D118. Gravado no Notion (2026-09-28): \"Custo de Criação: Reagentes iguais ao custo base de Éter da magia (mínimo 1)\". O cartucho de truque custa 1 Reagente, CD 10."
   },
   "alquimista-cartucho-arcano-3": {
    "status": "decisao",
@@ -1618,7 +1622,7 @@
    "nome": "Escola Visceral"
   },
   "corrompido-receptaculo-natural": {
-   "status": "decisao",
+   "status": "resolvido",
    "resposta": "O traço dá a conjuração dessas 2 magias, e o texto específico vence o requisito geral de Treinado em Místico, como a memória já lê o Cultista (\"destrava conjuração\"). O requisito do Sistema continua para qualquer outra magia. A rolagem de Místico, quando a magia pede, usa o grau que o personagem tiver.",
    "acao": "ficha: 2 magias liberadas sem foco e sem exigir treino",
    "principio": null,
@@ -1626,10 +1630,12 @@
    "paraQuem": "balanceamento",
    "nome": "Receptáculo Natural",
    "statusRev0": "decisao",
-   "revisao1": "T15(e) ficou sem resposta; a leitura fica."
+   "revisao1": "T15(e) ficou sem resposta; a leitura fica.",
+   "statusRev1": "decisao",
+   "revisao2": "D123: o traço dispensa só o foco (\"sem um foco designado\"); o Treinado em Místico continua exigido. A leitura antiga (o traço vencia o requisito de Místico) caiu. Gravado no Notion (2026-09-28): Magias e Sistema, \"Conjurar sem ser Treinado em Místico ou sem o Foco só é possível quando a classe, raça ou origem que dá a magia diz isso explicitamente.\""
   },
   "origem-cultista": {
-   "status": "decisao",
+   "status": "resolvido",
    "resposta": "Mesma leitura do Receptáculo Natural. \"Você conhece e consegue canalizar\" dá a conjuração das 2 magias mesmo com Religião no lugar de Místico. O foco continua obrigatório, porque o texto pede.",
    "acao": "ficha: 2 magias liberadas com foco",
    "principio": null,
@@ -1637,7 +1643,9 @@
    "paraQuem": "balanceamento",
    "nome": "Segredos Proibidos",
    "statusRev0": "decisao",
-   "revisao1": "T15(e) ficou sem resposta; a leitura fica."
+   "revisao1": "T15(e) ficou sem resposta; a leitura fica.",
+   "statusRev1": "decisao",
+   "revisao2": "D123: \"consegue canalizar… através de um foco\" não dispensa nada; exige Treinado em Místico e foco. O Cultista que treinou Religião só conjura as 2 magias quando for Treinado em Místico. A leitura antiga caiu."
   },
   "automato-corpo-mecanico-imunidade": {
    "status": "decisao",
@@ -1666,7 +1674,9 @@
    "paraQuem": "balanceamento",
    "nome": "As Vozes",
    "statusRev0": "pedroDecide",
-   "revisao1": "T15(d) ficou sem resposta; segue o provisório (só o d20)."
+   "revisao1": "T15(d) ficou sem resposta; segue o provisório (só o d20).",
+   "statusRev1": "pedroDecide",
+   "revisao2": "O Pedro respondeu \"é só o 1 natural no dado\". Falta confirmar qual dado: só o d20 de testes e ataques, ou qualquer dado, dano incluso, como o Notion diz hoje (\"em qualquer dado\"). Até lá a ficha segue o Notion."
   },
   "origem-a-forja": {
    "status": "resolvido",
@@ -1761,14 +1771,16 @@
   },
   "origem-cacador-itens": {
    "paraQuem": "pedro",
-   "status": "pedroDecide",
+   "status": "resolvido",
    "resposta": "\"1 Arma Simples\" → \"1 Arma Distância Simples\" (arco do caçador).",
    "acao": "aguarda Pedro",
    "principio": null,
    "perguntaPedro": "T16",
    "nome": "Itens iniciais do Caçador",
    "statusRev0": "pedroDecide",
-   "revisao1": "Gravado no Notion (2026-09-28): \"1 Arma Distância Simples\". Aviso: o Caçador já tinha \"1 Arma à Distância\" e agora tem duas. Se a \"Arma Simples\" era a faca de esfolar, o certo é \"1 Arma Leve\". Pergunta ao Pedro; a ficha usa o Notion."
+   "revisao1": "Gravado no Notion (2026-09-28): \"1 Arma Distância Simples\". Aviso: o Caçador já tinha \"1 Arma à Distância\" e agora tem duas. Se a \"Arma Simples\" era a faca de esfolar, o certo é \"1 Arma Leve\". Pergunta ao Pedro; a ficha usa o Notion.",
+   "statusRev1": "pedroDecide",
+   "revisao2": "D119: o Caçador tem só 1 arma à distância. Gravado no Notion (2026-09-28): a linha \"1 Arma Distância Simples\" saiu; ficou \"1 Arma à Distância (1 Equipamento)\". Itens mais únicos nas origens ficam como ideia para o futuro."
   },
   "origem-mineiro-itens": {
    "paraQuem": "pedro",
@@ -1844,7 +1856,9 @@
    "paraQuem": "balanceamento",
    "nome": "Veterano: pendência com texto corrompido no contrato",
    "statusRev0": "resolvido",
-   "revisao1": "T16(d): o Pedro perguntou onde está a lista. A resposta está no 17-respostas-T-e-sync.md, e a escolha da lista continua com ele."
+   "revisao1": "T16(d): o Pedro perguntou onde está a lista. A resposta está no 17-respostas-T-e-sync.md, e a escolha da lista continua com ele.",
+   "statusRev1": "resolvido",
+   "revisao2": "D122. Gravado no Notion (2026-09-28): topo da página Condições, \"Condições mentais: Enfeitiçado, Amedrontado, Confuso e Atordoado.\" O Veterano usa essa lista."
   }
  },
  "revisao": {
@@ -1887,6 +1901,75 @@
    }
   ]
  },
+ "revisao2": {
+  "n": 2,
+  "data": "2026-09-28",
+  "fonte": "17-respostas-T-e-sync.md §1b (segunda leva, D118–D123)",
+  "campos": "respostas[id].statusRev1 = status antes da revisão 2; respostas[id].revisao2 = o que mudou",
+  "respostas": [
+   {
+    "tema": "Cartucho Arcano",
+    "respostaPedro": "Mínimo 1 no cartucho",
+    "decisao": "D118"
+   },
+   {
+    "tema": "Caçador",
+    "respostaPedro": "caçador só possui 1 arma à distância. Pensar no futuro adicionar itens mais únicos nas origens.",
+    "decisao": "D119 + ideia futura"
+   },
+   {
+    "tema": "Coragem Líquida",
+    "respostaPedro": "Coragem líquida é a cada 5 combates, você ganha +1 movimento.",
+    "decisao": "D120"
+   },
+   {
+    "tema": "Média da raridade",
+    "respostaPedro": "Média de raridade ok, bote no changelog a possiblidade de fazer uma função de comerciante no site html, simplfica para a sessão eu poder abrir uma loja na hora e mostrar aos jogadores na tela.",
+    "decisao": "D121 + pedido ao site"
+   },
+   {
+    "tema": "Condições mentais",
+    "respostaPedro": "Condições mentais: condições mentais (Enfeitiçado, Amedrontado, Confuso, Atordoado)",
+    "decisao": "D122"
+   },
+   {
+    "tema": "As Vozes",
+    "respostaPedro": "As vozes é só o 1 natural no dado",
+    "decisao": "a confirmar: qual dado"
+   },
+   {
+    "tema": "Conjuração sem Místico",
+    "respostaPedro": "conjuração sem treinado em místico é possível só quando a técnica explicita, fora isso é sempre com treinamento em místico e foco místico.",
+    "decisao": "D123"
+   }
+  ],
+  "foraDosAchados": [
+   "D76 na tabela do Alquimista: a escada de poção já estava no CSV, e a tabela da classe no Notion ainda tinha os dados antigos. Gravado no Notion (2026-09-28): Poção de Cura Maior 5d8+Int (era 4d8), Poção de Vigor Maior 3d8 (era 2d6), Poção de Cura Suprema 8d10+Int (era 6d8), Poção de Vigor Suprema 5d10 (era 3d8). Comparação por script: nenhuma outra divergência de dado, CD ou Reagente entre a tabela e o CSV.",
+   "Pedido ao agente de HTML: registrar no CHANGELOG do site a ideia da função de comerciante (texto pronto no 17-respostas-T-e-sync.md §3.4)."
+  ],
+  "abertas": [
+   {
+    "tema": "As Vozes",
+    "pergunta": "\"só o 1 natural no dado\": só o d20 (testes e ataques) ou qualquer dado, inclusive dano? Hoje o Notion diz \"em qualquer dado\"; num ataque de 4d6, 52% das rolagens têm um 1."
+   },
+   {
+    "tema": "Tabela do Alquimista",
+    "pergunta": "21 itens de Alquimia do CSV (Obtenção \"Alquimista\") não estão na tabela da classe: bebidas, venenos novos, Elíxires de Éter, Poção de Vigor Moderada, Elixir da Expurgação e outros. Entram na tabela, ou ela fica só com as fórmulas fundamentais? E o nome: \"Lágrima do Tempo\" na classe, \"Lágrimas do Tempo\" no CSV."
+   },
+   {
+    "tema": "D99 \"quase toda\"",
+    "pergunta": "ao pé da letra, passam a 1 vez por turno: Destruir, Barreira Instintiva, Sangue por Aço, Passo Afiado, Trêbado, Golpe Sequencial e as passivas com efeito de ação livre (Passo do Vento do Artilheiro, Ponto Fraco, Resistência Adaptável). Alguma é exceção?"
+   },
+   {
+    "tema": "Lote anterior",
+    "pergunta": "L14, L35, L39."
+   },
+   {
+    "tema": "Batedor",
+    "pergunta": "rework inteiro, depois o log do novo Batedor."
+   }
+  ]
+ },
  "contagemRev0": {
   "balanceamento.decisao": 84,
   "balanceamento.pedroDecide": 15,
@@ -1895,12 +1978,20 @@
   "pedro.resolvido": 2,
   "site.doAgenteDeHtml": 9
  },
- "contagem": {
+ "contagemRev1": {
   "balanceamento.decisao": 73,
   "balanceamento.pedroDecide": 4,
   "balanceamento.resolvido": 33,
   "pedro.pedroDecide": 7,
   "pedro.resolvido": 34,
+  "site.doAgenteDeHtml": 9
+ },
+ "contagem": {
+  "balanceamento.decisao": 71,
+  "balanceamento.pedroDecide": 3,
+  "balanceamento.resolvido": 36,
+  "pedro.pedroDecide": 5,
+  "pedro.resolvido": 36,
   "site.doAgenteDeHtml": 9
  }
 }

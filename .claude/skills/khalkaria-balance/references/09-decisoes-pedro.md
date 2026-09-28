@@ -725,6 +725,23 @@ Texto verbatim, andamento, pendências e **log de sincronização do Notion** em
 - **D99 ao pé da letra** põe em 1 vez por turno Destruir, Barreira Instintiva, Sangue por Aço, Passo Afiado, Trêbado e
   Golpe Sequencial; o Pedro disse "quase toda", então as exceções são pergunta. Abertas: `17-respostas-T-e-sync.md` §2.
 
+## Segunda leva (2026-09-28, noite) — D118–D123
+
+Texto verbatim e detalhes em `17-respostas-T-e-sync.md` §1b. Tudo gravado no Notion e conferido por fetch + diff.
+- **D118** Cartucho Arcano: Reagentes = custo base de Éter da magia, **mínimo 1**; CD 10 + custo base.
+- **D119** Caçador: só **1 arma à distância** (a linha duplicada saiu). Ideia do Pedro: itens mais únicos nas origens (futuro).
+- **D120** Coragem Líquida: a cada **5** combates vitoriosos sob Bêbado, +1 permanente na **perícia** Movimento (máx. +5). Fecha a D106.
+- **D121** +Int de poção, elixir ou kit **comprado** = média da raridade: Ordinário +1, Incomum +2, Exótico +3, Luxária +4. Fecha a D117.
+- **D122** Condições mentais = **Enfeitiçado, Amedrontado, Confuso, Atordoado** (topo da página Condições). Oco não é mental.
+- **D123** Conjurar sem Treinado em Místico ou sem Foco só quando a classe, raça ou origem que dá a magia **diz explicitamente**;
+  fora isso, sempre Místico + foco. Receptáculo Natural dispensa só o foco; Cultista exige os dois (com Religião não conjura
+  até treinar Místico); Cartucho: quem usa não precisa (leitura minha, "qualquer criatura pode conjurar").
+- **As Vozes:** "só o 1 natural no dado". Falta saber se é só o d20 ou qualquer dado (o Notion diz "qualquer dado"). Pergunta.
+- **D76 aplicada na tabela do Alquimista** (4 poções estavam com os dados antigos). Abertos: 21 itens de Alquimia do CSV fora da
+  tabela da classe e "Lágrima/Lágrimas do Tempo".
+- **Pedido ao site:** função de comerciante (abrir loja na sessão e mostrar na tela) no CHANGELOG. O CHANGELOG é do agente de
+  HTML, na main; o texto pronto está em `17` §3.4. Não empurro nada na main sem o Pedro autorizar.
+
 ## D68 — O andar de Nível 1 (truques)
 Todas as magias existentes **sobem 1 nível**: as antigas 1–4 viram 2–5. O novo Nível 1 são os
 20 truques. Consequência limpa: a regra do Teurgo deixa de ser "iguais ou abaixo do seu

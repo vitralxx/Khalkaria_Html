@@ -1,6 +1,6 @@
 {
   "schemaVersion": "regras-ficha/1.1",
-  "geradoEm": "2026-09-28 (rev. 8: respostas do Pedro às T1–T19, D98–D117, gravadas no Notion; ver 17-respostas-T-e-sync.md. rev. 7: lote L respondido pelo Pedro e gravado no Notion; correções do Log de Técnicas, ver 16-log-tecnicas.md)",
+  "geradoEm": "2026-09-28 (rev. 9: segunda leva de respostas do Pedro, D118–D123: média da raridade, condições mentais, requisitos de conjuração; ver 17-respostas-T-e-sync.md §1b. rev. 8: respostas do Pedro às T1–T19, D98–D117, gravadas no Notion; ver 17-respostas-T-e-sync.md. rev. 7: lote L respondido pelo Pedro e gravado no Notion; correções do Log de Técnicas, ver 16-log-tecnicas.md)",
   "_doc": "Resposta do agente de balanceamento ao pedido docs/ficha-digital/01-pedido-ao-balanceamento.md. O texto com a justificativa de cada regra esta em 14-ficha-digital.md, na mesma numeracao P/C. Nada aqui e canonico so porque esta escrito: leia o campo 'status'.",
   "_status": {
     "canonico": "Esta no Notion ou numa decisao registrada em 09-decisoes-pedro.md. Pode ir para o site.",
@@ -318,15 +318,15 @@
       "kit": "canonico"
     },
     "atributoCuraItemSemFabricante": "mediaDaRaridade",
-    "atributoCuraItemFonte": "notion-sistema 2b76e3a4, gravado em 2026-09-28 (diff conferido) > Status > Regras dos status: \"+Int de poções, elixires e kits é a Inteligência de quem fabricou o item, que fica gravada nele. Item comprado soma a média da raridade.\"",
+    "atributoCuraItemFonte": "notion-sistema 2b76e3a4, gravado em 2026-09-28 (diff conferido) > Status > Regras dos status: \"+Int de poções, elixires e kits é a Inteligência de quem fabricou o item, que fica gravada nele. Item comprado soma a média da raridade: Ordinário +1, Incomum +2, Exótico +3, Luxária +4.\" (D117 + D121)",
     "atributoCuraItemMediaDaRaridade": {
       "ordinario": 1,
       "incomum": 2,
       "exotico": 3,
       "luxaria": 4,
-      "status": "pedroDecide",
-      "pergunta": "tabela da \"média da raridade\" (17-respostas-T-e-sync.md §2)",
-      "provisorio": "a ficha usa esta proposta até o Pedro responder"
+      "status": "canonico",
+      "fonte": "D121 (Pedro: \"Média de raridade ok\"), notion-sistema > Status > Regras dos status (gravado em 2026-09-28 (diff conferido))",
+      "cobre": "as 11 poções, elixires e kits com +Int do Bazar são Ordinário, Incomum, Exótico ou Luxária"
     },
     "curaFonte": "L08, notion-sistema > Status > Regras dos status: \"A cura não passa do máximo.\" (gravado no Notion em 2026-09-27 (diff conferido))"
   },
@@ -2380,13 +2380,13 @@
       "atordoado"
     ],
     "nota": "NAO funda os dois eixos. Um serve para achar o card, o outro para decidir se a condicao pega.",
-    "mentalStatus": "canonicoParcial",
-    "mentalFonte": "notion-limiar: a única lista escrita de \"condições mentais\" está no texto de uma carta rara (não reproduzido aqui). A página Condições do Notion não tem seção \"Condições Mentais\". Correção da rev. 1, que dizia que a lista nunca foi escrita.",
+    "mentalStatus": "canonico",
+    "mentalFonte": "D122 (Pedro: \"condições mentais (Enfeitiçado, Amedrontado, Confuso, Atordoado)\"), notion-condicoes > topo: \"Condições mentais: Enfeitiçado, Amedrontado, Confuso e Atordoado.\" (gravado em 2026-09-28 (diff conferido)). Antes a única lista escrita estava no texto de uma carta rara do Limiar.",
     "mentalNotas": [
-      "Oco conta como mental por implicação: o pacto da Grande Árvore (Teurgo) \"remove alguma condição mental, exceto Oco\".",
+      "Oco não é condição mental (D122). O \"exceto Oco\" do pacto da Grande Árvore (Teurgo, \"remove alguma condição mental, exceto Oco\") fica redundante; não muda nada.",
       "Monge Ápatico dá um subconjunto: \"condições que são causadas por emoções (Enfeitiçado e Amedrontado)\".",
-      "Atordoado está nas DUAS listas (mental na lista do Limiar, física no Avatar do Vazio). Tags são eixo, não partição: pode ter as duas.",
-      "O grupoUI \"mentais\" do site (Confuso, Amedrontado, Descontrolado, Enfeitiçado, Bêbado) é agrupamento de interface e não bate com a lista: tem Descontrolado e Bêbado, não tem Atordoado. Para imunidade e vantagem (\"condições mentais\": Veterano, Grande Árvore) vale a tag, não o grupo. O Pedro perguntou onde está a lista (T16d, 2026-09-28); a resposta e a pergunta de qual lista vale estão no 17-respostas-T-e-sync.md."
+      "Atordoado está nas DUAS listas (mental pela D122, física no Avatar do Vazio). Tags são eixo, não partição: pode ter as duas.",
+      "O grupoUI \"mentais\" do site (Confuso, Amedrontado, Descontrolado, Enfeitiçado, Bêbado) é agrupamento de interface e não bate com a lista canônica: tem Descontrolado e Bêbado, não tem Atordoado. Imunidade, vantagem e remoção de \"condição mental\" (Veterano, Grande Árvore, Monge Ápatico) consultam a tag, não o grupo. Alinhar o grupo é decisão do site."
     ]
   },
   "empilhamento": {
@@ -2735,9 +2735,48 @@
     "requisitos": {
       "validar": "avisar",
       "validarStatus": "aprovado",
-      "regra": "Treinado em Mistico + Foco da escola equipado",
+      "regra": "Treinado em Místico + Foco da escola equipado",
+      "dispensa": {
+        "regra": "Conjurar sem ser Treinado em Místico ou sem o Foco só é possível quando a classe, raça ou origem que dá a magia diz isso explicitamente.",
+        "status": "canonico",
+        "fonte": "D123 (Pedro: \"conjuração sem treinado em místico é possível só quando a técnica explicita, fora isso é sempre com treinamento em místico e foco místico\"), notion-magias > Regras de Magia e notion-sistema > Magia (gravado em 2026-09-28 (diff conferido))",
+        "casos": [
+          {
+            "fonte": "corrompido-receptaculo-natural",
+            "dispensa": [
+              "foco"
+            ],
+            "exige": [
+              "treinadoMistico"
+            ],
+            "status": "canonico",
+            "verbatim": "Você pode conjurar duas magias de nível 1 de qualquer escola sem um foco designado, mas ao fazer isso rola Vontade (CD 12), recebendo 1d4 de dano Psíquico em caso de falha."
+          },
+          {
+            "fonte": "origem-cultista",
+            "dispensa": [],
+            "exige": [
+              "treinadoMistico",
+              "foco"
+            ],
+            "status": "canonico",
+            "nota": "O Cultista treina Religião ou Místico: com Religião, não conjura as 2 magias até ser Treinado em Místico por outra fonte.",
+            "verbatim": "Você conhece e consegue canalizar 2 magias de nível 1 de qualquer escola, porém deve canalizá-las através de um foco."
+          },
+          {
+            "fonte": "alquimista-cartucho-arcano",
+            "dispensa": [
+              "treinadoMistico",
+              "foco"
+            ],
+            "status": "decisao",
+            "nota": "Leitura minha: \"qualquer criatura pode conjurar\" é dispensa explícita para quem USA o cartucho. Quem cria rola Místico.",
+            "verbatim": "Qualquer criatura pode conjurar a magia infundida no cartucho, porém usa seus atributos como base dos CDs e ataques da magia respeitando, também, o custo de ações da magia."
+          }
+        ]
+      },
       "focosSimultaneos": 1,
-      "motivo": "P42 - 'avisar', nao 'bloquear': a origem Cultista concede 2 magias de Nivel 1 e a raca Corrompido tambem, SEM o gate. Bloquear quebraria as duas builds.",
+      "motivo": "P42 - \"avisar\", não \"bloquear\" (PD1: todo campo é editável). A leitura antiga (\"Cultista e Corrompido conjuram SEM o gate\") caiu com a D123: só o texto que dá a magia dispensa um requisito, e só o que ele disser.",
       "avisoPorFoco": "Avise tambem por FOCO, nao so por treino: so se pode empunhar 1 Foco por vez. Um Teurgo com 4 escolas aprendidas so conjura a da escola equipada, e ninguem lembra disso na mesa.",
       "validarFonte": "PD1 (todo campo editável) e, por analogia, PD23 (\"avisar, com pop-up de confirmação\"): a ficha avisa, não bloqueia"
     },
@@ -3877,7 +3916,7 @@
       "o": "Residuo da renumeracao de magia (D68)",
       "porque": "Dissipar Magia, Teurgo x3, Cultista, Corrompido, Desejo Sombrio.",
       "gravidade": "media",
-      "status": "gravado: Dissipar Magia (Magias) em 2026-09-26; o resto já estava corrigido. NOVO resíduo: Cartucho Arcano (Alquimista) \"(nível-1)\" (L18); L18 gravado em 2026-09-27. Fórmula do Cartucho reescrita em 2026-09-28 (T13a): Reagentes e CD pelo custo base de Éter; Nível 5 exige Foco Primordial. Aberto: cartucho de truque sai com 0 Reagentes (mínimo 1?)"
+      "status": "gravado: Dissipar Magia (Magias) em 2026-09-26; o resto já estava corrigido. NOVO resíduo: Cartucho Arcano (Alquimista) \"(nível-1)\" (L18); L18 gravado em 2026-09-27. Fórmula do Cartucho reescrita em 2026-09-28 (T13a): Reagentes e CD pelo custo base de Éter; Nível 5 exige Foco Primordial; \"(mínimo 1)\" nos Reagentes gravado no mesmo dia (D118)."
     },
     {
       "n": 20,

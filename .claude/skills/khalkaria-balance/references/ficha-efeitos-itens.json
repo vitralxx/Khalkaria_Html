@@ -1,6 +1,6 @@
 {
  "schemaVersion": "efeitos-itens/1.1",
- "geradoEm": "2026-09-28 (rev. 6: D111 Soro da Guerra e Veneno Hemorrágico no CSV; convenção maisInt = fabricante (L08, D117). rev. 5: L37 Anel do Esgrimista, L38 Elixir da Expurgação; CSV igual ao da main. rev. 4: rodada 3 — PD21 Grevas, PD22 Ae(Todos), PD23 Autômato, PD24, PD25, PD26a Marcas da Vhelor; convenção de crítico D97)",
+ "geradoEm": "2026-09-28 (rev. 7: tabela da média da raridade na convenção maisInt e pendência 12 resolvida, D121. rev. 6: D111 Soro da Guerra e Veneno Hemorrágico no CSV; convenção maisInt = fabricante (L08, D117). rev. 5: L37 Anel do Esgrimista, L38 Elixir da Expurgação; CSV igual ao da main. rev. 4: rodada 3 — PD21 Grevas, PD22 Ae(Todos), PD23 Autômato, PD24, PD25, PD26a Marcas da Vhelor; convenção de crítico D97)",
  "geradoPor": "ficha-efeitos-gerador.py + ficha-efeitos-overrides.json (branch claude/khalkaria-bazar-balance-lsdfic)",
  "fonte": {
   "csv": "references/bazar-v26.csv = data/Bazar_Khalkaria_v26.csv da main (751abae) + L38 (1 célula: Nome do Elixir da Expurgação) + D111 (2 células de Efeito: Soro da Guerra, Veneno Hemorrágico)",
@@ -44,7 +44,7 @@
    "fonteDeLuz": "servem de fonte de luz para o descanso longo",
    "alimento": "servem de alimento para o descanso longo"
   },
-  "maisInt": "'+Int' de poção, elixir ou kit = mod.INT de quem FABRICOU o item, gravado nele; item comprado (sem fabricante) soma a média da raridade (L08, D117; regras-ficha > itens.atributoCuraItem). A tabela da média ainda é do Pedro (pendência 12)",
+  "maisInt": "'+Int' de poção, elixir ou kit = mod.INT de quem FABRICOU o item, gravado nele; item comprado (sem fabricante) soma a média da raridade: Ordinário +1, Incomum +2, Exótico +3, Luxária +4 (L08, D117, D121; regras-ficha > recursos.atributoCuraItemMediaDaRaridade, fonte única da tabela)",
   "avisoRaca": "{<raca>: {modo:'confirmar', texto}}: a ficha avisa com pop-up de confirmação e deixa aplicar (PD23). Hoje só 'automato'.",
   "soParaRaca": "o item só funciona nessa raça (Kits de Manutenção: 'automato')",
   "marcaVhelor": "{soma, funcionaAteMarca?}: quanto o item move o contador de Marcas da Vhelor ao ser consumido. Textos e efeitos das 7 marcas no bloco 'marcasVhelor' (fonte única: marcas-vhelor.json)",
@@ -149,8 +149,8 @@
   {
    "n": 12,
    "item": "Poções, elixires e kits comprados",
-   "o": "'+Int' de item sem fabricante soma 'a média da raridade' (D117). Falta a tabela; proposta: Ordinário +1, Incomum +2, Exótico +3, Luxária +4.",
-   "status": "pendente: Pedro"
+   "o": "'+Int' de item sem fabricante soma a média da raridade: Ordinário +1, Incomum +2, Exótico +3, Luxária +4 (D117 + D121, gravado no Sistema). Cobre as 11 curas com +Int do Bazar.",
+   "status": "resolvido (D121)"
   }
  ],
  "marcasVhelor": {

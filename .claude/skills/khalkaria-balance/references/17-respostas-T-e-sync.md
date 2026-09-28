@@ -36,6 +36,22 @@ sincronizar no site."* → a §3 é esse log, e deve ser mantida a cada edição
 Permissões: o Pedro pediu, e `.claude/settings.json` libera `notion-fetch`, `notion-search` e
 `notion-update-page` (commits `eaf903e`, `ae476ba`).
 
+### 1b. Segunda leva (2026-09-28, noite): respostas às perguntas que sobraram
+
+Mensagem do Pedro, verbatim: *"Mínimo 1 no cartucho e caçador só possui 1 arma à distância. Pensar no futuro adicionar itens mais únicos nas origens. Coragem líquida é a cada 5 combates, você ganha +1 movimento. Média de raridade ok, bote no changelog a possiblidade de fazer uma função de comerciante no site html, simplfica para a sessão eu poder abrir uma loja na hora e mostrar aos jogadores na tela. Condições mentais: condições mentais (Enfeitiçado, Amedrontado, Confuso, Atordoado) As vozes é só o 1 natural no dado, e conjuração sem treinado em místico é possível só quando a técnica explicita, fora isso é sempre com treinamento em místico e foco místico."*
+
+| Tema | Decisão |
+|---|---|
+| Cartucho Arcano | **D118** Reagentes = custo base de Éter da magia, **mínimo 1**. Gravado. |
+| Caçador | **D119** só 1 arma à distância: a linha "1 Arma Distância Simples" saiu, fica "1 Arma à Distância". Gravado. **Ideia futura:** itens mais únicos nas origens. |
+| Coragem Líquida | **D120** a cada 5 combates vitoriosos sob Bêbado, +1 permanente na perícia Movimento (máx. +5). O Notion já diz isso; fecha a D106. |
+| Média da raridade | **D121** +Int de poção, elixir ou kit comprado: Ordinário +1, Incomum +2, Exótico +3, Luxária +4 (as 11 curas com +Int do Bazar estão nessas 4 raridades). Gravado no Sistema; fecha a D117. **Pedido ao site:** função de comerciante no CHANGELOG (§3.4). |
+| Condições mentais | **D122** Enfeitiçado, Amedrontado, Confuso e Atordoado. Gravado no topo da página Condições. Oco não é mental: o "exceto Oco" da Grande Árvore fica redundante. |
+| As Vozes | "só o 1 natural no dado": **falta confirmar qual dado** (só o d20, ou qualquer dado como o Notion diz hoje). Sem edição. |
+| Conjuração sem Místico | **D123** conjurar sem ser Treinado em Místico ou sem o Foco só quando a classe, raça ou origem que dá a magia diz isso explicitamente. Gravado em Magias (Regras de Magia) e Sistema (Magia). Consequências: Receptáculo Natural (Corrompido) dispensa só o foco; Cultista exige Místico + foco (quem treinou Religião não conjura as 2 magias até treinar Místico); Cartucho Arcano: quem usa não precisa (leitura minha, "qualquer criatura pode conjurar"). |
+
+Fora das perguntas, no mesmo dia: a **D76** (escada de poção, decisão do Pedro já aplicada no CSV) não estava na tabela da classe Alquimista. Gravado: Poção de Cura Maior 5d8+Int (era 4d8), Vigor Maior 3d8 (era 2d6), Cura Suprema 8d10+Int (era 6d8), Vigor Suprema 5d10 (era 3d8). Comparação por script da tabela inteira contra o CSV: nenhuma outra divergência de dado, CD ou Reagente.
+
 ---
 
 ## 2. Andamento (2026-09-28, fim da rodada)
@@ -47,10 +63,10 @@ Permissões: o Pedro pediu, e `.claude/settings.json` libera `notion-fetch`, `no
 - **Brutalista**: Tier 3; Postura Defensiva "derrubado (*Caído*) ou empurrado"; técnica geral **Investida → Atropelar**, "ficam *Caídos*. Conta como o Mover do turno."
 - **Teurgo**: Tier 3; Encadeamento "É uma exceção ao limite de 1 magia por turno. Os 3 de Stamina são pagos a cada uso."; Manifestação do Patrono "Fortitude/Reflexo/Vontade contra sua CD", "Efeito Caótico (role 1d6)"; Receptáculo Perfeito "Ao ultrapassar 50% do éter máximo nos negativos (a *Casca Rachada* dobra esse limite)".
 - **Monge**: Tier 3; Fluxo "…exceto quando o texto de uma técnica diz que você perde Fluxo."; Fluxo Invertido "+1 Fluxo ao receber dano (em vez de perder todo o Fluxo)"; Forma do Vazio "Ataques físicos (de arma e desarmados)"; Queda Suave "Por 1 minuto, você e até 5 criaturas à distância de toque não tomam dano de queda de até 30 m; em quedas maiores, o dano é reduzido em 5 × Nível."
-- **Alquimista** (`eac6e3a4…`): Tier 3 "1 vez por descanso longo"; Titã "- Avalanche:"; Cartucho Arcano "Custo de Criação: Reagentes iguais ao custo base de Éter da magia" e "o CD da criação é 10 + o custo base de Éter da magia. Cartuchos de magia de Nível 5 exigem Foco Primordial para serem criados." (texto aprovado na T13a, **sem** o "mínimo 1", que é pergunta); Elixir Especial "(1 Ação, 3 Stamina, 1 Reagente por alvo)"; Curandeiro Incansável "Ao curar uma criatura que estava *Morrendo* e remover a condição"; tabela: Soro da Guerra "+2 Atacar, +2 Defender, +2d6 dano, +3m Movimento, Vantagem em Fortitude. Duração 1 min.".
+- **Alquimista** (`eac6e3a4…`): Tier 3 "1 vez por descanso longo"; Titã "- Avalanche:"; Cartucho Arcano "Custo de Criação: Reagentes iguais ao custo base de Éter da magia" e "o CD da criação é 10 + o custo base de Éter da magia. Cartuchos de magia de Nível 5 exigem Foco Primordial para serem criados." (texto aprovado na T13a; o "mínimo 1" entrou na segunda leva); Elixir Especial "(1 Ação, 3 Stamina, 1 Reagente por alvo)"; Curandeiro Incansável "Ao curar uma criatura que estava *Morrendo* e remover a condição"; tabela: Soro da Guerra "+2 Atacar, +2 Defender, +2d6 dano, +3m Movimento, Vantagem em Fortitude. Duração 1 min.".
 - **Artilheiro** (`d896e3a4…`): Tier 3; Tiro Carregado "Margem de Ameaça +1"; Artesão de Munição "(Virotes/Flechas, Munição de Armas de Fogo ou Conjunto de Arremesso)"; Munição Especial "10 munições especiais contam como 1 bugiganga".
 - **Autômato** (`80c6e3a4…`): Sensor de Proximidade "Não pode ser *Desprevenido*."; Achar Tecnologias "+ As tecnologias de Tier 5 não podem ser obtidas em lojas e não entram na rolagem." (o d12 fecha com as 12 tecnologias dos Tiers 1–4).
-- **Caçador** (origem, `b8f6e3a4…`): "1 Arma Distância Simples" (⚠️ ver pergunta 6).
+- **Caçador** (origem, `b8f6e3a4…`): "1 Arma Distância Simples" (substituído na segunda leva: ver abaixo).
 - **Mineiro** (origem, `3dc6e3a4…`): "1 Cobre (1 Bugiganga)".
 - **Varredura por script** dos dumps das 7 classes: nenhum resíduo de "por dia", "Margem de Crítico", "surpreendido", "Adagas de lançamento" ou "Investida" fora da manobra. Os 2 que sobram são do Batedor (cabeçalho do Tier 3 e Golpe Instinto), que entra no rework.
 - **Batedor**: nada até o rework. Retrato da página antes do rework em `references/batedor-notion-antes-do-rework.txt` (última edição no Notion: 2026-09-26 07:16); o log do novo Batedor sai do diff com `ndiff.py`, mais o diagnóstico do `13-batedor-diagnostico.md`.
@@ -63,15 +79,21 @@ IDs das páginas novas: Raças `3a66e3a401d980318836edcfa11c8a24` (Gruto `9696e3
 - **Contrato rev. 8** (`scripts/log-tecnicas/contrato_rev8.py`, roda sobre a rev. 7 e recusa rodar duas vezes): `turno.acaoLivreTecnicaMaxPorTurno: 1` (D99); `turno.retaliacaoSemGastarReacao` (D98); PMA em técnica canônica (D100); `turno.multiAtaqueComoUmaAcao` (D101); `turno.conjuracoesExcecoes` (Encadeamento, Receptáculo Perfeito); `dano.desarmado` + `custoDeAcao.desarmado` (T12e; Arma Humana 1d8); `magia.intensidadeSubidaPorTecnica` canônico (D103); `classes.espadachim.espada` (D102); `recursoDeClasse` do Espadachim e do Teurgo canônico, **não é contador** (D105); exceções do Fluxo canônicas (D110); cura de item: tudo `fabricante`, **`atributoCuraItemSemFabricante` mudou de tipo: 0 → "mediaDaRaridade"**, e `atributoCuraItemMediaDaRaridade` novo (proposta +1/+2/+3/+4, `pedroDecide`); Rajada de Tiros com custo pela arma; nota do Sangramento sem nome de carta rara (resíduo antigo).
 - **16 + JSON, Revisão 1** (`scripts/log-tecnicas/resp_rev1.py`): 75 achados revisados; cada um guarda `statusRev0` e `revisao1`; `perguntasPedro[T]` com a resposta verbatim; `principios[G]` com `estadoRev1`. Balanceamento: 33 resolvidos, 73 leitura minha, 4 com o Pedro. Achados do Pedro: 34 resolvidos, 7 abertos (5 do Batedor).
 
+### Segunda leva (2026-09-28, noite): gravado e conferido por fetch + diff
+Só mudou o que está aqui; nada mais nas páginas.
+- **Alquimista:** Cartucho Arcano "Reagentes iguais ao custo base de Éter da magia (mínimo 1)" (D118); tabela, D76: Poção de Cura Maior "Recupera **5d8+Int** de Saúde.", Poção de Vigor Maior "Recupera 3d8 de Stamina.", Poção de Cura Suprema "Recupera 8d10+Int de Saúde + remove 1 condição à escolha.", Poção de Vigor Suprema "Recupera 5d10 de Stamina + remove todas as condições (Incluindo Mágicas).".
+- **Caçador:** a linha "1 Arma Distância Simples (1 Equipamento)" saiu; os itens iniciais ficam Vestes Robustas, 1 Arma à Distância, 1 Mochila Reforçada e 1 Comida (D119).
+- **Sistema:** Regras dos status, "Item comprado soma a média da raridade: Ordinário +1, Incomum +2, Exótico +3, Luxária +4." (D121); Magia, depois de "para finalmente conjura-la.": "Conjurar sem ser Treinado em Místico ou sem o Foco só é possível quando a classe, raça ou origem que dá a magia diz isso explicitamente." (D123).
+- **Magias:** a mesma frase da D123, logo depois da lista de requisitos ("3. Empunhar um **Foco** da escola correspondente.").
+- **Condições:** nova linha no topo, "**Condições mentais:** Enfeitiçado, Amedrontado, Confuso e Atordoado." (D122).
+- **Arquivos:** contrato **rev. 9** (`scripts/log-tecnicas/contrato_rev9.py`), efeitos **rev. 7**, 16 + JSON **Revisão 2** (`scripts/log-tecnicas/resp_rev2.py`). Balanceamento: 36 resolvidos, 71 leitura minha, 3 com o Pedro; achados do Pedro: 36 resolvidos, 5 abertos (os 5 do Batedor).
+
 ### Perguntas que continuam com o Pedro
-1. **Coragem Líquida:** "a cada combate" (chat) ou "a cada 5 combates" (Notion)? A ficha usa o Notion.
-2. **Média da raridade:** tabela do +Int de item comprado. Proposta: Ordinário +1, Incomum +2, Exótico +3, Luxária +4.
-3. **Condições mentais** (resposta ao "onde?"): a única lista escrita está na rara *Santuário Intocável* do Limiar ("imunes a condições mentais (Enfeitiçado, Amedrontado, Confuso, Atordoado)"); a página Condições não tem seção; o site agrupa outra lista (Confuso, Amedrontado, Descontrolado, Enfeitiçado, Bêbado). Usam o termo: origem Soldado (Veterano), Patrono Primordial e Manifestação do Patrono (Grande Árvore). Qual lista vale?
-4. **T15 (d) e (e):** As Vozes, só o d20? Receptáculo Natural e Cultista conjuram sem Treinado em Místico? (provisório: só d20; o traço libera)
-5. **Cartucho Arcano:** "mínimo 1 Reagente"? Pelo texto gravado, o cartucho de truque custa 0 e tem CD 10.
-6. **Caçador:** com "1 Arma Distância Simples", ele tem duas armas à distância (já tinha "1 Arma à Distância"). Se a "Arma Simples" era a faca de esfolar, o certo é "1 Arma Leve". Minha recomendação não viu a segunda linha.
-7. **D99 "quase toda":** ao pé da letra, passam a 1 vez por turno: Destruir, Barreira Instintiva, Sangue por Aço, Passo Afiado, Trêbado, Golpe Sequencial e as passivas com efeito de ação livre (Passo do Vento do Artilheiro, Ponto Fraco, Resistência Adaptável). Alguma é exceção?
-8. **Do lote anterior:** L14, L35, L39.
+1. **As Vozes:** "só o 1 natural no dado" vale só para o d20 (testes e ataques) ou para qualquer dado, dano incluso, como o Notion diz hoje ("Ao rolar 1 natural em qualquer dado")? Num ataque de 4d6, 52% das rolagens têm um 1. A ficha segue o Notion até lá.
+2. **Tabela do Alquimista:** 21 itens de Alquimia do CSV (Obtenção "Alquimista") não estão na tabela da classe: Aguardente de Raiz, Café Preto, Cerveja de Taverna, Comida Alquímica, Destilado de Arremesso, Elixir da Expurgação, Elíxir de Éter Menor e Moderado, Fermentado do Abismo, Licor de Ferro, Lágrimas do Tempo, Napalm Alquímico (área), Peçonha de Caçador, Poção de Vigor Moderada, Sonífero Rústico, Toxina do Esquecimento, Veneno da Viúva Pálida, Veneno de Lâmina Comum, Vinho Aguado, Óleo Sagrado e Última Rodada. Entram na tabela (com Reagentes e CD do CSV), ou ela fica só com as "fórmulas fundamentais"? E o nome: "Lágrima do Tempo" na classe, "Lágrimas do Tempo" no CSV.
+3. **D99 "quase toda":** ao pé da letra, passam a 1 vez por turno: Destruir, Barreira Instintiva, Sangue por Aço, Passo Afiado, Trêbado, Golpe Sequencial e as passivas com efeito de ação livre (Passo do Vento do Artilheiro, Ponto Fraco, Resistência Adaptável). Alguma é exceção?
+4. **Do lote anterior:** L14, L35, L39.
+5. **Batedor:** rework inteiro, depois o log do novo Batedor.
 
 ---
 
@@ -83,6 +105,7 @@ Tudo o que mudou no Notion desde o último sync do site. Regerar `data/*.json` e
 - **2026-09-26**: ver `15-ficha-rodada3.md` §A (Condições, Sistema, Magias, Limiar, 7 classes) e §Revisão 1 (D92–D97).
 - **2026-09-27**: ver `16-log-tecnicas.md` §3 (lote L: Sistema, Magias, Condições, Limiar, Monge, Alquimista, Template da ficha, Cultista).
 - **2026-09-28**: §2 acima: Sistema, Magias, Espadachim, Brutalista, Teurgo, Monge, Alquimista, Artilheiro, Autômato, Caçador, Mineiro.
+- **2026-09-28, segunda leva**: §2 "Segunda leva": Alquimista (Cartucho e 4 poções da D76), Caçador, Sistema, Magias, Condições.
 
 ### 3.2 Edições do Pedro (vistas nos fetches de 2026-09-28)
 - **Brutalista, Muralha Viva:** 2º item agora "Você recebe+1 na perícia *Defender* a cada treinamento dessa perícia." (era "O treinamento da sua perícia Defender aumenta de 3 em 3 (Ao invés de 2 em 2)").
@@ -99,18 +122,39 @@ Tudo o que mudou no Notion desde o último sync do site. Regerar `data/*.json` e
 - `ficha-efeitos-itens.json` **rev. 6**: `item-soro-da-guerra` (lembrete novo) e `item-veneno-hemorragico` (efeito novo); convenção `maisInt`.
 - `log-tecnicas-respostas.json` **Revisão 1**: campos novos `statusRev0`, `revisao1`, `perguntasPedro[T].respostaPedro/decisao/estado`, `principios[G].estadoRev1/revisao1`, `revisao.abertas`, `contagemRev0`.
 - `Bazar_Khalkaria_v26.csv`: 2 células de Efeito (D111). Regerar o Bazar.
-- Páginas a regerar: Sistema, Magias, 6 classes (menos Batedor), Raças (Autômato, Gruto), Origens (Caçador, Mineiro).
+- Páginas a regerar: Sistema, Magias, Condições, 6 classes (menos Batedor), Raças (Autômato, Gruto), Origens (Caçador, Mineiro).
+- **Segunda leva:** `ficha-digital-regras.json` **rev. 9**: `recursos.atributoCuraItemMediaDaRaridade` canônico (sem `pergunta`/`provisorio`); `taxonomiaDeCondicao.mental` canônico, com fonte na página Condições; `magia.requisitos.dispensa` novo (regra da D123 e 3 casos); `magia.requisitos.motivo` reescrito (a leitura "Cultista e Corrompido conjuram sem o gate" caiu). `ficha-efeitos-itens.json` **rev. 7**: convenção `maisInt` com a tabela; pendência 12 resolvida. `log-tecnicas-respostas.json` **Revisão 2**: campos `statusRev1`, `revisao2`, bloco `revisao2`, `contagemRev1`.
+- **Grupo "mentais" do site:** a lista canônica (D122) é Enfeitiçado, Amedrontado, Confuso e Atordoado; o grupo da página de Condições tem Descontrolado e Bêbado e não tem Atordoado. Alinhar é decisão do site; imunidade e remoção de "condição mental" usam a lista canônica.
+
+### 3.4 Pedido do Pedro para o CHANGELOG do site
+O Pedro pediu (2026-09-28): *"bote no changelog a possiblidade de fazer uma função de comerciante no site html, simplfica para a sessão eu poder abrir uma loja na hora e mostrar aos jogadores na tela."* O `CHANGELOG.md` é do agente de HTML e fica na main; este branch não mexe nele. Texto pronto para colar no topo:
+
+```markdown
+## Não lançado
+
+### Ideias
+- **Função de comerciante** (pedido do Pedro, 2026-09-28): abrir uma loja na hora, durante a sessão, e
+  mostrar aos jogadores na tela. "Simplifica para a sessão eu poder abrir uma loja na hora e mostrar aos
+  jogadores na tela."
+```
+
+Regras que uma loja toca, para quem for desenhar (todas já canônicas):
+- Preço é informativo e nada trava por Sins (CLAUDE.md §5 e §10).
+- `Valor (Sins)` do CSV é fórmula de dado (ex.: "5d12+180"); `Obtenção` tem formato fixo e marca "Loja" nos itens vendáveis, com região e raridade (D77).
+- Poção, elixir ou kit comprado: +Int = média da raridade, Ordinário +1, Incomum +2, Exótico +3, Luxária +4 (D121; contrato `recursos.atributoCuraItemMediaDaRaridade`).
+- Preço por personagem: *A Criatura* (adversidade do Corrompido) paga 50% a mais, e o grupo inteiro se o comerciante o perceber com ele; *Língua Prateada* (Batedor) dá 25% de desconto num item ao passar em Convencimento; *Olho no Lance* (Batedor) recebe 20% a mais ao vender. As duas do Batedor podem mudar no rework.
+- Tecnologias de Autômato numa loja: d100 e depois d12 pela lista dos Tiers 1–4; Tier 5 fica fora (Autômato > Achar Tecnologias).
 
 ---
 
 ## 4. Ferramentas no repo
 
-- `scripts/log-tecnicas/build16.py` (+ `resp_a/b/c/p.py`, `resp_rev1.py`, `log_achados.json`) gera
+- `scripts/log-tecnicas/build16.py` (+ `resp_a/b/c/p.py`, `resp_rev1.py`, `resp_rev2.py`, `log_achados.json`) gera
   `references/16-log-tecnicas.md` e `references/log-tecnicas-respostas.json` byte a byte. Uma nova revisão
-  se faz num `resp_rev2.py` no mesmo formato, ligado no `build16.py`.
-- `scripts/log-tecnicas/contrato_rev8.py`: patch rev. 7 → rev. 8 do contrato (histórico; não roda de novo).
+  se faz num `resp_rev3.py` no mesmo formato, ligado no `build16.py` (guardar `statusRev2`).
+- `scripts/log-tecnicas/contrato_rev8.py` e `contrato_rev9.py`: patches rev. 7 → 8 → 9 do contrato (histórico; cada um recusa rodar fora da revisão certa).
 - `scripts/log-tecnicas/ndiff.py antigo novo [saida]`: diff de dois dumps do `notion-fetch` (ignora a
   query string das URLs S3). Uso: conferir cada gravação no Notion.
 - Contrato: `ficha-digital-regras.json` se grava com `json.dumps(d, ensure_ascii=False, indent=2)` sem
-  newline final. Efeitos: `ficha-efeitos-gerador.py --escrever` (rev. 6; sha256 do CSV no campo `fonte`).
+  newline final. Efeitos: `ficha-efeitos-gerador.py --escrever` (rev. 7; sha256 do CSV no campo `fonte`).
 - Carta rara: nenhum nome nem efeito de rara em campo de nota dos 3 JSON (o sync do site apaga a frase). Conferir por conjunto contra `data/limiar.json` (entradas com `req` e sem `effect`).
