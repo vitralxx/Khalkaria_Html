@@ -90,7 +90,9 @@ tools/blocos.py                blocos classe/raca/origem (F1b): marcadores {{cla
 tools/alias_ids.json           ids do contrato do balanceamento fora da convenção -> id do site
 tools/componentes-baseline.json piso da contagem de cada classe CSS de componente por
                                página de classe (checagem [componentes] do validar)
-tools/testes/                  testes node do motor KhInv e do KhEstado (*.test.js, fixtures/);
+tools/gerar_regras_ficha.py    F3b: contrato regras-ficha + blocos do site -> js/ficha/00-regras-dados.js
+                               (AST com status/fonte por nó; status desconhecido derruba o build)
+tools/testes/                  testes node do motor KhInv, do KhEstado e do KhRegras (*.test.js, fixtures/);
                                index.js deixa `node --test tools/testes` rodar no Node 22+;
                                esquema-min.js: validador mínimo de JSON Schema (sem pip) dos
                                testes do schema v3; estado-apoio.js: catálogo real + storage falso;
@@ -157,12 +159,21 @@ js/utils.js                    sidebar direita (índice, recentes, busca)
 js/ficha/                      FONTE da Ficha Interativa (F2a), um módulo por arquivo,
                                cada um uma IIFE (window.KhX; module.exports no node):
 js/ficha/ORDEM                   manifesto: ordem de concatenação (dependência antes)
+js/ficha/00-regras-dados.js      ARTEFATO (tools/gerar_regras_ficha.py): as regras compiladas,
+                                 window.KhRegrasDados. Não editar
 js/ficha/kh-inv.js               KhInv, motor PURO (carga, migração, reconciliação,
                                  export de armas; sem DOM, testável no node)
 js/ficha/kh-estado.js            KhEstado (F3a), PURO: estado v3, migração 1.0→2.0→3.0,
                                  ajustes (modelo M2), várias fichas (D36) sobre storage
                                  injetado, export/import, guarda de versão. MODO SOMBRA:
                                  nada instancia o armazém no site até a F4
+js/ficha/kh-efeitos.js           KhEfeitos (F3b), PURO: coleta os Mods com a trilha
+                                 (raça, fontes do contrato, entradas, nível, condições,
+                                 itens pelo "quando", ajustes) e resolve o acúmulo
+js/ficha/kh-ajustes.js           KhAjustes (F3b), PURO: ajuste manual aplicado por nó (M2)
+js/ficha/kh-regras.js            KhRegras (F3b), PURO: grafo de derivados em ordem
+                                 topológica; cada nó com termos, status, selos e a
+                                 fórmula do tooltip. MODO SOMBRA: nada chama no site
 js/ficha/ficha-v2.js             drawer, estado v2, decoração dos cards e a API
                                  window.KF (§8); no node não roda
 js/ficha.js                    ARTEFATO (tools/ficha_js.py): concatenação de js/ficha/
@@ -737,6 +748,37 @@ existência das chaves v3 não trava nada. `importJSON` recusa
   leva essas cruas em `dados.ilegiveis` e devolve `erros`.
 - Ajuste: chaves e tipos fechados como `$defs/ajuste`; nos campos que são dado
   (`evasao.ativa`, `pericia.defender.total`) o `fixa` é expressão de dado.
+
+**KhRegras, KhEfeitos, KhAjustes (F3b, modo sombra).** Puros; no site só são
+carregados (nada os chama até a F4). No node, carregados sozinhos, exportam por
+`module.exports`; dentro do artefato veem o `KhInv` no export e param.
+- `KhRegras.avaliar(ficha, {efeitos})` devolve `{versao, nos, ordem, efeitos,
+  condicoes, avisos, alertas}`. Cada nó: `{caminho, rotulo, valor, calculado,
+  ajuste, termos:[{rotulo, fonte:{tipo,id,nome}, op, valor, ativo, motivo,
+  status}], formula:{simbolica, numerica}, status, selos, avisos, lembretes}`.
+  `formula` é o texto do tooltip (M2): "10 + Vitalidade × Nível + Mod.CON × Nível"
+  / "= 10 + 6 × 3 + 2 × 3 = 34"; com ajuste termina em "· calculado X · ajustado Y".
+- Nós: `atributo.<A>.total|mod`, `pericia.<slug>.total` (Defender e Evasão Ativa
+  são expressão de dado), `recurso.(saude|stamina|eter|classe).max`,
+  `evasao.passiva|ativa`, `cd`, `movimento`, `acoes`, `capacidade.*`, `carga`
+  (Sobrepeso automático), `ar`, `ae.<tipo|categoria|todos>`,
+  `resistencia|imunidade|vulnerabilidade.<tipo>`, `defesa.<tipo>` (redução fixa
+  por tipo), `magia.<id>.custo`, `ataque.<uid>.atacar|dano` (progressão da PMA em
+  `progressao`), `limiar.saldo`, `morrendo.tique`. Os caminhos ajustáveis são os
+  do `KhEstado.PADRAO_AJUSTE`; `carga`, `defesa.*` e `morrendo.tique` são só leitura.
+- Status: o nó leva o pior status dos termos ativos e junta os selos pelo mapa
+  do `00-regras-dados.js` (`decisaoPedro`, `pendentePedro`, `pendenteBalanceamento`,
+  `avisoClasse`, `ajuste`). Regra sem status no contrato sai `semStatus`.
+- Escolhas lidas de `identidade.escolhas` (livre até a F4c): `raca.atributos`
+  (`'alternativo'`), `raca.atributos.<i>` (atributo ou lista, nos bônus com "ou"
+  ou "qualquer"), `attr.recurso.stamina|eter` e `attr.cd` (troca do "maior", D7);
+  as 4 perícias "maior" usam `periciasAttr`. Carta especial: `estado.pontos`;
+  bônus rolado: `estado.valorRolado`; técnica só vale com `estado.ativo`.
+- `KhRegras.calculados(ficha, op)` é o `calculado` que o `KhEstado` usa para
+  podar os ajustes migrados; `KhRegras.custoMagia(p)` e `resolverTeste(fontes)`
+  ficam expostos para a Mesa (F5).
+- A capacidade vem do `KhInv` (`inv.capacidade`) até a F6: os Mods `capacidade.*`
+  de `data/efeitos.json` ficam na trilha, inativos, para não contar duas vezes.
 
 **`data-kf-ignorar`.** O `MutationObserver` que redecora os cards ignora
 mudanças dentro de `[data-kf-ignorar]`, e `decorarBazar` não decora card ali
