@@ -858,9 +858,18 @@
       var escola = D.magia.modulacoes[info.escola] || {};
       var mods = lista(est.modulacoes).map(function (id) { return { id: id, nome: id, custo: escola[id] }; })
         .filter(function (m) { return typeof m.custo === 'number'; });
-      var no = custoMagia({ id: e.id, nome: str(e.cache && e.cache.nome), nivel: info.nivel, intensidade: est.intensidade || 'normal',
-        intensidades: info.intensidades, modulacoes: mods, multiplicadores: mult, descontos: [], pactuada: est.pactuada === true }, D, caminho);
-      no.magia = { id: e.id, nivel: info.nivel, escola: info.escola };
+      var p = { id: e.id, nome: str(e.cache && e.cache.nome), nivel: info.nivel, intensidade: est.intensidade || 'normal',
+        intensidades: info.intensidades, modulacoes: mods, multiplicadores: mult, descontos: [], pactuada: est.pactuada === true };
+      var no = custoMagia(p, D, caminho);
+      no.magia = { id: e.id, nivel: info.nivel, escola: info.escola, intensidade: p.intensidade };
+      // o custo nas 4 intensidades (tabela do grimório e prévia): a mesma conta,
+      // com as mesmas modulações e multiplicadores; o ajuste manual do nó vale só
+      // para a intensidade escolhida (estado.intensidade)
+      no.porIntensidade = Object.keys(NOME_INT).map(function (it) {
+        var sub = custoMagia(Object.assign({}, p, { intensidade: it }), D, caminho + '.' + it);
+        return { intensidade: it, nome: NOME_INT[it], escolhida: it === p.intensidade,
+          permitida: lista(info.intensidades).indexOf(it) >= 0, no: sub };
+      });
       return no;
     }
 

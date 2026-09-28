@@ -94,16 +94,16 @@ test('as fontes carregam no node; o artefato js/ficha.js segue devolvendo o KhIn
   assert.equal(typeof globalThis.window, 'undefined');
 });
 
-test('navegador (vm): as fontes do ORDEM registram KhRegrasDados/KhEfeitos/KhAjustes/KhRegras e avaliam sem storage', () => {
+test('navegador (vm): as fontes do ORDEM registram KhRegrasDados/KhEfeitos/KhAjustes/KhRegras/KhPrevia e avaliam sem storage', () => {
   const toque = [];
   const proibido = new Proxy({}, { get: (_, k) => { toque.push(String(k)); throw new Error('storage tocado'); } });
   const win = { localStorage: proibido, sessionStorage: proibido };
   const sb = vm.createContext({ window: win });
   const ordem = fs.readFileSync(path.join(A.RAIZ, 'js', 'ficha', 'ORDEM'), 'utf8').split(/\r?\n/)
     .map((l) => l.trim()).filter((l) => l && !l.startsWith('#') && l !== 'ficha-v2.js');
-  assert.deepEqual(ordem, ['00-regras-dados.js', 'kh-inv.js', 'kh-estado.js', 'kh-efeitos.js', 'kh-ajustes.js', 'kh-regras.js']);
+  assert.deepEqual(ordem, ['00-regras-dados.js', 'kh-inv.js', 'kh-estado.js', 'kh-efeitos.js', 'kh-ajustes.js', 'kh-regras.js', 'kh-previa.js']);
   ordem.forEach((n) => vm.runInContext(fs.readFileSync(path.join(A.RAIZ, 'js', 'ficha', n), 'utf8'), sb, { filename: n }));
-  ['KhRegrasDados', 'KhInv', 'KhEstado', 'KhEfeitos', 'KhAjustes', 'KhRegras'].forEach((k) => assert.ok(win[k], k));
+  ['KhRegrasDados', 'KhInv', 'KhEstado', 'KhEfeitos', 'KhAjustes', 'KhRegras', 'KhPrevia'].forEach((k) => assert.ok(win[k], k));
   const r = win.KhRegras.avaliar(ficha({ classe: 'monge', raca: 'humano', nivel: 2 }));
   assert.equal(r.nos['recurso.saude.max'].valor, 10 + 5 * 2);
   assert.deepEqual(toque, []);
@@ -395,6 +395,42 @@ test('custo de magia na ficha: pela entrada (intensidade, modulação da escola)
   f.entradas.push({ uid: 'd1', tipo: 'dor', id: 'abismo-mente-fraca', estado: {}, cache: { nome: 'Mente Fraca', versaoCatalogo: '' }, mods: [] });
   r = R.avaliar(f);
   assert.equal(val(r, 'magia.magia-dardo-arcano.custo'), 4);
+});
+
+test('custo de magia por intensidade (F3c): as 4 colunas com a mesma conta, Nv1 sem Contida, multiplicador em todas', () => {
+  const f = ficha({ classe: 'teurgo' });
+  f.entradas.push({ uid: 'm1', tipo: 'magia', id: 'magia-fagulha', estado: { intensidade: 'forcada' },
+    cache: { nome: 'Fagulha', versaoCatalogo: '' }, mods: [] });
+  f.entradas.push({ uid: 'm2', tipo: 'magia', id: 'magia-dardo-arcano', estado: { intensidade: 'normal' },
+    cache: { nome: 'Dardo Arcano', versaoCatalogo: '' }, mods: [] });
+  const cols = (r, id) => Object.fromEntries(r.nos['magia.' + id + '.custo'].porIntensidade.map((x) => [x.intensidade, x]));
+  let r = R.avaliar(f);
+  let fa = cols(r, 'magia-fagulha');
+  assert.deepEqual(Object.keys(fa), ['contida', 'normal', 'forcada', 'transbordante']);
+  assert.equal(fa.contida.permitida, false);
+  assert.equal(fa.contida.no.valor, null, 'Nível 1 não tem Contida');
+  assert.equal(fa.normal.no.valor, 0);
+  assert.equal(fa.forcada.no.valor, 2);
+  assert.equal(fa.transbordante.no.valor, 4);
+  assert.equal(fa.forcada.escolhida, true);
+  assert.equal(val(r, 'magia.magia-fagulha.custo'), fa.forcada.no.valor, 'o nó é a coluna escolhida');
+  const nv = D.magia.porId['magia-dardo-arcano'].nivel, base = D.magia.custoBase[nv - 1];
+  const da = cols(r, 'magia-dardo-arcano');
+  assert.equal(da.contida.no.valor, Math.max(1, base - 2));
+  assert.equal(da.transbordante.no.valor, base + 4);
+  Object.values(da).forEach((x) => {
+    assert.ok(x.no.formula.simbolica && x.no.formula.numerica, x.intensidade + ' com fórmula');
+    assert.equal(x.no.caminho, 'magia.magia-dardo-arcano.custo.' + x.intensidade);
+  });
+  // Mente Fraca (×2) vale em todas as colunas; o ajuste manual só no nó da escolhida
+  f.entradas.push({ uid: 'd1', tipo: 'dor', id: 'abismo-mente-fraca', estado: {}, cache: { nome: 'Mente Fraca', versaoCatalogo: '' }, mods: [] });
+  f.ajustes['magia.magia-dardo-arcano.custo'] = { modo: 'fixa', valor: 9, motivo: '', temporario: false, desde: '2026-09-28T12:00:00.000Z' };
+  r = R.avaliar(f);
+  const db = cols(r, 'magia-dardo-arcano');
+  assert.equal(db.normal.no.valor, base * 2);
+  assert.equal(db.transbordante.no.valor, (base + 4) * 2);
+  assert.equal(val(r, 'magia.magia-dardo-arcano.custo'), 9);
+  assert.equal(db.normal.no.ajuste, null);
 });
 
 // ---------------- ataque e PMA ----------------
