@@ -45,7 +45,20 @@ const EF = {
     { alvo: 'pericia.defender', op: 'soma', valor: 1, quando: 'equipado', condicao: 'reacaoDefender', acumula: true, status: 'canonico' },
     { alvo: 'movimento', op: 'soma', valor: -1.5, quando: 'equipado', acumula: true, status: 'canonico' }] },
   'item-t-capa': { quando: 'equipado', acumulaCopia: true, status: 'canonico', mods: [
-    { alvo: 'evasao.passiva', op: 'soma', valor: 1, quando: 'equipado', acumula: true, status: 'aprovado' }] }
+    { alvo: 'evasao.passiva', op: 'soma', valor: 1, quando: 'equipado', acumula: true, status: 'aprovado' }] },
+  // mesma forma da Coroa de Kha (decisão): +2 DES
+  'item-t-coroa': { quando: 'carregado', acumulaCopia: false, status: 'decisao', mods: [
+    { alvo: 'atributo.DES', op: 'soma', valor: 2, quando: 'carregado', acumula: true, status: 'decisao' }] },
+  // fonte sem status em CON (para a propagação até o tique de Morrendo)
+  'item-t-con': { quando: 'carregado', acumulaCopia: false, status: 'semStatus', mods: [
+    { alvo: 'atributo.CON', op: 'soma', valor: 2, quando: 'carregado', acumula: true, status: 'semStatus' }] },
+  // percentual sintético no máximo (a forma do Sacrifício Vivo ×0,5)
+  'item-t-meia': { quando: 'carregado', acumulaCopia: false, status: 'canonico', mods: [
+    { alvo: 'recurso.stamina.max', op: 'multiplica', valor: 0.5, quando: 'carregado', acumula: true, status: 'canonico' }] },
+  'item-t-pma-soma': { quando: 'carregado', acumulaCopia: false, status: 'aprovado', mods: [
+    { alvo: 'pma', op: 'soma', valor: 2, quando: 'carregado', acumula: true, status: 'aprovado' }] },
+  'item-t-pma-fixa': { quando: 'carregado', acumulaCopia: false, status: 'aprovado', mods: [
+    { alvo: 'pma', op: 'fixa', valor: -3, quando: 'carregado', acumula: true, status: 'aprovado' }] }
 };
 let nUid = 0;
 const item = (id, extra) => Object.assign({ uid: 'i' + (++nUid), id, nome: id.replace(/^item-/, ''), qtd: 1,
@@ -576,17 +589,35 @@ test('técnica só vale ativa; a trilha diz de onde veio cada Mod', () => {
   assert.ok(F.porFonte(r.efeitos)['ajuste:cd'], 'o ajuste também está na trilha');
 });
 
-test('derivados com catálogo indisponível: os números são os mesmos (regras síncronas no bundle)', () => {
-  const f = fichaCheia();
-  const idx = E.indiceCatalogo(A.entradasCatalogo(), 'teste');
-  const com = R.avaliar(f, { efeitos: EFEITOS, catalogo: idx });
-  const sem = R.avaliar(f, { efeitos: EFEITOS, catalogo: null });
-  assert.deepEqual(sem.ordem, com.ordem);
-  sem.ordem.forEach((c) => assert.deepEqual(sem.nos[c].valor, com.nos[c].valor, c));
+test('catálogo indisponível: o snapshot entrada.mods, reconciliado e depois órfão, dá o mesmo número', () => {
+  // o catálogo real ainda não tem Mods (data/catalogo/*.json): uma cópia com uma origem que dá +1 na Passiva
+  const ents = A.entradasCatalogo().map((e) => (e.id === 'origem-academico'
+    ? Object.assign({}, e, { mods: [{ alvo: 'evasao.passiva', op: 'soma', valor: 1, status: 'decisao' }] }) : e));
+  const idx = E.indiceCatalogo(ents, 'com-mods');
+  const f = ficha({ attrs: { DES: 14 } });
+  f.entradas.push({ uid: 'o1', tipo: 'origem', id: 'origem-academico', estado: {}, cache: { nome: 'Acadêmico', versaoCatalogo: '' }, mods: [] });
+  assert.equal(val(R.avaliar(f, { efeitos: EF, catalogo: idx }), 'evasao.passiva'), 12, 'sem reconciliar, ainda sem snapshot');
+  assert.deepEqual(E.reconciliar(f, idx), []);
+  assert.equal(f.entradas[0].mods.length, 1, 'o snapshot acompanha o catálogo');
+  const com = R.avaliar(f, { efeitos: EF, catalogo: idx });
+  assert.equal(val(com, 'evasao.passiva'), 13);
+  assert.deepEqual(com.nos['evasao.passiva'].selos, ['decisaoPedro']);
+  // o id some do catálogo: a entrada fica órfã e o snapshot segue valendo
+  const idx2 = E.indiceCatalogo(ents.filter((e) => e.id !== 'origem-academico'), 'sem-academico');
+  assert.deepEqual(E.reconciliar(f, idx2), ['o1']);
+  assert.equal(f.entradas[0].orfao.motivo, 'sumiu');
+  [R.avaliar(f, { efeitos: EF, catalogo: idx2 }), R.avaliar(f, { efeitos: EF, catalogo: null })].forEach((sem) => {
+    assert.deepEqual(sem.ordem, com.ordem);
+    sem.ordem.forEach((c) => assert.deepEqual(sem.nos[c].valor, com.nos[c].valor, c));
+    const m = sem.efeitos.mods.find((x) => x.fonte.id === 'origem-academico');
+    assert.equal(m.ativo, true);
+    assert.match(m.motivo, /entrada órfã/);
+  });
   // sem data/efeitos.json: os itens saem dos números, mas com aviso (nada calado)
-  const semEf = R.avaliar(f, { efeitos: null });
+  const g = fichaCheia();
+  const semEf = R.avaliar(g, { efeitos: null });
   assert.ok(semEf.avisos.some((a) => a.tipo === 'efeitos-indisponiveis'));
-  assert.equal(semEf.nos.ar.valor, com.nos.ar.valor - 2);
+  assert.equal(semEf.nos.ar.valor, R.avaliar(g, { efeitos: EFEITOS }).nos.ar.valor - 2);
 });
 
 test('migração real (Lira, Batedor nv2): o calculado do KhRegras é o que o F3a contou à mão e poda os ajustes', () => {
@@ -603,4 +634,148 @@ test('migração real (Lira, Batedor nv2): o calculado do KhRegras é o que o F3
   const r = R.avaliar(g, { efeitos: EFEITOS });
   assert.equal(val(r, 'recurso.saude.max'), 22, 'o máximo digitado na v2 (22) segue como ajuste');
   assert.equal(r.nos['recurso.saude.max'].calculado, 20);
+});
+
+// ---------------- correções da revisão da F3b ----------------
+test('fórmula numérica com Mod negativo multiplicando o Nível: "10 + 3 × 3 − 2 × 3" (sem parêntese quebrado)', () => {
+  const r = R.avaliar(ficha({ classe: 'teurgo', nivel: 3, attrs: { FOR: 6, DES: 7, CON: 7, INT: 8, SAB: 9 } }));
+  assert.equal(r.nos['recurso.saude.max'].formula.numerica, '= 10 + 3 × 3 − 2 × 3 = 13');
+  assert.equal(r.nos['recurso.stamina.max'].formula.numerica, '= 8 + 3 × 3 − 2 × 3 = 11');
+  assert.equal(r.nos['recurso.eter.max'].formula.numerica, '= 6 + 9 × 3 − 1 × 3 = 30');
+  assert.equal(r.nos['pericia.reflexos.total'].formula.numerica, '= −2 + 0 = −2');
+  const soma = (b) => R.aval({ t: 'op', op: '+', a: { t: 'num', v: 1 }, b }, { ref: () => ({}) }).num;
+  assert.equal(soma({ t: 'num', v: -2 }), '1 − 2');
+  assert.equal(soma({ t: 'op', op: '+', a: { t: 'num', v: -2 }, b: { t: 'num', v: 3 } }), '1 − 2 + 3');
+});
+
+test('status não canônico se propaga pelos nós dependentes (atributo → Mod → Evasão, perícia, CD, Morrendo)', () => {
+  const f = ficha({ classe: 'monge', attrs: { DES: 14, SAB: 12 }, pericias: { defender: 1 } });
+  f.inventario.bugigangas.push(item('item-t-coroa'));
+  let r = avalia(f);
+  assert.equal(val(r, 'atributo.DES.total'), 16);
+  ['atributo.DES.total', 'atributo.DES.mod', 'evasao.passiva', 'evasao.ativa', 'pericia.reflexos.total', 'cd']
+    .forEach((c) => assert.ok(r.nos[c].selos.includes('decisaoPedro'), c + ' sem o selo da fonte decisão'));
+  assert.deepEqual(r.nos['atributo.FOR.mod'].selos, [], 'o que não depende de DES fica sem selo');
+  // variante sem status (Dryad Cascaferro): o selo sai da Passiva e chega à Ativa
+  r = R.avaliar(ficha({ raca: 'dryad', variante: 'dryad-cascaferro', classe: 'monge', nivel: 5, attrs: { DES: 14 } }));
+  assert.ok(r.nos['evasao.passiva'].selos.includes('pendenteBalanceamento'));
+  assert.ok(r.nos['evasao.ativa'].selos.includes('pendenteBalanceamento'));
+  // CON sem status: o selo chega à Saúde máx. e ao tique de Morrendo
+  const h = ficha({ classe: 'brutalista', nivel: 2, attrs: { CON: 12 } });
+  h.inventario.bugigangas.push(item('item-t-con'));
+  r = avalia(h);
+  assert.ok(r.nos['recurso.saude.max'].selos.includes('pendenteBalanceamento'));
+  assert.ok(r.nos['morrendo.tique'].selos.includes('pendenteBalanceamento'));
+});
+
+test('"extra" da fonte nunca some: Premonição Etérica troca o dado de Defender (2d6) e o "+1 Reação Máxima" vira lembrete', () => {
+  const f = ficha({ raca: 'corrompido', attrs: { DES: 12 }, pericias: { defender: 1 } });
+  f.entradas.push({ uid: 'p', tipo: 'corrupcao', id: 'corrompido-premonicao-eterica', estado: {}, cache: { nome: 'Premonição Etérica', versaoCatalogo: '' }, mods: [] });
+  let r = R.avaliar(f);
+  assert.equal(val(r, 'evasao.passiva'), 12);
+  assert.equal(val(r, 'pericia.defender.total'), '2d6', 'o 1d8 do Treinado é menor: vale 2d6');
+  assert.equal(val(r, 'evasao.ativa'), '12 + 2d6');
+  assert.ok(r.nos['pericia.defender.total'].selos.includes('decisaoPedro'));
+  assert.ok(r.nos['evasao.ativa'].selos.includes('decisaoPedro'));
+  assert.equal(termo(r.nos['pericia.defender.total'], /^Dado de Defender \(/).ativo, false);
+  assert.ok(r.nos['evasao.passiva'].lembretes.some((l) => l.op === 'extra' && /2d6/.test(l.msg)));
+  f.pericias.defender = 4;
+  r = R.avaliar(f);
+  assert.equal(val(r, 'pericia.defender.total'), '2d8', 'o Lendário mantém 2d8');
+  assert.match(termo(r.nos['pericia.defender.total'], /Premonição/).motivo, /não é menor/);
+  const g = ficha({ attrs: { DES: 10 } });
+  g.entradas.push({ uid: 'e', tipo: 'beneficio', id: 'abismo-esquiva-lendaria', estado: {}, cache: { nome: 'Esquiva Lendária', versaoCatalogo: '' }, mods: [] });
+  r = R.avaliar(g);
+  assert.equal(val(r, 'evasao.passiva'), 15);
+  ['evasao.passiva', 'evasao.ativa'].forEach((c) => {
+    assert.ok(r.nos[c].lembretes.some((l) => l.op === 'extra' && /Reacao Maxima/.test(l.msg)), c);
+    assert.equal(termo(r.nos[c], /além do número/).status, 'semStatus', c);
+  });
+});
+
+test('Exaurido marca as 24 perícias; estados finais (Exaustão 5, Saúde/Éter abaixo de −⌊máx/2⌋, Desnutrido zerando) só alertam', () => {
+  const f = ficha({ classe: 'teurgo', nivel: 2, attrs: { CON: 12, INT: 12 } });
+  f.condicoes.push(cond('exaurido'), cond('exaustao', 5));
+  let r = avalia(f);
+  D.pericias.forEach((p) => assert.ok(r.nos['pericia.' + p.id + '.total'].lembretes.some((l) => l.op === 'semAcao' && l.alvo === 'todasAsPericias'), p.id));
+  const ex = r.alertas.find((a) => a.id === 'exaustao-5');
+  assert.equal(ex.tipo, 'estado-final');
+  assert.equal(ex.automatico, false);
+  assert.match(ex.msg, /morte/);
+  const smax = val(r, 'recurso.saude.max'), emax = val(r, 'recurso.eter.max');
+  f.recursos.saude.atual = -Math.floor(smax / 2);
+  f.recursos.eter.atual = -Math.floor(emax / 2);
+  r = avalia(f);
+  assert.ok(!r.alertas.some((a) => a.id === 'saude-abaixo-metade-negativa'), 'no limite exato ainda não');
+  f.recursos.saude.atual -= 1; f.recursos.eter.atual -= 1;
+  r = avalia(f);
+  const sa = r.alertas.find((a) => a.id === 'saude-abaixo-metade-negativa');
+  assert.equal(sa.status, 'canonico');
+  assert.equal(sa.formula.numerica, '= ' + R.fmt(f.recursos.saude.atual) + ' < −⌊' + smax + ' / 2⌋ = ' + R.fmt(-Math.floor(smax / 2)));
+  const ea = r.alertas.find((a) => a.id === 'eter-metade-negativa');
+  assert.match(ea.msg, /mestre/);
+  assert.equal(ea.selo, 'pendenteBalanceamento', 'o mínimo do Éter não tem status no contrato');
+  assert.equal(f.recursos.saude.atual, -Math.floor(smax / 2) - 1, 'nada é aplicado na ficha');
+  const g = ficha({ classe: 'teurgo', nivel: 1, attrs: { CON: 10 } });
+  g.condicoes.push(cond('desnutrido', 2));
+  r = avalia(g);
+  assert.ok(r.alertas.some((a) => a.id === 'desnutrido-max-zero'));
+  assert.ok(!r.avisos.some((a) => a.tipo === 'estado-final-sem-detector'), 'todo estado final do contrato tem detector');
+});
+
+test('máximo: dívida acumulada (Exigente) entra DEPOIS do percentual (ordemMaximo, P03)', () => {
+  const f = ficha({ classe: 'teurgo', nivel: 1, attrs: { FOR: 10, DES: 10 } });
+  f.inventario.bugigangas.push(item('item-t-meia'));
+  f.entradas.push({ uid: 'x', tipo: 'dor', id: 'abismo-exigente', estado: { acumulado: -4 }, cache: { nome: 'Exigente', versaoCatalogo: '' }, mods: [] });
+  const r = avalia(f);
+  assert.equal(val(r, 'recurso.stamina.max'), Math.floor((8 + 3) * 0.5 - 4), '(11 × 0,5) − 4, não (11 − 4) × 0,5');
+  assert.match(termo(r.nos['recurso.stamina.max'], /Exigente/).motivo, /depois do percentual/);
+  assert.match(r.nos['recurso.stamina.max'].formula.numerica, /\) × 0,5 − 4/);
+});
+
+test('tooltips sem repetir o resultado; Limiar no nível 1 sem "níveis de 2 a 1"', () => {
+  const r = R.avaliar(ficha({ classe: 'monge', raca: 'humano', nivel: 3, attrs: { DES: 16 }, pericias: { defender: 1 } }));
+  assert.equal(r.nos['evasao.ativa'].formula.numerica, '= 13 + 1d8');
+  assert.equal(r.nos.movimento.formula.numerica, '= 9');
+  assert.equal(r.nos.acoes.formula.numerica, '= 3');
+  assert.equal(r.nos['limiar.saldo'].formula.numerica, '= 8');
+  const l = R.avaliar(ficha({ nivel: 1 })).nos['limiar.saldo'];
+  assert.match(l.formula.simbolica, /^nenhum nível com pontos ainda/);
+  assert.doesNotMatch(l.formula.simbolica, /de 2 a 1/);
+});
+
+test('PMA: "soma" soma sobre a PMA em vigor; fixo + soma sai com selo (ordem fora do contrato)', () => {
+  const f = ficha({ attrs: { DES: 14 } });
+  const leve = item('item-t-leve', { equipado: true });
+  f.inventario.equipamentos.push(leve);
+  f.inventario.bugigangas.push(item('item-t-pma-soma'));
+  let no = avalia(f).nos['ataque.' + leve.uid + '.atacar'];
+  assert.equal(no.progressao.pma, -3, '−5 + 2');
+  assert.equal(termo(no, /pma-soma/).ativo, true);
+  f.inventario.bugigangas.push(item('item-t-pma-fixa'));
+  no = avalia(f).nos['ataque.' + leve.uid + '.atacar'];
+  assert.equal(no.progressao.pma, -1, 'fixo −3, depois + 2');
+  assert.equal(termo(no, /pma-soma/).status, 'semStatus');
+  assert.ok(no.selos.includes('pendenteBalanceamento'));
+  // Mãos Rápidas (escopo turno) fica fora com o motivo, nunca calada
+  const g = ficha({ attrs: { DES: 14 } });
+  g.inventario.equipamentos.push(leve);
+  g.entradas.push({ uid: 'mr', tipo: 'tecnica', id: 'batedor-maos-rapidas', estado: { ativo: true }, cache: { nome: 'Mãos Rápidas', versaoCatalogo: '' }, mods: [] });
+  const t = termo(avalia(g).nos['ataque.' + leve.uid + '.atacar'], /Mãos Rápidas/);
+  assert.equal(t.ativo, false);
+  assert.match(t.motivo, /situacional/);
+});
+
+test('Stamina comprometida (D19): disponível = atual − reserva, termo removível e com selo', () => {
+  const f = ficha({ classe: 'monge' });
+  f.recursos.stamina.atual = 10;
+  let r = R.avaliar(f);
+  assert.equal(val(r, 'recurso.stamina.disponivel'), 10);
+  assert.deepEqual(r.nos['recurso.stamina.disponivel'].selos, []);
+  f.recursos.stamina.comprometida = 3;
+  r = R.avaliar(f);
+  assert.equal(val(r, 'recurso.stamina.disponivel'), 7);
+  assert.equal(r.nos['recurso.stamina.disponivel'].formula.numerica, '= 10 − 3 = 7');
+  assert.deepEqual(r.nos['recurso.stamina.disponivel'].selos, ['decisaoPedro']);
+  assert.equal(R.calculados(f)['recurso.stamina.disponivel'], undefined, 'não é caminho de ajuste (é estado)');
 });

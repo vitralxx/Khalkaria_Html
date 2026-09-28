@@ -282,6 +282,17 @@ def mesmo_valor(a, b, ambs=AMBIENTES):
     return all(abs(avalia(a, x) - avalia(b, x)) < 1e-9 for x in ambs)
 
 
+# 'extra' do contrato (texto) -> campo estruturado, quando a frase é uma regra
+# fechada que o motor sabe aplicar. O texto segue no Mod (vira lembrete na ficha);
+# frase sem padrão conhecido fica só como lembrete, nunca é adivinhada.
+EXTRA_DADO_DEFENDER = re.compile(r'dado de Defender = (\d+d\d+) quando o dado do seu grau for menor')
+
+
+def estrutura_extra(txt):
+    m = EXTRA_DADO_DEFENDER.search(txt or '')
+    return {'dadoDefenderMinimo': m.group(1)} if m else {}
+
+
 # texto de bloco (Notion verbatim) -> fórmula da gramática, só para conferir
 NOME_ATTR = {'força': 'FOR', 'forca': 'FOR', 'destreza': 'DES', 'des': 'DES', 'constituição': 'CON',
              'constituicao': 'CON', 'con': 'CON', 'inteligência': 'INT', 'inteligencia': 'INT', 'int': 'INT',
@@ -535,6 +546,7 @@ class Compilador:
             for k in ('nivel', 'duracao', 'extra', 'condicao', 'escopo', 'nota'):
                 if k in m:
                     mod[k] = m[k]
+            mod.update(estrutura_extra(m.get('extra')))
             if extra:
                 mod.update(extra)
             out.append(mod)
@@ -815,9 +827,22 @@ class Compilador:
 
     def morte(self):
         mo = self.c['morte']['morrendo']
+        r = self.c['recursos']
+        # limites de fim de personagem (só alerta, nunca automático): o mínimo da
+        # Saúde (morteEm) e do Éter (perdePersonagemEm) é "atual < min"
+        limites = {}
+        for nome, chave in (('saude', 'morteEm'), ('eter', 'perdePersonagemEm')):
+            esperado = 'atual < ' + str(r[nome]['min'])
+            if r[nome].get(chave) != esperado:
+                raise Falha(f'recursos.{nome}.{chave} ({r[nome].get(chave)!r}) não é "{esperado}"')
+            st = self.st('recursos', nome, 'min')
+            limites[nome] = {'min': ast(r[nome]['min'], st, self.fo('recursos', nome, 'min')), 'st': st,
+                             'fo': self.fo('recursos', nome, chave)}
+        finais = [{'id': e['id'], 'acao': e['acao'], 'nota': e.get('nota')} for e in self.c['morte']['estadosFinais']]
         return {'tique': ast(mo['tick'], self.st('morte', 'morrendo'), self.fo('morte', 'morrendo', 'tick')),
                 'st': self.st('morte', 'morrendo'), 'fo': self.fo('morte', 'morrendo'),
-                'mitigavel': mo['mitigavel']}
+                'mitigavel': mo['mitigavel'], 'limites': limites, 'estadosFinais': finais,
+                'estadosFinaisSt': self.st('morte', 'estadosFinais'), 'estadosFinaisFo': self.fo('morte', 'estadosFinais')}
 
     def testes(self):
         t = self.c['testes']

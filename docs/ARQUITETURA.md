@@ -764,8 +764,18 @@ carregados (nada os chama até a F4). No node, carregados sozinhos, exportam por
   (Sobrepeso automático), `ar`, `ae.<tipo|categoria|todos>`,
   `resistencia|imunidade|vulnerabilidade.<tipo>`, `defesa.<tipo>` (redução fixa
   por tipo), `magia.<id>.custo`, `ataque.<uid>.atacar|dano` (progressão da PMA em
-  `progressao`), `limiar.saldo`, `morrendo.tique`. Os caminhos ajustáveis são os
-  do `KhEstado.PADRAO_AJUSTE`; `carga`, `defesa.*` e `morrendo.tique` são só leitura.
+  `progressao`), `limiar.saldo`, `morrendo.tique`, `recurso.stamina.disponivel`
+  (atual − comprometida, D19). Os caminhos ajustáveis são os do
+  `KhEstado.PADRAO_AJUSTE`; `carga`, `defesa.*`, `morrendo.tique` e
+  `recurso.stamina.disponivel` são só leitura.
+- O status passa pelas dependências: quem lê outro nó (Mod, Passiva, Defender,
+  Saúde máx.) herda o status dele, então o selo de uma fonte não canônica chega a
+  todo número que ela mexe. A parte não numérica de uma fonte do contrato
+  (`extra`) vira termo inativo + lembrete (`op:'extra'`); a que o gerador
+  estrutura (`dadoDefenderMinimo`) é aplicada.
+- `alertas` inclui `tipo:'estado-final'` (`morte.estadosFinais` do contrato:
+  Exaustão 5, Saúde/Éter abaixo de −⌊máx/2⌋, Desnutrido zerando a Saúde máx.):
+  só alerta, nada é aplicado (P53).
 - Status: o nó leva o pior status dos termos ativos e junta os selos pelo mapa
   do `00-regras-dados.js` (`decisaoPedro`, `pendentePedro`, `pendenteBalanceamento`,
   `avisoClasse`, `ajuste`). Regra sem status no contrato sai `semStatus`.

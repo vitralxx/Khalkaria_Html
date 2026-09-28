@@ -179,7 +179,7 @@
     function modsDoContrato(id, fonte, dados, permanente, estado) {
       return lista(dados.fontes[id]).map(function (c) {
         var m = mod({ alvo: c.alvo, op: c.op, valor: c.valor, fonte: fonte, status: c.st, fo: c.fo });
-        ['duracao', 'extra', 'condicao', 'escopo', 'nivel', 'custo'].forEach(function (k) { if (c[k] != null) m[k] = c[k]; });
+        ['duracao', 'extra', 'dadoDefenderMinimo', 'condicao', 'escopo', 'nivel', 'custo'].forEach(function (k) { if (c[k] != null) m[k] = c[k]; });
         var passiva = /passiva/i.test(str(c.custo));
         if (c.duracao) desliga(m, 'situacional: dura ' + c.duracao);
         else if (c.escopo) desliga(m, 'situacional: ' + c.escopo);
