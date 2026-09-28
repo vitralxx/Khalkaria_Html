@@ -563,7 +563,10 @@ movimento reduzido, alvo no painel e no trilho, pop-up nas 4 setas em vis/sai
 com e sem movimento reduzido) deu 0 diferença, fora o nome da animação da
 piora (`bz-piora` -> `kh-piora`, mesmos quadros). As regras de tamanho do
 `.bz-slot-step` (24px) nunca venciam o `.bz-stepper` (a linha media 32px) e
-saíram.
+saíram. Em 2026-09-28 o Pedro pediu "meio termo": o `bazar.css` (camada
+`paginas`, que vence `componentes`) põe a linha em 28px com botões de 25px; a
+receita segue com 32/28. O roteiro de estilo não tem inventário com linhas, então
+o par `antes/depois` deu 0 diferença e a medida foi conferida à mão.
 
 ```bash
 python tools/estilo/servidor.py        # serve o repo em 127.0.0.1:8898 (sem cache) e grava

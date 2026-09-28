@@ -1296,8 +1296,12 @@ svg.bz-slot-ico { width: 20px; height: 20px; }
     opacity: .45;
 }
 .bz-slot-x:hover, .bz-slot-x:focus-visible, .bz-slot:hover .bz-slot-x { opacity: 1; color: #ff6b5a; }
-/* o stepper da linha é o componente (css/componentes.css), no tamanho dele;
-   aqui só o estado travado */
+/* o stepper da linha é o componente (css/componentes.css) num tamanho meio
+   termo (Pedro, 2026-09-28): 28px, entre o compacto de 24 que nunca venceu e
+   os 32 da receita. Esta camada (paginas) vence a do componente. */
+.bz-slot-step { height: 28px; }
+.bz-slot-step button { width: 25px; font-size: .95rem; }
+.bz-slot-step input { width: 4ch; font-size: .95em; }
 .bz-slot-step button:disabled { opacity: .35; cursor: not-allowed; }
 .bz-slot-step input[readonly] { color: var(--text-secondary); }
 .bz-slot-cx {
