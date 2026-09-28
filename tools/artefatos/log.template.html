@@ -1,0 +1,266 @@
+<title>Log de Técnicas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap">
+<style>
+  :root {
+    color-scheme: dark;
+    --chao: #0c0b10; --painel: #13111a; --painel-alto: #1a1722;
+    --traco: #2b2320; --traco-vivo: #4a3a2c;
+    --texto: #e8e6e3; --texto-2: #b8b3ab; --mudo: #8a8580;
+    --ambar: #e08b2c; --ambar-fundo: #2a1c0e; --ouro: #d4af37;
+    --ok: #6ee7a0; --ok-fundo: #15291e; --ok-borda: #2c5a41;
+    --media: #e0b04c; --media-fundo: #2a2210;
+    --alta: #f07167; --alta-fundo: #2e1414;
+    --baixa: #8ab4d8; --baixa-fundo: #13202c;
+    --titulo: 'Cinzel', 'Trajan Pro', Georgia, serif;
+    --corpo: 'Crimson Text', Georgia, 'Times New Roman', serif;
+    --mono: ui-monospace, 'Cascadia Mono', Consolas, monospace;
+  }
+  * { box-sizing: border-box; }
+  body { background: var(--chao); color: var(--texto); font: 17px/1.5 var(--corpo); padding-inline: 16px; padding-block: 0 64px; }
+  .casca { max-width: 1180px; margin-inline: auto; display: grid; gap: 28px; }
+  h1, h2 { font-family: var(--titulo); font-weight: 600; margin: 0; text-wrap: balance; color: var(--ouro); }
+  h1 { font-size: clamp(1.7rem, 4vw, 2.3rem); letter-spacing: .02em; }
+  h2 { font-size: 1.05rem; letter-spacing: .06em; text-transform: uppercase; }
+  p { margin: 0; }
+  a { color: var(--ambar); }
+  :focus-visible { outline: 2px solid var(--ambar); outline-offset: 2px; }
+  .abertura { display: grid; gap: 12px; padding-top: 28px; }
+  .sobre { color: var(--mudo); font-family: var(--mono); font-size: .75rem; letter-spacing: .08em; text-transform: uppercase; }
+  .lede { color: var(--texto-2); max-width: 70ch; font-size: 1.06rem; }
+  .numeros { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; }
+  .num { background: var(--painel); border: 1px solid var(--traco); border-radius: 8px; padding: 10px 14px; display: grid; gap: 2px; }
+  .num b { font-family: var(--titulo); font-size: 1.6rem; font-weight: 600; font-variant-numeric: tabular-nums; }
+  .num span { color: var(--mudo); font-size: .88rem; }
+  .num.ok b { color: var(--ok); } .num.al b { color: var(--media); } .num.pe b { color: var(--ambar); } .num.gr b { color: var(--alta); }
+  .filtros { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; margin-inline: -16px; padding: 10px 16px;
+    background: color-mix(in srgb, var(--chao) 94%, transparent); backdrop-filter: blur(6px); border-bottom: 1px solid var(--traco); }
+  .filtros-in { max-width: 1180px; margin-inline: auto; display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; }
+  input[type=search], select { font: .95rem var(--corpo); color: var(--texto); background: var(--painel); border: 1px solid var(--traco-vivo); border-radius: 6px; padding: 6px 10px; }
+  input[type=search] { flex: 1 1 220px; min-width: 0; }
+  .seg { display: inline-flex; border: 1px solid var(--traco-vivo); border-radius: 6px; overflow: hidden; }
+  .seg button { font: 600 .75rem/1 var(--titulo); letter-spacing: .04em; color: var(--texto-2); background: var(--painel); border: 0; border-right: 1px solid var(--traco); padding: 8px 10px; cursor: pointer; }
+  .seg button:last-child { border-right: 0; }
+  .seg button[aria-pressed=true] { background: var(--ambar-fundo); color: #f7c78c; }
+  .contagem { font-family: var(--mono); font-size: .8rem; color: var(--mudo); }
+  .lista { display: grid; gap: 6px; }
+  .linha { background: var(--painel); border: 1px solid var(--traco); border-radius: 8px; }
+  .linha[data-grav=alta] { border-left: 3px solid var(--alta); }
+  .linha[data-grav=media] { border-left: 3px solid var(--media); }
+  .linha > button { all: unset; box-sizing: border-box; width: 100%; cursor: pointer; display: grid; grid-template-columns: minmax(180px, 1.6fr) minmax(110px, .9fr) 2.4fr; gap: 6px 14px; align-items: center; padding: 10px 14px; }
+  .linha > button:focus-visible { outline: 2px solid var(--ambar); outline-offset: -2px; border-radius: 8px; }
+  .nome { font-weight: 600; font-size: 1.05rem; }
+  .nome small { display: block; font-weight: 400; color: var(--mudo); font-size: .82rem; }
+  .fonte { color: var(--texto-2); font-size: .92rem; }
+  .selos { display: flex; flex-wrap: wrap; gap: 5px; }
+  .selo { font-family: var(--mono); font-size: .7rem; letter-spacing: .03em; border-radius: 4px; padding: 2px 6px; border: 1px solid var(--traco-vivo); color: var(--texto-2); white-space: nowrap; }
+  .selo.ok { color: var(--ok); border-color: var(--ok-borda); background: var(--ok-fundo); }
+  .selo.av { color: var(--media); border-color: #5a4a20; background: var(--media-fundo); }
+  .selo.ru { color: var(--alta); border-color: #5c2a26; background: var(--alta-fundo); }
+  .selo.inf { color: var(--baixa); border-color: #2a4459; background: var(--baixa-fundo); }
+  .detalhe { border-top: 1px solid var(--traco); padding: 12px 14px 14px; display: grid; gap: 10px; }
+  .kv { display: grid; grid-template-columns: 9rem 1fr; gap: 4px 12px; font-size: .95rem; }
+  .kv dt { color: var(--mudo); } .kv dd { margin: 0; }
+  .achado { border: 1px solid var(--traco); border-radius: 6px; padding: 10px 12px; display: grid; gap: 6px; background: var(--chao); }
+  .achado header { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+  .trecho { font-style: italic; color: var(--texto-2); border-left: 2px solid var(--traco-vivo); padding-left: 10px; }
+  .regra { font-size: .95rem; }
+  .vazio { color: var(--mudo); padding: 24px; text-align: center; }
+  .legenda { color: var(--mudo); font-size: .92rem; display: grid; gap: 4px; }
+  .resposta { border-top: 1px dashed var(--traco-vivo); padding-top: 8px; display: grid; gap: 4px; font-size: .95rem; }
+  .resposta .acao { color: var(--texto-2); font-size: .9rem; }
+  .pergunta { border: 1px solid #5a4a20; background: var(--media-fundo); border-radius: 6px; padding: 8px 10px; display: grid; gap: 4px; }
+  .pergunta b { font-family: var(--mono); color: var(--media); font-size: .8rem; }
+  .perguntas { display: grid; gap: 8px; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); }
+  .perguntas .pergunta small { color: var(--mudo); }
+  @media (max-width: 760px) {
+    .linha > button { grid-template-columns: 1fr; }
+    .kv { grid-template-columns: 1fr; }
+  }
+</style>
+
+<main class="casca">
+  <header class="abertura">
+    <p class="sobre" id="sobre"></p>
+    <h1>Log de Técnicas</h1>
+    <p class="lede">Todas as técnicas do sistema (os cards de classe, as características de raça e as habilidades de origem), cada uma com duas respostas: <strong>funciona na ficha?</strong> (o botão "+ ficha" leva o nome certo e a mecânica inteira, e o custo e a recarga são lidos) e <strong>está de acordo com a regra atual?</strong> (conferida contra o Sistema, as Condições, as Magias, o contrato do balanceamento e as suas decisões). Clique numa linha para ver o trecho e a regra.</p>
+    <div class="numeros" id="numeros"></div>
+    <div class="legenda">
+      <span><b>Na ficha</b>: "leva" = botão, nome e texto inteiro; "parcial" = vai junto com outro card ou sem id; "não leva" = bloco da classe, que a ficha atual não tem como levar.</span>
+      <span><b>Automação</b>: hoje nenhuma técnica mexe sozinha nos números da ficha (decisão sua: técnica de classe fica manual, com edição do campo).</span>
+    </div>
+  </header>
+
+  <div class="filtros">
+    <div class="filtros-in">
+      <input type="search" id="busca" placeholder="Buscar técnica ou trecho" aria-label="Buscar técnica ou trecho">
+      <select id="fonte" aria-label="Fonte"></select>
+      <div class="seg" role="group" aria-label="Status" id="f-status"></div>
+      <div class="seg" role="group" aria-label="Para quem" id="f-quem"></div>
+      <div class="seg" role="group" aria-label="Gravidade" id="f-grav"></div>
+      <div class="seg" role="group" aria-label="Resposta do balanceamento" id="f-resp"></div>
+      <span class="contagem" id="contagem"></span>
+    </div>
+  </div>
+
+  <section style="display:grid;gap:10px" aria-labelledby="t-perg">
+    <h2 id="t-perg">Perguntas do balanceamento para você</h2>
+    <p class="lede" style="font-size:.98rem">Ele respondeu os achados dele; onde a regra depende de você, fez uma pergunta com a recomendação. Você já está respondendo direto a ele: esta lista é só para consulta.</p>
+    <div class="perguntas" id="perguntas"></div>
+  </section>
+
+  <section class="lista" id="lista" aria-live="polite"></section>
+
+  <section style="display:grid;gap:10px">
+    <h2>Achados que não são de uma técnica só</h2>
+    <div class="lista" id="gerais"></div>
+  </section>
+</main>
+
+<script>
+const DADOS = __DADOS__;
+const T = DADOS.tecnicas, G = DADOS.gerais;
+const GRAV = { alta: 3, media: 2, baixa: 1 };
+const ROT = { alta: 'alta', media: 'média', baixa: 'baixa', pedro: 'Pedro', balanceamento: 'balanceamento', site: 'site' };
+const estado = { busca: '', fonte: '', status: 'todos', quem: 'todos', grav: 'todas', resp: 'todas' };
+const RESP = { resolvido: ['resolvido', 'ok'], leitura: ['leitura do balanceamento', 'inf'], esperandoPedro: ['esperando você', 'av'], doSite: ['do site', 'inf'], semResposta: ['sem resposta', ''] };
+const ativos = t => t.ac.filter(a => a.rs !== 'resolvido');
+try { Object.assign(estado, JSON.parse(localStorage.getItem('log-tecnicas-filtro') || '{}')); } catch (e) {}
+
+function el(tag, attrs, ...filhos) {
+  const e = document.createElement(tag);
+  for (const [k, v] of Object.entries(attrs || {})) {
+    if (k === 'class') e.className = v; else if (k === 'text') e.textContent = v; else e.setAttribute(k, v);
+  }
+  for (const f of filhos) if (f !== null && f !== undefined && f !== false) e.append(f);
+  return e;
+}
+const selo = (txt, cls, title) => el('span', { class: 'selo ' + (cls || ''), text: txt, title: title || '' });
+const maisGrave = t => t.ac.reduce((m, a) => Math.max(m, GRAV[a.gr] || 0), 0);
+const nomeGrav = n => ({ 3: 'alta', 2: 'media', 1: 'baixa' })[n] || '';
+
+document.getElementById('sobre').textContent = 'Khalkaria · ficha digital · ' + DADOS.data + ' · ' + T.length + ' técnicas';
+(function numeros() {
+  const leva = T.filter(t => t.lv === 'ok' && t.ds === 'completa').length;
+  const vistos = new Set();
+  const ac = T.flatMap(t => t.ac).concat(G).filter(a => { const k = a.pq + '|' + a.tr + '|' + a.ra; if (vistos.has(k)) return false; vistos.add(k); return true; });
+  const n = [
+    ['', T.length, 'técnicas no log'],
+    ['ok', leva, 'levadas inteiras para a ficha'],
+    ['al', T.filter(t => t.st === 'alerta').length, 'com algum alerta'],
+    ['gr', ac.filter(a => a.gr === 'alta').length, 'achados de gravidade alta'],
+    ['ok', ac.filter(a => a.rs === 'resolvido').length, 'achados resolvidos'],
+    ['pe', ac.filter(a => a.rs === 'esperandoPedro').length, 'achados esperando você'],
+  ];
+  document.getElementById('numeros').replaceChildren(...n.map(([c, v, r]) => el('div', { class: 'num ' + c }, el('b', { text: String(v) }), el('span', { text: r }))));
+})();
+
+function seg(id, chave, opcoes) {
+  const box = document.getElementById(id);
+  box.replaceChildren(...opcoes.map(([v, r]) => {
+    const b = el('button', { type: 'button', 'aria-pressed': String(estado[chave] === v), text: r });
+    b.addEventListener('click', () => { estado[chave] = v; seg(id, chave, opcoes); render(); });
+    return b;
+  }));
+}
+const fontes = [...new Set(T.map(t => t.f))];
+const selFonte = document.getElementById('fonte');
+selFonte.replaceChildren(el('option', { value: '', text: 'Todas as fontes' }), ...fontes.map(f => el('option', { value: f, text: f })));
+selFonte.value = fontes.includes(estado.fonte) ? estado.fonte : '';
+selFonte.addEventListener('change', () => { estado.fonte = selFonte.value; render(); });
+const busca = document.getElementById('busca');
+busca.value = estado.busca || '';
+busca.addEventListener('input', () => { estado.busca = busca.value; render(); });
+seg('f-status', 'status', [['todos', 'Todas'], ['alerta', 'Com alerta'], ['ok', 'Sem alerta']]);
+seg('f-quem', 'quem', [['todos', 'Qualquer um'], ['pedro', 'Para você'], ['balanceamento', 'Balanceamento'], ['site', 'Site']]);
+seg('f-grav', 'grav', [['todas', 'Toda gravidade'], ['alta', 'Alta'], ['media', 'Média'], ['baixa', 'Baixa']]);
+seg('f-resp', 'resp', [['todas', 'Toda resposta'], ['esperandoPedro', 'Esperando você'], ['leitura', 'Leitura'], ['resolvido', 'Resolvidos']]);
+
+function selosDe(t) {
+  const s = [];
+  s.push(t.lv === 'ok' ? selo('leva', 'ok') : t.lv === 'parcial' ? selo('parcial', 'av', 'vai junto com outro card ou sem id') : selo('não leva', 'ru', 'a ficha atual não tem botão para este bloco'));
+  if (t.ds && t.ds !== 'completa') s.push(selo('texto ' + t.ds, 'ru'));
+  if (t.cu === 'parcial' || t.cu === 'nao') s.push(selo('custo ' + (t.cu === 'nao' ? 'não lido' : 'parcial'), 'av', t.c));
+  if (t.rc === 'alerta') s.push(selo('recarga antiga', 'av'));
+  if (t.rf === 'alerta') s.push(selo('referência', 'av', t.rfa.join(' · ')));
+  if (t.ob === 'obsoleto') s.push(selo('regra antiga', 'ru')); else if (t.ob === 'revisar') s.push(selo('revisar regra', 'av'));
+  const por = { alta: 0, media: 0, baixa: 0 };
+  ativos(t).forEach(a => por[a.gr]++);
+  const res = t.ac.length - ativos(t).length;
+  if (res) s.push(selo(res + ' resolvido' + (res > 1 ? 's' : ''), 'ok'));
+  ['alta', 'media', 'baixa'].forEach(g => { if (por[g]) s.push(selo(por[g] + ' ' + ROT[g], g === 'alta' ? 'ru' : g === 'media' ? 'av' : 'inf')); });
+  if (s.length === 1 && t.lv === 'ok') s.push(selo('regra ok', 'ok'));
+  return s;
+}
+
+function achadoEl(a) {
+  return el('div', { class: 'achado' },
+    el('header', {}, selo(ROT[a.gr], a.gr === 'alta' ? 'ru' : a.gr === 'media' ? 'av' : 'inf'), selo(a.tp), selo('para ' + ROT[a.pq])),
+    a.nome ? el('strong', { text: a.nome }) : null,
+    el('p', { class: 'trecho', text: a.tr }),
+    el('p', { class: 'regra', text: a.ra }),
+    (a.rt || a.rs !== 'semResposta') ? el('div', { class: 'resposta' },
+      el('div', {}, selo((RESP[a.rs] || RESP.semResposta)[0], (RESP[a.rs] || RESP.semResposta)[1]), a.sumiu ? ' ' : null, a.sumiu ? selo('trecho já corrigido no Notion', 'ok') : null),
+      a.rt ? el('p', { text: a.rt }) : null,
+      a.rac ? el('p', { class: 'acao', text: 'Na ficha: ' + a.rac }) : null,
+      a.q ? el('div', { class: 'pergunta' }, el('b', { text: a.q.id + ' · ' + (a.q.tema || '') }), el('span', { text: a.q.p }), el('small', { text: 'Recomendação: ' + (a.q.rec || '—') })) : null) : null);
+}
+
+function linha(t) {
+  const g = nomeGrav(maisGrave(t));
+  const box = el('article', { class: 'linha', 'data-grav': g });
+  const quem = t.tipoRot + (t.ramo ? ' · ' + t.ramo : '') + (t.tier ? ' · Tier ' + t.tier : '');
+  const btn = el('button', { type: 'button', 'aria-expanded': 'false' },
+    el('div', { class: 'nome' }, t.n, el('small', { text: quem })),
+    el('div', { class: 'fonte', text: t.f }),
+    el('div', { class: 'selos' }, ...selosDe(t)));
+  let det = null;
+  btn.addEventListener('click', () => {
+    const aberto = btn.getAttribute('aria-expanded') === 'true';
+    btn.setAttribute('aria-expanded', String(!aberto));
+    if (aberto) { det.remove(); det = null; return; }
+    const kv = el('dl', { class: 'kv' });
+    const par = (k, v) => { if (v) kv.append(el('dt', { text: k }), el('dd', { text: v })); };
+    par('Custo', t.c); par('Id', t.id);
+    par('Na ficha', t.lv === 'ok' ? 'o botão "+ ficha" leva o nome e a mecânica inteira' : t.lvn || t.lv);
+    par('Referências', t.rfa.join(' · '));
+    par('Regra antiga', t.oba.join(' · '));
+    par('Números citados', t.num.join(' · '));
+    det = el('div', { class: 'detalhe' }, kv, ...t.ac.map(achadoEl), t.ac.length ? null : el('p', { class: 'fonte', text: 'Nenhum achado de regra.' }));
+    box.append(det);
+  });
+  box.append(btn);
+  return box;
+}
+
+function filtra(t) {
+  if (estado.resp !== 'todas' && !t.ac.some(a => a.rs === estado.resp)) return false;
+  if (estado.fonte && t.f !== estado.fonte) return false;
+  if (estado.status !== 'todos' && t.st !== estado.status) return false;
+  if (estado.quem !== 'todos' && !t.ac.some(a => a.pq === estado.quem)) return false;
+  if (estado.grav !== 'todas' && !t.ac.some(a => a.gr === estado.grav)) return false;
+  const q = (estado.busca || '').trim().toLowerCase();
+  if (q && !(t.n + ' ' + t.c + ' ' + t.ac.map(a => a.tr + ' ' + a.ra).join(' ')).toLowerCase().includes(q)) return false;
+  return true;
+}
+
+function render() {
+  try { localStorage.setItem('log-tecnicas-filtro', JSON.stringify(estado)); } catch (e) {}
+  const vis = T.filter(filtra).sort((a, b) => maisGrave(b) - maisGrave(a));
+  const lista = document.getElementById('lista');
+  lista.replaceChildren(...(vis.length ? vis.map(linha) : [el('p', { class: 'vazio', text: 'Nenhuma técnica com esses filtros.' })]));
+  document.getElementById('contagem').textContent = vis.length + ' de ' + T.length;
+  const gv = G.filter(a => (estado.quem === 'todos' || a.pq === estado.quem) && (estado.grav === 'todas' || a.gr === estado.grav));
+  document.getElementById('gerais').replaceChildren(...(gv.length ? gv.map(achadoEl) : [el('p', { class: 'vazio', text: 'Nenhum com esses filtros.' })]));
+}
+(function perguntas() {
+  const todos = T.flatMap(t => t.ac).concat(G);
+  const box = document.getElementById('perguntas');
+  box.replaceChildren(...(DADOS.perguntas || []).map(q => {
+    const n = new Set(todos.filter(a => a.q && a.q.id === q.id).map(a => a.tr)).size;
+    return el('div', { class: 'pergunta' }, el('b', { text: q.id + ' · ' + (q.tema || '') }), el('span', { text: q.p }),
+      el('small', { text: 'Recomendação: ' + (q.rec || '—') + (n ? ' · ' + n + ' achado' + (n > 1 ? 's' : '') : '') }));
+  }));
+})();
+render();
+</script>

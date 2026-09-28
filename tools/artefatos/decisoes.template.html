@@ -1,0 +1,349 @@
+<title>Decisões da Ficha</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap">
+<style>
+  :root {
+    color-scheme: dark;
+    --chao: #0c0b10;
+    --painel: #13111a;
+    --painel-alto: #1a1722;
+    --traco: #2b2320;
+    --traco-vivo: #4a3a2c;
+    --texto: #e8e6e3;
+    --texto-2: #b8b3ab;
+    --mudo: #8a8580;
+    --ambar: #e08b2c;
+    --ambar-fundo: #2a1c0e;
+    --ouro: #d4af37;
+    --feito: #6ee7a0;
+    --feito-fundo: #15291e;
+    --outro: #c084fc;
+    --outro-fundo: #221731;
+    --titulo: 'Cinzel', 'Trajan Pro', Georgia, serif;
+    --corpo: 'Crimson Text', Georgia, 'Times New Roman', serif;
+    --mono: ui-monospace, 'Cascadia Mono', Consolas, monospace;
+    --grao: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)' opacity='.05'/%3E%3C/svg%3E");
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--chao) var(--grao);
+    color: var(--texto);
+    font: 18px/1.5 var(--corpo);
+    padding-inline: 16px;
+    padding-block: 0 64px;
+  }
+  .casca { max-width: 860px; margin-inline: auto; display: grid; gap: 40px; }
+  h1, h2, h3 { font-family: var(--titulo); font-weight: 600; text-wrap: balance; margin: 0; }
+  h1 { font-size: clamp(1.7rem, 4vw, 2.3rem); color: var(--ouro); letter-spacing: .02em; }
+  h2 { font-size: 1.15rem; color: var(--ouro); letter-spacing: .06em; text-transform: uppercase; }
+  p { margin: 0; }
+  a { color: var(--ambar); }
+  :focus-visible { outline: 2px solid var(--ambar); outline-offset: 2px; }
+
+  /* barra de progresso fixa */
+  .barra {
+    position: sticky; top: env(safe-area-inset-top, 0px); z-index: 10;
+    margin-inline: -16px; padding: 10px 16px;
+    background: color-mix(in srgb, var(--chao) 92%, transparent);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--traco);
+  }
+  .barra-in { max-width: 860px; margin-inline: auto; display: flex; flex-wrap: wrap; gap: 10px 16px; align-items: center; }
+  .contagem { font-family: var(--mono); font-size: .8rem; color: var(--texto-2); font-variant-numeric: tabular-nums; }
+  .contagem b { color: var(--feito); font-weight: 600; }
+  .contagem i { color: var(--outro); font-style: normal; }
+  .regua { flex: 1 1 160px; height: 6px; background: var(--painel-alto); border-radius: 3px; overflow: hidden; }
+  .regua span { display: block; height: 100%; width: 0; background: var(--feito); transition: width .3s ease; }
+  .acoes { display: flex; gap: 8px; flex-wrap: wrap; }
+  button {
+    font: 600 .8rem/1 var(--titulo); letter-spacing: .05em;
+    color: var(--texto); background: var(--painel-alto);
+    border: 1px solid var(--traco-vivo); border-radius: 6px;
+    padding: 9px 12px; cursor: pointer;
+  }
+  button:hover { border-color: var(--ambar); }
+  button.primario { background: var(--ambar-fundo); border-color: var(--ambar); color: #f7c78c; }
+  button:disabled { opacity: .45; cursor: default; }
+
+  .aviso { font-size: .95rem; border: 1px solid var(--ambar); background: var(--ambar-fundo); padding: 10px 14px; border-radius: 6px; }
+
+  /* abertura */
+  .abertura { display: grid; gap: 14px; padding-top: 28px; }
+  .sobre { color: var(--mudo); font-family: var(--mono); font-size: .75rem; letter-spacing: .08em; text-transform: uppercase; }
+  .lede { font-size: 1.1rem; color: var(--texto-2); max-width: 64ch; }
+  .resolvidas { display: flex; flex-wrap: wrap; gap: 6px; }
+  .resolvidas span { font-size: .85rem; border: 1px solid var(--traco-vivo); border-radius: 999px; padding: 2px 10px; color: var(--texto-2); }
+
+  /* fases */
+  .fases { display: grid; gap: 0; border: 1px solid var(--traco); border-radius: 8px; overflow: hidden; background: var(--painel); }
+  .fase { display: grid; grid-template-columns: 4.2rem 1fr; gap: 4px 14px; padding: 10px 14px; border-top: 1px solid var(--traco); }
+  .fase:first-child { border-top: 0; }
+  .fase-id { font-family: var(--mono); font-size: .85rem; color: var(--ambar); padding-top: 2px; }
+  .fase-nome { font-weight: 600; }
+  .fase-txt { color: var(--texto-2); font-size: .95rem; }
+  .fase-dep { grid-column: 2; display: flex; flex-wrap: wrap; gap: 6px; }
+  .fase-dep a { font-family: var(--mono); font-size: .75rem; text-decoration: none; border: 1px solid var(--traco-vivo); border-radius: 4px; padding: 1px 6px; }
+  .fase-dep a.ok { color: var(--feito); border-color: #2c5a41; }
+
+  /* grupos e decisões */
+  .grupo { display: grid; gap: 14px; }
+  .grupo-cab { display: grid; gap: 4px; }
+  .grupo-cab p { color: var(--mudo); font-size: .95rem; }
+  .grupo-cab .grupo-acao { justify-self: start; margin-top: 4px; }
+  .dec {
+    background: var(--painel); border: 1px solid var(--traco); border-radius: 8px;
+    padding: 16px 16px 14px; display: grid; gap: 10px; scroll-margin-top: 80px;
+  }
+  .dec[data-estado="rec"] { border-color: #2c5a41; }
+  .dec[data-estado="outra"] { border-color: #4b3566; }
+  .dec-cab { display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap; }
+  .dec-id { font-family: var(--mono); font-size: .8rem; color: var(--ambar); border: 1px solid var(--traco-vivo); border-radius: 4px; padding: 1px 6px; }
+  .dec-estado { font-family: var(--mono); font-size: .72rem; letter-spacing: .06em; text-transform: uppercase; color: var(--mudo); margin-left: auto; }
+  .dec[data-estado="rec"] .dec-estado { color: var(--feito); }
+  .dec[data-estado="outra"] .dec-estado { color: var(--outro); }
+  .dec h3 { font-family: var(--corpo); font-weight: 600; font-size: 1.12rem; line-height: 1.35; flex-basis: 100%; }
+  .dec-porque { color: var(--texto-2); font-size: .98rem; }
+  .opcoes { display: grid; gap: 6px; border: 0; padding: 0; margin: 0; }
+  .op {
+    display: grid; grid-template-columns: 20px 1fr; gap: 2px 10px; align-items: start;
+    padding: 8px 10px; border: 1px solid var(--traco); border-radius: 6px; cursor: pointer;
+  }
+  .op:hover { border-color: var(--traco-vivo); background: var(--painel-alto); }
+  .op input { margin: 4px 0 0; accent-color: var(--ambar); width: 16px; height: 16px; }
+  .op-rot { font-weight: 600; }
+  .op-rec { font-family: var(--mono); font-size: .68rem; letter-spacing: .06em; text-transform: uppercase; color: var(--feito); border: 1px solid #2c5a41; border-radius: 4px; padding: 0 5px; margin-left: 6px; vertical-align: 2px; }
+  .op-desc { grid-column: 2; color: var(--texto-2); font-size: .93rem; }
+  .op:has(input:checked) { border-color: var(--ambar); background: var(--ambar-fundo); }
+  .nota summary { cursor: pointer; color: var(--mudo); font-size: .9rem; }
+  .nota textarea {
+    width: 100%; min-height: 64px; margin-top: 6px; resize: vertical;
+    font: .95rem/1.4 var(--corpo); color: var(--texto);
+    background: var(--chao); border: 1px solid var(--traco-vivo); border-radius: 6px; padding: 8px 10px;
+  }
+  .rodape { color: var(--mudo); font-size: .9rem; border-top: 1px solid var(--traco); padding-top: 16px; }
+  @media (max-width: 520px) {
+    .fase { grid-template-columns: 1fr; }
+    .fase-dep { grid-column: 1; }
+  }
+  @media (prefers-reduced-motion: reduce) { .regua span { transition: none; } }
+</style>
+
+<div class="barra">
+  <div class="barra-in">
+    <span class="contagem" id="contagem">0 de 0 respondidas</span>
+    <div class="regua" aria-hidden="true"><span id="regua"></span></div>
+    <div class="acoes">
+      <button class="primario" id="aceitar-tudo" type="button">Aceitar as recomendadas que faltam</button>
+      <button id="copiar" type="button">Copiar respostas</button>
+    </div>
+  </div>
+</div>
+
+<main class="casca">
+  <header class="abertura">
+    <p class="sobre">Khalkaria · plano da ficha como hub · 25/09/2026</p>
+    <h1>Decisões da Ficha</h1>
+    <p class="lede">O plano tem 12 fases, e cada uma vai ao ar sozinha. Estas 39 decisões continuam abertas. A opção recomendada tem o selo verde. Marque o que você escolhe: cada resposta é gravada na hora, e eu leio daqui. Se nenhuma opção servir, marque "Outra" e explique na nota.</p>
+    <div class="resolvidas" aria-label="Já decidido">
+      <span>+2 atributos por nível</span><span>Contida mín. 1</span><span>Empilhável 10:1</span>
+      <span>PMA só como progressão</span><span>Modificador (D80)</span><span>Vantagem/desvantagem (D81)</span>
+      <span>Custo mínimo de magia (D82)</span><span>D83–D86</span><span>Efeitos dos 727 itens entregues</span>
+    </div>
+    <p id="aviso" class="aviso" hidden></p>
+    <p><a href="https://github.com/vitralxx/Khalkaria_Html/blob/main/docs/ficha-digital/02-plano.md" target="_blank" rel="noopener">Plano completo (docs/ficha-digital/02-plano.md)</a></p>
+  </header>
+
+  <section class="grupo" aria-labelledby="t-fases">
+    <div class="grupo-cab">
+      <h2 id="t-fases">As fases</h2>
+      <p>Cada fase só depende das decisões marcadas nela. As que você já respondeu ficam verdes.</p>
+    </div>
+    <div class="fases" id="fases"></div>
+  </section>
+
+  <div id="grupos" class="casca" style="gap:40px"></div>
+
+  <p class="rodape">Respostas gravadas no banco desta página. Quem tem só leitura vê as escolhas, mas não altera.</p>
+</main>
+
+<script>
+const DECISOES = __DECISOES__;
+const GRUPOS = __GRUPOS__;
+const FASES = __FASES__;
+
+const porId = Object.fromEntries(DECISOES.map(d => [d.id, d]));
+const resp = {};          // id -> {opcao, rotulo, nota}
+let db = null, podeGravar = true;
+const filas = {};         // uma gravação por vez por documento
+
+function el(tag, attrs, ...filhos) {
+  const e = document.createElement(tag);
+  for (const [k, v] of Object.entries(attrs || {})) {
+    if (k === 'class') e.className = v;
+    else if (k === 'text') e.textContent = v;
+    else e.setAttribute(k, v);
+  }
+  for (const f of filhos) if (f) e.append(f);
+  return e;
+}
+
+function renderFases() {
+  const box = document.getElementById('fases');
+  box.replaceChildren(...FASES.map(f => {
+    const dep = el('div', { class: 'fase-dep' });
+    for (const id of f.decide) dep.append(el('a', { href: '#' + id, 'data-dep': id, text: id }));
+    return el('div', { class: 'fase' },
+      el('span', { class: 'fase-id', text: f.id }),
+      el('div', {}, el('div', { class: 'fase-nome', text: f.nome }), el('div', { class: 'fase-txt', text: f.txt })),
+      f.decide.length ? dep : null);
+  }));
+}
+
+function renderGrupos() {
+  const raiz = document.getElementById('grupos');
+  raiz.replaceChildren(...GRUPOS.map(g => {
+    const sec = el('section', { class: 'grupo', 'aria-labelledby': 'g-' + g.id });
+    const btn = el('button', { type: 'button', class: 'grupo-acao', text: 'Aceitar as recomendadas deste grupo' });
+    btn.addEventListener('click', () => aceitar(g.ids));
+    sec.append(el('div', { class: 'grupo-cab' },
+      el('h2', { id: 'g-' + g.id, text: g.nome }), el('p', { text: g.txt }), btn));
+    for (const id of g.ids) sec.append(cartao(porId[id]));
+    return sec;
+  }));
+}
+
+function cartao(d) {
+  const art = el('article', { class: 'dec', id: d.id, 'data-estado': 'aberta' });
+  art.append(el('div', { class: 'dec-cab' },
+    el('span', { class: 'dec-id', text: d.id }),
+    el('span', { class: 'dec-estado', text: 'em aberto' }),
+    el('h3', { text: d.pergunta })));
+  art.append(el('p', { class: 'dec-porque', text: d.porque }));
+  const fs = el('fieldset', { class: 'opcoes', 'aria-label': d.id + ': opções' });
+  const opcoes = d.opcoes.concat([{ rotulo: 'Outra', descricao: 'Explico na nota abaixo.', outra: true }]);
+  opcoes.forEach((o, i) => {
+    const idx = o.outra ? -1 : i;
+    const input = el('input', { type: 'radio', name: 'r-' + d.id, id: 'r-' + d.id + '-' + i, value: String(idx) });
+    input.addEventListener('change', () => escolher(d.id, idx));
+    const rot = el('span', { class: 'op-rot', text: o.rotulo });
+    if (idx === d.rec) rot.append(el('span', { class: 'op-rec', text: 'recomendado' }));
+    fs.append(el('label', { class: 'op', for: input.id }, input,
+      el('span', {}, rot), el('span', { class: 'op-desc', text: o.descricao })));
+  });
+  art.append(fs);
+  const ta = el('textarea', { id: 'n-' + d.id, placeholder: 'Nota para o agente (opcional)' });
+  ta.addEventListener('change', () => anotar(d.id, ta.value));
+  const det = el('details', { class: 'nota' }, el('summary', { text: 'Nota' }), ta);
+  art.append(det);
+  return art;
+}
+
+function pinta() {
+  let feitas = 0, fora = 0;
+  for (const d of DECISOES) {
+    const r = resp[d.id], art = document.getElementById(d.id);
+    if (!art) continue;
+    let estado = 'aberta', txt = 'em aberto';
+    if (r && typeof r.opcao === 'number') {
+      feitas++;
+      if (r.opcao === d.rec) { estado = 'rec'; txt = 'recomendada'; }
+      else { estado = 'outra'; txt = 'outra escolha'; fora++; }
+      const inp = art.querySelector('input[value="' + r.opcao + '"]');
+      if (inp && !inp.checked) inp.checked = true;
+    }
+    art.dataset.estado = estado;
+    art.querySelector('.dec-estado').textContent = txt;
+    const ta = art.querySelector('textarea');
+    if (r && typeof r.nota === 'string' && document.activeElement !== ta && ta.value !== r.nota) {
+      ta.value = r.nota;
+      if (r.nota) ta.closest('details').open = true;
+    }
+  }
+  const total = DECISOES.length;
+  const c = document.getElementById('contagem');
+  c.replaceChildren('', el('b', { text: String(feitas) }), ' de ' + total + ' respondidas',
+    fora ? el('span', {}, ' · ', el('i', { text: fora + ' fora da recomendação' })) : '');
+  document.getElementById('regua').style.width = (100 * feitas / total) + '%';
+  document.getElementById('aceitar-tudo').disabled = feitas === total || !podeGravar;
+  document.querySelectorAll('[data-dep]').forEach(a => {
+    const r = resp[a.dataset.dep];
+    a.classList.toggle('ok', !!(r && typeof r.opcao === 'number'));
+  });
+}
+
+function avisa(txt) { const a = document.getElementById('aviso'); a.textContent = txt; a.hidden = !txt; }
+
+function grava(id) {
+  const r = resp[id]; if (!db || !r) return Promise.resolve();
+  const corpo = { opcao: r.opcao, rotulo: r.rotulo, nota: r.nota || '', recomendada: r.opcao === porId[id].rec, em: new Date().toISOString() };
+  filas[id] = (filas[id] || Promise.resolve()).then(() => db.doc('respostas/' + id).set(corpo)).catch(e => {
+    if (e && e.code === 'invalid_argument') {
+      podeGravar = false;
+      avisa('Você está com acesso só de leitura: as escolhas aparecem, mas não são gravadas.');
+    } else {
+      avisa('Não consegui gravar ' + id + ' agora. Tente de novo em instantes, ou use "Copiar respostas" e cole no chat.');
+    }
+    pinta();
+  });
+  return filas[id];
+}
+
+function rotuloDe(id, idx) { return idx === -1 ? 'Outra' : porId[id].opcoes[idx].rotulo; }
+
+function escolher(id, idx) {
+  resp[id] = Object.assign({}, resp[id], { opcao: idx, rotulo: rotuloDe(id, idx) });
+  if (idx === -1) { const det = document.getElementById(id).querySelector('details'); det.open = true; det.querySelector('textarea').focus(); }
+  pinta(); grava(id);
+}
+
+function anotar(id, nota) {
+  resp[id] = Object.assign({ opcao: null, rotulo: '' }, resp[id], { nota });
+  pinta(); grava(id);
+}
+
+async function aceitar(ids) {
+  for (const id of ids) {
+    const r = resp[id];
+    if (r && typeof r.opcao === 'number') continue;
+    if (porId[id].rec === null) continue;   // sem recomendação: só o Pedro escolhe
+    resp[id] = Object.assign({}, r, { opcao: porId[id].rec, rotulo: rotuloDe(id, porId[id].rec) });
+    pinta();
+    await grava(id);
+  }
+}
+
+async function copiar() {
+  const linhas = DECISOES.map(d => {
+    const r = resp[d.id];
+    if (!r || typeof r.opcao !== 'number') return d.id + ': (em aberto)';
+    return d.id + ': ' + r.rotulo + (r.nota ? ' · nota: ' + r.nota : '');
+  });
+  const txt = linhas.join('\n');
+  const btn = document.getElementById('copiar');
+  try { await navigator.clipboard.writeText(txt); btn.textContent = 'Copiado'; }
+  catch (e) {
+    const ta = el('textarea', { readonly: '' }); ta.value = txt; ta.style.cssText = 'width:100%;min-height:220px';
+    document.getElementById('aviso').after(ta); ta.select(); btn.textContent = 'Selecione e copie';
+  }
+  setTimeout(() => { btn.textContent = 'Copiar respostas'; }, 2500);
+}
+
+renderFases();
+renderGrupos();
+pinta();
+document.getElementById('aceitar-tudo').addEventListener('click', () => aceitar(DECISOES.map(d => d.id)));
+document.getElementById('copiar').addEventListener('click', copiar);
+
+(async () => {
+  try { db = window.claude && window.claude.use ? await window.claude.use('db') : null; } catch (e) { db = null; }
+  if (!db) {
+    avisa('Esta visualização não grava respostas. Escolha as opções e use "Copiar respostas" para colar no chat.');
+    return;
+  }
+  db.collection('respostas').onSnapshot(snap => {
+    for (const k of Object.keys(resp)) delete resp[k];
+    for (const d of snap.docs) if (d.exists && porId[d.id]) resp[d.id] = Object.assign({}, d.data());
+    pinta();
+  }, () => avisa('Perdi a conexão com as respostas gravadas. Recarregue a página.'));
+})();
+</script>

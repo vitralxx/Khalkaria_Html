@@ -22,3 +22,6 @@ privado/
 tools/testes/estilo/*
 !tools/testes/estilo/antes/
 !tools/testes/estilo/depois/
+
+# saída local dos geradores de artefato (páginas publicadas pelo Artifact, ícones, camadas dos zips)
+tools/artefatos/saida/
