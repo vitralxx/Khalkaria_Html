@@ -710,13 +710,33 @@ de 200ms com flush em `pagehide`.
 **Guarda contra aba velha (v2.1).** A string gravada continua `'2.0'`. Se o
 marcador `khalkaria_ficha_dono` vale `'v3'` (no load, no evento `storage` ou
 conferido a cada gravação), a ficha fica só-leitura: faixa "Ficha migrada para
-a v3. Recarregue a página." com "Baixar ficha v3 (.json)" (conteúdo cru de
-`khalkaria_ficha_v3`) e "Voltar a usar a v2" (apaga só o marcador); nenhuma
+a v3. Recarregue a página." com "Baixar ficha v3 (.json)" (o pacote `fichas/1`
+de todas as fichas do índice `khalkaria_fichas_v3` + `khalkaria_ficha_v3:<id>`,
+por `KhEstado.armazem(...).exportarTodas()`, só leitura; a ficha que não vira v3
+naquele bundle vai crua em `ilegiveis`) e "Voltar a usar a v2" (apaga só o marcador); nenhuma
 escrita no storage (nem backup, nem `khalkaria_ficha_open`, nem pelo Bazar: os
 mutadores devolvem `{ok:false, erro:'somente-leitura'}`, `null` ou `false`). A
 troca de modo emite `kf:mudou` `{partes:['tudo'], origem:'dono'}`. A mera
-existência de `khalkaria_ficha_v3` não trava nada. `importJSON` recusa
+existência das chaves v3 não trava nada. `importJSON` recusa
 `schemaVersion >= 3`. Testes: `tools/testes/guarda-v3.test.js`.
+
+**KhEstado (F3a, modo sombra).** Contratos que a F3b/F4 herdam:
+- Migração da v2: atributos e graus de perícia são o TOTAL digitado
+  (`atributos.migradoTotal`, `periciasMigracao.migradoTotal`, com o nível). As
+  entradas migradas levam `migradoDe.efeitoNoTotal:true`; o motor lê os Mods por
+  `KhEstado.modsAplicaveis(ficha)`, que tira os `atributo.*`/`pericia.*` delas.
+- `entrada.mods` é snapshot do catálogo: a migração, o `reassociar` e o
+  `reconciliar` copiam os `mods` da entrada do catálogo quando ela os tem.
+- Migrar sem `opcoes.calculado` marca `migracao.ajustesPendentesDePoda`; o
+  armazém recusa gravar (`poda-pendente`) até `podarAjustesMigrados(ficha, calculado)`.
+- Catálogo: `KhEstado.entradasDeCatalogo({catalogos, classes, racas})` (ramos
+  com os apelidos da v2, corrupções do Corrompido); os testes usam a mesma função.
+- Armazém: `gravar` recusa ficha excluída em outra aba (`excluida`) e
+  `ativa()` devolve null nesse caso (`ativaExcluida()` diz qual); `excluir` de
+  ficha ilegível ou de versão futura exige `op.exportarCru`; `exportarTodas`
+  leva essas cruas em `dados.ilegiveis` e devolve `erros`.
+- Ajuste: chaves e tipos fechados como `$defs/ajuste`; nos campos que são dado
+  (`evasao.ativa`, `pericia.defender.total`) o `fixa` é expressão de dado.
 
 **`data-kf-ignorar`.** O `MutationObserver` que redecora os cards ignora
 mudanças dentro de `[data-kf-ignorar]`, e `decorarBazar` não decora card ali

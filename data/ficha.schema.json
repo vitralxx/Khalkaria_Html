@@ -4,7 +4,7 @@
   "title": "Ficha de Personagem Khalkaria (v3)",
   "description": "Ficha nativa v3 (schemaVersion '3.0'), uma por personagem: várias fichas por navegador com seletor (D36). Gravada em 'khalkaria_ficha_v3:<id>' a partir da F4 (na F3 é só memória: modo sombra) e no Export JSON. O índice das fichas e o 'exportar todas' estão em $defs/indiceFichas e $defs/pacoteFichas (schema 'fichas/1'). Campos derivados (modificadores, totais de perícia, máximos, Evasão, CD, Movimento, Ar/Ae, capacidade) NÃO são guardados: o motor calcula; o que o jogador corrige à mão vai em 'ajustes' (M2). Motor puro: js/ficha/kh-estado.js (KhEstado). A ficha v2.1 ativa segue descrita em data/ficha-v2.schema.json. Validado nos testes pelo validador mínimo tools/testes/esquema-min.js (sem pip): só as palavras-chave que ele conhece.",
   "type": "object",
-  "required": ["schemaVersion", "id", "rev", "meta", "identidade", "atributos", "pericias", "recursos", "condicoes", "entradas", "inventario", "ajustes", "resistencias", "limiar", "vhelor", "lore"],
+  "required": ["schemaVersion", "id", "rev", "meta", "identidade", "atributos", "pericias", "periciasMigracao", "recursos", "condicoes", "entradas", "inventario", "ajustes", "resistencias", "limiar", "vhelor", "lore"],
   "additionalProperties": false,
 
   "properties": {
@@ -45,7 +45,7 @@
 
     "atributos": {
       "type": "object",
-      "description": "base = os 5 valores distribuídos na criação (8–18 rolados, D30; o ponto movido pode passar da faixa). O total (base + raça + porNivel + cartas + itens) é derivado. Na migração da v2 o total digitado vira a base com migradoTotal:true (raça e nível já estão dentro; o motor não soma de novo).",
+      "description": "base = os 5 valores distribuídos na criação (8–18 rolados, D30; o ponto movido pode passar da faixa). O total (base + raça + porNivel + cartas + itens) é derivado. Na migração da v2 o total digitado vira a base com migradoTotal:true: raça, os níveis até nivelMigrado e os Mods 'atributo.*' das entradas com migradoDe.efeitoNoTotal já estão dentro, e o motor não os soma de novo (KhEstado.modsAplicaveis). Carta ou item levado depois da migração soma normalmente.",
       "required": ["base", "porNivel", "migradoTotal"],
       "additionalProperties": false,
       "properties": {
@@ -75,6 +75,16 @@
       "required": ["atacar", "defender", "movimento", "fortitude", "vontade", "reflexos", "percepcao", "sobrevivencia", "furtividade", "crime", "iniciativa", "conhecimento", "medicina", "investigacao", "religiao", "mistico", "convencimento", "intimidacao", "intuicao", "enganacao", "motivar", "oficio-engenharia", "oficio-ferraria", "oficio-alquimia"],
       "propertyNames": { "enum": ["atacar", "defender", "movimento", "fortitude", "vontade", "reflexos", "percepcao", "sobrevivencia", "furtividade", "crime", "iniciativa", "conhecimento", "medicina", "investigacao", "religiao", "mistico", "convencimento", "intimidacao", "intuicao", "enganacao", "motivar", "oficio-engenharia", "oficio-ferraria", "oficio-alquimia"] },
       "additionalProperties": { "type": "integer", "minimum": 0, "maximum": 4 }
+    },
+    "periciasMigracao": {
+      "type": "object",
+      "description": "Igual ao atributos.migradoTotal, para as perícias: na migração da v2 o grau vem do bônus digitado, que já inclui o treinamento de classe, origem, raça e os Mods 'pericia.*' das entradas com migradoDe.efeitoNoTotal. O motor não soma isso de novo.",
+      "required": ["migradoTotal"],
+      "additionalProperties": false,
+      "properties": {
+        "migradoTotal": { "type": "boolean" },
+        "nivelMigrado": { "type": ["integer", "null"], "minimum": 1, "maximum": 5 }
+      }
     },
     "periciasAttr": {
       "type": "object",
@@ -194,7 +204,8 @@
           "properties": {
             "de": { "enum": ["1.0", "2.0"] },
             "em": { "type": "string" },
-            "pendencias": { "type": "array", "description": "O que a migração não pode decidir pelo jogador (ex.: qual Ofício recebe o grau do Ofício(X) da v2).", "items": { "type": "object", "required": ["campo", "motivo"] } }
+            "pendencias": { "type": "array", "description": "O que a migração não pode decidir pelo jogador (ex.: qual Ofício recebe o grau do Ofício(X) da v2).", "items": { "type": "object", "required": ["campo", "motivo"] } },
+            "ajustesPendentesDePoda": { "type": "boolean", "description": "true: migrou sem o calculado do motor, então os ajustes 'migracao' ainda não foram comparados com ele (podem ser iguais ao calculado). KhEstado.podarAjustesMigrados tira a marca; o armazém recusa gravar a ficha enquanto ela existir." }
           } }
       ]
     },
@@ -268,11 +279,12 @@
         "id": { "type": ["string", "null"], "description": "Id do catálogo (convenção do plano §3.2); null na órfã da migração." },
         "estado": { "type": "object", "description": "Por tipo (plano §4): magia {intensidade, sustentando}; tecnica/marca/ultimate {usos}; carta {nivelAquisicao, posicaoNaMao, especial}; dor/beneficio/corrupcao {nivelAquisicao}." },
         "cache": { "$ref": "#/$defs/cache" },
-        "mods": { "type": "array", "items": { "$ref": "#/$defs/mod" }, "description": "Snapshot dos Mods (o derivado calcula síncrono sem o catálogo)." },
+        "mods": { "type": "array", "items": { "$ref": "#/$defs/mod" }, "description": "Snapshot dos Mods (o derivado calcula síncrono sem o catálogo). Quem preenche: a migração, o reassociar e o reconciliar copiam os 'mods' da entrada do catálogo quando ela os tem; sem Mods no catálogo, fica como está (hoje data/catalogo não traz Mods de carta, técnica etc.: nasce [])." },
         "adicionadoEm": { "type": "string" },
         "nivelAquisicao": { "type": ["integer", "null"], "minimum": 1, "maximum": 5 },
         "migradoDe": { "type": "object", "required": ["id", "tipo", "nome"], "additionalProperties": false,
-          "properties": { "id": { "type": "string" }, "tipo": { "type": "string" }, "nome": { "type": "string" } } },
+          "properties": { "id": { "type": "string" }, "tipo": { "type": "string" }, "nome": { "type": "string" },
+            "efeitoNoTotal": { "type": "boolean", "description": "true: a entrada já estava na ficha v2 quando o jogador digitou os totais, então os Mods 'atributo.*' e 'pericia.*' dela já estão em atributos.base e em pericias. Os demais alvos (Evasão, recursos…) contam normalmente." } } },
         "orfao": { "$ref": "#/$defs/orfao" }
       }
     },
@@ -317,7 +329,7 @@
       "additionalProperties": false,
       "properties": {
         "modo": { "enum": ["fixa", "soma"], "description": "fixa: o campo vira o valor; soma: diferença sobre o calculado (acompanha o nível)." },
-        "valor": { "type": ["number", "boolean"], "description": "boolean só em resistencia/imunidade/vulnerabilidade.<tipo> (e aí só 'fixa')." },
+        "valor": { "type": ["number", "boolean", "string"], "pattern": "^ *(?:[0-9]+ *[+] *)?[0-9]+d[0-9]+(?: *[+-] *[0-9]+)? *$", "description": "boolean só em resistencia/imunidade/vulnerabilidade.<tipo> (e aí só 'fixa'). string (expressão de dado, ex.: '1d8', '13 + 1d8') só nos campos que são dado (evasao.ativa, pericia.defender.total) e só em 'fixa'; ali 'soma' é número (bônus fixo sobre o dado)." },
         "motivo": { "type": "string" },
         "temporario": {
           "oneOf": [
@@ -416,7 +428,10 @@
       "properties": {
         "schema": { "const": "fichas/1" },
         "exportadoEm": { "type": "string" },
-        "fichas": { "type": "array", "items": { "$ref": "#" } }
+        "fichas": { "type": "array", "items": { "$ref": "#" } },
+        "ilegiveis": { "type": "array", "description": "Fichas do índice que não viram v3 neste site (JSON corrompido ou versão futura): vão cruas, para não se perderem. O import não as grava e avisa.",
+          "items": { "type": "object", "required": ["id", "motivo"], "additionalProperties": false,
+            "properties": { "id": { "type": "string" }, "nome": { "type": "string" }, "motivo": { "enum": ["ilegivel", "versao-futura", "ausente"] }, "texto": { "type": ["string", "null"] } } } }
       }
     }
   }

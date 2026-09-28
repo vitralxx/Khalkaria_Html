@@ -1,6 +1,7 @@
 'use strict';
 // Estado v3 (F3a, modo sombra): KhEstado (js/ficha/kh-estado.js), puro.
-// Migração em cadeia 1.0 -> 2.0 -> 3.0 com fixtures reais da v2; ajuste manual
+// Migração em cadeia 1.0 -> 2.0 -> 3.0 com fixtures da v2 (a ficha-v2-sintetica
+// é montada à mão para os casos de borda; falta um export real, ver F3a); ajuste manual
 // só onde o valor digitado difere do default E do calculado (M2); ids antigos
 // re-associados por nome+tipo+classe (ambíguo ou sem par vira órfão com cache);
 // várias fichas (D36) sobre storage injetado: criar, trocar, duplicar, excluir
@@ -22,12 +23,18 @@ const FIX = path.join(__dirname, 'fixtures');
 const ler = (n) => JSON.parse(fs.readFileSync(path.join(FIX, n), 'utf8'));
 const V1 = ler('ficha-v1.json');
 const V2_ESPERADA = ler('ficha-v2-esperada.json');
-const V2 = ler('ficha-v2-real.json');
+const V2 = ler('ficha-v2-sintetica.json');
 const AGORA = '2026-09-28T12:00:00.000Z';
 const IDX = E.indiceCatalogo(A.entradasCatalogo(), 'teste-1');
 const semUid = (x) => JSON.parse(JSON.stringify(x, (k, v) => (k === 'uid' ? undefined : v)));
 const op = (extra) => Object.assign({ agora: () => AGORA, aleatorio: A.semente(7), catalogo: IDX }, extra || {});
 const porNome = (f, nome) => f.entradas.find((e) => e.migradoDe && e.migradoDe.nome === nome);
+// Calculado da Lira (Batedor nv2, V4 G7; DES 16 +3, CON 12 +1, SAB 15 +2),
+// conta feita à mão pelo contrato regras-ficha/1.1 no lugar do KhRegras (F3b):
+// Evasão Passiva 10+3 = 13; Instinto máx. 5; Saúde 10+4·2+1·2 = 20;
+// Stamina 8+7·2+3·2 = 28; CD 10+3+2 = 15.
+const CALC_LIRA = { 'evasao.passiva': 13, 'recurso.classe.max': 5, 'recurso.saude.max': 20, 'recurso.stamina.max': 28, cd: 15 };
+const calcTeste = (f) => (f.meta.nome === 'Lira Vento-Sul' ? CALC_LIRA : {});
 
 // ---------------- carga ----------------
 test('carregar a fonte no node não toca em window/localStorage; o artefato segue devolvendo o KhInv', () => {
@@ -83,7 +90,7 @@ test('v1 -> v3 em cadeia: valida, atributo vira base com migradoTotal, perícias
   assert.deepEqual(semUid(f.inventario), V2_ESPERADA.inventario);
 });
 
-test('v2 real -> v3: identidade por id, entradas por referência, órfãs com cache', () => {
+test('v2 -> v3: identidade por id, entradas por referência, órfãs com cache', () => {
   const { ficha: f, avisos } = E.migrar(V2, op());
   assert.deepEqual(validar(S, f), []);
   assert.deepEqual(f.identidade.raca, { id: 'raca-humano', nome: 'Humano' });
@@ -111,7 +118,7 @@ test('v2 real -> v3: identidade por id, entradas por referência, órfãs com ca
   assert.equal(amb.cache.resumo, 'Duas classes têm uma técnica com este nome.');
   const sem = porNome(f, 'Golpe Esquecido');
   assert.deepEqual([sem.id, sem.orfao.motivo, sem.cache.nome], [null, 'sem-par', 'Golpe Esquecido']);
-  assert.deepEqual(sem.migradoDe, { id: 'tecnica-golpe-esquecido', tipo: 'tecnica', nome: 'Golpe Esquecido' });
+  assert.deepEqual(sem.migradoDe, { id: 'tecnica-golpe-esquecido', tipo: 'tecnica', nome: 'Golpe Esquecido', efeitoNoTotal: true });
   assert.equal(f.entradas.length, 13, 'nada da v2 se perde');
   assert.equal(avisos.filter((a) => a.tipo === 'orfa').length, 2);
   assert.equal(porNome(f, 'Fagulha').cache.versaoCatalogo, 'teste-1');
@@ -153,11 +160,14 @@ test('sem calculado, o ajuste fica com calculadoEm null e a poda tira o que bate
   const f = E.migrar(V2, op()).ficha;
   assert.deepEqual(Object.keys(f.ajustes).sort(), ['evasao.passiva', 'recurso.classe.max', 'recurso.saude.max', 'recurso.stamina.max']);
   Object.values(f.ajustes).forEach((a) => assert.equal(a.calculadoEm, null));
+  assert.equal(f.migracao.ajustesPendentesDePoda, true, 'sem o motor: marcada como provisória');
+  assert.deepEqual(validar(S, f), []);
   f.ajustes.cd = { modo: 'fixa', valor: 99, desde: AGORA, origem: 'manual' };
   const podados = E.podarAjustesMigrados(f, { 'evasao.passiva': 13, 'recurso.saude.max': 20, cd: 99 });
   assert.deepEqual(podados, ['evasao.passiva']);
   assert.equal(f.ajustes['recurso.saude.max'].calculadoEm, 20);
   assert.ok('cd' in f.ajustes, 'ajuste manual nunca é podado');
+  assert.ok(!('ajustesPendentesDePoda' in f.migracao), 'a poda tira a marca');
 });
 
 test('migração sem catálogo: identidade só com nome, entradas órfãs "sem-catalogo"; reassociar resolve depois', () => {
@@ -202,7 +212,7 @@ test('sombra: lê khalkaria_ficha e devolve a v3 em memória sem escrever nada',
 function novoArmazem(inicial, limite, ss) {
   const ls = A.armazenamento(inicial, limite);
   const sessao = ss === undefined ? A.armazenamento() : ss;
-  return { ls, ss: sessao, a: E.armazem(ls, sessao, { agora: A.relogio(), aleatorio: A.semente(11), catalogo: IDX }) };
+  return { ls, ss: sessao, a: E.armazem(ls, sessao, { agora: A.relogio(), aleatorio: A.semente(11), catalogo: IDX, calculado: calcTeste }) };
 }
 
 test('criar: índice + chave por ficha, a nova vira a ativa, as outras intactas', () => {
@@ -456,4 +466,194 @@ test('uso da quota: soma só as chaves khalkaria_*, 2 bytes por caractere', () =
   assert.equal(u.bytes, esperado);
   assert.equal(u.limite, 5 * 1024 * 1024);
   assert.ok(!('outra_coisa' in u.porChave));
+});
+
+// ---------------- correções da revisão (F3a) ----------------
+// Catálogo com Mods de teste nas cartas (o data/catalogo ainda não traz Mods):
+// "+1 ponto de força", "+1 Evasão ... +1 nível de treinamento em Defender".
+const MODS_TESTE = {
+  'limiar-coluna-de-tita': [{ alvo: 'atributo.FOR', op: 'soma', valor: 1 }],
+  'limiar-sombra-dancante': [{ alvo: 'evasao.passiva', op: 'soma', valor: 1 }, { alvo: 'pericia.defender', op: 'soma', valor: 1 }],
+  'limiar-barbaro': [{ alvo: 'atributo.FOR', op: 'soma', valor: 1 }, { alvo: 'atributo.CON', op: 'soma', valor: 1 },
+    { alvo: 'atributo.INT', op: 'soma', valor: -1 }, { alvo: 'atributo.SAB', op: 'soma', valor: -1 }]
+};
+const IDX_MODS = E.indiceCatalogo(A.entradasCatalogo().map((e) => (MODS_TESTE[e.id] ? Object.assign({}, e, { mods: MODS_TESTE[e.id] }) : e)), 'teste-mods');
+const soma = (f, alvo) => E.modsAplicaveis(f).filter((x) => x.mod.alvo === alvo).reduce((t, x) => t + x.mod.valor, 0);
+
+test('migração não conta duas vezes: carta que já estava no total digitado da v2 não soma de novo', () => {
+  const v2 = JSON.parse(JSON.stringify(V2));
+  v2.atributos.for = 13;
+  v2.cartasLimiar = [{ id: 'carta-coluna', tipo: 'carta', nome: 'Coluna de Titã', descricao: '' },
+    { id: 'carta-sombra', tipo: 'carta', nome: 'Sombra Dançante', descricao: '' }];
+  const f = E.migrar(v2, op({ catalogo: IDX_MODS, calculado: CALC_LIRA })).ficha;
+  assert.deepEqual(validar(S, f), []);
+  assert.equal(f.meta.nivel, 2);
+  const col = porNome(f, 'Coluna de Titã');
+  assert.deepEqual(col.mods, MODS_TESTE['limiar-coluna-de-tita'], 'a migração copia o snapshot dos Mods do catálogo');
+  assert.equal(col.migradoDe.efeitoNoTotal, true);
+  assert.deepEqual(f.periciasMigracao, { migradoTotal: true, nivelMigrado: 2 });
+  assert.equal(f.atributos.base.FOR + soma(f, 'atributo.FOR'), 13, 'FOR 13 com Coluna de Titã e nível 2 fica 13, não 14');
+  assert.equal(soma(f, 'pericia.defender'), 0, 'o treinamento da Sombra Dançante já está no grau da v2');
+  assert.equal(soma(f, 'evasao.passiva'), 1, 'o +1 Evasão conta: a Evasão é calculada na v3');
+  // carta levada DEPOIS da migração soma normalmente
+  f.entradas.push({ uid: 'unova', tipo: 'carta', id: 'limiar-barbaro', estado: E.estadoPadrao('carta'),
+    cache: { nome: 'Bárbaro', versaoCatalogo: 'teste-mods' }, mods: MODS_TESTE['limiar-barbaro'] });
+  assert.equal(f.atributos.base.FOR + soma(f, 'atributo.FOR'), 14);
+  assert.equal(soma(f, 'atributo.SAB'), -1);
+  assert.deepEqual(validar(S, f), []);
+  // ficha nova (não migrada): nada é tirado
+  const n = E.novaFicha();
+  const semMarca = JSON.parse(JSON.stringify(col)); delete semMarca.migradoDe;
+  n.entradas.push(semMarca);
+  assert.equal(soma(n, 'atributo.FOR'), 1);
+});
+
+test('mods das migradas: sem catálogo nascem [] e o reassociar/reconciliar preenchem do catálogo', () => {
+  const v2 = JSON.parse(JSON.stringify(V2));
+  v2.cartasLimiar = [{ id: 'c1', tipo: 'carta', nome: 'Sombra Dançante', descricao: '' }];
+  const f = E.migrar(v2, op({ catalogo: null })).ficha;
+  const e = porNome(f, 'Sombra Dançante');
+  assert.deepEqual([e.id, e.mods], [null, []]);
+  f.identidade.classe = { id: 'classe-batedor', nome: 'Batedor' };
+  E.reassociar(f, IDX_MODS);
+  assert.deepEqual(e.mods, MODS_TESTE['limiar-sombra-dancante']);
+  e.mods = [];
+  E.reconciliar(f, IDX_MODS);
+  assert.deepEqual(e.mods, MODS_TESTE['limiar-sombra-dancante'], 'reconciliar renova o snapshot');
+  E.reconciliar(f, IDX);
+  assert.deepEqual(e.mods, MODS_TESTE['limiar-sombra-dancante'], 'catálogo sem Mods não apaga o snapshot');
+});
+
+test('poda: com o calculado do contrato, a fixture migra só com saude.max e stamina.max', () => {
+  const f = E.migrar(V2, op({ calculado: CALC_LIRA })).ficha;
+  assert.deepEqual(Object.keys(f.ajustes).sort(), ['recurso.saude.max', 'recurso.stamina.max']);
+  assert.ok(!('ajustesPendentesDePoda' in f.migracao));
+  const sombra = E.sombra(A.soLeitura({ khalkaria_ficha: JSON.stringify(V2) }), op());
+  assert.equal(sombra.ficha.migracao.ajustesPendentesDePoda, true, 'a sombra sem motor sai provisória');
+  E.podarAjustesMigrados(sombra.ficha, CALC_LIRA);
+  assert.deepEqual(Object.keys(sombra.ficha.ajustes).sort(), ['recurso.saude.max', 'recurso.stamina.max']);
+});
+
+test('armazém não grava ficha com poda pendente (import sem calculado, gravar)', () => {
+  const ls = A.armazenamento();
+  const a = E.armazem(ls, A.armazenamento(), { agora: A.relogio(), aleatorio: A.semente(5), catalogo: IDX });
+  assert.equal(a.importar(JSON.stringify(V2)).erro, 'poda-pendente');
+  assert.equal(ls.getItem('khalkaria_fichas_v3'), null, 'nada foi gravado');
+  const r = a.importar(JSON.stringify(V2), { calculado: CALC_LIRA });
+  assert.equal(r.ok, true);
+  const f = a.ler(r.ids[0]);
+  assert.deepEqual(Object.keys(f.ajustes).sort(), ['recurso.saude.max', 'recurso.stamina.max']);
+  f.migracao.ajustesPendentesDePoda = true;
+  assert.equal(a.gravar(f).erro, 'poda-pendente');
+});
+
+test('duas abas: excluir numa não deixa a outra ressuscitar a ficha; a outra vê ativaExcluida', () => {
+  const ls = A.armazenamento();
+  const abaA = E.armazem(ls, A.armazenamento(), { agora: A.relogio(), aleatorio: A.semente(1) });
+  const abaB = E.armazem(ls, A.armazenamento(), { agora: A.relogio('2026-09-28T13:00:00.000Z'), aleatorio: A.semente(2) });
+  const um = abaA.criar({ nome: 'Um' }).id, dois = abaA.criar({ nome: 'Dois' }).id;
+  abaB.trocar(um);
+  const emB = abaB.ler(um);
+  assert.equal(abaA.excluir(um, { exportar: () => true }).ok, true);
+  emB.meta.nome = 'Um editado na B';
+  assert.deepEqual(abaB.gravar(emB), { ok: false, erro: 'excluida' });
+  assert.deepEqual(abaA.listar().map((x) => x.nome), ['Dois']);
+  assert.equal(ls.getItem('khalkaria_ficha_v3:' + um), null);
+  assert.equal(abaB.ativa(), null, 'não troca em silêncio');
+  assert.equal(abaB.ativaExcluida(), um);
+  assert.equal(abaB.trocar(dois).ok, true, '"Trocar" sai do estado');
+  assert.equal(abaB.ativaExcluida(), null);
+  assert.equal(abaB.ativa(), dois);
+});
+
+test('excluir ficha ilegível ou de versão futura: só com o export cru; "exportar todas" leva as cruas', () => {
+  const { ls, a } = novoArmazem();
+  const boa = a.criar({ nome: 'Boa' }).id, ruim = a.criar({ nome: 'Ruim' }).id, fut = a.criar({ nome: 'Futura' }).id;
+  ls.m.set('khalkaria_ficha_v3:' + ruim, '{corrompido');
+  const futura = JSON.stringify({ schemaVersion: '4.0', id: fut, meta: { nome: 'Futura' }, novidade: 1 });
+  ls.m.set('khalkaria_ficha_v3:' + fut, futura);
+  const chamadas = [];
+  const r = a.excluir(ruim, { exportar: (x) => { chamadas.push(x); return true; } });
+  assert.deepEqual([r.ok, r.erro, r.motivo, r.cru.texto], [false, 'ilegivel', 'ilegivel', '{corrompido']);
+  assert.deepEqual(chamadas, [], 'o export nulo nunca vale como export');
+  assert.equal(ls.getItem('khalkaria_ficha_v3:' + ruim), '{corrompido', 'nada foi apagado');
+  assert.equal(a.excluir(fut, { exportar: () => true }).motivo, 'versao-futura');
+  // exportar todas: as cruas vão no pacote e voltam em erros
+  const todas = a.exportarTodas();
+  assert.deepEqual(todas.dados.fichas.map((x) => x.id), [boa]);
+  assert.deepEqual(todas.dados.ilegiveis.map((x) => [x.id, x.motivo, x.texto]),
+    [[ruim, 'ilegivel', '{corrompido'], [fut, 'versao-futura', futura]]);
+  assert.deepEqual(todas.erros, [{ id: ruim, motivo: 'ilegivel' }, { id: fut, motivo: 'versao-futura' }]);
+  assert.deepEqual(validar(S, todas.dados, '#/$defs/pacoteFichas'), []);
+  const novo = novoArmazem();
+  const imp = novo.a.importar(JSON.stringify(todas.dados));
+  assert.equal(imp.ok, true);
+  assert.deepEqual(imp.erros.map((x) => [x.erro, x.id]), [['ilegivel-no-pacote', ruim], ['ilegivel-no-pacote', fut]]);
+  // import "atualizar" por cima da futura é recusado (anti-downgrade)
+  const porCima = JSON.stringify(Object.assign(E.novaFicha({ nome: 'Por cima' }), { id: fut }));
+  assert.equal(a.importar(porCima, { conflito: 'atualizar', exportar: () => true }).erro, 'versao-futura');
+  assert.equal(ls.getItem('khalkaria_ficha_v3:' + fut), futura);
+  // com o export cru, sai
+  const crus = [];
+  assert.equal(a.excluir(ruim, { exportar: () => true, exportarCru: (x) => { crus.push(x); } }).ok, true);
+  assert.deepEqual(crus, [{ nomeArquivo: 'ficha-' + ruim + '.cru.khalkaria.json', texto: '{corrompido' }]);
+  assert.equal(ls.getItem('khalkaria_ficha_v3:' + ruim), null);
+});
+
+test('ajuste: lista fechada de chaves e tipos (como $defs/ajuste); dado nos campos que são dado', () => {
+  const d = '2026-09-28T00:00:00.000Z';
+  const f = E.novaFicha();
+  assert.equal(E.ajustar(f, 'cd', { modo: 'fixa', valor: 1, motivo: 123 }), 'motivo-invalido');
+  assert.equal(E.ajustar(f, 'cd', { modo: 'fixa', valor: 1, rev: 2 }), 'campo-desconhecido');
+  assert.equal(E.validarAjuste('cd', { modo: 'fixa', valor: 1, desde: 5 }), 'desde-invalido');
+  assert.equal(E.validarAjuste('cd', { modo: 'fixa', valor: 1, origem: 'outra' }), 'origem-invalida');
+  assert.equal(E.validarAjuste('cd', { modo: 'fixa', valor: 1, calculadoEm: '3' }), 'calculado-invalido');
+  assert.equal(E.validarAjuste('cd', { modo: 'fixa', valor: 1, temporario: { fim: 'fimTurno', x: 1 } }), 'temporario-invalido');
+  assert.deepEqual(f.ajustes, {}, 'nada inválido foi gravado');
+  assert.deepEqual(E.CAMINHOS_DADO, ['evasao.ativa', 'pericia.defender.total']);
+  assert.equal(E.ajustar(f, 'pericia.defender.total', { modo: 'fixa', valor: '1d8', motivo: 'Mestre em Defender' }, { agora: () => d }), null);
+  assert.equal(E.ajustar(f, 'evasao.ativa', { modo: 'fixa', valor: '13 + 1d8' }, { agora: () => d }), null);
+  assert.equal(E.validarAjuste('evasao.ativa', { modo: 'soma', valor: 1 }), null, 'soma: bônus fixo sobre o dado');
+  assert.equal(E.validarAjuste('evasao.ativa', { modo: 'fixa', valor: 14 }), 'valor-invalido', 'fixa sem dado perderia o dado');
+  assert.equal(E.validarAjuste('evasao.ativa', { modo: 'soma', valor: '1d4' }), 'valor-invalido');
+  assert.equal(E.validarAjuste('cd', { modo: 'fixa', valor: '1d8' }), 'valor-invalido');
+  assert.deepEqual(validar(S, f), []);
+  f.ajustes.cd = { modo: 'fixa', valor: 'abc', desde: d };
+  assert.equal(validar(S, f).length, 1, 'o schema recusa texto que não é dado');
+});
+
+test('import 3.x: id fora do padrão é trocado; cópia sem vínculo v2; "atualizar" limpa log, rascunho e sessão velhos', () => {
+  const g = E.novaFicha({ nome: 'Id ruim' });
+  g.id = '../x';
+  const m = E.migrar(JSON.parse(JSON.stringify(g)), op());
+  assert.match(m.ficha.id, /^f[a-z0-9]{12}$/);
+  const { ls, a } = novoArmazem();
+  const id = a.importar(JSON.stringify(V2)).ids[0];
+  a.gravarLog(id, { passos: [] });
+  a.gravarSessao(id, { modo: 'mesa', turno: 2, log: [] });
+  ls.setItem('khalkaria_nivel_rascunho:' + id, '{}');
+  const arquivo = JSON.stringify(a.exportar(id).dados);   // traz estadoSessao
+  const semSessao = JSON.parse(arquivo); delete semSessao.estadoSessao; semSessao.meta.nome = 'Lira 2';
+  const c = a.importar(arquivo, { conflito: 'copia' });
+  const copia = a.ler(c.ids[0]);
+  assert.deepEqual([copia.vinculoV2, copia.exportadoEm], [null, '']);
+  assert.equal(a.ler(id).vinculoV2.revV2, 17);
+  const r = a.importar(JSON.stringify(semSessao), { conflito: 'atualizar', exportar: () => true });
+  assert.equal(r.ok, true);
+  assert.equal(a.ler(id).meta.nome, 'Lira 2');
+  ['khalkaria_ficha_v3_log:', 'khalkaria_nivel_rascunho:', 'khalkaria_ficha_v3_sessao:']
+    .forEach((p) => assert.equal(ls.getItem(p + id), null, p));
+});
+
+test('entradasDeCatalogo (produção): ramo pelo texto livre da v2 e corrupções do Corrompido', () => {
+  const ent = E.entradasDeCatalogo(A.dadosCatalogo());
+  const ramo = ent.find((e) => e.id === 'batedor-ramo-do-cartografo');
+  assert.deepEqual([ramo.tipo, ramo.classe, ramo.apelidos], ['ramo', 'batedor', ['cartografo', 'Cartógrafo']]);
+  const idx = E.indiceCatalogo(ent, 'prod');
+  const f = E.migrar(V2, op({ catalogo: idx, calculado: CALC_LIRA })).ficha;
+  assert.equal(f.identidade.ramo.id, 'batedor-ramo-do-cartografo');
+  assert.equal(porNome(f, 'Sangue Morto (-1)').id, 'corrompido-sangue-morto');
+  assert.equal(ent.filter((e) => e.tipo === 'classe').length, 7);
+  assert.ok(ent.filter((e) => e.tipo === 'corrupcao').length > 0);
+  assert.ok(ent.filter((e) => e.tipo === 'corrupcao').every((e) => e.raca === 'corrompido'));
 });

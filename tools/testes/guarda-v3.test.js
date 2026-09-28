@@ -2,8 +2,10 @@
 // Guarda contra aba velha (F0, ficha v2.1). Com o marcador localStorage
 // 'khalkaria_ficha_dono' = 'v3' (no load ou pelo evento storage) a ficha v2
 // fica só-leitura: faixa com "Baixar ficha v3 (.json)" e "Voltar a usar a v2",
-// e NENHUMA escrita no storage (nem pelo Bazar via KF). A mera existência de
-// 'khalkaria_ficha_v3' não trava nada. importJSON recusa schemaVersion >= 3.
+// e NENHUMA escrita no storage (nem pelo Bazar via KF). A mera existência das
+// chaves v3 (índice 'khalkaria_fichas_v3' + 'khalkaria_ficha_v3:<id>', as de
+// KhEstado.CHAVES) não trava nada. "Baixar ficha v3" baixa o pacote fichas/1
+// de todas elas. importJSON recusa schemaVersion >= 3.
 //
 // O init() roda (readyState 'complete') sobre um DOM falso tolerante, como em
 // export-import.test.js; aqui o window guarda os ouvintes para disparar
@@ -20,7 +22,14 @@ const ler = (n) => JSON.parse(fs.readFileSync(path.join(FIX, n), 'utf8'));
 const CAT = ler('catalogo-mini.json');
 const LS = 'khalkaria_ficha';
 const DONO = 'khalkaria_ficha_dono';
-const V3 = 'khalkaria_ficha_v3';
+const INDICE = 'khalkaria_fichas_v3';
+const FICHA = 'khalkaria_ficha_v3:';
+// o que a F4 grava: o índice fichas/1 e uma chave por ficha
+function gravaV3(st, fichas) {
+  st.setItem(INDICE, JSON.stringify({ schema: 'fichas/1', ultimaAtiva: fichas.length ? fichas[0].id : null, projecaoV2: null,
+    fichas: fichas.map((f) => ({ id: f.id, nome: f.meta ? f.meta.nome : '', classe: '', nivel: 1, atualizadoEm: '2026-09-28T00:00:00.000Z' })) }));
+  fichas.forEach((f) => st.setItem(FICHA + f.id, typeof f.cru === 'string' ? f.cru : JSON.stringify(f)));
+}
 const BACKUP = 'khalkaria_ficha_v1_backup';
 const MSG_RO = 'Ficha migrada para a v3. Recarregue a página.';
 const puro = (x) => JSON.parse(JSON.stringify(x));
@@ -148,7 +157,7 @@ test('marcador v3 no load: só-leitura, faixa com os dois botões e nenhuma escr
   const st = armazenamento();
   fichaV2(st);
   st.setItem(DONO, 'v3');
-  st.setItem(V3, JSON.stringify({ schemaVersion: '3.0', meta: { nome: 'Borin Três' } }));
+  gravaV3(st, [{ schemaVersion: '3.0', id: 'fborin3', meta: { nome: 'Borin Três', nivel: 1 } }]);
   const antes = st.foto();
   st.escritas.length = 0;
   const p = pagina(st);
@@ -194,8 +203,9 @@ test('v1 no storage com marcador v3: nada de backup nem de migração gravada', 
   assert.equal(p.KF.inventario().sins, 37);
 });
 
-test('só a chave khalkaria_ficha_v3 (sem marcador) não trava nada', () => {
-  const st = armazenamento({ [V3]: JSON.stringify({ schemaVersion: '3.0' }) });
+test('só as chaves v3 (sem marcador) não travam nada', () => {
+  const st = armazenamento();
+  gravaV3(st, [{ schemaVersion: '3.0', id: 'fabc123', meta: { nome: 'X', nivel: 1 } }]);
   const p = pagina(st);
   assert.equal(p.KF.somenteLeitura(), false);
   assert.equal(p.faixas().length, 0);
@@ -233,11 +243,12 @@ test('marcador chega pelo evento storage: entra em só-leitura, descarta o debou
   assert.equal(JSON.parse(st.getItem(LS)).rev, revAntes);
   assert.equal(JSON.parse(st.getItem(LS)).meta.nome, '');
   // "Voltar a usar a v2": apaga só o marcador; a chave v3 (se houver) fica
-  st.setItem(V3, '{"schemaVersion":"3.0"}');
+  gravaV3(st, [{ schemaVersion: '3.0', id: 'fabc123', meta: { nome: 'X', nivel: 1 } }]);
+  const v3antes = [st.getItem(INDICE), st.getItem(FICHA + 'fabc123')];
   st.escritas.length = 0;
   p.botao('Voltar a usar a v2').click();
   assert.deepEqual(st.escritas, [['remove', DONO]]);
-  assert.equal(st.getItem(V3), '{"schemaVersion":"3.0"}');
+  assert.deepEqual([st.getItem(INDICE), st.getItem(FICHA + 'fabc123')], v3antes);
   assert.equal(p.KF.somenteLeitura(), false);
   assert.ok(p.KF.adicionar(item('Kali')), 'grava de novo');
   assert.equal(JSON.parse(st.getItem(LS)).inventario.bugigangas[0].qtd, 3);
@@ -268,17 +279,28 @@ test('marcador gravado sem evento (aba em segundo plano): a próxima escrita con
   assert.equal(p.KF.somenteLeitura(), true);
 });
 
-test('"Baixar ficha v3 (.json)" baixa o conteúdo de khalkaria_ficha_v3', () => {
-  const v3 = { schemaVersion: '3.0', meta: { nome: 'Borin Três' }, qualquer: [1, 2] };
-  const st = armazenamento({ [DONO]: 'v3', [V3]: JSON.stringify(v3) });
+test('"Baixar ficha v3 (.json)" baixa o pacote fichas/1 com todas as fichas do índice v3', () => {
+  const st = armazenamento({ [DONO]: 'v3' });
+  gravaV3(st, [
+    { schemaVersion: '3.0', id: 'fborin3', meta: { nome: 'Borin Três', nivel: 2 } },
+    { schemaVersion: '3.0', id: 'flira03', meta: { nome: 'Lira', nivel: 1 } },
+    { id: 'ffutura', cru: '{"schemaVersion":"4.0","id":"ffutura"}' }
+  ]);
+  st.setItem('khalkaria_ficha_v3_sessao:flira03', JSON.stringify({ modo: 'mesa', turno: 2, log: [] }));
+  st.escritas.length = 0;
   const p = pagina(st);
   p.botao('Baixar ficha v3 (.json)').click();
-  assert.deepEqual(p.baixados.pop(), v3);
+  const pac = p.baixados.pop();
+  assert.equal(pac.schema, 'fichas/1');
+  assert.deepEqual(pac.fichas.map((f) => [f.id, f.meta.nome]), [['fborin3', 'Borin Três'], ['flira03', 'Lira']]);
+  assert.equal(pac.fichas[1].estadoSessao.turno, 2, 'a sessão da Mesa vai junto');
+  assert.deepEqual(pac.ilegiveis, [{ id: 'ffutura', nome: '', motivo: 'versao-futura', texto: '{"schemaVersion":"4.0","id":"ffutura"}' }],
+    'a de versão futura vai crua, não some');
   const nome = p.dom.criados.filter((e) => e.tagName === 'A').pop().getAttribute('download');
-  assert.equal(nome, 'Borin_Três.v3.khalkaria.json');
-  assert.deepEqual(st.escritas, []);
-  // sem a chave v3: avisa e não baixa nada
-  st.m.delete(V3);
+  assert.equal(nome, 'khalkaria-fichas.json');
+  assert.deepEqual(st.escritas, [], 'só lê');
+  // sem o índice v3: avisa e não baixa nada
+  st.m.delete(INDICE);
   p.botao('Baixar ficha v3 (.json)').click();
   assert.equal(p.baixados.length, 0);
   assert.equal(p.toasts().pop(), 'Não há ficha v3 salva neste navegador');

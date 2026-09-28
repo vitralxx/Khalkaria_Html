@@ -17,12 +17,13 @@
   var LS_KEY = 'khalkaria_ficha';
   var OPEN_KEY = 'khalkaria_ficha_open';
   var BACKUP_KEY = 'khalkaria_ficha_v1_backup';
-  // Guarda contra aba velha (F0). A v3 grava na própria chave e põe o marcador
-  // DONO_KEY = 'v3'; esta v2.1, ao ver o marcador (no load ou pelo evento
-  // storage), fica só-leitura e não escreve mais NADA no storage. A mera
-  // existência de V3_KEY não trava nada. "Voltar a usar a v2" apaga só o marcador.
-  var DONO_KEY = 'khalkaria_ficha_dono';
-  var V3_KEY = 'khalkaria_ficha_v3';
+  // Guarda contra aba velha (F0). A v3 grava nas próprias chaves (índice
+  // khalkaria_fichas_v3 + khalkaria_ficha_v3:<id>, KhEstado.CHAVES) e põe o
+  // marcador DONO_KEY = 'v3'; esta v2.1, ao ver o marcador (no load ou pelo
+  // evento storage), fica só-leitura e não escreve mais NADA no storage. A mera
+  // existência das chaves v3 não trava nada. "Voltar a usar a v2" apaga só o marcador.
+  var KhEstado = raiz.KhEstado;
+  var DONO_KEY = KhEstado.CHAVES.dono;
   var MSG_RO = 'Ficha migrada para a v3. Recarregue a página.';
   var SCHEMA_VERSION = '2.0';   // a string gravada nunca muda: a v3 usa outra chave
   var DESFAZER_MAX = 20;
@@ -245,13 +246,17 @@
     var a = el('a', { href: URL.createObjectURL(blob), download: nome });
     document.body.appendChild(a); a.click(); a.remove();
   }
-  // "Baixar ficha v3 (.json)": o conteúdo cru de V3_KEY, se existir
+  // "Baixar ficha v3 (.json)": o pacote fichas/1 com TODAS as fichas do índice
+  // v3 (KhEstado.armazem só LÊ aqui); a que não vira v3 neste bundle (ilegível
+  // ou de versão futura) vai crua em 'ilegiveis', para não se perder.
   function baixarV3() {
-    var raw = lsGet(V3_KEY);
-    if (!raw) { toast('Não há ficha v3 salva neste navegador'); return false; }
-    var nome = '';
-    try { var f = JSON.parse(raw); nome = (f && f.meta && f.meta.nome) || ''; } catch (e) {}
-    baixarTexto(String(nome || ficha.meta.nome || 'ficha').replace(/\s+/g, '_') + '.v3.khalkaria.json', raw);
+    var p = null;
+    try { p = KhEstado.armazem(localStorage, null).exportarTodas(); } catch (e) { p = null; }
+    if (!p || (!p.dados.fichas.length && !(p.dados.ilegiveis || []).length)) {
+      toast('Não há ficha v3 salva neste navegador');
+      return false;
+    }
+    baixarTexto(p.nomeArquivo, JSON.stringify(p.dados, null, 2));
     return true;
   }
   // "Voltar a usar a v2": apaga só o marcador (a chave v3 fica intacta)

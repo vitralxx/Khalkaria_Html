@@ -8,31 +8,17 @@ const path = require('node:path');
 const RAIZ = path.join(__dirname, '..', '..');
 const lerJSON = (...p) => JSON.parse(fs.readFileSync(path.join(RAIZ, ...p), 'utf8'));
 
-// Entradas {id, tipo, nome, classe?, raca?, resumo?, apelidos?} de:
-// data/catalogo/*.json, os blocos de classe (classe e ramos) e as tabelas de
-// corrupção do Corrompido (poderes e adversidades, tipo 'corrupcao').
+// Os arquivos de data/ que o KhCatalogo (F3b) vai carregar, lidos do disco:
+// data/catalogo/*.json, data/classes/*.json e data/racas/*.json.
+function dadosCatalogo() {
+  const pasta = (d) => fs.readdirSync(path.join(RAIZ, 'data', d)).filter((n) => n.endsWith('.json')).sort()
+    .map((n) => lerJSON('data', d, n));
+  return { catalogos: pasta('catalogo'), classes: pasta('classes'), racas: pasta('racas') };
+}
+// As entradas vêm do código de PRODUÇÃO (KhEstado.entradasDeCatalogo): os
+// ramos com os apelidos que a v2 gravava e as corrupções do Corrompido.
 function entradasCatalogo() {
-  const out = [];
-  const pasta = path.join(RAIZ, 'data', 'catalogo');
-  fs.readdirSync(pasta).filter((n) => n.endsWith('.json')).sort().forEach((n) => {
-    lerJSON('data', 'catalogo', n).entradas.forEach((e) => {
-      out.push({ id: e.id, tipo: e.tipo, nome: e.nome, classe: e.classe || null, raca: e.raca || null, resumo: e.resumo || '' });
-    });
-  });
-  fs.readdirSync(path.join(RAIZ, 'data', 'classes')).filter((n) => n.endsWith('.json')).sort().forEach((n) => {
-    const c = lerJSON('data', 'classes', n).classe;
-    const chave = c.id.replace(/^classe-/, '');
-    out.push({ id: c.id, tipo: 'classe', nome: c.nome });
-    (c.ramos || []).forEach((r) => {
-      const semPrefixo = String(r.nome).replace(/^[^A-Za-zÀ-ÿ]*Ramo d[oa]s?\s+/, '');
-      out.push({ id: r.id, tipo: 'ramo', nome: r.nome, classe: chave, apelidos: [r.chave, semPrefixo] });
-    });
-  });
-  const corr = lerJSON('data', 'racas', 'corrompido.json').raca.corrupcao;
-  ['poderes', 'adversidades'].forEach((k) => corr[k].itens.forEach((x) => {
-    out.push({ id: x.id, tipo: 'corrupcao', nome: x.nome, raca: 'corrompido' });
-  }));
-  return out;
+  return require('../../js/ficha/kh-estado.js').entradasDeCatalogo(dadosCatalogo());
 }
 
 class Quota extends Error { constructor() { super('quota'); this.name = 'QuotaExceededError'; this.code = 22; } }
@@ -80,4 +66,4 @@ function semente(s) {
   return () => { x = (x * 1103515245 + 12345) % 2147483648; return x / 2147483648; };
 }
 
-module.exports = { RAIZ, lerJSON, entradasCatalogo, armazenamento, soLeitura, relogio, semente };
+module.exports = { RAIZ, lerJSON, dadosCatalogo, entradasCatalogo, armazenamento, soLeitura, relogio, semente };

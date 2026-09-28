@@ -77,6 +77,15 @@
     ].join('|') + ')$');
     function ehCaminhoDeAjuste(c) { return typeof c === 'string' && PADRAO_AJUSTE.test(c); }
     var PADRAO_BOOLEANO = /^(?:resistencia|imunidade|vulnerabilidade)\./;
+    // campos que são DADO (Defender 1d6…2d8; Ativa = Passiva + esse dado): o
+    // 'fixa' leva a expressão ('1d8', '13 + 1d8'); o 'soma' é bônus fixo (número)
+    var CAMINHOS_DADO = ['evasao.ativa', 'pericia.defender.total'];
+    var PADRAO_DADO = /^ *(?:[0-9]+ *[+] *)?[0-9]+d[0-9]+(?: *[+-] *[0-9]+)? *$/;
+    // as chaves de $defs/ajuste (lista fechada, como o additionalProperties:false)
+    var CHAVES_AJUSTE = ['modo', 'valor', 'motivo', 'temporario', 'desde', 'calculadoEm', 'origem'];
+    var PADRAO_ID = /^f[a-z0-9]{6,}$/;
+    // alvos de Mod cujo valor a v2 guardava como TOTAL digitado (atributos, grau de perícia)
+    var ALVOS_NO_TOTAL = { 'atributo.': 'atributos', 'pericia.': 'periciasMigracao' };
 
     // ---------------- utilitários ----------------
     function clone(x) { return x === undefined ? undefined : JSON.parse(JSON.stringify(x)); }
@@ -151,7 +160,7 @@
           origem: ref(), escolhas: {} },
         atributos: { base: {}, fonte: null, porNivel: {}, pontoMovido: null,
           migradoTotal: false, nivelMigrado: null },
-        pericias: {}, periciasAttr: {},
+        pericias: {}, periciasMigracao: { migradoTotal: false, nivelMigrado: null }, periciasAttr: {},
         recursos: { saude: { atual: 0, temporaria: 0 }, stamina: { atual: 0, comprometida: 0 },
           eter: { atual: 0 }, classe: { id: null, nome: '', atual: 0 } },
         condicoes: [],
@@ -199,15 +208,28 @@
 
     // ---------------- ajustes (M2, só o modelo) ----------------
     // {modo:'fixa'|'soma', valor, motivo?, temporario:false|{fim}, desde, calculadoEm?, origem?}
+    // Espelha $defs/ajuste: lista fechada de chaves e o tipo de cada uma.
     function validarAjuste(caminho, aj) {
       if (!ehCaminhoDeAjuste(caminho)) return 'caminho-de-estado';
       if (!obj(aj)) return 'ajuste-invalido';
+      if (Object.keys(aj).some(function (k) { return CHAVES_AJUSTE.indexOf(k) < 0; })) return 'campo-desconhecido';
       if (aj.modo !== 'fixa' && aj.modo !== 'soma') return 'modo-invalido';
       var bool = PADRAO_BOOLEANO.test(caminho);
-      if (bool ? typeof aj.valor !== 'boolean' : !(typeof aj.valor === 'number' && isFinite(aj.valor))) return 'valor-invalido';
-      if (bool && aj.modo !== 'fixa') return 'modo-invalido';
+      var num = typeof aj.valor === 'number' && isFinite(aj.valor);
+      if (bool) {
+        if (typeof aj.valor !== 'boolean') return 'valor-invalido';
+        if (aj.modo !== 'fixa') return 'modo-invalido';
+      } else if (CAMINHOS_DADO.indexOf(caminho) >= 0) {
+        if (aj.modo === 'fixa' ? !(typeof aj.valor === 'string' && PADRAO_DADO.test(aj.valor)) : !num) return 'valor-invalido';
+      } else if (!num) return 'valor-invalido';
       if (aj.temporario !== undefined && aj.temporario !== false &&
-          !(obj(aj.temporario) && FINS_TEMPORARIO.indexOf(aj.temporario.fim) >= 0)) return 'temporario-invalido';
+          !(obj(aj.temporario) && FINS_TEMPORARIO.indexOf(aj.temporario.fim) >= 0 &&
+            Object.keys(aj.temporario).length === 1)) return 'temporario-invalido';
+      if (aj.motivo !== undefined && typeof aj.motivo !== 'string') return 'motivo-invalido';
+      if (aj.desde !== undefined && typeof aj.desde !== 'string') return 'desde-invalido';
+      if (aj.calculadoEm !== undefined && aj.calculadoEm !== null &&
+          !(typeof aj.calculadoEm === 'number' && isFinite(aj.calculadoEm))) return 'calculado-invalido';
+      if (aj.origem !== undefined && aj.origem !== 'manual' && aj.origem !== 'migracao') return 'origem-invalida';
       return null;
     }
     // grava o ajuste (cópia) na ficha; devolve null ou o erro, sem mudar nada
@@ -226,6 +248,8 @@
     }
     // Os ajustes que a migração criou sem saber o calculado (calculadoEm null)
     // saem quando o calculado bate com o valor; os outros ganham o calculadoEm.
+    // Tira a marca migracao.ajustesPendentesDePoda (o armazém recusa gravar
+    // enquanto ela existir): a F3b/F4 chama isto com o calculado do KhRegras.
     function podarAjustesMigrados(ficha, calculado) {
       var calc = typeof calculado === 'function' ? calculado(ficha) : calculado;
       if (!obj(calc)) return [];
@@ -236,12 +260,79 @@
         if (aj.valor === calc[k]) { delete ficha.ajustes[k]; podados.push(k); }
         else aj.calculadoEm = calc[k];
       });
+      if (obj(ficha.migracao)) delete ficha.migracao.ajustesPendentesDePoda;
       return podados;
+    }
+    function podaPendente(ficha) { return !!(ficha && obj(ficha.migracao) && ficha.migracao.ajustesPendentesDePoda); }
+
+    // Os Mods das entradas que o motor soma: tira os que já estão num total
+    // migrado da v2 (entrada com migradoDe.efeitoNoTotal, alvo atributo.* com
+    // atributos.migradoTotal ou pericia.* com periciasMigracao.migradoTotal).
+    // [{uid, tipo, id, mod}]; o KhRegras (F3b) lê daqui, nunca de entrada.mods direto.
+    function jaNoTotal(ficha, entrada, mod) {
+      if (!entrada.migradoDe || !entrada.migradoDe.efeitoNoTotal || !mod || typeof mod.alvo !== 'string') return false;
+      return Object.keys(ALVOS_NO_TOTAL).some(function (pre) {
+        var bloco = ficha[ALVOS_NO_TOTAL[pre]];
+        return mod.alvo.indexOf(pre) === 0 && obj(bloco) && bloco.migradoTotal === true;
+      });
+    }
+    function modsAplicaveis(ficha) {
+      var out = [];
+      lista(ficha && ficha.entradas).forEach(function (e) {
+        lista(e.mods).forEach(function (m) {
+          if (!jaNoTotal(ficha, e, m)) out.push({ uid: e.uid, tipo: e.tipo, id: e.id, mod: m });
+        });
+      });
+      return out;
     }
 
     // ---------------- catálogo (injetado) ----------------
-    // entradas: [{id, tipo, nome, classe?, raca?, apelidos?}] — o KhCatalogo (ou o
-    // teste) monta a partir de data/catalogo/*.json e dos blocos de classe/raça.
+    // Monta as entradas {id, tipo, nome, classe?, raca?, resumo?, apelidos?, mods?}
+    // a partir do que o KhCatalogo (F3b) ou o teste carregar:
+    //   catalogos: [data/catalogo/*.json]  (cada um {entradas:[…]})
+    //   classes:   [data/classes/*.json]   (bloco 'classe': a classe e os ramos;
+    //              o ramo ganha os apelidos que a v2 gravava em texto livre:
+    //              a chave e o nome sem "Ramo do", ex.: "Cartógrafo")
+    //   racas:     [data/racas/*.json]     (bloco 'raca': poderes e adversidades
+    //              da corrupção viram tipo 'corrupcao' daquela raça)
+    function entradasDeCatalogo(dados) {
+      dados = obj(dados) ? dados : {};
+      var out = [];
+      function poe(e) { if (obj(e) && e.id && e.tipo) out.push(e); }
+      lista(dados.catalogos).forEach(function (cat) {
+        lista(cat && cat.entradas).forEach(function (e) {
+          if (!obj(e)) return;
+          var x = { id: e.id, tipo: e.tipo, nome: str(e.nome), classe: e.classe || null, raca: e.raca || null, resumo: str(e.resumo) };
+          if (Array.isArray(e.mods)) x.mods = clone(e.mods);
+          poe(x);
+        });
+      });
+      lista(dados.classes).forEach(function (b) {
+        var c = obj(b) && obj(b.classe) ? b.classe : b;
+        if (!obj(c) || !c.id) return;
+        var chave = chaveDe(c.id, 'classe-');
+        poe({ id: c.id, tipo: 'classe', nome: str(c.nome) });
+        lista(c.ramos).forEach(function (r) {
+          if (!obj(r)) return;
+          var semPrefixo = str(r.nome).replace(/^[^A-Za-zÀ-ÿ]*Ramo d[oa]s?\s+/, '');
+          poe({ id: r.id, tipo: 'ramo', nome: str(r.nome), classe: chave,
+            apelidos: [r.chave, semPrefixo].filter(function (a) { return !!str(a); }) });
+        });
+      });
+      lista(dados.racas).forEach(function (b) {
+        var r = obj(b) && obj(b.raca) ? b.raca : b;
+        var corr = obj(r) && obj(r.corrupcao) ? r.corrupcao : null;
+        if (!corr) return;
+        var chave = chaveDe(r.id, 'raca-');
+        ['poderes', 'adversidades'].forEach(function (k) {
+          lista(corr[k] && corr[k].itens).forEach(function (x) {
+            if (obj(x)) poe({ id: x.id, tipo: 'corrupcao', nome: str(x.nome), raca: chave });
+          });
+        });
+      });
+      return out;
+    }
+    // entradas: as de entradasDeCatalogo (ou equivalentes)
     function indiceCatalogo(entradas, versao) {
       var porId = {}, porNome = {};
       lista(entradas).forEach(function (e) {
@@ -391,8 +482,10 @@
       f.atributos.migradoTotal = true;
       f.atributos.nivelMigrado = f.meta.nivel;
 
-      // perícias: bônus 0/2/4/6/8 -> grau 0-4
+      // perícias: bônus 0/2/4/6/8 -> grau 0-4; como o atributo, é o TOTAL
+      // digitado (treinamento de classe, origem e cartas já dentro)
       var pe = v2.pericias || {}, pendencias = [];
+      f.periciasMigracao = { migradoTotal: true, nivelMigrado: f.meta.nivel };
       PERICIAS.forEach(function (p) { if (temPropria(pe, p)) f.pericias[p] = KhInv.grauPericia(pe[p]); });
       var gOf = KhInv.grauPericia(pe.oficio);
       if (gOf > 0 || (v2.oficioAttr && v2.oficioAttr !== 'int')) {
@@ -441,7 +534,11 @@
           var ent = { uid: novoUid(usados, c), tipo: tipoV3, id: r.id, estado: estadoPadrao(tipoV3),
             cache: { nome: r.entradaCat ? str(r.entradaCat.nome) : str(e.nome),
               resumo: str(e.descricao), versaoCatalogo: idx ? idx.versao : '' },
-            mods: [], adicionadoEm: agora, migradoDe: { id: str(e.id), tipo: str(e.tipo), nome: str(e.nome) } };
+            mods: r.entradaCat && Array.isArray(r.entradaCat.mods) ? clone(r.entradaCat.mods) : [],
+            adicionadoEm: agora,
+            // efeitoNoTotal: os Mods de atributo/perícia desta entrada já estão
+            // nos totais digitados na v2 (modsAplicaveis não os soma de novo)
+            migradoDe: { id: str(e.id), tipo: str(e.tipo), nome: str(e.nome), efeitoNoTotal: true } };
           if (r.orfao) { ent.orfao = r.orfao; avisos.push({ tipo: 'orfa', ref: str(e.tipo) + ':' + str(e.id), motivo: r.orfao.motivo }); }
           f.entradas.push(ent);
         });
@@ -461,6 +558,9 @@
       });
 
       f.migracao = { de: '2.0', em: agora, pendencias: pendencias };
+      // sem o calculado, os ajustes ainda não foram comparados com o motor:
+      // a ficha fica marcada e o armazém não a grava até podarAjustesMigrados
+      if (!calc) f.migracao.ajustesPendentesDePoda = true;
       f.vinculoV2 = { revV2: Math.max(0, inteiro(v2.rev, 0)), salvoEmV2: str(v2.salvoEm) };
       f.criadoEm = agora;
       return { ficha: f, avisos: avisos };
@@ -475,7 +575,8 @@
       if (v == null && !obj(f.meta)) return { erro: 'invalida' };
       if (maior === 3) {
         var f3 = completaV3(clone(f));
-        if (!f.id || typeof f.id !== 'string') f3.id = novoId(null, opcoes);
+        // id fora do padrão vira sufixo de chave do storage: gera um novo
+        if (typeof f.id !== 'string' || !PADRAO_ID.test(f.id)) f3.id = novoId(null, opcoes);
         return { ficha: f3, de: str(v), avisos: [] };
       }
       var agora = ctx(opcoes).agora();
@@ -502,6 +603,7 @@
         vistos[r.tipo + ':' + r.id] = true;
         e.tipo = r.tipo; e.id = r.id; delete e.orfao;
         e.cache.nome = str(r.entradaCat.nome); e.cache.versaoCatalogo = idx.versao;
+        if (Array.isArray(r.entradaCat.mods)) e.mods = clone(r.entradaCat.mods);
         n++;
       });
       return n;
@@ -519,6 +621,8 @@
         e.cache.nome = str(cat.nome);
         if (cat.resumo != null) e.cache.resumo = str(cat.resumo);
         e.cache.versaoCatalogo = idx.versao;
+        // o snapshot dos Mods acompanha o catálogo quando ele os tem
+        if (Array.isArray(cat.mods)) e.mods = clone(cat.mods);
       });
       return orfas;
     }
@@ -533,9 +637,12 @@
       if (sessao != null) d.estadoSessao = clone(sessao);
       return { nomeArquivo: nomeArquivo(ficha), dados: d };
     }
-    function pacoteTodas(exportadas, opcoes) {
-      return { nomeArquivo: 'khalkaria-fichas.json',
-        dados: { schema: SCHEMA_INDICE, exportadoEm: ctx(opcoes).agora(), fichas: exportadas.map(clone) } };
+    // ilegiveis: [{id, nome?, motivo, texto}] das fichas que não viram v3 aqui
+    // (vão cruas no pacote, para não se perderem)
+    function pacoteTodas(exportadas, opcoes, ilegiveis) {
+      var d = { schema: SCHEMA_INDICE, exportadoEm: ctx(opcoes).agora(), fichas: exportadas.map(clone) };
+      if (ilegiveis && ilegiveis.length) d.ilegiveis = clone(ilegiveis);
+      return { nomeArquivo: 'khalkaria-fichas.json', dados: d };
     }
     function ehPacote(o) {
       return obj(o) && o.schema === SCHEMA_INDICE && Array.isArray(o.fichas) &&
@@ -552,6 +659,9 @@
       }
       if (o.schema === SCHEMA_INDICE && !ehPacote(o)) return { fichas: [], erros: [{ erro: 'invalida' }] };
       var itens = ehPacote(o) ? o.fichas : [o];
+      if (ehPacote(o)) lista(o.ilegiveis).forEach(function (x) {
+        erros.push({ erro: 'ilegivel-no-pacote', id: obj(x) ? str(x.id) : '', motivo: obj(x) ? str(x.motivo) : '' });
+      });
       itens.forEach(function (x, i) {
         var sessao = obj(x) && temPropria(x, 'estadoSessao') ? x.estadoSessao : null;
         var limpo = obj(x) ? Object.assign({}, x) : x;
@@ -559,6 +669,7 @@
         var r = migrar(limpo, opcoes);
         if (r.erro) { erros.push({ indice: i, erro: r.erro, versao: r.versao }); return; }
         if (opcoes && opcoes.catalogo) { reassociar(r.ficha, opcoes.catalogo); reconciliar(r.ficha, opcoes.catalogo); }
+        if (podaPendente(r.ficha) && opcoes && opcoes.calculado) podarAjustesMigrados(r.ficha, opcoes.calculado);
         out.push({ ficha: r.ficha, sessao: sessao, de: r.de, avisos: r.avisos || [] });
       });
       return { fichas: out, erros: erros };
@@ -614,11 +725,18 @@
         return l.length ? l[0].id : null;
       }
       function existe(ind, id) { return ind.fichas.some(function (x) { return x.id === id; }); }
+      // A ativa desta aba. Se outra aba excluiu a ficha que esta aba marcou,
+      // devolve null (não troca em silêncio): a UI lê ativaExcluida() e fica
+      // só-leitura com "Baixar ficha" e "Trocar" (plano §3.1).
       function ativa() {
         var ind = lerIndice(), a = ativaDaAba();
-        if (a && existe(ind, a)) return a;
+        if (a) return existe(ind, a) ? a : null;
         if (ind.ultimaAtiva && existe(ind, ind.ultimaAtiva)) return ind.ultimaAtiva;
         return maisRecente(ind);
+      }
+      function ativaExcluida() {
+        var a = ativaDaAba();
+        return a && !existe(lerIndice(), a) ? a : null;
       }
       // Em QuotaExceeded limpa, nesta ordem, os logs de desfazer das fichas
       // inativas, o da ativa e o backup da v1; nunca ficha nem índice.
@@ -669,9 +787,13 @@
       }
       // grava uma ficha (rev++, salvoEm). Recusa por cima de versão futura ou de
       // um rev maior (outra aba gravou depois: relê antes de gravar).
+      // Recusa também a ficha que outra aba excluiu (já gravada e fora do
+      // índice: nada de ressuscitar) e a migrada ainda sem poda dos ajustes.
       function gravar(ficha) {
         if (somenteLeitura()) return recusa('somente-leitura');
         if (!obj(ficha) || !ficha.id) return recusa('invalida');
+        if (podaPendente(ficha)) return recusa('poda-pendente');
+        if (!existe(lerIndice(), ficha.id) && (inteiro(ficha.rev, 0) > 0 || str(ficha.salvoEm))) return recusa('excluida');
         var atual = lerJSON(CHAVES.ficha + ficha.id);
         if (obj(atual)) {
           if (versaoMaior(atual.schemaVersion) > 3) return recusa('versao-futura', { versao: str(atual.schemaVersion) });
@@ -698,6 +820,7 @@
       }
       // nova ficha no índice, e ela vira a ativa (D36); as outras ficam intactas
       function adiciona(f, sessao) {
+        if (podaPendente(f)) return recusa('poda-pendente');
         f.rev = 0; f.salvoEm = c.agora();
         var limpou = [], r = gravaPar(f, lerIndice(), limpou);
         if (!r.ok) return resultado(r, limpou);
@@ -739,9 +862,30 @@
         var f = lerFicha(id);
         return f ? exportarFicha(f, lerSessao(id), opcoes) : null;
       }
+      // o texto cru da chave (ficha ilegível ou de versão futura): é o que dá
+      // para salvar dela antes de excluir ou de gravar por cima
+      function exportarCru(id) {
+        var raw = ler(CHAVES.ficha + id);
+        return raw == null ? null : { nomeArquivo: 'ficha-' + id + '.cru.khalkaria.json', texto: raw };
+      }
+      function motivoIlegivel(id) {
+        var raw = ler(CHAVES.ficha + id), f = null;
+        if (raw == null) return 'ausente';
+        try { f = JSON.parse(raw); } catch (e) {}
+        return obj(f) && versaoMaior(f.schemaVersion) > 3 ? 'versao-futura' : 'ilegivel';
+      }
+      // Todas as do índice; as que não viram v3 aqui vão cruas em dados.ilegiveis
+      // e voltam em erros:[{id, motivo}] para a UI avisar.
       function exportarTodas() {
-        return pacoteTodas(lerIndice().fichas.map(function (x) { var e = exportar(x.id); return e && e.dados; })
-          .filter(Boolean), opcoes);
+        var fichas = [], ileg = [];
+        lerIndice().fichas.forEach(function (x) {
+          var e = exportar(x.id);
+          if (e) { fichas.push(e.dados); return; }
+          ileg.push({ id: x.id, nome: str(x.nome), motivo: motivoIlegivel(x.id), texto: ler(CHAVES.ficha + x.id) });
+        });
+        var p = pacoteTodas(fichas, opcoes, ileg);
+        p.erros = ileg.map(function (x) { return { id: x.id, motivo: x.motivo }; });
+        return p;
       }
       // Excluir exige o export antes: opcoes.exportar(export) tem de devolver
       // algo diferente de false. Apaga a ficha, o log, a sessão e o rascunho de
@@ -751,9 +895,14 @@
         var ind = lerIndice();
         if (!existe(ind, id)) return recusa('inexistente');
         if (!op || typeof op.exportar !== 'function') return recusa('sem-export');
-        var ex = exportar(id);
-        var okEx;
-        try { okEx = op.exportar(ex); } catch (e) { okEx = false; }
+        var ex = exportar(id), cru = ex ? null : exportarCru(id), okEx = true;
+        // ilegível ou de versão futura: só sai com o export CRU (op.exportarCru);
+        // sem a chave (só a linha do índice), não há o que perder
+        if (ex) { try { okEx = op.exportar(ex); } catch (e) { okEx = false; } }
+        else if (cru) {
+          if (typeof op.exportarCru !== 'function') return recusa('ilegivel', { motivo: motivoIlegivel(id), cru: cru });
+          try { okEx = op.exportarCru(cru); } catch (e) { okEx = false; }
+        }
         if (okEx === false) return recusa('export-falhou');
         ind.fichas = ind.fichas.filter(function (x) { return x.id !== id; });
         var eraAtiva = ativa() === id;
@@ -772,7 +921,8 @@
       function importar(entrada, op) {
         op = op || {};
         if (somenteLeitura()) return recusa('somente-leitura');
-        var lido = lerImport(entrada, Object.assign({}, opcoes, { catalogo: op.catalogo || opcoes.catalogo }));
+        var lido = lerImport(entrada, Object.assign({}, opcoes, { catalogo: op.catalogo || opcoes.catalogo,
+          calculado: op.calculado || opcoes.calculado }));
         if (!lido.fichas.length) return recusa((lido.erros[0] && lido.erros[0].erro) || 'vazio', { erros: lido.erros });
         var ind = lerIndice();
         var conflitos = lido.fichas.filter(function (x) { return existe(ind, x.ficha.id); }).map(function (x) { return x.ficha.id; });
@@ -783,17 +933,31 @@
         for (var i = 0; i < lido.fichas.length; i++) {
           var x = lido.fichas[i], f = x.ficha, r;
           if (existe(lerIndice(), f.id) && op.conflito === 'atualizar') {
+            if (podaPendente(f)) return recusa('poda-pendente', { ids: ids });
+            var velha = lerJSON(CHAVES.ficha + f.id);
+            // por cima de versão futura, nunca (guarda anti-downgrade)
+            if (obj(velha) && versaoMaior(velha.schemaVersion) > 3) return recusa('versao-futura', { ids: ids, versao: str(velha.schemaVersion) });
             var ex = exportar(f.id), okEx;
+            if (!ex) return recusa('ilegivel', { ids: ids, cru: exportarCru(f.id) });
             try { okEx = typeof op.exportar === 'function' ? op.exportar(ex) : false; } catch (e) { okEx = false; }
             if (okEx === false) return recusa('export-falhou', { ids: ids });
-            var velha = lerJSON(CHAVES.ficha + f.id);
             f.rev = Math.max(inteiro(f.rev, 0), inteiro(velha && velha.rev, 0)) + 1;
             f.salvoEm = c.agora();
             r = gravaPar(f, lerIndice(), limpou);
-            if (r.ok && x.sessao != null) escreve(CHAVES.sessao + f.id, JSON.stringify(x.sessao), limpou);
-            if (r.ok) tornaAtiva(f.id);
+            if (r.ok) {
+              // o log de desfazer e o rascunho de subida eram da versão substituída;
+              // a sessão dela também, se o arquivo não trouxer outra (foi no export)
+              remove(CHAVES.log + f.id); remove(CHAVES.nivelRascunho + f.id);
+              if (x.sessao != null) escreve(CHAVES.sessao + f.id, JSON.stringify(x.sessao), limpou);
+              else remove(CHAVES.sessao + f.id);
+              tornaAtiva(f.id);
+            }
           } else {
-            if (existe(lerIndice(), f.id)) f.id = novoId(usados(), opcoes);
+            if (existe(lerIndice(), f.id)) {
+              // cópia: id novo e, como no duplicar, sem vínculo com a v2
+              f.id = novoId(usados(), opcoes);
+              f.vinculoV2 = null; f.exportadoEm = '';
+            }
             r = adiciona(f, x.sessao);
           }
           if (!r.ok) return resultado(recusa(r.erro, { ids: ids, sugestao: r.sugestao }), limpou.concat(r.limpou || []));
@@ -814,8 +978,8 @@
       return {
         listar: function () { return clone(lerIndice().fichas); },
         indice: function () { return clone(lerIndice()); },
-        ativa: ativa, ler: lerFicha, gravar: gravar, criar: criar, trocar: trocar,
-        duplicar: duplicar, excluir: excluir, exportar: exportar, exportarTodas: exportarTodas,
+        ativa: ativa, ativaExcluida: ativaExcluida, ler: lerFicha, gravar: gravar, criar: criar, trocar: trocar,
+        duplicar: duplicar, excluir: excluir, exportar: exportar, exportarCru: exportarCru, exportarTodas: exportarTodas,
         importar: importar, uso: uso, lerSessao: lerSessao, gravarSessao: gravarSessao,
         lerLog: lerLog, gravarLog: gravarLog, somenteLeitura: somenteLeitura
       };
@@ -828,6 +992,7 @@
       FINS_TEMPORARIO: FINS_TEMPORARIO.slice(), EVENTOS_DURACAO: EVENTOS_DURACAO.slice(),
       PADRAO_AJUSTE: PADRAO_AJUSTE, ehCaminhoDeAjuste: ehCaminhoDeAjuste, validarAjuste: validarAjuste,
       ajustar: ajustar, desajustar: desajustar, podarAjustesMigrados: podarAjustesMigrados,
+      CAMINHOS_DADO: CAMINHOS_DADO.slice(), modsAplicaveis: modsAplicaveis, entradasDeCatalogo: entradasDeCatalogo,
       novaFicha: novaFicha, novoId: novoId, versaoMaior: versaoMaior, normaliza: normaliza,
       estadoPadrao: estadoPadrao,
       migrarV1paraV2: migrarV1paraV2, migrarV2paraV3: migrarV2paraV3, migrar: migrar,
