@@ -106,12 +106,36 @@ Só mudou o que está aqui; nada mais nas páginas.
 - **Alquimista:** tabela de itens, +18 itens e 4 cabeçalhos "Bebidas" (+132 linhas, nenhuma removida): Nível 1: Peçonha de Caçador, Sonífero Rústico (Venenos), Vinho Aguado, Cerveja de Taverna (Bebidas); Nível 2: Elíxir de Éter Menor (Curativos), Óleo Sagrado (Elixir e Óleo), Comida Alquímica (Utilidades), Veneno de Lâmina Comum (Venenos), Aguardente de Raiz, Destilado de Arremesso (Bebidas); Nível 3: Elíxir de Éter Moderado, Elixir da Expurgação (Curativo), Café Preto, Licor de Ferro (Bebidas); Nível 4: Toxina do Esquecimento, Veneno da Viúva Pálida (Venenos), Fermentado do Abismo, Última Rodada (Bebidas). Texto do CSV, sem a frase de peso "Empilhável".
 - **CSV** (2 cópias): "Lágrimas do Tempo" → "Lágrima do Tempo" (nome e a menção na Lágrima de Velúria). **Efeitos rev. 8** (id `item-lagrima-do-tempo`), **contrato rev. 10** (`turno.acaoLivreCustoVariavel`), **16 Revisão 3**, `alquimista-notion.json` regerado da página (113 itens).
 
+### Rework do Batedor (2026-09-28): proposta, nada no Notion
+- **`18-batedor-rework.md`** reúne:
+  - papel;
+  - as 2 características (Mapa de Combate + Instinto refeito);
+  - as 15 técnicas gerais;
+  - os 3 ramos;
+  - o de→para de cada item de hoje;
+  - números (R3 simulada, orçamento, preço);
+  - o teste de sobreposição com o Artilheiro e o General;
+  - **16 decisões numeradas** para o Pedro (§9).
+- **`19-gabarito-de-classe.md`** é a estrutura de criação de classes, a régua da D79:
+  - esqueleto da página;
+  - coeficientes;
+  - R1–R7;
+  - orçamento das 15;
+  - ramos e ultimates;
+  - convenções de texto;
+  - checklist de validação.
+- **Scripts:**
+  - `references/batedor-sim-instinto-rework.py` (semente fixa);
+  - `scripts/classes/` com `estrutura_classes.py/.json`, `orcamento_tecnicas.py` e `nomes_index.py`.
+- **Texto do Pedro conferido por script contra o retrato de hoje:** só muda o que o `18` §4 lista.
+
 ### Perguntas que continuam com o Pedro
 (As respondidas estão em §1, §1b e §1c.)
 1. **Poção de Vigor Moderada:** hoje 2 Reagentes e CD 10, o custo da Poção de Vigor comum, que cura a metade. Proposta: 4 Reagentes e CD 12, como a Poção de Cura Moderada (CSV e tabela da classe).
 2. **Napalm Alquímico (área):** é o Napalm da tabela sem o arremesso de 9 m e sem o Reflexo para metade, com 1 Reagente a menos e o mesmo preço. Fica, sai do CSV, ou ganha uma diferença?
 3. **Do lote anterior:** L14, L35, L39.
-4. **Batedor:** proposta em `18-batedor-rework.md`, esperando aprovação; depois, Notion e log do novo Batedor.
+4. **Batedor:** proposta em `18-batedor-rework.md`, esperando as respostas às 16 decisões de §9. Depois:
+   Notion, diff contra o retrato e log do novo Batedor aqui em §3.
 
 ---
 
@@ -163,7 +187,7 @@ Regras que uma loja toca, para quem for desenhar (todas já canônicas):
 - Preço é informativo e nada trava por Sins (CLAUDE.md §5 e §10).
 - `Valor (Sins)` do CSV é fórmula de dado (ex.: "5d12+180"); `Obtenção` tem formato fixo e marca "Loja" nos itens vendáveis, com região e raridade (D77).
 - Poção, elixir ou kit comprado: +Int = média da raridade, Ordinário +1, Incomum +2, Exótico +3, Luxária +4 (D121; contrato `recursos.atributoCuraItemMediaDaRaridade`).
-- Preço por personagem: *A Criatura* (adversidade do Corrompido) paga 50% a mais, e o grupo inteiro se o comerciante o perceber com ele; *Língua Prateada* (Batedor) dá 25% de desconto num item ao passar em Convencimento; *Olho no Lance* (Batedor) recebe 20% a mais ao vender. As duas do Batedor podem mudar no rework.
+- Preço por personagem: *A Criatura* (adversidade do Corrompido) paga 50% a mais, e o grupo inteiro se o comerciante o perceber com ele; *Língua Prateada* (Batedor) dá 25% de desconto num item ao passar em Convencimento; *Olho no Lance* (Batedor) recebe 20% a mais ao vender. As duas do Batedor podem mudar no rework: a proposta leva a Língua Prateada a 10% e tira o Olho no Lance (`18` §9, decisão 12).
 - Tecnologias de Autômato numa loja: d100 e depois d12 pela lista dos Tiers 1–4; Tier 5 fica fora (Autômato > Achar Tecnologias).
 
 ---
@@ -176,6 +200,11 @@ Regras que uma loja toca, para quem for desenhar (todas já canônicas):
 - `scripts/log-tecnicas/contrato_rev8.py`, `contrato_rev9.py` e `contrato_rev10.py`: patches rev. 7 → 8 → 9 → 10 do contrato (histórico; cada um recusa rodar fora da revisão certa).
 - `scripts/log-tecnicas/ndiff.py antigo novo [saida]`: diff de dois dumps do `notion-fetch` (ignora a
   query string das URLs S3). Uso: conferir cada gravação no Notion.
+- `scripts/classes/` (gabarito de classe, `19` §10):
+  - `nomes_index.py "Nome" …` acusa colisão de nome no sistema inteiro;
+  - `orcamento_tecnicas.py` dá o mix e os custos das 15 técnicas nas 6 classes;
+  - `estrutura_classes.py <pasta de dumps>` regera `estrutura_classes.json`, com as 7 classes do Notion.
+- `references/batedor-sim-instinto-rework.py`: simulação do Instinto proposto; modelo para qualquer recurso de classe (R3).
 - Contrato: `ficha-digital-regras.json` se grava com `json.dumps(d, ensure_ascii=False, indent=2)` sem
   newline final. Efeitos: `ficha-efeitos-gerador.py --escrever` (rev. 8; sha256 do CSV no campo `fonte`).
 - Carta rara: nenhum nome nem efeito de rara em campo de nota dos 3 JSON (o sync do site apaga a frase). Conferir por conjunto contra `data/limiar.json` (entradas com `req` e sem `effect`).

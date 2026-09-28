@@ -1,0 +1,1635 @@
+{
+ "espadachim": {
+  "coef": [
+   6,
+   6,
+   3
+  ],
+  "cd": "10 + (Destreza ou Força) + Constituição",
+  "caracteristicas": [
+   "Proficiência com Espadas",
+   "Marca do Duelo"
+  ],
+  "tecnicas": [
+   {
+    "nome": "Pedra de Amolar",
+    "texto": "Você pode gastar sua ação de descanso curto para Amolar a sua espada, ela passa a causar +1d4 de dano Cortante, porém apenas durante o próximo combate, após isso ela volta ao normal.",
+    "custo": "—",
+    "acao": "Ação de Descanso Curto"
+   },
+   {
+    "nome": "Passo Afiado",
+    "texto": "Quando um inimigo errar você, mova-se 1,5 m sem provocar ataques de oportunidade.",
+    "custo": "2 Stamina",
+    "acao": "Ação Livre"
+   },
+   {
+    "nome": "Quebrar Postura",
+    "texto": "Ao acertar um alvo com a Marca do Duelo, ele perde sua reação até o fim da rodada. O alvo ainda pode bloquear ou retaliar, mas perde a reação logo em seguida se for acertado.",
+    "custo": "3 Stamina",
+    "acao": "Ação Livre"
+   },
+   {
+    "nome": "Corte Diagonal",
+    "texto": "Seu próximo ataque tem +2 no acerto. Adicionalmente, se seu próximo ataque acertar um inimigo com a Marca do Duelo adiciona Sangramento 1.",
+    "custo": "3 Stamina",
+    "acao": "Ação Livre"
+   },
+   {
+    "nome": "Oportunista",
+    "texto": "Você pode como ação livre reduzir a PMA para -3, ao invés de -5, nesta rodada.",
+    "custo": "5 Stamina",
+    "acao": "Ação Livre"
+   },
+   {
+    "nome": "Leitura de Batalha",
+    "texto": "Ao atacar um inimigo com a Marca do Duelo você tem +3 atacar.",
+    "custo": "—",
+    "acao": "Passiva"
+   },
+   {
+    "nome": "Peso do Fracasso",
+    "texto": "Retaliar um inimigo com a Marca do Duelo causa +(Nível)d6 de dano Cortante.",
+    "custo": "—",
+    "acao": "Passiva"
+   },
+   {
+    "nome": "Limiar da Morte",
+    "texto": "Ao estar com ≤ 50% Saúde, seus ataques contra a Marca do Duelo causam +2d6 de dano Cortante.",
+    "custo": "—",
+    "acao": "Passiva"
+   },
+   {
+    "nome": "Ponto Fraco",
+    "texto": "Ao atacar um inimigo Exposto, você pode como uma ação livre gastar 5 de Stamina para manter a condição no inimigo, mesmo após atacar.",
+    "custo": "5 Stamina",
+    "acao": "Passiva"
+   },
+   {
+    "nome": "Respiro do Espadachim",
+    "texto": "Em combate, recupera Stamina igual ao seu Mod. de Constituição +1d4 e recebe +2 Defender até o início do seu próximo turno. (Max. 1 vez por turno)",
+    "custo": "—",
+    "acao": "1 Ação"
+   },
+   {
+    "nome": "Lâmina Rápida",
+    "texto": "Ataque duas vezes como 1 ação. Esses ataques não podem receber retaliação.",
+    "custo": "5 Stamina",
+    "acao": "1 Ação"
+   },
+   {
+    "nome": "Brecha",
+    "texto": "Ao acertar um ataque em um alvo não exposto, pode aplicar Exposto como 1 ação.<br>Adicionalmente, se o alvo já estiver exposto, pode adicionar Sangramento 1 como ação livre. (Max. 1 vez por turno)",
+    "custo": "5 Stamina",
+    "acao": "1 Ação ou Passiva"
+   },
+   {
+    "nome": "x1",
+    "texto": "Você foca toda sua concentração em um único alvo em até 9 m que esteja com a Marca do Duelo. <br>Enquanto o alvo estiver isolado por ao menos, 1,5 m de qualquer outro inimigo<br>você recebe os seguintes benefícios contra o inimigo com a Marca do Duelo:<br> • +1d10 dano Cortante<br> • Vantagem ao Atacar.<br>Ao trocar o alvo da Marca do Duelo, você perde os efeitos e precisa utilizar essa Técnica novamente.",
+    "custo": "5 Stamina",
+    "acao": "2 Ações"
+   },
+   {
+    "nome": "Bilhete de Entrada",
+    "texto": "Quando um inimigo entrar no seu alcance: pode atacar imediatamente com −5.",
+    "custo": "5 Stamina",
+    "acao": "Reação"
+   },
+   {
+    "nome": "Corta-Luz",
+    "texto": "Quando você errar um ataque, pode realizar um segundo ataque contra o mesmo alvo, com −2.",
+    "custo": "3 Stamina",
+    "acao": "Reação"
+   }
+  ],
+  "ramos": [
+   "Ramo do Guarda-Lâmina",
+   "Ramo do Exilado Bêbado",
+   "Ramo do Oprimido"
+  ],
+  "tiers": {
+   "1": [
+    {
+     "ramo": "Guarda-Lâmina",
+     "nome": "Duelista Intocável",
+     "tag": "Passiva"
+    },
+    {
+     "ramo": "Guarda-Lâmina",
+     "nome": "Guardar a Lâmina",
+     "tag": "1 Ação, 2 Stamina"
+    },
+    {
+     "ramo": "Guarda-Lâmina",
+     "nome": "Parry Perfeito",
+     "tag": "Ação Livre, 3 Stamina"
+    },
+    {
+     "ramo": "Oprimido",
+     "nome": "Fúria do Verme",
+     "tag": "Passiva"
+    },
+    {
+     "ramo": "Oprimido",
+     "nome": "Adrenalina Sanguínea",
+     "tag": "Passiva"
+    },
+    {
+     "ramo": "Oprimido",
+     "nome": "Sangue por Aço",
+     "tag": "Ação Livre"
+    },
+    {
+     "ramo": "Exilado Bêbado",
+     "nome": "Sorte do Bêbado",
+     "tag": "Passiva"
+    },
+    {
+     "ramo": "Exilado Bêbado",
+     "nome": "Beber até Cair",
+     "tag": "1 Ação, 1 Item:Álcool"
+    },
+    {
+     "ramo": "Exilado Bêbado",
+     "nome": "Golpe Torto",
+     "tag": "1 Ação, 3 Stamina"
+    }
+   ],
+   "2": [
+    {
+     "ramo": "Guarda-Lâmina",
+     "nome": "Contra-guarda",
+     "tag": "Passiva"
+    },
+    {
+     "ramo": "Guarda-Lâmina",
+     "nome": "Inimigo Mortal",
+     "tag": "1 Ação, 5 Stamina"
+    },
+    {
+     "ramo": "Oprimido",
+     "nome": "Carne Rasgada",
+     "tag": "Passiva"
+    },
+    {
+     "ramo": "Oprimido",
+     "nome": "Massacre",
+     "tag": "1 Ação, 5 Stamina"
+    },
+    {
+     "ramo": "Exilado Bêbado",
+     "nome": "Trêbado",
+     "tag": "Ação Livre, 5 Stamina"
+    },
+    {
+     "ramo": "Exilado Bêbado",
+     "nome": "Dobrar a Aposta",
+     "tag": "Ação Livre, 3 Stamina"
+    }
+   ],
+   "3": [
+    {
+     "ramo": "Guarda-Lâmina",
+     "nome": "Sentença Final",
+     "tag": "1 Ação, 10 Stamina, Ultimate"
+    },
+    {
+     "ramo": "Oprimido",
+     "nome": "Cicatrizes",
+     "tag": "1 Ação, 10 Stamina, Ultimate"
+    },
+    {
+     "ramo": "Exilado Bêbado",
+     "nome": "Epifania",
+     "tag": "1 Ação, 5 Stamina, Ultimate"
+    }
+   ]
+  },
+  "marcas": [
+   {
+    "ramo": "Marcas do Guarda-Lâmina",
+    "nome": "Disciplina"
+   },
+   {
+    "ramo": "Marcas do Guarda-Lâmina",
+    "nome": "Caça Fardos"
+   },
+   {
+    "ramo": "Marcas do Oprimido",
+    "nome": "Nostalgia"
+   },
+   {
+    "ramo": "Marcas do Oprimido",
+    "nome": "Vingança"
+   },
+   {
+    "ramo": "Marcas do Exilado Bêbado",
+    "nome": "Coragem Líquida"
+   },
+   {
+    "ramo": "Marcas do Exilado Bêbado",
+    "nome": "Blefe do Bêbado"
+   }
+  ]
+ },
+ "brutalista": {
+  "coef": [
+   8,
+   4,
+   3
+  ],
+  "cd": "10 + Força + Constituição",
+  "caracteristicas": [
+   "Brutalidade"
+  ],
+  "tecnicas": [
+   {
+    "nome": "Bruto",
+    "texto": "Seus ataques corpo a corpo ignoram 2 de armadura.",
+    "custo": "—",
+    "acao": "Passiva"
+   },
+   {
+    "nome": "Ímpeto de Sangue",
+    "texto": "Ao derrubar um inimigo a 0 de Saúde, seu próximo ataque neste turno tem +2 Atacar e +1d6 de dano.",
+    "custo": "—",
+    "acao": "Passiva"
+   },
+   {
+    "nome": "Finalizar",
+    "texto": "Ao causar dano em uma criatura, ela instantaneamente morre se estiver com Saúde igual ou menor que sua Brutalidade.",
+    "custo": "—",
+    "acao": "Passiva"
+   },
+   {
+    "nome": "Inabalável",
+    "texto": "Você tem vantagem em testes de Fortitude ou Movimento ao ser movido contra sua vontade.",
+    "custo": "—",
+    "acao": "Passiva"
+   },
+   {
+    "nome": "Agarrão",
+    "texto": "Você recebe +2 em testes de Movimento ao realizar a manobra Agarrar. Adicionalmente, ao agarrar um alvo com sucesso, ele recebe 1d6 + mod. Força de dano ao receber ataques.",
+    "custo": "—",
+    "acao": "Passiva"
+   },
+   {
+    "nome": "Casca Grossa",
+    "texto": "Você tem Armadura(Ar) natural equivalente ao seu Mod. Constituição.",
+    "custo": "—",
+    "acao": "Passiva"
+   },
+   {
+    "nome": "Empurrão",
+    "texto": "Ao empurrar um alvo com sucesso, ele recebe 1d6 de dano por cada 3m empurrado. Se colidir com obstáculo sólido, +2d6 de dano.",
+    "custo": "—",
+    "acao": "Passiva"
+   },
+   {
+    "nome": "Hoje Não",
+    "texto": "Uma vez por descanso longo, ao estar abaixo de 25% da sua Saúde, pode recuperar 2d8 + Mod. Constituição de Saúde e 1d8 + Mod. Força de Stamina.",
+    "custo": "—",
+    "acao": "1 Ação"
+   },
+   {
+    "nome": "Destruir",
+    "texto": "Ao acertar um ataque corpo a corpo, pode gastar Stamina para adicionar +1d6 de dano por 2 Stamina gastos. Máximo de dados adicionais = Nível.",
+    "custo": "2+ Stamina",
+    "acao": "Ação Livre"
+   },
+   {
+    "nome": "Ranger os Dentes",
+    "texto": "Ao receber dano, pode gastar Stamina para reduzir o dano em 1d6 por 2 Stamina gastos. Máximo = Nível.",
+    "custo": "2+ Stamina",
+    "acao": "Reação"
+   },
+   {
+    "nome": "Provocar",
+    "texto": "Escolha um inimigo em até 9m que possa te ouvir. Ele deve passar em Vontade ou deve te atacar no próximo turno dele.",
+    "custo": "2 Stamina",
+    "acao": "1 Ação"
+   },
+   {
+    "nome": "Gancho",
+    "texto": "Ao acertar seu próximo ataque corpo a corpo, Atordoa o alvo caso ele falhe em um teste de Fortitude",
+    "custo": "3 Stamina",
+    "acao": "1 Ação"
+   },
+   {
+    "nome": "O Próximo",
+    "texto": "Escolha um alvo que você possa ver, você tem +2 atacar contra ele, até o fim do combate. <br>Ao errar um ataque contra esse alvo, você ganha +1 atacar contra ele. (Max +3)<br>Se o alvo morrer, pode gastar 2 Stamina como uma ação livre para trocar o alvo.",
+    "custo": "3 Stamina",
+    "acao": "1 Ação"
+   },
+   {
+    "nome": "Golpe Desconcertado",
+    "texto": "Você utiliza toda sua força em um golpe forte e amplo porém desconcertado. <br>Declare antes de atacar, você tem vantagem no próximo ataque. <br>Se errar o golpe, você fica exposto até o seu próximo turno.",
+    "custo": "3 Stamina",
+    "acao": "1 Ação"
+   },
+   {
+    "nome": "Atropelar",
+    "texto": "Pode investir em uma linha reta de no mínimo 4,5 m até 9 m. Alvos no caminho, devem suceder em um teste de Fortitude ou recebem (Nível)d6+Mod. Força e ficam Caídos. Conta como o Mover do turno.",
+    "custo": "3 Stamina",
+    "acao": "2 Ações"
+   }
+  ],
+  "ramos": [
+   "Ramo do Colosso",
+   "Ramo do Berserker",
+   "Ramo do General"
+  ],
+  "tiers": {
+   "1": [
+    {
+     "ramo": "Colosso",
+     "nome": "Muralha Viva",
+     "tag": "Passiva"
+    },
+    {
+     "ramo": "Colosso",
+     "nome": "Guardião",
+     "tag": "Passiva"
+    },
+    {
+     "ramo": "Colosso",
+     "nome": "Postura Defensiva",
+     "tag": "1 Ação, 3 Stamina"
+    },
+    {
+     "ramo": "Berserker",
+     "nome": "Fúria Sanguinária",
+     "tag": "Passiva"
+    },
+    {
+     "ramo": "Berserker",
+     "nome": "Frenesi",
+     "tag": "3 Ações, 3 Stamina"
+    },
+    {
+     "ramo": "Berserker",
+     "nome": "Retaliação Selvagem",
+     "tag": "Reação"
+    },
+    {
+     "ramo": "General",
+     "nome": "Veterano de Guerra",
+     "tag": "Passiva"
+    },
+    {
+     "ramo": "General",
+     "nome": "Comando Tático",
+     "tag": "1 Ação, 2 Stamina"
+    },
+    {
+     "ramo": "General",
+     "nome": "Leitura de Combate",
+     "tag": "1 Ação, 2 Stamina"
+    }
+   ],
+   "2": [
+    {
+     "ramo": "Colosso",
+     "nome": "Fortaleza de Aço",
+     "tag": "Reação, 2 Stamina"
+    },
+    {
+     "ramo": "Colosso",
+     "nome": "Resistência Adaptável",
+     "tag": "Passiva, 3 Stamina"
+    },
+    {
+     "ramo": "Berserker",
+     "nome": "Epifania Sanguínea",
+     "tag": "Passiva"
+    },
+    {
+     "ramo": "Berserker",
+     "nome": "Ignorar Dor",
+     "tag": "Reação, 3 Stamina"
+    },
+    {
+     "ramo": "General",
+     "nome": "Formação de Combate",
+     "tag": "2 Ação, 3 Stamina"
+    },
+    {
+     "ramo": "General",
+     "nome": "O Experiente",
+     "tag": "Passiva"
+    }
+   ],
+   "3": [
+    {
+     "ramo": "Colosso",
+     "nome": "A Última Parede",
+     "tag": "3 Ações, 5 Stamina, Ultimate"
+    },
+    {
+     "ramo": "Berserker",
+     "nome": "Despertar A Besta",
+     "tag": "1 Ação, 5 Stamina, Ultimate"
+    },
+    {
+     "ramo": "General",
+     "nome": "Campo de Batalha",
+     "tag": "3 Ações, 5 Stamina, Ultimate"
+    }
+   ]
+  },
+  "marcas": [
+   {
+    "ramo": "Marcas do Colosso",
+    "nome": "Cicatrizes de Ferro"
+   },
+   {
+    "ramo": "Marcas do Colosso",
+    "nome": "Imortal"
+   },
+   {
+    "ramo": "Marcas do Berserker",
+    "nome": "Contador de Corpos"
+   },
+   {
+    "ramo": "Marcas do Berserker",
+    "nome": "Vício em Sangue"
+   },
+   {
+    "ramo": "Marcas do General",
+    "nome": "Olhos do Estrategista"
+   },
+   {
+    "ramo": "Marcas do General",
+    "nome": "Plano do General"
+   }
+  ]
+ },
+ "teurgo": {
+  "coef": [
+   3,
+   3,
+   9
+  ],
+  "cd": "10 + Mod. Inteligência + Mod. Sabedoria",
+  "caracteristicas": [
+   "Escolas do Primórdio"
+  ],
+  "tecnicas": [
+   {
+    "nome": "Éter Residual",
+    "texto": "Ao conjurar uma magia contida e seu custo final for ≤1, adicione uma modulação grátis.",
+    "custo": "—",
+    "acao": "Passiva"
+   },
+   {
+    "nome": "Reserva Oculta",
+    "texto": "Ao chegar a 0 de Éter, pode conjurar magias pagando em Saúde. (2:1)<br>Ou seja, 2 Saúde = 1 Éter. A restrição da condição Oco (não canalizar) não se aplica enquanto você pagar magias com Saúde por esta técnica.",
+    "custo": "—",
+    "acao": "Passiva"
+   },
+   {
+    "nome": "Foco Duplo",
+    "texto": "Você pode empunhar dois focos ao mesmo tempo, alternando escolas sem trocar de equipamento.",
+    "custo": "—",
+    "acao": "Passiva"
+   },
+   {
+    "nome": "Força Primordial",
+    "texto": "Suas magias de dano ignoram 1 de Ae. <br>Adicionalmente, suas magias causam 1 de dano Primordial adicional.",
+    "custo": "—",
+    "acao": "Passiva"
+   },
+   {
+    "nome": "Transbordar Controlado",
+    "texto": "Ao usar intensidade Transbordante, rola vontade com +2.",
+    "custo": "—",
+    "acao": "Passiva"
+   },
+   {
+    "nome": "Linguagem Estranha",
+    "texto": "Você consegue entender de maneira básica e leiga, o idioma Abissal.",
+    "custo": "—",
+    "acao": "Passiva"
+   },
+   {
+    "nome": "Encadeamento",
+    "texto": "Ao conjurar uma magia, pode conjurar outra magia se puder pagar pelas ações. A segunda magia custa Éter adicional igual ao número de ações dela. É uma exceção ao limite de 1 magia por turno. Os 3 de Stamina são pagos a cada uso.",
+    "custo": "3 Stamina",
+    "acao": "Passiva"
+   },
+   {
+    "nome": "Respiração Primordial",
+    "texto": "Você medita brevemente, restaurando suas forças. Recuperando (nível)d4 Éter.<br>Max. 1x/Descanso Curto.",
+    "custo": "—",
+    "acao": "5 Minutos"
+   },
+   {
+    "nome": "Imbuir Magia",
+    "texto": "Pode preparar uma magia em um objeto gastando o éter de antemão, designando um gatilho de ativação específico, como: impacto, proximidade, ativação remota…<br>Você pode ativar a magia a qualquer momento com uma reação.",
+    "custo": "5 Stamina",
+    "acao": "1 Minuto"
+   },
+   {
+    "nome": "Canalização Eficiente",
+    "texto": "Reduza o custo de uma magia em 1 Éter.",
+    "custo": "2 Stamina",
+    "acao": "Ação Livre"
+   },
+   {
+    "nome": "Sentir Magia",
+    "texto": "Você sente a presença de magia ou efeitos primordiais em até 9m. Porém não consegue diagnosticar nenhuma característica, apenas fica ciente de sua presença.",
+    "custo": "2 Stamina",
+    "acao": "1 Ação"
+   },
+   {
+    "nome": "Conjuração Furtiva",
+    "texto": "Você pode conjurar magias de forma silenciosa, sem componente verbal, sonoro e visual. Role um teste de Furtividade vs. Percepção ou Místico das criaturas que podem perceber a magia. Se o alvo receber qualquer tipo de dano ele instantaneamente percebe a magia.",
+    "custo": "2 Stamina",
+    "acao": "1 Ação"
+   },
+   {
+    "nome": "Marca do Primórdio",
+    "texto": "Ao acertar uma criatura com uma magia de dano, pode marcá-la. Caso ela falhe em um teste de Vontade contra sua CD, Magias de dano recebem +1 dado de dano contra essa criatura. No inicio de cada turno, a criatura rola novamente.",
+    "custo": "3 Stamina",
+    "acao": "1 Ação"
+   },
+   {
+    "nome": "Concentração",
+    "texto": "Pode canalizar uma magia com 1 ação adicional, adiciona +1 dado de dano ou uma modulação grátis.",
+    "custo": "3 Stamina",
+    "acao": "+1 Ação"
+   },
+   {
+    "nome": "Barreira Instintiva",
+    "texto": "Ao receber dano, pode gastar Éter como ação livre para reduzir dano. 1 Éter = 1d4 de dano reduzido, 2 Éter = 2d4 de dano reduzido… (Max. Éter gasto = Nível)",
+    "custo": "1-5 Éter",
+    "acao": "Ação Livre"
+   }
+  ],
+  "ramos": [
+   "Ramo do Acadêmico",
+   "Ramo do Receptáculo",
+   "Ramo do Arauto"
+  ],
+  "tiers": {
+   "1": [
+    {
+     "ramo": "Acadêmico",
+     "nome": "Grimório Arcano",
+     "tag": "Passiva"
+    },
+    {
+     "ramo": "Acadêmico",
+     "nome": "Tese Arcana",
+     "tag": "Passiva, 2 Stamina"
+    },
+    {
+     "ramo": "Acadêmico",
+     "nome": "Recuperação Primordial",
+     "tag": "3 Ações, x Stamina"
+    },
+    {
+     "ramo": "Receptáculo",
+     "nome": "Canalizador Inato",
+     "tag": "Passiva"
+    },
+    {
+     "ramo": "Receptáculo",
+     "nome": "Natureza Caótica",
+     "tag": "Ação Livre, 2 Stamina"
+    },
+    {
+     "ramo": "Receptáculo",
+     "nome": "Canalização Visceral",
+     "tag": "Passiva"
+    },
+    {
+     "ramo": "Arauto",
+     "nome": "Magias Pactuadas",
+     "tag": "Passiva"
+    },
+    {
+     "ramo": "Arauto",
+     "nome": "Patrono Primordial",
+     "tag": "Passiva"
+    },
+    {
+     "ramo": "Arauto",
+     "nome": "Barganha Primordial",
+     "tag": "1 Ação"
+    }
+   ],
+   "2": [
+    {
+     "ramo": "Acadêmico",
+     "nome": "Maestria Arcana",
+     "tag": "Passiva"
+    },
+    {
+     "ramo": "Acadêmico",
+     "nome": "Eterno Aprendiz",
+     "tag": "Reação, 5 Stamina"
+    },
+    {
+     "ramo": "Receptáculo",
+     "nome": "Surto Primordial",
+     "tag": "Ação Livre, 2 Stamina"
+    },
+    {
+     "ramo": "Receptáculo",
+     "nome": "Êxtase Destrutivo",
+     "tag": "Passiva, 3 Ações, 50% éter"
+    },
+    {
+     "ramo": "Arauto",
+     "nome": "Ritual",
+     "tag": "10 minutos, 5 Stamina"
+    },
+    {
+     "ramo": "Arauto",
+     "nome": "Invocar Ser",
+     "tag": "2 ações, 3 Stamina"
+    }
+   ],
+   "3": [
+    {
+     "ramo": "Acadêmico",
+     "nome": "Teorema Absoluto",
+     "tag": "X, 5 Stamina, Ultimate"
+    },
+    {
+     "ramo": "Receptáculo",
+     "nome": "Receptáculo Perfeito",
+     "tag": "3 Ações, 5 Stamina, Ultimate"
+    },
+    {
+     "ramo": "Arauto",
+     "nome": "Manifestação do Patrono",
+     "tag": "3 Ações, 5 Stamina, Ultimate"
+    }
+   ]
+  },
+  "marcas": [
+   {
+    "ramo": "Marcas do Acadêmico",
+    "nome": "Colecionador de Teoremas"
+   },
+   {
+    "ramo": "Marcas do Acadêmico",
+    "nome": "O Duelista"
+   },
+   {
+    "ramo": "Marcas do Receptáculo",
+    "nome": "Cicatrizes do Fluxo"
+   },
+   {
+    "ramo": "Marcas do Receptáculo",
+    "nome": "Casca Rachada"
+   },
+   {
+    "ramo": "Marcas do Arauto",
+    "nome": "Devoto"
+   },
+   {
+    "ramo": "Marcas do Arauto",
+    "nome": "Porta-Voz"
+   }
+  ]
+ },
+ "monge": {
+  "coef": [
+   5,
+   5,
+   5
+  ],
+  "cd": "10 + Mod. Destreza + Mod. Sabedoria",
+  "caracteristicas": [
+   "Arma Humana",
+   "Fluxo"
+  ],
+  "tecnicas": [
+   {
+    "nome": "Evasivo",
+    "texto": "Adicione seu Fluxo a sua evasão, tanto ativa quanto passiva.",
+    "custo": "1-5 Fluxo",
+    "acao": "Passiva"
+   },
+   {
+    "nome": "Passo do Vento",
+    "texto": "Você não provoca ataques de oportunidade.",
+    "custo": "3 Fluxo",
+    "acao": "Passiva"
+   },
+   {
+    "nome": "Palma Pura",
+    "texto": "Seus ataques desarmados ignoram Armadura(Ar).",
+    "custo": "3 Fluxo",
+    "acao": "Passiva"
+   },
+   {
+    "nome": "Respiração do Monge",
+    "texto": "Recupera Níveld4 de Stamina toda rodada que não atacar ninguém. Só funciona em combate.",
+    "custo": "3 Fluxo",
+    "acao": "Passiva"
+   },
+   {
+    "nome": "Explosão",
+    "texto": "Seu movimento é dobrado.",
+    "custo": "4 Fluxo",
+    "acao": "Passiva"
+   },
+   {
+    "nome": "Silêncio Interior",
+    "texto": "Você tem vantagem em todos os testes de resistência (Reflexos, Fortitude e Vontade).",
+    "custo": "5 Fluxo",
+    "acao": "Passiva"
+   },
+   {
+    "nome": "Andar nas Paredes",
+    "texto": "Você pode se mover em superfícies verticais como se fosse chão. Se terminar o turno na parede, cai.",
+    "custo": "5 Fluxo",
+    "acao": "Passiva"
+   },
+   {
+    "nome": "Quebrar Guarda",
+    "texto": "Seu primeiro ataque gasta a reação do seu alvo. Ou seja, ele só pode defender ao seu primeiro golpe.",
+    "custo": "5 Fluxo",
+    "acao": "Passiva"
+   },
+   {
+    "nome": "Transcendência",
+    "texto": "Como ação livre, gaste 5 de Stamina e 5 de Saúde, durante essa rodada a regra de Penalidade de Multi-Ataque (PMA) não se aplica a você.",
+    "custo": "5 Stamina, 5 Saúde",
+    "acao": "Ação Livre"
+   },
+   {
+    "nome": "Golpe Sequencial",
+    "texto": "Ao usar a ação atacar e acertar um ataque desarmado, pode fazer outro ataque imediatamente contra o mesmo alvo.",
+    "custo": "5 Stamina, 1 Fluxo",
+    "acao": "Ação Livre"
+   },
+   {
+    "nome": "Dança do Monge",
+    "texto": "Faça 3 ataques desarmados contra um ou mais alvos em alcance. 1x/Rodada",
+    "custo": "5 Stamina, 3 Fluxo",
+    "acao": "1 Ação"
+   },
+   {
+    "nome": "Purificar",
+    "texto": "Remova uma condição mágica ou não-mágica de si mesmo ou de uma criatura tocada.",
+    "custo": "4 Stamina",
+    "acao": "1 Ação"
+   },
+   {
+    "nome": "Golpe das Mazelas",
+    "texto": "O seu próximo ataque desarmado exige Fortitude ao alvo ou Atordoado até o fim do seu próximo turno.",
+    "custo": "3 Stamina",
+    "acao": "1 Ação"
+   },
+   {
+    "nome": "Queda Suave",
+    "texto": "Por 1 minuto, você e até 5 criaturas à distância de toque não tomam dano de queda de até 30 m; em quedas maiores, o dano é reduzido em 5 × Nível. Você pode usar essa técnica só em você como uma reação ao receber dano de queda.",
+    "custo": "5 Stamina",
+    "acao": "2 Ações ou reação"
+   },
+   {
+    "nome": "Apanhar Projétil",
+    "texto": "Ao ser atingido por um ataque à distância, reduza o dano em Níveld10 + Mod. Des. Se reduzir a 0, você pegou o projétil. Pode arremessar de volta ao atacante em um mesmo movimento. Você pode utilizar essa técnica qualquer projétil, porém arremessá-lo de volta depende que seja sólido e leve o suficiente.",
+    "custo": "—",
+    "acao": "Reação"
+   }
+  ],
+  "ramos": [
+   "Ramo do Punho",
+   "Ramo do Vazio",
+   "Ramo do Naturalista"
+  ],
+  "tiers": {
+   "1": [
+    {
+     "ramo": "Punho",
+     "nome": "Punho Perfeito",
+     "tag": "Passiva"
+    },
+    {
+     "ramo": "Punho",
+     "nome": "Fluxo Marcial",
+     "tag": "Passiva"
+    },
+    {
+     "ramo": "Punho",
+     "nome": "Cadeia de Golpes",
+     "tag": "Passiva"
+    },
+    {
+     "ramo": "Vazio",
+     "nome": "Toque da Dor",
+     "tag": "Passiva"
+    },
+    {
+     "ramo": "Vazio",
+     "nome": "Fluxo Invertido",
+     "tag": "Passiva"
+    },
+    {
+     "ramo": "Vazio",
+     "nome": "Forma do Vazio",
+     "tag": "1 Ação, 3 Stamina, 5 Fluxo"
+    },
+    {
+     "ramo": "Naturalista",
+     "nome": "Comunhão Selvagem",
+     "tag": "Passiva"
+    },
+    {
+     "ramo": "Naturalista",
+     "nome": "Companheiro Primal",
+     "tag": "2 Ações, 5 Stamina"
+    },
+    {
+     "ramo": "Naturalista",
+     "nome": "Fluxo da Natureza",
+     "tag": "Passiva"
+    }
+   ],
+   "2": [
+    {
+     "ramo": "Punho",
+     "nome": "Precisão Letal",
+     "tag": "Passiva"
+    },
+    {
+     "ramo": "Punho",
+     "nome": "Concentração do Mestre",
+     "tag": "Passiva"
+    },
+    {
+     "ramo": "Vazio",
+     "nome": "O Terror",
+     "tag": "1 Ação, 2 Stamina"
+    },
+    {
+     "ramo": "Vazio",
+     "nome": "Portal do Abismo",
+     "tag": "2 Ações, 4 Stamina, 3 Fluxo"
+    },
+    {
+     "ramo": "Naturalista",
+     "nome": "Companheiro Primal II",
+     "tag": "Passiva"
+    },
+    {
+     "ramo": "Naturalista",
+     "nome": "Totem Eterno",
+     "tag": "2 Ações, 5 Stamina"
+    }
+   ],
+   "3": [
+    {
+     "ramo": "Punho",
+     "nome": "Transcendência Suprema",
+     "tag": "3 Ações, 5 Stamina, 5 Fluxo, Ultimate"
+    },
+    {
+     "ramo": "Vazio",
+     "nome": "Insurgência",
+     "tag": "1 Ações, 5 Stamina, 5 Fluxo, Ultimate"
+    },
+    {
+     "ramo": "Naturalista",
+     "nome": "Fusão Primal",
+     "tag": "2 Ações, 5 Stamina, 5 Fluxo, Ultimate"
+    }
+   ]
+  },
+  "marcas": [
+   {
+    "ramo": "Marcas do Punho",
+    "nome": "Busca Pela Perfeição"
+   },
+   {
+    "ramo": "Marcas do Punho",
+    "nome": "Código do Monge"
+   },
+   {
+    "ramo": "Marcas do Vazio",
+    "nome": "Ápatico"
+   },
+   {
+    "ramo": "Marcas do Vazio",
+    "nome": "Sussuros Constantes"
+   },
+   {
+    "ramo": "Marcas do Naturalista",
+    "nome": "Irmão da Floresta"
+   },
+   {
+    "ramo": "Marcas do Naturalista",
+    "nome": "Ciclo da Vida"
+   }
+  ]
+ },
+ "alquimista": {
+  "coef": [
+   4,
+   6,
+   5
+  ],
+  "cd": "10 + Mod. Inteligência + Mod. Destreza",
+  "caracteristicas": [
+   "Bolsa de Reagentes"
+  ],
+  "tecnicas": [
+   {
+    "nome": "Alquimia Rápida",
+    "texto": "Crie um item alquímico em 1 minuto ao invés de 10 minutos.",
+    "custo": "2 Stamina",
+    "acao": "1 Min."
+   },
+   {
+    "nome": "Produção em Massa",
+    "texto": "Ao criar um item alquímico, pode gastar 5 de Stamina para criar +1 desse mesmo item sem reagentes adicionais. Máx. itens adicionais = Nível. Itens criados por Produção em Massa não podem ser vendidos pois são de baixa qualidade. ← betovenon.",
+    "custo": "5 Stamina<br>/Item",
+    "acao": "1 Ação"
+   },
+   {
+    "nome": "Alquimia de Combate",
+    "texto": "Crie um item alquímico rapidamente como 1 ação, porém com custo adicional de +2 Reagentes.",
+    "custo": "2 Stamina",
+    "acao": "1 Ação"
+   },
+   {
+    "nome": "Forçar Invenção",
+    "texto": "Ao falhar um teste de Ofício(Alquimia), pode rolar novamente, em caso de uma segunda falha sua invenção explode e causa 1d6+Mod. Inteligência de dano Elemental.",
+    "custo": "3 Stamina",
+    "acao": "Reação"
+   },
+   {
+    "nome": "Arremessador",
+    "texto": "Pode rolar Atacar com +1 Treinamento ao arremessar objetos. Adicionalmente, pode arremessar +3 m além do normal.",
+    "custo": "2 Stamina",
+    "acao": "1 Ação"
+   },
+   {
+    "nome": "Economista",
+    "texto": "Ao criar um item alquímico, você gasta -1 Reagente (mínimo 1).",
+    "custo": "2 Stamina",
+    "acao": "1 Ação"
+   },
+   {
+    "nome": "Conserva",
+    "texto": "Ao criar um item alquímico, você pode cria-lo de forma que não estrague em descansos longos.",
+    "custo": "5 Stamina",
+    "acao": "1 Min."
+   },
+   {
+    "nome": "Ferramentas Improvisadas",
+    "texto": "Você pode manipular fechaduras, desarmar armadilhas e outras ações mecânicas com ferramentas feitas sob necessidade, pode rolar ofício(Alquimia) com +1 Treinamento nesses casos.",
+    "custo": "2 Stamina",
+    "acao": "1 Ação"
+   },
+   {
+    "nome": "Concentrar-se",
+    "texto": "Ao criar itens alquímico em 10 minutos(Tempo Padrão), a CD de todos os itens reduzem em -2.",
+    "custo": "—",
+    "acao": "Passiva"
+   },
+   {
+    "nome": "Sucateador",
+    "texto": "Ao Buscar Reagentes como sua ação de descanso curto, recupere 2d4+Nível (Ao invés de 1d4). Adicionalmente, ao finalizar um combate recupere uma quantidade de reagentes = ao seu nível.",
+    "custo": "—",
+    "acao": "Passiva"
+   },
+   {
+    "nome": "Estoque Oculto",
+    "texto": "Você possui um estoque oculto de reagentes. Você dobra seu mod. Inteligência ao calcular seus reagentes máximos. Ou seja: (Nível \\ 3) + (2 \\ Mod. Inteligência)",
+    "custo": "—",
+    "acao": "Passiva"
+   },
+   {
+    "nome": "Resistência Química",
+    "texto": "Você tem Vantagem em testes de resistência contra venenos, doenças e efeitos ácidos/tóxicos.",
+    "custo": "—",
+    "acao": "Passiva"
+   },
+   {
+    "nome": "Link Remoto",
+    "texto": "Você pode ativar seus itens alquímicos de até 30 metros de distância deles.",
+    "custo": "—",
+    "acao": "Passiva"
+   },
+   {
+    "nome": "Poções Granada",
+    "texto": "Suas poções podem ser arremessadas e ao acertar agem como se o alvo tivesse consumido ela.",
+    "custo": "—",
+    "acao": "Passiva"
+   },
+   {
+    "nome": "Óleo Grosso",
+    "texto": "Seus óleos duram +2 ataques ao serem aplicados em uma arma.",
+    "custo": "—",
+    "acao": "Passiva"
+   }
+  ],
+  "ramos": [
+   "Ramo do Artificer",
+   "Ramo do Bombardeiro",
+   "Ramo do Boticário"
+  ],
+  "tiers": {
+   "1": [
+    {
+     "ramo": "Artificer",
+     "nome": "Sintonia Arcana",
+     "tag": "Passiva"
+    },
+    {
+     "ramo": "Artificer",
+     "nome": "Cartucho Arcano",
+     "tag": "Passiva"
+    },
+    {
+     "ramo": "Artificer",
+     "nome": "Constructo Menor",
+     "tag": "3 Ações, 3 Éter + 4 Reagentes"
+    },
+    {
+     "ramo": "Bombardeiro",
+     "nome": "Bombardeiro",
+     "tag": "Passiva"
+    },
+    {
+     "ramo": "Bombardeiro",
+     "nome": "Toxinas Potentes",
+     "tag": "1 Ação, 3 Stamina"
+    },
+    {
+     "ramo": "Bombardeiro",
+     "nome": "Enxurrada de Alquímicos",
+     "tag": "2 Ações, 5 Stamina"
+    },
+    {
+     "ramo": "Boticário",
+     "nome": "Anatomista",
+     "tag": "Passiva"
+    },
+    {
+     "ramo": "Boticário",
+     "nome": "Elixir Especial",
+     "tag": "1 Ação, 3 Stamina, 1 Reagente por alvo"
+    },
+    {
+     "ramo": "Boticário",
+     "nome": "Tónico Cruel",
+     "tag": "1 Ação, 3 Stamina"
+    }
+   ],
+   "2": [
+    {
+     "ramo": "Artificer",
+     "nome": "Runas de Proteção",
+     "tag": "1 Ação, 2 Eter"
+    },
+    {
+     "ramo": "Artificer",
+     "nome": "Constructo de Combate",
+     "tag": "3 Ações, 5 Éter + 6 Reagentes"
+    },
+    {
+     "ramo": "Bombardeiro",
+     "nome": "Mestre dos Elementos",
+     "tag": "Passiva"
+    },
+    {
+     "ramo": "Bombardeiro",
+     "nome": "Zona da Morte",
+     "tag": "2 Ações, 4 Stamina, 3 Reagentes"
+    },
+    {
+     "ramo": "Boticário",
+     "nome": "Transfusão Vital",
+     "tag": "2 Ação, 3 Stamina"
+    },
+    {
+     "ramo": "Boticário",
+     "nome": "Gás Especial",
+     "tag": "2 Ações, 3 Stamina, 4 Reagentes"
+    }
+   ],
+   "3": [
+    {
+     "ramo": "Artificer",
+     "nome": "Titã",
+     "tag": "3 Ações, 8 Éter + 10 Reagentes, Ultimate"
+    },
+    {
+     "ramo": "Bombardeiro",
+     "nome": "Apocalipse Alquímico",
+     "tag": "3 Ação, 6 Stamina + 8 Reagentes, Ultimate"
+    },
+    {
+     "ramo": "Boticário",
+     "nome": "Metamorfose",
+     "tag": "2 Ações, 5 Stamina + 6 Reagentes, Ultimate"
+    }
+   ]
+  },
+  "marcas": [
+   {
+    "ramo": "Marcas do Artificer",
+    "nome": "Pai de Pet"
+   },
+   {
+    "ramo": "Marcas do Artificer",
+    "nome": "Sobrecarga"
+   },
+   {
+    "ramo": "Marcas do Bombardeiro",
+    "nome": "Piromaníaco"
+   },
+   {
+    "ramo": "Marcas do Bombardeiro",
+    "nome": "Preciosismo"
+   },
+   {
+    "ramo": "Marcas do Boticário",
+    "nome": "Curandeiro Incansável"
+   },
+   {
+    "ramo": "Marcas do Boticário",
+    "nome": "Mixologista"
+   }
+  ]
+ },
+ "artilheiro": {
+  "coef": [
+   4,
+   7,
+   4
+  ],
+  "cd": "10 + Mod. Destreza + Mod. Sabedoria",
+  "caracteristicas": [
+   "Concentração"
+  ],
+  "tecnicas": [
+   {
+    "nome": "Respiração Controlada",
+    "texto": "Você não perde Concentração ao receber dano à distância (apenas corpo a corpo).",
+    "custo": "—",
+    "acao": "Passiva"
+   },
+   {
+    "nome": "Frieza",
+    "texto": "Enquanto tiver 3+ concentração, você tem vantagem em testes de resistência.",
+    "custo": "—",
+    "acao": "Passiva"
+   },
+   {
+    "nome": "Balas de Ferro",
+    "texto": "Seus ataques críticos reduzem 3 de Armadura(Ar) ou Armadura Específica(Ae) do alvo no acerto. Você só pode remover Armadura do tipo de dano que sua arma causa.",
+    "custo": "—",
+    "acao": "Passiva"
+   },
+   {
+    "nome": "Artesão de Munição",
+    "texto": "Durante descanso curto ou longo, você pode criar 1 munição(Virotes/Flechas, Munição de Armas de Fogo ou Conjunto de Arremesso) sem rolar testes.",
+    "custo": "—",
+    "acao": "Passiva"
+   },
+   {
+    "nome": "Olho do Atirador",
+    "texto": "Você pode atirar em criaturas que você não enxerga com -2 (Ao invés de desvantagem)",
+    "custo": "—",
+    "acao": "Passiva"
+   },
+   {
+    "nome": "Sentidos Aguçados",
+    "texto": "Você pode rolar Percepção com 1 treinamento a mais. Adicionalmente, não pode ser Desprevenido por criaturas que você vê.",
+    "custo": "2 Stamina",
+    "acao": "1 Ação"
+   },
+   {
+    "nome": "Batida Tática",
+    "texto": "Você pode se mover neste turno sem perder concentração e sem provocar ataques de oportunidade.",
+    "custo": "2 Stamina",
+    "acao": "1 Ação"
+   },
+   {
+    "nome": "Tiro Camuflado",
+    "texto": "Deve estar escondido para ativar. Seu próximo ataque é crítico ao acertar.",
+    "custo": "3 Stamina",
+    "acao": "1 Ação"
+   },
+   {
+    "nome": "Tiro Imobilizador",
+    "texto": "Seu próximo ataque a distância neste turno causa a condição Lento 1 caso o alvo falhe em um teste de Fortitude.",
+    "custo": "2 Stamina, 1 Concentração",
+    "acao": "1 Ação"
+   },
+   {
+    "nome": "Tiro Duplo",
+    "texto": "Seu próximo ataque não tem penalidade de multi-ataque.",
+    "custo": "3 Stamina, 2 Concentração",
+    "acao": "1 Ação"
+   },
+   {
+    "nome": "Tiro Preciso",
+    "texto": "Seu próximo ataque a distância neste turno tem +2 Atacar e Causa +1d6 de dano.",
+    "custo": "2 Stamina, 2 Concentração",
+    "acao": "1 Ação"
+   },
+   {
+    "nome": "Foco Absoluto",
+    "texto": "Seu próximo ataque tem Vantagem e Margem de Ameaça +1.",
+    "custo": "3 Stamina, 5 Concentração",
+    "acao": "1 Ação"
+   },
+   {
+    "nome": "Tiro na Cabeça",
+    "texto": "Seu próximo ataque causa +1d6 de dano por ponto de Concentração gasto.",
+    "custo": "3 Stamina, x Concentração",
+    "acao": "2 Ações"
+   },
+   {
+    "nome": "Ponto Vital",
+    "texto": "Ao acertar um ataque critico, adiciona +2d6 de Dano.",
+    "custo": "3 Stamina, 3 Concentração",
+    "acao": "Reação"
+   },
+   {
+    "nome": "Tiro de Reflexo",
+    "texto": "Quando um inimigo se mover dentro do seu alcance, você pode atacar ele como uma reação.",
+    "custo": "3 Stamina, 5 Concentração",
+    "acao": "Reação"
+   }
+  ],
+  "ramos": [
+   "Ramo do Vendaval",
+   "Ramo da Pólvora",
+   "Ramo do Predador"
+  ],
+  "tiers": {
+   "1": [
+    {
+     "ramo": "Vendaval",
+     "nome": "Mãos Velozes",
+     "tag": "Passiva"
+    },
+    {
+     "ramo": "Vendaval",
+     "nome": "Passo do Vento",
+     "tag": "Passiva"
+    },
+    {
+     "ramo": "Vendaval",
+     "nome": "Vendaval de Aço",
+     "tag": "2 Ações, 5 Stamina"
+    },
+    {
+     "ramo": "Pólvora",
+     "nome": "Mão de Ferro",
+     "tag": "Passiva"
+    },
+    {
+     "ramo": "Pólvora",
+     "nome": "Presença da Pólvora",
+     "tag": "Passiva"
+    },
+    {
+     "ramo": "Pólvora",
+     "nome": "Rajada de Tiros",
+     "tag": "1 ação, 3 Stamina"
+    },
+    {
+     "ramo": "Predador",
+     "nome": "Olho do Arqueiro",
+     "tag": "Passiva"
+    },
+    {
+     "ramo": "Predador",
+     "nome": "Flechas do Predador",
+     "tag": "Passiva"
+    },
+    {
+     "ramo": "Predador",
+     "nome": "Tiro Carregado",
+     "tag": "1-3 Ações, 2 Stamina"
+    }
+   ],
+   "2": [
+    {
+     "ramo": "Vendaval",
+     "nome": "Projétil Envenenado",
+     "tag": "Passiva"
+    },
+    {
+     "ramo": "Vendaval",
+     "nome": "Dança da Morte",
+     "tag": "1 Ação, 4 Stamina, 3 Concentração"
+    },
+    {
+     "ramo": "Pólvora",
+     "nome": "Munição Especial",
+     "tag": "1 Ação, 2 Stamina"
+    },
+    {
+     "ramo": "Pólvora",
+     "nome": "Execução",
+     "tag": "1 Ação, 4 Stamina, 5 Concentração"
+    },
+    {
+     "ramo": "Predador",
+     "nome": "Olhar Revelador",
+     "tag": "Passiva"
+    },
+    {
+     "ramo": "Predador",
+     "nome": "Dois Cordeiros",
+     "tag": "2 Ações, 4 Stamina, 4 Concentração"
+    }
+   ],
+   "3": [
+    {
+     "ramo": "Vendaval",
+     "nome": "Tempestade de Aço",
+     "tag": "3 Ações, 6 Stamina, 5 Concentração, Ultimate"
+    },
+    {
+     "ramo": "Pólvora",
+     "nome": "Canhão",
+     "tag": "2 Ações, 5 Stamina, 5 Concentração, Ultimate"
+    },
+    {
+     "ramo": "Predador",
+     "nome": "Tiro Predador",
+     "tag": "3 Ações, 5 Stamina, 5 Concentração, Ultimate"
+    }
+   ]
+  },
+  "marcas": [
+   {
+    "ramo": "Marcas do Vendaval",
+    "nome": "Inquieto"
+   },
+   {
+    "ramo": "Marcas do Vendaval",
+    "nome": "Colecionador de Lâminas"
+   },
+   {
+    "ramo": "Marcas do Pólvora",
+    "nome": "Vicio de Poder"
+   },
+   {
+    "ramo": "Marcas do Pólvora",
+    "nome": "Conhecedor de Armas de Fogo"
+   },
+   {
+    "ramo": "Marcas do Predador",
+    "nome": "Paciência Inabalável"
+   },
+   {
+    "ramo": "Marcas do Predador",
+    "nome": "Marca no Alvo"
+   }
+  ]
+ },
+ "batedor": {
+  "coef": [
+   4,
+   7,
+   4
+  ],
+  "cd": "10 + Mod. Destreza + Mod. Sabedoria",
+  "caracteristicas": [
+   "Base para o diff do log do novo Batedor: python3 scripts/log-tecnicas/ndiff.py <este arquivo> <dump novo>. URLs S3 sem a query string.",
+   "Progressão",
+   "Instinto"
+  ],
+  "tecnicas": [
+   {
+    "nome": "Atento",
+    "texto": "Você é imune a condição Desprevenido.",
+    "custo": "—",
+    "acao": "Passiva"
+   },
+   {
+    "nome": "Passo Ciente",
+    "texto": "Você não ativa armadilhas de quaisquer tipo e ignora terreno difícil.",
+    "custo": "n/a",
+    "acao": "Passiva"
+   },
+   {
+    "nome": "Caçador",
+    "texto": "Você consegue distinguir peso, numero da pegada, velocidade e direção de criaturas vendo rastros passivamente.",
+    "custo": "n/a",
+    "acao": "Passiva"
+   },
+   {
+    "nome": "Líder",
+    "texto": "Você possui a habilidade de memorizar caminhos e traçar trajetos eficientes. Você soma naturalmente +1 ao sucesso do grupo em jornadas já percorridas. Adicionalmente, ao rolar Sobrevivência em jornadas possui +5.",
+    "custo": "n/a",
+    "acao": "Passiva"
+   },
+   {
+    "nome": "Terreno Ideal",
+    "texto": "Você tem facilidade em se adaptar a um ambiente, e enquanto estiver nele recebe os seguintes benefícios:<br>+2 em testes de Sobrevivência<br>+2 em testes de Percepção<br>Pode gastar uma ação para rolar estes testes com vantagem.<br><br>Terrenos: (Urbano, Natural, Naval, Subterrâneo) <br>Pode escolher 1 no nível 1, 2 no nível 3 e 3 no nível 5.",
+    "custo": "3 Stamina",
+    "acao": "Passiva ou 1 Ação"
+   },
+   {
+    "nome": "Língua Prateada",
+    "texto": "Treinado em Convencimento. Adicionalmente, ao suceder em um teste de Convencimento contra um comerciante garante 25% de desconto em um item.",
+    "custo": "2 Stamina",
+    "acao": "1 Ação"
+   },
+   {
+    "nome": "Oportunista",
+    "texto": "Seu próximo ataque causa +1d8 de dano se o alvo estiver Desprevenido.",
+    "custo": "2 Stamina",
+    "acao": "1 Ação"
+   },
+   {
+    "nome": "Curioso",
+    "texto": "Ao realizar um teste de Percepção ou Investigação adicione 1d4+Destreza.",
+    "custo": "2 Stamina",
+    "acao": "1 Ação"
+   },
+   {
+    "nome": "Emboscada",
+    "texto": "Pode preparar um local previamente com armadilhas e distrações rolando um teste de Sobrevivência ou Furtividade: Ao lutar em um ambiente preparado, se o inimigo falhar em um teste de percepção contra seu teste, você e seus aliados recebem +2 em Atacar durante todo o combate e os inimigos ficam Desprevenidos na primeira rodada do combate.",
+    "custo": "5 Stamina",
+    "acao": "10 Minutos"
+   },
+   {
+    "nome": "Armadilha Tática",
+    "texto": "Rapidamente configura uma armadilha no chão, rolando um teste de Furtividade ou Sobrevivência e atribuindo o resultado a ela. Quando um inimigo passar por cima ele deve superar a Furtividade ou Sobrevivência da armadilha rolando Percepção ou recebe 2d6+Mod. Destreza de dano Perfurante e fica Enraizado por 1 rodada.",
+    "custo": "3 Stamina",
+    "acao": "1 Ações"
+   },
+   {
+    "nome": "Fantasma",
+    "texto": "Ao ser atacado e optar por se defender, pode somar seu treinamento de Furtividade na perícia.",
+    "custo": "2 Stamina",
+    "acao": "Ação Livre"
+   },
+   {
+    "nome": "Mãos Rápidas",
+    "texto": "Você reduz sua penalidade por ataques consecutivos em -2 durante esse turno. Ou seja, de -5 para -3 e -10 para -8.",
+    "custo": "2 Stamina",
+    "acao": "Reação"
+   },
+   {
+    "nome": "Sigiloso",
+    "texto": "Ao atacar estando furtivo, pode gastar sua reação para continuar furtivo ao suceder em um teste de furtividade contra a percepção do alvo atacado.",
+    "custo": "3 Stamina",
+    "acao": "Reação"
+   },
+   {
+    "nome": "Saque",
+    "texto": "Ao eliminar uma criatura, pode saqueá-la, ganhando 1d4 + (Nível \\ 2) de Sins.",
+    "custo": "n/a",
+    "acao": "Reação"
+   },
+   {
+    "nome": "Ocultar-se",
+    "texto": "Ao estar fora da linha de visão de todas as criaturas da cena, pode se esconder com 1 ação ao em vez de 2.",
+    "custo": "2 Stamina",
+    "acao": "1 Ação"
+   }
+  ],
+  "ramos": [
+   "Ramo do Cartógrafo",
+   "Ramo do Trambiqueiro",
+   "Ramo do Sem-Nome"
+  ],
+  "tiers": {
+   "1": [
+    {
+     "ramo": "Cartógrafo",
+     "nome": "Desenhar Mapa de Exploração",
+     "tag": "Descanso Curto, 5 Stamina"
+    },
+    {
+     "ramo": "Cartógrafo",
+     "nome": "Artista Apaixonado",
+     "tag": "Passiva"
+    },
+    {
+     "ramo": "Cartógrafo",
+     "nome": "Escapista",
+     "tag": "3 Ações, 5 Stamina"
+    },
+    {
+     "ramo": "Sem-Nome",
+     "nome": "Golpe Sombrio",
+     "tag": "1 Ação, 2 Stamina"
+    },
+    {
+     "ramo": "Sem-Nome",
+     "nome": "Finta",
+     "tag": "1 Ação, 2 Stamina"
+    },
+    {
+     "ramo": "Sem-Nome",
+     "nome": "Olhar de Brecha",
+     "tag": "Passiva"
+    },
+    {
+     "ramo": "Trambiqueiro",
+     "nome": "Bens Diversos",
+     "tag": "1 Ação, 5 Stamina"
+    },
+    {
+     "ramo": "Trambiqueiro",
+     "nome": "Agiota",
+     "tag": "3 Ações, 10 Stamina"
+    },
+    {
+     "ramo": "Trambiqueiro",
+     "nome": "Cara de Pau",
+     "tag": "1 Ação, 3 Stamina"
+    }
+   ],
+   "2": [
+    {
+     "ramo": "Cartógrafo",
+     "nome": "Desenhar Mapa de Combate",
+     "tag": "5 Minutos, 3 Stamina"
+    },
+    {
+     "ramo": "Cartógrafo",
+     "nome": "Mapa Mental",
+     "tag": "1 Ação, 2 Stamina"
+    },
+    {
+     "ramo": "Sem-Nome",
+     "nome": "Cobra",
+     "tag": "Descanso Curto ou 1 Ação, 2 Stamina"
+    },
+    {
+     "ramo": "Sem-Nome",
+     "nome": "Terror",
+     "tag": "Passiva"
+    },
+    {
+     "ramo": "Trambiqueiro",
+     "nome": "Conexões Duvidosas",
+     "tag": "1 Ação, 3 Stamina"
+    },
+    {
+     "ramo": "Trambiqueiro",
+     "nome": "Olho no Lance",
+     "tag": "1 ação, 3 stamina ou passiva"
+    }
+   ],
+   "3": [
+    {
+     "ramo": "Cartógrafo",
+     "nome": "Senhor das Linhas",
+     "tag": "1 Ação, 5 Stamina, Ultimate"
+    },
+    {
+     "ramo": "Sem-Nome",
+     "nome": "Silêncio",
+     "tag": "1 Ação, 5 Stamina, Ultimate"
+    },
+    {
+     "ramo": "Trambiqueiro",
+     "nome": "Suborno Irrecusável",
+     "tag": "2 Ações, 5 Stamina, Ultimate"
+    },
+    {
+     "ramo": "Trambiqueiro",
+     "nome": "Esquemas",
+     "tag": "Ação Livre, 5 Stamina, Ultimate"
+    }
+   ]
+  },
+  "marcas": [
+   {
+    "ramo": "Marcas do Cartógrafo",
+    "nome": "Colecionador de Horizontes"
+   },
+   {
+    "ramo": "Marcas do Cartógrafo",
+    "nome": "Cicatrizes da Jornada"
+   },
+   {
+    "ramo": "Marcas do Sem-Nome",
+    "nome": "Coleção de Últimos Suspiros"
+   },
+   {
+    "ramo": "Marcas do Sem-Nome",
+    "nome": "Sussurro Final"
+   },
+   {
+    "ramo": "Marcas do Trambiqueiro",
+    "nome": "Homem de Negócios"
+   },
+   {
+    "ramo": "Marcas do Trambiqueiro",
+    "nome": "O Palpite"
+   }
+  ]
+ }
+}

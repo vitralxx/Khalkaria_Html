@@ -840,6 +840,13 @@ como ajuste pontual. O que este rework tem que produzir, além do Batedor pronto
 - um **teste de sobreposição entre classes** (o Batedor e o Artilheiro compartilham 4/7/4)
 - o **template de página de classe**, para Vigário, Vampiro, Necromante e Xamã caírem nele
 
+**Entregue como proposta em 2026-09-28:**
+- `19-gabarito-de-classe.md` traz as quatro réguas acima, mais a R7 (recurso fechado), "gasto ou requisito" e
+  as convenções de texto.
+- `18-batedor-rework.md` é o Batedor feito por esse gabarito, com 16 decisões numeradas para o Pedro.
+
+Nada foi ao Notion.
+
 ---
 
 # 8. Pendências abertas
