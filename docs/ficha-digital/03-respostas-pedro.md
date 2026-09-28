@@ -211,3 +211,15 @@ Itens em `15-ficha-rodada3.md` §E (branch do balanceamento). Os que o Pedro res
 - **Foco e movimento:** "Sim contorno de foco e movimento reduzido, como opção o movimento reduzido, contorno âmbar pode deixar nos links, botões e campos brilhando sutilmente no teclado destaca." → foco âmbar com brilho sutil só no teclado (`:focus-visible`); movimento reduzido como **opção** do usuário.
 - **Ficha × site:** "A ficha pode empurrar o site para a direita em vez de abrir por cima, um esquema de abas reordenáveis pode ser implementado." → a ficha empurra o conteúdo em vez de sobrepor; abas da ficha reordenáveis. Lado confirmado: **a ficha à direita** (onde o painel já abre hoje), apertando o conteúdo.
 - **.gitattributes:** "Faz." (feito, c6dc56f).
+
+## 8. Comerciantes e papéis, respostas de 2026-09-28
+
+Pedido original (M8 do plano): área do mestre para criar comerciantes e organizar prateleiras de forma visual; todo comerciante começa no nível 1 e sobe pela tabela de Sins; o site controla o estoque de Sins; o comerciante compra itens por uma taxa em cada nível; o jogador rola Convencimento para baixar o preço; o site calcula quanto cada item rende em cada nível; o mestre infla ou reduz o preço do que está à venda.
+
+- **Ordem:** a loja (FC) entra **depois da ficha nova** (F4). A sincronização das respostas do balanceamento vem antes das duas.
+- **Visibilidade e papéis:** "Recomendo estruturar uma separação de privilégios para o futuro do site, pode ser dessa forma que propôs." → papel **mestre** ligado por `?mestre=1`, lembrado no navegador (como a prévia `?ficha=v3`) e desligado por `?mestre=0`. Tudo que é do mestre fica escondido para quem não ligou. O mecanismo é geral, para o site crescer em cima dele (plano §3.4).
+- **Pechincha (C1):** "Não tem número fixo, depende do roleplay e rolagem do jogador." → o site rola Convencimento e mostra o resultado; o desconto é o mestre que digita, em % ou em Sins.
+- **Porcentagem de venda (C2):** "A porcentagem de venda é para os itens comprados pelo comerciante dos jogadores." → 50/66/75% é o que o comerciante paga quando **compra** do jogador. Continua com o balanceamento: se incide sobre o valor rolado ou sobre a média, e o arredondamento.
+- **Quem compra (C3):** "O comerciante compra itens dos jogadores, assim como os jogadores compram itens dos comerciantes." → todo comerciante compra. Continua com o balanceamento: se cada um compra só a própria categoria.
+- **Sins insuficientes (C6):** "Quando o comerciante não tem sins suficientes para comprar um item do jogador, ele oferece o restante, caso o jogador rejeite não há troca." → o comerciante oferece o que tem no estoque; o jogador aceita (o estoque zera) ou recusa (nada acontece).
+- **Reposição (C6):** "A reposição pode ser manual, só exibe a informação de quantos dias demora." → botão manual "Repor"; o balcão só informa o prazo da reposição (diária, pela tabela).

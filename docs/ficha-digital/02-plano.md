@@ -11,7 +11,7 @@
 
 ### 0.0 Pedido do Pedro em 2026-09-28: Comerciantes
 
-Módulo novo, o **M8 · Comerciantes** (Modo Loja do mestre, no Bazar), na fase **FC**. Ele é independente da ficha v3. O balanceamento recebeu as regras que faltam como **rodada 6** (C1–C11, §10). No mesmo dia, o Bazar ganhou um glifo próprio para cada item no medalhão (`6b1fa6c`).
+Módulo novo, o **M8 · Comerciantes** (Modo Loja do mestre, no Bazar), na fase **FC**. Entra depois da F4 (Pedro), junto com os **papéis** (§3.4: modo mestre por `?mestre=1`). O Pedro respondeu direto C1, parte da C2, parte da C3 e a C6 (`03 §8`); o balanceamento recebeu as regras que faltam como **rodada 6** (C1–C11, §10). No mesmo dia, o Bazar ganhou um glifo próprio para cada item no medalhão (`6b1fa6c`).
 
 ### 0.1 Respondido pelo Pedro em 2026-09-26
 
@@ -251,6 +251,21 @@ Resposta do Pedro que ainda não chegou ao contrato (0.1) entra no `tools/deciso
 
 O shell injeta tokens, componentes, ficha, `kh-ui.js` e o sprite `partials/glifos.html` em todas as páginas, com `?v=`. Duas lacunas a fechar: hash recursivo de `js/**` e `css/**` (`shell.py:157-167` só lê o primeiro nível) e `window.KH_V` no head-boot para o JSON buscado em runtime.
 
+### 3.4 Papéis (separação de privilégios)
+
+Pedido do Pedro em 2026-09-28 (`03 §8`): "estruturar uma separação de privilégios para o futuro do site", do jeito proposto. O mecanismo é geral e a loja (M8) é o primeiro uso.
+
+- **Papel no navegador:** `localStorage.khalkaria_papel` vale `jogador` (padrão) ou `mestre`.
+  - `?mestre=1` em qualquer página liga o mestre e `?mestre=0` desliga; o parâmetro sai da URL depois de lido (`history.replaceState`).
+  - O `head-boot` aplica `html[data-papel]` antes do primeiro desenho, como a nav e o movimento, então a página não pisca.
+- **Marcação:** tudo que é do mestre leva `data-papel-min="mestre"`. Uma regra só, em `componentes.css`, esconde esses elementos para o jogador: `html:not([data-papel=mestre]) [data-papel-min=mestre]{display:none}`.
+  - O JS consulta `KhPapel.e('mestre')` e escuta o evento `kh:papel`.
+  - Atalhos de mestre registrados no `KhTeclas` levam `papel:'mestre'` e não disparam para o jogador.
+- **Indicador:** com o mestre ligado, o rodapé da nav mostra um selo "Mestre" com "Sair do modo mestre".
+- **Limite honesto:** o site é estático e não tem conta, então isso organiza a interface e não é segurança. Quem digitar `?mestre=1` vira mestre no próprio navegador, mas os dados do mestre (as lojas) vivem só no navegador do Pedro. Segredo de verdade continua fora do site, como as cartas raras (M6: privado gitignored).
+- **Próximos usos previstos:** a Loja (M8); o modo Mesa com dados ocultos (F5); revelar carta rara pela interface, sem script (M6); notas de mestre nos cards.
+- **Fase:** entra junto com a FC, por ser o primeiro consumidor. Testes: o `head-boot` aplica o papel sem salto de layout; `?mestre=1` e `?mestre=0` persistem e limpam a URL; nenhum `[data-papel-min=mestre]` fica visível ao jogador em nenhuma página (varredura no build); com `localStorage` bloqueado o papel é jogador e nada quebra.
+
 ---
 
 ## 4. Contrato "entidade → ficha"
@@ -475,26 +490,27 @@ A mesma estética de ramo serve à tela por ramo do M3 (travada na criação, se
   O rework do Batedor (`18` §9, decisão 12, ainda proposta) leva a Língua Prateada a 10% e tira o Olho no Lance. Por isso esses valores vêm do contrato do balanceamento, não de constante do site.
 - **Preço é informativo:** nada trava pelos Sins da ficha (§5 e §10 do CLAUDE.md).
 
-**UX: modo dentro do Bazar.** O Bazar já tem catálogo, filtros, cards heráldicos, arrastar e painéis, e a loja reusa tudo isso. `html[data-modo=loja]` troca o painel de inventário da direita pelo **Balcão**:
+**UX: modo dentro do Bazar.** O Bazar já tem catálogo, filtros, cards heráldicos, arrastar e painéis, e a loja reusa tudo isso. `html[data-modo=loja]` troca o painel de inventário da direita pelo **Balcão**. Se a ficha estiver aberta, o modo loja vence o modo ficha (M4): o Balcão fica com o lado direito, o drawer da ficha recolhe ao trilho, e fechar a loja devolve o estado anterior. O Balcão tem:
+- **Só para o papel mestre** (§3.4): o botão "Loja (mestre)" e tudo do Balcão levam `data-papel-min="mestre"`; o jogador não vê nada disso.
 - **Lista de comerciantes:** retrato por glifo do tipo, nome, tipo, nível, região e medidor do estoque de Sins (atual/teto).
   - Criar: tipo, nome, região e nota; nasce no nível 1 com o teto do nível.
   - Subir de nível: mostra o custo (125 ou 250) e registra no log.
-  - "Novo dia": aplica a reposição diária (PENDENTE C6), em todos os comerciantes ou num só.
+  - **Reposição manual** (Pedro, `03 §8`): o botão "Repor" leva o estoque ao teto do nível, e o balcão só informa o prazo da tabela ("Reposição: diária"). Não há relógio de dias no site.
 - **Prateleira:** arrastar um card do registro para o balcão, ou usar "+ loja", põe o item à venda.
   - Com o comerciante aberto, os filtros do Bazar pré-selecionam a categoria do tipo e "Loja" (e a região dele, se houver). O mestre pode tirar qualquer filtro: a loja é dele.
   - Cada item tem quantidade e ordem, que se muda arrastando. Seções livres ("Vitrine", "Balcão", "Encomenda") são a organização visual que o Pedro pediu.
 - **Preço à venda:** rolado quando o item entra na prateleira, com os dados visíveis ("4d10+45 → 7+3+9+2+45 = 66"). O mestre pode rolar de novo, digitar o preço ou aplicar um **ajuste do mestre**: percentual (+20%, −15%) ou valor fixo, por comerciante e por item. O preço final mostra a conta no tooltip de fórmula, como todo número do site (M2): "Preço = 66 rolado × 1,20 (inflação do comerciante) = 79".
 - **Vender a um jogador:**
   - a quantidade na prateleira baixa e o estoque de Sins sobe;
-  - **Pechinchar (Convencimento):** rolagem com expressão e dados visíveis, ou "rolei __". O efeito do resultado no preço é **PENDENTE C1**: sem regra, o botão registra a rolagem e o mestre aplica o desconto à mão;
+  - **Pechinchar (Convencimento):** rolagem com expressão e dados visíveis, ou "rolei __". **Sem número fixo** (Pedro, `03 §8`: "depende do roleplay e rolagem do jogador"): o site mostra o resultado e o mestre digita o desconto em % ou em Sins, e a conta final mostra "pechincha −X" com a rolagem ao lado;
   - chaves por personagem (A Criatura, Língua Prateada) somam o ajuste com a fonte no tooltip.
 - **Comprar de um jogador:**
   - buscar qualquer item do Bazar;
   - o site mostra quanto o comerciante paga, com a conta: "Incomum 4d10+45 (49–85, média 67) × 50% (nível 1) = 24–42, média 33";
   - rola, ou aceita "rolei __", e desconta do estoque;
-  - estoque insuficiente avisa (PENDENTE C6 para o caso parcial);
-  - o tipo que compra aquela categoria é **PENDENTE C3**; o Sucateiro compra tudo.
-- **Tabela "quanto rende"** em cada card do Bazar no modo loja: o que o item rende nos níveis 1, 2 e 3, em faixa e média, com arredondamento **PENDENTE C2**. É o cálculo automático por nível que o Pedro pediu.
+  - **Sins insuficientes** (Pedro, `03 §8`): o comerciante oferece o que tem. O jogador aceita, e o estoque zera e o log registra a oferta menor, ou recusa, e não há troca;
+  - todo comerciante compra dos jogadores (Pedro, `03 §8`); se cada um compra só a própria categoria é **PENDENTE C3**, e até lá o balcão avisa sem bloquear. O Sucateiro compra tudo.
+- **Tabela "quanto rende"** em cada card do Bazar no modo loja: o que o item rende nos níveis 1, 2 e 3, em faixa e média, a porcentagem sendo o que o comerciante paga ao comprar do jogador (Pedro, `03 §8`); a base (valor rolado ou média da faixa) e o arredondamento são **PENDENTE C2**. É o cálculo automático por nível que o Pedro pediu.
 - **Vitrine para os jogadores ("mostrar na tela"):**
   - tela cheia com o nome, tipo e nível do comerciante e os cards grandes com o preço final;
   - sem controles, sem estoque de Sins e sem o ajuste do mestre;
@@ -520,12 +536,12 @@ A mesma estética de ramo serve à tela por ramo do M3 (travada na criação, se
 **Integração com a ficha.** A loja vive no navegador do mestre, e a ficha de cada jogador vive no navegador dele. Na primeira entrega a loja não grava na ficha de ninguém. Depois da F4, a vitrine pode sair num **link só-leitura** com o estado no `#hash`, sem servidor. O jogador abre o link e o "+ inventário" leva o item com o preço pago anotado; descontar os Sins da ficha é opcional, sem trava.
 
 **PENDENTE (balanceamento), rodada 6, §10:**
-- **C1:** regra da pechincha.
-- **C2:** base e arredondamento da porcentagem de venda.
-- **C3:** quem compra o quê.
+- ~~C1: regra da pechincha~~: sem número fixo, o mestre decide (Pedro).
+- **C2:** base (valor rolado ou média) e arredondamento. Que a % é o que o comerciante paga ao comprar, o Pedro já disse.
+- **C3:** se cada comerciante compra só a própria categoria. Que todos compram, o Pedro já disse.
 - **C4:** categorias de Equipamentos, Munição e Lixo.
 - **C5:** raridade do comerciante contra a raridade do item.
-- **C6:** estoque e reposição.
+- **C6:** só falta saber se vender pode passar do teto do nível. Sins insuficientes e reposição manual, o Pedro já respondeu.
 - **C7:** subida de nível.
 - **C8:** quando o preço é rolado.
 - **C9:** ajustes por personagem depois do rework.
@@ -534,13 +550,16 @@ A mesma estética de ramo serve à tela por ramo do M3 (travada na criação, se
 
 Enquanto a resposta não chega, cada ponto sai com o selo e com o mestre decidindo à mão; nada é inventado.
 
-**Fase:** **FC** (§7), independente da ficha v3: depende só do Bazar e do rolador. A vitrine por link para os jogadores (FC2) vem depois da F4.
+**Fase:** **FC** (§7), **depois da F4** (Pedro, `03 §8`). A loja não depende da ficha v3, mas a ordem é dele; por vir depois, a vitrine por link para os jogadores entra na mesma fase.
 
 **Testes:**
 - Criar um comerciante de cada tipo nasce no nível 1 com teto 250 e o filtro de categoria certo.
 - Subir de 1 para 2 registra 125 e o teto vira 500; o nível 3 não sobe.
 - Vender soma ao estoque e baixa a quantidade.
-- Comprar desconta, e estoque 0 recusa com aviso.
+- Comprar desconta; com estoque menor que o valor, o balcão oferece o estoque inteiro, e aceitar zera enquanto recusar não muda nada.
+- "Repor" leva ao teto do nível, e o balcão mostra o prazo da tabela.
+- Pechinchar registra a rolagem, e o desconto digitado entra na fórmula.
+- Papel jogador: nenhum controle da loja aparece (§3.4).
 - Rolagem com semente é reproduzível; "rolei __" é aceito.
 - Ajuste do mestre (%, fixo, por item e por comerciante) aparece na fórmula do tooltip.
 - A tabela por nível confere com a conta feita à mão nas 5 raridades e em Material.
@@ -704,7 +723,8 @@ F1a–F1f correm em paralelo. F4b, F4c, F5 e F6 correm em paralelo depois da F4.
 
 ### FC · Comerciantes (Modo Loja)
 
-**Entrega:** M8. FC1 traz o Balcão no Bazar, a prateleira, o preço rolado com ajuste do mestre, vender e comprar com o estoque de Sins, a tabela "quanto rende" por nível, subir de nível, "Novo dia", a vitrine em tela cheia, o log com desfazer, Export e Import, `data/comerciantes.json` gerado do Sistema e o `KhDados`. FC2, depois da F4, traz a vitrine por link só-leitura e o "+ inventário" com preço anotado.
+**Quando:** depois da F4 (Pedro, `03 §8`).
+**Entrega:** M8 e os papéis (§3.4). FC1 traz o papel mestre, o Balcão no Bazar, a prateleira, o preço rolado com ajuste do mestre, vender e comprar com o estoque de Sins (oferta do que tem quando falta), pechincha com desconto digitado, a tabela "quanto rende" por nível, subir de nível, "Repor" manual, a vitrine em tela cheia, o log com desfazer, Export e Import, `data/comerciantes.json` gerado do Sistema e o `KhDados`. FC2 traz a vitrine por link só-leitura e o "+ inventário" com preço anotado.
 **Pronto quando:** o Pedro abre uma loja na sessão em menos de um minuto: cria o comerciante, arrasta os itens e mostra a vitrine. Todo número do balcão mostra a conta, e o que depende da rodada 6 sai com selo, com o mestre decidindo à mão.
 **Testes:** os do M8.
 
@@ -730,7 +750,7 @@ F1a–F1f correm em paralelo. F4b, F4c, F5 e F6 correm em paralelo depois da F4.
 
 **Com o balanceamento — rodada 5 (a enviar):** lista em `tools/pendentes_balanceamento.json` (§10). Os campos ficam `null` e o `[blocos]` FALHA se um deles perder a pergunta.
 
-**Com o balanceamento — rodada 6, Comerciantes (enviada em 2026-09-28, §10):** C1–C11. Trava as regras do M8 (pechincha, base da porcentagem, quem compra o quê, estoque e reposição, subida de nível, quando rolar o preço). Enquanto isso: selo PENDENTE, e o mestre decide à mão no balcão.
+**Com o balanceamento — rodada 6, Comerciantes (enviada em 2026-09-28, §10):** C1–C11. O Pedro respondeu direto a C1, a C6 e parte da C2 e da C3 (`03 §8`). Seguem abertas: base e arredondamento da %, categoria de compra, C4, C5, o teto do estoque, C7–C11. Enquanto isso: selo PENDENTE, e o mestre decide à mão no balcão.
 
 **Com o Pedro**
 - **Editar o CSV** (D26b: acrescentar "Empilhável: pesa 1 bugiganga a cada 10 unidades." ao `Efeito_Jogador` de Casca de Raiz e Seiva da Vhelor; D25: "Saude" → "Saúde" na Erva Medicinal e "Armas Leves." como requisito do Anel do Esgrimista). Aprovado, mas a permissão da sessão bloqueou: **fica com ele**. Depois, `ESPERADO['empilhavel']` sobe para 87 e o AVISO some.
@@ -813,15 +833,15 @@ F1a–F1f correm em paralelo. F4b, F4c, F5 e F6 correm em paralelo depois da F4.
 4. Aviso: o Fluxo do Monge no site zera ao fim do combate só "se passar 1 rodada sem ganhar Fluxo ou receber dano"; o contrato modela só `fimCombate` (C20/P12). Continua com o Pedro.
 
 **Rodada 6 — Comerciantes (M8, enviada em 2026-09-28).** Base: Sistema > Comerciantes e Dinheiro, D6, D9, D35, D77 e D121. O que for decisão nova de regra, ele leva ao Pedro como Tn.
-1. **C1 · Pechincha:** o Pedro quer que os jogadores rolem Convencimento para baixar o preço. Não há regra geral; só existe a Língua Prateada (25% num item ao passar, e 10% na proposta de rework). Perguntas: qual é a CD (fixa, pelo nível do comerciante ou pela raridade do item)? Quanto desconta, e em degraus pela margem? Vale uma vez por item ou por visita? Falhar tem custo (preço sobe, comerciante fecha)? E como fica a Língua Prateada diante da regra geral?
-2. **C2 · Porcentagem de venda (50/66/75%):** é o que o comerciante paga quando **compra do jogador**? Aplica-se ao valor **rolado** do item naquele momento ou à média da faixa (D9)? Qual é o arredondamento (para baixo)?
-3. **C3 · Quem compra o quê:** o Sucateiro compra tudo. Os outros compram só a própria categoria, ou compram qualquer coisa? E o que quer dizer "comerciante que compra ≠ comerciante que vende" (D6): o jogador vende ao Sucateiro e compra dos outros?
+1. ~~**C1 · Pechincha**~~ **respondida pelo Pedro** (`03 §8`): "Não tem número fixo, depende do roleplay e rolagem do jogador." Pergunta original: o Pedro quer que os jogadores rolem Convencimento para baixar o preço. Não há regra geral; só existe a Língua Prateada (25% num item ao passar, e 10% na proposta de rework). Perguntas: qual é a CD (fixa, pelo nível do comerciante ou pela raridade do item)? Quanto desconta, e em degraus pela margem? Vale uma vez por item ou por visita? Falhar tem custo (preço sobe, comerciante fecha)? E como fica a Língua Prateada diante da regra geral?
+2. **C2 · Porcentagem de venda (50/66/75%):** ~~é o que o comerciante paga quando compra do jogador?~~ Sim (Pedro, `03 §8`). Aplica-se ao valor **rolado** do item naquele momento ou à média da faixa (D9)? Qual é o arredondamento (para baixo)?
+3. **C3 · Quem compra o quê:** todo comerciante compra dos jogadores (Pedro, `03 §8`). O Sucateiro compra tudo; os outros compram só a própria categoria, ou compram qualquer coisa? E o que quer dizer "comerciante que compra ≠ comerciante que vende" (D6): o jogador vende ao Sucateiro e compra dos outros?
 4. **C4 · Categorias:** "Equipamentos" do Ferreiro é Arma + Armadura + Escudo? A Munição fica com qual comerciante (Ferreiro, Artesão, Boticário)? O Lixo só com o Sucateiro? E os 2 itens "Material, Consumível"?
 5. **C5 · Raridade:** a raridade do comerciante (comum, médio, raro) limita a raridade do item que ele vende ou compra? O "Exótico é prêmio de arco narrativo; Luxária é artefato de campanha" (D9) quer dizer que loja não vende Exótico nem Luxária?
 6. **C6 · Estoque:**
-   - Um comerciante com 30 Sins pode comprar um item que vale 40? Paga só 30, recusa, ou o jogador aceita os 30?
-   - Vendas podem levar o estoque acima do teto do nível?
-   - A reposição diária volta o estoque ao teto (subindo ou descendo), ou só completa até o teto?
+   - ~~Um comerciante com 30 Sins diante de um item de 40?~~ Oferece o que tem; se o jogador recusar, não há troca (Pedro, `03 §8`).
+   - Vendas podem levar o estoque acima do teto do nível? E, se passar, o "Repor" traz de volta ao teto?
+   - ~~Como é a reposição?~~ Manual; o balcão só informa o prazo (Pedro, `03 §8`).
 7. **C7 · Subida de nível:**
    - quem paga os 125/250 Sins: os jogadores, investindo?
    - esse valor entra no estoque do comerciante?
