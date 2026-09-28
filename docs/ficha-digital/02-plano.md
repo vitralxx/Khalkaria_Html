@@ -9,6 +9,10 @@
 
 ## 0. O que mudou
 
+### 0.0 Pedido do Pedro em 2026-09-28: Comerciantes
+
+Módulo novo, o **M8 · Comerciantes** (Modo Loja do mestre, no Bazar), na fase **FC**. Ele é independente da ficha v3. O balanceamento recebeu as regras que faltam como **rodada 6** (C1–C11, §10). No mesmo dia, o Bazar ganhou um glifo próprio para cada item no medalhão (`6b1fa6c`).
+
 ### 0.1 Respondido pelo Pedro em 2026-09-26
 
 D33–D36 são as quatro perguntas que estavam abertas no §8, respondidas no mesmo dia; os ids são deste plano (não estão no `03`).
@@ -446,6 +450,104 @@ A mesma estética de ramo serve à tela por ramo do M3 (travada na criação, se
 
 **Testes:** round-trip byte a byte do conteúdo das 7 classes; set-diff de técnicas por página = ∅; `[conteudo×contrato]` sem erro novo; par `antes/depois` de estilo por classe (portão `[estilo]` da F1c); nenhum hex de recurso fora de `tokens.css` (grep no build); Limiar com animação e sem ela em reduced-motion.
 
+### M8 · Comerciantes (Modo Loja do mestre)
+
+**Pedido do Pedro (2026-09-28):** o balanceamento registrou a ideia ("simplifica para a sessão eu poder abrir uma loja na hora e mostrar aos jogadores na tela", `17-respostas-T-e-sync.md` §3.4), e o Pedro detalhou: uma área para organizar itens de forma visual e estilizada e criar comerciantes, bem documentados nas regras; todo comerciante começa no nível 1 e sobe pela tabela de Sins; o site controla o estoque de Sins; o comerciante compra itens por uma taxa em cada nível; os jogadores rolam Convencimento para baixar o preço; o site calcula quantos Sins cada item rende em cada nível; e o mestre pode inflacionar ou reduzir o preço do que está à venda.
+
+**Regras canônicas** (Sistema > Comerciantes e Dinheiro, `data/sistema.json`; decisões D6, D9, D35, D77 e D121 do balanceamento). O site só aplica estas:
+- **6 tipos:** Sucateiro (não vende; compra ou recicla tudo; comum), Fornecedor (Materiais; comum), Artesão (Bugigangas; comum), Ferreiro (Equipamentos; médio), Boticário (Consumíveis; médio) e Artificer (Itens Mágicos; raro).
+- **Níveis 1 a 3:**
+
+  | Nível | Estoque de Sins | Reposição | Porcentagem de venda | Custo para subir |
+  |---|---|---|---|---|
+  | 1 | 250 | diária | 50% | 125 Sins |
+  | 2 | 500 | diária | 66% | 250 Sins |
+  | 3 | 1000 | diária | 75% | — |
+
+  O comerciante começa no nível 1, e subir de nível é acesso e RP, não decisão econômica (D6).
+- **Estoque de Sins:** comerciante sem Sins não compra dos jogadores, e o que ele vende soma Sins ao estoque.
+- **Preço:** o preço de venda é **rolado** pela faixa da raridade, que é o `valor` do CSV: Lixo 1d8+2, Ordinário 2d10+10, Incomum 4d10+45, Exótico 5d12+180, Luxária 6d20+620. Material vale uma faixa abaixo, e o CSV já traz isso (D35). O CSV marca os itens de loja em "Obtenção" (`Loja`: 694 dos 727), com região e raridade (D77).
+- **Ajustes por personagem, citados e nunca fixados no código:**
+  - *A Criatura* (Corrompido): paga 50% a mais, e o grupo inteiro paga se o comerciante perceber;
+  - *Língua Prateada* (Batedor): 25% de desconto num item quando passa em Convencimento;
+  - *Olho no Lance* (Batedor): +20% ao vender.
+
+  O rework do Batedor (`18` §9, decisão 12, ainda proposta) leva a Língua Prateada a 10% e tira o Olho no Lance. Por isso esses valores vêm do contrato do balanceamento, não de constante do site.
+- **Preço é informativo:** nada trava pelos Sins da ficha (§5 e §10 do CLAUDE.md).
+
+**UX: modo dentro do Bazar.** O Bazar já tem catálogo, filtros, cards heráldicos, arrastar e painéis, e a loja reusa tudo isso. `html[data-modo=loja]` troca o painel de inventário da direita pelo **Balcão**:
+- **Lista de comerciantes:** retrato por glifo do tipo, nome, tipo, nível, região e medidor do estoque de Sins (atual/teto).
+  - Criar: tipo, nome, região e nota; nasce no nível 1 com o teto do nível.
+  - Subir de nível: mostra o custo (125 ou 250) e registra no log.
+  - "Novo dia": aplica a reposição diária (PENDENTE C6), em todos os comerciantes ou num só.
+- **Prateleira:** arrastar um card do registro para o balcão, ou usar "+ loja", põe o item à venda.
+  - Com o comerciante aberto, os filtros do Bazar pré-selecionam a categoria do tipo e "Loja" (e a região dele, se houver). O mestre pode tirar qualquer filtro: a loja é dele.
+  - Cada item tem quantidade e ordem, que se muda arrastando. Seções livres ("Vitrine", "Balcão", "Encomenda") são a organização visual que o Pedro pediu.
+- **Preço à venda:** rolado quando o item entra na prateleira, com os dados visíveis ("4d10+45 → 7+3+9+2+45 = 66"). O mestre pode rolar de novo, digitar o preço ou aplicar um **ajuste do mestre**: percentual (+20%, −15%) ou valor fixo, por comerciante e por item. O preço final mostra a conta no tooltip de fórmula, como todo número do site (M2): "Preço = 66 rolado × 1,20 (inflação do comerciante) = 79".
+- **Vender a um jogador:**
+  - a quantidade na prateleira baixa e o estoque de Sins sobe;
+  - **Pechinchar (Convencimento):** rolagem com expressão e dados visíveis, ou "rolei __". O efeito do resultado no preço é **PENDENTE C1**: sem regra, o botão registra a rolagem e o mestre aplica o desconto à mão;
+  - chaves por personagem (A Criatura, Língua Prateada) somam o ajuste com a fonte no tooltip.
+- **Comprar de um jogador:**
+  - buscar qualquer item do Bazar;
+  - o site mostra quanto o comerciante paga, com a conta: "Incomum 4d10+45 (49–85, média 67) × 50% (nível 1) = 24–42, média 33";
+  - rola, ou aceita "rolei __", e desconta do estoque;
+  - estoque insuficiente avisa (PENDENTE C6 para o caso parcial);
+  - o tipo que compra aquela categoria é **PENDENTE C3**; o Sucateiro compra tudo.
+- **Tabela "quanto rende"** em cada card do Bazar no modo loja: o que o item rende nos níveis 1, 2 e 3, em faixa e média, com arredondamento **PENDENTE C2**. É o cálculo automático por nível que o Pedro pediu.
+- **Vitrine para os jogadores ("mostrar na tela"):**
+  - tela cheia com o nome, tipo e nível do comerciante e os cards grandes com o preço final;
+  - sem controles, sem estoque de Sins e sem o ajuste do mestre;
+  - abre com um botão, sai com Esc, e a escala dos cards P/M/G/GG vale aqui.
+- **Log por comerciante:** vendas, compras, subidas, reposições e ajustes, com desfazer do último.
+
+**Dados.**
+- **Estado local do mestre:** `localStorage.khalkaria_comerciantes`, com schema `comerciantes/1`:
+
+  ```
+  {comerciantes:[{id, nome, tipo, nivel, regiao, nota,
+                  estoqueSins, ajuste:{pct, fixo},
+                  prateleira:[{itemId, qtd, secao, ordem, preco:{expr, dados, rolado, manual?}, ajuste?}],
+                  log:[…]}],
+   dia}
+  ```
+
+- **Export e Import** de todos ou de um comerciante, obrigatórios (§10 do CLAUDE.md), no mesmo padrão do export da ficha.
+- **Regras de loja:** tabela de níveis, tipos e percentuais em `data/comerciantes.json`, gerado do bloco "Comerciantes" do `data/sistema.json` por script. Nunca digitado, e o `[5]` round-trip cobre.
+- **Ajustes por personagem:** vêm do contrato do balanceamento. O item referencia o `id` do Bazar e segue os aliases de `bazar-renomeados.json`.
+- **Rolador:** `KhDados` em `js/kh-ui.js` faz a expressão NdX+K com semente para os testes, dados individuais e "rolei __". Ele nasce aqui e é o mesmo rolador da Mesa (F5).
+
+**Integração com a ficha.** A loja vive no navegador do mestre, e a ficha de cada jogador vive no navegador dele. Na primeira entrega a loja não grava na ficha de ninguém. Depois da F4, a vitrine pode sair num **link só-leitura** com o estado no `#hash`, sem servidor. O jogador abre o link e o "+ inventário" leva o item com o preço pago anotado; descontar os Sins da ficha é opcional, sem trava.
+
+**PENDENTE (balanceamento), rodada 6, §10:**
+- **C1:** regra da pechincha.
+- **C2:** base e arredondamento da porcentagem de venda.
+- **C3:** quem compra o quê.
+- **C4:** categorias de Equipamentos, Munição e Lixo.
+- **C5:** raridade do comerciante contra a raridade do item.
+- **C6:** estoque e reposição.
+- **C7:** subida de nível.
+- **C8:** quando o preço é rolado.
+- **C9:** ajustes por personagem depois do rework.
+- **C10:** Sucateiro reciclando.
+- **C11:** Tecnologias de Autômato em loja.
+
+Enquanto a resposta não chega, cada ponto sai com o selo e com o mestre decidindo à mão; nada é inventado.
+
+**Fase:** **FC** (§7), independente da ficha v3: depende só do Bazar e do rolador. A vitrine por link para os jogadores (FC2) vem depois da F4.
+
+**Testes:**
+- Criar um comerciante de cada tipo nasce no nível 1 com teto 250 e o filtro de categoria certo.
+- Subir de 1 para 2 registra 125 e o teto vira 500; o nível 3 não sobe.
+- Vender soma ao estoque e baixa a quantidade.
+- Comprar desconta, e estoque 0 recusa com aviso.
+- Rolagem com semente é reproduzível; "rolei __" é aceito.
+- Ajuste do mestre (%, fixo, por item e por comerciante) aparece na fórmula do tooltip.
+- A tabela por nível confere com a conta feita à mão nas 5 raridades e em Material.
+- A vitrine não mostra estoque nem ajuste.
+- Exportar e importar num navegador vazio recria tudo; item renomeado resolve pelo alias.
+- Par `antes/depois` de estilo do Bazar fora do modo loja sem diferença (portão `[estilo]`).
+
 ---
 
 ## 6. Refino das páginas (por família)
@@ -600,6 +702,12 @@ F1a–F1f correm em paralelo. F4b, F4c, F5 e F6 correm em paralelo depois da F4.
 **Pronto quando:** zero `<style>` no template da família, zero emoji como ícone, zero hex de recurso fora dos tokens, filtros/busca/hover conforme o Bazar.
 **Testes:** round-trip byte a byte do conteúdo; set-diff de entidades; pares `antes/depois` de estilo das outras famílias sem diff (portão `[estilo]` da F1c).
 
+### FC · Comerciantes (Modo Loja)
+
+**Entrega:** M8. FC1 traz o Balcão no Bazar, a prateleira, o preço rolado com ajuste do mestre, vender e comprar com o estoque de Sins, a tabela "quanto rende" por nível, subir de nível, "Novo dia", a vitrine em tela cheia, o log com desfazer, Export e Import, `data/comerciantes.json` gerado do Sistema e o `KhDados`. FC2, depois da F4, traz a vitrine por link só-leitura e o "+ inventário" com preço anotado.
+**Pronto quando:** o Pedro abre uma loja na sessão em menos de um minuto: cria o comerciante, arrasta os itens e mostra a vitrine. Todo número do balcão mostra a conta, e o que depende da rodada 6 sai com selo, com o mestre decidindo à mão.
+**Testes:** os do M8.
+
 ---
 
 ## 8. O que ainda está aberto
@@ -621,6 +729,8 @@ F1a–F1f correm em paralelo. F4b, F4c, F5 e F6 correm em paralelo depois da F4.
 **Com o balanceamento — rodada 4 (enviada, §10):** Stamina negativa × `gastoSemSaldo: proibido`; leitura de "Exaurido e Oco saem ao deixar os negativos nos 2 status" (cada um pelo seu recurso, ou os dois juntos?); D17(b) como o Desnutrido diminui; magias do Teurgo por nível depois do 1º (o dado só traz o nv1 e as escolas 2/3/5); perícias que contam como "interações sociais" na Marca 4; fonte da sustentação "a cada 30 min" fora de combate (D16 não cobriu); Saco de Dormir: qual sentido do `acumula:false`.
 
 **Com o balanceamento — rodada 5 (a enviar):** lista em `tools/pendentes_balanceamento.json` (§10). Os campos ficam `null` e o `[blocos]` FALHA se um deles perder a pergunta.
+
+**Com o balanceamento — rodada 6, Comerciantes (enviada em 2026-09-28, §10):** C1–C11. Trava as regras do M8 (pechincha, base da porcentagem, quem compra o quê, estoque e reposição, subida de nível, quando rolar o preço). Enquanto isso: selo PENDENTE, e o mestre decide à mão no balcão.
 
 **Com o Pedro**
 - **Editar o CSV** (D26b: acrescentar "Empilhável: pesa 1 bugiganga a cada 10 unidades." ao `Efeito_Jogador` de Casca de Raiz e Seiva da Vhelor; D25: "Saude" → "Saúde" na Erva Medicinal e "Armas Leves." como requisito do Anel do Esgrimista). Aprovado, mas a permissão da sessão bloqueou: **fica com ele**. Depois, `ESPERADO['empilhavel']` sobe para 87 e o AVISO some.
@@ -655,7 +765,7 @@ F1a–F1f correm em paralelo. F4b, F4c, F5 e F6 correm em paralelo depois da F4.
 - **Asset e JSON sem versão:** hash recursivo e `KH_V`.
 - **Migrar conteúdo preso em template** pode alterar texto canônico: só por script, round-trip byte a byte (F1b).
 - **CSV defasado no branch do balanceamento:** sha em AVISO e errata (§10).
-- **Escopo:** 7 módulos. As fases publicáveis e os selos evitam que o que depende do balanceamento trave o resto.
+- **Escopo:** 8 módulos (o M8, Comerciantes, entrou em 2026-09-28). As fases publicáveis e os selos evitam que o que depende do balanceamento trave o resto.
 
 **Para o Pedro saber**
 - O balanceamento trocou 6 ícones de callout por emoji na página Sistema do Notion; o site não importa esses emoji como ícone.
@@ -701,6 +811,28 @@ F1a–F1f correm em paralelo. F4b, F4c, F5 e F6 correm em paralelo depois da F4.
 2. `medidor-minimo`: mínimo dos medidores de recurso de classe (o texto e o contrato não declaram). 0 em todos? A Concentração pode ficar negativa?
 3. `medidor-inicio-recarga`: início dos Reagentes e da Brutalidade; recarga por evento da Concentração (contrato: `fimCombate`) e do Instinto, onde o texto da classe é omisso.
 4. Aviso: o Fluxo do Monge no site zera ao fim do combate só "se passar 1 rodada sem ganhar Fluxo ou receber dano"; o contrato modela só `fimCombate` (C20/P12). Continua com o Pedro.
+
+**Rodada 6 — Comerciantes (M8, enviada em 2026-09-28).** Base: Sistema > Comerciantes e Dinheiro, D6, D9, D35, D77 e D121. O que for decisão nova de regra, ele leva ao Pedro como Tn.
+1. **C1 · Pechincha:** o Pedro quer que os jogadores rolem Convencimento para baixar o preço. Não há regra geral; só existe a Língua Prateada (25% num item ao passar, e 10% na proposta de rework). Perguntas: qual é a CD (fixa, pelo nível do comerciante ou pela raridade do item)? Quanto desconta, e em degraus pela margem? Vale uma vez por item ou por visita? Falhar tem custo (preço sobe, comerciante fecha)? E como fica a Língua Prateada diante da regra geral?
+2. **C2 · Porcentagem de venda (50/66/75%):** é o que o comerciante paga quando **compra do jogador**? Aplica-se ao valor **rolado** do item naquele momento ou à média da faixa (D9)? Qual é o arredondamento (para baixo)?
+3. **C3 · Quem compra o quê:** o Sucateiro compra tudo. Os outros compram só a própria categoria, ou compram qualquer coisa? E o que quer dizer "comerciante que compra ≠ comerciante que vende" (D6): o jogador vende ao Sucateiro e compra dos outros?
+4. **C4 · Categorias:** "Equipamentos" do Ferreiro é Arma + Armadura + Escudo? A Munição fica com qual comerciante (Ferreiro, Artesão, Boticário)? O Lixo só com o Sucateiro? E os 2 itens "Material, Consumível"?
+5. **C5 · Raridade:** a raridade do comerciante (comum, médio, raro) limita a raridade do item que ele vende ou compra? O "Exótico é prêmio de arco narrativo; Luxária é artefato de campanha" (D9) quer dizer que loja não vende Exótico nem Luxária?
+6. **C6 · Estoque:**
+   - Um comerciante com 30 Sins pode comprar um item que vale 40? Paga só 30, recusa, ou o jogador aceita os 30?
+   - Vendas podem levar o estoque acima do teto do nível?
+   - A reposição diária volta o estoque ao teto (subindo ou descendo), ou só completa até o teto?
+7. **C7 · Subida de nível:**
+   - quem paga os 125/250 Sins: os jogadores, investindo?
+   - esse valor entra no estoque do comerciante?
+   - o estoque atual se mantém e só o teto sobe?
+8. **C8 · Preço rolado:** rola-se uma vez por item quando o comerciante o põe à venda, e o preço fica até a reposição? Ou a cada compra, ou a cada unidade? A reposição diária rola os preços de novo?
+9. **C9 · Ajustes por personagem:**
+   - A Criatura (+50%, o grupo inteiro se o comerciante perceber), Língua Prateada e Olho no Lance: quais valores valem depois do rework do Batedor?
+   - Somam com a pechincha? Em que ordem (por exemplo, % sobre o preço já rolado)?
+   - Podem entrar no contrato como Mods do tipo `precoLoja`?
+10. **C10 · Sucateiro "recicla tudo":** é o Sucatear do Sistema (metade dos ingredientes) feito como serviço? Tem preço?
+11. **C11 · Tecnologias de Autômato numa loja:** d100 e d12 pelos Tiers 1–4. Qual comerciante as vende (Artificer)?
 
 **Continuam valendo (enviar em paralelo, sem depender do Pedro):**
 1. **Bloco C** (raças, origens, Limiar, passivas de classe). Trava a F5b e os Mods de raça/origem/carta/técnica.

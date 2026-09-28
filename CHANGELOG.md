@@ -2,6 +2,27 @@
 
 Versionamento semântico. Cada versão é uma tag git.
 
+## Não lançado
+
+### Mudado
+- **Bazar, ícones:** cada item ganhou um glifo próprio no medalhão, no mesmo
+  traço de gravação: espada, adaga, machado, arco, besta, cajado, elmo, anel,
+  capa, pergaminho, poção, veneno, bomba, lanterna, chave e outros, 57 no
+  total, cobrindo 584 dos 727 itens. O chip de categoria continua com o glifo
+  do grupo. A categoria Arma virou espadas cruzadas (antes parecia uma
+  caneta), Armadura virou peitoral (antes se confundia com o Escudo) e
+  Munição, um par de flechas.
+
+### Planejado
+- **Comerciantes** (pedido do Pedro, 2026-09-28; ideia registrada pelo
+  balanceamento): abrir uma loja na hora, durante a sessão, e mostrar aos
+  jogadores na tela. O comerciante tem tipo e nível 1–3 com o estoque de Sins
+  controlado pelo site. O mestre organiza as prateleiras arrastando do Bazar,
+  o preço é rolado com ajuste de inflação ou redução, a pechincha é com
+  Convencimento, e o site mostra quanto cada item rende em cada nível. Plano
+  no `docs/ficha-digital/02-plano.md` (M8, fase FC). As regras que faltam
+  foram ao balanceamento (rodada 6).
+
 ## v1.7 — 2026-09-28 · Base da ficha como hub e Bazar redesenhado
 
 Plano da ficha em `docs/ficha-digital/02-plano.md`; respostas do Pedro em
