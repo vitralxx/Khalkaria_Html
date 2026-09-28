@@ -697,6 +697,30 @@ rebuild do Bazar (a36ef3e). Adotei a da main; a única diferença agora é o L38
 
 **Abertas com o Pedro:** T1–T19 (em `16-log-tecnicas.md` §2) e, do lote anterior, L14, L35, L39.
 
+## Respostas T1–T19 (2026-09-28) — D98–D117
+
+Texto verbatim, andamento, pendências e **log de sincronização do Notion** em
+`17-respostas-T-e-sync.md` (ponto de retomada). Resumo das regras novas:
+- **D98** retaliação que não gasta reação preserva a reação. **D99** técnica como ação livre: 1x/turno,
+  salvo texto em contrário (**derruba a G2**). **D100** PMA em todo ataque, inclusive de técnica, salvo
+  texto. **D101** N ataques "como 1 ação" pagam juntos o Atacar(n) da arma.
+- **D102** espada = arma corpo a corpo de dano Cortante. **D103** técnica que sobe intensidade paga a
+  declarada, sem teste de Vontade. **D104** normalização de termos aprovada.
+- **D105** recurso de classe: Espadachim = Proficiência com Espadas + Marca do Duelo; Teurgo = Escolas
+  do Primórdio (não são contadores).
+- **D106** Coragem Líquida: +1 na perícia Movimento (⚠️ "5 combates" no Notion × "cada combate" no chat).
+- **D107** Brutalista editado pelo Pedro (Muralha Viva, Frenesi, Contador de Corpos, Imortal).
+  **D108** Brutalista "Investida" → **Atropelar** (conta como o Mover); Titã → **Avalanche**.
+- **D109** Devoto: "Arauto Tier 1" basta. **D110** Monge: T12 aprovada.
+- **D111** CSV: Soro da Guerra + "Vantagem em Fortitude"; Veneno Hemorrágico = "3 ataques. +1d6
+  Biológico. Alvo recebe Sangramento 3 no terceiro ataque." **D112** Munição Especial 10 = 1.
+- **D113** Achar Tecnologias: tier 5 fora da loja; Gruto: animais selvagens; Corrompido está certo.
+- **D114** A Forja literal; Caçador "1 Arma Distância Simples"; Mineiro "Cobre".
+- **D115** "← betovenon." é crédito. **D116** Epifania/Cobra/Primordial/O Próximo confirmados.
+- **D117** "+Int" de poção/elixir/kit = Mod.INT de quem fabricou, gravado no item; comprado soma a
+  "média da raridade" (tabela pendente; proposta +1/+2/+3/+4).
+- **Batedor:** rework inteiro vem do Pedro; depois, log do novo Batedor para o agente de HTML.
+
 ## D68 — O andar de Nível 1 (truques)
 Todas as magias existentes **sobem 1 nível**: as antigas 1–4 viram 2–5. O novo Nível 1 são os
 20 truques. Consequência limpa: a regra do Teurgo deixa de ser "iguais ou abaixo do seu

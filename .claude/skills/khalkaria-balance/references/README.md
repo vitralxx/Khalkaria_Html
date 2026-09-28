@@ -48,7 +48,8 @@ Tipo de Craft · Ingredientes · Tags · Lore/Notas · **CD de Craft** · (17 co
 | **`14-ficha-digital.md`** | **Resposta ao agente de HTML:** arbitragem das 21 contradições e das 59 perguntas da ficha digital, com o que precisa ir ao Notion | Notion `2b76e3a4…` + D1–D79 |
 | **`15-ficha-rodada3.md`** | **Rodada 3 da ficha:** log do Notion gravado (antes/depois), respostas C1–C6, **lote PD20 de revisão (L01–L45)** e pendências da main | Notion + `03-respostas-pedro.md` |
 | **`16-log-tecnicas.md`** | **Resposta ao Log de Técnicas:** 15 princípios de leitura (G1–G15), 19 perguntas ao Pedro com recomendação (T1–T19), o lote L aplicado no Notion e a resposta a cada um dos 110 achados do balanceamento | artefato do agente de HTML + Notion |
-| `log-tecnicas-respostas.json` | as mesmas respostas como dado (`log-tecnicas-respostas/1`): uma entrada por id de achado, com status, princípio e pergunta | gerado |
+| **`17-respostas-T-e-sync.md`** | **Ponto de retomada:** respostas do Pedro às T1–T19 (D98–D117), o que já foi gravado no Notion, o que falta e o **log de sincronização do Notion** para o agente de HTML | conversa com o Pedro + Notion |
+| `log-tecnicas-respostas.json` | as mesmas respostas como dado (gerador: `scripts/log-tecnicas/build16.py`) (`log-tecnicas-respostas/1`): uma entrada por id de achado, com status, princípio e pergunta | gerado |
 | `ficha-digital-regras.json` | as mesmas regras como dado, no contrato `regras-ficha/1.1` — cada regra com `status` (canônico / aprovado / decisão / pedroDecide / pendente) | gerado |
 | **`ficha-efeitos-itens.json`** | **O que cada um dos 727 itens do Bazar muda na ficha** (pedido 2 do agente de HTML, bloco B): itens · armas · consumo · semEfeito, conta fechada | gerado |
 | `ficha-efeitos-gerador.py` · `ficha-efeitos-overrides.json` | gerador com gramática fechada por frase + detector de falso negativo; exceções revisadas à mão | — |
