@@ -2,7 +2,8 @@
   "permissions": {
     "allow": [
       "mcp__Notion__notion-fetch",
-      "mcp__Notion__notion-search"
+      "mcp__Notion__notion-search",
+      "mcp__Notion__notion-update-page"
     ]
   }
 }
