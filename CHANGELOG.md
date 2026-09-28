@@ -2,6 +2,58 @@
 
 Versionamento semântico. Cada versão é uma tag git.
 
+## v1.7 — 2026-09-28 · Base da ficha como hub e Bazar redesenhado
+
+Plano da ficha em `docs/ficha-digital/02-plano.md`; respostas do Pedro em
+`docs/ficha-digital/03-respostas-pedro.md`. As fases F0–F3 estão no ar; a ficha
+ativa continua sendo a v2.1, e a v3 roda em modo sombra.
+
+### Adicionado
+- **Motor da ficha v3 (F3, modo sombra):** estado 3.0 com várias fichas
+  (`data/ficha.schema.json`), migração da v2 em memória, regras compiladas do
+  contrato do balanceamento, e cada número derivado com a fórmula por extenso e
+  com os números ("Saúde máx. = 10 + Vitalidade × Nível + Mod.CON × Nível =
+  10 + 4 × 2 + 1 × 2 = 20"), mais ajuste manual em qualquer campo. Prévia
+  escondida em qualquer página com `?ficha=v3`.
+- **Estrutura para a ficha nova (F1a–F1e):** todo card de regra marcado para a
+  ficha, catálogo por tipo, blocos de classe/raça/origem em `data/`, as 24
+  perícias em `data/pericias.json`, e os efeitos dos 727 itens do Bazar
+  compilados a partir dos arquivos do balanceamento (`data/balanceamento/`,
+  sem carta rara).
+- **Bazar:** card heráldico (raridade na moldura e na gema, chips com cor e
+  forma por família, região com o número de calor) e escala dos cards
+  P/M/G/GG, lembrada por visitante.
+- **Acessibilidade:** foco âmbar com halo só no teclado e a opção "Reduzir
+  movimento" no rodapé da navegação.
+- **Portões do build:** estilo computado antes/depois, componentes por página
+  e por card, blocos, efeitos, balanceamento, ids, artefato do `js/ficha.js`.
+
+### Mudado
+- **Notion sincronizado** em Sistema, Magias, Condições, Limiar, as 7 classes
+  e Origens (decisões D80–D97 e o lote L do Pedro). 83 descrições de magia e os
+  cards das 7 classes voltaram ao texto integral do Notion, sem perder os
+  componentes visuais.
+- Evasão Ativa = Passiva + dado de Defender nas 7 classes; custo mínimo de
+  magia; 5 categorias de dano (Força e Primordial em "Outros").
+- "Elixir da Expurgação" (era Expurgão), com alias do id antigo: fichas que já
+  tinham o item não perdem nada. Casca de Raiz e Seiva da Vhelor passam a
+  Empilháveis; Anel do Baluarte com a exceção de Força e Primordial.
+- `js/ficha.js` passou a ser artefato gerado de `js/ficha/*.js`; CSS da ficha em
+  `css/ficha.css`; biblioteca comum `js/kh-ui.js` e `css/componentes.css`.
+- Botão de quantidade das linhas do inventário do Bazar em 28 px (meio termo
+  pedido pelo Pedro).
+
+### Corrigido
+- **Ficha v2.1:** o "+ ficha" levava só o 1º parágrafo da técnica; 205 das 382
+  chegavam sem a mecânica. Agora leva o texto inteiro.
+- Marcas e ultimates sem botão ou com o nome errado (36 e 18); Religião em SAB;
+  export do Bestiário com `prof_*` em grau.
+- Proteção contra a aba antiga da ficha (só-leitura quando a v3 assumir).
+- `.gitattributes`: fim de linha LF em todo texto.
+
+### Pendente com o Pedro
+Ver `docs/ficha-digital/02-plano.md` §8 e o Log de Técnicas.
+
 ## v1.6 — 2026-09-25 · Filtros em trilha e navegação recolhível
 
 ### Mudado
