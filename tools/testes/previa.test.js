@@ -188,6 +188,66 @@ test('render: selo em todo número não canônico, fonte de cada termo, ajuste m
   assert.match(P.render(re).html, /data-caminho="recurso\.classe\.max">.*?PENDENTE PEDRO/);
 });
 
+test('revisão F3c: bônus de item sobre o total migrado vai para Avisos (sem decidir), sem desligar', () => {
+  const v2 = JSON.parse(JSON.stringify(V2));
+  v2.meta.classe = 'Brutalista'; v2.meta.ramo = '';
+  v2.atributos.for = 18;
+  v2.inventario.bugigangas.push({ id: 'item-cinturao-do-colosso', nome: 'Cinturão do Colosso', qtd: 1, sintonizado: true, uid: 'eCint' });
+  const r = P.calcular(comV2(v2), dados());
+  const no = r.av.nos['atributo.FOR.total'];
+  // a conta segue a mesma (o item vale, como valia na v2): a pergunta vai ao Pedro
+  assert.equal(no.valor, 20);
+  const t = no.termos.find((x) => /Cinturão/.test(x.rotulo));
+  assert.ok(t && t.ativo, 'o item continua na conta');
+  assert.match(t.motivo, /total digitado na v2.*pendente Pedro/);
+  const av = r.av.avisos.filter((a) => a.tipo === 'migracao-item-atributo');
+  assert.deepEqual(av.map((a) => [a.item, a.atributos]), [['Cinturão do Colosso', ['FOR']]]);
+  const h = P.render(r).html;
+  assert.match(h, /Motor: Cinturão do Colosso soma em FOR por cima do total digitado na v2/);
+  assert.match(h, /Item com bônus de atributo ainda soma por cima/);
+  // sem sintonia, nada de aviso
+  v2.inventario.bugigangas[v2.inventario.bugigangas.length - 1].sintonizado = false;
+  assert.ok(!P.calcular(comV2(v2), dados()).av.avisos.some((a) => a.tipo === 'migracao-item-atributo'));
+});
+
+test('revisão F3c: cartas sem posição, Ae(Ordinário) e Éter 0/0 aparecem em Avisos; aviso de cada número também', () => {
+  const r = P.calcular(comV2(), dados());
+  const h = P.render(r).html;
+  const bloco = /<h3 class="kf3-h" id="kf3-h-avisos">[\s\S]*$/.exec(h)[0];
+  const cartas = r.ficha.entradas.filter((e) => e.tipo === 'carta').length;
+  assert.ok(cartas > 0);
+  // pendências da migração
+  assert.match(bloco, new RegExp('Pendência: ' + cartas + ' carta'));
+  assert.match(bloco, /Pendência: A v2 tinha Ae\(Ordinário\) 1/);
+  assert.match(bloco, /Pendência: A v2 tinha Éter 0\/0/);
+  // o alerta de Oco fica marcado como possível efeito da migração (não é escondido)
+  assert.match(bloco, /Alerta: Oco: [^<]*\(pode ser efeito da migração: a v2 tinha 0\/0\)/);
+  // os avisos por número (no.avisos) entram na lista com o rótulo do número
+  assert.match(bloco, /Ae\(Ordinário\): Ae\(Ordinário\) não existe \(D67\)/);
+  assert.match(bloco, /Pontos do Limiar: \d+ cartas? sem posição na mão/);
+  const n = Object.values(r.av.nos).reduce((s, no) => s + no.avisos.length, 0);
+  assert.ok(n >= 2);
+  // marca à vista no número do Limiar
+  assert.match(h, /data-caminho="limiar\.saldo">[\s\S]*?<\/span><\/span> <span class="kf3-aviso kf3-marca-aviso"/);
+});
+
+test('revisão F3c: categoria "outros" com nome; recurso de classe sem nome mostra o nome digitado na v2', () => {
+  const r = P.calcular(comV2(), dados());
+  const h = P.render(r).html;
+  assert.match(h, /Força <span class="kf3-sub">Outros<\/span>/);
+  assert.match(h, /Primordial <span class="kf3-sub">Outros<\/span>/);
+  assert.doesNotMatch(h, /kf3-sub">outros</);
+  // Batedor tem medidor no contrato: fica o nome do contrato
+  assert.doesNotMatch(h, /nome digitado na v2/);
+  const v2 = JSON.parse(JSON.stringify(V2));
+  v2.meta.classe = 'Espadachim'; v2.meta.ramo = '';
+  v2.recursos.recursoClasse = { nome: 'Foco', atual: 1, max: 4 };
+  const re = P.calcular(comV2(v2), dados());
+  const he = P.render(re).html;
+  assert.match(he, /<span class="kf3-rot">Foco <span class="kf3-sub">\(nome digitado na v2; recurso sem nome no contrato\)<\/span><\/span>/);
+  assert.match(he, /data-caminho="recurso\.classe\.max">.*?PENDENTE PEDRO/);
+});
+
 test('navegador (vm, artefato js/ficha.js): sem ativação a prévia não toca em nada; com ?ficha=v3 só grava a própria chave', () => {
   const SRC = fs.readFileSync(path.join(A.RAIZ, 'js', 'ficha.js'), 'utf8');
   function pagina(search, inicial) {

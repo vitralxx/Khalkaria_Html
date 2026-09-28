@@ -133,7 +133,14 @@ test('v2 -> v3: estado, resistências (ordinário vira os 3 tipos), Ofício(X) v
   assert.deepEqual(f.recursos.classe, { id: null, nome: 'Instinto', atual: 2 });
   assert.deepEqual([f.pericias.atacar, f.pericias.percepcao, f.pericias.furtividade], [1, 2, 1]);
   ['oficio-engenharia', 'oficio-ferraria', 'oficio-alquimia'].forEach((p) => assert.equal(f.pericias[p], 0, p));
-  assert.deepEqual(f.migracao.pendencias.map((p) => [p.campo, p.grau]), [['pericias.oficio', 1]]);
+  // Ofício(X); Éter 0/0 da v2 (o padrão: o alerta de Oco pode ser da migração);
+  // Ae(Ordinário) 1 (não existe, D67); cartas sem posição na mão (a v2 não a gravava)
+  assert.deepEqual(f.migracao.pendencias.map((p) => p.campo),
+    ['pericias.oficio', 'recursos.eter', 'resistencias.aeCategoria.ordinario', 'limiar.posicaoNaMao']);
+  assert.equal(f.migracao.pendencias[0].grau, 1);
+  assert.equal(f.migracao.pendencias[2].valor, 1);
+  assert.equal(f.migracao.pendencias[3].cartas, f.entradas.filter((e) => e.tipo === 'carta').length);
+  assert.ok(f.migracao.pendencias[3].cartas > 0);
   ['cortante', 'contundente', 'perfurante'].forEach((t) => assert.deepEqual(f.resistencias.tipos[t], { R: true, I: false, V: false, ae: 0 }, t));
   assert.equal(f.resistencias.aeCategoria.ordinario, 1);
   assert.deepEqual(f.resistencias.tipos.fogo, { R: false, I: true, V: false, ae: 0 });

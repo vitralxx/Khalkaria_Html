@@ -985,7 +985,7 @@
       var pontos = niveis.length * L.pontosPorNivel;
       no.termos.push({ rotulo: L.pontosPorNivel + ' por nível (' + (niveis.join(', ') || 'nenhum ainda') + ')', fonte: { tipo: 'regra', id: L.fo, nome: 'Limiar' },
         op: 'soma', valor: pontos, ativo: true, motivo: '', status: L.st });
-      var gasto = 0, partes = [];
+      var gasto = 0, partes = [], semPosicao = 0;
       lista(ctx.ficha.entradas).forEach(function (e) {
         if (!e || e.tipo !== 'carta') return;
         var est = obj(e.estado) ? e.estado : {}, nome = str(e.cache && e.cache.nome) || str(e.id);
@@ -994,12 +994,14 @@
         else if (inteiro(est.posicaoNaMao, 0) >= 1 && inteiro(est.posicaoNaMao, 0) <= L.custoPorPosicao.length) {
           custo = L.custoPorPosicao[inteiro(est.posicaoNaMao, 0) - 1];
           motivo = est.posicaoNaMao + 'ª da mão' + (custo === 0 ? ' (grátis)' : '');
-        } else motivo = 'posição na mão não anotada (estado.posicaoNaMao)';
+        } else { motivo = 'posição na mão não anotada (estado.posicaoNaMao)'; semPosicao++; }
         no.termos.push({ rotulo: nome, fonte: { tipo: 'carta', id: e.id, nome: nome }, op: 'soma', valor: custo == null ? null : -custo,
           ativo: custo != null, motivo: motivo, status: L.st });
         if (custo) { gasto += custo; partes.push(custo); }
       });
       no.valor = pontos - gasto;
+      if (semPosicao) no.avisos.push({ tipo: 'carta-sem-posicao', cartas: semPosicao,
+        msg: semPosicao + (semPosicao === 1 ? ' carta sem posição na mão: o saldo não a desconta' : ' cartas sem posição na mão: o saldo não as desconta') });
       if (no.valor < 0) no.avisos.push({ tipo: 'saldo-negativo', msg: 'saldo do Limiar negativo (aviso, sem trava)' });
       var custoTxt = 'custo das cartas (' + L.custoPorPosicao.map(function (c) { return c === 0 ? 'grátis' : fmt(c); }).join('/') + '; especial ' + fmt(L.especial) + ')';
       no.formula = { simbolica: (niveis.length ? L.pontosPorNivel + ' × níveis de ' + L.niveis[0] + ' a ' + ctx.nivel
@@ -1151,7 +1153,7 @@
       var rc = ficha.recursos || {};
       [['saude', 'morrendo'], ['stamina', 'exaurido'], ['eter', 'oco']].forEach(function (x) {
         var atual = rc[x[0]] && rc[x[0]].atual, max = ctx.v('recurso.' + x[0] + '.max');
-        if (typeof atual === 'number' && atual <= 0 && max) alertas.push({ tipo: 'condicao-automatica', id: x[1], nome: D.condicoes[x[1]].nome,
+        if (typeof atual === 'number' && atual <= 0 && max) alertas.push({ tipo: 'condicao-automatica', id: x[1], nome: D.condicoes[x[1]].nome, recurso: x[0],
           msg: D.condicoes[x[1]].nome + ': ' + NOME_REC[x[0]].replace(' máx.', '') + ' atual ≤ 0 (entra sozinha)' });
         if (typeof atual === 'number' && max != null && atual > max) alertas.push({ tipo: 'acima-do-maximo', recurso: x[0],
           msg: NOME_REC[x[0]].replace(' máx.', '') + ' atual ' + atual + ' acima do máximo ' + max + ' (o grampo corta, L06)' });

@@ -257,6 +257,7 @@
           if (!ef) return;
           var qtd = Math.max(1, inteiro(e.qtd, 1));
           var fonte = { tipo: 'item', id: e.id, nome: str(e.nome) || e.id, uid: e.uid };
+          var noTotal = [];
           lista(ef.mods).forEach(function (m0) {
             var quando = m0.quando || ef.quando || 'carregado';
             var m = mod(Object.assign({}, m0, { fonte: fonte, status: m0.status || ef.status, quando: quando,
@@ -270,8 +271,18 @@
             var k = e.id + '|' + m0.alvo + '|' + m0.op;
             if (m.ativo && ef.acumulaCopia === false && vistos[k]) desliga(m, 'não acumula com outra cópia deste item');
             if (m.ativo) vistos[k] = true;
+            // total migrado da v2: o contrato não diz se o jogador digitou o
+            // atributo com o item ou sem ele. O Mod segue valendo (como na v2 o
+            // item existia), marcado e com aviso, até o Pedro decidir.
+            if (m.ativo && /^atributo\./.test(m.alvo) && obj(ficha.atributos) && ficha.atributos.migradoTotal === true) {
+              m.motivo = 'pode já estar no total digitado na v2 (migração; pendente Pedro)';
+              noTotal.push(m.alvo.replace(/^atributo\./, ''));
+            }
             out.mods.push(m);
           });
+          if (noTotal.length) out.avisos.push({ tipo: 'migracao-item-atributo', item: fonte.nome, uid: e.uid, atributos: noTotal,
+            msg: fonte.nome + ' soma em ' + noTotal.join(', ') + ' por cima do total digitado na v2, que pode já contar o item ' +
+              '(migração; pendente Pedro)' });
         });
       });
     }

@@ -500,6 +500,16 @@
       f.recursos.stamina.atual = numero(em(rc, 'stamina.atual'), 0);
       f.recursos.eter.atual = numero(em(rc, 'eter.atual'), 0);
       f.recursos.classe = { id: null, nome: str(em(rc, 'recursoClasse.nome')), atual: numero(em(rc, 'recursoClasse.atual'), 0) };
+      // 0/0 é o padrão da v2 (campo nunca preenchido): o atual migra como 0, o
+      // máximo sai da fórmula do contrato, e o alerta da condição (Morrendo,
+      // Exaurido, Oco) pode ser só efeito disso. Quem decide é o jogador.
+      [['saude', 'Saúde', 'Morrendo'], ['stamina', 'Stamina', 'Exaurido'], ['eter', 'Éter', 'Oco']].forEach(function (x) {
+        var r = obj(rc[x[0]]) ? rc[x[0]] : null;
+        if (!r || numero(r.atual, NaN) !== 0 || numero(r.max, NaN) !== 0) return;
+        pendencias.push({ campo: 'recursos.' + x[0], recurso: x[0],
+          motivo: 'A v2 tinha ' + x[1] + ' 0/0 (o padrão, nunca preenchido): o atual migrou como 0 e o máximo sai da fórmula; ' +
+            'o alerta de ' + x[2] + ' pode ser efeito da migração. Confira o ' + x[1] + ' atual.' });
+      });
 
       // resistências: 'ordinario' da v2 vira os 3 tipos (R/I) e a Ae de categoria
       var rs = obj(v2.resistencias) ? v2.resistencias : {};
@@ -510,6 +520,13 @@
         alvo.forEach(function (t) { f.resistencias.tipos[t].R = !!v.R; f.resistencias.tipos[t].I = !!v.I; });
         if (k === 'ordinario') f.resistencias.aeCategoria.ordinario = ae;
         else f.resistencias.tipos[k].ae = ae;
+        // Ae(Ordinário) não existe no contrato (D67: é Ar): o número fica
+        // guardado, fora da mitigação, até o Pedro dizer para onde vai
+        if (k === 'ordinario' && ae > 0) {
+          pendencias.push({ campo: 'resistencias.aeCategoria.ordinario', valor: ae,
+            motivo: 'A v2 tinha Ae(Ordinário) ' + ae + ', que não existe no contrato (D67: é Ar). O número ficou guardado e ' +
+              'não entra na redução de Cortante, Contundente e Perfurante até o Pedro decidir para onde vai.' });
+        }
       });
 
       // inventário: o do KhInv, como está
@@ -543,6 +560,13 @@
           f.entradas.push(ent);
         });
       });
+      // a v2 não gravava a posição da carta na mão: o saldo do Limiar não as desconta
+      var semPosicao = f.entradas.filter(function (e) { return e.tipo === 'carta'; }).length;
+      if (semPosicao) {
+        pendencias.push({ campo: 'limiar.posicaoNaMao', cartas: semPosicao,
+          motivo: semPosicao + (semPosicao === 1 ? ' carta migrada sem posição' : ' cartas migradas sem posição') +
+            ' na mão (a v2 não a gravava): o saldo do Limiar não ' + (semPosicao === 1 ? 'a desconta' : 'as desconta') + ' até anotar.' });
+      }
 
       // ajustes: só o que difere do default da v2 E do calculado (M2)
       var calc = typeof opcoes.calculado === 'function' ? opcoes.calculado(f) : (obj(opcoes.calculado) ? opcoes.calculado : null);

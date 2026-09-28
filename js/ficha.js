@@ -1042,6 +1042,16 @@
       f.recursos.stamina.atual = numero(em(rc, 'stamina.atual'), 0);
       f.recursos.eter.atual = numero(em(rc, 'eter.atual'), 0);
       f.recursos.classe = { id: null, nome: str(em(rc, 'recursoClasse.nome')), atual: numero(em(rc, 'recursoClasse.atual'), 0) };
+      // 0/0 é o padrão da v2 (campo nunca preenchido): o atual migra como 0, o
+      // máximo sai da fórmula do contrato, e o alerta da condição (Morrendo,
+      // Exaurido, Oco) pode ser só efeito disso. Quem decide é o jogador.
+      [['saude', 'Saúde', 'Morrendo'], ['stamina', 'Stamina', 'Exaurido'], ['eter', 'Éter', 'Oco']].forEach(function (x) {
+        var r = obj(rc[x[0]]) ? rc[x[0]] : null;
+        if (!r || numero(r.atual, NaN) !== 0 || numero(r.max, NaN) !== 0) return;
+        pendencias.push({ campo: 'recursos.' + x[0], recurso: x[0],
+          motivo: 'A v2 tinha ' + x[1] + ' 0/0 (o padrão, nunca preenchido): o atual migrou como 0 e o máximo sai da fórmula; ' +
+            'o alerta de ' + x[2] + ' pode ser efeito da migração. Confira o ' + x[1] + ' atual.' });
+      });
 
       // resistências: 'ordinario' da v2 vira os 3 tipos (R/I) e a Ae de categoria
       var rs = obj(v2.resistencias) ? v2.resistencias : {};
@@ -1052,6 +1062,13 @@
         alvo.forEach(function (t) { f.resistencias.tipos[t].R = !!v.R; f.resistencias.tipos[t].I = !!v.I; });
         if (k === 'ordinario') f.resistencias.aeCategoria.ordinario = ae;
         else f.resistencias.tipos[k].ae = ae;
+        // Ae(Ordinário) não existe no contrato (D67: é Ar): o número fica
+        // guardado, fora da mitigação, até o Pedro dizer para onde vai
+        if (k === 'ordinario' && ae > 0) {
+          pendencias.push({ campo: 'resistencias.aeCategoria.ordinario', valor: ae,
+            motivo: 'A v2 tinha Ae(Ordinário) ' + ae + ', que não existe no contrato (D67: é Ar). O número ficou guardado e ' +
+              'não entra na redução de Cortante, Contundente e Perfurante até o Pedro decidir para onde vai.' });
+        }
       });
 
       // inventário: o do KhInv, como está
@@ -1085,6 +1102,13 @@
           f.entradas.push(ent);
         });
       });
+      // a v2 não gravava a posição da carta na mão: o saldo do Limiar não as desconta
+      var semPosicao = f.entradas.filter(function (e) { return e.tipo === 'carta'; }).length;
+      if (semPosicao) {
+        pendencias.push({ campo: 'limiar.posicaoNaMao', cartas: semPosicao,
+          motivo: semPosicao + (semPosicao === 1 ? ' carta migrada sem posição' : ' cartas migradas sem posição') +
+            ' na mão (a v2 não a gravava): o saldo do Limiar não ' + (semPosicao === 1 ? 'a desconta' : 'as desconta') + ' até anotar.' });
+      }
 
       // ajustes: só o que difere do default da v2 E do calculado (M2)
       var calc = typeof opcoes.calculado === 'function' ? opcoes.calculado(f) : (obj(opcoes.calculado) ? opcoes.calculado : null);
@@ -1812,6 +1836,7 @@
           if (!ef) return;
           var qtd = Math.max(1, inteiro(e.qtd, 1));
           var fonte = { tipo: 'item', id: e.id, nome: str(e.nome) || e.id, uid: e.uid };
+          var noTotal = [];
           lista(ef.mods).forEach(function (m0) {
             var quando = m0.quando || ef.quando || 'carregado';
             var m = mod(Object.assign({}, m0, { fonte: fonte, status: m0.status || ef.status, quando: quando,
@@ -1825,8 +1850,18 @@
             var k = e.id + '|' + m0.alvo + '|' + m0.op;
             if (m.ativo && ef.acumulaCopia === false && vistos[k]) desliga(m, 'não acumula com outra cópia deste item');
             if (m.ativo) vistos[k] = true;
+            // total migrado da v2: o contrato não diz se o jogador digitou o
+            // atributo com o item ou sem ele. O Mod segue valendo (como na v2 o
+            // item existia), marcado e com aviso, até o Pedro decidir.
+            if (m.ativo && /^atributo\./.test(m.alvo) && obj(ficha.atributos) && ficha.atributos.migradoTotal === true) {
+              m.motivo = 'pode já estar no total digitado na v2 (migração; pendente Pedro)';
+              noTotal.push(m.alvo.replace(/^atributo\./, ''));
+            }
             out.mods.push(m);
           });
+          if (noTotal.length) out.avisos.push({ tipo: 'migracao-item-atributo', item: fonte.nome, uid: e.uid, atributos: noTotal,
+            msg: fonte.nome + ' soma em ' + noTotal.join(', ') + ' por cima do total digitado na v2, que pode já contar o item ' +
+              '(migração; pendente Pedro)' });
         });
       });
     }
@@ -3047,7 +3082,7 @@
       var pontos = niveis.length * L.pontosPorNivel;
       no.termos.push({ rotulo: L.pontosPorNivel + ' por nível (' + (niveis.join(', ') || 'nenhum ainda') + ')', fonte: { tipo: 'regra', id: L.fo, nome: 'Limiar' },
         op: 'soma', valor: pontos, ativo: true, motivo: '', status: L.st });
-      var gasto = 0, partes = [];
+      var gasto = 0, partes = [], semPosicao = 0;
       lista(ctx.ficha.entradas).forEach(function (e) {
         if (!e || e.tipo !== 'carta') return;
         var est = obj(e.estado) ? e.estado : {}, nome = str(e.cache && e.cache.nome) || str(e.id);
@@ -3056,12 +3091,14 @@
         else if (inteiro(est.posicaoNaMao, 0) >= 1 && inteiro(est.posicaoNaMao, 0) <= L.custoPorPosicao.length) {
           custo = L.custoPorPosicao[inteiro(est.posicaoNaMao, 0) - 1];
           motivo = est.posicaoNaMao + 'ª da mão' + (custo === 0 ? ' (grátis)' : '');
-        } else motivo = 'posição na mão não anotada (estado.posicaoNaMao)';
+        } else { motivo = 'posição na mão não anotada (estado.posicaoNaMao)'; semPosicao++; }
         no.termos.push({ rotulo: nome, fonte: { tipo: 'carta', id: e.id, nome: nome }, op: 'soma', valor: custo == null ? null : -custo,
           ativo: custo != null, motivo: motivo, status: L.st });
         if (custo) { gasto += custo; partes.push(custo); }
       });
       no.valor = pontos - gasto;
+      if (semPosicao) no.avisos.push({ tipo: 'carta-sem-posicao', cartas: semPosicao,
+        msg: semPosicao + (semPosicao === 1 ? ' carta sem posição na mão: o saldo não a desconta' : ' cartas sem posição na mão: o saldo não as desconta') });
       if (no.valor < 0) no.avisos.push({ tipo: 'saldo-negativo', msg: 'saldo do Limiar negativo (aviso, sem trava)' });
       var custoTxt = 'custo das cartas (' + L.custoPorPosicao.map(function (c) { return c === 0 ? 'grátis' : fmt(c); }).join('/') + '; especial ' + fmt(L.especial) + ')';
       no.formula = { simbolica: (niveis.length ? L.pontosPorNivel + ' × níveis de ' + L.niveis[0] + ' a ' + ctx.nivel
@@ -3213,7 +3250,7 @@
       var rc = ficha.recursos || {};
       [['saude', 'morrendo'], ['stamina', 'exaurido'], ['eter', 'oco']].forEach(function (x) {
         var atual = rc[x[0]] && rc[x[0]].atual, max = ctx.v('recurso.' + x[0] + '.max');
-        if (typeof atual === 'number' && atual <= 0 && max) alertas.push({ tipo: 'condicao-automatica', id: x[1], nome: D.condicoes[x[1]].nome,
+        if (typeof atual === 'number' && atual <= 0 && max) alertas.push({ tipo: 'condicao-automatica', id: x[1], nome: D.condicoes[x[1]].nome, recurso: x[0],
           msg: D.condicoes[x[1]].nome + ': ' + NOME_REC[x[0]].replace(' máx.', '') + ' atual ≤ 0 (entra sozinha)' });
         if (typeof atual === 'number' && max != null && atual > max) alertas.push({ tipo: 'acima-do-maximo', recurso: x[0],
           msg: NOME_REC[x[0]].replace(' máx.', '') + ' atual ' + atual + ' acima do máximo ' + max + ' (o grampo corta, L06)' });
@@ -4631,7 +4668,8 @@
       ['fogo', 'Fogo'], ['frio', 'Frio'], ['eletrico', 'Elétrico'], ['veneno', 'Veneno'], ['acido', 'Ácido'],
       ['psiquico', 'Psíquico'], ['radiante', 'Radiante'], ['trovejante', 'Trovejante'], ['necrotico', 'Necrótico'],
       ['forca', 'Força'], ['primordial', 'Primordial']];
-    var NOME_CATEGORIA = { ordinario: 'Ordinário', elemental: 'Elemental', biologico: 'Biológico', mistico: 'Místico' };
+    // 'outros' (Força, Primordial): a 5ª categoria do contrato rev. 7 e do Sistema no Notion, sem Ae de categoria
+    var NOME_CATEGORIA = { ordinario: 'Ordinário', elemental: 'Elemental', biologico: 'Biológico', mistico: 'Místico', outros: 'Outros' };
     var CATEGORIAS = [['ordinario', 'Ordinário'], ['elemental', 'Elemental'], ['biologico', 'Biológico'],
       ['mistico', 'Místico'], ['todos', 'Todos']];
     var TIPO_FONTE = { regra: 'regra', classe: 'classe', raca: 'raça', origem: 'origem', item: 'item', no: 'campo',
@@ -4797,6 +4835,9 @@
           '<b class="kf3-v">' + esc(mostrado) + '</b>' +
           '<span class="kh-conta-dica kf3-dica" id="' + id + '" role="tooltip">' + linhas + '</span></span>' +
           (no.ajuste ? '<span class="kf3-calc">calc. ' + esc(valorNo({ valor: no.calculado }, o.un)) + '</span>' : '') +
+          // número com aviso do motor (dado faltando, valor fora da conta): marca à vista, o texto vai em Avisos
+          (lista(no.avisos).length ? ' <span class="kf3-aviso kf3-marca-aviso" title="' +
+            esc(lista(no.avisos).map(function (a) { return a.msg || a.tipo; }).join(' · ')) + '">aviso</span>' : '') +
           (o.semSelos ? '' : selosHTML(no.selos));
       }
       function linha(rotulo, direita, extra) {
@@ -4839,7 +4880,8 @@
             '<span class="kf3-val">' + conta('atributo.' + a[0] + '.total') + '</span>' +
             '<span class="kf3-val">' + conta('atributo.' + a[0] + '.mod', { texto: modTxt(nos['atributo.' + a[0] + '.mod']) }) + '</span></div>';
         }).join('') + '</div>',
-        f.atributos && f.atributos.migradoTotal ? 'Total migrado da v2 (a raça e o nível já estão dentro do número digitado).' : '');
+        f.atributos && f.atributos.migradoTotal ? 'Total migrado da v2: a raça, o nível e os efeitos das técnicas e cartas já estão dentro do número digitado. ' +
+          'Item com bônus de atributo ainda soma por cima e fica marcado em Avisos (pendente Pedro: a v2 pode já contá-lo).' : '');
 
       // ---- perícias (24)
       h += secao('pericias', 'Perícias', D.pericias.map(function (p) {
@@ -4859,7 +4901,13 @@
         linha(glifo('g-saude', 'kf3-g-saude') + 'Saúde máx.', atual('saude') + conta('recurso.saude.max')) +
         linha(glifo('g-stamina', 'kf3-g-stamina') + 'Stamina máx.', atual('stamina') + conta('recurso.stamina.max')) +
         linha(glifo('g-eter', 'kf3-g-eter') + 'Éter máx.', atual('eter') + conta('recurso.eter.max')) +
-        linha(esc(semEmoji(noCl ? noCl.rotulo : 'Recurso de classe máx.')), atual('classe') + conta('recurso.classe.max')));
+        linha(rotuloClasse(), atual('classe') + conta('recurso.classe.max')));
+      // classe sem recurso nomeado no contrato (Espadachim, Teurgo): mostra o nome que o jogador digitou na v2
+      function rotuloClasse() {
+        var nome = obj(rc.classe) ? semEmoji(rc.classe.nome) : '';
+        if (noCl && !noCl.medidor && nome) return esc(nome) + ' <span class="kf3-sub">(nome digitado na v2; recurso sem nome no contrato)</span>';
+        return esc(semEmoji(noCl ? noCl.rotulo : 'Recurso de classe máx.'));
+      }
 
       // ---- defesa e movimento
       h += secao('derivados', 'Evasão, CD e Movimento',
@@ -4956,9 +5004,20 @@
             : a.tipo === 'duplicada' ? 'entrada repetida ' + a.ref + ' (' + a.nome + ')'
               : a.tipo + (a.chave ? ' ' + a.chave : '') + (a.motivo ? ' (' + a.motivo + ')' : '')));
       });
-      lista(f.migracao && f.migracao.pendencias).forEach(function (p) { av.push('Pendência: ' + str(p.motivo) + (p.grau != null ? ' (grau ' + p.grau + ')' : '')); });
-      lista(res.av.alertas).forEach(function (a) { av.push('Alerta: ' + str(a.msg) + (a.selo ? ' [' + rotuloSelo(a.selo) + ']' : '')); });
+      var pend = lista(f.migracao && f.migracao.pendencias);
+      pend.forEach(function (p) { av.push('Pendência: ' + str(p.motivo) + (p.grau != null ? ' (grau ' + p.grau + ')' : '')); });
+      lista(res.av.alertas).forEach(function (a) {
+        // condição que só aparece porque a v2 tinha o recurso 0/0 (pendência de migração acima)
+        var daMigracao = a.recurso && pend.some(function (p) { return p.campo === 'recursos.' + a.recurso; });
+        av.push('Alerta: ' + str(a.msg) + (a.selo ? ' [' + rotuloSelo(a.selo) + ']' : '') +
+          (daMigracao ? ' (pode ser efeito da migração: a v2 tinha 0/0)' : ''));
+      });
       lista(res.av.avisos).forEach(function (a) { av.push('Motor: ' + str(a.msg || a.tipo)); });
+      // o aviso de cada número (no.avisos), que sem isto só se via no tooltip
+      lista(res.av.ordem).forEach(function (c) {
+        var no = nos[c];
+        lista(no && no.avisos).forEach(function (a) { av.push(semEmoji(no.rotulo) + ': ' + str(a.msg || a.tipo)); });
+      });
       if (res.semCatalogo) av.push('Catálogo indisponível: identidade e entradas ficam só pelo nome.');
       if (res.semEfeitos) av.push('Efeitos de item indisponíveis: itens e armas fora das contas.');
       h += secao('avisos', 'Avisos (' + av.length + ')', av.length ? '<ul class="kf3-lista">' + av.map(function (x) {

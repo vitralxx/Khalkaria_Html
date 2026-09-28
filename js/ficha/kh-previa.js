@@ -43,7 +43,8 @@
       ['fogo', 'Fogo'], ['frio', 'Frio'], ['eletrico', 'Elétrico'], ['veneno', 'Veneno'], ['acido', 'Ácido'],
       ['psiquico', 'Psíquico'], ['radiante', 'Radiante'], ['trovejante', 'Trovejante'], ['necrotico', 'Necrótico'],
       ['forca', 'Força'], ['primordial', 'Primordial']];
-    var NOME_CATEGORIA = { ordinario: 'Ordinário', elemental: 'Elemental', biologico: 'Biológico', mistico: 'Místico' };
+    // 'outros' (Força, Primordial): a 5ª categoria do contrato rev. 7 e do Sistema no Notion, sem Ae de categoria
+    var NOME_CATEGORIA = { ordinario: 'Ordinário', elemental: 'Elemental', biologico: 'Biológico', mistico: 'Místico', outros: 'Outros' };
     var CATEGORIAS = [['ordinario', 'Ordinário'], ['elemental', 'Elemental'], ['biologico', 'Biológico'],
       ['mistico', 'Místico'], ['todos', 'Todos']];
     var TIPO_FONTE = { regra: 'regra', classe: 'classe', raca: 'raça', origem: 'origem', item: 'item', no: 'campo',
@@ -209,6 +210,9 @@
           '<b class="kf3-v">' + esc(mostrado) + '</b>' +
           '<span class="kh-conta-dica kf3-dica" id="' + id + '" role="tooltip">' + linhas + '</span></span>' +
           (no.ajuste ? '<span class="kf3-calc">calc. ' + esc(valorNo({ valor: no.calculado }, o.un)) + '</span>' : '') +
+          // número com aviso do motor (dado faltando, valor fora da conta): marca à vista, o texto vai em Avisos
+          (lista(no.avisos).length ? ' <span class="kf3-aviso kf3-marca-aviso" title="' +
+            esc(lista(no.avisos).map(function (a) { return a.msg || a.tipo; }).join(' · ')) + '">aviso</span>' : '') +
           (o.semSelos ? '' : selosHTML(no.selos));
       }
       function linha(rotulo, direita, extra) {
@@ -251,7 +255,8 @@
             '<span class="kf3-val">' + conta('atributo.' + a[0] + '.total') + '</span>' +
             '<span class="kf3-val">' + conta('atributo.' + a[0] + '.mod', { texto: modTxt(nos['atributo.' + a[0] + '.mod']) }) + '</span></div>';
         }).join('') + '</div>',
-        f.atributos && f.atributos.migradoTotal ? 'Total migrado da v2 (a raça e o nível já estão dentro do número digitado).' : '');
+        f.atributos && f.atributos.migradoTotal ? 'Total migrado da v2: a raça, o nível e os efeitos das técnicas e cartas já estão dentro do número digitado. ' +
+          'Item com bônus de atributo ainda soma por cima e fica marcado em Avisos (pendente Pedro: a v2 pode já contá-lo).' : '');
 
       // ---- perícias (24)
       h += secao('pericias', 'Perícias', D.pericias.map(function (p) {
@@ -271,7 +276,13 @@
         linha(glifo('g-saude', 'kf3-g-saude') + 'Saúde máx.', atual('saude') + conta('recurso.saude.max')) +
         linha(glifo('g-stamina', 'kf3-g-stamina') + 'Stamina máx.', atual('stamina') + conta('recurso.stamina.max')) +
         linha(glifo('g-eter', 'kf3-g-eter') + 'Éter máx.', atual('eter') + conta('recurso.eter.max')) +
-        linha(esc(semEmoji(noCl ? noCl.rotulo : 'Recurso de classe máx.')), atual('classe') + conta('recurso.classe.max')));
+        linha(rotuloClasse(), atual('classe') + conta('recurso.classe.max')));
+      // classe sem recurso nomeado no contrato (Espadachim, Teurgo): mostra o nome que o jogador digitou na v2
+      function rotuloClasse() {
+        var nome = obj(rc.classe) ? semEmoji(rc.classe.nome) : '';
+        if (noCl && !noCl.medidor && nome) return esc(nome) + ' <span class="kf3-sub">(nome digitado na v2; recurso sem nome no contrato)</span>';
+        return esc(semEmoji(noCl ? noCl.rotulo : 'Recurso de classe máx.'));
+      }
 
       // ---- defesa e movimento
       h += secao('derivados', 'Evasão, CD e Movimento',
@@ -368,9 +379,20 @@
             : a.tipo === 'duplicada' ? 'entrada repetida ' + a.ref + ' (' + a.nome + ')'
               : a.tipo + (a.chave ? ' ' + a.chave : '') + (a.motivo ? ' (' + a.motivo + ')' : '')));
       });
-      lista(f.migracao && f.migracao.pendencias).forEach(function (p) { av.push('Pendência: ' + str(p.motivo) + (p.grau != null ? ' (grau ' + p.grau + ')' : '')); });
-      lista(res.av.alertas).forEach(function (a) { av.push('Alerta: ' + str(a.msg) + (a.selo ? ' [' + rotuloSelo(a.selo) + ']' : '')); });
+      var pend = lista(f.migracao && f.migracao.pendencias);
+      pend.forEach(function (p) { av.push('Pendência: ' + str(p.motivo) + (p.grau != null ? ' (grau ' + p.grau + ')' : '')); });
+      lista(res.av.alertas).forEach(function (a) {
+        // condição que só aparece porque a v2 tinha o recurso 0/0 (pendência de migração acima)
+        var daMigracao = a.recurso && pend.some(function (p) { return p.campo === 'recursos.' + a.recurso; });
+        av.push('Alerta: ' + str(a.msg) + (a.selo ? ' [' + rotuloSelo(a.selo) + ']' : '') +
+          (daMigracao ? ' (pode ser efeito da migração: a v2 tinha 0/0)' : ''));
+      });
       lista(res.av.avisos).forEach(function (a) { av.push('Motor: ' + str(a.msg || a.tipo)); });
+      // o aviso de cada número (no.avisos), que sem isto só se via no tooltip
+      lista(res.av.ordem).forEach(function (c) {
+        var no = nos[c];
+        lista(no && no.avisos).forEach(function (a) { av.push(semEmoji(no.rotulo) + ': ' + str(a.msg || a.tipo)); });
+      });
       if (res.semCatalogo) av.push('Catálogo indisponível: identidade e entradas ficam só pelo nome.');
       if (res.semEfeitos) av.push('Efeitos de item indisponíveis: itens e armas fora das contas.');
       h += secao('avisos', 'Avisos (' + av.length + ')', av.length ? '<ul class="kf3-lista">' + av.map(function (x) {
