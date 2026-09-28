@@ -754,6 +754,34 @@ Texto verbatim em `17-respostas-T-e-sync.md` §1c. Gravado no Notion e conferido
 - **Batedor:** o Pedro pediu o rework completo (2 características novas, 15 técnicas gerais, 3 ramos refinados) e a
   estrutura de criação de classes. Proposta em `18-batedor-rework.md`; só vai ao Notion com aprovação.
 
+## Quarta leva (2026-09-28, tarde) — D127–D133
+
+Texto verbatim em `17-respostas-T-e-sync.md` §1d.
+- **D127** Poção de Vigor Moderada: Nível 2 da tabela do Alquimista, **4 Reagentes e CD 12** (Notion e CSV).
+- **D128** Napalm: *"Assemelhe o napalm do csv com o da tabela, o da tabela parece estar mais completo."*
+  O CSV já tinha um "Napalm Alquímico" igual ao da tabela; a variante "(área)", sem arremesso nem Reflexo,
+  saiu do CSV (726 itens + Mapa = 727).
+- **D129** Café Preto **5 Reagentes**: edição do Pedro na tabela do Notion (12:58). O CSV acompanhou.
+- **D130** Loja no site: *"só comite em algum lugar que o agente html vera."* O agente de HTML já tinha
+  registrado o pedido:
+  - no CHANGELOG da main (Planejado);
+  - no plano M8 (`c28a6a5`, `5042ee3`), com a rodada 6 de perguntas ao balanceamento (C2–C11). A rodada 6
+    ainda está sem resposta.
+- **D131** Batedor, rodada 2 (substitui a rodada 1):
+  - **3/8/4**; treinamento: Armas à Distância, Sobrevivência e Percepção + (1 + INT) entre Iniciativa,
+    Furtividade, Atacar, Investigação, Religião, Crime e Reflexos;
+  - atributos: DES, SAB e INT; play style: Exploração, Combate Estratégico e Mobilidade;
+  - **CD 10 + DES + (SAB ou INT)**;
+  - **característica Mapa** (texto do Pedro em `18` §2); o **Instinto sai**;
+  - a 2ª característica está em aberto: mobilidade e defesa, sem tabela, pouco tracking;
+  - ramos: Cartógrafo (mapas), ladino polido (Crime e Furtividade) e Trambiqueiro (Sins: o dano cresce
+    com a carteira).
+- **D132** Item **Mapa**, Bugiganga **Ordinário**, no CSV:
+  - a Trambiqueiro sobe a raridade (passiva reservada);
+  - precisa de limite de farm. Proposta minha, já no CSV: "Cada lugar rende 1 mapa com valor de venda".
+- **D133** Espaço reservado: **alterar d20 é do Xamã**. A lista de perícias vai a 7 opções nas outras
+  classes depois (pendente).
+
 ## D68 — O andar de Nível 1 (truques)
 Todas as magias existentes **sobem 1 nível**: as antigas 1–4 viram 2–5. O novo Nível 1 são os
 20 truques. Consequência limpa: a regra do Teurgo deixa de ser "iguais ou abaixo do seu

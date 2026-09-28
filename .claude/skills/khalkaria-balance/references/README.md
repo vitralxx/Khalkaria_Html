@@ -16,9 +16,9 @@
 
 | Categoria | Itens | Receitas |
 |---|---|---|
-| Consumível | 240 | 129 |
+| Consumível | 239 | 126 |
 | Arma | 181 | 181 |
-| Bugiganga | 64 | 64 |
+| Bugiganga | 65 | 64 |
 | Item Mágico | 61 | 0 |
 | Armadura | 50 | 50 |
 | Lixo | 48 | 0 |
@@ -49,7 +49,7 @@ Tipo de Craft · Ingredientes · Tags · Lore/Notas · **CD de Craft** · (17 co
 | **`15-ficha-rodada3.md`** | **Rodada 3 da ficha:** log do Notion gravado (antes/depois), respostas C1–C6, **lote PD20 de revisão (L01–L45)** e pendências da main | Notion + `03-respostas-pedro.md` |
 | **`16-log-tecnicas.md`** | **Resposta ao Log de Técnicas:** 15 princípios de leitura (G1–G15), 19 perguntas ao Pedro com recomendação (T1–T19), o lote L aplicado no Notion e a resposta a cada um dos 110 achados do balanceamento. **Revisões 1, 2 e 3 (2026-09-28):** respostas do Pedro, §R, §R2 e §R3 | artefato do agente de HTML + Notion |
 | **`17-respostas-T-e-sync.md`** | **Ponto de retomada:** respostas do Pedro às T1–T19 (D98–D117) e às levas seguintes (D118–D126), o que já foi gravado no Notion, o que falta e o **log de sincronização do Notion** para o agente de HTML | conversa com o Pedro + Notion |
-| **`18-batedor-rework.md`** | **Proposta do rework do Batedor** (esperando aceite). Contém: 2 características (Mapa de Combate + Instinto refeito); 15 técnicas gerais; 3 ramos; de→para de cada item; R3 simulada; teste de sobreposição; **16 decisões** para o Pedro | Notion `8706e3a4…` + D79 |
+| **`18-batedor-rework.md`** | **Proposta do rework do Batedor, rodada 2** (esperando aceite). Contém: decisões do Pedro (3/8/4, treinamento, CD, característica Mapa); 3 opções para a 2ª característica; 15 técnicas em torno do mapa; direção dos 3 ramos; **10 decisões**. A rodada 1 está no commit `a4ea40f` | Notion `8706e3a4…` + D79, D131–D133 |
 | **`19-gabarito-de-classe.md`** | **Estrutura de criação de classes** (D79). Contém: esqueleto da página; coeficientes; R1–R7; orçamento das 15 técnicas; ramos e ultimates; convenções de texto; checklist de validação | as 6 classes do Notion, 2026-09-28 |
 | `batedor-notion-antes-do-rework.txt` | Retrato da página do Batedor no Notion antes do rework (base do diff para o log do novo Batedor) | Notion `8706e3a4…`, 2026-09-28 |
 | `batedor-sim-instinto-rework.py` | Monte Carlo do Instinto proposto (semente fixa); modelo de simulação para recurso de classe. O `batedor-sim-instinto.py` é a versão da Rodada 1 (`13`) | — |
@@ -72,9 +72,9 @@ Tipo de Craft · Ingredientes · Tags · Lore/Notas · **CD de Craft** · (17 co
 | `08-divergencias.md` | Divergências pendentes de decisão | cruzamento Notion × repo × CSV |
 | `10-novidades-bazar.md` | Itens novos, para o Pedro mostrar aos jogadores | **gerado** por `auditor.py novidades` |
 | `11-progressao-craft.md` | Árvores de craft e progressão de arquétipo de item | análise |
-| `alquimista-notion.json` | Nível, reagentes e CD dos 113 itens da tabela do Alquimista (regerado da página em 2026-09-28) | Notion `eac6e3a4…` |
+| `alquimista-notion.json` | Nível, reagentes e CD dos 114 itens da tabela do Alquimista. Regerado da página em 2026-09-28 por `scripts/classes/alquimista_tabela.py`, que também compara com o CSV | Notion `eac6e3a4…` |
 | `novidades.json` | Curadoria do que entra no `10-` | manual |
-| `../scripts/classes/` | `nomes_index.py` (colisão de nome), `orcamento_tecnicas.py` (mix e custo das 15 técnicas) e `estrutura_classes.py` + `.json` (as 7 classes extraídas do Notion) | `19` §10 |
+| `../scripts/classes/` | `nomes_index.py` (colisão de nome), `orcamento_tecnicas.py` (mix e custo das 15 técnicas), `estrutura_classes.py` + `.json` (as 7 classes extraídas do Notion) e `alquimista_tabela.py` (tabela do Alquimista × CSV) | `19` §10 |
 
 ⚠️ **Arquivos desatualizados conhecidos:** `03-origens.md` tem a versão antiga da origem Caçador
 (a atual está no D7) e não tem as origens novas Lenhador/Mineiro/Alfaiate.

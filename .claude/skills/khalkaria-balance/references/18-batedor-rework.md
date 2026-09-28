@@ -1,605 +1,342 @@
-# 18 — Rework do Batedor (proposta para aprovação)
+# 18 — Rework do Batedor (proposta, rodada 2)
 
-**Status: PROPOSTA.** Nada disto está no Notion. Vai ao Notion só depois do aceite do Pedro. Em seguida, sai
-o log do novo Batedor para o agente de HTML, com diff contra `batedor-notion-antes-do-rework.txt` (§10).
+**Status: PROPOSTA.** Nada disto está no Notion.
+- Vai ao Notion só com o aceite do Pedro.
+- Depois do Notion, sai o log do novo Batedor para o agente de HTML, com diff contra `batedor-notion-antes-do-rework.txt`.
+- A **rodada 1** (Mapa de Combate + Instinto refeito) está no commit `a4ea40f`. O Pedro trocou a direção; o que dela sobrevive está marcado aqui.
 
-Pedido do Pedro (2026-09-28, verbatim): *"Rework do Batedor, vamos corrigi-lo, criando duas novas
-características de classe que irão substituir as atuais, vamos criar as 15 técnicas gerais e os 3 ramos
-refinados com técnicas modernas, tudo isso pavimentando a estrutura de criação de classes futuras."*
-
-A estrutura de criação de classes está em **`19-gabarito-de-classe.md`**. Este arquivo é o Batedor feito por ela.
-Diagnóstico de partida: `13-batedor-diagnostico.md`. Texto de hoje: `batedor-notion-antes-do-rework.txt`.
+Base: `19-gabarito-de-classe.md` (estrutura), `13-batedor-diagnostico.md` (diagnóstico) e o texto de hoje.
 
 **Origem de cada texto:**
-- **[Pedro]**: texto do Notion sem mudança de regra. Pode ter correção de digitação, listada.
-- **[Pedro, ajustado]**: texto do Notion com mudança de regra. A mudança vem descrita logo abaixo.
-- **[nova]**: criação minha. Precisa de aceite.
+- **[Pedro]**: texto dele, sem mudança de regra.
+- **[Pedro, ajustado]**: texto dele, com a mudança descrita.
+- **[nova]**: criação minha, precisa de aceite.
 
 ---
 
-## 1. O Batedor numa tela
+## 0. O que o Pedro decidiu (2026-09-28, verbatim)
 
-**Papel: o tático de campo.** O Batedor escolhe onde a luta acontece:
-- lê o terreno antes de todos;
-- impede que o grupo seja pego de surpresa;
-- move os aliados pelo campo;
-- expõe o inimigo que pisa em falso.
+> *"Na verdade eu quero o batedor com muita Stamina, então 3/8/4, meu conceito é que seja uma classe que suporte
+> builds à distância, corpo a corpo fragil multi-ataque, converter achados de exploração em poder de combate
+> (Trambiqueiro dá mais dano com base na quantidade de sins no inventário)."*
 
-Ele continua atirando, mas não disputa dano com o Artilheiro.
+> *"Quero punir o jogador batedor que não espera a luta, ser pego desprevenido pro batedor é a pior opção, estar com
+> o mapa em prontidão para o combate é o pico."*
 
-| | Hoje | Proposta |
-|---|---|---|
-| Características de classe | Instinto, que zera em 97,9% dos turnos de quem ataca | **Mapa de Combate** + **Instinto** refeito |
-| Coeficientes | 4/7/4, iguais aos do Artilheiro | **5/6/4**, que nenhuma classe usa |
-| Técnicas gerais usáveis em combate | 5 de 15 | 13 de 15 |
-| Técnicas gerais ligadas à característica | 0 | 9, mais 2 indiretas |
-| P(Instinto chega a 5 até a 3ª rodada) | 0,0009% | 52–90% com o campo mapeado |
-| Ramos | Cartógrafo e Trambiqueiro fora de combate; Sem-Nome repete o Predador | Cartógrafo manda no campo; Sem-Nome luta a curta distância; Trambiqueiro fica social, com 1 ultimate |
+> *"Agora, para a segunda característica de classe, estou pensando em algo mais forte do que o instinto que não
+> exija tanto tracking e sem tabelas. Hoje a técnica prevista pro xama já altera d20's, então isso está reservado.
+> Preciso de algo que dê mobilidade e a defesa que o batedor pede com o nerf em vitalidade."*
 
-**A ideia central.** O melhor conteúdo de combate do Batedor já existia, mas preso no Tier 2 do Cartógrafo e atrás de 5 minutos de preparo:
-- *Desenhar Mapa de Combate*: "Você e seus aliados não podem ser Desprevenidos";
-- *Coordenação*;
-- *Ponto Cego*;
-- *Reposicionar*;
-- *Mapa Mental*.
+**Intenções dos ramos:**
+1. **Cartógrafo:** sobrevivência e exploração. Ganha mais poder pelos mapas, em combate e fora dele.
+2. **Ladino mais bem polido:** ágil, com mais bônus em Crime e Furtividade, e formas de acompanhar os outros ramos.
+3. **Trambiqueiro:** gira em torno dos Sins e da interação social. A proficiência em combate depende do tamanho da carteira, e o foco é negócios.
 
-O rework promove esse núcleo a característica de classe, de nível 1. O Instinto passa a encher com o mapa.
+**Técnicas gerais:** *"quero que rodem mais ao redor do mapa e façam sentido com a nova característica."*
+
+**Instinto:** sai. No lugar dele entra uma 2ª característica, ainda em aberto (§3).
 
 ---
 
-## 2. Cabeçalho da página
+## 1. Cabeçalho [Pedro]
 
-**Status iniciais** [Pedro, ajustado: coeficientes 4/7/4 → 5/6/4]
-- Saúde: `10 + (5 × Nível) + (Mod.CON × Nível)`
-- Stamina: `8 + (6 × Nível) + (Mod.FOR OU Mod.DES × Nível)`
+**Status iniciais:**
+- Saúde: `10 + (3 × Nível) + (Mod.CON × Nível)`
+- Stamina: `8 + (8 × Nível) + (Mod.FOR OU Mod.DES × Nível)`
 - Éter: `6 + (4 × Nível) + (Mod.INT OU Mod.SAB × Nível)`
 - Evasão Ativa (Reação): 10 + Mod. Destreza + Dado de Defender
 - Evasão Passiva (Sem reação): 10 + Mod. Destreza
 
-Por que 5/6/4:
-- **+1 Vitalidade:** o batedor vai na frente e é o primeiro a levar a emboscada.
-- **−1 Vigor:** o Instinto passa a carregar parte da economia que era da Stamina.
+**Treinamento:** Armas à Distância, Sobrevivência e Percepção. Além disso, (1 + Mod. Inteligência) perícias dentre: Iniciativa, Furtividade, Atacar, Investigação, Religião, Crime e Reflexos.
 
-No nível 5, com CON +1 e DES +3, isso dá 40 de Saúde e 53 de Stamina (hoje: 35 e 58).
+**Atributos Recomendados:** Destreza, Sabedoria e Inteligência.
 
-**Treinamento** [Pedro, ajustado: +2 opções na lista, em negrito]
+**Play Style:** Exploração, Combate Estratégico e Mobilidade.
 
-Você começa treinado em Armas à Distância, Sobrevivência e Percepção. Além disso, você pode escolher (1 + Mod. Inteligência) perícias para ser treinado dentre as seguintes:
-- Crime
-- Religião
-- Iniciativa
-- Medicina
-- Furtividade
-- **Movimento**
-- **Investigação**
+**CD:** 10 + Mod. Destreza + (Mod. Sabedoria ou Inteligência).
 
-Movimento e Investigação servem o novo papel: ler rastros e cenas, andar pelo campo. As outras cinco ficam.
+*Notas minhas (não vão ao Notion):*
+- **O que 3/8/4 dá em números** (CON +1; DES +3 no nível 1 e +5 no nível 5, D87):
 
-**Atributos Recomendados, Play Style e CD** [Pedro, sem mudança]
-- Atributos: Destreza, Sabedoria e Inteligência.
-- Play Style: Exploração, Controle de Terreno e Furtividade. O rework cumpre exatamente esse texto.
-- CD: 10 + Mod. Destreza + Mod. Sabedoria.
+  | Nível | Saúde | Stamina |
+  |---|---|---|
+  | 1 | 14 | 19 |
+  | 3 | 22 | 44 |
+  | 5 | 30 | 73 |
 
-**Progressão** [Pedro, sem mudança]: 4/5/6/7/8 Técnicas; Ramo T1 no 2, T2 no 4, T3 no 5; Marcas no 3, 4 e 5.
+  - A Saúde é igual à do Teurgo (3/3/9), a mais baixa do sistema.
+  - A Stamina é a maior do sistema; o Artilheiro, com Vigor 7, chega a 68.
+  - Um golpe de Pesada Brutal (2d12+5 ≈ 18) tira 60% da Saúde de um Batedor de nível 5. A 2ª característica precisa pagar essa fragilidade (§3).
+- **O trio 3/8/4 é único.** A faixa de Vigor sobe para 3–8.
+- **CD com "ou":** segue a PD7 ("maior, mas com escolha de mudar"), a mesma regra dos outros "X ou Y" da ficha.
+- **Lista com 7 opções:** as outras classes têm 5. O Pedro já disse que vai ajustá-las depois; fica pendente no `17` §2.
 
 ---
 
-## 3. Características de classe
+## 2. Característica 1 — Mapa [Pedro, com 5 pontos para fechar]
 
-### Mapa de Combate [nova]
+Texto do Pedro. Só corrigi "Você ganha tem vantagem".
 
-Junta duas técnicas do Cartógrafo, ambas do Pedro: *Desenhar Mapa de Combate* e *Mapa Mental*.
+> Em 1 minuto, a partir dos seus arredores, você ilustra um mapa da área, contendo tipo de terreno, hostilidades do
+> local e informações gerais sobre a área em até 1000 m² (cerca de duas quadras de tênis).
+> - Enquanto na área de um mapa fabricado por você:
+>   - Você e aliados próximos não podem ficar *Desprevenidos*.
+>   - Você tem vantagem em *Iniciativa*.
+> - A cada mapa desenhado, nomeie-o com o nome do local e adicione 1 item: Mapa no inventário.
 
-> O Batedor analisa altitude, tipos de terreno e hostilidades do local e monta um mapa tático na cabeça.
-> Ele sabe de onde o perigo vai surgir antes de o perigo se mostrar.
+**Pontos para fechar** (proposta minha em cada um):
 
-O campo de um combate fica **mapeado** em dois casos:
-- desde o início do combate, se você observou o local por ao menos 1 minuto antes da luta, ou se tem o *Mapa de Exploração* da região;
-- em combate, gastando 1 Ação e 2 Stamina.
+1. **"Aliados próximos"** é vago na mesa. Proponho "aliados que possam te ouvir", o padrão das técnicas de grupo; ou "a até 9 m".
+2. **O mapa precisa estar com você?** Proponho que sim: "com o mapa no inventário".
+   - Isso cria a escolha que o Pedro quer: vender o mapa rende Sins, mas o Batedor perde o bônus naquela área.
+   - Se vender, pode redesenhar para usar, mas a cópia nova não vende de novo (ponto 4).
+3. **Tamanho.** 1000 m² é um quadrado de ~32 m de lado, ~21 × 21 quadrados de 1,5 m. Proponho escrever os dois, porque a mesa mede em quadrados.
+   - Uma quadra de tênis com a área de volta tem ~670 m², então "duas quadras" dá ~1340 m². O "cerca de" cobre a diferença.
+4. **Limite de farm.** Proponho: **"Cada lugar rende 1 mapa com valor de venda. Partes de um mesmo lugar (bairros de uma cidade, trechos de uma floresta) contam como o mesmo lugar."**
+   - É a definição de "lugar" do próprio *Colecionador de Horizontes*.
+   - Sem essa regra, o jogador desenha 30 recortes de 1000 m² da mesma cidade e vende os 30.
+   - A frase já entrou no item do CSV (abaixo); sai se o Pedro não quiser.
+5. **Peso.** Pela regra geral, cada Mapa ocupa 1 bugiganga. Se for leve demais para isso, "10 mapas = 1 bugiganga", como a munição especial (D112).
 
-Com o campo mapeado, enquanto você estiver consciente:
-- Você e seus aliados que possam te ouvir não podem ficar *Desprevenidos*.
-- No início de cada turno seu, você ganha +1 **Instinto**.
+**Item Mapa no Bazar: FEITO.** Nas duas cópias do CSV, 727 itens:
 
-O campo continua mapeado até o fim do combate. Se a luta se mudar para um local que você não mapeou, ele deixa de estar mapeado.
+`Mapa | Bugiganga | Ordinário | Mapa de uma área de até 1000 m², com tipo de terreno, hostilidades e informações gerais do local. Leva o nome do local. Cada lugar rende 1 mapa com valor de venda. | 2d10+10 | Batedor · Loja | Não-craftável | Exploração`
 
-*Notas, que não vão ao Notion:*
-- A frase de abertura reaproveita as palavras do *Desenhar Mapa de Combate* ("analisando altitude, tipos de terreno e hostilidades"). O "1 Ação e 2 Stamina" é o custo do *Mapa Mental*.
-- **Sai o teste de Percepção CD 15 a cada rodada** do Mapa Mental. Perder o mapa no dado é o mesmo defeito que quebrou o Instinto (régua R2).
-- **Carga de anotação:** um estado sim/não por combate, o menor custo de mesa possível.
-- "Não podem ficar Desprevenidos": um aliado que já estava Desprevenido deixa de estar quando o campo é mapeado. Mapear no meio de uma emboscada acorda o grupo.
-- **O custo de poder.** Hoje, proteger o grupo de ficar Desprevenido custa Tier 2 + 5 minutos + 3 Stamina. Passa a ser nível 1, com 1 minuto de observação ou 1 Ação + 2 Stamina em combate. É o maior ganho de poder da proposta, e é de propósito: é a razão de a classe existir.
-- **O contrapeso:** o mapa não protege do que acontece antes dele. Uma emboscada num lugar que ninguém observou pega o grupo, salvo se o Batedor tiver *Vigia* ou *Atento*.
+O arquivo de efeitos foi para a rev. 9; o Mapa não mexe em número de ficha.
 
-### Instinto [Pedro, ajustado]
+**A punição que o Pedro quer já sai das regras:**
+- **O mapa leva 1 minuto.** Numa luta que começa sem mapa, não dá para desenhar no meio (1 minuto = 10 rodadas).
+- **Fora da área:** sem mapa, o Batedor não tem proteção contra *Desprevenido*, não tem vantagem em Iniciativa e não usa a 2ª característica (§3).
+- **Técnicas de saída:** duas técnicas abrem exceção, pagando o turno inteiro: *Terreno Ideal* e *Atento* (§4).
 
-O parágrafo de abertura é do Pedro, verbatim:
+---
 
-> **Instinto** é a manifestação mecânica da sua atenção aguçada e experiência como explorador. Quanto mais você
-> observa, investiga e interage com o ambiente, mais afiado fica seu sexto sentido — até o momento onde você age
-> antes mesmo do perigo se manifestar.
+## 3. Característica 2 — três opções
 
-- Você começa cenas de exploração ou cenas de combate com 0 de **Instinto**, *contudo*, se estiver em uma cena de exploração e começar um combate pode sustentar seu **Instinto**. [Pedro]
-- Você <u>ganha</u> **Instinto** das seguintes maneiras, cada uma no máximo 1 vez por rodada:
-  - Mapa: no início do seu turno, com o campo mapeado → +1 Instinto
-  - Acerto: ao acertar qualquer inimigo → +1 Instinto
-  - Esquiva: ao esquivar de qualquer ataque → +1 Instinto
-  - Perícia: ao suceder em qualquer perícia, exceto Atacar e Defender → +1 Instinto. Fora de combate, no máximo 1 vez por perícia a cada cena.
-- Você <u>perde</u> **Instinto** das seguintes maneiras:
-  - Surpresa: ao ficar *Desprevenido* → = 0 Instinto
-  - Dano: ao receber, de uma só fonte, dano maior que metade da sua Saúde máxima → perde metade do seu Instinto, arredondando para cima
-  - Tempo: ao ficar 10 minutos sem ganhar Instinto → = 0 Instinto
-- Você pode gastar seu Instinto para ganhar os seguintes benefícios. O Instinto gasto sai do total:
+Os requisitos, nas palavras do Pedro:
+- mais forte que o Instinto;
+- pouco tracking;
+- sem tabela;
+- não mexe no d20 (reservado ao Xamã);
+- dá mobilidade e defesa;
+- dá "mais ações de ataque de alguma forma elegante";
+- funciona na área do mapa.
 
-| Hab. de Instinto | Custo | Descrição | Ação |
+### A. Atalho (recomendada)
+
+> **Atalho (3 Stamina, Ação Livre).** Na área de um mapa seu, 1 vez por turno, você se move até o seu Movimento sem
+> provocar ataques de oportunidade e tem +2 de Evasão até o início do seu próximo turno. Depois desse movimento,
+> a sua PMA volta a zero.
+
+**Como cumpre cada pedido:**
+- **Mobilidade:** o Atalho é um segundo movimento no turno, fora da ação de Mover (que continua 1 vez por turno), e sem ataque de oportunidade.
+- **Defesa:** +2 de Evasão tira 10 pontos percentuais de cada ataque inimigo, ou seja, 15–18% do dano recebido. Somado a não levar ataque de oportunidade, dá para bater e sair.
+- **"Mais ações de ataque", sem dar +1 Ação** (o efeito mais caro do sistema, 3 fontes travadas em 259 habilidades):
+  - A ação que iria para Mover vai para Atacar.
+  - A PMA zerada torna útil o ataque depois do movimento. É o golpe "de outro ângulo".
+
+**Números** (Atacar(1), 1d6 + 3, contra um alvo só; a PMA é por alvo, D29):
+
+| Turno | Acertos | DPR |
+|---|---|---|
+| Parado, 3 ataques | 1,05 | 7,4 |
+| Mover + 2 ataques (sem mapa) | 0,95 | 6,5 |
+| Ataque, **Atalho**, 2 ataques | **1,55** | **10,6** |
+
+- Contra um alvo só, o ganho é de +43% sobre o turno parado e +63% sobre o turno em que precisa se mover.
+- Contra alvos diferentes a PMA já zera (D29), e o Atalho vira só mobilidade e defesa.
+- Com arma de 2 ações o ganho é mobilidade: o movimento é grátis e sobra 1 ação.
+
+**Stamina:** 3 por turno. No nível 1 (19 de Stamina) dá 6 turnos; no nível 5 (73), 24 turnos. É onde o Vigor 8 vai.
+
+**Âncoras de preço:**
+
+| Referência | O que dá | Custo |
+|---|---|---|
+| *Oportunista* (Espadachim) | PMA −3 na rodada | 5 Stamina |
+| *Tiro Duplo* (Artilheiro) | 1 ataque sem PMA | 1 Ação + 3 Stamina + 2 Concentração |
+| *Passo do Vento* (Monge) | sem ataque de oportunidade | 3 Fluxo |
+| *Campo de Batalha* (ultimate do General) | mover como ação livre, sem oportunidade, 1 minuto | ultimate |
+
+O Atalho junta os três efeitos, mas só na área do mapa e 1 vez por turno. É a peça de poder da classe e o que paga a Saúde 3.
+
+**Tracking:** nenhum contador. "Usei neste turno?" já é regra geral (D99), e o +2 de Evasão dura como o Defender de 1 ação.
+
+**Rocket tag:** não gera *Exposto* nem mexe no crítico. O risco de retaliação continua: o ladino corpo a corpo ataca 3 vezes e abre 3 retaliações, que é o "frágil multi-ataque" pedido.
+
+### B. Esquiva de Batedor (só defesa)
+
+> **Esquiva de Batedor (2+ Stamina, Ação Livre).** Na área de um mapa seu, ao ser alvo de um ataque, some +1 à sua
+> Evasão contra esse ataque para cada 2 Stamina gastos (máximo = Nível). Se o ataque errar, você pode se mover 1,5 m
+> sem provocar ataques de oportunidade.
+
+- É a *Barreira Instintiva* do Teurgo em Stamina (D126: custo variável dentro do uso).
+- Defende bem e usa o Vigor 8, mas não dá "mais ações de ataque" e dá pouca mobilidade.
+
+### C. Embalo (movimento vira defesa e dano)
+
+> **Embalo (Passiva).** Na área de um mapa seu, se você se moveu ao menos 3 m neste turno, até o início do seu próximo
+> turno você tem +2 de Evasão e o seu primeiro acerto no turno causa +1d6 de dano.
+
+- Não gasta recurso e tem tracking mínimo.
+- Separa bem o Batedor do Artilheiro, que quer ficar parado para a Concentração.
+- Não dá mobilidade (só premia quem se move) nem ataque a mais. A Stamina 8 fica sem destino na característica.
+
+### Comparação
+
+| | A. Atalho | B. Esquiva | C. Embalo |
 |---|---|---|---|
-| Pressentimento | X | Adicione +X a qualquer perícia ao menos treinada, depois de rolar o dado. | Ação Livre |
-| Olhos nas Costas | 2 | Ao ser alvo de um ataque, adicione +2 à sua Evasão até o fim do turno do atacante. | Ação Livre |
-| Segundo Fôlego | 3 | Você ou um aliado que possa te ouvir rola novamente a Iniciativa e usa o novo resultado (se preferir). | Ação Livre |
-| Passo em Falso | 4 | Com o campo mapeado, uma criatura que você vê e que se moveu desde o fim do seu último turno fica *Exposta*. | 1 Ação |
-| Instinto Reativo | 5 | Você pode usar sua Reação mesmo que já a tenha gastado nesta rodada. | Ação Livre |
+| Mobilidade | ✔ 2º movimento, sem oportunidade | pouca (1,5 m) | não (só premia) |
+| Defesa | ✔ +2 Evasão | ✔✔ até +Nível | ✔ +2 Evasão |
+| Mais ataques | ✔ ação livre + PMA zera | ✘ | ✘ (+1d6) |
+| Tracking | 1 por turno | 1 por ataque | "andei 3 m?" |
+| Usa a Stamina 8 | ✔ | ✔ | ✘ |
 
-- **Máximo: 5 Instinto**
-
-**O que muda em relação a hoje, e por quê**
-
-Ganhos:
-- **Perícia:** o limite cai de "Máx. 2x por rodada" para 1 vez por rodada (régua R5). Atacar e Defender deixam de contar, porque já contam como Acerto e Esquiva; sem isso, um acerto daria 2.
-- **Nova fonte, Mapa (+1 por turno).** É o motor da classe. Sem mapa, a chance de chegar a 5 até a 3ª rodada cai de 52–90% para 6–11% (§7.1).
-
-Perdas:
-- **Saem** "falhar qualquer perícia", *Atordoado* e *Desorientado*:
-  - Atacar é perícia, então "falhar qualquer perícia" zerava o Instinto em 97,9% dos turnos de quem ataca.
-  - *Desorientado* é piso Ordinário (D33): qualquer arma contundente aplica por 2 Stamina.
-  - *Desprevenido* fica, porque ser surpreendido é falha tática, não falha de dado (régua R2).
-- **Dano maior que metade da Saúde:** deixa de zerar e passa a tirar metade.
-
-Gastos:
-- **"utilizar" → "gastar":** o custo é gasto, não requisito. Hoje o texto não diz, e o Fluxo do Monge
-  usa o outro modelo (`19` §5).
-- **Pressentimento:** ganha "depois de rolar o dado". Hoje o texto não diz quando se declara.
-- **Sexto Sentido → Olhos nas Costas:**
-  - o nome *Sexto Sentido* já é de uma carta do Limiar (SAB 16+, "1x/combate (reação)…");
-  - "durante esse turno" não dizia de quem era o turno. Agora é o turno do atacante.
-- **Segundo Fôlego:** ganha "ou um aliado". Hoje só re-rola a Iniciativa do próprio Batedor.
-- **Golpe Instinto sai.**
-  - O texto usa o termo antigo, "margem de crítico".
-  - Rende pouco: +15% de chance de crítico num ataque dá ~1,6 de dano, por 1 Ação + 4 Instinto.
-- **Passo em Falso entra no lugar.** É o *Ponto Cego* do antigo Desenhar Mapa de Combate, que custava 1 Ação e 4 Stamina, agora pago em Instinto.
-  - O nome *Ponto Cego* já é de um truque de Conhecimento (D68).
-  - Em Stamina, o Ponto Cego dava para repetir ~10 vezes por combate. Em Instinto, sai ~1 vez a cada combate de 4 rodadas (§7.1).
+**Recomendo A.** Se o Pedro quiser mais defesa, a B vira técnica geral (a *Rolamento*, em §4, já é ela).
 
 ---
 
-## 4. Técnicas gerais (15)
+## 4. Técnicas gerais (15), em torno do mapa
 
-Frase de abertura da seção, verbatim [Pedro]: "Toda classe possui técnicas, você pode reatribuí-las livremente ao realizar um descanso longo, respeitando o limite de pontos. Você possui 3 Técnicas + Nível"
+Escritas assumindo a opção **A** (Atalho). Só *Rasgar o Mapa* depende dela; com a B ou a C, ela troca.
 
 | Técnica | Descrição | Custo | Ação |
 |---|---|---|---|
 | Atento | Você é imune à condição *Desprevenido*. | — | Passiva |
-| Passo Ciente | Você não ativa armadilhas de qualquer tipo e ignora terreno difícil. Com o campo mapeado, aliados que possam te ouvir também ignoram terreno difícil. | — | Passiva |
+| Passo Ciente | Você não ativa armadilhas de qualquer tipo e ignora terreno difícil. Na área de um mapa seu, aliados que possam te ouvir também ignoram terreno difícil. | — | Passiva |
 | Leitor de Rastros | Você consegue distinguir peso, número da pegada, velocidade e direção de criaturas vendo rastros passivamente. | — | Passiva |
 | Líder | Você possui a habilidade de memorizar caminhos e traçar trajetos eficientes. Você soma naturalmente +1 ao sucesso do grupo em jornadas já percorridas. Adicionalmente, ao rolar *Sobrevivência* em jornadas possui +5. | — | Passiva |
-| Vigia | Ao Vigiar numa Jornada ou ficar de guarda num descanso, você soma +2 no teste de *Percepção*. Se um combate começar enquanto você vigia, o campo já começa mapeado. | — | Passiva |
-| Sinais | Você pode usar *Pressentimento* num teste de um aliado que possa te ver, em vez de num teste seu, desde que você seja ao menos treinado na perícia. | — | Passiva |
-| Terreno Ideal | Você tem facilidade em se adaptar a um ambiente, e enquanto estiver nele recebe os seguintes benefícios:<br>+2 em testes de Sobrevivência<br>+2 em testes de Percepção<br>Pode gastar uma ação para rolar estes testes com vantagem.<br>Em seu terreno ideal, mapear o campo em combate custa uma ação livre em vez de 1 Ação.<br><br>Terrenos: (Urbano, Natural, Naval, Subterrâneo)<br>Pode escolher 1 no nível 1, 2 no nível 3 e 3 no nível 5. | 3 Stamina | Passiva ou 1 Ação |
-| Armadilha Tática | Rapidamente configura uma armadilha no chão, rolando um teste de *Furtividade* ou *Sobrevivência* e atribuindo o resultado a ela. Quando um inimigo passar por cima ele deve superar a *Furtividade* ou *Sobrevivência* da armadilha rolando *Percepção* ou recebe 2d6+Mod. Destreza de dano Perfurante e fica *Enraizado* por 1 rodada. Com o campo mapeado, a *Percepção* contra a armadilha tem desvantagem. Você mantém até (Nível) armadilhas montadas; ao montar mais uma, a mais antiga se desfaz. | 3 Stamina | 1 Ação |
-| Reposicionar | Com o campo mapeado, escolha um aliado, podendo ser você, em até 9 m. Ele pode se mover até 4,5 m como uma ação livre sem provocar ataques de oportunidade. | 3 Stamina | 1 Ação |
+| Terreno Ideal | Você tem facilidade em se adaptar a um ambiente, e enquanto estiver nele recebe os seguintes benefícios:<br>+2 em testes de Sobrevivência<br>+2 em testes de Percepção<br>Pode gastar uma ação para rolar estes testes com vantagem.<br>Em seu terreno ideal, você desenha um mapa com 3 Ações em vez de 1 minuto.<br><br>Terrenos: (Urbano, Natural, Naval, Subterrâneo)<br>Pode escolher 1 no nível 1, 2 no nível 3 e 3 no nível 5. | 3 Stamina | Passiva ou 1 Ação |
+| Armadilha Tática | Rapidamente configura uma armadilha no chão, rolando um teste de *Furtividade* ou *Sobrevivência* e atribuindo o resultado a ela. Quando um inimigo passar por cima ele deve superar a *Furtividade* ou *Sobrevivência* da armadilha rolando *Percepção* ou recebe 2d6+Mod. Destreza de dano Perfurante e fica *Enraizado* por 1 rodada. Na área de um mapa seu, a *Percepção* contra a armadilha tem desvantagem. Você mantém até (Nível) armadilhas montadas; ao montar mais uma, a mais antiga se desfaz. | 3 Stamina | 1 Ação |
+| Reposicionar | Na área de um mapa seu, escolha um aliado, podendo ser você, em até 9 m. Ele pode se mover até 4,5 m como uma ação livre sem provocar ataques de oportunidade. | 3 Stamina | 1 Ação |
+| Mirante | Na área de um mapa seu, marque o espaço de 1,5 m em que você está. Enquanto ficar nele, seus ataques à distância têm +2 em Atacar e você tem +2 de Evasão contra ataques à distância (não soma com a Evasão do Atalho). Sair do espaço encerra o efeito. | 3 Stamina | 1 Ação |
+| Varredura | Na área de um mapa seu, role *Percepção* contra a *Furtividade* de cada criatura escondida em até 18 m. As que você superar deixam de estar escondidas para você e para os aliados que possam te ouvir. | 2 Stamina | 1 Ação |
 | Ocultar-se | Ao estar fora da linha de visão de todas as criaturas da cena, pode se esconder com 1 ação em vez de 3. | 2 Stamina | 1 Ação |
-| Varredura | Com o campo mapeado, role *Percepção* contra a *Furtividade* de cada criatura escondida em até 18 m. As que você superar deixam de estar escondidas para você e para os aliados que possam te ouvir. | 2 Stamina | 1 Ação |
-| Tocaia | Seu próximo ataque causa +1d8 de dano se o alvo estiver *Desprevenido* ou *Exposto*. | 2 Stamina | Ação Livre |
+| Rasgar o Mapa | Rasgue o mapa da área em que você está: até o fim do combate, o seu *Atalho* não custa Stamina. O mapa é destruído e sai do inventário. | 1 Mapa | Ação Livre |
+| Rolamento | Na área de um mapa seu, ao ser alvo de um ataque, some +1 à sua Evasão contra esse ataque para cada 2 Stamina gastos (máximo = Nível). | 2+ Stamina | Ação Livre |
 | Fantasma | Ao ser atacado e optar por se **defender**, pode somar seu treinamento de **Furtividade** na perícia. | 2 Stamina | Ação Livre |
-| Por Aqui! | Com o campo mapeado, quando um aliado que possa te ouvir se afastar de uma criatura, ele não provoca ataque de oportunidade dela. | 2 Stamina | Reação |
-| Emboscada | Pode preparar um local previamente com armadilhas e distrações rolando um teste de *Sobrevivência* ou *Furtividade*: Ao lutar em um ambiente preparado, se o inimigo falhar em um teste de *Percepção* contra seu teste, você e seus aliados recebem +2 em Atacar durante todo o combate e os inimigos ficam *Desprevenidos* na primeira rodada do combate. Um combate no local preparado começa com o campo mapeado. | 5 Stamina | 10 Minutos |
+| Por Aqui! | Na área de um mapa seu, quando um aliado que possa te ouvir se afastar de uma criatura, ele não provoca ataque de oportunidade dela. | 2 Stamina | Reação |
+| Emboscada | Pode preparar um local previamente com armadilhas e distrações rolando um teste de *Sobrevivência* ou *Furtividade*: Ao lutar em um ambiente preparado, se o inimigo falhar em um teste de *Percepção* contra seu teste, você e seus aliados recebem +2 em Atacar durante todo o combate e os inimigos ficam *Desprevenidos* na primeira rodada do combate. | 5 Stamina | 10 Minutos |
 
-### Origem e mudança de cada técnica
+### Origem de cada técnica
 
 **Do Pedro, sem mudança de regra:**
-- **Atento.**
-- **Líder.**
-- **Fantasma.**
-- **Leitor de Rastros.** É a *Caçador*, com o mesmo texto e outro nome: *Caçador* já é nome de origem.
+- Atento, Líder, Fantasma e Emboscada, verbatim.
+- **Leitor de Rastros:** é a *Caçador*, com outro nome, porque *Caçador* já é nome de origem.
 
 **Do Pedro, com ajuste:**
-- **Passo Ciente:** + "com o campo mapeado, aliados… também ignoram terreno difícil".
-- **Terreno Ideal:** + mapear como ação livre no terreno ideal.
-- **Armadilha Tática:**
-  - desvantagem na Percepção com o campo mapeado;
-  - teto de (Nível) armadilhas montadas, porque hoje não há limite;
-  - "1 Ações" → "1 Ação".
-- **Emboscada:** + a frase final "Um combate no local preparado começa com o campo mapeado." O resto é o texto do Pedro, verbatim.
-- **Ocultar-se:** "em vez de 2" → "em vez de 3". O Sistema diz que esconder-se custa 3 ações; a carta *Sombras* do Limiar já usa essa conta.
-- **Tocaia.** É a *Oportunista*:
-  - o nome já é de técnica do Espadachim;
-  - 1 Ação vira Ação Livre, senão rende o mesmo que um ataque a mais;
-  - o gatilho ganha "ou *Exposto*", que liga a técnica ao Passo em Falso.
-- **Reposicionar.** É a sub-habilidade do antigo Desenhar Mapa de Combate, com o texto do Pedro e o mesmo requisito, "com o campo mapeado".
+- **Passo Ciente:** + aliados, na área do mapa.
+- **Terreno Ideal:** + desenhar o mapa com 3 Ações no terreno ideal. É a saída cara para a luta que começa sem mapa: custa o turno inteiro, e só vale nos terrenos escolhidos.
+- **Armadilha Tática:** + desvantagem na área do mapa e um teto de (Nível) armadilhas. Hoje não há limite.
+- **Ocultar-se:** "em vez de 2" → "em vez de 3". O Sistema diz que esconder-se custa 3 ações.
+- **Reposicionar:** era sub-habilidade do antigo *Desenhar Mapa de Combate*. O texto é do Pedro; o requisito passa a ser a área do mapa.
 
-**Novas, minhas:** Vigia, Sinais, Varredura, Por Aqui!.
+**Da rodada 1:** Varredura e Por Aqui!, agora ligadas à área do mapa.
 
-**Digitação:**
-- "de quaisquer tipo" → "de qualquer tipo";
-- "numero" → "número";
-- "imune a condição D*esprevenido*" → "imune à condição *Desprevenido*";
-- "ao em vez de" → "em vez de";
-- custo "n/a" → "—", como nas outras classes.
+**Novas:**
+- **Mirante:** para a build à distância. Âncora: *O Próximo* (Brutalista) dá +2 Atacar contra 1 alvo pelo combate todo, por 1 Ação + 3 Stamina.
+- **Rasgar o Mapa:** transforma o que a exploração achou em poder de combate. Queima um item que valia Sins e o bônus daquela área daqui em diante.
+- **Rolamento:** a opção B como técnica, a defesa extra de quem quiser.
 
-Conferido por script, contra o retrato de hoje: fora o que está listado acima, o texto não muda.
+**Digitação:** "quaisquer tipo" → "qualquer tipo"; "numero" → "número"; "imune a condição" → "imune à condição"; "ao em vez de" → "em vez de"; custo "n/a" → "—".
 
-**Mix das 15, contra a média das outras 6 classes (§7.2):**
+**Mix:**
 
-| Tipo | Batedor | Média das 6 |
+| Tipo | Batedor | Média das 6 classes (`19` §6) |
 |---|---|---|
-| Passivas | 6 | 6,3 |
-| Passiva ou 1 Ação | 1 | — |
-| 1 Ação | 4 | 4,3 |
-| Ação Livre | 2 | 1,5 |
+| Passivas | 4 (+1 "Passiva ou 1 Ação") | 6,3 |
+| 1 Ação | 5 | 4,3 |
+| Ação Livre | 3 | 1,5 |
 | Reação | 1 | 1,3 |
 | Fora de combate | 1 | 0,8 |
-| 2+ ações | 0 | 0,7 |
+
+As ativas ficam acima da média de propósito: é a classe com mais Stamina.
 
 **Ligação com as características:**
-- **9 citam o mapa ou o Instinto:** Passo Ciente, Vigia, Sinais, Terreno Ideal, Armadilha Tática, Reposicionar, Varredura, Por Aqui!, Emboscada.
-- **2 indiretas:**
-  - Atento protege o Instinto, porque impede a perda por *Desprevenido*.
-  - Tocaia cobra o *Exposto* que o Passo em Falso cria.
+- **9 dependem da área do mapa:** Passo Ciente, Terreno Ideal, Armadilha, Reposicionar, Mirante, Varredura, Rasgar o Mapa, Rolamento e Por Aqui!.
+- **Atento é a exceção de propósito:** protege quem foi pego sem mapa.
 
-**Fora de combate:** Leitor de Rastros e Líder. Vigia, Terreno Ideal e Emboscada fazem ponte: são exploração que vira vantagem no combate.
-
----
-
-## 5. Ramos
-
-O texto de abertura dos Ramos e as três descrições ficam como estão [Pedro]:
-- os parágrafos "Os ramos são caminhos…";
-- as cores;
-- as descrições do Cartógrafo, do Trambiqueiro e do Sem-Nome.
-
-### 5.1 Marcas de Ramo
-
-**Cartógrafo**
-
-*Colecionador de Horizontes* [Pedro, ajustado: teto]
-- No 1º bullet, depois de "Recupera 2 de Stamina e ganha 1 de Stamina máxima.", entra: "Ao chegar em +5 de Stamina máxima por esta marca, essa parte fica supérflua."
-- Motivo: hoje não há teto.
-- Régua: +10 de um recurso máximo permanente é o preço de 1 carta universal do Limiar.
-- O "+5… fica supérflua" segue o padrão das marcas de progressão.
-
-*Cicatrizes da Jornada* [Pedro, sem mudança]. Já está no padrão de marca de progressão.
-
-**Sem-Nome**
-- *Coleção de Últimos Suspiros* [Pedro, sem mudança].
-- *Sussurro Final* [Pedro, sem mudança].
-
-**Trambiqueiro**
-- *Homem de Negócios* [Pedro]. A frase de personalidade está cortada no Notion: "Você possui um disturbio de mat". **Falta o Pedro completar.** Os dois bullets ficam.
-- *O Palpite* [Pedro, sem mudança].
-
-### 5.2 Tier 1
-
-Padrão das outras classes: a 1ª técnica do T1 é passiva e dá treinamento — "Você se torna Treinado em X. Se já for Treinado, se torna Experiente e assim por diante." Cada ramo do Batedor ganha a sua, fundida numa passiva que já existia.
-
-**Cartógrafo**
-
-- **Artista Apaixonado (Passiva)** [Pedro, ajustado: + treinamento]
-  - Você se torna Treinado em *Sobrevivência*. Se já for Treinado, se torna Experiente e assim por diante.
-  - Os mapas que você fabrica contam como mercadoria Incomum.
-- **Desenhar Mapa de Exploração (Descanso Curto, 5 Stamina)** [Pedro, ajustado: o bullet vazio do Notion vira o 3º benefício]
-  - Texto do Pedro sem mudança até os benefícios: "Tem conhecimento geral da geografia da área." e "+5 em Sobrevivência enquanto na região do mapa."
-  - Entra o 3º: "Um combate na região do mapa começa com o campo mapeado."
-- **Escapista (3 Ações, 5 Stamina)** [Pedro, ajustado]
-  - "Ao possuir um mapa da região em que está batalhando" → "Ao possuir um mapa da região em que está batalhando, ou com o campo mapeado,". O resto fica.
-
-**Sem-Nome** (curta distância: ver decisão 8 em §9)
-
-- **Olhar de Brecha (Passiva)** [Pedro, ajustado: + treinamento]
-  - Você se torna Treinado em *Furtividade*. Se já for Treinado, se torna Experiente e assim por diante.
-  - Você detecta instantes onde inimigos abaixam guarda ou se distraem. Você recebe vantagem no primeiro teste de *Furtividade* do combate. Adicionalmente, se já estiver escondido no primeiro turno de combate, recebe +2 em *Iniciativa*.
-- **Golpe Sombrio (Ação Livre, 2 Stamina)** [Pedro, ajustado: 1 Ação → Ação Livre; "corpo a corpo"]
-  - Enquanto estiver *Escondido*, seu próximo ataque corpo a corpo: Ignora 1 de *Evasão*; +1d6 de Dano; Não pode ser retaliado.
-  - *Por quê:* como 1 Ação, a técnica come um ataque de quem usa arma leve, e o bônus não cobre o que se perde.
-- **Finta (1 Ação, 2 Stamina)** [Pedro, ajustado]
-  - Escolha um alvo em até 1,5 m: Enganação vs Percepção. Sucesso: alvo fica *Desorientado* por 1 rodada e não pode retaliar seus ataques até o fim do seu turno.
-  - *Por quê:* o risco do Sem-Nome corpo a corpo é a retaliação. Hoje a Finta dá só *Desorientado*, que qualquer arma contundente aplica por 2 Stamina. O ganho vira "atacar sem resposta pelo resto do turno", como o *Alcançar*.
-
-**Trambiqueiro**
-
-- **Língua Prateada (Passiva)** [Pedro, ajustado: vem das técnicas gerais]
-  - Você se torna Treinado em *Convencimento*. Se já for Treinado, se torna Experiente e assim por diante.
-  - Você sabe o valor de um item ao examiná-lo.
-  - Ao suceder em um teste de *Convencimento* contra um comerciante, garante 10% de desconto em um item.
-  - *Por quê:*
-    - o texto do Pedro já começava com "Treinado em Convencimento";
-    - absorve a *Cara de Pau* ("rolar Convencimento com 1 nível de treinamento a mais");
-    - absorve a avaliação de valor do *Olho no Lance*;
-    - o desconto cai de 25% para 10%, o teto de modificador econômico (Mercador, *Felizardo*).
-- **Bens Diversos (1 Ação, 5 Stamina)** [Pedro, sem mudança]
-- **Agiota (3 Ações, 10 Stamina)** [Pedro, ajustado: "20% de lucro" → "10% de lucro"]
-  - Mesmo teto de modificador econômico. Decisão 12, em §9.
-
-### 5.3 Tier 2
-
-**Cartógrafo**
-
-As duas técnicas do T2 de hoje subiram para a classe (Mapa de Combate). O ramo ganha duas no lugar.
-
-- **Coordenação (Ação Livre, 3 Stamina)** [Pedro, ajustado]
-  - Era sub-habilidade do Desenhar Mapa de Combate e ganha lugar próprio.
-  - Com o campo mapeado, orienta você ou um aliado em até 9 metros que esteja prestes a rolar um teste de *Movimento*, *Defender* ou *Atacar*, somando +2 à rolagem. 1 vez por rodada.
-  - *Por quê:* hoje é Reação, e aí disputa a única reação do Batedor com Defender, Por Aqui! e Instinto Reativo. Como Ação Livre 1 vez por rodada, vale o Tier 2.
-  - *Taxa:* +2 numa rolagem ≈ 1 de dano por 3 Stamina, abaixo do *Destruir*.
-- **Traçar Rota (1 Ação, 3 Stamina)** [nova]
-  - Com o campo mapeado, trace uma rota de até 9 m. Até o início do seu próximo turno, você e seus aliados que se moverem pela rota ignoram terreno difícil e não provocam ataques de oportunidade.
-  - *Régua:*
-    - *Comando Tático* (General): 1 aliado se move sem oportunidade, por 1 Ação + 2 Stamina.
-    - *Campo de Batalha* (ultimate do General): o grupo se move como ação livre, sem oportunidade, por 1 minuto.
-    - Traçar Rota fica no meio: o grupo, 1 turno, uma faixa de 9 m.
-
-**Sem-Nome**
-
-- **Cobra (Descanso Curto ou 1 Ação, 2 Stamina)** [Pedro, ajustado: escreve a D116 e a D57]
-  - Texto do Pedro, com duas mudanças:
-    - "deve suceder em um teste de Fortitude ou ficar Envenenada" → "deve suceder em um teste de Fortitude contra sua CD ou ficar *Envenenada*";
-    - entra no fim: "A dose dura até o primeiro acerto."
-  - A tensão com a D72 é pergunta: decisão 9, em §9.
-- **Terror (Passiva)** [Pedro, ajustado]
-  - Ao acertar um crítico com 20 natural, o alvo fica *Exposto*.
-  - *Por quê:* hoje o texto fecha um laço infinito. O crítico deixa *Exposto*, o próximo acerto contra *Exposto* é crítico e deixa *Exposto* de novo, e assim todo acerto depois do primeiro crítico vira crítico.
-  - Com "20 natural", o crítico que veio do *Exposto* não reabre o laço. A ideia do Pedro, crítico que expõe, fica.
-
-**Trambiqueiro**
-
-- **Conexões Duvidosas (1 Ação, 3 Stamina)** [Pedro, sem mudança]
-- **Esquemas (Ação Livre, 5 Stamina, 1 vez por descanso longo)** [Pedro, ajustado: era a 2ª ultimate]
-  - Texto e "O Custo" do Pedro. Só o cabeçalho muda: sai "Ultimate", entra "1 vez por descanso longo".
-  - *Por quê:* o Trambiqueiro tem duas ultimates, e o padrão é uma por ramo. Decisão 11, em §9.
-
-### 5.4 Tier 3
-
-Frase do tier [Pedro, ajustado]: "O Tier 3 provê Ultimates, que só podem ser utilizadas 1 vez por descanso longo."
-- Hoje o Batedor diz "1 vez por dia".
-- A notação oficial é "1x/Descanso Longo" (L29). As outras classes já foram trocadas.
-
-**Senhor das Linhas (1 Ação, 5 Stamina, Ultimate)** [Pedro, ajustado]. O texto fica; mudam três coisas:
-1. **Sai "Não pode ser flanqueado."** O Sistema não tem regra de flanco.
-2. **Criar Armadilha:** "recebe 3d6 dano" → "recebe 3d6 de dano Perfurante". Hoje não tem tipo de dano; Perfurante é o da *Armadilha Tática*.
-3. **Formato:** "Ativação:" antes de "Você sente uma energia primordial…" e "O custo:" → "O Custo:", como nas outras classes.
-
-**Silêncio (1 Ação, 5 Stamina, Ultimate)** [Pedro, ajustado]
-1. "Escolha uma criatura em sua visão por rodada" → "Até o fim do combate, 1 vez por rodada como ação livre, escolha uma criatura em sua visão". O texto não dizia a duração nem a ação.
-2. "Marcado à Morte" → "Marcada à Morte" em todo o texto (digitação).
-3. "Ativação:" no formato das outras classes.
-
-**Suborno Irrecusável (2 Ações, 5 Stamina, Ultimate)** [Pedro, sem mudança de regra]
-- Só entra o rótulo "Ativação:". É a ultimate única do Trambiqueiro (decisão 11).
+**Saem:**
+- da lista de hoje:
+  - **Curioso:** +1d4+DES em Percepção ou Investigação por 1 Ação. É fraco e não se liga ao mapa;
+  - **Mãos Rápidas:** é Reação usada no próprio turno;
+  - **Sigiloso:** fazia dois críticos escondidos por turno;
+  - **Saque:** cria Sins a cada morte (D6);
+  - **Oportunista:** vira *Tocaia* e vai para o ladino (§5);
+  - **Língua Prateada:** vai para o Trambiqueiro (§5).
+- da rodada 1: Vigia (o próprio Mapa cobre o acampamento) e Sinais (dependia do Instinto).
 
 ---
 
-## 6. De → para: o destino de cada item de hoje
+## 5. Ramos — direção
 
-| Hoje | Destino | Por quê |
-|---|---|---|
-| Instinto (característica) | Instinto refeito (§3) | Zerava em 97,9% dos turnos de quem ataca |
-| — | Mapa de Combate (característica nova) | Promove o núcleo do T2 do Cartógrafo |
-| Atento, Líder, Fantasma | ficam | — |
-| Passo Ciente, Terreno Ideal, Armadilha Tática, Emboscada | ficam, ajustadas | Passam a ler o campo mapeado |
-| Caçador | Leitor de Rastros | Nome de origem |
-| Oportunista | Tocaia | Nome do Espadachim; 1 Ação → Ação Livre |
-| Ocultar-se | fica, corrigida (2 → 3) | O Sistema diz 3 ações |
-| Língua Prateada | Trambiqueiro T1 | É a técnica de treinamento do ramo; 25% → 10% |
-| Curioso | **sai** | O Pressentimento faz o mesmo e melhor |
-| Mãos Rápidas | **sai** | Detalhe abaixo |
-| Sigiloso | **sai** | Detalhe abaixo |
-| Saque | **sai** | Cria Sins a cada morte: 1d4 + 2×Nível, ~12 no nível 5 (D6) |
-| Pressentimento, Instinto Reativo | ficam | Pressentimento ganha o momento da declaração |
-| Sexto Sentido | Olhos nas Costas | Nome de carta do Limiar; turno do atacante |
-| Segundo Fôlego | fica, + "ou um aliado" | Papel de apoio |
-| Golpe Instinto | **sai** → Passo em Falso | Termo antigo; ~1,6 de dano por 1 Ação + 4 Instinto |
-| Desenhar Mapa de Combate (Cartógrafo T2) | vira a característica Mapa de Combate | — |
-| Mapa Mental (Cartógrafo T2) | absorvido pela característica | Mesmo custo, sem o teste por rodada |
-| Coordenação (sub-habilidade) | Cartógrafo T2 | Reação → Ação Livre 1x/rodada |
-| Ponto Cego (sub-habilidade) | Passo em Falso (Instinto 4) | Nome do truque de Conhecimento |
-| Reposicionar (sub-habilidade) | técnica geral | — |
-| — | Traçar Rota (Cartógrafo T2) | Vaga aberta no T2 |
-| Desenhar Mapa de Exploração, Escapista | ficam, ajustadas | Ligam ao campo mapeado |
-| Artista Apaixonado, Olhar de Brecha | ficam, + treinamento | 1º T1 no padrão |
-| Golpe Sombrio, Finta | ficam, ajustadas | Curta distância; exposição |
-| Cobra | fica, texto da D116 e da D57 | D72 é pergunta |
-| Terror | fica, só no 20 natural | Laço infinito de crítico |
-| Cara de Pau | absorvida pela Língua Prateada | Mesmo efeito, permanente |
-| Olho no Lance | **sai**; a avaliação vai para a Língua Prateada | +20% de Sins passa do teto de 10% |
-| Esquemas | T3 → T2, 1x/descanso longo | 1 ultimate por ramo |
-| Senhor das Linhas, Silêncio, Suborno Irrecusável | ultimates, ajustadas | Formato; sem flanco; duração |
-| Colecionador de Horizontes | fica, com teto | Sem teto hoje |
-| Homem de Negócios | fica; texto cortado | Pedro completa |
+O texto completo vem depois da escolha da 2ª característica, porque os ramos são construídos em cima dela. Aqui vão o conceito, os ganchos e as perguntas.
 
-**Mãos Rápidas.** Reduz a PMA em −2 por 2 Stamina, mas é uma Reação usada no próprio turno, o que briga com Por Aqui! e Instinto Reativo. Também repete a *Oportunista* do Espadachim (PMA −3 por 5 Stamina) e o *Presságio*.
+### Cartógrafo — o mapa como poder
 
-**Sigiloso.** O ataque escondido conta como feito contra *Desprevenido*, logo sai crítico se acertar. Voltar a se esconder com a reação dá dois ataques escondidos por turno, dois críticos. Além disso, o tiro escondido já é do Predador.
+- **Marcas:**
+  - *Colecionador de Horizontes* [Pedro]. Agora dispara com o item Mapa. Continua precisando de teto: +5 de Stamina máxima.
+  - *Cicatrizes da Jornada* [Pedro].
+- **T1:**
+  - Passiva de treinamento em Sobrevivência.
+  - *Desenhar Mapa de Exploração* [Pedro]: o mapa de região, de 1 km². Com ele, toda luta naquela região conta como área de um mapa seu. É o "sempre pronto" do Cartógrafo.
+  - *Reconhecimento* [nova]: 1 minuto de instrução com o mapa, e os aliados que estudaram também têm vantagem em Iniciativa na área.
+  - *Escapista* [Pedro].
+- **T2:** *Coordenação* [Pedro, do antigo Mapa de Combate] e *Traçar Rota* [rodada 1].
+- **T3:** *Senhor das Linhas* [Pedro]. Sai "Não pode ser flanqueado"; a armadilha causa dano Perfurante.
+- ⚠️ **Artista Apaixonado** ("mapas contam como mercadoria Incomum") é exatamente a passiva que o Pedro reservou ao Trambiqueiro. Proponho mudar para lá.
 
----
+### Sem-Nome — o ladino polido
 
-## 7. Números
+- **Treinamento:** Crime ou Furtividade (qual das duas?).
+- **Técnicas que puxam o Atalho:**
+  - esconder-se logo depois de um Atalho;
+  - *Tocaia* (ex-*Oportunista*: +1d8 contra *Desprevenido* ou *Exposto*);
+  - *Golpe Sombrio* [Pedro];
+  - *Finta* [Pedro, + sem retaliação no turno].
+- **"Formas de acompanhar os outros ramos"** — leio como pontes com os outros dois. Confirma?
+  - *Bater Carteira* (Crime): furta Sins em combate ou fora dele, e isso enche a carteira do Trambiqueiro.
+  - *Olho de Ladrão*: ao mapear, acha passagem ou esconderijo que vira atalho no mapa.
+- **Terror [Pedro]:** só no 20 natural, para fechar o laço de crítico.
 
-### 7.1 Instinto: a régua R3 (`batedor-sim-instinto-rework.py`, 200 mil combates, semente fixa)
+### Trambiqueiro — a carteira é a arma
 
-Parâmetros:
-- **Esquiva (ao menos 1 ataque contra você erra na rodada):** 25%. A sensibilidade foi medida com 10% e 40%.
-- **Perícia (fora Atacar e Defender) em combate:** 5% por rodada.
-- **Golpe acima de metade da Saúde:** 3% por rodada.
-- **Acertos:** 60/35/10 com Atacar(1); 60 com Atacar(2).
-
-P(Instinto chega a 5 até a rodada N), sem gastar no caminho:
-
-| Situação | R1 | R2 | **R3** | R4 | R5 |
-|---|---|---|---|---|---|
-| **Hoje**, 3 ataques por turno | — | ~0% | **0,0009%** | — | — |
-| Atacar(1), campo mapeado desde o início, começa com 0 | 0% | 30,5% | **89,7%** | 98,5% | 99,8% |
-| Atacar(1), mapeado desde o início, começa com 2 (vem da exploração) | 21,6% | 92,8% | **98,7%** | 99,8% | 100% |
-| Atacar(1), mapeia no turno 1 (1 Ação), começa com 0 | 0% | 5,6% | **68,5%** | 95,7% | 99,4% |
-| Atacar(2), mapeado desde o início, começa com 0 | 0% | 21,5% | **79,5%** | 96,6% | 99,4% |
-| Atacar(2), mapeia no turno 1, começa com 0 | 0% | 3,7% | **52,0%** | 90,1% | 98,3% |
-| Atacar(1), sem mapa | 0% | 0,4% | **10,5%** | 38,2% | 66,0% |
-| Atacar(2), sem mapa | 0% | 0,3% | **6,1%** | 22,7% | 44,7% |
-
-Sensibilidade à esquiva (Atacar(1), mapeia no turno 1): 10% → 55,6% na R3; 40% → 78,5% na R3.
-
-**Leitura:**
-- **R3 passa em todos os casos com mapa**, de 52% a 99% na 3ª rodada.
-- **Sem mapa, não passa**, e é de propósito: o mapa é o motor. A arma importa pouco.
-- **Preparar-se aparece no número (R6):** começar com 2 do Instinto da exploração leva a R2 de 30% para 93%.
-
-**Passo em Falso** (4 Instinto), gastando sempre que der, num combate de 4 rodadas. Em 70% das rodadas há um alvo que se moveu.
-
-| Situação | Média de usos | 0 usos | 1 uso | 2+ usos |
-|---|---|---|---|---|
-| Atacar(1), mapeado desde o início | 1,04 | 9% | 77% | 14% |
-| Atacar(1), mapeia no turno 1 | 0,87 | 16% | 80% | 3% |
-| Atacar(2), mapeia no turno 1 | 0,81 | 21% | 77% | 2% |
-| Atacar(1), sem mapa | 0,26 | 74% | 26% | 0% |
-
-**~1 *Exposto* por combate.** É o limite que segura o rocket tag: hoje o *Ponto Cego* pago em Stamina dava ~10.
-
-Os outros usos do Instinto competem com o Passo em Falso: guardar 5 para o Instinto Reativo, ou gastar 2 no Olhos nas Costas.
-
-### 7.2 Orçamento (`scripts/classes/orcamento_tecnicas.py`)
-
-As 15 técnicas batem com o mix médio das outras 6 classes (tabela em §4).
-
-Custo em Stamina, Batedor contra as 6 (média e faixa):
-
-| Tipo | Batedor | As 6 |
-|---|---|---|
-| 1 Ação | 2,5 (2–3) | 2,9 (2–5) |
-| Ação Livre | 2 | 3,4 (2–5) |
-| Reação | 2 | 3,4 (2–5) |
-
-As técnicas do Batedor saem mais baratas porque a força dele está no Instinto, não na Stamina. Isso bate com o Vigor 6.
-
-### 7.3 Preço das técnicas novas e mudadas, contra a régua
-
-| Técnica | Entrega | Âncora no sistema |
-|---|---|---|
-| Tocaia | +1d8, condicional, por 2 Stamina | *Destruir*: +1d6 por 2 Stamina, sem condição. Se o alvo está *Exposto*, o acerto já é crítico; o +1d8 não dobra (vem de fora da arma, D97) |
-| Passo em Falso | *Exposto*, sem rolagem, por 1 Ação + 4 Instinto; ~1 por combate | *Ponto Cego* (o original): 1 Ação + 4 Stamina, sem teto. *Brecha* (Espadachim): 1 Ação + 5 Stamina, só depois de acertar. *Marcar*: +5 Éter, se acertar |
-| Por Aqui! | 1 aliado sai sem ataque de oportunidade, por Reação + 2 Stamina | *Batida Tática* (Artilheiro): 1 Ação + 2 Stamina, só para si. *Passo do Vento* (Monge): 3 Fluxo, passivo |
-| Varredura | Acelera a disputa de Furtividade que a regra já faz toda rodada e divide o achado com o grupo | *Leitura de Combate* (General) dá informação de 1 criatura por 1 Ação + 2 Stamina |
-| Sinais | Redireciona um gasto de Instinto para um aliado. Custo zero porque o Instinto já paga | — |
-| Vigia | +2 Percepção só na vigia; o combate da vigia começa mapeado | *Veterano de Guerra* (General T1, passiva): não Desprevenido + Iniciativa |
-| Traçar Rota | O grupo se move sem ataque de oportunidade por 1 turno, numa faixa de 9 m | Entre *Comando Tático* (1 aliado) e *Campo de Batalha* (ultimate, 1 minuto) |
-| Coordenação | +2 numa rolagem, 1 vez por rodada, por 3 Stamina | Taxa baixa: ≈1 de dano por 3 Stamina |
-| Armadilha Tática | Ganha teto de (Nível) armadilhas; com mapa, desvantagem para notar | *Armadilha de Pregos* (Bazar, Incomum): 2d6 Perfurante, reutilizável |
-
-**Rocket tag:**
-- **Três fontes de *Exposto*:** Passo em Falso (~1 por combate), Terror (só no 20 natural, 5% dos ataques) e *Emboscada* (primeira rodada, texto do Pedro).
-- **O laço do Terror fecha.**
-- **Nenhuma fonte amplia margem de ameaça.**
+- **Núcleo, T1 [nova]:** *Bolso Cheio*: "+1 de dano por X Sins que você carrega, máximo +Nível". Duas coisas a calibrar:
+  - **X, que depende de quantos Sins o grupo tem nos níveis 1, 3 e 5.** Pergunta ao Pedro.
+    - X = 50 dá +5 no nível 5 com 250 Sins.
+    - X = 100 dá +5 com 500 Sins.
+    - Âncora: +5 de dano corpo a corpo permanente é carta rara do Limiar (FOR 16+). Com teto = Nível, só chega lá no nível 5 e custa guardar dinheiro em vez de comprar equipamento.
+  - **O grupo pode passar os Sins para ele ("o banco do grupo").**
+    - Proponho aceitar como escolha do grupo, porque o dinheiro parado nele não vira item.
+    - Se não quiser, a regra vira "só contam Sins que você mesmo ganhou", e isso é tracking.
+- **Mapa Valioso [nova]:** a passiva que sobe a raridade do Mapa (ex-*Artista Apaixonado*). Incomum no T1 e Exótico no T2? Com o limite de 1 venda por lugar, a renda depende de explorar lugar novo.
+- **Do Pedro:** Língua Prateada (treinamento em Convencimento + desconto de 10%), Agiota, Conexões Duvidosas, Suborno Irrecusável e Esquemas.
+  - Sobra uma técnica além das vagas, como na rodada 1: uma ultimate só.
+  - Gancho novo: gastar Sins baixa o dano. O Suborno pode passar a custar Sins.
 
 ---
 
-## 8. Teste de sobreposição
+## 6. Decisões para o Pedro (responda por número)
 
-### 8.1 Batedor × Artilheiro (revisado; o de antes está no `13` §Rodada 1)
-
-| Eixo | Batedor novo | Artilheiro | Sobreposição |
-|---|---|---|---|
-| Coeficientes | 5/6/4 | 4/7/4 | **baixa** (era total) |
-| CD | 10 + DES + SAB | 10 + DES + SAB | total (3 classes usam; não define papel) |
-| Arma treinada | À Distância | À Distância | total |
-| Papel | controle de campo e apoio | dano à distância | **nenhuma** |
-| Recurso | Instinto: enche com o mapa, gasta em apoio (Exposto para o grupo, reação extra) | Concentração: enche atirando, gasta em dano próprio | **baixa** |
-| Não ser Desprevenido | o grupo inteiro, com o campo mapeado | só ele, por quem ele vê | **baixa** |
-| Ataque escondido | Sem-Nome corpo a corpo: *Golpe Sombrio*, *Finta* | Predador à distância: *Tiro Camuflado*, *Tiro Predador* | **baixa** (era alta) |
-| Veneno | *Cobra* (cria e aplica na arma) | *Projétil Envenenado* (munição) | parcial |
-| Rastreio | *Leitor de Rastros* | *Marca no Alvo* | parcial |
-
-### 8.2 Batedor × General (ramo do Brutalista), o outro tático do sistema
-
-| Eixo | Batedor | General | Sobreposição |
-|---|---|---|---|
-| Não ser Desprevenido | o grupo, com o campo mapeado | só ele (*Veterano de Guerra*) | parcial |
-| Mover aliados | *Reposicionar* 4,5 m (mapa) · *Por Aqui!* · *Traçar Rota* | *Comando Tático*: movimento inteiro como reação, ou ataque +2, ou Defender +4 | parcial |
-| Bônus de grupo | *Coordenação* +2 numa rolagem; *Exposto* por Passo em Falso | *Formação*: +Atacar / +dano; *Campo de Batalha* +3 | **baixa** |
-| Informação | onde estão os escondidos (*Varredura*) | como está uma criatura (*Leitura de Combate*) | **baixa** |
-| Iniciativa | *Segundo Fôlego* (re-rola, ele ou 1 aliado) | +2 aos aliados no 1º turno | parcial |
-
-**Separação:**
-- **O General manda:** dá ordens, e o aliado age, ataca, se defende melhor.
-- **O Batedor lê o terreno:** ninguém é surpreendido, o grupo anda pelo campo, o inimigo que se move fica exposto.
-
-Um grupo com os dois não tem técnica redundante.
+1. **2ª característica:** A (Atalho, recomendada), B (Esquiva) ou C (Embalo)? E o custo do Atalho, 3 Stamina ou 2?
+2. **Mapa, "aliados próximos":** "que possam te ouvir" ou "a até 9 m"?
+3. **Mapa, benefício só com o mapa no inventário** (vender tira o bônus)?
+4. **Mapa, limite de farm:** "cada lugar rende 1 mapa com valor de venda", com a definição de lugar do Colecionador. Já está no CSV.
+5. **Mapa, tamanho em quadrados e peso:** escrever "~32 × 32 m (21 × 21 quadrados)"? E o peso, 1 por bugiganga ou 10 por bugiganga?
+6. **As 15 técnicas de §4**, em especial as 3 novas (Mirante, Rasgar o Mapa, Rolamento) e a saída pelo *Terreno Ideal*: desenhar o mapa com 3 Ações.
+7. **Artista Apaixonado → Trambiqueiro**, como a passiva de raridade do Mapa.
+8. **Ladino:** treinamento em Crime ou em Furtividade? E "acompanhar os outros ramos" são as pontes com Sins e mapas?
+9. **Trambiqueiro:** quantos Sins um grupo costuma ter nos níveis 1, 3 e 5? É isso que calibra o *Bolso Cheio*. O "banco do grupo" é permitido?
+10. **Nomes da rodada 1 que ficam:** Leitor de Rastros (ex-Caçador) e Tocaia (ex-Oportunista).
 
 ---
 
-## 9. Decisões para o Pedro (responda por número)
+## 7. Depois do aceite
 
-1. **Papel e as duas características** (§1, §3): tático de campo, com Mapa de Combate + Instinto refeito. Recomendo aceitar. É o que dá identidade de combate à classe.
-2. **Coeficientes 5/6/4** (§2). Recomendo.
-3. **Lista de perícias** + Movimento e Investigação (§2). Opcional.
-4. **Pressentimento "depois de rolar o dado"** (§3). Recomendo. Hoje o texto não diz quando se declara.
-5. **Renomes forçados por colisão:**
-   - Sexto Sentido → *Olhos nas Costas* (carta do Limiar SAB 16+);
-   - Oportunista → *Tocaia* (Espadachim);
-   - Ponto Cego → *Passo em Falso* (truque);
-   - Caçador → *Leitor de Rastros* (origem).
-   Os nomes são sugestão minha; se preferir outros, só dizer.
-6. **Segundo Fôlego "ou um aliado"** (§3). Recomendo.
-7. **As 4 técnicas gerais novas** (Vigia, Sinais, Varredura, Por Aqui!) e as **4 que saem** (Curioso, Mãos Rápidas, Sigiloso, Saque) (§4, §6).
-8. **Sem-Nome de curta distância** (Golpe Sombrio "corpo a corpo"). Separa o Sem-Nome do Predador do Artilheiro. Recomendo.
-9. **Cobra × D72.** A Cobra cria veneno próprio: é técnica, não item do Bazar. A D72 travou os *itens* de veneno na Alquimia.
-   - Recomendo manter a Cobra como está, só com a D116 e a D57 escritas. Você já confirmou a leitura dela na D116.
-   - A alternativa respeita a D72 ao pé da letra: a Cobra vira "aplicar veneno comprado custa ação livre, + Fortitude contra sua CD ou *Envenenado*".
-10. **Terror só no 20 natural** (§5.3). Corrige o laço infinito. Recomendo.
-11. **Uma ultimate no Trambiqueiro.**
-    - Recomendo: **Suborno Irrecusável** fica ultimate, porque é a que muda o combate. **Esquemas** desce para o T2 como "1 vez por descanso longo". Saem *Olho no Lance* e *Cara de Pau*, absorvidos pela Língua Prateada.
-    - Alternativa: Esquemas fica ultimate e Suborno desce para o T2.
-    - Ou você mantém as duas, e o Trambiqueiro fica como exceção ao padrão.
-12. **Economia no teto de 10%:** Língua Prateada 25% → 10%; Agiota 20% → 10%; saem o +20% de Sins do Olho no Lance e o Saque.
-13. **Homem de Negócios:** falta o fim da frase "Você possui um disturbio de mat…".
-14. **Colecionador de Horizontes com teto de +5 de Stamina máxima.** Pode ser +10, que é o preço de uma carta universal do Limiar.
-15. **Senhor das Linhas:** sai "Não pode ser flanqueado", porque não há regra de flanco; a armadilha do *Criar Armadilha* passa a causar dano Perfurante.
-16. **Opcional, criação minha: uma técnica de combate no Trambiqueiro**, no lugar do Agiota.
-    - Texto: **Olha Ali! (1 Ação, 2 Stamina)**: "Role *Enganação* contra a *Percepção* de uma criatura que possa te ouvir. Sucesso: até o fim da rodada, ela não pode retaliar o próximo ataque de um aliado seu."
-    - Só se você quiser o Trambiqueiro também no combate. Sem ela, o combate dele vem do kit da classe.
-
----
-
-## 10. Depois do aceite
-
-1. Gravar no Notion (`8706e3a4…`), com `update_content` e `old_str` exato, em blocos por seção:
-   - Status iniciais;
-   - Treinamento;
-   - a característica nova antes de "# Técnicas:";
-   - tabela de técnicas;
-   - Instinto;
-   - Marcas;
-   - Tier 1, Tier 2 e Tier 3.
-2. Conferir cada bloco por fetch.
-3. Rodar o diff contra o retrato de antes: `python3 scripts/log-tecnicas/ndiff.py references/batedor-notion-antes-do-rework.txt <dump novo>`.
-4. **Log do novo Batedor para o agente de HTML** no `17` §3, com a tabela de §6 como índice do que mudou.
-5. Para a ficha digital: contrato rev. 11 no bloco `classes.batedor`. O rascunho abaixo fica aqui até o aceite:
-   - `V/G/R 5/6/4`;
-   - um estado de combate `campoMapeado` (sim/não);
-   - o Instinto com ganhos e perdas novos;
-   - os gastos por id.
-6. A `log-tecnicas-respostas.json` tem 5 achados do Batedor em `pedroDecide` (Revisão 3). Eles se fecham com o log.
-
-```json
-"batedor": {
-  "V": 5, "G": 6, "R": 4,
-  "estados": [{"id": "campoMapeado", "tipo": "booleano", "escopo": "combate",
-               "liga": ["observou 1 min antes", "Mapa de Exploração da região", "1 Ação + 2 Stamina", "Vigia", "Emboscada", "Terreno Ideal (ação livre)"],
-               "efeitos": ["grupo que te ouve: imune a Desprevenido", "+1 Instinto no início do seu turno"]}],
-  "recursos": [{"id": "instinto", "max": 5,
-                "ganhos": [{"gatilho": "inicioDoTurno", "requer": "campoMapeado", "valor": 1},
-                           {"gatilho": "acerto", "valor": 1, "limite": {"n": 1, "por": "novaRodada"}},
-                           {"gatilho": "esquiva", "valor": 1, "limite": {"n": 1, "por": "novaRodada"}},
-                           {"gatilho": "sucessoEmPericia", "exceto": ["atacar", "defender"], "valor": 1,
-                            "limite": {"n": 1, "por": "novaRodada"}, "limite2": {"n": 1, "por": "cena", "escopo": "porPericia"}}],
-                "perdas": [{"gatilho": "condicao:desprevenido", "efeito": "zera"},
-                           {"gatilho": "danoMaiorQueMetadeDaVidaMax", "efeito": "perdeMetadeArredondandoParaCima"},
-                           {"gatilho": "10minSemGanhar", "efeito": "zera"}],
-                "gastos": {"pressentimento": "X", "olhos-nas-costas": 2, "segundo-folego": 3, "passo-em-falso": 4, "instinto-reativo": 5}}]
-}
-```
+1. Escrever os 3 ramos inteiros, no padrão do `19` §8.
+2. Proposta final.
+3. Notion (`8706e3a4…`), com `update_content` em blocos, e fetch.
+4. `scripts/log-tecnicas/ndiff.py` contra o retrato de antes.
+5. Log do novo Batedor no `17` §3.
+6. Contrato rev. 11, bloco `classes.batedor`: `V/G/R 3/8/4`, a CD com escolha, o estado "na área de um mapa seu" e a 2ª característica. O recurso `instinto` sai.
+7. Os 5 achados do Batedor em `pedroDecide` se fecham com o log.

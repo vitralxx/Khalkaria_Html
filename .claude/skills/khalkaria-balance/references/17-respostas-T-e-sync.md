@@ -66,6 +66,20 @@ Fora das perguntas, no mesmo dia: a **D76** (escada de poção, decisão do Pedr
 
 ---
 
+### 1d. Quarta leva (2026-09-28, tarde)
+
+Mensagem do Pedro, verbatim (parte das poções e da loja): *"Poção de vigor moderada, pode botar no nível 2 do alquimista com cd 12 e 4 reagentes. Assemelhe o napalm do csv com o da tabela, o da tabela parece estar mais completo. Loja no site, só comite em algum lugar que o agente html vera."*
+
+A parte do Batedor, verbatim, está em `18-batedor-rework.md` §0.
+
+| Tema | Decisão |
+|---|---|
+| Poção de Vigor Moderada | **D127** Nível 2, 4 Reagentes, CD 12. Gravado na tabela do Alquimista (Curativos, depois da Poção de Cura Moderada) e no CSV. |
+| Napalm | **D128** o CSV já tinha "Napalm Alquímico" igual ao da tabela. A variante "Napalm Alquímico (área)" era a cópia incompleta e saiu do CSV. |
+| Café Preto | **D129** o Pedro mudou para 5 Reagentes na tabela do Notion (12:58). O CSV acompanhou. |
+| Loja no site | **D130** já estava registrada pelo agente de HTML: CHANGELOG da main (Planejado) e plano M8 (`c28a6a5`, `5042ee3`). Nada a commitar. **Ele mandou a rodada 6 (C2–C11) ao balanceamento, ainda sem resposta.** |
+| Batedor | **D131–D133** 3/8/4, treinamento, CD 10 + DES + (SAB ou INT), característica Mapa, Instinto sai, item Mapa no Bazar, alterar d20 reservado ao Xamã. Proposta da rodada 2 em `18`, com 10 decisões. |
+
 ## 2. Andamento (2026-09-28, fim da rodada)
 
 ### Notion: tudo gravado e conferido por fetch
@@ -106,6 +120,16 @@ Só mudou o que está aqui; nada mais nas páginas.
 - **Alquimista:** tabela de itens, +18 itens e 4 cabeçalhos "Bebidas" (+132 linhas, nenhuma removida): Nível 1: Peçonha de Caçador, Sonífero Rústico (Venenos), Vinho Aguado, Cerveja de Taverna (Bebidas); Nível 2: Elíxir de Éter Menor (Curativos), Óleo Sagrado (Elixir e Óleo), Comida Alquímica (Utilidades), Veneno de Lâmina Comum (Venenos), Aguardente de Raiz, Destilado de Arremesso (Bebidas); Nível 3: Elíxir de Éter Moderado, Elixir da Expurgação (Curativo), Café Preto, Licor de Ferro (Bebidas); Nível 4: Toxina do Esquecimento, Veneno da Viúva Pálida (Venenos), Fermentado do Abismo, Última Rodada (Bebidas). Texto do CSV, sem a frase de peso "Empilhável".
 - **CSV** (2 cópias): "Lágrimas do Tempo" → "Lágrima do Tempo" (nome e a menção na Lágrima de Velúria). **Efeitos rev. 8** (id `item-lagrima-do-tempo`), **contrato rev. 10** (`turno.acaoLivreCustoVariavel`), **16 Revisão 3**, `alquimista-notion.json` regerado da página (113 itens).
 
+### Quarta leva (2026-09-28, tarde): gravado e conferido
+- **Alquimista (Notion):** + linha "Poção de Vigor Moderada | Recupera 2d6 de Stamina. | 4 | 12" no Nível 2 (Curativos). Fetch + diff: só essa linha.
+- **CSV (2 cópias, 727 itens):**
+  - Poção de Vigor Moderada: 4 Reagentes, CD 12;
+  - Café Preto: 5 Reagentes;
+  - sai "Napalm Alquímico (área)";
+  - entra "Mapa" (Bugiganga, Ordinário, "Batedor · Loja").
+- **Conferência por script:** tabela 114 × CSV 114, sem diferença de Reagente ou CD (`scripts/classes/alquimista_tabela.py`).
+- **Arquivos:** `alquimista-notion.json` (114) e efeitos **rev. 9** (sai `item-napalm-alquimico-area`; entra `item-mapa` em semEfeitoNaFicha).
+
 ### Rework do Batedor (2026-09-28): proposta, nada no Notion
 - **`18-batedor-rework.md`** reúne:
   - papel;
@@ -131,11 +155,13 @@ Só mudou o que está aqui; nada mais nas páginas.
 
 ### Perguntas que continuam com o Pedro
 (As respondidas estão em §1, §1b e §1c.)
-1. **Poção de Vigor Moderada:** hoje 2 Reagentes e CD 10, o custo da Poção de Vigor comum, que cura a metade. Proposta: 4 Reagentes e CD 12, como a Poção de Cura Moderada (CSV e tabela da classe).
-2. **Napalm Alquímico (área):** é o Napalm da tabela sem o arremesso de 9 m e sem o Reflexo para metade, com 1 Reagente a menos e o mesmo preço. Fica, sai do CSV, ou ganha uma diferença?
-3. **Do lote anterior:** L14, L35, L39.
-4. **Batedor:** proposta em `18-batedor-rework.md`, esperando as respostas às 16 decisões de §9. Depois:
-   Notion, diff contra o retrato e log do novo Batedor aqui em §3.
+1. **Do lote anterior:** L14, L35, L39.
+2. **Batedor, rodada 2:** `18-batedor-rework.md` §6 (10 decisões; a principal é a 2ª característica). Depois:
+   ramos completos, Notion, diff contra o retrato e log do novo Batedor aqui em §3.
+3. **Rodada 6 do agente de HTML (Comerciantes, C2–C11)**, no `docs/ficha-digital/02-plano.md` §10 da main. Várias
+   perguntas são regra nova (quem compra o quê, raridade da loja, subida de nível, preço rolado) e vão ao Pedro como Tn.
+   Continuam abertos também o Bloco C e as erratas do mesmo §10.
+4. **Pendente do Pedro:** levar as outras classes a 7 opções de perícia (D133).
 
 ---
 
@@ -149,6 +175,7 @@ Tudo o que mudou no Notion desde o último sync do site. Regerar `data/*.json` e
 - **2026-09-28**: §2 acima: Sistema, Magias, Espadachim, Brutalista, Teurgo, Monge, Alquimista, Artilheiro, Autômato, Caçador, Mineiro.
 - **2026-09-28, segunda leva**: §2 "Segunda leva": Alquimista (Cartucho e 4 poções da D76), Caçador, Sistema, Magias, Condições.
 - **2026-09-28, terceira leva**: §2 "Terceira leva": Corrompido (As Vozes), Sistema (ação livre de custo variável), Alquimista (+18 itens na tabela). Regerar Raças (Corrompido), Sistema, Alquimista e o Bazar (nome da Lágrima do Tempo).
+- **2026-09-28, quarta leva**: Alquimista (+ Poção de Vigor Moderada no Nível 2). Regerar Alquimista e o Bazar (3 itens mudam, Napalm (área) sai, Mapa entra).
 
 ### 3.2 Edições do Pedro (vistas nos fetches de 2026-09-28)
 - **Brutalista, Muralha Viva:** 2º item agora "Você recebe+1 na perícia *Defender* a cada treinamento dessa perícia." (era "O treinamento da sua perícia Defender aumenta de 3 em 3 (Ao invés de 2 em 2)").
@@ -159,6 +186,7 @@ Tudo o que mudou no Notion desde o último sync do site. Regerar `data/*.json` e
 - **Alquimista, tabela de itens:** Veneno Hemorrágico "3 ataques. +1d6 Biológico. Alvo recebe Sangramento 3 no terceiro ataque."
 - **Gruto, Língua Bifurcada:** "Criaturas Predáveis" → "Dryads e Animais selvagens".
 - **Monge, Forma do Vazio:** "(Role 1d10 → ≤5 = Acerta)". A minha gravação desse trecho tinha falhado; a mudança é do Pedro.
+- **Alquimista, tabela, Café Preto:** Reagentes 4 → 5 (fetch das 12:58). O CSV acompanhou (D129).
 
 ### 3.3 Arquivos de dado desta rodada
 - `ficha-digital-regras.json` **rev. 8**: atenção à mudança de tipo em `recursos.atributoCuraItemSemFabricante` (número 0 → string "mediaDaRaridade") e ao campo novo `recursos.atributoCuraItemMediaDaRaridade`. `recursoDeClasse` do Espadachim e do Teurgo deixou de pedir contador livre.
@@ -169,10 +197,11 @@ Tudo o que mudou no Notion desde o último sync do site. Regerar `data/*.json` e
 - **Segunda leva:** `ficha-digital-regras.json` **rev. 9**: `recursos.atributoCuraItemMediaDaRaridade` canônico (sem `pergunta`/`provisorio`); `taxonomiaDeCondicao.mental` canônico, com fonte na página Condições; `magia.requisitos.dispensa` novo (regra da D123 e 3 casos); `magia.requisitos.motivo` reescrito (a leitura "Cultista e Corrompido conjuram sem o gate" caiu). `ficha-efeitos-itens.json` **rev. 7**: convenção `maisInt` com a tabela; pendência 12 resolvida. `log-tecnicas-respostas.json` **Revisão 2**: campos `statusRev1`, `revisao2`, bloco `revisao2`, `contagemRev1`.
 - **Grupo "mentais" do site:** a lista canônica (D122) é Enfeitiçado, Amedrontado, Confuso e Atordoado; o grupo da página de Condições tem Descontrolado e Bêbado e não tem Atordoado. Alinhar é decisão do site; imunidade e remoção de "condição mental" usam a lista canônica.
 
+- **Quarta leva:** `ficha-efeitos-itens.json` **rev. 9**: sai `item-napalm-alquimico-area`, entra `item-mapa` (sem efeito na ficha). `Bazar_Khalkaria_v26.csv`: 2 células (Poção de Vigor Moderada, Café Preto), 1 linha fora, 1 linha nova. O contrato não mudou.
 - **Terceira leva:** `ficha-digital-regras.json` **rev. 10** (`turno.acaoLivreCustoVariavel` novo); `ficha-efeitos-itens.json` **rev. 8** (id `item-lagrimas-do-tempo` → `item-lagrima-do-tempo`); `log-tecnicas-respostas.json` **Revisão 3** (`statusRev2`, `revisao3`, bloco `revisao3`, `contagemRev2`); `Bazar_Khalkaria_v26.csv` (2 células).
 
 ### 3.4 Pedido do Pedro para o CHANGELOG do site
-O Pedro pediu (2026-09-28): *"bote no changelog a possiblidade de fazer uma função de comerciante no site html, simplfica para a sessão eu poder abrir uma loja na hora e mostrar aos jogadores na tela."* O `CHANGELOG.md` é do agente de HTML e fica na main; este branch não mexe nele. Texto pronto para colar no topo:
+O Pedro pediu (2026-09-28): *"bote no changelog a possiblidade de fazer uma função de comerciante no site html, simplfica para a sessão eu poder abrir uma loja na hora e mostrar aos jogadores na tela."* O `CHANGELOG.md` é do agente de HTML e fica na main; este branch não mexe nele. **Resolvido (D130):** o agente de HTML já registrou o pedido no CHANGELOG da main (Planejado, "Comerciantes") e no plano M8. O texto abaixo fica só como histórico:
 
 ```markdown
 ## Não lançado

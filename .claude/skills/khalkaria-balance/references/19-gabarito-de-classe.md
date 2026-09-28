@@ -87,16 +87,20 @@ de texto são decisões já gravadas (D57, D97–D101, D126, L29).
 | Brutalista | 8/4/3 | tanque |
 | Espadachim | 6/6/3 | duelista |
 | Monge | 5/5/5 | equilibrado |
-| **Batedor (proposta)** | **5/6/4** | tático de campo |
 | Alquimista | 4/6/5 | suporte de recurso |
 | Artilheiro | 4/7/4 | dano à distância |
+| **Batedor (Pedro, 2026-09-28)** | **3/8/4** | explorador frágil, evasivo e preventivo |
 | Teurgo | 3/3/9 | conjurador |
 
 **Regra: cada classe tem o seu trio.** Se duas classes dividem o trio, dividem também a curva de
 sobrevivência e de recurso, e aí só o papel as separa (foi o erro do Batedor 4/7/4).
 
-As faixas em uso vão de 3 a 8 em Vitalidade, de 3 a 7 em Vigor e de 3 a 9 em Ressonância. Dentro delas
-sobram **17 trios livres**; exemplos: 7/4/4, 6/5/4, 6/4/5, 5/7/3, 4/5/6, 3/6/6 e 3/4/8.
+As faixas em uso vão de 3 a 8 em Vitalidade, de 3 a 8 em Vigor e de 3 a 9 em Ressonância. Dentro delas
+sobram **19 trios livres**; exemplos: 7/4/4, 6/5/4, 6/4/5, 5/7/3, 4/5/6, 3/6/6 e 3/4/8.
+
+**Coeficiente baixo exige compensação escrita.** O Batedor 3/8/4 tem a Saúde do Teurgo; a 2ª característica
+dele precisa pagar isso com mobilidade e defesa (Pedro: *"Preciso de algo que dê mobilidade e a defesa que o
+batedor pede com o nerf em vitalidade"*).
 
 **CD** = 10 + dois modificadores de atributo, os que a classe usa.
 
@@ -106,14 +110,18 @@ sobram **17 trios livres**; exemplos: 7/4/4, 6/5/4, 6/4/5, 5/7/3, 4/5/6, 3/6/6 e
 | (DES ou FOR) + CON | Espadachim |
 | INT + SAB | Teurgo |
 | INT + DES | Alquimista |
-| DES + SAB | Monge, Artilheiro, Batedor |
+| DES + SAB | Monge, Artilheiro |
+| DES + (SAB ou INT) | Batedor (Pedro, 2026-09-28) |
 
-A CD não precisa ser única: ela não define papel.
+A CD não precisa ser única: ela não define papel. **CD com escolha** ("SAB ou INT") deixa o jogador subir
+o atributo que preferir; o atributo fixo (DES) é o que diferencia a classe. Vale a PD7: maior, com escolha
+de mudar.
 
 **Treinamento:**
 - 1 categoria de arma (Marciais, À Distância, Místicas) ou nenhuma, como o Brutalista e o Alquimista.
 - 2–3 perícias fixas.
-- (1 + Mod. INT) perícias de uma lista de 5–7.
+- (1 + Mod. INT) perícias de uma lista. Hoje 5 em todas; o Batedor passa a 7, e o Pedro vai levar as
+  outras classes a 7 depois (pendente).
 - Uma perícia fixa da classe não deve repetir a perícia de treinamento do 1º T1 de um ramo. Se repetir,
   o ramo sobe a perícia para Experiente, e isso é aceitável.
 
@@ -127,7 +135,7 @@ A CD não precisa ser única: ela não define papel.
 
 | Formato | Classes |
 |---|---|
-| 1 traço + 1 mecânica | Espadachim (Proficiência com Espadas + Marca do Duelo), Monge (Arma Humana + Fluxo), Batedor proposto (Mapa de Combate + Instinto) |
+| 1 traço + 1 mecânica | Espadachim (Proficiência com Espadas + Marca do Duelo), Monge (Arma Humana + Fluxo), Batedor (Mapa + a 2ª em escolha: `18` §3) |
 | Só 1 | Brutalista (Brutalidade), Teurgo (Escolas do Primórdio), Alquimista (Bolsa de Reagentes), Artilheiro (Concentração) |
 
 **A característica é o que puxa as técnicas.** Técnicas gerais que citam a característica (script em §10):
@@ -142,12 +150,24 @@ A CD não precisa ser única: ela não define papel.
 | Brutalista | 1 |
 
 A exceção é o Brutalista: a Brutalidade é passiva e as técnicas conversam com o corpo a corpo em geral.
-**Alvo: 7–13 das 15.** O Batedor proposto tem 9, mais 2 indiretas.
+**Alvo: 7–13 das 15.** O Batedor proposto tem 9 ligadas à área do mapa.
+
+**A característica é a base dos 3 ramos** (Pedro, 2026-09-28): *"as caracteristicas de classe muitas vezes
+servem com uma base a serem trabalhadas pelas técnicas e ramos, essa característica é abrangente o suficiente
+para conseguirmos moldar 3 ramos claros"*. Teste: cada ramo consegue ter uma técnica que usa a característica
+de um jeito que os outros dois não usam? (No Batedor: o Cartógrafo aumenta o mapa, o ladino se move nele e o
+Trambiqueiro vende o mapa.)
+
+**Preferência do Pedro para característica nova:** mais forte que um contador, com pouco tracking e **sem
+tabela** (*"algo mais forte do que o instinto que não exija tanto tracking e sem tabelas"*).
+
+**Espaço de desenho reservado:** alterar o d20 (rerrolar, trocar o resultado) é do **Xamã** (Pedro,
+2026-09-28). Classe nova não usa.
 
 **Escala por nível** quando a característica dá bônus fixo. A Marca do Duelo dá +1/+2/+3 nos níveis 1, 3
 e 5; a Proficiência com Espadas ignora Ar igual ao nível.
 
-**Carga de mesa.** Prefira um estado sim/não (Marca ativa, campo mapeado) ou um contador único com teto
+**Carga de mesa.** Prefira um estado sim/não (Marca ativa, "na área de um mapa seu") ou um contador único com teto
 baixo. O Pedro já matou técnica boa por ser impossível de acompanhar com 10 inimigos (*Leitura de
 Batalha*).
 
@@ -162,7 +182,7 @@ Tirada dos recursos que funcionam e do que quebrou o Instinto (`13` §Rodada 1):
 | Fluxo (Monge) | acerto 2×, esquiva, condição, mover | dano que zera, 1 rodada sem ganhar, fim do combate (L23) | 5 | ~2 rodadas |
 | Brutalidade | levar 5+ de dano de uma fonte | fim do combate | 5 | ~2–3 |
 | Concentração (Artilheiro) | acerto +1, crítico +2, mirar +2, parado +1 | dano −1, mover −1, falhar resistência −2, aliado cai −3 | 3 + SAB | ~2 |
-| **Instinto proposto** | mapa +1 por turno, acerto, esquiva, perícia (fora Atacar e Defender) | Desprevenido zera; dano > ½ tira metade; 10 min sem ganhar zera | 5 | 52–90% até a R3 |
+| Instinto da rodada 1 (descartado pelo Pedro) | mapa +1 por turno, acerto, esquiva, perícia (fora Atacar e Defender) | Desprevenido zera; dano > ½ tira metade; 10 min sem ganhar zera | 5 | 52–90% até a R3 |
 
 - **R1.** O ganho vem do que a classe **quer** fazer.
 - **R2.** Falha de dado nunca zera o recurso. Zerar só vem de fim de cena ou de falha tática clara, como
@@ -187,7 +207,7 @@ A Concentração não dizia qual era, e isso virou o achado C15. Toda classe nov
 característica.
 
 **Como medir:** Monte Carlo com semente fixa e 200 mil combates. O modelo está em
-`references/batedor-sim-instinto-rework.py`. Ele mede:
+`references/batedor-sim-instinto-rework.py` (o Instinto da rodada 1; o recurso saiu, o modelo de simulação fica). Ele mede:
 - P(teto) por rodada;
 - sensibilidade ao parâmetro mais incerto;
 - usos por combate do gasto mais forte.
@@ -210,7 +230,7 @@ do Notion em 2026-09-28).
 | Alquimista | 7 | 5 | 0 | 1 | 0 | 2 |
 | Artilheiro | 5 | 7 | 0 | 2 | 1 | 0 |
 | **Média** | **6,3** | **4,3** | **1,5** | **1,3** | **0,7** | **0,8** |
-| Batedor proposto | 6 (+1 "Passiva ou 1 Ação") | 4 | 2 | 1 | 0 | 1 |
+| Batedor proposto (rodada 2) | 4 (+1 "Passiva ou 1 Ação") | 5 | 3 | 1 | 0 | 1 |
 
 **Custo em Stamina** (média, faixa):
 
@@ -278,7 +298,7 @@ cobre, não fazer a mesma coisa melhor.
 | Monge | mobilidade e defesa (Fluxo) |
 | Alquimista | recurso e item |
 | Artilheiro | dano à distância |
-| Batedor (proposta) | terreno e informação (campo mapeado, anti-emboscada, *Exposto* por movimento) |
+| Batedor (proposta) | exploração que vira poder de combate: mapa, anti-emboscada, mobilidade |
 
 Ainda livres para as classes novas: cura dedicada, invocação ou controle de mortos, maldição, forma
 animal.
