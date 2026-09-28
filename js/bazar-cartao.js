@@ -70,7 +70,7 @@
   }
   function medalhao(it) {
     if (it.arte) return U.arte(it, 'bz-ct-ico');
-    return '<span class="bz-ct-med">' + U.svg(U.icoCat(it)) + '</span>';
+    return '<span class="bz-ct-med">' + U.svg((U.icoItem || U.icoCat)(it)) + '</span>';
   }
   // parte estática, em cache por id
   function cartaoHTML(id) {

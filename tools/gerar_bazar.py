@@ -21,6 +21,9 @@ Cada item ganha também `inv` (como se comporta no inventário, lido do Efeito:
 slot, empilhavel, armadura, capacidade/acumula, ocupa, recipiente). Frase de
 inventário que não casa com o esperado é FALHA (sai com código 1, nada gravado).
 
+E `glifo`: o símbolo do medalhão do card (espada, arco, anel, poção…), escolhido
+pelo nome, arquétipo ou tag (GLIFO_NOME/GLIFO_ARQ/GLIFO_TAG); '' = glifo da categoria.
+
 Nome corrigido no CSV muda o id (slug do nome): data/bazar-renomeados.json
 guarda {id antigo: novo} e o item atual ganha `idsAntigos`/`nomesAntigos`, que a
 ficha e o Bazar usam para resolver ficha salva ou link com o id antigo.
@@ -320,6 +323,127 @@ def carrega_arte():
     return out
 
 
+# ---------------------------------------------------------------- glifo do item
+# O medalhão do card mostra o glifo do ITEM (espada, arco, anel, poção…); o chip
+# de categoria continua com o glifo do grupo. Ordem: nome (o sinal mais forte do
+# item individual) -> arquétipo/tag -> '' (a página cai no glifo da categoria).
+# Os símbolos vivem no sprite do templates/bazar.template.html; glifo sem símbolo
+# é FALHA. Material (tem arte própria) e Lixo ficam no glifo da categoria.
+_ARMAS = {'Arma', 'Munição', 'Item Mágico', 'Armadura', 'Escudo'}
+GLIFO_NOME = [   # (regex no nome sem acento e minúsculo, glifo, categorias ou None)
+    (r'^shuriken', 'g-shuriken', None),
+    (r'duas cabecas', 'g-machado-duplo', None),
+    (r'gancho|^arpeu', 'g-gancho', None),
+    (r'^(adagas?|punhal|agulha|agulhao)\b', 'g-adaga', _ARMAS),
+    (r'^(rapieira|florete|sabre)\b', 'g-rapieira', _ARMAS),
+    (r'^cimitarra\b', 'g-cimitarra', _ARMAS),
+    (r'^maca\b', 'g-maca', _ARMAS),
+    (r'^(mangual|grilhoes|correntes?)\b', 'g-mangual', _ARMAS),
+    (r'^(martelo|marreta|malho|picareta)\b', 'g-martelo', _ARMAS),
+    (r'^(machado|machadinhas?|guilhotina)\b', 'g-machado', _ARMAS),
+    (r'^lanca\b', 'g-lanca', _ARMAS),
+    (r'^(alabarda|guisarma|glaive)\b', 'g-alabarda', _ARMAS),
+    (r'^(foices?|ceifadora)\b', 'g-foice', _ARMAS),
+    (r'^cajado\b', 'g-cajado', _ARMAS),
+    (r'^(bordao|bastao)\b', 'g-bastao', _ARMAS),
+    (r'^arco\b', 'g-arco', _ARMAS),
+    (r'^(besta|balestra)\b', 'g-besta', _ARMAS),
+    (r'^(bacamarte|canhao|expurgador)\b', 'g-arcabuz', _ARMAS),
+    (r'^(facas|dardos)\b', 'g-arremesso', _ARMAS),
+    (r'^(manoplas?|luvas?|garras?|punho)\b', 'g-luva', None),
+    (r'^(capacete|elmo)\b', 'g-elmo', None),
+    (r'^(coroa|diadema)\b', 'g-coroa', None),
+    (r'^mascara\b', 'g-mascara', None),
+    (r'^(anel|dedal)\b', 'g-anel', None),
+    (r'^(amuleto|colar|talisma|broche|sigilo|selo)\b', 'g-amuleto', {'Armadura', 'Item Mágico'}),
+    (r'^(pulseira|bracelete|bracadeiras?|tornozeleira)\b', 'g-bracadeira', None),
+    (r'^(botas|calcados|sandalias|grevas)\b', 'g-bota', None),
+    (r'^(capa|manto|veu|agasalho)\b', 'g-capa', {'Armadura', 'Item Mágico', 'Bugiganga'}),
+    (r'^(cinto|cinturao)\b', 'g-cinto', None),
+    (r'^olho\b', 'g-olho', None),
+    (r'^(lente|oculos)\b', 'g-lente', None),
+    (r'^luneta\b', 'g-luneta', None),
+    (r'^(armadura|cota|peitoral|gambeson|couro batido|carapaca)\b', 'ico-armadura', None),
+    (r'^egide\b', 'ico-escudo', None),
+    (r'^pergaminho\b', 'g-pergaminho', None),
+    (r'^pocao\b', 'g-pocao', None),
+    (r'^(elixir|extrato|essencia|soro|mutagenico|tonico)\b', 'g-elixir', None),
+    (r'^(veneno|toxina|peconha|sonifero|paralisia|amnesia)\b', 'g-veneno', None),
+    (r'^(bomba|granada|coquetel|carga)\b', 'g-bomba', None),
+    (r'^(cerveja|vinho|aguardente|licor|cafe|cha|fermentado|destilado)\b', 'g-caneca', None),
+    (r'^oleo\b', 'g-oleo', None),
+    (r'^(pao|comida)\b', 'g-comida', None),
+    (r'^(bandagem|atadura|emplastro)\b', 'g-bandagem', None),
+    (r'^(kit|ferramentas)\b', 'g-kit', None),
+    (r'^lanterna\b', 'g-lanterna', None),
+    (r'^(tocha|isqueiro)\b', 'g-tocha', None),
+    (r'^(vela|cirio)\b', 'g-vela', None),
+    (r'^(mochila|bolsa|saco de dormir)\b', 'g-mochila', None),
+    (r'^(chave|gazua|algemas)\b', 'g-chave', None),
+    (r'^(pena|tinta \+ pena)\b', 'g-pena', None),
+    (r'^bussola\b', 'g-bussola', None),
+    (r'^espelho\b', 'g-espelho', None),
+    (r'^(bigorna|forja)\b', 'g-bigorna', None),
+    (r'^(sino|apito)\b', 'g-sino', None),
+    (r'^corda\b', 'g-corda', None),
+    (r'^(armadilha|torreta)\b', 'g-armadilha', None),
+    (r'^frasco vazio', 'ico-consumivel', None),
+]
+GLIFO_ARQ = {   # Arma e Munição, pelo arquétipo (Foco Místico cai no cajado)
+    'Arma': {'Leve Cortante': 'g-cimitarra', 'Leve Perfurante': 'g-adaga',
+             'Leve Contundente': 'g-maca', 'Leve Ágil': 'g-rapieira',
+             'Marcial Precisa': 'g-espada', 'Marcial Versátil': 'g-espada',
+             'Marcial Longa': 'g-lanca', 'Marcial Pesada': 'g-martelo',
+             'Pesada Brutal': 'g-machado-duplo', 'Pesada Contundente': 'g-martelo',
+             'Pesada Cortante': 'g-machado', 'Pesada Perfurante': 'g-alabarda',
+             'Distância Simples': 'g-arco', 'Distância Pesada': 'g-besta',
+             'Arremesso': 'g-arremesso'},
+    'Munição': {'Distância Pesada': 'g-balas', 'Arremesso': 'g-arremesso'},
+}
+GLIFO_TAG = {   # Consumível e Bugiganga, pela 1ª tag que casar, nesta ordem
+    'Consumível': [('Pergaminho', 'g-pergaminho'), ('Veneno', 'g-veneno'), ('Elixir', 'g-elixir'),
+                   ('Bebida', 'g-caneca'), ('Óleo', 'g-oleo'), ('Arremesso', 'g-bomba'),
+                   ('Ofensivo', 'g-bomba'), ('Curativo', 'g-pocao'), ('Médico', 'g-kit')],
+    'Bugiganga': [('Luz', 'g-lanterna'), ('Armazenamento', 'g-mochila'), ('Crime', 'g-chave'),
+                  ('Engenhoca', 'g-engenhoca'), ('Escrita', 'g-pena'), ('Exploração', 'g-bussola'),
+                  ('Ferramentas', 'g-kit'), ('Médico', 'g-kit'), ('Sinalização', 'g-sino'),
+                  ('Travessia', 'g-corda'), ('Armadilha', 'g-armadilha')],
+}
+
+
+def glifo_do_item(nome, cats, arq, tags):
+    cat = cats[0] if cats else ''
+    if not cat or 'Material' in cats or cat == 'Lixo':
+        return ''
+    n = unicodedata.normalize('NFD', nome).encode('ascii', 'ignore').decode().lower()
+    for rx, g, so in GLIFO_NOME:
+        if (so is None or cat in so) and re.search(rx, n):
+            return g
+    if cat == 'Arma' and arq.startswith('Foco Místico'):
+        return 'g-cajado'
+    if arq in GLIFO_ARQ.get(cat, {}):
+        return GLIFO_ARQ[cat][arq]
+    for pref, g in GLIFO_TAG.get(cat, []):
+        if any(t == pref or t.startswith(pref + '/') for t in tags):
+            return g
+    return ''
+
+
+def valida_glifos(itens):
+    """Todo glifo usado por item tem <symbol> no sprite do template."""
+    sprite = set(re.findall(r'<symbol id="([^"]+)"', open(TPL, encoding='utf-8').read()))
+    return [f'glifo "{g}" sem <symbol> no bazar.template.html (itens: {", ".join(ns[:3])})'
+            for g, ns in sorted(_por_glifo(itens).items()) if g not in sprite]
+
+
+def _por_glifo(itens):
+    out = {}
+    for it in itens:
+        if it['glifo']:
+            out.setdefault(it['glifo'], []).append(it['nome'])
+    return out
+
+
 def main():
     rows = list(csv.DictReader(open(CSV, encoding='utf-8')))
     arte = carrega_arte()
@@ -367,12 +491,14 @@ def main():
             'tags': tags, 'lore': (r.get('Lore/Notas') or '').strip(),
             'pai': pai,
             'arte': arte.get(nome, ''),
+            'glifo': glifo_do_item(nome, cats, arq, tags),
             'inv': parse_inventario(efeito, cats, arq, fam),
             'busca': ' '.join([nome, categoria, r.get('Raridade', ''), r.get('Tipo de Craft', ''),
                                regiao, arq, ' '.join(tags), efeito]).lower(),
         })
 
     falhas += validar_inventario(itens, nomes)
+    falhas += valida_glifos(itens)
     falhas += aplica_renomeados(itens)
     condicoes, falhas_cond = carrega_condicoes()
     falhas += falhas_cond
@@ -397,7 +523,9 @@ def main():
     json.dump(itens, open(BJSON, 'w', encoding='utf-8', newline=''),
               ensure_ascii=False, separators=(',', ':'))
     comArte = sum(1 for i in itens if i['arte'])
-    print(f'bazar.json gerado: {len(itens)} itens -> {BJSON} | {comArte} com arte')
+    comGlifo = sum(1 for i in itens if i['glifo'])
+    print(f'bazar.json gerado: {len(itens)} itens -> {BJSON} | {comArte} com arte | '
+          f'{comGlifo} com glifo próprio ({len(_por_glifo(itens))} glifos)')
 
     # vocabulário presente no catálogo, na ordem canônica (a página lê daqui)
     presentes = lambda ordem, chave: [v for v in ordem if any(

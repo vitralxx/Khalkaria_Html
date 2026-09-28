@@ -160,6 +160,8 @@
   }
   function icoRar(r) { return svg('rar-' + semAcento(r || '').toLowerCase()); }
   function icoCat(it) { return ICO[it && it.cats && it.cats[0]] || 'ico-material'; }
+  // glifo do item (espada, arco, anel…) no medalhão; o chip fica com o da categoria
+  function icoItem(it) { return (it && it.glifo) || icoCat(it); }
   // Materiais têm arte própria (images/materiais/*.webp). Quem não tem cai no
   // ícone gravado. O medalhão usa o mesmo fundo em que a arte foi composta,
   // então as imagens sem recorte perfeito não mostram a emenda.
@@ -167,7 +169,7 @@
     if (!it) return '';
     if (it.arte) return '<img class="bz-arte ' + (cls || '') + '" src="../images/' + esc(it.arte) +
       '" alt="" loading="lazy" decoding="async">';
-    return svg(icoCat(it), cls);
+    return svg(icoItem(it), cls);
   }
   function emCampo(el) {
     el = el || document.activeElement;
@@ -1129,7 +1131,7 @@
     dados: { ITENS: ITENS, porNome: porNome, porId: porId, idAtual: idAtual, usadoEm: usadoEm, filhos: filhos },
     util: {
       esc: esc, semAcento: semAcento, svg: svg, arte: arte, classeRar: classeRar,
-      icoCat: icoCat, icoRar: icoRar, ondeAchar: ondeAchar, pesoTexto: pesoTexto,
+      icoCat: icoCat, icoItem: icoItem, icoRar: icoRar, ondeAchar: ondeAchar, pesoTexto: pesoTexto,
       cadeia: cadeia, emCampo: emCampo, kf: kf, raf: raf, $: $, PERICIA: PERICIA
     },
     E: E,
