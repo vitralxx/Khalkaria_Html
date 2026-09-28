@@ -742,6 +742,18 @@ Texto verbatim e detalhes em `17-respostas-T-e-sync.md` §1b. Tudo gravado no No
 - **Pedido ao site:** função de comerciante (abrir loja na sessão e mostrar na tela) no CHANGELOG. O CHANGELOG é do agente de
   HTML, na main; o texto pronto está em `17` §3.4. Não empurro nada na main sem o Pedro autorizar.
 
+## Terceira leva (2026-09-28, madrugada) — D124–D126
+
+Texto verbatim em `17-respostas-T-e-sync.md` §1c. Gravado no Notion e conferido por fetch + diff.
+- **D124** As Vozes (Corrompido): só o 1 natural no **d20**.
+- **D125** O nome é **Lágrima do Tempo** (CSV corrigido; a D75 e o `11-progressao-craft.md` ainda citam "Lágrimas", nome
+  antigo). Os itens de Alquimia do CSV entram na tabela da classe: 18 entraram; a tabela tem 113 e bate com o CSV.
+  Pendentes: **Poção de Vigor Moderada** (2 Reagentes e CD 10 = custo da Poção de Vigor, cura o dobro; erro meu de 24/09,
+  proposta 4 Reagentes e CD 12) e **Napalm Alquímico (área)** (variante mais barata e sem Reflexo do Napalm da tabela).
+- **D126** Ação livre: sem exceção, 1 uso por turno; custo variável se escolhe dentro do uso, até o limite do texto.
+- **Batedor:** o Pedro pediu o rework completo (2 características novas, 15 técnicas gerais, 3 ramos refinados) e a
+  estrutura de criação de classes. Proposta em `18-batedor-rework.md`; só vai ao Notion com aprovação.
+
 ## D68 — O andar de Nível 1 (truques)
 Todas as magias existentes **sobem 1 nível**: as antigas 1–4 viram 2–5. O novo Nível 1 são os
 20 truques. Consequência limpa: a regra do Teurgo deixa de ser "iguais ou abaixo do seu

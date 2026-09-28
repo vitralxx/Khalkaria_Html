@@ -1,7 +1,7 @@
 import json, sys, collections, os
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
-import resp_a, resp_b, resp_c, resp_p, resp_rev1, resp_rev2
+import resp_a, resp_b, resp_c, resp_p, resp_rev1, resp_rev2, resp_rev3
 R = resp_a.R; P = resp_p.P
 REF = os.path.join(HERE, '..', '..', 'references') + os.sep
 ach = json.load(open(os.path.join(HERE, 'log_achados.json'), encoding='utf-8'))
@@ -107,9 +107,23 @@ out['revisao2'] = {'n': 2, 'data': RV2.DATA, 'fonte': '17-respostas-T-e-sync.md 
                    'respostas': [{'tema': a, 'respostaPedro': b, 'decisao': c} for a, b, c in RV2.RESP2],
                    'foraDosAchados': RV2.EXTRA,
                    'abertas': [{'tema': a, 'pergunta': b} for a, b in RV2.ABERTAS2]}
+cnt2 = collections.Counter((v['paraQuem'], v['status']) for v in out['respostas'].values())
+# ---------------- Revisão 3 (2026-09-28): terceira leva (D124–D126) e o pedido do Batedor
+RV3 = resp_rev3
+for i, (st, txt) in RV3.REV3.items():
+    if i not in out['respostas']: sys.exit('REV3 para achado inexistente: ' + i)
+    e = out['respostas'][i]
+    e['statusRev2'] = e['status']; e['status'] = st; e['revisao3'] = txt
+out['geradoEm'] = '2026-09-27; revisões 1, 2 e 3 em ' + RV3.DATA
+out['revisao3'] = {'n': 3, 'data': RV3.DATA, 'fonte': '17-respostas-T-e-sync.md §1c (terceira leva, D124–D126)',
+                   'campos': 'respostas[id].statusRev2 = status antes da revisão 3; respostas[id].revisao3 = o que mudou',
+                   'respostas': [{'tema': a, 'respostaPedro': b, 'decisao': c} for a, b, c in RV3.RESP3],
+                   'foraDosAchados': RV3.EXTRA3,
+                   'abertas': [{'tema': a, 'pergunta': b} for a, b in RV3.ABERTAS3]}
 cnt = collections.Counter((v['paraQuem'], v['status']) for v in out['respostas'].values())
 out['contagemRev0'] = {f'{a}.{b}': n for (a, b), n in sorted(cnt0.items())}
 out['contagemRev1'] = {f'{a}.{b}': n for (a, b), n in sorted(cnt1.items())}
+out['contagemRev2'] = {f'{a}.{b}': n for (a, b), n in sorted(cnt2.items())}
 out['contagem'] = {f'{a}.{b}': n for (a, b), n in sorted(cnt.items())}
 # consistencia: toda T citada existe
 for i, v in out['respostas'].items():
@@ -121,13 +135,19 @@ json.dump(out, open(REF + 'log-tecnicas-respostas.json', 'w', encoding='utf-8'),
 print(out['contagem'])
 
 # ---------------- Markdown
-def st_orig(e): return e.get('statusRev0', e.get('statusRev1', e['status']))
-def st_rev1(e): return e.get('statusRev1', e['status'])
+def st_after(e, k):
+    # status depois da revisão k (0 = original); statusRevJ guarda o status antes da revisão J+1
+    for j in range(k, 3):
+        if f'statusRev{j}' in e: return e[f'statusRev{j}']
+    return e['status']
+def st_orig(e): return st_after(e, 0)
+def st_rev1(e): return st_after(e, 1)
+def st_rev2(e): return st_after(e, 2)
 L = []
 w = L.append
 w('# 16 — Log de Técnicas: resposta do balanceamento')
 w('')
-w('**Revisões de 2026-09-28:** o Pedro respondeu as T1–T19 (D98–D117, §R) e, na mesma noite, as perguntas que sobraram (D118–D123, §R2). Cada achado revisado traz "Revisão 1" e/ou "Revisão 2". Texto das respostas, andamento do Notion e log de sincronização: `17-respostas-T-e-sync.md`.')
+w('**Revisões de 2026-09-28:** o Pedro respondeu as T1–T19 (D98–D117, §R) e, na mesma noite, as perguntas que sobraram (D118–D123, §R2; D124–D126, §R3). Cada achado revisado traz "Revisão 1", "Revisão 2" e/ou "Revisão 3". Texto das respostas, andamento do Notion e log de sincronização: `17-respostas-T-e-sync.md`.')
 w('')
 w('Data: 2026-09-27. Responde ao artefato **Log de Técnicas** do agente de HTML (https://claude.ai/artifact/L4ftxMddmAPHWwG8U1VukL), que parte de `docs/ficha-digital/log-tecnicas-achados.json` (main `da5e73d`): 160 achados, 110 para o balanceamento, 41 para o Pedro e 9 para o site.')
 w('')
@@ -165,9 +185,9 @@ for a, b in RV.ABERTAS:
 w('')
 w('## R2. Revisão 2 (2026-09-28): segunda leva de respostas')
 w('')
-c2 = collections.Counter(v['status'] for v in out['respostas'].values() if v['paraQuem'] == 'balanceamento')
-cp2 = collections.Counter(v['status'] for v in out['respostas'].values() if v['paraQuem'] == 'pedro')
-w(f'- **{len(RV2.REV2)} achados revisados.** Balanceamento agora: {c2["resolvido"]} resolvidos, {c2["decisao"]} com leitura minha, {c2["pedroDecide"]} esperando o Pedro. Achados do Pedro: {cp2["resolvido"]} resolvidos, {cp2["pedroDecide"]} abertos (os 5 do Batedor).')
+c2 = collections.Counter(st_rev2(v) for v in out['respostas'].values() if v['paraQuem'] == 'balanceamento')
+cp2 = collections.Counter(st_rev2(v) for v in out['respostas'].values() if v['paraQuem'] == 'pedro')
+w(f'- **{len(RV2.REV2)} achados revisados.** Balanceamento depois da revisão 2: {c2["resolvido"]} resolvidos, {c2["decisao"]} com leitura minha, {c2["pedroDecide"]} esperando o Pedro. Achados do Pedro: {cp2["resolvido"]} resolvidos, {cp2["pedroDecide"]} abertos (os 5 do Batedor).')
 w('- Contrato rev. 9 e efeitos rev. 7 no mesmo commit.')
 w('')
 w('| Tema | Resposta do Pedro | Decisão |')
@@ -180,9 +200,31 @@ w('')
 for x in RV2.EXTRA:
     w(f'- {x}')
 w('')
-w('**Abertas agora:**')
+w('**Abertas depois da revisão 2** (as respostas estão em §R3):')
 w('')
 for a, b in RV2.ABERTAS2:
+    w(f'- **{a}:** {b}')
+w('')
+w('## R3. Revisão 3 (2026-09-28): terceira leva de respostas')
+w('')
+c3 = collections.Counter(v['status'] for v in out['respostas'].values() if v['paraQuem'] == 'balanceamento')
+cp3 = collections.Counter(v['status'] for v in out['respostas'].values() if v['paraQuem'] == 'pedro')
+w(f'- **{len(RV3.REV3)} achados revisados.** Balanceamento agora: {c3["resolvido"]} resolvidos, {c3["decisao"]} com leitura minha, {c3["pedroDecide"]} esperando o Pedro. Achados do Pedro: {cp3["resolvido"]} resolvidos, {cp3["pedroDecide"]} abertos (os 5 do Batedor, que entra no rework).')
+w('- Contrato rev. 10 e efeitos rev. 8 no mesmo commit.')
+w('')
+w('| Tema | Resposta do Pedro | Decisão |')
+w('|---|---|---|')
+for a, b, dd in RV3.RESP3:
+    w(f'| {a} | {b} | {dd} |')
+w('')
+w('**Fora dos achados:**')
+w('')
+for x in RV3.EXTRA3:
+    w(f'- {x}')
+w('')
+w('**Abertas agora:**')
+w('')
+for a, b in RV3.ABERTAS3:
     w(f'- **{a}:** {b}')
 w('')
 w('## 1. Princípios de leitura')
@@ -246,7 +288,8 @@ for g, lst in grupos.items():
         e = out['respostas'][a['id']]
         tags = ' · '.join(x for x in (e.get('principio'), e.get('perguntaPedro')) if x)
         rv = f' **Revisão 1 ({e["statusRev0"]} → {st_rev1(e)}):** {e["revisao1"]}' if 'revisao1' in e else ''
-        rv += f' **Revisão 2 ({e["statusRev1"]} → {e["status"]}):** {e["revisao2"]}' if 'revisao2' in e else ''
+        rv += f' **Revisão 2 ({e["statusRev1"]} → {st_rev2(e)}):** {e["revisao2"]}' if 'revisao2' in e else ''
+        rv += f' **Revisão 3 ({e["statusRev2"]} → {e["status"]}):** {e["revisao3"]}' if 'revisao3' in e else ''
         w(f'- **{a["nome"]}** (`{a["id"]}`) · {st_orig(e)}' + (f' · {tags}' if tags else '') + f' — {e["resposta"]} *Ficha:* {e["acao"]}.' + rv)
 w('')
 w('## 6. Achados do Pedro (41) → pergunta')
@@ -257,7 +300,7 @@ for a in ach['achados']:
     if a['paraQuem'] == 'pedro':
         p = P[a['id']]
         e = out['respostas'][a['id']]
-        rv = ' '.join(x for x in (f'R1 {st_rev1(e)}: {e["revisao1"]}' if 'revisao1' in e else '', f'R2 {e["status"]}: {e["revisao2"]}' if 'revisao2' in e else '') if x) or '—'
+        rv = ' '.join(x for x in (f'R1 {st_rev1(e)}: {e["revisao1"]}' if 'revisao1' in e else '', f'R2 {st_rev2(e)}: {e["revisao2"]}' if 'revisao2' in e else '', f'R3 {e["status"]}: {e["revisao3"]}' if 'revisao3' in e else '') if x) or '—'
         w(f'| {a["nome"]} (`{a["id"]}`) | {p["perguntaPedro"]} | {p["recomendacao"]} | {rv} |')
 w('')
 open(REF + '16-log-tecnicas.md', 'w', encoding='utf-8').write('\n'.join(L))

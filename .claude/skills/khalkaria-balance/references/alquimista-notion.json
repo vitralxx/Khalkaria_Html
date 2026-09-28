@@ -69,12 +69,37 @@
   "reagentes": 2,
   "cd": 10
  },
+ "Sangue Falso": {
+  "nivel": 1,
+  "reagentes": 2,
+  "cd": 10
+ },
  "Catalisador Térmico": {
   "nivel": 1,
   "reagentes": 1,
   "cd": 10
  },
  "Veneno Fraco": {
+  "nivel": 1,
+  "reagentes": 2,
+  "cd": 10
+ },
+ "Peçonha de Caçador": {
+  "nivel": 1,
+  "reagentes": 2,
+  "cd": 10
+ },
+ "Sonífero Rústico": {
+  "nivel": 1,
+  "reagentes": 2,
+  "cd": 10
+ },
+ "Vinho Aguado": {
+  "nivel": 1,
+  "reagentes": 1,
+  "cd": 10
+ },
+ "Cerveja de Taverna": {
   "nivel": 1,
   "reagentes": 2,
   "cd": 10
@@ -124,6 +149,11 @@
   "reagentes": 3,
   "cd": 14
  },
+ "Elíxir de Éter Menor": {
+  "nivel": 2,
+  "reagentes": 2,
+  "cd": 13
+ },
  "Elixir de Força": {
   "nivel": 2,
   "reagentes": 3,
@@ -158,6 +188,11 @@
   "nivel": 2,
   "reagentes": 3,
   "cd": 14
+ },
+ "Óleo Sagrado": {
+  "nivel": 2,
+  "reagentes": 2,
+  "cd": 13
  },
  "Detector de Magia": {
   "nivel": 2,
@@ -194,6 +229,11 @@
   "reagentes": 2,
   "cd": 12
  },
+ "Comida Alquímica": {
+  "nivel": 2,
+  "reagentes": 2,
+  "cd": 13
+ },
  "Veneno Padrão": {
   "nivel": 2,
   "reagentes": 3,
@@ -203,6 +243,21 @@
   "nivel": 2,
   "reagentes": 3,
   "cd": 14
+ },
+ "Veneno de Lâmina Comum": {
+  "nivel": 2,
+  "reagentes": 3,
+  "cd": 13
+ },
+ "Aguardente de Raiz": {
+  "nivel": 2,
+  "reagentes": 3,
+  "cd": 13
+ },
+ "Destilado de Arremesso": {
+  "nivel": 2,
+  "reagentes": 3,
+  "cd": 13
  },
  "Napalm Alquímico": {
   "nivel": 3,
@@ -253,6 +308,16 @@
   "nivel": 3,
   "reagentes": 6,
   "cd": 18
+ },
+ "Elíxir de Éter Moderado": {
+  "nivel": 3,
+  "reagentes": 3,
+  "cd": 17
+ },
+ "Elixir da Expurgação": {
+  "nivel": 3,
+  "reagentes": 3,
+  "cd": 17
  },
  "Elixir do Crescimento": {
   "nivel": 3,
@@ -309,11 +374,6 @@
   "reagentes": 4,
   "cd": 16
  },
- "Sangue Falso": {
-  "nivel": 1,
-  "reagentes": 2,
-  "cd": 10
- },
  "Ácido Dimensional": {
   "nivel": 3,
   "reagentes": 6,
@@ -338,6 +398,16 @@
   "nivel": 3,
   "reagentes": 5,
   "cd": 18
+ },
+ "Café Preto": {
+  "nivel": 3,
+  "reagentes": 4,
+  "cd": 17
+ },
+ "Licor de Ferro": {
+  "nivel": 3,
+  "reagentes": 5,
+  "cd": 17
  },
  "Bomba de Plasma": {
   "nivel": 4,
@@ -454,6 +524,26 @@
   "reagentes": 8,
   "cd": 20
  },
+ "Toxina do Esquecimento": {
+  "nivel": 4,
+  "reagentes": 10,
+  "cd": 21
+ },
+ "Veneno da Viúva Pálida": {
+  "nivel": 4,
+  "reagentes": 11,
+  "cd": 21
+ },
+ "Fermentado do Abismo": {
+  "nivel": 4,
+  "reagentes": 9,
+  "cd": 21
+ },
+ "Última Rodada": {
+  "nivel": 4,
+  "reagentes": 12,
+  "cd": 21
+ },
  "Elixir da Imortalidade": {
   "nivel": 5,
   "reagentes": 15,
@@ -469,7 +559,7 @@
   "reagentes": 15,
   "cd": 24
  },
- "Lágrimas do Tempo": {
+ "Lágrima do Tempo": {
   "nivel": 5,
   "reagentes": 20,
   "cd": 26

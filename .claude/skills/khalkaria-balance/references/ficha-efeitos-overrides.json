@@ -70,7 +70,7 @@
    "lembretes":["Alvo recebe Sangramento 3 no terceiro ataque"]},
  "item-lagrima-de-veluria": {"_bloco":"consumo",
    "efeito":[{"alvo":"eter.atual","op":"fixa","valor":"eter.max"}],
-   "lembretes":["Ganha +1 mão de cartas do Limiar","Pode ser usada como material para as Lágrimas do Tempo (Alquimista Nível 5). Item único — usá-la de um jeito gasta o outro (D75)"]},
+   "lembretes":["Ganha +1 mão de cartas do Limiar","Pode ser usada como material para a Lágrima do Tempo (Alquimista Nível 5). Item único — usá-la de um jeito gasta o outro (D75)"]},
  "item-erva-medicinal": {"_bloco":"consumo",
    "efeito":[{"alvo":"saude.atual","op":"soma","valor":"1d4+2","requerTeste":"Medicina CD 10"}],
    "lembretes":[]},

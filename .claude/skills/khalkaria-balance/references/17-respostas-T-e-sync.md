@@ -50,6 +50,18 @@ Mensagem do Pedro, verbatim: *"Mínimo 1 no cartucho e caçador só possui 1 arm
 | As Vozes | "só o 1 natural no dado": **falta confirmar qual dado** (só o d20, ou qualquer dado como o Notion diz hoje). Sem edição. |
 | Conjuração sem Místico | **D123** conjurar sem ser Treinado em Místico ou sem o Foco só quando a classe, raça ou origem que dá a magia diz isso explicitamente. Gravado em Magias (Regras de Magia) e Sistema (Magia). Consequências: Receptáculo Natural (Corrompido) dispensa só o foco; Cultista exige Místico + foco (quem treinou Religião não conjura as 2 magias até treinar Místico); Cartucho Arcano: quem usa não precisa (leitura minha, "qualquer criatura pode conjurar"). |
 
+### 1c. Terceira leva (2026-09-28, madrugada)
+
+Mensagem do Pedro, verbatim: *"ótimo, obrigado pelo achado de passagem. 1. Só para d20. 2. Lágrima do Tempo, pode adicionar na tabelas esses itens, de onde eles surgiram? 3. Barreira instintiva você continua gastando 1 ação livre e pode ganhar quanto quiser do benefício gastando mais stamina, as outras devem ter o mesmo conceito. Rework do Batedor, vamos corrigi-lo, criando duas novas características de classe que irão substituir as atuais, vamos criar as 15 técnicas gerais e os 3 ramos refinados com técnicas modernas, tudo isso pavimentando a estrutura de criação de classes futuras."*
+
+| Tema | Decisão |
+|---|---|
+| As Vozes | **D124** só o 1 natural no **d20**. Gravado no Corrompido. |
+| Tabela do Alquimista | **D125** o nome é **Lágrima do Tempo** (CSV corrigido: nome e a menção na Lágrima de Velúria). Os itens de Alquimia do CSV entram na tabela da classe: 18 entraram (4 seções novas "Bebidas", uma por nível). A tabela tem 113 itens e bate com o CSV em Reagentes e CD. **Fora, esperando o Pedro:** Poção de Vigor Moderada (2 Reagentes e CD 10, o custo da Poção de Vigor comum, e cura o dobro: erro meu de 24/09; proposta 4 Reagentes e CD 12) e Napalm Alquímico (área) (o Napalm da tabela sem arremesso de 9 m e sem Reflexo para metade, com 1 Reagente a menos e o mesmo preço). |
+| Origem dos itens | Do Bazar v25 do Pedro (commit `0771eb2`, 26/07), já como Alquimia: Comida Alquímica, Elíxir de Éter Menor e Moderado, Napalm Alquímico (área), Óleo Sagrado, Elixir da Expurgação (era "Expurgão", L38). Do v25 mas não fabricáveis, viraram Alquimia pela **D72** (24/09, decisão do Pedro "Veneno é Alquimia, exclusivo do Alquimista"): Peçonha de Caçador, Sonífero Rústico, Veneno de Lâmina Comum, Toxina do Esquecimento, Veneno da Viúva Pálida. Criados pelo balanceamento em 24/09 (`7448c9c`, "Consumíveis fase 1") e levados à main pelo Pedro no v26 (`320ffdf`): as 8 bebidas da **D78** (2 por raridade) e a Poção de Vigor Moderada da **D76**. A Lágrima do Tempo já estava na tabela; o CSV tinha o nome no plural. |
+| Ação livre | **D126** sem exceção: a técnica de ação livre é 1 uso por turno; num custo variável, você escolhe quanto pagar nesse uso, até o limite do texto (Barreira Instintiva: até Nível de Éter; Destruir: até Nível dados). Gravado no Sistema. Sangue por Aço: 1 uso por turno cobre uma técnica, e você escolhe quanto do custo paga com Saúde (leitura minha). |
+| Batedor | Rework: 2 características de classe novas (substituem as atuais), 15 técnicas gerais, 3 ramos refinados, e a estrutura de criação de classes. **Proposta** em `18-batedor-rework.md`; vai ao Notion depois da aprovação. |
+
 Fora das perguntas, no mesmo dia: a **D76** (escada de poção, decisão do Pedro já aplicada no CSV) não estava na tabela da classe Alquimista. Gravado: Poção de Cura Maior 5d8+Int (era 4d8), Vigor Maior 3d8 (era 2d6), Cura Suprema 8d10+Int (era 6d8), Vigor Suprema 5d10 (era 3d8). Comparação por script da tabela inteira contra o CSV: nenhuma outra divergência de dado, CD ou Reagente.
 
 ---
@@ -88,12 +100,18 @@ Só mudou o que está aqui; nada mais nas páginas.
 - **Condições:** nova linha no topo, "**Condições mentais:** Enfeitiçado, Amedrontado, Confuso e Atordoado." (D122).
 - **Arquivos:** contrato **rev. 9** (`scripts/log-tecnicas/contrato_rev9.py`), efeitos **rev. 7**, 16 + JSON **Revisão 2** (`scripts/log-tecnicas/resp_rev2.py`). Balanceamento: 36 resolvidos, 71 leitura minha, 3 com o Pedro; achados do Pedro: 36 resolvidos, 5 abertos (os 5 do Batedor).
 
+### Terceira leva (2026-09-28, madrugada): gravado e conferido por fetch + diff
+- **Corrompido:** As vozes, "Ao rolar 1 natural no d20, perde 2d4+nível de éter." (D124).
+- **Sistema:** Sua Rodada, depois de "…salvo quando o texto dela diz outra coisa.": "Numa técnica de custo variável (ex.: 1 Éter para cada 1d4 reduzido), você escolhe quanto pagar nesse uso, até o limite que o texto der." (D126).
+- **Alquimista:** tabela de itens, +18 itens e 4 cabeçalhos "Bebidas" (+132 linhas, nenhuma removida): Nível 1: Peçonha de Caçador, Sonífero Rústico (Venenos), Vinho Aguado, Cerveja de Taverna (Bebidas); Nível 2: Elíxir de Éter Menor (Curativos), Óleo Sagrado (Elixir e Óleo), Comida Alquímica (Utilidades), Veneno de Lâmina Comum (Venenos), Aguardente de Raiz, Destilado de Arremesso (Bebidas); Nível 3: Elíxir de Éter Moderado, Elixir da Expurgação (Curativo), Café Preto, Licor de Ferro (Bebidas); Nível 4: Toxina do Esquecimento, Veneno da Viúva Pálida (Venenos), Fermentado do Abismo, Última Rodada (Bebidas). Texto do CSV, sem a frase de peso "Empilhável".
+- **CSV** (2 cópias): "Lágrimas do Tempo" → "Lágrima do Tempo" (nome e a menção na Lágrima de Velúria). **Efeitos rev. 8** (id `item-lagrima-do-tempo`), **contrato rev. 10** (`turno.acaoLivreCustoVariavel`), **16 Revisão 3**, `alquimista-notion.json` regerado da página (113 itens).
+
 ### Perguntas que continuam com o Pedro
-1. **As Vozes:** "só o 1 natural no dado" vale só para o d20 (testes e ataques) ou para qualquer dado, dano incluso, como o Notion diz hoje ("Ao rolar 1 natural em qualquer dado")? Num ataque de 4d6, 52% das rolagens têm um 1. A ficha segue o Notion até lá.
-2. **Tabela do Alquimista:** 21 itens de Alquimia do CSV (Obtenção "Alquimista") não estão na tabela da classe: Aguardente de Raiz, Café Preto, Cerveja de Taverna, Comida Alquímica, Destilado de Arremesso, Elixir da Expurgação, Elíxir de Éter Menor e Moderado, Fermentado do Abismo, Licor de Ferro, Lágrimas do Tempo, Napalm Alquímico (área), Peçonha de Caçador, Poção de Vigor Moderada, Sonífero Rústico, Toxina do Esquecimento, Veneno da Viúva Pálida, Veneno de Lâmina Comum, Vinho Aguado, Óleo Sagrado e Última Rodada. Entram na tabela (com Reagentes e CD do CSV), ou ela fica só com as "fórmulas fundamentais"? E o nome: "Lágrima do Tempo" na classe, "Lágrimas do Tempo" no CSV.
-3. **D99 "quase toda":** ao pé da letra, passam a 1 vez por turno: Destruir, Barreira Instintiva, Sangue por Aço, Passo Afiado, Trêbado, Golpe Sequencial e as passivas com efeito de ação livre (Passo do Vento do Artilheiro, Ponto Fraco, Resistência Adaptável). Alguma é exceção?
-4. **Do lote anterior:** L14, L35, L39.
-5. **Batedor:** rework inteiro, depois o log do novo Batedor.
+(As respondidas estão em §1, §1b e §1c.)
+1. **Poção de Vigor Moderada:** hoje 2 Reagentes e CD 10, o custo da Poção de Vigor comum, que cura a metade. Proposta: 4 Reagentes e CD 12, como a Poção de Cura Moderada (CSV e tabela da classe).
+2. **Napalm Alquímico (área):** é o Napalm da tabela sem o arremesso de 9 m e sem o Reflexo para metade, com 1 Reagente a menos e o mesmo preço. Fica, sai do CSV, ou ganha uma diferença?
+3. **Do lote anterior:** L14, L35, L39.
+4. **Batedor:** proposta em `18-batedor-rework.md`, esperando aprovação; depois, Notion e log do novo Batedor.
 
 ---
 
@@ -106,6 +124,7 @@ Tudo o que mudou no Notion desde o último sync do site. Regerar `data/*.json` e
 - **2026-09-27**: ver `16-log-tecnicas.md` §3 (lote L: Sistema, Magias, Condições, Limiar, Monge, Alquimista, Template da ficha, Cultista).
 - **2026-09-28**: §2 acima: Sistema, Magias, Espadachim, Brutalista, Teurgo, Monge, Alquimista, Artilheiro, Autômato, Caçador, Mineiro.
 - **2026-09-28, segunda leva**: §2 "Segunda leva": Alquimista (Cartucho e 4 poções da D76), Caçador, Sistema, Magias, Condições.
+- **2026-09-28, terceira leva**: §2 "Terceira leva": Corrompido (As Vozes), Sistema (ação livre de custo variável), Alquimista (+18 itens na tabela). Regerar Raças (Corrompido), Sistema, Alquimista e o Bazar (nome da Lágrima do Tempo).
 
 ### 3.2 Edições do Pedro (vistas nos fetches de 2026-09-28)
 - **Brutalista, Muralha Viva:** 2º item agora "Você recebe+1 na perícia *Defender* a cada treinamento dessa perícia." (era "O treinamento da sua perícia Defender aumenta de 3 em 3 (Ao invés de 2 em 2)").
@@ -125,6 +144,8 @@ Tudo o que mudou no Notion desde o último sync do site. Regerar `data/*.json` e
 - Páginas a regerar: Sistema, Magias, Condições, 6 classes (menos Batedor), Raças (Autômato, Gruto), Origens (Caçador, Mineiro).
 - **Segunda leva:** `ficha-digital-regras.json` **rev. 9**: `recursos.atributoCuraItemMediaDaRaridade` canônico (sem `pergunta`/`provisorio`); `taxonomiaDeCondicao.mental` canônico, com fonte na página Condições; `magia.requisitos.dispensa` novo (regra da D123 e 3 casos); `magia.requisitos.motivo` reescrito (a leitura "Cultista e Corrompido conjuram sem o gate" caiu). `ficha-efeitos-itens.json` **rev. 7**: convenção `maisInt` com a tabela; pendência 12 resolvida. `log-tecnicas-respostas.json` **Revisão 2**: campos `statusRev1`, `revisao2`, bloco `revisao2`, `contagemRev1`.
 - **Grupo "mentais" do site:** a lista canônica (D122) é Enfeitiçado, Amedrontado, Confuso e Atordoado; o grupo da página de Condições tem Descontrolado e Bêbado e não tem Atordoado. Alinhar é decisão do site; imunidade e remoção de "condição mental" usam a lista canônica.
+
+- **Terceira leva:** `ficha-digital-regras.json` **rev. 10** (`turno.acaoLivreCustoVariavel` novo); `ficha-efeitos-itens.json` **rev. 8** (id `item-lagrimas-do-tempo` → `item-lagrima-do-tempo`); `log-tecnicas-respostas.json` **Revisão 3** (`statusRev2`, `revisao3`, bloco `revisao3`, `contagemRev2`); `Bazar_Khalkaria_v26.csv` (2 células).
 
 ### 3.4 Pedido do Pedro para o CHANGELOG do site
 O Pedro pediu (2026-09-28): *"bote no changelog a possiblidade de fazer uma função de comerciante no site html, simplfica para a sessão eu poder abrir uma loja na hora e mostrar aos jogadores na tela."* O `CHANGELOG.md` é do agente de HTML e fica na main; este branch não mexe nele. Texto pronto para colar no topo:
@@ -149,12 +170,12 @@ Regras que uma loja toca, para quem for desenhar (todas já canônicas):
 
 ## 4. Ferramentas no repo
 
-- `scripts/log-tecnicas/build16.py` (+ `resp_a/b/c/p.py`, `resp_rev1.py`, `resp_rev2.py`, `log_achados.json`) gera
+- `scripts/log-tecnicas/build16.py` (+ `resp_a/b/c/p.py`, `resp_rev1.py`, `resp_rev2.py`, `resp_rev3.py`, `log_achados.json`) gera
   `references/16-log-tecnicas.md` e `references/log-tecnicas-respostas.json` byte a byte. Uma nova revisão
-  se faz num `resp_rev3.py` no mesmo formato, ligado no `build16.py` (guardar `statusRev2`).
-- `scripts/log-tecnicas/contrato_rev8.py` e `contrato_rev9.py`: patches rev. 7 → 8 → 9 do contrato (histórico; cada um recusa rodar fora da revisão certa).
+  se faz num `resp_rev4.py` no mesmo formato, ligado no `build16.py` (guardar `statusRev3` e estender `st_after`).
+- `scripts/log-tecnicas/contrato_rev8.py`, `contrato_rev9.py` e `contrato_rev10.py`: patches rev. 7 → 8 → 9 → 10 do contrato (histórico; cada um recusa rodar fora da revisão certa).
 - `scripts/log-tecnicas/ndiff.py antigo novo [saida]`: diff de dois dumps do `notion-fetch` (ignora a
   query string das URLs S3). Uso: conferir cada gravação no Notion.
 - Contrato: `ficha-digital-regras.json` se grava com `json.dumps(d, ensure_ascii=False, indent=2)` sem
-  newline final. Efeitos: `ficha-efeitos-gerador.py --escrever` (rev. 7; sha256 do CSV no campo `fonte`).
+  newline final. Efeitos: `ficha-efeitos-gerador.py --escrever` (rev. 8; sha256 do CSV no campo `fonte`).
 - Carta rara: nenhum nome nem efeito de rara em campo de nota dos 3 JSON (o sync do site apaga a frase). Conferir por conjunto contra `data/limiar.json` (entradas com `req` e sem `effect`).

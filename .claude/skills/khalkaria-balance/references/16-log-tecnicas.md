@@ -1,6 +1,6 @@
 # 16 — Log de Técnicas: resposta do balanceamento
 
-**Revisões de 2026-09-28:** o Pedro respondeu as T1–T19 (D98–D117, §R) e, na mesma noite, as perguntas que sobraram (D118–D123, §R2). Cada achado revisado traz "Revisão 1" e/ou "Revisão 2". Texto das respostas, andamento do Notion e log de sincronização: `17-respostas-T-e-sync.md`.
+**Revisões de 2026-09-28:** o Pedro respondeu as T1–T19 (D98–D117, §R) e, na mesma noite, as perguntas que sobraram (D118–D123, §R2; D124–D126, §R3). Cada achado revisado traz "Revisão 1", "Revisão 2" e/ou "Revisão 3". Texto das respostas, andamento do Notion e log de sincronização: `17-respostas-T-e-sync.md`.
 
 Data: 2026-09-27. Responde ao artefato **Log de Técnicas** do agente de HTML (https://claude.ai/artifact/L4ftxMddmAPHWwG8U1VukL), que parte de `docs/ficha-digital/log-tecnicas-achados.json` (main `da5e73d`): 160 achados, 110 para o balanceamento, 41 para o Pedro e 9 para o site.
 
@@ -65,7 +65,7 @@ Data: 2026-09-27. Responde ao artefato **Log de Técnicas** do agente de HTML (h
 
 ## R2. Revisão 2 (2026-09-28): segunda leva de respostas
 
-- **7 achados revisados.** Balanceamento agora: 36 resolvidos, 71 com leitura minha, 3 esperando o Pedro. Achados do Pedro: 36 resolvidos, 5 abertos (os 5 do Batedor).
+- **7 achados revisados.** Balanceamento depois da revisão 2: 36 resolvidos, 71 com leitura minha, 3 esperando o Pedro. Achados do Pedro: 36 resolvidos, 5 abertos (os 5 do Batedor).
 - Contrato rev. 9 e efeitos rev. 7 no mesmo commit.
 
 | Tema | Resposta do Pedro | Decisão |
@@ -83,13 +83,37 @@ Data: 2026-09-27. Responde ao artefato **Log de Técnicas** do agente de HTML (h
 - D76 na tabela do Alquimista: a escada de poção já estava no CSV, e a tabela da classe no Notion ainda tinha os dados antigos. Gravado no Notion (2026-09-28): Poção de Cura Maior 5d8+Int (era 4d8), Poção de Vigor Maior 3d8 (era 2d6), Poção de Cura Suprema 8d10+Int (era 6d8), Poção de Vigor Suprema 5d10 (era 3d8). Comparação por script: nenhuma outra divergência de dado, CD ou Reagente entre a tabela e o CSV.
 - Pedido ao agente de HTML: registrar no CHANGELOG do site a ideia da função de comerciante (texto pronto no 17-respostas-T-e-sync.md §3.4).
 
-**Abertas agora:**
+**Abertas depois da revisão 2** (as respostas estão em §R3):
 
 - **As Vozes:** "só o 1 natural no dado": só o d20 (testes e ataques) ou qualquer dado, inclusive dano? Hoje o Notion diz "em qualquer dado"; num ataque de 4d6, 52% das rolagens têm um 1.
 - **Tabela do Alquimista:** 21 itens de Alquimia do CSV (Obtenção "Alquimista") não estão na tabela da classe: bebidas, venenos novos, Elíxires de Éter, Poção de Vigor Moderada, Elixir da Expurgação e outros. Entram na tabela, ou ela fica só com as fórmulas fundamentais? E o nome: "Lágrima do Tempo" na classe, "Lágrimas do Tempo" no CSV.
 - **D99 "quase toda":** ao pé da letra, passam a 1 vez por turno: Destruir, Barreira Instintiva, Sangue por Aço, Passo Afiado, Trêbado, Golpe Sequencial e as passivas com efeito de ação livre (Passo do Vento do Artilheiro, Ponto Fraco, Resistência Adaptável). Alguma é exceção?
 - **Lote anterior:** L14, L35, L39.
 - **Batedor:** rework inteiro, depois o log do novo Batedor.
+
+## R3. Revisão 3 (2026-09-28): terceira leva de respostas
+
+- **2 achados revisados.** Balanceamento agora: 37 resolvidos, 71 com leitura minha, 2 esperando o Pedro. Achados do Pedro: 36 resolvidos, 5 abertos (os 5 do Batedor, que entra no rework).
+- Contrato rev. 10 e efeitos rev. 8 no mesmo commit.
+
+| Tema | Resposta do Pedro | Decisão |
+|---|---|---|
+| As Vozes | Só para d20. | D124 |
+| Tabela do Alquimista | Lágrima do Tempo, pode adicionar na tabelas esses itens, de onde eles surgiram? | D125 |
+| Ação livre de custo variável | Barreira instintiva você continua gastando 1 ação livre e pode ganhar quanto quiser do benefício gastando mais stamina, as outras devem ter o mesmo conceito. | D126 |
+| Batedor | Rework do Batedor, vamos corrigi-lo, criando duas novas características de classe que irão substituir as atuais, vamos criar as 15 técnicas gerais e os 3 ramos refinados com técnicas modernas, tudo isso pavimentando a estrutura de criação de classes futuras. | proposta em 18-batedor-rework.md |
+
+**Fora dos achados:**
+
+- D125: 18 itens de Alquimia do CSV entraram na tabela da classe, com Reagentes e CD do CSV: nas seções que já existiam e em 4 seções novas "Bebidas" (uma por nível). "Lágrimas do Tempo" virou "Lágrima do Tempo" no CSV (o nome e a menção na Lágrima de Velúria). A tabela tem 113 itens e bate com o CSV em Reagentes e CD. Ficaram de fora, esperando o Pedro: Poção de Vigor Moderada e Napalm Alquímico (área).
+- D126, gravado no Sistema: "Numa técnica de custo variável (ex.: 1 Éter para cada 1d4 reduzido), você escolhe quanto pagar nesse uso, até o limite que o texto der."
+
+**Abertas agora:**
+
+- **Poção de Vigor Moderada:** hoje 2 Reagentes e CD 10, o custo da Poção de Vigor comum, que cura a metade. Proposta: 4 Reagentes e CD 12, como a Poção de Cura Moderada (CSV e tabela).
+- **Napalm Alquímico (área):** é o Napalm da tabela sem o arremesso de 9 m e sem o Reflexo para metade, com 1 Reagente a menos e o mesmo preço. Fica, sai do CSV, ou ganha uma diferença?
+- **Lote anterior:** L14, L35, L39.
+- **Batedor:** rework em proposta (18-batedor-rework.md), esperando aprovação antes de ir ao Notion.
 
 ## 1. Princípios de leitura
 
@@ -282,7 +306,7 @@ Formato: **nome** (`id`) · status · princípio/pergunta — resposta. *Ficha:*
 - **Totem Eterno** (`monge-totem-eterno`) · decisao — O texto específico vence o geral: o Totem dá o próprio teste no fim de cada turno do alvo, e o "teste de resistência fracassa" do Paralisado vale contra os outros efeitos. Sucesso encerra a paralisia do totem; enquanto paralisado, o alvo fica Exposto (condição). *Ficha:* ficha: nada a automatizar.
 - **Transcendência Suprema** (`monge-transcendencia-suprema`) · decisao — "Fica Exaurido" como custo = a Stamina vai a 0, porque Exaurido é o estado de Stamina 0 e a condição vem junto. Somam-se Exaustão +1 e −1d6 de Éter. *Ficha:* ficha: ao fim, stamina = 0; exaustao +1; eter −1d6.
 - **Companheiro Primal II** (`monge-companheiro-primal-ii`) · decisao — "Passiva" = é o upgrade do Companheiro Primal. Invoca pelo custo do CP I (2 Ações, 5 Stamina) e escolhe a forma maior. O acerto é "usa seu bônus de Atacar" + 2: d20 + seu treino de Atacar + o seu Mod. do atributo da forma (DES ou FOR) + 2. O "Mod. Des + 2" do bloco é essa conta abreviada. *Ficha:* ficha: custo do CP I; acerto = treino Atacar + Mod. + 2.
-- **Golpe Sequencial** (`monge-golpe-sequencial`) · decisao · G3 — O ataque extra não dispara a técnica de novo: o gatilho é "ao usar a ação atacar e acertar", e o extra vem da técnica, não da ação. É no máximo 1 extra por ação Atacar. O extra conta na PMA (G3): contra o mesmo alvo leva o −5 seguinte. O "pma 0" do contrato foi removido. *Ficha:* contrato corrigido; ficha: 1 extra por ação Atacar. **Revisão 1 (decisao → decisao):** D99: 1 ataque extra por turno, não mais 1 por ação Atacar. O extra entra na PMA (D100).
+- **Golpe Sequencial** (`monge-golpe-sequencial`) · decisao · G3 — O ataque extra não dispara a técnica de novo: o gatilho é "ao usar a ação atacar e acertar", e o extra vem da técnica, não da ação. É no máximo 1 extra por ação Atacar. O extra conta na PMA (G3): contra o mesmo alvo leva o −5 seguinte. O "pma 0" do contrato foi removido. *Ficha:* contrato corrigido; ficha: 1 extra por ação Atacar. **Revisão 1 (decisao → decisao):** D99: 1 ataque extra por turno, não mais 1 por ação Atacar. O extra entra na PMA (D100). **Revisão 3 (decisao → decisao):** D126: sem exceção, 1 ataque extra por turno.
 - **Fusão Primal (Falcão)** (`monge-fusao-primal`) · decisao · G2 — O Mover como ação livre continua 1 vez por turno (G2). Contra alvo Lento X: +X no Atacar e +X no dano. O "Cortante" fica como escrito; Cortante e Perfurante são Ordinário e o Ar reduz igual, então o tipo só muda contra resistência de tipo específico. *Ficha:* ficha: nada a automatizar.
 - **O Terror** (`monge-o-terror`) · decisao · G8 — A ativação (1 Ação, 2 Stamina) abre o modo até o início do seu próximo turno (G8). Nesse intervalo, seus acertos podem exigir Vontade contra a sua CD (D57) ou Amedrontado. O Fluxo permanente por criatura amedrontada e o +1d8 Necrótico contra Amedrontada são passivos. A Insurgência ("ativa permanentemente") mantém o modo ligado pelas 3 rodadas dela. *Ficha:* ficha: estado "O Terror" até o próximo turno.
 - **Sussurros Constantes** (`monge-sussurros-constantes`) · decisao — Gatilho: quando o Éter chega a 0 ou menos, que é o momento em que você ficaria Oco. "Recupere metade" soma metade do Éter máximo ao valor atual: de −3, com máximo 20, vai a 7. Não há limite de usos escrito; o limitador é a consequência que o Mestre escolhe a cada pacto. Pacto Sombrio é narrativo, não condição. *Ficha:* ficha: prompt ao cruzar 0; eter += floor(max/2).
@@ -336,7 +360,7 @@ Formato: **nome** (`id`) · status · princípio/pergunta — resposta. *Ficha:*
 - **Receptáculo Natural** (`corrompido-receptaculo-natural`) · decisao · T15 — O traço dá a conjuração dessas 2 magias, e o texto específico vence o requisito geral de Treinado em Místico, como a memória já lê o Cultista ("destrava conjuração"). O requisito do Sistema continua para qualquer outra magia. A rolagem de Místico, quando a magia pede, usa o grau que o personagem tiver. *Ficha:* ficha: 2 magias liberadas sem foco e sem exigir treino. **Revisão 1 (decisao → decisao):** T15(e) ficou sem resposta; a leitura fica. **Revisão 2 (decisao → resolvido):** D123: o traço dispensa só o foco ("sem um foco designado"); o Treinado em Místico continua exigido. A leitura antiga (o traço vencia o requisito de Místico) caiu. Gravado no Notion (2026-09-28): Magias e Sistema, "Conjurar sem ser Treinado em Místico ou sem o Foco só é possível quando a classe, raça ou origem que dá a magia diz isso explicitamente."
 - **Corpo Mecânico** (`automato-corpo-mecanico-imunidade`) · decisao — A imunidade é aos efeitos citados: as condições Sangramento e Envenenamento e doenças. Não é imunidade aos tipos de dano, então a grade não marca I em Veneno, Ácido ou Psíquico. O tique do Morrendo continua valendo, porque é a regra de morrer e não um efeito biológico. Sem ele o Autômato nunca morreria sangrando. *Ficha:* ficha: imunidade a 2 condições + doenças; grade inalterada.
 - **Pele Morta** (`corrompido-pele-morta`) · resolvido · G11 — Vale o Sistema: Místico = Radiante, Trovejante, Necrótico; Força e Primordial são "Outros". A Ae(Místico, 5) cobre os 3. A vulnerabilidade cobre os tipos não místicos das categorias: Ordinário, Elemental e Biológico. Força e Primordial ficam neutros, que é o que o "exceto" queria dizer quando os dois eram Místico. D67 corrigida na memória; contrato dano.categorias alinhado ao Sistema. *Ficha:* contrato + memória corrigidos.
-- **As Vozes** (`corrompido-as-vozes`) · pedroDecide · T15 — Pergunta T15. Recomendo que o gatilho seja só o d20. "Falha crítica" é conceito do d20, e em "qualquer dado" um 4d6 de dano tem 52% de ter um 1: o Éter do Corrompido some em um combate, a 2d4 + nível por gatilho. Se a intenção é ser brutal, a Pele Morta mostra que adversidade pode ser; aí vale o literal. *Ficha:* ficha: provisório = só d20. **Revisão 1 (pedroDecide → pedroDecide):** T15(d) ficou sem resposta; segue o provisório (só o d20). **Revisão 2 (pedroDecide → pedroDecide):** O Pedro respondeu "é só o 1 natural no dado". Falta confirmar qual dado: só o d20 de testes e ataques, ou qualquer dado, dano incluso, como o Notion diz hoje ("em qualquer dado"). Até lá a ficha segue o Notion.
+- **As Vozes** (`corrompido-as-vozes`) · pedroDecide · T15 — Pergunta T15. Recomendo que o gatilho seja só o d20. "Falha crítica" é conceito do d20, e em "qualquer dado" um 4d6 de dano tem 52% de ter um 1: o Éter do Corrompido some em um combate, a 2d4 + nível por gatilho. Se a intenção é ser brutal, a Pele Morta mostra que adversidade pode ser; aí vale o literal. *Ficha:* ficha: provisório = só d20. **Revisão 1 (pedroDecide → pedroDecide):** T15(d) ficou sem resposta; segue o provisório (só o d20). **Revisão 2 (pedroDecide → pedroDecide):** O Pedro respondeu "é só o 1 natural no dado". Falta confirmar qual dado: só o d20 de testes e ataques, ou qualquer dado, dano incluso, como o Notion diz hoje ("em qualquer dado"). Até lá a ficha segue o Notion. **Revisão 3 (pedroDecide → resolvido):** D124. Gravado no Notion (2026-09-28): "Ao rolar 1 natural no d20, perde 2d4+nível de éter."
 - **Corpo Mecânico (alimentação)** (`automato-corpo-mecanico-sucata`) · decisao · G7 — Sucata = itens da categoria Lixo do Bazar (48 itens, e é ali que "sucata" aparece). Para o Autômato, 1 item Lixo conta como 1 Comida no descanso (Desnutrido). *Ficha:* ficha: Autômato aceita Lixo como Comida.
 - **Capacitores de Energia** (`automato-capacitores-de-energia`) · decisao · G2 — Sem limite de usos escrito. Não reativa enquanto está ativo (G2: não acumula consigo) e pode reativar depois que acaba. O limitador é o próprio custo: 2d4 Elétrico no fim, dobrado pela vulnerabilidade do Autômato. *Ficha:* ficha: estado de 3 rodadas; bloqueia reativar enquanto ativo.
 

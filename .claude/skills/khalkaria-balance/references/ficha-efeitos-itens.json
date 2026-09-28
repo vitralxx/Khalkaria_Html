@@ -1,10 +1,10 @@
 {
  "schemaVersion": "efeitos-itens/1.1",
- "geradoEm": "2026-09-28 (rev. 7: tabela da média da raridade na convenção maisInt e pendência 12 resolvida, D121. rev. 6: D111 Soro da Guerra e Veneno Hemorrágico no CSV; convenção maisInt = fabricante (L08, D117). rev. 5: L37 Anel do Esgrimista, L38 Elixir da Expurgação; CSV igual ao da main. rev. 4: rodada 3 — PD21 Grevas, PD22 Ae(Todos), PD23 Autômato, PD24, PD25, PD26a Marcas da Vhelor; convenção de crítico D97)",
+ "geradoEm": "2026-09-28 (rev. 8: item renomeado Lágrima do Tempo, id item-lagrima-do-tempo (D125). rev. 7: tabela da média da raridade na convenção maisInt e pendência 12 resolvida, D121. rev. 6: D111 Soro da Guerra e Veneno Hemorrágico no CSV; convenção maisInt = fabricante (L08, D117). rev. 5: L37 Anel do Esgrimista, L38 Elixir da Expurgação; CSV igual ao da main. rev. 4: rodada 3 — PD21 Grevas, PD22 Ae(Todos), PD23 Autômato, PD24, PD25, PD26a Marcas da Vhelor; convenção de crítico D97)",
  "geradoPor": "ficha-efeitos-gerador.py + ficha-efeitos-overrides.json (branch claude/khalkaria-bazar-balance-lsdfic)",
  "fonte": {
-  "csv": "references/bazar-v26.csv = data/Bazar_Khalkaria_v26.csv da main (751abae) + L38 (1 célula: Nome do Elixir da Expurgação) + D111 (2 células de Efeito: Soro da Guerra, Veneno Hemorrágico)",
-  "sha256_16": "5f0a1c4a1bb5de40",
+  "csv": "references/bazar-v26.csv = data/Bazar_Khalkaria_v26.csv da main (751abae) + L38 (1 célula: Nome do Elixir da Expurgação) + D111 (2 células de Efeito: Soro da Guerra, Veneno Hemorrágico) + D125 (Lágrimas do Tempo -> Lágrima do Tempo: nome e a menção na Lágrima de Velúria)",
+  "sha256_16": "ab0c1c277230a2fe",
   "itens": 727
  },
  "contagem": {
@@ -16197,10 +16197,10 @@
    "acoes": null,
    "lembretes": [
     "Ganha +1 mão de cartas do Limiar",
-    "Pode ser usada como material para as Lágrimas do Tempo (Alquimista Nível 5). Item único — usá-la de um jeito gasta o outro (D75)"
+    "Pode ser usada como material para a Lágrima do Tempo (Alquimista Nível 5). Item único — usá-la de um jeito gasta o outro (D75)"
    ],
    "status": "decisao",
-   "verbatim": "Ganha +1 mão de cartas do Limiar. Adicionalmente, recupera todo o Éter máximo do portador. Pode ser usada como material para as Lágrimas do Tempo (Alquimista Nível 5). Item único — usá-la de um jeito gasta o outro."
+   "verbatim": "Ganha +1 mão de cartas do Limiar. Adicionalmente, recupera todo o Éter máximo do portador. Pode ser usada como material para a Lágrima do Tempo (Alquimista Nível 5). Item único — usá-la de um jeito gasta o outro."
   },
   "item-petala-do-sonhador": {
    "nome": "Pétala do Sonhador",
@@ -16292,8 +16292,8 @@
    "status": "canonico",
    "verbatim": "Ao injetar, transforma uma criatura em servo alquímico leal para sempre. Requer Sangue Primordial."
   },
-  "item-lagrimas-do-tempo": {
-   "nome": "Lágrimas do Tempo",
+  "item-lagrima-do-tempo": {
+   "nome": "Lágrima do Tempo",
    "categoria": "Consumível",
    "raridade": "Luxária",
    "efeito": [],

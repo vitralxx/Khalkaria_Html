@@ -646,9 +646,9 @@ if __name__ == '__main__':
         sha = hashlib.sha256(open(CSV,'rb').read()).hexdigest()[:16]
         final = {
           'schemaVersion': 'efeitos-itens/1.1',
-          'geradoEm': '2026-09-28 (rev. 7: tabela da média da raridade na convenção maisInt e pendência 12 resolvida, D121. rev. 6: D111 Soro da Guerra e Veneno Hemorrágico no CSV; convenção maisInt = fabricante (L08, D117). rev. 5: L37 Anel do Esgrimista, L38 Elixir da Expurgação; CSV igual ao da main. rev. 4: rodada 3 — PD21 Grevas, PD22 Ae(Todos), PD23 Autômato, PD24, PD25, PD26a Marcas da Vhelor; convenção de crítico D97)',
+          'geradoEm': '2026-09-28 (rev. 8: item renomeado Lágrima do Tempo, id item-lagrima-do-tempo (D125). rev. 7: tabela da média da raridade na convenção maisInt e pendência 12 resolvida, D121. rev. 6: D111 Soro da Guerra e Veneno Hemorrágico no CSV; convenção maisInt = fabricante (L08, D117). rev. 5: L37 Anel do Esgrimista, L38 Elixir da Expurgação; CSV igual ao da main. rev. 4: rodada 3 — PD21 Grevas, PD22 Ae(Todos), PD23 Autômato, PD24, PD25, PD26a Marcas da Vhelor; convenção de crítico D97)',
           'geradoPor': 'ficha-efeitos-gerador.py + ficha-efeitos-overrides.json (branch claude/khalkaria-bazar-balance-lsdfic)',
-          'fonte': {'csv': 'references/bazar-v26.csv = data/Bazar_Khalkaria_v26.csv da main (751abae) + L38 (1 célula: Nome do Elixir da Expurgação) + D111 (2 células de Efeito: Soro da Guerra, Veneno Hemorrágico)',
+          'fonte': {'csv': 'references/bazar-v26.csv = data/Bazar_Khalkaria_v26.csv da main (751abae) + L38 (1 célula: Nome do Elixir da Expurgação) + D111 (2 células de Efeito: Soro da Guerra, Veneno Hemorrágico) + D125 (Lágrimas do Tempo -> Lágrima do Tempo: nome e a menção na Lágrima de Velúria)',
                     'sha256_16': sha, 'itens': len(rows)},
           'contagem': {k: len(out[k]) for k in ('itens','armas','consumo','semEfeitoNaFicha','naoParseado')},
           'convencoes': CONVENCOES, 'alvos': ALVOS, 'pendencias': PENDENCIAS,

@@ -69,7 +69,7 @@ Tipo de Craft · Ingredientes · Tags · Lore/Notas · **CD de Craft** · (17 co
 | `08-divergencias.md` | Divergências pendentes de decisão | cruzamento Notion × repo × CSV |
 | `10-novidades-bazar.md` | Itens novos, para o Pedro mostrar aos jogadores | **gerado** por `auditor.py novidades` |
 | `11-progressao-craft.md` | Árvores de craft e progressão de arquétipo de item | análise |
-| `alquimista-notion.json` | Nível, reagentes e CD dos 95 itens alquímicos | Notion `eac6e3a4…` |
+| `alquimista-notion.json` | Nível, reagentes e CD dos 113 itens da tabela do Alquimista (regerado da página em 2026-09-28) | Notion `eac6e3a4…` |
 | `novidades.json` | Curadoria do que entra no `10-` | manual |
 
 ⚠️ **Arquivos desatualizados conhecidos:** `03-origens.md` tem a versão antiga da origem Caçador

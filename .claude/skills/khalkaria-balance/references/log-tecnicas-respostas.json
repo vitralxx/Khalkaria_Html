@@ -1,6 +1,6 @@
 {
  "schemaVersion": "log-tecnicas-respostas/1",
- "geradoEm": "2026-09-27; revisões 1 e 2 em 2026-09-28",
+ "geradoEm": "2026-09-27; revisões 1, 2 e 3 em 2026-09-28",
  "_doc": "Resposta do agente de balanceamento ao Log de Técnicas (artefato https://claude.ai/artifact/L4ftxMddmAPHWwG8U1VukL; main da5e73d, docs/ficha-digital/log-tecnicas-achados.json). Uma entrada por achado, pelo id. status: resolvido (regra escrita ou corrigida agora) | decisao (leitura do balanceamento; a ficha implementa, o Pedro pode revisar) | pedroDecide (espera o Pedro; a ficha usa o provisório indicado). principio = Gn de principios; perguntaPedro = Tn de perguntasPedro. Texto com a justificativa: 16-log-tecnicas.md.",
  "fonte": {
   "artefato": "https://claude.ai/artifact/L4ftxMddmAPHWwG8U1VukL",
@@ -1108,7 +1108,9 @@
    "paraQuem": "balanceamento",
    "nome": "Golpe Sequencial",
    "statusRev0": "decisao",
-   "revisao1": "D99: 1 ataque extra por turno, não mais 1 por ação Atacar. O extra entra na PMA (D100)."
+   "revisao1": "D99: 1 ataque extra por turno, não mais 1 por ação Atacar. O extra entra na PMA (D100).",
+   "statusRev2": "decisao",
+   "revisao3": "D126: sem exceção, 1 ataque extra por turno."
   },
   "monge-fusao-primal": {
    "status": "decisao",
@@ -1666,7 +1668,7 @@
    "nome": "Pele Morta"
   },
   "corrompido-as-vozes": {
-   "status": "pedroDecide",
+   "status": "resolvido",
    "resposta": "Pergunta T15. Recomendo que o gatilho seja só o d20. \"Falha crítica\" é conceito do d20, e em \"qualquer dado\" um 4d6 de dano tem 52% de ter um 1: o Éter do Corrompido some em um combate, a 2d4 + nível por gatilho. Se a intenção é ser brutal, a Pele Morta mostra que adversidade pode ser; aí vale o literal.",
    "acao": "ficha: provisório = só d20",
    "principio": null,
@@ -1676,7 +1678,9 @@
    "statusRev0": "pedroDecide",
    "revisao1": "T15(d) ficou sem resposta; segue o provisório (só o d20).",
    "statusRev1": "pedroDecide",
-   "revisao2": "O Pedro respondeu \"é só o 1 natural no dado\". Falta confirmar qual dado: só o d20 de testes e ataques, ou qualquer dado, dano incluso, como o Notion diz hoje (\"em qualquer dado\"). Até lá a ficha segue o Notion."
+   "revisao2": "O Pedro respondeu \"é só o 1 natural no dado\". Falta confirmar qual dado: só o d20 de testes e ataques, ou qualquer dado, dano incluso, como o Notion diz hoje (\"em qualquer dado\"). Até lá a ficha segue o Notion.",
+   "statusRev2": "pedroDecide",
+   "revisao3": "D124. Gravado no Notion (2026-09-28): \"Ao rolar 1 natural no d20, perde 2d4+nível de éter.\""
   },
   "origem-a-forja": {
    "status": "resolvido",
@@ -1970,6 +1974,56 @@
    }
   ]
  },
+ "revisao3": {
+  "n": 3,
+  "data": "2026-09-28",
+  "fonte": "17-respostas-T-e-sync.md §1c (terceira leva, D124–D126)",
+  "campos": "respostas[id].statusRev2 = status antes da revisão 3; respostas[id].revisao3 = o que mudou",
+  "respostas": [
+   {
+    "tema": "As Vozes",
+    "respostaPedro": "Só para d20.",
+    "decisao": "D124"
+   },
+   {
+    "tema": "Tabela do Alquimista",
+    "respostaPedro": "Lágrima do Tempo, pode adicionar na tabelas esses itens, de onde eles surgiram?",
+    "decisao": "D125"
+   },
+   {
+    "tema": "Ação livre de custo variável",
+    "respostaPedro": "Barreira instintiva você continua gastando 1 ação livre e pode ganhar quanto quiser do benefício gastando mais stamina, as outras devem ter o mesmo conceito.",
+    "decisao": "D126"
+   },
+   {
+    "tema": "Batedor",
+    "respostaPedro": "Rework do Batedor, vamos corrigi-lo, criando duas novas características de classe que irão substituir as atuais, vamos criar as 15 técnicas gerais e os 3 ramos refinados com técnicas modernas, tudo isso pavimentando a estrutura de criação de classes futuras.",
+    "decisao": "proposta em 18-batedor-rework.md"
+   }
+  ],
+  "foraDosAchados": [
+   "D125: 18 itens de Alquimia do CSV entraram na tabela da classe, com Reagentes e CD do CSV: nas seções que já existiam e em 4 seções novas \"Bebidas\" (uma por nível). \"Lágrimas do Tempo\" virou \"Lágrima do Tempo\" no CSV (o nome e a menção na Lágrima de Velúria). A tabela tem 113 itens e bate com o CSV em Reagentes e CD. Ficaram de fora, esperando o Pedro: Poção de Vigor Moderada e Napalm Alquímico (área).",
+   "D126, gravado no Sistema: \"Numa técnica de custo variável (ex.: 1 Éter para cada 1d4 reduzido), você escolhe quanto pagar nesse uso, até o limite que o texto der.\""
+  ],
+  "abertas": [
+   {
+    "tema": "Poção de Vigor Moderada",
+    "pergunta": "hoje 2 Reagentes e CD 10, o custo da Poção de Vigor comum, que cura a metade. Proposta: 4 Reagentes e CD 12, como a Poção de Cura Moderada (CSV e tabela)."
+   },
+   {
+    "tema": "Napalm Alquímico (área)",
+    "pergunta": "é o Napalm da tabela sem o arremesso de 9 m e sem o Reflexo para metade, com 1 Reagente a menos e o mesmo preço. Fica, sai do CSV, ou ganha uma diferença?"
+   },
+   {
+    "tema": "Lote anterior",
+    "pergunta": "L14, L35, L39."
+   },
+   {
+    "tema": "Batedor",
+    "pergunta": "rework em proposta (18-batedor-rework.md), esperando aprovação antes de ir ao Notion."
+   }
+  ]
+ },
  "contagemRev0": {
   "balanceamento.decisao": 84,
   "balanceamento.pedroDecide": 15,
@@ -1986,10 +2040,18 @@
   "pedro.resolvido": 34,
   "site.doAgenteDeHtml": 9
  },
- "contagem": {
+ "contagemRev2": {
   "balanceamento.decisao": 71,
   "balanceamento.pedroDecide": 3,
   "balanceamento.resolvido": 36,
+  "pedro.pedroDecide": 5,
+  "pedro.resolvido": 36,
+  "site.doAgenteDeHtml": 9
+ },
+ "contagem": {
+  "balanceamento.decisao": 71,
+  "balanceamento.pedroDecide": 2,
+  "balanceamento.resolvido": 37,
   "pedro.pedroDecide": 5,
   "pedro.resolvido": 36,
   "site.doAgenteDeHtml": 9
