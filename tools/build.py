@@ -122,6 +122,11 @@ def main():
             raise SystemExit(f'alvo desconhecido: {sorted(desconhecidos)}')
 
     falhas = []
+    # F3b: as regras compiladas (js/ficha/00-regras-dados.js) entram no js/ficha.js,
+    # então o gerador delas roda antes da concatenação (lê só data/ e tools/).
+    print('[>>] regras da ficha (contrato + blocos -> js/ficha/00-regras-dados.js)')
+    if not roda('gerar_regras_ficha.py'):
+        falhas.append('regras-ficha')
     # js/ficha.js é artefato (F2a): concatena js/ficha/*.js na ordem do ORDEM.
     # Antes dos geradores: o gerar_bazar.py e o shell leem o js/ficha.js na versão.
     print('[>>] js/ficha.js (concatena js/ficha/*.js, js/ficha/ORDEM)')

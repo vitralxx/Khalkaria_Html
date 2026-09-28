@@ -5,11 +5,13 @@
   "anao-variante": "anao-caxon",
   "dryad-variante": "dryad-cascaferro",
   "skalri": "gruto-skal-ri",
-  "suspensoes-lubrificadas": "automato-suspensoes-lubrificadas"
+  "suspensoes-lubrificadas": "automato-suspensoes-lubrificadas",
+  "mente-fraca": "abismo-mente-fraca"
  },
  "_notas": {
   "anao-variante": "regras.json arNaturalPorRaca = 3: a variante com 'Ar 3 Natural' é a Caxon (data/racas/anao.json).",
-  "dryad-variante": "regras.json arNaturalPorRaca = 3 e Evasão +1: a variante com '+1 Armadura (Ar) Natural e +1 Evasão' é a Cascaferro (data/racas/dryad.json)."
+  "dryad-variante": "regras.json arNaturalPorRaca = 3 e Evasão +1: a variante com '+1 Armadura (Ar) Natural e +1 Evasão' é a Cascaferro (data/racas/dryad.json).",
+  "mente-fraca": "regras.json multiplicadoresGlobaisDeCusto (fator 2 no Éter): é a Dor do Abismo 'Mente Fraca' ('+100% gasto de Éter global', data/limiar.json). A adversidade homônima do Corrompido (corrompido-mente-fraca) é '-1 Sabedoria', outra coisa (F3b)."
  },
  "semEntidade": {
   "batedor-sexto-sentido": "F1b: habilidade do Instinto em data/classes/batedor.json (classe.recurso.habilidades, id batedor-sexto-sentido); fora do catálogo até virar card levável (F4)",

@@ -10,7 +10,9 @@ integridade do artefato HTML, que é o que quebra em silêncio:
   3. IDs duplicados
   4. Links e assets locais (href/src) apontando para arquivo existente
   5. Round-trip: regenerar de data/*.json bate byte-a-byte com pages/*.html
-     (prova que nenhum HTML gerado foi editado à mão — CLAUDE.md §4/§10)
+     (prova que nenhum HTML gerado foi editado à mão — CLAUDE.md §4/§10); o
+     mesmo para data/catalogo, data/pericias.json, data/efeitos.json e as
+     regras compiladas da ficha (js/ficha/00-regras-dados.js, F3b)
   6. Sidebar: todas as páginas com o mesmo conjunto de links de navegação;
      página sem <nav class="sidebar"> é FALHA. E o contrato da nav: 1 boot no
      <head>, 1 js/nav.js, 1 aria-current="page", todo glifo nv-* com seu
@@ -81,14 +83,16 @@ VOID = {'area', 'base', 'br', 'col', 'embed', 'hr', 'img', 'input', 'link',
 # páginas geradas por gerador -> script que as produz (para o round-trip)
 GERADORES = ['gerar_sistema.py', 'gerar_magias.py', 'gerar_condicoes.py', 'gerar_limiar.py',
              'gerar_classes.py', 'gerar_racas.py', 'gerar_origens.py', 'gerar_efeitos.py',
-             'gerar_catalogo.py']
+             'gerar_catalogo.py', 'gerar_regras_ficha.py']
 # O Bazar entra no build padrão, mas não no round-trip: o gerador dele lê o CSV
 # e grava data/bazar.json na raiz do repo (não recebe repo_root), então
 # regenerá-lo aqui sobrescreveria o artefato real. A integridade do bazar.json
 # é checada em checa_bazar_inv().
 FORA_ROUNDTRIP = {'pages/bazar.html'}
-# data/ que um gerador escreve (fora de data/catalogo/): nasce do zero no round-trip
-ARTEFATOS_DATA = ['data/pericias.json', 'data/efeitos.json']
+# data/ (e js/) que um gerador escreve (fora de data/catalogo/): nasce do zero no round-trip.
+# js/ficha/00-regras-dados.js (F3b) vem do gerar_regras_ficha.py, que lê o data/pericias.json
+# do gerar_catalogo.py: por isso roda depois dele na lista GERADORES.
+ARTEFATOS_DATA = ['data/pericias.json', 'data/efeitos.json', 'js/ficha/00-regras-dados.js']
 FONTES_DOCS = ['docs/ficha-digital/03-respostas-pedro.md']
 
 falhas = []

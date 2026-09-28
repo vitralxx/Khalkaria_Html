@@ -2,6 +2,8 @@
 # validar [artefato-js] confere). Um arquivo de js/ficha/ por linha; # comenta.
 # Cada fonte é uma IIFE que registra window.KhX e, no node, exporta por
 # module.exports; quem depende de outro módulo vem depois dele.
+# 00-regras-dados.js é ARTEFATO (tools/gerar_regras_ficha.py): as regras compiladas.
+00-regras-dados.js
 kh-inv.js
 kh-estado.js
 ficha-v2.js
