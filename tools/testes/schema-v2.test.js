@@ -1,5 +1,5 @@
 'use strict';
-// Schema v2 mínimo (F0): data/ficha.schema.json concorda com o js/ficha.js e
+// Schema v2 mínimo (F0): data/ficha-v2.schema.json concorda com o js/ficha.js e
 // com as regras confirmadas. Ae nas resistências; Religião em SAB; Empilhável
 // 10:1 com munição incluída (o texto vencido de 20:1 saiu); prof_* do Bestiário
 // como grau 0-4 (KhInv.grauPericia); atributo de arma pode ser ''.
@@ -10,7 +10,7 @@ const path = require('node:path');
 
 const K = require('../../js/ficha.js');
 const RAIZ = path.join(__dirname, '..', '..');
-const SCHEMA = JSON.parse(fs.readFileSync(path.join(RAIZ, 'data', 'ficha.schema.json'), 'utf8'));
+const SCHEMA = JSON.parse(fs.readFileSync(path.join(RAIZ, 'data', 'ficha-v2.schema.json'), 'utf8'));
 const SRC = fs.readFileSync(path.join(RAIZ, 'js', 'ficha.js'), 'utf8');
 
 // linhas ['slug','Rótulo','prof_x','attr'] da tabela PERICIAS do ficha.js

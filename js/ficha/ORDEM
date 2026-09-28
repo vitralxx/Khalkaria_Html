@@ -3,4 +3,5 @@
 # Cada fonte é uma IIFE que registra window.KhX e, no node, exporta por
 # module.exports; quem depende de outro módulo vem depois dele.
 kh-inv.js
+kh-estado.js
 ficha-v2.js

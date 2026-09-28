@@ -1,0 +1,337 @@
+{
+  "schemaVersion": "2.0",
+  "rev": 17,
+  "salvoEm": "2026-09-27T21:14:03.512Z",
+  "exportadoEm": "2026-09-26T10:00:00.000Z",
+  "migradoEm": "",
+  "meta": {
+    "nome": "Lira Vento-Sul",
+    "jogador": "Jogador 2",
+    "nivel": 2,
+    "xp": 350,
+    "raca": "Humano",
+    "variante": "Simples",
+    "classe": "Batedor",
+    "ramo": "Cartógrafo",
+    "origem": "Caçador"
+  },
+  "atributos": {
+    "for": 10,
+    "des": 16,
+    "con": 12,
+    "int": 11,
+    "sab": 15
+  },
+  "pericias": {
+    "atacar": 2,
+    "defender": 0,
+    "movimento": 0,
+    "fortitude": 0,
+    "vontade": 0,
+    "reflexos": 0,
+    "percepcao": 4,
+    "sobrevivencia": 2,
+    "furtividade": 2,
+    "crime": 0,
+    "iniciativa": 0,
+    "conhecimento": 0,
+    "medicina": 0,
+    "investigacao": 0,
+    "religiao": 0,
+    "mistico": 0,
+    "convencimento": 0,
+    "intimidacao": 0,
+    "intuicao": 0,
+    "enganacao": 0,
+    "motivar": 0,
+    "oficio": 2
+  },
+  "oficioAttr": "int",
+  "recursos": {
+    "saude": {
+      "atual": 18,
+      "max": 22
+    },
+    "stamina": {
+      "atual": 10,
+      "max": 14
+    },
+    "eter": {
+      "atual": 0,
+      "max": 0
+    },
+    "recursoClasse": {
+      "nome": "Instinto",
+      "atual": 2,
+      "max": 5
+    }
+  },
+  "derivadosManuais": {
+    "evasao": 13,
+    "cd": 0,
+    "movimento": 9,
+    "armadura": 0
+  },
+  "resistencias": {
+    "ordinario": {
+      "R": true,
+      "I": false,
+      "ae": 1
+    },
+    "fogo": {
+      "R": false,
+      "I": true,
+      "ae": 0
+    },
+    "frio": {
+      "R": false,
+      "I": false,
+      "ae": 0
+    },
+    "eletrico": {
+      "R": false,
+      "I": false,
+      "ae": 0
+    },
+    "veneno": {
+      "R": false,
+      "I": false,
+      "ae": 0
+    },
+    "acido": {
+      "R": false,
+      "I": false,
+      "ae": 0
+    },
+    "psiquico": {
+      "R": false,
+      "I": false,
+      "ae": 0
+    },
+    "forca": {
+      "R": false,
+      "I": false,
+      "ae": 0
+    },
+    "radiante": {
+      "R": false,
+      "I": false,
+      "ae": 0
+    },
+    "trovejante": {
+      "R": false,
+      "I": false,
+      "ae": 0
+    },
+    "necrotico": {
+      "R": false,
+      "I": false,
+      "ae": 0
+    },
+    "primordial": {
+      "R": false,
+      "I": false,
+      "ae": 0
+    }
+  },
+  "inventario": {
+    "sins": 37,
+    "bugigangas": [
+      {
+        "id": "item-virotes-flechas",
+        "nome": "Virotes/Flechas",
+        "categoria": "Munição",
+        "raridade": "Ordinário",
+        "arquetipo": "",
+        "arte": "",
+        "efeito": "[Distância Simples] Munição básica para armas à distância simples. Empilhável: pesa 1 bugiganga a cada 10 unidades.",
+        "valor": "2d10+10",
+        "inv": null,
+        "qtd": 1,
+        "empilhavel": true,
+        "empilhavelRegistro": true,
+        "equipado": false,
+        "equipadoEm": null,
+        "sintonizado": false,
+        "secaoManual": false,
+        "avulso": false,
+        "orfao": false,
+        "uid": "eFixture0"
+      },
+      {
+        "id": "item-kali",
+        "nome": "Kali",
+        "categoria": "Material",
+        "raridade": "Exótico",
+        "arquetipo": "",
+        "arte": "",
+        "efeito": "Ingrediente-base de craft (mineral). Usado nas receitas de Ferraria das armas de Kali. Empilhável: pesa 1 bugiganga a cada 10 unidades.",
+        "valor": "4d10+45",
+        "inv": null,
+        "qtd": 2,
+        "empilhavel": true,
+        "empilhavelRegistro": true,
+        "equipado": false,
+        "equipadoEm": null,
+        "sintonizado": false,
+        "secaoManual": false,
+        "avulso": false,
+        "orfao": false,
+        "uid": "eFixture1"
+      }
+    ],
+    "equipamentos": [
+      {
+        "id": "item-armadura-de-couro",
+        "nome": "Armadura de Couro",
+        "categoria": "Armadura",
+        "raridade": "Ordinário",
+        "arquetipo": "",
+        "arte": "",
+        "efeito": "[Pesada] Ar 1. Sem penalidade.",
+        "valor": "2d10+10",
+        "inv": null,
+        "qtd": 1,
+        "empilhavel": false,
+        "empilhavelRegistro": false,
+        "equipado": false,
+        "equipadoEm": null,
+        "sintonizado": false,
+        "secaoManual": false,
+        "avulso": false,
+        "orfao": false,
+        "uid": "eFixture2"
+      },
+      {
+        "id": "item-adaga-de-kali",
+        "nome": "Adaga de Kali",
+        "categoria": "Arma",
+        "raridade": "Exótico",
+        "arquetipo": "",
+        "arte": "",
+        "efeito": "Leve Cortante +2. 3d6 Cortante (Destreza). +2 em Atacar. Atacar(1), Arremessar(1). +1 margem de ameaça. Crítico: o alvo fica Exposto. Seus ataques contra uma criatura Exposta aplicam Sangramento 1 no acerto. Efeito: Dilacerar (2 Stamina): seu próximo ataque aplica Sangramento 1 no acerto. Requisito: Destreza ≥ 12.",
+        "valor": "5d12+180",
+        "inv": null,
+        "qtd": 1,
+        "empilhavel": false,
+        "empilhavelRegistro": false,
+        "equipado": true,
+        "equipadoEm": "2026-09-26T20:00:00.000Z",
+        "sintonizado": false,
+        "secaoManual": false,
+        "avulso": false,
+        "orfao": false,
+        "uid": "eFixture3"
+      },
+      {
+        "id": "item-escudo-de-madeira",
+        "nome": "Escudo de Madeira",
+        "categoria": "Escudo",
+        "raridade": "Ordinário",
+        "arquetipo": "",
+        "arte": "",
+        "efeito": "+1 Defender ao usar a reação Defender. -1,5 m Movimento.",
+        "valor": "2d10+10",
+        "inv": null,
+        "qtd": 1,
+        "empilhavel": false,
+        "empilhavelRegistro": false,
+        "equipado": false,
+        "equipadoEm": null,
+        "sintonizado": false,
+        "secaoManual": false,
+        "avulso": false,
+        "orfao": false,
+        "uid": "eFixture4"
+      }
+    ]
+  },
+  "tecnicas": [
+    {
+      "id": "tecnica-oportunista",
+      "tipo": "tecnica",
+      "nome": "Oportunista",
+      "descricao": "Descrição copiada do card na v2."
+    },
+    {
+      "id": "tecnica-atento",
+      "tipo": "tecnica",
+      "nome": "Atento",
+      "descricao": "Atento (v2)."
+    },
+    {
+      "id": "tecnica-passo-do-vento",
+      "tipo": "tecnica",
+      "nome": "Passo do Vento",
+      "descricao": "Duas classes têm uma técnica com este nome."
+    },
+    {
+      "id": "tecnica-visao-termica",
+      "tipo": "tecnica",
+      "nome": "Visão Térmica",
+      "descricao": "Tecnologia do Autômato levada como técnica pela v2."
+    },
+    {
+      "id": "marca-cicatrizes-da-jornada",
+      "tipo": "marca",
+      "nome": "Cicatrizes da Jornada",
+      "descricao": "Marca."
+    },
+    {
+      "id": "ultimate-silencio",
+      "tipo": "ultimate",
+      "nome": "Silêncio",
+      "descricao": "Ultimate."
+    },
+    {
+      "id": "traço-persistencia-humana",
+      "tipo": "traço",
+      "nome": "Persistência Humana",
+      "descricao": "Traço."
+    },
+    {
+      "id": "corrupção-sangue-morto-1",
+      "tipo": "corrupção",
+      "nome": "Sangue Morto (-1)",
+      "descricao": "+5 Éter Máximo."
+    },
+    {
+      "id": "tecnica-golpe-esquecido",
+      "tipo": "tecnica",
+      "nome": "Golpe Esquecido",
+      "descricao": "Técnica que não existe mais no catálogo."
+    }
+  ],
+  "grimorio": [
+    {
+      "id": "magia-fagulha",
+      "tipo": "magia",
+      "nome": "Fagulha",
+      "descricao": "Magia de nível 1."
+    }
+  ],
+  "cartasLimiar": [
+    {
+      "id": "carta-alma-resiliente",
+      "tipo": "carta",
+      "nome": "Alma Resiliente",
+      "descricao": "Carta universal."
+    },
+    {
+      "id": "dor-estabanado",
+      "tipo": "dor",
+      "nome": "Estabanado",
+      "descricao": "Dor do Abismo."
+    },
+    {
+      "id": "abismo-olhos-da-noite",
+      "tipo": "abismo",
+      "nome": "Olhos da Noite",
+      "descricao": "Benefício do Abismo."
+    }
+  ],
+  "lore": {
+    "historia": "Cresceu nas trilhas do sul.",
+    "outros": ""
+  }
+}

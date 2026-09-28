@@ -1,7 +1,7 @@
 /* Khalkaria — Ficha Interativa v2 (MVP)
  * Drawer persistente (localStorage) + DnD/"+ Adicionar" das páginas de regras +
  * derivados calculados + Export/Import JSON + projeção para o Bestiário (type:npc).
- * Não é SPA: re-hidrata no DOMContentLoaded. Schema: data/ficha.schema.json.
+ * Não é SPA: re-hidrata no DOMContentLoaded. Schema: data/ficha-v2.schema.json (o v3 é o data/ficha.schema.json).
  *
  * Usa o window.KhInv (js/ficha/kh-inv.js, antes deste no ORDEM). No node
  * (tools/testes) não roda: nada daqui toca em window/document/localStorage lá.
@@ -1220,7 +1220,7 @@
     substitui(novaFicha(), 'reset'); toast('Nova ficha');
   }
 
-  // projeção Bestiário (type:npc) — ver data/ficha.schema.json x-bestiary
+  // projeção Bestiário (type:npc) — ver data/ficha-v2.schema.json x-bestiary
   function exportBestiario() {
     var b = { type:'npc', name: ficha.meta.nome || 'Personagem', race: ficha.meta.raca,
       npc_class: ficha.meta.classe, level: ficha.meta.nivel };

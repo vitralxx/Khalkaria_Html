@@ -1,368 +1,422 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "https://vitralxx.github.io/Khalkaria_Html/data/ficha.schema.json",
-  "title": "Ficha de Personagem Khalkaria",
-  "description": "Ficha nativa (superset) do jogador, gravada em localStorage 'khalkaria_ficha' e no Export JSON. O Export para o Bestiário Khalkaria é uma projeção 'type:npc' derivada deste objeto (ver x-bestiary). Campos derivados NÃO são fonte da verdade: calculados em runtime a partir de atributos/perícias/inventário (a carga vem de KhInv.calcular, em js/ficha.js).",
+  "title": "Ficha de Personagem Khalkaria (v3)",
+  "description": "Ficha nativa v3 (schemaVersion '3.0'), uma por personagem: várias fichas por navegador com seletor (D36). Gravada em 'khalkaria_ficha_v3:<id>' a partir da F4 (na F3 é só memória: modo sombra) e no Export JSON. O índice das fichas e o 'exportar todas' estão em $defs/indiceFichas e $defs/pacoteFichas (schema 'fichas/1'). Campos derivados (modificadores, totais de perícia, máximos, Evasão, CD, Movimento, Ar/Ae, capacidade) NÃO são guardados: o motor calcula; o que o jogador corrige à mão vai em 'ajustes' (M2). Motor puro: js/ficha/kh-estado.js (KhEstado). A ficha v2.1 ativa segue descrita em data/ficha-v2.schema.json. Validado nos testes pelo validador mínimo tools/testes/esquema-min.js (sem pip): só as palavras-chave que ele conhece.",
   "type": "object",
-  "required": ["schemaVersion", "meta", "atributos", "pericias", "recursos", "inventario"],
-  "additionalProperties": true,
-
-  "x-bestiary": {
-    "_doc": "Mapa ficha->Bestiário v10 (pack de criação v8). Export gera {type:'npc', ...}. Import tolerante: chaves desconhecidas são ignoradas.",
-    "type": "npc",
-    "meta.nome": "name", "meta.raca": "race", "meta.classe": "npc_class", "meta.nivel": "level",
-    "atributos.for": "strength", "atributos.des": "dexterity", "atributos.con": "constitution",
-    "atributos.int": "intelligence", "atributos.sab": "wisdom",
-    "recursos.saude.max": "health_max", "recursos.stamina.max": "stamina_max", "recursos.eter.max": "ether_max",
-    "derivados.evasao": "evasion", "derivados.movimento": "movement", "derivados.armadura": "armor",
-    "resistencias[R]": "resistances (CSV)", "resistencias[I]": "immunities (CSV)", "resistencias[ae]": "armor_specific (CSV 'Tipo N', só ae > 0)",
-    "pericias.*": "prof_* (x-prof de cada perícia) como GRAU 0-4 = floor(bônus / 2), limitado a 0..4: 0 Leigo, 2→1 Treinado, 4→2 Experiente, 6→3 Mestre, 8→4 Lendário (D5a, Pedro, 2026-09-26; KhInv.grauPericia). A ficha continua guardando o bônus.",
-    "oficioAttr": "craft_attr",
-    "grimorio+tecnicas": "abilities[]",
-    "inventario.*[categoria ∋ 'Arma']": "weapons[]",
-    "_weapons": "KhInv.armasBestiario: entradas das DUAS colunas cuja categoria, separada por vírgula, contém o token exato 'Arma' (nunca substring: 'Armadura' não é arma). Equipadas primeiro. Cada uma vira $defs/arma. Armaduras não saem em weapons[].",
-    "descartado": ["inventario (não-armas)", "sins", "cartasLimiar", "lore"]
-  },
+  "required": ["schemaVersion", "id", "rev", "meta", "identidade", "atributos", "pericias", "recursos", "condicoes", "entradas", "inventario", "ajustes", "resistencias", "limiar", "vhelor", "lore"],
+  "additionalProperties": false,
 
   "properties": {
-    "schemaVersion": {
-      "type": "string", "const": "2.0",
-      "description": "1.0 só é aceito no import e migrado em código (KhInv.migrarV1): as listas armas/equipamentos/bugigangas/materiais são re-roteadas pela coluna canônica e fundidas. O JSON cru da 1.0 fica em localStorage 'khalkaria_ficha_v1_backup'."
-    },
-    "rev": { "type": "integer", "minimum": 0, "default": 0, "description": "Contador de gravações. Toda gravação faz rev++; uma aba adota o storage quando o rev de lá é maior." },
-    "salvoEm": { "type": "string", "description": "ISO 8601 da última gravação, ou ''." },
-    "exportadoEm": { "type": "string", "description": "ISO 8601 do último Export JSON (KF.exportar), ou ''. O rodapé do inventário do Bazar lembra de exportar depois de 7 dias." },
-    "migradoEm": { "type": "string", "description": "ISO 8601 da migração 1.0 -> 2.0, ou '' (ficha que nasceu 2.0)." },
+    "schemaVersion": { "type": "string", "const": "3.0", "description": "1.0 e 2.0 entram só por migração em cadeia (KhEstado.migrar). Versão maior que 3 é recusada (guarda anti-downgrade): nem import, nem gravação por cima." },
+    "id": { "type": "string", "pattern": "^f[a-z0-9]{6,}$", "description": "Aleatório, gerado na criação (ou na migração/import sem id). Chave 'khalkaria_ficha_v3:<id>'." },
+    "rev": { "type": "integer", "minimum": 0, "description": "Contador de gravações desta ficha; o armazém recusa gravar por cima de um rev maior (outra aba gravou)." },
+    "criadoEm": { "type": "string" },
+    "salvoEm": { "type": "string" },
+    "exportadoEm": { "type": "string" },
 
     "meta": {
       "type": "object",
-      "required": ["nome"],
-      "additionalProperties": true,
+      "required": ["nome", "nivel"],
+      "additionalProperties": false,
       "properties": {
-        "id": { "type": "string", "description": "uuid local, gerado no cliente" },
         "nome": { "type": "string" },
         "jogador": { "type": "string" },
-        "nivel": { "type": "integer", "minimum": 1, "maximum": 5, "default": 1 },
-        "xp": { "type": "integer", "minimum": 0, "default": 0 },
-        "raca": { "type": "string" },
-        "variante": { "type": "string" },
-        "classe": { "type": "string" },
-        "ramo": { "type": "string" },
-        "origem": { "type": "string" }
+        "nivel": { "type": "integer", "minimum": 1, "maximum": 5 },
+        "xp": { "type": "integer", "minimum": 0 }
+      }
+    },
+
+    "identidade": {
+      "type": "object",
+      "description": "Por id do catálogo; 'nome' é cache (e o texto livre da v2 quando não achou par: id null).",
+      "required": ["raca", "variante", "classe", "ramo", "origem"],
+      "additionalProperties": false,
+      "properties": {
+        "raca": { "$ref": "#/$defs/refIdentidade" },
+        "variante": { "$ref": "#/$defs/refIdentidade" },
+        "subespecie": { "$ref": "#/$defs/refIdentidade" },
+        "classe": { "$ref": "#/$defs/refIdentidade" },
+        "ramo": { "$ref": "#/$defs/refIdentidade" },
+        "origem": { "$ref": "#/$defs/refIdentidade" },
+        "escolhas": { "type": "object", "description": "Escolhas de raça/classe/origem (atributo com 'ou', perícias de escolha…), por chave do bloco de dado. Livre até a F4c." }
       }
     },
 
     "atributos": {
       "type": "object",
-      "description": "Base 8-18. Modificador = (valor - 10) / 2, arredondado para baixo (derivado).",
-      "required": ["for", "des", "con", "int", "sab"],
+      "description": "base = os 5 valores distribuídos na criação (8–18 rolados, D30; o ponto movido pode passar da faixa). O total (base + raça + porNivel + cartas + itens) é derivado. Na migração da v2 o total digitado vira a base com migradoTotal:true (raça e nível já estão dentro; o motor não soma de novo).",
+      "required": ["base", "porNivel", "migradoTotal"],
       "additionalProperties": false,
       "properties": {
-        "for": { "type": "integer", "minimum": 1, "maximum": 30, "default": 10 },
-        "des": { "type": "integer", "minimum": 1, "maximum": 30, "default": 10 },
-        "con": { "type": "integer", "minimum": 1, "maximum": 30, "default": 10 },
-        "int": { "type": "integer", "minimum": 1, "maximum": 30, "default": 10 },
-        "sab": { "type": "integer", "minimum": 1, "maximum": 30, "default": 10 }
+        "base": { "$ref": "#/$defs/porAtributo" },
+        "fonte": { "type": ["string", "null"], "enum": ["rolado", "manual", "migrado", null] },
+        "porNivel": {
+          "type": "object",
+          "description": "+2 pontos por nível, níveis 2–5 (atributos.ganhoPorNivel do contrato): {'2': {'FOR': 1, 'DES': 1}}.",
+          "propertyNames": { "enum": ["2", "3", "4", "5"] },
+          "additionalProperties": { "$ref": "#/$defs/ganhoAtributo" }
+        },
+        "pontoMovido": {
+          "oneOf": [
+            { "type": "null" },
+            { "type": "object", "required": ["de", "para"], "additionalProperties": false,
+              "properties": { "de": { "$ref": "#/$defs/atributo" }, "para": { "$ref": "#/$defs/atributo" } } }
+          ]
+        },
+        "migradoTotal": { "type": "boolean" },
+        "nivelMigrado": { "type": ["integer", "null"], "minimum": 1, "maximum": 5 }
       }
     },
 
     "pericias": {
       "type": "object",
-      "description": "22 perícias canônicas. Valor = bônus de treinamento (0 Leigo / 2 Treinado / 4 Experiente / 6 Mestre / 8 Lendário). Chaves em slug PT; mapeiam 1:1 para prof_* do Bestiário, que recebe o GRAU 0-4 (bônus / 2; ver x-bestiary).",
+      "description": "As 24 perícias de data/pericias.json, valor = GRAU 0–4 (0 Leigo, 1 Treinado +2, 2 Experiente +4, 3 Mestre +6, 4 Lendário +8). O Bestiário recebe o mesmo grau (D5a).",
+      "required": ["atacar", "defender", "movimento", "fortitude", "vontade", "reflexos", "percepcao", "sobrevivencia", "furtividade", "crime", "iniciativa", "conhecimento", "medicina", "investigacao", "religiao", "mistico", "convencimento", "intimidacao", "intuicao", "enganacao", "motivar", "oficio-engenharia", "oficio-ferraria", "oficio-alquimia"],
+      "propertyNames": { "enum": ["atacar", "defender", "movimento", "fortitude", "vontade", "reflexos", "percepcao", "sobrevivencia", "furtividade", "crime", "iniciativa", "conhecimento", "medicina", "investigacao", "religiao", "mistico", "convencimento", "intimidacao", "intuicao", "enganacao", "motivar", "oficio-engenharia", "oficio-ferraria", "oficio-alquimia"] },
+      "additionalProperties": { "type": "integer", "minimum": 0, "maximum": 4 }
+    },
+    "periciasAttr": {
+      "type": "object",
+      "description": "D7: nas 4 perícias de modo 'maior' vale o maior atributo, com troca à mão. Ausente = o maior.",
       "additionalProperties": false,
       "properties": {
-        "atacar":       { "type": "integer", "enum": [0, 2, 4, 6, 8], "default": 0, "x-prof": "prof_attack" },
-        "defender":     { "type": "integer", "enum": [0, 2, 4, 6, 8], "default": 0, "x-prof": "prof_defend" },
-        "movimento":    { "type": "integer", "enum": [0, 2, 4, 6, 8], "default": 0, "x-prof": "prof_movement" },
-        "fortitude":    { "type": "integer", "enum": [0, 2, 4, 6, 8], "default": 0, "x-prof": "prof_fortitude", "x-attr": "con" },
-        "vontade":      { "type": "integer", "enum": [0, 2, 4, 6, 8], "default": 0, "x-prof": "prof_will", "x-attr": "sab" },
-        "reflexos":     { "type": "integer", "enum": [0, 2, 4, 6, 8], "default": 0, "x-prof": "prof_reflexes", "x-attr": "des" },
-        "percepcao":    { "type": "integer", "enum": [0, 2, 4, 6, 8], "default": 0, "x-prof": "prof_perception", "x-attr": "sab" },
-        "sobrevivencia":{ "type": "integer", "enum": [0, 2, 4, 6, 8], "default": 0, "x-prof": "prof_survival", "x-attr": "sab" },
-        "furtividade":  { "type": "integer", "enum": [0, 2, 4, 6, 8], "default": 0, "x-prof": "prof_stealth", "x-attr": "des" },
-        "crime":        { "type": "integer", "enum": [0, 2, 4, 6, 8], "default": 0, "x-prof": "prof_crime", "x-attr": "des" },
-        "iniciativa":   { "type": "integer", "enum": [0, 2, 4, 6, 8], "default": 0, "x-prof": "prof_initiative", "x-attr": "des" },
-        "conhecimento": { "type": "integer", "enum": [0, 2, 4, 6, 8], "default": 0, "x-prof": "prof_knowledge", "x-attr": "int" },
-        "medicina":     { "type": "integer", "enum": [0, 2, 4, 6, 8], "default": 0, "x-prof": "prof_medicine", "x-attr": "int" },
-        "investigacao": { "type": "integer", "enum": [0, 2, 4, 6, 8], "default": 0, "x-prof": "prof_investigation", "x-attr": "int" },
-        "religiao":     { "type": "integer", "enum": [0, 2, 4, 6, 8], "default": 0, "x-prof": "prof_religion", "x-attr": "sab" },
-        "mistico":      { "type": "integer", "enum": [0, 2, 4, 6, 8], "default": 0, "x-prof": "prof_mystic", "x-attr": "int" },
-        "convencimento":{ "type": "integer", "enum": [0, 2, 4, 6, 8], "default": 0, "x-prof": "prof_persuasion", "x-attr": "melhor(des,int)" },
-        "intimidacao":  { "type": "integer", "enum": [0, 2, 4, 6, 8], "default": 0, "x-prof": "prof_intimidation", "x-attr": "melhor(con,for)" },
-        "intuicao":     { "type": "integer", "enum": [0, 2, 4, 6, 8], "default": 0, "x-prof": "prof_insight", "x-attr": "sab" },
-        "enganacao":    { "type": "integer", "enum": [0, 2, 4, 6, 8], "default": 0, "x-prof": "prof_deception", "x-attr": "melhor(des,int)" },
-        "motivar":      { "type": "integer", "enum": [0, 2, 4, 6, 8], "default": 0, "x-prof": "prof_motivate", "x-attr": "sab" },
-        "oficio":       { "type": "integer", "enum": [0, 2, 4, 6, 8], "default": 0, "x-prof": "prof_craft", "x-attr": "oficioAttr" }
+        "movimento": { "enum": ["FOR", "DES"] },
+        "convencimento": { "enum": ["DES", "INT"] },
+        "intimidacao": { "enum": ["CON", "FOR"] },
+        "enganacao": { "enum": ["DES", "INT"] }
       }
-    },
-
-    "oficioAttr": {
-      "type": "string",
-      "description": "Atributo do Ofício(X). Exporta para craft_attr.",
-      "enum": ["for", "des", "con", "int", "sab"],
-      "default": "int",
-      "x-bestiary-map": { "for": "strength", "des": "dexterity", "con": "constitution", "int": "intelligence", "sab": "wisdom" }
     },
 
     "recursos": {
       "type": "object",
-      "description": "atual = estado de jogo; max = capacidade (exporta *_max). recursoClasse é específico (ex.: FLUXO no Monge).",
+      "description": "Só o ESTADO (edição direta, M2 b). Os máximos são derivados (V/G/R × nível); correção à mão vai em ajustes 'recurso.<r>.max'.",
+      "required": ["saude", "stamina", "eter", "classe"],
       "additionalProperties": false,
       "properties": {
-        "saude":   { "$ref": "#/$defs/recurso" },
-        "stamina": { "$ref": "#/$defs/recurso" },
-        "eter":    { "$ref": "#/$defs/recurso" },
-        "recursoClasse": {
-          "type": "object",
-          "additionalProperties": false,
-          "properties": {
-            "nome": { "type": "string", "description": "ex.: FLUXO" },
-            "atual": { "type": "integer", "default": 0 },
-            "max": { "type": "integer", "default": 0 }
-          }
-        }
+        "saude": { "type": "object", "required": ["atual"], "additionalProperties": false,
+          "properties": { "atual": { "type": "number" }, "temporaria": { "type": "number", "minimum": 0, "description": "D15: não soma (fica a maior), gasta primeiro, some no descanso longo." } } },
+        "stamina": { "type": "object", "required": ["atual"], "additionalProperties": false,
+          "properties": { "atual": { "type": "number" }, "comprometida": { "type": "number", "minimum": 0, "description": "D19: reserva visível como comprometida." } } },
+        "eter": { "type": "object", "required": ["atual"], "additionalProperties": false,
+          "properties": { "atual": { "type": "number" } } },
+        "classe": { "type": "object", "required": ["atual"], "additionalProperties": false,
+          "description": "Recurso de classe (medidor do bloco classe: FLUXO, Instinto, Brutalidade, Reagentes, Concentração). Espadachim e Teurgo têm recurso (Pedro, 2026-09-26) mas o nome ainda não está no contrato: id null e selo PENDENTE (balanceamento).",
+          "properties": { "id": { "type": ["string", "null"] }, "nome": { "type": "string" }, "atual": { "type": "number" } } }
       }
     },
 
-    "resistencias": {
-      "type": "object",
-      "description": "12 tipos de dano. R = Resistência, I = Imunidade, ae = Armadura Específica (inteiro). Export: nomes com R -> resistances (CSV), com I -> immunities (CSV), ae > 0 -> armor_specific ('Tipo N', CSV).",
-      "additionalProperties": false,
-      "propertyNames": {
-        "enum": ["ordinario", "fogo", "frio", "eletrico", "veneno", "acido", "psiquico", "forca", "radiante", "trovejante", "necrotico", "primordial"]
-      },
-      "patternProperties": {
-        "^.*$": {
-          "type": "object",
-          "additionalProperties": false,
-          "properties": {
-            "R": { "type": "boolean", "default": false },
-            "I": { "type": "boolean", "default": false },
-            "ae": { "type": "integer", "minimum": 0, "default": 0, "description": "Armadura Específica contra este tipo (coluna Ae do drawer)." }
-          }
-        }
-      }
+    "condicoes": {
+      "type": "array",
+      "description": "Condições ativas, por referência (id de data/condicoes.json + Agarrado). X é intensidade (Lento X, Sangramento X…); a duração conta em turnos seus ou termina num evento.",
+      "items": { "$ref": "#/$defs/condicaoAtiva" }
+    },
+
+    "entradas": {
+      "type": "array",
+      "description": "Tudo que foi levado à ficha, menos item (inventário) e condição: por referência {tipo, id} com cache para mostrar sem catálogo e sem rede. Id que sumiu (ou migração sem par) vira órfã e nunca é apagada.",
+      "items": { "$ref": "#/$defs/entrada" }
     },
 
     "inventario": {
       "type": "object",
-      "description": "Duas colunas, nesta ordem: Bugigangas e Equipamentos. Capacidade (derivada): bugigangas = 10 + Mod.FOR (mín. 1) e equipamentos = 2 + Mod.FOR (mín. 1), mais o bônus de inv.capacidade dos itens carregados; o mínimo 1 vale só para a base. Itens equipados não contam. Peso: cada item pesa 1; item com a propriedade Empilhável (inv.empilhavel do registro), munição incluída: 1 bugiganga a cada 10 unidades (10:1, confirmado pelo Pedro em 2026-09-25). Acima do máximo e menos que o dobro: Sobrepeso Leve; o dobro ou mais: Sobrepeso Extremo. Sins não pesam. Aquisição NUNCA travada por moeda. Invariante: no máximo uma entrada NÃO equipada por (coluna, id), e toda entrada equipada tem qtd 1.",
+      "description": "O do KhInv (js/ficha/kh-inv.js), igual à v2: ver data/ficha-v2.schema.json $defs/entradaInventario.",
       "required": ["sins", "bugigangas", "equipamentos"],
       "additionalProperties": false,
       "properties": {
-        "sins": { "type": "integer", "minimum": 0, "default": 0, "description": "Contador livre. Moeda do universo. Não deriva de atributo e não pesa." },
-        "bugigangas":   { "type": "array", "items": { "$ref": "#/$defs/entradaInventario" } },
+        "sins": { "type": "integer", "minimum": 0 },
+        "bugigangas": { "type": "array", "items": { "$ref": "#/$defs/entradaInventario" } },
         "equipamentos": { "type": "array", "items": { "$ref": "#/$defs/entradaInventario" } }
       }
     },
 
-    "tecnicas": {
+    "ajustes": {
       "type": "object",
-      "description": "Todas exportam para abilities[] do Bestiário.",
+      "description": "M2: ajuste manual de campo DERIVADO, marcado e removível; a conta continua visível. Chave = caminho do namespace de derivados; caminho de estado (recurso.*.atual, base de atributo, grau de perícia, Sins…) é recusado. O padrão abaixo é o KhEstado.PADRAO_AJUSTE (o teste compara).",
+      "propertyNames": { "pattern": "^(?:atributo\\.(?:FOR|DES|CON|INT|SAB)\\.(?:total|mod)|pericia\\.(?:atacar|defender|movimento|fortitude|vontade|reflexos|percepcao|sobrevivencia|furtividade|crime|iniciativa|conhecimento|medicina|investigacao|religiao|mistico|convencimento|intimidacao|intuicao|enganacao|motivar|oficio-engenharia|oficio-ferraria|oficio-alquimia)\\.total|recurso\\.(?:saude|stamina|eter|classe)\\.max|evasao\\.(?:passiva|ativa)|cd|movimento|ar|acoes|capacidade\\.(?:bugigangas|equipamentos)|ae\\.(?:cortante|contundente|perfurante|fogo|frio|eletrico|veneno|acido|psiquico|radiante|trovejante|necrotico|forca|primordial|ordinario|elemental|biologico|mistico|todos)|(?:resistencia|imunidade|vulnerabilidade)\\.(?:cortante|contundente|perfurante|fogo|frio|eletrico|veneno|acido|psiquico|radiante|trovejante|necrotico|forca|primordial)|magia\\.[a-z0-9-]+\\.custo|ataque\\.[A-Za-z0-9_-]+\\.(?:atacar|dano)|limiar\\.saldo)$" },
+      "additionalProperties": { "$ref": "#/$defs/ajuste" }
+    },
+
+    "resistencias": {
+      "type": "object",
+      "description": "Marcação MANUAL de base (fonte 'ficha'), por cima da qual o motor soma raça, itens e condições. 14 tipos (D63/D67) com R, I, V e Ae; Ae de categoria (Ordinário, Elemental, Biológico, Místico) e Ae(Todos). A v2 tinha 'ordinario' como tipo: migra para os 3 tipos (R/I) e para a Ae de categoria.",
+      "required": ["tipos", "aeCategoria", "aeTodos"],
       "additionalProperties": false,
       "properties": {
-        "gerais":   { "type": "array", "items": { "$ref": "#/$defs/tecnica" } },
-        "ramo":     { "type": "array", "items": { "$ref": "#/$defs/tecnica" } },
-        "diversas": { "type": "array", "items": { "$ref": "#/$defs/tecnica" } },
-        "marcas":   { "type": "array", "items": { "$ref": "#/$defs/marca" } }
+        "tipos": {
+          "type": "object",
+          "required": ["cortante", "contundente", "perfurante", "fogo", "frio", "eletrico", "veneno", "acido", "psiquico", "radiante", "trovejante", "necrotico", "forca", "primordial"],
+          "propertyNames": { "enum": ["cortante", "contundente", "perfurante", "fogo", "frio", "eletrico", "veneno", "acido", "psiquico", "radiante", "trovejante", "necrotico", "forca", "primordial"] },
+          "additionalProperties": { "$ref": "#/$defs/defesaTipo" }
+        },
+        "aeCategoria": {
+          "type": "object",
+          "propertyNames": { "enum": ["ordinario", "elemental", "biologico", "mistico"] },
+          "additionalProperties": { "type": "integer", "minimum": 0 }
+        },
+        "aeTodos": { "type": "integer", "minimum": 0 }
       }
     },
 
-    "grimorio": {
+    "imunidadesCondicao": { "type": "array", "items": { "type": "string" }, "description": "Imunidade a condição marcada à mão (ids de condição)." },
+    "idiomas": { "type": "array", "items": { "type": "string" } },
+
+    "limiar": {
       "type": "object",
-      "description": "Magias conhecidas por nível. Exportam para abilities[] do Bestiário.",
+      "required": ["queimadas"],
       "additionalProperties": false,
       "properties": {
-        "nivel1": { "type": "array", "items": { "$ref": "#/$defs/magia" } },
-        "nivel2": { "type": "array", "items": { "$ref": "#/$defs/magia" } },
-        "nivel3": { "type": "array", "items": { "$ref": "#/$defs/magia" } },
-        "nivel4": { "type": "array", "items": { "$ref": "#/$defs/magia" } }
+        "queimadas": { "type": "array", "description": "D35: 1 carta queimada por mão; nunca mais volta (aviso, sem trava).",
+          "items": { "type": "object", "required": ["id", "nivel"], "additionalProperties": false,
+            "properties": { "id": { "type": "string" }, "nivel": { "type": "integer", "minimum": 2, "maximum": 5 } } } }
       }
     },
 
-    "cartasLimiar": {
-      "type": "array",
-      "description": "Só-ficha. Sem sorteio: adicionadas por DnD/botão. Descartadas no export Bestiário.",
-      "items": { "$ref": "#/$defs/cartaLimiar" }
+    "historicoNivel": { "type": "array", "description": "Uma entrada por criação/subida (M3); a 0 leva as rolagens da criação.", "items": { "type": "object" } },
+
+    "vhelor": {
+      "type": "object",
+      "required": ["marcas"],
+      "additionalProperties": false,
+      "properties": { "marcas": { "type": "integer", "minimum": 0, "maximum": 7, "description": "Marcas da Vhelor (M5, D26a). O texto das 7 mora em data/balanceamento/marcas-vhelor.json." } }
     },
 
     "lore": {
       "type": "object",
-      "description": "Texto livre. Só-ficha.",
       "additionalProperties": false,
-      "properties": {
-        "historia": { "type": "string" },
-        "outros": { "type": "string" }
-      }
+      "properties": { "historia": { "type": "string" }, "outros": { "type": "string" } }
     },
 
-    "derivados": {
-      "type": "object",
-      "description": "CACHE opcional. NÃO é fonte da verdade — recalculado no load. Persistido só para conveniência/debug.",
-      "additionalProperties": true,
-      "properties": {
-        "modificadores": {
-          "type": "object",
-          "additionalProperties": false,
+    "migracao": {
+      "oneOf": [
+        { "type": "null" },
+        { "type": "object", "required": ["de", "em", "pendencias"], "additionalProperties": false,
           "properties": {
-            "for": { "type": "integer" }, "des": { "type": "integer" }, "con": { "type": "integer" },
-            "int": { "type": "integer" }, "sab": { "type": "integer" }
-          }
-        },
-        "evasao": { "type": "integer" },
-        "cd": { "type": "integer" },
-        "movimento": { "type": "number" },
-        "armadura": { "type": "integer" },
-        "slots": {
-          "type": "object",
-          "additionalProperties": false,
-          "properties": {
-            "equipamentosMax": { "type": "integer" },
-            "bugigangasMax": { "type": "integer" },
-            "sobrepeso": { "type": "string", "enum": ["nenhum", "leve", "extremo"] }
-          }
-        }
-      }
-    }
+            "de": { "enum": ["1.0", "2.0"] },
+            "em": { "type": "string" },
+            "pendencias": { "type": "array", "description": "O que a migração não pode decidir pelo jogador (ex.: qual Ofício recebe o grau do Ofício(X) da v2).", "items": { "type": "object", "required": ["campo", "motivo"] } }
+          } }
+      ]
+    },
+    "vinculoV2": {
+      "description": "Ficha que veio da v2: rev e salvoEm da v2 no momento da migração (para 'reimportar alterações da v2', F4). A cópia (duplicar) não herda.",
+      "oneOf": [
+        { "type": "null" },
+        { "type": "object", "required": ["revV2", "salvoEmV2"], "additionalProperties": false,
+          "properties": { "revV2": { "type": "integer", "minimum": 0 }, "salvoEmV2": { "type": "string" } } }
+      ]
+    },
+
+    "estadoSessao": { "$ref": "#/$defs/sessao", "description": "Só no EXPORT nativo: a sessão da Mesa desta ficha (no navegador fica em 'khalkaria_ficha_v3_sessao:<id>'). Nunca vai ao Bestiário." }
   },
 
   "$defs": {
-    "recurso": {
+    "atributo": { "enum": ["FOR", "DES", "CON", "INT", "SAB"] },
+    "porAtributo": {
       "type": "object",
+      "required": ["FOR", "DES", "CON", "INT", "SAB"],
       "additionalProperties": false,
       "properties": {
-        "atual": { "type": "integer", "default": 0 },
-        "max": { "type": "integer", "default": 0 }
+        "FOR": { "type": "integer", "minimum": 1, "maximum": 30 },
+        "DES": { "type": "integer", "minimum": 1, "maximum": 30 },
+        "CON": { "type": "integer", "minimum": 1, "maximum": 30 },
+        "INT": { "type": "integer", "minimum": 1, "maximum": 30 },
+        "SAB": { "type": "integer", "minimum": 1, "maximum": 30 }
+      }
+    },
+    "ganhoAtributo": {
+      "type": "object",
+      "propertyNames": { "enum": ["FOR", "DES", "CON", "INT", "SAB"] },
+      "additionalProperties": { "type": "integer", "minimum": 0, "maximum": 2 }
+    },
+
+    "refIdentidade": {
+      "type": "object",
+      "required": ["id", "nome"],
+      "additionalProperties": false,
+      "properties": { "id": { "type": ["string", "null"] }, "nome": { "type": "string" } }
+    },
+
+    "cache": {
+      "type": "object",
+      "required": ["nome", "versaoCatalogo"],
+      "additionalProperties": false,
+      "properties": {
+        "nome": { "type": "string" },
+        "resumo": { "type": "string" },
+        "versaoCatalogo": { "type": "string" }
       }
     },
 
-    "entidadeBase": {
+    "orfao": {
       "type": "object",
-      "required": ["id", "nome"],
+      "required": ["motivo"],
+      "additionalProperties": false,
       "properties": {
-        "id": { "type": "string", "description": "slug determinístico da fonte (ex.: magia-lanca-de-gelo). Se ausente na origem, derivado do nome." },
-        "nome": { "type": "string" },
-        "fonte": { "type": "string", "description": "página/arquivo de origem, para rastreio" }
+        "motivo": { "enum": ["sumiu", "sem-par", "ambiguo", "sem-catalogo", "tipo-desconhecido"], "description": "sumiu: o id saiu do catálogo; sem-par/ambiguo: migração por nome+tipo+classe; sem-catalogo: migrou sem catálogo (reassociar tenta de novo)." },
+        "candidatos": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+
+    "entrada": {
+      "type": "object",
+      "required": ["uid", "tipo", "id", "estado", "cache", "mods"],
+      "additionalProperties": false,
+      "properties": {
+        "uid": { "type": "string", "minLength": 1 },
+        "tipo": { "enum": ["magia", "tecnica", "marca", "ultimate", "traco", "variante", "subespecie", "tecnologia", "corrupcao", "origem", "raca", "classe", "carta", "dor", "beneficio"] },
+        "id": { "type": ["string", "null"], "description": "Id do catálogo (convenção do plano §3.2); null na órfã da migração." },
+        "estado": { "type": "object", "description": "Por tipo (plano §4): magia {intensidade, sustentando}; tecnica/marca/ultimate {usos}; carta {nivelAquisicao, posicaoNaMao, especial}; dor/beneficio/corrupcao {nivelAquisicao}." },
+        "cache": { "$ref": "#/$defs/cache" },
+        "mods": { "type": "array", "items": { "$ref": "#/$defs/mod" }, "description": "Snapshot dos Mods (o derivado calcula síncrono sem o catálogo)." },
+        "adicionadoEm": { "type": "string" },
+        "nivelAquisicao": { "type": ["integer", "null"], "minimum": 1, "maximum": 5 },
+        "migradoDe": { "type": "object", "required": ["id", "tipo", "nome"], "additionalProperties": false,
+          "properties": { "id": { "type": "string" }, "tipo": { "type": "string" }, "nome": { "type": "string" } } },
+        "orfao": { "$ref": "#/$defs/orfao" }
+      }
+    },
+
+    "mod": {
+      "type": "object",
+      "required": ["alvo", "op"],
+      "description": "Mod do site (plano §4). Vocabulário completo validado no gerar_efeitos.py; aqui só a forma.",
+      "properties": {
+        "alvo": { "type": "string" },
+        "op": { "enum": ["soma", "multiplica", "fixa", "minimo", "maximo", "vantagem", "desvantagem", "falhaAuto", "semAcao", "semReacao", "lembrete", "escolha"] },
+        "status": { "type": "string" }
+      }
+    },
+
+    "condicaoAtiva": {
+      "type": "object",
+      "required": ["uid", "id", "x", "duracao"],
+      "additionalProperties": false,
+      "properties": {
+        "uid": { "type": "string", "minLength": 1 },
+        "id": { "type": "string", "minLength": 1 },
+        "x": { "type": ["integer", "null"], "minimum": 0, "description": "Intensidade; null na condição sem X." },
+        "duracao": {
+          "oneOf": [
+            { "type": "null" },
+            { "type": "object", "required": ["turnosSeus"], "additionalProperties": false,
+              "properties": { "turnosSeus": { "type": "integer", "minimum": 0 } } },
+            { "type": "object", "required": ["ate"], "additionalProperties": false,
+              "properties": { "ate": { "enum": ["fimTurno", "fimCombate", "fimCena", "descansoCurto", "descansoLongo", "novoDia", "manual"] } } }
+          ]
+        },
+        "fonte": { "type": ["object", "null"] },
+        "cache": { "$ref": "#/$defs/cache" },
+        "desde": { "type": "string" }
+      }
+    },
+
+    "ajuste": {
+      "type": "object",
+      "required": ["modo", "valor", "desde"],
+      "additionalProperties": false,
+      "properties": {
+        "modo": { "enum": ["fixa", "soma"], "description": "fixa: o campo vira o valor; soma: diferença sobre o calculado (acompanha o nível)." },
+        "valor": { "type": ["number", "boolean"], "description": "boolean só em resistencia/imunidade/vulnerabilidade.<tipo> (e aí só 'fixa')." },
+        "motivo": { "type": "string" },
+        "temporario": {
+          "oneOf": [
+            { "const": false },
+            { "type": "object", "required": ["fim"], "additionalProperties": false,
+              "properties": { "fim": { "enum": ["fimTurno", "fimCombate", "descansoCurto", "descansoLongo", "manual"] } } }
+          ]
+        },
+        "desde": { "type": "string" },
+        "calculadoEm": { "type": ["number", "null"], "description": "O calculado quando o ajuste foi feito (o chip avisa se mudou). null: ainda não conferido (migração sem o motor)." },
+        "origem": { "enum": ["manual", "migracao"] }
+      }
+    },
+
+    "defesaTipo": {
+      "type": "object",
+      "required": ["R", "I", "V", "ae"],
+      "additionalProperties": false,
+      "properties": {
+        "R": { "type": "boolean" }, "I": { "type": "boolean" }, "V": { "type": "boolean" },
+        "ae": { "type": "integer", "minimum": 0 }
       }
     },
 
     "entradaInventario": {
-      "description": "Uma linha do inventário. O snapshot (nome..valor, inv) vem do data/bazar.json e é atualizado pela reconciliação com o catálogo (KhInv.reconciliar), que nunca toca em qtd, equipado, sintonizado nem secaoManual. Preço é informativo.",
       "type": "object",
       "required": ["uid", "id", "nome", "qtd", "empilhavel", "equipado", "sintonizado", "avulso"],
-      "additionalProperties": true,
+      "description": "Igual à v2 (data/ficha-v2.schema.json $defs/entradaInventario); os estados da F6 (ativo, escolhas, usosGastos, temporarios) entram por cima.",
       "properties": {
-        "uid": { "type": "string", "description": "Identidade da linha: 'e' + Date.now() em base 36 + 4 caracteres aleatórios. Estável entre gravações." },
-        "id": { "type": "string", "description": "id do item em data/bazar.json (ex.: item-virotes-flechas); '' no item avulso." },
+        "uid": { "type": "string" },
+        "id": { "type": "string" },
         "nome": { "type": "string" },
-        "categoria": { "type": "string", "description": "Categorias do CSV separadas por vírgula; lida por token (ex.: 'Arma', 'Armadura', 'Item Mágico')." },
-        "raridade": { "type": "string" },
-        "arquetipo": { "type": "string" },
-        "arte": { "type": "string" },
-        "efeito": { "type": "string" },
-        "valor": { "type": "string", "description": "Valor (Sins), informativo e nunca convertido em número. Ex.: '6d10+40'." },
-        "inv": {
-          "oneOf": [{ "$ref": "#/$defs/invRegistro" }, { "type": "null" }],
-          "description": "Regras de carga do registro; null até o catálogo chegar (entrada migrada) e no avulso."
-        },
-        "qtd": { "type": "integer", "minimum": 1, "maximum": 9999, "default": 1, "description": "Zero não existe: descer abaixo de 1 remove a entrada." },
-        "empilhavel": { "type": "boolean", "description": "Caixa 'Item Empilhável' marcada pelo jogador; vence o registro." },
-        "empilhavelRegistro": { "type": ["boolean", "null"], "description": "O que o registro diz: inv.empilhavel (dado do build). Só a entrada sem inv (v1 migrada, card sem catálogo) cai na frase do Efeito, até a reconciliação. null no avulso." },
-        "equipado": { "type": "boolean", "description": "Só na coluna equipamentos. Equipado não pesa. Limites: 1 Armadura [Pesada] e 2 [Leve] (independentes: pendente Pedro)." },
-        "equipadoEm": { "type": ["string", "null"], "description": "ISO 8601 de quando foi equipado, ou null." },
-        "sintonizado": { "type": "boolean", "description": "Itens Mágicos; limite de 3. Não muda o peso (pendente Pedro)." },
-        "secaoManual": { "type": "boolean", "description": "true quando o jogador pôs a entrada fora da coluna canônica (selo 'fora da regra')." },
-        "avulso": { "type": "boolean", "description": "Item sem registro: nome livre, sem efeito, caixa Empilhável desmarcada." },
-        "orfao": { "type": "boolean", "description": "id que sumiu do catálogo. Nunca é apagado; pesa pelo snapshot." }
+        "qtd": { "type": "integer", "minimum": 1, "maximum": 9999 },
+        "empilhavel": { "type": "boolean" },
+        "equipado": { "type": "boolean" },
+        "sintonizado": { "type": "boolean" },
+        "avulso": { "type": "boolean" }
       }
     },
 
-    "invRegistro": {
-      "description": "Campo 'inv' de cada item do data/bazar.json, gerado por tools/gerar_bazar.py a partir do CSV. Nada de peso pré-calculado.",
+    "sessao": {
       "type": "object",
-      "required": ["slot"],
+      "description": "Sessão da Mesa (M1), por ficha, fora do rev: não entra no desfazer.",
       "additionalProperties": false,
       "properties": {
-        "slot": { "type": "string", "enum": ["equipamento", "bugiganga"], "description": "Coluna canônica. Empilhável vai para bugiganga (SLOT_EMPILHAVEL, pendente Pedro)." },
-        "empilhavel": { "type": "boolean" },
-        "armadura": { "type": "string", "enum": ["Pesada", "Leve"] },
-        "capacidade": {
-          "type": "object",
-          "additionalProperties": false,
-          "properties": { "bug": { "type": "integer" }, "equip": { "type": "integer" } }
-        },
-        "acumula": { "type": "boolean", "description": "false: cópias do mesmo item não somam capacidade." },
-        "ocupa": { "type": "boolean", "description": "false: não ocupa espaço (Bolsa de Couro)." },
-        "recipiente": { "type": "integer", "description": "Armazena até N Bugigangas (Bolsa Dimensional). Ainda não modelado na carga: só selo." }
+        "modo": { "enum": ["ficha", "mesa"] },
+        "turno": { "type": "integer", "minimum": 0 },
+        "acoesGastas": { "type": "integer", "minimum": 0 },
+        "reacaoGasta": { "type": "boolean" },
+        "magiaDoTurno": { "type": ["string", "null"] },
+        "sustentando": { "type": ["string", "null"] },
+        "agressorAtual": { "type": ["string", "null"] },
+        "log": { "type": "array", "maxItems": 200, "items": { "type": "object", "required": ["t", "tipo", "texto"],
+          "properties": { "t": { "type": "string" }, "tipo": { "enum": ["rolagem", "acao"] }, "texto": { "type": "string" } } } }
       }
     },
 
-    "arma": {
-      "description": "Projeção de uma entradaInventario em weapons[] do Bestiário (KhInv.armasBestiario). O app reescala por level.",
+    "logDesfazer": {
       "type": "object",
-      "required": ["name"],
+      "description": "Desfazer por ficha em 'khalkaria_ficha_v3_log:<id>': teto de 20 passos e 256 KB; não vai no export.",
+      "required": ["passos"],
+      "additionalProperties": false,
       "properties": {
-        "name": { "type": "string", "description": "nome da entrada" },
-        "category": { "type": "string", "description": "arquétipo do catálogo, ex.: 'Pesada Cortante'; '' se não houver" },
-        "level": { "type": "string", "enum": ["0", "1", "2", "3"], "default": "0", "description": "o N de um nome terminado em ' +N'" },
-        "dado": { "type": "string", "description": "dado base, ex.: '1d12' (hoje sai '')" },
-        "atributo": { "type": "string", "enum": ["", "Força", "Destreza"], "description": "'' enquanto a arma não tem fonte de dado (hoje, todas); nunca 'Força' por padrão." },
-        "dano": { "type": "string", "description": "tipo de dano (hoje sai '')" },
-        "acoes": { "type": "string", "description": "ex.: 'Atacar(2)'" },
-        "efeito": { "type": "string" },
-        "mystic": { "type": "boolean", "default": false, "description": "true quando o arquétipo começa com 'Foco Místico' (sem dano/acerto)" }
+        "passos": { "type": "array", "maxItems": 20, "items": { "type": "object", "required": ["revPorParte", "partes", "antes", "rotulo"] } }
       }
     },
 
-    "magia": {
-      "description": "Extraída de magias.json. Export -> abilities[] (nome, descricao->description, custo->ether_cost, stats->damage/save).",
-      "allOf": [{ "$ref": "#/$defs/entidadeBase" }],
+    "linhaIndice": {
+      "type": "object",
+      "required": ["id", "nome", "classe", "nivel", "atualizadoEm"],
+      "additionalProperties": false,
       "properties": {
-        "escola": { "type": "string", "enum": ["destruicao", "abjuracao", "alteracao", "conhecimento"] },
-        "nivel": { "type": "integer", "minimum": 1, "maximum": 4 },
-        "custoBase": { "type": "integer", "description": "2/4/6/8 conforme nível" },
-        "stats": {
-          "type": "array",
-          "description": "Linhas da tabela: Ação, Alcance, Alvo, Dano, Resistência, etc.",
-          "items": {
-            "type": "object",
-            "required": ["caracteristica", "valor"],
-            "properties": {
-              "caracteristica": { "type": "string" },
-              "valor": { "type": "string" },
-              "mod": { "type": "boolean", "description": "aplica Mod (✅/❎)" }
-            }
-          }
-        },
-        "descricao": { "type": "string" },
-        "intensidadeLock": { "type": "string", "description": "se a magia trava intensidade (ex.: 'Normal')" }
+        "id": { "type": "string" }, "nome": { "type": "string" }, "classe": { "type": "string" },
+        "nivel": { "type": "integer", "minimum": 1, "maximum": 5 }, "atualizadoEm": { "type": "string" }
       }
     },
-
-    "tecnica": {
-      "description": "Extraída das páginas de classe. Export -> abilities[].",
-      "allOf": [{ "$ref": "#/$defs/entidadeBase" }],
+    "indiceFichas": {
+      "type": "object",
+      "description": "'khalkaria_fichas_v3': vitrine do seletor. A fonte é a ficha; a linha dela é atualizada na mesma gravação. A ativa é por aba (sessionStorage 'khalkaria_ficha_ativa'); ultimaAtiva é a que abre numa aba nova.",
+      "required": ["schema", "ultimaAtiva", "fichas"],
+      "additionalProperties": false,
       "properties": {
-        "tipo": { "type": "string", "enum": ["geral", "ramo", "diversa", "ultimate"] },
-        "tier": { "type": "integer", "minimum": 1, "maximum": 3 },
-        "custo": { "type": "string", "description": "ex.: 'Passiva', 'Descanso Curto', '2 Ações + 3 Stamina'" },
-        "descricao": { "type": "string" }
+        "schema": { "const": "fichas/1" },
+        "ultimaAtiva": { "type": ["string", "null"] },
+        "projecaoV2": { "oneOf": [ { "type": "null" },
+          { "type": "object", "required": ["fichaId", "revV2", "salvoEmV2"], "additionalProperties": false,
+            "properties": { "fichaId": { "type": "string" }, "revV2": { "type": "integer", "minimum": 0 }, "salvoEmV2": { "type": "string" } } } ] },
+        "fichas": { "type": "array", "items": { "$ref": "#/$defs/linhaIndice" } }
       }
     },
-
-    "marca": {
-      "allOf": [{ "$ref": "#/$defs/entidadeBase" }],
+    "pacoteFichas": {
+      "type": "object",
+      "description": "'Exportar todas' (khalkaria-fichas.json). Cada item é o export nativo de uma ficha (a ficha + estadoSessao). Importar aceita este pacote ou uma ficha só.",
+      "required": ["schema", "fichas"],
+      "additionalProperties": false,
       "properties": {
-        "descricao": { "type": "string" }
-      }
-    },
-
-    "cartaLimiar": {
-      "allOf": [{ "$ref": "#/$defs/entidadeBase" }],
-      "properties": {
-        "categoria": { "type": "string", "enum": ["universal", "forca", "destreza", "constituicao", "inteligencia", "sabedoria", "rara"] },
-        "custoReq": { "type": "string", "description": "custo/requisito exibido no card" },
-        "efeito": { "type": "string" }
+        "schema": { "const": "fichas/1" },
+        "exportadoEm": { "type": "string" },
+        "fichas": { "type": "array", "items": { "$ref": "#" } }
       }
     }
   }
