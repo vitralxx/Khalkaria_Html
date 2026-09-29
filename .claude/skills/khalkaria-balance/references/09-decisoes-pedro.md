@@ -782,6 +782,41 @@ Texto verbatim em `17-respostas-T-e-sync.md` §1d.
 - **D133** Espaço reservado: **alterar d20 é do Xamã**. A lista de perícias vai a 7 opções nas outras
   classes depois (pendente).
 
+## Quinta leva (2026-09-29) — D134–D140: Batedor, características fechadas
+
+Texto verbatim em `18-batedor-rework.md` §0 e as lições em `19-gabarito-de-classe.md` §12.
+- **D134** Característica **Mapa**:
+  - 1 minuto e **5 Stamina**; área de até 1000 m² (~32 × 32 m, 21 × 21 quadrados);
+  - na área de um mapa seu, você e **aliados a até 9 m** não ficam *Desprevenidos*, e você tem vantagem
+    em Iniciativa;
+  - cada mapa vira 1 item Mapa. Estar com o mapa é implícito: vender tira o efeito.
+- **D135** Item Mapa: **venda 1x/área** (partes de um mesmo lugar contam como o mesmo lugar) e **empilhável**
+  (10 = 1 bugiganga). No CSV; efeitos rev. 10.
+- **D136** Característica **Pontapé**, com o texto do Pedro:
+  - 3 Stamina, ação livre, no seu turno, na área de um mapa seu, 1x/rodada;
+  - move até o Movimento sem ataque de oportunidade;
+  - +2 de Evasão até o seu próximo turno;
+  - a PMA volta a zero.
+- **D137** Regras fixas de ramo, confirmadas pelo Pedro:
+  - a 1ª técnica do T1 dá treinamento em 1 perícia, mais o efeito principal do ramo;
+  - 1 marca por ramo dá +5 numa perícia, 1 ponto por vez, por uma condição, mais 1 efeito menor;
+  - o T2 explora uma vertente compatível com os outros ramos, em todos os ramos.
+- **D138** Ramos do Batedor:
+  - **Cartógrafo:** fica com o Terreno Ideal.
+  - **Ladrão** (ex-Sem-Nome): o Ataque Furtivo é o centro do T1. O bônus vale nos 2–3 ataques da arma leve,
+    sem conta complexa, e funciona à distância. Tem técnica de esconder-se por Furtividade.
+  - **Pecador** (ex-Trambiqueiro): Sins, itens pelas regras de comerciante, e Sins como limiar de execução.
+    Nada de técnica que infere lore.
+- **D139** Técnicas gerais, retorno do Pedro à rodada 2:
+  - **saem:** Atento (duplicava o Mapa), Passo Ciente, Leitor de Rastros, Reposicionar, Mirante; Terreno
+    Ideal vai para o Cartógrafo;
+  - **Líder** vira **Desbravador**;
+  - **ficam:** Ocultar-se, Rasgar o Mapa, Rolamento, Fantasma e Emboscada;
+  - **refazer:** Armadilha Tática (tamanho, escala e conexão) e Varredura (revelar como efeito secundário);
+  - **Por Aqui!:** o nome fica, a regra sai.
+- **D140** O Pedro pediu que as lições da criação da classe fiquem memorizadas. Estão em `19` §12 (15 regras) e
+  valem para Vigário, Vampiro, Necromante e Xamã.
+
 ## D68 — O andar de Nível 1 (truques)
 Todas as magias existentes **sobem 1 nível**: as antigas 1–4 viram 2–5. O novo Nível 1 são os
 20 truques. Consequência limpa: a regra do Teurgo deixa de ser "iguais ou abaixo do seu

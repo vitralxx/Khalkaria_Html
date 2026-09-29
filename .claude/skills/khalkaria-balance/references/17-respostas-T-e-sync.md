@@ -156,8 +156,11 @@ Só mudou o que está aqui; nada mais nas páginas.
 ### Perguntas que continuam com o Pedro
 (As respondidas estão em §1, §1b e §1c.)
 1. **Do lote anterior:** L14, L35, L39.
-2. **Batedor, rodada 2:** `18-batedor-rework.md` §6 (10 decisões; a principal é a 2ª característica). Depois:
-   ramos completos, Notion, diff contra o retrato e log do novo Batedor aqui em §3.
+2. **Batedor, rodada 3:** características fechadas (Mapa e Pontapé, D134–D136). Abertas:
+   - as 15 técnicas gerais (`18` §4, 4 decisões em §6);
+   - depois, os 3 ramos: Cartógrafo, Ladrão e Pecador (D138).
+
+   O Batedor só vai ao Notion inteiro; depois, diff contra o retrato e log do novo Batedor aqui em §3.
 3. **Rodada 6 do agente de HTML (Comerciantes, C2–C11)**, no `docs/ficha-digital/02-plano.md` §10 da main. Várias
    perguntas são regra nova (quem compra o quê, raridade da loja, subida de nível, preço rolado) e vão ao Pedro como Tn.
    Continuam abertos também o Bloco C e as erratas do mesmo §10.
@@ -197,6 +200,7 @@ Tudo o que mudou no Notion desde o último sync do site. Regerar `data/*.json` e
 - **Segunda leva:** `ficha-digital-regras.json` **rev. 9**: `recursos.atributoCuraItemMediaDaRaridade` canônico (sem `pergunta`/`provisorio`); `taxonomiaDeCondicao.mental` canônico, com fonte na página Condições; `magia.requisitos.dispensa` novo (regra da D123 e 3 casos); `magia.requisitos.motivo` reescrito (a leitura "Cultista e Corrompido conjuram sem o gate" caiu). `ficha-efeitos-itens.json` **rev. 7**: convenção `maisInt` com a tabela; pendência 12 resolvida. `log-tecnicas-respostas.json` **Revisão 2**: campos `statusRev1`, `revisao2`, bloco `revisao2`, `contagemRev1`.
 - **Grupo "mentais" do site:** a lista canônica (D122) é Enfeitiçado, Amedrontado, Confuso e Atordoado; o grupo da página de Condições tem Descontrolado e Bêbado e não tem Atordoado. Alinhar é decisão do site; imunidade e remoção de "condição mental" usam a lista canônica.
 
+- **Quinta leva (2026-09-29):** `ficha-efeitos-itens.json` **rev. 10**. O Mapa ficou empilhável, com a regra de venda 1x/área (D135), e entra em `empilhaveis`. CSV: 1 célula (Efeito do Mapa).
 - **Quarta leva:** `ficha-efeitos-itens.json` **rev. 9**: sai `item-napalm-alquimico-area`, entra `item-mapa` (sem efeito na ficha). `Bazar_Khalkaria_v26.csv`: 2 células (Poção de Vigor Moderada, Café Preto), 1 linha fora, 1 linha nova. O contrato não mudou.
 - **Terceira leva:** `ficha-digital-regras.json` **rev. 10** (`turno.acaoLivreCustoVariavel` novo); `ficha-efeitos-itens.json` **rev. 8** (id `item-lagrimas-do-tempo` → `item-lagrima-do-tempo`); `log-tecnicas-respostas.json` **Revisão 3** (`statusRev2`, `revisao3`, bloco `revisao3`, `contagemRev2`); `Bazar_Khalkaria_v26.csv` (2 células).
 

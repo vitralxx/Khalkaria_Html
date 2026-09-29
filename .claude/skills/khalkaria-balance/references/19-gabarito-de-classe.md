@@ -135,7 +135,7 @@ de mudar.
 
 | Formato | Classes |
 |---|---|
-| 1 traço + 1 mecânica | Espadachim (Proficiência com Espadas + Marca do Duelo), Monge (Arma Humana + Fluxo), Batedor (Mapa + a 2ª em escolha: `18` §3) |
+| 1 traço + 1 mecânica | Espadachim (Proficiência com Espadas + Marca do Duelo), Monge (Arma Humana + Fluxo), Batedor (Mapa + Pontapé, fechados em 2026-09-29) |
 | Só 1 | Brutalista (Brutalidade), Teurgo (Escolas do Primórdio), Alquimista (Bolsa de Reagentes), Artilheiro (Concentração) |
 
 **A característica é o que puxa as técnicas.** Técnicas gerais que citam a característica (script em §10):
@@ -150,7 +150,7 @@ de mudar.
 | Brutalista | 1 |
 
 A exceção é o Brutalista: a Brutalidade é passiva e as técnicas conversam com o corpo a corpo em geral.
-**Alvo: 7–13 das 15.** O Batedor proposto tem 9 ligadas à área do mapa.
+**Alvo: 7–13 das 15.** O Batedor proposto tem 11 ligadas ao mapa ou ao Pontapé.
 
 **A característica é a base dos 3 ramos** (Pedro, 2026-09-28): *"as caracteristicas de classe muitas vezes
 servem com uma base a serem trabalhadas pelas técnicas e ramos, essa característica é abrangente o suficiente
@@ -230,7 +230,7 @@ do Notion em 2026-09-28).
 | Alquimista | 7 | 5 | 0 | 1 | 0 | 2 |
 | Artilheiro | 5 | 7 | 0 | 2 | 1 | 0 |
 | **Média** | **6,3** | **4,3** | **1,5** | **1,3** | **0,7** | **0,8** |
-| Batedor proposto (rodada 2) | 4 (+1 "Passiva ou 1 Ação") | 5 | 3 | 1 | 0 | 1 |
+| Batedor proposto (rodada 3) | 5 | 4 | 4 | 1 | 0 | 1 |
 
 **Custo em Stamina** (média, faixa):
 
@@ -316,15 +316,18 @@ diferentes: o Batedor tem campo, furtividade e social; o Artilheiro tem arremess
 - 1 linha de personalidade;
 - 2 bullets.
 
-Ao menos uma é **marca de progressão**, com a fórmula verbatim: *"Para cada N <feito do ramo>, ganha +1
-permanente em <perícia>.<br>Ao chegar em +5, essa habilidade fica supérflua."* O feito é algo que o
-ramo faz em jogo, como jornadas de Hostilidade 10+, mortes escondido ou combates com 6+ Concentração. A
-outra é uma **marca de traço**: efeito pequeno, narrativo ou de nicho.
+**Regra do Pedro** (2026-09-29): *"1 delas por ramo sempre dá +5 em 1 perícia em prol de uma condição
+especifica, 1 ponto por vez, e +1 efeito adicional menor."* Essa é a **marca de progressão**, com a fórmula
+verbatim: *"Para cada N <feito do ramo>, ganha +1 permanente em <perícia>.<br>Ao chegar em +5, essa habilidade
+fica supérflua."*, mais um bullet com o efeito menor. O feito é algo que o ramo faz em jogo, como jornadas de
+Hostilidade 10+, mortes escondido ou combates com 6+ Concentração. A outra é uma **marca de traço**: efeito
+pequeno, narrativo ou de nicho.
 
 Toda marca que dá recurso ou atributo precisa de teto (o *Colecionador de Horizontes* não tinha).
 
 **Tier 1 (3 por ramo, nível 2):**
-1. **1ª técnica, passiva de treinamento**, com a fórmula verbatim: *"Você se torna Treinado em X. Se já for
+1. **1ª técnica, passiva de treinamento** (regra do Pedro, 2026-09-29: *"no tier 1, a primeira técnica sempre
+   dá treinamento em 1 perícia, além de um efeito adicional muitas vezes principal do ramo"*), com a fórmula verbatim: *"Você se torna Treinado em X. Se já for
    Treinado, se torna Experiente e assim por diante."* Depois vem o efeito-assinatura do ramo. Exemplos:
    *Mãos Velozes*, *Presença da Pólvora*, *Olho do Arqueiro*, *Veterano de Guerra*.
 2. Uma ativa de combate, de 1 Ação ou Ação Livre, custando 2–3 Stamina.
@@ -333,6 +336,10 @@ Toda marca que dá recurso ou atributo precisa de teto (o *Colecionador de Horiz
 **Tier 2 (2 por ramo, nível 4):** o poder de meio de campanha. Pode ser uma passiva forte com condição, ou
 uma ativa de 1–2 Ações custando 3–5 Stamina, às vezes com gasto de recurso. Exemplos: *Inimigo Mortal*,
 *Execução*, *Formação de Combate*.
+
+**No T2, uma vertente compatível com os outros ramos** (Pedro, 2026-09-29: *"Tier 2 do ladrão recomendo explorar
+uma vertente que seja compatível com os outros ramos, e isso em todos os ramos entre sí"*). O jogador mistura
+ramos; o T2 é onde um ramo conversa com as mecânicas dos outros dois. No Batedor: mapa, furtividade e Sins.
 
 **Tier 3 (1 ultimate por ramo, nível 5)**, no formato das 6 classes:
 - **Cabeçalho:** `Nome (N Ações, 5 Stamina[, 5 <recurso>], Ultimate)`. Ações de 1 a 3; Stamina de 5 a 10.
@@ -431,3 +438,61 @@ na frase que muda.
   do Pedro (D119) é ter itens mais únicos nas origens.
 - **Valem igual:** as convenções de texto (§9), a checagem de nome (§10.1) e o teste de sobreposição (§7)
   contra raças e origens já existentes.
+
+---
+
+## 12. Aprendizados do Batedor (o que o Pedro corrigiu, e a regra que fica)
+
+O Batedor foi o protótipo (D79). Cada correção do Pedro vira regra para as próximas classes. Texto dele entre aspas.
+
+**Característica e técnicas**
+1. **Técnica geral não duplica a característica.** *"Atento, Não faz mais sentido, a origem da imunidade ao
+   desprevenido vem do mapa agora, isso deixa o mapa obsoleto."* Se a característica dá X, nenhuma técnica
+   dá X de graça. A técnica pode ampliar ou aproveitar X: a *Dianteira* aproveita a vantagem em Iniciativa do
+   mapa.
+2. **Sem técnica estreita.** *"Passo Ciente, específico…"*; *"Leitor de Rastros… um batedor já consegue
+   parcialmente fazer isso, uma técnica que gasta 1 espaço para especificar isso não é necessária."* Cada vaga
+   precisa valer na maioria das sessões. O que a perícia já resolve na mesa não vira técnica.
+3. **Classe individual não ganha técnica de suporte.** *"Reposicionar, bom mas é habilidade suporte integral,
+   não é a intenção da classe no fundamento."*; *"Por Aqui!, ruim gasta reação para dar valor a outro,
+   batedor é classe individual"*. O papel da classe decide para quem a técnica trabalha.
+4. **Nenhuma técnica premia o contrário do estilo central.** *"Mirante, isso incentiva o playstyle contrário
+   do pontapé"*. Classe de movimento não ganha bônus por ficar parado.
+5. **Dano de técnica escala com o nível.** *"2d6+Mod. Des tem que escalar com nível se não fica subutilizado
+   rapidamente"*. Use o nível na fórmula, como em (Nível + 1)d6 ou (Nível)d6 + atributo.
+6. **Efeito que prende ou derruba declara o tamanho.** *"regra de tamanho é essêncial para quem pode ficar preso
+   na armadilha"*. O Sistema tem a escala Miúdo → Gigantesco e a tabela de disputa por tamanho.
+7. **Técnica conversa com o resto da classe.** Na Armadilha, *"deve ter mais conexão com o resto da classe"*.
+8. **O núcleo de uma técnica não pode ser o que um item comum já faz.** *"já tem itens para revelar
+   furtividade, é interessante que ele possa revelar mas não como peça central da técnica."* O item pode
+   replicar mecânica de classe (D60); a vaga de técnica precisa entregar mais.
+9. **A mecânica precisa fazer sentido na ficção.** *"Rasgar o Mapa… bem maneiro, mas não faz sentido algum no
+   roleplay."*
+10. **A capacidade-assinatura de um ramo não fica nas gerais.** *"Terreno Ideal, reserva isso de um jeito melhor
+    pro cartógrafo."*
+
+**Armas e dano**
+11. **Bônus de técnica não pode punir a arma leve.** *"Hoje o funcionamento do 'Golpe Sombrio' é punitivo às armas
+    leves, e armas pesadas matematicamente são melhores… o bonus de ataque deve se manter nos 2-3 ataques das
+    leves e ser equilibrado, sem matemática complexa. Deve ser compatível e balanceado para armas a distância
+    também."* Técnica que custa 1 Ação tira um ataque de quem usa arma leve. Técnica de dano da classe mede os
+    três casos (leve com 3 ataques, pesada com 1, à distância) antes de ir ao Pedro.
+
+**Ramos**
+12. **Ramo social ou econômico não infere lore.** *"técnicas que inferem (O mestre te mostra os próximos 3 turnos
+    da criatura, você conhece 1 contato criminal próximo) pontos na lore não são do meu agrado, quero técnicas
+    mecânicas pontuais que se traduzam para o roleplay."*
+13. **A característica é a base dos 3 ramos** (§4). A 2ª característica do Batedor saiu de três opções
+    comparadas por critério (mobilidade, defesa, ataque, tracking, uso do coeficiente alto). Método que fica: ao
+    abrir uma característica, levar 2–3 opções com a mesma tabela de critérios.
+
+**Punição e preparo**
+14. **A punição do despreparo vem das próprias regras, não de penalidade escrita.** *"Quero punir o jogador
+    batedor que não espera a luta… estar com o mapa em prontidão para o combate é o pico."* O mapa leva 1 minuto
+    e 5 Stamina, e 11 das 15 técnicas dependem dele. Sem mapa, a classe é fraca; com mapa, é o pico.
+
+**Coeficiente**
+15. **Coeficiente baixo se paga na característica.** 3 de Vitalidade: *"Preciso de algo que dê mobilidade e a
+    defesa que o batedor pede com o nerf em vitalidade."* A resposta foi o Pontapé (+2 Evasão, sem ataque de
+    oportunidade) e o *Rolamento*.
+
