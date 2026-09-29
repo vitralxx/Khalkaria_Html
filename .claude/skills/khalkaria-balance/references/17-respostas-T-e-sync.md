@@ -156,9 +156,9 @@ Só mudou o que está aqui; nada mais nas páginas.
 ### Perguntas que continuam com o Pedro
 (As respondidas estão em §1, §1b e §1c.)
 1. **Do lote anterior:** L14, L35, L39.
-2. **Batedor, rodada 3:** características fechadas (Mapa e Pontapé, D134–D136). Abertas:
-   - as 15 técnicas gerais (`18` §4, 4 decisões em §6);
-   - depois, os 3 ramos: Cartógrafo, Ladrão e Pecador (D138).
+2. **Batedor, rodada 4:** características fechadas (D134–D136), 11 técnicas fechadas (D141). Abertos:
+   - 6 pontos das técnicas (`18` §6);
+   - depois, os 3 ramos: Cartógrafo, Ladrão e Pecador (D138, D142).
 
    O Batedor só vai ao Notion inteiro; depois, diff contra o retrato e log do novo Batedor aqui em §3.
 3. **Rodada 6 do agente de HTML (Comerciantes, C2–C11)**, no `docs/ficha-digital/02-plano.md` §10 da main. Várias

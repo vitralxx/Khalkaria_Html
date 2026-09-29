@@ -1,13 +1,14 @@
-# 18 — Rework do Batedor (proposta, rodada 3)
+# 18 — Rework do Batedor (proposta, rodada 4)
 
 **Status: PROPOSTA.** Nada disto está no Notion. A classe vai ao Notion inteira, depois do aceite das 15 técnicas e dos 3 ramos. Gravar pela metade deixaria a página citando o Instinto. Depois do Notion sai o log do novo Batedor para o agente de HTML (diff contra `batedor-notion-antes-do-rework.txt`).
 
 **Histórico:**
 - Rodada 1: commit `a4ea40f`. Mapa de Combate + Instinto refeito.
 - Rodada 2: commit `07c3d18`. Com as decisões do Pedro; 3 opções para a 2ª característica.
+- Rodada 3: commit `53c7cb0`. Características fechadas; 15 técnicas propostas.
 - As lições que o Pedro deu no caminho estão no `19-gabarito-de-classe.md` §12.
 
-**Fechado:** cabeçalho, as 2 características e o item Mapa. **Em proposta:** as 15 técnicas gerais (§4). **Depois:** os 3 ramos (§5).
+**Fechado:** cabeçalho, as 2 características, o item Mapa e 11 das 15 técnicas. **Aberto:** 6 pontos das técnicas (§6). **Depois:** os 3 ramos (§5).
 
 **Origem de cada texto:**
 - **[Pedro]**: texto dele.
@@ -38,6 +39,14 @@ Sobre os 5 pontos do Mapa:
 5. *"É empilhável."*
 
 > *"Vamos de Atalho, renomeado para Pontapé."* (texto dele em §3) — *"Ótimo!"*
+
+**Rodada 4** (2026-09-29): o Pedro reescreveu as técnicas; os textos dele estão em §4.
+
+> *"As 3 builds diagnosticadas estão corretas! à distância serve pros 3 ramos, Corpo a Corpo leve o ladrão deve ser
+> melhor por conseguir depender da furtividade para aumentar defender. e Armadilheiro / Estratégico o cartógrafo se
+> especializa."*
+
+> *"Próxima rodada, quando fecharmos as técnicas vamos para os ramos."*
 
 ---
 
@@ -113,97 +122,64 @@ Números da rodada 2 (Atacar(1), 1d6 + 3, contra um alvo só):
 
 ---
 
-## 4. Técnicas gerais (15), rodada 3
+## 4. Técnicas gerais (15), rodada 4: textos do Pedro
 
-Critérios, tirados do retorno do Pedro à rodada 2 (`19` §12):
-- **Classe individual:** nada de técnica de suporte.
-- **Nada que duplique a característica:** o Atento deixava o Mapa obsoleto.
-- **Nada estreito:** cada vaga tem de valer na maioria das sessões.
-- **Nada que premie ficar parado,** que é o contrário do Pontapé.
-- **Dano que escala com o nível.**
-- **Regra de tamanho** em efeito que prende ou derruba.
-- **O efeito tem de fazer sentido na ficção.**
-- **Quase tudo passa pela área do mapa ou pelo Pontapé.** Sem mapa, o Batedor é fraco, e é de propósito: é a punição que o Pedro pediu.
+**11 fechadas.** 4 têm um ponto aberto, listado em §6. Os textos são do Pedro (2026-09-29). Só corrigi a referência a "Terreno Traiçoeiro", que agora se chama Sabotar Terreno, e a gramática de "Defina um quadrado… vira".
 
-| Técnica | Descrição | Custo | Ação |
-|---|---|---|---|
-| Desbravador | Você possui a habilidade de memorizar caminhos e traçar trajetos eficientes. Você soma naturalmente +1 ao sucesso do grupo em jornadas já percorridas. Adicionalmente, ao rolar *Sobrevivência* em jornadas possui +5. | — | Passiva |
-| Dianteira | Na área de um mapa seu, na primeira rodada do combate, criaturas que ainda não agiram contam como *Desprevenidas* contra os seus ataques. | — | Passiva |
-| Varredura | Na área de um mapa seu, criaturas escondidas a até 9 m que se moverem deixam de estar escondidas para você. Uma vez por turno, o seu primeiro acerto contra uma criatura que se moveu desde o fim do seu último turno causa +1d6 de dano. | — | Passiva |
-| Bote | Depois de um Pontapé, o seu primeiro ataque corpo a corpo no turno não pode ser retaliado. | — | Passiva |
-| Estudo de Campo | Se você levar 10 minutos para desenhar um mapa, em vez de 1, na área dele o seu Pontapé custa 2 Stamina. | — | Passiva |
-| Armadilha Tática | Rapidamente configura uma armadilha no chão, rolando um teste de *Furtividade* ou *Sobrevivência* e atribuindo o resultado a ela. Quando um inimigo de tamanho Médio ou menor passar por cima ele deve superar a *Furtividade* ou *Sobrevivência* da armadilha rolando *Percepção* ou recebe (Nível + 1)d6 + Mod. Destreza de dano Perfurante e fica *Enraizado* por 1 rodada. Criaturas Grandes ou maiores recebem o dano, mas não ficam *Enraizadas*. Na área de um mapa seu, você pode montá-la em qualquer ponto pelo qual passou com o Pontapé neste turno, e a *Percepção* contra ela tem desvantagem. Você mantém até (Nível) armadilhas montadas; ao montar mais uma, a mais antiga se desfaz. | 3 Stamina | 1 Ação |
-| Terreno Traiçoeiro | Na área de um mapa seu, você afrouxa pedras, derrama água ou espalha cascalho num ponto que conhece: um quadrado de 3 m a até 9 m de você vira Terreno Difícil ou Escorregadio (*Superfícies*) até o fim do combate. Você mantém até (Nível) áreas assim. | 3 Stamina | 1 Ação |
-| Por Aqui! | Na área de um mapa seu, escolha uma criatura a até 18 m que possa te ver ou ouvir. Ela faz *Vontade* contra sua CD; se falhar, no próximo turno dela, todo movimento que fizer tem de ser na sua direção, pelo caminho mais curto. | 2 Stamina | 1 Ação |
-| Ocultar-se | Ao estar fora da linha de visão de todas as criaturas da cena, pode se esconder com 1 ação em vez de 3. | 2 Stamina | 1 Ação |
-| Rasteira | Durante o Pontapé, ao passar a até 1,5 m de uma criatura de tamanho igual ou menor que o seu, role *Movimento* contra o *Movimento* dela: se vencer, ela fica *Caída*. | 3 Stamina | Ação Livre |
-| Rasgar o Mapa | Rasgue o mapa da área em que você está: até o fim do combate, o seu Pontapé não custa Stamina. O mapa é destruído e sai do inventário. | 1 Mapa | Ação Livre |
-| Rolamento | Na área de um mapa seu, ao ser alvo de um ataque, some +1 à sua Evasão contra esse ataque para cada 2 Stamina gastos (máximo = Nível). | 2+ Stamina | Ação Livre |
-| Fantasma | Ao ser atacado e optar por se **defender**, pode somar seu treinamento de **Furtividade** na perícia. | 2 Stamina | Ação Livre |
-| Recuo | Na área de um mapa seu, quando uma criatura hostil terminar um movimento a até 1,5 m de você, você pode se mover até 3 m sem provocar ataques de oportunidade. | 2 Stamina | Reação |
-| Emboscada | Pode preparar um local previamente com armadilhas e distrações rolando um teste de *Sobrevivência* ou *Furtividade*: Ao lutar em um ambiente preparado, se o inimigo falhar em um teste de *Percepção* contra seu teste, você e seus aliados recebem +2 em Atacar durante todo o combate e os inimigos ficam *Desprevenidos* na primeira rodada do combate. | 5 Stamina | 10 Minutos |
+| Técnica | Descrição | Custo | Ação | Estado |
+|---|---|---|---|---|
+| Desbravador | Você possui a habilidade de memorizar caminhos e traçar trajetos eficientes. Você soma naturalmente +1 ao sucesso do grupo em jornadas já percorridas. Adicionalmente, ao rolar *Sobrevivência* em jornadas possui +5. | — | Passiva | fechada |
+| Surpresa! | Na área de um mapa seu, na primeira rodada do combate, criaturas que ainda não agiram contam como *Desprevenidas* contra os seus ataques. | — | Passiva | fechada (ex-Dianteira) |
+| Varredura | Uma vez por turno, o seu primeiro acerto contra uma criatura na área representada no seu mapa causa +1d6 de dano. Na área de um mapa seu, criaturas escondidas a até 9 m que se moverem deixam de estar escondidas para você. | — | Passiva | fechada |
+| Bote | Depois de um Pontapé, o seu próximo ataque tem +1 Margem de Ameaça; se o ataque for corpo a corpo, ele não pode ser retaliado. | — | Passiva | fechada |
+| Estudo de Campo | Ao criar um mapa, você pode escolher levar 10 minutos (ao invés de 1 minuto) para estudar o campo. Enquanto na área desse mapa, você tem +2 em Atacar e ignora terreno difícil. | — | Passiva | fechada |
+| Armadilha Tática | Rapidamente configura uma armadilha no chão, rolando um teste de *Furtividade* ou *Sobrevivência* e atribuindo o resultado a ela. Quando um inimigo de tamanho Médio ou menor passar por cima ele deve superar a *Furtividade* ou *Sobrevivência* da armadilha rolando *Percepção* ou recebe (Nível + 1)d6 + Mod. Destreza de dano Perfurante e fica *Enraizado* por 1 rodada. Criaturas Grandes ou maiores recebem o dano, mas não ficam *Enraizadas*. Na área de um mapa seu, você pode montá-la em qualquer ponto pelo qual passou com o Pontapé neste turno, e a *Percepção* contra ela tem desvantagem. Você mantém até (Nível) armadilhas montadas; ao montar mais uma, a mais antiga se desfaz. | 3 Stamina | 1 Ação | fechada |
+| Sabotar Terreno | Na área de um mapa seu, você afrouxa pedras, derrama água, álcool ou espalha cascalho num ponto que conhece: um quadrado de 4,5 m de lado a até 9 m de você vira Terreno Difícil, Escorregadio, Em Chamas ou Molhado (*Superfícies*) até o fim do combate. Você mantém até (Nível) áreas assim. | 5 Stamina | 1 Ação | **aberta: CD e ação (§6.3)** |
+| Por Aqui! | Na área de um mapa seu, escolha uma criatura a até 18 m que possa te ver ou ouvir. Ela faz *Vontade* contra sua CD; se falhar, no próximo turno dela, ela gasta todo o movimento em uma direção escolhida por você, pelo caminho mais curto. A criatura que falha nessa resistência imediatamente falha os testes da Armadilha Tática e do Sabotar Terreno. | 3 Stamina | 1 Ação | **aberta: 3 pontos de regra (§6.4)** |
+| Ocultar-se | Ao estar fora da linha de visão de todas as criaturas da cena, pode se esconder com 1 ação em vez de 3. | 2 Stamina | 1 Ação | fechada |
+| Rasteira | Durante o Pontapé, ao passar a até 1,5 m de uma criatura de tamanho igual ou menor que o seu, role *Movimento* contra o *Movimento* dela: se vencer, ela recebe (Nível)d4 de dano de Força e fica *Caída*. | 3 Stamina | Ação Livre | **aberta: tipo de dano (§6.2)** |
+| Rasgar o Mapa | Rasgue o mapa da área em que você está: até o fim do combate, o seu Pontapé não custa Stamina e, durante esse combate, você pode utilizar as técnicas que exigem que você esteja na área do mapa. O mapa é destruído e sai do inventário. | 1 Mapa | 1 Ação | **aberta: contrapartida (§6.5)** |
+| Rolamento | Na área de um mapa seu, ao ser alvo de um ataque, some +1 à sua Evasão contra esse ataque para cada 2 Stamina gastos (máximo = Nível). | 2+ Stamina | Ação Livre | fechada |
+| Fantasma | Ao realizar testes de *Crime* ou *Furtividade*, pode gastar 2 de Stamina para adicionar +1 na perícia, com limite máximo no aumento da perícia igual ao seu nível. Adicionalmente, ao ser atacado e optar por se **defender**, pode somar seu treinamento de **Furtividade** na perícia. | 2+ Stamina | Ação Livre | **aberta: custo da 2ª parte (§6.6)** |
+| *(nome a trocar)* | Na área de um mapa seu, quando uma criatura hostil terminar um movimento a até 1,5 m de você, você pode se mover até 3 m sem provocar ataques de oportunidade. | 2 Stamina | Reação | **aberta: nome (§6.1)** |
+| Emboscada | Pode preparar um local previamente com armadilhas e distrações rolando um teste de *Sobrevivência* ou *Furtividade*: Ao lutar em um ambiente preparado, se o inimigo falhar em um teste de *Percepção* contra seu teste, você e seus aliados recebem +2 em Atacar durante todo o combate e os inimigos ficam *Desprevenidos* na primeira rodada do combate. | 5 Stamina | 10 Minutos | fechada |
 
-### O que aconteceu com cada técnica da rodada 2
+### Números com os textos do Pedro
 
-| Rodada 2 | Retorno do Pedro | Rodada 3 |
-|---|---|---|
-| Atento | "deixa o mapa obsoleto" | **sai**. No lugar, **Dianteira**: o mapa dá vantagem em Iniciativa, e a Dianteira transforma agir primeiro em vantagem de ataque |
-| Passo Ciente | "específico… poderia ser descartada" | **sai** |
-| Leitor de Rastros | "não é necessária" | **sai** |
-| Líder | → "Desbravador" | **Desbravador**, texto verbatim |
-| Terreno Ideal | "reserva… pro cartógrafo" | **sai** das gerais; vai para o Cartógrafo (§5) |
-| Armadilha Tática | tamanho, escalar com nível, conexão | **fica, refeita:** Médio ou menor fica *Enraizado*; dano (Nível + 1)d6 + DES (2d6 no nível 1, como hoje; 6d6 no nível 5); monta no caminho do Pontapé |
-| Reposicionar | "suporte… descarta" | **sai** |
-| Mirante | "incentiva o playstyle contrário do pontapé" | **sai** |
-| Varredura | "revelar, mas não como peça central" | **fica, refeita:** a peça central é +1d6 no 1º acerto contra quem se moveu; revelar quem se move é o efeito secundário |
-| Ocultar-se | "perfeito" | fica |
-| Rasgar o Mapa | "não faz sentido no roleplay. Porém pode deixar" | fica. Proposta de ficção na decisão 3 |
-| Rolamento | "gostei" | fica |
-| Fantasma | "pode manter" | fica |
-| Por Aqui! | "ruim… mas gostei do nome" | **o nome fica, a regra é nova:** atrair um inimigo para o caminho das suas armadilhas |
-| Emboscada | "pode deixar" | fica |
+**O Batedor preparado** (arma leve 1d6 + 3, nível 1, contra um alvo só):
 
-**Novas:** Dianteira, Bote, Estudo de Campo, Terreno Traiçoeiro, Rasteira, Recuo, e a regra nova da Por Aqui!.
-
-### Números e âncoras das novas
-
-| Técnica | Entrega | Âncora no sistema |
-|---|---|---|
-| Dianteira | 1ª rodada: sem reação do alvo, e o 1º acerto em cada um é crítico. Só contra quem ainda não agiu | *Emboscada*: todos os inimigos *Desprevenidos* na 1ª rodada, para o grupo, com 10 min de preparo. A Dianteira é só para você e só contra quem ainda não agiu |
-| Varredura | +1d6 uma vez por turno, ≈ +2,1 de dano por turno | *Mãos Velozes* (T1 do Artilheiro): +2 de dano por ataque com arma de fogo |
-| Bote | 1 ataque sem retaliação por turno, preso ao Pontapé | *Alcançar* (efeito de arma): 2 Stamina por 1 ataque sem retaliação. Aqui quem paga é o Pontapé |
-| Estudo de Campo | Pontapé de 3 → 2 Stamina, na área de um mapa feito com calma | Régua R6: preparar-se aparece no número |
-| Armadilha | 10 de dano no nível 1 e 26 no nível 5, se pisarem e falharem na Percepção (~50%) | *Atropelar* (Brutalista): (Nível)d6 + FOR e *Caído*, por 2 Ações + 3 Stamina |
-| Terreno Traiçoeiro | Usa as *Superfícies* do Sistema: Difícil custa o dobro de Movimento; Escorregadia pede Reflexo CD 15 a cada 3 m ou *Caído* | Nenhuma técnica cria superfície hoje. É o "Combate Estratégico" do Play Style |
-| Por Aqui! | Vontade contra CD; se falhar, o próximo movimento dele é na sua direção | *Provocar* (Brutalista): Vontade, ou te ataca no próximo turno, por 1 Ação + 2 Stamina |
-| Rasteira | *Caído* por disputa de Movimento: não retalia, defende com −2, anda 1,5 m, gasta 1 ação para levantar | A manobra *Empurrar* também derruba. A Rasteira é mais barata em ação e paga em Stamina e tamanho |
-| Recuo | Sai 3 m sem ataque de oportunidade. Para te alcançar de novo, o inimigo gasta 1 ação em Acelerar | *Passo Afiado* (Espadachim): 1,5 m quando te erram, por 2 Stamina |
-
-**Rocket tag:**
-- O único *Exposto* novo é o da Dianteira: 1ª rodada, 1º acerto em cada criatura que ainda não agiu. É o "pico" que o Pedro quer para quem chega com o mapa pronto.
-- Não amplia margem de ameaça e não dá ataque a mais.
-
-**Mix:**
-
-| Tipo | Batedor | Média das 6 classes |
-|---|---|---|
-| Passivas | 5 | 6,3 |
-| 1 Ação | 4 | 4,3 |
-| Ação Livre | 4 | 1,5 |
-| Reação | 1 | 1,3 |
-| Fora de combate | 1 | 0,8 |
-
-As 4 de ação livre disparam em momentos certos: durante o Pontapé (Rasteira), ao ser atacado (Rolamento, Fantasma) ou 1 vez por combate (Rasgar o Mapa).
-
-**Ligação com o mapa ou o Pontapé:** 11 das 15. Não dependem dele Desbravador, Ocultar-se, Fantasma e Emboscada; a Armadilha funciona sem mapa, mas rende mais com ele.
-
-**Builds:**
-
-| Build | Técnicas |
+| Turno | Dano por turno |
 |---|---|
-| À distância | Pontapé, Varredura, Dianteira, Recuo, Armadilha, Terreno Traiçoeiro |
-| Corpo a corpo leve (multi-ataque frágil) | Pontapé, Bote, Rasteira, Rolamento, Dianteira |
-| Armadilheiro / estratégico | Armadilha, Terreno Traiçoeiro, Por Aqui!, Emboscada |
+| Parado, sem mapa | 7,4 |
+| Pontapé | 10,6 |
+| Pontapé + Bote (+1 Margem de Ameaça num ataque) | 10,8 |
+| + Varredura (+1d6 no 1º acerto) | 13,9 |
+| + Estudo de Campo (+2 em Atacar) | **16,1** |
+
+O Batedor que chega com o mapa estudado bate 2,2× o que bate sem mapa. É o "pico" pedido: *"estar com o mapa em prontidão para o combate é o pico"*.
+- Em termos absolutos, o bônus pesa mais no nível 1. No nível 5, o *Destruir* do Brutalista já soma até 5d6 (17,5) num acerto.
+- O peso maior do pacote está no +2 em Atacar do Estudo de Campo. Se quiser segurar o pico, é o número a mexer: +1 em vez de +2.
+
+**Bote:** +1 Margem de Ameaça num ataque por turno é +5% de crítico, ~0,2 de dano por turno. Pequeno. O valor está no "não pode ser retaliado" do corpo a corpo.
+
+**Rasteira:** (Nível)d4 de dano, com ~50% na disputa de Movimento:
+
+| Nível | Dano | Esperado |
+|---|---|---|
+| 1 | 2,5 | 1,2 |
+| 5 | 12,5 | 6,2 |
+
+Além do dano, em 50% dos turnos o alvo fica *Caído*: não retalia, defende com −2 e gasta 1 ação para levantar. No nível 5 passa da taxa do *Destruir* (3 Stamina ≈ 5,25 de dano). Tolerável num gatilho de ação livre que exige o Pontapé e tamanho igual ou menor. O tipo de dano muda a conta (§6.2).
+
+**Sabotar Terreno:** Em Chamas pede Fortitude a cada 3 m, ou a criatura fica *Em Chamas* (1d6 de fogo por turno até gastar 1 ação). Com a Por Aqui!, a falha é automática. Combo de 1 Ação + 5 Stamina e 1 Ação + 3 Stamina, é o armadilheiro pago.
+
+### Builds (o Pedro confirmou as 3)
+
+| Build | Para quem |
+|---|---|
+| À distância | serve aos 3 ramos |
+| Corpo a corpo leve | o Ladrão é melhor, porque a Furtividade aumenta o Defender (Fantasma) |
+| Armadilheiro / estratégico | é a especialização do Cartógrafo |
 
 ---
 
@@ -233,24 +209,30 @@ Nomes: **Cartógrafo**, **Ladrão** (ex-Sem-Nome) e **Pecador** (ex-Trambiqueiro
 
 ---
 
-## 6. Decisões para o Pedro (responda por número)
+## 6. Pontos abertos das técnicas (responda por número)
 
-1. **As 15 técnicas.** Aprova, corta ou troca? Em especial as novas:
-   - Dianteira: *Desprevenido* na 1ª rodada contra quem ainda não agiu;
-   - Varredura refeita;
-   - Bote;
-   - Estudo de Campo;
-   - Terreno Traiçoeiro;
-   - Rasteira;
-   - Recuo;
-   - a regra nova da Por Aqui!.
-2. **Armadilha Tática:** dano (Nível + 1)d6 + DES, e Médio ou menor fica preso? É 2d6 no nível 1, como hoje, e 6d6 no nível 5.
-3. **Rasgar o Mapa, ficção:** proponho a frase "Você decora as rotas e larga o mapa na luta: agora o caminho está na sua cabeça". Ou trocar o nome para *Decorar o Mapa*.
-4. **Mapear em combate** como técnica exclusiva do Cartógrafo (junto com o Terreno Ideal)?
+1. **Nome da reação de 3 m.** "Batida Tática" já é técnica geral do Artilheiro (2 Stamina, 1 Ação: se move sem perder Concentração e sem ataque de oportunidade). Sugestões livres: *Recuo* (o nome da rodada 3), *Recuo Tático* ou *Passo Atrás*.
+2. **Rasteira, "dano de Força".** Força é um dos tipos atípicos: o Ar (armadura) não reduz, e ele fica fora do Ae(Todos) (D89). Um chute ou uma rasteira seria **Contundente**, que o Ar reduz. Recomendo Contundente; com Força, a Rasteira ignora armadura.
+3. **Sabotar Terreno:**
+   - **CD.** A tabela de Superfícies usa CD 15 fixa, e a D57 diz que a CD é sempre a do portador. Recomendo "contra sua CD" (10 + DES + SAB ou INT: ~15 no nível 1, ~20 no nível 5), senão a superfície fica fraca no nível 5.
+   - **Ação.** Assumi 1 Ação, como era a Terreno Traiçoeiro. Confirma?
+4. **Por Aqui!:**
+   - **(a) Qual movimento é gasto.** Proponho: ela usa a ação de Mover.
+   - **(b) Ataque de oportunidade.** É ela quem se move, então provoca, como qualquer movimento. Confirma?
+   - **(c) "Direção" com "caminho mais curto".** Na mesa, as duas coisas brigam. Proponho "até um ponto escolhido por você, pelo caminho mais curto".
+   - **(d) "Falha os testes da Armadilha e do Sabotar Terreno".** Até quando? Proponho "durante esse movimento".
+5. **Rasgar o Mapa, contrapartida.** Hoje, depois do combate, basta desenhar outro. Duas opções; recomendo a A:
+   - **A. A perda dura além da luta.** "Até o próximo descanso longo, você não consegue desenhar outro mapa dessa área."
+     - Ficção: *"Você decora as rotas e rasga o mapa: o lugar fica na sua cabeça até o fim da luta, depois as lembranças se embaralham."*
+     - Custo: o resto daquela área fica sem mapa até descansar.
+   - **B. Limite de uso.** "1x/descanso longo". Mais simples, mas a ficção continua sem explicar por quê.
+6. **Fantasma:**
+   - A 2ª parte (somar Furtividade no Defender) ainda custa 2 Stamina, como hoje, ou fica passiva?
+   - As duas partes são Ação Livre 1x/turno (D99)?
 
 ---
 
-## 7. Depois do aceite das técnicas
+## 7. Depois de fechar os 6 pontos
 
 1. Os 3 ramos, um por vez, começando pelo que o Pedro escolher (o Pecador ele quer trabalhar individualmente).
 2. Proposta final da classe inteira.

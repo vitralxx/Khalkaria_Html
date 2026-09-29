@@ -496,3 +496,15 @@ O Batedor foi o protótipo (D79). Cada correção do Pedro vira regra para as pr
     defesa que o batedor pede com o nerf em vitalidade."* A resposta foi o Pontapé (+2 Evasão, sem ataque de
     oportunidade) e o *Rolamento*.
 
+**Rodada 4 (2026-09-29)**
+16. **A contrapartida de um efeito de uso único precisa durar além da cena.** *"Rasgar o Mapa… Aqui não tem muito
+    draw-back, você rasga e imediatamente quando acaba o combate você pode só fazer outro, temos que achar um jeito de
+    balancear essa técnica"*. Se o jogador repõe o custo de graça logo depois, não é custo.
+17. **Cada build geral tem um ramo que a especializa.** *"à distância serve pros 3 ramos, Corpo a Corpo leve o ladrão
+    deve ser melhor por conseguir depender da furtividade para aumentar defender. e Armadilheiro / Estratégico o
+    cartógrafo se especializa."* As técnicas gerais abrem as builds; o ramo aprofunda uma delas.
+18. **Todo nome passa no script de colisão, inclusive os do Pedro.** "Batida Tática" (rodada 4) já era técnica do
+    Artilheiro. Rodar `nomes_index.py` a cada rodada, antes de devolver a proposta.
+19. **Técnica que usa regra do Sistema com CD fixa decide qual CD vale.** As *Superfícies* têm CD 15 fixa; quando uma
+    técnica cria a superfície, a D57 ("a CD é sempre a do portador") pede a CD da classe. Escrever no texto.
+

@@ -817,6 +817,21 @@ Texto verbatim em `18-batedor-rework.md` §0 e as lições em `19-gabarito-de-cl
 - **D140** O Pedro pediu que as lições da criação da classe fiquem memorizadas. Estão em `19` §12 (15 regras) e
   valem para Vigário, Vampiro, Necromante e Xamã.
 
+## Sexta leva (2026-09-29) — D141–D142: técnicas gerais do Batedor
+
+- **D141** O Pedro reescreveu as técnicas. Os textos dele estão em `18` §4.
+  - **Fechadas:** Desbravador, Surpresa! (ex-Dianteira), Varredura, Bote, Estudo de Campo, Armadilha Tática,
+    Ocultar-se, Rolamento e Emboscada.
+  - **Com ponto aberto** (`18` §6):
+    - a reação de 3 m: o nome "Batida Tática" colide com o Artilheiro;
+    - Rasteira: o tipo do dano "de Força";
+    - Sabotar Terreno (ex-Terreno Traiçoeiro): a CD das Superfícies e a ação;
+    - Por Aqui!: ação de Mover, ataque de oportunidade, "direção" e duração da falha automática;
+    - Rasgar o Mapa: a contrapartida;
+    - Fantasma: o custo da parte do Defender.
+- **D142** Builds do Batedor: à distância serve aos 3 ramos; o corpo a corpo leve é melhor no Ladrão (Furtividade
+  no Defender); o armadilheiro/estratégico é a especialização do Cartógrafo. Os ramos vêm depois das técnicas.
+
 ## D68 — O andar de Nível 1 (truques)
 Todas as magias existentes **sobem 1 nível**: as antigas 1–4 viram 2–5. O novo Nível 1 são os
 20 truques. Consequência limpa: a regra do Teurgo deixa de ser "iguais ou abaixo do seu
