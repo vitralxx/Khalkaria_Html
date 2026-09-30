@@ -831,6 +831,18 @@ Texto verbatim em `18-batedor-rework.md` §0 e as lições em `19-gabarito-de-cl
     - Fantasma: o custo da parte do Defender.
 - **D142** Builds do Batedor: à distância serve aos 3 ramos; o corpo a corpo leve é melhor no Ladrão (Furtividade
   no Defender); o armadilheiro/estratégico é a especialização do Cartógrafo. Os ramos vêm depois das técnicas.
+- **D143** (2026-09-30) O Batedor vai ao Notion em parte, antes de fechar, porque o Pedro quer mostrá-lo a um
+  jogador. Isso substitui a regra anterior, "só vai inteiro".
+  - Pedido: *"Todo cabeçalho novo, técnicas gerais já aceitas, as duas características de classe e nomes de
+    ramos, mantém o resto"*.
+  - O que foi gravado: o cabeçalho (3/8/4, 7 opções de perícia, Play Style, CD com escolha), o Mapa, o Pontapé
+    e as 15 técnicas.
+  - As 6 técnicas com ponto aberto foram com o texto do Pedro. A Batida Tática, portanto, repete no Notion um
+    nome do Artilheiro.
+  - Ramos: os nomes Pecador e Ladrão substituem Trambiqueiro e Sem-Nome, inclusive nos rótulos de tier. O
+    conteúdo dos ramos ficou como estava.
+  - O contrato `classes.batedor` (V4/G7/R4, Instinto) fica desatualizado até o Batedor fechar. Não fiz uma
+    rev. parcial.
 
 ## D68 — O andar de Nível 1 (truques)
 Todas as magias existentes **sobem 1 nível**: as antigas 1–4 viram 2–5. O novo Nível 1 são os

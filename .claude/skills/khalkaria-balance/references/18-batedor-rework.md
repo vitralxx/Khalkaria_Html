@@ -1,6 +1,12 @@
 # 18 — Rework do Batedor (proposta, rodada 4)
 
-**Status: PROPOSTA.** Nada disto está no Notion. A classe vai ao Notion inteira, depois do aceite das 15 técnicas e dos 3 ramos. Gravar pela metade deixaria a página citando o Instinto. Depois do Notion sai o log do novo Batedor para o agente de HTML (diff contra `batedor-notion-antes-do-rework.txt`).
+**Status: NO NOTION EM PARTE (D143, 2026-09-30).** A pedido do Pedro, para mostrar a um jogador, a página já tem:
+- o cabeçalho (§1);
+- o Mapa e o Pontapé no lugar do Instinto (§2, §3);
+- as 15 técnicas com os textos da §4, incluindo as 6 com ponto aberto (§6);
+- os nomes novos dos ramos: Pecador e Ladrão.
+
+O resto ficou como estava: o conteúdo dos ramos (marcas e Tier 1–3) e o status "🟢 Pronto". Conferido por fetch e diff contra `batedor-notion-antes-do-rework.txt`. O log está no `17` §3.1.
 
 **Histórico:**
 - Rodada 1: commit `a4ea40f`. Mapa de Combate + Instinto refeito.
@@ -8,7 +14,7 @@
 - Rodada 3: commit `53c7cb0`. Características fechadas; 15 técnicas propostas.
 - As lições que o Pedro deu no caminho estão no `19-gabarito-de-classe.md` §12.
 
-**Fechado:** cabeçalho, as 2 características, o item Mapa e 11 das 15 técnicas. **Aberto:** 6 pontos das técnicas (§6). **Depois:** os 3 ramos (§5).
+**Fechado:** cabeçalho, as 2 características, o item Mapa e 9 das 15 técnicas. **Aberto:** 6 pontos das técnicas (§6). **Depois:** os 3 ramos (§5).
 
 **Origem de cada texto:**
 - **[Pedro]**: texto dele.
@@ -124,7 +130,7 @@ Números da rodada 2 (Atacar(1), 1d6 + 3, contra um alvo só):
 
 ## 4. Técnicas gerais (15), rodada 4: textos do Pedro
 
-**11 fechadas.** 4 têm um ponto aberto, listado em §6. Os textos são do Pedro (2026-09-29). Só corrigi a referência a "Terreno Traiçoeiro", que agora se chama Sabotar Terreno, e a gramática de "Defina um quadrado… vira".
+**9 fechadas.** 6 têm um ponto aberto, listado em §6. Os textos são do Pedro (2026-09-29). Só corrigi a referência a "Terreno Traiçoeiro", que agora se chama Sabotar Terreno, e a gramática de "Defina um quadrado… vira".
 
 | Técnica | Descrição | Custo | Ação | Estado |
 |---|---|---|---|---|

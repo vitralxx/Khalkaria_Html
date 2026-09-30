@@ -156,11 +156,12 @@ Só mudou o que está aqui; nada mais nas páginas.
 ### Perguntas que continuam com o Pedro
 (As respondidas estão em §1, §1b e §1c.)
 1. **Do lote anterior:** L14, L35, L39.
-2. **Batedor, rodada 4:** características fechadas (D134–D136), 11 técnicas fechadas (D141). Abertos:
+2. **Batedor, rodada 4:** características fechadas (D134–D136), 9 técnicas fechadas (D141). Abertos:
    - 6 pontos das técnicas (`18` §6);
    - depois, os 3 ramos: Cartógrafo, Ladrão e Pecador (D138, D142).
 
-   O Batedor só vai ao Notion inteiro; depois, diff contra o retrato e log do novo Batedor aqui em §3.
+   O Batedor foi ao Notion em parte (D143, log em §3.1). Quando os 6 pontos e os ramos fecharem, vai o resto,
+   com um novo diff e um novo log.
 3. **Rodada 6 do agente de HTML (Comerciantes, C2–C11)**, no `docs/ficha-digital/02-plano.md` §10 da main. Várias
    perguntas são regra nova (quem compra o quê, raridade da loja, subida de nível, preço rolado) e vão ao Pedro como Tn.
    Continuam abertos também o Bloco C e as erratas do mesmo §10.
@@ -179,6 +180,30 @@ Tudo o que mudou no Notion desde o último sync do site. Regerar `data/*.json` e
 - **2026-09-28, segunda leva**: §2 "Segunda leva": Alquimista (Cartucho e 4 poções da D76), Caçador, Sistema, Magias, Condições.
 - **2026-09-28, terceira leva**: §2 "Terceira leva": Corrompido (As Vozes), Sistema (ação livre de custo variável), Alquimista (+18 itens na tabela). Regerar Raças (Corrompido), Sistema, Alquimista e o Bazar (nome da Lágrima do Tempo).
 - **2026-09-28, quarta leva**: Alquimista (+ Poção de Vigor Moderada no Nível 2). Regerar Alquimista e o Bazar (3 itens mudam, Napalm (área) sai, Mapa entra).
+- **2026-09-30, Batedor em parte (D143)**: página `8706e3a4…`. Conferido por fetch e diff contra `batedor-notion-antes-do-rework.txt`.
+  - **Status iniciais:**
+    - Saúde: `10 + (4 × Nível)` → `10 + (3 × Nível)`;
+    - Stamina: `8 + (7 × Nível)` → `8 + (8 × Nível)`;
+    - o Éter não muda.
+  - **Treinamento:** as opções passam a ser Iniciativa, Furtividade, Atacar, Investigação, Religião, Crime e Reflexos. Sai Medicina; entram Atacar, Investigação e Reflexos.
+  - **Play Style:** "Exploração, Combate Estratégico e Mobilidade".
+  - **CD:** `10 + Mod. Destreza + (Mod. Sabedoria ou Inteligência)`.
+  - **Técnicas:** a tabela foi trocada inteira e continua com 15 linhas (comparação por conjunto, feita por script).
+    - **Ficam 4 nomes, todos com texto novo:** Armadilha Tática, Emboscada, Fantasma e Ocultar-se.
+    - **Saem 11:** Atento, Passo Ciente, Caçador, Líder, Terreno Ideal, Língua Prateada, Oportunista, Curioso, Mãos Rápidas, Sigiloso e Saque.
+    - **Entram 11:** Desbravador, Surpresa!, Varredura, Bote, Estudo de Campo, Sabotar Terreno, Por Aqui!, Rasteira, Rasgar o Mapa, Rolamento e Batida Tática.
+    - **Atenção:** a Batida Tática tem o nome de uma técnica do Artilheiro. O nome está em aberto (`18` §6).
+  - **Características:** o bloco "Instinto" saiu (junto com o recurso e os gastos). Entraram 2 seções:
+    - "Mapa": 5 Stamina, 1 minuto, 1000 m²; vira o item Mapa do Bazar, com venda 1x/área;
+    - "Pontapé": 3 Stamina, Ação Livre, 1x/rodada.
+  - **Ramos:**
+    - Trambiqueiro → **Pecador**; Sem-Nome → **Ladrão**. Vale nos títulos dos ramos, nas Marcas e nos rótulos de Tier 1, 2 e 3.
+    - O conteúdo (marcas e técnicas de ramo) não mudou. O status continua "🟢 Pronto".
+  - **Regerar:** a página do Batedor.
+  - **Ficha:** o contrato `classes.batedor` ainda descreve o Batedor antigo, com V4/G7/R4, CD fixa e o recurso Instinto. **Não usar esse bloco até a rev. do contrato que fecha o Batedor.** Outras entradas do contrato que também ficaram desatualizadas:
+    - as fontes `batedor-sexto-sentido` e `batedor-maos-rapidas`, que vêm de técnicas que saíram;
+    - "Sem-Nome" na fonte de *Marcada à Morte*;
+    - `instinto` na lista de eventos.
 
 ### 3.2 Edições do Pedro (vistas nos fetches de 2026-09-28)
 - **Brutalista, Muralha Viva:** 2º item agora "Você recebe+1 na perícia *Defender* a cada treinamento dessa perícia." (era "O treinamento da sua perícia Defender aumenta de 3 em 3 (Ao invés de 2 em 2)").
