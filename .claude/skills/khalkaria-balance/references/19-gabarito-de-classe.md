@@ -508,3 +508,28 @@ O Batedor foi o protótipo (D79). Cada correção do Pedro vira regra para as pr
 19. **Técnica que usa regra do Sistema com CD fixa decide qual CD vale.** As *Superfícies* têm CD 15 fixa; quando uma
     técnica cria a superfície, a D57 ("a CD é sempre a do portador") pede a CD da classe. Escrever no texto.
 
+**Rodada 5 (2026-10-01)**
+
+20. **CD fixa fica obsoleta no nível 4+; a CD da técnica escala com a da classe.** *"Utilizar o cd normal dos terrenos
+    faz essa técnica obsoleta no nível 4+, então tem que escalar com a cd do batedor."* Confirma a lição 19 com o motivo:
+    a CD da classe sobe com os atributos, e a fixa não.
+21. **A fraqueza da classe pode ser a isca.** *"o batedor é um alvo valioso, pouca vida, qualquer inimigo inteligente
+    gostaria de golpeá-lo, o batedor utiliza isso brincando com o perigo para fazer o inimigo cair em suas armadilhas."*
+    A Por Aqui! puxa o inimigo até o Batedor, por cima das armadilhas. É controle que não vira suporte (lição 3), porque
+    o alvo do efeito é o próprio Batedor.
+22. **Ampliar a lista de uma regra é melhor que criar uma 2ª regra na mesma técnica.** No Fantasma: *"melhor adicionar a
+    perícia defender na lista de perícias que podem receber aumento de +1 a cada +2 stamina"*. A 2ª parte, com custo
+    próprio, saiu.
+23. **No T1, uma das 3 técnicas é ativa e custa Stamina; e poucas passivas.** *"Tem que tomar cuidado pra não estacar
+    passivas e o jogador se perder no meio de tantos benefícios. Recomendo, sempre uma das 3 técnicas de tier 1 ser
+    ativa com custo de Stamina."* Cada passiva entrega um número só.
+24. **Toda moeda gasta tem destino na ficção.** *"de alguma forma as moedas não podem simplesmente sumir, deve ter alguma
+    explicação na lore para elas estarem sendo consumidas."* Técnica que custa Sins escreve para onde vão as moedas:
+    o bolso de quem foi subornado, o chão, os ingredientes.
+25. **O reforço de perícia entra pela mecânica do Sistema, não pelo roleplay.** *"um buff na perícia crime, lembrando em
+    não ir muito pro roleplay e se manter essencialmente nas mecânicas do sistema."* Use as manobras, o Khan Sins, as
+    Superfícies e a Furtividade como gancho.
+26. **Um ramo pode repartir com o grupo o que a classe faz sozinha.** O Batedor é individual nas gerais (lição 3), mas
+    o Cartógrafo deve dar *"aumento de perícia passivo, individual e pra party através dos mapas"*. O ramo que reparte
+    usa a característica (o mapa) como canal.
+

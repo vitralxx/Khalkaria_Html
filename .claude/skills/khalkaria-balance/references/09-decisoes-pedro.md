@@ -844,6 +844,39 @@ Texto verbatim em `18-batedor-rework.md` §0 e as lições em `19-gabarito-de-cl
   - O contrato `classes.batedor` (V4/G7/R4, Instinto) fica desatualizado até o Batedor fechar. Não fiz uma
     rev. parcial.
 
+## Sétima leva (2026-10-01) — D144–D146: técnicas fechadas e direção dos ramos
+
+- **D144** Os 6 pontos das técnicas gerais foram fechados e gravados no Notion (conferido por fetch e diff). Com
+  isso, as 15 técnicas estão fechadas. Textos em `18` §4.
+  - **Batida Tática → Margem de Segurança.**
+  - **Rasteira:** dano Contundente.
+  - **Sabotar Terreno:** contra a CD do Batedor e 2 Ações. *"Utilizar o cd normal dos terrenos faz essa técnica
+    obsoleta no nível 4+, então tem que escalar com a cd do batedor."*
+  - **Por Aqui!:** a criatura usa 1 ação de movimento e anda em linha reta até o Batedor. A falha automática nas
+    armadilhas dura só enquanto ela se move até ele. Ataque de oportunidade: regra geral.
+  - **Rasgar o Mapa:** o Pontapé fica grátis e 2x/turno até o fim do combate. *"Traumas de batalha não te
+    permitem desenhar o mapa dessa região novamente."*
+  - **Fantasma:** Defender entrou na lista (+1 a cada 2 Stamina, até o Nível); saiu a 2ª parte. A D142
+    ("Furtividade no Defender") deixa de valer como motivo; a vantagem do Ladrão no corpo a corpo leve passa a
+    ser o Ataque Furtivo (sem retaliação no turno), se aceito.
+- **D145** Direção dos ramos (verbatim em `18` §5):
+  - **Cartógrafo:** aumento de perícia passivo, individual e para o grupo, pelos mapas; poucas passivas; 1 ativa
+    com Stamina no T1; treino em Sobrevivência e Terreno Ideal remodelados; benefício individual por mapear as
+    9 regiões de Kharavel.
+  - **Ladrão:** ataque furtivo para leve, pesada e à distância, com a pesada equilibrada; treino em Furtividade
+    ou Crime; um facilitador de furtividade (amplificador + condição de combate que permite se esconder logo
+    depois dos ataques); um reforço de Crime em mecânica de sistema, não em roleplay.
+  - **Pecador:** adquirir Sins *"da forma mais suja possível"*; o banco do grupo (bônus que crescem com os Sins
+    no bolso); um facilitador como o do Criminoso; uma ativa que consome Sins em troca de dano ou de perícia
+    conivente; *"as moedas não podem simplesmente sumir"*.
+- **D146** Regras de criação que saíram desta leva (no `19` §12, lições 20–26):
+  - no T1, ao menos 1 das 3 técnicas é ativa e custa Stamina;
+  - poucas passivas por ramo, cada uma com um número só;
+  - toda moeda gasta por técnica tem destino na ficção;
+  - CD fixa de regra do Sistema fica obsoleta no nível 4+;
+  - a fraqueza da classe pode ser a isca (Por Aqui!);
+  - o Cartógrafo é o ramo que reparte o mapa com o grupo; a classe continua individual nas gerais.
+
 ## D68 — O andar de Nível 1 (truques)
 Todas as magias existentes **sobem 1 nível**: as antigas 1–4 viram 2–5. O novo Nível 1 são os
 20 truques. Consequência limpa: a regra do Teurgo deixa de ser "iguais ou abaixo do seu

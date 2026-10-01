@@ -43,6 +43,8 @@ for f in glob.glob(os.path.join(REPO, 'data', '*.json')) + glob.glob(os.path.joi
     walk(json.load(open(f, encoding='utf-8')), os.path.basename(f))
 for row in csv.DictReader(open(os.path.join(SKILL, 'references', 'bazar-v26.csv'), encoding='utf-8')):
     add(row['Nome'], 'bazar')
+# As 20 magias de Nível 1 (D68) ainda não estão em data/magias.json.
+walk(json.load(open(os.path.join(SKILL, 'references', 'magias-nivel1.json'), encoding='utf-8')), 'magias-nivel1')
 d = json.load(open(os.path.join(AQUI, 'estrutura_classes.json'), encoding='utf-8'))
 for c, v in d.items():
     for t in v['tecnicas']: add(t['nome'], c + ':tecnica')
