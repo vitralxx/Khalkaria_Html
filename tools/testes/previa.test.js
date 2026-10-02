@@ -179,13 +179,14 @@ test('render: selo em todo número não canônico, fonte de cada termo, ajuste m
   assert.match(html, /<span class="kf3-calc">calc\. 20<\/span>/);
   assert.match(html, /Saúde máx\.<\/b>: valor fixo 22 · calculado 20 · <span class="kf3-selo kf3-selo-ajuste">migrado da v2<\/span>/);
   assert.match(ids[porCaminho['recurso.saude.max']], /Ajuste migrado da v2: calculado 20 · ajustado 22/);
-  // o recurso de classe sem nome (Espadachim) sai com o selo PENDENTE PEDRO
+  // o recurso de classe do Espadachim (D105) é canônico e não é contador: as características, sem selo
   const v2 = JSON.parse(JSON.stringify(V2));
   v2.meta.classe = 'Espadachim'; v2.meta.ramo = '';
   const re = P.calcular(comV2(v2), dados());
   const no = re.av.nos['recurso.classe.max'];
-  assert.ok(no.selos.includes('pendentePedro'), JSON.stringify(no.selos));
-  assert.match(P.render(re).html, /data-caminho="recurso\.classe\.max">.*?PENDENTE PEDRO/);
+  assert.ok(!no.selos.includes('pendentePedro'), JSON.stringify(no.selos));
+  assert.equal(no.status, 'canonico');
+  assert.match(P.render(re).html, /Recurso de classe <span class="kf3-sub">\(sem contador\)<\/span>.*?data-caminho="recurso\.classe\.max"><b class="kf3-v">Proficiência com Espadas · Marca do Duelo<\/b>/);
 });
 
 test('revisão F3c: bônus de item sobre o total migrado vai para Avisos (sem decidir), sem desligar', () => {
@@ -231,7 +232,7 @@ test('revisão F3c: cartas sem posição, Ae(Ordinário) e Éter 0/0 aparecem em
   assert.match(h, /data-caminho="limiar\.saldo">[\s\S]*?<\/span><\/span> <span class="kf3-aviso kf3-marca-aviso"/);
 });
 
-test('revisão F3c: categoria "outros" com nome; recurso de classe sem nome mostra o nome digitado na v2', () => {
+test('revisão F3c: categoria "outros" com nome; contador digitado na v2 num recurso que não é contador (D105) vira aviso, nunca some', () => {
   const r = P.calcular(comV2(), dados());
   const h = P.render(r).html;
   assert.match(h, /Força <span class="kf3-sub">Outros<\/span>/);
@@ -244,8 +245,14 @@ test('revisão F3c: categoria "outros" com nome; recurso de classe sem nome most
   v2.recursos.recursoClasse = { nome: 'Foco', atual: 1, max: 4 };
   const re = P.calcular(comV2(v2), dados());
   const he = P.render(re).html;
-  assert.match(he, /<span class="kf3-rot">Foco <span class="kf3-sub">\(nome digitado na v2; recurso sem nome no contrato\)<\/span><\/span>/);
-  assert.match(he, /data-caminho="recurso\.classe\.max">.*?PENDENTE PEDRO/);
+  assert.match(he, /Recurso de classe <span class="kf3-sub">\(sem contador\)<\/span>/);
+  assert.doesNotMatch(he, /nome digitado na v2/);
+  // o contador "Foco 1/4" da v2 não é descartado: aviso no número e na lista de Avisos
+  const nc = re.av.nos['recurso.classe.max'];
+  assert.ok(nc.avisos.some((a) => a.tipo === 'recurso-sem-contador' && /"Foco" \(atual 1\)/.test(a.msg)), JSON.stringify(nc.avisos));
+  assert.match(he, /<li>[^<]*&quot;Foco&quot; \(atual 1\); pelo contrato \(D105\) o recurso de classe de Espadachim não é contador/);
+  // o número do contador antigo não aparece como recurso: as características ocupam o lugar
+  assert.match(he, /data-caminho="recurso\.classe\.max"><b class="kf3-v">Proficiência com Espadas · Marca do Duelo<\/b>/);
 });
 
 test('navegador (vm, artefato js/ficha.js): sem ativação a prévia não toca em nada; com ?ficha=v3 só grava a própria chave', () => {

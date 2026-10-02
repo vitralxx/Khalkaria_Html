@@ -2,17 +2,17 @@
  "schemaVersion": "efeitos/1",
  "_doc": "ARTEFATO de tools/gerar_efeitos.py (F1d): não editar à mão. Fonte: data/balanceamento/ficha-efeitos-itens.json (projeção publicada da entrega do balanceamento) + data/bazar.json. Vocabulário e destino dos alvos: tools/alvos_destino.json. Texto das Marcas da Vhelor: data/balanceamento/marcas-vhelor.json.",
  "fonte": {
-  "shaBalanceamento": "2a4757814050a0859a6145215e95020d3145472f",
+  "shaBalanceamento": "ec2493e442a1afef44d587bec64e4db4cc434f19",
   "efeitosItens": "efeitos-itens/1.1",
-  "shaBazar": "d97ad6c78f2a6eb5",
-  "shaBazarDoBalanceamento": "d97ad6c78f2a6eb5"
+  "shaBazar": "70390413015c9bec",
+  "shaBazarDoBalanceamento": "70390413015c9bec"
  },
  "contagem": {
-  "porId": 612,
+  "porId": 611,
   "itens": 214,
   "armas": 181,
-  "consumo": 243,
-  "semEfeitoNaFicha": 115
+  "consumo": 242,
+  "semEfeitoNaFicha": 116
  },
  "alvos": {
   "acoes": {
@@ -14284,12 +14284,12 @@
    "requisitoTexto": null,
    "lembretes": [
     "Ganha +1 mão de cartas do Limiar",
-    "Pode ser usada como material para as Lágrimas do Tempo (Alquimista Nível 5). Item único — usá-la de um jeito gasta o outro (D75)"
+    "Pode ser usada como material para a Lágrima do Tempo (Alquimista Nível 5). Item único — usá-la de um jeito gasta o outro (D75)"
    ],
-   "texto": "Ganha +1 mão de cartas do Limiar. Adicionalmente, recupera todo o Éter máximo do portador. Pode ser usada como material para as Lágrimas do Tempo (Alquimista Nível 5). Item único — usá-la de um jeito gasta o outro.",
+   "texto": "Ganha +1 mão de cartas do Limiar. Adicionalmente, recupera todo o Éter máximo do portador. Pode ser usada como material para a Lágrima do Tempo (Alquimista Nível 5). Item único — usá-la de um jeito gasta o outro.",
    "status": "decisao"
   },
-  "item-lagrimas-do-tempo": {
+  "item-lagrima-do-tempo": {
    "quando": null,
    "slot": null,
    "acumulaCopia": true,
@@ -17025,32 +17025,6 @@
     "Água não apaga"
    ],
    "texto": "Arremesso 9m. 3d6 Fogo em área 3m, Reflexo para metade. Queima 2d6/turno por 3 rodadas. Água não apaga.",
-   "status": "canonico"
-  },
-  "item-napalm-alquimico-area": {
-   "quando": null,
-   "slot": null,
-   "acumulaCopia": true,
-   "usos": null,
-   "sintoniaDescansos": null,
-   "duracao": null,
-   "mods": [],
-   "consumo": {
-    "mods": [],
-    "aplicaCondicao": [],
-    "removeCondicao": null,
-    "conjura": null,
-    "alimento": false,
-    "acoes": null
-   },
-   "requisito": null,
-   "requisitoTexto": null,
-   "lembretes": [
-    "3d6 Fogo em 3m",
-    "Queima 2d6/turno por 3 rodadas",
-    "Água não apaga"
-   ],
-   "texto": "3d6 Fogo em 3m. Queima 2d6/turno por 3 rodadas. Água não apaga.",
    "status": "canonico"
   },
   "item-nucleo-abissal": {
@@ -22383,8 +22357,10 @@
    },
    "requisito": null,
    "requisitoTexto": null,
-   "lembretes": [],
-   "texto": "+2 Atacar/Defender, +2d6 dano, +3m Movimento. Dura 1 min.",
+   "lembretes": [
+    "Vantagem em Fortitude"
+   ],
+   "texto": "+2 Atacar/Defender, +2d6 dano, +3m Movimento, Vantagem em Fortitude. Dura 1 min.",
    "status": "decisao"
   },
   "item-soro-da-verdade": {
@@ -22976,7 +22952,7 @@
      {
       "alvo": "ataque.danoExtra",
       "op": "soma",
-      "valor": "2d6",
+      "valor": "1d6",
       "quando": "consumido",
       "acumula": true,
       "duracao": null,
@@ -22984,7 +22960,7 @@
        "tipo": "item",
        "id": "item-veneno-hemorragico"
       },
-      "status": "canonico",
+      "status": "decisao",
       "tipo": "biologico",
       "ataques": 3
      }
@@ -22998,10 +22974,10 @@
    "requisito": null,
    "requisitoTexto": null,
    "lembretes": [
-    "Alvo Sangra 1d6/turno por 3 rodadas"
+    "Alvo recebe Sangramento 3 no terceiro ataque"
    ],
-   "texto": "+2d6 Bio por 3 ataques. Alvo Sangra 1d6/turno por 3 rodadas.",
-   "status": "canonico"
+   "texto": "3 ataques. +1d6 Biológico. Alvo recebe Sangramento 3 no terceiro ataque.",
+   "status": "decisao"
   },
   "item-veneno-letal": {
    "quando": null,

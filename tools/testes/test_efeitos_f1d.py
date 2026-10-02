@@ -90,7 +90,7 @@ class Fixtures(unittest.TestCase):
         bazar = {x['id']: x for x in json.load(open(os.path.join(RAIZ, 'data', 'bazar.json'), encoding='utf-8'))}
         self.assertTrue(all(e['texto'] == bazar[i]['efeito'] for i, e in EFEITOS.items()))
         self.assertEqual(EFEITOS['item-folha-amarela']['consumo']['marcaVhelor']['soma'], 1)
-        self.assertEqual(len(EFEITOS), 612)
+        self.assertEqual(len(EFEITOS), 611)   # sai o Napalm (área), D128; o Mapa entra sem efeito
 
 
 class Vocabulario(unittest.TestCase):

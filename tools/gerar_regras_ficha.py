@@ -528,6 +528,9 @@ class Compilador:
                 rdc = cc['recursoDeClasse']
                 x['recursoDeClasse'] = {'st': normaliza_status(rdc['status'], chave + '.recursoDeClasse'),
                                         'pergunta': rdc.get('pergunta'), 'nota': rdc.get('nota'),
+                                        # D105: recurso que não é contador (características da classe)
+                                        'contador': rdc.get('contador'), 'tipo': rdc.get('tipo'),
+                                        'itens': list(rdc.get('itens') or []),
                                         'fo': self.fo('classes', chave, 'recursoDeClasse')}
             out[chave] = x
         return out

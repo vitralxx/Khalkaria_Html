@@ -22,13 +22,13 @@ test('catálogo real: todo item tem inv (o build sempre emite)', () => {
   assert.deepEqual(sem, []);
 });
 
-test('catálogo real: 87 empilháveis, mesmo conjunto de inv.empilhavel e da frase (por conjunto, sem duplicata)', () => {
+test('catálogo real: 88 empilháveis (o Mapa entrou, D135), mesmo conjunto de inv.empilhavel e da frase (por conjunto, sem duplicata)', () => {
   const porInv = BAZAR.filter((it) => it.inv.empilhavel === true);
   const porKhInv = BAZAR.filter((it) => K.normalizaEntrada(K.entradaDeItem(it)).empilhavelRegistro === true);
   const porTexto = BAZAR.filter((it) => K.empilhavelPorTexto(it.efeito));
-  assert.equal(porInv.length, 87);
-  assert.equal(porKhInv.length, 87);
-  assert.equal(ids(porKhInv).size, 87, 'ids distintos');
+  assert.equal(porInv.length, 88);
+  assert.equal(porKhInv.length, 88);
+  assert.equal(ids(porKhInv).size, 88, 'ids distintos');
   const a = ids(porKhInv), b = ids(porInv), c = ids(porTexto);
   assert.deepEqual({ so_khinv: diff(a, b), so_inv: diff(b, a) }, { so_khinv: [], so_inv: [] });
   assert.deepEqual({ so_khinv: diff(a, c), so_texto: diff(c, a) }, { so_khinv: [], so_texto: [] });

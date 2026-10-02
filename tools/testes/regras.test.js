@@ -209,16 +209,22 @@ test('Stamina e Éter: o maior dos dois, trocável à mão (D7), com selo de dec
   assert.match(r.nos['recurso.stamina.max'].formula.simbolica, /Mod\.FOR \(escolhido\)/);
 });
 
-test('recurso sem classe e recurso de classe sem regra (Espadachim/Teurgo) saem com selo, nunca inventados', () => {
+test('recurso sem classe sai com selo; recurso de classe que não é contador (Espadachim/Teurgo, D105) mostra as características, sem número', () => {
   let r = R.avaliar(ficha({ attrs: { CON: 14 } }));
   assert.equal(val(r, 'recurso.saude.max'), null);
   assert.match(r.nos['recurso.saude.max'].formula.numerica, /classe não definida/);
   r = R.avaliar(ficha({ classe: 'teurgo', nivel: 2 }));
   const no = r.nos['recurso.classe.max'];
-  assert.equal(no.valor, null);
-  assert.equal(no.status, 'pedroDecide');
-  assert.deepEqual(no.selos, ['pendentePedro']);
-  assert.match(no.formula.numerica, /PENDENTE PEDRO/);
+  assert.equal(no.valor, null, 'sem contador: nenhum número inventado');
+  assert.equal(no.status, 'canonico');
+  assert.deepEqual(no.selos, []);
+  assert.equal(no.semContador, true);
+  assert.deepEqual(no.itens, ['Escolas do Primórdio']);
+  assert.match(no.formula.simbolica, /Recurso de classe de Teurgo = Escolas do Primórdio/);
+  assert.match(no.formula.numerica, /sem contador/);
+  assert.deepEqual(no.avisos, [], 'sem contador digitado, sem aviso');
+  r = R.avaliar(ficha({ classe: 'espadachim', nivel: 1 }));
+  assert.deepEqual(r.nos['recurso.classe.max'].itens, ['Proficiência com Espadas', 'Marca do Duelo']);
   r = R.avaliar(ficha({ classe: 'alquimista', nivel: 3, attrs: { INT: 14 } }));
   assert.equal(val(r, 'recurso.classe.max'), 3 * 3 + 2);
   assert.equal(r.nos['recurso.classe.max'].rotulo, 'Reagentes máx.');

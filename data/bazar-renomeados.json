@@ -6,6 +6,18 @@
    "nomeAntigo": "Elixir da Expurgão",
    "data": "2026-09-27",
    "motivo": "L38 (lote L, aprovado pelo Pedro): typo no nome do CSV, 'Expurgão' -> 'Expurgação'. Entrega do balanceamento 2a47578."
+  },
+  "item-lagrimas-do-tempo": {
+   "novo": "item-lagrima-do-tempo",
+   "nomeAntigo": "Lágrimas do Tempo",
+   "data": "2026-10-02",
+   "motivo": "D125 (Pedro, via balanceamento e829711): o nome é 'Lágrima do Tempo'. Entrega do balanceamento ec2493e."
+  },
+  "item-napalm-alquimico-area": {
+   "novo": "item-napalm-alquimico",
+   "nomeAntigo": "Napalm Alquímico (área)",
+   "data": "2026-10-02",
+   "motivo": "D128 (Pedro, via balanceamento 7a6a52d): o '(área)' era cópia incompleta do Napalm Alquímico e saiu do CSV; a ficha que tinha a cópia passa a ter o item completo. Entrega do balanceamento ec2493e."
   }
  }
 }

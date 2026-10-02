@@ -416,7 +416,9 @@
  "item-soro-da-guerra": {
   "_bloco": "consumo",
   "duracao": "1 min",
-  "lembretes": [],
+  "lembretes": [
+   "Vantagem em Fortitude"
+  ],
   "efeito": [
    {
     "alvo": "pericia.atacar",
@@ -444,6 +446,21 @@
    }
   ]
  },
+ "item-veneno-hemorragico": {
+  "_bloco": "consumo",
+  "efeito": [
+   {
+    "alvo": "ataque.danoExtra",
+    "op": "soma",
+    "valor": "1d6",
+    "tipo": "biologico",
+    "ataques": 3
+   }
+  ],
+  "lembretes": [
+   "Alvo recebe Sangramento 3 no terceiro ataque"
+  ]
+ },
  "item-lagrima-de-veluria": {
   "_bloco": "consumo",
   "efeito": [
@@ -455,7 +472,7 @@
   ],
   "lembretes": [
    "Ganha +1 mão de cartas do Limiar",
-   "Pode ser usada como material para as Lágrimas do Tempo (Alquimista Nível 5). Item único — usá-la de um jeito gasta o outro (D75)"
+   "Pode ser usada como material para a Lágrima do Tempo (Alquimista Nível 5). Item único — usá-la de um jeito gasta o outro (D75)"
   ]
  },
  "item-erva-medicinal": {

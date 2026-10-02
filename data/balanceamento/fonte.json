@@ -1,21 +1,21 @@
 {
  "schemaVersion": "balanceamento-fonte/1",
  "_doc": "Gerado por tools/sync_balanceamento.py: não editar à mão. Os arquivos ao lado são a PROJEÇÃO publicada (D3) da entrega do balanceamento, sem carta rara não revelada (D11/D33); o verbatim fica em privado/balanceamento/ (gitignored).",
- "ref": "origin/claude/khalkaria-bazar-balance-lsdfic",
- "commit": "2a4757814050a0859a6145215e95020d3145472f",
+ "ref": "ec2493e",
+ "commit": "ec2493e442a1afef44d587bec64e4db4cc434f19",
  "pasta": ".claude/skills/khalkaria-balance/references",
  "arquivos": {
   "ficha-digital-regras.json": {
    "schemaVersion": "regras-ficha/1.1",
-   "sha256": "743e20f3105b5c72be93f8ca2f618481f59d929c0f49f4c1ae8eea5df13d59eb"
+   "sha256": "1b1cb12970c7ad25022f05b3755c25f33b14ffc96ef89596f32fc06d384d3302"
   },
   "ficha-efeitos-itens.json": {
    "schemaVersion": "efeitos-itens/1.1",
-   "sha256": "d67d5f4dc50858146a3dda50132adbe9c1a224eeb5fc36e1aa0120afb8418b36"
+   "sha256": "715c8e65be21190ec877b9271ce42cdb84d41f0b03e4e2d3f564d03d23a09c0f"
   },
   "ficha-efeitos-overrides.json": {
    "schemaVersion": null,
-   "sha256": "d02223fca2948494c589cbec01becef162d927fca647f8b37e253dd1fe2ad100"
+   "sha256": "8421bc3c7dba37c6f334fc1355c59e09660e978395f9fb3eb7f3db80bc444d3c"
   },
   "marcas-vhelor.json": {
    "schemaVersion": "marcas-vhelor/1.1",
@@ -46,11 +46,6 @@
    "arquivo": "ficha-digital-regras.json",
    "caminho": "derivados.progressaoDeAtaques.modificadoresConhecidos.10",
    "motivo": "objeto rara:true"
-  },
-  {
-   "arquivo": "ficha-digital-regras.json",
-   "caminho": "condicoes.7.nota",
-   "motivo": "1 frase(s) citam rara oculta (viram marcador)"
   }
  ]
 }

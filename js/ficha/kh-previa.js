@@ -276,8 +276,13 @@
         linha(glifo('g-saude', 'kf3-g-saude') + 'Saúde máx.', atual('saude') + conta('recurso.saude.max')) +
         linha(glifo('g-stamina', 'kf3-g-stamina') + 'Stamina máx.', atual('stamina') + conta('recurso.stamina.max')) +
         linha(glifo('g-eter', 'kf3-g-eter') + 'Éter máx.', atual('eter') + conta('recurso.eter.max')) +
-        linha(rotuloClasse(), atual('classe') + conta('recurso.classe.max')));
-      // classe sem recurso nomeado no contrato (Espadachim, Teurgo): mostra o nome que o jogador digitou na v2
+        (noCl && noCl.semContador
+          // D105: recurso que não é contador (Espadachim, Teurgo): as características, sem número
+          ? linha('Recurso de classe <span class="kf3-sub">(sem contador)</span>',
+              // o ajuste migrado da v2 (contador antigo) fica no tooltip e em Avisos, não vira número aqui
+              conta('recurso.classe.max', { texto: noCl.itens.join(' · ') }))
+          : linha(rotuloClasse(), atual('classe') + conta('recurso.classe.max'))));
+      // classe sem recurso nomeado no contrato: mostra o nome que o jogador digitou na v2
       function rotuloClasse() {
         var nome = obj(rc.classe) ? semEmoji(rc.classe.nome) : '';
         if (noCl && !noCl.medidor && nome) return esc(nome) + ' <span class="kf3-sub">(nome digitado na v2; recurso sem nome no contrato)</span>';

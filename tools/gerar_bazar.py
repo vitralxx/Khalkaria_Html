@@ -142,7 +142,7 @@ SLOT_EMPILHAVEL = 'bugiganga'
 # pega pelas FALHAs estruturais de validar_inventario(). Os 87 empilháveis
 # incluem Casca de Raiz e Seiva da Vhelor (D26b, frase posta no Efeito_Jogador
 # com aprovação do Pedro), o que fecha com o índice do balanceamento.
-ESPERADO = {'empilhavel': 87, 'capacidade': 3, 'naoOcupa': 1,
+ESPERADO = {'empilhavel': 88, 'capacidade': 3, 'naoOcupa': 1,
             'armaduras': (27, 23), 'slot': (240, 487)}
 
 

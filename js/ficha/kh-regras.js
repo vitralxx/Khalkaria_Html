@@ -512,6 +512,25 @@
       if (!cl) { no.formula = { simbolica: 'Recurso de classe', numerica: '= ? (classe não definida)' }; return no; }
       if (!cl.medidores.length) {
         var rdc = cl.recursoDeClasse || { st: 'semStatus' };
+        // D105: o recurso é um conjunto de características, não um contador (Espadachim, Teurgo)
+        if (rdc.contador === false && rdc.itens && rdc.itens.length) {
+          var itens = rdc.itens.join(' e ');
+          no.rotulo = 'Recurso de classe';
+          no.semContador = true;
+          no.itens = rdc.itens.slice();
+          no.termos.push({ rotulo: itens, fonte: { tipo: 'regra', id: rdc.fo || cl.fo, nome: 'contrato' },
+            op: 'formula', valor: null, ativo: true, motivo: str(rdc.nota) || 'não é contador', status: rdc.st });
+          no.formula = { simbolica: 'Recurso de classe de ' + cl.nome + ' = ' + itens + ' (' + (rdc.tipo || 'características') + ')',
+            numerica: '= sem contador (não é contador: ' + (str(rdc.nota) || 'características da classe') + ')' };
+          // contador digitado (ex.: migrado da v2): nunca descartado calado, vira aviso
+          var rcf = ctx.ficha && ctx.ficha.recursos && ctx.ficha.recursos.classe;
+          if (rcf && (str(rcf.nome) || inteiro(rcf.atual, 0))) {
+            no.avisos.push({ tipo: 'recurso-sem-contador', msg: 'a ficha tem o contador "' + (str(rcf.nome) || 'recurso de classe') +
+              '" (atual ' + inteiro(rcf.atual, 0) + '); pelo contrato (D105) o recurso de classe de ' + cl.nome +
+              ' não é contador, então o número fica só como anotação' });
+          }
+          return no;
+        }
         no.termos.push({ rotulo: 'Recurso de classe de ' + cl.nome, fonte: { tipo: 'regra', id: rdc.fo || cl.fo, nome: rdc.pergunta || 'contrato' },
           op: 'formula', valor: null, ativo: true, motivo: str(rdc.nota) || 'sem regra no contrato', status: rdc.st });
         no.formula = { simbolica: 'Recurso de classe de ' + cl.nome + ' (sem nome nem regra no contrato)',

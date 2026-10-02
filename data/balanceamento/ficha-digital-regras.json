@@ -1,6 +1,6 @@
 {
  "schemaVersion": "regras-ficha/1.1",
- "geradoEm": "2026-09-27 (rev. 7: lote L respondido pelo Pedro e gravado no Notion; correções do Log de Técnicas, ver 16-log-tecnicas.md)",
+ "geradoEm": "2026-09-28 (rev. 10: ação livre de custo variável, D126; ver 17-respostas-T-e-sync.md §1c. rev. 9: segunda leva de respostas do Pedro, D118–D123: média da raridade, condições mentais, requisitos de conjuração; ver 17-respostas-T-e-sync.md §1b. rev. 8: respostas do Pedro às T1–T19, D98–D117, gravadas no Notion; ver 17-respostas-T-e-sync.md. rev. 7: lote L respondido pelo Pedro e gravado no Notion; correções do Log de Técnicas, ver 16-log-tecnicas.md)",
  "_doc": "Resposta do agente de balanceamento ao pedido docs/ficha-digital/01-pedido-ao-balanceamento.md. O texto com a justificativa de cada regra esta em 14-ficha-digital.md, na mesma numeracao P/C. Nada aqui e canonico so porque esta escrito: leia o campo 'status'.",
  "_status": {
   "canonico": "Esta no Notion ou numa decisao registrada em 09-decisoes-pedro.md. Pode ir para o site.",
@@ -282,7 +282,7 @@
   "aoReduzirMaxStatus": "canonico",
   "curaPassaMax": false,
   "atributoCuraItem": "fabricante",
-  "atributoCuraItemMotivo": "L08, Pedro: \"É a inteligência de quem craftou o item em poções.\" Gravado no Notion (Sistema > Status > Regras dos status): \"O \\\"+Int\\\" das poções usa a Inteligência de quem fabricou a poção.\" O item precisa guardar o Mod.INT de quem o fez. Elixir segue a poção por analogia (mesma família de Alquimia). Kit (Manutenção, Trauma) é aplicado na hora, muitas vezes num aliado caído, e fica com quem usa. Item comprado sem fabricante conhecido soma +0, salvo o mestre dizer outro valor. Elixir, kit e item comprado: pergunta T19 do 16-log-tecnicas.md.",
+  "atributoCuraItemMotivo": "L08 e D117, Pedro (T19): \"Sempre usa a int de quem fabricou a poção, ela fica gravada com aquele modificador. Poção comprada soma media da raridade.\" O item guarda o Mod.INT de quem o fez; item comprado, sem fabricante, usa a média da raridade.",
   "curaStatus": "canonico",
   "temporario": {
    "recursos": [
@@ -310,14 +310,24 @@
   "atributoCuraItemPorTipo": {
    "pocao": "fabricante",
    "elixir": "fabricante",
-   "kit": "usuario"
+   "kit": "fabricante"
   },
   "atributoCuraItemStatusPorTipo": {
    "pocao": "canonico",
-   "elixir": "decisao",
-   "kit": "decisao"
+   "elixir": "canonico",
+   "kit": "canonico"
   },
-  "atributoCuraItemSemFabricante": 0,
+  "atributoCuraItemSemFabricante": "mediaDaRaridade",
+  "atributoCuraItemFonte": "notion-sistema 2b76e3a4, gravado em 2026-09-28 (diff conferido) > Status > Regras dos status: \"+Int de poções, elixires e kits é a Inteligência de quem fabricou o item, que fica gravada nele. Item comprado soma a média da raridade: Ordinário +1, Incomum +2, Exótico +3, Luxária +4.\" (D117 + D121)",
+  "atributoCuraItemMediaDaRaridade": {
+   "ordinario": 1,
+   "incomum": 2,
+   "exotico": 3,
+   "luxaria": 4,
+   "status": "canonico",
+   "fonte": "D121 (Pedro: \"Média de raridade ok\"), notion-sistema > Status > Regras dos status (gravado em 2026-09-28 (diff conferido))",
+   "cobre": "as 11 poções, elixires e kits com +Int do Bazar são Ordinário, Incomum, Exótico ou Luxária"
+  },
   "curaFonte": "L08, notion-sistema > Status > Regras dos status: \"A cura não passa do máximo.\" (gravado no Notion em 2026-09-27 (diff conferido))"
  },
  "classes": {
@@ -357,9 +367,24 @@
     }
    ],
    "recursoDeClasse": {
-    "status": "pedroDecide",
-    "pergunta": "T6 do 16-log-tecnicas",
-    "nota": "Pedro (03-respostas §5): \"Tem sim, teurgo também. Todas têm.\" Nome e regra não estão no Notion. Até lá a ficha mostra um contador livre (nome e atual/máx editáveis)."
+    "status": "canonico",
+    "contador": false,
+    "tipo": "caracteristicas",
+    "itens": [
+     "Proficiência com Espadas",
+     "Marca do Duelo"
+    ],
+    "fonte": "D105 (Pedro, T6: \"o do espadachim é proficiência com espadas e marca do duelo\")",
+    "nota": "Não é contador: a ficha não mostra contador livre. A Marca do Duelo já está em estados."
+   },
+   "espada": {
+    "definicao": "arma corpo a corpo que causa dano Cortante",
+    "status": "canonico",
+    "fonte": "D102 (Pedro, T3), notion-espadachim > Proficiência com Espadas: \"espada (arma corpo a corpo que causa dano Cortante)\" (gravado em 2026-09-28)",
+    "usadoPor": [
+     "Proficiência com Espadas",
+     "Pedra de Amolar"
+    ]
    }
   },
   "batedor": {
@@ -486,9 +511,14 @@
    "recursos": [],
    "nota": "Sem contador proprio: o recurso e o Eter, e o eixo de build sao as Escolas (2/3/5 por nivel).",
    "recursoDeClasse": {
-    "status": "pedroDecide",
-    "pergunta": "T6 do 16-log-tecnicas",
-    "nota": "Pedro (03-respostas §5): \"Tem sim, teurgo também. Todas têm.\" Nome e regra não estão no Notion. Até lá a ficha mostra um contador livre (nome e atual/máx editáveis)."
+    "status": "canonico",
+    "contador": false,
+    "tipo": "caracteristicas",
+    "itens": [
+     "Escolas do Primórdio"
+    ],
+    "fonte": "D105 (Pedro, T6: \"o teurgo são as escolas do primórdio\")",
+    "nota": "2 escolas no nível 1, +1 no 3, +2 no 5 (Primordial exige nível 5); cada escola pede o Foco dela. O contador é o Éter."
    }
   },
   "monge": {
@@ -565,15 +595,14 @@
       {
        "fonte": "monge-fluxo-invertido",
        "aoReceberDano": "+1 em vez de zerar",
-       "status": "pedroDecide",
-       "pergunta": "T12",
-       "provisorio": true
+       "status": "canonico",
+       "origem": "D110 (T12a), notion-monge > Fluxo Invertido: \"+1 Fluxo ao receber dano (em vez de perder todo o Fluxo)\" (gravado em 2026-09-28)"
       },
       {
        "fonte": "monge-insurgencia|monge-fusao-primal",
        "perdeTudo": "custo da ultimate",
-       "status": "pedroDecide",
-       "pergunta": "T12 (o texto da classe diz \"não pode perder fluxo de nenhuma outra forma\")"
+       "status": "canonico",
+       "origem": "D110 (T12b), notion-monge > Fluxo: \"Você não pode perder fluxo de nenhuma outra forma, exceto quando o texto de uma técnica diz que você perde Fluxo.\" (gravado em 2026-09-28)"
       }
      ]
     }
@@ -1100,7 +1129,7 @@
      "op": "fixa",
      "valor": 0,
      "escopo": "2 ataques da tecnica",
-     "custo": "1 acao, 3 Stamina"
+     "custo": "Atacar(n) da arma de fogo (D101; 2 ações com as armas de fogo do Bazar), 3 Stamina"
     },
     {
      "fonte": "artilheiro-vendaval-de-aco",
@@ -1727,7 +1756,7 @@
    "fonte": "notion-condicoes 3a66e3a4...0b25, gravado em 2026-09-26 (rodada 3, diff conferido) (D83, PD14a)",
    "verbatimPedro": "um alvo com 3 de sangramento quando e acertado recebe 3d4 de dano e fica com sangramento 2, o proximo acerto da 2d4 de dano e assim por diante",
    "ordemNumAcertoQueAplica": "consomeAntes",
-   "nota": "Escala com dificuldade: Dilacerar aplica 1 e cada acerto consome 1, entao um atacante so com Dilacerar mantem o alvo em 1. [trecho sobre carta rara oculta]",
+   "nota": "Escala com dificuldade: Dilacerar aplica 1 e cada acerto consome 1, entao um atacante so com Dilacerar mantem o alvo em 1.",
    "verbatim": "Se o alvo puder sangrar, qualquer ataque contra ele causa +Xd4 de dano Biológico, sendo X o seu Sangramento atual. Ao acertar um ataque em um alvo com essa condição, ela reduz em 1. Por exemplo: um alvo com Sangramento 3 recebe +3d4 no próximo acerto e fica com Sangramento 2. Se o acerto também aplicar Sangramento, o dano e a redução acontecem antes da nova aplicação."
   },
   {
@@ -2328,13 +2357,13 @@
    "atordoado"
   ],
   "nota": "NAO funda os dois eixos. Um serve para achar o card, o outro para decidir se a condicao pega.",
-  "mentalStatus": "canonicoParcial",
-  "mentalFonte": "notion-limiar: a única lista escrita de \"condições mentais\" está no texto de uma carta rara (não reproduzido aqui). A página Condições do Notion não tem seção \"Condições Mentais\". Correção da rev. 1, que dizia que a lista nunca foi escrita.",
+  "mentalStatus": "canonico",
+  "mentalFonte": "D122 (Pedro: \"condições mentais (Enfeitiçado, Amedrontado, Confuso, Atordoado)\"), notion-condicoes > topo: \"Condições mentais: Enfeitiçado, Amedrontado, Confuso e Atordoado.\" (gravado em 2026-09-28 (diff conferido)). Antes a única lista escrita estava no texto de uma carta rara do Limiar.",
   "mentalNotas": [
-   "Oco conta como mental por implicação: o pacto da Grande Árvore (Teurgo) \"remove alguma condição mental, exceto Oco\".",
+   "Oco não é condição mental (D122). O \"exceto Oco\" do pacto da Grande Árvore (Teurgo, \"remove alguma condição mental, exceto Oco\") fica redundante; não muda nada.",
    "Monge Ápatico dá um subconjunto: \"condições que são causadas por emoções (Enfeitiçado e Amedrontado)\".",
-   "Atordoado está nas DUAS listas (mental na lista do Limiar, física no Avatar do Vazio). Tags são eixo, não partição: pode ter as duas.",
-   "O grupoUI \"mentais\" do site (Confuso, Amedrontado, Descontrolado, Enfeitiçado, Bêbado) é agrupamento de interface e não bate com a lista: tem Descontrolado e Bêbado, não tem Atordoado. Para imunidade e vantagem (\"condições mentais\": Veterano, Grande Árvore) vale a tag, não o grupo. Confirmação pedida ao Pedro (T16)."
+   "Atordoado está nas DUAS listas (mental pela D122, física no Avatar do Vazio). Tags são eixo, não partição: pode ter as duas.",
+   "O grupoUI \"mentais\" do site (Confuso, Amedrontado, Descontrolado, Enfeitiçado, Bêbado) é agrupamento de interface e não bate com a lista canônica: tem Descontrolado e Bêbado, não tem Atordoado. Imunidade, vantagem e remoção de \"condição mental\" (Veterano, Grande Árvore, Monge Ápatico) consultam a tag, não o grupo. Alinhar o grupo é decisão do site."
   ]
  },
  "empilhamento": {
@@ -2373,13 +2402,25 @@
   "pmaEscopo": "porAlvo",
   "pmaStatus": "canonico",
   "pmaFonte": "D29",
-  "pmaNota": "MECANICA (D29): -5 cumulativo por ataque no mesmo turno, contado POR ALVO, zera ao trocar de alvo. Vale para todo ataque, inclusive os de técnica, salvo quando o texto isenta (\"sem penalidade de multi-ataque\", Transcendência, Rajada de Tiros...). G3 do 16-log-tecnicas: a Transcendência do Monge existe para suspender a PMA, o que só faz sentido se os ataques de técnica a sofrem. FICHA: não rastreia alvo, mostra a progressão (ver derivados.progressaoDeAtaques). O nome \"PMA\" ainda não está definido no Sistema (pergunta T5).",
+  "pmaNota": "MECANICA (D29): -5 cumulativo por ataque no mesmo turno, contado POR ALVO, zera ao trocar de alvo. Vale para todo ataque, inclusive os de técnica, salvo quando o texto isenta (\"sem penalidade de multi-ataque\", Transcendência, Rajada de Tiros...). G3 do 16-log-tecnicas: a Transcendência do Monge existe para suspender a PMA, o que só faz sentido se os ataques de técnica a sofrem. FICHA: não rastreia alvo, mostra a progressão (ver derivados.progressaoDeAtaques). Nome e regra estão no Sistema > Atacar desde 2026-09-28 (D29 + D100).",
   "acaoLivreMax": null,
   "acaoLivreStatus": "canonico",
   "conjuracoesPorTurno": 1,
   "conjuracoesStatus": "canonico",
   "escopo": "turno",
-  "reacaoNota": "Com a regra de retaliacao ('a criatura pode escolher reagir a cada um deles; ao final do seu turno, ela considera a reacao gasta'), UMA reacao ja cobre TODOS os ataques de UM agressor. A reacao extra (Esquiva Lendaria +1) serve para um SEGUNDO agressor, nao para mais ataques do mesmo.",
+  "reacaoNota": "Com a regra de retaliacao ('a criatura pode escolher reagir a cada um deles; ao final do seu turno, ela considera a reacao gasta'), UMA reacao ja cobre TODOS os ataques de UM agressor. A reacao extra (Esquiva Lendaria +1) serve para um SEGUNDO agressor, nao para mais ataques do mesmo. D98: técnica que permite retaliar sem gastar reação preserva a reação, que pode ser usada de novo como reação.",
+  "retaliacaoSemGastarReacao": {
+   "preservaReacao": true,
+   "status": "canonico",
+   "fonte": "D98 (Pedro, T1), notion-sistema 2b76e3a4, gravado em 2026-09-28 (diff conferido) > Sua Rodada",
+   "verbatim": "Técnicas que permitem retaliar sem gastar reação preservam a reação: ela pode ser usada de novo como reação.",
+   "exemplos": [
+    "espadachim-parry-perfeito",
+    "espadachim-guardar-a-lamina",
+    "espadachim-inimigo-mortal",
+    "espadachim-sentenca-final"
+   ]
+  },
   "custoDeAcao": {
    "mover": {
     "custo": 1,
@@ -2440,6 +2481,12 @@
      }
     },
     "pendente": "Lote PD20, item L13: \"1 ação:Atacar\" com arma que custa Atacar(2)/Atacar(3); e PMA por alvo (D29) nos ataques da Investida."
+   },
+   "desarmado": {
+    "custo": 1,
+    "ver": "dano.desarmado",
+    "status": "canonico",
+    "fonte": "T12e, notion-sistema 2b76e3a4, gravado em 2026-09-28 (diff conferido) > Armas"
    }
   },
   "acoesNaoDefinidas": {
@@ -2449,8 +2496,65 @@
    "naFicha": "custo de ação null = o mestre decide; a ficha não trava nem sugere número"
   },
   "conjuracoesFonte": "notion-sistema 2b76e3a4, gravado em 2026-09-26 (rodada 3, diff conferido) > Sua Rodada: \"Conjurar magia (1-3 ações), no máximo 1 magia conjurada por turno.\" (PD18)",
-  "acaoLivreFonte": "notion-sistema 2b76e3a4, gravado em 2026-09-26 (rodada 3, diff conferido) > Sua Rodada: \"Ações livres não têm limite por turno.\" (PD18)",
-  "pmaEmTecnicaStatus": "decisao"
+  "conjuracoesExcecoes": [
+   {
+    "fonte": "teurgo-encadeamento",
+    "regra": "uma segunda magia no mesmo turno, se puder pagar as ações; Éter adicional = ações dela; 3 Stamina a cada uso",
+    "status": "canonico",
+    "origem": "T11a (Pedro: \"resto ok\"), notion-teurgo > Encadeamento, gravado em 2026-09-28"
+   },
+   {
+    "fonte": "teurgo-receptaculo-perfeito",
+    "regra": "durante a ultimate: mais de uma magia por rodada",
+    "status": "canonico",
+    "origem": "notion-teurgo > Receptáculo Perfeito"
+   }
+  ],
+  "acaoLivreFonte": "notion-sistema 2b76e3a4, gravado em 2026-09-28 (diff conferido) > Sua Rodada: \"Ações livres não têm limite por turno, mas cada técnica usada como ação livre só pode ser usada 1 vez por turno, salvo quando o texto dela diz outra coisa.\" (PD18 + D99)",
+  "acaoLivreTecnicaMaxPorTurno": 1,
+  "acaoLivreTecnicaStatus": "canonico",
+  "acaoLivreTecnicaFonte": "D99 (Pedro, T1: \"Quase toda técnica de ação livre só pode ser utilizada 1x/turno.\"), notion-sistema 2b76e3a4, gravado em 2026-09-28 (diff conferido) > Sua Rodada",
+  "acaoLivreTecnicaNota": "Conta por técnica: técnicas diferentes de ação livre podem ser usadas no mesmo turno, uma vez cada. \"Por turno\" é cada turno, inclusive o de outra criatura: técnica com gatilho fora do seu turno (Parry Perfeito, Passo Afiado) pode ser usada 1 vez em cada turno inimigo. Texto da técnica que diz outra coisa prevalece (Cadeia de Golpes: \"até 2 vezes por turno\"). Substitui a leitura G2 do 16-log-tecnicas. D126: não há exceção entre as técnicas de ação livre das classes (Destruir, Barreira Instintiva, Sangue por Aço, Passo Afiado, Trêbado, Golpe Sequencial): todas 1 vez por turno; o custo variável se escolhe dentro desse único uso.",
+  "acaoLivreCustoVariavel": {
+   "regra": "Numa técnica de custo variável, você escolhe quanto pagar nesse uso, até o limite que o texto der.",
+   "status": "canonico",
+   "fonte": "D126 (Pedro: \"Barreira instintiva você continua gastando 1 ação livre e pode ganhar quanto quiser do benefício gastando mais stamina, as outras devem ter o mesmo conceito.\"), notion-sistema > Sua Rodada (gravado em 2026-09-28)",
+   "casos": [
+    {
+     "fonte": "teurgo-barreira-instintiva",
+     "custo": "1 Éter por 1d4 de dano reduzido",
+     "teto": "Éter gasto = Nível",
+     "status": "canonico"
+    },
+    {
+     "fonte": "brutalista-destruir",
+     "custo": "2 Stamina por +1d6 de dano",
+     "teto": "dados adicionais = Nível",
+     "status": "canonico"
+    },
+    {
+     "fonte": "espadachim-sangue-por-aco",
+     "custo": "2 Saúde por 1 Stamina de uma técnica",
+     "teto": "o custo da técnica paga",
+     "status": "decisao",
+     "nota": "Leitura minha: 1 uso por turno cobre o pagamento de uma técnica; nesse uso você escolhe quanto do custo paga com Saúde."
+    }
+   ]
+  },
+  "pmaEmTecnicaStatus": "canonico",
+  "pmaEmTecnicaFonte": "D100 (Pedro, T1: \"Pma sempre vale exceto quando a técnica diz o contrário.\"), notion-sistema 2b76e3a4, gravado em 2026-09-28 (diff conferido) > Atacar: \"vale em todo ataque, inclusive de técnica, salvo quando a técnica diz o contrário\"",
+  "multiAtaqueComoUmaAcao": {
+   "custo": "custoAtacarDaArma",
+   "regra": "Técnicas que fazem vários ataques \"como 1 ação\" pagam, juntos, o custo de ataque da arma (Atacar(n)).",
+   "exemplos": [
+    "espadachim-lamina-rapida",
+    "espadachim-massacre",
+    "artilheiro-rajada-de-tiros"
+   ],
+   "efeitoNaFicha": "Rajada de Tiros com arma de fogo (Atacar(2)) custa 2 ações; Lâmina Rápida com Pesada custa 2, com Pesada Brutal 3.",
+   "status": "canonico",
+   "fonte": "D101 (Pedro, T2: \"Faz sentido, pode ser.\"), notion-sistema 2b76e3a4, gravado em 2026-09-28 (diff conferido) > Atacar"
+  }
  },
  "municao": {
   "descontoPor": "combate",
@@ -2634,9 +2738,48 @@
   "requisitos": {
    "validar": "avisar",
    "validarStatus": "aprovado",
-   "regra": "Treinado em Mistico + Foco da escola equipado",
+   "regra": "Treinado em Místico + Foco da escola equipado",
+   "dispensa": {
+    "regra": "Conjurar sem ser Treinado em Místico ou sem o Foco só é possível quando a classe, raça ou origem que dá a magia diz isso explicitamente.",
+    "status": "canonico",
+    "fonte": "D123 (Pedro: \"conjuração sem treinado em místico é possível só quando a técnica explicita, fora isso é sempre com treinamento em místico e foco místico\"), notion-magias > Regras de Magia e notion-sistema > Magia (gravado em 2026-09-28 (diff conferido))",
+    "casos": [
+     {
+      "fonte": "corrompido-receptaculo-natural",
+      "dispensa": [
+       "foco"
+      ],
+      "exige": [
+       "treinadoMistico"
+      ],
+      "status": "canonico",
+      "verbatim": "Você pode conjurar duas magias de nível 1 de qualquer escola sem um foco designado, mas ao fazer isso rola Vontade (CD 12), recebendo 1d4 de dano Psíquico em caso de falha."
+     },
+     {
+      "fonte": "origem-cultista",
+      "dispensa": [],
+      "exige": [
+       "treinadoMistico",
+       "foco"
+      ],
+      "status": "canonico",
+      "nota": "O Cultista treina Religião ou Místico: com Religião, não conjura as 2 magias até ser Treinado em Místico por outra fonte.",
+      "verbatim": "Você conhece e consegue canalizar 2 magias de nível 1 de qualquer escola, porém deve canalizá-las através de um foco."
+     },
+     {
+      "fonte": "alquimista-cartucho-arcano",
+      "dispensa": [
+       "treinadoMistico",
+       "foco"
+      ],
+      "status": "decisao",
+      "nota": "Leitura minha: \"qualquer criatura pode conjurar\" é dispensa explícita para quem USA o cartucho. Quem cria rola Místico.",
+      "verbatim": "Qualquer criatura pode conjurar a magia infundida no cartucho, porém usa seus atributos como base dos CDs e ataques da magia respeitando, também, o custo de ações da magia."
+     }
+    ]
+   },
    "focosSimultaneos": 1,
-   "motivo": "P42 - 'avisar', nao 'bloquear': a origem Cultista concede 2 magias de Nivel 1 e a raca Corrompido tambem, SEM o gate. Bloquear quebraria as duas builds.",
+   "motivo": "P42 - \"avisar\", não \"bloquear\" (PD1: todo campo é editável). A leitura antiga (\"Cultista e Corrompido conjuram SEM o gate\") caiu com a D123: só o texto que dá a magia dispensa um requisito, e só o que ele disser.",
    "avisoPorFoco": "Avise tambem por FOCO, nao so por treino: so se pode empunhar 1 Foco por vez. Um Teurgo com 4 escolas aprendidas so conjura a da escola equipada, e ninguem lembra disso na mesa.",
    "validarFonte": "PD1 (todo campo editável) e, por analogia, PD23 (\"avisar, com pop-up de confirmação\"): a ficha avisa, não bloqueia"
   },
@@ -2703,9 +2846,8 @@
     "nivel1": "normal",
     "outros": "contida"
    },
-   "status": "pedroDecide",
-   "pergunta": "T4 do 16-log-tecnicas (Tese Arcana, Patrono Primordial, Natureza Caótica)",
-   "provisorio": "a ficha usa estes valores até o Pedro responder"
+   "status": "canonico",
+   "fonte": "D103 (Pedro, T4: \"Ok.\"), notion-sistema e notion-magias > Transbordante: \"Quando uma técnica sobe a intensidade, você paga a intensidade que declarou e não rola o teste de Vontade.\" (gravado em 2026-09-28)"
   }
  },
  "recargas": {
@@ -3089,13 +3231,33 @@
    "pesada": "FOR",
    "leve": "DES",
    "distancia": "DES",
-   "mistica": "INT|SAB"
+   "mistica": "INT|SAB",
+   "desarmado": "DES"
   },
   "acertoPorArma": {
    "pesada": "atacar",
    "leve": "atacar",
    "distancia": "atacar",
-   "mistica": "mistico"
+   "mistica": "mistico",
+   "desarmado": "atacar"
+  },
+  "desarmado": {
+   "dado": "1d4",
+   "tipo": "contundente",
+   "acoes": 1,
+   "atributoAcerto": "DES",
+   "atributoDano": "DES",
+   "status": "canonico",
+   "fonte": "T12e (Pedro: \"Ok\"), notion-sistema 2b76e3a4, gravado em 2026-09-28 (diff conferido)",
+   "verbatim": "Desarmado: 1d4 de dano Contundente. O acerto usa a perícia atacar com Mod. de Destreza, dano dá +Mod. de Destreza. Custa 1 ação.",
+   "substituicoes": [
+    {
+     "fonte": "monge-arma-humana",
+     "dado": "1d8",
+     "status": "canonico",
+     "verbatim": "Seus ataques desarmados causam 1d8 de dano (Ao invés de 1d4)."
+    }
+   ]
   },
   "ordemMitigacao": [
    {
@@ -3757,7 +3919,7 @@
    "o": "Residuo da renumeracao de magia (D68)",
    "porque": "Dissipar Magia, Teurgo x3, Cultista, Corrompido, Desejo Sombrio.",
    "gravidade": "media",
-   "status": "gravado: Dissipar Magia (Magias) em 2026-09-26; o resto já estava corrigido. NOVO resíduo: Cartucho Arcano (Alquimista) \"(nível-1)\" (L18)"
+   "status": "gravado: Dissipar Magia (Magias) em 2026-09-26; o resto já estava corrigido. NOVO resíduo: Cartucho Arcano (Alquimista) \"(nível-1)\" (L18); L18 gravado em 2026-09-27. Fórmula do Cartucho reescrita em 2026-09-28 (T13a): Reagentes e CD pelo custo base de Éter; Nível 5 exige Foco Primordial; \"(mínimo 1)\" nos Reagentes gravado no mesmo dia (D118)."
   },
   {
    "n": 20,
@@ -3818,7 +3980,7 @@
   },
   "statusNota": "L17, notion-sistema > Sua Rodada: \"1 ação equivale a 2 segundos; um turno, 3 ações, são 6 segundos. Ações fora desta lista custam o que o mestre decidir na hora.\" (gravado no Notion em 2026-09-27 (diff conferido))"
  },
- "_numeracao": "Dn = decisão n de 09-decisoes-pedro.md (memória do balanceamento). PDn = decisão n do plano docs/ficha-digital/02-plano.md, respondida em 03-respostas-pedro.md. Ln = item do lote de revisão em 15-ficha-rodada3.md. Gn = princípio de leitura do 16-log-tecnicas.md (G1 retaliação livre, G2 ação livre, G3 PMA em técnica...). Tn = pergunta aberta ao Pedro no mesmo arquivo.",
+ "_numeracao": "Dn = decisão n de 09-decisoes-pedro.md (memória do balanceamento). PDn = decisão n do plano docs/ficha-digital/02-plano.md, respondida em 03-respostas-pedro.md. Ln = item do lote de revisão em 15-ficha-rodada3.md. Gn = princípio de leitura do 16-log-tecnicas.md (G1 retaliação livre, G2 ação livre, G3 PMA em técnica...). Tn = pergunta ao Pedro no mesmo arquivo; as respostas (D98–D117) estão em 17-respostas-T-e-sync.md.",
  "condicoesDuracaoPadrao": {
   "semDuracao": {
    "ate": "fimProximoTurnoAfetado",
