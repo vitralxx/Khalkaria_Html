@@ -326,6 +326,29 @@ test('navegador (vm, artefato js/ficha.js): sem ativação a prévia não toca e
   assert.deepEqual(nada.buscas, base.buscas);
 });
 
+test('na página da ficha (#fp) o painel da prévia não monta: nada criado, nada buscado', () => {
+  function janela(temFp) {
+    const criados = [], buscas = [];
+    const doc = {
+      readyState: 'complete',
+      getElementById: (id) => (id === 'fp' && temFp ? { id: 'fp' } : null),
+      querySelector: () => null, querySelectorAll: () => [],
+      createElement: (t) => { criados.push(t); return { setAttribute() {}, appendChild() {}, addEventListener() {}, classList: { add() {}, toggle() {} } }; },
+      head: { appendChild() {} }, body: { appendChild() {} }, addEventListener() {}
+    };
+    const win = { document: doc, location: { search: '?ficha=v3' }, URL,
+      localStorage: { getItem: () => '1', setItem() {}, removeItem() {} },
+      sessionStorage: { getItem: () => null, setItem() {}, removeItem() {} },
+      fetch: (u) => { buscas.push(u); return Promise.resolve({ ok: true, json: () => Promise.resolve([]) }); },
+      addEventListener() {}, setTimeout: () => 0, clearTimeout() {} };
+    return { win, criados, buscas };
+  }
+  const naPagina = janela(true);
+  assert.equal(P.iniciar(naPagina.win), true, 'a prévia segue ligada (a página usa a chave)');
+  assert.deepEqual(naPagina.criados, [], 'nenhum elemento do painel');
+  assert.deepEqual(naPagina.buscas, [], 'nenhum arquivo buscado pelo painel');
+});
+
 test('css/ficha-previa.css: só a prévia o pede (o shell não o injeta) e tudo nele fica sob .kf3', () => {
   const css = fs.readFileSync(path.join(A.RAIZ, 'css', 'ficha-previa.css'), 'utf8').replace(/\/\*[\s\S]*?\*\//g, '');
   const seletores = [...css.matchAll(/([^{}]+)\{[^{}]*\}/g)].map((m) => m[1].trim());

@@ -241,7 +241,8 @@
         '<select disabled title="Trocar de ficha chega com a virada da ficha nova">' +
         '<option selected>' + esc(ok ? nome + ' (ficha atual)' : 'Ficha atual') + '</option></select></label>' +
         '<p class="fp-ro" role="note"><span>' + esc(AVISO_RO) + '</span> ' +
-        '<button type="button" class="kh-btn fp-abrir-v2">Abrir a ficha atual</button></p></div>' +
+        '<button type="button" class="kh-btn fp-abrir-v2">Abrir a ficha atual</button> ' +
+        '<button type="button" class="kh-btn fp-sair-previa">Sair da prévia</button></p></div>' +
         '<h1 class="fp-nome">' + esc(nome) + '</h1>';
       if (ok) {
         h += '<dl class="fp-ident">' +
@@ -1086,6 +1087,13 @@
         var t = e.target;
         if (t && t.closest && t.closest('.fp-abrir-v2')) {
           if (win.KF && typeof win.KF.abrir === 'function') win.KF.abrir();
+        }
+        // o painel da prévia não abre aqui, então a saída fica na própria página:
+        // apaga a chave da prévia e recarrega sem ?ficha=v3 (volta ao aviso)
+        if (t && t.closest && t.closest('.fp-sair-previa')) {
+          try { if (ls) ls.removeItem('khalkaria_ficha_previa'); } catch (err) { /* storage bloqueado */ }
+          try { if (ss) ss.removeItem('khalkaria_ficha_previa_recolhida'); } catch (err) { /* idem */ }
+          if (win.location && typeof win.location.replace === 'function') win.location.replace(win.location.pathname);
         }
       });
       // a lista de abas é do KhAbas (F4.5): clique, setas, Home, End, Alt+setas

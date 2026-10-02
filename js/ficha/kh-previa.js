@@ -349,6 +349,9 @@
     function montar(win, ls) {
       var doc = win.document;
       if (doc.getElementById('kf3-previa')) return;
+      // a página da ficha (#fp, F4.3) já é a ficha nova inteira: o painel não abre
+      // por cima dela (nem carrega e calcula tudo uma segunda vez)
+      if (doc.getElementById('fp')) return;
       var s = doc.querySelector('script[src*="js/ficha.js"]');
       var src = s ? s.src : '';
       var base = src ? new URL('../', src).href : '';
