@@ -76,6 +76,9 @@ tools/sync_notion.py           motor de diff de snapshots do Notion
 tools/gerar_<pagina>.py        geradores JSON -> HTML (7)
 tools/gerar_webp.py            reencode das imagens
 tools/gerar_bazar.py           gerador do Bazar (CSV -> bazar.json com `inv` + página)
+tools/gerar_ficha.py           F4.3: casca da página da ficha (templates/ficha.template.html ->
+                               pages/ficha.html, confere o contrato do template; o conteúdo
+                               é desenhado no navegador pelo js/ficha-pagina.js)
 tools/gerar_catalogo.py        data/*.json -> data/catalogo/<tipo>.json (F1a) + data/pericias.json
                                (F1e), artefatos; `--relatorio` (o build passa) imprime os
                                formatos encontrados por conjunto
@@ -156,6 +159,7 @@ css/ficha.css                  F2a: drawer, botão lateral, toast e "+ ficha" do
 css/ficha-previa.css           F3c: painel da prévia da ficha v3 (tudo sob .kf3, SEM
                                camada). O shell NÃO o injeta: só o kh-previa.js o pede,
                                com a prévia ligada (?ficha=v3)
+css/ficha-pagina.css           F4.3: só a página da ficha (camada paginas, prefixo .fp-)
 js/kh-ui.js                    F2b: biblioteca comum (fora do bundle da ficha; o shell a
                                põe SÍNCRONA antes do 1º <script src> local de toda página):
                                KhTeclas (registro único de atalhos e camadas do Esc, um
@@ -206,6 +210,11 @@ js/ficha.js                    ARTEFATO (tools/ficha_js.py): concatenação de j
                                na ordem do ORDEM, cabeçalho "gerado — não editar". É o
                                único arquivo que o site carrega (main.js injeta; o
                                Bazar carrega direto)
+js/ficha-pagina.js             F4.3: página da ficha nova (KhFichaPagina), só leitura e atrás
+                               da prévia: sem ela, só o aviso e nenhum fetch; com ela, topo,
+                               5 abas do A4 (RENDER[id] por aba, F4.3b) e painéis, pelo motor
+                               (KhPrevia.carregar/calcular, KhConta prefixo fp). Não grava
+                               chave de ficha; ficha-pagina.test.js
 js/bazar.js                    núcleo do Bazar: catálogo, filtros, Bancada
 js/bazar-cartao.js             pop-up do card (BZ.cartao: conteúdo ┐ módulos do Bazar v3,
                                e resolvedores do KhPrever)      │
@@ -248,10 +257,13 @@ data/bazar-renomeados.json     {id antigo: {novo, nomeAntigo, data, motivo}}: no
                                (KhInv.reconciliar) e o #item/<id> resolvem o antigo.
                                Linha nunca sai (ficha exportada pode voltar)
 templates/bazar.template.html  scaffold do Bazar ({{VER}}, {{VOCAB}}…)
+templates/ficha.template.html  scaffold da página da ficha (#fp, aviso [data-sem-previa],
+                               ficha.js e depois ficha-pagina.js, sem main.js)
 
 templates/                     scaffold + <style> por página
 pages/                         artefato gerado (+ classes/criacao manuais)
-images/                        .png fonte + .webp servido
+images/                        .png fonte + .webp servido (images/ficha/: ícones do A4,
+                               tools/artefatos/icones_ficha.py)
 notion_cache/                  snapshots (git-ignorado, exceto pages.json)
 ```
 
@@ -263,9 +275,10 @@ notion_cache/                  snapshots (git-ignorado, exceto pages.json)
 | racas + 7 subpáginas | sim | sim |
 | 7 classes | sim | sim |
 | bazar | `gerar_bazar.py` (CSV) | sim |
+| ficha (F4.3, atrás da prévia) | `gerar_ficha.py` (só a casca) | não (lê a ficha no navegador) |
 | **index.html, classes.html, criacao.html** | **não** | **não** |
 
-20 páginas fecham round-trip byte-a-byte. 3 ainda são HTML manual — mas todas
+21 páginas fecham round-trip byte-a-byte. 3 ainda são HTML manual — mas todas
 recebem a fase 2 (navegação, webp, âncoras e versão dos assets), então nenhuma
 fica de fora do shell comum.
 

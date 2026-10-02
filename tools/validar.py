@@ -82,7 +82,7 @@ VOID = {'area', 'base', 'br', 'col', 'embed', 'hr', 'img', 'input', 'link',
 
 # páginas geradas por gerador -> script que as produz (para o round-trip)
 GERADORES = ['gerar_sistema.py', 'gerar_magias.py', 'gerar_condicoes.py', 'gerar_limiar.py',
-             'gerar_classes.py', 'gerar_racas.py', 'gerar_origens.py', 'gerar_efeitos.py',
+             'gerar_classes.py', 'gerar_racas.py', 'gerar_origens.py', 'gerar_ficha.py', 'gerar_efeitos.py',
              'gerar_catalogo.py', 'gerar_regras_ficha.py']
 # O Bazar entra no build padrão, mas não no round-trip: o gerador dele lê o CSV
 # e grava data/bazar.json na raiz do repo (não recebe repo_root), então

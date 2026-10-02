@@ -31,6 +31,8 @@ ALVOS = [
     ('classes',   'gerar_classes.py'),
     ('racas',     'gerar_racas.py'),
     ('origens',   'gerar_origens.py'),
+    # F4.3: a casca da página da ficha (o conteúdo é desenhado no navegador)
+    ('ficha',     'gerar_ficha.py'),
     # o Bazar lê data/condicoes.json (selo de Sobrepeso), por isso vem depois
     ('bazar',     'gerar_bazar.py'),
     # F1d: efeitos compilados (data/balanceamento + bazar.json -> data/efeitos.json)

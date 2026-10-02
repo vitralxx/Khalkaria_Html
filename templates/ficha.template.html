@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ficha - Khalkaria RPG</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400&family=UnifrakturMaguntia&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/ficha-pagina.css">
+</head>
+<body data-no-rightbar data-ficha-pagina>
+    <button class="menu-toggle">☰ Menu</button>
+
+    <div class="app-container">
+        <!--SIDEBAR-->
+
+        <main class="main-content fp-pagina">
+            <!-- Página da ficha nova (F4.3), só leitura, atrás da prévia: o
+                 js/ficha-pagina.js monta aqui o topo, as 5 abas do A4 e os
+                 painéis. Sem a prévia fica só o aviso abaixo (o mesmo texto do
+                 AVISO do js) e nenhum catálogo é pedido. data-kf-ignorar: a
+                 ficha v2 não decora nem observa o que se redesenha aqui. -->
+            <div class="fp" id="fp" data-kf-ignorar>
+                <h1 class="fp-titulo">Ficha</h1>
+                <p class="fp-aviso" data-sem-previa>A ficha nova está em preparação. Por enquanto, use a ficha atual, no botão FICHA da lateral.</p>
+            </div>
+        </main>
+    </div>
+
+    <!-- js/ficha.js síncrono (KhEstado, KhRegras, KhConta, KhPrevia e a KF da
+         ficha atual) antes do script da página, como no Bazar; sem main.js, que
+         injetaria o ficha.js uma segunda vez. -->
+    <script src="../js/ficha.js"></script>
+    <script src="../js/ficha-pagina.js"></script>
+</body>
+</html>

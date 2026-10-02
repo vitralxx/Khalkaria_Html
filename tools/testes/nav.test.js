@@ -283,3 +283,31 @@ test('boot do <head> casa com o formato gravado pelo nav.js', () => {
   assert.strictEqual(htmlEl.getAttribute('data-nav'), 'trilho');
   assert.strictEqual(htmlEl.getAttribute('data-nav-fechados'), 'racas classes');
 });
+
+test('boot do <head>: html[data-ficha-previa] com a chave da prévia ou ?ficha=v3 (F4.3)', () => {
+  const boot = fs.readFileSync(path.join(__dirname, '..', '..', 'partials', 'head-boot.html'), 'utf8');
+  const js = boot.replace(/^<script[^>]*>|<\/script>\s*$/g, '');
+  const ls = (previa, bloqueado) => ({ getItem: (k) => {
+    if (bloqueado) throw new Error('bloqueado');
+    return k === 'khalkaria_ficha_previa' ? previa : null;
+  } });
+  // sem location no contexto (como nos testes acima): a leitura lança e é engolida
+  const roda = (ctx) => {
+    const htmlEl = new El('html');
+    vm.runInNewContext(js, Object.assign({ document: { documentElement: htmlEl }, JSON, matchMedia: () => ({ matches: false }) }, ctx));
+    assert.strictEqual(htmlEl.getAttribute('data-movimento'), 'normal', 'o resto do boot segue');
+    return htmlEl.getAttribute('data-ficha-previa');
+  };
+  assert.strictEqual(roda({ localStorage: ls(null) }), null);
+  assert.strictEqual(roda({ localStorage: ls('1') }), '');
+  assert.strictEqual(roda({ localStorage: ls('0') }), null, 'só "1" liga');
+  assert.strictEqual(roda({ localStorage: ls('true') }), null);
+  assert.strictEqual(roda({ localStorage: ls(null), location: { search: '?ficha=v3' } }), '');
+  assert.strictEqual(roda({ localStorage: ls(null), location: { search: '?a=1&ficha=v3' } }), '');
+  assert.strictEqual(roda({ localStorage: ls(null), location: { search: '?ficha=v2' } }), null);
+  assert.strictEqual(roda({ localStorage: ls(null), location: { search: '?ficha=v3x' } }), null);
+  assert.strictEqual(roda({ localStorage: ls(null, true), location: { search: '?ficha=v3' } }), '', 'storage bloqueado: vale a URL');
+  assert.strictEqual(roda({ localStorage: ls(null, true) }), null);
+  assert.strictEqual(roda({ localStorage: ls(null), location: { search: '?ficha=%E0' } }), null, 'URL malformada não lança');
+  assert.doesNotMatch(js, /document\.body/, 'o boot não toca no body');
+});

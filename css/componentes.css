@@ -268,4 +268,11 @@
 :root[data-movimento="reduzido"] .kh-popover, :root[data-movimento="reduzido"] .kh-popover.sai,
 :root[data-movimento="reduzido"] .bz-cartao, :root[data-movimento="reduzido"] .bz-cartao.sai { transform: none; }
 
+/* ---------------------------------------------------------- só com a prévia (F4.3)
+   [data-so-previa]: o que só existe para quem ligou a prévia da ficha nova
+   (o item "Ficha" da nav). O partials/head-boot.html marca html[data-ficha-previa]
+   antes do primeiro desenho (chave khalkaria_ficha_previa = '1' ou ?ficha=v3);
+   sem a marca, some da tela e da ordem de foco. */
+html:not([data-ficha-previa]) [data-so-previa] { display: none; }
+
 }

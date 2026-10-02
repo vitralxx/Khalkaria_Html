@@ -7,10 +7,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400&family=UnifrakturMaguntia&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../css/tokens.css?v=01662df0" data-tokens>
-    <link rel="stylesheet" href="../../css/style.css?v=01662df0">
-    <link rel="stylesheet" href="../../css/componentes.css?v=01662df0" data-componentes>
-    <link rel="stylesheet" href="../../css/racas.css?v=01662df0">
+    <link rel="stylesheet" href="../../css/tokens.css?v=a4635bad" data-tokens>
+    <link rel="stylesheet" href="../../css/style.css?v=a4635bad">
+    <link rel="stylesheet" href="../../css/componentes.css?v=a4635bad" data-componentes>
+    <link rel="stylesheet" href="../../css/racas.css?v=a4635bad">
     <style>
         @media(max-width:800px){.raca-header{grid-template-columns:1fr}}
         .raca-image-container{background:var(--bg-tertiary);border:1px solid var(--border-color);border-radius:12px;height:400px;display:flex;align-items:center;justify-content:center;color:var(--text-muted);overflow:hidden}
@@ -30,8 +30,8 @@
         .subspecie-traits li{color:var(--text-secondary);margin-bottom:0.35rem}
         .subspecie-physical{font-size:0.85rem;color:var(--text-muted);margin-top:1rem;padding-top:0.75rem;border-top:1px dashed var(--border-color)}
     </style>
-    <script data-nav-boot>(function(){try{var s=JSON.parse(localStorage.getItem('khalkaria_nav')||'{}'),h=document.documentElement;if(s.trilho)h.setAttribute('data-nav','trilho');if(s.fechados&&s.fechados.length)h.setAttribute('data-nav-fechados',s.fechados.join(' '))}catch(e){}var m='',r=false;try{m=localStorage.getItem('khalkaria_movimento')}catch(e){}r=m==='reduzido';if(!r&&m!=='normal')try{r=matchMedia('(prefers-reduced-motion: reduce)').matches}catch(e){}document.documentElement.setAttribute('data-movimento',r?'reduzido':'normal')})()</script>
-    <link rel="stylesheet" href="../../css/ficha.css?v=01662df0" data-ficha-css>
+    <script data-nav-boot>(function(){try{var s=JSON.parse(localStorage.getItem('khalkaria_nav')||'{}'),h=document.documentElement;if(s.trilho)h.setAttribute('data-nav','trilho');if(s.fechados&&s.fechados.length)h.setAttribute('data-nav-fechados',s.fechados.join(' '))}catch(e){}var m='',r=false;try{m=localStorage.getItem('khalkaria_movimento')}catch(e){}r=m==='reduzido';if(!r&&m!=='normal')try{r=matchMedia('(prefers-reduced-motion: reduce)').matches}catch(e){}document.documentElement.setAttribute('data-movimento',r?'reduzido':'normal');var p=false;try{p=localStorage.getItem('khalkaria_ficha_previa')==='1'}catch(e){}if(!p)try{var q=/[?&]ficha=([^&#]*)/.exec(location.search);p=!!q&&decodeURIComponent(q[1])==='v3'}catch(e){}if(p)document.documentElement.setAttribute('data-ficha-previa','')})()</script>
+    <link rel="stylesheet" href="../../css/ficha.css?v=a4635bad" data-ficha-css>
 </head>
 <body>
     <button class="menu-toggle">☰ Menu</button>
@@ -44,6 +44,7 @@
                 <symbol id="nv-magias" viewBox="0 0 24 24"><path d="M12 4.6 13.5 10.5 19.4 12 13.5 13.5 12 19.4 10.5 13.5 4.6 12 10.5 10.5Z" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"></path><circle cx="12" cy="12" r="8.8" fill="none" stroke="currentColor" stroke-width=".9" opacity=".65"></circle></symbol>
                 <symbol id="nv-bazar" viewBox="0 0 24 24"><path d="M12 4.4v15.2M8.4 19.6h7.2M5.4 7.4h13.2M3 12.4h4.8a2.4 2.4 0 0 1-4.8 0ZM16.2 12.4H21a2.4 2.4 0 0 1-4.8 0Z" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"></path><path d="M5.4 7.4 3.4 12.4M5.4 7.4l2 5M18.6 7.4l-2 5M18.6 7.4l2 5" fill="none" stroke="currentColor" stroke-width=".9" stroke-linecap="round" opacity=".65"></path></symbol>
                 <symbol id="nv-criacao" viewBox="0 0 24 24"><path d="M20 3.4c-4.8.8-8.4 4.6-9.8 11l1.4.8c3.8-2.8 6.8-6.4 8.4-11.8ZM10.2 14.4l-1.8 4.4" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"></path><path d="M12.6 6.2H4.4v13.4h11.2v-5.4M6.8 10h3.6M6.8 13h2.4" fill="none" stroke="currentColor" stroke-width=".9" stroke-linecap="round" stroke-linejoin="round" opacity=".65"></path></symbol>
+                <symbol id="nv-ficha" viewBox="0 0 24 24"><path d="M6 3.4h8.6l3.4 3.4v13.8H6ZM14.6 3.4v3.4H18" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"></path><path d="M12 11.8a2.1 2.1 0 1 0 0-4.2 2.1 2.1 0 0 0 0 4.2ZM8.8 16c.5-1.9 1.7-2.9 3.2-2.9s2.7 1 3.2 2.9M9.2 18.2h5.6" fill="none" stroke="currentColor" stroke-width=".9" stroke-linecap="round" stroke-linejoin="round" opacity=".65"></path></symbol>
                 <symbol id="nv-racas" viewBox="0 0 24 24"><path d="M8.8 11.6a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM3.4 19.8c.4-3.6 2.6-5.6 5.4-5.6s5 2 5.4 5.6" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"></path><path d="M14.6 5.2a2.8 2.8 0 1 1 1.2 5.5M16.2 13.6c2.4.3 4 2.3 4.4 6.2" fill="none" stroke="currentColor" stroke-width=".9" stroke-linecap="round" opacity=".65"></path></symbol>
                 <symbol id="nv-classes" viewBox="0 0 24 24"><path d="M4.6 4.6l11 11M19.4 4.6l-11 11M13.8 17.4l3.6-3.6M6.6 13.8l3.6 3.6" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"></path><path d="M15.6 15.6l3.6 3.6M8.4 15.6l-3.6 3.6" fill="none" stroke="currentColor" stroke-width=".9" stroke-linecap="round" opacity=".65"></path></symbol>
                 <symbol id="nv-origens" viewBox="0 0 24 24"><path d="M12 3.8v8.2M12 12c-.4 3.4-3.8 4.4-6 8.2M12 12v8.2M12 12c.4 3.4 3.8 4.4 6 8.2" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"></path><path d="M5 8.6h14M8.4 16.9 6.6 16M15.6 16.9l1.8-.9" fill="none" stroke="currentColor" stroke-width=".9" stroke-linecap="round" opacity=".65"></path></symbol>
@@ -69,6 +70,7 @@
             <div class="nav-section">
                 <div class="nav-section-title">Criação de Personagem</div>
                 <a href="../criacao.html" class="nav-link"><svg class="nav-ico" aria-hidden="true"><use href="#nv-criacao"></use></svg><span class="nav-rot">Criação</span></a>
+                <a href="../ficha.html" class="nav-link" data-so-previa><svg class="nav-ico" aria-hidden="true"><use href="#nv-ficha"></use></svg><span class="nav-rot">Ficha</span></a>
                 <a href="../racas.html" class="nav-link"><svg class="nav-ico" aria-hidden="true"><use href="#nv-racas"></use></svg><span class="nav-rot">Raças</span></a>
                 <a href="../classes.html" class="nav-link"><svg class="nav-ico" aria-hidden="true"><use href="#nv-classes"></use></svg><span class="nav-rot">Classes</span></a>
                 <a href="../origens.html" class="nav-link"><svg class="nav-ico" aria-hidden="true"><use href="#nv-origens"></use></svg><span class="nav-rot">Origens</span></a>
@@ -260,9 +262,9 @@
             </div>
         </main>
     </div>
-    <script src="../../js/kh-ui.js?v=01662df0" data-kh-ui></script>
-    <script src="../../js/main.js?v=01662df0"></script>
-    <script src="../../js/utils.js?v=01662df0"></script>
-    <script src="../../js/nav.js?v=01662df0" data-nav-js></script>
+    <script src="../../js/kh-ui.js?v=a4635bad" data-kh-ui></script>
+    <script src="../../js/main.js?v=a4635bad"></script>
+    <script src="../../js/utils.js?v=a4635bad"></script>
+    <script src="../../js/nav.js?v=a4635bad" data-nav-js></script>
 </body>
 </html>
