@@ -1210,8 +1210,16 @@
       if (ilegiveis && ilegiveis.length) d.ilegiveis = clone(ilegiveis);
       return { nomeArquivo: 'khalkaria-fichas.json', dados: d };
     }
+    // Ficha 1.x/2.x (ou sem schemaVersion) com meta é ficha, mesmo com schema
+    // 'fichas/1' e lista 'fichas' no topo: o import da v2.1 antiga passava o
+    // pacote pelo deepMerge, que preserva chave desconhecida, e a khalkaria_ficha
+    // ficou com elas. Sem isto, a ficha do jogador viraria as fichas velhas do pacote.
+    function pareceFichaV12(o) {
+      var m = versaoMaior(o.schemaVersion);
+      return obj(o.meta) && (o.schemaVersion == null || m === 1 || m === 2);
+    }
     function ehPacote(o) {
-      return obj(o) && o.schema === SCHEMA_INDICE && Array.isArray(o.fichas) &&
+      return obj(o) && !pareceFichaV12(o) && o.schema === SCHEMA_INDICE && Array.isArray(o.fichas) &&
         o.fichas.every(function (x) { return obj(x) && (x.schemaVersion != null || obj(x.meta)); });
     }
     // Lê um arquivo de import (texto ou objeto): ficha 1.0/2.0/3.x ou pacote
@@ -1223,7 +1231,7 @@
       if (obj(o) && typeof o.schema === 'string' && /^fichas\//.test(o.schema) && o.schema !== SCHEMA_INDICE) {
         return { fichas: [], erros: [{ erro: 'versao-futura', versao: o.schema }] };
       }
-      if (o.schema === SCHEMA_INDICE && !ehPacote(o)) return { fichas: [], erros: [{ erro: 'invalida' }] };
+      if (o.schema === SCHEMA_INDICE && !ehPacote(o) && !pareceFichaV12(o)) return { fichas: [], erros: [{ erro: 'invalida' }] };
       var itens = ehPacote(o) ? o.fichas : [o];
       if (ehPacote(o)) lista(o.ilegiveis).forEach(function (x) {
         erros.push({ erro: 'ilegivel-no-pacote', id: obj(x) ? str(x.id) : '', motivo: obj(x) ? str(x.motivo) : '' });
@@ -4506,18 +4514,26 @@
   var MSG_NAO_FICHA = 'Este arquivo não é uma ficha do Khalkaria.';
   function ehObjeto(x) { return !!x && typeof x === 'object' && !Array.isArray(x); }
   function recusaImport(f) {
+    var sv = f.schemaVersion;
+    var semVersao = sv == null || sv === '';
+    var v1v2 = semVersao || /^[12](?![0-9])/.test(String(sv).trim());
+    // Forma de ficha v1/v2 (meta ou atributos objeto) entra ANTES das marcas de
+    // arquivo estranho: o import antigo passava o pacote fichas/1 e o export do
+    // Bestiário pelo migra(), cujo deepMerge preserva chave desconhecida. Então
+    // a ficha do jogador pode carregar type 'npc', schema e fichas para sempre,
+    // e o backup que ela exporta tem de continuar entrando.
+    if (v1v2 && (ehObjeto(f.meta) || ehObjeto(f.atributos))) return null;
     if (f.schema === KhEstado.SCHEMA_INDICE || Array.isArray(f.fichas)) {
       return 'Este arquivo é um pacote de várias fichas da ficha nova e não entra aqui.';
     }
     if (f.type === 'npc' || f.type === 'monster') return 'Este arquivo é um export para o Bestiário, não uma ficha.';
-    var sv = f.schemaVersion;
     // ficha v3 (schemaVersion >= 3) não é rebaixada
     if (parseFloat(String(sv)) >= 3) {
       return 'Esta ficha é da v3 (schemaVersion ' + sv + ') e não pode ser importada aqui. Recarregue a página.';
     }
-    // sem schemaVersion: só a v1 antiga, que tem meta ou atributos (novaFicha da v1)
-    if (sv == null || sv === '') return ehObjeto(f.meta) || ehObjeto(f.atributos) ? null : MSG_NAO_FICHA;
-    return /^[12](?![0-9])/.test(String(sv).trim()) ? null : MSG_NAO_FICHA;
+    // sem schemaVersion e sem meta/atributos não é a v1 antiga
+    if (semVersao) return MSG_NAO_FICHA;
+    return v1v2 ? null : MSG_NAO_FICHA;
   }
   function importJSON() {
     if (bloqueado()) return;

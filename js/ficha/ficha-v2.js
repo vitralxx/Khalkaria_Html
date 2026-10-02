@@ -1201,18 +1201,26 @@
   var MSG_NAO_FICHA = 'Este arquivo não é uma ficha do Khalkaria.';
   function ehObjeto(x) { return !!x && typeof x === 'object' && !Array.isArray(x); }
   function recusaImport(f) {
+    var sv = f.schemaVersion;
+    var semVersao = sv == null || sv === '';
+    var v1v2 = semVersao || /^[12](?![0-9])/.test(String(sv).trim());
+    // Forma de ficha v1/v2 (meta ou atributos objeto) entra ANTES das marcas de
+    // arquivo estranho: o import antigo passava o pacote fichas/1 e o export do
+    // Bestiário pelo migra(), cujo deepMerge preserva chave desconhecida. Então
+    // a ficha do jogador pode carregar type 'npc', schema e fichas para sempre,
+    // e o backup que ela exporta tem de continuar entrando.
+    if (v1v2 && (ehObjeto(f.meta) || ehObjeto(f.atributos))) return null;
     if (f.schema === KhEstado.SCHEMA_INDICE || Array.isArray(f.fichas)) {
       return 'Este arquivo é um pacote de várias fichas da ficha nova e não entra aqui.';
     }
     if (f.type === 'npc' || f.type === 'monster') return 'Este arquivo é um export para o Bestiário, não uma ficha.';
-    var sv = f.schemaVersion;
     // ficha v3 (schemaVersion >= 3) não é rebaixada
     if (parseFloat(String(sv)) >= 3) {
       return 'Esta ficha é da v3 (schemaVersion ' + sv + ') e não pode ser importada aqui. Recarregue a página.';
     }
-    // sem schemaVersion: só a v1 antiga, que tem meta ou atributos (novaFicha da v1)
-    if (sv == null || sv === '') return ehObjeto(f.meta) || ehObjeto(f.atributos) ? null : MSG_NAO_FICHA;
-    return /^[12](?![0-9])/.test(String(sv).trim()) ? null : MSG_NAO_FICHA;
+    // sem schemaVersion e sem meta/atributos não é a v1 antiga
+    if (semVersao) return MSG_NAO_FICHA;
+    return v1v2 ? null : MSG_NAO_FICHA;
   }
   function importJSON() {
     if (bloqueado()) return;

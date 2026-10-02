@@ -400,6 +400,60 @@ test('importJSON: ficha v1 sem schemaVersion (meta e atributos) e ficha 2.0 cont
   assert.equal(p.KF.nome(), 'Um ponto zero');
 });
 
+test('ficha contaminada pelo import antigo (type npc, schema/fichas do pacote): o backup dela continua entrando', () => {
+  // Antes da F4.0 o import passava o export do Bestiário e o pacote fichas/1
+  // pelo migra(); o deepMerge preserva chave desconhecida e elas ficam na
+  // khalkaria_ficha para sempre. Reproduz com o migra() de produção: o load
+  // de um storage com o arquivo cru faz o mesmo migra() que o import velho fazia.
+  const origem = pagina(armazenamento());
+  origem.KF.adicionar(item('Kali'), { qtd: 2 });
+  origem.botao('Exportar p/ Bestiário').click();
+  const bestiario = origem.baixados.pop();
+  const pacote = KhEstado.pacoteTodas([KhEstado.novaFicha({ nome: 'Velha do pacote' })]).dados;
+  const contaminadas = [
+    ['Bestiário', bestiario, (x) => { assert.equal(x.type, 'npc'); assert.ok('prof_attack' in x && 'weapons' in x); }],
+    ['pacote fichas/1', pacote, (x) => { assert.equal(x.schema, 'fichas/1'); assert.equal(x.fichas.length, 1); }]
+  ];
+  contaminadas.forEach(([rotulo, cru, temAsChaves]) => {
+    const velho = armazenamento({ [LS]: JSON.stringify(cru) });
+    const a = pagina(velho);
+    a.KF.adicionar(item('Virotes/Flechas'), { qtd: 4 });             // o jogador refaz a ficha
+    temAsChaves(JSON.parse(velho.getItem(LS)));                        // gravadas na chave v2
+    a.botao('Exportar JSON').click();
+    const backup = a.baixados.pop();
+    assert.equal(backup.schemaVersion, '2.0', rotulo);
+    temAsChaves(backup);                                               // e saem no export nativo
+    // outro navegador, já com a F4.0
+    const st = armazenamento();
+    const p = pagina(st);
+    p.importar(backup);
+    assert.equal(p.toasts().pop(), 'Ficha importada', rotulo);
+    assert.equal(p.KF.inventario().bugigangas[0].qtd, 4, rotulo);
+    assert.deepEqual(JSON.parse(st.getItem(LS)).inventario, backup.inventario, rotulo);
+    // e a v3 (F4) importa ESTA ficha, não as fichas velhas do pacote
+    const lido = KhEstado.lerImport(JSON.stringify(backup), { agora: () => '2026-10-02T00:00:00.000Z' });
+    assert.deepEqual(lido.erros, [], rotulo);
+    assert.equal(lido.fichas.length, 1, rotulo);
+    assert.equal(lido.fichas[0].de, '2.0', rotulo);
+  });
+  // v1 (schemaVersion '1.0') contaminada pelo import da v1, que já fazia o mesmo deepMerge
+  const v1 = Object.assign(ler('ficha-v1.json'), { type: 'npc', name: 'Borin', strength: 14, weapons: [] }, { schema: 'fichas/1', fichas: [] });
+  const st = armazenamento();
+  const p = pagina(st);
+  p.importar(v1);
+  assert.match(p.toasts().pop(), /^Ficha importada\. Inventário convertido/);
+  assert.equal(p.KF.nome(), 'Borin Teste');
+  // as marcas sem a forma de ficha (meta/atributos) continuam recusadas
+  const antes = st.foto();
+  [[{ schemaVersion: '2.0', type: 'npc', name: 'X' }, MSG_BESTIARIO],
+    [{ schemaVersion: '2.0', schema: 'fichas/1', fichas: [] }, MSG_PACOTE]
+  ].forEach(([obj, msg]) => {
+    p.importar(obj);
+    assert.equal(p.toasts().pop(), msg, JSON.stringify(obj));
+    assert.equal(st.foto(), antes, JSON.stringify(obj));
+  });
+});
+
 test('marcador "v3-dupla" (escrita dupla da F4): a v2.1 abre editável e grava; a F5 troca para "v3" e ela fica só-leitura', () => {
   const st = armazenamento();
   fichaV2(st);                 // a projeção v2 da ficha (5 Virotes/Flechas)

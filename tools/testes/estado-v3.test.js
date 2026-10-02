@@ -464,6 +464,20 @@ test('import de v1/v2: entra como ficha nova migrada; arquivo inválido ou futur
   assert.equal(a.listar().length, 2);
 });
 
+test('v2 com schema/fichas de pacote no topo (deepMerge do import antigo): entra a ficha, não as fichas velhas', () => {
+  const velha = E.novaFicha({ nome: 'Velha do pacote' }, { aleatorio: A.semente(5) });
+  const contaminada = Object.assign(JSON.parse(JSON.stringify(V2)), E.pacoteTodas([velha]).dados);
+  assert.equal(contaminada.schemaVersion, '2.0');
+  const lido = E.lerImport(contaminada, op({ calculado: calcTeste }));
+  assert.deepEqual(lido.erros, []);
+  assert.deepEqual(lido.fichas.map((x) => [x.de, x.ficha.meta.nome]), [['2.0', 'Lira Vento-Sul']]);
+  // o mesmo com a v1 (schemaVersion '1.0') e sem lista válida
+  const v1 = Object.assign(JSON.parse(JSON.stringify(V1)), { schema: 'fichas/1', fichas: [{ id: 'fx', nome: 'x' }] });
+  assert.deepEqual(E.lerImport(v1, op()).fichas.map((x) => x.de), ['1.0']);
+  // pacote de verdade (sem meta no topo) segue sendo pacote
+  assert.deepEqual(E.lerImport(E.pacoteTodas([velha]).dados, op()).fichas.map((x) => x.ficha.meta.nome), ['Velha do pacote']);
+});
+
 test('uso da quota: soma só as chaves khalkaria_*, 2 bytes por caractere', () => {
   const { ls, a } = novoArmazem({ outra_coisa: 'x'.repeat(500) });
   a.criar({ nome: 'Ana' });
