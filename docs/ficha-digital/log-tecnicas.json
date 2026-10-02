@@ -24,10 +24,10 @@
    "arquivo": "docs/ficha-digital/log-tecnicas-respostas.json (log-tecnicas-respostas/1)",
    "origem": {
     "branch": "claude/khalkaria-bazar-balance-lsdfic",
-    "commit": "2a4757814050a0859a6145215e95020d3145472f",
+    "commit": "e829711eab84224cdde8e23762cdcd25f17d3772",
     "arquivo": ".claude/skills/khalkaria-balance/references/log-tecnicas-respostas.json",
     "texto": ".claude/skills/khalkaria-balance/references/16-log-tecnicas.md",
-    "copiadoEm": "2026-09-27",
+    "copiadoEm": "2026-10-02",
     "nota": "Cópia verbatim do arquivo da branch do balanceamento; só esta chave \"origem\" foi acrescentada. Não editar à mão: recopiar do commit de origem."
    }
   },
@@ -53,8 +53,8 @@
  "resumo": {
   "geral": {
    "total": 382,
-   "ok": 241,
-   "alerta": 141,
+   "ok": 263,
+   "alerta": 119,
    "levavel": {
     "nao": 11,
     "ok": 322,
@@ -62,12 +62,11 @@
    },
    "custo": {
     "naoSeAplica": 150,
-    "ok": 220,
-    "parcial": 12
+    "ok": 219,
+    "parcial": 13
    },
    "recarga": {
-    "alerta": 3,
-    "ok": 38,
+    "ok": 41,
     "semRecarga": 341
    },
    "referencias": {
@@ -75,19 +74,18 @@
     "ok": 378
    },
    "obsoletas": {
-    "obsoleto": 4,
-    "ok": 372,
-    "revisar": 6
+    "ok": 377,
+    "revisar": 5
    },
    "descricaoV21": {
     "completa": 371,
     "semBotao": 11
    },
    "achadoMaisGrave": {
-    "alta": 7,
-    "baixa": 54,
-    "media": 75,
-    "nenhum": 246
+    "alta": 5,
+    "baixa": 31,
+    "media": 47,
+    "nenhum": 299
    },
    "achados": {
     "porTecnica": 145,
@@ -104,19 +102,19 @@
     },
     "porResposta": {
      "doSite": 8,
-     "esperandoPedro": 54,
-     "leitura": 84,
-     "resolvido": 14
+     "esperandoPedro": 7,
+     "leitura": 68,
+     "resolvido": 77
     },
     "porDestinoEResposta": {
      "balanceamento": {
-      "esperandoPedro": 15,
-      "leitura": 84,
-      "resolvido": 11
+      "esperandoPedro": 2,
+      "leitura": 68,
+      "resolvido": 40
      },
      "pedro": {
-      "esperandoPedro": 39,
-      "resolvido": 2
+      "esperandoPedro": 5,
+      "resolvido": 36
      },
      "site": {
       "doSite": 8,
@@ -124,13 +122,39 @@
      }
     },
     "trechoAtual": {
-     "ausente": 3,
-     "presente": 157
+     "ausente": 28,
+     "parcial": 3,
+     "presente": 129
     },
     "resolvidosPeloTexto": [
      "alquimista-cartucho-arcano",
+     "alquimista-cartucho-arcano-2",
+     "alquimista-curandeiro-incansavel",
+     "alquimista-elixir-especial",
+     "alquimista-tita",
+     "alquimista-veneno-hemorragico",
+     "artilheiro-artesao-de-municao",
+     "artilheiro-municao-especial",
+     "artilheiro-projetil-envenenado",
+     "artilheiro-tiro-carregado",
+     "artilheiro-tiro-carregado-2",
+     "automato-achar-tecnologias-em-lojas",
+     "automato-sensor-de-proximidade",
+     "brutalista-contador-de-corpos",
+     "brutalista-frenesi",
+     "brutalista-frenesi-2",
+     "brutalista-imortal",
+     "brutalista-postura-defensiva",
+     "corrompido-as-vozes",
+     "espadachim-proficiencia-com-espadas",
+     "espadachim-sorte-do-bebado",
      "ficha-v21-descricao",
-     "monge-recurso-fluxo"
+     "gruto-lingua-bifurcada",
+     "monge-forma-do-vazio",
+     "monge-queda-suave",
+     "monge-recurso-fluxo",
+     "origem-cacador-itens",
+     "teurgo-manifestacao-do-patrono"
     ],
     "perguntasPedro": {
      "L14": 1,
@@ -176,11 +200,7 @@
    "obsoletasPorRegra": {
     "defender-bonus-plano": 10,
     "defender-dado-fixo": 1,
-    "defender-degrau-de-bonus": 1,
-    "investida-citada": 2,
-    "investida-colisao-de-nome": 1,
-    "magia-nivel-1-pre-D68": 5,
-    "recarga-por-dia": 3
+    "magia-nivel-1-pre-D68": 5
    },
    "referenciasPorTipo": {
     "itemInexistente": 2,
@@ -190,8 +210,8 @@
   "porFonte": {
    "data/classes/espadachim.json": {
     "total": 42,
-    "ok": 26,
-    "alerta": 16,
+    "ok": 34,
+    "alerta": 8,
     "levavel": {
      "nao": 3,
      "ok": 39
@@ -206,8 +226,7 @@
      "parcial": 2
     },
     "recarga": {
-     "alerta": 3,
-     "ok": 4,
+     "ok": 7,
      "semRecarga": 35
     },
     "referencias": {
@@ -215,14 +234,13 @@
      "ok": 41
     },
     "obsoletas": {
-     "obsoleto": 3,
-     "ok": 39
+     "ok": 42
     },
     "achadoMaisGrave": {
-     "alta": 2,
-     "baixa": 7,
-     "media": 11,
-     "nenhum": 22
+     "alta": 1,
+     "baixa": 1,
+     "media": 5,
+     "nenhum": 35
     }
    },
    "data/classes/batedor.json": {
@@ -255,15 +273,15 @@
     },
     "achadoMaisGrave": {
      "alta": 1,
-     "baixa": 8,
+     "baixa": 5,
      "media": 6,
-     "nenhum": 26
+     "nenhum": 29
     }
    },
    "data/classes/brutalista.json": {
     "total": 40,
-    "ok": 30,
-    "alerta": 10,
+    "ok": 33,
+    "alerta": 7,
     "levavel": {
      "nao": 1,
      "ok": 39
@@ -284,21 +302,18 @@
      "ok": 40
     },
     "obsoletas": {
-     "obsoleto": 1,
-     "ok": 38,
-     "revisar": 1
+     "ok": 40
     },
     "achadoMaisGrave": {
-     "alta": 1,
-     "baixa": 8,
-     "media": 8,
-     "nenhum": 23
+     "baixa": 4,
+     "media": 6,
+     "nenhum": 30
     }
    },
    "data/classes/teurgo.json": {
     "total": 41,
-    "ok": 28,
-    "alerta": 13,
+    "ok": 33,
+    "alerta": 8,
     "levavel": {
      "nao": 2,
      "ok": 39
@@ -325,15 +340,15 @@
     },
     "achadoMaisGrave": {
      "alta": 1,
-     "baixa": 6,
-     "media": 8,
-     "nenhum": 26
+     "baixa": 4,
+     "media": 1,
+     "nenhum": 35
     }
    },
    "data/classes/monge.json": {
     "total": 41,
-    "ok": 27,
-    "alerta": 14,
+    "ok": 29,
+    "alerta": 12,
     "levavel": {
      "nao": 2,
      "ok": 39
@@ -359,15 +374,15 @@
     },
     "achadoMaisGrave": {
      "alta": 1,
-     "baixa": 9,
-     "media": 11,
-     "nenhum": 20
+     "baixa": 6,
+     "media": 8,
+     "nenhum": 26
     }
    },
    "data/classes/alquimista.json": {
     "total": 40,
-    "ok": 31,
-    "alerta": 9,
+    "ok": 32,
+    "alerta": 8,
     "levavel": {
      "nao": 1,
      "ok": 39
@@ -378,8 +393,8 @@
     },
     "custo": {
      "naoSeAplica": 7,
-     "ok": 31,
-     "parcial": 2
+     "ok": 30,
+     "parcial": 3
     },
     "recarga": {
      "ok": 2,
@@ -392,15 +407,15 @@
      "ok": 40
     },
     "achadoMaisGrave": {
-     "baixa": 10,
-     "media": 6,
-     "nenhum": 24
+     "baixa": 8,
+     "media": 4,
+     "nenhum": 28
     }
    },
    "data/classes/artilheiro.json": {
     "total": 40,
-    "ok": 25,
-    "alerta": 15,
+    "ok": 28,
+    "alerta": 12,
     "levavel": {
      "nao": 1,
      "ok": 39
@@ -424,9 +439,9 @@
      "ok": 40
     },
     "achadoMaisGrave": {
-     "baixa": 3,
-     "media": 15,
-     "nenhum": 22
+     "baixa": 2,
+     "media": 12,
+     "nenhum": 26
     }
    },
    "data/racas/humano.json": {
@@ -534,9 +549,9 @@
      "ok": 18
     },
     "achadoMaisGrave": {
-     "baixa": 2,
+     "baixa": 1,
      "media": 2,
-     "nenhum": 14
+     "nenhum": 15
     }
    },
    "data/racas/gruto.json": {
@@ -562,8 +577,7 @@
      "ok": 5
     },
     "achadoMaisGrave": {
-     "baixa": 1,
-     "nenhum": 4
+     "nenhum": 5
     }
    },
    "data/racas/inseto.json": {
@@ -620,8 +634,8 @@
     },
     "achadoMaisGrave": {
      "alta": 1,
-     "media": 4,
-     "nenhum": 29
+     "media": 2,
+     "nenhum": 31
     }
    },
    "data/origens.json": {
@@ -649,8 +663,8 @@
      "revisar": 1
     },
     "achadoMaisGrave": {
-     "media": 4,
-     "nenhum": 15
+     "media": 1,
+     "nenhum": 18
     }
    }
   }
@@ -659,22 +673,30 @@
   "G1": {
    "nome": "Retaliação livre",
    "regra": "\"Retaliar sem gastar reação\" e \"retalie como ação livre\" são retaliações feitas fora da reação: rolagem de Atacar contra aquele ataque, só corpo a corpo. Podem acontecer sem reação disponível e acompanhar o Defender no mesmo ataque. É a leitura que dá efeito às técnicas escritas no modelo antigo (1 reação por ataque) sem mudar o texto.",
-   "pergunta": "T1"
+   "pergunta": "T1",
+   "estadoRev1": "aprovado (D98)",
+   "revisao1": "Canônico no Sistema > Sua Rodada: a retaliação que não gasta reação preserva a reação, que pode ser usada de novo como reação."
   },
   "G2": {
    "nome": "Ação livre",
    "regra": "Uma técnica não acumula consigo no mesmo gatilho. Efeito de \"próximo ataque\" vale uma vez por ataque; para o ataque seguinte, reativa e paga de novo. Ação livre só vale fora do seu turno quando tem gatilho de fora (\"ao ser atacado\") ou efeito que só serve fora dele. Técnica que troca o custo de uma ação para ação livre não tira o limite da ação: Mover continua 1 vez por turno.",
-   "pergunta": "T1"
+   "pergunta": "T1",
+   "estadoRev1": "substituído (D99)",
+   "revisao1": "Vale agora: técnica usada como ação livre, 1 vez por turno, salvo texto em contrário (Sistema > Sua Rodada). \"Por turno\" é cada turno, inclusive o de outra criatura. Continuam leituras minhas: a técnica não acumula consigo enquanto ativa, e trocar o custo de uma ação para ação livre não tira o limite da ação (Mover 1 vez por turno). Caiu a reativação a cada ataque."
   },
   "G3": {
    "nome": "PMA em técnica",
    "regra": "Ataques de técnica contra o mesmo alvo levam o −5 cumulativo (D29), salvo quando o texto diz \"sem penalidade de multi-ataque\". A Transcendência do Monge existe para suspender a PMA, o que só faz sentido se os ataques de técnica a sofrem. Ataque extra dado por técnica entra na sequência do turno.",
-   "pergunta": "T1"
+   "pergunta": "T1",
+   "estadoRev1": "aprovado (D100)",
+   "revisao1": "Canônico no Sistema > Atacar."
   },
   "G4": {
    "nome": "Custo de ataque de técnica × arma",
    "regra": "Técnica que dá N ataques \"como 1 ação\" com arma de Atacar(2)/(3): pergunta T2. Até lá a ficha mostra o custo do texto com aviso.",
-   "pergunta": "T2"
+   "pergunta": "T2",
+   "estadoRev1": "resolvido (D101)",
+   "revisao1": "Os N ataques \"como 1 ação\" pagam juntos o Atacar(n) da arma (Sistema > Atacar)."
   },
   "G5": {
    "nome": "Defender é dado",
@@ -684,12 +706,16 @@
   "G6": {
    "nome": "1x/dia",
    "regra": "\"1x/dia\" = \"1x/Descanso Longo\" (L29, gravado no Sistema). Normalizar o texto nas 7 classes é a pergunta T5.",
-   "pergunta": "T5"
+   "pergunta": "T5",
+   "estadoRev1": "resolvido (D104)",
+   "revisao1": "Gravado \"1 vez por descanso longo\" no cabeçalho do Tier 3 de 6 classes; o Batedor entra no rework."
   },
   "G7": {
    "nome": "Termos",
    "regra": "Margem de Crítico = Margem de Ameaça. Surpreendido = Desprevenido. Derrubado = Caído. Adagas de lançamento = Conjunto de Arremesso. \"Marcial leve\" = chassi Marcial Precisa. \"+1 Treinamento\" = +1 grau. \"Condição mágica ou não-mágica\" = qualquer condição. Álcool = Bebida que deixa Bêbado. Sucata = item da categoria Lixo. Espada, provisório: arma corpo a corpo que causa Cortante (T3).",
-   "pergunta": null
+   "pergunta": null,
+   "estadoRev1": "espada canônica (D102)",
+   "revisao1": "Espada = arma corpo a corpo que causa dano Cortante (Espadachim > Proficiência com Espadas). Os demais termos foram normalizados no Notion (D104)."
   },
   "G8": {
    "nome": "Durações ausentes",
@@ -704,7 +730,9 @@
   "G10": {
    "nome": "Fluxo",
    "regra": "Zera ao receber dano, após 1 rodada sem ganhar Fluxo e no fim do combate (L23, gravado no Monge). Custo em Fluxo nas técnicas é requisito, não gasto (texto da classe). Fluxo Invertido e as ultimates que tiram Fluxo: T12.",
-   "pergunta": "T12"
+   "pergunta": "T12",
+   "estadoRev1": "resolvido (D110)",
+   "revisao1": "Fluxo Invertido dá +1 no lugar de zerar; a perda de Fluxo por texto de técnica é exceção escrita."
   },
   "G11": {
    "nome": "Contrato corrigido (rev. 7)",
@@ -719,7 +747,9 @@
   "G13": {
    "nome": "Intensidade",
    "regra": "Paga-se a intensidade declarada. Cair abaixo da menor intensidade que a magia tem = a magia falha. \"Versão contida\" = a menor intensidade disponível (Normal numa magia de Nível 1, que não tem Contida). Intensidade subida por técnica: T4.",
-   "pergunta": "T4"
+   "pergunta": "T4",
+   "estadoRev1": "resolvido (D103)",
+   "revisao1": "Intensidade subida por técnica: paga a declarada, sem teste de Vontade, teto Transbordante (Sistema e Magias > Transbordante)."
   },
   "G14": {
    "nome": "Custo de magia",
@@ -729,104 +759,163 @@
   "G15": {
    "nome": "Itens alquímicos",
    "regra": "O CSV do Bazar é a fonte do item; a tabela da classe diverge em 2 itens (T13). \"Queima\" e \"sangra por turno\" de item são tiques do item, não as condições Em Chamas e Sangramento. Descontos de Reagente somam, com piso 1 por item. Sintonia Arcana: 2 Éter = 1 Reagente.",
-   "pergunta": "T13"
+   "pergunta": "T13",
+   "estadoRev1": "resolvido (D111)",
+   "revisao1": "CSV e tabela da classe iguais nos 2 itens (Soro da Guerra, Veneno Hemorrágico)."
   }
  },
  "perguntasPedro": {
   "T1": {
    "tema": "Princípios G1–G3",
    "pergunta": "Aprova as três leituras: retaliação livre (G1), ação livre que não acumula consigo e só vale fora do turno com gatilho (G2), PMA também nos ataques de técnica (G3)?",
-   "recomendacao": "Aprovar. Dão efeito ao texto que você já escreveu, sem reescrever técnica."
+   "recomendacao": "Aprovar. Dão efeito ao texto que você já escreveu, sem reescrever técnica.",
+   "respostaPedro": "Sim, retaliar sem gastar reação preserva sua reação sendo possível utiliza-la de novo como uma reação. Quase toda técnica de ação livre só pode ser utilizada 1x/turno. Pma sempre vale exceto quando a técnica diz o contrário. Concordo.",
+   "decisao": "D98, D99, D100",
+   "estado": "respondida"
   },
   "T2": {
    "tema": "N ataques \"como 1 ação\" com arma pesada",
    "pergunta": "Lâmina Rápida, Massacre e Rajada de Tiros com arma de Atacar(2)/(3): (a) literal, 1 ação sempre; (b) os ataques custam juntos o Atacar(n) da arma; (c) só armas de Atacar(1).",
-   "recomendacao": "(b). Toda arma de fogo do Bazar é Atacar(2): no literal, a Rajada dá 4 vezes a taxa normal de tiros e 3 Rajadas por turno somam 6 tiros."
+   "recomendacao": "(b). Toda arma de fogo do Bazar é Atacar(2): no literal, a Rajada dá 4 vezes a taxa normal de tiros e 3 Rajadas por turno somam 6 tiros.",
+   "respostaPedro": "Faz sentido, pode ser.",
+   "decisao": "D101",
+   "estado": "respondida"
   },
   "T3": {
    "tema": "\"Espada\"",
    "pergunta": "Proficiência com Espadas e Pedra de Amolar citam \"espada\", que o Bazar não tem. Qual regra?",
-   "recomendacao": "Arma corpo a corpo que causa dano Cortante. Casa com o \"ignora resistência a Cortante\" e não pede mudança no CSV; custo: machados e foices de chassi Cortante contam. Alternativa: tag \"Espada\" no CSV."
+   "recomendacao": "Arma corpo a corpo que causa dano Cortante. Casa com o \"ignora resistência a Cortante\" e não pede mudança no CSV; custo: machados e foices de chassi Cortante contam. Alternativa: tag \"Espada\" no CSV.",
+   "respostaPedro": "Perfeito, armas corpo a corpo que causam dano cortante.",
+   "decisao": "D102",
+   "estado": "respondida"
   },
   "T4": {
    "tema": "Intensidade subida por técnica",
    "pergunta": "Tese Arcana, Patrono Primordial e Natureza Caótica sobem a intensidade. Paga a declarada ou a resultante? Chegar a Transbordante assim pede o teste de Vontade?",
-   "recomendacao": "Paga a declarada; sem teste, porque o teste é o risco de quem escolhe forçar; teto Transbordante (Transbordante+ só onde o texto diz)."
+   "recomendacao": "Paga a declarada; sem teste, porque o teste é o risco de quem escolhe forçar; teto Transbordante (Transbordante+ só onde o texto diz).",
+   "respostaPedro": "Ok.",
+   "decisao": "D103",
+   "estado": "respondida"
   },
   "T5": {
    "tema": "Normalização de termos (só texto)",
    "pergunta": "\"1x/Dia\" → \"1x/Descanso Longo\" nas ultimates e no cabeçalho do Tier 3 das 7 classes; \"Margem de Crítico\" → \"Margem de Ameaça\" (Sorte do Bêbado, Golpe Instinto, Tiro Carregado); \"surpreendido\" → \"Desprevenido\" (Sensor de Proximidade); \"Adagas de lançamento\" → \"Conjunto de Arremesso\" e \"Flecha\" → \"Virotes/Flechas\" (Artesão de Munição); \"Derrubado\" → \"Caído\" (Postura Defensiva); \"Caidos\" → \"Caído\" (Investida); e definir no Sistema > Sua Rodada: \"Penalidade de Multi-Ataque (PMA): −5 cumulativo a cada ataque depois do primeiro contra o mesmo alvo, no mesmo turno\" (D29).",
-   "recomendacao": "Sim. Eu gravo e confiro o diff de cada página."
+   "recomendacao": "Sim. Eu gravo e confiro o diff de cada página.",
+   "respostaPedro": "Sim, todos ok.",
+   "decisao": "D104",
+   "estado": "respondida"
   },
   "T6": {
    "tema": "Recurso de classe do Espadachim e do Teurgo",
    "pergunta": "Você disse \"todas têm\", mas o Notion não traz nome nem regra desses dois. Quais são (nome, máximo, como ganha, como perde)? Ou o do Teurgo é o próprio Éter?",
-   "recomendacao": "Até você escrever, a ficha mostra um contador livre (nome e atual/máx editáveis)."
+   "recomendacao": "Até você escrever, a ficha mostra um contador livre (nome e atual/máx editáveis).",
+   "respostaPedro": "Estão sim no notion, o do espadachim é proficiência com espadas e marca do duelo, o teurgo são as escolas do primórdio.",
+   "decisao": "D105",
+   "estado": "respondida"
   },
   "T7": {
    "tema": "Coragem Líquida",
    "pergunta": "\"+1 permanentemente em Movimento\": na perícia ou em metros?",
-   "recomendacao": "Na perícia: as outras 5 marcas do Espadachim dão perícia."
+   "recomendacao": "Na perícia: as outras 5 marcas do Espadachim dão perícia.",
+   "respostaPedro": "Sim, é +1 permanente em movimento a cada combate bêbado vitorioso.",
+   "decisao": "D106",
+   "estado": "parcial: o Notion diz \"a cada 5 combates\""
   },
   "T8": {
    "tema": "Batedor",
    "pergunta": "(a) Ocultar-se diz \"com 1 ação ao invés de 2\", mas Esconder custa 3 hoje. (b) Homem de Negócios está cortado no próprio Notion: \"Você possui um disturbio de mat…\". (c) Desenhar Mapa de Exploração tem um bullet vazio \"-\" no Notion: faltou um benefício? (d) Artista Apaixonado: \"mercadoria Incomum\" muda o quê, se o mapa já é Incomum? (e) Senhor das Linhas: não há regra de flanqueio no Sistema, e a armadilha não tem tipo de dano.",
-   "recomendacao": "(a) Custo final 1 ação e corrigir o \"2\" para \"3\". (b) e (c) Preciso do texto. (d) Vender pelo preço de Incomum do Bazar. (e) Tirar \"Não pode ser flanqueado\"; armadilha Perfurante."
+   "recomendacao": "(a) Custo final 1 ação e corrigir o \"2\" para \"3\". (b) e (c) Preciso do texto. (d) Vender pelo preço de Incomum do Bazar. (e) Tirar \"Não pode ser flanqueado\"; armadilha Perfurante.",
+   "respostaPedro": "O batedor inteiro receberá o rework no próximo prompt, após isso já faça um log do novo batedor ao agente html.",
+   "decisao": "—",
+   "estado": "rework do Batedor"
   },
   "T9": {
    "tema": "Brutalista",
    "pergunta": "(a) Muralha Viva (L19). (b) Frenesi: \"no nível 1\" e \"descontrolado\". (c) Contador de Corpos: o asterisco de \"brutalmente\" não tem nota no Notion. (d) Imortal: \"pode escolher não morrer\" é do modelo antigo.",
-   "recomendacao": "(a) \"Some +1 à rolagem de Defender para cada grau de treinamento (Treinado +1, Experiente +2, Mestre +3, Lendário +4)\", a tradução exata do \"3 em 3\". (b) \"No nível 2\"; \"descontrolado\" é adjetivo, não a condição; para travar algo preciso da lista, no mínimo \"não conjura nem sustenta magia\". (c) Matar com acerto crítico ou pelo Finalizar. (d) \"Ao cair a 0 ou menos de Saúde, pode, como ação livre, ficar com 1 de Saúde em vez de entrar em Morrendo. Ao fazer isso, ganha +1 de Exaustão.\""
+   "recomendacao": "(a) \"Some +1 à rolagem de Defender para cada grau de treinamento (Treinado +1, Experiente +2, Mestre +3, Lendário +4)\", a tradução exata do \"3 em 3\". (b) \"No nível 2\"; \"descontrolado\" é adjetivo, não a condição; para travar algo preciso da lista, no mínimo \"não conjura nem sustenta magia\". (c) Matar com acerto crítico ou pelo Finalizar. (d) \"Ao cair a 0 ou menos de Saúde, pode, como ação livre, ficar com 1 de Saúde em vez de entrar em Morrendo. Ao fazer isso, ganha +1 de Exaustão.\"",
+   "respostaPedro": "Você recebe+1 na perícia Defender a cada treinamento dessa perícia. já botei lá. Tirei que fica descontrolado no frenesi, ajeitei \"Você pode usar Frenesi 1 vez por descanso longo no nível 2 e 2 vezes no nível 4.\" e *Brutalmente: Com crítico ou efeito de arma: Executar. Pode deixar o imortal.",
+   "decisao": "D107",
+   "estado": "respondida (o Pedro editou o Notion)"
   },
   "T10": {
    "tema": "Investida (L20)",
    "pergunta": "Nomes para as duas regras antigas, e a do Brutalista conta como o Mover do turno?",
-   "recomendacao": "Técnica do Brutalista → \"Atropelar\"; ação do Titã → \"Avalanche\". Conta como Mover. \"Investida\" fica só para a manobra, que é a que as Grevas citam."
+   "recomendacao": "Técnica do Brutalista → \"Atropelar\"; ação do Titã → \"Avalanche\". Conta como Mover. \"Investida\" fica só para a manobra, que é a que as Grevas citam.",
+   "respostaPedro": "Perfeito.",
+   "decisao": "D108",
+   "estado": "respondida"
   },
   "T11": {
    "tema": "Teurgo",
    "pergunta": "(a) Encadeamento é exceção ao \"1 magia por turno\"? (b) Manifestação do Patrono: CDs sem número, \"Banido\" e os 6 Efeitos Caóticos. (c) Receptáculo Perfeito: \"chegar em 50%\" e a Casca Rachada. (d) Devoto: requisito é Patrono Primordial ou Barganha Primordial? (e) Grande Árvore: a Seiva do patrono soma Marca da Vhelor?",
-   "recomendacao": "(a) Sim, escrever a exceção; 3 Stamina por uso. (b) \"Contra sua CD\" (D57); Banido fica efeito da ultimate; sorteio 1d6. (c) \"Ultrapassar\", e a Casca Rachada dobra esse limite também. (d) Preciso da resposta. (e) Não: somar tiraria 10 de Éter máximo do próprio devoto na Marca 2."
+   "recomendacao": "(a) Sim, escrever a exceção; 3 Stamina por uso. (b) \"Contra sua CD\" (D57); Banido fica efeito da ultimate; sorteio 1d6. (c) \"Ultrapassar\", e a Casca Rachada dobra esse limite também. (d) Preciso da resposta. (e) Não: somar tiraria 10 de Éter máximo do próprio devoto na Marca 2.",
+   "respostaPedro": "Patrono primordial e barganha primordial se recebem no mesmo nível de tier, então é a mesma coisa. resto ok.",
+   "decisao": "D109",
+   "estado": "respondida"
   },
   "T12": {
    "tema": "Monge",
    "pergunta": "(a) Fluxo Invertido contra o \"dano zera o Fluxo\". (b) \"Não pode perder fluxo de nenhuma outra forma\" contra as ultimates que tiram Fluxo. (c) Forma do Vazio: \"1d10 <5 acerta\" dá 40%, não 50%; e o que são \"ataques físicos\"? (d) Queda Suave: o que é o \"1 minuto\" e quando vale o \"5 × Nível\"? (e) O ataque desarmado base (1d4) não tem tipo, atributo nem Atacar(n).",
-   "recomendacao": "(a) Com Fluxo Invertido, o dano dá +1 no lugar de zerar. (b) Acrescentar \"exceto quando o texto de uma técnica diz que você perde Fluxo\". (c) \"≤5 acerta\"; ataques de arma e desarmados, de qualquer tipo de dano. (d) Por 1 minuto, quedas até 30 m sem dano; acima de 30 m, o dano cai 5 × Nível. (e) \"1d4 Contundente (Destreza), Atacar(1), corpo a corpo\", o perfil do chassi Leve."
+   "recomendacao": "(a) Com Fluxo Invertido, o dano dá +1 no lugar de zerar. (b) Acrescentar \"exceto quando o texto de uma técnica diz que você perde Fluxo\". (c) \"≤5 acerta\"; ataques de arma e desarmados, de qualquer tipo de dano. (d) Por 1 minuto, quedas até 30 m sem dano; acima de 30 m, o dano cai 5 × Nível. (e) \"1d4 Contundente (Destreza), Atacar(1), corpo a corpo\", o perfil do chassi Leve.",
+   "respostaPedro": "Ok.",
+   "decisao": "D110",
+   "estado": "respondida"
   },
   "T13": {
    "tema": "Alquimista",
    "pergunta": "(a) Cartucho Arcano depois da D68: custo e CD subiram 2 sozinhos. (b) Elixir Especial: \"3 Reagentes\" no cabeçalho, \"1 por alvo\" no corpo. (c) Curandeiro Incansável: \"que estava com 0 de Saúde\". (d) Tabela da classe × CSV: Soro da Guerra (o CSV dura 1 min e não tem \"Vantagem em Fortitude\") e Veneno Hemorrágico (o CSV não tem \"Medicina estanca\"). (e) Essência Etérea: \"Incorpóreo\" não é condição.",
-   "recomendacao": "(a) Reagentes = custo base de Éter da magia; CD = 10 + custo base; Nível 5 pede Foco Primordial para criar. (b) 1 por alvo. (c) \"Que estava Morrendo\". (d) Vale o CSV; se quiser os extras, eles entram no CSV. (e) Fica efeito do item."
+   "recomendacao": "(a) Reagentes = custo base de Éter da magia; CD = 10 + custo base; Nível 5 pede Foco Primordial para criar. (b) 1 por alvo. (c) \"Que estava Morrendo\". (d) Vale o CSV; se quiser os extras, eles entram no CSV. (e) Fica efeito do item.",
+   "respostaPedro": "Só tem o vantagem em fortitude a mais no notion, adiciona no csv; veneno hemorrágico: 3 ataques. +1d6 Biológico. Alvo recebe Sangramento 3 no terceiro ataque. muda no csv, resto ok;",
+   "decisao": "D111",
+   "estado": "respondida (aberto: \"mínimo 1\" do Cartucho)"
   },
   "T14": {
    "tema": "Artilheiro",
    "pergunta": "(a) Munição Especial: \"3 = 1 bugiganga\" contra a regra \"10 = 1\". (b) Projétil Envenenado vale o combate inteiro pela regra da munição (D2/D41).",
-   "recomendacao": "(a) Alinhar a 10, salvo peso maior proposital. (b) É o que a regra diz; se for forte demais, basta \"uso único\"."
+   "recomendacao": "(a) Alinhar a 10, salvo peso maior proposital. (b) É o que a regra diz; se for forte demais, basta \"uso único\".",
+   "respostaPedro": "adicionei 1x/Alvo. no projétil envenenado. Resto ok.",
+   "decisao": "D112",
+   "estado": "respondida (o Pedro editou o Notion)"
   },
   "T15": {
    "tema": "Raças",
    "pergunta": "(a) Autômato, Achar Tecnologias em Lojas: o d12 não fecha com a lista. (b) Gruto: \"Criaturas Predáveis\" não está definido. (c) Corrompido: pela tabela, \"negativas são permanentes\" aponta para os poderes. (d) As Vozes: \"1 natural em qualquer dado\". (e) Receptáculo Natural e Cultista conjuram sem Treinado em Místico?",
-   "recomendacao": "(a) 1d10 sobre as 9 compráveis, rerolando o 10 e os repetidos. (b) Sugestão: Dryads e criaturas menores que você. (c) \"Adversidades (custo +) são permanentes; poderes (custo −) podem ser reorganizados no descanso longo.\" (d) Só o d20: num 4d6 de dano, 52% das rolagens têm um 1. (e) Sim: o traço dá a conjuração das 2 magias."
+   "recomendacao": "(a) 1d10 sobre as 9 compráveis, rerolando o 10 e os repetidos. (b) Sugestão: Dryads e criaturas menores que você. (c) \"Adversidades (custo +) são permanentes; poderes (custo −) podem ser reorganizados no descanso longo.\" (d) Só o d20: num 4d6 de dano, 52% das rolagens têm um 1. (e) Sim: o traço dá a conjuração das 2 magias.",
+   "respostaPedro": "As de tier 5 não podem ser obtidas por lojas, então não entram na rolagem. Gruto: Animais selvagens. Corrompido está certo, corrupções te deixam no negativo e adversidade te jogam de volta pro zero, ter adversidades em excendentes condiz que você tem pontos positivos para gastar em corrupções.",
+   "decisao": "D113",
+   "estado": "parcial: (d) e (e) sem resposta"
   },
   "T16": {
    "tema": "Origens e condições mentais",
    "pergunta": "(a) A Forja: +1 grau por item inédito ou por raridade inédita? (b) Caçador: \"1 Arma Simples\" não existe. (c) Mineiro: itens iguais aos do Lenhador. (d) \"Condições mentais\" = Enfeitiçado, Amedrontado, Confuso, Atordoado, a única lista escrita (no Limiar). Descontrolado e Bêbado ficam de fora?",
-   "recomendacao": "(a) Por raridade (Incomum, Exótico, Luxária: até +3); por item, 4 fabricações levam a Lendário. (b) \"Arma Distância Simples\". (c) \"Cobre\" no lugar de \"Madeira Comum\". (d) Sim."
+   "recomendacao": "(a) Por raridade (Incomum, Exótico, Luxária: até +3); por item, 4 fabricações levam a Lendário. (b) \"Arma Distância Simples\". (c) \"Cobre\" no lugar de \"Madeira Comum\". (d) Sim.",
+   "respostaPedro": "Na forja, deixa como está, essa origem é especialista na perícia ferraria. Caçador sim. Mineiro Sim. Condições mentais, onde?",
+   "decisao": "D114",
+   "estado": "parcial: (d) virou pergunta do Pedro"
   },
   "T17": {
    "tema": "Produção em Massa",
    "pergunta": "O texto termina com \"← betovenon.\": crédito intencional ou sai?",
-   "recomendacao": "—"
+   "recomendacao": "—",
+   "respostaPedro": "É credito.",
+   "decisao": "D115",
+   "estado": "respondida"
   },
   "T18": {
    "tema": "Confirmações rápidas (a ficha já usa)",
    "pergunta": "Epifania: cada d20 do conjunto vale uma rolagem e sai. Cobra: a dose dura até o 1º acerto. Primordial é o Nível 5 das escolas, não uma 5ª lista (o Foco Primordial diz \"todas as magias de nível 5\"). O Próximo: teto +3 no total.",
-   "recomendacao": "Confirmar."
+   "recomendacao": "Confirmar.",
+   "respostaPedro": "Ok;",
+   "decisao": "D116",
+   "estado": "respondida"
   },
   "T19": {
    "tema": "\"+Int\" de cura (L08)",
    "pergunta": "Gravei no Sistema o que você disse para poções: Int de quem fabricou. E os elixires, os kits de Manutenção e Trauma, e a poção comprada sem fabricante conhecido?",
-   "recomendacao": "Elixir igual à poção; kit com a Int de quem usa, porque é aplicado na hora; poção comprada soma +0, salvo o mestre dizer outro valor."
+   "recomendacao": "Elixir igual à poção; kit com a Int de quem usa, porque é aplicado na hora; poção comprada soma +0, salvo o mestre dizer outro valor.",
+   "respostaPedro": "Sempre usa a int de quem fabricou a poção, ela fica gravada com aquele modificador. Poção comprada soma media da raridade.",
+   "decisao": "D117",
+   "estado": "respondida (falta a tabela da média)"
   }
  },
  "achadosGerais": [
@@ -869,16 +958,17 @@
    "trecho": "3 ataques. +2d6 Biológico. Alvo sangra 1d6/turno por 3 rodadas (Medicina estanca).",
    "regraAtual": "D83 / Condições > Sangramento X: \"qualquer ataque contra ele causa +Xd4 de dano Biológico [...] Ao acertar um ataque em um alvo com essa condição, ela reduz em 1.\" O item descreve um sangramento por tique (1d6/turno, 3 rodadas, Medicina estanca), que não é a condição Sangramento X. A ficha não sabe se aplica Sangramento (qual X?) ou um dano por turno à parte.",
    "trechoAtual": {
-    "status": "presente",
+    "status": "ausente",
     "pedacos": 1,
-    "encontrados": 1,
-    "em": [
-     "data/classes/alquimista.json"
+    "encontrados": 0,
+    "em": [],
+    "faltam": [
+     "3 ataques. +2d6 Biológico. Alvo sangra 1d6/turno por 3 rodadas (Medicina estanca)."
     ]
    },
    "resposta": {
-    "status": "leitura",
-    "statusBalanceamento": "decisao",
+    "status": "resolvido",
+    "statusBalanceamento": "resolvido",
     "texto": "O CSV do Bazar é a fonte do item e diz o mesmo: \"+2d6 Bio por 3 ataques. Alvo Sangra 1d6/turno por 3 rodadas.\" O sangramento do item é dano por tique (1d6 no início de cada turno do alvo, 3 rodadas), separado da condição Sangramento X (D83). O tipo é Biológico por categoria (L34: o jogador escolhe Veneno, Ácido ou Psíquico). O \"Medicina estanca\" só existe na tabela da classe e não no CSV; vai para o Pedro como divergência (T13).",
     "acao": "ficha: efeito de tique próprio, não condição",
     "perguntaPedro": {
@@ -886,7 +976,9 @@
      "tema": "Alquimista",
      "pergunta": "(a) Cartucho Arcano depois da D68: custo e CD subiram 2 sozinhos. (b) Elixir Especial: \"3 Reagentes\" no cabeçalho, \"1 por alvo\" no corpo. (c) Curandeiro Incansável: \"que estava com 0 de Saúde\". (d) Tabela da classe × CSV: Soro da Guerra (o CSV dura 1 min e não tem \"Vantagem em Fortitude\") e Veneno Hemorrágico (o CSV não tem \"Medicina estanca\"). (e) Essência Etérea: \"Incorpóreo\" não é condição.",
      "recomendacao": "(a) Reagentes = custo base de Éter da magia; CD = 10 + custo base; Nível 5 pede Foco Primordial para criar. (b) 1 por alvo. (c) \"Que estava Morrendo\". (d) Vale o CSV; se quiser os extras, eles entram no CSV. (e) Fica efeito do item."
-    }
+    },
+    "resolvidoPor": "textoCorrigido",
+    "evidencia": "O trecho citado não está mais em data/ nem em js/."
    }
   },
   {
@@ -931,8 +1023,8 @@
     ]
    },
    "resposta": {
-    "status": "esperandoPedro",
-    "statusBalanceamento": "pedroDecide",
+    "status": "resolvido",
+    "statusBalanceamento": "resolvido",
     "texto": "\"Incorpóreo\" fica efeito do item, descrito no CSV, não condição nova.",
     "acao": "aguarda Pedro",
     "perguntaPedro": {
@@ -1007,16 +1099,17 @@
    "trecho": "O d12 determina qual tecnologia a partir do Tier 1. Resultados repetidos são rerolados.",
    "regraAtual": "data/racas/automato.json: o Tier 1 tem 6 tecnologias \"Não comprável\", e os Tiers 2–4 têm 9 compráveis (3 Incomum, 3 Exótico, 3 Luxária). O d12 contado \"a partir do Tier 1\" cai nas 6 não compráveis ou nas 6 primeiras compráveis e nunca chega à Luxária; contado a partir do Tier 2, sobram 3 faces sem item. A regra não fecha com a lista.",
    "trechoAtual": {
-    "status": "presente",
+    "status": "ausente",
     "pedacos": 1,
-    "encontrados": 1,
-    "em": [
-     "data/racas/automato.json"
+    "encontrados": 0,
+    "em": [],
+    "faltam": [
+     "O d12 determina qual tecnologia a partir do Tier 1. Resultados repetidos são rerolados."
     ]
    },
    "resposta": {
-    "status": "esperandoPedro",
-    "statusBalanceamento": "pedroDecide",
+    "status": "resolvido",
+    "statusBalanceamento": "resolvido",
     "texto": "O d12 não fecha com a lista (6 não compráveis no Tier 1 + 9 compráveis). Sugestão: 1d10 sobre as 9 compráveis na ordem da lista, rerolando o 10 e os repetidos.",
     "acao": "aguarda Pedro",
     "perguntaPedro": {
@@ -1024,7 +1117,9 @@
      "tema": "Raças",
      "pergunta": "(a) Autômato, Achar Tecnologias em Lojas: o d12 não fecha com a lista. (b) Gruto: \"Criaturas Predáveis\" não está definido. (c) Corrompido: pela tabela, \"negativas são permanentes\" aponta para os poderes. (d) As Vozes: \"1 natural em qualquer dado\". (e) Receptáculo Natural e Cultista conjuram sem Treinado em Místico?",
      "recomendacao": "(a) 1d10 sobre as 9 compráveis, rerolando o 10 e os repetidos. (b) Sugestão: Dryads e criaturas menores que você. (c) \"Adversidades (custo +) são permanentes; poderes (custo −) podem ser reorganizados no descanso longo.\" (d) Só o d20: num 4d6 de dano, 52% das rolagens têm um 1. (e) Sim: o traço dá a conjuração das 2 magias."
-    }
+    },
+    "resolvidoPor": "textoCorrigido",
+    "evidencia": "O trecho citado não está mais em data/ nem em js/."
    }
   },
   {
@@ -1045,8 +1140,8 @@
     ]
    },
    "resposta": {
-    "status": "esperandoPedro",
-    "statusBalanceamento": "pedroDecide",
+    "status": "resolvido",
+    "statusBalanceamento": "resolvido",
     "texto": "Reescrever pelo sinal da tabela: \"Adversidades (custo +) são permanentes; poderes (custo −) podem ser reorganizados no descanso longo.\"",
     "acao": "aguarda Pedro",
     "perguntaPedro": {
@@ -1067,17 +1162,17 @@
    "trecho": "1 Arma Simples (1 Equipamento)",
    "regraAtual": "Sistema > Armas não tem categoria 'Arma Simples' (só 'Distância Simples'), e o CSV do Bazar não tem nenhum item com esse nome. O assistente de criação não tem o que oferecer.",
    "trechoAtual": {
-    "status": "presente",
+    "status": "ausente",
     "pedacos": 1,
-    "encontrados": 1,
-    "em": [
-     "data/catalogo/origem.json",
-     "data/origens.json"
+    "encontrados": 0,
+    "em": [],
+    "faltam": [
+     "1 Arma Simples (1 Equipamento)"
     ]
    },
    "resposta": {
-    "status": "esperandoPedro",
-    "statusBalanceamento": "pedroDecide",
+    "status": "resolvido",
+    "statusBalanceamento": "resolvido",
     "texto": "\"1 Arma Simples\" → \"1 Arma Distância Simples\" (arco do caçador).",
     "acao": "aguarda Pedro",
     "perguntaPedro": {
@@ -1085,7 +1180,9 @@
      "tema": "Origens e condições mentais",
      "pergunta": "(a) A Forja: +1 grau por item inédito ou por raridade inédita? (b) Caçador: \"1 Arma Simples\" não existe. (c) Mineiro: itens iguais aos do Lenhador. (d) \"Condições mentais\" = Enfeitiçado, Amedrontado, Confuso, Atordoado, a única lista escrita (no Limiar). Descontrolado e Bêbado ficam de fora?",
      "recomendacao": "(a) Por raridade (Incomum, Exótico, Luxária: até +3); por item, 4 fabricações levam a Lendário. (b) \"Arma Distância Simples\". (c) \"Cobre\" no lugar de \"Madeira Comum\". (d) Sim."
-    }
+    },
+    "resolvidoPor": "textoCorrigido",
+    "evidencia": "O trecho citado não está mais em data/ nem em js/."
    }
   },
   {
@@ -1108,8 +1205,8 @@
     ]
    },
    "resposta": {
-    "status": "esperandoPedro",
-    "statusBalanceamento": "pedroDecide",
+    "status": "resolvido",
+    "statusBalanceamento": "resolvido",
     "texto": "Parece cópia do Lenhador. Trocar \"Madeira Comum\" por \"Cobre\" (Material Ordinário mineral do Bazar).",
     "acao": "aguarda Pedro",
     "perguntaPedro": {
@@ -1548,8 +1645,8 @@
       ]
      },
      "resposta": {
-      "status": "esperandoPedro",
-      "statusBalanceamento": "pedroDecide",
+      "status": "resolvido",
+      "statusBalanceamento": "resolvido",
       "texto": "\"Espada\": mesma T3, com o mesmo provisório (corpo a corpo + Cortante). O jogador escolhe a arma ao amolar. +1d4 Cortante até o fim do próximo combate; não dobra no crítico (D97).",
       "acao": "ficha: bônus preso à arma escolhida, some no fim do próximo combate",
       "principio": {
@@ -1741,8 +1838,8 @@
       ]
      },
      "resposta": {
-      "status": "esperandoPedro",
-      "statusBalanceamento": "pedroDecide",
+      "status": "resolvido",
+      "statusBalanceamento": "resolvido",
       "texto": "PMA: o 2º ataque leva −5 (G3; o texto não diz \"sem penalidade de multi-ataque\"). Custo com arma de Atacar(2)/(3): pergunta T2. Minha recomendação é que os 2 ataques custem juntos o Atacar(n) da arma, o que mantém a técnica valendo \"2 ataques pelo preço de 1\" em qualquer arma. No literal, uma Pesada Brutal faria 2 ataques por 1 ação, economizando 5 ações.",
       "acao": "ficha: mostra \"1 Ação\" do texto + aviso até a T2",
       "principio": {
@@ -1758,10 +1855,8 @@
      }
     }
    ],
-   "status": "alerta",
-   "motivos": [
-    "regra:media"
-   ]
+   "status": "ok",
+   "motivos": []
   },
   {
    "id": "espadachim-corte-diagonal",
@@ -1863,13 +1958,14 @@
        "data/classes/monge.json",
        "data/classes/teurgo.json",
        "data/efeitos.json",
-       "data/ficha.schema.json",
+       "data/ficha-v2.schema.json",
        "data/limiar.json",
        "data/magias.json",
        "data/origens.json",
        "data/racas/automato.json",
        "data/racas/humano.json",
-       "data/sistema.json"
+       "data/sistema.json",
+       "js/ficha.js"
       ]
      },
      "resposta": {
@@ -2049,8 +2145,8 @@
       ]
      },
      "resposta": {
-      "status": "esperandoPedro",
-      "statusBalanceamento": "pedroDecide",
+      "status": "resolvido",
+      "statusBalanceamento": "resolvido",
       "texto": "\"PMA\" definido no Sistema pela D29. \"Nesta rodada\" = neste turno, porque a PMA é por turno. Com isso a técnica funciona como está.",
       "acao": "aguarda Pedro",
       "perguntaPedro": {
@@ -2266,7 +2362,8 @@
        "data/classes/monge.json",
        "data/classes/teurgo.json",
        "data/limiar.json",
-       "data/racas/corrompido.json"
+       "data/racas/corrompido.json",
+       "js/ficha.js"
       ]
      },
      "resposta": {
@@ -2600,7 +2697,8 @@
        "data/classes/monge.json",
        "data/classes/teurgo.json",
        "data/limiar.json",
-       "data/racas/corrompido.json"
+       "data/racas/corrompido.json",
+       "js/ficha.js"
       ]
      },
      "resposta": {
@@ -2829,8 +2927,8 @@
       ]
      },
      "resposta": {
-      "status": "leitura",
-      "statusBalanceamento": "decisao",
+      "status": "resolvido",
+      "statusBalanceamento": "resolvido",
       "texto": "Gatilho: um ataque da Marca erra contra sua Evasão Ativa. Efeito: retaliação livre. Role Atacar contra a rolagem do ataque defendido; se passar, você a acerta com a arma empunhada, só corpo a corpo. O ataque dela já errou, então você não sofre dano. Dispara uma vez por ataque defendido, pagando 3 Stamina a cada uso. O teto natural é o número de ataques da Marca e a sua Stamina. Não usa reação.",
       "acao": "ficha: botão de uso por ataque defendido (3 Stamina cada)",
       "principio": {
@@ -2846,10 +2944,8 @@
      }
     }
    ],
-   "status": "alerta",
-   "motivos": [
-    "regra:media"
-   ]
+   "status": "ok",
+   "motivos": []
   },
   {
    "id": "espadachim-duelista-intocavel",
@@ -3014,8 +3110,8 @@
       ]
      },
      "resposta": {
-      "status": "leitura",
-      "statusBalanceamento": "decisao",
+      "status": "resolvido",
+      "statusBalanceamento": "resolvido",
       "texto": "\"+2 Defender\" soma 2 à rolagem do dado de Defender (G5). \"Sua primeira retaliação não gasta reação\" = a primeira retaliação até o início do seu próximo turno é livre (G1).",
       "acao": "ficha: +2 no dado de Defender; contador \"retaliação livre\" = 1",
       "principio": {
@@ -3031,10 +3127,8 @@
      }
     }
    ],
-   "status": "alerta",
-   "motivos": [
-    "regra:media"
-   ]
+   "status": "ok",
+   "motivos": []
   },
   {
    "id": "espadachim-contra-guarda",
@@ -3179,8 +3273,8 @@
       ]
      },
      "resposta": {
-      "status": "leitura",
-      "statusBalanceamento": "decisao",
+      "status": "resolvido",
+      "statusBalanceamento": "resolvido",
       "texto": "Leitura G1: \"retaliar sem gastar reação\" é retaliação livre, feita fora da reação. Até o início do seu próximo turno, até 2 retaliações livres contra a Marca. Você pode retaliar mesmo sem reação e pode Defender (reação) e retaliar o mesmo ataque. A reação fica intacta para outro agressor se você não a usou.",
       "acao": "ficha: contador \"retaliação livre\" = 2 (alvo: Marca), zera no início do seu turno",
       "principio": {
@@ -3196,10 +3290,8 @@
      }
     }
    ],
-   "status": "alerta",
-   "motivos": [
-    "regra:alta"
-   ]
+   "status": "ok",
+   "motivos": []
   },
   {
    "id": "espadachim-sentenca-final",
@@ -3209,7 +3301,7 @@
    "grupo": "ultimate",
    "ramo": "espadachim-ramo-do-guarda-lamina",
    "tier": 3,
-   "custoTexto": "1 Ação · 10 Stamina · 1x/Dia",
+   "custoTexto": "1 Ação · 10 Stamina · 1x/Descanso Longo",
    "dono": "espadachim",
    "pagina": "pages/classes/espadachim.html",
    "levavel": {
@@ -3229,7 +3321,7 @@
    },
    "custo": {
     "status": "ok",
-    "texto": "1 Ação · 10 Stamina · 1x/Dia",
+    "texto": "1 Ação · 10 Stamina · 1x/Descanso Longo",
     "acoes": [
      1
     ],
@@ -3238,8 +3330,8 @@
       "recurso": "usos",
       "custoTipo": "fixo",
       "valor": 1,
-      "recarga": "Dia",
-      "texto": "1x/Dia"
+      "recarga": "Descanso Longo",
+      "texto": "1x/Descanso Longo"
      },
      {
       "recurso": "stamina",
@@ -3250,16 +3342,15 @@
     ]
    },
    "recarga": {
-    "status": "alerta",
+    "status": "ok",
     "achados": [
      {
       "onde": "custoTexto",
-      "texto": "1x/Dia",
+      "texto": "1x/Descanso Longo",
       "forma": "barra",
-      "periodo": "dia",
+      "periodo": "longo",
       "evento": "descansoLongo",
-      "status": "alerta",
-      "nota": "notação antiga: a oficial é \"1x/Descanso Longo\" (L29); a ficha trata como descansoLongo"
+      "status": "ok"
      }
     ]
    },
@@ -3277,18 +3368,8 @@
     "info": []
    },
    "obsoletas": {
-    "status": "obsoleto",
-    "achados": [
-     {
-      "regra": "recarga-por-dia",
-      "severidade": "obsoleto",
-      "campo": "custo",
-      "casou": "1x/Dia",
-      "trechoVerbatim": "1 Ação · 10 Stamina · 1x/Dia",
-      "regraAtual": "A notação oficial é \"1x/Descanso Longo\" (\"1x/dia\" é antiga). Existem também 1x/sessão, 1x/semana e 1x/campanha, marcados à mão.",
-      "fonte": "L29 (Pedro: \"Geralmente a notação oficial nas técnicas é 1x/Descanso Longo e não 1x/dia\"); contrato recargas"
-     }
-    ]
+    "status": "ok",
+    "achados": []
    },
    "automacao": {
     "status": "manual",
@@ -3312,8 +3393,8 @@
       ]
      },
      "resposta": {
-      "status": "leitura",
-      "statusBalanceamento": "decisao",
+      "status": "resolvido",
+      "statusBalanceamento": "resolvido",
       "texto": "Com a G1, a técnica tem efeito: no plano, toda retaliação é livre, então você pode Defender (reação) e retaliar cada ataque da Marca. Se o Pedro recusar a G1, ela fica nula no modelo atual e precisa ser reescrita.",
       "acao": "ficha: retaliação livre ilimitada enquanto no plano",
       "principio": {
@@ -3340,6 +3421,11 @@
       "pedacos": 3,
       "encontrados": 3,
       "em": [
+       "data/balanceamento/ficha-digital-regras.json",
+       "data/catalogo/carta.json",
+       "data/catalogo/marca.json",
+       "data/catalogo/origem.json",
+       "data/catalogo/tecnica.json",
        "data/catalogo/ultimate.json",
        "data/classes/alquimista.json",
        "data/classes/artilheiro.json",
@@ -3347,12 +3433,16 @@
        "data/classes/brutalista.json",
        "data/classes/espadachim.json",
        "data/classes/monge.json",
-       "data/classes/teurgo.json"
+       "data/classes/teurgo.json",
+       "data/limiar.json",
+       "data/origens.json",
+       "data/racas/corrompido.json",
+       "js/ficha.js"
       ]
      },
      "resposta": {
-      "status": "esperandoPedro",
-      "statusBalanceamento": "pedroDecide",
+      "status": "resolvido",
+      "statusBalanceamento": "resolvido",
       "texto": "Trocar \"1x/Dia\" por \"1x/Descanso Longo\" nas ultimates e no cabeçalho do Tier 3 das 7 classes. É só texto: a ficha já recarrega no descanso longo (L29).",
       "acao": "aguarda Pedro",
       "perguntaPedro": {
@@ -3364,12 +3454,8 @@
      }
     }
    ],
-   "status": "alerta",
-   "motivos": [
-    "recarga:alerta",
-    "obsoletas:obsoleto",
-    "regra:media"
-   ]
+   "status": "ok",
+   "motivos": []
   },
   {
    "id": "espadachim-nostalgia",
@@ -3861,12 +3947,13 @@
        "data/classes/monge.json",
        "data/classes/teurgo.json",
        "data/limiar.json",
-       "data/racas/corrompido.json"
+       "data/racas/corrompido.json",
+       "js/ficha.js"
       ]
      },
      "resposta": {
-      "status": "esperandoPedro",
-      "statusBalanceamento": "pedroDecide",
+      "status": "resolvido",
+      "statusBalanceamento": "resolvido",
       "texto": "Custo com arma pesada: mesma T2. O 2º ataque leva −5 (G3). Os +2d6 e o Sangramento 1 valem uma vez, no 2º acerto, só se os dois acertarem. Os +2d6 não dobram no crítico (D97).",
       "acao": "ficha: como Lâmina Rápida",
       "principio": {
@@ -3882,10 +3969,8 @@
      }
     }
    ],
-   "status": "alerta",
-   "motivos": [
-    "regra:media"
-   ]
+   "status": "ok",
+   "motivos": []
   },
   {
    "id": "espadachim-cicatrizes",
@@ -3895,7 +3980,7 @@
    "grupo": "ultimate",
    "ramo": "espadachim-ramo-do-oprimido",
    "tier": 3,
-   "custoTexto": "1 Ação · 10 Stamina · 1x/Dia",
+   "custoTexto": "1 Ação · 10 Stamina · 1x/Descanso Longo",
    "dono": "espadachim",
    "pagina": "pages/classes/espadachim.html",
    "levavel": {
@@ -3915,7 +4000,7 @@
    },
    "custo": {
     "status": "ok",
-    "texto": "1 Ação · 10 Stamina · 1x/Dia",
+    "texto": "1 Ação · 10 Stamina · 1x/Descanso Longo",
     "acoes": [
      1
     ],
@@ -3924,8 +4009,8 @@
       "recurso": "usos",
       "custoTipo": "fixo",
       "valor": 1,
-      "recarga": "Dia",
-      "texto": "1x/Dia"
+      "recarga": "Descanso Longo",
+      "texto": "1x/Descanso Longo"
      },
      {
       "recurso": "stamina",
@@ -3936,16 +4021,15 @@
     ]
    },
    "recarga": {
-    "status": "alerta",
+    "status": "ok",
     "achados": [
      {
       "onde": "custoTexto",
-      "texto": "1x/Dia",
+      "texto": "1x/Descanso Longo",
       "forma": "barra",
-      "periodo": "dia",
+      "periodo": "longo",
       "evento": "descansoLongo",
-      "status": "alerta",
-      "nota": "notação antiga: a oficial é \"1x/Descanso Longo\" (L29); a ficha trata como descansoLongo"
+      "status": "ok"
      }
     ]
    },
@@ -3963,18 +4047,8 @@
     "info": []
    },
    "obsoletas": {
-    "status": "obsoleto",
-    "achados": [
-     {
-      "regra": "recarga-por-dia",
-      "severidade": "obsoleto",
-      "campo": "custo",
-      "casou": "1x/Dia",
-      "trechoVerbatim": "1 Ação · 10 Stamina · 1x/Dia",
-      "regraAtual": "A notação oficial é \"1x/Descanso Longo\" (\"1x/dia\" é antiga). Existem também 1x/sessão, 1x/semana e 1x/campanha, marcados à mão.",
-      "fonte": "L29 (Pedro: \"Geralmente a notação oficial nas técnicas é 1x/Descanso Longo e não 1x/dia\"); contrato recargas"
-     }
-    ]
+    "status": "ok",
+    "achados": []
    },
    "automacao": {
     "status": "manual",
@@ -3993,6 +4067,11 @@
       "pedacos": 3,
       "encontrados": 3,
       "em": [
+       "data/balanceamento/ficha-digital-regras.json",
+       "data/catalogo/carta.json",
+       "data/catalogo/marca.json",
+       "data/catalogo/origem.json",
+       "data/catalogo/tecnica.json",
        "data/catalogo/ultimate.json",
        "data/classes/alquimista.json",
        "data/classes/artilheiro.json",
@@ -4000,12 +4079,16 @@
        "data/classes/brutalista.json",
        "data/classes/espadachim.json",
        "data/classes/monge.json",
-       "data/classes/teurgo.json"
+       "data/classes/teurgo.json",
+       "data/limiar.json",
+       "data/origens.json",
+       "data/racas/corrompido.json",
+       "js/ficha.js"
       ]
      },
      "resposta": {
-      "status": "esperandoPedro",
-      "statusBalanceamento": "pedroDecide",
+      "status": "resolvido",
+      "statusBalanceamento": "resolvido",
       "texto": "Trocar \"1x/Dia\" por \"1x/Descanso Longo\" nas ultimates e no cabeçalho do Tier 3 das 7 classes. É só texto: a ficha já recarrega no descanso longo (L29).",
       "acao": "aguarda Pedro",
       "perguntaPedro": {
@@ -4017,11 +4100,8 @@
      }
     }
    ],
-   "status": "alerta",
-   "motivos": [
-    "recarga:alerta",
-    "obsoletas:obsoleto"
-   ]
+   "status": "ok",
+   "motivos": []
   },
   {
    "id": "espadachim-coragem-liquida",
@@ -4109,8 +4189,8 @@
       ]
      },
      "resposta": {
-      "status": "esperandoPedro",
-      "statusBalanceamento": "pedroDecide",
+      "status": "resolvido",
+      "statusBalanceamento": "resolvido",
       "texto": "+1 na perícia Movimento: as outras 5 marcas do Espadachim dão perícia.",
       "acao": "aguarda Pedro",
       "perguntaPedro": {
@@ -4401,7 +4481,7 @@
     "descricaoV21": {
      "status": "completa",
      "cobertura": 1.0,
-     "texto": "Você se torna Treinado em Qualquer Perícia à sua escolha. Se já for Treinado, se torna Experiente e assim por diante.Enquanto Bêbado:Você tem margem de crítico "
+     "texto": "Você se torna Treinado em Qualquer Perícia à sua escolha. Se já for Treinado, se torna Experiente e assim por diante.Enquanto Bêbado:Você tem margem de ameaça +"
     },
     "status": "ok",
     "notas": []
@@ -4446,7 +4526,7 @@
      {
       "valor": "+2",
       "campo": "Atacar",
-      "trecho": "m de crítico +1 em TODAS as rolagens. | +2 Atacar | +2 Evasão | Desvantagem em"
+      "trecho": "em de ameaça +1 em TODAS as rolagens. | +2 Atacar | +2 Evasão | Desvantagem em"
      },
      {
       "valor": "+2",
@@ -4464,36 +4544,30 @@
      "trecho": "Você tem margem de crítico +1 em TODAS as rolagens. · +2 Atacar · +2 Evasão",
      "regraAtual": "data/sistema.json > Dano: o termo atual é \"Margem de Ameaça = a faixa do d20 em que seu ataque é considerado um crítico\", definida para ataque. O contrato testes.critico._colisaoDeTermo diz que o crítico de fabricação é outro (±10 sobre a CD, D49), e Defender rola dado próprio (1d6–2d8), não d20. Não dá para saber como \"TODAS as rolagens\" se aplica a Defender, dano e fabricação. \"+2 Evasão\" também não diz se vale na Passiva (e portanto na Ativa) ou só numa delas. Atenuante: o contrato (testes.critico.escopo: \"todas as rolagens de d20, nao so ataque\") já limita o crítico ao d20, o que tira Defender e dano da conta; sobram a fabricação (±10 da D49) e o \"+2 Evasão\".",
      "trechoAtual": {
-      "status": "presente",
+      "status": "ausente",
       "pedacos": 1,
-      "encontrados": 1,
-      "em": [
-       "data/balanceamento/ficha-efeitos-itens.json",
-       "data/bazar.json",
-       "data/catalogo/carta.json",
-       "data/catalogo/magia.json",
-       "data/catalogo/marca.json",
-       "data/catalogo/tecnica.json",
-       "data/catalogo/ultimate.json",
-       "data/classes/alquimista.json",
-       "data/classes/artilheiro.json",
-       "data/classes/batedor.json",
-       "data/classes/brutalista.json",
-       "data/classes/espadachim.json",
-       "data/classes/monge.json",
-       "data/efeitos.json",
-       "data/limiar.json"
-      ]
+      "encontrados": 0,
+      "em": [],
+      "faltam": [
+       "Você tem margem de crítico +1 em TODAS as rolagens. · +2 Atacar · +2 Evasão"
+      ],
+      "textoAtual": {
+       "tecnica": "espadachim-sorte-do-bebado",
+       "fonte": "data/classes/espadachim.json",
+       "bloco": "Enquanto Bêbado: Você tem margem de ameaça +1 em TODAS as rolagens."
+      }
      },
      "resposta": {
-      "status": "leitura",
+      "status": "resolvido",
       "statusBalanceamento": "decisao",
       "texto": "Margem de crítico = Margem de Ameaça (G7). O +1 vale em toda rolagem de d20 (contrato testes.critico.escopo), inclusive fabricação pela regra geral do 20 natural; o crítico por margem de ±10 da D49 não muda. Não mexe no dado de Defender nem no dano, que não são d20. \"+2 Evasão\" entra na Evasão base (Passiva), e a Ativa sobe junto porque soma o dado à Passiva.",
       "acao": "ficha: margemDeAmeaca −1 em todo d20; evasao.base +2",
       "principio": {
        "id": "G7",
        "nome": "Termos"
-      }
+      },
+      "resolvidoPor": "textoCorrigido",
+      "evidencia": "O trecho citado não está mais em data/ nem em js/ (texto atual em data/classes/espadachim.json: \"Enquanto Bêbado: Você tem margem de ameaça +1 em TODAS as rolagens.\")."
      }
     }
    ],
@@ -4688,13 +4762,14 @@
        "data/classes/monge.json",
        "data/classes/teurgo.json",
        "data/efeitos.json",
-       "data/ficha.schema.json",
+       "data/ficha-v2.schema.json",
        "data/limiar.json",
        "data/magias.json",
        "data/origens.json",
        "data/racas/automato.json",
        "data/racas/humano.json",
-       "data/sistema.json"
+       "data/sistema.json",
+       "js/ficha.js"
       ]
      },
      "resposta": {
@@ -4722,7 +4797,7 @@
    "grupo": "ultimate",
    "ramo": "espadachim-ramo-do-exilado-bebado",
    "tier": 3,
-   "custoTexto": "1 Ação · 5 Stamina · 1x/Dia",
+   "custoTexto": "1 Ação · 5 Stamina · 1x/Descanso Longo",
    "dono": "espadachim",
    "pagina": "pages/classes/espadachim.html",
    "levavel": {
@@ -4742,7 +4817,7 @@
    },
    "custo": {
     "status": "ok",
-    "texto": "1 Ação · 5 Stamina · 1x/Dia",
+    "texto": "1 Ação · 5 Stamina · 1x/Descanso Longo",
     "acoes": [
      1
     ],
@@ -4751,8 +4826,8 @@
       "recurso": "usos",
       "custoTipo": "fixo",
       "valor": 1,
-      "recarga": "Dia",
-      "texto": "1x/Dia"
+      "recarga": "Descanso Longo",
+      "texto": "1x/Descanso Longo"
      },
      {
       "recurso": "stamina",
@@ -4763,16 +4838,15 @@
     ]
    },
    "recarga": {
-    "status": "alerta",
+    "status": "ok",
     "achados": [
      {
       "onde": "custoTexto",
-      "texto": "1x/Dia",
+      "texto": "1x/Descanso Longo",
       "forma": "barra",
-      "periodo": "dia",
+      "periodo": "longo",
       "evento": "descansoLongo",
-      "status": "alerta",
-      "nota": "notação antiga: a oficial é \"1x/Descanso Longo\" (L29); a ficha trata como descansoLongo"
+      "status": "ok"
      }
     ]
    },
@@ -4788,18 +4862,8 @@
     "info": []
    },
    "obsoletas": {
-    "status": "obsoleto",
-    "achados": [
-     {
-      "regra": "recarga-por-dia",
-      "severidade": "obsoleto",
-      "campo": "custo",
-      "casou": "1x/Dia",
-      "trechoVerbatim": "1 Ação · 5 Stamina · 1x/Dia",
-      "regraAtual": "A notação oficial é \"1x/Descanso Longo\" (\"1x/dia\" é antiga). Existem também 1x/sessão, 1x/semana e 1x/campanha, marcados à mão.",
-      "fonte": "L29 (Pedro: \"Geralmente a notação oficial nas técnicas é 1x/Descanso Longo e não 1x/dia\"); contrato recargas"
-     }
-    ]
+    "status": "ok",
+    "achados": []
    },
    "automacao": {
     "status": "manual",
@@ -4823,8 +4887,8 @@
       ]
      },
      "resposta": {
-      "status": "leitura",
-      "statusBalanceamento": "decisao",
+      "status": "resolvido",
+      "statusBalanceamento": "resolvido",
       "texto": "Só rolagens de d20: Defender e dano não são d20. Cada dado substitui uma rolagem e sai do conjunto; acabados os 6, você volta a rolar, como em outras vidências. Se os dados pudessem ser reusados, seriam 10 minutos de 18+ garantido. 10 min = 100 rodadas (D90).",
       "acao": "ficha: pool de 6 valores, cada um consumido ao usar",
       "perguntaPedro": {
@@ -4847,6 +4911,11 @@
       "pedacos": 3,
       "encontrados": 3,
       "em": [
+       "data/balanceamento/ficha-digital-regras.json",
+       "data/catalogo/carta.json",
+       "data/catalogo/marca.json",
+       "data/catalogo/origem.json",
+       "data/catalogo/tecnica.json",
        "data/catalogo/ultimate.json",
        "data/classes/alquimista.json",
        "data/classes/artilheiro.json",
@@ -4854,12 +4923,16 @@
        "data/classes/brutalista.json",
        "data/classes/espadachim.json",
        "data/classes/monge.json",
-       "data/classes/teurgo.json"
+       "data/classes/teurgo.json",
+       "data/limiar.json",
+       "data/origens.json",
+       "data/racas/corrompido.json",
+       "js/ficha.js"
       ]
      },
      "resposta": {
-      "status": "esperandoPedro",
-      "statusBalanceamento": "pedroDecide",
+      "status": "resolvido",
+      "statusBalanceamento": "resolvido",
       "texto": "Trocar \"1x/Dia\" por \"1x/Descanso Longo\" nas ultimates e no cabeçalho do Tier 3 das 7 classes. É só texto: a ficha já recarrega no descanso longo (L29).",
       "acao": "aguarda Pedro",
       "perguntaPedro": {
@@ -4871,11 +4944,8 @@
      }
     }
    ],
-   "status": "alerta",
-   "motivos": [
-    "recarga:alerta",
-    "obsoletas:obsoleto"
-   ]
+   "status": "ok",
+   "motivos": []
   },
   {
    "id": "espadachim-proficiencia-com-espadas",
@@ -4939,16 +5009,22 @@
      "trecho": "Você ignora Ar (Armadura) em ataques com espada igual ao seu nível, adicionalmente você ignora resistência a dano Cortante a partir do nível 3.",
      "regraAtual": "data/Bazar_Khalkaria_v26.csv: nenhum item tem \"espada\" no nome, e as armas são chassis (Leve Cortante, Marcial Precisa, Marcial Versátil, Pesada Brutal…), sem tag de espada (Tags das armas: só Foco/*, Arremesso, Munição). O treinamento da classe é \"Armas Marciais\". A ficha não consegue saber quais armas contam como espada: arma que causa Cortante? Marciais? Lista de nomes (Lâmina, Sabre, Rapieira)?",
      "trechoAtual": {
-      "status": "presente",
+      "status": "ausente",
       "pedacos": 1,
-      "encontrados": 1,
-      "em": [
-       "data/classes/espadachim.json"
-      ]
+      "encontrados": 0,
+      "em": [],
+      "faltam": [
+       "Você ignora Ar (Armadura) em ataques com espada igual ao seu nível, adicionalmente você ignora resistência a dano Cortante a partir do nível 3."
+      ],
+      "textoAtual": {
+       "tecnica": "espadachim-proficiencia-com-espadas",
+       "fonte": "data/classes/espadachim.json > classe.caracteristicas",
+       "bloco": "Acostumado a se sustentar em apenas um tipo de dano, possui especialidade em causar dano cortante. Você ignora (Ar = ao seu nível) em ataques com espada (arma corpo a corpo que causa dano Cortante), adicionalmente você ignora resistência a dano Cortante a partir do nível 3."
+      }
      },
      "resposta": {
-      "status": "esperandoPedro",
-      "statusBalanceamento": "pedroDecide",
+      "status": "resolvido",
+      "statusBalanceamento": "resolvido",
       "texto": "\"Espada\" não existe no Bazar. Pergunta T3. Recomendo \"arma corpo a corpo que causa dano Cortante\": Leve Cortante, Marcial Precisa, Pesada Cortante, e Leve Ágil, Marcial Versátil e Pesada Brutal quando o jogador escolhe Cortante. É automatizável, casa com o \"ignora resistência a Cortante\" do nível 3 e não exige mexer no CSV. Custo: machados e foices de chassi Cortante contam como espada.",
       "acao": "ficha: provisório = corpo a corpo + Cortante",
       "principio": {
@@ -4960,7 +5036,9 @@
        "tema": "\"Espada\"",
        "pergunta": "Proficiência com Espadas e Pedra de Amolar citam \"espada\", que o Bazar não tem. Qual regra?",
        "recomendacao": "Arma corpo a corpo que causa dano Cortante. Casa com o \"ignora resistência a Cortante\" e não pede mudança no CSV; custo: machados e foices de chassi Cortante contam. Alternativa: tag \"Espada\" no CSV."
-      }
+      },
+      "resolvidoPor": "textoCorrigido",
+      "evidencia": "O trecho citado não está mais em data/ nem em js/ (texto atual em data/classes/espadachim.json > classe.caracteristicas: \"Acostumado a se sustentar em apenas um tipo de dano, possui especialidade em causar dano cortante. Você ignora (Ar = ao seu nível) em ataques com espada (arma corpo a corpo que causa dano Cortante), adicionalmente você ignora resistência a dano Cortante a partir do nível 3.\")."
      }
     },
     {
@@ -5185,12 +5263,13 @@
       "em": [
        "data/balanceamento/ficha-digital-regras.json",
        "data/classes/espadachim.json",
-       "data/classes/teurgo.json"
+       "data/classes/teurgo.json",
+       "js/ficha.js"
       ]
      },
      "resposta": {
-      "status": "esperandoPedro",
-      "statusBalanceamento": "pedroDecide",
+      "status": "resolvido",
+      "statusBalanceamento": "resolvido",
       "texto": "Preciso do texto (nome, máximo, ganho, perda). Até lá a ficha mostra um contador livre, com nome e atual/máx editáveis.",
       "acao": "aguarda Pedro",
       "perguntaPedro": {
@@ -5204,8 +5283,7 @@
    ],
    "status": "alerta",
    "motivos": [
-    "levavel:nao",
-    "regra:media"
+    "levavel:nao"
    ]
   },
   {
@@ -5623,7 +5701,8 @@
        "data/classes/espadachim.json",
        "data/classes/monge.json",
        "data/classes/teurgo.json",
-       "data/efeitos.json"
+       "data/efeitos.json",
+       "js/ficha.js"
       ]
      },
      "resposta": {
@@ -7797,8 +7876,8 @@
       ]
      },
      "resposta": {
-      "status": "leitura",
-      "statusBalanceamento": "decisao",
+      "status": "resolvido",
+      "statusBalanceamento": "resolvido",
       "texto": "Dois usos. Criar venenos no descanso (até 2 no curto, 5 no longo, 5 Sins cada) não custa Stamina. Aplicar na arma ou munição custa 1 Ação e 2 Stamina. A Fortitude é contra a sua CD (D57: a CD é sempre a do portador; Batedor 10 + DES + SAB). \"Envenenada\" = Envenenamento. O texto não diz quanto dura a dose; provisório: vale até o primeiro acerto.",
       "acao": "ficha: custo só no \"aplicar\"; CD da classe",
       "perguntaPedro": {
@@ -8141,6 +8220,11 @@
       "pedacos": 3,
       "encontrados": 3,
       "em": [
+       "data/balanceamento/ficha-digital-regras.json",
+       "data/catalogo/carta.json",
+       "data/catalogo/marca.json",
+       "data/catalogo/origem.json",
+       "data/catalogo/tecnica.json",
        "data/catalogo/ultimate.json",
        "data/classes/alquimista.json",
        "data/classes/artilheiro.json",
@@ -8148,12 +8232,16 @@
        "data/classes/brutalista.json",
        "data/classes/espadachim.json",
        "data/classes/monge.json",
-       "data/classes/teurgo.json"
+       "data/classes/teurgo.json",
+       "data/limiar.json",
+       "data/origens.json",
+       "data/racas/corrompido.json",
+       "js/ficha.js"
       ]
      },
      "resposta": {
-      "status": "esperandoPedro",
-      "statusBalanceamento": "pedroDecide",
+      "status": "resolvido",
+      "statusBalanceamento": "resolvido",
       "texto": "Trocar \"1x/Dia\" por \"1x/Descanso Longo\" nas ultimates e no cabeçalho do Tier 3 das 7 classes. É só texto: a ficha já recarrega no descanso longo (L29).",
       "acao": "aguarda Pedro",
       "perguntaPedro": {
@@ -8322,6 +8410,11 @@
       "pedacos": 3,
       "encontrados": 3,
       "em": [
+       "data/balanceamento/ficha-digital-regras.json",
+       "data/catalogo/carta.json",
+       "data/catalogo/marca.json",
+       "data/catalogo/origem.json",
+       "data/catalogo/tecnica.json",
        "data/catalogo/ultimate.json",
        "data/classes/alquimista.json",
        "data/classes/artilheiro.json",
@@ -8329,12 +8422,16 @@
        "data/classes/brutalista.json",
        "data/classes/espadachim.json",
        "data/classes/monge.json",
-       "data/classes/teurgo.json"
+       "data/classes/teurgo.json",
+       "data/limiar.json",
+       "data/origens.json",
+       "data/racas/corrompido.json",
+       "js/ficha.js"
       ]
      },
      "resposta": {
-      "status": "esperandoPedro",
-      "statusBalanceamento": "pedroDecide",
+      "status": "resolvido",
+      "statusBalanceamento": "resolvido",
       "texto": "Trocar \"1x/Dia\" por \"1x/Descanso Longo\" nas ultimates e no cabeçalho do Tier 3 das 7 classes. É só texto: a ficha já recarrega no descanso longo (L29).",
       "acao": "aguarda Pedro",
       "perguntaPedro": {
@@ -8464,6 +8561,11 @@
       "pedacos": 3,
       "encontrados": 3,
       "em": [
+       "data/balanceamento/ficha-digital-regras.json",
+       "data/catalogo/carta.json",
+       "data/catalogo/marca.json",
+       "data/catalogo/origem.json",
+       "data/catalogo/tecnica.json",
        "data/catalogo/ultimate.json",
        "data/classes/alquimista.json",
        "data/classes/artilheiro.json",
@@ -8471,12 +8573,16 @@
        "data/classes/brutalista.json",
        "data/classes/espadachim.json",
        "data/classes/monge.json",
-       "data/classes/teurgo.json"
+       "data/classes/teurgo.json",
+       "data/limiar.json",
+       "data/origens.json",
+       "data/racas/corrompido.json",
+       "js/ficha.js"
       ]
      },
      "resposta": {
-      "status": "esperandoPedro",
-      "statusBalanceamento": "pedroDecide",
+      "status": "resolvido",
+      "statusBalanceamento": "resolvido",
       "texto": "Trocar \"1x/Dia\" por \"1x/Descanso Longo\" nas ultimates e no cabeçalho do Tier 3 das 7 classes. É só texto: a ficha já recarrega no descanso longo (L29).",
       "acao": "aguarda Pedro",
       "perguntaPedro": {
@@ -8570,6 +8676,11 @@
       "pedacos": 3,
       "encontrados": 3,
       "em": [
+       "data/balanceamento/ficha-digital-regras.json",
+       "data/catalogo/carta.json",
+       "data/catalogo/marca.json",
+       "data/catalogo/origem.json",
+       "data/catalogo/tecnica.json",
        "data/catalogo/ultimate.json",
        "data/classes/alquimista.json",
        "data/classes/artilheiro.json",
@@ -8577,12 +8688,16 @@
        "data/classes/brutalista.json",
        "data/classes/espadachim.json",
        "data/classes/monge.json",
-       "data/classes/teurgo.json"
+       "data/classes/teurgo.json",
+       "data/limiar.json",
+       "data/origens.json",
+       "data/racas/corrompido.json",
+       "js/ficha.js"
       ]
      },
      "resposta": {
-      "status": "esperandoPedro",
-      "statusBalanceamento": "pedroDecide",
+      "status": "resolvido",
+      "statusBalanceamento": "resolvido",
       "texto": "Trocar \"1x/Dia\" por \"1x/Descanso Longo\" nas ultimates e no cabeçalho do Tier 3 das 7 classes. É só texto: a ficha já recarrega no descanso longo (L29).",
       "acao": "aguarda Pedro",
       "perguntaPedro": {
@@ -9708,8 +9823,8 @@
       ]
      },
      "resposta": {
-      "status": "leitura",
-      "statusBalanceamento": "decisao",
+      "status": "resolvido",
+      "statusBalanceamento": "resolvido",
       "texto": "Teto de +3 no total: +2 da ativação e no máximo +1 por erro. Se o teto fosse só do acúmulo, o total chegaria a +5 por 1 ação e 3 Stamina, acima de qualquer bônus de Atacar de técnica geral. Na troca de alvo, o bônus volta a +2.",
       "acao": "ficha: contador 2..3"
      }
@@ -9791,8 +9906,8 @@
    "motivos": []
   },
   {
-   "id": "brutalista-investida",
-   "nome": "Investida",
+   "id": "brutalista-atropelar",
+   "nome": "Atropelar",
    "fonte": "data/classes/brutalista.json",
    "tipo": "tecnica",
    "grupo": "geral",
@@ -9805,13 +9920,13 @@
     "kfId": true,
     "catalogo": true,
     "botaoV21": true,
-    "nomeV21": "Investida",
-    "nomeCatalogo": "Investida",
+    "nomeV21": "Atropelar",
+    "nomeCatalogo": "Atropelar",
     "tipoV21": "tecnica",
     "descricaoV21": {
      "status": "completa",
      "cobertura": 1.0,
-     "texto": "Pode investir em uma linha reta de no mínimo 4,5 m até 9 m. Alvos no caminho, devem suceder em um teste de Fortitude ou recebem (Nível)d6+Mod. Força e ficam Cai"
+     "texto": "Pode investir em uma linha reta de no mínimo 4,5 m até 9 m. Alvos no caminho, devem suceder em um teste de Fortitude ou recebem (Nível)d6+Mod. Força e ficam Caí"
     },
     "status": "ok",
     "notas": []
@@ -9851,27 +9966,8 @@
     "info": []
    },
    "obsoletas": {
-    "status": "revisar",
-    "achados": [
-     {
-      "regra": "investida-colisao-de-nome",
-      "severidade": "revisar",
-      "campo": "nome",
-      "casou": "Investida",
-      "trechoVerbatim": "Investida",
-      "regraAtual": "\"Investida\" agora é a manobra do Sistema (2 ações, conta como Mover). A técnica do Brutalista e a ação do Titã têm o mesmo nome com regras diferentes; renomear está com o Pedro.",
-      "fonte": "D88; L20 (Pedro: \"Bom revisar.\"), 09-decisoes-pedro.md"
-     },
-     {
-      "regra": "investida-citada",
-      "severidade": "info",
-      "campo": "texto",
-      "casou": "Investida",
-      "trechoVerbatim": "Investida",
-      "regraAtual": "Texto cita \"Investida\": pode ser a manobra do Sistema (D88) ou uma ação própria da técnica (L20, pendente).",
-      "fonte": "D88; L20"
-     }
-    ]
+    "status": "ok",
+    "achados": []
    },
    "automacao": {
     "status": "manual",
@@ -9892,6 +9988,7 @@
       "em": [
        "data/balanceamento/ficha-digital-regras.json",
        "data/balanceamento/ficha-efeitos-itens.json",
+       "data/balanceamento/ficha-efeitos-overrides.json",
        "data/bazar.json",
        "data/catalogo/carta.json",
        "data/catalogo/condicao.json",
@@ -9912,6 +10009,7 @@
        "data/classes/teurgo.json",
        "data/condicoes.json",
        "data/efeitos.json",
+       "data/ficha-v2.schema.json",
        "data/ficha.schema.json",
        "data/limiar.json",
        "data/magias.json",
@@ -9925,8 +10023,8 @@
       ]
      },
      "resposta": {
-      "status": "esperandoPedro",
-      "statusBalanceamento": "pedroDecide",
+      "status": "resolvido",
+      "statusBalanceamento": "resolvido",
       "texto": "L20: renomear para \"Atropelar\". Conta como o Mover do turno. \"Caidos\" → Caído (corrijo junto).",
       "acao": "aguarda Pedro",
       "perguntaPedro": {
@@ -9938,11 +10036,8 @@
      }
     }
    ],
-   "status": "alerta",
-   "motivos": [
-    "obsoletas:revisar",
-    "regra:media"
-   ]
+   "status": "ok",
+   "motivos": []
   },
   {
    "id": "brutalista-cicatrizes-de-ferro",
@@ -10035,7 +10130,7 @@
     "descricaoV21": {
      "status": "completa",
      "cobertura": 1.0,
-     "texto": "Você não é do tipo que morre e se tornou apático em relação a morte.Enquanto estiver com ou menos da metade da vida, você tem:+2 Armadura(Ar) NaturalAo ser redu"
+     "texto": "Você não é do tipo que morre e se tornou apático em relação a morte.IncansávelVocê recebe +1 em todas as perícias por nível de exaustão.Ao ser reduzido a 0 de S"
     },
     "status": "ok",
     "notas": []
@@ -10067,13 +10162,7 @@
    },
    "automacao": {
     "status": "manual",
-    "numeros": [
-     {
-      "valor": "+2",
-      "campo": "Armadura(Ar) Natural",
-      "trecho": "ou menos da metade da vida, você tem: | +2 Armadura(Ar) Natural | | | Ao ser reduzido a 0 de"
-     }
-    ]
+    "numeros": []
    },
    "achados": [
     {
@@ -10084,17 +10173,22 @@
      "trecho": "Ao ser reduzido a 0 de Saúde, pode escolher não morrer como ação livre voltando a 1 de Saúde.",
      "regraAtual": "data/sistema.json, Saúde: \"Ao reduzir a 0 ou menos, você recebe a condição Morrendo\". Pela condição Morrendo em data/condicoes.json, só se morre ao passar da metade da vida máxima em negativos. Chegar a 0 não mata, então \"não morrer\" é do modelo antigo. O efeito pretendido (evitar Morrendo e ficar com 1) se entende, mas o texto precisa acompanhar a regra.",
      "trechoAtual": {
-      "status": "presente",
+      "status": "ausente",
       "pedacos": 1,
-      "encontrados": 1,
-      "em": [
-       "data/catalogo/marca.json",
-       "data/classes/brutalista.json"
-      ]
+      "encontrados": 0,
+      "em": [],
+      "faltam": [
+       "Ao ser reduzido a 0 de Saúde, pode escolher não morrer como ação livre voltando a 1 de Saúde."
+      ],
+      "textoAtual": {
+       "tecnica": "brutalista-imortal",
+       "fonte": "data/classes/brutalista.json",
+       "bloco": "Ao ser reduzido a 0 de Saúde ou menos, pode escolher não morrer como ação livre voltando a 1 de Saúde."
+      }
      },
      "resposta": {
-      "status": "esperandoPedro",
-      "statusBalanceamento": "pedroDecide",
+      "status": "resolvido",
+      "statusBalanceamento": "resolvido",
       "texto": "Reescrever: \"Ao cair a 0 ou menos de Saúde, pode, como ação livre, ficar com 1 de Saúde em vez de entrar em Morrendo. Ao fazer isso, ganha +1 de Exaustão.\"",
       "acao": "aguarda Pedro",
       "perguntaPedro": {
@@ -10102,7 +10196,9 @@
        "tema": "Brutalista",
        "pergunta": "(a) Muralha Viva (L19). (b) Frenesi: \"no nível 1\" e \"descontrolado\". (c) Contador de Corpos: o asterisco de \"brutalmente\" não tem nota no Notion. (d) Imortal: \"pode escolher não morrer\" é do modelo antigo.",
        "recomendacao": "(a) \"Some +1 à rolagem de Defender para cada grau de treinamento (Treinado +1, Experiente +2, Mestre +3, Lendário +4)\", a tradução exata do \"3 em 3\". (b) \"No nível 2\"; \"descontrolado\" é adjetivo, não a condição; para travar algo preciso da lista, no mínimo \"não conjura nem sustenta magia\". (c) Matar com acerto crítico ou pelo Finalizar. (d) \"Ao cair a 0 ou menos de Saúde, pode, como ação livre, ficar com 1 de Saúde em vez de entrar em Morrendo. Ao fazer isso, ganha +1 de Exaustão.\""
-      }
+      },
+      "resolvidoPor": "textoCorrigido",
+      "evidencia": "O trecho citado não está mais em data/ nem em js/ (texto atual em data/classes/brutalista.json: \"Ao ser reduzido a 0 de Saúde ou menos, pode escolher não morrer como ação livre voltando a 1 de Saúde.\")."
      }
     }
    ],
@@ -10162,13 +10258,7 @@
    },
    "automacao": {
     "status": "manual",
-    "numeros": [
-     {
-      "valor": "+1",
-      "campo": "Stamina",
-      "trecho": "r uma criatura *brutalmente, você ganha +1 de Stamina e perde 1 de éter. | | |"
-     }
-    ]
+    "numeros": []
    },
    "achados": [
     {
@@ -10179,17 +10269,22 @@
      "trecho": "Ao matar uma criatura *brutalmente, você ganha +1 de Stamina e perde 1 de éter.",
      "regraAtual": "O asterisco aponta para uma nota que não existe em data/classes/brutalista.json nem em pages/classes/brutalista.html. \"Brutalmente\" não tem definição (com Brutalidade > 0? com Finalizar? a critério do mestre?), então a ficha não sabe quando disparar.",
      "trechoAtual": {
-      "status": "presente",
+      "status": "ausente",
       "pedacos": 1,
-      "encontrados": 1,
-      "em": [
-       "data/catalogo/marca.json",
-       "data/classes/brutalista.json"
-      ]
+      "encontrados": 0,
+      "em": [],
+      "faltam": [
+       "Ao matar uma criatura *brutalmente, você ganha +1 de Stamina e perde 1 de éter."
+      ],
+      "textoAtual": {
+       "tecnica": "brutalista-contador-de-corpos",
+       "fonte": "data/classes/brutalista.json",
+       "bloco": "| Ao matar uma criatura *brutalmente, você ganha 1d6 de Stamina e perde 1 de éter."
+      }
      },
      "resposta": {
-      "status": "esperandoPedro",
-      "statusBalanceamento": "pedroDecide",
+      "status": "resolvido",
+      "statusBalanceamento": "resolvido",
       "texto": "A nota do asterisco não existe no Notion. Sugestão: \"brutalmente\" = matar com acerto crítico ou pelo Finalizar.",
       "acao": "aguarda Pedro",
       "perguntaPedro": {
@@ -10197,7 +10292,9 @@
        "tema": "Brutalista",
        "pergunta": "(a) Muralha Viva (L19). (b) Frenesi: \"no nível 1\" e \"descontrolado\". (c) Contador de Corpos: o asterisco de \"brutalmente\" não tem nota no Notion. (d) Imortal: \"pode escolher não morrer\" é do modelo antigo.",
        "recomendacao": "(a) \"Some +1 à rolagem de Defender para cada grau de treinamento (Treinado +1, Experiente +2, Mestre +3, Lendário +4)\", a tradução exata do \"3 em 3\". (b) \"No nível 2\"; \"descontrolado\" é adjetivo, não a condição; para travar algo preciso da lista, no mínimo \"não conjura nem sustenta magia\". (c) Matar com acerto crítico ou pelo Finalizar. (d) \"Ao cair a 0 ou menos de Saúde, pode, como ação livre, ficar com 1 de Saúde em vez de entrar em Morrendo. Ao fazer isso, ganha +1 de Exaustão.\""
-      }
+      },
+      "resolvidoPor": "textoCorrigido",
+      "evidencia": "O trecho citado não está mais em data/ nem em js/ (texto atual em data/classes/brutalista.json: \"| Ao matar uma criatura *brutalmente, você ganha 1d6 de Stamina e perde 1 de éter.\")."
      }
     }
    ],
@@ -10452,7 +10549,7 @@
     "descricaoV21": {
      "status": "completa",
      "cobertura": 1.0,
-     "texto": "Você se torna Treinado em Defender. Se já for Treinado, se torna Experiente e assim por diante.O treinamento da sua pericia Defender aumenta de 3 em 3. (Ao invé"
+     "texto": "Você se torna Treinado em Defender. Se já for Treinado, se torna Experiente e assim por diante.Você recebe +1 na perícia Defender a cada treinamento dessa períc"
     },
     "status": "ok",
     "notas": []
@@ -10483,18 +10580,8 @@
     "info": []
    },
    "obsoletas": {
-    "status": "obsoleto",
-    "achados": [
-     {
-      "regra": "defender-degrau-de-bonus",
-      "severidade": "obsoleto",
-      "campo": "texto",
-      "casou": "de 3 em 3",
-      "trechoVerbatim": "O treinamento da sua pericia Defender aumenta de 3 em 3. (Ao invés de 2 em 2)",
-      "regraAtual": "Defender escala por DADO, não por bônus: Leigo 1d6, depois 1d8 / 1d10 / 1d12 / 2d8. \"Seus treinamentos aumentam o tipo de dado da rolagem em vez de adicionarem modificadores.\"",
-      "fonte": "data/sistema.json (Perícias > Defender — regra especial); data/pericias.json (Defender, modo dado); L19 \"Vale o primeiro\" (03-respostas-pedro.md §6)"
-     }
-    ]
+    "status": "ok",
+    "achados": []
    },
    "automacao": {
     "status": "manual",
@@ -10509,9 +10596,9 @@
      "trecho": "O treinamento da sua pericia <em>Defender</em> aumenta de 3 em 3. (Ao invés de 2 em 2)",
      "regraAtual": "data/sistema.json, Defender — regra especial: \"seus treinamentos aumentam o tipo de dado da rolagem em vez de adicionarem modificadores\" (Leigo 1d6 / Treinado 1d8 / Experiente 1d10 / Mestre 1d12 / Lendário 2d8). Defender não tem degrau de +2, então não existe \"3 em 3\". L19 respondida em 03-respostas-pedro.md §6: \"Vale o primeiro\" (o Sistema vence), com a nota do Pedro: \"Essa técnica do brutalista está desatualizada\". O 1º item (\"Você se torna Treinado em Defender...\") continua válido: sobe o dado.",
      "trechoAtual": {
-      "status": "presente",
+      "status": "parcial",
       "pedacos": 3,
-      "encontrados": 3,
+      "encontrados": 1,
       "em": [
        "data/balanceamento/ficha-digital-regras.json",
        "data/balanceamento/ficha-efeitos-itens.json",
@@ -10534,6 +10621,7 @@
        "data/classes/teurgo.json",
        "data/condicoes.json",
        "data/efeitos.json",
+       "data/ficha.schema.json",
        "data/limiar.json",
        "data/magias.json",
        "data/origens.json",
@@ -10542,11 +10630,20 @@
        "data/racas/inseto.json",
        "data/sistema.json",
        "js/ficha.js"
-      ]
+      ],
+      "faltam": [
+       "O treinamento da sua pericia",
+       "aumenta de 3 em 3. (Ao invés de 2 em 2)"
+      ],
+      "textoAtual": {
+       "tecnica": "brutalista-muralha-viva",
+       "fonte": "data/classes/brutalista.json",
+       "bloco": "Você se torna Treinado em Defender . Se já for Treinado, se torna Experiente e assim por diante."
+      }
      },
      "resposta": {
-      "status": "esperandoPedro",
-      "statusBalanceamento": "pedroDecide",
+      "status": "resolvido",
+      "statusBalanceamento": "resolvido",
       "texto": "Texto proposto (L19): \"Some +1 à rolagem de Defender para cada grau de treinamento (Treinado +1, Experiente +2, Mestre +3, Lendário +4).\" É a tradução exata do \"3 em 3\" antigo, que dava +1 por grau acima do normal.",
       "acao": "aguarda Pedro",
       "perguntaPedro": {
@@ -10554,15 +10651,13 @@
        "tema": "Brutalista",
        "pergunta": "(a) Muralha Viva (L19). (b) Frenesi: \"no nível 1\" e \"descontrolado\". (c) Contador de Corpos: o asterisco de \"brutalmente\" não tem nota no Notion. (d) Imortal: \"pode escolher não morrer\" é do modelo antigo.",
        "recomendacao": "(a) \"Some +1 à rolagem de Defender para cada grau de treinamento (Treinado +1, Experiente +2, Mestre +3, Lendário +4)\", a tradução exata do \"3 em 3\". (b) \"No nível 2\"; \"descontrolado\" é adjetivo, não a condição; para travar algo preciso da lista, no mínimo \"não conjura nem sustenta magia\". (c) Matar com acerto crítico ou pelo Finalizar. (d) \"Ao cair a 0 ou menos de Saúde, pode, como ação livre, ficar com 1 de Saúde em vez de entrar em Morrendo. Ao fazer isso, ganha +1 de Exaustão.\""
-      }
+      },
+      "evidencia": "Parte do trecho citado não está mais no texto atual: \"O treinamento da sua pericia\" / \"aumenta de 3 em 3. (Ao invés de 2 em 2)\". Conferir se o achado ainda vale."
      }
     }
    ],
-   "status": "alerta",
-   "motivos": [
-    "obsoletas:obsoleto",
-    "regra:alta"
-   ]
+   "status": "ok",
+   "motivos": []
   },
   {
    "id": "brutalista-guardiao",
@@ -10678,7 +10773,7 @@
     "descricaoV21": {
      "status": "completa",
      "cobertura": 1.0,
-     "texto": "Até o inicio do seu próximo turno:+2 Defender.+2 Armadura(Ar) Natural.Você não pode ser Derrubado ou Empurrado por quase nada.Porém, enquanto em Postura Defensi"
+     "texto": "Até o inicio do seu próximo turno:+2 Defender.+2 Armadura(Ar) Natural.Você não pode ser derrubado (Caído) ou empurrado por quase nada.Porém, enquanto em Postura"
     },
     "status": "ok",
     "notas": []
@@ -10704,7 +10799,9 @@
    },
    "referencias": {
     "status": "ok",
-    "condicoes": [],
+    "condicoes": [
+     "Caído"
+    ],
     "estadosNaoCondicao": [],
     "magias": [],
     "itens": [],
@@ -10741,7 +10838,7 @@
      {
       "valor": "+2",
       "campo": "Armadura(Ar) Natural",
-      "trecho": "io do seu próximo turno: +2 Defender. | +2 Armadura(Ar) Natural. | Você não pode ser Derrubad"
+      "trecho": "io do seu próximo turno: +2 Defender. | +2 Armadura(Ar) Natural. | Você não pode ser derrubad"
      },
      {
       "valor": "-2",
@@ -10759,23 +10856,30 @@
      "trecho": "Você não pode ser Derrubado ou Empurrado por quase nada.",
      "regraAtual": "data/condicoes.json não tem \"Derrubado\": a condição é Caído, e Empurrar (Sistema > Manobras) já deixa Caído. \"Por quase nada\" não é mecânica. A ficha não sabe se é imunidade, vantagem ou bônus na Fortitude contra Empurrar.",
      "trechoAtual": {
-      "status": "presente",
+      "status": "ausente",
       "pedacos": 1,
-      "encontrados": 1,
-      "em": [
-       "data/catalogo/tecnica.json",
-       "data/classes/brutalista.json"
-      ]
+      "encontrados": 0,
+      "em": [],
+      "faltam": [
+       "Você não pode ser Derrubado ou Empurrado por quase nada."
+      ],
+      "textoAtual": {
+       "tecnica": "brutalista-postura-defensiva",
+       "fonte": "data/classes/brutalista.json",
+       "bloco": "Você não pode ser derrubado ( Caído ) ou empurrado por quase nada."
+      }
      },
      "resposta": {
-      "status": "leitura",
+      "status": "resolvido",
       "statusBalanceamento": "decisao",
       "texto": "Derrubado = Caído (G7). Enquanto a postura durar: imune a Caído e a ser empurrado (manobra Empurrar e efeitos que deslocam). O \"quase nada\" é a exceção da mesa para forças extremas.",
       "acao": "ficha: imunidade a Caído + nota \"não pode ser empurrado\"",
       "principio": {
        "id": "G7",
        "nome": "Termos"
-      }
+      },
+      "resolvidoPor": "textoCorrigido",
+      "evidencia": "O trecho citado não está mais em data/ nem em js/ (texto atual em data/classes/brutalista.json: \"Você não pode ser derrubado ( Caído ) ou empurrado por quase nada.\")."
      }
     }
    ],
@@ -10919,7 +11023,6 @@
    "referencias": {
     "status": "ok",
     "condicoes": [
-     "Descontrolado X",
      "Inconsciente"
     ],
     "estadosNaoCondicao": [],
@@ -10967,17 +11070,22 @@
      "trecho": "Você pode usar Frenesi 1 vez por descanso longo no nível 1 e 2 vezes no nível 3.",
      "regraAtual": "data/classes/brutalista.json, classe.ramosRegra.porTier: {\"tier\": 1, \"quantidade\": 3, \"nivel\": 2}. O Tier 1 só abre no nível 2, então \"no nível 1\" não acontece: é resíduo da progressão antiga. A ficha não sabe quantos usos dar do nível 2 ao 4.",
      "trechoAtual": {
-      "status": "presente",
+      "status": "ausente",
       "pedacos": 1,
-      "encontrados": 1,
-      "em": [
-       "data/catalogo/tecnica.json",
-       "data/classes/brutalista.json"
-      ]
+      "encontrados": 0,
+      "em": [],
+      "faltam": [
+       "Você pode usar Frenesi 1 vez por descanso longo no nível 1 e 2 vezes no nível 3."
+      ],
+      "textoAtual": {
+       "tecnica": "brutalista-frenesi",
+       "fonte": "data/classes/brutalista.json",
+       "bloco": "Você pode usar Frenesi 1 vez por descanso longo no nível 2 e 2 vezes no nível 4."
+      }
      },
      "resposta": {
-      "status": "esperandoPedro",
-      "statusBalanceamento": "pedroDecide",
+      "status": "resolvido",
+      "statusBalanceamento": "resolvido",
       "texto": "\"No nível 1\" → \"no nível 2\": o Tier 1 só abre no 2. Os 2 usos no nível 3 ficam.",
       "acao": "aguarda Pedro",
       "perguntaPedro": {
@@ -10985,7 +11093,9 @@
        "tema": "Brutalista",
        "pergunta": "(a) Muralha Viva (L19). (b) Frenesi: \"no nível 1\" e \"descontrolado\". (c) Contador de Corpos: o asterisco de \"brutalmente\" não tem nota no Notion. (d) Imortal: \"pode escolher não morrer\" é do modelo antigo.",
        "recomendacao": "(a) \"Some +1 à rolagem de Defender para cada grau de treinamento (Treinado +1, Experiente +2, Mestre +3, Lendário +4)\", a tradução exata do \"3 em 3\". (b) \"No nível 2\"; \"descontrolado\" é adjetivo, não a condição; para travar algo preciso da lista, no mínimo \"não conjura nem sustenta magia\". (c) Matar com acerto crítico ou pelo Finalizar. (d) \"Ao cair a 0 ou menos de Saúde, pode, como ação livre, ficar com 1 de Saúde em vez de entrar em Morrendo. Ao fazer isso, ganha +1 de Exaustão.\""
-      }
+      },
+      "resolvidoPor": "textoCorrigido",
+      "evidencia": "O trecho citado não está mais em data/ nem em js/ (texto atual em data/classes/brutalista.json: \"Você pode usar Frenesi 1 vez por descanso longo no nível 2 e 2 vezes no nível 4.\")."
      }
     },
     {
@@ -10996,17 +11106,22 @@
      "trecho": "Fica descontrolado e não pode usar habilidades que exijam paciência ou concentração.",
      "regraAtual": "data/condicoes.json: Descontrolado X agora é condição (\"ataca o aliado mais próximo por X rodadas. Você deve gastar o seu turno atacando a criatura mais próxima\"). O texto não diz X nem se é a condição (que faria o Brutalista atacar aliados) ou só um adjetivo. \"Habilidades que exijam paciência ou concentração\" não tem lista nem marcador, e Concentração é recurso de outra classe (contrato vocabulario.recurso). A ficha não consegue travar nada com isso.",
      "trechoAtual": {
-      "status": "presente",
+      "status": "ausente",
       "pedacos": 1,
-      "encontrados": 1,
-      "em": [
-       "data/catalogo/tecnica.json",
-       "data/classes/brutalista.json"
-      ]
+      "encontrados": 0,
+      "em": [],
+      "faltam": [
+       "Fica descontrolado e não pode usar habilidades que exijam paciência ou concentração."
+      ],
+      "textoAtual": {
+       "tecnica": "brutalista-frenesi",
+       "fonte": "data/classes/brutalista.json",
+       "bloco": "Não pode usar habilidades que exijam paciência ou concentração."
+      }
      },
      "resposta": {
-      "status": "esperandoPedro",
-      "statusBalanceamento": "pedroDecide",
+      "status": "resolvido",
+      "statusBalanceamento": "resolvido",
       "texto": "\"Descontrolado\" como adjetivo, não a condição, que faria o Brutalista atacar aliados. Para a ficha travar algo, preciso da lista \"paciência ou concentração\"; o mínimo seria \"não conjura nem sustenta magias\".",
       "acao": "aguarda Pedro",
       "perguntaPedro": {
@@ -11014,14 +11129,14 @@
        "tema": "Brutalista",
        "pergunta": "(a) Muralha Viva (L19). (b) Frenesi: \"no nível 1\" e \"descontrolado\". (c) Contador de Corpos: o asterisco de \"brutalmente\" não tem nota no Notion. (d) Imortal: \"pode escolher não morrer\" é do modelo antigo.",
        "recomendacao": "(a) \"Some +1 à rolagem de Defender para cada grau de treinamento (Treinado +1, Experiente +2, Mestre +3, Lendário +4)\", a tradução exata do \"3 em 3\". (b) \"No nível 2\"; \"descontrolado\" é adjetivo, não a condição; para travar algo preciso da lista, no mínimo \"não conjura nem sustenta magia\". (c) Matar com acerto crítico ou pelo Finalizar. (d) \"Ao cair a 0 ou menos de Saúde, pode, como ação livre, ficar com 1 de Saúde em vez de entrar em Morrendo. Ao fazer isso, ganha +1 de Exaustão.\""
-      }
+      },
+      "resolvidoPor": "textoCorrigido",
+      "evidencia": "O trecho citado não está mais em data/ nem em js/ (texto atual em data/classes/brutalista.json: \"Não pode usar habilidades que exijam paciência ou concentração.\")."
      }
     }
    ],
-   "status": "alerta",
-   "motivos": [
-    "regra:media"
-   ]
+   "status": "ok",
+   "motivos": []
   },
   {
    "id": "brutalista-retaliacao-selvagem",
@@ -12075,6 +12190,11 @@
       "pedacos": 3,
       "encontrados": 3,
       "em": [
+       "data/balanceamento/ficha-digital-regras.json",
+       "data/catalogo/carta.json",
+       "data/catalogo/marca.json",
+       "data/catalogo/origem.json",
+       "data/catalogo/tecnica.json",
        "data/catalogo/ultimate.json",
        "data/classes/alquimista.json",
        "data/classes/artilheiro.json",
@@ -12082,12 +12202,16 @@
        "data/classes/brutalista.json",
        "data/classes/espadachim.json",
        "data/classes/monge.json",
-       "data/classes/teurgo.json"
+       "data/classes/teurgo.json",
+       "data/limiar.json",
+       "data/origens.json",
+       "data/racas/corrompido.json",
+       "js/ficha.js"
       ]
      },
      "resposta": {
-      "status": "esperandoPedro",
-      "statusBalanceamento": "pedroDecide",
+      "status": "resolvido",
+      "statusBalanceamento": "resolvido",
       "texto": "Trocar \"1x/Dia\" por \"1x/Descanso Longo\" nas ultimates e no cabeçalho do Tier 3 das 7 classes. É só texto: a ficha já recarrega no descanso longo (L29).",
       "acao": "aguarda Pedro",
       "perguntaPedro": {
@@ -12218,6 +12342,11 @@
       "pedacos": 3,
       "encontrados": 3,
       "em": [
+       "data/balanceamento/ficha-digital-regras.json",
+       "data/catalogo/carta.json",
+       "data/catalogo/marca.json",
+       "data/catalogo/origem.json",
+       "data/catalogo/tecnica.json",
        "data/catalogo/ultimate.json",
        "data/classes/alquimista.json",
        "data/classes/artilheiro.json",
@@ -12225,12 +12354,16 @@
        "data/classes/brutalista.json",
        "data/classes/espadachim.json",
        "data/classes/monge.json",
-       "data/classes/teurgo.json"
+       "data/classes/teurgo.json",
+       "data/limiar.json",
+       "data/origens.json",
+       "data/racas/corrompido.json",
+       "js/ficha.js"
       ]
      },
      "resposta": {
-      "status": "esperandoPedro",
-      "statusBalanceamento": "pedroDecide",
+      "status": "resolvido",
+      "statusBalanceamento": "resolvido",
       "texto": "Trocar \"1x/Dia\" por \"1x/Descanso Longo\" nas ultimates e no cabeçalho do Tier 3 das 7 classes. É só texto: a ficha já recarrega no descanso longo (L29).",
       "acao": "aguarda Pedro",
       "perguntaPedro": {
@@ -12359,6 +12492,11 @@
       "pedacos": 3,
       "encontrados": 3,
       "em": [
+       "data/balanceamento/ficha-digital-regras.json",
+       "data/catalogo/carta.json",
+       "data/catalogo/marca.json",
+       "data/catalogo/origem.json",
+       "data/catalogo/tecnica.json",
        "data/catalogo/ultimate.json",
        "data/classes/alquimista.json",
        "data/classes/artilheiro.json",
@@ -12366,12 +12504,16 @@
        "data/classes/brutalista.json",
        "data/classes/espadachim.json",
        "data/classes/monge.json",
-       "data/classes/teurgo.json"
+       "data/classes/teurgo.json",
+       "data/limiar.json",
+       "data/origens.json",
+       "data/racas/corrompido.json",
+       "js/ficha.js"
       ]
      },
      "resposta": {
-      "status": "esperandoPedro",
-      "statusBalanceamento": "pedroDecide",
+      "status": "resolvido",
+      "statusBalanceamento": "resolvido",
       "texto": "Trocar \"1x/Dia\" por \"1x/Descanso Longo\" nas ultimates e no cabeçalho do Tier 3 das 7 classes. É só texto: a ficha já recarrega no descanso longo (L29).",
       "acao": "aguarda Pedro",
       "perguntaPedro": {
@@ -12879,7 +13021,7 @@
     "descricaoV21": {
      "status": "completa",
      "cobertura": 1.0,
-     "texto": "Ao conjurar uma magia, pode conjurar outra magia se puder pagar pelas ações. A segunda magia custa Éter adicional igual ao número de ações dela."
+     "texto": "Ao conjurar uma magia, pode conjurar outra magia se puder pagar pelas ações. A segunda magia custa Éter adicional igual ao número de ações dela. É uma exceção a"
     },
     "status": "ok",
     "notas": []
@@ -12943,8 +13085,8 @@
       ]
      },
      "resposta": {
-      "status": "esperandoPedro",
-      "statusBalanceamento": "pedroDecide",
+      "status": "resolvido",
+      "statusBalanceamento": "resolvido",
       "texto": "É exceção ao \"1 magia por turno\": escrever isso, como o Receptáculo Perfeito escreve. 3 Stamina por uso.",
       "acao": "aguarda Pedro",
       "perguntaPedro": {
@@ -12956,10 +13098,8 @@
      }
     }
    ],
-   "status": "alerta",
-   "motivos": [
-    "regra:media"
-   ]
+   "status": "ok",
+   "motivos": []
   },
   {
    "id": "teurgo-respiracao-primordial",
@@ -13938,8 +14078,8 @@
       ]
      },
      "resposta": {
-      "status": "esperandoPedro",
-      "statusBalanceamento": "pedroDecide",
+      "status": "resolvido",
+      "statusBalanceamento": "resolvido",
       "texto": "O requisito é Patrono Primordial ou Barganha Primordial? O \"Preço do Pacto\" é do Patrono Primordial.",
       "acao": "aguarda Pedro",
       "perguntaPedro": {
@@ -14206,8 +14346,8 @@
       ]
      },
      "resposta": {
-      "status": "esperandoPedro",
-      "statusBalanceamento": "pedroDecide",
+      "status": "resolvido",
+      "statusBalanceamento": "resolvido",
       "texto": "Pergunta T4 (intensidade subida por técnica). Recomendo: paga os 2 Stamina e o Éter da intensidade conjurada; a intensidade sobe 1 sem custo extra e sem o teste de Vontade, porque o teste é o risco de quem escolhe forçar. A modulação grátis dispensa o Éter de uma modulação. Declarada Transbordante, o teste declarado vale e o +1 não passa do teto.",
       "acao": "ficha: provisório = recomendação",
       "principio": {
@@ -14223,10 +14363,8 @@
      }
     }
    ],
-   "status": "alerta",
-   "motivos": [
-    "regra:media"
-   ]
+   "status": "ok",
+   "motivos": []
   },
   {
    "id": "teurgo-recuperacao-primordial",
@@ -14455,8 +14593,8 @@
       ]
      },
      "resposta": {
-      "status": "leitura",
-      "statusBalanceamento": "decisao",
+      "status": "resolvido",
+      "statusBalanceamento": "resolvido",
       "texto": "G13. Você paga o Éter da intensidade que declarou; a rolagem mexe no efeito, não no custo. No 1-2, cair abaixo da menor intensidade que a magia tem faz a magia falhar. Numa magia de Nível 1, que não tem Contida (D68), cair de Normal falha. No 5-6, subir para Transbordante segue a resposta da T4.",
       "acao": "ficha: custo = intensidade declarada",
       "principio": {
@@ -14472,10 +14610,8 @@
      }
     }
    ],
-   "status": "alerta",
-   "motivos": [
-    "regra:media"
-   ]
+   "status": "ok",
+   "motivos": []
   },
   {
    "id": "teurgo-canalizacao-visceral",
@@ -14660,8 +14796,8 @@
       ]
      },
      "resposta": {
-      "status": "esperandoPedro",
-      "statusBalanceamento": "pedroDecide",
+      "status": "resolvido",
+      "statusBalanceamento": "resolvido",
       "texto": "Mesma T4 e mesma recomendação da Tese Arcana: paga a intensidade conjurada, sobe 1, sem teste. Numa Alteração já Transbordante, não há efeito extra; Transbordante+ só existe onde o texto diz (Receptáculo Perfeito).",
       "acao": "ficha: provisório = recomendação",
       "principio": {
@@ -14693,8 +14829,8 @@
       ]
      },
      "resposta": {
-      "status": "esperandoPedro",
-      "statusBalanceamento": "pedroDecide",
+      "status": "resolvido",
+      "statusBalanceamento": "resolvido",
       "texto": "Não soma Marca da Vhelor. A Seiva do patrono não é o item do Bazar, e somar tiraria 10 de Éter máximo do próprio devoto na Marca 2.",
       "acao": "aguarda Pedro",
       "perguntaPedro": {
@@ -14706,10 +14842,8 @@
      }
     }
    ],
-   "status": "alerta",
-   "motivos": [
-    "regra:media"
-   ]
+   "status": "ok",
+   "motivos": []
   },
   {
    "id": "teurgo-magias-pactuadas",
@@ -15460,6 +15594,11 @@
       "pedacos": 3,
       "encontrados": 3,
       "em": [
+       "data/balanceamento/ficha-digital-regras.json",
+       "data/catalogo/carta.json",
+       "data/catalogo/marca.json",
+       "data/catalogo/origem.json",
+       "data/catalogo/tecnica.json",
        "data/catalogo/ultimate.json",
        "data/classes/alquimista.json",
        "data/classes/artilheiro.json",
@@ -15467,12 +15606,16 @@
        "data/classes/brutalista.json",
        "data/classes/espadachim.json",
        "data/classes/monge.json",
-       "data/classes/teurgo.json"
+       "data/classes/teurgo.json",
+       "data/limiar.json",
+       "data/origens.json",
+       "data/racas/corrompido.json",
+       "js/ficha.js"
       ]
      },
      "resposta": {
-      "status": "esperandoPedro",
-      "statusBalanceamento": "pedroDecide",
+      "status": "resolvido",
+      "statusBalanceamento": "resolvido",
       "texto": "Trocar \"1x/Dia\" por \"1x/Descanso Longo\" nas ultimates e no cabeçalho do Tier 3 das 7 classes. É só texto: a ficha já recarrega no descanso longo (L29).",
       "acao": "aguarda Pedro",
       "perguntaPedro": {
@@ -15606,6 +15749,11 @@
       "pedacos": 3,
       "encontrados": 3,
       "em": [
+       "data/balanceamento/ficha-digital-regras.json",
+       "data/catalogo/carta.json",
+       "data/catalogo/marca.json",
+       "data/catalogo/origem.json",
+       "data/catalogo/tecnica.json",
        "data/catalogo/ultimate.json",
        "data/classes/alquimista.json",
        "data/classes/artilheiro.json",
@@ -15613,12 +15761,16 @@
        "data/classes/brutalista.json",
        "data/classes/espadachim.json",
        "data/classes/monge.json",
-       "data/classes/teurgo.json"
+       "data/classes/teurgo.json",
+       "data/limiar.json",
+       "data/origens.json",
+       "data/racas/corrompido.json",
+       "js/ficha.js"
       ]
      },
      "resposta": {
-      "status": "esperandoPedro",
-      "statusBalanceamento": "pedroDecide",
+      "status": "resolvido",
+      "statusBalanceamento": "resolvido",
       "texto": "Trocar \"1x/Dia\" por \"1x/Descanso Longo\" nas ultimates e no cabeçalho do Tier 3 das 7 classes. É só texto: a ficha já recarrega no descanso longo (L29).",
       "acao": "aguarda Pedro",
       "perguntaPedro": {
@@ -15637,17 +15789,25 @@
      "trecho": "Ao chegar em 50% de éter máximo nos negativos: Você morre instantaneamente ... você fica com 0 de éter e Exausto 1. ... Você fica exausto 1.",
      "regraAtual": "data/condicoes.json > Oco: \"Ao ultrapassar metade do seu éter máximo nos negativos, você perde seu personagem\". A ultimate usa \"Ao chegar em 50%\" e mata em vez de passar o personagem ao mestre; a PD17 fixou \"ultrapassar\" para Oco e Morrendo. O texto também não trata Casca Rachada (\"seu limite máximo de éter negativo dobra\"): não se sabe se o limiar de morte da ultimate dobra junto. (\"Exausto 1\" casa com Exaustão pelo alias do contrato, condicoesAliases \"Exausto N\".)",
      "trechoAtual": {
-      "status": "presente",
+      "status": "parcial",
       "pedacos": 3,
-      "encontrados": 3,
+      "encontrados": 2,
       "em": [
        "data/catalogo/ultimate.json",
        "data/classes/teurgo.json"
-      ]
+      ],
+      "faltam": [
+       "Ao chegar em 50% de éter máximo nos negativos: Você morre instantaneamente"
+      ],
+      "textoAtual": {
+       "tecnica": "teurgo-receptaculo-perfeito",
+       "fonte": "data/classes/teurgo.json",
+       "bloco": "Ao ultrapassar 50% do éter máximo nos negativos (a Casca Rachada dobra esse limite): Você morre instantaneamente e explode em energia causando 4d10+15 de dano Primordial a todos os alvos em até 9 m."
+      }
      },
      "resposta": {
-      "status": "esperandoPedro",
-      "statusBalanceamento": "pedroDecide",
+      "status": "resolvido",
+      "statusBalanceamento": "resolvido",
       "texto": "\"Ao chegar em 50%\" → \"ao ultrapassar 50%\" (PD17). A Casca Rachada dobra esse limite também. Morrer em vez de passar o personagem ao mestre é regra da ultimate e fica.",
       "acao": "aguarda Pedro",
       "perguntaPedro": {
@@ -15655,7 +15815,8 @@
        "tema": "Teurgo",
        "pergunta": "(a) Encadeamento é exceção ao \"1 magia por turno\"? (b) Manifestação do Patrono: CDs sem número, \"Banido\" e os 6 Efeitos Caóticos. (c) Receptáculo Perfeito: \"chegar em 50%\" e a Casca Rachada. (d) Devoto: requisito é Patrono Primordial ou Barganha Primordial? (e) Grande Árvore: a Seiva do patrono soma Marca da Vhelor?",
        "recomendacao": "(a) Sim, escrever a exceção; 3 Stamina por uso. (b) \"Contra sua CD\" (D57); Banido fica efeito da ultimate; sorteio 1d6. (c) \"Ultrapassar\", e a Casca Rachada dobra esse limite também. (d) Preciso da resposta. (e) Não: somar tiraria 10 de Éter máximo do próprio devoto na Marca 2."
-      }
+      },
+      "evidencia": "Parte do trecho citado não está mais no texto atual: \"Ao chegar em 50% de éter máximo nos negativos: Você morre instantaneamente\". Conferir se o achado ainda vale."
      }
     }
    ],
@@ -15752,6 +15913,11 @@
       "pedacos": 3,
       "encontrados": 3,
       "em": [
+       "data/balanceamento/ficha-digital-regras.json",
+       "data/catalogo/carta.json",
+       "data/catalogo/marca.json",
+       "data/catalogo/origem.json",
+       "data/catalogo/tecnica.json",
        "data/catalogo/ultimate.json",
        "data/classes/alquimista.json",
        "data/classes/artilheiro.json",
@@ -15759,12 +15925,16 @@
        "data/classes/brutalista.json",
        "data/classes/espadachim.json",
        "data/classes/monge.json",
-       "data/classes/teurgo.json"
+       "data/classes/teurgo.json",
+       "data/limiar.json",
+       "data/origens.json",
+       "data/racas/corrompido.json",
+       "js/ficha.js"
       ]
      },
      "resposta": {
-      "status": "esperandoPedro",
-      "statusBalanceamento": "pedroDecide",
+      "status": "resolvido",
+      "statusBalanceamento": "resolvido",
       "texto": "Trocar \"1x/Dia\" por \"1x/Descanso Longo\" nas ultimates e no cabeçalho do Tier 3 das 7 classes. É só texto: a ficha já recarrega no descanso longo (L29).",
       "acao": "aguarda Pedro",
       "perguntaPedro": {
@@ -15783,17 +15953,22 @@
      "trecho": "Todos os inimigos na área devem passar em Fortitude CD ou ficam Enraizados e Envenenados",
      "regraAtual": "Falta o número da CD (Grande Árvore). O mesmo acontece em \"deve passar em Reflexo ou fica Enraizada pelas correntes do abismo\" (Trancafiado) e em \"Cada uma deve passar em Vontade\" (Limiar), ambos sem CD. Nos outros testes a própria ultimate dá número (\"Vontade CD 18\", \"Fortitude CD 15\"). Pela D57 a CD seria a do portador, mas o texto escreve \"CD\" sem valor e sem \"sua\". (\"Envenenados\" casa com Envenenamento pelo alias do contrato, condicoesAliases.)",
      "trechoAtual": {
-      "status": "presente",
+      "status": "ausente",
       "pedacos": 1,
-      "encontrados": 1,
-      "em": [
-       "data/catalogo/ultimate.json",
-       "data/classes/teurgo.json"
-      ]
+      "encontrados": 0,
+      "em": [],
+      "faltam": [
+       "Todos os inimigos na área devem passar em Fortitude CD ou ficam Enraizados e Envenenados"
+      ],
+      "textoAtual": {
+       "tecnica": "teurgo-manifestacao-do-patrono",
+       "fonte": "data/classes/teurgo.json",
+       "bloco": "Todos os inimigos na área devem passar em Fortitude contra sua CD ou ficam Enraizados e Envenenados"
+      }
      },
      "resposta": {
-      "status": "esperandoPedro",
-      "statusBalanceamento": "pedroDecide",
+      "status": "resolvido",
+      "statusBalanceamento": "resolvido",
       "texto": "As CDs sem número viram \"contra sua CD\" (D57).",
       "acao": "aguarda Pedro",
       "perguntaPedro": {
@@ -15801,7 +15976,9 @@
        "tema": "Teurgo",
        "pergunta": "(a) Encadeamento é exceção ao \"1 magia por turno\"? (b) Manifestação do Patrono: CDs sem número, \"Banido\" e os 6 Efeitos Caóticos. (c) Receptáculo Perfeito: \"chegar em 50%\" e a Casca Rachada. (d) Devoto: requisito é Patrono Primordial ou Barganha Primordial? (e) Grande Árvore: a Seiva do patrono soma Marca da Vhelor?",
        "recomendacao": "(a) Sim, escrever a exceção; 3 Stamina por uso. (b) \"Contra sua CD\" (D57); Banido fica efeito da ultimate; sorteio 1d6. (c) \"Ultrapassar\", e a Casca Rachada dobra esse limite também. (d) Preciso da resposta. (e) Não: somar tiraria 10 de Éter máximo do próprio devoto na Marca 2."
-      }
+      },
+      "resolvidoPor": "textoCorrigido",
+      "evidencia": "O trecho citado não está mais em data/ nem em js/ (texto atual em data/classes/teurgo.json: \"Todos os inimigos na área devem passar em Fortitude contra sua CD ou ficam Enraizados e Envenenados\")."
      }
     },
     {
@@ -15821,8 +15998,8 @@
       ]
      },
      "resposta": {
-      "status": "esperandoPedro",
-      "statusBalanceamento": "pedroDecide",
+      "status": "resolvido",
+      "statusBalanceamento": "resolvido",
       "texto": "\"Banido\" fica efeito da ultimate (como Marcado e Endividado), não condição nova.",
       "acao": "aguarda Pedro",
       "perguntaPedro": {
@@ -15841,21 +16018,30 @@
      "trecho": "Efeito Caótico: Distorção Temporal ... Drenagem ... Instabilidade ... Ressonância ... Colapso ... Tiro no Pé",
      "regraAtual": "São 6 efeitos numerados, mas o texto não diz como sortear (1d6? escolha?). O rolador da ficha não tem dado para usar.",
      "trechoAtual": {
-      "status": "presente",
+      "status": "parcial",
       "pedacos": 5,
-      "encontrados": 5,
+      "encontrados": 4,
       "em": [
        "data/balanceamento/ficha-efeitos-itens.json",
        "data/bazar.json",
        "data/catalogo/ultimate.json",
        "data/classes/teurgo.json",
        "data/efeitos.json",
-       "data/sistema.json"
-      ]
+       "data/sistema.json",
+       "js/ficha.js"
+      ],
+      "faltam": [
+       "Efeito Caótico: Distorção Temporal"
+      ],
+      "textoAtual": {
+       "tecnica": "teurgo-manifestacao-do-patrono",
+       "fonte": "data/classes/teurgo.json",
+       "bloco": "Efeito Caótico (role 1d6): Distorção Temporal: Você ganha 2 ações adicionais neste turno"
+      }
      },
      "resposta": {
-      "status": "esperandoPedro",
-      "statusBalanceamento": "pedroDecide",
+      "status": "resolvido",
+      "statusBalanceamento": "resolvido",
       "texto": "Sorteio com 1d6 na ordem da lista.",
       "acao": "aguarda Pedro",
       "perguntaPedro": {
@@ -15863,14 +16049,13 @@
        "tema": "Teurgo",
        "pergunta": "(a) Encadeamento é exceção ao \"1 magia por turno\"? (b) Manifestação do Patrono: CDs sem número, \"Banido\" e os 6 Efeitos Caóticos. (c) Receptáculo Perfeito: \"chegar em 50%\" e a Casca Rachada. (d) Devoto: requisito é Patrono Primordial ou Barganha Primordial? (e) Grande Árvore: a Seiva do patrono soma Marca da Vhelor?",
        "recomendacao": "(a) Sim, escrever a exceção; 3 Stamina por uso. (b) \"Contra sua CD\" (D57); Banido fica efeito da ultimate; sorteio 1d6. (c) \"Ultrapassar\", e a Casca Rachada dobra esse limite também. (d) Preciso da resposta. (e) Não: somar tiraria 10 de Éter máximo do próprio devoto na Marca 2."
-      }
+      },
+      "evidencia": "Parte do trecho citado não está mais no texto atual: \"Efeito Caótico: Distorção Temporal\". Conferir se o achado ainda vale."
      }
     }
    ],
-   "status": "alerta",
-   "motivos": [
-    "regra:media"
-   ]
+   "status": "ok",
+   "motivos": []
   },
   {
    "id": "teurgo-escolas-do-primordio",
@@ -15953,8 +16138,8 @@
       ]
      },
      "resposta": {
-      "status": "leitura",
-      "statusBalanceamento": "decisao",
+      "status": "resolvido",
+      "statusBalanceamento": "resolvido",
       "texto": "Primordial não é uma 5ª lista de magias: é o Nível 5 das escolas (Sistema: \"Magias Nível 5 — 8 Éter — requer Foco Primordial\"). Dominar Primordial libera o Nível 5 das escolas dominadas, com Foco Primordial e Experiente em Místico. No nível 5 o Teurgo chega a 5 domínios (2 + 1 + 2), que são as 4 escolas mais Primordial, então não há escolha a errar. É por isso que o contrato conta 5 escolas.",
       "acao": "ficha: \"Primordial\" = chave do Nível 5, sem lista própria",
       "perguntaPedro": {
@@ -15969,8 +16154,7 @@
    "status": "alerta",
    "motivos": [
     "levavel:nao",
-    "obsoletas:revisar",
-    "regra:media"
+    "obsoletas:revisar"
    ]
   },
   {
@@ -16041,12 +16225,13 @@
       "em": [
        "data/balanceamento/ficha-digital-regras.json",
        "data/classes/espadachim.json",
-       "data/classes/teurgo.json"
+       "data/classes/teurgo.json",
+       "js/ficha.js"
       ]
      },
      "resposta": {
-      "status": "esperandoPedro",
-      "statusBalanceamento": "pedroDecide",
+      "status": "resolvido",
+      "statusBalanceamento": "resolvido",
       "texto": "Mesma pergunta do Espadachim: nome e regra, ou \"o recurso é o Éter\" (o que o contrato dizia).",
       "acao": "aguarda Pedro",
       "perguntaPedro": {
@@ -16060,8 +16245,7 @@
    ],
    "status": "alerta",
    "motivos": [
-    "levavel:nao",
-    "regra:media"
+    "levavel:nao"
    ]
   },
   {
@@ -16753,8 +16937,8 @@
       ]
      },
      "resposta": {
-      "status": "esperandoPedro",
-      "statusBalanceamento": "pedroDecide",
+      "status": "resolvido",
+      "statusBalanceamento": "resolvido",
       "texto": "Resolvido pela definição de PMA no Sistema (T5). \"Durante essa rodada\" = neste turno.",
       "acao": "aguarda Pedro",
       "perguntaPedro": {
@@ -16881,7 +17065,8 @@
        "data/origens.json",
        "data/racas/automato.json",
        "data/racas/humano.json",
-       "data/sistema.json"
+       "data/sistema.json",
+       "js/ficha.js"
       ]
      },
      "resposta": {
@@ -17203,7 +17388,7 @@
     "descricaoV21": {
      "status": "completa",
      "cobertura": 1.0,
-     "texto": "Você e até 5 criaturas a distância de toque, não tomam dano de queda de até 30 m. por 1 minuto após isso reduz o dano em 5 * Nível. Você pode usar essa técnica "
+     "texto": "Por 1 minuto, você e até 5 criaturas à distância de toque não tomam dano de queda de até 30 m; em quedas maiores, o dano é reduzido em 5 × Nível. Você pode usar"
     },
     "status": "ok",
     "notas": []
@@ -17261,17 +17446,22 @@
      "trecho": "Você e até 5 criaturas a distância de toque, não tomam dano de queda de até 30 m. por 1 minuto após isso reduz o dano em 5 * Nível.",
      "regraAtual": "data/sistema.json não define dano de queda (nenhuma ocorrência de \"queda\"). A pontuação deixa em aberto se o \"1 minuto\" é a duração (D90: 10 rodadas) e se a redução de 5 × Nível vale acima de 30 m ou depois do minuto.",
      "trechoAtual": {
-      "status": "presente",
+      "status": "ausente",
       "pedacos": 1,
-      "encontrados": 1,
-      "em": [
-       "data/catalogo/tecnica.json",
-       "data/classes/monge.json"
-      ]
+      "encontrados": 0,
+      "em": [],
+      "faltam": [
+       "Você e até 5 criaturas a distância de toque, não tomam dano de queda de até 30 m. por 1 minuto após isso reduz o dano em 5 * Nível."
+      ],
+      "textoAtual": {
+       "tecnica": "monge-queda-suave",
+       "fonte": "data/classes/monge.json",
+       "bloco": "2 Ações ou Reação • 5 Stamina Por 1 minuto, você e até 5 criaturas à distância de toque não tomam dano de queda de até 30 m; em quedas maiores, o dano é reduzido em 5 × Nível. Você pode usar essa técnica só em você como uma reação ao receber dano de queda. |"
+      }
      },
      "resposta": {
-      "status": "esperandoPedro",
-      "statusBalanceamento": "pedroDecide",
+      "status": "resolvido",
+      "statusBalanceamento": "resolvido",
       "texto": "Por 1 minuto, quedas de até 30 m não causam dano a você e a até 5 criaturas tocadas; acima de 30 m, o dano cai 5 × Nível. Dano de queda é do mestre (o Sistema não define).",
       "acao": "aguarda Pedro",
       "perguntaPedro": {
@@ -17279,7 +17469,9 @@
        "tema": "Monge",
        "pergunta": "(a) Fluxo Invertido contra o \"dano zera o Fluxo\". (b) \"Não pode perder fluxo de nenhuma outra forma\" contra as ultimates que tiram Fluxo. (c) Forma do Vazio: \"1d10 <5 acerta\" dá 40%, não 50%; e o que são \"ataques físicos\"? (d) Queda Suave: o que é o \"1 minuto\" e quando vale o \"5 × Nível\"? (e) O ataque desarmado base (1d4) não tem tipo, atributo nem Atacar(n).",
        "recomendacao": "(a) Com Fluxo Invertido, o dano dá +1 no lugar de zerar. (b) Acrescentar \"exceto quando o texto de uma técnica diz que você perde Fluxo\". (c) \"≤5 acerta\"; ataques de arma e desarmados, de qualquer tipo de dano. (d) Por 1 minuto, quedas até 30 m sem dano; acima de 30 m, o dano cai 5 × Nível. (e) \"1d4 Contundente (Destreza), Atacar(1), corpo a corpo\", o perfil do chassi Leve."
-      }
+      },
+      "resolvidoPor": "textoCorrigido",
+      "evidencia": "O trecho citado não está mais em data/ nem em js/ (texto atual em data/classes/monge.json: \"2 Ações ou Reação • 5 Stamina Por 1 minuto, você e até 5 criaturas à distância de toque não tomam dano de queda de até 30 m; em quedas maiores, o dano é reduzido em 5 × Nível. Você pode usar essa técnica só em você como uma reação ao receber dano de queda. |\")."
      }
     }
    ],
@@ -18136,7 +18328,7 @@
     "descricaoV21": {
      "status": "completa",
      "cobertura": 1.0,
-     "texto": "Você ganha fluxo de formas diferentes:+1 Fluxo ao receber dano+2 Fluxo ao falhar em teste de resistência+3 fluxo ao ver um aliado cair para 0 SaúdeAo atingir 5 "
+     "texto": "Você ganha fluxo de formas diferentes:+1 Fluxo ao receber dano (em vez de perder todo o Fluxo)+2 Fluxo ao falhar em teste de resistência+3 fluxo ao ver um aliad"
     },
     "status": "ok",
     "notas": []
@@ -18191,13 +18383,14 @@
       "pedacos": 1,
       "encontrados": 1,
       "em": [
+       "data/balanceamento/ficha-digital-regras.json",
        "data/catalogo/tecnica.json",
        "data/classes/monge.json"
       ]
      },
      "resposta": {
-      "status": "esperandoPedro",
-      "statusBalanceamento": "pedroDecide",
+      "status": "resolvido",
+      "statusBalanceamento": "resolvido",
       "texto": "Pergunta T12. Recomendo que, com Fluxo Invertido, o dano dê +1 no lugar de zerar. Na ordem \"zera e ganha 1\", o Fluxo do ramo do Vazio nunca passa de 1 sob ataque, e a aura dos 5 de Fluxo fica inalcançável justo para quem ganha Fluxo apanhando. A Concentração do Mestre (Punho) já mostra que técnica pode anular o zeramento.",
       "acao": "ficha: provisório = recomendação",
       "principio": {
@@ -18213,10 +18406,8 @@
      }
     }
    ],
-   "status": "alerta",
-   "motivos": [
-    "regra:media"
-   ]
+   "status": "ok",
+   "motivos": []
   },
   {
    "id": "monge-forma-do-vazio",
@@ -18239,7 +18430,7 @@
     "descricaoV21": {
      "status": "completa",
      "cobertura": 1.0,
-     "texto": "Até o inicio do seu próximo turno:Você fica Parcialmente Intangível: Ataques físicos tem 50% de chance de falhar contra você.(Role 1d10 <5 = Acerta)Você pode se"
+     "texto": "Até o inicio do seu próximo turno:Você fica Parcialmente Intangível: Ataques físicos (de arma e desarmados) têm 50% de chance de falhar contra você.(Role 1d10 ≤"
     },
     "status": "ok",
     "notas": []
@@ -18306,17 +18497,23 @@
      "trecho": "Você fica Parcialmente Intangível: Ataques físicos tem 50% de chance de falhar contra você.<br>(Role 1d10 → &lt;5 = Acerta)",
      "regraAtual": "Contradição interna: em 1d10, \"<5\" são os resultados 1–4, ou seja, 40% de acerto e 60% de falha, não 50%. Além disso, \"ataques físicos\" não é categoria do Sistema: data/sistema.json divide o dano em Ordinário (Cortante/Contundente/Perfurante) e atípicos. Não fica claro se um ataque desarmado Necrótico ou uma arma com dano elemental conta.",
      "trechoAtual": {
-      "status": "presente",
+      "status": "ausente",
       "pedacos": 2,
-      "encontrados": 2,
-      "em": [
-       "data/catalogo/tecnica.json",
-       "data/classes/monge.json"
-      ]
+      "encontrados": 0,
+      "em": [],
+      "faltam": [
+       "Você fica Parcialmente Intangível: Ataques físicos tem 50% de chance de falhar contra você.",
+       "(Role 1d10 → &lt;5 = Acerta)"
+      ],
+      "textoAtual": {
+       "tecnica": "monge-forma-do-vazio",
+       "fonte": "data/classes/monge.json",
+       "bloco": "Até o inicio do seu próximo turno: Você fica Parcialmente Intangível: Ataques físicos (de arma e desarmados) têm 50% de chance de falhar contra você."
+      }
      },
      "resposta": {
-      "status": "esperandoPedro",
-      "statusBalanceamento": "pedroDecide",
+      "status": "resolvido",
+      "statusBalanceamento": "resolvido",
       "texto": "\"1d10 <5 acerta\" dá 40%, não 50%: trocar para \"≤5 acerta\". \"Ataques físicos\" = ataques de arma e desarmados, de qualquer tipo de dano.",
       "acao": "aguarda Pedro",
       "perguntaPedro": {
@@ -18324,14 +18521,14 @@
        "tema": "Monge",
        "pergunta": "(a) Fluxo Invertido contra o \"dano zera o Fluxo\". (b) \"Não pode perder fluxo de nenhuma outra forma\" contra as ultimates que tiram Fluxo. (c) Forma do Vazio: \"1d10 <5 acerta\" dá 40%, não 50%; e o que são \"ataques físicos\"? (d) Queda Suave: o que é o \"1 minuto\" e quando vale o \"5 × Nível\"? (e) O ataque desarmado base (1d4) não tem tipo, atributo nem Atacar(n).",
        "recomendacao": "(a) Com Fluxo Invertido, o dano dá +1 no lugar de zerar. (b) Acrescentar \"exceto quando o texto de uma técnica diz que você perde Fluxo\". (c) \"≤5 acerta\"; ataques de arma e desarmados, de qualquer tipo de dano. (d) Por 1 minuto, quedas até 30 m sem dano; acima de 30 m, o dano cai 5 × Nível. (e) \"1d4 Contundente (Destreza), Atacar(1), corpo a corpo\", o perfil do chassi Leve."
-      }
+      },
+      "resolvidoPor": "textoCorrigido",
+      "evidencia": "O trecho citado não está mais em data/ nem em js/ (texto atual em data/classes/monge.json: \"Até o inicio do seu próximo turno: Você fica Parcialmente Intangível: Ataques físicos (de arma e desarmados) têm 50% de chance de falhar contra você.\")."
      }
     }
    ],
-   "status": "alerta",
-   "motivos": [
-    "regra:media"
-   ]
+   "status": "ok",
+   "motivos": []
   },
   {
    "id": "monge-comunhao-selvagem",
@@ -18835,6 +19032,7 @@
        "data/catalogo/marca.json",
        "data/catalogo/tecnica.json",
        "data/catalogo/ultimate.json",
+       "data/classes/alquimista.json",
        "data/classes/artilheiro.json",
        "data/classes/batedor.json",
        "data/classes/brutalista.json",
@@ -18843,7 +19041,8 @@
        "data/condicoes.json",
        "data/efeitos.json",
        "data/limiar.json",
-       "data/magias.json"
+       "data/magias.json",
+       "js/ficha.js"
       ]
      },
      "resposta": {
@@ -19230,6 +19429,11 @@
       "pedacos": 3,
       "encontrados": 3,
       "em": [
+       "data/balanceamento/ficha-digital-regras.json",
+       "data/catalogo/carta.json",
+       "data/catalogo/marca.json",
+       "data/catalogo/origem.json",
+       "data/catalogo/tecnica.json",
        "data/catalogo/ultimate.json",
        "data/classes/alquimista.json",
        "data/classes/artilheiro.json",
@@ -19237,12 +19441,16 @@
        "data/classes/brutalista.json",
        "data/classes/espadachim.json",
        "data/classes/monge.json",
-       "data/classes/teurgo.json"
+       "data/classes/teurgo.json",
+       "data/limiar.json",
+       "data/origens.json",
+       "data/racas/corrompido.json",
+       "js/ficha.js"
       ]
      },
      "resposta": {
-      "status": "esperandoPedro",
-      "statusBalanceamento": "pedroDecide",
+      "status": "resolvido",
+      "statusBalanceamento": "resolvido",
       "texto": "Trocar \"1x/Dia\" por \"1x/Descanso Longo\" nas ultimates e no cabeçalho do Tier 3 das 7 classes. É só texto: a ficha já recarrega no descanso longo (L29).",
       "acao": "aguarda Pedro",
       "perguntaPedro": {
@@ -19277,7 +19485,8 @@
        "data/classes/monge.json",
        "data/condicoes.json",
        "data/efeitos.json",
-       "data/sistema.json"
+       "data/sistema.json",
+       "js/ficha.js"
       ]
      },
      "resposta": {
@@ -19401,6 +19610,11 @@
       "pedacos": 3,
       "encontrados": 3,
       "em": [
+       "data/balanceamento/ficha-digital-regras.json",
+       "data/catalogo/carta.json",
+       "data/catalogo/marca.json",
+       "data/catalogo/origem.json",
+       "data/catalogo/tecnica.json",
        "data/catalogo/ultimate.json",
        "data/classes/alquimista.json",
        "data/classes/artilheiro.json",
@@ -19408,12 +19622,16 @@
        "data/classes/brutalista.json",
        "data/classes/espadachim.json",
        "data/classes/monge.json",
-       "data/classes/teurgo.json"
+       "data/classes/teurgo.json",
+       "data/limiar.json",
+       "data/origens.json",
+       "data/racas/corrompido.json",
+       "js/ficha.js"
       ]
      },
      "resposta": {
-      "status": "esperandoPedro",
-      "statusBalanceamento": "pedroDecide",
+      "status": "resolvido",
+      "statusBalanceamento": "resolvido",
       "texto": "Trocar \"1x/Dia\" por \"1x/Descanso Longo\" nas ultimates e no cabeçalho do Tier 3 das 7 classes. É só texto: a ficha já recarrega no descanso longo (L29).",
       "acao": "aguarda Pedro",
       "perguntaPedro": {
@@ -19464,8 +19682,8 @@
       ]
      },
      "resposta": {
-      "status": "esperandoPedro",
-      "statusBalanceamento": "pedroDecide",
+      "status": "resolvido",
+      "statusBalanceamento": "resolvido",
       "texto": "Acrescentar \"exceto quando o texto de uma técnica diz que você perde Fluxo\" a \"Você não pode perder fluxo de nenhuma outra forma\" (Insurgência, Fusão Primal). A frase seguinte, que diz que o custo em Fluxo é só requisito, fica como está.",
       "acao": "aguarda Pedro",
       "perguntaPedro": {
@@ -19601,6 +19819,11 @@
       "pedacos": 3,
       "encontrados": 3,
       "em": [
+       "data/balanceamento/ficha-digital-regras.json",
+       "data/catalogo/carta.json",
+       "data/catalogo/marca.json",
+       "data/catalogo/origem.json",
+       "data/catalogo/tecnica.json",
        "data/catalogo/ultimate.json",
        "data/classes/alquimista.json",
        "data/classes/artilheiro.json",
@@ -19608,12 +19831,16 @@
        "data/classes/brutalista.json",
        "data/classes/espadachim.json",
        "data/classes/monge.json",
-       "data/classes/teurgo.json"
+       "data/classes/teurgo.json",
+       "data/limiar.json",
+       "data/origens.json",
+       "data/racas/corrompido.json",
+       "js/ficha.js"
       ]
      },
      "resposta": {
-      "status": "esperandoPedro",
-      "statusBalanceamento": "pedroDecide",
+      "status": "resolvido",
+      "statusBalanceamento": "resolvido",
       "texto": "Trocar \"1x/Dia\" por \"1x/Descanso Longo\" nas ultimates e no cabeçalho do Tier 3 das 7 classes. É só texto: a ficha já recarrega no descanso longo (L29).",
       "acao": "aguarda Pedro",
       "perguntaPedro": {
@@ -19668,8 +19895,8 @@
       ]
      },
      "resposta": {
-      "status": "esperandoPedro",
-      "statusBalanceamento": "pedroDecide",
+      "status": "resolvido",
+      "statusBalanceamento": "resolvido",
       "texto": "Acrescentar \"exceto quando o texto de uma técnica diz que você perde Fluxo\" a \"Você não pode perder fluxo de nenhuma outra forma\" (Insurgência, Fusão Primal). A frase seguinte, que diz que o custo em Fluxo é só requisito, fica como está.",
       "acao": "aguarda Pedro",
       "perguntaPedro": {
@@ -19750,6 +19977,7 @@
       "pedacos": 2,
       "encontrados": 2,
       "em": [
+       "data/balanceamento/ficha-digital-regras.json",
        "data/catalogo/carta.json",
        "data/catalogo/tecnica.json",
        "data/classes/monge.json",
@@ -19757,8 +19985,8 @@
       ]
      },
      "resposta": {
-      "status": "esperandoPedro",
-      "statusBalanceamento": "pedroDecide",
+      "status": "resolvido",
+      "statusBalanceamento": "resolvido",
       "texto": "O ataque desarmado base não existe no Sistema. Pergunta T12. Recomendo: \"Ataque desarmado: 1d4 Contundente (Destreza), Atacar(1), corpo a corpo\", o mesmo perfil do chassi Leve (Sistema: corpo a corpo leve usa Destreza). A Arma Humana troca o 1d4 por 1d8, e Punho Perfeito e Toque da Dor passam a ter onde se apoiar.",
       "acao": "ficha: provisório = recomendação",
       "perguntaPedro": {
@@ -19772,8 +20000,7 @@
    ],
    "status": "alerta",
    "motivos": [
-    "levavel:nao",
-    "regra:media"
+    "levavel:nao"
    ]
   },
   {
@@ -19917,8 +20144,8 @@
       ]
      },
      "resposta": {
-      "status": "esperandoPedro",
-      "statusBalanceamento": "pedroDecide",
+      "status": "resolvido",
+      "statusBalanceamento": "resolvido",
       "texto": "Acrescentar \"exceto quando o texto de uma técnica diz que você perde Fluxo\" a \"Você não pode perder fluxo de nenhuma outra forma\" (Insurgência, Fusão Primal). A frase seguinte, que diz que o custo em Fluxo é só requisito, fica como está.",
       "acao": "aguarda Pedro",
       "perguntaPedro": {
@@ -21360,17 +21587,22 @@
      "trecho": "Ao curar uma criatura que estava com 0 de Saúde e remover a condição morrendo , ela e você também recuperam 2d6 de Stamina.",
      "regraAtual": "Sistema > Status: \"Saúde: Ao reduzir a 0 ou menos, você recebe a condição Morrendo.\" Condições > Morrendo: \"Ao ultrapassar metade da sua vida máxima em negativos, você morre [...] Para remover: Você deve ser curado de modo que sua vida fique positiva.\" L35 (Pedro): \"Apenas some o dano a saúde em negativos\". Quem está Morrendo tem Saúde ≤ 0, em geral negativa, e não \"0 de Saúde\". Lido ao pé da letra, o gatilho quase nunca dispara.",
      "trechoAtual": {
-      "status": "presente",
+      "status": "ausente",
       "pedacos": 1,
-      "encontrados": 1,
-      "em": [
-       "data/catalogo/marca.json",
-       "data/classes/alquimista.json"
-      ]
+      "encontrados": 0,
+      "em": [],
+      "faltam": [
+       "Ao curar uma criatura que estava com 0 de Saúde e remover a condição morrendo , ela e você também recuperam 2d6 de Stamina."
+      ],
+      "textoAtual": {
+       "tecnica": "alquimista-curandeiro-incansavel",
+       "fonte": "data/classes/alquimista.json",
+       "bloco": "| Ao curar uma criatura que estava Morrendo e remover a condição, ela e você também recuperam 2d6 de Stamina."
+      }
      },
      "resposta": {
-      "status": "esperandoPedro",
-      "statusBalanceamento": "pedroDecide",
+      "status": "resolvido",
+      "statusBalanceamento": "resolvido",
       "texto": "\"Que estava com 0 de Saúde e remover a condição morrendo\" → \"que estava Morrendo e remover a condição\".",
       "acao": "aguarda Pedro",
       "perguntaPedro": {
@@ -21378,7 +21610,9 @@
        "tema": "Alquimista",
        "pergunta": "(a) Cartucho Arcano depois da D68: custo e CD subiram 2 sozinhos. (b) Elixir Especial: \"3 Reagentes\" no cabeçalho, \"1 por alvo\" no corpo. (c) Curandeiro Incansável: \"que estava com 0 de Saúde\". (d) Tabela da classe × CSV: Soro da Guerra (o CSV dura 1 min e não tem \"Vantagem em Fortitude\") e Veneno Hemorrágico (o CSV não tem \"Medicina estanca\"). (e) Essência Etérea: \"Incorpóreo\" não é condição.",
        "recomendacao": "(a) Reagentes = custo base de Éter da magia; CD = 10 + custo base; Nível 5 pede Foco Primordial para criar. (b) 1 por alvo. (c) \"Que estava Morrendo\". (d) Vale o CSV; se quiser os extras, eles entram no CSV. (e) Fica efeito do item."
-      }
+      },
+      "resolvidoPor": "textoCorrigido",
+      "evidencia": "O trecho citado não está mais em data/ nem em js/ (texto atual em data/classes/alquimista.json: \"| Ao curar uma criatura que estava Morrendo e remover a condição, ela e você também recuperam 2d6 de Stamina.\")."
      }
     }
    ],
@@ -21572,7 +21806,9 @@
     "condicoes": [],
     "estadosNaoCondicao": [],
     "magias": [],
-    "itens": [],
+    "itens": [
+     "Foco Primordial"
+    ],
     "pericias": [
      "Místico"
     ],
@@ -21630,17 +21866,23 @@
      "trecho": "Custo de Criação: (Nível da Magia * 2) Reagentes [...] CD da criação: Você rola Místico ao criar Cartuchos Arcanos, o CD da criação é 10 + (2 * Nível da Magia).",
      "regraAtual": "D68: todas as magias subiram 1 nível (as antigas 1–4 viraram 2–5). A varredura do balanceamento (09-decisoes-pedro.md, \"Fórmulas que mudam sozinhas\") marca \"(Nível da Magia × 2) Reagentes\" como custo que sobe sozinho, mas só lista a ficha Runa Skorn, não a técnica. Hoje cada magia antiga custa +2 Reagentes e tem +2 de CD no Cartucho sem que ninguém tenha editado o texto. Quando corrigirem o \"(nível-1)\" (L18), o Alquimista nível 5 passa a poder encartuchar magia de Nível 5, que exige Foco Primordial (CLAUDE.md §2 e magia.custoBase no contrato). O texto não diz se o cartucho dispensa esse requisito.",
      "trechoAtual": {
-      "status": "presente",
+      "status": "ausente",
       "pedacos": 2,
-      "encontrados": 2,
-      "em": [
-       "data/catalogo/tecnica.json",
-       "data/classes/alquimista.json"
-      ]
+      "encontrados": 0,
+      "em": [],
+      "faltam": [
+       "Custo de Criação: (Nível da Magia * 2) Reagentes",
+       "CD da criação: Você rola Místico ao criar Cartuchos Arcanos, o CD da criação é 10 + (2 * Nível da Magia)."
+      ],
+      "textoAtual": {
+       "tecnica": "alquimista-cartucho-arcano",
+       "fonte": "data/classes/alquimista.json",
+       "bloco": "CD da criação: Você rola Místico ao criar Cartuchos Arcanos, o CD da criação é 10 + o custo base de Éter da magia. Cartuchos de magia de Nível 5 exigem Foco Primordial para serem criados."
+      }
      },
      "resposta": {
-      "status": "esperandoPedro",
-      "statusBalanceamento": "pedroDecide",
+      "status": "resolvido",
+      "statusBalanceamento": "resolvido",
       "texto": "Pergunta T13. A D68 subiu as magias 1 nível e manteve o Éter (a antiga Nível 4 e a nova Nível 5 custam 8). Por isso \"(Nível × 2) Reagentes\" e \"CD 10 + 2 × Nível\" subiram 2 sem ninguém editar. Recomendo amarrar ao custo base de Éter: Reagentes = custo base de Éter da magia; CD = 10 + custo base. Isso devolve os números de antes da D68. Cartucho de Nível 5: quem cria precisa dos mesmos requisitos de conjurar (Foco Primordial e Experiente em Místico).",
       "acao": "ficha: provisório = fórmula atual do texto + aviso",
       "perguntaPedro": {
@@ -21648,7 +21890,9 @@
        "tema": "Alquimista",
        "pergunta": "(a) Cartucho Arcano depois da D68: custo e CD subiram 2 sozinhos. (b) Elixir Especial: \"3 Reagentes\" no cabeçalho, \"1 por alvo\" no corpo. (c) Curandeiro Incansável: \"que estava com 0 de Saúde\". (d) Tabela da classe × CSV: Soro da Guerra (o CSV dura 1 min e não tem \"Vantagem em Fortitude\") e Veneno Hemorrágico (o CSV não tem \"Medicina estanca\"). (e) Essência Etérea: \"Incorpóreo\" não é condição.",
        "recomendacao": "(a) Reagentes = custo base de Éter da magia; CD = 10 + custo base; Nível 5 pede Foco Primordial para criar. (b) 1 por alvo. (c) \"Que estava Morrendo\". (d) Vale o CSV; se quiser os extras, eles entram no CSV. (e) Fica efeito do item."
-      }
+      },
+      "resolvidoPor": "textoCorrigido",
+      "evidencia": "O trecho citado não está mais em data/ nem em js/ (texto atual em data/classes/alquimista.json: \"CD da criação: Você rola Místico ao criar Cartuchos Arcanos, o CD da criação é 10 + o custo base de Éter da magia. Cartuchos de magia de Nível 5 exigem Foco Primordial para serem criados.\")."
      }
     },
     {
@@ -22152,7 +22396,7 @@
    "grupo": "ramo",
    "ramo": "alquimista-ramo-do-boticario",
    "tier": 1,
-   "custoTexto": "1 Ação, 3 Stamina, 3 Reagentes",
+   "custoTexto": "1 Ação, 3 Stamina, 1 Reagente por alvo",
    "dono": "alquimista",
    "pagina": "pages/classes/alquimista.html",
    "levavel": {
@@ -22171,8 +22415,8 @@
     "notas": []
    },
    "custo": {
-    "status": "ok",
-    "texto": "1 Ação, 3 Stamina, 3 Reagentes",
+    "status": "parcial",
+    "texto": "1 Ação, 3 Stamina, 1 Reagente por alvo",
     "acoes": [
      1
     ],
@@ -22182,16 +22426,9 @@
       "custoTipo": "fixo",
       "valor": 3,
       "texto": "3 Stamina"
-     },
-     {
-      "recurso": "reagentes",
-      "custoTipo": "fixo",
-      "valor": 3,
-      "texto": "3 Reagentes",
-      "emTecnicas": "gasto",
-      "emTecnicasFonte": "contrato classes.alquimista.recursos[reagentes].custoEmTecnicas"
      }
-    ]
+    ],
+    "sobra": ", , 1 Reagente por alvo"
    },
    "recarga": {
     "status": "semRecarga",
@@ -22265,17 +22502,22 @@
      "trecho": "1 Ação, 3 Stamina, 3 Reagentes Você prepara e administra um elixir especial entre você e seus aliados à distância de toque, pagando 1 reagente por alvo.",
      "regraAtual": "O custo do cabeçalho (3 Reagentes fixos) contradiz o corpo (1 Reagente por alvo). A ficha não sabe o que descontar: 3 fixos, 1×alvos, ou 3 + 1×alvos. Vocabulário do contrato (regras-ficha, vocabulario.custoTipo): \"fixo\" e \"porUnidade\" são tipos distintos, e a técnica declara os dois.",
      "trechoAtual": {
-      "status": "presente",
+      "status": "ausente",
       "pedacos": 1,
-      "encontrados": 1,
-      "em": [
-       "data/catalogo/tecnica.json",
-       "data/classes/alquimista.json"
-      ]
+      "encontrados": 0,
+      "em": [],
+      "faltam": [
+       "1 Ação, 3 Stamina, 3 Reagentes Você prepara e administra um elixir especial entre você e seus aliados à distância de toque, pagando 1 reagente por alvo."
+      ],
+      "textoAtual": {
+       "tecnica": "alquimista-elixir-especial",
+       "fonte": "data/classes/alquimista.json",
+       "bloco": "Você prepara e administra um elixir especial entre você e seus aliados à distância de toque, pagando 1 reagente por alvo."
+      }
      },
      "resposta": {
-      "status": "esperandoPedro",
-      "statusBalanceamento": "pedroDecide",
+      "status": "resolvido",
+      "statusBalanceamento": "resolvido",
       "texto": "Pergunta T13. Recomendo que valha o corpo: 1 Reagente por alvo. O \"3 Reagentes\" do cabeçalho é o caso de 3 alvos e deveria virar \"1 Reagente/alvo\". Somar os dois (3 + 1 por alvo) encarece um Tier 1 que já custa ação e Stamina.",
       "acao": "ficha: provisório = 1 Reagente por alvo",
       "perguntaPedro": {
@@ -22283,13 +22525,15 @@
        "tema": "Alquimista",
        "pergunta": "(a) Cartucho Arcano depois da D68: custo e CD subiram 2 sozinhos. (b) Elixir Especial: \"3 Reagentes\" no cabeçalho, \"1 por alvo\" no corpo. (c) Curandeiro Incansável: \"que estava com 0 de Saúde\". (d) Tabela da classe × CSV: Soro da Guerra (o CSV dura 1 min e não tem \"Vantagem em Fortitude\") e Veneno Hemorrágico (o CSV não tem \"Medicina estanca\"). (e) Essência Etérea: \"Incorpóreo\" não é condição.",
        "recomendacao": "(a) Reagentes = custo base de Éter da magia; CD = 10 + custo base; Nível 5 pede Foco Primordial para criar. (b) 1 por alvo. (c) \"Que estava Morrendo\". (d) Vale o CSV; se quiser os extras, eles entram no CSV. (e) Fica efeito do item."
-      }
+      },
+      "resolvidoPor": "textoCorrigido",
+      "evidencia": "O trecho citado não está mais em data/ nem em js/ (texto atual em data/classes/alquimista.json: \"Você prepara e administra um elixir especial entre você e seus aliados à distância de toque, pagando 1 reagente por alvo.\")."
      }
     }
    ],
    "status": "alerta",
    "motivos": [
-    "regra:media"
+    "custo:parcial"
    ]
   },
   {
@@ -22946,17 +23190,7 @@
    },
    "obsoletas": {
     "status": "ok",
-    "achados": [
-     {
-      "regra": "investida-citada",
-      "severidade": "info",
-      "campo": "texto",
-      "casou": "Investida",
-      "trechoVerbatim": "Investida: 3 Ações, avança 12 m em linha reta. Criaturas no caminho que falharem em um teste de Fortitude sofrem 3d10 Contundente, ficam Caídas e podem ser empurradas até 3 m.",
-      "regraAtual": "Texto cita \"Investida\": pode ser a manobra do Sistema (D88) ou uma ação própria da técnica (L20, pendente).",
-      "fonte": "D88; L20"
-     }
-    ]
+    "achados": []
    },
    "automacao": {
     "status": "manual",
@@ -22981,6 +23215,11 @@
       "pedacos": 3,
       "encontrados": 3,
       "em": [
+       "data/balanceamento/ficha-digital-regras.json",
+       "data/catalogo/carta.json",
+       "data/catalogo/marca.json",
+       "data/catalogo/origem.json",
+       "data/catalogo/tecnica.json",
        "data/catalogo/ultimate.json",
        "data/classes/alquimista.json",
        "data/classes/artilheiro.json",
@@ -22988,12 +23227,16 @@
        "data/classes/brutalista.json",
        "data/classes/espadachim.json",
        "data/classes/monge.json",
-       "data/classes/teurgo.json"
+       "data/classes/teurgo.json",
+       "data/limiar.json",
+       "data/origens.json",
+       "data/racas/corrompido.json",
+       "js/ficha.js"
       ]
      },
      "resposta": {
-      "status": "esperandoPedro",
-      "statusBalanceamento": "pedroDecide",
+      "status": "resolvido",
+      "statusBalanceamento": "resolvido",
       "texto": "Trocar \"1x/Dia\" por \"1x/Descanso Longo\" nas ultimates e no cabeçalho do Tier 3 das 7 classes. É só texto: a ficha já recarrega no descanso longo (L29).",
       "acao": "aguarda Pedro",
       "perguntaPedro": {
@@ -23012,17 +23255,22 @@
      "trecho": "Investida: 3 Ações, avança 12 m em linha reta. Criaturas no caminho que falharem em um teste de Fortitude sofrem 3d10 Contundente, ficam Caídas e podem ser empurradas até 3 m.",
      "regraAtual": "D88 / Sistema > Manobras: a manobra canônica Investida custa 2 ações, conta como Mover e resolve por teste de Movimento com 1 ação:Atacar. L20 (09-decisoes-pedro.md, \"Respondidos, mas ainda ambíguos\"): três regras diferentes com o nome \"Investida\" (manobra, técnica do Brutalista, ação do Titã). O Pedro respondeu \"Bom revisar\", a proposta é renomear as duas antigas, e ainda faltam os nomes. Na ficha e na Mesa o nome colide com a manobra.",
      "trechoAtual": {
-      "status": "presente",
+      "status": "ausente",
       "pedacos": 1,
-      "encontrados": 1,
-      "em": [
-       "data/catalogo/ultimate.json",
-       "data/classes/alquimista.json"
-      ]
+      "encontrados": 0,
+      "em": [],
+      "faltam": [
+       "Investida: 3 Ações, avança 12 m em linha reta. Criaturas no caminho que falharem em um teste de Fortitude sofrem 3d10 Contundente, ficam Caídas e podem ser empurradas até 3 m."
+      ],
+      "textoAtual": {
+       "tecnica": "alquimista-tita",
+       "fonte": "data/classes/alquimista.json",
+       "bloco": "Avalanche: 3 Ações, avança 12 m em linha reta. Criaturas no caminho que falharem em um teste de Fortitude sofrem 3d10 Contundente, ficam Caídas e podem ser empurradas até 3 m."
+      }
      },
      "resposta": {
-      "status": "esperandoPedro",
-      "statusBalanceamento": "pedroDecide",
+      "status": "resolvido",
+      "statusBalanceamento": "resolvido",
       "texto": "L20: renomear a ação do Titã para \"Avalanche\".",
       "acao": "aguarda Pedro",
       "perguntaPedro": {
@@ -23030,14 +23278,14 @@
        "tema": "Investida (L20)",
        "pergunta": "Nomes para as duas regras antigas, e a do Brutalista conta como o Mover do turno?",
        "recomendacao": "Técnica do Brutalista → \"Atropelar\"; ação do Titã → \"Avalanche\". Conta como Mover. \"Investida\" fica só para a manobra, que é a que as Grevas citam."
-      }
+      },
+      "resolvidoPor": "textoCorrigido",
+      "evidencia": "O trecho citado não está mais em data/ nem em js/ (texto atual em data/classes/alquimista.json: \"Avalanche: 3 Ações, avança 12 m em linha reta. Criaturas no caminho que falharem em um teste de Fortitude sofrem 3d10 Contundente, ficam Caídas e podem ser empurradas até 3 m.\")."
      }
     }
    ],
-   "status": "alerta",
-   "motivos": [
-    "regra:media"
-   ]
+   "status": "ok",
+   "motivos": []
   },
   {
    "id": "alquimista-apocalipse-alquimico",
@@ -23138,6 +23386,11 @@
       "pedacos": 3,
       "encontrados": 3,
       "em": [
+       "data/balanceamento/ficha-digital-regras.json",
+       "data/catalogo/carta.json",
+       "data/catalogo/marca.json",
+       "data/catalogo/origem.json",
+       "data/catalogo/tecnica.json",
        "data/catalogo/ultimate.json",
        "data/classes/alquimista.json",
        "data/classes/artilheiro.json",
@@ -23145,12 +23398,16 @@
        "data/classes/brutalista.json",
        "data/classes/espadachim.json",
        "data/classes/monge.json",
-       "data/classes/teurgo.json"
+       "data/classes/teurgo.json",
+       "data/limiar.json",
+       "data/origens.json",
+       "data/racas/corrompido.json",
+       "js/ficha.js"
       ]
      },
      "resposta": {
-      "status": "esperandoPedro",
-      "statusBalanceamento": "pedroDecide",
+      "status": "resolvido",
+      "statusBalanceamento": "resolvido",
       "texto": "Trocar \"1x/Dia\" por \"1x/Descanso Longo\" nas ultimates e no cabeçalho do Tier 3 das 7 classes. É só texto: a ficha já recarrega no descanso longo (L29).",
       "acao": "aguarda Pedro",
       "perguntaPedro": {
@@ -23343,6 +23600,11 @@
       "pedacos": 3,
       "encontrados": 3,
       "em": [
+       "data/balanceamento/ficha-digital-regras.json",
+       "data/catalogo/carta.json",
+       "data/catalogo/marca.json",
+       "data/catalogo/origem.json",
+       "data/catalogo/tecnica.json",
        "data/catalogo/ultimate.json",
        "data/classes/alquimista.json",
        "data/classes/artilheiro.json",
@@ -23350,12 +23612,16 @@
        "data/classes/brutalista.json",
        "data/classes/espadachim.json",
        "data/classes/monge.json",
-       "data/classes/teurgo.json"
+       "data/classes/teurgo.json",
+       "data/limiar.json",
+       "data/origens.json",
+       "data/racas/corrompido.json",
+       "js/ficha.js"
       ]
      },
      "resposta": {
-      "status": "esperandoPedro",
-      "statusBalanceamento": "pedroDecide",
+      "status": "resolvido",
+      "statusBalanceamento": "resolvido",
       "texto": "Trocar \"1x/Dia\" por \"1x/Descanso Longo\" nas ultimates e no cabeçalho do Tier 3 das 7 classes. É só texto: a ficha já recarrega no descanso longo (L29).",
       "acao": "aguarda Pedro",
       "perguntaPedro": {
@@ -23665,7 +23931,7 @@
     "descricaoV21": {
      "status": "completa",
      "cobertura": 1.0,
-     "texto": "Durante descanso curto ou longo, você pode criar 1 munição(Flecha, Munição de Armas de Fogo ou Adagas de lançamento) sem rolar testes."
+     "texto": "Durante descanso curto ou longo, você pode criar 1 munição(Virotes/Flechas, Munição de Armas de Fogo ou Conjunto de Arremesso) sem rolar testes."
     },
     "status": "ok",
     "notas": []
@@ -23687,7 +23953,9 @@
     "condicoes": [],
     "estadosNaoCondicao": [],
     "magias": [],
-    "itens": [],
+    "itens": [
+     "Conjunto de Arremesso"
+    ],
     "pericias": [],
     "tiposDeDano": [],
     "alertas": [],
@@ -23710,17 +23978,22 @@
      "trecho": "você pode criar 1 munição(Flecha, Munição de Armas de Fogo ou Adagas de lançamento) sem rolar testes.",
      "regraAtual": "data/sistema.json > Munição de Armas: os tipos são \"Flecha e Virote\", \"Munição de Fogo\" e \"Conjunto de Arremesso\". No CSV do Bazar os itens são Virotes/Flechas, Munição de Fogo e Conjunto de Arremesso. \"Adagas de lançamento\" não existe, e Virote ficou de fora.",
      "trechoAtual": {
-      "status": "presente",
+      "status": "ausente",
       "pedacos": 1,
-      "encontrados": 1,
-      "em": [
-       "data/catalogo/tecnica.json",
-       "data/classes/artilheiro.json"
-      ]
+      "encontrados": 0,
+      "em": [],
+      "faltam": [
+       "você pode criar 1 munição(Flecha, Munição de Armas de Fogo ou Adagas de lançamento) sem rolar testes."
+      ],
+      "textoAtual": {
+       "tecnica": "artilheiro-artesao-de-municao",
+       "fonte": "data/classes/artilheiro.json",
+       "bloco": "Passiva Durante descanso curto ou longo, você pode criar 1 munição(Virotes/Flechas, Munição de Armas de Fogo ou Conjunto de Arremesso) sem rolar testes. |"
+      }
      },
      "resposta": {
-      "status": "esperandoPedro",
-      "statusBalanceamento": "pedroDecide",
+      "status": "resolvido",
+      "statusBalanceamento": "resolvido",
       "texto": "\"Flecha\" → \"Virotes/Flechas\" e \"Adagas de lançamento\" → \"Conjunto de Arremesso\" (nomes do Bazar).",
       "acao": "aguarda Pedro",
       "perguntaPedro": {
@@ -23728,7 +24001,9 @@
        "tema": "Normalização de termos (só texto)",
        "pergunta": "\"1x/Dia\" → \"1x/Descanso Longo\" nas ultimates e no cabeçalho do Tier 3 das 7 classes; \"Margem de Crítico\" → \"Margem de Ameaça\" (Sorte do Bêbado, Golpe Instinto, Tiro Carregado); \"surpreendido\" → \"Desprevenido\" (Sensor de Proximidade); \"Adagas de lançamento\" → \"Conjunto de Arremesso\" e \"Flecha\" → \"Virotes/Flechas\" (Artesão de Munição); \"Derrubado\" → \"Caído\" (Postura Defensiva); \"Caidos\" → \"Caído\" (Investida); e definir no Sistema > Sua Rodada: \"Penalidade de Multi-Ataque (PMA): −5 cumulativo a cada ataque depois do primeiro contra o mesmo alvo, no mesmo turno\" (D29).",
        "recomendacao": "Sim. Eu gravo e confiro o diff de cada página."
-      }
+      },
+      "resolvidoPor": "textoCorrigido",
+      "evidencia": "O trecho citado não está mais em data/ nem em js/ (texto atual em data/classes/artilheiro.json: \"Passiva Durante descanso curto ou longo, você pode criar 1 munição(Virotes/Flechas, Munição de Armas de Fogo ou Conjunto de Arremesso) sem rolar testes. |\")."
      }
     }
    ],
@@ -25546,8 +25821,8 @@
       ]
      },
      "resposta": {
-      "status": "esperandoPedro",
-      "statusBalanceamento": "pedroDecide",
+      "status": "resolvido",
+      "statusBalanceamento": "resolvido",
       "texto": "Pergunta T2 (a mesma da Lâmina Rápida). Toda arma de fogo do Bazar é Atacar(2). No literal, a Rajada dá 2 tiros de Distância Pesada por 1 ação, 4 vezes a taxa normal, e 3 Rajadas por turno somariam 6 tiros. Recomendação: os 2 tiros custam juntos o Atacar(n) da arma, 2 ações com arma de fogo. A PMA não entra, porque o texto isenta. A L13 é da manobra Investida e não se estende aqui.",
       "acao": "ficha: mostra \"1 Ação\" + aviso até a T2",
       "principio": {
@@ -25563,10 +25838,8 @@
      }
     }
    ],
-   "status": "alerta",
-   "motivos": [
-    "regra:media"
-   ]
+   "status": "ok",
+   "motivos": []
   },
   {
    "id": "artilheiro-olho-do-arqueiro",
@@ -25788,12 +26061,12 @@
      {
       "valor": "+3d6",
       "campo": "Dano",
-      "trecho": "ções → +2d6 Dano Perfurante | 3 Ações → +3d6 Dano Perfurante, Margem de Crítico"
+      "trecho": "ções → +2d6 Dano Perfurante | 3 Ações → +3d6 Dano Perfurante, Margem de Ameaça"
      },
      {
       "valor": "+1",
       "campo": "Con",
-      "trecho": ", Margem de Crítico +1 | | | Você ganha +1 Concentração por ação gasta. | |"
+      "trecho": "e, Margem de Ameaça +1 | | | Você ganha +1 Concentração por ação gasta. | |"
      }
     ]
    },
@@ -25806,19 +26079,26 @@
      "trecho": "1-3 Ações, 2 Stamina Você prepara um tiro que escala com a quantidade de ações que você utiliza: 1 Ação → +1d6 Dano Perfurante 2 Ações → +2d6 Dano Perfurante 3 Ações → +3d6 Dano Perfurante, Margem de Crítico +1",
      "regraAtual": "O turno tem 3 ações (Sistema > Sua Rodada). Não está dito se as ações de preparo incluem o disparo; com 3 ações de preparo não sobra ação para Atacar no mesmo turno, e o texto não diz se o tiro preparado fica para o próximo turno.",
      "trechoAtual": {
-      "status": "presente",
+      "status": "ausente",
       "pedacos": 1,
-      "encontrados": 1,
-      "em": [
-       "data/catalogo/tecnica.json",
-       "data/classes/artilheiro.json"
-      ]
+      "encontrados": 0,
+      "em": [],
+      "faltam": [
+       "1-3 Ações, 2 Stamina Você prepara um tiro que escala com a quantidade de ações que você utiliza: 1 Ação → +1d6 Dano Perfurante 2 Ações → +2d6 Dano Perfurante 3 Ações → +3d6 Dano Perfurante, Margem de Crítico +1"
+      ],
+      "textoAtual": {
+       "tecnica": "artilheiro-tiro-carregado",
+       "fonte": "data/classes/artilheiro.json",
+       "bloco": "Você prepara um tiro que escala com a quantidade de ações que você utiliza: 1 Ação → +1d6 Dano Perfurante"
+      }
      },
      "resposta": {
-      "status": "leitura",
+      "status": "resolvido",
       "statusBalanceamento": "decisao",
       "texto": "As ações do Tiro Carregado incluem o disparo, e o mínimo é o Atacar(n) da arma. Com arma de Atacar(1): 1 ação dá o tiro com +1d6, 3 ações dão +3d6 e +1 de margem. Com Distância Pesada (Atacar(2)): de 2 ações (+2d6) a 3 (+3d6). O tiro não fica guardado para o turno seguinte. +1 Concentração por ação gasta.",
-      "acao": "ficha: seletor 1–3 ações com mínimo = Atacar(n)"
+      "acao": "ficha: seletor 1–3 ações com mínimo = Atacar(n)",
+      "resolvidoPor": "textoCorrigido",
+      "evidencia": "O trecho citado não está mais em data/ nem em js/ (texto atual em data/classes/artilheiro.json: \"Você prepara um tiro que escala com a quantidade de ações que você utiliza: 1 Ação → +1d6 Dano Perfurante\")."
      }
     },
     {
@@ -25829,17 +26109,22 @@
      "trecho": "3 Ações → +3d6 Dano Perfurante, Margem de Crítico +1",
      "regraAtual": "data/sistema.json > Dano e Defesa / Críticos: o termo definido é \"Margem de Ameaça\", e a Foco Absoluto da mesma classe usa \"Margem de Ameaça +1\". \"Margem de Crítico\" não existe como termo do sistema.",
      "trechoAtual": {
-      "status": "presente",
+      "status": "ausente",
       "pedacos": 1,
-      "encontrados": 1,
-      "em": [
-       "data/catalogo/tecnica.json",
-       "data/classes/artilheiro.json"
-      ]
+      "encontrados": 0,
+      "em": [],
+      "faltam": [
+       "3 Ações → +3d6 Dano Perfurante, Margem de Crítico +1"
+      ],
+      "textoAtual": {
+       "tecnica": "artilheiro-tiro-carregado",
+       "fonte": "data/classes/artilheiro.json",
+       "bloco": "3 Ações → +3d6 Dano Perfurante, Margem de Ameaça +1"
+      }
      },
      "resposta": {
-      "status": "esperandoPedro",
-      "statusBalanceamento": "pedroDecide",
+      "status": "resolvido",
+      "statusBalanceamento": "resolvido",
       "texto": "\"Margem de Crítico\" → \"Margem de Ameaça\" (normalização de termo).",
       "acao": "aguarda Pedro",
       "perguntaPedro": {
@@ -25847,14 +26132,14 @@
        "tema": "Normalização de termos (só texto)",
        "pergunta": "\"1x/Dia\" → \"1x/Descanso Longo\" nas ultimates e no cabeçalho do Tier 3 das 7 classes; \"Margem de Crítico\" → \"Margem de Ameaça\" (Sorte do Bêbado, Golpe Instinto, Tiro Carregado); \"surpreendido\" → \"Desprevenido\" (Sensor de Proximidade); \"Adagas de lançamento\" → \"Conjunto de Arremesso\" e \"Flecha\" → \"Virotes/Flechas\" (Artesão de Munição); \"Derrubado\" → \"Caído\" (Postura Defensiva); \"Caidos\" → \"Caído\" (Investida); e definir no Sistema > Sua Rodada: \"Penalidade de Multi-Ataque (PMA): −5 cumulativo a cada ataque depois do primeiro contra o mesmo alvo, no mesmo turno\" (D29).",
        "recomendacao": "Sim. Eu gravo e confiro o diff de cada página."
-      }
+      },
+      "resolvidoPor": "textoCorrigido",
+      "evidencia": "O trecho citado não está mais em data/ nem em js/ (texto atual em data/classes/artilheiro.json: \"3 Ações → +3d6 Dano Perfurante, Margem de Ameaça +1\")."
      }
     }
    ],
-   "status": "alerta",
-   "motivos": [
-    "regra:media"
-   ]
+   "status": "ok",
+   "motivos": []
   },
   {
    "id": "artilheiro-projetil-envenenado",
@@ -25877,7 +26162,7 @@
     "descricaoV21": {
      "status": "completa",
      "cobertura": 1.0,
-     "texto": "Durante um descanso curto, você pode aplicar veneno em até 5 munições (flechas, virotes, munições de fogo, ou armas de arremesso).Ao acertar com munição envenen"
+     "texto": "Durante um descanso curto, você pode aplicar veneno em até 2 munições (flechas, virotes, munições de fogo, ou conjuntos de armas de arremesso).Ao acertar com mu"
     },
     "status": "ok",
     "notas": []
@@ -25926,17 +26211,22 @@
      "trecho": "Durante um descanso curto, você pode aplicar veneno em até 5 munições (flechas, virotes, munições de fogo, ou armas de arremesso). Ao acertar com munição envenenada, o alvo deve passar em Fortitude ou recebe Envenenamento por 2 rodadas .",
      "regraAtual": "data/sistema.json > Munição de Armas: \"Armas à distância requerem 1 munição para serem usadas pelo combate inteiro. A munição é descontada por combate.\" O contrato (municao.efeitoEspecialDura) diz que o efeito da munição dura \"o combate inteiro, em cada ataque\" (D2, D41). Assim, cada munição envenenada envenena todo acerto de um combate inteiro, 5 combates por descanso curto. A técnica não diz \"uso único\" como a Munição Especial diz.",
      "trechoAtual": {
-      "status": "presente",
+      "status": "ausente",
       "pedacos": 1,
-      "encontrados": 1,
-      "em": [
-       "data/catalogo/tecnica.json",
-       "data/classes/artilheiro.json"
-      ]
+      "encontrados": 0,
+      "em": [],
+      "faltam": [
+       "Durante um descanso curto, você pode aplicar veneno em até 5 munições (flechas, virotes, munições de fogo, ou armas de arremesso). Ao acertar com munição envenenada, o alvo deve passar em Fortitude ou recebe Envenenamento por 2 rodadas ."
+      ],
+      "textoAtual": {
+       "tecnica": "artilheiro-projetil-envenenado",
+       "fonte": "data/classes/artilheiro.json",
+       "bloco": "Durante um descanso curto, você pode aplicar veneno em até 2 munições (flechas, virotes, munições de fogo, ou conjuntos de armas de arremesso)."
+      }
      },
      "resposta": {
-      "status": "leitura",
-      "statusBalanceamento": "decisao",
+      "status": "resolvido",
+      "statusBalanceamento": "resolvido",
       "texto": "Segue a regra da munição (D2, D41): o efeito vale o combate inteiro, em cada acerto. A Munição Especial diz \"uso único\" justamente porque foge dessa regra, e esta técnica não diz. São até 5 combates envenenados por descanso curto. É forte; se o Pedro quiser menos, basta escrever \"uso único\".",
       "acao": "ficha: munição com efeito de cena",
       "perguntaPedro": {
@@ -25944,14 +26234,14 @@
        "tema": "Artilheiro",
        "pergunta": "(a) Munição Especial: \"3 = 1 bugiganga\" contra a regra \"10 = 1\". (b) Projétil Envenenado vale o combate inteiro pela regra da munição (D2/D41).",
        "recomendacao": "(a) Alinhar a 10, salvo peso maior proposital. (b) É o que a regra diz; se for forte demais, basta \"uso único\"."
-      }
+      },
+      "resolvidoPor": "textoCorrigido",
+      "evidencia": "O trecho citado não está mais em data/ nem em js/ (texto atual em data/classes/artilheiro.json: \"Durante um descanso curto, você pode aplicar veneno em até 2 munições (flechas, virotes, munições de fogo, ou conjuntos de armas de arremesso).\")."
      }
     }
    ],
-   "status": "alerta",
-   "motivos": [
-    "regra:media"
-   ]
+   "status": "ok",
+   "motivos": []
   },
   {
    "id": "artilheiro-danca-da-morte",
@@ -26137,17 +26427,22 @@
      "trecho": "3 munições especiais contam como 1 bugiganga.",
      "regraAtual": "CLAUDE.md §2 (confirmado pelo Pedro em 2026-09-25): itens Empilháveis, munição incluída, pesam 10 unidades = 1. O CSV do Bazar diz o mesmo para toda munição (\"Empilhável: pesa 1 bugiganga a cada 10 unidades\"), e o contrato tem municao.unidadesPorSlot = 10. Se for exceção proposital da munição especial, precisa estar dito; senão está desatualizado.",
      "trechoAtual": {
-      "status": "presente",
+      "status": "ausente",
       "pedacos": 1,
-      "encontrados": 1,
-      "em": [
-       "data/catalogo/tecnica.json",
-       "data/classes/artilheiro.json"
-      ]
+      "encontrados": 0,
+      "em": [],
+      "faltam": [
+       "3 munições especiais contam como 1 bugiganga."
+      ],
+      "textoAtual": {
+       "tecnica": "artilheiro-municao-especial",
+       "fonte": "data/classes/artilheiro.json",
+       "bloco": "Durante um descanso curto, você pode criar 1 Munição Especial como ação de descanso curto e durante um descanso longo, você pode criar 2 munições Especiais. 10 munições especiais contam como 1 bugiganga."
+      }
      },
      "resposta": {
-      "status": "esperandoPedro",
-      "statusBalanceamento": "pedroDecide",
+      "status": "resolvido",
+      "statusBalanceamento": "resolvido",
       "texto": "Alinhar a \"10 = 1 bugiganga\", como toda munição, a menos que o peso maior seja proposital.",
       "acao": "aguarda Pedro",
       "perguntaPedro": {
@@ -26155,7 +26450,9 @@
        "tema": "Artilheiro",
        "pergunta": "(a) Munição Especial: \"3 = 1 bugiganga\" contra a regra \"10 = 1\". (b) Projétil Envenenado vale o combate inteiro pela regra da munição (D2/D41).",
        "recomendacao": "(a) Alinhar a 10, salvo peso maior proposital. (b) É o que a regra diz; se for forte demais, basta \"uso único\"."
-      }
+      },
+      "resolvidoPor": "textoCorrigido",
+      "evidencia": "O trecho citado não está mais em data/ nem em js/ (texto atual em data/classes/artilheiro.json: \"Durante um descanso curto, você pode criar 1 Munição Especial como ação de descanso curto e durante um descanso longo, você pode criar 2 munições Especiais. 10 munições especiais contam como 1 bugiganga.\")."
      }
     },
     {
@@ -26547,6 +26844,11 @@
       "pedacos": 3,
       "encontrados": 3,
       "em": [
+       "data/balanceamento/ficha-digital-regras.json",
+       "data/catalogo/carta.json",
+       "data/catalogo/marca.json",
+       "data/catalogo/origem.json",
+       "data/catalogo/tecnica.json",
        "data/catalogo/ultimate.json",
        "data/classes/alquimista.json",
        "data/classes/artilheiro.json",
@@ -26554,12 +26856,16 @@
        "data/classes/brutalista.json",
        "data/classes/espadachim.json",
        "data/classes/monge.json",
-       "data/classes/teurgo.json"
+       "data/classes/teurgo.json",
+       "data/limiar.json",
+       "data/origens.json",
+       "data/racas/corrompido.json",
+       "js/ficha.js"
       ]
      },
      "resposta": {
-      "status": "esperandoPedro",
-      "statusBalanceamento": "pedroDecide",
+      "status": "resolvido",
+      "statusBalanceamento": "resolvido",
       "texto": "Trocar \"1x/Dia\" por \"1x/Descanso Longo\" nas ultimates e no cabeçalho do Tier 3 das 7 classes. É só texto: a ficha já recarrega no descanso longo (L29).",
       "acao": "aguarda Pedro",
       "perguntaPedro": {
@@ -26725,6 +27031,11 @@
       "pedacos": 3,
       "encontrados": 3,
       "em": [
+       "data/balanceamento/ficha-digital-regras.json",
+       "data/catalogo/carta.json",
+       "data/catalogo/marca.json",
+       "data/catalogo/origem.json",
+       "data/catalogo/tecnica.json",
        "data/catalogo/ultimate.json",
        "data/classes/alquimista.json",
        "data/classes/artilheiro.json",
@@ -26732,12 +27043,16 @@
        "data/classes/brutalista.json",
        "data/classes/espadachim.json",
        "data/classes/monge.json",
-       "data/classes/teurgo.json"
+       "data/classes/teurgo.json",
+       "data/limiar.json",
+       "data/origens.json",
+       "data/racas/corrompido.json",
+       "js/ficha.js"
       ]
      },
      "resposta": {
-      "status": "esperandoPedro",
-      "statusBalanceamento": "pedroDecide",
+      "status": "resolvido",
+      "statusBalanceamento": "resolvido",
       "texto": "Trocar \"1x/Dia\" por \"1x/Descanso Longo\" nas ultimates e no cabeçalho do Tier 3 das 7 classes. É só texto: a ficha já recarrega no descanso longo (L29).",
       "acao": "aguarda Pedro",
       "perguntaPedro": {
@@ -26890,6 +27205,11 @@
       "pedacos": 3,
       "encontrados": 3,
       "em": [
+       "data/balanceamento/ficha-digital-regras.json",
+       "data/catalogo/carta.json",
+       "data/catalogo/marca.json",
+       "data/catalogo/origem.json",
+       "data/catalogo/tecnica.json",
        "data/catalogo/ultimate.json",
        "data/classes/alquimista.json",
        "data/classes/artilheiro.json",
@@ -26897,12 +27217,16 @@
        "data/classes/brutalista.json",
        "data/classes/espadachim.json",
        "data/classes/monge.json",
-       "data/classes/teurgo.json"
+       "data/classes/teurgo.json",
+       "data/limiar.json",
+       "data/origens.json",
+       "data/racas/corrompido.json",
+       "js/ficha.js"
       ]
      },
      "resposta": {
-      "status": "esperandoPedro",
-      "statusBalanceamento": "pedroDecide",
+      "status": "resolvido",
+      "statusBalanceamento": "resolvido",
       "texto": "Trocar \"1x/Dia\" por \"1x/Descanso Longo\" nas ultimates e no cabeçalho do Tier 3 das 7 classes. É só texto: a ficha já recarrega no descanso longo (L29).",
       "acao": "aguarda Pedro",
       "perguntaPedro": {
@@ -28464,7 +28788,7 @@
     "descricaoV21": {
      "status": "completa",
      "cobertura": 1.0,
-     "texto": "Detecta mudanças no ar e vibrações. Não pode ser surpreendido."
+     "texto": "Detecta mudanças no ar e vibrações. Não pode ser Desprevenido."
     },
     "status": "ok",
     "notas": [
@@ -28481,7 +28805,9 @@
    },
    "referencias": {
     "status": "ok",
-    "condicoes": [],
+    "condicoes": [
+     "Desprevenido"
+    ],
     "estadosNaoCondicao": [],
     "magias": [],
     "itens": [],
@@ -28507,17 +28833,22 @@
      "trecho": "Não pode ser surpreendido.",
      "regraAtual": "'Surpreendido' não é condição. A condição canônica é Desprevenido (data/condicoes.json; Sistema > Descanso > Perigo), e a origem Vidente já escreve 'não pode ser Desprevenido'. O balanceamento (04-racas) lê como imunidade a Desprevenido, mas o texto não nomeia a condição, então a ficha não tem como ligar a imunidade.",
      "trechoAtual": {
-      "status": "presente",
+      "status": "ausente",
       "pedacos": 1,
-      "encontrados": 1,
-      "em": [
-       "data/catalogo/tecnologia.json",
-       "data/racas/automato.json"
-      ]
+      "encontrados": 0,
+      "em": [],
+      "faltam": [
+       "Não pode ser surpreendido."
+      ],
+      "textoAtual": {
+       "tecnica": "automato-sensor-de-proximidade",
+       "fonte": "data/racas/automato.json",
+       "bloco": "| Não pode ser Desprevenido ."
+      }
      },
      "resposta": {
-      "status": "esperandoPedro",
-      "statusBalanceamento": "pedroDecide",
+      "status": "resolvido",
+      "statusBalanceamento": "resolvido",
       "texto": "\"Não pode ser surpreendido\" → \"Não pode ser Desprevenido\".",
       "acao": "aguarda Pedro",
       "perguntaPedro": {
@@ -28525,7 +28856,9 @@
        "tema": "Normalização de termos (só texto)",
        "pergunta": "\"1x/Dia\" → \"1x/Descanso Longo\" nas ultimates e no cabeçalho do Tier 3 das 7 classes; \"Margem de Crítico\" → \"Margem de Ameaça\" (Sorte do Bêbado, Golpe Instinto, Tiro Carregado); \"surpreendido\" → \"Desprevenido\" (Sensor de Proximidade); \"Adagas de lançamento\" → \"Conjunto de Arremesso\" e \"Flecha\" → \"Virotes/Flechas\" (Artesão de Munição); \"Derrubado\" → \"Caído\" (Postura Defensiva); \"Caidos\" → \"Caído\" (Investida); e definir no Sistema > Sua Rodada: \"Penalidade de Multi-Ataque (PMA): −5 cumulativo a cada ataque depois do primeiro contra o mesmo alvo, no mesmo turno\" (D29).",
        "recomendacao": "Sim. Eu gravo e confiro o diff de cada página."
-      }
+      },
+      "resolvidoPor": "textoCorrigido",
+      "evidencia": "O trecho citado não está mais em data/ nem em js/ (texto atual em data/racas/automato.json: \"| Não pode ser Desprevenido .\")."
      }
     }
    ],
@@ -29444,7 +29777,7 @@
     "descricaoV21": {
      "status": "completa",
      "cobertura": 1.0,
-     "texto": "Tem vantagem nas perícias de Movimento, Crime, Intimidação e Sobrevivência contra Dryads e outras Criaturas Predáveis, adicionalmente é Imune a Envenenamento."
+     "texto": "Tem vantagem nas perícias de Movimento, Crime, Intimidação e Sobrevivência contra Dryads e Animais selvagens, adicionalmente é Imune a Envenenamento."
     },
     "status": "ok",
     "notas": []
@@ -29492,17 +29825,22 @@
      "trecho": "Tem vantagem nas perícias de Movimento, Crime, Intimidação e Sobrevivência contra Dryads e outras Criaturas Predáveis",
      "regraAtual": "'Criaturas Predáveis' não está definido em data/sistema.json, condicoes.json nem nos tipos do Bestiário: só aparece neste card e no data/catalogo/traco.json. A ficha não tem como saber contra quem vale a vantagem.",
      "trechoAtual": {
-      "status": "presente",
+      "status": "ausente",
       "pedacos": 1,
-      "encontrados": 1,
-      "em": [
-       "data/catalogo/traco.json",
-       "data/racas/gruto.json"
-      ]
+      "encontrados": 0,
+      "em": [],
+      "faltam": [
+       "Tem vantagem nas perícias de Movimento, Crime, Intimidação e Sobrevivência contra Dryads e outras Criaturas Predáveis"
+      ],
+      "textoAtual": {
+       "tecnica": "gruto-lingua-bifurcada",
+       "fonte": "data/racas/gruto.json",
+       "bloco": "Tem vantagem nas perícias de Movimento, Crime, Intimidação e Sobrevivência contra Dryads e Animais selvagens, adicionalmente é Imune a Envenenamento ."
+      }
      },
      "resposta": {
-      "status": "esperandoPedro",
-      "statusBalanceamento": "pedroDecide",
+      "status": "resolvido",
+      "statusBalanceamento": "resolvido",
       "texto": "Preciso da definição de \"Criaturas Predáveis\". Sugestão: Dryads e criaturas menores que você.",
       "acao": "aguarda Pedro",
       "perguntaPedro": {
@@ -29510,7 +29848,9 @@
        "tema": "Raças",
        "pergunta": "(a) Autômato, Achar Tecnologias em Lojas: o d12 não fecha com a lista. (b) Gruto: \"Criaturas Predáveis\" não está definido. (c) Corrompido: pela tabela, \"negativas são permanentes\" aponta para os poderes. (d) As Vozes: \"1 natural em qualquer dado\". (e) Receptáculo Natural e Cultista conjuram sem Treinado em Místico?",
        "recomendacao": "(a) 1d10 sobre as 9 compráveis, rerolando o 10 e os repetidos. (b) Sugestão: Dryads e criaturas menores que você. (c) \"Adversidades (custo +) são permanentes; poderes (custo −) podem ser reorganizados no descanso longo.\" (d) Só o d20: num 4d6 de dano, 52% das rolagens têm um 1. (e) Sim: o traço dá a conjuração das 2 magias."
-      }
+      },
+      "resolvidoPor": "textoCorrigido",
+      "evidencia": "O trecho citado não está mais em data/ nem em js/ (texto atual em data/racas/gruto.json: \"Tem vantagem nas perícias de Movimento, Crime, Intimidação e Sobrevivência contra Dryads e Animais selvagens, adicionalmente é Imune a Envenenamento .\")."
      }
     }
    ],
@@ -30284,8 +30624,8 @@
       ]
      },
      "resposta": {
-      "status": "leitura",
-      "statusBalanceamento": "decisao",
+      "status": "resolvido",
+      "statusBalanceamento": "resolvido",
       "texto": "O traço dá a conjuração dessas 2 magias, e o texto específico vence o requisito geral de Treinado em Místico, como a memória já lê o Cultista (\"destrava conjuração\"). O requisito do Sistema continua para qualquer outra magia. A rolagem de Místico, quando a magia pede, usa o grau que o personagem tiver.",
       "acao": "ficha: 2 magias liberadas sem foco e sem exigir treino",
       "perguntaPedro": {
@@ -30299,8 +30639,7 @@
    ],
    "status": "alerta",
    "motivos": [
-    "obsoletas:revisar",
-    "regra:media"
+    "obsoletas:revisar"
    ]
   },
   {
@@ -32311,7 +32650,7 @@
     "descricaoV21": {
      "status": "completa",
      "cobertura": 1.0,
-     "texto": "Ao rolar 1 natural em qualquer dado, perde 2d4+nível de éter."
+     "texto": "Ao rolar 1 natural no d20, perde 2d4+nível de éter."
     },
     "status": "parcial",
     "notas": [
@@ -32356,16 +32695,22 @@
      "trecho": "Ao rolar 1 natural em qualquer dado, perde 2d4+nível de éter.",
      "regraAtual": "Sistema > Críticos e Falhas: a falha crítica é o 1 no d20. 'Qualquer dado' inclui dados de dano e de cura (d4, d6, 2d8…), onde o 1 sai quase sempre. O gatilho é d20 só ou todo dado? A ficha não consegue automatizar sem essa resposta.",
      "trechoAtual": {
-      "status": "presente",
+      "status": "ausente",
       "pedacos": 1,
-      "encontrados": 1,
-      "em": [
-       "data/racas/corrompido.json"
-      ]
+      "encontrados": 0,
+      "em": [],
+      "faltam": [
+       "Ao rolar 1 natural em qualquer dado, perde 2d4+nível de éter."
+      ],
+      "textoAtual": {
+       "tecnica": "corrompido-as-vozes",
+       "fonte": "data/racas/corrompido.json > raca.corrupcao.adversidades",
+       "bloco": "Ao rolar 1 natural no d20, perde 2d4+nível de éter."
+      }
      },
      "resposta": {
-      "status": "esperandoPedro",
-      "statusBalanceamento": "pedroDecide",
+      "status": "resolvido",
+      "statusBalanceamento": "resolvido",
       "texto": "Pergunta T15. Recomendo que o gatilho seja só o d20. \"Falha crítica\" é conceito do d20, e em \"qualquer dado\" um 4d6 de dano tem 52% de ter um 1: o Éter do Corrompido some em um combate, a 2d4 + nível por gatilho. Se a intenção é ser brutal, a Pele Morta mostra que adversidade pode ser; aí vale o literal.",
       "acao": "ficha: provisório = só d20",
       "perguntaPedro": {
@@ -32373,14 +32718,15 @@
        "tema": "Raças",
        "pergunta": "(a) Autômato, Achar Tecnologias em Lojas: o d12 não fecha com a lista. (b) Gruto: \"Criaturas Predáveis\" não está definido. (c) Corrompido: pela tabela, \"negativas são permanentes\" aponta para os poderes. (d) As Vozes: \"1 natural em qualquer dado\". (e) Receptáculo Natural e Cultista conjuram sem Treinado em Místico?",
        "recomendacao": "(a) 1d10 sobre as 9 compráveis, rerolando o 10 e os repetidos. (b) Sugestão: Dryads e criaturas menores que você. (c) \"Adversidades (custo +) são permanentes; poderes (custo −) podem ser reorganizados no descanso longo.\" (d) Só o d20: num 4d6 de dano, 52% das rolagens têm um 1. (e) Sim: o traço dá a conjuração das 2 magias."
-      }
+      },
+      "resolvidoPor": "textoCorrigido",
+      "evidencia": "O trecho citado não está mais em data/ nem em js/ (texto atual em data/racas/corrompido.json > raca.corrupcao.adversidades: \"Ao rolar 1 natural no d20, perde 2d4+nível de éter.\")."
      }
     }
    ],
    "status": "alerta",
    "motivos": [
-    "levavel:parcial",
-    "regra:media"
+    "levavel:parcial"
    ]
   },
   {
@@ -32777,8 +33123,8 @@
       ]
      },
      "resposta": {
-      "status": "esperandoPedro",
-      "statusBalanceamento": "pedroDecide",
+      "status": "resolvido",
+      "statusBalanceamento": "resolvido",
       "texto": "Pergunta T16. O texto conta por item inédito acima de Ordinário, e o teto natural é o Lendário. Com isso, 4 itens diferentes levam de Leigo a Lendário. Recomendo contar por raridade inédita (Incomum, Exótico, Luxária: no máximo +3 graus), como o meu 03-origens lia. No Artesão, a imunidade à falha crítica e o ganho valem só para o que se fabrica com o Ofício nomeado (Engenharia); consumível feito com Alquimia fica de fora.",
       "acao": "ficha: provisório = literal (por item) com teto Lendário",
       "perguntaPedro": {
@@ -32792,8 +33138,7 @@
    ],
    "status": "alerta",
    "motivos": [
-    "levavel:parcial",
-    "regra:media"
+    "levavel:parcial"
    ]
   },
   {
@@ -32878,8 +33223,8 @@
       ]
      },
      "resposta": {
-      "status": "esperandoPedro",
-      "statusBalanceamento": "pedroDecide",
+      "status": "resolvido",
+      "statusBalanceamento": "resolvido",
       "texto": "Pergunta T16. O texto conta por item inédito acima de Ordinário, e o teto natural é o Lendário. Com isso, 4 itens diferentes levam de Leigo a Lendário. Recomendo contar por raridade inédita (Incomum, Exótico, Luxária: no máximo +3 graus), como o meu 03-origens lia. No Artesão, a imunidade à falha crítica e o ganho valem só para o que se fabrica com o Ofício nomeado (Engenharia); consumível feito com Alquimia fica de fora.",
       "acao": "ficha: provisório = literal (por item) com teto Lendário",
       "perguntaPedro": {
@@ -32893,8 +33238,7 @@
    ],
    "status": "alerta",
    "motivos": [
-    "levavel:parcial",
-    "regra:media"
+    "levavel:parcial"
    ]
   },
   {
@@ -33440,13 +33784,14 @@
       "pedacos": 1,
       "encontrados": 1,
       "em": [
+       "data/balanceamento/ficha-digital-regras.json",
        "data/catalogo/origem.json",
        "data/origens.json"
       ]
      },
      "resposta": {
-      "status": "leitura",
-      "statusBalanceamento": "decisao",
+      "status": "resolvido",
+      "statusBalanceamento": "resolvido",
       "texto": "Mesma leitura do Receptáculo Natural. \"Você conhece e consegue canalizar\" dá a conjuração das 2 magias mesmo com Religião no lugar de Místico. O foco continua obrigatório, porque o texto pede.",
       "acao": "ficha: 2 magias liberadas com foco",
       "perguntaPedro": {
@@ -33461,8 +33806,7 @@
    "status": "alerta",
    "motivos": [
     "levavel:parcial",
-    "obsoletas:revisar",
-    "regra:media"
+    "obsoletas:revisar"
    ]
   },
   {

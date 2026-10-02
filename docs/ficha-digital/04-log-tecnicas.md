@@ -1,5 +1,22 @@
 # Log de técnicas — o que funciona na ficha (2026-09-27)
 
+> **Atualização de 2026-10-02.** Respostas do balanceamento copiadas da Revisão 3 (`e829711`), depois do sync do Notion de
+> 2026-10-02 (`b3704db`), que trouxe as correções gravadas no Notion pelo Pedro e pelo balanceamento. Mudou:
+> - técnicas sem alerta: 241 → **263** (de 382);
+> - achados resolvidos: 14 → **77**;
+> - esperando o Pedro: 54 → **7**. São 6 do Batedor, que está em rework e é revisto inteiro depois, e o Grimório Arcano do Teurgo;
+> - leitura do balanceamento: 84 → **68**;
+> - consertos do site: **8**, todos levados para a F4. São eles:
+>   - marcação de levar nos blocos de Proficiência com Espadas e Marca do Duelo e nas linhas da tabela de Corrupção;
+>   - Vulnerabilidade na ficha;
+>   - "1 Comida" e "1 Kit de Ferramentas" das origens ligados ao item do Bazar;
+>   - estados de técnica que parecem condição: Endividado e Luto Selvagem;
+>   - custo de ação do Teorema Absoluto;
+>   - a anotação "← betovenon." no Alquimista, a confirmar com o Pedro.
+>
+> A técnica "Investida" do Brutalista virou **Atropelar** (id `brutalista-atropelar`). O achado mantém o id antigo, que é a chave da resposta do balanceamento.
+> Os números e as listas abaixo são os de 2026-09-27. O retrato atual é o `log-tecnicas.json` e a página publicada.
+
 Pedido do Pedro na L19 (`03-respostas-pedro.md` §6): *"preciso de um log de todas as técnicas do sistema e se elas estão
 funcionando na ficha interativa ou não"*. O exemplo dele é a **Muralha Viva** do Brutalista, que ainda diz que o treino de
 Defender "aumenta de 3 em 3", embora Defender tenha virado dado.
