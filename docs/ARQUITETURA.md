@@ -159,7 +159,9 @@ css/ficha.css                  F2a: drawer, botão lateral, toast e "+ ficha" do
 css/ficha-previa.css           F3c: painel da prévia da ficha v3 (tudo sob .kf3, SEM
                                camada). O shell NÃO o injeta: só o kh-previa.js o pede,
                                com a prévia ligada (?ficha=v3)
-css/ficha-pagina.css           F4.3: só a página da ficha (camada paginas, prefixo .fp-)
+css/ficha-pagina.css           F4.3: só a página da ficha (camada paginas, prefixo .fp-):
+                               moldura de raízes, medalhão de papel dos ícones do A4,
+                               cores de recurso/raridade/ramo dos tokens
 js/kh-ui.js                    F2b: biblioteca comum (fora do bundle da ficha; o shell a
                                põe SÍNCRONA antes do 1º <script src> local de toda página):
                                KhTeclas (registro único de atalhos e camadas do Esc, um
@@ -212,9 +214,14 @@ js/ficha.js                    ARTEFATO (tools/ficha_js.py): concatenação de j
                                Bazar carrega direto)
 js/ficha-pagina.js             F4.3: página da ficha nova (KhFichaPagina), só leitura e atrás
                                da prévia: sem ela, só o aviso e nenhum fetch; com ela, topo,
-                               5 abas do A4 (RENDER[id] por aba, F4.3b) e painéis, pelo motor
-                               (KhPrevia.carregar/calcular, KhConta prefixo fp). Não grava
-                               chave de ficha; ficha-pagina.test.js
+                               5 abas do A4 (RENDER[id] por aba, F4.3b: Núcleo, Técnicas &
+                               Marcas, Cartas/Lore/Outros, O Bazar, Grimório), pelo motor
+                               (KhPrevia.carregar/calcular, KhConta prefixo fp), catálogo
+                               indexado pela própria página (data/catalogo + corrupções da
+                               raça + ramos), ícones images/ficha/*.webp e o sprite g-* da
+                               moldura de raízes. data-campo em cada campo do A4; número de
+                               estado em span.fp-n[data-ficha]. Rara nunca mostra o efeito.
+                               Não grava chave de ficha; ficha-pagina.test.js
 js/bazar.js                    núcleo do Bazar: catálogo, filtros, Bancada
 js/bazar-cartao.js             pop-up do card (BZ.cartao: conteúdo ┐ módulos do Bazar v3,
                                e resolvedores do KhPrever)      │
