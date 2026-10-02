@@ -107,7 +107,9 @@ tools/testes/                  testes node do motor KhInv, do KhEstado, do KhReg
                                esquema-min.js: validador mínimo de JSON Schema (sem pip) dos
                                testes do schema v3; estado-apoio.js: catálogo real + storage falso
                                (quota e falha simulada); pagina-v2-apoio.js: a v2.1 real (js/ficha.js)
-                               num vm com DOM falso (guarda e escrita dupla);
+                               num vm com DOM falso (guarda e escrita dupla); cor-apoio.js: tokens,
+                               regra de seletor, cor resolvida e contraste dos testes de CSS;
+                               fixtures/*.golden.html: ouros byte a byte (prévia e página da ficha);
                                test_*.py: checagens do validar (unittest, no build)
 tools/estilo/                  conferência de estilo computado (captura no navegador; §6): servidor.py,
                                captura.js, rodar.html, roteiro.json, diff.py, revisado.json;
@@ -162,6 +164,12 @@ css/ficha-previa.css           F3c: painel da prévia da ficha v3 (tudo sob .kf3
 css/ficha-pagina.css           F4.3: só a página da ficha (camada paginas, prefixo .fp-):
                                moldura de raízes, medalhão de papel dos ícones do A4,
                                cores de recurso/raridade/ramo dos tokens
+css/ficha-drawer.css           F4.4a: o conteúdo das 5 abas no drawer da ficha nova,
+                               densidade compacta (380 px: uma coluna, molduras vazias em
+                               ladrilho, recursos antes das perícias). Tudo sob .fd-, SEM
+                               camada; tokens (o único hex é a paleta dos tipos de dano,
+                               igual à da página). O shell NÃO o injeta e nenhuma página o
+                               pede: fica sem uso até o drawer (F4.4b) o injetar com a prévia
 js/kh-ui.js                    F2b: biblioteca comum (fora do bundle da ficha; o shell a
                                põe SÍNCRONA antes do 1º <script src> local de toda página):
                                KhTeclas (registro único de atalhos e camadas do Esc, um
@@ -208,20 +216,33 @@ js/ficha/kh-previa.js            KhPrevia (F3c): PRÉVIA ESCONDIDA da v3 (?ficha
                                  à direita só-leitura com a v2 migrada e calculada em
                                  memória; partes puras (ativacao, calcular, render)
                                  testadas em previa.test.js. Sem ativação não faz nada
+js/ficha/kh-ficha-abas.js        KhFichaAbas (F4.4a), PURO: o desenho das 5 abas da ficha
+                                 nova (Núcleo, Técnicas & Marcas, Cartas/Lore/Outros, O
+                                 Bazar, Grimório), o MESMO na página e no drawer da F4.4:
+                                 criar({prefixo, densidade}) -> {RENDER[id], paineis(res,
+                                 {dados, D, base})}; prefixo nas classes, no --<p>-ramo e
+                                 no KhConta (página 'fp', drawer 'fd'); densidade 'pagina'
+                                 (HTML de antes, byte a byte) ou 'compacta' (o mesmo
+                                 conteúdo, corpo com data-densidade="compacta"). Depois do
+                                 kh-previa.js no ORDEM (os avisos são os da prévia). Sem
+                                 DOM, storage nem rede ao carregar; kh-ficha-abas.test.js
 js/ficha.js                    ARTEFATO (tools/ficha_js.py): concatenação de js/ficha/
                                na ordem do ORDEM, cabeçalho "gerado — não editar". É o
                                único arquivo que o site carrega (main.js injeta; o
                                Bazar carrega direto)
 js/ficha-pagina.js             F4.3: página da ficha nova (KhFichaPagina), só leitura e atrás
                                da prévia: sem ela, só o aviso e nenhum fetch; com ela, topo,
-                               5 abas do A4 (RENDER[id] por aba, F4.3b: Núcleo, Técnicas &
-                               Marcas, Cartas/Lore/Outros, O Bazar, Grimório), pelo motor
-                               (KhPrevia.carregar/calcular, KhConta prefixo fp), catálogo
-                               indexado pela própria página (data/catalogo + corrupções da
+                               a lista das 5 abas do A4 (KhAbas) e os painéis, pelo motor
+                               (KhPrevia.carregar/calcular). O desenho das abas é do
+                               KhFichaAbas (F4.4a), numa instância 'fp'/'pagina' (FP.RENDER
+                               é o dela): catálogo indexado (data/catalogo + corrupções da
                                raça + ramos), ícones images/ficha/*.webp e o sprite g-* da
                                moldura de raízes. data-campo em cada campo do A4; número de
                                estado em span.fp-n[data-ficha]. Rara nunca mostra o efeito.
-                               Não grava chave de ficha; ficha-pagina.test.js
+                               Ficam aqui o topo, a casca, a dica presa à página (encaixa) e
+                               o redesenho (trocaHTML). Sem o js/ficha.js, só o recado.
+                               Não grava chave de ficha; ficha-pagina.test.js e o ouro do
+                               render (ficha-pagina-ouro.test.js)
 js/bazar.js                    núcleo do Bazar: catálogo, filtros, Bancada
 js/bazar-cartao.js             pop-up do card (BZ.cartao: conteúdo ┐ módulos do Bazar v3,
                                e resolvedores do KhPrever)      │
@@ -866,6 +887,20 @@ que se digita com debounce de 200 ms) do `kf:mudou` da v2, de `input`/`change`
 dentro do `#kf-drawer` (vários campos só gravam, sem `kf:mudou`) e do `storage`
 da `khalkaria_ficha`. O painel tem `data-kf-ignorar`. Expandido, cobre o botão
 da Ficha v2 (mesmo `--z-ficha`, depois no DOM): "Recolher" o libera.
+
+**Desenho das abas da ficha nova (F4.4a).** As 5 abas da página da ficha
+(F4.3b) e as do drawer da F4.4 saem do MESMO código, `js/ficha/kh-ficha-abas.js`
+(`KhFichaAbas`, no bundle). `KhFichaAbas.criar({prefixo, densidade})` devolve
+uma instância com `RENDER[id](res, C, ctx)` por aba e `paineis(res, {dados, D,
+base})`, que cria UM `KhConta` por passada (ids `<p>-d-N`) e devolve
+`{paineis, caminhos}`. O prefixo vai em toda classe do desenho, na cor do ramo
+(`--<p>-ramo`) e no `KhConta`: a página usa `fp` (o `css/ficha-pagina.css`), o
+drawer `fd` (o `css/ficha-drawer.css`), a prévia segue com `kf3`. A densidade
+não muda o conteúdo: `'pagina'` gera o HTML de antes da extração, byte a byte
+(`fixtures/ficha-pagina-render.golden.html`, gravado antes da mudança), e
+`'compacta'` só marca o corpo de cada aba com `data-densidade="compacta"`; o
+teste confere que o compacto é o da página a menos do prefixo e dessa marca.
+Ficam na página o topo, a casca, `encaixa` (a dica presa à caixa) e `trocaHTML`.
 
 **`data-kf-ignorar`.** O `MutationObserver` que redecora os cards ignora
 mudanças dentro de `[data-kf-ignorar]`, e `decorarBazar` não decora card ali

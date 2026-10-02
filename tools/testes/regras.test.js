@@ -94,16 +94,16 @@ test('as fontes carregam no node; o artefato js/ficha.js segue devolvendo o KhIn
   assert.equal(typeof globalThis.window, 'undefined');
 });
 
-test('navegador (vm): as fontes do ORDEM registram KhRegrasDados/KhEfeitos/KhAjustes/KhRegras/KhConta/KhPrevia e avaliam sem storage', () => {
+test('navegador (vm): as fontes do ORDEM registram KhRegrasDados/KhEfeitos/KhAjustes/KhRegras/KhConta/KhPrevia/KhFichaAbas e avaliam sem storage', () => {
   const toque = [];
   const proibido = new Proxy({}, { get: (_, k) => { toque.push(String(k)); throw new Error('storage tocado'); } });
   const win = { localStorage: proibido, sessionStorage: proibido };
   const sb = vm.createContext({ window: win });
   const ordem = fs.readFileSync(path.join(A.RAIZ, 'js', 'ficha', 'ORDEM'), 'utf8').split(/\r?\n/)
     .map((l) => l.trim()).filter((l) => l && !l.startsWith('#') && l !== 'ficha-v2.js');
-  assert.deepEqual(ordem, ['00-regras-dados.js', 'kh-inv.js', 'kh-estado.js', 'kh-efeitos.js', 'kh-ajustes.js', 'kh-regras.js', 'kh-abas.js', 'kh-conta.js', 'kh-previa.js']);
+  assert.deepEqual(ordem, ['00-regras-dados.js', 'kh-inv.js', 'kh-estado.js', 'kh-efeitos.js', 'kh-ajustes.js', 'kh-regras.js', 'kh-abas.js', 'kh-conta.js', 'kh-previa.js', 'kh-ficha-abas.js']);
   ordem.forEach((n) => vm.runInContext(fs.readFileSync(path.join(A.RAIZ, 'js', 'ficha', n), 'utf8'), sb, { filename: n }));
-  ['KhRegrasDados', 'KhInv', 'KhEstado', 'KhEfeitos', 'KhAjustes', 'KhRegras', 'KhAbas', 'KhConta', 'KhPrevia'].forEach((k) => assert.ok(win[k], k));
+  ['KhRegrasDados', 'KhInv', 'KhEstado', 'KhEfeitos', 'KhAjustes', 'KhRegras', 'KhAbas', 'KhConta', 'KhPrevia', 'KhFichaAbas'].forEach((k) => assert.ok(win[k], k));
   const r = win.KhRegras.avaliar(ficha({ classe: 'monge', raca: 'humano', nivel: 2 }));
   assert.equal(r.nos['recurso.saude.max'].valor, 10 + 5 * 2);
   assert.deepEqual(toque, []);
