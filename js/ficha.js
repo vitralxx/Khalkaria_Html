@@ -7501,8 +7501,10 @@
  * soltar um item do Bazar ({_bazar:true,item}) guarda na ficha atual por
  * KF.adicionar (o inventário é o mesmo); qualquer outra entidade não é aceita
  * e o drawer avisa, sem perder o arrasto (dá para seguir até a ficha atual).
- * Teclado: Esc recolhe (KhTeclas.camadaEsc, depois das camadas do Bazar); abrir
+ * Teclado: Esc recolhe (KhTeclas.camadaEsc, depois das camadas do Bazar; não
+ * com o foco num campo de texto fora do drawer, cujo Esc é dele); abrir
  * pelo botão leva o foco à aba aberta, recolher o devolve ao botão do trilho.
+ * "Sair da prévia" apaga a chave e recarrega sem o ?ficha (saidaPrevia).
  * O drawer leva [data-kf-ignorar] (o MutationObserver da v2.1 não o decora).
  *
  * Escritas: localStorage khalkaria_ficha3_dock (só quando o jogador abre ou
@@ -7512,7 +7514,7 @@
  * Nenhuma chave de ficha v3.
  *
  * Partes puras (testadas no node, tools/testes/ficha-drawer.test.js): estado,
- * lerDock, leArrasto, fracao, htmlCasca, htmlId e htmlMinis. No node exporta
+ * lerDock, leArrasto, fracao, saidaPrevia, htmlCasca, htmlId e htmlMinis. No node exporta
  * por module.exports (carregado sozinho); no artefato js/ficha.js o export já é
  * o KhInv e este módulo só registra window.KhFichaDrawer e o liga no navegador.
  * Vem no ORDEM depois do kh-ficha-abas.js (usa o KhFichaAbas, o KhAbas, o
@@ -7606,6 +7608,18 @@
       var a = Number(atual), m = Number(max);
       if (!isFinite(a) || !isFinite(m) || m <= 0) return 0;
       return Math.max(0, Math.min(1, a / m));
+    }
+    // "Sair da prévia": a URL sem o parâmetro ficha (o ?ficha=v3 religaria a
+    // prévia), com os outros parâmetros e o #fragmento. Sem ficha na query, a URL
+    // nova seria a atual, e um replace para ela com # só rola até o fragmento,
+    // sem recarregar: aí {recarregar:true}. loc: {pathname, search, hash}
+    function saidaPrevia(loc) {
+      loc = loc || {};
+      var search = str(loc.search);
+      var resto = search.replace(/^\?/, '').split('&').filter(function (p) { return p && !/^ficha(=|$)/.test(p); });
+      var q = resto.length ? '?' + resto.join('&') : '';
+      if (q === search) return { recarregar: true, url: '' };
+      return { recarregar: false, url: str(loc.pathname) + q + str(loc.hash) };
     }
     function refNome(r) { return KhFichaAbas ? KhFichaAbas.refNome(r) : ''; }
     function idsAbas() { return KhFichaAbas ? KhFichaAbas.ABAS.map(function (a) { return a.id; }) : []; }
@@ -7803,9 +7817,12 @@
         else if (t.closest('.fd-gaveta-recolher')) recolher({ foco: true });
         else if (t.closest('.fd-gaveta-editar')) { if (win.KF && typeof win.KF.abrir === 'function') win.KF.abrir(); }
         else if (t.closest('.fd-gaveta-sair')) {
-          // a mesma saída da página da ficha: apaga a chave e recarrega sem ?ficha=v3
+          // apaga a chave e recarrega DE FATO, sem ?ficha=v3 (saidaPrevia)
           try { if (ls) ls.removeItem(CHAVE_PREVIA); } catch (x) { /* storage bloqueado */ }
-          if (win.location && typeof win.location.replace === 'function') win.location.replace(win.location.pathname + (win.location.hash || ''));
+          var L = win.location, s = saidaPrevia(L);
+          if (!L) return;
+          if (s.recarregar) { if (typeof L.reload === 'function') L.reload(); }
+          else if (typeof L.replace === 'function') L.replace(s.url);
         }
       });
 
@@ -7925,12 +7942,20 @@
 
       // ---- teclado: Esc recolhe (depois das camadas do Bazar: pop-up 10, lista 20, painel 30)
       var T = win.KhTeclas;
+      // foco num campo de texto da página, fora do drawer: o Esc é do campo (a
+      // busca do Bazar, type=search, limpa o texto; o escLivre do bazar.js já
+      // solta as camadas dele ali). Consumir cancelaria isso e gravaria o dock.
+      function campoFora(e) {
+        if (!T || typeof T.emCampo !== 'function') return false;
+        return [e && e.target, doc.activeElement].some(function (x) { return !!x && T.emCampo(x) && !gav.contains(x); });
+      }
       if (T && typeof T.camadaEsc === 'function') {
-        T.camadaEsc(40, function () {
+        T.camadaEsc(40, function (e) {
           if (!vivo || est !== 'aberto') return false;
           // a ficha atual (v2.1) aberta fica por cima: o Esc não mexe no que está embaixo dela
           var v2 = el('kf-drawer');
           if (v2 && v2.classList && v2.classList.contains('kf-open')) return false;
+          if (campoFora(e)) return false;
           var dentro = gav.contains(doc.activeElement);
           recolher({ foco: dentro });
           return true;
@@ -7963,7 +7988,7 @@
 
     return { CHAVE_DOCK: CHAVE_DOCK, ESTADOS: ESTADOS.slice(), PADRAO: PADRAO, ATRIBUTO: ATRIBUTO, ID: ID,
       PREFIXO: PREFIXO, PREFIXO_TRILHO: PREFIXO_TRILHO, AVISO_SO_LEITURA: AVISO_SO_LEITURA, ORIGENS_ARRASTO: ORIGENS_ARRASTO,
-      estado: estado, lerDock: lerDock, leArrasto: leArrasto, fracao: fracao,
+      estado: estado, lerDock: lerDock, leArrasto: leArrasto, fracao: fracao, saidaPrevia: saidaPrevia,
       htmlId: htmlId, htmlMinis: htmlMinis, htmlCasca: htmlCasca,
       iniciar: iniciar, borda: borda, atual: function () { return atual; } };
   })();

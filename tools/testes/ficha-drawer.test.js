@@ -168,7 +168,8 @@ function janela(opc) {
   const ls = A.armazenamento(opc.ls || {}), ss = A.armazenamento(opc.ss || {});
   const buscas = [], timers = [], ouvWin = {}, adicionados = [], abertos = [];
   const sb = {
-    document: doc, URL, console, location: { search: opc.search || '', pathname: '/pages/sistema.html', hash: '', replace(u) { sb.foi = u; } },
+    document: doc, URL, console, location: { search: opc.search || '', pathname: '/pages/sistema.html', hash: opc.hash || '',
+      replace(u) { sb.foi = u; }, reload() { sb.recarregou = (sb.recarregou || 0) + 1; } },
     sessionStorage: ss,
     setTimeout: (f) => { timers.push(f); return timers.length; }, clearTimeout() {},
     requestAnimationFrame: (f) => f(),
@@ -302,10 +303,37 @@ test('trilho, abrir e recolher: só a khalkaria_ficha3_dock é gravada; o foco v
   k.clica(k.gav().querySelector('.fd-gaveta-editar'));
   assert.equal(k.abertos.length, 1, 'KF.abrir()');
   assert.deepEqual(k.ls.escritas, []);
-  // "Sair da prévia": apaga a chave e recarrega sem ?ficha=v3 (a mesma saída da página da ficha)
+  // "Sair da prévia": apaga a chave e recarrega (sem ficha na URL: reload)
   k.clica(k.gav().querySelector('.fd-gaveta-sair'));
   assert.deepEqual(k.ls.escritas, [['remove', 'khalkaria_ficha_previa']]);
-  assert.equal(k.sb.foi, '/pages/sistema.html');
+  assert.equal(k.sb.recarregou, 1);
+  assert.equal(k.sb.foi, undefined);
+});
+
+test('saidaPrevia: tira só o parâmetro ficha; sem ele na URL, recarrega (um replace para a mesma URL com # não recarregaria)', () => {
+  const s = (search, hash) => FD.saidaPrevia({ pathname: '/pages/condicoes.html', search, hash });
+  assert.deepEqual(s('', '#caido'), { recarregar: true, url: '' }, 'o caso da revisão: #fragmento sem query');
+  assert.deepEqual(s('', ''), { recarregar: true, url: '' });
+  assert.deepEqual(s('?x=1', '#a'), { recarregar: true, url: '' }, 'os outros parâmetros ficam (reload)');
+  assert.deepEqual(s('?ficha=v3', '#caido'), { recarregar: false, url: '/pages/condicoes.html#caido' });
+  assert.deepEqual(s('?ficha=v3', ''), { recarregar: false, url: '/pages/condicoes.html' });
+  assert.deepEqual(s('?x=1&ficha=v3&y=a%20b', '#t'), { recarregar: false, url: '/pages/condicoes.html?x=1&y=a%20b#t' }, 'sem reescrever o resto');
+  assert.deepEqual(s('?ficha=v3&ficha=v2', ''), { recarregar: false, url: '/pages/condicoes.html' });
+  assert.deepEqual(s('?fichas=1', ''), { recarregar: true, url: '' }, 'só o parâmetro ficha');
+  assert.deepEqual(FD.saidaPrevia(null), { recarregar: true, url: '' });
+});
+
+test('"Sair da prévia" no navegador: com #fragmento recarrega de fato; com ?ficha=v3 troca a URL sem ele', async () => {
+  const j = await carrega(janela({ ls: comFicha({ khalkaria_ficha3_dock: 'aberto' }), hash: '#caido' }));
+  j.clica(j.gav().querySelector('.fd-gaveta-sair'));
+  assert.equal(j.ls.getItem('khalkaria_ficha_previa'), null);
+  assert.equal(j.sb.recarregou, 1, 'reload: o replace para a mesma URL só rolaria até #caido');
+  assert.equal(j.sb.foi, undefined);
+  const k = await carrega(janela({ ls: { khalkaria_ficha: JSON.stringify(V2) }, search: '?x=1&ficha=v3', hash: '#caido' }));
+  k.clica(k.gav().querySelector('.fd-gaveta-sair'));
+  assert.deepEqual(k.ls.escritas, [['set', 'khalkaria_ficha_previa'], ['remove', 'khalkaria_ficha_previa']]);
+  assert.equal(k.sb.foi, '/pages/sistema.html?x=1#caido');
+  assert.equal(k.sb.recarregou, undefined);
 });
 
 test('abas: a ordem é a da página (khalkaria_ficha_abas), nos dois sentidos', async () => {
@@ -437,6 +465,37 @@ test('Esc recolhe o drawer aberto (KhTeclas, depois das camadas do Bazar); com a
   assert.equal(k.tecla(null, 'Escape').defaultPrevented, false);
   assert.equal(k.html.getAttribute('data-ficha3'), 'aberto');
   assert.deepEqual(k.ls.escritas, []);
+});
+
+test('Esc com o foco num campo de texto fora do drawer (a busca do Bazar): o Esc é do campo, o drawer não recolhe nem grava', async () => {
+  const j = await carrega(janela({ ls: comFicha({ khalkaria_ficha3_dock: 'aberto' }), body: { 'data-bazar': '' } }));
+  const busca = j.doc.createElement('input');
+  busca.id = 'bz-search';
+  busca.setAttribute('type', 'search');
+  busca.value = 'espada';
+  j.doc.body.appendChild(busca);
+  busca.focus();
+  const ev = j.tecla(busca, 'Escape');
+  assert.equal(ev.defaultPrevented, false, 'sem preventDefault: o navegador limpa a busca');
+  assert.equal(j.html.getAttribute('data-ficha3'), 'aberto', 'o drawer fica aberto');
+  assert.deepEqual(j.ls.escritas, [], 'e o dock não é gravado');
+  // vazia também (campo de texto: a tecla é dele), textarea e o foco em campo com o alvo no body
+  busca.value = '';
+  assert.equal(j.tecla(busca, 'Escape').defaultPrevented, false);
+  const ta = j.doc.createElement('textarea');
+  j.doc.body.appendChild(ta);
+  ta.focus();
+  assert.equal(j.tecla(null, 'Escape').defaultPrevented, false);
+  assert.equal(j.html.getAttribute('data-ficha3'), 'aberto');
+  assert.deepEqual(j.ls.escritas, []);
+  // um checkbox não é campo de texto: o Esc recolhe
+  const cb = j.doc.createElement('input');
+  cb.setAttribute('type', 'checkbox');
+  j.doc.body.appendChild(cb);
+  cb.focus();
+  assert.equal(j.tecla(cb, 'Escape').defaultPrevented, true);
+  assert.equal(j.html.getAttribute('data-ficha3'), 'trilho');
+  assert.deepEqual(j.ls.escritas, [['set', 'khalkaria_ficha3_dock']]);
 });
 
 test('página da ficha (#fp ou body[data-ficha-pagina]): nenhum drawer por cima, nada buscado', async () => {

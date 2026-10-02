@@ -948,7 +948,9 @@ na ordem do `KhAbas` (`khalkaria_ficha_abas`, a mesma da página). Redesenha pel
 receita do Bazar) acende o trilho; o `dragenter` abre (sem gravar a preferência);
 o item do Bazar (`{_bazar, item}`) vai ao `KF.adicionar` e o drawer mostra a aba
 O Bazar; o resto não é aceito e o aviso manda soltar na ficha atual. Esc recolhe
-(`camadaEsc` 40, depois das do Bazar; não com a v2.1 aberta por cima).
+(`camadaEsc` 40, depois das do Bazar; não com a v2.1 aberta por cima nem com o
+foco num campo de texto fora do drawer). "Sair da prévia" tira só o `ficha` da
+URL, ou recarrega (`reload`) quando ele não está lá.
 `KhFichaDrawer.borda()` dá a borda esquerda para o `xPreferido` do pop-up do
 Bazar (`bazar-cartao.js`), que então nunca abre embaixo do drawer.
 
