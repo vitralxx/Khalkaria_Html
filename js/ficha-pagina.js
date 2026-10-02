@@ -26,6 +26,10 @@
  * da ficha física leva data-campo (o teste confere por conjunto contra o 03 §4).
  *   1 Núcleo · 2 Técnicas & Marcas · 3 Cartas, Lore & Outros · 4 O Bazar · 5 Grimório
  * Ponto da F4.5: ordem (ABAS por id) e aba aberta: ordemAbas() e seleciona().
+ * Redesenho (kf:mudou, drawer, storage) por trocaHTML: só troca o contêiner que
+ * mudou e devolve foco, <details> aberto e dica sob o mouse ao equivalente novo.
+ * A dica da conta é presa à caixa da página por encaixa() ao abrir (hover/foco).
+ * Os avisos são os da prévia (KhPrevia.listaAvisos, fonte única).
  *
  * Cartas raras: só ícone, requisito e nome, NUNCA o efeito (D11, D33; nem o
  * texto que a v2 tenha guardado). Técnica sem par no catálogo: o texto salvo e
@@ -317,6 +321,14 @@
 
       // ---- perícias: 4 círculos de grau, o atributo usado e o total
       var graus = lista(D.graus && D.graus.rotulos), bonus = lista(D.graus && D.graus.bonus);
+      // o Ofício(X) genérico da v2: a migração não escolhe qual dos três Ofícios
+      // recebe o grau (pendência, escolha do jogador). Sem isto o grau sumia da
+      // página: os três ficam com 0 círculos. Fica à vista junto deles.
+      var iOf = -1;
+      lista(f.migracao && f.migracao.pendencias).forEach(function (p, i) { if (iOf < 0 && obj(p) && p.campo === 'pericias.oficio') iOf = i; });
+      var gOf = iOf >= 0 ? Number(f.migracao.pendencias[iOf].grau) || 0 : 0;
+      var seloOf = gOf > 0 ? selo('aviso', 'grau a escolher', 'A ficha atual tinha um Ofício(X) genérico com grau ' + gOf +
+        (graus[gOf] ? ' (' + graus[gOf] + ')' : '') + '; escolha qual Ofício recebe o grau.') : '';
       function pericia(p) {
         var no = nos['pericia.' + p.id + '.total'];
         var g = f.pericias ? Number(f.pericias[p.id]) || 0 : 0;
@@ -330,7 +342,7 @@
         return '<div class="fp-per" data-campo="pericia-' + p.id + '">' +
           '<span class="fp-per-graus" role="img" aria-label="' + esc('Grau ' + g + ' de 4' + (graus[g] ? ': ' + graus[g] : '')) + '">' + circ + '</span>' +
           // o selo (decisão, pendente…) vai junto do nome; a caixa de total fica só com o número
-          '<span class="fp-per-nome">' + esc(p.nome) + (no ? C.selosHTML(no.selos) : '') + '</span>' +
+          '<span class="fp-per-nome">' + esc(p.nome) + (no ? C.selosHTML(no.selos) : '') + (/^oficio-/.test(p.id) ? seloOf : '') + '</span>' +
           '<span class="fp-per-at" title="' + esc(atTit) + '">' + esc(at) + '</span>' +
           '<span class="fp-per-total">' + conta('pericia.' + p.id + '.total', { texto: no && typeof no.valor === 'number' ? modTxt(no) : null, semSelos: true }) + '</span></div>';
       }
@@ -341,7 +353,10 @@
       h += '<div class="fp-duas"><div class="fp-col">';
       h += moldura('pericias', 'Perícias', '<div class="fp-pers"><div class="fp-pers-col">' + pers.slice(0, corte).map(pericia).join('') +
         '</div><div class="fp-pers-col">' + pers.slice(corte).map(pericia).join('') + '</div></div>',
-      { extra: '<span class="fp-legenda">' + bonus.slice(1).map(function (b, i) { return esc('+' + b + ' ' + (graus[i + 1] || '')); }).join(' · ') + '</span>' });
+      { extra: '<span class="fp-legenda">' + bonus.slice(1).map(function (b, i) { return esc('+' + b + ' ' + (graus[i + 1] || '')); }).join(' · ') + '</span>',
+        nota: gOf > 0 ? 'Pendência da migração: a ficha atual tinha um Ofício(X) genérico com grau ' +
+          nEstado('migracao.pendencias.' + iOf + '.grau', gOf) + (graus[gOf] ? ' (' + esc(graus[gOf]) + ')' : '') +
+          '. Escolha qual Ofício (Engenharia, Ferraria ou Alquimia) recebe o grau.' : '' });
       h += '</div><div class="fp-col">';
 
       // ---- recursos: atual / máx., com as cores de recurso (D28)
@@ -420,7 +435,7 @@
           (imc.length ? idCampo('imunidades', 'Imunidade a condição', esc(imc.map(function (x) { return semEmoji(obj(x) ? x.nome || x.id : x); }).join(', '))) : '') +
           (idi.length ? idCampo('idiomas', 'Idiomas', esc(idi.map(function (x) { return semEmoji(obj(x) ? x.nome || x.id : x); }).join(', '))) : '') + '</dl>');
       }
-      h += avisos(res);
+      h += avisos(res, C);
       return h;
     };
     function fmtPc(n) { return String(Math.round(n * 10) / 10); }
@@ -503,24 +518,10 @@
       }).join('') + '</div>';
     }
 
-    // avisos do motor e da migração (o mesmo que a prévia lista), recolhidos
-    function avisos(res) {
-      var f = res.ficha, nos = res.av.nos, av = [];
-      lista(res.avisosMigracao).forEach(function (a) {
-        av.push('Migração: ' + (a.tipo === 'orfa' ? 'entrada sem par (' + a.ref + ', ' + a.motivo + ')'
-          : a.tipo === 'identidade' ? a.campo + ' "' + a.nome + '" sem par (' + a.motivo + ')'
-            : a.tipo === 'duplicada' ? 'entrada repetida ' + a.ref + ' (' + a.nome + ')'
-              : a.tipo + (a.chave ? ' ' + a.chave : '') + (a.motivo ? ' (' + a.motivo + ')' : '')));
-      });
-      lista(f.migracao && f.migracao.pendencias).forEach(function (p) { av.push('Pendência: ' + str(p.motivo)); });
-      lista(res.av.alertas).forEach(function (a) { av.push('Alerta: ' + str(a.msg)); });
-      lista(res.av.avisos).forEach(function (a) { av.push('Motor: ' + str(a.msg || a.tipo)); });
-      lista(res.av.ordem).forEach(function (c) {
-        var no = nos[c];
-        lista(no && no.avisos).forEach(function (a) { av.push(semEmoji(no.rotulo) + ': ' + str(a.msg || a.tipo)); });
-      });
-      if (res.semCatalogo) av.push('Catálogo indisponível: identidade e entradas ficam só pelo nome.');
-      if (res.semEfeitos) av.push('Efeitos de item indisponíveis: itens e armas fora das contas.');
+    // avisos do motor e da migração, recolhidos: a MESMA lista da prévia
+    // (KhPrevia.listaAvisos, fonte única), com o grau da pendência e o selo do alerta
+    function avisos(res, C) {
+      var av = KhPrevia && KhPrevia.listaAvisos ? KhPrevia.listaAvisos(res, C.rotuloSelo) : [];
       if (!av.length) return '';
       return '<details class="fp-avisos" data-campo="avisos"><summary>Avisos do motor e da migração (' + av.length + ')</summary><ul>' +
         av.map(function (x) { return '<li>' + esc(semEmoji(x)) + '</li>'; }).join('') + '</ul></details>';
@@ -890,6 +891,124 @@
       return { topo: htmlTopo(res), paineis: paineis, caminhos: C ? C.caminhos : [] };
     }
 
+    // ---------------- a dica da conta dentro da página ----------------
+    // A dica nasce centrada sob o número (css: translateX(-50%) mais --fp-dx).
+    // Ao abrir (hover ou foco), o JS a mede e a empurra para dentro da caixa da
+    // página (#fp, que fica à direita da nav fixa e à esquerda da calha da aba
+    // FICHA): nunca passa da janela (sem rolagem horizontal) nem fica embaixo da
+    // nav. Sem espaço embaixo e com espaço em cima, abre para cima.
+    // Puro: r = retângulo da dica sem deslocamento; lim = {min, max} em x.
+    var MARGEM_DICA = 8;
+    function encaixeDica(r, lim) {
+      var dx = 0;
+      if (r.right > lim.max) dx = lim.max - r.right;
+      if (r.left + dx < lim.min) dx = lim.min - r.left;
+      return Math.round(dx);
+    }
+    // a dica de uma conta (.kh-conta) aberta agora; false se ainda está fechada
+    function encaixa(conta, caixa, win) {
+      var d = conta && conta.querySelector ? conta.querySelector('.kh-conta-dica') : null;
+      if (!d || !d.getBoundingClientRect || !caixa) return false;
+      d.style.removeProperty('--fp-dx');
+      d.style.removeProperty('max-width');
+      conta.removeAttribute('data-dica-acima');
+      var r = d.getBoundingClientRect();
+      if (!r.width) return false;
+      var c = caixa.getBoundingClientRect();
+      var lim = { min: c.left + MARGEM_DICA, max: c.right - MARGEM_DICA };
+      if (r.width > lim.max - lim.min) {
+        d.style.maxWidth = Math.max(0, Math.floor(lim.max - lim.min)) + 'px';
+        r = d.getBoundingClientRect();
+      }
+      var dx = encaixeDica(r, lim);
+      if (dx) d.style.setProperty('--fp-dx', dx + 'px');
+      var alto = win && win.innerHeight, rc = conta.getBoundingClientRect();
+      if (alto && r.bottom > alto - MARGEM_DICA && rc.top - 6 - r.height >= MARGEM_DICA) conta.setAttribute('data-dica-acima', '');
+      return true;
+    }
+
+    // ---------------- redesenho sem perder o lugar ----------------
+    // A página redesenha o topo e os painéis a cada mudança da ficha (kf:mudou,
+    // campo do drawer, storage de outra aba). Antes de trocar o HTML de um
+    // contêiner, guarda o que o jogador tinha nele: o elemento com o foco (pela
+    // chave: o data-caminho da conta, ou o data-campo, ou a tag e a classe, mais
+    // a ordem entre os de mesma chave), os <details> abertos e a conta sob o
+    // mouse. Depois de trocar, devolve o foco ao equivalente (sem rolar; se ele
+    // sumiu, à reserva), reabre os <details> e deixa a dica aberta até o mouse
+    // se mexer. Contêiner cujo HTML não mudou não é tocado.
+    var FOCAVEIS = 'a[href], button, summary, select, input, textarea, [tabindex]';
+    function arr(x) { return Array.prototype.slice.call(x || []); }
+    function qsa(cont, sel) { return cont && cont.querySelectorAll ? arr(cont.querySelectorAll(sel)) : []; }
+    function chaveUI(el) {
+      var c = el.getAttribute('data-caminho');
+      if (c != null) return 'c:' + c;
+      c = el.getAttribute('data-campo');
+      if (c != null) return el.tagName + ':' + c;
+      return el.tagName + '.' + str(el.getAttribute('class'));
+    }
+    // {chave, ordem} de el entre os elementos de mesma chave da lista
+    function marcaUI(l, el) {
+      if (!el) return null;
+      var k = chaveUI(el), n = 0;
+      for (var i = 0; i < l.length; i++) {
+        if (l[i] === el) return { chave: k, ordem: n };
+        if (chaveUI(l[i]) === k) n++;
+      }
+      return null;
+    }
+    // o equivalente na lista nova (se agora há menos dessa chave, o último)
+    function achaUI(l, m) {
+      if (!m) return null;
+      var ult = null, n = 0;
+      for (var i = 0; i < l.length; i++) {
+        if (chaveUI(l[i]) !== m.chave) continue;
+        if (n++ === m.ordem) return l[i];
+        ult = l[i];
+      }
+      return ult;
+    }
+    function casa(el, sel) { try { return !!el.matches(sel); } catch (e) { return false; } }
+    function foca(el) { try { el.focus({ preventScroll: true }); } catch (e) { el.focus(); } }
+    // troca o HTML de cont preservando foco, <details> abertos e a dica sob o
+    // mouse; reserva = quem recebe o foco se o elemento focado sumiu. true se trocou.
+    function trocaHTML(doc, cont, html, reserva, caixa, win) {
+      if (!cont || cont._fpHtml === html) return false;
+      var ativo = doc.activeElement;
+      var dentro = !!ativo && ativo !== cont && !!cont.contains && cont.contains(ativo);
+      var foco = dentro ? marcaUI(qsa(cont, FOCAVEIS), ativo) : null;
+      var visivel = dentro && (casa(ativo, ':focus-visible') || ativo.hasAttribute('data-fp-foco'));
+      var dets = qsa(cont, 'details');
+      var abertos = dets.filter(function (d) { return d.open; }).map(function (d) { return marcaUI(dets, d); });
+      var contas = qsa(cont, '.kh-conta');
+      var sob = null;
+      contas.some(function (c) { if (casa(c, ':hover') || c.hasAttribute('data-fp-dica')) { sob = marcaUI(contas, c); } return !!sob; });
+
+      cont.innerHTML = html;
+      cont._fpHtml = html;
+
+      dets = qsa(cont, 'details');
+      abertos.forEach(function (m) { var d = achaUI(dets, m); if (d) d.open = true; });
+      if (sob) {
+        var s = achaUI(qsa(cont, '.kh-conta'), sob);
+        if (s) {
+          s.setAttribute('data-fp-dica', '');
+          if (caixa) caixa._fpDica = true;   // o próximo movimento do mouse a solta (montar)
+          encaixa(s, caixa, win);
+        }
+      }
+      if (dentro) {
+        var el = foco ? achaUI(qsa(cont, FOCAVEIS), foco) : null;
+        if (!el) el = reserva || (cont.hasAttribute('tabindex') ? cont : null);
+        if (el && el.focus) {
+          foca(el);
+          // o foco por teclado segue visível (contorno e dica) no elemento novo
+          if (visivel && !casa(el, ':focus-visible')) el.setAttribute('data-fp-foco', '');
+          if (el.getAttribute('data-caminho') != null) encaixa(el, caixa, win);
+        }
+      }
+      return true;
+    }
+
     // ---------------- página (navegador) ----------------
     function iniciar(win) {
       if (!win || !win.document) return false;
@@ -964,6 +1083,26 @@
         seleciona(abas[j].id, true);
       });
 
+      // a dica da conta, ao abrir (hover ou foco), fica dentro da caixa da página
+      function aoAbrirDica(e) {
+        var c = e.target && e.target.closest ? e.target.closest('.kh-conta') : null;
+        if (!c) return;
+        if (e.type === 'mouseover' && e.relatedTarget && c.contains && c.contains(e.relatedTarget)) return;
+        // fechada ainda (o :hover/:focus-visible entra no quadro seguinte): mede de novo
+        if (!encaixa(c, raizEl, win) && win.requestAnimationFrame) win.requestAnimationFrame(function () { encaixa(c, raizEl, win); });
+      }
+      raizEl.addEventListener('mouseover', aoAbrirDica);
+      raizEl.addEventListener('focusin', aoAbrirDica);
+      // as marcas do redesenho (trocaHTML) valem até o jogador agir: o foco sai, o mouse mexe
+      raizEl.addEventListener('focusout', function (e) {
+        if (e.target && e.target.removeAttribute) e.target.removeAttribute('data-fp-foco');
+      });
+      doc.addEventListener('mousemove', function () {
+        if (!raizEl._fpDica) return;
+        raizEl._fpDica = false;
+        qsa(raizEl, '[data-fp-dica]').forEach(function (x) { x.removeAttribute('data-fp-dica'); });
+      }, { passive: true });
+
       if (!KhPrevia || !KhRegras || !KhConta || typeof win.fetch !== 'function') {
         pinta({ estado: 'sem-motor', erros: [] });
         return true;
@@ -974,14 +1113,14 @@
       try { base = src ? new URL('../', src).href : ''; versao = src ? new URL(src).search : ''; } catch (e) { /* relativo à página */ }
 
       var dados = null, t = null;
+      // redesenha sem perder o lugar do jogador (trocaHTML): foco, <details>, dica
       function pinta(r0) {
         var r = render(r0, { dados: dados, base: base || '../' });
-        var topo = el('fp-topo');
-        if (topo) topo.innerHTML = r.topo;
+        trocaHTML(doc, el('fp-topo'), r.topo, el('fp-aba-' + aberta), raizEl, win);
         ABAS.forEach(function (a) {
           var p = el('fp-painel-' + a.id);
           if (!p) return;
-          p.innerHTML = r.paineis[a.id];
+          trocaHTML(doc, p, r.paineis[a.id], p, raizEl, win);
           p.removeAttribute('aria-busy');
         });
       }
@@ -1009,7 +1148,8 @@
     return { CHAVE_PREVIA: CHAVE_PREVIA, AVISO: AVISO, AVISO_RO: AVISO_RO, PREFIXO: PREFIXO,
       ABAS: ABAS.map(function (a) { return { id: a.id, pag: a.pag, rotulo: a.rotulo }; }), RENDER: RENDER,
       MOLDURAS: MOLDURAS, ativa: ativa, ordemAbas: ordemAbas, htmlAviso: htmlAviso, htmlCasca: htmlCasca, htmlTopo: htmlTopo,
-      contexto: contexto, resolver: resolver, textoRico: textoRico, render: render, iniciar: iniciar };
+      contexto: contexto, resolver: resolver, textoRico: textoRico, render: render,
+      encaixeDica: encaixeDica, encaixa: encaixa, trocaHTML: trocaHTML, FOCAVEIS: FOCAVEIS, iniciar: iniciar };
   })();
 
   if (emNode) { module.exports = FichaPagina; return; }

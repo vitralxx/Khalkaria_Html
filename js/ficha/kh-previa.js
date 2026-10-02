@@ -16,7 +16,8 @@
  * khalkaria_ficha_previa_recolhida (o painel recolhido nesta aba).
  *
  * Partes puras (testadas no node, tools/testes/previa.test.js): ativacao,
- * calcular (catálogo -> sombra -> avaliar) e render (HTML + caminhos mostrados).
+ * calcular (catálogo -> sombra -> avaliar), render (HTML + caminhos mostrados) e
+ * listaAvisos (os avisos do motor e da migração, que a página da ficha também usa).
  * No node exporta por module.exports (carregado sozinho); no artefato js/ficha.js
  * o export já é o KhInv e este módulo só roda no navegador.
  * Fonte: js/ficha/kh-previa.js (o js/ficha.js é o ARTEFATO concatenado).
@@ -281,30 +282,8 @@
       }).join('') + '</ul>' : '<p class="kf3-nota">Nenhum: todo número digitado na v2 bate com o calculado.</p>',
       'Aqui só se vê: ajustar e remover chegam com a F4.');
 
-      // ---- avisos
-      var av = [];
-      lista(res.avisosMigracao).forEach(function (a) {
-        av.push('Migração: ' + (a.tipo === 'orfa' ? 'entrada sem par (' + a.ref + ', ' + a.motivo + ')'
-          : a.tipo === 'identidade' ? a.campo + ' "' + a.nome + '" sem par (' + a.motivo + ')'
-            : a.tipo === 'duplicada' ? 'entrada repetida ' + a.ref + ' (' + a.nome + ')'
-              : a.tipo + (a.chave ? ' ' + a.chave : '') + (a.motivo ? ' (' + a.motivo + ')' : '')));
-      });
-      var pend = lista(f.migracao && f.migracao.pendencias);
-      pend.forEach(function (p) { av.push('Pendência: ' + str(p.motivo) + (p.grau != null ? ' (grau ' + p.grau + ')' : '')); });
-      lista(res.av.alertas).forEach(function (a) {
-        // condição que só aparece porque a v2 tinha o recurso 0/0 (pendência de migração acima)
-        var daMigracao = a.recurso && pend.some(function (p) { return p.campo === 'recursos.' + a.recurso; });
-        av.push('Alerta: ' + str(a.msg) + (a.selo ? ' [' + rotuloSelo(a.selo) + ']' : '') +
-          (daMigracao ? ' (pode ser efeito da migração: a v2 tinha 0/0)' : ''));
-      });
-      lista(res.av.avisos).forEach(function (a) { av.push('Motor: ' + str(a.msg || a.tipo)); });
-      // o aviso de cada número (no.avisos), que sem isto só se via no tooltip
-      lista(res.av.ordem).forEach(function (c) {
-        var no = nos[c];
-        lista(no && no.avisos).forEach(function (a) { av.push(semEmoji(no.rotulo) + ': ' + str(a.msg || a.tipo)); });
-      });
-      if (res.semCatalogo) av.push('Catálogo indisponível: identidade e entradas ficam só pelo nome.');
-      if (res.semEfeitos) av.push('Efeitos de item indisponíveis: itens e armas fora das contas.');
+      // ---- avisos (a mesma lista que a página da ficha mostra: listaAvisos)
+      var av = listaAvisos(res, rotuloSelo);
       h += secao('avisos', 'Avisos (' + av.length + ')', av.length ? '<ul class="kf3-lista">' + av.map(function (x) {
         return '<li>' + esc(semEmoji(x)) + '</li>'; }).join('') + '</ul>' : '<p class="kf3-nota">Nenhum.</p>') + errosHTML(res.erros);
 
@@ -315,6 +294,39 @@
         return no.valor < 0 ? '−' + fmt(-no.valor) : '+' + fmt(no.valor);
       }
     }
+    // Os avisos do motor e da migração, um texto por linha (sem HTML; quem mostra
+    // escapa). Fonte ÚNICA da lista: a prévia (render, acima) e a página da ficha
+    // (js/ficha-pagina.js) mostram as mesmas linhas. res = calcular(), estado 'ok';
+    // rotuloSelo = o do KhConta da passada (o nome completo do selo do alerta).
+    function listaAvisos(res, rotuloSelo) {
+      if (!res || res.estado !== 'ok') return [];
+      if (typeof rotuloSelo !== 'function') rotuloSelo = KhConta.criar({ D: KhRegras.dados() }).rotuloSelo;
+      var f = res.ficha || {}, nos = (res.av && res.av.nos) || {}, av = [];
+      lista(res.avisosMigracao).forEach(function (a) {
+        av.push('Migração: ' + (a.tipo === 'orfa' ? 'entrada sem par (' + a.ref + ', ' + a.motivo + ')'
+          : a.tipo === 'identidade' ? a.campo + ' "' + a.nome + '" sem par (' + a.motivo + ')'
+            : a.tipo === 'duplicada' ? 'entrada repetida ' + a.ref + ' (' + a.nome + ')'
+              : a.tipo + (a.chave ? ' ' + a.chave : '') + (a.motivo ? ' (' + a.motivo + ')' : '')));
+      });
+      var pend = lista(f.migracao && f.migracao.pendencias);
+      pend.forEach(function (p) { av.push('Pendência: ' + str(p.motivo) + (p.grau != null ? ' (grau ' + p.grau + ')' : '')); });
+      lista(res.av && res.av.alertas).forEach(function (a) {
+        // condição que só aparece porque a v2 tinha o recurso 0/0 (pendência de migração acima)
+        var daMigracao = a.recurso && pend.some(function (p) { return p.campo === 'recursos.' + a.recurso; });
+        av.push('Alerta: ' + str(a.msg) + (a.selo ? ' [' + rotuloSelo(a.selo) + ']' : '') +
+          (daMigracao ? ' (pode ser efeito da migração: a v2 tinha 0/0)' : ''));
+      });
+      lista(res.av && res.av.avisos).forEach(function (a) { av.push('Motor: ' + str(a.msg || a.tipo)); });
+      // o aviso de cada número (no.avisos), que sem isto só se via no tooltip
+      lista(res.av && res.av.ordem).forEach(function (c) {
+        var no = nos[c];
+        lista(no && no.avisos).forEach(function (a) { av.push(semEmoji(no.rotulo) + ': ' + str(a.msg || a.tipo)); });
+      });
+      if (res.semCatalogo) av.push('Catálogo indisponível: identidade e entradas ficam só pelo nome.');
+      if (res.semEfeitos) av.push('Efeitos de item indisponíveis: itens e armas fora das contas.');
+      return av;
+    }
+
     function errosHTML(erros) {
       erros = lista(erros);
       return erros.length ? '<p class="kf3-nota kf3-aviso">Não carregou: ' + erros.map(esc).join(', ') + '</p>' : '';
@@ -416,7 +428,8 @@
     }
 
     return { CHAVE: CHAVE, CATALOGOS: CATALOGOS.slice(), CLASSES: CLASSES.slice(), RACAS: RACAS.slice(),
-      ativacao: ativacao, arquivos: arquivos, carregar: carregar, calcular: calcular, render: render, iniciar: iniciar };
+      ativacao: ativacao, arquivos: arquivos, carregar: carregar, calcular: calcular, render: render,
+      listaAvisos: listaAvisos, iniciar: iniciar };
   })();
 
   if (emNode) { module.exports = KhPrevia; return; }

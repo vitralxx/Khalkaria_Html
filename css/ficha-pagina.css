@@ -121,7 +121,6 @@ html[data-ficha-previa] .fp [data-sem-previa] { display: none; }
     width: 1.5em; height: 1.5em;
     font-size: .78em;
     border: 1px solid currentColor; border-radius: var(--raio-circulo);
-    opacity: .75;
 }
 :root[data-movimento="reduzido"] .fp-aba { transition: none; }
 
@@ -189,23 +188,31 @@ html[data-ficha-previa] .fp [data-sem-previa] { display: none; }
 .fp-v { font-family: var(--mono); font-variant-numeric: tabular-nums; font-weight: 600; color: var(--gold-light); }
 .fp-conta[data-ajustado] .fp-v { color: var(--amber); }
 .fp-calc { margin-left: .3rem; font-family: var(--mono); font-size: .75rem; color: var(--text-muted-forte); }
-.fp-nulo { font-family: var(--mono); color: var(--text-muted); }
+.fp-nulo { font-family: var(--mono); color: var(--text-muted-forte); }
 .fp-marca-aviso {
     margin-left: .25rem; padding: 0 .3rem;
     font-family: var(--font-heading); font-size: .58rem; letter-spacing: .06em; text-transform: uppercase;
     color: var(--leve); border: 1px solid var(--amber-dim); border-radius: 2px;
 }
 .fp-n { font-family: var(--mono); font-variant-numeric: tabular-nums; color: var(--text-primary); }
-/* a dica: centrada sob o número, largura do texto (até 26rem) */
+/* a dica: centrada sob o número, largura do texto (até 26rem). Ao abrir, o
+   js/ficha-pagina.js (encaixa) a mede e a empurra (--fp-dx) para dentro da caixa
+   da página: sem rolagem horizontal e nunca embaixo da nav fixa. Sem espaço
+   embaixo, abre para cima ([data-dica-acima]). */
 .fp .fp-dica {
     left: 50%; right: auto; top: calc(100% + 6px);
-    transform: translateX(-50%);
+    transform: translateX(calc(-50% + var(--fp-dx, 0px)));
     width: max-content; max-width: min(26rem, 78vw);
     padding: .45rem .65rem;
     font: 400 .86rem/1.38 var(--font-body);
     letter-spacing: normal; text-transform: none; text-align: left; white-space: normal;
     color: var(--text-primary);
 }
+.fp .fp-conta[data-dica-acima] .fp-dica { top: auto; bottom: calc(100% + 6px); }
+/* marcas do redesenho (trocaHTML): a dica e o contorno seguem no elemento novo
+   até o mouse mexer ou o foco sair */
+.fp .kh-conta[data-fp-dica] .kh-conta-dica, .fp .kh-conta[data-fp-foco] .kh-conta-dica { display: block; }
+.fp [data-fp-foco] { outline: 2px solid var(--amber); outline-offset: 2px; }
 .fp-dica > span { display: block; }
 .fp-d-sim { color: var(--gold-light); }
 .fp-d-num { font-family: var(--mono); font-size: .8rem; color: var(--text-primary); margin-bottom: .25rem; }
@@ -215,8 +222,8 @@ html[data-ficha-previa] .fp [data-sem-previa] { display: none; }
 .fp-t-f { color: var(--text-secondary); }
 .fp-t-s { color: var(--chip-arq); }
 .fp-t-m { color: var(--text-muted-forte); font-style: italic; }
-.fp-t-off { opacity: .6; }
-.fp-t-off .fp-t-v, .fp-t-off .fp-t-r { text-decoration: line-through; text-decoration-color: #ffffff55; }
+/* termo que não entra: riscado e em cinza legível (sem opacidade, AA) */
+.fp-t-off .fp-t-v, .fp-t-off .fp-t-r { color: var(--text-secondary); text-decoration: line-through; text-decoration-color: #ffffff55; }
 .fp-d-selos { margin-top: .25rem; color: var(--chip-arq); }
 .fp-d-aj { margin-top: .25rem; color: var(--amber); }
 .fp-d-av { color: var(--leve); }
@@ -301,7 +308,6 @@ html[data-ficha-previa] .fp [data-sem-previa] { display: none; }
 .fp-per-at { font-family: var(--font-heading); font-size: .62rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--text-muted-forte); }
 .fp-per-total { justify-self: stretch; text-align: center; border: 1px solid #8a551866; border-radius: 3px; background: #0c0b10; padding: .05rem 0; }
 .fp-per-total .fp-conta { display: block; }
-.fp-pers-col:last-child .fp-dica { left: auto; right: 0; transform: none; }
 
 /* recursos: atual / máx. e a barra na cor do recurso (D28) */
 .fp-rec {
@@ -322,7 +328,8 @@ html[data-ficha-previa] .fp [data-sem-previa] { display: none; }
 .fp-rec-nome { grid-area: nome; font-family: var(--font-heading); font-size: .9rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
 .fp-rec-saude .fp-rec-nome { color: var(--recurso-saude); }
 .fp-rec-stamina .fp-rec-nome { color: var(--recurso-stamina); }
-.fp-rec-eter .fp-rec-nome { color: var(--recurso-eter-roxo); }
+/* o roxo do Éter (#8b5cf6) dá 4,3:1 no fundo do bloco: o rótulo vai num tom mais claro do mesmo roxo */
+.fp-rec-eter .fp-rec-nome { color: color-mix(in srgb, var(--recurso-eter-roxo) 70%, var(--text-primary)); }
 .fp-rec-classe .fp-rec-nome { color: var(--gold); }
 .fp-rec-num { grid-area: num; display: flex; flex-wrap: wrap; align-items: baseline; gap: .1rem .35rem; }
 .fp-rec-num .fp-rot { font-size: .58rem; }
@@ -397,10 +404,9 @@ html[data-ficha-previa] .fp [data-sem-previa] { display: none; }
 .fp-tipo-veneno { color: var(--fp-veneno); } .fp-tipo-acido { color: var(--fp-acido); } .fp-tipo-psiquico { color: var(--fp-psiquico); }
 .fp-tipo-radiante { color: var(--fp-radiante); } .fp-tipo-trovejante { color: var(--fp-trovejante); } .fp-tipo-necrotico { color: var(--fp-necrotico); }
 .fp-tipo-forca { color: var(--fp-forca); } .fp-tipo-primordial { color: var(--fp-primordial); }
-.fp-flag .fp-v { color: var(--text-muted); font-weight: 400; }
+.fp-flag .fp-v { color: var(--text-muted-forte); font-weight: 400; }
 .fp-flag.on .fp-v { color: var(--gold-light); font-weight: 700; }
 .fp-res-n .fp-v { font-size: .9rem; }
-.fp-res-cat:last-child .fp-res-lin > span:nth-last-child(-n+3) .fp-dica { left: auto; right: 0; transform: none; }
 
 .fp-vhelor { margin: 0; font-size: 1.1rem; }
 .fp-vhelor .fp-n { font-size: 1.6rem; color: #d9b54a; }
@@ -436,9 +442,10 @@ html[data-ficha-previa] .fp [data-sem-previa] { display: none; }
 .fp-tec-ramo {
     display: inline-flex; align-items: center; gap: .3rem;
     font-family: var(--font-heading); font-size: .66rem; font-weight: 600; letter-spacing: .05em;
-    color: var(--fp-ramo, var(--gold));
+    /* o nome num tom mais claro da cor do ramo (o #6b7280 do Sem-Nome dá 3,7:1); o glifo na cor pura */
+    color: color-mix(in srgb, var(--fp-ramo, var(--gold)) 70%, var(--text-primary));
 }
-.fp-tec-ramo .fp-svg { width: 1.15em; height: 1.15em; }
+.fp-tec-ramo .fp-svg { width: 1.15em; height: 1.15em; color: var(--fp-ramo, var(--gold)); }
 .fp-tec-txt { margin: .5rem 0 0; font-size: 1rem; line-height: 1.42; color: var(--text-secondary); }
 .fp-tec-txt em { color: var(--text-primary); }
 .fp-orfa { border-left-color: #6a2a2a; background: linear-gradient(180deg, #1c1316, #0f0e14); }
@@ -447,7 +454,7 @@ html[data-ficha-previa] .fp [data-sem-previa] { display: none; }
     display: grid; place-items: center; min-height: 3.4rem;
     background: transparent; border: 1px dashed #3a3442; border-left-width: 1px;
 }
-.fp-vazia-txt { font-size: .9rem; font-style: italic; color: var(--text-muted); }
+.fp-vazia-txt { font-size: .9rem; font-style: italic; color: var(--text-muted-forte); }
 .fp-travada { background: repeating-linear-gradient(135deg, transparent 0 9px, #ffffff05 9px 18px); border-color: #5a3d1c; }
 .fp-trava-txt { font-family: var(--font-heading); font-size: .66rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--amber); }
 .fp-tiers { display: grid; gap: var(--esp-4); }
@@ -485,7 +492,7 @@ html[data-ficha-previa] .fp [data-sem-previa] { display: none; }
 }
 .fp-carta-img { width: 52px; height: 52px; object-fit: contain; }
 .fp-carta-ico .fp-svg { width: 34px; height: 34px; }
-.fp-carta-cat { font-family: var(--font-heading); font-size: .6rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--text-muted-forte); }
+.fp-carta-cat { font-family: var(--font-heading); font-size: .6rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--text-secondary); }
 .fp .fp-carta-nome { margin: .1rem 0 0; padding: 0; font-family: var(--font-heading); font-size: .98rem; font-weight: 700; color: var(--gold-light); }
 .fp-carta-req { margin: 0; font-family: var(--font-heading); font-size: .66rem; font-weight: 600; letter-spacing: .05em; }
 .fp-req-ok { color: var(--tem); }
@@ -507,7 +514,6 @@ html[data-ficha-previa] .fp [data-sem-previa] { display: none; }
     background: transparent; border: 1px dashed #3a3442; box-shadow: none;
 }
 .fp-carta.fp-orfa { border-color: #6a2a2a; }
-.fp-cartas > :nth-child(4n) .fp-dica { left: auto; right: 0; transform: none; }
 .fp-lores { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 var(--esp-5); }
 .fp-lore { margin: 0; white-space: pre-wrap; font-size: 1.08rem; line-height: 1.5; }
 
@@ -533,10 +539,7 @@ html[data-ficha-previa] .fp [data-sem-previa] { display: none; }
 .fp-item-qtd { margin-left: auto; display: inline-flex; align-items: baseline; gap: .3rem; }
 .fp-item-qtd .fp-rot { font-size: .58rem; }
 .fp-item-cat { display: block; margin-top: .15rem; font-family: var(--font-heading); font-size: .6rem; letter-spacing: .08em; text-transform: uppercase; color: var(--text-muted-forte); }
-.fp-item-ef {
-    margin: .3rem 0 0; font-size: .95rem; line-height: 1.35; color: var(--text-secondary);
-    display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
-}
+.fp-item-ef { margin: .3rem 0 0; font-size: .95rem; line-height: 1.35; color: var(--text-secondary); }
 .fp-item-atq { display: flex; flex-wrap: wrap; gap: .3rem 1.1rem; margin-top: .45rem; padding-top: .4rem; border-top: 1px dotted #ffffff18; }
 .fp-txt-num { font-family: var(--mono); font-size: .85rem; color: var(--text-primary); }
 .fp-item-vazio { display: grid; place-items: center; min-height: 2.6rem; background: transparent; border: 1px dashed #3a3442; }
@@ -584,9 +587,10 @@ html[data-ficha-previa] .fp [data-sem-previa] { display: none; }
 .fp-mg-int .fp-rot { font-size: .54rem; }
 .fp-mg-int.fp-escolhida { border-color: var(--gold-dark); background: #d4af3712; }
 .fp-mg-int.fp-escolhida .fp-rot { color: var(--gold); }
-.fp-mg-int-off { opacity: .55; }
-.fp-mg-custo > :last-child .fp-dica { left: auto; right: 0; transform: none; }
-.fp-mg-custo > :first-child .fp-dica { left: 0; transform: none; }
+/* intensidade fora da magia (Contida no Nível 1): moldura tracejada e o nome
+   riscado, sem opacidade (o texto segue AA) */
+.fp-mg-int-off { background: transparent; border-style: dashed; }
+.fp-mg-int-off .fp-rot { text-decoration: line-through; }
 .fp-nota-topo { margin-bottom: var(--esp-4); }
 
 /* ---------------------------------------------------------- telas menores (o site é de PC; só não quebrar) */

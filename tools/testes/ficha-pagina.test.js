@@ -620,7 +620,7 @@ function criaDom() {
   function elemento(tag, attrs) {
     const a = Object.assign({}, attrs || {}), ouv = {};
     const e = {
-      tagName: String(tag).toUpperCase(), hidden: 'hidden' in a, focado: false, _html: '',
+      tagName: String(tag).toUpperCase(), hidden: 'hidden' in a, focado: false, _html: '', trocas: 0,
       getAttribute: (k) => (k in a ? a[k] : null), setAttribute: (k, v) => { a[k] = String(v); },
       removeAttribute: (k) => { delete a[k]; }, hasAttribute: (k) => k in a,
       addEventListener: (t, f) => { (ouv[t] = ouv[t] || []).push(f); },
@@ -633,6 +633,7 @@ function criaDom() {
       focus: () => { e.focado = true; },
       get innerHTML() { return e._html; },
       set innerHTML(v) {
+        e.trocas++;
         e._html = String(v);
         for (const m of e._html.matchAll(/<([a-z][a-z0-9]*)\b([^>]*)>/g)) {
           const at = {};
@@ -673,7 +674,7 @@ function pagina(opcoes) {
   const sandbox = {
     document, CustomEvent, URL, console, location: { search: opcoes.search || '' },
     localStorage: loja(st, escritas), sessionStorage: loja(new Map(), escritasSessao),
-    setTimeout: () => 0, clearTimeout() {}, requestAnimationFrame: (f) => f(),
+    setTimeout: opcoes.setTimeout || (() => 0), clearTimeout() {}, requestAnimationFrame: (f) => f(),
     // serve os arquivos do repo (data/, partials/) como o GitHub Pages
     fetch: (u) => {
       buscas.push(u);
@@ -817,4 +818,336 @@ test('nav: item "Ficha" só na prévia (data-so-previa), glifo nv-ficha no traç
   const antes = css.slice(0, css.indexOf('[data-so-previa] {'));
   assert.ok(antes.lastIndexOf('@layer componentes {') > -1);
   assert.equal(antes.lastIndexOf('@layer componentes {'), antes.indexOf('@layer componentes {'));
+});
+
+// ======================================================================
+// Revisão da F4.3b
+// ======================================================================
+
+test('avisos: a MESMA lista da prévia (KhPrevia.listaAvisos), com o grau da pendência e o selo do alerta', () => {
+  const v2 = v2Completa();
+  v2.recursos.eter = { atual: -999, max: 10 };   // estado final do Éter: alerta com selo (pendente balanceamento)
+  const { res, r } = desenha(v2);
+  const no = arvore(r.paineis.nucleo);
+  const lis = todos(um(no, 'avisos'), (x) => x.tag === 'li').map(texto);
+  const secAv = todos(arvore(P.render(res).html), (x) => x.tag === 'section' && x.at['aria-labelledby'] === 'kf3-h-avisos')[0];
+  assert.ok(secAv, 'seção de avisos da prévia');
+  assert.deepEqual(lis, todos(secAv, (x) => x.tag === 'li').map(texto), 'página e prévia: as mesmas linhas, na mesma ordem');
+  assert.ok(lis.length >= 5);
+  // a ficha-v2-sintetica tem pericias.oficio = 2 (v2), que na v3 é grau 1
+  assert.ok(lis.some((l) => /^Pendência: A v2 tinha um Ofício\(X\) genérico;.* \(grau 1\)$/.test(l)), 'o grau da pendência');
+  assert.ok(lis.some((l) => /^Alerta: Éter atual .* \[PENDENTE \(balanceamento\)\]$/.test(l)), 'o selo do alerta');
+});
+
+test('perícias: o grau do Ofício(X) genérico da v2 fica à vista junto dos três Ofícios (nota com o grau e selo)', () => {
+  const { r } = desenha();
+  const no = arvore(r.paineis.nucleo);
+  const pers = um(no, 'pericias');
+  const nota = todos(pers, (x) => classe(x, 'fp-nota'))[0];
+  assert.ok(nota, 'nota da pendência no bloco de perícias');
+  assert.match(texto(nota), /Ofício\(X\) genérico com grau 1 \(Treinado\)\. Escolha qual Ofício \(Engenharia, Ferraria ou Alquimia\) recebe o grau\./);
+  // o grau é número de ESTADO da ficha v3 (a pendência da migração), não texto solto
+  assert.equal(todos(nota, (x) => x.at['data-ficha'] === 'migracao.pendencias.0.grau').length, 1);
+  const ofs = D.pericias.filter((p) => /^oficio-/.test(p.id));
+  assert.equal(ofs.length, 3);
+  ofs.forEach((p) => {
+    const lin = um(no, 'pericia-' + p.id);
+    assert.equal(todos(lin, (x) => classe(x, 'fp-selo-aviso') && texto(x) === 'grau a escolher').length, 1, p.id);
+    assert.equal(todos(lin, (x) => classe(x, 'fp-grau') && classe(x, 'on')).length, 0, p.id + ': o grau não é posto em nenhum (escolha do jogador)');
+  });
+  assert.doesNotMatch(texto(um(no, 'pericia-atacar')), /grau a escolher/);
+  // sem Ofício na v2, sem pendência: nem nota nem selo
+  const sem = v2Completa();
+  delete sem.pericias.oficio;
+  assert.doesNotMatch(desenha(sem).r.paineis.nucleo, /grau a escolher|Ofício\(X\) genérico com grau/);
+});
+
+// ---------------- a dica da conta presa à caixa da página ----------------
+test('dica: encaixeDica empurra a dica para dentro da caixa (sem rolagem horizontal, nunca embaixo da nav)', () => {
+  // 1366 px com a nav aberta: a caixa (#fp) vai de 280 a 1316
+  const lim = { min: 288, max: 1308 };
+  assert.equal(FP.encaixeDica({ left: 500, right: 900, width: 400 }, lim), 0, 'cabe: centrada');
+  assert.equal(FP.encaixeDica({ left: 1047, right: 1447, width: 400 }, lim), 1308 - 1447, 'passava da janela (x=1447)');
+  assert.equal(FP.encaixeDica({ left: 142, right: 542, width: 400 }, lim), 288 - 142, 'começava embaixo da nav (x=142)');
+  assert.equal(FP.encaixeDica({ left: 100, right: 1500, width: 1400 }, lim), 188, 'mais larga que a caixa: encosta na esquerda');
+  const css = ler('css', 'ficha-pagina.css');
+  assert.match(css, /\.fp \.fp-dica \{[^}]*transform: translateX\(calc\(-50% \+ var\(--fp-dx, 0px\)\)\);/);
+  assert.match(css, /\.fp \.fp-conta\[data-dica-acima\] \.fp-dica \{ top: auto; bottom: calc\(100% \+ 6px\); \}/);
+  // nenhuma exceção de lado pelo lugar no layout (que não acompanha a largura da janela): quem decide é a medida
+  assert.doesNotMatch(css, /:(?:last-child|first-child|nth-child\([^)]*\)|nth-last-child\([^)]*\))[^{,]*\.fp-dica/);
+  assert.doesNotMatch(css, /\.fp-dica \{[^}]*(?<![-\w])transform: none/);
+});
+
+// estilo inline falso, com max-width ligado a maxWidth como no navegador
+function estiloFalso() {
+  const p = {};
+  return {
+    p, setProperty: (k, v) => { p[k] = String(v); }, removeProperty: (k) => { delete p[k]; },
+    getPropertyValue: (k) => p[k] || '',
+    get maxWidth() { return p['max-width'] || ''; }, set maxWidth(v) { p['max-width'] = String(v); }
+  };
+}
+test('dica: encaixa mede a dica aberta e grava o deslocamento (--fp-dx), a largura máxima e o lado de cima', () => {
+  const caixa = { getBoundingClientRect: () => ({ left: 280, right: 1316, top: 0, bottom: 4000, width: 1036 }) };
+  // a dica, centrada sob o número (cx), com a largura natural w (até max-width) e o --fp-dx aplicado
+  function conta(cx, topo, w, aberta) {
+    const at = {}, est = estiloFalso();
+    const dica = {
+      style: est,
+      getBoundingClientRect() {
+        if (!aberta) return { left: 0, right: 0, top: 0, bottom: 0, width: 0, height: 0 };
+        const mw = parseFloat(est.maxWidth) || Infinity, larg = Math.min(w, mw), dx = parseFloat(est.getPropertyValue('--fp-dx')) || 0;
+        const l = cx - larg / 2 + dx;
+        return { left: l, right: l + larg, width: larg, top: topo + 26, bottom: topo + 26 + 180, height: 180 };
+      }
+    };
+    return { at, dica, est, querySelector: (s) => (s === '.kh-conta-dica' ? dica : null),
+      getAttribute: (k) => (k in at ? at[k] : null), setAttribute: (k, v) => { at[k] = String(v); }, removeAttribute: (k) => { delete at[k]; },
+      getBoundingClientRect: () => ({ left: cx - 10, right: cx + 10, top: topo, bottom: topo + 20, width: 20, height: 20 }) };
+  }
+  const win = { innerHeight: 768 };
+  const dentro = (c) => { const r = c.dica.getBoundingClientRect(); return r.left >= 288 - 0.5 && r.right <= 1308 + 0.5; };
+  // Redução de Necrótico (à direita) e Força (à esquerda, embaixo da nav): presas na caixa
+  [1290, 300, 760].forEach((cx) => {
+    const c = conta(cx, 200, 416, true);
+    assert.equal(FP.encaixa(c, caixa, win), true);
+    assert.ok(dentro(c), 'cx=' + cx + ': ' + JSON.stringify(c.dica.getBoundingClientRect()));
+    assert.equal('data-dica-acima' in c.at, false);
+  });
+  assert.equal(conta(760, 200, 416, true).est.getPropertyValue('--fp-dx'), '', 'centrada: sem deslocamento');
+  // fechada (display: none): não mede nem grava
+  const f = conta(1290, 200, 416, false);
+  assert.equal(FP.encaixa(f, caixa, win), false);
+  assert.deepEqual(f.est.p, {});
+  // caixa estreita: a largura máxima vira a da caixa
+  const estreita = { getBoundingClientRect: () => ({ left: 280, right: 580, top: 0, bottom: 4000, width: 300 }) };
+  const e = conta(430, 200, 416, true);
+  FP.encaixa(e, estreita, win);
+  assert.equal(e.est.maxWidth, '284px');
+  // perto do pé da janela, com espaço em cima: abre para cima
+  const pe = conta(760, 700, 416, true);
+  FP.encaixa(pe, caixa, win);
+  assert.equal('data-dica-acima' in pe.at, true);
+  // reabrir limpa o que a abertura anterior gravou
+  pe.getBoundingClientRect = () => ({ left: 750, right: 770, top: 200, bottom: 220, width: 20, height: 20 });
+  pe.dica.getBoundingClientRect = conta(760, 200, 416, true).dica.getBoundingClientRect;
+  FP.encaixa(pe, caixa, win);
+  assert.equal('data-dica-acima' in pe.at, false);
+});
+
+// ---------------- redesenho sem perder o lugar ----------------
+// contêiner falso: innerHTML cria um elemento por tag (na ordem), querySelectorAll
+// com seletores simples (tag, [attr], tag[attr], .classe) separados por vírgula
+function domUI() {
+  const doc = { activeElement: null };
+  function casaSel(e, sel) {
+    return sel.split(',').some((s) => {
+      const m = /^([a-z]*)(?:\[([a-z-]+)\])?(?:\.([a-z-]+))?$/.exec(s.trim());
+      if (!m) throw new Error('seletor fora do falso: ' + s);
+      return (!m[1] || e.tagName === m[1].toUpperCase()) && (!m[2] || e.hasAttribute(m[2])) &&
+        (!m[3] || (' ' + (e.getAttribute('class') || '') + ' ').includes(' ' + m[3] + ' '));
+    });
+  }
+  function elemento(tag, at) {
+    const a = Object.assign({}, at);
+    const e = {
+      tagName: tag.toUpperCase(), open: 'open' in a, visivel: false, sob: false, focoOp: null,
+      getAttribute: (k) => (k in a ? a[k] : null), setAttribute: (k, v) => { a[k] = String(v); },
+      removeAttribute: (k) => { delete a[k]; }, hasAttribute: (k) => k in a,
+      focus: (o) => { doc.activeElement = e; e.focoOp = o; },
+      matches: (s) => (s === ':focus-visible' ? e.visivel && doc.activeElement === e : s === ':hover' ? e.sob : casaSel(e, s))
+    };
+    return e;
+  }
+  function contem(tag, at) {
+    const c = elemento(tag, at);
+    c.filhos = []; c.trocas = 0;
+    Object.defineProperty(c, 'innerHTML', {
+      get: () => c._h || '',
+      set: (v) => {
+        c.trocas++; c._h = v;
+        if (c.filhos.includes(doc.activeElement)) doc.activeElement = { tagName: 'BODY' };   // o focado some com o HTML velho
+        c.filhos = [...v.matchAll(/<([a-z][a-z0-9]*)\b((?:[^>"]|"[^"]*")*)>/g)].map((m) => {
+          const at2 = {};
+          for (const x of m[2].matchAll(/([a-z][\w-]*)(?:="([^"]*)")?/g)) at2[x[1]] = x[2] === undefined ? '' : x[2];
+          return elemento(m[1], at2);
+        });
+      }
+    });
+    c.querySelectorAll = (s) => c.filhos.filter((e) => casaSel(e, s));
+    c.contains = (x) => c.filhos.includes(x);
+    return c;
+  }
+  return { doc, elemento, contem };
+}
+const HTML_UI = (n) => '<details data-campo="avisos"><summary>Avisos (' + n + ')</summary><ul><li>x</li></ul></details>' +
+  '<span class="kh-conta fp-conta" tabindex="0" aria-describedby="fp-d-' + n + '" data-caminho="defesa.necrotico"><b class="fp-v">' + n + '</b></span>' +
+  '<span class="kh-conta fp-conta" tabindex="0" aria-describedby="fp-d-' + (n + 1) + '" data-caminho="carga"><b class="fp-v">a</b></span>' +
+  '<span class="kh-conta fp-conta" tabindex="0" aria-describedby="fp-d-' + (n + 2) + '" data-caminho="carga"><b class="fp-v">b</b></span>' +
+  '<button type="button" class="kh-btn fp-abrir-v2">Abrir a ficha atual</button>';
+
+test('redesenho: trocaHTML devolve o foco ao equivalente, reabre o <details> e mantém a dica; o igual não é tocado', () => {
+  const { doc, contem } = domUI();
+  const cont = contem('section', { tabindex: '0', role: 'tabpanel' });
+  const fora = contem('header', {});
+  assert.equal(FP.trocaHTML(doc, cont, HTML_UI(1), cont), true);
+  assert.equal(FP.trocaHTML(doc, cont, HTML_UI(1), cont), false, 'o mesmo HTML: não troca');
+  assert.equal(cont.trocas, 1);
+
+  // o jogador tabulou até a 2ª conta de carga (foco visível), abriu os Avisos e está com o mouse em Necrótico
+  const contas = () => cont.querySelectorAll('.kh-conta');
+  const [nec, , carga2] = contas();
+  carga2.visivel = true; carga2.focus();
+  cont.querySelectorAll('details')[0].open = true;
+  nec.sob = true;
+  // outra aba comprou um item: o HTML muda (outros números, outros ids)
+  assert.equal(FP.trocaHTML(doc, cont, HTML_UI(7), cont), true);
+  assert.notEqual(contas()[2], carga2, 'elemento novo');
+  assert.equal(doc.activeElement, contas()[2], 'o foco volta à 2ª conta de carga, não ao BODY');
+  assert.deepEqual(contas()[2].focoOp, { preventScroll: true }, 'sem rolar a página');
+  assert.equal(contas()[2].hasAttribute('data-fp-foco'), true, 'contorno e dica seguem visíveis (foco por teclado)');
+  assert.equal(cont.querySelectorAll('details')[0].open, true, '<details> de Avisos segue aberto');
+  assert.equal(contas()[0].hasAttribute('data-fp-dica'), true, 'a dica sob o mouse segue aberta');
+  assert.equal(contas()[1].hasAttribute('data-fp-dica'), false);
+
+  // foco no botão "Abrir a ficha atual" (clique: sem foco visível)
+  const bt = cont.querySelectorAll('button')[0];
+  bt.focus();
+  FP.trocaHTML(doc, cont, HTML_UI(9), cont);
+  assert.equal(doc.activeElement, cont.querySelectorAll('button')[0]);
+  assert.equal(doc.activeElement.hasAttribute('data-fp-foco'), false, 'foco de mouse não ganha marca de teclado');
+
+  // o elemento focado sumiu: o foco vai para a reserva (o próprio painel), nunca para o BODY
+  contas()[2].focus();
+  FP.trocaHTML(doc, cont, '<p>outra coisa</p>', cont);
+  assert.equal(doc.activeElement, cont);
+
+  // o foco fora do contêiner não é mexido
+  fora.innerHTML = '<button type="button" class="x">x</button>';
+  const btFora = fora.querySelectorAll('button')[0];
+  btFora.focus();
+  FP.trocaHTML(doc, cont, HTML_UI(3), cont);
+  assert.equal(doc.activeElement, btFora);
+});
+
+test('navegador: kf:mudou redesenha só o que mudou (trocaHTML), sem gravar nada', async () => {
+  const filas = [];
+  const v2 = v2Completa();
+  const pg = pagina({ ls: { khalkaria_ficha_previa: '1', khalkaria_ficha: JSON.stringify(v2) }, setTimeout: (f) => { filas.push(f); return filas.length; } });
+  await esperaCarregar(pg);
+  const topo = pg.dom.porId.get('fp-topo');
+  const painel = (id) => pg.dom.porId.get('fp-painel-' + id);
+  const antes = { topo: topo.trocas, nucleo: painel('nucleo').trocas, bazar: painel('bazar').trocas };
+  const bazarAntes = painel('bazar').innerHTML;
+  // a mesma ficha: nada muda, nada é trocado
+  pg.ouvDoc['kf:mudou'].forEach((f) => f({ type: 'kf:mudou' }));
+  filas.splice(0).forEach((f) => f());
+  assert.equal(topo.trocas, antes.topo);
+  assert.equal(painel('nucleo').trocas, antes.nucleo);
+  assert.equal(painel('bazar').trocas, antes.bazar);
+  // compra no Bazar (outra aba): o Bazar muda, o topo (nome, raça…) fica
+  v2.inventario.bugigangas.push({ uid: 'uNovo', id: null, nome: 'Corda', categoria: 'Bugiganga', raridade: 'Ordinário', efeito: '', qtd: 1,
+    empilhavel: false, equipado: false, sintonizado: false, avulso: true, orfao: false });
+  pg.win.localStorage.setItem('khalkaria_ficha', JSON.stringify(v2));
+  pg.ouvDoc['kf:mudou'].forEach((f) => f({ type: 'kf:mudou' }));
+  filas.splice(0).forEach((f) => f());
+  assert.equal(painel('bazar').trocas, antes.bazar + 1);
+  assert.notEqual(painel('bazar').innerHTML, bazarAntes);
+  assert.match(painel('bazar').innerHTML, /Corda/);
+  assert.equal(topo.trocas, antes.topo, 'topo igual: não trocado');
+  assert.ok(!pg.escritas.slice(pg.depoisFicha.escritas.length).some((k) => k !== 'khalkaria_ficha'), 'só a escrita do próprio teste');
+});
+
+// ---------------- contraste AA do texto da página ----------------
+const TOKENS = (() => {
+  const t = {};
+  [ler('css', 'style.css'), ler('css', 'tokens.css')].forEach((css) => {
+    for (const m of css.matchAll(/--([a-z0-9-]+):\s*(#[0-9a-fA-F]{6})\b/g)) if (!(m[1] in t)) t[m[1]] = m[2].toLowerCase();
+  });
+  return t;
+})();
+function regra(css, sel) {
+  const m = new RegExp('(?:^|[}\\n])\\s*' + sel.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '\\s*\\{([^}]*)\\}').exec(css);
+  assert.ok(m, 'regra "' + sel + '"');
+  return m[1];
+}
+function hexRgb(h) { return [1, 3, 5].map((i) => parseInt(h.slice(i, i + 2), 16)); }
+function resolveCor(v, vars) {
+  v = v.trim();
+  let m;
+  if (/^#[0-9a-f]{6}$/i.test(v)) return v.toLowerCase();
+  if ((m = /^var\(--([a-z0-9-]+)(?:,\s*(.+))?\)$/.exec(v))) {
+    const k = m[1];
+    if (vars && k in vars) return resolveCor(vars[k], vars);
+    if (k in TOKENS) return TOKENS[k];
+    assert.ok(m[2], 'token sem valor: --' + k);
+    return resolveCor(m[2], vars);
+  }
+  if ((m = /^color-mix\(in srgb,\s*(.+?)\s+(\d+)%,\s*(.+)\)$/.exec(v))) {
+    const a = hexRgb(resolveCor(m[1], vars)), b = hexRgb(resolveCor(m[3], vars)), p = Number(m[2]) / 100;
+    return '#' + a.map((x, i) => Math.round(x * p + b[i] * (1 - p)).toString(16).padStart(2, '0')).join('');
+  }
+  throw new Error('cor não resolvida: ' + v);
+}
+function contraste(a, b) {
+  const L = (h) => {
+    const [r, g, bl] = hexRgb(h).map((c) => { c /= 255; return c <= 0.03928 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4; });
+    return 0.2126 * r + 0.7152 * g + 0.0722 * bl;
+  };
+  const x = L(a), y = L(b);
+  return (Math.max(x, y) + 0.05) / (Math.min(x, y) + 0.05);
+}
+test('contraste: texto da página em AA (4,5:1) contra o fundo da peça; sem opacidade em texto, sem --text-muted', () => {
+  const css = ler('css', 'ficha-pagina.css').replace(/\/\*[\s\S]*?\*\//g, '');
+  const comp = ler('css', 'componentes.css').replace(/\/\*[\s\S]*?\*\//g, '');
+  const cor = (sel, vars) => resolveCor(/(?:^|;)\s*color:\s*([^;]+?)\s*(?:;|$)/.exec(regra(css, sel).trim())[1], vars);
+  // o fundo da peça: a 1ª cor do background da regra (o tom mais claro do degradê, onde o texto fica)
+  const fundo = (sel, fonte) => {
+    const m = /#[0-9a-f]{6}\b/i.exec(/background:\s*([^;]+)/.exec(regra(fonte || css, sel))[1]);
+    return m[0].toLowerCase();
+  };
+  const PAPEL = { bloco: fundo('.fp-bloco'), tec: fundo('.fp-tec'), carta: fundo('.fp-carta'), rara: fundo('.fp-carta-rara'),
+    res: fundo('.fp-res-cat'), mg: fundo('.fp-mg'), dica: fundo('.kh-conta-dica, .bz-col-conta', comp), pagina: TOKENS['bg-primary'] };
+  const PARES = [
+    ['.fp-vazia-txt', 'bloco', '"vazia", "vazio", "moldura de carta"'],
+    ['.fp-flag .fp-v', 'res', 'o "·" das flags R/I/V'],
+    ['.fp-nulo', 'mg', 'o "—" da intensidade fora da magia'],
+    ['.fp-rot, .fp-ident dt', 'mg', '"Contida" do Nível 1 (moldura transparente)'],
+    ['.fp-t-m', 'dica', '"(não entra…)" na dica'],
+    ['.fp-t-f', 'dica', 'a fonte do termo na dica'],
+    ['.fp-t-off .fp-t-v, .fp-t-off .fp-t-r', 'dica', 'o termo que não entra'],
+    ['.fp-aba', 'pagina', 'o rótulo e o número da aba'],
+    ['.fp-carta-cat', 'carta', '"Universal" na carta'],
+    ['.fp-carta-cat', 'rara', '"Rara" na carta rara'],
+    ['.fp-rec-eter .fp-rec-nome', 'bloco', 'o rótulo ÉTER']
+  ];
+  PARES.forEach(([sel, p, o]) => {
+    const c = contraste(cor(sel), PAPEL[p]);
+    assert.ok(c >= 4.5, o + ' (' + sel + ' ' + cor(sel) + ' sobre ' + PAPEL[p] + '): ' + c.toFixed(2) + ':1');
+  });
+  // o nome do ramo em todas as cores de ramo; o glifo (não texto) com 3:1
+  const ramos = Object.keys(TOKENS).filter((k) => /^ramo-[a-z]+-[a-z]+$/.test(k));
+  assert.ok(ramos.length >= 21, 'as cores de ramo dos tokens');
+  ramos.forEach((k) => {
+    const c = contraste(cor('.fp-tec-ramo', { 'fp-ramo': 'var(--' + k + ')' }), PAPEL.tec);
+    assert.ok(c >= 4.5, k + ': ' + c.toFixed(2) + ':1');
+    assert.ok(contraste(TOKENS[k], PAPEL.tec) >= 3, k + ' (glifo)');
+  });
+  assert.match(regra(css, '.fp-tec-ramo .fp-svg'), /color: var\(--fp-ramo, var\(--gold\)\)/);
+  // opacidade sobre texto derruba o contraste medido acima: nenhuma no css da página
+  assert.doesNotMatch(css, /\bopacity\s*:/);
+  // --text-muted (#6b6560) dá 3,2:1 no fundo do bloco: a página usa o --text-muted-forte
+  assert.doesNotMatch(css, /var\(--text-muted\)/);
+});
+
+test('Bazar: o efeito do item aparece inteiro (sem line-clamp nem overflow escondido)', () => {
+  const css = ler('css', 'ficha-pagina.css').replace(/\/\*[\s\S]*?\*\//g, '');
+  assert.doesNotMatch(css, /line-clamp/);
+  assert.doesNotMatch(regra(css, '.fp-item-ef'), /overflow|max-height|display:\s*-webkit-box/);
+  const { res, r } = desenha();
+  // os itens (os Materiais vão na lista por raridade, só nome e Qtd, como no A4)
+  const itens = res.ficha.inventario.bugigangas.concat(res.ficha.inventario.equipamentos)
+    .filter((x) => x.efeito && !/(^|,)\s*Material\s*(,|$)/.test(x.categoria));
+  assert.ok(itens.some((x) => /Adaga de Kali/.test(x.nome)));
+  itens.forEach((x) => assert.ok(r.paineis.bazar.includes('<p class="fp-item-ef">' + FP.textoRico(x.efeito) + '</p>'), x.nome));
 });
