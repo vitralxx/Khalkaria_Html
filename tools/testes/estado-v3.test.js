@@ -144,7 +144,11 @@ test('v2 -> v3: estado, resistências (ordinário vira os 3 tipos), Ofício(X) v
   ['cortante', 'contundente', 'perfurante'].forEach((t) => assert.deepEqual(f.resistencias.tipos[t], { R: true, I: false, V: false, ae: 0 }, t));
   assert.equal(f.resistencias.aeCategoria.ordinario, 1);
   assert.deepEqual(f.resistencias.tipos.fogo, { R: false, I: true, V: false, ae: 0 });
-  assert.deepEqual(f.vinculoV2, { revV2: 17, salvoEmV2: '2026-09-27T21:14:03.512Z' });
+  assert.deepEqual([f.vinculoV2.revV2, f.vinculoV2.salvoEmV2], [17, '2026-09-27T21:14:03.512Z']);
+  // a memória do que a v3 não guarda sem perda: os números da v2, como estavam
+  assert.deepEqual([f.vinculoV2.comPerda['atributos.des'], f.vinculoV2.comPerda['pericias.oficio'],
+    f.vinculoV2.comPerda['derivadosManuais.evasao'], f.vinculoV2.comPerda['resistencias.ordinario']],
+  [V2.atributos.des, V2.pericias.oficio, V2.derivadosManuais.evasao, V2.resistencias.ordinario]);
   assert.equal(f.inventario.equipamentos[1].equipado, true);
   assert.deepEqual(f.inventario, V2.inventario, 'inventário do KhInv intacto');
   assert.equal(f.lore.historia, 'Cresceu nas trilhas do sul.');
@@ -761,12 +765,17 @@ test('projetarV2: a edição da v3 vai para a v2 no que não tem perda; com perd
   ['resistencias.ordinario', 'resistencias.veneno.V', 'resistencias.aeTodos', 'recursos.saude.temporaria',
     'entradas.uracanova01', 'tecnicas.' + atento.migradoDe.id].forEach((c) => assert.ok(por[c], c));
   assert.equal(por['resistencias.ordinario'].v3.cortante.R, false);
-  // sem v2 atual: o padrão da novaFicha da v2, nunca o número da v3
+  // sem v2 atual: a memória da ficha (os números da v2 que ela absorveu), nunca o número da v3
   const sem = E.projetarV2(f, null).v2;
-  assert.deepEqual(sem.atributos, { for: 10, des: 10, con: 10, int: 10, sab: 10 });
-  assert.deepEqual(sem.derivadosManuais, { evasao: 0, cd: 0, movimento: 9, armadura: 0 });
-  assert.deepEqual([sem.recursos.saude.max, sem.pericias.atacar, sem.rev, sem.meta.nome], [0, 0, 0, 'Lira do Sul']);
+  assert.deepEqual(sem.atributos, V2.atributos);
+  assert.deepEqual(sem.derivadosManuais, V2.derivadosManuais);
+  assert.deepEqual([sem.recursos.saude.max, sem.pericias.atacar, sem.rev, sem.meta.nome], [V2.recursos.saude.max, V2.pericias.atacar, 0, 'Lira do Sul']);
   assert.ok(!('armas' in sem.inventario) && !('materiais' in sem.inventario));
+  // ficha sem vínculo (criada na v3, cópia): o padrão da novaFicha da v2
+  const solta = E.projetarV2(Object.assign(copia(f), { vinculoV2: null }), null).v2;
+  assert.deepEqual(solta.atributos, { for: 10, des: 10, con: 10, int: 10, sab: 10 });
+  assert.deepEqual(solta.derivadosManuais, { evasao: 0, cd: 0, movimento: 9, armadura: 0 });
+  assert.deepEqual([solta.recursos.saude.max, solta.pericias.atacar, solta.oficioAttr], [0, 0, 'int']);
   assert.deepEqual(f.entradas.filter((e) => e.uid === 'umagianova1').length, 1, 'a ficha de entrada não muda');
 });
 
@@ -818,7 +827,8 @@ test('gravarComProjecao: ficha, índice (projecaoV2), projeção (rev acima da v
   const arm = E.armazem(st, null, o);
   const f = arm.ler(m.id);
   assert.deepEqual(validar(S, f), []);
-  assert.deepEqual(f.vinculoV2, { revV2: V2.rev, salvoEmV2: V2.salvoEm }, 'o vínculo é a v2 que ela absorveu');
+  assert.deepEqual(so(f.vinculoV2, 'revV2', 'salvoEmV2'), { revV2: V2.rev, salvoEmV2: V2.salvoEm }, 'o vínculo é a v2 que ela absorveu');
+  assert.deepEqual(v2.origemV3, { fichaId: m.id, revV2: V2.rev + 1 }, 'o carimbo da projeção');
   assert.ok(m.perdas.some((p) => p.campo === 'atributos.for'));
   // a segunda gravação: o marcador já está lá (não regrava) e o rev da v2 sobe de novo
   st.escritas.length = 0;
@@ -1013,7 +1023,17 @@ test('reimportarV2: merge por campo; o que só existe na v3 fica (uid, estado, p
   assert.deepEqual(x.entradas.filter((e) => e !== nova).map((e) => e.uid),
     projetada.entradas.filter((e) => e.uid !== atento.uid).map((e) => e.uid), 'uids e ordem das que ficaram');
   assert.deepEqual([nova.tipo, nova.estado.posicaoNaMao, nova.migradoDe.efeitoNoTotal], ['carta', null, false]);
-  assert.deepEqual(x.vinculoV2, { revV2: v2.rev, salvoEmV2: v2.salvoEm });
+  assert.deepEqual(so(x.vinculoV2, 'revV2', 'salvoEmV2'), { revV2: v2.rev, salvoEmV2: v2.salvoEm });
+  // o que tem perda e a v2 mudou não entra, mas sai em 'perdas' com o antes e o depois
+  assert.equal(r.ancestral, 'projecao');
+  assert.deepEqual(r.conflitos, []);
+  assert.deepEqual(r.perdas.map((p) => [p.campo, p.antes, p.v2]).sort(), [
+    ['atributos.for', V2.atributos.for, 17], ['derivadosManuais.cd', V2.derivadosManuais.cd, 20],
+    ['pericias.atacar', V2.pericias.atacar, 6],
+    ['resistencias.ordinario', V2.resistencias.ordinario, Object.assign({}, V2.resistencias.ordinario, { I: true })]].sort());
+  r.perdas.forEach((p) => assert.ok(p.motivo && !p.semReferencia, p.campo));
+  assert.equal(r.perdas.find((p) => p.campo === 'atributos.for').v3, projetada.atributos.base.FOR);
+  assert.deepEqual([x.vinculoV2.comPerda['atributos.for'], x.vinculoV2.comPerda['derivadosManuais.cd']], [17, 20], 'a memória passa a ser a da v2 reimportada');
   assert.deepEqual(validar(S, x), []);
   assert.deepEqual(arm.ler(id), projetada, 'a entrada não é mexida');
   // gravar depois resolve o conflito; a perda mantém o que a v2 tinha (FOR 17 digitado lá)
@@ -1021,8 +1041,9 @@ test('reimportarV2: merge por campo; o que só existe na v3 fica (uid, estado, p
   assert.equal(E.gravarComProjecao(st, id, x, o).ok, true);
   assert.equal(E.conflitoV2(st.json(INDICE), st.getItem(LS2)), false);
   assert.deepEqual([st.json(LS2).atributos.for, st.json(LS2).derivadosManuais.cd, st.json(LS2).resistencias.ordinario.I], [17, 20, true]);
-  // reimportar a projeção que acabou de ser gravada não muda nada
-  assert.deepEqual(E.reimportarV2(arm.ler(id), st.getItem(LS2), o).mudou, []);
+  // reimportar a projeção que acabou de ser gravada não muda nada (nem avisa perda)
+  const de_novo = E.reimportarV2(arm.ler(id), st.getItem(LS2), Object.assign({}, o, { projecao: st.json(INDICE).projecaoV2 }));
+  assert.deepEqual([de_novo.mudou, de_novo.perdas, de_novo.conflitos, de_novo.ancestral], [[], [], [], 'projecao']);
 });
 
 test('reimportarV2 com a base (3 vias): a edição feita só na v3 não é desfeita pela v2', () => {
@@ -1071,8 +1092,11 @@ test('reverter a F4: edição na v3 -> a v2.1 abre editável com ela; voltar à 
   const ind = st.json(INDICE);
   assert.equal(E.conflitoV2(ind, st.getItem(LS2)), true);
   assert.equal(ind.projecaoV2.fichaId, m.id);
-  const r = E.reimportarV2(arm.ler(ind.projecaoV2.fichaId), st.getItem(LS2), o);
-  assert.deepEqual(r.mudou, ['inventario.bugigangas']);
+  // a v2.1 gravou por cima e o carimbo da projeção que ela adotou ficou (o deepMerge dela o preserva)
+  assert.deepEqual(st.json(LS2).origemV3, { fichaId: m.id, revV2: ind.projecaoV2.revV2 });
+  const r = E.reimportarV2(arm.ler(ind.projecaoV2.fichaId), st.getItem(LS2), Object.assign({}, o, { projecao: ind.projecaoV2 }));
+  assert.equal(r.ancestral, 'projecao');
+  assert.deepEqual([r.mudou, r.conflitos, r.perdas], [['inventario.bugigangas'], [], []]);
   assert.deepEqual([r.ficha.vhelor.marcas, r.ficha.ajustes.cd.valor, r.ficha.lore.historia], [2, 14, 'Editado na v3']);
   assert.equal(r.ficha.inventario.bugigangas[0].qtd, 3);
   assert.equal(E.gravarComProjecao(st, m.id, r.ficha, o).ok, true);
@@ -1081,4 +1105,219 @@ test('reverter a F4: edição na v3 -> a v2.1 abre editável com ela; voltar à 
   rev.win('storage', { key: LS2 });
   assert.equal(rev.KF.inventario().bugigangas[0].qtd, 3);
   assert.equal(arm.ler(outra).meta.nome, 'Outra');
+});
+
+// ---------------- correções da revisão da F4.2 ----------------
+test('reimportarV2: o que a v2.1 mudou COM perda (atributo, perícia, máximo, derivado, Ofício) sai em "perdas", não some calado', () => {
+  const st = A.armazenamento({ [LS2]: JSON.stringify(V2) });
+  const o = opDupla();
+  const id = E.migrarReal(st, o).id;
+  const arm = E.armazem(st, null, o);
+  // F4 revertida: o jogador sobe de nível na v2.1
+  const v2 = st.json(LS2);
+  v2.rev += 1; v2.salvoEm = '2026-10-02T14:00:00.000Z';
+  v2.meta.nivel = 3; v2.atributos.des = 18; v2.pericias.percepcao = 6;
+  v2.recursos.saude.max = 30; v2.derivadosManuais.evasao = 14; v2.oficioAttr = 'sab';
+  st.setItem(LS2, JSON.stringify(v2));
+  const proj = st.json(INDICE).projecaoV2;
+  const antes = arm.ler(id);
+  const r = E.reimportarV2(antes, st.getItem(LS2), Object.assign({}, o, { projecao: proj }));
+  assert.deepEqual([r.ancestral, r.mudou, r.conflitos], ['projecao', ['meta.nivel'], []]);
+  assert.deepEqual(r.perdas.map((p) => [p.campo, p.antes, p.v2]), [
+    ['atributos.des', V2.atributos.des, 18], ['pericias.percepcao', V2.pericias.percepcao, 6], ['oficioAttr', V2.oficioAttr, 'sab'],
+    ['derivadosManuais.evasao', V2.derivadosManuais.evasao, 14], ['recursos.saude.max', V2.recursos.saude.max, 30]]);
+  r.perdas.forEach((p) => assert.ok(p.motivo, p.campo));
+  assert.deepEqual(so(r.perdas[0], 'v3'), { v3: antes.atributos.base.DES });
+  // nada disso é inventado na v3 (a UI mostra as perdas para o jogador corrigir)
+  assert.deepEqual([r.ficha.atributos, r.ficha.pericias, r.ficha.ajustes], [antes.atributos, antes.pericias, antes.ajustes]);
+  // gravar: a v2 segue com os números que o jogador digitou nela, e o próximo reimportar não avisa de novo
+  assert.equal(E.gravarComProjecao(st, id, r.ficha, o).ok, true);
+  const depois = st.json(LS2);
+  assert.deepEqual([depois.meta.nivel, depois.atributos.des, depois.pericias.percepcao, depois.recursos.saude.max,
+    depois.derivadosManuais.evasao, depois.oficioAttr], [3, 18, 6, 30, 14, 'sab']);
+  const de_novo = E.reimportarV2(arm.ler(id), depois, Object.assign({}, o, { projecao: st.json(INDICE).projecaoV2 }));
+  assert.deepEqual([de_novo.mudou, de_novo.perdas], [[], []]);
+  // vínculo antigo, sem a memória: compara com o padrão da v2 e marca semReferencia
+  const semMemoria = copia(antes);
+  delete semMemoria.vinculoV2.comPerda;
+  const rs = E.reimportarV2(semMemoria, v2, Object.assign({}, o, { projecao: proj }));
+  assert.ok(rs.perdas.length && rs.perdas.every((p) => p.semReferencia));
+  assert.deepEqual(so(rs.perdas.find((p) => p.campo === 'atributos.des'), 'antes', 'v2'), { antes: 10, v2: 18 });
+});
+
+test('vínculo vazio (v1) não identifica a v2: outra ficha v1 não toma a khalkaria_ficha, e a v1 de lá é migrada', () => {
+  const st = A.armazenamento({ [LS2]: JSON.stringify(V1) });
+  const o = opDupla();
+  const arm = E.armazem(st, null, o);
+  // a ficha C veio de OUTRO arquivo v1 (import da F3): vínculo {0, ''}, como toda v1
+  const imp = arm.importar(JSON.stringify(Object.assign(copia(V1), { meta: Object.assign({}, V1.meta, { nome: 'Personagem C' }) })));
+  assert.equal(imp.ok, true);
+  const C = arm.ler(imp.ids[0]);
+  assert.deepEqual([C.vinculoV2.revV2, C.vinculoV2.salvoEmV2], [0, '']);
+  const foto = st.foto();
+  st.escritas.length = 0;
+  assert.deepEqual(so(E.gravarComProjecao(st, C.id, C, o), 'ok', 'erro'), { ok: false, erro: 'v2-nao-migrada' });
+  assert.deepEqual(st.escritas, []);
+  assert.equal(st.foto(), foto);
+  // o migrarReal não toma a C pela ficha desta v1: cria a do Borin (e guarda a v1 crua)
+  const m = E.migrarReal(st, o);
+  assert.deepEqual(so(m, 'ok', 'criada'), { ok: true, criada: true });
+  assert.notEqual(m.id, C.id);
+  assert.equal(arm.listar().length, 2);
+  assert.deepEqual([st.json(LS2).meta.nome, st.json(INDICE).projecaoV2.fichaId], [V1.meta.nome, m.id]);
+  assert.equal(st.getItem(BACKUP), JSON.stringify(V1));
+  assert.equal(arm.ler(C.id).meta.nome, 'Personagem C');
+});
+
+test('migrarReal de uma v1 (ou 2.0 com as listas velhas): o texto cru vai para o khalkaria_ficha_v1_backup, como na v2.1', () => {
+  const st = A.armazenamento({ [LS2]: JSON.stringify(V1) });
+  const r = E.migrarReal(st, opDupla());
+  assert.deepEqual(so(r, 'ok', 'criada'), { ok: true, criada: true });
+  assert.deepEqual(st.escritas.map((e) => e[1]), [FICHA + r.id, INDICE, BACKUP, LS2, DONO], 'o backup antes de reescrever');
+  assert.equal(st.getItem(BACKUP), JSON.stringify(V1));
+  assert.deepEqual([st.json(LS2).schemaVersion, 'materiais' in st.json(LS2).inventario], ['2.0', false]);
+  // o backup que já existe nunca é sobrescrito (guardaBackup)
+  const st2 = A.armazenamento({ [LS2]: JSON.stringify(V1), [BACKUP]: 'backup antigo' });
+  assert.equal(E.migrarReal(st2, opDupla()).ok, true);
+  assert.equal(st2.getItem(BACKUP), 'backup antigo');
+  // 2.0 com armas/materiais (um ficha.js antigo em cache recriou as listas)
+  const velhas = copia(V2);
+  velhas.inventario.armas = [{ nome: 'Adaga velha', qtd: 1 }]; velhas.inventario.materiais = [];
+  const st3 = A.armazenamento({ [LS2]: JSON.stringify(velhas) });
+  assert.equal(E.migrarReal(st3, opDupla()).ok, true);
+  assert.equal(st3.getItem(BACKUP), JSON.stringify(velhas));
+  // quota: a limpeza não tira o backup que a própria transação gravou; recusa e desfaz tudo
+  const tam = (s) => [...s.m.entries()].reduce((t, [k, v]) => t + k.length + v.length, 0);
+  const st4 = A.armazenamento({ [LS2]: JSON.stringify(V1) }, tam(st) - 1);
+  const foto4 = st4.foto();
+  assert.deepEqual(so(E.migrarReal(st4, opDupla()), 'ok', 'erro'), { ok: false, erro: 'quota' });
+  assert.equal(st4.foto(), foto4, 'a v1 crua continua na khalkaria_ficha');
+});
+
+test('migrarReal em duas abas ao mesmo tempo: a que termina depois acha a ficha da outra e não cria outra', () => {
+  const st = A.armazenamento({ [LS2]: JSON.stringify(V2) });
+  const o = opDupla();
+  const calc = o.calculado;
+  let outraAba = null;
+  // a outra aba (restauração de sessão) migra enquanto esta ainda calcula a poda
+  o.calculado = (f) => {
+    if (!outraAba) outraAba = E.migrarReal(st, Object.assign({}, o, { calculado: calc }));
+    return calc(f);
+  };
+  const r = E.migrarReal(st, o);
+  assert.deepEqual(so(outraAba, 'ok', 'criada'), { ok: true, criada: true });
+  assert.deepEqual(so(r, 'ok', 'id', 'criada'), { ok: true, id: outraAba.id, criada: false });
+  const arm = E.armazem(st, null, o);
+  assert.equal(arm.listar().length, 1, 'uma Lira só');
+  assert.equal(st.json(INDICE).projecaoV2.fichaId, outraAba.id);
+  assert.equal(E.conflitoV2(st.json(INDICE), st.getItem(LS2)), false);
+});
+
+test('segunda ficha gravada com a projeção: o que tem perda é DELA (memória ou padrão), nunca o do personagem que estava lá', () => {
+  const st = A.armazenamento({ [LS2]: JSON.stringify(V2) });
+  const o = opDupla();
+  const lira = E.migrarReal(st, o).id;
+  const arm = E.armazem(st, null, o);
+  const bruna = arm.criar({ nome: 'Bruna' }).id;
+  const fb = arm.ler(bruna);
+  fb.atributos.base.FOR = 18;
+  const g = E.gravarComProjecao(st, bruna, fb, o);
+  assert.equal(g.ok, true);
+  const v2 = st.json(LS2);
+  assert.deepEqual([v2.meta.nome, v2.meta.classe], ['Bruna', '']);
+  assert.deepEqual(v2.atributos, { for: 10, des: 10, con: 10, int: 10, sab: 10 });
+  assert.deepEqual([v2.recursos.saude.max, v2.pericias.atacar, v2.pericias.percepcao, v2.oficioAttr], [0, 0, 0, 'int']);
+  assert.deepEqual(v2.derivadosManuais, { evasao: 0, cd: 0, movimento: 9, armadura: 0 });
+  assert.deepEqual([v2.tecnicas, v2.grimorio, v2.cartasLimiar], [[], [], []], 'nem os cards da Lira');
+  assert.deepEqual(v2.origemV3, { fichaId: bruna, revV2: v2.rev });
+  // 'perdas' diz o valor que ficou para ESTA ficha, e não "remove" da Bruna os cards da Lira
+  const por = Object.fromEntries(g.perdas.map((p) => [p.campo, p]));
+  assert.deepEqual(so(por['atributos.for'], 'v2', 'v3'), { v2: 10, v3: 18 });
+  assert.equal(por['recursos.saude.max'].v2, 0);
+  assert.ok(!Object.keys(por).some((k) => /^(tecnicas|grimorio|cartasLimiar)\./.test(k)));
+  // reverter: a v2.1 abre a Bruna com os números dela
+  const p = pagina(st, { catalogo: null });
+  assert.deepEqual([p.KF.nome(), p.KF.atributo('des'), p.KF.atributo('for')], ['Bruna', 10, 10]);
+  // voltar à Lira devolve os números dela (a memória do vínculo), não os da Bruna
+  assert.equal(E.gravarComProjecao(st, lira, arm.ler(lira), o).ok, true);
+  const v2l = st.json(LS2);
+  assert.deepEqual([v2l.meta.nome, v2l.atributos, v2l.pericias, v2l.oficioAttr], [V2.meta.nome, V2.atributos, V2.pericias, V2.oficioAttr]);
+  assert.deepEqual([v2l.recursos.saude.max, v2l.derivadosManuais], [V2.recursos.saude.max, V2.derivadosManuais]);
+});
+
+test('reimportarV2 3 vias: o que as duas mudaram, diferente, é conflito (fica o da v3); o que só a v2 mudou entra', () => {
+  const st = A.armazenamento({ [LS2]: JSON.stringify(V2) });
+  const o = opDupla();
+  const id = E.migrarReal(st, o).id;
+  const projetada = E.armazem(st, null, o).ler(id);
+  const v2 = st.json(LS2);
+  v2.rev += 1; v2.salvoEm = '2026-10-02T15:00:00.000Z';
+  v2.lore.historia = 'Da v2'; v2.inventario.sins = 1; v2.meta.xp = 999; v2.lore.outros = 'Igual nas duas';
+  // na v3, não gravada por causa do conflito
+  const naV3 = copia(projetada);
+  naV3.lore.historia = 'Escrito na v3'; naV3.inventario.sins = 500; naV3.lore.outros = 'Igual nas duas';
+  const r = E.reimportarV2(naV3, v2, Object.assign({}, o, { base: projetada, projecao: st.json(INDICE).projecaoV2 }));
+  assert.equal(r.ancestral, 'projecao');
+  assert.deepEqual([r.ficha.lore.historia, r.ficha.inventario.sins, r.ficha.lore.outros], ['Escrito na v3', 500, 'Igual nas duas']);
+  assert.deepEqual([r.mudou, r.ficha.meta.xp], [['meta.xp'], 999]);
+  assert.deepEqual(r.conflitos, [
+    { campo: 'inventario.sins', v2: 1, v3: 500, base: V2.inventario.sins },
+    { campo: 'lore.historia', v2: 'Da v2', v3: 'Escrito na v3', base: V2.lore.historia }]);
+});
+
+test('aba v2.1 que gravou sem adotar a última projeção (carimbo velho): nada entra sozinho, a edição da v3 não é desfeita', () => {
+  const st = A.armazenamento({ [LS2]: JSON.stringify(V2) });
+  const o = opDupla();
+  const id = E.migrarReal(st, o).id;
+  const arm = E.armazem(st, null, o);
+  const aba = pagina(st, { catalogo: null });          // a v2.1 abre a primeira projeção
+  // a v3 grava de novo e a aba não recebe o evento storage
+  const f = arm.ler(id);
+  f.lore.historia = 'Escrito na v3';
+  assert.equal(E.gravarComProjecao(st, id, f, o).ok, true);
+  const proj = st.json(INDICE).projecaoV2;
+  // a aba digita e o debounce grava por cima, com o que ela tinha na memória
+  const campo = aba.dom.criados.find((e) => e.tagName === 'INPUT' && e.getAttribute('type') === 'text');
+  campo.value = 'Digitado na aba velha';
+  campo.dispatchEvent({ type: 'input', target: campo });
+  aba.rodaTimers();
+  const v2 = st.json(LS2);
+  assert.equal(v2.rev, proj.revV2, 'o mesmo rev da projeção: a aba não a adotou');
+  assert.deepEqual([v2.lore.historia, v2.meta.nome], [V2.lore.historia, 'Digitado na aba velha']);
+  assert.deepEqual(v2.origemV3, { fichaId: id, revV2: proj.revV2 - 1 }, 'o carimbo da projeção que a aba leu');
+  assert.equal(E.conflitoV2(st.json(INDICE), v2), true);
+  const atual = arm.ler(id);
+  const r = E.reimportarV2(atual, v2, Object.assign({}, o, { base: atual, projecao: proj }));
+  assert.deepEqual([r.ancestral, r.mudou], ['antiga', []]);
+  assert.deepEqual([r.ficha.lore.historia, r.ficha.meta.nome], ['Escrito na v3', atual.meta.nome]);
+  assert.deepEqual(r.conflitos, [
+    { campo: 'meta.nome', v2: 'Digitado na aba velha', v3: atual.meta.nome },
+    { campo: 'lore.historia', v2: V2.lore.historia, v3: 'Escrito na v3' }]);
+});
+
+test('reimportarV2: a v2 de OUTRO personagem não é mesclada (erro outra-ficha); o mesmo personagem sem carimbo vira conflito', () => {
+  const st = A.armazenamento({ [LS2]: JSON.stringify(V2) });
+  const o = opDupla();
+  const id = E.migrarReal(st, o).id;
+  const lira = E.armazem(st, null, o).ler(id);
+  const proj = st.json(INDICE).projecaoV2;
+  // a v2.1 revertida importou outra ficha: sem carimbo, nome e classe diferentes, sem cards
+  const outro = Object.assign(copia(V2), { rev: 40, salvoEm: '2026-10-02T16:00:00.000Z', tecnicas: [], grimorio: [], cartasLimiar: [],
+    meta: Object.assign({}, V2.meta, { nome: 'Outro Personagem', classe: 'Brutalista', ramo: '' }) });
+  outro.atributos.for = 18;
+  [proj, null].forEach((pj) => {
+    const r = E.reimportarV2(lira, outro, Object.assign({}, o, { projecao: pj }));
+    assert.deepEqual(so(r, 'erro', 'fichaIdV2', 'mudou', 'conflitos', 'perdas'),
+      { erro: 'outra-ficha', fichaIdV2: null, mudou: [], conflitos: [], perdas: [] });
+    assert.deepEqual(r.ficha, E.migrar(lira, o).ficha, 'a ficha volta como estava');
+  });
+  // carimbo de outra ficha: diz qual é
+  const daOutra = Object.assign(st.json(LS2), { origemV3: { fichaId: 'foutraficha1', revV2: 3 } });
+  assert.deepEqual(so(E.reimportarV2(lira, daOutra, o), 'erro', 'fichaIdV2'), { erro: 'outra-ficha', fichaIdV2: 'foutraficha1' });
+  // o mesmo personagem sem carimbo (aba aberta antes da F4 gravando por cima): sem ancestral, só conflito
+  const velha = Object.assign(copia(V2), { rev: V2.rev + 1, salvoEm: '2026-10-02T17:00:00.000Z' });
+  velha.inventario.sins = 3;
+  const r3 = E.reimportarV2(lira, velha, Object.assign({}, o, { projecao: proj }));
+  assert.deepEqual([r3.ancestral, r3.mudou, r3.ficha.inventario.sins], ['trocada', [], lira.inventario.sins]);
+  assert.deepEqual(r3.conflitos, [{ campo: 'inventario.sins', v2: 3, v3: lira.inventario.sins }]);
 });

@@ -16,8 +16,11 @@
  * PURAS sobre o storage injetado e NÃO LIGADAS: nenhum código do navegador as
  * chama (nem o ficha-v2.js, nem o kh-previa.js). Só serão ligadas na virada
  * (F4.7), com aprovação do Pedro; até lá só os testes as usam. Regra
- * conservadora: o que a v2 representa sem perda é projetado; o resto fica com
- * o valor que a v2 já tinha e sai em 'perdas'. Nunca grava o marcador 'v3'.
+ * conservadora: o que a v2 representa sem perda é projetado; o resto leva a
+ * memória da própria ficha (vinculoV2.comPerda: os números da v2 que ela
+ * absorveu; sem vínculo, o padrão da v2) e sai em 'perdas'. A v2 gravada leva
+ * o carimbo origemV3 {fichaId, revV2} (a v2.1 o preserva), que diz ao
+ * reimportarV2 de qual projeção ela descende. Nunca grava o marcador 'v3'.
  *
  * No node (tools/testes) exporta o KhEstado por module.exports; no navegador
  * vira window.KhEstado. Depende do KhInv (js/ficha/kh-inv.js, antes no ORDEM).
@@ -593,7 +596,8 @@
       // sem o calculado, os ajustes ainda não foram comparados com o motor:
       // a ficha fica marcada e o armazém não a grava até podarAjustesMigrados
       if (!calc) f.migracao.ajustesPendentesDePoda = true;
-      f.vinculoV2 = { revV2: Math.max(0, inteiro(v2.rev, 0)), salvoEmV2: str(v2.salvoEm) };
+      // comPerda: os números da v2 que a v3 não guarda sem perda (a projeção os devolve)
+      f.vinculoV2 = { revV2: Math.max(0, inteiro(v2.rev, 0)), salvoEmV2: str(v2.salvoEm), comPerda: comPerdaDe(v2) };
       f.criadoEm = agora;
       return { ficha: f, avisos: avisos };
     }
@@ -727,15 +731,18 @@
 
     // ---------------- escrita dupla (F4.2, puro; ligado só na F4.7) ----------------
     // Projeção v3 -> v2: a v2.1 só conhece UMA ficha (khalkaria_ficha). O que a
-    // v2 representa sem perda é projetado; o que tem perda fica com o valor que
-    // a v2 atual já tinha (ou o padrão da novaFicha da v2) e vai para 'perdas'.
+    // v2 representa sem perda é projetado; o que tem perda (COM_PERDA) leva a
+    // MEMÓRIA da própria ficha, vinculoV2.comPerda (os números da v2 que ela
+    // absorveu na migração ou no reimportar), e vai para 'perdas'. Ficha sem
+    // vínculo (criada na v3, cópia) leva o padrão da novaFicha da v2: nunca o
+    // número de OUTRO personagem que esteja na khalkaria_ficha.
     var MOTIVO_PERDA = {
-      atributo: 'A v3 guarda a base do atributo (o total sai do motor de regras); a v2 guarda o total. Fica o valor da v2.',
-      pericia: 'A v3 guarda o grau (0-4) e o motor soma o resto; a v2 guarda o bônus total. Fica o valor da v2.',
-      oficio: 'A v3 tem três Ofícios (Engenharia, Ferraria, Alquimia); a v2 tem um Ofício(X) só. Fica o valor da v2.',
-      ajuste: 'Na v3 este número é calculado (o digitado vira ajuste); a v2 guarda o número digitado. Fica o valor da v2.',
-      ordinario: 'A v3 separa Cortante, Contundente e Perfurante, e eles não estão iguais (ou têm Ae própria); a v2 tem só Ordinário. Fica o valor da v2.',
-      variante: 'A v3 tem variante e subespécie ao mesmo tempo; a v2 tem um campo só. Fica o valor da v2.',
+      atributo: 'A v3 guarda a base do atributo (o total sai do motor de regras); a v2 guarda o total. Fica o valor da v2 desta ficha (ou o padrão da v2).',
+      pericia: 'A v3 guarda o grau (0-4) e o motor soma o resto; a v2 guarda o bônus total. Fica o valor da v2 desta ficha (ou o padrão da v2).',
+      oficio: 'A v3 tem três Ofícios (Engenharia, Ferraria, Alquimia); a v2 tem um Ofício(X) só. Fica o valor da v2 desta ficha (ou o padrão da v2).',
+      ajuste: 'Na v3 este número é calculado (o digitado vira ajuste); a v2 guarda o número digitado. Fica o valor da v2 desta ficha (ou o padrão da v2).',
+      ordinario: 'A v3 separa Cortante, Contundente e Perfurante, e eles não estão iguais (ou têm Ae própria); a v2 tem só Ordinário. Fica o valor da v2 desta ficha (ou o padrão da v2).',
+      variante: 'A v3 tem variante e subespécie ao mesmo tempo; a v2 tem um campo só. Fica o valor da v2 desta ficha (ou o padrão da v2).',
       soV3: 'Só existe na v3: a v2 não tem onde guardar.',
       semLista: 'Entrada de um tipo que a ficha v2 não guarda.',
       duplicada: 'Outra entrada da v3 vira o mesmo card na v2: vai só a primeira.',
@@ -746,6 +753,33 @@
       marca: 'marca', traco: 'traço', variante: 'variante', subespecie: 'subespécie', origem: 'origem',
       carta: 'carta', dor: 'dor', beneficio: 'abismo', corrupcao: 'corrupção' };
     var TIPOS_3 = ['cortante', 'contundente', 'perfurante'];
+    // os caminhos da v2 que a v3 não representa sem perda: sempre, e só às vezes
+    // (Ordinário com os 3 tipos diferentes; variante e subespécie ao mesmo tempo)
+    var COM_PERDA = ATRIBUTOS.map(function (A) { return 'atributos.' + A.toLowerCase(); })
+      .concat(PERICIAS_V2.map(function (k) { return 'pericias.' + k; }), ['oficioAttr'],
+        AJUSTES_V2.map(function (a) { return a[0] + '.' + a[1]; }));
+    var COM_PERDA_AS_VEZES = ['resistencias.ordinario', 'meta.variante'];
+    function poe(o, caminho, v) {
+      var ks = caminho.split('.'), x = o;
+      for (var i = 0; i < ks.length - 1; i++) { if (!obj(x[ks[i]])) x[ks[i]] = {}; x = x[ks[i]]; }
+      x[ks[ks.length - 1]] = v;
+    }
+    // a memória do que tem perda, {caminho: valor}, de uma v2 já normalizada
+    // (lerV2 ou o migrarV1paraV2); o caminho que faltar leva o padrão da v2
+    function comPerdaDe(v2) {
+      var out = {}, padrao = baseV2();
+      COM_PERDA.concat(COM_PERDA_AS_VEZES).forEach(function (c) {
+        var v = em(v2, c);
+        out[c] = clone(v === undefined ? em(padrao, c) : v);
+      });
+      return out;
+    }
+    // a v2 é desta ficha: carimbada por uma projeção dela (origemV3) ou já absorvida (vinculoV2)
+    function v2DaFicha(ficha, v2) {
+      if (!obj(v2)) return false;
+      var mk = obj(v2.origemV3) ? v2.origemV3 : null;
+      return (!!mk && !!str(mk.fichaId) && str(mk.fichaId) === str(ficha.id)) || absorvida(ficha, v2);
+    }
     function listaV2(tipo) { return tipo === 'magia' ? 'grimorio' : (tipo === 'carta' || tipo === 'dor' || tipo === 'beneficio' ? 'cartasLimiar' : 'tecnicas'); }
     // o slug do ficha-v2.js (id do card = tipo + '-' + slug do nome)
     function slugV2(nome) {
@@ -793,14 +827,24 @@
       return m;
     }
 
-    // projetarV2(fichaV3, v2Atual) -> {v2, perdas:[{campo, motivo, v2?, v3?}]}.
+    // projetarV2(fichaV3, v2Atual, {daFicha?}) -> {v2, perdas:[{campo, motivo, v2?, v3?}]}.
     // v2: 'schemaVersion 2.0' sem inventario.armas/materiais (a v2.1 lê sem
-    // reescrever); rev e salvoEm são os da v2Atual (quem grava os sobe).
+    // reescrever). A v2Atual só serve de base (rev, salvoEm, chaves que a v3 não
+    // conhece, cards como estavam) quando é DESTA ficha (v2DaFicha, ou
+    // op.daFicha); a de outro personagem não entra em nada. O que tem perda vem
+    // de vinculoV2.comPerda; vínculo antigo, sem a memória, fica com o da v2
+    // desta ficha; sem nenhum dos dois, o padrão da v2. Sem carimbo: quem grava
+    // sobe o rev e põe o origemV3.
     function projetarV2(fichaV3, v2Atual, opcoes) {
       if (!obj(fichaV3)) return { v2: null, perdas: [], erro: 'invalida' };
+      opcoes = opcoes || {};
       var f = completaV3(clone(fichaV3));
-      var atual = v2Atual == null ? null : lerV2(v2Atual, opcoes && opcoes.agora);
-      var p = atual ? clone(atual) : baseV2();
+      var atual = v2Atual == null ? null : lerV2(v2Atual, opcoes.agora);
+      var daFicha = !!atual && (typeof opcoes.daFicha === 'boolean' ? opcoes.daFicha : v2DaFicha(f, atual));
+      var p = daFicha ? clone(atual) : baseV2();
+      delete p.origemV3;
+      var vk = obj(f.vinculoV2) ? f.vinculoV2 : null, memo = vk && obj(vk.comPerda) ? vk.comPerda : null;
+      if (memo) COM_PERDA.concat(COM_PERDA_AS_VEZES).forEach(function (c) { if (temPropria(memo, c)) poe(p, c, clone(memo[c])); });
       var perdas = [];
       function perde(campo, motivo, v2, v3) {
         var x = { campo: campo, motivo: motivo };
@@ -917,39 +961,114 @@
       if (!obj(v2)) return true;
       return inteiro(v2.rev, 0) !== inteiro(p.revV2, 0) || str(v2.salvoEm) !== str(p.salvoEmV2);
     }
-    // a ficha já tem esta versão da v2 (migrou dela ou a reimportou): vinculoV2 igual
+    // A ficha já tem esta versão da v2 (migrou dela ou a reimportou): vinculoV2
+    // igual. Vínculo vazio (rev 0 e sem salvoEm: veio de uma v1, ou de uma v2
+    // que a v2.1 nunca gravou) não identifica versão nenhuma e nunca casa: toda
+    // v1 intocada tem o mesmo {0, ''}.
     function absorvida(ficha, v2) {
       var vk = obj(ficha) && obj(ficha.vinculoV2) ? ficha.vinculoV2 : null;
-      return !!vk && obj(v2) && inteiro(vk.revV2, -1) === inteiro(v2.rev, 0) && str(vk.salvoEmV2) === str(v2.salvoEm);
+      if (!vk || !obj(v2) || (inteiro(vk.revV2, 0) <= 0 && !str(vk.salvoEmV2))) return false;
+      return inteiro(vk.revV2, -1) === inteiro(v2.rev, 0) && str(vk.salvoEmV2) === str(v2.salvoEm);
+    }
+    // sem carimbo, a v2 parece OUTRO personagem: nome diferente e classe ou raça
+    // diferente (a v2.1 importou outra ficha ou começou uma nova)
+    function outraIdentidade(v2, pf) {
+      function difere(k) { return normaliza(v2.meta[k]) !== normaliza(pf.meta[k]); }
+      return difere('nome') && (difere('classe') || difere('raca'));
     }
 
-    // reimportarV2(fichaV3, v2, {catalogo?, base?}) -> {ficha, mudou:[caminhos], avisos}.
-    // MERGE por campo: só o que a v2 representa sem perda e que a v2 mudou
-    // (difere da projeção de 'base', a ficha que foi projetada; sem base, a
-    // própria fichaV3) sobrescreve. O que só existe na v3 (uid e estado das
-    // entradas, porNivel, ajustes, Vhelor, os 14 tipos quando 'ordinario' tem
-    // perda…) fica. Nunca passa a ficha pelo migrarV2paraV3 (recriaria a ficha).
-    // vinculoV2 passa a ser a v2 reimportada: gravar depois resolve o conflito.
+    // reimportarV2(fichaV3, v2, {catalogo?, base?, projecao?}) ->
+    //   {ficha, mudou:[caminhos], avisos, perdas, conflitos, ancestral} | {…, erro}.
+    // projecao: o projecaoV2 do índice. De qual versão a v2 descende diz o
+    // carimbo origemV3 {fichaId, revV2} que a gravação põe e a v2.1 preserva (o
+    // deepMerge dela guarda chave desconhecida). O 'ancestral':
+    //  - 'projecao' (carimbo desta ficha, o da última projeção) e 'vinculo' (sem
+    //    carimbo nem projeção desta ficha: veio do import da v2, F3): MERGE por
+    //    campo contra a projeção de 'base' (a ficha que foi projetada; sem base,
+    //    a própria fichaV3). Mudou só na v2: entra. Mudou nas duas, diferente:
+    //    fica o da v3 e sai em 'conflitos' {campo, v2, v3, base}.
+    //  - 'antiga' (carimbo de uma projeção mais velha desta ficha: uma aba v2.1
+    //    gravou sem adotar a última) e 'trocada' (sem carimbo, mas o índice diz
+    //    que a v2 era a projeção desta ficha): sem ancestral confiável, NADA entra
+    //    sozinho; toda diferença sai em 'conflitos' {campo, v2, v3}.
+    //  - erro 'outra-ficha' (nada muda): carimbo de outra ficha (fichaIdV2), ou,
+    //    sem carimbo, nome e classe/raça diferentes (a v2.1 importou ou começou
+    //    outra ficha). A UI oferece importar a v2 como ficha nova.
+    // O que tem perda (COM_PERDA) nunca entra: se a v2 difere do que foi
+    // projetado (a memória vinculoV2.comPerda da base, ou o padrão da v2), sai
+    // em 'perdas' {campo, motivo, v2, antes, v3?} (semReferencia: vínculo antigo
+    // sem a memória, comparado com o padrão). O que só existe na v3 (uid e estado
+    // das entradas, porNivel, ajustes, Vhelor, os 14 tipos…) fica. Nunca passa a
+    // ficha pelo migrarV2paraV3 (recriaria a ficha). vinculoV2 passa a ser a v2
+    // reimportada, com a memória dela: gravar depois resolve o conflito.
     function reimportarV2(fichaV3, v2Entrada, opcoes) {
       opcoes = opcoes || {};
       var c = ctx(opcoes), agora = c.agora(), idx = opcoes.catalogo || null;
       var f = completaV3(clone(fichaV3));
+      var mudou = [], avisos = [], perdas = [], conflitos = [];
+      function fim(extra) { return Object.assign({ ficha: f, mudou: mudou, avisos: avisos, perdas: perdas, conflitos: conflitos }, extra); }
       var v2 = lerV2(v2Entrada, agora);
-      if (!v2) return { ficha: f, mudou: [], avisos: [], erro: 'v2-ilegivel' };
-      // o que tem perda sai igual à v2 nesta projeção, então nunca conta como mudança
-      var base = projetarV2(obj(opcoes.base) ? opcoes.base : f, v2, { agora: function () { return agora; } }).v2;
-      var mudou = [], avisos = [];
-      function troca(caminho, valorV2, valorBase, aplica) {
-        if (igual(valorV2, valorBase)) return;
-        aplica(valorV2);
+      if (!v2) return fim({ erro: 'v2-ilegivel' });
+      var proj = obj(opcoes.projecao) ? opcoes.projecao : null;
+      var mk = obj(v2.origemV3) && str(v2.origemV3.fichaId) ? v2.origemV3 : null;
+      if (mk && str(mk.fichaId) !== str(f.id)) return fim({ erro: 'outra-ficha', fichaIdV2: str(mk.fichaId) });
+      var ancestral = mk
+        ? (!proj || (str(proj.fichaId) === str(f.id) && inteiro(mk.revV2, -1) === inteiro(proj.revV2, -2)) ? 'projecao' : 'antiga')
+        : (proj && str(proj.fichaId) === str(f.id) ? 'trocada' : 'vinculo');
+      var confiavel = ancestral === 'projecao' || ancestral === 'vinculo';
+      var b = confiavel && obj(opcoes.base) ? completaV3(clone(opcoes.base)) : f;
+      // a v3 e a base em termos de v2, sem a v2 recebida: o que tem perda vem da memória
+      var opP = { agora: function () { return agora; } };
+      var rf = projetarV2(f, null, opP), rb = b === f ? rf : projetarV2(b, null, opP), pf = rf.v2, pb = rb.v2;
+      if (!mk && outraIdentidade(v2, pf)) return fim({ erro: 'outra-ficha', fichaIdV2: null });
+
+      // com perda: só o aviso (a v3 não tem onde pôr sem inventar)
+      function porCampo(l) { var m = {}; l.forEach(function (x) { if (!m[x.campo]) m[x.campo] = x; }); return m; }
+      var perF = porCampo(rf.perdas), perB = porCampo(rb.perdas);
+      var semRef = obj(b.vinculoV2) && !obj(b.vinculoV2.comPerda), temPerda = {};
+      COM_PERDA.concat(COM_PERDA_AS_VEZES.filter(function (k) { return perF[k] || perB[k]; })).forEach(function (k) {
+        temPerda[k] = true;
+        var a = em(v2, k), antes = em(pb, k);
+        if (igual(a, antes)) return;
+        var x = { campo: k, motivo: (perF[k] || perB[k]).motivo, v2: clone(a), antes: clone(antes) };
+        if (perF[k] && perF[k].v3 !== undefined) x.v3 = clone(perF[k].v3);
+        if (semRef) x.semReferencia = true;
+        perdas.push(x);
+      });
+
+      // sem perda: entra o que só a v2 mudou; o que as duas mudaram é conflito
+      function decide(campo, vV2, vB, vF, eq) {
+        eq = eq || igual;
+        if (eq(vV2, confiavel ? vB : vF) || eq(vV2, vF)) return false;
+        if (!confiavel || !eq(vF, vB)) {
+          var x = { campo: campo, v2: clone(vV2), v3: clone(vF) };
+          if (confiavel) x.base = clone(vB);
+          conflitos.push(x);
+          return false;
+        }
+        return true;
+      }
+      function troca(caminho, vV2, vB, vF, aplica) {
+        if (!decide(caminho, vV2, vB, vF)) return;
+        aplica(vV2);
         mudou.push(caminho);
       }
-      troca('meta.nome', str(v2.meta.nome), str(base.meta.nome), function (v) { f.meta.nome = v; });
-      troca('meta.jogador', str(v2.meta.jogador), str(base.meta.jogador), function (v) { f.meta.jogador = v; });
-      troca('meta.nivel', limita(inteiro(v2.meta.nivel, 1), 1, 5), base.meta.nivel, function (v) { f.meta.nivel = v; });
-      troca('meta.xp', Math.max(0, inteiro(v2.meta.xp, 0)), base.meta.xp, function (v) { f.meta.xp = v; });
+      var m2 = v2.meta, mb = pb.meta, mf = pf.meta;
+      troca('meta.nome', str(m2.nome), str(mb.nome), str(mf.nome), function (v) { f.meta.nome = v; });
+      troca('meta.jogador', str(m2.jogador), str(mb.jogador), str(mf.jogador), function (v) { f.meta.jogador = v; });
+      troca('meta.nivel', limita(inteiro(m2.nivel, 1), 1, 5), mb.nivel, mf.nivel, function (v) { f.meta.nivel = v; });
+      troca('meta.xp', Math.max(0, inteiro(m2.xp, 0)), mb.xp, mf.xp, function (v) { f.meta.xp = v; });
 
       // identidade: nome igual (sem acento/caixa) ou o mesmo id pelo catálogo = sem mudança
+      // (a v2 guarda o texto que o jogador digitou; a v3, o nome do catálogo)
+      function mesmaIdent(tipos, filtro) {
+        return function (a, b2) {
+          if (normaliza(a) === normaliza(b2)) return true;
+          if (!idx || !normaliza(a) || !normaliza(b2)) return false;
+          var x = achar(idx, tipos, a, filtro), y = achar(idx, tipos, b2, filtro);
+          return !!(x && x.entrada && y && y.entrada && x.entrada.id === y.entrada.id);
+        };
+      }
       function resolve(nome, tipos, filtro, campo) {
         var a = nome && idx ? achar(idx, tipos, nome, filtro) : null;
         if (nome && !(a && a.entrada)) {
@@ -958,8 +1077,8 @@
         return a && a.entrada ? a.entrada : null;
       }
       function ident(campo, tipos, filtro) {
-        var n2 = str(v2.meta[campo]).trim();
-        if (normaliza(n2) === normaliza(base.meta[campo])) return;
+        var n2 = str(m2[campo]).trim();
+        if (!decide('identidade.' + campo, n2, str(mb[campo]), str(mf[campo]), mesmaIdent(tipos, filtro))) return;
         var atual = obj(f.identidade[campo]) ? f.identidade[campo] : ref();
         var e = resolve(n2, tipos, filtro, campo);
         if (e && atual.id && e.id === atual.id) return;
@@ -969,8 +1088,9 @@
       ident('raca', ['raca']); ident('classe', ['classe']); ident('origem', ['origem']);
       var raca = chaveDe(f.identidade.raca.id, 'raca-'), classe = chaveDe(f.identidade.classe.id, 'classe-');
       ident('ramo', ['ramo'], { classe: classe });
-      var v2v = str(v2.meta.variante).trim();
-      if (normaliza(v2v) !== normaliza(base.meta.variante)) {
+      var v2v = str(m2.variante).trim();
+      if (!temPerda['meta.variante'] &&
+          decide('identidade.variante', v2v, str(mb.variante), str(mf.variante), mesmaIdent(['variante', 'subespecie'], { raca: raca }))) {
         var cv = f.identidade.variante || ref(), cs = f.identidade.subespecie || ref();
         var ev = resolve(v2v, ['variante', 'subespecie'], { raca: raca }, 'variante');
         if (!(ev && (ev.id === cv.id || ev.id === cs.id))) {
@@ -983,45 +1103,69 @@
 
       // recursos: só o atual (estado) e o nome do recurso de classe
       [['saude', 'saude'], ['stamina', 'stamina'], ['eter', 'eter'], ['recursoClasse', 'classe']].forEach(function (x) {
-        troca('recursos.' + x[1] + '.atual', numero(em(v2, 'recursos.' + x[0] + '.atual'), 0),
-          numero(em(base, 'recursos.' + x[0] + '.atual'), 0), function (v) { f.recursos[x[1]].atual = v; });
+        var k = 'recursos.' + x[0] + '.atual';
+        troca('recursos.' + x[1] + '.atual', numero(em(v2, k), 0), numero(em(pb, k), 0), numero(em(pf, k), 0),
+          function (v) { f.recursos[x[1]].atual = v; });
       });
-      troca('recursos.classe.nome', str(em(v2, 'recursos.recursoClasse.nome')), str(em(base, 'recursos.recursoClasse.nome')),
-        function (v) { f.recursos.classe.nome = v; });
+      troca('recursos.classe.nome', str(em(v2, 'recursos.recursoClasse.nome')), str(em(pb, 'recursos.recursoClasse.nome')),
+        str(em(pf, 'recursos.recursoClasse.nome')), function (v) { f.recursos.classe.nome = v; });
 
-      // resistências: R/I/ae dos 11 tipos; 'ordinario' só quando foi projetado (senão a base é a própria v2)
+      // resistências: R/I/ae dos 11 tipos; 'ordinario' só quando não tem perda (senão saiu em 'perdas')
       RESIST_V2.forEach(function (k) {
-        var r2 = obj(v2.resistencias[k]) ? v2.resistencias[k] : {}, rb = obj(base.resistencias[k]) ? base.resistencias[k] : {};
+        if (k === 'ordinario' && temPerda['resistencias.ordinario']) return;
+        function de(p) { return obj(p.resistencias[k]) ? p.resistencias[k] : {}; }
+        var r2 = de(v2), rb = de(pb), rf = de(pf);
         var alvos = k === 'ordinario' ? TIPOS_3 : [k];
         ['R', 'I'].forEach(function (q) {
-          troca('resistencias.' + k + '.' + q, !!r2[q], !!rb[q], function (v) {
+          troca('resistencias.' + k + '.' + q, !!r2[q], !!rb[q], !!rf[q], function (v) {
             alvos.forEach(function (t) { f.resistencias.tipos[t][q] = v; });
           });
         });
-        troca('resistencias.' + k + '.ae', Math.max(0, inteiro(r2.ae, 0)), Math.max(0, inteiro(rb.ae, 0)), function (v) {
+        var ae = function (r) { return Math.max(0, inteiro(r.ae, 0)); };
+        troca('resistencias.' + k + '.ae', ae(r2), ae(rb), ae(rf), function (v) {
           if (k === 'ordinario') f.resistencias.aeCategoria.ordinario = v; else f.resistencias.tipos[k].ae = v;
         });
       });
 
       // inventário: por coluna (o uid de cada item é o mesmo nas duas)
-      troca('inventario.sins', Math.max(0, inteiro(v2.inventario.sins, 0)), Math.max(0, inteiro(base.inventario.sins, 0)),
-        function (v) { f.inventario.sins = v; });
+      var sins = function (p) { return Math.max(0, inteiro(p.inventario.sins, 0)); };
+      troca('inventario.sins', sins(v2), sins(pb), sins(pf), function (v) { f.inventario.sins = v; });
       KhInv.COLUNAS.forEach(function (col) {
-        troca('inventario.' + col, lista(v2.inventario[col]), lista(base.inventario[col]), function (v) { f.inventario[col] = clone(v); });
+        troca('inventario.' + col, lista(v2.inventario[col]), lista(pb.inventario[col]), lista(pf.inventario[col]),
+          function (v) { f.inventario[col] = clone(v); });
       });
 
-      // entradas: card que saiu da v2 sai da v3; card novo na v2 entra como entrada nova
-      var idsBase = {}, idsV2 = {}, novosV2 = [];
-      LISTAS_V2.forEach(function (l) { lista(base[l]).forEach(function (e) { if (obj(e) && str(e.id)) idsBase[e.id] = true; }); });
-      LISTAS_V2.forEach(function (l) {
-        lista(v2[l]).forEach(function (e) {
-          if (!obj(e) || !str(e.id) || !str(e.nome).trim() || idsV2[e.id]) return;
-          idsV2[e.id] = true;
-          if (!idsBase[e.id]) novosV2.push(e);
+      troca('lore.historia', str(em(v2, 'lore.historia')), str(em(pb, 'lore.historia')), str(em(pf, 'lore.historia')),
+        function (v) { f.lore.historia = v; });
+      troca('lore.outros', str(em(v2, 'lore.outros')), str(em(pb, 'lore.outros')), str(em(pf, 'lore.outros')),
+        function (v) { f.lore.outros = v; });
+      // a v2 vira a absorvida (com a memória do que tem perda): gravar depois resolve o conflito
+      function terminaReimport() {
+        f.vinculoV2 = { revV2: Math.max(0, inteiro(v2.rev, 0)), salvoEmV2: str(v2.salvoEm), comPerda: comPerdaDe(v2) };
+        return fim({ ancestral: ancestral });
+      }
+
+      // entradas (pelo id do card da v2)
+      function cards(p, soComNome) {
+        var m = {};
+        LISTAS_V2.forEach(function (l) {
+          lista(p[l]).forEach(function (e) {
+            if (!obj(e) || !str(e.id) || m[e.id] || (soComNome && !str(e.nome).trim())) return;
+            m[e.id] = { lista: l, card: e };
+          });
         });
-      });
+        return m;
+      }
+      var cB = cards(pb), cF = cards(pf), c2 = cards(v2, true);
+      if (!confiavel) {
+        Object.keys(c2).forEach(function (k) { if (!cF[k]) conflitos.push({ campo: c2[k].lista + '.' + k, v2: clone(c2[k].card), v3: null }); });
+        Object.keys(cF).forEach(function (k) { if (!c2[k]) conflitos.push({ campo: cF[k].lista + '.' + k, v2: null, v3: clone(cF[k].card) }); });
+        return terminaReimport();
+      }
+      // card que saiu da v2 sai da v3; card novo na v2 entra como entrada nova (se a v3 já não o tiver)
+      var novosV2 = Object.keys(c2).filter(function (k) { return !cB[k] && !cF[k]; }).map(function (k) { return c2[k].card; });
       var sai = {};
-      f.entradas.forEach(function (e) { var k = chaveV2(e); if (k && idsBase[k] && !idsV2[k]) sai[e.uid] = true; });
+      f.entradas.forEach(function (e) { var k = chaveV2(e); if (k && cB[k] && !c2[k]) sai[e.uid] = true; });
       var filtro = { classe: classe, raca: raca }, usados = {}, vistos = {};
       f.entradas.forEach(function (e) { usados[e.uid] = true; if (e.id && !sai[e.uid]) vistos[e.tipo + ':' + e.id] = true; });
       var novas = [];
@@ -1049,12 +1193,7 @@
         return false;
       });
       novas.forEach(function (e) { f.entradas.push(e); mudou.push('entradas.' + e.uid); });
-
-      troca('lore.historia', str(em(v2, 'lore.historia')), str(em(base, 'lore.historia')), function (v) { f.lore.historia = v; });
-      troca('lore.outros', str(em(v2, 'lore.outros')), str(em(base, 'lore.outros')), function (v) { f.lore.outros = v; });
-
-      f.vinculoV2 = { revV2: Math.max(0, inteiro(v2.rev, 0)), salvoEmV2: str(v2.salvoEm) };
-      return { ficha: f, mudou: mudou, avisos: avisos };
+      return terminaReimport();
     }
 
     // ---------------- armazém: várias fichas (D36) ----------------
@@ -1119,14 +1258,16 @@
         if (ks.indexOf(CHAVES.backupV1) >= 0) out.push(CHAVES.backupV1);
         return out;
       }
-      // guardados (opcional): o valor de cada chave limpa, para a transação devolver
-      function escreve(k, v, limpou, guardados) {
+      // guardados (opcional): o valor de cada chave limpa, para a transação devolver;
+      // protegidas (opcional): chaves que a transação acabou de gravar (a limpeza
+      // não desfaz o próprio passo, como o backup da v1 que ela guardou)
+      function escreve(k, v, limpou, guardados, protegidas) {
         var fila = null;
         for (;;) {
           try { ls.setItem(k, v); return { ok: true }; }
           catch (e) {
             if (!ehQuota(e)) return { ok: false, erro: 'storage' };
-            if (fila === null) fila = candidatosLimpeza();
+            if (fila === null) fila = candidatosLimpeza().filter(function (x) { return !(protegidas && protegidas[x]); });
             if (!fila.length) return { ok: false, erro: 'quota', sugestao: 'exportarTodas' };
             var r = fila.shift();
             if (guardados && !temPropria(guardados, r)) { var g = ler(r); if (g != null) guardados[r] = g; }
@@ -1357,16 +1498,18 @@
       // ---- escrita dupla (F4.2; ligada só na F4.7) ----
       // Grava os passos [[chave, valor]] em ordem. Se um falhar (quota,
       // exceção), devolve cada chave já escrita ao valor de antes, e os logs
-      // que a limpeza de quota tirou, e responde {ok:false, erro}.
+      // que a limpeza de quota tirou, e responde {ok:false, erro}. A limpeza de
+      // quota nunca tira uma chave que esta transação já gravou.
       function transacao(passos) {
-        var antes = [], limpou = [], guardados = {};
+        var antes = [], limpou = [], guardados = {}, gravadas = {};
         for (var i = 0; i < passos.length; i++) {
           var k = passos[i][0], velho;
           try { velho = ls.getItem(k); } catch (e) { return { ok: false, erro: 'storage', limpou: desfaz(antes, guardados) }; }
-          var r = escreve(k, passos[i][1], limpou, guardados);
+          var r = escreve(k, passos[i][1], limpou, guardados, gravadas);
           // o setItem que falhou não mudou a chave: volta só o que foi escrito
           if (!r.ok) return Object.assign(r, { limpou: desfaz(antes, guardados) });
           antes.push([k, velho]);
+          gravadas[k] = true;
         }
         return { ok: true, limpou: limpou };
       }
@@ -1382,19 +1525,29 @@
       function lerV2Cru() {
         var cru;
         try { cru = ls.getItem(CHAVES.v2); } catch (e) { return { erro: 'storage' }; }
-        if (cru == null) return { v2: null };
+        if (cru == null) return { v2: null, cru: null };
         var v2 = null;
         try { v2 = JSON.parse(cru); } catch (e) { v2 = null; }
-        return obj(v2) ? { v2: v2 } : { erro: 'v2-ilegivel' };
+        return obj(v2) ? { v2: v2, cru: cru } : { erro: 'v2-ilegivel' };
       }
-      // Grava a ficha (rev++, salvoEm), o índice (linha + projecaoV2), a
-      // projeção em khalkaria_ficha (rev = max(rev da v2, projecaoV2.revV2) + 1,
-      // para a aba v2.1 aberta adotar) e por ÚLTIMO o marcador 'v3-dupla'
-      // ('v3' fica como está: a F5 desligou a escrita dupla). Recusa sem gravar
-      // nada: 'conflito-v2' (uma aba v2.1 gravou depois da última projeção e a
-      // ficha não absorveu essa versão: a UI oferece reimportar na ficha de
-      // projecaoV2.fichaId) e 'v2-nao-migrada' (há v2 e nenhuma projeção: migrar antes).
-      function gravarComProjecao(ficha, op) {
+      // khalkaria_ficha que a projeção reescreve mudando a forma (v1, ou 2.0 com
+      // as listas velhas): como a v2.1 (guardaBackup, spec §5.6.1), o texto cru
+      // vai antes para o backup, que nunca é sobrescrito
+      function precisaBackup(v2) {
+        return obj(v2) && (v2.schemaVersion !== '2.0' || temListasVelhas(v2)) && ler(CHAVES.backupV1) == null;
+      }
+      // Grava a ficha (rev++, salvoEm), o índice (linha + projecaoV2), o backup
+      // da v1 (se a v2 for uma v1), a projeção em khalkaria_ficha (rev =
+      // max(rev da v2, projecaoV2.revV2) + 1, para a aba v2.1 aberta adotar, com
+      // o carimbo origemV3) e por ÚLTIMO o marcador 'v3-dupla' ('v3' fica como
+      // está: a F5 desligou a escrita dupla). Recusa sem gravar nada:
+      // 'conflito-v2' (uma aba v2.1 gravou depois da última projeção e a ficha
+      // não absorveu essa versão: a UI oferece reimportar na ficha de
+      // projecaoV2.fichaId) e 'v2-nao-migrada' (há v2 e nenhuma projeção: migrar
+      // antes). esperado (só o migrarReal): {cru, projecao} que ele leu; se a v2
+      // ou a projecaoV2 mudaram no meio (outra aba migrou), 'mudou-durante'.
+      function gravarComProjecao(ficha, op) { return gravaProjetando(ficha, op, null); }
+      function gravaProjetando(ficha, op, esperado) {
         op = op || {};
         if (somenteLeitura()) return recusa('somente-leitura');
         if (!obj(ficha) || !ficha.id) return recusa('invalida');
@@ -1409,7 +1562,9 @@
         var lido = lerV2Cru();
         if (lido.erro) return recusa(lido.erro);
         var v2 = lido.v2, proj = obj(ind.projecaoV2) ? ind.projecaoV2 : null;
-        if (v2 && !absorvida(ficha, v2)) {
+        if (esperado && (lido.cru !== esperado.cru || canon(proj) !== esperado.projecao)) return recusa('mudou-durante');
+        // a ficha que o migrarReal acabou de tirar desta v2 é dela (mesmo com o vínculo vazio da v1)
+        if (v2 && !esperado && !absorvida(ficha, v2)) {
           if (proj && conflitoV2(ind, v2)) return recusa('conflito-v2', { fichaId: str(proj.fichaId), revV2: inteiro(v2.rev, 0) });
           if (!proj) return recusa('v2-nao-migrada');
         }
@@ -1417,15 +1572,18 @@
         var nova = clone(ficha);
         nova.rev = inteiro(nova.rev, 0) + 1;
         nova.salvoEm = agora;
-        var pr = projetarV2(nova, v2, { agora: function () { return agora; } });
+        var pr = projetarV2(nova, v2, { agora: function () { return agora; }, daFicha: esperado ? true : undefined });
         var p2 = pr.v2;
         p2.rev = Math.max(v2 ? inteiro(v2.rev, 0) : 0, proj ? inteiro(proj.revV2, 0) : 0) + 1;
         p2.salvoEm = agora;
+        // carimbo: de qual projeção esta v2 descende (a v2.1 o preserva ao gravar por cima)
+        p2.origemV3 = { fichaId: nova.id, revV2: p2.rev };
         ind.projecaoV2 = { fichaId: nova.id, revV2: p2.rev, salvoEmV2: p2.salvoEm };
         poeLinha(ind, nova);
         if (op.ativar) ind.ultimaAtiva = nova.id;
-        var passos = [[CHAVES.ficha + nova.id, JSON.stringify(nova)], [CHAVES.indice, JSON.stringify(ind)],
-          [CHAVES.v2, JSON.stringify(p2)]];
+        var passos = [[CHAVES.ficha + nova.id, JSON.stringify(nova)], [CHAVES.indice, JSON.stringify(ind)]];
+        if (precisaBackup(v2)) passos.push([CHAVES.backupV1, lido.cru]);
+        passos.push([CHAVES.v2, JSON.stringify(p2)]);
         var dono = ler(CHAVES.dono);
         if (dono !== 'v3-dupla' && dono !== 'v3') passos.push([CHAVES.dono, 'v3-dupla']);
         var r = transacao(passos);
@@ -1442,23 +1600,34 @@
       }
       // Migração real, IDEMPOTENTE: a v2 vira UMA ficha nova do índice (id novo,
       // ativa, com vinculoV2) gravada com a projeção. Se o índice já tem a ficha
-      // dela (projecaoV2 igual à v2, ou vinculoV2 igual), não cria outra.
+      // dela (projecaoV2 igual à v2, ou vinculoV2 igual), não cria outra. Duas
+      // abas ao mesmo tempo: a gravação confere se a v2 e a projecaoV2 ainda
+      // são as que esta leu; se outra aba migrou no meio, relê e decide de novo
+      // (e acha a ficha que a outra criou). A v1 crua vai para o backup.
       // op: catalogo, calculado (sem ele a poda fica pendente e nada é gravado).
       function migrarReal(op) {
         var o = Object.assign({}, opcoes, op || {});
         if (somenteLeitura()) return recusa('somente-leitura');
+        for (var i = 0; i < 3; i++) {
+          var r = migrarUmaVez(o);
+          if (r.erro !== 'mudou-durante') return r;
+        }
+        return recusa('mudou-durante');
+      }
+      function migrarUmaVez(o) {
         var lido = lerV2Cru();
         if (lido.erro) return recusa(lido.erro);
         var v2 = lido.v2;
         if (!v2) return { ok: true, id: null, criada: false, motivo: 'sem-v2', limpou: [] };
         if (versaoMaior(v2.schemaVersion) >= 3) return recusa('v2-ilegivel');
         var ind = lerIndice(), proj = obj(ind.projecaoV2) ? ind.projecaoV2 : null;
+        var esperado = { cru: lido.cru, projecao: canon(proj) };
         var dela = proj && existe(ind, proj.fichaId);
         if (dela && !conflitoV2(ind, v2)) return { ok: true, id: proj.fichaId, criada: false, limpou: [] };
         var ja = fichaDaV2(ind, v2);
         if (ja) {
           // já migrada (ou reimportada), sem a projeção desta versão: só liga a escrita dupla
-          var rj = gravarComProjecao(ja, {});
+          var rj = gravaProjetando(ja, {}, esperado);
           return rj.ok ? Object.assign(rj, { criada: false }) : rj;
         }
         if (dela) return recusa('conflito-v2', { fichaId: proj.fichaId, revV2: inteiro(v2.rev, 0) });
@@ -1470,7 +1639,7 @@
         if (o.catalogo) { reassociar(f, o.catalogo); reconciliar(f, o.catalogo); }
         if (podaPendente(f) && o.calculado) podarAjustesMigrados(f, o.calculado);
         if (podaPendente(f)) return recusa('poda-pendente');
-        var r = gravarComProjecao(f, { ativar: true });
+        var r = gravaProjetando(f, { ativar: true }, esperado);
         return r.ok ? Object.assign(r, { criada: true, avisos: mig.avisos || [], pendencias: f.migracao ? f.migracao.pendencias : [] }) : r;
       }
       return {

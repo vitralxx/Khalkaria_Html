@@ -412,7 +412,8 @@ test('aba v2 gravando depois do import (F3): vínculo {revV2, salvoEmV2}; com o 
   nome.dispatchEvent({ type: 'input', target: nome });
   const v2 = JSON.parse(st.getItem(LS));
   const { arm, id } = migrar(st);
-  assert.deepEqual(arm.ler(id).vinculoV2, { revV2: v2.rev, salvoEmV2: v2.salvoEm });
+  const vinculo = arm.ler(id).vinculoV2;
+  assert.deepEqual([vinculo.revV2, vinculo.salvoEmV2], [v2.rev, v2.salvoEm]);
   st.setItem(DONO, 'v3');
   const antes = st.foto();
   st.escritas.length = 0;

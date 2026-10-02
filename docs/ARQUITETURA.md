@@ -181,7 +181,11 @@ js/ficha/kh-estado.js            KhEstado (F3a), PURO: estado v3, migração 1.0
                                  nada instancia o armazém no site até a F4. F4.2: escrita
                                  dupla e migração real (projetarV2, conflitoV2,
                                  gravarComProjecao, migrarReal, reimportarV2), puras e
-                                 NÃO LIGADAS até a virada (F4.7, com aprovação do Pedro)
+                                 NÃO LIGADAS até a virada (F4.7, com aprovação do Pedro).
+                                 O que tem perda vai da memória da ficha
+                                 (vinculoV2.comPerda); a v2 gravada leva o carimbo
+                                 origemV3, que o reimportarV2 usa para achar o ancestral
+                                 (conflitos, perdas e 'outra-ficha' saem no resultado)
 js/ficha/kh-efeitos.js           KhEfeitos (F3b), PURO: coleta os Mods com a trilha
                                  (raça, fontes do contrato, entradas, nível, condições,
                                  itens pelo "quando", ajustes) e resolve o acúmulo

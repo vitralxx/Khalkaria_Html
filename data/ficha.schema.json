@@ -210,11 +210,12 @@
       ]
     },
     "vinculoV2": {
-      "description": "Ficha que veio da v2: rev e salvoEm da v2 no momento da migração (para 'reimportar alterações da v2', F4). A cópia (duplicar) não herda.",
+      "description": "Ficha que veio da v2: rev e salvoEm da v2 no momento da migração ou do último 'reimportar alterações da v2' (F4). comPerda: os números dessa v2 que a v3 não guarda sem perda ({caminho da v2: valor}: atributos, perícias, Ofício, máximos, derivados digitados, Ordinário, variante); a projeção v2 desta ficha os devolve, e o reimportar compara com eles. A cópia (duplicar) não herda.",
       "oneOf": [
         { "type": "null" },
         { "type": "object", "required": ["revV2", "salvoEmV2"], "additionalProperties": false,
-          "properties": { "revV2": { "type": "integer", "minimum": 0 }, "salvoEmV2": { "type": "string" } } }
+          "properties": { "revV2": { "type": "integer", "minimum": 0 }, "salvoEmV2": { "type": "string" },
+            "comPerda": { "type": "object" } } }
       ]
     },
 
