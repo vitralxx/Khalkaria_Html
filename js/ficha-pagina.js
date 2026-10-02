@@ -22,7 +22,8 @@
  * KF.abrir()), a lista das 5 abas (role=tablist) e os 5 painéis.
  * F4.5: a lista é do KhAbas (js/ficha/kh-abas.js, no bundle, porque o drawer
  * da F4.4 usa o mesmo): clique, setas, Home e End trocam de aba (tabindex
- * móvel); Alt+← e Alt+→ (KhTeclas) e o arrasto movem a aba; o botão "Ordem do
+ * móvel); Alt+← e Alt+→ (KhTeclas, só com a aba focada pelo teclado) e o
+ * arrasto movem a aba; o botão "Ordem do
  * A4" restaura. A casca já sai na ordem guardada e com a aba da sessão aberta.
  * F4.3b: RENDER[id da aba](res, C, ctx) desenha o painel (res =
  * KhPrevia.calcular, estado 'ok'; C = KhConta desta passada; ctx = catálogo
@@ -64,7 +65,9 @@
     var EM_CONSTRUCAO = 'Esta aba ainda está em construção.';
     var RESTAURADA = 'Ordem do A4 restaurada.';
     // como mudar a ordem: dica no botão de cada aba (title vira a descrição acessível)
-    var DICA_ORDEM = 'Arraste, ou use Alt+← e Alt+→, para mudar a ordem das abas';
+    // o Alt+seta só move com a aba focada pelo teclado (depois de um clique, o
+    // Alt+← é o Voltar do navegador): a dica diz como chegar lá
+    var DICA_ORDEM = 'Arraste para mudar a ordem das abas. Pelo teclado: Tab até a aba e Alt+← ou Alt+→';
     var TITULO_A4 = 'Ordem do A4: volta as abas à ordem da ficha física';
     // seta de voltar (traço em currentColor, sem emoji)
     var SVG_A4 = '<svg class="fp-svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false">' +

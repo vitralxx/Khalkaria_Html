@@ -3987,8 +3987,15 @@
  * volta), Home e End vão às pontas; isso é a navegação do próprio widget, num
  * keydown da lista, como as linhas de filtro do Bazar. Alt+← e Alt+→ MOVEM a
  * aba focada: atalho do site, registrado no KhTeclas (js/kh-ui.js), um só para
- * todas as listas (vale a que tem a aba focada). Na ponta, o Alt+seta é
- * consumido e só avisa: senão o navegador voltaria a página (Alt+← = voltar).
+ * todas as listas (vale a que tem a aba focada). Só com o foco de TECLADO na
+ * aba (:focus-visible): o clique também foca o botão (Chrome, Edge e Firefox no
+ * Windows), e aí o Alt+← tem de seguir sendo o Voltar do navegador, mesmo com
+ * a aba fora da tela. O Chrome não liga o :focus-visible por tecla com Alt, então
+ * depois de um clique só uma tecla comum (seta, Tab) o liga. Com o foco de
+ * teclado, na ponta o Alt+seta é consumido e só avisa: quem apertou estava
+ * movendo a aba e não quer sair da página. Para o :focus-visible sobreviver de
+ * um Alt+seta ao seguinte, a aba focada nunca sai do DOM ao reordenar (as
+ * outras se arrumam em volta dela; ver aplicaDom).
  * Esc durante o arrasto desfaz o arrasto (camada do Esc do KhTeclas).
  *
  * Arrasto (pointer events): só vira arrasto depois de LIMIAR px; abaixo disso
@@ -4107,16 +4114,26 @@
       for (var i = 0; i < instancias.length; i++) if (instancias[i].abaDo(alvo)) return instancias[i];
       return null;
     }
+    // o foco veio do teclado? Sem suporte a :focus-visible, não: na dúvida, o
+    // Alt+← é do navegador (Voltar)
+    function focoDeTeclado(el) {
+      try { return !!(el && typeof el.matches === 'function' && el.matches(':focus-visible')); } catch (e) { return false; }
+    }
+    // a lista cuja aba tem o foco de teclado (alvo do keydown = o elemento focado)
+    function instanciaDoTeclado(alvo) {
+      var inst = instanciaDo(alvo);
+      return inst && focoDeTeclado(alvo) ? inst : null;
+    }
     function ligaTeclas(T) {
       if (!T || typeof T.atalho !== 'function' || teclasLigadas.indexOf(T) >= 0) return;
       teclasLigadas.push(T);
       [['Alt+ArrowLeft', -1, 'esquerda'], ['Alt+ArrowRight', 1, 'direita']].forEach(function (t) {
         T.atalho(t[0], function (e) {
-          var inst = instanciaDo(e.target);
+          var inst = instanciaDoTeclado(e.target);
           if (!inst) return false;
-          inst.mover(inst.abaDo(e.target), t[1]);   // na ponta não move, mas consome (Alt+← voltaria a página)
-        }, { descricao: 'Mover a aba da ficha para a ' + t[2],
-          quando: function (e) { return !!instanciaDo(e.target); } });
+          inst.mover(inst.abaDo(e.target), t[1]);   // na ponta não move, mas consome (o foco de teclado estava movendo a aba)
+        }, { descricao: 'Mover a aba da ficha para a ' + t[2] + ' (com a aba focada pelo teclado)',
+          quando: function (e) { return !!instanciaDoTeclado(e.target); } });
       });
       if (typeof T.camadaEsc === 'function') {
         T.camadaEsc(5, function () {
@@ -4202,11 +4219,24 @@
         return true;
       }
 
-      // ---- ordem no DOM: só o mínimo de insertBefore (a aba que não sai do lugar não é tocada)
+      // ---- ordem no DOM: poucos insertBefore (a aba que não sai do lugar não é
+      // tocada), e a aba FOCADA nunca é movida: tirar o botão do DOM tira o foco
+      // dele, e o foco devolvido por script pode voltar sem o :focus-visible (aí
+      // o Alt+seta seguinte viraria o Voltar). Quando a vez é dela, as abas entre
+      // a posição e ela passam para logo depois dela, na mesma ordem.
       function aplicaDom() {
         var dom = domIds();
+        var ativo = doc ? doc.activeElement : null;
+        var fixa = ativo ? abaDo(ativo) : null;
         for (var i = 0; i < ordem.length; i++) {
           if (dom[i] === ordem[i]) continue;
+          if (ordem[i] === fixa) {
+            var p = dom.indexOf(fixa), depois = abas[dom[p + 1]] || null, saem = dom.slice(i, p);
+            saem.forEach(function (id) { tablist.insertBefore(abas[id], depois); });
+            dom.splice(i, p - i);
+            Array.prototype.splice.apply(dom, [i + 1, 0].concat(saem));
+            continue;
+          }
           tablist.insertBefore(abas[ordem[i]], abas[dom[i]] || null);
           dom.splice(dom.indexOf(ordem[i]), 1);
           dom.splice(i, 0, ordem[i]);
@@ -4265,8 +4295,8 @@
       function atualizaRestaurar() {
         if (op.restaurar && !(arrasto && arrasto.ativo)) op.restaurar.hidden = igual(ordem, ids);
       }
-      // troca a ordem na tela (sem gravar); devolve o foco à aba que o tinha
-      // (mover o botão no DOM tira o foco dele)
+      // troca a ordem na tela (sem gravar). O aplicaDom não move a aba focada;
+      // se o foco ainda assim saiu dela, volta
       function poeOrdem(nova, exceto) {
         nova = normaliza(nova, ids);
         if (igual(nova, ordem)) return false;

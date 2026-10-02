@@ -37,8 +37,9 @@ class No {
     if (!ref) return this.appendChild(f);
     assert.equal(ref.pai, this, 'insertBefore: a referência é filha da lista');
     this.insercoes++;
-    // mover o elemento focado tira o foco dele (como no navegador)
-    if (this.doc.activeElement === f) this.doc.activeElement = this.doc.body;
+    // mover o elemento focado tira o foco dele (como no navegador), e o foco
+    // devolvido por script pode voltar sem :focus-visible (o pior caso)
+    if (this.doc.activeElement === f) { this.doc.activeElement = this.doc.body; this.doc.modo = null; this.doc.focoTirado++; }
     f.pai.filhos.splice(f.pai.filhos.indexOf(f), 1);
     this.filhos.splice(this.filhos.indexOf(ref), 0, f);
     f.pai = this;
@@ -61,6 +62,12 @@ class No {
     this.ouv[t] = (this.ouv[t] || []).filter((x) => x.f !== f || x.cap !== cap);
   }
   focus() { this.doc.activeElement = this; }
+  // :focus-visible = o focado, com o foco vindo do teclado (doc.modo: 'teclado'
+  // depois de Tab ou tecla comum; 'mouse' depois do pointerdown)
+  matches(sel) {
+    assert.equal(sel, ':focus-visible', 'seletor não previsto: ' + sel);
+    return this.doc.activeElement === this && this.doc.modo === 'teclado';
+  }
   // layout: as abas da lista em linha, da esquerda para a direita, quebrando
   // quando passam da largura da lista; deslocamento do style.transform somado
   getBoundingClientRect() {
@@ -111,7 +118,7 @@ function loja(inicial, opc) {
 // a página: lista com as 5 abas (na ordem dada), os painéis, o botão de restaurar e o aviso
 function monta(opc) {
   opc = opc || {};
-  const doc = { ouv: {}, activeElement: null, porId: new Map(), documentElement: null };
+  const doc = { ouv: {}, activeElement: null, porId: new Map(), documentElement: null, modo: null, focoTirado: 0 };
   doc.addEventListener = No.prototype.addEventListener;
   doc.removeEventListener = No.prototype.removeEventListener;
   doc.getElementById = (id) => doc.porId.get(id) || null;
@@ -153,9 +160,29 @@ function monta(opc) {
   return { doc, html, body, lista, abas, paineis, restaurar, anuncio, fora, ls, ss, win, ouvWin, teclas, api, mudancas, selecoes };
 }
 const dom = (a) => a.lista.filhos.map((t) => t.attrs['data-aba']);
-const tecla = (a, alvo, key, extra) => despacha(a.doc, alvo, evento('keydown', Object.assign({ key }, extra)));
+// tecla comum (sem Alt, Ctrl ou Meta) liga o :focus-visible do focado, como no Chrome;
+// com Alt, não
+function tecla(a, alvo, key, extra) {
+  const ev = evento('keydown', Object.assign({ key }, extra));
+  if (!ev.altKey && !ev.ctrlKey && !ev.metaKey) a.doc.modo = 'teclado';
+  return despacha(a.doc, alvo, ev);
+}
+// foco pelo teclado (Tab até a aba)
+function focaTeclado(a, el) { a.doc.modo = 'teclado'; el.focus(); }
 function centro(a, id) { const r = a.abas[id].getBoundingClientRect(); return { x: (r.left + r.right) / 2, y: (r.top + r.bottom) / 2 }; }
-const ptr = (a, tipo, alvo, x, y, extra) => despacha(a.doc, alvo, evento(tipo, Object.assign({ pointerId: 1, pointerType: 'mouse', isPrimary: true, button: 0, buttons: tipo === 'pointerup' ? 0 : 1, clientX: x, clientY: y }, extra)));
+// o pointerdown foca o botão, sem :focus-visible (o mousedown do Chrome, Edge e Firefox no Windows)
+function ptr(a, tipo, alvo, x, y, extra) {
+  const ev = despacha(a.doc, alvo, evento(tipo, Object.assign({ pointerId: 1, pointerType: 'mouse', isPrimary: true, button: 0, buttons: tipo === 'pointerup' ? 0 : 1, clientX: x, clientY: y }, extra)));
+  if (tipo === 'pointerdown') { a.doc.modo = 'mouse'; const t = alvo.closest('[role="tab"]'); if (t) t.focus(); }
+  return ev;
+}
+// clique de mouse numa aba: aperta, solta, click
+function clica(a, el) {
+  const r = el.getBoundingClientRect(), x = (r.left + r.right) / 2, y = (r.top + r.bottom) / 2;
+  ptr(a, 'pointerdown', el, x, y);
+  ptr(a, 'pointerup', el, x, y);
+  return despacha(a.doc, el, evento('click'));
+}
 // arrasta a aba id até o ponto (x, y), em passos; devolve o evento do pointerup
 function arrasta(a, id, x, y, op) {
   op = op || {};
@@ -319,12 +346,15 @@ test('teclado: setas trocam de aba com volta, Home e End; foco segue; a sessão 
   a.api.destruir();
 });
 
-test('Alt+← / Alt+→ (KhTeclas) movem a aba focada, gravam a ordem, avisam e mantêm o foco', () => {
+test('Alt+← / Alt+→ (KhTeclas) movem a aba focada pelo teclado, gravam a ordem, avisam e mantêm o foco', () => {
   const a = monta();
   assert.ok(a.teclas.lista().some((x) => x.tecla === 'Alt+ArrowLeft'), 'atalho registrado no KhTeclas');
   assert.ok(a.teclas.lista().some((x) => x.tecla === 'Alt+ArrowRight'));
-  a.abas.cartas.focus();
-  despacha(a.doc, a.abas.cartas, evento('click'));
+  // Tab até a lista (a aba aberta) e setas até Cartas
+  focaTeclado(a, a.abas.nucleo);
+  tecla(a, a.abas.nucleo, 'ArrowRight');
+  tecla(a, a.abas.tecnicas, 'ArrowRight');
+  assert.equal(a.doc.activeElement, a.abas.cartas);
   const ev = tecla(a, a.abas.cartas, 'ArrowLeft', { altKey: true });
   assert.ok(ev.defaultPrevented);
   assert.deepEqual(dom(a), ['nucleo', 'cartas', 'tecnicas', 'bazar', 'grimorio']);
@@ -348,6 +378,7 @@ test('Alt+← / Alt+→ (KhTeclas) movem a aba focada, gravam a ordem, avisam e 
   assert.equal(a.anuncio.textContent, 'Cartas, Lore & Outros já é a última aba.');
   assert.equal(a.doc.activeElement, a.abas.cartas);
   assert.equal(a.mudancas.length, 6);
+  assert.equal(a.doc.focoTirado, 0, 'a aba focada nunca saiu do DOM: o :focus-visible seguiu de um Alt+seta ao outro');
   // fora da lista, com Shift junto, ou com o foco em outro lugar: o Alt+seta é do navegador
   assert.ok(!tecla(a, a.fora, 'ArrowLeft', { altKey: true }).defaultPrevented);
   assert.ok(!tecla(a, a.abas.cartas, 'ArrowLeft', { altKey: true, shiftKey: true }).defaultPrevented);
@@ -355,6 +386,98 @@ test('Alt+← / Alt+→ (KhTeclas) movem a aba focada, gravam a ordem, avisam e 
   a.api.destruir();
   // destruída, a lista não responde mais
   assert.ok(!tecla(a, a.abas.cartas, 'ArrowLeft', { altKey: true }).defaultPrevented);
+});
+
+test('Alt+← com a aba focada pelo clique é o Voltar do navegador: não move, não grava, não consome (nem na ponta)', () => {
+  const a = monta();
+  const nada = () => {
+    assert.deepEqual(dom(a), A4);
+    assert.deepEqual(a.ls.escritas, [], 'nada gravado no localStorage');
+    assert.deepEqual(a.mudancas, []);
+    assert.equal(a.restaurar.hidden, true, 'o "Ordem do A4" não aparece');
+    assert.equal(a.anuncio.textContent, '');
+  };
+  // o jogador clica no Grimório (o botão fica focado) e, lendo o painel, aperta Alt+← para voltar
+  clica(a, a.abas.grimorio);
+  confereSelecao(a, 'grimorio');
+  assert.equal(a.doc.activeElement, a.abas.grimorio, 'o clique focou a aba');
+  for (let i = 0; i < 5; i++) assert.ok(!tecla(a, a.abas.grimorio, 'ArrowLeft', { altKey: true }).defaultPrevented, 'Alt+← ' + i);
+  assert.ok(!tecla(a, a.abas.grimorio, 'ArrowRight', { altKey: true }).defaultPrevented, 'Alt+→ na última');
+  nada();
+  // na primeira aba: o Alt+← não é engolido nem anuncia "já é a primeira aba"
+  clica(a, a.abas.nucleo);
+  assert.ok(!tecla(a, a.abas.nucleo, 'ArrowLeft', { altKey: true }).defaultPrevented);
+  nada();
+  // depois de um arrasto (foco de mouse) também
+  const t = centro(a, 'tecnicas');
+  arrasta(a, 'grimorio', t.x - 30, t.y);
+  const depois = dom(a), n = a.ls.escritas.length;
+  assert.notDeepEqual(depois, A4);
+  assert.equal(a.doc.activeElement, a.abas.grimorio);
+  assert.ok(!tecla(a, a.abas.grimorio, 'ArrowLeft', { altKey: true }).defaultPrevented);
+  assert.deepEqual(dom(a), depois);
+  assert.equal(a.ls.escritas.length, n);
+  a.api.restaurar();
+  // uma tecla comum depois do clique liga o foco de teclado (Chrome): aí o Alt+seta move
+  clica(a, a.abas.nucleo);
+  tecla(a, a.abas.nucleo, 'ArrowRight');
+  assert.equal(a.doc.activeElement, a.abas.tecnicas);
+  assert.ok(tecla(a, a.abas.tecnicas, 'ArrowRight', { altKey: true }).defaultPrevented);
+  assert.deepEqual(dom(a), ['nucleo', 'cartas', 'tecnicas', 'bazar', 'grimorio']);
+  // e um clique de novo devolve o Alt+← ao navegador
+  clica(a, a.abas.tecnicas);
+  assert.ok(!tecla(a, a.abas.tecnicas, 'ArrowLeft', { altKey: true }).defaultPrevented);
+  assert.deepEqual(dom(a), ['nucleo', 'cartas', 'tecnicas', 'bazar', 'grimorio']);
+  a.api.destruir();
+  // navegador sem :focus-visible (matches lança ou não existe): na dúvida, o Alt+← é do navegador
+  const b = monta();
+  focaTeclado(b, b.abas.cartas);
+  b.abas.cartas.matches = () => { throw new SyntaxError("':focus-visible' is not a valid selector"); };
+  assert.ok(!tecla(b, b.abas.cartas, 'ArrowLeft', { altKey: true }).defaultPrevented);
+  b.abas.cartas.matches = undefined;
+  assert.ok(!tecla(b, b.abas.cartas, 'ArrowLeft', { altKey: true }).defaultPrevented);
+  assert.deepEqual(dom(b), A4);
+  b.api.destruir();
+});
+
+test('a aba focada nunca sai do DOM ao reordenar (teclado, arrasto e sincronia, qualquer permutação)', () => {
+  // todas as ordens de chegada, com cada aba focada, a partir do A4 e do A4 invertido
+  const perms = (xs) => (xs.length <= 1 ? [xs] : xs.flatMap((x, i) => perms(xs.slice(0, i).concat(xs.slice(i + 1))).map((p) => [x].concat(p))));
+  const todas = perms(A4);
+  assert.equal(todas.length, 120);
+  for (const inicio of [A4, A4.slice().reverse()]) {
+    for (const focada of A4) {
+      const ls = loja({ khalkaria_ficha_abas: JSON.stringify(inicio) });
+      const a = monta({ ls });
+      focaTeclado(a, a.abas[focada]);
+      for (const alvo of todas) {
+        ls.setItem('khalkaria_ficha_abas', JSON.stringify(alvo));
+        a.ouvWin.storage.forEach((f) => f({ key: 'khalkaria_ficha_abas' }));
+        assert.deepEqual(dom(a), alvo, JSON.stringify({ inicio, focada, alvo }));
+      }
+      assert.equal(a.doc.focoTirado, 0, 'focada ' + focada);
+      assert.equal(a.doc.activeElement, a.abas[focada]);
+      a.api.destruir();
+    }
+  }
+  // um passo (Alt+seta): só a vizinha anda, uma inserção
+  const c = monta();
+  focaTeclado(c, c.abas.cartas);
+  const ins = c.lista.insercoes;
+  tecla(c, c.abas.cartas, 'ArrowLeft', { altKey: true });
+  assert.equal(c.lista.insercoes - ins, 1);
+  tecla(c, c.abas.cartas, 'ArrowRight', { altKey: true });
+  assert.equal(c.lista.insercoes - ins, 2);
+  assert.deepEqual(dom(c), A4);
+  // o arrasto pela lista inteira, ida e volta: a arrastada (focada pelo aperto) fica no DOM
+  const fim = centro(c, 'grimorio');
+  arrasta(c, 'nucleo', fim.x + 80, fim.y, { passos: 12 });
+  assert.deepEqual(dom(c), ['tecnicas', 'cartas', 'bazar', 'grimorio', 'nucleo']);
+  arrasta(c, 'nucleo', 5, fim.y, { passos: 12 });
+  assert.deepEqual(dom(c), A4);
+  assert.equal(c.doc.activeElement, c.abas.nucleo);
+  assert.equal(c.doc.focoTirado, 0);
+  c.api.destruir();
 });
 
 test('arrasto: abaixo do limiar é clique; passando, as abas trocam ao vivo e a ordem grava ao soltar', () => {
@@ -486,7 +609,7 @@ test('"Ordem do A4" restaura, apaga a preferência, some e devolve o foco à aba
   despacha(a.doc, a.restaurar, evento('click'));
   assert.deepEqual(a.ls.escritas, ['-khalkaria_ficha_abas']);
   // mover de volta à ordem do A4 pelo teclado também apaga a chave
-  a.abas.cartas.focus();
+  focaTeclado(a, a.abas.cartas);
   tecla(a, a.abas.cartas, 'ArrowRight', { altKey: true });
   tecla(a, a.abas.cartas, 'ArrowLeft', { altKey: true });
   assert.deepEqual(a.ls.escritas.slice(-2), ['khalkaria_ficha_abas=["nucleo","tecnicas","bazar","cartas","grimorio"]', '-khalkaria_ficha_abas']);
@@ -497,7 +620,7 @@ test('"Ordem do A4" restaura, apaga a preferência, some e devolve o foco à aba
 test('persistência: a ordem gravada volta ao abrir de novo; storage cheio só não guarda', () => {
   const ls = loja(), ss = loja();
   const a = monta({ ls, ss });
-  a.abas.bazar.focus();
+  focaTeclado(a, a.abas.bazar);
   despacha(a.doc, a.abas.bazar, evento('click'));
   tecla(a, a.abas.bazar, 'ArrowLeft', { altKey: true });
   tecla(a, a.abas.bazar, 'ArrowLeft', { altKey: true });
@@ -507,7 +630,7 @@ test('persistência: a ordem gravada volta ao abrir de novo; storage cheio só n
   confereSelecao(b, 'bazar');
   b.api.destruir();
   const c = monta({ ls: loja({}, { cheia: true }) });
-  c.abas.bazar.focus();
+  focaTeclado(c, c.abas.bazar);
   tecla(c, c.abas.bazar, 'ArrowLeft', { altKey: true });
   assert.deepEqual(dom(c), ['nucleo', 'tecnicas', 'bazar', 'cartas', 'grimorio'], 'a ordem vale na página');
   c.api.destruir();
@@ -518,7 +641,7 @@ test('sincronia: o drawer e a página (mesma chave) andam juntos; outra janela p
   const pagina = monta({ ls });
   const drawer = monta({ ls, prefixo: 'dr', teclas: pagina.teclas });
   // as duas no mesmo document de mentira não são o caso real; aqui basta a chave comum
-  pagina.abas.grimorio.focus();
+  focaTeclado(pagina, pagina.abas.grimorio);
   tecla(pagina, pagina.abas.grimorio, 'ArrowLeft', { altKey: true });
   assert.deepEqual(dom(drawer), ['nucleo', 'tecnicas', 'cartas', 'grimorio', 'bazar'], 'o drawer acompanha');
   assert.equal(ls.escritas.length, 1, 'quem acompanha não grava');
@@ -534,14 +657,14 @@ test('sincronia: o drawer e a página (mesma chave) andam juntos; outra janela p
 
 test('movimento reduzido: sem a animação das abas que trocam de lugar', () => {
   const a = monta({ animar: true });
-  a.abas.cartas.focus();
+  focaTeclado(a, a.abas.cartas);
   tecla(a, a.abas.cartas, 'ArrowLeft', { altKey: true });
   assert.equal(a.abas.tecnicas.animacoes.length, 1, 'a vizinha desliza');
   assert.match(a.abas.tecnicas.animacoes[0].q[0].transform, /^translate\(-\d+px, 0px\)$/);
   assert.equal(a.abas.tecnicas.animacoes[0].o.duration, KA.DURACAO);
   a.api.destruir();
   const b = monta({ animar: true, reduzido: true });
-  b.abas.cartas.focus();
+  focaTeclado(b, b.abas.cartas);
   tecla(b, b.abas.cartas, 'ArrowLeft', { altKey: true });
   b.restaurar.focus();
   despacha(b.doc, b.restaurar, evento('click'));

@@ -144,7 +144,7 @@ test('as 5 abas == as 5 páginas da ficha física (03 §4), na ordem do A4', () 
 test('casca: tablist com 5 abas, cada uma ligada ao seu tabpanel; uma selecionada, tabindex móvel; o lugar do sprite', () => {
   const h = FP.htmlCasca('cartas');
   assert.equal((h.match(/role="tablist"/g) || []).length, 1);
-  const RE_ABA = /<button type="button" class="fp-aba" role="tab" id="fp-aba-([a-z]+)" data-aba="\1" aria-controls="fp-painel-\1" aria-selected="(true|false)" tabindex="(0|-1)" aria-keyshortcuts="Alt\+ArrowLeft Alt\+ArrowRight" title="Arraste, ou use Alt\+← e Alt\+→, para mudar a ordem das abas">/g;
+  const RE_ABA = /<button type="button" class="fp-aba" role="tab" id="fp-aba-([a-z]+)" data-aba="\1" aria-controls="fp-painel-\1" aria-selected="(true|false)" tabindex="(0|-1)" aria-keyshortcuts="Alt\+ArrowLeft Alt\+ArrowRight" title="Arraste para mudar a ordem das abas\. Pelo teclado: Tab até a aba e Alt\+← ou Alt\+→">/g;
   const abas = [...h.matchAll(RE_ABA)];
   assert.deepEqual(abas.map((m) => m[1]), FP.ABAS.map((a) => a.id));
   assert.deepEqual(abas.filter((m) => m[2] === 'true').map((m) => m[1]), ['cartas']);
@@ -635,7 +635,7 @@ const BASE = 'http://site.test/';
 const VAZIAS_DOM = new Set(['img', 'br', 'hr', 'input', 'meta', 'link', 'source', 'wbr']);
 function criaDom() {
   const porId = new Map();
-  const dom = { porId, elemento, doc: null };
+  const dom = { porId, elemento, doc: null, modo: null, focoTirado: 0 };
   function elemento(tag, attrs) {
     const a = Object.assign({}, attrs || {}), ouv = {};
     const e = {
@@ -658,7 +658,8 @@ function criaDom() {
         return out;
       },
       insertBefore: (f, ref) => {
-        if (dom.doc && dom.doc.activeElement === f) dom.doc.activeElement = null;   // mover tira o foco
+        // mover tira o foco; o devolvido por script pode voltar sem :focus-visible (o pior caso)
+        if (dom.doc && dom.doc.activeElement === f) { dom.doc.activeElement = null; dom.modo = null; dom.focoTirado++; }
         if (f.pai) f.pai.filhos.splice(f.pai.filhos.indexOf(f), 1);
         if (ref) e.filhos.splice(e.filhos.indexOf(ref), 0, f); else e.filhos.push(f);
         f.pai = e;
@@ -672,6 +673,8 @@ function criaDom() {
         return { left, right: left + 100, top: 0, bottom: 36, width: 100, height: 36 };
       },
       focus: () => { e.focado = true; if (dom.doc) dom.doc.activeElement = e; },
+      // :focus-visible: o focado, com o foco vindo do teclado (dom.modo); o resto não casa
+      matches: (sel) => sel === ':focus-visible' && !!dom.doc && dom.doc.activeElement === e && dom.modo === 'teclado',
       get innerHTML() { return e._html; },
       set innerHTML(v) {
         e.trocas++;
@@ -882,9 +885,17 @@ test('F4.5 navegador: Alt+setas (KhTeclas) e arrasto movem a aba, gravam só kha
   assert.ok(pg.win.KhTeclas.lista().some((x) => x.tecla === 'Alt+ArrowRight'), 'Alt+setas no KhTeclas');
   assert.deepEqual(ordem(), A4);
   assert.equal(a4.hidden, true);
-  // Alt+→ na aba focada
+  // aba focada pelo CLIQUE (sem :focus-visible): o Alt+seta é do navegador (Alt+← = Voltar)
+  pg.dom.modo = 'mouse';
   aba('tecnicas').focus();
   pg.dom.porId.get('fp-abas').dispara({ type: 'click', target: aba('tecnicas') });
+  for (const k of ['ArrowRight', 'ArrowLeft']) assert.ok(!pg.tecla(aba('tecnicas'), k, { altKey: true }).defaultPrevented, 'clique + Alt+' + k);
+  assert.deepEqual(ordem(), A4);
+  assert.equal(a4.hidden, true);
+  assert.equal(anuncio.textContent, '');
+  assert.deepEqual(pg.escritas, pg.depoisFicha.escritas, 'nada gravado no localStorage');
+  // Alt+→ na aba focada pelo teclado
+  pg.dom.modo = 'teclado';
   const ev = pg.tecla(aba('tecnicas'), 'ArrowRight', { altKey: true });
   assert.ok(ev.defaultPrevented);
   assert.deepEqual(ordem(), ['nucleo', 'cartas', 'tecnicas', 'bazar', 'grimorio']);
@@ -893,6 +904,13 @@ test('F4.5 navegador: Alt+setas (KhTeclas) e arrasto movem a aba, gravam só kha
   assert.equal(anuncio.textContent, 'Técnicas & Marcas: posição 3 de 5.');
   assert.equal(a4.hidden, false);
   assert.equal(pg.st.get('khalkaria_ficha_abas'), '["nucleo","cartas","tecnicas","bazar","grimorio"]');
+  // em seguida, de novo: a aba focada não saiu do DOM, o foco de teclado segue e o Alt+→ move outra vez
+  assert.ok(pg.tecla(aba('tecnicas'), 'ArrowRight', { altKey: true }).defaultPrevented);
+  assert.deepEqual(ordem(), ['nucleo', 'cartas', 'bazar', 'tecnicas', 'grimorio']);
+  assert.ok(pg.tecla(aba('tecnicas'), 'ArrowLeft', { altKey: true }).defaultPrevented);
+  assert.deepEqual(ordem(), ['nucleo', 'cartas', 'tecnicas', 'bazar', 'grimorio']);
+  assert.equal(pg.dom.focoTirado, 0, 'a aba focada nunca é movida no DOM');
+  assert.equal(pg.win.document.activeElement, aba('tecnicas'));
   // arrasto simulado: o Grimório até o começo da lista (limiar de 6px, pointer events)
   const g = aba('grimorio').getBoundingClientRect();
   const ptr = (tipo, x, extra) => Object.assign({ type: tipo, target: aba('grimorio'), pointerId: 7, pointerType: 'mouse', isPrimary: true,
@@ -907,7 +925,7 @@ test('F4.5 navegador: Alt+setas (KhTeclas) e arrasto movem a aba, gravam só kha
   assert.equal(pg.st.get('khalkaria_ficha_abas'), '["grimorio","nucleo","cartas","tecnicas","bazar"]');
   // as escritas da página: só a ordem (local) e a aba aberta (sessão); nenhuma chave de ficha
   const novas = pg.escritas.slice(pg.depoisFicha.escritas.length);
-  assert.deepEqual(novas, ['khalkaria_ficha_abas', 'khalkaria_ficha_abas']);
+  assert.deepEqual(novas, ['khalkaria_ficha_abas', 'khalkaria_ficha_abas', 'khalkaria_ficha_abas', 'khalkaria_ficha_abas']);
   assert.deepEqual(pg.escritasSessao.slice(pg.depoisFicha.sessao.length), ['khalkaria_ficha_aba']);
 
   // "recarregar": a casca já sai na ordem guardada e com a aba da sessão aberta
