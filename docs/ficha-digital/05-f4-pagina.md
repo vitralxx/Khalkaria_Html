@@ -73,7 +73,7 @@ Topo da página:
 
 ## F4.5 · Abas reordenáveis (por navegador)
 
-- **Lista de abas:** `role=tablist` com tabindex móvel. Setas trocam de aba; **Alt+← / Alt+→** movem a aba de lugar, com atalho registrado no `KhTeclas`. Também dá para arrastar com o mouse (pointer events; o arrasto tem limiar para não brigar com o clique).
+- **Lista de abas:** `role=tablist` com tabindex móvel. Setas trocam de aba; **Alt+← / Alt+→** movem a aba de lugar, com atalho registrado no `KhTeclas`. O atalho só age quando a aba tem foco de teclado (`:focus-visible`): depois de um clique, Alt+← continua sendo o Voltar do navegador. Também dá para arrastar com o mouse (pointer events; o arrasto tem limiar para não brigar com o clique).
 - **Ordem guardada:** `localStorage.khalkaria_ficha_abas`, uma lista de ids de aba. É compartilhada com o drawer da F4.4 e vale para todas as fichas do navegador. Não vai no export. Lista inválida ou incompleta volta à ordem do A4 e acrescenta as abas novas no fim.
 - **"Ordem do A4":** botão que restaura a ordem.
 - **Aba aberta:** `sessionStorage.khalkaria_ficha_aba`.

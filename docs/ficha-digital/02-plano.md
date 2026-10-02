@@ -691,9 +691,9 @@ F1a–F1f correm em paralelo. F4b, F4c, F5 e F6 correm em paralelo depois da F4.
 | F4.0 | Rede de segurança: guarda `v3-dupla`/`v3`, teste "aba v2 gravando depois do import", snapshot de ouro da prévia. Mais o hotfix do Importar da v2.1, que recusa o que não é ficha | no ar (`07d21de`, `7089195`) |
 | F4.1 | Componente conta extraído para o `KhConta` (`js/ficha/kh-conta.js`) | no ar (`6581a17`) |
 | F4.2 | Primitivas da escrita dupla e da migração real no `KhEstado`: `projetarV2`, `conflitoV2`, `gravarComProjecao`, `migrarReal`, `reimportarV2`. Puras e não ligadas | no ar (`e10adac`, `795a1cc`); **rever de novo, adversarialmente, antes da F4.7** |
-| F4.3 | Página da ficha nas 5 abas do A4, só-leitura, com tooltip em todo número. Item "Ficha" na nav escondido sem a prévia (`head-boot` marca `html[data-ficha-previa]`) | a fazer |
+| F4.3 | Página da ficha nas 5 abas do A4, só-leitura, com tooltip em todo número. Item "Ficha" na nav escondido sem a prévia (`head-boot` marca `html[data-ficha-previa]`) | no ar (`d7f69aa`…`80a084d`; spec `05-f4-pagina.md`) |
 | F4.4 | Drawer docked à direita que empurra o conteúdo, atrás da prévia. Trilho de 48 px com mini barras quando fechado. No Bazar não empurra até a F4b | a fazer |
-| F4.5 | Abas reordenáveis no drawer e na página, ordem por navegador (`03 §9`) | a fazer |
+| F4.5 | Abas reordenáveis no drawer e na página, ordem por navegador (`03 §9`) | na página, no ar (`KhAbas`, `da48c7c`, `fb7ba0a`); no drawer, com a F4.4 |
 | F4.6 | UIs de escrita construídas e desligadas: seletor, ajuste (M2), commit/desfazer, KhLevar, export Bestiário com garantir | a fazer |
 | F4.7 | **Virada:** liga a migração real, a escrita dupla e o marcador `v3-dupla`, com a KF `versao:'3'` e o `bazar.js` aceitando `>= 2` no mesmo commit. **Só com aprovação explícita do Pedro** | a fazer |
 

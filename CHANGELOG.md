@@ -4,7 +4,25 @@ Versionamento semântico. Cada versão é uma tag git.
 
 ## Não lançado
 
+### Adicionado
+- **Página da Ficha** (`pages/ficha.html`), por enquanto só para quem liga a
+  prévia (`?ficha=v3`; para os jogadores nada muda até a migração). A ficha
+  aparece nas 5 abas do A4 (Núcleo, Técnicas & Marcas, Cartas/Lore/Outros, O
+  Bazar e Grimório), só leitura, com a fórmula em todo número e as
+  ilustrações da ficha física. As abas podem ser reordenadas arrastando, ou
+  pelo teclado com Alt+← e Alt+→. A ordem fica lembrada no navegador.
+
+### Corrigido
+- **Importar da ficha:** um arquivo que não é ficha (pacote de várias fichas
+  da ficha nova, export do Bestiário, JSON qualquer) não substitui mais a
+  ficha do jogador.
+
 ### Mudado
+- **Sincronizado com o Notion e o balanceamento (2026-10-02):** Sistema,
+  Magias, Condições, 6 classes, Gruto, Corrompido, Autômato, Caçador e
+  Mineiro. A Investida do Brutalista virou Atropelar. Bazar: Lágrima do Tempo,
+  Mapa, Poção de Vigor Moderada e Café Preto. O Napalm (área) saiu.
+  O Batedor fica de fora até o rework fechar.
 - **Bazar, ícones:** cada item ganhou um glifo próprio no medalhão, no mesmo
   traço de gravação: espada, adaga, machado, arco, besta, cajado, elmo, anel,
   capa, pergaminho, poção, veneno, bomba, lanterna, chave e outros, 57 no
