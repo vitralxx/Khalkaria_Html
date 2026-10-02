@@ -12,6 +12,12 @@
 /* ---- drawer, botão lateral, toast e cards (era o injectCSS) ---- */
 #kf-toggle{position:fixed;right:0;top:40%;z-index:var(--z-ficha);background:#1a1a22;color:#d4af37;border:1px solid #d4af37;border-right:none;border-radius:8px 0 0 8px;padding:10px 8px;cursor:pointer;font-family:Cinzel,serif;font-size:12px;letter-spacing:1px;writing-mode:vertical-rl;text-orientation:mixed;box-shadow:-2px 2px 12px rgba(0,0,0,.4)}
 #kf-toggle:hover{background:#24242e}
+/* com o drawer da ficha nova (F4.4b, só com a prévia: html[data-ficha3]) a aba
+   FICHA fica à esquerda do trilho ou do drawer aberto (docked ou por cima);
+   fora da página da ficha, onde o drawer não monta. Aqui, e não no style.css:
+   a regra acima não tem camada e venceria qualquer @layer. */
+html[data-ficha3] body:not([data-ficha-pagina]) #kf-toggle{right:var(--ficha3-trilho)}
+html[data-ficha3="aberto"] body:not([data-ficha-pagina]) #kf-toggle{right:var(--ficha3-w)}
 #kf-drawer{position:fixed;top:0;right:0;height:100vh;width:420px;max-width:92vw;z-index:calc(var(--z-ficha) + 1);background:#12121a;border-left:1px solid #2a2a35;box-shadow:-6px 0 24px rgba(0,0,0,.5);transform:translateX(100%);transition:transform .25s ease;display:flex;flex-direction:column;font-family:"Crimson Text",Georgia,serif;color:#d8d4cc}
 #kf-drawer.kf-open{transform:translateX(0)}
 #kf-head{display:flex;align-items:center;gap:8px;padding:12px 14px;border-bottom:1px solid #2a2a35;background:#0d0d14}

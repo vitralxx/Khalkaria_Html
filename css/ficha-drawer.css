@@ -1,17 +1,18 @@
 /* ============================================================
-   FICHA — o conteúdo das 5 abas no drawer da ficha nova (F4.4),
-   densidade COMPACTA (docs/ficha-digital/06-f4-drawer.md)
+   FICHA — o drawer da ficha nova (F4.4): o conteúdo das 5 abas, densidade
+   COMPACTA (F4.4a), e a casca (F4.4b, no fim do arquivo)
+   (docs/ficha-digital/06-f4-drawer.md)
 
    O HTML é o MESMO da página da ficha (js/ficha/kh-ficha-abas.js, sem cópia):
    os mesmos campos, molduras e contas, com o prefixo 'fd' no lugar do 'fp'
    e o corpo de cada aba marcado data-densidade="compacta". Este arquivo é o
    desenho dele em 380 px (460 px a partir de 1800 px): uma coluna, ícones
    menores, molduras vazias como ladrilhos, recursos antes das perícias.
-   Só o conteúdo: a casca do drawer (trilho, cabeçalho, abas, empurrar o
-   conteúdo) é da fatia seguinte.
+   A casca (trilho, cabeçalho, abas) é do js/ficha/kh-ficha-drawer.js, com o
+   prefixo fd-gaveta-; empurrar o conteúdo e a reserva ficam no css/style.css.
 
    NÃO é carregado pelo shell nem por página nenhuma: o drawer o injeta só com
-   a prévia ligada, como o css/ficha-previa.css. Por isso SEM CAMADA (vive fora
+   a prévia ligada. Por isso SEM CAMADA (vive fora
    do conteúdo e não pode perder para regras sem camada de template) e tudo sob
    o prefixo .fd-. Cores dos tokens; o único hex é a paleta dos tipos de dano,
    a mesma do css/ficha-pagina.css (ainda sem token do site; o teste confere
@@ -483,3 +484,227 @@
 /* intensidade fora da magia (Contida no Nível 1): tracejada e riscada, sem opacidade */
 .fd-mg-int-off { background: transparent; border-style: dashed; }
 .fd-mg-int-off .fd-rot { text-decoration: line-through; }
+
+/* ============================================================
+   A CASCA DO DRAWER (F4.4b): js/ficha/kh-ficha-drawer.js
+   O <aside class="fd-gaveta"> fixo à direita, em dois estados no <html>:
+   data-ficha3="trilho" (48 px: o botão de abrir e as mini barras de Saúde,
+   Stamina e Éter) e "aberto" (380/460 px: cabeçalho, as 5 abas do KhAbas na
+   ordem da página e o conteúdo acima). Abaixo da ficha atual (v2.1, que abre
+   por cima) e dos pop-ups (--z-ficha3). Empurrar o conteúdo e o fundo de
+   reserva são do css/style.css (@layer layout): valem antes de este arquivo
+   chegar. Prefixo próprio, fd-gaveta-, para não cruzar com o do conteúdo.
+   ============================================================ */
+.fd-gaveta {
+    --fd-gaveta-fio: color-mix(in srgb, var(--amber-dim) 55%, transparent);
+    position: fixed; top: 0; right: 0; bottom: 0;
+    z-index: var(--z-ficha3);
+    display: flex; flex-direction: column;
+    width: var(--ficha3-trilho);
+    background: var(--grao), var(--painel);
+    border-left: 1px solid var(--fd-gaveta-fio);
+    box-shadow: -10px 0 28px -16px var(--bg-primary);
+    color: var(--text-primary);
+    font-family: var(--font-body); font-size: 15px; line-height: 1.35;
+}
+.fd-gaveta[hidden] { display: none; }
+:root[data-ficha3="aberto"] .fd-gaveta { width: var(--ficha3-w); }
+:root[data-ficha3="aberto"] .fd-gaveta-trilho,
+:root:not([data-ficha3="aberto"]) .fd-gaveta-folha { display: none; }
+.fd-gaveta :where(p) { margin: 0; }
+.fd-gaveta :focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
+.fd-gaveta-folha:focus, .fd-gaveta-painel:focus:not(:focus-visible) { outline: none; }
+.fd-gaveta-svg { width: 16px; height: 16px; flex: 0 0 auto; }
+.fd-gaveta-sr {
+    position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0;
+    overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+.fd-gaveta-sprite { position: absolute; width: 0; height: 0; overflow: hidden; }
+
+/* ---------------------------------------------------------- o trilho */
+.fd-gaveta-trilho {
+    display: flex; flex-direction: column; align-items: center; gap: var(--esp-5);
+    height: 100%; padding: var(--esp-3) 0;
+}
+.fd-gaveta-abrir {
+    display: flex; flex-direction: column; align-items: center; gap: var(--esp-2);
+    width: 36px; padding: var(--esp-2) 0 var(--esp-3);
+    font-family: var(--font-heading); font-size: .62rem; font-weight: 600;
+    letter-spacing: .14em; text-transform: uppercase;
+    color: var(--gold); background: var(--bg-card);
+    border: 1px solid var(--fd-gaveta-fio); border-radius: var(--raio-2);
+    cursor: pointer;
+}
+.fd-gaveta-abrir:hover { color: var(--gold-light); border-color: var(--amber); }
+.fd-gaveta-trilho-rot { writing-mode: vertical-rl; text-orientation: mixed; }
+/* as mini barras: atual sobre máximo, de baixo para cima, nas cores de recurso (D28) */
+.fd-gaveta-minis { display: flex; justify-content: center; gap: 3px; }
+.fd-gaveta-mini { position: relative; display: flex; flex-direction: column; align-items: center; gap: 6px; width: 12px; }
+.fd-gaveta-mini-barra {
+    position: relative; display: block;
+    width: 8px; height: 112px;
+    border-radius: 4px; overflow: hidden;
+    background: var(--bg-primary);
+    box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--text-primary) 14%, transparent);
+}
+.fd-gaveta-mini-fill { position: absolute; left: 0; right: 0; bottom: 0; display: block; background: var(--recurso-saude); }
+.fd-gaveta-mini-stamina .fd-gaveta-mini-fill { background: var(--recurso-stamina); }
+.fd-gaveta-mini-eter .fd-gaveta-mini-fill { background: linear-gradient(0deg, var(--recurso-eter-verde), var(--recurso-eter-roxo)); }
+.fd-gaveta-mini-g { width: 12px; height: 12px; color: var(--recurso-saude); }
+.fd-gaveta-mini-stamina .fd-gaveta-mini-g { color: var(--recurso-stamina); }
+.fd-gaveta-mini-eter .fd-gaveta-mini-g { color: var(--recurso-eter-verde); }
+.fd-gaveta-mini[data-vazia] .fd-gaveta-mini-g { color: var(--text-muted-forte); }
+/* a conta do máximo cobre a barra e o glifo (hover e foco); o valor do <b> é do
+   leitor de tela, e a dica abre à esquerda do trilho, por cima da página */
+.fd-gaveta-mini .fd-tr-conta { position: absolute; inset: -3px -2px; display: block; border-radius: 6px; }
+.fd-gaveta-mini .fd-tr-v {
+    position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0;
+    overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+/* as 3 dicas saem na mesma coluna, à esquerda da aba FICHA (#kf-toggle, ~34px,
+   acima do drawer na escala de z-index, colada no trilho): a folga de cada
+   barra soma a distância dela à borda do trilho (coluna de 12px + vão de 3px) */
+.fd-gaveta-mini { --fd-gaveta-i: 0; }
+.fd-gaveta-mini-stamina { --fd-gaveta-i: 1; }
+.fd-gaveta-mini-eter { --fd-gaveta-i: 2; }
+.fd-gaveta-mini .fd-tr-dica {
+    left: auto; right: calc(100% + 42px + var(--fd-gaveta-i) * 15px); top: 0;
+    width: 17rem; max-width: 70vw;
+    padding: .4rem .55rem;
+    font: 400 .82rem/1.35 var(--font-body);
+    letter-spacing: normal; text-transform: none; text-align: left; white-space: normal;
+    color: var(--text-primary);
+}
+/* o "calc. X" do ajuste e a marca de aviso saem da conta, ao lado: no trilho
+   não cabem, e a dica já diz os dois (ajuste: calculado e ajustado; avisos) */
+.fd-gaveta-mini .fd-tr-calc, .fd-gaveta-mini .fd-tr-marca-aviso { display: none; }
+.fd-gaveta-mini .kh-conta[data-fd-tr-dica] .kh-conta-dica,
+.fd-gaveta-mini .kh-conta[data-fd-tr-foco] .kh-conta-dica { display: block; }
+.fd-gaveta-mini [data-fd-tr-foco] { outline: 2px solid var(--amber); outline-offset: 2px; }
+.fd-gaveta-mini-cab {
+    margin-bottom: .25rem;
+    font-family: var(--font-heading); font-size: .68rem; font-weight: 600;
+    letter-spacing: .06em; text-transform: uppercase; color: var(--gold);
+}
+.fd-tr-dica > span { display: block; }
+.fd-tr-d-sim { color: var(--gold-light); }
+.fd-tr-d-num { font-family: var(--mono); font-size: .76rem; color: var(--text-primary); margin-bottom: .2rem; }
+.fd-tr-d-ts { border-top: 1px solid color-mix(in srgb, var(--text-primary) 9%, transparent); padding-top: .2rem; }
+.fd-tr-t { display: block; color: var(--text-primary); }
+.fd-tr-t-v { font-family: var(--mono); font-size: .76rem; color: var(--gold); }
+.fd-tr-t-f { color: var(--text-secondary); }
+.fd-tr-t-s { color: var(--chip-arq); }
+.fd-tr-t-m { color: var(--text-muted-forte); font-style: italic; }
+.fd-tr-t-off .fd-tr-t-v, .fd-tr-t-off .fd-tr-t-r { color: var(--text-secondary); text-decoration: line-through; }
+.fd-tr-d-selos { margin-top: .2rem; color: var(--chip-arq); }
+.fd-tr-d-aj { margin-top: .2rem; color: var(--amber); }
+.fd-tr-d-av { color: var(--leve); }
+.fd-tr-d-lb { color: var(--text-secondary); }
+
+/* arrastar: acende com o card na mão; o item do Bazar sobre o drawer é aceito
+   (alvo); outra entidade é recusada (a borda tracejada) e o aviso explica */
+.fd-gaveta[data-acende] {
+    border-left-color: var(--amber);
+    box-shadow: inset 2px 0 0 var(--amber), -10px 0 28px -10px color-mix(in srgb, var(--amber) 45%, transparent);
+}
+.fd-gaveta[data-acende] .fd-gaveta-abrir {
+    color: var(--gold-light); border-color: var(--amber);
+    background: color-mix(in srgb, var(--amber) 16%, var(--bg-card));
+}
+.fd-gaveta[data-alvo] { box-shadow: inset 0 0 0 2px var(--amber), -10px 0 28px -10px color-mix(in srgb, var(--amber) 45%, transparent); }
+.fd-gaveta[data-recusa] { outline: 2px dashed var(--text-muted-forte); outline-offset: -6px; }
+
+/* ---------------------------------------------------------- a folha (aberto) */
+.fd-gaveta-folha { display: flex; flex-direction: column; flex: 1 1 auto; min-height: 0; }
+.fd-gaveta-cab {
+    display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: start;
+    gap: var(--esp-1) var(--esp-3);
+    padding: var(--esp-3) var(--esp-3) var(--esp-2) var(--esp-4);
+    border-bottom: 1px solid var(--fd-gaveta-fio);
+}
+.fd-gaveta-id { min-width: 0; }
+.fd-gaveta-nome {
+    font-family: var(--font-gothic); font-size: 1.55rem; font-weight: 400; line-height: 1.1;
+    color: var(--gold); overflow-wrap: anywhere;
+}
+.fd-gaveta .fd-gaveta-sub { margin-top: 2px; font-size: .95rem; color: var(--text-secondary); }
+.fd-gaveta-acoes { display: flex; gap: var(--esp-1); }
+.fd-gaveta-btn { display: inline-grid; place-items: center; width: 30px; height: 30px; padding: 0; text-decoration: none; }
+.fd-gaveta-btn:hover { color: var(--gold-light); border-color: var(--amber); }
+.fd-gaveta .fd-gaveta-ro { grid-column: 1 / -1; font-size: .85rem; font-style: italic; color: var(--text-muted-forte); }
+.fd-gaveta-sair {
+    padding: 0;
+    font: inherit; font-style: normal; color: var(--gold);
+    background: none; border: 0;
+    text-decoration: underline; text-underline-offset: 2px;
+    cursor: pointer;
+}
+.fd-gaveta-sair:hover { color: var(--gold-light); }
+
+/* as abas: a lista do KhAbas (a mesma ordem da página), numa linha só de 5
+   colunas iguais: o número da página do A4 em cima, a primeira palavra do
+   rótulo embaixo (o nome inteiro é o aria-label e o title) */
+.fd-gaveta-abas-barra {
+    display: flex; align-items: flex-end; gap: var(--esp-2);
+    padding: var(--esp-2) var(--esp-3) 0;
+    border-bottom: 1px solid var(--amber-dim);
+}
+.fd-gaveta-abas { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); gap: 2px; flex: 1 1 auto; min-width: 0; }
+.fd-gaveta-aba {
+    display: flex; flex-direction: column; align-items: center; gap: 3px;
+    min-width: 0; padding: .35rem .15rem .3rem;
+    font-family: var(--font-heading); font-size: .58rem; font-weight: 600;
+    letter-spacing: .02em; text-transform: uppercase;
+    color: var(--text-muted-forte);
+    background: none; border: 1px solid transparent; border-bottom: 0;
+    border-radius: var(--raio-1) var(--raio-1) 0 0;
+    cursor: pointer;
+    user-select: none; -webkit-user-select: none;
+}
+.fd-gaveta-aba-rot { max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.fd-gaveta-aba:hover { color: var(--text-primary); }
+.fd-gaveta-aba[aria-selected="true"] {
+    color: var(--gold);
+    background: var(--bg-secondary);
+    border-color: var(--amber-dim);
+    margin-bottom: -1px;
+    border-bottom: 1px solid var(--bg-secondary);
+}
+.fd-gaveta-aba-pag {
+    display: inline-grid; place-items: center;
+    width: 1.7em; height: 1.7em; font-size: .95em;
+    border: 1px solid currentColor; border-radius: var(--raio-circulo);
+}
+.fd-gaveta-abas[data-arrastando], .fd-gaveta-abas[data-arrastando] .fd-gaveta-aba { cursor: grabbing; }
+.fd-gaveta-aba[data-arrastada] {
+    position: relative; z-index: 2;
+    color: var(--gold); background: var(--bg-tertiary);
+    border-color: var(--amber);
+    box-shadow: 0 6px 16px var(--bg-primary);
+}
+.fd-gaveta-a4 { flex: 0 0 auto; display: inline-grid; place-items: center; width: 26px; height: 26px; padding: 0; margin-bottom: var(--esp-1); }
+.fd-gaveta-a4:hover { border-color: var(--amber); }
+.fd-gaveta-a4[hidden] { display: none; }
+
+/* o aviso de arrastar e soltar */
+.fd-gaveta .fd-gaveta-aviso {
+    margin: var(--esp-2) var(--esp-3) 0;
+    padding: var(--esp-2) var(--esp-3);
+    font-size: .92rem; color: var(--text-primary);
+    background: color-mix(in srgb, var(--amber) 10%, var(--bg-card));
+    border: 1px solid var(--amber-dim); border-radius: var(--raio-1);
+}
+.fd-gaveta-aviso[hidden] { display: none; }
+
+/* o conteúdo rola; a folga embaixo deixa a dica da última conta abrir para baixo */
+.fd-gaveta-rolagem {
+    flex: 1 1 auto; min-height: 0;
+    overflow-y: auto; overscroll-behavior: contain;
+    padding: var(--esp-3) var(--esp-3) 12rem;
+    scrollbar-width: thin; scrollbar-color: var(--amber-dim) transparent;
+}
+.fd-gaveta-painel[hidden] { display: none; }
+/* marcas do redesenho (KhRedesenho): a dica e o contorno seguem no elemento
+   novo até o mouse mexer ou o foco sair */
+.fd-gaveta .kh-conta[data-fd-dica] .kh-conta-dica, .fd-gaveta .kh-conta[data-fd-foco] .kh-conta-dica { display: block; }
+.fd-gaveta [data-fd-foco] { outline: 2px solid var(--amber); outline-offset: 2px; }

@@ -326,7 +326,7 @@ test('navegador (vm, artefato js/ficha.js): sem ativação a prévia não toca e
   assert.deepEqual(nada.buscas, base.buscas);
 });
 
-test('na página da ficha (#fp) o painel da prévia não monta: nada criado, nada buscado', () => {
+test('KhPrevia.iniciar só liga e lembra (o drawer monta): nada criado, nada buscado, nem na página da ficha', () => {
   function janela(temFp) {
     const criados = [], buscas = [];
     const doc = {
@@ -349,12 +349,16 @@ test('na página da ficha (#fp) o painel da prévia não monta: nada criado, nad
   assert.deepEqual(naPagina.buscas, [], 'nenhum arquivo buscado pelo painel');
 });
 
-test('css/ficha-previa.css: só a prévia o pede (o shell não o injeta) e tudo nele fica sob .kf3', () => {
-  const css = fs.readFileSync(path.join(A.RAIZ, 'css', 'ficha-previa.css'), 'utf8').replace(/\/\*[\s\S]*?\*\//g, '');
-  const seletores = [...css.matchAll(/([^{}]+)\{[^{}]*\}/g)].map((m) => m[1].trim());
-  assert.ok(seletores.length > 20);
-  seletores.forEach((s) => s.split(',').forEach((x) => assert.match(x.trim(), /^\.kf3/, 'seletor fora da prévia: ' + x)));
+test('F4.4b: o painel flutuante da prévia saiu (o drawer da ficha nova o substitui); o render e o ouro ficam', () => {
+  // nem o css do painel, nem quem o pedia, nem o nó #kf3-previa no código
+  assert.equal(fs.existsSync(path.join(A.RAIZ, 'css', 'ficha-previa.css')), false, 'css/ficha-previa.css removido');
+  const semComentario = (t) => t.replace(/\/\*[\s\S]*?\*\//g, '').replace(/^\s*\/\/.*$/gm, '');
+  const fonte = semComentario(fs.readFileSync(path.join(A.RAIZ, 'js', 'ficha', 'kh-previa.js'), 'utf8'));
+  assert.doesNotMatch(fonte, /ficha-previa\.css|kf3-previa|createElement|appendChild|addEventListener/, 'o KhPrevia não monta nada');
+  const art = semComentario(fs.readFileSync(path.join(A.RAIZ, 'js', 'ficha.js'), 'utf8'));
+  assert.doesNotMatch(art, /ficha-previa\.css|kf3-previa/);
   const paginas = fs.readdirSync(path.join(A.RAIZ, 'pages')).filter((n) => n.endsWith('.html')).map((n) => path.join('pages', n)).concat(['index.html']);
   paginas.forEach((p) => assert.doesNotMatch(fs.readFileSync(path.join(A.RAIZ, p), 'utf8'), /ficha-previa\.css/, p));
-  assert.match(fs.readFileSync(path.join(A.RAIZ, 'js', 'ficha', 'kh-previa.js'), 'utf8'), /css\/ficha-previa\.css/);
+  // o que fica: as puras (o render é o ouro acima) e o iniciar, que só liga e lembra
+  ['ativacao', 'arquivos', 'carregar', 'calcular', 'render', 'listaAvisos', 'iniciar'].forEach((k) => assert.equal(typeof P[k], 'function', k));
 });

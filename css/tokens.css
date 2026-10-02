@@ -95,6 +95,7 @@
     --z-dica: 105;
     --z-painel-esq: 110;
     --z-menu-mobile: 200;
+    --z-ficha3: 300;     /* drawer da ficha nova (F4.4b, só com a prévia): acima da nav e do painel de receita, abaixo dos pop-ups e da ficha atual */
     --z-popover: 400;
     --z-topo: 450;
     --z-ficha: 600;
@@ -104,6 +105,10 @@
     /* larguras dos painéis laterais */
     --esq-w: 340px;
     --dir-w: 240px;
+    /* drawer da ficha nova (F4.4b, docs/ficha-digital/06-f4-drawer.md): aberto e
+       trilho. Só valem com a prévia (html[data-ficha3]); não é o --dir-w (right-bar) */
+    --ficha3-w: 380px;
+    --ficha3-trilho: 48px;
 
     /* recursos — lei de cor (D28): Saúde vermelho, Stamina amarelo, Éter verde e roxo */
     --recurso-saude: #ef4444;
@@ -130,6 +135,6 @@
     --ramo-teurgo-academico: #3b82f6; --ramo-teurgo-academico-escuro: #1e3a5f; --ramo-teurgo-receptaculo: #a855f7; --ramo-teurgo-receptaculo-escuro: #4c1d95; --ramo-teurgo-arauto: #f59e0b; --ramo-teurgo-arauto-escuro: #78350f;
 }
 @media (min-width: 1800px) {
-    :root { --esq-w: 400px; }
+    :root { --esq-w: 400px; --ficha3-w: 460px; }
 }
 }

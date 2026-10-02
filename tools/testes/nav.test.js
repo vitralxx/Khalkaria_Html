@@ -311,3 +311,36 @@ test('boot do <head>: html[data-ficha-previa] com a chave da prévia ou ?ficha=v
   assert.strictEqual(roda({ localStorage: ls(null), location: { search: '?ficha=%E0' } }), null, 'URL malformada não lança');
   assert.doesNotMatch(js, /document\.body/, 'o boot não toca no body');
 });
+
+test('boot do <head>: html[data-ficha3] com o estado do drawer da ficha nova, SÓ com a prévia (F4.4b)', () => {
+  const boot = fs.readFileSync(path.join(__dirname, '..', '..', 'partials', 'head-boot.html'), 'utf8');
+  const js = boot.replace(/^<script[^>]*>|<\/script>\s*$/g, '');
+  // st: o localStorage (chave -> valor); bloqueado: toda leitura lança; soDock: só a do dock lança
+  const ls = (st, bloqueado, soDock) => ({ getItem: (k) => {
+    if (bloqueado || (soDock && k === 'khalkaria_ficha3_dock')) throw new Error('bloqueado');
+    return k in st ? st[k] : null;
+  } });
+  const roda = (ctx) => {
+    const htmlEl = new El('html');
+    vm.runInNewContext(js, Object.assign({ document: { documentElement: htmlEl }, JSON, matchMedia: () => ({ matches: false }) }, ctx));
+    assert.strictEqual(htmlEl.getAttribute('data-movimento'), 'normal', 'o resto do boot segue');
+    return [htmlEl.getAttribute('data-ficha-previa'), htmlEl.getAttribute('data-ficha3')];
+  };
+  const P = { khalkaria_ficha_previa: '1' };
+  // sem a prévia: nada, mesmo com o dock guardado
+  assert.deepStrictEqual(roda({ localStorage: ls({}) }), [null, null]);
+  assert.deepStrictEqual(roda({ localStorage: ls({ khalkaria_ficha3_dock: 'aberto' }) }), [null, null]);
+  assert.deepStrictEqual(roda({ localStorage: ls({ khalkaria_ficha3_dock: 'aberto' }), location: { search: '?ficha=v2' } }), [null, null]);
+  // com a prévia: o padrão é o trilho; só "aberto" abre; lixo vale o padrão
+  assert.deepStrictEqual(roda({ localStorage: ls(P) }), ['', 'trilho']);
+  assert.deepStrictEqual(roda({ localStorage: ls(Object.assign({ khalkaria_ficha3_dock: 'aberto' }, P)) }), ['', 'aberto']);
+  assert.deepStrictEqual(roda({ localStorage: ls(Object.assign({ khalkaria_ficha3_dock: 'trilho' }, P)) }), ['', 'trilho']);
+  assert.deepStrictEqual(roda({ localStorage: ls(Object.assign({ khalkaria_ficha3_dock: 'ABERTO' }, P)) }), ['', 'trilho']);
+  assert.deepStrictEqual(roda({ localStorage: ls({ khalkaria_ficha3_dock: 'aberto' }), location: { search: '?ficha=v3' } }), ['', 'aberto']);
+  // storage bloqueado: a prévia pela URL, o drawer no trilho; o dock que lança não derruba nada
+  assert.deepStrictEqual(roda({ localStorage: ls({}, true), location: { search: '?ficha=v3' } }), ['', 'trilho']);
+  assert.deepStrictEqual(roda({ localStorage: ls(Object.assign({ khalkaria_ficha3_dock: 'aberto' }, P), false, true) }), ['', 'trilho']);
+  assert.deepStrictEqual(roda({ localStorage: ls({}, true) }), [null, null]);
+  // o boot só LÊ (nenhuma escrita no storage)
+  assert.doesNotMatch(js, /setItem|removeItem/);
+});

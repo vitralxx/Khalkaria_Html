@@ -33,6 +33,9 @@
  * Redesenho (kf:mudou, drawer, storage) por trocaHTML: só troca o contêiner que
  * mudou e devolve foco, <details> aberto e dica sob o mouse ao equivalente novo.
  * A dica da conta é presa à caixa da página por encaixa() ao abrir (hover/foco).
+ * Os dois são do KhRedesenho (js/ficha/kh-redesenho.js, no bundle desde a
+ * F4.4b, porque o drawer da ficha nova faz o mesmo), com o prefixo 'fp'.
+ * Com a prévia, o drawer da ficha nova (KhFichaDrawer) NÃO monta nesta página.
  * Os avisos são os da prévia (KhPrevia.listaAvisos, fonte única).
  *
  * No node (tools/testes/ficha-pagina.test.js) exporta por module.exports e
@@ -197,123 +200,24 @@
     }
 
 
-    // ---------------- a dica da conta dentro da página ----------------
-    // A dica nasce centrada sob o número (css: translateX(-50%) mais --fp-dx).
-    // Ao abrir (hover ou foco), o JS a mede e a empurra para dentro da caixa da
-    // página (#fp, que fica à direita da nav fixa e à esquerda da calha da aba
-    // FICHA): nunca passa da janela (sem rolagem horizontal) nem fica embaixo da
-    // nav. Sem espaço embaixo e com espaço em cima, abre para cima.
-    // Puro: r = retângulo da dica sem deslocamento; lim = {min, max} em x.
-    var MARGEM_DICA = 8;
-    function encaixeDica(r, lim) {
-      var dx = 0;
-      if (r.right > lim.max) dx = lim.max - r.right;
-      if (r.left + dx < lim.min) dx = lim.min - r.left;
-      return Math.round(dx);
+    // ---------------- a dica da conta e o redesenho: do KhRedesenho ----------------
+    // A dica nasce centrada sob o número e, ao abrir (hover ou foco), é empurrada
+    // para dentro da caixa da página (#fp, à direita da nav fixa e à esquerda da
+    // calha da aba FICHA). O redesenho (kf:mudou, drawer, storage) troca só o
+    // contêiner que mudou e devolve foco, <details> aberto e dica sob o mouse ao
+    // equivalente novo. Os dois moram no bundle (js/ficha/kh-redesenho.js), porque
+    // o drawer da ficha nova (F4.4) faz o mesmo; aqui, com o prefixo da página
+    // (--fp-dx, data-fp-foco, data-fp-dica).
+    var KhRedesenho = emNode ? require('./ficha/kh-redesenho.js') : raiz.KhRedesenho;
+    var REDESENHO = KhRedesenho ? KhRedesenho.criar({ prefixo: PREFIXO }) : null;
+    var FOCAVEIS = KhRedesenho ? KhRedesenho.FOCAVEIS : '';
+    function encaixeDica(r, lim) { return KhRedesenho.encaixeDica(r, lim); }
+    function encaixa(conta, caixa, win) { return REDESENHO ? REDESENHO.encaixa(conta, caixa, win) : false; }
+    function trocaHTML(doc, cont, html, reserva, caixa, win) {
+      return REDESENHO ? REDESENHO.trocaHTML(doc, cont, html, reserva, caixa, win) : false;
     }
-    // a dica de uma conta (.kh-conta) aberta agora; false se ainda está fechada
-    function encaixa(conta, caixa, win) {
-      var d = conta && conta.querySelector ? conta.querySelector('.kh-conta-dica') : null;
-      if (!d || !d.getBoundingClientRect || !caixa) return false;
-      d.style.removeProperty('--fp-dx');
-      d.style.removeProperty('max-width');
-      conta.removeAttribute('data-dica-acima');
-      var r = d.getBoundingClientRect();
-      if (!r.width) return false;
-      var c = caixa.getBoundingClientRect();
-      var lim = { min: c.left + MARGEM_DICA, max: c.right - MARGEM_DICA };
-      if (r.width > lim.max - lim.min) {
-        d.style.maxWidth = Math.max(0, Math.floor(lim.max - lim.min)) + 'px';
-        r = d.getBoundingClientRect();
-      }
-      var dx = encaixeDica(r, lim);
-      if (dx) d.style.setProperty('--fp-dx', dx + 'px');
-      var alto = win && win.innerHeight, rc = conta.getBoundingClientRect();
-      if (alto && r.bottom > alto - MARGEM_DICA && rc.top - 6 - r.height >= MARGEM_DICA) conta.setAttribute('data-dica-acima', '');
-      return true;
-    }
-
-    // ---------------- redesenho sem perder o lugar ----------------
-    // A página redesenha o topo e os painéis a cada mudança da ficha (kf:mudou,
-    // campo do drawer, storage de outra aba). Antes de trocar o HTML de um
-    // contêiner, guarda o que o jogador tinha nele: o elemento com o foco (pela
-    // chave: o data-caminho da conta, ou o data-campo, ou a tag e a classe, mais
-    // a ordem entre os de mesma chave), os <details> abertos e a conta sob o
-    // mouse. Depois de trocar, devolve o foco ao equivalente (sem rolar; se ele
-    // sumiu, à reserva), reabre os <details> e deixa a dica aberta até o mouse
-    // se mexer. Contêiner cujo HTML não mudou não é tocado.
-    var FOCAVEIS = 'a[href], button, summary, select, input, textarea, [tabindex]';
     function arr(x) { return Array.prototype.slice.call(x || []); }
     function qsa(cont, sel) { return cont && cont.querySelectorAll ? arr(cont.querySelectorAll(sel)) : []; }
-    function chaveUI(el) {
-      var c = el.getAttribute('data-caminho');
-      if (c != null) return 'c:' + c;
-      c = el.getAttribute('data-campo');
-      if (c != null) return el.tagName + ':' + c;
-      return el.tagName + '.' + str(el.getAttribute('class'));
-    }
-    // {chave, ordem} de el entre os elementos de mesma chave da lista
-    function marcaUI(l, el) {
-      if (!el) return null;
-      var k = chaveUI(el), n = 0;
-      for (var i = 0; i < l.length; i++) {
-        if (l[i] === el) return { chave: k, ordem: n };
-        if (chaveUI(l[i]) === k) n++;
-      }
-      return null;
-    }
-    // o equivalente na lista nova (se agora há menos dessa chave, o último)
-    function achaUI(l, m) {
-      if (!m) return null;
-      var ult = null, n = 0;
-      for (var i = 0; i < l.length; i++) {
-        if (chaveUI(l[i]) !== m.chave) continue;
-        if (n++ === m.ordem) return l[i];
-        ult = l[i];
-      }
-      return ult;
-    }
-    function casa(el, sel) { try { return !!el.matches(sel); } catch (e) { return false; } }
-    function foca(el) { try { el.focus({ preventScroll: true }); } catch (e) { el.focus(); } }
-    // troca o HTML de cont preservando foco, <details> abertos e a dica sob o
-    // mouse; reserva = quem recebe o foco se o elemento focado sumiu. true se trocou.
-    function trocaHTML(doc, cont, html, reserva, caixa, win) {
-      if (!cont || cont._fpHtml === html) return false;
-      var ativo = doc.activeElement;
-      var dentro = !!ativo && ativo !== cont && !!cont.contains && cont.contains(ativo);
-      var foco = dentro ? marcaUI(qsa(cont, FOCAVEIS), ativo) : null;
-      var visivel = dentro && (casa(ativo, ':focus-visible') || ativo.hasAttribute('data-fp-foco'));
-      var dets = qsa(cont, 'details');
-      var abertos = dets.filter(function (d) { return d.open; }).map(function (d) { return marcaUI(dets, d); });
-      var contas = qsa(cont, '.kh-conta');
-      var sob = null;
-      contas.some(function (c) { if (casa(c, ':hover') || c.hasAttribute('data-fp-dica')) { sob = marcaUI(contas, c); } return !!sob; });
-
-      cont.innerHTML = html;
-      cont._fpHtml = html;
-
-      dets = qsa(cont, 'details');
-      abertos.forEach(function (m) { var d = achaUI(dets, m); if (d) d.open = true; });
-      if (sob) {
-        var s = achaUI(qsa(cont, '.kh-conta'), sob);
-        if (s) {
-          s.setAttribute('data-fp-dica', '');
-          if (caixa) caixa._fpDica = true;   // o próximo movimento do mouse a solta (montar)
-          encaixa(s, caixa, win);
-        }
-      }
-      if (dentro) {
-        var el = foco ? achaUI(qsa(cont, FOCAVEIS), foco) : null;
-        if (!el) el = reserva || (cont.hasAttribute('tabindex') ? cont : null);
-        if (el && el.focus) {
-          foca(el);
-          // o foco por teclado segue visível (contorno e dica) no elemento novo
-          if (visivel && !casa(el, ':focus-visible')) el.setAttribute('data-fp-foco', '');
-          if (el.getAttribute('data-caminho') != null) encaixa(el, caixa, win);
-        }
-      }
-      return true;
-    }
 
     // ---------------- página (navegador) ----------------
     function iniciar(win) {

@@ -168,11 +168,18 @@
     tipoPadrao: 'item',
     largura: 340,
     // painel de receita à esquerda: o pop-up sai à direita dele; inventário à
-    // direita: sai à esquerda dele
+    // direita: sai à esquerda dele. Com o drawer da ficha nova (F4.4b, só com a
+    // prévia) na borda direita, o lado direito acaba nele: sem espaço até ali,
+    // o pop-up sai à esquerda do card, nunca embaixo do drawer
     xPreferido: function (alvo, W, VAO) {
       var rc = alvo.closest('#bz-receita'), inv = alvo.closest('#bz-inventario');
       if (rc) return rc.getBoundingClientRect().right + VAO;
       if (inv) return inv.getBoundingClientRect().left - VAO - W;
+      var FD = window.KhFichaDrawer, borda = FD && FD.borda ? FD.borda() : null;
+      if (borda != null) {
+        var r = alvo.getBoundingClientRect();
+        if (r.right + VAO + W > borda - VAO) return r.left - VAO - W;
+      }
       return null;
     },
     // na Lista o foco fica na linha (tr): o gatilho é a célula Nome dela

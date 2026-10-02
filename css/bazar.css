@@ -72,6 +72,11 @@ body[data-no-rightbar] .main-content { margin-right: 0; max-width: none; }
     position: relative;
     padding: 12px 40px 32px 16px;
 }
+/* com o drawer da ficha nova (F4.4b, só com a prévia): o Bazar NÃO é empurrado
+   pelo drawer aberto, que fica por cima até a F4b. Só a calha cresce o trilho
+   (48px, na borda): a aba FICHA desce para a esquerda dele e segue sem cobrir
+   o inventário. */
+html[data-ficha3] .bazar-page { padding-right: calc(40px + var(--ficha3-trilho)); }
 /* painel de receita aberto: ele cobre a nav e o main recua SEM transição */
 body.bz-rc-aberta .bazar-page { margin-left: var(--bz-rc-w); }
 

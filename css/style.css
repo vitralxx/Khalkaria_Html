@@ -1574,6 +1574,10 @@ table.compact th { padding: 0.75rem; font-size: 0.8rem; }
     color: var(--bg-primary);
     transform: translateY(-3px);
 }
+/* com o drawer da ficha nova (F4.4b, só com a prévia): à esquerda do trilho
+   ou do drawer aberto, com a mesma folga de 30px */
+html[data-ficha3] body:not([data-ficha-pagina]) .back-to-top { right: calc(30px + var(--ficha3-trilho)); }
+html[data-ficha3="aberto"] body:not([data-ficha-pagina]) .back-to-top { right: calc(30px + var(--ficha3-w)); }
 
 /* Ornamentos de Raízes */
 .root-ornament {
@@ -1806,6 +1810,39 @@ table.compact th { padding: 0.75rem; font-size: 0.8rem; }
     .right-bar { display: none; }
     .main-content { margin-right: 0; }
 }
+}
+
+@layer layout {
+/* ============================
+   DRAWER DA FICHA NOVA (F4.4b, docs/ficha-digital/06-f4-drawer.md)
+   ============================
+   Só com a prévia: o partials/head-boot.html marca html[data-ficha3="trilho"
+   |"aberto"] antes do primeiro desenho (e o js/ficha/kh-ficha-drawer.js troca);
+   sem a marca, nada aqui casa. Aqui só o que tem de valer ANTES do drawer
+   montar (o CSS dele, css/ficha-drawer.css, chega com o script): o conteúdo
+   empurrado e o fundo de reserva no lugar do drawer, para nada saltar.
+   Fora: a página da ficha (ela já é a ficha nova; o drawer não monta lá) e o
+   Bazar, que não é empurrado até a F4b (o drawer aberto fica por cima; a
+   calha do trilho é do css/bazar.css). Abaixo de 1100 px o aberto também fica
+   por cima: o conteúdo só cede o trilho. */
+html[data-ficha3] .right-bar { display: none; }
+/* min-width 0: o texto se rearruma na largura que sobra (sem ele, o item flex
+   não encolhe abaixo da tabela mais larga e a coluna inteira passa por baixo do drawer) */
+html[data-ficha3] body:not([data-bazar]):not([data-ficha-pagina]) .main-content { margin-right: var(--ficha3-trilho); min-width: 0; }
+@media (min-width: 1100px) {
+    html[data-ficha3="aberto"] body:not([data-bazar]):not([data-ficha-pagina]) .main-content { margin-right: var(--ficha3-w); }
+}
+/* a reserva: o fundo do drawer, logo abaixo dele (ele monta por cima) */
+html[data-ficha3] body:not([data-ficha-pagina])::after {
+    content: '';
+    position: fixed; top: 0; right: 0; bottom: 0;
+    width: var(--ficha3-trilho);
+    z-index: calc(var(--z-ficha3) - 1);
+    background: var(--grao), var(--painel);
+    border-left: 1px solid color-mix(in srgb, var(--amber-dim) 55%, transparent);
+    pointer-events: none;
+}
+html[data-ficha3="aberto"] body:not([data-ficha-pagina])::after { width: var(--ficha3-w); }
 }
 
 @layer componentes {

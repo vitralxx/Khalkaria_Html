@@ -1,5 +1,5 @@
 /* Khalkaria — Ficha · KhPrevia: PRÉVIA ESCONDIDA da ficha v3 (F3c, modo sombra).
- * Painel à direita, SOMENTE LEITURA, para o Pedro conferir o motor: a ficha v2
+ * O motor da ficha nova visto de fora, SOMENTE LEITURA: a ficha v2
  * (khalkaria_ficha) migrada EM MEMÓRIA pelo KhEstado.sombra e calculada pelo
  * KhRegras, cada número com o componente "conta" (KhConta, js/ficha/kh-conta.js;
  * css/componentes.css) e o tooltip da fórmula (simbólica + numérica, a fonte de
@@ -8,18 +8,22 @@
  *
  * Só liga com ?ficha=v3 na URL (que lembra a escolha em localStorage
  * khalkaria_ficha_previa=1, para seguir pela navegação) ou com essa chave já
- * gravada; o botão "Sair da prévia" apaga a chave. Sem isso, nada acontece:
- * nenhum nó no DOM, nenhum CSS (o css/ficha-previa.css só é pedido aqui),
- * nenhum fetch, nenhum ouvinte. A v2.1 continua sendo a ficha ativa: a prévia
- * NUNCA grava ficha, índice, chave v3 nem o marcador khalkaria_ficha_dono (F4);
- * as únicas escritas são a da própria chave da prévia e, em sessionStorage,
- * khalkaria_ficha_previa_recolhida (o painel recolhido nesta aba).
+ * gravada. Sem isso, nada acontece. A v2.1 continua sendo a ficha ativa: a
+ * prévia NUNCA grava ficha, índice, chave v3 nem o marcador khalkaria_ficha_dono
+ * (F4); a única escrita daqui é a da própria chave da prévia (iniciar).
+ *
+ * F4.4b: o painel flutuante (#kf3-previa, css/ficha-previa.css) SAIU. Com a
+ * prévia ligada, quem mostra a ficha nova fora da página da ficha é o drawer
+ * docked (js/ficha/kh-ficha-drawer.js, KhFichaDrawer), que chama o iniciar daqui
+ * (ativação e "lembrar") e usa o carregar e o calcular. O render fica: é o
+ * snapshot de ouro do motor (tools/testes/fixtures/previa-render.golden.html),
+ * e a lista de avisos (listaAvisos) é a da página e do drawer.
  *
  * Partes puras (testadas no node, tools/testes/previa.test.js): ativacao,
  * calcular (catálogo -> sombra -> avaliar), render (HTML + caminhos mostrados) e
  * listaAvisos (os avisos do motor e da migração, que a página da ficha também usa).
  * No node exporta por module.exports (carregado sozinho); no artefato js/ficha.js
- * o export já é o KhInv e este módulo só roda no navegador.
+ * o export já é o KhInv e este módulo só registra window.KhPrevia no navegador.
  * Fonte: js/ficha/kh-previa.js (o js/ficha.js é o ARTEFATO concatenado).
  */
 (function (raiz) {
@@ -33,8 +37,6 @@
 
   var KhPrevia = (function () {
     var CHAVE = 'khalkaria_ficha_previa';
-    var CHAVE_V2 = 'khalkaria_ficha';
-    var CHAVE_RECOLHIDA = 'khalkaria_ficha_previa_recolhida';   // sessionStorage: a aba lembra o painel recolhido
     // o que o motor precisa em runtime (só na prévia): os mesmos arquivos que o
     // tools/testes/estado-apoio.js lê do disco (o teste confere as listas)
     var CATALOGOS = ['beneficio', 'carta', 'condicao', 'dor', 'magia', 'marca', 'origem', 'raca',
@@ -332,7 +334,10 @@
       return erros.length ? '<p class="kf3-nota kf3-aviso">Não carregou: ' + erros.map(esc).join(', ') + '</p>' : '';
     }
 
-    // ---------------- painel (navegador) ----------------
+    // ---------------- ligar (navegador) ----------------
+    // A prévia está ligada nesta página? Com ?ficha=v3, lembra a escolha (grava
+    // a chave da prévia, a única escrita deste módulo). Não monta nada: o
+    // drawer da ficha nova (KhFichaDrawer) chama este iniciar e monta a si mesmo.
     function iniciar(win) {
       if (!win || !win.document || !win.location) return false;
       var ls = null;
@@ -340,94 +345,7 @@
       var at = ativacao(win.location.search, ls);
       if (!at.ativa) return false;
       if (at.lembrar) { try { ls.setItem(CHAVE, '1'); } catch (e) { /* segue só nesta página */ } }
-      var doc = win.document;
-      var vai = function () { montar(win, ls); };
-      if (doc.readyState === 'loading') doc.addEventListener('DOMContentLoaded', vai);
-      else vai();
       return true;
-    }
-    function montar(win, ls) {
-      var doc = win.document;
-      if (doc.getElementById('kf3-previa')) return;
-      // a página da ficha (#fp, F4.3) já é a ficha nova inteira: o painel não abre
-      // por cima dela (nem carrega e calcula tudo uma segunda vez)
-      if (doc.getElementById('fp')) return;
-      var s = doc.querySelector('script[src*="js/ficha.js"]');
-      var src = s ? s.src : '';
-      var base = src ? new URL('../', src).href : '';
-      var versao = src ? new URL(src).search : '';
-      var link = doc.createElement('link');
-      link.rel = 'stylesheet';
-      link.href = base + 'css/ficha-previa.css' + versao;
-      link.setAttribute('data-kf3', '');
-      var painel = doc.createElement('aside');
-      painel.id = 'kf3-previa';
-      painel.className = 'kf3';
-      painel.hidden = true;
-      painel.setAttribute('aria-label', 'Prévia da ficha v3');
-      // o MutationObserver da v2 (decoração dos cards) ignora o que redesenha aqui
-      painel.setAttribute('data-kf-ignorar', '');
-      painel.innerHTML =
-        '<div class="kf3-topo"><div class="kf3-tit"><span class="kf3-tit-nome">Prévia da ficha v3</span>' +
-        '<span class="kf3-tit-sub">modo sombra · somente leitura · a ficha ativa continua sendo a v2</span></div>' +
-        '<button type="button" class="kh-btn kf3-recolher" aria-expanded="true" aria-controls="kf3-corpo">Recolher</button>' +
-        '<button type="button" class="kh-btn kf3-sair">Sair da prévia</button></div>' +
-        '<div class="kf3-corpo" id="kf3-corpo"><p class="kf3-vazio">Carregando o catálogo e as regras…</p></div>' +
-        '<div class="kf3-sprite" aria-hidden="true"></div>';
-      var mostrar = function () { painel.hidden = false; };
-      link.addEventListener('load', mostrar);
-      link.addEventListener('error', mostrar);
-      doc.head.appendChild(link);
-      doc.body.appendChild(painel);
-
-      var corpo = painel.querySelector('.kf3-corpo'), dados = null, t = null;
-      function desenha() {
-        if (!dados) return;
-        var res = calcular(ls, dados, versao);
-        var topo = corpo.scrollTop;
-        corpo.innerHTML = render(res).html;
-        corpo.scrollTop = topo;
-      }
-      // 350 ms: depois do debounce de 200 ms com que o drawer v2 grava o que se digita
-      function agenda() { clearTimeout(t); t = setTimeout(desenha, 350); }
-      function aoStorage(e) { if (e && e.key === CHAVE_V2) agenda(); }
-      // campos digitados do drawer v2: vários só gravam (save), sem kf:mudou
-      function aoCampo(e) { if (e && e.target && e.target.closest && e.target.closest('#kf-drawer')) agenda(); }
-      doc.addEventListener('kf:mudou', agenda);
-      doc.addEventListener('input', aoCampo, true);
-      doc.addEventListener('change', aoCampo, true);
-      win.addEventListener('storage', aoStorage);
-
-      var btR = painel.querySelector('.kf3-recolher'), ss = null;
-      try { ss = win.sessionStorage; } catch (e) { ss = null; }
-      function recolhe(rec) {
-        painel.classList.toggle('kf3-recolhida', rec);
-        btR.setAttribute('aria-expanded', rec ? 'false' : 'true');
-        btR.textContent = rec ? 'Prévia v3' : 'Recolher';
-      }
-      if (ler(ss, CHAVE_RECOLHIDA) === '1') recolhe(true);
-      btR.addEventListener('click', function () {
-        var rec = !painel.classList.contains('kf3-recolhida');
-        recolhe(rec);
-        try { if (rec) ss.setItem(CHAVE_RECOLHIDA, '1'); else ss.removeItem(CHAVE_RECOLHIDA); } catch (e) { /* só nesta página */ }
-      });
-      painel.querySelector('.kf3-sair').addEventListener('click', function () {
-        try { ls.removeItem(CHAVE); } catch (e) { /* nada */ }
-        try { ss.removeItem(CHAVE_RECOLHIDA); } catch (e) { /* nada */ }
-        clearTimeout(t);
-        doc.removeEventListener('kf:mudou', agenda);
-        doc.removeEventListener('input', aoCampo, true);
-        doc.removeEventListener('change', aoCampo, true);
-        win.removeEventListener('storage', aoStorage);
-        painel.remove();
-        link.remove();
-      });
-
-      carregar(win.fetch.bind(win), base, versao).then(function (d) {
-        dados = d;
-        if (d.glifos) painel.querySelector('.kf3-sprite').innerHTML = d.glifos;
-        desenha();
-      });
     }
 
     return { CHAVE: CHAVE, CATALOGOS: CATALOGOS.slice(), CLASSES: CLASSES.slice(), RACAS: RACAS.slice(),
@@ -437,5 +355,4 @@
 
   if (emNode) { module.exports = KhPrevia; return; }
   raiz.KhPrevia = KhPrevia;
-  try { KhPrevia.iniciar(raiz); } catch (e) { /* a prévia nunca derruba a página */ }
 })(typeof window !== 'undefined' ? window : this);

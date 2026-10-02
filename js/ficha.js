@@ -6060,9 +6060,193 @@
   raiz.KhConta = KhConta;
 })(typeof window !== 'undefined' ? window : this);
 
+// ==== js/ficha/kh-redesenho.js ====
+/* Khalkaria — Ficha · KhRedesenho: redesenhar sem perder o lugar, e a dica da conta dentro da caixa (F4.4b).
+ * Saiu do js/ficha-pagina.js (F4.3) para o bundle porque tem dois donos: a
+ * página da ficha (pages/ficha.html, prefixo 'fp') e o drawer da ficha nova
+ * (js/ficha/kh-ficha-drawer.js, todas as páginas, prefixo 'fd'). Os dois
+ * redesenham o mesmo HTML do KhFichaAbas a cada mudança da ficha e prendem a
+ * dica da conta à própria caixa. Carregar este arquivo não muda nada: não toca
+ * DOM, storage nem rede; só age quando alguém chama.
+ *
+ *   var R = KhRedesenho.criar({ prefixo: 'fp' });
+ *   R.trocaHTML(doc, cont, html, reserva, caixa, win)  // troca o HTML de cont sem perder foco, <details> e dica
+ *   R.encaixa(conta, caixa, win)                      // empurra a dica aberta para dentro da caixa
+ *   R.encaixeDica(retangulo, {min, max})              // o deslocamento (puro)
+ *
+ * O prefixo dá os nomes das marcas: a variável do deslocamento da dica
+ * (--<p>-dx), as marcas do elemento novo depois da troca (data-<p>-foco: o
+ * contorno do foco de teclado; data-<p>-dica: a dica sob o mouse, aberta até o
+ * mouse mexer), a memória do HTML no contêiner (_<p>Html) e o aviso para quem
+ * montou soltar a dica no próximo movimento (caixa._<p>Dica). Com 'fp', são os
+ * nomes de antes da extração (os testes da página não mudam).
+ *
+ * No node exporta por module.exports (carregado sozinho); no artefato js/ficha.js
+ * o export já é o KhInv e este módulo só registra window.KhRedesenho no navegador.
+ * Fonte: js/ficha/kh-redesenho.js (o js/ficha.js é o ARTEFATO concatenado).
+ */
+(function (raiz) {
+  'use strict';
+
+  var emNode = typeof module === 'object' && module && module.exports;
+  if (emNode && Object.keys(module.exports).length) return;   // artefato no node: só o KhInv
+
+  var KhRedesenho = (function () {
+    var RE_PREFIXO = /^[a-z][a-z0-9-]*$/i;   // o mesmo do KhConta
+    var MARGEM_DICA = 8;
+    var FOCAVEIS = 'a[href], button, summary, select, input, textarea, [tabindex]';
+
+    function str(x) { return x == null ? '' : String(x); }
+    function arr(x) { return Array.prototype.slice.call(x || []); }
+    function qsa(cont, sel) { return cont && cont.querySelectorAll ? arr(cont.querySelectorAll(sel)) : []; }
+    function casa(el, sel) { try { return !!el.matches(sel); } catch (e) { return false; } }
+    function foca(el) { try { el.focus({ preventScroll: true }); } catch (e) { el.focus(); } }
+
+    // ---------------- a dica da conta dentro da caixa ----------------
+    // A dica nasce centrada sob o número (css: translateX(-50%) mais --<p>-dx).
+    // Ao abrir (hover ou foco), quem montou a mede e a empurra para dentro da
+    // caixa (a página, à direita da nav fixa; o drawer, na largura dele): nunca
+    // passa da janela (sem rolagem horizontal) nem sai da caixa. Sem espaço
+    // embaixo e com espaço em cima, abre para cima.
+    // Puro: r = retângulo da dica sem deslocamento; lim = {min, max} em x.
+    function encaixeDica(r, lim) {
+      var dx = 0;
+      if (r.right > lim.max) dx = lim.max - r.right;
+      if (r.left + dx < lim.min) dx = lim.min - r.left;
+      return Math.round(dx);
+    }
+
+    // a fábrica: as marcas com o prefixo de quem desenha
+    function criar(op) {
+      op = op || {};
+      var P = str(op.prefixo);
+      if (!RE_PREFIXO.test(P)) throw new Error('KhRedesenho: prefixo inválido "' + P + '" (letras, dígitos e hífen)');
+      var VAR_DX = '--' + P + '-dx';
+      var MARCA_FOCO = 'data-' + P + '-foco', MARCA_DICA = 'data-' + P + '-dica';
+      var MEMO_HTML = '_' + P + 'Html', MEMO_DICA = '_' + P + 'Dica';
+
+      // a dica de uma conta (.kh-conta) aberta agora; false se ainda está fechada
+      function encaixa(conta, caixa, win) {
+        var d = conta && conta.querySelector ? conta.querySelector('.kh-conta-dica') : null;
+        if (!d || !d.getBoundingClientRect || !caixa) return false;
+        d.style.removeProperty(VAR_DX);
+        d.style.removeProperty('max-width');
+        conta.removeAttribute('data-dica-acima');
+        var r = d.getBoundingClientRect();
+        if (!r.width) return false;
+        var c = caixa.getBoundingClientRect();
+        var lim = { min: c.left + MARGEM_DICA, max: c.right - MARGEM_DICA };
+        if (r.width > lim.max - lim.min) {
+          d.style.maxWidth = Math.max(0, Math.floor(lim.max - lim.min)) + 'px';
+          r = d.getBoundingClientRect();
+        }
+        var dx = encaixeDica(r, lim);
+        if (dx) d.style.setProperty(VAR_DX, dx + 'px');
+        var alto = win && win.innerHeight, rc = conta.getBoundingClientRect();
+        if (alto && r.bottom > alto - MARGEM_DICA && rc.top - 6 - r.height >= MARGEM_DICA) conta.setAttribute('data-dica-acima', '');
+        return true;
+      }
+
+      // ---------------- redesenho sem perder o lugar ----------------
+      // Antes de trocar o HTML de um contêiner, guarda o que o jogador tinha nele:
+      // o elemento com o foco (pela chave: o data-caminho da conta, ou o
+      // data-campo, ou a tag e a classe, mais a ordem entre os de mesma chave),
+      // os <details> abertos e a conta sob o mouse. Depois de trocar, devolve o
+      // foco ao equivalente (sem rolar; se ele sumiu, à reserva), reabre os
+      // <details> e deixa a dica aberta até o mouse se mexer. Contêiner cujo
+      // HTML não mudou não é tocado.
+      function chaveUI(el) {
+        var c = el.getAttribute('data-caminho');
+        if (c != null) return 'c:' + c;
+        c = el.getAttribute('data-campo');
+        if (c != null) return el.tagName + ':' + c;
+        return el.tagName + '.' + str(el.getAttribute('class'));
+      }
+      // {chave, ordem} de el entre os elementos de mesma chave da lista
+      function marcaUI(l, el) {
+        if (!el) return null;
+        var k = chaveUI(el), n = 0;
+        for (var i = 0; i < l.length; i++) {
+          if (l[i] === el) return { chave: k, ordem: n };
+          if (chaveUI(l[i]) === k) n++;
+        }
+        return null;
+      }
+      // o equivalente na lista nova (se agora há menos dessa chave, o último)
+      function achaUI(l, m) {
+        if (!m) return null;
+        var ult = null, n = 0;
+        for (var i = 0; i < l.length; i++) {
+          if (chaveUI(l[i]) !== m.chave) continue;
+          if (n++ === m.ordem) return l[i];
+          ult = l[i];
+        }
+        return ult;
+      }
+      // troca o HTML de cont preservando foco, <details> abertos e a dica sob o
+      // mouse; reserva = quem recebe o foco se o elemento focado sumiu. true se trocou.
+      function trocaHTML(doc, cont, html, reserva, caixa, win) {
+        if (!cont || cont[MEMO_HTML] === html) return false;
+        var ativo = doc.activeElement;
+        var dentro = !!ativo && ativo !== cont && !!cont.contains && cont.contains(ativo);
+        var foco = dentro ? marcaUI(qsa(cont, FOCAVEIS), ativo) : null;
+        var visivel = dentro && (casa(ativo, ':focus-visible') || ativo.hasAttribute(MARCA_FOCO));
+        var dets = qsa(cont, 'details');
+        var abertos = dets.filter(function (d) { return d.open; }).map(function (d) { return marcaUI(dets, d); });
+        var contas = qsa(cont, '.kh-conta');
+        var sob = null;
+        contas.some(function (c) { if (casa(c, ':hover') || c.hasAttribute(MARCA_DICA)) { sob = marcaUI(contas, c); } return !!sob; });
+
+        cont.innerHTML = html;
+        cont[MEMO_HTML] = html;
+
+        dets = qsa(cont, 'details');
+        abertos.forEach(function (m) { var d = achaUI(dets, m); if (d) d.open = true; });
+        if (sob) {
+          var s = achaUI(qsa(cont, '.kh-conta'), sob);
+          if (s) {
+            s.setAttribute(MARCA_DICA, '');
+            if (caixa) caixa[MEMO_DICA] = true;   // o próximo movimento do mouse a solta (quem montou)
+            encaixa(s, caixa, win);
+          }
+        }
+        if (dentro) {
+          var el = foco ? achaUI(qsa(cont, FOCAVEIS), foco) : null;
+          if (!el) el = reserva || (cont.hasAttribute('tabindex') ? cont : null);
+          if (el && el.focus) {
+            foca(el);
+            // o foco por teclado segue visível (contorno e dica) no elemento novo
+            if (visivel && !casa(el, ':focus-visible')) el.setAttribute(MARCA_FOCO, '');
+            if (el.getAttribute('data-caminho') != null) encaixa(el, caixa, win);
+          }
+        }
+        return true;
+      }
+
+      // as marcas do redesenho valem até o jogador agir: o foco sai (focusout
+      // tira a do foco), o mouse mexe (solta as dicas presas). Quem montou chama.
+      function soltaFoco(el) { if (el && el.removeAttribute) el.removeAttribute(MARCA_FOCO); }
+      function soltaDicas(caixa) {
+        if (!caixa || !caixa[MEMO_DICA]) return false;
+        caixa[MEMO_DICA] = false;
+        qsa(caixa, '[' + MARCA_DICA + ']').forEach(function (x) { x.removeAttribute(MARCA_DICA); });
+        return true;
+      }
+
+      return { prefixo: P, VAR_DX: VAR_DX, MARCA_FOCO: MARCA_FOCO, MARCA_DICA: MARCA_DICA,
+        encaixa: encaixa, trocaHTML: trocaHTML, soltaFoco: soltaFoco, soltaDicas: soltaDicas };
+    }
+
+    return { MARGEM_DICA: MARGEM_DICA, FOCAVEIS: FOCAVEIS, encaixeDica: encaixeDica, criar: criar };
+  })();
+
+  if (emNode) { module.exports = KhRedesenho; return; }
+  raiz.KhRedesenho = KhRedesenho;
+})(typeof window !== 'undefined' ? window : this);
+
 // ==== js/ficha/kh-previa.js ====
 /* Khalkaria — Ficha · KhPrevia: PRÉVIA ESCONDIDA da ficha v3 (F3c, modo sombra).
- * Painel à direita, SOMENTE LEITURA, para o Pedro conferir o motor: a ficha v2
+ * O motor da ficha nova visto de fora, SOMENTE LEITURA: a ficha v2
  * (khalkaria_ficha) migrada EM MEMÓRIA pelo KhEstado.sombra e calculada pelo
  * KhRegras, cada número com o componente "conta" (KhConta, js/ficha/kh-conta.js;
  * css/componentes.css) e o tooltip da fórmula (simbólica + numérica, a fonte de
@@ -6071,18 +6255,22 @@
  *
  * Só liga com ?ficha=v3 na URL (que lembra a escolha em localStorage
  * khalkaria_ficha_previa=1, para seguir pela navegação) ou com essa chave já
- * gravada; o botão "Sair da prévia" apaga a chave. Sem isso, nada acontece:
- * nenhum nó no DOM, nenhum CSS (o css/ficha-previa.css só é pedido aqui),
- * nenhum fetch, nenhum ouvinte. A v2.1 continua sendo a ficha ativa: a prévia
- * NUNCA grava ficha, índice, chave v3 nem o marcador khalkaria_ficha_dono (F4);
- * as únicas escritas são a da própria chave da prévia e, em sessionStorage,
- * khalkaria_ficha_previa_recolhida (o painel recolhido nesta aba).
+ * gravada. Sem isso, nada acontece. A v2.1 continua sendo a ficha ativa: a
+ * prévia NUNCA grava ficha, índice, chave v3 nem o marcador khalkaria_ficha_dono
+ * (F4); a única escrita daqui é a da própria chave da prévia (iniciar).
+ *
+ * F4.4b: o painel flutuante (#kf3-previa, css/ficha-previa.css) SAIU. Com a
+ * prévia ligada, quem mostra a ficha nova fora da página da ficha é o drawer
+ * docked (js/ficha/kh-ficha-drawer.js, KhFichaDrawer), que chama o iniciar daqui
+ * (ativação e "lembrar") e usa o carregar e o calcular. O render fica: é o
+ * snapshot de ouro do motor (tools/testes/fixtures/previa-render.golden.html),
+ * e a lista de avisos (listaAvisos) é a da página e do drawer.
  *
  * Partes puras (testadas no node, tools/testes/previa.test.js): ativacao,
  * calcular (catálogo -> sombra -> avaliar), render (HTML + caminhos mostrados) e
  * listaAvisos (os avisos do motor e da migração, que a página da ficha também usa).
  * No node exporta por module.exports (carregado sozinho); no artefato js/ficha.js
- * o export já é o KhInv e este módulo só roda no navegador.
+ * o export já é o KhInv e este módulo só registra window.KhPrevia no navegador.
  * Fonte: js/ficha/kh-previa.js (o js/ficha.js é o ARTEFATO concatenado).
  */
 (function (raiz) {
@@ -6096,8 +6284,6 @@
 
   var KhPrevia = (function () {
     var CHAVE = 'khalkaria_ficha_previa';
-    var CHAVE_V2 = 'khalkaria_ficha';
-    var CHAVE_RECOLHIDA = 'khalkaria_ficha_previa_recolhida';   // sessionStorage: a aba lembra o painel recolhido
     // o que o motor precisa em runtime (só na prévia): os mesmos arquivos que o
     // tools/testes/estado-apoio.js lê do disco (o teste confere as listas)
     var CATALOGOS = ['beneficio', 'carta', 'condicao', 'dor', 'magia', 'marca', 'origem', 'raca',
@@ -6395,7 +6581,10 @@
       return erros.length ? '<p class="kf3-nota kf3-aviso">Não carregou: ' + erros.map(esc).join(', ') + '</p>' : '';
     }
 
-    // ---------------- painel (navegador) ----------------
+    // ---------------- ligar (navegador) ----------------
+    // A prévia está ligada nesta página? Com ?ficha=v3, lembra a escolha (grava
+    // a chave da prévia, a única escrita deste módulo). Não monta nada: o
+    // drawer da ficha nova (KhFichaDrawer) chama este iniciar e monta a si mesmo.
     function iniciar(win) {
       if (!win || !win.document || !win.location) return false;
       var ls = null;
@@ -6403,94 +6592,7 @@
       var at = ativacao(win.location.search, ls);
       if (!at.ativa) return false;
       if (at.lembrar) { try { ls.setItem(CHAVE, '1'); } catch (e) { /* segue só nesta página */ } }
-      var doc = win.document;
-      var vai = function () { montar(win, ls); };
-      if (doc.readyState === 'loading') doc.addEventListener('DOMContentLoaded', vai);
-      else vai();
       return true;
-    }
-    function montar(win, ls) {
-      var doc = win.document;
-      if (doc.getElementById('kf3-previa')) return;
-      // a página da ficha (#fp, F4.3) já é a ficha nova inteira: o painel não abre
-      // por cima dela (nem carrega e calcula tudo uma segunda vez)
-      if (doc.getElementById('fp')) return;
-      var s = doc.querySelector('script[src*="js/ficha.js"]');
-      var src = s ? s.src : '';
-      var base = src ? new URL('../', src).href : '';
-      var versao = src ? new URL(src).search : '';
-      var link = doc.createElement('link');
-      link.rel = 'stylesheet';
-      link.href = base + 'css/ficha-previa.css' + versao;
-      link.setAttribute('data-kf3', '');
-      var painel = doc.createElement('aside');
-      painel.id = 'kf3-previa';
-      painel.className = 'kf3';
-      painel.hidden = true;
-      painel.setAttribute('aria-label', 'Prévia da ficha v3');
-      // o MutationObserver da v2 (decoração dos cards) ignora o que redesenha aqui
-      painel.setAttribute('data-kf-ignorar', '');
-      painel.innerHTML =
-        '<div class="kf3-topo"><div class="kf3-tit"><span class="kf3-tit-nome">Prévia da ficha v3</span>' +
-        '<span class="kf3-tit-sub">modo sombra · somente leitura · a ficha ativa continua sendo a v2</span></div>' +
-        '<button type="button" class="kh-btn kf3-recolher" aria-expanded="true" aria-controls="kf3-corpo">Recolher</button>' +
-        '<button type="button" class="kh-btn kf3-sair">Sair da prévia</button></div>' +
-        '<div class="kf3-corpo" id="kf3-corpo"><p class="kf3-vazio">Carregando o catálogo e as regras…</p></div>' +
-        '<div class="kf3-sprite" aria-hidden="true"></div>';
-      var mostrar = function () { painel.hidden = false; };
-      link.addEventListener('load', mostrar);
-      link.addEventListener('error', mostrar);
-      doc.head.appendChild(link);
-      doc.body.appendChild(painel);
-
-      var corpo = painel.querySelector('.kf3-corpo'), dados = null, t = null;
-      function desenha() {
-        if (!dados) return;
-        var res = calcular(ls, dados, versao);
-        var topo = corpo.scrollTop;
-        corpo.innerHTML = render(res).html;
-        corpo.scrollTop = topo;
-      }
-      // 350 ms: depois do debounce de 200 ms com que o drawer v2 grava o que se digita
-      function agenda() { clearTimeout(t); t = setTimeout(desenha, 350); }
-      function aoStorage(e) { if (e && e.key === CHAVE_V2) agenda(); }
-      // campos digitados do drawer v2: vários só gravam (save), sem kf:mudou
-      function aoCampo(e) { if (e && e.target && e.target.closest && e.target.closest('#kf-drawer')) agenda(); }
-      doc.addEventListener('kf:mudou', agenda);
-      doc.addEventListener('input', aoCampo, true);
-      doc.addEventListener('change', aoCampo, true);
-      win.addEventListener('storage', aoStorage);
-
-      var btR = painel.querySelector('.kf3-recolher'), ss = null;
-      try { ss = win.sessionStorage; } catch (e) { ss = null; }
-      function recolhe(rec) {
-        painel.classList.toggle('kf3-recolhida', rec);
-        btR.setAttribute('aria-expanded', rec ? 'false' : 'true');
-        btR.textContent = rec ? 'Prévia v3' : 'Recolher';
-      }
-      if (ler(ss, CHAVE_RECOLHIDA) === '1') recolhe(true);
-      btR.addEventListener('click', function () {
-        var rec = !painel.classList.contains('kf3-recolhida');
-        recolhe(rec);
-        try { if (rec) ss.setItem(CHAVE_RECOLHIDA, '1'); else ss.removeItem(CHAVE_RECOLHIDA); } catch (e) { /* só nesta página */ }
-      });
-      painel.querySelector('.kf3-sair').addEventListener('click', function () {
-        try { ls.removeItem(CHAVE); } catch (e) { /* nada */ }
-        try { ss.removeItem(CHAVE_RECOLHIDA); } catch (e) { /* nada */ }
-        clearTimeout(t);
-        doc.removeEventListener('kf:mudou', agenda);
-        doc.removeEventListener('input', aoCampo, true);
-        doc.removeEventListener('change', aoCampo, true);
-        win.removeEventListener('storage', aoStorage);
-        painel.remove();
-        link.remove();
-      });
-
-      carregar(win.fetch.bind(win), base, versao).then(function (d) {
-        dados = d;
-        if (d.glifos) painel.querySelector('.kf3-sprite').innerHTML = d.glifos;
-        desenha();
-      });
     }
 
     return { CHAVE: CHAVE, CATALOGOS: CATALOGOS.slice(), CLASSES: CLASSES.slice(), RACAS: RACAS.slice(),
@@ -6500,7 +6602,6 @@
 
   if (emNode) { module.exports = KhPrevia; return; }
   raiz.KhPrevia = KhPrevia;
-  try { KhPrevia.iniciar(raiz); } catch (e) { /* a prévia nunca derruba a página */ }
 })(typeof window !== 'undefined' ? window : this);
 
 // ==== js/ficha/kh-ficha-abas.js ====
@@ -7364,4 +7465,510 @@
 
   if (emNode) { module.exports = KhFichaAbas; return; }
   raiz.KhFichaAbas = KhFichaAbas;
+})(typeof window !== 'undefined' ? window : this);
+
+// ==== js/ficha/kh-ficha-drawer.js ====
+/* Khalkaria — Ficha · KhFichaDrawer: o drawer docked da ficha nova à direita (F4.4b), SÓ COM A PRÉVIA.
+ * Especificação: docs/ficha-digital/06-f4-drawer.md (base: 03 §9, plano 02 §F4).
+ *
+ * Com a prévia ligada (localStorage khalkaria_ficha_previa === '1' ou ?ficha=v3,
+ * a regra do KhPrevia.ativacao e do partials/head-boot.html), mostra a ficha
+ * nova, SÓ LEITURA, em todas as páginas menos a da ficha (pages/ficha.html, #fp,
+ * que já é a ficha nova inteira: um drawer por cima repetiria o mesmo conteúdo
+ * e carregaria e calcularia tudo duas vezes). Substitui o painel flutuante da
+ * prévia (#kf3-previa, que saiu do KhPrevia). Sem a prévia, NADA acontece:
+ * nenhum nó, nenhum CSS, nenhum fetch, nenhum ouvinte, nenhuma escrita.
+ *
+ * Dois estados, no <html>: data-ficha3="trilho" (48 px, as mini barras de
+ * Saúde, Stamina e Éter) ou "aberto" (380 px; 460 px a partir de 1800 px). O
+ * head-boot marca o estado guardado (localStorage khalkaria_ficha3_dock) antes
+ * do primeiro desenho, e o css/style.css (@layer layout) empurra o conteúdo e
+ * desenha um fundo de reserva até este script montar: nada salta. No Bazar o
+ * drawer aberto fica por cima (não empurra até a F4b), e abaixo de 1100 px
+ * também. O CSS do drawer (css/ficha-drawer.css: a casca e o conteúdo) só é
+ * pedido aqui.
+ *
+ * Conteúdo: o MESMO da página (KhFichaAbas, prefixo 'fd', densidade
+ * 'compacta'), calculado pelo mesmo caminho (KhPrevia.carregar e calcular), nas
+ * mesmas 5 abas e na mesma ordem guardada (KhAbas, khalkaria_ficha_abas). Cada
+ * número com a conta (KhConta); as mini barras do trilho têm a sua (prefixo
+ * 'fd-tr', ids próprios). Redesenha em kf:mudou, ao digitar no #kf-drawer e no
+ * storage da khalkaria_ficha (debounce de 350 ms), pelo KhRedesenho (foco,
+ * <details>, dica e rolagem ficam).
+ *
+ * Arrastar: o dragstart de um card (.kf-draggable, [data-kf-tipo], item do
+ * Bazar) acende o trilho; o dragenter abre o drawer (sem gravar a preferência);
+ * soltar um item do Bazar ({_bazar:true,item}) guarda na ficha atual por
+ * KF.adicionar (o inventário é o mesmo); qualquer outra entidade não é aceita
+ * e o drawer avisa, sem perder o arrasto (dá para seguir até a ficha atual).
+ * Teclado: Esc recolhe (KhTeclas.camadaEsc, depois das camadas do Bazar); abrir
+ * pelo botão leva o foco à aba aberta, recolher o devolve ao botão do trilho.
+ * O drawer leva [data-kf-ignorar] (o MutationObserver da v2.1 não o decora).
+ *
+ * Escritas: localStorage khalkaria_ficha3_dock (só quando o jogador abre ou
+ * recolhe pelo botão ou pelo Esc), as preferências de aba do KhAbas (ordem e
+ * aba aberta, as mesmas da página), o "lembrar" da prévia (KhPrevia.iniciar,
+ * com ?ficha=v3) e, ao soltar um item do Bazar, o KF.adicionar da ficha atual.
+ * Nenhuma chave de ficha v3.
+ *
+ * Partes puras (testadas no node, tools/testes/ficha-drawer.test.js): estado,
+ * lerDock, leArrasto, fracao, htmlCasca, htmlId e htmlMinis. No node exporta
+ * por module.exports (carregado sozinho); no artefato js/ficha.js o export já é
+ * o KhInv e este módulo só registra window.KhFichaDrawer e o liga no navegador.
+ * Vem no ORDEM depois do kh-ficha-abas.js (usa o KhFichaAbas, o KhAbas, o
+ * KhRedesenho, o KhConta e o KhPrevia).
+ * Fonte: js/ficha/kh-ficha-drawer.js (o js/ficha.js é o ARTEFATO concatenado).
+ */
+(function (raiz) {
+  'use strict';
+
+  var emNode = typeof module === 'object' && module && module.exports;
+  if (emNode && Object.keys(module.exports).length) return;   // artefato no node: só o KhInv
+  var KhPrevia = emNode ? require('./kh-previa.js') : raiz.KhPrevia;
+  var KhRegras = emNode ? require('./kh-regras.js') : raiz.KhRegras;
+  var KhConta = emNode ? require('./kh-conta.js') : raiz.KhConta;
+  var KhAbas = emNode ? require('./kh-abas.js') : raiz.KhAbas;
+  var KhFichaAbas = emNode ? require('./kh-ficha-abas.js') : raiz.KhFichaAbas;
+  var KhRedesenho = emNode ? require('./kh-redesenho.js') : raiz.KhRedesenho;
+
+  var KhFichaDrawer = (function () {
+    var CHAVE_DOCK = 'khalkaria_ficha3_dock';
+    var CHAVE_PREVIA = 'khalkaria_ficha_previa';
+    var CHAVE_V2 = 'khalkaria_ficha';
+    var ESTADOS = ['trilho', 'aberto'];
+    var PADRAO = 'trilho';
+    var ATRIBUTO = 'data-ficha3';    // no <html>: o head-boot marca, o drawer troca; o css/style.css lê
+    var PREFIXO = 'fd';              // o do conteúdo (KhFichaAbas e o KhConta das abas: fd-d-N)
+    var PREFIXO_TRILHO = 'fd-tr';    // o KhConta das mini barras (fd-tr-d-N: sem colidir com as abas)
+    var ID = 'fd-gaveta';
+    var ESPERA = 350;                // ms: depois do debounce de 200 ms com que o drawer v2 grava
+    var MOSTRA_AVISO = 6000;         // ms do aviso depois que o arrasto acaba
+    // o texto da especificação (06 §Arrastar)
+    var AVISO_SO_LEITURA = 'A ficha nova ainda é só leitura: solte na ficha atual (botão FICHA) para levar técnicas e magias';
+    var RO = 'Prévia só leitura. Para editar, use a ficha atual (FICHA).';
+    var DICA_ORDEM = 'Arraste para mudar a ordem das abas. Pelo teclado: Tab até a aba e Alt+← ou Alt+→';
+    var TITULO_A4 = 'Ordem do A4: volta as abas à ordem da ficha física';
+    var RESTAURADA = 'Ordem do A4 restaurada.';
+    var CARREGANDO = KhFichaAbas ? KhFichaAbas.CARREGANDO : 'Carregando a ficha…';
+    // as abas são as da página (KhFichaAbas.ABAS: id, página do A4 e rótulo); em
+    // 380 px, numa linha só, o rótulo à vista é a primeira palavra dele, e o
+    // nome inteiro fica no aria-label (que começa pelo que se vê)
+    function rotuloCurto(a) { return str(a.rotulo).replace(/^O\s+/, '').split(/[\s,&]+/)[0] || str(a.rotulo); }
+    // as mini barras do trilho (03 §9): Saúde, Stamina e Éter, nas cores de recurso (D28)
+    var RECURSOS = [['saude', 'Saúde'], ['stamina', 'Stamina'], ['eter', 'Éter']];
+    // o que acende o trilho ao começar a arrastar: os cards das páginas de regras
+    // (decorados pela v2.1: .kf-draggable; marcados no build: [data-kf-tipo]) e
+    // os itens do Bazar (o registro tem [data-kf-tipo="item"]; o painel de receita, [data-ir])
+    var ORIGENS_ARRASTO = '.kf-draggable, [data-kf-tipo], #bz-receita [data-ir]';
+
+    // ícones (traço em currentColor, sem emoji)
+    function svg(d) {
+      return '<svg class="fd-gaveta-svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="' + d +
+        '" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+    }
+    var SVG_ABRIR = svg('M11.5 6 5.5 12l6 6M18.5 6l-6 6 6 6');
+    var SVG_RECOLHER = svg('M5.5 6l6 6-6 6M12.5 6l6 6-6 6');
+    var SVG_PAGINA = svg('M14 4h6v6M20 4l-8.5 8.5M18 14v4.6a1.4 1.4 0 0 1-1.4 1.4H5.4A1.4 1.4 0 0 1 4 18.6V7.4A1.4 1.4 0 0 1 5.4 6H10');
+    var SVG_EDITAR = svg('M4.5 19.5h3.6L18.6 9a2.5 2.5 0 0 0-3.6-3.6L4.5 15.9Zm9-12.6 3.6 3.6');
+    var SVG_A4 = svg('M5.6 9.2A7.4 7.4 0 1 1 4.6 13.6M4.4 4.6v4.8h4.8');
+
+    function obj(x) { return !!x && typeof x === 'object' && !Array.isArray(x); }
+    function lista(x) { return Array.isArray(x) ? x : []; }
+    function str(x) { return x == null ? '' : String(x); }
+    function esc(s) { return KhConta ? KhConta.esc(s) : str(s); }
+    function semEmoji(s) { return KhConta ? KhConta.semEmoji(s) : str(s); }
+    function fmt(n) { return KhRegras && KhRegras.fmt ? KhRegras.fmt(n) : str(n); }
+    function storage(win, nome) { try { return win ? win[nome] : null; } catch (e) { return null; } }
+    function arr(x) { return Array.prototype.slice.call(x || []); }
+
+    // ---------------- puras ----------------
+    function estado(v) { return v === 'aberto' ? 'aberto' : PADRAO; }
+    function lerDock(ls) {
+      var v = null;
+      try { v = ls ? ls.getItem(CHAVE_DOCK) : null; } catch (e) { v = null; }
+      return estado(v);
+    }
+    function gravarDock(ls, e) {
+      try { if (ls) { ls.setItem(CHAVE_DOCK, estado(e)); return true; } } catch (x) { /* bloqueado: vale nesta página */ }
+      return false;
+    }
+    // o text/plain de um arrasto (o formato da v2.1 e do Bazar):
+    // {tipo:'bazar', item} | {tipo:'outro'} | null (não é entidade)
+    function leArrasto(txt) {
+      var p = null;
+      try { p = JSON.parse(str(txt)); } catch (e) { return null; }
+      if (!obj(p)) return null;
+      if (p._bazar && obj(p.item) && (p.item.id || p.item.nome)) return { tipo: 'bazar', item: p.item };
+      return { tipo: 'outro' };
+    }
+    // atual sobre máximo, de 0 a 1 (máximo 0 ou ausente: vazia)
+    function fracao(atual, max) {
+      var a = Number(atual), m = Number(max);
+      if (!isFinite(a) || !isFinite(m) || m <= 0) return 0;
+      return Math.max(0, Math.min(1, a / m));
+    }
+    function refNome(r) { return KhFichaAbas ? KhFichaAbas.refNome(r) : ''; }
+    function idsAbas() { return KhFichaAbas ? KhFichaAbas.ABAS.map(function (a) { return a.id; }) : []; }
+    function abaPorId(id) { return KhFichaAbas ? KhFichaAbas.ABAS.filter(function (a) { return a.id === id; })[0] : null; }
+
+    // nome, nível, raça e classe; res null = carregando
+    function htmlId(res) {
+      var ok = !!res && res.estado === 'ok';
+      var f = ok ? res.ficha : null;
+      var meta = f && obj(f.meta) ? f.meta : {}, idt = f && obj(f.identidade) ? f.identidade : {};
+      var nome = ok ? (semEmoji(meta.nome) || '(sem nome)') : !res ? CARREGANDO : res.estado === 'sem-ficha' ? '(sem ficha)' : 'Ficha';
+      var sub = ok ? [meta.nivel == null ? '' : 'Nível ' + str(meta.nivel), refNome(idt.raca), refNome(idt.classe)].filter(Boolean).join(' · ')
+        : (KhFichaAbas && res ? KhFichaAbas.mensagemEstado(res) : '');
+      return '<p class="fd-gaveta-nome">' + esc(nome) + '</p>' + (sub ? '<p class="fd-gaveta-sub">' + esc(sub) + '</p>' : '');
+    }
+
+    // as mini barras: atual sobre máximo, com a conta do máximo no foco e no
+    // hover. res fora de 'ok' (carregando, sem ficha): vazias, sem conta.
+    // C = KhConta com o PREFIXO_TRILHO (criado aqui se não vier)
+    function htmlMinis(res, C) {
+      var ok = !!res && res.estado === 'ok' && !!res.av;
+      if (ok && !C && KhConta) C = KhConta.criar({ D: KhRegras ? KhRegras.dados() : {}, nos: res.av.nos, prefixo: PREFIXO_TRILHO, fmt: fmt });
+      var rc = ok && res.ficha && obj(res.ficha.recursos) ? res.ficha.recursos : {};
+      return RECURSOS.map(function (r) {
+        var id = r[0], nome = r[1], caminho = 'recurso.' + id + '.max';
+        var no = ok ? res.av.nos[caminho] : null;
+        var max = no && typeof no.valor === 'number' ? no.valor : null;
+        var x = rc[id], atual = obj(x) && typeof x.atual === 'number' ? x.atual : null;
+        var pc = max == null || atual == null ? 0 : Math.round(fracao(atual, max) * 1000) / 10;
+        var txt = nome + ' ' + (max == null ? (ok ? 'sem máximo' : '(carregando)') : (atual == null ? '?' : fmt(atual)) + ' / ' + fmt(max));
+        var conta = no && C ? C.conta(caminho, { texto: txt, semSelos: true })
+          // a linha de cima da dica (só para quem vê: o leitor de tela já leu o valor no <b>)
+          .replace('role="tooltip">', 'role="tooltip"><span class="fd-gaveta-mini-cab" aria-hidden="true">' + esc(txt) + '</span>')
+          : '<span class="fd-gaveta-sr">' + esc(txt) + '</span>';
+        return '<div class="fd-gaveta-mini fd-gaveta-mini-' + id + '" data-recurso="' + id + '"' + (max == null ? ' data-vazia' : '') + '>' +
+          '<span class="fd-gaveta-mini-barra" aria-hidden="true"><span class="fd-gaveta-mini-fill" style="height: ' + pc + '%"></span></span>' +
+          '<svg class="fd-gaveta-mini-g" aria-hidden="true" focusable="false"><use href="#g-' + id + '"/></svg>' +
+          conta + '</div>';
+      }).join('');
+    }
+
+    // a casca inteira (o miolo do <aside>): trilho, e a folha com cabeçalho,
+    // abas na ordem dada (ids; sem ela, a do A4), aviso, painéis e o sprite.
+    // op: {ordem, aberta, base (raiz do site, para o link da página da ficha)}
+    function htmlCasca(op) {
+      op = obj(op) ? op : {};
+      var ids = idsAbas();
+      var ordem = KhAbas ? KhAbas.normaliza(op.ordem, ids) : ids;
+      var aberta = ordem.indexOf(op.aberta) >= 0 ? op.aberta : ordem[0];
+      var padrao = ordem.join(' ') === ids.join(' ');
+      var base = op.base == null ? '../' : str(op.base);
+      return '<div class="fd-gaveta-trilho">' +
+          '<button type="button" class="fd-gaveta-abrir" aria-expanded="false" aria-controls="fd-gaveta-folha" title="Abrir a ficha nova">' +
+            SVG_ABRIR + '<span class="fd-gaveta-trilho-rot">Ficha nova</span></button>' +
+          '<div class="fd-gaveta-minis" id="fd-gaveta-minis" role="group" aria-label="Saúde, Stamina e Éter">' + htmlMinis(null) + '</div>' +
+        '</div>' +
+        '<div class="fd-gaveta-folha" id="fd-gaveta-folha" role="region" aria-label="Ficha nova" tabindex="-1">' +
+          '<header class="fd-gaveta-cab">' +
+            '<div class="fd-gaveta-id" id="fd-gaveta-id">' + htmlId(null) + '</div>' +
+            '<div class="fd-gaveta-acoes">' +
+              '<a class="kh-btn fd-gaveta-btn fd-gaveta-pagina" href="' + esc(base + 'pages/ficha.html') + '" aria-label="Abrir a página da ficha" title="Abrir a página da ficha">' + SVG_PAGINA + '</a>' +
+              '<button type="button" class="kh-btn fd-gaveta-btn fd-gaveta-editar" aria-label="Editar na ficha atual" title="Editar na ficha atual (FICHA)">' + SVG_EDITAR + '</button>' +
+              '<button type="button" class="kh-btn fd-gaveta-btn fd-gaveta-recolher" aria-expanded="true" aria-controls="fd-gaveta-folha" aria-keyshortcuts="Escape"' +
+                ' aria-label="Recolher ao trilho" title="Recolher ao trilho (Esc)">' + SVG_RECOLHER + '</button>' +
+            '</div>' +
+            '<p class="fd-gaveta-ro" role="note">' + esc(RO) + ' <button type="button" class="fd-gaveta-sair">Sair da prévia</button></p>' +
+          '</header>' +
+          '<div class="fd-gaveta-abas-barra">' +
+            '<div class="fd-gaveta-abas" id="fd-gaveta-abas" role="tablist" aria-label="Partes da ficha">' +
+            ordem.map(function (id) {
+              var a = abaPorId(id), on = id === aberta;
+              return '<button type="button" class="fd-gaveta-aba" role="tab" id="fd-gaveta-a-' + id + '" data-aba="' + id + '"' +
+                ' aria-controls="fd-gaveta-p-' + id + '" aria-selected="' + on + '" tabindex="' + (on ? '0' : '-1') + '"' +
+                ' aria-keyshortcuts="Alt+ArrowLeft Alt+ArrowRight" aria-label="' + esc(a.rotulo) + '" title="' + esc(a.rotulo + '. ' + DICA_ORDEM) + '">' +
+                '<span class="fd-gaveta-aba-pag" aria-hidden="true">' + a.pag + '</span>' +
+                '<span class="fd-gaveta-aba-rot">' + esc(rotuloCurto(a)) + '</span></button>';
+            }).join('') + '</div>' +
+            '<button type="button" class="kh-btn fd-gaveta-a4" id="fd-gaveta-a4"' + (padrao ? ' hidden' : '') +
+              ' aria-label="Ordem do A4" title="' + esc(TITULO_A4) + '">' + SVG_A4 + '</button>' +
+            '<span class="fd-gaveta-sr" id="fd-gaveta-anuncio" role="status" aria-live="polite"></span>' +
+          '</div>' +
+          '<p class="fd-gaveta-aviso" id="fd-gaveta-aviso" role="status" aria-live="polite" hidden></p>' +
+          '<div class="fd-gaveta-rolagem" id="fd-gaveta-rolagem">' +
+            ordem.map(function (id) {
+              return '<section class="fd-gaveta-painel" role="tabpanel" id="fd-gaveta-p-' + id + '" data-aba="' + id + '"' +
+                ' aria-labelledby="fd-gaveta-a-' + id + '" tabindex="0" aria-busy="true"' + (id === aberta ? '' : ' hidden') + '>' +
+                '<p class="fd-nota">' + esc(CARREGANDO) + '</p></section>';
+            }).join('') +
+          '</div>' +
+          // o sprite partials/glifos.html (moldura de raízes, ramos, selo, recursos), posto ao carregar
+          '<div class="fd-gaveta-sprite" id="fd-gaveta-sprite" aria-hidden="true"></div>' +
+        '</div>';
+    }
+
+    // ---------------- navegador ----------------
+    var atual = null;   // o drawer montado nesta página (ou null)
+
+    // a borda esquerda do drawer na janela (px), para quem posiciona pop-ups
+    // (KhPrever no Bazar: xPreferido); null sem drawer (sem a prévia, na página
+    // da ficha, antes de montar)
+    function borda() { return atual ? atual.borda() : null; }
+
+    function iniciar(win) {
+      if (!win || !win.document || !win.location) return false;
+      // ativação e "lembrar" (?ficha=v3 grava a chave da prévia): os do KhPrevia
+      if (!KhPrevia || !KhPrevia.iniciar(win)) return false;
+      var doc = win.document;
+      var vai = function () {
+        try { atual = montar(win) || atual; } catch (e) { /* o drawer nunca derruba a página */ }
+      };
+      if (doc.readyState === 'loading') doc.addEventListener('DOMContentLoaded', vai);
+      else vai();
+      return true;
+    }
+
+    function montar(win) {
+      var doc = win.document, html = doc.documentElement;
+      if (!doc.body || !html || doc.getElementById(ID)) return null;
+      // a página da ficha já é a ficha nova inteira: nada por cima dela
+      if (doc.getElementById('fp') || (doc.body.hasAttribute && doc.body.hasAttribute('data-ficha-pagina'))) return null;
+      if (!KhFichaAbas || !KhAbas || !KhRedesenho || !KhConta || !KhRegras || !KhPrevia) return null;
+      var ls = storage(win, 'localStorage'), ss = storage(win, 'sessionStorage');
+      var s = doc.querySelector('script[src*="js/ficha.js"]');
+      var src = s ? s.src : '';
+      var base = '', versao = '';
+      try { base = src ? new URL('../', src).href : ''; versao = src ? new URL(src).search : ''; } catch (e) { /* relativo à página */ }
+      var ids = idsAbas();
+      var ordem = KhAbas.lerOrdem(ls, ids);
+      var aberta = KhAbas.lerAberta(ss, ids) || ordem[0];
+      var est = lerDock(ls);
+      // o head-boot já marcou (página gerada antes da F4.4b não: marca agora)
+      if (html.getAttribute(ATRIBUTO) !== est) html.setAttribute(ATRIBUTO, est);
+
+      var link = doc.createElement('link');
+      link.rel = 'stylesheet';
+      link.href = base + 'css/ficha-drawer.css' + versao;
+      link.setAttribute('data-fd-gaveta', '');
+      var gav = doc.createElement('aside');
+      gav.id = ID;
+      gav.className = 'fd-gaveta';
+      gav.hidden = true;   // até o CSS chegar (a reserva do style.css segura o lugar)
+      gav.setAttribute('aria-label', 'Ficha nova (prévia, só leitura)');
+      // o MutationObserver da v2.1 (decoração dos cards) ignora o que redesenha aqui
+      gav.setAttribute('data-kf-ignorar', '');
+      gav.innerHTML = htmlCasca({ ordem: ordem, aberta: aberta, base: base || '../' });
+      var mostrar = function () { gav.hidden = false; };
+      link.addEventListener('load', mostrar);
+      link.addEventListener('error', mostrar);
+      doc.head.appendChild(link);
+      doc.body.appendChild(gav);
+
+      function el(id) { return doc.getElementById(id); }
+      function q(sel) { return gav.querySelector(sel); }
+      var btAbrir = q('.fd-gaveta-abrir'), btRecolher = q('.fd-gaveta-recolher');
+      var minis = el('fd-gaveta-minis'), idEl = el('fd-gaveta-id'), rolagem = el('fd-gaveta-rolagem');
+      var aviso = el('fd-gaveta-aviso');
+      var vivo = true;
+
+      // ---- estado: trilho | aberto
+      function foca(x) { if (!x || !x.focus) return; try { x.focus({ preventScroll: true }); } catch (e) { x.focus(); } }
+      function poeEstado(novo, o) {
+        o = o || {};
+        est = estado(novo);
+        html.setAttribute(ATRIBUTO, est);
+        btAbrir.setAttribute('aria-expanded', est === 'aberto' ? 'true' : 'false');
+        btRecolher.setAttribute('aria-expanded', est === 'aberto' ? 'true' : 'false');
+        if (o.gravar) gravarDock(ls, est);
+        if (o.foco) foca(est === 'aberto' ? (el('fd-gaveta-a-' + aberta) || el('fd-gaveta-folha')) : btAbrir);
+      }
+      function abrir(o) { o = o || {}; poeEstado('aberto', { gravar: o.gravar !== false, foco: !!o.foco }); }
+      function recolher(o) { o = o || {}; poeEstado('trilho', { gravar: o.gravar !== false, foco: !!o.foco }); }
+      poeEstado(est);
+
+      // ---- abas: as da página (KhAbas, khalkaria_ficha_abas), Alt+setas, arrasto, "Ordem do A4"
+      var rotulos = {};
+      KhFichaAbas.ABAS.forEach(function (a) { rotulos[a.id] = a.rotulo; });
+      var abas = KhAbas.criar(el('fd-gaveta-abas'), { win: win, doc: doc, ids: ids, ls: ls, ss: ss, aberta: aberta, rotulos: rotulos,
+        restaurar: el('fd-gaveta-a4'), anuncio: el('fd-gaveta-anuncio'), textoRestaurada: RESTAURADA,
+        aoSelecionar: function (id) { aberta = id; } });
+
+      // ---- aviso (arrastar e soltar)
+      var avisoT = null;
+      function mostraAviso(msg, ms) {
+        clearTimeout(avisoT);
+        if (aviso.textContent !== msg) aviso.textContent = msg;
+        aviso.hidden = false;
+        if (ms) avisoT = setTimeout(function () { aviso.hidden = true; aviso.textContent = ''; }, ms);
+      }
+
+      // ---- cliques (delegados: o redesenho não perde ouvinte)
+      gav.addEventListener('click', function (e) {
+        var t = e.target && e.target.closest ? e.target : null;
+        if (!t) return;
+        if (t.closest('.fd-gaveta-abrir')) abrir({ foco: true });
+        else if (t.closest('.fd-gaveta-recolher')) recolher({ foco: true });
+        else if (t.closest('.fd-gaveta-editar')) { if (win.KF && typeof win.KF.abrir === 'function') win.KF.abrir(); }
+        else if (t.closest('.fd-gaveta-sair')) {
+          // a mesma saída da página da ficha: apaga a chave e recarrega sem ?ficha=v3
+          try { if (ls) ls.removeItem(CHAVE_PREVIA); } catch (x) { /* storage bloqueado */ }
+          if (win.location && typeof win.location.replace === 'function') win.location.replace(win.location.pathname + (win.location.hash || ''));
+        }
+      });
+
+      // ---- a dica da conta dentro do drawer (as das abas; as do trilho abrem à esquerda pelo CSS)
+      var R = KhRedesenho.criar({ prefixo: PREFIXO }), RT = KhRedesenho.criar({ prefixo: PREFIXO_TRILHO });
+      function aoAbrirDica(e) {
+        var c = e.target && e.target.closest ? e.target.closest('.kh-conta') : null;
+        if (!c || !rolagem.contains(c)) return;
+        if (e.type === 'mouseover' && e.relatedTarget && c.contains && c.contains(e.relatedTarget)) return;
+        if (!R.encaixa(c, rolagem, win) && win.requestAnimationFrame) win.requestAnimationFrame(function () { R.encaixa(c, rolagem, win); });
+      }
+      gav.addEventListener('mouseover', aoAbrirDica);
+      gav.addEventListener('focusin', aoAbrirDica);
+      gav.addEventListener('focusout', function (e) { R.soltaFoco(e.target); RT.soltaFoco(e.target); });
+      // a dica de uma mini barra que o redesenho deixou aberta (sem caixa: ela abre à esquerda do trilho)
+      var dicaTrilho = false;
+      function aoMexer() {
+        R.soltaDicas(rolagem);
+        if (!dicaTrilho) return;
+        dicaTrilho = false;
+        arr(minis.querySelectorAll('[' + RT.MARCA_DICA + ']')).forEach(function (x) { x.removeAttribute(RT.MARCA_DICA); });
+      }
+      doc.addEventListener('mousemove', aoMexer, { passive: true });
+
+      // ---- desenho: o mesmo da página (KhFichaAbas), compacto
+      var DESENHO = KhFichaAbas.criar({ prefixo: PREFIXO, densidade: 'compacta' });
+      var dados = null, t = null, res = null;
+      function pinta(r0) {
+        res = r0;
+        var r = DESENHO.paineis(r0, { dados: dados, base: base || '../' });
+        var topo = rolagem.scrollTop;
+        R.trocaHTML(doc, idEl, htmlId(r0), null, null, win);
+        if (RT.trocaHTML(doc, minis, htmlMinis(r0), btAbrir, null, win)) dicaTrilho = !!minis.querySelector('[' + RT.MARCA_DICA + ']');
+        ids.forEach(function (id) {
+          var p = el('fd-gaveta-p-' + id);
+          if (!p) return;
+          R.trocaHTML(doc, p, r.paineis[id], p, rolagem, win);
+          p.removeAttribute('aria-busy');
+        });
+        rolagem.scrollTop = topo;
+      }
+      function desenha() { if (dados && vivo) pinta(KhPrevia.calcular(ls, dados, versao)); }
+      function agenda() { clearTimeout(t); t = setTimeout(desenha, ESPERA); }
+      function aoStorage(e) { if (e && e.key === CHAVE_V2) agenda(); }
+      // campos digitados do drawer v2: vários só gravam (save), sem kf:mudou
+      function aoCampo(e) { if (e && e.target && e.target.closest && e.target.closest('#kf-drawer')) agenda(); }
+      doc.addEventListener('kf:mudou', agenda);
+      doc.addEventListener('input', aoCampo, true);
+      doc.addEventListener('change', aoCampo, true);
+      win.addEventListener('storage', aoStorage);
+
+      // ---- arrastar: acende, abre, guarda o item do Bazar, avisa o resto
+      var arrasto = null;
+      function limpaAlvo() { gav.removeAttribute('data-alvo'); gav.removeAttribute('data-recusa'); }
+      function aoComecar(e) {
+        var x = e.target && e.target.closest ? e.target : null;
+        if (!x || x.closest('#' + ID) || !x.closest(ORIGENS_ARRASTO)) return;
+        var lido = null;
+        // no dragstart o dataTransfer ainda se lê (o card já pôs o text/plain: ouvinte dele, antes deste)
+        try { lido = leArrasto(e.dataTransfer ? e.dataTransfer.getData('text/plain') : ''); } catch (y) { lido = null; }
+        arrasto = { tipo: lido ? lido.tipo : 'outro', item: lido ? lido.item : null };
+        gav.setAttribute('data-acende', '');
+      }
+      function aoEntrar() {
+        if (!arrasto) return;
+        // abre sem gravar: é um passeio do arrasto, não a escolha do jogador
+        if (est !== 'aberto') poeEstado('aberto');
+      }
+      function nomeItem(it) { return semEmoji(it && it.nome) || 'o item'; }
+      function aoSobre(e) {
+        if (!arrasto) return;
+        if (arrasto.tipo === 'bazar') {
+          e.preventDefault();
+          if (e.dataTransfer) e.dataTransfer.dropEffect = 'copy';
+          gav.setAttribute('data-alvo', '');
+          mostraAviso('Solte para guardar ' + nomeItem(arrasto.item) + ' no inventário da ficha atual.');
+        } else {
+          // não aceita (sem preventDefault): o arrasto segue, e dá para soltar na ficha atual
+          gav.setAttribute('data-recusa', '');
+          mostraAviso(AVISO_SO_LEITURA);
+        }
+      }
+      function aoSairArrasto(e) {
+        if (e.relatedTarget && gav.contains(e.relatedTarget)) return;
+        limpaAlvo();
+      }
+      function fimArrasto() {
+        if (!arrasto) return;
+        arrasto = null;
+        gav.removeAttribute('data-acende');
+        limpaAlvo();
+        if (!aviso.hidden) mostraAviso(aviso.textContent, MOSTRA_AVISO);
+      }
+      function aoSoltar(e) {
+        if (!arrasto || arrasto.tipo !== 'bazar') return;
+        e.preventDefault();
+        var lido = null;
+        try { lido = leArrasto(e.dataTransfer ? e.dataTransfer.getData('text/plain') : ''); } catch (y) { lido = null; }
+        var it = lido && lido.tipo === 'bazar' ? lido.item : arrasto.item;
+        var KF = win.KF;
+        var uid = KF && typeof KF.adicionar === 'function' ? KF.adicionar(it) : null;
+        arrasto = null;
+        gav.removeAttribute('data-acende');
+        limpaAlvo();
+        if (uid) {
+          // mostra onde foi parar: a aba O Bazar (o redesenho vem pelo kf:mudou)
+          if (abas) abas.seleciona('bazar');
+          mostraAviso('+ ' + nomeItem(it) + ' no inventário da ficha atual.', MOSTRA_AVISO);
+        } else mostraAviso('Não deu para guardar ' + nomeItem(it) + ' na ficha atual.', MOSTRA_AVISO);
+      }
+      doc.addEventListener('dragstart', aoComecar);
+      doc.addEventListener('dragend', fimArrasto, true);
+      gav.addEventListener('dragenter', aoEntrar);
+      gav.addEventListener('dragover', aoSobre);
+      gav.addEventListener('dragleave', aoSairArrasto);
+      gav.addEventListener('drop', aoSoltar);
+
+      // ---- teclado: Esc recolhe (depois das camadas do Bazar: pop-up 10, lista 20, painel 30)
+      var T = win.KhTeclas;
+      if (T && typeof T.camadaEsc === 'function') {
+        T.camadaEsc(40, function () {
+          if (!vivo || est !== 'aberto') return false;
+          // a ficha atual (v2.1) aberta fica por cima: o Esc não mexe no que está embaixo dela
+          var v2 = el('kf-drawer');
+          if (v2 && v2.classList && v2.classList.contains('kf-open')) return false;
+          var dentro = gav.contains(doc.activeElement);
+          recolher({ foco: dentro });
+          return true;
+        });
+      }
+
+      // ---- dados: os do motor (os da página), uma vez
+      KhPrevia.carregar(win.fetch.bind(win), base, versao).then(function (d) {
+        dados = d;
+        var sp = el('fd-gaveta-sprite');
+        if (sp && d && d.glifos) sp.innerHTML = d.glifos;
+        desenha();
+      }, function (e) {
+        pinta({ estado: 'falha', erro: str(e && e.message), erros: [] });
+      });
+
+      return {
+        gaveta: gav, abas: abas,
+        estado: function () { return est; },
+        abrir: abrir, recolher: recolher,
+        alternar: function (o) { if (est === 'aberto') recolher(o); else abrir(o); },
+        borda: function () {
+          if (!vivo || gav.hidden || !gav.getBoundingClientRect) return null;
+          var r = gav.getBoundingClientRect();
+          return r && r.width ? r.left : null;
+        },
+        desenha: desenha, pinta: pinta, resultado: function () { return res; }
+      };
+    }
+
+    return { CHAVE_DOCK: CHAVE_DOCK, ESTADOS: ESTADOS.slice(), PADRAO: PADRAO, ATRIBUTO: ATRIBUTO, ID: ID,
+      PREFIXO: PREFIXO, PREFIXO_TRILHO: PREFIXO_TRILHO, AVISO_SO_LEITURA: AVISO_SO_LEITURA, ORIGENS_ARRASTO: ORIGENS_ARRASTO,
+      estado: estado, lerDock: lerDock, leArrasto: leArrasto, fracao: fracao,
+      htmlId: htmlId, htmlMinis: htmlMinis, htmlCasca: htmlCasca,
+      iniciar: iniciar, borda: borda, atual: function () { return atual; } };
+  })();
+
+  if (emNode) { module.exports = KhFichaDrawer; return; }
+  raiz.KhFichaDrawer = KhFichaDrawer;
+  try { KhFichaDrawer.iniciar(raiz); } catch (e) { /* o drawer nunca derruba a página */ }
 })(typeof window !== 'undefined' ? window : this);

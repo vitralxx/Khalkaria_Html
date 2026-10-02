@@ -44,11 +44,12 @@ index.html   css/   js/   images/*.webp   pages/   data/bazar.json
 baixa e entrega à Ficha por `KF.catalogo(ITENS)` (um fetch só). Fora dela, o
 `ficha.js` faz um fetch preguiçoso único quando precisa: busca do drawer, card
 de item a decorar ou entrada do inventário ainda sem `inv` (migrada da v1).
-Exceção (F3c): com a **prévia da ficha v3** ligada (`?ficha=v3`, §8), o
-`kh-previa.js` baixa também `data/catalogo/*.json`, `data/classes/*.json`,
-`data/racas/*.json`, `data/efeitos.json` e `partials/glifos.html` (~1,5 MB, com
-o `?v=` do `ficha.js`) e o `css/ficha-previa.css`; sem a prévia, nada disso é
-pedido. O Pages publica o repo inteiro pelo Jekyll padrão (sem `_config.yml`
+Exceção (F3c, F4.4b): com a **prévia da ficha v3** ligada (`?ficha=v3`, §8), o
+drawer da ficha nova (`kh-ficha-drawer.js`, pelo `KhPrevia.carregar`) baixa
+também `data/catalogo/*.json`, `data/classes/*.json`, `data/racas/*.json`,
+`data/efeitos.json` e `partials/glifos.html` (~1,5 MB, com o `?v=` do
+`ficha.js`) e o `css/ficha-drawer.css`; a página da ficha baixa os mesmos
+(menos o CSS do drawer, que não monta lá). Sem a prévia, nada disso é pedido. O Pages publica o repo inteiro pelo Jekyll padrão (sem `_config.yml`
 nem `.nojekyll`: só o que começa com `_` ou `.` fica de fora), então esses
 arquivos estão no ar.
 Todo o resto — `tools/`, `templates/`, os outros `data/*.json`, `partials/`,
@@ -62,7 +63,9 @@ servido são os `.webp` gerados a partir deles.
 index.html                     landing (HTML manual)
 partials/sidebar.html          FONTE ÚNICA da navegação do site (markup + sprite nv-*)
 partials/head-boot.html        <script data-nav-boot> que o shell põe antes de </head>
-                               (estado da nav e html[data-movimento] antes do paint)
+                               (estado da nav e html[data-movimento] antes do paint; com a
+                               prévia, html[data-ficha-previa] e html[data-ficha3="trilho"|
+                               "aberto"], o estado do drawer da ficha nova, F4.4b)
 partials/glifos.html           sprite g-* (UI da ficha, moldura de raízes, 21 ramos);
                                INERTE até a F2, quando o shell passa a injetá-lo
 
@@ -109,6 +112,8 @@ tools/testes/                  testes node do motor KhInv, do KhEstado, do KhReg
                                (quota e falha simulada); pagina-v2-apoio.js: a v2.1 real (js/ficha.js)
                                num vm com DOM falso (guarda e escrita dupla); cor-apoio.js: tokens,
                                regra de seletor, cor resolvida e contraste dos testes de CSS;
+                               dom-mini.js: DOM mínimo com innerHTML de verdade, seletores e
+                               eventos com captura e bolha (o drawer da ficha nova, F4.4b);
                                fixtures/*.golden.html: ouros byte a byte (prévia e página da ficha);
                                test_*.py: checagens do validar (unittest, no build)
 tools/estilo/                  conferência de estilo computado (captura no navegador; §6): servidor.py,
@@ -158,18 +163,18 @@ css/bazar.css                  só a página do Bazar (camada paginas; --bz-* s�
 css/ficha.css                  F2a: drawer, botão lateral, toast e "+ ficha" dos cards (o
                                CSS que o ficha.js injetava); SEM camada, o shell o põe
                                em todas as páginas logo antes de </head>
-css/ficha-previa.css           F3c: painel da prévia da ficha v3 (tudo sob .kf3, SEM
-                               camada). O shell NÃO o injeta: só o kh-previa.js o pede,
-                               com a prévia ligada (?ficha=v3)
 css/ficha-pagina.css           F4.3: só a página da ficha (camada paginas, prefixo .fp-):
                                moldura de raízes, medalhão de papel dos ícones do A4,
                                cores de recurso/raridade/ramo dos tokens
 css/ficha-drawer.css           F4.4a: o conteúdo das 5 abas no drawer da ficha nova,
                                densidade compacta (380 px: uma coluna, molduras vazias em
-                               ladrilho, recursos antes das perícias). Tudo sob .fd-, SEM
-                               camada; tokens (o único hex é a paleta dos tipos de dano,
-                               igual à da página). O shell NÃO o injeta e nenhuma página o
-                               pede: fica sem uso até o drawer (F4.4b) o injetar com a prévia
+                               ladrilho, recursos antes das perícias). F4.4b: a casca
+                               (.fd-gaveta-*: trilho com as mini barras, cabeçalho, abas
+                               numa linha, aviso de arrastar). Tudo sob .fd-, SEM camada;
+                               tokens (o único hex é a paleta dos tipos de dano, igual à da
+                               página). O shell NÃO o injeta e nenhuma página o pede: só o
+                               kh-ficha-drawer.js, com a prévia. Empurrar o conteúdo e a
+                               reserva ficam no style.css (@layer layout, html[data-ficha3])
 js/kh-ui.js                    F2b: biblioteca comum (fora do bundle da ficha; o shell a
                                põe SÍNCRONA antes do 1º <script src> local de toda página):
                                KhTeclas (registro único de atalhos e camadas do Esc, um
@@ -212,10 +217,17 @@ js/ficha/ficha-v2.js             drawer, estado v2, decoração dos cards e a AP
 js/ficha/kh-conta.js             KhConta (F4.1), PURO: o componente "conta" (número +
                                  tooltip da fórmula), KhConta.criar({D, nos, prefixo}),
                                  prefixo de classe 'kf3' por padrão; conta.test.js
-js/ficha/kh-previa.js            KhPrevia (F3c): PRÉVIA ESCONDIDA da v3 (?ficha=v3), painel
-                                 à direita só-leitura com a v2 migrada e calculada em
-                                 memória; partes puras (ativacao, calcular, render)
-                                 testadas em previa.test.js. Sem ativação não faz nada
+js/ficha/kh-redesenho.js         KhRedesenho (F4.4b): redesenhar sem perder o lugar
+                                 (trocaHTML: foco, <details>, dica sob o mouse) e a dica
+                                 da conta presa à caixa (encaixa), com o prefixo de quem
+                                 desenha (página 'fp', drawer 'fd'). Saiu do
+                                 ficha-pagina.js; inerte ao carregar
+js/ficha/kh-previa.js            KhPrevia (F3c): PRÉVIA ESCONDIDA da v3 (?ficha=v3): a
+                                 ativação (iniciar: liga e lembra a chave), carregar,
+                                 calcular (a v2 migrada e calculada em memória), render
+                                 (o snapshot de ouro do motor) e listaAvisos; testadas em
+                                 previa.test.js. F4.4b: o painel flutuante (#kf3-previa,
+                                 css/ficha-previa.css) saiu; quem mostra é o drawer
 js/ficha/kh-ficha-abas.js        KhFichaAbas (F4.4a), PURO: o desenho das 5 abas da ficha
                                  nova (Núcleo, Técnicas & Marcas, Cartas/Lore/Outros, O
                                  Bazar, Grimório), o MESMO na página e no drawer da F4.4:
@@ -226,6 +238,16 @@ js/ficha/kh-ficha-abas.js        KhFichaAbas (F4.4a), PURO: o desenho das 5 abas
                                  conteúdo, corpo com data-densidade="compacta"). Depois do
                                  kh-previa.js no ORDEM (os avisos são os da prévia). Sem
                                  DOM, storage nem rede ao carregar; kh-ficha-abas.test.js
+js/ficha/kh-ficha-drawer.js      KhFichaDrawer (F4.4b): o drawer docked da ficha nova à
+                                 direita, SÓ COM A PRÉVIA e só leitura; não monta na
+                                 página da ficha. Trilho de 48 px (mini barras de Saúde,
+                                 Stamina e Éter com a conta) ou aberto (380/460 px:
+                                 cabeçalho, as 5 abas do KhAbas na ordem da página, o
+                                 desenho do KhFichaAbas 'fd'/'compacta'); estado em
+                                 localStorage khalkaria_ficha3_dock e no html[data-ficha3].
+                                 Arrastar acende/abre; item do Bazar vai ao KF.adicionar,
+                                 o resto dá o aviso. Esc recolhe (KhTeclas.camadaEsc 40).
+                                 borda() para o KhPrever do Bazar. ficha-drawer.test.js
 js/ficha.js                    ARTEFATO (tools/ficha_js.py): concatenação de js/ficha/
                                na ordem do ORDEM, cabeçalho "gerado — não editar". É o
                                único arquivo que o site carrega (main.js injeta; o
@@ -239,8 +261,9 @@ js/ficha-pagina.js             F4.3: página da ficha nova (KhFichaPagina), só 
                                raça + ramos), ícones images/ficha/*.webp e o sprite g-* da
                                moldura de raízes. data-campo em cada campo do A4; número de
                                estado em span.fp-n[data-ficha]. Rara nunca mostra o efeito.
-                               Ficam aqui o topo, a casca, a dica presa à página (encaixa) e
-                               o redesenho (trocaHTML). Sem o js/ficha.js, só o recado.
+                               Ficam aqui o topo e a casca; a dica presa à página (encaixa) e
+                               o redesenho (trocaHTML) são do KhRedesenho ('fp'). Sem o
+                               js/ficha.js, só o recado.
                                Não grava chave de ficha; ficha-pagina.test.js e o ouro do
                                render (ficha-pagina-ouro.test.js)
 js/bazar.js                    núcleo do Bazar: catálogo, filtros, Bancada
@@ -865,8 +888,9 @@ carregados (nada os chama até a F4). No node, carregados sozinhos, exportam por
 **Prévia da ficha v3 (F3c, modo sombra).** Para o Pedro conferir o motor antes
 da F4. Liga com `?ficha=v3` em qualquer página (grava `khalkaria_ficha_previa=1`,
 para seguir pela navegação) ou com essa chave já gravada; "Sair da prévia" a
-apaga, "Recolher" vira uma aba abaixo do botão da Ficha (lembrado por aba em
-`sessionStorage.khalkaria_ficha_previa_recolhida`). Sem ativação: nenhum nó,
+apaga. *F4.4b: o painel flutuante descrito abaixo SAIU (o `css/ficha-previa.css`
+também); a prévia agora aparece no drawer docked da ficha nova (parágrafo
+seguinte) e o `KhPrevia.render` fica como o snapshot de ouro do motor.* Sem ativação: nenhum nó,
 CSS, fetch ou ouvinte (o `[estilo]` fica em 0 diferença). Ligada, o
 `kh-previa.js` pede `css/ficha-previa.css` e, com o `?v=` do `ficha.js`,
 `data/catalogo/*.json`, `data/classes/*.json`, `data/racas/*.json`,
@@ -900,7 +924,33 @@ não muda o conteúdo: `'pagina'` gera o HTML de antes da extração, byte a byt
 (`fixtures/ficha-pagina-render.golden.html`, gravado antes da mudança), e
 `'compacta'` só marca o corpo de cada aba com `data-densidade="compacta"`; o
 teste confere que o compacto é o da página a menos do prefixo e dessa marca.
-Ficam na página o topo, a casca, `encaixa` (a dica presa à caixa) e `trocaHTML`.
+Ficam na página o topo e a casca; `encaixa` (a dica presa à caixa) e `trocaHTML`
+moram no `KhRedesenho` (F4.4b), com o prefixo de quem desenha.
+
+**Drawer docked da ficha nova (F4.4b).** `js/ficha/kh-ficha-drawer.js`
+(`KhFichaDrawer`), especificação em `docs/ficha-digital/06-f4-drawer.md`. Só com
+a prévia: o `head-boot` marca `html[data-ficha3="trilho"|"aberto"]`
+(`localStorage.khalkaria_ficha3_dock`, padrão trilho) antes do primeiro desenho,
+e o `style.css` (`@layer layout`, guardado pela marca) empurra o `.main-content`
+(48 px no trilho, `--ficha3-w` aberto a partir de 1100 px, com `min-width: 0`),
+esconde a right-bar e pinta um fundo de reserva (`body::after`, logo abaixo do
+drawer) até o script montar. Fora: a página da ficha (`body[data-ficha-pagina]`,
+o drawer nem monta) e o Bazar (`body[data-bazar]`: o aberto fica por cima; a
+calha do `bazar.css` cresce o trilho, para a aba FICHA seguir sem cobrir o
+inventário). A aba FICHA (`css/ficha.css`, sem camada) e o voltar ao topo
+(`style.css`, componentes) vão para a esquerda do trilho ou do drawer. O drawer
+(`z-index: --z-ficha3`, abaixo dos pop-ups e da ficha v2.1) monta o `<aside
+id="fd-gaveta" data-kf-ignorar>`, pede o `css/ficha-drawer.css` e os arquivos do
+motor (`KhPrevia.carregar`) e desenha as 5 abas pelo `KhFichaAbas` 'fd' compacto,
+na ordem do `KhAbas` (`khalkaria_ficha_abas`, a mesma da página). Redesenha pelo
+`KhRedesenho` em `kf:mudou`, digitação no `#kf-drawer` e `storage` da
+`khalkaria_ficha` (350 ms). Arrastar um card (`.kf-draggable`, `[data-kf-tipo]`,
+receita do Bazar) acende o trilho; o `dragenter` abre (sem gravar a preferência);
+o item do Bazar (`{_bazar, item}`) vai ao `KF.adicionar` e o drawer mostra a aba
+O Bazar; o resto não é aceito e o aviso manda soltar na ficha atual. Esc recolhe
+(`camadaEsc` 40, depois das do Bazar; não com a v2.1 aberta por cima).
+`KhFichaDrawer.borda()` dá a borda esquerda para o `xPreferido` do pop-up do
+Bazar (`bazar-cartao.js`), que então nunca abre embaixo do drawer.
 
 **`data-kf-ignorar`.** O `MutationObserver` que redecora os cards ignora
 mudanças dentro de `[data-kf-ignorar]`, e `decorarBazar` não decora card ali

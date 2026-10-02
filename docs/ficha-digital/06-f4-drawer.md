@@ -64,3 +64,19 @@ Base:
 - Bazar: o conteúdo não é empurrado.
 - O render das abas igual entre a página e o drawer, a menos da densidade.
 - `kf-contrato` e o ouro da prévia intactos.
+
+## Como ficou (F4.4b, 2026-10-02)
+
+Código: `js/ficha/kh-ficha-drawer.js` (`KhFichaDrawer`), `js/ficha/kh-redesenho.js` (o `trocaHTML` e o `encaixa`, que saíram do `js/ficha-pagina.js`), a casca no fim do `css/ficha-drawer.css` (`.fd-gaveta-*`), as regras de empurrar e reserva no `css/style.css`, os tokens no `css/tokens.css` (`--ficha3-w`, `--ficha3-trilho`, `--z-ficha3`), o `head-boot` e `tools/testes/ficha-drawer.test.js`.
+
+Escolhas feitas na implementação (a revisar com o Pedro na prévia):
+- **Troca do painel da prévia:** o `KhPrevia.iniciar` só liga e lembra a chave; quem monta é o `KhFichaDrawer`. O painel `#kf3-previa` e o `css/ficha-previa.css` saíram. O `KhPrevia.render` e o ouro dele ficam.
+- **Página da ficha:** o drawer não monta lá, nem como trilho. A página já é a ficha nova inteira; o trilho repetiria as barras, e montar carregaria e calcularia tudo duas vezes. O CSS de empurrar e de reserva exclui `body[data-ficha-pagina]`.
+- **Bazar:** o drawer aberto fica por cima, como pedido. Mas o trilho sobre a calha de 40 px deixava a aba FICHA (que vai para a esquerda do trilho) em cima do inventário, que é o que a calha existe para evitar. Por isso a calha cresce o trilho (`40px + 48px`) com a prévia: o Bazar perde 48 px, que é o preço do trilho em todas as páginas (03 §9). O conteúdo nunca é empurrado pela largura do drawer aberto. **Pergunta ao Pedro:** prefere assim ou o trilho por cima da calha (a aba FICHA então cobre a borda do inventário)?
+- **Abas em 380 px:** numa linha só, cinco colunas iguais com o número da página do A4 e a primeira palavra do rótulo (Núcleo, Técnicas, Cartas, Bazar, Grimório). O nome inteiro fica no `aria-label` e no `title`. Com os rótulos inteiros, a lista quebrava em três linhas.
+- **Largura que sobra:** a 1366 px com a nav aberta, o drawer aberto deixa 696 px para o conteúdo. O `.main-content` empurrado leva `min-width: 0` (sem ele, a coluna toda não encolhia abaixo da tabela mais larga do Sistema e passava por baixo do drawer). As tabelas largas do Sistema (cerca de 680 px) ainda passam um pouco por baixo do drawer nessa largura. Com a nav no trilho, ou a partir de cerca de 1500 px, cabe.
+- **Abrir pelo arrasto** não grava a preferência (é um passeio do arrasto); abrir e recolher pelo botão e pelo Esc gravam.
+- **Soltar um item do Bazar** guarda na ficha atual (`KF.adicionar`), mostra o aviso e troca para a aba O Bazar do drawer, onde o item aparece.
+- **Esc** recolhe só com o drawer aberto e sem a ficha atual (v2.1) aberta por cima; a camada é a 40, depois das do Bazar (pop-up 10, lista 20, painel 30).
+- **"Sair da prévia"** também no cabeçalho do drawer (o painel antigo tinha): apaga a chave e recarrega sem `?ficha=v3`, como na página da ficha.
+- **Mini barras:** a conta é a do máximo (`recurso.<x>.max`), com "Saúde 18 / 22" no topo da dica; a dica abre à esquerda da aba FICHA, que fica colada no trilho e acima dele na escala de z-index.
