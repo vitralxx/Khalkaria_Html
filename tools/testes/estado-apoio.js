@@ -23,16 +23,20 @@ function entradasCatalogo() {
 
 class Quota extends Error { constructor() { super('quota'); this.name = 'QuotaExceededError'; this.code = 22; } }
 
-// limite em caracteres (chave + valor) somados; null = sem limite
+// limite em caracteres (chave + valor) somados; null = sem limite.
+// Falha simulada: st.falha = (chave, valor) => Error | null; o erro devolvido
+// é lançado no setItem antes de gravar (st.Quota é o QuotaExceededError).
 function armazenamento(inicial, limite) {
   const m = new Map(Object.entries(inicial || {}));
   const st = {
-    m, escritas: [], limite: limite == null ? null : limite,
+    m, escritas: [], limite: limite == null ? null : limite, falha: null, Quota,
     get length() { return m.size; },
     key: (i) => [...m.keys()][i] ?? null,
     getItem: (k) => (m.has(k) ? m.get(k) : null),
     setItem: (k, v) => {
       v = String(v);
+      const erro = st.falha ? st.falha(k, v) : null;
+      if (erro) throw erro;
       if (st.limite != null) {
         let tot = 0;
         m.forEach((val, key) => { if (key !== k) tot += key.length + val.length; });
@@ -42,7 +46,8 @@ function armazenamento(inicial, limite) {
     },
     removeItem: (k) => { st.escritas.push(['remove', k]); m.delete(k); },
     clear: () => { st.escritas.push(['clear']); m.clear(); },
-    json: (k) => (m.has(k) ? JSON.parse(m.get(k)) : null)
+    json: (k) => (m.has(k) ? JSON.parse(m.get(k)) : null),
+    foto: () => JSON.stringify([...m.entries()].sort())
   };
   return st;
 }
@@ -66,4 +71,4 @@ function semente(s) {
   return () => { x = (x * 1103515245 + 12345) % 2147483648; return x / 2147483648; };
 }
 
-module.exports = { RAIZ, lerJSON, dadosCatalogo, entradasCatalogo, armazenamento, soLeitura, relogio, semente };
+module.exports = { RAIZ, lerJSON, dadosCatalogo, entradasCatalogo, armazenamento, soLeitura, relogio, semente, Quota };

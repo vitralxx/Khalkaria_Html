@@ -11,6 +11,14 @@
  * O armazém (KhEstado.armazem) só é instanciado nos testes até a F4, que cria
  * o índice, as chaves v3 e o marcador khalkaria_ficha_dono.
  *
+ * ESCRITA DUPLA E MIGRAÇÃO REAL (F4.2): projetarV2, conflitoV2, reimportarV2,
+ * gravarComProjecao e migrarReal (e os mesmos nomes no armazém) são primitivas
+ * PURAS sobre o storage injetado e NÃO LIGADAS: nenhum código do navegador as
+ * chama (nem o ficha-v2.js, nem o kh-previa.js). Só serão ligadas na virada
+ * (F4.7), com aprovação do Pedro; até lá só os testes as usam. Regra
+ * conservadora: o que a v2 representa sem perda é projetado; o resto fica com
+ * o valor que a v2 já tinha e sai em 'perdas'. Nunca grava o marcador 'v3'.
+ *
  * No node (tools/testes) exporta o KhEstado por module.exports; no navegador
  * vira window.KhEstado. Depende do KhInv (js/ficha/kh-inv.js, antes no ORDEM).
  * Fonte: js/ficha/kh-estado.js (o js/ficha.js é o ARTEFATO concatenado).
@@ -717,6 +725,338 @@
       return migrar(f, opcoes);
     }
 
+    // ---------------- escrita dupla (F4.2, puro; ligado só na F4.7) ----------------
+    // Projeção v3 -> v2: a v2.1 só conhece UMA ficha (khalkaria_ficha). O que a
+    // v2 representa sem perda é projetado; o que tem perda fica com o valor que
+    // a v2 atual já tinha (ou o padrão da novaFicha da v2) e vai para 'perdas'.
+    var MOTIVO_PERDA = {
+      atributo: 'A v3 guarda a base do atributo (o total sai do motor de regras); a v2 guarda o total. Fica o valor da v2.',
+      pericia: 'A v3 guarda o grau (0-4) e o motor soma o resto; a v2 guarda o bônus total. Fica o valor da v2.',
+      oficio: 'A v3 tem três Ofícios (Engenharia, Ferraria, Alquimia); a v2 tem um Ofício(X) só. Fica o valor da v2.',
+      ajuste: 'Na v3 este número é calculado (o digitado vira ajuste); a v2 guarda o número digitado. Fica o valor da v2.',
+      ordinario: 'A v3 separa Cortante, Contundente e Perfurante, e eles não estão iguais (ou têm Ae própria); a v2 tem só Ordinário. Fica o valor da v2.',
+      variante: 'A v3 tem variante e subespécie ao mesmo tempo; a v2 tem um campo só. Fica o valor da v2.',
+      soV3: 'Só existe na v3: a v2 não tem onde guardar.',
+      semLista: 'Entrada de um tipo que a ficha v2 não guarda.',
+      duplicada: 'Outra entrada da v3 vira o mesmo card na v2: vai só a primeira.',
+      entradaV2: 'Card da v2 sem par na ficha v3 (removido na v3, ou duplicado na migração): sai da v2.'
+    };
+    // tipo v3 -> o tipo que a v2 grava (MAPA do ficha-v2.js); raça e classe não têm card na v2
+    var TIPO_PARA_V2 = { magia: 'magia', tecnica: 'tecnica', tecnologia: 'tecnica', ultimate: 'ultimate',
+      marca: 'marca', traco: 'traço', variante: 'variante', subespecie: 'subespécie', origem: 'origem',
+      carta: 'carta', dor: 'dor', beneficio: 'abismo', corrupcao: 'corrupção' };
+    var TIPOS_3 = ['cortante', 'contundente', 'perfurante'];
+    function listaV2(tipo) { return tipo === 'magia' ? 'grimorio' : (tipo === 'carta' || tipo === 'dor' || tipo === 'beneficio' ? 'cartasLimiar' : 'tecnicas'); }
+    // o slug do ficha-v2.js (id do card = tipo + '-' + slug do nome)
+    function slugV2(nome) {
+      return str(nome).normalize('NFKD').replace(/[̀-ͯ]/g, '')
+        .toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+    }
+    // o id do card na v2: o da migração (migradoDe) ou o que a v2 daria pelo nome
+    function chaveV2(e) {
+      if (!obj(e)) return null;
+      if (obj(e.migradoDe) && str(e.migradoDe.id)) return str(e.migradoDe.id);
+      var t = TIPO_PARA_V2[e.tipo];
+      return t ? t + '-' + slugV2(e.cache && e.cache.nome) : null;
+    }
+    // igualdade sem depender da ordem das chaves (a v2.1 reserializa o que lê)
+    function canon(x) {
+      if (Array.isArray(x)) return '[' + x.map(canon).join(',') + ']';
+      if (obj(x)) return '{' + Object.keys(x).sort().map(function (k) { return JSON.stringify(k) + ':' + canon(x[k]); }).join(',') + '}';
+      return JSON.stringify(x === undefined ? null : x);
+    }
+    function igual(a, b) { return canon(a) === canon(b); }
+    function temListasVelhas(f) {
+      var inv = obj(f) ? f.inventario : null;
+      return obj(inv) && (temPropria(inv, 'armas') || temPropria(inv, 'materiais'));
+    }
+    // A v2 (objeto ou texto) como a v2.1 a leria: a 2.0 sem listas velhas fica
+    // como está, com os padrões da novaFicha da v2; 1.x e listas velhas passam
+    // pelo migrarV1paraV2 (o mesmo migra() do ficha-v2.js). Lixo -> null.
+    // agora: função (só chamada se precisar migrar) ou texto
+    function lerV2(v2, agora) {
+      if (typeof v2 === 'string') { try { v2 = JSON.parse(v2); } catch (e) { return null; } }
+      if (!obj(v2)) return null;
+      var base = baseV2(), m;
+      if (v2.schemaVersion !== '2.0' || temListasVelhas(v2)) m = migrarV1paraV2(v2, typeof agora === 'function' ? agora() : agora);
+      else m = mescla(base, clone(v2));
+      // bloco que não é objeto (ou lista que não é lista) volta ao padrão da v2
+      (function conserta(b, x) {
+        Object.keys(b).forEach(function (k) {
+          if (Array.isArray(b[k])) { if (!Array.isArray(x[k])) x[k] = clone(b[k]); }
+          else if (obj(b[k])) { if (!obj(x[k])) x[k] = clone(b[k]); else conserta(b[k], x[k]); }
+        });
+      })(base, m);
+      m.rev = Math.max(0, inteiro(m.rev, 0));
+      ['salvoEm', 'exportadoEm', 'migradoEm'].forEach(function (k) { if (typeof m[k] !== 'string') m[k] = ''; });
+      KhInv.COLUNAS.forEach(function (c) { if (!Array.isArray(m.inventario[c])) m.inventario[c] = []; });
+      return m;
+    }
+
+    // projetarV2(fichaV3, v2Atual) -> {v2, perdas:[{campo, motivo, v2?, v3?}]}.
+    // v2: 'schemaVersion 2.0' sem inventario.armas/materiais (a v2.1 lê sem
+    // reescrever); rev e salvoEm são os da v2Atual (quem grava os sobe).
+    function projetarV2(fichaV3, v2Atual, opcoes) {
+      if (!obj(fichaV3)) return { v2: null, perdas: [], erro: 'invalida' };
+      var f = completaV3(clone(fichaV3));
+      var atual = v2Atual == null ? null : lerV2(v2Atual, opcoes && opcoes.agora);
+      var p = atual ? clone(atual) : baseV2();
+      var perdas = [];
+      function perde(campo, motivo, v2, v3) {
+        var x = { campo: campo, motivo: motivo };
+        if (v2 !== undefined) x.v2 = clone(v2);
+        if (v3 !== undefined) x.v3 = clone(v3);
+        perdas.push(x);
+      }
+      p.schemaVersion = '2.0';
+      if (str(f.exportadoEm)) p.exportadoEm = str(f.exportadoEm);
+
+      // meta e identidade (a v2 guarda o nome; o id fica na v3)
+      p.meta.nome = str(f.meta.nome); p.meta.jogador = str(f.meta.jogador);
+      p.meta.nivel = limita(inteiro(f.meta.nivel, 1), 1, 5); p.meta.xp = Math.max(0, inteiro(f.meta.xp, 0));
+      var idt = f.identidade;
+      ['raca', 'classe', 'ramo', 'origem'].forEach(function (k) { p.meta[k] = str(idt[k] && idt[k].nome); });
+      var vn = str(idt.variante && idt.variante.nome), sn = str(idt.subespecie && idt.subespecie.nome);
+      if (vn && sn) perde('meta.variante', MOTIVO_PERDA.variante, p.meta.variante, { variante: vn, subespecie: sn });
+      else p.meta.variante = vn || sn;
+
+      // com perda: atributos (base x total), perícias (grau x bônus), Ofício
+      ATRIBUTOS.forEach(function (A) {
+        var k = A.toLowerCase();
+        perde('atributos.' + k, MOTIVO_PERDA.atributo, p.atributos[k], f.atributos.base[A]);
+      });
+      PERICIAS_V2.forEach(function (k) {
+        if (k !== 'oficio') { perde('pericias.' + k, MOTIVO_PERDA.pericia, p.pericias[k], f.pericias[k]); return; }
+        perde('pericias.oficio', MOTIVO_PERDA.oficio, p.pericias.oficio, { 'oficio-engenharia': f.pericias['oficio-engenharia'],
+          'oficio-ferraria': f.pericias['oficio-ferraria'], 'oficio-alquimia': f.pericias['oficio-alquimia'] });
+      });
+      perde('oficioAttr', MOTIVO_PERDA.oficio, p.oficioAttr);
+
+      // recursos: o atual é estado (vai); o máximo e os derivados digitados viram ajuste na v3 (ficam)
+      var rc = f.recursos;
+      p.recursos.saude.atual = numero(rc.saude.atual, 0);
+      p.recursos.stamina.atual = numero(rc.stamina.atual, 0);
+      p.recursos.eter.atual = numero(rc.eter.atual, 0);
+      p.recursos.recursoClasse.nome = str(rc.classe.nome);
+      p.recursos.recursoClasse.atual = numero(rc.classe.atual, 0);
+      if (numero(rc.saude.temporaria, 0)) perde('recursos.saude.temporaria', MOTIVO_PERDA.soV3, undefined, rc.saude.temporaria);
+      if (numero(rc.stamina.comprometida, 0)) perde('recursos.stamina.comprometida', MOTIVO_PERDA.soV3, undefined, rc.stamina.comprometida);
+      AJUSTES_V2.forEach(function (a) {
+        var bloco = em(p, a[0]);
+        perde(a[0] + '.' + a[1], MOTIVO_PERDA.ajuste, obj(bloco) ? bloco[a[1]] : undefined,
+          temPropria(f.ajustes, a[2]) ? f.ajustes[a[2]] : null);
+      });
+
+      // resistências: os 11 tipos de nome igual vão 1:1; 'ordinario' só se os 3 estiverem iguais
+      var rt = f.resistencias.tipos;
+      RESIST_V2.forEach(function (k) {
+        if (!obj(p.resistencias[k])) p.resistencias[k] = { R: false, I: false, ae: 0 };
+        var alvo = p.resistencias[k];
+        if (k === 'ordinario') {
+          var tr = TIPOS_3.map(function (t) { return obj(rt[t]) ? rt[t] : {}; });
+          var iguais = tr.every(function (x) { return !!x.R === !!tr[0].R && !!x.I === !!tr[0].I && !inteiro(x.ae, 0); });
+          if (!iguais) {
+            var v3 = {};
+            TIPOS_3.forEach(function (t, i) { v3[t] = { R: !!tr[i].R, I: !!tr[i].I, ae: Math.max(0, inteiro(tr[i].ae, 0)) }; });
+            v3.aeCategoria = Math.max(0, inteiro(f.resistencias.aeCategoria.ordinario, 0));
+            perde('resistencias.ordinario', MOTIVO_PERDA.ordinario, alvo, v3);
+            return;
+          }
+          alvo.R = !!tr[0].R; alvo.I = !!tr[0].I; alvo.ae = Math.max(0, inteiro(f.resistencias.aeCategoria.ordinario, 0));
+          return;
+        }
+        var t = obj(rt[k]) ? rt[k] : {};
+        alvo.R = !!t.R; alvo.I = !!t.I; alvo.ae = Math.max(0, inteiro(t.ae, 0));
+      });
+      TIPOS_DANO.forEach(function (t) { if (obj(rt[t]) && rt[t].V) perde('resistencias.' + t + '.V', MOTIVO_PERDA.soV3, undefined, true); });
+      CATEGORIAS_AE.forEach(function (k) {
+        var n = inteiro(f.resistencias.aeCategoria[k], 0);
+        if (k !== 'ordinario' && n) perde('resistencias.aeCategoria.' + k, MOTIVO_PERDA.soV3, undefined, n);
+      });
+      if (inteiro(f.resistencias.aeTodos, 0)) perde('resistencias.aeTodos', MOTIVO_PERDA.soV3, undefined, inteiro(f.resistencias.aeTodos, 0));
+
+      // inventário: o mesmo formato (KhInv), como está
+      p.inventario = clone(f.inventario);
+      delete p.inventario.armas; delete p.inventario.materiais;
+      KhInv.COLUNAS.forEach(function (col) { if (!Array.isArray(p.inventario[col])) p.inventario[col] = []; });
+      p.inventario.sins = Math.max(0, inteiro(p.inventario.sins, 0));
+
+      // entradas -> cards da v2; o card que a v2 já tinha com o mesmo id vai como estava
+      var antigas = {};
+      LISTAS_V2.forEach(function (l) {
+        lista(p[l]).forEach(function (e) { if (obj(e) && str(e.id) && !antigas[e.id]) antigas[e.id] = [l, e]; });
+      });
+      var novas = { tecnicas: [], grimorio: [], cartasLimiar: [] }, usadas = {};
+      f.entradas.forEach(function (e) {
+        var k = chaveV2(e), resumo = { tipo: e.tipo, id: e.id, nome: str(e.cache && e.cache.nome) };
+        if (!k) { perde('entradas.' + str(e.uid), MOTIVO_PERDA.semLista, undefined, resumo); return; }
+        if (usadas[k]) { perde('entradas.' + str(e.uid), MOTIVO_PERDA.duplicada, undefined, resumo); return; }
+        usadas[k] = true;
+        if (antigas[k]) { novas[antigas[k][0]].push(clone(antigas[k][1])); return; }
+        var md = obj(e.migradoDe) ? e.migradoDe : {};
+        novas[listaV2(e.tipo)].push({ id: k, tipo: str(md.tipo) || TIPO_PARA_V2[e.tipo] || str(e.tipo),
+          nome: str(md.nome) || str(e.cache && e.cache.nome), descricao: str(e.cache && e.cache.resumo) });
+      });
+      Object.keys(antigas).forEach(function (k) {
+        if (!usadas[k]) perde(antigas[k][0] + '.' + k, MOTIVO_PERDA.entradaV2, antigas[k][1]);
+      });
+      LISTAS_V2.forEach(function (l) { p[l] = novas[l]; });
+
+      p.lore = Object.assign(obj(p.lore) ? p.lore : {}, { historia: str(f.lore.historia), outros: str(f.lore.outros) });
+      return { v2: p, perdas: perdas };
+    }
+
+    // true quando khalkaria_ficha não é mais a última projeção gravada: uma
+    // aba v2.1 gravou por cima (rev maior) ou ela foi trocada (rev/salvoEm
+    // diferentes). Sem projeção no índice, ou sem v2, não há conflito.
+    function conflitoV2(indice, v2Atual) {
+      var p = obj(indice) && obj(indice.projecaoV2) ? indice.projecaoV2 : null;
+      if (!p || v2Atual == null) return false;
+      var v2 = v2Atual;
+      if (typeof v2 === 'string') { try { v2 = JSON.parse(v2); } catch (e) { return true; } }
+      if (!obj(v2)) return true;
+      return inteiro(v2.rev, 0) !== inteiro(p.revV2, 0) || str(v2.salvoEm) !== str(p.salvoEmV2);
+    }
+    // a ficha já tem esta versão da v2 (migrou dela ou a reimportou): vinculoV2 igual
+    function absorvida(ficha, v2) {
+      var vk = obj(ficha) && obj(ficha.vinculoV2) ? ficha.vinculoV2 : null;
+      return !!vk && obj(v2) && inteiro(vk.revV2, -1) === inteiro(v2.rev, 0) && str(vk.salvoEmV2) === str(v2.salvoEm);
+    }
+
+    // reimportarV2(fichaV3, v2, {catalogo?, base?}) -> {ficha, mudou:[caminhos], avisos}.
+    // MERGE por campo: só o que a v2 representa sem perda e que a v2 mudou
+    // (difere da projeção de 'base', a ficha que foi projetada; sem base, a
+    // própria fichaV3) sobrescreve. O que só existe na v3 (uid e estado das
+    // entradas, porNivel, ajustes, Vhelor, os 14 tipos quando 'ordinario' tem
+    // perda…) fica. Nunca passa a ficha pelo migrarV2paraV3 (recriaria a ficha).
+    // vinculoV2 passa a ser a v2 reimportada: gravar depois resolve o conflito.
+    function reimportarV2(fichaV3, v2Entrada, opcoes) {
+      opcoes = opcoes || {};
+      var c = ctx(opcoes), agora = c.agora(), idx = opcoes.catalogo || null;
+      var f = completaV3(clone(fichaV3));
+      var v2 = lerV2(v2Entrada, agora);
+      if (!v2) return { ficha: f, mudou: [], avisos: [], erro: 'v2-ilegivel' };
+      // o que tem perda sai igual à v2 nesta projeção, então nunca conta como mudança
+      var base = projetarV2(obj(opcoes.base) ? opcoes.base : f, v2, { agora: function () { return agora; } }).v2;
+      var mudou = [], avisos = [];
+      function troca(caminho, valorV2, valorBase, aplica) {
+        if (igual(valorV2, valorBase)) return;
+        aplica(valorV2);
+        mudou.push(caminho);
+      }
+      troca('meta.nome', str(v2.meta.nome), str(base.meta.nome), function (v) { f.meta.nome = v; });
+      troca('meta.jogador', str(v2.meta.jogador), str(base.meta.jogador), function (v) { f.meta.jogador = v; });
+      troca('meta.nivel', limita(inteiro(v2.meta.nivel, 1), 1, 5), base.meta.nivel, function (v) { f.meta.nivel = v; });
+      troca('meta.xp', Math.max(0, inteiro(v2.meta.xp, 0)), base.meta.xp, function (v) { f.meta.xp = v; });
+
+      // identidade: nome igual (sem acento/caixa) ou o mesmo id pelo catálogo = sem mudança
+      function resolve(nome, tipos, filtro, campo) {
+        var a = nome && idx ? achar(idx, tipos, nome, filtro) : null;
+        if (nome && !(a && a.entrada)) {
+          avisos.push({ tipo: 'identidade', campo: campo, nome: nome, motivo: !idx ? 'sem-catalogo' : (a && a.ambiguo ? 'ambiguo' : 'sem-par') });
+        }
+        return a && a.entrada ? a.entrada : null;
+      }
+      function ident(campo, tipos, filtro) {
+        var n2 = str(v2.meta[campo]).trim();
+        if (normaliza(n2) === normaliza(base.meta[campo])) return;
+        var atual = obj(f.identidade[campo]) ? f.identidade[campo] : ref();
+        var e = resolve(n2, tipos, filtro, campo);
+        if (e && atual.id && e.id === atual.id) return;
+        f.identidade[campo] = !n2 ? ref() : (e ? ref(e.id, e.nome) : ref(null, n2));
+        mudou.push('identidade.' + campo);
+      }
+      ident('raca', ['raca']); ident('classe', ['classe']); ident('origem', ['origem']);
+      var raca = chaveDe(f.identidade.raca.id, 'raca-'), classe = chaveDe(f.identidade.classe.id, 'classe-');
+      ident('ramo', ['ramo'], { classe: classe });
+      var v2v = str(v2.meta.variante).trim();
+      if (normaliza(v2v) !== normaliza(base.meta.variante)) {
+        var cv = f.identidade.variante || ref(), cs = f.identidade.subespecie || ref();
+        var ev = resolve(v2v, ['variante', 'subespecie'], { raca: raca }, 'variante');
+        if (!(ev && (ev.id === cv.id || ev.id === cs.id))) {
+          var campoV = ev ? ev.tipo : (str(cs.nome) && !str(cv.nome) ? 'subespecie' : 'variante');
+          f.identidade.variante = ref(); f.identidade.subespecie = ref();
+          if (v2v) f.identidade[campoV] = ev ? ref(ev.id, ev.nome) : ref(null, v2v);
+          mudou.push('identidade.' + campoV);
+        }
+      }
+
+      // recursos: só o atual (estado) e o nome do recurso de classe
+      [['saude', 'saude'], ['stamina', 'stamina'], ['eter', 'eter'], ['recursoClasse', 'classe']].forEach(function (x) {
+        troca('recursos.' + x[1] + '.atual', numero(em(v2, 'recursos.' + x[0] + '.atual'), 0),
+          numero(em(base, 'recursos.' + x[0] + '.atual'), 0), function (v) { f.recursos[x[1]].atual = v; });
+      });
+      troca('recursos.classe.nome', str(em(v2, 'recursos.recursoClasse.nome')), str(em(base, 'recursos.recursoClasse.nome')),
+        function (v) { f.recursos.classe.nome = v; });
+
+      // resistências: R/I/ae dos 11 tipos; 'ordinario' só quando foi projetado (senão a base é a própria v2)
+      RESIST_V2.forEach(function (k) {
+        var r2 = obj(v2.resistencias[k]) ? v2.resistencias[k] : {}, rb = obj(base.resistencias[k]) ? base.resistencias[k] : {};
+        var alvos = k === 'ordinario' ? TIPOS_3 : [k];
+        ['R', 'I'].forEach(function (q) {
+          troca('resistencias.' + k + '.' + q, !!r2[q], !!rb[q], function (v) {
+            alvos.forEach(function (t) { f.resistencias.tipos[t][q] = v; });
+          });
+        });
+        troca('resistencias.' + k + '.ae', Math.max(0, inteiro(r2.ae, 0)), Math.max(0, inteiro(rb.ae, 0)), function (v) {
+          if (k === 'ordinario') f.resistencias.aeCategoria.ordinario = v; else f.resistencias.tipos[k].ae = v;
+        });
+      });
+
+      // inventário: por coluna (o uid de cada item é o mesmo nas duas)
+      troca('inventario.sins', Math.max(0, inteiro(v2.inventario.sins, 0)), Math.max(0, inteiro(base.inventario.sins, 0)),
+        function (v) { f.inventario.sins = v; });
+      KhInv.COLUNAS.forEach(function (col) {
+        troca('inventario.' + col, lista(v2.inventario[col]), lista(base.inventario[col]), function (v) { f.inventario[col] = clone(v); });
+      });
+
+      // entradas: card que saiu da v2 sai da v3; card novo na v2 entra como entrada nova
+      var idsBase = {}, idsV2 = {}, novosV2 = [];
+      LISTAS_V2.forEach(function (l) { lista(base[l]).forEach(function (e) { if (obj(e) && str(e.id)) idsBase[e.id] = true; }); });
+      LISTAS_V2.forEach(function (l) {
+        lista(v2[l]).forEach(function (e) {
+          if (!obj(e) || !str(e.id) || !str(e.nome).trim() || idsV2[e.id]) return;
+          idsV2[e.id] = true;
+          if (!idsBase[e.id]) novosV2.push(e);
+        });
+      });
+      var sai = {};
+      f.entradas.forEach(function (e) { var k = chaveV2(e); if (k && idsBase[k] && !idsV2[k]) sai[e.uid] = true; });
+      var filtro = { classe: classe, raca: raca }, usados = {}, vistos = {};
+      f.entradas.forEach(function (e) { usados[e.uid] = true; if (e.id && !sai[e.uid]) vistos[e.tipo + ':' + e.id] = true; });
+      var novas = [];
+      novosV2.forEach(function (e2) {
+        var r = associa(e2, idx, filtro, c), tipoV3 = r.tipo || 'tecnica';
+        if (r.id) {
+          // o mesmo card com outro nome (o catálogo renomeou): fica a entrada da v3
+          var mesma = f.entradas.filter(function (e) { return sai[e.uid] && e.tipo === tipoV3 && e.id === r.id; })[0];
+          if (mesma) { delete sai[mesma.uid]; vistos[tipoV3 + ':' + r.id] = true; return; }
+          if (vistos[tipoV3 + ':' + r.id]) { avisos.push({ tipo: 'duplicada', ref: tipoV3 + ':' + r.id, nome: str(e2.nome) }); return; }
+          vistos[tipoV3 + ':' + r.id] = true;
+        }
+        var ent = { uid: novoUid(usados, c), tipo: tipoV3, id: r.id, estado: estadoPadrao(tipoV3),
+          cache: { nome: r.entradaCat ? str(r.entradaCat.nome) : str(e2.nome), resumo: str(e2.descricao), versaoCatalogo: idx ? idx.versao : '' },
+          mods: r.entradaCat && Array.isArray(r.entradaCat.mods) ? clone(r.entradaCat.mods) : [],
+          adicionadoEm: agora,
+          // entrou na v2 depois dos totais: os Mods dela contam (não estão na base)
+          migradoDe: { id: str(e2.id), tipo: str(e2.tipo), nome: str(e2.nome), efeitoNoTotal: false } };
+        if (r.orfao) { ent.orfao = r.orfao; avisos.push({ tipo: 'orfa', ref: str(e2.tipo) + ':' + str(e2.id), motivo: r.orfao.motivo }); }
+        novas.push(ent);
+      });
+      f.entradas = f.entradas.filter(function (e) {
+        if (!sai[e.uid]) return true;
+        mudou.push('entradas.' + e.uid);
+        return false;
+      });
+      novas.forEach(function (e) { f.entradas.push(e); mudou.push('entradas.' + e.uid); });
+
+      troca('lore.historia', str(em(v2, 'lore.historia')), str(em(base, 'lore.historia')), function (v) { f.lore.historia = v; });
+      troca('lore.outros', str(em(v2, 'lore.outros')), str(em(base, 'lore.outros')), function (v) { f.lore.outros = v; });
+
+      f.vinculoV2 = { revV2: Math.max(0, inteiro(v2.rev, 0)), salvoEmV2: str(v2.salvoEm) };
+      return { ficha: f, mudou: mudou, avisos: avisos };
+    }
+
     // ---------------- armazém: várias fichas (D36) ----------------
     // storage = localStorage (ou falso nos testes); sessao = sessionStorage (ativa
     // por aba) ou null. Funções puras sobre o que foi injetado.
@@ -779,7 +1119,8 @@
         if (ks.indexOf(CHAVES.backupV1) >= 0) out.push(CHAVES.backupV1);
         return out;
       }
-      function escreve(k, v, limpou) {
+      // guardados (opcional): o valor de cada chave limpa, para a transação devolver
+      function escreve(k, v, limpou, guardados) {
         var fila = null;
         for (;;) {
           try { ls.setItem(k, v); return { ok: true }; }
@@ -788,20 +1129,25 @@
             if (fila === null) fila = candidatosLimpeza();
             if (!fila.length) return { ok: false, erro: 'quota', sugestao: 'exportarTodas' };
             var r = fila.shift();
+            if (guardados && !temPropria(guardados, r)) { var g = ler(r); if (g != null) guardados[r] = g; }
             if (remove(r)) limpou.push(r);
           }
         }
+      }
+      // a linha da ficha no índice (vitrine do seletor)
+      function poeLinha(ind, ficha) {
+        var linha = { id: ficha.id, nome: ficha.meta.nome, classe: str(ficha.identidade.classe.nome),
+          nivel: ficha.meta.nivel, atualizadoEm: ficha.salvoEm || ficha.criadoEm };
+        var i = -1;
+        ind.fichas.forEach(function (x, j) { if (x.id === ficha.id) i = j; });
+        if (i >= 0) ind.fichas[i] = linha; else ind.fichas.push(linha);
       }
       // grava a ficha e a linha dela no índice; se o índice falhar, desfaz a ficha
       function gravaPar(ficha, ind, limpou) {
         var kf = CHAVES.ficha + ficha.id, antes = ler(kf);
         var r1 = escreve(kf, JSON.stringify(ficha), limpou);
         if (!r1.ok) return r1;
-        var linha = { id: ficha.id, nome: ficha.meta.nome, classe: str(ficha.identidade.classe.nome),
-          nivel: ficha.meta.nivel, atualizadoEm: ficha.salvoEm || ficha.criadoEm };
-        var i = -1;
-        ind.fichas.forEach(function (x, j) { if (x.id === ficha.id) i = j; });
-        if (i >= 0) ind.fichas[i] = linha; else ind.fichas.push(linha);
+        poeLinha(ind, ficha);
         var r2 = escreve(CHAVES.indice, JSON.stringify(ind), limpou);
         if (!r2.ok) {
           if (antes == null) remove(kf); else { try { ls.setItem(kf, antes); } catch (e) {} }
@@ -1007,14 +1353,147 @@
         });
         return { bytes: bytes, limite: LIMITE_QUOTA, fracao: bytes / LIMITE_QUOTA, porChave: porChave };
       }
+
+      // ---- escrita dupla (F4.2; ligada só na F4.7) ----
+      // Grava os passos [[chave, valor]] em ordem. Se um falhar (quota,
+      // exceção), devolve cada chave já escrita ao valor de antes, e os logs
+      // que a limpeza de quota tirou, e responde {ok:false, erro}.
+      function transacao(passos) {
+        var antes = [], limpou = [], guardados = {};
+        for (var i = 0; i < passos.length; i++) {
+          var k = passos[i][0], velho;
+          try { velho = ls.getItem(k); } catch (e) { return { ok: false, erro: 'storage', limpou: desfaz(antes, guardados) }; }
+          var r = escreve(k, passos[i][1], limpou, guardados);
+          // o setItem que falhou não mudou a chave: volta só o que foi escrito
+          if (!r.ok) return Object.assign(r, { limpou: desfaz(antes, guardados) });
+          antes.push([k, velho]);
+        }
+        return { ok: true, limpou: limpou };
+      }
+      // devolve as chaves que NÃO voltaram (o storage recusou de novo)
+      function desfaz(antes, guardados) {
+        var falhou = [];
+        antes.slice().reverse().forEach(function (x) {
+          try { if (x[1] == null) ls.removeItem(x[0]); else ls.setItem(x[0], x[1]); } catch (e) { falhou.push(x[0]); }
+        });
+        Object.keys(guardados).forEach(function (k) { try { ls.setItem(k, guardados[k]); } catch (e) { falhou.push(k); } });
+        return falhou;
+      }
+      function lerV2Cru() {
+        var cru;
+        try { cru = ls.getItem(CHAVES.v2); } catch (e) { return { erro: 'storage' }; }
+        if (cru == null) return { v2: null };
+        var v2 = null;
+        try { v2 = JSON.parse(cru); } catch (e) { v2 = null; }
+        return obj(v2) ? { v2: v2 } : { erro: 'v2-ilegivel' };
+      }
+      // Grava a ficha (rev++, salvoEm), o índice (linha + projecaoV2), a
+      // projeção em khalkaria_ficha (rev = max(rev da v2, projecaoV2.revV2) + 1,
+      // para a aba v2.1 aberta adotar) e por ÚLTIMO o marcador 'v3-dupla'
+      // ('v3' fica como está: a F5 desligou a escrita dupla). Recusa sem gravar
+      // nada: 'conflito-v2' (uma aba v2.1 gravou depois da última projeção e a
+      // ficha não absorveu essa versão: a UI oferece reimportar na ficha de
+      // projecaoV2.fichaId) e 'v2-nao-migrada' (há v2 e nenhuma projeção: migrar antes).
+      function gravarComProjecao(ficha, op) {
+        op = op || {};
+        if (somenteLeitura()) return recusa('somente-leitura');
+        if (!obj(ficha) || !ficha.id) return recusa('invalida');
+        if (podaPendente(ficha)) return recusa('poda-pendente');
+        var ind = lerIndice();
+        if (!existe(ind, ficha.id) && (inteiro(ficha.rev, 0) > 0 || str(ficha.salvoEm))) return recusa('excluida');
+        var atual = lerJSON(CHAVES.ficha + ficha.id);
+        if (obj(atual)) {
+          if (versaoMaior(atual.schemaVersion) > 3) return recusa('versao-futura', { versao: str(atual.schemaVersion) });
+          if (inteiro(atual.rev, 0) > inteiro(ficha.rev, 0)) return recusa('desatualizada', { rev: inteiro(atual.rev, 0) });
+        }
+        var lido = lerV2Cru();
+        if (lido.erro) return recusa(lido.erro);
+        var v2 = lido.v2, proj = obj(ind.projecaoV2) ? ind.projecaoV2 : null;
+        if (v2 && !absorvida(ficha, v2)) {
+          if (proj && conflitoV2(ind, v2)) return recusa('conflito-v2', { fichaId: str(proj.fichaId), revV2: inteiro(v2.rev, 0) });
+          if (!proj) return recusa('v2-nao-migrada');
+        }
+        var agora = c.agora();
+        var nova = clone(ficha);
+        nova.rev = inteiro(nova.rev, 0) + 1;
+        nova.salvoEm = agora;
+        var pr = projetarV2(nova, v2, { agora: function () { return agora; } });
+        var p2 = pr.v2;
+        p2.rev = Math.max(v2 ? inteiro(v2.rev, 0) : 0, proj ? inteiro(proj.revV2, 0) : 0) + 1;
+        p2.salvoEm = agora;
+        ind.projecaoV2 = { fichaId: nova.id, revV2: p2.rev, salvoEmV2: p2.salvoEm };
+        poeLinha(ind, nova);
+        if (op.ativar) ind.ultimaAtiva = nova.id;
+        var passos = [[CHAVES.ficha + nova.id, JSON.stringify(nova)], [CHAVES.indice, JSON.stringify(ind)],
+          [CHAVES.v2, JSON.stringify(p2)]];
+        var dono = ler(CHAVES.dono);
+        if (dono !== 'v3-dupla' && dono !== 'v3') passos.push([CHAVES.dono, 'v3-dupla']);
+        var r = transacao(passos);
+        if (!r.ok) return r;
+        if (op.ativar) marcaAtiva(nova.id);
+        ficha.rev = nova.rev; ficha.salvoEm = nova.salvoEm;
+        return { ok: true, id: nova.id, rev: nova.rev, revV2: p2.rev, perdas: pr.perdas, limpou: r.limpou };
+      }
+      // a ficha do índice que já tem esta versão da v2 (vinculoV2 igual)
+      function fichaDaV2(ind, v2) {
+        var achada = null;
+        ind.fichas.some(function (x) { var f = lerFicha(x.id); if (f && absorvida(f, v2)) achada = f; return !!achada; });
+        return achada;
+      }
+      // Migração real, IDEMPOTENTE: a v2 vira UMA ficha nova do índice (id novo,
+      // ativa, com vinculoV2) gravada com a projeção. Se o índice já tem a ficha
+      // dela (projecaoV2 igual à v2, ou vinculoV2 igual), não cria outra.
+      // op: catalogo, calculado (sem ele a poda fica pendente e nada é gravado).
+      function migrarReal(op) {
+        var o = Object.assign({}, opcoes, op || {});
+        if (somenteLeitura()) return recusa('somente-leitura');
+        var lido = lerV2Cru();
+        if (lido.erro) return recusa(lido.erro);
+        var v2 = lido.v2;
+        if (!v2) return { ok: true, id: null, criada: false, motivo: 'sem-v2', limpou: [] };
+        if (versaoMaior(v2.schemaVersion) >= 3) return recusa('v2-ilegivel');
+        var ind = lerIndice(), proj = obj(ind.projecaoV2) ? ind.projecaoV2 : null;
+        var dela = proj && existe(ind, proj.fichaId);
+        if (dela && !conflitoV2(ind, v2)) return { ok: true, id: proj.fichaId, criada: false, limpou: [] };
+        var ja = fichaDaV2(ind, v2);
+        if (ja) {
+          // já migrada (ou reimportada), sem a projeção desta versão: só liga a escrita dupla
+          var rj = gravarComProjecao(ja, {});
+          return rj.ok ? Object.assign(rj, { criada: false }) : rj;
+        }
+        if (dela) return recusa('conflito-v2', { fichaId: proj.fichaId, revV2: inteiro(v2.rev, 0) });
+        // a projeção de uma ficha que foi excluída (com export antes): nada novo nela
+        if (proj && !conflitoV2(ind, v2)) return { ok: true, id: null, criada: false, motivo: 'projecao-de-ficha-excluida', limpou: [] };
+        var mig = migrar(v2, Object.assign({}, o, { id: novoId(usados(), o) }));
+        if (mig.erro) return recusa(mig.erro === 'versao-futura' ? 'v2-ilegivel' : mig.erro);
+        var f = mig.ficha;
+        if (o.catalogo) { reassociar(f, o.catalogo); reconciliar(f, o.catalogo); }
+        if (podaPendente(f) && o.calculado) podarAjustesMigrados(f, o.calculado);
+        if (podaPendente(f)) return recusa('poda-pendente');
+        var r = gravarComProjecao(f, { ativar: true });
+        return r.ok ? Object.assign(r, { criada: true, avisos: mig.avisos || [], pendencias: f.migracao ? f.migracao.pendencias : [] }) : r;
+      }
       return {
         listar: function () { return clone(lerIndice().fichas); },
         indice: function () { return clone(lerIndice()); },
         ativa: ativa, ativaExcluida: ativaExcluida, ler: lerFicha, gravar: gravar, criar: criar, trocar: trocar,
         duplicar: duplicar, excluir: excluir, exportar: exportar, exportarCru: exportarCru, exportarTodas: exportarTodas,
         importar: importar, uso: uso, lerSessao: lerSessao, gravarSessao: gravarSessao,
-        lerLog: lerLog, gravarLog: gravarLog, somenteLeitura: somenteLeitura
+        lerLog: lerLog, gravarLog: gravarLog, somenteLeitura: somenteLeitura,
+        gravarComProjecao: gravarComProjecao, migrarReal: migrarReal
       };
+    }
+    // As mesmas do armazém, sobre o storage (ou um armazém já criado). F4.2:
+    // nada do navegador as chama até a virada (F4.7).
+    function gravarComProjecao(alvo, fichaId, fichaV3, op) {
+      op = op || {};
+      if (!obj(fichaV3) || !fichaId || fichaV3.id !== fichaId) return { ok: false, erro: 'invalida' };
+      var arm = alvo && typeof alvo.gravarComProjecao === 'function' ? alvo : armazem(alvo, op.sessao || null, op);
+      return arm.gravarComProjecao(fichaV3, op);
+    }
+    function migrarReal(ls, op) {
+      op = op || {};
+      return armazem(ls, op.sessao || null, op).migrarReal(op);
     }
 
     return {
@@ -1030,7 +1509,10 @@
       migrarV1paraV2: migrarV1paraV2, migrarV2paraV3: migrarV2paraV3, migrar: migrar,
       indiceCatalogo: indiceCatalogo, reassociar: reassociar, reconciliar: reconciliar,
       exportarFicha: exportarFicha, pacoteTodas: pacoteTodas, lerImport: lerImport,
-      sombra: sombra, armazem: armazem
+      sombra: sombra, armazem: armazem,
+      // F4.2 (escrita dupla e migração real): puras, ligadas só na F4.7
+      projetarV2: projetarV2, conflitoV2: conflitoV2, reimportarV2: reimportarV2,
+      gravarComProjecao: gravarComProjecao, migrarReal: migrarReal
     };
   })();
 

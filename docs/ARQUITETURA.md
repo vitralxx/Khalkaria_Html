@@ -102,7 +102,9 @@ tools/gerar_regras_ficha.py    F3b: contrato regras-ficha + blocos do site -> js
 tools/testes/                  testes node do motor KhInv, do KhEstado, do KhRegras e da prévia (*.test.js, fixtures/);
                                index.js deixa `node --test tools/testes` rodar no Node 22+;
                                esquema-min.js: validador mínimo de JSON Schema (sem pip) dos
-                               testes do schema v3; estado-apoio.js: catálogo real + storage falso;
+                               testes do schema v3; estado-apoio.js: catálogo real + storage falso
+                               (quota e falha simulada); pagina-v2-apoio.js: a v2.1 real (js/ficha.js)
+                               num vm com DOM falso (guarda e escrita dupla);
                                test_*.py: checagens do validar (unittest, no build)
 tools/estilo/                  conferência de estilo computado (captura no navegador; §6): servidor.py,
                                captura.js, rodar.html, roteiro.json, diff.py, revisado.json;
@@ -176,7 +178,10 @@ js/ficha/kh-inv.js               KhInv, motor PURO (carga, migração, reconcili
 js/ficha/kh-estado.js            KhEstado (F3a), PURO: estado v3, migração 1.0→2.0→3.0,
                                  ajustes (modelo M2), várias fichas (D36) sobre storage
                                  injetado, export/import, guarda de versão. MODO SOMBRA:
-                                 nada instancia o armazém no site até a F4
+                                 nada instancia o armazém no site até a F4. F4.2: escrita
+                                 dupla e migração real (projetarV2, conflitoV2,
+                                 gravarComProjecao, migrarReal, reimportarV2), puras e
+                                 NÃO LIGADAS até a virada (F4.7, com aprovação do Pedro)
 js/ficha/kh-efeitos.js           KhEfeitos (F3b), PURO: coleta os Mods com a trilha
                                  (raça, fontes do contrato, entradas, nível, condições,
                                  itens pelo "quando", ajustes) e resolve o acúmulo
