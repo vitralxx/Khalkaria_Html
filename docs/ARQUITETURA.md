@@ -186,6 +186,9 @@ js/ficha/kh-regras.js            KhRegras (F3b), PURO: grafo de derivados em ord
                                  fórmula do tooltip. MODO SOMBRA: nada chama no site
 js/ficha/ficha-v2.js             drawer, estado v2, decoração dos cards e a API
                                  window.KF (§8); no node não roda
+js/ficha/kh-conta.js             KhConta (F4.1), PURO: o componente "conta" (número +
+                                 tooltip da fórmula), KhConta.criar({D, nos, prefixo}),
+                                 prefixo de classe 'kf3' por padrão; conta.test.js
 js/ficha/kh-previa.js            KhPrevia (F3c): PRÉVIA ESCONDIDA da v3 (?ficha=v3), painel
                                  à direita só-leitura com a v2 migrada e calculada em
                                  memória; partes puras (ativacao, calcular, render)
