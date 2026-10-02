@@ -144,10 +144,24 @@ test('as 5 abas == as 5 páginas da ficha física (03 §4), na ordem do A4', () 
 test('casca: tablist com 5 abas, cada uma ligada ao seu tabpanel; uma selecionada, tabindex móvel; o lugar do sprite', () => {
   const h = FP.htmlCasca('cartas');
   assert.equal((h.match(/role="tablist"/g) || []).length, 1);
-  const abas = [...h.matchAll(/<button type="button" class="fp-aba" role="tab" id="fp-aba-([a-z]+)" data-aba="\1" aria-controls="fp-painel-\1" aria-selected="(true|false)" tabindex="(0|-1)">/g)];
+  const RE_ABA = /<button type="button" class="fp-aba" role="tab" id="fp-aba-([a-z]+)" data-aba="\1" aria-controls="fp-painel-\1" aria-selected="(true|false)" tabindex="(0|-1)" aria-keyshortcuts="Alt\+ArrowLeft Alt\+ArrowRight" title="Arraste, ou use Alt\+← e Alt\+→, para mudar a ordem das abas">/g;
+  const abas = [...h.matchAll(RE_ABA)];
   assert.deepEqual(abas.map((m) => m[1]), FP.ABAS.map((a) => a.id));
   assert.deepEqual(abas.filter((m) => m[2] === 'true').map((m) => m[1]), ['cartas']);
   abas.forEach((m) => assert.equal(m[3], m[2] === 'true' ? '0' : '-1', m[1]));
+  // F4.5: a barra com a lista, o "Ordem do A4" (escondido na ordem do A4) e o aviso ao leitor de tela
+  assert.match(h, /<div class="fp-abas-barra"><div class="fp-abas" id="fp-abas" role="tablist" aria-label="Partes da ficha">/);
+  // botão de ícone (traço SVG, sem emoji), com o nome no aria-label
+  assert.match(h, /<\/button><\/div><button type="button" class="kh-btn fp-abas-a4" id="fp-abas-a4" hidden aria-label="Ordem do A4" title="Ordem do A4: [^"]+"><svg class="fp-svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false">(?:<path [^>]*stroke="currentColor"[^>]*\/>)+<\/svg><\/button><span class="fp-sr" id="fp-abas-anuncio" role="status" aria-live="polite"><\/span><\/div>/);
+  assert.doesNotMatch(h, EMOJI);
+  // outra ordem (lista de ids, normalizada como no KhAbas): as abas nela, o botão à vista
+  const h2 = FP.htmlCasca('xpto', ['grimorio', 'bazar', 'lixo']);
+  assert.deepEqual([...h2.matchAll(RE_ABA)].map((m) => m[1]), ['grimorio', 'bazar', 'nucleo', 'tecnicas', 'cartas']);
+  assert.match(h2, /id="fp-aba-grimorio" data-aba="grimorio" aria-controls="fp-painel-grimorio" aria-selected="true"/, 'aba desconhecida: a 1ª da ordem');
+  assert.match(h2, /class="kh-btn fp-abas-a4" id="fp-abas-a4" aria-label="Ordem do A4" title=/);
+  assert.equal(FP.htmlCasca('cartas', ['corrompido']), h, 'lista inválida: ordem do A4');
+  assert.deepEqual(FP.ordemAbas().map((a) => a.id), FP.ABAS.map((a) => a.id));
+  assert.deepEqual(FP.ordemAbas({ getItem: () => '["cartas"]' }).map((a) => a.id), ['cartas', 'nucleo', 'tecnicas', 'bazar', 'grimorio']);
   const paineis = [...h.matchAll(/<section class="fp-painel" role="tabpanel" id="fp-painel-([a-z]+)" data-aba="\1" aria-labelledby="fp-aba-\1" tabindex="0" aria-busy="true"( hidden)?>/g)];
   assert.deepEqual(paineis.map((m) => m[1]), FP.ABAS.map((a) => a.id));
   assert.deepEqual(paineis.filter((m) => !m[2]).map((m) => m[1]), ['cartas'], 'só o painel aberto visível');
@@ -610,46 +624,88 @@ test('desenhar não grava nada: storage só-leitura do começo ao fim', () => {
 });
 
 // ---------------- navegador: o artefato js/ficha.js e depois o js/ficha-pagina.js num vm ----------------
+const SRC_UI = ler('js', 'kh-ui.js');
 const SRC_FICHA = ler('js', 'ficha.js');
 const SRC_PAGINA = ler('js', 'ficha-pagina.js');
 const BASE = 'http://site.test/';
 
-// elemento falso; innerHTML cria um elemento por id="…" com os atributos da tag
+// elemento falso; innerHTML cria um elemento por id="…" com os atributos da tag,
+// filho do ancestral com id mais próximo (a lista de abas sabe a ordem das abas:
+// querySelectorAll('[role="tab"]') e insertBefore, para o KhAbas da F4.5)
+const VAZIAS_DOM = new Set(['img', 'br', 'hr', 'input', 'meta', 'link', 'source', 'wbr']);
 function criaDom() {
   const porId = new Map();
+  const dom = { porId, elemento, doc: null };
   function elemento(tag, attrs) {
     const a = Object.assign({}, attrs || {}), ouv = {};
     const e = {
-      tagName: String(tag).toUpperCase(), hidden: 'hidden' in a, focado: false, _html: '', trocas: 0,
+      tagName: String(tag).toUpperCase(), hidden: 'hidden' in a, disabled: 'disabled' in a, focado: false, _html: '', trocas: 0,
+      filhos: [], pai: null, style: {}, textContent: '',
       getAttribute: (k) => (k in a ? a[k] : null), setAttribute: (k, v) => { a[k] = String(v); },
       removeAttribute: (k) => { delete a[k]; }, hasAttribute: (k) => k in a,
       addEventListener: (t, f) => { (ouv[t] = ouv[t] || []).push(f); },
+      removeEventListener: (t, f) => { ouv[t] = (ouv[t] || []).filter((x) => x !== f); },
       dispara: (ev) => (ouv[ev.type] || []).forEach((f) => f(ev)),
       closest: (sel) => {
-        if (sel === '[role="tab"]') return a.role === 'tab' ? e : null;
+        if (sel === '[role="tab"]') { for (let n = e; n; n = n.pai) if (n.getAttribute('role') === 'tab') return n; return null; }
         if (sel === '.fp-abrir-v2') return /\bfp-abrir-v2\b/.test(a.class || '') ? e : null;
         return null;
       },
-      focus: () => { e.focado = true; },
+      querySelectorAll: (sel) => {
+        if (sel !== '[role="tab"]') return [];
+        const out = [];
+        (function anda(n) { n.filhos.forEach((f) => { if (f.getAttribute('role') === 'tab') out.push(f); anda(f); }); })(e);
+        return out;
+      },
+      insertBefore: (f, ref) => {
+        if (dom.doc && dom.doc.activeElement === f) dom.doc.activeElement = null;   // mover tira o foco
+        if (f.pai) f.pai.filhos.splice(f.pai.filhos.indexOf(f), 1);
+        if (ref) e.filhos.splice(e.filhos.indexOf(ref), 0, f); else e.filhos.push(f);
+        f.pai = e;
+        return f;
+      },
+      // as abas em linha, 100px cada, 4px de vão (mais o translateX do arrasto)
+      getBoundingClientRect: () => {
+        const i = e.pai ? e.pai.filhos.indexOf(e) : 0;
+        const m = /translateX\((-?\d+)px\)/.exec(e.style.transform || '');
+        const left = i * 104 + (m ? Number(m[1]) : 0);
+        return { left, right: left + 100, top: 0, bottom: 36, width: 100, height: 36 };
+      },
+      focus: () => { e.focado = true; if (dom.doc) dom.doc.activeElement = e; },
       get innerHTML() { return e._html; },
       set innerHTML(v) {
         e.trocas++;
         e._html = String(v);
-        for (const m of e._html.matchAll(/<([a-z][a-z0-9]*)\b([^>]*)>/g)) {
+        e.filhos = [];
+        const pilha = [];   // tags abertas: {tag, el (só as com id)}
+        for (const m of e._html.matchAll(/<(\/?)([a-z][a-z0-9]*)\b([^>]*)>/g)) {
+          if (m[1]) {
+            for (let i = pilha.length - 1; i >= 0; i--) if (pilha[i].tag === m[2]) { pilha.length = i; break; }
+            continue;
+          }
           const at = {};
-          for (const x of m[2].matchAll(/([a-z][\w-]*)(?:="([^"]*)")?/g)) at[x[1]] = x[2] === undefined ? '' : x[2];
-          if (at.id) porId.set(at.id, elemento(m[1], at));
+          for (const x of m[3].matchAll(/([a-z][\w-]*)(?:="([^"]*)")?/g)) at[x[1]] = x[2] === undefined ? '' : x[2];
+          let novo = null;
+          if (at.id) {
+            novo = elemento(m[2], at);
+            porId.set(at.id, novo);
+            const pai = (pilha.slice().reverse().find((p) => p.el) || { el: e }).el;
+            novo.pai = pai;
+            pai.filhos.push(novo);
+          }
+          if (!VAZIAS_DOM.has(m[2])) pilha.push({ tag: m[2], el: novo });
         }
       }
     };
     return e;
   }
-  return { porId, elemento };
+  return dom;
 }
 
 function pagina(opcoes) {
   opcoes = opcoes || {};
   const st = new Map(Object.entries(opcoes.ls || {})), escritas = [], escritasSessao = [], buscas = [], ouvDoc = {};
+  const capDoc = new Set();   // ouvintes do document na fase de captura (o KhTeclas usa as duas)
   const dom = criaDom();
   if (opcoes.comPagina !== false) {
     const fp = dom.elemento('div', { class: 'fp', id: 'fp', 'data-kf-ignorar': '' });
@@ -663,17 +719,20 @@ function pagina(opcoes) {
     querySelector: (sel) => (/js\/ficha\.js/.test(sel) ? script : null), querySelectorAll: () => [],
     getElementById: (id) => dom.porId.get(id) || null,
     createElement: () => ({ setAttribute() {}, appendChild() {}, addEventListener() {} }),
-    addEventListener: (t, f) => { (ouvDoc[t] = ouvDoc[t] || []).push(f); },
+    addEventListener: (t, f, o) => { (ouvDoc[t] = ouvDoc[t] || []).push(f); if (o === true || (o && o.capture)) capDoc.add(f); },
+    removeEventListener: (t, f) => { ouvDoc[t] = (ouvDoc[t] || []).filter((x) => x !== f); },
     dispatchEvent() { return true; }
   };
+  dom.doc = document;
   const loja = (mapa, registro) => ({
     getItem: (k) => (mapa.has(k) ? mapa.get(k) : null),
     setItem: (k, v) => { registro.push(k); mapa.set(k, String(v)); },
     removeItem: (k) => { registro.push('-' + k); mapa.delete(k); }
   });
+  const sessao = new Map(Object.entries(opcoes.ss || {}));
   const sandbox = {
     document, CustomEvent, URL, console, location: { search: opcoes.search || '' },
-    localStorage: loja(st, escritas), sessionStorage: loja(new Map(), escritasSessao),
+    localStorage: loja(st, escritas), sessionStorage: loja(sessao, escritasSessao),
     setTimeout: opcoes.setTimeout || (() => 0), clearTimeout() {}, requestAnimationFrame: (f) => f(),
     // serve os arquivos do repo (data/, partials/) como o GitHub Pages
     fetch: (u) => {
@@ -688,10 +747,22 @@ function pagina(opcoes) {
   };
   sandbox.window = sandbox;
   vm.createContext(sandbox);
+  // como na página: o shell injeta o kh-ui.js (KhTeclas) antes do primeiro script local
+  vm.runInContext(SRC_UI, sandbox, { filename: 'kh-ui.js' });
   vm.runInContext(SRC_FICHA, sandbox, { filename: 'ficha.js' });
   const depoisFicha = { escritas: escritas.slice(), sessao: escritasSessao.slice(), buscas: buscas.slice() };
   if (opcoes.semPagina !== true) vm.runInContext(SRC_PAGINA, sandbox, { filename: 'ficha-pagina.js' });
-  return { win: sandbox, dom, escritas, escritasSessao, buscas, depoisFicha, ouvDoc };
+  // keydown como no navegador: document (captura) -> a lista de abas -> document (bolha)
+  function tecla(alvo, key, extra) {
+    const ev = Object.assign({ type: 'keydown', key, target: alvo, defaultPrevented: false, preventDefault() { this.defaultPrevented = true; } }, extra);
+    const doc = ouvDoc.keydown || [];
+    doc.filter((f) => capDoc.has(f)).forEach((f) => f(ev));
+    const lista = dom.porId.get('fp-abas');
+    if (lista) lista.dispara(ev);
+    doc.filter((f) => !capDoc.has(f)).forEach((f) => f(ev));
+    return ev;
+  }
+  return { win: sandbox, dom, escritas, escritasSessao, buscas, depoisFicha, ouvDoc, tecla, st, sessao };
 }
 const espera = () => new Promise((r) => setImmediate(r));
 async function esperaCarregar(pg) { for (let i = 0; i < 20; i++) await espera(); return pg; }
@@ -745,30 +816,37 @@ test('navegador com a prévia (chave ou ?ficha=v3): casca, 5 abas desenhadas pel
   }
 });
 
-test('navegador: clique e teclado trocam de aba (setas com volta, Home, End); o botão abre a ficha atual', () => {
-  const pg = pagina({ ls: { khalkaria_ficha_previa: '1' } });
-  const fp = pg.dom.porId.get('fp');
+// as abas na ordem do DOM da lista, a aberta, e o estado aria de cada uma
+function abasDaPagina(pg) {
   const aba = (id) => pg.dom.porId.get('fp-aba-' + id);
   const painel = (id) => pg.dom.porId.get('fp-painel-' + id);
+  const ordem = () => pg.dom.porId.get('fp-abas').querySelectorAll('[role="tab"]').map((t) => t.getAttribute('data-aba'));
   const aberta = () => FP.ABAS.filter((a) => aba(a.id).getAttribute('aria-selected') === 'true').map((a) => a.id);
   function confere(id) {
     assert.deepEqual(aberta(), [id]);
     FP.ABAS.forEach((a) => {
       assert.equal(aba(a.id).getAttribute('tabindex'), a.id === id ? '0' : '-1');
+      assert.equal(aba(a.id).getAttribute('aria-controls'), 'fp-painel-' + a.id);
+      assert.equal(painel(a.id).getAttribute('aria-labelledby'), 'fp-aba-' + a.id);
       assert.equal(painel(a.id).hidden, a.id !== id, 'painel ' + a.id);
     });
   }
+  return { aba, painel, ordem, aberta, confere };
+}
+
+test('navegador: clique e teclado trocam de aba (setas com volta, Home, End); o botão abre a ficha atual', () => {
+  const pg = pagina({ ls: { khalkaria_ficha_previa: '1' } });
+  const fp = pg.dom.porId.get('fp');
+  const { aba, confere } = abasDaPagina(pg);
+  const lista = pg.dom.porId.get('fp-abas');
   confere('nucleo');
-  fp.dispara({ type: 'click', target: aba('bazar') });
+  lista.dispara({ type: 'click', target: aba('bazar') });
   confere('bazar');
-  const tecla = (alvo, key, extra) => {
-    const ev = Object.assign({ type: 'keydown', key, target: alvo, defaultPrevented: false, preventDefault() { this.defaultPrevented = true; } }, extra);
-    pg.dom.porId.get('fp-abas').dispara(ev);
-    return ev;
-  };
+  const tecla = pg.tecla;
   assert.ok(tecla(aba('bazar'), 'ArrowRight').defaultPrevented);
   confere('grimorio');
   assert.ok(aba('grimorio').focado, 'foco segue a aba');
+  assert.equal(pg.win.document.activeElement, aba('grimorio'));
   tecla(aba('grimorio'), 'ArrowRight');
   confere('nucleo');
   tecla(aba('nucleo'), 'ArrowLeft');
@@ -777,8 +855,8 @@ test('navegador: clique e teclado trocam de aba (setas com volta, Home, End); o 
   confere('nucleo');
   tecla(aba('nucleo'), 'End');
   confere('grimorio');
-  // Alt/Ctrl+seta ficam para a F4.5 (mover a aba): aqui não fazem nada
-  assert.ok(!tecla(aba('grimorio'), 'ArrowLeft', { altKey: true }).defaultPrevented);
+  // Ctrl+seta e outras teclas: nada
+  assert.ok(!tecla(aba('grimorio'), 'ArrowLeft', { ctrlKey: true }).defaultPrevented);
   assert.ok(!tecla(aba('grimorio'), 'a').defaultPrevented);
   confere('grimorio');
 
@@ -788,8 +866,81 @@ test('navegador: clique e teclado trocam de aba (setas com volta, Home, End); o 
   fp.dispara({ type: 'click', target: botao });
   assert.equal(abriu, 1);
   confere('grimorio');
+  // trocar de aba só grava a aba aberta na sessão; nada no localStorage
   assert.deepEqual(pg.escritas, pg.depoisFicha.escritas);
-  assert.deepEqual(pg.escritasSessao, pg.depoisFicha.sessao);
+  assert.deepEqual(pg.escritasSessao.slice(pg.depoisFicha.sessao.length),
+    ['khalkaria_ficha_aba', 'khalkaria_ficha_aba', 'khalkaria_ficha_aba', 'khalkaria_ficha_aba', 'khalkaria_ficha_aba', 'khalkaria_ficha_aba']);
+  assert.equal(pg.sessao.get('khalkaria_ficha_aba'), 'grimorio');
+});
+
+test('F4.5 navegador: Alt+setas (KhTeclas) e arrasto movem a aba, gravam só khalkaria_ficha_abas e voltam ao recarregar', () => {
+  const pg = pagina({ ls: { khalkaria_ficha_previa: '1', khalkaria_ficha: JSON.stringify(V2) } });
+  const { aba, ordem, confere } = abasDaPagina(pg);
+  const A4 = FP.ABAS.map((a) => a.id);
+  const a4 = pg.dom.porId.get('fp-abas-a4'), anuncio = pg.dom.porId.get('fp-abas-anuncio');
+  assert.equal(typeof pg.win.KhAbas.criar, 'function', 'KhAbas no bundle');
+  assert.ok(pg.win.KhTeclas.lista().some((x) => x.tecla === 'Alt+ArrowRight'), 'Alt+setas no KhTeclas');
+  assert.deepEqual(ordem(), A4);
+  assert.equal(a4.hidden, true);
+  // Alt+→ na aba focada
+  aba('tecnicas').focus();
+  pg.dom.porId.get('fp-abas').dispara({ type: 'click', target: aba('tecnicas') });
+  const ev = pg.tecla(aba('tecnicas'), 'ArrowRight', { altKey: true });
+  assert.ok(ev.defaultPrevented);
+  assert.deepEqual(ordem(), ['nucleo', 'cartas', 'tecnicas', 'bazar', 'grimorio']);
+  assert.equal(pg.win.document.activeElement, aba('tecnicas'), 'o foco fica na aba movida');
+  confere('tecnicas');
+  assert.equal(anuncio.textContent, 'Técnicas & Marcas: posição 3 de 5.');
+  assert.equal(a4.hidden, false);
+  assert.equal(pg.st.get('khalkaria_ficha_abas'), '["nucleo","cartas","tecnicas","bazar","grimorio"]');
+  // arrasto simulado: o Grimório até o começo da lista (limiar de 6px, pointer events)
+  const g = aba('grimorio').getBoundingClientRect();
+  const ptr = (tipo, x, extra) => Object.assign({ type: tipo, target: aba('grimorio'), pointerId: 7, pointerType: 'mouse', isPrimary: true,
+    button: 0, buttons: tipo === 'pointerup' ? 0 : 1, clientX: x, clientY: 18, preventDefault() {} }, extra);
+  const doc = (ev) => (pg.ouvDoc[ev.type] || []).slice().forEach((f) => f(ev));
+  pg.dom.porId.get('fp-abas').dispara(ptr('pointerdown', g.left + 50));
+  doc(ptr('pointermove', g.left + 47));   // 3px: ainda é clique
+  assert.deepEqual(ordem(), ['nucleo', 'cartas', 'tecnicas', 'bazar', 'grimorio']);
+  for (const x of [300, 150, 10]) doc(ptr('pointermove', x));
+  assert.deepEqual(ordem(), ['grimorio', 'nucleo', 'cartas', 'tecnicas', 'bazar']);
+  doc(ptr('pointerup', 10));
+  assert.equal(pg.st.get('khalkaria_ficha_abas'), '["grimorio","nucleo","cartas","tecnicas","bazar"]');
+  // as escritas da página: só a ordem (local) e a aba aberta (sessão); nenhuma chave de ficha
+  const novas = pg.escritas.slice(pg.depoisFicha.escritas.length);
+  assert.deepEqual(novas, ['khalkaria_ficha_abas', 'khalkaria_ficha_abas']);
+  assert.deepEqual(pg.escritasSessao.slice(pg.depoisFicha.sessao.length), ['khalkaria_ficha_aba']);
+
+  // "recarregar": a casca já sai na ordem guardada e com a aba da sessão aberta
+  const pg2 = pagina({ ls: { khalkaria_ficha_previa: '1', khalkaria_ficha_abas: pg.st.get('khalkaria_ficha_abas') },
+    ss: { khalkaria_ficha_aba: 'tecnicas' } });
+  const b = abasDaPagina(pg2);
+  assert.deepEqual(b.ordem(), ['grimorio', 'nucleo', 'cartas', 'tecnicas', 'bazar']);
+  b.confere('tecnicas');
+  assert.equal(pg2.dom.porId.get('fp-abas-a4').hidden, false);
+  assert.deepEqual(pg2.escritas, pg2.depoisFicha.escritas, 'abrir não grava');
+  assert.deepEqual(pg2.escritasSessao, pg2.depoisFicha.sessao);
+  // "Ordem do A4": volta, apaga a preferência, devolve o foco à aba aberta
+  pg2.dom.porId.get('fp-abas-a4').dispara({ type: 'click', target: pg2.dom.porId.get('fp-abas-a4') });
+  assert.deepEqual(b.ordem(), A4);
+  assert.equal(pg2.st.has('khalkaria_ficha_abas'), false);
+  assert.deepEqual(pg2.escritas.slice(pg2.depoisFicha.escritas.length), ['-khalkaria_ficha_abas']);
+  assert.equal(pg2.dom.porId.get('fp-abas-a4').hidden, true);
+  assert.equal(pg2.win.document.activeElement, b.aba('tecnicas'));
+  assert.equal(pg2.dom.porId.get('fp-abas-anuncio').textContent, 'Ordem do A4 restaurada.');
+  b.confere('tecnicas');
+});
+
+test('F4.5 navegador: lista corrompida ou incompleta no storage não quebra a página', () => {
+  const casos = [['{', FP.ABAS.map((a) => a.id)], ['"grimorio"', FP.ABAS.map((a) => a.id)], ['[3,null]', FP.ABAS.map((a) => a.id)],
+    ['["bazar","velha","bazar"]', ['bazar', 'nucleo', 'tecnicas', 'cartas', 'grimorio']]];
+  for (const [v, esperado] of casos) {
+    const pg = pagina({ ls: { khalkaria_ficha_previa: '1', khalkaria_ficha_abas: v }, ss: { khalkaria_ficha_aba: 'inexistente' } });
+    const b = abasDaPagina(pg);
+    assert.deepEqual(b.ordem(), esperado, v);
+    b.confere(esperado[0]);
+    assert.equal(pg.st.get('khalkaria_ficha_abas'), v, 'ler não regrava');
+    assert.deepEqual(pg.escritas, pg.depoisFicha.escritas);
+  }
 });
 
 test('navegador: fora da página da ficha (sem #fp) o script não faz nada', () => {

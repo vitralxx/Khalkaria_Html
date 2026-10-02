@@ -29,8 +29,11 @@
 
   // ============================================================ KhTeclas
   // Atalho = tecla só ('i', 'I', '/', '\\', '[') ou acorde 'Ctrl+<tecla>' (Ctrl
-  // ou Cmd, sem Shift nem Alt; a tecla sem caixa). Tecla só não aceita Ctrl, Cmd
-  // nem Alt; Shift vale (o e.key já traz a caixa: 'I', '+').
+  // ou Cmd, sem Shift nem Alt; a tecla sem caixa) ou 'Alt+<tecla>' (Alt sem
+  // Ctrl, Cmd nem Shift; a tecla como vem no e.key: 'Alt+ArrowLeft'). O Alt é
+  // para teclas com nome (setas): com letra, o e.key muda com o teclado (no Mac,
+  // Option+a dá 'å'). Tecla só não aceita Ctrl, Cmd nem Alt; Shift vale (o e.key
+  // já traz a caixa: 'I', '+').
   // Um atalho por tecla e por fase: registrar de novo substitui.
   //   fn(e) devolve false -> o evento segue (sem preventDefault); qualquer outro
   //   valor consome.
@@ -69,7 +72,7 @@
     function chaveDe(e) {
       var mod = e.ctrlKey || e.metaKey;
       if (mod) return (e.shiftKey || e.altKey) ? '' : 'Ctrl+' + String(e.key || '').toLowerCase();
-      if (e.altKey) return '';
+      if (e.altKey) return e.shiftKey ? '' : 'Alt+' + String(e.key || '');
       return e.key;
     }
 

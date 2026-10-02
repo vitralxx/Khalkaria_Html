@@ -176,6 +176,21 @@ test('KhTeclas: acorde Ctrl+z vale com Ctrl ou Cmd, sem Shift/Alt, sem caixa', (
   assert.equal(n, 2);
 });
 
+test('KhTeclas: acorde Alt+<tecla> (F4.5, Alt+setas da ficha) só com Alt, sem Ctrl/Cmd/Shift; a tecla como vem no e.key', () => {
+  const a = monta();
+  let n = 0;
+  a.teclas.atalho('Alt+ArrowLeft', () => { n++; });
+  a.teclas.atalho('ArrowLeft', () => false);   // a seta só segue livre
+  assert.ok(tecla(a, null, 'ArrowLeft', { altKey: true }).defaultPrevented);
+  for (const extra of [{ altKey: true, shiftKey: true }, { altKey: true, ctrlKey: true }, { altKey: true, metaKey: true }, {}]) {
+    assert.ok(!tecla(a, null, 'ArrowLeft', extra).defaultPrevented, JSON.stringify(extra));
+  }
+  assert.ok(!tecla(a, null, 'ArrowRight', { altKey: true }).defaultPrevented, 'outra tecla');
+  assert.ok(!tecla(a, a.campo, 'ArrowLeft', { altKey: true }).defaultPrevented, 'campo de texto barra');
+  assert.equal(n, 1);
+  assert.deepEqual(a.teclas.lista().map((x) => x.tecla), ['Alt+ArrowLeft', 'ArrowLeft']);
+});
+
 test('KhTeclas: campo de texto barra o atalho (checkbox não); emCampo e quando trocam a regra', () => {
   const a = monta();
   let n = 0;

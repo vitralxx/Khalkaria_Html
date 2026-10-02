@@ -12,20 +12,23 @@
  * Escondida até a virada (03 §9): sem a prévia (localStorage
  * khalkaria_ficha_previa === '1' ou ?ficha=v3, a mesma regra do
  * partials/head-boot.html), mostra só o AVISO e não pede catálogo nenhum.
- * Não grava NENHUMA chave de ficha: as únicas escritas previstas para esta
- * página são as preferências de aba da F4.5 (khalkaria_ficha_abas e, em
- * sessionStorage, khalkaria_ficha_aba), que ainda não existem.
+ * Não grava NENHUMA chave de ficha: as únicas escritas desta página são as
+ * preferências de aba da F4.5, pelo KhAbas: a ordem (localStorage
+ * khalkaria_ficha_abas, só quando o jogador move uma aba) e a aba aberta
+ * (sessionStorage khalkaria_ficha_aba, só quando ele troca de aba).
  *
  * F4.3a: topo (seletor de ficha desabilitado, nome, raça, classe, nível,
  * origem e o aviso de só-leitura com o botão que abre a ficha atual pela
- * KF.abrir()), a lista das 5 abas (role=tablist, tabindex móvel, clique,
- * setas, Home e End) e os 5 painéis.
+ * KF.abrir()), a lista das 5 abas (role=tablist) e os 5 painéis.
+ * F4.5: a lista é do KhAbas (js/ficha/kh-abas.js, no bundle, porque o drawer
+ * da F4.4 usa o mesmo): clique, setas, Home e End trocam de aba (tabindex
+ * móvel); Alt+← e Alt+→ (KhTeclas) e o arrasto movem a aba; o botão "Ordem do
+ * A4" restaura. A casca já sai na ordem guardada e com a aba da sessão aberta.
  * F4.3b: RENDER[id da aba](res, C, ctx) desenha o painel (res =
  * KhPrevia.calcular, estado 'ok'; C = KhConta desta passada; ctx = catálogo
  * indexado, classes, ramos, dados das regras e a base dos ícones). Cada campo
  * da ficha física leva data-campo (o teste confere por conjunto contra o 03 §4).
  *   1 Núcleo · 2 Técnicas & Marcas · 3 Cartas, Lore & Outros · 4 O Bazar · 5 Grimório
- * Ponto da F4.5: ordem (ABAS por id) e aba aberta: ordemAbas() e seleciona().
  * Redesenho (kf:mudou, drawer, storage) por trocaHTML: só troca o contêiner que
  * mudou e devolve foco, <details> aberto e dica sob o mouse ao equivalente novo.
  * A dica da conta é presa à caixa da página por encaixa() ao abrir (hover/foco).
@@ -48,6 +51,7 @@
   var KhConta = emNode ? require('./ficha/kh-conta.js') : raiz.KhConta;
   var KhEstado = emNode ? require('./ficha/kh-estado.js') : raiz.KhEstado;
   var KhInv = emNode ? require('./ficha/kh-inv.js') : raiz.KhInv;
+  var KhAbas = emNode ? require('./ficha/kh-abas.js') : raiz.KhAbas;
 
   var FichaPagina = (function () {
     var CHAVE_PREVIA = 'khalkaria_ficha_previa';
@@ -58,6 +62,14 @@
     var AVISO_RO = 'Ficha nova em prévia: só leitura. Para editar, use a ficha atual (FICHA).';
     var CARREGANDO = 'Carregando a ficha…';
     var EM_CONSTRUCAO = 'Esta aba ainda está em construção.';
+    var RESTAURADA = 'Ordem do A4 restaurada.';
+    // como mudar a ordem: dica no botão de cada aba (title vira a descrição acessível)
+    var DICA_ORDEM = 'Arraste, ou use Alt+← e Alt+→, para mudar a ordem das abas';
+    var TITULO_A4 = 'Ordem do A4: volta as abas à ordem da ficha física';
+    // seta de voltar (traço em currentColor, sem emoji)
+    var SVG_A4 = '<svg class="fp-svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false">' +
+      '<path d="M5.6 9.2A7.4 7.4 0 1 1 4.6 13.6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>' +
+      '<path d="M4.4 4.6v4.8h4.8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>';
     // As 5 abas, na ordem da ficha física (pág. 1 a 5 do A4). O id é estável:
     // a F4.5 guarda a ordem por id (khalkaria_ficha_abas), e o drawer da F4.4 usa os mesmos.
     var ABAS = [
@@ -149,26 +161,47 @@
       } catch (e) { return false; }
     }
 
-    // ordem das abas: hoje a do A4; a F4.5 lê aqui a preferência do navegador
-    function ordemAbas() { return ABAS.slice(); }
+    // ---------------- ordem das abas (F4.5): a do navegador, pelo KhAbas ----------------
+    function idsAbas() { return ABAS.map(function (a) { return a.id; }); }
+    function abaPorId(id) { return ABAS.filter(function (a) { return a.id === id; })[0]; }
+    // as ABAS na ordem guardada neste navegador (ls = localStorage); sem storage
+    // ou sem preferência, a do A4
+    function ordemAbas(ls) {
+      var ids = idsAbas();
+      return (KhAbas && ls ? KhAbas.lerOrdem(ls, ids) : ids).map(abaPorId);
+    }
 
     // ---------------- html (puro: string) ----------------
     function htmlAviso() {
       return '<h1 class="fp-titulo">Ficha</h1><p class="fp-aviso" data-sem-previa>' + esc(AVISO) + '</p>';
     }
 
-    // a casca: topo (preenchido por htmlTopo), lista de abas, painéis e o sprite g-*
-    function htmlCasca(aberta) {
-      var abas = ordemAbas();
+    // a casca: topo (preenchido por htmlTopo), lista de abas (na ordem dada, uma
+    // lista de ids; sem ela, a do A4) com o "Ordem do A4", painéis e o sprite g-*
+    function htmlCasca(aberta, ordem) {
+      var ids = idsAbas();
+      var o = KhAbas ? KhAbas.normaliza(ordem, ids) : ids;
+      var abas = o.map(abaPorId);
+      var padrao = o.join(' ') === ids.join(' ');
       aberta = abas.some(function (a) { return a.id === aberta; }) ? aberta : abas[0].id;
       return '<header class="fp-topo" id="fp-topo">' + htmlTopo(null) + '</header>' +
+        '<div class="fp-abas-barra">' +
         '<div class="fp-abas" id="fp-abas" role="tablist" aria-label="Partes da ficha">' +
         abas.map(function (a) {
           var on = a.id === aberta;
           return '<button type="button" class="fp-aba" role="tab" id="fp-aba-' + a.id + '" data-aba="' + a.id + '"' +
-            ' aria-controls="fp-painel-' + a.id + '" aria-selected="' + on + '" tabindex="' + (on ? '0' : '-1') + '">' +
+            ' aria-controls="fp-painel-' + a.id + '" aria-selected="' + on + '" tabindex="' + (on ? '0' : '-1') + '"' +
+            ' aria-keyshortcuts="Alt+ArrowLeft Alt+ArrowRight" title="' + esc(DICA_ORDEM) + '">' +
             '<span class="fp-aba-pag" aria-hidden="true">' + a.pag + '</span>' + esc(a.rotulo) + '</button>';
         }).join('') + '</div>' +
+        // "Ordem do A4": só com a ordem fora da do A4 (o KhAbas mostra e esconde).
+        // Botão de ícone, com o nome no aria-label e no title: com texto, ele
+        // tomava a largura da lista e, a 1280px, a última aba descia de linha.
+        '<button type="button" class="kh-btn fp-abas-a4" id="fp-abas-a4"' + (padrao ? ' hidden' : '') +
+        ' aria-label="Ordem do A4" title="' + esc(TITULO_A4) + '">' + SVG_A4 + '</button>' +
+        // o que mudou de lugar, para o leitor de tela
+        '<span class="fp-sr" id="fp-abas-anuncio" role="status" aria-live="polite"></span>' +
+        '</div>' +
         abas.map(function (a) {
           return '<section class="fp-painel" role="tabpanel" id="fp-painel-' + a.id + '" data-aba="' + a.id + '"' +
             ' aria-labelledby="fp-aba-' + a.id + '" tabindex="0" aria-busy="true"' + (a.id === aberta ? '' : ' hidden') + '>' +
@@ -1036,52 +1069,31 @@
         return false;
       }
       raizEl.setAttribute('data-fp', 'casca');
-      var aberta = ordemAbas()[0].id;
-      raizEl.innerHTML = htmlCasca(aberta);
+      var ss = null;
+      try { ss = win.sessionStorage; } catch (e) { ss = null; }
+      // a ordem do navegador e a aba aberta nesta sessão (a 1ª da ordem, sem ela)
+      var ids = idsAbas();
+      var ordem = KhAbas ? KhAbas.lerOrdem(ls, ids) : ids;
+      var aberta = (KhAbas && KhAbas.lerAberta(ss, ids)) || ordem[0];
+      raizEl.innerHTML = htmlCasca(aberta, ordem);
 
       function el(id) { return doc.getElementById(id); }
-      function seleciona(id, foco) {
-        if (!ABAS.some(function (a) { return a.id === id; })) return;
-        aberta = id;
-        ABAS.forEach(function (a) {
-          var on = a.id === id, t = el('fp-aba-' + a.id), p = el('fp-painel-' + a.id);
-          if (t) { t.setAttribute('aria-selected', on ? 'true' : 'false'); t.setAttribute('tabindex', on ? '0' : '-1'); }
-          if (p) p.hidden = !on;
-          if (on && foco && t && t.focus) t.focus();
-        });
-      }
-      function abaDe(alvo) {
-        var t = alvo && alvo.closest ? alvo.closest('[role="tab"]') : null;
-        return t && t.getAttribute('data-aba');
-      }
 
       raizEl.addEventListener('click', function (e) {
         var t = e.target;
         if (t && t.closest && t.closest('.fp-abrir-v2')) {
           if (win.KF && typeof win.KF.abrir === 'function') win.KF.abrir();
-          return;
         }
-        var id = abaDe(t);
-        if (id) seleciona(id, false);
       });
-      // teclado da lista de abas (padrão ARIA de abas, no próprio widget, como as
-      // linhas de filtro do Bazar): setas, Home e End, com ativação automática.
-      // Alt+setas para mover a aba (F4.5) vão pelo KhTeclas, que hoje recusa
-      // Alt (chaveDe devolve '') e terá de ganhar esse acorde na F4.5.
-      var tablist = el('fp-abas');
-      if (tablist) tablist.addEventListener('keydown', function (e) {
-        if (e.ctrlKey || e.metaKey || e.altKey || e.shiftKey) return;
-        var k = e.key;
-        if (k !== 'ArrowLeft' && k !== 'ArrowRight' && k !== 'Home' && k !== 'End') return;
-        var id = abaDe(e.target);
-        if (!id) return;
-        var abas = ordemAbas(), i = -1;
-        abas.forEach(function (a, j) { if (a.id === id) i = j; });
-        var j = k === 'Home' ? 0 : k === 'End' ? abas.length - 1
-          : (i + (k === 'ArrowRight' ? 1 : -1) + abas.length) % abas.length;
-        e.preventDefault();
-        seleciona(abas[j].id, true);
-      });
+      // a lista de abas é do KhAbas (F4.5): clique, setas, Home, End, Alt+setas
+      // (KhTeclas), arrasto, "Ordem do A4", e as duas preferências no storage
+      var rotulos = {};
+      ABAS.forEach(function (a) { rotulos[a.id] = a.rotulo; });
+      if (KhAbas) {
+        KhAbas.criar(el('fp-abas'), { win: win, doc: doc, ids: ids, ls: ls, ss: ss, aberta: aberta, rotulos: rotulos,
+          restaurar: el('fp-abas-a4'), anuncio: el('fp-abas-anuncio'), textoRestaurada: RESTAURADA,
+          aoSelecionar: function (id) { aberta = id; } });
+      }
 
       // a dica da conta, ao abrir (hover ou foco), fica dentro da caixa da página
       function aoAbrirDica(e) {
