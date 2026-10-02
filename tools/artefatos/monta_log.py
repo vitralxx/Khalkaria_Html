@@ -75,7 +75,10 @@ pp = d.get('perguntasPedro') or {}
 itens_pp = pp.items() if isinstance(pp, dict) else [(x.get('id'), x) for x in pp]
 perguntas = [{'id': k, 'tema': v.get('tema'), 'p': v.get('pergunta'), 'rec': v.get('recomendacao')} for k, v in itens_pp]
 perguntas.sort(key=lambda x: int(re.sub(r'\D', '', x['id'] or '0') or 0))
-dados = {'data': '27/09/2026', 'tecnicas': tecnicas, 'gerais': gerais, 'perguntas': perguntas}
+# data da página = dia em que as respostas do balanceamento foram copiadas (origem.copiadoEm)
+_resp = json.loads((REPO / 'docs/ficha-digital/log-tecnicas-respostas.json').read_text(encoding='utf-8'))
+_ano, _mes, _dia = (_resp.get('origem', {}).get('copiadoEm') or '2026-09-27').split('-')
+dados = {'data': f'{_dia}/{_mes}/{_ano}', 'tecnicas': tecnicas, 'gerais': gerais, 'perguntas': perguntas}
 js = json.dumps(dados, ensure_ascii=False, separators=(',', ':')).replace('</', '<\\/')
 html = (AQUI / 'log.template.html').read_text(encoding='utf-8').replace('__DADOS__', js)
 (SAIDA / 'log-tecnicas.html').write_text(html, encoding='utf-8')
