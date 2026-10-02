@@ -134,6 +134,7 @@
             <h1>⚡ Condições<span class="ornament">◆ ◆ ◆</span></h1>
             <div class="rule-box">
                 <p>Condições diferentes somam seus efeitos. A mesma condição aplicada de novo renova a duração; se ela tiver X, os X se somam.</p>
+                <p><strong>Condições mentais:</strong> <a href="#enfeiticado" class="keyword-link">Enfeitiçado</a>, <a href="#amedrontado" class="keyword-link">Amedrontado</a>, <a href="#confuso" class="keyword-link">Confuso</a> e <a href="#atordoado" class="keyword-link">Atordoado</a>.</p>
             </div>
             
             <!-- ÍNDICE -->
@@ -156,10 +157,10 @@
                         <div class="index-links">
                             <a href="#exposto">Exposto</a>
                             <a href="#sangramento">Sangramento X</a>
-                            <a href="#atordoado">Atordoado</a>
                             <a href="#desorientado">Desorientado</a>
                             <a href="#caido">Caído</a>
                             <a href="#desprevenido">Desprevenido</a>
+                            <a href="#descontrolado">Descontrolado X</a>
                         </div>
                     </div>
                     <div class="index-category">
@@ -177,9 +178,8 @@
                         <div class="index-links">
                             <a href="#confuso">Confuso</a>
                             <a href="#amedrontado">Amedrontado</a>
-                            <a href="#descontrolado">Descontrolado X</a>
                             <a href="#enfeiticado">Enfeitiçado</a>
-                            <a href="#bebado">Bêbado</a>
+                            <a href="#atordoado">Atordoado</a>
                         </div>
                     </div>
                     <div class="index-category">
@@ -190,6 +190,7 @@
                             <a href="#enjoado">Enjoado</a>
                             <a href="#paralisado">Paralisado</a>
                             <a href="#adormecido">Adormecido</a>
+                            <a href="#bebado">Bêbado</a>
                         </div>
                     </div>
                     <div class="index-category">
@@ -300,13 +301,6 @@
                         </ul>
                     </div>
                     
-                    <div class="condicao-card" id="atordoado" data-kf-tipo="condicao" data-kf-id="atordoado" data-prever="condicao:atordoado"><button type="button" class="ent-add" hidden aria-keyshortcuts="A" aria-label="Levar para a ficha: Atordoado"></button><span class="ent-alca" hidden aria-hidden="true"></span>
-                        <h4>Atordoado</h4>
-                        <ul>
-                            <li>−2 Ações e −2 de Evasão até o início do seu próximo turno.</li>
-                        </ul>
-                    </div>
-                    
                     <div class="condicao-card" id="desorientado" data-kf-tipo="condicao" data-kf-id="desorientado" data-prever="condicao:desorientado"><button type="button" class="ent-add" hidden aria-keyshortcuts="A" aria-label="Levar para a ficha: Desorientado"></button><span class="ent-alca" hidden aria-hidden="true"></span>
                         <h4>Desorientado</h4>
                         <ul>
@@ -328,6 +322,14 @@
                         <ul>
                             <li>Você foi pego de surpresa e não pode reagir a ataques.</li>
                             <li>Além disso, você também está <a href="#exposto" class="keyword-link">Exposto</a>.</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="condicao-card" id="descontrolado" data-kf-tipo="condicao" data-kf-id="descontrolado" data-prever="condicao:descontrolado"><button type="button" class="ent-add" hidden aria-keyshortcuts="A" aria-label="Levar para a ficha: Descontrolado X"></button><span class="ent-alca" hidden aria-hidden="true"></span>
+                        <h4>Descontrolado X</h4>
+                        <p>Você está sedento por sangue e ataca o aliado mais próximo por X rodadas.</p>
+                        <ul>
+                            <li>Você deve gastar o seu turno atacando a criatura mais próxima.</li>
                         </ul>
                     </div>
                 </div>
@@ -408,14 +410,6 @@
                         </ul>
                     </div>
                     
-                    <div class="condicao-card" id="descontrolado" data-kf-tipo="condicao" data-kf-id="descontrolado" data-prever="condicao:descontrolado"><button type="button" class="ent-add" hidden aria-keyshortcuts="A" aria-label="Levar para a ficha: Descontrolado X"></button><span class="ent-alca" hidden aria-hidden="true"></span>
-                        <h4>Descontrolado X</h4>
-                        <p>Você está sedento por sangue e ataca o aliado mais próximo por X rodadas.</p>
-                        <ul>
-                            <li>Você deve gastar o seu turno atacando a criatura mais próxima.</li>
-                        </ul>
-                    </div>
-                    
                     <div class="condicao-card" id="enfeiticado" data-kf-tipo="condicao" data-kf-id="enfeiticado" data-prever="condicao:enfeiticado"><button type="button" class="ent-add" hidden aria-keyshortcuts="A" aria-label="Levar para a ficha: Enfeitiçado"></button><span class="ent-alca" hidden aria-hidden="true"></span>
                         <h4>Enfeitiçado</h4>
                         <p>Você está enfeitiçado em algo ou alguém.</p>
@@ -425,11 +419,10 @@
                         </ul>
                     </div>
                     
-                    <div class="condicao-card" id="bebado" data-kf-tipo="condicao" data-kf-id="bebado" data-prever="condicao:bebado"><button type="button" class="ent-add" hidden aria-keyshortcuts="A" aria-label="Levar para a ficha: Bêbado"></button><span class="ent-alca" hidden aria-hidden="true"></span>
-                        <h4>Bêbado</h4>
-                        <p>Você está bêbado.</p>
+                    <div class="condicao-card" id="atordoado" data-kf-tipo="condicao" data-kf-id="atordoado" data-prever="condicao:atordoado"><button type="button" class="ent-add" hidden aria-keyshortcuts="A" aria-label="Levar para a ficha: Atordoado"></button><span class="ent-alca" hidden aria-hidden="true"></span>
+                        <h4>Atordoado</h4>
                         <ul>
-                            <li>Ao rolar um 2 natural em qualquer teste, considere como uma falha crítica.</li><li>Você tem -2 em Atacar, Defender, Movimento, Reflexos, Fortitude e Vontade.</li>
+                            <li>−2 Ações e −2 de Evasão até o início do seu próximo turno.</li>
                         </ul>
                     </div>
                 </div>
@@ -483,6 +476,14 @@
                         <ul>
                             <li>Você fica <a href="#exposto" class="keyword-link">Exposto</a> e <a href="#inconsciente" class="keyword-link">Inconsciente</a> até acordar.</li>
                             <li>Você não pode fazer nada até acordar.</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="condicao-card" id="bebado" data-kf-tipo="condicao" data-kf-id="bebado" data-prever="condicao:bebado"><button type="button" class="ent-add" hidden aria-keyshortcuts="A" aria-label="Levar para a ficha: Bêbado"></button><span class="ent-alca" hidden aria-hidden="true"></span>
+                        <h4>Bêbado</h4>
+                        <p>Você está bêbado.</p>
+                        <ul>
+                            <li>Ao rolar um 2 natural em qualquer teste, considere como uma falha crítica.</li><li>Você tem -2 em Atacar, Defender, Movimento, Reflexos, Fortitude e Vontade.</li>
                         </ul>
                     </div>
                 </div>

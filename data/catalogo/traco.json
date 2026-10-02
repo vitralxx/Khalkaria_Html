@@ -83,7 +83,7 @@
    "tipo": "traco",
    "nome": "Língua Bifurcada",
    "icone": null,
-   "resumo": "Tem vantagem nas perícias de Movimento, Crime, Intimidação e Sobrevivência contra Dryads e outras Criaturas Predáveis, adicionalmente é Imune a Envenenamento.",
+   "resumo": "Tem vantagem nas perícias de Movimento, Crime, Intimidação e Sobrevivência contra Dryads e Animais selvagens, adicionalmente é Imune a Envenenamento.",
    "raca": "gruto",
    "card": "trait-card"
   },

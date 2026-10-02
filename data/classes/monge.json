@@ -140,7 +140,7 @@
       ],
       "regras": [
         "Você perde todo o seu Fluxo ao receber dano, ao passar 1 rodada sem ganhar Fluxo e ao fim do combate.",
-        "Você não pode perder fluxo de nenhuma outra forma.<br>Por isso, ao ser exigido fluxo em qualquer técnica este “custo” é apenas o requisito e não é gasto.",
+        "Você não pode perder fluxo de nenhuma outra forma, exceto quando o texto de uma técnica diz que você perde Fluxo.<br>Por isso, ao ser exigido fluxo em qualquer técnica este “custo” é apenas o requisito e não é gasto.",
         "Fora de combate, você pode utilizar técnicas que exigem fluxo livremente com 1 minuto de preparo."
       ],
       "medidores": [
@@ -255,10 +255,10 @@
       },
       {
         "titulo": "Tier 3 — Ultimates",
-        "badge": "Nível 5 • 1x/Dia",
+        "badge": "Nível 5 • 1x/Descanso Longo",
         "tier": 3,
         "nivel": 5,
-        "usos": "1x/Dia"
+        "usos": "1x/Descanso Longo"
       }
     ]
   },
@@ -397,7 +397,7 @@
       "id": "monge-queda-suave",
       "tipo": "technique-card",
       "nome": "Queda Suave",
-      "corpo": "<h4>Queda Suave</h4><span class=\"tech-meta\">2 Ações ou Reação • 5 Stamina</span><p>Você e até 5 criaturas a distância de toque, não tomam dano de queda de até 30 m. por 1 minuto após isso reduz o dano em 5 * Nível. Você pode usar essa técnica só em você como uma reação ao receber dano de queda.</p>",
+      "corpo": "<h4>Queda Suave</h4><span class=\"tech-meta\">2 Ações ou Reação • 5 Stamina</span><p>Por 1 minuto, você e até 5 criaturas à distância de toque não tomam dano de queda de até 30 m; em quedas maiores, o dano é reduzido em 5 × Nível. Você pode usar essa técnica só em você como uma reação ao receber dano de queda.</p>",
       "grupo": "geral",
       "ramo": null,
       "tier": null,
@@ -517,7 +517,7 @@
       "id": "monge-fluxo-invertido",
       "tipo": "tech-card",
       "nome": "Fluxo Invertido",
-      "corpo": "<div class=\"tech-card-header vazio\"><h4>Fluxo Invertido</h4><span class=\"cost\">Passiva</span></div><div class=\"tech-card-body\"><ul><li>Você ganha fluxo de formas diferentes:<ul><li>+1 Fluxo ao receber dano</li><li>+2 Fluxo ao falhar em teste de resistência</li><li>+3 fluxo ao ver um aliado cair para 0 Saúde</li></ul></li><li>Ao atingir 5 de Fluxo, você emana uma aura de 1,5 m: Inimigos que começam o turno na aura sofrem 1d6 de dano Necrótico e devem suceder em um teste de Vontade(CD 10+Mod. Sab + Mod. Des) ou ficam Desorientados.</li><li>Você ainda ganha fluxo das formas normais.</li></ul></div>",
+      "corpo": "<div class=\"tech-card-header vazio\"><h4>Fluxo Invertido</h4><span class=\"cost\">Passiva</span></div><div class=\"tech-card-body\"><ul><li>Você ganha fluxo de formas diferentes:<ul><li>+1 Fluxo ao receber dano (em vez de perder todo o Fluxo)</li><li>+2 Fluxo ao falhar em teste de resistência</li><li>+3 fluxo ao ver um aliado cair para 0 Saúde</li></ul></li><li>Ao atingir 5 de Fluxo, você emana uma aura de 1,5 m: Inimigos que começam o turno na aura sofrem 1d6 de dano Necrótico e devem suceder em um teste de Vontade(CD 10+Mod. Sab + Mod. Des) ou ficam Desorientados.</li><li>Você ainda ganha fluxo das formas normais.</li></ul></div>",
       "grupo": "ramo",
       "ramo": "monge-ramo-do-vazio",
       "tier": 1,
@@ -527,7 +527,7 @@
       "id": "monge-forma-do-vazio",
       "tipo": "tech-card",
       "nome": "Forma do Vazio",
-      "corpo": "<div class=\"tech-card-header vazio\"><h4>Forma do Vazio</h4><span class=\"cost\">1 Ação, 3 Stamina, 5 Fluxo</span></div><div class=\"tech-card-body\"><ul><li>Até o inicio do seu próximo turno:<ul><li>Você fica Parcialmente Intangível: Ataques físicos tem 50% de chance de falhar contra você.<br>(Role 1d10 → &lt;5 = Acerta)</li><li>Você pode se mover através de criaturas e objetos finos(Até 10 cm), caso termine seu turno dentro de outro corpo é expulso e recebe 2d6 de dano de Força.</li><li>Você recebe +5 em testes de furtividade.</li></ul></li><li>Ao sair da forma, criaturas em até 1,5 m devem fazer Vontade ou ficam Desorientados.</li></ul></div>",
+      "corpo": "<div class=\"tech-card-header vazio\"><h4>Forma do Vazio</h4><span class=\"cost\">1 Ação, 3 Stamina, 5 Fluxo</span></div><div class=\"tech-card-body\"><ul><li>Até o inicio do seu próximo turno:<ul><li>Você fica Parcialmente Intangível: Ataques físicos (de arma e desarmados) têm 50% de chance de falhar contra você.<br>(Role 1d10 → ≤5 = Acerta)</li><li>Você pode se mover através de criaturas e objetos finos(Até 10 cm), caso termine seu turno dentro de outro corpo é expulso e recebe 2d6 de dano de Força.</li><li>Você recebe +5 em testes de furtividade.</li></ul></li><li>Ao sair da forma, criaturas em até 1,5 m devem fazer Vontade ou ficam Desorientados.</li></ul></div>",
       "grupo": "ramo",
       "ramo": "monge-ramo-do-vazio",
       "tier": 1,

@@ -485,6 +485,7 @@
     "pages/classes/brutalista.html": {
       "brutalista-a-ultima-parede": {"ultimate-badge": 1, "ultimate-body": 1, "ultimate-card": 1, "ultimate-cost": 1, "ultimate-header": 1, "ultimate-quote": 1},
       "brutalista-agarrao": {"tech-meta": 1, "technique-card": 1},
+      "brutalista-atropelar": {"tech-meta": 1, "technique-card": 1},
       "brutalista-bruto": {"tech-meta": 1, "technique-card": 1},
       "brutalista-campo-de-batalha": {"ultimate-badge": 1, "ultimate-body": 1, "ultimate-card": 1, "ultimate-cost": 1, "ultimate-header": 1, "ultimate-quote": 1},
       "brutalista-casca-grossa": {"tech-meta": 1, "technique-card": 1},
@@ -508,7 +509,6 @@
       "brutalista-imortal": {"marca-body": 1, "marca-card": 1, "marca-effect": 2, "marca-header": 1, "quote": 1},
       "brutalista-impeto-de-sangue": {"tech-meta": 1, "technique-card": 1},
       "brutalista-inabalavel": {"tech-meta": 1, "technique-card": 1},
-      "brutalista-investida": {"tech-meta": 1, "technique-card": 1},
       "brutalista-leitura-de-combate": {"cost": 1, "tech-card": 1, "tech-card-body": 1, "tech-card-header": 1},
       "brutalista-muralha-viva": {"cost": 1, "tech-card": 1, "tech-card-body": 1, "tech-card-header": 1},
       "brutalista-o-experiente": {"cost": 1, "tech-card": 1, "tech-card-body": 1, "tech-card-header": 1},

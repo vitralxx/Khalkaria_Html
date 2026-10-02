@@ -71,14 +71,6 @@
    "categoria": "combate"
   },
   {
-   "id": "atordoado",
-   "tipo": "condicao",
-   "nome": "Atordoado",
-   "icone": null,
-   "resumo": "−2 Ações e −2 de Evasão até o início do seu próximo turno.",
-   "categoria": "combate"
-  },
-  {
    "id": "desorientado",
    "tipo": "condicao",
    "nome": "Desorientado",
@@ -100,6 +92,14 @@
    "nome": "Desprevenido",
    "icone": null,
    "resumo": "Você foi pego de surpresa e não pode reagir a ataques. Além disso, você também está Exposto.",
+   "categoria": "combate"
+  },
+  {
+   "id": "descontrolado",
+   "tipo": "condicao",
+   "nome": "Descontrolado X",
+   "icone": null,
+   "resumo": "Você está sedento por sangue e ataca o aliado mais próximo por X rodadas. Você deve gastar o seu turno atacando a criatura mais próxima.",
    "categoria": "combate"
   },
   {
@@ -159,14 +159,6 @@
    "categoria": "mentais"
   },
   {
-   "id": "descontrolado",
-   "tipo": "condicao",
-   "nome": "Descontrolado X",
-   "icone": null,
-   "resumo": "Você está sedento por sangue e ataca o aliado mais próximo por X rodadas. Você deve gastar o seu turno atacando a criatura mais próxima.",
-   "categoria": "mentais"
-  },
-  {
    "id": "enfeiticado",
    "tipo": "condicao",
    "nome": "Enfeitiçado",
@@ -175,11 +167,11 @@
    "categoria": "mentais"
   },
   {
-   "id": "bebado",
+   "id": "atordoado",
    "tipo": "condicao",
-   "nome": "Bêbado",
+   "nome": "Atordoado",
    "icone": null,
-   "resumo": "Você está bêbado. Ao rolar um 2 natural em qualquer teste, considere como uma falha crítica. Você tem -2 em Atacar, Defender, Movimento, Reflexos, Fortitude e Vontade.",
+   "resumo": "−2 Ações e −2 de Evasão até o início do seu próximo turno.",
    "categoria": "mentais"
   },
   {
@@ -220,6 +212,14 @@
    "nome": "Adormecido",
    "icone": null,
    "resumo": "Você está em sono profundo. Você fica Exposto e Inconsciente até acordar. Você não pode fazer nada até acordar.",
+   "categoria": "fisicas"
+  },
+  {
+   "id": "bebado",
+   "tipo": "condicao",
+   "nome": "Bêbado",
+   "icone": null,
+   "resumo": "Você está bêbado. Ao rolar um 2 natural em qualquer teste, considere como uma falha crítica. Você tem -2 em Atacar, Defender, Movimento, Reflexos, Fortitude e Vontade.",
    "categoria": "fisicas"
   },
   {

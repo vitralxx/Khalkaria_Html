@@ -274,7 +274,7 @@
           {
             "id": "corrompido-as-vozes",
             "nome": "As Vozes",
-            "efeito": "Ao rolar 1 natural em qualquer dado, perde 2d4+nível de éter.",
+            "efeito": "Ao rolar 1 natural no d20, perde 2d4+nível de éter.",
             "custo": "+3"
           },
           {

@@ -225,10 +225,10 @@
       },
       {
         "titulo": "Tier 3 — Ultimates",
-        "badge": "Nível 5 • 1x/Dia",
+        "badge": "Nível 5 • 1x/Descanso Longo",
         "tier": 3,
         "nivel": 5,
-        "usos": "1x/Dia"
+        "usos": "1x/Descanso Longo"
       }
     ],
     "itensAlquimicos": [
@@ -372,6 +372,39 @@
                 "efeito": "Arma: próximos 3 ataques, +1d4 Biológico. Fortitude ou <em>Enjoado</em> 1 min.",
                 "reagentes": "2",
                 "cd": "10"
+              },
+              {
+                "id": "alquimista-peconha-de-cacador",
+                "nome": "Peçonha de Caçador",
+                "efeito": "Aplicado em arma: +1d4 Veneno no próximo ataque (1 uso).",
+                "reagentes": "2",
+                "cd": "10"
+              },
+              {
+                "id": "alquimista-sonifero-rustico",
+                "nome": "Sonífero Rústico",
+                "efeito": "Ingerido/inalado. Fortitude ou <em>Enjoado</em> por 1 rodada.",
+                "reagentes": "2",
+                "cd": "10"
+              }
+            ]
+          },
+          {
+            "nome": "Bebidas",
+            "itens": [
+              {
+                "id": "alquimista-vinho-aguado",
+                "nome": "Vinho Aguado",
+                "efeito": "Você fica <em>Bêbado</em> até o fim da cena. Enquanto estiver <em>Bêbado</em>, você é imune a <em>Amedrontado</em>.",
+                "reagentes": "1",
+                "cd": "10"
+              },
+              {
+                "id": "alquimista-cerveja-de-taverna",
+                "nome": "Cerveja de Taverna",
+                "efeito": "Recupera 2d6 de Stamina. Você fica <em>Bêbado</em> até o fim da cena.",
+                "reagentes": "2",
+                "cd": "10"
               }
             ]
           }
@@ -432,6 +465,13 @@
                 "cd": "12"
               },
               {
+                "id": "alquimista-pocao-de-vigor-moderada",
+                "nome": "Poção de Vigor Moderada",
+                "efeito": "Recupera 2d6 de Stamina.",
+                "reagentes": "4",
+                "cd": "12"
+              },
+              {
                 "id": "alquimista-emplastro-de-regeneracao",
                 "nome": "Emplastro de Regeneração",
                 "efeito": "Aplicar em ferimento. Recupera 1d4 Saúde/turno por 3 rodadas.",
@@ -451,6 +491,13 @@
                 "efeito": "Remove 1 nível de <em>Exaustão</em>. 1x por descanso longo por criatura.",
                 "reagentes": "3",
                 "cd": "14"
+              },
+              {
+                "id": "alquimista-elixir-de-eter-menor",
+                "nome": "Elíxir de Éter Menor",
+                "efeito": "Recupera 1d6+Int de Éter.",
+                "reagentes": "2",
+                "cd": "13"
               }
             ]
           },
@@ -505,6 +552,13 @@
                 "efeito": "+2 Armadura (Ar) Natural. Duração 10 min.",
                 "reagentes": "3",
                 "cd": "14"
+              },
+              {
+                "id": "alquimista-oleo-sagrado",
+                "nome": "Óleo Sagrado",
+                "efeito": "Aplicado em arma: +1d6 Radiante por 3 ataques. +1d6 extra contra Corrompidos e Mortos-Vivos.",
+                "reagentes": "2",
+                "cd": "13"
               }
             ]
           },
@@ -559,6 +613,13 @@
                 "efeito": "Sela buracos até 50cm, cria cobertura improvisada.",
                 "reagentes": "2",
                 "cd": "12"
+              },
+              {
+                "id": "alquimista-comida-alquimica",
+                "nome": "Comida Alquímica",
+                "efeito": "Refeição completa. Descanso longo: +1d8 adicional em 1 status a escolha.",
+                "reagentes": "2",
+                "cd": "13"
               }
             ]
           },
@@ -578,6 +639,32 @@
                 "efeito": "Ingerido/inalado. Vontade ou <em>Adormecido</em> 1 hora. Dano acorda.",
                 "reagentes": "3",
                 "cd": "14"
+              },
+              {
+                "id": "alquimista-veneno-de-lamina-comum",
+                "nome": "Veneno de Lâmina Comum",
+                "efeito": "Aplicado em arma: +1d4 Veneno por 2 ataques.",
+                "reagentes": "3",
+                "cd": "13"
+              }
+            ]
+          },
+          {
+            "nome": "Bebidas",
+            "itens": [
+              {
+                "id": "alquimista-aguardente-de-raiz",
+                "nome": "Aguardente de Raiz",
+                "efeito": "Recupera 1d8 de Saúde e 1d8 de Stamina. Você fica <em>Bêbado</em> até o fim da cena.",
+                "reagentes": "3",
+                "cd": "13"
+              },
+              {
+                "id": "alquimista-destilado-de-arremesso",
+                "nome": "Destilado de Arremesso",
+                "efeito": "Arremesso 6 m. O alvo faz Fortitude ou fica <em>Bêbado</em> até o fim da cena.",
+                "reagentes": "3",
+                "cd": "13"
               }
             ]
           }
@@ -640,7 +727,7 @@
               {
                 "id": "alquimista-pocao-de-cura-maior",
                 "nome": "Poção de Cura Maior",
-                "efeito": "Recupera <strong>4d8+Int</strong> de Saúde.",
+                "efeito": "Recupera <strong>5d8+Int</strong> de Saúde.",
                 "reagentes": "6",
                 "cd": "16"
               },
@@ -661,9 +748,23 @@
               {
                 "id": "alquimista-pocao-de-vigor-maior",
                 "nome": "Poção de Vigor Maior",
-                "efeito": "Recupera 2d6 de Stamina.",
+                "efeito": "Recupera 3d8 de Stamina.",
                 "reagentes": "6",
                 "cd": "18"
+              },
+              {
+                "id": "alquimista-elixir-de-eter-moderado",
+                "nome": "Elíxir de Éter Moderado",
+                "efeito": "Recupera 2d6+Int de Éter.",
+                "reagentes": "3",
+                "cd": "17"
+              },
+              {
+                "id": "alquimista-elixir-da-expurgacao",
+                "nome": "Elixir da Expurgação",
+                "efeito": "Remove 1 Marca da Vhelor. Não funciona acima da Marca 4.",
+                "reagentes": "3",
+                "cd": "17"
               }
             ]
           },
@@ -781,7 +882,7 @@
               {
                 "id": "alquimista-veneno-hemorragico",
                 "nome": "Veneno Hemorrágico",
-                "efeito": "3 ataques. +2d6 Biológico. Alvo sangra 1d6/turno por 3 rodadas (Medicina estanca).",
+                "efeito": "3 ataques. +1d6 Biológico. Alvo recebe Sangramento 3 no terceiro ataque.",
                 "reagentes": "5",
                 "cd": "16"
               },
@@ -791,6 +892,25 @@
                 "efeito": "1 ataque. Vontade ou <em>Confuso</em> por 1 minuto.",
                 "reagentes": "5",
                 "cd": "18"
+              }
+            ]
+          },
+          {
+            "nome": "Bebidas",
+            "itens": [
+              {
+                "id": "alquimista-cafe-preto",
+                "nome": "Café Preto",
+                "efeito": "Só pode ser bebido enquanto você estiver <em>Bêbado</em>. Remove <em>Bêbado</em> e recupera 3d6 de Saúde e Stamina.",
+                "reagentes": "5",
+                "cd": "17"
+              },
+              {
+                "id": "alquimista-licor-de-ferro",
+                "nome": "Licor de Ferro",
+                "efeito": "Você fica <em>Bêbado</em> até o fim da cena. Enquanto estiver <em>Bêbado</em>, você tem +4 em Fortitude e Vontade.",
+                "reagentes": "5",
+                "cd": "17"
               }
             ]
           }
@@ -846,14 +966,14 @@
               {
                 "id": "alquimista-pocao-de-cura-suprema",
                 "nome": "Poção de Cura Suprema",
-                "efeito": "Recupera 6d8+Int de Saúde + remove 1 condição à escolha.",
+                "efeito": "Recupera 8d10+Int de Saúde + remove 1 condição à escolha.",
                 "reagentes": "10",
                 "cd": "20"
               },
               {
                 "id": "alquimista-pocao-de-vigor-suprema",
                 "nome": "Poção de Vigor Suprema",
-                "efeito": "Recupera 3d8 de Stamina + remove todas as condições (Incluindo Mágicas).",
+                "efeito": "Recupera 5d10 de Stamina + remove todas as condições (Incluindo Mágicas).",
                 "reagentes": "10",
                 "cd": "20"
               },
@@ -907,7 +1027,7 @@
               {
                 "id": "alquimista-soro-da-guerra",
                 "nome": "Soro da Guerra",
-                "efeito": "+2 Atacar, +2 Defender, +2d6 dano, +3m Movimento, Vantagem em Fortitude.",
+                "efeito": "+2 Atacar, +2 Defender, +2d6 dano, +3m Movimento, Vantagem em Fortitude. Duração 1 min.",
                 "reagentes": "8",
                 "cd": "22"
               }
@@ -983,6 +1103,39 @@
                 "efeito": "Ingerido. Vontade ou perde memórias das últimas 24h.",
                 "reagentes": "8",
                 "cd": "20"
+              },
+              {
+                "id": "alquimista-toxina-do-esquecimento",
+                "nome": "Toxina do Esquecimento",
+                "efeito": "1 ataque ou ingestão. Vontade ou a criatura esquece os últimos 10 minutos e fica <em>Confusa</em> por 1 min.",
+                "reagentes": "10",
+                "cd": "21"
+              },
+              {
+                "id": "alquimista-veneno-da-viuva-palida",
+                "nome": "Veneno da Viúva Pálida",
+                "efeito": "Aplicado em arma: +3d6 Veneno por 3 ataques. Cada acerto: Fortitude ou <em>Paralisado</em> 1 rodada.",
+                "reagentes": "11",
+                "cd": "21"
+              }
+            ]
+          },
+          {
+            "nome": "Bebidas",
+            "itens": [
+              {
+                "id": "alquimista-fermentado-do-abismo",
+                "nome": "Fermentado do Abismo",
+                "efeito": "Você fica <em>Bêbado</em> até o fim da cena. Enquanto estiver <em>Bêbado</em>, o 2 natural deixa de ser falha crítica e passa a contar como acerto crítico.",
+                "reagentes": "9",
+                "cd": "21"
+              },
+              {
+                "id": "alquimista-ultima-rodada",
+                "nome": "Última Rodada",
+                "efeito": "Você fica <em>Bêbado</em> até o próximo descanso longo e não pode removê-lo por meio nenhum. Enquanto durar, você tem +1 Ação por rodada.",
+                "reagentes": "12",
+                "cd": "21"
               }
             ]
           }
@@ -1224,7 +1377,7 @@
       "id": "alquimista-curandeiro-incansavel",
       "tipo": "marca-card",
       "nome": "Curandeiro Incansável",
-      "corpo": "<div class=\"marca-header boticario\"><h4>Curandeiro Incansável</h4><div class=\"quote\">\"Ninguém morre no meu turno.\"</div></div><div class=\"marca-body\"><p>Você tem um senso de dever em curar criaturas.</p><div class=\"marca-effect\"><p>Para cada 5 Criaturas que você retirou a condição <em>Morrendo</em>, ganha +1 permanente em Medicina.<br>Ao chegar em +5, essa habilidade fica supérflua.</p></div><div class=\"marca-effect\"><p>Ao curar uma criatura que estava com 0 de Saúde e remover a condição <em>morrendo</em>, ela e você também recuperam 2d6 de Stamina.</p></div></div>",
+      "corpo": "<div class=\"marca-header boticario\"><h4>Curandeiro Incansável</h4><div class=\"quote\">\"Ninguém morre no meu turno.\"</div></div><div class=\"marca-body\"><p>Você tem um senso de dever em curar criaturas.</p><div class=\"marca-effect\"><p>Para cada 5 Criaturas que você retirou a condição <em>Morrendo</em>, ganha +1 permanente em Medicina.<br>Ao chegar em +5, essa habilidade fica supérflua.</p></div><div class=\"marca-effect\"><p>Ao curar uma criatura que estava <em>Morrendo</em> e remover a condição, ela e você também recuperam 2d6 de Stamina.</p></div></div>",
       "grupo": "marca",
       "ramo": "alquimista-ramo-do-boticario",
       "tier": null,
@@ -1254,7 +1407,7 @@
       "id": "alquimista-cartucho-arcano",
       "tipo": "tech-card",
       "nome": "Cartucho Arcano",
-      "corpo": "<div class=\"tech-card-header artificer\"><h4>Cartucho Arcano</h4><span class=\"cost\">Passiva</span></div><div class=\"tech-card-body\"><p>Você desenvolveu um método de aprisionar magias em recipientes alquímicos.</p><ul><li>Novo Item Alquímico: Cartucho Arcano<ul><li>Tempo de Criação: 10 min, age como craft de item alquímico</li><li>Custo de Criação: (Nível da Magia * 2) Reagentes</li><li>Magias Disponíveis: Você conhece 1 magia + Mod. Inteligência(min. 1) do seu nível ou menor, após isso você ganha +1 magia por nível.</li><li>CD da criação: Você rola Místico ao criar Cartuchos Arcanos, o CD da criação é 10 + (2 * Nível da Magia).</li><li>Usar Cartucho: Qualquer criatura pode conjurar a magia infundida no cartucho, porém usa seus atributos como base dos CDs e ataques da magia respeitando, também, o custo de ações da magia.</li><li>Limite: Você pode sustentar até (Nível + Mod. Inteligência) de cartuchos ao mesmo tempo. Perdem seus efeitos após um descanso longo.</li></ul></li></ul></div>",
+      "corpo": "<div class=\"tech-card-header artificer\"><h4>Cartucho Arcano</h4><span class=\"cost\">Passiva</span></div><div class=\"tech-card-body\"><p>Você desenvolveu um método de aprisionar magias em recipientes alquímicos.</p><ul><li>Novo Item Alquímico: Cartucho Arcano<ul><li>Tempo de Criação: 10 min, age como craft de item alquímico</li><li>Custo de Criação: Reagentes iguais ao custo base de Éter da magia (mínimo 1)</li><li>Magias Disponíveis: Você conhece 1 magia + Mod. Inteligência(min. 1) do seu nível ou menor, após isso você ganha +1 magia por nível.</li><li>CD da criação: Você rola Místico ao criar Cartuchos Arcanos, o CD da criação é 10 + o custo base de Éter da magia. Cartuchos de magia de Nível 5 exigem Foco Primordial para serem criados.</li><li>Usar Cartucho: Qualquer criatura pode conjurar a magia infundida no cartucho, porém usa seus atributos como base dos CDs e ataques da magia respeitando, também, o custo de ações da magia.</li><li>Limite: Você pode sustentar até (Nível + Mod. Inteligência) de cartuchos ao mesmo tempo. Perdem seus efeitos após um descanso longo.</li></ul></li></ul></div>",
       "grupo": "ramo",
       "ramo": "alquimista-ramo-do-artificer",
       "tier": 1,
@@ -1314,11 +1467,11 @@
       "id": "alquimista-elixir-especial",
       "tipo": "tech-card",
       "nome": "Elixir Especial",
-      "corpo": "<div class=\"tech-card-header boticario\"><h4>Elixir Especial</h4><span class=\"cost\">1 Ação, 3 Stamina, 3 Reagentes</span></div><div class=\"tech-card-body\"><ul><li>Você prepara e administra um elixir especial entre você e seus aliados à distância de toque, pagando 1 reagente por alvo.</li><li>Escolha um dos 3 efeitos que todos recebem por 1 minuto:<ul><li><strong>Vigor:</strong> +2 em Atacar e +1d6 de dano em Ataques.</li><li><strong>Proteção:</strong> +2 em Defender e +2 Armadura(Ar) natural.</li><li><strong>Velocidade:</strong> +3m Movimento e não causa ataques de oportunidade.</li></ul></li></ul></div>",
+      "corpo": "<div class=\"tech-card-header boticario\"><h4>Elixir Especial</h4><span class=\"cost\">1 Ação, 3 Stamina, 1 Reagente por alvo</span></div><div class=\"tech-card-body\"><ul><li>Você prepara e administra um elixir especial entre você e seus aliados à distância de toque, pagando 1 reagente por alvo.</li><li>Escolha um dos 3 efeitos que todos recebem por 1 minuto:<ul><li><strong>Vigor:</strong> +2 em Atacar e +1d6 de dano em Ataques.</li><li><strong>Proteção:</strong> +2 em Defender e +2 Armadura(Ar) natural.</li><li><strong>Velocidade:</strong> +3m Movimento e não causa ataques de oportunidade.</li></ul></li></ul></div>",
       "grupo": "ramo",
       "ramo": "alquimista-ramo-do-boticario",
       "tier": 1,
-      "custoTexto": "1 Ação, 3 Stamina, 3 Reagentes"
+      "custoTexto": "1 Ação, 3 Stamina, 1 Reagente por alvo"
     },
     {
       "id": "alquimista-tonico-cruel",
@@ -1394,7 +1547,7 @@
       "id": "alquimista-tita",
       "tipo": "ultimate-card",
       "nome": "⚙️ Titã",
-      "corpo": "<div class=\"ultimate-header artificer\"><h4>⚙️ Titã</h4><div><span class=\"ultimate-badge\">ULTIMATE</span><span style=\"margin-left: 0.5rem; color: var(--text-muted); font-size: 0.85rem;\">3 Ações, 8 Éter + 10 Reagentes</span></div></div><div class=\"ultimate-quote\">\"Levante-se, minha criação.\"</div><div class=\"ultimate-body\"><ul><li>Você invoca um constructo colossal (Grande) que dura até o fim do combate ou até ser destruído.<div class=\"constructo-stats\"><span>Estatísticas:</span><span><strong>50 Saúde</strong></span><span class=\"sep\">, </span><span><strong>Evasão 14</strong></span><span class=\"sep\">, </span><span><strong>Armadura(Ar) 5</strong></span><span class=\"sep\">, </span><span><strong>Movimento 6 m</strong></span><span class=\"sep\">, </span><span><strong>4 Ações por turno</strong></span></div><ul><li>O Titã pode:<ul><li>Esmagar: 2 Ações, alcance 3m, 4d10 + Mod. Int de dano Contundente. Ao acertar, alvos médios ou menores devem suceder em um teste de Fortitude ou ficam <em>caídos</em>.</li><li>Rajada Arcana: 1 Ação, linha de 12 m, 3d8 de dano Elemental, Reflexo para metade.</li><li>Escudo: 1 Ação, todos os aliados em 4,5 m Ganham +3 defender até o próximo turno do Titã.</li><li>Investida: 3 Ações, avança 12 m em linha reta. Criaturas no caminho que falharem em um teste de Fortitude sofrem 3d10 Contundente, ficam Caídas e podem ser empurradas até 3 m.</li></ul></li></ul></li></ul><div class=\"ultimate-cost\"><h5>💀 O Custo</h5><ul><li>Você não pode usar éter para nenhum outro propósito enquanto o Titã existir.</li><li>Se o titã for destruído por um inimigo, você sofre 2d6 de dano Psíquico e ganha Exaustão 1.</li></ul></div></div>",
+      "corpo": "<div class=\"ultimate-header artificer\"><h4>⚙️ Titã</h4><div><span class=\"ultimate-badge\">ULTIMATE</span><span style=\"margin-left: 0.5rem; color: var(--text-muted); font-size: 0.85rem;\">3 Ações, 8 Éter + 10 Reagentes</span></div></div><div class=\"ultimate-quote\">\"Levante-se, minha criação.\"</div><div class=\"ultimate-body\"><ul><li>Você invoca um constructo colossal (Grande) que dura até o fim do combate ou até ser destruído.<div class=\"constructo-stats\"><span>Estatísticas:</span><span><strong>50 Saúde</strong></span><span class=\"sep\">, </span><span><strong>Evasão 14</strong></span><span class=\"sep\">, </span><span><strong>Armadura(Ar) 5</strong></span><span class=\"sep\">, </span><span><strong>Movimento 6 m</strong></span><span class=\"sep\">, </span><span><strong>4 Ações por turno</strong></span></div><ul><li>O Titã pode:<ul><li>Esmagar: 2 Ações, alcance 3m, 4d10 + Mod. Int de dano Contundente. Ao acertar, alvos médios ou menores devem suceder em um teste de Fortitude ou ficam <em>caídos</em>.</li><li>Rajada Arcana: 1 Ação, linha de 12 m, 3d8 de dano Elemental, Reflexo para metade.</li><li>Escudo: 1 Ação, todos os aliados em 4,5 m Ganham +3 defender até o próximo turno do Titã.</li><li>Avalanche: 3 Ações, avança 12 m em linha reta. Criaturas no caminho que falharem em um teste de Fortitude sofrem 3d10 Contundente, ficam Caídas e podem ser empurradas até 3 m.</li></ul></li></ul></li></ul><div class=\"ultimate-cost\"><h5>💀 O Custo</h5><ul><li>Você não pode usar éter para nenhum outro propósito enquanto o Titã existir.</li><li>Se o titã for destruído por um inimigo, você sofre 2d6 de dano Psíquico e ganha Exaustão 1.</li></ul></div></div>",
       "grupo": "ultimate",
       "ramo": "alquimista-ramo-do-artificer",
       "tier": 3,

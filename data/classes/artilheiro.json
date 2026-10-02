@@ -221,10 +221,10 @@
       },
       {
         "titulo": "Tier 3 — Ultimates",
-        "badge": "Nível 5 • 1x/Dia",
+        "badge": "Nível 5 • 1x/Descanso Longo",
         "tier": 3,
         "nivel": 5,
-        "usos": "1x/Dia"
+        "usos": "1x/Descanso Longo"
       }
     ]
   },
@@ -263,7 +263,7 @@
       "id": "artilheiro-artesao-de-municao",
       "tipo": "technique-card",
       "nome": "Artesão de Munição",
-      "corpo": "<h4>Artesão de Munição</h4><span class=\"tech-meta\">Passiva</span><p>Durante descanso curto ou longo, você pode criar 1 munição(Flecha, Munição de Armas de Fogo ou Adagas de lançamento) sem rolar testes.</p>",
+      "corpo": "<h4>Artesão de Munição</h4><span class=\"tech-meta\">Passiva</span><p>Durante descanso curto ou longo, você pode criar 1 munição(Virotes/Flechas, Munição de Armas de Fogo ou Conjunto de Arremesso) sem rolar testes.</p>",
       "grupo": "geral",
       "ramo": null,
       "tier": null,
@@ -523,7 +523,7 @@
       "id": "artilheiro-tiro-carregado",
       "tipo": "tech-card",
       "nome": "Tiro Carregado",
-      "corpo": "<div class=\"tech-card-header predador\"><h4>Tiro Carregado</h4><span class=\"cost\">1-3 Ações, 2 Stamina</span></div><div class=\"tech-card-body\"><ul><li>Você prepara um tiro que escala com a quantidade de ações que você utiliza:<ul><li>1 Ação → +1d6 Dano Perfurante</li><li>2 Ações → +2d6 Dano Perfurante</li><li>3 Ações → +3d6 Dano Perfurante, Margem de Crítico +1</li></ul></li><li>Você ganha +1 Concentração por ação gasta.</li></ul></div>",
+      "corpo": "<div class=\"tech-card-header predador\"><h4>Tiro Carregado</h4><span class=\"cost\">1-3 Ações, 2 Stamina</span></div><div class=\"tech-card-body\"><ul><li>Você prepara um tiro que escala com a quantidade de ações que você utiliza:<ul><li>1 Ação → +1d6 Dano Perfurante</li><li>2 Ações → +2d6 Dano Perfurante</li><li>3 Ações → +3d6 Dano Perfurante, Margem de Ameaça +1</li></ul></li><li>Você ganha +1 Concentração por ação gasta.</li></ul></div>",
       "grupo": "ramo",
       "ramo": "artilheiro-ramo-do-predador",
       "tier": 1,
@@ -533,7 +533,7 @@
       "id": "artilheiro-projetil-envenenado",
       "tipo": "tech-card",
       "nome": "Projétil Envenenado",
-      "corpo": "<div class=\"tech-card-header vendaval\"><h4>Projétil Envenenado</h4><span class=\"cost\">Passiva</span></div><div class=\"tech-card-body\"><ul><li>Durante um descanso curto, você pode aplicar <strong>veneno</strong> em até <strong>5 munições</strong> (flechas, virotes, munições de fogo, ou armas de arremesso).</li><li>Ao acertar com munição envenenada, o alvo deve passar em <strong>Fortitude</strong> ou recebe <em>Envenenamento</em> por <strong>2 rodadas</strong>.<br>Com 5<strong>+ Concentração</strong>, o alvo tem <strong>Desvantagem</strong> no teste.</li></ul></div>",
+      "corpo": "<div class=\"tech-card-header vendaval\"><h4>Projétil Envenenado</h4><span class=\"cost\">Passiva</span></div><div class=\"tech-card-body\"><ul><li>Durante um descanso curto, você pode aplicar <strong>veneno</strong> em até <strong>2 munições</strong> (flechas, virotes, munições de fogo, ou conjuntos de armas de arremesso).</li><li>Ao acertar com munição envenenada, o alvo deve passar em <strong>Fortitude</strong> ou recebe <em>Envenenamento</em> por <strong>2 rodadas</strong>. 1x/Alvo.<br>Com 5<strong>+ Concentração</strong>, o alvo tem <strong>Desvantagem</strong> no teste.</li></ul></div>",
       "grupo": "ramo",
       "ramo": "artilheiro-ramo-do-vendaval",
       "tier": 2,
@@ -553,7 +553,7 @@
       "id": "artilheiro-municao-especial",
       "tipo": "tech-card",
       "nome": "Munição Especial",
-      "corpo": "<div class=\"tech-card-header polvora\"><h4>Munição Especial</h4><span class=\"cost\">1 Ação, 2 Stamina</span></div><div class=\"tech-card-body\"><ul><li>Você aprendeu a fabricar munições especiais para <strong>qualquer arma à distância</strong>. As munições são de uso único (Ao invés de uso por cena):<ul><li>Explosiva → Criaturas em 1,5 m do alvo sofrem o dano original da flecha.</li><li>Perfurante → Ignora toda a armadura do alvo.</li><li>Atordoante → Alvo faz Fortitude ou fica Atordoado por 1 Rodada (Não causa dano)</li><li>Incendiária → Alvo fica <em>Em Chamas</em></li></ul></li><li>Durante um descanso curto, você pode criar 1 Munição Especial como ação de descanso curto e durante um descanso longo, você pode criar 2 munições Especiais. 3 munições especiais contam como 1 bugiganga.</li></ul></div>",
+      "corpo": "<div class=\"tech-card-header polvora\"><h4>Munição Especial</h4><span class=\"cost\">1 Ação, 2 Stamina</span></div><div class=\"tech-card-body\"><ul><li>Você aprendeu a fabricar munições especiais para <strong>qualquer arma à distância</strong>. As munições são de uso único (Ao invés de uso por cena):<ul><li>Explosiva → Criaturas em 1,5 m do alvo sofrem o dano original da flecha.</li><li>Perfurante → Ignora toda a armadura do alvo.</li><li>Atordoante → Alvo faz Fortitude ou fica Atordoado por 1 Rodada (Não causa dano)</li><li>Incendiária → Alvo fica <em>Em Chamas</em></li></ul></li><li>Durante um descanso curto, você pode criar 1 Munição Especial como ação de descanso curto e durante um descanso longo, você pode criar 2 munições Especiais. 10 munições especiais contam como 1 bugiganga.</li></ul></div>",
       "grupo": "ramo",
       "ramo": "artilheiro-ramo-da-polvora",
       "tier": 2,

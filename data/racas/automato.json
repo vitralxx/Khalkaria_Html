@@ -167,7 +167,7 @@
       "tipo": "tech-card",
       "opentag": "<div class=\"tech-card\">",
       "nome": "Sensor de Proximidade",
-      "corpo": "\n                    <div><h5>Sensor de Proximidade</h5><p class=\"desc\">Detecta mudanças no ar e vibrações.</p></div>\n                    <div class=\"effect\">Não pode ser surpreendido.</div>\n                    <div class=\"price\">Incomum</div>\n                "
+      "corpo": "\n                    <div><h5>Sensor de Proximidade</h5><p class=\"desc\">Detecta mudanças no ar e vibrações.</p></div>\n                    <div class=\"effect\">Não pode ser <em>Desprevenido</em>.</div>\n                    <div class=\"price\">Incomum</div>\n                "
     },
     {
       "id": "automato-fibra-de-carbono",
@@ -271,7 +271,7 @@
       "tipo": "rule-box",
       "opentag": "<div class=\"rule-box\">",
       "nome": "🎲 Achar Tecnologias em Lojas",
-      "corpo": "\n                <h4>🎲 Achar Tecnologias em Lojas</h4>\n                <p style=\"color: var(--text-muted); font-size: 0.9rem;\">Role d100 ao entrar em uma loja que possa ter tecnologias:</p>\n                <table class=\"d100-table\">\n                    <tr><th>d100</th><th>Resultado</th></tr>\n                    <tr><td>1-79</td><td>O vendedor não possui nada.</td></tr>\n                    <tr><td>80-89</td><td>Encontra 1 tecnologia. Role 1d12.</td></tr>\n                    <tr><td>90-99</td><td>Encontra 2 tecnologias. Role 2d12.</td></tr>\n                    <tr><td>100</td><td>Encontra 3 tecnologias. Role 3d12.</td></tr>\n                </table>\n                <p style=\"color: var(--text-muted); font-size: 0.85rem; margin-top: 0.5rem;\">O d12 determina qual tecnologia a partir do Tier 1. Resultados repetidos são rerolados.</p>\n            "
+      "corpo": "\n                <h4>🎲 Achar Tecnologias em Lojas</h4>\n                <p style=\"color: var(--text-muted); font-size: 0.9rem;\">Role d100 ao entrar em uma loja que possa ter tecnologias:</p>\n                <table class=\"d100-table\">\n                    <tr><th>d100</th><th>Resultado</th></tr>\n                    <tr><td>1-79</td><td>O vendedor não possui nada.</td></tr>\n                    <tr><td>80-89</td><td>Encontra 1 tecnologia. Role 1d12.</td></tr>\n                    <tr><td>90-99</td><td>Encontra 2 tecnologias. Role 2d12.</td></tr>\n                    <tr><td>100</td><td>Encontra 3 tecnologias. Role 3d12.</td></tr>\n                </table>\n                <p style=\"color: var(--text-muted); font-size: 0.85rem; margin-top: 0.5rem;\">Ao encontrar tecnologias, role 1d12 o resultado determina qual tecnologia é a partir do tier 1. Encontrando mais de uma tecnologia e rolando um d12 igual, role novamente. As tecnologias de Tier 5 não podem ser obtidas em lojas e não entram na rolagem.</p>\n            "
     }
   ]
 }

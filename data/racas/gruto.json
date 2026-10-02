@@ -119,7 +119,7 @@
       "tipo": "trait-card",
       "opentag": "<div class=\"trait-card\">",
       "nome": "Língua Bifurcada",
-      "corpo": "\n                <h4>Língua Bifurcada</h4>\n                <ul>\n                    <li>Tem vantagem nas perícias de Movimento, Crime, Intimidação e Sobrevivência contra Dryads e outras Criaturas Predáveis, adicionalmente é <strong>Imune a Envenenamento</strong>.</li>\n                </ul>\n            "
+      "corpo": "\n                <h4>Língua Bifurcada</h4>\n                <ul>\n                    <li>Tem vantagem nas perícias de Movimento, Crime, Intimidação e Sobrevivência contra Dryads e Animais selvagens, adicionalmente é <strong>Imune a Envenenamento</strong>.</li>\n                </ul>\n            "
     },
     {
       "id": "gruto-troca-de-pele",

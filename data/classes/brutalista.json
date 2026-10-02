@@ -212,10 +212,10 @@
       },
       {
         "titulo": "Tier 3 — Ultimates",
-        "badge": "Nível 5 • 1x/Dia",
+        "badge": "Nível 5 • 1x/Descanso Longo",
         "tier": 3,
         "nivel": 5,
-        "usos": "1x/Dia"
+        "usos": "1x/Descanso Longo"
       }
     ]
   },
@@ -361,10 +361,10 @@
       "custoTexto": "1 Ação • 3 Stamina"
     },
     {
-      "id": "brutalista-investida",
+      "id": "brutalista-atropelar",
       "tipo": "technique-card",
-      "nome": "Investida",
-      "corpo": "<h4>Investida</h4><span class=\"tech-meta\">2 Ações • 3 Stamina</span><p>Pode investir em uma linha reta de no mínimo 4,5 m até 9 m. Alvos no caminho, devem suceder em um teste de <em>Fortitude</em> ou recebem (Nível)d6+Mod. Força e ficam <em>Caidos</em>.</p>",
+      "nome": "Atropelar",
+      "corpo": "<h4>Atropelar</h4><span class=\"tech-meta\">2 Ações • 3 Stamina</span><p>Pode investir em uma linha reta de no mínimo 4,5 m até 9 m. Alvos no caminho, devem suceder em um teste de <em>Fortitude</em> ou recebem (Nível)d6+Mod. Força e ficam <em>Caídos</em>. Conta como o Mover do turno.</p>",
       "grupo": "geral",
       "ramo": null,
       "tier": null,
@@ -384,7 +384,7 @@
       "id": "brutalista-imortal",
       "tipo": "marca-card",
       "nome": "Imortal",
-      "corpo": "<div class=\"marca-header colosso\"><h4>Imortal</h4><div class=\"quote\">\"Cada ferida conta uma história. Cada história te ensinou a sobreviver.\"</div></div><div class=\"marca-body\"><p>Você não é do tipo que morre e se tornou apático em relação a morte.</p><div class=\"marca-effect\"><p>Enquanto estiver com ou menos da metade da vida, você tem:</p><ul><li>+2 Armadura(Ar) Natural</li></ul></div><div class=\"marca-effect\"><p>Ao ser reduzido a 0 de Saúde, pode escolher não morrer como ação livre voltando a 1 de Saúde.<br>Ao fazer isso, você ganha +1 de <em>Exaustão</em>.</p></div></div>",
+      "corpo": "<div class=\"marca-header colosso\"><h4>Imortal</h4><div class=\"quote\">\"Cada ferida conta uma história. Cada história te ensinou a sobreviver.\"</div></div><div class=\"marca-body\"><p>Você não é do tipo que morre e se tornou apático em relação a morte.</p><div class=\"marca-effect\"><p>Incansável</p><ul><li>Você recebe +1 em todas as perícias por nível de exaustão.</li></ul></div><div class=\"marca-effect\"><p>Ao ser reduzido a 0 de Saúde ou menos, pode escolher não morrer como ação livre voltando a 1 de Saúde.<br>Ao fazer isso, você ganha +1 de <em>Exaustão</em>.</p></div></div>",
       "grupo": "marca",
       "ramo": "brutalista-ramo-do-colosso",
       "tier": null,
@@ -394,7 +394,7 @@
       "id": "brutalista-contador-de-corpos",
       "tipo": "marca-card",
       "nome": "Contador de Corpos",
-      "corpo": "<div class=\"marca-header berserker\"><h4>Contador de Corpos</h4><div class=\"quote\">\"Você não lembra dos rostos. Só do número.\"</div></div><div class=\"marca-body\"><p>Você busca assassinar criaturas e conta e reconta ativamente suas histórias terríveis.</p><div class=\"marca-effect\"><p>Para cada 10 criaturas que você matou, ganha +1 permanente em <em>Atacar</em>.<br>Ao chegar em +5, essa habilidade fica supérflua.</p></div><div class=\"marca-effect\"><p>Ao matar uma criatura *brutalmente, você ganha +1 de Stamina e perde 1 de éter.</p></div></div>",
+      "corpo": "<div class=\"marca-header berserker\"><h4>Contador de Corpos</h4><div class=\"quote\">\"Você não lembra dos rostos. Só do número.\"</div></div><div class=\"marca-body\"><p>Você busca assassinar criaturas e conta e reconta ativamente suas histórias terríveis.</p><div class=\"marca-effect\"><p>Para cada 10 criaturas que você matou, ganha +1 permanente em <em>Atacar</em>.<br>Ao chegar em +5, essa habilidade fica supérflua.</p></div><div class=\"marca-effect\"><p>Ao matar uma criatura *brutalmente, você ganha 1d6 de Stamina e perde 1 de éter.<br>*Brutalmente: Com <strong>crítico</strong> ou <em>efeito de arma:</em> Executar.</p></div></div>",
       "grupo": "marca",
       "ramo": "brutalista-ramo-do-berserker",
       "tier": null,
@@ -434,7 +434,7 @@
       "id": "brutalista-muralha-viva",
       "tipo": "tech-card",
       "nome": "Muralha Viva",
-      "corpo": "<div class=\"tech-card-header colosso\"><h4>Muralha Viva</h4><span class=\"cost\">Passiva</span></div><div class=\"tech-card-body\"><ul><li>Você se torna Treinado em <em>Defender</em>. Se já for Treinado, se torna Experiente e assim por diante.</li><li>O treinamento da sua pericia <em>Defender</em> aumenta de 3 em 3. (Ao invés de 2 em 2)</li></ul></div>",
+      "corpo": "<div class=\"tech-card-header colosso\"><h4>Muralha Viva</h4><span class=\"cost\">Passiva</span></div><div class=\"tech-card-body\"><ul><li>Você se torna Treinado em <em>Defender</em>. Se já for Treinado, se torna Experiente e assim por diante.</li><li>Você recebe +1 na perícia <em>Defender</em> a cada treinamento dessa perícia.</li></ul></div>",
       "grupo": "ramo",
       "ramo": "brutalista-ramo-do-colosso",
       "tier": 1,
@@ -454,7 +454,7 @@
       "id": "brutalista-postura-defensiva",
       "tipo": "tech-card",
       "nome": "Postura Defensiva",
-      "corpo": "<div class=\"tech-card-header colosso\"><h4>Postura Defensiva</h4><span class=\"cost\">1 Ação, 3 Stamina</span></div><div class=\"tech-card-body\"><ul><li>Até o inicio do seu próximo turno:<ul><li>+2 <em>Defender.</em></li><li>+2 Armadura(Ar) Natural.</li><li>Você não pode ser Derrubado ou Empurrado por quase nada.</li></ul></li><li>Porém, enquanto em Postura Defensiva:<ul><li>Você não pode se mover.</li><li>-2 em <em>Atacar</em>.</li></ul></li></ul></div>",
+      "corpo": "<div class=\"tech-card-header colosso\"><h4>Postura Defensiva</h4><span class=\"cost\">1 Ação, 3 Stamina</span></div><div class=\"tech-card-body\"><ul><li>Até o inicio do seu próximo turno:<ul><li>+2 <em>Defender.</em></li><li>+2 Armadura(Ar) Natural.</li><li>Você não pode ser derrubado (<em>Caído</em>) ou empurrado por quase nada.</li></ul></li><li>Porém, enquanto em Postura Defensiva:<ul><li>Você não pode se mover.</li><li>-2 em <em>Atacar</em>.</li></ul></li></ul></div>",
       "grupo": "ramo",
       "ramo": "brutalista-ramo-do-colosso",
       "tier": 1,
@@ -474,7 +474,7 @@
       "id": "brutalista-frenesi",
       "tipo": "tech-card",
       "nome": "Frenesi",
-      "corpo": "<div class=\"tech-card-header berserker\"><h4>Frenesi</h4><span class=\"cost\">3 Ações, 3 Stamina</span></div><div class=\"tech-card-body\"><ul><li>Você entra em Frenesi até o fim do combate ou até ficar <em>Inconsciente</em>.</li><li>Durante o Frenesi:<ul><li>+2 em <em>Atacar</em></li><li>+1 dado de dano em ataques corpo a corpo</li><li>Resistência a <em>Dano Ordinário</em></li></ul></li><li>Porém, enquanto em Frenesi:<ul><li>Não pode Defender, apenas contra atacar(retaliar).</li><li>Fica descontrolado e não pode usar habilidades que exijam paciência ou concentração.</li><li>Deve atacar uma criatura toda rodada, caso contrário o Frenesi acaba.</li></ul></li><li>Você pode usar Frenesi 1 vez por descanso longo no nível 1 e 2 vezes no nível 3.</li></ul></div>",
+      "corpo": "<div class=\"tech-card-header berserker\"><h4>Frenesi</h4><span class=\"cost\">3 Ações, 3 Stamina</span></div><div class=\"tech-card-body\"><ul><li>Você entra em Frenesi até o fim do combate ou até ficar <em>Inconsciente</em>.</li><li>Durante o Frenesi:<ul><li>+2 em <em>Atacar</em></li><li>+1 dado de dano em ataques corpo a corpo</li><li>Resistência a <em>Dano Ordinário</em></li></ul></li><li>Porém, enquanto em Frenesi:<ul><li>Não pode Defender, apenas contra atacar(retaliar).</li><li>Não pode usar habilidades que exijam paciência ou concentração.</li><li>Deve atacar uma criatura toda rodada, caso contrário o Frenesi acaba.</li></ul></li><li>Você pode usar Frenesi 1 vez por descanso longo no nível 2 e 2 vezes no nível 4.</li></ul></div>",
       "grupo": "ramo",
       "ramo": "brutalista-ramo-do-berserker",
       "tier": 1,

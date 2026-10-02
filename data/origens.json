@@ -376,12 +376,12 @@
             "itemId": "item-bolsa-de-couro"
           },
           {
-            "texto": "1 <a href=\"bazar.html?item=Madeira Comum\" class=\"item-link\">Madeira Comum</a> (1 Bugiganga)",
-            "nome": "Madeira Comum",
+            "texto": "1 <a href=\"bazar.html?item=Cobre\" class=\"item-link\">Cobre</a> (1 Bugiganga)",
+            "nome": "Cobre",
             "quantidade": 1,
             "slot": "1 Bugiganga",
             "nota": null,
-            "itemId": "item-madeira-comum"
+            "itemId": "item-cobre"
           },
           {
             "texto": "2 Comidas (2 Bugigangas)",
@@ -1412,7 +1412,7 @@
       "tipo": "origem-card",
       "opentag": "<div class=\"origem-card\" id=\"cacador\">",
       "nome": "🎣 Caçador",
-      "corpo": "\n                <div class=\"origem-header\" onclick=\"this.parentElement.classList.toggle('active')\">\n                    <h3><span class=\"icon\">🎣</span> Caçador</h3>\n                    <div style=\"display:flex;align-items:center;gap:1rem\">\n                        <span class=\"origem-sins\">💰 {{origem.sins}}</span>\n                        <span class=\"toggle-icon\">▼</span>\n                    </div>\n                </div>\n                <div class=\"origem-body\">\n                    <p class=\"origem-desc\">Existe a presa e o predador, e você aprendeu isso cedo como regra de sobrevivência. Guiado por mentores, chefes ou pela solidão, você caçou para viver, vender couro e garantir carne, entendendo que a caça vai muito além do tiro: rastrear é ler sinais mínimos do mundo, emboscar é ter paciência e controle, e esfolar é ter estômago para a parte crua do ofício. Com o tempo, você deixou de ver isso como violência vazia e passou a se reconhecer como agente do ciclo natural, alguém que sabe ouvir o vento, medir o risco, escolher o momento e seguir a trilha até o fim.</p>\n                    <div class=\"origem-grid\">\n                        <div class=\"origem-section\">\n                            <h4>🎯 Treinamento</h4>\n                            <p>{{origem.treinamento.texto}}</p>\n                        </div>\n                        <div class=\"origem-section\">\n                            <h4>🎒 Itens Iniciais</h4>\n                            <ul>\n                                <li>{{origem.itensIniciais.0.texto}}</li>\n                                <li>{{origem.itensIniciais.1.texto}}</li>\n                                <li>{{origem.itensIniciais.2.texto}}</li>\n                                <li>{{origem.itensIniciais.3.texto}}</li>\n                                <li>{{origem.itensIniciais.4.texto}}</li>\n                            </ul>\n                        </div>\n                    </div>\n                    <div class=\"habilidade-box\">\n                        <h4>{{origem.habilidade.nome}}</h4>\n                        {{origem.habilidade.texto}}\n                    </div>\n                </div>\n            ",
+      "corpo": "\n                <div class=\"origem-header\" onclick=\"this.parentElement.classList.toggle('active')\">\n                    <h3><span class=\"icon\">🎣</span> Caçador</h3>\n                    <div style=\"display:flex;align-items:center;gap:1rem\">\n                        <span class=\"origem-sins\">💰 {{origem.sins}}</span>\n                        <span class=\"toggle-icon\">▼</span>\n                    </div>\n                </div>\n                <div class=\"origem-body\">\n                    <p class=\"origem-desc\">Existe a presa e o predador, e você aprendeu isso cedo como regra de sobrevivência. Guiado por mentores, chefes ou pela solidão, você caçou para viver, vender couro e garantir carne, entendendo que a caça vai muito além do tiro: rastrear é ler sinais mínimos do mundo, emboscar é ter paciência e controle, e esfolar é ter estômago para a parte crua do ofício. Com o tempo, você deixou de ver isso como violência vazia e passou a se reconhecer como agente do ciclo natural, alguém que sabe ouvir o vento, medir o risco, escolher o momento e seguir a trilha até o fim.</p>\n                    <div class=\"origem-grid\">\n                        <div class=\"origem-section\">\n                            <h4>🎯 Treinamento</h4>\n                            <p>{{origem.treinamento.texto}}</p>\n                        </div>\n                        <div class=\"origem-section\">\n                            <h4>🎒 Itens Iniciais</h4>\n                            <ul>\n                                <li>{{origem.itensIniciais.0.texto}}</li>\n                                <li>{{origem.itensIniciais.1.texto}}</li>\n                                <li>{{origem.itensIniciais.2.texto}}</li>\n                                <li>{{origem.itensIniciais.3.texto}}</li>\n                            </ul>\n                        </div>\n                    </div>\n                    <div class=\"habilidade-box\">\n                        <h4>{{origem.habilidade.nome}}</h4>\n                        {{origem.habilidade.texto}}\n                    </div>\n                </div>\n            ",
       "origem": {
         "sins": "3d6+4",
         "treinamento": {
@@ -1439,14 +1439,6 @@
             "texto": "Vestes Robustas (1 Equipamento)",
             "nome": "Vestes Robustas",
             "quantidade": null,
-            "slot": "1 Equipamento",
-            "nota": null,
-            "itemId": null
-          },
-          {
-            "texto": "1 Arma Simples (1 Equipamento)",
-            "nome": "Arma Simples",
-            "quantidade": 1,
             "slot": "1 Equipamento",
             "nota": null,
             "itemId": null

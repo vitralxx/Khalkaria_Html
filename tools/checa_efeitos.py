@@ -27,8 +27,10 @@ import gerar_efeitos as ge
 import sync_balanceamento as sb
 
 BAL = os.path.join('data', 'balanceamento')
-ESPERADO = {'bazar': 727, 'itens': 214, 'armas': 181, 'consumo': 243, 'semEfeitoNaFicha': 115,
-            'naoParseado': 0, 'focos': 26, 'armasComChassi': 151, 'empilhaveis': 87,
+# efeitos rev. 10 (balanceamento ec2493e): sai o Napalm (área) do consumo (D128),
+# entra o Mapa sem efeito na ficha e empilhável (D132, D135)
+ESPERADO = {'bazar': 727, 'itens': 214, 'armas': 181, 'consumo': 242, 'semEfeitoNaFicha': 116,
+            'naoParseado': 0, 'focos': 26, 'armasComChassi': 151, 'empilhaveis': 88,
             'armaduraPesada': 27, 'armaduraLeve': 23}
 BASE_MOD = ('alvo', 'op', 'valor', 'quando', 'acumula', 'duracao', 'fonte', 'status')
 RE_ARMA = re.compile(r'^[^.]+\.\s+(\d+d\d+) [^()]+ \((Força|Destreza)\)\.\s+(?:\+\d+ em Atacar\.\s+)?Atacar\((\d)\)')
