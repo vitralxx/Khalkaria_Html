@@ -11,6 +11,11 @@ Versionamento semântico. Cada versão é uma tag git.
   Bazar e Grimório), só leitura, com a fórmula em todo número e as
   ilustrações da ficha física. As abas podem ser reordenadas arrastando, ou
   pelo teclado com Alt+← e Alt+→. A ordem fica lembrada no navegador.
+- **Ficha nova à direita** (também só com a prévia): drawer que empurra o
+  conteúdo, com as mesmas 5 abas em versão compacta. Recolhido, vira um
+  trilho de 48 px com as barras de Saúde, Stamina e Éter. Arrastar um item do
+  Bazar até ele leva o item para a ficha atual. Substitui o painel flutuante
+  da prévia.
 
 ### Corrigido
 - **Importar da ficha:** um arquivo que não é ficha (pacote de várias fichas
