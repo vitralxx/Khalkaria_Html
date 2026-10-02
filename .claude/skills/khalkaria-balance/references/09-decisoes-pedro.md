@@ -877,6 +877,31 @@ Texto verbatim em `18-batedor-rework.md` §0 e as lições em `19-gabarito-de-cl
   - a fraqueza da classe pode ser a isca (Por Aqui!);
   - o Cartógrafo é o ramo que reparte o mapa com o grupo; a classe continua individual nas gerais.
 
+## Oitava leva (2026-10-02) — D147–D148: Cartógrafo e formato de entrega
+
+- **D147** O Pedro reescreveu 4 peças do Cartógrafo. Os textos dele estão no `batedor-classe.md`.
+  - **Colecionador de Horizontes:** no 1º mapa de cada região de Kharavel (depois de escolher a marca), recupera
+    4d6 + (INT ou SAB) de Stamina e ganha +1d4 de Stamina máxima. O teto vem das 9 regiões.
+  - **Cicatrizes da Jornada:** o efeito menor era forte demais. Sai "2d6 de Stamina transforma a falha em sucesso";
+    entra "5 de Stamina para rolar de novo, 1x/descanso longo". Rolar de novo esbarra na reserva do Xamã: está em
+    aberto.
+  - **Região Ideal** (ex-Terreno Ideal):
+    - dá treino em Sobrevivência;
+    - a região vale enquanto o Batedor tiver os mapas de 3 lugares significativos dela;
+    - dá +2 em Atacar, Percepção, Investigação, Furtividade e Movimento.
+  - **Arte** (ex-Legenda):
+    - a lista é Percepção, Investigação, Iniciativa, Furtividade e Movimento;
+    - vale para o grupo a até 9 m;
+    - no nível 4, os mapas sobem 1 raridade (absorve o Artista Apaixonado).
+  - **Mapa Tático** (ex-Croqui): o Pedro mandou refazer, porque punia quem fez o mapa antes (lição 27). A nova versão
+    está em `18` §5.1.
+- **D148** Formato de entrega: sai a página de leitura (Artifact).
+  - *"vamos deixar de utilizar o artefato do claude que eu acho que eu to visualizando e você organizando de uma
+    maneira ruim. Vamos guardar em .mds e você sempre printa aqui toda a classe, mostrando uma seção só do que
+    importa, com as técnicas organizadas e prontas para eu auditar."*
+  - A classe inteira fica em `references/batedor-classe.md`, com uma seção "Em auditoria" no topo, e vai
+    impressa no chat a cada rodada. O porquê e os números ficam no `18`.
+
 ## D68 — O andar de Nível 1 (truques)
 Todas as magias existentes **sobem 1 nível**: as antigas 1–4 viram 2–5. O novo Nível 1 são os
 20 truques. Consequência limpa: a regra do Teurgo deixa de ser "iguais ou abaixo do seu

@@ -533,3 +533,14 @@ O Batedor foi o protótipo (D79). Cada correção do Pedro vira regra para as pr
     o Cartógrafo deve dar *"aumento de perícia passivo, individual e pra party através dos mapas"*. O ramo que reparte
     usa a característica (o mapa) como canal.
 
+**Rodada 6 (2026-10-02)**
+
+27. **Técnica que só serve a quem não se preparou pune quem joga certo.** *"quando o batedor joga correto e faz o mapa
+    previamente, essa técnica o pune, sendo literalmente inútil."* Toda vaga precisa render na jogada certa. O remendo
+    para o despreparo pode existir, mas como cláusula de uma técnica que também serve ao preparado.
+28. **O efeito menor da marca é menor de verdade.** *"no efeito menor adicional, está mais pra um efeito forte."*
+    Transformar falha em sucesso é forte; rolar de novo 1x/descanso longo é o tamanho certo.
+29. **Benefício que depende de item no inventário cria tensão com a venda.** Na Região Ideal, a região vale *"enquanto
+    você tiver os mapas"*. Vender o mapa dá Sins (e a Arte valoriza o mapa), mas tira o bônus. Use quando o item já é
+    moeda da classe.
+

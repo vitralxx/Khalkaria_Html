@@ -156,8 +156,9 @@ Só mudou o que está aqui; nada mais nas páginas.
 ### Perguntas que continuam com o Pedro
 (As respondidas estão em §1, §1b e §1c.)
 1. **Do lote anterior:** L14, L35, L39.
-2. **Batedor, rodada 5:** características e as 15 técnicas fechadas e no Notion (D134–D136, D141, D144). Aberto:
-   os 3 ramos, com a proposta em `18` §5 e 11 pontos em `18` §5.4. Quando os ramos fecharem, vai o resto ao
+2. **Batedor, rodada 6:** características e as 15 técnicas fechadas e no Notion (D134–D136, D141, D144). Aberto:
+   os 3 ramos. O Cartógrafo já tem os textos do Pedro (D147); o Mapa Tático foi refeito e espera aceite. Ladrão e
+   Pecador seguem como na rodada 5. A classe inteira está em `batedor-classe.md`; os pontos, em `18` §5.4. Quando os ramos fecharem, vai o resto ao
    Notion, com um novo diff e um novo log. O agente de HTML espera esse fechamento para refazer a ficha do Batedor.
 3. **Rodada 6 do agente de HTML (Comerciantes, C2–C11)**, no `docs/ficha-digital/02-plano.md` §10 da main. Várias
    perguntas são regra nova (quem compra o quê, raridade da loja, subida de nível, preço rolado) e vão ao Pedro como Tn.

@@ -1,4 +1,4 @@
-# 18 — Rework do Batedor (rodada 5: os ramos)
+# 18 — Rework do Batedor (rodada 6: os ramos)
 
 **Status:**
 - **No Notion** (D143 e D144, conferido por fetch e diff):
@@ -8,13 +8,15 @@
   - os nomes Pecador e Ladrão.
 - **Proposta, nada no Notion:** os 3 ramos (§5). Na página, o conteúdo dos ramos ainda é o antigo e o status ainda diz "🟢 Pronto".
 - Os logs para o agente de HTML estão no `17` §3.1. O agente espera o rework fechar para refazer a ficha do Batedor.
+- **A classe inteira, pronta para auditar, está em `batedor-classe.md`.** Este arquivo guarda o porquê, os números e o histórico. A página de leitura (Artifact) foi descontinuada a pedido do Pedro (D148).
 
 **Histórico:**
 - Rodada 1: commit `a4ea40f`. Mapa de Combate + Instinto refeito.
 - Rodada 2: commit `07c3d18`. Com as decisões do Pedro; 3 opções para a 2ª característica.
 - Rodada 3: commit `53c7cb0`. Características fechadas; 15 técnicas propostas.
 - Rodada 4: commit `1ff08e4`. Os textos do Pedro nas técnicas e 6 pontos abertos. Depois, o commit `a128457` registrou a ida ao Notion em parte (D143).
-- Rodada 5 (este arquivo): os 6 pontos fechados (D144) e a proposta dos ramos.
+- Rodada 5: commit `ec2493e`. Os 6 pontos fechados (D144) e a proposta dos ramos.
+- Rodada 6 (este arquivo): o Pedro reescreveu 4 peças do Cartógrafo e pediu para refazer o Mapa Tático (D147).
 - As lições que o Pedro deu no caminho estão no `19-gabarito-de-classe.md` §12.
 
 **Origem de cada texto:**
@@ -244,102 +246,64 @@ Além do dano, em 50% dos turnos o alvo fica *Caído*: não retalia, defende com
 > worldmap de Kharavel tem 9 regiões, seria interessante ver o cartógrafo se beneficiar individualmente de mapear kharavel
 > continuamente de alguma maneira."*
 
-**Resumo:**
+**Rodada 6 (2026-10-02): o Pedro reescreveu 4 peças (D147).** Os textos estão no `batedor-classe.md`.
+- **Colecionador de Horizontes:** *"Ao desenhar um mapa pela primeira vez numa região de Kharavel, após escolher essa
+  marca, recupere 4d6+(Mod. Int ou Mod. Sab) de Stamina e receba +1d4 de Stamina máxima."* O teto vem das 9 regiões:
+  até +9d4 (média 22,5). A ficha guarda cada 1d4 rolado.
+- **Cicatrizes da Jornada:** *"no efeito menor adicional, está mais pra um efeito forte"*. Antes, pagar 2d6 de Stamina
+  transformava a falha em sucesso. Agora é *"Ao falhar em sobrevivência, você pode gastar 5 de Stamina para rolar a perícia
+  novamente. 1x/descanso longo."*
+- **Região Ideal** (ex-Terreno Ideal): o treino em Sobrevivência fica.
+  - A região vale *"enquanto você tiver os mapas de 3 lugares diferentes significativos dela"*. Vender o mapa tira o
+    efeito, o que cria uma tensão com a Arte, que valoriza o mapa.
+  - Dá +2 em Atacar, Percepção, Investigação, Furtividade e Movimento.
+- **Arte** (ex-Legenda): a lista passa a ser Percepção, Investigação, Iniciativa, Furtividade e Movimento. No nível 4, os
+  mapas sobem 1 raridade. Com isso, a Arte absorve o Artista Apaixonado, e a vaga do T2 fica livre.
+- **Mapa Tático** (ex-Croqui): *"achei essa técnica esquisita, quando o batedor joga correto e faz o mapa previamente, essa
+  técnica o pune, sendo literalmente inútil. Refazer"*. Foi refeita (abaixo).
 
-| Onde | Técnica | Origem | O que faz |
-|---|---|---|---|
-| Marca | Colecionador de Horizontes | [Pedro, ajustado] | +1 Stamina máxima por região de Kharavel (teto 9) |
-| Marca | Cicatrizes da Jornada | [Pedro] | marca de progressão (Sobrevivência) |
-| T1 | Terreno Ideal | [Pedro, remodelado] | treino em Sobrevivência; +2 individual nas regiões mapeadas |
-| T1 | Croqui | [nova] | **ativa:** mapa em combate |
-| T1 | Legenda | [nova] | +1/+2 numa perícia para o grupo, pelo mapa |
-| T2 | Mapa de Combate | [Pedro, remodelado] | armadilheiro (limite dobrado) e Coordenação |
-| T2 | Artista Apaixonado | [Pedro, do T1] | vertente Pecador: mapa vale como Incomum |
-| T3 | Senhor das Linhas | [Pedro, ajustes] | ultimate atual, com 4 correções |
+**Mapa Tático refeito** (1 Ação, 3 Stamina) [nova]:
+- O efeito principal serve a quem já tem mapa. É uma legenda de combate para o grupo: +1 numa perícia entre Defender,
+  Reflexos, Fortitude e Vontade (+2 no nível 4), até o fim do combate.
+- Sem mapa, o rascunho também cria a área (o quadrado de 18 m). É a saída exclusiva do Cartógrafo para a luta que começa
+  sem mapa.
+- **Por que defesa e resistência, e não Atacar:** o Cartógrafo já pode somar +2 de Atacar da Região Ideal e +2 do Estudo
+  de Campo. Com Defender, o bônus só vale quando o aliado usa a reação para se defender. As resistências (Reflexos,
+  Fortitude, Vontade) protegem de magia, veneno e medo.
+- **Alternativa:** +1 de Evasão para o grupo, no lugar da perícia. É mais forte, porque vale contra todo ataque, e por
+  isso não escala no nível 4.
+- **O custo do despreparo:** quem chega sem mapa paga 1 Ação + 3 Stamina e perdeu a vantagem em Iniciativa e a proteção
+  contra *Desprevenido* do início da luta. Se quiser punir mais, a criação da área pode custar 2 Ações.
 
-**Saem do Cartógrafo:**
-- *Desenhar Mapa de Exploração*: o Terreno Ideal assume a ideia de conhecer a região. O "+5 em Sobrevivência" empilhava com o Desbravador e as Cicatrizes.
-- *Escapista*: fica como alternativa ao Artista Apaixonado no T2 (ponto 4 abaixo).
-- *Mapa Mental*: vira o Croqui.
-- Do *Desenhar Mapa de Combate* saem 4 coisas:
-  - o mapa de 300 m², porque o Mapa da característica já é o mapa;
-  - "não podem ser Desprevenidos", que o Mapa já dá (lição 1);
-  - o *Ponto Cego*: o nome colide e ele dava *Exposto* por 4 Stamina;
-  - o *Reposicionar*, que o Pedro recusou nas gerais.
+**T2, a vaga do Artista Apaixonado:** proposta, o *Escapista* do Pedro [Pedro, ajustado].
+- "Ao possuir um mapa da região em que está batalhando" vira "na área de um mapa seu".
+- A CD 15 fixa vira disputa: Sobrevivência contra a maior Percepção entre os inimigos (lições 19 e 20).
+- É uma fuga do grupo inteiro, compatível com qualquer ramo.
 
-#### Marcas
+**Região Ideal, +2 em Atacar:** é o bônus que mais pesa.
 
-**Colecionador de Horizontes** [Pedro, ajustado]
-> *"Cada paisagem nova te renova por dentro e relembra sua aspiração."*
+| Batedor nível 2, arma leve, turno com Pontapé, no mapa | Sem a Região Ideal | Com a Região Ideal |
+|---|---|---|
+| Pacote das gerais (Estudo de Campo +2) | 16,1 | 18,1 |
+| Ladrão escondido + Estudo de Campo | 24,8 | 28,3 |
 
-Você anseia por novos lugares e busca ativamente explorar o desconhecido.
-- Ao desenhar o seu primeiro mapa numa região de Kharavel, recupera 2 de Stamina e ganha 1 de Stamina máxima (no máximo +9, uma por região).
-- A região deve ser uma das 9 regiões de Kharavel: lugares diferentes de uma mesma região contam como uma só.
+Proposta: o Atacar da Região Ideal não soma com o do Estudo de Campo. Assim, ele vale onde o Batedor não estudou o campo.
 
-*Mudança:* "lugar significativo pela primeira vez (Cidade, Ruina, Bioma…)" → "primeiro mapa numa região de Kharavel". Isso dá o teto que faltava (19 §8: marca que dá recurso precisa de teto) e usa as 9 regiões. O 2º bullet era a definição de lugar; agora define região.
+**Cicatrizes, rolar de novo:** alterar o d20 (rerrolar) é o espaço reservado ao Xamã (19 §4, Pedro em 2026-09-28). Aqui
+é 1x/descanso longo e só em Sobrevivência. Fica como pergunta ao Pedro, sem mudar o texto.
 
-**Cicatrizes da Jornada** [Pedro]: fica como está no Notion. É a marca de progressão (+1 em Sobrevivência por Jornada de Hostilidade 10+, até +5).
+**Saem do Cartógrafo** (rodada 5, confirmado pelo Pedro ao reescrever):
+- *Desenhar Mapa de Exploração*: a Região Ideal assume a ideia.
+- *Artista Apaixonado*: absorvido pela Arte.
+- *Mapa Mental*: virou o Mapa Tático.
+- Do *Desenhar Mapa de Combate* saem o mapa de 300 m², a proteção contra *Desprevenido*, o *Ponto Cego* e o
+  *Reposicionar*. Fica a Coordenação, no Mapa de Combate.
 
-#### Tier 1
-
-**Terreno Ideal** (Passiva) [Pedro, remodelado]
-- Você se torna Treinado em *Sobrevivência*. Se já for Treinado, se torna Experiente e assim por diante.
-- Você tem facilidade em se adaptar às regiões que conhece: uma região de Kharavel vira seu terreno ideal quando você tiver desenhado mapas de 3 lugares diferentes dela. No seu terreno ideal, você tem +2 em *Percepção* e *Movimento*.
-
-*Mudanças em relação à técnica geral antiga:*
-- Os terrenos que se escolhiam por nível (Urbano, Natural, Naval, Subterrâneo) viram as regiões de Kharavel que você mapeou. É o *"mapear kharavel continuamente"*.
-- O "+2 em Sobrevivência" virou "+2 em Movimento": Sobrevivência já ganha o treino, o Desbravador e as Cicatrizes. Movimento pesa na Rasteira, nas manobras e na Perseguição.
-- Saem o custo (3 Stamina) e a ação de rolar com vantagem: fica uma passiva com um número só.
-
-**Croqui** (2 Ações, 5 Stamina) [nova, no lugar do Mapa Mental]
-
-Em combate, você rabisca um croqui do terreno ao seu redor. Até o fim do combate, um quadrado de 18 m de lado centrado em você conta como a área de um mapa seu. O croqui não vira item Mapa, não conta como mapa desenhado (Terreno Ideal, Colecionador de Horizontes) e se desfaz no fim do combate.
-
-*Por quê:* é a saída para a luta que começa sem mapa, e fica só no Cartógrafo (rodada 3). Custa 2/3 do turno e a mesma Stamina do Mapa. Nos outros dois ramos, a punição do despreparo continua inteira.
-
-**Legenda** (Passiva) [nova]
-
-Ao desenhar um mapa ou um croqui, escreva nele uma legenda: escolha 1 perícia entre *Percepção*, *Furtividade*, *Movimento* e *Reflexos*. Na área desse mapa, você e aliados a até 9 m de você têm +1 nessa perícia (+2 a partir do nível 4). Legendas de mapas diferentes não se somam.
-
-*Por quê:* é o "pra party através dos mapas". Uma perícia por mapa, escrita no item: nada para acompanhar além do que já está no inventário.
-
-#### Tier 2
-
-**Mapa de Combate** (Passiva) [Pedro, remodelado]
-
-Seus mapas também são mapas de combate. Na área de um mapa seu:
-- Você mantém até (2 × Nível) Armadilhas Táticas e até (2 × Nível) áreas do Sabotar Terreno.
-- Pode usar *Coordenação* (Reação, 3 Stamina): orienta você ou um aliado a até 9 m que esteja prestes a rolar um teste de *Movimento*, *Defender* ou *Atacar*, somando +2 à rolagem.
-
-*Origem:* a Coordenação é verbatim do Pedro. O limite dobrado é a especialização de armadilheiro que o Pedro deu ao Cartógrafo (D142). O limite real é a Stamina: cada armadilha custa 1 Ação + 3 Stamina.
-
-**Artista Apaixonado** (Passiva) [Pedro, movida do T1 para o T2]
-
-Os mapas que você fabrica contam como mercadoria Incomum.
-
-*Vertente Pecador:* com a venda 1x/área, cada lugar novo passa de ~21 para ~67 Sins de valor. É poder de economia, não de combate; o outro T2 carrega o combate.
-
-#### Tier 3
-
-**Senhor das Linhas** (1 Ação, 5 Stamina, Ultimate) [Pedro, ajustes pontuais]: o texto do Pedro fica, com 4 correções.
-1. *"Não pode ser flanqueado"*: o sistema não tem regra de flanco (19 §9). Proposta: tirar.
-2. *Criar Armadilha* dá 3d6, mas no nível 5 a Armadilha Tática geral já dá 6d6 + DES. Proposta: "(Nível + 1)d6 + Mod. Destreza; Movimento contra sua CD".
-3. *Tremor Localizado:* "teste de Movimento" → "Movimento contra sua CD" (D57).
-4. Frase do Tier 3: "1 vez por dia" → "1 vez por descanso longo" (L29). Vale para as 3 ultimates.
-
-#### Números
-
-| Técnica | Valor |
-|---|---|
-| Terreno Ideal | Rasteira: a disputa de Movimento passa de ~50% para ~60% |
-| Legenda | +1 = +5 p.p. num teste do grupo; +2 a partir do nível 4 |
-| Coordenação | +2 numa rolagem por rodada: +10 p.p. de acerto ou de esquiva, por 3 Stamina e a reação |
-| Croqui | 2 Ações + 5 Stamina para ter o mapa no turno seguinte |
-
-#### Leitura de exploit
-- **Legenda:** com dois mapas sobrepostos, os bônus não se somam (está no texto).
-- **Terreno Ideal:** "3 lugares" segue a definição de lugar da venda 1x/área. Três salas de uma mesma masmorra contam como um lugar só.
-- **Mapa de Combate:** dá até 10 armadilhas no nível 5, mas são 30 Stamina e 10 ações.
+**Senhor das Linhas:** os 4 ajustes da rodada 5 continuam propostos:
+- sai "Não pode ser flanqueado";
+- a Criar Armadilha passa a dar (Nível + 1)d6 + DES;
+- as CDs de Movimento passam a ser "contra sua CD";
+- a frase do Tier 3 vira "1 vez por descanso longo".
 
 ### 5.2 Ladrão (Furtividade e Assassinato)
 
@@ -589,8 +553,8 @@ Quando o ataque de uma criatura que dê valor a dinheiro for te reduzir a 0 de S
 
 1. **As 9 regiões.** O CSV conhece 8: Cinturão Silencioso, Terras Livres, Emaranhado de Raízes, Cordilheira Cristalina, Costas Rochosas, Deserto do Abismo, Bosque Corrompido e Ermo das Cinzas. Qual é a 9ª? A ficha vai precisar da lista para contar as regiões do Cartógrafo.
 2. **"Região" no Rasgar o Mapa.** Se o Cartógrafo passar a usar "região de Kharavel", a frase *"não te permitem desenhar o mapa dessa região novamente"* pode ser lida como a região inteira. Sugestão: "desse lugar", a unidade do Mapa.
-3. **Terreno Ideal:** +2 em Percepção e Movimento (Movimento no lugar de Sobrevivência). Confirma?
-4. **Artista Apaixonado no T2** (economia), ou *Escapista* no lugar? Se for o Escapista, a CD 15 fixa precisa mudar (lição 19).
+3. ~~Terreno Ideal~~ **Respondido (D147):** virou Região Ideal, com +2 em Atacar, Percepção, Investigação, Furtividade e Movimento.
+4. ~~Artista Apaixonado no T2~~ **Respondido (D147):** a Arte absorveu o Artista. Para a vaga, proposta: Escapista (§5.1).
 5. **Ataque Furtivo:** +1d6 fixo (recomendo), ou +2d6 a partir do nível 4?
 6. **Terror:** sai, ou fica só "com 20 natural"?
 7. **Silêncio + Ataque Furtivo:** crítico em todos os acertos do turno contra o alvo marcado. É a intenção?
