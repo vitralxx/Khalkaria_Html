@@ -6,6 +6,13 @@
 // v2 de exemplo, render (todo número calculado com a conta e o tooltip da
 // fórmula ligado por aria-describedby, selo nos não canônicos, ajuste migrado
 // marcado, sem emoji) e o boot no navegador (vm): sem ativação, nada acontece.
+//
+// SNAPSHOT DE OURO (F4.0): o render da fixture ficha-v2-sintetica.json, com os
+// data/ do repo, tem de bater BYTE A BYTE com fixtures/previa-render.golden.html.
+// Mudança intencional (regra, dado sincronizado do Notion, render)? Regrave o
+// ouro e revise o diff dele no git antes do commit:
+//   KH_ATUALIZAR_GOLDEN=1 node --test tools/testes/previa.test.js
+// (com a variável ligada o teste REGRAVA o arquivo e passa; sem ela, só compara).
 const test = require('node:test');
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
@@ -187,6 +194,24 @@ test('render: selo em todo número não canônico, fonte de cada termo, ajuste m
   assert.ok(!no.selos.includes('pendentePedro'), JSON.stringify(no.selos));
   assert.equal(no.status, 'canonico');
   assert.match(P.render(re).html, /Recurso de classe <span class="kf3-sub">\(sem contador\)<\/span>.*?data-caminho="recurso\.classe\.max"><b class="kf3-v">Proficiência com Espadas · Marca do Duelo<\/b>/);
+});
+
+// Snapshot de ouro (ver o topo do arquivo): KH_ATUALIZAR_GOLDEN=1 regrava o ouro.
+const GOLDEN = path.join(__dirname, 'fixtures', 'previa-render.golden.html');
+test('snapshot de ouro: o render da ficha-v2-sintetica == fixtures/previa-render.golden.html, byte a byte', () => {
+  const r = P.calcular(comV2(), dados());
+  assert.equal(r.estado, 'ok', r.erro);
+  const atual = Buffer.from(P.render(r).html, 'utf8');
+  if (process.env.KH_ATUALIZAR_GOLDEN === '1') fs.writeFileSync(GOLDEN, atual);
+  assert.ok(fs.existsSync(GOLDEN), 'falta o ouro: KH_ATUALIZAR_GOLDEN=1 node --test tools/testes/previa.test.js');
+  const ouro = fs.readFileSync(GOLDEN);
+  if (atual.equals(ouro)) return;
+  let i = 0;
+  while (i < atual.length && i < ouro.length && atual[i] === ouro[i]) i++;
+  const trecho = (b) => JSON.stringify(b.subarray(Math.max(0, i - 120), i + 120).toString('utf8'));
+  assert.fail('a prévia mudou no byte ' + i + ' (atual ' + atual.length + ' B, ouro ' + ouro.length + ' B)\n' +
+    '  ouro:  ' + trecho(ouro) + '\n  atual: ' + trecho(atual) + '\n' +
+    'Se a mudança é intencional: KH_ATUALIZAR_GOLDEN=1 node --test tools/testes/previa.test.js e revise o diff do ouro.');
 });
 
 test('revisão F3c: bônus de item sobre o total migrado vai para Avisos (sem decidir), sem desligar', () => {

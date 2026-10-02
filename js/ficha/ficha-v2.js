@@ -1195,6 +1195,25 @@
     // sem isto o catálogo só seria pedido no próximo carregamento de página
     verificaPendentes();
   }
+  // Por que um JSON (objeto) não entra aqui; null = é ficha v1/v2. Sem isto,
+  // o que não tinha schemaVersion (pacote fichas/1 da v3, export do Bestiário,
+  // JSON solto) caía no migra() e SUBSTITUÍA a ficha do jogador sem pedir.
+  var MSG_NAO_FICHA = 'Este arquivo não é uma ficha do Khalkaria.';
+  function ehObjeto(x) { return !!x && typeof x === 'object' && !Array.isArray(x); }
+  function recusaImport(f) {
+    if (f.schema === KhEstado.SCHEMA_INDICE || Array.isArray(f.fichas)) {
+      return 'Este arquivo é um pacote de várias fichas da ficha nova e não entra aqui.';
+    }
+    if (f.type === 'npc' || f.type === 'monster') return 'Este arquivo é um export para o Bestiário, não uma ficha.';
+    var sv = f.schemaVersion;
+    // ficha v3 (schemaVersion >= 3) não é rebaixada
+    if (parseFloat(String(sv)) >= 3) {
+      return 'Esta ficha é da v3 (schemaVersion ' + sv + ') e não pode ser importada aqui. Recarregue a página.';
+    }
+    // sem schemaVersion: só a v1 antiga, que tem meta ou atributos (novaFicha da v1)
+    if (sv == null || sv === '') return ehObjeto(f.meta) || ehObjeto(f.atributos) ? null : MSG_NAO_FICHA;
+    return /^[12](?![0-9])/.test(String(sv).trim()) ? null : MSG_NAO_FICHA;
+  }
   function importJSON() {
     if (bloqueado()) return;
     var inp = el('input', { type:'file', accept:'.json,application/json' });
@@ -1204,11 +1223,9 @@
         var f;
         try { f = JSON.parse(fr.result); } catch (e) { f = null; }
         if (!f || typeof f !== 'object' || Array.isArray(f)) { toast('JSON inválido'); return; }
-        // ficha v3 (schemaVersion >= 3) não é rebaixada: a v2 recusa sem tocar em nada
-        if (parseFloat(String(f.schemaVersion)) >= 3) {
-          toast('Esta ficha é da v3 (schemaVersion ' + f.schemaVersion + ') e não pode ser importada aqui. Recarregue a página.', 6000);
-          return;
-        }
+        // o que não é ficha v1/v2 é recusado sem tocar em nada
+        var recusa = recusaImport(f);
+        if (recusa) { toast(recusa, 6000); return; }
         if (bloqueado()) return;
         var nova = migra(f);
         substitui(nova, 'import');
