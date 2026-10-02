@@ -223,3 +223,13 @@ Pedido original (M8 do plano): área do mestre para criar comerciantes e organiz
 - **Quem compra (C3):** "O comerciante compra itens dos jogadores, assim como os jogadores compram itens dos comerciantes." → todo comerciante compra. Continua com o balanceamento: se cada um compra só a própria categoria.
 - **Sins insuficientes (C6):** "Quando o comerciante não tem sins suficientes para comprar um item do jogador, ele oferece o restante, caso o jogador rejeite não há troca." → o comerciante oferece o que tem no estoque; o jogador aceita (o estoque zera) ou recusa (nada acontece).
 - **Reposição (C6):** "A reposição pode ser manual, só exibe a informação de quantos dias demora." → botão manual "Repor"; o balcão só informa o prazo da reposição (diária, pela tabela).
+
+## 9. F4, desenho da ficha nova: respostas de 2026-10-02
+
+Pedido do Pedro no mesmo dia: "enquanto o rework do batedor não vem, comece a implementar as funcionalidades que irão trazer a interatividade planejada anteriormente [...] tome cuidado para não assumir nem realizar nenhuma ação sem antes entender se isso é uma abordagem segura e inteligente."
+
+Escolhidas as 4 opções recomendadas:
+- **Página da Ficha (5 abas do A4) antes da migração real:** **escondida até a virada.** Só aparece para quem ligou a prévia (`?ficha=v3`); para os jogadores nada muda até a migração, que é perguntada antes de ligar.
+- **Drawer à direita que empurra o conteúdo:** **só na ficha nova**, atrás da prévia até a virada. A ficha atual (v2.1) continua abrindo por cima.
+- **Abas reordenáveis:** ordem **por navegador** (drawer e página da ficha). Vale para todas as fichas daquele computador; é preferência de tela e não vai no export.
+- **Ficha fechada:** **trilho fino de 48 px** à direita com mini barras de Saúde, Stamina e Éter; acende ao arrastar algo e abre ao soltar em cima. O conteúdo perde 48 px.

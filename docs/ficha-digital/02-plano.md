@@ -684,6 +684,28 @@ F1a–F1f correm em paralelo. F4b, F4c, F5 e F6 correm em paralelo depois da F4.
 
 ### F4 · Página da ficha, hub e protocolo
 
+**Fatias (2026-10-02).** A F4 sai em fatias. Até a F4.7 nada grava em chave de ficha do jogador. As fatias visíveis ficam atrás da prévia (`khalkaria_ficha_previa`, `?ficha=v3`), conforme as respostas do Pedro no `03 §9`.
+
+| Fatia | O que é | Estado |
+|---|---|---|
+| F4.0 | Rede de segurança: guarda `v3-dupla`/`v3`, teste "aba v2 gravando depois do import", snapshot de ouro da prévia. Mais o hotfix do Importar da v2.1, que recusa o que não é ficha | no ar (`07d21de`, `7089195`) |
+| F4.1 | Componente conta extraído para o `KhConta` (`js/ficha/kh-conta.js`) | no ar (`6581a17`) |
+| F4.2 | Primitivas da escrita dupla e da migração real no `KhEstado`: `projetarV2`, `conflitoV2`, `gravarComProjecao`, `migrarReal`, `reimportarV2`. Puras e não ligadas | no ar (`e10adac`, `795a1cc`); **rever de novo, adversarialmente, antes da F4.7** |
+| F4.3 | Página da ficha nas 5 abas do A4, só-leitura, com tooltip em todo número. Item "Ficha" na nav escondido sem a prévia (`head-boot` marca `html[data-ficha-previa]`) | a fazer |
+| F4.4 | Drawer docked à direita que empurra o conteúdo, atrás da prévia. Trilho de 48 px com mini barras quando fechado. No Bazar não empurra até a F4b | a fazer |
+| F4.5 | Abas reordenáveis no drawer e na página, ordem por navegador (`03 §9`) | a fazer |
+| F4.6 | UIs de escrita construídas e desligadas: seletor, ajuste (M2), commit/desfazer, KhLevar, export Bestiário com garantir | a fazer |
+| F4.7 | **Virada:** liga a migração real, a escrita dupla e o marcador `v3-dupla`, com a KF `versao:'3'` e o `bazar.js` aceitando `>= 2` no mesmo commit. **Só com aprovação explícita do Pedro** | a fazer |
+
+Entram na F4, vindos do log de técnicas (consertos do site):
+- `data-kf-*` nos blocos de Proficiência com Espadas e Marca do Duelo e nas linhas da tabela de Corrupção;
+- Vulnerabilidade na ficha;
+- "1 Comida" e "1 Kit de Ferramentas" das origens ligados ao item do Bazar;
+- estados de técnica que parecem condição: Endividado e Luto Selvagem;
+- custo de ação do Teorema Absoluto.
+
+Na migração, o id `brutalista-investida` (renomeado para `brutalista-atropelar` no sync de 2026-10-02) tem de ser resolvido.
+
 **Entrega:** `templates/ficha.template.html` + `tools/gerar_ficha.py` (no `build.py` e no round-trip) + item "Ficha" em `partials/sidebar.html`; as 5 abas do M1 com moldura gótica; UI de ajuste (M2) e tela Ajustes; `KhLevar` (alça, botão, atalho, MIME); `.ent-add` visível; levar raça/classe/origem/condição; drawer docked, `--dir-w`, trilho de 48px, `head-boot` com o estado; hover de entidade; estado "na ficha"; migração real; export Bestiário com `garantir`; **seletor de fichas** no drawer e na página (D36, §3.1: criar, trocar, duplicar, excluir com confirmação e export antes, uso da quota); Exportar esta ficha ou todas; Importar como ficha nova. **Escrita dupla:** enquanto a F4 não se firma, cada gravação de uma ficha v3 grava também a projeção v2 dela em `khalkaria_ficha` (a v2 só conhece uma ficha), e o marcador, que é um só para o navegador, fica no valor `v3-dupla`, que a guarda do bundle da F3 trata como editável; desliga na F5 (marcador passa a `v3`). A projeção é sempre a da última ficha gravada, e o índice guarda qual é (`projecaoV2:{fichaId, revV2, salvoEmV2}`); com duas abas em fichas diferentes, vence a última gravação. Assim, reverter para o bundle da F3 abre **editável** a ficha projetada, com a edição; as outras fichas e o que só existe na v3 (ajustes, sessão, Vhelor) ficam intocados nas chaves v3, e ao subir a F4 de novo a v3 vê `revV2` maior e oferece "reimportar alterações da v2" (F3) **para a ficha de `projecaoV2.fichaId`**, com download antes.
 **Pronto quando:** toda entidade das 7 famílias é levável com o id certo; os campos da ficha física existem por conjunto nas 5 abas; qualquer número aceita ajuste e mostra calculado × ajustado; o seletor cria, troca, duplica e exclui fichas sem perda; sem salto de layout; export nativo completo sem rede; Bestiário com fetch falho aborta com aviso.
 **Testes:** roteamento por tipo, compat `{_bazar}`, dedup `tipo:id`, exports com fetch falho, import com órfão, estrutura das abas, ajustes pela UI; seletor (D36): trocar de ficha re-renderiza drawer, página e Bazar (`kf:mudou{partes:['ficha']}`) e o estado "na ficha" dos cards; excluir pede confirmação e baixa o export antes; exportar todas e importar num navegador vazio recria o índice; o uso da quota aparece e sobe ao duplicar; QuotaExceeded pela UI mostra o toast com "Exportar todas"; duas abas em fichas diferentes, editando ao mesmo tempo, sem se sobrepor; reverter a F4: editar na v3, voltar ao bundle da F3, a ficha projetada abre editável com a edição e as outras seguem intactas na v3; subir a F4 de novo recupera os ajustes e reimporta a edição da v2 na ficha certa.
