@@ -262,6 +262,18 @@ Além do dano, em 50% dos turnos o alvo fica *Caído*: não retalia, defende com
 - **Mapa Tático** (ex-Croqui): *"achei essa técnica esquisita, quando o batedor joga correto e faz o mapa previamente, essa
   técnica o pune, sendo literalmente inútil. Refazer"*. Foi refeita (abaixo).
 
+**Rodada 7 (2026-10-04, D149):**
+- O Pedro aceitou o Mapa Tático refeito e deu a escala: +1, +2 a partir do nível 3 e +3 a partir do nível 5. A Arte ganhou a mesma escala, e a raridade dos mapas sobe já no nível 3.
+- **Tier 2 do zero:** *"Tier 2, faremos do zero, sugira 4 técnicas. Vamos ramo por ramo, começando pelo cartografo, ultimate vamos por último."*
+- Saem o Mapa de Combate e o Escapista. As 4 candidatas, com papel, números e limite, estão no `batedor-classe.md` ("Em auditoria"):
+  - A. Gatilho Remoto: armadilheiro;
+  - B. Esconderijos: furtividade para o grupo, vertente Ladrão;
+  - C. Território Hostil: estrategista;
+  - D. Rotas Conhecidas: exploração.
+- Recomendação: A + B. A Gatilho Remoto entrega a build de armadilheiro (D142). Os Esconderijos são a vertente compatível com outro ramo que o gabarito pede no T2.
+- **Achado:** a Armadilha Tática não diz se a armadilha some depois de disparada. A Gatilho Remoto depende disso; foi ao Pedro.
+- **Mapa Tático no nível 5:** +3 numa perícia para o grupo. O *Campo de Batalha* (ultimate do General) dá +3 em Atacar, Defender e resistências ao mesmo tempo, mais extras. O Mapa Tático fica bem abaixo da ultimate.
+
 **Mapa Tático refeito** (1 Ação, 3 Stamina) [nova]:
 - O efeito principal serve a quem já tem mapa. É uma legenda de combate para o grupo: +1 numa perícia entre Defender,
   Reflexos, Fortitude e Vontade (+2 no nível 4), até o fim do combate.

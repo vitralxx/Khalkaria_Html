@@ -901,6 +901,11 @@ Texto verbatim em `18-batedor-rework.md` §0 e as lições em `19-gabarito-de-cl
     importa, com as técnicas organizadas e prontas para eu auditar."*
   - A classe inteira fica em `references/batedor-classe.md`, com uma seção "Em auditoria" no topo, e vai
     impressa no chat a cada rodada. O porquê e os números ficam no `18`.
+- **D149** (2026-10-04) Cartógrafo, rodada 7:
+  - **Mapa Tático** (a versão refeita, aceita) e **Arte:** +1, +2 a partir do nível 3 e +3 a partir do nível 5. A
+    raridade dos mapas da Arte sobe já no nível 3.
+  - **T2 do zero:** saem o Mapa de Combate e o Escapista. Foram propostas 4 candidatas (`batedor-classe.md`).
+  - **Método:** ramo por ramo, começando pelo Cartógrafo. As ultimates ficam por último.
 
 ## D68 — O andar de Nível 1 (truques)
 Todas as magias existentes **sobem 1 nível**: as antigas 1–4 viram 2–5. O novo Nível 1 são os

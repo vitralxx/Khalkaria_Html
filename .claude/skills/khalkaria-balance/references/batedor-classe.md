@@ -4,22 +4,54 @@ Esta é a classe como ela vai para o Notion, pronta para o Pedro auditar. O porq
 
 **Origem:** `[Pedro]` texto dele · `[Pedro, ajustado]` texto dele com mudança · `[nova]` criação minha, precisa de aceite.
 
-**Estado (2026-10-02):** cabeçalho, características e técnicas gerais estão fechados e no Notion. Os ramos são proposta.
+**Estado (2026-10-04):** cabeçalho, características e técnicas gerais estão fechados e no Notion. Os ramos são proposta; o trabalho vai ramo por ramo, começando pelo Cartógrafo, e as ultimates ficam por último.
 
 ---
 
 ## Em auditoria
 
-**Mudou nesta rodada (Cartógrafo, textos do Pedro):** Colecionador de Horizontes, Cicatrizes da Jornada, Região Ideal (ex-Terreno Ideal) e Arte (ex-Legenda). A Arte absorveu o Artista Apaixonado.
+**Mudou nesta rodada (Cartógrafo, decisão do Pedro):**
+- **Mapa Tático** e **Arte:** +1, +2 a partir do nível 3 e +3 a partir do nível 5.
+- **Arte:** os mapas sobem 1 raridade já no nível 3.
+- **Tier 2:** recomeça do zero. Saem o Mapa de Combate e o Escapista. Abaixo, 4 candidatas para você escolher 2.
 
-**Para decidir:**
-1. **Mapa Tático, refeito.** Agora serve a quem já tem mapa: dá uma legenda de combate ao grupo. Sem mapa, o rascunho também cria a área. Alternativa: +1 de Evasão para o grupo, no lugar da perícia.
-2. **Região Ideal, +2 em Atacar.** Somado ao Estudo de Campo, dá +4. O Batedor preparado vai de 16,1 para 18,1 de dano por turno (+12%), e o Ladrão escondido de 24,8 para 28,3. Proposta: "não soma com o Estudo de Campo".
-3. **Cicatrizes da Jornada:** rolar de novo altera o d20, e você reservou isso ao Xamã (2026-09-28). Aqui é 1x/descanso longo e só em Sobrevivência. Confirma a exceção?
-4. **T2 do Cartógrafo:** a vaga do Artista Apaixonado ficou livre. Proposta: o seu Escapista, com a CD 15 trocada por uma disputa.
-5. **"Região" no Rasgar o Mapa:** com Região Ideal e Colecionador falando de regiões de Kharavel, *"dessa região"* pode ser lida como a região inteira. Sugestão: "desse lugar".
-6. **As 9 regiões:** o CSV conhece 8 (Cinturão Silencioso, Terras Livres, Emaranhado de Raízes, Cordilheira Cristalina, Costas Rochosas, Deserto do Abismo, Bosque Corrompido e Ermo das Cinzas). Qual é a 9ª?
-7. **Ladrão e Pecador:** continuam como na rodada 5, com as perguntas 5 a 11 do `18` §5.4.
+**Tier 2 do Cartógrafo: 4 candidatas** (recomendo A + B)
+
+**A. Gatilho Remoto** (Reação, 3 Stamina) `[nova]`
+Na área de um mapa seu, quando uma criatura terminar um movimento a até 3 m de uma Armadilha Tática sua, você pode dispará-la: a criatura faz o teste de *Percepção* contra a armadilha como se tivesse passado por cima dela. A armadilha disparada se desfaz.
+- **Papel:** armadilheiro (você deu essa build ao Cartógrafo). A armadilha deixa de depender de o inimigo pisar nela.
+- **Vertente Ladrão:** a criatura *Enraizada* pela armadilha vira alvo do Ataque Furtivo (Arapuca).
+- **Números:** no nível 4, a armadilha dá (4 + 1)d6 + DES ≈ 21,5 e vence a Percepção em ~70–85% das vezes. Dá ~15–18 de dano esperado, mais *Enraizado*, pela reação e 3 Stamina. Um turno inteiro de arma leve preparada dá ~23,5.
+- **Limite:** é a reação da rodada, e ela disputa com Margem de Segurança, Defender e retaliação.
+
+**B. Esconderijos** (Passiva) `[nova]`
+Na área de um mapa seu, no início do combate, aponte até (Nível) esconderijos: pontos de 1,5 m que o seu mapa registrou. Você ou um aliado que esteja num esconderijo pode se esconder com 1 ação, mesmo no campo de visão de criaturas cientes dele: role *Furtividade* contra a *Percepção* de cada criatura que o vê. Cada esconderijo serve uma vez por combate.
+- **Papel:** o grupo passa a usar a regra de Furtividade em combate. Atacar escondido deixa o alvo *Desprevenido*: o 1º acerto é crítico e ele não reage.
+- **Vertente Ladrão:** combina com o Ataque Furtivo, o Sumir e a Coleção de Últimos Suspiros.
+- **Números:** cada ataque escondido vale ~+4 de dano com arma leve no nível 4 e não pode ser retaliado. São até 4 usos por combate no nível 4.
+- **Limite:** cada esconderijo serve 1 vez por combate. Com a Arte em Furtividade, o grupo inteiro joga escondido; o teto é o número de esconderijos.
+
+**C. Território Hostil** (Passiva) `[nova]`
+Na área de um mapa seu, criaturas hostis têm −2 em *Movimento* e *Reflexos*: você sabe onde o chão cede, e elas não.
+- **Papel:** estrategista. O mapa vira vantagem do grupo sem pôr mais um número na ficha do Batedor.
+- **Conversa com:** a Rasteira e as manobras (Movimento contra Movimento), o Escorregadio do Sabotar Terreno (Reflexos) e a Perseguição (inimigos perseguindo com −2).
+- **Números:** a Rasteira passa de ~50% para ~60% de sucesso (~70% com a Região Ideal).
+- **Custo de mesa:** o mestre aplica −2 a todos os inimigos dentro da área.
+
+**D. Rotas Conhecidas** (Passiva) `[nova]`
+Em jornadas dentro de uma região de Kharavel em que você tenha os mapas de 3 lugares diferentes significativos, a Hostilidade conta como 5 a menos para o grupo (mínimo 0).
+- **Papel:** exploração. É o "mapear Kharavel continuamente" também nas jornadas.
+- **Números:** com Hostilidade 10 → 5, o grupo precisa de 4 pontos em vez de 5, e a falha custa 5 a menos de Saúde e Stamina por pessoa.
+- **Sobreposição:** o Desbravador (geral) já dá +1 e +5 em jornadas já percorridas. As duas somam.
+
+**Ainda em aberto:**
+1. **Armadilha Tática:** o texto não diz se a armadilha some depois de disparada. Proposta: "Disparada, a armadilha se desfaz." É preciso decidir isso antes da Gatilho Remoto.
+2. **Mapa Tático e Arte, +3 no nível 5:** é 1 perícia a +3. O *Campo de Batalha* (ultimate do General) dá +3 em Atacar, Defender e resistências ao mesmo tempo. Fica bem abaixo da ultimate, então está ok.
+3. **Região Ideal, +2 em Atacar:** soma com o Estudo de Campo (+4). Proposta: não somar.
+4. **Cicatrizes da Jornada:** rolar de novo é o espaço reservado ao Xamã. Confirma a exceção?
+5. **"Região" no Rasgar o Mapa:** sugestão: "desse lugar".
+6. **A 9ª região de Kharavel:** o CSV conhece 8.
+7. **Ladrão e Pecador:** seguem como na rodada 5. Vêm depois do Cartógrafo.
 
 ---
 
@@ -108,23 +140,17 @@ Você possui cicatrizes que reforçam suas histórias de viagem.
 - Você se torna Treinado em *Sobrevivência*. Se já for Treinado, se torna Experiente e assim por diante.
 - Você tem facilidade em se adaptar às regiões que desenhou: uma região de Kharavel vira seu terreno ideal enquanto você tiver os mapas de 3 lugares diferentes significativos dela. No seu terreno ideal, você tem +2 em *Atacar*, *Percepção*, *Investigação*, *Furtividade* e *Movimento*.
 
-**Mapa Tático** (1 Ação, 3 Stamina) `[nova, refeita a pedido do Pedro]`
-Em combate, você rabisca as posições da luta e escreve no mapa uma legenda de combate: escolha 1 perícia entre *Defender*, *Reflexos*, *Fortitude* e *Vontade*. Até o fim do combate, na área de um mapa seu, você e aliados a até 9 m de você têm +1 nessa perícia (+2 a partir do nível 4). Se você não estiver na área de um mapa seu, o rascunho cria uma: um quadrado de 18 m de lado centrado em você conta como a área de um mapa seu até o fim do combate. O rascunho não vira o item Mapa e não conta como mapa desenhado (Região Ideal, Colecionador de Horizontes).
+**Mapa Tático** (1 Ação, 3 Stamina) `[nova, aceita; escala do Pedro]`
+Em combate, você rabisca as posições da luta e escreve no mapa uma legenda de combate: escolha 1 perícia entre *Defender*, *Reflexos*, *Fortitude* e *Vontade*. Até o fim do combate, na área de um mapa seu, você e aliados a até 9 m de você têm +1 nessa perícia (+2 a partir do nível 3 e +3 a partir do nível 5). Se você não estiver na área de um mapa seu, o rascunho cria uma: um quadrado de 18 m de lado centrado em você conta como a área de um mapa seu até o fim do combate. O rascunho não vira o item Mapa e não conta como mapa desenhado (Região Ideal, Colecionador de Horizontes).
 
 **Arte** (Passiva) `[Pedro]`
-Ao desenhar um mapa ou um mapa tático: escolha 1 perícia entre *Percepção*, *Investigação*, *Iniciativa*, *Furtividade* e *Movimento*. Na área desse mapa, você e aliados a até 9 m de você têm +1 nessa perícia (+2 a partir do nível 4). Mapas diferentes não se somam. Adicionalmente, no nível 4, os seus mapas são de 1 raridade acima.
+Ao desenhar um mapa ou um mapa tático: escolha 1 perícia entre *Percepção*, *Investigação*, *Iniciativa*, *Furtividade* e *Movimento*. Na área desse mapa, você e aliados a até 9 m de você têm +1 nessa perícia (+2 a partir do nível 3 e +3 a partir do nível 5). Mapas diferentes não se somam. Adicionalmente, a partir do nível 3, os seus mapas são de 1 raridade acima.
 
 ### Tier 2
 
-**Mapa de Combate** (Passiva) `[Pedro, ajustado]`
-Seus mapas também são mapas de combate. Na área de um mapa seu:
-- Você mantém até (2 × Nível) Armadilhas Táticas e até (2 × Nível) áreas do Sabotar Terreno.
-- Pode usar *Coordenação* (Reação, 3 Stamina): orienta você ou um aliado em até 9 metros que esteja prestes a rolar um teste de *Movimento*, *Defender* ou *Atacar*, somando +2 à rolagem.
+Em escolha: 2 das 4 candidatas em "Em auditoria" (A. Gatilho Remoto, B. Esconderijos, C. Território Hostil, D. Rotas Conhecidas).
 
-**Escapista** (3 Ações, 5 Stamina) `[Pedro, ajustado]`
-Você nunca foi acostumado a batalhar, na verdade planejar uma rota de fuga é sua especialidade. Na área de um mapa seu, pode fugir e guiar outros a fugirem do combate sem uma cena de perseguição ao vencer um teste de *Sobrevivência* contra a maior *Percepção* entre os inimigos.
-
-### Tier 3
+### Tier 3 (por último)
 
 > *"Minha arte, pode descobrir todos os segredos."*
 
