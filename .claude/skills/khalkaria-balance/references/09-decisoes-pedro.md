@@ -906,6 +906,25 @@ Texto verbatim em `18-batedor-rework.md` §0 e as lições em `19-gabarito-de-cl
     raridade dos mapas da Arte sobe já no nível 3.
   - **T2 do zero:** saem o Mapa de Combate e o Escapista. Foram propostas 4 candidatas (`batedor-classe.md`).
   - **Método:** ramo por ramo, começando pelo Cartógrafo. As ultimates ficam por último.
+- **D150** (2026-10-09) O Pedro refez as marcas e o Tier 1 dos três ramos. Os textos estão no `batedor-classe.md`.
+  - **Cartógrafo, Tier 1:** Cartografia (treino em Sobrevivência + conjunto de dados por mapa novo) e Mapa
+    Estratégico (consumível de +2/+4/+6). Saem a Região Ideal, o Mapa Tático e a Arte. A 3ª técnica é proposta
+    minha: Campo Minado.
+  - **Ladrão:**
+    - marcas: Cruel e Cleptomaníaco;
+    - Tier 1: Ataque Furtivo (2d6/4d6/6d6 contra *Desprevenida*, e o alvo perde a reação), Assassinato (reação ao
+      derrubar: mover e se esconder) e Mão Leve (rouba até 2d12 Sins, só de quem tem).
+  - **Pecador:**
+    - marcas: Homem de Negócios refeita (+1 em Convencimento por milhar de Sins; vende qualquer categoria a
+      qualquer comerciante) e Viciado em Khan aceito;
+    - Tier 1: Bolso Cheio (+1 a cada 250 Sins) e Pecar (+1 a cada 10 × Nível Sins; as moedas *"são dissipadas do
+      Plano Material"*);
+    - o Olho no Lance sai (*"muito fraco"*). Proposta minha: Atravessador.
+  - **Em aberto com o Pedro:**
+    - os tetos do Bolso Cheio, do dano de Força e do Pecar;
+    - no Ataque Furtivo, "ao acertar", 1x/turno e metade dos dados na pesada;
+    - na Cartografia, "região" ou "lugar";
+    - o estoque do Mapa Estratégico.
 
 ## D68 — O andar de Nível 1 (truques)
 Todas as magias existentes **sobem 1 nível**: as antigas 1–4 viram 2–5. O novo Nível 1 são os

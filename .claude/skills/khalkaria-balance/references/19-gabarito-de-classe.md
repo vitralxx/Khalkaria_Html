@@ -544,3 +544,13 @@ O Batedor foi o protótipo (D79). Cada correção do Pedro vira regra para as pr
     você tiver os mapas"*. Vender o mapa dá Sins (e a Arte valoriza o mapa), mas tira o bônus. Use quando o item já é
     moeda da classe.
 
+**Rodada 8 (2026-10-09)**
+
+30. **Bônus de perícia como recurso gastável, não como passiva permanente.** O Pedro trocou as auras de +N (Região
+    Ideal, Arte, Mapa Tático) por dados que se gastam (Cartografia) e por um consumível (Mapa Estratégico). O
+    jogador escolhe quando usar, e nada se empilha sozinho. Todo recurso gastável precisa de três coisas escritas:
+    validade, teto de estoque e quem usa (o portador do item ou o personagem).
+31. **Bônus que escala com Sins precisa de teto.** Sins crescem em escala geométrica (o Bazar sobe ~3,2× por
+    raridade), e o grupo pode juntar o dinheiro num personagem só. "A cada N Sins, +1" sem máximo vira +8 ou +10 no
+    nível 5. Use o Nível como teto, como no Fantasma.
+

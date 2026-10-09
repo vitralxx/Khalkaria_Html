@@ -1,4 +1,4 @@
-# 18 — Rework do Batedor (rodada 6: os ramos)
+# 18 — Rework do Batedor (rodada 8: os ramos)
 
 **Status:**
 - **No Notion** (D143 e D144, conferido por fetch e diff):
@@ -235,6 +235,50 @@ Além do dano, em 50% dos turnos o alvo fica *Caído*: não retalia, defende com
 | Ladrão | Pecador | Cobra: o veneno custa Sins |
 | Pecador | Ladrão | Isca de Ouro: *Desprevenida* liga o Ataque Furtivo |
 | Pecador | todos | Preço da Vida: o Batedor tem a Saúde do Teurgo |
+
+### 5.0 Rodada 8 (2026-10-09): o Pedro refez as marcas e o Tier 1 (D150)
+
+Os textos estão no `batedor-classe.md`; as 17 perguntas estão em "Em auditoria".
+
+**Cartógrafo, Tier 1:** *"Tier 1 vai ter 3 novas técnicas: Cartografia, Mapa Estratégico e …"*
+- **Cartografia:**
+  - treino em Sobrevivência;
+  - ao mapear uma "região inédita", ganha um conjunto de dados igual ao Nível (d6 no nível 1, d8 no 3, d10 no 5), que soma em qualquer perícia, como ação livre, na área do mapa.
+- **Mapa Estratégico:** 1 Ação e 3 Stamina fazem um item consumível que dá +2/+4/+6 numa perícia escolhida.
+- Saem a Região Ideal, o Mapa Tático e a Arte.
+- **A virada de desenho:** o bônus deixou de ser passiva permanente e virou recurso gastável (dados, consumível). O jogador escolhe quando usar, e nada se empilha sozinho (lição 30).
+- **3ª técnica, que o Pedro pediu:** *Campo Minado*. Ao desenhar o mapa, monta até (Nível) armadilhas de graça. Segue o molde da Cartografia (o mapa gera um recurso) e entrega o armadilheiro (D142).
+
+**Ladrão:**
+- **Marcas:** Cruel (ex-Coleção; o 2º efeito vira Sangramento 1 contra *Exposta*) e Cleptomaníaco (ex-Sussurro Final; treino em Crime e vantagem para furtar).
+- **Tier 1:**
+  - Ataque Furtivo: treino em Furtividade; contra *Desprevenida*, soma 2d6/4d6/6d6 e o alvo perde a reação;
+  - Assassinato (Reação, 3 Stamina): ao derrubar uma criatura, se move e tenta se esconder;
+  - Mão Leve (1 Ação, 3 Stamina): rouba até 2d12 Sins, só de quem tem.
+
+**Ataque Furtivo do Pedro, dano esperado por turno** (modelo 60/35/10, escondido; script `scripts/classes/ataque_furtivo_pedro.py`):
+
+| Nível | Leve, escondida | Pesada, escondida | Leve, sem esconder | Surpresa! sem 1x/turno (leve) |
+|---|---|---|---|---|
+| 2 (2d6) | 13,5 | 13,8 | 6,8 | 16,6 |
+| 3 (4d6) | 24,8 | 26,4 | 11,5 | 31,1 |
+| 5 (6d6) | 36,2 (loop 34,1) | 39,0 (loop 39,0) | 16,3 | 45,7 |
+
+- O ataque escondido dobra o dano do turno.
+- Com o bônus fixo, a pesada fica à frente. Um acerto escondido de pesada no nível 5 dá ~65 (6d12 + 5 do crítico, mais 6d6).
+- Proposta: metade dos dados com arma de 2 ou 3 ações (fica 32,7 × 34,1), além de "ao acertar" e "1x/turno".
+
+**Pecador:**
+- **Homem de Negócios:** +1 em Convencimento por milhar de Sins (até +5) e vende qualquer categoria a qualquer comerciante.
+- **Viciado em Khan:** aceito.
+- **Bolso Cheio:** +1 a cada 250 Sins em 5 perícias sociais e no dano, sem teto. Ao cair, o dinheiro derrubado vira dano de Força.
+- **Pecar:** +1 a cada (10 × Nível) Sins consumidos, sem teto. As moedas *"são dissipadas do Plano Material"* (o destino é do Pedro).
+- **Olho no Lance:** *"muito fraco, tem que ser algo para amarrar a classe"*. Proposta: *Atravessador*: o mapa vale 1 raridade acima e é vendido 2x. Fecha o ciclo da classe: exploração → Sins → poder.
+
+**Os três tetos que faltam** (Bolso Cheio, o dano de Força e o Pecar) são o risco maior desta rodada.
+- Com o banco do grupo, os bônus crescem sem limite.
+- O dano de Força do Bolso Cheio chega a centenas com 1000 Sins no bolso.
+- As propostas estão em "Em auditoria", 13–15.
 
 ### 5.1 Cartógrafo (Exploração e Sobrevivência)
 
