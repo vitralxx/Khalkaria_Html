@@ -194,7 +194,7 @@ Na área de um mapa seu, quando uma criatura terminar um movimento a até 3 m de
 **B. Esconderijos** (Passiva) `[nova]`
 Na área de um mapa seu, no início do combate, aponte até (Nível) esconderijos: pontos de 1,5 m que o seu mapa registrou. Você ou um aliado que esteja num esconderijo pode se esconder com 1 ação, mesmo no campo de visão de criaturas cientes dele: role *Furtividade* contra a *Percepção* de cada criatura que o vê. Cada esconderijo serve uma vez por combate.
 - **Papel:** o grupo passa a usar a regra de Furtividade em combate. Atacar escondido deixa o alvo *Desprevenido*: o 1º acerto é crítico e ele não reage.
-- **Vertente Ladrão:** combina com o Ataque Furtivo, o Sumir e a Coleção de Últimos Suspiros.
+- **Vertente Ladrão:** combina com o Ataque Furtivo, o Assassinato e a marca Cruel.
 - **Números:** cada ataque escondido vale ~+4 de dano com arma leve no nível 4 e não pode ser retaliado. São até 4 usos por combate no nível 4.
 - **Limite:** cada esconderijo serve 1 vez por combate; o teto é o número de esconderijos.
 
@@ -202,7 +202,7 @@ Na área de um mapa seu, no início do combate, aponte até (Nível) esconderijo
 Na área de um mapa seu, criaturas hostis têm −2 em *Movimento* e *Reflexos*: você sabe onde o chão cede, e elas não.
 - **Papel:** estrategista. O mapa vira vantagem do grupo sem pôr mais um número na ficha do Batedor.
 - **Conversa com:** a Rasteira e as manobras (Movimento contra Movimento), o Escorregadio do Sabotar Terreno (Reflexos) e a Perseguição (inimigos perseguindo com −2).
-- **Números:** a Rasteira passa de ~50% para ~60% de sucesso (~70% com a Região Ideal).
+- **Números:** a Rasteira passa de ~50% para ~60% de sucesso.
 - **Custo de mesa:** o mestre aplica −2 a todos os inimigos dentro da área.
 
 **D. Rotas Conhecidas** (Passiva) `[nova]`
