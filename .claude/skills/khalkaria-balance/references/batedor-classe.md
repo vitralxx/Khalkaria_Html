@@ -4,88 +4,79 @@ Esta é a classe como ela vai para o Notion, pronta para o Pedro auditar. O porq
 
 **Origem:** `[Pedro]` texto dele · `[Pedro, ajustado]` texto dele com mudança · `[nova]` criação minha, precisa de aceite.
 
-**Estado (2026-10-09):** cabeçalho, características e técnicas gerais estão fechados e no Notion. Os ramos são proposta, trabalhados ramo por ramo; agora, as marcas e o Tier 1 dos três. Tier 2 e ultimates vêm depois.
+**Estado (2026-10-09):** cabeçalho, características e técnicas gerais estão fechados e no Notion. Os ramos são proposta; marcas e Tier 1 estão com os textos do Pedro, e agora o foco é o Tier 2 dos três. As ultimates ficam por último.
 
 ---
 
 ## Em auditoria
 
-**Mudou nesta rodada (textos seus):**
-- **Cartógrafo, Tier 1:** entram Cartografia e Mapa Estratégico; saem Região Ideal, Mapa Tático e Arte.
-- **Ladrão:**
-  - marcas: Cruel (ex-Coleção de Últimos Suspiros) e Cleptomaníaco (ex-Sussurro Final);
-  - Tier 1: Ataque Furtivo, Assassinato e Mão Leve.
-- **Pecador:**
-  - marcas: Homem de Negócios refeita (a frase cortada foi completada) e Viciado em Khan aceito;
-  - Tier 1: Bolso Cheio e Pecar.
+**Mudou nesta rodada:**
+- **Pechincha** (seu texto) entra no lugar do Atravessador: o mapa vale 1 raridade acima, e você recupera metade dos Sins ao subir um comerciante de nível. Subir do nível 1 para o 2 passa a custar 125 Sins líquidos. Para empatar com a margem ganha, bastam ~780 Sins de loot vendido, metade dos ~1.560 de antes.
 
-**As duas técnicas que você pediu:**
+**Tier 2: 4 candidatas por ramo, escolha 2.** Os números são do nível 4, com arma leve (2d6 + 4) e Ataque Furtivo de 4d6, 1x/turno. O turno-base, sem nada, dá 12,6 de dano.
 
-**Campo Minado** (Passiva) `[nova]`, 3ª técnica do Tier 1 do Cartógrafo
-Ao desenhar um mapa, você pode montar até (Nível) armadilhas na área dele, sem gastar ações nem Stamina. Elas funcionam como as da Armadilha Tática e contam no seu limite de armadilhas montadas.
-- **Por quê:** segue o molde da Cartografia (desenhar o mapa gera um recurso), entrega o armadilheiro que você deu ao Cartógrafo e premia quem prepara o terreno.
-- **Números:**
-  - nível 2: 2 armadilhas de ~13,5 de dano (3d6 + DES) com *Enraizado*;
-  - nível 5: 5 armadilhas de ~26 (6d6 + DES).
-  - Custam só o mapa (1 minuto, 5 Stamina). Montadas uma a uma, seriam 1 Ação + 3 Stamina cada.
-- **Conversa com:** a Por Aqui!, que puxa o inimigo por cima delas.
+*Cartógrafo* (recomendo A + C)
+- **A. Gatilho Remoto:**
+  - armadilheiro; casa com o Campo Minado, que monta as armadilhas de graça;
+  - cada disparo dá ~15–18 de dano esperado ((4 + 1)d6 + DES ≈ 21,5, vencendo a Percepção em ~70–85%), mais *Enraizado*, pela reação e 3 Stamina;
+  - vertente Ladrão: o *Enraizado* liga a Arapuca.
+- **B. Esconderijos:**
+  - o grupo se esconde em combate, e cada ataque escondido é crítico no 1º acerto, sem reação do alvo;
+  - vertente Ladrão: esconder-se deixa o alvo *Desprevenido*, o que liga o Ataque Furtivo.
+- **C. Guia de Campo:**
+  - leva a Cartografia ao grupo, que é o seu "pra party através dos mapas";
+  - no nível 4, são 4d8 por lugar novo, agora para todos;
+  - estende uma regra que já existe (lição 22).
+- **D. Território Hostil:** estrategista. A Rasteira passa de ~50% para ~60%, e o Escorregadio pega mais. O custo de mesa é o mestre aplicar −2 aos inimigos na área.
 
-**Atravessador** (Passiva) `[nova]`, no lugar do Olho no Lance
-Os Mapas que você desenha valem 1 raridade acima, e você pode vender cada um 2 vezes: o original e uma cópia com erros que o comprador só descobre tarde demais.
-- **Por que amarra a classe:** fecha o ciclo que você deu ao Batedor, *"converter achados de exploração em poder de combate"*.
-  - O Batedor desenha o Mapa.
-  - O Pecador vende o Mapa duas vezes e ganha Sins.
-  - Os Sins viram bônus (Bolso Cheio) ou são gastos (Pecar).
-  - É também o teste da característica: o Cartógrafo amplia o mapa, o Ladrão se move nele e o Pecador o vende.
-- **Números:**
-  - por lugar novo, a venda passa de ~10–16 Sins (1 venda, Ordinário) para ~67–100 (2 vendas, Incomum), conforme o nível do comerciante;
-  - com 2 lugares novos por sessão, são ~130–200 Sins;
-  - para comparar, a origem Caçador rende ~50–67 Sins por dia.
-- **Limite:** a venda passa de 1x para 2x por área. O teto continua sendo o estoque do comerciante.
-- **Alternativa de combate:** *Chuva de Moedas*. Durante o Pontapé, você espalha (5 × Nível) Sins no chão e uma criatura do caminho fica *Desorientada*, se falhar em *Vontade* contra sua CD.
+*Ladrão* (recomendo A + C)
+- **A. Finta:**
+  - é a sua Finta, agora dando *Desprevenido* em vez de *Desorientado*;
+  - liga o Ataque Furtivo sem se esconder: 17,9 de dano por turno, contra 12,6 (55% de vencer a disputa);
+  - é a peça do Ladrão de corpo a corpo.
+- **B. Sigiloso:**
+  - a sua técnica geral antiga: depois de atacar escondido, continua escondido;
+  - começar todo turno escondido dá 24,8; voltar a se esconder com 1 ação dá 23,4;
+  - o valor está em não precisar sair da linha de visão;
+  - disputa a reação com o Assassinato.
+- **C. Arapuca:**
+  - refeita: o *Enraizado* pela armadilha conta como *Desprevenido* no 1º ataque do turno;
+  - vertente Cartógrafo: Campo Minado + Gatilho Remoto viram alvos do Ataque Furtivo.
+- **D. Cobra:**
+  - a sua, ajustada (contra sua CD, *Envenenamento*, dura até o 1º acerto);
+  - vertente Pecador: o veneno custa Sins.
 
-**Para decidir:**
+*Pecador* (recomendo A + B)
+- **A. Isca de Ouro:**
+  - Sins como limiar de execução: no nível 4, até 40 Sins executam até 20 de Saúde;
+  - vertente Ladrão: *Desprevenida* liga o Ataque Furtivo;
+  - **depende do 1x/turno do Ataque Furtivo:** sem ele, todos os acertos do turno somariam os dados.
+- **B. Penitência:**
+  - é o "consome Sins em troca de dano" que você pediu, com o destino das moedas que você deu ao Pecar;
+  - 40 Sins + 2 Stamina dão 22,3 de dano por turno, contra 12,6;
+  - o *Destruir* do Brutalista dá os mesmos 4d6 por 8 Stamina;
+  - cada Sin gasto baixa o Bolso Cheio, então guardar e gastar puxam em sentidos opostos.
+- **C. Preço da Vida:** comprar a própria vida, 1x/descanso longo, por 80 Sins no nível 4.
+- **D. Informante:**
+  - compra o mapa em vez de desenhar; ele conta como desenhado por você e dispara a Cartografia, o Campo Minado e a Pechincha;
+  - vertente Cartógrafo; sozinho, é fraco.
 
-*Cartógrafo*
-1. **Cartografia, "região inédita":** é um lugar nunca mapeado ou uma das 9 regiões de Kharavel? Recomendo "lugar". Com "região", os dados viriam poucas vezes na campanha, e só valeriam dentro de um mapa de ~32 m.
-2. **Cartografia, validade:** proposta: "os dados que sobrarem somem ao desenhar outro mapa ou no descanso longo". Assim fica 1 conjunto de dados por vez, fácil de anotar.
-3. **Cartografia:** os dados valem só nas suas rolagens? Recomendo que sim; o Mapa Estratégico já é a peça do grupo.
-4. **"Ação livre" na Cartografia e no Mapa Estratégico:** a ação livre é no seu turno, mas Defender, Reflexos, Fortitude e Vontade costumam ser rolados no turno do inimigo. Proposta: "a qualquer momento, 1x/rodada".
-5. **Mapa Estratégico, estoque:** fora de combate, cada mapa custa 3 Stamina, e o descanso devolve a Stamina. Dá para estocar dezenas.
-   - Proposta: "você mantém até (Nível) Mapas Estratégicos; eles se desfazem no seu descanso longo e não podem ser vendidos".
-   - Proposta: quem carrega o mapa o usa (você pode dar a um aliado).
-6. **Mapa Estratégico, preço:** no nível 5, dá +6 por 3 Stamina; o Fantasma dá +5 por 10 Stamina. Com o teto do ponto 5, aceito.
+**Ainda abertos do Tier 1** (rodada 8, pontos 1–15): o "Ótimo" vale como aceite das propostas? Se valer, eu aplico:
+- Cartografia: "lugar" em vez de "região", validade dos dados e uso só nas suas rolagens;
+- Cartografia e Mapa Estratégico: "a qualquer momento, 1x/rodada";
+- Mapa Estratégico: estoque até (Nível) mapas, que se desfazem no descanso longo, não se vendem, e quem carrega usa;
+- Cruel: "ao acertar";
+- Ataque Furtivo: "ao acertar", 1x/turno e metade dos dados na pesada;
+- Assassinato: sem ataque de oportunidade;
+- Homem de Negócios: conta o pico de Sins;
+- tetos de +Nível no Bolso Cheio e no Pecar;
+- dano de Força do Bolso Cheio: 1d6 a cada 100 Sins (máximo Nível d6).
 
-*Ladrão*
-7. **Cruel:** "ao atacar uma criatura Exposta" → "ao acertar". O *Exposto* só sai no acerto; com "ao atacar", cada erro somaria mais Sangramento.
-8. **Ataque Furtivo:** "ao atacar" → "ao acertar", e "1x/turno". Sem o 1x/turno, a Surpresa!, a Emboscada e a Isca de Ouro deixam o alvo *Desprevenido* o turno inteiro, e todo acerto soma os dados (no nível 5, 45,7 contra 36,2 de dano por turno).
-9. **Ataque Furtivo, pesada × leve:** você pediu para equilibrar a pesada, e o bônus fixo favorece a pesada, porque o crítico do *Exposto* dobra o d12.
-   - No nível 5, se escondendo todo turno: pesada 39,0 × leve 34,1.
-   - Um único acerto escondido de pesada dá ~65 de dano; a Saúde mediana de um PJ no nível 5 é ~55.
-   - Proposta: com arma de 2 ou 3 ações, metade dos dados (1d6, 2d6 e 3d6). Fica pesada 32,7 × leve 34,1.
-10. **Assassinato:**
-    - O "esconder-se" vale à vista de quem te conhece? Pela regra do Sistema, não, e o movimento serve para sair da linha de visão.
-    - O movimento provoca ataque de oportunidade? Proposta: não, como no Pontapé.
-    - Usar a reação no próprio turno custa o Defender e a retaliação até o seu próximo turno. É um bom contrapeso.
-
-*Pecador*
-11. **Homem de Negócios:**
-    - "Para cada milhar que você possui" conta o pico ou o saldo atual? Proposta: "na primeira vez que tiver 1000, 2000, 3000… Sins ao mesmo tempo".
-    - Escala: 1000 Sins é mais que um item Luxária (~683), e o +5 pede 5000 de uma vez.
-12. **Homem de Negócios, vender qualquer categoria a qualquer comerciante:** isso anula a D6 (quem compra não é quem vende) para o Pecador. Aceito como poder do ramo; a loja do site precisa prever a exceção.
-13. **Bolso Cheio sem teto:** com o banco do grupo, 2000 Sins dão +8 nas 5 perícias sociais e +8 de dano por acerto. Proposta: máximo +Nível.
-14. **Bolso Cheio, dano de Força:**
-    - Em quem? Com 1000 Sins, caem 500, e o dano é 500.
-    - Proposta: 1d6 de dano de Força a cada 100 Sins derrubados (máximo Nível d6), nas criaturas a até 1,5 m.
-15. **Pecar sem teto:** no nível 5, 250 Sins dão +5 numa rolagem, e 500 dão +10. Proposta: máximo +Nível, como o Fantasma.
-
-*Para o Tier 2*
-16. **Ataque Furtivo novo:** a Arapuca (Ladrão) e a Isca de Ouro (Pecador) foram escritas para o Ataque Furtivo antigo. Reviso as duas junto com o Tier 2.
-17. **Seguem abertos:**
-    - a 9ª região;
-    - "região" no Rasgar o Mapa;
-    - o Cicatrizes rolar de novo (espaço do Xamã);
-    - se a Armadilha Tática some ao disparar.
+Também seguem abertos:
+- a 9ª região;
+- "região" no Rasgar o Mapa;
+- o Cicatrizes rolar de novo (espaço do Xamã);
+- se a Armadilha Tática some ao disparar.
 
 ---
 
@@ -180,36 +171,19 @@ Você pode gastar 1 ação e 3 de Stamina para desenhar um Mapa Estratégico; ao
 **Campo Minado** (Passiva) `[nova]`
 Ao desenhar um mapa, você pode montar até (Nível) armadilhas na área dele, sem gastar ações nem Stamina. Elas funcionam como as da Armadilha Tática e contam no seu limite de armadilhas montadas.
 
-### Tier 2 (depois)
-
-Candidatas da rodada 7, para escolher 2:
+### Tier 2 (em escolha: 2 de 4)
 
 **A. Gatilho Remoto** (Reação, 3 Stamina) `[nova]`
 Na área de um mapa seu, quando uma criatura terminar um movimento a até 3 m de uma Armadilha Tática sua, você pode dispará-la: a criatura faz o teste de *Percepção* contra a armadilha como se tivesse passado por cima dela. A armadilha disparada se desfaz.
-- **Papel:** armadilheiro (você deu essa build ao Cartógrafo). A armadilha deixa de depender de o inimigo pisar nela.
-- **Vertente Ladrão:** a criatura *Enraizada* pela armadilha vira alvo do Ataque Furtivo (Arapuca).
-- **Números:** no nível 4, a armadilha dá (4 + 1)d6 + DES ≈ 21,5 e vence a Percepção em ~70–85% das vezes. Dá ~15–18 de dano esperado, mais *Enraizado*, pela reação e 3 Stamina. Um turno inteiro de arma leve preparada dá ~23,5.
-- **Limite:** é a reação da rodada, e ela disputa com Margem de Segurança, Defender e retaliação.
 
 **B. Esconderijos** (Passiva) `[nova]`
 Na área de um mapa seu, no início do combate, aponte até (Nível) esconderijos: pontos de 1,5 m que o seu mapa registrou. Você ou um aliado que esteja num esconderijo pode se esconder com 1 ação, mesmo no campo de visão de criaturas cientes dele: role *Furtividade* contra a *Percepção* de cada criatura que o vê. Cada esconderijo serve uma vez por combate.
-- **Papel:** o grupo passa a usar a regra de Furtividade em combate. Atacar escondido deixa o alvo *Desprevenido*: o 1º acerto é crítico e ele não reage.
-- **Vertente Ladrão:** combina com o Ataque Furtivo, o Assassinato e a marca Cruel.
-- **Números:** cada ataque escondido vale ~+4 de dano com arma leve no nível 4 e não pode ser retaliado. São até 4 usos por combate no nível 4.
-- **Limite:** cada esconderijo serve 1 vez por combate; o teto é o número de esconderijos.
 
-**C. Território Hostil** (Passiva) `[nova]`
+**C. Guia de Campo** (Passiva) `[nova]`
+Requisito: Cartografia. Os dados da Cartografia também podem ser somados às rolagens de aliados a até 9 m de você, na área do mapa.
+
+**D. Território Hostil** (Passiva) `[nova]`
 Na área de um mapa seu, criaturas hostis têm −2 em *Movimento* e *Reflexos*: você sabe onde o chão cede, e elas não.
-- **Papel:** estrategista. O mapa vira vantagem do grupo sem pôr mais um número na ficha do Batedor.
-- **Conversa com:** a Rasteira e as manobras (Movimento contra Movimento), o Escorregadio do Sabotar Terreno (Reflexos) e a Perseguição (inimigos perseguindo com −2).
-- **Números:** a Rasteira passa de ~50% para ~60% de sucesso.
-- **Custo de mesa:** o mestre aplica −2 a todos os inimigos dentro da área.
-
-**D. Rotas Conhecidas** (Passiva) `[nova]`
-Em jornadas dentro de uma região de Kharavel em que você tenha os mapas de 3 lugares diferentes significativos, a Hostilidade conta como 5 a menos para o grupo (mínimo 0).
-- **Papel:** exploração. É o "mapear Kharavel continuamente" também nas jornadas.
-- **Números:** com Hostilidade 10 → 5, o grupo precisa de 4 pontos em vez de 5, e a falha custa 5 a menos de Saúde e Stamina por pessoa.
-- **Sobreposição:** o Desbravador (geral) já dá +1 e +5 em jornadas já percorridas. As duas somam.
 
 ### Tier 3 (por último)
 
@@ -271,13 +245,19 @@ Imediatamente após deixar uma criatura com 0 de Saúde, você pode gastar sua r
 **Mão Leve** (1 Ação, 3 Stamina) `[Pedro]`
 Você pode realizar um teste de *Crime* contra a *Percepção* de uma criatura a até 1,5 m e roubar até 2d12 Sins dela. No entanto, você não gera Sins caso a criatura não os tenha: você só pode roubar de criaturas que tenham Sins.
 
-### Tier 2 (depois; rever com o Ataque Furtivo novo)
+### Tier 2 (em escolha: 2 de 4)
 
-**Cobra** (Descanso Curto ou 1 Ação, 2 Stamina) `[Pedro, ajustado]`
+**A. Finta** (1 Ação, 3 Stamina) `[Pedro, ajustado: era Tier 1, dava Desorientado]`
+Escolha um alvo em até 1,5 m: *Enganação* vs *Percepção*. Sucesso: o alvo fica *Desprevenido* contra o seu próximo ataque neste turno.
+
+**B. Sigiloso** (Reação, 3 Stamina) `[Pedro, da técnica geral antiga]`
+Ao atacar estando escondido, pode gastar sua reação para continuar escondido ao suceder em um teste de *Furtividade* contra a *Percepção* do alvo atacado.
+
+**C. Arapuca** (Passiva) `[nova, refeita para o Ataque Furtivo novo]`
+Uma criatura *Enraizada* por uma Armadilha Tática sua conta como *Desprevenida* contra o seu primeiro ataque em cada turno.
+
+**D. Cobra** (Descanso Curto ou 1 Ação, 2 Stamina) `[Pedro, ajustado]`
 Pode criar venenos potentes e imbuí-los nas suas armas. Você pode criar até 2 venenos por descanso curto e 5 venenos por descanso longo, gastando 5 Sins por veneno. Você pode adicionar o veneno a uma arma ou munição com 1 ação; **o veneno dura até o primeiro acerto**. A criatura que entrar em contato com o veneno deve suceder em um teste de Fortitude **contra sua CD** ou ficar com ***Envenenamento***.
-
-**Arapuca** (Passiva) `[nova]`
-Uma criatura *Enraizada* por uma Armadilha Tática sua conta, para o seu Ataque Furtivo, como se não tivesse te percebido.
 
 ### Tier 3
 
@@ -328,16 +308,22 @@ Você não resiste a uma mesa de apostas.
 **Pecar** (Ação Livre, 2 Stamina) `[Pedro]`
 Antes de rolar qualquer perícia treinada, receba +1 a cada (10 × Nível) Sins consumidos. As moedas são dissipadas do Plano Material.
 
-**Atravessador** (Passiva) `[nova, no lugar do Olho no Lance]`
-Os Mapas que você desenha valem 1 raridade acima, e você pode vender cada um 2 vezes: o original e uma cópia com erros que o comprador só descobre tarde demais.
+**Pechincha** (Passiva) `[Pedro]`
+Os Mapas que você desenha valem 1 raridade acima. Adicionalmente, você recupera metade dos Sins ao subir um comerciante de nível.
 
-### Tier 2 (depois; rever com o Ataque Furtivo novo)
+### Tier 2 (em escolha: 2 de 4)
 
-**Isca de Ouro** (1 Ação, 3 Stamina) `[nova]`
+**A. Isca de Ouro** (1 Ação, 3 Stamina) `[nova]`
 Arremesse até (10 × Nível) Sins aos pés de uma criatura a até 9 m que dê valor a dinheiro. Ela faz *Vontade* contra sua CD. Se falhar, recolhe as moedas e fica *Desprevenida* até o início do próximo turno dela. Se resistir, as moedas ficam no chão. A criatura que recolheu seus Sins fica em dívida com você: quando um ataque seu a deixar com Saúde igual ou menor que metade dos Sins que ela recolheu, ela cai a 0. As moedas continuam com ela; saqueie-a para recuperá-las.
 
-**Preço da Vida** (Reação, 3 Stamina) `[nova]`
+**B. Penitência** (Ação Livre, 2 Stamina) `[nova]`
+Ao acertar um ataque, consuma Sins: o acerto causa +1d6 de dano a cada 10 Sins consumidos (máximo Nível d6). As moedas são dissipadas do Plano Material.
+
+**C. Preço da Vida** (Reação, 3 Stamina) `[nova]`
 Quando o ataque de uma criatura que dê valor a dinheiro for te reduzir a 0 de Saúde, ofereça a ela (20 × Nível) Sins. Ela faz *Vontade* contra sua CD. Se falhar, aceita: você fica com 1 de Saúde, e as moedas ficam com ela. 1x/descanso longo.
+
+**D. Informante** (Passiva) `[nova]`
+Num lugar habitado, você pode pagar (10 × Nível) Sins a quem conhece a área: em 1 minuto, você recebe o Mapa do lugar sem gastar Stamina, e ele conta como desenhado por você. As moedas ficam com o informante.
 
 ### Tier 3
 

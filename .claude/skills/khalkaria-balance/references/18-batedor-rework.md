@@ -236,6 +236,15 @@ Além do dano, em 50% dos turnos o alvo fica *Caído*: não retalia, defende com
 | Pecador | Ladrão | Isca de Ouro: *Desprevenida* liga o Ataque Furtivo |
 | Pecador | todos | Preço da Vida: o Batedor tem a Saúde do Teurgo |
 
+### 5.0b Rodada 9 (2026-10-09): Pechincha e as candidatas de Tier 2 (D151)
+
+O Pechincha (do Pedro) entra no lugar do Atravessador. No Tier 2 são 4 candidatas por ramo; os textos, os números
+do nível 4 e as recomendações estão no `batedor-classe.md`, em "Em auditoria".
+- **Turno-base de comparação:** nível 4, arma leve 2d6 + 4, Ataque Furtivo 4d6 1x/turno. Sem nada, dá 12,6 de dano.
+- **Finta:** 17,9 (55% de vencer a disputa).
+- **Começar o turno escondido** (Sigiloso): 24,8. Esconder-se de novo com 1 ação dá 23,4.
+- **Penitência:** 40 Sins dão 22,3.
+
 ### 5.0 Rodada 8 (2026-10-09): o Pedro refez as marcas e o Tier 1 (D150)
 
 Os textos estão no `batedor-classe.md`; as 17 perguntas estão em "Em auditoria".

@@ -925,6 +925,14 @@ Texto verbatim em `18-batedor-rework.md` §0 e as lições em `19-gabarito-de-cl
     - no Ataque Furtivo, "ao acertar", 1x/turno e metade dos dados na pesada;
     - na Cartografia, "região" ou "lugar";
     - o estoque do Mapa Estratégico.
+- **D151** (2026-10-09) **Pechincha** substitui o Atravessador (texto do Pedro): o mapa vale 1 raridade acima, e o
+  Pecador recupera metade dos Sins ao subir um comerciante de nível. *"Ótimo, vamos focar no tier 2 agora."* Foram
+  propostas 4 candidatas de Tier 2 por ramo, com 2 recomendadas em cada (`batedor-classe.md`):
+  - Cartógrafo: Gatilho Remoto e Guia de Campo;
+  - Ladrão: Finta e Arapuca;
+  - Pecador: Isca de Ouro e Penitência.
+
+  Perguntei se o "Ótimo" aceita as propostas 1–15 da rodada 8. Nada foi aplicado sem a resposta.
 
 ## D68 — O andar de Nível 1 (truques)
 Todas as magias existentes **sobem 1 nível**: as antigas 1–4 viram 2–5. O novo Nível 1 são os
