@@ -1845,12 +1845,19 @@ html[data-ficha3] body:not([data-ficha-pagina])::after {
 html[data-ficha3="aberto"] body:not([data-ficha-pagina])::after { width: var(--ficha3-w); }
 /* com o drawer aberto, nada do conteúdo passa por baixo dele (07 §0, item 3):
    a 1366 px com a nav aberta sobram ~570 px, e as tabelas largas (Khan Sins,
-   Efeito por Intensidade) passavam da borda. A caixa de cada tabela (o pai
-   dela, como os wrappers que o Sistema já tem) rola na horizontal, com a
-   barra fina do site; a tabela não muda de display (virar block encolheria as
-   que cabem). A vertical fica recortada (sem barra de 1 px por arredondamento).
+   Efeito por Intensidade) passavam da borda. Só a tabela mais larga que a
+   caixa ganha a marca (o js/ficha/kh-ficha-drawer.js mede, e a tira ao
+   recolher) e rola ELA MESMA, com a barra fina do site no pé dela. As que
+   cabem não mudam (ficam com a largura cheia); o pai também não (sem overflow
+   nele, o bullet de um <li> e as margens ficam como estão). A vertical fica
+   recortada (sem barra de 1 px por arredondamento). O !important do
+   overflow-x vence o overflow: hidden SEM camada de um template (a
+   .progression-table do Espadachim); dentro da camada, nada o disputa.
    A preferência de navegação do jogador não muda. */
-html[data-ficha3="aberto"] body:not([data-bazar]):not([data-ficha-pagina]) .main-content :has(> table) { overflow-x: auto; overflow-y: hidden; }
+html[data-ficha3="aberto"] body:not([data-bazar]):not([data-ficha-pagina]) .main-content table[data-fd-larga] {
+    display: block; max-width: 100%;
+    overflow-x: auto !important; overflow-y: hidden;
+}
 }
 
 @layer componentes {

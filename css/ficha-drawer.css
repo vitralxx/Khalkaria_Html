@@ -698,9 +698,10 @@
 /* a nota quando a ficha atual (v2.1, #kf-drawer) abre por cima ao arrastar uma
    técnica, magia ou carta (07 §0, item 1): fora da folha, que fica coberta ou
    recolhida no trilho, e à esquerda do drawer v2.1 (--fd-nota-dir = a largura
-   dele + 12px, posta pelo script; 432px é a de 420px) */
+   maior entre a dele e a deste, que a partir de 1800px tem 460px, + 12px; o
+   script mede as duas larguras reais; sem ele, vale a reserva do CSS) */
 .fd-gaveta .fd-gaveta-nota {
-    position: fixed; top: var(--esp-4); right: var(--fd-nota-dir, 432px);
+    position: fixed; top: var(--esp-4); right: var(--fd-nota-dir, calc(max(420px, var(--ficha3-w)) + 12px));
     max-width: 19rem; margin: 0;
     padding: var(--esp-2) var(--esp-3);
     font-size: .92rem; color: var(--text-primary);

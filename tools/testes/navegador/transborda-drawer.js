@@ -4,10 +4,21 @@
  * O QUE PROVA
  *   Com a navegação aberta e o drawer da ficha nova aberto, nas 24 páginas do
  *   roteiro do [estilo] (tools/estilo/roteiro.json), a 1366 e a 1440 px de
- *   largura, nenhum elemento do .main-content passa da borda direita dele: o
- *   que é largo (tabela, grade) rola na horizontal dentro da própria caixa.
- *   Um elemento recortado por um ancestral que rola (overflow-x diferente de
- *   visible) e que fica dentro da borda não conta: é o caso certo.
+ *   largura:
+ *   1. nenhum elemento do .main-content passa da borda direita dele: o que é
+ *      largo rola na horizontal dentro da própria caixa. Um elemento recortado
+ *      por um ancestral que rola (overflow-x diferente de visible) e que fica
+ *      dentro da borda não conta: é o caso certo;
+ *   2. quem rola é a PRÓPRIA tabela (marcada [data-fd-larga] pelo drawer), com
+ *      a barra no pé dela, ou um wrapper que só tem a tabela (os do Sistema);
+ *      nunca um cartão com título e parágrafos. Toda tabela marcada rola de
+ *      fato, e as que cabem continuam display: table (largura cheia);
+ *   3. nenhum <li> com marcador por fora perde o bullet (overflow dele visible);
+ *   4. a altura do .main-content é a mesma com o drawer aberto e recolhido, a
+ *      menos da largura: o .main-content fica com a mesma largura (presa), o
+ *      drawer recolhe (as marcas saem) e a diferença tem de ser só a das barras
+ *      horizontais (nenhuma margem deixa de colapsar);
+ *   5. nenhuma caixa que rola esconde conteúdo na vertical.
  *
  * COMO RODAR (site servido localmente: python -m http.server 8899 --bind
  * 127.0.0.1, ou a configuração 'site-local' do .claude/launch.json)
@@ -18,7 +29,9 @@
  *        document.head.appendChild(s);
  *   3. espere window.__provaTransborda.fim === true (o progresso sai no console).
  *      O resumo fica em window.__provaTransborda.resumo (e num console.table);
- *      os elementos que passam, em window.__provaTransborda.itens[i].passam.
+ *      os detalhes de cada medição, em window.__provaTransborda.itens[i]
+ *      (topo: os que passam; tabelas: quem rola cada tabela larga; bullets;
+ *      altura).
  *   Opcional, ANTES de carregar: window.__provaTransbordaOpcoes = {
  *     larguras: [1366, 1440], altura: 900, so: 'sistema' }  (so filtra páginas)
  *
@@ -51,6 +64,8 @@
     khalkaria_splash_seen: '1'
   };
   var TOL = 0.5;   // px: arredondamento de subpixel
+  var MARCA = 'data-fd-larga';   // a da tabela larga (KhFichaDrawer.MARCA_LARGA)
+  function r1(x) { return Math.round(x * 10) / 10; }
 
   var P = window.__provaTransborda = { fim: false, feito: 0, total: 0, itens: [], erros: [], resumo: null };
 
@@ -149,7 +164,8 @@
         if (s.scrollbarWidth === 'none') rolamSemBarra++;
       }
       // efeito colateral da caixa que rola: a vertical recortada (conteúdo escondido) ou com barra
-      if (s.overflowY !== 'visible' && el.querySelector(':scope > table') && el.scrollHeight > el.clientHeight + 1) {
+      var temTabela = el.hasAttribute(MARCA) || (el.tagName !== 'TABLE' && el.querySelector(':scope > table'));
+      if (s.overflowY !== 'visible' && temTabela && el.scrollHeight > el.clientHeight + 1) {
         verticais.push(caminho(el, mc) + ' (' + el.scrollHeight + ' > ' + el.clientHeight + ', ' + s.overflowY + ')');
       }
       if (r.right <= borda + TOL) continue;
@@ -163,8 +179,49 @@
     var topo = passam.filter(function (p) {
       return !passam.some(function (q) { return q !== p && q.el.contains(p.el); });
     });
+    // 2. quem rola cada tabela larga: ela mesma (a barra no pé dela) ou um wrapper só dela
+    var tabelas = { marcadas: 0, marcadaSemRolar: [], cabeMudou: [], rolaOCartao: [], barraLonge: [], rolam: [] };
+    Array.prototype.forEach.call(mc.querySelectorAll('table'), function (t) {
+      if (!t.getClientRects().length) return;
+      var st = cs(t), marcada = t.hasAttribute(MARCA);
+      if (marcada) {
+        tabelas.marcadas++;
+        if (!(t.scrollWidth > t.clientWidth + 1)) tabelas.marcadaSemRolar.push(caminho(t, mc));
+      } else if (st.display !== 'table') tabelas.cabeMudou.push(caminho(t, mc) + ' (' + st.display + ')');
+      var rola = null;
+      for (var a = t; a && a !== mc; a = a.parentElement) {
+        var sa = cs(a);
+        if ((sa.overflowX === 'auto' || sa.overflowX === 'scroll') && a.scrollWidth > a.clientWidth + 1) { rola = a; break; }
+      }
+      if (!rola) return;
+      if (rola !== t && !(rola.children.length === 1 && rola.children[0] === t)) {
+        tabelas.rolaOCartao.push(caminho(t, mc) + ' rola com ' + caminho(rola, mc) + ' (' + rola.children.length + ' filhos)');
+        return;
+      }
+      // a barra: o topo dela (o pé da caixa que rola, menos a borda e a barra) contra o pé da última linha da tabela
+      var sr = cs(rola), bb = parseFloat(sr.borderBottomWidth) || 0;
+      var barra = rola.offsetHeight - rola.clientHeight - (parseFloat(sr.borderTopWidth) || 0) - bb;
+      var topoBarra = rola.getBoundingClientRect().bottom - bb - barra;
+      var ultima = t.rows && t.rows.length ? t.rows[t.rows.length - 1] : t;
+      var vao = topoBarra - ultima.getBoundingClientRect().bottom;
+      // na própria tabela, colada; no wrapper, só a margem de baixo da tabela entre as duas
+      var permitido = (rola === t ? 0 : parseFloat(st.marginBottom) || 0) + 1;
+      var item = caminho(t, mc) + ': ' + (rola === t ? 'a tabela' : 'wrapper') + ', barra ' + r1(barra) + ' px, vão ' + r1(vao) + ' px';
+      tabelas.rolam.push(item);
+      if (vao > permitido) tabelas.barraLonge.push(item);
+    });
+    // 3. o bullet de um <li> (marcador por fora) some se o li recorta (overflow diferente de visible)
+    var bullets = { liComTabela: 0, recortados: [] };
+    Array.prototype.forEach.call(mc.querySelectorAll('li'), function (li) {
+      if (!li.getClientRects().length) return;
+      var sl = cs(li);
+      if (sl.display !== 'list-item' || sl.listStyleType === 'none' || sl.listStylePosition !== 'outside') return;
+      if (li.querySelector('table')) bullets.liComTabela++;
+      if (sl.overflowX !== 'visible' || sl.overflowY !== 'visible') bullets.recortados.push(caminho(li, mc) + ' (' + sl.overflowX + ')');
+    });
     var de = doc.documentElement;
     return {
+      tabelas: tabelas, bullets: bullets,
       ficha3: de.getAttribute('data-ficha3'), nav: de.getAttribute('data-nav') || 'aberta',
       borda: Math.round(borda), drawer: esq == null ? null : Math.round(esq),
       passam: passam.length, topo: topo.map(function (p) { return p.caminho + ' (+' + p.excesso + ' px)'; }),
@@ -174,6 +231,40 @@
       drawerPorCima: esq != null && borda > esq + TOL,
       rolagemDaPagina: de.scrollWidth > de.clientWidth + 1
     };
+  }
+
+  // 4. a altura do .main-content, aberto x recolhido, na MESMA largura (presa):
+  // a diferença tem de ser só a das barras horizontais (as das tabelas marcadas,
+  // aberto; as dos wrappers do Sistema, recolhido)
+  function barrasH(w, mc) {
+    var soma = 0;
+    Array.prototype.forEach.call(mc.querySelectorAll('*'), function (x) {
+      var c = w.getComputedStyle(x);
+      if (c.overflowX !== 'auto' && c.overflowX !== 'scroll') return;
+      soma += x.offsetHeight - x.clientHeight - (parseFloat(c.borderTopWidth) || 0) - (parseFloat(c.borderBottomWidth) || 0);
+    });
+    return soma;
+  }
+  function altura(w) {
+    var doc = w.document, mc = doc.querySelector('.main-content');
+    var api = w.KhFichaDrawer && w.KhFichaDrawer.atual ? w.KhFichaDrawer.atual() : null;
+    if (!mc || !api) return { erro: 'sem .main-content ou sem drawer' };
+    var barras = barrasH(w, mc);
+    var a = mc.getBoundingClientRect();
+    var estilo = mc.getAttribute('style');
+    mc.style.flex = '0 0 ' + a.width + 'px';
+    mc.style.width = a.width + 'px';
+    mc.style.maxWidth = 'none';
+    api.recolher({ gravar: false });
+    var r = mc.getBoundingClientRect(), barrasR = barrasH(w, mc);
+    var res = { aberto: r1(a.height), recolhido: r1(r.height), barras: r1(barras), barrasRecolhido: r1(barrasR),
+      larguraAberto: r1(a.width), larguraRecolhido: r1(r.width),
+      marcasRecolhido: mc.querySelectorAll('[' + MARCA + ']').length,
+      diferenca: r1((a.height - barras) - (r.height - barrasR)) };
+    api.abrir({ gravar: false });
+    if (estilo == null) mc.removeAttribute('style'); else mc.setAttribute('style', estilo);
+    res.ok = Math.abs(res.diferenca) <= 1 && Math.abs(a.width - r.width) <= TOL && !res.marcasRecolhido;
+    return res;
   }
 
   function uma(pagina, largura) {
@@ -208,6 +299,7 @@
       }).then(function () {
         assenta(w.document);
         var m = mede(w);
+        m.altura = altura(w);
         m.drawerMontado = montou;
         if (!pronto) m.aviso = 'a grade do Bazar não desenhou (painel oculto?)';
         return m;
@@ -247,7 +339,9 @@
           m.pagina = t[0]; m.largura = t[1];
           P.itens.push(m);
           console.log('[transborda] ' + P.feito + '/' + P.total + ' ' + t[0] + ' @' + t[1] + ': ' +
-            (m.erro ? 'ERRO ' + m.erro : m.passam + ' passam' + (m.passam ? ' (máx. +' + m.maxExcesso + ' px)' : '') + ', ' + m.rolam + ' rolam'));
+            (m.erro ? 'ERRO ' + m.erro : m.passam + ' passam' + (m.passam ? ' (máx. +' + m.maxExcesso + ' px)' : '') + ', ' + m.rolam + ' rolam, ' +
+              m.tabelas.marcadas + ' marcadas, ' + m.bullets.recortados.length + ' bullets recortados, altura ' +
+              (m.altura.erro ? 'ERRO ' + m.altura.erro : (m.altura.ok ? 'igual' : 'DIFERENTE') + ' (' + m.altura.diferenca + ' px além das barras)')));
         }, function (e) {
           P.feito++; P.erros.push(t[0] + ' @' + t[1] + ': ' + e);
         });
@@ -256,8 +350,14 @@
   }).then(function () {
     devolve();
     var ruins = P.itens.filter(function (m) {
-      return m.erro || m.passam || (m.verticais && m.verticais.length) || !m.drawerMontado || m.ficha3 !== 'aberto' || m.nav !== 'aberta';
+      return m.erro || m.passam || (m.verticais && m.verticais.length) || !m.drawerMontado || m.ficha3 !== 'aberto' || m.nav !== 'aberta' ||
+        ruimTabela(m) || m.bullets.recortados.length || !m.altura || !m.altura.ok;
     });
+    function ruimTabela(m) {
+      var t = m.tabelas || {};
+      return ['marcadaSemRolar', 'cabeMudou', 'rolaOCartao', 'barraLonge'].some(function (k) { return (t[k] || []).length; });
+    }
+    function soma(f) { return P.itens.reduce(function (s, m) { return s + (m.erro ? 0 : f(m)); }, 0); }
     P.resumo = {
       medicoes: P.itens.length, erros: P.erros.length,
       comElementoPassando: P.itens.filter(function (m) { return m.passam; }).length,
@@ -269,12 +369,26 @@
       drawerPorCima: P.itens.filter(function (m) { return m.drawerPorCima; }).map(function (m) { return m.pagina + ' @' + m.largura; }),
       paginaComRolagemHorizontal: P.itens.filter(function (m) { return m.rolagemDaPagina; }).length,
       estadoErrado: P.itens.filter(function (m) { return !m.drawerMontado || m.ficha3 !== 'aberto' || m.nav !== 'aberta'; }).length,
+      tabelasMarcadas: soma(function (m) { return m.tabelas.marcadas; }),
+      tabelasQueRolam: soma(function (m) { return m.tabelas.rolam.length; }),
+      marcadaSemRolar: soma(function (m) { return m.tabelas.marcadaSemRolar.length; }),
+      tabelaQueCabeMudou: soma(function (m) { return m.tabelas.cabeMudou.length; }),
+      cartaoRolando: soma(function (m) { return m.tabelas.rolaOCartao.length; }),
+      barraLongeDaTabela: soma(function (m) { return m.tabelas.barraLonge.length; }),
+      liComTabela: soma(function (m) { return m.bullets.liComTabela; }),
+      bulletsRecortados: soma(function (m) { return m.bullets.recortados.length; }),
+      alturaDiferente: P.itens.filter(function (m) { return !m.altura || !m.altura.ok; }).map(function (m) {
+        return m.pagina + ' @' + m.largura + ': ' + (m.altura && m.altura.erro ? m.altura.erro : JSON.stringify(m.altura));
+      }),
+      maxDiferencaAltura: P.itens.reduce(function (s, m) { return Math.max(s, m.altura && !m.altura.erro ? Math.abs(m.altura.diferenca) : 0); }, 0),
       ok: !ruins.length && !P.erros.length,
       segundos: Math.round((Date.now() - t0) / 1000)
     };
     try {
       console.table(P.itens.map(function (m) {
         return { pagina: m.pagina, largura: m.largura, passam: m.passam, maxExcesso: m.maxExcesso, rolam: m.rolam,
+          marcadas: m.tabelas && m.tabelas.marcadas, bullets: m.bullets && m.bullets.recortados.length,
+          altura: m.altura && (m.altura.erro || m.altura.diferenca), barras: m.altura && m.altura.barras,
           borda: m.borda, drawer: m.drawer, ficha3: m.ficha3, nav: m.nav };
       }));
     } catch (e) { /* sem console.table */ }

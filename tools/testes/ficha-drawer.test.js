@@ -10,7 +10,9 @@
 //       khalkaria_ficha3_dock é gravada), a ordem das abas da página, o desenho
 //       do KhFichaAbas compacto, as mini barras com a conta, arrastar (acende,
 //       abre, item do Bazar -> KF.adicionar, o resto -> aviso), Esc, a página
-//       da ficha sem drawer e o storage bloqueado;
+//       da ficha sem drawer e o storage bloqueado; a nota à esquerda do mais
+//       largo dos dois drawers; as tabelas largas (só com o drawer aberto, só a
+//       tabela, reavaliadas no ResizeObserver e na troca da nav, nunca no Bazar);
 //   - o CSS: toda regra do drawer guardada por html[data-ficha3], o Bazar e a
 //     página da ficha nunca empurrados (avaliando os seletores), a aba FICHA e o
 //     voltar ao topo deslocados só com a marca;
@@ -166,6 +168,7 @@ function janela(opc) {
   if (opc.comFp) { const fp = doc.createElement('div'); fp.id = 'fp'; doc.body.appendChild(fp); }
   if (opc.kfAberta) { const kf = doc.createElement('div'); kf.id = 'kf-drawer'; kf.className = 'kf-drawer kf-open'; doc.body.appendChild(kf); }
   if (opc.kfDrawer) { const kf = doc.createElement('div'); kf.id = 'kf-drawer'; kf.offsetWidth = opc.kfDrawer; doc.body.appendChild(kf); }
+  if (opc.mc != null) { const m = doc.createElement('main'); m.className = 'main-content'; m.innerHTML = opc.mc; doc.body.appendChild(m); }
   doc.criados.length = 0;
   const ls = A.armazenamento(opc.ls || {}), ss = A.armazenamento(opc.ss || {});
   const buscas = [], timers = [], ouvWin = {}, adicionados = [], abertos = [];
@@ -190,6 +193,15 @@ function janela(opc) {
       abrir: (...a) => { abertos.push(a); } })
   };
   if (opc.ensaio) sb.KhEnsaio = { ligado: () => true };
+  // observadores falsos (opc.observadores): cada um guarda {tipo, alvo, op, f}; o
+  // getComputedStyle lê el.cs (o padrão: overflow visible, sem padding)
+  const obs = [];
+  if (opc.observadores) {
+    const falso = (tipo) => function (f) { this.observe = (alvo, op) => { obs.push({ tipo, alvo, op, f }); }; this.disconnect = () => {}; };
+    sb.ResizeObserver = falso('resize');
+    sb.MutationObserver = falso('mutation');
+    sb.getComputedStyle = (el) => Object.assign({ overflowX: 'visible', overflowY: 'visible', paddingRight: '0px' }, el.cs || {});
+  }
   Object.defineProperty(sb, 'localStorage', { get() { if (opc.lsBloqueado) throw new Error('SecurityError'); return ls; } });
   sb.window = sb;
   vm.createContext(sb);
@@ -205,7 +217,7 @@ function janela(opc) {
   const clica = (x) => DOM.despacha(doc, x, DOM.evento('click'));
   const arrasto = (alvo, tipo, payload) => DOM.despacha(doc, alvo, DOM.evento(tipo, { dataTransfer: {
     dropEffect: '', getData: (t) => (t === 'text/plain' && payload != null ? JSON.stringify(payload) : ''), setData() {} } }));
-  return { sb, doc, html, ls, ss, buscas, timers, ouvWin, antes, adicionados, abertos, el, gav, roda, tecla, clica, arrasto,
+  return { sb, doc, html, ls, ss, buscas, timers, ouvWin, antes, adicionados, abertos, el, gav, roda, tecla, clica, arrasto, obs,
     api: () => sb.KhFichaDrawer.atual() };
 }
 const espera = () => new Promise((r) => setImmediate(r));
@@ -219,8 +231,12 @@ const comFicha = (extra) => Object.assign({ khalkaria_ficha_previa: '1', khalkar
 
 test('sem a prévia: nada muda (nenhum elemento, CSS, fetch, ouvinte, escrita nem marca no <html>)', async () => {
   for (const op of [{}, { ls: { khalkaria_ficha3_dock: 'aberto', khalkaria_ficha: JSON.stringify(V2) } }, { search: '?ficha=v2' },
-    { ls: { khalkaria_ficha_previa: '0' } }, { readyState: 'loading' }, { lsBloqueado: true }]) {
+    { ls: { khalkaria_ficha_previa: '0' } }, { readyState: 'loading' }, { lsBloqueado: true },
+    { ls: { khalkaria_ficha3_dock: 'aberto' }, mc: '<table id="t"></table>', observadores: true }]) {
     const j = await carrega(janela(op));
+    // nenhum observador do drawer (o kh-ui tem o dele, no body, do aria-activedescendant)
+    assert.deepEqual(j.obs.filter((o) => o.tipo === 'resize' || /data-nav/.test(JSON.stringify(o.op))), [], 'nenhum observador');
+    if (op.mc) assert.equal(j.el('t').hasAttribute(FD.MARCA_LARGA), false, 'nenhuma marca');
     assert.equal(typeof j.sb.KhFichaDrawer, 'object');
     assert.equal(j.gav(), null, 'nenhum drawer');
     assert.deepEqual(j.doc.criados, [], 'nenhum elemento criado');
@@ -509,6 +525,117 @@ test('arrastar técnica, magia ou carta (07 §0, item 1): o dragenter abre a FIC
   }
 });
 
+test('a nota fica à esquerda do MAIS LARGO dos dois drawers (revisão do §0: a 1800 px, 460 px deste contra 420 do v2.1)', async () => {
+  assert.equal(FD.direitaNota([420, 460]), 460 + FD.VAO_NOTA, 'este mais largo: a faixa dele não fica sob a nota');
+  assert.equal(FD.direitaNota([420, 380]), 420 + FD.VAO_NOTA);
+  assert.equal(FD.direitaNota([420, 48]), 420 + FD.VAO_NOTA, 'no trilho');
+  assert.equal(FD.direitaNota([419.6, 0]), 420 + FD.VAO_NOTA, 'arredonda');
+  assert.equal(FD.direitaNota([353, 0]), 353 + FD.VAO_NOTA, 'o v2.1 estreito (max-width 92vw): a largura real');
+  [[], [0, 0], [NaN, undefined, null], null].forEach((x) => assert.equal(FD.direitaNota(x), 0, 'sem largura: fica a do CSS'));
+  for (const [larguraNova, esperado] of [[460, 472], [380, 432], [undefined, 432]]) {
+    const j = await carrega(janela({ ls: comFicha({ khalkaria_ficha3_dock: 'aberto' }), kfDrawer: 420 }));
+    if (larguraNova) j.gav().offsetWidth = larguraNova;
+    const { filho } = cardDe(j.doc, 'div', 'spell-card kf-draggable', { 'data-kf-tipo': 'magia' });
+    j.arrasto(filho, 'dragstart', { _campo: 'grimorio', id: 'magia-x', tipo: 'magia', nome: 'X' });
+    j.arrasto(j.gav(), 'dragenter', null);
+    assert.equal(j.el('fd-gaveta-nota').style.getPropertyValue('--fd-nota-dir'), esperado + 'px', 'drawer novo com ' + larguraNova);
+  }
+});
+
+// ---------------------------------------------------------------- tabelas largas (07 §0, item 3)
+test('puras (07 §0, item 3): tabelaLarga — sem a marca, passa do limite; com ela, ainda rola ou ainda passa', () => {
+  const L = FD.tabelaLarga;
+  assert.equal(L({ marcada: false, direita: 720, limite: 650 }), true, 'passa da caixa');
+  assert.equal(L({ marcada: false, direita: 650.8, limite: 650 }), false, 'subpixel não conta');
+  assert.equal(L({ marcada: false, direita: 650, limite: 650 }), false, 'cabe (largura cheia)');
+  assert.equal(L({ marcada: true, direita: 650, limite: 650, scrollWidth: 700, clientWidth: 600 }), true, 'marcada e ainda rola');
+  assert.equal(L({ marcada: true, direita: 650, limite: 650, scrollWidth: 600, clientWidth: 600 }), false, 'voltou a caber (janela maior)');
+  assert.equal(L({ marcada: true, direita: 720, limite: 650, scrollWidth: 600, clientWidth: 600 }), true, 'ainda passa: não pisca');
+  assert.equal(L({ marcada: false, direita: 900, limite: 650 }), true, 'a do wrapper do Sistema também: rola ela mesma, a barra no pé dela');
+  [null, undefined, 'x', []].forEach((x) => assert.equal(L(x), false));
+});
+
+// o conteúdo: um cartão com uma tabela larga e uma que cabe, um <li> com tabela,
+// o wrapper que já rola (o do Sistema: a tabela dele rola ela mesma) e uma tabela oculta
+const MC = '<div class="card" id="card"><h2>X</h2><table id="t-larga"></table><table id="t-cabe"></table>' +
+  '<ul><li id="li"><table id="t-li"></table></li></ul></div>' +
+  '<div id="wrap" style="overflow-x: auto;"><table id="t-wrap"></table></div><div id="oculto" hidden><table id="t-oculta"></table></div>';
+// a geometria (px): o .main-content com 700 de cliente e 50 de padding à direita
+// (a caixa de conteúdo acaba em 650), o resto acaba em 650 também
+function geometria(j) {
+  const g = (id, x) => Object.assign(j.el(id), x);
+  const caixa = (left, cw) => ({ rect: { left, right: left + cw, top: 0, bottom: 10, width: cw, height: 10 }, clientWidth: cw, clientLeft: 0 });
+  const tab = (dir, extra) => Object.assign({ rect: { left: 50, right: dir, top: 0, bottom: 10, width: dir - 50, height: 10 },
+    getClientRects: () => [1], scrollWidth: dir - 50, clientWidth: dir - 50 }, extra);
+  Object.assign(j.doc.querySelector('.main-content'), caixa(0, 700), { cs: { paddingRight: '50px' } });
+  g('card', caixa(50, 600)); g('li', caixa(80, 570)); g('wrap', Object.assign(caixa(50, 600), { cs: { overflowX: 'auto' } }));
+  g('t-larga', tab(720)); g('t-cabe', tab(650)); g('t-li', tab(700)); g('t-wrap', tab(900));
+  g('t-oculta', { getClientRects: () => [], rect: null });
+}
+const marcadas = (j) => j.doc.querySelectorAll('[' + FD.MARCA_LARGA + ']').map((t) => t.id);
+
+test('tabelas largas no navegador: com o drawer aberto só a mais larga que a caixa ganha a marca (o pai, o <li> e as que cabem ficam); recolher tira', async () => {
+  const j = await carrega(janela({ ls: comFicha({ khalkaria_ficha3_dock: 'aberto' }), mc: MC, observadores: true }));
+  const mc = j.doc.querySelector('.main-content');
+  // observa o .main-content (tamanho) e a nav (html[data-nav]); nada mais
+  const meus = j.obs.filter((o) => o.alvo === mc || o.alvo === j.html);
+  assert.deepEqual(meus.map((o) => o.tipo), ['resize', 'mutation']);
+  assert.equal(JSON.stringify(meus[1].op), JSON.stringify({ attributes: true, attributeFilter: ['data-nav'] }));
+  assert.deepEqual(marcadas(j), [], 'sem geometria (antes do layout): nada');
+  geometria(j);
+  // o ResizeObserver avisa: espera ESPERA_LARGAS e reavalia
+  meus[0].f([]);
+  assert.deepEqual(marcadas(j), [], 'ainda esperando');
+  j.roda();
+  assert.deepEqual(marcadas(j), ['t-larga', 't-li', 't-wrap']);
+  ['card', 'li', 'wrap', 'oculto'].forEach((id) => assert.equal(j.el(id).hasAttribute(FD.MARCA_LARGA), false, id + ': o pai não muda'));
+  assert.equal(j.api().largas(), 3);
+  // marcada, a tabela vira caixa que rola (o CSS): cabe na caixa e ainda tem o que rolar
+  Object.assign(j.el('t-larga'), { rect: { left: 50, right: 650, top: 0, bottom: 10, width: 600, height: 10 }, scrollWidth: 670, clientWidth: 600 });
+  assert.equal(j.api().largas(), 3, 'continua marcada');
+  // a janela cresce: voltou a caber
+  Object.assign(j.el('t-larga'), { scrollWidth: 600 });
+  meus[1].f([]);   // a nav trocou
+  j.roda();
+  assert.deepEqual(marcadas(j), ['t-li', 't-wrap']);
+  // recolher tira na hora; abrir põe na hora (sem esperar o observador)
+  j.clica(j.gav().querySelector('.fd-gaveta-recolher'));
+  assert.deepEqual(marcadas(j), [], 'recolhido: nenhuma marca');
+  meus[0].f([]); j.roda();
+  assert.deepEqual(marcadas(j), [], 'no trilho o observador não marca');
+  j.clica(j.gav().querySelector('.fd-gaveta-abrir'));
+  assert.deepEqual(marcadas(j), ['t-li', 't-wrap']);
+  // a oculta fica como está até aparecer
+  Object.assign(j.el('t-oculta'), { getClientRects: () => [1], rect: { left: 50, right: 800, top: 0, bottom: 10, width: 750, height: 10 } });
+  j.el('oculto').hidden = false;
+  assert.deepEqual(marcadas(j), ['t-li', 't-wrap']);
+  meus[0].f([]); j.roda();   // o .main-content cresceu: o observador reavalia
+  assert.deepEqual(marcadas(j), ['t-li', 't-wrap', 't-oculta']);
+  assert.deepEqual(j.ls.escritas.map((x) => x[1]), ['khalkaria_ficha3_dock', 'khalkaria_ficha3_dock'], 'só o dock (botões)');
+});
+
+test('tabelas largas: no trilho nada é marcado; no Bazar (o drawer fica por cima) nem há observador', async () => {
+  const t = await carrega(janela({ ls: comFicha({ khalkaria_ficha3_dock: 'trilho' }), mc: MC, observadores: true }));
+  geometria(t);
+  t.obs.filter((o) => o.tipo === 'resize').forEach((o) => o.f([]));
+  t.roda();
+  assert.deepEqual(marcadas(t), []);
+  t.clica(t.gav().querySelector('.fd-gaveta-abrir'));
+  assert.deepEqual(marcadas(t), ['t-larga', 't-li', 't-wrap'], 'abrir marca na hora');
+  const b = await carrega(janela({ ls: comFicha({ khalkaria_ficha3_dock: 'aberto' }), mc: MC, observadores: true, body: { 'data-bazar': '' } }));
+  geometria(b);
+  assert.deepEqual(b.obs.filter((o) => o.tipo === 'resize' || /data-nav/.test(JSON.stringify(o.op))), []);
+  assert.equal(b.api().largas(), 0);
+  b.clica(b.gav().querySelector('.fd-gaveta-recolher'));
+  b.clica(b.gav().querySelector('.fd-gaveta-abrir'));
+  assert.deepEqual(marcadas(b), [], 'Bazar: nunca');
+  // sem ResizeObserver nem getComputedStyle (navegador velho): abrir e recolher bastam, sem lançar
+  const v = await carrega(janela({ ls: comFicha({ khalkaria_ficha3_dock: 'trilho' }), mc: MC }));
+  geometria(v);
+  v.clica(v.gav().querySelector('.fd-gaveta-abrir'));
+  assert.deepEqual(marcadas(v), ['t-larga', 't-li', 't-wrap'], 'sem estilo computado (padding 0), as mesmas');
+});
+
 test('arrastar sem seção (raça), sem a ficha atual ou com o Ensaio ligado: o drawer abre, não aceita e explica', async () => {
   // raça: a ficha atual não tem zona de soltar para ela
   const r = await carrega(janela({ ls: comFicha() }));
@@ -784,25 +911,34 @@ test('CSS da casca: o estado pelo <html>, z-index do token, texto em AA, foco vi
   // esquerda do drawer v2.1, sem pegar o ponteiro (o arrasto segue por baixo), em AA
   const nota = regra(css, '.fd-gaveta .fd-gaveta-nota');
   assert.match(nota, /position: fixed;/);
-  assert.match(nota, /right: var\(--fd-nota-dir, 432px\);/);
+  // a reserva (sem o script) também fica fora dos dois drawers: o v2.1 (420px) e este aberto (--ficha3-w, 460px a 1800px)
+  assert.match(nota, /right: var\(--fd-nota-dir, calc\(max\(420px, var\(--ficha3-w\)\) \+ 12px\)\);/);
+  assert.equal(FD.VAO_NOTA, 12, 'o mesmo vão do script');
   assert.match(nota, /pointer-events: none;/);
   assert.ok(contraste(cor('.fd-gaveta .fd-gaveta-nota'), resolveCor(/background:\s*([^;]+);/.exec(nota)[1])) >= 4.5, 'a nota');
   assert.match(regra(css, '.fd-gaveta-nota[hidden]'), /display: none;/);
 });
 
-test('CSS (07 §0, item 3): com o drawer aberto, a caixa de cada tabela do conteúdo rola na horizontal; a tabela e a nav não mudam', () => {
+test('CSS (07 §0, item 3): com o drawer aberto, só a tabela marcada larga rola, ela mesma; o pai, as que cabem e a nav não mudam', () => {
   const css = ler('css', 'style.css');
   const rs = regras(css).filter((r) => /ficha3/.test(r.sel) && /overflow/.test(r.corpo));
   assert.equal(rs.length, 1, JSON.stringify(rs));
   const r = rs[0];
   assert.ok(r.ctx.includes('@layer layout'), 'na camada layout');
   assert.equal(r.ctx.filter((c) => c.startsWith('@media')).length, 0, 'em toda largura com o drawer aberto');
-  assert.equal(r.sel, 'html[data-ficha3="aberto"] body:not([data-bazar]):not([data-ficha-pagina]) .main-content :has(> table)');
-  assert.match(r.corpo, /overflow-x: auto;/);
+  assert.equal(r.sel, 'html[data-ficha3="aberto"] body:not([data-bazar]):not([data-ficha-pagina]) .main-content table[' + FD.MARCA_LARGA + ']');
+  assert.match(r.corpo, /display: block;/);
+  assert.match(r.corpo, /max-width: 100%;/);
+  // o !important vence o overflow: hidden sem camada da .progression-table do Espadachim
+  assert.match(r.corpo, /overflow-x: auto !important;/);
   assert.match(r.corpo, /overflow-y: hidden;/);
-  // a tabela não vira block (encolheria as que cabem); a preferência da nav não é tocada
   regras(css).filter((x) => /ficha3/.test(x.sel)).forEach((x) => {
-    assert.doesNotMatch(x.sel, /(?:^|[\s>])table\b(?!\))/, 'nenhuma regra do drawer na própria tabela: ' + x.sel);
+    // nenhum pai de tabela ganha overflow (o bullet do <li> some, as margens deixam de colapsar)
+    assert.doesNotMatch(x.sel, /:has\(/, 'nenhuma regra do drawer pelo pai: ' + x.sel);
+    // a tabela sem a marca (a que cabe) não muda
+    if (/(?:^|[\s>])table\b/.test(x.sel)) assert.match(x.sel, /table\[data-fd-larga\]$/, 'só a marcada: ' + x.sel);
     assert.doesNotMatch(x.sel + x.corpo, /data-nav|\.sidebar|--nav-w/, 'a nav é do jogador: ' + x.sel);
   });
+  // a regra solta da tabela-base que o !important precisa vencer (se sumir, o !important pode sair)
+  assert.match(ler('pages', 'classes', 'espadachim.html'), /\.progression-table \{[^}]*overflow: hidden;/);
 });

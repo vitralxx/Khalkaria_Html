@@ -39,10 +39,14 @@ Código: `js/ficha/kh-ficha-drawer.js` (`leCarta`, `avisoAbriu`, `avisoRecusa`, 
    - Os limites são a caixa de padding (sem a barra de rolagem, que cortava 2,5 px à direita em toda conta do drawer) cortada pela janela.
    - **Escolha a revisar com o Pedro:** fora do fluxo (no drawer), quando a dica não cabe na rolagem em nenhum lado, ela usa a altura da janela, inteira, por cima do cabeçalho do drawer, antes de ganhar altura máxima. Só sem lugar nem na janela ela é truncada. Truncar escondia a fórmula, que é o que a dica mostra.
    - Ao rolar a caixa (ou a página), a dica fora do fluxo segue a conta.
-3. **Tabelas largas.**
-   - Quem rola é a **caixa da tabela** (o pai dela, `:has(> table)`), como os 4 wrappers `overflow-x: auto` que o Sistema já tem. A tabela não vira `display: block`: assim, as que cabem encolheriam até o conteúdo e perderiam a largura de 100%.
-   - A vertical dessa caixa fica `hidden`, para não nascer barra de 1 px por arredondamento. O script confere que nenhuma caixa esconde conteúdo na vertical.
-   - Vale em toda largura com o drawer aberto. A 1440 px, as duas tabelas que passavam para o padding do conteúdo (sem chegar ao drawer) agora rolam na caixa.
+3. **Tabelas largas** (refeito na revisão de 2026-10-10).
+   - Quem rola é a **própria tabela**, e só a que é mais larga que a caixa. Com o drawer aberto, nas páginas empurradas (não no Bazar), o `kh-ficha-drawer.js` (`marcaLargas`) marca com `data-fd-larga` cada tabela do `.main-content` cuja borda direita passa da caixa de conteúdo (a do pai e a do `.main-content`). O `css/style.css` (`@layer layout`) faz `display: block; max-width: 100%; overflow-x: auto` só nelas: a barra fica colada no pé da tabela.
+   - As que cabem não mudam (ficam `display: table`, com a largura cheia). O pai não ganha `overflow`: o bullet de um `<li>` com tabela (Batedor, Teurgo) fica, e as margens continuam colapsando (a página não salta na vertical).
+   - Reavalia ao abrir e ao recolher (na hora), no `ResizeObserver` do `.main-content` (janela, fontes, aba ou `<details>` que abre) e quando a nav troca (`html[data-nav]`). Ao recolher, a marca sai.
+   - Uma tabela dentro de um dos 13 wrappers `overflow-x: auto` do Sistema que passa da caixa dele também é marcada: rola ela mesma, e a barra deixa de ficar 1rem abaixo da tabela (a margem dela dentro do wrapper). Sem o drawer aberto, os wrappers rolam como antes.
+   - O `overflow-x` leva `!important`: a `.progression-table` do Espadachim tem `overflow: hidden` sem camada, que venceria a regra da camada.
+   - A vertical da tabela marcada fica `hidden`, para não nascer barra de 1 px por arredondamento.
+   - **A nota** (item 1) fica à esquerda do **mais largo** dos dois drawers, pelas larguras reais (`direitaNota`). A 1800 px ou mais, este tem 460 px e o v2.1, 420: antes ela cobria 28 px da faixa deste.
 
 Números (fixture `ficha-v2-sintetica.json`; antes = `bee169f`):
 
@@ -52,6 +56,10 @@ Números (fixture `ficha-v2-sintetica.json`; antes = `bee169f`):
 | Dicas, drawer a 1366×600 e 1280×520 (extra) | 552 cortadas (11 no topo, até 66 px) | 0 (11 passam por cima do cabeçalho) |
 | Dicas, página a 1280×520 (extra) | 3 cortadas pela janela | 3 com altura máxima (a janela não tem lugar) |
 | Transbordo, 24 páginas × 1366 e 1440 px | 32 elementos em 2 casos (Magias e Sistema a 1366, até +48,8 px) | 0 (19 caixas rolam, todas com barra; nenhuma recorta na vertical) |
+| Revisão (2026-10-10), as mesmas 48 medições: quem rola | o cartão inteiro (Magias "Intensidade", Sistema "Khan Sins"), barra ~850 px abaixo do cabeçalho da tabela | 17 tabelas marcadas, todas rolam elas mesmas, barra a 0 px da última linha; 0 que cabem mudaram |
+| Revisão: bullet de `<li>` com tabela | 5 sumiam (4 no Batedor, 1 no Teurgo) | 0 recortados (14 `<li>` com tabela medidos) |
+| Revisão: altura do `.main-content`, aberto x recolhido na mesma largura | Magias +66 px, Alquimista +72, Corrompido +48 (margens sem colapsar) | 0 px além das barras horizontais, nas 48 |
+| Revisão: a nota a 1920 px | 28 px por cima da faixa do drawer novo | 12 px à esquerda dele (e 12 px do v2.1 a 1366) |
 
 ## 1. A lógica do Ensaio
 

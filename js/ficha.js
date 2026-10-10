@@ -7631,9 +7631,17 @@
  * do botão FICHA: a v2.1 lembra que está aberta (khalkaria_ficha_open).
  * Nenhuma chave de ficha v3.
  *
+ * Tabelas largas (07 §0, item 3): com o drawer aberto, nas páginas empurradas,
+ * a tabela do .main-content mais larga que a caixa de conteúdo ganha
+ * [data-fd-larga] (marcaLargas), e o css/style.css (@layer layout) a faz rolar
+ * ela mesma, com a barra no pé dela. As que cabem e os pais não mudam. Ao
+ * recolher, a marca sai. Reavalia ao abrir e recolher, no ResizeObserver do
+ * .main-content e quando a nav troca (html[data-nav]).
+ *
  * Partes puras (testadas no node, tools/testes/ficha-drawer.test.js): estado,
  * lerDock, leArrasto, leCarta, avisoAbriu, avisoRecusa, fracao, saidaPrevia,
- * htmlCasca, htmlId e htmlMinis. No node exporta
+ * direitaNota, tabelaLarga, htmlCasca, htmlId e htmlMinis (e marcaLargas, com
+ * o DOM mínimo). No node exporta
  * por module.exports (carregado sozinho); no artefato js/ficha.js o export já é
  * o KhInv e este módulo só registra window.KhFichaDrawer e o liga no navegador.
  * Vem no ORDEM depois do kh-ficha-abas.js (usa o KhFichaAbas, o KhAbas, o
@@ -7677,7 +7685,13 @@
     var NOME_TIPO = { raca: 'a raça', condicao: 'a condição' };
     // o que é item do Bazar (o card do registro, o painel de receita)
     var ORIGEM_BAZAR = '.item-card, [data-kf-tipo="item"], #bz-receita [data-ir]';
-    var VAO_NOTA = 12;   // px entre a nota e o drawer da ficha atual
+    var VAO_NOTA = 12;   // px entre a nota e o mais largo dos dois drawers (o v2.1 e este)
+    // tabelas largas (07 §0, item 3): com o drawer aberto, a tabela do conteúdo
+    // mais larga que a caixa ganha a marca, e o css/style.css a faz rolar ELA
+    // MESMA (display: block); o pai não muda (o bullet de um <li> e as margens ficam)
+    var MARCA_LARGA = 'data-fd-larga';
+    var TOL_LARGA = 1;        // px: arredondamento de subpixel
+    var ESPERA_LARGAS = 50;   // ms: junta os avisos do ResizeObserver (redimensionar a janela)
     var RO = 'Prévia só leitura. Para editar, use a ficha atual (FICHA).';
     var DICA_ORDEM = 'Arraste para mudar a ordem das abas. Pelo teclado: Tab até a aba e Alt+← ou Alt+→';
     var TITULO_A4 = 'Ordem do A4: volta as abas à ordem da ficha física';
@@ -7767,6 +7781,27 @@
       }
       if (!temKF) return 'A ficha atual não carregou nesta página: recarregue para levar ' + (NOME_SECAO[c.secao] || 'a carta') + '.';
       return AVISO_SO_LEITURA;
+    }
+    // a direita da nota (px da borda da janela): à esquerda do mais largo dos
+    // drawers à vista (o v2.1, 420 px; este, 460 px a partir de 1800 px), pelas
+    // larguras reais medidas; 0 sem nenhuma (fica a do CSS)
+    function direitaNota(larguras) {
+      var m = 0;
+      lista(larguras).forEach(function (l) { if (typeof l === 'number' && isFinite(l) && l > m) m = l; });
+      return m ? Math.round(m) + VAO_NOTA : 0;
+    }
+    // a tabela é larga? m: {marcada, direita (a borda direita dela), limite (a
+    // direita da caixa de conteúdo: a do pai e a do .main-content, a menor),
+    // scrollWidth e clientWidth (dela)}. Sem a marca, passa do limite. Com a
+    // marca (display: block, max-width 100%), ainda tem o que rolar ou ainda
+    // passa: assim, a que volta a caber (janela maior) perde a marca, e a que
+    // não cabe não pisca. A de um wrapper que já rola (os do Sistema) também
+    // passa da caixa dele: rola ela mesma, e a barra fica no pé dela, não 1rem
+    // abaixo (a margem da tabela dentro do wrapper).
+    function tabelaLarga(m) {
+      if (!obj(m)) return false;
+      if (m.marcada && Number(m.scrollWidth) > Number(m.clientWidth) + TOL_LARGA) return true;
+      return Number(m.direita) > Number(m.limite) + TOL_LARGA;
     }
     // atual sobre máximo, de 0 a 1 (máximo 0 ou ausente: vazia)
     function fracao(atual, max) {
@@ -7885,6 +7920,44 @@
     // ---------------- navegador ----------------
     var atual = null;   // o drawer montado nesta página (ou null)
 
+    function estilo(win, el) { try { return win && win.getComputedStyle ? win.getComputedStyle(el) : null; } catch (e) { return null; } }
+    // a direita da caixa de conteúdo de el (px na janela), sem o padding nem a
+    // barra vertical; null sem caixa (display: contents, inline, oculto)
+    function direitaConteudo(win, el) {
+      if (!el || !el.getBoundingClientRect || !el.clientWidth) return null;
+      var r = el.getBoundingClientRect(), cs = estilo(win, el);
+      return r.left + (el.clientLeft || 0) + el.clientWidth - (cs ? parseFloat(cs.paddingRight) || 0 : 0);
+    }
+    // marca (ligado) ou desmarca todas as tabelas largas do .main-content (mc).
+    // Lê todas antes de escrever (um layout só); a tabela oculta (aba fechada,
+    // <details>) fica como está: ao aparecer, o .main-content muda de altura e
+    // o ResizeObserver reavalia. Devolve quantas ficaram marcadas.
+    function marcaLargas(win, mc, ligado) {
+      if (!mc || !mc.querySelectorAll) return 0;
+      var tabelas = arr(mc.querySelectorAll('table'));
+      if (!ligado) {
+        tabelas.forEach(function (t) { if (t.hasAttribute(MARCA_LARGA)) t.removeAttribute(MARCA_LARGA); });
+        return 0;
+      }
+      var limMc = direitaConteudo(win, mc);
+      var decisao = tabelas.map(function (t) {
+        if (!t.getClientRects || !t.getClientRects().length) return null;
+        var p = t.parentElement, limP = direitaConteudo(win, p);
+        var lims = [limMc, limP].filter(function (x) { return typeof x === 'number'; });
+        return tabelaLarga({ marcada: t.hasAttribute(MARCA_LARGA), direita: t.getBoundingClientRect().right,
+          limite: lims.length ? Math.min.apply(null, lims) : Infinity,
+          scrollWidth: t.scrollWidth, clientWidth: t.clientWidth });
+      });
+      var n = 0;
+      tabelas.forEach(function (t, i) {
+        var d = decisao[i], tem = t.hasAttribute(MARCA_LARGA);
+        if (d === null) d = tem;
+        if (d) { n++; if (!tem) t.setAttribute(MARCA_LARGA, ''); }
+        else if (tem) t.removeAttribute(MARCA_LARGA);
+      });
+      return n;
+    }
+
     // a borda esquerda do drawer na janela (px), para quem posiciona pop-ups
     // (KhPrever no Bazar: xPreferido); null sem drawer (sem a prévia, na página
     // da ficha, antes de montar)
@@ -7946,12 +8019,32 @@
       var aviso = el('fd-gaveta-aviso'), nota = el('fd-gaveta-nota');
       var vivo = true;
 
+      // ---- tabelas largas (07 §0, item 3): só onde o conteúdo é empurrado (não
+      // no Bazar, onde o drawer fica por cima) e só com o drawer aberto. Reavalia
+      // ao abrir e recolher (na hora), e quando o .main-content muda de tamanho
+      // (janela, fontes, aba ou <details> que abre) ou a nav troca (com espera).
+      var mc = doc.querySelector('.main-content');
+      var empurra = !!mc && !(doc.body.hasAttribute && doc.body.hasAttribute('data-bazar'));
+      var largasT = null;
+      function largas() {
+        clearTimeout(largasT); largasT = null;
+        return empurra ? marcaLargas(win, mc, vivo && est === 'aberto') : 0;
+      }
+      function agendaLargas() { if (!empurra) return; clearTimeout(largasT); largasT = setTimeout(largas, ESPERA_LARGAS); }
+      if (empurra) {
+        try { if (typeof win.ResizeObserver === 'function') new win.ResizeObserver(agendaLargas).observe(mc); } catch (e) { /* sem RO: abrir e recolher bastam */ }
+        try {
+          if (typeof win.MutationObserver === 'function') new win.MutationObserver(agendaLargas).observe(html, { attributes: true, attributeFilter: ['data-nav'] });
+        } catch (e) { /* idem */ }
+      }
+
       // ---- estado: trilho | aberto
       function foca(x) { if (!x || !x.focus) return; try { x.focus({ preventScroll: true }); } catch (e) { x.focus(); } }
       function poeEstado(novo, o) {
         o = o || {};
         est = estado(novo);
         html.setAttribute(ATRIBUTO, est);
+        largas();
         btAbrir.setAttribute('aria-expanded', est === 'aberto' ? 'true' : 'false');
         btRecolher.setAttribute('aria-expanded', est === 'aberto' ? 'true' : 'false');
         if (o.gravar) gravarDock(ls, est);
@@ -7976,12 +8069,15 @@
         aviso.hidden = false;
         if (ms) avisoT = setTimeout(function () { aviso.hidden = true; aviso.textContent = ''; }, ms);
       }
-      // a nota de fora da folha (a ficha atual abriu por cima): à esquerda do drawer v2.1
+      // a nota de fora da folha (a ficha atual abriu por cima): à esquerda do
+      // drawer v2.1 e da faixa deste que sobrar à esquerda dele (a 1800 px ou
+      // mais, este tem 460 px e o v2.1, 420), pelas larguras reais (offsetWidth:
+      // a do v2.1 não muda com o translateX da abertura)
+      function largura(x) { return x && !x.hidden && typeof x.offsetWidth === 'number' ? x.offsetWidth : 0; }
       function mostraNota(msg, ms) {
         clearTimeout(notaT);
-        var v2 = el('kf-drawer');
-        var larg = v2 && typeof v2.offsetWidth === 'number' ? v2.offsetWidth : 0;
-        if (larg) nota.style.setProperty('--fd-nota-dir', (larg + VAO_NOTA) + 'px');
+        var dir = direitaNota([largura(el('kf-drawer')), largura(gav)]);
+        if (dir) nota.style.setProperty('--fd-nota-dir', dir + 'px');
         if (nota.textContent !== msg) nota.textContent = msg;
         nota.hidden = false;
         if (ms) notaT = setTimeout(function () { nota.hidden = true; nota.textContent = ''; }, ms);
@@ -8179,15 +8275,17 @@
           var r = gav.getBoundingClientRect();
           return r && r.width ? r.left : null;
         },
-        desenha: desenha, pinta: pinta, resultado: function () { return res; }
+        desenha: desenha, pinta: pinta, resultado: function () { return res; },
+        // reavalia as tabelas largas agora (o ResizeObserver espera ESPERA_LARGAS)
+        largas: largas
       };
     }
 
     return { CHAVE_DOCK: CHAVE_DOCK, ESTADOS: ESTADOS.slice(), PADRAO: PADRAO, ATRIBUTO: ATRIBUTO, ID: ID,
       PREFIXO: PREFIXO, PREFIXO_TRILHO: PREFIXO_TRILHO, AVISO_SO_LEITURA: AVISO_SO_LEITURA, ORIGENS_ARRASTO: ORIGENS_ARRASTO,
-      ORIGEM_BAZAR: ORIGEM_BAZAR, VAO_NOTA: VAO_NOTA,
+      ORIGEM_BAZAR: ORIGEM_BAZAR, VAO_NOTA: VAO_NOTA, MARCA_LARGA: MARCA_LARGA, ESPERA_LARGAS: ESPERA_LARGAS,
       estado: estado, lerDock: lerDock, leArrasto: leArrasto, leCarta: leCarta, avisoAbriu: avisoAbriu, avisoRecusa: avisoRecusa,
-      fracao: fracao, saidaPrevia: saidaPrevia,
+      fracao: fracao, saidaPrevia: saidaPrevia, direitaNota: direitaNota, tabelaLarga: tabelaLarga, marcaLargas: marcaLargas,
       htmlId: htmlId, htmlMinis: htmlMinis, htmlCasca: htmlCasca,
       iniciar: iniciar, borda: borda, atual: function () { return atual; } };
   })();
