@@ -101,6 +101,21 @@ Testes:
 - sem a prévia, nada aparece;
 - o ouro da página e o do `KhPrevia.render` ficam intactos (o modo sombra não muda).
 
+### Como ficou (§1 e §2, 2026-10-10)
+
+Código: `js/ficha/kh-ensaio.js` (`KhEnsaio`: adaptador `prefixado`, `ligado`, `armazem`, `entrar`, `sair`, `calcular`, `uso`, `exportarEnsaio`, `emitir`), `js/ficha/kh-seletor.js` (`KhSeletor`: `criar`, o seletor; `ligarFaixa`, a faixa), `js/ficha-pagina.js` e `js/ficha/kh-ficha-drawer.js` (o botão, a leitura do ensaio, o lugar do seletor), `css/ficha-ensaio.css` (injetado só com o Ensaio) e o `.fd-gaveta-ke`/`.fd-gaveta-ensaiar` no `css/ficha-drawer.css`. Testes: `tools/testes/ensaio.test.js` (22, com o armazenamento espião em todos os fluxos da interface).
+
+- Logo ao entrar, a página desenha a ficha do ensaio byte a byte igual à sombra (contas, topo e as 5 abas; o teste compara). Os avisos de entrada órfã da migração voltam pela própria ficha; os de identidade sem par, não (a ficha só guarda o nome).
+- Com o Ensaio, o topo da página perde o seletor desabilitado e o aviso de só-leitura (com "Abrir a ficha atual" e "Sair da prévia"); o seletor de fichas fica acima do topo. No drawer, o seletor (compacto) ocupa o lugar do aviso.
+
+Escolhas a revisar com o Pedro:
+- **"Sair do ensaio" pede confirmação** ("Sair apaga as N fichas do ensaio desta aba"), com "Exportar ensaio" ao lado. Por isso "Sair da prévia" some com o Ensaio ligado: um clique nele apagaria o ensaio sem pergunta. Sem o Ensaio, "Sair da prévia" apaga o que tiver sobrado do prefixo.
+- **Importar com id repetido → "Atualizar"** usa os mesmos dois passos do Excluir (baixar o export da que vai ser substituída e marcar "Salvei"). A especificação pede "com export antes"; a confirmação vem da revisão da F4.2.
+- **"Exportar ensaio" baixa `khalkaria-ensaio.json`** (o mesmo pacote `fichas/1` do "Exportar todas", que segue `khalkaria-fichas.json`), para não se confundir com um export da ficha real.
+- **Criar sem nome** cria "Ficha nova".
+- **A faixa** fica no pé da janela, entre a nav e o drawer (à esquerda do drawer aberto também quando ele fica por cima: no Bazar e abaixo de 1100 px); o `html[data-ensaio]` reserva 3,5rem no pé da página e sobe o voltar ao topo.
+- **Item do Bazar solto no drawer com o Ensaio** ainda vai para a ficha atual (`KF.adicionar`, com o aviso dizendo isso): levar para a ficha do ensaio é a F4.6c.
+
 ## 3. F4.6b · Edição: campos, ajuste manual (M2) e desfazer
 
 - **Toda alteração passa pelo armazém** (`gravar`), com um log por ficha para desfazer e refazer:

@@ -49,7 +49,8 @@ drawer da ficha nova (`kh-ficha-drawer.js`, pelo `KhPrevia.carregar`) baixa
 também `data/catalogo/*.json`, `data/classes/*.json`, `data/racas/*.json`,
 `data/efeitos.json` e `partials/glifos.html` (~1,5 MB, com o `?v=` do
 `ficha.js`) e o `css/ficha-drawer.css`; a página da ficha baixa os mesmos
-(menos o CSS do drawer, que não monta lá). Sem a prévia, nada disso é pedido. O Pages publica o repo inteiro pelo Jekyll padrão (sem `_config.yml`
+(menos o CSS do drawer, que não monta lá). Com o **modo Ensaio** ligado (F4.6a,
+só com a prévia), mais o `css/ficha-ensaio.css`. Sem a prévia, nada disso é pedido. O Pages publica o repo inteiro pelo Jekyll padrão (sem `_config.yml`
 nem `.nojekyll`: só o que começa com `_` ou `.` fica de fora), então esses
 arquivos estão no ar.
 Todo o resto — `tools/`, `templates/`, os outros `data/*.json`, `partials/`,
@@ -105,7 +106,7 @@ tools/componentes-baseline.json piso da contagem de cada classe CSS de component
                                página de classe (checagem [componentes] do validar)
 tools/gerar_regras_ficha.py    F3b: contrato regras-ficha + blocos do site -> js/ficha/00-regras-dados.js
                                (AST com status/fonte por nó; status desconhecido derruba o build)
-tools/testes/                  testes node do motor KhInv, do KhEstado, do KhRegras e da prévia (*.test.js, fixtures/);
+tools/testes/                  testes node do motor KhInv, do KhEstado, do KhRegras, da prévia e do Ensaio (*.test.js, fixtures/);
                                index.js deixa `node --test tools/testes` rodar no Node 22+;
                                esquema-min.js: validador mínimo de JSON Schema (sem pip) dos
                                testes do schema v3; estado-apoio.js: catálogo real + storage falso
@@ -175,6 +176,12 @@ css/ficha-drawer.css           F4.4a: o conteúdo das 5 abas no drawer da ficha 
                                página). O shell NÃO o injeta e nenhuma página o pede: só o
                                kh-ficha-drawer.js, com a prévia. Empurrar o conteúdo e a
                                reserva ficam no style.css (@layer layout, html[data-ficha3])
+css/ficha-ensaio.css           F4.6a: o modo Ensaio (a faixa fixa .ke-faixa e o seletor de
+                               fichas .ke-seletor, densidades "pagina" e "compacta"; o lugar
+                               dele na página, .fp-ke). SEM camada, tudo sob .ke- e tokens.
+                               O shell NÃO o injeta e nenhuma página o pede: só o
+                               KhSeletor, com o Ensaio ligado. html[data-ensaio] (a faixa à
+                               vista) reserva o pé da página e sobe o voltar ao topo
 js/kh-ui.js                    F2b: biblioteca comum (fora do bundle da ficha; o shell a
                                põe SÍNCRONA antes do 1º <script src> local de toda página):
                                KhTeclas (registro único de atalhos e camadas do Esc, um
@@ -228,6 +235,28 @@ js/ficha/kh-previa.js            KhPrevia (F3c): PRÉVIA ESCONDIDA da v3 (?ficha
                                  (o snapshot de ouro do motor) e listaAvisos; testadas em
                                  previa.test.js. F4.4b: o painel flutuante (#kf3-previa,
                                  css/ficha-previa.css) saiu; quem mostra é o drawer
+js/ficha/kh-ensaio.js            KhEnsaio (F4.6a): a lógica do modo Ensaio, pura sobre os
+                                 storages injetados. O ADAPTADOR (prefixado) põe o prefixo
+                                 khalkaria_ensaio: em toda chave do sessionStorage, e o
+                                 KhEstado.armazem de verdade roda em cima dele (índice,
+                                 fichas, log, sessão e a ativa da aba, tudo prefixado);
+                                 ligado = a marca khalkaria_ensaio_ligado E a prévia;
+                                 entrar (na 1ª vez, a ficha atual migrada EM MEMÓRIA pelo
+                                 KhEstado.sombra, ou uma em branco), sair (só o prefixo e a
+                                 marca), calcular (a ativa do ensaio pelo motor, na forma do
+                                 KhPrevia.calcular), uso, exportarEnsaio e o evento
+                                 kh:ensaio {partes}. Nunca escreve chave de ficha do
+                                 jogador; ensaio.test.js (com o armazenamento espião)
+js/ficha/kh-seletor.js           KhSeletor (F4.6a): a interface do Ensaio. criar(op) monta o
+                                 seletor de fichas num contêiner (página #fp-ke, drawer
+                                 #fd-gaveta-ke): lista, Criar em branco, Duplicar, Excluir
+                                 (export antes + "Salvei", em dois passos), Exportar esta e
+                                 todas, Importar (ficha ou pacote; id repetido: atualizar,
+                                 com o mesmo cuidado do excluir, ou cópia), uso e o aviso de
+                                 QuotaExceeded com "Exportar todas"; Esc fecha o diálogo
+                                 (camadaEsc 35). ligarFaixa(win): a faixa fixa (Exportar
+                                 ensaio, Sair do ensaio com confirmação), chamada pelo drawer
+                                 e pela página. Partes puras (htmlSeletor, htmlFaixa…) no node
 js/ficha/kh-ficha-abas.js        KhFichaAbas (F4.4a), PURO: o desenho das 5 abas da ficha
                                  nova (Núcleo, Técnicas & Marcas, Cartas/Lore/Outros, O
                                  Bazar, Grimório), o MESMO na página e no drawer da F4.4:
@@ -247,7 +276,10 @@ js/ficha/kh-ficha-drawer.js      KhFichaDrawer (F4.4b): o drawer docked da ficha
                                  localStorage khalkaria_ficha3_dock e no html[data-ficha3].
                                  Arrastar acende/abre; item do Bazar vai ao KF.adicionar,
                                  o resto dá o aviso. Esc recolhe (KhTeclas.camadaEsc 40).
-                                 borda() para o KhPrever do Bazar. ficha-drawer.test.js
+                                 borda() para o KhPrever do Bazar. F4.6a: "Ensaiar
+                                 edição" no aviso de só-leitura; com o Ensaio, lê a ficha do
+                                 ensaio e mostra o seletor (KhSeletor) no cabeçalho, e liga
+                                 a faixa. ficha-drawer.test.js e ensaio.test.js
 js/ficha.js                    ARTEFATO (tools/ficha_js.py): concatenação de js/ficha/
                                na ordem do ORDEM, cabeçalho "gerado — não editar". É o
                                único arquivo que o site carrega (main.js injeta; o
@@ -263,9 +295,12 @@ js/ficha-pagina.js             F4.3: página da ficha nova (KhFichaPagina), só 
                                estado em span.fp-n[data-ficha]. Rara nunca mostra o efeito.
                                Ficam aqui o topo e a casca; a dica presa à página (encaixa) e
                                o redesenho (trocaHTML) são do KhRedesenho ('fp'). Sem o
-                               js/ficha.js, só o recado.
-                               Não grava chave de ficha; ficha-pagina.test.js e o ouro do
-                               render (ficha-pagina-ouro.test.js)
+                               js/ficha.js, só o recado. F4.6a: "Ensaiar edição" no topo;
+                               com o Ensaio, lê e calcula a ficha ativa dele e mostra o
+                               seletor de fichas (#fp-ke, KhSeletor) acima do topo, sem o
+                               seletor desabilitado (render sem o.ensaio = o do ouro).
+                               Não grava chave de ficha; ficha-pagina.test.js, o ouro do
+                               render (ficha-pagina-ouro.test.js) e ensaio.test.js
 js/bazar.js                    núcleo do Bazar: catálogo, filtros, Bancada
 js/bazar-cartao.js             pop-up do card (BZ.cartao: conteúdo ┐ módulos do Bazar v3,
                                e resolvedores do KhPrever)      │
@@ -953,6 +988,38 @@ foco num campo de texto fora do drawer). "Sair da prévia" tira só o `ficha` da
 URL, ou recarrega (`reload`) quando ele não está lá.
 `KhFichaDrawer.borda()` dá a borda esquerda para o `xPreferido` do pop-up do
 Bazar (`bazar-cartao.js`), que então nunca abre embaixo do drawer.
+
+**Modo Ensaio e seletor de fichas (F4.6a).** `js/ficha/kh-ensaio.js`
+(`KhEnsaio`) e `js/ficha/kh-seletor.js` (`KhSeletor`), especificação em
+`docs/ficha-digital/07-f4-6-ensaio.md` §1 e §2. Para o Pedro ver e testar as
+telas de escrita da ficha nova antes da virada (F4.7) sem tocar na ficha de
+ninguém. Só com a prévia: "Ensaiar edição" no topo da página da ficha e no aviso
+de só-leitura do drawer. Entrar grava a marca `sessionStorage.khalkaria_ensaio_ligado`
+e, na 1ª vez, põe no ensaio a ficha atual migrada em memória
+(`KhEstado.sombra`, com o catálogo e a poda dos ajustes; logo ao entrar, a página
+desenha a ficha do ensaio byte a byte igual à sombra) ou uma em branco. O
+armazém é o `KhEstado.armazem` de verdade sobre o adaptador `KhEnsaio.prefixado`:
+toda chave vai ao sessionStorage com o prefixo `khalkaria_ensaio:`
+(`khalkaria_ensaio:khalkaria_fichas_v3`, `…:khalkaria_ficha_v3:<id>`,
+`…:khalkaria_ficha_ativa`), e o `key`/`length` do adaptador só enumeram o
+prefixo (a limpeza de quota do armazém não vê mais nada). Vale em todas as
+páginas da aba; fechar a aba ou "Sair do ensaio" (na faixa fixa, com
+confirmação) apaga só o prefixo e a marca. Com o Ensaio, a página e o drawer
+leem a ficha ativa dele (`KhEnsaio.calcular`) e mostram o seletor de fichas
+(`KhSeletor.criar`, em `#fp-ke` e `#fd-gaveta-ke`): lista com nome, classe,
+nível e data; trocar; Criar em branco (pede o nome); Duplicar; Excluir em dois
+passos (baixa o `.khalkaria.json` e só apaga com "Salvei o arquivo"); Exportar
+esta e todas (`khalkaria-fichas.json`, `fichas/1`); Importar ficha ou pacote (id
+repetido: atualizar, com o mesmo cuidado do excluir, ou cópia); o uso do espaço;
+em QuotaExceeded, o aviso com "Exportar todas". Cada mudança sai no evento
+`kh:ensaio` (`{partes: ligado|indice|ficha}`), que a página, o drawer, a faixa e
+os seletores escutam. Sem o Ensaio, tudo como antes (a sombra; os ouros não
+mudam); sem a prévia, nada aparece, mesmo com a marca na aba. Nenhuma escrita
+fora do prefixo (e da marca), em nenhum fluxo: `tools/testes/ensaio.test.js`
+prova com um armazenamento espião sobre o localStorage e o sessionStorage.
+"Sair da prévia" some com o Ensaio ligado (sai-se dele antes, com a
+confirmação) e, sem ele, apaga o que tiver sobrado do prefixo. Na virada, a
+mesma interface passa ao armazém real: muda só o storage por baixo.
 
 **`data-kf-ignorar`.** O `MutationObserver` que redecora os cards ignora
 mudanças dentro de `[data-kf-ignorar]`, e `decorarBazar` não decora card ali

@@ -1,0 +1,122 @@
+/* ============================================================
+   FICHA — o modo Ensaio (F4.6a): a faixa fixa e o seletor de fichas
+   (js/ficha/kh-ensaio.js e js/ficha/kh-seletor.js;
+   docs/ficha-digital/07-f4-6-ensaio.md §1 e §2)
+
+   NÃO é carregado pelo shell nem por página nenhuma: o KhSeletor o injeta só
+   com o Ensaio ligado (que exige a prévia). Sem a prévia, nenhuma página o
+   pede. Por isso SEM CAMADA, como o css/ficha-drawer.css (vive fora do
+   conteúdo e não pode perder para regras sem camada de template), e tudo sob
+   o prefixo .ke- (mais os dois lugares do seletor: .fp-ke na página da
+   ficha; o .fd-gaveta-ke do drawer é do css/ficha-drawer.css). Cores e
+   medidas dos tokens.
+   ============================================================ */
+
+/* ---------------------------------------------------------- a faixa fixa
+   No pé da janela, entre a nav e o drawer da ficha nova (o trilho ou o
+   aberto); na página da ficha, até a borda. O html[data-ensaio] (o KhSeletor marca com a faixa à vista) reserva
+   o pé da página, para o fim do conteúdo e o voltar ao topo não ficarem
+   embaixo dela. Abaixo dos drawers e dos pop-ups. */
+html[data-ensaio] body { padding-bottom: 3.5rem; }
+html[data-ensaio] .back-to-top { bottom: calc(30px + 3.5rem); }
+.ke-faixa {
+    position: fixed; left: var(--nav-w); right: 0; bottom: 0;
+    z-index: calc(var(--z-ficha3) - 1);
+    display: flex; flex-wrap: wrap; align-items: center; gap: var(--esp-2) var(--esp-4);
+    padding: var(--esp-2) var(--esp-4);
+    font-family: var(--font-body); font-size: 1rem; line-height: 1.3;
+    color: var(--text-primary);
+    background: color-mix(in srgb, var(--amber) 14%, var(--bg-card));
+    border-top: 2px solid var(--amber);
+    box-shadow: 0 -8px 24px -12px var(--bg-primary);
+}
+html[data-ficha3] body:not([data-ficha-pagina]) .ke-faixa { right: var(--ficha3-trilho); }
+/* o drawer aberto: à esquerda dele também quando ele fica por cima (Bazar,
+   abaixo de 1100 px), para os botões da faixa não ficarem embaixo dele */
+html[data-ficha3="aberto"] body:not([data-ficha-pagina]) .ke-faixa { right: var(--ficha3-w); }
+@media (max-width: 900px) {
+    .ke-faixa { left: 0; }
+}
+.ke-faixa :where(p) { margin: 0; }
+.ke-faixa-txt { flex: 1 1 22rem; }
+.ke-faixa-txt strong {
+    font-family: var(--font-heading); font-size: .82rem; font-weight: 700;
+    letter-spacing: .08em; text-transform: uppercase;
+    color: var(--gold-light);
+}
+.ke-faixa-acoes { display: flex; flex-wrap: wrap; align-items: center; gap: var(--esp-2); }
+.ke-faixa-conf { font-style: italic; color: var(--text-primary); }
+.ke-faixa-msg { flex-basis: 100%; font-size: .92rem; color: var(--tem); }
+.ke-faixa-msg:empty { display: none; }
+
+/* ---------------------------------------------------------- o seletor de fichas
+   O mesmo HTML na página (densidade "pagina", acima do topo) e no cabeçalho
+   do drawer (densidade "compacta", 380/460 px). */
+.fp-ke { margin-bottom: var(--esp-4); }
+.fp-ke[hidden] { display: none; }
+.ke-seletor {
+    display: flex; flex-direction: column; gap: var(--esp-2);
+    padding: var(--esp-3) var(--esp-4);
+    font-family: var(--font-body); font-size: 1rem; line-height: 1.35;
+    color: var(--text-primary);
+    background: color-mix(in srgb, var(--amber) 7%, var(--bg-card));
+    border: 1px solid var(--amber-dim); border-left: 3px solid var(--amber);
+    border-radius: var(--raio-2);
+}
+.ke-seletor :where(p) { margin: 0; }
+.ke-titulo {
+    font-family: var(--font-heading); font-size: .78rem; font-weight: 600;
+    letter-spacing: .08em; text-transform: uppercase;
+    color: var(--gold);
+}
+.ke-n { font-weight: 400; color: var(--text-secondary); }
+.ke-linha { display: flex; align-items: center; gap: var(--esp-2); min-width: 0; }
+.ke-rot {
+    font-family: var(--font-heading); font-size: .72rem; font-weight: 600;
+    letter-spacing: .08em; text-transform: uppercase;
+    color: var(--text-muted-forte);
+}
+.ke-lista, .ke-nome {
+    flex: 1 1 auto; min-width: 0;
+    padding: var(--esp-1) var(--esp-2);
+    font: inherit; color: var(--text-primary);
+    background: var(--bg-primary);
+    border: 1px solid var(--amber-dim); border-radius: var(--raio-1);
+}
+.ke-lista { max-width: 36rem; }
+.ke-lista:disabled { color: var(--text-muted-forte); }
+.ke-acoes { display: flex; flex-wrap: wrap; gap: var(--esp-1) var(--esp-2); }
+.ke-btn:disabled { color: var(--text-muted-forte); border-color: var(--border-color); cursor: not-allowed; }
+.ke-uso { font-size: .88rem; color: var(--text-secondary); }
+.ke-dialogo {
+    display: flex; flex-direction: column; gap: var(--esp-2);
+    padding: var(--esp-3);
+    background: var(--bg-secondary);
+    border: 1px solid var(--amber-dim); border-radius: var(--raio-1);
+}
+.ke-dialogo-perigo { border-color: var(--extremo-vivo); }
+.ke-dialogo-tit {
+    font-family: var(--font-heading); font-size: .8rem; font-weight: 600;
+    letter-spacing: .06em; text-transform: uppercase;
+    color: var(--gold-light);
+}
+.ke-dialogo-acoes { display: flex; flex-wrap: wrap; align-items: center; gap: var(--esp-2); }
+.ke-campo { display: flex; align-items: center; gap: var(--esp-2); }
+.ke-check { display: inline-flex; align-items: center; gap: var(--esp-2); cursor: pointer; }
+.ke-check input { accent-color: var(--amber); }
+.ke-nota { font-size: .88rem; font-style: italic; color: var(--text-secondary); }
+.ke-msg { font-size: .92rem; color: var(--tem); }
+.ke-msg-aviso { color: var(--leve); }
+.ke-msg:empty { display: none; }
+.ke-seletor :focus-visible, .ke-faixa :focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
+
+/* compacta: no cabeçalho do drawer */
+.ke-seletor[data-ke-densidade="compacta"] {
+    margin-top: var(--esp-1);
+    padding: var(--esp-2) var(--esp-3);
+    gap: var(--esp-1);
+    font-size: .95rem;
+}
+.ke-seletor[data-ke-densidade="compacta"] .ke-dialogo { padding: var(--esp-2); }
+/* em 380 px, o uso numa linha só: o da aba inteira fica no title */
+.ke-seletor[data-ke-densidade="compacta"] .ke-uso-aba { display: none; }

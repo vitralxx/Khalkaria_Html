@@ -37,6 +37,14 @@
  * F4.4b, porque o drawer da ficha nova faz o mesmo), com o prefixo 'fp'.
  * Com a prévia, o drawer da ficha nova (KhFichaDrawer) NÃO monta nesta página.
  * Os avisos são os da prévia (KhPrevia.listaAvisos, fonte única).
+ * F4.6a (07 §1 e §2): o modo Ensaio. O topo ganha "Ensaiar edição"
+ * (data-ke="entrar"); ligado (KhEnsaio.ligado), a página lê e calcula a ficha
+ * ativa do ensaio (KhEnsaio.calcular, sessionStorage com o prefixo
+ * khalkaria_ensaio:), o topo perde o seletor desabilitado e o seletor de
+ * fichas do ensaio (KhSeletor, #fp-ke) aparece acima dele; a faixa fixa é do
+ * KhSeletor.ligarFaixa. Redesenha no evento kh:ensaio. Sem o Ensaio, tudo como
+ * antes (o render sem o.ensaio é o do ouro). "Sair da prévia" apaga também o
+ * Ensaio desta aba. O Ensaio nunca grava chave de ficha: só o prefixo dele.
  *
  * No node (tools/testes/ficha-pagina.test.js) exporta por module.exports e
  * carrega os módulos de js/ficha/ direto; no navegador usa os do js/ficha.js,
@@ -52,6 +60,8 @@
   var KhConta = emNode ? require('./ficha/kh-conta.js') : raiz.KhConta;
   var KhAbas = emNode ? require('./ficha/kh-abas.js') : raiz.KhAbas;
   var KhFichaAbas = emNode ? require('./ficha/kh-ficha-abas.js') : raiz.KhFichaAbas;
+  var KhEnsaio = emNode ? require('./ficha/kh-ensaio.js') : raiz.KhEnsaio;
+  var KhSeletor = emNode ? require('./ficha/kh-seletor.js') : raiz.KhSeletor;
 
   var FichaPagina = (function () {
     var CHAVE_PREVIA = 'khalkaria_ficha_previa';
@@ -63,6 +73,9 @@
     // só sem o js/ficha.js (o mesmo texto do KhFichaAbas.mensagemEstado, que aí não existe)
     var SEM_MOTOR = 'O motor da ficha (js/ficha.js) não carregou. Recarregue a página.';
     var RESTAURADA = 'Ordem do A4 restaurada.';
+    // o modo Ensaio (F4.6a, 07 §1): o botão de entrar, no aviso de só-leitura do topo
+    var ENSAIAR = 'Ensaiar edição';
+    var DICA_ENSAIAR = 'Liga o modo Ensaio nesta aba: as fichas do ensaio ficam só nela e a sua ficha não muda';
     // como mudar a ordem: dica no botão de cada aba (title vira a descrição acessível)
     // o Alt+seta só move com a aba focada pelo teclado (depois de um clique, o
     // Alt+← é o Voltar do navegador): a dica diz como chegar lá
@@ -124,15 +137,18 @@
       return '<h1 class="fp-titulo">Ficha</h1><p class="fp-estado" role="status">' + esc(SEM_MOTOR) + '</p>';
     }
 
-    // a casca: topo (preenchido por htmlTopo), lista de abas (na ordem dada, uma
-    // lista de ids; sem ela, a do A4) com o "Ordem do A4", painéis e o sprite g-*
-    function htmlCasca(aberta, ordem) {
+    // a casca: o lugar do seletor de fichas do Ensaio (#fp-ke, escondido fora
+    // dele: KhSeletor), topo (preenchido por htmlTopo; opTopo é o dele), lista
+    // de abas (na ordem dada, uma lista de ids; sem ela, a do A4) com o "Ordem
+    // do A4", painéis e o sprite g-*
+    function htmlCasca(aberta, ordem, opTopo) {
       var ids = idsAbas();
       var o = KhAbas ? KhAbas.normaliza(ordem, ids) : ids;
       var abas = o.map(abaPorId);
       var padrao = o.join(' ') === ids.join(' ');
       aberta = abas.some(function (a) { return a.id === aberta; }) ? aberta : abas[0].id;
-      return '<header class="fp-topo" id="fp-topo">' + htmlTopo(null) + '</header>' +
+      return '<div class="fp-ke" id="fp-ke" hidden></div>' +
+        '<header class="fp-topo" id="fp-topo">' + htmlTopo(null, opTopo) + '</header>' +
         '<div class="fp-abas-barra">' +
         '<div class="fp-abas" id="fp-abas" role="tablist" aria-label="Partes da ficha">' +
         abas.map(function (a) {
@@ -159,8 +175,12 @@
         '<div class="fp-sprite" id="fp-sprite" aria-hidden="true"></div>';
     }
 
-    // topo; res null = carregando
-    function htmlTopo(res) {
+    // topo; res null = carregando. o.ensaio (F4.6a): sem ele, o topo de antes
+    // (o ouro); false = com a prévia e o Ensaio desligado (o de antes mais o botão
+    // "Ensaiar edição"); true = Ensaio ligado (sem o seletor desabilitado nem o
+    // aviso de só-leitura: o seletor de fichas do ensaio fica no #fp-ke)
+    function htmlTopo(res, o) {
+      var ensaio = obj(o) && typeof o.ensaio === 'boolean' ? o.ensaio : null;
       var ok = !!res && res.estado === 'ok';
       var f = ok ? res.ficha : null;
       var meta = f && obj(f.meta) ? f.meta : {};
@@ -169,15 +189,17 @@
       function campo(rot, val) {
         return '<div class="fp-campo"><dt>' + esc(rot) + '</dt><dd>' + (val ? esc(val) : '<span class="fp-vazio">—</span>') + '</dd></div>';
       }
-      var h = '<div class="fp-topo-linha">' +
+      var h = ensaio === true ? '' : '<div class="fp-topo-linha">' +
         // seletor de ficha (D36): desabilitado até a virada, só com a ficha atual
         '<label class="fp-seletor"><span class="fp-rot">Ficha</span>' +
         '<select disabled title="Trocar de ficha chega com a virada da ficha nova">' +
         '<option selected>' + esc(ok ? nome + ' (ficha atual)' : 'Ficha atual') + '</option></select></label>' +
         '<p class="fp-ro" role="note"><span>' + esc(AVISO_RO) + '</span> ' +
         '<button type="button" class="kh-btn fp-abrir-v2">Abrir a ficha atual</button> ' +
-        '<button type="button" class="kh-btn fp-sair-previa">Sair da prévia</button></p></div>' +
-        '<h1 class="fp-nome">' + esc(nome) + '</h1>';
+        '<button type="button" class="kh-btn fp-sair-previa">Sair da prévia</button>' +
+        (ensaio === false ? ' <button type="button" class="kh-btn fp-ensaiar" data-ke="entrar" title="' + esc(DICA_ENSAIAR) + '">' + esc(ENSAIAR) + '</button>' : '') +
+        '</p></div>';
+      h += '<h1 class="fp-nome">' + esc(nome) + '</h1>';
       if (ok) {
         h += '<dl class="fp-ident">' +
           campo('Raça', refNome(idt.raca)) + campo('Classe', refNome(idt.classe)) +
@@ -193,10 +215,12 @@
     // a passada inteira: topo + um html por painel. Os painéis são do
     // KhFichaAbas (uma instância do KhConta por passada: ids fp-d-1, fp-d-2…
     // únicos na página toda).
-    // op: {dados (o do KhPrevia.carregar), D (KhRegras.dados()), base (raiz do site, para images/)}
+    // op: {dados (o do KhPrevia.carregar), D (KhRegras.dados()), base (raiz do site, para images/),
+    //      ensaio (F4.6a: o do htmlTopo; sem ele, o topo de antes)}
     function render(res, op) {
       var r = DESENHO.paineis(res, op);
-      return { topo: htmlTopo(res), paineis: r.paineis, caminhos: r.caminhos };
+      var ensaio = obj(op) && typeof op.ensaio === 'boolean' ? { ensaio: op.ensaio } : undefined;
+      return { topo: htmlTopo(res, ensaio), paineis: r.paineis, caminhos: r.caminhos };
     }
 
 
@@ -259,9 +283,21 @@
       var ids = idsAbas();
       var ordem = KhAbas ? KhAbas.lerOrdem(ls, ids) : ids;
       var aberta = (KhAbas && KhAbas.lerAberta(ss, ids)) || ordem[0];
-      raizEl.innerHTML = htmlCasca(aberta, ordem);
+      // o modo Ensaio (F4.6a, KhEnsaio): ligado, a página lê e calcula a ficha
+      // ativa do ensaio; desligado, a sombra da ficha atual, como antes
+      var comEnsaio = !!(KhEnsaio && KhSeletor);
+      function ensaio() { return comEnsaio && KhEnsaio.ligado(win); }
+      function opTopo() { return comEnsaio ? { ensaio: ensaio() } : undefined; }
+      raizEl.innerHTML = htmlCasca(aberta, ordem, opTopo());
 
       function el(id) { return doc.getElementById(id); }
+
+      // os dados do motor (KhPrevia.carregar), para o desenho e para o Ensaio
+      // (migrar a ficha atual e resolver o import pelo catálogo)
+      var pronto = null;
+      var seletor = comEnsaio ? KhSeletor.criar({ win: win, doc: doc, cont: el('fp-ke'), prefixo: PREFIXO, densidade: 'pagina',
+        dados: function () { return pronto; } }) : null;
+      if (comEnsaio) KhSeletor.ligarFaixa(win);
 
       raizEl.addEventListener('click', function (e) {
         var t = e.target;
@@ -269,12 +305,14 @@
           if (win.KF && typeof win.KF.abrir === 'function') win.KF.abrir();
         }
         // o painel da prévia não abre aqui, então a saída fica na própria página:
-        // apaga a chave da prévia e recarrega sem ?ficha=v3 (volta ao aviso)
+        // apaga a chave da prévia (e o Ensaio desta aba) e recarrega sem ?ficha=v3 (volta ao aviso)
         if (t && t.closest && t.closest('.fp-sair-previa')) {
           try { if (ls) ls.removeItem('khalkaria_ficha_previa'); } catch (err) { /* storage bloqueado */ }
           try { if (ss) ss.removeItem('khalkaria_ficha_previa_recolhida'); } catch (err) { /* idem */ }
+          if (comEnsaio) KhEnsaio.sair(ss);
           if (win.location && typeof win.location.replace === 'function') win.location.replace(win.location.pathname);
         }
+        if (t && t.closest && t.closest('[data-ke="entrar"]') && seletor) seletor.entrar();
       });
       // a lista de abas é do KhAbas (F4.5): clique, setas, Home, End, Alt+setas
       // (KhTeclas), arrasto, "Ordem do A4", e as duas preferências no storage
@@ -323,7 +361,9 @@
       var dados = null, t = null;
       // redesenha sem perder o lugar do jogador (trocaHTML): foco, <details>, dica
       function pinta(r0) {
-        var r = render(r0, { dados: dados, base: base || '../' });
+        var op = { dados: dados, base: base || '../' };
+        if (comEnsaio) op.ensaio = ensaio();
+        var r = render(r0, op);
         trocaHTML(doc, el('fp-topo'), r.topo, el('fp-aba-' + aberta), raizEl, win);
         ABAS.forEach(function (a) {
           var p = el('fp-painel-' + a.id);
@@ -332,7 +372,9 @@
           p.removeAttribute('aria-busy');
         });
       }
-      function desenha() { if (dados) pinta(KhPrevia.calcular(ls, dados, versao)); }
+      // com o Ensaio, a ficha ativa dele (KhEnsaio.calcular); sem ele, a sombra da ficha atual
+      function calcula() { return ensaio() ? KhEnsaio.calcular(ss, dados, versao) : KhPrevia.calcular(ls, dados, versao); }
+      function desenha() { if (dados) pinta(calcula()); }
       // a ficha atual (v2) é editada no drawer desta mesma página ou em outra aba:
       // redesenha 350 ms depois (o drawer grava com debounce de 200 ms)
       function agenda() { clearTimeout(t); t = setTimeout(desenha, 350); }
@@ -340,15 +382,19 @@
       doc.addEventListener('input', function (e) { if (e.target && e.target.closest && e.target.closest('#kf-drawer')) agenda(); }, true);
       doc.addEventListener('change', function (e) { if (e.target && e.target.closest && e.target.closest('#kf-drawer')) agenda(); }, true);
       win.addEventListener('storage', function (e) { if (e && e.key === CHAVE_V2) agenda(); });
+      // o Ensaio ligou, saiu, trocou de ficha ou mudou a lista: redesenha na hora
+      if (comEnsaio) doc.addEventListener(KhEnsaio.EVENTO, function () { desenha(); });
 
-      KhPrevia.carregar(win.fetch.bind(win), base, versao).then(function (d) {
+      pronto = KhPrevia.carregar(win.fetch.bind(win), base, versao).then(function (d) {
         dados = d;
         // o sprite g-* (moldura de raízes, ramos, selo) entra uma vez, antes do desenho
         var sp = el('fp-sprite');
         if (sp && d && d.glifos) sp.innerHTML = d.glifos;
         desenha();
+        return { dados: d, versao: versao };
       }, function (e) {
         pinta({ estado: 'falha', erro: str(e && e.message), erros: [] });
+        return { dados: null, versao: versao };
       });
       return true;
     }

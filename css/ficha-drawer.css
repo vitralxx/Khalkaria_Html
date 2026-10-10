@@ -632,6 +632,7 @@
 .fd-gaveta-btn { display: inline-grid; place-items: center; width: 30px; height: 30px; padding: 0; text-decoration: none; }
 .fd-gaveta-btn:hover { color: var(--gold-light); border-color: var(--amber); }
 .fd-gaveta .fd-gaveta-ro { grid-column: 1 / -1; font-size: .85rem; font-style: italic; color: var(--text-muted-forte); }
+.fd-gaveta-ro[hidden] { display: none; }
 .fd-gaveta-sair {
     padding: 0;
     font: inherit; font-style: normal; color: var(--gold);
@@ -640,6 +641,19 @@
     cursor: pointer;
 }
 .fd-gaveta-sair:hover { color: var(--gold-light); }
+/* "Ensaiar edição" (F4.6a): o mesmo desenho do "Sair da prévia" */
+.fd-gaveta-ensaiar {
+    padding: 0;
+    font: inherit; font-style: normal; color: var(--gold);
+    background: none; border: 0;
+    text-decoration: underline; text-underline-offset: 2px;
+    cursor: pointer;
+}
+.fd-gaveta-ensaiar:hover { color: var(--gold-light); }
+/* o seletor de fichas do Ensaio (F4.6a, js/ficha/kh-seletor.js): a linha toda
+   do cabeçalho; o desenho dele é do css/ficha-ensaio.css */
+.fd-gaveta-ke { grid-column: 1 / -1; min-width: 0; }
+.fd-gaveta-ke[hidden] { display: none; }
 
 /* as abas: a lista do KhAbas (a mesma ordem da página), numa linha só de 5
    colunas iguais: o número da página do A4 em cima, a primeira palavra do

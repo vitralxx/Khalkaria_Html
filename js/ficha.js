@@ -6710,6 +6710,928 @@
   raiz.KhPrevia = KhPrevia;
 })(typeof window !== 'undefined' ? window : this);
 
+// ==== js/ficha/kh-ensaio.js ====
+/* Khalkaria — Ficha · KhEnsaio: o modo Ensaio da ficha nova (F4.6a), SÓ COM A PRÉVIA.
+ * Especificação: docs/ficha-digital/07-f4-6-ensaio.md §1 (base: plano 02 §3.1, D36).
+ *
+ * O problema: as telas de escrita da ficha nova (seletor, edição, ajuste,
+ * levar) precisam ser vistas e testadas antes da virada (F4.7), e até lá nada
+ * pode gravar nas chaves da ficha dos jogadores (khalkaria_ficha,
+ * khalkaria_fichas_v3, khalkaria_ficha_v3:*, khalkaria_ficha_v3_log:*,
+ * khalkaria_ficha_v3_sessao:*, khalkaria_ficha_dono).
+ *
+ * A solução: o armazém v3 de verdade (KhEstado.armazem, o mesmo que a virada
+ * liga sobre o localStorage) roda sobre um ADAPTADOR de armazenamento que grava
+ * no sessionStorage da aba, com o prefixo 'khalkaria_ensaio:' em toda chave
+ * (prefixado). O armazém não sabe: lê e escreve 'khalkaria_fichas_v3', e a
+ * chave de verdade é 'khalkaria_ensaio:khalkaria_fichas_v3'. A ativa da aba
+ * (khalkaria_ficha_ativa) vai pelo mesmo adaptador. As chaves reais nunca são
+ * tocadas: a ficha atual só é LIDA (fichaInicial, por um invólucro só-leitura).
+ *
+ *   ligado(win)          o ensaio está ligado nesta aba? (a marca
+ *                        sessionStorage.khalkaria_ensaio_ligado === '1' E a prévia)
+ *   armazem(ss, op)      o KhEstado.armazem sobre o adaptador
+ *   entrar(ss, ls, op)   liga; na 1ª vez, a ficha atual migrada EM MEMÓRIA
+ *                        (migrarV2paraV3, pelo KhEstado.sombra) ou, sem ela, uma
+ *                        ficha em branco
+ *   sair(ss)             apaga SÓ as chaves com o prefixo e a marca
+ *   calcular(ss, dados)  a ficha ativa do ensaio calculada pelo motor (o
+ *                        resultado tem a forma do KhPrevia.calcular)
+ *   uso(ss)              quanto o ensaio ocupa (o sessionStorage tem ~5 MB por aba)
+ *   exportarEnsaio(ss)   o pacote fichas/1 com todas as fichas do ensaio
+ *   emitir(win, partes)  o evento 'kh:ensaio' no document, {detail:{partes}}:
+ *                        'ligado' (entrou ou saiu), 'indice' (a lista de fichas
+ *                        mudou), 'ficha' (a ativa mudou ou foi regravada)
+ *
+ * A ficha do ensaio vale enquanto a aba estiver aberta, em todas as páginas
+ * dessa aba (sessionStorage); fechar a aba ou "Sair do ensaio" apaga tudo. Na
+ * virada, a mesma interface passa a usar o armazém real: muda só o storage
+ * por baixo.
+ *
+ * Puro sobre os storages injetados (testado no node: tools/testes/ensaio.test.js);
+ * a interface (seletor, faixa) é do KhSeletor (js/ficha/kh-seletor.js). No node
+ * exporta por module.exports (carregado sozinho); no artefato js/ficha.js o
+ * export já é o KhInv e este módulo só registra window.KhEnsaio no navegador.
+ * Vem no ORDEM depois do kh-previa.js (usa o KhEstado, o KhRegras e o KhPrevia).
+ * Fonte: js/ficha/kh-ensaio.js (o js/ficha.js é o ARTEFATO concatenado).
+ */
+(function (raiz) {
+  'use strict';
+
+  var emNode = typeof module === 'object' && module && module.exports;
+  if (emNode && Object.keys(module.exports).length) return;   // artefato no node: só o KhInv
+  var KhEstado = emNode ? require('./kh-estado.js') : raiz.KhEstado;
+  var KhRegras = emNode ? require('./kh-regras.js') : raiz.KhRegras;
+  var KhPrevia = emNode ? require('./kh-previa.js') : raiz.KhPrevia;
+
+  var KhEnsaio = (function () {
+    var PREFIXO = 'khalkaria_ensaio:';
+    var CHAVE_LIGADO = 'khalkaria_ensaio_ligado';
+    var EVENTO = 'kh:ensaio';
+    var NOME_PACOTE = 'khalkaria-ensaio.json';
+    // o sessionStorage tem a mesma ordem de grandeza do localStorage (~5 MB por origem)
+    var LIMITE = KhEstado ? KhEstado.LIMITE_QUOTA : 5 * 1024 * 1024;
+
+    function obj(x) { return !!x && typeof x === 'object' && !Array.isArray(x); }
+    function lista(x) { return Array.isArray(x) ? x : []; }
+    function str(x) { return x == null ? '' : String(x); }
+    function storage(win, nome) { try { return win ? win[nome] || null : null; } catch (e) { return null; } }
+    function janela() { return typeof window !== 'undefined' ? window : null; }
+    function ehQuota(e) {
+      return !!e && (e.name === 'QuotaExceededError' || e.name === 'NS_ERROR_DOM_QUOTA_REACHED' || e.code === 22 || e.code === 1014);
+    }
+
+    // ---------------- o adaptador ----------------
+    // Um Storage (getItem, setItem, removeItem, key, length, clear) sobre base,
+    // em que toda chave ganha o prefixo. key/length enumeram SÓ as chaves com o
+    // prefixo (sem ele): o armazém, a limpeza de quota e o uso do KhEstado veem
+    // só o ensaio. O erro do base (QuotaExceeded, storage bloqueado) passa reto.
+    function prefixado(base, prefixo) {
+      var P = typeof prefixo === 'string' && prefixo ? prefixo : PREFIXO;
+      function nossas() {
+        var out = [], n = 0;
+        if (!base) return out;
+        try { n = base.length; } catch (e) { n = 0; }
+        for (var i = 0; i < n; i++) {
+          var k = null;
+          try { k = base.key(i); } catch (e) { k = null; }
+          if (k != null && k.indexOf(P) === 0) out.push(k.slice(P.length));
+        }
+        return out;
+      }
+      var a = {
+        prefixo: P,
+        getItem: function (k) { return base ? base.getItem(P + k) : null; },
+        setItem: function (k, v) {
+          if (!base) { var e = new Error('sem sessionStorage'); e.name = 'SecurityError'; throw e; }
+          base.setItem(P + k, String(v));
+        },
+        removeItem: function (k) { if (base) base.removeItem(P + k); },
+        key: function (i) { var l = nossas(); return i >= 0 && i < l.length ? l[i] : null; },
+        clear: function () { nossas().forEach(function (k) { base.removeItem(P + k); }); },
+        chaves: nossas
+      };
+      Object.defineProperty(a, 'length', { get: function () { return nossas().length; }, enumerable: true });
+      return a;
+    }
+    // só getItem (e erro engolido): a ficha atual é LIDA, nunca escrita
+    function soLeitura(ls) {
+      return { getItem: function (k) { try { return ls ? ls.getItem(k) : null; } catch (e) { return null; } } };
+    }
+
+    // ---------------- ligado ----------------
+    function marcado(ss) { try { return !!ss && ss.getItem(CHAVE_LIGADO) === '1'; } catch (e) { return false; } }
+    // a prévia ligada (a regra do KhPrevia.ativacao e do head-boot), sem gravar nada
+    function previaAtiva(win) {
+      if (!win || !KhPrevia) return false;
+      var search = '';
+      try { search = win.location ? str(win.location.search) : ''; } catch (e) { search = ''; }
+      try { return !!KhPrevia.ativacao(search, storage(win, 'localStorage')).ativa; } catch (e) { return false; }
+    }
+    // o ensaio está ligado nesta aba: a marca E a prévia (sem a prévia, nada do ensaio aparece)
+    function ligado(win) {
+      win = win || janela();
+      if (!win) return false;
+      return marcado(storage(win, 'sessionStorage')) && previaAtiva(win);
+    }
+
+    // ---------------- o armazém do ensaio ----------------
+    // o KhEstado.armazem de verdade sobre o adaptador (a ativa da aba também)
+    function armazem(ss, opcoes) {
+      var a = prefixado(ss);
+      return KhEstado.armazem(a, a, opcoes || {});
+    }
+
+    // o motor: o índice do catálogo (os arquivos do KhPrevia.carregar) e o
+    // calculado que poda os ajustes migrados (os mesmos do KhPrevia.calcular)
+    function temCatalogo(dados) {
+      return !!dados && (lista(dados.catalogos).length > 0 || lista(dados.classes).length > 0 || lista(dados.racas).length > 0);
+    }
+    function indice(dados, versao) {
+      return temCatalogo(dados) ? KhEstado.indiceCatalogo(KhEstado.entradasDeCatalogo(dados), str(versao)) : null;
+    }
+    function efeitosDe(dados) { return dados && dados.efeitos ? (dados.efeitos.porId || dados.efeitos) : null; }
+    function opcoesMotor(dados, versao) {
+      var ef = efeitosDe(dados);
+      return { catalogo: indice(dados, versao),
+        calculado: function (f) { return KhRegras.calculados(f, { efeitos: ef }); } };
+    }
+
+    // A ficha com que o ensaio nasce: a ficha atual (khalkaria_ficha) migrada
+    // EM MEMÓRIA, ou null (sem ficha atual, ou ilegível: a em branco).
+    // -> {ficha|null, origem:'migrada'|'branco', avisos, erro?}
+    function fichaInicial(ls, dados, versao, opcoes) {
+      var o = Object.assign({}, opcoes || {}, opcoesMotor(dados, versao));
+      var r = null;
+      try { r = KhEstado.sombra(soLeitura(ls), o); } catch (e) { r = { erro: 'falha' }; }
+      if (!r) return { ficha: null, origem: 'branco', avisos: [] };
+      if (r.erro) return { ficha: null, origem: 'branco', avisos: [], erro: str(r.erro) };
+      return { ficha: r.ficha, origem: 'migrada', avisos: lista(r.avisos) };
+    }
+
+    // ---------------- entrar e sair ----------------
+    // Liga o ensaio nesta aba. Na 1ª vez (o ensaio sem ficha), põe nele a
+    // ficha inicial; se já tem fichas (outra página da aba), só liga.
+    // op: {dados, versao (os do KhPrevia.carregar), agora, aleatorio (testes)}
+    // -> {ok, criada:'migrada'|'branco'|null, id, avisos, erroV2} | {ok:false, erro, sugestao?}
+    // Escreve SÓ chaves com o prefixo e a marca; se falhar no meio, apaga o que escreveu.
+    function entrar(ss, ls, op) {
+      op = op || {};
+      if (!ss) return { ok: false, erro: 'storage' };
+      var arm = armazem(ss, op);
+      var tinha = arm.listar().length > 0;
+      var out = { ok: true, criada: null, id: null, avisos: [], erroV2: null };
+      if (!tinha) {
+        var ini = fichaInicial(ls, op.dados, op.versao, op);
+        var r = ini.ficha ? arm.importar(ini.ficha, opcoesMotor(op.dados, op.versao)) : arm.criar({});
+        if (!r.ok) { limpa(ss); return { ok: false, erro: r.erro, sugestao: r.sugestao }; }
+        out.criada = ini.ficha ? 'migrada' : 'branco';
+        out.avisos = ini.avisos;
+        out.erroV2 = ini.erro || null;
+        out.id = r.id || (r.ids && r.ids[0]) || null;
+      } else out.id = arm.ativa();
+      try { ss.setItem(CHAVE_LIGADO, '1'); } catch (e) {
+        if (!tinha) limpa(ss);
+        return { ok: false, erro: ehQuota(e) ? 'quota' : 'storage' };
+      }
+      return out;
+    }
+    // apaga as chaves com o prefixo (a lista antes: apagar muda os índices)
+    function limpa(ss) {
+      var fora = [];
+      prefixado(ss).chaves().forEach(function (k) {
+        try { ss.removeItem(PREFIXO + k); fora.push(PREFIXO + k); } catch (e) { /* storage bloqueado */ }
+      });
+      return fora;
+    }
+    // "Sair do ensaio": SÓ as chaves com o prefixo e a marca (as que existem)
+    function sair(ss) {
+      if (!ss) return { ok: true, apagadas: [] };
+      var apagadas = limpa(ss);
+      try {
+        if (ss.getItem(CHAVE_LIGADO) != null) { ss.removeItem(CHAVE_LIGADO); apagadas.push(CHAVE_LIGADO); }
+      } catch (e) { /* idem */ }
+      return { ok: true, apagadas: apagadas };
+    }
+
+    // ---------------- leitura ----------------
+    // Os avisos de entrada órfã que a migração deu (o mesmo texto do
+    // migrarV2paraV3), tirados da própria ficha: a entrada guarda o orfao e o
+    // migradoDe. Assim a ficha do ensaio, logo ao entrar, mostra os mesmos
+    // avisos que a sombra da ficha atual.
+    function avisosDaFicha(f) {
+      var out = [];
+      lista(f && f.entradas).forEach(function (e) {
+        if (!obj(e) || !obj(e.orfao) || !obj(e.migradoDe)) return;
+        out.push({ tipo: 'orfa', ref: str(e.migradoDe.tipo) + ':' + str(e.migradoDe.id), motivo: e.orfao.motivo });
+      });
+      return out;
+    }
+    // A ficha ativa do ensaio calculada pelo motor. O resultado tem a forma do
+    // KhPrevia.calcular (a página e o drawer desenham igual), com ensaio:true e
+    // o id da ficha. Só LÊ.
+    function calcular(ss, dados, versao) {
+      dados = dados || {};
+      var erros = lista(dados.erros);
+      try {
+        var arm = armazem(ss);
+        var id = arm.ativa();
+        if (!id) return { estado: 'sem-ficha', ensaio: true, erros: erros };
+        var f = arm.ler(id);
+        if (!f) return { estado: 'erro', erro: 'ilegivel', ensaio: true, erros: erros };
+        var ef = efeitosDe(dados);
+        var av = KhRegras.avaliar(f, { efeitos: ef });
+        return { estado: 'ok', ficha: f, de: str(f.schemaVersion), avisosMigracao: avisosDaFicha(f), av: av,
+          semCatalogo: !temCatalogo(dados), semEfeitos: !ef, erros: erros, ensaio: true, fichaId: id };
+      } catch (e) {
+        return { estado: 'falha', erro: str(e && e.message), ensaio: true, erros: erros };
+      }
+    }
+
+    // Quanto o ensaio ocupa (bytes: chave + valor, 2 por caractere, como o
+    // KhEstado.uso) e quanto a aba toda ocupa do sessionStorage (a quota é dele).
+    function uso(ss) {
+      var bytes = 0, total = 0, n = 0;
+      try { n = ss ? ss.length : 0; } catch (e) { n = 0; }
+      for (var i = 0; i < n; i++) {
+        var k = null, v = '';
+        try { k = ss.key(i); v = str(ss.getItem(k)); } catch (e) { k = null; }
+        if (k == null) continue;
+        var b = (k.length + v.length) * 2;
+        total += b;
+        if (k.indexOf(PREFIXO) === 0 || k === CHAVE_LIGADO) bytes += b;
+      }
+      return { bytes: bytes, total: total, limite: LIMITE, fracao: total / LIMITE };
+    }
+
+    // "Exportar ensaio": o pacote fichas/1 com todas as fichas do ensaio
+    function exportarEnsaio(ss) {
+      var p = armazem(ss).exportarTodas();
+      p.nomeArquivo = NOME_PACOTE;
+      return p;
+    }
+
+    // o evento 'kh:ensaio' no document; false sem DOM
+    function emitir(win, partes) {
+      win = win || janela();
+      var doc = win && win.document;
+      if (!doc || typeof doc.dispatchEvent !== 'function') return false;
+      var detail = { partes: lista(partes).slice() }, ev = null;
+      try { if (typeof win.CustomEvent === 'function') ev = new win.CustomEvent(EVENTO, { detail: detail }); } catch (e) { ev = null; }
+      if (!ev) {
+        try { ev = doc.createEvent('CustomEvent'); ev.initCustomEvent(EVENTO, false, false, detail); } catch (e) { ev = null; }
+      }
+      if (!ev) return false;
+      try { doc.dispatchEvent(ev); } catch (e) { return false; }
+      return true;
+    }
+
+    return { PREFIXO: PREFIXO, CHAVE_LIGADO: CHAVE_LIGADO, EVENTO: EVENTO, NOME_PACOTE: NOME_PACOTE, LIMITE: LIMITE,
+      prefixado: prefixado, soLeitura: soLeitura, marcado: marcado, previaAtiva: previaAtiva, ligado: ligado,
+      armazem: armazem, indice: indice, opcoesMotor: opcoesMotor, fichaInicial: fichaInicial, avisosDaFicha: avisosDaFicha,
+      entrar: entrar, sair: sair, calcular: calcular, uso: uso, exportarEnsaio: exportarEnsaio, emitir: emitir,
+      ehQuota: ehQuota };
+  })();
+
+  if (emNode) { module.exports = KhEnsaio; return; }
+  raiz.KhEnsaio = KhEnsaio;
+})(typeof window !== 'undefined' ? window : this);
+
+// ==== js/ficha/kh-seletor.js ====
+/* Khalkaria — Ficha · KhSeletor: o seletor de fichas e a faixa do Ensaio (F4.6a), SÓ COM A PRÉVIA.
+ * Especificação: docs/ficha-digital/07-f4-6-ensaio.md §2 (base: plano 02 §3.1, D36).
+ *
+ * A interface do modo Ensaio (a lógica é do KhEnsaio, js/ficha/kh-ensaio.js):
+ *   - o SELETOR de fichas (criar(op)): um controlador por lugar, no topo da
+ *     página da ficha (#fp-ke) e no cabeçalho do drawer da ficha nova
+ *     (#fd-gaveta-ke). Só funciona no ensaio; fora dele o contêiner fica
+ *     escondido (na página, o seletor desabilitado do topo segue como hoje).
+ *     Lista (nome, classe, nível e data; trocar redesenha a página e o
+ *     drawer), Criar em branco (pede o nome), Duplicar (id novo, "(cópia)"),
+ *     Excluir (dois passos: baixa o export e pede que o jogador confirme que
+ *     salvou; o export não conta como feito sem a confirmação), Exportar esta
+ *     (<nome>.khalkaria.json) e todas (khalkaria-fichas.json, fichas/1),
+ *     Importar (ficha ou pacote; id repetido pergunta: atualizar, com o export
+ *     antes e a mesma confirmação, ou cópia), o uso do espaço e, em
+ *     QuotaExceeded, o aviso com "Exportar todas";
+ *   - a FAIXA fixa (ligarFaixa(win), chamada por quem monta com a prévia: o
+ *     drawer, em toda página, e a página da ficha): enquanto o
+ *     ensaio está ligado, "Ensaio: nada aqui é salvo na sua ficha. Tudo some
+ *     ao fechar a aba.", com "Exportar ensaio" (pacote fichas/1) e "Sair do
+ *     ensaio" (confirma e apaga só o prefixo).
+ *
+ * Tudo grava pelo armazém do ensaio (KhEnsaio.armazem: sessionStorage, chaves
+ * com o prefixo khalkaria_ensaio:); nenhuma chave da ficha do jogador. Cada
+ * mudança sai no evento 'kh:ensaio' (KhEnsaio.emitir), que a página, o drawer,
+ * a faixa e os outros seletores escutam. O CSS (css/ficha-ensaio.css) só é
+ * pedido com o ensaio ligado. Sem a prévia, NADA acontece: nenhum nó, CSS,
+ * ouvinte ou escrita. Esc fecha o diálogo aberto (KhTeclas.camadaEsc 35, antes
+ * da do drawer, 40).
+ *
+ * Partes puras (testadas no node, tools/testes/ensaio.test.js): fmtBytes,
+ * fmtData, rotuloFicha, textoErro, htmlSeletor e htmlFaixa. No node exporta
+ * por module.exports (carregado sozinho); no artefato js/ficha.js o export já
+ * é o KhInv e este módulo só registra window.KhSeletor e liga a faixa no
+ * navegador. Vem no ORDEM depois do kh-ensaio.js e antes do
+ * kh-ficha-drawer.js (que o usa).
+ * Fonte: js/ficha/kh-seletor.js (o js/ficha.js é o ARTEFATO concatenado).
+ */
+(function (raiz) {
+  'use strict';
+
+  var emNode = typeof module === 'object' && module && module.exports;
+  if (emNode && Object.keys(module.exports).length) return;   // artefato no node: só o KhInv
+  var KhEnsaio = emNode ? require('./kh-ensaio.js') : raiz.KhEnsaio;
+  var KhRedesenho = emNode ? require('./kh-redesenho.js') : raiz.KhRedesenho;
+
+  var KhSeletor = (function () {
+    var CAMADA_ESC = 35;               // antes da do drawer (40), depois das do Bazar (10, 20, 30)
+    var ID_FAIXA = 'ke-faixa';
+    var CSS = 'css/ficha-ensaio.css';
+    var ATRIBUTO = 'data-ensaio';      // no <html> com a faixa à vista: o css/ficha-ensaio.css reserva o pé
+    var FAIXA_TXT = 'nada aqui é salvo na sua ficha. Tudo some ao fechar a aba.';
+    var NOME_VAZIO = '(sem nome)';
+    var NOME_NOVA = 'Ficha nova';
+    var PACOTE = 'khalkaria-fichas.json';
+    var QUOTA = 'O navegador recusou a gravação (QuotaExceeded): o espaço desta aba acabou e nada foi salvo. ' +
+      'Exporte todas as fichas do ensaio e exclua alguma.';
+    var SEM_STORAGE = 'O ensaio precisa do armazenamento da aba (sessionStorage), que está bloqueado neste navegador.';
+    var ERROS = {
+      quota: QUOTA,
+      storage: 'O armazenamento desta aba (sessionStorage) recusou a gravação: nada foi salvo.',
+      'somente-leitura': 'O índice do ensaio é de outra versão do site: nada foi gravado.',
+      inexistente: 'Essa ficha não está mais no ensaio.',
+      excluida: 'Essa ficha foi excluída do ensaio.',
+      desatualizada: 'A ficha mudou enquanto isto acontecia: tente de novo.',
+      json: 'O arquivo não é um JSON válido.',
+      invalida: 'O arquivo não traz uma ficha nem um pacote de fichas.',
+      vazio: 'O arquivo não traz nenhuma ficha.',
+      'versao-futura': 'O arquivo é de uma versão mais nova do site',
+      'export-falhou': 'O export não foi confirmado: nada foi apagado nem substituído.',
+      'sem-export': 'Sem o export antes, nada é apagado.',
+      ilegivel: 'A ficha do ensaio está ilegível: baixe o texto cru antes.',
+      'poda-pendente': 'A ficha precisa do motor carregado para entrar no ensaio: tente de novo em instantes.'
+    };
+
+    function obj(x) { return !!x && typeof x === 'object' && !Array.isArray(x); }
+    function lista(x) { return Array.isArray(x) ? x : []; }
+    function str(x) { return x == null ? '' : String(x); }
+    function esc(s) {
+      return str(s).replace(/[&<>"']/g, function (c) {
+        return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+      });
+    }
+    // sem emoji como ícone (o nome digitado pode trazer)
+    function semEmoji(s) {
+      return str(s).replace(/[\u{1F000}-\u{1FAFF}\u{2600}-\u{27BF}\u{2B00}-\u{2BFF}\u{FE0F}\u{200D}]/gu, '').replace(/\s+/g, ' ').trim();
+    }
+    function storage(win, nome) { try { return win ? win[nome] || null : null; } catch (e) { return null; } }
+
+    // ---------------- puras: formato ----------------
+    function virgula(x) { return (Math.round(x * 10) / 10).toFixed(1).replace('.', ','); }
+    function fmtBytes(n) {
+      n = Math.max(0, Math.round(Number(n) || 0));
+      if (n < 1024) return n + ' B';
+      if (n < 1024 * 1024) return virgula(n / 1024) + ' KB';
+      return virgula(n / (1024 * 1024)) + ' MB';
+    }
+    function fmtPc(f) {
+      var p = Math.max(0, Number(f) || 0) * 100;
+      return p > 0 && p < 0.1 ? 'menos de 0,1%' : virgula(p) + '%';
+    }
+    function dois(n) { return (n < 10 ? '0' : '') + n; }
+    // a data da linha do índice, na hora local: dd/mm hh:mm ('' sem data)
+    function fmtData(iso) {
+      if (!iso) return '';
+      var d = new Date(str(iso));
+      if (isNaN(d.getTime())) return '';
+      return dois(d.getDate()) + '/' + dois(d.getMonth() + 1) + ' ' + dois(d.getHours()) + ':' + dois(d.getMinutes());
+    }
+    function nomeFicha(x) { return semEmoji(obj(x) ? x.nome : '') || NOME_VAZIO; }
+    // a linha do seletor: nome, classe, nível e data
+    function rotuloFicha(x) {
+      x = obj(x) ? x : {};
+      var d = fmtData(x.atualizadoEm);
+      return nomeFicha(x) + ' — ' + (semEmoji(x.classe) || 'sem classe') + ' · Nível ' + (x.nivel == null ? '?' : str(x.nivel)) +
+        (d ? ' · ' + d : '');
+    }
+    // o texto de uma recusa do armazém (KhEstado.armazem) ou do import
+    function textoErro(r) {
+      r = obj(r) ? r : {};
+      var e = str(r.erro);
+      if (e === 'versao-futura') return ERROS[e] + (r.versao ? ' (' + str(r.versao) + ')' : '') + ': nada foi gravado.';
+      if (ERROS[e]) return ERROS[e];
+      return 'Não deu certo (' + (e || 'erro desconhecido') + '): nada foi gravado.';
+    }
+    function plural(n, um, varios) { return n === 1 ? um : varios; }
+
+    // ---------------- puras: html ----------------
+    function botao(acao, texto, extra) {
+      extra = extra || {};
+      return '<button type="' + (extra.submit ? 'submit' : 'button') + '" class="kh-btn ke-btn ke-' + acao + (extra.forte ? ' forte' : '') + '"' +
+        (extra.submit ? '' : ' data-ke="' + acao + '"') + (extra.desligado ? ' disabled' : '') +
+        (extra.titulo ? ' title="' + esc(extra.titulo) + '"' : '') + '>' + esc(texto) + '</button>';
+    }
+    function arquivosTxt(arqs) {
+      return lista(arqs).map(function (a) { return str(a && a.nomeArquivo); }).filter(Boolean).join(', ');
+    }
+    // o diálogo aberto dentro do seletor (null: nenhum); P = prefixo dos ids
+    function htmlDialogo(d, P, nome) {
+      if (!obj(d)) return '';
+      var tit = P + '-ke-d-tit';
+      if (d.tipo === 'criar') {
+        return '<form class="ke-dialogo ke-dialogo-criar" data-ke-form="criar" aria-labelledby="' + tit + '">' +
+          '<p class="ke-dialogo-tit" id="' + tit + '">Criar uma ficha em branco</p>' +
+          '<label class="ke-campo"><span class="ke-rot">Nome</span> <input type="text" class="ke-nome" data-ke-campo="nome"' +
+            ' maxlength="80" autocomplete="off" placeholder="' + esc(NOME_NOVA) + '" value="' + esc(nome) + '"></label>' +
+          '<p class="ke-nota">O assistente de criação chega depois (F4c): por enquanto a ficha nasce em branco.</p>' +
+          '<div class="ke-dialogo-acoes">' + botao('criar-ok', 'Criar', { forte: true, submit: true }) + ' ' + botao('cancelar', 'Cancelar') + '</div></form>';
+      }
+      if (d.tipo === 'antes') {
+        var excluir = d.acao === 'excluir';
+        var arqs = arquivosTxt(d.arquivos);
+        var h = '<div class="ke-dialogo ke-dialogo-perigo" role="group" aria-labelledby="' + tit + '">' +
+          '<p class="ke-dialogo-tit" id="' + tit + '">' + esc(excluir ? 'Excluir "' + str(d.nome) + '" do ensaio' : 'Atualizar com o arquivo importado') + '</p>';
+        if (!excluir) h += '<p>' + esc('Atualizar substitui ' + plural(lista(d.arquivos).length, 'a ficha', 'as fichas') + ' do ensaio com o mesmo id (' + str(d.nome) + ').') + '</p>';
+        if (d.passo !== 'confirmar') {
+          h += '<p>' + esc('Passo 1 de 2: baixe o export ' + plural(lista(d.arquivos).length, 'desta ficha', 'destas fichas') + ' (' + arqs + '). ' +
+            'É o único jeito de recuperar o que ' + (excluir ? 'for apagado' : 'for substituído') + '.') + '</p>' +
+            '<div class="ke-dialogo-acoes">' + botao('baixar-antes', 'Baixar o export', { forte: true }) + ' ' + botao('cancelar', 'Cancelar') + '</div>';
+        } else {
+          h += '<p>' + esc('Passo 2 de 2: confira se ' + plural(lista(d.arquivos).length, 'o arquivo', 'os arquivos') + ' ' + arqs + ' ' +
+            plural(lista(d.arquivos).length, 'foi salvo', 'foram salvos') + ' e só então confirme.') + '</p>' +
+            '<label class="ke-check"><input type="checkbox" class="ke-salvei" data-ke-campo="salvei"' + (d.salvou ? ' checked' : '') + '> ' +
+              'Salvei ' + plural(lista(d.arquivos).length, 'o arquivo', 'os arquivos') + '</label>' +
+            '<div class="ke-dialogo-acoes">' + botao('confirmar', excluir ? 'Excluir de vez' : 'Atualizar de vez', { forte: true, desligado: !d.salvou }) + ' ' +
+              botao('baixar-antes', 'Baixar de novo') + ' ' + botao('cancelar', 'Cancelar') + '</div>';
+        }
+        return h + '</div>';
+      }
+      if (d.tipo === 'conflito') {
+        var n = lista(d.conflitos).length;
+        return '<div class="ke-dialogo" role="group" aria-labelledby="' + tit + '">' +
+          '<p class="ke-dialogo-tit" id="' + tit + '">' + esc(plural(n, 'Ficha repetida', 'Fichas repetidas')) + ' no arquivo</p>' +
+          '<p>' + esc('O arquivo traz ' + str(d.nome) + ', ' + plural(n, 'que já está', 'que já estão') + ' no ensaio (o mesmo id). ' +
+            'Atualizar substitui a do ensaio (com o export dela antes); importar como cópia cria outra, com id novo.') + '</p>' +
+          '<div class="ke-dialogo-acoes">' + botao('atualizar', 'Atualizar…', { forte: true }) + ' ' + botao('copia', 'Importar como cópia') + ' ' +
+            botao('cancelar', 'Cancelar') + '</div></div>';
+      }
+      if (d.tipo === 'quota') {
+        return '<div class="ke-dialogo ke-dialogo-perigo" role="alert" aria-labelledby="' + tit + '">' +
+          '<p class="ke-dialogo-tit" id="' + tit + '">O espaço da aba acabou</p><p>' + esc(QUOTA) + '</p>' +
+          '<div class="ke-dialogo-acoes">' + botao('exportar-todas', 'Exportar todas', { forte: true }) + ' ' + botao('cancelar', 'Fechar') + '</div></div>';
+      }
+      return '';
+    }
+    // O seletor inteiro. est: {fichas (as linhas do índice), ativa, uso
+    // (KhEnsaio.uso), dialogo, msg:{tipo:'ok'|'aviso', texto}, nome (o que se
+    // digita no Criar)}. o: {prefixo ('fp' | 'fd': os ids), densidade ('pagina' | 'compacta')}
+    function htmlSeletor(est, o) {
+      est = obj(est) ? est : {};
+      o = obj(o) ? o : {};
+      var P = /^[a-z][a-z0-9-]*$/i.test(str(o.prefixo)) ? str(o.prefixo) : 'ke';
+      var fichas = lista(est.fichas), tem = fichas.length > 0;
+      var ativa = fichas.some(function (x) { return x.id === est.ativa; }) ? est.ativa : null;
+      var u = obj(est.uso) ? est.uso : null;
+      var h = '<div class="ke-seletor" data-ke-densidade="' + (o.densidade === 'compacta' ? 'compacta' : 'pagina') + '" role="group" aria-labelledby="' + P + '-ke-titulo">' +
+        '<p class="ke-titulo" id="' + P + '-ke-titulo">Fichas do ensaio <span class="ke-n">(' + fichas.length + ')</span></p>' +
+        '<div class="ke-linha"><label class="ke-rot" for="' + P + '-ke-lista">Ficha</label>' +
+        '<select class="ke-lista" id="' + P + '-ke-lista" data-ke-campo="trocar"' + (tem ? '' : ' disabled') + '>' +
+        (tem ? fichas.map(function (x) {
+          return '<option value="' + esc(x.id) + '"' + (x.id === ativa ? ' selected' : '') + '>' + esc(rotuloFicha(x)) + '</option>';
+        }).join('') : '<option selected>Nenhuma ficha no ensaio</option>') + '</select></div>' +
+        '<div class="ke-acoes" role="group" aria-label="Ações das fichas do ensaio">' +
+          botao('criar', 'Criar em branco') + botao('duplicar', 'Duplicar', { desligado: !ativa }) +
+          botao('excluir', 'Excluir…', { desligado: !ativa }) +
+          botao('exportar', 'Exportar esta', { desligado: !ativa, titulo: 'Baixa a ficha aberta (.khalkaria.json)' }) +
+          botao('exportar-todas', 'Exportar todas', { desligado: !tem, titulo: 'Baixa todas as fichas do ensaio (' + PACOTE + ')' }) +
+          botao('importar', 'Importar…', { titulo: 'Uma ficha (.khalkaria.json) ou um pacote de fichas' }) +
+          '<input type="file" class="ke-arquivo" data-ke-campo="arquivo" accept=".json,application/json" hidden tabindex="-1" aria-hidden="true">' +
+        '</div>';
+      if (u) {
+        var aba = 'a aba usa ' + fmtBytes(u.total) + ' de ~' + fmtBytes(u.limite) + ' (' + fmtPc(u.fracao) + ')';
+        h += '<p class="ke-uso" data-ke-uso="' + Math.round(Number(u.bytes) || 0) + '" title="' + esc('Espaço do ensaio: ' + fmtBytes(u.bytes) + '; ' + aba) + '">' +
+          'Espaço do ensaio: ' + esc(fmtBytes(u.bytes)) + '<span class="ke-uso-aba"> · ' + esc(aba) + '</span></p>';
+      }
+      h += htmlDialogo(est.dialogo, P, est.nome);
+      var m = obj(est.msg) ? est.msg : null;
+      h += '<p class="ke-msg' + (m ? ' ke-msg-' + (m.tipo === 'aviso' ? 'aviso' : 'ok') : '') + '" role="status" aria-live="polite">' + (m ? esc(m.texto) : '') + '</p>';
+      return h + '</div>';
+    }
+    // A faixa fixa. est: {sair (confirmando a saída), n (fichas no ensaio), msg}
+    function htmlFaixa(est) {
+      est = obj(est) ? est : {};
+      var n = Math.max(0, Number(est.n) || 0);
+      var h = '<p class="ke-faixa-txt"><strong>Ensaio:</strong> ' + esc(FAIXA_TXT) + '</p><div class="ke-faixa-acoes">';
+      if (est.sair) {
+        h += '<p class="ke-faixa-conf">' + esc('Sair apaga ' + (n ? plural(n, 'a ficha', 'as ' + n + ' fichas') + ' do ensaio' : 'o ensaio') +
+          ' desta aba. A sua ficha não muda.') + '</p>' +
+          botao('exportar-ensaio', 'Exportar ensaio') + botao('sair-ok', 'Sair e apagar', { forte: true }) + botao('sair-nao', 'Continuar no ensaio');
+      } else h += botao('exportar-ensaio', 'Exportar ensaio') + botao('sair', 'Sair do ensaio');
+      var m = obj(est.msg) ? est.msg : null;
+      return h + '</div><p class="ke-faixa-msg' + (m && m.tipo === 'aviso' ? ' ke-msg-aviso' : '') + '" role="status" aria-live="polite">' +
+        (m ? esc(m.texto) : '') + '</p>';
+    }
+
+    // ---------------- navegador: apoio ----------------
+    // a raiz do site e o ?v= do js/ficha.js (o mesmo que o drawer usa para o CSS dele)
+    function baseVersao(doc) {
+      var s = doc && doc.querySelector ? doc.querySelector('script[src*="js/ficha.js"]') : null;
+      var src = s ? s.src || (s.getAttribute && s.getAttribute('src')) : '';
+      var out = { base: '', versao: '' };
+      try { if (src) { out.base = new URL('../', src).href; out.versao = new URL(src).search; } } catch (e) { /* relativo à página */ }
+      return out;
+    }
+    // o css/ficha-ensaio.css, uma vez por página (só com o ensaio ligado)
+    function poeCss(win) {
+      var doc = win.document;
+      if (!doc.head || doc.querySelector('link[data-ke-css]')) return false;
+      var bv = baseVersao(doc);
+      var l = doc.createElement('link');
+      l.rel = 'stylesheet';
+      l.href = (bv.base || '../') + CSS + bv.versao;
+      l.setAttribute('data-ke-css', '');
+      doc.head.appendChild(l);
+      return true;
+    }
+    function tira(el) {
+      if (!el) return;
+      if (typeof el.remove === 'function') el.remove();
+      else if (el.parentNode) el.parentNode.removeChild(el);
+    }
+    // baixa um arquivo: {nomeArquivo, dados} (JSON) ou {nomeArquivo, texto} (cru)
+    function baixar(win, arq) {
+      if (!win || !obj(arq)) return false;
+      try {
+        var doc = win.document;
+        var texto = arq.texto != null ? str(arq.texto) : JSON.stringify(arq.dados, null, 2);
+        var U = win.URL;
+        var url = U.createObjectURL(new win.Blob([texto], { type: 'application/json' }));
+        var a = doc.createElement('a');
+        a.setAttribute('href', url);
+        a.setAttribute('download', str(arq.nomeArquivo) || 'ficha.khalkaria.json');
+        a.hidden = true;
+        doc.body.appendChild(a);
+        a.click();
+        tira(a);
+        if (typeof win.setTimeout === 'function') win.setTimeout(function () { try { U.revokeObjectURL(url); } catch (e) { /* já foi */ } }, 1000);
+        return true;
+      } catch (e) { return false; }
+    }
+    function lerArquivo(win, f) {
+      if (f && typeof f.text === 'function') { try { return Promise.resolve(f.text()); } catch (e) { return Promise.reject(e); } }
+      return new Promise(function (ok, falha) {
+        try {
+          var r = new win.FileReader();
+          r.onload = function () { ok(str(r.result)); };
+          r.onerror = function () { falha(r.error); };
+          r.readAsText(f);
+        } catch (e) { falha(e); }
+      });
+    }
+    // o export de uma ficha (ou o texto cru, se ela não vira v3 aqui)
+    function exportDe(a, id) {
+      var ex = a.exportar(id);
+      if (ex) return ex;
+      var cru = a.exportarCru(id);
+      return cru ? { nomeArquivo: cru.nomeArquivo, texto: cru.texto } : null;
+    }
+    function linhaDe(a, id) { return a.listar().filter(function (x) { return x.id === id; })[0] || null; }
+    function nomeDe(a, id) { return '"' + nomeFicha(linhaDe(a, id)) + '"'; }
+    function aviso(t) { return { tipo: 'aviso', texto: t }; }
+    function ok(t) { return { tipo: 'ok', texto: t }; }
+    function visivel(el) {
+      if (!el || el.hidden) return false;
+      try { return typeof el.getClientRects !== 'function' || el.getClientRects().length > 0; } catch (e) { return true; }
+    }
+
+    // ---------------- o seletor (um por lugar) ----------------
+    // op: {win, doc, cont (o contêiner), prefixo ('fp' | 'fd'), densidade,
+    //      dados: () => Promise<{dados, versao}> (os do KhPrevia.carregar, para
+    //      migrar ao entrar e resolver o import pelo catálogo)}
+    function criar(op) {
+      op = obj(op) ? op : {};
+      var win = op.win, doc = op.doc || (win && win.document), cont = op.cont;
+      if (!win || !doc || !cont || !KhEnsaio) return null;
+      var P = /^[a-z][a-z0-9-]*$/i.test(str(op.prefixo)) ? str(op.prefixo) : 'ke';
+      var dens = op.densidade === 'compacta' ? 'compacta' : 'pagina';
+      var ss = storage(win, 'sessionStorage'), ls = storage(win, 'localStorage');
+      var R = KhRedesenho ? KhRedesenho.criar({ prefixo: P + '-ke' }) : null;
+      var st = { dialogo: null, msg: null, nome: '' };
+
+      function motor() {
+        var p = null;
+        try { p = typeof op.dados === 'function' ? op.dados() : null; } catch (e) { p = null; }
+        return p && typeof p.then === 'function' ? p.then(function (m) { return obj(m) ? m : {}; }, function () { return {}; }) : Promise.resolve(obj(p) ? p : {});
+      }
+      function arm() { return KhEnsaio.armazem(ss); }
+      function ligado() { return KhEnsaio.ligado(win); }
+      function estado() {
+        var a = arm();
+        return { fichas: a.listar(), ativa: a.ativa(), uso: KhEnsaio.uso(ss), dialogo: st.dialogo, msg: st.msg, nome: st.nome };
+      }
+      function troca(h) {
+        if (R) R.trocaHTML(doc, cont, h, null, null, win);
+        else if (cont._keHtml !== h) { cont.innerHTML = h; cont._keHtml = h; }
+      }
+      function foca(sel) {
+        var x = sel && cont.querySelector ? cont.querySelector(sel) : null;
+        if (x && typeof x.focus === 'function') { try { x.focus({ preventScroll: true }); } catch (e) { x.focus(); } }
+      }
+      // fora do ensaio, o contêiner some (fica só a mensagem de um entrar que falhou)
+      function desenha(foco) {
+        if (!ligado()) {
+          st.dialogo = null;
+          var h = st.msg ? '<p class="ke-msg ke-msg-' + (st.msg.tipo === 'aviso' ? 'aviso' : 'ok') + '" role="status" aria-live="polite">' + esc(st.msg.texto) + '</p>' : '';
+          troca(h);
+          cont.hidden = !h;
+          return false;
+        }
+        troca(htmlSeletor(estado(), { prefixo: P, densidade: dens }));
+        cont.hidden = false;
+        if (foco) foca(foco);
+        return true;
+      }
+      // o fim de uma ação que gravou: avisa quem escuta e redesenha
+      function feito(r, texto, partes, foco) {
+        if (r && r.ok) {
+          st.dialogo = null;
+          st.msg = texto ? ok(texto) : null;
+          KhEnsaio.emitir(win, partes);
+          desenha(foco);
+          return true;
+        }
+        falhou(r);
+        return false;
+      }
+      function falhou(r) {
+        if (r && r.erro === 'quota') { st.dialogo = { tipo: 'quota', volta: '.ke-exportar-todas' }; st.msg = aviso(QUOTA); desenha('.ke-dialogo .ke-exportar-todas'); return; }
+        st.msg = aviso(textoErro(r));
+        desenha();
+      }
+      function importa(texto, extra) {
+        return motor().then(function (m) {
+          var a = arm();
+          var r = a.importar(texto, Object.assign({}, KhEnsaio.opcoesMotor(m.dados, m.versao), extra || {}));
+          if (!r.ok && r.erro === 'conflito') {
+            var nomes = lista(r.conflitos).map(function (id) { return nomeDe(a, id); }).join(', ');
+            st.dialogo = { tipo: 'conflito', texto: texto, conflitos: lista(r.conflitos).slice(), nome: nomes, volta: '.ke-importar' };
+            st.msg = null;
+            desenha('.ke-atualizar');
+            return r;
+          }
+          if (r.ok) {
+            var n = r.ids.length, ileg = lista(r.erros).length;
+            feito(r, (n === 1 ? 'Importada e aberta: ' + nomeDe(a, r.ids[0]) : n + ' fichas importadas; aberta: ' + nomeDe(a, r.ids[n - 1])) + '.' +
+              (ileg ? ' ' + ileg + ' ' + plural(ileg, 'ficha do arquivo não pôde ser lida', 'fichas do arquivo não puderam ser lidas') + '.' : ''),
+              ['indice', 'ficha'], '.ke-lista');
+            return r;
+          }
+          falhou(r);
+          return r;
+        });
+      }
+      var acoes = {
+        criar: function () { st.dialogo = { tipo: 'criar', volta: '.ke-criar' }; st.nome = ''; st.msg = null; desenha('.ke-nome'); },
+        cancelar: function () {
+          var d = st.dialogo;
+          st.dialogo = null; st.msg = null;
+          desenha(d && d.volta ? d.volta : '.ke-lista');
+        },
+        duplicar: function () {
+          var a = arm(), id = a.ativa();
+          if (!id) return;
+          var r = a.duplicar(id);
+          feito(r, r.ok ? 'Cópia criada e aberta: ' + nomeDe(a, r.id) + '.' : '', ['indice', 'ficha'], '.ke-lista');
+        },
+        excluir: function () {
+          var a = arm(), id = a.ativa();
+          if (!id) return;
+          var ex = exportDe(a, id);
+          if (!ex) { st.msg = aviso(textoErro({ erro: 'inexistente' })); desenha(); return; }
+          st.dialogo = { tipo: 'antes', acao: 'excluir', id: id, nome: nomeFicha(linhaDe(a, id)), arquivos: [ex], passo: 'baixar', salvou: false, volta: '.ke-excluir' };
+          st.msg = null;
+          desenha('.ke-baixar-antes');
+        },
+        'baixar-antes': function () {
+          var d = st.dialogo;
+          if (!d || d.tipo !== 'antes') return;
+          var todos = lista(d.arquivos).every(function (x) { return baixar(win, x); });
+          if (!todos) { st.msg = aviso('O navegador não deixou baixar: nada foi apagado nem substituído.'); desenha(); return; }
+          d.passo = 'confirmar';
+          d.salvou = false;
+          st.msg = ok('Baixado: ' + arquivosTxt(d.arquivos) + '.');
+          desenha('.ke-salvei');
+        },
+        confirmar: function () {
+          var d = st.dialogo;
+          if (!d || d.tipo !== 'antes' || d.passo !== 'confirmar') return;
+          if (!d.salvou) { st.msg = aviso('Marque "Salvei" antes de confirmar.'); desenha('.ke-salvei'); return; }
+          // o armazém só apaga ou substitui com o export confirmado: a resposta é a do jogador
+          var sim = function () { return d.salvou === true; };
+          if (d.acao === 'excluir') {
+            var a = arm(), r = a.excluir(d.id, { exportar: sim, exportarCru: sim });
+            feito(r, r.ok ? 'Ficha "' + d.nome + '" excluída do ensaio.' + (r.ativa ? ' Aberta: ' + nomeDe(a, r.ativa) + '.' : ' O ensaio ficou sem fichas.') : '',
+              ['indice', 'ficha'], '.ke-lista');
+          } else importa(d.texto, { conflito: 'atualizar', exportar: sim });
+        },
+        exportar: function () {
+          var a = arm(), id = a.ativa();
+          if (!id) return;
+          var ex = exportDe(a, id);
+          st.msg = ex && baixar(win, ex) ? ok('Baixado: ' + ex.nomeArquivo + '.') : aviso('Não deu para baixar a ficha.');
+          desenha();
+        },
+        'exportar-todas': function () {
+          var p = arm().exportarTodas();
+          var n = p.dados.fichas.length, ileg = lista(p.dados.ilegiveis).length;
+          if (!n && !ileg) { st.msg = aviso('O ensaio está sem fichas: nada a exportar.'); desenha(); return; }
+          var b = baixar(win, p);
+          if (b && st.dialogo && st.dialogo.tipo === 'quota') st.dialogo = null;
+          st.msg = b ? ok('Baixado: ' + p.nomeArquivo + ' (' + n + ' ' + plural(n, 'ficha', 'fichas') +
+            (ileg ? ', mais ' + ileg + ' ' + plural(ileg, 'ilegível, crua', 'ilegíveis, cruas') : '') + ').') : aviso('Não deu para baixar o pacote.');
+          desenha();
+        },
+        importar: function () {
+          var inp = cont.querySelector('.ke-arquivo');
+          if (!inp) return;
+          try { inp.value = ''; } catch (e) { /* o mesmo arquivo de novo */ }
+          if (typeof inp.click === 'function') inp.click();
+        },
+        atualizar: function () {
+          var d = st.dialogo;
+          if (!d || d.tipo !== 'conflito') return;
+          var a = arm();
+          var arqs = d.conflitos.map(function (id) { return exportDe(a, id); }).filter(Boolean);
+          st.dialogo = { tipo: 'antes', acao: 'atualizar', texto: d.texto, nome: d.nome, arquivos: arqs, passo: 'baixar', salvou: false, volta: '.ke-importar' };
+          st.msg = null;
+          desenha('.ke-baixar-antes');
+        },
+        copia: function () {
+          var d = st.dialogo;
+          if (!d || d.tipo !== 'conflito') return;
+          importa(d.texto, { conflito: 'copia' });
+        }
+      };
+
+      cont.addEventListener('click', function (e) {
+        var b = e.target && e.target.closest ? e.target.closest('[data-ke]') : null;
+        if (!b || !cont.contains(b) || b.hasAttribute('disabled')) return;
+        var f = acoes[b.getAttribute('data-ke')];
+        if (f) f();
+      });
+      cont.addEventListener('change', function (e) {
+        var t = e.target;
+        var c = t && t.getAttribute ? t.getAttribute('data-ke-campo') : null;
+        if (c === 'trocar') {
+          var r = arm().trocar(str(t.value));
+          feito(r, '', ['ficha'], '.ke-lista');
+        } else if (c === 'salvei') {
+          if (st.dialogo && st.dialogo.tipo === 'antes') { st.dialogo.salvou = !!t.checked; desenha('.ke-salvei'); }
+        } else if (c === 'arquivo') {
+          var f = t.files && t.files[0];
+          if (!f) return;
+          lerArquivo(win, f).then(function (txt) { return importa(txt); }, function () { st.msg = aviso('Não deu para ler o arquivo.'); desenha(); });
+        }
+      });
+      cont.addEventListener('input', function (e) {
+        var t = e.target;
+        if (t && t.getAttribute && t.getAttribute('data-ke-campo') === 'nome') st.nome = str(t.value);
+      });
+      cont.addEventListener('submit', function (e) {
+        var f = e.target;
+        if (!f || !f.getAttribute || f.getAttribute('data-ke-form') !== 'criar') return;
+        if (e.preventDefault) e.preventDefault();
+        var inp = cont.querySelector('.ke-nome');
+        var nome = semEmoji(inp && inp.value != null ? inp.value : st.nome) || NOME_NOVA;
+        var r = arm().criar({ nome: nome });
+        st.nome = '';
+        feito(r, r.ok ? 'Ficha "' + nome + '" criada e aberta.' : '', ['indice', 'ficha'], '.ke-lista');
+      });
+      // Esc fecha o diálogo aberto (antes de o drawer recolher)
+      var T = win.KhTeclas;
+      if (T && typeof T.camadaEsc === 'function') {
+        T.camadaEsc(CAMADA_ESC, function () {
+          if (!st.dialogo || !visivel(cont)) return false;
+          acoes.cancelar();
+          return true;
+        });
+      }
+      doc.addEventListener(KhEnsaio.EVENTO, function () { desenha(); });
+
+      // liga o ensaio (o botão "Ensaiar edição" da página e do drawer): espera
+      // os dados do motor (migrar a ficha atual precisa do catálogo)
+      function entrar() {
+        if (ligado()) return Promise.resolve({ ok: true, criada: null });
+        if (!ss) { st.msg = aviso(SEM_STORAGE); desenha(); return Promise.resolve({ ok: false, erro: 'storage' }); }
+        st.msg = ok('Preparando o ensaio…');
+        desenha();
+        return motor().then(function (m) {
+          var r = KhEnsaio.entrar(ss, ls, { dados: m.dados, versao: m.versao });
+          if (!r.ok) { st.msg = aviso(r.erro === 'storage' ? SEM_STORAGE : textoErro(r)); desenha(); return r; }
+          st.msg = ok(r.criada === 'migrada' ? 'Ensaio ligado: a ficha do ensaio é uma cópia da sua ficha atual, migrada em memória.'
+            : r.criada === 'branco' ? 'Ensaio ligado com uma ficha em branco (' + (r.erroV2 ? 'a ficha atual não pôde ser lida' : 'não há ficha atual neste navegador') + ').'
+              : 'Ensaio ligado.');
+          KhEnsaio.emitir(win, ['ligado', 'indice', 'ficha']);
+          desenha('.ke-lista');
+          return r;
+        });
+      }
+
+      desenha();
+      return { desenha: desenha, entrar: entrar, ligado: ligado, importar: importa,
+        acao: function (nome) { if (typeof acoes[nome] === 'function') acoes[nome](); },
+        estado: function () { return JSON.parse(JSON.stringify(st)); } };
+    }
+
+    // ---------------- a faixa (toda página com a prévia) ----------------
+    // Quem liga é quem monta com a prévia: o drawer da ficha nova (todas as
+    // páginas menos a da ficha) e a página da ficha. Uma por página; chamar de
+    // novo só sincroniza. null sem DOM.
+    var faixa = null;
+    function ligarFaixa(win) {
+      if (!win || !win.document || !KhEnsaio) return null;
+      if (faixa) { faixa.sincroniza(); return faixa; }
+      try { faixa = montarFaixa(win); } catch (e) { faixa = null; }
+      return faixa;
+    }
+    function montarFaixa(win) {
+      var doc = win.document, html = doc.documentElement;
+      if (!doc.body || !html) return null;
+      var ss = storage(win, 'sessionStorage');
+      var st = { sair: false, msg: null }, el = null;
+      function pinta(foco) {
+        if (!el) return;
+        var h = htmlFaixa({ sair: st.sair, msg: st.msg, n: KhEnsaio.armazem(ss).listar().length });
+        if (el._keHtml !== h) { el.innerHTML = h; el._keHtml = h; }
+        var x = foco ? el.querySelector(foco) : null;
+        if (x && typeof x.focus === 'function') { try { x.focus({ preventScroll: true }); } catch (e) { x.focus(); } }
+      }
+      function sincroniza() {
+        if (!KhEnsaio.ligado(win)) {
+          tira(el);
+          el = null; st.sair = false; st.msg = null;
+          if (html.hasAttribute(ATRIBUTO)) html.removeAttribute(ATRIBUTO);
+          return false;
+        }
+        poeCss(win);
+        if (!el) {
+          el = doc.createElement('div');
+          el.id = ID_FAIXA;
+          el.className = 'ke-faixa';
+          el.setAttribute('role', 'region');
+          el.setAttribute('aria-label', 'Modo Ensaio');
+          // o MutationObserver da v2.1 (decoração dos cards) ignora o que redesenha aqui
+          el.setAttribute('data-kf-ignorar', '');
+          el.addEventListener('click', aoClicar);
+          doc.body.appendChild(el);
+        }
+        if (!html.hasAttribute(ATRIBUTO)) html.setAttribute(ATRIBUTO, '');
+        pinta();
+        return true;
+      }
+      function aoClicar(e) {
+        var b = e.target && e.target.closest ? e.target.closest('[data-ke]') : null;
+        if (!b || !el || !el.contains(b)) return;
+        var a = b.getAttribute('data-ke');
+        if (a === 'exportar-ensaio') {
+          var p = KhEnsaio.exportarEnsaio(ss), n = p.dados.fichas.length;
+          if (!n && !lista(p.dados.ilegiveis).length) st.msg = aviso('O ensaio está sem fichas: nada a exportar.');
+          else st.msg = baixar(win, p) ? ok('Baixado: ' + p.nomeArquivo + ' (' + n + ' ' + plural(n, 'ficha', 'fichas') + ').') : aviso('Não deu para baixar o ensaio.');
+          pinta();
+        } else if (a === 'sair') { st.sair = true; st.msg = null; pinta('.ke-sair-nao'); }
+        else if (a === 'sair-nao') { st.sair = false; pinta('.ke-sair'); }
+        else if (a === 'sair-ok') {
+          KhEnsaio.sair(ss);
+          KhEnsaio.emitir(win, ['ligado', 'indice', 'ficha']);
+          sincroniza();
+        }
+      }
+      var T = win.KhTeclas;
+      if (T && typeof T.camadaEsc === 'function') {
+        T.camadaEsc(CAMADA_ESC, function () {
+          if (!el || !st.sair) return false;
+          st.sair = false;
+          pinta('.ke-sair');
+          return true;
+        });
+      }
+      doc.addEventListener(KhEnsaio.EVENTO, sincroniza);
+      sincroniza();
+      return { sincroniza: sincroniza, el: function () { return el; } };
+    }
+
+    return { CAMADA_ESC: CAMADA_ESC, ID_FAIXA: ID_FAIXA, CSS: CSS, ATRIBUTO: ATRIBUTO, FAIXA_TXT: FAIXA_TXT,
+      NOME_VAZIO: NOME_VAZIO, NOME_NOVA: NOME_NOVA, QUOTA: QUOTA, SEM_STORAGE: SEM_STORAGE,
+      fmtBytes: fmtBytes, fmtData: fmtData, rotuloFicha: rotuloFicha, textoErro: textoErro,
+      htmlSeletor: htmlSeletor, htmlFaixa: htmlFaixa, baseVersao: baseVersao, baixar: baixar,
+      criar: criar, ligarFaixa: ligarFaixa, faixa: function () { return faixa; } };
+  })();
+
+  if (emNode) { module.exports = KhSeletor; return; }
+  raiz.KhSeletor = KhSeletor;
+})(typeof window !== 'undefined' ? window : this);
+
 // ==== js/ficha/kh-ficha-abas.js ====
 /* Khalkaria — Ficha · KhFichaAbas: o desenho das 5 abas da ficha nova (F4.4a), PURO (devolve string).
  * Especificação: docs/ficha-digital/06-f4-drawer.md ("Render das abas: o MESMO
@@ -6851,6 +7773,9 @@
 
     function mensagemEstado(res) {
       if (!res) return '';
+      // o Ensaio (F4.6a, KhEnsaio.calcular): a ficha é a do seletor de fichas, não a ficha atual
+      if (res.ensaio && res.estado === 'sem-ficha') return 'O ensaio está sem fichas. Crie uma em branco ou importe um arquivo no seletor de fichas.';
+      if (res.ensaio && res.estado === 'erro') return 'A ficha do ensaio não pôde ser lida (' + str(res.erro) + '). Exporte-a ou exclua-a no seletor de fichas.';
       if (res.estado === 'sem-ficha') return 'Não há ficha neste navegador. Crie ou importe uma na ficha atual (FICHA) e ela aparece aqui.';
       if (res.estado === 'erro') return 'A ficha deste navegador não pôde ser lida (' + str(res.erro) + (res.versao ? ' ' + str(res.versao) : '') + ').';
       if (res.estado === 'falha') return 'O motor falhou ao calcular: ' + str(res.erro);
@@ -7623,6 +8548,13 @@
  * "Sair da prévia" apaga a chave e recarrega sem o ?ficha (saidaPrevia).
  * O drawer leva [data-kf-ignorar] (o MutationObserver da v2.1 não o decora).
  *
+ * Ensaio (F4.6a, 07 §1 e §2): "Ensaiar edição" no aviso de só-leitura do
+ * cabeçalho (o KhSeletor.entrar). Ligado (KhEnsaio.ligado), o drawer lê e
+ * calcula a ficha ativa do ensaio (KhEnsaio.calcular), o aviso de só-leitura
+ * some e o seletor de fichas do ensaio (KhSeletor, #fd-gaveta-ke) aparece no
+ * cabeçalho; a faixa fixa é do KhSeletor.ligarFaixa (montada aqui). Redesenha
+ * no evento kh:ensaio. "Sair da prévia" apaga também o Ensaio desta aba. O
+ * Ensaio grava só no sessionStorage com o prefixo khalkaria_ensaio:.
  * Escritas: localStorage khalkaria_ficha3_dock (só quando o jogador abre ou
  * recolhe pelo botão ou pelo Esc), as preferências de aba do KhAbas (ordem e
  * aba aberta, as mesmas da página), o "lembrar" da prévia (KhPrevia.iniciar,
@@ -7645,7 +8577,7 @@
  * por module.exports (carregado sozinho); no artefato js/ficha.js o export já é
  * o KhInv e este módulo só registra window.KhFichaDrawer e o liga no navegador.
  * Vem no ORDEM depois do kh-ficha-abas.js (usa o KhFichaAbas, o KhAbas, o
- * KhRedesenho, o KhConta e o KhPrevia).
+ * KhRedesenho, o KhConta, o KhPrevia, o KhEnsaio e o KhSeletor).
  * Fonte: js/ficha/kh-ficha-drawer.js (o js/ficha.js é o ARTEFATO concatenado).
  */
 (function (raiz) {
@@ -7659,6 +8591,8 @@
   var KhAbas = emNode ? require('./kh-abas.js') : raiz.KhAbas;
   var KhFichaAbas = emNode ? require('./kh-ficha-abas.js') : raiz.KhFichaAbas;
   var KhRedesenho = emNode ? require('./kh-redesenho.js') : raiz.KhRedesenho;
+  var KhEnsaio = emNode ? require('./kh-ensaio.js') : raiz.KhEnsaio;
+  var KhSeletor = emNode ? require('./kh-seletor.js') : raiz.KhSeletor;
 
   var KhFichaDrawer = (function () {
     var CHAVE_DOCK = 'khalkaria_ficha3_dock';
@@ -7693,6 +8627,9 @@
     var TOL_LARGA = 1;        // px: arredondamento de subpixel
     var ESPERA_LARGAS = 50;   // ms: junta os avisos do ResizeObserver (redimensionar a janela)
     var RO = 'Prévia só leitura. Para editar, use a ficha atual (FICHA).';
+    // o modo Ensaio (F4.6a, 07 §1): entrar, no aviso de só-leitura do cabeçalho
+    var ENSAIAR = 'Ensaiar edição';
+    var DICA_ENSAIAR = 'Liga o modo Ensaio nesta aba: as fichas do ensaio ficam só nela e a sua ficha não muda';
     var DICA_ORDEM = 'Arraste para mudar a ordem das abas. Pelo teclado: Tab até a aba e Alt+← ou Alt+→';
     var TITULO_A4 = 'Ordem do A4: volta as abas à ordem da ficha física';
     var RESTAURADA = 'Ordem do A4 restaurada.';
@@ -7885,7 +8822,10 @@
               '<button type="button" class="kh-btn fd-gaveta-btn fd-gaveta-recolher" aria-expanded="true" aria-controls="fd-gaveta-folha" aria-keyshortcuts="Escape"' +
                 ' aria-label="Recolher ao trilho" title="Recolher ao trilho (Esc)">' + SVG_RECOLHER + '</button>' +
             '</div>' +
-            '<p class="fd-gaveta-ro" role="note">' + esc(RO) + ' <button type="button" class="fd-gaveta-sair">Sair da prévia</button></p>' +
+            '<p class="fd-gaveta-ro" id="fd-gaveta-ro" role="note">' + esc(RO) + ' <button type="button" class="fd-gaveta-sair">Sair da prévia</button>' +
+              ' · <button type="button" class="fd-gaveta-ensaiar" data-ke="entrar" title="' + esc(DICA_ENSAIAR) + '">' + esc(ENSAIAR) + '</button></p>' +
+            // o seletor de fichas do Ensaio (KhSeletor): escondido fora dele
+            '<div class="fd-gaveta-ke" id="fd-gaveta-ke" hidden></div>' +
           '</header>' +
           '<div class="fd-gaveta-abas-barra">' +
             '<div class="fd-gaveta-abas" id="fd-gaveta-abas" role="tablist" aria-label="Partes da ficha">' +
@@ -8083,6 +9023,16 @@
         if (ms) notaT = setTimeout(function () { nota.hidden = true; nota.textContent = ''; }, ms);
       }
 
+      // ---- o modo Ensaio (F4.6a, KhEnsaio): ligado, o drawer lê e calcula a
+      // ficha ativa do ensaio, o aviso de só-leitura dá lugar ao seletor de
+      // fichas dele (KhSeletor, #fd-gaveta-ke) e a faixa fixa aparece
+      var pronto = null;   // os dados do motor (KhPrevia.carregar), para o Ensaio migrar e importar
+      var seletor = KhEnsaio && KhSeletor ? KhSeletor.criar({ win: win, doc: doc, cont: el('fd-gaveta-ke'), prefixo: PREFIXO,
+        densidade: 'compacta', dados: function () { return pronto; } }) : null;
+      var roEl = el('fd-gaveta-ro');
+      function poeModo() { if (roEl) roEl.hidden = ensaioLigado(); }
+      if (seletor) KhSeletor.ligarFaixa(win);
+
       // ---- cliques (delegados: o redesenho não perde ouvinte)
       gav.addEventListener('click', function (e) {
         var t = e.target && e.target.closest ? e.target : null;
@@ -8090,8 +9040,10 @@
         if (t.closest('.fd-gaveta-abrir')) abrir({ foco: true });
         else if (t.closest('.fd-gaveta-recolher')) recolher({ foco: true });
         else if (t.closest('.fd-gaveta-editar')) { if (win.KF && typeof win.KF.abrir === 'function') win.KF.abrir(); }
+        else if (t.closest('.fd-gaveta-ensaiar')) { if (seletor) seletor.entrar(); }
         else if (t.closest('.fd-gaveta-sair')) {
-          // apaga a chave e recarrega DE FATO, sem ?ficha=v3 (saidaPrevia)
+          // apaga a chave (e o Ensaio desta aba) e recarrega DE FATO, sem ?ficha=v3 (saidaPrevia)
+          if (KhEnsaio) KhEnsaio.sair(ss);
           try { if (ls) ls.removeItem(CHAVE_PREVIA); } catch (x) { /* storage bloqueado */ }
           var L = win.location, s = saidaPrevia(L);
           if (!L) return;
@@ -8140,7 +9092,9 @@
         });
         rolagem.scrollTop = topo;
       }
-      function desenha() { if (dados && vivo) pinta(KhPrevia.calcular(ls, dados, versao)); }
+      // com o Ensaio, a ficha ativa dele (KhEnsaio.calcular); sem ele, a sombra da ficha atual
+      function calcula() { return ensaioLigado() && KhEnsaio ? KhEnsaio.calcular(ss, dados, versao) : KhPrevia.calcular(ls, dados, versao); }
+      function desenha() { if (dados && vivo) pinta(calcula()); }
       function agenda() { clearTimeout(t); t = setTimeout(desenha, ESPERA); }
       function aoStorage(e) { if (e && e.key === CHAVE_V2) agenda(); }
       // campos digitados do drawer v2: vários só gravam (save), sem kf:mudou
@@ -8149,6 +9103,8 @@
       doc.addEventListener('input', aoCampo, true);
       doc.addEventListener('change', aoCampo, true);
       win.addEventListener('storage', aoStorage);
+      // o Ensaio ligou, saiu, trocou de ficha ou mudou a lista: na hora
+      if (KhEnsaio) doc.addEventListener(KhEnsaio.EVENTO, function () { poeModo(); desenha(); });
 
       // ---- arrastar: acende; o item do Bazar abre o drawer e é guardado; outra
       // entidade abre a ficha atual na seção dela (07 §0, item 1)
@@ -8156,7 +9112,8 @@
       function limpaAlvo() { gav.removeAttribute('data-alvo'); gav.removeAttribute('data-recusa'); }
       // o Ensaio (F4.6) ligado: a entidade é da ficha do ensaio, sem o desvio para a ficha atual
       function ensaioLigado() {
-        try { return !!(win.KhEnsaio && typeof win.KhEnsaio.ligado === 'function' && win.KhEnsaio.ligado()); } catch (y) { return false; }
+        var E = KhEnsaio || win.KhEnsaio;
+        try { return !!(E && typeof E.ligado === 'function' && E.ligado(win)); } catch (y) { return false; }
       }
       function temKF() { return !!(win.KF && typeof win.KF.abrir === 'function'); }
       function aoComecar(e) {
@@ -8256,13 +9213,16 @@
       }
 
       // ---- dados: os do motor (os da página), uma vez
-      KhPrevia.carregar(win.fetch.bind(win), base, versao).then(function (d) {
+      poeModo();
+      pronto = KhPrevia.carregar(win.fetch.bind(win), base, versao).then(function (d) {
         dados = d;
         var sp = el('fd-gaveta-sprite');
         if (sp && d && d.glifos) sp.innerHTML = d.glifos;
         desenha();
+        return { dados: d, versao: versao };
       }, function (e) {
         pinta({ estado: 'falha', erro: str(e && e.message), erros: [] });
+        return { dados: null, versao: versao };
       });
 
       return {

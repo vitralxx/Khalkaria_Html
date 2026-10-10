@@ -47,6 +47,13 @@
  * "Sair da prévia" apaga a chave e recarrega sem o ?ficha (saidaPrevia).
  * O drawer leva [data-kf-ignorar] (o MutationObserver da v2.1 não o decora).
  *
+ * Ensaio (F4.6a, 07 §1 e §2): "Ensaiar edição" no aviso de só-leitura do
+ * cabeçalho (o KhSeletor.entrar). Ligado (KhEnsaio.ligado), o drawer lê e
+ * calcula a ficha ativa do ensaio (KhEnsaio.calcular), o aviso de só-leitura
+ * some e o seletor de fichas do ensaio (KhSeletor, #fd-gaveta-ke) aparece no
+ * cabeçalho; a faixa fixa é do KhSeletor.ligarFaixa (montada aqui). Redesenha
+ * no evento kh:ensaio. "Sair da prévia" apaga também o Ensaio desta aba. O
+ * Ensaio grava só no sessionStorage com o prefixo khalkaria_ensaio:.
  * Escritas: localStorage khalkaria_ficha3_dock (só quando o jogador abre ou
  * recolhe pelo botão ou pelo Esc), as preferências de aba do KhAbas (ordem e
  * aba aberta, as mesmas da página), o "lembrar" da prévia (KhPrevia.iniciar,
@@ -69,7 +76,7 @@
  * por module.exports (carregado sozinho); no artefato js/ficha.js o export já é
  * o KhInv e este módulo só registra window.KhFichaDrawer e o liga no navegador.
  * Vem no ORDEM depois do kh-ficha-abas.js (usa o KhFichaAbas, o KhAbas, o
- * KhRedesenho, o KhConta e o KhPrevia).
+ * KhRedesenho, o KhConta, o KhPrevia, o KhEnsaio e o KhSeletor).
  * Fonte: js/ficha/kh-ficha-drawer.js (o js/ficha.js é o ARTEFATO concatenado).
  */
 (function (raiz) {
@@ -83,6 +90,8 @@
   var KhAbas = emNode ? require('./kh-abas.js') : raiz.KhAbas;
   var KhFichaAbas = emNode ? require('./kh-ficha-abas.js') : raiz.KhFichaAbas;
   var KhRedesenho = emNode ? require('./kh-redesenho.js') : raiz.KhRedesenho;
+  var KhEnsaio = emNode ? require('./kh-ensaio.js') : raiz.KhEnsaio;
+  var KhSeletor = emNode ? require('./kh-seletor.js') : raiz.KhSeletor;
 
   var KhFichaDrawer = (function () {
     var CHAVE_DOCK = 'khalkaria_ficha3_dock';
@@ -117,6 +126,9 @@
     var TOL_LARGA = 1;        // px: arredondamento de subpixel
     var ESPERA_LARGAS = 50;   // ms: junta os avisos do ResizeObserver (redimensionar a janela)
     var RO = 'Prévia só leitura. Para editar, use a ficha atual (FICHA).';
+    // o modo Ensaio (F4.6a, 07 §1): entrar, no aviso de só-leitura do cabeçalho
+    var ENSAIAR = 'Ensaiar edição';
+    var DICA_ENSAIAR = 'Liga o modo Ensaio nesta aba: as fichas do ensaio ficam só nela e a sua ficha não muda';
     var DICA_ORDEM = 'Arraste para mudar a ordem das abas. Pelo teclado: Tab até a aba e Alt+← ou Alt+→';
     var TITULO_A4 = 'Ordem do A4: volta as abas à ordem da ficha física';
     var RESTAURADA = 'Ordem do A4 restaurada.';
@@ -309,7 +321,10 @@
               '<button type="button" class="kh-btn fd-gaveta-btn fd-gaveta-recolher" aria-expanded="true" aria-controls="fd-gaveta-folha" aria-keyshortcuts="Escape"' +
                 ' aria-label="Recolher ao trilho" title="Recolher ao trilho (Esc)">' + SVG_RECOLHER + '</button>' +
             '</div>' +
-            '<p class="fd-gaveta-ro" role="note">' + esc(RO) + ' <button type="button" class="fd-gaveta-sair">Sair da prévia</button></p>' +
+            '<p class="fd-gaveta-ro" id="fd-gaveta-ro" role="note">' + esc(RO) + ' <button type="button" class="fd-gaveta-sair">Sair da prévia</button>' +
+              ' · <button type="button" class="fd-gaveta-ensaiar" data-ke="entrar" title="' + esc(DICA_ENSAIAR) + '">' + esc(ENSAIAR) + '</button></p>' +
+            // o seletor de fichas do Ensaio (KhSeletor): escondido fora dele
+            '<div class="fd-gaveta-ke" id="fd-gaveta-ke" hidden></div>' +
           '</header>' +
           '<div class="fd-gaveta-abas-barra">' +
             '<div class="fd-gaveta-abas" id="fd-gaveta-abas" role="tablist" aria-label="Partes da ficha">' +
@@ -507,6 +522,16 @@
         if (ms) notaT = setTimeout(function () { nota.hidden = true; nota.textContent = ''; }, ms);
       }
 
+      // ---- o modo Ensaio (F4.6a, KhEnsaio): ligado, o drawer lê e calcula a
+      // ficha ativa do ensaio, o aviso de só-leitura dá lugar ao seletor de
+      // fichas dele (KhSeletor, #fd-gaveta-ke) e a faixa fixa aparece
+      var pronto = null;   // os dados do motor (KhPrevia.carregar), para o Ensaio migrar e importar
+      var seletor = KhEnsaio && KhSeletor ? KhSeletor.criar({ win: win, doc: doc, cont: el('fd-gaveta-ke'), prefixo: PREFIXO,
+        densidade: 'compacta', dados: function () { return pronto; } }) : null;
+      var roEl = el('fd-gaveta-ro');
+      function poeModo() { if (roEl) roEl.hidden = ensaioLigado(); }
+      if (seletor) KhSeletor.ligarFaixa(win);
+
       // ---- cliques (delegados: o redesenho não perde ouvinte)
       gav.addEventListener('click', function (e) {
         var t = e.target && e.target.closest ? e.target : null;
@@ -514,8 +539,10 @@
         if (t.closest('.fd-gaveta-abrir')) abrir({ foco: true });
         else if (t.closest('.fd-gaveta-recolher')) recolher({ foco: true });
         else if (t.closest('.fd-gaveta-editar')) { if (win.KF && typeof win.KF.abrir === 'function') win.KF.abrir(); }
+        else if (t.closest('.fd-gaveta-ensaiar')) { if (seletor) seletor.entrar(); }
         else if (t.closest('.fd-gaveta-sair')) {
-          // apaga a chave e recarrega DE FATO, sem ?ficha=v3 (saidaPrevia)
+          // apaga a chave (e o Ensaio desta aba) e recarrega DE FATO, sem ?ficha=v3 (saidaPrevia)
+          if (KhEnsaio) KhEnsaio.sair(ss);
           try { if (ls) ls.removeItem(CHAVE_PREVIA); } catch (x) { /* storage bloqueado */ }
           var L = win.location, s = saidaPrevia(L);
           if (!L) return;
@@ -564,7 +591,9 @@
         });
         rolagem.scrollTop = topo;
       }
-      function desenha() { if (dados && vivo) pinta(KhPrevia.calcular(ls, dados, versao)); }
+      // com o Ensaio, a ficha ativa dele (KhEnsaio.calcular); sem ele, a sombra da ficha atual
+      function calcula() { return ensaioLigado() && KhEnsaio ? KhEnsaio.calcular(ss, dados, versao) : KhPrevia.calcular(ls, dados, versao); }
+      function desenha() { if (dados && vivo) pinta(calcula()); }
       function agenda() { clearTimeout(t); t = setTimeout(desenha, ESPERA); }
       function aoStorage(e) { if (e && e.key === CHAVE_V2) agenda(); }
       // campos digitados do drawer v2: vários só gravam (save), sem kf:mudou
@@ -573,6 +602,8 @@
       doc.addEventListener('input', aoCampo, true);
       doc.addEventListener('change', aoCampo, true);
       win.addEventListener('storage', aoStorage);
+      // o Ensaio ligou, saiu, trocou de ficha ou mudou a lista: na hora
+      if (KhEnsaio) doc.addEventListener(KhEnsaio.EVENTO, function () { poeModo(); desenha(); });
 
       // ---- arrastar: acende; o item do Bazar abre o drawer e é guardado; outra
       // entidade abre a ficha atual na seção dela (07 §0, item 1)
@@ -580,7 +611,8 @@
       function limpaAlvo() { gav.removeAttribute('data-alvo'); gav.removeAttribute('data-recusa'); }
       // o Ensaio (F4.6) ligado: a entidade é da ficha do ensaio, sem o desvio para a ficha atual
       function ensaioLigado() {
-        try { return !!(win.KhEnsaio && typeof win.KhEnsaio.ligado === 'function' && win.KhEnsaio.ligado()); } catch (y) { return false; }
+        var E = KhEnsaio || win.KhEnsaio;
+        try { return !!(E && typeof E.ligado === 'function' && E.ligado(win)); } catch (y) { return false; }
       }
       function temKF() { return !!(win.KF && typeof win.KF.abrir === 'function'); }
       function aoComecar(e) {
@@ -680,13 +712,16 @@
       }
 
       // ---- dados: os do motor (os da página), uma vez
-      KhPrevia.carregar(win.fetch.bind(win), base, versao).then(function (d) {
+      poeModo();
+      pronto = KhPrevia.carregar(win.fetch.bind(win), base, versao).then(function (d) {
         dados = d;
         var sp = el('fd-gaveta-sprite');
         if (sp && d && d.glifos) sp.innerHTML = d.glifos;
         desenha();
+        return { dados: d, versao: versao };
       }, function (e) {
         pinta({ estado: 'falha', erro: str(e && e.message), erros: [] });
+        return { dados: null, versao: versao };
       });
 
       return {

@@ -158,7 +158,8 @@ const FONTES = ORDEM.filter((n) => n !== 'ficha-v2.js').map((n) => [n, ler('js',
 const SRC_UI = ler('js', 'kh-ui.js');
 
 // opc: {ls (objeto inicial), lsBloqueado, search, body (atributos), comFp, readyState, kfAberta,
-//       kfDrawer (o #kf-drawer fechado, com offsetWidth), semKF (sem a ficha atual), ensaio (KhEnsaio.ligado())}
+//       kfDrawer (o #kf-drawer fechado, com offsetWidth), semKF (sem a ficha atual),
+//       ensaio (a marca do Ensaio no sessionStorage: o KhEnsaio de verdade o dá por ligado com a prévia)}
 function janela(opc) {
   opc = opc || {};
   const doc = DOM.documento({ body: opc.body, readyState: opc.readyState });
@@ -170,7 +171,8 @@ function janela(opc) {
   if (opc.kfDrawer) { const kf = doc.createElement('div'); kf.id = 'kf-drawer'; kf.offsetWidth = opc.kfDrawer; doc.body.appendChild(kf); }
   if (opc.mc != null) { const m = doc.createElement('main'); m.className = 'main-content'; m.innerHTML = opc.mc; doc.body.appendChild(m); }
   doc.criados.length = 0;
-  const ls = A.armazenamento(opc.ls || {}), ss = A.armazenamento(opc.ss || {});
+  const ls = A.armazenamento(opc.ls || {});
+  const ss = A.armazenamento(Object.assign({}, opc.ss, opc.ensaio ? { khalkaria_ensaio_ligado: '1' } : {}));
   const buscas = [], timers = [], ouvWin = {}, adicionados = [], abertos = [];
   const sb = {
     document: doc, URL, console, location: { search: opc.search || '', pathname: '/pages/sistema.html', hash: opc.hash || '',
@@ -192,7 +194,6 @@ function janela(opc) {
     KF: opc.semKF ? undefined : Object.freeze({ versao: '2', adicionar: (it) => { adicionados.push(it); return opc.kfFalha ? null : 'u' + adicionados.length; },
       abrir: (...a) => { abertos.push(a); } })
   };
-  if (opc.ensaio) sb.KhEnsaio = { ligado: () => true };
   // observadores falsos (opc.observadores): cada um guarda {tipo, alvo, op, f}; o
   // getComputedStyle lê el.cs (o padrão: overflow visible, sem padding)
   const obs = [];

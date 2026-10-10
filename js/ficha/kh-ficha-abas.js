@@ -138,6 +138,9 @@
 
     function mensagemEstado(res) {
       if (!res) return '';
+      // o Ensaio (F4.6a, KhEnsaio.calcular): a ficha é a do seletor de fichas, não a ficha atual
+      if (res.ensaio && res.estado === 'sem-ficha') return 'O ensaio está sem fichas. Crie uma em branco ou importe um arquivo no seletor de fichas.';
+      if (res.ensaio && res.estado === 'erro') return 'A ficha do ensaio não pôde ser lida (' + str(res.erro) + '). Exporte-a ou exclua-a no seletor de fichas.';
       if (res.estado === 'sem-ficha') return 'Não há ficha neste navegador. Crie ou importe uma na ficha atual (FICHA) e ela aparece aqui.';
       if (res.estado === 'erro') return 'A ficha deste navegador não pôde ser lida (' + str(res.erro) + (res.versao ? ' ' + str(res.versao) : '') + ').';
       if (res.estado === 'falha') return 'O motor falhou ao calcular: ' + str(res.erro);
