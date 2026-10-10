@@ -8,8 +8,11 @@
  *
  *   var R = KhRedesenho.criar({ prefixo: 'fp' });
  *   R.trocaHTML(doc, cont, html, reserva, caixa, win)  // troca o HTML de cont sem perder foco, <details> e dica
- *   R.encaixa(conta, caixa, win)                      // empurra a dica aberta para dentro da caixa
- *   R.encaixeDica(retangulo, {min, max})              // o deslocamento (puro)
+ *   R.encaixa(conta, caixa, win)                      // põe a dica aberta dentro da caixa e da janela
+ *   R.reencaixa(caixa, win)                           // depois de rolar: as dicas fora do fluxo seguem a conta
+ *   KhRedesenho.encaixeDica(retangulo, {min, max})    // o deslocamento na horizontal (puro)
+ *   KhRedesenho.planoDica(conta, dica, limites, vao)  // o lado, a altura máxima e o lugar fora do fluxo (puro)
+ *   KhRedesenho.limites(caixa, win)                   // a área útil da caixa na janela
  *
  * O prefixo dá os nomes das marcas: a variável do deslocamento da dica
  * (--<p>-dx), as marcas do elemento novo depois da troca (data-<p>-foco: o
@@ -41,10 +44,18 @@
 
     // ---------------- a dica da conta dentro da caixa ----------------
     // A dica nasce centrada sob o número (css: translateX(-50%) mais --<p>-dx).
-    // Ao abrir (hover ou foco), quem montou a mede e a empurra para dentro da
-    // caixa (a página, à direita da nav fixa; o drawer, na largura dele): nunca
-    // passa da janela (sem rolagem horizontal) nem sai da caixa. Sem espaço
-    // embaixo e com espaço em cima, abre para cima.
+    // Ao abrir (hover ou foco), quem montou a mede e a põe dentro da caixa (a
+    // página, #fp, à direita da nav fixa; o drawer, a .fd-gaveta-rolagem) e da
+    // janela, as duas ao mesmo tempo:
+    //   - na horizontal, empurrada (--<p>-dx) e, se mais larga, com a largura da caixa;
+    //   - na vertical, o lado é escolhido pelos limites da CAIXA (a parte dela à
+    //     vista na janela), e não só pela janela: embaixo se cabe; senão em cima
+    //     se cabe; senão no lado com mais espaço, com altura máxima;
+    //   - se a caixa (ou um ancestral até ela) recorta pelo overflow, como a
+    //     rolagem do drawer, a dica sai do fluxo (position: fixed, calculada do
+    //     retângulo da conta) e nada a corta; marcada data-dica-fixa. Fora do
+    //     fluxo, se não couber na caixa em nenhum lado, tenta a altura da janela
+    //     (inteira, por cima do cabeçalho do drawer) antes da altura máxima.
     // Puro: r = retângulo da dica sem deslocamento; lim = {min, max} em x.
     function encaixeDica(r, lim) {
       var dx = 0;
@@ -52,6 +63,66 @@
       if (r.left + dx < lim.min) dx = lim.min - r.left;
       return Math.round(dx);
     }
+    // Puro: rc = retângulo da conta; rd = o da dica aberta embaixo, sem
+    // deslocamento (com a largura já limitada); lim = {min, max, topo, base} (a
+    // área útil, limites()); vao = a distância da dica à conta (a do CSS).
+    // janela = {topo, base}, só para a dica fora do fluxo: se ela não cabe na
+    // caixa em nenhum lado, tenta a altura da janela (passa por cima do que
+    // está em volta da caixa, sem corte) antes da altura máxima.
+    // -> {dx, acima, maxAltura (null = a natural), x, y (o canto de cima à
+    // esquerda, para a dica fora do fluxo), janela (true: usou a da janela)}
+    function planoDica(rc, rd, lim, vao, janela) {
+      vao = typeof vao === 'number' && isFinite(vao) && vao >= 0 ? vao : 6;
+      var p = plano(rc, rd, lim, vao);
+      if (p.maxAltura == null || !janela) return p;
+      var q = plano(rc, rd, { min: lim.min, max: lim.max, topo: Math.min(lim.topo, janela.topo), base: Math.max(lim.base, janela.base) }, vao);
+      q.janela = true;
+      return q;
+    }
+    function plano(rc, rd, lim, vao) {
+      var h = rd.height;
+      var abaixo = lim.base - (rc.bottom + vao), acima = (rc.top - vao) - lim.topo;
+      var sobe = h > abaixo && (h <= acima || acima > abaixo);
+      var espaco = sobe ? acima : abaixo;
+      var maxAltura = h > espaco ? Math.max(0, Math.floor(espaco)) : null;
+      var alto = maxAltura == null ? h : maxAltura;
+      var dx = encaixeDica(rd, lim);
+      // fora do fluxo: o lugar exato (sem o arredondamento do dx, que passaria meio px da borda)
+      var x = Math.min(Math.max(rd.left, lim.min), Math.max(lim.min, lim.max - rd.width));
+      var y = sobe ? rc.top - vao - alto : rc.bottom + vao;
+      // a conta saiu da área à vista (rolou com a dica aberta): a dica fica nela
+      y = Math.min(Math.max(y, lim.topo), Math.max(lim.topo, lim.base - alto));
+      return { dx: dx, acima: sobe, maxAltura: maxAltura, x: x, y: y, janela: false };
+    }
+    // a área útil da caixa na janela, com a margem: a caixa de padding (sem a
+    // barra de rolagem nem a borda) cortada pela janela (sem a barra da página)
+    function limites(caixa, win) {
+      var c = caixa.getBoundingClientRect();
+      var x0 = c.left + (caixa.clientLeft || 0), y0 = c.top + (caixa.clientTop || 0);
+      var x1 = caixa.clientWidth ? x0 + caixa.clientWidth : c.right;
+      var y1 = caixa.clientHeight ? y0 + caixa.clientHeight : c.bottom;
+      var j = janelaWH(win);
+      return { min: Math.max(x0, 0) + MARGEM_DICA, max: Math.min(x1, j.W) - MARGEM_DICA,
+        topo: Math.max(y0, 0) + MARGEM_DICA, base: Math.min(y1, j.H) - MARGEM_DICA };
+    }
+    // a janela sem as barras de rolagem da página (Infinity se não se sabe)
+    function janelaWH(win) {
+      var de = win && win.document ? win.document.documentElement : null;
+      return { W: (de && de.clientWidth) || (win && win.innerWidth) || Infinity,
+        H: (de && de.clientHeight) || (win && win.innerHeight) || Infinity };
+    }
+    // a caixa, ou a conta ou um ancestral dela até a caixa, recorta pelo overflow?
+    function recorta(conta, caixa, win) {
+      if (!win || typeof win.getComputedStyle !== 'function') return false;
+      for (var x = conta; x; x = x.parentElement) {
+        var s = win.getComputedStyle(x);
+        if (s && ((s.overflowX && s.overflowX !== 'visible') || (s.overflowY && s.overflowY !== 'visible'))) return true;
+        if (x === caixa) break;
+      }
+      return false;
+    }
+    // o que uma abertura grava na dica (o estilo) e na conta (as marcas)
+    var ESTILO_DICA = ['max-width', 'max-height', 'overflow-y', 'position', 'left', 'top', 'right', 'bottom', 'width', 'transform'];
 
     // a fábrica: as marcas com o prefixo de quem desenha
     function criar(op) {
@@ -60,28 +131,62 @@
       if (!RE_PREFIXO.test(P)) throw new Error('KhRedesenho: prefixo inválido "' + P + '" (letras, dígitos e hífen)');
       var VAR_DX = '--' + P + '-dx';
       var MARCA_FOCO = 'data-' + P + '-foco', MARCA_DICA = 'data-' + P + '-dica';
+      var MARCA_FIXA = 'data-dica-fixa';   // a dica desta conta está fora do fluxo (position: fixed)
       var MEMO_HTML = '_' + P + 'Html', MEMO_DICA = '_' + P + 'Dica';
 
+      // volta a dica ao desenho do CSS (centrada embaixo, no fluxo)
+      function solta(conta, d) {
+        d.style.removeProperty(VAR_DX);
+        ESTILO_DICA.forEach(function (k) { d.style.removeProperty(k); });
+        conta.removeAttribute('data-dica-acima');
+        conta.removeAttribute(MARCA_FIXA);
+      }
       // a dica de uma conta (.kh-conta) aberta agora; false se ainda está fechada
       function encaixa(conta, caixa, win) {
         var d = conta && conta.querySelector ? conta.querySelector('.kh-conta-dica') : null;
         if (!d || !d.getBoundingClientRect || !caixa) return false;
-        d.style.removeProperty(VAR_DX);
-        d.style.removeProperty('max-width');
-        conta.removeAttribute('data-dica-acima');
+        solta(conta, d);
         var r = d.getBoundingClientRect();
         if (!r.width) return false;
-        var c = caixa.getBoundingClientRect();
-        var lim = { min: c.left + MARGEM_DICA, max: c.right - MARGEM_DICA };
+        var lim = limites(caixa, win);
         if (r.width > lim.max - lim.min) {
-          d.style.maxWidth = Math.max(0, Math.floor(lim.max - lim.min)) + 'px';
+          d.style.setProperty('max-width', Math.max(0, Math.floor(lim.max - lim.min)) + 'px');
           r = d.getBoundingClientRect();
         }
-        var dx = encaixeDica(r, lim);
-        if (dx) d.style.setProperty(VAR_DX, dx + 'px');
-        var alto = win && win.innerHeight, rc = conta.getBoundingClientRect();
-        if (alto && r.bottom > alto - MARGEM_DICA && rc.top - 6 - r.height >= MARGEM_DICA) conta.setAttribute('data-dica-acima', '');
+        var rc = conta.getBoundingClientRect();
+        var fixa = recorta(conta, caixa, win), H = janelaWH(win).H;
+        // fora do fluxo, sem lugar na caixa: a altura da janela antes da altura máxima
+        var p = planoDica(rc, r, lim, r.top - rc.bottom, fixa && isFinite(H) ? { topo: MARGEM_DICA, base: H - MARGEM_DICA } : null);
+        if (p.acima) conta.setAttribute('data-dica-acima', '');
+        if (p.maxAltura != null) {
+          d.style.setProperty('max-height', p.maxAltura + 'px');
+          d.style.setProperty('overflow-y', 'hidden');
+        }
+        if (fixa) {
+          // fora do fluxo: a caixa que rola não a corta (nada entre ela e a janela transforma)
+          conta.setAttribute(MARCA_FIXA, '');
+          d.style.setProperty('position', 'fixed');
+          d.style.setProperty('left', p.x + 'px');
+          d.style.setProperty('top', p.y + 'px');
+          d.style.setProperty('right', 'auto');
+          d.style.setProperty('bottom', 'auto');
+          d.style.setProperty('width', r.width + 'px');
+          d.style.setProperty('transform', 'none');
+        } else if (p.dx) d.style.setProperty(VAR_DX, p.dx + 'px');
         return true;
+      }
+      // depois de a caixa (ou a página) rolar: a dica fora do fluxo não anda com
+      // a conta; as abertas seguem, as fechadas voltam ao CSS. Quantas seguiram.
+      function reencaixa(caixa, win) {
+        var n = 0;
+        qsa(caixa, '[' + MARCA_FIXA + ']').forEach(function (c) {
+          var d = c.querySelector('.kh-conta-dica');
+          if (!d) return;
+          var r = d.getBoundingClientRect();
+          if (r && r.width && encaixa(c, caixa, win)) n++;
+          else solta(c, d);
+        });
+        return n;
       }
 
       // ---------------- redesenho sem perder o lugar ----------------
@@ -170,11 +275,12 @@
         return true;
       }
 
-      return { prefixo: P, VAR_DX: VAR_DX, MARCA_FOCO: MARCA_FOCO, MARCA_DICA: MARCA_DICA,
-        encaixa: encaixa, trocaHTML: trocaHTML, soltaFoco: soltaFoco, soltaDicas: soltaDicas };
+      return { prefixo: P, VAR_DX: VAR_DX, MARCA_FOCO: MARCA_FOCO, MARCA_DICA: MARCA_DICA, MARCA_FIXA: MARCA_FIXA,
+        encaixa: encaixa, reencaixa: reencaixa, trocaHTML: trocaHTML, soltaFoco: soltaFoco, soltaDicas: soltaDicas };
     }
 
-    return { MARGEM_DICA: MARGEM_DICA, FOCAVEIS: FOCAVEIS, encaixeDica: encaixeDica, criar: criar };
+    return { MARGEM_DICA: MARGEM_DICA, FOCAVEIS: FOCAVEIS, encaixeDica: encaixeDica, planoDica: planoDica,
+      limites: limites, recorta: recorta, criar: criar };
   })();
 
   if (emNode) { module.exports = KhRedesenho; return; }

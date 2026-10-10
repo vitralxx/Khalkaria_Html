@@ -6071,8 +6071,11 @@
  *
  *   var R = KhRedesenho.criar({ prefixo: 'fp' });
  *   R.trocaHTML(doc, cont, html, reserva, caixa, win)  // troca o HTML de cont sem perder foco, <details> e dica
- *   R.encaixa(conta, caixa, win)                      // empurra a dica aberta para dentro da caixa
- *   R.encaixeDica(retangulo, {min, max})              // o deslocamento (puro)
+ *   R.encaixa(conta, caixa, win)                      // põe a dica aberta dentro da caixa e da janela
+ *   R.reencaixa(caixa, win)                           // depois de rolar: as dicas fora do fluxo seguem a conta
+ *   KhRedesenho.encaixeDica(retangulo, {min, max})    // o deslocamento na horizontal (puro)
+ *   KhRedesenho.planoDica(conta, dica, limites, vao)  // o lado, a altura máxima e o lugar fora do fluxo (puro)
+ *   KhRedesenho.limites(caixa, win)                   // a área útil da caixa na janela
  *
  * O prefixo dá os nomes das marcas: a variável do deslocamento da dica
  * (--<p>-dx), as marcas do elemento novo depois da troca (data-<p>-foco: o
@@ -6104,10 +6107,18 @@
 
     // ---------------- a dica da conta dentro da caixa ----------------
     // A dica nasce centrada sob o número (css: translateX(-50%) mais --<p>-dx).
-    // Ao abrir (hover ou foco), quem montou a mede e a empurra para dentro da
-    // caixa (a página, à direita da nav fixa; o drawer, na largura dele): nunca
-    // passa da janela (sem rolagem horizontal) nem sai da caixa. Sem espaço
-    // embaixo e com espaço em cima, abre para cima.
+    // Ao abrir (hover ou foco), quem montou a mede e a põe dentro da caixa (a
+    // página, #fp, à direita da nav fixa; o drawer, a .fd-gaveta-rolagem) e da
+    // janela, as duas ao mesmo tempo:
+    //   - na horizontal, empurrada (--<p>-dx) e, se mais larga, com a largura da caixa;
+    //   - na vertical, o lado é escolhido pelos limites da CAIXA (a parte dela à
+    //     vista na janela), e não só pela janela: embaixo se cabe; senão em cima
+    //     se cabe; senão no lado com mais espaço, com altura máxima;
+    //   - se a caixa (ou um ancestral até ela) recorta pelo overflow, como a
+    //     rolagem do drawer, a dica sai do fluxo (position: fixed, calculada do
+    //     retângulo da conta) e nada a corta; marcada data-dica-fixa. Fora do
+    //     fluxo, se não couber na caixa em nenhum lado, tenta a altura da janela
+    //     (inteira, por cima do cabeçalho do drawer) antes da altura máxima.
     // Puro: r = retângulo da dica sem deslocamento; lim = {min, max} em x.
     function encaixeDica(r, lim) {
       var dx = 0;
@@ -6115,6 +6126,66 @@
       if (r.left + dx < lim.min) dx = lim.min - r.left;
       return Math.round(dx);
     }
+    // Puro: rc = retângulo da conta; rd = o da dica aberta embaixo, sem
+    // deslocamento (com a largura já limitada); lim = {min, max, topo, base} (a
+    // área útil, limites()); vao = a distância da dica à conta (a do CSS).
+    // janela = {topo, base}, só para a dica fora do fluxo: se ela não cabe na
+    // caixa em nenhum lado, tenta a altura da janela (passa por cima do que
+    // está em volta da caixa, sem corte) antes da altura máxima.
+    // -> {dx, acima, maxAltura (null = a natural), x, y (o canto de cima à
+    // esquerda, para a dica fora do fluxo), janela (true: usou a da janela)}
+    function planoDica(rc, rd, lim, vao, janela) {
+      vao = typeof vao === 'number' && isFinite(vao) && vao >= 0 ? vao : 6;
+      var p = plano(rc, rd, lim, vao);
+      if (p.maxAltura == null || !janela) return p;
+      var q = plano(rc, rd, { min: lim.min, max: lim.max, topo: Math.min(lim.topo, janela.topo), base: Math.max(lim.base, janela.base) }, vao);
+      q.janela = true;
+      return q;
+    }
+    function plano(rc, rd, lim, vao) {
+      var h = rd.height;
+      var abaixo = lim.base - (rc.bottom + vao), acima = (rc.top - vao) - lim.topo;
+      var sobe = h > abaixo && (h <= acima || acima > abaixo);
+      var espaco = sobe ? acima : abaixo;
+      var maxAltura = h > espaco ? Math.max(0, Math.floor(espaco)) : null;
+      var alto = maxAltura == null ? h : maxAltura;
+      var dx = encaixeDica(rd, lim);
+      // fora do fluxo: o lugar exato (sem o arredondamento do dx, que passaria meio px da borda)
+      var x = Math.min(Math.max(rd.left, lim.min), Math.max(lim.min, lim.max - rd.width));
+      var y = sobe ? rc.top - vao - alto : rc.bottom + vao;
+      // a conta saiu da área à vista (rolou com a dica aberta): a dica fica nela
+      y = Math.min(Math.max(y, lim.topo), Math.max(lim.topo, lim.base - alto));
+      return { dx: dx, acima: sobe, maxAltura: maxAltura, x: x, y: y, janela: false };
+    }
+    // a área útil da caixa na janela, com a margem: a caixa de padding (sem a
+    // barra de rolagem nem a borda) cortada pela janela (sem a barra da página)
+    function limites(caixa, win) {
+      var c = caixa.getBoundingClientRect();
+      var x0 = c.left + (caixa.clientLeft || 0), y0 = c.top + (caixa.clientTop || 0);
+      var x1 = caixa.clientWidth ? x0 + caixa.clientWidth : c.right;
+      var y1 = caixa.clientHeight ? y0 + caixa.clientHeight : c.bottom;
+      var j = janelaWH(win);
+      return { min: Math.max(x0, 0) + MARGEM_DICA, max: Math.min(x1, j.W) - MARGEM_DICA,
+        topo: Math.max(y0, 0) + MARGEM_DICA, base: Math.min(y1, j.H) - MARGEM_DICA };
+    }
+    // a janela sem as barras de rolagem da página (Infinity se não se sabe)
+    function janelaWH(win) {
+      var de = win && win.document ? win.document.documentElement : null;
+      return { W: (de && de.clientWidth) || (win && win.innerWidth) || Infinity,
+        H: (de && de.clientHeight) || (win && win.innerHeight) || Infinity };
+    }
+    // a caixa, ou a conta ou um ancestral dela até a caixa, recorta pelo overflow?
+    function recorta(conta, caixa, win) {
+      if (!win || typeof win.getComputedStyle !== 'function') return false;
+      for (var x = conta; x; x = x.parentElement) {
+        var s = win.getComputedStyle(x);
+        if (s && ((s.overflowX && s.overflowX !== 'visible') || (s.overflowY && s.overflowY !== 'visible'))) return true;
+        if (x === caixa) break;
+      }
+      return false;
+    }
+    // o que uma abertura grava na dica (o estilo) e na conta (as marcas)
+    var ESTILO_DICA = ['max-width', 'max-height', 'overflow-y', 'position', 'left', 'top', 'right', 'bottom', 'width', 'transform'];
 
     // a fábrica: as marcas com o prefixo de quem desenha
     function criar(op) {
@@ -6123,28 +6194,62 @@
       if (!RE_PREFIXO.test(P)) throw new Error('KhRedesenho: prefixo inválido "' + P + '" (letras, dígitos e hífen)');
       var VAR_DX = '--' + P + '-dx';
       var MARCA_FOCO = 'data-' + P + '-foco', MARCA_DICA = 'data-' + P + '-dica';
+      var MARCA_FIXA = 'data-dica-fixa';   // a dica desta conta está fora do fluxo (position: fixed)
       var MEMO_HTML = '_' + P + 'Html', MEMO_DICA = '_' + P + 'Dica';
 
+      // volta a dica ao desenho do CSS (centrada embaixo, no fluxo)
+      function solta(conta, d) {
+        d.style.removeProperty(VAR_DX);
+        ESTILO_DICA.forEach(function (k) { d.style.removeProperty(k); });
+        conta.removeAttribute('data-dica-acima');
+        conta.removeAttribute(MARCA_FIXA);
+      }
       // a dica de uma conta (.kh-conta) aberta agora; false se ainda está fechada
       function encaixa(conta, caixa, win) {
         var d = conta && conta.querySelector ? conta.querySelector('.kh-conta-dica') : null;
         if (!d || !d.getBoundingClientRect || !caixa) return false;
-        d.style.removeProperty(VAR_DX);
-        d.style.removeProperty('max-width');
-        conta.removeAttribute('data-dica-acima');
+        solta(conta, d);
         var r = d.getBoundingClientRect();
         if (!r.width) return false;
-        var c = caixa.getBoundingClientRect();
-        var lim = { min: c.left + MARGEM_DICA, max: c.right - MARGEM_DICA };
+        var lim = limites(caixa, win);
         if (r.width > lim.max - lim.min) {
-          d.style.maxWidth = Math.max(0, Math.floor(lim.max - lim.min)) + 'px';
+          d.style.setProperty('max-width', Math.max(0, Math.floor(lim.max - lim.min)) + 'px');
           r = d.getBoundingClientRect();
         }
-        var dx = encaixeDica(r, lim);
-        if (dx) d.style.setProperty(VAR_DX, dx + 'px');
-        var alto = win && win.innerHeight, rc = conta.getBoundingClientRect();
-        if (alto && r.bottom > alto - MARGEM_DICA && rc.top - 6 - r.height >= MARGEM_DICA) conta.setAttribute('data-dica-acima', '');
+        var rc = conta.getBoundingClientRect();
+        var fixa = recorta(conta, caixa, win), H = janelaWH(win).H;
+        // fora do fluxo, sem lugar na caixa: a altura da janela antes da altura máxima
+        var p = planoDica(rc, r, lim, r.top - rc.bottom, fixa && isFinite(H) ? { topo: MARGEM_DICA, base: H - MARGEM_DICA } : null);
+        if (p.acima) conta.setAttribute('data-dica-acima', '');
+        if (p.maxAltura != null) {
+          d.style.setProperty('max-height', p.maxAltura + 'px');
+          d.style.setProperty('overflow-y', 'hidden');
+        }
+        if (fixa) {
+          // fora do fluxo: a caixa que rola não a corta (nada entre ela e a janela transforma)
+          conta.setAttribute(MARCA_FIXA, '');
+          d.style.setProperty('position', 'fixed');
+          d.style.setProperty('left', p.x + 'px');
+          d.style.setProperty('top', p.y + 'px');
+          d.style.setProperty('right', 'auto');
+          d.style.setProperty('bottom', 'auto');
+          d.style.setProperty('width', r.width + 'px');
+          d.style.setProperty('transform', 'none');
+        } else if (p.dx) d.style.setProperty(VAR_DX, p.dx + 'px');
         return true;
+      }
+      // depois de a caixa (ou a página) rolar: a dica fora do fluxo não anda com
+      // a conta; as abertas seguem, as fechadas voltam ao CSS. Quantas seguiram.
+      function reencaixa(caixa, win) {
+        var n = 0;
+        qsa(caixa, '[' + MARCA_FIXA + ']').forEach(function (c) {
+          var d = c.querySelector('.kh-conta-dica');
+          if (!d) return;
+          var r = d.getBoundingClientRect();
+          if (r && r.width && encaixa(c, caixa, win)) n++;
+          else solta(c, d);
+        });
+        return n;
       }
 
       // ---------------- redesenho sem perder o lugar ----------------
@@ -6233,11 +6338,12 @@
         return true;
       }
 
-      return { prefixo: P, VAR_DX: VAR_DX, MARCA_FOCO: MARCA_FOCO, MARCA_DICA: MARCA_DICA,
-        encaixa: encaixa, trocaHTML: trocaHTML, soltaFoco: soltaFoco, soltaDicas: soltaDicas };
+      return { prefixo: P, VAR_DX: VAR_DX, MARCA_FOCO: MARCA_FOCO, MARCA_DICA: MARCA_DICA, MARCA_FIXA: MARCA_FIXA,
+        encaixa: encaixa, reencaixa: reencaixa, trocaHTML: trocaHTML, soltaFoco: soltaFoco, soltaDicas: soltaDicas };
     }
 
-    return { MARGEM_DICA: MARGEM_DICA, FOCAVEIS: FOCAVEIS, encaixeDica: encaixeDica, criar: criar };
+    return { MARGEM_DICA: MARGEM_DICA, FOCAVEIS: FOCAVEIS, encaixeDica: encaixeDica, planoDica: planoDica,
+      limites: limites, recorta: recorta, criar: criar };
   })();
 
   if (emNode) { module.exports = KhRedesenho; return; }
@@ -7496,11 +7602,21 @@
  * storage da khalkaria_ficha (debounce de 350 ms), pelo KhRedesenho (foco,
  * <details>, dica e rolagem ficam).
  *
- * Arrastar: o dragstart de um card (.kf-draggable, [data-kf-tipo], item do
- * Bazar) acende o trilho; o dragenter abre o drawer (sem gravar a preferência);
- * soltar um item do Bazar ({_bazar:true,item}) guarda na ficha atual por
- * KF.adicionar (o inventário é o mesmo); qualquer outra entidade não é aceita
- * e o drawer avisa, sem perder o arrasto (dá para seguir até a ficha atual).
+ * Arrastar (07 §0, item 1): o dragstart de um card (.kf-draggable,
+ * [data-kf-tipo], item do Bazar) acende o trilho, e o tipo da carta sai já
+ * dali, pelo card de origem (leCarta): .item-card (ou [data-kf-tipo="item"], ou
+ * o painel de receita) é item do Bazar; o resto é outra entidade, com a seção
+ * da ficha atual onde ela entra (técnicas, grimório ou cartas).
+ *   - item do Bazar: o dragenter abre o drawer (sem gravar a preferência), e
+ *     soltar ({_bazar:true,item}) guarda na ficha atual por KF.adicionar (o
+ *     inventário é o mesmo);
+ *   - outra entidade: o dragenter abre a FICHA ATUAL (KF.abrir(seção), o drawer
+ *     v2.1, por cima), com a zona de soltar daquela seção, e a nota fora da
+ *     folha diz "A ficha atual abriu: solte a técnica nela." O drawer novo não
+ *     abre nem aceita. Sem seção (raça, condição) ou sem a ficha atual, o
+ *     drawer abre e explica, sem aceitar;
+ *   - com o Ensaio ligado (F4.6, KhEnsaio.ligado()), o desvio não acontece: a
+ *     entidade é da ficha do ensaio (o soltar chega na F4.6c).
  * Teclado: Esc recolhe (KhTeclas.camadaEsc, depois das camadas do Bazar; não
  * com o foco num campo de texto fora do drawer, cujo Esc é dele); abrir
  * pelo botão leva o foco à aba aberta, recolher o devolve ao botão do trilho.
@@ -7511,10 +7627,13 @@
  * recolhe pelo botão ou pelo Esc), as preferências de aba do KhAbas (ordem e
  * aba aberta, as mesmas da página), o "lembrar" da prévia (KhPrevia.iniciar,
  * com ?ficha=v3) e, ao soltar um item do Bazar, o KF.adicionar da ficha atual.
+ * O KF.abrir (botão "Editar na ficha atual" e o arrasto de outra entidade) é o
+ * do botão FICHA: a v2.1 lembra que está aberta (khalkaria_ficha_open).
  * Nenhuma chave de ficha v3.
  *
  * Partes puras (testadas no node, tools/testes/ficha-drawer.test.js): estado,
- * lerDock, leArrasto, fracao, saidaPrevia, htmlCasca, htmlId e htmlMinis. No node exporta
+ * lerDock, leArrasto, leCarta, avisoAbriu, avisoRecusa, fracao, saidaPrevia,
+ * htmlCasca, htmlId e htmlMinis. No node exporta
  * por module.exports (carregado sozinho); no artefato js/ficha.js o export já é
  * o KhInv e este módulo só registra window.KhFichaDrawer e o liga no navegador.
  * Vem no ORDEM depois do kh-ficha-abas.js (usa o KhFichaAbas, o KhAbas, o
@@ -7545,8 +7664,20 @@
     var ID = 'fd-gaveta';
     var ESPERA = 350;                // ms: depois do debounce de 200 ms com que o drawer v2 grava
     var MOSTRA_AVISO = 6000;         // ms do aviso depois que o arrasto acaba
-    // o texto da especificação (06 §Arrastar)
+    // o texto da especificação (06 §Arrastar); desde a 07 §0, só sobra com o Ensaio ligado
     var AVISO_SO_LEITURA = 'A ficha nova ainda é só leitura: solte na ficha atual (botão FICHA) para levar técnicas e magias';
+    // arrastar outra entidade (07 §0, item 1): a seção da ficha atual (a chave do
+    // KF.abrir, data-sec do drawer v2.1) pelo campo do arrasto da v2.1 (_campo,
+    // o MAPA dela) ou pelo tipo marcado no build ([data-kf-tipo]). Raça e
+    // condição não têm zona de soltar na ficha atual: null.
+    var SECAO_DO_CAMPO = { tecnicas: 'tecnicas', grimorio: 'grimorio', cartasLimiar: 'cartas' };
+    var SECAO_DO_TIPO = { magia: 'grimorio', carta: 'cartas', dor: 'cartas', beneficio: 'cartas', abismo: 'cartas',
+      tecnica: 'tecnicas', marca: 'tecnicas', ultimate: 'tecnicas', origem: 'tecnicas', raca: null, condicao: null };
+    var NOME_SECAO = { tecnicas: 'a técnica', grimorio: 'a magia', cartas: 'a carta' };
+    var NOME_TIPO = { raca: 'a raça', condicao: 'a condição' };
+    // o que é item do Bazar (o card do registro, o painel de receita)
+    var ORIGEM_BAZAR = '.item-card, [data-kf-tipo="item"], #bz-receita [data-ir]';
+    var VAO_NOTA = 12;   // px entre a nota e o drawer da ficha atual
     var RO = 'Prévia só leitura. Para editar, use a ficha atual (FICHA).';
     var DICA_ORDEM = 'Arraste para mudar a ordem das abas. Pelo teclado: Tab até a aba e Alt+← ou Alt+→';
     var TITULO_A4 = 'Ordem do A4: volta as abas à ordem da ficha física';
@@ -7560,8 +7691,8 @@
     var RECURSOS = [['saude', 'Saúde'], ['stamina', 'Stamina'], ['eter', 'Éter']];
     // o que acende o trilho ao começar a arrastar: os cards das páginas de regras
     // (decorados pela v2.1: .kf-draggable; marcados no build: [data-kf-tipo]) e
-    // os itens do Bazar (o registro tem [data-kf-tipo="item"]; o painel de receita, [data-ir])
-    var ORIGENS_ARRASTO = '.kf-draggable, [data-kf-tipo], #bz-receita [data-ir]';
+    // os itens do Bazar (.item-card; o registro tem [data-kf-tipo="item"]; o painel de receita, [data-ir])
+    var ORIGENS_ARRASTO = '.kf-draggable, [data-kf-tipo], .item-card, #bz-receita [data-ir]';
 
     // ícones (traço em currentColor, sem emoji)
     function svg(d) {
@@ -7602,6 +7733,40 @@
       if (!obj(p)) return null;
       if (p._bazar && obj(p.item) && (p.item.id || p.item.nome)) return { tipo: 'bazar', item: p.item };
       return { tipo: 'outro' };
+    }
+    function temChave(o, k) { return Object.prototype.hasOwnProperty.call(o, k); }
+    // a carta na mão, no dragstart: pelo card de origem (o que casou com as
+    // ORIGENS_ARRASTO) e, se der para ler, pelo text/plain que o card pôs.
+    // -> {tipo:'bazar', item (ou null: lido no soltar)} |
+    //    {tipo:'outro', secao ('tecnicas'|'grimorio'|'cartas'|null), kfTipo}
+    function leCarta(card, txt) {
+      var lido = leArrasto(txt);
+      var perto = function (sel) { try { return card && card.closest ? card.closest(sel) : null; } catch (e) { return null; } };
+      if (perto(ORIGEM_BAZAR) || (lido && lido.tipo === 'bazar')) {
+        return { tipo: 'bazar', item: lido && lido.tipo === 'bazar' ? lido.item : null };
+      }
+      var p = null;
+      try { p = JSON.parse(str(txt)); } catch (e) { p = null; }
+      var campo = obj(p) ? str(p._campo) : '';
+      var marcado = perto('[data-kf-tipo]');
+      var kt = marcado ? str(marcado.getAttribute('data-kf-tipo')) : '';
+      var secao = null;
+      if (temChave(SECAO_DO_CAMPO, campo)) secao = SECAO_DO_CAMPO[campo];
+      else if (temChave(SECAO_DO_TIPO, kt)) secao = SECAO_DO_TIPO[kt];
+      else if (perto('.kf-draggable')) secao = 'tecnicas';   // o resto do MAPA da v2.1 (traço, variante, corrupção…)
+      return { tipo: 'outro', secao: secao, kfTipo: kt || (obj(p) ? str(p.tipo) : '') };
+    }
+    // a nota quando a ficha atual abre por cima
+    function avisoAbriu(secao) { return 'A ficha atual abriu: solte ' + (NOME_SECAO[secao] || 'a carta') + ' nela.'; }
+    // o aviso quando o drawer abre e não aceita: c = o leCarta; temKF = a ficha atual está na página
+    function avisoRecusa(c, temKF) {
+      c = obj(c) ? c : {};
+      if (!c.secao) {
+        var nome = temChave(NOME_TIPO, c.kfTipo) ? NOME_TIPO[c.kfTipo] : 'este card';
+        return 'A ficha atual não recebe ' + nome + ' por arrasto: preencha à mão, na ficha atual (FICHA).';
+      }
+      if (!temKF) return 'A ficha atual não carregou nesta página: recarregue para levar ' + (NOME_SECAO[c.secao] || 'a carta') + '.';
+      return AVISO_SO_LEITURA;
     }
     // atual sobre máximo, de 0 a 1 (máximo 0 ou ausente: vazia)
     function fracao(atual, max) {
@@ -7711,7 +7876,10 @@
           '</div>' +
           // o sprite partials/glifos.html (moldura de raízes, ramos, selo, recursos), posto ao carregar
           '<div class="fd-gaveta-sprite" id="fd-gaveta-sprite" aria-hidden="true"></div>' +
-        '</div>';
+        '</div>' +
+        // a nota de arrastar quando a ficha atual abre por cima: fora da folha
+        // (coberta pelo drawer v2.1 ou recolhida no trilho), à esquerda dele
+        '<p class="fd-gaveta-nota" id="fd-gaveta-nota" role="status" aria-live="polite" hidden></p>';
     }
 
     // ---------------- navegador ----------------
@@ -7775,7 +7943,7 @@
       function q(sel) { return gav.querySelector(sel); }
       var btAbrir = q('.fd-gaveta-abrir'), btRecolher = q('.fd-gaveta-recolher');
       var minis = el('fd-gaveta-minis'), idEl = el('fd-gaveta-id'), rolagem = el('fd-gaveta-rolagem');
-      var aviso = el('fd-gaveta-aviso');
+      var aviso = el('fd-gaveta-aviso'), nota = el('fd-gaveta-nota');
       var vivo = true;
 
       // ---- estado: trilho | aberto
@@ -7801,12 +7969,22 @@
         aoSelecionar: function (id) { aberta = id; } });
 
       // ---- aviso (arrastar e soltar)
-      var avisoT = null;
+      var avisoT = null, notaT = null;
       function mostraAviso(msg, ms) {
         clearTimeout(avisoT);
         if (aviso.textContent !== msg) aviso.textContent = msg;
         aviso.hidden = false;
         if (ms) avisoT = setTimeout(function () { aviso.hidden = true; aviso.textContent = ''; }, ms);
+      }
+      // a nota de fora da folha (a ficha atual abriu por cima): à esquerda do drawer v2.1
+      function mostraNota(msg, ms) {
+        clearTimeout(notaT);
+        var v2 = el('kf-drawer');
+        var larg = v2 && typeof v2.offsetWidth === 'number' ? v2.offsetWidth : 0;
+        if (larg) nota.style.setProperty('--fd-nota-dir', (larg + VAO_NOTA) + 'px');
+        if (nota.textContent !== msg) nota.textContent = msg;
+        nota.hidden = false;
+        if (ms) notaT = setTimeout(function () { nota.hidden = true; nota.textContent = ''; }, ms);
       }
 
       // ---- cliques (delegados: o redesenho não perde ouvinte)
@@ -7837,6 +8015,8 @@
       gav.addEventListener('mouseover', aoAbrirDica);
       gav.addEventListener('focusin', aoAbrirDica);
       gav.addEventListener('focusout', function (e) { R.soltaFoco(e.target); RT.soltaFoco(e.target); });
+      // a dica fora do fluxo (a rolagem recorta: position fixed) segue a conta quando a rolagem anda
+      rolagem.addEventListener('scroll', function () { R.reencaixa(rolagem, win); }, { passive: true });
       // a dica de uma mini barra que o redesenho deixou aberta (sem caixa: ela abre à esquerda do trilho)
       var dicaTrilho = false;
       function aoMexer() {
@@ -7874,20 +8054,35 @@
       doc.addEventListener('change', aoCampo, true);
       win.addEventListener('storage', aoStorage);
 
-      // ---- arrastar: acende, abre, guarda o item do Bazar, avisa o resto
+      // ---- arrastar: acende; o item do Bazar abre o drawer e é guardado; outra
+      // entidade abre a ficha atual na seção dela (07 §0, item 1)
       var arrasto = null;
       function limpaAlvo() { gav.removeAttribute('data-alvo'); gav.removeAttribute('data-recusa'); }
+      // o Ensaio (F4.6) ligado: a entidade é da ficha do ensaio, sem o desvio para a ficha atual
+      function ensaioLigado() {
+        try { return !!(win.KhEnsaio && typeof win.KhEnsaio.ligado === 'function' && win.KhEnsaio.ligado()); } catch (y) { return false; }
+      }
+      function temKF() { return !!(win.KF && typeof win.KF.abrir === 'function'); }
       function aoComecar(e) {
         var x = e.target && e.target.closest ? e.target : null;
-        if (!x || x.closest('#' + ID) || !x.closest(ORIGENS_ARRASTO)) return;
-        var lido = null;
+        var card = x && !x.closest('#' + ID) ? x.closest(ORIGENS_ARRASTO) : null;
+        if (!card) return;
+        var txt = '';
         // no dragstart o dataTransfer ainda se lê (o card já pôs o text/plain: ouvinte dele, antes deste)
-        try { lido = leArrasto(e.dataTransfer ? e.dataTransfer.getData('text/plain') : ''); } catch (y) { lido = null; }
-        arrasto = { tipo: lido ? lido.tipo : 'outro', item: lido ? lido.item : null };
+        try { txt = e.dataTransfer ? e.dataTransfer.getData('text/plain') : ''; } catch (y) { txt = ''; }
+        arrasto = leCarta(card, txt);
         gav.setAttribute('data-acende', '');
       }
       function aoEntrar() {
         if (!arrasto) return;
+        if (arrasto.tipo === 'outro' && !ensaioLigado()) {
+          if (arrasto.desviou) return;
+          if (arrasto.secao && temKF()) {
+            // a ficha atual abre por cima, na seção, com a zona de soltar dela; o drawer novo fica como está
+            try { win.KF.abrir(arrasto.secao); arrasto.desviou = true; } catch (y) { arrasto.desviou = false; }
+            if (arrasto.desviou) { mostraNota(avisoAbriu(arrasto.secao)); return; }
+          }
+        }
         // abre sem gravar: é um passeio do arrasto, não a escolha do jogador
         if (est !== 'aberto') poeEstado('aberto');
       }
@@ -7900,9 +8095,9 @@
           gav.setAttribute('data-alvo', '');
           mostraAviso('Solte para guardar ' + nomeItem(arrasto.item) + ' no inventário da ficha atual.');
         } else {
-          // não aceita (sem preventDefault): o arrasto segue, e dá para soltar na ficha atual
+          // não aceita (sem preventDefault): o lugar dela é a ficha atual
           gav.setAttribute('data-recusa', '');
-          mostraAviso(AVISO_SO_LEITURA);
+          if (!arrasto.desviou) mostraAviso(ensaioLigado() ? AVISO_SO_LEITURA : avisoRecusa(arrasto, temKF()));
         }
       }
       function aoSairArrasto(e) {
@@ -7915,6 +8110,7 @@
         gav.removeAttribute('data-acende');
         limpaAlvo();
         if (!aviso.hidden) mostraAviso(aviso.textContent, MOSTRA_AVISO);
+        if (!nota.hidden) mostraNota(nota.textContent, MOSTRA_AVISO);
       }
       function aoSoltar(e) {
         if (!arrasto || arrasto.tipo !== 'bazar') return;
@@ -7922,6 +8118,7 @@
         var lido = null;
         try { lido = leArrasto(e.dataTransfer ? e.dataTransfer.getData('text/plain') : ''); } catch (y) { lido = null; }
         var it = lido && lido.tipo === 'bazar' ? lido.item : arrasto.item;
+        if (!it) { arrasto = null; gav.removeAttribute('data-acende'); limpaAlvo(); mostraAviso('Não deu para ler o item arrastado.', MOSTRA_AVISO); return; }
         var KF = win.KF;
         var uid = KF && typeof KF.adicionar === 'function' ? KF.adicionar(it) : null;
         arrasto = null;
@@ -7988,7 +8185,9 @@
 
     return { CHAVE_DOCK: CHAVE_DOCK, ESTADOS: ESTADOS.slice(), PADRAO: PADRAO, ATRIBUTO: ATRIBUTO, ID: ID,
       PREFIXO: PREFIXO, PREFIXO_TRILHO: PREFIXO_TRILHO, AVISO_SO_LEITURA: AVISO_SO_LEITURA, ORIGENS_ARRASTO: ORIGENS_ARRASTO,
-      estado: estado, lerDock: lerDock, leArrasto: leArrasto, fracao: fracao, saidaPrevia: saidaPrevia,
+      ORIGEM_BAZAR: ORIGEM_BAZAR, VAO_NOTA: VAO_NOTA,
+      estado: estado, lerDock: lerDock, leArrasto: leArrasto, leCarta: leCarta, avisoAbriu: avisoAbriu, avisoRecusa: avisoRecusa,
+      fracao: fracao, saidaPrevia: saidaPrevia,
       htmlId: htmlId, htmlMinis: htmlMinis, htmlCasca: htmlCasca,
       iniciar: iniciar, borda: borda, atual: function () { return atual; } };
   })();

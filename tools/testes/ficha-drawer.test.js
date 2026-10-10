@@ -155,7 +155,8 @@ const ORDEM = ler('js', 'ficha', 'ORDEM').split(/\r?\n/).map((l) => l.trim()).fi
 const FONTES = ORDEM.filter((n) => n !== 'ficha-v2.js').map((n) => [n, ler('js', 'ficha', n)]);
 const SRC_UI = ler('js', 'kh-ui.js');
 
-// opc: {ls (objeto inicial), lsBloqueado, search, body (atributos), comFp, readyState, kfAberta}
+// opc: {ls (objeto inicial), lsBloqueado, search, body (atributos), comFp, readyState, kfAberta,
+//       kfDrawer (o #kf-drawer fechado, com offsetWidth), semKF (sem a ficha atual), ensaio (KhEnsaio.ligado())}
 function janela(opc) {
   opc = opc || {};
   const doc = DOM.documento({ body: opc.body, readyState: opc.readyState });
@@ -164,6 +165,7 @@ function janela(opc) {
   doc.head.appendChild(script);
   if (opc.comFp) { const fp = doc.createElement('div'); fp.id = 'fp'; doc.body.appendChild(fp); }
   if (opc.kfAberta) { const kf = doc.createElement('div'); kf.id = 'kf-drawer'; kf.className = 'kf-drawer kf-open'; doc.body.appendChild(kf); }
+  if (opc.kfDrawer) { const kf = doc.createElement('div'); kf.id = 'kf-drawer'; kf.offsetWidth = opc.kfDrawer; doc.body.appendChild(kf); }
   doc.criados.length = 0;
   const ls = A.armazenamento(opc.ls || {}), ss = A.armazenamento(opc.ss || {});
   const buscas = [], timers = [], ouvWin = {}, adicionados = [], abertos = [];
@@ -183,9 +185,11 @@ function janela(opc) {
     },
     addEventListener: (t, f) => { (ouvWin[t] = ouvWin[t] || []).push(f); },
     removeEventListener() {},
-    // a ficha atual (v2.1) falsa: só o que o drawer chama
-    KF: Object.freeze({ versao: '2', adicionar: (it) => { adicionados.push(it); return opc.kfFalha ? null : 'u' + adicionados.length; }, abrir: () => { abertos.push(1); } })
+    // a ficha atual (v2.1) falsa: só o que o drawer chama (abertos: os argumentos de cada KF.abrir)
+    KF: opc.semKF ? undefined : Object.freeze({ versao: '2', adicionar: (it) => { adicionados.push(it); return opc.kfFalha ? null : 'u' + adicionados.length; },
+      abrir: (...a) => { abertos.push(a); } })
   };
+  if (opc.ensaio) sb.KhEnsaio = { ligado: () => true };
   Object.defineProperty(sb, 'localStorage', { get() { if (opc.lsBloqueado) throw new Error('SecurityError'); return ls; } });
   sb.window = sb;
   vm.createContext(sb);
@@ -416,32 +420,130 @@ test('arrastar: o card acende o trilho, o dragenter abre (sem gravar), o item do
   assert.equal(f.el('fd-gaveta-aviso').textContent, 'Não deu para guardar Corda na ficha atual.');
 });
 
-test('arrastar outra entidade: acende e abre, mas não aceita; o aviso diz para soltar na ficha atual', async () => {
-  const j = await carrega(janela({ ls: comFicha() }));
-  const card = j.doc.createElement('div');
-  card.className = 'spell-card kf-draggable';
-  j.doc.body.appendChild(card);
-  j.arrasto(card, 'dragstart', { _campo: 'grimorio', id: 'magia-x', tipo: 'magia', nome: 'X' });
-  assert.ok(j.gav().hasAttribute('data-acende'));
-  j.arrasto(j.gav(), 'dragenter', null);
-  assert.equal(j.html.getAttribute('data-ficha3'), 'aberto');
-  const sobre = j.arrasto(j.el('fd-gaveta-rolagem'), 'dragover', null);
-  assert.equal(sobre.defaultPrevented, false, 'não aceita: o arrasto segue');
-  assert.ok(j.gav().hasAttribute('data-recusa'));
-  assert.equal(j.el('fd-gaveta-aviso').hidden, false);
-  assert.equal(j.el('fd-gaveta-aviso').textContent, FD.AVISO_SO_LEITURA);
-  const solta = j.arrasto(j.el('fd-gaveta-rolagem'), 'drop', { _campo: 'grimorio', id: 'magia-x' });
-  assert.equal(solta.defaultPrevented, false);
-  assert.deepEqual(j.adicionados, []);
-  // sair do drawer tira a marca; o fim do arrasto apaga o acender (o aviso ainda fica um tempo)
-  DOM.despacha(j.doc, j.gav(), DOM.evento('dragleave', { relatedTarget: j.doc.body }));
-  assert.equal(j.gav().hasAttribute('data-recusa'), false);
-  DOM.despacha(j.doc, card, DOM.evento('dragend'));
-  assert.equal(j.gav().hasAttribute('data-acende'), false);
-  assert.equal(j.el('fd-gaveta-aviso').hidden, false);
-  j.roda();
-  assert.equal(j.el('fd-gaveta-aviso').hidden, true, 'some depois');
+// os cards das páginas de regras, como o build e a v2.1 os deixam
+function cardDe(doc, tag, classe, attrs) {
+  const c = doc.createElement(tag);
+  c.className = classe;
+  Object.entries(attrs || {}).forEach(([k, v]) => c.setAttribute(k, v));
+  doc.body.appendChild(c);
+  const filho = doc.createElement('h4');   // o arrasto começa num filho do card
+  c.appendChild(filho);
+  return { card: c, filho };
+}
+
+test('puras (07 §0, item 1): leCarta descobre o tipo pelo card de origem e a seção da ficha atual', () => {
+  const doc = DOM.documento();
+  const de = (tag, classe, attrs) => cardDe(doc, tag, classe, attrs).filho;
+  const it = { id: 'item-corda', nome: 'Corda' };
+  // item do Bazar: pela classe, mesmo sem o text/plain legível
+  assert.deepEqual(FD.leCarta(de('div', 'item-card kf-draggable', { 'data-kf-tipo': 'item' }), ''), { tipo: 'bazar', item: null });
+  assert.deepEqual(FD.leCarta(de('div', 'item-card', {}), JSON.stringify({ _bazar: true, item: it })), { tipo: 'bazar', item: it });
+  assert.equal(FD.leCarta(de('li', 'bz-linha', { 'data-kf-tipo': 'item' }), '').tipo, 'bazar');
+  const rec = doc.createElement('aside');
+  rec.id = 'bz-receita';
+  rec.innerHTML = '<div><span data-ir="item-x">x</span></div>';
+  doc.body.appendChild(rec);
+  assert.equal(FD.leCarta(rec.querySelector('[data-ir]'), '').tipo, 'bazar', 'o painel de receita');
+  // outra entidade: o _campo da v2.1 manda; sem ele, o tipo do build; sem os dois, técnicas (o resto do MAPA)
+  const sec = (el, txt) => FD.leCarta(el, txt == null ? '' : JSON.stringify(txt));
+  assert.deepEqual(sec(de('div', 'spell-card kf-draggable', { 'data-kf-tipo': 'magia' }), { _campo: 'grimorio', tipo: 'magia', nome: 'X' }),
+    { tipo: 'outro', secao: 'grimorio', kfTipo: 'magia' });
+  assert.equal(sec(de('div', 'spell-card kf-draggable', { 'data-kf-tipo': 'magia' })).secao, 'grimorio', 'sem o text/plain: pelo card');
+  assert.equal(sec(de('div', 'catalog-card kf-draggable', { 'data-kf-tipo': 'carta' }), { _campo: 'cartasLimiar' }).secao, 'cartas');
+  assert.equal(sec(de('div', 'dor-card kf-draggable', { 'data-kf-tipo': 'dor' })).secao, 'cartas');
+  assert.equal(sec(de('div', 'beneficio-abismo-card kf-draggable', { 'data-kf-tipo': 'beneficio' })).secao, 'cartas');
+  assert.equal(sec(de('div', 'origem-card kf-draggable', { 'data-kf-tipo': 'origem' })).secao, 'tecnicas', 'a v2.1 leva a origem às técnicas');
+  assert.equal(sec(de('div', 'tier-technique kf-draggable', {}), { _campo: 'tecnicas', tipo: 'tecnica' }).secao, 'tecnicas');
+  assert.equal(sec(de('tr', 'kf-draggable', {})).secao, 'tecnicas', 'corrupção (linha da tabela)');
+  // sem zona de soltar na ficha atual
+  assert.deepEqual(sec(de('a', 'raca-card', { 'data-kf-tipo': 'raca' })), { tipo: 'outro', secao: null, kfTipo: 'raca' });
+  assert.equal(sec(de('div', 'condicao-card', { 'data-kf-tipo': 'condicao' })).secao, null);
+  // os textos
+  assert.equal(FD.avisoAbriu('tecnicas'), 'A ficha atual abriu: solte a técnica nela.', 'o texto da especificação');
+  assert.equal(FD.avisoAbriu('grimorio'), 'A ficha atual abriu: solte a magia nela.');
+  assert.equal(FD.avisoAbriu('cartas'), 'A ficha atual abriu: solte a carta nela.');
+  assert.equal(FD.avisoRecusa({ secao: null, kfTipo: 'raca' }, true), 'A ficha atual não recebe a raça por arrasto: preencha à mão, na ficha atual (FICHA).');
+  assert.equal(FD.avisoRecusa({ secao: 'grimorio' }, false), 'A ficha atual não carregou nesta página: recarregue para levar a magia.');
+  [FD.avisoAbriu('x'), FD.avisoRecusa({}, true)].forEach((t) => assert.doesNotMatch(t, /botão FICHA\) para levar/, 'nunca manda soltar no botão FICHA'));
+});
+
+test('arrastar técnica, magia ou carta (07 §0, item 1): o dragenter abre a FICHA ATUAL na seção, com a nota; o drawer novo não abre nem aceita', async () => {
+  const casos = [
+    ['div', 'spell-card kf-draggable', { 'data-kf-tipo': 'magia' }, { _campo: 'grimorio', id: 'magia-x', tipo: 'magia', nome: 'X' }, 'grimorio', 'a magia'],
+    ['div', 'tier-technique kf-draggable', {}, { _campo: 'tecnicas', id: 'tecnica-y', tipo: 'tecnica', nome: 'Y' }, 'tecnicas', 'a técnica'],
+    ['div', 'catalog-card kf-draggable', { 'data-kf-tipo': 'carta' }, { _campo: 'cartasLimiar', id: 'carta-z', tipo: 'carta', nome: 'Z' }, 'cartas', 'a carta'],
+    // o card decide já no dragstart, mesmo sem o text/plain legível
+    ['div', 'spell-card kf-draggable', { 'data-kf-tipo': 'magia' }, null, 'grimorio', 'a magia']
+  ];
+  for (const [tag, classe, attrs, payload, secao, nome] of casos) {
+    for (const dock of ['trilho', 'aberto']) {
+      const j = await carrega(janela({ ls: comFicha({ khalkaria_ficha3_dock: dock }), kfDrawer: 420 }));
+      const { card, filho } = cardDe(j.doc, tag, classe, attrs);
+      j.arrasto(filho, 'dragstart', payload);
+      assert.ok(j.gav().hasAttribute('data-acende'), 'acende');
+      j.arrasto(j.gav().querySelector('.fd-gaveta-minis'), 'dragenter', null);
+      j.arrasto(j.gav(), 'dragenter', null);
+      assert.deepEqual(j.abertos, [[secao]], classe + ': KF.abrir(' + secao + ') uma vez só');
+      assert.equal(j.html.getAttribute('data-ficha3'), dock, 'o drawer novo fica como estava');
+      const nota = j.el('fd-gaveta-nota');
+      assert.equal(nota.hidden, false);
+      assert.equal(nota.textContent, 'A ficha atual abriu: solte ' + nome + ' nela.');
+      assert.equal(nota.style.getPropertyValue('--fd-nota-dir'), (420 + FD.VAO_NOTA) + 'px', 'à esquerda do drawer v2.1');
+      assert.equal(j.el('fd-gaveta-aviso').hidden, true, 'o aviso de dentro da folha (coberta) não é usado');
+      // sobre a faixa do drawer novo que sobrar à vista: não aceita, e não troca a nota
+      const sobre = j.arrasto(j.el('fd-gaveta-rolagem'), 'dragover', null);
+      assert.equal(sobre.defaultPrevented, false, 'não aceita: a carta vai para a ficha atual');
+      assert.equal(j.el('fd-gaveta-aviso').hidden, true);
+      const solta = j.arrasto(j.el('fd-gaveta-rolagem'), 'drop', payload);
+      assert.equal(solta.defaultPrevented, false);
+      assert.deepEqual(j.adicionados, []);
+      // o fim do arrasto apaga o acender; a nota fica um tempo e some
+      DOM.despacha(j.doc, card, DOM.evento('dragend'));
+      assert.equal(j.gav().hasAttribute('data-acende'), false);
+      assert.equal(nota.hidden, false);
+      j.roda();
+      assert.equal(nota.hidden, true, 'some depois');
+      assert.deepEqual(j.ls.escritas, [], 'o drawer não grava nada (nem o dock)');
+      assert.deepEqual(j.ss.escritas, []);
+    }
+  }
+});
+
+test('arrastar sem seção (raça), sem a ficha atual ou com o Ensaio ligado: o drawer abre, não aceita e explica', async () => {
+  // raça: a ficha atual não tem zona de soltar para ela
+  const r = await carrega(janela({ ls: comFicha() }));
+  const raca = cardDe(r.doc, 'a', 'raca-card', { 'data-kf-tipo': 'raca' });
+  r.arrasto(raca.filho, 'dragstart', null);
+  r.arrasto(r.gav(), 'dragenter', null);
+  assert.deepEqual(r.abertos, [], 'nada a abrir na ficha atual');
+  assert.equal(r.html.getAttribute('data-ficha3'), 'aberto');
+  assert.equal(r.arrasto(r.el('fd-gaveta-rolagem'), 'dragover', null).defaultPrevented, false);
+  assert.ok(r.gav().hasAttribute('data-recusa'));
+  assert.equal(r.el('fd-gaveta-aviso').textContent, 'A ficha atual não recebe a raça por arrasto: preencha à mão, na ficha atual (FICHA).');
+  assert.equal(r.el('fd-gaveta-nota').hidden, true);
+  // sair do drawer tira a marca de recusa
+  DOM.despacha(r.doc, r.gav(), DOM.evento('dragleave', { relatedTarget: r.doc.body }));
+  assert.equal(r.gav().hasAttribute('data-recusa'), false);
+  // sem a ficha atual (a v2.1 não carregou)
+  const s = await carrega(janela({ ls: comFicha(), semKF: true }));
+  const mg = cardDe(s.doc, 'div', 'spell-card kf-draggable', { 'data-kf-tipo': 'magia' });
+  s.arrasto(mg.filho, 'dragstart', { _campo: 'grimorio', id: 'magia-x' });
+  s.arrasto(s.gav(), 'dragenter', null);
+  assert.equal(s.html.getAttribute('data-ficha3'), 'aberto');
+  s.arrasto(s.el('fd-gaveta-rolagem'), 'dragover', null);
+  assert.equal(s.el('fd-gaveta-aviso').textContent, 'A ficha atual não carregou nesta página: recarregue para levar a magia.');
+  // Ensaio ligado: sem o desvio (a entidade é da ficha do ensaio; o soltar chega na F4.6c)
+  const e = await carrega(janela({ ls: comFicha(), ensaio: true }));
+  const tc = cardDe(e.doc, 'div', 'tier-technique kf-draggable', {});
+  e.arrasto(tc.filho, 'dragstart', { _campo: 'tecnicas', id: 'tecnica-y' });
+  e.arrasto(e.gav(), 'dragenter', null);
+  assert.deepEqual(e.abertos, [], 'nenhum KF.abrir');
+  assert.equal(e.html.getAttribute('data-ficha3'), 'aberto');
+  e.arrasto(e.el('fd-gaveta-rolagem'), 'dragover', null);
+  assert.equal(e.el('fd-gaveta-aviso').textContent, FD.AVISO_SO_LEITURA);
+  [r, s, e].forEach((j) => assert.deepEqual(j.ls.escritas, []));
   // o arrasto do próprio inventário do Bazar (mover um slot) não acende
+  const j = await carrega(janela({ ls: comFicha() }));
   const inv = j.doc.createElement('aside');
   inv.id = 'bz-inventario';
   inv.innerHTML = '<li class="bz-slot" draggable="true" data-uid="u1">x</li>';
@@ -449,6 +551,26 @@ test('arrastar outra entidade: acende e abre, mas não aceita; o aviso diz para 
   j.arrasto(inv.querySelector('li'), 'dragstart', null);
   assert.equal(j.gav().hasAttribute('data-acende'), false);
   assert.deepEqual(j.ls.escritas, []);
+});
+
+test('item do Bazar sem o text/plain no dragstart: o card decide (abre o drawer novo), e o soltar lê o item', async () => {
+  const j = await carrega(janela({ ls: comFicha() }));
+  const { filho } = cardDe(j.doc, 'div', 'item-card kf-draggable', { 'data-kf-tipo': 'item' });
+  const it = { id: 'item-corda', nome: 'Corda' };
+  j.arrasto(filho, 'dragstart', null);
+  j.arrasto(j.gav(), 'dragenter', null);
+  assert.equal(j.html.getAttribute('data-ficha3'), 'aberto', 'o item do Bazar abre o drawer novo');
+  assert.deepEqual(j.abertos, [], 'e não a ficha atual');
+  assert.equal(j.arrasto(j.el('fd-gaveta-rolagem'), 'dragover', null).defaultPrevented, true, 'aceita');
+  j.arrasto(j.el('fd-gaveta-rolagem'), 'drop', { _bazar: true, item: it });
+  assert.deepEqual(JSON.parse(JSON.stringify(j.adicionados)), [it]);
+  // ilegível também no soltar: não chama o KF.adicionar com nada
+  const k = await carrega(janela({ ls: comFicha() }));
+  const c2 = cardDe(k.doc, 'div', 'item-card', {});
+  k.arrasto(c2.filho, 'dragstart', null);
+  k.arrasto(k.gav(), 'drop', null);
+  assert.deepEqual(k.adicionados, []);
+  assert.equal(k.el('fd-gaveta-aviso').textContent, 'Não deu para ler o item arrastado.');
 });
 
 test('Esc recolhe o drawer aberto (KhTeclas, depois das camadas do Bazar); com a ficha atual aberta por cima, não', async () => {
@@ -658,4 +780,29 @@ test('CSS da casca: o estado pelo <html>, z-index do token, texto em AA, foco vi
   const aviso = regra(css, '.fd-gaveta .fd-gaveta-aviso');
   const fundoAviso = resolveCor(/background:\s*([^;]+);/.exec(aviso)[1]);
   assert.ok(contraste(cor('.fd-gaveta .fd-gaveta-aviso'), fundoAviso) >= 4.5, 'o aviso');
+  // a nota de quando a ficha atual abre por cima (07 §0, item 1): fora da folha, à
+  // esquerda do drawer v2.1, sem pegar o ponteiro (o arrasto segue por baixo), em AA
+  const nota = regra(css, '.fd-gaveta .fd-gaveta-nota');
+  assert.match(nota, /position: fixed;/);
+  assert.match(nota, /right: var\(--fd-nota-dir, 432px\);/);
+  assert.match(nota, /pointer-events: none;/);
+  assert.ok(contraste(cor('.fd-gaveta .fd-gaveta-nota'), resolveCor(/background:\s*([^;]+);/.exec(nota)[1])) >= 4.5, 'a nota');
+  assert.match(regra(css, '.fd-gaveta-nota[hidden]'), /display: none;/);
+});
+
+test('CSS (07 §0, item 3): com o drawer aberto, a caixa de cada tabela do conteúdo rola na horizontal; a tabela e a nav não mudam', () => {
+  const css = ler('css', 'style.css');
+  const rs = regras(css).filter((r) => /ficha3/.test(r.sel) && /overflow/.test(r.corpo));
+  assert.equal(rs.length, 1, JSON.stringify(rs));
+  const r = rs[0];
+  assert.ok(r.ctx.includes('@layer layout'), 'na camada layout');
+  assert.equal(r.ctx.filter((c) => c.startsWith('@media')).length, 0, 'em toda largura com o drawer aberto');
+  assert.equal(r.sel, 'html[data-ficha3="aberto"] body:not([data-bazar]):not([data-ficha-pagina]) .main-content :has(> table)');
+  assert.match(r.corpo, /overflow-x: auto;/);
+  assert.match(r.corpo, /overflow-y: hidden;/);
+  // a tabela não vira block (encolheria as que cabem); a preferência da nav não é tocada
+  regras(css).filter((x) => /ficha3/.test(x.sel)).forEach((x) => {
+    assert.doesNotMatch(x.sel, /(?:^|[\s>])table\b(?!\))/, 'nenhuma regra do drawer na própria tabela: ' + x.sel);
+    assert.doesNotMatch(x.sel + x.corpo, /data-nav|\.sidebar|--nav-w/, 'a nav é do jogador: ' + x.sel);
+  });
 });

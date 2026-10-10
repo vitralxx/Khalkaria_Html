@@ -201,9 +201,10 @@
 
 
     // ---------------- a dica da conta e o redesenho: do KhRedesenho ----------------
-    // A dica nasce centrada sob o número e, ao abrir (hover ou foco), é empurrada
-    // para dentro da caixa da página (#fp, à direita da nav fixa e à esquerda da
-    // calha da aba FICHA). O redesenho (kf:mudou, drawer, storage) troca só o
+    // A dica nasce centrada sob o número e, ao abrir (hover ou foco), é posta
+    // dentro da caixa da página (#fp, à direita da nav fixa e à esquerda da
+    // calha da aba FICHA) e da janela: o lado (embaixo ou em cima) sai dos
+    // limites da caixa à vista (07 §0, item 2). O redesenho (kf:mudou, drawer, storage) troca só o
     // contêiner que mudou e devolve foco, <details> aberto e dica sob o mouse ao
     // equivalente novo. Os dois moram no bundle (js/ficha/kh-redesenho.js), porque
     // o drawer da ficha nova (F4.4) faz o mesmo; aqui, com o prefixo da página
@@ -295,6 +296,11 @@
       }
       raizEl.addEventListener('mouseover', aoAbrirDica);
       raizEl.addEventListener('focusin', aoAbrirDica);
+      // dica fora do fluxo (um ancestral dela recorta pelo overflow: position
+      // fixed, KhRedesenho): segue a conta quando a página rola
+      if (REDESENHO && win.addEventListener) {
+        win.addEventListener('scroll', function () { REDESENHO.reencaixa(raizEl, win); }, { passive: true });
+      }
       // as marcas do redesenho (trocaHTML) valem até o jogador agir: o foco sai, o mouse mexe
       raizEl.addEventListener('focusout', function (e) {
         if (e.target && e.target.removeAttribute) e.target.removeAttribute('data-fp-foco');

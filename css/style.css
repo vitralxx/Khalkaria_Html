@@ -1843,6 +1843,14 @@ html[data-ficha3] body:not([data-ficha-pagina])::after {
     pointer-events: none;
 }
 html[data-ficha3="aberto"] body:not([data-ficha-pagina])::after { width: var(--ficha3-w); }
+/* com o drawer aberto, nada do conteúdo passa por baixo dele (07 §0, item 3):
+   a 1366 px com a nav aberta sobram ~570 px, e as tabelas largas (Khan Sins,
+   Efeito por Intensidade) passavam da borda. A caixa de cada tabela (o pai
+   dela, como os wrappers que o Sistema já tem) rola na horizontal, com a
+   barra fina do site; a tabela não muda de display (virar block encolheria as
+   que cabem). A vertical fica recortada (sem barra de 1 px por arredondamento).
+   A preferência de navegação do jogador não muda. */
+html[data-ficha3="aberto"] body:not([data-bazar]):not([data-ficha-pagina]) .main-content :has(> table) { overflow-x: auto; overflow-y: hidden; }
 }
 
 @layer componentes {

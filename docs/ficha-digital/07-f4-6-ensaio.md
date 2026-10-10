@@ -27,6 +27,32 @@ Base:
    - **Regras em `css/style.css`, `@layer layout`,** guardadas pela marca. Sem a prévia, o `[estilo]` continua com diferença zero.
    - **Prova:** com um script nas 24 páginas, a 1366 e a 1440 px, com a navegação aberta e o drawer aberto, nenhum elemento pode ter `right` maior que a borda do `.main-content`.
 
+### Como ficou (§0, 2026-10-09)
+
+Código: `js/ficha/kh-ficha-drawer.js` (`leCarta`, `avisoAbriu`, `avisoRecusa`, a nota), `js/ficha/kh-redesenho.js` (`planoDica`, `limites`, `recorta`, `reencaixa`), `js/ficha-pagina.js` (reencaixa ao rolar), `css/ficha-drawer.css` (`.fd-gaveta-nota`), `css/style.css` (a regra da tabela). Testes: `tools/testes/ficha-drawer.test.js` e `tools/testes/kh-redesenho.test.js`. Provas no navegador: `tools/testes/navegador/dicas-conta.js` e `tools/testes/navegador/transborda-drawer.js` (instruções no topo de cada um).
+
+1. **Soltar técnica ou magia.**
+   - O aviso não cabe dentro do drawer novo: com a ficha atual aberta por cima ele fica coberto (e no trilho, escondido). A frase sai numa **nota fora da folha**, à esquerda do drawer v2.1 (`#fd-gaveta-nota`, `role="status"`), e some 6 s depois do fim do arrasto.
+   - A seção vem do `_campo` do arrasto da v2.1 (o MAPA dela); sem ele, do `data-kf-tipo` do card; sem os dois, técnicas. **Raça e condição** não têm zona de soltar na ficha atual: o drawer abre, não aceita e diz "A ficha atual não recebe a raça por arrasto: preencha à mão, na ficha atual (FICHA)."
+   - O gancho do Ensaio já está: com `KhEnsaio.ligado()`, o desvio não acontece (o soltar no ensaio chega na F4.6c).
+2. **Dica de fórmula.**
+   - Os limites são a caixa de padding (sem a barra de rolagem, que cortava 2,5 px à direita em toda conta do drawer) cortada pela janela.
+   - **Escolha a revisar com o Pedro:** fora do fluxo (no drawer), quando a dica não cabe na rolagem em nenhum lado, ela usa a altura da janela, inteira, por cima do cabeçalho do drawer, antes de ganhar altura máxima. Só sem lugar nem na janela ela é truncada. Truncar escondia a fórmula, que é o que a dica mostra.
+   - Ao rolar a caixa (ou a página), a dica fora do fluxo segue a conta.
+3. **Tabelas largas.**
+   - Quem rola é a **caixa da tabela** (o pai dela, `:has(> table)`), como os 4 wrappers `overflow-x: auto` que o Sistema já tem. A tabela não vira `display: block`: assim, as que cabem encolheriam até o conteúdo e perderiam a largura de 100%.
+   - A vertical dessa caixa fica `hidden`, para não nascer barra de 1 px por arredondamento. O script confere que nenhuma caixa esconde conteúdo na vertical.
+   - Vale em toda largura com o drawer aberto. A 1440 px, as duas tabelas que passavam para o padding do conteúdo (sem chegar ao drawer) agora rolam na caixa.
+
+Números (fixture `ficha-v2-sintetica.json`; antes = `bee169f`):
+
+| Prova | Antes | Depois |
+|---|---|---|
+| Dicas, 1366×768 e 1920×1080, drawer e página (552 contas, 1556 aberturas) | 530 cortadas, todas no drawer (2,5 px pela barra de rolagem) | 0 |
+| Dicas, drawer a 1366×600 e 1280×520 (extra) | 552 cortadas (11 no topo, até 66 px) | 0 (11 passam por cima do cabeçalho) |
+| Dicas, página a 1280×520 (extra) | 3 cortadas pela janela | 3 com altura máxima (a janela não tem lugar) |
+| Transbordo, 24 páginas × 1366 e 1440 px | 32 elementos em 2 casos (Magias e Sistema a 1366, até +48,8 px) | 0 (19 caixas rolam, todas com barra; nenhuma recorta na vertical) |
+
 ## 1. A lógica do Ensaio
 
 O problema:
