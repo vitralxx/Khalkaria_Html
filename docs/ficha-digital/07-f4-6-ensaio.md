@@ -34,7 +34,7 @@ Código: `js/ficha/kh-ficha-drawer.js` (`leCarta`, `avisoAbriu`, `avisoRecusa`, 
 1. **Soltar técnica ou magia.**
    - O aviso não cabe dentro do drawer novo: com a ficha atual aberta por cima ele fica coberto (e no trilho, escondido). A frase sai numa **nota fora da folha**, à esquerda do drawer v2.1 (`#fd-gaveta-nota`, `role="status"`), e some 6 s depois do fim do arrasto.
    - A seção vem do `_campo` do arrasto da v2.1 (o MAPA dela); sem ele, do `data-kf-tipo` do card; sem os dois, técnicas. **Raça e condição** não têm zona de soltar na ficha atual: o drawer abre, não aceita e diz "A ficha atual não recebe a raça por arrasto: preencha à mão, na ficha atual (FICHA)."
-   - O gancho do Ensaio já está: com `KhEnsaio.ligado()`, o desvio não acontece (o soltar no ensaio chega na F4.6c).
+   - O gancho do Ensaio já está: com `KhEnsaio.ligado()`, o desvio não acontece (o soltar no ensaio chega na F4.6c; até lá o drawer recusa e diz isso, revisão da F4.6a).
 2. **Dica de fórmula.**
    - Os limites são a caixa de padding (sem a barra de rolagem, que cortava 2,5 px à direita em toda conta do drawer) cortada pela janela.
    - **Escolha a revisar com o Pedro:** fora do fluxo (no drawer), quando a dica não cabe na rolagem em nenhum lado, ela usa a altura da janela, inteira, por cima do cabeçalho do drawer, antes de ganhar altura máxima. Só sem lugar nem na janela ela é truncada. Truncar escondia a fórmula, que é o que a dica mostra.
@@ -114,7 +114,21 @@ Escolhas a revisar com o Pedro:
 - **"Exportar ensaio" baixa `khalkaria-ensaio.json`** (o mesmo pacote `fichas/1` do "Exportar todas", que segue `khalkaria-fichas.json`), para não se confundir com um export da ficha real.
 - **Criar sem nome** cria "Ficha nova".
 - **A faixa** fica no pé da janela, entre a nav e o drawer (à esquerda do drawer aberto também quando ele fica por cima: no Bazar e abaixo de 1100 px); o `html[data-ensaio]` reserva 3,5rem no pé da página e sobe o voltar ao topo.
-- **Item do Bazar solto no drawer com o Ensaio** ainda vai para a ficha atual (`KF.adicionar`, com o aviso dizendo isso): levar para a ficha do ensaio é a F4.6c.
+- **Soltar no drawer com o Ensaio** (revisão de 2026-10-13): o drawer não aceita nada, nem o item do Bazar. Antes, o item ia para a ficha atual (`KF.adicionar`), contra a faixa ("nada aqui é salvo na sua ficha"). O aviso diz o que acontece: "Ensaio: levar a técnica para a ficha do ensaio chega na F4.6c. Soltar aqui não guarda nada, nem na sua ficha." (`avisoEnsaio`; com o item, o nome dele). Levar para a ficha do ensaio é a F4.6c.
+
+### Revisão da F4.6a (2026-10-13)
+
+Código: `js/ficha/kh-seletor.js` (`bloqueiaSaidaPrevia`, `pedirSaida` da faixa, o `pageshow`, a guarda das ações), `js/ficha/kh-ficha-drawer.js` (`avisoEnsaio`; sai o `AVISO_SO_LEITURA`), `js/ficha-pagina.js` e `css/ficha-ensaio.css`. Testes: `tools/testes/ensaio.test.js` (+3, com o espião também sobre a ficha atual falsa) e `tools/testes/ficha-drawer.test.js`.
+
+1. **Página velha do bfcache** (Voltar no Chrome e no Firefox): ela voltava como estava, com "Sair da prévia" à vista e o ensaio já ligado por outra página da aba, e um clique apagava as fichas sem a confirmação.
+   - A faixa ouve o `pageshow` (só com `persisted`) e emite o `kh:ensaio` com as 3 partes: a página, o drawer, os seletores e a faixa se acertam pelo estado de agora.
+   - "Sair da prévia" confere o ensaio na hora do clique. Ligado, não apaga nada: a página se acerta, e a faixa abre a confirmação de "Sair do ensaio", com o porquê ("O ensaio está ligado nesta aba: saia dele antes de sair da prévia.") e o foco em "Continuar no ensaio".
+   - "Ensaiar edição" com o ensaio já ligado não cria ficha: emite o evento, e a página se acerta.
+   - As ações do seletor conferem o ensaio na hora: numa página velha que ainda mostra o ensaio depois de ele sair, a ação não grava, e o seletor some.
+2. **Soltar no drawer com o Ensaio:** ver o item acima, em "Escolhas a revisar".
+3. **A mensagem do seletor ao sair do ensaio:** sai junto (e o diálogo também). Antes, ficava à vista sobre uma ficha que não existe mais ("Importada e aberta: …").
+4. **Arrastar técnica ou magia com o Ensaio:** o aviso não manda mais ao botão FICHA (que não aceita soltar) nem fala em "só leitura". Também sem o Ensaio, se o `KF.abrir` falhar, o aviso diz "abra pelo botão FICHA e arraste a técnica de novo".
+5. **Botão principal desligado** ("Excluir de vez" e "Atualizar de vez" antes de "Salvei"): ganhou fundo próprio (`--bg-tertiary`, texto em 4,7:1). Antes ficava o âmbar do `.forte` com o texto apagado (1,37:1). A borda âmbar escura, tracejada, mostra qual é o principal.
 
 ## 3. F4.6b · Edição: campos, ajuste manual (M2) e desfazer
 

@@ -44,7 +44,10 @@
  * fichas do ensaio (KhSeletor, #fp-ke) aparece acima dele; a faixa fixa é do
  * KhSeletor.ligarFaixa. Redesenha no evento kh:ensaio. Sem o Ensaio, tudo como
  * antes (o render sem o.ensaio é o do ouro). "Sair da prévia" apaga também o
- * Ensaio desta aba. O Ensaio nunca grava chave de ficha: só o prefixo dele.
+ * que sobrou do Ensaio desta aba; com ele ligado (só numa página velha do
+ * bfcache o botão aparece), não apaga: KhSeletor.bloqueiaSaidaPrevia acerta a
+ * página e abre a confirmação da faixa. O Ensaio nunca grava chave de ficha:
+ * só o prefixo dele.
  *
  * No node (tools/testes/ficha-pagina.test.js) exporta por module.exports e
  * carrega os módulos de js/ficha/ direto; no navegador usa os do js/ficha.js,
@@ -307,6 +310,12 @@
         // o painel da prévia não abre aqui, então a saída fica na própria página:
         // apaga a chave da prévia (e o Ensaio desta aba) e recarrega sem ?ficha=v3 (volta ao aviso)
         if (t && t.closest && t.closest('.fp-sair-previa')) {
+          // com o Ensaio ligado (a página veio do bfcache com o botão à vista):
+          // não apaga; a página se acerta e a faixa pede a confirmação dela
+          if (ensaio()) {
+            if (!KhSeletor.bloqueiaSaidaPrevia(win)) desenha();
+            return;
+          }
           try { if (ls) ls.removeItem('khalkaria_ficha_previa'); } catch (err) { /* storage bloqueado */ }
           try { if (ss) ss.removeItem('khalkaria_ficha_previa_recolhida'); } catch (err) { /* idem */ }
           if (comEnsaio) KhEnsaio.sair(ss);

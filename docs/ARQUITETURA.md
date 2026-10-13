@@ -255,8 +255,10 @@ js/ficha/kh-seletor.js           KhSeletor (F4.6a): a interface do Ensaio. criar
                                  com o mesmo cuidado do excluir, ou cópia), uso e o aviso de
                                  QuotaExceeded com "Exportar todas"; Esc fecha o diálogo
                                  (camadaEsc 35). ligarFaixa(win): a faixa fixa (Exportar
-                                 ensaio, Sair do ensaio com confirmação), chamada pelo drawer
-                                 e pela página. Partes puras (htmlSeletor, htmlFaixa…) no node
+                                 ensaio, Sair do ensaio com confirmação; o pageshow do
+                                 bfcache), chamada pelo drawer e pela página.
+                                 bloqueiaSaidaPrevia(win): "Sair da prévia" com o Ensaio
+                                 ligado não apaga. Partes puras (htmlSeletor, htmlFaixa…) no node
 js/ficha/kh-ficha-abas.js        KhFichaAbas (F4.4a), PURO: o desenho das 5 abas da ficha
                                  nova (Núcleo, Técnicas & Marcas, Cartas/Lore/Outros, O
                                  Bazar, Grimório), o MESMO na página e no drawer da F4.4:
@@ -1018,8 +1020,14 @@ mudam); sem a prévia, nada aparece, mesmo com a marca na aba. Nenhuma escrita
 fora do prefixo (e da marca), em nenhum fluxo: `tools/testes/ensaio.test.js`
 prova com um armazenamento espião sobre o localStorage e o sessionStorage.
 "Sair da prévia" some com o Ensaio ligado (sai-se dele antes, com a
-confirmação) e, sem ele, apaga o que tiver sobrado do prefixo. Na virada, a
-mesma interface passa ao armazém real: muda só o storage por baixo.
+confirmação) e, sem ele, apaga o que tiver sobrado do prefixo. Uma página
+velha do bfcache ainda o mostra: o clique confere o ensaio na hora e, ligado,
+não apaga (`KhSeletor.bloqueiaSaidaPrevia`: a página se acerta e a faixa abre a
+confirmação). A faixa ouve o `pageshow` (`persisted`) e emite o `kh:ensaio`, e
+as ações do seletor conferem o ensaio no clique. Com o Ensaio, o drawer não
+aceita soltar nada (nem o item do Bazar, que iria à ficha atual) até a F4.6c,
+e diz isso (`avisoEnsaio`). Na virada, a mesma interface passa ao armazém
+real: muda só o storage por baixo.
 
 **`data-kf-ignorar`.** O `MutationObserver` que redecora os cards ignora
 mudanças dentro de `[data-kf-ignorar]`, e `decorarBazar` não decora card ali

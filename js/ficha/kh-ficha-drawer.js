@@ -40,7 +40,9 @@
  *     abre nem aceita. Sem seção (raça, condição) ou sem a ficha atual, o
  *     drawer abre e explica, sem aceitar;
  *   - com o Ensaio ligado (F4.6, KhEnsaio.ligado()), o desvio não acontece: a
- *     entidade é da ficha do ensaio (o soltar chega na F4.6c).
+ *     entidade é da ficha do ensaio, e levar para ela chega na F4.6c. Até lá
+ *     o drawer não aceita NADA, nem o item do Bazar (que iria à ficha atual,
+ *     contra a faixa "nada aqui é salvo na sua ficha"), e diz isso (avisoEnsaio).
  * Teclado: Esc recolhe (KhTeclas.camadaEsc, depois das camadas do Bazar; não
  * com o foco num campo de texto fora do drawer, cujo Esc é dele); abrir
  * pelo botão leva o foco à aba aberta, recolher o devolve ao botão do trilho.
@@ -52,12 +54,15 @@
  * calcula a ficha ativa do ensaio (KhEnsaio.calcular), o aviso de só-leitura
  * some e o seletor de fichas do ensaio (KhSeletor, #fd-gaveta-ke) aparece no
  * cabeçalho; a faixa fixa é do KhSeletor.ligarFaixa (montada aqui). Redesenha
- * no evento kh:ensaio. "Sair da prévia" apaga também o Ensaio desta aba. O
- * Ensaio grava só no sessionStorage com o prefixo khalkaria_ensaio:.
+ * no evento kh:ensaio. "Sair da prévia" apaga também o que sobrou do Ensaio
+ * desta aba; com ele ligado (só numa página velha do bfcache o botão aparece),
+ * não apaga: KhSeletor.bloqueiaSaidaPrevia acerta a página e abre a confirmação
+ * da faixa. O Ensaio grava só no sessionStorage com o prefixo khalkaria_ensaio:.
  * Escritas: localStorage khalkaria_ficha3_dock (só quando o jogador abre ou
  * recolhe pelo botão ou pelo Esc), as preferências de aba do KhAbas (ordem e
  * aba aberta, as mesmas da página), o "lembrar" da prévia (KhPrevia.iniciar,
- * com ?ficha=v3) e, ao soltar um item do Bazar, o KF.adicionar da ficha atual.
+ * com ?ficha=v3) e, ao soltar um item do Bazar SEM o Ensaio, o KF.adicionar
+ * da ficha atual.
  * O KF.abrir (botão "Editar na ficha atual" e o arrasto de outra entidade) é o
  * do botão FICHA: a v2.1 lembra que está aberta (khalkaria_ficha_open).
  * Nenhuma chave de ficha v3.
@@ -70,7 +75,7 @@
  * .main-content e quando a nav troca (html[data-nav]).
  *
  * Partes puras (testadas no node, tools/testes/ficha-drawer.test.js): estado,
- * lerDock, leArrasto, leCarta, avisoAbriu, avisoRecusa, fracao, saidaPrevia,
+ * lerDock, leArrasto, leCarta, avisoAbriu, avisoRecusa, avisoEnsaio, fracao, saidaPrevia,
  * direitaNota, tabelaLarga, htmlCasca, htmlId e htmlMinis (e marcaLargas, com
  * o DOM mínimo). No node exporta
  * por module.exports (carregado sozinho); no artefato js/ficha.js o export já é
@@ -105,8 +110,6 @@
     var ID = 'fd-gaveta';
     var ESPERA = 350;                // ms: depois do debounce de 200 ms com que o drawer v2 grava
     var MOSTRA_AVISO = 6000;         // ms do aviso depois que o arrasto acaba
-    // o texto da especificação (06 §Arrastar); desde a 07 §0, só sobra com o Ensaio ligado
-    var AVISO_SO_LEITURA = 'A ficha nova ainda é só leitura: solte na ficha atual (botão FICHA) para levar técnicas e magias';
     // arrastar outra entidade (07 §0, item 1): a seção da ficha atual (a chave do
     // KF.abrir, data-sec do drawer v2.1) pelo campo do arrasto da v2.1 (_campo,
     // o MAPA dela) ou pelo tipo marcado no build ([data-kf-tipo]). Raça e
@@ -216,7 +219,17 @@
         return 'A ficha atual não recebe ' + nome + ' por arrasto: preencha à mão, na ficha atual (FICHA).';
       }
       if (!temKF) return 'A ficha atual não carregou nesta página: recarregue para levar ' + (NOME_SECAO[c.secao] || 'a carta') + '.';
-      return AVISO_SO_LEITURA;
+      // o KF.abrir falhou: o botão FICHA não aceita soltar (07 §0, item 1), então abrir por ele e arrastar de novo
+      return 'A ficha atual não abriu: abra pelo botão FICHA e arraste ' + (NOME_SECAO[c.secao] || 'a carta') + ' de novo.';
+    }
+    // Com o Ensaio ligado, o drawer mostra a ficha do ensaio, e levar para ela
+    // é a F4.6c: até lá, soltar no drawer não guarda nada, nem na ficha atual
+    // (a faixa promete "nada aqui é salvo na sua ficha"). c = o leCarta
+    function avisoEnsaio(c) {
+      c = obj(c) ? c : {};
+      var nome = c.tipo === 'bazar' ? (semEmoji(obj(c.item) ? c.item.nome : '') || 'o item')
+        : NOME_SECAO[c.secao] || (temChave(NOME_TIPO, c.kfTipo) ? NOME_TIPO[c.kfTipo] : 'este card');
+      return 'Ensaio: levar ' + nome + ' para a ficha do ensaio chega na F4.6c. Soltar aqui não guarda nada, nem na sua ficha.';
     }
     // a direita da nota (px da borda da janela): à esquerda do mais largo dos
     // drawers à vista (o v2.1, 420 px; este, 460 px a partir de 1800 px), pelas
@@ -541,7 +554,13 @@
         else if (t.closest('.fd-gaveta-editar')) { if (win.KF && typeof win.KF.abrir === 'function') win.KF.abrir(); }
         else if (t.closest('.fd-gaveta-ensaiar')) { if (seletor) seletor.entrar(); }
         else if (t.closest('.fd-gaveta-sair')) {
-          // apaga a chave (e o Ensaio desta aba) e recarrega DE FATO, sem ?ficha=v3 (saidaPrevia)
+          // com o Ensaio ligado (a página veio do bfcache com o botão à vista):
+          // não apaga; o drawer se acerta e a faixa pede a confirmação dela
+          if (ensaioLigado()) {
+            if (!(KhSeletor && KhSeletor.bloqueiaSaidaPrevia(win))) { poeModo(); desenha(); }
+            return;
+          }
+          // apaga a chave (e o resto do Ensaio desta aba) e recarrega DE FATO, sem ?ficha=v3 (saidaPrevia)
           if (KhEnsaio) KhEnsaio.sair(ss);
           try { if (ls) ls.removeItem(CHAVE_PREVIA); } catch (x) { /* storage bloqueado */ }
           var L = win.location, s = saidaPrevia(L);
@@ -641,7 +660,12 @@
       function nomeItem(it) { return semEmoji(it && it.nome) || 'o item'; }
       function aoSobre(e) {
         if (!arrasto) return;
-        if (arrasto.tipo === 'bazar') {
+        if (ensaioLigado()) {
+          // o drawer mostra a ficha do ensaio: não aceita nada (sem
+          // preventDefault), nem o item do Bazar, que iria para a ficha atual
+          gav.setAttribute('data-recusa', '');
+          mostraAviso(avisoEnsaio(arrasto));
+        } else if (arrasto.tipo === 'bazar') {
           e.preventDefault();
           if (e.dataTransfer) e.dataTransfer.dropEffect = 'copy';
           gav.setAttribute('data-alvo', '');
@@ -649,7 +673,7 @@
         } else {
           // não aceita (sem preventDefault): o lugar dela é a ficha atual
           gav.setAttribute('data-recusa', '');
-          if (!arrasto.desviou) mostraAviso(ensaioLigado() ? AVISO_SO_LEITURA : avisoRecusa(arrasto, temKF()));
+          if (!arrasto.desviou) mostraAviso(avisoRecusa(arrasto, temKF()));
         }
       }
       function aoSairArrasto(e) {
@@ -667,6 +691,15 @@
       function aoSoltar(e) {
         if (!arrasto || arrasto.tipo !== 'bazar') return;
         e.preventDefault();
+        if (ensaioLigado()) {
+          // o Ensaio ligou no meio do arrasto (o dragover recusa): nada vai à ficha atual
+          var c = arrasto;
+          arrasto = null;
+          gav.removeAttribute('data-acende');
+          limpaAlvo();
+          mostraAviso(avisoEnsaio(c), MOSTRA_AVISO);
+          return;
+        }
         var lido = null;
         try { lido = leArrasto(e.dataTransfer ? e.dataTransfer.getData('text/plain') : ''); } catch (y) { lido = null; }
         var it = lido && lido.tipo === 'bazar' ? lido.item : arrasto.item;
@@ -741,9 +774,10 @@
     }
 
     return { CHAVE_DOCK: CHAVE_DOCK, ESTADOS: ESTADOS.slice(), PADRAO: PADRAO, ATRIBUTO: ATRIBUTO, ID: ID,
-      PREFIXO: PREFIXO, PREFIXO_TRILHO: PREFIXO_TRILHO, AVISO_SO_LEITURA: AVISO_SO_LEITURA, ORIGENS_ARRASTO: ORIGENS_ARRASTO,
+      PREFIXO: PREFIXO, PREFIXO_TRILHO: PREFIXO_TRILHO, ORIGENS_ARRASTO: ORIGENS_ARRASTO,
       ORIGEM_BAZAR: ORIGEM_BAZAR, VAO_NOTA: VAO_NOTA, MARCA_LARGA: MARCA_LARGA, ESPERA_LARGAS: ESPERA_LARGAS,
       estado: estado, lerDock: lerDock, leArrasto: leArrasto, leCarta: leCarta, avisoAbriu: avisoAbriu, avisoRecusa: avisoRecusa,
+      avisoEnsaio: avisoEnsaio,
       fracao: fracao, saidaPrevia: saidaPrevia, direitaNota: direitaNota, tabelaLarga: tabelaLarga, marcaLargas: marcaLargas,
       htmlId: htmlId, htmlMinis: htmlMinis, htmlCasca: htmlCasca,
       iniciar: iniciar, borda: borda, atual: function () { return atual; } };

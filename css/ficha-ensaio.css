@@ -86,7 +86,14 @@ html[data-ficha3="aberto"] body:not([data-ficha-pagina]) .ke-faixa { right: var(
 .ke-lista { max-width: 36rem; }
 .ke-lista:disabled { color: var(--text-muted-forte); }
 .ke-acoes { display: flex; flex-wrap: wrap; gap: var(--esp-1) var(--esp-2); }
-.ke-btn:disabled { color: var(--text-muted-forte); border-color: var(--border-color); cursor: not-allowed; }
+/* desligado: fundo próprio, também no .forte (o âmbar dele com o texto
+   apagado ficava em 1,37:1); o principal desligado guarda a borda âmbar
+   escura, tracejada, para se ver qual botão ele é */
+.ke-btn:disabled {
+    color: var(--text-muted-forte); background: var(--bg-tertiary);
+    border-color: var(--border-color); cursor: not-allowed;
+}
+.ke-btn.forte:disabled { border-color: var(--amber-dim); border-style: dashed; }
 .ke-uso { font-size: .88rem; color: var(--text-secondary); }
 .ke-dialogo {
     display: flex; flex-direction: column; gap: var(--esp-2);

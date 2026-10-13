@@ -7019,11 +7019,21 @@
  *     ensaio está ligado, "Ensaio: nada aqui é salvo na sua ficha. Tudo some
  *     ao fechar a aba.", com "Exportar ensaio" (pacote fichas/1) e "Sair do
  *     ensaio" (confirma e apaga só o prefixo).
+ *   - bloqueiaSaidaPrevia(win): o "Sair da prévia" do drawer e da página com
+ *     o Ensaio ligado (uma página velha, do bfcache, ainda mostra o botão) não
+ *     apaga o ensaio: a página se acerta e a faixa abre a confirmação dela.
+ *
+ * bfcache (revisão da F4.6a): a página que volta pelo Voltar/Avançar pode
+ * estar velha (o ensaio ligou ou saiu em outra página da aba). A faixa ouve o
+ * pageshow (persisted) e emite o 'kh:ensaio' com as 3 partes: todos se acertam.
+ * As ações do seletor conferem o ensaio na hora do clique (fora dele, não
+ * gravam e o seletor some), e "Ensaiar edição" já ligado só emite o evento.
  *
  * Tudo grava pelo armazém do ensaio (KhEnsaio.armazem: sessionStorage, chaves
  * com o prefixo khalkaria_ensaio:); nenhuma chave da ficha do jogador. Cada
  * mudança sai no evento 'kh:ensaio' (KhEnsaio.emitir), que a página, o drawer,
- * a faixa e os outros seletores escutam. O CSS (css/ficha-ensaio.css) só é
+ * a faixa e os outros seletores escutam; sair do ensaio limpa a mensagem do
+ * seletor (a volta à sombra é exata). O CSS (css/ficha-ensaio.css) só é
  * pedido com o ensaio ligado. Sem a prévia, NADA acontece: nenhum nó, CSS,
  * ouvinte ou escrita. Esc fecha o diálogo aberto (KhTeclas.camadaEsc 35, antes
  * da do drawer, 40).
@@ -7318,6 +7328,7 @@
       var ss = storage(win, 'sessionStorage'), ls = storage(win, 'localStorage');
       var R = KhRedesenho ? KhRedesenho.criar({ prefixo: P + '-ke' }) : null;
       var st = { dialogo: null, msg: null, nome: '' };
+      var eraLigado = false;   // o ensaio estava ligado no último desenho (sair dele limpa a mensagem)
 
       function motor() {
         var p = null;
@@ -7338,9 +7349,14 @@
         var x = sel && cont.querySelector ? cont.querySelector(sel) : null;
         if (x && typeof x.focus === 'function') { try { x.focus({ preventScroll: true }); } catch (e) { x.focus(); } }
       }
-      // fora do ensaio, o contêiner some (fica só a mensagem de um entrar que falhou)
+      // fora do ensaio, o contêiner some (fica só a mensagem de um entrar que
+      // falhou). Ao sair do ensaio (por aqui, pela faixa ou por outra página da
+      // aba), a mensagem e o diálogo dele vão junto: a volta à sombra é exata.
       function desenha(foco) {
-        if (!ligado()) {
+        var lig = ligado();
+        if (!lig && eraLigado) { st.msg = null; st.nome = ''; }
+        eraLigado = lig;
+        if (!lig) {
           st.dialogo = null;
           var h = st.msg ? '<p class="ke-msg ke-msg-' + (st.msg.tipo === 'aviso' ? 'aviso' : 'ok') + '" role="status" aria-live="polite">' + esc(st.msg.texto) + '</p>' : '';
           troca(h);
@@ -7474,15 +7490,23 @@
         }
       };
 
+      // o ensaio saiu por outra página da aba e esta veio do bfcache sem o
+      // pageshow (ou antes dele): a ação não grava nada, e o seletor se acerta
+      function fora() {
+        if (ligado()) return false;
+        desenha();
+        return true;
+      }
       cont.addEventListener('click', function (e) {
         var b = e.target && e.target.closest ? e.target.closest('[data-ke]') : null;
         if (!b || !cont.contains(b) || b.hasAttribute('disabled')) return;
         var f = acoes[b.getAttribute('data-ke')];
-        if (f) f();
+        if (f && !fora()) f();
       });
       cont.addEventListener('change', function (e) {
         var t = e.target;
         var c = t && t.getAttribute ? t.getAttribute('data-ke-campo') : null;
+        if (c && fora()) return;
         if (c === 'trocar') {
           var r = arm().trocar(str(t.value));
           feito(r, '', ['ficha'], '.ke-lista');
@@ -7502,6 +7526,7 @@
         var f = e.target;
         if (!f || !f.getAttribute || f.getAttribute('data-ke-form') !== 'criar') return;
         if (e.preventDefault) e.preventDefault();
+        if (fora()) return;
         var inp = cont.querySelector('.ke-nome');
         var nome = semEmoji(inp && inp.value != null ? inp.value : st.nome) || NOME_NOVA;
         var r = arm().criar({ nome: nome });
@@ -7520,9 +7545,15 @@
       doc.addEventListener(KhEnsaio.EVENTO, function () { desenha(); });
 
       // liga o ensaio (o botão "Ensaiar edição" da página e do drawer): espera
-      // os dados do motor (migrar a ficha atual precisa do catálogo)
+      // os dados do motor (migrar a ficha atual precisa do catálogo). Já
+      // ligado (a página veio do bfcache com o botão à vista, ligado por outra
+      // página da aba): não cria nada, só avisa a página, que se acerta.
       function entrar() {
-        if (ligado()) return Promise.resolve({ ok: true, criada: null });
+        if (ligado()) {
+          KhEnsaio.emitir(win, ['ligado', 'indice', 'ficha']);
+          desenha('.ke-lista');
+          return Promise.resolve({ ok: true, criada: null });
+        }
         if (!ss) { st.msg = aviso(SEM_STORAGE); desenha(); return Promise.resolve({ ok: false, erro: 'storage' }); }
         st.msg = ok('Preparando o ensaio…');
         desenha();
@@ -7607,6 +7638,16 @@
           sincroniza();
         }
       }
+      // a confirmação de "Sair do ensaio" aberta por fora (o "Sair da prévia"
+      // de uma página velha: bloqueiaSaidaPrevia), com o porquê na mensagem e o
+      // foco em "Continuar no ensaio"; false sem o ensaio
+      function pedirSaida(msg) {
+        if (!sincroniza()) return false;
+        st.sair = true;
+        st.msg = msg ? aviso(msg) : null;
+        pinta('.ke-sair-nao');
+        return true;
+      }
       var T = win.KhTeclas;
       if (T && typeof T.camadaEsc === 'function') {
         T.camadaEsc(CAMADA_ESC, function () {
@@ -7617,15 +7658,38 @@
         });
       }
       doc.addEventListener(KhEnsaio.EVENTO, sincroniza);
+      // Voltar/Avançar com o bfcache: a página volta como estava, e o ensaio
+      // pode ter ligado ou saído em outra página da aba (o sessionStorage não
+      // avisa a mesma aba). Um aviso só, a todos (a faixa, os seletores, o
+      // drawer, a página), que se acertam pelo estado de agora.
+      if (typeof win.addEventListener === 'function') {
+        win.addEventListener('pageshow', function (e) {
+          if (e && e.persisted) KhEnsaio.emitir(win, ['ligado', 'indice', 'ficha']);
+        });
+      }
       sincroniza();
-      return { sincroniza: sincroniza, el: function () { return el; } };
+      return { sincroniza: sincroniza, pedirSaida: pedirSaida, el: function () { return el; } };
+    }
+
+    // "Sair da prévia" (o drawer e a página) com o Ensaio ligado: some do
+    // desenho, mas uma página velha (bfcache) ainda o mostra. O clique NÃO
+    // apaga o ensaio: a página se acerta (o evento) e a faixa abre a
+    // confirmação de "Sair do ensaio", com o export ao lado.
+    // -> true (bloqueou: quem chamou não segue) | false (sem o ensaio: siga)
+    var ANTES_DA_PREVIA = 'O ensaio está ligado nesta aba: saia dele antes de sair da prévia.';
+    function bloqueiaSaidaPrevia(win) {
+      if (!win || !KhEnsaio || !KhEnsaio.ligado(win)) return false;
+      KhEnsaio.emitir(win, ['ligado', 'indice', 'ficha']);
+      var fx = ligarFaixa(win);
+      if (fx && typeof fx.pedirSaida === 'function') fx.pedirSaida(ANTES_DA_PREVIA);
+      return true;
     }
 
     return { CAMADA_ESC: CAMADA_ESC, ID_FAIXA: ID_FAIXA, CSS: CSS, ATRIBUTO: ATRIBUTO, FAIXA_TXT: FAIXA_TXT,
-      NOME_VAZIO: NOME_VAZIO, NOME_NOVA: NOME_NOVA, QUOTA: QUOTA, SEM_STORAGE: SEM_STORAGE,
+      NOME_VAZIO: NOME_VAZIO, NOME_NOVA: NOME_NOVA, QUOTA: QUOTA, SEM_STORAGE: SEM_STORAGE, ANTES_DA_PREVIA: ANTES_DA_PREVIA,
       fmtBytes: fmtBytes, fmtData: fmtData, rotuloFicha: rotuloFicha, textoErro: textoErro,
       htmlSeletor: htmlSeletor, htmlFaixa: htmlFaixa, baseVersao: baseVersao, baixar: baixar,
-      criar: criar, ligarFaixa: ligarFaixa, faixa: function () { return faixa; } };
+      criar: criar, ligarFaixa: ligarFaixa, bloqueiaSaidaPrevia: bloqueiaSaidaPrevia, faixa: function () { return faixa; } };
   })();
 
   if (emNode) { module.exports = KhSeletor; return; }
@@ -8541,7 +8605,9 @@
  *     abre nem aceita. Sem seção (raça, condição) ou sem a ficha atual, o
  *     drawer abre e explica, sem aceitar;
  *   - com o Ensaio ligado (F4.6, KhEnsaio.ligado()), o desvio não acontece: a
- *     entidade é da ficha do ensaio (o soltar chega na F4.6c).
+ *     entidade é da ficha do ensaio, e levar para ela chega na F4.6c. Até lá
+ *     o drawer não aceita NADA, nem o item do Bazar (que iria à ficha atual,
+ *     contra a faixa "nada aqui é salvo na sua ficha"), e diz isso (avisoEnsaio).
  * Teclado: Esc recolhe (KhTeclas.camadaEsc, depois das camadas do Bazar; não
  * com o foco num campo de texto fora do drawer, cujo Esc é dele); abrir
  * pelo botão leva o foco à aba aberta, recolher o devolve ao botão do trilho.
@@ -8553,12 +8619,15 @@
  * calcula a ficha ativa do ensaio (KhEnsaio.calcular), o aviso de só-leitura
  * some e o seletor de fichas do ensaio (KhSeletor, #fd-gaveta-ke) aparece no
  * cabeçalho; a faixa fixa é do KhSeletor.ligarFaixa (montada aqui). Redesenha
- * no evento kh:ensaio. "Sair da prévia" apaga também o Ensaio desta aba. O
- * Ensaio grava só no sessionStorage com o prefixo khalkaria_ensaio:.
+ * no evento kh:ensaio. "Sair da prévia" apaga também o que sobrou do Ensaio
+ * desta aba; com ele ligado (só numa página velha do bfcache o botão aparece),
+ * não apaga: KhSeletor.bloqueiaSaidaPrevia acerta a página e abre a confirmação
+ * da faixa. O Ensaio grava só no sessionStorage com o prefixo khalkaria_ensaio:.
  * Escritas: localStorage khalkaria_ficha3_dock (só quando o jogador abre ou
  * recolhe pelo botão ou pelo Esc), as preferências de aba do KhAbas (ordem e
  * aba aberta, as mesmas da página), o "lembrar" da prévia (KhPrevia.iniciar,
- * com ?ficha=v3) e, ao soltar um item do Bazar, o KF.adicionar da ficha atual.
+ * com ?ficha=v3) e, ao soltar um item do Bazar SEM o Ensaio, o KF.adicionar
+ * da ficha atual.
  * O KF.abrir (botão "Editar na ficha atual" e o arrasto de outra entidade) é o
  * do botão FICHA: a v2.1 lembra que está aberta (khalkaria_ficha_open).
  * Nenhuma chave de ficha v3.
@@ -8571,7 +8640,7 @@
  * .main-content e quando a nav troca (html[data-nav]).
  *
  * Partes puras (testadas no node, tools/testes/ficha-drawer.test.js): estado,
- * lerDock, leArrasto, leCarta, avisoAbriu, avisoRecusa, fracao, saidaPrevia,
+ * lerDock, leArrasto, leCarta, avisoAbriu, avisoRecusa, avisoEnsaio, fracao, saidaPrevia,
  * direitaNota, tabelaLarga, htmlCasca, htmlId e htmlMinis (e marcaLargas, com
  * o DOM mínimo). No node exporta
  * por module.exports (carregado sozinho); no artefato js/ficha.js o export já é
@@ -8606,8 +8675,6 @@
     var ID = 'fd-gaveta';
     var ESPERA = 350;                // ms: depois do debounce de 200 ms com que o drawer v2 grava
     var MOSTRA_AVISO = 6000;         // ms do aviso depois que o arrasto acaba
-    // o texto da especificação (06 §Arrastar); desde a 07 §0, só sobra com o Ensaio ligado
-    var AVISO_SO_LEITURA = 'A ficha nova ainda é só leitura: solte na ficha atual (botão FICHA) para levar técnicas e magias';
     // arrastar outra entidade (07 §0, item 1): a seção da ficha atual (a chave do
     // KF.abrir, data-sec do drawer v2.1) pelo campo do arrasto da v2.1 (_campo,
     // o MAPA dela) ou pelo tipo marcado no build ([data-kf-tipo]). Raça e
@@ -8717,7 +8784,17 @@
         return 'A ficha atual não recebe ' + nome + ' por arrasto: preencha à mão, na ficha atual (FICHA).';
       }
       if (!temKF) return 'A ficha atual não carregou nesta página: recarregue para levar ' + (NOME_SECAO[c.secao] || 'a carta') + '.';
-      return AVISO_SO_LEITURA;
+      // o KF.abrir falhou: o botão FICHA não aceita soltar (07 §0, item 1), então abrir por ele e arrastar de novo
+      return 'A ficha atual não abriu: abra pelo botão FICHA e arraste ' + (NOME_SECAO[c.secao] || 'a carta') + ' de novo.';
+    }
+    // Com o Ensaio ligado, o drawer mostra a ficha do ensaio, e levar para ela
+    // é a F4.6c: até lá, soltar no drawer não guarda nada, nem na ficha atual
+    // (a faixa promete "nada aqui é salvo na sua ficha"). c = o leCarta
+    function avisoEnsaio(c) {
+      c = obj(c) ? c : {};
+      var nome = c.tipo === 'bazar' ? (semEmoji(obj(c.item) ? c.item.nome : '') || 'o item')
+        : NOME_SECAO[c.secao] || (temChave(NOME_TIPO, c.kfTipo) ? NOME_TIPO[c.kfTipo] : 'este card');
+      return 'Ensaio: levar ' + nome + ' para a ficha do ensaio chega na F4.6c. Soltar aqui não guarda nada, nem na sua ficha.';
     }
     // a direita da nota (px da borda da janela): à esquerda do mais largo dos
     // drawers à vista (o v2.1, 420 px; este, 460 px a partir de 1800 px), pelas
@@ -9042,7 +9119,13 @@
         else if (t.closest('.fd-gaveta-editar')) { if (win.KF && typeof win.KF.abrir === 'function') win.KF.abrir(); }
         else if (t.closest('.fd-gaveta-ensaiar')) { if (seletor) seletor.entrar(); }
         else if (t.closest('.fd-gaveta-sair')) {
-          // apaga a chave (e o Ensaio desta aba) e recarrega DE FATO, sem ?ficha=v3 (saidaPrevia)
+          // com o Ensaio ligado (a página veio do bfcache com o botão à vista):
+          // não apaga; o drawer se acerta e a faixa pede a confirmação dela
+          if (ensaioLigado()) {
+            if (!(KhSeletor && KhSeletor.bloqueiaSaidaPrevia(win))) { poeModo(); desenha(); }
+            return;
+          }
+          // apaga a chave (e o resto do Ensaio desta aba) e recarrega DE FATO, sem ?ficha=v3 (saidaPrevia)
           if (KhEnsaio) KhEnsaio.sair(ss);
           try { if (ls) ls.removeItem(CHAVE_PREVIA); } catch (x) { /* storage bloqueado */ }
           var L = win.location, s = saidaPrevia(L);
@@ -9142,7 +9225,12 @@
       function nomeItem(it) { return semEmoji(it && it.nome) || 'o item'; }
       function aoSobre(e) {
         if (!arrasto) return;
-        if (arrasto.tipo === 'bazar') {
+        if (ensaioLigado()) {
+          // o drawer mostra a ficha do ensaio: não aceita nada (sem
+          // preventDefault), nem o item do Bazar, que iria para a ficha atual
+          gav.setAttribute('data-recusa', '');
+          mostraAviso(avisoEnsaio(arrasto));
+        } else if (arrasto.tipo === 'bazar') {
           e.preventDefault();
           if (e.dataTransfer) e.dataTransfer.dropEffect = 'copy';
           gav.setAttribute('data-alvo', '');
@@ -9150,7 +9238,7 @@
         } else {
           // não aceita (sem preventDefault): o lugar dela é a ficha atual
           gav.setAttribute('data-recusa', '');
-          if (!arrasto.desviou) mostraAviso(ensaioLigado() ? AVISO_SO_LEITURA : avisoRecusa(arrasto, temKF()));
+          if (!arrasto.desviou) mostraAviso(avisoRecusa(arrasto, temKF()));
         }
       }
       function aoSairArrasto(e) {
@@ -9168,6 +9256,15 @@
       function aoSoltar(e) {
         if (!arrasto || arrasto.tipo !== 'bazar') return;
         e.preventDefault();
+        if (ensaioLigado()) {
+          // o Ensaio ligou no meio do arrasto (o dragover recusa): nada vai à ficha atual
+          var c = arrasto;
+          arrasto = null;
+          gav.removeAttribute('data-acende');
+          limpaAlvo();
+          mostraAviso(avisoEnsaio(c), MOSTRA_AVISO);
+          return;
+        }
         var lido = null;
         try { lido = leArrasto(e.dataTransfer ? e.dataTransfer.getData('text/plain') : ''); } catch (y) { lido = null; }
         var it = lido && lido.tipo === 'bazar' ? lido.item : arrasto.item;
@@ -9242,9 +9339,10 @@
     }
 
     return { CHAVE_DOCK: CHAVE_DOCK, ESTADOS: ESTADOS.slice(), PADRAO: PADRAO, ATRIBUTO: ATRIBUTO, ID: ID,
-      PREFIXO: PREFIXO, PREFIXO_TRILHO: PREFIXO_TRILHO, AVISO_SO_LEITURA: AVISO_SO_LEITURA, ORIGENS_ARRASTO: ORIGENS_ARRASTO,
+      PREFIXO: PREFIXO, PREFIXO_TRILHO: PREFIXO_TRILHO, ORIGENS_ARRASTO: ORIGENS_ARRASTO,
       ORIGEM_BAZAR: ORIGEM_BAZAR, VAO_NOTA: VAO_NOTA, MARCA_LARGA: MARCA_LARGA, ESPERA_LARGAS: ESPERA_LARGAS,
       estado: estado, lerDock: lerDock, leArrasto: leArrasto, leCarta: leCarta, avisoAbriu: avisoAbriu, avisoRecusa: avisoRecusa,
+      avisoEnsaio: avisoEnsaio,
       fracao: fracao, saidaPrevia: saidaPrevia, direitaNota: direitaNota, tabelaLarga: tabelaLarga, marcaLargas: marcaLargas,
       htmlId: htmlId, htmlMinis: htmlMinis, htmlCasca: htmlCasca,
       iniciar: iniciar, borda: borda, atual: function () { return atual; } };

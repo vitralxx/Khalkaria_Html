@@ -487,7 +487,7 @@ function janela(opc) {
   doc.criados.length = 0;
   const ls = opc.ls && opc.ls.escritas ? opc.ls : A.armazenamento(opc.ls || {});
   const ss = opc.ss && opc.ss.escritas ? opc.ss : A.armazenamento(opc.ss || {});
-  const blobs = [], baixados = [], timers = [];
+  const blobs = [], baixados = [], timers = [], ouvWin = {}, kf = [];
   class Blob { constructor(partes, o) { this.texto = partes.join(''); this.type = o && o.type; } }
   class URLx extends URL {
     static createObjectURL(b) { blobs.push(b); return 'blob:' + (blobs.length - 1); }
@@ -508,9 +508,10 @@ function janela(opc) {
       const txt = fs.readFileSync(p, 'utf8');
       return Promise.resolve({ ok: true, status: 200, json: () => Promise.resolve(JSON.parse(txt)), text: () => Promise.resolve(txt) });
     },
-    addEventListener() {}, removeEventListener() {},
-    // a ficha atual (v2.1) falsa: o Ensaio não a chama
-    KF: Object.freeze({ versao: '2', adicionar: () => 'u1', abrir: () => {} })
+    // os ouvintes da janela (pageshow, storage…): j.win(tipo, ev) os dispara
+    addEventListener: (t, f) => { (ouvWin[t] = ouvWin[t] || []).push(f); }, removeEventListener() {},
+    // a ficha atual (v2.1) falsa, ESPIÃ também: o Ensaio não a chama (kf: as chamadas)
+    KF: Object.freeze({ versao: '2', adicionar: (it) => { kf.push(['adicionar', it]); return 'u1'; }, abrir: (...a) => { kf.push(['abrir', a]); } })
   };
   sb.window = sb;
   vm.createContext(sb);
@@ -530,7 +531,11 @@ function janela(opc) {
   const envia = (form) => { assert.ok(form, 'o form existe'); return DOM.despacha(doc, form, DOM.evento('submit')); };
   const tecla = (key) => DOM.despacha(doc, doc.activeElement || doc.body, DOM.evento('keydown', { key }));
   const ke = (cont, acao) => cont.querySelector('[data-ke="' + acao + '"]');
-  return { sb, doc, html: doc.documentElement, ls, ss, baixados, timers, el, clica, muda, envia, tecla, ke,
+  const win = (tipo, ev) => (ouvWin[tipo] || []).forEach((f) => f(Object.assign({ type: tipo }, ev)));
+  // arrastar (o text/plain do card: payload)
+  const arrasta = (alvo, tipo, payload) => DOM.despacha(doc, alvo, DOM.evento(tipo, { dataTransfer: {
+    dropEffect: '', getData: (t) => (t === 'text/plain' && payload != null ? JSON.stringify(payload) : ''), setData() {} } }));
+  return { sb, doc, html: doc.documentElement, ls, ss, baixados, timers, ouvWin, kf, el, clica, muda, envia, tecla, ke, win, arrasta,
     faixa: () => el('ke-faixa'), drawer: () => sb.KhFichaDrawer.atual() };
 }
 const espera = () => new Promise((r) => setImmediate(r));
@@ -559,6 +564,7 @@ test('navegador sem a prévia: nada do Ensaio aparece, nem com a marca e fichas 
     assert.equal(j.doc.querySelector('[data-ke]'), null, 'nenhum botão do Ensaio');
     assert.equal(j.doc.getElementById('fd-gaveta'), null);
     assert.equal(j.doc.ouv['kh:ensaio'], undefined, 'nenhum ouvinte do Ensaio');
+    assert.equal(j.ouvWin.pageshow, undefined, 'nem o do bfcache');
     assert.deepEqual(j.ls.escritas, []);
     assert.deepEqual(j.ss.escritas, []);
     assert.equal(j.ss.foto(), foto);
@@ -723,6 +729,8 @@ test('página da ficha, o ciclo inteiro pela interface (espião): entrar, criar,
   assert.match(ke.querySelector('.ke-msg').textContent, /^3 fichas importadas/);
   j.clica(j.ke(j.faixa(), 'sair'));
   j.clica(j.ke(j.faixa(), 'sair-ok'));
+  assert.equal(ke.hidden, true);
+  assert.equal(ke.querySelector('.ke-msg'), null, 'a mensagem do import sai junto com o ensaio');
   // ---- o ESPIÃO: nenhuma escrita no localStorage; no sessionStorage, só o prefixo e a marca
   assert.deepEqual(j.ls.escritas, []);
   assert.equal(j.ls.foto(), fotoLs);
@@ -812,6 +820,162 @@ test('"Sair da prévia": com o Ensaio ligado não aparece (sai-se dele antes, co
   }
 });
 
+test('bfcache (revisão da F4.6a): na página velha, "Sair da prévia" não apaga o ensaio (abre a confirmação da faixa), "Ensaiar edição" só a acerta e o pageshow (persisted) a acerta (espião)', async () => {
+  for (const pagina of [false, true]) {
+    const onde = pagina ? 'página' : 'drawer';
+    const SAIR = pagina ? '.fp-sair-previa' : '.fd-gaveta-sair';
+    const keDe = (x) => x.el(pagina ? 'fp-ke' : 'fd-gaveta-ke');
+    const ls = A.armazenamento(comPrevia());
+    const ss = A.armazenamento({ khalkaria_ficha_aba: 'cartas' });
+    const fotoLs = ls.foto();
+    // 1) as páginas velhas (Condições, ou a da ficha), abertas sem o Ensaio, na mesma aba (o mesmo sessionStorage)
+    const velha = await carrega(janela({ pagina, ls, ss }));
+    const velha2 = await carrega(janela({ pagina, ls, ss }));
+    const velha3 = await carrega(janela({ pagina, ls, ss }));
+    // 2) a página da ficha: "Ensaiar edição" e cria "Teste importante"
+    const f = await carrega(janela({ pagina: true, ls, ss }));
+    f.clica(f.doc.querySelector('[data-ke="entrar"]'));
+    await carrega(f);
+    f.clica(f.ke(f.el('fp-ke'), 'criar'));
+    f.el('fp-ke').querySelector('.ke-nome').value = 'Teste importante';
+    f.envia(f.el('fp-ke').querySelector('form'));
+    const arm = E.armazem(ss);
+    assert.equal(arm.listar().length, 2);
+    const foto = ss.foto();
+    // 3) Voltar: a velha como estava (o clique antes de qualquer sincronia), com "Sair da prévia" à vista
+    const b = velha.doc.querySelector(SAIR);
+    assert.ok(b, onde + ': o botão da página velha');
+    if (!pagina) assert.equal(velha.el('fd-gaveta-ro').hidden, false);
+    assert.equal(velha.faixa(), null);
+    // 4) o clique NÃO apaga: a página se acerta e a faixa pede a confirmação, com o porquê
+    velha.clica(b);
+    assert.equal(ss.foto(), foto, onde + ': nada apagado');
+    assert.equal(ss.getItem(MARCA), '1');
+    assert.equal(velha.sb.foi, undefined, 'não troca de página');
+    assert.equal(velha.sb.recarregou, undefined, 'nem recarrega');
+    assert.ok(velha.faixa(), onde + ': a faixa');
+    assert.match(velha.faixa().querySelector('.ke-faixa-conf').textContent, /^Sair apaga as 2 fichas do ensaio desta aba\./);
+    assert.equal(velha.faixa().querySelector('.ke-faixa-msg').textContent, S.ANTES_DA_PREVIA);
+    assert.equal(velha.doc.activeElement, velha.faixa().querySelector('.ke-sair-nao'), 'o foco em "Continuar no ensaio"');
+    assert.equal(keDe(velha).hidden, false, 'o seletor do ensaio');
+    assert.deepEqual(nomes(keDe(velha)), ['Lira Vento-Sul', 'Teste importante']);
+    if (pagina) assert.equal(velha.doc.querySelector(SAIR), null, 'o topo sem o "Sair da prévia"');
+    else assert.equal(velha.el('fd-gaveta-ro').hidden, true, 'o aviso com "Sair da prévia" some');
+    velha.clica(velha.ke(velha.faixa(), 'sair-nao'));
+    assert.equal(arm.listar().length, 2, '"Continuar no ensaio": tudo fica');
+    // 5) "Ensaiar edição" na página velha: não cria outra ficha, só a acerta
+    velha2.clica(velha2.doc.querySelector('[data-ke="entrar"]'));
+    await carrega(velha2);
+    assert.equal(ss.foto(), foto, 'nenhuma ficha nova');
+    assert.ok(velha2.faixa());
+    assert.deepEqual(nomes(keDe(velha2)), ['Lira Vento-Sul', 'Teste importante']);
+    if (!pagina) assert.equal(velha2.el('fd-gaveta-ro').hidden, true);
+    else assert.equal(velha2.doc.querySelector(SAIR), null);
+    // 6) o pageshow do bfcache (persisted) acerta antes de qualquer clique; a carga normal, não mexe
+    velha3.win('pageshow', { persisted: false });
+    assert.equal(velha3.faixa(), null, 'carga normal: nada');
+    velha3.win('pageshow', { persisted: true });
+    assert.ok(velha3.faixa());
+    assert.equal(keDe(velha3).hidden, false);
+    if (pagina) assert.equal(velha3.doc.querySelector(SAIR), null);
+    else {
+      assert.equal(velha3.el('fd-gaveta-ro').hidden, true);
+      assert.equal(velha3.drawer().resultado().ensaio, true);
+    }
+    // 7) o contrário: sair do ensaio na página da ficha e voltar à velha (que mostrava o ensaio)
+    f.clica(f.ke(f.faixa(), 'sair'));
+    f.clica(f.ke(f.faixa(), 'sair-ok'));
+    const n = ss.escritas.length;
+    // sem o pageshow: a ação do seletor velho não grava nada, e o seletor some
+    velha3.clica(velha3.ke(keDe(velha3), 'duplicar'));
+    assert.equal(ss.escritas.length, n, 'nada gravado');
+    assert.equal(keDe(velha3).hidden, true);
+    velha3.win('pageshow', { persisted: true });
+    assert.equal(velha3.faixa(), null);
+    if (pagina) assert.ok(velha3.doc.querySelector(SAIR));
+    else assert.equal(velha3.el('fd-gaveta-ro').hidden, false);
+    // o ESPIÃO: nada no localStorage, nada na ficha atual, o sessionStorage só com o prefixo
+    [velha, velha2, velha3, f].forEach((x) => assert.deepEqual(x.kf, [], 'a ficha atual não é chamada'));
+    assert.deepEqual(ls.escritas, []);
+    assert.equal(ls.foto(), fotoLs);
+    soEnsaio(ss, 'bfcache ' + onde);
+    assert.deepEqual(Object.fromEntries(ss.m), { khalkaria_ficha_aba: 'cartas' });
+  }
+});
+
+test('sair do ensaio limpa a mensagem do seletor (revisão da F4.6a): a volta à sombra é exata, na página e no drawer', async () => {
+  for (const pagina of [false, true]) {
+    const ls = A.armazenamento(comPrevia({ khalkaria_ficha3_dock: 'aberto' }));
+    const ss = A.armazenamento();
+    const j = await carrega(janela({ pagina, ls, ss }));
+    const ke = j.el(pagina ? 'fp-ke' : 'fd-gaveta-ke');
+    const cab = () => (pagina ? j.el('fp-topo') : j.el('fd-gaveta-id')).innerHTML;
+    const antes = { ke: ke.innerHTML, cab: cab() };
+    assert.equal(ke.hidden, true);
+    j.clica(j.doc.querySelector('[data-ke="entrar"]'));
+    await carrega(j);
+    j.clica(j.ke(ke, 'criar'));
+    ke.querySelector('.ke-nome').value = 'Teste A';
+    j.envia(ke.querySelector('form'));
+    assert.equal(ke.querySelector('.ke-msg').textContent, 'Ficha "Teste A" criada e aberta.');
+    // sem o Esc (que limparia a mensagem): direto pela faixa
+    j.clica(j.ke(j.faixa(), 'sair'));
+    j.clica(j.ke(j.faixa(), 'sair-ok'));
+    assert.equal(ke.hidden, true, 'o seletor some');
+    assert.equal(ke.querySelector('.ke-msg'), null, 'sem a mensagem de uma ficha que não existe mais');
+    assert.equal(ke.innerHTML, antes.ke);
+    assert.equal(cab(), antes.cab, 'o topo (ou o cabeçalho) volta byte a byte');
+    // entrar de novo: a mensagem é a da entrada, não a velha
+    j.clica(j.doc.querySelector('[data-ke="entrar"]'));
+    await carrega(j);
+    assert.match(ke.querySelector('.ke-msg').textContent, /^Ensaio ligado/);
+    j.clica(j.ke(j.faixa(), 'sair'));
+    j.clica(j.ke(j.faixa(), 'sair-ok'));
+    assert.equal(ke.querySelector('.ke-msg'), null);
+    assert.deepEqual(j.ls.escritas, []);
+    assert.deepEqual(j.kf, []);
+    soEnsaio(ss, pagina ? 'página' : 'drawer');
+    assert.deepEqual([...ss.m.keys()], []);
+  }
+});
+
+test('drawer com o Ensaio (revisão da F4.6a): soltar item do Bazar, técnica ou magia não grava em lugar nenhum (a ficha atual é espiã) e diz o que acontece', async () => {
+  const ls = A.armazenamento(comPrevia({ khalkaria_ficha3_dock: 'aberto' }));
+  const ss = A.armazenamento();
+  const j = await carrega(janela({ ls, ss }));
+  j.clica(j.doc.querySelector('.fd-gaveta-ensaiar'));
+  await carrega(j);
+  const fotoSs = ss.foto();
+  const casos = [
+    ['item-card', { 'data-kf-tipo': 'item' }, { _bazar: true, item: { id: 'item-corda', nome: 'Corda' } },
+      'Ensaio: levar Corda para a ficha do ensaio chega na F4.6c. Soltar aqui não guarda nada, nem na sua ficha.'],
+    ['tier-technique kf-draggable', {}, { _campo: 'tecnicas', id: 'tecnica-y' },
+      'Ensaio: levar a técnica para a ficha do ensaio chega na F4.6c. Soltar aqui não guarda nada, nem na sua ficha.'],
+    ['spell-card kf-draggable', { 'data-kf-tipo': 'magia' }, { _campo: 'grimorio', id: 'magia-x' },
+      'Ensaio: levar a magia para a ficha do ensaio chega na F4.6c. Soltar aqui não guarda nada, nem na sua ficha.']
+  ];
+  for (const [classe, attrs, payload, texto] of casos) {
+    const card = j.doc.createElement('div');
+    card.className = classe;
+    Object.entries(attrs).forEach(([k, v]) => card.setAttribute(k, v));
+    j.doc.body.appendChild(card);
+    j.arrasta(card, 'dragstart', payload);
+    j.arrasta(j.el('fd-gaveta'), 'dragenter', null);
+    assert.equal(j.arrasta(j.el('fd-gaveta-rolagem'), 'dragover', null).defaultPrevented, false, classe + ': não aceita');
+    assert.ok(j.el('fd-gaveta').hasAttribute('data-recusa'));
+    assert.equal(j.el('fd-gaveta-aviso').textContent, texto);
+    j.arrasta(j.el('fd-gaveta-rolagem'), 'drop', payload);
+    DOM.despacha(j.doc, j.doc.body, DOM.evento('dragend'));
+    assert.equal(j.el('fd-gaveta-aviso').textContent, texto);
+    assert.equal(j.el('fd-gaveta-nota').hidden, true, 'sem a nota de "a ficha atual abriu"');
+  }
+  assert.deepEqual(j.kf, [], 'nem KF.adicionar nem KF.abrir');
+  assert.deepEqual(j.ls.escritas, []);
+  assert.equal(ss.foto(), fotoSs, 'nem o ensaio muda (levar para ele é a F4.6c)');
+  assert.match(j.faixa().textContent, /nada aqui é salvo na sua ficha/);
+  soEnsaio(ss, 'soltar no ensaio');
+});
+
 test('QuotaExceeded pela interface: o aviso com "Exportar todas", que baixa o pacote; nada fora do prefixo', async () => {
   const ls = A.armazenamento(comPrevia());
   const ss = A.armazenamento();
@@ -885,6 +1049,16 @@ test('CSS do Ensaio: só injetado com ele; sem camada e tudo sob .ke- (mais o lu
     assert.ok(c >= 4.5, sel + ': ' + c.toFixed(2) + ':1');
   });
   assert.match(css, /\.ke-seletor :focus-visible, \.ke-faixa :focus-visible \{ outline: 2px solid var\(--amber\)/);
+  // o botão desligado (revisão da F4.6a): fundo próprio, que vence o âmbar do .kh-btn.forte (este CSS é sem
+  // camada; o componente, @layer componentes): o texto apagado sobre o âmbar dava 1,37:1
+  assert.match(ler('css', 'componentes.css'), /@layer componentes \{/);
+  assert.match(regra(ler('css', 'componentes.css'), '.kh-btn.forte, .bz-faixa-btn.forte'), /background: var\(--amber\);/);
+  const des = regra(css, '.ke-btn:disabled');
+  const fundoDes = resolveCor(/background:\s*([^;]+);/.exec(des)[1]);
+  const cDes = contraste(cor('.ke-btn:disabled'), fundoDes);
+  assert.ok(cDes >= 4.5, '.ke-btn:disabled: ' + cDes.toFixed(2) + ':1');
+  assert.notEqual(fundoDes, TOKENS.amber);
+  assert.doesNotMatch(regra(css, '.ke-btn.forte:disabled'), /background|(?:^|;)\s*color:/, 'o .forte desligado fica com o fundo e o texto do desligado');
   // no drawer: o lugar do seletor ocupa a linha do cabeçalho (css/ficha-drawer.css)
   const dr = ler('css', 'ficha-drawer.css');
   assert.match(regra(dr, '.fd-gaveta-ke'), /grid-column: 1 \/ -1;/);
