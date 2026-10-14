@@ -553,4 +553,22 @@ O Batedor foi o protótipo (D79). Cada correção do Pedro vira regra para as pr
 31. **Bônus que escala com Sins precisa de teto.** Sins crescem em escala geométrica (o Bazar sobe ~3,2× por
     raridade), e o grupo pode juntar o dinheiro num personagem só. "A cada N Sins, +1" sem máximo vira +8 ou +10 no
     nível 5. Use o Nível como teto, como no Fantasma.
+    O Pedro deu a régua: *"com reserva infinita de sins tem que estar forte mas não quebrado"*. Teste toda técnica
+    paga em Sins com dinheiro infinito e compare o teto com a técnica de Stamina equivalente (*Destruir*, *Ranger os
+    Dentes*).
+
+**Rodada 10 (2026-10-14)**
+
+32. **Técnica de ramo funciona sozinha.** Não depende de técnica geral equipada nem de outra técnica de ramo; a
+    sinergia é bônus. *"pressupõe que o pc tem a técnica de armadilha equipada… fica inútil sem ela"*; *"Cada tier deve
+    ser independente enquanto sinergiza com seu próprio ramo e os outros ramos."* As gerais se trocam a cada descanso
+    longo, então uma técnica de ramo presa a uma delas morre na troca.
+33. **O ponto ideal do Tier 2:** algo que o ramo faz para si e para a equipe, que conversa com os outros ramos, sem
+    ser 100% uma mecânica do sistema e sem criar mecânica nova difícil de lembrar. Gastar 1 ação em posicionamento
+    raro não é usado: *"em 99% das cenas é inútil"*.
+34. **Penalidade fixa nos inimigos, com acompanhamento, é chata.** *"debuff fixo em 2 perícias, além de exigir tracking
+    é meio chato."* Prefira um efeito no alvo escolhido, com fim claro.
+35. **Uma técnica não invade a característica de outro ramo.** *"o cartógrafo não sinergiza com furtividade muito bem,
+    porque isso é feature do ladino."* A ponte entre ramos é um efeito comum (*Desprevenido*, Sins, mapa), não a
+    mecânica-assinatura do outro.
 

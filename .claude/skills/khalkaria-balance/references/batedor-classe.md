@@ -4,79 +4,27 @@ Esta é a classe como ela vai para o Notion, pronta para o Pedro auditar. O porq
 
 **Origem:** `[Pedro]` texto dele · `[Pedro, ajustado]` texto dele com mudança · `[nova]` criação minha, precisa de aceite.
 
-**Estado (2026-10-09):** cabeçalho, características e técnicas gerais estão fechados e no Notion. Os ramos são proposta; marcas e Tier 1 estão com os textos do Pedro, e agora o foco é o Tier 2 dos três. As ultimates ficam por último.
+**Estado (2026-10-14):** cabeçalho, características e técnicas gerais estão fechados e no Notion. Os ramos são proposta. As marcas e o Tier 1 têm os textos do Pedro, e o Tier 2 está em revisão. As ultimates ficam por último.
 
 ---
 
 ## Em auditoria
 
-**Mudou nesta rodada:**
-- **Pechincha** (seu texto) entra no lugar do Atravessador: o mapa vale 1 raridade acima, e você recupera metade dos Sins ao subir um comerciante de nível. Subir do nível 1 para o 2 passa a custar 125 Sins líquidos. Para empatar com a margem ganha, bastam ~780 Sins de loot vendido, metade dos ~1.560 de antes.
+**Mudou nesta rodada (textos seus):**
+- **Mapa Estratégico:** só perícia em que você seja ao menos Treinado.
+- **Cleptomaníaco:** a vantagem para furtar passa a ser 1x/descanso longo.
+- **Ataque Furtivo:** "dano adicional". Isso resolve o "ao acertar".
+- **Tier 2 do Ladrão:** Cobra e Marca da Morte.
+- **Tier 2 do Pecador:** Comprar Dor e Comprar Proteção.
 
-**Tier 2: 4 candidatas por ramo, escolha 2.** Os números são do nível 4, com arma leve (2d6 + 4) e Ataque Furtivo de 4d6, 1x/turno. O turno-base, sem nada, dá 12,6 de dano.
+**Proposto por mim (Cartógrafo):**
+- **Acampamento** no lugar do Campo Minado. Funciona sozinho.
+- **Tier 2:** 4 candidatas novas (A–D). As opiniões e os números estão na resposta da rodada (`18` §5.0c).
 
-*Cartógrafo* (recomendo A + C)
-- **A. Gatilho Remoto:**
-  - armadilheiro; casa com o Campo Minado, que monta as armadilhas de graça;
-  - cada disparo dá ~15–18 de dano esperado ((4 + 1)d6 + DES ≈ 21,5, vencendo a Percepção em ~70–85%), mais *Enraizado*, pela reação e 3 Stamina;
-  - vertente Ladrão: o *Enraizado* liga a Arapuca.
-- **B. Esconderijos:**
-  - o grupo se esconde em combate, e cada ataque escondido é crítico no 1º acerto, sem reação do alvo;
-  - vertente Ladrão: esconder-se deixa o alvo *Desprevenido*, o que liga o Ataque Furtivo.
-- **C. Guia de Campo:**
-  - leva a Cartografia ao grupo, que é o seu "pra party através dos mapas";
-  - no nível 4, são 4d8 por lugar novo, agora para todos;
-  - estende uma regra que já existe (lição 22).
-- **D. Território Hostil:** estrategista. A Rasteira passa de ~50% para ~60%, e o Escorregadio pega mais. O custo de mesa é o mestre aplicar −2 aos inimigos na área.
-
-*Ladrão* (recomendo A + C)
-- **A. Finta:**
-  - é a sua Finta, agora dando *Desprevenido* em vez de *Desorientado*;
-  - liga o Ataque Furtivo sem se esconder: 17,9 de dano por turno, contra 12,6 (55% de vencer a disputa);
-  - é a peça do Ladrão de corpo a corpo.
-- **B. Sigiloso:**
-  - a sua técnica geral antiga: depois de atacar escondido, continua escondido;
-  - começar todo turno escondido dá 24,8; voltar a se esconder com 1 ação dá 23,4;
-  - o valor está em não precisar sair da linha de visão;
-  - disputa a reação com o Assassinato.
-- **C. Arapuca:**
-  - refeita: o *Enraizado* pela armadilha conta como *Desprevenido* no 1º ataque do turno;
-  - vertente Cartógrafo: Campo Minado + Gatilho Remoto viram alvos do Ataque Furtivo.
-- **D. Cobra:**
-  - a sua, ajustada (contra sua CD, *Envenenamento*, dura até o 1º acerto);
-  - vertente Pecador: o veneno custa Sins.
-
-*Pecador* (recomendo A + B)
-- **A. Isca de Ouro:**
-  - Sins como limiar de execução: no nível 4, até 40 Sins executam até 20 de Saúde;
-  - vertente Ladrão: *Desprevenida* liga o Ataque Furtivo;
-  - **depende do 1x/turno do Ataque Furtivo:** sem ele, todos os acertos do turno somariam os dados.
-- **B. Penitência:**
-  - é o "consome Sins em troca de dano" que você pediu, com o destino das moedas que você deu ao Pecar;
-  - 40 Sins + 2 Stamina dão 22,3 de dano por turno, contra 12,6;
-  - o *Destruir* do Brutalista dá os mesmos 4d6 por 8 Stamina;
-  - cada Sin gasto baixa o Bolso Cheio, então guardar e gastar puxam em sentidos opostos.
-- **C. Preço da Vida:** comprar a própria vida, 1x/descanso longo, por 80 Sins no nível 4.
-- **D. Informante:**
-  - compra o mapa em vez de desenhar; ele conta como desenhado por você e dispara a Cartografia, o Campo Minado e a Pechincha;
-  - vertente Cartógrafo; sozinho, é fraco.
-
-**Ainda abertos do Tier 1** (rodada 8, pontos 1–15): o "Ótimo" vale como aceite das propostas? Se valer, eu aplico:
-- Cartografia: "lugar" em vez de "região", validade dos dados e uso só nas suas rolagens;
-- Cartografia e Mapa Estratégico: "a qualquer momento, 1x/rodada";
-- Mapa Estratégico: estoque até (Nível) mapas, que se desfazem no descanso longo, não se vendem, e quem carrega usa;
-- Cruel: "ao acertar";
-- Ataque Furtivo: "ao acertar", 1x/turno e metade dos dados na pesada;
-- Assassinato: sem ataque de oportunidade;
-- Homem de Negócios: conta o pico de Sins;
-- tetos de +Nível no Bolso Cheio e no Pecar;
-- dano de Força do Bolso Cheio: 1d6 a cada 100 Sins (máximo Nível d6).
-
-Também seguem abertos:
-- a 9ª região;
-- "região" no Rasgar o Mapa;
-- o Cicatrizes rolar de novo (espaço do Xamã);
-- se a Armadilha Tática some ao disparar.
+**Para decidir:** veja a resposta da rodada (`18` §5.0c). Os tetos sugeridos são:
+- Comprar Dor: 25 × Nível Sins;
+- Comprar Proteção: 12 × Nível Sins;
+- Bolso Cheio e Pecar: teto de +Nível.
 
 ---
 
@@ -166,24 +114,24 @@ Você possui cicatrizes que reforçam suas histórias de viagem.
 - Ao desenhar um mapa de uma região inédita, você recebe uma quantidade de dados igual ao seu nível (d6 no nível 1, d8 no nível 3 e d10 no nível 5), que você pode adicionar em qualquer rolagem de perícia como ação livre enquanto estiver na área do mapa.
 
 **Mapa Estratégico** (1 Ação, 3 Stamina) `[Pedro]`
-Você pode gastar 1 ação e 3 de Stamina para desenhar um Mapa Estratégico; ao fazer isso, escolha uma perícia qualquer. O mapa vira um item consumível que pode ser utilizado como ação livre para adicionar +2 (+4 no nível 3 e +6 no nível 5) na perícia escolhida quando uma criatura rolar ela.
+Você pode gastar 1 ação e 3 de Stamina para desenhar um Mapa Estratégico; ao fazer isso, escolha uma perícia em que você seja ao menos Treinado. O mapa vira um item consumível que pode ser utilizado como ação livre para adicionar +2 (+4 no nível 3 e +6 no nível 5) na perícia escolhida quando uma criatura rolar ela.
 
-**Campo Minado** (Passiva) `[nova]`
-Ao desenhar um mapa, você pode montar até (Nível) armadilhas na área dele, sem gastar ações nem Stamina. Elas funcionam como as da Armadilha Tática e contam no seu limite de armadilhas montadas.
+**Acampamento** (Passiva) `[nova, no lugar do Campo Minado]`
+Ao descansar na área de um mapa seu, você escolhe o melhor lugar: o descanso longo do grupo sobe 1 nível de comodidade (máximo Luxuoso), e o descanso curto recupera 3d6 em vez de 2d6.
 
-### Tier 2 (em escolha: 2 de 4)
+### Tier 2 (em escolha: 2 de 4, refeitas)
 
-**A. Gatilho Remoto** (Reação, 3 Stamina) `[nova]`
-Na área de um mapa seu, quando uma criatura terminar um movimento a até 3 m de uma Armadilha Tática sua, você pode dispará-la: a criatura faz o teste de *Percepção* contra a armadilha como se tivesse passado por cima dela. A armadilha disparada se desfaz.
+**A. Orientação** (Reação, 3 Stamina) `[nova]`
+Na área de um mapa seu, quando você ou um aliado a até 9 m for rolar uma perícia, some 1d6 à rolagem (1d8 a partir do nível 5).
 
-**B. Esconderijos** (Passiva) `[nova]`
-Na área de um mapa seu, no início do combate, aponte até (Nível) esconderijos: pontos de 1,5 m que o seu mapa registrou. Você ou um aliado que esteja num esconderijo pode se esconder com 1 ação, mesmo no campo de visão de criaturas cientes dele: role *Furtividade* contra a *Percepção* de cada criatura que o vê. Cada esconderijo serve uma vez por combate.
+**B. Rota Segura** (Passiva) `[nova]`
+Na área de um mapa seu, você e aliados a até 9 m de você não provocam ataques de oportunidade ao usar a ação de Mover.
 
-**C. Guia de Campo** (Passiva) `[nova]`
-Requisito: Cartografia. Os dados da Cartografia também podem ser somados às rolagens de aliados a até 9 m de você, na área do mapa.
+**C. Passo em Falso** (1 Ação, 4 Stamina) `[nova]`
+Na área de um mapa seu, escolha uma criatura a até 18 m. Ela faz *Reflexos* contra sua CD; se falhar, pisa onde você sabia que o chão cedia e fica *Desprevenida* até o início do seu próximo turno.
 
-**D. Território Hostil** (Passiva) `[nova]`
-Na área de um mapa seu, criaturas hostis têm −2 em *Movimento* e *Reflexos*: você sabe onde o chão cede, e elas não.
+**D. Vanguarda** (Passiva) `[nova]`
+Num combate que começa na área de um mapa seu, você e aliados a até 9 m de você rolam *Iniciativa* com vantagem e têm +3 m de Movimento na primeira rodada.
 
 ### Tier 3 (por último)
 
@@ -231,13 +179,13 @@ Você sente prazer em assassinar criaturas sem que elas te reconheçam.
 
 Você pratica furtos de vez em quando.
 - Você se torna Treinado em *Crime*. Se já for Treinado, se torna Experiente e assim por diante.
-- Você tem vantagem ao realizar uma rolagem de *Crime* para furtar alguém.
+- Você tem vantagem ao realizar uma rolagem de *Crime* para furtar alguém. 1x/descanso longo.
 
 ### Tier 1
 
 **Ataque Furtivo** (Passiva) `[Pedro]`
 - Você se torna Treinado em *Furtividade*. Se já for Treinado, se torna Experiente e assim por diante.
-- Ao atacar uma criatura *Desprevenida*, ela recebe 2d6 de dano (4d6 no nível 3 e 6d6 no nível 5) e perde a reação.
+- Ao atacar uma criatura *Desprevenida*, ela recebe 2d6 de dano adicional (4d6 no nível 3 e 6d6 no nível 5) e perde a reação.
 
 **Assassinato** (Reação, 3 Stamina) `[Pedro]`
 Imediatamente após deixar uma criatura com 0 de Saúde, você pode gastar sua reação para mover-se até seu Movimento e rolar um teste de *Furtividade* para esconder-se.
@@ -245,19 +193,13 @@ Imediatamente após deixar uma criatura com 0 de Saúde, você pode gastar sua r
 **Mão Leve** (1 Ação, 3 Stamina) `[Pedro]`
 Você pode realizar um teste de *Crime* contra a *Percepção* de uma criatura a até 1,5 m e roubar até 2d12 Sins dela. No entanto, você não gera Sins caso a criatura não os tenha: você só pode roubar de criaturas que tenham Sins.
 
-### Tier 2 (em escolha: 2 de 4)
+### Tier 2 `[Pedro]`
 
-**A. Finta** (1 Ação, 3 Stamina) `[Pedro, ajustado: era Tier 1, dava Desorientado]`
-Escolha um alvo em até 1,5 m: *Enganação* vs *Percepção*. Sucesso: o alvo fica *Desprevenido* contra o seu próximo ataque neste turno.
+**Cobra** (1 Ação, 5 Stamina) `[Pedro]`
+Você sempre guarda algum veneno em seus bolsos: rapidamente, você pode imbuir sua arma equipada com 1 Ação e 5 Stamina, mesmo sem venenos no seu inventário. Arma: +1d6 Veneno por 3 ataques. Fortitude ou *Envenenamento*.
 
-**B. Sigiloso** (Reação, 3 Stamina) `[Pedro, da técnica geral antiga]`
-Ao atacar estando escondido, pode gastar sua reação para continuar escondido ao suceder em um teste de *Furtividade* contra a *Percepção* do alvo atacado.
-
-**C. Arapuca** (Passiva) `[nova, refeita para o Ataque Furtivo novo]`
-Uma criatura *Enraizada* por uma Armadilha Tática sua conta como *Desprevenida* contra o seu primeiro ataque em cada turno.
-
-**D. Cobra** (Descanso Curto ou 1 Ação, 2 Stamina) `[Pedro, ajustado]`
-Pode criar venenos potentes e imbuí-los nas suas armas. Você pode criar até 2 venenos por descanso curto e 5 venenos por descanso longo, gastando 5 Sins por veneno. Você pode adicionar o veneno a uma arma ou munição com 1 ação; **o veneno dura até o primeiro acerto**. A criatura que entrar em contato com o veneno deve suceder em um teste de Fortitude **contra sua CD** ou ficar com ***Envenenamento***.
+**Marca da Morte** (Passiva) `[Pedro]`
+Quando envenenada, sua presa raramente escapa de você. Ao atacar uma criatura com a condição *Envenenamento*, você tem +3 Margem de Ameaça no ataque.
 
 ### Tier 3
 
@@ -311,19 +253,13 @@ Antes de rolar qualquer perícia treinada, receba +1 a cada (10 × Nível) Sins 
 **Pechincha** (Passiva) `[Pedro]`
 Os Mapas que você desenha valem 1 raridade acima. Adicionalmente, você recupera metade dos Sins ao subir um comerciante de nível.
 
-### Tier 2 (em escolha: 2 de 4)
+### Tier 2 `[Pedro]`
 
-**A. Isca de Ouro** (1 Ação, 3 Stamina) `[nova]`
-Arremesse até (10 × Nível) Sins aos pés de uma criatura a até 9 m que dê valor a dinheiro. Ela faz *Vontade* contra sua CD. Se falhar, recolhe as moedas e fica *Desprevenida* até o início do próximo turno dela. Se resistir, as moedas ficam no chão. A criatura que recolheu seus Sins fica em dívida com você: quando um ataque seu a deixar com Saúde igual ou menor que metade dos Sins que ela recolheu, ela cai a 0. As moedas continuam com ela; saqueie-a para recuperá-las.
+**Comprar Dor** (Ação Livre, 3 Stamina) `[Pedro]`
+Ao acertar um ataque, como ação livre, consuma até (50 × Nível) Sins para causar 1 de dano de Força a cada 5 Sins gastos.
 
-**B. Penitência** (Ação Livre, 2 Stamina) `[nova]`
-Ao acertar um ataque, consuma Sins: o acerto causa +1d6 de dano a cada 10 Sins consumidos (máximo Nível d6). As moedas são dissipadas do Plano Material.
-
-**C. Preço da Vida** (Reação, 3 Stamina) `[nova]`
-Quando o ataque de uma criatura que dê valor a dinheiro for te reduzir a 0 de Saúde, ofereça a ela (20 × Nível) Sins. Ela faz *Vontade* contra sua CD. Se falhar, aceita: você fica com 1 de Saúde, e as moedas ficam com ela. 1x/descanso longo.
-
-**D. Informante** (Passiva) `[nova]`
-Num lugar habitado, você pode pagar (10 × Nível) Sins a quem conhece a área: em 1 minuto, você recebe o Mapa do lugar sem gastar Stamina, e ele conta como desenhado por você. As moedas ficam com o informante.
+**Comprar Proteção** (Reação, 5 Stamina) `[Pedro]`
+Ao estar prestes a receber dano de qualquer tipo, como reação, consuma até (20 × Nível) Sins para bloquear 1 ponto de dano a cada 3 Sins gastos.
 
 ### Tier 3
 

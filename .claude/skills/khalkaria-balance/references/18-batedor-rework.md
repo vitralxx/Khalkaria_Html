@@ -236,6 +236,39 @@ Além do dano, em 50% dos turnos o alvo fica *Caído*: não retalia, defende com
 | Pecador | Ladrão | Isca de Ouro: *Desprevenida* liga o Ataque Furtivo |
 | Pecador | todos | Preço da Vida: o Batedor tem a Saúde do Teurgo |
 
+### 5.0c Rodada 10 (2026-10-14): Tier 2 do Ladrão e do Pecador e o Cartógrafo refeito (D152)
+
+**Retorno do Pedro sobre o Cartógrafo:**
+- Campo Minado: *"pressupõe que o pc tem a técnica de armadilha equipada… fica inútil sem ela"*.
+- Tier 2:
+  - A (Gatilho Remoto): fraca para Tier 2 e dependente da Armadilha Tática;
+  - B (Esconderijos): *"em 99% das cenas é inútil"*, e furtividade é do Ladrão;
+  - C (Guia de Campo): *"requer o tier 1 do cartógrafo, e isso não é permitido. Cada tier deve ser independente enquanto sinergiza com seu próprio ramo e os outros ramos"*;
+  - D (Território Hostil): *"debuff fixo… exigir tracking é meio chato"*.
+- O alvo: *"o que um cartógrafo poderia fazer tanto para equipe, quanto para si, enquanto sinergiza com outros ramos"*.
+
+**Proposto:**
+- **T1, Acampamento:** o descanso longo sobe 1 nível de comodidade, e o curto recupera 3d6 em vez de 2d6. Dá ~+23 de recuperação por pessoa por dia.
+- **T2, 4 candidatas:** Orientação, Rota Segura, Passo em Falso e Vanguarda. Recomendação: Passo em Falso + Vanguarda.
+
+**Números do Tier 2** (nível 4, leve 2d6 + 4; turno-base 12,6):
+
+| Técnica | Resultado |
+|---|---|
+| Cobra | ~1,55 acertos nos 3 ataques: +5,4 de dano, mais *Envenenamento* (1d6/rodada) |
+| Marca da Morte | +3 de Margem dá +3,2 de dano por turno; +2 daria +2,1 |
+| Comprar Dor | teto do Pedro: 40 de Força por acerto no nível 4 (50 no 5); proposto: 20 (25). O *Destruir* tem teto de 14 (17,5) |
+| Comprar Proteção | teto do Pedro: ~27 no nível 4 (~33 no 5); proposto: 16 (20). O *Ranger os Dentes* do Brutalista tem teto de 14 (17,5) |
+
+**Régua do Pedro para o Pecador:** *"com reserva infinita de sins tem que estar forte mas não quebrado"*. Por ela, os tetos do Bolso Cheio, do Pecar e dos dois "Comprar" decidem o balanceamento.
+
+**Execução por % de Saúde, minha opinião:** fica chata.
+- O mestre teria que revelar a % de Saúde a cada acerto.
+- Mata chefes de repente, sem clímax.
+- Com o banco do grupo, fica sempre ligada, sem decisão.
+- O Comprar Dor já é uma execução comprada: 5 Sins por ponto de Saúde restante.
+- Se quiser execução explícita, ela cabe na ultimate (1x/descanso longo), paga em Sins.
+
 ### 5.0b Rodada 9 (2026-10-09): Pechincha e as candidatas de Tier 2 (D151)
 
 O Pechincha (do Pedro) entra no lugar do Atravessador. No Tier 2 são 4 candidatas por ramo; os textos, os números

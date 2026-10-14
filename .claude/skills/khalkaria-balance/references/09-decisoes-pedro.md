@@ -933,6 +933,19 @@ Texto verbatim em `18-batedor-rework.md` §0 e as lições em `19-gabarito-de-cl
   - Pecador: Isca de Ouro e Penitência.
 
   Perguntei se o "Ótimo" aceita as propostas 1–15 da rodada 8. Nada foi aplicado sem a resposta.
+- **D152** (2026-10-14) Textos do Pedro:
+  - **Mapa Estratégico:** só perícia em que o Batedor seja ao menos Treinado.
+  - **Cleptomaníaco:** vantagem para furtar 1x/descanso longo. É o limite que o Pedro deu ao roubo infinito.
+  - **Ataque Furtivo:** "dano adicional".
+  - **Tier 2 do Ladrão:** Cobra (1 Ação, 5 Stamina: +1d6 Veneno por 3 ataques, Fortitude ou *Envenenamento*) e
+    Marca da Morte (+3 Margem de Ameaça contra *Envenenamento*).
+  - **Tier 2 do Pecador:** Comprar Dor (5 Sins por 1 de dano de Força, até 50 × Nível Sins) e Comprar Proteção
+    (3 Sins por 1 ponto bloqueado, até 20 × Nível Sins).
+  - **Régua:** *"é pra ser forte por que sins não são infinitos, porém com reserva infinita de sins tem que estar
+    forte mas não quebrado"*.
+  - **Recusados:** o Campo Minado e as 4 candidatas de Tier 2 do Cartógrafo da rodada 7. Regra: *"Cada tier deve
+    ser independente enquanto sinergiza com seu próprio ramo e os outros ramos"*.
+  - **Execução do Pecador por % de Saúde:** o Pedro pediu opinião. A resposta está em `18` §5.0c.
 
 ## D68 — O andar de Nível 1 (truques)
 Todas as magias existentes **sobem 1 nível**: as antigas 1–4 viram 2–5. O novo Nível 1 são os
