@@ -109,7 +109,7 @@ test('drawer x página: o render compacto (fd) é o da página a menos do prefix
 
 test('carregar o módulo no navegador: só lê as dependências e registra window.KhFichaAbas', () => {
   const lidos = [], gravados = [];
-  const base = { KhPrevia: {}, KhRegras: {}, KhConta: {}, KhEstado: {}, KhInv: {} };
+  const base = { KhPrevia: {}, KhRegras: {}, KhConta: {}, KhEstado: {}, KhInv: {}, KhEdicao: {} };
   const win = new Proxy(base, {
     get: (o, k) => { if (typeof k === 'string') lidos.push(k); return o[k]; },
     set: (o, k, v) => { gravados.push(String(k)); o[k] = v; return true; },
@@ -117,7 +117,7 @@ test('carregar o módulo no navegador: só lê as dependências e registra windo
   });
   const sb = vm.createContext({ window: win });
   vm.runInContext(ler('js', 'ficha', 'kh-ficha-abas.js'), sb, { filename: 'kh-ficha-abas.js' });
-  assert.deepEqual(lidos.sort(), ['KhConta', 'KhEstado', 'KhInv', 'KhPrevia', 'KhRegras']);
+  assert.deepEqual(lidos.sort(), ['KhConta', 'KhEdicao', 'KhEstado', 'KhInv', 'KhPrevia', 'KhRegras']);
   assert.deepEqual(gravados, ['KhFichaAbas']);
   assert.equal(typeof base.KhFichaAbas.criar, 'function');
 });

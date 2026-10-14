@@ -38,6 +38,18 @@
  * Uma aba que lança não derruba as outras ("falhou ao desenhar"); aba sem
  * desenhista fica "em construção".
  *
+ * Edição (F4.6b, 07 §3, só com o modo Ensaio): paineis(res, {editar}) com
+ * 'pagina' troca os números de ESTADO por controles (nome, jogador, nível,
+ * XP, raça/variante/classe/ramo/origem por seletor do catálogo, atributos
+ * base, os círculos de grau das 24 perícias, recursos atuais e Sins com − e
+ * +, idiomas, imunidade a condição, Marcas da Vhelor, História e Outros) e
+ * passa o KhConta em modo de edição (o número ajustável abre o pop-over
+ * "Ajustar"; o outro diz por que não aceita). Com 'drawer', só os recursos
+ * atuais e Sins, com − e +. Todo controle leva data-ed="<caminho na ficha
+ * v3>" (ou data-ed-delta/data-ed-grau/data-ed-lista) e as classes .ke-ed-*
+ * (css/ficha-ensaio.css, injetado só com o Ensaio); quem grava é o KhEditor.
+ * Sem editar, o HTML é o de sempre, byte a byte (os ouros).
+ *
  * Cartas raras: só ícone, requisito e nome, NUNCA o efeito (D11, D33; nem o
  * texto que a v2 tenha guardado). Técnica sem par no catálogo: o texto salvo e
  * a marca "órfã". Recurso de classe que não é contador (D105): as características.
@@ -58,6 +70,7 @@
   var KhConta = emNode ? require('./kh-conta.js') : raiz.KhConta;
   var KhEstado = emNode ? require('./kh-estado.js') : raiz.KhEstado;
   var KhInv = emNode ? require('./kh-inv.js') : raiz.KhInv;
+  var KhEdicao = emNode ? require('./kh-edicao.js') : raiz.KhEdicao;
 
   var KhFichaAbas = (function () {
     var PREFIXO = 'fp';
@@ -286,12 +299,84 @@
         return x ? '<span class="' + P + '-rar ' + P + '-rar-' + x[1] + '">' + esc(x[0]) + '</span>' : (r ? '<span class="' + P + '-rar">' + esc(r) + '</span>' : '');
       }
 
+      // ---------------- edição (F4.6b, só com o Ensaio): os controles ----------------
+      // ctx.editar: 'pagina' (todos os campos de estado), 'drawer' (só recursos
+      // atuais e Sins) ou null (só leitura: o HTML de sempre). Todo controle leva
+      // data-ed (o caminho na ficha v3, o do KhEstado.armazem.editar) e
+      // data-campo="ed-<caminho>" (o redesenho devolve o foco ao equivalente).
+      function edAttrs(caminho, rotulo) {
+        return ' data-ed="' + esc(caminho) + '" data-campo="ed-' + esc(caminho) + '" aria-label="' + esc(rotulo) + '"';
+      }
+      function edTexto(caminho, rotulo, v, max) {
+        return '<input type="text" class="ke-ed ke-ed-texto"' + edAttrs(caminho, rotulo) + ' value="' + esc(v) + '" maxlength="' + max + '" autocomplete="off">';
+      }
+      function edNum(caminho, rotulo, v, min, max) {
+        return '<input type="number" class="ke-ed ke-ed-num"' + edAttrs(caminho, rotulo) + ' value="' + esc(v == null ? '' : v) + '"' +
+          ' min="' + min + '" max="' + max + '" step="1" inputmode="numeric">';
+      }
+      // − n + (o .kh-stepper do site): os botões levam data-ed-delta e o caminho em data-ed-alvo
+      function edPasso(caminho, rotulo, v, min, max) {
+        function bt(d, cls, txt) {
+          return '<button type="button" class="ke-ed-' + cls + '" data-ed-delta="' + d + '" data-ed-alvo="' + esc(caminho) + '"' +
+            ' data-campo="ed-' + esc(caminho) + '-' + cls + '" aria-label="' + esc(rotulo + ' ' + txt + ' 1') + '" title="' + txt + ' 1">' + txt + '</button>';
+        }
+        return '<span class="kh-stepper ke-ed-passo" role="group" aria-label="' + esc(rotulo) + '">' + bt(-1, 'menos', '−') +
+          edNum(caminho, rotulo, v, min, max) + bt(1, 'mais', '+') + '</span>';
+      }
+      function edArea(caminho, rotulo, v, max) {
+        return '<textarea class="ke-ed ke-ed-area"' + edAttrs(caminho, rotulo) + ' rows="6" maxlength="' + max + '">' + esc(v) + '</textarea>';
+      }
+      // o seletor de uma referência da identidade (ref: o {id, nome} guardado).
+      // O que não está nas opções (o texto livre que veio da ficha atual, sem
+      // par; uma variante de outra raça) fica como a opção "manter".
+      function edSel(k, rotulo, ops, ref) {
+        var id = obj(ref) ? str(ref.id) : '', nome = obj(ref) ? semEmoji(ref.nome) : '';
+        var tem = ops.some(function (x) { return x.id === id; });
+        var manter = (id && !tem) || (!id && !!nome);
+        var nenhum = k === 'ramo' ? '(nenhum)' : '(nenhuma)';
+        var off = !ops.length && !manter && !id;
+        var porque = off ? (k === 'variante' ? 'Escolha uma raça com variantes antes' : k === 'ramo' ? 'Escolha a classe antes' : '') : '';
+        return '<select class="ke-ed ke-ed-sel"' + edAttrs('identidade.' + k, rotulo) + (off ? ' disabled' : '') + (porque ? ' title="' + esc(porque) + '"' : '') + '>' +
+          '<option value=""' + (!id && !nome ? ' selected' : '') + '>' + nenhum + '</option>' +
+          (manter ? '<option value="' + (KhEdicao ? KhEdicao.MANTER : '__manter') + '" selected>' +
+            esc((nome || id) + (id ? ' (fora da lista)' : ' (sem par no catálogo)')) + '</option>' : '') +
+          ops.map(function (x) { return '<option value="' + esc(x.id) + '"' + (x.id === id ? ' selected' : '') + '>' + esc(x.nome) + '</option>'; }).join('') +
+          '</select>';
+      }
+      // o nome de uma imunidade a condição: o id do catálogo vira o nome (o texto livre fica)
+      function nomeImune(ctx, x) {
+        if (obj(x)) return semEmoji(x.nome || x.id);
+        var c = ctx && ctx.porId ? ctx.porId['condicao:' + str(x)] : null;
+        return semEmoji(c ? c.nome : x);
+      }
+      // imunidade a condição: uma caixa por condição do catálogo (mais o que a
+      // ficha tiver fora dele), dentro de um <details>
+      function edImunes(ctx, f) {
+        var atual = lista(f.imunidadesCondicao), chaves = atual.map(function (x) { return KhEdicao ? KhEdicao.chaveItem(x) : str(x); });
+        var ops = KhEdicao ? KhEdicao.opcoesCondicao(ctx) : [];
+        var ids = ops.map(function (x) { return x.id; });
+        var fora = atual.filter(function (x, i) { return ids.indexOf(chaves[i]) < 0; });
+        function caixa(v, nome, on) {
+          return '<label class="ke-ed-chk"><input type="checkbox" data-ed-lista="imunidadesCondicao" value="' + esc(v) + '"' +
+            ' data-campo="ed-imunidadesCondicao-' + esc(v) + '"' + (on ? ' checked' : '') + '> ' + esc(nome) + '</label>';
+        }
+        return '<details class="ke-ed-det" data-campo="ed-imunidadesCondicao"><summary>' +
+          esc(chaves.length ? atual.map(function (x) { return nomeImune(ctx, x); }).join(', ') : 'Nenhuma: marcar') + '</summary>' +
+          '<div class="ke-ed-chks" role="group" aria-label="Imunidade a condição">' +
+          ops.map(function (x) { return caixa(x.id, x.nome, chaves.indexOf(x.id) >= 0); }).join('') +
+          fora.map(function (x) { return caixa(KhEdicao ? KhEdicao.chaveItem(x) : str(x), nomeImune(ctx, x) + ' (fora do catálogo)', true); }).join('') +
+          '</div></details>';
+      }
+
       // ======================================================================
       // 1. Núcleo (A4 pág. 1)
       // ======================================================================
       RENDER.nucleo = function (res, C, ctx) {
         var f = res.ficha, nos = res.av.nos, D = ctx.D, conta = C.conta, h = '';
         var meta = f.meta || {}, idt = f.identidade || {};
+        // edição (F4.6b): edP = a página com o Ensaio (todos os campos de estado); edR = também o drawer (recursos atuais e Sins)
+        var edP = ctx.editar === 'pagina' && !!KhEdicao, edR = !!ctx.editar && !!KhEdicao;
+        function num(caminho, v, rotulo, min, max) { return edR ? edPasso(caminho, rotulo, v, min, max) : nEstado(caminho, v); }
 
         // ---- identidade
         function idCampo(campo, rot, val, cls) {
@@ -301,7 +386,19 @@
           if (!obj(r) || !(r.id || r.nome)) return campo === 'raca' || campo === 'classe' || campo === 'origem' ? idCampo(campo, rot, '') : '';
           return idCampo(campo, rot, esc(refNome(r)) + (!r.id ? ' ' + selo('orfa', 'sem par', 'Sem par no catálogo: só o nome digitado') : ''));
         }
-        h += moldura('identidade', 'Identidade', '<dl class="' + P + '-ident-grade">' +
+        function selRef(k) {
+          return idCampo(k, KhEdicao.REFS[k], edSel(k, KhEdicao.REFS[k], KhEdicao.opcoesRef(ctx, f, k), idt[k]));
+        }
+        if (edP) {
+          h += moldura('identidade', 'Identidade', '<dl class="' + P + '-ident-grade">' +
+            idCampo('nome', 'Nome do Personagem', edTexto('meta.nome', 'Nome do Personagem', meta.nome, KhEdicao.MAX_TEXTO), P + '-id-largo') +
+            idCampo('jogador', 'Jogador', edTexto('meta.jogador', 'Jogador', meta.jogador, KhEdicao.MAX_TEXTO)) +
+            idCampo('nivel', 'Nível', edNum('meta.nivel', 'Nível', meta.nivel, 1, 5)) +
+            idCampo('xp', 'XP', edNum('meta.xp', 'XP', meta.xp, 0, KhEdicao.campo('meta.xp').max)) +
+            selRef('raca') + selRef('variante') + idRef('subespecie', 'Subespécie', idt.subespecie) +
+            selRef('classe') + selRef('ramo') + selRef('origem') +
+            '</dl>', { cls: P + '-bloco-ident' });
+        } else h += moldura('identidade', 'Identidade', '<dl class="' + P + '-ident-grade">' +
           idCampo('nome', 'Nome do Personagem', esc(semEmoji(meta.nome)), P + '-id-largo') +
           idCampo('jogador', 'Jogador', esc(semEmoji(meta.jogador))) +
           idCampo('nivel', 'Nível', nEstado('meta.nivel', meta.nivel)) +
@@ -316,6 +413,8 @@
             '<span class="' + P + '-at-nome">' + esc(a[1]) + '</span>' +
             '<span class="' + P + '-at-total"><span class="' + P + '-rot">Atributo</span>' + conta('atributo.' + a[0] + '.total') + '</span>' +
             '<span class="' + P + '-at-mod"><span class="' + P + '-rot">Mod.</span>' + conta('atributo.' + a[0] + '.mod', { texto: modTxt(nos['atributo.' + a[0] + '.mod']) }) + '</span>' +
+            (edP ? '<span class="' + P + '-at-base ke-ed-base"><span class="' + P + '-rot">Base</span>' +
+              edNum('atributos.base.' + a[0], a[1] + ' (base)', f.atributos && f.atributos.base ? f.atributos.base[a[0]] : null, 1, 30) + '</span>' : '') +
             '</div>';
         }).join('') + '</div>',
         { nota: f.atributos && f.atributos.migradoTotal ? 'Total migrado da ficha atual: a raça, o nível e os efeitos de técnicas e cartas já estão dentro do número digitado.' : '' });
@@ -338,10 +437,16 @@
             p.modo === 'dado' ? 'só o dado, sem atributo (D8a)' : NOME_ATRIBUTO[at] || '';
           var circ = '';
           for (var i = 1; i <= 4; i++) {
-            circ += '<span class="' + P + '-grau' + (i <= g ? ' on' : '') + '" title="' + esc((bonus[i] != null ? '+' + bonus[i] + ' ' : '') + (graus[i] || '')) + '"></span>';
+            var tit = (bonus[i] != null ? '+' + bonus[i] + ' ' : '') + (graus[i] || '');
+            var bola = '<span class="' + P + '-grau' + (i <= g ? ' on' : '') + '"' + (edP ? '' : ' title="' + esc(tit) + '"') + '></span>';
+            // edição: cada círculo é um botão (vira o grau i; o último aceso apaga a si mesmo)
+            circ += edP ? '<button type="button" class="ke-ed-grau" data-ed-grau="' + esc(p.id) + '" data-grau="' + i + '"' +
+              ' data-campo="ed-pericias.' + esc(p.id) + '-' + i + '" aria-pressed="' + (i <= g) + '"' +
+              ' aria-label="' + esc(p.nome + ': grau ' + i + (graus[i] ? ', ' + KhEdicao.rotuloGrau(i) : '') + (bonus[i] != null ? ' (+' + bonus[i] + ')' : '')) + '"' +
+              ' title="' + esc(tit + (i === g ? ' · clique para baixar a ' + KhEdicao.rotuloGrau(i - 1) : ' · clique para marcar')) + '">' + bola + '</button>' : bola;
           }
           return '<div class="' + P + '-per" data-campo="pericia-' + p.id + '">' +
-            '<span class="' + P + '-per-graus" role="img" aria-label="' + esc('Grau ' + g + ' de 4' + (graus[g] ? ': ' + graus[g] : '')) + '">' + circ + '</span>' +
+            '<span class="' + P + '-per-graus" role="' + (edP ? 'group' : 'img') + '" aria-label="' + esc((edP ? p.nome + ': grau ' : 'Grau ') + g + ' de 4' + (graus[g] ? ': ' + graus[g] : '')) + '">' + circ + '</span>' +
             // o selo (decisão, pendente…) vai junto do nome; a caixa de total fica só com o número
             '<span class="' + P + '-per-nome">' + esc(p.nome) + (no ? C.selosHTML(no.selos) : '') + (/^oficio-/.test(p.id) ? seloOf : '') + '</span>' +
             '<span class="' + P + '-per-at" title="' + esc(atTit) + '">' + esc(at) + '</span>' +
@@ -370,7 +475,7 @@
           var x = rc[id] || {}, no = nos['recurso.' + id + '.max'];
           return '<div class="' + P + '-rec ' + P + '-rec-' + id + '" data-campo="' + id + '">' + img(ctx, icone, P + '-rec-img') +
             '<span class="' + P + '-rec-nome">' + esc(nome) + '</span>' +
-            '<span class="' + P + '-rec-num"><span class="' + P + '-rot">Atual</span>' + nEstado('recursos.' + id + '.atual', x.atual) +
+            '<span class="' + P + '-rec-num"><span class="' + P + '-rot">Atual</span>' + num('recursos.' + id + '.atual', x.atual, nome + ' atual', -9999, 9999) +
             '<span class="' + P + '-barra-sep">/</span><span class="' + P + '-rot">Máx.</span>' + conta('recurso.' + id + '.max') + '</span>' +
             barra(x.atual, no && no.valor, P + '-barra-' + id) + (extra || '') + '</div>';
         }
@@ -388,7 +493,8 @@
           recClasse = '<div class="' + P + '-rec ' + P + '-rec-classe" data-campo="recurso-classe"><span class="' + P + '-rec-ico">' + SVG_ACOES + '</span>' +
             '<span class="' + P + '-rec-nome">Recurso de Classe' + (nomeCl ? ' <span class="' + P + '-sub">' + esc(nomeCl) + '</span>' : '') +
             (noCl && !noCl.medidor && digitado ? ' <span class="' + P + '-sub">(nome digitado na ficha atual; sem nome no contrato)</span>' : '') + '</span>' +
-            '<span class="' + P + '-rec-num"><span class="' + P + '-rot">Atual</span>' + nEstado('recursos.classe.atual', obj(rc.classe) ? rc.classe.atual : null) +
+            '<span class="' + P + '-rec-num"><span class="' + P + '-rot">Atual</span>' +
+              num('recursos.classe.atual', obj(rc.classe) ? rc.classe.atual : null, 'Recurso de Classe atual', -9999, 9999) +
             '<span class="' + P + '-barra-sep">/</span><span class="' + P + '-rot">Máx.</span>' + conta('recurso.classe.max') + '</span>' +
             barra(obj(rc.classe) ? rc.classe.atual : null, noCl && noCl.valor, P + '-barra-classe') + '</div>';
         }
@@ -412,7 +518,7 @@
           tile('cd', 'CD', img(ctx, 'cd', P + '-der-img'), conta('cd')) +
           tile('movimento', 'Movimento', img(ctx, 'movimento', P + '-der-img'), conta('movimento', { un: ' m' })) +
           tile('acoes', 'Ações', '<span class="' + P + '-der-ico">' + SVG_ACOES + '</span>', conta('acoes')) +
-          tile('sins', 'Sins', img(ctx, 'sins', P + '-der-img'), nEstado('inventario.sins', f.inventario ? f.inventario.sins || 0 : 0)) +
+          tile('sins', 'Sins', img(ctx, 'sins', P + '-der-img'), num('inventario.sins', f.inventario ? f.inventario.sins || 0 : 0, 'Sins', 0, 999999999)) +
           '</div>');
 
         // ---- capacidade: Equipamentos e Bugigangas com régua e Sobrepeso
@@ -425,16 +531,25 @@
 
         // ---- Marcas da Vhelor: só com 1 ou mais (M5)
         var vh = f.vhelor && Number(f.vhelor.marcas) || 0;
-        if (vh >= 1) {
-          h += moldura('vhelor', 'Marcas da Vhelor', '<p class="' + P + '-vhelor">' + nEstado('vhelor.marcas', vh) + '<span class="' + P + '-sub"> de 7</span>' +
-            (f.vhelor.abstinente ? ' ' + selo('aviso', 'em abstinência') : '') + '</p>', { cls: P + '-bloco-vhelor' });
+        // na edição, sempre (para marcar a primeira); fora dela, só com 1 ou mais (M5)
+        if (vh >= 1 || edP) {
+          h += moldura('vhelor', 'Marcas da Vhelor', '<p class="' + P + '-vhelor">' + (edP ? edPasso('vhelor.marcas', 'Marcas da Vhelor', vh, 0, 7) : nEstado('vhelor.marcas', vh)) +
+            '<span class="' + P + '-sub"> de 7</span>' +
+            (f.vhelor && f.vhelor.abstinente ? ' ' + selo('aviso', 'em abstinência') : '') + '</p>',
+          { cls: P + '-bloco-vhelor', nota: edP && vh < 1 ? 'Fora da edição, este bloco só aparece com 1 Marca ou mais.' : '' });
         }
-        // ---- imunidade a condição e idiomas: só quando há
+        // ---- imunidade a condição e idiomas: só quando há (na edição, sempre)
         var imc = lista(f.imunidadesCondicao), idi = lista(f.idiomas);
-        if (imc.length || idi.length) {
+        function nomeLivre(x) { return semEmoji(obj(x) ? x.nome || x.id : x); }
+        if (edP) {
           h += moldura('outros-nucleo', 'Imunidades e idiomas', '<dl class="' + P + '-ident-grade">' +
-            (imc.length ? idCampo('imunidades', 'Imunidade a condição', esc(imc.map(function (x) { return semEmoji(obj(x) ? x.nome || x.id : x); }).join(', '))) : '') +
-            (idi.length ? idCampo('idiomas', 'Idiomas', esc(idi.map(function (x) { return semEmoji(obj(x) ? x.nome || x.id : x); }).join(', '))) : '') + '</dl>');
+            idCampo('imunidades', 'Imunidade a condição', edImunes(ctx, f)) +
+            idCampo('idiomas', 'Idiomas', edTexto('idiomas', 'Idiomas (separados por vírgula)', idi.map(nomeLivre).join(', '), KhEdicao.MAX_LISTA)) + '</dl>',
+          { nota: 'Idiomas separados por vírgula.' });
+        } else if (imc.length || idi.length) {
+          h += moldura('outros-nucleo', 'Imunidades e idiomas', '<dl class="' + P + '-ident-grade">' +
+            (imc.length ? idCampo('imunidades', 'Imunidade a condição', esc(imc.map(function (x) { return nomeImune(ctx, x); }).join(', '))) : '') +
+            (idi.length ? idCampo('idiomas', 'Idiomas', esc(idi.map(nomeLivre).join(', '))) : '') + '</dl>');
         }
         h += avisos(res, C);
         return h;
@@ -678,6 +793,8 @@
         }
         var lore = f.lore || {};
         function texto(campo, tit, v) {
+          // edição (F4.6b): a caixa de texto, que grava ao sair dela
+          if (ctx.editar === 'pagina' && KhEdicao) return moldura(campo, tit, edArea('lore.' + campo, tit, str(v), KhEdicao.MAX_LORE), { cls: P + '-bloco-lore' });
           return moldura(campo, tit, v && str(v).trim() ? '<p class="' + P + '-lore">' + esc(semEmoji(v)) + '</p>' : '<p class="' + P + '-nota">Em branco.</p>', { cls: P + '-bloco-lore' });
         }
         h += '<div class="' + P + '-lores">' + texto('historia', 'História', lore.historia) + texto('outros', 'Outros', lore.outros) + '</div>';
@@ -735,7 +852,8 @@
             numerica: '= ' + (sint.length ? sint.map(function (x) { return fmt(qtdDe(x)); }).join(' + ') + (sint.length > 1 ? ' = ' + fmt(ns) : '') : '0') },
           avisos: ns > lim ? [{ tipo: 'sintonia', msg: ns + ' Itens Mágicos sintonizados; o limite é ' + lim }] : [] };
         h += moldura('resumo-bazar', 'Bolsa', '<div class="' + P + '-ders">' +
-          '<div class="' + P + '-der" data-campo="sins">' + img(ctx, 'sins', P + '-der-img') + '<span class="' + P + '-der-rot">Sins</span><span class="' + P + '-der-val">' + nEstado('inventario.sins', inv.sins || 0) + '</span></div>' +
+          '<div class="' + P + '-der" data-campo="sins">' + img(ctx, 'sins', P + '-der-img') + '<span class="' + P + '-der-rot">Sins</span><span class="' + P + '-der-val">' +
+            (ctx.editar && KhEdicao ? edPasso('inventario.sins', 'Sins', inv.sins || 0, 0, 999999999) : nEstado('inventario.sins', inv.sins || 0)) + '</span></div>' +
           '<div class="' + P + '-der" data-campo="sintonizados"><span class="' + P + '-der-ico">' + SVG_RARA + '</span><span class="' + P + '-der-rot">Sintonizados</span><span class="' + P + '-der-val">' +
             C.conta('inventario.sintonizados', { no: noSint, texto: fmt(ns) + ' / ' + fmt(lim) }) + '</span></div>' +
           '</div>' + capacidade(res, C, ctx, 'carga-'), { ico: img(ctx, 'mochila', P + '-tit-img') });
@@ -766,8 +884,10 @@
       // ======================================================================
       // 5. Grimório (A4 pág. 5): magias por nível 1–5
       // ======================================================================
-      function cardMagia(e, c, res, C) {
+      function cardMagia(e, c, res, C, ctx) {
         var nos = res.av.nos;
+        // edição (F4.6b): a intensidade escolhida mostra o nó da magia (o que aceita ajuste)
+        var edP = !!ctx && ctx.editar === 'pagina';
         var nome = c ? semEmoji(c.nome) : semEmoji(e.cache && e.cache.nome) || '(sem nome)';
         var stats = {};
         lista(c && c.stats).forEach(function (s) { if (obj(s) && s.chave && stats[s.chave] == null) stats[s.chave] = s.valor; });
@@ -781,7 +901,8 @@
         var noC = caminho ? nos[caminho] : null;
         var custo = noC ? '<div class="' + P + '-mg-custo" data-campo="custo">' + lista(noC.porIntensidade).map(function (pi) {
           var cel = !pi.permitida ? '<span class="' + P + '-nulo" title="' + esc(pi.nome + ' fora das intensidades desta magia') + '">—</span>'
-            : C.conta(caminho + '.' + pi.intensidade, { no: pi.no, semSelos: true });
+            : edP && pi.escolhida ? C.conta(caminho, { semSelos: true })
+              : C.conta(caminho + '.' + pi.intensidade, { no: pi.no, semSelos: true });
           return '<span class="' + P + '-mg-int' + (pi.escolhida ? ' ' + P + '-escolhida' : '') + (!pi.permitida ? ' ' + P + '-mg-int-off' : '') + '">' +
             '<span class="' + P + '-rot">' + esc(pi.nome) + '</span>' + cel + '</span>';
         }).join('') + '</div>' : '<p class="' + P + '-nota">Custo indisponível (magia sem par no catálogo).</p>';
@@ -814,12 +935,12 @@
         for (var nv = 1; nv <= 5; nv++) {
           var doNivel = mg.filter(function (m) { return m.nivel === nv; });
           h += moldura('magias-nivel-' + nv, 'Nível ' + nv, doNivel.length
-            ? '<div class="' + P + '-mgs">' + doNivel.map(function (m) { return cardMagia(m.e, m.c, res, C); }).join('') + '</div>'
+            ? '<div class="' + P + '-mgs">' + doNivel.map(function (m) { return cardMagia(m.e, m.c, res, C, ctx); }).join('') + '</div>'
             : '<p class="' + P + '-nota">Nenhuma magia de nível ' + nv + '.</p>', { cls: P + '-bloco-nivel' });
         }
         var sem = mg.filter(function (m) { return !(m.nivel >= 1 && m.nivel <= 5); });
         if (sem.length) {
-          h += moldura('magias-orfas', 'Sem nível (órfãs)', '<div class="' + P + '-mgs">' + sem.map(function (m) { return cardMagia(m.e, m.c, res, C); }).join('') + '</div>');
+          h += moldura('magias-orfas', 'Sem nível (órfãs)', '<div class="' + P + '-mgs">' + sem.map(function (m) { return cardMagia(m.e, m.c, res, C, ctx); }).join('') + '</div>');
         }
         return '<p class="' + P + '-nota ' + P + '-nota-topo">' + esc(nota) + '</p>' + h;
       };
@@ -827,14 +948,20 @@
       // a passada inteira: um html por aba, com UMA instância do KhConta (ids
       // <p>-d-1, <p>-d-2… únicos no HTML todo); res fora de 'ok' vira a mensagem
       // do estado em todas as abas.
-      // o: {dados (o do KhPrevia.carregar), D (KhRegras.dados()), base (raiz do site, para images/)}
+      // o: {dados (o do KhPrevia.carregar), D (KhRegras.dados()), base (raiz do site, para images/),
+      //     editar ('pagina' | 'drawer': F4.6b, só com o Ensaio; sem ele, só leitura)}
       function paineis(res, o) {
         o = obj(o) ? o : {};
         var ok = !!res && res.estado === 'ok';
         var D = o.D || (KhRegras ? KhRegras.dados() : {});
+        var ed = (o.editar === 'pagina' || o.editar === 'drawer') && KhEdicao ? o.editar : null;
+        // na página, o número ajustável abre o pop-over "Ajustar" (o nó fora do grafo, o.no, não)
+        var edConta = ed === 'pagina' ? { motivo: KhEdicao.motivoNaoAjuste,
+          ajustavel: function (c, oo) { return !(oo && oo.no) && KhEdicao.ajustavel(c); } } : undefined;
         var C = ok && KhConta ? KhConta.criar({ D: D, nos: res.av ? res.av.nos : null,
-          prefixo: P, esc: esc, fmt: KhRegras ? KhRegras.fmt : undefined, semEmoji: semEmoji }) : null;
+          prefixo: P, esc: esc, fmt: KhRegras ? KhRegras.fmt : undefined, semEmoji: semEmoji, editar: edConta }) : null;
         var ctx = ok ? contexto(o.dados, D, o.base) : null;
+        if (ctx) ctx.editar = ed;
         var out = {};
         ABAS.forEach(function (a) {
           var corpo;

@@ -157,6 +157,27 @@ Código: `js/ficha/kh-seletor.js` (`bloqueiaSaidaPrevia`, `pedirSaida` da faixa,
   - o validador recusa ajuste em `recurso.*.atual`;
   - o log no teto.
 
+### Como ficou (§3, 2026-10-14)
+
+Código: `js/ficha/kh-edicao.js` (`KhEdicao`, puro: `campo`, `mudancas`, `passo`, `grauClicado`, `opcoesRef`, `montaAjuste`, `mudancaAjuste`, `mudancaRemover`, `motivoNaoAjuste`), `js/ficha/kh-editor.js` (`KhEditor`: a barra, o pop-over, a tela Ajustes, os atalhos), `js/ficha/kh-estado.js` (`armazem.editar`, `desfazer`, `refazer`, `estadoLog`; o log em `khalkaria_ficha_v3_log:<id>`, que no Ensaio leva o prefixo), `js/ficha/kh-ficha-abas.js` (`paineis(res, {editar})`), `js/ficha/kh-conta.js` (`{editar}`: o número ajustável vira botão), `js/ficha-pagina.js` (`#fp-ked`), `js/ficha/kh-ficha-drawer.js` (`#fd-gaveta-ked`), `data/ficha.schema.json` (`logDesfazer` com `refazer` e o `passoLog`) e o fim do `css/ficha-ensaio.css` (injetado só com o Ensaio). Testes: `tools/testes/edicao.test.js` (9: as puras, o log, o teto, a recusa, os ajustes, o validador, o HTML) e `tools/testes/ensaio.test.js` (+4: a interface na página e no drawer, a ORDEM e o CSS, com o armazenamento espião). Suíte: 431 testes.
+
+- **Um passo = uma gravação.** Cada `change` (ao sair do campo, Tab ou Enter), clique num círculo, − ou +, ajuste aplicado ou remoção em lote é um passo do log, com o rótulo que o botão mostra ("Desfazer: Saúde atual: 19").
+- **Sem o Ensaio**, a página e o drawer continuam só leitura e o HTML é o mesmo, byte a byte (o ouro da página e o do `KhPrevia.render` passam sem mudança). Ctrl+Z e Ctrl+Y não são tomados (o `preventDefault` não acontece).
+- **No navegador** (1366×768, fixture sintética): editar o nome (e o Tab leva o foco ao Jogador, que fica depois do redesenho), clicar o 2º círculo de Reflexos (+3 → +7), ajustar a CD para 17 com motivo (o pop-over abre embaixo do número, e o foco volta a ele ao aplicar), Ctrl+Z duas vezes, Refazer pelo botão, Ctrl+Y; Ctrl+Z dentro do campo Jogador desfaz só o texto do campo. No drawer (Sistema), + na Saúde e Ctrl+Z com o foco nele. Nada fora do prefixo; o que foi posto para o teste foi limpo.
+
+Escolhas a revisar com o Pedro:
+- **"Outra aba mudou a ficha" é por caminho.** O passo só é recusado se um dos caminhos que ele mudou não está mais como ele deixou (a impressão do valor). Outra aba que mudou outro campo não trava o desfazer deste. Se o caminho voltar ao valor que o passo deixou, o passo vale de novo. Recusado, nada muda, e o botão fica desligado com o porquê.
+- **O teto vale para cada pilha** (20 no desfazer e 20 no refazer) e 256 KB no log todo; sai o passo mais velho. Uma edição nova esvazia o refazer. Se o storage recusar o log, a edição fica e o log é apagado, com o aviso "Gravado, mas sem desfazer".
+- **O círculo de grau:** clicar o círculo *i* põe o grau *i*; clicar o último aceso baixa um (grau 2, clique no 2º: grau 1). Cada círculo é um botão de 20×24 px a 24 px de centro a centro (WCAG 2.5.8), então a fileira de perícias fica mais larga só no Ensaio.
+- **Trocar a raça tira a variante (e a subespécie) de outra raça, e trocar a classe tira o ramo de outra classe,** no mesmo passo, com o aviso. O nome que veio da ficha atual sem par no catálogo fica como a opção "(sem par no catálogo)" até o jogador escolher outra.
+- **Atributo base da ficha migrada:** ela guarda o total digitado na ficha atual (`migradoTotal`, a nota do bloco diz isso); editar a base muda o total direto.
+- **Marcas da Vhelor, idiomas e imunidade a condição aparecem sempre no Ensaio** (fora dele, só com 1 ou mais), para marcar a primeira. Idiomas é um campo só, separado por vírgula; imunidade, uma caixa por condição do catálogo dentro de um `<details>`.
+- **Valor fixo guarda o calculado da hora** (`calculadoEm`), e é dele que sai o "o calculado mudou de X para Y". Diferença não guarda (acompanha o calculado). "Aplicar" de novo guarda o calculado de agora e o aviso sai.
+- **No drawer** não há "Ajustar" nem a tela Ajustes: os números dele ficam só leitura (a especificação dá ao drawer só recursos atuais e Sins). Ctrl+Z vale lá só com o foco dentro dele.
+- **No Grimório,** só o custo da intensidade marcada aceita ajuste (é o nó `magia.<id>.custo`); as outras dizem por quê na dica.
+- **Desfazer e Refazer desligados usam `aria-disabled`** (não `disabled`): o clique diz por que ("Nada a desfazer", "a ficha mudou depois de …").
+- **Página velha** (o Ensaio saiu em outra página da aba e esta veio do bfcache): o clique num controle não grava, e a página se acerta (a barra e os controles somem), como o seletor da F4.6a.
+
 ## 4. F4.6c · Levar para a ficha (KhLevar) e export do Bestiário
 
 - **Com o ensaio ligado:**

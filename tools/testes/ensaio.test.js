@@ -17,7 +17,14 @@
 //     pela interface, na página e no drawer, com um armazenamento ESPIÃO sobre
 //     o localStorage e o sessionStorage que prova que nada é escrito fora do
 //     prefixo em nenhum fluxo; "Sair da prévia" apaga o ensaio; QuotaExceeded
-//     pela interface oferece "Exportar todas".
+//     pela interface oferece "Exportar todas";
+//   - a edição (F4.6b, §3) pela interface: os campos da página, os círculos de
+//     grau, o stepper, o pop-over "Ajustar", a tela "Ajustes" com remoção em
+//     lote, Desfazer/Refazer pelos botões e por Ctrl+Z / Ctrl+Y (KhTeclas: não
+//     num campo de texto, não na ficha atual, não roubando o do Bazar), o
+//     drawer só com recursos atuais e Sins, e o espião em tudo. As partes puras
+//     da edição (KhEdicao, o log do armazém, o HTML do KhEditor) estão no
+//     edicao.test.js.
 // O ouro da página (ficha-pagina-ouro.test.js) e o do KhPrevia.render
 // (previa.test.js) seguem nos testes deles: o modo sombra não muda.
 const test = require('node:test');
@@ -1063,4 +1070,292 @@ test('CSS do Ensaio: só injetado com ele; sem camada e tudo sob .ke- (mais o lu
   const dr = ler('css', 'ficha-drawer.css');
   assert.match(regra(dr, '.fd-gaveta-ke'), /grid-column: 1 \/ -1;/);
   assert.match(regra(dr, '.fd-gaveta-ensaiar'), /color: var\(--gold\);/);
+});
+
+// ---------------------------------------------------------------- F4.6b: a edição pela interface
+// Ctrl+<tecla> no alvo (o foco vai junto, como no navegador)
+const ctrl = (j, alvo, key) => { j.doc.activeElement = alvo; return DOM.despacha(j.doc, alvo, DOM.evento('keydown', { key, ctrlKey: true })); };
+const rodaTimers = (j) => { for (let i = 0; i < 5 && j.timers.length; i++) j.timers.splice(0).forEach((f) => f()); };
+
+test('ORDEM: o kh-edicao.js antes do kh-ficha-abas.js e o kh-editor.js antes do drawer; no artefato', () => {
+  const i = (n) => ORDEM.indexOf(n);
+  assert.ok(i('kh-ensaio.js') < i('kh-edicao.js') && i('kh-edicao.js') < i('kh-ficha-abas.js'));
+  assert.ok(i('kh-ficha-abas.js') < i('kh-editor.js') && i('kh-editor.js') < i('kh-ficha-drawer.js'));
+  const art = ler('js', 'ficha.js');
+  assert.ok(art.includes('// ==== js/ficha/kh-edicao.js ====') && art.includes('// ==== js/ficha/kh-editor.js ===='));
+});
+
+test('página, a edição (espião): sem o Ensaio só leitura; com ele, nome, grau, stepper, raça, Ajustar, Ajustes em lote, Desfazer e Refazer (botão e Ctrl+Z/Ctrl+Y)', async () => {
+  const ls = A.armazenamento(comPrevia());
+  const ss = A.armazenamento({ khalkaria_ficha_aba: 'nucleo' });
+  const fotoLs = ls.foto();
+  const j = await carrega(janela({ pagina: true, ls, ss }));
+  const fp = j.el('fp'), nomeTopo = () => j.el('fp-topo').querySelector('.fp-nome').textContent;
+  // ---- sem o Ensaio: nenhum controle, nenhuma barra; Ctrl+Z não é tomado
+  assert.equal(fp.querySelector('[data-ed], [data-ed-grau], [data-ed-delta], [data-ed-lista], [data-ajustavel], .ke-ajustavel'), null);
+  assert.equal(j.el('fp-ked'), null);
+  assert.equal(ctrl(j, j.doc.body, 'z').defaultPrevented, false, 'sem o Ensaio, o Ctrl+Z segue (é do navegador)');
+  assert.deepEqual(j.ss.escritas, []);
+  // ---- entra: a barra acima do topo, os controles nas abas
+  j.clica(j.doc.querySelector('[data-ke="entrar"]'));
+  await carrega(j);
+  const barra = j.el('fp-ked');
+  assert.ok(barra, 'a barra');
+  assert.equal(barra.parentNode, fp);
+  assert.equal(fp.filhos.indexOf(barra) + 1, fp.filhos.indexOf(j.el('fp-topo')), 'logo acima do topo');
+  assert.equal(barra.hidden, false);
+  const bt = (a) => barra.querySelector('[data-ked="' + a + '"]');
+  assert.equal(bt('desfazer').getAttribute('aria-disabled'), 'true');
+  assert.equal(bt('ajustes').textContent, 'Ajustes (2)', 'os 2 ajustes migrados da ficha atual');
+  const arm = j.sb.KhEnsaio.armazem(j.ss), id = arm.ativa();
+  const ficha = () => copia(arm.ler(id));
+  const ed = (c) => fp.querySelector('[data-ed="' + c + '"]');
+  ['meta.nome', 'meta.jogador', 'meta.nivel', 'meta.xp', 'identidade.raca', 'identidade.variante', 'identidade.classe', 'identidade.ramo',
+    'identidade.origem', 'atributos.base.FOR', 'atributos.base.SAB', 'recursos.saude.atual', 'recursos.classe.atual', 'inventario.sins',
+    'vhelor.marcas', 'idiomas', 'lore.historia', 'lore.outros'].forEach((c) => assert.ok(ed(c), 'o campo ' + c));
+  assert.equal(fp.querySelectorAll('[data-ed-grau]').length, 24 * 4, 'os 4 círculos das 24 perícias');
+  assert.ok(fp.querySelector('[data-ed-lista="imunidadesCondicao"]'));
+  // ---- o nome: grava ao sair do campo (change); a página e o seletor redesenham no tempo seguinte
+  j.muda(ed('meta.nome'), { value: '  Lira   Editada ' });
+  assert.equal(ficha().meta.nome, 'Lira Editada');
+  rodaTimers(j);
+  assert.equal(nomeTopo(), 'Lira Editada');
+  assert.deepEqual(nomes(j.el('fp-ke')), ['Lira Editada'], 'o seletor também');
+  assert.equal(bt('desfazer').getAttribute('aria-disabled'), null);
+  assert.equal(bt('desfazer').getAttribute('title'), 'Desfazer: Nome do Personagem: "Lira Editada" (Ctrl+Z)');
+  // um valor fora da faixa: o campo volta, a mensagem diz o porquê, nada grava
+  const n0 = j.ss.escritas.length;
+  const niv = ed('meta.nivel');
+  j.muda(niv, { value: '9' });
+  assert.equal(niv.value, '2');
+  assert.equal(barra.querySelector('.ke-ed-msg').textContent, 'Nível: de 1 a 5.');
+  assert.equal(j.ss.escritas.length, n0);
+  // ---- o círculo de grau (o clique cai no círculo de dentro do botão)
+  const grau = (p, i) => fp.querySelector('[data-ed-grau="' + p + '"][data-grau="' + i + '"]');
+  assert.equal(ficha().pericias.reflexos, 0);
+  j.clica(grau('reflexos', 2).querySelector('.fp-grau'));
+  assert.equal(ficha().pericias.reflexos, 2);
+  assert.equal(grau('reflexos', 2).getAttribute('aria-pressed'), 'true');
+  assert.equal(grau('reflexos', 3).getAttribute('aria-pressed'), 'false');
+  j.clica(grau('reflexos', 2));
+  assert.equal(ficha().pericias.reflexos, 1, 'o último aceso apaga a si mesmo');
+  // ---- o stepper (− e +) da Saúde atual
+  const passo = (c, d) => fp.querySelector('[data-ed-alvo="' + c + '"][data-ed-delta="' + d + '"]');
+  j.clica(passo('recursos.saude.atual', 1));
+  j.clica(passo('recursos.saude.atual', 1));
+  j.clica(passo('recursos.saude.atual', -1));
+  assert.equal(ficha().recursos.saude.atual, 19);
+  // ---- a raça por seletor: a variante de outra raça sai, com o aviso
+  j.muda(ed('identidade.raca'), { value: 'raca-anao' });
+  assert.deepEqual(ficha().identidade.raca, { id: 'raca-anao', nome: 'Anão' });
+  assert.deepEqual(ficha().identidade.variante, { id: null, nome: '' });
+  rodaTimers(j);
+  assert.equal(barra.querySelector('.ke-ed-msg').textContent, 'A variante Simples saiu: é de outra raça.');
+  assert.ok(ed('identidade.variante').querySelectorAll('option').length > 1, 'as variantes do Anão');
+  assert.ok(ed('identidade.variante').querySelectorAll('option').slice(1).every((o) => /^anao-/.test(o.getAttribute('value'))), 'só as do Anão');
+  // ---- Ajustar: clicar no Mod.DES abre o pop-over; Valor fixo 5 propaga à Evasão
+  const conta = (c) => fp.querySelector('.kh-conta[data-ajustavel][data-caminho="' + c + '"]');
+  const evasao0 = Number(fp.querySelector('[data-caminho="evasao.passiva"] .fp-v').textContent);
+  j.clica(conta('atributo.DES.mod'));
+  let pop = fp.querySelector('.ke-pop');
+  assert.ok(pop, 'o pop-over');
+  assert.ok(pop.parentNode.hasAttribute('data-kf-ignorar'));
+  assert.equal(pop.querySelector('.ke-pop-tit').textContent, 'Ajustar: Mod.DES');
+  assert.equal(j.doc.activeElement, pop.querySelector('.ke-pop-valor'), 'o foco no valor');
+  assert.ok(pop.querySelector('.ke-pop-temp input').hasAttribute('disabled'));
+  assert.equal(pop.querySelector('#ke-pop-temp-nota').textContent, 'expira na Mesa (F5)');
+  pop.querySelector('.ke-pop-valor').value = 'abc';
+  j.envia(pop);
+  pop = fp.querySelector('.ke-pop');
+  assert.equal(pop.querySelector('.ke-pop-erro').textContent, 'Digite um número.', 'a recusa fica no pop-over');
+  pop.querySelector('.ke-pop-valor').value = '5';
+  pop.querySelector('.ke-pop-motivo').value = 'Bênção';
+  j.envia(pop);
+  assert.equal(fp.querySelector('.ke-pop'), null, 'aplicado, fecha');
+  assert.equal(j.doc.activeElement, conta('atributo.DES.mod'), 'o foco volta ao número');
+  assert.deepEqual([ficha().ajustes['atributo.DES.mod'].valor, ficha().ajustes['atributo.DES.mod'].motivo], [5, 'Bênção']);
+  assert.ok(conta('atributo.DES.mod').hasAttribute('data-ajustado'));
+  assert.equal(Number(fp.querySelector('[data-caminho="evasao.passiva"] .fp-v').textContent), evasao0 + 2, 'a Evasão acompanha');
+  assert.equal(bt('ajustes').textContent, 'Ajustes (3)');
+  // Diferença: o modo troca no pop-over (o texto digitado fica), Esc fecha sem gravar
+  j.clica(conta('cd'));
+  pop = fp.querySelector('.ke-pop');
+  pop.querySelector('.ke-pop-valor').value = '+2';
+  j.muda(pop.querySelector('input[value="soma"]'), { value: 'soma', checked: true });
+  pop = fp.querySelector('.ke-pop');
+  assert.ok(pop.querySelector('input[value="soma"]').hasAttribute('checked'));
+  assert.equal(pop.querySelector('.ke-pop-valor').getAttribute('value'), '+2', 'o digitado não se perde');
+  const n1 = j.ss.escritas.length;
+  j.tecla('Escape');
+  assert.equal(fp.querySelector('.ke-pop'), null);
+  assert.equal(j.ss.escritas.length, n1, 'Esc: nada gravado');
+  j.clica(conta('cd'));
+  pop = fp.querySelector('.ke-pop');
+  j.muda(pop.querySelector('input[value="soma"]'), { value: 'soma', checked: true });
+  pop = fp.querySelector('.ke-pop');
+  pop.querySelector('.ke-pop-valor').value = '+2';
+  j.envia(pop);
+  assert.deepEqual([ficha().ajustes.cd.modo, ficha().ajustes.cd.valor], ['soma', 2]);
+  // um número que não aceita ajuste: sem botão, com o motivo na dica
+  const naoAj = fp.querySelectorAll('.kh-conta:not([data-ajustavel])');
+  assert.ok(naoAj.length > 0);
+  naoAj.forEach((x) => {
+    assert.equal(x.getAttribute('role'), null);
+    assert.match(x.querySelector('.ke-d-ed').textContent, /^Não aceita ajuste: ./, x.getAttribute('data-caminho'));
+  });
+  const caminhosNao = naoAj.map((x) => x.getAttribute('data-caminho'));
+  ['carga', 'recurso.stamina.disponivel'].forEach((c) => assert.ok(caminhosNao.some((y) => y === c || y.startsWith(c)), c + ' à vista, sem ajuste'));
+  // ---- a tela Ajustes: a lista, "selecionar todos" e remover em lote (um passo)
+  j.clica(bt('ajustes'));
+  const aj = barra.querySelector('.ke-aj');
+  assert.ok(aj);
+  assert.equal(bt('ajustes').getAttribute('aria-expanded'), 'true');
+  assert.deepEqual(aj.querySelectorAll('tbody tr').map((t) => t.getAttribute('data-caminho')),
+    ['atributo.DES.mod', 'cd', 'recurso.saude.max', 'recurso.stamina.max']);
+  j.muda(aj.querySelector('[data-ked-todos]'), { checked: true });
+  assert.equal(barra.querySelector('[data-ked="remover-sel"]').textContent, 'Remover 4 selecionados');
+  j.muda(barra.querySelector('[data-ked-sel][value="recurso.stamina.max"]'), { checked: false, value: 'recurso.stamina.max' });
+  j.clica(barra.querySelector('[data-ked="remover-sel"]'));
+  assert.deepEqual(Object.keys(ficha().ajustes), ['recurso.stamina.max']);
+  assert.equal(bt('ajustes').textContent, 'Ajustes (1)');
+  assert.equal(bt('desfazer').getAttribute('title'), 'Desfazer: Remover 3 ajustes (Ctrl+Z)');
+  // ---- Desfazer pelo botão; Ctrl+Z fora de campo; Ctrl+Y refaz
+  j.clica(bt('desfazer'));
+  assert.equal(Object.keys(ficha().ajustes).length, 4, 'o lote volta num passo');
+  assert.equal(barra.querySelector('.ke-ed-msg').textContent, 'Desfeito: Remover 3 ajustes.');
+  const ev = ctrl(j, fp.querySelector('.fp-titulo') || j.doc.body, 'z');
+  assert.equal(ev.defaultPrevented, true, 'o Ctrl+Z do ensaio consome');
+  assert.equal(ficha().ajustes.cd, undefined, 'Ctrl+Z desfez o ajuste da CD');
+  assert.equal(ctrl(j, j.doc.body, 'y').defaultPrevented, true);
+  assert.equal(ficha().ajustes.cd.valor, 2, 'Ctrl+Y refez');
+  // num campo de texto, o Ctrl+Z é do campo (o desfazer do navegador): o ensaio não anda
+  const foto = j.ss.foto();
+  ['meta.nome', 'lore.historia', 'identidade.raca', 'meta.xp'].forEach((c) => {
+    assert.equal(ctrl(j, ed(c), 'z').defaultPrevented, false, c);
+    assert.equal(ctrl(j, ed(c), 'y').defaultPrevented, false, c);
+  });
+  assert.equal(j.ss.foto(), foto);
+  // na ficha atual (v2.1) aberta por cima, o Ctrl+Z é dela
+  const kf = j.doc.createElement('div');
+  kf.id = 'kf-drawer';
+  kf.innerHTML = '<button type="button" class="kf-x">x</button>';
+  j.doc.body.appendChild(kf);
+  assert.equal(ctrl(j, kf.querySelector('.kf-x'), 'z').defaultPrevented, false);
+  assert.equal(j.ss.foto(), foto);
+  // até o começo: o nome volta; "Nada a desfazer" com o botão desligado
+  for (let i = 0; i < 30 && arm.estadoLog(id).desfazer; i++) ctrl(j, j.doc.body, 'z');
+  assert.equal(ficha().meta.nome, 'Lira Vento-Sul');
+  assert.equal(ficha().recursos.saude.atual, 18);
+  assert.equal(nomeTopo(), 'Lira Vento-Sul');
+  assert.equal(bt('desfazer').getAttribute('aria-disabled'), 'true');
+  j.clica(bt('desfazer'));
+  assert.equal(barra.querySelector('.ke-ed-msg').textContent, 'Nada a desfazer.');
+  // ---- sair do ensaio: a barra some e os controles também (a volta à sombra)
+  j.clica(j.ke(j.faixa(), 'sair'));
+  j.clica(j.ke(j.faixa(), 'sair-ok'));
+  assert.equal(barra.hidden, true);
+  assert.equal(barra.innerHTML, '');
+  assert.equal(fp.querySelector('[data-ed], [data-ed-grau], [data-ed-delta], [data-ajustavel], .ke-pop'), null);
+  assert.equal(ctrl(j, j.doc.body, 'z').defaultPrevented, false);
+  // ---- o ESPIÃO
+  assert.deepEqual(j.ls.escritas, []);
+  assert.equal(j.ls.foto(), fotoLs);
+  assert.deepEqual(j.kf, []);
+  assert.ok(j.ss.escritas.length > 30);
+  soEnsaio(j.ss, 'edição na página');
+  assert.deepEqual(Object.fromEntries(j.ss.m), { khalkaria_ficha_aba: 'nucleo' });
+});
+
+test('drawer, a edição (espião): só recursos atuais e Sins (− e +); Ctrl+Z/Ctrl+Y só com o foco nele, sem roubar o do Bazar', async () => {
+  const ls = A.armazenamento(comPrevia({ khalkaria_ficha3_dock: 'aberto' }));
+  const ss = A.armazenamento();
+  const j = await carrega(janela({ ls, ss }));
+  // o Bazar registra o Ctrl+Z dele na fase de bolha (js/bazar-inventario.js): um igual aqui
+  const bazar = [];
+  j.sb.KhTeclas.atalho('Ctrl+z', () => { bazar.push('z'); }, { quando: (e) => !(e.target && e.target.closest && e.target.closest('#kf-drawer')) });
+  const g = j.el('fd-gaveta');
+  assert.equal(g.querySelector('[data-ed], [data-ed-delta]'), null, 'sem o Ensaio, só leitura');
+  ctrl(j, j.doc.body, 'z');
+  assert.deepEqual(bazar, ['z'], 'sem o Ensaio, o Ctrl+Z é do Bazar');
+  j.clica(g.querySelector('.fd-gaveta-ensaiar'));
+  await carrega(j);
+  const barra = j.el('fd-gaveta-ked');
+  assert.ok(barra && barra.parentNode === g.querySelector('.fd-gaveta-cab'), 'a barra no cabeçalho');
+  assert.equal(barra.querySelector('[data-ked="ajustes"]'), null, 'sem a tela Ajustes no drawer');
+  assert.match(barra.querySelector('.ke-ed-dica').textContent, /só os recursos atuais e os Sins/);
+  // só os recursos atuais e os Sins, nenhum outro controle; nenhum número ajustável
+  const alvos = new Set(g.querySelectorAll('[data-ed]').map((x) => x.getAttribute('data-ed')));
+  assert.deepEqual([...alvos].sort(), ['inventario.sins', 'recursos.classe.atual', 'recursos.eter.atual', 'recursos.saude.atual', 'recursos.stamina.atual']);
+  assert.equal(g.querySelector('[data-ed-grau], [data-ed-lista], [data-ajustavel], .ke-ajustavel, textarea, select.ke-ed'), null);
+  const arm = j.sb.KhEnsaio.armazem(ss), id = arm.ativa();
+  const ficha = () => copia(arm.ler(id));
+  const passo = (c, d) => g.querySelector('[data-ed-alvo="' + c + '"][data-ed-delta="' + d + '"]');
+  j.clica(passo('recursos.stamina.atual', -1));
+  j.clica(passo('inventario.sins', 1));
+  assert.deepEqual([ficha().recursos.stamina.atual, ficha().inventario.sins], [9, 38]);
+  // o número digitado no stepper também grava
+  j.muda(g.querySelector('[data-ed="recursos.eter.atual"]'), { value: '3' });
+  assert.equal(ficha().recursos.eter.atual, 3);
+  rodaTimers(j);
+  // Ctrl+Z com o foco FORA do drawer: é do Bazar, o ensaio não anda
+  const foto = ss.foto();
+  ctrl(j, j.doc.body, 'z');
+  assert.deepEqual(bazar, ['z', 'z']);
+  assert.equal(ss.foto(), foto);
+  // com o foco no drawer (num botão): é do ensaio, e o Bazar não recebe
+  const ev = ctrl(j, passo('inventario.sins', 1), 'z');
+  assert.equal(ev.defaultPrevented, true);
+  assert.equal(ficha().recursos.eter.atual, 0, 'desfez o Éter');
+  assert.deepEqual(bazar, ['z', 'z'], 'o Bazar não viu');
+  ctrl(j, passo('inventario.sins', 1), 'z');
+  ctrl(j, passo('inventario.sins', 1), 'y');
+  assert.equal(ficha().inventario.sins, 38, 'Ctrl+Y refez os Sins');
+  // no campo de número do stepper: o Ctrl+Z é do campo
+  assert.equal(ctrl(j, g.querySelector('[data-ed="inventario.sins"]'), 'z').defaultPrevented, false);
+  assert.equal(ficha().inventario.sins, 38);
+  // o botão Desfazer
+  j.clica(barra.querySelector('[data-ked="desfazer"]'));
+  assert.equal(ficha().inventario.sins, 37);
+  // outra página da aba (com o mesmo sessionStorage) vê a mudança e anda o mesmo log
+  const k = await carrega(janela({ ls: A.armazenamento(Object.fromEntries(ls.m)), ss }));
+  assert.match(k.el('fd-gaveta-ked').querySelector('[data-ked="desfazer"]').getAttribute('title'), /^Desfazer: Stamina atual: 9/);
+  // sai do ensaio por ela: a página velha (esta) não grava mais
+  k.clica(k.ke(k.faixa(), 'sair'));
+  k.clica(k.ke(k.faixa(), 'sair-ok'));
+  const n = ss.escritas.length;
+  j.clica(passo('inventario.sins', 1));
+  assert.equal(ss.escritas.length, n, 'a página velha não grava');
+  assert.equal(j.el('fd-gaveta-ked').hidden, true, 'e se acerta (a barra some)');
+  assert.equal(g.querySelector('[data-ed-delta]'), null);
+  // o ESPIÃO
+  assert.deepEqual(j.ls.escritas, []);
+  assert.deepEqual(k.ls.escritas, []);
+  assert.deepEqual(j.kf, []);
+  soEnsaio(ss, 'edição no drawer');
+  assert.deepEqual([...ss.m.keys()], []);
+});
+
+test('CSS da edição (F4.6b): no css/ficha-ensaio.css (só com o Ensaio), sob .ke-; pop-over fora do fluxo; alvo do grau; texto em AA', () => {
+  const css = ler('css', 'ficha-ensaio.css').replace(/\/\*[\s\S]*?\*\//g, '');
+  const { regra, resolveCor, contraste, TOKENS } = require('./cor-apoio.js');
+  ['.ke-ed-barra', '.ke-pop', '.ke-aj-tab', '.ke-ed', '.ke-ed-grau', '.ke-mudou', '.ke-d-ed', '.ke-btn[aria-disabled="true"]']
+    .forEach((s) => assert.ok(regra(css, s), s));
+  assert.match(regra(css, '.ke-pop'), /position: fixed;/);
+  assert.match(regra(css, '.ke-pop'), /z-index: var\(--z-popover\);/);
+  assert.match(regra(css, '.ke-ed-grau'), /width: 20px; height: 24px;/);
+  assert.match(regra(css, '.ke-ed-grau + .ke-ed-grau'), /margin-left: 1px;/);
+  // as cores que o texto usa, sobre o fundo de cada lugar
+  const cor = (sel) => resolveCor(/(?:^|;)\s*color:\s*([^;]+?)\s*(?:;|$)/.exec(regra(css, sel).trim())[1]);
+  const fundo = (sel) => resolveCor(/background:\s*([^;]+);/.exec(regra(css, sel))[1]);
+  const fBarra = fundo('.ke-ed-barra'), fPop = fundo('.ke-pop'), fAj = fundo('.ke-aj');
+  [['.ke-ed-barra', fBarra], ['.ke-ed-dica', fBarra], ['.ke-ed-msg', fBarra], ['.ke-ed-msg-aviso', fBarra],
+    ['.ke-pop', fPop], ['.ke-pop-tit', fPop], ['.ke-pop-calc', fPop], ['.ke-pop-erro', fPop], ['.ke-pop-temp-rot', fPop], ['.ke-mudou', fPop],
+    ['.ke-aj-tit', fAj], ['.ke-aj-tab', fAj], ['.ke-aj-caminho', fAj], ['.ke-aj-vazio, .ke-aj-origem', fAj], ['.ke-mudou', fAj],
+    ['.ke-ed', fundo('.ke-ed')], ['.ke-d-ed', '#0c0b10'], ['.ke-btn[aria-disabled="true"]', fundo('.ke-btn[aria-disabled="true"]')],
+    ['.ke-mudou', TOKENS['bg-card']]].forEach(([sel, f]) => {
+    const c = contraste(cor(sel), f);
+    assert.ok(c >= 4.5, sel + ': ' + c.toFixed(2) + ':1');
+  });
+  // o .forte desligado fica com o fundo e o texto do desligado
+  assert.doesNotMatch(regra(css, '.ke-btn.forte[aria-disabled="true"]'), /background|(?:^|;)\s*color:/);
 });

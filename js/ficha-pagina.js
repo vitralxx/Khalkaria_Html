@@ -48,6 +48,11 @@
  * bfcache o botão aparece), não apaga: KhSeletor.bloqueiaSaidaPrevia acerta a
  * página e abre a confirmação da faixa. O Ensaio nunca grava chave de ficha:
  * só o prefixo dele.
+ * F4.6b (07 §3): com o Ensaio ligado, as abas saem com os campos de estado
+ * editáveis (KhFichaAbas, {editar:'pagina'}) e o KhEditor (#fp-ked, acima do
+ * topo, criado na 1ª vez que o Ensaio liga) grava cada mudança no armazém do
+ * ensaio, com Desfazer e Refazer (Ctrl+Z e Ctrl+Y), o pop-over "Ajustar" e a
+ * tela "Ajustes". Sem o Ensaio, só leitura, como antes (o ouro).
  *
  * No node (tools/testes/ficha-pagina.test.js) exporta por module.exports e
  * carrega os módulos de js/ficha/ direto; no navegador usa os do js/ficha.js,
@@ -65,6 +70,7 @@
   var KhFichaAbas = emNode ? require('./ficha/kh-ficha-abas.js') : raiz.KhFichaAbas;
   var KhEnsaio = emNode ? require('./ficha/kh-ensaio.js') : raiz.KhEnsaio;
   var KhSeletor = emNode ? require('./ficha/kh-seletor.js') : raiz.KhSeletor;
+  var KhEditor = emNode ? require('./ficha/kh-editor.js') : raiz.KhEditor;
 
   var FichaPagina = (function () {
     var CHAVE_PREVIA = 'khalkaria_ficha_previa';
@@ -301,6 +307,19 @@
       var seletor = comEnsaio ? KhSeletor.criar({ win: win, doc: doc, cont: el('fp-ke'), prefixo: PREFIXO, densidade: 'pagina',
         dados: function () { return pronto; } }) : null;
       if (comEnsaio) KhSeletor.ligarFaixa(win);
+      // a edição (F4.6b): só age com o Ensaio ligado; a barra entra acima do topo na 1ª vez
+      var editor = comEnsaio && KhEditor ? KhEditor.criar({ win: win, doc: doc, raiz: raizEl, modo: 'pagina', prefixo: PREFIXO,
+        lugar: function () {
+          var x = el('fp-ked');
+          if (x) return x;
+          x = doc.createElement('div');
+          x.id = 'fp-ked';
+          x.className = 'ke-ed-lugar';
+          var topo = el('fp-topo');
+          if (topo && topo.parentNode === raizEl) raizEl.insertBefore(x, topo); else raizEl.appendChild(x);
+          return x;
+        },
+        contexto: function () { return dados && M ? M.contexto(dados, KhRegras ? KhRegras.dados() : null, base || '../') : null; } }) : null;
 
       raizEl.addEventListener('click', function (e) {
         var t = e.target;
@@ -372,6 +391,8 @@
       function pinta(r0) {
         var op = { dados: dados, base: base || '../' };
         if (comEnsaio) op.ensaio = ensaio();
+        // com o Ensaio, os campos de estado editáveis e o "Ajustar" (F4.6b)
+        if (op.ensaio && editor) op.editar = 'pagina';
         var r = render(r0, op);
         trocaHTML(doc, el('fp-topo'), r.topo, el('fp-aba-' + aberta), raizEl, win);
         ABAS.forEach(function (a) {
@@ -380,6 +401,7 @@
           trocaHTML(doc, p, r.paineis[a.id], p, raizEl, win);
           p.removeAttribute('aria-busy');
         });
+        if (editor) editor.desenha(r0);
       }
       // com o Ensaio, a ficha ativa dele (KhEnsaio.calcular); sem ele, a sombra da ficha atual
       function calcula() { return ensaio() ? KhEnsaio.calcular(ss, dados, versao) : KhPrevia.calcular(ls, dados, versao); }

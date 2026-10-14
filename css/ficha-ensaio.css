@@ -1,7 +1,9 @@
 /* ============================================================
    FICHA — o modo Ensaio (F4.6a): a faixa fixa e o seletor de fichas
    (js/ficha/kh-ensaio.js e js/ficha/kh-seletor.js;
-   docs/ficha-digital/07-f4-6-ensaio.md §1 e §2)
+   docs/ficha-digital/07-f4-6-ensaio.md §1 e §2), e a edição da ficha do
+   ensaio (F4.6b, §3: js/ficha/kh-editor.js e os controles .ke-ed-* do
+   js/ficha/kh-ficha-abas.js), no fim do arquivo
 
    NÃO é carregado pelo shell nem por página nenhuma: o KhSeletor o injeta só
    com o Ensaio ligado (que exige a prévia). Sem a prévia, nenhuma página o
@@ -127,3 +129,176 @@ html[data-ficha3="aberto"] body:not([data-ficha-pagina]) .ke-faixa { right: var(
 .ke-seletor[data-ke-densidade="compacta"] .ke-dialogo { padding: var(--esp-2); }
 /* em 380 px, o uso numa linha só: o da aba inteira fica no title */
 .ke-seletor[data-ke-densidade="compacta"] .ke-uso-aba { display: none; }
+
+/* ==========================================================================
+   A EDIÇÃO (F4.6b, 07 §3): a barra (Desfazer, Refazer, Ajustes), a tela
+   "Ajustes", o pop-over "Ajustar" e os campos que o KhFichaAbas desenha com
+   {editar}. Tudo só existe com o Ensaio ligado (este arquivo também).
+   ========================================================================== */
+
+/* ---------------------------------------------------------- a barra
+   Na página, acima do topo (#fp-ked, embaixo do seletor); no drawer, no
+   cabeçalho (#fd-gaveta-ked), na linha inteira. */
+.ke-ed-lugar { margin-bottom: var(--esp-4); }
+.ke-ed-lugar[hidden] { display: none; }
+.fd-gaveta-cab .ke-ed-lugar { grid-column: 1 / -1; min-width: 0; margin: var(--esp-1) 0 0; }
+.ke-ed-barra {
+    display: flex; flex-wrap: wrap; align-items: center; gap: var(--esp-2);
+    padding: var(--esp-2) var(--esp-3);
+    font-family: var(--font-body); font-size: 1rem; line-height: 1.35;
+    color: var(--text-primary);
+    background: color-mix(in srgb, var(--amber) 7%, var(--bg-card));
+    border: 1px solid var(--amber-dim); border-left: 3px solid var(--amber);
+    border-radius: var(--raio-2);
+}
+.ke-ed-barra :where(p) { margin: 0; }
+.ke-ed-dica { flex: 1 1 16rem; font-size: .88rem; font-style: italic; color: var(--text-secondary); }
+.ke-ed-msg { flex-basis: 100%; font-size: .92rem; color: var(--tem); }
+.ke-ed-msg-aviso { color: var(--leve); }
+.ke-ed-msg:empty { display: none; }
+/* no drawer (380/460 px): a dica cabe embaixo dos botões */
+.fd-gaveta-cab .ke-ed-barra { padding: var(--esp-1) var(--esp-2); gap: var(--esp-1) var(--esp-2); font-size: .95rem; }
+.fd-gaveta-cab .ke-ed-dica { flex-basis: 100%; font-size: .82rem; }
+/* Desfazer e Refazer sem passo (ou com a ficha mudada depois dele):
+   aria-disabled, para o clique dizer o porquê; o visual do :disabled */
+.ke-btn[aria-disabled="true"] {
+    color: var(--text-muted-forte); background: var(--bg-tertiary);
+    border-color: var(--border-color); cursor: not-allowed;
+}
+.ke-btn.forte[aria-disabled="true"] { border-color: var(--amber-dim); border-style: dashed; }
+.ke-ed-barra :focus-visible, .ke-aj :focus-visible, .ke-pop :focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
+
+/* ---------------------------------------------------------- a tela "Ajustes" */
+.ke-aj {
+    display: flex; flex-direction: column; gap: var(--esp-2);
+    margin-top: var(--esp-2); padding: var(--esp-3);
+    background: var(--bg-secondary);
+    border: 1px solid var(--amber-dim); border-radius: var(--raio-1);
+}
+.ke-aj :where(p) { margin: 0; }
+.ke-aj-tit {
+    font-family: var(--font-heading); font-size: .8rem; font-weight: 600;
+    letter-spacing: .06em; text-transform: uppercase;
+    color: var(--gold-light);
+}
+.ke-aj-rola { max-width: 100%; overflow-x: auto; }
+/* sem o visual de tabela de conteúdo do site (o th dourado, a margem, o
+   cartão): é uma lista de trabalho, no fundo da tela Ajustes */
+.ke-aj-tab {
+    width: 100%; margin: 0; border-collapse: collapse; border-radius: 0; overflow: visible;
+    font-size: .92rem; color: var(--text-primary); background: none;
+}
+.ke-aj-tab th, .ke-aj-tab td {
+    padding: var(--esp-1) var(--esp-2);
+    font-family: var(--font-body); font-size: .92rem; letter-spacing: normal; text-transform: none;
+    text-align: left; vertical-align: top;
+    color: var(--text-primary); background: none;
+    border-bottom: 1px solid var(--border-color);
+}
+.ke-aj-tab thead th {
+    font-family: var(--font-heading); font-size: .7rem; font-weight: 600;
+    letter-spacing: .08em; text-transform: uppercase;
+    color: var(--text-muted-forte);
+}
+.ke-aj-tab tr[data-sel] { background: color-mix(in srgb, var(--amber) 10%, var(--bg-secondary)); }
+.ke-aj-tab input { accent-color: var(--amber); }
+.ke-aj-nome { font-weight: 600; }
+.ke-aj-caminho { display: block; font-family: var(--mono); font-size: .75rem; font-weight: 400; color: var(--text-secondary); }
+.ke-aj-n { font-family: var(--mono); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.ke-aj-vazio, .ke-aj-origem { color: var(--text-secondary); }
+
+/* "o calculado mudou de X para Y": à vista, no número, na lista e no pop-over */
+.ke-mudou {
+    display: inline-block; margin-left: .3rem; padding: 0 .35rem;
+    font-family: var(--font-body); font-size: .78rem; font-weight: 400; font-style: italic;
+    letter-spacing: normal; text-transform: none;
+    color: var(--leve); border: 1px dashed var(--amber-dim); border-radius: var(--raio-1);
+}
+.ke-pop-mudou { display: block; margin: 0; }
+
+/* ---------------------------------------------------------- o pop-over "Ajustar"
+   Fora do fluxo (o KhEditor põe left/top do retângulo do número), acima da
+   nav e dos drawers, abaixo da ficha atual. */
+.ke-pop {
+    position: fixed; z-index: var(--z-popover);
+    display: flex; flex-direction: column; gap: var(--esp-2);
+    width: min(22rem, calc(100vw - 16px));
+    max-height: calc(100vh - 16px); overflow-y: auto;
+    padding: var(--esp-3);
+    font-family: var(--font-body); font-size: .95rem; line-height: 1.35;
+    color: var(--text-primary);
+    background: var(--bg-secondary);
+    border: 1px solid var(--amber-dim); border-top: 2px solid var(--amber);
+    border-radius: var(--raio-2);
+    box-shadow: 0 10px 28px -8px var(--bg-primary);
+}
+.ke-pop :where(p) { margin: 0; }
+.ke-pop-tit {
+    font-family: var(--font-heading); font-size: .8rem; font-weight: 600;
+    letter-spacing: .06em; text-transform: uppercase;
+    color: var(--gold-light);
+}
+.ke-pop-calc { font-size: .9rem; color: var(--text-secondary); }
+.ke-pop-calc b { font-family: var(--mono); font-weight: 600; color: var(--text-primary); }
+.ke-pop-modo { display: flex; flex-wrap: wrap; align-items: center; gap: var(--esp-1) var(--esp-3); margin: 0; padding: 0; border: 0; }
+.ke-pop-modo legend { float: left; margin-right: var(--esp-2); padding: 0; }
+.ke-pop-valor, .ke-pop-motivo {
+    flex: 1 1 auto; min-width: 0;
+    padding: var(--esp-1) var(--esp-2);
+    font: inherit; color: var(--text-primary);
+    background: var(--bg-primary);
+    border: 1px solid var(--amber-dim); border-radius: var(--raio-1);
+}
+.ke-pop-valor { font-family: var(--mono); }
+.ke-pop-temp { display: flex; flex-wrap: wrap; align-items: center; gap: var(--esp-1) var(--esp-2); }
+.ke-pop-temp-rot { color: var(--text-secondary); cursor: not-allowed; }
+.ke-pop-erro { font-size: .92rem; color: color-mix(in srgb, var(--extremo-vivo) 40%, var(--text-primary)); }
+
+/* ---------------------------------------------------------- os campos na ficha */
+.ke-ed {
+    box-sizing: border-box; max-width: 100%;
+    padding: .15rem var(--esp-2);
+    font: inherit; color: var(--text-primary);
+    background: var(--bg-primary);
+    border: 1px solid var(--amber-dim); border-radius: var(--raio-1);
+}
+.ke-ed:hover { border-color: var(--amber); }
+.ke-ed:focus-visible, .ke-ed-grau:focus-visible, .ke-ed-passo button:focus-visible, .ke-ed-chk input:focus-visible,
+.ke-ed-det summary:focus-visible, .ke-ajustavel:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
+.ke-ed-texto, .ke-ed-sel { width: 100%; }
+.ke-ed-sel:disabled { color: var(--text-muted-forte); cursor: not-allowed; }
+.ke-ed-num {
+    width: 6ch; font-family: var(--mono); font-variant-numeric: tabular-nums; text-align: center;
+    -moz-appearance: textfield; appearance: textfield;
+}
+.ke-ed-num::-webkit-inner-spin-button, .ke-ed-num::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
+.ke-ed-area { display: block; width: 100%; min-height: 8rem; resize: vertical; line-height: 1.5; }
+/* − n + : o .kh-stepper do site; o número sem a borda própria do campo */
+.ke-ed-passo { vertical-align: middle; }
+.ke-ed-passo .ke-ed-num { width: 7ch; height: auto; padding: 0 .2rem; border: 0; border-radius: 0; background: transparent; color: var(--gold-light); }
+.ke-ed-passo button { min-width: 28px; }
+/* atributo base: embaixo do total e do Mod., no medalhão */
+.ke-ed-base { display: flex; align-items: center; gap: .4rem; }
+/* os 4 círculos de grau, um botão cada: alvo de 20×24 px a 24 px de centro a
+   centro (WCAG 2.5.8), o círculo de 10 px no meio */
+.ke-ed-grau {
+    display: inline-grid; place-items: center;
+    width: 20px; height: 24px; margin: 0; padding: 0;
+    background: none; border: 0; border-radius: var(--raio-1);
+    cursor: pointer;
+}
+.ke-ed-grau:hover { background: color-mix(in srgb, var(--amber) 16%, transparent); }
+.ke-ed-grau + .ke-ed-grau { margin-left: 1px; }
+/* imunidade a condição: as caixas dentro de um <details> */
+.ke-ed-det summary { cursor: pointer; color: var(--text-primary); }
+.ke-ed-chks {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
+    gap: var(--esp-1) var(--esp-3); margin-top: var(--esp-2);
+}
+.ke-ed-chk { display: inline-flex; align-items: center; gap: var(--esp-2); font-size: .95rem; cursor: pointer; }
+.ke-ed-chk input { accent-color: var(--amber); }
+/* o número ajustável (KhConta com {editar}) é um botão: abre o "Ajustar" */
+.fp .ke-ajustavel { cursor: pointer; }
+.fp .ke-ajustavel:hover { outline: 1px dashed var(--amber); outline-offset: 2px; }
+/* a linha da dica que diz como ajustar (ou por que não aceita) */
+.ke-d-ed { margin-top: .25rem; padding-top: .25rem; border-top: 1px solid var(--border-color); color: var(--gold-light); }

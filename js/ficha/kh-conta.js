@@ -18,6 +18,13 @@
  * ficha) usar o seu sem colidir. esc, fmt e semEmoji são opcionais (padrão: os
  * deste módulo e o KhAjustes.fmt, o mesmo que o KhRegras.fmt).
  *
+ * Edição (F4.6b, só a página da ficha com o Ensaio): com op.editar
+ * {ajustavel(caminho, o, no), motivo(caminho)}, o número ajustável leva
+ * .ke-ajustavel, role="button", aria-haspopup="dialog" e data-ajustavel (o
+ * KhEditor abre o pop-over "Ajustar" no clique e no Enter), a dica ganha a
+ * linha .ke-d-ed (como ajustar, ou por que não aceita ajuste) e o "o calculado
+ * mudou de X para Y" fica à vista (.ke-mudou). Sem op.editar, nada muda.
+ *
  * No node exporta por module.exports (carregado sozinho); no artefato js/ficha.js
  * o export já é o KhInv e este módulo só registra window.KhConta no navegador.
  * Fonte: js/ficha/kh-conta.js (o js/ficha.js é o ARTEFATO concatenado).
@@ -60,6 +67,9 @@
       if (!RE_PREFIXO.test(p)) throw new Error('KhConta: prefixo inválido "' + p + '" (letras, dígitos e hífen)');
       var es = op.esc || esc, se = op.semEmoji || semEmoji;
       var fmt = op.fmt || (KhAjustes && KhAjustes.fmt) || str;
+      // a edição (F4.6b, só a página com o Ensaio): {ajustavel(caminho, o, no) -> bool,
+      // motivo(caminho) -> texto}. Sem ela, o HTML é o de sempre, byte a byte.
+      var ed = obj(op.editar) && typeof op.editar.ajustavel === 'function' ? op.editar : null;
       var n = 0, caminhos = [];
 
       function rotuloSelo(k) { return str(D.rotulosSelo && D.rotulosSelo[k]) || k; }
@@ -139,11 +149,22 @@
         lista(no.avisos).forEach(function (a) { linhas += '<span class="' + p + '-d-av">Aviso: ' + es(a.msg || a.tipo) + '</span>'; });
         lista(no.lembretes).forEach(function (a) { linhas += '<span class="' + p + '-d-lb">Lembrete: ' + es(a.msg || a.op) + '</span>'; });
         var mostrado = o.texto != null ? o.texto : valorNo(no, o.un);
-        return '<span class="kh-conta ' + p + '-conta" tabindex="0" aria-describedby="' + id + '"' +
+        // edição: o número ajustável vira botão (abre o pop-over "Ajustar"); o
+        // outro diz por que não aceita ajuste; o "calculado mudou" fica à vista
+        var aj = ed ? !!ed.ajustavel(caminho, o, no) : false;
+        if (ed) {
+          linhas += '<span class="ke-d-ed">' + (aj ? 'Clique ou Enter: ajustar este número.'
+            : 'Não aceita ajuste: ' + es(typeof ed.motivo === 'function' ? ed.motivo(caminho) : '')) + '</span>';
+        }
+        var mudou = ed && no.ajuste && no.ajuste.mudou ? lista(no.avisos).filter(function (a) { return a.tipo === 'calculado-mudou'; })[0] : null;
+        return '<span class="kh-conta ' + p + '-conta' + (aj ? ' ke-ajustavel' : '') + '" tabindex="0"' +
+          (aj ? ' role="button" aria-haspopup="dialog" aria-label="' + es('Ajustar ' + se(no.rotulo) + ': ' + mostrado) + '" data-ajustavel' : '') +
+          ' aria-describedby="' + id + '"' +
           (no.ajuste ? ' data-ajustado' : '') + ' data-caminho="' + es(caminho) + '">' +
           '<b class="' + p + '-v">' + es(mostrado) + '</b>' +
           '<span class="kh-conta-dica ' + p + '-dica" id="' + id + '" role="tooltip">' + linhas + '</span></span>' +
           (no.ajuste ? '<span class="' + p + '-calc">calc. ' + es(valorNo({ valor: no.calculado }, o.un)) + '</span>' : '') +
+          (mudou ? ' <span class="ke-mudou" role="note">' + es(mudou.msg) + '</span>' : '') +
           // número com aviso do motor (dado faltando, valor fora da conta): marca à vista, o texto vai em Avisos
           (lista(no.avisos).length ? ' <span class="' + p + '-aviso ' + p + '-marca-aviso" title="' +
             es(lista(no.avisos).map(function (a) { return a.msg || a.tipo; }).join(' · ')) + '">aviso</span>' : '') +

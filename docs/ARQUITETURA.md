@@ -106,7 +106,7 @@ tools/componentes-baseline.json piso da contagem de cada classe CSS de component
                                página de classe (checagem [componentes] do validar)
 tools/gerar_regras_ficha.py    F3b: contrato regras-ficha + blocos do site -> js/ficha/00-regras-dados.js
                                (AST com status/fonte por nó; status desconhecido derruba o build)
-tools/testes/                  testes node do motor KhInv, do KhEstado, do KhRegras, da prévia e do Ensaio (*.test.js, fixtures/);
+tools/testes/                  testes node do motor KhInv, do KhEstado, do KhRegras, da prévia, do Ensaio e da edição (*.test.js, fixtures/);
                                index.js deixa `node --test tools/testes` rodar no Node 22+;
                                esquema-min.js: validador mínimo de JSON Schema (sem pip) dos
                                testes do schema v3; estado-apoio.js: catálogo real + storage falso
@@ -181,7 +181,10 @@ css/ficha-ensaio.css           F4.6a: o modo Ensaio (a faixa fixa .ke-faixa e o 
                                dele na página, .fp-ke). SEM camada, tudo sob .ke- e tokens.
                                O shell NÃO o injeta e nenhuma página o pede: só o
                                KhSeletor, com o Ensaio ligado. html[data-ensaio] (a faixa à
-                               vista) reserva o pé da página e sobe o voltar ao topo
+                               vista) reserva o pé da página e sobe o voltar ao topo.
+                               F4.6b: a edição (a barra .ke-ed-barra, a tela .ke-aj, o
+                               pop-over .ke-pop, fixo; os campos .ke-ed-*, os círculos de
+                               grau .ke-ed-grau com alvo de 20x24 px, o .ke-ajustavel)
 js/kh-ui.js                    F2b: biblioteca comum (fora do bundle da ficha; o shell a
                                põe SÍNCRONA antes do 1º <script src> local de toda página):
                                KhTeclas (registro único de atalhos e camadas do Esc, um
@@ -211,7 +214,13 @@ js/ficha/kh-estado.js            KhEstado (F3a), PURO: estado v3, migração 1.0
                                  O que tem perda vai da memória da ficha
                                  (vinculoV2.comPerda); a v2 gravada leva o carimbo
                                  origemV3, que o reimportarV2 usa para achar o ancestral
-                                 (conflitos, perdas e 'outra-ficha' saem no resultado)
+                                 (conflitos, perdas e 'outra-ficha' saem no resultado).
+                                 F4.6b: armazem.editar(id, [{caminho, valor}], rotulo)
+                                 grava e põe um passo no log de desfazer (o _log:<id>,
+                                 fora do export); desfazer/refazer andam só o topo e
+                                 recusam 'outra-aba' se o caminho mudou depois do passo
+                                 (impressão por caminho); teto de 20 passos e 256 KB;
+                                 estadoLog para os botões. Só o Ensaio chama, por ora
 js/ficha/kh-efeitos.js           KhEfeitos (F3b), PURO: coleta os Mods com a trilha
                                  (raça, fontes do contrato, entradas, nível, condições,
                                  itens pelo "quando", ajustes) e resolve o acúmulo
@@ -223,7 +232,9 @@ js/ficha/ficha-v2.js             drawer, estado v2, decoração dos cards e a AP
                                  window.KF (§8); no node não roda
 js/ficha/kh-conta.js             KhConta (F4.1), PURO: o componente "conta" (número +
                                  tooltip da fórmula), KhConta.criar({D, nos, prefixo}),
-                                 prefixo de classe 'kf3' por padrão; conta.test.js
+                                 prefixo de classe 'kf3' por padrão; conta.test.js.
+                                 F4.6b: com {editar}, o número ajustável vira botão
+                                 (data-ajustavel) e a dica diz como ajustar ou por que não
 js/ficha/kh-redesenho.js         KhRedesenho (F4.4b): redesenhar sem perder o lugar
                                  (trocaHTML: foco, <details>, dica sob o mouse) e a dica
                                  da conta presa à caixa (encaixa), com o prefixo de quem
@@ -259,6 +270,27 @@ js/ficha/kh-seletor.js           KhSeletor (F4.6a): a interface do Ensaio. criar
                                  bfcache), chamada pelo drawer e pela página.
                                  bloqueiaSaidaPrevia(win): "Sair da prévia" com o Ensaio
                                  ligado não apaga. Partes puras (htmlSeletor, htmlFaixa…) no node
+js/ficha/kh-edicao.js            KhEdicao (F4.6b), PURO: o que a edição muda. campo(caminho)
+                                 (os campos de estado: tipo, rótulo, faixa), mudancas(ficha,
+                                 caminho, texto, {contexto}) -> {mudancas, rotulo, aviso}
+                                 ou o erro em PT-BR (trocar a raça tira a variante de outra
+                                 raça; a classe, o ramo), passo (− e +), grauClicado,
+                                 opcoesRef (as do catálogo), e o ajuste M2: montaAjuste
+                                 (Valor fixo ou Diferença, motivo, calculadoEm),
+                                 mudancaAjuste, mudancaRemover (em lote), motivoNaoAjuste.
+                                 Sem DOM nem storage; edicao.test.js
+js/ficha/kh-editor.js            KhEditor (F4.6b): a interface da edição, só com o Ensaio.
+                                 criar({win, doc, raiz, modo 'pagina'|'drawer', lugar,
+                                 contexto}): ouve os controles data-ed* (change, clique no
+                                 círculo, − e +) e grava pelo armazém do ensaio
+                                 (armazem.editar); a barra Desfazer/Refazer (com o porquê
+                                 quando desligados) e, na página, "Ajustes (N)" (a lista,
+                                 com remoção em lote) e o pop-over "Ajustar" (Temporário
+                                 desligado: expira na Mesa, F5). Ctrl+Z / Ctrl+Y no
+                                 KhTeclas (captura), fora de campo de texto e da ficha
+                                 atual; no drawer, só com o foco nele. Página velha (o
+                                 Ensaio saiu): não grava e se acerta. Puras (htmlBarra,
+                                 htmlPop, htmlAjustes, linhasAjustes) no node
 js/ficha/kh-ficha-abas.js        KhFichaAbas (F4.4a), PURO: o desenho das 5 abas da ficha
                                  nova (Núcleo, Técnicas & Marcas, Cartas/Lore/Outros, O
                                  Bazar, Grimório), o MESMO na página e no drawer da F4.4:
@@ -268,7 +300,10 @@ js/ficha/kh-ficha-abas.js        KhFichaAbas (F4.4a), PURO: o desenho das 5 abas
                                  (HTML de antes, byte a byte) ou 'compacta' (o mesmo
                                  conteúdo, corpo com data-densidade="compacta"). Depois do
                                  kh-previa.js no ORDEM (os avisos são os da prévia). Sem
-                                 DOM, storage nem rede ao carregar; kh-ficha-abas.test.js
+                                 DOM, storage nem rede ao carregar; kh-ficha-abas.test.js.
+                                 F4.6b: paineis(res, {editar:'pagina'|'drawer'}) troca os
+                                 números de estado por controles (data-ed="<caminho v3>");
+                                 sem editar, o HTML de sempre (os ouros)
 js/ficha/kh-ficha-drawer.js      KhFichaDrawer (F4.4b): o drawer docked da ficha nova à
                                  direita, SÓ COM A PRÉVIA e só leitura; não monta na
                                  página da ficha. Trilho de 48 px (mini barras de Saúde,
@@ -281,7 +316,9 @@ js/ficha/kh-ficha-drawer.js      KhFichaDrawer (F4.4b): o drawer docked da ficha
                                  borda() para o KhPrever do Bazar. F4.6a: "Ensaiar
                                  edição" no aviso de só-leitura; com o Ensaio, lê a ficha do
                                  ensaio e mostra o seletor (KhSeletor) no cabeçalho, e liga
-                                 a faixa. ficha-drawer.test.js e ensaio.test.js
+                                 a faixa. F4.6b: com o Ensaio, recursos atuais e Sins com
+                                 − e + e a barra do KhEditor (#fd-gaveta-ked) no
+                                 cabeçalho. ficha-drawer.test.js e ensaio.test.js
 js/ficha.js                    ARTEFATO (tools/ficha_js.py): concatenação de js/ficha/
                                na ordem do ORDEM, cabeçalho "gerado — não editar". É o
                                único arquivo que o site carrega (main.js injeta; o
@@ -301,6 +338,8 @@ js/ficha-pagina.js             F4.3: página da ficha nova (KhFichaPagina), só 
                                com o Ensaio, lê e calcula a ficha ativa dele e mostra o
                                seletor de fichas (#fp-ke, KhSeletor) acima do topo, sem o
                                seletor desabilitado (render sem o.ensaio = o do ouro).
+                               F4.6b: com o Ensaio, os campos de estado editáveis e o
+                               KhEditor (#fp-ked, acima do topo).
                                Não grava chave de ficha; ficha-pagina.test.js, o ouro do
                                render (ficha-pagina-ouro.test.js) e ensaio.test.js
 js/bazar.js                    núcleo do Bazar: catálogo, filtros, Bancada
@@ -1028,6 +1067,34 @@ as ações do seletor conferem o ensaio no clique. Com o Ensaio, o drawer não
 aceita soltar nada (nem o item do Bazar, que iria à ficha atual) até a F4.6c,
 e diz isso (`avisoEnsaio`). Na virada, a mesma interface passa ao armazém
 real: muda só o storage por baixo.
+
+**Edição da ficha do ensaio (F4.6b).** `js/ficha/kh-edicao.js` (`KhEdicao`,
+puro) e `js/ficha/kh-editor.js` (`KhEditor`, a interface), especificação em
+`07-f4-6-ensaio.md` §3. Só com o Ensaio ligado: a página desenha as abas com
+`{editar:'pagina'}` (nome, jogador, nível, XP; raça, variante, classe, ramo e
+origem por seletor do catálogo; atributos base; os 4 círculos de grau das 24
+perícias; recursos atuais e Sins com − e +; Marcas da Vhelor; idiomas;
+imunidade a condição; História e Outros) e o drawer com `{editar:'drawer'}`
+(só recursos atuais e Sins). Todo controle leva `data-ed` (ou
+`data-ed-grau`/`data-ed-delta`/`data-ed-lista`) com o caminho na ficha v3; o
+KhEditor transforma o `change` (ao sair do campo), o clique no círculo e o
+− / + em mudanças (`KhEdicao.mudancas`) e grava pelo armazém do ensaio
+(`armazem.editar`), que guarda um passo no log de desfazer
+(`khalkaria_ensaio:khalkaria_ficha_v3_log:<id>`): o valor antes e depois de cada
+caminho e a impressão dele depois do passo. Desfazer e Refazer (botões e
+Ctrl+Z / Ctrl+Y no `KhTeclas`, fase de captura) andam só o topo e recusam se o
+caminho mudou depois (outra aba ou outra página da aba); teto de 20 passos e
+256 KB. O Ctrl+Z não dispara em campo de texto (é o do campo), na ficha atual
+(`#kf-drawer`) nem, no drawer, sem o foco nele (o do Bazar continua do Bazar).
+O número ajustável (`KhEstado.PADRAO_AJUSTE`) da página vira botão: o pop-over
+"Ajustar" (Valor fixo ou Diferença, motivo, Remover; "Temporário" desligado,
+expira na Mesa, F5); o ajustado mostra "calc. X" e o "o calculado mudou de X
+para Y"; "Ajustes (N)" lista todos, com remoção em lote (um passo). O número
+que não aceita ajuste (carga, Redução, tique de Morrendo, Stamina disponível)
+diz por quê na dica. O validador do armazém recusa ajuste em caminho de estado
+(`recurso.*.atual`). Sem o Ensaio, nada disso existe e o HTML é o de sempre.
+`tools/testes/edicao.test.js` (as puras e o log) e `ensaio.test.js` (a
+interface, com o armazenamento espião).
 
 **`data-kf-ignorar`.** O `MutationObserver` que redecora os cards ignora
 mudanças dentro de `[data-kf-ignorar]`, e `decorarBazar` não decora card ali

@@ -390,11 +390,25 @@
 
     "logDesfazer": {
       "type": "object",
-      "description": "Desfazer por ficha em 'khalkaria_ficha_v3_log:<id>': teto de 20 passos e 256 KB; não vai no export.",
+      "description": "Desfazer por ficha em 'khalkaria_ficha_v3_log:<id>' (F4.6b, KhEstado.armazem.editar/desfazer/refazer): teto de 20 passos por pilha e 256 KB; não vai no export. 'passos' é a pilha de desfazer, 'refazer' a de refazer (esvazia a cada edição nova). Desfaz só o topo e só se cada caminho ainda tem a impressão do passo (revPorParte).",
       "required": ["passos"],
       "additionalProperties": false,
       "properties": {
-        "passos": { "type": "array", "maxItems": 20, "items": { "type": "object", "required": ["revPorParte", "partes", "antes", "rotulo"] } }
+        "passos": { "type": "array", "maxItems": 20, "items": { "$ref": "#/$defs/passoLog" } },
+        "refazer": { "type": "array", "maxItems": 20, "items": { "$ref": "#/$defs/passoLog" } }
+      }
+    },
+    "passoLog": {
+      "type": "object",
+      "description": "Um passo: os caminhos pontuados que ele mudou ('meta.nome', 'atributos.base.FOR', 'ajustes'…), o valor de cada um antes e depois (chave ausente = o caminho não existia), a impressão de cada um no estado que o passo deixou e o rótulo do botão.",
+      "required": ["revPorParte", "partes", "antes", "rotulo"],
+      "properties": {
+        "rotulo": { "type": "string" },
+        "em": { "type": "string" },
+        "partes": { "type": "array", "minItems": 1, "items": { "type": "string" } },
+        "antes": { "type": "object" },
+        "depois": { "type": "object" },
+        "revPorParte": { "type": "object", "additionalProperties": { "type": "string" } }
       }
     },
 

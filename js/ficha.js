@@ -564,6 +564,14 @@
  * o carimbo origemV3 {fichaId, revV2} (a v2.1 o preserva), que diz ao
  * reimportarV2 de qual projeção ela descende. Nunca grava o marcador 'v3'.
  *
+ * EDIÇÃO COM DESFAZER (F4.6b, 07 §3): armazem.editar(id, [{caminho, valor}],
+ * rotulo) grava a ficha e um passo no log dela (khalkaria_ficha_v3_log:<id>,
+ * fora do export): {partes, antes, depois, revPorParte (a impressão de cada
+ * caminho depois do passo), rotulo, em}. desfazer/refazer andam SÓ o topo da
+ * pilha e só se cada caminho ainda está como o passo o deixou (senão,
+ * 'outra-aba'); teto de 20 passos por pilha e 256 KB. Hoje só o modo Ensaio
+ * (KhEnsaio, sessionStorage com prefixo) chama; na virada, o mesmo armazém real.
+ *
  * No node (tools/testes) exporta o KhEstado por module.exports; no navegador
  * vira window.KhEstado. Depende do KhInv (js/ficha/kh-inv.js, antes no ORDEM).
  * Fonte: js/ficha/kh-estado.js (o js/ficha.js é o ARTEFATO concatenado).
@@ -1342,6 +1350,72 @@
       return JSON.stringify(x === undefined ? null : x);
     }
     function igual(a, b) { return canon(a) === canon(b); }
+
+    // ---------------- edição por caminho e log de desfazer (F4.6b, puro) ----------------
+    // Um caminho de edição é pontuado ('meta.nome', 'atributos.base.FOR',
+    // 'pericias.oficio-alquimia', 'recursos.saude.atual', 'ajustes'): cada
+    // segmento é uma chave (as chaves dos ajustes têm ponto, por isso
+    // 'ajustes' vai inteiro). O log de desfazer guarda, por passo, o valor de
+    // cada caminho antes e depois e a impressão (revPorParte) dele depois do
+    // passo: desfazer só anda se cada caminho do passo ainda está como o passo
+    // o deixou (senão, outra aba mudou a ficha). Fora do export.
+    var LOG_TETO = 20;                 // passos por pilha (desfazer e refazer)
+    var LOG_BYTES = 256 * 1024;        // o log inteiro, 2 bytes por caractere (como o uso)
+    // a raiz do caminho que a edição não toca (identidade da ficha e o carimbo do armazém)
+    var CAMINHO_PROIBIDO = /^(?:id|rev|schemaVersion|salvoEm|criadoEm|exportadoEm)(?:\.|$)/;
+    var RE_CAMINHO = /^[A-Za-z][A-Za-z0-9_-]*(?:\.[A-Za-z0-9_-]+)*$/;
+    function caminhoEditavel(c) { return typeof c === 'string' && RE_CAMINHO.test(c) && !CAMINHO_PROIBIDO.test(c); }
+    function pegaCaminho(f, c) {
+      return str(c).split('.').reduce(function (a, k) { return a !== null && typeof a === 'object' && temPropria(a, k) ? a[k] : undefined; }, f);
+    }
+    // grava v no caminho (cria os objetos do meio); undefined apaga a chave
+    function poeCaminho(f, c, v) {
+      var ks = str(c).split('.'), o = f;
+      for (var i = 0; i < ks.length - 1; i++) {
+        if (!obj(o[ks[i]])) o[ks[i]] = {};
+        o = o[ks[i]];
+      }
+      if (v === undefined) delete o[ks[ks.length - 1]];
+      else o[ks[ks.length - 1]] = clone(v);
+    }
+    // a impressão de um valor (FNV-1a 32 bits do canon, mais o tamanho): igual
+    // se e só se o valor é o mesmo, para fins do log
+    function impressao(v) {
+      var s = v === undefined ? '\u0000' : canon(v), h = 0x811c9dc5;
+      for (var i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 0x01000193) >>> 0; }
+      return h.toString(36) + '.' + s.length.toString(36);
+    }
+    function logVazio() { return { passos: [], refazer: [] }; }
+    function passoValido(p) {
+      return obj(p) && Array.isArray(p.partes) && p.partes.length > 0 && p.partes.every(caminhoEditavel) &&
+        obj(p.antes) && obj(p.depois) && obj(p.revPorParte);
+    }
+    // o log lido do storage, só com os passos que dá para usar
+    function normalizaLog(l) {
+      if (!obj(l)) return logVazio();
+      return { passos: lista(l.passos).filter(passoValido), refazer: lista(l.refazer).filter(passoValido) };
+    }
+    function bytesLog(l) { return JSON.stringify(l).length * 2; }
+    // o teto: 20 passos em cada pilha e 256 KB no todo; sai o mais velho primeiro
+    function aparaLog(l) {
+      while (l.passos.length > LOG_TETO) l.passos.shift();
+      while (l.refazer.length > LOG_TETO) l.refazer.shift();
+      while ((l.passos.length || l.refazer.length) && bytesLog(l) > LOG_BYTES) {
+        if (l.passos.length) l.passos.shift(); else l.refazer.shift();
+      }
+      return l;
+    }
+    // o passo aplicável à ficha f? (cada caminho como o passo o deixou)
+    function passoLivre(f, p) {
+      return !!f && !!p && p.partes.every(function (c) { return impressao(pegaCaminho(f, c)) === p.revPorParte[c]; });
+    }
+    // a impressão de cada caminho de p na ficha f (depois de aplicar)
+    function impressoes(f, partes) {
+      var out = {};
+      partes.forEach(function (c) { out[c] = impressao(pegaCaminho(f, c)); });
+      return out;
+    }
+
     function temListasVelhas(f) {
       var inv = obj(f) ? f.inventario : null;
       return obj(inv) && (temPropria(inv, 'armas') || temPropria(inv, 'materiais'));
@@ -1923,6 +1997,102 @@
         var f = lerFicha(id);
         return f ? exportarFicha(f, lerSessao(id), opcoes) : null;
       }
+
+      // ---- edição com desfazer e refazer (F4.6b) ----
+      // editar(id, [{caminho, valor}], rotulo): grava a ficha (gravar: rev++,
+      // salvoEm) e um passo no log dela; a pilha de refazer esvazia. Valor
+      // undefined apaga a chave. Mudança que não muda nada não grava. Um
+      // caminho 'ajustes' passa pelo validador (validarAjuste): ajuste em
+      // caminho de estado (recurso.*.atual…) é recusado sem gravar.
+      // -> {ok, mudou, rev, partes, rotulo, desfazivel, avisoLog} | recusa
+      function lerLogNorm(id) { return normalizaLog(lerLog(id)); }
+      // grava o log (vazio: apaga a chave); se o storage recusar, apaga o log
+      // velho, para não ficar passo que não bate com a ficha
+      function gravaLogNorm(id, l) {
+        if (!l.passos.length && !l.refazer.length) { remove(CHAVES.log + id); return { ok: true }; }
+        var r = gravarLog(id, l);
+        if (!r.ok) remove(CHAVES.log + id);
+        return r;
+      }
+      function editar(id, mudancas, rotulo) {
+        if (somenteLeitura()) return recusa('somente-leitura');
+        var f = lerFicha(id);
+        if (!f) return recusa(existe(lerIndice(), id) ? 'ilegivel' : 'inexistente');
+        var antes = {}, depois = {}, partes = [], erro = null;
+        lista(mudancas).forEach(function (m) {
+          if (erro) return;
+          if (!obj(m) || !caminhoEditavel(m.caminho)) { erro = recusa('caminho-invalido', { caminho: obj(m) ? str(m.caminho) : '' }); return; }
+          var c = m.caminho;
+          if (partes.indexOf(c) >= 0) { erro = recusa('caminho-repetido', { caminho: c }); return; }
+          if (partes.some(function (p) { return p.indexOf(c + '.') === 0 || c.indexOf(p + '.') === 0; })) { erro = recusa('caminho-sobreposto', { caminho: c }); return; }
+          if (c === 'ajustes' || c.indexOf('ajustes.') === 0) {
+            var novo = c === 'ajustes' ? m.valor : null;
+            if (c !== 'ajustes' || !obj(novo)) { erro = recusa('ajuste-invalido', { caminho: c }); return; }
+            Object.keys(novo).some(function (k) {
+              var e = validarAjuste(k, novo[k]);
+              if (e) erro = recusa('ajuste-invalido', { caminho: k, motivo: e });
+              return !!e;
+            });
+            if (erro) return;
+          }
+          var a = pegaCaminho(f, c);
+          if (canon(a) === canon(m.valor) && (a === undefined) === (m.valor === undefined)) return;
+          if (a !== undefined) antes[c] = clone(a);
+          if (m.valor !== undefined) depois[c] = clone(m.valor);
+          partes.push(c);
+        });
+        if (erro) return erro;
+        if (!partes.length) return { ok: true, mudou: false, rev: inteiro(f.rev, 0), partes: [], rotulo: str(rotulo) };
+        var nova = clone(f);
+        partes.forEach(function (c) { poeCaminho(nova, c, depois[c]); });
+        var g = gravar(nova);
+        if (!g.ok) return g;
+        var passo = { rotulo: str(rotulo) || 'Edição', em: c.agora(), partes: partes, antes: antes, depois: depois,
+          revPorParte: impressoes(nova, partes) };
+        var l = lerLogNorm(id);
+        l.passos.push(passo);
+        l.refazer = [];
+        aparaLog(l);
+        var gl = gravaLogNorm(id, l);
+        return { ok: true, mudou: true, rev: nova.rev, partes: partes, rotulo: passo.rotulo,
+          desfazivel: gl.ok && l.passos.indexOf(passo) >= 0, avisoLog: gl.ok ? null : gl.erro, limpou: g.limpou };
+      }
+      // desfaz (ou refaz) SÓ o topo da pilha, e só se cada caminho do passo
+      // ainda está como o passo o deixou; senão recusa 'outra-aba' (outra aba,
+      // ou outra página desta, mudou a ficha depois) e nada muda.
+      function anda(id, de, para, valores) {
+        if (somenteLeitura()) return recusa('somente-leitura');
+        var l = lerLogNorm(id), p = l[de][l[de].length - 1];
+        if (!p) return recusa('vazio');
+        var f = lerFicha(id);
+        if (!f) return recusa(existe(lerIndice(), id) ? 'ilegivel' : 'inexistente');
+        if (!passoLivre(f, p)) {
+          return recusa('outra-aba', { rotulo: p.rotulo,
+            partes: p.partes.filter(function (k) { return impressao(pegaCaminho(f, k)) !== p.revPorParte[k]; }) });
+        }
+        var nova = clone(f);
+        p.partes.forEach(function (k) { poeCaminho(nova, k, temPropria(p[valores], k) ? p[valores][k] : undefined); });
+        var g = gravar(nova);
+        if (!g.ok) return g;
+        l[de].pop();
+        l[para].push({ rotulo: p.rotulo, em: p.em, partes: p.partes, antes: p.antes, depois: p.depois,
+          revPorParte: impressoes(nova, p.partes) });
+        aparaLog(l);
+        var gl = gravaLogNorm(id, l);
+        return { ok: true, rev: nova.rev, partes: p.partes.slice(), rotulo: p.rotulo, avisoLog: gl.ok ? null : gl.erro };
+      }
+      function desfazer(id) { return anda(id, 'passos', 'refazer', 'antes'); }
+      function refazer(id) { return anda(id, 'refazer', 'passos', 'depois'); }
+      // o que os botões mostram: o topo de cada pilha (rótulo e se dá para andar)
+      function estadoLog(id) {
+        var l = lerLogNorm(id), f = lerFicha(id);
+        function topo(pilha) {
+          var p = pilha[pilha.length - 1];
+          return p ? { rotulo: p.rotulo, em: str(p.em), livre: passoLivre(f, p) } : null;
+        }
+        return { desfazer: topo(l.passos), refazer: topo(l.refazer), passos: l.passos.length, refazerN: l.refazer.length,
+          bytes: bytesLog(l) };
+      }
       // o texto cru da chave (ficha ilegível ou de versão futura): é o que dá
       // para salvar dela antes de excluir ou de gravar por cima
       function exportarCru(id) {
@@ -2191,6 +2361,7 @@
         duplicar: duplicar, excluir: excluir, exportar: exportar, exportarCru: exportarCru, exportarTodas: exportarTodas,
         importar: importar, uso: uso, lerSessao: lerSessao, gravarSessao: gravarSessao,
         lerLog: lerLog, gravarLog: gravarLog, somenteLeitura: somenteLeitura,
+        editar: editar, desfazer: desfazer, refazer: refazer, estadoLog: estadoLog,
         gravarComProjecao: gravarComProjecao, migrarReal: migrarReal
       };
     }
@@ -2221,6 +2392,9 @@
       indiceCatalogo: indiceCatalogo, reassociar: reassociar, reconciliar: reconciliar,
       exportarFicha: exportarFicha, pacoteTodas: pacoteTodas, lerImport: lerImport,
       sombra: sombra, armazem: armazem,
+      // F4.6b: edição por caminho e o log de desfazer (o armazém usa)
+      LOG_TETO: LOG_TETO, LOG_BYTES: LOG_BYTES, caminhoEditavel: caminhoEditavel, pegaCaminho: pegaCaminho,
+      poeCaminho: poeCaminho, impressao: impressao, normalizaLog: normalizaLog, aparaLog: aparaLog, bytesLog: bytesLog,
       // F4.2 (escrita dupla e migração real): puras, ligadas só na F4.7
       projetarV2: projetarV2, conflitoV2: conflitoV2, reimportarV2: reimportarV2,
       gravarComProjecao: gravarComProjecao, migrarReal: migrarReal
@@ -5916,6 +6090,13 @@
  * ficha) usar o seu sem colidir. esc, fmt e semEmoji são opcionais (padrão: os
  * deste módulo e o KhAjustes.fmt, o mesmo que o KhRegras.fmt).
  *
+ * Edição (F4.6b, só a página da ficha com o Ensaio): com op.editar
+ * {ajustavel(caminho, o, no), motivo(caminho)}, o número ajustável leva
+ * .ke-ajustavel, role="button", aria-haspopup="dialog" e data-ajustavel (o
+ * KhEditor abre o pop-over "Ajustar" no clique e no Enter), a dica ganha a
+ * linha .ke-d-ed (como ajustar, ou por que não aceita ajuste) e o "o calculado
+ * mudou de X para Y" fica à vista (.ke-mudou). Sem op.editar, nada muda.
+ *
  * No node exporta por module.exports (carregado sozinho); no artefato js/ficha.js
  * o export já é o KhInv e este módulo só registra window.KhConta no navegador.
  * Fonte: js/ficha/kh-conta.js (o js/ficha.js é o ARTEFATO concatenado).
@@ -5958,6 +6139,9 @@
       if (!RE_PREFIXO.test(p)) throw new Error('KhConta: prefixo inválido "' + p + '" (letras, dígitos e hífen)');
       var es = op.esc || esc, se = op.semEmoji || semEmoji;
       var fmt = op.fmt || (KhAjustes && KhAjustes.fmt) || str;
+      // a edição (F4.6b, só a página com o Ensaio): {ajustavel(caminho, o, no) -> bool,
+      // motivo(caminho) -> texto}. Sem ela, o HTML é o de sempre, byte a byte.
+      var ed = obj(op.editar) && typeof op.editar.ajustavel === 'function' ? op.editar : null;
       var n = 0, caminhos = [];
 
       function rotuloSelo(k) { return str(D.rotulosSelo && D.rotulosSelo[k]) || k; }
@@ -6037,11 +6221,22 @@
         lista(no.avisos).forEach(function (a) { linhas += '<span class="' + p + '-d-av">Aviso: ' + es(a.msg || a.tipo) + '</span>'; });
         lista(no.lembretes).forEach(function (a) { linhas += '<span class="' + p + '-d-lb">Lembrete: ' + es(a.msg || a.op) + '</span>'; });
         var mostrado = o.texto != null ? o.texto : valorNo(no, o.un);
-        return '<span class="kh-conta ' + p + '-conta" tabindex="0" aria-describedby="' + id + '"' +
+        // edição: o número ajustável vira botão (abre o pop-over "Ajustar"); o
+        // outro diz por que não aceita ajuste; o "calculado mudou" fica à vista
+        var aj = ed ? !!ed.ajustavel(caminho, o, no) : false;
+        if (ed) {
+          linhas += '<span class="ke-d-ed">' + (aj ? 'Clique ou Enter: ajustar este número.'
+            : 'Não aceita ajuste: ' + es(typeof ed.motivo === 'function' ? ed.motivo(caminho) : '')) + '</span>';
+        }
+        var mudou = ed && no.ajuste && no.ajuste.mudou ? lista(no.avisos).filter(function (a) { return a.tipo === 'calculado-mudou'; })[0] : null;
+        return '<span class="kh-conta ' + p + '-conta' + (aj ? ' ke-ajustavel' : '') + '" tabindex="0"' +
+          (aj ? ' role="button" aria-haspopup="dialog" aria-label="' + es('Ajustar ' + se(no.rotulo) + ': ' + mostrado) + '" data-ajustavel' : '') +
+          ' aria-describedby="' + id + '"' +
           (no.ajuste ? ' data-ajustado' : '') + ' data-caminho="' + es(caminho) + '">' +
           '<b class="' + p + '-v">' + es(mostrado) + '</b>' +
           '<span class="kh-conta-dica ' + p + '-dica" id="' + id + '" role="tooltip">' + linhas + '</span></span>' +
           (no.ajuste ? '<span class="' + p + '-calc">calc. ' + es(valorNo({ valor: no.calculado }, o.un)) + '</span>' : '') +
+          (mudou ? ' <span class="ke-mudou" role="note">' + es(mudou.msg) + '</span>' : '') +
           // número com aviso do motor (dado faltando, valor fora da conta): marca à vista, o texto vai em Avisos
           (lista(no.avisos).length ? ' <span class="' + p + '-aviso ' + p + '-marca-aviso" title="' +
             es(lista(no.avisos).map(function (a) { return a.msg || a.tipo; }).join(' · ')) + '">aviso</span>' : '') +
@@ -6997,6 +7192,370 @@
   raiz.KhEnsaio = KhEnsaio;
 })(typeof window !== 'undefined' ? window : this);
 
+// ==== js/ficha/kh-edicao.js ====
+/* Khalkaria — Ficha · KhEdicao: o que a edição da ficha nova muda e como (F4.6b), PURO.
+ * Especificação: docs/ficha-digital/07-f4-6-ensaio.md §3 (base: plano 02 M2).
+ *
+ * Dois regimes (M2):
+ *   (b) CAMPOS DE ESTADO, edição direta: nome, jogador, nível, XP; raça,
+ *       variante, classe, ramo e origem (por seletor do catálogo); atributos
+ *       base; grau das 24 perícias; recursos atuais; Sins; idiomas; imunidade
+ *       a condição; Marcas da Vhelor; História e Outros.
+ *   (a) NÚMEROS DERIVADOS, por ajuste (KhEstado.PADRAO_AJUSTE): Valor fixo
+ *       (padrão) ou Diferença, com motivo. "Temporário" não existe ainda (a
+ *       expiração é da Mesa, F5). Número que não aceita ajuste (carga, Redução,
+ *       tique de Morrendo, Stamina disponível…) tem o motivo (motivoNaoAjuste).
+ *
+ * Tudo aqui devolve MUDANÇAS ({caminho, valor}, os caminhos do
+ * KhEstado.armazem.editar) e o rótulo do passo de desfazer, ou o erro em
+ * PT-BR. Não toca DOM, storage nem rede: quem grava é o armazém (no modo
+ * Ensaio, o KhEnsaio.armazem), e quem liga a interface é o KhEditor.
+ *
+ *   KhEdicao.campo('meta.nivel')                    // {tipo, rotulo, min, max…} | null
+ *   KhEdicao.mudancas(ficha, caminho, bruto, {contexto})  // {ok, mudancas, rotulo, aviso} | {ok:false, erro}
+ *   KhEdicao.passo(ficha, caminho, +1)              // o stepper (− e +)
+ *   KhEdicao.grauClicado(ficha, 'atacar', 2)        // o círculo clicado
+ *   KhEdicao.opcoesRef(ctx, ficha, 'variante')      // as opções do seletor (ctx = KhFichaAbas.contexto)
+ *   KhEdicao.montaAjuste(caminho, {modo, valor, motivo}, no, agora)
+ *   KhEdicao.mudancaAjuste / mudancaRemover          // o caminho 'ajustes' inteiro
+ *
+ * No node exporta por module.exports (carregado sozinho); no artefato js/ficha.js
+ * o export já é o KhInv e este módulo só registra window.KhEdicao no navegador.
+ * Vem no ORDEM depois do kh-ensaio.js e antes do kh-ficha-abas.js (que o usa).
+ * Fonte: js/ficha/kh-edicao.js (o js/ficha.js é o ARTEFATO concatenado).
+ */
+(function (raiz) {
+  'use strict';
+
+  var emNode = typeof module === 'object' && module && module.exports;
+  if (emNode && Object.keys(module.exports).length) return;   // artefato no node: só o KhInv
+  var KhEstado = emNode ? require('./kh-estado.js') : raiz.KhEstado;
+  var KhAjustes = emNode ? require('./kh-ajustes.js') : raiz.KhAjustes;
+  var KhRegras = emNode ? require('./kh-regras.js') : raiz.KhRegras;
+
+  var KhEdicao = (function () {
+    var NOME_AT = { FOR: 'Força', DES: 'Destreza', CON: 'Constituição', INT: 'Inteligência', SAB: 'Sabedoria' };
+    var RECURSOS = { saude: 'Saúde', stamina: 'Stamina', eter: 'Éter', classe: 'Recurso de Classe' };
+    var REFS = { raca: 'Raça', variante: 'Variante', classe: 'Classe', ramo: 'Ramo', origem: 'Origem' };
+    // o tipo do catálogo de cada referência da identidade (classe e ramo vêm dos blocos de data/classes)
+    var TIPO_REF = { raca: 'raca', variante: 'variante', origem: 'origem' };
+    var MAX_TEXTO = 80, MAX_LISTA = 400, MAX_LORE = 20000, MAX_MOTIVO = 120;
+    var MAX_XP = 9999999, MAX_SINS = 999999999, MIN_REC = -9999, MAX_REC = 9999;
+    // o valor do seletor da identidade que guarda o texto livre que veio da ficha atual (sem par)
+    var MANTER = '__manter';
+    var GRAUS = ['Leigo', 'Treinado', 'Experiente', 'Mestre', 'Lendário'];
+    var MODOS = { fixa: 'Valor fixo', soma: 'Diferença' };
+    // o motivo de cada número que não aceita ajuste (a primeira regra que casa)
+    var MOTIVOS = [
+      [/^carga$/, 'é a soma dos pesos do inventário (Equipamentos e Bugigangas): mude os itens, não o número.'],
+      [/^defesa\./, 'a Redução soma Ar, Ae do tipo, Ae da categoria e Ae(Todos): ajuste uma dessas parcelas.'],
+      [/^morrendo\.tique$/, 'sai da Saúde máxima (D86): ajuste a Saúde máx.'],
+      [/^recurso\.stamina\.disponivel$/, 'é a Stamina atual menos a comprometida (D19): edite a Stamina atual.'],
+      [/^magia\.[a-z0-9-]+\.custo\.[a-z]+$/, 'só o custo da intensidade escolhida (a marcada) aceita ajuste.'],
+      [/^inventario\.sintonizados$/, 'conta os itens sintonizados do inventário: mude a sintonia dos itens.']
+    ];
+    var MOTIVO_PADRAO = 'este número não aceita ajuste manual.';
+    // os erros do KhEstado.validarAjuste, em PT-BR
+    var ERRO_AJUSTE = {
+      'caminho-de-estado': 'Este é um campo de estado (como o atual de um recurso): edite o campo, não ajuste.',
+      'valor-invalido': 'O valor não serve para este número.',
+      'modo-invalido': 'Este número só aceita valor fixo.',
+      'motivo-invalido': 'O motivo tem de ser texto.',
+      'temporario-invalido': 'Ajuste temporário ainda não existe (expira na Mesa, F5).'
+    };
+
+    function obj(x) { return !!x && typeof x === 'object' && !Array.isArray(x); }
+    function lista(x) { return Array.isArray(x) ? x : []; }
+    function str(x) { return x == null ? '' : String(x); }
+    function clone(x) { return x === undefined ? undefined : JSON.parse(JSON.stringify(x)); }
+    function semEmoji(s) {
+      return str(s).replace(/[\u{1F000}-\u{1FAFF}\u{2600}-\u{27BF}\u{2B00}-\u{2BFF}\u{FE0F}\u{200D}]/gu, '').replace(/\s{2,}/g, ' ').trim();
+    }
+    function fmt(n) { return KhAjustes && KhAjustes.fmt ? KhAjustes.fmt(n) : str(n); }
+    function sinal(n) { return typeof n === 'number' && n > 0 ? '+' + fmt(n) : fmt(n); }
+    function pega(f, c) { return KhEstado.pegaCaminho(f, c); }
+    function curto(s, n) { s = str(s); n = n || 32; return s.length > n ? s.slice(0, n - 1) + '…' : s; }
+    function D() { return KhRegras && KhRegras.dados ? KhRegras.dados() : {}; }
+    function nomePericia(id) {
+      var p = lista(D().pericias).filter(function (x) { return x.id === id; })[0];
+      return p ? str(p.nome) : id;
+    }
+    function rotuloGrau(g) {
+      var r = lista(D().graus && D().graus.rotulos)[g];
+      // o contrato escreve "Lendario" sem acento: o rótulo do site leva
+      return r ? str(r).replace(/^Lendario$/, 'Lendário') : GRAUS[g] || str(g);
+    }
+
+    // ---------------- números (pt-BR) ----------------
+    // '−3', '+2', ' 4,5 ' -> número; o resto -> null
+    function lerNumero(bruto) {
+      if (typeof bruto === 'number') return isFinite(bruto) ? bruto : null;
+      var s = str(bruto).trim().replace(/−/g, '-').replace(/\s+/g, '').replace(',', '.');
+      if (!/^[+-]?(?:\d+(?:\.\d+)?|\.\d+)$/.test(s)) return null;
+      var n = Number(s);
+      return isFinite(n) ? n : null;
+    }
+    function lerInteiro(bruto) {
+      var n = lerNumero(bruto);
+      return n != null && Math.floor(n) === n ? n : null;
+    }
+
+    // ---------------- os campos de estado ----------------
+    // {caminho, tipo: texto|textoLongo|inteiro|grau|ref|lista|conjunto, rotulo, min?, max?, passo? (com − e +)}
+    function campo(caminho) {
+      var c = str(caminho), m;
+      function d(o) { return Object.assign({ caminho: c }, o); }
+      if (c === 'meta.nome') return d({ tipo: 'texto', rotulo: 'Nome do Personagem', max: MAX_TEXTO });
+      if (c === 'meta.jogador') return d({ tipo: 'texto', rotulo: 'Jogador', max: MAX_TEXTO });
+      if (c === 'meta.nivel') return d({ tipo: 'inteiro', rotulo: 'Nível', min: 1, max: 5 });
+      if (c === 'meta.xp') return d({ tipo: 'inteiro', rotulo: 'XP', min: 0, max: MAX_XP });
+      if ((m = /^identidade\.(raca|variante|classe|ramo|origem)$/.exec(c))) return d({ tipo: 'ref', ref: m[1], rotulo: REFS[m[1]] });
+      if ((m = /^atributos\.base\.(FOR|DES|CON|INT|SAB)$/.exec(c))) {
+        return d({ tipo: 'inteiro', rotulo: NOME_AT[m[1]] + ' (base)', min: 1, max: 30, atributo: m[1] });
+      }
+      if ((m = /^pericias\.([a-z-]+)$/.exec(c)) && KhEstado.PERICIAS.indexOf(m[1]) >= 0) {
+        return d({ tipo: 'grau', rotulo: nomePericia(m[1]), min: 0, max: 4, pericia: m[1] });
+      }
+      if ((m = /^recursos\.(saude|stamina|eter|classe)\.atual$/.exec(c))) {
+        return d({ tipo: 'inteiro', rotulo: RECURSOS[m[1]] + ' atual', min: MIN_REC, max: MAX_REC, passo: true });
+      }
+      if (c === 'inventario.sins') return d({ tipo: 'inteiro', rotulo: 'Sins', min: 0, max: MAX_SINS, passo: true });
+      if (c === 'vhelor.marcas') return d({ tipo: 'inteiro', rotulo: 'Marcas da Vhelor', min: 0, max: 7, passo: true });
+      if (c === 'idiomas') return d({ tipo: 'lista', rotulo: 'Idiomas', max: MAX_LISTA });
+      if (c === 'imunidadesCondicao') return d({ tipo: 'conjunto', rotulo: 'Imunidade a condição' });
+      if (c === 'lore.historia') return d({ tipo: 'textoLongo', rotulo: 'História', max: MAX_LORE });
+      if (c === 'lore.outros') return d({ tipo: 'textoLongo', rotulo: 'Outros', max: MAX_LORE });
+      return null;
+    }
+    function faixa(cp) { return fmt(cp.min) + ' a ' + fmt(cp.max); }
+    // o texto digitado -> {ok, valor} | {ok:false, erro}
+    function ler(cp, bruto) {
+      if (cp.tipo === 'texto') {
+        var t = str(bruto).replace(/\s+/g, ' ').trim();
+        if (t.length > cp.max) return { ok: false, erro: cp.rotulo + ': no máximo ' + cp.max + ' caracteres.' };
+        return { ok: true, valor: t };
+      }
+      if (cp.tipo === 'textoLongo') {
+        var l = str(bruto).replace(/\r\n?/g, '\n');
+        if (!l.trim()) l = '';
+        if (l.length > cp.max) return { ok: false, erro: cp.rotulo + ': no máximo ' + cp.max + ' caracteres.' };
+        return { ok: true, valor: l };
+      }
+      if (cp.tipo === 'inteiro' || cp.tipo === 'grau') {
+        var n = lerInteiro(bruto);
+        if (n == null) return { ok: false, erro: cp.rotulo + ': digite um número inteiro (' + faixa(cp) + ').' };
+        if (n < cp.min || n > cp.max) return { ok: false, erro: cp.rotulo + ': de ' + faixa(cp) + '.' };
+        return { ok: true, valor: n };
+      }
+      if (cp.tipo === 'lista') {
+        var vistos = {}, out = [];
+        str(bruto).split(/[,;\n]/).forEach(function (x) {
+          x = x.replace(/\s+/g, ' ').trim();
+          var k = x.toLowerCase();
+          if (x && !vistos[k]) { vistos[k] = 1; out.push(x); }
+        });
+        if (out.join(', ').length > cp.max) return { ok: false, erro: cp.rotulo + ': no máximo ' + cp.max + ' caracteres.' };
+        return { ok: true, valor: out };
+      }
+      return { ok: false, erro: cp.rotulo + ': este campo não se digita.' };
+    }
+    function rotuloPasso(cp, valor, extra) {
+      if (cp.tipo === 'texto') return cp.rotulo + ': ' + (valor ? '"' + curto(valor) + '"' : 'em branco');
+      if (cp.tipo === 'inteiro') return cp.rotulo + ': ' + fmt(valor);
+      if (cp.tipo === 'grau') return cp.rotulo + ': ' + rotuloGrau(valor);
+      if (cp.tipo === 'ref') return cp.rotulo + ': ' + (obj(valor) && valor.nome ? semEmoji(valor.nome) : 'nenhuma');
+      if (cp.tipo === 'conjunto') return cp.rotulo + ': ' + str(extra);
+      return cp.rotulo;
+    }
+
+    // ---------------- a identidade: as opções do catálogo ----------------
+    function chaveDe(id, pre) { id = str(id); return id.indexOf(pre) === 0 ? id.slice(pre.length) : ''; }
+    function refDe(ficha, k) { var i = obj(ficha) && obj(ficha.identidade) ? ficha.identidade : {}; return obj(i[k]) ? i[k] : { id: null, nome: '' }; }
+    // ctx = KhFichaAbas.contexto(dados): porId ('tipo:id' -> entrada crua), classes, ramos
+    function doTipo(ctx, tipo) {
+      var out = [];
+      if (!obj(ctx) || !obj(ctx.porId)) return out;
+      Object.keys(ctx.porId).forEach(function (k) {
+        if (k.indexOf(tipo + ':') === 0) { var e = ctx.porId[k]; out.push({ id: str(e.id), nome: semEmoji(e.nome), raca: str(e.raca) }); }
+      });
+      return out;
+    }
+    // as opções do seletor de uma referência ('raca', 'variante', 'classe', 'ramo', 'origem'),
+    // na ordem do catálogo; variante só as da raça, ramo só os da classe
+    function opcoesRef(ctx, ficha, ref) {
+      if (TIPO_REF[ref]) {
+        var l = doTipo(ctx, TIPO_REF[ref]);
+        if (ref === 'variante') {
+          var r = chaveDe(refDe(ficha, 'raca').id, 'raca-');
+          l = l.filter(function (x) { return !!r && x.raca === r; });
+        }
+        return l.map(function (x) { return { id: x.id, nome: x.nome }; });
+      }
+      if (ref === 'classe') {
+        return Object.keys(obj(ctx) && obj(ctx.classes) ? ctx.classes : {}).map(function (id) {
+          return { id: id, nome: semEmoji(ctx.classes[id].nome) || id };
+        });
+      }
+      if (ref === 'ramo') {
+        var c = chaveDe(refDe(ficha, 'classe').id, 'classe-');
+        return Object.keys(obj(ctx) && obj(ctx.ramos) ? ctx.ramos : {}).filter(function (id) { return !!c && ctx.ramos[id].classe === c; })
+          .map(function (id) { return { id: id, nome: semEmoji(ctx.ramos[id].nome) || id }; });
+      }
+      return [];
+    }
+    // as condições do catálogo (imunidade a condição)
+    function opcoesCondicao(ctx) { return doTipo(ctx, 'condicao').map(function (x) { return { id: x.id, nome: x.nome }; }); }
+    function chaveItem(x) { return obj(x) ? str(x.id || x.nome) : str(x); }
+
+    // a mudança de uma referência; trocar a raça tira a variante (e a
+    // subespécie) de outra raça, trocar a classe tira o ramo de outra classe
+    function mudancasRef(ficha, cp, bruto, ctx) {
+      var id = str(bruto);
+      if (id === MANTER) return { ok: true, mudancas: [], rotulo: '' };
+      var valor = { id: null, nome: '' };
+      if (id) {
+        var op = opcoesRef(ctx, ficha, cp.ref).filter(function (x) { return x.id === id; })[0];
+        if (!op) return { ok: false, erro: cp.rotulo + ': opção fora do catálogo.' };
+        valor = { id: op.id, nome: op.nome };
+      }
+      var out = [{ caminho: cp.caminho, valor: valor }], avisos = [];
+      if (cp.ref === 'raca') {
+        var r = chaveDe(valor.id, 'raca-');
+        ['variante', 'subespecie'].forEach(function (k) {
+          var atual = refDe(ficha, k);
+          if (!atual.id) return;
+          var e = obj(ctx) && obj(ctx.porId) ? ctx.porId[k + ':' + atual.id] : null;
+          if (e && str(e.raca) === r) return;
+          out.push({ caminho: 'identidade.' + k, valor: { id: null, nome: '' } });
+          avisos.push((k === 'variante' ? 'A variante ' : 'A subespécie ') + semEmoji(atual.nome || atual.id) + ' saiu: é de outra raça.');
+        });
+      }
+      if (cp.ref === 'classe') {
+        var ramo = refDe(ficha, 'ramo'), c = chaveDe(valor.id, 'classe-');
+        var info = ramo.id && obj(ctx) && obj(ctx.ramos) ? ctx.ramos[ramo.id] : null;
+        if (ramo.id && !(info && info.classe === c)) {
+          out.push({ caminho: 'identidade.ramo', valor: { id: null, nome: '' } });
+          avisos.push('O ramo ' + semEmoji(ramo.nome || ramo.id) + ' saiu: é de outra classe.');
+        }
+      }
+      return { ok: true, mudancas: out, rotulo: rotuloPasso(cp, valor), aviso: avisos.join(' ') };
+    }
+
+    // ---------------- a mudança de um campo ----------------
+    // bruto: o texto digitado (texto, número, lista), o id escolhido (ref) ou,
+    // no conjunto, {valor: id, marcado: bool}. op: {contexto (ref e conjunto)}
+    function mudancas(ficha, caminho, bruto, op) {
+      op = obj(op) ? op : {};
+      var cp = campo(caminho);
+      if (!cp) return { ok: false, erro: 'Este campo não se edita aqui.' };
+      if (cp.tipo === 'ref') return mudancasRef(ficha, cp, bruto, op.contexto);
+      if (cp.tipo === 'conjunto') {
+        var b = obj(bruto) ? bruto : {}, k = str(b.valor);
+        if (!k) return { ok: false, erro: cp.rotulo + ': nada marcado.' };
+        var atual = lista(pega(ficha, caminho)), tem = atual.some(function (x) { return chaveItem(x) === k; });
+        var novo = atual.slice();
+        if (b.marcado && !tem) novo.push(k);
+        if (!b.marcado && tem) novo = atual.filter(function (x) { return chaveItem(x) !== k; });
+        var cond = opcoesCondicao(op.contexto).filter(function (x) { return x.id === k; })[0];
+        var nomeK = cond ? cond.nome : k;
+        return { ok: true, mudancas: [{ caminho: caminho, valor: novo }], rotulo: rotuloPasso(cp, novo, (b.marcado ? 'marca ' : 'desmarca ') + nomeK) };
+      }
+      var r = ler(cp, bruto);
+      if (!r.ok) return r;
+      return { ok: true, mudancas: [{ caminho: caminho, valor: r.valor }], rotulo: rotuloPasso(cp, r.valor) };
+    }
+    // o stepper: o valor guardado (não o digitado) mais d, dentro da faixa
+    function passo(ficha, caminho, d) {
+      var cp = campo(caminho);
+      if (!cp || cp.tipo !== 'inteiro') return { ok: false, erro: 'Este campo não tem − e +.' };
+      var v = Number(pega(ficha, caminho)) || 0;
+      var n = Math.max(cp.min, Math.min(cp.max, v + (Number(d) || 0)));
+      return mudancas(ficha, caminho, n);
+    }
+    // clicar no círculo i (1 a 4): vira o grau i; clicar no último aceso apaga ele (i − 1)
+    function grauClicado(ficha, pericia, i) {
+      var g = Number(pega(ficha, 'pericias.' + pericia)) || 0;
+      i = Math.max(1, Math.min(4, Number(i) || 1));
+      return g === i ? i - 1 : i;
+    }
+
+    // ---------------- ajuste manual (M2) ----------------
+    function ajustavel(caminho) { return !!KhEstado && KhEstado.ehCaminhoDeAjuste(caminho); }
+    function motivoNaoAjuste(caminho) {
+      var c = str(caminho);
+      for (var i = 0; i < MOTIVOS.length; i++) if (MOTIVOS[i][0].test(c)) return MOTIVOS[i][1];
+      return MOTIVO_PADRAO;
+    }
+    function tipoAjuste(caminho) {
+      if (/^(?:resistencia|imunidade|vulnerabilidade)\./.test(str(caminho))) return 'booleano';
+      if (KhEstado.CAMINHOS_DADO.indexOf(caminho) >= 0) return 'dado';
+      return 'numero';
+    }
+    function textoAjuste(aj) {
+      if (!obj(aj)) return '';
+      if (typeof aj.valor === 'boolean') return 'valor fixo: ' + (aj.valor ? 'sim' : 'não');
+      return aj.modo === 'soma' ? 'diferença ' + sinal(aj.valor) : 'valor fixo ' + fmt(aj.valor);
+    }
+    // o ajuste do pop-over. entrada: {modo:'fixa'|'soma', valor (texto; 'sim'/'nao' no booleano), motivo}
+    // no: o nó avaliado (o calculado entra no calculadoEm do valor fixo, para o
+    // aviso "o calculado mudou"); agora: a data ISO. -> {ok, ajuste} | {ok:false, erro}
+    function montaAjuste(caminho, entrada, no, agora) {
+      entrada = obj(entrada) ? entrada : {};
+      if (!ajustavel(caminho)) return { ok: false, erro: 'Este número não aceita ajuste: ' + motivoNaoAjuste(caminho) };
+      var t = tipoAjuste(caminho), modo = entrada.modo === 'soma' ? 'soma' : 'fixa', valor;
+      if (t === 'booleano') {
+        modo = 'fixa';
+        var b = str(entrada.valor).toLowerCase();
+        if (entrada.valor === true || b === 'sim') valor = true;
+        else if (entrada.valor === false || b === 'nao' || b === 'não') valor = false;
+        else return { ok: false, erro: 'Escolha sim ou não.' };
+      } else if (t === 'dado' && modo === 'fixa') {
+        valor = str(entrada.valor).trim().toLowerCase().replace(/−/g, '-').replace(/\s+/g, ' ')
+          .replace(/\s*\+\s*/g, ' + ').replace(/\s*-\s*/g, ' - ');
+        if (!valor) return { ok: false, erro: 'Digite o dado, como 1d8 ou 13 + 1d8.' };
+      } else {
+        valor = lerNumero(entrada.valor);
+        if (valor == null) return { ok: false, erro: modo === 'soma' ? 'Digite a diferença, como +2 ou −1.' : 'Digite um número.' };
+        if (modo === 'soma' && valor === 0) return { ok: false, erro: 'Uma diferença de 0 não muda nada: para tirar o ajuste, use Remover.' };
+      }
+      var aj = { modo: modo, valor: valor, temporario: false, desde: str(agora) || new Date().toISOString(), origem: 'manual' };
+      var mot = str(entrada.motivo).replace(/\s+/g, ' ').trim();
+      if (mot.length > MAX_MOTIVO) return { ok: false, erro: 'O motivo tem no máximo ' + MAX_MOTIVO + ' caracteres.' };
+      if (mot) aj.motivo = mot;
+      if (modo === 'fixa' && obj(no) && typeof no.calculado === 'number' && isFinite(no.calculado)) aj.calculadoEm = no.calculado;
+      var e = KhEstado.validarAjuste(caminho, aj);
+      if (e) return { ok: false, erro: e === 'valor-invalido' && t === 'dado' ? 'Digite o dado, como 1d8 ou 13 + 1d8.' : ERRO_AJUSTE[e] || 'Ajuste recusado (' + e + ').' };
+      return { ok: true, ajuste: aj };
+    }
+    function ajustesDe(ficha) { return obj(ficha) && obj(ficha.ajustes) ? clone(ficha.ajustes) : {}; }
+    // a mudança 'ajustes' com o ajuste novo (rotuloNo: o nome do número, para o passo)
+    function mudancaAjuste(ficha, caminho, aj, rotuloNo) {
+      var a = ajustesDe(ficha);
+      a[caminho] = clone(aj);
+      return { ok: true, mudancas: [{ caminho: 'ajustes', valor: a }],
+        rotulo: 'Ajuste em ' + (semEmoji(rotuloNo) || caminho) + ': ' + textoAjuste(aj) };
+    }
+    // a mudança 'ajustes' sem os caminhos (remoção, um ou em lote)
+    function mudancaRemover(ficha, caminhos, rotuloNo) {
+      var a = ajustesDe(ficha), fora = lista(caminhos).filter(function (k) { return Object.prototype.hasOwnProperty.call(a, k); });
+      if (!fora.length) return { ok: false, erro: 'Nenhum ajuste selecionado.' };
+      fora.forEach(function (k) { delete a[k]; });
+      return { ok: true, mudancas: [{ caminho: 'ajustes', valor: a }],
+        rotulo: fora.length === 1 ? 'Remover o ajuste de ' + (semEmoji(rotuloNo) || fora[0]) : 'Remover ' + fora.length + ' ajustes' };
+    }
+
+    return { NOME_AT: NOME_AT, RECURSOS: RECURSOS, REFS: REFS, MANTER: MANTER, MODOS: MODOS, MAX_MOTIVO: MAX_MOTIVO,
+      MAX_TEXTO: MAX_TEXTO, MAX_LISTA: MAX_LISTA, MAX_LORE: MAX_LORE,
+      lerNumero: lerNumero, lerInteiro: lerInteiro, campo: campo, ler: ler, mudancas: mudancas, passo: passo,
+      grauClicado: grauClicado, rotuloGrau: rotuloGrau, opcoesRef: opcoesRef, opcoesCondicao: opcoesCondicao, chaveItem: chaveItem,
+      ajustavel: ajustavel, motivoNaoAjuste: motivoNaoAjuste, tipoAjuste: tipoAjuste, textoAjuste: textoAjuste,
+      montaAjuste: montaAjuste, mudancaAjuste: mudancaAjuste, mudancaRemover: mudancaRemover };
+  })();
+
+  if (emNode) { module.exports = KhEdicao; return; }
+  raiz.KhEdicao = KhEdicao;
+})(typeof window !== 'undefined' ? window : this);
+
 // ==== js/ficha/kh-seletor.js ====
 /* Khalkaria — Ficha · KhSeletor: o seletor de fichas e a faixa do Ensaio (F4.6a), SÓ COM A PRÉVIA.
  * Especificação: docs/ficha-digital/07-f4-6-ensaio.md §2 (base: plano 02 §3.1, D36).
@@ -7737,6 +8296,18 @@
  * Uma aba que lança não derruba as outras ("falhou ao desenhar"); aba sem
  * desenhista fica "em construção".
  *
+ * Edição (F4.6b, 07 §3, só com o modo Ensaio): paineis(res, {editar}) com
+ * 'pagina' troca os números de ESTADO por controles (nome, jogador, nível,
+ * XP, raça/variante/classe/ramo/origem por seletor do catálogo, atributos
+ * base, os círculos de grau das 24 perícias, recursos atuais e Sins com − e
+ * +, idiomas, imunidade a condição, Marcas da Vhelor, História e Outros) e
+ * passa o KhConta em modo de edição (o número ajustável abre o pop-over
+ * "Ajustar"; o outro diz por que não aceita). Com 'drawer', só os recursos
+ * atuais e Sins, com − e +. Todo controle leva data-ed="<caminho na ficha
+ * v3>" (ou data-ed-delta/data-ed-grau/data-ed-lista) e as classes .ke-ed-*
+ * (css/ficha-ensaio.css, injetado só com o Ensaio); quem grava é o KhEditor.
+ * Sem editar, o HTML é o de sempre, byte a byte (os ouros).
+ *
  * Cartas raras: só ícone, requisito e nome, NUNCA o efeito (D11, D33; nem o
  * texto que a v2 tenha guardado). Técnica sem par no catálogo: o texto salvo e
  * a marca "órfã". Recurso de classe que não é contador (D105): as características.
@@ -7757,6 +8328,7 @@
   var KhConta = emNode ? require('./kh-conta.js') : raiz.KhConta;
   var KhEstado = emNode ? require('./kh-estado.js') : raiz.KhEstado;
   var KhInv = emNode ? require('./kh-inv.js') : raiz.KhInv;
+  var KhEdicao = emNode ? require('./kh-edicao.js') : raiz.KhEdicao;
 
   var KhFichaAbas = (function () {
     var PREFIXO = 'fp';
@@ -7985,12 +8557,84 @@
         return x ? '<span class="' + P + '-rar ' + P + '-rar-' + x[1] + '">' + esc(x[0]) + '</span>' : (r ? '<span class="' + P + '-rar">' + esc(r) + '</span>' : '');
       }
 
+      // ---------------- edição (F4.6b, só com o Ensaio): os controles ----------------
+      // ctx.editar: 'pagina' (todos os campos de estado), 'drawer' (só recursos
+      // atuais e Sins) ou null (só leitura: o HTML de sempre). Todo controle leva
+      // data-ed (o caminho na ficha v3, o do KhEstado.armazem.editar) e
+      // data-campo="ed-<caminho>" (o redesenho devolve o foco ao equivalente).
+      function edAttrs(caminho, rotulo) {
+        return ' data-ed="' + esc(caminho) + '" data-campo="ed-' + esc(caminho) + '" aria-label="' + esc(rotulo) + '"';
+      }
+      function edTexto(caminho, rotulo, v, max) {
+        return '<input type="text" class="ke-ed ke-ed-texto"' + edAttrs(caminho, rotulo) + ' value="' + esc(v) + '" maxlength="' + max + '" autocomplete="off">';
+      }
+      function edNum(caminho, rotulo, v, min, max) {
+        return '<input type="number" class="ke-ed ke-ed-num"' + edAttrs(caminho, rotulo) + ' value="' + esc(v == null ? '' : v) + '"' +
+          ' min="' + min + '" max="' + max + '" step="1" inputmode="numeric">';
+      }
+      // − n + (o .kh-stepper do site): os botões levam data-ed-delta e o caminho em data-ed-alvo
+      function edPasso(caminho, rotulo, v, min, max) {
+        function bt(d, cls, txt) {
+          return '<button type="button" class="ke-ed-' + cls + '" data-ed-delta="' + d + '" data-ed-alvo="' + esc(caminho) + '"' +
+            ' data-campo="ed-' + esc(caminho) + '-' + cls + '" aria-label="' + esc(rotulo + ' ' + txt + ' 1') + '" title="' + txt + ' 1">' + txt + '</button>';
+        }
+        return '<span class="kh-stepper ke-ed-passo" role="group" aria-label="' + esc(rotulo) + '">' + bt(-1, 'menos', '−') +
+          edNum(caminho, rotulo, v, min, max) + bt(1, 'mais', '+') + '</span>';
+      }
+      function edArea(caminho, rotulo, v, max) {
+        return '<textarea class="ke-ed ke-ed-area"' + edAttrs(caminho, rotulo) + ' rows="6" maxlength="' + max + '">' + esc(v) + '</textarea>';
+      }
+      // o seletor de uma referência da identidade (ref: o {id, nome} guardado).
+      // O que não está nas opções (o texto livre que veio da ficha atual, sem
+      // par; uma variante de outra raça) fica como a opção "manter".
+      function edSel(k, rotulo, ops, ref) {
+        var id = obj(ref) ? str(ref.id) : '', nome = obj(ref) ? semEmoji(ref.nome) : '';
+        var tem = ops.some(function (x) { return x.id === id; });
+        var manter = (id && !tem) || (!id && !!nome);
+        var nenhum = k === 'ramo' ? '(nenhum)' : '(nenhuma)';
+        var off = !ops.length && !manter && !id;
+        var porque = off ? (k === 'variante' ? 'Escolha uma raça com variantes antes' : k === 'ramo' ? 'Escolha a classe antes' : '') : '';
+        return '<select class="ke-ed ke-ed-sel"' + edAttrs('identidade.' + k, rotulo) + (off ? ' disabled' : '') + (porque ? ' title="' + esc(porque) + '"' : '') + '>' +
+          '<option value=""' + (!id && !nome ? ' selected' : '') + '>' + nenhum + '</option>' +
+          (manter ? '<option value="' + (KhEdicao ? KhEdicao.MANTER : '__manter') + '" selected>' +
+            esc((nome || id) + (id ? ' (fora da lista)' : ' (sem par no catálogo)')) + '</option>' : '') +
+          ops.map(function (x) { return '<option value="' + esc(x.id) + '"' + (x.id === id ? ' selected' : '') + '>' + esc(x.nome) + '</option>'; }).join('') +
+          '</select>';
+      }
+      // o nome de uma imunidade a condição: o id do catálogo vira o nome (o texto livre fica)
+      function nomeImune(ctx, x) {
+        if (obj(x)) return semEmoji(x.nome || x.id);
+        var c = ctx && ctx.porId ? ctx.porId['condicao:' + str(x)] : null;
+        return semEmoji(c ? c.nome : x);
+      }
+      // imunidade a condição: uma caixa por condição do catálogo (mais o que a
+      // ficha tiver fora dele), dentro de um <details>
+      function edImunes(ctx, f) {
+        var atual = lista(f.imunidadesCondicao), chaves = atual.map(function (x) { return KhEdicao ? KhEdicao.chaveItem(x) : str(x); });
+        var ops = KhEdicao ? KhEdicao.opcoesCondicao(ctx) : [];
+        var ids = ops.map(function (x) { return x.id; });
+        var fora = atual.filter(function (x, i) { return ids.indexOf(chaves[i]) < 0; });
+        function caixa(v, nome, on) {
+          return '<label class="ke-ed-chk"><input type="checkbox" data-ed-lista="imunidadesCondicao" value="' + esc(v) + '"' +
+            ' data-campo="ed-imunidadesCondicao-' + esc(v) + '"' + (on ? ' checked' : '') + '> ' + esc(nome) + '</label>';
+        }
+        return '<details class="ke-ed-det" data-campo="ed-imunidadesCondicao"><summary>' +
+          esc(chaves.length ? atual.map(function (x) { return nomeImune(ctx, x); }).join(', ') : 'Nenhuma: marcar') + '</summary>' +
+          '<div class="ke-ed-chks" role="group" aria-label="Imunidade a condição">' +
+          ops.map(function (x) { return caixa(x.id, x.nome, chaves.indexOf(x.id) >= 0); }).join('') +
+          fora.map(function (x) { return caixa(KhEdicao ? KhEdicao.chaveItem(x) : str(x), nomeImune(ctx, x) + ' (fora do catálogo)', true); }).join('') +
+          '</div></details>';
+      }
+
       // ======================================================================
       // 1. Núcleo (A4 pág. 1)
       // ======================================================================
       RENDER.nucleo = function (res, C, ctx) {
         var f = res.ficha, nos = res.av.nos, D = ctx.D, conta = C.conta, h = '';
         var meta = f.meta || {}, idt = f.identidade || {};
+        // edição (F4.6b): edP = a página com o Ensaio (todos os campos de estado); edR = também o drawer (recursos atuais e Sins)
+        var edP = ctx.editar === 'pagina' && !!KhEdicao, edR = !!ctx.editar && !!KhEdicao;
+        function num(caminho, v, rotulo, min, max) { return edR ? edPasso(caminho, rotulo, v, min, max) : nEstado(caminho, v); }
 
         // ---- identidade
         function idCampo(campo, rot, val, cls) {
@@ -8000,7 +8644,19 @@
           if (!obj(r) || !(r.id || r.nome)) return campo === 'raca' || campo === 'classe' || campo === 'origem' ? idCampo(campo, rot, '') : '';
           return idCampo(campo, rot, esc(refNome(r)) + (!r.id ? ' ' + selo('orfa', 'sem par', 'Sem par no catálogo: só o nome digitado') : ''));
         }
-        h += moldura('identidade', 'Identidade', '<dl class="' + P + '-ident-grade">' +
+        function selRef(k) {
+          return idCampo(k, KhEdicao.REFS[k], edSel(k, KhEdicao.REFS[k], KhEdicao.opcoesRef(ctx, f, k), idt[k]));
+        }
+        if (edP) {
+          h += moldura('identidade', 'Identidade', '<dl class="' + P + '-ident-grade">' +
+            idCampo('nome', 'Nome do Personagem', edTexto('meta.nome', 'Nome do Personagem', meta.nome, KhEdicao.MAX_TEXTO), P + '-id-largo') +
+            idCampo('jogador', 'Jogador', edTexto('meta.jogador', 'Jogador', meta.jogador, KhEdicao.MAX_TEXTO)) +
+            idCampo('nivel', 'Nível', edNum('meta.nivel', 'Nível', meta.nivel, 1, 5)) +
+            idCampo('xp', 'XP', edNum('meta.xp', 'XP', meta.xp, 0, KhEdicao.campo('meta.xp').max)) +
+            selRef('raca') + selRef('variante') + idRef('subespecie', 'Subespécie', idt.subespecie) +
+            selRef('classe') + selRef('ramo') + selRef('origem') +
+            '</dl>', { cls: P + '-bloco-ident' });
+        } else h += moldura('identidade', 'Identidade', '<dl class="' + P + '-ident-grade">' +
           idCampo('nome', 'Nome do Personagem', esc(semEmoji(meta.nome)), P + '-id-largo') +
           idCampo('jogador', 'Jogador', esc(semEmoji(meta.jogador))) +
           idCampo('nivel', 'Nível', nEstado('meta.nivel', meta.nivel)) +
@@ -8015,6 +8671,8 @@
             '<span class="' + P + '-at-nome">' + esc(a[1]) + '</span>' +
             '<span class="' + P + '-at-total"><span class="' + P + '-rot">Atributo</span>' + conta('atributo.' + a[0] + '.total') + '</span>' +
             '<span class="' + P + '-at-mod"><span class="' + P + '-rot">Mod.</span>' + conta('atributo.' + a[0] + '.mod', { texto: modTxt(nos['atributo.' + a[0] + '.mod']) }) + '</span>' +
+            (edP ? '<span class="' + P + '-at-base ke-ed-base"><span class="' + P + '-rot">Base</span>' +
+              edNum('atributos.base.' + a[0], a[1] + ' (base)', f.atributos && f.atributos.base ? f.atributos.base[a[0]] : null, 1, 30) + '</span>' : '') +
             '</div>';
         }).join('') + '</div>',
         { nota: f.atributos && f.atributos.migradoTotal ? 'Total migrado da ficha atual: a raça, o nível e os efeitos de técnicas e cartas já estão dentro do número digitado.' : '' });
@@ -8037,10 +8695,16 @@
             p.modo === 'dado' ? 'só o dado, sem atributo (D8a)' : NOME_ATRIBUTO[at] || '';
           var circ = '';
           for (var i = 1; i <= 4; i++) {
-            circ += '<span class="' + P + '-grau' + (i <= g ? ' on' : '') + '" title="' + esc((bonus[i] != null ? '+' + bonus[i] + ' ' : '') + (graus[i] || '')) + '"></span>';
+            var tit = (bonus[i] != null ? '+' + bonus[i] + ' ' : '') + (graus[i] || '');
+            var bola = '<span class="' + P + '-grau' + (i <= g ? ' on' : '') + '"' + (edP ? '' : ' title="' + esc(tit) + '"') + '></span>';
+            // edição: cada círculo é um botão (vira o grau i; o último aceso apaga a si mesmo)
+            circ += edP ? '<button type="button" class="ke-ed-grau" data-ed-grau="' + esc(p.id) + '" data-grau="' + i + '"' +
+              ' data-campo="ed-pericias.' + esc(p.id) + '-' + i + '" aria-pressed="' + (i <= g) + '"' +
+              ' aria-label="' + esc(p.nome + ': grau ' + i + (graus[i] ? ', ' + KhEdicao.rotuloGrau(i) : '') + (bonus[i] != null ? ' (+' + bonus[i] + ')' : '')) + '"' +
+              ' title="' + esc(tit + (i === g ? ' · clique para baixar a ' + KhEdicao.rotuloGrau(i - 1) : ' · clique para marcar')) + '">' + bola + '</button>' : bola;
           }
           return '<div class="' + P + '-per" data-campo="pericia-' + p.id + '">' +
-            '<span class="' + P + '-per-graus" role="img" aria-label="' + esc('Grau ' + g + ' de 4' + (graus[g] ? ': ' + graus[g] : '')) + '">' + circ + '</span>' +
+            '<span class="' + P + '-per-graus" role="' + (edP ? 'group' : 'img') + '" aria-label="' + esc((edP ? p.nome + ': grau ' : 'Grau ') + g + ' de 4' + (graus[g] ? ': ' + graus[g] : '')) + '">' + circ + '</span>' +
             // o selo (decisão, pendente…) vai junto do nome; a caixa de total fica só com o número
             '<span class="' + P + '-per-nome">' + esc(p.nome) + (no ? C.selosHTML(no.selos) : '') + (/^oficio-/.test(p.id) ? seloOf : '') + '</span>' +
             '<span class="' + P + '-per-at" title="' + esc(atTit) + '">' + esc(at) + '</span>' +
@@ -8069,7 +8733,7 @@
           var x = rc[id] || {}, no = nos['recurso.' + id + '.max'];
           return '<div class="' + P + '-rec ' + P + '-rec-' + id + '" data-campo="' + id + '">' + img(ctx, icone, P + '-rec-img') +
             '<span class="' + P + '-rec-nome">' + esc(nome) + '</span>' +
-            '<span class="' + P + '-rec-num"><span class="' + P + '-rot">Atual</span>' + nEstado('recursos.' + id + '.atual', x.atual) +
+            '<span class="' + P + '-rec-num"><span class="' + P + '-rot">Atual</span>' + num('recursos.' + id + '.atual', x.atual, nome + ' atual', -9999, 9999) +
             '<span class="' + P + '-barra-sep">/</span><span class="' + P + '-rot">Máx.</span>' + conta('recurso.' + id + '.max') + '</span>' +
             barra(x.atual, no && no.valor, P + '-barra-' + id) + (extra || '') + '</div>';
         }
@@ -8087,7 +8751,8 @@
           recClasse = '<div class="' + P + '-rec ' + P + '-rec-classe" data-campo="recurso-classe"><span class="' + P + '-rec-ico">' + SVG_ACOES + '</span>' +
             '<span class="' + P + '-rec-nome">Recurso de Classe' + (nomeCl ? ' <span class="' + P + '-sub">' + esc(nomeCl) + '</span>' : '') +
             (noCl && !noCl.medidor && digitado ? ' <span class="' + P + '-sub">(nome digitado na ficha atual; sem nome no contrato)</span>' : '') + '</span>' +
-            '<span class="' + P + '-rec-num"><span class="' + P + '-rot">Atual</span>' + nEstado('recursos.classe.atual', obj(rc.classe) ? rc.classe.atual : null) +
+            '<span class="' + P + '-rec-num"><span class="' + P + '-rot">Atual</span>' +
+              num('recursos.classe.atual', obj(rc.classe) ? rc.classe.atual : null, 'Recurso de Classe atual', -9999, 9999) +
             '<span class="' + P + '-barra-sep">/</span><span class="' + P + '-rot">Máx.</span>' + conta('recurso.classe.max') + '</span>' +
             barra(obj(rc.classe) ? rc.classe.atual : null, noCl && noCl.valor, P + '-barra-classe') + '</div>';
         }
@@ -8111,7 +8776,7 @@
           tile('cd', 'CD', img(ctx, 'cd', P + '-der-img'), conta('cd')) +
           tile('movimento', 'Movimento', img(ctx, 'movimento', P + '-der-img'), conta('movimento', { un: ' m' })) +
           tile('acoes', 'Ações', '<span class="' + P + '-der-ico">' + SVG_ACOES + '</span>', conta('acoes')) +
-          tile('sins', 'Sins', img(ctx, 'sins', P + '-der-img'), nEstado('inventario.sins', f.inventario ? f.inventario.sins || 0 : 0)) +
+          tile('sins', 'Sins', img(ctx, 'sins', P + '-der-img'), num('inventario.sins', f.inventario ? f.inventario.sins || 0 : 0, 'Sins', 0, 999999999)) +
           '</div>');
 
         // ---- capacidade: Equipamentos e Bugigangas com régua e Sobrepeso
@@ -8124,16 +8789,25 @@
 
         // ---- Marcas da Vhelor: só com 1 ou mais (M5)
         var vh = f.vhelor && Number(f.vhelor.marcas) || 0;
-        if (vh >= 1) {
-          h += moldura('vhelor', 'Marcas da Vhelor', '<p class="' + P + '-vhelor">' + nEstado('vhelor.marcas', vh) + '<span class="' + P + '-sub"> de 7</span>' +
-            (f.vhelor.abstinente ? ' ' + selo('aviso', 'em abstinência') : '') + '</p>', { cls: P + '-bloco-vhelor' });
+        // na edição, sempre (para marcar a primeira); fora dela, só com 1 ou mais (M5)
+        if (vh >= 1 || edP) {
+          h += moldura('vhelor', 'Marcas da Vhelor', '<p class="' + P + '-vhelor">' + (edP ? edPasso('vhelor.marcas', 'Marcas da Vhelor', vh, 0, 7) : nEstado('vhelor.marcas', vh)) +
+            '<span class="' + P + '-sub"> de 7</span>' +
+            (f.vhelor && f.vhelor.abstinente ? ' ' + selo('aviso', 'em abstinência') : '') + '</p>',
+          { cls: P + '-bloco-vhelor', nota: edP && vh < 1 ? 'Fora da edição, este bloco só aparece com 1 Marca ou mais.' : '' });
         }
-        // ---- imunidade a condição e idiomas: só quando há
+        // ---- imunidade a condição e idiomas: só quando há (na edição, sempre)
         var imc = lista(f.imunidadesCondicao), idi = lista(f.idiomas);
-        if (imc.length || idi.length) {
+        function nomeLivre(x) { return semEmoji(obj(x) ? x.nome || x.id : x); }
+        if (edP) {
           h += moldura('outros-nucleo', 'Imunidades e idiomas', '<dl class="' + P + '-ident-grade">' +
-            (imc.length ? idCampo('imunidades', 'Imunidade a condição', esc(imc.map(function (x) { return semEmoji(obj(x) ? x.nome || x.id : x); }).join(', '))) : '') +
-            (idi.length ? idCampo('idiomas', 'Idiomas', esc(idi.map(function (x) { return semEmoji(obj(x) ? x.nome || x.id : x); }).join(', '))) : '') + '</dl>');
+            idCampo('imunidades', 'Imunidade a condição', edImunes(ctx, f)) +
+            idCampo('idiomas', 'Idiomas', edTexto('idiomas', 'Idiomas (separados por vírgula)', idi.map(nomeLivre).join(', '), KhEdicao.MAX_LISTA)) + '</dl>',
+          { nota: 'Idiomas separados por vírgula.' });
+        } else if (imc.length || idi.length) {
+          h += moldura('outros-nucleo', 'Imunidades e idiomas', '<dl class="' + P + '-ident-grade">' +
+            (imc.length ? idCampo('imunidades', 'Imunidade a condição', esc(imc.map(function (x) { return nomeImune(ctx, x); }).join(', '))) : '') +
+            (idi.length ? idCampo('idiomas', 'Idiomas', esc(idi.map(nomeLivre).join(', '))) : '') + '</dl>');
         }
         h += avisos(res, C);
         return h;
@@ -8377,6 +9051,8 @@
         }
         var lore = f.lore || {};
         function texto(campo, tit, v) {
+          // edição (F4.6b): a caixa de texto, que grava ao sair dela
+          if (ctx.editar === 'pagina' && KhEdicao) return moldura(campo, tit, edArea('lore.' + campo, tit, str(v), KhEdicao.MAX_LORE), { cls: P + '-bloco-lore' });
           return moldura(campo, tit, v && str(v).trim() ? '<p class="' + P + '-lore">' + esc(semEmoji(v)) + '</p>' : '<p class="' + P + '-nota">Em branco.</p>', { cls: P + '-bloco-lore' });
         }
         h += '<div class="' + P + '-lores">' + texto('historia', 'História', lore.historia) + texto('outros', 'Outros', lore.outros) + '</div>';
@@ -8434,7 +9110,8 @@
             numerica: '= ' + (sint.length ? sint.map(function (x) { return fmt(qtdDe(x)); }).join(' + ') + (sint.length > 1 ? ' = ' + fmt(ns) : '') : '0') },
           avisos: ns > lim ? [{ tipo: 'sintonia', msg: ns + ' Itens Mágicos sintonizados; o limite é ' + lim }] : [] };
         h += moldura('resumo-bazar', 'Bolsa', '<div class="' + P + '-ders">' +
-          '<div class="' + P + '-der" data-campo="sins">' + img(ctx, 'sins', P + '-der-img') + '<span class="' + P + '-der-rot">Sins</span><span class="' + P + '-der-val">' + nEstado('inventario.sins', inv.sins || 0) + '</span></div>' +
+          '<div class="' + P + '-der" data-campo="sins">' + img(ctx, 'sins', P + '-der-img') + '<span class="' + P + '-der-rot">Sins</span><span class="' + P + '-der-val">' +
+            (ctx.editar && KhEdicao ? edPasso('inventario.sins', 'Sins', inv.sins || 0, 0, 999999999) : nEstado('inventario.sins', inv.sins || 0)) + '</span></div>' +
           '<div class="' + P + '-der" data-campo="sintonizados"><span class="' + P + '-der-ico">' + SVG_RARA + '</span><span class="' + P + '-der-rot">Sintonizados</span><span class="' + P + '-der-val">' +
             C.conta('inventario.sintonizados', { no: noSint, texto: fmt(ns) + ' / ' + fmt(lim) }) + '</span></div>' +
           '</div>' + capacidade(res, C, ctx, 'carga-'), { ico: img(ctx, 'mochila', P + '-tit-img') });
@@ -8465,8 +9142,10 @@
       // ======================================================================
       // 5. Grimório (A4 pág. 5): magias por nível 1–5
       // ======================================================================
-      function cardMagia(e, c, res, C) {
+      function cardMagia(e, c, res, C, ctx) {
         var nos = res.av.nos;
+        // edição (F4.6b): a intensidade escolhida mostra o nó da magia (o que aceita ajuste)
+        var edP = !!ctx && ctx.editar === 'pagina';
         var nome = c ? semEmoji(c.nome) : semEmoji(e.cache && e.cache.nome) || '(sem nome)';
         var stats = {};
         lista(c && c.stats).forEach(function (s) { if (obj(s) && s.chave && stats[s.chave] == null) stats[s.chave] = s.valor; });
@@ -8480,7 +9159,8 @@
         var noC = caminho ? nos[caminho] : null;
         var custo = noC ? '<div class="' + P + '-mg-custo" data-campo="custo">' + lista(noC.porIntensidade).map(function (pi) {
           var cel = !pi.permitida ? '<span class="' + P + '-nulo" title="' + esc(pi.nome + ' fora das intensidades desta magia') + '">—</span>'
-            : C.conta(caminho + '.' + pi.intensidade, { no: pi.no, semSelos: true });
+            : edP && pi.escolhida ? C.conta(caminho, { semSelos: true })
+              : C.conta(caminho + '.' + pi.intensidade, { no: pi.no, semSelos: true });
           return '<span class="' + P + '-mg-int' + (pi.escolhida ? ' ' + P + '-escolhida' : '') + (!pi.permitida ? ' ' + P + '-mg-int-off' : '') + '">' +
             '<span class="' + P + '-rot">' + esc(pi.nome) + '</span>' + cel + '</span>';
         }).join('') + '</div>' : '<p class="' + P + '-nota">Custo indisponível (magia sem par no catálogo).</p>';
@@ -8513,12 +9193,12 @@
         for (var nv = 1; nv <= 5; nv++) {
           var doNivel = mg.filter(function (m) { return m.nivel === nv; });
           h += moldura('magias-nivel-' + nv, 'Nível ' + nv, doNivel.length
-            ? '<div class="' + P + '-mgs">' + doNivel.map(function (m) { return cardMagia(m.e, m.c, res, C); }).join('') + '</div>'
+            ? '<div class="' + P + '-mgs">' + doNivel.map(function (m) { return cardMagia(m.e, m.c, res, C, ctx); }).join('') + '</div>'
             : '<p class="' + P + '-nota">Nenhuma magia de nível ' + nv + '.</p>', { cls: P + '-bloco-nivel' });
         }
         var sem = mg.filter(function (m) { return !(m.nivel >= 1 && m.nivel <= 5); });
         if (sem.length) {
-          h += moldura('magias-orfas', 'Sem nível (órfãs)', '<div class="' + P + '-mgs">' + sem.map(function (m) { return cardMagia(m.e, m.c, res, C); }).join('') + '</div>');
+          h += moldura('magias-orfas', 'Sem nível (órfãs)', '<div class="' + P + '-mgs">' + sem.map(function (m) { return cardMagia(m.e, m.c, res, C, ctx); }).join('') + '</div>');
         }
         return '<p class="' + P + '-nota ' + P + '-nota-topo">' + esc(nota) + '</p>' + h;
       };
@@ -8526,14 +9206,20 @@
       // a passada inteira: um html por aba, com UMA instância do KhConta (ids
       // <p>-d-1, <p>-d-2… únicos no HTML todo); res fora de 'ok' vira a mensagem
       // do estado em todas as abas.
-      // o: {dados (o do KhPrevia.carregar), D (KhRegras.dados()), base (raiz do site, para images/)}
+      // o: {dados (o do KhPrevia.carregar), D (KhRegras.dados()), base (raiz do site, para images/),
+      //     editar ('pagina' | 'drawer': F4.6b, só com o Ensaio; sem ele, só leitura)}
       function paineis(res, o) {
         o = obj(o) ? o : {};
         var ok = !!res && res.estado === 'ok';
         var D = o.D || (KhRegras ? KhRegras.dados() : {});
+        var ed = (o.editar === 'pagina' || o.editar === 'drawer') && KhEdicao ? o.editar : null;
+        // na página, o número ajustável abre o pop-over "Ajustar" (o nó fora do grafo, o.no, não)
+        var edConta = ed === 'pagina' ? { motivo: KhEdicao.motivoNaoAjuste,
+          ajustavel: function (c, oo) { return !(oo && oo.no) && KhEdicao.ajustavel(c); } } : undefined;
         var C = ok && KhConta ? KhConta.criar({ D: D, nos: res.av ? res.av.nos : null,
-          prefixo: P, esc: esc, fmt: KhRegras ? KhRegras.fmt : undefined, semEmoji: semEmoji }) : null;
+          prefixo: P, esc: esc, fmt: KhRegras ? KhRegras.fmt : undefined, semEmoji: semEmoji, editar: edConta }) : null;
         var ctx = ok ? contexto(o.dados, D, o.base) : null;
+        if (ctx) ctx.editar = ed;
         var out = {};
         ABAS.forEach(function (a) {
           var corpo;
@@ -8560,6 +9246,604 @@
 
   if (emNode) { module.exports = KhFichaAbas; return; }
   raiz.KhFichaAbas = KhFichaAbas;
+})(typeof window !== 'undefined' ? window : this);
+
+// ==== js/ficha/kh-editor.js ====
+/* Khalkaria — Ficha · KhEditor: a interface da edição da ficha nova no modo Ensaio (F4.6b), SÓ COM A PRÉVIA.
+ * Especificação: docs/ficha-digital/07-f4-6-ensaio.md §3 (base: plano 02 M2 e §3.1).
+ *
+ * Um controlador por lugar: a página da ficha (modo 'pagina', em #fp) e o
+ * drawer da ficha nova (modo 'drawer', no cabeçalho dele). Só age com o
+ * Ensaio ligado (KhEnsaio.ligado); fora dele, a barra fica escondida e os
+ * controles nem existem (o KhFichaAbas só os desenha com {editar}).
+ *
+ *   - CAMPOS de estado (os controles data-ed, data-ed-delta, data-ed-grau e
+ *     data-ed-lista que o KhFichaAbas desenha): o 'change' (ao sair do campo,
+ *     Tab ou Enter), o clique no círculo de grau e o − / + do stepper viram
+ *     MUDANÇAS (KhEdicao) e um passo do armazém do ensaio (armazem.editar:
+ *     grava a ficha e o log de desfazer). No drawer, só recursos atuais e Sins.
+ *   - AJUSTE manual (M2, só na página): clique ou Enter num número ajustável
+ *     (.kh-conta[data-ajustavel]) abre o pop-over "Ajustar": Valor fixo
+ *     (padrão) ou Diferença, Motivo, Remover; "Temporário" desabilitado, com a
+ *     nota "expira na Mesa (F5)". Esc, Cancelar, clicar fora ou sair dele fecham.
+ *   - A BARRA: Desfazer e Refazer (o topo de cada pilha; desligados, com o
+ *     porquê, se não há passo ou se a ficha mudou depois dele), "Ajustes (N)"
+ *     (só na página: a lista com calculado × ajustado, motivo, data, o aviso
+ *     "o calculado mudou" e a remoção em lote) e a mensagem (role=status).
+ *   - ATALHOS no KhTeclas, fase de captura, fora de campo de texto: Ctrl+Z
+ *     desfaz e Ctrl+Y refaz. Na página, em qualquer lugar fora da ficha atual
+ *     (#kf-drawer); no drawer, só com o foco dentro dele (o Ctrl+Z do Bazar
+ *     continua sendo do Bazar).
+ *
+ * Cada gravação emite o 'kh:ensaio' com ['ficha']: a página, o drawer e os
+ * seletores redesenham (o KhRedesenho devolve o foco ao equivalente). Depois
+ * do 'change', o aviso sai no tempo seguinte (setTimeout 0): o foco já andou
+ * (Tab) e o redesenho o encontra no campo novo. O Ensaio só escreve no
+ * sessionStorage com o prefixo khalkaria_ensaio: (o armazém dele); nenhuma
+ * chave da ficha do jogador.
+ *
+ * Partes puras (testadas no node, tools/testes/ensaio.test.js): htmlBarra,
+ * htmlPop, htmlAjustes, linhasAjustes, textoErro, valorTexto. No node exporta
+ * por module.exports (carregado sozinho); no artefato js/ficha.js o export já
+ * é o KhInv e este módulo só registra window.KhEditor no navegador. Vem no
+ * ORDEM depois do kh-ficha-abas.js e antes do kh-ficha-drawer.js (que o usa).
+ * Fonte: js/ficha/kh-editor.js (o js/ficha.js é o ARTEFATO concatenado).
+ */
+(function (raiz) {
+  'use strict';
+
+  var emNode = typeof module === 'object' && module && module.exports;
+  if (emNode && Object.keys(module.exports).length) return;   // artefato no node: só o KhInv
+  var KhEnsaio = emNode ? require('./kh-ensaio.js') : raiz.KhEnsaio;
+  var KhEdicao = emNode ? require('./kh-edicao.js') : raiz.KhEdicao;
+  var KhAjustes = emNode ? require('./kh-ajustes.js') : raiz.KhAjustes;
+  var KhSeletor = emNode ? require('./kh-seletor.js') : raiz.KhSeletor;
+  var KhRedesenho = emNode ? require('./kh-redesenho.js') : raiz.KhRedesenho;
+
+  var KhEditor = (function () {
+    var CAMADA_ESC = 33;     // o pop-over fecha antes do diálogo do seletor (35) e do drawer (40)
+    var TEMP_NOTA = 'expira na Mesa (F5)';
+    var DICA_PAGINA = 'Os campos gravam ao sair deles (Tab ou Enter). Clique num número para ajustar.';
+    var DICA_DRAWER = 'Aqui, só os recursos atuais e os Sins (− e +). O resto, na página da ficha.';
+    var SEM_FICHA = 'O ensaio está sem ficha aberta: crie ou importe uma no seletor de fichas.';
+    var FORA = 'O ensaio não está ligado nesta aba: nada foi gravado.';
+    var AJUDA = {
+      fixa: 'O número passa a ser este, até você remover o ajuste.',
+      soma: 'Soma ao calculado (+2, −1) e acompanha o calculado (o nível, os itens).',
+      dado: 'Um dado, como 1d8 ou 13 + 1d8.',
+      booleano: 'Marca ou desmarca, no lugar do calculado.'
+    };
+
+    function obj(x) { return !!x && typeof x === 'object' && !Array.isArray(x); }
+    function lista(x) { return Array.isArray(x) ? x : []; }
+    function str(x) { return x == null ? '' : String(x); }
+    function esc(s) {
+      return str(s).replace(/[&<>"']/g, function (c) {
+        return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+      });
+    }
+    function semEmoji(s) {
+      return str(s).replace(/[\u{1F000}-\u{1FAFF}\u{2600}-\u{27BF}\u{2B00}-\u{2BFF}\u{FE0F}\u{200D}]/gu, '').replace(/\s{2,}/g, ' ').trim();
+    }
+    function fmt(n) { return KhAjustes && KhAjustes.fmt ? KhAjustes.fmt(n) : str(n); }
+    function storage(win, nome) { try { return win ? win[nome] || null : null; } catch (e) { return null; } }
+    function fmtData(iso) { return KhSeletor && KhSeletor.fmtData ? KhSeletor.fmtData(iso) : str(iso); }
+
+    // ---------------- puras ----------------
+    // o valor de um ajuste (ou calculado) no campo do pop-over
+    function valorTexto(v) {
+      if (typeof v === 'boolean') return v ? 'sim' : 'nao';
+      if (typeof v === 'number') return fmt(v);
+      return str(v);
+    }
+    // o texto de uma recusa do armazém (editar, desfazer, refazer)
+    function textoErro(r, acao) {
+      r = obj(r) ? r : {};
+      var e = str(r.erro);
+      if (e === 'vazio') return acao === 'refazer' ? 'Nada a refazer.' : 'Nada a desfazer.';
+      if (e === 'outra-aba') {
+        return (acao === 'refazer' ? 'Não dá para refazer' : 'Não dá para desfazer') + ' "' + str(r.rotulo) +
+          '": a ficha mudou depois (em outra aba ou em outra página desta aba).';
+      }
+      if (e === 'ajuste-invalido') {
+        return 'Ajuste recusado em ' + str(r.caminho) + (r.motivo === 'caminho-de-estado' ? ': é um campo de estado (edite o campo, não ajuste).' : ' (' + str(r.motivo || 'inválido') + ').');
+      }
+      if (e === 'caminho-invalido') return 'Este campo não se edita (' + str(r.caminho) + ').';
+      if (KhSeletor && KhSeletor.textoErro) return KhSeletor.textoErro(r);
+      return 'Não deu certo (' + (e || 'erro desconhecido') + '): nada foi gravado.';
+    }
+
+    // a lista de ajustes da tela "Ajustes": a do KhAjustes.listar mais o nome
+    // do número, o calculado e o ajustado em texto, e o aviso "o calculado mudou"
+    function linhasAjustes(ficha, nos) {
+      if (!KhAjustes) return [];
+      nos = obj(nos) ? nos : {};
+      return KhAjustes.listar(ficha, nos).map(function (l) {
+        var no = nos[l.caminho] || null;
+        var av = no ? lista(no.avisos).filter(function (a) { return a.tipo === 'calculado-mudou'; })[0] : null;
+        return { caminho: l.caminho, rotulo: no ? semEmoji(no.rotulo) || l.caminho : l.caminho,
+          calculado: l.semNo ? '—' : valorTexto(l.calculado).replace(/^nao$/, 'não'),
+          ajustado: l.semNo ? '—' : valorTexto(l.ajustado).replace(/^nao$/, 'não'),
+          ajuste: KhEdicao ? KhEdicao.textoAjuste({ modo: l.modo, valor: l.valor }) : '',
+          motivo: l.motivo, desde: fmtData(l.desde), origem: l.origem, mudou: av ? str(av.msg) : '', semNo: l.semNo };
+      });
+    }
+
+    function botao(acao, texto, o) {
+      o = o || {};
+      return '<button type="' + (o.submit ? 'submit' : 'button') + '" class="kh-btn ke-btn ke-ed-' + acao + (o.forte ? ' forte' : '') + '"' +
+        (o.submit ? '' : ' data-ked="' + acao + '"') + (o.desligado ? ' aria-disabled="true"' : '') +
+        (o.tecla ? ' aria-keyshortcuts="' + o.tecla + '"' : '') + (o.titulo ? ' title="' + esc(o.titulo) + '"' : '') +
+        (o.attrs || '') + '>' + esc(texto) + '</button>';
+    }
+    // a tela "Ajustes" (P = o prefixo dos ids). sel: {caminho: true}
+    function htmlAjustes(linhas, sel, P) {
+      linhas = lista(linhas); sel = obj(sel) ? sel : {};
+      var id = (P || 'ke') + '-ked-aj';
+      var h = '<section class="ke-aj" id="' + id + '" aria-labelledby="' + id + '-tit">' +
+        '<p class="ke-aj-tit" id="' + id + '-tit">Ajustes desta ficha (' + linhas.length + ')</p>';
+      if (!linhas.length) {
+        return h + '<p class="ke-nota">Nenhum ajuste. Clique num número da ficha para ajustar.</p>' +
+          '<div class="ke-dialogo-acoes">' + botao('fechar-aj', 'Fechar') + '</div></section>';
+      }
+      var n = linhas.filter(function (l) { return sel[l.caminho]; }).length, todos = n === linhas.length;
+      h += '<div class="ke-aj-rola"><table class="ke-aj-tab"><thead><tr>' +
+        '<th scope="col"><input type="checkbox" class="ke-aj-todos" data-ked-todos aria-label="Selecionar todos"' + (todos ? ' checked' : '') + '></th>' +
+        '<th scope="col">Número</th><th scope="col">Calculado</th><th scope="col">Ajustado</th><th scope="col">Ajuste</th>' +
+        '<th scope="col">Motivo</th><th scope="col">Desde</th></tr></thead><tbody>' +
+        linhas.map(function (l) {
+          return '<tr data-caminho="' + esc(l.caminho) + '"' + (sel[l.caminho] ? ' data-sel' : '') + '>' +
+            '<td><input type="checkbox" class="ke-aj-sel" data-ked-sel value="' + esc(l.caminho) + '" aria-label="' + esc('Selecionar ' + l.rotulo) + '"' + (sel[l.caminho] ? ' checked' : '') + '></td>' +
+            '<th scope="row" class="ke-aj-nome">' + esc(l.rotulo) + ' <code class="ke-aj-caminho">' + esc(l.caminho) + '</code>' +
+              (l.mudou ? ' <span class="ke-mudou" role="note">' + esc(l.mudou) + '</span>' : '') +
+              (l.semNo ? ' <span class="ke-mudou" role="note">sem este número na ficha agora</span>' : '') + '</th>' +
+            '<td class="ke-aj-n">' + esc(l.calculado) + '</td><td class="ke-aj-n">' + esc(l.ajustado) + '</td>' +
+            '<td>' + esc(l.ajuste) + (l.origem === 'migracao' ? ' <span class="ke-aj-origem">(migrado da ficha atual)</span>' : '') + '</td>' +
+            '<td>' + (l.motivo ? esc(l.motivo) : '<span class="ke-aj-vazio">—</span>') + '</td><td class="ke-aj-n">' + esc(l.desde) + '</td></tr>';
+        }).join('') + '</tbody></table></div>' +
+        '<div class="ke-dialogo-acoes">' + botao('remover-sel', n ? 'Remover ' + n + ' selecionado' + (n === 1 ? '' : 's') : 'Remover selecionados',
+          { forte: true, desligado: !n, titulo: n ? 'Remove os ajustes marcados (um passo de desfazer)' : 'Marque os ajustes que saem' }) + ' ' +
+          botao('fechar-aj', 'Fechar') + '</div></section>';
+      return h;
+    }
+    // a barra. est: {log (armazem.estadoLog), nAjustes, aberto (a tela Ajustes),
+    // msg:{tipo, texto}, linhas, sel}. o: {modo 'pagina' | 'drawer', prefixo}
+    function htmlBarra(est, o) {
+      est = obj(est) ? est : {}; o = obj(o) ? o : {};
+      var pag = o.modo !== 'drawer', P = str(o.prefixo) || 'ke';
+      var lg = obj(est.log) ? est.log : {};
+      function andar(acao, txt, p, tecla, teclaTxt) {
+        var tit = !p ? (acao === 'desfazer' ? 'Nada a desfazer' : 'Nada a refazer')
+          : !p.livre ? txt + ' indisponível: a ficha mudou depois de "' + p.rotulo + '"' : txt + ': ' + p.rotulo;
+        return botao(acao, txt, { desligado: !p || !p.livre, tecla: tecla, titulo: tit + ' (' + teclaTxt + ')' });
+      }
+      var m = obj(est.msg) ? est.msg : null;
+      var h = '<div class="ke-ed-barra" role="group" aria-label="Edição da ficha do ensaio">' +
+        andar('desfazer', 'Desfazer', lg.desfazer, 'Control+Z', 'Ctrl+Z') + andar('refazer', 'Refazer', lg.refazer, 'Control+Y', 'Ctrl+Y') +
+        (pag ? botao('ajustes', 'Ajustes (' + (Number(est.nAjustes) || 0) + ')', { titulo: 'A lista dos ajustes manuais desta ficha',
+          attrs: ' aria-expanded="' + !!est.aberto + '" aria-controls="' + esc(P) + '-ked-aj"' }) : '') +
+        '<p class="ke-ed-dica">' + esc(pag ? DICA_PAGINA : DICA_DRAWER) + '</p>' +
+        '<p class="ke-ed-msg' + (m && m.tipo === 'aviso' ? ' ke-ed-msg-aviso' : '') + '" role="status" aria-live="polite">' + (m ? esc(m.texto) : '') + '</p></div>';
+      if (pag && est.aberto) h += htmlAjustes(est.linhas, est.sel, P);
+      return h;
+    }
+    // o pop-over "Ajustar". p: {caminho, rotulo, tipo ('numero'|'dado'|'booleano'),
+    // modo, valor, motivo, erro, calculado (texto), ajustado (texto), ajuste
+    // (o guardado, ou null), mudou (o aviso "o calculado mudou")}
+    function htmlPop(p) {
+      p = obj(p) ? p : {};
+      var tipo = p.tipo === 'dado' || p.tipo === 'booleano' ? p.tipo : 'numero';
+      var modo = tipo === 'booleano' ? 'fixa' : p.modo === 'soma' ? 'soma' : 'fixa';
+      var aj = obj(p.ajuste) ? p.ajuste : null;
+      var ajuda = tipo === 'booleano' ? AJUDA.booleano : modo === 'soma' ? AJUDA.soma : tipo === 'dado' ? AJUDA.dado : AJUDA.fixa;
+      var h = '<form class="ke-pop" role="dialog" aria-modal="false" aria-labelledby="ke-pop-tit" data-ked-form="ajuste" data-caminho="' + esc(p.caminho) + '">' +
+        '<p class="ke-pop-tit" id="ke-pop-tit">Ajustar: ' + esc(p.rotulo || p.caminho) + '</p>' +
+        '<p class="ke-pop-calc">Calculado: <b>' + esc(p.calculado) + '</b>' +
+          (aj ? ' · ajustado: <b>' + esc(p.ajustado) + '</b> (' + esc(KhEdicao ? KhEdicao.textoAjuste(aj) : '') + (aj.motivo ? ', ' + esc(aj.motivo) : '') + ')' : '') + '</p>' +
+        (p.mudou ? '<p class="ke-mudou ke-pop-mudou" role="note">' + esc(p.mudou) + '. Aplicar de novo guarda o calculado de agora.</p>' : '');
+      if (tipo !== 'booleano') {
+        h += '<fieldset class="ke-pop-modo"><legend class="ke-rot">Modo</legend>' +
+          [['fixa', 'Valor fixo'], ['soma', 'Diferença']].map(function (x) {
+            return '<label class="ke-check"><input type="radio" name="ke-pop-modo" value="' + x[0] + '" data-ked-campo="modo"' + (modo === x[0] ? ' checked' : '') + '> ' + x[1] + '</label>';
+          }).join(' ') + '</fieldset>';
+        h += '<label class="ke-campo"><span class="ke-rot">' + (modo === 'soma' ? 'Diferença' : 'Valor') + '</span> ' +
+          '<input type="text" class="ke-pop-valor" data-ked-campo="valor" value="' + esc(p.valor) + '" autocomplete="off" spellcheck="false"' +
+          (tipo === 'numero' || modo === 'soma' ? ' inputmode="decimal"' : '') + ' aria-describedby="ke-pop-ajuda"></label>';
+      } else {
+        var sim = str(p.valor) === 'sim';
+        h += '<label class="ke-campo"><span class="ke-rot">Valor</span> <select class="ke-pop-valor" data-ked-campo="valor" aria-describedby="ke-pop-ajuda">' +
+          '<option value="sim"' + (sim ? ' selected' : '') + '>sim</option><option value="nao"' + (sim ? '' : ' selected') + '>não</option></select></label>';
+      }
+      h += '<p class="ke-nota" id="ke-pop-ajuda">' + esc(ajuda) + '</p>' +
+        '<label class="ke-campo"><span class="ke-rot">Motivo</span> <input type="text" class="ke-pop-motivo" data-ked-campo="motivo" value="' + esc(p.motivo) + '"' +
+          ' maxlength="' + (KhEdicao ? KhEdicao.MAX_MOTIVO : 120) + '" autocomplete="off" placeholder="opcional"></label>' +
+        '<p class="ke-pop-temp"><label class="ke-check ke-pop-temp-rot"><input type="checkbox" disabled aria-describedby="ke-pop-temp-nota"> Temporário</label> ' +
+          '<span class="ke-nota" id="ke-pop-temp-nota">' + esc(TEMP_NOTA) + '</span></p>' +
+        (p.erro ? '<p class="ke-pop-erro" role="alert">' + esc(p.erro) + '</p>' : '') +
+        '<div class="ke-dialogo-acoes">' + botao('aplicar-aj', 'Aplicar', { forte: true, submit: true }) +
+          (aj ? ' ' + botao('remover-aj', 'Remover', { titulo: 'Tira o ajuste: o número volta ao calculado' }) : '') +
+          ' ' + botao('cancelar-aj', 'Cancelar') + '</div></form>';
+      return h;
+    }
+
+    // ---------------- o controlador (um por lugar) ----------------
+    // op: {win, doc, raiz (onde ouvir: #fp ou o drawer), modo ('pagina' |
+    //      'drawer'), prefixo, lugar() -> o contêiner da barra (criado na 1ª
+    //      vez, só com o Ensaio), contexto() -> o KhFichaAbas.contexto (as
+    //      opções da identidade e das condições), agora() (testes)}
+    function criar(op) {
+      op = obj(op) ? op : {};
+      var win = op.win, doc = op.doc || (win && win.document), raizEl = op.raiz;
+      if (!win || !doc || !raizEl || !KhEnsaio || !KhEdicao) return null;
+      var modo = op.modo === 'drawer' ? 'drawer' : 'pagina';
+      var P = /^[a-z][a-z0-9-]*$/i.test(str(op.prefixo)) ? str(op.prefixo) : 'ke';
+      var ss = storage(win, 'sessionStorage');
+      var R = KhRedesenho ? KhRedesenho.criar({ prefixo: P + '-ked' }) : null;
+      var st = { msg: null, aberto: false, sel: {}, pop: null, res: null };
+      var popEl = null, barraEl = null, redesenhandoPop = false;
+
+      function ligado() { return KhEnsaio.ligado(win); }
+      function arm() { return KhEnsaio.armazem(ss); }
+      function ativa() {
+        var a = arm(), id = a.ativa();
+        return id ? { a: a, id: id, ficha: a.ler(id) } : null;
+      }
+      function ctx() { try { return typeof op.contexto === 'function' ? op.contexto() : null; } catch (e) { return null; } }
+      function agora() { return typeof op.agora === 'function' ? op.agora() : new Date().toISOString(); }
+      function nos() { return st.res && st.res.estado === 'ok' && st.res.av ? st.res.av.nos : {}; }
+      function foca(x) { if (x && typeof x.focus === 'function') { try { x.focus({ preventScroll: true }); } catch (e) { x.focus(); } } }
+      function tira(el) { if (el && typeof el.remove === 'function') el.remove(); else if (el && el.parentNode) el.parentNode.removeChild(el); }
+      function aviso(t) { st.msg = { tipo: 'aviso', texto: t }; }
+      function emitir(partes) { KhEnsaio.emitir(win, partes || ['ficha']); }
+      function adiado(fn) { if (typeof win.setTimeout === 'function') win.setTimeout(fn, 0); else fn(); }
+      // o Ensaio saiu (outra página da aba; esta veio do bfcache): nada grava, e todos se acertam
+      function fora() {
+        if (ligado()) return false;
+        aviso(FORA);
+        emitir(['ligado', 'indice', 'ficha']);
+        return true;
+      }
+
+      // ---- gravar: r = {ok, mudancas, rotulo, aviso} (KhEdicao) -> um passo do armazém
+      function grava(r, quando) {
+        if (!r || !r.ok) { aviso(r ? r.erro : 'Não deu certo.'); desenhaBarra(); return false; }
+        if (fora()) return false;
+        if (!lista(r.mudancas).length) return true;
+        var x = ativa();
+        if (!x) { aviso(SEM_FICHA); desenhaBarra(); return false; }
+        var g = x.a.editar(x.id, r.mudancas, r.rotulo);
+        if (!g.ok) { aviso(textoErro(g)); desenhaBarra(); return false; }
+        if (!g.mudou) return true;
+        st.msg = r.aviso ? { tipo: 'aviso', texto: r.aviso }
+          : g.avisoLog ? { tipo: 'aviso', texto: 'Gravado, mas sem desfazer: ' + textoErro({ erro: g.avisoLog }) } : null;
+        if (quando === 'adiado') { desenhaBarra(); adiado(function () { emitir(); }); } else emitir();
+        return true;
+      }
+      // desfazer e refazer (os botões e o Ctrl+Z / Ctrl+Y)
+      function anda(acao) {
+        if (fora()) return;
+        var x = ativa();
+        if (!x) { aviso(SEM_FICHA); desenhaBarra(); return; }
+        var r = acao === 'refazer' ? x.a.refazer(x.id) : x.a.desfazer(x.id);
+        if (!r.ok) { aviso(textoErro(r, acao)); desenhaBarra(); return; }
+        st.msg = { tipo: 'ok', texto: (acao === 'refazer' ? 'Refeito: ' : 'Desfeito: ') + r.rotulo + '.' };
+        if (r.avisoLog) st.msg = { tipo: 'aviso', texto: st.msg.texto + ' ' + textoErro({ erro: r.avisoLog }) };
+        fechaPop(false);
+        emitir();
+      }
+
+      // ---- a barra (e a tela Ajustes)
+      function lugar() {
+        if (barraEl) return barraEl;
+        try { barraEl = typeof op.lugar === 'function' ? op.lugar() : null; } catch (e) { barraEl = null; }
+        return barraEl;
+      }
+      function troca(c, h) {
+        if (R) R.trocaHTML(doc, c, h, null, null, win);
+        else if (c._kedHtml !== h) { c.innerHTML = h; c._kedHtml = h; }
+      }
+      function desenhaBarra(foco) {
+        if (!ligado()) { esconde(); return false; }
+        var c = lugar();
+        if (!c) return false;
+        var x = ativa();
+        var ficha = x ? x.ficha : null;
+        var nAj = ficha && obj(ficha.ajustes) ? Object.keys(ficha.ajustes).length : 0;
+        var linhas = modo === 'pagina' && st.aberto && ficha ? linhasAjustes(ficha, nos()) : [];
+        // a seleção só guarda o que ainda é ajuste
+        Object.keys(st.sel).forEach(function (k) { if (!(ficha && obj(ficha.ajustes) && ficha.ajustes[k])) delete st.sel[k]; });
+        troca(c, htmlBarra({ log: x ? x.a.estadoLog(x.id) : null, nAjustes: nAj, aberto: st.aberto, msg: st.msg, linhas: linhas, sel: st.sel },
+          { modo: modo, prefixo: P }));
+        c.hidden = false;
+        if (foco) foca(c.querySelector(foco));
+        return true;
+      }
+      function esconde() {
+        st.msg = null; st.aberto = false; st.sel = {};
+        fechaPop(false);
+        if (barraEl) { troca(barraEl, ''); barraEl.hidden = true; }
+      }
+
+      // ---- o pop-over "Ajustar" (só na página)
+      function contaDe(caminho) {
+        var l = raizEl.querySelectorAll ? raizEl.querySelectorAll('.kh-conta[data-ajustavel]') : [];
+        for (var i = 0; i < l.length; i++) if (l[i].getAttribute('data-caminho') === caminho) return l[i];
+        return null;
+      }
+      function estadoPop() {
+        var p = st.pop, no = nos()[p.caminho] || null;
+        var x = ativa(), aj = x && x.ficha && obj(x.ficha.ajustes) ? x.ficha.ajustes[p.caminho] || null : null;
+        var mudou = no ? lista(no.avisos).filter(function (a) { return a.tipo === 'calculado-mudou'; })[0] : null;
+        return { caminho: p.caminho, rotulo: p.rotulo, tipo: p.tipo, modo: p.modo, valor: p.valor, motivo: p.motivo, erro: p.erro,
+          calculado: no ? valorTexto(no.calculado).replace(/^nao$/, 'não') : '—', ajustado: no ? valorTexto(no.valor).replace(/^nao$/, 'não') : '—',
+          ajuste: aj, mudou: mudou ? str(mudou.msg) : '' };
+      }
+      function posiciona() {
+        var f = popEl && popEl.querySelector ? popEl.querySelector('.ke-pop') : null;
+        var c = st.pop ? contaDe(st.pop.caminho) : null;
+        if (!f || !c || !c.getBoundingClientRect || !f.style) return;
+        var r = c.getBoundingClientRect(), de = doc.documentElement;
+        var W = (de && de.clientWidth) || win.innerWidth || 1280, H = (de && de.clientHeight) || win.innerHeight || 800;
+        var w = f.offsetWidth || 320, h = f.offsetHeight || 260, M = 8;
+        var x = Math.min(Math.max(M, r.left), Math.max(M, W - w - M));
+        var y = r.bottom + 6;
+        if (y + h > H - M) y = r.top - 6 - h >= M ? r.top - 6 - h : Math.max(M, H - h - M);
+        f.style.setProperty('left', Math.round(x) + 'px');
+        f.style.setProperty('top', Math.round(y) + 'px');
+      }
+      function desenhaPop(foco) {
+        if (!st.pop) { fechaPop(false); return; }
+        if (!popEl) {
+          popEl = doc.createElement('div');
+          popEl.className = 'ke-pop-lugar';
+          popEl.setAttribute('data-kf-ignorar', '');
+          raizEl.appendChild(popEl);
+        }
+        redesenhandoPop = true;
+        popEl.innerHTML = htmlPop(estadoPop());
+        redesenhandoPop = false;
+        posiciona();
+        if (foco) foca(popEl.querySelector(foco));
+      }
+      function abrePop(conta) {
+        if (modo !== 'pagina' || fora()) return;
+        var caminho = conta.getAttribute('data-caminho'), no = nos()[caminho];
+        if (!no || !KhEdicao.ajustavel(caminho)) return;
+        var x = ativa(), aj = x && x.ficha && obj(x.ficha.ajustes) ? x.ficha.ajustes[caminho] || null : null;
+        var tipo = KhEdicao.tipoAjuste(caminho);
+        var modoAj = aj && aj.modo === 'soma' && tipo !== 'booleano' ? 'soma' : 'fixa';
+        st.pop = { caminho: caminho, rotulo: semEmoji(no.rotulo) || caminho, tipo: tipo, modo: modoAj,
+          valor: aj ? valorTexto(aj.valor) : valorTexto(tipo === 'booleano' ? !!no.valor : no.calculado),
+          motivo: aj ? str(aj.motivo) : '', erro: '' };
+        desenhaPop('.ke-pop-valor');
+      }
+      // fecha; devolver = o foco volta ao número
+      function fechaPop(devolver) {
+        var p = st.pop;
+        st.pop = null;
+        if (popEl) { redesenhandoPop = true; tira(popEl); popEl = null; redesenhandoPop = false; }
+        if (devolver && p) foca(contaDe(p.caminho));
+      }
+      // o que está digitado no pop-over (para um redesenho dele não perder)
+      function lePop() {
+        if (!st.pop || !popEl) return;
+        var v = popEl.querySelector('[data-ked-campo="valor"]'), m = popEl.querySelector('[data-ked-campo="motivo"]');
+        if (v && v.value != null) st.pop.valor = str(v.value);
+        if (m && m.value != null) st.pop.motivo = str(m.value);
+      }
+      function aplica() {
+        var p = st.pop;
+        if (!p || fora()) return;
+        lePop();
+        var x = ativa();
+        if (!x || !x.ficha) { aviso(SEM_FICHA); fechaPop(false); desenhaBarra(); return; }
+        var m = KhEdicao.montaAjuste(p.caminho, { modo: p.modo, valor: p.valor, motivo: p.motivo }, nos()[p.caminho], agora());
+        if (!m.ok) { p.erro = m.erro; desenhaPop('.ke-pop-valor'); return; }
+        var r = KhEdicao.mudancaAjuste(x.ficha, p.caminho, m.ajuste, p.rotulo);
+        fechaPop(true);
+        grava(r);
+      }
+      function removeAjuste() {
+        var p = st.pop;
+        if (!p || fora()) return;
+        var x = ativa();
+        if (!x || !x.ficha) return;
+        var r = KhEdicao.mudancaRemover(x.ficha, [p.caminho], p.rotulo);
+        fechaPop(true);
+        grava(r);
+      }
+
+      // ---- os ouvintes (delegados na raiz: o redesenho não os perde)
+      function perto(t, sel) { try { return t && t.closest ? t.closest(sel) : null; } catch (e) { return null; } }
+      function dentro(el) { return !!el && raizEl.contains(el); }
+      function acaoBarra(a, b) {
+        if (b.getAttribute('aria-disabled') === 'true') {
+          if (a === 'desfazer' || a === 'refazer') { var t = b.getAttribute('title'); if (t) { aviso(t.replace(/\s*\(Ctrl\+[ZY]\)$/, '') + '.'); desenhaBarra(); } }
+          return;
+        }
+        if (a === 'desfazer' || a === 'refazer') { anda(a); return; }
+        if (a === 'ajustes') { st.aberto = !st.aberto; desenhaBarra('[data-ked="ajustes"]'); return; }
+        if (a === 'fechar-aj') { st.aberto = false; desenhaBarra('[data-ked="ajustes"]'); return; }
+        if (a === 'remover-sel') {
+          if (fora()) return;
+          var x = ativa();
+          if (!x || !x.ficha) return;
+          var cams = Object.keys(st.sel);
+          var r = KhEdicao.mudancaRemover(x.ficha, cams, cams.length === 1 && nos()[cams[0]] ? nos()[cams[0]].rotulo : '');
+          if (r.ok) st.sel = {};
+          if (grava(r)) desenhaBarra('[data-ked="ajustes"]');
+          return;
+        }
+        if (a === 'remover-aj') { removeAjuste(); return; }
+        if (a === 'cancelar-aj') { fechaPop(true); }
+      }
+      // um controle da edição (a barra, um campo, um círculo, o stepper, um número ajustável)?
+      function controle(t) {
+        var c = perto(t, '[data-ked], [data-ed-grau], [data-ed-delta]') ||
+          (modo === 'pagina' ? perto(t, '.kh-conta[data-ajustavel]') : null);
+        return c && dentro(c) ? c : null;
+      }
+      raizEl.addEventListener('click', function (e) {
+        var t = e.target;
+        if (!t || !t.closest) return;
+        // página velha (o Ensaio saiu em outra página da aba): o controle não
+        // grava, e a página se acerta (a barra e os controles somem)
+        if (!ligado()) { if (controle(t)) fora(); return; }
+        var b = perto(t, '[data-ked]');
+        if (b && dentro(b)) { acaoBarra(b.getAttribute('data-ked'), b); return; }
+        var g = perto(t, '[data-ed-grau]');
+        if (g && dentro(g)) {
+          if (fora()) return;
+          var x = ativa();
+          if (!x || !x.ficha) return;
+          var p = g.getAttribute('data-ed-grau');
+          grava(KhEdicao.mudancas(x.ficha, 'pericias.' + p, KhEdicao.grauClicado(x.ficha, p, Number(g.getAttribute('data-grau')))));
+          return;
+        }
+        var d = perto(t, '[data-ed-delta]');
+        if (d && dentro(d)) {
+          if (fora()) return;
+          var y = ativa();
+          if (!y || !y.ficha) return;
+          grava(KhEdicao.passo(y.ficha, d.getAttribute('data-ed-alvo'), Number(d.getAttribute('data-ed-delta'))));
+          return;
+        }
+        var k = modo === 'pagina' ? perto(t, '.kh-conta[data-ajustavel]') : null;
+        if (!k || !dentro(k)) return;
+        // o mesmo número de novo: fecha (e o foco fica nele)
+        if (st.pop && st.pop.caminho === k.getAttribute('data-caminho')) fechaPop(true);
+        else abrePop(k);
+      });
+      raizEl.addEventListener('keydown', function (e) {
+        if (modo !== 'pagina' || !ligado() || (e.key !== 'Enter' && e.key !== ' ')) return;
+        if (e.ctrlKey || e.metaKey || e.altKey) return;
+        var k = perto(e.target, '.kh-conta[data-ajustavel]');
+        if (!k || k !== e.target) return;
+        if (e.preventDefault) e.preventDefault();
+        abrePop(k);
+      });
+      raizEl.addEventListener('change', function (e) {
+        var t = e.target;
+        if (!t || !t.getAttribute) return;
+        var c = t.getAttribute('data-ed'), l = t.getAttribute('data-ed-lista');
+        if (!ligado()) {
+          if (c || l || (popEl && popEl.contains(t)) || t.hasAttribute('data-ked-todos') || t.hasAttribute('data-ked-sel')) fora();
+          return;
+        }
+        if (popEl && popEl.contains(t)) {
+          if (t.getAttribute('data-ked-campo') === 'modo' && st.pop) {
+            lePop();
+            st.pop.modo = str(t.value) === 'soma' ? 'soma' : 'fixa';
+            st.pop.erro = '';
+            desenhaPop('.ke-pop-modo input[value="' + st.pop.modo + '"]');
+          }
+          return;
+        }
+        if (t.hasAttribute && t.hasAttribute('data-ked-todos')) {
+          var x0 = ativa();
+          st.sel = {};
+          if (t.checked && x0 && x0.ficha && obj(x0.ficha.ajustes)) Object.keys(x0.ficha.ajustes).forEach(function (k) { st.sel[k] = true; });
+          desenhaBarra('[data-ked-todos]');
+          return;
+        }
+        if (t.hasAttribute && t.hasAttribute('data-ked-sel')) {
+          if (t.checked) st.sel[str(t.value)] = true; else delete st.sel[str(t.value)];
+          desenhaBarra('[data-ked-sel][value="' + str(t.value) + '"]');
+          return;
+        }
+        if (!c && !l) return;
+        if (fora()) return;
+        var x = ativa();
+        if (!x || !x.ficha) { aviso(SEM_FICHA); desenhaBarra(); return; }
+        if (l) { grava(KhEdicao.mudancas(x.ficha, l, { valor: t.value, marcado: !!t.checked }, { contexto: ctx() }), 'adiado'); return; }
+        var r = KhEdicao.mudancas(x.ficha, c, t.value, { contexto: ctx() });
+        if (!r.ok) {
+          // o campo volta ao valor guardado (o redesenho não muda o HTML, que é o mesmo)
+          var v = pegaValor(x.ficha, c);
+          if (t.tagName !== 'SELECT') t.value = Array.isArray(v) ? v.join(', ') : v == null ? '' : str(v);
+        }
+        grava(r, 'adiado');
+      });
+      raizEl.addEventListener('submit', function (e) {
+        var f = e.target;
+        if (!f || !f.getAttribute || f.getAttribute('data-ked-form') !== 'ajuste') return;
+        if (e.preventDefault) e.preventDefault();
+        aplica();
+      });
+      raizEl.addEventListener('input', function (e) {
+        if (popEl && e.target && popEl.contains(e.target)) lePop();
+      });
+      raizEl.addEventListener('focusout', function (e) {
+        if (!popEl || redesenhandoPop || !st.pop) return;
+        var para = e.relatedTarget;
+        if (para && !popEl.contains(para)) fechaPop(false);
+      });
+      // clicar fora do pop-over o fecha (sem devolver o foco: o clique o levou)
+      doc.addEventListener('pointerdown', function (e) {
+        if (!popEl || !st.pop) return;
+        var t = e.target;
+        if (t && popEl.contains(t)) return;
+        var k = perto(t, '.kh-conta[data-ajustavel]');
+        if (k && k.getAttribute('data-caminho') === st.pop.caminho) return;
+        fechaPop(false);
+      }, true);
+      if (typeof win.addEventListener === 'function') {
+        win.addEventListener('scroll', function () { if (popEl) posiciona(); }, { passive: true });
+        win.addEventListener('resize', function () { if (popEl) posiciona(); });
+      }
+      function pegaValor(f, c) {
+        return str(c).split('.').reduce(function (a, k) { return a !== null && typeof a === 'object' ? a[k] : undefined; }, f);
+      }
+
+      // ---- teclado: Esc fecha o pop-over; Ctrl+Z e Ctrl+Y (fora de campo de texto)
+      var T = win.KhTeclas;
+      if (T && typeof T.camadaEsc === 'function') {
+        T.camadaEsc(CAMADA_ESC, function () {
+          if (!st.pop) return false;
+          fechaPop(true);
+          return true;
+        });
+      }
+      if (T && typeof T.atalho === 'function') {
+        var guarda = function (e) {
+          if (!ligado()) return false;
+          var t = e && e.target;
+          // a ficha atual (v2.1) aberta por cima: o Ctrl+Z é dela
+          if (perto(t, '#kf-drawer')) return false;
+          // no drawer, só com o foco nele (o Ctrl+Z do Bazar continua do Bazar)
+          if (modo === 'drawer') return dentro(t) || dentro(doc.activeElement);
+          return true;
+        };
+        T.atalho('Ctrl+z', function () { anda('desfazer'); }, { fase: 'captura', quando: guarda, descricao: 'Desfazer na ficha do ensaio' });
+        T.atalho('Ctrl+y', function () { anda('refazer'); }, { fase: 'captura', quando: guarda, descricao: 'Refazer na ficha do ensaio' });
+      }
+
+      // depois de cada desenho da página (ou do drawer): a barra e o pop-over
+      // acompanham a ficha de agora (res = o KhEnsaio.calcular)
+      function desenha(res) {
+        st.res = res || null;
+        if (!ligado()) { esconde(); return false; }
+        desenhaBarra();
+        // o pop-over aberto fica como está (o jogador pode estar digitando nele): só
+        // segue o número, ou fecha se o número saiu da ficha
+        if (st.pop) {
+          if (!nos()[st.pop.caminho] || !contaDe(st.pop.caminho)) fechaPop(false);
+          else posiciona();
+        }
+        return true;
+      }
+
+      return { desenha: desenha, desenhaBarra: desenhaBarra, abrePop: abrePop, fechaPop: fechaPop, anda: anda, ligado: ligado,
+        estado: function () { return { msg: st.msg, aberto: st.aberto, sel: Object.keys(st.sel), pop: st.pop ? JSON.parse(JSON.stringify(st.pop)) : null }; } };
+    }
+
+    return { CAMADA_ESC: CAMADA_ESC, TEMP_NOTA: TEMP_NOTA, DICA_PAGINA: DICA_PAGINA, DICA_DRAWER: DICA_DRAWER, SEM_FICHA: SEM_FICHA, FORA: FORA,
+      valorTexto: valorTexto, textoErro: textoErro, linhasAjustes: linhasAjustes,
+      htmlBarra: htmlBarra, htmlAjustes: htmlAjustes, htmlPop: htmlPop, criar: criar };
+  })();
+
+  if (emNode) { module.exports = KhEditor; return; }
+  raiz.KhEditor = KhEditor;
 })(typeof window !== 'undefined' ? window : this);
 
 // ==== js/ficha/kh-ficha-drawer.js ====
@@ -8623,6 +9907,10 @@
  * desta aba; com ele ligado (só numa página velha do bfcache o botão aparece),
  * não apaga: KhSeletor.bloqueiaSaidaPrevia acerta a página e abre a confirmação
  * da faixa. O Ensaio grava só no sessionStorage com o prefixo khalkaria_ensaio:.
+ * F4.6b (07 §3): com o Ensaio, o drawer edita só os recursos atuais e os Sins
+ * (− e +, KhFichaAbas com {editar:'drawer'}); a barra do KhEditor
+ * (#fd-gaveta-ked, no cabeçalho) tem Desfazer e Refazer, e Ctrl+Z / Ctrl+Y
+ * valem com o foco no drawer. O resto se edita na página da ficha.
  * Escritas: localStorage khalkaria_ficha3_dock (só quando o jogador abre ou
  * recolhe pelo botão ou pelo Esc), as preferências de aba do KhAbas (ordem e
  * aba aberta, as mesmas da página), o "lembrar" da prévia (KhPrevia.iniciar,
@@ -8662,6 +9950,7 @@
   var KhRedesenho = emNode ? require('./kh-redesenho.js') : raiz.KhRedesenho;
   var KhEnsaio = emNode ? require('./kh-ensaio.js') : raiz.KhEnsaio;
   var KhSeletor = emNode ? require('./kh-seletor.js') : raiz.KhSeletor;
+  var KhEditor = emNode ? require('./kh-editor.js') : raiz.KhEditor;
 
   var KhFichaDrawer = (function () {
     var CHAVE_DOCK = 'khalkaria_ficha3_dock';
@@ -9109,6 +10398,19 @@
       var roEl = el('fd-gaveta-ro');
       function poeModo() { if (roEl) roEl.hidden = ensaioLigado(); }
       if (seletor) KhSeletor.ligarFaixa(win);
+      // a edição no drawer (F4.6b): só os recursos atuais e os Sins, com − e +, e
+      // Desfazer/Refazer (Ctrl+Z e Ctrl+Y com o foco no drawer); a barra entra no
+      // cabeçalho, embaixo do seletor, na 1ª vez que o Ensaio liga
+      var editor = seletor && KhEditor ? KhEditor.criar({ win: win, doc: doc, raiz: gav, modo: 'drawer', prefixo: PREFIXO,
+        lugar: function () {
+          var x = el('fd-gaveta-ked');
+          if (x) return x;
+          x = doc.createElement('div');
+          x.id = 'fd-gaveta-ked';
+          x.className = 'ke-ed-lugar';
+          (q('.fd-gaveta-cab') || gav).appendChild(x);
+          return x;
+        } }) : null;
 
       // ---- cliques (delegados: o redesenho não perde ouvinte)
       gav.addEventListener('click', function (e) {
@@ -9163,7 +10465,8 @@
       var dados = null, t = null, res = null;
       function pinta(r0) {
         res = r0;
-        var r = DESENHO.paineis(r0, { dados: dados, base: base || '../' });
+        // com o Ensaio, recursos atuais e Sins com − e + (F4.6b); sem ele, só leitura
+        var r = DESENHO.paineis(r0, { dados: dados, base: base || '../', editar: editor && ensaioLigado() ? 'drawer' : undefined });
         var topo = rolagem.scrollTop;
         R.trocaHTML(doc, idEl, htmlId(r0), null, null, win);
         if (RT.trocaHTML(doc, minis, htmlMinis(r0), btAbrir, null, win)) dicaTrilho = !!minis.querySelector('[' + RT.MARCA_DICA + ']');
@@ -9174,6 +10477,7 @@
           p.removeAttribute('aria-busy');
         });
         rolagem.scrollTop = topo;
+        if (editor) editor.desenha(r0);
       }
       // com o Ensaio, a ficha ativa dele (KhEnsaio.calcular); sem ele, a sombra da ficha atual
       function calcula() { return ensaioLigado() && KhEnsaio ? KhEnsaio.calcular(ss, dados, versao) : KhPrevia.calcular(ls, dados, versao); }

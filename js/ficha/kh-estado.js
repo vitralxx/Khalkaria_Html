@@ -22,6 +22,14 @@
  * o carimbo origemV3 {fichaId, revV2} (a v2.1 o preserva), que diz ao
  * reimportarV2 de qual projeção ela descende. Nunca grava o marcador 'v3'.
  *
+ * EDIÇÃO COM DESFAZER (F4.6b, 07 §3): armazem.editar(id, [{caminho, valor}],
+ * rotulo) grava a ficha e um passo no log dela (khalkaria_ficha_v3_log:<id>,
+ * fora do export): {partes, antes, depois, revPorParte (a impressão de cada
+ * caminho depois do passo), rotulo, em}. desfazer/refazer andam SÓ o topo da
+ * pilha e só se cada caminho ainda está como o passo o deixou (senão,
+ * 'outra-aba'); teto de 20 passos por pilha e 256 KB. Hoje só o modo Ensaio
+ * (KhEnsaio, sessionStorage com prefixo) chama; na virada, o mesmo armazém real.
+ *
  * No node (tools/testes) exporta o KhEstado por module.exports; no navegador
  * vira window.KhEstado. Depende do KhInv (js/ficha/kh-inv.js, antes no ORDEM).
  * Fonte: js/ficha/kh-estado.js (o js/ficha.js é o ARTEFATO concatenado).
@@ -800,6 +808,72 @@
       return JSON.stringify(x === undefined ? null : x);
     }
     function igual(a, b) { return canon(a) === canon(b); }
+
+    // ---------------- edição por caminho e log de desfazer (F4.6b, puro) ----------------
+    // Um caminho de edição é pontuado ('meta.nome', 'atributos.base.FOR',
+    // 'pericias.oficio-alquimia', 'recursos.saude.atual', 'ajustes'): cada
+    // segmento é uma chave (as chaves dos ajustes têm ponto, por isso
+    // 'ajustes' vai inteiro). O log de desfazer guarda, por passo, o valor de
+    // cada caminho antes e depois e a impressão (revPorParte) dele depois do
+    // passo: desfazer só anda se cada caminho do passo ainda está como o passo
+    // o deixou (senão, outra aba mudou a ficha). Fora do export.
+    var LOG_TETO = 20;                 // passos por pilha (desfazer e refazer)
+    var LOG_BYTES = 256 * 1024;        // o log inteiro, 2 bytes por caractere (como o uso)
+    // a raiz do caminho que a edição não toca (identidade da ficha e o carimbo do armazém)
+    var CAMINHO_PROIBIDO = /^(?:id|rev|schemaVersion|salvoEm|criadoEm|exportadoEm)(?:\.|$)/;
+    var RE_CAMINHO = /^[A-Za-z][A-Za-z0-9_-]*(?:\.[A-Za-z0-9_-]+)*$/;
+    function caminhoEditavel(c) { return typeof c === 'string' && RE_CAMINHO.test(c) && !CAMINHO_PROIBIDO.test(c); }
+    function pegaCaminho(f, c) {
+      return str(c).split('.').reduce(function (a, k) { return a !== null && typeof a === 'object' && temPropria(a, k) ? a[k] : undefined; }, f);
+    }
+    // grava v no caminho (cria os objetos do meio); undefined apaga a chave
+    function poeCaminho(f, c, v) {
+      var ks = str(c).split('.'), o = f;
+      for (var i = 0; i < ks.length - 1; i++) {
+        if (!obj(o[ks[i]])) o[ks[i]] = {};
+        o = o[ks[i]];
+      }
+      if (v === undefined) delete o[ks[ks.length - 1]];
+      else o[ks[ks.length - 1]] = clone(v);
+    }
+    // a impressão de um valor (FNV-1a 32 bits do canon, mais o tamanho): igual
+    // se e só se o valor é o mesmo, para fins do log
+    function impressao(v) {
+      var s = v === undefined ? '\u0000' : canon(v), h = 0x811c9dc5;
+      for (var i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 0x01000193) >>> 0; }
+      return h.toString(36) + '.' + s.length.toString(36);
+    }
+    function logVazio() { return { passos: [], refazer: [] }; }
+    function passoValido(p) {
+      return obj(p) && Array.isArray(p.partes) && p.partes.length > 0 && p.partes.every(caminhoEditavel) &&
+        obj(p.antes) && obj(p.depois) && obj(p.revPorParte);
+    }
+    // o log lido do storage, só com os passos que dá para usar
+    function normalizaLog(l) {
+      if (!obj(l)) return logVazio();
+      return { passos: lista(l.passos).filter(passoValido), refazer: lista(l.refazer).filter(passoValido) };
+    }
+    function bytesLog(l) { return JSON.stringify(l).length * 2; }
+    // o teto: 20 passos em cada pilha e 256 KB no todo; sai o mais velho primeiro
+    function aparaLog(l) {
+      while (l.passos.length > LOG_TETO) l.passos.shift();
+      while (l.refazer.length > LOG_TETO) l.refazer.shift();
+      while ((l.passos.length || l.refazer.length) && bytesLog(l) > LOG_BYTES) {
+        if (l.passos.length) l.passos.shift(); else l.refazer.shift();
+      }
+      return l;
+    }
+    // o passo aplicável à ficha f? (cada caminho como o passo o deixou)
+    function passoLivre(f, p) {
+      return !!f && !!p && p.partes.every(function (c) { return impressao(pegaCaminho(f, c)) === p.revPorParte[c]; });
+    }
+    // a impressão de cada caminho de p na ficha f (depois de aplicar)
+    function impressoes(f, partes) {
+      var out = {};
+      partes.forEach(function (c) { out[c] = impressao(pegaCaminho(f, c)); });
+      return out;
+    }
+
     function temListasVelhas(f) {
       var inv = obj(f) ? f.inventario : null;
       return obj(inv) && (temPropria(inv, 'armas') || temPropria(inv, 'materiais'));
@@ -1381,6 +1455,102 @@
         var f = lerFicha(id);
         return f ? exportarFicha(f, lerSessao(id), opcoes) : null;
       }
+
+      // ---- edição com desfazer e refazer (F4.6b) ----
+      // editar(id, [{caminho, valor}], rotulo): grava a ficha (gravar: rev++,
+      // salvoEm) e um passo no log dela; a pilha de refazer esvazia. Valor
+      // undefined apaga a chave. Mudança que não muda nada não grava. Um
+      // caminho 'ajustes' passa pelo validador (validarAjuste): ajuste em
+      // caminho de estado (recurso.*.atual…) é recusado sem gravar.
+      // -> {ok, mudou, rev, partes, rotulo, desfazivel, avisoLog} | recusa
+      function lerLogNorm(id) { return normalizaLog(lerLog(id)); }
+      // grava o log (vazio: apaga a chave); se o storage recusar, apaga o log
+      // velho, para não ficar passo que não bate com a ficha
+      function gravaLogNorm(id, l) {
+        if (!l.passos.length && !l.refazer.length) { remove(CHAVES.log + id); return { ok: true }; }
+        var r = gravarLog(id, l);
+        if (!r.ok) remove(CHAVES.log + id);
+        return r;
+      }
+      function editar(id, mudancas, rotulo) {
+        if (somenteLeitura()) return recusa('somente-leitura');
+        var f = lerFicha(id);
+        if (!f) return recusa(existe(lerIndice(), id) ? 'ilegivel' : 'inexistente');
+        var antes = {}, depois = {}, partes = [], erro = null;
+        lista(mudancas).forEach(function (m) {
+          if (erro) return;
+          if (!obj(m) || !caminhoEditavel(m.caminho)) { erro = recusa('caminho-invalido', { caminho: obj(m) ? str(m.caminho) : '' }); return; }
+          var c = m.caminho;
+          if (partes.indexOf(c) >= 0) { erro = recusa('caminho-repetido', { caminho: c }); return; }
+          if (partes.some(function (p) { return p.indexOf(c + '.') === 0 || c.indexOf(p + '.') === 0; })) { erro = recusa('caminho-sobreposto', { caminho: c }); return; }
+          if (c === 'ajustes' || c.indexOf('ajustes.') === 0) {
+            var novo = c === 'ajustes' ? m.valor : null;
+            if (c !== 'ajustes' || !obj(novo)) { erro = recusa('ajuste-invalido', { caminho: c }); return; }
+            Object.keys(novo).some(function (k) {
+              var e = validarAjuste(k, novo[k]);
+              if (e) erro = recusa('ajuste-invalido', { caminho: k, motivo: e });
+              return !!e;
+            });
+            if (erro) return;
+          }
+          var a = pegaCaminho(f, c);
+          if (canon(a) === canon(m.valor) && (a === undefined) === (m.valor === undefined)) return;
+          if (a !== undefined) antes[c] = clone(a);
+          if (m.valor !== undefined) depois[c] = clone(m.valor);
+          partes.push(c);
+        });
+        if (erro) return erro;
+        if (!partes.length) return { ok: true, mudou: false, rev: inteiro(f.rev, 0), partes: [], rotulo: str(rotulo) };
+        var nova = clone(f);
+        partes.forEach(function (c) { poeCaminho(nova, c, depois[c]); });
+        var g = gravar(nova);
+        if (!g.ok) return g;
+        var passo = { rotulo: str(rotulo) || 'Edição', em: c.agora(), partes: partes, antes: antes, depois: depois,
+          revPorParte: impressoes(nova, partes) };
+        var l = lerLogNorm(id);
+        l.passos.push(passo);
+        l.refazer = [];
+        aparaLog(l);
+        var gl = gravaLogNorm(id, l);
+        return { ok: true, mudou: true, rev: nova.rev, partes: partes, rotulo: passo.rotulo,
+          desfazivel: gl.ok && l.passos.indexOf(passo) >= 0, avisoLog: gl.ok ? null : gl.erro, limpou: g.limpou };
+      }
+      // desfaz (ou refaz) SÓ o topo da pilha, e só se cada caminho do passo
+      // ainda está como o passo o deixou; senão recusa 'outra-aba' (outra aba,
+      // ou outra página desta, mudou a ficha depois) e nada muda.
+      function anda(id, de, para, valores) {
+        if (somenteLeitura()) return recusa('somente-leitura');
+        var l = lerLogNorm(id), p = l[de][l[de].length - 1];
+        if (!p) return recusa('vazio');
+        var f = lerFicha(id);
+        if (!f) return recusa(existe(lerIndice(), id) ? 'ilegivel' : 'inexistente');
+        if (!passoLivre(f, p)) {
+          return recusa('outra-aba', { rotulo: p.rotulo,
+            partes: p.partes.filter(function (k) { return impressao(pegaCaminho(f, k)) !== p.revPorParte[k]; }) });
+        }
+        var nova = clone(f);
+        p.partes.forEach(function (k) { poeCaminho(nova, k, temPropria(p[valores], k) ? p[valores][k] : undefined); });
+        var g = gravar(nova);
+        if (!g.ok) return g;
+        l[de].pop();
+        l[para].push({ rotulo: p.rotulo, em: p.em, partes: p.partes, antes: p.antes, depois: p.depois,
+          revPorParte: impressoes(nova, p.partes) });
+        aparaLog(l);
+        var gl = gravaLogNorm(id, l);
+        return { ok: true, rev: nova.rev, partes: p.partes.slice(), rotulo: p.rotulo, avisoLog: gl.ok ? null : gl.erro };
+      }
+      function desfazer(id) { return anda(id, 'passos', 'refazer', 'antes'); }
+      function refazer(id) { return anda(id, 'refazer', 'passos', 'depois'); }
+      // o que os botões mostram: o topo de cada pilha (rótulo e se dá para andar)
+      function estadoLog(id) {
+        var l = lerLogNorm(id), f = lerFicha(id);
+        function topo(pilha) {
+          var p = pilha[pilha.length - 1];
+          return p ? { rotulo: p.rotulo, em: str(p.em), livre: passoLivre(f, p) } : null;
+        }
+        return { desfazer: topo(l.passos), refazer: topo(l.refazer), passos: l.passos.length, refazerN: l.refazer.length,
+          bytes: bytesLog(l) };
+      }
       // o texto cru da chave (ficha ilegível ou de versão futura): é o que dá
       // para salvar dela antes de excluir ou de gravar por cima
       function exportarCru(id) {
@@ -1649,6 +1819,7 @@
         duplicar: duplicar, excluir: excluir, exportar: exportar, exportarCru: exportarCru, exportarTodas: exportarTodas,
         importar: importar, uso: uso, lerSessao: lerSessao, gravarSessao: gravarSessao,
         lerLog: lerLog, gravarLog: gravarLog, somenteLeitura: somenteLeitura,
+        editar: editar, desfazer: desfazer, refazer: refazer, estadoLog: estadoLog,
         gravarComProjecao: gravarComProjecao, migrarReal: migrarReal
       };
     }
@@ -1679,6 +1850,9 @@
       indiceCatalogo: indiceCatalogo, reassociar: reassociar, reconciliar: reconciliar,
       exportarFicha: exportarFicha, pacoteTodas: pacoteTodas, lerImport: lerImport,
       sombra: sombra, armazem: armazem,
+      // F4.6b: edição por caminho e o log de desfazer (o armazém usa)
+      LOG_TETO: LOG_TETO, LOG_BYTES: LOG_BYTES, caminhoEditavel: caminhoEditavel, pegaCaminho: pegaCaminho,
+      poeCaminho: poeCaminho, impressao: impressao, normalizaLog: normalizaLog, aparaLog: aparaLog, bytesLog: bytesLog,
       // F4.2 (escrita dupla e migração real): puras, ligadas só na F4.7
       projetarV2: projetarV2, conflitoV2: conflitoV2, reimportarV2: reimportarV2,
       gravarComProjecao: gravarComProjecao, migrarReal: migrarReal

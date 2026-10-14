@@ -58,6 +58,10 @@
  * desta aba; com ele ligado (só numa página velha do bfcache o botão aparece),
  * não apaga: KhSeletor.bloqueiaSaidaPrevia acerta a página e abre a confirmação
  * da faixa. O Ensaio grava só no sessionStorage com o prefixo khalkaria_ensaio:.
+ * F4.6b (07 §3): com o Ensaio, o drawer edita só os recursos atuais e os Sins
+ * (− e +, KhFichaAbas com {editar:'drawer'}); a barra do KhEditor
+ * (#fd-gaveta-ked, no cabeçalho) tem Desfazer e Refazer, e Ctrl+Z / Ctrl+Y
+ * valem com o foco no drawer. O resto se edita na página da ficha.
  * Escritas: localStorage khalkaria_ficha3_dock (só quando o jogador abre ou
  * recolhe pelo botão ou pelo Esc), as preferências de aba do KhAbas (ordem e
  * aba aberta, as mesmas da página), o "lembrar" da prévia (KhPrevia.iniciar,
@@ -97,6 +101,7 @@
   var KhRedesenho = emNode ? require('./kh-redesenho.js') : raiz.KhRedesenho;
   var KhEnsaio = emNode ? require('./kh-ensaio.js') : raiz.KhEnsaio;
   var KhSeletor = emNode ? require('./kh-seletor.js') : raiz.KhSeletor;
+  var KhEditor = emNode ? require('./kh-editor.js') : raiz.KhEditor;
 
   var KhFichaDrawer = (function () {
     var CHAVE_DOCK = 'khalkaria_ficha3_dock';
@@ -544,6 +549,19 @@
       var roEl = el('fd-gaveta-ro');
       function poeModo() { if (roEl) roEl.hidden = ensaioLigado(); }
       if (seletor) KhSeletor.ligarFaixa(win);
+      // a edição no drawer (F4.6b): só os recursos atuais e os Sins, com − e +, e
+      // Desfazer/Refazer (Ctrl+Z e Ctrl+Y com o foco no drawer); a barra entra no
+      // cabeçalho, embaixo do seletor, na 1ª vez que o Ensaio liga
+      var editor = seletor && KhEditor ? KhEditor.criar({ win: win, doc: doc, raiz: gav, modo: 'drawer', prefixo: PREFIXO,
+        lugar: function () {
+          var x = el('fd-gaveta-ked');
+          if (x) return x;
+          x = doc.createElement('div');
+          x.id = 'fd-gaveta-ked';
+          x.className = 'ke-ed-lugar';
+          (q('.fd-gaveta-cab') || gav).appendChild(x);
+          return x;
+        } }) : null;
 
       // ---- cliques (delegados: o redesenho não perde ouvinte)
       gav.addEventListener('click', function (e) {
@@ -598,7 +616,8 @@
       var dados = null, t = null, res = null;
       function pinta(r0) {
         res = r0;
-        var r = DESENHO.paineis(r0, { dados: dados, base: base || '../' });
+        // com o Ensaio, recursos atuais e Sins com − e + (F4.6b); sem ele, só leitura
+        var r = DESENHO.paineis(r0, { dados: dados, base: base || '../', editar: editor && ensaioLigado() ? 'drawer' : undefined });
         var topo = rolagem.scrollTop;
         R.trocaHTML(doc, idEl, htmlId(r0), null, null, win);
         if (RT.trocaHTML(doc, minis, htmlMinis(r0), btAbrir, null, win)) dicaTrilho = !!minis.querySelector('[' + RT.MARCA_DICA + ']');
@@ -609,6 +628,7 @@
           p.removeAttribute('aria-busy');
         });
         rolagem.scrollTop = topo;
+        if (editor) editor.desenha(r0);
       }
       // com o Ensaio, a ficha ativa dele (KhEnsaio.calcular); sem ele, a sombra da ficha atual
       function calcula() { return ensaioLigado() && KhEnsaio ? KhEnsaio.calcular(ss, dados, versao) : KhPrevia.calcular(ls, dados, versao); }
