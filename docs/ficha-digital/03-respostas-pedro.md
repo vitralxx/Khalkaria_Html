@@ -237,10 +237,11 @@ Escolhidas as 4 opções recomendadas:
 ## 10. Revisão da ficha nova pelo Pedro, 2026-10-19 (prints da página no Ensaio)
 
 - **Selo "DECISÃO" nas perícias de dois atributos** (Movimento, Convencimento, Intimidação, Enganação) e na CD: "Não entendi os 4 selos de decisão em perícias, todas tem a mesma regra, as perícias utilizam 2 atributos base, o maior sempre prevalece no cálculo, e é só isso." / "Todos os selos que pedem decisão na ficha, já foram explicados, é sempre o maior atributo. esclareça no box de informação do cálculo em todos os lugares."
+  - Correção do Pedro na mesma conversa: "inclusive, pode adicionar a opção de mudar manualmente sim o atributo que a perícia usa, porém por padrão calcule com a maior, isso que quis dizer."
   - Consequências:
     - **sai o selo** desses números;
-    - o tooltip diz **"usa o maior entre Mod.X e Mod.Y"**;
-    - **não há troca manual de atributo** (vale o maior; o "Ajustar" cobre qualquer exceção). Isso substitui o "com opção de o jogador trocar" da D7 e o item da auditoria A1 sobre essa escolha.
+    - o tooltip diz **"usa o maior entre Mod.X e Mod.Y"** (ou o atributo escolhido, quando o jogador trocou);
+    - **troca manual do atributo:** sim, nas perícias de dois atributos (e na CD com escolha). O padrão é o maior (D7 mantida, agora sem selo; o item da auditoria A1 sobre essa escolha continua valendo).
 - **Variante:** o box não tem as 3 subespécies do Inseto (Besouro, Louva-deus, Barata). Corrompido e Autômato são as únicas raças sem variante. Pergunta: a tabela de corrupção e os itens acopláveis (tecnologias) do Autômato estão sendo trabalhados na ficha?
 - **Box "Ajustar":** "Gostei desse box que deixa mudar quase TODOS os cálculos, perfeito, só acompanhar o temporária quando criar a mesa."
 - **Layout:** "A seção 'Capacidade' pode ir para baixo das perícias e à esquerda de Evasão, CD e Movimento."
