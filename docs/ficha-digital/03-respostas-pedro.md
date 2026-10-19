@@ -233,3 +233,18 @@ Escolhidas as 4 opções recomendadas:
 - **Drawer à direita que empurra o conteúdo:** **só na ficha nova**, atrás da prévia até a virada. A ficha atual (v2.1) continua abrindo por cima.
 - **Abas reordenáveis:** ordem **por navegador** (drawer e página da ficha). Vale para todas as fichas daquele computador; é preferência de tela e não vai no export.
 - **Ficha fechada:** **trilho fino de 48 px** à direita com mini barras de Saúde, Stamina e Éter; acende ao arrastar algo e abre ao soltar em cima. O conteúdo perde 48 px.
+
+## 10. Revisão da ficha nova pelo Pedro, 2026-10-19 (prints da página no Ensaio)
+
+- **Selo "DECISÃO" nas perícias de dois atributos** (Movimento, Convencimento, Intimidação, Enganação) e na CD: "Não entendi os 4 selos de decisão em perícias, todas tem a mesma regra, as perícias utilizam 2 atributos base, o maior sempre prevalece no cálculo, e é só isso." / "Todos os selos que pedem decisão na ficha, já foram explicados, é sempre o maior atributo. esclareça no box de informação do cálculo em todos os lugares."
+  - Consequências:
+    - **sai o selo** desses números;
+    - o tooltip diz **"usa o maior entre Mod.X e Mod.Y"**;
+    - **não há troca manual de atributo** (vale o maior; o "Ajustar" cobre qualquer exceção). Isso substitui o "com opção de o jogador trocar" da D7 e o item da auditoria A1 sobre essa escolha.
+- **Variante:** o box não tem as 3 subespécies do Inseto (Besouro, Louva-deus, Barata). Corrompido e Autômato são as únicas raças sem variante. Pergunta: a tabela de corrupção e os itens acopláveis (tecnologias) do Autômato estão sendo trabalhados na ficha?
+- **Box "Ajustar":** "Gostei desse box que deixa mudar quase TODOS os cálculos, perfeito, só acompanhar o temporária quando criar a mesa."
+- **Layout:** "A seção 'Capacidade' pode ir para baixo das perícias e à esquerda de Evasão, CD e Movimento."
+- **Armadura e Resistência:** os nomes dos tipos clipam por cima das colunas R/I/V. A separação entre campo bool (R/I/V), campo de dado e campo numérico "é uma abordagem perfeita para o cálculo e intuitividade na ficha".
+- **Marcas da Vhelor:** "vital que esteja oculta por padrão, e ao utilizar algum item que dê uma marca mostrar."
+- **Efeitos dos 600+ itens do Bazar:** "utilize uma estrutura inteligente que tem como base uma tabela exclusiva que infere quais são as alterações na ficha a partir de cada item, tabela essa que deve ser feita pelo agente 'khalkaria bazar balanceamento'." Os gatilhos são estar no inventário, equipar e consumir.
+- **Mensagens do motor:** o aviso "Inseto: os atributos variam por subespécie, e a ficha não tem uma" está correto. Ele pede: "Revise essas mensagens de erro para encontrar quaisquer discrepâncias do funcionamento do sistema pela ficha."
