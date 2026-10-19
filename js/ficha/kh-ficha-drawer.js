@@ -40,9 +40,13 @@
  *     abre nem aceita. Sem seção (raça, condição) ou sem a ficha atual, o
  *     drawer abre e explica, sem aceitar;
  *   - com o Ensaio ligado (F4.6, KhEnsaio.ligado()), o desvio não acontece: a
- *     entidade é da ficha do ensaio, e levar para ela chega na F4.6c. Até lá
- *     o drawer não aceita NADA, nem o item do Bazar (que iria à ficha atual,
- *     contra a faixa "nada aqui é salvo na sua ficha"), e diz isso (avisoEnsaio).
+ *     entidade é da ficha do ensaio. Soltar no drawer (F4.6c) leva o card para
+ *     ela pelo KhLevar (levador.levar): a ref do MIME application/x-khalkaria-ref
+ *     (a alça ou o card marcado pelo build), o item do Bazar ({_bazar:true,item})
+ *     ou o card da v2.1 (o text/plain dela, resolvido pelo nome). Nada vai à
+ *     ficha atual (a faixa: "nada aqui é salvo na sua ficha"); o aviso diz o
+ *     que acontece (avisoEnsaio). O arrasto interno do Bazar
+ *     (application/x-kf-uid) não passa por aqui.
  * Teclado: Esc recolhe (KhTeclas.camadaEsc, depois das camadas do Bazar; não
  * com o foco num campo de texto fora do drawer, cujo Esc é dele); abrir
  * pelo botão leva o foco à aba aberta, recolher o devolve ao botão do trilho.
@@ -62,6 +66,10 @@
  * (− e +, KhFichaAbas com {editar:'drawer'}); a barra do KhEditor
  * (#fd-gaveta-ked, no cabeçalho) tem Desfazer e Refazer, e Ctrl+Z / Ctrl+Y
  * valem com o foco no drawer. O resto se edita na página da ficha.
+ * F4.6c (07 §4): o drawer liga o KhLevar na página (KhLevar.ligar: o botão e a
+ * alça dos cards, a tecla A, o "na ficha") e põe "Exportar para o Bestiário"
+ * (KhLevar.criarExport, #fd-gaveta-kbe) no cabeçalho, embaixo da barra do
+ * KhEditor; os dois só agem com o Ensaio e gravam só no armazém dele.
  * Escritas: localStorage khalkaria_ficha3_dock (só quando o jogador abre ou
  * recolhe pelo botão ou pelo Esc), as preferências de aba do KhAbas (ordem e
  * aba aberta, as mesmas da página), o "lembrar" da prévia (KhPrevia.iniciar,
@@ -84,8 +92,9 @@
  * o DOM mínimo). No node exporta
  * por module.exports (carregado sozinho); no artefato js/ficha.js o export já é
  * o KhInv e este módulo só registra window.KhFichaDrawer e o liga no navegador.
- * Vem no ORDEM depois do kh-ficha-abas.js (usa o KhFichaAbas, o KhAbas, o
- * KhRedesenho, o KhConta, o KhPrevia, o KhEnsaio e o KhSeletor).
+ * Vem no ORDEM depois do kh-ficha-abas.js e do kh-levar.js (usa o KhFichaAbas,
+ * o KhAbas, o KhRedesenho, o KhConta, o KhPrevia, o KhEnsaio, o KhSeletor, o
+ * KhEditor e o KhLevar).
  * Fonte: js/ficha/kh-ficha-drawer.js (o js/ficha.js é o ARTEFATO concatenado).
  */
 (function (raiz) {
@@ -102,6 +111,7 @@
   var KhEnsaio = emNode ? require('./kh-ensaio.js') : raiz.KhEnsaio;
   var KhSeletor = emNode ? require('./kh-seletor.js') : raiz.KhSeletor;
   var KhEditor = emNode ? require('./kh-editor.js') : raiz.KhEditor;
+  var KhLevar = emNode ? require('./kh-levar.js') : raiz.KhLevar;
 
   var KhFichaDrawer = (function () {
     var CHAVE_DOCK = 'khalkaria_ficha3_dock';
@@ -227,14 +237,30 @@
       // o KF.abrir falhou: o botão FICHA não aceita soltar (07 §0, item 1), então abrir por ele e arrastar de novo
       return 'A ficha atual não abriu: abra pelo botão FICHA e arraste ' + (NOME_SECAO[c.secao] || 'a carta') + ' de novo.';
     }
-    // Com o Ensaio ligado, o drawer mostra a ficha do ensaio, e levar para ela
-    // é a F4.6c: até lá, soltar no drawer não guarda nada, nem na ficha atual
-    // (a faixa promete "nada aqui é salvo na sua ficha"). c = o leCarta
-    function avisoEnsaio(c) {
+    // Com o Ensaio ligado, o drawer mostra a ficha do ensaio, e soltar nele
+    // leva o card para ela (F4.6c, KhLevar); nada vai à ficha atual (a faixa
+    // promete "nada aqui é salvo na sua ficha"). c = o leCarta (com a ref do
+    // card marcado pelo build, quando há); aceita: o drawer recebe este arrasto
+    function nomeArrasto(c) {
       c = obj(c) ? c : {};
-      var nome = c.tipo === 'bazar' ? (semEmoji(obj(c.item) ? c.item.nome : '') || 'o item')
-        : NOME_SECAO[c.secao] || (temChave(NOME_TIPO, c.kfTipo) ? NOME_TIPO[c.kfTipo] : 'este card');
-      return 'Ensaio: levar ' + nome + ' para a ficha do ensaio chega na F4.6c. Soltar aqui não guarda nada, nem na sua ficha.';
+      if (c.tipo === 'bazar') return semEmoji(obj(c.item) ? c.item.nome : '') || semEmoji(obj(c.ref) ? c.ref.nome : '') || 'o item';
+      if (obj(c.ref) && semEmoji(c.ref.nome)) return semEmoji(c.ref.nome);
+      var art = KhLevar && KhLevar.ARTIGO ? KhLevar.ARTIGO : {};
+      return (temChave(art, c.kfTipo) ? art[c.kfTipo] : '') || NOME_SECAO[c.secao] ||
+        (temChave(NOME_TIPO, c.kfTipo) ? NOME_TIPO[c.kfTipo] : 'este card');
+    }
+    function avisoEnsaio(c, aceita) {
+      var nome = nomeArrasto(c);
+      return aceita ? 'Solte para levar ' + nome + ' à ficha do ensaio (a sua ficha não muda).'
+        : 'Ensaio: ' + nome + ' não vai para a ficha do ensaio por arrasto. Nada foi guardado, nem na sua ficha.';
+    }
+    // o arrasto vai para a ficha do ensaio? (o card marcado, o item do Bazar,
+    // um card da v2.1 ou a ref no MIME do KhLevar)
+    function levavel(c, tipos) {
+      if (obj(c) && (obj(c.ref) || c.tipo === 'bazar' || c.secao || obj(c.v2))) return true;
+      var t = [];
+      try { t = arr(tipos); } catch (e) { t = []; }
+      return !!KhLevar && t.indexOf(KhLevar.MIME) >= 0;
     }
     // a direita da nota (px da borda da janela): à esquerda do mais largo dos
     // drawers à vista (o v2.1, 420 px; este, 460 px a partir de 1800 px), pelas
@@ -562,6 +588,21 @@
           (q('.fd-gaveta-cab') || gav).appendChild(x);
           return x;
         } }) : null;
+      // levar para a ficha do ensaio (F4.6c, KhLevar): com o Ensaio, os botões e a
+      // alça dos cards da página, a tecla A e o "na ficha"; o soltar aqui chama o
+      // levar dele. Liga ANTES do dragstart do drawer: a alça já pôs a ref.
+      var levador = seletor && KhLevar ? KhLevar.ligar(win, { dados: function () { return pronto; } }) : null;
+      // o export do Bestiário da ficha do ensaio, no cabeçalho, embaixo da barra do KhEditor
+      var exportador = seletor && KhLevar ? KhLevar.criarExport({ win: win, doc: doc, dados: function () { return pronto; },
+        lugar: function () {
+          var x = el('fd-gaveta-kbe');
+          if (x) return x;
+          x = doc.createElement('div');
+          x.id = 'fd-gaveta-kbe';
+          x.className = 'ke-ed-lugar ke-bst-lugar';
+          (q('.fd-gaveta-cab') || gav).appendChild(x);
+          return x;
+        } }) : null;
 
       // ---- cliques (delegados: o redesenho não perde ouvinte)
       gav.addEventListener('click', function (e) {
@@ -629,6 +670,7 @@
         });
         rolagem.scrollTop = topo;
         if (editor) editor.desenha(r0);
+        if (exportador) exportador.desenha();
       }
       // com o Ensaio, a ficha ativa dele (KhEnsaio.calcular); sem ele, a sombra da ficha atual
       function calcula() { return ensaioLigado() && KhEnsaio ? KhEnsaio.calcular(ss, dados, versao) : KhPrevia.calcular(ls, dados, versao); }
@@ -662,6 +704,13 @@
         // no dragstart o dataTransfer ainda se lê (o card já pôs o text/plain: ouvinte dele, antes deste)
         try { txt = e.dataTransfer ? e.dataTransfer.getData('text/plain') : ''; } catch (y) { txt = ''; }
         arrasto = leCarta(card, txt);
+        // para o Ensaio (F4.6c): a ref do card marcado pelo build e o text/plain da v2.1
+        if (KhLevar) {
+          arrasto.ref = KhLevar.refDoCard(card);
+          var p = null;
+          try { p = JSON.parse(txt); } catch (y) { p = null; }
+          if (obj(p)) arrasto.v2 = p;
+        }
         gav.setAttribute('data-acende', '');
       }
       function aoEntrar() {
@@ -681,10 +730,17 @@
       function aoSobre(e) {
         if (!arrasto) return;
         if (ensaioLigado()) {
-          // o drawer mostra a ficha do ensaio: não aceita nada (sem
-          // preventDefault), nem o item do Bazar, que iria para a ficha atual
-          gav.setAttribute('data-recusa', '');
-          mostraAviso(avisoEnsaio(arrasto));
+          // o drawer mostra a ficha do ensaio: o card vai para ela (F4.6c); nada vai à ficha atual
+          if (levador && levavel(arrasto, e.dataTransfer && e.dataTransfer.types)) {
+            e.preventDefault();
+            if (e.dataTransfer) e.dataTransfer.dropEffect = 'copy';
+            gav.removeAttribute('data-recusa');
+            gav.setAttribute('data-alvo', '');
+            mostraAviso(avisoEnsaio(arrasto, true));
+          } else {
+            gav.setAttribute('data-recusa', '');
+            mostraAviso(avisoEnsaio(arrasto, false));
+          }
         } else if (arrasto.tipo === 'bazar') {
           e.preventDefault();
           if (e.dataTransfer) e.dataTransfer.dropEffect = 'copy';
@@ -708,18 +764,34 @@
         if (!aviso.hidden) mostraAviso(aviso.textContent, MOSTRA_AVISO);
         if (!nota.hidden) mostraNota(nota.textContent, MOSTRA_AVISO);
       }
-      function aoSoltar(e) {
-        if (!arrasto || arrasto.tipo !== 'bazar') return;
+      // Ensaio (F4.6c): a ref do MIME do KhLevar, o card marcado, o item do
+      // Bazar ({_bazar:true,item}) ou o card da v2.1 (pelo nome) vão para a ficha do ensaio
+      function soltaEnsaio(e) {
         e.preventDefault();
-        if (ensaioLigado()) {
-          // o Ensaio ligou no meio do arrasto (o dragover recusa): nada vai à ficha atual
-          var c = arrasto;
-          arrasto = null;
-          gav.removeAttribute('data-acende');
-          limpaAlvo();
-          mostraAviso(avisoEnsaio(c), MOSTRA_AVISO);
-          return;
-        }
+        var c = arrasto, dt = e.dataTransfer, ref = null, v2 = null, txt = '';
+        arrasto = null;
+        gav.removeAttribute('data-acende');
+        limpaAlvo();
+        try { ref = KhLevar ? KhLevar.lerRef(dt ? dt.getData(KhLevar.MIME) : '') : null; } catch (y) { ref = null; }
+        try { txt = dt ? dt.getData('text/plain') : ''; } catch (y) { txt = ''; }
+        try { v2 = JSON.parse(txt); } catch (y) { v2 = null; }
+        if (!obj(v2)) v2 = obj(c && c.v2) ? c.v2 : null;
+        if (!ref && obj(c) && obj(c.ref)) ref = { tipo: c.ref.tipo, id: c.ref.id, nome: c.ref.nome };
+        if (!v2 && obj(c) && c.tipo === 'bazar' && obj(c.item)) v2 = { _bazar: true, item: c.item };
+        // o item que veio no arrasto: o retrato dele, se o id sumiu do catálogo
+        if (ref && ref.tipo === 'item' && obj(v2) && v2._bazar && obj(v2.item)) { ref.item = v2.item; ref.nome = ref.nome || v2.item.nome; }
+        var entrada = ref || (obj(v2) ? { v2: v2 } : null);
+        if (!entrada || !levador) { mostraAviso(avisoEnsaio(c, false), MOSTRA_AVISO); return; }
+        mostraAviso('Levando ' + nomeArrasto(c) + ' para a ficha do ensaio…');
+        levador.levar(entrada).then(function (r) {
+          mostraAviso(r && r.aviso ? r.aviso : 'Nada foi levado.', MOSTRA_AVISO);
+        });
+      }
+      function aoSoltar(e) {
+        if (!arrasto) return;
+        if (ensaioLigado()) { soltaEnsaio(e); return; }
+        if (arrasto.tipo !== 'bazar') return;
+        e.preventDefault();
         var lido = null;
         try { lido = leArrasto(e.dataTransfer ? e.dataTransfer.getData('text/plain') : ''); } catch (y) { lido = null; }
         var it = lido && lido.tipo === 'bazar' ? lido.item : arrasto.item;

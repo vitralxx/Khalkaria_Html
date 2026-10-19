@@ -302,3 +302,74 @@ html[data-ficha3="aberto"] body:not([data-ficha-pagina]) .ke-faixa { right: var(
 .fp .ke-ajustavel:hover { outline: 1px dashed var(--amber); outline-offset: 2px; }
 /* a linha da dica que diz como ajustar (ou por que não aceita) */
 .ke-d-ed { margin-top: .25rem; padding-top: .25rem; border-top: 1px solid var(--border-color); color: var(--gold-light); }
+
+/* ---------------------------------------------------------- levar para a ficha (F4.6c, §4)
+   Os controles que o build deixou inertes em todo card de entidade
+   (button.ent-add e span.ent-alca, os primeiros filhos do card; na tabela do
+   Bazar, dentro da célula do nome): o KhLevar (js/ficha/kh-levar.js) tira o
+   hidden só com o Ensaio e marca o botão com [data-ke-levar]. No card em
+   bloco, os dois flutuam no canto de cima, à direita: o título contorna, e a
+   caixa flex ou grid de dentro do card se estreita (não fica embaixo deles).
+   No card do Bazar (flex em coluna), o botão é a 1ª linha, à direita, e a alça
+   fica no canto da esquerda; na tabela, entram na fila da célula do nome. */
+html[data-ensaio] .ent-add[data-ke-levar], html[data-ensaio] .ent-alca[draggable] {
+    float: right;
+    position: relative; z-index: 1;
+    display: inline-flex; align-items: center; justify-content: center; gap: .3rem;
+    box-sizing: border-box; min-width: 24px; min-height: 24px;
+    margin: 0 0 var(--esp-1) var(--esp-1);
+    font-family: var(--font-body); font-size: .8rem; font-weight: 600; line-height: 1;
+    color: var(--gold-light);
+}
+html[data-ensaio] .ent-add[data-ke-levar] {
+    padding: .2rem .5rem;
+    background: color-mix(in srgb, var(--amber) 14%, var(--bg-card));
+    border: 1px solid var(--amber-dim); border-radius: var(--raio-1);
+    cursor: pointer;
+}
+html[data-ensaio] .ent-add[data-ke-levar]:hover { border-color: var(--amber); }
+html[data-ensaio] .ent-add[data-ke-levar]:focus-visible, html[data-ensaio] [data-kf-tipo]:focus-visible {
+    outline: 2px solid var(--amber); outline-offset: 2px;
+}
+html[data-ensaio] .ent-alca[draggable] { width: 24px; padding: 0; color: var(--text-secondary); cursor: grab; }
+html[data-ensaio] .ent-alca[draggable]:hover { color: var(--gold-light); }
+html[data-ensaio] .ent-alca[draggable]:active { cursor: grabbing; }
+/* já na ficha do ensaio: o botão diz "Na ficha", com o verde de "tem" */
+html[data-ensaio] [data-ke-na-ficha] .ent-add[data-ke-levar] {
+    color: var(--tem);
+    background: color-mix(in srgb, var(--tem) 10%, var(--bg-card));
+    border-color: color-mix(in srgb, var(--tem) 45%, var(--bg-card));
+}
+html[data-ensaio] .cards .item-card > .ent-add[data-ke-levar] { float: none; align-self: flex-end; margin: 0; }
+html[data-ensaio] .cards .item-card > .ent-alca[draggable] { float: none; position: absolute; top: 1.05em; left: 1.1em; margin: 0; }
+html[data-ensaio] .c-nome-in > .ent-add[data-ke-levar], html[data-ensaio] .c-nome-in > .ent-alca[draggable] { float: none; margin: 0; }
+.ke-ent-ic { width: 14px; height: 14px; flex: none; }
+.ke-ent-txt { white-space: nowrap; }
+
+/* o recado de cada levar (KhToast, com Desfazer), acima da faixa */
+.ke-levar-toast {
+    position: fixed; left: 50%; bottom: calc(3.5rem + var(--esp-3));
+    z-index: var(--z-toast);
+    display: none; max-width: min(36rem, calc(100vw - 2rem));
+    transform: translateX(-50%);
+    padding: var(--esp-2) var(--esp-4);
+    font-family: var(--font-body); font-size: .95rem; line-height: 1.35;
+    color: var(--text-primary);
+    background: var(--bg-secondary);
+    border: 1px solid var(--tem); border-radius: var(--raio-2);
+    box-shadow: 0 8px 24px -8px var(--bg-primary);
+}
+.ke-levar-toast.on { display: block; }
+.ke-levar-toast.ke-levar-aviso { border-color: var(--leve); }
+.ke-levar-toast .kh-toast-btn {
+    margin-left: var(--esp-1); padding: 0 .4rem; min-height: 24px;
+    font: inherit; font-weight: 600; color: var(--gold-light);
+    background: none; border: 1px solid var(--amber-dim); border-radius: var(--raio-1); cursor: pointer;
+}
+.ke-levar-toast .kh-toast-btn:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
+
+/* o export do Bestiário (página e cabeçalho do drawer) */
+.ke-bst { display: flex; flex-wrap: wrap; align-items: center; gap: var(--esp-1) var(--esp-3); }
+.ke-bst :where(p) { margin: 0; }
+.ke-bst .ke-msg { flex: 1 1 14rem; }
+.ke-bst :focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }

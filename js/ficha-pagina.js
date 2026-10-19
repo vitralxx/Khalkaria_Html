@@ -53,6 +53,9 @@
  * topo, criado na 1ª vez que o Ensaio liga) grava cada mudança no armazém do
  * ensaio, com Desfazer e Refazer (Ctrl+Z e Ctrl+Y), o pop-over "Ajustar" e a
  * tela "Ajustes". Sem o Ensaio, só leitura, como antes (o ouro).
+ * F4.6c (07 §4): com o Ensaio, "Exportar para o Bestiário" (KhLevar.criarExport,
+ * #fp-kbe, entre o seletor e a barra do KhEditor): carrega o catálogo inteiro antes e,
+ * se um arquivo falhar, não baixa nada. Sem o Ensaio, nenhum nó.
  *
  * No node (tools/testes/ficha-pagina.test.js) exporta por module.exports e
  * carrega os módulos de js/ficha/ direto; no navegador usa os do js/ficha.js,
@@ -71,6 +74,7 @@
   var KhEnsaio = emNode ? require('./ficha/kh-ensaio.js') : raiz.KhEnsaio;
   var KhSeletor = emNode ? require('./ficha/kh-seletor.js') : raiz.KhSeletor;
   var KhEditor = emNode ? require('./ficha/kh-editor.js') : raiz.KhEditor;
+  var KhLevar = emNode ? require('./ficha/kh-levar.js') : raiz.KhLevar;
 
   var FichaPagina = (function () {
     var CHAVE_PREVIA = 'khalkaria_ficha_previa';
@@ -320,6 +324,20 @@
           return x;
         },
         contexto: function () { return dados && M ? M.contexto(dados, KhRegras ? KhRegras.dados() : null, base || '../') : null; } }) : null;
+      // o export do Bestiário da ficha do ensaio (F4.6c, KhLevar): só com o Ensaio,
+      // entre o seletor e a barra do KhEditor (que fica logo acima do topo),
+      // criado na 1ª vez que ele liga
+      var exportador = comEnsaio && KhLevar ? KhLevar.criarExport({ win: win, doc: doc, dados: function () { return pronto; },
+        lugar: function () {
+          var x = el('fp-kbe');
+          if (x) return x;
+          x = doc.createElement('div');
+          x.id = 'fp-kbe';
+          x.className = 'ke-ed-lugar ke-bst-lugar';
+          var antes = el('fp-ked') || el('fp-topo');
+          if (antes && antes.parentNode === raizEl) raizEl.insertBefore(x, antes); else raizEl.appendChild(x);
+          return x;
+        } }) : null;
 
       raizEl.addEventListener('click', function (e) {
         var t = e.target;
@@ -402,6 +420,7 @@
           p.removeAttribute('aria-busy');
         });
         if (editor) editor.desenha(r0);
+        if (exportador) exportador.desenha();
       }
       // com o Ensaio, a ficha ativa dele (KhEnsaio.calcular); sem ele, a sombra da ficha atual
       function calcula() { return ensaio() ? KhEnsaio.calcular(ss, dados, versao) : KhPrevia.calcular(ls, dados, versao); }

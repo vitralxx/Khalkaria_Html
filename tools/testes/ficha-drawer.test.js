@@ -482,16 +482,20 @@ test('puras (07 §0, item 1): leCarta descobre o tipo pelo card de origem e a se
   assert.equal(FD.avisoRecusa({ secao: 'grimorio' }, false), 'A ficha atual não carregou nesta página: recarregue para levar a magia.');
   // o KF.abrir falhou: abrir pelo botão e arrastar de novo (o botão não aceita soltar)
   assert.equal(FD.avisoRecusa({ secao: 'tecnicas' }, true), 'A ficha atual não abriu: abra pelo botão FICHA e arraste a técnica de novo.');
-  // com o Ensaio ligado (revisão da F4.6a): soltar não guarda nada, nem na ficha atual
+  // com o Ensaio ligado (F4.6c): soltar leva para a ficha do ensaio (aceita); nunca à ficha atual
+  assert.equal(FD.avisoEnsaio({ tipo: 'outro', secao: 'tecnicas' }, true), 'Solte para levar a técnica à ficha do ensaio (a sua ficha não muda).');
   assert.equal(FD.avisoEnsaio({ tipo: 'outro', secao: 'tecnicas' }),
-    'Ensaio: levar a técnica para a ficha do ensaio chega na F4.6c. Soltar aqui não guarda nada, nem na sua ficha.');
-  assert.match(FD.avisoEnsaio({ tipo: 'outro', secao: 'grimorio' }), /^Ensaio: levar a magia /);
-  assert.match(FD.avisoEnsaio({ tipo: 'outro', secao: null, kfTipo: 'raca' }), /^Ensaio: levar a raça /);
-  assert.match(FD.avisoEnsaio({ tipo: 'outro', secao: null }), /^Ensaio: levar este card /);
-  assert.match(FD.avisoEnsaio({ tipo: 'bazar', item: { nome: 'Corda \u{1F525}' } }), /^Ensaio: levar Corda para a ficha do ensaio/, 'o nome do item, sem emoji');
-  assert.match(FD.avisoEnsaio({ tipo: 'bazar', item: null }), /^Ensaio: levar o item /, 'o item lido só no soltar');
-  assert.match(FD.avisoEnsaio(null), /^Ensaio: levar este card /);
-  const todos = [FD.avisoAbriu('x'), FD.avisoRecusa({}, true), FD.avisoRecusa({ secao: 'cartas' }, true), FD.avisoEnsaio({ tipo: 'outro', secao: 'tecnicas' })];
+    'Ensaio: a técnica não vai para a ficha do ensaio por arrasto. Nada foi guardado, nem na sua ficha.');
+  assert.match(FD.avisoEnsaio({ tipo: 'outro', secao: 'grimorio' }, true), /^Solte para levar a magia /);
+  assert.match(FD.avisoEnsaio({ tipo: 'outro', secao: null, kfTipo: 'raca' }, true), /^Solte para levar a raça /);
+  assert.match(FD.avisoEnsaio({ tipo: 'outro', secao: null, kfTipo: 'condicao', ref: { tipo: 'condicao', id: 'morrendo', nome: 'Morrendo \u{1F480}' } }, true),
+    /^Solte para levar Morrendo à ficha do ensaio/, 'o nome do card marcado, sem emoji');
+  assert.match(FD.avisoEnsaio({ tipo: 'outro', secao: null }), /^Ensaio: este card não vai /);
+  assert.match(FD.avisoEnsaio({ tipo: 'bazar', item: { nome: 'Corda \u{1F525}' } }, true), /^Solte para levar Corda à ficha do ensaio/, 'o nome do item, sem emoji');
+  assert.match(FD.avisoEnsaio({ tipo: 'bazar', item: null }, true), /^Solte para levar o item /, 'o item lido só no soltar');
+  assert.match(FD.avisoEnsaio(null), /^Ensaio: este card não vai /);
+  const todos = [FD.avisoAbriu('x'), FD.avisoRecusa({}, true), FD.avisoRecusa({ secao: 'cartas' }, true), FD.avisoEnsaio({ tipo: 'outro', secao: 'tecnicas' }),
+    FD.avisoEnsaio({ tipo: 'outro', secao: 'tecnicas' }, true)];
   todos.forEach((t) => {
     assert.doesNotMatch(t, /solte na ficha atual \(botão FICHA\)|botão FICHA\) para levar/, 'nunca manda soltar no botão FICHA');
     assert.doesNotMatch(t, /só leitura/, 'nem chama de só leitura');
@@ -652,7 +656,7 @@ test('tabelas largas: no trilho nada é marcado; no Bazar (o drawer fica por cim
   assert.deepEqual(marcadas(v), ['t-larga', 't-li', 't-wrap'], 'sem estilo computado (padding 0), as mesmas');
 });
 
-test('arrastar sem seção (raça), sem a ficha atual ou com o Ensaio ligado: o drawer abre, não aceita e explica', async () => {
+test('arrastar sem seção (raça) ou sem a ficha atual: o drawer abre, não aceita e explica; com o Ensaio, aceita (para a ficha do ensaio)', async () => {
   // raça: a ficha atual não tem zona de soltar para ela
   const r = await carrega(janela({ ls: comFicha() }));
   const raca = cardDe(r.doc, 'a', 'raca-card', { 'data-kf-tipo': 'raca' });
@@ -675,34 +679,37 @@ test('arrastar sem seção (raça), sem a ficha atual ou com o Ensaio ligado: o 
   assert.equal(s.html.getAttribute('data-ficha3'), 'aberto');
   s.arrasto(s.el('fd-gaveta-rolagem'), 'dragover', null);
   assert.equal(s.el('fd-gaveta-aviso').textContent, 'A ficha atual não carregou nesta página: recarregue para levar a magia.');
-  // Ensaio ligado: sem o desvio (a entidade é da ficha do ensaio; o soltar chega na F4.6c)
+  // Ensaio ligado: sem o desvio (a entidade é da ficha do ensaio: o drawer aceita, F4.6c)
   const e = await carrega(janela({ ls: comFicha(), ensaio: true }));
   const tc = cardDe(e.doc, 'div', 'tier-technique kf-draggable', {});
   e.arrasto(tc.filho, 'dragstart', { _campo: 'tecnicas', id: 'tecnica-y' });
   e.arrasto(e.gav(), 'dragenter', null);
   assert.deepEqual(e.abertos, [], 'nenhum KF.abrir');
   assert.equal(e.html.getAttribute('data-ficha3'), 'aberto');
-  assert.equal(e.arrasto(e.el('fd-gaveta-rolagem'), 'dragover', null).defaultPrevented, false);
-  assert.ok(e.gav().hasAttribute('data-recusa'));
-  assert.equal(e.el('fd-gaveta-aviso').textContent, FD.avisoEnsaio({ tipo: 'outro', secao: 'tecnicas' }), 'o que acontece, sem mandar ao botão FICHA');
+  assert.equal(e.arrasto(e.el('fd-gaveta-rolagem'), 'dragover', null).defaultPrevented, true, 'aceita: vai para a ficha do ensaio');
+  assert.ok(e.gav().hasAttribute('data-alvo'));
+  assert.equal(e.gav().hasAttribute('data-recusa'), false);
+  assert.equal(e.el('fd-gaveta-aviso').textContent, FD.avisoEnsaio({ tipo: 'outro', secao: 'tecnicas' }, true), 'o que acontece, sem mandar ao botão FICHA');
   DOM.despacha(e.doc, e.doc.body, DOM.evento('dragend'));
-  // Ensaio ligado e item do Bazar (revisão da F4.6a): também recusa; nada vai à ficha atual
+  // Ensaio ligado e item do Bazar: aceita; nada vai à ficha atual (o levar é do KhLevar, levar.test.js)
   const it = { id: 'item-corda', nome: 'Corda' };
   const bz = cardDe(e.doc, 'div', 'item-card', { 'data-kf-tipo': 'item' });
   e.arrasto(bz.filho, 'dragstart', { _bazar: true, item: it });
   e.arrasto(e.gav(), 'dragenter', null);
   assert.deepEqual(e.abertos, []);
   const sobre = e.arrasto(e.el('fd-gaveta-rolagem'), 'dragover', null);
-  assert.equal(sobre.defaultPrevented, false, 'não aceita');
-  assert.ok(e.gav().hasAttribute('data-recusa'));
-  assert.equal(e.gav().hasAttribute('data-alvo'), false);
-  assert.equal(e.el('fd-gaveta-aviso').textContent, 'Ensaio: levar Corda para a ficha do ensaio chega na F4.6c. Soltar aqui não guarda nada, nem na sua ficha.');
-  // o soltar (se chegar: o Ensaio ligou no meio do arrasto) também não chama o KF.adicionar
+  assert.equal(sobre.defaultPrevented, true, 'aceita');
+  assert.ok(e.gav().hasAttribute('data-alvo'));
+  assert.equal(e.el('fd-gaveta-aviso').textContent, 'Solte para levar Corda à ficha do ensaio (a sua ficha não muda).');
+  // o soltar não chama o KF.adicionar: o ensaio desta aba não tem ficha, e o aviso diz isso
   e.arrasto(e.el('fd-gaveta-rolagem'), 'drop', { _bazar: true, item: it });
   assert.deepEqual(e.adicionados, [], 'nenhum KF.adicionar');
   assert.equal(e.el('fd-gaveta-a-bazar').getAttribute('aria-selected'), 'false', 'nem vai à aba O Bazar');
-  assert.match(e.el('fd-gaveta-aviso').textContent, /^Ensaio: levar Corda /);
+  assert.match(e.el('fd-gaveta-aviso').textContent, /^Levando Corda para a ficha do ensaio/);
   assert.equal(e.gav().hasAttribute('data-acende'), false);
+  await carrega(e);
+  assert.equal(e.el('fd-gaveta-aviso').textContent, e.sb.KhLevar.SEM_FICHA);
+  assert.deepEqual(e.ss.escritas, [], 'nada gravado, nem no ensaio');
   [r, s, e].forEach((j) => assert.deepEqual(j.ls.escritas, []));
   // o arrasto do próprio inventário do Bazar (mover um slot) não acende
   const j = await carrega(janela({ ls: comFicha() }));

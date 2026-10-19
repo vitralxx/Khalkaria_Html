@@ -185,6 +185,10 @@ css/ficha-ensaio.css           F4.6a: o modo Ensaio (a faixa fixa .ke-faixa e o 
                                F4.6b: a edição (a barra .ke-ed-barra, a tela .ke-aj, o
                                pop-over .ke-pop, fixo; os campos .ke-ed-*, os círculos de
                                grau .ke-ed-grau com alvo de 20x24 px, o .ke-ajustavel)
+                               F4.6c: o botão e a alça dos cards (html[data-ensaio]
+                               .ent-add[data-ke-levar] / .ent-alca[draggable], alvo de 24
+                               px, "Na ficha" no verde --tem), o recado .ke-levar-toast e o
+                               export .ke-bst
 js/kh-ui.js                    F2b: biblioteca comum (fora do bundle da ficha; o shell a
                                põe SÍNCRONA antes do 1º <script src> local de toda página):
                                KhTeclas (registro único de atalhos e camadas do Esc, um
@@ -291,6 +295,25 @@ js/ficha/kh-editor.js            KhEditor (F4.6b): a interface da edição, só 
                                  atual; no drawer, só com o foco nele. Página velha (o
                                  Ensaio saiu): não grava e se acerta. Puras (htmlBarra,
                                  htmlPop, htmlAjustes, linhasAjustes) no node
+js/ficha/kh-levar.js             KhLevar (F4.6c): levar um card para a ficha ATIVA do
+                                 Ensaio e o export do Bestiário, só com o Ensaio. Puras:
+                                 refDoCard, payloadRef/lerRef (MIME application/x-khalkaria-
+                                 ref = {v:1,tipo,id}), refDoV2 (o text/plain da v2.1),
+                                 levar(ficha, ref, cat) -> {mudancas, rotulo, aviso} (técnica
+                                 e família -> entradas; magia; carta/Dor/benefício, a rara
+                                 sem efeito; item -> inventário pelo KhInv, o id antigo do
+                                 bazar-renomeados resolve; raça/classe/origem/variante/
+                                 subespécie -> identidade pelo KhEdicao, com faltaEscolher;
+                                 condição -> condições; repetida não duplica; órfã nunca
+                                 apagada), chaves (o "na ficha"), bestiario(res, cat) (o
+                                 mapeamento do CLAUDE.md §5, valores do motor) e garantir
+                                 (o catálogo inteiro; falha aborta). Interface: ligar(win)
+                                 (o drawer chama: tira o hidden dos .ent-add/.ent-alca do
+                                 build, clique, tecla A no KhTeclas, arrasto pela alça, o
+                                 recado com Desfazer; ao sair, e no pageshow, volta ao
+                                 build) e criarExport (o botão do Bestiário, na página e no
+                                 drawer). Grava só por armazem.editar (um passo do
+                                 Desfazer). levar.test.js
 js/ficha/kh-ficha-abas.js        KhFichaAbas (F4.4a), PURO: o desenho das 5 abas da ficha
                                  nova (Núcleo, Técnicas & Marcas, Cartas/Lore/Outros, O
                                  Bazar, Grimório), o MESMO na página e no drawer da F4.4:
@@ -318,7 +341,11 @@ js/ficha/kh-ficha-drawer.js      KhFichaDrawer (F4.4b): o drawer docked da ficha
                                  ensaio e mostra o seletor (KhSeletor) no cabeçalho, e liga
                                  a faixa. F4.6b: com o Ensaio, recursos atuais e Sins com
                                  − e + e a barra do KhEditor (#fd-gaveta-ked) no
-                                 cabeçalho. ficha-drawer.test.js e ensaio.test.js
+                                 cabeçalho. F4.6c: liga o KhLevar na página; com o Ensaio,
+                                 soltar (a ref, o item do Bazar ou o card da v2.1) leva
+                                 para a ficha do ensaio, e o export do Bestiário
+                                 (#fd-gaveta-kbe) fica no cabeçalho.
+                                 ficha-drawer.test.js, ensaio.test.js e levar.test.js
 js/ficha.js                    ARTEFATO (tools/ficha_js.py): concatenação de js/ficha/
                                na ordem do ORDEM, cabeçalho "gerado — não editar". É o
                                único arquivo que o site carrega (main.js injeta; o
@@ -339,7 +366,8 @@ js/ficha-pagina.js             F4.3: página da ficha nova (KhFichaPagina), só 
                                seletor de fichas (#fp-ke, KhSeletor) acima do topo, sem o
                                seletor desabilitado (render sem o.ensaio = o do ouro).
                                F4.6b: com o Ensaio, os campos de estado editáveis e o
-                               KhEditor (#fp-ked, acima do topo).
+                               KhEditor (#fp-ked, acima do topo). F4.6c: com o Ensaio,
+                               "Exportar para o Bestiário" (#fp-kbe, KhLevar.criarExport).
                                Não grava chave de ficha; ficha-pagina.test.js, o ouro do
                                render (ficha-pagina-ouro.test.js) e ensaio.test.js
 js/bazar.js                    núcleo do Bazar: catálogo, filtros, Bancada
@@ -1063,10 +1091,9 @@ confirmação) e, sem ele, apaga o que tiver sobrado do prefixo. Uma página
 velha do bfcache ainda o mostra: o clique confere o ensaio na hora e, ligado,
 não apaga (`KhSeletor.bloqueiaSaidaPrevia`: a página se acerta e a faixa abre a
 confirmação). A faixa ouve o `pageshow` (`persisted`) e emite o `kh:ensaio`, e
-as ações do seletor conferem o ensaio no clique. Com o Ensaio, o drawer não
-aceita soltar nada (nem o item do Bazar, que iria à ficha atual) até a F4.6c,
-e diz isso (`avisoEnsaio`). Na virada, a mesma interface passa ao armazém
-real: muda só o storage por baixo.
+as ações do seletor conferem o ensaio no clique. Com o Ensaio, soltar no
+drawer leva para a ficha do ensaio (F4.6c, abaixo), nunca à ficha atual. Na
+virada, a mesma interface passa ao armazém real: muda só o storage por baixo.
 
 **Edição da ficha do ensaio (F4.6b).** `js/ficha/kh-edicao.js` (`KhEdicao`,
 puro) e `js/ficha/kh-editor.js` (`KhEditor`, a interface), especificação em
@@ -1095,6 +1122,33 @@ diz por quê na dica. O validador do armazém recusa ajuste em caminho de estado
 (`recurso.*.atual`). Sem o Ensaio, nada disso existe e o HTML é o de sempre.
 `tools/testes/edicao.test.js` (as puras e o log) e `ensaio.test.js` (a
 interface, com o armazenamento espião).
+
+**Levar para a ficha do ensaio e o export do Bestiário (F4.6c).**
+`js/ficha/kh-levar.js` (`KhLevar`), especificação em `07-f4-6-ensaio.md` §4.
+Só com o Ensaio: o JS tira o `hidden` dos `button.ent-add` e `span.ent-alca`
+que o build deixou em todo card `[data-kf-tipo][data-kf-id]` (o HTML gerado não
+muda; o portão `[ids]` segue igual) e põe o ícone; o clique, a tecla A no card
+focado (`KhTeclas`, fora de campo de texto) e o arrasto pela alça (MIME
+`application/x-khalkaria-ref` = `{v:1,tipo,id}`, `text/plain` só com o nome)
+levam o card para a ficha ativa do ensaio, por `armazem.editar` (um passo do
+Desfazer; o recado também tem Desfazer). Destinos: técnica, Marca, ultimate,
+traço e tecnologia nas entradas (Técnicas); magia (Grimório); carta, Dor e
+benefício do Abismo (Cartas; a rara nunca leva o efeito); item no inventário
+(`KhInv.mesclar`; o id antigo de `data/bazar-renomeados.json` resolve para o
+atual); raça, classe, origem, variante e subespécie na identidade (as regras do
+`KhEdicao`, e o aviso do que falta escolher, sem bloquear); condição nas
+condições ativas. Repetida (tipo:id) avisa e não duplica (o item soma na mesma
+linha); id fora do catálogo entra órfão com o nome do card e nunca é apagado.
+O card marcado ganha `[data-ke-na-ficha]` ("Na ficha"). O drawer aceita, com o
+Ensaio, a ref, o item do Bazar (`{_bazar:true,item}`) e o card da v2.1
+(resolvido pelo nome, só se único); o `application/x-kf-uid` do Bazar não passa
+por ele. "Exportar para o Bestiário" (página `#fp-kbe` e drawer
+`#fd-gaveta-kbe`) carrega o catálogo inteiro antes (`garantir`); se um arquivo
+falhar, cancela e não baixa nada; senão baixa `<nome>.bestiario.json` (type
+`npc`, o mapeamento do CLAUDE.md §5, prof_* em grau 0–4, os valores do motor com
+os ajustes). Ao sair do Ensaio (e no `pageshow` do bfcache) tudo volta ao que o
+build deixou. Sem o Ensaio, nada muda (o "+ ficha" da v2.1 segue).
+`tools/testes/levar.test.js` (as puras e a interface, com o armazenamento espião).
 
 **`data-kf-ignorar`.** O `MutationObserver` que redecora os cards ignora
 mudanças dentro de `[data-kf-ignorar]`, e `decorarBazar` não decora card ali

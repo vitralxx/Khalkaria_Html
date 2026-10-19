@@ -946,39 +946,43 @@ test('sair do ensaio limpa a mensagem do seletor (revisão da F4.6a): a volta à
   }
 });
 
-test('drawer com o Ensaio (revisão da F4.6a): soltar item do Bazar, técnica ou magia não grava em lugar nenhum (a ficha atual é espiã) e diz o que acontece', async () => {
+test('drawer com o Ensaio (F4.6c): soltar item do Bazar, técnica (v2.1) ou magia leva para a ficha do ensaio; nada vai à ficha atual (espiã)', async () => {
   const ls = A.armazenamento(comPrevia({ khalkaria_ficha3_dock: 'aberto' }));
   const ss = A.armazenamento();
   const j = await carrega(janela({ ls, ss }));
   j.clica(j.doc.querySelector('.fd-gaveta-ensaiar'));
   await carrega(j);
-  const fotoSs = ss.foto();
+  const arm = j.sb.KhEnsaio.armazem(ss), id = arm.ativa();
   const casos = [
-    ['item-card', { 'data-kf-tipo': 'item' }, { _bazar: true, item: { id: 'item-corda', nome: 'Corda' } },
-      'Ensaio: levar Corda para a ficha do ensaio chega na F4.6c. Soltar aqui não guarda nada, nem na sua ficha.'],
-    ['tier-technique kf-draggable', {}, { _campo: 'tecnicas', id: 'tecnica-y' },
-      'Ensaio: levar a técnica para a ficha do ensaio chega na F4.6c. Soltar aqui não guarda nada, nem na sua ficha.'],
-    ['spell-card kf-draggable', { 'data-kf-tipo': 'magia' }, { _campo: 'grimorio', id: 'magia-x' },
-      'Ensaio: levar a magia para a ficha do ensaio chega na F4.6c. Soltar aqui não guarda nada, nem na sua ficha.']
+    ['item-card', { 'data-kf-tipo': 'item' }, { _bazar: true, item: { id: 'item-corda-5m', nome: 'Corda (5m)' } },
+      'Solte para levar Corda (5m) à ficha do ensaio (a sua ficha não muda).', /^Corda \(5m\) foi para o inventário da ficha do ensaio/],
+    ['tier-technique kf-draggable', {}, { _campo: 'tecnicas', tipo: 'tecnica', nome: 'Alquimia Rápida', id: 'tecnica-alquimia-rapida' },
+      'Solte para levar a técnica à ficha do ensaio (a sua ficha não muda).', /^Alquimia Rápida foi para as Técnicas da ficha do ensaio\.$/],
+    ['spell-card kf-draggable', { 'data-kf-tipo': 'magia', 'data-kf-id': 'magia-centelha' }, { _campo: 'grimorio', tipo: 'magia', nome: 'Centelha' },
+      'Solte para levar a magia à ficha do ensaio (a sua ficha não muda).', /^Centelha foi para o Grimório da ficha do ensaio\.$/]
   ];
-  for (const [classe, attrs, payload, texto] of casos) {
+  for (const [classe, attrs, payload, texto, depois] of casos) {
     const card = j.doc.createElement('div');
     card.className = classe;
     Object.entries(attrs).forEach(([k, v]) => card.setAttribute(k, v));
     j.doc.body.appendChild(card);
     j.arrasta(card, 'dragstart', payload);
     j.arrasta(j.el('fd-gaveta'), 'dragenter', null);
-    assert.equal(j.arrasta(j.el('fd-gaveta-rolagem'), 'dragover', null).defaultPrevented, false, classe + ': não aceita');
-    assert.ok(j.el('fd-gaveta').hasAttribute('data-recusa'));
+    assert.equal(j.arrasta(j.el('fd-gaveta-rolagem'), 'dragover', null).defaultPrevented, true, classe + ': aceita');
+    assert.ok(j.el('fd-gaveta').hasAttribute('data-alvo'));
     assert.equal(j.el('fd-gaveta-aviso').textContent, texto);
     j.arrasta(j.el('fd-gaveta-rolagem'), 'drop', payload);
     DOM.despacha(j.doc, j.doc.body, DOM.evento('dragend'));
-    assert.equal(j.el('fd-gaveta-aviso').textContent, texto);
+    await carrega(j);
+    assert.match(j.el('fd-gaveta-aviso').textContent, depois);
     assert.equal(j.el('fd-gaveta-nota').hidden, true, 'sem a nota de "a ficha atual abriu"');
   }
+  const f = arm.ler(id);
+  assert.deepEqual(copia(f.entradas.map((e) => e.tipo + ':' + e.id).slice(-2)), ['tecnica:alquimista-alquimia-rapida', 'magia:magia-centelha']);
+  assert.ok(f.inventario.bugigangas.some((e) => e.id === 'item-corda-5m'));
+  assert.equal(arm.estadoLog(id).desfazer.rotulo, 'Levar: Centelha (Grimório)', 'cada levar é um passo do Desfazer');
   assert.deepEqual(j.kf, [], 'nem KF.adicionar nem KF.abrir');
   assert.deepEqual(j.ls.escritas, []);
-  assert.equal(ss.foto(), fotoSs, 'nem o ensaio muda (levar para ele é a F4.6c)');
   assert.match(j.faixa().textContent, /nada aqui é salvo na sua ficha/);
   soEnsaio(ss, 'soltar no ensaio');
 });

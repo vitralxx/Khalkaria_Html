@@ -203,6 +203,25 @@ Escolhas a revisar com o Pedro:
   - sem o ensaio nada muda;
   - Bestiário com o fetch falhando.
 
+### Como ficou (§4, 2026-10-19)
+
+Código: `js/ficha/kh-levar.js` (`KhLevar`; puras: `refDoCard`, `payloadRef`, `lerRef`, `refDoV2`, `levar`, `chaves`, `faltaEscolher`, `bestiario`, `garantir`; interface: `ligar`, `criarExport`, `exportarBestiario`), no `js/ficha/ORDEM` entre o `kh-editor.js` e o drawer; `js/ficha/kh-ficha-drawer.js` (liga o KhLevar, aceita soltar com o Ensaio: `levavel`, `soltaEnsaio`, `avisoEnsaio(c, aceita)`; o export em `#fd-gaveta-kbe`), `js/ficha-pagina.js` (o export em `#fp-kbe`) e o fim do `css/ficha-ensaio.css`. Testes: `tools/testes/levar.test.js` (17: as puras e a interface, com o armazenamento espião), mais `ensaio.test.js`, `ficha-drawer.test.js` e `regras.test.js` acertados (o drawer agora aceita com o Ensaio; o ORDEM tem o kh-levar.js). Suíte: 448 testes.
+
+- **Com o Ensaio**, o botão "Levar" e a alça aparecem em todo card marcado pelo build (os 7 tipos de card do site: técnica e família, magia, carta e Abismo, item do Bazar, raça, origem, condição; também a linha da tabela do Bazar). Ao sair (e no `pageshow` do bfcache), voltam ao que o build deixou: `hidden`, vazios, o `aria-label` original. O Bazar redesenha os cards a cada filtro: um `MutationObserver` (só com o Ensaio) os acerta de novo.
+- **Cada levar é um passo do Desfazer** da ficha ("Levar: Centelha (Grimório)"), e o recado (no pé, acima da faixa, `role="status"`) tem Desfazer, que só age se o topo do log ainda é aquele passo.
+- **O card que já está na ficha do ensaio** mostra "Na ficha" (verde, com o `aria-label` dizendo); clicar de novo avisa e não muda nada.
+- **Soltar no drawer com o Ensaio** leva para a ficha do ensaio: a ref do MIME, o item do Bazar (`{_bazar:true,item}`, também do painel de receita) ou o card da v2.1 (pelo nome, só se for único). O aviso diz "Solte para levar … à ficha do ensaio (a sua ficha não muda)" e, depois, o resultado.
+- **Export do Bestiário:** "Exportar para o Bestiário" na página (entre o seletor e a barra de edição) e no cabeçalho do drawer. Carrega o catálogo inteiro (os dados do motor, que já estavam carregados, e o `data/bazar.json`); com qualquer arquivo faltando, diz quais e não baixa nada. O arquivo é `<nome>.bestiario.json`, com as chaves do export da v2.1 e os valores do motor (a Saúde máx. ajustada sai ajustada).
+
+Escolhas a revisar com o Pedro:
+- **O "+ ficha" da v2.1 continua nos cards com o Ensaio** (o `ficha-v2.js` não muda), e ele grava na ficha atual. O card fica com os dois: "Levar" (ensaio) e "+ ficha" (a sua ficha). Esconder o da v2.1 durante o Ensaio é uma linha de CSS no `ficha-ensaio.css`, se ele quiser.
+- **Item repetido soma na mesma linha** (+1, como o "+" do Bazar) em vez de só avisar: não duplica a linha, mas muda a quantidade. O aviso diz "agora são N".
+- **Variante e subespécie também vão para a identidade.** A de outra raça é recusada ("leve a raça antes"); sem raça na ficha, a raça vem junto.
+- **Classe não tem card no site** (nenhuma página marca `data-kf-tipo="classe"`): o levar sabe recebê-la (pela ref), mas na prática a classe se escolhe no seletor da página da ficha.
+- **Bestiário:** `prof_craft` é o maior dos três Ofícios e `craft_attr` é sempre `intelligence` (os três são INT); `abilities` são as técnicas (com Marcas, ultimates, traços, tecnologias e corrupções) e as magias, com o resumo do catálogo; cartas, raça e classe ficam só na ficha, como na v2.1. O `armor_specific` (Ae) continua, como na v2.1.
+- **Onde ficam os controles:** no canto de cima, à direita do card (o título contorna); no card do Bazar, o botão é a 1ª linha e a alça fica no canto esquerdo. Precisa do olho dele no navegador.
+- **A tecla A** vale com e sem Shift, com o foco no botão ou no card (o do Bazar é focável).
+
 ## 5. O que fica para depois
 
 - **F4.7, virada (só com o ok do Pedro):** ligar o armazém real, a migração e a gravação dupla (`v3-dupla`), mais a KF `versao '3'` e o Bazar aceitando `>= 2`. Antes disso, uma nova revisão adversária da F4.2.
