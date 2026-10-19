@@ -236,6 +236,11 @@ test('quantidade, mover, remover, Sins e a pilha de 20 desfazer', () => {
   assert.equal(p.KF.remover('nao-existe'), false);
   assert.equal(p.KF.definirSins(-4), 0);
   assert.equal(p.KF.definirSins('17.9'), 17);
+  // pt-BR: separador de milhar (auditoria 2026-10-19: "1.000" virava 1)
+  assert.equal(p.KF.definirSins('1.000'), 1000);
+  assert.equal(p.KF.definirSins('10.000'), 10000);
+  assert.equal(p.KF.definirSins(' 2 500 '), 2500);
+  assert.equal(p.KF.definirSins('3,7'), 3);
   assert.equal(p.mudou().at(-1).detail.partes[0], 'sins');
   for (let i = 0; i < 25; i++) p.KF.definirSins(i + 100);
   let n = 0; while (p.KF.desfazer()) n++;

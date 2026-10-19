@@ -101,6 +101,11 @@
       return isFinite(n) ? n : null;
     }
     function lerInteiro(bruto) {
+      // inteiro pt-BR com separador de milhar: "1.000" e "1 000" são mil (antes, "1.000" virava 1)
+      if (typeof bruto === 'string') {
+        var t = bruto.trim().replace(/−/g, '-');
+        if (/^[+-]?\d{1,3}(?:[.\s]\d{3})+$/.test(t)) bruto = t.replace(/[.\s]/g, '');
+      }
       var n = lerNumero(bruto);
       return n != null && Math.floor(n) === n ? n : null;
     }

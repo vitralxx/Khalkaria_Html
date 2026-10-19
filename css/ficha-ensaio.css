@@ -373,3 +373,8 @@ html[data-ensaio] .c-nome-in > .ent-add[data-ke-levar], html[data-ensaio] .c-nom
 .ke-bst :where(p) { margin: 0; }
 .ke-bst .ke-msg { flex: 1 1 14rem; }
 .ke-bst :focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
+
+/* Com o Ensaio, o "+ ficha" da ficha atual sai dos cards das páginas de regra:
+   ali quem leva é o "Levar" (para a ficha do ensaio), e a faixa promete que nada
+   vai para a ficha real. No Bazar fica: o inventário dele é o da ficha atual. */
+html[data-ensaio] .main-content:not(.bazar-page) .kf-addbtn { display: none; }

@@ -7,9 +7,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400&family=UnifrakturMaguntia&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../css/tokens.css?v=b0c292bb" data-tokens>
-    <link rel="stylesheet" href="../css/style.css?v=b0c292bb">
-    <link rel="stylesheet" href="../css/componentes.css?v=b0c292bb" data-componentes>
+    <link rel="stylesheet" href="../css/tokens.css?v=7b216f5d" data-tokens>
+    <link rel="stylesheet" href="../css/style.css?v=7b216f5d">
+    <link rel="stylesheet" href="../css/componentes.css?v=7b216f5d" data-componentes>
     <style>
         .intro-text{text-align:center;max-width:700px;margin:0 auto 2rem;color:var(--text-secondary);font-size:1.1rem;line-height:1.7}
         .origem-card{background:var(--bg-card);border:1px solid var(--border-color);border-radius:12px;margin-bottom:1.5rem;overflow:hidden;transition:border-color 0.3s}
@@ -42,7 +42,7 @@
         .quick-nav a:hover{color:var(--gold);background:var(--bg-tertiary)}
     </style>
     <script data-nav-boot>(function(){try{var s=JSON.parse(localStorage.getItem('khalkaria_nav')||'{}'),h=document.documentElement;if(s.trilho)h.setAttribute('data-nav','trilho');if(s.fechados&&s.fechados.length)h.setAttribute('data-nav-fechados',s.fechados.join(' '))}catch(e){}var m='',r=false;try{m=localStorage.getItem('khalkaria_movimento')}catch(e){}r=m==='reduzido';if(!r&&m!=='normal')try{r=matchMedia('(prefers-reduced-motion: reduce)').matches}catch(e){}document.documentElement.setAttribute('data-movimento',r?'reduzido':'normal');var p=false;try{p=localStorage.getItem('khalkaria_ficha_previa')==='1'}catch(e){}if(!p)try{var q=/[?&]ficha=([^&#]*)/.exec(location.search);p=!!q&&decodeURIComponent(q[1])==='v3'}catch(e){}if(p){var d='trilho';document.documentElement.setAttribute('data-ficha-previa','');try{if(localStorage.getItem('khalkaria_ficha3_dock')==='aberto')d='aberto'}catch(e){}document.documentElement.setAttribute('data-ficha3',d)}})()</script>
-    <link rel="stylesheet" href="../css/ficha.css?v=b0c292bb" data-ficha-css>
+    <link rel="stylesheet" href="../css/ficha.css?v=7b216f5d" data-ficha-css>
 </head>
 <body>
     <button class="menu-toggle">☰ Menu</button>
@@ -165,8 +165,8 @@
                                 <li>Roupas de Acadêmico</li>
                                 <li>1 Arma Leve ou Mística (1 Equipamento)</li>
                                 <li>1 Livro de Estudos (1 Bugiganga)</li>
-                                <li>1 <a href="bazar.html?item=Tinta + Pena" class="item-link">Tinta + Pena</a> (1 Bugiganga)</li>
-                                <li>10 <a href="bazar.html?item=Vela de Sebo" class="item-link">Vela de Sebo</a> (1 Bugiganga)</li>
+                                <li>1 <a href="bazar.html#item/item-tinta-pena" class="item-link">Tinta + Pena</a> (1 Bugiganga)</li>
+                                <li>10 <a href="bazar.html#item/item-vela-de-sebo" class="item-link">Vela de Sebo</a> (1 Bugiganga)</li>
                                 <li>1 Comida (1 Bugiganga)</li>
                             </ul>
                         </div>
@@ -199,9 +199,9 @@
                             <ul>
                                 <li>Roupas Básicas</li>
                                 <li>1 Arma leve ou pesada qualquer, exceto focos mágicos. (1 Equipamento)</li>
-                                <li>1 <a href="bazar.html?item=Kit de Ferramentas Básico" class="item-link">Kit de Ferramentas Básico</a> (1 Bugiganga)</li>
+                                <li>1 <a href="bazar.html#item/item-kit-de-ferramentas-basico" class="item-link">Kit de Ferramentas Básico</a> (1 Bugiganga)</li>
                                 <li>2 Barras de Ferro (1 Bugiganga)</li>
-                                <li>1 <a href="bazar.html?item=Couro de Caça" class="item-link">Couro de Caça</a> (1 Bugiganga)</li>
+                                <li>1 <a href="bazar.html#item/item-couro-de-caca" class="item-link">Couro de Caça</a> (1 Bugiganga)</li>
                                 <li>1 Comida (1 Bugiganga)</li>
                             </ul>
                         </div>
@@ -234,10 +234,10 @@
                             <ul>
                                 <li>Roupas Básicas</li>
                                 <li>1 Arma leve ou À Distância (1 Equipamento)</li>
-                                <li>1 <a href="bazar.html?item=Ferramentas de Artesão" class="item-link">Ferramentas de Artesão</a> (1 Bugiganga)</li>
-                                <li>1 <a href="bazar.html?item=Bolsa de Couro" class="item-link">Bolsa de Couro</a> (1 Bugiganga)</li>
+                                <li>1 <a href="bazar.html#item/item-ferramentas-de-artesao" class="item-link">Ferramentas de Artesão</a> (1 Bugiganga)</li>
+                                <li>1 <a href="bazar.html#item/item-bolsa-de-couro" class="item-link">Bolsa de Couro</a> (1 Bugiganga)</li>
                                 <li>2 Peças Mecânicas (1 Bugiganga)</li>
-                                <li>1 <a href="bazar.html?item=Tecido Resistente" class="item-link">Tecido Resistente</a> (1 Bugiganga)</li>
+                                <li>1 <a href="bazar.html#item/item-tecido-resistente" class="item-link">Tecido Resistente</a> (1 Bugiganga)</li>
                                 <li>1 Comida (1 Bugiganga)</li>
                             </ul>
                         </div>
@@ -271,8 +271,8 @@
                                 <li>Roupas Básicas</li>
                                 <li>1 Arma Pesada (1 Equipamento)</li>
                                 <li>1 Kit de Ferramentas (1 Bugiganga)</li>
-                                <li>1 <a href="bazar.html?item=Bolsa de Couro" class="item-link">Bolsa de Couro</a> (1 Bugiganga)</li>
-                                <li>1 <a href="bazar.html?item=Madeira Comum" class="item-link">Madeira Comum</a> (1 Bugiganga)</li>
+                                <li>1 <a href="bazar.html#item/item-bolsa-de-couro" class="item-link">Bolsa de Couro</a> (1 Bugiganga)</li>
+                                <li>1 <a href="bazar.html#item/item-madeira-comum" class="item-link">Madeira Comum</a> (1 Bugiganga)</li>
                                 <li>2 Comidas (2 Bugigangas)</li>
                             </ul>
                         </div>
@@ -316,8 +316,8 @@
                                 <li>Roupas Básicas</li>
                                 <li>1 Arma Pesada (1 Equipamento)</li>
                                 <li>1 Kit de Ferramentas (1 Bugiganga)</li>
-                                <li>1 <a href="bazar.html?item=Bolsa de Couro" class="item-link">Bolsa de Couro</a> (1 Bugiganga)</li>
-                                <li>1 <a href="bazar.html?item=Cobre" class="item-link">Cobre</a> (1 Bugiganga)</li>
+                                <li>1 <a href="bazar.html#item/item-bolsa-de-couro" class="item-link">Bolsa de Couro</a> (1 Bugiganga)</li>
+                                <li>1 <a href="bazar.html#item/item-cobre" class="item-link">Cobre</a> (1 Bugiganga)</li>
                                 <li>2 Comidas (2 Bugigangas)</li>
                             </ul>
                         </div>
@@ -360,9 +360,9 @@
                             <ul>
                                 <li>Manto Surrado (1 Equipamento)</li>
                                 <li>1 Arma Leve, Pesada, à Distância ou Mística (1 Equipamento)</li>
-                                <li>1 <a href="bazar.html?item=Mochila Reforçada" class="item-link">Mochila Reforçada</a> (1 Bugiganga) — Quando equipada, +3 Espaços de Bugiganga e +1 de Equipamento</li>
+                                <li>1 <a href="bazar.html#item/item-mochila-reforcada" class="item-link">Mochila Reforçada</a> (1 Bugiganga) — Quando equipada, +3 Espaços de Bugiganga e +1 de Equipamento</li>
                                 <li>1 Cantil (1 Bugiganga)</li>
-                                <li>1 <a href="bazar.html?item=Kit de Ferramentas Básico" class="item-link">Kit de Ferramentas Básico</a> (1 Bugiganga)</li>
+                                <li>1 <a href="bazar.html#item/item-kit-de-ferramentas-basico" class="item-link">Kit de Ferramentas Básico</a> (1 Bugiganga)</li>
                                 <li>2 Comidas (2 Bugigangas)</li>
                             </ul>
                         </div>
@@ -429,7 +429,7 @@
                             <ul>
                                 <li>Manto Surrado (1 Equipamento)</li>
                                 <li>1 Arma Leve ou à Distância (1 Equipamento)</li>
-                                <li>1 <a href="bazar.html?item=Mochila Reforçada" class="item-link">Mochila Reforçada</a> (1 Bugiganga) — Quando equipada, +3 Espaços de Bugiganga e +1 de Equipamento</li>
+                                <li>1 <a href="bazar.html#item/item-mochila-reforcada" class="item-link">Mochila Reforçada</a> (1 Bugiganga) — Quando equipada, +3 Espaços de Bugiganga e +1 de Equipamento</li>
                                 <li>1 Mapa da sua rota (1 Bugiganga)</li>
                                 <li>1 Instrumento simples ou Jogo de cartas (1 Bugiganga)</li>
                                 <li>3 Comidas (3 Bugigangas)</li>
@@ -464,8 +464,8 @@
                             <ul>
                                 <li>Roupas Discretas (1 Equipamento)</li>
                                 <li>1 Arma Leve ou à Distância (1 Equipamento)</li>
-                                <li>1 <a href="bazar.html?item=Kit de Crime" class="item-link">Kit de Crime</a> (1 Bugiganga)</li>
-                                <li>1 <a href="bazar.html?item=Corda Reforçada (15m)" class="item-link">Corda Reforçada (15m)</a> (1 Bugiganga)</li>
+                                <li>1 <a href="bazar.html#item/item-kit-de-crime" class="item-link">Kit de Crime</a> (1 Bugiganga)</li>
+                                <li>1 <a href="bazar.html#item/item-corda-reforcada-15m" class="item-link">Corda Reforçada (15m)</a> (1 Bugiganga)</li>
                                 <li>1 Comida (1 Bugiganga)</li>
                             </ul>
                         </div>
@@ -533,7 +533,7 @@
                             <ul>
                                 <li>Roupas Básicas (1 Equipamento)</li>
                                 <li>1 Arma Leve, Pesada ou à Distância (1 Equipamento)</li>
-                                <li>1 <a href="bazar.html?item=Armadura de Couro" class="item-link">Armadura de Couro</a> (1 Equipamento) — Armadura(Ar) 2</li>
+                                <li>1 <a href="bazar.html#item/item-armadura-de-couro" class="item-link">Armadura de Couro</a> (1 Equipamento) — Armadura(Ar) 2</li>
                                 <li>1 Símbolo do seu antigo batalhão (1 Bugiganga)</li>
                                 <li>2 Comidas (2 Bugigangas)</li>
                             </ul>
@@ -601,8 +601,8 @@
                                 <li>Roupas de Qualidade (1 Equipamento)</li>
                                 <li>1 Arma Leve ou Mística (1 Equipamento)</li>
                                 <li>1 Livro de Anotações (1 Bugiganga)</li>
-                                <li>1 <a href="bazar.html?item=Tinta + Pena" class="item-link">Tinta + Pena</a> (1 Bugiganga)</li>
-                                <li>1 <a href="bazar.html?item=Mochila Reforçada" class="item-link">Mochila Reforçada</a> (1 Bugiganga) — Quando equipada, +3 Espaços de Bugiganga e +1 de Equipamento</li>
+                                <li>1 <a href="bazar.html#item/item-tinta-pena" class="item-link">Tinta + Pena</a> (1 Bugiganga)</li>
+                                <li>1 <a href="bazar.html#item/item-mochila-reforcada" class="item-link">Mochila Reforçada</a> (1 Bugiganga) — Quando equipada, +3 Espaços de Bugiganga e +1 de Equipamento</li>
                                 <li>2 Comidas (2 Bugiganga)</li>
                             </ul>
                         </div>
@@ -635,9 +635,9 @@
                             <ul>
                                 <li>Roupa de Marinheiro (1 Equipamento)</li>
                                 <li>1 Arma Leve ou à Distância (1 Equipamento)</li>
-                                <li>1 <a href="bazar.html?item=Luneta" class="item-link">Luneta</a> (1 Bugiganga)</li>
+                                <li>1 <a href="bazar.html#item/item-luneta" class="item-link">Luneta</a> (1 Bugiganga)</li>
                                 <li>1 <a href="bazar.html?item=Garrafa de Rum Forte" class="item-link">Garrafa de Rum Forte</a> (1 Bugiganga)</li>
-                                <li>1 <a href="bazar.html?item=Corda Reforçada (15m)" class="item-link">Corda Reforçada (15m)</a> (1 Bugiganga)</li>
+                                <li>1 <a href="bazar.html#item/item-corda-reforcada-15m" class="item-link">Corda Reforçada (15m)</a> (1 Bugiganga)</li>
                                 <li>2 Comidas (2 Bugiganga)</li>
                             </ul>
                         </div>
@@ -705,7 +705,7 @@
                                 <li>Manto com Capuz (1 Equipamento)</li>
                                 <li>1 Arma Leve (1 Equipamento)</li>
                                 <li>1 Diário (1 Bugiganga)</li>
-                                <li>1 <a href="bazar.html?item=Tinta + Pena" class="item-link">Tinta + Pena</a> (1 Bugiganga)</li>
+                                <li>1 <a href="bazar.html#item/item-tinta-pena" class="item-link">Tinta + Pena</a> (1 Bugiganga)</li>
                                 <li>1 Venda (1 Bugiganga)</li>
                                 <li>1 Comida (1 Bugiganga)</li>
                             </ul>
@@ -771,7 +771,7 @@
                                 <li>Roupas Simples (1 Equipamento)</li>
                                 <li>1 Arma Leve (1 Equipamento)</li>
                                 <li>1 Arma Pesada (1 Equipamento)</li>
-                                <li>1 <a href="bazar.html?item=Bolsa de Couro" class="item-link">Bolsa de Couro</a> (1 Bugiganga) — Quando equipada, +2 Espaços de Bugiganga</li>
+                                <li>1 <a href="bazar.html#item/item-bolsa-de-couro" class="item-link">Bolsa de Couro</a> (1 Bugiganga) — Quando equipada, +2 Espaços de Bugiganga</li>
                                 <li>3 Comidas (3 Bugigangas)</li>
                             </ul>
                         </div>
@@ -804,7 +804,7 @@
                             <ul>
                                 <li>Vestes Robustas (1 Equipamento)</li>
                                 <li>1 Arma à Distância (1 Equipamento)</li>
-                                <li>1 <a href="bazar.html?item=Mochila Reforçada" class="item-link">Mochila Reforçada</a> (1 Bugiganga) — Quando equipada, +3 Espaços de Bugiganga e +1 de Equipamento</li>
+                                <li>1 <a href="bazar.html#item/item-mochila-reforcada" class="item-link">Mochila Reforçada</a> (1 Bugiganga) — Quando equipada, +3 Espaços de Bugiganga e +1 de Equipamento</li>
                                 <li>1 Comida (1 Bugiganga)</li>
                             </ul>
                         </div>
@@ -826,9 +826,9 @@
         </main>
     </div>
 
-    <script src="../js/kh-ui.js?v=b0c292bb" data-kh-ui></script>
-    <script src="../js/main.js?v=b0c292bb"></script>
-    <script src="../js/utils.js?v=b0c292bb"></script>
-    <script src="../js/nav.js?v=b0c292bb" data-nav-js></script>
+    <script src="../js/kh-ui.js?v=7b216f5d" data-kh-ui></script>
+    <script src="../js/main.js?v=7b216f5d"></script>
+    <script src="../js/utils.js?v=7b216f5d"></script>
+    <script src="../js/nav.js?v=7b216f5d" data-nav-js></script>
 </body>
 </html>

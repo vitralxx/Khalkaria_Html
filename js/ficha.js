@@ -5054,6 +5054,11 @@
     return !!(r && r.entrada);
   }
   function definirSins(n, origem) {
+    // "1.000" e "1 000" são mil em pt-BR (antes viravam 1); vírgula decimal é cortada
+    if (typeof n === 'string') {
+      var s = n.trim().replace(/\s+/g, '');
+      n = /^\d{1,3}([.,]\d{3})+$/.test(s) ? s.replace(/[.,]/g, '') : s.replace(',', '.');
+    }
     n = Math.floor(Number(n));
     if (!(n >= 0)) n = 0;
     muta('sins', origem, function () { ficha.inventario.sins = n; return null; });
@@ -5360,7 +5365,7 @@
       el('label', {}, ['Armadura']), numInput(R('derivadosManuais'), 'armadura')
     ]));
     wrap.appendChild(el('div', { class:'kf-row', style:'font-size:10px;color:#666' },
-      ['Evasão/CD/Movim. vêm da sua classe — preencha manualmente.']));
+      ['Evasão Passiva = 10 + Mod.DES (igual em todas as classes). CD e Movimento: veja a sua classe. Preencha manualmente.']));
     derdispEl = el('div', { class:'kf-derdisp' });
     wrap.appendChild(derdispEl);
     refreshDerivados();
@@ -7296,6 +7301,11 @@
       return isFinite(n) ? n : null;
     }
     function lerInteiro(bruto) {
+      // inteiro pt-BR com separador de milhar: "1.000" e "1 000" são mil (antes, "1.000" virava 1)
+      if (typeof bruto === 'string') {
+        var t = bruto.trim().replace(/−/g, '-');
+        if (/^[+-]?\d{1,3}(?:[.\s]\d{3})+$/.test(t)) bruto = t.replace(/[.\s]/g, '');
+      }
       var n = lerNumero(bruto);
       return n != null && Math.floor(n) === n ? n : null;
     }

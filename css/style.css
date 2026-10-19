@@ -703,12 +703,13 @@ hr { border: none; border-top: 1px solid var(--border-color); margin: 2rem 0; }
     margin: 0 0 0.5rem;
 }
 .status-box p { margin: 0; font-size: 0.9rem; color: var(--text-secondary); }
-.status-box.health { border-left: 3px solid #ef4444; }
-.status-box.health h4 { color: #ef4444; }
-.status-box.stamina { border-left: 3px solid #22c55e; }
-.status-box.stamina h4 { color: #22c55e; }
-.status-box.ether { border-left: 3px solid #8b5cf6; }
-.status-box.ether h4 { color: #8b5cf6; }
+.status-box.health { border-left: 3px solid var(--recurso-saude); }
+.status-box.health h4 { color: var(--recurso-saude); }
+/* lei de cor (D28): Stamina amarela (era verde #22c55e) */
+.status-box.stamina { border-left: 3px solid var(--recurso-stamina); }
+.status-box.stamina h4 { color: var(--recurso-stamina); }
+.status-box.ether { border-left: 3px solid var(--recurso-eter); }
+.status-box.ether h4 { color: var(--recurso-eter); }
 
 /* Badges */
 .badge {
@@ -1637,7 +1638,7 @@ html[data-ficha3="aberto"] body:not([data-ficha-pagina]) .back-to-top { right: c
     min-width: 80px;
 }
 .status-item.status-saude { border-left-color: #f87171; }
-.status-item.status-stamina { border-left-color: #fbbf24; }
+.status-item.status-stamina { border-left-color: var(--recurso-stamina); }
 .status-item.status-eter { border-left-color: #c084fc; }
 
 /* Proficiência visual */

@@ -410,3 +410,13 @@ test('htmlBarra e htmlPop: Desfazer/Refazer com o porquê (aria-disabled e o ata
   assert.match(h2, /data-ked="remover-sel" title="Remove os ajustes marcados \(um passo de desfazer\)">Remover 2 selecionados</);
   assert.match(h2, /data-ked-todos aria-label="Selecionar todos" checked>/);
 });
+
+test('inteiro pt-BR com separador de milhar (auditoria 2026-10-19)', () => {
+  const f = { inventario: { sins: 5 }, meta: { nivel: 1, xp: 0 } };
+  const v = (c, b) => { const r = ED.mudancas(f, c, b, {}); return r.ok ? r.mudancas[0].valor : null; };
+  assert.equal(v('inventario.sins', '1.000'), 1000);
+  assert.equal(v('inventario.sins', '10.000'), 10000);
+  assert.equal(v('inventario.sins', '1 000'), 1000);
+  assert.equal(v('inventario.sins', '37'), 37);
+  assert.equal(v('inventario.sins', '1,5'), null, 'vírgula é decimal: não é inteiro');
+});
