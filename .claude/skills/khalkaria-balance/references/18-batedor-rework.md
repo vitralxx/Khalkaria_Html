@@ -236,6 +236,54 @@ Além do dano, em 50% dos turnos o alvo fica *Caído*: não retalia, defende com
 | Pecador | Ladrão | Isca de Ouro: *Desprevenida* liga o Ataque Furtivo |
 | Pecador | todos | Preço da Vida: o Batedor tem a Saúde do Teurgo |
 
+### 5.0d Rodada 11 (2026-10-19): Tier 2 do Cartógrafo por teste de resistência (D153)
+
+**Direção do Pedro:** um utilitário que aplica debuff por teste de resistência, com uma opção para cada perícia
+defensiva. O ramo tem 2 vagas de Tier 2. Três técnicas separadas forçariam a escolha de 2 e perderiam a terceira
+defesa, por isso as 3 opções ficam numa técnica só: **Terreno Traiçoeiro**.
+
+**Conferência contra a característica e as gerais (lição 36):**
+- O Mapa protege **aliados** do *Desprevenido*; aqui o alvo é inimigo.
+- Surpresa! e Emboscada dão *Desprevenido* só na 1ª rodada; o Chão que Cede vale em qualquer rodada, por teste.
+- O Por Aqui! usa *Vontade* para puxar o alvo; a Rota Falsa tira uma ação. São efeitos diferentes.
+- A Rasteira já derruba (*Caído*), por isso o *Caído* não entrou como opção de *Reflexos*.
+
+**Valor de cada opção (1 rodada, alvo único):**
+
+| Opção | Teste | Efeito | Quem ganha |
+|---|---|---|---|
+| Chão que Cede | *Reflexos* | *Desprevenida*: a rodada sem reação e o 1º acerto crítico | corpo a corpo leve (sem retaliação) e Ladrão (liga o Ataque Furtivo) |
+| Ar Viciado | *Fortitude* | *Enjoada*: −2 Evasão e −5 *Fortitude* | o grupo inteiro (+10% por ataque) e quem força *Fortitude* (Cobra, venenos, magias) |
+| Rota Falsa | *Vontade* | *Confusa*: −1 Ação | defesa do grupo (o alvo perde 1/3 do turno) |
+
+**O que escolhi deixar de fora:**
+- *Desorientado*: o efeito de arma Desorientar dá isso por 2 Stamina sem teste.
+- *Atordoado* e *Amedrontado*: valem um turno inteiro do alvo, forte demais para 1 Ação.
+- *Lento*: soma −3 m ao −1 Ação e seria a melhor opção em quase todo caso.
+
+**Preço:** a âncora do *Exposto* é 1 Ação + 4–5 Stamina, e o *Desprevenido* vale um pouco mais. Como depende de o
+alvo falhar, o valor esperado fica perto da âncora. 4 Stamina, como o Passo em Falso. A opção de *Reflexos* é a mais
+forte; o preço é que inimigos ágeis costumam ter *Reflexos* alta.
+
+**Taxa de falha:** sem o Bestiário aqui, não calculei. A CD de um Batedor de nível 4 fica em 15–16
+(10 + DES + SAB/INT). O ganho da técnica é atacar a defesa mais fraca.
+
+**2ª vaga:**
+- **Ponto Fraco** (recomendada):
+  - É uma reação que transforma qualquer falha de resistência na área do mapa em *Exposto*. Funciona sozinha: as
+    magias do Teurgo, a Cobra, o Por Aqui!, as superfícies do Sabotar Terreno e os venenos do grupo pedem teste.
+  - Com o Terreno Traiçoeiro, o *Enjoado* ou o *Confuso* vêm com crítico. O *Desprevenido* já é *Exposto*, então
+    não dobra.
+  - Teto: 1 por rodada (a reação) e 3 Stamina. Disputa a reação com Defender e com a Margem de Segurança.
+- **Leitura da Presa** (alternativa): é informação para o grupo e +2 na CD contra a defesa fraca. Não tem combo
+  perigoso, mas pode cair no *"muito fraco"* da Orientação.
+
+**Ladrão:**
+- A regra nova do *Desprevenido* fecha a dúvida do Ataque Furtivo (1x/turno, D150). *"Desprevenida e Exposta"*
+  quer dizer só o 1º acerto da rodada. Os números do `scripts/classes/ataque_furtivo_pedro.py` (1 aplicação por
+  turno) continuam valendo.
+- A linha do Silêncio *"ao acertar um ataque furtivo… automaticamente é crítico"* ficou redundante.
+
 ### 5.0c Rodada 10 (2026-10-14): Tier 2 do Ladrão e do Pecador e o Cartógrafo refeito (D152)
 
 **Retorno do Pedro sobre o Cartógrafo:**

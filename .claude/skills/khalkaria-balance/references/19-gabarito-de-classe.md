@@ -572,3 +572,19 @@ O Batedor foi o protótipo (D79). Cada correção do Pedro vira regra para as pr
     porque isso é feature do ladino."* A ponte entre ramos é um efeito comum (*Desprevenido*, Sins, mapa), não a
     mecânica-assinatura do outro.
 
+**Rodada 11 (2026-10-19)**
+
+36. **Releia a característica antes de propor.** A Vanguarda dava vantagem em Iniciativa, e o Mapa já dá isso. *"isso
+    expõe o tamanho do contexto que você está lidando"*. Antes de cada candidata, confira o texto do cabeçalho, das
+    características e das 15 gerais (`batedor-classe.md`) e procure o mesmo efeito. É a lição 1, que foi violada de
+    novo.
+37. **Tipo de dano e categoria são coisas diferentes.** Veneno, Fogo e Ácido são tipos. Biológico e Elemental são
+    categorias, usadas quando o efeito deixa o jogador escolher o tipo. Não troque um tipo pela categoria.
+38. **Utilitário de controle: o teste é a versatilidade.** Para o Cartógrafo, o Pedro quer um debuff por teste de
+    resistência, com uma opção para cada perícia defensiva (*Reflexos*, *Fortitude*, *Vontade*). O jogador escolhe a
+    defesa fraca do inimigo. Uma condição só, presa a um teste só, falha contra metade dos inimigos.
+    O que não serve:
+    - bônus de perícia redundante (Orientação);
+    - passiva de grupo que é forte mas *"pouco recompensadora"* e que *"desabilita um potencial playstyle de aliado
+      que depende de ataque de oportunidade"* (Rota Segura).
+

@@ -946,6 +946,23 @@ Texto verbatim em `18-batedor-rework.md` §0 e as lições em `19-gabarito-de-cl
   - **Recusados:** o Campo Minado e as 4 candidatas de Tier 2 do Cartógrafo da rodada 7. Regra: *"Cada tier deve
     ser independente enquanto sinergiza com seu próprio ramo e os outros ramos"*.
   - **Execução do Pecador por % de Saúde:** o Pedro pediu opinião. A resposta está em `18` §5.0c.
+- **D153** (2026-10-19) Rodada 11:
+  - **🔑 Regra do *Desprevenido* (Pedro, sistema):** a condição sempre expira em 1 rodada/turno. Durante a rodada
+    inteira o alvo não reage (nem Defender, nem retaliação), mas só o primeiro acerto é crítico, porque o
+    *Exposto* sai ao acertar. Hoje nem o Notion (Condições) nem o `data/condicoes.json` têm a duração. Pendente:
+    gravar no Notion com o aceite do Pedro (`17` §3.1).
+  - **Ataque Furtivo:** passa a exigir criatura *Desprevenida e Exposta*. Na prática, só o 1º acerto da rodada.
+  - **Acampamento** (texto final do Pedro): a técnica vale ao descansar **na natureza**. O Cartógrafo ainda rola
+    *Sobrevivência* para a qualidade do descanso.
+  - **Cleptomaníaco:** fica 1x/descanso longo. **Mão Leve:** sobe de 3 para 5 Stamina.
+  - **Cobra:** o dano é Veneno. Veneno é um tipo de dano; Biológico é a categoria, usada quando o efeito deixa
+    escolher o tipo.
+  - **Pecador, Tier 2:** *"Está bom."* Comprar Dor e Comprar Proteção ficam como estão, sem os tetos que sugeri.
+  - **Cartógrafo, Tier 2:** caem a Orientação (*"redundante e muito fraco"*), a Rota Segura (*"pouco recompensador"* e
+    *"desabilita um potencial playstyle de aliado que depende de ataque de oportunidade"*) e a Vanguarda (repetia a vantagem em Iniciativa da característica).
+    O Passo em Falso foi o que mais chegou perto. A direção é esta: *"o cartografo pode ser um utility que exige save
+    throw para aplicar debuff… um para cada perícia defensiva (Reflexo, Fortitude e Vontade)"*.
+  - Os Tiers 3 ficam para depois.
 
 ## D68 — O andar de Nível 1 (truques)
 Todas as magias existentes **sobem 1 nível**: as antigas 1–4 viram 2–5. O novo Nível 1 são os

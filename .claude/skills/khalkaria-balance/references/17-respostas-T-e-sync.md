@@ -214,6 +214,9 @@ Tudo o que mudou no Notion desde o último sync do site. Regerar `data/*.json` e
     - frase nova: "Traumas de batalha não te permitem desenhar o mapa dessa região novamente."
   - **Fantasma:** a lista passa a ser *Crime*, *Furtividade* ou *Defender*. Sai a 2ª parte (somar o treino de Furtividade no Defender).
   - **Regerar:** a página do Batedor. O resto da classe (os ramos) ainda vai mudar; o agente de HTML pode esperar o rework fechar.
+- **Pendente, ainda não gravado (D153, 2026-10-19): duração do *Desprevenido*.** Regra do Pedro: a condição sempre expira em 1 rodada/turno; a rodada inteira sem reação; só o 1º acerto é crítico, porque o *Exposto* sai ao acertar.
+  - Hoje o card não tem duração, nem no Notion (Condições) nem no `data/condicoes.json`.
+  - Vai ao Notion com o aceite do Pedro. Depois, regerar `condicoes.html` e o contrato da ficha (se o *Desprevenido* tiver duração lá).
 
 ### 3.2 Edições do Pedro (vistas nos fetches de 2026-09-28)
 - **Brutalista, Muralha Viva:** 2º item agora "Você recebe+1 na perícia *Defender* a cada treinamento dessa perícia." (era "O treinamento da sua perícia Defender aumenta de 3 em 3 (Ao invés de 2 em 2)").

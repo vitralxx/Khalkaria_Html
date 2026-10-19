@@ -4,27 +4,32 @@ Esta é a classe como ela vai para o Notion, pronta para o Pedro auditar. O porq
 
 **Origem:** `[Pedro]` texto dele · `[Pedro, ajustado]` texto dele com mudança · `[nova]` criação minha, precisa de aceite.
 
-**Estado (2026-10-14):** cabeçalho, características e técnicas gerais estão fechados e no Notion. Os ramos são proposta. As marcas e o Tier 1 têm os textos do Pedro, e o Tier 2 está em revisão. As ultimates ficam por último.
+**Estado (2026-10-19):** cabeçalho, características e técnicas gerais estão fechados e no Notion. Os ramos são proposta. Marcas e Tier 1 têm os textos do Pedro. No Tier 2, o Pecador está fechado, o Ladrão tem 1 ponto aberto (Marca da Morte) e o Cartógrafo está em escolha. As ultimates ficam por último.
 
 ---
 
 ## Em auditoria
 
 **Mudou nesta rodada (textos seus):**
-- **Mapa Estratégico:** só perícia em que você seja ao menos Treinado.
-- **Cleptomaníaco:** a vantagem para furtar passa a ser 1x/descanso longo.
-- **Ataque Furtivo:** "dano adicional". Isso resolve o "ao acertar".
-- **Tier 2 do Ladrão:** Cobra e Marca da Morte.
-- **Tier 2 do Pecador:** Comprar Dor e Comprar Proteção.
+- **Acampamento:** texto final (na natureza; ainda rola *Sobrevivência*).
+- **Ataque Furtivo:** só contra criatura *Desprevenida e Exposta*.
+- **Mão Leve:** 5 Stamina.
+- **Cobra:** sem mudança. O dano é Veneno.
+- **Cleptomaníaco:** fica 1x/descanso longo.
+- **Tier 2 do Pecador:** fechado como está.
 
-**Proposto por mim (Cartógrafo):**
-- **Acampamento** no lugar do Campo Minado. Funciona sozinho.
-- **Tier 2:** 4 candidatas novas (A–D). As opiniões e os números estão na resposta da rodada (`18` §5.0c).
+**Regra nova do sistema (sua):** *Desprevenido* sempre expira em 1 rodada. A rodada inteira sem reação, e só o 1º acerto é crítico. Nem o Notion (Condições) nem o site têm essa duração hoje.
 
-**Para decidir:** veja a resposta da rodada (`18` §5.0c). Os tetos sugeridos são:
-- Comprar Dor: 25 × Nível Sins;
-- Comprar Proteção: 12 × Nível Sins;
-- Bolso Cheio e Pecar: teto de +Nível.
+**Proposto por mim (Cartógrafo, Tier 2):**
+- **Terreno Traiçoeiro:** 1 técnica, 3 testes. Você escolhe a defesa fraca do alvo.
+- **2ª vaga:** Ponto Fraco (recomendada) ou Leitura da Presa.
+
+**Para decidir:**
+1. Gravo a regra do *Desprevenido* na página de Condições do Notion?
+2. **Acampamento:** a regra do Sistema é o grupo rolar e usar o melhor resultado. No *"você ainda deve rolar"*, o grupo continua rolando ou só o Cartógrafo rola?
+3. **Tier 2 do Cartógrafo:** Terreno Traiçoeiro + uma das duas.
+4. **Marca da Morte, ainda sem resposta:** o nome colide com *Marcada à Morte* (Silêncio). Sugeri +2 de Margem de Ameaça no lugar de +3.
+5. **Para o Tier 3, anotado:** no Silêncio, *"ao acertar um ataque furtivo, o ataque automaticamente é crítico"* ficou redundante. O Ataque Furtivo agora já exige *Exposta*, que é crítico.
 
 ---
 
@@ -116,22 +121,22 @@ Você possui cicatrizes que reforçam suas histórias de viagem.
 **Mapa Estratégico** (1 Ação, 3 Stamina) `[Pedro]`
 Você pode gastar 1 ação e 3 de Stamina para desenhar um Mapa Estratégico; ao fazer isso, escolha uma perícia em que você seja ao menos Treinado. O mapa vira um item consumível que pode ser utilizado como ação livre para adicionar +2 (+4 no nível 3 e +6 no nível 5) na perícia escolhida quando uma criatura rolar ela.
 
-**Acampamento** (Passiva) `[nova, no lugar do Campo Minado]`
-Ao descansar na área de um mapa seu, você escolhe o melhor lugar: o descanso longo do grupo sobe 1 nível de comodidade (máximo Luxuoso), e o descanso curto recupera 3d6 em vez de 2d6.
+**Acampamento** (Passiva) `[Pedro]`
+Ao descansar na natureza na área de um mapa seu, você monta um acampamento robusto e confortável: o descanso longo do grupo sobe 1 nível de comodidade (máximo Luxuoso), e o descanso curto recupera 3d6 em vez de 2d6. Contudo, você ainda deve rolar *Sobrevivência* para determinar a qualidade do descanso.
 
-### Tier 2 (em escolha: 2 de 4, refeitas)
+### Tier 2 (em escolha: Terreno Traiçoeiro + 1 de 2)
 
-**A. Orientação** (Reação, 3 Stamina) `[nova]`
-Na área de um mapa seu, quando você ou um aliado a até 9 m for rolar uma perícia, some 1d6 à rolagem (1d8 a partir do nível 5).
+**Terreno Traiçoeiro** (1 Ação, 4 Stamina) `[nova, a partir do Passo em Falso]`
+Na área de um mapa seu, escolha uma criatura a até 18 m e um perigo do terreno que você mapeou. Ela faz o teste do perigo contra sua CD; se falhar, sofre o efeito até o início do seu próximo turno:
+- **Chão que Cede** (*Reflexos*): ela pisa onde você sabia que o chão cedia e fica *Desprevenida*.
+- **Ar Viciado** (*Fortitude*): você a conduz para esporos, poeira ou água parada, e ela fica *Enjoada*.
+- **Rota Falsa** (*Vontade*): você a faz duvidar do próprio caminho, e ela fica *Confusa*.
 
-**B. Rota Segura** (Passiva) `[nova]`
-Na área de um mapa seu, você e aliados a até 9 m de você não provocam ataques de oportunidade ao usar a ação de Mover.
+**Ponto Fraco** (Reação, 3 Stamina) `[nova, recomendada]`
+Na área de um mapa seu, quando uma criatura a até 18 m falhar em *Reflexos*, *Fortitude* ou *Vontade*, você aponta onde ela cedeu: ela fica *Exposta* até o início do seu próximo turno.
 
-**C. Passo em Falso** (1 Ação, 4 Stamina) `[nova]`
-Na área de um mapa seu, escolha uma criatura a até 18 m. Ela faz *Reflexos* contra sua CD; se falhar, pisa onde você sabia que o chão cedia e fica *Desprevenida* até o início do seu próximo turno.
-
-**D. Vanguarda** (Passiva) `[nova]`
-Num combate que começa na área de um mapa seu, você e aliados a até 9 m de você rolam *Iniciativa* com vantagem e têm +3 m de Movimento na primeira rodada.
+**Leitura da Presa** (Passiva) `[nova, alternativa]`
+Na área de um mapa seu, ao ver uma criatura, você sabe qual é a menor entre a *Reflexos*, a *Fortitude* e a *Vontade* dela e pode avisar seus aliados. Contra essa perícia, sua CD tem +2.
 
 ### Tier 3 (por último)
 
@@ -185,12 +190,12 @@ Você pratica furtos de vez em quando.
 
 **Ataque Furtivo** (Passiva) `[Pedro]`
 - Você se torna Treinado em *Furtividade*. Se já for Treinado, se torna Experiente e assim por diante.
-- Ao atacar uma criatura *Desprevenida*, ela recebe 2d6 de dano adicional (4d6 no nível 3 e 6d6 no nível 5) e perde a reação.
+- Ao atacar uma criatura *Desprevenida e Exposta*, ela recebe 2d6 de dano adicional (4d6 no nível 3 e 6d6 no nível 5) e perde a reação.
 
 **Assassinato** (Reação, 3 Stamina) `[Pedro]`
 Imediatamente após deixar uma criatura com 0 de Saúde, você pode gastar sua reação para mover-se até seu Movimento e rolar um teste de *Furtividade* para esconder-se.
 
-**Mão Leve** (1 Ação, 3 Stamina) `[Pedro]`
+**Mão Leve** (1 Ação, 5 Stamina) `[Pedro]`
 Você pode realizar um teste de *Crime* contra a *Percepção* de uma criatura a até 1,5 m e roubar até 2d12 Sins dela. No entanto, você não gera Sins caso a criatura não os tenha: você só pode roubar de criaturas que tenham Sins.
 
 ### Tier 2 `[Pedro]`
@@ -253,7 +258,7 @@ Antes de rolar qualquer perícia treinada, receba +1 a cada (10 × Nível) Sins 
 **Pechincha** (Passiva) `[Pedro]`
 Os Mapas que você desenha valem 1 raridade acima. Adicionalmente, você recupera metade dos Sins ao subir um comerciante de nível.
 
-### Tier 2 `[Pedro]`
+### Tier 2 `[Pedro, fechado]`
 
 **Comprar Dor** (Ação Livre, 3 Stamina) `[Pedro]`
 Ao acertar um ataque, como ação livre, consuma até (50 × Nível) Sins para causar 1 de dano de Força a cada 5 Sins gastos.
