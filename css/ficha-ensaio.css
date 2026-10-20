@@ -392,3 +392,27 @@ html[data-ensaio] tr[data-kf-tipo] > td > .ent-add[data-ke-levar], html[data-ens
    ali quem leva é o "Levar" (para a ficha do ensaio), e a faixa promete que nada
    vai para a ficha real. No Bazar fica: o inventário dele é o da ficha atual. */
 html[data-ensaio] .main-content:not(.bazar-page) .kf-addbtn { display: none; }
+
+/* ---------------------------------------------------------- o selo "novo" (pedido do Pedro, 2026-10-20)
+   O KhLevar (pintaNovos) põe span.ke-novo na aba de destino do que foi levado
+   (página e drawer), com o contador, e [data-ke-novo] na entrada dentro dela.
+   O selo é aria-hidden: o leitor de tela ouve "novo" pelo aria-label da aba. */
+html[data-ensaio] .ke-novo {
+    display: inline-flex; align-items: center; gap: .25rem;
+    margin-left: var(--esp-1); padding: .05rem .4rem;
+    font-family: var(--font-body); font-size: .68rem; font-weight: 700; line-height: 1.3;
+    letter-spacing: .02em; text-transform: none;
+    color: var(--gold-light);
+    background: color-mix(in srgb, var(--amber) 14%, var(--bg-card));
+    border: 1px solid var(--amber); border-radius: 999px;
+    vertical-align: middle; white-space: nowrap;
+}
+html[data-ensaio] .ke-novo-n { font-variant-numeric: tabular-nums; }
+/* no drawer (abas estreitas), só o número */
+html[data-ensaio] .fd-gaveta-aba .ke-novo-txt { display: none; }
+html[data-ensaio] .fd-gaveta-aba .ke-novo { margin-left: .2rem; padding: 0 .3rem; }
+/* a entrada nova, dentro da aba */
+html[data-ensaio] [data-ke-novo] {
+    outline: 2px solid var(--amber); outline-offset: 2px;
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--amber) 22%, transparent);
+}

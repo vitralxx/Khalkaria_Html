@@ -378,7 +378,7 @@
         : nome + ' foi para o inventário da ficha do ensaio (' + col + ')' +
           (orfa && bz ? ': o id não está no catálogo do Bazar, e o item fica órfão (com o nome do card), sem ser apagado.' : '.');
       return resultado({ tipo: 'item', id: str(item.id || ref.id) }, 'inventario', nome, mudancas,
-        'Levar: ' + nome + ' (inventário)', aviso, { orfa: orfa, fundiu: !!r.fundiu, qtd: qtd, coluna: r.coluna });
+        'Levar: ' + nome + ' (inventário)', aviso, { orfa: orfa, fundiu: !!r.fundiu, qtd: qtd, coluna: r.coluna, uid: r.uid });
     }
 
     // raça, classe, origem, variante e subespécie: a identidade (as regras do
@@ -526,6 +526,222 @@
         'Confira a conexão e tente de novo.';
     }
 
+    // ---------------- o selo "novo" das abas (pedido do Pedro, 2026-10-20) ----------------
+    // Tudo o que o levar põe na ficha do ensaio marca a aba de destino com
+    // "novo" e um contador (na página e no drawer), e destaca a entrada dentro
+    // dela ([data-ke-novo]). O selo some quando o jogador abre a aba (ou quando
+    // ela já está à vista: a aba aberta da página, a do drawer aberto); o
+    // destaque, quando ele sai dela depois de ver. Desfazer (o recado, o
+    // Ctrl+Z, a remoção) tira a marca: a entrada que sumiu da ficha sai da lista.
+    // Estado: sessionStorage <KhEnsaio.PREFIXO>ke_novos (sobrevive à troca de
+    // página na mesma aba; "Sair do ensaio" o apaga com o resto):
+    //   {v:1, fichas: {<fichaId>: {<aba>: {itens: [chave…], visto: bool}}}}
+    // chave: 'tipo:id' (entradas), 'item:<uid>', 'identidade:<campo>', 'condicao:<id>'.
+    var NOVOS = 'ke_novos', NOVO = 'data-ke-novo', NOVOS_ATTR = 'data-ke-novos', ROTULO_ABA = 'data-ke-rotulo-aba';
+    var LISTAS_ABAS = ['fp-abas', 'fd-gaveta-abas'];
+    function chaveNovos() { return (KhEnsaio ? KhEnsaio.PREFIXO : 'khalkaria_ensaio:') + NOVOS; }
+    // a chave de um resultado do levar que mudou a ficha
+    function chaveNovo(r) {
+      if (!obj(r)) return '';
+      if (r.destino === 'inventario') return r.uid ? 'item:' + r.uid : '';
+      if (r.destino === 'identidade') return 'identidade:' + str(r.tipo);
+      if (r.destino === 'condicoes') return 'condicao:' + str(r.id);
+      return r.tipo && r.id ? r.tipo + ':' + r.id : '';
+    }
+    function novosLer(ss) {
+      var x = null;
+      try { x = JSON.parse(ss ? ss.getItem(chaveNovos()) : null); } catch (e) { x = null; }
+      return obj(x) && x.v === 1 && obj(x.fichas) ? x : { v: 1, fichas: {} };
+    }
+    function novosGravar(ss, st) {
+      try {
+        var vazio = !Object.keys(st.fichas).length;
+        if (vazio) ss.removeItem(chaveNovos()); else ss.setItem(chaveNovos(), JSON.stringify(st));
+        return true;
+      } catch (e) { return false; }
+    }
+    function abaNovos(st, fichaId, aba, cria) {
+      var f = st.fichas[fichaId];
+      if (!obj(f)) { if (!cria) return null; f = st.fichas[fichaId] = {}; }
+      var a = f[aba];
+      if (!obj(a) || !Array.isArray(a.itens)) { if (!cria) return null; a = f[aba] = { itens: [], visto: false }; }
+      return a;
+    }
+    function limpaVazios(st) {
+      Object.keys(st.fichas).forEach(function (id) {
+        var f = st.fichas[id];
+        if (obj(f)) Object.keys(f).forEach(function (aba) { if (!obj(f[aba]) || !lista(f[aba].itens).length) delete f[aba]; });
+        if (!obj(f) || !Object.keys(f).length) delete st.fichas[id];
+      });
+      return st;
+    }
+    // PURAS sobre o estado (devolvem se mudou)
+    function marcaNovo(st, fichaId, aba, chave) {
+      if (!fichaId || !aba || !chave) return false;
+      var a = abaNovos(st, fichaId, aba, true);
+      if (a.itens.indexOf(chave) < 0) a.itens.push(chave);
+      a.visto = false;
+      return true;
+    }
+    function abreNovos(st, fichaId, aba) {
+      var a = abaNovos(st, fichaId, aba, false);
+      if (!a || a.visto) return false;
+      a.visto = true;
+      return true;
+    }
+    // saiu da aba depois de ver: o destaque acaba
+    function saiNovos(st, fichaId, aba) {
+      var a = abaNovos(st, fichaId, aba, false);
+      if (!a || !a.visto) return false;
+      delete st.fichas[fichaId][aba];
+      limpaVazios(st);
+      return true;
+    }
+    // a marca da entrada que não está mais na ficha (desfeita, removida) sai
+    function presente(ficha, chave) {
+      var i = chave.indexOf(':'), t = chave.slice(0, i), v = chave.slice(i + 1);
+      if (!obj(ficha) || i < 0) return false;
+      if (t === 'item') {
+        var inv = obj(ficha.inventario) ? ficha.inventario : {};
+        return KhInv.COLUNAS.some(function (c) { return lista(inv[c]).some(function (e) { return obj(e) && e.uid === v; }); });
+      }
+      if (t === 'identidade') { var r = obj(ficha.identidade) ? ficha.identidade[v] : null; return obj(r) && !!(r.id || str(r.nome).trim()); }
+      if (t === 'condicao') return lista(ficha.condicoes).some(function (c) { return obj(c) && c.id === v; });
+      return lista(ficha.entradas).some(function (e) { return obj(e) && e.tipo === t && e.id === v; });
+    }
+    function podaNovos(st, fichaId, ficha) {
+      var f = st.fichas[fichaId], mudou = false;
+      if (!obj(f)) return false;
+      Object.keys(f).forEach(function (aba) {
+        var a = f[aba], l = lista(a && a.itens).filter(function (k) { return presente(ficha, k); });
+        if (!obj(a) || l.length !== lista(a.itens).length) { mudou = true; if (obj(a)) a.itens = l; }
+      });
+      if (mudou) limpaVazios(st);
+      return mudou;
+    }
+    // {aba: {n, visto, itens}} da ficha
+    function contaNovos(st, fichaId) {
+      var f = obj(st) && obj(st.fichas) ? st.fichas[fichaId] : null, out = {};
+      if (obj(f)) Object.keys(f).forEach(function (aba) {
+        var a = f[aba];
+        if (obj(a) && lista(a.itens).length) out[aba] = { n: a.itens.length, visto: !!a.visto, itens: a.itens.slice() };
+      });
+      return out;
+    }
+
+    // ---- no DOM (a página e o drawer chamam pintaNovos depois de redesenhar)
+    var vistas = [];   // fn() -> a aba à vista naquela tela, ou null (registraVista)
+    function registraVista(fn) { if (typeof fn === 'function') vistas.push(fn); }
+    function abaVisivel(aba) { return vistas.some(function (fn) { try { return fn() === aba; } catch (e) { return false; } }); }
+    function rotuloAba(id) {
+      var a = KhFichaAbas ? lista(KhFichaAbas.ABAS).filter(function (x) { return x.id === id; })[0] : null;
+      return a ? str(a.rotulo) : id;
+    }
+    function falaNovos(n) { return n === 1 ? '1 novo' : n + ' novos'; }
+    function tabsNovos(doc) {
+      var out = [];
+      LISTAS_ABAS.forEach(function (id) {
+        var l = doc.getElementById ? doc.getElementById(id) : null;
+        if (l) arr(l.querySelectorAll('[role="tab"][data-aba]')).forEach(function (t) { out.push(t); });
+      });
+      return out;
+    }
+    function seloAba(doc, t, n) {
+      var s = null;
+      arr(t.children).forEach(function (c) { if (c.classList && c.classList.contains('ke-novo')) s = c; });
+      if (!n) {
+        if (s) s.remove();
+        if (t.hasAttribute(ROTULO_ABA)) {
+          var o = t.getAttribute(ROTULO_ABA);
+          if (o) t.setAttribute('aria-label', o); else t.removeAttribute('aria-label');
+          t.removeAttribute(ROTULO_ABA);
+        }
+        if (t.hasAttribute(NOVOS_ATTR)) t.removeAttribute(NOVOS_ATTR);
+        return;
+      }
+      if (!t.hasAttribute(ROTULO_ABA)) t.setAttribute(ROTULO_ABA, str(t.getAttribute('aria-label')));
+      var base = t.getAttribute(ROTULO_ABA) || rotuloAba(t.getAttribute('data-aba'));
+      var rot = base + ', ' + falaNovos(n);
+      if (t.getAttribute('aria-label') !== rot) t.setAttribute('aria-label', rot);
+      if (t.getAttribute(NOVOS_ATTR) !== String(n)) t.setAttribute(NOVOS_ATTR, String(n));
+      var h = '<span class="ke-novo-txt">novo</span><span class="ke-novo-n">' + n + '</span>';
+      if (!s) {
+        s = doc.createElement('span');
+        s.className = 'ke-novo';
+        s.setAttribute('aria-hidden', 'true');
+        t.appendChild(s);
+      }
+      if (s._keHtml !== h) { s.innerHTML = h; s._keHtml = h; }
+      if (s.getAttribute('title') !== falaNovos(n)) s.setAttribute('title', falaNovos(n));
+    }
+    // os elementos da entrada, no painel da aba
+    function alvosNovo(painel, chave) {
+      var i = chave.indexOf(':'), t = chave.slice(0, i), v = chave.slice(i + 1);
+      if (!v) return [];
+      if (t === 'item') return arr(painel.querySelectorAll('[data-uid="' + v + '"]'));
+      if (t === 'condicao') return [];   // a ficha nova não desenha as condições ativas: só o selo da aba
+      if (t === 'identidade') {
+        var campo = v === 'subespecie' ? 'variante' : v;
+        return arr(painel.querySelectorAll('[data-campo="' + campo + '"]')).filter(function (x) { return /(^|\s)f[pd]-id(\s|$)/.test(str(x.className)); });
+      }
+      return arr(painel.querySelectorAll('[data-moldura][data-id="' + v + '"]'));
+    }
+    function paineisNovos(doc) {
+      return arr(doc.querySelectorAll ? doc.querySelectorAll('.fp-painel[data-aba], .fd-gaveta-painel[data-aba]') : []);
+    }
+    function limpaDom(doc) {
+      tabsNovos(doc).forEach(function (t) { seloAba(doc, t, 0); });
+      arr(doc.querySelectorAll ? doc.querySelectorAll('[' + NOVO + ']') : []).forEach(function (x) { x.removeAttribute(NOVO); });
+    }
+    // o estado do ensaio -> o DOM. Sem o Ensaio: tira tudo, sem ler nem gravar nada.
+    function pintaNovos(win) {
+      var doc = win && win.document;
+      if (!doc) return null;
+      var on = false;
+      try { on = !!KhEnsaio && KhEnsaio.ligado(win); } catch (e) { on = false; }
+      if (!on) { limpaDom(doc); return null; }
+      var ss = storage(win, 'sessionStorage'), a = KhEnsaio.armazem(ss), id = null, f = null;
+      try { id = a.ativa(); f = id ? a.ler(id) : null; } catch (e) { id = null; }
+      var st = novosLer(ss), mudou = false;
+      if (id && obj(f)) mudou = podaNovos(st, id, f);
+      if (id) KhFichaAbas.ABAS.forEach(function (x) { if (abaVisivel(x.id) && abreNovos(st, id, x.id)) mudou = true; });
+      if (mudou) novosGravar(ss, st);
+      var conta = id ? contaNovos(st, id) : {};
+      tabsNovos(doc).forEach(function (t) {
+        var c = conta[t.getAttribute('data-aba')];
+        seloAba(doc, t, c && !c.visto ? c.n : 0);
+      });
+      paineisNovos(doc).forEach(function (p) {
+        var c = conta[p.getAttribute('data-aba')], quer = [];
+        if (c) c.itens.forEach(function (k) { alvosNovo(p, k).forEach(function (x) { quer.push(x); }); });
+        arr(p.querySelectorAll('[' + NOVO + ']')).forEach(function (x) { if (quer.indexOf(x) < 0) x.removeAttribute(NOVO); });
+        quer.forEach(function (x) { if (!x.hasAttribute(NOVO)) x.setAttribute(NOVO, ''); });
+      });
+      return conta;
+    }
+    // o jogador abriu a aba `id` (saindo de `anterior`) numa das telas
+    function abaAberta(win, id, anterior) {
+      var on = false;
+      try { on = !!KhEnsaio && KhEnsaio.ligado(win); } catch (e) { on = false; }
+      if (on) {
+        var ss = storage(win, 'sessionStorage'), fid = null;
+        try { fid = KhEnsaio.armazem(ss).ativa(); } catch (e) { fid = null; }
+        if (fid) {
+          var st = novosLer(ss), m1 = anterior && anterior !== id ? saiNovos(st, fid, anterior) : false, m2 = abreNovos(st, fid, id);
+          if (m1 || m2) novosGravar(ss, st);
+        }
+      }
+      return pintaNovos(win);
+    }
+    // o levar que mudou a ficha: marca a aba de destino
+    function marcaLevado(win, r) {
+      var ss = storage(win, 'sessionStorage'), k = chaveNovo(r);
+      if (!k || !r.aba || !r.fichaId) return false;
+      var st = novosLer(ss);
+      marcaNovo(st, r.fichaId, r.aba, k);
+      return novosGravar(ss, st);
+    }
+
     // ---------------- a interface: levar (uma por página) ----------------
     var atual = null;
     // op: {dados: () => Promise<{dados, versao}> (os do KhPrevia.carregar, do drawer)}
@@ -648,6 +864,7 @@
           });
           mostrando = false;
           if (toast) toast.fechar();
+          pintaNovos(win);
           return false;
         }
         mostrando = true;
@@ -661,6 +878,7 @@
         });
         // no Bazar, o "na ficha" do item com id antigo precisa do índice
         if (temItem && !bazar && !bazarP) itens().then(function (bz) { if (bz) sincroniza(); });
+        pintaNovos(win);
         return true;
       }
 
@@ -731,6 +949,7 @@
           // a limpeza por falta de espaço apagou o desfazer desta ficha (auditoria B: avisar)
           if (g.logLimpo) r.aviso = (r.aviso ? r.aviso + ' ' : '') + 'Faltou espaço: para gravar, o histórico de desfazer desta ficha foi apagado.';
           ultimo = r.desfazivel ? { fichaId: x.id, rotulo: r.rotulo } : null;
+          marcaLevado(win, r);   // o selo "novo" da aba de destino (antes do redesenho)
           emitir();
           return r;
         }).then(null, function (e) { return { ok: false, aviso: 'Não deu para levar: ' + str(e && e.message) + '. Nada foi gravado.' }; });
@@ -865,7 +1084,11 @@
       refDoCard: refDoCard, nomeDoCard: nomeDoCard, payloadRef: payloadRef, lerRef: lerRef, refDoV2: refDoV2,
       chaves: chaves, faltaEscolher: faltaEscolher, levar: levar, bestiario: bestiario, nomeBestiario: nomeBestiario,
       garantir: garantir, avisoGarantir: avisoGarantir, exportarBestiario: exportarBestiario, htmlExport: htmlExport,
-      ligar: ligar, criarExport: criarExport, atual: function () { return atual; } };
+      ligar: ligar, criarExport: criarExport, atual: function () { return atual; },
+      // o selo "novo" das abas
+      NOVOS: NOVOS, NOVO: NOVO, chaveNovos: chaveNovos, chaveNovo: chaveNovo, novosLer: novosLer, marcaNovo: marcaNovo,
+      abreNovos: abreNovos, saiNovos: saiNovos, podaNovos: podaNovos, contaNovos: contaNovos,
+      pintaNovos: pintaNovos, abaAberta: abaAberta, registraVista: registraVista };
   })();
 
   if (emNode) { module.exports = KhLevar; return; }

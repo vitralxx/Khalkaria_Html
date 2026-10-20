@@ -878,3 +878,116 @@ test('F4.6f: corrupção (linha da tabela) e tecnologia levadas no Ensaio pelo c
   assert.deepEqual(ls.escritas, []);
   soEnsaio(j.ss, 'F4.6f');
 });
+
+// ---------------------------------------------------------------- o selo "novo" das abas (pedido do Pedro, 2026-10-20)
+test('selo "novo" (puro): a chave de cada destino; marcar, abrir (o selo some), sair (o destaque acaba), podar o que sumiu da ficha', () => {
+  assert.equal(L.chaveNovo({ destino: 'tecnicas', tipo: 'tecnica', id: 'x' }), 'tecnica:x');
+  assert.equal(L.chaveNovo({ destino: 'grimorio', tipo: 'magia', id: 'm' }), 'magia:m');
+  assert.equal(L.chaveNovo({ destino: 'inventario', tipo: 'item', id: 'item-corda-5m', uid: 'u1' }), 'item:u1');
+  assert.equal(L.chaveNovo({ destino: 'identidade', tipo: 'raca', id: 'raca-anao' }), 'identidade:raca');
+  assert.equal(L.chaveNovo({ destino: 'condicoes', tipo: 'condicao', id: 'morrendo' }), 'condicao:morrendo');
+  assert.equal(L.chaveNovos(), 'khalkaria_ensaio:ke_novos', 'dentro do prefixo do Ensaio');
+  const st = { v: 1, fichas: {} };
+  assert.equal(L.marcaNovo(st, 'f1', 'tecnicas', 'tecnica:a'), true);
+  L.marcaNovo(st, 'f1', 'tecnicas', 'tecnica:b');
+  L.marcaNovo(st, 'f1', 'tecnicas', 'tecnica:a');   // de novo: não conta duas vezes
+  L.marcaNovo(st, 'f1', 'grimorio', 'magia:m');
+  assert.deepEqual(L.contaNovos(st, 'f1'), { tecnicas: { n: 2, visto: false, itens: ['tecnica:a', 'tecnica:b'] }, grimorio: { n: 1, visto: false, itens: ['magia:m'] } });
+  assert.equal(L.saiNovos(st, 'f1', 'tecnicas'), false, 'sair sem ter visto não apaga');
+  assert.equal(L.abreNovos(st, 'f1', 'tecnicas'), true);
+  assert.equal(L.contaNovos(st, 'f1').tecnicas.visto, true);
+  assert.equal(L.abreNovos(st, 'f1', 'tecnicas'), false, 'já visto: nada muda');
+  L.marcaNovo(st, 'f1', 'tecnicas', 'tecnica:c');
+  assert.equal(L.contaNovos(st, 'f1').tecnicas.visto, false, 'chegou outra: o selo volta');
+  L.abreNovos(st, 'f1', 'tecnicas');
+  assert.equal(L.saiNovos(st, 'f1', 'tecnicas'), true);
+  assert.deepEqual(Object.keys(L.contaNovos(st, 'f1')), ['grimorio']);
+  // a poda: a entrada que não está mais na ficha sai; a ficha sem marca some do estado
+  const ficha = { entradas: [], inventario: {}, identidade: {}, condicoes: [] };
+  assert.equal(L.podaNovos(st, 'f1', ficha), true);
+  assert.deepEqual(st, { v: 1, fichas: {} });
+  L.marcaNovo(st, 'f2', 'bazar', 'item:u9');
+  L.marcaNovo(st, 'f2', 'nucleo', 'identidade:raca');
+  assert.equal(L.podaNovos(st, 'f2', { inventario: { bugigangas: [{ uid: 'u9', id: 'i' }] }, identidade: { raca: { id: 'raca-anao' } } }), false);
+});
+
+test('selo "novo" no Ensaio: a aba de destino ganha "novo" com contador no drawer e na página, a entrada fica destacada; abrir a aba tira o selo, sair dela tira o destaque; Desfazer tira a marca; sobrevive à troca de página (espião)', async () => {
+  const ls = A.armazenamento(comPrevia());
+  const ss = A.armazenamento();
+  const mc = MC + card('div', 'technique-card', 'tecnica', 'batedor-atento', 'Atento');
+  const j = await entra(await carrega(janela({ ls, ss, mc })));
+  const aba = (id) => j.el('fd-gaveta-a-' + id);
+  const selo = (t) => t.querySelector('.ke-novo');
+  const novos = (t) => t.getAttribute('data-ke-novos');
+  const destacados = () => j.doc.querySelectorAll('[data-ke-novo]').map((x) => x.getAttribute('data-id') || x.getAttribute('data-uid') || x.getAttribute('data-campo'));
+  // o Núcleo à vista no drawer aberto
+  j.clica(aba('nucleo'));
+  assert.equal(aba('nucleo').getAttribute('aria-selected'), 'true');
+  const rotTec = aba('tecnicas').getAttribute('aria-label');
+  const id = fichaNova(j, 'Selo');
+  assert.equal(j.doc.querySelectorAll('.ke-novo').length, 0, 'nada antes de levar');
+  const leva = async (t, cid) => { j.clica(j.botao(j.cardDe(t, cid))); await carrega(j); };
+  await leva('tecnica', 'alquimista-alquimia-rapida');
+  await leva('tecnica', 'batedor-atento');
+  await leva('magia', 'magia-centelha');
+  await leva('carta', 'limiar-alma-resiliente');
+  await leva('item', 'item-corda-5m');
+  await leva('origem', 'origem-academico');
+  await leva('condicao', 'morrendo');
+  // contador e o nome da aba para o leitor de tela; o selo é aria-hidden
+  assert.equal(novos(aba('tecnicas')), '2');
+  assert.equal(aba('tecnicas').getAttribute('aria-label'), rotTec + ', 2 novos');
+  assert.equal(selo(aba('tecnicas')).getAttribute('aria-hidden'), 'true');
+  assert.equal(selo(aba('tecnicas')).textContent, 'novo2');
+  assert.equal(novos(aba('grimorio')), '1');
+  assert.match(aba('grimorio').getAttribute('aria-label'), /, 1 novo$/);
+  assert.equal(novos(aba('cartas')), '1');
+  assert.equal(novos(aba('bazar')), '1');
+  assert.equal(selo(aba('nucleo')), null, 'o Núcleo estava à vista: sem selo');
+  // a entrada nova destacada dentro da aba (o Núcleo também: a origem)
+  const uid = j.arm().ler(id).inventario.bugigangas[0].uid;
+  assert.deepEqual(destacados().sort(), ['alquimista-alquimia-rapida', 'batedor-atento', 'limiar-alma-resiliente', 'magia-centelha', 'origem', uid].sort());
+  // o Desfazer do recado tira a condição (o último levar)
+  j.clica(j.toast().querySelector('[data-toast-desfazer]'));
+  await carrega(j);
+  assert.deepEqual(copia(j.arm().ler(id).condicoes), []);
+  // o desfazer da ficha (o armazém, como o Ctrl+Z) tira a origem: sem destaque
+  assert.equal(j.arm().desfazer(id).ok, true);
+  j.sb.KhEnsaio.emitir(j.sb, ['ficha']);
+  await carrega(j);
+  assert.equal(destacados().includes('origem'), false, 'desfeito: sem destaque');
+  const st = JSON.parse(ss.getItem('khalkaria_ensaio:ke_novos'));
+  assert.deepEqual(Object.keys(st.fichas[id]).sort(), ['bazar', 'cartas', 'grimorio', 'tecnicas']);
+  // abrir as Técnicas: o selo some (o aria-label volta), o destaque fica
+  j.clica(aba('tecnicas'));
+  assert.equal(selo(aba('tecnicas')), null);
+  assert.equal(aba('tecnicas').getAttribute('aria-label'), rotTec);
+  assert.equal(aba('tecnicas').hasAttribute('data-ke-novos'), false);
+  assert.ok(destacados().includes('batedor-atento'));
+  // sair dela: o destaque acaba
+  j.clica(aba('grimorio'));
+  assert.equal(destacados().includes('batedor-atento'), false);
+  assert.equal(selo(aba('grimorio')), null, 'o Grimório agora à vista');
+  // outra página na mesma aba do navegador (o mesmo sessionStorage): a página da ficha mostra o selo das Cartas e do Bazar
+  const k = await carrega(janela({ ls, ss, pagina: true }));
+  const fp = (x) => k.el('fp-aba-' + x);
+  const abertaPag = k.doc.querySelector('#fp-abas [aria-selected="true"]').getAttribute('data-aba');
+  ['cartas', 'bazar'].filter((x) => x !== abertaPag).forEach((x) => {
+    assert.equal(fp(x).getAttribute('data-ke-novos'), '1', x);
+    assert.match(fp(x).getAttribute('aria-label'), /, 1 novo$/, x);
+  });
+  assert.equal(fp('tecnicas').querySelector('.ke-novo'), null, 'as Técnicas já foram vistas');
+  // nenhuma escrita fora do prefixo; a ficha atual nunca chamada
+  assert.deepEqual(j.kf, []);
+  assert.deepEqual(ls.escritas, []);
+  // (a aba aberta do KhAbas, khalkaria_ficha_aba, é a de sempre ao clicar numa aba)
+  soEnsaio({ escritas: ss.escritas.filter((w) => w[1] !== 'khalkaria_ficha_aba') }, 'selo novo');
+  // sair do ensaio: o selo e o destaque somem, e o estado vai junto
+  j.clica(j.faixa().querySelector('[data-ke="sair"]'));
+  j.clica(j.faixa().querySelector('[data-ke="sair-ok"]'));
+  await carrega(j);
+  assert.equal(j.doc.querySelectorAll('.ke-novo').length, 0);
+  assert.equal(j.doc.querySelectorAll('[data-ke-novo]').length, 0);
+  assert.equal(aba('tecnicas').getAttribute('aria-label'), rotTec);
+  assert.equal(ss.getItem('khalkaria_ensaio:ke_novos'), null);
+});

@@ -276,3 +276,17 @@ Para o Pedro:
 - A **soma dos custos** não é comparada com o máximo, e não há aviso. A convenção de sinal está em aberto no log (T, "A Corrupção (convenção de sinal)"), e não está decidido se o teto vale para o gasto em poderes ou para o saldo. O contrato pede `validacoes.corrupcaoMaxima: "avisar"`, mas não diz contra quê.
 - O plano (02, aba 3) também cita um contador da Corrupção em Cartas, Lore & Outros. Aqui ele fica no bloco da aba Técnicas, junto das linhas. Se preferir, dá para mudar de lugar.
 - A tabela não tem **graus** (Tocado, Alterado, Consumido). Se eles existirem no Notion, faltam no dado.
+
+## Selo "novo" nas abas (como ficou, 2026-10-20)
+
+Pedido do Pedro: "quando adicionar qualquer coisa na ficha, marque como novo para o player a aba em que se encontra, isso com tudo." Vale no Ensaio, atrás da prévia.
+
+- **O que marca:** tudo o que o KhLevar leva para a ficha do ensaio, por clique, tecla A, arrasto ou soltar no drawer. Isso inclui técnica, Marca, ultimate, traço, tecnologia, corrupção, magia, carta, Dor, benefício, item, identidade (raça, classe, origem, variante, subespécie) e condição. A aba de destino (`KhLevar.ABA`) ganha o selo "novo" com o contador, na página e no drawer (no drawer, só o número, porque as abas são estreitas). Item que soma na mesma linha conta uma vez, e a repetida não marca.
+- **Destaque:** a entrada nova fica com `[data-ke-novo]` (contorno âmbar) dentro da aba: o card, a carta, a magia, a linha do inventário ou o campo da identidade. A condição ativa ainda não tem desenho na ficha nova, então leva só o selo do Núcleo.
+- **Quando some:** o selo some ao abrir a aba. Se a aba já está à vista (a aberta na página, ou a do drawer aberto), ele nem aparece. O destaque fica até o jogador sair da aba depois de ver. Desfazer a adição (o recado, o desfazer da ficha, a remoção) tira a marca: a entrada que saiu da ficha sai da lista.
+- **Leitor de tela:** o selo é `aria-hidden`, e o nome da aba vira "Técnicas & Marcas, 2 novos". O nome original volta quando o selo some.
+- **Estado:** `khalkaria_ensaio:ke_novos` no sessionStorage (`{v:1, fichas:{<id>:{<aba>:{itens, visto}}}}`), por ficha do ensaio. Sobrevive à troca de página na mesma aba, e "Sair do ensaio" o apaga com o resto. Sem o Ensaio, nada aparece e nada é lido nem gravado.
+- **Código:** `js/ficha/kh-levar.js` (as puras `chaveNovo`, `marcaNovo`, `abreNovos`, `saiNovos`, `podaNovos`, `contaNovos`; no DOM, `pintaNovos`, `abaAberta`, `registraVista`). A página (`js/ficha-pagina.js`) e o drawer (`js/ficha/kh-ficha-drawer.js`) chamam `pintaNovos` depois de redesenhar e `abaAberta` no `aoSelecionar`. O CSS fica em `css/ficha-ensaio.css`.
+- **Testes:** `tools/testes/levar.test.js`, com as puras e a interface (7 tipos levados, contador, `aria-label`, destaque, Desfazer, abrir e sair da aba, a página da ficha noutra janela com o mesmo sessionStorage, sair do ensaio), usando o armazenamento espião.
+
+Para o Pedro: o destaque some quando o jogador sai da aba depois de vê-la. Se preferir que ele dure até o fim da sessão, é uma linha.

@@ -1182,6 +1182,24 @@ os ajustes). Ao sair do Ensaio (e no `pageshow` do bfcache) tudo volta ao que o
 build deixou. Sem o Ensaio, nada muda (o "+ ficha" da v2.1 segue).
 `tools/testes/levar.test.js` (as puras e a interface, com o armazenamento espião).
 
+**Selo "novo" (pedido do Pedro, 2026-10-20; `KhLevar.pintaNovos`).** Tudo o que
+o levar põe na ficha do ensaio marca a aba de destino (Núcleo, Técnicas &
+Marcas, Cartas, O Bazar, Grimório) com `span.ke-novo` ("novo" e o contador;
+no drawer, só o número), nas listas `#fp-abas` e `#fd-gaveta-abas`, e põe
+`[data-ke-novo]` na entrada dentro da aba (`[data-moldura][data-id]`, a linha
+`[data-uid]` do inventário, o campo da identidade; a condição ativa não tem
+desenho na ficha nova, só o selo). O selo é `aria-hidden`: o leitor de tela
+ouve "N novo(s)" no `aria-label` da aba (o original volta depois). O selo some
+quando a aba é aberta (`KhLevar.abaAberta`, do `aoSelecionar` da página e do
+drawer) ou quando ela já está à vista (`registraVista`: a aba aberta da
+página, a do drawer aberto); o destaque some quando o jogador sai da aba
+depois de vê-la. Desfazer (o recado, o desfazer da ficha, a remoção) tira a
+marca: a entrada que saiu da ficha sai da lista. Estado no sessionStorage,
+`khalkaria_ensaio:ke_novos` (`{v:1, fichas:{<id>:{<aba>:{itens, visto}}}}`):
+vale na troca de página da mesma aba, e "Sair do ensaio" o apaga. A página e o
+drawer chamam `pintaNovos` depois de cada redesenho. Sem o Ensaio, ele só tira
+o que houver, sem ler nem gravar. CSS em `css/ficha-ensaio.css`.
+
 **`data-kf-ignorar`.** O `MutationObserver` que redecora os cards ignora
 mudanças dentro de `[data-kf-ignorar]`, e `decorarBazar` não decora card ali
 dentro. Hoje têm o atributo `#kf-drawer` e `#kf-toast`; toda superfície do

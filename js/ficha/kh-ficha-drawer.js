@@ -532,6 +532,8 @@
         btRecolher.setAttribute('aria-expanded', est === 'aberto' ? 'true' : 'false');
         if (o.gravar) gravarDock(ls, est);
         if (o.foco) foca(est === 'aberto' ? (el('fd-gaveta-a-' + aberta) || el('fd-gaveta-folha')) : btAbrir);
+        // aberto: a aba à vista no drawer perde o selo "novo"
+        if (KhLevar && KhLevar.pintaNovos) KhLevar.pintaNovos(win);
       }
       function abrir(o) { o = o || {}; poeEstado('aberto', { gravar: o.gravar !== false, foco: !!o.foco }); }
       function recolher(o) { o = o || {}; poeEstado('trilho', { gravar: o.gravar !== false, foco: !!o.foco }); }
@@ -542,7 +544,13 @@
       KhFichaAbas.ABAS.forEach(function (a) { rotulos[a.id] = a.rotulo; });
       var abas = KhAbas.criar(el('fd-gaveta-abas'), { win: win, doc: doc, ids: ids, ls: ls, ss: ss, aberta: aberta, rotulos: rotulos,
         restaurar: el('fd-gaveta-a4'), anuncio: el('fd-gaveta-anuncio'), textoRestaurada: RESTAURADA,
-        aoSelecionar: function (id) { aberta = id; } });
+        aoSelecionar: function (id) {
+          var ant = aberta;
+          aberta = id;
+          if (KhLevar && KhLevar.abaAberta) KhLevar.abaAberta(win, id, ant);   // o selo "novo" some ao abrir
+        } });
+      // a aba à vista no drawer (só aberto): o selo "novo" dela não aparece
+      if (KhLevar && KhLevar.registraVista) KhLevar.registraVista(function () { return est === 'aberto' ? aberta : null; });
 
       // ---- aviso (arrastar e soltar)
       var avisoT = null, notaT = null;
@@ -671,6 +679,7 @@
         rolagem.scrollTop = topo;
         if (editor) editor.desenha(r0);
         if (exportador) exportador.desenha();
+        if (KhLevar && KhLevar.pintaNovos) KhLevar.pintaNovos(win);
       }
       // com o Ensaio, a ficha ativa dele (KhEnsaio.calcular); sem ele, a sombra da ficha atual
       function calcula() { return ensaioLigado() && KhEnsaio ? KhEnsaio.calcular(ss, dados, versao) : KhPrevia.calcular(ls, dados, versao); }

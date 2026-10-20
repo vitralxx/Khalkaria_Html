@@ -367,8 +367,14 @@
       if (KhAbas) {
         KhAbas.criar(el('fp-abas'), { win: win, doc: doc, ids: ids, ls: ls, ss: ss, aberta: aberta, rotulos: rotulos,
           restaurar: el('fp-abas-a4'), anuncio: el('fp-abas-anuncio'), textoRestaurada: RESTAURADA,
-          aoSelecionar: function (id) { aberta = id; } });
+          aoSelecionar: function (id) {
+            var ant = aberta;
+            aberta = id;
+            if (comEnsaio && KhLevar && KhLevar.abaAberta) KhLevar.abaAberta(win, id, ant);   // o selo "novo" some ao abrir
+          } });
       }
+      // a aba aberta da página está à vista: o selo "novo" dela não aparece
+      if (comEnsaio && KhLevar && KhLevar.registraVista) KhLevar.registraVista(function () { return aberta; });
 
       // a dica da conta, ao abrir (hover ou foco), fica dentro da caixa da página
       function aoAbrirDica(e) {
@@ -421,6 +427,7 @@
         });
         if (editor) editor.desenha(r0);
         if (exportador) exportador.desenha();
+        if (comEnsaio && KhLevar && KhLevar.pintaNovos) KhLevar.pintaNovos(win);
       }
       // com o Ensaio, a ficha ativa dele (KhEnsaio.calcular); sem ele, a sombra da ficha atual
       function calcula() { return ensaio() ? KhEnsaio.calcular(ss, dados, versao) : KhPrevia.calcular(ls, dados, versao); }
