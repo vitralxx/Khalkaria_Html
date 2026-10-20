@@ -1,17 +1,17 @@
 {
  "schemaVersion": "balanceamento-fonte/1",
  "_doc": "Gerado por tools/sync_balanceamento.py: não editar à mão. Os arquivos ao lado são a PROJEÇÃO publicada (D3) da entrega do balanceamento, sem carta rara não revelada (D11/D33); o verbatim fica em privado/balanceamento/ (gitignored).",
- "ref": "ec2493e",
- "commit": "ec2493e442a1afef44d587bec64e4db4cc434f19",
+ "ref": "origin/claude/khalkaria-bazar-balance-lsdfic",
+ "commit": "d0c411bec70d3cd87de8d14e043b312a4b0a34ca",
  "pasta": ".claude/skills/khalkaria-balance/references",
  "arquivos": {
   "ficha-digital-regras.json": {
    "schemaVersion": "regras-ficha/1.1",
-   "sha256": "1b1cb12970c7ad25022f05b3755c25f33b14ffc96ef89596f32fc06d384d3302"
+   "sha256": "4487dba4685cdaef2e7812b403cd681053704c1ae7494279f230896821c1b154"
   },
   "ficha-efeitos-itens.json": {
-   "schemaVersion": "efeitos-itens/1.1",
-   "sha256": "715c8e65be21190ec877b9271ce42cdb84d41f0b03e4e2d3f564d03d23a09c0f"
+   "schemaVersion": "efeitos-itens/1.2",
+   "sha256": "7973812d4fe3dae7bcf97745915440216800ca9de0fbea21e622fefa4a9efbb2"
   },
   "ficha-efeitos-overrides.json": {
    "schemaVersion": null,

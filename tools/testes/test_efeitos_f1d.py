@@ -10,6 +10,7 @@ Saco de Dormir (AVISO). As checagens rodam também sobre uma cópia de data/ num
 diretório temporário, estragada de propósito.
 """
 import copy, json, os, shutil, sys, tempfile, unittest, warnings
+from unittest import mock
 
 TOOLS = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 RAIZ = os.path.dirname(TOOLS)
@@ -81,10 +82,11 @@ class Fixtures(unittest.TestCase):
         self.assertEqual(EFEITOS['item-foco-do-vidente']['requisito'], [{'attr': 'INT', 'min': 12}, {'pericia': 'mistico', 'grau': 1}])
         self.assertEqual(EFEITOS['item-bastao-de-karmath']['requisito'], [{'treino': 'armas-marciais'}])
 
-    def test_excecao_vira_lembrete_e_sai_do_automatico(self):
+    def test_errata_rev11_dano_extra_com_condicao(self):
+        # a errata chegou (balanceamento rev. 11): o qualificador vem no danoExtra
         e = EFEITOS['item-bastao-de-karmath']
-        self.assertEqual(e['arma']['danoExtra'], [])
-        self.assertIn('+ 1d6 Radiante contra Teurgos, Corrompidos e Mortos-Vivos', e['lembretes'])
+        self.assertEqual(e['arma']['danoExtra'], [{'dados': '1d6', 'tipo': 'radiante', 'condicao': 'contra Teurgos, Corrompidos e Mortos-Vivos'}])
+        self.assertEqual(EFEITOS['item-adaga-dimensional']['arma']['danoExtra'][0]['escolha'], ['radiante', 'trovejante', 'necrotico', 'forca'])
 
     def test_texto_e_do_bazar_e_marca_so_como_gatilho(self):
         bazar = {x['id']: x for x in json.load(open(os.path.join(RAIZ, 'data', 'bazar.json'), encoding='utf-8'))}
@@ -265,10 +267,12 @@ class ChecagensEmCopia(unittest.TestCase):
         self.assertTrue(any('[4] capacidade' in x for x in ce.checa_efeitos(self.raiz).falhas))
 
     def test_excecao_obsoleta_falha_e_defeito_novo_falha(self):
-        def errata(d):
-            d['armas']['item-machado-da-furia']['danoExtra'][0]['condicao'] = '1x/alvo'
-        self.edita('data/balanceamento/ficha-efeitos-itens.json', errata)
-        f = ce.checa_efeitos(self.raiz).falhas
+        # a errata chegou (rev. 11): uma exceção que ainda listasse o defeito é obsoleta
+        exc = os.path.join(self.raiz, 'efeitos_excecoes.json')
+        json.dump({'itens': {'item-machado-da-furia': {'defeito': 'qualificador', 'frase': '+ 2d8 Trovejante 1x/alvo.'}}},
+                  open(exc, 'w', encoding='utf-8'), ensure_ascii=False)
+        with mock.patch.object(ce.ge, 'EXCECOES', exc):
+            f = ce.checa_efeitos(self.raiz).falhas
         self.assertTrue(any('exceção obsoleta item-machado-da-furia' in x for x in f))
 
     def test_mod_ruim_na_saida_falha(self):

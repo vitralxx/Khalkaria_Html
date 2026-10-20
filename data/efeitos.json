@@ -2,8 +2,8 @@
  "schemaVersion": "efeitos/1",
  "_doc": "ARTEFATO de tools/gerar_efeitos.py (F1d): não editar à mão. Fonte: data/balanceamento/ficha-efeitos-itens.json (projeção publicada da entrega do balanceamento) + data/bazar.json. Vocabulário e destino dos alvos: tools/alvos_destino.json. Texto das Marcas da Vhelor: data/balanceamento/marcas-vhelor.json.",
  "fonte": {
-  "shaBalanceamento": "ec2493e442a1afef44d587bec64e4db4cc434f19",
-  "efeitosItens": "efeitos-itens/1.1",
+  "shaBalanceamento": "d0c411bec70d3cd87de8d14e043b312a4b0a34ca",
+  "efeitosItens": "efeitos-itens/1.2",
   "shaBazar": "70390413015c9bec",
   "shaBazarDoBalanceamento": "70390413015c9bec"
  },
@@ -236,7 +236,19 @@
     "multiplicadorCritico": 2,
     "municao": null,
     "alcance": null,
-    "danoExtra": [],
+    "danoExtra": [
+     {
+      "dados": "1d6",
+      "tipo": "mistico",
+      "escolha": [
+       "radiante",
+       "trovejante",
+       "necrotico",
+       "forca"
+      ],
+      "condicao": "tipo escolhido no descanso curto"
+     }
+    ],
     "efeitoChassi": {
      "nome": "Alcançar",
      "stamina": 2,
@@ -251,8 +263,7 @@
    ],
    "requisitoTexto": "Destreza ≥ 12",
    "lembretes": [
-    "O ataque ignora resistência ao tipo escolhido",
-    "+ 1d6 de tipo variável: Altere em um descanso curto — 1 Radiante, 2 Trovejante, 3 Necrótico, 4 Força"
+    "O ataque ignora resistência ao tipo escolhido"
    ],
    "texto": "Leve Perfurante +2. 3d6 Perfurante (Destreza). +2 em Atacar. Atacar(1), Arremessar(1). + 1d6 de tipo variável: Altere em um descanso curto — 1 Radiante, 2 Trovejante, 3 Necrótico, 4 Força. O ataque ignora resistência ao tipo escolhido. Efeito: Alcançar (2 Stamina): seu próximo ataque tem +1,5 m de Alcance e não pode ser retaliado. Requisito: Destreza ≥ 12.",
    "status": "canonico"
@@ -5519,7 +5530,13 @@
     "multiplicadorCritico": 2,
     "municao": null,
     "alcance": null,
-    "danoExtra": [],
+    "danoExtra": [
+     {
+      "dados": "1d6",
+      "tipo": "radiante",
+      "condicao": "contra Teurgos, Corrompidos e Mortos-Vivos"
+     }
+    ],
     "efeitoChassi": {
      "nome": "Dilacerar",
      "stamina": 2,
@@ -5532,9 +5549,7 @@
     }
    ],
    "requisitoTexto": "Treinado em Armas Marciais",
-   "lembretes": [
-    "+ 1d6 Radiante contra Teurgos, Corrompidos e Mortos-Vivos"
-   ],
+   "lembretes": [],
    "texto": "Marcial Versátil +2. 3d8 Cortante, Perfurante ou Contundente (Destreza). +2 em Atacar. Atacar(1). + 1d6 Radiante contra Teurgos, Corrompidos e Mortos-Vivos. Efeito: Dilacerar (2 Stamina): seu próximo ataque aplica Sangramento 1 no acerto. 1x/turno não custa Stamina. Requisito: Treinado em Armas Marciais.",
    "status": "canonico"
   },
@@ -12540,10 +12555,7 @@
    ],
    "requisitoTexto": "Inteligência ≥ 12 e Treinado em Místico",
    "lembretes": [
-    "Como reação, você recupera 2d10+Mod",
-    "Constituição de Saúde, 2d8+Mod",
-    "Destreza de Stamina e 2d6+Mod",
-    "Inteligência ou Sabedoria de Éter e, se quiser, imediatamente se teletransporta a até 9 m",
+    "Como reação, você recupera 2d10+Mod. Constituição de Saúde, 2d8+Mod. Destreza de Stamina e 2d6+Mod. Inteligência ou Sabedoria de Éter e, se quiser, imediatamente se teletransporta a até 9 m",
     "1x/Descanso Longo"
    ],
    "texto": "Foco Místico (Abjuração). Permite canalizar magias da escola de Abjuração. +3 Místico, +15 Éter máximo. Requisito: Inteligência ≥ 12 e Treinado em Místico. Como reação, você recupera 2d10+Mod. Constituição de Saúde, 2d8+Mod. Destreza de Stamina e 2d6+Mod. Inteligência ou Sabedoria de Éter e, se quiser, imediatamente se teletransporta a até 9 m. 1x/Descanso Longo.",
@@ -12650,6 +12662,32 @@
       "id": "item-foco-do-vidente"
      },
      "status": "canonico"
+    },
+    {
+     "alvo": "pericia.investigacao",
+     "op": "soma",
+     "valor": 2,
+     "quando": "equipado",
+     "acumula": true,
+     "duracao": null,
+     "fonte": {
+      "tipo": "item",
+      "id": "item-foco-do-vidente"
+     },
+     "status": "canonico"
+    },
+    {
+     "alvo": "pericia.conhecimento",
+     "op": "soma",
+     "valor": 2,
+     "quando": "equipado",
+     "acumula": true,
+     "duracao": null,
+     "fonte": {
+      "tipo": "item",
+      "id": "item-foco-do-vidente"
+     },
+     "status": "canonico"
     }
    ],
    "arma": {
@@ -12676,9 +12714,7 @@
     }
    ],
    "requisitoTexto": "Inteligência ≥ 12 e Treinado em Místico",
-   "lembretes": [
-    "+2 em Investigação e Conhecimento enquanto equipado"
-   ],
+   "lembretes": [],
    "texto": "Foco Místico (Conhecimento). Permite canalizar magias da escola de Conhecimento. +1 Místico, +5 Éter máximo. Requisito: Inteligência ≥ 12 e Treinado em Místico. +2 em Investigação e Conhecimento enquanto equipado.",
    "status": "canonico"
   },
@@ -15542,7 +15578,13 @@
     "multiplicadorCritico": 2,
     "municao": null,
     "alcance": null,
-    "danoExtra": [],
+    "danoExtra": [
+     {
+      "dados": "2d8",
+      "tipo": "trovejante",
+      "condicao": "1x/alvo"
+     }
+    ],
     "efeitoChassi": {
      "nome": "Dilacerar",
      "stamina": 2,
@@ -15556,9 +15598,7 @@
     }
    ],
    "requisitoTexto": "Força ≥ 12",
-   "lembretes": [
-    "+ 2d8 Trovejante 1x/alvo"
-   ],
+   "lembretes": [],
    "texto": "Pesada Cortante +2. 3d12 Cortante (Força). +2 em Atacar. Atacar(2). + 2d8 Trovejante 1x/alvo. Efeito: Dilacerar (2 Stamina): seu próximo ataque aplica Sangramento 1 no acerto. Requisito: Força ≥ 12.",
    "status": "canonico"
   },

@@ -481,8 +481,11 @@ class Compilador:
             x = {'id': p['id'], 'nome': s['nome'], 'atributos': p['atributos'], 'modo': modo_c,
                  'tags': p.get('tags') or [], 'st': st, 'fo': fo}
             if modo_c == 'maior':
-                x['stEscolha'] = ST_ESCOLHA_MAIOR    # D7/PD7: 'maior' com troca (trocavelFonte); sem selo (03 §10)
-                x['foEscolha'] = 'contrato:pericias.' + p['id'] + '.trocavelFonte (PD7)'
+                # D7: 'maior' por padrão, troca à mão (Pedro, 2026-10-20, 03 §10). A rev. 11
+                # gravou trocavel:false (D154); o motor não lê a flag e a D154 volta ao
+                # balanceamento para incluir a troca. Sem selo (03 §10).
+                x['stEscolha'] = ST_ESCOLHA_MAIOR
+                x['foEscolha'] = 'contrato:pericias.' + p['id'] + ' (D7; troca à mão: Pedro, 2026-10-20)'
             if p.get('dadoPorGrau'):
                 x['dadoPorGrau'] = p['dadoPorGrau']
             if p.get('exigeTreino'):

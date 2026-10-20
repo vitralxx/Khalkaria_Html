@@ -29,6 +29,10 @@ const EF = {
   'item-t-leve': { quando: null, acumulaCopia: true, mods: [], arma: ARMA({}), status: 'canonico' },
   'item-t-pesada': { quando: null, acumulaCopia: true, mods: [], arma: ARMA({ dados: '2d8', atributo: 'FOR', acoes: 2, arquetipo: 'pesada' }), status: 'canonico' },
   'item-t-arremesso': { quando: null, acumulaCopia: true, mods: [], arma: ARMA({ arremessar: 1 }), status: 'canonico' },
+  'item-t-extra': { quando: null, acumulaCopia: true, mods: [], status: 'canonico', arma: ARMA({ danoExtra: [
+    { dados: '1d4', tipo: 'fogo' },
+    { dados: '1d6', tipo: 'radiante', condicao: 'contra Teurgos' },
+    { dados: '1d6', tipo: 'mistico', escolha: ['radiante', 'forca'], condicao: 'tipo do descanso curto' }] }) },
   'item-t-anel': { quando: 'equipado', acumulaCopia: true, status: 'canonico', mods: [
     { alvo: 'resistencia.fogo', op: 'fixa', valor: true, quando: 'equipado', acumula: true, status: 'canonico' },
     { alvo: 'ae.elemental', op: 'soma', valor: 2, quando: 'equipado', acumula: true, status: 'canonico' },
@@ -467,6 +471,18 @@ test('custo de magia por intensidade (F3c): as 4 colunas com a mesma conta, Nv1 
 });
 
 // ---------------- ataque e PMA ----------------
+test('dano extra: o incondicional soma; o com condição (errata rev. 11) ou escolha de tipo fica só no texto', () => {
+  const f = ficha({ attrs: { DES: 14 } });
+  const w = item('item-t-extra', { equipado: true });
+  f.inventario.equipamentos.push(w);
+  const no = avalia(f).nos['ataque.' + w.uid + '.dano'];
+  const extras = no.termos.filter((t) => /^Extra /.test(t.rotulo));
+  assert.deepEqual(extras.map((t) => t.ativo), [true, false, false]);
+  assert.equal(extras[1].valor, '1d6 Radiante (contra Teurgos)');
+  assert.equal(extras[2].valor, '1d6 Radiante/Força (tipo do descanso curto)');
+  assert.match(extras[1].motivo, /só quando: contra Teurgos/);
+});
+
 test('progressão de ataques (display): Atacar +5, Mod +2, pma −5 → "1º +7 · 2º +2 · 3º −3"; Pesada mostra 1 linha', () => {
   const f = ficha({ attrs: { DES: 14, FOR: 14 } });
   const leve = item('item-t-leve', { equipado: true }), pesada = item('item-t-pesada', { equipado: true });

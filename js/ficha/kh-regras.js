@@ -1015,9 +1015,15 @@
       no.termos.push({ rotulo: 'Mod.' + A, fonte: { tipo: 'no', id: 'atributo.' + A + '.mod', nome: 'Mod.' + A }, op: 'soma', valor: m, ativo: true, motivo: '', status: pior(D, w.st, stNo(ctx, 'atributo.' + A + '.mod')) });
       no.dado = { fixo: m, dados: [arma.dados], dadosPrimeiro: true };
       var extras = [];
+      // extra com condicao (errata rev. 11: "contra Teurgos…", "1x/alvo") ou com
+      // escolha de tipo (Adaga Dimensional) não soma sozinho: fica no texto
       lista(arma.danoExtra).forEach(function (x) {
-        extras.push(x.dados + ' ' + x.tipo);
-        no.termos.push({ rotulo: 'Extra ' + x.tipo, fonte: { tipo: 'item', id: e.id, nome: str(e.nome) }, op: 'dado', valor: x.dados + ' ' + x.tipo, ativo: true, motivo: '', status: w.st });
+        var nt = function (t) { return NOME_TIPO[t] || t; };
+        var tipo = Array.isArray(x.escolha) && x.escolha.length ? x.escolha.map(nt).join('/') : nt(x.tipo);
+        var txt = x.dados + ' ' + tipo + (x.condicao ? ' (' + x.condicao + ')' : '');
+        extras.push(txt);
+        no.termos.push({ rotulo: 'Extra ' + tipo, fonte: { tipo: 'item', id: e.id, nome: str(e.nome) }, op: 'dado', valor: txt,
+          ativo: !x.condicao, motivo: x.condicao ? 'só quando: ' + x.condicao : '', status: w.st });
       });
       ctx.mods(['ataque.danoExtra']).filter(function (x) { return daArma(ctx, x, e.uid); }).forEach(function (x) {
         no.termos.push({ rotulo: nomeFonte(x), fonte: x.fonte, op: 'dado', valor: x.valor, ativo: false, motivo: 'dano extra: lembrete na linha de ataque (Mesa)', status: x.status });

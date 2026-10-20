@@ -249,3 +249,12 @@ Escolhidas as 4 opções recomendadas:
 - **Marcas da Vhelor:** "vital que esteja oculta por padrão, e ao utilizar algum item que dê uma marca mostrar."
 - **Efeitos dos 600+ itens do Bazar:** "utilize uma estrutura inteligente que tem como base uma tabela exclusiva que infere quais são as alterações na ficha a partir de cada item, tabela essa que deve ser feita pelo agente 'khalkaria bazar balanceamento'." Os gatilhos são estar no inventário, equipar e consumir.
 - **Mensagens do motor:** o aviso "Inseto: os atributos variam por subespécie, e a ficha não tem uma" está correto. Ele pede: "Revise essas mensagens de erro para encontrar quaisquer discrepâncias do funcionamento do sistema pela ficha."
+
+## 11. Respostas sobre a entrega rev. 11 do balanceamento, 2026-10-20
+
+Quatro perguntas, todas respondidas com a opção recomendada.
+
+- **D154 x troca manual:** vale a correção do Pedro. O cálculo usa por padrão o maior, e o jogador pode trocar o atributo à mão. A rev. 11 gravou "sem troca manual" no contrato e no Notion. Ela volta ao balanceamento para ser refeita nos dois. O motor do site já mantinha a troca e não lê a flag `trocavel`.
+- **Stamina e Éter (FOR ou DES; INT ou SAB):** seguem a mesma regra das perícias, ou seja, o maior por padrão, com troca.
+- **Marcas da Vhelor:** a seção continua visível quando o Elixir da Expurgação leva o contador de volta a 0. Ela só fica oculta até a primeira Marca.
+- **Comerciantes (C3):** cada comerciante compra só a própria categoria, e o Sucateiro compra tudo. Fica coerente com a marca Homem de Negócios do Pecador.
