@@ -401,7 +401,7 @@
     "passoLog": {
       "type": "object",
       "description": "Um passo: os caminhos pontuados que ele mudou ('meta.nome', 'atributos.base.FOR', 'ajustes'…), o valor de cada um antes e depois (chave ausente = o caminho não existia), a impressão de cada um no estado que o passo deixou e o rótulo do botão.",
-      "required": ["revPorParte", "partes", "antes", "rotulo"],
+      "required": ["revPorParte", "partes", "antes", "depois", "rotulo"],
       "properties": {
         "rotulo": { "type": "string" },
         "em": { "type": "string" },

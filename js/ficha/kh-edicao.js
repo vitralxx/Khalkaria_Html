@@ -23,6 +23,15 @@
  *   KhEdicao.opcoesRef(ctx, ficha, 'variante')      // as opções do seletor (ctx = KhFichaAbas.contexto)
  *   KhEdicao.montaAjuste(caminho, {modo, valor, motivo}, no, agora)
  *   KhEdicao.mudancaAjuste / mudancaRemover          // o caminho 'ajustes' inteiro
+ *   KhEdicao.restos(ficha, ctx, 'raca', anterior)    // o que ficou da raça/classe anterior (auditoria B)
+ *   KhEdicao.mudancaRestos(ficha, ctx, 'raca', anterior)  // "Remover o que era de <anterior>", num passo
+ *
+ * Campos que não são um caminho só (03 §10 e auditoria B, 2026-10-19):
+ *   'periciasAttr.<id>'      o atributo de uma perícia de dois (padrão: o maior; '' volta ao padrão)
+ *   'escolha.attr.cd' e 'escolha.attr.recurso.<stamina|eter>'  o atributo da CD/Stamina/Éter com
+ *                            escolha: grava o 'identidade.escolhas' inteiro (as chaves têm ponto)
+ *   'migracao.oficio'        a pendência do Ofício(X) da v2: o grau vai para o Ofício escolhido
+ *                            e a pendência fecha, no mesmo passo
  *
  * No node exporta por module.exports (carregado sozinho); no artefato js/ficha.js
  * o export já é o KhInv e este módulo só registra window.KhEdicao no navegador.
@@ -41,9 +50,17 @@
   var KhEdicao = (function () {
     var NOME_AT = { FOR: 'Força', DES: 'Destreza', CON: 'Constituição', INT: 'Inteligência', SAB: 'Sabedoria' };
     var RECURSOS = { saude: 'Saúde', stamina: 'Stamina', eter: 'Éter', classe: 'Recurso de Classe' };
-    var REFS = { raca: 'Raça', variante: 'Variante', classe: 'Classe', ramo: 'Ramo', origem: 'Origem' };
+    var REFS = { raca: 'Raça', variante: 'Variante', subespecie: 'Subespécie', classe: 'Classe', ramo: 'Ramo', origem: 'Origem' };
     // o tipo do catálogo de cada referência da identidade (classe e ramo vêm dos blocos de data/classes)
-    var TIPO_REF = { raca: 'raca', variante: 'variante', origem: 'origem' };
+    var TIPO_REF = { raca: 'raca', variante: 'variante', subespecie: 'subespecie', origem: 'origem' };
+    // a escolha do atributo (03 §10): a chave de identidade.escolhas -> o rótulo
+    var ESCOLHA_ATTR = { 'attr.cd': 'Atributo da CD', 'attr.recurso.stamina': 'Atributo da Stamina', 'attr.recurso.eter': 'Atributo do Éter' };
+    // o que é da raça e o que é da classe nas entradas (o campo do catálogo que diz de quem é)
+    var RESTO = { raca: { tipos: ['traco', 'tecnologia', 'variante', 'subespecie', 'corrupcao'], campo: 'raca', pre: 'raca-', artigo: 'da raça' },
+      classe: { tipos: ['tecnica', 'marca', 'ultimate'], campo: 'classe', pre: 'classe-', artigo: 'da classe' } };
+    var NOME_TIPO = { traco: 'traço', tecnologia: 'tecnologia', variante: 'variante', subespecie: 'subespécie', corrupcao: 'corrupção',
+      tecnica: 'técnica', marca: 'marca', ultimate: 'ultimate' };
+    var MAX_NOMES_RESTO = 6;
     var MAX_TEXTO = 80, MAX_LISTA = 400, MAX_LORE = 20000, MAX_MOTIVO = 120;
     var MAX_XP = 9999999, MAX_SINS = 999999999, MIN_REC = -9999, MAX_REC = 9999;
     // o valor do seletor da identidade que guarda o texto livre que veio da ficha atual (sem par)
@@ -80,10 +97,28 @@
     function sinal(n) { return typeof n === 'number' && n > 0 ? '+' + fmt(n) : fmt(n); }
     function pega(f, c) { return KhEstado.pegaCaminho(f, c); }
     function curto(s, n) { s = str(s); n = n || 32; return s.length > n ? s.slice(0, n - 1) + '…' : s; }
-    function D() { return KhRegras && KhRegras.dados ? KhRegras.dados() : {}; }
-    function nomePericia(id) {
-      var p = lista(D().pericias).filter(function (x) { return x.id === id; })[0];
-      return p ? str(p.nome) : id;
+    function D() { return KhRegras && KhRegras.dados ? KhRegras.dados() || {} : {}; }
+    function periciaD(id) { return lista(D().pericias).filter(function (x) { return x.id === id; })[0] || null; }
+    function nomePericia(id) { var p = periciaD(id); return p ? str(p.nome) : id; }
+    // os atributos da escolha 'maior' de uma fórmula (o nó 'esc' da AST do motor):
+    // 'attr.cd' (a CD da classe da ficha) e 'attr.recurso.<r>' (o máximo do recurso)
+    function attrsEscolha(ficha, chave) {
+      var d = D(), ast = null, m;
+      if (chave === 'attr.cd') {
+        var cl = chaveDe(refDe(ficha, 'classe').id, 'classe-');
+        ast = cl && obj(d.classes) && d.classes[cl] && d.classes[cl].cd ? d.classes[cl].cd.ast : null;
+      } else if ((m = /^attr\.recurso\.(saude|stamina|eter)$/.exec(str(chave)))) {
+        ast = obj(d.recursos) && d.recursos[m[1]] ? d.recursos[m[1]].max : null;
+      }
+      function acha(n) {
+        if (!obj(n)) return null;
+        if (n.t === 'esc') return n;
+        return acha(n.a) || acha(n.b) || lista(n.args).reduce(function (x, y) { return x || acha(y); }, null);
+      }
+      var e = acha(ast);
+      if (!e) return [];
+      var ats = lista(e.args).map(function (x) { var r = x && x.t === 'ref' && /^mod\.(\w+)$/.exec(x.ref); return r ? r[1] : null; });
+      return ats.every(Boolean) ? ats : [];
     }
     function rotuloGrau(g) {
       var r = lista(D().graus && D().graus.rotulos)[g];
@@ -119,7 +154,13 @@
       if (c === 'meta.jogador') return d({ tipo: 'texto', rotulo: 'Jogador', max: MAX_TEXTO });
       if (c === 'meta.nivel') return d({ tipo: 'inteiro', rotulo: 'Nível', min: 1, max: 5 });
       if (c === 'meta.xp') return d({ tipo: 'inteiro', rotulo: 'XP', min: 0, max: MAX_XP });
-      if ((m = /^identidade\.(raca|variante|classe|ramo|origem)$/.exec(c))) return d({ tipo: 'ref', ref: m[1], rotulo: REFS[m[1]] });
+      if ((m = /^identidade\.(raca|variante|subespecie|classe|ramo|origem)$/.exec(c))) return d({ tipo: 'ref', ref: m[1], rotulo: REFS[m[1]] });
+      if ((m = /^periciasAttr\.([a-z-]+)$/.exec(c))) {
+        var pa = periciaD(m[1]);
+        return pa && pa.modo === 'maior' ? d({ tipo: 'attr', rotulo: 'Atributo de ' + str(pa.nome), pericia: m[1], opcoes: lista(pa.atributos).slice() }) : null;
+      }
+      if ((m = /^escolha\.(attr\.(?:cd|recurso\.(?:stamina|eter)))$/.exec(c))) return d({ tipo: 'escolhaAttr', chave: m[1], rotulo: ESCOLHA_ATTR[m[1]] });
+      if (c === 'migracao.oficio') return d({ tipo: 'oficio', rotulo: 'Ofício(X) da ficha atual' });
       if ((m = /^atributos\.base\.(FOR|DES|CON|INT|SAB)$/.exec(c))) {
         return d({ tipo: 'inteiro', rotulo: NOME_AT[m[1]] + ' (base)', min: 1, max: 30, atributo: m[1] });
       }
@@ -195,7 +236,7 @@
     function opcoesRef(ctx, ficha, ref) {
       if (TIPO_REF[ref]) {
         var l = doTipo(ctx, TIPO_REF[ref]);
-        if (ref === 'variante') {
+        if (ref === 'variante' || ref === 'subespecie') {
           var r = chaveDe(refDe(ficha, 'raca').id, 'raca-');
           l = l.filter(function (x) { return !!r && x.raca === r; });
         }
@@ -217,8 +258,28 @@
     function opcoesCondicao(ctx) { return doTipo(ctx, 'condicao').map(function (x) { return { id: x.id, nome: x.nome }; }); }
     function chaveItem(x) { return obj(x) ? str(x.id || x.nome) : str(x); }
 
+    // a entrada do catálogo de uma referência da identidade: pelo id ou, sem id (o
+    // texto livre da v2), pelo nome, se ele é único no tipo (auditoria B: a de outra
+    // raça sem id não saía na troca)
+    function normaNome(s) { return semEmoji(s).toLowerCase(); }
+    function entradaRef(ctx, k, atual) {
+      if (!obj(ctx)) return null;
+      if (k === 'ramo') {
+        var rs = obj(ctx.ramos) ? ctx.ramos : {};
+        if (atual.id) return rs[atual.id] || null;
+        var pr = Object.keys(rs).filter(function (id) { return normaNome(rs[id].nome) === normaNome(atual.nome); });
+        return pr.length === 1 ? rs[pr[0]] : null;
+      }
+      if (!obj(ctx.porId)) return null;
+      if (atual.id) return ctx.porId[k + ':' + atual.id] || null;
+      var l = Object.keys(ctx.porId).filter(function (x) { return x.indexOf(k + ':') === 0 && normaNome(ctx.porId[x].nome) === normaNome(atual.nome); });
+      return l.length === 1 ? ctx.porId[l[0]] : null;
+    }
     // a mudança de uma referência; trocar a raça tira a variante (e a
-    // subespécie) de outra raça, trocar a classe tira o ramo de outra classe
+    // subespécie) de outra raça, trocar a classe tira o ramo de outra classe.
+    // A variante/o ramo sem id sai se o NOME é o de uma de outra raça/classe; o
+    // texto livre que não está no catálogo fica (não dá para saber de quem é).
+    // Trocar raça ou classe também diz o que ficou da anterior (restos), sem tirar.
     function mudancasRef(ficha, cp, bruto, ctx) {
       var id = str(bruto);
       if (id === MANTER) return { ok: true, mudancas: [], rotulo: '' };
@@ -233,8 +294,9 @@
         var r = chaveDe(valor.id, 'raca-');
         ['variante', 'subespecie'].forEach(function (k) {
           var atual = refDe(ficha, k);
-          if (!atual.id) return;
-          var e = obj(ctx) && obj(ctx.porId) ? ctx.porId[k + ':' + atual.id] : null;
+          if (!atual.id && !str(atual.nome).trim()) return;
+          var e = entradaRef(ctx, k, atual);
+          if (!atual.id && !e) return;
           if (e && str(e.raca) === r) return;
           out.push({ caminho: 'identidade.' + k, valor: { id: null, nome: '' } });
           avisos.push((k === 'variante' ? 'A variante ' : 'A subespécie ') + semEmoji(atual.nome || atual.id) + ' saiu: é de outra raça.');
@@ -242,13 +304,103 @@
       }
       if (cp.ref === 'classe') {
         var ramo = refDe(ficha, 'ramo'), c = chaveDe(valor.id, 'classe-');
-        var info = ramo.id && obj(ctx) && obj(ctx.ramos) ? ctx.ramos[ramo.id] : null;
-        if (ramo.id && !(info && info.classe === c)) {
+        var info = ramo.id || str(ramo.nome).trim() ? entradaRef(ctx, 'ramo', ramo) : null;
+        if ((ramo.id || info) && !(info && info.classe === c)) {
           out.push({ caminho: 'identidade.ramo', valor: { id: null, nome: '' } });
           avisos.push('O ramo ' + semEmoji(ramo.nome || ramo.id) + ' saiu: é de outra classe.');
         }
       }
-      return { ok: true, mudancas: out, rotulo: rotuloPasso(cp, valor), aviso: avisos.join(' ') };
+      var res = { ok: true, mudancas: out, rotulo: rotuloPasso(cp, valor), aviso: avisos.join(' ') };
+      var ant = refDe(ficha, cp.ref);
+      if ((cp.ref === 'raca' || cp.ref === 'classe') && ant.id && ant.id !== valor.id) {
+        var rr = restos(ficha, ctx, cp.ref, ant, valor.id);
+        if (rr.total) {
+          res.aviso = (res.aviso ? res.aviso + ' ' : '') + rr.texto;
+          res.restos = { campo: cp.ref, anterior: { id: ant.id, nome: semEmoji(ant.nome) || ant.id } };
+        }
+      }
+      return res;
+    }
+
+    // ---------------- o que ficou da raça ou classe anterior (auditoria B) ----------------
+    // As entradas do catálogo dela (técnicas, marcas e ultimates da classe;
+    // traços, tecnologias, variante e subespécie da raça), as escolhas de
+    // atributo da raça e o Recurso de Classe. Só AVISA; quem remove é o
+    // mudancaRestos, num passo, quando o jogador pede. A órfã (sem par no
+    // catálogo) nunca entra: não dá para saber de quem era.
+    // atual: o id da raça/classe de agora (padrão: o da ficha); a anterior igual a ela não tem resto.
+    function restos(ficha, ctx, k, anterior, atual) {
+      var R = RESTO[k], out = { itens: [], escolhas: [], recurso: false, total: 0, texto: '', nome: '' };
+      if (!R || !obj(anterior) || !anterior.id) return out;
+      var ch = chaveDe(anterior.id, R.pre);
+      out.nome = semEmoji(anterior.nome) || ch;
+      if (atual === undefined) atual = refDe(ficha, k).id;
+      if (!ch || chaveDe(atual, R.pre) === ch) return out;
+      lista(obj(ficha) ? ficha.entradas : null).forEach(function (e) {
+        if (!obj(e) || R.tipos.indexOf(e.tipo) < 0 || !e.id) return;
+        var c = obj(ctx) && obj(ctx.porId) ? ctx.porId[e.tipo + ':' + e.id] : null;
+        if (!c || str(c[R.campo]) !== ch) return;
+        out.itens.push({ uid: str(e.uid), tipo: e.tipo, nome: semEmoji(c.nome) || semEmoji(e.cache && e.cache.nome) || e.id });
+      });
+      var esc = obj(ficha) && obj(ficha.identidade) && obj(ficha.identidade.escolhas) ? ficha.identidade.escolhas : {};
+      if (k === 'raca') out.escolhas = Object.keys(esc).filter(function (x) { return x.indexOf('raca.') === 0; });
+      var rc = obj(ficha) && obj(ficha.recursos) && obj(ficha.recursos.classe) ? ficha.recursos.classe : null;
+      if (k === 'classe' && rc && (Number(rc.atual) || rc.id || str(rc.nome).trim())) out.recurso = true;
+      out.total = out.itens.length + out.escolhas.length + (out.recurso ? 1 : 0);
+      if (!out.total) return out;
+      var partes = out.itens.slice(0, MAX_NOMES_RESTO).map(function (x) { return x.nome + ' (' + NOME_TIPO[x.tipo] + ')'; });
+      if (out.itens.length > MAX_NOMES_RESTO) partes.push('mais ' + (out.itens.length - MAX_NOMES_RESTO));
+      if (out.escolhas.length) partes.push('a escolha de atributo da raça');
+      if (out.recurso) partes.push('o Recurso de Classe (atual ' + fmt(Number(rc.atual) || 0) + (str(rc.nome).trim() ? ', ' + semEmoji(rc.nome) : '') + ')');
+      out.texto = (out.total === 1 ? 'Ficou ' : 'Ficaram ') + R.artigo + ' anterior (' + out.nome + '): ' + partes.join(', ') + '.';
+      return out;
+    }
+    // "Remover o que era de <anterior>": um passo só (desfazível), nunca calado
+    function mudancaRestos(ficha, ctx, k, anterior) {
+      var rr = restos(ficha, ctx, k, anterior);
+      var nome = rr.nome || (obj(anterior) ? semEmoji(anterior.nome) || str(anterior.id) : '');
+      if (!rr.total) return { ok: false, erro: 'Nada a remover: não ficou nada ' + (RESTO[k] ? RESTO[k].artigo : '') + ' anterior (' + nome + ').' };
+      var fora = {}, out = [];
+      rr.itens.forEach(function (x) { fora[x.uid] = true; });
+      if (rr.itens.length) out.push({ caminho: 'entradas', valor: lista(ficha.entradas).filter(function (e) { return !(obj(e) && fora[str(e.uid)]); }) });
+      if (rr.escolhas.length) {
+        var esc = clone(ficha.identidade.escolhas);
+        rr.escolhas.forEach(function (x) { delete esc[x]; });
+        out.push({ caminho: 'identidade.escolhas', valor: esc });
+      }
+      if (rr.recurso) out.push({ caminho: 'recursos.classe', valor: { id: null, nome: '', atual: 0 } });
+      return { ok: true, mudancas: out, rotulo: 'Remover o que era de ' + nome + ' (' + rr.total + ')', removidos: rr };
+    }
+
+    // ---------------- a escolha do atributo (03 §10) e a pendência do Ofício ----------------
+    function mudancasAttr(ficha, cp, bruto) {
+      var v = str(bruto).trim().toUpperCase();
+      var ops = cp.tipo === 'attr' ? cp.opcoes : attrsEscolha(ficha, cp.chave);
+      if (!ops.length) return { ok: false, erro: cp.rotulo + ': não há escolha de atributo aqui.' };
+      if (v && ops.indexOf(v) < 0) return { ok: false, erro: cp.rotulo + ': escolha ' + ops.join(' ou ') + '.' };
+      var rot = cp.rotulo + ': ' + (v ? v + ' (escolhido)' : 'o maior');
+      if (cp.tipo === 'attr') return { ok: true, mudancas: [{ caminho: 'periciasAttr.' + cp.pericia, valor: v || undefined }], rotulo: rot };
+      var esc = obj(ficha) && obj(ficha.identidade) && obj(ficha.identidade.escolhas) ? clone(ficha.identidade.escolhas) : {};
+      if (v) esc[cp.chave] = v; else delete esc[cp.chave];
+      return { ok: true, mudancas: [{ caminho: 'identidade.escolhas', valor: esc }], rotulo: rot };
+    }
+    // a pendência do Ofício(X) genérico da v2 (a migração não escolhe qual dos três recebe o grau)
+    function pendenciaOficio(ficha) {
+      var l = lista(obj(ficha) && obj(ficha.migracao) ? ficha.migracao.pendencias : null);
+      for (var i = 0; i < l.length; i++) if (obj(l[i]) && l[i].campo === 'pericias.oficio') return { i: i, grau: Math.max(0, Math.min(4, Number(l[i].grau) || 0)) };
+      return null;
+    }
+    function oficios() { return KhEstado.PERICIAS.filter(function (p) { return /^oficio-/.test(p); }); }
+    function mudancasOficio(ficha, cp, bruto) {
+      var pd = pendenciaOficio(ficha), id = str(bruto);
+      if (!pd) return { ok: false, erro: 'Não há pendência do Ofício(X) nesta ficha.' };
+      if (!id) return { ok: true, mudancas: [], rotulo: '' };
+      if (oficios().indexOf(id) < 0) return { ok: false, erro: cp.rotulo + ': escolha um dos três Ofícios.' };
+      var antes = Number(pega(ficha, 'pericias.' + id)) || 0;
+      var pend = lista(ficha.migracao.pendencias).filter(function (x, i) { return i !== pd.i; });
+      return { ok: true, mudancas: [{ caminho: 'pericias.' + id, valor: pd.grau }, { caminho: 'migracao.pendencias', valor: pend }],
+        rotulo: 'O grau vai para ' + nomePericia(id) + ': ' + rotuloGrau(pd.grau),
+        aviso: antes && antes !== pd.grau ? nomePericia(id) + ' tinha ' + rotuloGrau(antes) + ': agora ' + rotuloGrau(pd.grau) + '.' : '' };
     }
 
     // ---------------- a mudança de um campo ----------------
@@ -259,6 +411,8 @@
       var cp = campo(caminho);
       if (!cp) return { ok: false, erro: 'Este campo não se edita aqui.' };
       if (cp.tipo === 'ref') return mudancasRef(ficha, cp, bruto, op.contexto);
+      if (cp.tipo === 'attr' || cp.tipo === 'escolhaAttr') return mudancasAttr(ficha, cp, bruto);
+      if (cp.tipo === 'oficio') return mudancasOficio(ficha, cp, bruto);
       if (cp.tipo === 'conjunto') {
         var b = obj(bruto) ? bruto : {}, k = str(b.valor);
         if (!k) return { ok: false, erro: cp.rotulo + ': nada marcado.' };
@@ -354,7 +508,8 @@
         rotulo: fora.length === 1 ? 'Remover o ajuste de ' + (semEmoji(rotuloNo) || fora[0]) : 'Remover ' + fora.length + ' ajustes' };
     }
 
-    return { NOME_AT: NOME_AT, RECURSOS: RECURSOS, REFS: REFS, MANTER: MANTER, MODOS: MODOS, MAX_MOTIVO: MAX_MOTIVO,
+    return { NOME_AT: NOME_AT, RECURSOS: RECURSOS, REFS: REFS, MANTER: MANTER, MODOS: MODOS, MAX_MOTIVO: MAX_MOTIVO, ESCOLHA_ATTR: ESCOLHA_ATTR,
+      attrsEscolha: attrsEscolha, restos: restos, mudancaRestos: mudancaRestos, pendenciaOficio: pendenciaOficio, oficios: oficios,
       MAX_TEXTO: MAX_TEXTO, MAX_LISTA: MAX_LISTA, MAX_LORE: MAX_LORE,
       lerNumero: lerNumero, lerInteiro: lerInteiro, campo: campo, ler: ler, mudancas: mudancas, passo: passo,
       grauClicado: grauClicado, rotuloGrau: rotuloGrau, opcoesRef: opcoesRef, opcoesCondicao: opcoesCondicao, chaveItem: chaveItem,

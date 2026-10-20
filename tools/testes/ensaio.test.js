@@ -1116,7 +1116,9 @@ test('página, a edição (espião): sem o Ensaio só leitura; com ele, nome, gr
   const ed = (c) => fp.querySelector('[data-ed="' + c + '"]');
   ['meta.nome', 'meta.jogador', 'meta.nivel', 'meta.xp', 'identidade.raca', 'identidade.variante', 'identidade.classe', 'identidade.ramo',
     'identidade.origem', 'atributos.base.FOR', 'atributos.base.SAB', 'recursos.saude.atual', 'recursos.classe.atual', 'inventario.sins',
-    'vhelor.marcas', 'idiomas', 'lore.historia', 'lore.outros'].forEach((c) => assert.ok(ed(c), 'o campo ' + c));
+    'idiomas', 'lore.historia', 'lore.outros'].forEach((c) => assert.ok(ed(c), 'o campo ' + c));
+  // Marcas da Vhelor: ocultas também no Ensaio enquanto não há marca (03 §10)
+  assert.equal(ed('vhelor.marcas'), null);
   assert.equal(fp.querySelectorAll('[data-ed-grau]').length, 24 * 4, 'os 4 círculos das 24 perícias');
   assert.ok(fp.querySelector('[data-ed-lista="imunidadesCondicao"]'));
   // ---- o nome: grava ao sair do campo (change); a página e o seletor redesenham no tempo seguinte
@@ -1154,7 +1156,16 @@ test('página, a edição (espião): sem o Ensaio só leitura; com ele, nome, gr
   assert.deepEqual(ficha().identidade.raca, { id: 'raca-anao', nome: 'Anão' });
   assert.deepEqual(ficha().identidade.variante, { id: null, nome: '' });
   rodaTimers(j);
-  assert.equal(barra.querySelector('.ke-ed-msg').textContent, 'A variante Simples saiu: é de outra raça.');
+  assert.equal(barra.querySelector('.ke-ed-msg').textContent, 'A variante Simples saiu: é de outra raça. Ficou da raça anterior (Humano): Persistência Humana (traço).');
+  // nunca remove calado (auditoria B): o traço fica, e a mensagem oferece remover num passo
+  assert.ok(ficha().entradas.some((e) => e.id === 'humano-persistencia-humana'));
+  const rem = barra.querySelector('[data-ked="remover-restos"]');
+  assert.equal(rem.textContent, 'Remover o que era de Humano');
+  j.clica(rem);
+  assert.equal(ficha().entradas.some((e) => e.id === 'humano-persistencia-humana'), false);
+  assert.equal(barra.querySelector('.ke-ed-msg').textContent, 'Removido: o que era de Humano (1). Desfazer volta.');
+  assert.equal(barra.querySelector('[data-ked="remover-restos"]'), null);
+  assert.equal(bt('desfazer').getAttribute('title'), 'Desfazer: Remover o que era de Humano (1) (Ctrl+Z)');
   assert.ok(ed('identidade.variante').querySelectorAll('option').length > 1, 'as variantes do Anão');
   assert.ok(ed('identidade.variante').querySelectorAll('option').slice(1).every((o) => /^anao-/.test(o.getAttribute('value'))), 'só as do Anão');
   // ---- Ajustar: clicar no Mod.DES abre o pop-over; Valor fixo 5 propaga à Evasão
@@ -1362,4 +1373,68 @@ test('CSS da edição (F4.6b): no css/ficha-ensaio.css (só com o Ensaio), sob .
   });
   // o .forte desligado fica com o fundo e o texto do desligado
   assert.doesNotMatch(regra(css, '.ke-btn.forte[aria-disabled="true"]'), /background|(?:^|;)\s*color:/);
+});
+
+test('auditoria B e 03 §10 pela interface: o 1º clique em Desfazer depois de digitar desfaz (a barra espera o botão soltar); atributo e Ofício pelos seletores (espião)', async () => {
+  const ls = A.armazenamento(comPrevia());
+  const ss = A.armazenamento({ khalkaria_ficha_aba: 'nucleo' });
+  const fotoLs = ls.foto();
+  const j = await carrega(janela({ pagina: true, ls, ss }));
+  j.clica(j.doc.querySelector('[data-ke="entrar"]'));
+  await carrega(j);
+  const fp = j.el('fp'), barra = j.el('fp-ked');
+  const arm = j.sb.KhEnsaio.armazem(j.ss), id = arm.ativa();
+  const ficha = () => copia(arm.ler(id));
+  const ed = (c) => fp.querySelector('[data-ed="' + c + '"]');
+  const bt = (a) => barra.querySelector('[data-ked="' + a + '"]');
+  const ponteiro = (alvo, tipo) => DOM.despacha(j.doc, alvo, DOM.evento(tipo));
+  assert.equal(bt('desfazer').getAttribute('aria-disabled'), 'true', 'nada a desfazer ainda');
+  // digitou o nome e foi direto ao Desfazer: o apertar tira o foco do campo (o 'change')
+  const antigo = bt('desfazer');
+  ponteiro(antigo, 'pointerdown');
+  j.muda(ed('meta.nome'), { value: 'Lira Digitada' });
+  assert.equal(ficha().meta.nome, 'Lira Digitada', 'o change gravou');
+  rodaTimers(j);   // o tempo seguinte (a página redesenha) com o botão ainda apertado
+  assert.equal(bt('desfazer'), antigo, 'a barra não foi trocada com o botão apertado');
+  assert.equal(antigo.getAttribute('aria-disabled'), 'true', 'a barra de antes do change');
+  ponteiro(antigo, 'pointerup');
+  j.clica(antigo);
+  assert.equal(ficha().meta.nome, 'Lira Vento-Sul', 'o 1º clique desfez (pelo log de agora, não pelo aria-disabled de antes)');
+  assert.equal(barra.querySelector('.ke-ed-msg').textContent, 'Desfeito: Nome do Personagem: "Lira Digitada".');
+  rodaTimers(j);
+  assert.equal(bt('refazer').getAttribute('aria-disabled'), null);
+  // sem o mouse (Tab): a barra redesenha na hora, como antes
+  j.muda(ed('meta.nome'), { value: 'Lira Tab' });
+  assert.notEqual(bt('desfazer'), antigo);
+  assert.equal(bt('desfazer').getAttribute('title'), 'Desfazer: Nome do Personagem: "Lira Tab" (Ctrl+Z)');
+  rodaTimers(j);
+  // ---- o atributo das perícias de dois atributos e do Éter (03 §10)
+  const at = (p) => fp.querySelector('[data-campo="pericia-' + p + '"] .fp-per-at');
+  assert.equal(at('movimento').getAttribute('title'), 'usa o maior entre Mod.FOR e Mod.DES');
+  j.muda(ed('periciasAttr.movimento'), { value: 'FOR' });
+  assert.equal(ficha().periciasAttr.movimento, 'FOR');
+  rodaTimers(j);
+  assert.equal(at('movimento').getAttribute('title'), 'usa Mod.FOR (escolhido)');
+  assert.equal(barra.querySelector('.ke-ed-msg').textContent, '');
+  assert.equal(bt('desfazer').getAttribute('title'), 'Desfazer: Atributo de Movimento: FOR (escolhido) (Ctrl+Z)');
+  j.muda(ed('escolha.attr.recurso.eter'), { value: 'INT' });
+  assert.deepEqual(ficha().identidade.escolhas, { 'attr.recurso.eter': 'INT' });
+  rodaTimers(j);
+  j.clica(bt('desfazer'));
+  assert.deepEqual(ficha().identidade.escolhas, {});
+  j.clica(bt('desfazer'));
+  assert.equal(ficha().periciasAttr.movimento, undefined, 'de volta ao padrão: o maior');
+  // ---- a pendência do Ofício(X): o seletor aplica o grau e fecha a pendência
+  j.muda(ed('migracao.oficio'), { value: 'oficio-engenharia' });
+  assert.equal(ficha().pericias['oficio-engenharia'], 1);
+  rodaTimers(j);
+  assert.equal(ed('migracao.oficio'), null, 'a pendência fechou');
+  assert.equal(bt('desfazer').getAttribute('title'), 'Desfazer: O grau vai para Ofício(Engenharia): Treinado (Ctrl+Z)');
+  j.clica(bt('desfazer'));
+  assert.ok(ed('migracao.oficio'), 'desfeito: a pendência volta');
+  assert.equal(ficha().pericias['oficio-engenharia'], 0);
+  // ---- o ESPIÃO
+  assert.deepEqual(j.ls.escritas, []);
+  assert.equal(j.ls.foto(), fotoLs);
+  soEnsaio(j.ss, 'revisão pela interface');
 });

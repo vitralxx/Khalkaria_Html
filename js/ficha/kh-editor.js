@@ -27,7 +27,14 @@
  * Cada gravação emite o 'kh:ensaio' com ['ficha']: a página, o drawer e os
  * seletores redesenham (o KhRedesenho devolve o foco ao equivalente). Depois
  * do 'change', o aviso sai no tempo seguinte (setTimeout 0): o foco já andou
- * (Tab) e o redesenho o encontra no campo novo. O Ensaio só escreve no
+ * (Tab) e o redesenho o encontra no campo novo. Com o botão do mouse (ou o
+ * dedo) apertado, a BARRA só se redesenha depois de soltar (auditoria B): o
+ * 'change' de um campo dispara no apertar de Desfazer, e trocar a barra ali
+ * engolia o clique (o 1º só confirmava o campo). Desfazer e Refazer agem pelo
+ * estado de agora do log, não pelo aria-disabled da barra ainda por redesenhar.
+ * Trocar raça ou classe diz o que ficou da anterior e oferece, na mensagem,
+ * "Remover o que era de <anterior>" (um passo, desfazível; KhEdicao.restos).
+ * O Ensaio só escreve no
  * sessionStorage com o prefixo khalkaria_ensaio: (o armazém dele); nenhuma
  * chave da ficha do jogador.
  *
@@ -172,7 +179,9 @@
         (pag ? botao('ajustes', 'Ajustes (' + (Number(est.nAjustes) || 0) + ')', { titulo: 'A lista dos ajustes manuais desta ficha',
           attrs: ' aria-expanded="' + !!est.aberto + '" aria-controls="' + esc(P) + '-ked-aj"' }) : '') +
         '<p class="ke-ed-dica">' + esc(pag ? DICA_PAGINA : DICA_DRAWER) + '</p>' +
-        '<p class="ke-ed-msg' + (m && m.tipo === 'aviso' ? ' ke-ed-msg-aviso' : '') + '" role="status" aria-live="polite">' + (m ? esc(m.texto) : '') + '</p></div>';
+        '<p class="ke-ed-msg' + (m && m.tipo === 'aviso' ? ' ke-ed-msg-aviso' : '') + '" role="status" aria-live="polite">' + (m ? esc(m.texto) : '') + '</p>' +
+        // a ação da mensagem (trocar raça/classe: "Remover o que era de <anterior>")
+        (m && obj(m.acao) ? botao(m.acao.ked, m.acao.texto, { titulo: m.acao.titulo }) : '') + '</div>';
       if (pag && est.aberto) h += htmlAjustes(est.linhas, est.sel, P);
       return h;
     }
@@ -228,8 +237,10 @@
       var P = /^[a-z][a-z0-9-]*$/i.test(str(op.prefixo)) ? str(op.prefixo) : 'ke';
       var ss = storage(win, 'sessionStorage');
       var R = KhRedesenho ? KhRedesenho.criar({ prefixo: P + '-ked' }) : null;
-      var st = { msg: null, aberto: false, sel: {}, pop: null, res: null };
+      var st = { msg: null, aberto: false, sel: {}, pop: null, res: null, restos: null };
       var popEl = null, barraEl = null, redesenhandoPop = false;
+      // o botão do mouse apertado: a barra espera soltar para se redesenhar (auditoria B)
+      var apertado = false, barraPendente = false;
 
       function ligado() { return KhEnsaio.ligado(win); }
       function arm() { return KhEnsaio.armazem(ss); }
@@ -265,8 +276,31 @@
         if (!g.mudou) return true;
         st.msg = r.aviso ? { tipo: 'aviso', texto: r.aviso }
           : g.avisoLog ? { tipo: 'aviso', texto: 'Gravado, mas sem desfazer: ' + textoErro({ erro: g.avisoLog }) } : null;
+        if (g.logLimpo) avisoLogLimpo();
+        // trocou raça ou classe e ficou algo da anterior: a mensagem oferece remover (num passo)
+        st.restos = obj(r.restos) ? { campo: r.restos.campo, anterior: r.restos.anterior } : null;
+        if (st.restos && st.msg) {
+          st.msg.acao = { ked: 'remover-restos', texto: 'Remover o que era de ' + st.restos.anterior.nome,
+            titulo: 'Tira da ficha, num passo só (Desfazer volta), o que ficou ' + (st.restos.campo === 'raca' ? 'da raça' : 'da classe') + ' anterior' };
+        }
         if (quando === 'adiado') { desenhaBarra(); adiado(function () { emitir(); }); } else emitir();
         return true;
+      }
+      // faltou espaço e a limpeza apagou o desfazer desta ficha (auditoria B: avisar)
+      function avisoLogLimpo() {
+        var t = 'Faltou espaço: para gravar, o histórico de desfazer desta ficha foi apagado (o Desfazer recomeça daqui).';
+        st.msg = { tipo: 'aviso', texto: st.msg && st.msg.texto ? st.msg.texto + ' ' + t : t };
+      }
+      // "Remover o que era de <anterior>" (o botão da mensagem): calcula de novo pela ficha de agora
+      function removeRestos() {
+        var rs = st.restos;
+        if (!rs || fora()) return;
+        var x = ativa();
+        if (!x || !x.ficha) { aviso(SEM_FICHA); desenhaBarra(); return; }
+        var r = KhEdicao.mudancaRestos(x.ficha, ctx(), rs.campo, rs.anterior);
+        st.restos = null;
+        if (!r.ok) { aviso(r.erro); desenhaBarra(); return; }
+        if (grava(r)) { st.msg = { tipo: 'ok', texto: 'Removido: ' + r.rotulo.replace(/^Remover /, '') + '. Desfazer volta.' }; desenhaBarra(); }
       }
       // desfazer e refazer (os botões e o Ctrl+Z / Ctrl+Y)
       function anda(acao) {
@@ -275,8 +309,10 @@
         if (!x) { aviso(SEM_FICHA); desenhaBarra(); return; }
         var r = acao === 'refazer' ? x.a.refazer(x.id) : x.a.desfazer(x.id);
         if (!r.ok) { aviso(textoErro(r, acao)); desenhaBarra(); return; }
+        st.restos = null;
         st.msg = { tipo: 'ok', texto: (acao === 'refazer' ? 'Refeito: ' : 'Desfeito: ') + r.rotulo + '.' };
         if (r.avisoLog) st.msg = { tipo: 'aviso', texto: st.msg.texto + ' ' + textoErro({ erro: r.avisoLog }) };
+        if (r.logLimpo) avisoLogLimpo();
         fechaPop(false);
         emitir();
       }
@@ -295,6 +331,9 @@
         if (!ligado()) { esconde(); return false; }
         var c = lugar();
         if (!c) return false;
+        // botão apertado (o 'change' do campo veio do apertar de Desfazer): espera soltar
+        if (apertado) { barraPendente = true; return true; }
+        barraPendente = false;
         var x = ativa();
         var ficha = x ? x.ficha : null;
         var nAj = ficha && obj(ficha.ajustes) ? Object.keys(ficha.ajustes).length : 0;
@@ -308,7 +347,7 @@
         return true;
       }
       function esconde() {
-        st.msg = null; st.aberto = false; st.sel = {};
+        st.msg = null; st.aberto = false; st.sel = {}; st.restos = null; barraPendente = false;
         fechaPop(false);
         if (barraEl) { troca(barraEl, ''); barraEl.hidden = true; }
       }
@@ -406,11 +445,11 @@
       function perto(t, sel) { try { return t && t.closest ? t.closest(sel) : null; } catch (e) { return null; } }
       function dentro(el) { return !!el && raizEl.contains(el); }
       function acaoBarra(a, b) {
-        if (b.getAttribute('aria-disabled') === 'true') {
-          if (a === 'desfazer' || a === 'refazer') { var t = b.getAttribute('title'); if (t) { aviso(t.replace(/\s*\(Ctrl\+[ZY]\)$/, '') + '.'); desenhaBarra(); } }
-          return;
-        }
+        // Desfazer e Refazer: pelo log de agora (a barra pode estar por redesenhar, com
+        // o aria-disabled de antes do 'change'); sem passo, o anda diz por quê
         if (a === 'desfazer' || a === 'refazer') { anda(a); return; }
+        if (a === 'remover-restos') { removeRestos(); return; }
+        if (b.getAttribute('aria-disabled') === 'true') return;
         if (a === 'ajustes') { st.aberto = !st.aberto; desenhaBarra('[data-ked="ajustes"]'); return; }
         if (a === 'fechar-aj') { st.aberto = false; desenhaBarra('[data-ked="ajustes"]'); return; }
         if (a === 'remover-sel') {
@@ -527,6 +566,18 @@
         var para = e.relatedTarget;
         if (para && !popEl.contains(para)) fechaPop(false);
       });
+      // o botão apertado e solto (em qualquer lugar): a barra que ficou para depois
+      // se redesenha no tempo seguinte ao soltar, já depois do clique
+      doc.addEventListener('pointerdown', function () { apertado = true; }, true);
+      function solta() {
+        apertado = false;
+        if (barraPendente) adiado(function () { if (barraPendente && !apertado) desenhaBarra(); });
+      }
+      doc.addEventListener('pointerup', solta, true);
+      doc.addEventListener('pointercancel', solta, true);
+      // rede de segurança: o soltar que não chega (arrasto nativo, a janela perde o foco)
+      doc.addEventListener('dragend', solta, true);
+      if (typeof win.addEventListener === 'function') win.addEventListener('blur', function () { if (apertado) solta(); });
       // clicar fora do pop-over o fecha (sem devolver o foco: o clique o levou)
       doc.addEventListener('pointerdown', function (e) {
         if (!popEl || !st.pop) return;

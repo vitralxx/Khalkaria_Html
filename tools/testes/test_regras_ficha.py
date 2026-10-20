@@ -93,7 +93,8 @@ class GerarRegrasFicha(unittest.TestCase):
         self.assertEqual(d['condicoes']['caido']['st'], 'semStatus')           # sem status no contrato
         self.assertEqual(d['derivados']['inventario']['st'], 'canonico')       # confirmado pela frase do Sistema
         self.assertEqual(d['recursos']['stamina']['st'], 'canonico')           # confirmado pelas 7 páginas de classe
-        self.assertEqual(d['recursos']['stamina']['max']['b']['a']['st'], 'aprovado')  # escolha 'maior' (PD7)
+        self.assertEqual(d['recursos']['stamina']['max']['b']['a']['st'], 'canonico')  # escolha 'maior' (PD7): sem selo (03 §10)
+        self.assertEqual(d['graus']['rotulos'][4], 'Lendário')                # o contrato escreve sem acento
         self.assertIn('semStatus', d['selos'])
 
 

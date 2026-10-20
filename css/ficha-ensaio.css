@@ -277,6 +277,16 @@ html[data-ficha3="aberto"] body:not([data-ficha-pagina]) .ke-faixa { right: var(
 .ke-ed-passo { vertical-align: middle; }
 .ke-ed-passo .ke-ed-num { width: 7ch; height: auto; padding: 0 .2rem; border: 0; border-radius: 0; background: transparent; color: var(--gold-light); }
 .ke-ed-passo button { min-width: 28px; }
+/* o atributo de uma escolha 'maior' (03 §10: perícias de dois atributos, CD,
+   Stamina e Éter): o seletor pequeno no lugar da sigla; padrão "maior (X)" */
+.ke-ed-attr {
+    width: auto; min-height: 24px; padding: 0 .2rem;
+    font-family: var(--font-body); font-size: .8rem; font-weight: 400; letter-spacing: 0; text-transform: none;
+}
+.ke-ed-attr-l { display: inline-flex; align-items: center; gap: .3rem; }
+/* a pendência do Ofício(X): "O grau vai para [Ofício]" dentro da nota das perícias */
+.ke-ed-of { display: inline-flex; flex-wrap: wrap; align-items: center; gap: .4rem; font-style: normal; color: var(--text-primary); }
+.ke-ed-of-sel { width: auto; }
 /* atributo base: embaixo do total e do Mod., no medalhão */
 .ke-ed-base { display: flex; align-items: center; gap: .4rem; }
 /* os 4 círculos de grau, um botão cada: alvo de 20×24 px a 24 px de centro a

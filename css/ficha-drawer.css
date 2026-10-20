@@ -189,9 +189,14 @@
 .fd-at .fd-rot { font-size: .52rem; }
 
 /* uma coluna: recursos, derivados e capacidade vêm ANTES das perícias (o que se
-   olha no turno fica no alto do drawer) */
+   olha no turno fica no alto do drawer). As duas colunas da página (perícias e
+   capacidade | recursos e derivados, 03 §10) somem da caixa e cada bloco leva a sua vez */
 .fd-duas { display: flex; flex-direction: column; }
-.fd-duas > .fd-col:last-child { order: -1; }
+.fd-duas > .fd-col { display: contents; }
+.fd-duas > .fd-col > [data-campo="recursos"] { order: 1; }
+.fd-duas > .fd-col > [data-campo="derivados"] { order: 2; }
+.fd-duas > .fd-col > [data-campo="capacidade"] { order: 3; }
+.fd-duas > .fd-col > [data-campo="pericias"] { order: 4; }
 
 /* perícias: uma coluna; 4 círculos de grau, nome, atributo usado, caixa de total */
 .fd-pers { display: grid; grid-template-columns: minmax(0, 1fr); }
@@ -287,7 +292,7 @@
     background: var(--bg-tertiary); border-bottom: 1px solid var(--border-color);
 }
 .fd-res-cat-nome { font-family: var(--font-heading); font-size: .68rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--gold); }
-.fd-res-tab { display: grid; grid-template-columns: minmax(0, 1fr) repeat(3, 1.5rem) 2.1rem 2.3rem; align-items: center; padding: .15rem .35rem .25rem; }
+.fd-res-tab { display: grid; grid-template-columns: minmax(max-content, 1fr) repeat(3, 1.5rem) 2.1rem 2.3rem; align-items: center; column-gap: .1rem; padding: .15rem .35rem .25rem; }
 .fd-res-h { padding: .1rem 0; text-align: center; font-family: var(--font-heading); font-size: .52rem; letter-spacing: .06em; text-transform: uppercase; color: var(--text-muted-forte); }
 .fd-res-h:first-child { text-align: left; }
 .fd-res-lin { grid-column: 1 / -1; display: grid; grid-template-columns: subgrid; align-items: center; padding: .08rem 0; border-top: 1px dotted var(--fd-pontilhado); }
@@ -302,6 +307,8 @@
 .fd-flag .fd-v { color: var(--text-muted-forte); font-weight: 400; }
 .fd-flag.on .fd-v { color: var(--gold-light); font-weight: 700; }
 .fd-res-n .fd-v { font-size: .82rem; }
+/* como na página: nada passa por cima da coluna vizinha (o calculado e o aviso ficam na dica) */
+.fd-res-lin .fd-calc, .fd-res-lin .fd-marca-aviso { display: none; }
 
 .fd-corpo .fd-vhelor { font-size: 1rem; }
 .fd-vhelor .fd-n { font-size: 1.3rem; color: var(--gold); }

@@ -62,7 +62,15 @@ test('campo: o tipo, o rótulo e a faixa de cada campo de estado; o resto não s
   assert.deepEqual(t('idiomas'), ['lista', 'Idiomas', undefined, 400]);
   assert.deepEqual(t('imunidadesCondicao'), ['conjunto', 'Imunidade a condição', undefined, undefined]);
   assert.deepEqual(t('lore.historia'), ['textoLongo', 'História', undefined, 20000]);
-  ['id', 'rev', 'ajustes', 'recursos.saude.max', 'atributo.FOR.total', 'pericias.inexistente', 'atributos.base.CAR', 'identidade.subespecie']
+  // 03 §10 e auditoria B: a subespécie (Inseto), o atributo das escolhas 'maior' e a pendência do Ofício
+  assert.deepEqual(t('identidade.subespecie'), ['ref', 'Subespécie', undefined, undefined]);
+  assert.deepEqual([ED.campo('periciasAttr.movimento').tipo, ED.campo('periciasAttr.movimento').opcoes], ['attr', ['FOR', 'DES']]);
+  assert.equal(ED.campo('periciasAttr.movimento').rotulo, 'Atributo de Movimento');
+  assert.deepEqual([ED.campo('escolha.attr.cd').tipo, ED.campo('escolha.attr.cd').chave], ['escolhaAttr', 'attr.cd']);
+  assert.equal(ED.campo('escolha.attr.recurso.eter').rotulo, 'Atributo do Éter');
+  assert.equal(ED.campo('migracao.oficio').tipo, 'oficio');
+  ['id', 'rev', 'ajustes', 'recursos.saude.max', 'atributo.FOR.total', 'pericias.inexistente', 'atributos.base.CAR',
+    'periciasAttr.atacar', 'periciasAttr.percepcao', 'escolha.attr.recurso.saude', 'escolha.raca.atributos.0', 'identidade.escolhas']
     .forEach((c) => assert.equal(ED.campo(c), null, c));
 });
 
@@ -97,10 +105,13 @@ test('mudancas: o texto lido de cada tipo, as recusas em PT-BR (faixa, inteiro, 
   const r = m('identidade.raca', 'raca-anao');
   assert.deepEqual(r.mudancas, [{ caminho: 'identidade.raca', valor: { id: 'raca-anao', nome: 'Anão' } },
     { caminho: 'identidade.variante', valor: { id: null, nome: '' } }]);
-  assert.equal(r.aviso, 'A variante Simples saiu: é de outra raça.');
+  // e diz o que ficou da raça anterior (auditoria B), sem tirar: quem tira é o "Remover o que era de…"
+  assert.equal(r.aviso, 'A variante Simples saiu: é de outra raça. Ficou da raça anterior (Humano): Persistência Humana (traço).');
+  assert.deepEqual(r.restos, { campo: 'raca', anterior: { id: 'raca-humano', nome: 'Humano' } });
   const c = m('identidade.classe', 'classe-monge');
   assert.deepEqual(c.mudancas[1], { caminho: 'identidade.ramo', valor: { id: null, nome: '' } });
-  assert.equal(c.aviso, 'O ramo Ramo do Cartógrafo saiu: é de outra classe.');
+  assert.equal(c.aviso, 'O ramo Ramo do Cartógrafo saiu: é de outra classe. Ficaram da classe anterior (Batedor): Oportunista (técnica), ' +
+    'Atento (técnica), Cicatrizes da Jornada (marca), Silêncio (ultimate), o Recurso de Classe (atual 2, Instinto).');
   assert.equal(m('identidade.classe', 'classe-batedor').mudancas.length, 1, 'a mesma classe: o ramo fica');
   // o stepper parte do guardado e fica na faixa; o círculo de grau
   assert.deepEqual(ED.passo(f, 'recursos.saude.atual', 1).mudancas, [{ caminho: 'recursos.saude.atual', valor: 19 }]);

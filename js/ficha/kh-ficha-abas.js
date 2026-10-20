@@ -326,6 +326,26 @@
       function edArea(caminho, rotulo, v, max) {
         return '<textarea class="ke-ed ke-ed-area"' + edAttrs(caminho, rotulo) + ' rows="6" maxlength="' + max + '">' + esc(v) + '</textarea>';
       }
+      // o atributo de uma escolha 'maior' (perícia de dois atributos, CD, Stamina e
+      // Éter; 03 §10): o padrão ('') é o maior, e diz qual é agora; trocar à mão
+      // grava a escolha (o KhEdicao: periciasAttr ou identidade.escolhas)
+      function edAttr(caminho, rotulo, atributos, guardado, maior) {
+        var g = atributos.indexOf(guardado) >= 0 ? guardado : '';
+        return '<select class="ke-ed ke-ed-sel ke-ed-attr"' + edAttrs(caminho, rotulo) +
+          ' title="' + esc(rotulo + ': o padrão é o maior; escolha um para trocar à mão') + '">' +
+          '<option value=""' + (g ? '' : ' selected') + '>' + esc('maior' + (maior ? ' (' + maior + ')' : '')) + '</option>' +
+          atributos.map(function (a) { return '<option value="' + esc(a) + '"' + (a === g ? ' selected' : '') + '>' + esc(a) + '</option>'; }).join('') +
+          '</select>';
+      }
+      // o maior Mod. entre os atributos (o primeiro, no empate: como o motor)
+      function maiorAttr(nos, atributos) {
+        var m = null;
+        atributos.forEach(function (a) {
+          var n = nos['atributo.' + a + '.mod'], v = n && typeof n.valor === 'number' ? n.valor : null;
+          if (!m || (v != null && (m.v == null || v > m.v))) m = { a: a, v: v };
+        });
+        return m ? m.a : '';
+      }
       // o seletor de uma referência da identidade (ref: o {id, nome} guardado).
       // O que não está nas opções (o texto livre que veio da ficha atual, sem
       // par; uma variante de outra raça) fica como a opção "manter".
@@ -389,13 +409,26 @@
         function selRef(k) {
           return idCampo(k, KhEdicao.REFS[k], edSel(k, KhEdicao.REFS[k], KhEdicao.opcoesRef(ctx, f, k), idt[k]));
         }
+        // o box da variante (03 §10): no Inseto, as subespécies (Besouro, Louva-a-Deus,
+        // Barata) no seletor; raça sem variante (Autômato, Corrompido) diz isso, sem
+        // seletor. O que a ficha guardar fora disso fica à vista (e no seletor, para tirar).
+        function selVariante() {
+          function tem(r) { return obj(r) && !!(r.id || str(r.nome).trim()); }
+          var opsSub = KhEdicao.opcoesRef(ctx, f, 'subespecie'), opsVar = KhEdicao.opcoesRef(ctx, f, 'variante');
+          if (opsSub.length) return idCampo('variante', 'Subespécie', edSel('subespecie', 'Subespécie', opsSub, idt.subespecie)) + (tem(idt.variante) ? selRef('variante') : '');
+          if (obj(idt.raca) && idt.raca.id && !opsVar.length && !tem(idt.variante)) {
+            return idCampo('variante', 'Variante', '<span class="' + P + '-sub">' + esc((refNome(idt.raca) || 'Esta raça') + ' não tem variante') + '</span>') +
+              idRef('subespecie', 'Subespécie', idt.subespecie);
+          }
+          return selRef('variante') + idRef('subespecie', 'Subespécie', idt.subespecie);
+        }
         if (edP) {
           h += moldura('identidade', 'Identidade', '<dl class="' + P + '-ident-grade">' +
             idCampo('nome', 'Nome do Personagem', edTexto('meta.nome', 'Nome do Personagem', meta.nome, KhEdicao.MAX_TEXTO), P + '-id-largo') +
             idCampo('jogador', 'Jogador', edTexto('meta.jogador', 'Jogador', meta.jogador, KhEdicao.MAX_TEXTO)) +
             idCampo('nivel', 'Nível', edNum('meta.nivel', 'Nível', meta.nivel, 1, 5)) +
             idCampo('xp', 'XP', edNum('meta.xp', 'XP', meta.xp, 0, KhEdicao.campo('meta.xp').max)) +
-            selRef('raca') + selRef('variante') + idRef('subespecie', 'Subespécie', idt.subespecie) +
+            selRef('raca') + selVariante() +
             selRef('classe') + selRef('ramo') + selRef('origem') +
             '</dl>', { cls: P + '-bloco-ident' });
         } else h += moldura('identidade', 'Identidade', '<dl class="' + P + '-ident-grade">' +
@@ -433,8 +466,14 @@
           var no = nos['pericia.' + p.id + '.total'];
           var g = f.pericias ? Number(f.pericias[p.id]) || 0 : 0;
           var at = no && no.escolha ? no.escolha.usado : p.modo === 'fixo' ? p.atributos[0] : p.modo === 'porArma' ? 'arma' : p.modo === 'dado' ? 'dado' : '';
-          var atTit = p.modo === 'maior' ? 'o maior de ' + p.atributos.join('/') + ' (D7)' : p.modo === 'porArma' ? 'o atributo da arma' :
+          // dois atributos (03 §10): "usa o maior entre Mod.X e Mod.Y" ou "usa Mod.X (escolhido)"
+          var atTit = p.modo === 'maior' ? (no && no.escolha && no.escolha.motivo ? no.escolha.motivo :
+            'usa o maior entre ' + p.atributos.map(function (a) { return 'Mod.' + a; }).join(' e ')) : p.modo === 'porArma' ? 'o atributo da arma' :
             p.modo === 'dado' ? 'só o dado, sem atributo (D8a)' : NOME_ATRIBUTO[at] || '';
+          var atHTML = edP && p.modo === 'maior'
+            ? edAttr('periciasAttr.' + p.id, 'Atributo de ' + p.nome, p.atributos, f.periciasAttr && f.periciasAttr[p.id],
+              no && no.escolha && !no.escolha.trocado ? no.escolha.usado : maiorAttr(nos, p.atributos))
+            : esc(at);
           var circ = '';
           for (var i = 1; i <= 4; i++) {
             var tit = (bonus[i] != null ? '+' + bonus[i] + ' ' : '') + (graus[i] || '');
@@ -449,27 +488,48 @@
             '<span class="' + P + '-per-graus" role="' + (edP ? 'group' : 'img') + '" aria-label="' + esc((edP ? p.nome + ': grau ' : 'Grau ') + g + ' de 4' + (graus[g] ? ': ' + graus[g] : '')) + '">' + circ + '</span>' +
             // o selo (decisão, pendente…) vai junto do nome; a caixa de total fica só com o número
             '<span class="' + P + '-per-nome">' + esc(p.nome) + (no ? C.selosHTML(no.selos) : '') + (/^oficio-/.test(p.id) ? seloOf : '') + '</span>' +
-            '<span class="' + P + '-per-at" title="' + esc(atTit) + '">' + esc(at) + '</span>' +
+            '<span class="' + P + '-per-at" title="' + esc(atTit) + '">' + atHTML + '</span>' +
             '<span class="' + P + '-per-total">' + conta('pericia.' + p.id + '.total', { texto: no && typeof no.valor === 'number' ? modTxt(no) : null, semSelos: true }) + '</span></div>';
         }
         var pers = lista(D.pericias);
+        // a pendência do Ofício(X) no Ensaio: o seletor dos 3 Ofícios aplica o grau e
+        // fecha a pendência, num passo (auditoria B)
+        var edOf = edP && gOf > 0 ? ' <label class="ke-ed-of">O grau vai para <select class="ke-ed ke-ed-sel ke-ed-of-sel"' +
+          edAttrs('migracao.oficio', 'O grau vai para qual Ofício') + '><option value="" selected>(escolher)</option>' +
+          KhEdicao.oficios().map(function (id) {
+            var px = pers.filter(function (x) { return x.id === id; })[0];
+            return '<option value="' + esc(id) + '">' + esc(px ? px.nome : id) + '</option>';
+          }).join('') + '</select></label>' : '';
         // duas colunas como no A4: Atacar a Iniciativa | Conhecimento ao Ofício
         var corte = pers.map(function (p) { return p.id; }).indexOf('conhecimento');
         if (corte < 0) corte = Math.ceil(pers.length / 2);
-        h += '<div class="' + P + '-duas"><div class="' + P + '-col">';
+        // as duas colunas do Núcleo (03 §10): Perícias e, embaixo delas, a Capacidade |
+        // Recursos e, embaixo, Evasão, CD e Movimento (a Capacidade fica à esquerda
+        // deles). O drawer empilha na ordem dele (css: Recursos, Evasão, Capacidade, Perícias)
+        h += '<div class="' + P + '-duas"><div class="' + P + '-col ' + P + '-col-pers">';
         h += moldura('pericias', 'Perícias', '<div class="' + P + '-pers"><div class="' + P + '-pers-col">' + pers.slice(0, corte).map(pericia).join('') +
           '</div><div class="' + P + '-pers-col">' + pers.slice(corte).map(pericia).join('') + '</div></div>',
         { extra: '<span class="' + P + '-legenda">' + bonus.slice(1).map(function (b, i) { return esc('+' + b + ' ' + (graus[i + 1] || '')); }).join(' · ') + '</span>',
           nota: gOf > 0 ? 'Pendência da migração: a ficha atual tinha um Ofício(X) genérico com grau ' +
             nEstado('migracao.pendencias.' + iOf + '.grau', gOf) + (graus[gOf] ? ' (' + esc(graus[gOf]) + ')' : '') +
-            '. Escolha qual Ofício (Engenharia, Ferraria ou Alquimia) recebe o grau.' : '' });
-        h += '</div><div class="' + P + '-col">';
+            '. Escolha qual Ofício (Engenharia, Ferraria ou Alquimia) recebe o grau.' + edOf : '' });
+        // ---- capacidade: Equipamentos e Bugigangas com régua e Sobrepeso (embaixo das perícias, 03 §10)
+        h += moldura('capacidade', 'Capacidade', capacidade(res, C, ctx), { ico: img(ctx, 'mochila', P + '-tit-img') });
+        h += '</div><div class="' + P + '-col ' + P + '-col-rec">';
 
         // ---- recursos: atual / máx., com as cores de recurso (D28)
         var rc = f.recursos || {};
         function barra(atual, max, cls) {
           var pc = typeof max === 'number' && max > 0 && typeof atual === 'number' ? Math.max(0, Math.min(1, atual / max)) * 100 : 0;
           return '<span class="' + P + '-barra ' + cls + '" aria-hidden="true"><span class="' + P + '-barra-fill" style="width:' + fmtPc(pc) + '%"></span></span>';
+        }
+        // o seletor do atributo de um número com escolha (CD, Stamina e Éter; 03 §10), só no Ensaio
+        var escolhas = obj(idt.escolhas) ? idt.escolhas : {};
+        function attrDe(no) {
+          var e = edP && no && no.escolha && KhEdicao.ESCOLHA_ATTR[no.escolha.chave] ? no.escolha : null;
+          if (!e) return '';
+          return '<span class="' + P + '-par ke-ed-attr-l"><span class="' + P + '-rot">Atributo</span>' +
+            edAttr('escolha.' + e.chave, KhEdicao.ESCOLHA_ATTR[e.chave], e.atributos, escolhas[e.chave], e.trocado ? maiorAttr(nos, e.atributos) : e.usado) + '</span>';
         }
         function recurso(id, nome, icone, extra) {
           var x = rc[id] || {}, no = nos['recurso.' + id + '.max'];
@@ -503,8 +563,8 @@
           recurso('saude', 'Saúde', 'saude', sau.temporaria ? '<span class="' + P + '-rec-extra"><span class="' + P + '-rot">Temporária</span>' + nEstado('recursos.saude.temporaria', sau.temporaria) + '</span>' : '') +
           recurso('stamina', 'Stamina', 'stamina', '<span class="' + P + '-rec-extra">' +
             (sta.comprometida ? '<span class="' + P + '-rot">Comprometida</span>' + nEstado('recursos.stamina.comprometida', sta.comprometida) + ' ' : '') +
-            '<span class="' + P + '-rot">Disponível</span>' + conta('recurso.stamina.disponivel') + '</span>') +
-          recurso('eter', 'Éter', 'eter') + recClasse +
+            '<span class="' + P + '-rot">Disponível</span>' + conta('recurso.stamina.disponivel') + attrDe(nos['recurso.stamina.max']) + '</span>') +
+          recurso('eter', 'Éter', 'eter', attrDe(nos['recurso.eter.max']) ? '<span class="' + P + '-rec-extra">' + attrDe(nos['recurso.eter.max']) + '</span>' : '') + recClasse +
           alertasRecurso(res));
 
         // ---- derivados: Evasão, CD, Movimento, Ações, Sins
@@ -515,28 +575,27 @@
           tile('evasao', 'Evasão', img(ctx, 'evasao', P + '-der-img'),
             '<span class="' + P + '-par"><span class="' + P + '-rot">Passiva</span>' + conta('evasao.passiva') + '</span>' +
             '<span class="' + P + '-par"><span class="' + P + '-rot">Ativa</span>' + conta('evasao.ativa') + '</span>') +
-          tile('cd', 'CD', img(ctx, 'cd', P + '-der-img'), conta('cd')) +
+          tile('cd', 'CD', img(ctx, 'cd', P + '-der-img'), conta('cd') + attrDe(nos.cd)) +
           tile('movimento', 'Movimento', img(ctx, 'movimento', P + '-der-img'), conta('movimento', { un: ' m' })) +
           tile('acoes', 'Ações', '<span class="' + P + '-der-ico">' + SVG_ACOES + '</span>', conta('acoes')) +
           tile('sins', 'Sins', img(ctx, 'sins', P + '-der-img'), num('inventario.sins', f.inventario ? f.inventario.sins || 0 : 0, 'Sins', 0, 999999999)) +
           '</div>');
 
-        // ---- capacidade: Equipamentos e Bugigangas com régua e Sobrepeso
-        h += moldura('capacidade', 'Capacidade', capacidade(res, C, ctx), { ico: img(ctx, 'mochila', P + '-tit-img') });
         h += '</div></div>';
 
         // ---- Armadura e resistências
         h += moldura('armadura', 'Armadura e Resistência', resistencias(res, C, D),
           { ico: img(ctx, 'armadura', P + '-tit-img'), nota: 'R = resistência, I = imunidade, V = vulnerabilidade, Ae = armadura específica; a redução junta Ar, Ae do tipo, da categoria e de Todos.' });
 
-        // ---- Marcas da Vhelor: só com 1 ou mais (M5)
+        // ---- Marcas da Vhelor: OCULTA em todo modo, também no Ensaio; só aparece com 1
+        // ou mais (M5; o Pedro, 03 §10: "vital que esteja oculta por padrão"). É estado:
+        // no Ensaio, o − e o + só quando já há marca (o ganho por item vem na F6)
         var vh = f.vhelor && Number(f.vhelor.marcas) || 0;
-        // na edição, sempre (para marcar a primeira); fora dela, só com 1 ou mais (M5)
-        if (vh >= 1 || edP) {
+        if (vh >= 1) {
           h += moldura('vhelor', 'Marcas da Vhelor', '<p class="' + P + '-vhelor">' + (edP ? edPasso('vhelor.marcas', 'Marcas da Vhelor', vh, 0, 7) : nEstado('vhelor.marcas', vh)) +
             '<span class="' + P + '-sub"> de 7</span>' +
             (f.vhelor && f.vhelor.abstinente ? ' ' + selo('aviso', 'em abstinência') : '') + '</p>',
-          { cls: P + '-bloco-vhelor', nota: edP && vh < 1 ? 'Fora da edição, este bloco só aparece com 1 Marca ou mais.' : '' });
+          { cls: P + '-bloco-vhelor' });
         }
         // ---- imunidade a condição e idiomas: só quando há (na edição, sempre)
         var imc = lista(f.imunidadesCondicao), idi = lista(f.idiomas);

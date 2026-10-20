@@ -728,6 +728,8 @@
           r.fichaId = x.id;
           r.desfazivel = !!g.desfazivel;
           if (g.avisoLog) r.aviso += ' Gravado, mas sem desfazer: ' + textoErro({ erro: g.avisoLog });
+          // a limpeza por falta de espaço apagou o desfazer desta ficha (auditoria B: avisar)
+          if (g.logLimpo) r.aviso = (r.aviso ? r.aviso + ' ' : '') + 'Faltou espaço: para gravar, o histórico de desfazer desta ficha foi apagado.';
           ultimo = r.desfazivel ? { fichaId: x.id, rotulo: r.rotulo } : null;
           emitir();
           return r;

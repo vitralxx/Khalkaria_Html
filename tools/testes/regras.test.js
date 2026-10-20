@@ -196,17 +196,25 @@ test('Saúde máx. = 10 + Vitalidade × Nível + Mod.CON × Nível, com a fórmu
   assert.equal(termo(no, /Vitalidade/).fonte.id, 'classe-espadachim');
 });
 
-test('Stamina e Éter: o maior dos dois, trocável à mão (D7), com selo de decisão do Pedro', () => {
+test('Stamina e Éter: o maior dos dois, trocável à mão (D7), SEM selo (regra fechada, 03 §10): a dica diz qual valeu', () => {
   const f = ficha({ classe: 'batedor', nivel: 2, attrs: { FOR: 10, DES: 16, INT: 11, SAB: 15 } });
   let r = R.avaliar(f);
   assert.equal(val(r, 'recurso.stamina.max'), 8 + 7 * 2 + 3 * 2);
   assert.equal(val(r, 'recurso.eter.max'), 6 + 4 * 2 + 2 * 2);
   assert.match(r.nos['recurso.stamina.max'].formula.simbolica, /maior\(Mod\.FOR, Mod\.DES\)/);
-  assert.deepEqual(r.nos['recurso.stamina.max'].selos, ['decisaoPedro']);
+  assert.deepEqual(r.nos['recurso.stamina.max'].selos, []);
+  assert.deepEqual(r.nos['recurso.eter.max'].selos, []);
+  assert.equal(termo(r.nos['recurso.stamina.max'], /maior/).motivo, 'usa o maior entre Mod.FOR e Mod.DES');
+  assert.deepEqual(r.nos['recurso.stamina.max'].escolha,
+    { chave: 'attr.recurso.stamina', atributos: ['FOR', 'DES'], usado: 'DES', trocado: false, motivo: 'usa o maior entre Mod.FOR e Mod.DES' });
+  assert.deepEqual(r.nos['recurso.eter.max'].escolha.atributos, ['INT', 'SAB']);
   f.identidade.escolhas = { 'attr.recurso.stamina': 'FOR' };
   r = R.avaliar(f);
   assert.equal(val(r, 'recurso.stamina.max'), 8 + 7 * 2 + 0);
   assert.match(r.nos['recurso.stamina.max'].formula.simbolica, /Mod\.FOR \(escolhido\)/);
+  assert.equal(termo(r.nos['recurso.stamina.max'], /escolhido/).motivo, 'usa Mod.FOR (escolhido)');
+  assert.equal(r.nos['recurso.stamina.max'].escolha.usado, 'FOR');
+  assert.equal(r.nos['recurso.stamina.max'].escolha.trocado, true);
 });
 
 test('recurso sem classe sai com selo; recurso de classe que não é contador (Espadachim/Teurgo, D105) mostra as características, sem número', () => {
@@ -274,9 +282,13 @@ test('CD: fórmula da classe; Espadachim com o maior de DES/FOR, trocável', () 
   const f = ficha({ classe: 'espadachim', attrs: { DES: 12, FOR: 16, CON: 14 } });
   r = R.avaliar(f);
   assert.equal(val(r, 'cd'), 10 + 3 + 2);
-  assert.deepEqual(r.nos.cd.selos, ['decisaoPedro']);
+  assert.deepEqual(r.nos.cd.selos, [], 'a escolha do maior é regra fechada (03 §10): sem selo');
+  assert.deepEqual([r.nos.cd.escolha.chave, r.nos.cd.escolha.atributos, r.nos.cd.escolha.usado], ['attr.cd', ['DES', 'FOR'], 'FOR']);
+  assert.equal(termo(r.nos.cd, /maior/).motivo, 'usa o maior entre Mod.DES e Mod.FOR');
+  assert.equal(R.avaliar(ficha({ classe: 'monge', attrs: { DES: 14, SAB: 16 } })).nos.cd.escolha, undefined, 'CD sem escolha: sem seletor');
   f.identidade.escolhas = { 'attr.cd': 'DES' };
   assert.equal(val(R.avaliar(f), 'cd'), 10 + 1 + 2);
+  assert.equal(termo(R.avaliar(f).nos.cd, /escolhido/).motivo, 'usa Mod.DES (escolhido)');
   assert.equal(val(R.avaliar(ficha()), 'cd'), null);
 });
 
@@ -287,12 +299,18 @@ test('perícia = Mod + treino (+2 por grau) + Mods; "maior" trocável (D7); Atac
   assert.equal(val(r, 'pericia.furtividade.total'), 3 + 4);
   assert.equal(val(r, 'pericia.convencimento.total'), 3 + 2);
   assert.equal(r.nos['pericia.convencimento.total'].escolha.usado, 'DES');
+  // regra fechada (03 §10): sem selo, e a dica diz "usa o maior entre…"
+  ['movimento', 'convencimento', 'intimidacao', 'enganacao'].forEach((p) => assert.deepEqual(r.nos['pericia.' + p + '.total'].selos, [], p));
+  assert.equal(termo(r.nos['pericia.convencimento.total'], /^Mod\./).motivo, 'usa o maior entre Mod.DES e Mod.INT');
+  assert.equal(r.nos['pericia.convencimento.total'].escolha.chave, 'periciasAttr.convencimento');
   assert.equal(val(r, 'pericia.atacar.total'), 6);
   assert.equal(r.nos['pericia.atacar.total'].semAtributo, true);
   f.periciasAttr = { convencimento: 'INT' };
   r = R.avaliar(f);
   assert.equal(val(r, 'pericia.convencimento.total'), 1 + 2);
   assert.equal(r.nos['pericia.convencimento.total'].escolha.trocado, true);
+  assert.equal(termo(r.nos['pericia.convencimento.total'], /^Mod\./).motivo, 'usa Mod.INT (escolhido)');
+  assert.deepEqual(r.nos['pericia.convencimento.total'].selos, []);
 });
 
 test('vantagem/desvantagem (D81): 2 V = 1 V, V + D = normal, forçado à mão, Defender rola o próprio dado 2×', () => {

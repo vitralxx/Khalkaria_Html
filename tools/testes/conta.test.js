@@ -207,9 +207,11 @@ test('nó real do motor: o mesmo HTML que o ouro da prévia (ids normalizados)',
   // ajuste migrado (Saúde), dado (Evasão Ativa), aviso (Limiar), lembrete, selo
   ['evasao.ativa', 'recurso.saude.max', 'cd', 'acoes', 'limiar.saldo'].forEach((c) => assert.ok(ouro.includes(norm(C.conta(c))), c + ' fora do ouro'));
   assert.ok(ouro.includes(norm(C.conta('movimento', { un: ' m' }))), 'movimento com unidade');
-  // perícia: a prévia mostra o valor com sinal (texto custom); Movimento tem selo de decisão (D7)
+  // perícia: a prévia mostra o valor com sinal (texto custom); Movimento é "maior" (D7),
+  // regra fechada desde o 03 §10: sem selo, com a dica "usa o maior entre…"
   const mov = r.av.nos['pericia.movimento.total'];
-  assert.ok(mov.selos.length, 'perícia Movimento com selo');
+  assert.deepEqual(mov.selos, [], 'perícia Movimento sem selo (03 §10)');
+  assert.ok(C.conta('pericia.movimento.total').includes('(usa o maior entre Mod.FOR e Mod.DES)'));
   const txt = (mov.valor < 0 ? '−' : '+') + Math.abs(mov.valor);
   assert.ok(ouro.includes(norm(C.conta('pericia.movimento.total', { texto: txt }))), 'perícia Movimento fora do ouro');
 });

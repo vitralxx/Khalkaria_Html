@@ -321,9 +321,18 @@ html[data-ficha-previa] .fp [data-sem-previa] { display: none; }
 .fp-at-mod .fp-v { font-size: 1.05rem; }
 .fp-at .fp-rot { font-size: .6rem; }
 
-/* duas colunas: perícias | recursos, derivados, capacidade */
+/* duas colunas (03 §10): perícias e, embaixo, a capacidade | recursos e, embaixo,
+   Evasão, CD e Movimento. Numa coluna só, a ordem de antes (perícias, recursos,
+   derivados, capacidade): as colunas somem da caixa e cada bloco leva a sua vez */
 .fp-duas { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: 0 var(--esp-5); align-items: start; }
-@media (max-width: 1180px) { .fp-duas { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 1180px) {
+    .fp-duas { grid-template-columns: minmax(0, 1fr); }
+    .fp-duas > .fp-col { display: contents; }
+    .fp-duas > .fp-col > [data-campo="pericias"] { order: 1; }
+    .fp-duas > .fp-col > [data-campo="recursos"] { order: 2; }
+    .fp-duas > .fp-col > [data-campo="derivados"] { order: 3; }
+    .fp-duas > .fp-col > [data-campo="capacidade"] { order: 4; }
+}
 
 /* perícias: 4 círculos de grau, nome, atributo usado, caixa de total */
 .fp-pers { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 var(--esp-5); }
@@ -417,7 +426,11 @@ html[data-ficha-previa] .fp [data-sem-previa] { display: none; }
 .fp-arm-topo { display: flex; flex-wrap: wrap; gap: var(--esp-2) var(--esp-6); margin: 0 0 var(--esp-4); }
 .fp-arm-topo .fp-v { font-size: 1.3rem; }
 .fp-arm-topo .fp-rot { font-size: .72rem; }
-.fp-res-cats { display: grid; grid-template-columns: repeat(auto-fit, minmax(13.5rem, 1fr)); gap: var(--esp-3); align-items: start; }
+/* o nome do tipo nunca passa por cima de R/I/V (03 §10): a 1ª coluna tem no
+   mínimo a largura do nome mais longo (max-content), e cada categoria, no mínimo a
+   que cabe esse nome mais as 5 colunas de número (antes, 13,5rem: a 1366 px,
+   "Contundente" invadia o R) */
+.fp-res-cats { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr)); gap: var(--esp-3); align-items: start; }
 .fp-res-cat { background: #0d0c12; border: 1px solid var(--border-color); border-radius: 4px; }
 .fp-res-cab {
     display: flex; align-items: baseline; justify-content: space-between; gap: .5rem;
@@ -425,7 +438,7 @@ html[data-ficha-previa] .fp [data-sem-previa] { display: none; }
     background: #16141d; border-bottom: 1px solid var(--border-color);
 }
 .fp-res-cat-nome { font-family: var(--font-heading); font-size: .78rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--gold); }
-.fp-res-tab { display: grid; grid-template-columns: minmax(0, 1fr) repeat(3, 1.7rem) 2.3rem 2.5rem; align-items: center; padding: .2rem .4rem .35rem; }
+.fp-res-tab { display: grid; grid-template-columns: minmax(max-content, 1fr) repeat(3, 1.7rem) 2.3rem 2.5rem; align-items: center; column-gap: .15rem; padding: .2rem .4rem .35rem; }
 .fp-res-h { padding: .15rem 0; text-align: center; font-family: var(--font-heading); font-size: .58rem; letter-spacing: .08em; text-transform: uppercase; color: var(--text-muted-forte); }
 .fp-res-h:first-child { text-align: left; }
 .fp-res-lin { grid-column: 1 / -1; display: grid; grid-template-columns: subgrid; align-items: center; padding: .12rem 0; border-top: 1px dotted #ffffff10; }
@@ -440,6 +453,10 @@ html[data-ficha-previa] .fp [data-sem-previa] { display: none; }
 .fp-flag .fp-v { color: var(--text-muted-forte); font-weight: 400; }
 .fp-flag.on .fp-v { color: var(--gold-light); font-weight: 700; }
 .fp-res-n .fp-v { font-size: .9rem; }
+/* na linha do tipo, as colunas são de um número só: o "calc." do ajuste e a marca
+   de aviso não cabem e passariam por cima do vizinho. O ajuste segue à vista (o
+   número em âmbar); o calculado e o aviso ficam na dica e na tela Ajustes */
+.fp-res-lin .fp-calc, .fp-res-lin .fp-marca-aviso { display: none; }
 
 .fp-vhelor { margin: 0; font-size: 1.1rem; }
 .fp-vhelor .fp-n { font-size: 1.6rem; color: #d9b54a; }

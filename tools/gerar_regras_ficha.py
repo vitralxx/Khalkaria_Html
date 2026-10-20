@@ -65,6 +65,23 @@ ROTULO_SELO = {
     'avisoClasse': 'classe em rework',
     'ajuste': 'ajuste manual',
 }
+# A escolha 'maior' entre dois atributos (D7/PD7: perícias de dois atributos,
+# CD do Espadachim, Stamina e Éter) é REGRA FECHADA no site, sem selo: o Pedro,
+# em 2026-10-19 (docs/ficha-digital/03-respostas-pedro.md §10), "é sempre o
+# maior atributo", com troca manual. O contrato ainda traz modoEscolhaStatus
+# "aprovado" (decisão do Pedro, falta Notion); aqui ele vale como canônico.
+ST_ESCOLHA_MAIOR = 'canonico'
+# o contrato escreve os graus sem acento ("Lendario"); o site mostra com acento
+ROTULO_GRAU_SITE = {'Lendario': 'Lendário'}
+
+
+def st_escolha(bloco, onde, padrao):
+    """O status do nó 'escolha(...)' de uma fórmula: 'maior' é canônico (03 §10)."""
+    if bloco.get('modoEscolha') == 'maior':
+        return ST_ESCOLHA_MAIOR
+    return normaliza_status(bloco['modoEscolhaStatus'], onde) if bloco.get('modoEscolhaStatus') else padrao
+
+
 # do mais firme ao menos firme: o nó leva o pior status dos termos ativos
 ORDEM_STATUS = ['canonico', 'canonicoParcial', 'aprovado', 'decisao', 'canonico-mas-em-rework',
                 'decisaoDoSite', 'pedroDecide', 'pendente', 'pendenteBalanceamento', 'semStatus']
@@ -435,7 +452,7 @@ class Compilador:
             x = {'id': p['id'], 'nome': s['nome'], 'atributos': p['atributos'], 'modo': modo_c,
                  'tags': p.get('tags') or [], 'st': st, 'fo': fo}
             if modo_c == 'maior':
-                x['stEscolha'] = 'aprovado'          # D7/PD7: 'maior' com troca (trocavelFonte)
+                x['stEscolha'] = ST_ESCOLHA_MAIOR    # D7/PD7: 'maior' com troca (trocavelFonte); sem selo (03 §10)
                 x['foEscolha'] = 'contrato:pericias.' + p['id'] + '.trocavelFonte (PD7)'
             if p.get('dadoPorGrau'):
                 x['dadoPorGrau'] = p['dadoPorGrau']
@@ -443,7 +460,8 @@ class Compilador:
                 x['exigeTreino'] = True
             out.append(x)
         prof = self.c['proficiencia']
-        return out, {'bonus': prof['graus'], 'rotulos': prof['rotulos'], 'st': self.st('proficiencia'),
+        return out, {'bonus': prof['graus'], 'rotulos': [ROTULO_GRAU_SITE.get(r, r) for r in prof['rotulos']],
+                     'st': self.st('proficiencia'),
                      'fo': self.fo('proficiencia')}
 
     # ---------------- recursos e classes
@@ -454,7 +472,7 @@ class Compilador:
             b = r[nome]
             st = status_em(self.c, ['recursos', nome]) or self.st_por_blocos(nome, b['max'])
             fo = self.fo('recursos', nome, 'max')
-            st_esc = normaliza_status(b['modoEscolhaStatus'], nome) if b.get('modoEscolhaStatus') else st
+            st_esc = st_escolha(b, nome, st)
             out[nome] = {'max': ast(b['max'], st, fo, st_escolha=st_esc,
                                     fo_escolha=self.fo('recursos', nome, 'modoEscolha')),
                          'st': st, 'fo': fo, 'trocavel': bool(b.get('modoEscolhaTrocavel'))}
@@ -503,7 +521,7 @@ class Compilador:
             if not mesmo_valor(cd_ast, cd_bloco):
                 raise Falha(f'classe {chave}: CD do contrato ({cd["formula"]}) x bloco ({b["cd"]["texto"]})')
             st_cd = st_cd or 'canonico'
-            st_esc = normaliza_status(cd['modoEscolhaStatus'], chave) if cd.get('modoEscolhaStatus') else st_cd
+            st_esc = st_escolha(cd, chave, st_cd)
             x = {'id': b['id'], 'nome': b['nome'], 'V': cc['V'], 'G': cc['G'], 'R': cc['R'],
                  'st': st_vgr, 'fo': 'data/classes/' + chave + '.json',
                  'cd': {'ast': ast(cd['formula'], st_cd, self.fo('classes', chave, 'cd', 'formula'),

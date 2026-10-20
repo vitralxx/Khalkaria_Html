@@ -72,7 +72,7 @@
         case 'neg':
           r = aval(no.a, amb, D);
           return { v: r.v == null ? null : -r.v, sim: '−' + par(r.sim, r.p, 2.5), num: '−' + par(r.num, r.p, 2.5),
-            p: 2.5, st: pior(D, no.st, r.st), fontes: r.fontes };
+            p: 2.5, st: pior(D, no.st, r.st), fontes: r.fontes, escolha: r.escolha };
         case 'op': {
           var a = aval(no.a, amb, D), b = aval(no.b, amb, D);
           var p = no.op === '+' || no.op === '-' ? 1 : 2;
@@ -88,7 +88,7 @@
           if (negB) { numOp = ' − '; numB = negB[1] + numB.slice(negB[0].length); }
           return { v: v, sim: par(a.sim, a.p, p) + simb + par(b.sim, b.p, p, dir),
             num: par(a.num, a.p, p) + numOp + numB, p: p, st: pior(D, no.st, pior(D, a.st, b.st)),
-            fontes: a.fontes.concat(b.fontes) };
+            fontes: a.fontes.concat(b.fontes), escolha: a.escolha || b.escolha };
         }
         case 'fn': {
           var args = no.args.map(function (x) { return aval(x, amb, D); });
@@ -96,12 +96,13 @@
           var nulo = vs.some(function (x) { return x == null; });
           var st = args.reduce(function (s, x) { return pior(D, s, x.st); }, no.st);
           var fo = args.reduce(function (l, x) { return l.concat(x.fontes); }, []);
+          var escA = args.reduce(function (e, x) { return e || x.escolha; }, null);
           if (no.fn === 'floor') return { v: nulo ? null : Math.floor(vs[0] + 1e-9), sim: '⌊' + args[0].sim + '⌋',
-            num: '⌊' + args[0].num + '⌋', p: 3, st: st, fontes: fo };
+            num: '⌊' + args[0].num + '⌋', p: 3, st: st, fontes: fo, escolha: escA };
           var nome = no.fn === 'max' ? 'máx' : 'mín';
           return { v: nulo ? null : (no.fn === 'max' ? Math.max.apply(null, vs) : Math.min.apply(null, vs)),
             sim: nome + '(' + args.map(function (x) { return x.sim; }).join(', ') + ')',
-            num: nome + '(' + args.map(function (x) { return x.num; }).join(', ') + ')', p: 3, st: st, fontes: fo };
+            num: nome + '(' + args.map(function (x) { return x.num; }).join(', ') + ')', p: 3, st: st, fontes: fo, escolha: escA };
         }
         case 'esc': {
           var cs = no.args.map(function (x) { return aval(x, amb, D); });
@@ -111,12 +112,26 @@
             cs.forEach(function (c, j) { if (c.v != null && (cs[i].v == null || c.v > cs[i].v)) i = j; });
           }
           var c = cs[i];
+          // a escolha sobe pela conta (o termo e o nó dizem qual atributo valeu, 03 §10)
+          var ats = no.args.map(function (x) { var m = x.t === 'ref' && /^mod\.(\w+)$/.exec(x.ref); return m ? m[1] : null; });
           return { v: c.v, sim: trocado ? c.sim + ' (escolhido)' : 'maior(' + cs.map(function (x) { return x.sim; }).join(', ') + ')',
-            num: c.num, p: 3, st: pior(D, no.st, c.st), fontes: c.fontes, escolha: { i: i, trocado: !!trocado } };
+            num: c.num, p: 3, st: pior(D, no.st, c.st), fontes: c.fontes,
+            escolha: { i: i, trocado: !!trocado, opcoes: cs.map(function (x) { return x.sim; }), usado: c.sim,
+              atributos: ats.every(Boolean) ? ats : null } };
         }
         default:
           throw new Error('KhRegras: nó de fórmula "' + no.t + '" sem avaliação aqui');
       }
+    }
+    // o texto da escolha 'maior' entre atributos (D7, sem selo desde o 03 §10):
+    // "usa o maior entre Mod.FOR e Mod.DES" ou, trocado à mão, "usa Mod.FOR (escolhido)"
+    function entre(l) { return l.length < 2 ? l.join('') : l.slice(0, -1).join(', ') + ' e ' + l[l.length - 1]; }
+    function motivoEscolha(e) { return !e ? '' : e.trocado ? 'usa ' + e.usado + ' (escolhido)' : 'usa o maior entre ' + entre(e.opcoes); }
+    // a escolha no nó (CD, Stamina e Éter): a chave de identidade.escolhas e os atributos
+    function escolhaDoNo(r, chave) {
+      var e = r && r.escolha;
+      if (!e || !e.atributos) return null;
+      return { chave: chave, atributos: e.atributos.slice(), usado: e.atributos[e.i], trocado: e.trocado, motivo: motivoEscolha(e) };
     }
     // "= <conta> = <valor>", sem repetir quando a conta já é o valor
     function conta(num, v) { var fv = fmt(v); return num === fv || num === numTxt(v) ? '= ' + fv : '= ' + num + ' = ' + fv; }
@@ -139,7 +154,7 @@
         var r = aval(x.no, amb, D);
         return { rotulo: r.sim, fonte: r.fontes[0] || { tipo: 'regra', id: x.no.fo, nome: 'contrato' },
           op: x.no.t === 'op' || x.no.t === 'fn' || x.no.t === 'esc' || x.no.t === 'ref' || x.no.t === 'num' ? 'soma' : 'formula',
-          valor: r.v == null ? null : x.sinal * r.v, ativo: true, motivo: r.escolha && r.escolha.trocado ? 'atributo trocado à mão (D7)' : '',
+          valor: r.v == null ? null : x.sinal * r.v, ativo: true, motivo: motivoEscolha(r.escolha),
           status: r.st };
       });
     }
@@ -339,12 +354,14 @@
         var esc = f.periciasAttr && f.periciasAttr[p.id];
         if (p.atributos.indexOf(esc) >= 0) attr = esc;
         else p.atributos.forEach(function (a) { if (attr === null || ctx.v('atributo.' + a + '.mod') > ctx.v('atributo.' + attr + '.mod')) attr = a; });
-        no.escolha = { atributos: p.atributos.slice(), usado: attr, trocado: attr === esc };
+        no.escolha = { chave: 'periciasAttr.' + p.id, atributos: p.atributos.slice(), usado: attr, trocado: attr === esc };
+        no.escolha.motivo = motivoEscolha({ trocado: no.escolha.trocado, usado: 'Mod.' + attr,
+          opcoes: p.atributos.map(function (a) { return 'Mod.' + a; }) });
       }
       if (attr) {
         var m = ctx.v('atributo.' + attr + '.mod');
         no.termos.push({ rotulo: 'Mod.' + attr, fonte: { tipo: 'no', id: 'atributo.' + attr + '.mod', nome: 'Mod.' + attr },
-          op: 'soma', valor: m, ativo: true, motivo: p.modo === 'maior' ? (no.escolha.trocado ? 'atributo trocado à mão (D7)' : 'o maior de ' + p.atributos.join('/') + ' (D7)') : '',
+          op: 'soma', valor: m, ativo: true, motivo: p.modo === 'maior' ? no.escolha.motivo : '',
           status: pior(D, p.modo === 'maior' ? p.stEscolha : p.st, stNo(ctx, 'atributo.' + attr + '.mod')) });
         total += m;
         sim.push({ op: '', t: p.modo === 'maior' && !no.escolha.trocado ? 'maior(' + p.atributos.map(function (a) { return 'Mod.' + a; }).join(', ') + ')' : 'Mod.' + attr });
@@ -431,6 +448,8 @@
         return x;
       })() : null), escolha: escolhaAttr(ctx, 'attr.recurso.' + r) };
       var a = aval(rec.max, amb, D);
+      var escR = escolhaDoNo(a, 'attr.recurso.' + r);
+      if (escR) no.escolha = escR;
       if (!cl) {
         no.termos.push({ rotulo: NOME_COEF[k] + ' × Nível', fonte: { tipo: 'regra', id: rec.fo, nome: 'classe' }, op: 'soma', valor: null,
           ativo: false, motivo: 'classe não definida na ficha', status: rec.st });
@@ -588,6 +607,8 @@
       var D = ctx.D, no = novoNo('cd', 'CD'), cl = ctx.classe;
       if (!cl) { no.formula = { simbolica: 'CD da classe', numerica: '= ? (classe não definida)' }; return no; }
       var amb = { ref: ambBase(ctx), escolha: escolhaAttr(ctx, 'attr.cd') }, a = aval(cl.cd.ast, amb, D);
+      var escC = escolhaDoNo(a, 'attr.cd');
+      if (escC) no.escolha = escC;
       termosDaFormula(cl.cd.ast, amb, D).forEach(function (t) { no.termos.push(t); });
       var txt = { sim: [], num: [] }, mods = ctx.mods(['cd']);
       var v = a.v + somaMods(no, mods, ctx, [], txt);

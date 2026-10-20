@@ -179,8 +179,11 @@ test('render: selo em todo número não canônico, fonte de cada termo, ajuste m
     });
   });
   assert.ok(comSelo > 0, 'o exemplo tem números com selo');
-  // Movimento (perícia) é "maior" trocável (D7, decisão): selo visível ao lado do número
-  assert.match(html, /data-caminho="pericia\.movimento\.total">.*?<\/span><\/span><span class="kf3-selo kf3-selo-decisaoPedro"/);
+  // Movimento (perícia) é "maior" trocável (D7): regra fechada desde o 03 §10, SEM selo;
+  // a dica diz qual atributo valeu
+  const segMov = html.slice(html.indexOf('data-caminho="pericia.movimento.total"'));
+  assert.doesNotMatch(segMov.slice(0, segMov.indexOf('data-caminho=', 10)), /kf3-selo/);
+  assert.ok(ids[porCaminho['pericia.movimento.total']].includes('(usa o maior entre Mod.FOR e Mod.DES)'));
   // ajuste migrado: marcado no número, com o calculado ao lado e na lista de ajustes
   assert.match(html, /data-ajustado data-caminho="recurso\.saude\.max"/);
   assert.match(html, /<span class="kf3-calc">calc\. 20<\/span>/);

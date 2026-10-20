@@ -282,7 +282,14 @@ js/ficha/kh-edicao.js            KhEdicao (F4.6b), PURO: o que a edição muda. 
                                  opcoesRef (as do catálogo), e o ajuste M2: montaAjuste
                                  (Valor fixo ou Diferença, motivo, calculadoEm),
                                  mudancaAjuste, mudancaRemover (em lote), motivoNaoAjuste.
-                                 Sem DOM nem storage; edicao.test.js
+                                 Revisão de 2026-10-19 (03 §10, auditoria B): o atributo
+                                 das escolhas 'maior' (periciasAttr.<id>, escolha.attr.cd,
+                                 escolha.attr.recurso.<r>; attrsEscolha), a subespécie
+                                 (identidade.subespecie), a pendência do Ofício(X)
+                                 (migracao.oficio, pendenciaOficio) e o que ficou da raça
+                                 ou classe anterior (restos, mudancaRestos: avisa; remove
+                                 num passo só quando pedem). Sem DOM nem storage;
+                                 edicao.test.js e revisao-ficha.test.js
 js/ficha/kh-editor.js            KhEditor (F4.6b): a interface da edição, só com o Ensaio.
                                  criar({win, doc, raiz, modo 'pagina'|'drawer', lugar,
                                  contexto}): ouve os controles data-ed* (change, clique no
@@ -293,8 +300,11 @@ js/ficha/kh-editor.js            KhEditor (F4.6b): a interface da edição, só 
                                  desligado: expira na Mesa, F5). Ctrl+Z / Ctrl+Y no
                                  KhTeclas (captura), fora de campo de texto e da ficha
                                  atual; no drawer, só com o foco nele. Página velha (o
-                                 Ensaio saiu): não grava e se acerta. Puras (htmlBarra,
-                                 htmlPop, htmlAjustes, linhasAjustes) no node
+                                 Ensaio saiu): não grava e se acerta. Com o botão do mouse
+                                 apertado, a barra só se redesenha ao soltar (o 1º clique em
+                                 Desfazer depois de digitar desfaz); a mensagem da troca de
+                                 raça/classe traz "Remover o que era de <anterior>". Puras
+                                 (htmlBarra, htmlPop, htmlAjustes, linhasAjustes) no node
 js/ficha/kh-levar.js             KhLevar (F4.6c): levar um card para a ficha ATIVA do
                                  Ensaio e o export do Bestiário, só com o Ensaio. Puras:
                                  refDoCard, payloadRef/lerRef (MIME application/x-khalkaria-
@@ -1122,6 +1132,19 @@ diz por quê na dica. O validador do armazém recusa ajuste em caminho de estado
 (`recurso.*.atual`). Sem o Ensaio, nada disso existe e o HTML é o de sempre.
 `tools/testes/edicao.test.js` (as puras e o log) e `ensaio.test.js` (a
 interface, com o armazenamento espião).
+
+Revisão do Pedro e auditoria (2026-10-19, `03 §10` e `08 §B`; "Como ficou" no
+`07` §3): a escolha do maior atributo (perícias de dois atributos, CD do
+Espadachim, Stamina e Éter) é regra fechada, sem selo (o `gerar_regras_ficha.py`
+põe `canonico` no nó `esc`), e a dica diz "usa o maior entre Mod.X e Mod.Y" ou
+"usa Mod.X (escolhido)"; no Ensaio, um seletor troca o atributo à mão
+(`periciasAttr` e `identidade.escolhas`). O box da variante mostra as
+subespécies do Inseto; Autômato e Corrompido dizem que não têm. Núcleo em duas
+colunas (Perícias e Capacidade | Recursos e Evasão, CD e Movimento); o drawer
+mantém a ordem dele pelo CSS. Marcas da Vhelor ocultas em todo modo até haver 1.
+O armazém recusa `__proto__`, `prototype` e `constructor` em qualquer segmento do
+caminho e marca `logLimpo` quando a falta de espaço apaga o desfazer da ficha
+ativa. `tools/testes/revisao-ficha.test.js`.
 
 **Levar para a ficha do ensaio e o export do Bestiário (F4.6c).**
 `js/ficha/kh-levar.js` (`KhLevar`), especificação em `07-f4-6-ensaio.md` §4.

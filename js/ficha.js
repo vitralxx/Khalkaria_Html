@@ -15,7 +15,7 @@
   'use strict';
   var DADOS = {
     "atributos": {"faixaAbsoluta":[1,30],"lista":["FOR","DES","CON","INT","SAB"],"mod":{"ast":{"args":[{"a":{"a":{"fo":"contrato:atributos.modificador.formula","ref":"attr","st":"canonico","t":"ref"},"b":{"fo":"contrato:atributos.modificador.formula","st":"canonico","t":"num","v":10},"fo":"contrato:atributos.modificador.formula","op":"-","st":"canonico","t":"op"},"b":{"fo":"contrato:atributos.modificador.formula","st":"canonico","t":"num","v":2},"fo":"contrato:atributos.modificador.formula","op":"/","st":"canonico","t":"op"}],"fn":"floor","fo":"contrato:atributos.modificador.formula","st":"canonico","t":"fn"},"fo":"contrato:atributos.modificador","st":"canonico"},"nomes":{"CON":"Constituição","DES":"Destreza","FOR":"Força","INT":"Inteligência","SAB":"Sabedoria"},"porNivel":{"fo":"contrato:atributos.ganhoPorNivel","niveis":[2,3,4,5],"pontos":2,"st":"canonico"}},
-    "classes": {"alquimista":{"G":6,"R":5,"V":4,"cd":{"ast":{"a":{"a":{"fo":"contrato:classes.alquimista.cd.formula","st":"canonico","t":"num","v":10},"b":{"fo":"contrato:classes.alquimista.cd.formula","ref":"mod.INT","st":"canonico","t":"ref"},"fo":"contrato:classes.alquimista.cd.formula","op":"+","st":"canonico","t":"op"},"b":{"fo":"contrato:classes.alquimista.cd.formula","ref":"mod.DES","st":"canonico","t":"ref"},"fo":"contrato:classes.alquimista.cd.formula","op":"+","st":"canonico","t":"op"},"fo":"contrato:classes.alquimista.cd","st":"canonico","texto":"10 + Mod. Inteligência + Mod. Destreza"},"fo":"data/classes/alquimista.json","id":"classe-alquimista","medidores":[{"fo":"contrato:classes.alquimista.recursos.0","id":"reagentes","max":{"a":{"a":{"fo":"contrato:classes.alquimista.recursos.0.max","ref":"nivel","st":"canonico","t":"ref"},"b":{"fo":"contrato:classes.alquimista.recursos.0.max","st":"canonico","t":"num","v":3},"fo":"contrato:classes.alquimista.recursos.0.max","op":"*","st":"canonico","t":"op"},"b":{"fo":"contrato:classes.alquimista.recursos.0.max","ref":"mod.INT","st":"canonico","t":"ref"},"fo":"contrato:classes.alquimista.recursos.0.max","op":"+","st":"canonico","t":"op"},"nome":"Reagentes","st":"canonico"}],"nome":"Alquimista","recursoDeClasse":null,"st":"canonico"},"artilheiro":{"G":7,"R":4,"V":4,"cd":{"ast":{"a":{"a":{"fo":"contrato:classes.artilheiro.cd.formula","st":"canonico","t":"num","v":10},"b":{"fo":"contrato:classes.artilheiro.cd.formula","ref":"mod.DES","st":"canonico","t":"ref"},"fo":"contrato:classes.artilheiro.cd.formula","op":"+","st":"canonico","t":"op"},"b":{"fo":"contrato:classes.artilheiro.cd.formula","ref":"mod.SAB","st":"canonico","t":"ref"},"fo":"contrato:classes.artilheiro.cd.formula","op":"+","st":"canonico","t":"op"},"fo":"contrato:classes.artilheiro.cd","st":"canonico","texto":"10 + Des + Sab"},"fo":"data/classes/artilheiro.json","id":"classe-artilheiro","medidores":[{"fo":"contrato:classes.artilheiro.recursos.0","id":"concentracao","max":{"a":{"fo":"contrato:classes.artilheiro.recursos.0.max","st":"canonico","t":"num","v":3},"b":{"fo":"contrato:classes.artilheiro.recursos.0.max","ref":"mod.SAB","st":"canonico","t":"ref"},"fo":"contrato:classes.artilheiro.recursos.0.max","op":"+","st":"canonico","t":"op"},"nome":"Concentracao","st":"canonico"}],"nome":"Artilheiro","recursoDeClasse":null,"st":"canonico"},"batedor":{"G":7,"R":4,"V":4,"cd":{"ast":{"a":{"a":{"fo":"contrato:classes.batedor.cd.formula","st":"canonico","t":"num","v":10},"b":{"fo":"contrato:classes.batedor.cd.formula","ref":"mod.DES","st":"canonico","t":"ref"},"fo":"contrato:classes.batedor.cd.formula","op":"+","st":"canonico","t":"op"},"b":{"fo":"contrato:classes.batedor.cd.formula","ref":"mod.SAB","st":"canonico","t":"ref"},"fo":"contrato:classes.batedor.cd.formula","op":"+","st":"canonico","t":"op"},"fo":"contrato:classes.batedor.cd","st":"canonico","texto":"10 + Mod. Destreza + Mod. Sabedoria"},"fo":"data/classes/batedor.json","id":"classe-batedor","medidores":[{"fo":"contrato:classes.batedor.recursos.0","id":"instinto","max":{"fo":"contrato:classes.batedor.recursos.0.max","st":"canonico-mas-em-rework","t":"num","v":5},"nome":"Instinto","st":"canonico-mas-em-rework"}],"nome":"Batedor","recursoDeClasse":null,"st":"canonico"},"brutalista":{"G":4,"R":3,"V":8,"cd":{"ast":{"a":{"a":{"fo":"contrato:classes.brutalista.cd.formula","st":"canonico","t":"num","v":10},"b":{"fo":"contrato:classes.brutalista.cd.formula","ref":"mod.FOR","st":"canonico","t":"ref"},"fo":"contrato:classes.brutalista.cd.formula","op":"+","st":"canonico","t":"op"},"b":{"fo":"contrato:classes.brutalista.cd.formula","ref":"mod.CON","st":"canonico","t":"ref"},"fo":"contrato:classes.brutalista.cd.formula","op":"+","st":"canonico","t":"op"},"fo":"contrato:classes.brutalista.cd","st":"canonico","texto":"10 + Força + Constituição"},"fo":"data/classes/brutalista.json","id":"classe-brutalista","medidores":[{"fo":"contrato:classes.brutalista.recursos.0","id":"brutalidade","max":{"fo":"contrato:classes.brutalista.recursos.0.max","st":"canonico","t":"num","v":5},"nome":"Brutalidade","st":"canonico"}],"nome":"Brutalista","recursoDeClasse":null,"st":"canonico"},"espadachim":{"G":6,"R":3,"V":6,"cd":{"ast":{"a":{"a":{"fo":"contrato:classes.espadachim.cd.formula","st":"canonico","t":"num","v":10},"b":{"args":[{"fo":"contrato:classes.espadachim.cd.formula","ref":"mod.DES","st":"canonico","t":"ref"},{"fo":"contrato:classes.espadachim.cd.formula","ref":"mod.FOR","st":"canonico","t":"ref"}],"fo":"contrato:classes.espadachim.cd.modoEscolha","modo":"maior","st":"aprovado","t":"esc"},"fo":"contrato:classes.espadachim.cd.formula","op":"+","st":"canonico","t":"op"},"b":{"fo":"contrato:classes.espadachim.cd.formula","ref":"mod.CON","st":"canonico","t":"ref"},"fo":"contrato:classes.espadachim.cd.formula","op":"+","st":"canonico","t":"op"},"fo":"contrato:classes.espadachim.cd","st":"canonico","texto":"10 + (Destreza ou Força) + Constituição"},"fo":"data/classes/espadachim.json","id":"classe-espadachim","medidores":[],"nome":"Espadachim","recursoDeClasse":{"contador":false,"fo":"contrato:classes.espadachim.recursoDeClasse","itens":["Proficiência com Espadas","Marca do Duelo"],"nota":"Não é contador: a ficha não mostra contador livre. A Marca do Duelo já está em estados.","pergunta":null,"st":"canonico","tipo":"caracteristicas"},"st":"canonico"},"monge":{"G":5,"R":5,"V":5,"cd":{"ast":{"a":{"a":{"fo":"contrato:classes.monge.cd.formula","st":"canonico","t":"num","v":10},"b":{"fo":"contrato:classes.monge.cd.formula","ref":"mod.DES","st":"canonico","t":"ref"},"fo":"contrato:classes.monge.cd.formula","op":"+","st":"canonico","t":"op"},"b":{"fo":"contrato:classes.monge.cd.formula","ref":"mod.SAB","st":"canonico","t":"ref"},"fo":"contrato:classes.monge.cd.formula","op":"+","st":"canonico","t":"op"},"fo":"contrato:classes.monge.cd","st":"canonico","texto":"10 + Mod. Destreza + Mod. Sabedoria"},"fo":"data/classes/monge.json","id":"classe-monge","medidores":[{"fo":"contrato:classes.monge.recursos.0","id":"fluxo","max":{"fo":"contrato:classes.monge.recursos.0.max","st":"canonico","t":"num","v":5},"nome":"Fluxo","st":"canonico"}],"nome":"Monge","recursoDeClasse":null,"st":"canonico"},"teurgo":{"G":3,"R":9,"V":3,"cd":{"ast":{"a":{"a":{"fo":"contrato:classes.teurgo.cd.formula","st":"canonico","t":"num","v":10},"b":{"fo":"contrato:classes.teurgo.cd.formula","ref":"mod.INT","st":"canonico","t":"ref"},"fo":"contrato:classes.teurgo.cd.formula","op":"+","st":"canonico","t":"op"},"b":{"fo":"contrato:classes.teurgo.cd.formula","ref":"mod.SAB","st":"canonico","t":"ref"},"fo":"contrato:classes.teurgo.cd.formula","op":"+","st":"canonico","t":"op"},"fo":"contrato:classes.teurgo.cd","st":"canonico","texto":"10 + Mod. Inteligência + Mod. Sabedoria"},"fo":"data/classes/teurgo.json","id":"classe-teurgo","medidores":[],"nome":"Teurgo","recursoDeClasse":{"contador":false,"fo":"contrato:classes.teurgo.recursoDeClasse","itens":["Escolas do Primórdio"],"nota":"2 escolas no nível 1, +1 no 3, +2 no 5 (Primordial exige nível 5); cada escola pede o Foco dela. O contador é o Éter.","pergunta":null,"st":"canonico","tipo":"caracteristicas"},"st":"canonico"}},
+    "classes": {"alquimista":{"G":6,"R":5,"V":4,"cd":{"ast":{"a":{"a":{"fo":"contrato:classes.alquimista.cd.formula","st":"canonico","t":"num","v":10},"b":{"fo":"contrato:classes.alquimista.cd.formula","ref":"mod.INT","st":"canonico","t":"ref"},"fo":"contrato:classes.alquimista.cd.formula","op":"+","st":"canonico","t":"op"},"b":{"fo":"contrato:classes.alquimista.cd.formula","ref":"mod.DES","st":"canonico","t":"ref"},"fo":"contrato:classes.alquimista.cd.formula","op":"+","st":"canonico","t":"op"},"fo":"contrato:classes.alquimista.cd","st":"canonico","texto":"10 + Mod. Inteligência + Mod. Destreza"},"fo":"data/classes/alquimista.json","id":"classe-alquimista","medidores":[{"fo":"contrato:classes.alquimista.recursos.0","id":"reagentes","max":{"a":{"a":{"fo":"contrato:classes.alquimista.recursos.0.max","ref":"nivel","st":"canonico","t":"ref"},"b":{"fo":"contrato:classes.alquimista.recursos.0.max","st":"canonico","t":"num","v":3},"fo":"contrato:classes.alquimista.recursos.0.max","op":"*","st":"canonico","t":"op"},"b":{"fo":"contrato:classes.alquimista.recursos.0.max","ref":"mod.INT","st":"canonico","t":"ref"},"fo":"contrato:classes.alquimista.recursos.0.max","op":"+","st":"canonico","t":"op"},"nome":"Reagentes","st":"canonico"}],"nome":"Alquimista","recursoDeClasse":null,"st":"canonico"},"artilheiro":{"G":7,"R":4,"V":4,"cd":{"ast":{"a":{"a":{"fo":"contrato:classes.artilheiro.cd.formula","st":"canonico","t":"num","v":10},"b":{"fo":"contrato:classes.artilheiro.cd.formula","ref":"mod.DES","st":"canonico","t":"ref"},"fo":"contrato:classes.artilheiro.cd.formula","op":"+","st":"canonico","t":"op"},"b":{"fo":"contrato:classes.artilheiro.cd.formula","ref":"mod.SAB","st":"canonico","t":"ref"},"fo":"contrato:classes.artilheiro.cd.formula","op":"+","st":"canonico","t":"op"},"fo":"contrato:classes.artilheiro.cd","st":"canonico","texto":"10 + Des + Sab"},"fo":"data/classes/artilheiro.json","id":"classe-artilheiro","medidores":[{"fo":"contrato:classes.artilheiro.recursos.0","id":"concentracao","max":{"a":{"fo":"contrato:classes.artilheiro.recursos.0.max","st":"canonico","t":"num","v":3},"b":{"fo":"contrato:classes.artilheiro.recursos.0.max","ref":"mod.SAB","st":"canonico","t":"ref"},"fo":"contrato:classes.artilheiro.recursos.0.max","op":"+","st":"canonico","t":"op"},"nome":"Concentracao","st":"canonico"}],"nome":"Artilheiro","recursoDeClasse":null,"st":"canonico"},"batedor":{"G":7,"R":4,"V":4,"cd":{"ast":{"a":{"a":{"fo":"contrato:classes.batedor.cd.formula","st":"canonico","t":"num","v":10},"b":{"fo":"contrato:classes.batedor.cd.formula","ref":"mod.DES","st":"canonico","t":"ref"},"fo":"contrato:classes.batedor.cd.formula","op":"+","st":"canonico","t":"op"},"b":{"fo":"contrato:classes.batedor.cd.formula","ref":"mod.SAB","st":"canonico","t":"ref"},"fo":"contrato:classes.batedor.cd.formula","op":"+","st":"canonico","t":"op"},"fo":"contrato:classes.batedor.cd","st":"canonico","texto":"10 + Mod. Destreza + Mod. Sabedoria"},"fo":"data/classes/batedor.json","id":"classe-batedor","medidores":[{"fo":"contrato:classes.batedor.recursos.0","id":"instinto","max":{"fo":"contrato:classes.batedor.recursos.0.max","st":"canonico-mas-em-rework","t":"num","v":5},"nome":"Instinto","st":"canonico-mas-em-rework"}],"nome":"Batedor","recursoDeClasse":null,"st":"canonico"},"brutalista":{"G":4,"R":3,"V":8,"cd":{"ast":{"a":{"a":{"fo":"contrato:classes.brutalista.cd.formula","st":"canonico","t":"num","v":10},"b":{"fo":"contrato:classes.brutalista.cd.formula","ref":"mod.FOR","st":"canonico","t":"ref"},"fo":"contrato:classes.brutalista.cd.formula","op":"+","st":"canonico","t":"op"},"b":{"fo":"contrato:classes.brutalista.cd.formula","ref":"mod.CON","st":"canonico","t":"ref"},"fo":"contrato:classes.brutalista.cd.formula","op":"+","st":"canonico","t":"op"},"fo":"contrato:classes.brutalista.cd","st":"canonico","texto":"10 + Força + Constituição"},"fo":"data/classes/brutalista.json","id":"classe-brutalista","medidores":[{"fo":"contrato:classes.brutalista.recursos.0","id":"brutalidade","max":{"fo":"contrato:classes.brutalista.recursos.0.max","st":"canonico","t":"num","v":5},"nome":"Brutalidade","st":"canonico"}],"nome":"Brutalista","recursoDeClasse":null,"st":"canonico"},"espadachim":{"G":6,"R":3,"V":6,"cd":{"ast":{"a":{"a":{"fo":"contrato:classes.espadachim.cd.formula","st":"canonico","t":"num","v":10},"b":{"args":[{"fo":"contrato:classes.espadachim.cd.formula","ref":"mod.DES","st":"canonico","t":"ref"},{"fo":"contrato:classes.espadachim.cd.formula","ref":"mod.FOR","st":"canonico","t":"ref"}],"fo":"contrato:classes.espadachim.cd.modoEscolha","modo":"maior","st":"canonico","t":"esc"},"fo":"contrato:classes.espadachim.cd.formula","op":"+","st":"canonico","t":"op"},"b":{"fo":"contrato:classes.espadachim.cd.formula","ref":"mod.CON","st":"canonico","t":"ref"},"fo":"contrato:classes.espadachim.cd.formula","op":"+","st":"canonico","t":"op"},"fo":"contrato:classes.espadachim.cd","st":"canonico","texto":"10 + (Destreza ou Força) + Constituição"},"fo":"data/classes/espadachim.json","id":"classe-espadachim","medidores":[],"nome":"Espadachim","recursoDeClasse":{"contador":false,"fo":"contrato:classes.espadachim.recursoDeClasse","itens":["Proficiência com Espadas","Marca do Duelo"],"nota":"Não é contador: a ficha não mostra contador livre. A Marca do Duelo já está em estados.","pergunta":null,"st":"canonico","tipo":"caracteristicas"},"st":"canonico"},"monge":{"G":5,"R":5,"V":5,"cd":{"ast":{"a":{"a":{"fo":"contrato:classes.monge.cd.formula","st":"canonico","t":"num","v":10},"b":{"fo":"contrato:classes.monge.cd.formula","ref":"mod.DES","st":"canonico","t":"ref"},"fo":"contrato:classes.monge.cd.formula","op":"+","st":"canonico","t":"op"},"b":{"fo":"contrato:classes.monge.cd.formula","ref":"mod.SAB","st":"canonico","t":"ref"},"fo":"contrato:classes.monge.cd.formula","op":"+","st":"canonico","t":"op"},"fo":"contrato:classes.monge.cd","st":"canonico","texto":"10 + Mod. Destreza + Mod. Sabedoria"},"fo":"data/classes/monge.json","id":"classe-monge","medidores":[{"fo":"contrato:classes.monge.recursos.0","id":"fluxo","max":{"fo":"contrato:classes.monge.recursos.0.max","st":"canonico","t":"num","v":5},"nome":"Fluxo","st":"canonico"}],"nome":"Monge","recursoDeClasse":null,"st":"canonico"},"teurgo":{"G":3,"R":9,"V":3,"cd":{"ast":{"a":{"a":{"fo":"contrato:classes.teurgo.cd.formula","st":"canonico","t":"num","v":10},"b":{"fo":"contrato:classes.teurgo.cd.formula","ref":"mod.INT","st":"canonico","t":"ref"},"fo":"contrato:classes.teurgo.cd.formula","op":"+","st":"canonico","t":"op"},"b":{"fo":"contrato:classes.teurgo.cd.formula","ref":"mod.SAB","st":"canonico","t":"ref"},"fo":"contrato:classes.teurgo.cd.formula","op":"+","st":"canonico","t":"op"},"fo":"contrato:classes.teurgo.cd","st":"canonico","texto":"10 + Mod. Inteligência + Mod. Sabedoria"},"fo":"data/classes/teurgo.json","id":"classe-teurgo","medidores":[],"nome":"Teurgo","recursoDeClasse":{"contador":false,"fo":"contrato:classes.teurgo.recursoDeClasse","itens":["Escolas do Primórdio"],"nota":"2 escolas no nível 1, +1 no 3, +2 no 5 (Primordial exige nível 5); cada escola pede o Foco dela. O contador é o Éter.","pergunta":null,"st":"canonico","tipo":"caracteristicas"},"st":"canonico"}},
     "condicoes": {"adormecido":{"efeitos":[],"fo":"contrato:condicoes.adormecido","id":"adormecido","implica":[{"id":"exposto","modo":"separada"},{"id":"inconsciente","modo":"derivada"}],"nome":"Adormecido","st":"semStatus","tags":["mental"]},"agarrado":{"efeitos":[{"alvo":"atacarContraOAlvo","fo":"contrato:condicoes.agarrado.efeitos.0","op":"soma","st":"canonico","valor":2},{"alvo":"pericia.atacar","fo":"contrato:condicoes.agarrado.efeitos.1","op":"soma","st":"canonico","valor":-2}],"fo":"contrato:condicoes.agarrado","id":"agarrado","implica":[{"id":"enraizado","modo":"derivada"}],"nome":"Agarrado","st":"canonico","tags":["fisica"]},"amedrontado":{"efeitos":[{"alvo":"turno","fo":"contrato:condicoes.amedrontado.efeitos.0","op":"lembrete","st":"semStatus","valor":"gasta o turno fugindo da fonte"}],"fo":"contrato:condicoes.amedrontado","id":"amedrontado","nome":"Amedrontado","st":"semStatus","tags":["mental"]},"atordoado":{"efeitos":[{"alvo":"acoes","fo":"contrato:condicoes.atordoado.efeitos.0","op":"soma","st":"canonico","valor":-2},{"alvo":"evasao.passiva","fo":"contrato:condicoes.atordoado.efeitos.1","op":"soma","st":"canonico","valor":-2}],"fo":"contrato:condicoes.atordoado","id":"atordoado","nome":"Atordoado","st":"canonico","tags":["fisica","mental"]},"bebado":{"efeitos":[{"alvo":"faixaDeFalhaCritica","fo":"contrato:condicoes.bebado.efeitos.0","op":"fixa","st":"canonico","valor":"2 natural conta como falha critica"},{"alvo":"pericia.atacar","fo":"contrato:condicoes.bebado.efeitos.1","op":"soma","st":"canonico","valor":-2},{"alvo":"pericia.defender","fo":"contrato:condicoes.bebado.efeitos.2","op":"soma","st":"canonico","valor":-2},{"alvo":"pericia.movimento","fo":"contrato:condicoes.bebado.efeitos.3","op":"soma","st":"canonico","valor":-2},{"alvo":"pericia.reflexos","fo":"contrato:condicoes.bebado.efeitos.4","op":"soma","st":"canonico","valor":-2},{"alvo":"pericia.fortitude","fo":"contrato:condicoes.bebado.efeitos.5","op":"soma","st":"canonico","valor":-2},{"alvo":"pericia.vontade","fo":"contrato:condicoes.bebado.efeitos.6","op":"soma","st":"canonico","valor":-2}],"fo":"contrato:condicoes.bebado","id":"bebado","nome":"Bêbado","st":"canonico","tags":["fisica"]},"caido":{"efeitos":[{"alvo":"movimento","fo":"contrato:condicoes.caido.efeitos.0","op":"fixa","st":"semStatus","valor":1.5},{"alvo":"retaliar","fo":"contrato:condicoes.caido.efeitos.1","op":"semReacao","st":"semStatus"},{"alvo":"pericia.defender","fo":"contrato:condicoes.caido.efeitos.2","op":"soma","st":"semStatus","valor":-2}],"fo":"contrato:condicoes.caido","id":"caido","nome":"Caído","st":"semStatus","tags":["fisica"]},"cego":{"efeitos":[{"alvo":"pericia.percepcao","fo":"contrato:condicoes.cego.efeitos.0","op":"soma","st":"semStatus","valor":-5},{"alvo":"pericia.atacar","fo":"contrato:condicoes.cego.efeitos.1","op":"desvantagem","st":"semStatus"},{"alvo":"testesVisuais","fo":"contrato:condicoes.cego.efeitos.2","op":"falhaAuto","st":"semStatus"}],"fo":"contrato:condicoes.cego","id":"cego","nome":"Cego","st":"semStatus","tags":[]},"confuso":{"efeitos":[{"alvo":"acoes","fo":"contrato:condicoes.confuso.efeitos.0","op":"soma","st":"canonico","valor":-1}],"fo":"contrato:condicoes.confuso","id":"confuso","nome":"Confuso","st":"canonico","tags":["mental"]},"descontrolado":{"efeitos":[{"alvo":"turno","fo":"contrato:condicoes.descontrolado.efeitos.0","op":"lembrete","st":"semStatus","valor":"gasta o turno atacando a criatura mais proxima"}],"fo":"contrato:condicoes.descontrolado","id":"descontrolado","nome":"Descontrolado X","st":"semStatus","tags":["mental"],"x":{"inicial":"daFonte","tipo":"duracao"}},"desnutrido":{"efeitos":[{"alvo":"tag.fisica","fo":"contrato:condicoes.desnutrido.efeitos.0","op":"desvantagem","st":"canonico"},{"alvo":"custo.stamina","fo":"contrato:condicoes.desnutrido.efeitos.1","op":"multiplica","st":"canonico","valor":2},{"alvo":"recurso.saude.max","fo":"contrato:condicoes.desnutrido.efeitos.2","op":"soma","st":"canonico","valor":{"a":{"a":{"fo":"contrato:condicoes.desnutrido.efeitos.2","st":"canonico","t":"num","v":10},"fo":"contrato:condicoes.desnutrido.efeitos.2","st":"canonico","t":"neg"},"b":{"fo":"contrato:condicoes.desnutrido.efeitos.2","ref":"X","st":"canonico","t":"ref"},"fo":"contrato:condicoes.desnutrido.efeitos.2","op":"*","st":"canonico","t":"op"}}],"fo":"contrato:condicoes.desnutrido","id":"desnutrido","nome":"Desnutrido X","st":"canonico","tags":["fisica"],"x":{"inicial":1,"tipo":"intensidade"}},"desorientado":{"efeitos":[{"alvo":"pericia.atacar","fo":"contrato:condicoes.desorientado.efeitos.0","op":"soma","st":"canonico","valor":-2},{"alvo":"pericia.defender","fo":"contrato:condicoes.desorientado.efeitos.1","op":"soma","st":"canonico","valor":-2}],"fo":"contrato:condicoes.desorientado","id":"desorientado","nome":"Desorientado","st":"canonico","tags":["fisica"]},"desprevenido":{"efeitos":[{"alvo":"reagirAAtaques","fo":"contrato:condicoes.desprevenido.efeitos.0","op":"semReacao","st":"canonico"}],"fo":"contrato:condicoes.desprevenido","id":"desprevenido","implica":[{"id":"exposto","modo":"separada"}],"nome":"Desprevenido","st":"canonico","tags":[]},"em-chamas":{"efeitos":[{"alvo":"danoPorRodada","fo":"contrato:condicoes.em-chamas.efeitos.0","momento":"inicioTurnoAfetado","op":"soma","st":"canonico","tipoDano":"fogo","valor":{"faces":6,"fo":"contrato:condicoes.em-chamas.efeitos.0","n":1,"st":"canonico","t":"rolagem"}}],"fo":"contrato:condicoes.em-chamas","id":"em-chamas","nome":"Em Chamas","st":"canonico","tags":[]},"enfeiticado":{"efeitos":[{"alvo":"atacarQuemEnfeiticou","fo":"contrato:condicoes.enfeiticado.efeitos.0","op":"semAcao","st":"semStatus"},{"alvo":"tag.social","escopo":"contra quem enfeiticou","fo":"contrato:condicoes.enfeiticado.efeitos.1","op":"soma","st":"semStatus","valor":-5}],"fo":"contrato:condicoes.enfeiticado","id":"enfeiticado","nome":"Enfeitiçado","st":"semStatus","tags":["mental"]},"enjoado":{"efeitos":[{"alvo":"pericia.fortitude","fo":"contrato:condicoes.enjoado.efeitos.0","op":"soma","st":"semStatus","valor":-5},{"alvo":"evasao.passiva","fo":"contrato:condicoes.enjoado.efeitos.1","op":"soma","st":"semStatus","valor":-2}],"fo":"contrato:condicoes.enjoado","id":"enjoado","nome":"Enjoado","st":"semStatus","tags":["fisica"]},"enraizado":{"efeitos":[{"alvo":"movimento","fo":"contrato:condicoes.enraizado.efeitos.0","op":"fixa","st":"semStatus","valor":0}],"fo":"contrato:condicoes.enraizado","id":"enraizado","nome":"Enraizado","st":"semStatus","tags":["fisica"]},"envenenamento":{"efeitos":[{"alvo":"tag.fisica","fo":"contrato:condicoes.envenenamento.efeitos.0","op":"soma","st":"canonico","valor":-2},{"alvo":"danoPorRodada","fo":"contrato:condicoes.envenenamento.efeitos.1","momento":"inicioTurnoAfetado","op":"soma","st":"canonico","tipoDano":"biologico","valor":{"faces":6,"fo":"contrato:condicoes.envenenamento.efeitos.1","n":1,"st":"canonico","t":"rolagem"}}],"fo":"contrato:condicoes.envenenamento","id":"envenenamento","nome":"Envenenamento","st":"canonico","tags":["fisica"]},"exaurido":{"efeitos":[{"alvo":"todasAsPericias","fo":"contrato:condicoes.exaurido.efeitos.0","nota":"nao pode rolar pericias","op":"semAcao","st":"canonico"}],"entra":"recurso.stamina.atual <= 0","fo":"contrato:condicoes.exaurido","id":"exaurido","nome":"Exaurido","st":"canonico","tags":[]},"exaustao":{"cumulativa":true,"efeitos":[],"fo":"contrato:condicoes.exaustao","id":"exaustao","niveis":{"1":[{"alvo":"tag.fisica","fo":"contrato:condicoes.exaustao.niveis.1.0","op":"desvantagem","st":"canonico"}],"2":[{"alvo":"danoCausado","fo":"contrato:condicoes.exaustao.niveis.2.0","nota":"no dano FINAL, depois de dados e modificadores, com floor","op":"multiplica","st":"canonico","valor":0.5}],"3":[{"alvo":"todosOsTestes","fo":"contrato:condicoes.exaustao.niveis.3.0","op":"desvantagem","st":"canonico"},{"alvo":"movimento","fo":"contrato:condicoes.exaustao.niveis.3.1","op":"multiplica","st":"canonico","valor":0.5}],"4":[{"alvo":"atributos","fo":"contrato:condicoes.exaustao.niveis.4.0","op":"multiplica","st":"canonico","valor":0.5},{"alvo":"movimento","fo":"contrato:condicoes.exaustao.niveis.4.1","op":"fixa","st":"canonico","valor":0}],"5":[{"alvo":"estado","fo":"contrato:condicoes.exaustao.niveis.5.0","op":"fixa","st":"canonico","valor":"morte"}]},"nome":"Exaustão 1-5","st":"canonico","tags":[],"x":{"inicial":1,"max":5,"tipo":"nivel"}},"exposto":{"efeitos":[{"alvo":"proximoAtaqueQueAcertar","fo":"contrato:condicoes.exposto.efeitos.0","op":"fixa","st":"aprovado","valor":"critico"}],"fo":"contrato:condicoes.exposto","id":"exposto","nome":"Exposto","st":"aprovado","tags":[]},"inconsciente":{"efeitos":[{"alvo":"controle","fo":"contrato:condicoes.inconsciente.efeitos.0","op":"semAcao","st":"semStatus"},{"alvo":"tag.resistencia","fo":"contrato:condicoes.inconsciente.efeitos.1","op":"falhaAuto","st":"semStatus"}],"fo":"contrato:condicoes.inconsciente","id":"inconsciente","nome":"Inconsciente","st":"semStatus","tags":["mental"]},"invisivel":{"efeitos":[{"alvo":"pericia.furtividade","fo":"contrato:condicoes.invisivel.efeitos.0","op":"fixa","st":"semStatus","valor":"sucessoAutomatico"},{"alvo":"pericia.defender","fo":"contrato:condicoes.invisivel.efeitos.1","op":"soma","st":"semStatus","valor":5},{"alvo":"pericia.atacar","fo":"contrato:condicoes.invisivel.efeitos.2","op":"soma","st":"semStatus","valor":5}],"fo":"contrato:condicoes.invisivel","id":"invisivel","nome":"Invisível","st":"semStatus","tags":[]},"lento":{"efeitos":[{"alvo":"movimento","fo":"contrato:condicoes.lento.efeitos.0","op":"soma","st":"canonico","valor":{"a":{"a":{"fo":"contrato:condicoes.lento.efeitos.0","st":"canonico","t":"num","v":3},"fo":"contrato:condicoes.lento.efeitos.0","st":"canonico","t":"neg"},"b":{"fo":"contrato:condicoes.lento.efeitos.0","ref":"X","st":"canonico","t":"ref"},"fo":"contrato:condicoes.lento.efeitos.0","op":"*","st":"canonico","t":"op"}},{"alvo":"acoes","fo":"contrato:condicoes.lento.efeitos.1","op":"soma","st":"canonico","valor":{"a":{"a":{"fo":"contrato:condicoes.lento.efeitos.1","st":"canonico","t":"num","v":1},"fo":"contrato:condicoes.lento.efeitos.1","st":"canonico","t":"neg"},"b":{"fo":"contrato:condicoes.lento.efeitos.1","ref":"X","st":"canonico","t":"ref"},"fo":"contrato:condicoes.lento.efeitos.1","op":"*","st":"canonico","t":"op"}}],"fo":"contrato:condicoes.lento","id":"lento","nome":"Lento X","st":"canonico","tags":["fisica"],"x":{"inicial":"daFonte","inicialPadrao":1,"stPadrao":"decisao","tipo":"intensidade"}},"morrendo":{"efeitos":[{"alvo":"danoPorRodada","fo":"contrato:condicoes.morrendo.efeitos.0","mitigavel":false,"momento":"inicioTurnoAfetado","op":"soma","st":"canonico","tipoDano":"biologico","valor":{"args":[{"a":{"fo":"contrato:condicoes.morrendo.efeitos.0","ref":"recurso.saude.max","st":"canonico","t":"ref"},"b":{"fo":"contrato:condicoes.morrendo.efeitos.0","st":"canonico","t":"num","v":0.1},"fo":"contrato:condicoes.morrendo.efeitos.0","op":"*","st":"canonico","t":"op"}],"fn":"floor","fo":"contrato:condicoes.morrendo.efeitos.0","st":"canonico","t":"fn"}}],"entra":"recurso.saude.atual <= 0","fo":"contrato:condicoes.morrendo","id":"morrendo","implica":[{"id":"inconsciente","modo":"derivada"}],"nome":"Morrendo","st":"canonico","tags":[]},"oco":{"efeitos":[{"alvo":"recurso.eter","fo":"contrato:condicoes.oco.efeitos.0","gatilho":"aoFalharPericia","op":"soma","st":"canonico","valor":-5},{"alvo":"conjurar","fo":"contrato:condicoes.oco.efeitos.1","op":"semAcao","st":"canonico"}],"entra":"recurso.eter.atual <= 0","fo":"contrato:condicoes.oco","id":"oco","nome":"Oco","st":"canonico","tags":[]},"paralisado":{"efeitos":[{"alvo":"acoes","fo":"contrato:condicoes.paralisado.efeitos.0","op":"semAcao","st":"semStatus"},{"alvo":"reacoes","fo":"contrato:condicoes.paralisado.efeitos.1","op":"semReacao","st":"semStatus"},{"alvo":"tag.resistencia","fo":"contrato:condicoes.paralisado.efeitos.2","op":"falhaAuto","st":"semStatus"}],"fo":"contrato:condicoes.paralisado","id":"paralisado","implica":[{"id":"exposto","modo":"separada"}],"nome":"Paralisado","st":"semStatus","tags":["fisica"]},"sangramento":{"efeitos":[{"alvo":"danoRecebidoPorAcerto","escalaComX":true,"fo":"contrato:condicoes.sangramento.efeitos.0","op":"soma","st":"canonico","tipoDano":"biologico","valor":{"faces":4,"fo":"contrato:condicoes.sangramento.efeitos.0","n":"X","st":"canonico","t":"rolagem"}}],"fo":"contrato:condicoes.sangramento","id":"sangramento","nome":"Sangramento X","st":"canonico","tags":["fisica"],"x":{"inicial":1,"tipo":"pilha"}},"sobrepeso-extremo":{"efeitos":[{"alvo":"movimento","fo":"contrato:condicoes.sobrepeso-extremo.efeitos.0","op":"fixa","st":"canonico","valor":1.5},{"alvo":"tag.fisica","fo":"contrato:condicoes.sobrepeso-extremo.efeitos.1","op":"desvantagem","st":"canonico"}],"entra":"uso >= 2*capacidade","fo":"contrato:condicoes.sobrepeso-extremo","id":"sobrepeso-extremo","nome":"Sobrepeso Extremo","st":"canonico","tags":["fisica"]},"sobrepeso-leve":{"efeitos":[{"alvo":"movimento","fo":"contrato:condicoes.sobrepeso-leve.efeitos.0","op":"multiplica","st":"canonico","valor":0.5},{"alvo":"tag.fisica","fo":"contrato:condicoes.sobrepeso-leve.efeitos.1","op":"soma","st":"canonico","valor":-2}],"entra":"uso > capacidade && uso < 2*capacidade","fo":"contrato:condicoes.sobrepeso-leve","id":"sobrepeso-leve","nome":"Sobrepeso Leve","st":"canonico","tags":["fisica"]},"surdo":{"efeitos":[{"alvo":"pericia.percepcao","fo":"contrato:condicoes.surdo.efeitos.0","op":"soma","st":"semStatus","valor":-2},{"alvo":"testesAuditivos","fo":"contrato:condicoes.surdo.efeitos.1","op":"falhaAuto","st":"semStatus"}],"fo":"contrato:condicoes.surdo","id":"surdo","nome":"Surdo","st":"semStatus","tags":[]}},
     "contrato": {"rev":"2026-09-28 (rev. 10","schemaVersion":"regras-ficha/1.1"},
     "defesa": {"aeCategoria":{"fo":"contrato:derivados.armadura.aeCategoria","st":"canonico"},"aeMesmoTipo":{"fo":"contrato:derivados.armadura.aeMesmoTipo","modo":"soma","st":"canonico"},"aeTodos":{"cobre":["fogo","frio","eletrico","veneno","acido","psiquico","radiante","trovejante","necrotico"],"fo":"contrato:derivados.armadura.aeTodos","st":"canonico"},"arNatural":{"acumula":"soma","fo":"contrato:derivados.armadura.acumulaNatural","st":"canonico"},"categorias":{"biologico":["veneno","acido","psiquico"],"elemental":["fogo","frio","eletrico"],"mistico":["radiante","trovejante","necrotico"],"ordinario":["cortante","contundente","perfurante"],"outros":["forca","primordial"]},"categoriasFo":"contrato:dano.categorias","totalDeTipos":14},
@@ -23,22 +23,22 @@
     "duplicadosDeCondicao": ["contrato:derivados.evasao.modificadores.7","contrato:derivados.evasao.modificadores.8","contrato:derivados.movimento.fixos.0","contrato:derivados.movimento.fixos.1","contrato:derivados.movimento.fixos.2","contrato:derivados.movimento.fixos.3","contrato:derivados.movimento.multiplicacoes.0","contrato:derivados.movimento.multiplicacoes.1","contrato:derivados.movimento.somas.6"],
     "empilhamento": {"entreCondicoes":"soma","fo":"contrato:empilhamento","mesmaCondicao":"renovaDuracao","mesmaCondicaoComX":"somaX","st":"canonico"},
     "fontes": {"abismo-esquiva-lendaria":[{"alvo":"evasao.passiva","extra":"+1 Reacao Maxima","fo":"contrato:derivados.evasao.modificadores.3","fonte":"abismo-esquiva-lendaria","op":"soma","st":"semStatus","valor":5}],"abismo-lenda-viva":[{"alvo":"acoes","fo":"contrato:derivados.progressaoDeAtaques.nRecalculaCom.3","fonte":"abismo-lenda-viva","op":"soma","st":"aprovado","valor":1}],"abismo-obvio":[{"alvo":"evasao.passiva","fo":"contrato:derivados.evasao.modificadores.4","fonte":"abismo-obvio","op":"soma","st":"semStatus","valor":-5}],"abismo-sem-membro":[{"alvo":"movimento","fo":"contrato:derivados.movimento.multiplicacoes.2","fonte":"abismo-sem-membro","op":"multiplica","st":"canonico","valor":0.5}],"artilheiro-maos-velozes":[{"alvo":"pma","condicao":"armas de arremesso","custo":"passiva (Vendaval T1)","fo":"contrato:derivados.progressaoDeAtaques.modificadoresConhecidos.2","fonte":"artilheiro-maos-velozes","op":"fixa","st":"aprovado","valor":-2}],"artilheiro-rajada-de-tiros":[{"alvo":"pma","custo":"Atacar(n) da arma de fogo (D101; 2 ações com as armas de fogo do Bazar), 3 Stamina","escopo":"2 ataques da tecnica","fo":"contrato:derivados.progressaoDeAtaques.modificadoresConhecidos.4","fonte":"artilheiro-rajada-de-tiros","op":"fixa","st":"aprovado","valor":0}],"artilheiro-tiro-duplo":[{"alvo":"pma","custo":"1 Acao, 3 Stamina, 2 Concentracao","escopo":"proximo ataque","fo":"contrato:derivados.progressaoDeAtaques.modificadoresConhecidos.3","fonte":"artilheiro-tiro-duplo","op":"fixa","st":"aprovado","valor":0}],"artilheiro-vendaval-de-aco":[{"alvo":"pma","custo":"2 Acoes, 5 Stamina","escopo":"3 ataques da tecnica","fo":"contrato:derivados.progressaoDeAtaques.modificadoresConhecidos.5","fonte":"artilheiro-vendaval-de-aco","op":"fixa","st":"aprovado","valor":0}],"automato-fibra-de-carbono":[{"alvo":"evasao.passiva","fo":"contrato:derivados.evasao.modificadores.1","fonte":"automato-fibra-de-carbono","op":"soma","st":"semStatus","valor":1}],"automato-suspensoes-lubrificadas":[{"alvo":"movimento","fo":"contrato:derivados.movimento.somas.1","fonte":"automato-suspensoes-lubrificadas","op":"soma","st":"canonico","valor":3}],"batedor-maos-rapidas":[{"alvo":"pma","custo":"2 Stamina, Reacao","escopo":"turno","fo":"contrato:derivados.progressaoDeAtaques.modificadoresConhecidos.0","fonte":"batedor-maos-rapidas","op":"soma","st":"aprovado","valor":2}],"corrompido-premonicao-eterica":[{"alvo":"evasao.passiva","dadoDefenderMinimo":"2d6","extra":"dado de Defender = 2d6 quando o dado do seu grau for menor (Leigo a Mestre); o Lendário mantém 2d8","fo":"contrato:derivados.evasao.modificadores.9","fonte":"corrompido-premonicao-eterica","op":"soma","st":"decisao","valor":1}],"dryad-cascaferro":[{"alvo":"evasao.passiva","fo":"contrato:derivados.evasao.modificadores.0","fonte":"dryad-cascaferro","op":"soma","st":"semStatus","valor":1}],"espadachim-oportunista":[{"alvo":"pma","custo":"5 Stamina, acao livre","escopo":"rodada","fo":"contrato:derivados.progressaoDeAtaques.modificadoresConhecidos.1","fonte":"espadachim-oportunista","op":"fixa","st":"aprovado","valor":-3}],"gruto-skal-ri":[{"alvo":"movimento","fo":"contrato:derivados.movimento.somas.0","fonte":"gruto-skal-ri","op":"soma","st":"canonico","valor":1.5}],"inseto-louva-a-deus":[{"alvo":"pma","escopo":"1 ataque 1d6, 1x/combate","fo":"contrato:derivados.progressaoDeAtaques.modificadoresConhecidos.7","fonte":"inseto-louva-a-deus","op":"fixa","st":"aprovado","valor":0}],"limiar-contra-magica-instintiva":[{"alvo":"cd","fo":"contrato:derivados.cd.modificadores.0","fonte":"limiar-contra-magica-instintiva","op":"soma","st":"canonico","valor":1}],"limiar-estudo-intenso":[{"alvo":"cd","fo":"contrato:derivados.cd.modificadores.1","fonte":"limiar-estudo-intenso","op":"soma","st":"canonico","valor":2}],"limiar-passos-do-vento":[{"alvo":"movimento","fo":"contrato:derivados.movimento.somas.4","fonte":"limiar-passos-do-vento","op":"soma","st":"canonico","valor":3}],"limiar-pernas-incansaveis":[{"alvo":"movimento","fo":"contrato:derivados.movimento.somas.3","fonte":"limiar-pernas-incansaveis","op":"soma","st":"canonico","valor":3}],"limiar-sombra-dancante":[{"alvo":"evasao.passiva","fo":"contrato:derivados.evasao.modificadores.2","fonte":"limiar-sombra-dancante","op":"soma","st":"semStatus","valor":1}],"magia-pressagio":[{"alvo":"pma","custo":"acao livre; se acertar, perde Eter = n de dados da arma (D70)","escopo":"proxima rolagem de Atacar no turno","fo":"contrato:derivados.progressaoDeAtaques.modificadoresConhecidos.6","fonte":"magia-pressagio","op":"fixa","st":"aprovado","valor":0}],"monge-evasivo":[{"alvo":"evasao.passiva","fo":"contrato:derivados.evasao.modificadores.5","fonte":"monge-evasivo","op":"soma","st":"semStatus","valor":"fluxo"}],"monge-explosao":[{"alvo":"movimento","fo":"contrato:derivados.movimento.multiplicacoes.3","fonte":"monge-explosao","op":"multiplica","st":"canonico","valor":2}]},
-    "graus": {"bonus":[0,2,4,6,8],"fo":"contrato:proficiencia","rotulos":["Leigo","Treinado","Experiente","Mestre","Lendario"],"st":"canonico"},
+    "graus": {"bonus":[0,2,4,6,8],"fo":"contrato:proficiencia","rotulos":["Leigo","Treinado","Experiente","Mestre","Lendário"],"st":"canonico"},
     "limiar": {"custoPorPosicao":[0,2,3,4,5],"especial":2,"fo":"contrato:progressao.limiar","niveis":[2,3,4,5],"pontosPorNivel":4,"st":"canonico"},
     "magia": {"custoBase":[0,2,4,6,8],"custoMinimo":{"excecoes":["nivel1-normal-sem-modulacao","magias-pactuadas-contida"],"fo":"contrato:magia.custoMinimo","st":"canonico","valor":1},"fo":"contrato:magia","focoPrimordial":{"nivel":5,"requisito":"Experiente em Mistico"},"intensidade":{"contida":-2,"forcada":2,"normal":0,"transbordante":4},"modulacaoEmTruquePrecoCheio":true,"modulacoes":{"abjuracao":{"acelerar":5,"ancorar":2,"refletir":3,"socializar":4},"alteracao":{"alcancar":3,"contagiar":3,"insistir":5,"inversao":2},"conhecimento":{"compartilhar":1,"exigir":2,"gravar":3,"projetar":2},"destruicao":{"alterar":3,"carregar":3,"fragmentar":3,"marcar":5}},"multiplicadores":[{"alvo":"stamina","fator":2,"fo":"contrato:multiplicadoresGlobaisDeCusto.fontes.0","fonte":"condicao:desnutrido","st":"canonico"},{"alvo":"eter","fator":2,"fo":"contrato:multiplicadoresGlobaisDeCusto.fontes.1","fonte":"abismo-mente-fraca","st":"canonico"}],"nivel1SemContida":true,"ordem":["contida","normal","forcada","transbordante"],"ordemCusto":["base por nivel","+ intensidade","+ soma das modulacoes","* multiplicadores","- descontos fixos","PISO = 1"],"porId":{"magia-absorver-contusao":{"escola":"alteracao","intensidades":["contida","normal","forcada","transbordante"],"nivel":4},"magia-acme":{"escola":"alteracao","intensidades":["transbordante"],"nivel":5},"magia-alarme":{"escola":"conhecimento","intensidades":["contida","normal","forcada","transbordante"],"nivel":2},"magia-anteparo-eterico":{"escola":"abjuracao","intensidades":["normal","forcada","transbordante"],"nivel":1},"magia-apoteose-genetica":{"escola":"alteracao","intensidades":["transbordante"],"nivel":5},"magia-aprendiz-caotico":{"escola":"alteracao","intensidades":["contida","normal","forcada","transbordante"],"nivel":5},"magia-armadura-de-espinhos":{"escola":"abjuracao","intensidades":["contida","normal","forcada","transbordante"],"nivel":4},"magia-armadura-de-kha":{"escola":"abjuracao","intensidades":["contida","normal","forcada","transbordante"],"nivel":5},"magia-armadura-do-oblivio":{"escola":"abjuracao","intensidades":["contida","normal","forcada","transbordante"],"nivel":2},"magia-aumentar-diminuir-criatura":{"escola":"abjuracao","intensidades":["normal"],"nivel":3},"magia-barreira-de-energia":{"escola":"abjuracao","intensidades":["contida","normal","forcada","transbordante"],"nivel":3},"magia-caco-esquecido":{"escola":"conhecimento","intensidades":["contida","normal","forcada","transbordante"],"nivel":4},"magia-caveiras-explosivas":{"escola":"destruicao","intensidades":["contida","normal","forcada","transbordante"],"nivel":3},"magia-centelha":{"escola":"destruicao","intensidades":["normal","forcada","transbordante"],"nivel":1},"magia-cometa-do-martir":{"escola":"destruicao","intensidades":["transbordante"],"nivel":5},"magia-confissao-do-eter":{"escola":"conhecimento","intensidades":["transbordante"],"nivel":4},"magia-confundir-sentidos":{"escola":"alteracao","intensidades":["contida","normal","forcada","transbordante"],"nivel":3},"magia-contramedida":{"escola":"abjuracao","intensidades":["normal","forcada","transbordante"],"nivel":4},"magia-dadiva-de-kha":{"escola":"conhecimento","intensidades":["transbordante"],"nivel":5},"magia-dardo-arcano":{"escola":"destruicao","intensidades":["contida","normal","forcada","transbordante"],"nivel":2},"magia-dedo-mistico":{"escola":"alteracao","intensidades":["normal","forcada","transbordante"],"nivel":1},"magia-detectar-magia":{"escola":"conhecimento","intensidades":["contida","normal","forcada","transbordante"],"nivel":2},"magia-disfarce-ilusorio":{"escola":"alteracao","intensidades":["contida","normal","forcada","transbordante"],"nivel":2},"magia-disparo-veloz":{"escola":"destruicao","intensidades":["normal"],"nivel":4},"magia-dissipar-magia":{"escola":"abjuracao","intensidades":["normal"],"nivel":3},"magia-eco-do-apocalipse":{"escola":"destruicao","intensidades":["contida","normal","forcada","transbordante"],"nivel":5},"magia-emprestimo-natural":{"escola":"conhecimento","intensidades":["contida","normal","forcada","transbordante"],"nivel":3},"magia-enraizar":{"escola":"alteracao","intensidades":["contida","normal","forcada","transbordante"],"nivel":3},"magia-entender-ser":{"escola":"conhecimento","intensidades":["normal"],"nivel":2},"magia-escudo-telecinetico":{"escola":"abjuracao","intensidades":["contida","normal","forcada","transbordante"],"nivel":2},"magia-estimulante-mistico":{"escola":"alteracao","intensidades":["contida","normal","forcada","transbordante"],"nivel":2},"magia-exilio-existencial":{"escola":"abjuracao","intensidades":["transbordante"],"nivel":5},"magia-fagulha":{"escola":"destruicao","intensidades":["normal","forcada","transbordante"],"nivel":1},"magia-farejar-elemento":{"escola":"conhecimento","intensidades":["normal","forcada","transbordante"],"nivel":1},"magia-fissura-da-alma":{"escola":"destruicao","intensidades":["transbordante"],"nivel":5},"magia-fragmento-estelar":{"escola":"destruicao","intensidades":["contida","normal","forcada","transbordante"],"nivel":4},"magia-fusao-de-corpos":{"escola":"alteracao","intensidades":["contida","normal","forcada","transbordante"],"nivel":5},"magia-historia-do-eter":{"escola":"conhecimento","intensidades":["contida","normal","forcada","transbordante"],"nivel":3},"magia-impulso-instintivo":{"escola":"conhecimento","intensidades":["normal"],"nivel":3},"magia-incinerar-area":{"escola":"destruicao","intensidades":["contida","normal","forcada","transbordante"],"nivel":2},"magia-invocar-tempestade":{"escola":"destruicao","intensidades":["contida","normal","forcada","transbordante"],"nivel":3},"magia-julgamento-de-kha":{"escola":"alteracao","intensidades":["contida","normal","forcada","transbordante"],"nivel":5},"magia-labia":{"escola":"alteracao","intensidades":["normal","forcada","transbordante"],"nivel":1},"magia-laco-da-uniao":{"escola":"abjuracao","intensidades":["contida","normal","forcada","transbordante"],"nivel":4},"magia-lanca-de-gelo":{"escola":"destruicao","intensidades":["contida","normal","forcada","transbordante"],"nivel":3},"magia-lastro":{"escola":"alteracao","intensidades":["normal","forcada","transbordante"],"nivel":1},"magia-limiar-perfurante":{"escola":"destruicao","intensidades":["contida","normal","forcada","transbordante"],"nivel":4},"magia-lingua-mistica":{"escola":"conhecimento","intensidades":["normal"],"nivel":2},"magia-maldicao-do-peso":{"escola":"alteracao","intensidades":["contida","normal","forcada","transbordante"],"nivel":2},"magia-mao-magica":{"escola":"alteracao","intensidades":["normal"],"nivel":2},"magia-mensagem":{"escola":"conhecimento","intensidades":["contida","normal","forcada","transbordante"],"nivel":2},"magia-necropsia-primordial":{"escola":"conhecimento","intensidades":["transbordante"],"nivel":5},"magia-olhos-de-malkhor":{"escola":"conhecimento","intensidades":["transbordante"],"nivel":5},"magia-onda-gravitacional":{"escola":"destruicao","intensidades":["contida","normal","forcada","transbordante"],"nivel":2},"magia-panico":{"escola":"conhecimento","intensidades":["contida","normal","forcada","transbordante"],"nivel":3},"magia-pele-de-camaleao":{"escola":"alteracao","intensidades":["contida","normal","forcada","transbordante"],"nivel":4},"magia-pele-de-pedra":{"escola":"alteracao","intensidades":["contida","normal","forcada","transbordante"],"nivel":3},"magia-personificar-elemento":{"escola":"abjuracao","intensidades":["contida","normal","forcada","transbordante"],"nivel":3},"magia-pestilencia":{"escola":"destruicao","intensidades":["contida","normal","forcada","transbordante"],"nivel":4},"magia-pestilencia-primordial":{"escola":"destruicao","intensidades":["contida","normal","forcada","transbordante"],"nivel":5},"magia-plasmar-terreno":{"escola":"alteracao","intensidades":["contida","normal","forcada","transbordante"],"nivel":4},"magia-ponto-cego":{"escola":"conhecimento","intensidades":["normal","forcada","transbordante"],"nivel":1},"magia-possessao-carnal":{"escola":"conhecimento","intensidades":["transbordante"],"nivel":5},"magia-presas-de-gelo":{"escola":"destruicao","intensidades":["normal","forcada","transbordante"],"nivel":1},"magia-presciencia":{"escola":"conhecimento","intensidades":["normal"],"nivel":1},"magia-pressagio":{"escola":"abjuracao","intensidades":["normal"],"nivel":1},"magia-projecao-astral":{"escola":"conhecimento","intensidades":["contida","normal","forcada","transbordante"],"nivel":4},"magia-purgatorio":{"escola":"conhecimento","intensidades":["contida","normal","forcada","transbordante"],"nivel":4},"magia-purificacao-mistica":{"escola":"abjuracao","intensidades":["contida","normal","forcada","transbordante"],"nivel":2},"magia-queda-suave":{"escola":"alteracao","intensidades":["contida","normal","forcada","transbordante"],"nivel":2},"magia-raio-eletrico":{"escola":"destruicao","intensidades":["contida","normal","forcada","transbordante"],"nivel":2},"magia-rajada-prismatica":{"escola":"destruicao","intensidades":["normal","forcada","transbordante"],"nivel":1},"magia-refugio-dos-perdidos":{"escola":"abjuracao","intensidades":["contida","normal","forcada","transbordante"],"nivel":4},"magia-rescaldo":{"escola":"abjuracao","intensidades":["normal","forcada","transbordante"],"nivel":1},"magia-reversao-primordial":{"escola":"abjuracao","intensidades":["transbordante"],"nivel":5},"magia-reversao-umbral":{"escola":"destruicao","intensidades":["transbordante"],"nivel":4},"magia-rosto-emprestado":{"escola":"alteracao","intensidades":["normal","forcada","transbordante"],"nivel":1},"magia-ruido-anti-magia":{"escola":"abjuracao","intensidades":["contida","normal","forcada","transbordante"],"nivel":4},"magia-santuario-menor":{"escola":"abjuracao","intensidades":["normal","forcada","transbordante"],"nivel":2},"magia-selo-do-oblivio":{"escola":"abjuracao","intensidades":["contida","normal","forcada","transbordante"],"nivel":5},"magia-sina":{"escola":"conhecimento","intensidades":["normal","forcada","transbordante"],"nivel":1},"magia-sinapsia-coletiva":{"escola":"conhecimento","intensidades":["contida","normal","forcada","transbordante"],"nivel":4},"magia-solo-sagrado":{"escola":"abjuracao","intensidades":["contida","normal","forcada","transbordante"],"nivel":2},"magia-sussurro-do-ambiente":{"escola":"conhecimento","intensidades":["contida","normal","forcada","transbordante"],"nivel":3},"magia-tecido-de-vytalia":{"escola":"conhecimento","intensidades":["transbordante"],"nivel":5},"magia-telepatia":{"escola":"abjuracao","intensidades":["contida","normal","forcada","transbordante"],"nivel":3},"magia-tempera":{"escola":"alteracao","intensidades":["normal","forcada","transbordante"],"nivel":1},"magia-tempestade-primordial":{"escola":"destruicao","intensidades":["contida","normal","forcada","transbordante"],"nivel":5},"magia-toque-caustico":{"escola":"destruicao","intensidades":["normal","forcada","transbordante"],"nivel":1},"magia-toque-gelido":{"escola":"destruicao","intensidades":["contida","normal","forcada","transbordante"],"nivel":2},"magia-transferir-condicao":{"escola":"alteracao","intensidades":["contida","normal","forcada","transbordante"],"nivel":4},"magia-transfigurar-arma":{"escola":"alteracao","intensidades":["contida","normal","forcada","transbordante"],"nivel":3},"magia-translocacao-arcana":{"escola":"alteracao","intensidades":["normal"],"nivel":3},"magia-ventania-bizarra":{"escola":"destruicao","intensidades":["contida","normal","forcada","transbordante"],"nivel":3},"magia-verdades-dolorosas":{"escola":"destruicao","intensidades":["contida","normal","forcada","transbordante"],"nivel":3},"magia-verniz-do-eter":{"escola":"abjuracao","intensidades":["normal","forcada","transbordante"],"nivel":1},"magia-vinculo-cosmico":{"escola":"abjuracao","intensidades":["normal","forcada","transbordante"],"nivel":1},"magia-vislumbre":{"escola":"conhecimento","intensidades":["transbordante"],"nivel":1},"magia-vytalia":{"escola":"abjuracao","intensidades":["normal","forcada","transbordante"],"nivel":5},"magia-xadrez":{"escola":"alteracao","intensidades":["normal"],"nivel":4}},"requisitos":{"regra":"Treinado em Místico + Foco da escola equipado","st":"aprovado","validar":"avisar"},"st":"canonico","subidaPorTecnica":{"pergunta":null,"st":"canonico"},"sustentada":{"maxAtivas":1,"st":"canonico"}},
     "morte": {"estadosFinais":[{"acao":"alertar","id":"exaustao-5","nota":null},{"acao":"alertar","id":"desnutrido-max-zero","nota":null},{"acao":"alertar","id":"saude-abaixo-metade-negativa","nota":null},{"acao":"alertar","id":"eter-metade-negativa","nota":"personagem vai para o mestre"}],"estadosFinaisFo":"contrato:morte.estadosFinais","estadosFinaisSt":"semStatus","fo":"contrato:morte.morrendo","limites":{"eter":{"fo":"contrato:recursos.eter.perdePersonagemEm","min":{"a":{"args":[{"a":{"fo":"contrato:recursos.eter.min","ref":"recurso.eter.max","st":"semStatus","t":"ref"},"b":{"fo":"contrato:recursos.eter.min","st":"semStatus","t":"num","v":2},"fo":"contrato:recursos.eter.min","op":"/","st":"semStatus","t":"op"}],"fn":"floor","fo":"contrato:recursos.eter.min","st":"semStatus","t":"fn"},"fo":"contrato:recursos.eter.min","st":"semStatus","t":"neg"},"st":"semStatus"},"saude":{"fo":"contrato:recursos.saude.morteEm","min":{"a":{"args":[{"a":{"fo":"contrato:recursos.saude.min","ref":"recurso.saude.max","st":"canonico","t":"ref"},"b":{"fo":"contrato:recursos.saude.min","st":"canonico","t":"num","v":2},"fo":"contrato:recursos.saude.min","op":"/","st":"canonico","t":"op"}],"fn":"floor","fo":"contrato:recursos.saude.min","st":"canonico","t":"fn"},"fo":"contrato:recursos.saude.min","st":"canonico","t":"neg"},"st":"canonico"}},"mitigavel":false,"st":"decisao","tique":{"args":[{"a":{"fo":"contrato:morte.morrendo.tick","ref":"recurso.saude.max","st":"decisao","t":"ref"},"b":{"fo":"contrato:morte.morrendo.tick","st":"decisao","t":"num","v":0.1},"fo":"contrato:morte.morrendo.tick","op":"*","st":"decisao","t":"op"}],"fn":"floor","fo":"contrato:morte.morrendo.tick","st":"decisao","t":"fn"}},
     "naoResolvidos": [{"id":"batedor-sexto-sentido","motivo":"F1b: habilidade do Instinto em data/classes/batedor.json (classe.recurso.habilidades, id batedor-sexto-sentido); fora do catálogo até virar card levável (F4)","onde":"derivados.evasao.modificadores"},{"id":"acao-acelerar","motivo":"ação do Sistema (Sua Rodada); a convenção não tem tipo 'acao': decisão na F1d","onde":"derivados.movimento.somas"},{"id":"escudo","motivo":"categoria de item (D62: 'todo escudo, sem exceção'), não uma entidade: resolve-se pela categoria do Bazar na F1d","onde":"derivados.movimento.somas"},{"id":"passo-tremulo","motivo":"F1b: é a adversidade Passo Trêmulo do Corrompido (-3 m de movimento), em data/racas/corrompido.json (raca.corrupcao.adversidades, id corrompido-passo-tremulo); vira alias quando a tabela de corrupção for entidade (tipo corrupcao, F4)","onde":"derivados.movimento.somas"}],
     "ordemStatus": ["canonico","canonicoParcial","aprovado","decisao","canonico-mas-em-rework","decisaoDoSite","pedroDecide","pendente","pendenteBalanceamento","semStatus"],
     "pendentesBalanceamento": ["tecnica-de-raca","medidor-minimo","medidor-inicio-recarga"],
-    "pericias": [{"atributos":["FOR","DES"],"fo":"contrato:pericias.0","id":"atacar","modo":"porArma","nome":"Atacar","st":"canonico","tags":["fisica"]},{"atributos":[],"dadoPorGrau":["1d6","1d8","1d10","1d12","2d8"],"fo":"contrato:pericias.1","id":"defender","modo":"dado","nome":"Defender","st":"canonico","tags":["fisica"]},{"atributos":["FOR","DES"],"fo":"data/pericias.json","foEscolha":"contrato:pericias.movimento.trocavelFonte (PD7)","id":"movimento","modo":"maior","nome":"Movimento","st":"canonico","stEscolha":"aprovado","tags":["fisica"]},{"atributos":["CON"],"fo":"data/pericias.json","id":"fortitude","modo":"fixo","nome":"Fortitude","st":"canonico","tags":["fisica","resistencia"]},{"atributos":["SAB"],"fo":"data/pericias.json","id":"vontade","modo":"fixo","nome":"Vontade","st":"canonico","tags":["resistencia"]},{"atributos":["DES"],"fo":"data/pericias.json","id":"reflexos","modo":"fixo","nome":"Reflexos","st":"canonico","tags":["fisica","resistencia"]},{"atributos":["SAB"],"fo":"data/pericias.json","id":"percepcao","modo":"fixo","nome":"Percepção","st":"canonico","tags":[]},{"atributos":["SAB"],"fo":"data/pericias.json","id":"sobrevivencia","modo":"fixo","nome":"Sobrevivência","st":"canonico","tags":[]},{"atributos":["DES"],"fo":"data/pericias.json","id":"furtividade","modo":"fixo","nome":"Furtividade","st":"canonico","tags":["fisica"]},{"atributos":["DES"],"fo":"data/pericias.json","id":"crime","modo":"fixo","nome":"Crime","st":"canonico","tags":["fisica"]},{"atributos":["DES"],"fo":"data/pericias.json","id":"iniciativa","modo":"fixo","nome":"Iniciativa","st":"canonico","tags":["fisica"]},{"atributos":["INT"],"fo":"data/pericias.json","id":"conhecimento","modo":"fixo","nome":"Conhecimento","st":"canonico","tags":[]},{"atributos":["INT"],"fo":"data/pericias.json","id":"medicina","modo":"fixo","nome":"Medicina","st":"canonico","tags":[]},{"atributos":["INT"],"fo":"data/pericias.json","id":"investigacao","modo":"fixo","nome":"Investigação","st":"canonico","tags":[]},{"atributos":["SAB"],"fo":"contrato:pericias.14","id":"religiao","modo":"fixo","nome":"Religião","st":"canonico","tags":[]},{"atributos":["INT"],"fo":"data/pericias.json","id":"mistico","modo":"fixo","nome":"Místico","st":"canonico","tags":[]},{"atributos":["DES","INT"],"fo":"data/pericias.json","foEscolha":"contrato:pericias.convencimento.trocavelFonte (PD7)","id":"convencimento","modo":"maior","nome":"Convencimento","st":"canonico","stEscolha":"aprovado","tags":["social"]},{"atributos":["CON","FOR"],"fo":"contrato:pericias.17","foEscolha":"contrato:pericias.intimidacao.trocavelFonte (PD7)","id":"intimidacao","modo":"maior","nome":"Intimidação","st":"canonico","stEscolha":"aprovado","tags":["fisica","social"]},{"atributos":["SAB"],"fo":"data/pericias.json","id":"intuicao","modo":"fixo","nome":"Intuição","st":"canonico","tags":[]},{"atributos":["DES","INT"],"fo":"data/pericias.json","foEscolha":"contrato:pericias.enganacao.trocavelFonte (PD7)","id":"enganacao","modo":"maior","nome":"Enganação","st":"canonico","stEscolha":"aprovado","tags":["social"]},{"atributos":["SAB"],"fo":"data/pericias.json","id":"motivar","modo":"fixo","nome":"Motivar","st":"canonico","tags":["social"]},{"atributos":["INT"],"exigeTreino":true,"fo":"contrato:pericias.21","id":"oficio-ferraria","modo":"fixo","nome":"Ofício(Ferraria)","st":"canonico","tags":[]},{"atributos":["INT"],"exigeTreino":true,"fo":"data/pericias.json","id":"oficio-engenharia","modo":"fixo","nome":"Ofício(Engenharia)","st":"canonico","tags":[]},{"atributos":["INT"],"exigeTreino":true,"fo":"data/pericias.json","id":"oficio-alquimia","modo":"fixo","nome":"Ofício(Alquimia)","st":"canonico","tags":[]}],
+    "pericias": [{"atributos":["FOR","DES"],"fo":"contrato:pericias.0","id":"atacar","modo":"porArma","nome":"Atacar","st":"canonico","tags":["fisica"]},{"atributos":[],"dadoPorGrau":["1d6","1d8","1d10","1d12","2d8"],"fo":"contrato:pericias.1","id":"defender","modo":"dado","nome":"Defender","st":"canonico","tags":["fisica"]},{"atributos":["FOR","DES"],"fo":"data/pericias.json","foEscolha":"contrato:pericias.movimento.trocavelFonte (PD7)","id":"movimento","modo":"maior","nome":"Movimento","st":"canonico","stEscolha":"canonico","tags":["fisica"]},{"atributos":["CON"],"fo":"data/pericias.json","id":"fortitude","modo":"fixo","nome":"Fortitude","st":"canonico","tags":["fisica","resistencia"]},{"atributos":["SAB"],"fo":"data/pericias.json","id":"vontade","modo":"fixo","nome":"Vontade","st":"canonico","tags":["resistencia"]},{"atributos":["DES"],"fo":"data/pericias.json","id":"reflexos","modo":"fixo","nome":"Reflexos","st":"canonico","tags":["fisica","resistencia"]},{"atributos":["SAB"],"fo":"data/pericias.json","id":"percepcao","modo":"fixo","nome":"Percepção","st":"canonico","tags":[]},{"atributos":["SAB"],"fo":"data/pericias.json","id":"sobrevivencia","modo":"fixo","nome":"Sobrevivência","st":"canonico","tags":[]},{"atributos":["DES"],"fo":"data/pericias.json","id":"furtividade","modo":"fixo","nome":"Furtividade","st":"canonico","tags":["fisica"]},{"atributos":["DES"],"fo":"data/pericias.json","id":"crime","modo":"fixo","nome":"Crime","st":"canonico","tags":["fisica"]},{"atributos":["DES"],"fo":"data/pericias.json","id":"iniciativa","modo":"fixo","nome":"Iniciativa","st":"canonico","tags":["fisica"]},{"atributos":["INT"],"fo":"data/pericias.json","id":"conhecimento","modo":"fixo","nome":"Conhecimento","st":"canonico","tags":[]},{"atributos":["INT"],"fo":"data/pericias.json","id":"medicina","modo":"fixo","nome":"Medicina","st":"canonico","tags":[]},{"atributos":["INT"],"fo":"data/pericias.json","id":"investigacao","modo":"fixo","nome":"Investigação","st":"canonico","tags":[]},{"atributos":["SAB"],"fo":"contrato:pericias.14","id":"religiao","modo":"fixo","nome":"Religião","st":"canonico","tags":[]},{"atributos":["INT"],"fo":"data/pericias.json","id":"mistico","modo":"fixo","nome":"Místico","st":"canonico","tags":[]},{"atributos":["DES","INT"],"fo":"data/pericias.json","foEscolha":"contrato:pericias.convencimento.trocavelFonte (PD7)","id":"convencimento","modo":"maior","nome":"Convencimento","st":"canonico","stEscolha":"canonico","tags":["social"]},{"atributos":["CON","FOR"],"fo":"contrato:pericias.17","foEscolha":"contrato:pericias.intimidacao.trocavelFonte (PD7)","id":"intimidacao","modo":"maior","nome":"Intimidação","st":"canonico","stEscolha":"canonico","tags":["fisica","social"]},{"atributos":["SAB"],"fo":"data/pericias.json","id":"intuicao","modo":"fixo","nome":"Intuição","st":"canonico","tags":[]},{"atributos":["DES","INT"],"fo":"data/pericias.json","foEscolha":"contrato:pericias.enganacao.trocavelFonte (PD7)","id":"enganacao","modo":"maior","nome":"Enganação","st":"canonico","stEscolha":"canonico","tags":["social"]},{"atributos":["SAB"],"fo":"data/pericias.json","id":"motivar","modo":"fixo","nome":"Motivar","st":"canonico","tags":["social"]},{"atributos":["INT"],"exigeTreino":true,"fo":"contrato:pericias.21","id":"oficio-ferraria","modo":"fixo","nome":"Ofício(Ferraria)","st":"canonico","tags":[]},{"atributos":["INT"],"exigeTreino":true,"fo":"data/pericias.json","id":"oficio-engenharia","modo":"fixo","nome":"Ofício(Engenharia)","st":"canonico","tags":[]},{"atributos":["INT"],"exigeTreino":true,"fo":"data/pericias.json","id":"oficio-alquimia","modo":"fixo","nome":"Ofício(Alquimia)","st":"canonico","tags":[]}],
     "racas": {"anao":{"alternativo":[{"opcoes":["INT"],"valor":1},{"opcoes":["DES"],"valor":1},{"opcoes":["FOR"],"valor":-1}],"arNatural":[{"fonte":"anao-caxon","nome":"Caxon","soma":false,"valor":3}],"atributos":[{"opcoes":["CON"],"valor":2},{"opcoes":["INT"],"valor":-1}],"fo":"data/racas/anao.json","id":"raca-anao","movimento":7.5,"nome":"Anão","nomes":{"anao-caxon":"Caxon","anao-krichama":"Krichama"},"st":"canonico","subespecies":{},"variantes":["anao-krichama","anao-caxon"]},"automato":{"alternativo":[{"opcoes":["CON"],"valor":2},{"opcoes":["INT"],"valor":-1}],"arNatural":[],"atributos":[{"opcoes":["INT"],"valor":2},{"opcoes":["SAB"],"valor":-1}],"fo":"data/racas/automato.json","id":"raca-automato","movimento":9,"nome":"Autômato","nomes":{},"st":"canonico","subespecies":{},"variantes":[]},"corrompido":{"alternativo":[{"opcoes":["DES"],"valor":2},{"opcoes":["CON","FOR"],"valor":-1}],"arNatural":[],"atributos":[{"opcoes":["INT","SAB"],"valor":2},{"opcoes":["CON","FOR"],"valor":-1}],"fo":"data/racas/corrompido.json","id":"raca-corrompido","movimento":9,"nome":"Corrompido","nomes":{},"st":"canonico","subespecies":{},"variantes":[]},"dryad":{"alternativo":[{"opcoes":["SAB","INT"],"valor":2},{"opcoes":["FOR","CON"],"valor":-1}],"arNatural":[{"fonte":"dryad-pele-de-casca","nome":"Pele de Casca","soma":false,"valor":2},{"fonte":"dryad-cascaferro","nome":"Cascaferro","soma":true,"valor":1}],"atributos":[{"opcoes":["DES","CON"],"valor":2},{"opcoes":["SAB","INT"],"valor":-1}],"fo":"data/racas/dryad.json","id":"raca-dryad","movimento":10.5,"nome":"Dryad","nomes":{"dryad-cascaferro":"Cascaferro","dryad-florescura":"Florescura"},"st":"canonico","subespecies":{},"variantes":["dryad-florescura","dryad-cascaferro"]},"gruto":{"alternativo":[{"opcoes":["DES","INT"],"valor":2},{"opcoes":["CON"],"valor":-1}],"arNatural":[{"fonte":"gruto-rokhan","nome":"Rokhan","soma":false,"valor":1}],"atributos":[{"opcoes":["FOR","CON"],"valor":2},{"opcoes":["INT"],"valor":-1}],"fo":"data/racas/gruto.json","id":"raca-gruto","movimento":9,"nome":"Gruto","nomes":{"gruto-rokhan":"Rokhan","gruto-skal-ri":"Skal'ri"},"st":"canonico","subespecies":{},"variantes":["gruto-rokhan","gruto-skal-ri"]},"humano":{"alternativo":[{"opcoes":["SAB"],"valor":2}],"arNatural":[],"atributos":[{"opcoes":"qualquer","quantidade":2,"valor":1}],"fo":"data/racas/humano.json","id":"raca-humano","movimento":9,"nome":"Humano","nomes":{"humano-estudioso":"Estudioso","humano-popular":"Popular","humano-rebelde":"Rebelde","humano-simples":"Simples"},"st":"canonico","subespecies":{},"variantes":["humano-simples","humano-estudioso","humano-rebelde","humano-popular"]},"inseto":{"alternativo":null,"arNatural":[{"fonte":"inseto-besouro","nome":"Besouro","soma":false,"valor":2}],"atributos":null,"fo":"data/racas/inseto.json","id":"raca-inseto","movimento":null,"nome":"Inseto","nomes":{"inseto-barata":"Barata","inseto-besouro":"Besouro","inseto-louva-a-deus":"Louva-a-Deus"},"st":"canonico","subespecies":{"inseto-barata":{"atributos":[{"opcoes":["DES"],"valor":2},{"opcoes":["SAB"],"valor":-1}],"movimento":10.5},"inseto-besouro":{"atributos":[{"opcoes":["CON"],"valor":2},{"opcoes":["INT"],"valor":-1}],"movimento":7.5},"inseto-louva-a-deus":{"atributos":[{"opcoes":["SAB"],"valor":2},{"opcoes":["CON"],"valor":-1}],"movimento":9}},"variantes":["inseto-besouro","inseto-louva-a-deus","inseto-barata"]}},
-    "recursos": {"base":{"eter":6,"saude":10,"stamina":8},"bonusRolados":{"cometa-do-martir":{"dado":"-1d6","modo":"rolaPorUso","recurso":"eter"},"dom-da-ressurreicao":{"modo":"valorFixo","recurso":"saude|stamina","valor":-10},"exigente":{"modo":"acumuladorPorEvento","recurso":"stamina,eter","valor":-1},"poco-arcano":{"dado":"2d6+8","modo":"rolaUmaVez","recurso":"eter"},"pulmoes-titanicos":{"dado":"3d12+8","modo":"rolaUmaVez","recurso":"saude"},"reservas-profundas":{"dado":"2d6+8","modo":"rolaUmaVez","recurso":"stamina"},"sangue-espesso":{"dado":"2d10+5","modo":"rolaUmaVez","recurso":"saude"}},"eter":{"fo":"contrato:recursos.eter.max","max":{"a":{"a":{"fo":"contrato:recursos.eter.max","st":"canonico","t":"num","v":6},"b":{"a":{"fo":"contrato:recursos.eter.max","ref":"classe.R","st":"canonico","t":"ref"},"b":{"fo":"contrato:recursos.eter.max","ref":"nivel","st":"canonico","t":"ref"},"fo":"contrato:recursos.eter.max","op":"*","st":"canonico","t":"op"},"fo":"contrato:recursos.eter.max","op":"+","st":"canonico","t":"op"},"b":{"a":{"args":[{"fo":"contrato:recursos.eter.max","ref":"mod.INT","st":"canonico","t":"ref"},{"fo":"contrato:recursos.eter.max","ref":"mod.SAB","st":"canonico","t":"ref"}],"fo":"contrato:recursos.eter.modoEscolha","modo":"maior","st":"aprovado","t":"esc"},"b":{"fo":"contrato:recursos.eter.max","ref":"nivel","st":"canonico","t":"ref"},"fo":"contrato:recursos.eter.max","op":"*","st":"canonico","t":"op"},"fo":"contrato:recursos.eter.max","op":"+","st":"canonico","t":"op"},"st":"canonico","trocavel":true},"ordemFo":"contrato:recursos.ordemMaximo","ordemMaximo":["base","coeficiente","modificador","bonusFixo","bonusRolado","percentual","reducaoPermanente","condicao","piso"],"ordemSt":"aprovado","saude":{"fo":"contrato:recursos.saude.max","max":{"a":{"a":{"fo":"contrato:recursos.saude.max","st":"canonico","t":"num","v":10},"b":{"a":{"fo":"contrato:recursos.saude.max","ref":"classe.V","st":"canonico","t":"ref"},"b":{"fo":"contrato:recursos.saude.max","ref":"nivel","st":"canonico","t":"ref"},"fo":"contrato:recursos.saude.max","op":"*","st":"canonico","t":"op"},"fo":"contrato:recursos.saude.max","op":"+","st":"canonico","t":"op"},"b":{"a":{"fo":"contrato:recursos.saude.max","ref":"mod.CON","st":"canonico","t":"ref"},"b":{"fo":"contrato:recursos.saude.max","ref":"nivel","st":"canonico","t":"ref"},"fo":"contrato:recursos.saude.max","op":"*","st":"canonico","t":"op"},"fo":"contrato:recursos.saude.max","op":"+","st":"canonico","t":"op"},"st":"canonico","trocavel":false},"stamina":{"fo":"contrato:recursos.stamina.max","max":{"a":{"a":{"fo":"contrato:recursos.stamina.max","st":"canonico","t":"num","v":8},"b":{"a":{"fo":"contrato:recursos.stamina.max","ref":"classe.G","st":"canonico","t":"ref"},"b":{"fo":"contrato:recursos.stamina.max","ref":"nivel","st":"canonico","t":"ref"},"fo":"contrato:recursos.stamina.max","op":"*","st":"canonico","t":"op"},"fo":"contrato:recursos.stamina.max","op":"+","st":"canonico","t":"op"},"b":{"a":{"args":[{"fo":"contrato:recursos.stamina.max","ref":"mod.FOR","st":"canonico","t":"ref"},{"fo":"contrato:recursos.stamina.max","ref":"mod.DES","st":"canonico","t":"ref"}],"fo":"contrato:recursos.stamina.modoEscolha","modo":"maior","st":"aprovado","t":"esc"},"b":{"fo":"contrato:recursos.stamina.max","ref":"nivel","st":"canonico","t":"ref"},"fo":"contrato:recursos.stamina.max","op":"*","st":"canonico","t":"op"},"fo":"contrato:recursos.stamina.max","op":"+","st":"canonico","t":"op"},"st":"canonico","trocavel":true},"temporario":{"acumula":"maior","fo":"contrato:recursos.temporario","recursos":["saude","stamina"],"st":"canonico"}},
+    "recursos": {"base":{"eter":6,"saude":10,"stamina":8},"bonusRolados":{"cometa-do-martir":{"dado":"-1d6","modo":"rolaPorUso","recurso":"eter"},"dom-da-ressurreicao":{"modo":"valorFixo","recurso":"saude|stamina","valor":-10},"exigente":{"modo":"acumuladorPorEvento","recurso":"stamina,eter","valor":-1},"poco-arcano":{"dado":"2d6+8","modo":"rolaUmaVez","recurso":"eter"},"pulmoes-titanicos":{"dado":"3d12+8","modo":"rolaUmaVez","recurso":"saude"},"reservas-profundas":{"dado":"2d6+8","modo":"rolaUmaVez","recurso":"stamina"},"sangue-espesso":{"dado":"2d10+5","modo":"rolaUmaVez","recurso":"saude"}},"eter":{"fo":"contrato:recursos.eter.max","max":{"a":{"a":{"fo":"contrato:recursos.eter.max","st":"canonico","t":"num","v":6},"b":{"a":{"fo":"contrato:recursos.eter.max","ref":"classe.R","st":"canonico","t":"ref"},"b":{"fo":"contrato:recursos.eter.max","ref":"nivel","st":"canonico","t":"ref"},"fo":"contrato:recursos.eter.max","op":"*","st":"canonico","t":"op"},"fo":"contrato:recursos.eter.max","op":"+","st":"canonico","t":"op"},"b":{"a":{"args":[{"fo":"contrato:recursos.eter.max","ref":"mod.INT","st":"canonico","t":"ref"},{"fo":"contrato:recursos.eter.max","ref":"mod.SAB","st":"canonico","t":"ref"}],"fo":"contrato:recursos.eter.modoEscolha","modo":"maior","st":"canonico","t":"esc"},"b":{"fo":"contrato:recursos.eter.max","ref":"nivel","st":"canonico","t":"ref"},"fo":"contrato:recursos.eter.max","op":"*","st":"canonico","t":"op"},"fo":"contrato:recursos.eter.max","op":"+","st":"canonico","t":"op"},"st":"canonico","trocavel":true},"ordemFo":"contrato:recursos.ordemMaximo","ordemMaximo":["base","coeficiente","modificador","bonusFixo","bonusRolado","percentual","reducaoPermanente","condicao","piso"],"ordemSt":"aprovado","saude":{"fo":"contrato:recursos.saude.max","max":{"a":{"a":{"fo":"contrato:recursos.saude.max","st":"canonico","t":"num","v":10},"b":{"a":{"fo":"contrato:recursos.saude.max","ref":"classe.V","st":"canonico","t":"ref"},"b":{"fo":"contrato:recursos.saude.max","ref":"nivel","st":"canonico","t":"ref"},"fo":"contrato:recursos.saude.max","op":"*","st":"canonico","t":"op"},"fo":"contrato:recursos.saude.max","op":"+","st":"canonico","t":"op"},"b":{"a":{"fo":"contrato:recursos.saude.max","ref":"mod.CON","st":"canonico","t":"ref"},"b":{"fo":"contrato:recursos.saude.max","ref":"nivel","st":"canonico","t":"ref"},"fo":"contrato:recursos.saude.max","op":"*","st":"canonico","t":"op"},"fo":"contrato:recursos.saude.max","op":"+","st":"canonico","t":"op"},"st":"canonico","trocavel":false},"stamina":{"fo":"contrato:recursos.stamina.max","max":{"a":{"a":{"fo":"contrato:recursos.stamina.max","st":"canonico","t":"num","v":8},"b":{"a":{"fo":"contrato:recursos.stamina.max","ref":"classe.G","st":"canonico","t":"ref"},"b":{"fo":"contrato:recursos.stamina.max","ref":"nivel","st":"canonico","t":"ref"},"fo":"contrato:recursos.stamina.max","op":"*","st":"canonico","t":"op"},"fo":"contrato:recursos.stamina.max","op":"+","st":"canonico","t":"op"},"b":{"a":{"args":[{"fo":"contrato:recursos.stamina.max","ref":"mod.FOR","st":"canonico","t":"ref"},{"fo":"contrato:recursos.stamina.max","ref":"mod.DES","st":"canonico","t":"ref"}],"fo":"contrato:recursos.stamina.modoEscolha","modo":"maior","st":"canonico","t":"esc"},"b":{"fo":"contrato:recursos.stamina.max","ref":"nivel","st":"canonico","t":"ref"},"fo":"contrato:recursos.stamina.max","op":"*","st":"canonico","t":"op"},"fo":"contrato:recursos.stamina.max","op":"+","st":"canonico","t":"op"},"st":"canonico","trocavel":true},"temporario":{"acumula":"maior","fo":"contrato:recursos.temporario","recursos":["saude","stamina"],"st":"canonico"}},
     "rotulosSelo": {"ajuste":"ajuste manual","avisoClasse":"classe em rework","decisaoPedro":"decisão do Pedro, falta Notion","pendenteBalanceamento":"PENDENTE (balanceamento)","pendentePedro":"PENDENTE PEDRO"},
     "schema": "regras-dados/1",
     "selos": {"ajuste":"ajuste","aprovado":"decisaoPedro","canonico":null,"canonico-mas-em-rework":"avisoClasse","canonicoParcial":null,"decisao":"decisaoPedro","decisaoDoSite":"pendentePedro","pedroDecide":"pendentePedro","pendente":"pendentePedro","pendenteBalanceamento":"pendenteBalanceamento","semStatus":"pendenteBalanceamento"},
     "testes": {"acumulam":false,"aplicaDefender":true,"cancelam":true,"criticoNoDadoUsado":true,"fo":"contrato:testes","st":"canonico"},
     "turno": {"acoes":3,"conjuracoes":1,"fo":"contrato:turno","pma":-5,"pmaSt":"canonico","reacoes":1,"st":"canonico"},
-    "versao": "regras-ficha/1.1+cd591d8ef0e1"
+    "versao": "regras-ficha/1.1+c8772942c302"
   };
   if (typeof module === 'object' && module && module.exports) {
     if (!Object.keys(module.exports).length) module.exports = DADOS;
@@ -1364,13 +1364,19 @@
     // a raiz do caminho que a edição não toca (identidade da ficha e o carimbo do armazém)
     var CAMINHO_PROIBIDO = /^(?:id|rev|schemaVersion|salvoEm|criadoEm|exportadoEm)(?:\.|$)/;
     var RE_CAMINHO = /^[A-Za-z][A-Za-z0-9_-]*(?:\.[A-Za-z0-9_-]+)*$/;
-    function caminhoEditavel(c) { return typeof c === 'string' && RE_CAMINHO.test(c) && !CAMINHO_PROIBIDO.test(c); }
+    // segmento que mexeria no protótipo (auditoria B): recusado em QUALQUER posição
+    var SEGMENTOS_PROIBIDOS = ['__proto__', 'prototype', 'constructor'];
+    function segmentoSeguro(k) { return SEGMENTOS_PROIBIDOS.indexOf(k) < 0; }
+    function caminhoEditavel(c) {
+      return typeof c === 'string' && RE_CAMINHO.test(c) && !CAMINHO_PROIBIDO.test(c) && c.split('.').every(segmentoSeguro);
+    }
     function pegaCaminho(f, c) {
       return str(c).split('.').reduce(function (a, k) { return a !== null && typeof a === 'object' && temPropria(a, k) ? a[k] : undefined; }, f);
     }
     // grava v no caminho (cria os objetos do meio); undefined apaga a chave
     function poeCaminho(f, c, v) {
       var ks = str(c).split('.'), o = f;
+      if (!ks.every(segmentoSeguro)) return;   // nunca no protótipo (o editar já recusa antes)
       for (var i = 0; i < ks.length - 1; i++) {
         if (!obj(o[ks[i]])) o[ks[i]] = {};
         o = o[ks[i]];
@@ -2047,6 +2053,9 @@
         partes.forEach(function (c) { poeCaminho(nova, c, depois[c]); });
         var g = gravar(nova);
         if (!g.ok) return g;
+        // faltou espaço e a limpeza apagou o log DESTA ficha: o desfazer recomeça
+        // daqui, e quem chamou avisa (auditoria B: antes, calado)
+        var logLimpo = lista(g.limpou).indexOf(CHAVES.log + id) >= 0;
         var passo = { rotulo: str(rotulo) || 'Edição', em: c.agora(), partes: partes, antes: antes, depois: depois,
           revPorParte: impressoes(nova, partes) };
         var l = lerLogNorm(id);
@@ -2055,7 +2064,7 @@
         aparaLog(l);
         var gl = gravaLogNorm(id, l);
         return { ok: true, mudou: true, rev: nova.rev, partes: partes, rotulo: passo.rotulo,
-          desfazivel: gl.ok && l.passos.indexOf(passo) >= 0, avisoLog: gl.ok ? null : gl.erro, limpou: g.limpou };
+          desfazivel: gl.ok && l.passos.indexOf(passo) >= 0, avisoLog: gl.ok ? null : gl.erro, limpou: g.limpou, logLimpo: logLimpo };
       }
       // desfaz (ou refaz) SÓ o topo da pilha, e só se cada caminho do passo
       // ainda está como o passo o deixou; senão recusa 'outra-aba' (outra aba,
@@ -2074,12 +2083,15 @@
         p.partes.forEach(function (k) { poeCaminho(nova, k, temPropria(p[valores], k) ? p[valores][k] : undefined); });
         var g = gravar(nova);
         if (!g.ok) return g;
-        l[de].pop();
+        // a limpeza apagou o log desta ficha para gravar: fica só o passo que andou
+        var logLimpo = lista(g.limpou).indexOf(CHAVES.log + id) >= 0;
+        if (logLimpo) l = { passos: [], refazer: [] };
+        else l[de].pop();
         l[para].push({ rotulo: p.rotulo, em: p.em, partes: p.partes, antes: p.antes, depois: p.depois,
           revPorParte: impressoes(nova, p.partes) });
         aparaLog(l);
         var gl = gravaLogNorm(id, l);
-        return { ok: true, rev: nova.rev, partes: p.partes.slice(), rotulo: p.rotulo, avisoLog: gl.ok ? null : gl.erro };
+        return { ok: true, rev: nova.rev, partes: p.partes.slice(), rotulo: p.rotulo, avisoLog: gl.ok ? null : gl.erro, logLimpo: logLimpo };
       }
       function desfazer(id) { return anda(id, 'passos', 'refazer', 'antes'); }
       function refazer(id) { return anda(id, 'refazer', 'passos', 'depois'); }
@@ -2393,7 +2405,7 @@
       exportarFicha: exportarFicha, pacoteTodas: pacoteTodas, lerImport: lerImport,
       sombra: sombra, armazem: armazem,
       // F4.6b: edição por caminho e o log de desfazer (o armazém usa)
-      LOG_TETO: LOG_TETO, LOG_BYTES: LOG_BYTES, caminhoEditavel: caminhoEditavel, pegaCaminho: pegaCaminho,
+      LOG_TETO: LOG_TETO, LOG_BYTES: LOG_BYTES, SEGMENTOS_PROIBIDOS: SEGMENTOS_PROIBIDOS, caminhoEditavel: caminhoEditavel, pegaCaminho: pegaCaminho,
       poeCaminho: poeCaminho, impressao: impressao, normalizaLog: normalizaLog, aparaLog: aparaLog, bytesLog: bytesLog,
       // F4.2 (escrita dupla e migração real): puras, ligadas só na F4.7
       projetarV2: projetarV2, conflitoV2: conflitoV2, reimportarV2: reimportarV2,
@@ -3002,7 +3014,7 @@
         case 'neg':
           r = aval(no.a, amb, D);
           return { v: r.v == null ? null : -r.v, sim: '−' + par(r.sim, r.p, 2.5), num: '−' + par(r.num, r.p, 2.5),
-            p: 2.5, st: pior(D, no.st, r.st), fontes: r.fontes };
+            p: 2.5, st: pior(D, no.st, r.st), fontes: r.fontes, escolha: r.escolha };
         case 'op': {
           var a = aval(no.a, amb, D), b = aval(no.b, amb, D);
           var p = no.op === '+' || no.op === '-' ? 1 : 2;
@@ -3018,7 +3030,7 @@
           if (negB) { numOp = ' − '; numB = negB[1] + numB.slice(negB[0].length); }
           return { v: v, sim: par(a.sim, a.p, p) + simb + par(b.sim, b.p, p, dir),
             num: par(a.num, a.p, p) + numOp + numB, p: p, st: pior(D, no.st, pior(D, a.st, b.st)),
-            fontes: a.fontes.concat(b.fontes) };
+            fontes: a.fontes.concat(b.fontes), escolha: a.escolha || b.escolha };
         }
         case 'fn': {
           var args = no.args.map(function (x) { return aval(x, amb, D); });
@@ -3026,12 +3038,13 @@
           var nulo = vs.some(function (x) { return x == null; });
           var st = args.reduce(function (s, x) { return pior(D, s, x.st); }, no.st);
           var fo = args.reduce(function (l, x) { return l.concat(x.fontes); }, []);
+          var escA = args.reduce(function (e, x) { return e || x.escolha; }, null);
           if (no.fn === 'floor') return { v: nulo ? null : Math.floor(vs[0] + 1e-9), sim: '⌊' + args[0].sim + '⌋',
-            num: '⌊' + args[0].num + '⌋', p: 3, st: st, fontes: fo };
+            num: '⌊' + args[0].num + '⌋', p: 3, st: st, fontes: fo, escolha: escA };
           var nome = no.fn === 'max' ? 'máx' : 'mín';
           return { v: nulo ? null : (no.fn === 'max' ? Math.max.apply(null, vs) : Math.min.apply(null, vs)),
             sim: nome + '(' + args.map(function (x) { return x.sim; }).join(', ') + ')',
-            num: nome + '(' + args.map(function (x) { return x.num; }).join(', ') + ')', p: 3, st: st, fontes: fo };
+            num: nome + '(' + args.map(function (x) { return x.num; }).join(', ') + ')', p: 3, st: st, fontes: fo, escolha: escA };
         }
         case 'esc': {
           var cs = no.args.map(function (x) { return aval(x, amb, D); });
@@ -3041,12 +3054,26 @@
             cs.forEach(function (c, j) { if (c.v != null && (cs[i].v == null || c.v > cs[i].v)) i = j; });
           }
           var c = cs[i];
+          // a escolha sobe pela conta (o termo e o nó dizem qual atributo valeu, 03 §10)
+          var ats = no.args.map(function (x) { var m = x.t === 'ref' && /^mod\.(\w+)$/.exec(x.ref); return m ? m[1] : null; });
           return { v: c.v, sim: trocado ? c.sim + ' (escolhido)' : 'maior(' + cs.map(function (x) { return x.sim; }).join(', ') + ')',
-            num: c.num, p: 3, st: pior(D, no.st, c.st), fontes: c.fontes, escolha: { i: i, trocado: !!trocado } };
+            num: c.num, p: 3, st: pior(D, no.st, c.st), fontes: c.fontes,
+            escolha: { i: i, trocado: !!trocado, opcoes: cs.map(function (x) { return x.sim; }), usado: c.sim,
+              atributos: ats.every(Boolean) ? ats : null } };
         }
         default:
           throw new Error('KhRegras: nó de fórmula "' + no.t + '" sem avaliação aqui');
       }
+    }
+    // o texto da escolha 'maior' entre atributos (D7, sem selo desde o 03 §10):
+    // "usa o maior entre Mod.FOR e Mod.DES" ou, trocado à mão, "usa Mod.FOR (escolhido)"
+    function entre(l) { return l.length < 2 ? l.join('') : l.slice(0, -1).join(', ') + ' e ' + l[l.length - 1]; }
+    function motivoEscolha(e) { return !e ? '' : e.trocado ? 'usa ' + e.usado + ' (escolhido)' : 'usa o maior entre ' + entre(e.opcoes); }
+    // a escolha no nó (CD, Stamina e Éter): a chave de identidade.escolhas e os atributos
+    function escolhaDoNo(r, chave) {
+      var e = r && r.escolha;
+      if (!e || !e.atributos) return null;
+      return { chave: chave, atributos: e.atributos.slice(), usado: e.atributos[e.i], trocado: e.trocado, motivo: motivoEscolha(e) };
     }
     // "= <conta> = <valor>", sem repetir quando a conta já é o valor
     function conta(num, v) { var fv = fmt(v); return num === fv || num === numTxt(v) ? '= ' + fv : '= ' + num + ' = ' + fv; }
@@ -3069,7 +3096,7 @@
         var r = aval(x.no, amb, D);
         return { rotulo: r.sim, fonte: r.fontes[0] || { tipo: 'regra', id: x.no.fo, nome: 'contrato' },
           op: x.no.t === 'op' || x.no.t === 'fn' || x.no.t === 'esc' || x.no.t === 'ref' || x.no.t === 'num' ? 'soma' : 'formula',
-          valor: r.v == null ? null : x.sinal * r.v, ativo: true, motivo: r.escolha && r.escolha.trocado ? 'atributo trocado à mão (D7)' : '',
+          valor: r.v == null ? null : x.sinal * r.v, ativo: true, motivo: motivoEscolha(r.escolha),
           status: r.st };
       });
     }
@@ -3269,12 +3296,14 @@
         var esc = f.periciasAttr && f.periciasAttr[p.id];
         if (p.atributos.indexOf(esc) >= 0) attr = esc;
         else p.atributos.forEach(function (a) { if (attr === null || ctx.v('atributo.' + a + '.mod') > ctx.v('atributo.' + attr + '.mod')) attr = a; });
-        no.escolha = { atributos: p.atributos.slice(), usado: attr, trocado: attr === esc };
+        no.escolha = { chave: 'periciasAttr.' + p.id, atributos: p.atributos.slice(), usado: attr, trocado: attr === esc };
+        no.escolha.motivo = motivoEscolha({ trocado: no.escolha.trocado, usado: 'Mod.' + attr,
+          opcoes: p.atributos.map(function (a) { return 'Mod.' + a; }) });
       }
       if (attr) {
         var m = ctx.v('atributo.' + attr + '.mod');
         no.termos.push({ rotulo: 'Mod.' + attr, fonte: { tipo: 'no', id: 'atributo.' + attr + '.mod', nome: 'Mod.' + attr },
-          op: 'soma', valor: m, ativo: true, motivo: p.modo === 'maior' ? (no.escolha.trocado ? 'atributo trocado à mão (D7)' : 'o maior de ' + p.atributos.join('/') + ' (D7)') : '',
+          op: 'soma', valor: m, ativo: true, motivo: p.modo === 'maior' ? no.escolha.motivo : '',
           status: pior(D, p.modo === 'maior' ? p.stEscolha : p.st, stNo(ctx, 'atributo.' + attr + '.mod')) });
         total += m;
         sim.push({ op: '', t: p.modo === 'maior' && !no.escolha.trocado ? 'maior(' + p.atributos.map(function (a) { return 'Mod.' + a; }).join(', ') + ')' : 'Mod.' + attr });
@@ -3361,6 +3390,8 @@
         return x;
       })() : null), escolha: escolhaAttr(ctx, 'attr.recurso.' + r) };
       var a = aval(rec.max, amb, D);
+      var escR = escolhaDoNo(a, 'attr.recurso.' + r);
+      if (escR) no.escolha = escR;
       if (!cl) {
         no.termos.push({ rotulo: NOME_COEF[k] + ' × Nível', fonte: { tipo: 'regra', id: rec.fo, nome: 'classe' }, op: 'soma', valor: null,
           ativo: false, motivo: 'classe não definida na ficha', status: rec.st });
@@ -3518,6 +3549,8 @@
       var D = ctx.D, no = novoNo('cd', 'CD'), cl = ctx.classe;
       if (!cl) { no.formula = { simbolica: 'CD da classe', numerica: '= ? (classe não definida)' }; return no; }
       var amb = { ref: ambBase(ctx), escolha: escolhaAttr(ctx, 'attr.cd') }, a = aval(cl.cd.ast, amb, D);
+      var escC = escolhaDoNo(a, 'attr.cd');
+      if (escC) no.escolha = escC;
       termosDaFormula(cl.cd.ast, amb, D).forEach(function (t) { no.termos.push(t); });
       var txt = { sim: [], num: [] }, mods = ctx.mods(['cd']);
       var v = a.v + somaMods(no, mods, ctx, [], txt);
@@ -7223,6 +7256,15 @@
  *   KhEdicao.opcoesRef(ctx, ficha, 'variante')      // as opções do seletor (ctx = KhFichaAbas.contexto)
  *   KhEdicao.montaAjuste(caminho, {modo, valor, motivo}, no, agora)
  *   KhEdicao.mudancaAjuste / mudancaRemover          // o caminho 'ajustes' inteiro
+ *   KhEdicao.restos(ficha, ctx, 'raca', anterior)    // o que ficou da raça/classe anterior (auditoria B)
+ *   KhEdicao.mudancaRestos(ficha, ctx, 'raca', anterior)  // "Remover o que era de <anterior>", num passo
+ *
+ * Campos que não são um caminho só (03 §10 e auditoria B, 2026-10-19):
+ *   'periciasAttr.<id>'      o atributo de uma perícia de dois (padrão: o maior; '' volta ao padrão)
+ *   'escolha.attr.cd' e 'escolha.attr.recurso.<stamina|eter>'  o atributo da CD/Stamina/Éter com
+ *                            escolha: grava o 'identidade.escolhas' inteiro (as chaves têm ponto)
+ *   'migracao.oficio'        a pendência do Ofício(X) da v2: o grau vai para o Ofício escolhido
+ *                            e a pendência fecha, no mesmo passo
  *
  * No node exporta por module.exports (carregado sozinho); no artefato js/ficha.js
  * o export já é o KhInv e este módulo só registra window.KhEdicao no navegador.
@@ -7241,9 +7283,17 @@
   var KhEdicao = (function () {
     var NOME_AT = { FOR: 'Força', DES: 'Destreza', CON: 'Constituição', INT: 'Inteligência', SAB: 'Sabedoria' };
     var RECURSOS = { saude: 'Saúde', stamina: 'Stamina', eter: 'Éter', classe: 'Recurso de Classe' };
-    var REFS = { raca: 'Raça', variante: 'Variante', classe: 'Classe', ramo: 'Ramo', origem: 'Origem' };
+    var REFS = { raca: 'Raça', variante: 'Variante', subespecie: 'Subespécie', classe: 'Classe', ramo: 'Ramo', origem: 'Origem' };
     // o tipo do catálogo de cada referência da identidade (classe e ramo vêm dos blocos de data/classes)
-    var TIPO_REF = { raca: 'raca', variante: 'variante', origem: 'origem' };
+    var TIPO_REF = { raca: 'raca', variante: 'variante', subespecie: 'subespecie', origem: 'origem' };
+    // a escolha do atributo (03 §10): a chave de identidade.escolhas -> o rótulo
+    var ESCOLHA_ATTR = { 'attr.cd': 'Atributo da CD', 'attr.recurso.stamina': 'Atributo da Stamina', 'attr.recurso.eter': 'Atributo do Éter' };
+    // o que é da raça e o que é da classe nas entradas (o campo do catálogo que diz de quem é)
+    var RESTO = { raca: { tipos: ['traco', 'tecnologia', 'variante', 'subespecie', 'corrupcao'], campo: 'raca', pre: 'raca-', artigo: 'da raça' },
+      classe: { tipos: ['tecnica', 'marca', 'ultimate'], campo: 'classe', pre: 'classe-', artigo: 'da classe' } };
+    var NOME_TIPO = { traco: 'traço', tecnologia: 'tecnologia', variante: 'variante', subespecie: 'subespécie', corrupcao: 'corrupção',
+      tecnica: 'técnica', marca: 'marca', ultimate: 'ultimate' };
+    var MAX_NOMES_RESTO = 6;
     var MAX_TEXTO = 80, MAX_LISTA = 400, MAX_LORE = 20000, MAX_MOTIVO = 120;
     var MAX_XP = 9999999, MAX_SINS = 999999999, MIN_REC = -9999, MAX_REC = 9999;
     // o valor do seletor da identidade que guarda o texto livre que veio da ficha atual (sem par)
@@ -7280,10 +7330,28 @@
     function sinal(n) { return typeof n === 'number' && n > 0 ? '+' + fmt(n) : fmt(n); }
     function pega(f, c) { return KhEstado.pegaCaminho(f, c); }
     function curto(s, n) { s = str(s); n = n || 32; return s.length > n ? s.slice(0, n - 1) + '…' : s; }
-    function D() { return KhRegras && KhRegras.dados ? KhRegras.dados() : {}; }
-    function nomePericia(id) {
-      var p = lista(D().pericias).filter(function (x) { return x.id === id; })[0];
-      return p ? str(p.nome) : id;
+    function D() { return KhRegras && KhRegras.dados ? KhRegras.dados() || {} : {}; }
+    function periciaD(id) { return lista(D().pericias).filter(function (x) { return x.id === id; })[0] || null; }
+    function nomePericia(id) { var p = periciaD(id); return p ? str(p.nome) : id; }
+    // os atributos da escolha 'maior' de uma fórmula (o nó 'esc' da AST do motor):
+    // 'attr.cd' (a CD da classe da ficha) e 'attr.recurso.<r>' (o máximo do recurso)
+    function attrsEscolha(ficha, chave) {
+      var d = D(), ast = null, m;
+      if (chave === 'attr.cd') {
+        var cl = chaveDe(refDe(ficha, 'classe').id, 'classe-');
+        ast = cl && obj(d.classes) && d.classes[cl] && d.classes[cl].cd ? d.classes[cl].cd.ast : null;
+      } else if ((m = /^attr\.recurso\.(saude|stamina|eter)$/.exec(str(chave)))) {
+        ast = obj(d.recursos) && d.recursos[m[1]] ? d.recursos[m[1]].max : null;
+      }
+      function acha(n) {
+        if (!obj(n)) return null;
+        if (n.t === 'esc') return n;
+        return acha(n.a) || acha(n.b) || lista(n.args).reduce(function (x, y) { return x || acha(y); }, null);
+      }
+      var e = acha(ast);
+      if (!e) return [];
+      var ats = lista(e.args).map(function (x) { var r = x && x.t === 'ref' && /^mod\.(\w+)$/.exec(x.ref); return r ? r[1] : null; });
+      return ats.every(Boolean) ? ats : [];
     }
     function rotuloGrau(g) {
       var r = lista(D().graus && D().graus.rotulos)[g];
@@ -7319,7 +7387,13 @@
       if (c === 'meta.jogador') return d({ tipo: 'texto', rotulo: 'Jogador', max: MAX_TEXTO });
       if (c === 'meta.nivel') return d({ tipo: 'inteiro', rotulo: 'Nível', min: 1, max: 5 });
       if (c === 'meta.xp') return d({ tipo: 'inteiro', rotulo: 'XP', min: 0, max: MAX_XP });
-      if ((m = /^identidade\.(raca|variante|classe|ramo|origem)$/.exec(c))) return d({ tipo: 'ref', ref: m[1], rotulo: REFS[m[1]] });
+      if ((m = /^identidade\.(raca|variante|subespecie|classe|ramo|origem)$/.exec(c))) return d({ tipo: 'ref', ref: m[1], rotulo: REFS[m[1]] });
+      if ((m = /^periciasAttr\.([a-z-]+)$/.exec(c))) {
+        var pa = periciaD(m[1]);
+        return pa && pa.modo === 'maior' ? d({ tipo: 'attr', rotulo: 'Atributo de ' + str(pa.nome), pericia: m[1], opcoes: lista(pa.atributos).slice() }) : null;
+      }
+      if ((m = /^escolha\.(attr\.(?:cd|recurso\.(?:stamina|eter)))$/.exec(c))) return d({ tipo: 'escolhaAttr', chave: m[1], rotulo: ESCOLHA_ATTR[m[1]] });
+      if (c === 'migracao.oficio') return d({ tipo: 'oficio', rotulo: 'Ofício(X) da ficha atual' });
       if ((m = /^atributos\.base\.(FOR|DES|CON|INT|SAB)$/.exec(c))) {
         return d({ tipo: 'inteiro', rotulo: NOME_AT[m[1]] + ' (base)', min: 1, max: 30, atributo: m[1] });
       }
@@ -7395,7 +7469,7 @@
     function opcoesRef(ctx, ficha, ref) {
       if (TIPO_REF[ref]) {
         var l = doTipo(ctx, TIPO_REF[ref]);
-        if (ref === 'variante') {
+        if (ref === 'variante' || ref === 'subespecie') {
           var r = chaveDe(refDe(ficha, 'raca').id, 'raca-');
           l = l.filter(function (x) { return !!r && x.raca === r; });
         }
@@ -7417,8 +7491,28 @@
     function opcoesCondicao(ctx) { return doTipo(ctx, 'condicao').map(function (x) { return { id: x.id, nome: x.nome }; }); }
     function chaveItem(x) { return obj(x) ? str(x.id || x.nome) : str(x); }
 
+    // a entrada do catálogo de uma referência da identidade: pelo id ou, sem id (o
+    // texto livre da v2), pelo nome, se ele é único no tipo (auditoria B: a de outra
+    // raça sem id não saía na troca)
+    function normaNome(s) { return semEmoji(s).toLowerCase(); }
+    function entradaRef(ctx, k, atual) {
+      if (!obj(ctx)) return null;
+      if (k === 'ramo') {
+        var rs = obj(ctx.ramos) ? ctx.ramos : {};
+        if (atual.id) return rs[atual.id] || null;
+        var pr = Object.keys(rs).filter(function (id) { return normaNome(rs[id].nome) === normaNome(atual.nome); });
+        return pr.length === 1 ? rs[pr[0]] : null;
+      }
+      if (!obj(ctx.porId)) return null;
+      if (atual.id) return ctx.porId[k + ':' + atual.id] || null;
+      var l = Object.keys(ctx.porId).filter(function (x) { return x.indexOf(k + ':') === 0 && normaNome(ctx.porId[x].nome) === normaNome(atual.nome); });
+      return l.length === 1 ? ctx.porId[l[0]] : null;
+    }
     // a mudança de uma referência; trocar a raça tira a variante (e a
-    // subespécie) de outra raça, trocar a classe tira o ramo de outra classe
+    // subespécie) de outra raça, trocar a classe tira o ramo de outra classe.
+    // A variante/o ramo sem id sai se o NOME é o de uma de outra raça/classe; o
+    // texto livre que não está no catálogo fica (não dá para saber de quem é).
+    // Trocar raça ou classe também diz o que ficou da anterior (restos), sem tirar.
     function mudancasRef(ficha, cp, bruto, ctx) {
       var id = str(bruto);
       if (id === MANTER) return { ok: true, mudancas: [], rotulo: '' };
@@ -7433,8 +7527,9 @@
         var r = chaveDe(valor.id, 'raca-');
         ['variante', 'subespecie'].forEach(function (k) {
           var atual = refDe(ficha, k);
-          if (!atual.id) return;
-          var e = obj(ctx) && obj(ctx.porId) ? ctx.porId[k + ':' + atual.id] : null;
+          if (!atual.id && !str(atual.nome).trim()) return;
+          var e = entradaRef(ctx, k, atual);
+          if (!atual.id && !e) return;
           if (e && str(e.raca) === r) return;
           out.push({ caminho: 'identidade.' + k, valor: { id: null, nome: '' } });
           avisos.push((k === 'variante' ? 'A variante ' : 'A subespécie ') + semEmoji(atual.nome || atual.id) + ' saiu: é de outra raça.');
@@ -7442,13 +7537,103 @@
       }
       if (cp.ref === 'classe') {
         var ramo = refDe(ficha, 'ramo'), c = chaveDe(valor.id, 'classe-');
-        var info = ramo.id && obj(ctx) && obj(ctx.ramos) ? ctx.ramos[ramo.id] : null;
-        if (ramo.id && !(info && info.classe === c)) {
+        var info = ramo.id || str(ramo.nome).trim() ? entradaRef(ctx, 'ramo', ramo) : null;
+        if ((ramo.id || info) && !(info && info.classe === c)) {
           out.push({ caminho: 'identidade.ramo', valor: { id: null, nome: '' } });
           avisos.push('O ramo ' + semEmoji(ramo.nome || ramo.id) + ' saiu: é de outra classe.');
         }
       }
-      return { ok: true, mudancas: out, rotulo: rotuloPasso(cp, valor), aviso: avisos.join(' ') };
+      var res = { ok: true, mudancas: out, rotulo: rotuloPasso(cp, valor), aviso: avisos.join(' ') };
+      var ant = refDe(ficha, cp.ref);
+      if ((cp.ref === 'raca' || cp.ref === 'classe') && ant.id && ant.id !== valor.id) {
+        var rr = restos(ficha, ctx, cp.ref, ant, valor.id);
+        if (rr.total) {
+          res.aviso = (res.aviso ? res.aviso + ' ' : '') + rr.texto;
+          res.restos = { campo: cp.ref, anterior: { id: ant.id, nome: semEmoji(ant.nome) || ant.id } };
+        }
+      }
+      return res;
+    }
+
+    // ---------------- o que ficou da raça ou classe anterior (auditoria B) ----------------
+    // As entradas do catálogo dela (técnicas, marcas e ultimates da classe;
+    // traços, tecnologias, variante e subespécie da raça), as escolhas de
+    // atributo da raça e o Recurso de Classe. Só AVISA; quem remove é o
+    // mudancaRestos, num passo, quando o jogador pede. A órfã (sem par no
+    // catálogo) nunca entra: não dá para saber de quem era.
+    // atual: o id da raça/classe de agora (padrão: o da ficha); a anterior igual a ela não tem resto.
+    function restos(ficha, ctx, k, anterior, atual) {
+      var R = RESTO[k], out = { itens: [], escolhas: [], recurso: false, total: 0, texto: '', nome: '' };
+      if (!R || !obj(anterior) || !anterior.id) return out;
+      var ch = chaveDe(anterior.id, R.pre);
+      out.nome = semEmoji(anterior.nome) || ch;
+      if (atual === undefined) atual = refDe(ficha, k).id;
+      if (!ch || chaveDe(atual, R.pre) === ch) return out;
+      lista(obj(ficha) ? ficha.entradas : null).forEach(function (e) {
+        if (!obj(e) || R.tipos.indexOf(e.tipo) < 0 || !e.id) return;
+        var c = obj(ctx) && obj(ctx.porId) ? ctx.porId[e.tipo + ':' + e.id] : null;
+        if (!c || str(c[R.campo]) !== ch) return;
+        out.itens.push({ uid: str(e.uid), tipo: e.tipo, nome: semEmoji(c.nome) || semEmoji(e.cache && e.cache.nome) || e.id });
+      });
+      var esc = obj(ficha) && obj(ficha.identidade) && obj(ficha.identidade.escolhas) ? ficha.identidade.escolhas : {};
+      if (k === 'raca') out.escolhas = Object.keys(esc).filter(function (x) { return x.indexOf('raca.') === 0; });
+      var rc = obj(ficha) && obj(ficha.recursos) && obj(ficha.recursos.classe) ? ficha.recursos.classe : null;
+      if (k === 'classe' && rc && (Number(rc.atual) || rc.id || str(rc.nome).trim())) out.recurso = true;
+      out.total = out.itens.length + out.escolhas.length + (out.recurso ? 1 : 0);
+      if (!out.total) return out;
+      var partes = out.itens.slice(0, MAX_NOMES_RESTO).map(function (x) { return x.nome + ' (' + NOME_TIPO[x.tipo] + ')'; });
+      if (out.itens.length > MAX_NOMES_RESTO) partes.push('mais ' + (out.itens.length - MAX_NOMES_RESTO));
+      if (out.escolhas.length) partes.push('a escolha de atributo da raça');
+      if (out.recurso) partes.push('o Recurso de Classe (atual ' + fmt(Number(rc.atual) || 0) + (str(rc.nome).trim() ? ', ' + semEmoji(rc.nome) : '') + ')');
+      out.texto = (out.total === 1 ? 'Ficou ' : 'Ficaram ') + R.artigo + ' anterior (' + out.nome + '): ' + partes.join(', ') + '.';
+      return out;
+    }
+    // "Remover o que era de <anterior>": um passo só (desfazível), nunca calado
+    function mudancaRestos(ficha, ctx, k, anterior) {
+      var rr = restos(ficha, ctx, k, anterior);
+      var nome = rr.nome || (obj(anterior) ? semEmoji(anterior.nome) || str(anterior.id) : '');
+      if (!rr.total) return { ok: false, erro: 'Nada a remover: não ficou nada ' + (RESTO[k] ? RESTO[k].artigo : '') + ' anterior (' + nome + ').' };
+      var fora = {}, out = [];
+      rr.itens.forEach(function (x) { fora[x.uid] = true; });
+      if (rr.itens.length) out.push({ caminho: 'entradas', valor: lista(ficha.entradas).filter(function (e) { return !(obj(e) && fora[str(e.uid)]); }) });
+      if (rr.escolhas.length) {
+        var esc = clone(ficha.identidade.escolhas);
+        rr.escolhas.forEach(function (x) { delete esc[x]; });
+        out.push({ caminho: 'identidade.escolhas', valor: esc });
+      }
+      if (rr.recurso) out.push({ caminho: 'recursos.classe', valor: { id: null, nome: '', atual: 0 } });
+      return { ok: true, mudancas: out, rotulo: 'Remover o que era de ' + nome + ' (' + rr.total + ')', removidos: rr };
+    }
+
+    // ---------------- a escolha do atributo (03 §10) e a pendência do Ofício ----------------
+    function mudancasAttr(ficha, cp, bruto) {
+      var v = str(bruto).trim().toUpperCase();
+      var ops = cp.tipo === 'attr' ? cp.opcoes : attrsEscolha(ficha, cp.chave);
+      if (!ops.length) return { ok: false, erro: cp.rotulo + ': não há escolha de atributo aqui.' };
+      if (v && ops.indexOf(v) < 0) return { ok: false, erro: cp.rotulo + ': escolha ' + ops.join(' ou ') + '.' };
+      var rot = cp.rotulo + ': ' + (v ? v + ' (escolhido)' : 'o maior');
+      if (cp.tipo === 'attr') return { ok: true, mudancas: [{ caminho: 'periciasAttr.' + cp.pericia, valor: v || undefined }], rotulo: rot };
+      var esc = obj(ficha) && obj(ficha.identidade) && obj(ficha.identidade.escolhas) ? clone(ficha.identidade.escolhas) : {};
+      if (v) esc[cp.chave] = v; else delete esc[cp.chave];
+      return { ok: true, mudancas: [{ caminho: 'identidade.escolhas', valor: esc }], rotulo: rot };
+    }
+    // a pendência do Ofício(X) genérico da v2 (a migração não escolhe qual dos três recebe o grau)
+    function pendenciaOficio(ficha) {
+      var l = lista(obj(ficha) && obj(ficha.migracao) ? ficha.migracao.pendencias : null);
+      for (var i = 0; i < l.length; i++) if (obj(l[i]) && l[i].campo === 'pericias.oficio') return { i: i, grau: Math.max(0, Math.min(4, Number(l[i].grau) || 0)) };
+      return null;
+    }
+    function oficios() { return KhEstado.PERICIAS.filter(function (p) { return /^oficio-/.test(p); }); }
+    function mudancasOficio(ficha, cp, bruto) {
+      var pd = pendenciaOficio(ficha), id = str(bruto);
+      if (!pd) return { ok: false, erro: 'Não há pendência do Ofício(X) nesta ficha.' };
+      if (!id) return { ok: true, mudancas: [], rotulo: '' };
+      if (oficios().indexOf(id) < 0) return { ok: false, erro: cp.rotulo + ': escolha um dos três Ofícios.' };
+      var antes = Number(pega(ficha, 'pericias.' + id)) || 0;
+      var pend = lista(ficha.migracao.pendencias).filter(function (x, i) { return i !== pd.i; });
+      return { ok: true, mudancas: [{ caminho: 'pericias.' + id, valor: pd.grau }, { caminho: 'migracao.pendencias', valor: pend }],
+        rotulo: 'O grau vai para ' + nomePericia(id) + ': ' + rotuloGrau(pd.grau),
+        aviso: antes && antes !== pd.grau ? nomePericia(id) + ' tinha ' + rotuloGrau(antes) + ': agora ' + rotuloGrau(pd.grau) + '.' : '' };
     }
 
     // ---------------- a mudança de um campo ----------------
@@ -7459,6 +7644,8 @@
       var cp = campo(caminho);
       if (!cp) return { ok: false, erro: 'Este campo não se edita aqui.' };
       if (cp.tipo === 'ref') return mudancasRef(ficha, cp, bruto, op.contexto);
+      if (cp.tipo === 'attr' || cp.tipo === 'escolhaAttr') return mudancasAttr(ficha, cp, bruto);
+      if (cp.tipo === 'oficio') return mudancasOficio(ficha, cp, bruto);
       if (cp.tipo === 'conjunto') {
         var b = obj(bruto) ? bruto : {}, k = str(b.valor);
         if (!k) return { ok: false, erro: cp.rotulo + ': nada marcado.' };
@@ -7554,7 +7741,8 @@
         rotulo: fora.length === 1 ? 'Remover o ajuste de ' + (semEmoji(rotuloNo) || fora[0]) : 'Remover ' + fora.length + ' ajustes' };
     }
 
-    return { NOME_AT: NOME_AT, RECURSOS: RECURSOS, REFS: REFS, MANTER: MANTER, MODOS: MODOS, MAX_MOTIVO: MAX_MOTIVO,
+    return { NOME_AT: NOME_AT, RECURSOS: RECURSOS, REFS: REFS, MANTER: MANTER, MODOS: MODOS, MAX_MOTIVO: MAX_MOTIVO, ESCOLHA_ATTR: ESCOLHA_ATTR,
+      attrsEscolha: attrsEscolha, restos: restos, mudancaRestos: mudancaRestos, pendenciaOficio: pendenciaOficio, oficios: oficios,
       MAX_TEXTO: MAX_TEXTO, MAX_LISTA: MAX_LISTA, MAX_LORE: MAX_LORE,
       lerNumero: lerNumero, lerInteiro: lerInteiro, campo: campo, ler: ler, mudancas: mudancas, passo: passo,
       grauClicado: grauClicado, rotuloGrau: rotuloGrau, opcoesRef: opcoesRef, opcoesCondicao: opcoesCondicao, chaveItem: chaveItem,
@@ -8594,6 +8782,26 @@
       function edArea(caminho, rotulo, v, max) {
         return '<textarea class="ke-ed ke-ed-area"' + edAttrs(caminho, rotulo) + ' rows="6" maxlength="' + max + '">' + esc(v) + '</textarea>';
       }
+      // o atributo de uma escolha 'maior' (perícia de dois atributos, CD, Stamina e
+      // Éter; 03 §10): o padrão ('') é o maior, e diz qual é agora; trocar à mão
+      // grava a escolha (o KhEdicao: periciasAttr ou identidade.escolhas)
+      function edAttr(caminho, rotulo, atributos, guardado, maior) {
+        var g = atributos.indexOf(guardado) >= 0 ? guardado : '';
+        return '<select class="ke-ed ke-ed-sel ke-ed-attr"' + edAttrs(caminho, rotulo) +
+          ' title="' + esc(rotulo + ': o padrão é o maior; escolha um para trocar à mão') + '">' +
+          '<option value=""' + (g ? '' : ' selected') + '>' + esc('maior' + (maior ? ' (' + maior + ')' : '')) + '</option>' +
+          atributos.map(function (a) { return '<option value="' + esc(a) + '"' + (a === g ? ' selected' : '') + '>' + esc(a) + '</option>'; }).join('') +
+          '</select>';
+      }
+      // o maior Mod. entre os atributos (o primeiro, no empate: como o motor)
+      function maiorAttr(nos, atributos) {
+        var m = null;
+        atributos.forEach(function (a) {
+          var n = nos['atributo.' + a + '.mod'], v = n && typeof n.valor === 'number' ? n.valor : null;
+          if (!m || (v != null && (m.v == null || v > m.v))) m = { a: a, v: v };
+        });
+        return m ? m.a : '';
+      }
       // o seletor de uma referência da identidade (ref: o {id, nome} guardado).
       // O que não está nas opções (o texto livre que veio da ficha atual, sem
       // par; uma variante de outra raça) fica como a opção "manter".
@@ -8657,13 +8865,26 @@
         function selRef(k) {
           return idCampo(k, KhEdicao.REFS[k], edSel(k, KhEdicao.REFS[k], KhEdicao.opcoesRef(ctx, f, k), idt[k]));
         }
+        // o box da variante (03 §10): no Inseto, as subespécies (Besouro, Louva-a-Deus,
+        // Barata) no seletor; raça sem variante (Autômato, Corrompido) diz isso, sem
+        // seletor. O que a ficha guardar fora disso fica à vista (e no seletor, para tirar).
+        function selVariante() {
+          function tem(r) { return obj(r) && !!(r.id || str(r.nome).trim()); }
+          var opsSub = KhEdicao.opcoesRef(ctx, f, 'subespecie'), opsVar = KhEdicao.opcoesRef(ctx, f, 'variante');
+          if (opsSub.length) return idCampo('variante', 'Subespécie', edSel('subespecie', 'Subespécie', opsSub, idt.subespecie)) + (tem(idt.variante) ? selRef('variante') : '');
+          if (obj(idt.raca) && idt.raca.id && !opsVar.length && !tem(idt.variante)) {
+            return idCampo('variante', 'Variante', '<span class="' + P + '-sub">' + esc((refNome(idt.raca) || 'Esta raça') + ' não tem variante') + '</span>') +
+              idRef('subespecie', 'Subespécie', idt.subespecie);
+          }
+          return selRef('variante') + idRef('subespecie', 'Subespécie', idt.subespecie);
+        }
         if (edP) {
           h += moldura('identidade', 'Identidade', '<dl class="' + P + '-ident-grade">' +
             idCampo('nome', 'Nome do Personagem', edTexto('meta.nome', 'Nome do Personagem', meta.nome, KhEdicao.MAX_TEXTO), P + '-id-largo') +
             idCampo('jogador', 'Jogador', edTexto('meta.jogador', 'Jogador', meta.jogador, KhEdicao.MAX_TEXTO)) +
             idCampo('nivel', 'Nível', edNum('meta.nivel', 'Nível', meta.nivel, 1, 5)) +
             idCampo('xp', 'XP', edNum('meta.xp', 'XP', meta.xp, 0, KhEdicao.campo('meta.xp').max)) +
-            selRef('raca') + selRef('variante') + idRef('subespecie', 'Subespécie', idt.subespecie) +
+            selRef('raca') + selVariante() +
             selRef('classe') + selRef('ramo') + selRef('origem') +
             '</dl>', { cls: P + '-bloco-ident' });
         } else h += moldura('identidade', 'Identidade', '<dl class="' + P + '-ident-grade">' +
@@ -8701,8 +8922,14 @@
           var no = nos['pericia.' + p.id + '.total'];
           var g = f.pericias ? Number(f.pericias[p.id]) || 0 : 0;
           var at = no && no.escolha ? no.escolha.usado : p.modo === 'fixo' ? p.atributos[0] : p.modo === 'porArma' ? 'arma' : p.modo === 'dado' ? 'dado' : '';
-          var atTit = p.modo === 'maior' ? 'o maior de ' + p.atributos.join('/') + ' (D7)' : p.modo === 'porArma' ? 'o atributo da arma' :
+          // dois atributos (03 §10): "usa o maior entre Mod.X e Mod.Y" ou "usa Mod.X (escolhido)"
+          var atTit = p.modo === 'maior' ? (no && no.escolha && no.escolha.motivo ? no.escolha.motivo :
+            'usa o maior entre ' + p.atributos.map(function (a) { return 'Mod.' + a; }).join(' e ')) : p.modo === 'porArma' ? 'o atributo da arma' :
             p.modo === 'dado' ? 'só o dado, sem atributo (D8a)' : NOME_ATRIBUTO[at] || '';
+          var atHTML = edP && p.modo === 'maior'
+            ? edAttr('periciasAttr.' + p.id, 'Atributo de ' + p.nome, p.atributos, f.periciasAttr && f.periciasAttr[p.id],
+              no && no.escolha && !no.escolha.trocado ? no.escolha.usado : maiorAttr(nos, p.atributos))
+            : esc(at);
           var circ = '';
           for (var i = 1; i <= 4; i++) {
             var tit = (bonus[i] != null ? '+' + bonus[i] + ' ' : '') + (graus[i] || '');
@@ -8717,27 +8944,48 @@
             '<span class="' + P + '-per-graus" role="' + (edP ? 'group' : 'img') + '" aria-label="' + esc((edP ? p.nome + ': grau ' : 'Grau ') + g + ' de 4' + (graus[g] ? ': ' + graus[g] : '')) + '">' + circ + '</span>' +
             // o selo (decisão, pendente…) vai junto do nome; a caixa de total fica só com o número
             '<span class="' + P + '-per-nome">' + esc(p.nome) + (no ? C.selosHTML(no.selos) : '') + (/^oficio-/.test(p.id) ? seloOf : '') + '</span>' +
-            '<span class="' + P + '-per-at" title="' + esc(atTit) + '">' + esc(at) + '</span>' +
+            '<span class="' + P + '-per-at" title="' + esc(atTit) + '">' + atHTML + '</span>' +
             '<span class="' + P + '-per-total">' + conta('pericia.' + p.id + '.total', { texto: no && typeof no.valor === 'number' ? modTxt(no) : null, semSelos: true }) + '</span></div>';
         }
         var pers = lista(D.pericias);
+        // a pendência do Ofício(X) no Ensaio: o seletor dos 3 Ofícios aplica o grau e
+        // fecha a pendência, num passo (auditoria B)
+        var edOf = edP && gOf > 0 ? ' <label class="ke-ed-of">O grau vai para <select class="ke-ed ke-ed-sel ke-ed-of-sel"' +
+          edAttrs('migracao.oficio', 'O grau vai para qual Ofício') + '><option value="" selected>(escolher)</option>' +
+          KhEdicao.oficios().map(function (id) {
+            var px = pers.filter(function (x) { return x.id === id; })[0];
+            return '<option value="' + esc(id) + '">' + esc(px ? px.nome : id) + '</option>';
+          }).join('') + '</select></label>' : '';
         // duas colunas como no A4: Atacar a Iniciativa | Conhecimento ao Ofício
         var corte = pers.map(function (p) { return p.id; }).indexOf('conhecimento');
         if (corte < 0) corte = Math.ceil(pers.length / 2);
-        h += '<div class="' + P + '-duas"><div class="' + P + '-col">';
+        // as duas colunas do Núcleo (03 §10): Perícias e, embaixo delas, a Capacidade |
+        // Recursos e, embaixo, Evasão, CD e Movimento (a Capacidade fica à esquerda
+        // deles). O drawer empilha na ordem dele (css: Recursos, Evasão, Capacidade, Perícias)
+        h += '<div class="' + P + '-duas"><div class="' + P + '-col ' + P + '-col-pers">';
         h += moldura('pericias', 'Perícias', '<div class="' + P + '-pers"><div class="' + P + '-pers-col">' + pers.slice(0, corte).map(pericia).join('') +
           '</div><div class="' + P + '-pers-col">' + pers.slice(corte).map(pericia).join('') + '</div></div>',
         { extra: '<span class="' + P + '-legenda">' + bonus.slice(1).map(function (b, i) { return esc('+' + b + ' ' + (graus[i + 1] || '')); }).join(' · ') + '</span>',
           nota: gOf > 0 ? 'Pendência da migração: a ficha atual tinha um Ofício(X) genérico com grau ' +
             nEstado('migracao.pendencias.' + iOf + '.grau', gOf) + (graus[gOf] ? ' (' + esc(graus[gOf]) + ')' : '') +
-            '. Escolha qual Ofício (Engenharia, Ferraria ou Alquimia) recebe o grau.' : '' });
-        h += '</div><div class="' + P + '-col">';
+            '. Escolha qual Ofício (Engenharia, Ferraria ou Alquimia) recebe o grau.' + edOf : '' });
+        // ---- capacidade: Equipamentos e Bugigangas com régua e Sobrepeso (embaixo das perícias, 03 §10)
+        h += moldura('capacidade', 'Capacidade', capacidade(res, C, ctx), { ico: img(ctx, 'mochila', P + '-tit-img') });
+        h += '</div><div class="' + P + '-col ' + P + '-col-rec">';
 
         // ---- recursos: atual / máx., com as cores de recurso (D28)
         var rc = f.recursos || {};
         function barra(atual, max, cls) {
           var pc = typeof max === 'number' && max > 0 && typeof atual === 'number' ? Math.max(0, Math.min(1, atual / max)) * 100 : 0;
           return '<span class="' + P + '-barra ' + cls + '" aria-hidden="true"><span class="' + P + '-barra-fill" style="width:' + fmtPc(pc) + '%"></span></span>';
+        }
+        // o seletor do atributo de um número com escolha (CD, Stamina e Éter; 03 §10), só no Ensaio
+        var escolhas = obj(idt.escolhas) ? idt.escolhas : {};
+        function attrDe(no) {
+          var e = edP && no && no.escolha && KhEdicao.ESCOLHA_ATTR[no.escolha.chave] ? no.escolha : null;
+          if (!e) return '';
+          return '<span class="' + P + '-par ke-ed-attr-l"><span class="' + P + '-rot">Atributo</span>' +
+            edAttr('escolha.' + e.chave, KhEdicao.ESCOLHA_ATTR[e.chave], e.atributos, escolhas[e.chave], e.trocado ? maiorAttr(nos, e.atributos) : e.usado) + '</span>';
         }
         function recurso(id, nome, icone, extra) {
           var x = rc[id] || {}, no = nos['recurso.' + id + '.max'];
@@ -8771,8 +9019,8 @@
           recurso('saude', 'Saúde', 'saude', sau.temporaria ? '<span class="' + P + '-rec-extra"><span class="' + P + '-rot">Temporária</span>' + nEstado('recursos.saude.temporaria', sau.temporaria) + '</span>' : '') +
           recurso('stamina', 'Stamina', 'stamina', '<span class="' + P + '-rec-extra">' +
             (sta.comprometida ? '<span class="' + P + '-rot">Comprometida</span>' + nEstado('recursos.stamina.comprometida', sta.comprometida) + ' ' : '') +
-            '<span class="' + P + '-rot">Disponível</span>' + conta('recurso.stamina.disponivel') + '</span>') +
-          recurso('eter', 'Éter', 'eter') + recClasse +
+            '<span class="' + P + '-rot">Disponível</span>' + conta('recurso.stamina.disponivel') + attrDe(nos['recurso.stamina.max']) + '</span>') +
+          recurso('eter', 'Éter', 'eter', attrDe(nos['recurso.eter.max']) ? '<span class="' + P + '-rec-extra">' + attrDe(nos['recurso.eter.max']) + '</span>' : '') + recClasse +
           alertasRecurso(res));
 
         // ---- derivados: Evasão, CD, Movimento, Ações, Sins
@@ -8783,28 +9031,27 @@
           tile('evasao', 'Evasão', img(ctx, 'evasao', P + '-der-img'),
             '<span class="' + P + '-par"><span class="' + P + '-rot">Passiva</span>' + conta('evasao.passiva') + '</span>' +
             '<span class="' + P + '-par"><span class="' + P + '-rot">Ativa</span>' + conta('evasao.ativa') + '</span>') +
-          tile('cd', 'CD', img(ctx, 'cd', P + '-der-img'), conta('cd')) +
+          tile('cd', 'CD', img(ctx, 'cd', P + '-der-img'), conta('cd') + attrDe(nos.cd)) +
           tile('movimento', 'Movimento', img(ctx, 'movimento', P + '-der-img'), conta('movimento', { un: ' m' })) +
           tile('acoes', 'Ações', '<span class="' + P + '-der-ico">' + SVG_ACOES + '</span>', conta('acoes')) +
           tile('sins', 'Sins', img(ctx, 'sins', P + '-der-img'), num('inventario.sins', f.inventario ? f.inventario.sins || 0 : 0, 'Sins', 0, 999999999)) +
           '</div>');
 
-        // ---- capacidade: Equipamentos e Bugigangas com régua e Sobrepeso
-        h += moldura('capacidade', 'Capacidade', capacidade(res, C, ctx), { ico: img(ctx, 'mochila', P + '-tit-img') });
         h += '</div></div>';
 
         // ---- Armadura e resistências
         h += moldura('armadura', 'Armadura e Resistência', resistencias(res, C, D),
           { ico: img(ctx, 'armadura', P + '-tit-img'), nota: 'R = resistência, I = imunidade, V = vulnerabilidade, Ae = armadura específica; a redução junta Ar, Ae do tipo, da categoria e de Todos.' });
 
-        // ---- Marcas da Vhelor: só com 1 ou mais (M5)
+        // ---- Marcas da Vhelor: OCULTA em todo modo, também no Ensaio; só aparece com 1
+        // ou mais (M5; o Pedro, 03 §10: "vital que esteja oculta por padrão"). É estado:
+        // no Ensaio, o − e o + só quando já há marca (o ganho por item vem na F6)
         var vh = f.vhelor && Number(f.vhelor.marcas) || 0;
-        // na edição, sempre (para marcar a primeira); fora dela, só com 1 ou mais (M5)
-        if (vh >= 1 || edP) {
+        if (vh >= 1) {
           h += moldura('vhelor', 'Marcas da Vhelor', '<p class="' + P + '-vhelor">' + (edP ? edPasso('vhelor.marcas', 'Marcas da Vhelor', vh, 0, 7) : nEstado('vhelor.marcas', vh)) +
             '<span class="' + P + '-sub"> de 7</span>' +
             (f.vhelor && f.vhelor.abstinente ? ' ' + selo('aviso', 'em abstinência') : '') + '</p>',
-          { cls: P + '-bloco-vhelor', nota: edP && vh < 1 ? 'Fora da edição, este bloco só aparece com 1 Marca ou mais.' : '' });
+          { cls: P + '-bloco-vhelor' });
         }
         // ---- imunidade a condição e idiomas: só quando há (na edição, sempre)
         var imc = lista(f.imunidadesCondicao), idi = lista(f.idiomas);
@@ -9288,7 +9535,14 @@
  * Cada gravação emite o 'kh:ensaio' com ['ficha']: a página, o drawer e os
  * seletores redesenham (o KhRedesenho devolve o foco ao equivalente). Depois
  * do 'change', o aviso sai no tempo seguinte (setTimeout 0): o foco já andou
- * (Tab) e o redesenho o encontra no campo novo. O Ensaio só escreve no
+ * (Tab) e o redesenho o encontra no campo novo. Com o botão do mouse (ou o
+ * dedo) apertado, a BARRA só se redesenha depois de soltar (auditoria B): o
+ * 'change' de um campo dispara no apertar de Desfazer, e trocar a barra ali
+ * engolia o clique (o 1º só confirmava o campo). Desfazer e Refazer agem pelo
+ * estado de agora do log, não pelo aria-disabled da barra ainda por redesenhar.
+ * Trocar raça ou classe diz o que ficou da anterior e oferece, na mensagem,
+ * "Remover o que era de <anterior>" (um passo, desfazível; KhEdicao.restos).
+ * O Ensaio só escreve no
  * sessionStorage com o prefixo khalkaria_ensaio: (o armazém dele); nenhuma
  * chave da ficha do jogador.
  *
@@ -9433,7 +9687,9 @@
         (pag ? botao('ajustes', 'Ajustes (' + (Number(est.nAjustes) || 0) + ')', { titulo: 'A lista dos ajustes manuais desta ficha',
           attrs: ' aria-expanded="' + !!est.aberto + '" aria-controls="' + esc(P) + '-ked-aj"' }) : '') +
         '<p class="ke-ed-dica">' + esc(pag ? DICA_PAGINA : DICA_DRAWER) + '</p>' +
-        '<p class="ke-ed-msg' + (m && m.tipo === 'aviso' ? ' ke-ed-msg-aviso' : '') + '" role="status" aria-live="polite">' + (m ? esc(m.texto) : '') + '</p></div>';
+        '<p class="ke-ed-msg' + (m && m.tipo === 'aviso' ? ' ke-ed-msg-aviso' : '') + '" role="status" aria-live="polite">' + (m ? esc(m.texto) : '') + '</p>' +
+        // a ação da mensagem (trocar raça/classe: "Remover o que era de <anterior>")
+        (m && obj(m.acao) ? botao(m.acao.ked, m.acao.texto, { titulo: m.acao.titulo }) : '') + '</div>';
       if (pag && est.aberto) h += htmlAjustes(est.linhas, est.sel, P);
       return h;
     }
@@ -9489,8 +9745,10 @@
       var P = /^[a-z][a-z0-9-]*$/i.test(str(op.prefixo)) ? str(op.prefixo) : 'ke';
       var ss = storage(win, 'sessionStorage');
       var R = KhRedesenho ? KhRedesenho.criar({ prefixo: P + '-ked' }) : null;
-      var st = { msg: null, aberto: false, sel: {}, pop: null, res: null };
+      var st = { msg: null, aberto: false, sel: {}, pop: null, res: null, restos: null };
       var popEl = null, barraEl = null, redesenhandoPop = false;
+      // o botão do mouse apertado: a barra espera soltar para se redesenhar (auditoria B)
+      var apertado = false, barraPendente = false;
 
       function ligado() { return KhEnsaio.ligado(win); }
       function arm() { return KhEnsaio.armazem(ss); }
@@ -9526,8 +9784,31 @@
         if (!g.mudou) return true;
         st.msg = r.aviso ? { tipo: 'aviso', texto: r.aviso }
           : g.avisoLog ? { tipo: 'aviso', texto: 'Gravado, mas sem desfazer: ' + textoErro({ erro: g.avisoLog }) } : null;
+        if (g.logLimpo) avisoLogLimpo();
+        // trocou raça ou classe e ficou algo da anterior: a mensagem oferece remover (num passo)
+        st.restos = obj(r.restos) ? { campo: r.restos.campo, anterior: r.restos.anterior } : null;
+        if (st.restos && st.msg) {
+          st.msg.acao = { ked: 'remover-restos', texto: 'Remover o que era de ' + st.restos.anterior.nome,
+            titulo: 'Tira da ficha, num passo só (Desfazer volta), o que ficou ' + (st.restos.campo === 'raca' ? 'da raça' : 'da classe') + ' anterior' };
+        }
         if (quando === 'adiado') { desenhaBarra(); adiado(function () { emitir(); }); } else emitir();
         return true;
+      }
+      // faltou espaço e a limpeza apagou o desfazer desta ficha (auditoria B: avisar)
+      function avisoLogLimpo() {
+        var t = 'Faltou espaço: para gravar, o histórico de desfazer desta ficha foi apagado (o Desfazer recomeça daqui).';
+        st.msg = { tipo: 'aviso', texto: st.msg && st.msg.texto ? st.msg.texto + ' ' + t : t };
+      }
+      // "Remover o que era de <anterior>" (o botão da mensagem): calcula de novo pela ficha de agora
+      function removeRestos() {
+        var rs = st.restos;
+        if (!rs || fora()) return;
+        var x = ativa();
+        if (!x || !x.ficha) { aviso(SEM_FICHA); desenhaBarra(); return; }
+        var r = KhEdicao.mudancaRestos(x.ficha, ctx(), rs.campo, rs.anterior);
+        st.restos = null;
+        if (!r.ok) { aviso(r.erro); desenhaBarra(); return; }
+        if (grava(r)) { st.msg = { tipo: 'ok', texto: 'Removido: ' + r.rotulo.replace(/^Remover /, '') + '. Desfazer volta.' }; desenhaBarra(); }
       }
       // desfazer e refazer (os botões e o Ctrl+Z / Ctrl+Y)
       function anda(acao) {
@@ -9536,8 +9817,10 @@
         if (!x) { aviso(SEM_FICHA); desenhaBarra(); return; }
         var r = acao === 'refazer' ? x.a.refazer(x.id) : x.a.desfazer(x.id);
         if (!r.ok) { aviso(textoErro(r, acao)); desenhaBarra(); return; }
+        st.restos = null;
         st.msg = { tipo: 'ok', texto: (acao === 'refazer' ? 'Refeito: ' : 'Desfeito: ') + r.rotulo + '.' };
         if (r.avisoLog) st.msg = { tipo: 'aviso', texto: st.msg.texto + ' ' + textoErro({ erro: r.avisoLog }) };
+        if (r.logLimpo) avisoLogLimpo();
         fechaPop(false);
         emitir();
       }
@@ -9556,6 +9839,9 @@
         if (!ligado()) { esconde(); return false; }
         var c = lugar();
         if (!c) return false;
+        // botão apertado (o 'change' do campo veio do apertar de Desfazer): espera soltar
+        if (apertado) { barraPendente = true; return true; }
+        barraPendente = false;
         var x = ativa();
         var ficha = x ? x.ficha : null;
         var nAj = ficha && obj(ficha.ajustes) ? Object.keys(ficha.ajustes).length : 0;
@@ -9569,7 +9855,7 @@
         return true;
       }
       function esconde() {
-        st.msg = null; st.aberto = false; st.sel = {};
+        st.msg = null; st.aberto = false; st.sel = {}; st.restos = null; barraPendente = false;
         fechaPop(false);
         if (barraEl) { troca(barraEl, ''); barraEl.hidden = true; }
       }
@@ -9667,11 +9953,11 @@
       function perto(t, sel) { try { return t && t.closest ? t.closest(sel) : null; } catch (e) { return null; } }
       function dentro(el) { return !!el && raizEl.contains(el); }
       function acaoBarra(a, b) {
-        if (b.getAttribute('aria-disabled') === 'true') {
-          if (a === 'desfazer' || a === 'refazer') { var t = b.getAttribute('title'); if (t) { aviso(t.replace(/\s*\(Ctrl\+[ZY]\)$/, '') + '.'); desenhaBarra(); } }
-          return;
-        }
+        // Desfazer e Refazer: pelo log de agora (a barra pode estar por redesenhar, com
+        // o aria-disabled de antes do 'change'); sem passo, o anda diz por quê
         if (a === 'desfazer' || a === 'refazer') { anda(a); return; }
+        if (a === 'remover-restos') { removeRestos(); return; }
+        if (b.getAttribute('aria-disabled') === 'true') return;
         if (a === 'ajustes') { st.aberto = !st.aberto; desenhaBarra('[data-ked="ajustes"]'); return; }
         if (a === 'fechar-aj') { st.aberto = false; desenhaBarra('[data-ked="ajustes"]'); return; }
         if (a === 'remover-sel') {
@@ -9788,6 +10074,18 @@
         var para = e.relatedTarget;
         if (para && !popEl.contains(para)) fechaPop(false);
       });
+      // o botão apertado e solto (em qualquer lugar): a barra que ficou para depois
+      // se redesenha no tempo seguinte ao soltar, já depois do clique
+      doc.addEventListener('pointerdown', function () { apertado = true; }, true);
+      function solta() {
+        apertado = false;
+        if (barraPendente) adiado(function () { if (barraPendente && !apertado) desenhaBarra(); });
+      }
+      doc.addEventListener('pointerup', solta, true);
+      doc.addEventListener('pointercancel', solta, true);
+      // rede de segurança: o soltar que não chega (arrasto nativo, a janela perde o foco)
+      doc.addEventListener('dragend', solta, true);
+      if (typeof win.addEventListener === 'function') win.addEventListener('blur', function () { if (apertado) solta(); });
       // clicar fora do pop-over o fecha (sem devolver o foco: o clique o levou)
       doc.addEventListener('pointerdown', function (e) {
         if (!popEl || !st.pop) return;
@@ -10587,6 +10885,8 @@
           r.fichaId = x.id;
           r.desfazivel = !!g.desfazivel;
           if (g.avisoLog) r.aviso += ' Gravado, mas sem desfazer: ' + textoErro({ erro: g.avisoLog });
+          // a limpeza por falta de espaço apagou o desfazer desta ficha (auditoria B: avisar)
+          if (g.logLimpo) r.aviso = (r.aviso ? r.aviso + ' ' : '') + 'Faltou espaço: para gravar, o histórico de desfazer desta ficha foi apagado.';
           ultimo = r.desfazivel ? { fichaId: x.id, rotulo: r.rotulo } : null;
           emitir();
           return r;

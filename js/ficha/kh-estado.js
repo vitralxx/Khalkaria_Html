@@ -822,13 +822,19 @@
     // a raiz do caminho que a edição não toca (identidade da ficha e o carimbo do armazém)
     var CAMINHO_PROIBIDO = /^(?:id|rev|schemaVersion|salvoEm|criadoEm|exportadoEm)(?:\.|$)/;
     var RE_CAMINHO = /^[A-Za-z][A-Za-z0-9_-]*(?:\.[A-Za-z0-9_-]+)*$/;
-    function caminhoEditavel(c) { return typeof c === 'string' && RE_CAMINHO.test(c) && !CAMINHO_PROIBIDO.test(c); }
+    // segmento que mexeria no protótipo (auditoria B): recusado em QUALQUER posição
+    var SEGMENTOS_PROIBIDOS = ['__proto__', 'prototype', 'constructor'];
+    function segmentoSeguro(k) { return SEGMENTOS_PROIBIDOS.indexOf(k) < 0; }
+    function caminhoEditavel(c) {
+      return typeof c === 'string' && RE_CAMINHO.test(c) && !CAMINHO_PROIBIDO.test(c) && c.split('.').every(segmentoSeguro);
+    }
     function pegaCaminho(f, c) {
       return str(c).split('.').reduce(function (a, k) { return a !== null && typeof a === 'object' && temPropria(a, k) ? a[k] : undefined; }, f);
     }
     // grava v no caminho (cria os objetos do meio); undefined apaga a chave
     function poeCaminho(f, c, v) {
       var ks = str(c).split('.'), o = f;
+      if (!ks.every(segmentoSeguro)) return;   // nunca no protótipo (o editar já recusa antes)
       for (var i = 0; i < ks.length - 1; i++) {
         if (!obj(o[ks[i]])) o[ks[i]] = {};
         o = o[ks[i]];
@@ -1505,6 +1511,9 @@
         partes.forEach(function (c) { poeCaminho(nova, c, depois[c]); });
         var g = gravar(nova);
         if (!g.ok) return g;
+        // faltou espaço e a limpeza apagou o log DESTA ficha: o desfazer recomeça
+        // daqui, e quem chamou avisa (auditoria B: antes, calado)
+        var logLimpo = lista(g.limpou).indexOf(CHAVES.log + id) >= 0;
         var passo = { rotulo: str(rotulo) || 'Edição', em: c.agora(), partes: partes, antes: antes, depois: depois,
           revPorParte: impressoes(nova, partes) };
         var l = lerLogNorm(id);
@@ -1513,7 +1522,7 @@
         aparaLog(l);
         var gl = gravaLogNorm(id, l);
         return { ok: true, mudou: true, rev: nova.rev, partes: partes, rotulo: passo.rotulo,
-          desfazivel: gl.ok && l.passos.indexOf(passo) >= 0, avisoLog: gl.ok ? null : gl.erro, limpou: g.limpou };
+          desfazivel: gl.ok && l.passos.indexOf(passo) >= 0, avisoLog: gl.ok ? null : gl.erro, limpou: g.limpou, logLimpo: logLimpo };
       }
       // desfaz (ou refaz) SÓ o topo da pilha, e só se cada caminho do passo
       // ainda está como o passo o deixou; senão recusa 'outra-aba' (outra aba,
@@ -1532,12 +1541,15 @@
         p.partes.forEach(function (k) { poeCaminho(nova, k, temPropria(p[valores], k) ? p[valores][k] : undefined); });
         var g = gravar(nova);
         if (!g.ok) return g;
-        l[de].pop();
+        // a limpeza apagou o log desta ficha para gravar: fica só o passo que andou
+        var logLimpo = lista(g.limpou).indexOf(CHAVES.log + id) >= 0;
+        if (logLimpo) l = { passos: [], refazer: [] };
+        else l[de].pop();
         l[para].push({ rotulo: p.rotulo, em: p.em, partes: p.partes, antes: p.antes, depois: p.depois,
           revPorParte: impressoes(nova, p.partes) });
         aparaLog(l);
         var gl = gravaLogNorm(id, l);
-        return { ok: true, rev: nova.rev, partes: p.partes.slice(), rotulo: p.rotulo, avisoLog: gl.ok ? null : gl.erro };
+        return { ok: true, rev: nova.rev, partes: p.partes.slice(), rotulo: p.rotulo, avisoLog: gl.ok ? null : gl.erro, logLimpo: logLimpo };
       }
       function desfazer(id) { return anda(id, 'passos', 'refazer', 'antes'); }
       function refazer(id) { return anda(id, 'refazer', 'passos', 'depois'); }
@@ -1851,7 +1863,7 @@
       exportarFicha: exportarFicha, pacoteTodas: pacoteTodas, lerImport: lerImport,
       sombra: sombra, armazem: armazem,
       // F4.6b: edição por caminho e o log de desfazer (o armazém usa)
-      LOG_TETO: LOG_TETO, LOG_BYTES: LOG_BYTES, caminhoEditavel: caminhoEditavel, pegaCaminho: pegaCaminho,
+      LOG_TETO: LOG_TETO, LOG_BYTES: LOG_BYTES, SEGMENTOS_PROIBIDOS: SEGMENTOS_PROIBIDOS, caminhoEditavel: caminhoEditavel, pegaCaminho: pegaCaminho,
       poeCaminho: poeCaminho, impressao: impressao, normalizaLog: normalizaLog, aparaLog: aparaLog, bytesLog: bytesLog,
       // F4.2 (escrita dupla e migração real): puras, ligadas só na F4.7
       projetarV2: projetarV2, conflitoV2: conflitoV2, reimportarV2: reimportarV2,
