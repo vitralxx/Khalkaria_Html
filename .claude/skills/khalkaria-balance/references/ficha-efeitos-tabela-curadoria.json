@@ -1,0 +1,1857 @@
+{
+ "_doc": "Curadoria da tabela de efeitos (ficha-efeitos-tabela.py). lembretes: <id> -> <texto exato do lembrete> -> {mods, aplicaCondicao, removeCondicao, conjura, gatilho, usos, acoes, resto, natureza}: com mods e sem resto o lembrete vira Mod e sai; com resto fica só o resto, com a natureza. naturezas: <natureza> -> <id> -> [textos] para o que a regra automática não pega. Todo texto citado tem de existir (a construção para se não existir). Mod sem status ganha \"decisao\". Fonte dos textos: coluna Efeito do CSV do Bazar.",
+ "lembretes": {
+  "item-caixa-harmonica": {
+   "Toca melodia que concede +2 em Vontade a aliados em 6m por 1 cena": {
+    "mods": [
+     {
+      "alvo": "pericia.vontade",
+      "op": "soma",
+      "valor": 2,
+      "duracao": "1 cena",
+      "para": "aliados",
+      "alcance": "6 m",
+      "leitura": "'a aliados': o portador não entra (o texto não diz)"
+     }
+    ]
+   }
+  },
+  "item-kit-de-disfarce": {
+   "+4 em testes de Enganação para se disfarçar por 1 cena": {
+    "mods": [
+     {
+      "alvo": "pericia.enganacao",
+      "op": "soma",
+      "valor": 4,
+      "duracao": "1 cena",
+      "aplica": "situacional",
+      "situacao": "para se disfarçar"
+     }
+    ]
+   }
+  },
+  "item-amuleto-do-vinculo": {
+   "1x por descanso longo: transfere até 10 de Saúde sua para um aliado a 9m como 1 ação": {
+    "mods": [
+     {
+      "alvo": "saude.atual",
+      "op": "soma",
+      "valor": {
+       "ate": -10
+      }
+     },
+     {
+      "alvo": "saude.atual",
+      "op": "soma",
+      "valor": {
+       "ate": 10
+      },
+      "para": "aliados",
+      "alcance": "9 m",
+      "nota": "o aliado recebe o que você transferiu"
+     }
+    ]
+   }
+  },
+  "item-anel-da-carapaca": {
+   "Ao ficar abaixo de metade da Saúde, +1 Ar": {
+    "mods": [
+     {
+      "alvo": "ar",
+      "op": "soma",
+      "valor": 1,
+      "enquanto": "saudeAbaixoDaMetade"
+     }
+    ]
+   }
+  },
+  "item-anel-das-brasas": {
+   "Suas magias e ataques de Fogo causam +1 de dano por dado": {
+    "mods": [
+     {
+      "alvo": "dano.porDado",
+      "op": "soma",
+      "valor": 1,
+      "tipo": "fogo",
+      "nota": "magias e ataques de Fogo"
+     }
+    ]
+   }
+  },
+  "item-broche-do-mercante": {
+   "+2 Convencimento em negociações enquanto exibido": {
+    "mods": [
+     {
+      "alvo": "pericia.convencimento",
+      "op": "soma",
+      "valor": 2,
+      "aplica": "situacional",
+      "situacao": "em negociações, enquanto exibido"
+     }
+    ]
+   }
+  },
+  "item-capa-de-obscurecimento": {
+   "+2 Furtividade em penumbra ou escuridão": {
+    "mods": [
+     {
+      "alvo": "pericia.furtividade",
+      "op": "soma",
+      "valor": 2,
+      "aplica": "situacional",
+      "situacao": "em penumbra ou escuridão"
+     }
+    ]
+   }
+  },
+  "item-dedal-do-ladrao": {
+   "+3 Crime para abrir fechaduras e desarmar armadilhas": {
+    "mods": [
+     {
+      "alvo": "pericia.crime",
+      "op": "soma",
+      "valor": 3,
+      "aplica": "situacional",
+      "situacao": "para abrir fechaduras e desarmar armadilhas"
+     }
+    ]
+   }
+  },
+  "item-garras-do-predador": {
+   "Ataques desarmados causam 1d6 Cortante (em vez de desarmado) e aplicam Sangramento 1 no Crítico": {
+    "mods": [
+     {
+      "alvo": "desarmado.dano",
+      "op": "fixa",
+      "valor": "1d6",
+      "tipo": "cortante"
+     }
+    ],
+    "resto": "Ataques desarmados aplicam Sangramento 1 no crítico",
+    "natureza": "alvo"
+   }
+  },
+  "item-luvas-de-aderencia": {
+   "Vantagem em testes de Movimento para escalar enquanto vestidas": {
+    "mods": [
+     {
+      "alvo": "pericia.movimento",
+      "op": "vantagem",
+      "valor": true,
+      "aplica": "situacional",
+      "situacao": "para escalar"
+     }
+    ]
+   }
+  },
+  "item-botas-de-escalada": {
+   "Vantagem em Movimento para escalar": {
+    "mods": [
+     {
+      "alvo": "pericia.movimento",
+      "op": "vantagem",
+      "valor": true,
+      "aplica": "situacional",
+      "situacao": "para escalar"
+     }
+    ]
+   }
+  },
+  "item-sigilo-do-carrasco": {
+   "+2 de dano contra alvos Exposto, Caído ou Atordoado": {
+    "mods": [
+     {
+      "alvo": "ataque.danoFixo",
+      "op": "soma",
+      "valor": 2,
+      "aplica": "situacional",
+      "situacao": "contra alvo Exposto, Caído ou Atordoado"
+     }
+    ]
+   }
+  },
+  "item-armadura-viva": {
+   "Orgânica: na primeira vez que você recebe dano em cada combate, ganha +2 Ar até o próximo descanso longo": {
+    "mods": [
+     {
+      "alvo": "ar",
+      "op": "soma",
+      "valor": 2,
+      "duracao": "descansoLongo",
+      "acumula": false,
+      "leitura": "não soma de novo em outro combate antes do descanso longo (o texto não diz)",
+      "aplica": "evento",
+      "evento": "na primeira vez que você recebe dano em cada combate"
+     }
+    ]
+   }
+  },
+  "item-regulador-temporal": {
+   "Ao ativar (1 ação), emite pulso que concede +1 Ação ao portador na próxima rodada": {
+    "mods": [
+     {
+      "alvo": "acoes",
+      "op": "soma",
+      "valor": 1,
+      "duracao": "1 rodada",
+      "nota": "vale na próxima rodada"
+     }
+    ]
+   }
+  },
+  "item-coroa-do-maestro": {
+   "Ao começar um combate, aliados recebem +5 em todos os testes de resistência até o fim do combate": {
+    "mods": [
+     {
+      "alvo": "pericia.fortitude",
+      "op": "soma",
+      "valor": 5,
+      "leitura": "testes de resistência = Fortitude, Reflexos e Vontade",
+      "para": "aliados",
+      "duracao": "fimDoCombate",
+      "aplica": "evento",
+      "evento": "ao começar um combate"
+     },
+     {
+      "alvo": "pericia.reflexos",
+      "op": "soma",
+      "valor": 5,
+      "leitura": "testes de resistência = Fortitude, Reflexos e Vontade",
+      "para": "aliados",
+      "duracao": "fimDoCombate",
+      "aplica": "evento",
+      "evento": "ao começar um combate"
+     },
+     {
+      "alvo": "pericia.vontade",
+      "op": "soma",
+      "valor": 5,
+      "leitura": "testes de resistência = Fortitude, Reflexos e Vontade",
+      "para": "aliados",
+      "duracao": "fimDoCombate",
+      "aplica": "evento",
+      "evento": "ao começar um combate"
+     }
+    ]
+   },
+   "Aliados e inimigos não podem atacar você sem antes sucederem em um teste de Vontade contra a sua CD; caso suceda, fica imune a esse efeito por 24h": {
+    "natureza": "alvo"
+   }
+  },
+  "item-estandarte-de-bolso": {
+   "Aliados a 4,5m ganham +1 em testes de Resistência enquanto você não estiver Caído": {
+    "mods": [
+     {
+      "alvo": "pericia.fortitude",
+      "op": "soma",
+      "valor": 1,
+      "leitura": "testes de resistência = Fortitude, Reflexos e Vontade",
+      "para": "aliados",
+      "alcance": "4,5 m",
+      "enquanto": "portadorNaoCaido"
+     },
+     {
+      "alvo": "pericia.reflexos",
+      "op": "soma",
+      "valor": 1,
+      "leitura": "testes de resistência = Fortitude, Reflexos e Vontade",
+      "para": "aliados",
+      "alcance": "4,5 m",
+      "enquanto": "portadorNaoCaido"
+     },
+     {
+      "alvo": "pericia.vontade",
+      "op": "soma",
+      "valor": 1,
+      "leitura": "testes de resistência = Fortitude, Reflexos e Vontade",
+      "para": "aliados",
+      "alcance": "4,5 m",
+      "enquanto": "portadorNaoCaido"
+     }
+    ]
+   }
+  },
+  "item-colar-da-sanguessuga": {
+   "Ao causar dano corpo a corpo: cura 1 de Saúde": {
+    "mods": [
+     {
+      "alvo": "saude.atual",
+      "op": "soma",
+      "valor": 1,
+      "aplica": "evento",
+      "evento": "ao causar dano corpo a corpo"
+     }
+    ]
+   }
+  },
+  "item-corrente-da-alma": {
+   "Recupera 1d4 Éter ao derrubar um inimigo": {
+    "mods": [
+     {
+      "alvo": "eter.atual",
+      "op": "soma",
+      "valor": "1d4",
+      "aplica": "evento",
+      "evento": "ao derrubar um inimigo"
+     }
+    ]
+   }
+  },
+  "item-calice-da-partilha": {
+   "Quando você se cura, um aliado a 9m recupera metade desse valor": {
+    "mods": [
+     {
+      "alvo": "saude.atual",
+      "op": "soma",
+      "valor": "curaRecebida/2",
+      "para": "aliados",
+      "alcance": "9 m",
+      "aplica": "evento",
+      "evento": "quando você se cura"
+     }
+    ]
+   }
+  },
+  "item-luvas-da-chama": {
+   "Ataques desarmados +1d4 Fogo": {
+    "mods": [
+     {
+      "alvo": "desarmado.danoExtra",
+      "op": "soma",
+      "valor": "1d4",
+      "tipo": "fogo"
+     }
+    ]
+   }
+  },
+  "item-manopla-trovejante": {
+   "1x por descanso longo: seu próximo ataque corpo a corpo causa +2d6 Trovejante e empurra o alvo 3m (Fortitude resiste)": {
+    "mods": [
+     {
+      "alvo": "ataque.danoExtra",
+      "op": "soma",
+      "valor": "2d6",
+      "tipo": "trovejante",
+      "ataques": 1,
+      "aplica": "situacional",
+      "situacao": "próximo ataque corpo a corpo"
+     }
+    ],
+    "resto": "Empurra o alvo 3 m (Fortitude resiste)",
+    "natureza": "alvo"
+   }
+  },
+  "item-olho-do-tirano": {
+   "Ao reduzir um inimigo a 0 de Saúde, seu próximo ataque causa dano máximo nos dados": {
+    "gatilho": "usar",
+    "usos": {
+     "n": 1,
+     "recarga": "longo"
+    },
+    "mods": [
+     {
+      "alvo": "ataque.danoMaximo",
+      "op": "fixa",
+      "valor": true,
+      "ataques": 1,
+      "aplica": "evento",
+      "evento": "ao reduzir um inimigo a 0 de Saúde"
+     }
+    ]
+   }
+  },
+  "item-anel-do-ultimo-suspiro": {
+   "1x por descanso longo: ao cair a 0 de Saúde, fica com 1 de Saúde em vez de Morrendo": {
+    "mods": [
+     {
+      "alvo": "saude.atual",
+      "op": "fixa",
+      "valor": 1,
+      "aplica": "evento",
+      "evento": "ao cair a 0 de Saúde (em vez de Morrendo)"
+     }
+    ]
+   }
+  },
+  "item-anel-da-imortalidade": {
+   "1x por descanso longo: ressuscita com 1 de Saúde ao morrer": {
+    "mods": [
+     {
+      "alvo": "saude.atual",
+      "op": "fixa",
+      "valor": 1,
+      "aplica": "evento",
+      "evento": "ao morrer: ressuscita"
+     }
+    ]
+   }
+  },
+  "item-capa-do-vazio": {
+   "1x por descanso longo: fica Invisível por 1 rodada": {
+    "aplicaCondicao": [
+     {
+      "id": "invisivel",
+      "duracao": "1 rodada"
+     }
+    ]
+   }
+  },
+  "item-coroa-da-conflagracao": {
+   "Suas magias de área causam +1 dado de dano": {
+    "mods": [
+     {
+      "alvo": "magia.dadosDano",
+      "op": "soma",
+      "valor": 1,
+      "aplica": "situacional",
+      "situacao": "magias de área"
+     }
+    ]
+   }
+  },
+  "item-luva-do-primordio": {
+   "Ataques desarmados: +2d6 Primordial": {
+    "mods": [
+     {
+      "alvo": "desarmado.danoExtra",
+      "op": "soma",
+      "valor": "2d6",
+      "tipo": "primordial"
+     }
+    ]
+   }
+  },
+  "item-punho-de-mundarak": {
+   "Ataques desarmados +2d6 Contundente": {
+    "mods": [
+     {
+      "alvo": "desarmado.danoExtra",
+      "op": "soma",
+      "valor": "2d6",
+      "tipo": "contundente"
+     }
+    ]
+   }
+  },
+  "item-amuleto-de-visao-noturna": {
+   "Visão no Escuro 12m enquanto vestido": {
+    "mods": [
+     {
+      "alvo": "sentido.visaoNoEscuro",
+      "op": "maximo",
+      "valor": 12
+     }
+    ]
+   }
+  },
+  "item-coroa-da-clarividencia": {
+   "Enxerga criaturas invisíveis em 9 m": {
+    "mods": [
+     {
+      "alvo": "sentido.verInvisivel",
+      "op": "maximo",
+      "valor": 9
+     }
+    ]
+   }
+  },
+  "item-oculos-do-vidente": {
+   "1x por cena: ativa visão verdadeira por 3 rodadas (enxerga invisível, ilusões e através de escuridão mágica)": {
+    "mods": [
+     {
+      "alvo": "sentido.visaoVerdadeira",
+      "op": "fixa",
+      "valor": true,
+      "duracao": "3 rodadas"
+     }
+    ]
+   }
+  },
+  "item-oculos-do-investigador": {
+   "Vê através de ilusões simples": {
+    "mods": [
+     {
+      "alvo": "sentido.verIlusoesSimples",
+      "op": "fixa",
+      "valor": true
+     }
+    ]
+   }
+  },
+  "item-talisma-da-vontade": {
+   "Vantagem contra Enfeitiçado": {
+    "mods": [
+     {
+      "alvo": "resistirCondicao.enfeiticado",
+      "op": "vantagem",
+      "valor": true
+     }
+    ]
+   }
+  },
+  "item-bolsa-dimensional": {
+   "Sacar ou guardar itens custa ação livre, em vez de 1 ação": {
+    "mods": [
+     {
+      "alvo": "acao.sacarItem",
+      "op": "fixa",
+      "valor": 0,
+      "nota": "ação livre"
+     }
+    ]
+   }
+  },
+  "item-calcados-de-mola": {
+   "+3 m de distância ao saltar": {
+    "mods": [
+     {
+      "alvo": "salto",
+      "op": "soma",
+      "valor": 3
+     }
+    ]
+   }
+  },
+  "item-capa-do-salto": {
+   "Triplica a distância de salto": {
+    "mods": [
+     {
+      "alvo": "salto",
+      "op": "multiplica",
+      "valor": 3
+     }
+    ]
+   }
+  },
+  "item-cinturao-do-colosso": {
+   "Conta como +1 categoria de tamanho para manobras": {
+    "mods": [
+     {
+      "alvo": "tamanho",
+      "op": "soma",
+      "valor": 1,
+      "aplica": "situacional",
+      "situacao": "para manobras"
+     }
+    ]
+   }
+  },
+  "item-municao-de-mira-longa": {
+   "Contra alvo a 9 m ou mais, +2 em Atacar": {
+    "mods": [
+     {
+      "alvo": "ataque.bonusAtacar",
+      "op": "soma",
+      "valor": 2,
+      "aplica": "situacional",
+      "situacao": "contra alvo a 9 m ou mais"
+     }
+    ]
+   }
+  },
+  "item-municao-do-executor": {
+   "Ignora toda Armadura (Ar e Ae)": {
+    "mods": [
+     {
+      "alvo": "ataque.ignoraAr",
+      "op": "fixa",
+      "valor": "todo"
+     },
+     {
+      "alvo": "ataque.ignoraAe",
+      "op": "fixa",
+      "valor": "todo"
+     }
+    ]
+   },
+   "Crítico: +2d8 Primordial": {
+    "mods": [
+     {
+      "alvo": "ataque.danoExtra",
+      "op": "soma",
+      "valor": "2d8",
+      "tipo": "primordial",
+      "aplica": "critico"
+     }
+    ]
+   }
+  },
+  "item-municao-de-kali": {
+   "Crítico contra mortos-vivos ou corrompidos: dano máximo": {
+    "mods": [
+     {
+      "alvo": "ataque.danoMaximo",
+      "op": "fixa",
+      "valor": true,
+      "situacao": "contra mortos-vivos ou corrompidos",
+      "aplica": "critico"
+     }
+    ]
+   }
+  },
+  "item-conjunto-explosivo": {
+   "+1d6 Fogo em área de 1,5 m": {
+    "mods": [
+     {
+      "alvo": "ataque.danoExtra",
+      "op": "soma",
+      "valor": "1d6",
+      "tipo": "fogo",
+      "area": "1,5 m"
+     }
+    ]
+   }
+  },
+  "item-conjunto-do-predador": {
+   "Cada ataque contra um alvo diferente do anterior causa +1d6 adicional": {
+    "mods": [
+     {
+      "alvo": "ataque.danoExtra",
+      "op": "soma",
+      "valor": "1d6",
+      "aplica": "situacional",
+      "situacao": "contra alvo diferente do anterior"
+     }
+    ]
+   }
+  },
+  "item-lanca-gancho": {
+   "+1 Movimento ao escalar com ele, enquanto no inventário": {
+    "mods": [
+     {
+      "alvo": "pericia.movimento",
+      "op": "soma",
+      "valor": 1,
+      "aplica": "situacional",
+      "situacao": "ao escalar com ele"
+     }
+    ]
+   }
+  },
+  "item-luneta": {
+   "+1 Percepção a longa distância enquanto no inventário": {
+    "mods": [
+     {
+      "alvo": "pericia.percepcao",
+      "op": "soma",
+      "valor": 1,
+      "aplica": "situacional",
+      "situacao": "a longa distância"
+     }
+    ]
+   }
+  },
+  "item-amuleto-de-malkhor": {
+   "você pode canalizar a magia Disfarce Ilusório livremente, sem foco e sem gastar Éter, em sua versão normal": {
+    "gatilho": "usar",
+    "usos": null,
+    "conjura": {
+     "magia": "Disfarce Ilusório",
+     "id": "magia-disfarce-ilusorio",
+     "intensidade": "Normal",
+     "semFoco": true,
+     "semEter": true
+    }
+   }
+  },
+  "item-mascara-dos-mil-rostos": {
+   "1x por descanso longo: altera a própria aparência por 1 hora (como Disfarce Ilusório, intensidade Normal)": {
+    "conjura": {
+     "magia": "Disfarce Ilusório",
+     "id": "magia-disfarce-ilusorio",
+     "intensidade": "Normal",
+     "semEter": true,
+     "duracao": "1 h"
+    }
+   }
+  },
+  "item-botas-da-dimensao": {
+   "3x por descanso longo: Translocação Arcana 9m como 1 Ação": {
+    "conjura": {
+     "magia": "Translocação Arcana",
+     "id": "magia-translocacao-arcana",
+     "alcance": "9 m",
+     "semEter": true
+    }
+   }
+  },
+  "item-foco-do-demiurgo": {
+   "Como 1 ação, você pode manipular terreno como se estivesse canalizando a magia Plasmar Terreno": {
+    "usos": {
+     "n": 3,
+     "recarga": "longo"
+    },
+    "conjura": {
+     "magia": "Plasmar Terreno",
+     "id": "magia-plasmar-terreno",
+     "semEter": true
+    }
+   }
+  },
+  "item-cajado-do-vilao": {
+   "1x por descanso longo: conjura uma magia de Destruição que conhece sem gastar Éter": {
+    "conjura": {
+     "escola": "Destruição",
+     "magia": null,
+     "nota": "uma que você conhece",
+     "semEter": true
+    }
+   }
+  },
+  "item-veu-de-veluria": {
+   "1x por descanso longo: conjura uma magia Primordial sem gastar Éter": {
+    "conjura": {
+     "magia": null,
+     "nota": "uma magia Primordial",
+     "semEter": true
+    }
+   }
+  },
+  "item-foco-do-inquebravel": {
+   "Como reação, você recupera 2d10+Mod. Constituição de Saúde, 2d8+Mod. Destreza de Stamina e 2d6+Mod. Inteligência ou Sabedoria de Éter e, se quiser, imediatamente se teletransporta a até 9 m": {
+    "usos": {
+     "n": 1,
+     "recarga": "longo"
+    },
+    "mods": [
+     {
+      "alvo": "saude.atual",
+      "op": "soma",
+      "valor": "2d10+mod.CON"
+     },
+     {
+      "alvo": "stamina.atual",
+      "op": "soma",
+      "valor": "2d8+mod.DES"
+     },
+     {
+      "alvo": "eter.atual",
+      "op": "soma",
+      "valor": "2d6+mod.INT|SAB",
+      "nota": "INT ou SAB: o maior (D7)"
+     }
+    ],
+    "resto": "Se quiser, teletransporta-se a até 9 m",
+    "natureza": "regra"
+   }
+  },
+  "item-lamina-de-hyven": {
+   "Crítico: ganhe +3 m de movimento como ação livre nesta rodada": {
+    "mods": [
+     {
+      "alvo": "movimento",
+      "op": "soma",
+      "valor": 3,
+      "duracao": "1 rodada",
+      "aplica": "critico"
+     }
+    ]
+   }
+  },
+  "item-arco-do-vento": {
+   "Ao acertar um ataque, ganhe +1,5 m de movimento como ação livre": {
+    "mods": [
+     {
+      "alvo": "movimento",
+      "op": "soma",
+      "valor": 1.5,
+      "duracao": "1 rodada",
+      "aplica": "evento",
+      "evento": "ao acertar um ataque"
+     }
+    ]
+   }
+  },
+  "item-foco-do-fluxo": {
+   "Suas magias de Alteração canalizadas sobre aliados concedem +3m de movimento adicionais": {
+    "mods": [
+     {
+      "alvo": "movimento",
+      "op": "soma",
+      "valor": 3,
+      "para": "aliados",
+      "aplica": "situacional",
+      "situacao": "suas magias de Alteração canalizadas sobre o aliado"
+     }
+    ]
+   }
+  },
+  "item-foice-curta-necrotica": {
+   "Ao reduzir uma criatura a 0 de Saúde, recupere 1d6 de Saúde": {
+    "mods": [
+     {
+      "alvo": "saude.atual",
+      "op": "soma",
+      "valor": "1d6",
+      "aplica": "evento",
+      "evento": "ao reduzir uma criatura a 0 de Saúde"
+     }
+    ]
+   }
+  },
+  "item-lamina-do-duelista": {
+   "Ao reduzir uma criatura a 0 de Saúde, você recupera 1d6 de Saúde e Stamina": {
+    "mods": [
+     {
+      "alvo": "saude.atual",
+      "op": "soma",
+      "valor": "1d6",
+      "aplica": "evento",
+      "evento": "ao reduzir uma criatura a 0 de Saúde"
+     },
+     {
+      "alvo": "stamina.atual",
+      "op": "soma",
+      "valor": "1d6",
+      "aplica": "evento",
+      "evento": "ao reduzir uma criatura a 0 de Saúde"
+     }
+    ]
+   }
+  },
+  "item-lamina-de-vytalia": {
+   "Crítico: cura 2d8 de Saúde e 2d8 de Stamina": {
+    "mods": [
+     {
+      "alvo": "saude.atual",
+      "op": "soma",
+      "valor": "2d8",
+      "aplica": "critico"
+     },
+     {
+      "alvo": "stamina.atual",
+      "op": "soma",
+      "valor": "2d8",
+      "aplica": "critico"
+     }
+    ]
+   }
+  },
+  "item-raizes-do-sonhador": {
+   "Crítico: Alvo fica Confuso e você drena 10 de Stamina do alvo para si": {
+    "mods": [
+     {
+      "alvo": "stamina.atual",
+      "op": "soma",
+      "valor": 10,
+      "aplica": "critico"
+     }
+    ],
+    "resto": "Crítico: o alvo fica Confuso e perde 10 de Stamina",
+    "natureza": "alvo"
+   }
+  },
+  "item-martelo-de-mundarak": {
+   "Crítico: Fortitude ou +3d6 de Força e Paralisado até suceder no teste no fim do turno do alvo": {
+    "mods": [
+     {
+      "alvo": "ataque.danoExtra",
+      "op": "soma",
+      "valor": "3d6",
+      "tipo": "forca",
+      "situacao": "se o alvo falhar em Fortitude",
+      "aplica": "critico"
+     }
+    ],
+    "resto": "Crítico: Fortitude ou Paralisado até suceder no teste no fim do turno do alvo",
+    "natureza": "alvo"
+   }
+  },
+  "item-ceifadora": {
+   "Como ação livre, todas as criaturas em até 6 m sob Sangramento recebem 1d4 de dano Cortante por marca de Sangramento e a condição é reduzida em 1 em cada alvo, você recupera metade do dano causado como Saúde": {
+    "mods": [
+     {
+      "alvo": "saude.atual",
+      "op": "soma",
+      "valor": "danoCausado/2",
+      "aplica": "evento",
+      "evento": "depois do dano da Ceifadora"
+     }
+    ],
+    "resto": "Todas as criaturas em até 6 m sob Sangramento recebem 1d4 de dano Cortante por marca de Sangramento e a condição é reduzida em 1 em cada alvo",
+    "natureza": "alvo"
+   }
+  },
+  "item-foices-abissais": {
+   "Você recupera todo o dano causado pelo Sangramento como Saúde": {
+    "mods": [
+     {
+      "alvo": "saude.atual",
+      "op": "soma",
+      "valor": "danoDeSangramento",
+      "aplica": "evento",
+      "evento": "quando o Sangramento causado por você causa dano"
+     }
+    ]
+   }
+  },
+  "item-executor-de-ossos": {
+   "Contra alvos abaixo de 50% da Saúde máxima, este ataque causa +1 dado de dano": {
+    "mods": [
+     {
+      "alvo": "ataque.dados",
+      "op": "soma",
+      "valor": 1,
+      "aplica": "situacional",
+      "situacao": "contra alvos abaixo de 50% da Saúde máxima"
+     }
+    ]
+   }
+  },
+  "item-malho-de-casca-raiz": {
+   "Ao acertar um alvo Desorientado, +1d4 de dano Contundente e empurre-o 3 m": {
+    "mods": [
+     {
+      "alvo": "ataque.danoExtra",
+      "op": "soma",
+      "valor": "1d4",
+      "tipo": "contundente",
+      "aplica": "situacional",
+      "situacao": "contra alvo Desorientado"
+     }
+    ],
+    "resto": "Ao acertar um alvo Desorientado, empurre-o 3 m",
+    "natureza": "alvo"
+   }
+  },
+  "item-lanca-tectonica": {
+   "Seus ataques contra criaturas a 3 m de você causam +1d6 de dano adicional": {
+    "mods": [
+     {
+      "alvo": "ataque.danoExtra",
+      "op": "soma",
+      "valor": "1d6",
+      "aplica": "situacional",
+      "situacao": "contra criaturas a 3 m de você"
+     }
+    ]
+   }
+  },
+  "item-guisarma": {
+   "Criaturas a exatamente 3 m de você recebem +1d6 de dano Cortante e não podem usar a reação defender contra o seu ataque": {
+    "mods": [
+     {
+      "alvo": "ataque.danoExtra",
+      "op": "soma",
+      "valor": "1d6",
+      "tipo": "cortante",
+      "aplica": "situacional",
+      "situacao": "contra criaturas a exatamente 3 m de você"
+     }
+    ],
+    "resto": "Criaturas a exatamente 3 m de você não podem usar a reação Defender contra o seu ataque",
+    "natureza": "alvo"
+   }
+  },
+  "item-bordao-contra-tempo": {
+   "Quando uma retaliação contra você errar, seu próximo ataque neste turno causa +2d6 de dano Cortante": {
+    "mods": [
+     {
+      "alvo": "ataque.danoExtra",
+      "op": "soma",
+      "valor": "2d6",
+      "tipo": "cortante",
+      "ataques": 1,
+      "aplica": "evento",
+      "evento": "quando uma retaliação contra você errar"
+     }
+    ]
+   }
+  },
+  "item-gancho-do-carniceiro": {
+   "Ao acertar um alvo sob Sangramento, cause +1d4 de dano adicional para cada marca de Sangramento além da primeira": {
+    "mods": [
+     {
+      "alvo": "ataque.danoExtra",
+      "op": "soma",
+      "valor": "(sangramento-1)d4",
+      "aplica": "situacional",
+      "situacao": "alvo sob Sangramento: +1d4 por marca além da primeira"
+     }
+    ]
+   }
+  },
+  "item-arco-de-caca": {
+   "Seus ataques contra criaturas a mais de 9 m de você causam +1d6 de dano Perfurante adicional": {
+    "mods": [
+     {
+      "alvo": "ataque.danoExtra",
+      "op": "soma",
+      "valor": "1d6",
+      "tipo": "perfurante",
+      "aplica": "situacional",
+      "situacao": "contra criaturas a mais de 9 m"
+     }
+    ]
+   }
+  },
+  "item-bacamarte-de-cano-curto": {
+   "Ao acertar um alvo a 9 m ou menos, o ataque causa +1d8 de dano adicional": {
+    "mods": [
+     {
+      "alvo": "ataque.danoExtra",
+      "op": "soma",
+      "valor": "1d8",
+      "aplica": "situacional",
+      "situacao": "contra alvo a 9 m ou menos"
+     }
+    ]
+   }
+  },
+  "item-balestra-do-assediador": {
+   "Se você não se moveu neste turno, +1 margem de ameaça": {
+    "mods": [
+     {
+      "alvo": "margemAmeaca",
+      "op": "soma",
+      "valor": 1,
+      "aplica": "situacional",
+      "situacao": "se você não se moveu neste turno"
+     }
+    ]
+   }
+  },
+  "item-facas-de-lancamento": {
+   "Ao acertar um inimigo a até 3 m de você, cause +1d4 de dano Cortante": {
+    "mods": [
+     {
+      "alvo": "ataque.danoExtra",
+      "op": "soma",
+      "valor": "1d4",
+      "tipo": "cortante",
+      "aplica": "situacional",
+      "situacao": "contra inimigo a até 3 m, 1x por alvo por rodada"
+     }
+    ]
+   }
+  },
+  "item-rapieira-de-kali": {
+   "Enquanto houver apenas uma criatura em até 3 m de você, esta arma tem +1 margem de ameaça adicional": {
+    "mods": [
+     {
+      "alvo": "margemAmeaca",
+      "op": "soma",
+      "valor": 1,
+      "aplica": "situacional",
+      "situacao": "apenas uma criatura em até 3 m de você"
+     }
+    ]
+   }
+  },
+  "item-picareta-de-kali": {
+   "Com 1 ação, seu próximo ataque tem +1 Multiplicador de Crítico": {
+    "mods": [
+     {
+      "alvo": "ataque.multiplicadorCritico",
+      "op": "soma",
+      "valor": 1,
+      "ataques": 1
+     }
+    ]
+   }
+  },
+  "item-lasca-de-kali": {
+   "Usar Executar contra criatura Exposta não gasta Stamina": {
+    "mods": [
+     {
+      "alvo": "ataque.efeitoChassi.stamina",
+      "op": "fixa",
+      "valor": 0,
+      "aplica": "situacional",
+      "situacao": "Executar contra criatura Exposta"
+     }
+    ]
+   }
+  },
+  "item-bordao-de-kali": {
+   "Alcançar com esta arma concede +3 m de Alcance em vez de +1,5 m e deixa o alvo Exposto no acerto, 1x/combate": {
+    "gatilho": "usar",
+    "usos": {
+     "n": 1,
+     "recarga": "combate"
+    },
+    "mods": [
+     {
+      "alvo": "ataque.efeitoChassi.alcance",
+      "op": "fixa",
+      "valor": 3,
+      "ataques": 1,
+      "nota": "Alcançar: +3 m em vez de +1,5 m"
+     }
+    ],
+    "resto": "Alcançar deixa o alvo Exposto no acerto",
+    "natureza": "alvo"
+   }
+  },
+  "item-lanca-do-horizonte-primordial": {
+   "Com 1 ação, seu próximo ataque nesta rodada tem alcance de 18 m, não pode ser retaliado e ignora resistências": {
+    "mods": [
+     {
+      "alvo": "ataque.alcance",
+      "op": "fixa",
+      "valor": 18,
+      "ataques": 1
+     }
+    ],
+    "resto": "O próximo ataque nesta rodada não pode ser retaliado e ignora resistências",
+    "natureza": "regra"
+   }
+  },
+  "item-expurgador-eterico-de-hyven": {
+   "Com 1 ação, seu próximo ataque nesta rodada ignora toda Armadura (Ar e Ae) e resistências": {
+    "mods": [
+     {
+      "alvo": "ataque.ignoraAr",
+      "op": "fixa",
+      "valor": "todo",
+      "ataques": 1
+     },
+     {
+      "alvo": "ataque.ignoraAe",
+      "op": "fixa",
+      "valor": "todo",
+      "ataques": 1
+     }
+    ],
+    "resto": "O próximo ataque nesta rodada ignora resistências",
+    "natureza": "regra"
+   }
+  },
+  "item-cimitarra-do-cacador": {
+   "+1d6 Necrótico por categoria de tamanho do alvo acima da sua": {
+    "mods": [
+     {
+      "alvo": "ataque.danoExtra",
+      "op": "soma",
+      "valor": "(tamanhoAlvo-tamanho)d6",
+      "tipo": "necrotico",
+      "aplica": "situacional",
+      "situacao": "por categoria de tamanho do alvo acima da sua"
+     }
+    ]
+   }
+  },
+  "item-cha-de-ervas-amargas": {
+   "50% de chance de remover Envenenado não-mágico": {
+    "removeCondicao": [
+     {
+      "condicoes": [
+       "envenenamento"
+      ],
+      "chance": 0.5,
+      "soNaoMagico": true
+     }
+    ]
+   }
+  },
+  "item-comida-alquimica": {
+   "Descanso longo: +1d8 adicional em 1 status a escolha": {
+    "mods": [
+     {
+      "alvo": "descanso.longoDados",
+      "op": "soma",
+      "valor": "1d8",
+      "duracao": "proximoDescansoLongo",
+      "escolha": {
+       "de": [
+        "saude",
+        "stamina",
+        "eter"
+       ],
+       "n": 1
+      }
+     }
+    ]
+   }
+  },
+  "item-balsamo-estabilizador": {
+   "Criatura Morrendo fica estável e recupera +1 de Saúde em 1 min": {
+    "removeCondicao": [
+     {
+      "condicoes": [
+       "morrendo"
+      ],
+      "estabiliza": true
+     }
+    ],
+    "mods": [
+     {
+      "alvo": "saude.atual",
+      "op": "soma",
+      "valor": 1,
+      "nota": "em 1 min"
+     }
+    ]
+   }
+  },
+  "item-kit-de-trauma": {
+   "Estabiliza um Morrendo imediatamente": {
+    "removeCondicao": [
+     {
+      "condicoes": [
+       "morrendo"
+      ],
+      "estabiliza": true
+     }
+    ]
+   }
+  },
+  "item-adrenalina-de-campo": {
+   "Inconsciente acorda com 50% de Saúde": {
+    "removeCondicao": [
+     {
+      "condicoes": [
+       "inconsciente"
+      ]
+     }
+    ],
+    "mods": [
+     {
+      "alvo": "saude.atual",
+      "op": "fixa",
+      "valor": "saude.max/2"
+     }
+    ]
+   },
+   "Fica Exausto 1": {
+    "mods": [
+     {
+      "alvo": "condicao.exaustao",
+      "op": "soma",
+      "valor": 1
+     }
+    ]
+   }
+  },
+  "item-sal-revigorante": {
+   "Acorda criatura Inconsciente": {
+    "removeCondicao": [
+     {
+      "condicoes": [
+       "inconsciente"
+      ]
+     }
+    ]
+   }
+  },
+  "item-oleo-sagrado": {
+   "+1d6 extra contra Corrompidos e Mortos-Vivos": {
+    "mods": [
+     {
+      "alvo": "ataque.danoExtra",
+      "op": "soma",
+      "valor": "1d6",
+      "tipo": "radiante",
+      "ataques": 3,
+      "leitura": "o extra é Radiante, como o dano do óleo",
+      "aplica": "situacional",
+      "situacao": "contra Corrompidos e Mortos-Vivos"
+     }
+    ]
+   }
+  },
+  "item-oleo-do-cacador": {
+   "+2 Atacar, +2d6 dano contra 1 criatura escolhida": {
+    "mods": [
+     {
+      "alvo": "ataque.bonusAtacar",
+      "op": "soma",
+      "valor": 2,
+      "duracao": "1 h",
+      "aplica": "situacional",
+      "situacao": "contra 1 criatura escolhida"
+     },
+     {
+      "alvo": "ataque.danoExtra",
+      "op": "soma",
+      "valor": "2d6",
+      "duracao": "1 h",
+      "aplica": "situacional",
+      "situacao": "contra 1 criatura escolhida"
+     }
+    ]
+   }
+  },
+  "item-sangue-do-dragao": {
+   "Resistência elemental total": {
+    "mods": [
+     {
+      "alvo": "resistencia.fogo",
+      "op": "fixa",
+      "valor": true,
+      "duracao": "1 h"
+     },
+     {
+      "alvo": "resistencia.frio",
+      "op": "fixa",
+      "valor": true,
+      "duracao": "1 h"
+     },
+     {
+      "alvo": "resistencia.eletrico",
+      "op": "fixa",
+      "valor": true,
+      "duracao": "1 h"
+     }
+    ]
+   },
+   "Ataque de Sopro 4d6": {
+    "natureza": "alvo"
+   }
+  },
+  "item-soro-da-guerra": {
+   "Vantagem em Fortitude": {
+    "mods": [
+     {
+      "alvo": "pericia.fortitude",
+      "op": "vantagem",
+      "valor": true,
+      "duracao": "1 min"
+     }
+    ]
+   }
+  },
+  "item-lagrima-de-veluria": {
+   "Ganha +1 mão de cartas do Limiar": {
+    "mods": [
+     {
+      "alvo": "limiar.maos",
+      "op": "soma",
+      "valor": 1,
+      "status": "pendente",
+      "leitura": "o texto não diz se é permanente"
+     }
+    ]
+   }
+  },
+  "item-pocao-da-invisibilidade": {
+   "Invisível por 10 min": {
+    "aplicaCondicao": [
+     {
+      "id": "invisivel",
+      "duracao": "10 min"
+     }
+    ]
+   }
+  },
+  "item-elixir-da-visao-verdadeira": {
+   "Vê ilusões, invisibilidade e escuridão mágica": {
+    "mods": [
+     {
+      "alvo": "sentido.visaoVerdadeira",
+      "op": "fixa",
+      "valor": true,
+      "duracao": "1 min"
+     }
+    ]
+   }
+  },
+  "item-cristal-da-ressurreicao": {
+   "1 uso: ressuscita uma criatura morta há até 1 semana com 1 de Saúde": {
+    "mods": [
+     {
+      "alvo": "saude.atual",
+      "op": "fixa",
+      "valor": 1,
+      "nota": "ressuscita: morta há até 1 semana"
+     }
+    ]
+   }
+  },
+  "item-elixir-da-fenix": {
+   "Criatura morta há menos de 1 minuto ressuscita com 1 de Saúde": {
+    "mods": [
+     {
+      "alvo": "saude.atual",
+      "op": "fixa",
+      "valor": 1,
+      "nota": "ressuscita: morta há menos de 1 minuto"
+     }
+    ]
+   }
+  },
+  "item-bomba-de-eter": {
+   "Conjurador recupera metade": {
+    "mods": [
+     {
+      "alvo": "eter.atual",
+      "op": "soma",
+      "valor": "drenado/2",
+      "para": "portador",
+      "status": "pendente",
+      "leitura": "'Conjurador' lido como quem usa a bomba",
+      "aplica": "evento",
+      "evento": "quando a bomba drena Éter"
+     }
+    ]
+   }
+  },
+  "item-elixir-da-imortalidade": {
+   "Revive 1x se morrer nesse período (1 de Saúde)": {
+    "mods": [
+     {
+      "alvo": "saude.atual",
+      "op": "fixa",
+      "valor": 1,
+      "aplica": "evento",
+      "evento": "ao morrer nos 10 anos (1x)"
+     }
+    ]
+   }
+  }
+ },
+ "naturezas": {
+  "alvo": {
+   "item-armadura-galvanica": [
+    "Ao ser atingido, descarrega 1d6 Elétrico no agressor"
+   ],
+   "item-arpeu-mecanico": [
+    "1x por combate: como reação, agarra um alvo em 4,5 m e o puxa para perto de você (Movimento contra sua CD para resistir)"
+   ],
+   "item-adaga-espelhada": [
+    "Quando você causa dano crítico, repete metade do dano (arredondado para baixo) a um inimigo adjacente ao alvo"
+   ],
+   "item-manopla-do-trovao": [
+    "1x por descanso curto: empurrão mágico 6m"
+   ],
+   "item-municao-fragmentadora": [
+    "No acerto, estilhaça: 1d6 Cortante a alvos em até 1,5 m do alvo principal"
+   ],
+   "item-virotes-do-relampago": [
+    "O dano elétrico adicional salta para alvos adjacentes em 1,5 m"
+   ],
+   "item-cronometro-estagnante": [
+    "1x por descanso longo: congela o tempo de um alvo a 9 m por 1 rodada (Vontade resiste)"
+   ],
+   "item-capsula-de-reanimacao": [
+    "Com 1 ação, revive uma criatura que morreu na última rodada com 25% da Saúde máxima"
+   ],
+   "item-nucleo-de-sobrecarga": [
+    "Com 3 ações, sobrecarregue um alvo com este núcleo",
+    "Durante o próximo turno dele, o alvo causa dano máximo em todos os dados de dano",
+    "Após o efeito, o alvo ganha Exaustão 1"
+   ],
+   "item-punho-de-mundarak": [
+    "1x por descanso longo: um acerto aplica Atordoado (Fortitude resiste)"
+   ],
+   "item-municao-atomica": [
+    "Cobertura e estruturas na área são destruídas"
+   ],
+   "item-conjunto-ricochete": [
+    "Ao errar, o projétil ricocheteia e causa 1d6 Cortante a outra criatura em até 3 m do alvo"
+   ],
+   "item-lanca-de-casca-seiva": [
+    "Ao acertar, Fortitude ou Envenenado"
+   ],
+   "item-foco-da-mare": [
+    "1x por combate: ao conjurar Alteração, desloca um alvo em 3m (Vontade resiste)"
+   ],
+   "item-foco-da-premonicao": [
+    "Como reação, 1x por combate: força uma criatura a repetir um teste de ataque ou resistência contra você, ficando com o pior resultado"
+   ],
+   "item-foice-da-praga": [
+    "Ao acertar, a cura recebida pelo alvo é reduzida à metade por 1 rodada"
+   ],
+   "item-maca-de-karmath": [
+    "Com 1 ação, exija um teste de Vontade para todos os alvos escolhidos por você em até 6 m ou ganham Amedrontado por 1 turno"
+   ],
+   "item-badalo-de-kharavel": [
+    "Como 1 ação, criaturas em até 3 m fazem Fortitude ou ficam Atordoadas até o fim da próxima rodada; no sucesso ficam Desorientadas"
+   ],
+   "item-guilhotina-do-ocaso": [
+    "Com 1 ação, seu próximo ataque estoura todas as marcas de Sangramento e dobra a quantidade de dados dessa condição ao causar dano"
+   ],
+   "item-sino-mistico-de-revavena": [
+    "Com 1 ação, todas as criaturas em até 6 m que estejam Desorientadas ficam Atordoadas até o fim da próxima rodada"
+   ],
+   "item-juizo-primordial": [
+    "Com 1 ação, criaturas em até 6 m fazem Fortitude ou são empurradas 6 m para longe de você e ficam Caídas"
+   ],
+   "item-alabarda-de-hyven-danificada": [
+    "Como reação, quando uma criatura entrar a 3 m de você ela recebe 2d8 de dano Elétrico, o movimento dela se esgota imediatamente e ela permanece a 3 m de você"
+   ],
+   "item-canhao-de-mao": [
+    "Com 1 ação, seu próximo ataque nesta rodada atinge todas as criaturas em uma linha de 9 m"
+   ],
+   "item-alabarda-de-kali": [
+    "Ao acertar criatura Exposta, ela fica com Sangramento 1"
+   ],
+   "item-mangual-de-kali": [
+    "Como 1 ação, gire a corrente: cada criatura em até 3 m deve passar em Reflexos contra sua CD ou ficar Exposta"
+   ],
+   "item-arco-de-kali": [
+    "Enquanto o alvo estiver Exposto, seus ataques com esta arma ignoram cobertura e aplicam Sangramento 1 no acerto"
+   ],
+   "item-balestra-de-kali": [
+    "Como 1 ação, mire: o próximo ataque desta arma neste turno aplica Exposto ao alvo antes de resolver o acerto"
+   ],
+   "item-fumaca-densa": [
+    "Obscurecimento total por 1 min"
+   ],
+   "item-napalm-alquimico": [
+    "Água não apaga"
+   ],
+   "item-acido-dimensional": [
+    "Corrói barreiras mágicas",
+    "Anula 1 barreira de magia"
+   ]
+  },
+  "regra": {
+   "item-bolsa-de-couro": [
+    "Não é empilhável e não ocupa espaço de bugiganga"
+   ],
+   "item-calcados-de-mola": [
+    "Anula todo dano de queda"
+   ],
+   "item-dedal-do-ladrao": [
+    "Silencia o som das mãos"
+   ],
+   "item-sandalias-do-vento": [
+    "Ignora a primeira casa de Terreno Difícil por turno"
+   ],
+   "item-botas-aracnideas": [
+    "Escala qualquer superfície (inclusive teto) à velocidade normal por 10 min, 2x por descanso longo"
+   ],
+   "item-mascara-de-respiro": [
+    "Respiração debaixo d'água enquanto usada"
+   ],
+   "item-escudo-espelhado": [
+    "1x por combate: reflete um projétil mágico de volta"
+   ],
+   "item-escudo-runico": [
+    "1x por combate: absorve completamente 1 magia"
+   ],
+   "item-amuleto-de-retorno": [
+    "1x por descanso longo: teleporta para um ponto definido previamente em até 10 km"
+   ],
+   "item-capa-de-deslocamento": [
+    "1x por descanso longo: um ataque contra você erra automaticamente"
+   ],
+   "item-capa-do-salto": [
+    "1x por descanso longo: cai de qualquer altura sem dano e em pé"
+   ],
+   "item-botas-do-silencio": [
+    "Passos completamente silenciosos"
+   ],
+   "item-botas-do-vento": [
+    "Não ativa Terreno Difícil"
+   ],
+   "item-bolsa-dimensional": [
+    "Itens vivos não podem entrar"
+   ],
+   "item-kit-de-mestre-artifice": [
+    "Ao fabricar qualquer item com Ofício(Engenharia) você rola um d20; se o resultado for 20, você fabrica 1 cópia adicional do item"
+   ],
+   "item-forja-de-bolso": [
+    "Ao fabricar qualquer item com Ofício(Ferraria) você rola um d20; se o resultado for 20, você fabrica 1 cópia adicional do item"
+   ],
+   "item-escudo-primordial": [
+    "1x por combate: anula completamente o dano de um ataque (reação)"
+   ],
+   "item-amuleto-de-malkhor": [
+    "você ignora todos os efeitos adversos das Substâncias da Árvore",
+    "Ao suceder em um teste de Enganação, a rolagem conta como crítica"
+   ],
+   "item-anel-do-deslize": [
+    "3x por descanso longo: move-se até 3m como ação livre sem provocar ataques de oportunidade"
+   ],
+   "item-virote-dimensional": [
+    "Ignora qualquer cobertura"
+   ],
+   "item-lanca-gancho": [
+    "Permite escalar ou puxar-se até o ponto como 1 ação"
+   ],
+   "item-shuriken-retornante": [
+    "Retorna à mão após o ataque"
+   ],
+   "item-adaga-dimensional": [
+    "O ataque ignora resistência ao tipo escolhido"
+   ],
+   "item-foco-da-conflagracao": [
+    "Ao conjurar magia de Destruição em área, rerole os resultados 1 nos dados de dano"
+   ],
+   "item-foco-do-baluarte": [
+    "Com 3 ações, você pode canalizar uma barreira mística em formato de domo impenetrável com 3 m de raio",
+    "A barreira não pode ser destruída por meios materiais, apenas sob seu comando ao gastar 1 ação para dissipá-la",
+    "A barreira dura 3 rodadas, porém você deve sustentá-la em cada uma dessas rodadas gastando 3 ações, ou ao final do seu turno em que você negligenciou esse custo, ela se dissipa imediatamente",
+    "A barreira bloqueia movimento, ataques e magias em ambos os sentidos"
+   ],
+   "item-lamina-eterea": [
+    "Como 1 ação, teletransporte-se em até 9 m, 3x/Descanso Longo"
+   ],
+   "item-agulha-do-vazio": [
+    "Como ação livre, seu próximo ataque nesta rodada não pode ser retaliado e o alvo não soma o dado de Defender à Evasão contra ele"
+   ],
+   "item-fragmento-primordial": [
+    "Os ataques dessa arma não podem ser retaliados"
+   ],
+   "item-alabarda-impostora": [
+    "Você pode realizar ataques de oportunidade contra criaturas que entrem no seu alcance a 3 m de você"
+   ],
+   "item-sabre-do-esgrimista": [
+    "A primeira retaliação que você sofrer em cada rodada causa metade do dano"
+   ],
+   "item-glaive-do-artista-marcial": [
+    "Ao acertar dois ataques no mesmo turno, você imediatamente após o segundo ataque fica imune a ataques de oportunidade e retaliações até o fim do seu turno"
+   ],
+   "item-garra-serrilhada": [
+    "Uma vez por turno, seu ataque contra um alvo sob Sangramento não remove a condição"
+   ],
+   "item-arco-prismatico": [
+    "Como ação livre, seu próximo ataque nesta rodada ignora cobertura e você pode alterar o tipo de dano dele livremente (exceto Força e Primordial)"
+   ],
+   "item-fio-do-oblivio": [
+    "Na sua rodada, como ação livre, faça um ataque contra todas as criaturas em até 6 m para cada marca de Sangramento aplicada a elas",
+    "A PMA é contada separadamente para cada alvo: o segundo ataque contra a mesma criatura sofre −5, o terceiro −10, e assim por diante; ao trocar de alvo a PMA zera"
+   ],
+   "item-decepador-de-kali": [
+    "Esta arma nunca consome Exposto: seus ataques só são críticos por margem de ameaça"
+   ],
+   "item-sabre-de-kali": [
+    "Ao acertar criatura Exposta, você ignora resistência a dano ordinário"
+   ],
+   "item-casca-de-raiz": [
+    "Uso repetido cria vínculo onírico permanente (ver Substâncias da Grande Árvore)"
+   ],
+   "item-fermentado-do-abismo": [
+    "Enquanto estiver Bêbado, o 2 natural deixa de ser falha crítica e passa a contar como acerto crítico"
+   ],
+   "item-elixir-aranha": [
+    "Escala superfícies como aranha por 10 min"
+   ],
+   "item-elixir-das-guelras": [
+    "Respira debaixo d'água por 30 min"
+   ],
+   "item-elixir-das-linguas": [
+    "Entende qualquer idioma falado por 1h"
+   ],
+   "item-cristal-da-ressurreicao": [
+    "Uma criatura só pode ser ressuscitada uma vez — depois disso, nenhum revive funciona nela"
+   ],
+   "item-semente-da-vhelor": [
+    "Consumi-la instantaneamente te transforma em um ser pecaminoso"
+   ],
+   "item-petala-do-sonhador": [
+    "Adentra a consciência de uma criatura por tempo indefinido",
+    "Você pode explorar as memórias, intenções e capacidades da criatura de maneira absoluta, mas não pode controlá-la",
+    "Caso a criatura morra enquanto você estiver dentro da consciência dela, você morre junto"
+   ],
+   "item-elixir-da-imortalidade": [
+    "Não envelhece por 10 anos"
+   ],
+   "item-elixir-da-forma-bestial": [
+    "Transforma em besta de CR igual ao seu nível",
+    "Mantém a mente"
+   ],
+   "item-essencia-eterea": [
+    "Torna-se Incorpóreo por 1 minuto",
+    "Atravessa paredes",
+    "Não pode interagir fisicamente"
+   ],
+   "item-pocao-da-invisibilidade": [
+    "Atacar, receber dano ou conjurar cancela"
+   ]
+  },
+  "utilidade": {
+   "item-conta-gotas-de-purificacao": [
+    "Purifica 1 litro de água"
+   ],
+   "item-lente-do-escriba": [
+    "Armazena textos dentro de uma esfera mágica; chamar um documento reproduz o texto em sua superfície"
+   ],
+   "item-lente-do-teurgo": [
+    "Registra um momento visto através dela e o reproduz depois"
+   ],
+   "item-pedra-de-mensagem": [
+    "Envia 1 mensagem telepática a até 1km"
+   ],
+   "item-gazua-fantasma": [
+    "Gazua que não quebra"
+   ],
+   "item-mochila-do-contrabandista": [
+    "Compartimento oculto (Investigação contra sua CD para achar) que esconde até 3 itens de revistas"
+   ],
+   "item-coroa-do-eco-mental": [
+    "1x por descanso longo: lê o pensamento superficial de um alvo"
+   ],
+   "item-olho-de-vytalia": [
+    "Vê o verdadeiro nome de criaturas"
+   ],
+   "item-lanca-gancho": [
+    "Dispara gancho a 9 m"
+   ],
+   "item-foco-do-oraculo": [
+    "1x por descanso longo: faça uma pergunta ao Mestre sobre o futuro próximo; a resposta é vaga, mas verdadeira"
+   ],
+   "item-grilhoes-de-osh-kar": [
+    "Habilidade: 1x por descanso longo, converse com o espírito de uma criatura morta há menos de 1 dia"
+   ],
+   "item-cantil": [
+    "Armazena água limpa para 1 dia de hidratação",
+    "Necessária em viagens longas"
+   ],
+   "item-comida-1-porcao": [
+    "Alimenta 1 pessoa por 1 dia"
+   ],
+   "item-bastao-de-luz": [
+    "Bastonete que emite luz brilhante 6m + fraca 6m por 4 horas"
+   ],
+   "item-catalisador-termico": [
+    "Mantém a temperatura de um objeto/local fixa por 24h"
+   ],
+   "item-cola-universal": [
+    "Gruda superfícies",
+    "CD 20 de Força para separar"
+   ],
+   "item-corda-liquida": [
+    "Enrijece em 6 segundos formando uma corda de 9m"
+   ],
+   "item-espuma-seladora": [
+    "Sela buracos até 50cm",
+    "Cria cobertura improvisada"
+   ],
+   "item-kit-de-manutencao": [
+    "Pode consertar invenções ou bugigangas"
+   ],
+   "item-po-revelador": [
+    "Revela magia remanescente em uma área por 1h"
+   ],
+   "item-agua-regia": [
+    "Abre fechaduras de metal"
+   ],
+   "item-detector-de-magia": [
+    "Frasco brilha azul perto de magia"
+   ],
+   "item-marcador-rastreavel": [
+    "Detectável a 100m por 24h"
+   ],
+   "item-sangue-falso": [
+    "Finge morte de forma convincente",
+    "Medicina CD 18 para perceber a farsa"
+   ],
+   "item-tinta-invisivel": [
+    "Só aparece com calor ou reagente específico"
+   ],
+   "item-regeneracao-alquimica": [
+    "Regenera membro perdido há até 1 hora, em 24 horas"
+   ],
+   "item-extrato-de-clarividencia": [
+    "Vê e ouve local que você conhece a até 1 km por 10 min"
+   ],
+   "item-tinta-do-destino": [
+    "Escreva um evento simples",
+    "50% de chance de acontecer nas próximas 24 h",
+    "O Mestre rola os dados"
+   ],
+   "item-kit-de-manutencao-enferrujado": [
+    "Pode consertar invenções ou bugigangas"
+   ],
+   "item-kit-de-manutencao-de-qualidade": [
+    "Pode consertar invenções ou bugigangas"
+   ],
+   "item-kit-de-manutencao-impecavel": [
+    "Pode consertar invenções ou bugigangas"
+   ]
+  },
+  "sabor": {
+   "item-bolsa-de-couro": [
+    "Bolsa funcional"
+   ],
+   "item-caixa-harmonica": [
+    "Mecanismo de corda"
+   ],
+   "item-kit-de-crime": [
+    "Lockpicks"
+   ],
+   "item-lente-do-teurgo": [
+    "Lente de cristal lapidado"
+   ],
+   "item-arpeu-mecanico": [
+    "Braço mecânico de mola"
+   ],
+   "item-regulador-temporal": [
+    "Dispositivo de corda"
+   ],
+   "item-escudo-de-karmath": [
+    "Brilha com luz Radiante"
+   ],
+   "item-amuleto-de-malkhor": [
+    "Um pingente de raízes que se adapta ao seu corpo e penetra sua epiderme até seu coração com raízes"
+   ],
+   "item-coroa-de-kha": [
+    "Uma coroa de energia primordial amarela com seções sólidas roxas"
+   ],
+   "item-coroa-do-maestro": [
+    "Uma coroa de ouro puro, denota você como líder"
+   ],
+   "item-selo-de-veluria": [
+    "Atrai a atenção da deusa da magia"
+   ],
+   "item-veu-de-veluria": [
+    "Relíquia da deusa da magia"
+   ],
+   "item-casca-de-raiz": [
+    "Ao dormir após consumir, sonha fragmentos do Sonhador"
+   ],
+   "item-tintura-fantasma": [
+    "Fica translúcido"
+   ],
+   "item-folha-amarela": [
+    "Cada folha consumida nutre a Vhelor, fortalecendo-a"
+   ],
+   "item-fogo-negro": [
+    "Chamas negras"
+   ],
+   "item-marcador-rastreavel": [
+    "Líquido invisível"
+   ]
+  },
+  "estrutural": {
+   "item-casca-de-raiz": [
+    "Sacia como refeição completa (substitui Comida em um descanso)"
+   ],
+   "item-comida-1-porcao": [
+    "Necessária para descanso longo"
+   ],
+   "item-pao-de-viagem-reforcado": [
+    "Refeição completa (substitui Comida no descanso)"
+   ],
+   "item-comida-alquimica": [
+    "Refeição completa"
+   ],
+   "item-foco-do-demiurgo": [
+    "Esse efeito não gasta Éter, porém você pode utilizá-lo apenas 3x/Descanso Longo"
+   ],
+   "item-petala-do-sonhador": [
+    "Item único — usá-la de um jeito gasta o outro"
+   ]
+  }
+ },
+ "linhas": {
+  "_doc": "ajustes de item inteiro: gatilhos.<g> funde no gatilho (no 1º, se for lista); outra chave vai para a linha",
+  "item-cafe-preto": {
+   "gatilhos": {
+    "consumir": {
+     "requisito": {
+      "condicao": "bebado"
+     }
+    }
+   }
+  },
+  "item-semente-da-vhelor": {
+   "pendencia": "'te transforma em um ser pecaminoso': é a Marca 7 (Sucumbência) ou outra coisa? (pendência 10)"
+  },
+  "item-lagrima-de-veluria": {
+   "pendencia": "'+1 mão de cartas do Limiar': permanente ou só até o fim da sessão/campanha?"
+  },
+  "item-bomba-de-eter": {
+   "pendencia": "'Conjurador recupera metade': lido como quem usa a bomba"
+  },
+  "item-caixa-harmonica": {
+   "pendencia": "'+2 em Vontade a aliados': o portador também recebe?"
+  },
+  "item-armadura-viva": {
+   "pendencia": "+2 Ar 'até o próximo descanso longo' na 1ª vez que leva dano em cada combate: soma de novo no combate seguinte, antes do descanso?"
+  }
+ }
+}

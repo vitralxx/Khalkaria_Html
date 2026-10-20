@@ -73,7 +73,7 @@ EMPILHA = re.compile(r'^Empilhável: pesa 1 bugiganga a cada 10 unidades$')
 
 def frases(txt):
     txt = txt.strip()
-    partes = re.split(r'(?<=[.!])\s+(?=[A-ZÀ-Ú0-9+\-−(\[])', txt)
+    partes = re.split(r'(?<=[.!])(?<!\bMod\.)\s+(?=[A-ZÀ-Ú0-9+\-−(\[])', txt)
     out = []
     for p in partes:
         p = p.strip().rstrip('.').strip()
@@ -191,6 +191,8 @@ def _clausula(c):
         x = {'alvo':'regeneracao.saude','op':'soma','valor':int(m.group(1)),'momento':'inicioTurno'}
         if m.group(2): x['condicao'] = 'emCombate' if m.group(2) == 'em combate' else 'foraDeCombate'
         return [x]
+    m = re.fullmatch(r'([+\-−]\d+) (?:em )?(' + PER_RE + r') e (' + PER_RE + r')', c)
+    if m: return [{'alvo':'pericia.'+PERICIAS[g],'op':'soma','valor':int(sinal(m.group(1)))} for g in (m.group(2), m.group(3))]
     m = re.fullmatch(r'([+\-−]\d+) (?:em )?(' + PER_RE + r')/(' + PER_RE + r')', c)
     if m: return [{'alvo':'pericia.'+PERICIAS[g],'op':'soma','valor':int(sinal(m.group(1)))} for g in (m.group(2), m.group(3))]
     return None
@@ -265,7 +267,8 @@ def parse_arma(r):
              'nota':'Foco não ataca: permite conjurar a escola. Quando a magia exige ataque, o acerto usa Místico e o dano soma Mod. INT ou SAB.'}
         req = re.search(r'Requisito: ([^.]+)\.', e)
         a['requisito'] = req.group(1) if req else None
-        a['lembretes'] = [f for f in frases(e) if not re.match(r'(Foco Místico|Permite canalizar|Sem bônus|\+\d+ Místico, \+\d+ Éter máximo|Requisito: )', f)]
+        a['lembretes'] = [f for f in frases(e) if not re.match(r'(Foco Místico|Permite canalizar|Sem bônus|Requisito: )', f)
+                          and frase_mods(f) is None]
         resto = e
         return a, resto
     m = CHASSI.match(e)
@@ -285,8 +288,19 @@ def parse_arma(r):
     mm = re.search(r'Consome 1 munição \(([^)]+)\) por cena de combate', resto)
     if mm: a['municao'] = mm.group(1)
     elif ch in MUNICAO_POR_CHASSI: a['municao'] = MUNICAO_POR_CHASSI[ch]
-    for mm in re.finditer(r'(?:^|\.\s+)\+ (\d+d\d+) ([A-ZÀ-Ú][a-zà-ú]+)', resto):
-        a['danoExtra'].append({'dados':mm.group(1),'tipo':TIPOS.get(mm.group(2), mm.group(2))})
+    for mm in re.finditer(r'(?:^|\.\s+)\+ (\d+d\d+) ([^.]*?)\.(?=\s|$)', resto):
+        dados, frase = mm.group(1), mm.group(2).strip()
+        m2 = re.fullmatch(r'([A-ZÀ-Ú][a-zà-ú]+)(?:\s+(.+))?', frase)
+        if m2 and m2.group(1) in TIPOS:
+            d = {'dados':dados,'tipo':TIPOS[m2.group(1)]}
+            if m2.group(2): d['condicao'] = m2.group(2)
+        elif frase.startswith('de tipo variável'):
+            # 'Altere em um descanso curto — 1 Radiante, 2 Trovejante, 3 Necrótico, 4 Força'
+            d = {'dados':dados,'tipo':'mistico','escolha':[TIPOS[t] for t in re.findall(r'\d ([A-ZÀ-Ú][a-zà-ú]+)', frase) if t in TIPOS],
+                 'condicao':'tipo escolhido no descanso curto'}
+        else:
+            raise SystemExit(f"dano extra sem leitura em {r['Nome']}: {frase}")
+        a['danoExtra'].append(d)
     mm = re.search(r'Efeito: (Dilacerar|Alcançar|Desorientar|Executar) \((\d) Stamina\)', resto)
     if mm: a['efeitoChassi'] = {'nome':mm.group(1),'stamina':int(mm.group(2)),
                                 'gratis1xTurno':'1x/turno não custa Stamina' in resto}
@@ -470,6 +484,14 @@ CONVENCOES = {
  'soParaRaca': "o item só funciona nessa raça (Kits de Manutenção: 'automato')",
  'marcaVhelor': "{soma, funcionaAteMarca?}: quanto o item move o contador de Marcas da Vhelor ao ser consumido. Textos e efeitos das 7 marcas no bloco 'marcasVhelor' (fonte única: marcas-vhelor.json)",
  'requisito': "{arma:'leve'} ou {marcaVhelorMin:n}: o item só funciona se a condição valer; a ficha avisa, não bloqueia",
+ 'tabela': ("rev. 11: o bloco 'tabela' é a estrutura nova e completa (uma linha por item, os 727, com o gatilho explícito e "
+            "todo número de campo como Mod; vocabulário em 'tabelaVocabulario', contagens em 'cobertura'). Os blocos itens, "
+            "armas, consumo e semEfeitoNaFicha continuam no formato 1.1, iguais aos da rev. 10 salvo a errata, para o build "
+            "atual do site não quebrar; os lembretes com número que a tabela já converteu em Mod continuam como lembrete "
+            "neles. Quando o site migrar para a tabela, os blocos 1.1 saem."),
+ 'marcaVhelorUI': ("Pedro (2026-10-19): a seção das Marcas da Vhelor fica OCULTA na ficha até um item dar a primeira Marca. "
+                   "Leitura minha: revela quando o contador passa de 0 pela primeira vez (Mod alvo 'marcaVhelor' com soma > 0) "
+                   "e não volta a esconder se o Elixir da Expurgação levar o contador a 0."),
  'critico': "no crítico dobram os dados da arma, inclusive os de dano extra escritos na própria arma (D97, no Notion); extras de fora da arma (óleo, técnica, Sangramento) não dobram (regras-ficha > testes.critico)",
 }
 ALVOS = {
@@ -513,6 +535,10 @@ PENDENCIAS = [
  {'n':10,'item':'Semente da Vhelor','o':"'Consumi-la instantaneamente te transforma em um ser pecaminoso': é a Marca 7 (Sucumbência) ou outra coisa? Fica lembrete.",'status':'pendente: Pedro'},
  {'n':11,'item':'Soro da Guerra, Veneno Hemorrágico','o':"CSV igualado ao que o Pedro escreveu (D111): o Soro ganha 'Vantagem em Fortitude' (lembrete: a gramática não tem vantagem); o Veneno Hemorrágico passa a '3 ataques. +1d6 Biológico. Alvo recebe Sangramento 3 no terceiro ataque.'",'status':'resolvido (D111)'},
  {'n':12,'item':'Poções, elixires e kits comprados','o':"'+Int' de item sem fabricante soma a média da raridade: Ordinário +1, Incomum +2, Exótico +3, Luxária +4 (D117 + D121, gravado no Sistema). Cobre as 11 curas com +Int do Bazar.",'status':'resolvido (D121)'},
+ {'n':13,'item':'Lágrima de Velúria','o':"'Ganha +1 mão de cartas do Limiar': permanente? Na tabela, Mod limiar.maos +1 com status pendente.",'status':'pendente: Pedro'},
+ {'n':14,'item':'Bomba de Éter','o':"'Conjurador recupera metade': lido como quem usa a bomba (Mod eter.atual 'drenado/2', status pendente).",'status':'pendente: Pedro'},
+ {'n':15,'item':'Armadura Viva','o':"+2 Ar até o próximo descanso longo na 1ª vez que leva dano em cada combate: lido como não somando de novo antes do descanso.",'status':'pendente: Pedro'},
+ {'n':16,'item':'Caixa Harmônica','o':"'+2 em Vontade a aliados em 6 m': lido sem o portador.",'status':'pendente: Pedro'},
 ]
 
 # ---------------------------------------------------------------- overrides (revisão manual, status 'decisao')
@@ -599,6 +625,12 @@ def main():
         base.update(o); base['status'] = o.get('status', 'decisao')
         out[bloco][nid] = base
         if nid in out['semEfeitoNaFicha']: out['semEfeitoNaFicha'].remove(nid)
+    # rev. 11: um campo para cada sentido de acumula:false (pedido do site, plano §10)
+    for x in out['itens'].values():
+        if x.get('acumula') is False:
+            t = x.get('verbatim') or ''
+            if re.search(r'não acumula com outras fontes', t, re.I): x['acumulaSentido'] = 'fontes'
+            else: x['acumulaSentido'] = 'copia'   # 'outra cópia' no texto; Saco de Dormir (sem frase): leitura minha
     # PD22: Ae(Todos) explicita os tipos cobertos
     for bloco in ('itens', 'consumo'):
         for x in out[bloco].values():
@@ -643,15 +675,24 @@ if __name__ == '__main__':
                 for l in x.get('lembretes', []):
                     if CAMPO_FICHA.search(l): print(f"  [{bloco}] {x['nome']}: {l}")
     if '--escrever' in sys.argv:
+        import importlib.util
+        spec = importlib.util.spec_from_file_location('tabela', os.path.join(AQUI, 'ficha-efeitos-tabela.py'))
+        tab = importlib.util.module_from_spec(spec); spec.loader.exec_module(tab)
+        tabela, cobertura, vocab = tab.construir(rows, out, iid, usos_de)
         sha = hashlib.sha256(open(CSV,'rb').read()).hexdigest()[:16]
         final = {
-          'schemaVersion': 'efeitos-itens/1.1',
-          'geradoEm': '2026-09-29 (rev. 10: Mapa empilhável e com a regra de venda 1x/área (D135). rev. 9: Poção de Vigor Moderada 4 Reagentes e CD 12; Café Preto 5 Reagentes (edição do Pedro no Notion); Napalm Alquímico (área) sai, era cópia incompleta do Napalm Alquímico; item novo Mapa (Batedor). rev. 8: item renomeado Lágrima do Tempo, id item-lagrima-do-tempo (D125). rev. 7: tabela da média da raridade na convenção maisInt e pendência 12 resolvida, D121. rev. 6: D111 Soro da Guerra e Veneno Hemorrágico no CSV; convenção maisInt = fabricante (L08, D117). rev. 5: L37 Anel do Esgrimista, L38 Elixir da Expurgação; CSV igual ao da main. rev. 4: rodada 3 — PD21 Grevas, PD22 Ae(Todos), PD23 Autômato, PD24, PD25, PD26a Marcas da Vhelor; convenção de crítico D97)',
+          'schemaVersion': 'efeitos-itens/1.2',
+          'geradoEm': '2026-10-20 (rev. 11: tabela por gatilho — os 727 itens com carregar/equipar/sintonizar/consumir/usar, '
+                      'todo número de campo como Mod, relatório de cobertura (blocos tabela, cobertura, tabelaVocabulario); '
+                      'errata dos 4 defeitos de parse (Adaga Dimensional, Bastão de Karmath, Machado da Fúria, Foco do Vidente) '
+                      'e frase do Foco do Inquebrável inteira. rev. 10: Mapa empilhável e com a regra de venda 1x/área (D135). rev. 9: Poção de Vigor Moderada 4 Reagentes e CD 12; Café Preto 5 Reagentes (edição do Pedro no Notion); Napalm Alquímico (área) sai, era cópia incompleta do Napalm Alquímico; item novo Mapa (Batedor). rev. 8: item renomeado Lágrima do Tempo, id item-lagrima-do-tempo (D125). rev. 7: tabela da média da raridade na convenção maisInt e pendência 12 resolvida, D121. rev. 6: D111 Soro da Guerra e Veneno Hemorrágico no CSV; convenção maisInt = fabricante (L08, D117). rev. 5: L37 Anel do Esgrimista, L38 Elixir da Expurgação; CSV igual ao da main. rev. 4: rodada 3 — PD21 Grevas, PD22 Ae(Todos), PD23 Autômato, PD24, PD25, PD26a Marcas da Vhelor; convenção de crítico D97)',
           'geradoPor': 'ficha-efeitos-gerador.py + ficha-efeitos-overrides.json (branch claude/khalkaria-bazar-balance-lsdfic)',
-          'fonte': {'csv': 'references/bazar-v26.csv = data/Bazar_Khalkaria_v26.csv da main (751abae) + L38 (1 célula: Nome do Elixir da Expurgação) + D111 (2 células de Efeito: Soro da Guerra, Veneno Hemorrágico) + D125 (Lágrimas do Tempo -> Lágrima do Tempo: nome e a menção na Lágrima de Velúria)',
+          'fonte': {'csv': 'references/bazar-v26.csv: idêntico ao data/Bazar_Khalkaria_v26.csv da main (cf65e56; mesmo sha256_16). Histórico: main 751abae + L38 (1 célula: Nome do Elixir da Expurgação) + D111 (2 células de Efeito: Soro da Guerra, Veneno Hemorrágico) + D125 (Lágrimas do Tempo -> Lágrima do Tempo: nome e a menção na Lágrima de Velúria)',
                     'sha256_16': sha, 'itens': len(rows)},
           'contagem': {k: len(out[k]) for k in ('itens','armas','consumo','semEfeitoNaFicha','naoParseado')},
+          'cobertura': cobertura,
           'convencoes': CONVENCOES, 'alvos': ALVOS, 'pendencias': PENDENCIAS,
+          'tabelaVocabulario': vocab, 'tabela': tabela,
           'marcasVhelor': out['marcasVhelor'],
           **{k: out[k] for k in ('itens','armas','consumo','semEfeitoNaFicha','naoParseado','empilhaveis','fonteDeLuz','alimento')}}
         json.dump(final, open(SAIDA,'w',encoding='utf-8'), ensure_ascii=False, indent=1)

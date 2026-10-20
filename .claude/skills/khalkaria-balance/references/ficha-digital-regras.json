@@ -1,6 +1,6 @@
 {
   "schemaVersion": "regras-ficha/1.1",
-  "geradoEm": "2026-09-28 (rev. 10: ação livre de custo variável, D126; ver 17-respostas-T-e-sync.md §1c. rev. 9: segunda leva de respostas do Pedro, D118–D123: média da raridade, condições mentais, requisitos de conjuração; ver 17-respostas-T-e-sync.md §1b. rev. 8: respostas do Pedro às T1–T19, D98–D117, gravadas no Notion; ver 17-respostas-T-e-sync.md. rev. 7: lote L respondido pelo Pedro e gravado no Notion; correções do Log de Técnicas, ver 16-log-tecnicas.md)",
+  "geradoEm": "2026-10-20 (rev. 11: D154, o maior modificador sempre prevalece nas perícias de dois atributos, na CD e nos status, sem troca manual (Notion, Sistema > Lista de Perícias); rótulo \"Lendário\". rev. 10: ação livre de custo variável, D126; ver 17-respostas-T-e-sync.md §1c. rev. 9: segunda leva de respostas do Pedro, D118–D123: média da raridade, condições mentais, requisitos de conjuração; ver 17-respostas-T-e-sync.md §1b. rev. 8: respostas do Pedro às T1–T19, D98–D117, gravadas no Notion; ver 17-respostas-T-e-sync.md. rev. 7: lote L respondido pelo Pedro e gravado no Notion; correções do Log de Técnicas, ver 16-log-tecnicas.md)",
   "_doc": "Resposta do agente de balanceamento ao pedido docs/ficha-digital/01-pedido-ao-balanceamento.md. O texto com a justificativa de cada regra esta em 14-ficha-digital.md, na mesma numeracao P/C. Nada aqui e canonico so porque esta escrito: leia o campo 'status'.",
   "_status": {
     "canonico": "Esta no Notion ou numa decisao registrada em 09-decisoes-pedro.md. Pode ir para o site.",
@@ -137,8 +137,8 @@
           "condicao": "exaurido"
         }
       ],
-      "modoEscolhaTrocavel": true,
-      "modoEscolhaFonte": "PD7 (docs/ficha-digital/03-respostas-pedro.md (main 703f665)): \"Maior mas com escolha de mudar\"",
+      "modoEscolhaTrocavel": false,
+      "modoEscolhaFonte": "D154 (Pedro, 2026-10-19: \"o maior sempre prevalece no cálculo, e é só isso\"). Leitura minha: a D154 fala em perícias e CD; os status com dois atributos seguem a mesma regra até o Pedro dizer o contrário.",
       "minStatus": "canonico",
       "minFonte": "notion-sistema > Status > Stamina: \"A Stamina não fica negativa.\" (D93, resposta do Pedro ao L03: \"Não.\")",
       "perdaInvoluntariaNegativa": false,
@@ -160,8 +160,8 @@
         }
       ],
       "perdePersonagemEm": "atual < -floor(recurso.eter.max/2)",
-      "modoEscolhaTrocavel": true,
-      "modoEscolhaFonte": "PD7 (docs/ficha-digital/03-respostas-pedro.md (main 703f665)): \"Maior mas com escolha de mudar\"",
+      "modoEscolhaTrocavel": false,
+      "modoEscolhaFonte": "D154 (Pedro, 2026-10-19: \"o maior sempre prevalece no cálculo, e é só isso\"). Leitura minha: a D154 fala em perícias e CD; os status com dois atributos seguem a mesma regra até o Pedro dizer o contrário.",
       "perdePersonagemFonte": "notion-condicoes 3a66e3a4...0b25, gravado em 2026-09-26 (rodada 3, diff conferido) > Oco: \"Ao ultrapassar metade do seu éter máximo nos negativos\" (PD17)",
       "gastoSemSaldoStatus": "canonico",
       "gastoSemSaldoFonte": "L01, notion-sistema > Status > Regras dos status: \"Você não pode gastar Stamina ou Éter que não tem.\" (gravado no Notion em 2026-09-27 (diff conferido))"
@@ -343,9 +343,9 @@
       "cd": {
         "formula": "10 + escolha(mod.DES,mod.FOR) + mod.CON",
         "modoEscolha": "maior",
-        "modoEscolhaStatus": "aprovado",
-        "modoEscolhaTrocavel": true,
-        "modoEscolhaFonte": "PD7"
+        "modoEscolhaStatus": "canonico",
+        "modoEscolhaTrocavel": false,
+        "modoEscolhaFonte": "D154 (Pedro, 2026-10-19: \"o maior sempre prevalece no cálculo, e é só isso\") + notion-sistema > Lista de Perícias, gravado em 2026-10-20 (diff conferido)"
       },
       "armaInicial": "Marciais",
       "periciasIniciais": [
@@ -1228,8 +1228,9 @@
         "fisica"
       ],
       "bestiario": "prof_movement",
-      "trocavel": true,
-      "trocavelFonte": "PD7"
+      "trocavel": false,
+      "trocavelFonte": "D154 (Pedro, 2026-10-19: \"o maior sempre prevalece no cálculo, e é só isso\") + notion-sistema > Lista de Perícias, gravado em 2026-10-20 (diff conferido)",
+      "modoStatus": "canonico"
     },
     {
       "id": "fortitude",
@@ -1377,8 +1378,9 @@
         "social"
       ],
       "bestiario": "prof_persuasion",
-      "trocavel": true,
-      "trocavelFonte": "PD7"
+      "trocavel": false,
+      "trocavelFonte": "D154 (Pedro, 2026-10-19: \"o maior sempre prevalece no cálculo, e é só isso\") + notion-sistema > Lista de Perícias, gravado em 2026-10-20 (diff conferido)",
+      "modoStatus": "canonico"
     },
     {
       "id": "intimidacao",
@@ -1395,9 +1397,10 @@
       "bestiario": "prof_intimidation",
       "status": "canonico",
       "pendente": "Só a página Notion \"Template - Ficha de Personagem\" (4e66e3a4) diz \"Intimidação (For/Sab)\". Notion × Notion: correção esperando o ok do Pedro.",
-      "trocavel": true,
-      "trocavelFonte": "PD7",
-      "fonte": "notion-sistema > tabela de perícias \"1d20+(Constituição ou Força)\" + ficha física A4 \"Intimidar (Con/For)\""
+      "trocavel": false,
+      "trocavelFonte": "D154 (Pedro, 2026-10-19: \"o maior sempre prevalece no cálculo, e é só isso\") + notion-sistema > Lista de Perícias, gravado em 2026-10-20 (diff conferido)",
+      "fonte": "notion-sistema > tabela de perícias \"1d20+(Constituição ou Força)\" + ficha física A4 \"Intimidar (Con/For)\"",
+      "modoStatus": "canonico"
     },
     {
       "id": "intuicao",
@@ -1420,8 +1423,9 @@
         "social"
       ],
       "bestiario": "prof_deception",
-      "trocavel": true,
-      "trocavelFonte": "PD7"
+      "trocavel": false,
+      "trocavelFonte": "D154 (Pedro, 2026-10-19: \"o maior sempre prevalece no cálculo, e é só isso\") + notion-sistema > Lista de Perícias, gravado em 2026-10-20 (diff conferido)",
+      "modoStatus": "canonico"
     },
     {
       "id": "motivar",
@@ -1487,7 +1491,7 @@
       "Treinado",
       "Experiente",
       "Mestre",
-      "Lendario"
+      "Lendário"
     ],
     "empilha": true,
     "empilhaRegra": "Duas fontes de 'Treinado em X' fazem Experiente. Nenhuma fonte concede um grau nomeado acima de Treinado: elas empilham.",

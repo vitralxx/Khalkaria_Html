@@ -56,7 +56,9 @@ Tipo de Craft · Ingredientes · Tags · Lore/Notas · **CD de Craft** · (17 co
 | `batedor-sim-instinto-rework.py` | Monte Carlo do Instinto proposto (semente fixa); modelo de simulação para recurso de classe. O `batedor-sim-instinto.py` é a versão da Rodada 1 (`13`) | — |
 | `log-tecnicas-respostas.json` | as mesmas respostas como dado (gerador: `scripts/log-tecnicas/build16.py`) (`log-tecnicas-respostas/1`): uma entrada por id de achado, com status, princípio e pergunta | gerado |
 | `ficha-digital-regras.json` | as mesmas regras como dado, no contrato `regras-ficha/1.1` — cada regra com `status` (canônico / aprovado / decisão / pedroDecide / pendente) | gerado |
-| **`ficha-efeitos-itens.json`** | **O que cada um dos 727 itens do Bazar muda na ficha** (pedido 2 do agente de HTML, bloco B): itens · armas · consumo · semEfeito, conta fechada | gerado |
+| **`ficha-efeitos-itens.json`** | **O que cada um dos 727 itens do Bazar muda na ficha.** Rev. 11 (`efeitos-itens/1.2`): **`tabela`** (uma linha por item, gatilhos carregar/equipar/sintonizar/consumir/usar, todo número de campo como Mod), `cobertura` e `tabelaVocabulario`; os blocos 1.1 (itens · armas · consumo · semEfeito) ficam para o build atual do site | gerado |
+| **`20-tabela-efeitos-resposta.md`** | Resposta ao agente de HTML sobre a tabela (2026-10-20), D154 e Comerciantes | — |
+| `ficha-efeitos-tabela.py` · `ficha-efeitos-tabela-curadoria.json` | constrói a tabela (chamado pelo gerador com `--escrever`) e trava com lembrete sem natureza ou com número de campo fora de `alvo`; curadoria: lembrete → Mod, natureza de cada frase | — |
 | `ficha-efeitos-gerador.py` · `ficha-efeitos-overrides.json` | gerador com gramática fechada por frase + detector de falso negativo; exceções revisadas à mão | — |
 | `marcas-vhelor.json` | **fonte única das 7 Marcas da Vhelor** (texto do Pedro, gatilhos por item, efeitos por marca); o gerador copia para o bloco `marcasVhelor` | Pedro (PD26a) |
 | **`12-magias-nivel1.md`** | **As 20 magias de Nível 1**, formato de tabela do Notion | fechado com o Pedro |

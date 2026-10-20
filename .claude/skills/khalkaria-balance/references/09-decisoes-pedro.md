@@ -963,6 +963,14 @@ Texto verbatim em `18-batedor-rework.md` §0 e as lições em `19-gabarito-de-cl
     O Passo em Falso foi o que mais chegou perto. A direção é esta: *"o cartografo pode ser um utility que exige save
     throw para aplicar debuff… um para cada perícia defensiva (Reflexo, Fortitude e Vontade)"*.
   - Os Tiers 3 ficam para depois.
+- **D154** (2026-10-19, via agente de HTML) **D7 revista:** nas perícias de dois atributos (Movimento,
+  Convencimento, Intimidação, Enganação) e na CD com escolha, *"o maior sempre prevalece no cálculo, e é só isso"*,
+  sem troca manual. Gravado no Notion (Sistema, abaixo da Lista de Perícias, 2026-10-20) e canônico no contrato
+  (rev. 11).
+  - Stamina e Éter também ficaram sem troca: é leitura minha, pendente de confirmação.
+  - Mesmo pedido: a tabela de efeitos dos itens por gatilho (`20-tabela-efeitos-resposta.md`). *"tabela essa que deve
+    ser feita pelo agente 'khalkaria bazar balanceamento'"*.
+  - A seção das Marcas da Vhelor fica **oculta** na ficha até um item dar a primeira Marca.
 
 ## D68 — O andar de Nível 1 (truques)
 Todas as magias existentes **sobem 1 nível**: as antigas 1–4 viram 2–5. O novo Nível 1 são os
