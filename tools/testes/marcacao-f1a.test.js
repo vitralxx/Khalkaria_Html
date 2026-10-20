@@ -111,8 +111,9 @@ test('catálogo: carta rara só com id, tipo, nome, categoria e requisito', () =
 test('páginas: o nome do card (sem emoji) é o nome do catálogo', () => {
   const porId = new Map();
   catalogo().forEach((d) => d.entradas.forEach((e) => porId.set(`${e.tipo}:${e.id}`, e)));
-  // botão + alça logo depois da tag: obrigatório em todo card que não é <a>
-  const rotulo = /<([a-z][a-z0-9]*)\s[^>]*?data-kf-tipo="([^"]+)" data-kf-id="([^"]+)"[^>]*>(?:<button type="button" class="ent-add" hidden aria-keyshortcuts="A" aria-label="Levar para a ficha: ([^"]*)"><\/button><span class="ent-alca" hidden aria-hidden="true"><\/span>)?/g;
+  // botão + alça logo depois da tag: obrigatório em todo card que não é <a>;
+  // na linha de tabela (<tr>, a corrupção, F4.6f), logo depois do <td> da 1ª célula
+  const rotulo = /<([a-z][a-z0-9]*)\s[^>]*?data-kf-tipo="([^"]+)" data-kf-id="([^"]+)"[^>]*>(?:(?<=<tr\s[^>]*>)<td>)?(?:<button type="button" class="ent-add" hidden aria-keyshortcuts="A" aria-label="Levar para a ficha: ([^"]*)"><\/button><span class="ent-alca" hidden aria-hidden="true"><\/span>)?/g;
   let n = 0;
   const paginas = [];
   (function anda(dir) {

@@ -89,7 +89,9 @@ tools/gerar_catalogo.py        data/*.json -> data/catalogo/<tipo>.json (F1a) + 
 tools/normaliza.py             leitura da F1e: ações/intensidades/sustentada/porIntensidade das
                                magias, req e custo do Limiar, as 24 perícias (tabelas fechadas:
                                formato novo derruba o build)
-tools/kf_marca.py              marcação entidade -> ficha comum aos geradores (F1a)
+tools/kf_marca.py              marcação entidade -> ficha comum aos geradores (F1a); a
+                               linha da tabela de corrupção (F4.6f, gerar_racas.py) leva os
+                               data-kf-* no <tr> e os controles abrindo a 1ª célula
 tools/regras_pagina.py         texto de regra fora dos cards (Condições, Magias, Limiar): chave
                                `regras` do JSON da página -> marcador {{REGRA_<chave>}} do
                                template; marcador sem chave ou chave sem marcador = FALHA
@@ -365,8 +367,9 @@ js/ficha-pagina.js             F4.3: página da ficha nova (KhFichaPagina), só 
                                a lista das 5 abas do A4 (KhAbas) e os painéis, pelo motor
                                (KhPrevia.carregar/calcular). O desenho das abas é do
                                KhFichaAbas (F4.4a), numa instância 'fp'/'pagina' (FP.RENDER
-                               é o dela): catálogo indexado (data/catalogo + corrupções da
-                               raça + ramos), ícones images/ficha/*.webp e o sprite g-* da
+                               é o dela): catálogo indexado (data/catalogo, com as
+                               corrupções em corrupcao.json desde a F4.6f; o bloco da raça
+                               só como reserva + ramos), ícones images/ficha/*.webp e o sprite g-* da
                                moldura de raízes. data-campo em cada campo do A4; número de
                                estado em span.fp-n[data-ficha]. Rara nunca mostra o efeito.
                                Ficam aqui o topo e a casca; a dica presa à página (encaixa) e
@@ -398,6 +401,9 @@ data/ficha-v2.schema.json      contrato da ficha 2.0 (ativa até a F4) + projeç
 data/catalogo/<tipo>.json      ARTEFATO (gerar_catalogo.py): {id, tipo, nome sem emoji,
                                icone, resumo, campos do tipo} por entidade; raras só
                                id/nome/categoria/req/reqTexto. O item usa o data/bazar.json.
+                               F4.6f: corrupcao.json (as 15+15 linhas do Corrompido: raca,
+                               grupo poder|adversidade, custo inteiro, custoTexto verbatim) e
+                               tecnologia com tier/tierTexto (raca.tecnologias.tiers).
                                O resumo MANTÉM o texto dos .sep que o CSS esconde ("Lobo: ",
                                ":", ";"): é verbatim do Notion (útil para busca e cópia). A
                                especificação da F1e pedia tirar; decisão em aberto com o Pedro
@@ -596,10 +602,12 @@ decididos D80–D82 no `data/sistema.json` (modificador, vantagem/desvantagem,
 custo mínimo de magia), por frase verbatim do Notion, e o id de todo card de
 classe (`data/classes/*.json`) = `<classe>-` + slug do nome, sem duplicata.
 Desde a F1a também: `[ids]` (id de entidade único no site; `data-kf-*` dos cards
-== catálogo por conjunto — 646 entradas em 14 tipos, mais os 727 itens do Bazar —
+== catálogo por conjunto — 676 entradas em 15 tipos (F4.6f: + 30 corrupções), mais os 727 itens do Bazar —
 e == ids dos JSON de raças, origens e classes lidos direto, sem a tabela
 classe -> tipo; todo card marcado, menos o `<a>` do índice, abre com o par
-`.ent-add` + `.ent-alca`, ambos `hidden`; alvos do `alias_ids.json` existem), `[fragmentos]` (`pagina.html#id` e
+`.ent-add` + `.ent-alca`, ambos `hidden` — na linha de tabela `<tr>` (a corrupção,
+F4.6f), abrindo a 1ª célula, e as linhas == `raca.corrupcao` do bloco; o `[blocos]`
+exige as corrupções no catálogo `corrupcao`, o mesmo conjunto; alvos do `alias_ids.json` existem), `[fragmentos]` (`pagina.html#id` e
 `bazar.html#item/<id>` com destino) e `[glifos]` (sprite íntegro, um glifo por
 `--ramo-*`, todo `<use href="#g-*">` com símbolo). O round-trip regenera também
 o `data/catalogo/` e o `data/pericias.json`. Desde a F2a, `[artefato-js]`: `js/ficha.js` ==
@@ -1155,7 +1163,8 @@ focado (`KhTeclas`, fora de campo de texto) e o arrasto pela alça (MIME
 `application/x-khalkaria-ref` = `{v:1,tipo,id}`, `text/plain` só com o nome)
 levam o card para a ficha ativa do ensaio, por `armazem.editar` (um passo do
 Desfazer; o recado também tem Desfazer). Destinos: técnica, Marca, ultimate,
-traço e tecnologia nas entradas (Técnicas); magia (Grimório); carta, Dor e
+traço, tecnologia e corrupção (a linha da tabela do Corrompido, F4.6f) nas
+entradas (Técnicas); magia (Grimório); carta, Dor e
 benefício do Abismo (Cartas; a rara nunca leva o efeito); item no inventário
 (`KhInv.mesclar`; o id antigo de `data/bazar-renomeados.json` resolve para o
 atual); raça, classe, origem, variante e subespécie na identidade (as regras do

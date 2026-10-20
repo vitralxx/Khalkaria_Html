@@ -39,7 +39,7 @@
     var CHAVE = 'khalkaria_ficha_previa';
     // o que o motor precisa em runtime (só na prévia): os mesmos arquivos que o
     // tools/testes/estado-apoio.js lê do disco (o teste confere as listas)
-    var CATALOGOS = ['beneficio', 'carta', 'condicao', 'dor', 'magia', 'marca', 'origem', 'raca',
+    var CATALOGOS = ['beneficio', 'carta', 'condicao', 'corrupcao', 'dor', 'magia', 'marca', 'origem', 'raca',
       'subespecie', 'tecnica', 'tecnologia', 'traco', 'ultimate', 'variante'];
     var CLASSES = ['alquimista', 'artilheiro', 'batedor', 'brutalista', 'espadachim', 'monge', 'teurgo'];
     var RACAS = ['anao', 'automato', 'corrompido', 'dryad', 'gruto', 'humano', 'inseto'];

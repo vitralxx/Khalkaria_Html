@@ -353,6 +353,10 @@ html[data-ensaio] [data-ke-na-ficha] .ent-add[data-ke-levar] {
 html[data-ensaio] .cards .item-card > .ent-add[data-ke-levar] { float: none; align-self: flex-end; margin: 0; }
 html[data-ensaio] .cards .item-card > .ent-alca[draggable] { float: none; position: absolute; top: 1.05em; left: 1.1em; margin: 0; }
 html[data-ensaio] .c-nome-in > .ent-add[data-ke-levar], html[data-ensaio] .c-nome-in > .ent-alca[draggable] { float: none; margin: 0; }
+/* a linha de tabela marcada (a corrupção, F4.6f): os dois abrem a 1ª célula, antes do nome */
+html[data-ensaio] tr[data-kf-tipo] > td > .ent-add[data-ke-levar], html[data-ensaio] tr[data-kf-tipo] > td > .ent-alca[draggable] {
+    float: none; vertical-align: middle; margin: 0 var(--esp-1) var(--esp-1) 0;
+}
 .ke-ent-ic { width: 14px; height: 14px; flex: none; }
 .ke-ent-txt { white-space: nowrap; }
 

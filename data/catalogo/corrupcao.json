@@ -1,0 +1,340 @@
+{
+ "schema": "catalogo/1",
+ "tipo": "corrupcao",
+ "fontes": [
+  "data/racas/*.json"
+ ],
+ "total": 30,
+ "entradas": [
+  {
+   "id": "corrompido-sangue-morto",
+   "tipo": "corrupcao",
+   "nome": "Sangue Morto",
+   "icone": null,
+   "resumo": "+5 Éter Máximo. +5 Stamina Máxima.",
+   "raca": "corrompido",
+   "grupo": "poder",
+   "custo": -1,
+   "custoTexto": "-1"
+  },
+  {
+   "id": "corrompido-carne-protetora",
+   "tipo": "corrupcao",
+   "nome": "Carne Protetora",
+   "icone": null,
+   "resumo": "Agressores recebem 1d4 de dano Necrótico ao te acertarem.",
+   "raca": "corrompido",
+   "grupo": "poder",
+   "custo": -1,
+   "custoTexto": "-1"
+  },
+  {
+   "id": "corrompido-sede-eterica",
+   "tipo": "corrupcao",
+   "nome": "Sede Etérica",
+   "icone": null,
+   "resumo": "Ao reduzir uma criatura a 0 de Saúde, recupere 1d4 de Éter ou Stamina.",
+   "raca": "corrompido",
+   "grupo": "poder",
+   "custo": -1,
+   "custoTexto": "-1"
+  },
+  {
+   "id": "corrompido-premonicao-eterica",
+   "tipo": "corrupcao",
+   "nome": "Premonição Etérica",
+   "icone": null,
+   "resumo": "+1 Evasão. Seu dado da perícia Defender se torna um 2d6, ao invés de 1d10.",
+   "raca": "corrompido",
+   "grupo": "poder",
+   "custo": -2,
+   "custoTexto": "-2"
+  },
+  {
+   "id": "corrompido-reservatorio-de-eter",
+   "tipo": "corrupcao",
+   "nome": "Reservatório de Éter",
+   "icone": null,
+   "resumo": "1x/Descanso curto, concentrando-se por 5 min. Você restaura (Nível)d8 de Stamina e Éter.",
+   "raca": "corrompido",
+   "grupo": "poder",
+   "custo": -2,
+   "custoTexto": "-2"
+  },
+  {
+   "id": "corrompido-receptaculo-menor",
+   "tipo": "corrupcao",
+   "nome": "Receptáculo Menor",
+   "icone": null,
+   "resumo": "Pode conjurar magias com 1 modulação grátis da respectiva escola da magia. Usos (1+Mod. Sabedoria)/Descanso Longo.",
+   "raca": "corrompido",
+   "grupo": "poder",
+   "custo": -2,
+   "custoTexto": "-2"
+  },
+  {
+   "id": "corrompido-chama-de-eter",
+   "tipo": "corrupcao",
+   "nome": "Chama de Éter",
+   "icone": null,
+   "resumo": "Ataques desarmados causam +1d6 de dano Necrótico.",
+   "raca": "corrompido",
+   "grupo": "poder",
+   "custo": -2,
+   "custoTexto": "-2"
+  },
+  {
+   "id": "corrompido-morto",
+   "tipo": "corrupcao",
+   "nome": "Morto",
+   "icone": null,
+   "resumo": "Você não precisa respirar para sobreviver. Adicionalmente, ao ser reduzido a 0 de saúde, fica com 1 de saúde 1x/descanso longo.",
+   "raca": "corrompido",
+   "grupo": "poder",
+   "custo": -2,
+   "custoTexto": "-2"
+  },
+  {
+   "id": "corrompido-escola-visceral",
+   "tipo": "corrupcao",
+   "nome": "Escola Visceral",
+   "icone": null,
+   "resumo": "Escolha uma escola de magia: magias dessa escola custam -2 éter e modulações custam -2 de éter (mín. 1).",
+   "raca": "corrompido",
+   "grupo": "poder",
+   "custo": -3,
+   "custoTexto": "-3"
+  },
+  {
+   "id": "corrompido-receptaculo-maior",
+   "tipo": "corrupcao",
+   "nome": "Receptáculo Maior",
+   "icone": null,
+   "resumo": "Pode conjurar magias na intensidade Transbordante sem rolar Vontade.",
+   "raca": "corrompido",
+   "grupo": "poder",
+   "custo": -3,
+   "custoTexto": "-3"
+  },
+  {
+   "id": "corrompido-vigor-mistico",
+   "tipo": "corrupcao",
+   "nome": "Vigor Místico",
+   "icone": null,
+   "resumo": "Você recebe +5 Saúde por nível.",
+   "raca": "corrompido",
+   "grupo": "poder",
+   "custo": -3,
+   "custoTexto": "-3"
+  },
+  {
+   "id": "corrompido-asas-do-monarca",
+   "tipo": "corrupcao",
+   "nome": "Asas do Monarca",
+   "icone": null,
+   "resumo": "Você desenvolve asas necróticas, feitas de uma combinação de éter e da sua pele necrosada. 1 ação, 3 m de voo.",
+   "raca": "corrompido",
+   "grupo": "poder",
+   "custo": -3,
+   "custoTexto": "-3"
+  },
+  {
+   "id": "corrompido-braco-necrosado",
+   "tipo": "corrupcao",
+   "nome": "Braço Necrosado",
+   "icone": null,
+   "resumo": "Alcance corpo a corpo +1,5 m. Adicionalmente, você tem vantagem na manobra de agarrar.",
+   "raca": "corrompido",
+   "grupo": "poder",
+   "custo": -3,
+   "custoTexto": "-3"
+  },
+  {
+   "id": "corrompido-sangue-de-eter",
+   "tipo": "corrupcao",
+   "nome": "Sangue de Éter",
+   "icone": null,
+   "resumo": "Você pode gastar éter na proporção 2:1 para ganhar stamina. Adicionalmente, +10 Éter máximo.",
+   "raca": "corrompido",
+   "grupo": "poder",
+   "custo": -4,
+   "custoTexto": "-4"
+  },
+  {
+   "id": "corrompido-coringa",
+   "tipo": "corrupcao",
+   "nome": "Coringa",
+   "icone": null,
+   "resumo": "Você pode canalizar Disfarce Ilusório passivamente com duração infinita. Ao estar sob o efeito dessa magia você perde penalidades na perícia interação social oriundas da corrupção.",
+   "raca": "corrompido",
+   "grupo": "poder",
+   "custo": -5,
+   "custoTexto": "-5"
+  },
+  {
+   "id": "corrompido-eter-chamativo",
+   "tipo": "corrupcao",
+   "nome": "Éter Chamativo",
+   "icone": null,
+   "resumo": "Qualquer criatura que tenha o mínimo domínio sobre o éter percebe sua presença em 30 m sem testes.",
+   "raca": "corrompido",
+   "grupo": "adversidade",
+   "custo": 1,
+   "custoTexto": "+1"
+  },
+  {
+   "id": "corrompido-fome-bizarra",
+   "tipo": "corrupcao",
+   "nome": "Fome Bizarra",
+   "icone": null,
+   "resumo": "Exige 2 Comidas para Descanso Longo, ou fica Desnutrido.",
+   "raca": "corrompido",
+   "grupo": "adversidade",
+   "custo": 1,
+   "custoTexto": "+1"
+  },
+  {
+   "id": "corrompido-pele-fraca",
+   "tipo": "corrupcao",
+   "nome": "Pele Fraca",
+   "icone": null,
+   "resumo": "-1 Constituição.",
+   "raca": "corrompido",
+   "grupo": "adversidade",
+   "custo": 1,
+   "custoTexto": "+1"
+  },
+  {
+   "id": "corrompido-mente-fraca",
+   "tipo": "corrupcao",
+   "nome": "Mente Fraca",
+   "icone": null,
+   "resumo": "-1 Sabedoria.",
+   "raca": "corrompido",
+   "grupo": "adversidade",
+   "custo": 1,
+   "custoTexto": "+1"
+  },
+  {
+   "id": "corrompido-passo-tremulo",
+   "tipo": "corrupcao",
+   "nome": "Passo Trêmulo",
+   "icone": null,
+   "resumo": "Movimento reduzido em -3 m.",
+   "raca": "corrompido",
+   "grupo": "adversidade",
+   "custo": 1,
+   "custoTexto": "+1"
+  },
+  {
+   "id": "corrompido-difusao-de-eter",
+   "tipo": "corrupcao",
+   "nome": "Difusão de Éter",
+   "icone": null,
+   "resumo": "-10 Éter máximo.",
+   "raca": "corrompido",
+   "grupo": "adversidade",
+   "custo": 1,
+   "custoTexto": "+1"
+  },
+  {
+   "id": "corrompido-sono-perturbado",
+   "tipo": "corrupcao",
+   "nome": "Sono Perturbado",
+   "icone": null,
+   "resumo": "-1 Comodidade de Descanso.",
+   "raca": "corrompido",
+   "grupo": "adversidade",
+   "custo": 2,
+   "custoTexto": "+2"
+  },
+  {
+   "id": "corrompido-peso-morto",
+   "tipo": "corrupcao",
+   "nome": "Peso Morto",
+   "icone": null,
+   "resumo": "Em testes de jornada, não pode contribuir; além disso, aumenta a hostilidade da jornada em 5.",
+   "raca": "corrompido",
+   "grupo": "adversidade",
+   "custo": 2,
+   "custoTexto": "+2"
+  },
+  {
+   "id": "corrompido-sussurros-intensos",
+   "tipo": "corrupcao",
+   "nome": "Sussurros Intensos",
+   "icone": null,
+   "resumo": "Você tem desvantagem em Percepção.",
+   "raca": "corrompido",
+   "grupo": "adversidade",
+   "custo": 2,
+   "custoTexto": "+2"
+  },
+  {
+   "id": "corrompido-metabolismo-anormal",
+   "tipo": "corrupcao",
+   "nome": "Metabolismo Anormal",
+   "icone": null,
+   "resumo": "Você não se beneficia de consumíveis como poções e elixires; no entanto, ainda consegue utilizar pergaminhos.",
+   "raca": "corrompido",
+   "grupo": "adversidade",
+   "custo": 3,
+   "custoTexto": "+3"
+  },
+  {
+   "id": "corrompido-a-criatura",
+   "tipo": "corrupcao",
+   "nome": "A Criatura",
+   "icone": null,
+   "resumo": "-2 em Interação Social (exceto Intimidação). Adicionalmente, itens são 50% mais caros para você; se comerciantes te perceberem com o resto do grupo, todo o grupo fica com o aumento do preço.",
+   "raca": "corrompido",
+   "grupo": "adversidade",
+   "custo": 3,
+   "custoTexto": "+3"
+  },
+  {
+   "id": "corrompido-as-vozes",
+   "tipo": "corrupcao",
+   "nome": "As Vozes",
+   "icone": null,
+   "resumo": "Ao rolar 1 natural no d20, perde 2d4+nível de éter.",
+   "raca": "corrompido",
+   "grupo": "adversidade",
+   "custo": 3,
+   "custoTexto": "+3"
+  },
+  {
+   "id": "corrompido-aberracao-social",
+   "tipo": "corrupcao",
+   "nome": "Aberração Social",
+   "icone": null,
+   "resumo": "-5 em Interação Social (exceto Intimidação). Adicionalmente, você está sendo ativamente caçado por uma facção de Kharavel.",
+   "raca": "corrompido",
+   "grupo": "adversidade",
+   "custo": 4,
+   "custoTexto": "+4"
+  },
+  {
+   "id": "corrompido-pele-morta",
+   "tipo": "corrupcao",
+   "nome": "Pele Morta",
+   "icone": null,
+   "resumo": "Você é vulnerável a todos os tipos de dano não místicos, mas tem Armadura Específica (Místico, 5), exceto Força e Primordial.",
+   "raca": "corrompido",
+   "grupo": "adversidade",
+   "custo": 5,
+   "custoTexto": "+5"
+  },
+  {
+   "id": "corrompido-cicatrizacao-efemera",
+   "tipo": "corrupcao",
+   "nome": "Cicatrização Efêmera",
+   "icone": null,
+   "resumo": "Ao recuperar saúde de qualquer fonte, recupere apenas metade.",
+   "raca": "corrompido",
+   "grupo": "adversidade",
+   "custo": 5,
+   "custoTexto": "+5"
+  }
+ ]
+}

@@ -16,6 +16,9 @@ validar.py regenera e compara byte a byte.
   rótulo canônico e porIntensidade; carta com req [{attr,min}]; dor/benefício
   com custo {dor,sentido}; técnica/marca/ultimate com grupo/ramo/tier/custoTexto
   (do data/classes, derivados pelo tools/blocos.py). Efeitos (Mods) e status: F1d.
+- F4.6f: tecnologia com tier/tierTexto (raca.tecnologias.tiers do Autômato) e o
+  tipo corrupcao (raca.corrupcao.poderes/adversidades do Corrompido: grupo
+  poder|adversidade, custo inteiro e custoTexto verbatim).
 - Cartas RARAS do Limiar: só id, tipo, nome, categoria e requisito (D11/D33:
   o efeito só entra pelo script de revelação).
 - `item` não tem arquivo aqui: o catálogo do item é o data/bazar.json.
@@ -182,14 +185,38 @@ def racas(cat):
         e['pagina'] = re.search(r'href="([^"]+)"', c['opentag']).group(1)
         cat['raca'].append(e)
     for raca in RACAS:
-        for c in ler(f'data/racas/{raca}.json')['cards']:
+        doc = ler(f'data/racas/{raca}.json')
+        bloco = doc.get('raca') or {}
+        for c in doc['cards']:
             tipo = tipo_do_opentag(c['opentag'], TIPO_POR_CLASSE_CSS_RACA)
             if tipo is None:          # NAO_ENTIDADE (rule-box/warning): regra da página
                 continue
             e = base(tipo, c['id'], c['nome'])
             e['resumo'] = texto(sem_titulo(c['corpo']))
             e.update({'raca': raca, 'card': re.search(r'class="([^"]+)"', c['opentag']).group(1)})
+            if tipo == 'tecnologia':
+                e.update(tier_de(bloco, c['id']))
             cat[tipo].append(e)
+        for g, grupo in (('poderes', 'poder'), ('adversidades', 'adversidade')):
+            for it in ((bloco.get('corrupcao') or {}).get(g) or {}).get('itens', []):
+                e = base('corrupcao', it['id'], it['nome'])
+                e['resumo'] = texto(it['efeito'])
+                custo = int(it['custo'].replace('−', '-'))
+                if (custo < 0) != (grupo == 'poder') or custo == 0:
+                    raise SystemExit(f'gerar_catalogo: corrupção {it["id"]} ({grupo}) com custo {it["custo"]!r}')
+                e.update({'raca': raca, 'grupo': grupo, 'custo': custo, 'custoTexto': it['custo']})
+                cat['corrupcao'].append(e)
+
+
+def tier_de(bloco, id_):
+    """Tier da tecnologia pelo raca.tecnologias.tiers (a ordem do template)."""
+    for i, t in enumerate((bloco.get('tecnologias') or {}).get('tiers', [])):
+        if id_ in t['ids']:
+            m = re.search(r'Tier\s+(\d+)', t['titulo'])
+            if not m or int(m.group(1)) != i + 1:
+                raise SystemExit(f'gerar_catalogo: tier {i + 1} da tecnologia sem número no título: {t["titulo"]!r}')
+            return {'tier': i + 1, 'tierTexto': separa_icone(t['titulo'])[1]}
+    raise SystemExit(f'gerar_catalogo: tecnologia {id_} fora de raca.tecnologias.tiers')
 
 
 def origens(cat):
@@ -207,6 +234,7 @@ FONTES = {
     'ultimate': ['data/classes/*.json'],
     'raca': ['data/racas.json'], 'traco': ['data/racas/*.json'], 'variante': ['data/racas/*.json'],
     'subespecie': ['data/racas/*.json'], 'tecnologia': ['data/racas/*.json'],
+    'corrupcao': ['data/racas/*.json'],
     'origem': ['data/origens.json'],
 }
 

@@ -313,11 +313,16 @@
     //              o ramo ganha os apelidos que a v2 gravava em texto livre:
     //              a chave e o nome sem "Ramo do", ex.: "Cartógrafo")
     //   racas:     [data/racas/*.json]     (bloco 'raca': poderes e adversidades
-    //              da corrupção viram tipo 'corrupcao' daquela raça)
+    //              da corrupção viram tipo 'corrupcao' daquela raça, se o
+    //              data/catalogo/corrupcao.json (F4.6f) não as trouxe: uma vez só)
     function entradasDeCatalogo(dados) {
       dados = obj(dados) ? dados : {};
-      var out = [];
-      function poe(e) { if (obj(e) && e.id && e.tipo) out.push(e); }
+      var out = [], tem = {};
+      function poe(e) {
+        if (!obj(e) || !e.id || !e.tipo || tem[e.tipo + ':' + e.id]) return;
+        tem[e.tipo + ':' + e.id] = 1;
+        out.push(e);
+      }
       lista(dados.catalogos).forEach(function (cat) {
         lista(cat && cat.entradas).forEach(function (e) {
           if (!obj(e)) return;

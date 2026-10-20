@@ -489,6 +489,7 @@ html[data-ficha-previa] .fp [data-sem-previa] { display: none; }
 .fp-tec-meta { display: flex; flex-wrap: wrap; align-items: center; gap: .3rem .5rem; margin-top: .35rem; }
 .fp-tec-meta .fp-selo { margin-left: 0; }
 .fp-tec-tipo { font-family: var(--font-heading); font-size: .62rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--text-muted-forte); }
+.fp-tec-tier { font-family: var(--font-heading); font-size: .62rem; font-weight: 600; letter-spacing: .06em; color: var(--gold); }
 .fp-tec-ramo {
     display: inline-flex; align-items: center; gap: .3rem;
     font-family: var(--font-heading); font-size: .66rem; font-weight: 600; letter-spacing: .05em;

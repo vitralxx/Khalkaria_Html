@@ -25,7 +25,9 @@ integridade do artefato HTML, que é o que quebra em silêncio:
  10. Id de card de classe = '<classe>-' + slug do nome, sem duplicata
  [ids]        F1a: id de entidade único no site todo; data-kf-tipo/-id de cada
               card das páginas == catálogo (data/catalogo/*.json) por conjunto,
-              data-prever = tipo:id, botão .ent-add/.ent-alca nascendo hidden;
+              data-prever = tipo:id, botão .ent-add/.ent-alca nascendo hidden
+              (como primeiros filhos; na linha de tabela <tr>, da 1ª célula);
+              F4.6f: as linhas da tabela de corrupção == raca.corrupcao do bloco;
               tools/alias_ids.json aponta só para id existente
  [fragmentos] link para outra página (pagina.html#x): o id x existe lá; rota
               do Bazar (bazar.html#item/<id>): o id existe no data/bazar.json
@@ -437,8 +439,15 @@ def _ids_json(root):
                 m = re.search(r'class="([^"]+)"', c.get('opentag', ''))
                 if NAO_ENTIDADE.isdisjoint(m.group(1).split() if m else []):
                     ids.add(c.get('id'))
+            ids |= _ids_corrupcao(json.load(open(f, encoding='utf-8')).get('raca'))   # F4.6f: linhas da tabela
             out[f'pages/{r}.html'] = ids
     return out, probs
+
+
+def _ids_corrupcao(bloco):
+    """Ids das linhas da tabela de corrupção de um bloco de raça (F4.6f)."""
+    corr = (bloco or {}).get('corrupcao') or {}
+    return {it['id'] for g in ('poderes', 'adversidades') for it in (corr.get(g) or {}).get('itens', [])}
 
 
 def checa_ids(root=None):
@@ -473,9 +482,11 @@ def checa_ids(root=None):
             ids_pag.add(id_)
             if prever != f'{tipo}:{id_}':
                 ruins.append(f'{rel(f, root)}: data-prever="{prever}" em {tipo}:{id_} (esperado "{tipo}:{id_}")')
+            # na linha de tabela, os controles abrem a 1ª célula (botão não é filho de <tr>)
+            ini = m.end() + (4 if tag.startswith('<tr ') and h.startswith('<td>', m.end()) else 0)
             if tag.startswith('<a '):
                 n_link += 1                   # preview do índice de raças: sem botão dentro de link
-            elif not RE_CONTROLES.match(h, m.end()):
+            elif not RE_CONTROLES.match(h, ini):
                 sem_par.append(f'{tipo}:{id_}')   # botão + alça são os PRIMEIROS filhos do card
             n_cards += 1
         if sem_par:
@@ -783,7 +794,8 @@ def checa_fisico(rot, b):
 
 def checa_blocos(root=None):
     """[blocos] F1b: derivados em sincronia com o verbatim, ids das sub-entidades
-    únicos e fora do catálogo, id da raça == catálogo, contagens por Counter.
+    únicos e fora do catálogo (menos as corrupções, F4.6f: no catálogo corrupcao,
+    o mesmo conjunto), id da raça == catálogo, contagens por Counter.
     F1e(c): inclui o grupo/ramo/tier/custoTexto de cada card de classe (blocos.fontes_cards)."""
     root = root or ROOT
     print('[blocos] Blocos classe/raca/origem (data/): derivados, ids, contagens')
@@ -802,7 +814,16 @@ def checa_blocos(root=None):
                      f'o verbatim dá {json.dumps(calc, ensure_ascii=False)[:80]} (rode python tools/blocos.py)')
     ruins += [f'id repetido nos blocos: {r}' for r in rep]
     ents, _ = _catalogo(root)
-    no_site = {i for _, i in ents} | set(_ids_bazar(root))
+    # F4.6f: as corrupções viraram entidade (tipo corrupcao): no catálogo como
+    # corrupcao, exatamente as do bloco; as demais sub-entidades seguem fora dele
+    cor_bloco = set()
+    for _, _, _, b, _ in blocos.fontes(root):
+        cor_bloco |= _ids_corrupcao(b)
+    cor_cat = {i for t, i in ents if t == 'corrupcao'}
+    if cor_bloco != cor_cat:
+        ruins.append(f'corrupções do bloco x catálogo corrupcao: só no bloco {sorted(cor_bloco - cor_cat)[:6]}, '
+                     f'só no catálogo {sorted(cor_cat - cor_bloco)[:6]}')
+    no_site = {i for t, i in ents if not (t == 'corrupcao' and i in cor_bloco)} | set(_ids_bazar(root))
     colide = sorted(set(ids) & no_site)
     if colide:
         ruins.append(f'id de bloco que já é entidade do catálogo/Bazar: {colide[:10]}')

@@ -824,3 +824,57 @@ test('CSS do levar: no css/ficha-ensaio.css (só com o Ensaio), sob o escopo; al
   // nenhuma página o carrega (o KhSeletor o injeta só com o Ensaio)
   fs.readdirSync(path.join(A.RAIZ, 'pages')).filter((n) => n.endsWith('.html')).forEach((n) => assert.doesNotMatch(ler('pages', n), /ficha-ensaio\.css/, n));
 });
+
+// F4.6f: a linha da tabela de corrupção e o card de tecnologia, como o build os gera
+test('F4.6f: corrupção (linha da tabela) e tecnologia levadas no Ensaio pelo clique, pela tecla A e pelo arrasto; repetida avisa; Desfazer tira (espião)', async () => {
+  const main = (f) => ler('pages', 'racas', f).match(/<main[^>]*>([\s\S]*?)<\/main>/)[1];
+  const ls = A.armazenamento(comPrevia());
+  const j = await entra(await carrega(janela({ ls, mc: main('corrompido.html') + main('automato.html') })));
+  const tr = j.cardDe('corrupcao', 'corrompido-passo-tremulo');
+  assert.equal(tr.tagName, 'TR');
+  assert.equal(j.botao(tr).hidden, false, 'o botão aparece na 1ª célula');
+  assert.equal(j.botao(tr).getAttribute('aria-label'), 'Levar para a ficha: Passo Trêmulo');
+  assert.equal(j.alca(tr).getAttribute('draggable'), 'true');
+  const id = fichaNova(j, 'Corrompido');
+  // clique
+  j.clica(j.botao(tr));
+  await carrega(j);
+  assert.ok(tr.hasAttribute('data-ke-na-ficha'));
+  assert.match(j.toast().textContent, /^Passo Trêmulo foi para as Técnicas da ficha do ensaio\./);
+  // tecla A no botão da tecnologia; arrasto da alça de outra linha até o drawer
+  j.tecla(j.botao(j.cardDe('tecnologia', 'automato-fibra-de-carbono')), 'a');
+  await carrega(j);
+  j.arrastaAteDrawer(j.alca(j.cardDe('corrupcao', 'corrompido-sangue-morto')));
+  await carrega(j);
+  const f = j.arm().ler(id);
+  assert.deepEqual(copia(f.entradas.map((e) => [e.tipo, e.id, e.cache.nome])), [
+    ['corrupcao', 'corrompido-passo-tremulo', 'Passo Trêmulo'], ['tecnologia', 'automato-fibra-de-carbono', 'Fibra de Carbono'],
+    ['corrupcao', 'corrompido-sangue-morto', 'Sangue Morto']]);
+  assert.equal(f.entradas[0].cache.resumo, A.lerJSON('data', 'catalogo', 'corrupcao.json').entradas.find((e) => e.id === 'corrompido-passo-tremulo').resumo);
+  assert.ok(f.entradas.every((e) => !e.orfao), 'tudo resolvido pelo catálogo');
+  // repetida: avisa e não duplica
+  const antes = JSON.stringify(j.arm().ler(id));
+  j.clica(j.botao(tr));
+  await carrega(j);
+  assert.equal(JSON.stringify(j.arm().ler(id)), antes);
+  assert.equal(j.toast().textContent, 'Passo Trêmulo já está nas Técnicas da ficha do ensaio: nada mudou.');
+  // Desfazer tira o último levar
+  j.clica(j.botao(j.cardDe('corrupcao', 'corrompido-pele-fraca')));
+  await carrega(j);
+  j.clica(j.toast().querySelector('[data-toast-desfazer]'));
+  await carrega(j);
+  assert.equal(j.arm().ler(id).entradas.some((e) => e.id === 'corrompido-pele-fraca'), false);
+  assert.equal(j.cardDe('corrupcao', 'corrompido-pele-fraca').hasAttribute('data-ke-na-ficha'), false);
+  // o motor: Passo Trêmulo (o alias do contrato) tira 3 m do Movimento
+  const m = (ent) => {
+    const f2 = Object.assign(copia(j.arm().ler(id)), { entradas: ent });
+    f2.identidade.raca = { id: 'raca-corrompido', nome: 'Corrompido' };
+    return j.sb.KhRegras.avaliar(f2).nos.movimento.valor;
+  };
+  const todas = copia(j.arm().ler(id).entradas);
+  assert.equal(m(todas.filter((e) => e.id !== 'corrompido-passo-tremulo')) - m(todas), 3);
+  // nada fora do prefixo do ensaio; a ficha atual nunca é chamada
+  assert.deepEqual(j.kf, []);
+  assert.deepEqual(ls.escritas, []);
+  soEnsaio(j.ss, 'F4.6f');
+});

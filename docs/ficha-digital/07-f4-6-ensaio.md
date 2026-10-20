@@ -256,3 +256,23 @@ Escolhas a revisar com o Pedro:
 - **FC:** Comerciantes e papéis, depois da F4. A rodada 6 continua sem resposta do balanceamento.
 - **F5, F6 e F7.**
 - **Batedor:** sincronizar quando os ramos fecharem. Hoje está na rodada 8 do balanceamento.
+
+## F4.6f · Corrupção e tecnologias (como ficou)
+
+Pergunta do Pedro (03 §10): a tabela de corrupção do Corrompido e os itens acopláveis do Autômato estão na ficha? Agora estão, no Ensaio (atrás da prévia).
+
+- **A corrupção virou entidade** (tipo `corrupcao`, da convenção do plano §3.2). O `tools/gerar_racas.py` marca as 30 linhas da tabela (15 poderes e 15 adversidades) com o id do bloco da raça (`data/racas/corrompido.json`, `raca.corrupcao`), na ordem dele; nome fora da ordem derruba o build. O `<tr>` leva `data-kf-tipo`, `data-kf-id` e `data-prever`; os controles inertes (`.ent-add`, `.ent-alca`, `hidden`) abrem a 1ª célula, porque um botão não pode ser filho de `<tr>`. No HTML gerado, só isso muda (só na página do Corrompido; nas outras, o `?v=` dos assets). O round-trip fecha.
+- **Catálogo:** `data/catalogo/corrupcao.json` (30: `raca`, `grupo` poder|adversidade, `custo` inteiro, `custoTexto` verbatim, `resumo` = efeito). A tecnologia ganhou `tier` e `tierTexto` (dos `raca.tecnologias.tiers` do Autômato). A prévia baixa o arquivo novo (`KhPrevia.CATALOGOS`). O `KhEstado.entradasDeCatalogo` e o `KhFichaAbas.contexto` põem cada `tipo:id` uma vez só: o catálogo primeiro, o bloco da raça só como reserva.
+- **Portões:** o `[ids]` aceita os controles na 1ª célula da linha e confere as linhas da página contra o bloco da raça, por conjunto. O `[blocos]` passou a exigir as corrupções no catálogo `corrupcao`, o mesmo conjunto do bloco; as outras sub-entidades seguem fora do catálogo.
+- **Contrato:** `passo-tremulo` saiu de `semEntidade` e virou alias de `corrompido-passo-tremulo` (`tools/alias_ids.json`). O AVISO do build sumiu, e o motor aplica os −3 m de Movimento quando a adversidade está na ficha.
+- **Ficha nova, aba Técnicas & Marcas** (onde o plano põe as corrupções e as tecnologias, pág. 2 do A4), depois de Técnicas Diversas:
+  - **Corrompido:** bloco "Corrupção", com cada poder e adversidade da ficha (Poder ou Adversidade, "Custo −1" ou "Custo +1", o efeito inteiro), a **soma dos custos** e o **máximo do nível** (verbatim da tabela). Só mostra os números, sem aviso nem trava (D12). Não há graus (Tocado, Alterado, Consumido) no dado.
+  - **Autômato:** bloco "Tecnologias acopladas", com o Tier de cada uma, na ordem dos tiers, e a nota verbatim (2 tecnologias de Tier 1 no início, o limite "2 + mod. Constituição", a troca em descanso curto).
+  - Outras raças: nada muda. A corrupção e a tecnologia que estiverem na ficha seguem em Diversas, como antes.
+- **Levar:** a linha da tabela vai pelo clique, pela tecla A e pelo arrasto da alça até o drawer. Repetida avisa e não duplica; o Desfazer do recado tira. O destino é a aba Técnicas, e o render a põe no bloco da raça. A v2.1 segue decorando a tabela pelo `decorarCorrupcao`: o `textoLimpo` já tirava `.ent-add` e `.ent-alca`, então nome, custo, tipo e id ficam os de antes.
+- **Testes:** `tools/testes/corrupcao-tecnologia.test.js` cobre a marcação (conjunto igual ao bloco), o catálogo, a v2.1 decorando as 30 linhas e os blocos só na raça certa. No `levar.test.js` está o levar no Ensaio, com o armazenamento espião (clique, tecla, arrasto, repetida, Desfazer e o −3 m do Passo Trêmulo). No `marcacao-f1a.test.js`, os controles na 1ª célula.
+
+Para o Pedro:
+- A **soma dos custos** não é comparada com o máximo, e não há aviso. A convenção de sinal está em aberto no log (T, "A Corrupção (convenção de sinal)"), e não está decidido se o teto vale para o gasto em poderes ou para o saldo. O contrato pede `validacoes.corrupcaoMaxima: "avisar"`, mas não diz contra quê.
+- O plano (02, aba 3) também cita um contador da Corrupção em Cartas, Lore & Outros. Aqui ele fica no bloco da aba Técnicas, junto das linhas. Se preferir, dá para mudar de lugar.
+- A tabela não tem **graus** (Tocado, Alterado, Consumido). Se eles existirem no Notion, faltam no dado.

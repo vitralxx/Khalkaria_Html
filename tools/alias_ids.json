@@ -6,16 +6,17 @@
   "dryad-variante": "dryad-cascaferro",
   "skalri": "gruto-skal-ri",
   "suspensoes-lubrificadas": "automato-suspensoes-lubrificadas",
-  "mente-fraca": "abismo-mente-fraca"
+  "mente-fraca": "abismo-mente-fraca",
+  "passo-tremulo": "corrompido-passo-tremulo"
  },
  "_notas": {
   "anao-variante": "regras.json arNaturalPorRaca = 3: a variante com 'Ar 3 Natural' é a Caxon (data/racas/anao.json).",
   "dryad-variante": "regras.json arNaturalPorRaca = 3 e Evasão +1: a variante com '+1 Armadura (Ar) Natural e +1 Evasão' é a Cascaferro (data/racas/dryad.json).",
+  "passo-tremulo": "F4.6f: a adversidade Passo Trêmulo do Corrompido (-3 m de movimento), linha da tabela de corrupção (data/racas/corrompido.json, raca.corrupcao.adversidades), entidade do tipo corrupcao no catálogo (data/catalogo/corrupcao.json).",
   "mente-fraca": "regras.json multiplicadoresGlobaisDeCusto (fator 2 no Éter): é a Dor do Abismo 'Mente Fraca' ('+100% gasto de Éter global', data/limiar.json). A adversidade homônima do Corrompido (corrompido-mente-fraca) é '-1 Sabedoria', outra coisa (F3b)."
  },
  "semEntidade": {
   "batedor-sexto-sentido": "F1b: habilidade do Instinto em data/classes/batedor.json (classe.recurso.habilidades, id batedor-sexto-sentido); fora do catálogo até virar card levável (F4)",
-  "passo-tremulo": "F1b: é a adversidade Passo Trêmulo do Corrompido (-3 m de movimento), em data/racas/corrompido.json (raca.corrupcao.adversidades, id corrompido-passo-tremulo); vira alias quando a tabela de corrupção for entidade (tipo corrupcao, F4)",
   "escudo": "categoria de item (D62: 'todo escudo, sem exceção'), não uma entidade: resolve-se pela categoria do Bazar na F1d",
   "acao-acelerar": "ação do Sistema (Sua Rodada); a convenção não tem tipo 'acao': decisão na F1d"
  }

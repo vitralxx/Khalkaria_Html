@@ -171,20 +171,24 @@
       dados = obj(dados) ? dados : {};
       var porId = {}, porNome = {}, classes = {}, ramos = {};
       function poe(e) {
-        if (!obj(e) || !e.id || !e.tipo) return;
+        if (!obj(e) || !e.id || !e.tipo || porId[e.tipo + ':' + e.id]) return;   // o catálogo primeiro: uma vez só
         porId[e.tipo + ':' + e.id] = e;
         var k = e.tipo + '|' + norm(e.nome);
         (porNome[k] = porNome[k] || []).push(e);
       }
       lista(dados.catalogos).forEach(function (cat) { lista(cat && cat.entradas).forEach(poe); });
-      // as corrupções do Corrompido moram no bloco da raça (não em data/catalogo)
+      // as corrupções do Corrompido: data/catalogo/corrupcao.json (F4.6f); sem ele,
+      // o bloco da raça (o mesmo id). O bloco também dá o máximo por nível.
+      var racas = {};
       lista(dados.racas).forEach(function (b) {
         var r = obj(b) && obj(b.raca) ? b.raca : b;
+        if (obj(r) && r.id) racas[r.id] = r;
         var corr = obj(r) && obj(r.corrupcao) ? r.corrupcao : null;
         if (!corr) return;
         ['poderes', 'adversidades'].forEach(function (k) {
           lista(corr[k] && corr[k].itens).forEach(function (x) {
-            if (obj(x)) poe({ id: x.id, tipo: 'corrupcao', nome: x.nome, resumo: x.efeito, custoTexto: x.custo ? 'Custo ' + x.custo : null });
+            if (obj(x)) poe({ id: x.id, tipo: 'corrupcao', nome: x.nome, resumo: x.efeito, raca: str(r.id).replace(/^raca-/, ''),
+              grupo: k === 'poderes' ? 'poder' : 'adversidade', custo: parseInt(str(x.custo).replace('−', '-'), 10), custoTexto: str(x.custo) });
           });
         });
       });
@@ -197,7 +201,7 @@
           if (obj(r) && r.id) ramos[r.id] = { classe: chave, chave: str(r.chave), nome: semEmoji(r.nome) };
         });
       });
-      return { porId: porId, porNome: porNome, classes: classes, ramos: ramos,
+      return { porId: porId, porNome: porNome, classes: classes, ramos: ramos, racas: racas,
         D: D || (KhRegras ? KhRegras.dados() : {}), base: base == null ? '../' : str(base) };
     }
     // a entrada do catálogo de uma entrada da ficha: pelo id; sem id, pelo nome
@@ -712,13 +716,17 @@
         op = op || {};
         var e = it.e, c = it.c;
         var nome = c ? semEmoji(c.nome) : semEmoji(e.cache && e.cache.nome) || '(sem nome)';
-        var custo = c && c.custoTexto ? semEmoji(c.custoTexto) : '';
+        // a corrupção: o custo é o número da tabela ("-1"), que o efeito não repete
+        // (e um efeito pode começar por "-1 Constituição": nada sai do texto)
+        var corr = e.tipo === 'corrupcao';
+        var custo = c && c.custoTexto ? (corr ? 'Custo ' : '') + semEmoji(c.custoTexto) : '';
         // o resumo das Ultimates começa por "ULTIMATE" e repete o custo: os dois saem
-        var texto = c ? semPrefixo(semEmoji(c.resumo).replace(/^\s*ULTIMATE\b\s*/, ''), c.custoTexto) : (e.cache && e.cache.resumo) || '';
+        var texto = c ? (corr ? semEmoji(c.resumo) : semPrefixo(semEmoji(c.resumo).replace(/^\s*ULTIMATE\b\s*/, ''), c.custoTexto)) : (e.cache && e.cache.resumo) || '';
         var ramo = c && c.ramo ? ctx.ramos[c.ramo] : null;
         var meta = '';
         if (op.tipo) meta += '<span class="' + P + '-tec-tipo">' + esc(op.tipo) + '</span>';
         if (ramo && ramo.chave) meta += rotuloRamo(ramo, false);
+        if (op.tier) meta += '<span class="' + P + '-tec-tier" data-campo="tier">' + esc(op.tier) + '</span>';
         if (!c) {
           var o = e.orfao || {};
           meta += selo('orfa', 'órfã', 'Sem par no catálogo' + (o.motivo ? ' (' + o.motivo + (lista(o.candidatos).length ? ': ' + o.candidatos.join(', ') : '') + ')' : '') + '. Mostra o texto salvo na ficha.');
@@ -737,9 +745,47 @@
         return '<div class="' + P + '-tec ' + P + '-tec-vazia' + (cls ? ' ' + cls : '') + (trava ? ' ' + P + '-travada' : '') + '" data-moldura data-vazia' + (trava ? ' data-destrava="' + nivelDestrava + '"' : '') + '>' +
           (trava ? '<span class="' + P + '-trava-txt">destrava no nível ' + esc(nivelDestrava) + '</span>' : '<span class="' + P + '-vazia-txt">vazia</span>') + '</div>';
       }
+      // o bloco próprio da raça (F4.6f, 03 §10): a tabela de corrupção do Corrompido
+      // e as tecnologias do Autômato saem de Diversas só na raça que as tem no bloco
+      // (data/racas/*.json); nas outras raças, seguem em Diversas como antes
+      function tipoDaRaca(ctx, idt) {
+        var r = obj(idt.raca) && idt.raca.id && obj(ctx.racas) ? ctx.racas[idt.raca.id] : null;
+        if (!obj(r)) return null;
+        if (obj(r.corrupcao)) return { tipo: 'corrupcao', r: r };
+        if (obj(r.tecnologias)) return { tipo: 'tecnologia', r: r };
+        return null;
+      }
+      // Corrupção: os poderes e adversidades da ficha, com custo e texto; a soma dos
+      // custos e o máximo do nível (verbatim da tabela), sem trava nem juízo (D12)
+      function blocoCorrupcao(itens, r, nivel, ctx) {
+        var soma = 0, conta = 0;
+        itens.forEach(function (it) { if (it.c && typeof it.c.custo === 'number' && isFinite(it.c.custo)) { soma += it.c.custo; conta++; } });
+        var max = lista(r.corrupcao.maximoPorNivel).filter(function (x) { return obj(x) && Number(x.nivel) === nivel; })[0];
+        var extra = '<span class="' + P + '-par" data-campo="corrupcao-soma"><span class="' + P + '-rot">Soma dos custos</span>' +
+          '<span class="' + P + '-n">' + esc(conta ? (soma > 0 ? '+' + soma : String(soma)) : '—') + '</span></span>' +
+          (max ? '<span class="' + P + '-par" data-campo="corrupcao-maximo"><span class="' + P + '-rot">Máximo no nível ' + esc(max.nivel) + '</span>' +
+            '<span class="' + P + '-n">' + esc(max.maximo) + '</span></span>' : '');
+        var corpo = '<div class="' + P + '-tecs">' + (itens.length ? itens.map(function (it) {
+          return cardTecnica(it, ctx, { tipo: !it.c ? NOME_DIVERSA.corrupcao : it.c.grupo === 'adversidade' ? 'Adversidade' : 'Poder' });
+        }).join('') : molduraVazia(null, nivel)) + '</div>';
+        return moldura('corrupcao', 'Corrupção', corpo, { extra: extra, nota: 'Poderes e adversidades da tabela de corrupção do Corrompido.' });
+      }
+      // Tecnologias acopladas: cada uma com o Tier (data/catalogo/tecnologia.json), na ordem dos tiers
+      function blocoTecnologias(itens, r, nivel, ctx) {
+        var tec = r.tecnologias;
+        var ord = itens.map(function (it, i) { return { it: it, i: i, t: it.c && typeof it.c.tier === 'number' ? it.c.tier : 99 }; })
+          .sort(function (a, b) { return a.t - b.t || a.i - b.i; });
+        var corpo = '<div class="' + P + '-tecs">' + (ord.length ? ord.map(function (o) {
+          return cardTecnica(o.it, ctx, { tipo: NOME_DIVERSA.tecnologia, tier: o.it.c && o.it.c.tierTexto ? semEmoji(o.it.c.tierTexto) : '' });
+        }).join('') : molduraVazia(null, nivel)) + '</div>';
+        var nota = [tec.iniciais, tec.limite ? 'Limite de tecnologias equipadas: ' + tec.limite + '.' : '', tec.substituicao]
+          .filter(function (x) { return !!str(x).trim(); }).map(function (x) { return esc(semEmoji(x)); }).join(' ');
+        return moldura('tecnologias', 'Tecnologias acopladas', corpo, { nota: nota });
+      }
       RENDER.tecnicas = function (res, C, ctx) {
         var f = res.ficha, nivel = Number(f.meta && f.meta.nivel) || 1, idt = f.identidade || {};
-        var g = { gerais: [], t1: [], t2: [], t3: [], marcas: [], diversas: [] };
+        var g = { gerais: [], t1: [], t2: [], t3: [], marcas: [], diversas: [], raca: [] };
+        var daRaca = tipoDaRaca(ctx, idt);
         var vistos = {};
         // variante e subespécie da identidade entram em Diversas (o card da raça)
         ['variante', 'subespecie'].forEach(function (k) {
@@ -753,7 +799,7 @@
           if (!obj(e) || TIPOS_TECNICA.indexOf(e.tipo) < 0) return;
           if (e.id && vistos[e.tipo + ':' + e.id]) return;
           var c = resolver(ctx, e);
-          g[grupoTecnica(e, c)].push({ e: e, c: c });
+          g[daRaca && e.tipo === daRaca.tipo ? 'raca' : grupoTecnica(e, c)].push({ e: e, c: c });
         });
         var dv = destravas(ctx, idt.classe && idt.classe.id);
         function grade(itens, minimo, op) {
@@ -782,6 +828,7 @@
         h += moldura('marcas', 'Marcas', grade(g.marcas, dv.nMarcas || MOLDURAS.marcas, { destravaDe: function (i) { return dv.marcas[i] || null; } }));
         h += moldura('tecnicas-diversas', 'Técnicas Diversas', grade(g.diversas, MOLDURAS.diversas, { tipo: function (it) { return NOME_DIVERSA[it.e.tipo] || ''; } }),
           { nota: 'Traços, variante, tecnologias, corrupções e técnica de origem.' });
+        if (daRaca) h += (daRaca.tipo === 'corrupcao' ? blocoCorrupcao : blocoTecnologias)(g.raca, daRaca.r, nivel, ctx);
         return h;
       };
 
