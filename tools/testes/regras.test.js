@@ -46,9 +46,9 @@ const EF = {
     { alvo: 'movimento', op: 'soma', valor: -1.5, quando: 'equipado', acumula: true, status: 'canonico' }] },
   'item-t-capa': { quando: 'equipado', acumulaCopia: true, status: 'canonico', mods: [
     { alvo: 'evasao.passiva', op: 'soma', valor: 1, quando: 'equipado', acumula: true, status: 'aprovado' }] },
-  // mesma forma da Coroa de Kha (decisão): +2 DES
-  'item-t-coroa': { quando: 'carregado', acumulaCopia: false, status: 'decisao', mods: [
-    { alvo: 'atributo.DES', op: 'soma', valor: 2, quando: 'carregado', acumula: true, status: 'decisao' }] },
+  // mesma forma da Coroa de Kha: +2 DES, com um status que segue com selo (decisão/aprovado não têm mais)
+  'item-t-coroa': { quando: 'carregado', acumulaCopia: false, status: 'pedroDecide', mods: [
+    { alvo: 'atributo.DES', op: 'soma', valor: 2, quando: 'carregado', acumula: true, status: 'pedroDecide' }] },
   // fonte sem status em CON (para a propagação até o tique de Morrendo)
   'item-t-con': { quando: 'carregado', acumulaCopia: false, status: 'semStatus', mods: [
     { alvo: 'atributo.CON', op: 'soma', valor: 2, quando: 'carregado', acumula: true, status: 'semStatus' }] },
@@ -263,11 +263,11 @@ test('Evasão Passiva = 10 + Mod.DES; Ativa = Passiva + dado de Defender, sem at
   assert.equal(val(r, 'evasao.ativa'), '13 + 1d8');
   assert.equal(r.nos['evasao.ativa'].formula.simbolica, 'Evasão Passiva + Dado de Defender');
   assert.ok(!r.nos['pericia.defender.total'].termos.some((t) => /Mod\./.test(t.rotulo)), 'o dado não soma atributo');
-  // escudo: +1 Defender só na reação (vale na Ativa); capa: +1 Evasão Passiva (aprovado → selo)
+  // escudo: +1 Defender só na reação (vale na Ativa); capa: +1 Evasão Passiva (aprovado: sem selo)
   f.inventario.equipamentos.push(item('item-t-escudo', { equipado: true }), item('item-t-capa', { equipado: true }));
   r = avalia(f);
   assert.equal(val(r, 'evasao.passiva'), 14);
-  assert.deepEqual(r.nos['evasao.passiva'].selos, ['decisaoPedro']);
+  assert.deepEqual(r.nos['evasao.passiva'].selos, [], 'sem selo: decisão do Pedro é regra fechada (03 §10)');
   assert.equal(val(r, 'pericia.defender.total'), '1d8 + 1');
   assert.equal(val(r, 'evasao.ativa'), '15 + 1d8');
   // condição: Atordoado −2 na Evasão (alvo 'evasao' do contrato vira evasao.passiva)
@@ -517,10 +517,10 @@ test('itens pelo "quando": equipado só equipado, acumulaCopia false conta 1, ac
   assert.equal(val(r, 'pericia.percepcao.total'), 2, 'amuleto: outra cópia não acumula');
   assert.equal(val(r, 'pericia.vontade.total'), 3, 'Brasas (+3, acumula:false) vence o Colar (+1)');
   assert.match(termo(r.nos['pericia.vontade.total'], /colar/).motivo, /não acumula/);
-  assert.deepEqual(r.nos['pericia.percepcao.total'].selos, ['decisaoPedro']);
+  assert.deepEqual(r.nos['pericia.percepcao.total'].selos, [], 'sem selo: decisão do Pedro é regra fechada (03 §10)');
 });
 
-test('condição com imunidade não mexe nos números; condição sem X usa o padrão com selo', () => {
+test('condição com imunidade não mexe nos números; condição sem X usa o padrão G8 (decisão: sem selo)', () => {
   const f = ficha({ raca: 'humano' });
   f.imunidadesCondicao = ['lento'];
   f.condicoes.push(cond('lento', 2));
@@ -531,7 +531,10 @@ test('condição com imunidade não mexe nos números; condição sem X usa o pa
   g.condicoes.push(cond('lento'));
   r = avalia(g);
   assert.equal(val(r, 'movimento'), 6, 'Lento sem X = Lento 1 (G8)');
-  assert.ok(r.nos.movimento.selos.includes('decisaoPedro'), 'o padrão G8 é decisão: sai com selo');
+  // sem selo: decisão do Pedro é regra fechada (03 §10); o status 'decisao' do padrão segue no termo
+  assert.ok(!r.nos.movimento.selos.includes('decisaoPedro'), 'o padrão G8 é decisão: sai sem selo');
+  assert.deepEqual(r.nos.movimento.selos, []);
+  assert.ok(r.nos.movimento.termos.some((t) => t.status === 'decisao' && /lento/i.test(t.rotulo)), 'o termo do Lento carrega o status decisao');
 });
 
 // ---------------- ajustes (M2) ----------------
@@ -579,7 +582,7 @@ test('ajuste em Saúde máx. muda o tique de Morrendo; caminho de estado é recu
   let r = R.avaliar(f);
   assert.equal(val(r, 'recurso.saude.max'), 10 + 24 + 6);
   assert.equal(val(r, 'morrendo.tique'), 4);
-  assert.deepEqual(r.nos['morrendo.tique'].selos, ['decisaoPedro']);
+  assert.deepEqual(r.nos['morrendo.tique'].selos, [], 'sem selo: decisão do Pedro é regra fechada (03 §10)');
   f.ajustes['recurso.saude.max'] = { modo: 'fixa', valor: 70, desde: 'x' };
   assert.equal(val(R.avaliar(f), 'morrendo.tique'), 7);
   const g = ficha({ classe: 'brutalista' });
@@ -661,7 +664,7 @@ test('técnica só vale ativa; a trilha diz de onde veio cada Mod', () => {
 test('catálogo indisponível: o snapshot entrada.mods, reconciliado e depois órfão, dá o mesmo número', () => {
   // o catálogo real ainda não tem Mods (data/catalogo/*.json): uma cópia com uma origem que dá +1 na Passiva
   const ents = A.entradasCatalogo().map((e) => (e.id === 'origem-academico'
-    ? Object.assign({}, e, { mods: [{ alvo: 'evasao.passiva', op: 'soma', valor: 1, status: 'decisao' }] }) : e));
+    ? Object.assign({}, e, { mods: [{ alvo: 'evasao.passiva', op: 'soma', valor: 1, status: 'pedroDecide' }] }) : e));
   const idx = E.indiceCatalogo(ents, 'com-mods');
   const f = ficha({ attrs: { DES: 14 } });
   f.entradas.push({ uid: 'o1', tipo: 'origem', id: 'origem-academico', estado: {}, cache: { nome: 'Acadêmico', versaoCatalogo: '' }, mods: [] });
@@ -670,7 +673,7 @@ test('catálogo indisponível: o snapshot entrada.mods, reconciliado e depois ó
   assert.equal(f.entradas[0].mods.length, 1, 'o snapshot acompanha o catálogo');
   const com = R.avaliar(f, { efeitos: EF, catalogo: idx });
   assert.equal(val(com, 'evasao.passiva'), 13);
-  assert.deepEqual(com.nos['evasao.passiva'].selos, ['decisaoPedro']);
+  assert.deepEqual(com.nos['evasao.passiva'].selos, ['pendentePedro'], 'o status do snapshot chega ao selo');
   // o id some do catálogo: a entrada fica órfã e o snapshot segue valendo
   const idx2 = E.indiceCatalogo(ents.filter((e) => e.id !== 'origem-academico'), 'sem-academico');
   assert.deepEqual(E.reconciliar(f, idx2), ['o1']);
@@ -723,7 +726,7 @@ test('status não canônico se propaga pelos nós dependentes (atributo → Mod 
   let r = avalia(f);
   assert.equal(val(r, 'atributo.DES.total'), 16);
   ['atributo.DES.total', 'atributo.DES.mod', 'evasao.passiva', 'evasao.ativa', 'pericia.reflexos.total', 'cd']
-    .forEach((c) => assert.ok(r.nos[c].selos.includes('decisaoPedro'), c + ' sem o selo da fonte decisão'));
+    .forEach((c) => assert.ok(r.nos[c].selos.includes('pendentePedro'), c + ' sem o selo da fonte pendente'));
   assert.deepEqual(r.nos['atributo.FOR.mod'].selos, [], 'o que não depende de DES fica sem selo');
   // variante sem status (Dryad Cascaferro): o selo sai da Passiva e chega à Ativa
   r = R.avaliar(ficha({ raca: 'dryad', variante: 'dryad-cascaferro', classe: 'monge', nivel: 5, attrs: { DES: 14 } }));
@@ -744,8 +747,9 @@ test('"extra" da fonte nunca some: Premonição Etérica troca o dado de Defende
   assert.equal(val(r, 'evasao.passiva'), 12);
   assert.equal(val(r, 'pericia.defender.total'), '2d6', 'o 1d8 do Treinado é menor: vale 2d6');
   assert.equal(val(r, 'evasao.ativa'), '12 + 2d6');
-  assert.ok(r.nos['pericia.defender.total'].selos.includes('decisaoPedro'));
-  assert.ok(r.nos['evasao.ativa'].selos.includes('decisaoPedro'));
+  // sem selo: decisão do Pedro é regra fechada (03 §10)
+  assert.ok(!r.nos['pericia.defender.total'].selos.includes('decisaoPedro'));
+  assert.ok(!r.nos['evasao.ativa'].selos.includes('decisaoPedro'));
   assert.equal(termo(r.nos['pericia.defender.total'], /^Dado de Defender \(/).ativo, false);
   assert.ok(r.nos['evasao.passiva'].lembretes.some((l) => l.op === 'extra' && /2d6/.test(l.msg)));
   f.pericias.defender = 4;
@@ -835,7 +839,7 @@ test('PMA: "soma" soma sobre a PMA em vigor; fixo + soma sai com selo (ordem for
   assert.match(t.motivo, /situacional/);
 });
 
-test('Stamina comprometida (D19): disponível = atual − reserva, termo removível e com selo', () => {
+test('Stamina comprometida (D19): disponível = atual − reserva, termo removível e sem selo (decisão fechada)', () => {
   const f = ficha({ classe: 'monge' });
   f.recursos.stamina.atual = 10;
   let r = R.avaliar(f);
@@ -845,6 +849,6 @@ test('Stamina comprometida (D19): disponível = atual − reserva, termo removí
   r = R.avaliar(f);
   assert.equal(val(r, 'recurso.stamina.disponivel'), 7);
   assert.equal(r.nos['recurso.stamina.disponivel'].formula.numerica, '= 10 − 3 = 7');
-  assert.deepEqual(r.nos['recurso.stamina.disponivel'].selos, ['decisaoPedro']);
+  assert.deepEqual(r.nos['recurso.stamina.disponivel'].selos, [], 'sem selo: decisão do Pedro é regra fechada (03 §10)');
   assert.equal(R.calculados(f)['recurso.stamina.disponivel'], undefined, 'não é caminho de ajuste (é estado)');
 });

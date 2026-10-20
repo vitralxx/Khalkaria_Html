@@ -52,7 +52,9 @@ INTENSIDADES = ['contida', 'normal', 'forcada', 'transbordante']
 # status do contrato -> categoria de selo (o KhRegras só lê esta tabela)
 SELO = {
     'canonico': None, 'canonicoParcial': None,
-    'aprovado': 'decisaoPedro', 'decisao': 'decisaoPedro',
+    # decisão do Pedro é regra fechada na ficha, sem selo (03 §10: "Todos os selos que pedem
+    # decisão na ficha, já foram explicados"); a falta de Notion é do balanceamento
+    'aprovado': None, 'decisao': None,
     'pedroDecide': 'pendentePedro', 'pendente': 'pendentePedro', 'decisaoDoSite': 'pendentePedro',
     'pendenteBalanceamento': 'pendenteBalanceamento', 'semStatus': 'pendenteBalanceamento',
     'canonico-mas-em-rework': 'avisoClasse',
