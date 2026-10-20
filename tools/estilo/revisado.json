@@ -32,6 +32,18 @@
       "antes": "1000",
       "depois": "450",
       "motivo": "F2a (plano §3.3, 'z-index na escala'): a Ficha passa aos tokens --z-* e quem estava entre ela e o resto desce junto; mesmo empilhamento de antes (voltar-ao-topo < splash < botão da Ficha < drawer < toast), outros números: voltar-ao-topo = var(--z-topo), abaixo do splash e da Ficha como antes"
+    },
+    {
+      "pagina": "bazar.receita",
+      "caminho": "html:1>body.bz-rc-aberta:1>aside#bz-receita.*",
+      "prop": "(elemento)",
+      "motivo": "Instabilidade de tempo da captura, não mudança de CSS (2026-10-19): com o painel do navegador oculto, a captura do Bazar às vezes pega a receita ainda com a classe de entrada (bz-rc-entra, raízes .anima) e a Lista com o cabeçalho fixo medido antes de a barra assentar (--bz-bar-h 52 ou 93 px). Três rodadas seguidas alternaram o sentido. Só a EXISTÊNCIA de elementos do painel da receita e o 'top' do cabeçalho da Lista ficam revisados; qualquer outra propriedade continua comparada."
+    },
+    {
+      "pagina": "bazar.lista-*",
+      "caminho": "*>table.bz-tabela:1>thead:1>tr:1>th*",
+      "prop": "top",
+      "motivo": "Instabilidade de tempo da captura, não mudança de CSS (2026-10-19): com o painel do navegador oculto, a captura do Bazar às vezes pega a receita ainda com a classe de entrada (bz-rc-entra, raízes .anima) e a Lista com o cabeçalho fixo medido antes de a barra assentar (--bz-bar-h 52 ou 93 px). Três rodadas seguidas alternaram o sentido. Só a EXISTÊNCIA de elementos do painel da receita e o 'top' do cabeçalho da Lista ficam revisados; qualquer outra propriedade continua comparada."
     }
   ]
 }
