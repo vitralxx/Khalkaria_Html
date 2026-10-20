@@ -731,7 +731,10 @@
           var o = e.orfao || {};
           meta += selo('orfa', 'órfã', 'Sem par no catálogo' + (o.motivo ? ' (' + o.motivo + (lista(o.candidatos).length ? ': ' + o.candidatos.join(', ') : '') + ')' : '') + '. Mostra o texto salvo na ficha.');
         }
-        if (op.destrava && op.destrava > op.nivel) meta += selo('trava', 'destrava no nível ' + op.destrava, 'Acima do nível do personagem (D34)');
+        if (op.destrava && op.destrava > op.nivel) meta += selo('trava', 'destrava no nível ' + op.destrava, 'Acima do nível do personagem');
+        // efeito com número no texto que o motor ainda não lê (aguardando o balanceamento): nunca calado
+        var fora = e.id && KhRegras.lembreteForaDasContas ? KhRegras.lembreteForaDasContas(e.id) : null;
+        if (fora) meta += selo('aviso', 'fora das contas: ' + KhRegras.dados().catalogo.foraDasContas[e.id].join(', '), fora);
         var estilo = ramo && ramo.chave ? ' style="--' + P + '-ramo: var(--ramo-' + esc(ramo.classe) + '-' + esc(ramo.chave) + ')"' : '';
         return '<article class="' + P + '-tec' + (ramo ? ' ' + P + '-tec-de-ramo' : '') + (!c ? ' ' + P + '-orfa' : '') + (op.destrava && op.destrava > op.nivel ? ' ' + P + '-acima' : '') + '"' +
           ' data-moldura data-tipo="' + esc(e.tipo) + '"' + (e.id ? ' data-id="' + esc(e.id) + '"' : '') + (!c ? ' data-orfa' : '') + estilo + '>' +
@@ -863,13 +866,16 @@
         if (est.nivelAquisicao != null) metaE.push('nível ' + nEstado('entradas.' + e.uid + '.estado.nivelAquisicao', est.nivelAquisicao));
         if (est.posicaoNaMao != null) metaE.push(nEstado('entradas.' + e.uid + '.estado.posicaoNaMao', est.posicaoNaMao) + 'ª da mão');
         if (est.especial) metaE.push('carta especial');
+        // efeito com número no texto que o motor ainda não lê (a rara nunca: o efeito é oculto)
+        var fora = !rara && e.id ? KhRegras.lembreteForaDasContas(e.id) : null;
+        var foraHTML = fora ? selo('aviso', 'fora das contas: ' + KhRegras.dados().catalogo.foraDasContas[e.id].join(', '), fora) : '';
         // RARA: nunca o efeito (D11, D33), nem o texto que a ficha atual guardou
         var corpo = rara ? '<p class="' + P + '-carta-oculta">Efeito oculto até a carta ser revelada.</p>'
           : '<p class="' + P + '-carta-txt">' + (c && c.resumo ? textoRico(c.resumo) : e.cache && e.cache.resumo ? textoRico(e.cache.resumo) : vazio()) + '</p>';
         return '<article class="' + P + '-carta ' + P + '-carta-' + esc(cat || 'orfa') + (rara ? ' ' + P + '-carta-rara' : '') + (!c ? ' ' + P + '-orfa' : '') + '" data-moldura' +
           (e.id ? ' data-id="' + esc(e.id) + '"' : '') + (rara ? ' data-rara' : '') + (!c ? ' data-orfa' : '') + '>' +
           '<div class="' + P + '-carta-cab">' + ico + '<span class="' + P + '-carta-cat">' + esc(CARTA_CATEGORIA[cat] || 'Carta') + '</span>' +
-          (!c ? selo('orfa', 'órfã', 'Sem par no catálogo. Mostra o texto salvo na ficha.') : '') + '</div>' +
+          (!c ? selo('orfa', 'órfã', 'Sem par no catálogo. Mostra o texto salvo na ficha.') : '') + foraHTML + '</div>' +
           reqHTML + '<h4 class="' + P + '-carta-nome">' + esc(nome) + '</h4>' + corpo +
           (metaE.length ? '<p class="' + P + '-carta-meta">' + metaE.join(' · ') + '</p>' : '') + '</article>';
       }

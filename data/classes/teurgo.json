@@ -117,8 +117,12 @@
     "recurso": {
       "id": null,
       "nome": null,
-      "status": "pedroDecide",
-      "nota": "Pedro, 2026-09-26 (docs/ficha-digital/03-respostas-pedro.md): \"Tem sim, teurgo também. Todas têm.\" O nome e a mecânica ainda não estão no Notion nem no contrato do balanceamento: campo em aberto, não inventar."
+      "status": "canonico",
+      "contador": false,
+      "caracteristicas": [
+        "teurgo-escolas-do-primordio"
+      ],
+      "nota": "D105 (Pedro, T6: \"o teurgo são as escolas do primórdio\"): o recurso de classe do Teurgo são as Escolas do Primórdio, característica da classe, sem contador (o contador é o Éter)."
     },
     "caracteristicas": [
       {

@@ -131,7 +131,7 @@ test('03 §10: Inseto mostra as 3 subespécies no box (seletor, com desfazer); o
   edita(x, 'identidade.raca', 'raca-inseto');
   const aviso = () => x.res().av.avisos.filter((a) => a.tipo === 'raca-sem-subespecie');
   assert.equal(aviso().length, 1);
-  assert.equal(aviso()[0].msg, 'Inseto: os atributos variam por subespécie, e a ficha não tem uma');
+  assert.equal(aviso()[0].msg, 'Inseto: os atributos variam por subespécie, e a ficha não tem uma: escolha Besouro, Louva-a-Deus ou Barata');
   assert.deepEqual(ED.opcoesRef(CTX, x.ficha(), 'subespecie').map((o) => o.nome), ['Besouro', 'Louva-a-Deus', 'Barata']);
   assert.deepEqual(ED.opcoesRef(CTX, x.ficha(), 'variante'), []);
   let h = nucleo(x, 'pagina');

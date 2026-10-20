@@ -363,7 +363,7 @@ def inventario():
                     'fonte': fonte + ' > classe.recurso', 'origem': 'classe', 'dono': c, 'tipo': 'recurso-de-classe',
                     'grupo': 'classe', 'ramo': None, 'tier': None, 'custoTexto': None, 'cardClasse': None,
                     'pagina': f'pages/classes/{c}.html',
-                    'html': '<br>'.join(_texto_lista({k: v for k, v in r.items() if k not in ('medidores', 'nota')})),
+                    'html': '<br>'.join(_texto_lista({k: v for k, v in r.items() if k not in ('medidores', 'nota', 'caracteristicas')})),
                     'medidores': r.get('medidores'), 'statusFonte': r.get('status'), 'notaFonte': r.get('nota')})
     for rc in RACAS:
         d = ler_json(f'data/racas/{rc}.json')

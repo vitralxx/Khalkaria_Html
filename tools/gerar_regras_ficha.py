@@ -48,6 +48,33 @@ CLASSES = ['espadachim', 'batedor', 'brutalista', 'teurgo', 'monge', 'alquimista
 RACAS = ['humano', 'anao', 'dryad', 'automato', 'gruto', 'inseto', 'corrompido']
 ESCOLAS = ('destruicao', 'abjuracao', 'alteracao', 'conhecimento')
 INTENSIDADES = ['contida', 'normal', 'forcada', 'transbordante']
+# efeitos com número de campo no texto ("+10 Saúde máxima", "-3m de Movimento"; metros soltos são alcance): os tipos
+# do catálogo cujo texto o motor não lê; sem fonte no contrato, viram lembrete
+TIPOS_FORA_DAS_CONTAS = ['variante', 'subespecie', 'corrupcao', 'tecnica', 'marca', 'ultimate', 'carta', 'origem', 'tecnologia']
+RE_NUMERO_DE_CAMPO = re.compile(
+    r'[+\-−]\d+(?:[,.]\d+)?\s?(?:m\s+de\s+Movimento|(?:de\s)?(?:Saúde|Stamina|Éter|Evasão|Movimento|Armadura'
+    r'|Ações|Ação|Reações|Reação|CD)(?:\s(?:[Mm]áxim[ao]|[Nn]atural))?)')
+# campo do trecho -> alvo do Mod que o cobre (a fonte do contrato que já o modela)
+ALVO_DO_CAMPO = [(r'Saúde', 'recurso.saude'), (r'Stamina', 'recurso.stamina'), (r'Éter', 'recurso.eter'),
+                 (r'Evasão', 'evasao'), (r'Movimento|\dm$|\d m$', 'movimento'), (r'Armadura', 'ar'),
+                 (r'Aç', 'acoes'), (r'CD', 'cd')]
+# o contrato escreve sem acento alguns textos que a ficha mostra
+ACENTOS = [(r'\bReacao\b', 'Reação'), (r'\bMaxima\b', 'Máxima'), (r'\bConcentracao\b', 'Concentração'),
+           (r'\bMistico\b', 'Místico'), (r'\bAcao\b', 'Ação'), (r'\bacao\b', 'ação'), (r'\bEter\b', 'Éter'),
+           (r'\bSaude\b', 'Saúde')]
+CHAVES_DE_TEXTO = ('extra', 'nome', 'requisito', 'custo', 'nota')
+
+
+def acentua(o, chave=None):
+    """Os textos de exibição (CHAVES_DE_TEXTO) com acento; ids e fórmulas não mudam."""
+    if isinstance(o, dict):
+        return {k: acentua(v, k) for k, v in o.items()}
+    if isinstance(o, list):
+        return [acentua(v, chave) for v in o]
+    if isinstance(o, str) and chave in CHAVES_DE_TEXTO:
+        for a, b in ACENTOS:
+            o = re.sub(a, b, o)
+    return o
 
 # status do contrato -> categoria de selo (o KhRegras só lê esta tabela)
 SELO = {
@@ -487,6 +514,18 @@ class Compilador:
         bon = r['bonusRolados']
         out['bonusRolados'] = {k: {kk: v[kk] for kk in ('recurso', 'dado', 'valor', 'modo') if kk in v}
                                for k, v in bon['fontes'].items()}
+        # o atual acompanha o máximo (Sistema > Regras dos status, L06): sobe a
+        # diferença quando o máximo sobe; quando desce, o grampo do contrato
+        if r['aoAumentarMax'] != 'somaDiferenca' or r['aoReduzirMax'] != 'corta' \
+                or r['grampoObrigatorio'] != 'atual = min(atual, max(0, novoMax))':
+            raise Falha('recursos.aoAumentarMax/aoReduzirMax/grampoObrigatorio mudaram: rever o KhRegras.acompanharMaximos')
+        out['acompanha'] = {'aoAumentar': r['aoAumentarMax'], 'aoReduzir': r['aoReduzirMax'],
+                            'grampo': r['grampoObrigatorio'],
+                            'st': normaliza_status(r['aoReduzirMaxStatus'], 'recursos.aoReduzirMaxStatus'),
+                            'fo': self.fo('recursos', 'aoReduzirMax')}
+        # D93: a Stamina não fica negativa (a ficha só avisa; nada corta)
+        out['stamina']['min'] = r['stamina']['min']
+        out['stamina']['minSt'] = normaliza_status(r['stamina']['minStatus'], 'recursos.stamina.minStatus')
         return out
 
     def st_por_blocos(self, recurso, formula):
@@ -541,6 +580,9 @@ class Compilador:
                 st_m = st_m or 'canonico'            # confirmado pelo bloco
                 x['medidores'].append({'id': rc['id'], 'nome': rc['nome'],
                                        'max': ast(rc['max'], st_m, self.fo('classes', chave, 'recursos', i, 'max')),
+                                       # início do medidor ('max' na criação, ou 0 no combate/cena):
+                                       # diz se o atual nasce no máximo e sobe com ele
+                                       'inicio': (rc.get('inicio') or {}).get('valor'),
                                        'st': st_m, 'fo': self.fo('classes', chave, 'recursos', i)})
             if set(med_b) != {m['id'] for m in x['medidores']}:
                 raise Falha(f'classe {chave}: medidores do bloco {sorted(med_b)} x contrato')
@@ -808,7 +850,13 @@ class Compilador:
             'modulacoes': m['modulacoes'], 'modulacaoEmTruquePrecoCheio': m['modulacaoEmTruquePrecoCheio'],
             'focoPrimordial': {'nivel': m['focoPrimordial']['destravaNivel'], 'requisito': m['focoPrimordial']['requisito']},
             'requisitos': {'validar': m['requisitos']['validar'], 'regra': m['requisitos']['regra'],
-                           'st': normaliza_status(m['requisitos']['validarStatus'], 'magia.requisitos')},
+                           'st': normaliza_status(m['requisitos']['validarStatus'], 'magia.requisitos'),
+                           'focosSimultaneos': m['requisitos']['focosSimultaneos'],
+                           # D123: só o texto que dá a magia dispensa um requisito (ids do site)
+                           'dispensas': [{'fonte': self.id_site(d['fonte'], 'magia.requisitos.dispensa') or d['fonte'],
+                                          'dispensa': list(d['dispensa']),
+                                          'st': normaliza_status(d['status'], d['fonte'])}
+                                         for d in m['requisitos']['dispensa']['casos']]},
             'sustentada': {'maxAtivas': m['sustentada']['maxAtivas'],
                            'st': normaliza_status(m['sustentada']['maxAtivasStatus'], 'magia.sustentada')},
             'subidaPorTecnica': {'st': normaliza_status(sub['status'], 'intensidadeSubidaPorTecnica'),
@@ -847,6 +895,55 @@ class Compilador:
         return {'pontosPorNivel': li['pontosPorNivel'], 'niveis': li['niveis'], 'custoPorPosicao': custos,
                 'especial': li['porMao']['sextaCarta']['custo'], 'st': self.st('progressao', 'limiar'),
                 'fo': self.fo('progressao', 'limiar')}
+
+    def progressao(self):
+        p = self.c['progressao']
+        st, fo = self.st('progressao'), self.fo('progressao')
+        tiers = {}
+        for nv, d in p['ramos']['porNivel'].items():
+            for k, n in d.items():
+                t = re.fullmatch(r'tier(\d)', k)
+                if not t:
+                    raise Falha(f'progressao.ramos.porNivel.{nv}: chave {k!r} fora do vocabulário tierN')
+                tiers[t.group(1)] = {'nivel': int(nv), 'max': n}
+        return {'tecnicas': ast(p['tecnicasFormula'], st, self.fo('progressao', 'tecnicasFormula')),
+                'tiers': tiers, 'marcas': p['ramos']['marcasAcumuladas'],
+                'teurgoEscolas': p['teurgo']['escolas'], 'corrupcaoMax': p['corrupcaoMax'],
+                'semLimiarNaCriacao': bool(p['criacao'].get('semLimiarNaCriacao')),
+                'validacoes': {k: v for k, v in p['validacoes'].items() if isinstance(v, str)},
+                'st': st, 'fo': fo}
+
+    # fatos do catálogo que o motor confere (só avisos, nunca trava): o tier da
+    # técnica de ramo, o requisito de atributo da carta e os efeitos com número
+    # de campo no texto que nenhuma fonte do contrato modela (lembrete, sem número)
+    def catalogo(self, fontes):
+        def ents(t):
+            return json.load(open(os.path.join(REPO, 'data', 'catalogo', t + '.json'), encoding='utf-8'))['entradas']
+        tier = {x['id']: x['tier'] for x in ents('tecnica') if x.get('grupo') == 'ramo' and x.get('tier')}
+        req = {x['id']: [{'attr': r['attr'], 'min': r['min']} for r in x['req']] for x in ents('carta') if x.get('req')}
+        rolados = list(self.c['recursos']['bonusRolados']['fontes'])
+        ar_natural = {a['fonte'] for r in self.racas.values() for a in r.get('arNatural') or []}
+        fora = {}
+        for t in TIPOS_FORA_DAS_CONTAS:
+            for x in ents(t):
+                i = x['id']
+                # carta rara: o efeito é oculto no site (D11, D33); bônus rolado: o motor já soma
+                if x.get('categoria') == 'rara' or any(i == k or i.endswith('-' + k) for k in rolados):
+                    continue
+                # o campo que uma fonte do contrato já modela (ex.: o Movimento do
+                # Skal'ri) sai; o resto do texto (o Éter dele) fica como lembrete
+                alvos = [m['alvo'] for m in fontes.get(i, [])] + (['ar'] if i in ar_natural else [])
+                trechos = []
+                for mm in RE_NUMERO_DE_CAMPO.finditer(x.get('resumo') or ''):
+                    tr = re.sub(r'\s+', ' ', mm.group(0)).strip()
+                    campo = next((a for p, a in ALVO_DO_CAMPO if re.search(p, tr)), None)
+                    if campo and any(a == campo or a.startswith(campo + '.') for a in alvos):
+                        continue
+                    if tr not in trechos:
+                        trechos.append(tr)
+                if trechos:
+                    fora[i] = trechos
+        return {'tierTecnica': tier, 'reqCarta': req, 'foraDasContas': fora}
 
     def morte(self):
         mo = self.c['morte']['morrendo']
@@ -896,12 +993,15 @@ class Compilador:
             'defesa': self.defesa(),
             'turno': self.turno(),
             'limiar': self.limiar(),
+            'progressao': self.progressao(),
+            'catalogo': self.catalogo(fontes),
             'morte': self.morte(),
             'testes': self.testes(),
             'pendentesBalanceamento': [i['id'] for i in self.pendentes['itens']],
             'naoResolvidos': sorted(self.nao_resolvidos, key=lambda x: (x['onde'], x['id'])),
             'duplicadosDeCondicao': sorted(dup),
         }
+        dados = acentua(dados)
         # nenhum emDesenho entra
         if 'emDesenho' in json.dumps(dados, ensure_ascii=False):
             raise Falha('regra emDesenho vazou para o artefato')

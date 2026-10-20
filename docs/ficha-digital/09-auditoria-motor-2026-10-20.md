@@ -150,3 +150,17 @@ Confirmado rodando o caso, salvo onde está indicado "(só por leitura do códig
 9. Instinto do Batedor (rework): o que a ficha deve exibir até o rework? Máx. 5 com o aviso de bug, ou ocultar o recurso?
 
 Observação à parte: a lista `Migração: …` e `Pendência: … (grau N)` de `listaAvisos` (kh-previa.js:305-314) vem da migração v2 e não entrou nesta auditoria. O fallback dessas linhas também imprime `a.tipo` cru.
+---
+
+## Como ficou (2026-10-20)
+
+Tudo atrás da prévia (`?ficha=v3`); a ficha v2.1 dos jogadores não mudou. 486 testes node + validar OK.
+
+1. **Intensidade padrão** = a única que a magia tem (`intensidadePadrao`): as 14 só-Transbordante abrem nela, com o custo certo e sem aviso falso. Ids viram nome legível (Forçada etc.).
+2. **Atual acompanha o máximo** (`KhRegras.acompanharMaximos`, `D.recursos.acompanha`): sobe a diferença; quando o máximo desce, grampo `min(atual, max(0, novoMax))`. Ficha nova nasce no máximo: some o Morrendo/Exaurido/Oco falso. O recurso de classe só acompanha se o medidor nasce no máximo (Reagentes). Mesmo passo do desfazer.
+3. **Avisos novos** (nunca travam): técnicas > 3 + nível; Tier/Marca acima do nível; magia acima do nível, sem Treinado em Místico ou sem o Foco da escola (D123), mais de 1 Foco; escolas do Teurgo; carta sem o requisito ou no nível 1; item sem o requisito; sintonia e armaduras (avisos do KhInv); escolha de atributo pendente; nível fora de 1–5. Alertas: Stamina negativa (D93), recurso de classe acima do máximo ou negativo. Corrupção: soma e teto lado a lado, sem aviso.
+4. **Fora das contas**: efeito com número no texto e sem Mod vira selo no card + aviso agregado "N efeitos ainda não entram nas contas (aguardando o balanceamento)". Nenhum número inventado.
+5. **Textos**: sem token cru, sem jargão interno (D16, L06, contrato…), acentos na exibição, Ofício e Premonição Etérica só no nó deles, selo do Batedor com o texto do rework, Inseto pede "Besouro, Louva-a-Deus ou Barata".
+6. **D105**: `data/classes/espadachim.json` e `teurgo.json` com `recursoDeClasse` canônico sem contador (características); o validar confere contra o contrato. Texto visível das páginas inalterado.
+
+**Ficou para o balanceamento** (perguntas 1–9 acima): Defender como teste físico, selos semStatus de Evasão/condições, gate do nível 5, Oco/Desnutrido como lembrete, Instinto do Batedor, comparação teto × soma de corrupção. As linhas `Migração:`/`Pendência:` da `listaAvisos` (migração v2) ficam para a revisão da F4.7.

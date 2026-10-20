@@ -230,7 +230,7 @@
     }
     // Soma os Mods 'soma' ao nó (termo + texto), devolve o total somado. Os
     // demais ops ficam para quem chama (vantagem, multiplica, fixa, lembretes).
-    function somaMods(no, mods, ctx, aceita, txt) {
+    function somaMods(no, mods, ctx, aceita, txt, adiar) {
       var total = 0;
       mods.forEach(function (m) {
         if (m.op !== 'soma') return;
@@ -238,7 +238,7 @@
         if (v == null && a.ativo) { a = { ativo: false, motivo: 'valor não numérico (vai para o rolador na Mesa)' }; }
         no.termos.push({ rotulo: nomeFonte(m), fonte: m.fonte, op: 'soma', valor: v == null ? m.valor : v,
           ativo: a.ativo, motivo: a.motivo, status: m.status || 'semStatus' });
-        extraDoMod(no, m, a);
+        extraDoMod(no, m, a, adiar);
         if (!a.ativo) return;
         total += v;
         if (txt) { txt.sim.push({ op: v < 0 ? ' − ' : ' + ', t: nomeFonte(m) }); txt.num.push({ op: v < 0 ? ' − ' : ' + ', t: fmt(Math.abs(v)) }); }
@@ -247,22 +247,36 @@
     }
     // a parte do efeito que não é número (o 'extra' da fonte do contrato) nunca
     // some: termo inativo com o status da fonte + lembrete no nó
-    function extraDoMod(no, m, a) {
+    // adiar: a lista do nó que repassa o extra a outro (a Passiva o deixa para a
+    // Evasão Ativa: "+1 Reação Máxima" e o dado da Premonição Etérica só valem lá)
+    function extraDoMod(no, m, a, adiar) {
       if (!m.extra) return;
+      if (adiar) { adiar.push({ m: m, a: a }); return; }
       no.termos.push({ rotulo: nomeFonte(m) + ' (além do número)', fonte: m.fonte, op: 'lembrete', valor: m.extra, ativo: false,
         motivo: a.ativo ? 'lembrete: ' + m.extra + (m.dadoDefenderMinimo ? ' (aplicado no dado de Defender)' : '') : a.motivo,
         status: m.status || 'semStatus' });
       if (a.ativo) no.lembretes.push({ op: 'extra', msg: m.extra, fonte: m.fonte, status: m.status || 'semStatus' });
     }
     function junta(base, partes) { return partes.reduce(function (s, x) { return s + x.op + x.t; }, base); }
+    // o texto do lembrete de uma condição ou fonte, para o jogador (sem o token do contrato)
+    var MSG_FIXA = { sucessoAutomatico: 'passa sem rolar', critico: 'o próximo ataque que acertar é crítico' };
+    function msgLembrete(m) {
+      var o = m.op === 'falhaAuto' ? 'falha automática'
+        : m.op === 'semAcao' ? (m.alvo === 'todasAsPericias' ? 'não pode rolar perícias' : 'não pode rolar')
+          : m.op === 'semReacao' ? 'sem reação'
+            : m.op === 'fixa' ? (MSG_FIXA[m.valor] || str(m.valor))
+              : str(m.valor);
+      return nomeFonte(m) + ': ' + o;
+    }
     function lembretes(no, mods, aceita) {
+      var vistos = {};
       mods.forEach(function (m) {
         if (['falhaAuto', 'semAcao', 'semReacao', 'lembrete'].indexOf(m.op) < 0 && !(m.op === 'fixa' && typeof m.valor !== 'number')) return;
-        var a = ativoPara(m, aceita);
+        var a = ativoPara(m, aceita), msg = msgLembrete(m);
         no.termos.push({ rotulo: nomeFonte(m), fonte: m.fonte, op: m.op, valor: m.valor, ativo: false,
-          motivo: a.ativo ? 'lembrete: ' + m.op + (m.valor != null && typeof m.valor !== 'object' ? ' (' + m.valor + ')' : '') : a.motivo,
-          status: m.status || 'semStatus' });
-        if (a.ativo) no.lembretes.push({ op: m.op, alvo: m.alvo, valor: m.valor, fonte: m.fonte });
+          motivo: a.ativo ? 'lembrete: ' + msg : a.motivo, status: m.status || 'semStatus' });
+        // a mesma frase de duas fontes iguais (ou do mesmo efeito) fica uma linha só
+        if (a.ativo && !vistos[msg]) { vistos[msg] = true; no.lembretes.push({ op: m.op, alvo: m.alvo, valor: m.valor, fonte: m.fonte, msg: msg }); }
       });
     }
 
@@ -413,10 +427,15 @@
         if (a.ativo) rol.push({ op: m.op, fonte: m.fonte });
       });
       lembretes(no, mods, aceita);
+      var semTreino = false;
       ctx.mods(['permiteSemTreino.' + p.id]).forEach(function (m) {
-        if (m.ativo) no.lembretes.push({ op: 'permiteSemTreino', fonte: m.fonte, valor: m.penalidade || null });
+        if (!m.ativo) return;
+        semTreino = true;
+        no.lembretes.push({ op: 'permiteSemTreino', fonte: m.fonte, valor: m.penalidade || null,
+          msg: nomeFonte(m) + ': pode fabricar sem treino' + (m.penalidade ? ' (' + m.penalidade + ')' : '') });
       });
-      if (p.exigeTreino && grau === 0) no.lembretes.push({ op: 'exigeTreino', msg: p.nome + ' exige treino para fabricar' });
+      // só no tooltip do próprio Ofício (nunca na lista de avisos)
+      if (p.exigeTreino && grau === 0 && !semTreino) no.lembretes.push({ op: 'exigeTreino', msg: 'sem treino, não fabrica com esta perícia' });
       var simTxt = junta(sim.map(function (x) { return x.op + x.t; }).join(''), txt.sim);
       if (p.modo === 'dado') {
         no.dado.fixo = s;
@@ -537,16 +556,16 @@
           no.rotulo = 'Recurso de classe';
           no.semContador = true;
           no.itens = rdc.itens.slice();
-          no.termos.push({ rotulo: itens, fonte: { tipo: 'regra', id: rdc.fo || cl.fo, nome: 'contrato' },
-            op: 'formula', valor: null, ativo: true, motivo: str(rdc.nota) || 'não é contador', status: rdc.st });
-          no.formula = { simbolica: 'Recurso de classe de ' + cl.nome + ' = ' + itens + ' (' + (rdc.tipo || 'características') + ')',
-            numerica: '= sem contador (não é contador: ' + (str(rdc.nota) || 'características da classe') + ')' };
+          no.termos.push({ rotulo: itens, fonte: { tipo: 'regra', id: rdc.fo || cl.fo, nome: 'regra da classe' },
+            op: 'formula', valor: null, ativo: true, motivo: 'características da classe, sem contador', status: rdc.st });
+          no.formula = { simbolica: 'Recurso de classe de ' + cl.nome + ' = ' + itens,
+            numerica: '= sem contador (são características da classe)' };
           // contador digitado (ex.: migrado da v2): nunca descartado calado, vira aviso
           var rcf = ctx.ficha && ctx.ficha.recursos && ctx.ficha.recursos.classe;
           if (rcf && (str(rcf.nome) || inteiro(rcf.atual, 0))) {
             no.avisos.push({ tipo: 'recurso-sem-contador', msg: 'a ficha tem o contador "' + (str(rcf.nome) || 'recurso de classe') +
-              '" (atual ' + inteiro(rcf.atual, 0) + '); pelo contrato (D105) o recurso de classe de ' + cl.nome +
-              ' não é contador, então o número fica só como anotação' });
+              '" (atual ' + inteiro(rcf.atual, 0) + '), mas o recurso de classe de ' + cl.nome + ' (' + itens +
+              ') não é contador: o número fica só como anotação' });
           }
           return no;
         }
@@ -563,6 +582,11 @@
       no.medidor = med.id;
       no.valor = a.v;
       no.formula = { simbolica: a.sim, numerica: conta(a.num, a.v) };
+      // medidor em revisão (Batedor): o selo diz o que pode mudar
+      if (D.selos[med.st] === 'avisoClasse') {
+        var rw = 'o ' + med.nome + ' está em revisão: o máximo (' + fmt(a.v) + ') e o zeramento podem mudar';
+        no.notaSelo = { avisoClasse: rw };
+      }
       return no;
     }
 
@@ -574,7 +598,10 @@
       var mods = ctx.mods(['evasao.passiva']);
       // valor 'fluxo' (Monge Evasivo): o Fluxo atual
       mods.forEach(function (m) { if (m.valor === 'fluxo') { m.valor = inteiro(ctx.ficha.recursos && ctx.ficha.recursos.classe && ctx.ficha.recursos.classe.atual, 0); } });
-      var v = a.v + somaMods(no, mods, ctx, [], txt);
+      // a parte não numérica das fontes ("+1 Reação Máxima", o dado da
+      // Premonição Etérica) é da reação: vai para a Evasão Ativa, não fica aqui
+      ctx.extrasDaAtiva = [];
+      var v = a.v + somaMods(no, mods, ctx, [], txt, ctx.extrasDaAtiva);
       lembretes(no, mods, []);
       no.valor = v;
       no.formula = { simbolica: junta(a.sim, txt.sim), numerica: conta(junta(a.num, txt.num), v) };
@@ -594,12 +621,8 @@
       no.formula = { simbolica: 'Evasão Passiva + Dado de Defender',
         numerica: '= ' + numA + (no.valor == null ? ' = ?' : no.valor !== numA ? ' = ' + no.valor : '') };
       no.lembretes.push({ op: 'reacao', msg: 'gasta a reação; vale contra todos os ataques daquele agressor no turno dele' });
-      // a parte não numérica das fontes da Passiva (ex.: "+1 Reação Máxima") vale aqui também
-      pas.lembretes.filter(function (l) { return l.op === 'extra'; }).forEach(function (l) {
-        no.termos.push({ rotulo: str(l.fonte && l.fonte.nome) + ' (além do número)', fonte: l.fonte, op: 'lembrete', valor: l.msg, ativo: false,
-          motivo: 'lembrete (vem da Evasão Passiva): ' + l.msg, status: l.status });
-        no.lembretes.push(l);
-      });
+      // a parte não numérica das fontes da Passiva (ex.: "+1 Reação Máxima") vale só aqui
+      lista(ctx.extrasDaAtiva).forEach(function (x) { extraDoMod(no, x.m, x.a); });
       no.rolagem = def.rolagem;
       return no;
     }
@@ -758,7 +781,7 @@
           : inteiro(rs.tipos && rs.tipos[k] && rs.tipos[k].ae, 0);
       no.termos.push({ rotulo: 'Marcado na ficha', fonte: { tipo: 'ficha', id: 'resistencias', nome: 'ficha' }, op: 'soma', valor: base, ativo: true, motivo: '', status: 'canonico' });
       var txt = { sim: [], num: [] }, v = base + somaMods(no, ctx.mods(['ae.' + k]), ctx, [], txt);
-      if (k === 'ordinario' && v) no.avisos.push({ tipo: 'ae-ordinario', msg: 'Ae(Ordinário) não existe (D67): é Ar. Não entra na mitigação dos 3 tipos ordinários.' });
+      if (k === 'ordinario' && v) no.avisos.push({ tipo: 'ae-ordinario', msg: 'Ae(Ordinário) não existe: é Ar. Não entra na redução dos 3 tipos ordinários.' });
       no.valor = v;
       no.formula = { simbolica: junta('ficha', txt.sim) + (D.defesa.aeMesmoTipo.modo === 'soma' ? ' (mesmo tipo soma, L26)' : ''), numerica: conta(junta(fmt(base), txt.num), v) };
       return no;
@@ -797,11 +820,11 @@
       if (cat === 'ordinario') termo('Ar', 'ar', true, 'Ar só reduz dano Ordinário', D.defesa.arNatural.st);
       termo('Ae(' + NOME_TIPO[t] + ')', 'ae.' + t, true, '', D.defesa.aeMesmoTipo.st);
       if (cat && CATEGORIAS_AE.indexOf(cat) >= 0) {
-        if (cat === 'ordinario') termo('Ae(Ordinário)', 'ae.ordinario', false, 'Ae(Ordinário) não existe (D67): é Ar', 'canonico');
+        if (cat === 'ordinario') termo('Ae(Ordinário)', 'ae.ordinario', false, 'Ae(Ordinário) não existe: é Ar', 'canonico');
         else termo('Ae(' + NOME_TIPO[cat] + ')', 'ae.' + cat, true, 'Ae da categoria cobre todos os tipos dela (L34)', D.defesa.aeCategoria.st);
       } else {
         no.termos.push({ rotulo: 'Ae de categoria', fonte: { tipo: 'regra', id: D.defesa.categoriasFo, nome: 'categorias' }, op: 'soma', valor: null,
-          ativo: false, motivo: 'contrato rev. 7: ' + NOME_TIPO[t] + ' fica em "Outros", sem Ae de categoria (o CLAUDE.md §2 põe em Místico)', status: 'canonico' });
+          ativo: false, motivo: NOME_TIPO[t] + ' fica em "Outros", sem Ae de categoria', status: 'canonico' });
       }
       var cobre = D.defesa.aeTodos.cobre.indexOf(t) >= 0;
       termo('Ae(Todos)', 'ae.todos', cobre, cobre ? 'Ae(Todos) cobre os 9 atípicos (L26)' : 'Ae(Todos) não cobre ' + NOME_TIPO[t] + ' (L26)', D.defesa.aeTodos.st);
@@ -833,7 +856,10 @@
         no.formula = { simbolica: 'Base Nível 1 + Contida', numerica: '= ? (Nível 1 não tem Contida)' };
         return no;
       }
-      if (p.intensidades && p.intensidades.indexOf(it) < 0) no.avisos.push({ tipo: 'intensidade-fora', msg: NOME_INT[it] + ' fora das intensidades da magia (' + p.intensidades.join('/') + ')' });
+      if (p.intensidades && p.intensidades.indexOf(it) < 0) {
+        no.avisos.push({ tipo: 'intensidade-fora', msg: 'a intensidade ' + (NOME_INT[it] || it) + ' não existe nesta magia (ela tem ' +
+          entre(p.intensidades.map(function (x) { return NOME_INT[x] || x; })) + ')' });
+      }
       var base = M.custoBase[nivel - 1], di = M.intensidade[it];
       no.termos.push({ rotulo: 'Base (Nível ' + nivel + ')', fonte: { tipo: 'regra', id: M.fo, nome: 'custo por nível' }, op: 'soma', valor: base, ativo: true, motivo: '', status: M.st });
       no.termos.push({ rotulo: NOME_INT[it], fonte: { tipo: 'regra', id: M.fo, nome: 'intensidade' }, op: 'soma', valor: di, ativo: true, motivo: '', status: M.st });
@@ -880,6 +906,12 @@
       no.valor = v;
       return fechaStatus(no, D);
     }
+    // sem intensidade escolhida: a Normal, ou a única que a magia tem (as 14 só
+    // com Transbordante: Vislumbre custa 4, Fissura da Alma 12)
+    function intensidadePadrao(info) {
+      var l = lista(info && info.intensidades);
+      return !l.length || l.indexOf('normal') >= 0 ? 'normal' : l[0];
+    }
     function noMagia(ctx, e) {
       var D = ctx.D, info = D.magia.porId[e.id], est = obj(e.estado) ? e.estado : {};
       var caminho = 'magia.' + e.id + '.custo';
@@ -898,7 +930,7 @@
       var escola = D.magia.modulacoes[info.escola] || {};
       var mods = lista(est.modulacoes).map(function (id) { return { id: id, nome: id, custo: escola[id] }; })
         .filter(function (m) { return typeof m.custo === 'number'; });
-      var p = { id: e.id, nome: str(e.cache && e.cache.nome), nivel: info.nivel, intensidade: est.intensidade || 'normal',
+      var p = { id: e.id, nome: str(e.cache && e.cache.nome), nivel: info.nivel, intensidade: est.intensidade || intensidadePadrao(info),
         intensidades: info.intensidades, modulacoes: mods, multiplicadores: mult, descontos: [], pactuada: est.pactuada === true };
       var no = custoMagia(p, D, caminho);
       no.magia = { id: e.id, nivel: info.nivel, escola: info.escola, intensidade: p.intensidade };
@@ -1014,7 +1046,8 @@
         valor: -res, ativo: res > 0, motivo: res > 0 ? 'reserva comprometida: removível zerando o campo (D19)' : 'sem reserva', status: 'decisao' });
       no.valor = Math.max(0, atual - res);
       no.formula = { simbolica: 'Stamina atual − comprometida (D19)', numerica: conta(fmt(atual) + ' − ' + fmt(res), no.valor) };
-      if (atual - res < 0) no.avisos.push({ tipo: 'reserva-maior-que-atual', msg: 'reserva comprometida (' + fmt(res) + ') maior que a Stamina atual (' + fmt(atual) + ')' });
+      // Stamina negativa sem reserva é o alerta próprio do recurso (D93), não este
+      if (res > 0 && atual - res < 0) no.avisos.push({ tipo: 'reserva-maior-que-atual', msg: 'reserva comprometida (' + fmt(res) + ') maior que a Stamina atual (' + fmt(atual) + ')' });
       return no;
     }
 
@@ -1025,16 +1058,23 @@
       var pontos = niveis.length * L.pontosPorNivel;
       no.termos.push({ rotulo: L.pontosPorNivel + ' por nível (' + (niveis.join(', ') || 'nenhum ainda') + ')', fonte: { tipo: 'regra', id: L.fo, nome: 'Limiar' },
         op: 'soma', valor: pontos, ativo: true, motivo: '', status: L.st });
-      var gasto = 0, partes = [], semPosicao = 0;
+      var gasto = 0, partes = [], semPosicao = 0, invalidas = [], porMao = {}, repetidas = [];
+      var nPos = L.custoPorPosicao.length;
       lista(ctx.ficha.entradas).forEach(function (e) {
         if (!e || e.tipo !== 'carta') return;
         var est = obj(e.estado) ? e.estado : {}, nome = str(e.cache && e.cache.nome) || str(e.id);
-        var custo = null, motivo = '';
+        var custo = null, motivo = '', pos = est.posicaoNaMao, posN = inteiro(pos, null);
+        var anotada = pos != null && str(pos).trim() !== '';
         if (est.especial === true) { custo = L.especial; motivo = 'carta especial: sempre ' + L.especial + ' (D13c)'; }
-        else if (inteiro(est.posicaoNaMao, 0) >= 1 && inteiro(est.posicaoNaMao, 0) <= L.custoPorPosicao.length) {
-          custo = L.custoPorPosicao[inteiro(est.posicaoNaMao, 0) - 1];
-          motivo = est.posicaoNaMao + 'ª da mão' + (custo === 0 ? ' (grátis)' : '');
-        } else { motivo = 'posição na mão não anotada (estado.posicaoNaMao)'; semPosicao++; }
+        else if (posN != null && posN >= 1 && posN <= nPos) {
+          custo = L.custoPorPosicao[posN - 1];
+          motivo = posN + 'ª da mão' + (custo === 0 ? ' (grátis)' : '');
+          // a mesma posição duas vezes na mesma mão (o nível em que a carta veio)
+          var k = str(est.nivelAquisicao) + '|' + posN;
+          if (porMao[k]) repetidas.push(nome + ' e ' + porMao[k] + ' (' + posN + 'ª)');
+          else porMao[k] = nome;
+        } else if (anotada) { motivo = 'posição ' + str(pos) + ' inválida (vale de 1 a ' + nPos + ')'; invalidas.push(nome + ' (' + str(pos) + ')'); }
+        else { motivo = 'posição na mão não anotada'; semPosicao++; }
         no.termos.push({ rotulo: nome, fonte: { tipo: 'carta', id: e.id, nome: nome }, op: 'soma', valor: custo == null ? null : -custo,
           ativo: custo != null, motivo: motivo, status: L.st });
         if (custo) { gasto += custo; partes.push(custo); }
@@ -1042,7 +1082,10 @@
       no.valor = pontos - gasto;
       if (semPosicao) no.avisos.push({ tipo: 'carta-sem-posicao', cartas: semPosicao,
         msg: semPosicao + (semPosicao === 1 ? ' carta sem posição na mão: o saldo não a desconta' : ' cartas sem posição na mão: o saldo não as desconta') });
-      if (no.valor < 0) no.avisos.push({ tipo: 'saldo-negativo', msg: 'saldo do Limiar negativo (aviso, sem trava)' });
+      if (invalidas.length) no.avisos.push({ tipo: 'carta-posicao-invalida', cartas: invalidas.length,
+        msg: 'posição na mão inválida (vale de 1 a ' + nPos + '): ' + invalidas.join(', ') + '; o saldo não ' + (invalidas.length === 1 ? 'a' : 'as') + ' desconta' });
+      if (repetidas.length) no.avisos.push({ tipo: 'carta-posicao-repetida', msg: 'duas cartas na mesma posição da mesma mão: ' + repetidas.join('; ') });
+      if (no.valor < 0) no.avisos.push({ tipo: 'saldo-negativo', msg: 'saldo do Limiar negativo' });
       var custoTxt = 'custo das cartas (' + L.custoPorPosicao.map(function (c) { return c === 0 ? 'grátis' : fmt(c); }).join('/') + '; especial ' + fmt(L.especial) + ')';
       no.formula = { simbolica: (niveis.length ? L.pontosPorNivel + ' × níveis de ' + L.niveis[0] + ' a ' + ctx.nivel
           : 'nenhum nível com pontos ainda (o Limiar dá pontos a partir do nível ' + L.niveis[0] + ')') + ' − ' + custoTxt,
@@ -1132,15 +1175,16 @@
     function estadosFinais(ctx, rc, alertas) {
       var D = ctx.D, M = D.morte, vistos = {};
       function selo(st) { var s = D.selos[st]; return s === undefined ? D.selos.semStatus : s; }
+      // o motor não aplica nada: só avisa (o mestre decide)
       function alerta(id, msg, st, extra) {
         vistos[id] = true;
-        alertas.push(Object.assign({ tipo: 'estado-final', id: id, msg: msg + ' (estado final: só alerta, nada é aplicado)',
+        alertas.push(Object.assign({ tipo: 'estado-final', id: id, msg: msg,
           status: st, selo: selo(st), automatico: false }, extra || {}));
       }
       // Mod ativo com alvo 'estado' (Exaustão 5: morte)
       ctx.ef.mods.forEach(function (m) {
         if (m.alvo !== 'estado' || !m.ativo) return;
-        alerta(str(m.fonte && m.fonte.id) + (m.nivel != null ? '-' + m.nivel : ''), nomeFonte(m) + ': ' + str(m.valor), m.status || 'semStatus',
+        alerta(str(m.fonte && m.fonte.id) + (m.nivel != null ? '-' + m.nivel : ''), nomeFonte(m) + ': ' + str(m.valor) + ' (o mestre decide)', m.status || 'semStatus',
           { fonte: m.fonte, valor: m.valor });
       });
       // Saúde máx. zerada pelo Desnutrido
@@ -1155,7 +1199,8 @@
         var r = aval(lim.min, { ref: function () { return { v: max, rot: NOME_REC[x[0]], st: stNo(ctx, 'recurso.' + x[0] + '.max') }; } }, D);
         if (!(atual < r.v)) return;
         var fin = lista(M.estadosFinais).filter(function (e) { return e.id === x[1]; })[0];
-        alerta(x[1], x[2] + ' atual ' + fmt(atual) + ' abaixo de ' + r.sim + ' = ' + fmt(r.v) + (fin && fin.nota ? ': ' + fin.nota : ''),
+        alerta(x[1], x[2] + ' atual ' + fmt(atual) + ' abaixo de ' + fmt(r.v) + ' (' + r.sim + '): ' +
+            (fin && fin.nota ? fin.nota : x[0] === 'saude' ? 'o personagem morre' : 'o personagem se perde') + ' (o mestre decide)',
           pior(D, lim.st, r.st), { formula: { simbolica: x[2] + ' atual < ' + r.sim, numerica: '= ' + fmt(atual) + ' < ' + r.num + ' = ' + fmt(r.v) } });
       });
       lista(M.estadosFinais).forEach(function (e) {
@@ -1187,22 +1232,269 @@
       });
       // ajuste de caminho sem nó (magia ou arma que saiu da ficha): fica listado
       Object.keys(ajustes).forEach(function (c) {
-        if (!ctx.nos[c]) ctx.avisos.push({ tipo: 'ajuste-sem-no', caminho: c, msg: 'ajuste em ' + c + ' sem campo calculado na ficha' });
+        if (!ctx.nos[c]) ctx.avisos.push({ tipo: 'ajuste-sem-no', caminho: c, msg: 'ajuste manual de um número que saiu da ficha (' + c + '): a magia ou a arma não está mais nela' });
       });
       var alertas = [];
       var rc = ficha.recursos || {};
       [['saude', 'morrendo'], ['stamina', 'exaurido'], ['eter', 'oco']].forEach(function (x) {
         var atual = rc[x[0]] && rc[x[0]].atual, max = ctx.v('recurso.' + x[0] + '.max');
-        if (typeof atual === 'number' && atual <= 0 && max) alertas.push({ tipo: 'condicao-automatica', id: x[1], nome: D.condicoes[x[1]].nome, recurso: x[0],
-          msg: D.condicoes[x[1]].nome + ': ' + NOME_REC[x[0]].replace(' máx.', '') + ' atual ≤ 0 (entra sozinha)' });
+        var rot = NOME_REC[x[0]].replace(' máx.', ''), nome = D.condicoes[x[1]].nome;
+        if (typeof atual === 'number' && atual <= 0 && max) alertas.push({ tipo: 'condicao-automatica', id: x[1], nome: nome, recurso: x[0],
+          msg: rot + ' atual ' + fmt(atual) + ': com 0 ou menos, o personagem fica ' + nome });
         if (typeof atual === 'number' && max != null && atual > max) alertas.push({ tipo: 'acima-do-maximo', recurso: x[0],
-          msg: NOME_REC[x[0]].replace(' máx.', '') + ' atual ' + atual + ' acima do máximo ' + max + ' (o grampo corta, L06)' });
+          msg: rot + ' atual ' + fmt(atual) + ' acima do máximo (' + fmt(max) + '): corrija o valor atual' });
       });
+      // D93: a Stamina não fica negativa (mínimo 0); a ficha avisa, nada corta
+      var stA = rc.stamina && rc.stamina.atual, stMin = D.recursos.stamina.min;
+      if (typeof stA === 'number' && typeof stMin === 'number' && stA < stMin) alertas.push({ tipo: 'abaixo-do-minimo', recurso: 'stamina',
+        msg: 'Stamina atual ' + fmt(stA) + ': a Stamina não fica negativa (mínimo ' + fmt(stMin) + '); corrija o valor atual' });
+      alertaRecursoClasse(ctx, rc, alertas);
       estadosFinais(ctx, rc, alertas);
       var sust = lista(ficha.entradas).filter(function (e) { return e && e.tipo === 'magia' && e.estado && e.estado.sustentando; });
-      if (sust.length > D.magia.sustentada.maxAtivas) alertas.push({ tipo: 'sustentadas', msg: sust.length + ' magias sustentadas; o máximo é ' + D.magia.sustentada.maxAtivas + ' (D16)' });
+      if (sust.length > D.magia.sustentada.maxAtivas) alertas.push({ tipo: 'sustentadas', msg: sust.length + ' magias sustentadas; o máximo é ' + D.magia.sustentada.maxAtivas });
+      validacoes(ctx);
+      var fora = foraDasContas(ctx);
       return { versao: D.versao, nos: ctx.nos, ordem: ordem.map(function (x) { return x.c; }), efeitos: ctx.ef,
-        condicoes: ctx.condicoes, avisos: ctx.avisos, alertas: alertas };
+        condicoes: ctx.condicoes, avisos: ctx.avisos, alertas: alertas, foraDasContas: fora };
+    }
+
+    // recurso de classe com contador: acima do máximo ou negativo (o mínimo do
+    // medidor ainda está com o balanceamento: o aviso de negativo leva o selo)
+    function alertaRecursoClasse(ctx, rc, alertas) {
+      var no = ctx.nos['recurso.classe.max'], c = rc.classe;
+      if (!no || !no.medidor || !obj(c) || typeof c.atual !== 'number') return;
+      var nome = no.rotulo.replace(/ máx\.$/, ''), max = no.valor;
+      if (typeof max === 'number' && c.atual > max) alertas.push({ tipo: 'acima-do-maximo', recurso: 'classe',
+        msg: nome + ' atual ' + fmt(c.atual) + ' acima do máximo (' + fmt(max) + '): corrija o valor atual' });
+      if (c.atual < 0) {
+        var st = ctx.D.pendentesBalanceamento.indexOf('medidor-minimo') >= 0 ? 'pendenteBalanceamento' : 'canonico';
+        var s = ctx.D.selos[st];
+        alertas.push({ tipo: 'abaixo-do-minimo', recurso: 'classe', status: st, selo: s === undefined ? ctx.D.selos.semStatus : s,
+          msg: nome + ' atual ' + fmt(c.atual) + ', abaixo de 0: corrija o valor atual' });
+      }
+    }
+
+    // ---------------- validações (progressao.validacoes e magia.requisitos: "avisar") ----------------
+    // Nada trava (P46: o mestre concede exceções); cada situação irregular vira
+    // um aviso claro em avisos, com tipo e texto para o jogador.
+    var NOME_ESCOLA = { destruicao: 'Destruição', abjuracao: 'Abjuração', alteracao: 'Alteração', conhecimento: 'Conhecimento', primordial: 'Primordial' };
+    var ESCOLA_DO_NOME = { 'destruição': 'destruicao', 'abjuração': 'abjuracao', 'alteração': 'alteracao', conhecimento: 'conhecimento', primordial: 'primordial' };
+    var NOME_ATR = { FOR: 'Força', DES: 'Destreza', CON: 'Constituição', INT: 'Inteligência', SAB: 'Sabedoria' };
+    // o valor da tabela por nível ({"3": 1, "4": 2}): o da maior chave até o nível
+    function porNivel(tab, nivel) {
+      var v = 0;
+      Object.keys(tab || {}).map(Number).sort(function (a, b) { return a - b; }).forEach(function (k) { if (k <= nivel) v = tab[String(k)]; });
+      return v;
+    }
+    function nomeEntrada(e) { return str(e.cache && e.cache.nome) || str(e.id); }
+    function validacoes(ctx) {
+      var D = ctx.D, f = ctx.ficha, nivel = ctx.nivel, P = D.progressao, C = D.catalogo, av = ctx.avisos;
+      var ents = lista(f.entradas).filter(obj);
+      function aviso(tipo, msg, extra) { av.push(Object.assign({ tipo: tipo, msg: msg }, extra || {})); }
+      // nível fora de 1 a 5
+      var nvBruto = inteiro(f.meta && f.meta.nivel, null);
+      if (nvBruto != null && nvBruto !== nivel) aviso('nivel-fora', 'Nível ' + nvBruto + ' fora de 1 a 5: a ficha conta como nível ' + nivel);
+      // escolha de atributo pendente (raça, carta +2 Atributo): o bônus fica fora das contas
+      ctx.ef.mods.forEach(function (m) {
+        if (m.alvo !== 'atributo.?' || /migração/.test(str(m.motivo))) return;
+        if (m.etapa === 'raca') aviso('escolha-pendente', nomeFonte(m) + ': falta escolher o atributo do bônus ' + (m.valor > 0 ? '+' : '') + fmt(m.valor) +
+          (m.opcoesTxt ? ' (' + m.opcoesTxt + ')' : '') + '; até lá ele não entra nas contas');
+        else if (m.etapa === 'carta') aviso('escolha-pendente', nomeFonte(m) + ': os ' + fmt(m.valor) + ' pontos de atributo não foram distribuídos');
+      });
+      // condição que tira as 24 perícias (Exaurido): uma linha só, não 24
+      var semAcao = {};
+      ctx.ef.mods.forEach(function (m) {
+        if (m.op !== 'semAcao' || m.alvo !== 'todasAsPericias' || !m.ativo || semAcao[nomeFonte(m)]) return;
+        semAcao[nomeFonte(m)] = true;
+        aviso('sem-pericias', msgLembrete(m));
+      });
+      // técnicas gerais (3 + nível), tiers e marcas
+      if (P) {
+        var amb = { ref: function (n) { return n === 'nivel' ? { v: nivel, rot: 'Nível', st: 'canonico' } : { v: null, rot: n, st: 'semStatus' }; } };
+        var limTec = aval(P.tecnicas, amb, D).v;
+        var gerais = ents.filter(function (e) { return e.tipo === 'tecnica' && !(e.id && C.tierTecnica[e.id]); });
+        if (typeof limTec === 'number' && gerais.length > limTec) {
+          aviso('tecnicas-acima', gerais.length + ' técnicas gerais; no nível ' + nivel + ' o limite é ' + limTec + ' (3 + nível)');
+        }
+        var porTier = { 1: [], 2: [], 3: [] };
+        ents.forEach(function (e) {
+          var t = e.tipo === 'ultimate' ? 3 : e.tipo === 'tecnica' && e.id ? C.tierTecnica[e.id] : null;
+          if (t && porTier[t]) porTier[t].push(nomeEntrada(e));
+        });
+        Object.keys(porTier).forEach(function (t) {
+          var regra = P.tiers[t], nomes = porTier[t];
+          if (!regra || !nomes.length) return;
+          var rot = t === '3' ? 'Tier 3 (Ultimate)' : 'Tier ' + t;
+          if (nivel < regra.nivel) aviso('tier-acima-do-nivel', rot + ' abre no nível ' + regra.nivel + '; a ficha é nível ' + nivel + ': ' + nomes.join(', '));
+          else if (nomes.length > regra.max) aviso('tier-acima-do-limite', rot + ': ' + nomes.length + ' técnicas; o limite é ' + regra.max + ': ' + nomes.join(', '));
+        });
+        var marcas = ents.filter(function (e) { return e.tipo === 'marca'; });
+        var limMarcas = porNivel(P.marcas, nivel);
+        if (marcas.length > limMarcas) {
+          aviso('marcas-acima', marcas.length + (marcas.length === 1 ? ' Marca' : ' Marcas') + ' no nível ' + nivel + '; o limite é ' + limMarcas +
+            ' (' + Object.keys(P.marcas).map(function (k) { return P.marcas[k] + ' no nível ' + k; }).join(', ') + ')');
+        }
+        // cartas: nenhuma na criação (o Limiar dá cartas a partir do nível 2)
+        var cartas = ents.filter(function (e) { return e.tipo === 'carta'; });
+        if (P.semLimiarNaCriacao && nivel < D.limiar.niveis[0] && cartas.length) {
+          aviso('carta-no-nivel-1', cartas.length + (cartas.length === 1 ? ' carta' : ' cartas') + ' do Limiar no nível ' + nivel +
+            ': o Limiar só dá cartas a partir do nível ' + D.limiar.niveis[0]);
+        }
+      }
+      // requisito de atributo das cartas
+      ents.forEach(function (e) {
+        var req = e.tipo === 'carta' && e.id ? C.reqCarta[e.id] : null;
+        var falta = lista(req).filter(function (r) { var v = ctx.v('atributo.' + r.attr + '.total'); return typeof v === 'number' && v < r.min; });
+        if (falta.length) aviso('carta-requisito', nomeEntrada(e) + ' pede ' + req.map(function (r) { return r.attr + ' ' + r.min + '+'; }).join(', ') +
+          '; a ficha tem ' + falta.map(function (r) { return r.attr + ' ' + fmt(ctx.v('atributo.' + r.attr + '.total')); }).join(', '));
+      });
+      // requisito dos itens em uso (equipados ou sintonizados)
+      if (ctx.efeitos) {
+        KhInv.COLUNAS.forEach(function (col) {
+          lista(f.inventario && f.inventario[col]).forEach(function (it) {
+            var ef = obj(it) && it.id ? ctx.efeitos[it.id] : null;
+            if (!ef || !(it.equipado || it.sintonizado)) return;
+            var falta = lista(ef.requisito).filter(function (r) {
+              if (r.attr) { var v = ctx.v('atributo.' + r.attr + '.total'); return typeof v === 'number' && v < r.min; }
+              if (r.pericia) return inteiro(f.pericias && f.pericias[r.pericia], 0) < r.grau;
+              return false;   // treino de armas e o resto: fora da ficha (o mestre confere)
+            });
+            if (falta.length) aviso('item-requisito', (str(it.nome) || it.id) + ': requisito não atendido (' + str(ef.requisitoTexto) + ')', { uid: it.uid });
+          });
+        });
+      }
+      validaMagias(ctx, ents, aviso);
+    }
+    // D123: Treinado em Místico + o Foco da escola equipado (1 Foco por vez);
+    // magia de nível acima do personagem; escolas do Teurgo (2/3/5)
+    function validaMagias(ctx, ents, aviso) {
+      var D = ctx.D, f = ctx.ficha, nivel = ctx.nivel, R = D.magia.requisitos;
+      var magias = ents.filter(function (e) { return e.tipo === 'magia' && e.id && D.magia.porId[e.id]; });
+      if (!magias.length) return;
+      var acima = magias.filter(function (e) { return D.magia.porId[e.id].nivel > nivel; });
+      if (acima.length) aviso('magia-acima-do-nivel', 'magias acima do nível do personagem (' + nivel + '): ' +
+        acima.map(function (e) { return nomeEntrada(e) + ' (nível ' + D.magia.porId[e.id].nivel + ')'; }).join(', '));
+      // quem dispensa o quê: só a fonte presente na ficha (entrada, identidade ou item)
+      var tem = {};
+      ents.forEach(function (e) { tem[e.id] = true; });
+      var idt = f.identidade || {};
+      ['raca', 'variante', 'subespecie', 'classe', 'ramo', 'origem'].forEach(function (k) { if (idt[k] && idt[k].id) tem[idt[k].id] = true; });
+      KhInv.COLUNAS.forEach(function (col) { lista(f.inventario && f.inventario[col]).forEach(function (it) { if (obj(it) && it.id) tem[it.id] = true; }); });
+      var dispensa = {};
+      lista(R && R.dispensas).forEach(function (d) { if (tem[d.fonte]) d.dispensa.forEach(function (x) { dispensa[x] = true; }); });
+      if (!dispensa.treinadoMistico && inteiro(f.pericias && f.pericias.mistico, 0) < 1) {
+        aviso('magia-sem-mistico', magias.length + (magias.length === 1 ? ' magia pede' : ' magias pedem') + ' Treinado em Místico; a ficha está Leiga em Místico');
+      }
+      // focos equipados (data/efeitos.json; a escola vem do texto "Foco Místico (Escola)")
+      if (ctx.efeitos) {
+        var focos = [];
+        KhInv.COLUNAS.forEach(function (col) {
+          lista(f.inventario && f.inventario[col]).forEach(function (it) {
+            var ef = obj(it) && it.equipado && it.id ? ctx.efeitos[it.id] : null;
+            // o Foco é o item cujo texto diz "Foco Místico (Escola)" (o slot nem sempre vem)
+            var m = ef ? /Foco Místico \(([^)]+)\)/.exec(str(ef.texto)) : null;
+            if (!m) return;
+            focos.push({ nome: str(it.nome) || it.id, escola: ESCOLA_DO_NOME[m[1].toLowerCase()] || null });
+          });
+        });
+        var maxF = R && R.focosSimultaneos || 1;
+        if (focos.length > maxF) aviso('focos-demais', focos.length + ' Focos equipados (' + focos.map(function (x) { return x.nome; }).join(', ') +
+          '): só se empunha ' + maxF + ' Foco por vez');
+        if (!dispensa.foco) {
+          var escolas = focos.map(function (x) { return x.escola; });
+          var sem = magias.filter(function (e) {
+            var info = D.magia.porId[e.id], precisa = info.nivel >= D.magia.focoPrimordial.nivel ? 'primordial' : info.escola;
+            return escolas.indexOf(precisa) < 0;
+          });
+          if (sem.length) aviso('magia-sem-foco', 'sem o Foco da escola equipado (só se conjura com o Foco dela; nível 5 pede o Foco Primordial): ' +
+            sem.map(function (e) {
+              var info = D.magia.porId[e.id];
+              return nomeEntrada(e) + ' (' + (info.nivel >= D.magia.focoPrimordial.nivel ? 'Primordial' : NOME_ESCOLA[info.escola] || info.escola) + ')';
+            }).join(', '));
+        }
+      }
+      // escolas do Teurgo: 2 no nível 1, 3 no 3, 5 no 5
+      if (ctx.classe && ctx.classe.id === 'classe-teurgo' && D.progressao) {
+        var esc = [];
+        magias.forEach(function (e) { var x = D.magia.porId[e.id].escola; if (esc.indexOf(x) < 0) esc.push(x); });
+        var lim = porNivel(D.progressao.teurgoEscolas, nivel);
+        if (esc.length > lim) aviso('teurgo-escolas', 'magias de ' + esc.length + ' escolas (' + esc.map(function (x) { return NOME_ESCOLA[x] || x; }).join(', ') +
+          '); no nível ' + nivel + ' o Teurgo domina ' + lim + ' (2 no nível 1, 3 no 3, 5 no 5)');
+      }
+    }
+
+    // ---------------- efeitos que o motor ainda não lê ----------------
+    // Texto com número de campo ("+10 Saúde máxima") de uma fonte que o contrato
+    // não modela: lembrete na entrada e UM aviso agregado; nenhum número inventado.
+    function foraDasContas(ctx) {
+      var C = ctx.D.catalogo, out = [], vistos = {};
+      if (!C || !C.foraDasContas) return out;
+      var idt = ctx.ficha.identidade || {};
+      var fontes = ['variante', 'subespecie', 'origem'].map(function (k) { return idt[k] && idt[k].id ? { id: idt[k].id, nome: str(idt[k].nome) || idt[k].id } : null; })
+        .concat(lista(ctx.ficha.entradas).filter(obj).map(function (e) { return e.id ? { id: e.id, nome: nomeEntrada(e) } : null; }));
+      fontes.forEach(function (x) {
+        if (!x || vistos[x.id] || !C.foraDasContas[x.id]) return;
+        vistos[x.id] = true;
+        out.push({ id: x.id, nome: x.nome, trechos: C.foraDasContas[x.id].slice() });
+      });
+      if (out.length) ctx.avisos.push({ tipo: 'efeitos-fora-das-contas', n: out.length,
+        msg: out.length + (out.length === 1 ? ' efeito ainda não entra' : ' efeitos ainda não entram') + ' nas contas (aguardando o balanceamento): ' +
+          out.map(function (x) { return x.nome + ' (' + x.trechos.join(', ') + ')'; }).join('; ') });
+      return out;
+    }
+    // o texto do lembrete de um id (a entrada do card): null se nada fica fora
+    function lembreteForaDasContas(id, D) {
+      D = D || dadosPadrao();
+      var t = D && D.catalogo && D.catalogo.foraDasContas && D.catalogo.foraDasContas[id];
+      return t ? 'Ainda não entra nas contas: ' + t.join(', ') + ' (aguardando o balanceamento)' : null;
+    }
+
+    // ---------------- o atual acompanha o máximo (recursos.acompanha) ----------------
+    // Sistema > Regras dos status (L06): "Se um máximo diminuir, o valor atual
+    // acompanha até o novo máximo (nunca abaixo de 0 por isso). Se aumentar, o
+    // atual sobe o mesmo tanto." Saúde, Stamina e Éter sempre; o recurso de
+    // classe só se o medidor nasce no máximo (início 'max', o Reagentes) — os
+    // que começam em 0 no combate só levam o grampo. Sem classe, o máximo é 0:
+    // a ficha nova nasce cheia quando a classe entra.
+    // -> {saude, stamina, eter, classe, medidor, inicioClasse}
+    function maximos(ficha, opcoes) {
+      var r = avaliar(ficha, opcoes), out = {};
+      ['saude', 'stamina', 'eter'].forEach(function (k) { var v = r.nos['recurso.' + k + '.max'].valor; out[k] = typeof v === 'number' ? v : 0; });
+      var nc = r.nos['recurso.classe.max'];
+      out.medidor = nc && nc.medidor || null;
+      out.classe = out.medidor && typeof nc.valor === 'number' ? nc.valor : 0;
+      var cl = out.medidor ? medidoresDa(ficha, opcoes).filter(function (m) { return m.id === out.medidor; })[0] : null;
+      out.inicioClasse = cl ? cl.inicio : null;
+      return out;
+    }
+    function medidoresDa(ficha, opcoes) {
+      var D = (opcoes && opcoes.dados) || dadosPadrao();
+      var ch = chaveDe(ficha && ficha.identidade && ficha.identidade.classe && ficha.identidade.classe.id, 'classe-');
+      return ch && D.classes[ch] ? D.classes[ch].medidores : [];
+    }
+    // antes, depois: a ficha antes e depois da edição; tocados: os caminhos que a
+    // edição já escreve (o atual digitado à mão não é mexido).
+    // -> [{caminho:'recursos.<r>.atual', valor}] só do que muda
+    function acompanharMaximos(antes, depois, opcoes, tocados) {
+      if (!obj(antes) || !obj(depois)) return [];
+      tocados = lista(tocados);
+      var mA = maximos(antes, opcoes), mD = maximos(depois, opcoes), out = [];
+      ['saude', 'stamina', 'eter', 'classe'].forEach(function (k) {
+        var cam = 'recursos.' + k + '.atual';
+        if (tocados.some(function (t) { return t === cam || cam.indexOf(t + '.') === 0 || t === 'recursos'; })) return;
+        var rc = depois.recursos && depois.recursos[k], atual = rc && rc.atual;
+        if (typeof atual !== 'number') return;
+        var a = mA[k], d = mD[k], novo = atual;
+        if (k === 'classe') {
+          if (!mD.medidor) return;
+          if (mA.medidor !== mD.medidor) a = 0;
+          if (d > a && mD.inicioClasse !== 'max') return;   // começa em 0 no combate: não sobe sozinho
+        }
+        if (d > a) novo = atual + (d - a);
+        else if (d < a) novo = Math.min(atual, Math.max(0, d));
+        if (novo !== atual) out.push({ caminho: cam, valor: novo });
+      });
+      return out;
     }
     // {caminho ajustável: calculado} — para KhEstado.podarAjustesMigrados e a migração
     function calculados(ficha, opcoes) {
@@ -1217,6 +1509,7 @@
 
     return {
       avaliar: avaliar, calculados: calculados, custoMagia: custoMagia, resolverTeste: resolverTeste,
+      maximos: maximos, acompanharMaximos: acompanharMaximos, lembreteForaDasContas: lembreteForaDasContas,
       temporaria: temporaria, aval: function (ast, amb, D) { return aval(ast, amb, D || dadosPadrao()); },
       fmt: fmt, dados: dadosPadrao
     };

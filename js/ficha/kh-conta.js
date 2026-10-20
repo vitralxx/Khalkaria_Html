@@ -120,9 +120,11 @@
         if (typeof v === 'number') return fmt(v) + (un || '');
         return str(v);
       }
-      function selosHTML(selos) {
+      // notas: {selo: texto} do nó (notaSelo: o que o selo do Batedor quer dizer)
+      function selosHTML(selos, notas) {
         return lista(selos).map(function (s) {
-          return '<span class="' + p + '-selo ' + p + '-selo-' + es(s) + '" title="' + es(rotuloSelo(s)) + '">' +
+          var nota = notas && notas[s] ? ': ' + notas[s] : '';
+          return '<span class="' + p + '-selo ' + p + '-selo-' + es(s) + '" title="' + es(rotuloSelo(s) + nota) + '">' +
             '<svg aria-hidden="true"><use href="#g-selo"/></svg>' + es(SELO_CURTO[s] || s) + '</span>';
         }).join('');
       }
@@ -139,7 +141,9 @@
           '<span class="' + p + '-d-num">' + es(num) + '</span>';
         if (lista(no.termos).length) linhas += '<span class="' + p + '-d-ts">' + no.termos.map(termoHTML).join('') + '</span>';
         var sl = lista(no.selos).concat(lista(no.selosProgressao).filter(function (s) { return lista(no.selos).indexOf(s) < 0; }));
-        if (sl.length) linhas += '<span class="' + p + '-d-selos">Selo: ' + sl.map(function (s) { return es(rotuloSelo(s)); }).join(' · ') + '</span>';
+        if (sl.length) linhas += '<span class="' + p + '-d-selos">Selo: ' + sl.map(function (s) {
+          return es(rotuloSelo(s) + (no.notaSelo && no.notaSelo[s] ? ' (' + no.notaSelo[s] + ')' : ''));
+        }).join(' · ') + '</span>';
         if (no.ajuste) {
           linhas += '<span class="' + p + '-d-aj">Ajuste ' + (no.ajuste.origem === 'migracao' ? 'migrado da v2' : 'manual') +
             ': calculado ' + es(fmt(no.calculado)) + ' · ajustado ' + es(fmt(no.valor)) +
@@ -168,7 +172,7 @@
           // número com aviso do motor (dado faltando, valor fora da conta): marca à vista, o texto vai em Avisos
           (lista(no.avisos).length ? ' <span class="' + p + '-aviso ' + p + '-marca-aviso" title="' +
             es(lista(no.avisos).map(function (a) { return a.msg || a.tipo; }).join(' · ')) + '">aviso</span>' : '') +
-          (o.semSelos ? '' : selosHTML(no.selos));
+          (o.semSelos ? '' : selosHTML(no.selos, no.notaSelo));
       }
 
       return { prefixo: p, caminhos: caminhos, conta: conta, termoHTML: termoHTML, selosHTML: selosHTML,

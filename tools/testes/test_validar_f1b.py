@@ -131,6 +131,25 @@ class Contrato(unittest.TestCase):
         c['recurso']['medidores'][0]['max'] = '(Nível × 2) + Mod.Inteligência'
         self.assertTrue(any('máximo de fluxo' in a for a in validar.compara_contrato(self.dados(classe=c), k)))
 
+    def test_recurso_sem_contador_d105(self):
+        # D105: o recurso de classe são características, sem contador; site e contrato
+        # batem pelo nome da característica (o site guarda o id, o contrato o nome)
+        c = copy.deepcopy(self.CLASSE)
+        c['recurso'] = {'id': None, 'nome': None, 'status': 'canonico', 'contador': False,
+                        'caracteristicas': ['monge-postura'], 'nota': 'D105'}
+        c['caracteristicas'] = [{'id': 'monge-postura', 'nome': '🥋 Postura'}]
+        k = copy.deepcopy(self.K)
+        k['classes']['monge']['recursos'] = []
+        k['classes']['monge']['recursoDeClasse'] = {'contador': False, 'itens': ['Postura'], 'status': 'canonico'}
+        self.assertEqual(validar.compara_contrato(self.dados(classe=c), k), [])
+        k['classes']['monge']['recursoDeClasse']['itens'] = ['Outra']
+        av = ' | '.join(validar.compara_contrato(self.dados(classe=c), k))
+        self.assertIn('recurso de classe sem contador', av)
+        # o site ainda pendente com o contrato já fechado: avisa
+        c['recurso'] = {'id': None, 'status': 'pedroDecide'}
+        k['classes']['monge']['recursoDeClasse']['itens'] = ['Postura']
+        self.assertIn('sem contador', ' | '.join(validar.compara_contrato(self.dados(classe=c), k)))
+
     def test_recurso_pendente_avisa(self):
         c = copy.deepcopy(self.CLASSE)
         c['recurso'] = {'id': None, 'status': 'pedroDecide'}

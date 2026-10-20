@@ -65,7 +65,7 @@
       no.avisos = no.avisos || [];
       var erro = KhEstado ? KhEstado.validarAjuste(no.caminho, aj) : 'sem-validador';
       if (erro) {
-        no.avisos.push({ tipo: 'ajuste-recusado', erro: erro, msg: 'Ajuste em ' + no.caminho + ' recusado (' + erro + ')' });
+        no.avisos.push({ tipo: 'ajuste-recusado', erro: erro, msg: 'ajuste manual recusado (' + String(erro).replace(/-/g, ' ') + ')' });
         return no;
       }
       var antes = no.valor, novo, novoDado = null;
@@ -73,7 +73,7 @@
         if (aj.modo === 'fixa') {
           // expressão de dado ('1d12', '13 + 1d8'); número (dano fixo) vira só o fixo
           novoDado = typeof aj.valor === 'number' ? { fixo: aj.valor, dados: [] } : lerDado(aj.valor);
-          if (!novoDado) { no.avisos.push({ tipo: 'ajuste-recusado', erro: 'valor-invalido', msg: 'Ajuste em ' + no.caminho + ' não é expressão de dado' }); return no; }
+          if (!novoDado) { no.avisos.push({ tipo: 'ajuste-recusado', erro: 'valor-invalido', msg: 'o ajuste manual não é expressão de dado (ex.: 1d12 ou 13 + 1d8)' }); return no; }
           novoDado.dadosPrimeiro = no.dado.dadosPrimeiro;
         }
         else { novoDado = { fixo: (no.dado.fixo || 0) + aj.valor, dados: (no.dado.dados || []).slice(), dadosPrimeiro: no.dado.dadosPrimeiro }; }
@@ -85,7 +85,7 @@
       } else if (typeof antes === 'number') {
         novo = antes + aj.valor;
       } else {
-        no.avisos.push({ tipo: 'ajuste-sem-calculado', msg: 'Ajuste de diferença sem valor calculado em ' + no.caminho + ': vale só o fixo' });
+        no.avisos.push({ tipo: 'ajuste-sem-calculado', msg: 'ajuste de diferença sem valor calculado: use o valor fixo' });
         return no;
       }
       var calculadoNum = typeof no.calculado === 'number' ? no.calculado : null;

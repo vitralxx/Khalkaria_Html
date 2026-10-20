@@ -130,8 +130,13 @@
     "recurso": {
       "id": null,
       "nome": null,
-      "status": "pedroDecide",
-      "nota": "Pedro, 2026-09-26 (docs/ficha-digital/03-respostas-pedro.md): \"Tem sim, teurgo também. Todas têm.\" O nome e a mecânica ainda não estão no Notion nem no contrato do balanceamento: campo em aberto, não inventar."
+      "status": "canonico",
+      "contador": false,
+      "caracteristicas": [
+        "espadachim-proficiencia-com-espadas",
+        "espadachim-marca-do-duelo"
+      ],
+      "nota": "D105 (Pedro, T6: \"o do espadachim é proficiência com espadas e marca do duelo\"): o recurso de classe do Espadachim é a Proficiência com Espadas e a Marca do Duelo, características da classe, sem contador."
     },
     "caracteristicas": [
       {

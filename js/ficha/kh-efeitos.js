@@ -90,7 +90,7 @@
       lista(ficha.condicoes).forEach(function (c) {
         if (!obj(c) || !c.id) return;
         var def = dados.condicoes[c.id];
-        if (!def) { avisos.push({ tipo: 'condicao-desconhecida', id: c.id }); return; }
+        if (!def) { avisos.push({ tipo: 'condicao-desconhecida', id: c.id, msg: 'condição "' + str(c.nome || c.id) + '" fora das regras: não entra nas contas' }); return; }
         var xi = typeof c.x === 'number' ? { x: c.x } : xInicial(def);
         if (!porId[c.id]) { porId[c.id] = { id: c.id, nome: def.nome, x: xi.x, stX: xi.st || null, origem: 'ficha', uids: [] }; ordem.push(c.id); }
         else if (def.x && xi.x != null) {
@@ -101,7 +101,11 @@
       });
       ordem.forEach(function (id) {
         var def = dados.condicoes[id], c = porId[id];
-        if (def.x && typeof def.x.max === 'number' && c.x > def.x.max) { avisos.push({ tipo: 'x-acima-do-maximo', id: id, x: c.x, max: def.x.max }); c.x = def.x.max; }
+        if (def.x && typeof def.x.max === 'number' && c.x > def.x.max) {
+          avisos.push({ tipo: 'x-acima-do-maximo', id: id, x: c.x, max: def.x.max,
+            msg: def.nome.replace(/\s+(X|\d+-\d+)$/, '') + ' ' + c.x + ' passa do máximo (' + def.x.max + '); contado como ' + def.x.max });
+          c.x = def.x.max;
+        }
       });
       // implicações: só as 'derivada' (a 'separada', como o Exposto, é instância da Mesa)
       for (var passo = 0; passo < 3; passo++) {
@@ -141,7 +145,11 @@
         : { tipo: 'raca', id: r.id, nome: r.nome + (alt ? ' (alternativo)' : '') };
       var migrado = ficha.atributos && ficha.atributos.migradoTotal === true;
       if (!bonus && r.atributos === null && !sub) {
-        out.avisos.push({ tipo: 'raca-sem-subespecie', raca: r.id, msg: r.nome + ': os atributos variam por subespécie, e a ficha não tem uma' });
+        // na ordem do bloco da raça (variantes), não a alfabética das chaves
+        var subs = lista(r.variantes).filter(function (k) { return obj(r.subespecies) && r.subespecies[k]; })
+          .map(function (k) { return str(r.nomes && r.nomes[k]) || k; });
+        out.avisos.push({ tipo: 'raca-sem-subespecie', raca: r.id, msg: r.nome + ': os atributos variam por subespécie, e a ficha não tem uma' +
+          (subs.length ? ': escolha ' + (subs.length > 1 ? subs.slice(0, -1).join(', ') + ' ou ' + subs[subs.length - 1] : subs[0]) : '') });
       }
       lista(bonus).forEach(function (b, i) {
         var chave = 'raca.atributos.' + i, n = b.quantidade || 1, escolhidos = [];
@@ -153,9 +161,9 @@
           });
         }
         if (escolhidos.length < n) {
+          var opTxt = b.opcoes === 'qualquer' ? (n === 1 ? 'um atributo à escolha' : n + ' atributos à escolha') : lista(b.opcoes).join(' ou ');
           out.mods.push(desliga(mod({ alvo: 'atributo.?', op: 'soma', valor: b.valor, fonte: fonte, status: r.st, fo: r.fo,
-            etapa: 'raca', escolha: chave }), (migrado ? 'já no total digitado na v2 (migração); ' : '') + 'escolha pendente: ' + (b.opcoes === 'qualquer' ? n + ' atributo(s) à escolha' : lista(b.opcoes).join(' ou ')) +
-            ' (identidade.escolhas["' + chave + '"])'));
+            etapa: 'raca', escolha: chave, opcoesTxt: opTxt }), (migrado ? 'já no total digitado na v2 (migração); ' : '') + 'escolha pendente: ' + opTxt));
           return;
         }
         escolhidos.slice(0, n).forEach(function (a) {
@@ -245,7 +253,7 @@
       var inv = ficha.inventario || {};
       if (!efeitos) {
         var tem = ['bugigangas', 'equipamentos'].some(function (c) { return lista(inv[c]).length; });
-        if (tem) out.avisos.push({ tipo: 'efeitos-indisponiveis', msg: 'Efeitos de item (data/efeitos.json) não carregados: itens não entram nos números' });
+        if (tem) out.avisos.push({ tipo: 'efeitos-indisponiveis', msg: 'Efeitos de item indisponíveis: itens e armas fora das contas.' });
         out.efeitosDisponiveis = false;
         return;
       }

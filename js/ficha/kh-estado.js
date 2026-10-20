@@ -548,7 +548,7 @@
         // guardado, fora da mitigação, até o Pedro dizer para onde vai
         if (k === 'ordinario' && ae > 0) {
           pendencias.push({ campo: 'resistencias.aeCategoria.ordinario', valor: ae,
-            motivo: 'A v2 tinha Ae(Ordinário) ' + ae + ', que não existe no contrato (D67: é Ar). O número ficou guardado e ' +
+            motivo: 'A v2 tinha Ae(Ordinário) ' + ae + ', que não existe (é Ar). O número ficou guardado e ' +
               'não entra na redução de Cortante, Contundente e Perfurante até o Pedro decidir para onde vai.' });
         }
       });
@@ -1514,6 +1514,24 @@
         if (!partes.length) return { ok: true, mudou: false, rev: inteiro(f.rev, 0), partes: [], rotulo: str(rotulo) };
         var nova = clone(f);
         partes.forEach(function (c) { poeCaminho(nova, c, depois[c]); });
+        // o atual dos recursos acompanha o máximo (opcoes.acompanhar: o
+        // KhRegras.acompanharMaximos, injetado pelo KhEnsaio): entra NO MESMO
+        // passo, para o desfazer voltar os dois juntos. Falha do motor não trava a edição.
+        if (typeof opcoes.acompanhar === 'function') {
+          var extra = [];
+          try { extra = lista(opcoes.acompanhar(f, nova, partes.slice())); } catch (e) { extra = []; }
+          extra.forEach(function (m) {
+            if (!obj(m) || !/^recursos\.(saude|stamina|eter|classe)\.atual$/.test(str(m.caminho)) || typeof m.valor !== 'number') return;
+            var c = m.caminho;
+            if (partes.some(function (p) { return p === c || p.indexOf(c + '.') === 0 || c.indexOf(p + '.') === 0; })) return;
+            var a = pegaCaminho(f, c);
+            if (a === m.valor) return;
+            if (a !== undefined) antes[c] = clone(a);
+            depois[c] = m.valor;
+            partes.push(c);
+            poeCaminho(nova, c, m.valor);
+          });
+        }
         var g = gravar(nova);
         if (!g.ok) return g;
         // faltou espaço e a limpeza apagou o log DESTA ficha: o desfazer recomeça

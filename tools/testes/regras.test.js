@@ -740,7 +740,7 @@ test('status não canônico se propaga pelos nós dependentes (atributo → Mod 
   assert.ok(r.nos['morrendo.tique'].selos.includes('pendenteBalanceamento'));
 });
 
-test('"extra" da fonte nunca some: Premonição Etérica troca o dado de Defender (2d6) e o "+1 Reação Máxima" vira lembrete', () => {
+test('"extra" da fonte nunca some: Premonição Etérica troca o dado de Defender (2d6) e o "+1 Reação Máxima" vira lembrete (só na Evasão Ativa)', () => {
   const f = ficha({ raca: 'corrompido', attrs: { DES: 12 }, pericias: { defender: 1 } });
   f.entradas.push({ uid: 'p', tipo: 'corrupcao', id: 'corrompido-premonicao-eterica', estado: {}, cache: { nome: 'Premonição Etérica', versaoCatalogo: '' }, mods: [] });
   let r = R.avaliar(f);
@@ -751,7 +751,10 @@ test('"extra" da fonte nunca some: Premonição Etérica troca o dado de Defende
   assert.ok(!r.nos['pericia.defender.total'].selos.includes('decisaoPedro'));
   assert.ok(!r.nos['evasao.ativa'].selos.includes('decisaoPedro'));
   assert.equal(termo(r.nos['pericia.defender.total'], /^Dado de Defender \(/).ativo, false);
-  assert.ok(r.nos['evasao.passiva'].lembretes.some((l) => l.op === 'extra' && /2d6/.test(l.msg)));
+  // a reação é da Evasão Ativa: o lembrete do dado fica só lá (auditoria 2026-10-20)
+  assert.ok(r.nos['evasao.ativa'].lembretes.some((l) => l.op === 'extra' && /2d6/.test(l.msg)));
+  assert.ok(!r.nos['evasao.passiva'].lembretes.some((l) => l.op === 'extra'));
+  assert.ok(!r.nos['evasao.passiva'].termos.some((t) => /além do número/.test(t.rotulo)));
   f.pericias.defender = 4;
   r = R.avaliar(f);
   assert.equal(val(r, 'pericia.defender.total'), '2d8', 'o Lendário mantém 2d8');
@@ -760,10 +763,9 @@ test('"extra" da fonte nunca some: Premonição Etérica troca o dado de Defende
   g.entradas.push({ uid: 'e', tipo: 'beneficio', id: 'abismo-esquiva-lendaria', estado: {}, cache: { nome: 'Esquiva Lendária', versaoCatalogo: '' }, mods: [] });
   r = R.avaliar(g);
   assert.equal(val(r, 'evasao.passiva'), 15);
-  ['evasao.passiva', 'evasao.ativa'].forEach((c) => {
-    assert.ok(r.nos[c].lembretes.some((l) => l.op === 'extra' && /Reacao Maxima/.test(l.msg)), c);
-    assert.equal(termo(r.nos[c], /além do número/).status, 'semStatus', c);
-  });
+  assert.ok(r.nos['evasao.ativa'].lembretes.some((l) => l.op === 'extra' && /\+1 Reação Máxima/.test(l.msg)));
+  assert.equal(termo(r.nos['evasao.ativa'], /além do número/).status, 'semStatus');
+  assert.ok(!r.nos['evasao.passiva'].lembretes.some((l) => l.op === 'extra'));
 });
 
 test('Exaurido marca as 24 perícias; estados finais (Exaustão 5, Saúde/Éter abaixo de −⌊máx/2⌋, Desnutrido zerando) só alertam', () => {

@@ -124,9 +124,18 @@
 
     // ---------------- o armazém do ensaio ----------------
     // o KhEstado.armazem de verdade sobre o adaptador (a ativa da aba também)
+    // Toda edição do ensaio passa pelo acompanhar: o atual de Saúde, Stamina,
+    // Éter (e do Reagentes) sobe com o máximo e o grampo o corta quando o
+    // máximo desce (KhRegras.acompanharMaximos). Os efeitos de item são os da
+    // última conta com dados (calcular/opcoesMotor), para o máximo ser o da ficha.
+    var efeitosVistos = null;
+    function lembraEfeitos(dados) { var ef = efeitosDe(dados); if (ef) efeitosVistos = ef; return ef; }
     function armazem(ss, opcoes) {
       var a = prefixado(ss);
-      return KhEstado.armazem(a, a, opcoes || {});
+      var op = Object.assign({ acompanhar: function (antes, depois, partes) {
+        return KhRegras.acompanharMaximos(antes, depois, { efeitos: efeitosVistos }, partes);
+      } }, opcoes || {});
+      return KhEstado.armazem(a, a, op);
     }
 
     // o motor: o índice do catálogo (os arquivos do KhPrevia.carregar) e o
@@ -139,7 +148,7 @@
     }
     function efeitosDe(dados) { return dados && dados.efeitos ? (dados.efeitos.porId || dados.efeitos) : null; }
     function opcoesMotor(dados, versao) {
-      var ef = efeitosDe(dados);
+      var ef = lembraEfeitos(dados);
       return { catalogo: indice(dados, versao),
         calculado: function (f) { return KhRegras.calculados(f, { efeitos: ef }); } };
     }
@@ -226,7 +235,7 @@
         if (!id) return { estado: 'sem-ficha', ensaio: true, erros: erros };
         var f = arm.ler(id);
         if (!f) return { estado: 'erro', erro: 'ilegivel', ensaio: true, erros: erros };
-        var ef = efeitosDe(dados);
+        var ef = lembraEfeitos(dados);
         var av = KhRegras.avaliar(f, { efeitos: ef });
         return { estado: 'ok', ficha: f, de: str(f.schemaVersion), avisosMigracao: avisosDaFicha(f), av: av,
           semCatalogo: !temCatalogo(dados), semEfeitos: !ef, erros: erros, ensaio: true, fichaId: id };

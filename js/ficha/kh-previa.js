@@ -318,15 +318,18 @@
         av.push('Alerta: ' + str(a.msg) + (a.selo ? ' [' + rotuloSelo(a.selo) + ']' : '') +
           (daMigracao ? ' (pode ser efeito da migração: a v2 tinha 0/0)' : ''));
       });
-      lista(res.av && res.av.avisos).forEach(function (a) { av.push('Motor: ' + str(a.msg || a.tipo)); });
+      lista(res.av && res.av.avisos).forEach(function (a) { av.push(str(a.msg || a.tipo)); });
       // o aviso de cada número (no.avisos), que sem isto só se via no tooltip
       lista(res.av && res.av.ordem).forEach(function (c) {
         var no = nos[c];
         lista(no && no.avisos).forEach(function (a) { av.push(semEmoji(no.rotulo) + ': ' + str(a.msg || a.tipo)); });
       });
+      // os do inventário (KhInv: armaduras, sintonia, cópia, fora da regra, órfão)
+      lista(nos.carga && nos.carga.extra && nos.carga.extra.avisos).forEach(function (a) { av.push('Inventário: ' + str(a.msg || a.tipo)); });
       if (res.semCatalogo) av.push('Catálogo indisponível: identidade e entradas ficam só pelo nome.');
       if (res.semEfeitos) av.push('Efeitos de item indisponíveis: itens e armas fora das contas.');
-      return av;
+      // a mesma linha de duas origens (ex.: efeitos de item indisponíveis) aparece uma vez
+      return av.filter(function (x, i) { return av.indexOf(x) === i; });
     }
 
     function errosHTML(erros) {

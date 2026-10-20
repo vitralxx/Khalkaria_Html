@@ -1006,6 +1006,35 @@ carregados (nada os chama até a F4). No node, carregados sozinhos, exportam por
   ficam expostos para a Mesa (F5).
 - A capacidade vem do `KhInv` (`inv.capacidade`) até a F6: os Mods `capacidade.*`
   de `data/efeitos.json` ficam na trilha, inativos, para não contar duas vezes.
+- Auditoria das mensagens (2026-10-20, `docs/ficha-digital/09-auditoria-motor-2026-10-20.md`):
+  `avisos` traz também as VALIDAÇÕES que o contrato manda "avisar" (nunca trava):
+  técnicas gerais acima de 3 + nível, Tier acima do nível ou do limite, Marcas,
+  cartas (requisito de atributo, nível 1), item equipado/sintonizado sem o
+  `requisito` de `data/efeitos.json`, magia acima do nível, sem Treinado em
+  Místico ou sem o Foco da escola (D123; a escola sai do texto "Foco Místico
+  (Escola)"; dispensas de `magia.requisitos.dispensas`), mais de 1 Foco, escolas
+  do Teurgo, escolha de atributo pendente, nível fora de 1 a 5 e o Exaurido numa
+  linha só. `alertas` ganhou Stamina negativa (D93), recurso de classe acima do
+  máximo ou negativo (este com o selo do `medidor-minimo`). O resultado tem
+  `foraDasContas` ([{id, nome, trechos}]): efeito com número no texto que nenhuma
+  fonte modela (`D.catalogo.foraDasContas`, compilado do resumo do catálogo pelo
+  gerador); vira um aviso agregado e o selo "fora das contas" no card
+  (`KhRegras.lembreteForaDasContas(id)`). Os textos dos lembretes (`msg`) saem
+  sem token cru; o nó pode ter `notaSelo` ({selo: texto}, o Batedor), que o
+  `KhConta` põe no title do selo e na dica.
+- O atual acompanha o máximo (`D.recursos.acompanha`: sobe a diferença, o grampo
+  `min(atual, max(0, novoMax))` quando desce): `KhRegras.acompanharMaximos(antes,
+  depois, {efeitos}, partesTocadas)` devolve as mudanças de `recursos.<r>.atual`;
+  o recurso de classe só sobe se o medidor nasce no máximo (`inicio: 'max'`, o
+  Reagentes). O `KhEstado.armazem(..., {acompanhar})` as põe NO MESMO passo do
+  `editar` (o desfazer volta os dois); o `KhEnsaio.armazem` injeta o
+  `acompanhar` com os efeitos da última conta (`calcular`/`opcoesMotor`).
+- Dados novos no `00-regras-dados.js`: `progressao` (técnicas, tiers, marcas,
+  escolas do Teurgo, teto de corrupção, sem Limiar na criação), `catalogo`
+  (`tierTecnica`, `reqCarta`, `foraDasContas`), `recursos.acompanha`,
+  `recursos.stamina.min`, `medidores[].inicio`, `magia.requisitos.focosSimultaneos`
+  e `dispensas`. Os textos de exibição do contrato saem com acento (o gerador
+  troca "Reacao", "Mistico", "Concentracao"… nas chaves de texto).
 
 **Prévia da ficha v3 (F3c, modo sombra).** Para o Pedro conferir o motor antes
 da F4. Liga com `?ficha=v3` em qualquer página (grava `khalkaria_ficha_previa=1`,

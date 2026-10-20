@@ -91,7 +91,9 @@ def marcadores(txt):
 
 # ------------------------------------------------------------------ vocabulário
 # Status que um bloco pode gravar (subconjunto do mapa de status do plano §3.2).
-STATUS_BLOCO = ('pedroDecide', 'pendente')
+# 'canonico': metadado de regra fechada no contrato que o texto da página não
+# escreve (o recurso de classe sem contador do Espadachim e do Teurgo, D105).
+STATUS_BLOCO = ('pedroDecide', 'pendente', 'canonico')
 # As 24 perícias (CLAUDE.md §2; slug = id do contrato do balanceamento).
 PERICIAS = ['Atacar', 'Defender', 'Movimento', 'Fortitude', 'Vontade', 'Reflexos', 'Percepção',
             'Sobrevivência', 'Furtividade', 'Crime', 'Iniciativa', 'Conhecimento', 'Medicina',

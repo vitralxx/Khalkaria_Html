@@ -232,7 +232,7 @@ test('revisão F3c: bônus de item sobre o total migrado vai para Avisos (sem de
   const av = r.av.avisos.filter((a) => a.tipo === 'migracao-item-atributo');
   assert.deepEqual(av.map((a) => [a.item, a.atributos]), [['Cinturão do Colosso', ['FOR']]]);
   const h = P.render(r).html;
-  assert.match(h, /Motor: Cinturão do Colosso soma em FOR por cima do total digitado na v2/);
+  assert.match(h, /<li>Cinturão do Colosso soma em FOR por cima do total digitado na v2/);
   assert.match(h, /Item com bônus de atributo ainda soma por cima/);
   // sem sintonia, nada de aviso
   v2.inventario.bugigangas[v2.inventario.bugigangas.length - 1].sintonizado = false;
@@ -250,9 +250,10 @@ test('revisão F3c: cartas sem posição, Ae(Ordinário) e Éter 0/0 aparecem em
   assert.match(bloco, /Pendência: A v2 tinha Ae\(Ordinário\) 1/);
   assert.match(bloco, /Pendência: A v2 tinha Éter 0\/0/);
   // o alerta de Oco fica marcado como possível efeito da migração (não é escondido)
-  assert.match(bloco, /Alerta: Oco: [^<]*\(pode ser efeito da migração: a v2 tinha 0\/0\)/);
+  assert.match(bloco, /Alerta: Éter atual 0: com 0 ou menos, o personagem fica Oco \(pode ser efeito da migração: a v2 tinha 0\/0\)/);
   // os avisos por número (no.avisos) entram na lista com o rótulo do número
-  assert.match(bloco, /Ae\(Ordinário\): Ae\(Ordinário\) não existe \(D67\)/);
+  assert.match(bloco, /Ae\(Ordinário\): Ae\(Ordinário\) não existe: é Ar/);
+  assert.doesNotMatch(bloco, /Motor: |D67|entra sozinha/);
   assert.match(bloco, /Pontos do Limiar: \d+ cartas? sem posição na mão/);
   const n = Object.values(r.av.nos).reduce((s, no) => s + no.avisos.length, 0);
   assert.ok(n >= 2);
@@ -278,7 +279,7 @@ test('revisão F3c: categoria "outros" com nome; contador digitado na v2 num rec
   // o contador "Foco 1/4" da v2 não é descartado: aviso no número e na lista de Avisos
   const nc = re.av.nos['recurso.classe.max'];
   assert.ok(nc.avisos.some((a) => a.tipo === 'recurso-sem-contador' && /"Foco" \(atual 1\)/.test(a.msg)), JSON.stringify(nc.avisos));
-  assert.match(he, /<li>[^<]*&quot;Foco&quot; \(atual 1\); pelo contrato \(D105\) o recurso de classe de Espadachim não é contador/);
+  assert.match(he, /<li>[^<]*&quot;Foco&quot; \(atual 1\), mas o recurso de classe de Espadachim \(Proficiência com Espadas e Marca do Duelo\) não é contador/);
   // o número do contador antigo não aparece como recurso: as características ocupam o lugar
   assert.match(he, /data-caminho="recurso\.classe\.max"><b class="kf3-v">Proficiência com Espadas · Marca do Duelo<\/b>/);
 });

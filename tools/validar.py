@@ -694,7 +694,7 @@ PENDENTES_BAL = 'tools/pendentes_balanceamento.json'
 # Folhas de texto do bloco que não são verbatim de marcador: a classe CSS do ramo
 # (vai no atributo class do template) e o seletor da escala derivada.
 SEM_MARCADOR = [re.compile(r'^ramos\.\d+\.chave$'), re.compile(r'^caracteristicas\.\d+\.escalaDe$')]
-META_STATUS = ('status', 'nota', 'pergunta')
+META_STATUS = ('status', 'nota', 'pergunta', 'caracteristicas')
 RE_MEDIDOR_OMISSO = re.compile(r'^recurso\.medidores\.\d+\.(min|inicio|recarga)$')
 
 
@@ -978,7 +978,16 @@ def compara_contrato(dados, contrato):
         rec = b.get('recurso') or {}
         krec = {r['id']: r for r in k.get('recursos', [])}
         srec = {rec['id']} if rec.get('id') else set()
-        if not srec:
+        # D105: recurso de classe sem contador (características): o site lista as
+        # características pelo id; o contrato, pelo nome
+        krdc = k.get('recursoDeClasse') or {}
+        if rec.get('contador') is False or krdc.get('contador') is False:
+            nomes = {x['id']: blocos.texto(x['nome']).strip() for x in b.get('caracteristicas', []) if isinstance(x, dict)}
+            site = [re.sub(r'^\W+', '', nomes.get(i, i)).strip() for i in rec.get('caracteristicas') or []]
+            if rec.get('contador') is not False or krdc.get('contador') is not False or site != list(krdc.get('itens') or []):
+                av.append(f'classe {c}: recurso de classe sem contador site {site} x contrato {krdc.get("itens")}')
+            krec = {}
+        elif not srec:
             av.append(f'classe {c}: recurso de classe {rec.get("status", "ausente")} no site'
                       f' (Pedro: "Todas têm"); contrato: {sorted(krec) or "nenhum"}')
         for x in sorted(srec - set(krec)):
