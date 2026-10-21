@@ -10,18 +10,20 @@ tools/sync_balanceamento.py) e compila o que a ficha usa, no formato do plano
   {schemaVersion:'efeitos/1', fonte:{…}, alvos:{alvo do site: destino},
    porId:{'item-x':{quando, slot, acumulaCopia, usos, sintoniaDescansos,
                     duracao, mods[], arma?, consumo?, requisito, lembretes[],
+                    lembretesNoAlvo[],
                     texto, status}}}
 
 só para os ids com algo (itens ∪ armas ∪ consumo; os "sem efeito na ficha"
-não entram). SÓ DADO: nenhuma página lê este arquivo ainda.
+não entram). O KhEfeitos lê na ficha nova (prévia).
 
+- F6 (rev. 11): Mods e lembretes saem do bloco `tabela` (por gatilho; ver
+  mods_da_tabela); arma, estrutura do consumo, requisito e usos, dos blocos 1.1.
 - Alvo, op, quando, status, recarga, condicao, duração e opcional do Mod saem
   do vocabulário fechado de tools/alvos_destino.json; o que não casar derruba
   o gerador. O alvo vai para o namespace do site (saude.max ->
   recurso.saude.max...); recarga vira evento pelo bloco `recargas` do contrato.
-- `acumula:false` do arquivo tem 2 sentidos (plano §4): "não acumula com outra
-  cópia" -> acumulaCopia:false; "não acumula com outras fontes" -> Mod
-  acumula:false; sem frase (Saco de Dormir) -> null nos dois (o validar avisa).
+- `acumulaCopia` vem da linha da tabela e o `acumula` de cada Mod também (os 2
+  sentidos de acumula:false, plano §4, já resolvidos pelo balanceamento).
 - `texto` é o `efeito` do data/bazar.json (o que o jogador lê); o verbatim do
   arquivo do balanceamento é conferido contra o CSV no validar.py, não copiado.
 - `municao` da arma vira id de item; `conjura` ganha o id da magia; `requisito`
@@ -53,6 +55,10 @@ ORDEM_STATUS = ['canonico', 'aprovado', 'decisao', 'pendente']      # do mais fi
 GRAUS = ['Leigo', 'Treinado', 'Experiente', 'Mestre', 'Lendário']   # data/pericias.json (graus)
 ATTR_NOME = {'Força': 'FOR', 'Destreza': 'DES', 'Constituição': 'CON', 'Inteligência': 'INT', 'Sabedoria': 'SAB'}
 RE_DANO_FRASE = re.compile(r'\+ (\d+d\d+) (\S+)')
+# grupos de alvo de tools/alvos_destino.json ('daTabela' = alvosNovos da tabela, rev. 11)
+GRUPOS = ('familias', 'foraDoArquivoDeEfeitos', 'daTabela')
+# gatilho da tabela (tabela-efeitos/1) -> 'quando' do Mod do site
+QUANDO_GATILHO = {'carregar': 'carregado', 'equipar': 'equipado', 'sintonizar': 'sintonizado'}
 
 
 class Falha(Exception):
@@ -82,7 +88,7 @@ class Vocab:
         self.d = dest
         ph = dest['placeholders']
         self.padroes = []          # (familia, regex, nomes, site, destino)
-        for grupo in ('familias', 'foraDoArquivoDeEfeitos'):
+        for grupo in GRUPOS:
             for fam, f in dest[grupo].items():
                 for pad, site in f['padroes'].items():
                     rx, nomes = _rx_padrao(pad, ph)
@@ -108,7 +114,7 @@ class Vocab:
     def destinos_site(self):
         """{padrão do site: destino} (o que a ficha consulta em runtime)."""
         out = {}
-        for grupo in ('familias', 'foraDoArquivoDeEfeitos'):
+        for grupo in GRUPOS:
             for f in self.d[grupo].values():
                 for site in f['padroes'].values():
                     out[site] = f['destino']
@@ -116,18 +122,6 @@ class Vocab:
 
 
 # ---------------------------------------------------------------- partes
-def sentido_acumula(item):
-    """'nenhum' | 'copia' | 'fontes' | 'indefinido' (os 2 sentidos de acumula:false)."""
-    if item.get('acumula') is not False:
-        return 'nenhum'
-    t = item.get('verbatim') or ''
-    if re.search(r'não acumula com outra cópia', t, re.I):
-        return 'copia'
-    if re.search(r'não acumula com outras fontes', t, re.I):
-        return 'fontes'
-    return 'indefinido'
-
-
 def evento(rec, recargas):
     if rec is None:
         return None
@@ -165,6 +159,61 @@ def compila_mod(m, id_, quando, acumula, status, voc, recargas):
                 v = dict(v, recarga=evento(v.get('recarga'), recargas))
             out[k] = v
     return out
+
+
+def compila_mod_tabela(m, id_, quando, status, voc, recargas, ativacao=None):
+    """Mod da tabela (sempre com acumula/aplica/para) -> Mod do site."""
+    base = {k: v for k, v in m.items() if k not in ('acumula', 'status') and not (k == 'valor' and v is None and m.get('op') == 'escolha')}
+    if ativacao is not None:
+        base['ativacao'] = ativacao
+    return compila_mod(base, id_, quando, m.get('acumula', True), m.get('status') or status, voc, recargas)
+
+
+def mods_da_tabela(id_, linha, voc, recargas):
+    """(mods do item, mods do consumo) da linha da tabela.
+
+    carregar/equipar/sintonizar -> quando do gatilho; usar -> 'ativado' com a
+    ativacao (usos, recarga, ações, requer); consumir de munição (por cena de
+    combate) -> 'municaoAtiva'; kit com cargas -> 'ativado' (usos = cargas); o
+    resto do consumir -> consumo.mods."""
+    g, st = linha['gatilhos'], linha['status']
+    mods, consumo = [], []
+    for gat, quando in QUANDO_GATILHO.items():
+        mods += [compila_mod_tabela(m, id_, quando, st, voc, recargas) for m in (g.get(gat) or {}).get('mods', [])]
+    for h in g.get('usar', []):
+        u = h.get('usos')
+        at = {'usos': u['n'] if u else None, 'recarga': u['recarga'] if u else None, 'acao': h.get('acoes'), 'requer': h.get('requer')}
+        mods += [compila_mod_tabela(m, id_, 'ativado', st, voc, recargas, at) for m in h.get('mods', [])]
+    c = g.get('consumir')
+    if c:
+        cons = c.get('consome') or {}
+        if cons.get('por') == 'cena de combate':
+            mods += [compila_mod_tabela(m, id_, 'municaoAtiva', st, voc, recargas) for m in c['mods']]
+        elif cons.get('cargas'):
+            # kit com n cargas: o efeito vale ao gastar uma carga (era 'ativado' no 1.1)
+            at = {'usos': cons['cargas'], 'recarga': None, 'acao': c.get('acoes'), 'requer': None, 'cargas': True}
+            mods += [compila_mod_tabela(m, id_, 'ativado', st, voc, recargas, at) for m in c['mods']]
+        else:
+            consumo = [compila_mod_tabela(m, id_, 'consumido', st, voc, recargas) for m in c['mods']]
+    return mods, consumo
+
+
+def lembretes_da_tabela(linha):
+    """(lembretes do portador, lembretes no alvo) da linha da tabela, sem repetir.
+
+    natureza 'alvo' = efeito em outra criatura (pode ter número: não é campo da
+    ficha); 'estrutural' já está na estrutura (usos, requisito, empilhável) e sai."""
+    meus, alvo = [], []
+    for v in linha['gatilhos'].values():
+        for h in (v if isinstance(v, list) else [v]):
+            for x in h.get('lembretes', []):
+                if x['natureza'] == 'estrutural':
+                    continue
+                dest = alvo if x['natureza'] == 'alvo' else meus
+                t = frase_lembrete(x['texto'])
+                if t not in dest:
+                    dest.append(t)
+    return meus, alvo
 
 
 def requisito_texto(txt, voc):
@@ -241,22 +290,21 @@ def gerar(root=None):
         if id_ not in texto:
             raise Falha(f'{id_}: id do arquivo de efeitos fora do data/bazar.json')
         it, ar, co = ef['itens'].get(id_), ef['armas'].get(id_), ef['consumo'].get(id_)
-        status = pior_status([b['status'] for b in (it, ar, co) if b])
-        sentido = sentido_acumula(it) if it else 'nenhum'
-        acumula_mod = {'fontes': False, 'indefinido': None}.get(sentido, True)
+        linha = ef['tabela'][id_]
+        status = pior_status([b['status'] for b in (it, ar, co, linha) if b])
+        mods_t, consumo_t = mods_da_tabela(id_, linha, voc, recargas)
         e = {'quando': it['quando'] if it else None,
              'slot': it['slot'] if it else None,
-             'acumulaCopia': {'copia': False, 'indefinido': None}.get(sentido, True),
+             'acumulaCopia': linha['acumulaCopia'],
              'usos': usos((it or co or {}).get('usos'), recargas),
              'sintoniaDescansos': (it or {}).get('sintoniaDescansos'),
              'duracao': (it or co or {}).get('duracao'),
-             'mods': [compila_mod(m, id_, it['quando'], acumula_mod, it['status'], voc, recargas)
-                      for m in (it['modificadores'] if it else [])]}
+             'mods': mods_t}
         if e['duracao'] is not None and not voc.rx_duracao.match(e['duracao']):
             raise Falha(f'{id_}: duração {e["duracao"]!r} fora dos formatos')
         if it and it.get('compativel'):
             e['compativel'] = it['compativel']
-        lembretes = list((it or {}).get('lembretes', []))
+        lembretes, no_alvo = lembretes_da_tabela(linha)
         req, req_txt = [], None
         if ar:
             a = {k: v for k, v in ar.items() if k not in ('nome', 'propriedades', 'status', 'lembretes', 'requisito')}
@@ -265,14 +313,13 @@ def gerar(root=None):
                     raise Falha(f'{id_}: munição {a["municao"]!r} não é item do Bazar')
                 a['municao'] = id_por_nome[a['municao']]
             e['arma'] = a
-            lembretes += [x for x in ar.get('lembretes', []) if x not in lembretes]
             if ar.get('requisito'):
                 req_txt = ar['requisito']
                 req += requisito_texto(req_txt, voc)
         if it and it.get('requisito'):
             req.append(it['requisito'])
         if co:
-            c = {'mods': [compila_mod(m, id_, 'consumido', True, co['status'], voc, recargas) for m in co['efeito']],
+            c = {'mods': consumo_t,
                  'aplicaCondicao': co['aplicaCondicao'], 'removeCondicao': co['removeCondicao'],
                  'conjura': None, 'alimento': co['alimento'], 'acoes': co['acoes']}
             if co['conjura']:
@@ -283,12 +330,12 @@ def gerar(root=None):
                 if k in co:
                     c[k] = co[k]
             e['consumo'] = c
-            lembretes += [x for x in co.get('lembretes', []) if x not in lembretes]
         if id_ in exc:
             aplica_excecao(id_, exc[id_], e.get('arma'), lembretes, texto[id_])
         e['requisito'] = req or None
         e['requisitoTexto'] = req_txt
         e['lembretes'] = lembretes
+        e['lembretesNoAlvo'] = no_alvo
         e['texto'] = texto[id_]
         e['status'] = status
         por_id[id_] = e

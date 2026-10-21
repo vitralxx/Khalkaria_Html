@@ -2488,6 +2488,11 @@
       municaoAtiva: 'só com a munição em uso (ligação automática na F6)',
       ativado: 'só quando ativado (F6)'
     };
+    // 'enquanto' da tabela que a ficha ainda não confere sozinha
+    var TEXTO_ENQUANTO = {
+      saudeAbaixoDaMetade: 'com a Saúde abaixo da metade',
+      portadorNaoCaido: 'enquanto o portador não estiver caído'
+    };
 
     function obj(x) { return !!x && typeof x === 'object' && !Array.isArray(x); }
     function lista(x) { return Array.isArray(x) ? x : []; }
@@ -2725,6 +2730,16 @@
             if (/^capacidade\./.test(m.alvo)) desliga(m, 'capacidade vem do KhInv (inv.capacidade do registro) até a F6');
             if (m.op === 'escolha' || m.escolha) desliga(m, 'escolha do jogador (F6)');
             if (m.duracao) desliga(m, 'temporário (' + m.duracao + '): ativação na F6');
+            // tabela por gatilho (rev. 11): só 'sempre' no portador soma sozinho
+            if (m.para === 'aliados') desliga(m, 'vale nos aliados' + (m.alcance ? ' a até ' + m.alcance : '') + ': cada aliado aplica na ficha dele');
+            else if (m.aplica === 'situacional') desliga(m, 'situacional: ' + (m.situacao || 'quando a situação vale'));
+            else if (m.aplica === 'evento') desliga(m, 'no evento: ' + (m.evento || 'quando acontece'));
+            else if (m.aplica === 'critico') desliga(m, 'só no crítico');
+            if (m.ativo && m.enquanto) {
+              var ce = /^condicao:(.+)$/.exec(m.enquanto);
+              if (ce) { if (!lista(ficha.condicoes).some(function (c) { return obj(c) && c.id === ce[1]; })) desliga(m, 'só enquanto ' + ce[1]); }
+              else desliga(m, 'só ' + (TEXTO_ENQUANTO[m.enquanto] || m.enquanto));
+            }
             var k = e.id + '|' + m0.alvo + '|' + m0.op;
             if (m.ativo && ef.acumulaCopia === false && vistos[k]) desliga(m, 'não acumula com outra cópia deste item');
             if (m.ativo) vistos[k] = true;

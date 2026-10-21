@@ -61,19 +61,28 @@ class Fixtures(unittest.TestCase):
         self.assertEqual(e['mods'][0]['tipo'], 'eletrico')
 
     def test_dois_sentidos_de_acumula_false(self):
-        self.assertEqual(ge.sentido_acumula({'acumula': False, 'verbatim': 'X. O efeito não acumula com outra cópia deste mesmo item.'}), 'copia')
-        self.assertEqual(ge.sentido_acumula({'acumula': False, 'verbatim': 'X. Não acumula com outras fontes.'}), 'fontes')
-        self.assertEqual(ge.sentido_acumula({'acumula': False, 'verbatim': 'Eleva a qualidade.'}), 'indefinido')
-        self.assertEqual(ge.sentido_acumula({'acumula': True, 'verbatim': ''}), 'nenhum')
         self.assertIs(EFEITOS['item-bolsa-de-couro']['acumulaCopia'], False)
         self.assertIs(EFEITOS['item-anel-das-brasas']['acumulaCopia'], True)      # "outras fontes": não é cópia
 
-    def test_saco_de_dormir_indefinido_vira_aviso(self):
+    def test_tabela_por_gatilho(self):
+        # rev. 11: os Mods saem da tabela, com aplica/para e o gatilho de cada um
+        capa = EFEITOS['item-capa-de-obscurecimento']['mods']
+        self.assertEqual([(m['alvo'], m['aplica'], m['quando']) for m in capa], [('pericia.furtividade', 'situacional', 'sintonizado')])
+        kit = EFEITOS['item-kit-de-ferramentas-basico']['mods'][0]
+        self.assertEqual((kit['quando'], kit['ativacao']['usos'], kit['ativacao']['cargas']), ('ativado', 3, True))
+        fl = EFEITOS['item-flechas-eletricas']
+        self.assertEqual(fl['mods'][0]['quando'], 'municaoAtiva')
+        self.assertIn('Crítico: Desorientado', fl['lembretesNoAlvo'])
+        br = EFEITOS['item-bracelete-do-escudo']['mods'][0]
+        self.assertEqual((br['quando'], br['ativacao']['requer'], br['ativacao']['recarga']), ('ativado', 'sintonizar', 'descansoLongo'))
+        self.assertTrue(all(m['para'] == 'aliados' for m in EFEITOS['item-estandarte-de-bolso']['mods']))
+        self.assertEqual(sum(len(e['mods']) + len((e.get('consumo') or {}).get('mods', [])) for e in EFEITOS.values()), 476)
+
+    def test_saco_de_dormir_sentido_da_tabela(self):
+        # rev. 11: a tabela traz o sentido (acumulaSentido 'copia'): não acumula com outra cópia
         e = EFEITOS['item-saco-de-dormir']
-        self.assertIsNone(e['acumulaCopia'])
-        self.assertIsNone(e['mods'][0]['acumula'])
-        r = ce.checa_efeitos(RAIZ)
-        self.assertTrue(any('item-saco-de-dormir' in a and 'sentido' in a for a in r.avisos))
+        self.assertIs(e['acumulaCopia'], False)
+        self.assertIs(e['mods'][0]['acumula'], True)
 
     def test_municao_e_requisito(self):
         a = EFEITOS['item-arma-arremesso']

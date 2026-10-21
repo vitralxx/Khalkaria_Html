@@ -417,8 +417,8 @@ data/balanceamento/            F1d: projeção PUBLICADA (D3) da entrega do bala
                                verbatim e cada corte. Só muda pelo tools/sync_balanceamento.py
 data/efeitos.json              ARTEFATO (gerar_efeitos.py, F1d): {porId: item -> quando, slot,
                                acumulaCopia, usos, mods[] no formato Mod do site, arma?,
-                               consumo?, requisito, lembretes, texto, status} para os 612 itens
-                               com efeito; nenhuma página lê ainda
+                               consumo?, requisito, lembretes, lembretesNoAlvo, texto, status}
+                               para os 611 itens com efeito (o KhEfeitos lê na ficha nova)
 data/Bazar_Khalkaria_v26.csv   fonte do Bazar: conteúdo do Pedro, só muda com
                                aprovação dele (gerador, CSS, JS e template do
                                Bazar são do agente desde 2026-09-24)
@@ -701,7 +701,22 @@ build) e o round-trip o compara. O `[efeitos]` confere o arquivo do balanceament
 contra o `bazar.json` e o CSV (partição dos 727, nome/categoria/raridade, verbatim
 == coluna Efeito, capacidade/acumula/empilhável/armadura contra o `inv`, armas
 re-extraídas do texto, dano extra com qualificador, Mods íntegros); os defeitos de
-parse conhecidos ficam em `tools/efeitos_excecoes.json`. O `[vhelor]` exige as 7
+parse conhecidos ficam em `tools/efeitos_excecoes.json` (vazio desde a errata da
+rev. 11).
+
+**F6, tabela por gatilho (rev. 11, `tabela-efeitos/1`).** Os Mods e os lembretes
+saem do bloco `tabela` do arquivo do balanceamento; arma, consumo (estrutura),
+requisito e usos ainda saem dos blocos 1.1. Gatilho -> `quando`: carregar
+`carregado`, equipar `equipado`, sintonizar `sintonizado`, usar `ativado` (com
+`ativacao` {usos, recarga, acao, requer}), consumir de munição `municaoAtiva`,
+kit com cargas `ativado` (`ativacao.cargas`), o resto do consumir vai para
+`consumo.mods`. Cada Mod leva `aplica` (sempre | situacional | evento | critico),
+`para` (portador | quemRecebe | aliados) e, se houver, `situacao`, `evento`,
+`enquanto`, `alcance`. O `KhEfeitos` só soma `aplica: 'sempre'` no portador; o
+resto entra na trilha desligado com o motivo; `enquanto: 'condicao:<id>'` é
+conferido na ficha. Os alvos novos da tabela estão no grupo `daTabela` do
+`tools/alvos_destino.json` (por ora lembrete com número). Lembrete de natureza
+`alvo` vai para `lembretesNoAlvo`; `estrutural` sai. O `[vhelor]` exige as 7
 Marcas iguais ao texto do Pedro (03 §3.1) e numa fonte só.
 
 Os índices "Navegação Rápida" de Condições e Sistema saem do gerador

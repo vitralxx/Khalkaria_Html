@@ -29,6 +29,11 @@ const EF = {
   'item-t-leve': { quando: null, acumulaCopia: true, mods: [], arma: ARMA({}), status: 'canonico' },
   'item-t-pesada': { quando: null, acumulaCopia: true, mods: [], arma: ARMA({ dados: '2d8', atributo: 'FOR', acoes: 2, arquetipo: 'pesada' }), status: 'canonico' },
   'item-t-arremesso': { quando: null, acumulaCopia: true, mods: [], arma: ARMA({ arremessar: 1 }), status: 'canonico' },
+  'item-t-tabela': { quando: 'sintonizado', acumulaCopia: true, status: 'canonico', mods: [
+    { alvo: 'pericia.furtividade', op: 'soma', valor: 2, quando: 'sintonizado', acumula: true, aplica: 'situacional', para: 'portador', situacao: 'em penumbra', status: 'decisao' },
+    { alvo: 'pericia.vontade', op: 'soma', valor: 1, quando: 'sintonizado', acumula: true, aplica: 'sempre', para: 'aliados', alcance: '4,5 m', status: 'decisao' },
+    { alvo: 'ar', op: 'soma', valor: 1, quando: 'sintonizado', acumula: true, aplica: 'sempre', para: 'portador', enquanto: 'condicao:caido', status: 'canonico' },
+    { alvo: 'pericia.percepcao', op: 'soma', valor: 3, quando: 'sintonizado', acumula: true, aplica: 'sempre', para: 'portador', status: 'canonico' }] },
   'item-t-extra': { quando: null, acumulaCopia: true, mods: [], status: 'canonico', arma: ARMA({ danoExtra: [
     { dados: '1d4', tipo: 'fogo' },
     { dados: '1d6', tipo: 'radiante', condicao: 'contra Teurgos' },
@@ -471,6 +476,21 @@ test('custo de magia por intensidade (F3c): as 4 colunas com a mesma conta, Nv1 
 });
 
 // ---------------- ataque e PMA ----------------
+test('tabela por gatilho: só "sempre" no portador soma; situacional, aliados e "enquanto" ficam fora com o motivo', () => {
+  const f = ficha({});
+  f.inventario.bugigangas.push(item('item-t-tabela', { sintonizado: true }));
+  let r = avalia(f);
+  const m = (alvo) => F.trilha(r.efeitos, alvo).find((x) => x.fonte.id === 'item-t-tabela');
+  assert.equal(m('pericia.percepcao').ativo, true);
+  assert.equal(m('pericia.furtividade').ativo, false);
+  assert.match(m('pericia.furtividade').motivo, /situacional: em penumbra/);
+  assert.match(m('pericia.vontade').motivo, /aliados a até 4,5 m/);
+  assert.equal(m('ar').ativo, false);
+  f.condicoes.push(cond('caido'));
+  r = avalia(f);
+  assert.equal(m('ar').ativo, true, 'enquanto condicao:caido vale com a condição na ficha');
+});
+
 test('dano extra: o incondicional soma; o com condição (errata rev. 11) ou escolha de tipo fica só no texto', () => {
   const f = ficha({ attrs: { DES: 14 } });
   const w = item('item-t-extra', { equipado: true });

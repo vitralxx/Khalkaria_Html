@@ -477,7 +477,9 @@ def checa_efeitos(root):
                     erro.append(f'faltam {falt}')
                 if m.get('fonte') != {'tipo': 'item', 'id': i}:
                     erro.append(f'fonte {m.get("fonte")}')
-                if m.get('quando') not in quandos or m.get('quando') != q:
+                # tabela por gatilho (rev. 11): um item pode ter Mod de equipar e de usar;
+                # o do consumo é sempre 'consumido'
+                if m.get('quando') not in quandos or (onde == 'consumo.mods' and m.get('quando') != q):
                     erro.append(f'quando {m.get("quando")!r}')
                 if m.get('acumula') not in (True, False, 'maior', None):
                     erro.append(f'acumula {m.get("acumula")!r}')
