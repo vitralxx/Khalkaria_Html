@@ -67,19 +67,19 @@ test('03 §10: a escolha do maior atributo não tem selo; a dica diz "usa o maio
   ['recurso.stamina.max', 'recurso.eter.max'].forEach((c) => assert.ok(!nos[c].selos.includes('decisaoPedro'), c));
   assert.equal(nos['pericia.movimento.total'].escolha.motivo, 'usa o maior entre Mod.FOR e Mod.DES');
   // a perícia: FOR à mão (DES 16 é o maior) e de volta ao padrão; desfazer volta
-  let g = edita(x, 'periciasAttr.movimento', 'FOR');
+  let g = edita(x, 'troca.pericia.movimento', 'FOR');
   assert.equal(g.rotulo, 'Atributo de Movimento: FOR (escolhido)');
   assert.equal(x.ficha().periciasAttr.movimento, 'FOR');
   nos = x.nos();
   assert.deepEqual([nos['pericia.movimento.total'].escolha.usado, nos['pericia.movimento.total'].escolha.motivo], ['FOR', 'usa Mod.FOR (escolhido)']);
-  g = edita(x, 'periciasAttr.movimento', '');
+  g = edita(x, 'troca.pericia.movimento', '');
   assert.equal(g.rotulo, 'Atributo de Movimento: o maior');
   assert.equal(Object.prototype.hasOwnProperty.call(x.ficha().periciasAttr, 'movimento'), false, 'o padrão apaga a chave');
   assert.ok(x.arm.desfazer(x.id).ok);
   assert.equal(x.ficha().periciasAttr.movimento, 'FOR');
-  assert.equal(ED.mudancas(x.ficha(), 'periciasAttr.movimento', 'INT').erro, 'Atributo de Movimento: escolha FOR ou DES.');
+  assert.equal(ED.mudancas(x.ficha(), 'troca.pericia.movimento', 'INT').erro, 'Atributo de Movimento: escolha FOR ou DES.');
   // Stamina e Éter: identidade.escolhas inteiro (as chaves têm ponto)
-  g = edita(x, 'escolha.attr.recurso.stamina', 'FOR');
+  g = edita(x, 'troca.recurso.stamina', 'FOR');
   assert.deepEqual(g.partes, ['identidade.escolhas']);
   assert.equal(x.ficha().identidade.escolhas['attr.recurso.stamina'], 'FOR');
   nos = x.nos();
@@ -88,10 +88,10 @@ test('03 §10: a escolha do maior atributo não tem selo; a dica diz "usa o maio
   assert.ok(x.arm.desfazer(x.id).ok);
   assert.deepEqual(x.ficha().identidade.escolhas, {});
   // a CD do Batedor não tem escolha: recusa; a do Espadachim tem (DES ou FOR)
-  assert.equal(ED.mudancas(x.ficha(), 'escolha.attr.cd', 'DES').erro, 'Atributo da CD: não há escolha de atributo aqui.');
+  assert.equal(ED.mudancas(x.ficha(), 'troca.cd', 'DES').erro, 'Atributo da CD: não há escolha de atributo aqui.');
   edita(x, 'identidade.classe', 'classe-espadachim');
-  assert.deepEqual(ED.attrsEscolha(x.ficha(), 'attr.cd'), ['DES', 'FOR']);
-  edita(x, 'escolha.attr.cd', 'for');
+  assert.deepEqual(ED.attrsTroca(x.ficha(), 'cd'), ['DES', 'FOR']);
+  edita(x, 'troca.cd', 'for');
   assert.equal(x.ficha().identidade.escolhas['attr.cd'], 'FOR', 'minúscula serve');
   assert.equal(x.nos().cd.escolha.motivo, 'usa Mod.FOR (escolhido)');
   soPrefixo(x.ss, 'escolha do atributo');
@@ -100,25 +100,29 @@ test('03 §10: a escolha do maior atributo não tem selo; a dica diz "usa o maio
 test('03 §10: no Ensaio, o seletor do atributo (padrão "maior (X)") nas 4 perícias, na Stamina, no Éter e na CD com escolha; fora dele, a sigla', () => {
   const x = ensaio();
   let h = nucleo(x, 'pagina');
-  assert.match(h, /<select class="ke-ed ke-ed-sel ke-ed-attr" data-ed="periciasAttr\.movimento"[^>]*aria-label="Atributo de Movimento"[^>]*><option value="" selected>maior \(DES\)<\/option><option value="FOR">FOR<\/option><option value="DES">DES<\/option><\/select>/);
-  ['convencimento', 'intimidacao', 'enganacao'].forEach((p) => assert.match(h, new RegExp('data-ed="periciasAttr\\.' + p + '"')));
-  assert.equal((h.match(/data-ed="periciasAttr\./g) || []).length, 4, 'só as de dois atributos');
-  assert.match(h, /data-ed="escolha\.attr\.recurso\.stamina"[^>]*>.*?maior \(DES\)/);
-  assert.match(h, /data-ed="escolha\.attr\.recurso\.eter"[^>]*>.*?maior \(SAB\)/);
-  assert.doesNotMatch(h, /data-ed="escolha\.attr\.cd"/, 'a CD do Batedor não tem escolha');
+  // o MESMO componente (.kh-troca, KhTroca) em perícia, Stamina, Éter e CD
+  assert.match(h, /<span class="kh-troca" data-troca="pericia\.movimento"><select class="ke-ed ke-ed-sel ke-ed-attr" data-ed="troca\.pericia\.movimento"[^>]*aria-label="Atributo de Movimento"[^>]*><option value="" selected>maior \(DES\)<\/option><option value="FOR">FOR<\/option><option value="DES">DES<\/option><\/select><\/span>/);
+  ['convencimento', 'intimidacao', 'enganacao'].forEach((p) => assert.match(h, new RegExp('data-ed="troca\\.pericia\\.' + p + '"')));
+  assert.equal((h.match(/data-ed="troca\.pericia\./g) || []).length, 4, 'só as de dois atributos');
+  assert.match(h, /class="fp-par kh-troca-l"><span class="fp-rot">Atributo<\/span><span class="kh-troca" data-troca="recurso\.stamina"><select[^>]*data-ed="troca\.recurso\.stamina"[^>]*>.*?maior \(DES\)/);
+  assert.match(h, /data-ed="troca\.recurso\.eter"[^>]*>.*?maior \(SAB\)/);
+  assert.doesNotMatch(h, /data-ed="troca\.cd"/, 'a CD do Batedor não tem escolha');
   // a dica do atributo da perícia
   assert.match(h, /class="fp-per-at" title="usa o maior entre Mod\.FOR e Mod\.DES"/);
   // trocado: o guardado selecionado, e o padrão ainda diz qual é o maior
-  edita(x, 'periciasAttr.movimento', 'FOR');
+  edita(x, 'troca.pericia.movimento', 'FOR');
   edita(x, 'identidade.classe', 'classe-espadachim');
   h = nucleo(x, 'pagina');
-  assert.match(h, /data-ed="periciasAttr\.movimento"[^>]*><option value="">maior \(DES\)<\/option><option value="FOR" selected>FOR<\/option>/);
+  assert.match(h, /<span class="kh-troca kh-troca-fixa" data-troca="pericia\.movimento"><select[^>]*data-ed="troca\.pericia\.movimento"[^>]*><option value="">maior \(DES\)<\/option><option value="FOR" selected>FOR<\/option>/);
   assert.match(h, /class="fp-per-at" title="usa Mod\.FOR \(escolhido\)"/);
-  assert.match(h, /data-ed="escolha\.attr\.cd"[^>]*aria-label="Atributo da CD"/);
+  assert.match(h, /data-troca="cd"><select[^>]*data-ed="troca\.cd"[^>]*aria-label="Atributo da CD"/);
   // só leitura: nenhum seletor, a sigla; e nenhum selo de decisão nas perícias de dois atributos
   const so = nucleo(x);
   assert.doesNotMatch(so, /ke-ed-attr|data-ed=/);
-  assert.match(so, /<span class="fp-per-at" title="usa Mod\.FOR \(escolhido\)">FOR<\/span>/);
+  // só leitura: a sigla no mesmo componente, com a marca "escolhido"; Stamina, Éter e CD também mostram o atributo
+  assert.match(so, /<span class="fp-per-at" title="usa Mod\.FOR \(escolhido\)"><span class="kh-troca kh-troca-fixa" data-troca="pericia\.movimento" title="usa Mod\.FOR \(escolhido\)">FOR <span class="kh-troca-marca">escolhido<\/span><\/span><\/span>/);
+  assert.match(so, /<span class="kh-troca" data-troca="recurso\.stamina" title="usa o maior entre Mod\.FOR e Mod\.DES">DES<\/span>/);
+  assert.match(so, /data-troca="cd" title="usa o maior entre Mod\.DES e Mod\.FOR">/);
   ['movimento', 'convencimento', 'intimidacao', 'enganacao'].forEach((p) => {
     const seg = so.slice(so.indexOf('data-campo="pericia-' + p + '"'));
     assert.doesNotMatch(seg.slice(0, seg.indexOf('data-campo="pericia-', 10)), /fp-selo-decisaoPedro/, p);

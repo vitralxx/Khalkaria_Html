@@ -135,6 +135,21 @@
 .kh-conta:hover .kh-conta-dica, .kh-conta:focus-visible .kh-conta-dica,
 .bz-col-num:hover .bz-col-conta, .bz-col-num:focus-visible .bz-col-conta { display: block; }
 
+/* ---------------------------------------------------------- troca de atributo
+   KhTroca (03 §11): o atributo de um cálculo "o maior entre dois" (perícia de
+   dois atributos, CD, Stamina e Éter). A mesma forma em todo lugar: a sigla
+   usada; fixada à mão pelo jogador (.kh-troca-fixa), a sigla em âmbar com a
+   marca "escolhido". No Ensaio o seletor (.ke-ed-attr) vai dentro.
+   .kh-troca-l: "Atributo" + a troca, nos recursos e na CD. */
+.kh-troca-l { display: inline-flex; align-items: center; gap: .3rem; }
+.kh-troca { display: inline-flex; align-items: baseline; gap: .3em; }
+.kh-troca[title] { cursor: help; }
+.kh-troca-fixa { color: var(--amber); }
+.kh-troca-marca {
+    font-family: var(--font-body); font-size: max(.85em, 10px); font-weight: 400; font-style: italic;
+    letter-spacing: 0; text-transform: none; color: var(--amber);
+}
+
 /* ---------------------------------------------------------- régua de carga
    0 a 2×max: dourado até o max (-ok), âmbar hachurado até 2×max (-exc);
    passou de 2×max, [data-estado="extremo"]: listrado em brasa e o "+N" (-mais).

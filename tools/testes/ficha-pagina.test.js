@@ -606,7 +606,7 @@ test('recurso de classe sem contador (D105): as características no lugar do nú
   const { r } = desenha(v2);
   const no = arvore(r.paineis.nucleo);
   const b = um(no, 'recurso-classe');
-  assert.match(texto(b), /Recurso de Classe sem contador \(D105\)/);
+  assert.match(texto(b), /Recurso de Classe sem contador Proficiência/);
   assert.match(r.paineis.nucleo, /data-caminho="recurso\.classe\.max"><b class="fp-v">Proficiência com Espadas · Marca do Duelo<\/b>/);
   assert.equal(todos(b, (x) => x.at['data-ficha'] != null).length, 0, 'sem atual');
   // o Batedor (medidor Instinto): atual / máx. com a conta

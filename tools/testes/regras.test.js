@@ -110,9 +110,9 @@ test('navegador (vm): as fontes do ORDEM registram KhRegrasDados/KhEfeitos/KhAju
   const sb = vm.createContext({ window: win });
   const ordem = fs.readFileSync(path.join(A.RAIZ, 'js', 'ficha', 'ORDEM'), 'utf8').split(/\r?\n/)
     .map((l) => l.trim()).filter((l) => l && !l.startsWith('#') && l !== 'ficha-v2.js');
-  assert.deepEqual(ordem, ['00-regras-dados.js', 'kh-inv.js', 'kh-estado.js', 'kh-efeitos.js', 'kh-ajustes.js', 'kh-regras.js', 'kh-abas.js', 'kh-conta.js', 'kh-redesenho.js', 'kh-previa.js', 'kh-ensaio.js', 'kh-edicao.js', 'kh-seletor.js', 'kh-ficha-abas.js', 'kh-editor.js', 'kh-levar.js', 'kh-ficha-drawer.js']);
+  assert.deepEqual(ordem, ['00-regras-dados.js', 'kh-inv.js', 'kh-estado.js', 'kh-efeitos.js', 'kh-ajustes.js', 'kh-troca.js', 'kh-regras.js', 'kh-abas.js', 'kh-conta.js', 'kh-redesenho.js', 'kh-previa.js', 'kh-ensaio.js', 'kh-edicao.js', 'kh-seletor.js', 'kh-ficha-abas.js', 'kh-editor.js', 'kh-levar.js', 'kh-ficha-drawer.js']);
   ordem.forEach((n) => vm.runInContext(fs.readFileSync(path.join(A.RAIZ, 'js', 'ficha', n), 'utf8'), sb, { filename: n }));
-  ['KhRegrasDados', 'KhInv', 'KhEstado', 'KhEfeitos', 'KhAjustes', 'KhRegras', 'KhAbas', 'KhConta', 'KhRedesenho', 'KhPrevia', 'KhEnsaio', 'KhEdicao', 'KhSeletor', 'KhFichaAbas', 'KhEditor', 'KhLevar', 'KhFichaDrawer'].forEach((k) => assert.ok(win[k], k));
+  ['KhRegrasDados', 'KhInv', 'KhEstado', 'KhEfeitos', 'KhAjustes', 'KhTroca', 'KhRegras', 'KhAbas', 'KhConta', 'KhRedesenho', 'KhPrevia', 'KhEnsaio', 'KhEdicao', 'KhSeletor', 'KhFichaAbas', 'KhEditor', 'KhLevar', 'KhFichaDrawer'].forEach((k) => assert.ok(win[k], k));
   const r = win.KhRegras.avaliar(ficha({ classe: 'monge', raca: 'humano', nivel: 2 }));
   assert.equal(r.nos['recurso.saude.max'].valor, 10 + 5 * 2);
   assert.deepEqual(toque, []);
@@ -215,7 +215,7 @@ test('Stamina e Éter: o maior dos dois, trocável à mão (D7), SEM selo (regra
   assert.deepEqual(r.nos['recurso.eter.max'].selos, []);
   assert.equal(termo(r.nos['recurso.stamina.max'], /maior/).motivo, 'usa o maior entre Mod.FOR e Mod.DES');
   assert.deepEqual(r.nos['recurso.stamina.max'].escolha,
-    { chave: 'attr.recurso.stamina', atributos: ['FOR', 'DES'], usado: 'DES', trocado: false, motivo: 'usa o maior entre Mod.FOR e Mod.DES' });
+    { chave: 'recurso.stamina', atributos: ['FOR', 'DES'], usado: 'DES', trocado: false, motivo: 'usa o maior entre Mod.FOR e Mod.DES' });
   assert.deepEqual(r.nos['recurso.eter.max'].escolha.atributos, ['INT', 'SAB']);
   f.identidade.escolhas = { 'attr.recurso.stamina': 'FOR' };
   r = R.avaliar(f);
@@ -292,7 +292,7 @@ test('CD: fórmula da classe; Espadachim com o maior de DES/FOR, trocável', () 
   r = R.avaliar(f);
   assert.equal(val(r, 'cd'), 10 + 3 + 2);
   assert.deepEqual(r.nos.cd.selos, [], 'a escolha do maior é regra fechada (03 §10): sem selo');
-  assert.deepEqual([r.nos.cd.escolha.chave, r.nos.cd.escolha.atributos, r.nos.cd.escolha.usado], ['attr.cd', ['DES', 'FOR'], 'FOR']);
+  assert.deepEqual([r.nos.cd.escolha.chave, r.nos.cd.escolha.atributos, r.nos.cd.escolha.usado], ['cd', ['DES', 'FOR'], 'FOR']);
   assert.equal(termo(r.nos.cd, /maior/).motivo, 'usa o maior entre Mod.DES e Mod.FOR');
   assert.equal(R.avaliar(ficha({ classe: 'monge', attrs: { DES: 14, SAB: 16 } })).nos.cd.escolha, undefined, 'CD sem escolha: sem seletor');
   f.identidade.escolhas = { 'attr.cd': 'DES' };
@@ -311,7 +311,7 @@ test('perícia = Mod + treino (+2 por grau) + Mods; "maior" trocável (D7); Atac
   // regra fechada (03 §10): sem selo, e a dica diz "usa o maior entre…"
   ['movimento', 'convencimento', 'intimidacao', 'enganacao'].forEach((p) => assert.deepEqual(r.nos['pericia.' + p + '.total'].selos, [], p));
   assert.equal(termo(r.nos['pericia.convencimento.total'], /^Mod\./).motivo, 'usa o maior entre Mod.DES e Mod.INT');
-  assert.equal(r.nos['pericia.convencimento.total'].escolha.chave, 'periciasAttr.convencimento');
+  assert.equal(r.nos['pericia.convencimento.total'].escolha.chave, 'pericia.convencimento');
   assert.equal(val(r, 'pericia.atacar.total'), 6);
   assert.equal(r.nos['pericia.atacar.total'].semAtributo, true);
   f.periciasAttr = { convencimento: 'INT' };
@@ -476,6 +476,31 @@ test('custo de magia por intensidade (F3c): as 4 colunas com a mesma conta, Nv1 
 });
 
 // ---------------- ataque e PMA ----------------
+test('KhTroca (03 §11): uma regra para perícia, CD, Stamina e Éter; a perícia trocada diz "(escolhido)" na conta como a CD', () => {
+  const T = require('../../js/ficha/kh-troca.js');
+  assert.deepEqual(['pericia.movimento', 'cd', 'recurso.stamina', 'recurso.eter'].map(T.valida), [true, true, true, true]);
+  assert.deepEqual(['recurso.classe', 'attr.cd', 'pericia.'].map(T.valida), [false, false, false]);
+  // padrão: o maior; empate: o primeiro; null não vence
+  assert.equal(T.resolver('cd', ['DES', 'FOR'], null, [1, 3]).usado, 'FOR');
+  assert.equal(T.resolver('cd', ['DES', 'FOR'], null, [2, 2]).usado, 'DES');
+  assert.equal(T.resolver('cd', ['DES', 'FOR'], null, [null, 0]).usado, 'FOR');
+  const e = T.resolver('recurso.eter', ['INT', 'SAB'], 'INT', [0, 3]);
+  assert.deepEqual([e.usado, e.trocado, e.motivo], ['INT', true, 'usa Mod.INT (escolhido)']);
+  // onde guarda: periciasAttr para perícia, identidade.escolhas para o resto; '' volta ao padrão
+  assert.deepEqual(T.mudancas({}, 'pericia.movimento', 'FOR'), [{ caminho: 'periciasAttr.movimento', valor: 'FOR' }]);
+  assert.deepEqual(T.mudancas({ identidade: { escolhas: { 'attr.cd': 'FOR', x: 1 } } }, 'cd', ''), [{ caminho: 'identidade.escolhas', valor: { x: 1 } }]);
+  assert.equal(T.guardado({ periciasAttr: { movimento: 'INT' } }, 'pericia.movimento', ['FOR', 'DES']), null, 'fora dos atributos: ignora');
+  // no motor: perícia e status com a mesma forma de escolha, e a conta da perícia trocada
+  const f = ficha({ attrs: { FOR: 10, DES: 16 } });
+  f.periciasAttr = { movimento: 'FOR' };
+  f.identidade.escolhas = { 'attr.recurso.stamina': 'FOR' };
+  const r = avalia(f);
+  const pm = r.nos['pericia.movimento.total'], st = r.nos['recurso.stamina.max'];
+  assert.deepEqual(Object.keys(pm.escolha).sort(), Object.keys(st.escolha).sort());
+  assert.deepEqual([pm.escolha.chave, pm.escolha.trocado, st.escolha.chave, st.escolha.trocado], ['pericia.movimento', true, 'recurso.stamina', true]);
+  assert.match(pm.formula.simbolica, /Mod\.FOR \(escolhido\)/);
+});
+
 test('tabela por gatilho: só "sempre" no portador soma; situacional, aliados e "enquanto" ficam fora com o motivo', () => {
   const f = ficha({});
   f.inventario.bugigangas.push(item('item-t-tabela', { sintonizado: true }));

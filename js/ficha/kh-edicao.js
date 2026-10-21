@@ -27,9 +27,9 @@
  *   KhEdicao.mudancaRestos(ficha, ctx, 'raca', anterior)  // "Remover o que era de <anterior>", num passo
  *
  * Campos que não são um caminho só (03 §10 e auditoria B, 2026-10-19):
- *   'periciasAttr.<id>'      o atributo de uma perícia de dois (padrão: o maior; '' volta ao padrão)
- *   'escolha.attr.cd' e 'escolha.attr.recurso.<stamina|eter>'  o atributo da CD/Stamina/Éter com
- *                            escolha: grava o 'identidade.escolhas' inteiro (as chaves têm ponto)
+ *   'troca.<chave>'          a troca manual do atributo (KhTroca; chave 'pericia.<id>', 'cd',
+ *                            'recurso.<r>'): padrão o maior, '' volta ao padrão; grava onde o
+ *                            KhTroca diz (periciasAttr ou o 'identidade.escolhas' inteiro)
  *   'migracao.oficio'        a pendência do Ofício(X) da v2: o grau vai para o Ofício escolhido
  *                            e a pendência fecha, no mesmo passo
  *
@@ -46,6 +46,7 @@
   var KhEstado = emNode ? require('./kh-estado.js') : raiz.KhEstado;
   var KhAjustes = emNode ? require('./kh-ajustes.js') : raiz.KhAjustes;
   var KhRegras = emNode ? require('./kh-regras.js') : raiz.KhRegras;
+  var KhTroca = emNode ? require('./kh-troca.js') : raiz.KhTroca;
 
   var KhEdicao = (function () {
     var NOME_AT = { FOR: 'Força', DES: 'Destreza', CON: 'Constituição', INT: 'Inteligência', SAB: 'Sabedoria' };
@@ -53,8 +54,6 @@
     var REFS = { raca: 'Raça', variante: 'Variante', subespecie: 'Subespécie', classe: 'Classe', ramo: 'Ramo', origem: 'Origem' };
     // o tipo do catálogo de cada referência da identidade (classe e ramo vêm dos blocos de data/classes)
     var TIPO_REF = { raca: 'raca', variante: 'variante', subespecie: 'subespecie', origem: 'origem' };
-    // a escolha do atributo (03 §10): a chave de identidade.escolhas -> o rótulo
-    var ESCOLHA_ATTR = { 'attr.cd': 'Atributo da CD', 'attr.recurso.stamina': 'Atributo da Stamina', 'attr.recurso.eter': 'Atributo do Éter' };
     // o que é da raça e o que é da classe nas entradas (o campo do catálogo que diz de quem é)
     var RESTO = { raca: { tipos: ['traco', 'tecnologia', 'variante', 'subespecie', 'corrupcao'], campo: 'raca', pre: 'raca-', artigo: 'da raça' },
       classe: { tipos: ['tecnica', 'marca', 'ultimate'], campo: 'classe', pre: 'classe-', artigo: 'da classe' } };
@@ -100,14 +99,18 @@
     function D() { return KhRegras && KhRegras.dados ? KhRegras.dados() || {} : {}; }
     function periciaD(id) { return lista(D().pericias).filter(function (x) { return x.id === id; })[0] || null; }
     function nomePericia(id) { var p = periciaD(id); return p ? str(p.nome) : id; }
-    // os atributos da escolha 'maior' de uma fórmula (o nó 'esc' da AST do motor):
-    // 'attr.cd' (a CD da classe da ficha) e 'attr.recurso.<r>' (o máximo do recurso)
-    function attrsEscolha(ficha, chave) {
+    // os atributos de uma troca (chave do KhTroca): a perícia de dois atributos, ou
+    // o nó 'esc' da fórmula da CD da classe da ficha / do máximo do recurso
+    function attrsTroca(ficha, chave) {
       var d = D(), ast = null, m;
-      if (chave === 'attr.cd') {
+      if ((m = /^pericia\.([a-z-]+)$/.exec(str(chave)))) {
+        var pa = periciaD(m[1]);
+        return pa && pa.modo === 'maior' ? lista(pa.atributos).slice() : [];
+      }
+      if (chave === 'cd') {
         var cl = chaveDe(refDe(ficha, 'classe').id, 'classe-');
         ast = cl && obj(d.classes) && d.classes[cl] && d.classes[cl].cd ? d.classes[cl].cd.ast : null;
-      } else if ((m = /^attr\.recurso\.(saude|stamina|eter)$/.exec(str(chave)))) {
+      } else if ((m = /^recurso\.(saude|stamina|eter)$/.exec(str(chave)))) {
         ast = obj(d.recursos) && d.recursos[m[1]] ? d.recursos[m[1]].max : null;
       }
       function acha(n) {
@@ -155,11 +158,12 @@
       if (c === 'meta.nivel') return d({ tipo: 'inteiro', rotulo: 'Nível', min: 1, max: 5 });
       if (c === 'meta.xp') return d({ tipo: 'inteiro', rotulo: 'XP', min: 0, max: MAX_XP });
       if ((m = /^identidade\.(raca|variante|subespecie|classe|ramo|origem)$/.exec(c))) return d({ tipo: 'ref', ref: m[1], rotulo: REFS[m[1]] });
-      if ((m = /^periciasAttr\.([a-z-]+)$/.exec(c))) {
-        var pa = periciaD(m[1]);
-        return pa && pa.modo === 'maior' ? d({ tipo: 'attr', rotulo: 'Atributo de ' + str(pa.nome), pericia: m[1], opcoes: lista(pa.atributos).slice() }) : null;
+      if ((m = /^troca\.(.+)$/.exec(c)) && KhTroca.valida(m[1])) {
+        // perícia: só a de dois atributos; CD e recurso: os atributos dependem da ficha (attrsTroca)
+        var pm = /^pericia\.(.+)$/.exec(m[1]), pa = pm ? periciaD(pm[1]) : null;
+        if (pm && !(pa && pa.modo === 'maior')) return null;
+        return d({ tipo: 'troca', chave: m[1], rotulo: KhTroca.rotulo(m[1], pa ? str(pa.nome) : '') });
       }
-      if ((m = /^escolha\.(attr\.(?:cd|recurso\.(?:stamina|eter)))$/.exec(c))) return d({ tipo: 'escolhaAttr', chave: m[1], rotulo: ESCOLHA_ATTR[m[1]] });
       if (c === 'migracao.oficio') return d({ tipo: 'oficio', rotulo: 'Ofício(X) da ficha atual' });
       if ((m = /^atributos\.base\.(FOR|DES|CON|INT|SAB)$/.exec(c))) {
         return d({ tipo: 'inteiro', rotulo: NOME_AT[m[1]] + ' (base)', min: 1, max: 30, atributo: m[1] });
@@ -373,16 +377,12 @@
     }
 
     // ---------------- a escolha do atributo (03 §10) e a pendência do Ofício ----------------
-    function mudancasAttr(ficha, cp, bruto) {
+    function mudancasTroca(ficha, cp, bruto) {
       var v = str(bruto).trim().toUpperCase();
-      var ops = cp.tipo === 'attr' ? cp.opcoes : attrsEscolha(ficha, cp.chave);
+      var ops = attrsTroca(ficha, cp.chave);
       if (!ops.length) return { ok: false, erro: cp.rotulo + ': não há escolha de atributo aqui.' };
       if (v && ops.indexOf(v) < 0) return { ok: false, erro: cp.rotulo + ': escolha ' + ops.join(' ou ') + '.' };
-      var rot = cp.rotulo + ': ' + (v ? v + ' (escolhido)' : 'o maior');
-      if (cp.tipo === 'attr') return { ok: true, mudancas: [{ caminho: 'periciasAttr.' + cp.pericia, valor: v || undefined }], rotulo: rot };
-      var esc = obj(ficha) && obj(ficha.identidade) && obj(ficha.identidade.escolhas) ? clone(ficha.identidade.escolhas) : {};
-      if (v) esc[cp.chave] = v; else delete esc[cp.chave];
-      return { ok: true, mudancas: [{ caminho: 'identidade.escolhas', valor: esc }], rotulo: rot };
+      return { ok: true, mudancas: KhTroca.mudancas(ficha, cp.chave, v), rotulo: cp.rotulo + ': ' + (v ? v + ' (escolhido)' : 'o maior') };
     }
     // a pendência do Ofício(X) genérico da v2 (a migração não escolhe qual dos três recebe o grau)
     function pendenciaOficio(ficha) {
@@ -411,7 +411,7 @@
       var cp = campo(caminho);
       if (!cp) return { ok: false, erro: 'Este campo não se edita aqui.' };
       if (cp.tipo === 'ref') return mudancasRef(ficha, cp, bruto, op.contexto);
-      if (cp.tipo === 'attr' || cp.tipo === 'escolhaAttr') return mudancasAttr(ficha, cp, bruto);
+      if (cp.tipo === 'troca') return mudancasTroca(ficha, cp, bruto);
       if (cp.tipo === 'oficio') return mudancasOficio(ficha, cp, bruto);
       if (cp.tipo === 'conjunto') {
         var b = obj(bruto) ? bruto : {}, k = str(b.valor);
@@ -508,8 +508,8 @@
         rotulo: fora.length === 1 ? 'Remover o ajuste de ' + (semEmoji(rotuloNo) || fora[0]) : 'Remover ' + fora.length + ' ajustes' };
     }
 
-    return { NOME_AT: NOME_AT, RECURSOS: RECURSOS, REFS: REFS, MANTER: MANTER, MODOS: MODOS, MAX_MOTIVO: MAX_MOTIVO, ESCOLHA_ATTR: ESCOLHA_ATTR,
-      attrsEscolha: attrsEscolha, restos: restos, mudancaRestos: mudancaRestos, pendenciaOficio: pendenciaOficio, oficios: oficios,
+    return { NOME_AT: NOME_AT, RECURSOS: RECURSOS, REFS: REFS, MANTER: MANTER, MODOS: MODOS, MAX_MOTIVO: MAX_MOTIVO,
+      attrsTroca: attrsTroca, restos: restos, mudancaRestos: mudancaRestos, pendenciaOficio: pendenciaOficio, oficios: oficios,
       MAX_TEXTO: MAX_TEXTO, MAX_LISTA: MAX_LISTA, MAX_LORE: MAX_LORE,
       lerNumero: lerNumero, lerInteiro: lerInteiro, campo: campo, ler: ler, mudancas: mudancas, passo: passo,
       grauClicado: grauClicado, rotuloGrau: rotuloGrau, opcoesRef: opcoesRef, opcoesCondicao: opcoesCondicao, chaveItem: chaveItem,

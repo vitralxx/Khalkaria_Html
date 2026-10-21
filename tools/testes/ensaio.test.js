@@ -1411,13 +1411,13 @@ test('auditoria B e 03 §10 pela interface: o 1º clique em Desfazer depois de d
   // ---- o atributo das perícias de dois atributos e do Éter (03 §10)
   const at = (p) => fp.querySelector('[data-campo="pericia-' + p + '"] .fp-per-at');
   assert.equal(at('movimento').getAttribute('title'), 'usa o maior entre Mod.FOR e Mod.DES');
-  j.muda(ed('periciasAttr.movimento'), { value: 'FOR' });
+  j.muda(ed('troca.pericia.movimento'), { value: 'FOR' });
   assert.equal(ficha().periciasAttr.movimento, 'FOR');
   rodaTimers(j);
   assert.equal(at('movimento').getAttribute('title'), 'usa Mod.FOR (escolhido)');
   assert.equal(barra.querySelector('.ke-ed-msg').textContent, '');
   assert.equal(bt('desfazer').getAttribute('title'), 'Desfazer: Atributo de Movimento: FOR (escolhido) (Ctrl+Z)');
-  j.muda(ed('escolha.attr.recurso.eter'), { value: 'INT' });
+  j.muda(ed('troca.recurso.eter'), { value: 'INT' });
   assert.deepEqual(ficha().identidade.escolhas, { 'attr.recurso.eter': 'INT' });
   rodaTimers(j);
   j.clica(bt('desfazer'));

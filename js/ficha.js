@@ -2987,6 +2987,94 @@
   raiz.KhAjustes = KhAjustes;
 })(typeof window !== 'undefined' ? window : this);
 
+// ==== js/ficha/kh-troca.js ====
+/*
+ * KhTroca — a troca manual do atributo de um cálculo (D7; Pedro, 2026-10-20, 03 §11).
+ *
+ * Uma regra só para todo número que usa "o maior entre dois atributos":
+ *   pericia.<id>       perícia de dois atributos (Movimento, Convencimento, Intimidação, Enganação)
+ *   cd                 CD da classe com escolha (Espadachim: Destreza ou Força)
+ *   recurso.<r>        máximo de Stamina (FOR ou DES) e de Éter (INT ou SAB)
+ * Padrão: o maior Mod. (no empate, o primeiro da lista). O jogador pode fixar
+ * um dos atributos; vazio volta ao padrão. O motor (KhRegras), a edição
+ * (KhEdicao, caminho 'troca.<chave>') e o desenho (KhFichaAbas, componente
+ * .kh-troca) passam todos por aqui.
+ *
+ * Onde a ficha guarda (schema 3.0, sem mudar): pericia.<id> -> periciasAttr[<id>];
+ * cd e recurso.<r> -> identidade.escolhas['attr.cd' | 'attr.recurso.<r>'].
+ *
+ * No node exporta por module.exports; no artefato js/ficha.js registra window.KhTroca.
+ */
+(function (raiz) {
+  'use strict';
+
+  var emNode = typeof module === 'object' && module && module.exports;
+  if (emNode && Object.keys(module.exports).length) return;   // artefato no node: só o KhInv
+
+  var KhTroca = (function () {
+    var RE_CHAVE = /^(?:pericia\.([a-z-]+)|cd|recurso\.(saude|stamina|eter))$/;
+    var ROTULO_REC = { saude: 'Atributo da Saúde', stamina: 'Atributo da Stamina', eter: 'Atributo do Éter' };
+
+    function obj(x) { return !!x && typeof x === 'object' && !Array.isArray(x); }
+    function lista(x) { return Array.isArray(x) ? x : []; }
+    function valida(chave) { return RE_CHAVE.test(String(chave)); }
+
+    // onde a ficha guarda a escolha: {raiz, k}
+    function lugar(chave) {
+      var m = RE_CHAVE.exec(String(chave));
+      if (!m) return null;
+      if (m[1]) return { raiz: 'periciasAttr', k: m[1] };
+      return { raiz: 'escolhas', k: 'attr.' + chave };
+    }
+    // o atributo fixado pelo jogador, só se for um dos atributos da conta
+    function guardado(ficha, chave, atributos) {
+      var l = lugar(chave);
+      if (!l || !obj(ficha)) return null;
+      var v = l.raiz === 'periciasAttr' ? (obj(ficha.periciasAttr) ? ficha.periciasAttr[l.k] : null)
+        : (obj(ficha.identidade) && obj(ficha.identidade.escolhas) ? ficha.identidade.escolhas[l.k] : null);
+      return lista(atributos).indexOf(v) >= 0 ? v : null;
+    }
+    function entre(l) { return l.length < 2 ? l.join('') : l.slice(0, -1).join(', ') + ' e ' + l[l.length - 1]; }
+    // o texto da escolha: "usa o maior entre Mod.FOR e Mod.DES" ou "usa Mod.FOR (escolhido)"
+    function motivo(e) {
+      if (!e) return '';
+      return e.trocado ? 'usa Mod.' + e.usado + ' (escolhido)' : 'usa o maior entre ' + entre(e.atributos.map(function (a) { return 'Mod.' + a; }));
+    }
+    // valores[j] = Mod. de atributos[j] (null = sem valor) -> a escolha resolvida
+    function resolver(chave, atributos, g, valores) {
+      var i = g ? atributos.indexOf(g) : -1, trocado = i >= 0;
+      if (!trocado) {
+        i = 0;
+        lista(valores).forEach(function (v, j) { if (v != null && (valores[i] == null || v > valores[i])) i = j; });
+      }
+      var e = { chave: chave, atributos: atributos.slice(), i: i, usado: atributos[i], trocado: trocado };
+      e.motivo = motivo(e);
+      return e;
+    }
+    // o rótulo do seletor
+    function rotulo(chave, nomePericia) {
+      var m = RE_CHAVE.exec(String(chave));
+      if (!m) return 'Atributo';
+      if (m[1]) return 'Atributo de ' + (nomePericia || m[1]);
+      return m[2] ? ROTULO_REC[m[2]] : 'Atributo da CD';
+    }
+    // as mudanças de estado para fixar (v) ou voltar ao padrão ('')
+    function mudancas(ficha, chave, v) {
+      var l = lugar(chave);
+      if (!l) return [];
+      if (l.raiz === 'periciasAttr') return [{ caminho: 'periciasAttr.' + l.k, valor: v || undefined }];
+      var esc = obj(ficha) && obj(ficha.identidade) && obj(ficha.identidade.escolhas) ? JSON.parse(JSON.stringify(ficha.identidade.escolhas)) : {};
+      if (v) esc[l.k] = v; else delete esc[l.k];
+      return [{ caminho: 'identidade.escolhas', valor: esc }];
+    }
+
+    return { valida: valida, lugar: lugar, guardado: guardado, resolver: resolver, motivo: motivo, rotulo: rotulo, mudancas: mudancas };
+  })();
+
+  if (emNode) { module.exports = KhTroca; return; }
+  raiz.KhTroca = KhTroca;
+})(typeof window !== 'undefined' ? window : this);
+
 // ==== js/ficha/kh-regras.js ====
 /* Khalkaria — Ficha · KhRegras: motor de regras da ficha (PURO, F3b).
  * (ficha v3, KhRegrasDados, Mods do KhEfeitos, ajustes) -> um NÓ por número derivado:
@@ -3017,6 +3105,7 @@
   var KhInv = emNode ? require('./kh-inv.js') : raiz.KhInv;
   var KhEfeitos = emNode ? require('./kh-efeitos.js') : raiz.KhEfeitos;
   var KhAjustes = emNode ? require('./kh-ajustes.js') : raiz.KhAjustes;
+  var KhTroca = emNode ? require('./kh-troca.js') : raiz.KhTroca;
   function dadosPadrao() { return (raiz && raiz.KhRegrasDados) || (emNode ? require('./00-regras-dados.js') : null); }
 
   var KhRegras = (function () {
@@ -3050,7 +3139,7 @@
     }
 
     // ---------------- AST ----------------
-    // amb.ref(nome) -> {v, rot, fonte, st}; amb.escolha(noEsc, candidatos) -> índice ou null
+    // amb.ref(nome) -> {v, rot, fonte, st}; amb.troca(atributos) -> {chave, g} (KhTroca: o atributo fixado)
     function aval(no, amb, D) {
       var r;
       switch (no.t) {
@@ -3095,33 +3184,31 @@
             num: nome + '(' + args.map(function (x) { return x.num; }).join(', ') + ')', p: 3, st: st, fontes: fo, escolha: escA };
         }
         case 'esc': {
+          // o maior entre atributos, com a troca manual (KhTroca: a mesma regra das perícias)
           var cs = no.args.map(function (x) { return aval(x, amb, D); });
-          var i = amb.escolha ? amb.escolha(no, cs) : null, trocado = i != null && cs[i];
-          if (!trocado) {
-            i = 0;
-            cs.forEach(function (c, j) { if (c.v != null && (cs[i].v == null || c.v > cs[i].v)) i = j; });
-          }
-          var c = cs[i];
-          // a escolha sobe pela conta (o termo e o nó dizem qual atributo valeu, 03 §10)
           var ats = no.args.map(function (x) { var m = x.t === 'ref' && /^mod\.(\w+)$/.exec(x.ref); return m ? m[1] : null; });
-          return { v: c.v, sim: trocado ? c.sim + ' (escolhido)' : 'maior(' + cs.map(function (x) { return x.sim; }).join(', ') + ')',
-            num: c.num, p: 3, st: pior(D, no.st, c.st), fontes: c.fontes,
-            escolha: { i: i, trocado: !!trocado, opcoes: cs.map(function (x) { return x.sim; }), usado: c.sim,
-              atributos: ats.every(Boolean) ? ats : null } };
+          var soAttr = ats.every(Boolean), tr = soAttr && amb.troca ? amb.troca(ats) : null;
+          var e = KhTroca.resolver(tr ? tr.chave : null, soAttr ? ats : cs.map(function (x) { return x.sim; }), tr ? tr.g : null,
+            cs.map(function (x) { return x.v; }));
+          if (!soAttr) e = { i: e.i, trocado: false, atributos: null, motivo: 'usa o maior entre ' + entre(cs.map(function (x) { return x.sim; })) };
+          var c = cs[e.i];
+          // a escolha sobe pela conta (o termo e o nó dizem qual atributo valeu, 03 §10)
+          return { v: c.v, sim: e.trocado ? c.sim + ' (escolhido)' : 'maior(' + cs.map(function (x) { return x.sim; }).join(', ') + ')',
+            num: c.num, p: 3, st: pior(D, no.st, c.st), fontes: c.fontes, escolha: e };
         }
         default:
           throw new Error('KhRegras: nó de fórmula "' + no.t + '" sem avaliação aqui');
       }
     }
-    // o texto da escolha 'maior' entre atributos (D7, sem selo desde o 03 §10):
+    // o texto da escolha 'maior' entre atributos (D7, sem selo desde o 03 §10; o KhTroca):
     // "usa o maior entre Mod.FOR e Mod.DES" ou, trocado à mão, "usa Mod.FOR (escolhido)"
     function entre(l) { return l.length < 2 ? l.join('') : l.slice(0, -1).join(', ') + ' e ' + l[l.length - 1]; }
-    function motivoEscolha(e) { return !e ? '' : e.trocado ? 'usa ' + e.usado + ' (escolhido)' : 'usa o maior entre ' + entre(e.opcoes); }
-    // a escolha no nó (CD, Stamina e Éter): a chave de identidade.escolhas e os atributos
-    function escolhaDoNo(r, chave) {
-      var e = r && r.escolha;
-      if (!e || !e.atributos) return null;
-      return { chave: chave, atributos: e.atributos.slice(), usado: e.atributos[e.i], trocado: e.trocado, motivo: motivoEscolha(e) };
+    function motivoEscolha(e) { return e ? e.motivo || '' : ''; }
+    // a escolha no nó: a mesma forma em perícia, CD, Stamina e Éter
+    // {chave (KhTroca), atributos, usado, trocado, motivo}
+    function escolhaDoNo(e) {
+      if (!e || !e.atributos || !e.chave) return null;
+      return { chave: e.chave, atributos: e.atributos.slice(), usado: e.usado, trocado: e.trocado, motivo: e.motivo };
     }
     // "= <conta> = <valor>", sem repetir quando a conta já é o valor
     function conta(num, v) { var fv = fmt(v); return num === fv || num === numTxt(v) ? '= ' + fv : '= ' + num + ' = ' + fv; }
@@ -3185,7 +3272,6 @@
         nivel: Math.max(1, Math.min(5, inteiro(ficha.meta && ficha.meta.nivel, 1))),
         classe: classeCh && D.classes[classeCh] ? D.classes[classeCh] : null,
         raca: racaCh && D.racas[racaCh] ? D.racas[racaCh] : null,
-        escolhas: obj(ficha.identidade && ficha.identidade.escolhas) ? ficha.identidade.escolhas : {},
         sobrepeso: [], condicoes: ef.condicoes.slice()
       };
       ctx.v = function (c) { var n = ctx.nos[c]; return n ? n.valor : null; };
@@ -3339,14 +3425,9 @@
         return { v: null, rot: n, st: 'semStatus' };
       };
     }
-    function escolhaAttr(ctx, chave) {
-      var e = ctx.escolhas[chave];
-      return function (no, cs) {
-        if (!e) return null;
-        var i = -1;
-        no.args.forEach(function (a, j) { if (a.t === 'ref' && a.ref === 'mod.' + e) i = j; });
-        return i >= 0 ? i : null;
-      };
+    // amb.troca de uma fórmula com escolha (chave do KhTroca: 'cd', 'recurso.<r>')
+    function trocaDe(ctx, chave) {
+      return function (ats) { return { chave: chave, g: KhTroca.guardado(ctx.ficha, chave, ats) }; };
     }
 
     function noPericia(ctx, p) {
@@ -3355,12 +3436,10 @@
       var sim = [], num = [], total = 0, attr = null;
       if (p.modo === 'fixo') attr = p.atributos[0];
       else if (p.modo === 'maior') {
-        var esc = f.periciasAttr && f.periciasAttr[p.id];
-        if (p.atributos.indexOf(esc) >= 0) attr = esc;
-        else p.atributos.forEach(function (a) { if (attr === null || ctx.v('atributo.' + a + '.mod') > ctx.v('atributo.' + attr + '.mod')) attr = a; });
-        no.escolha = { chave: 'periciasAttr.' + p.id, atributos: p.atributos.slice(), usado: attr, trocado: attr === esc };
-        no.escolha.motivo = motivoEscolha({ trocado: no.escolha.trocado, usado: 'Mod.' + attr,
-          opcoes: p.atributos.map(function (a) { return 'Mod.' + a; }) });
+        var ch = 'pericia.' + p.id;
+        no.escolha = escolhaDoNo(KhTroca.resolver(ch, p.atributos, KhTroca.guardado(f, ch, p.atributos),
+          p.atributos.map(function (a) { return ctx.v('atributo.' + a + '.mod'); })));
+        attr = no.escolha.usado;
       }
       if (attr) {
         var m = ctx.v('atributo.' + attr + '.mod');
@@ -3368,7 +3447,8 @@
           op: 'soma', valor: m, ativo: true, motivo: p.modo === 'maior' ? no.escolha.motivo : '',
           status: pior(D, p.modo === 'maior' ? p.stEscolha : p.st, stNo(ctx, 'atributo.' + attr + '.mod')) });
         total += m;
-        sim.push({ op: '', t: p.modo === 'maior' && !no.escolha.trocado ? 'maior(' + p.atributos.map(function (a) { return 'Mod.' + a; }).join(', ') + ')' : 'Mod.' + attr });
+        sim.push({ op: '', t: p.modo !== 'maior' ? 'Mod.' + attr : no.escolha.trocado ? 'Mod.' + attr + ' (escolhido)'
+          : 'maior(' + p.atributos.map(function (a) { return 'Mod.' + a; }).join(', ') + ')' });
         num.push({ op: '', t: fmt(m) });
       } else if (p.modo === 'porArma') {
         no.termos.push({ rotulo: 'Atributo da arma', fonte: { tipo: 'regra', id: p.fo, nome: 'porArma' }, op: 'soma', valor: null,
@@ -3455,9 +3535,9 @@
         x['classe.' + k] = { v: cl[k] + coefBonus, rot: NOME_COEF[k], st: cl.st,
           fonte: { tipo: 'classe', id: cl.id, nome: cl.nome + ' (' + NOME_COEF[k] + ' ' + cl[k] + (coefBonus ? (coefBonus > 0 ? ' + ' : ' − ') + fmt(Math.abs(coefBonus)) : '') + ')' } };
         return x;
-      })() : null), escolha: escolhaAttr(ctx, 'attr.recurso.' + r) };
+      })() : null), troca: trocaDe(ctx, 'recurso.' + r) };
       var a = aval(rec.max, amb, D);
-      var escR = escolhaDoNo(a, 'attr.recurso.' + r);
+      var escR = escolhaDoNo(a.escolha);
       if (escR) no.escolha = escR;
       if (!cl) {
         no.termos.push({ rotulo: NOME_COEF[k] + ' × Nível', fonte: { tipo: 'regra', id: rec.fo, nome: 'classe' }, op: 'soma', valor: null,
@@ -3619,8 +3699,8 @@
     function noCD(ctx) {
       var D = ctx.D, no = novoNo('cd', 'CD'), cl = ctx.classe;
       if (!cl) { no.formula = { simbolica: 'CD da classe', numerica: '= ? (classe não definida)' }; return no; }
-      var amb = { ref: ambBase(ctx), escolha: escolhaAttr(ctx, 'attr.cd') }, a = aval(cl.cd.ast, amb, D);
-      var escC = escolhaDoNo(a, 'attr.cd');
+      var amb = { ref: ambBase(ctx), troca: trocaDe(ctx, 'cd') }, a = aval(cl.cd.ast, amb, D);
+      var escC = escolhaDoNo(a.escolha);
       if (escC) no.escolha = escC;
       termosDaFormula(cl.cd.ast, amb, D).forEach(function (t) { no.termos.push(t); });
       var txt = { sim: [], num: [] }, mods = ctx.mods(['cd']);
@@ -7623,9 +7703,9 @@
  *   KhEdicao.mudancaRestos(ficha, ctx, 'raca', anterior)  // "Remover o que era de <anterior>", num passo
  *
  * Campos que não são um caminho só (03 §10 e auditoria B, 2026-10-19):
- *   'periciasAttr.<id>'      o atributo de uma perícia de dois (padrão: o maior; '' volta ao padrão)
- *   'escolha.attr.cd' e 'escolha.attr.recurso.<stamina|eter>'  o atributo da CD/Stamina/Éter com
- *                            escolha: grava o 'identidade.escolhas' inteiro (as chaves têm ponto)
+ *   'troca.<chave>'          a troca manual do atributo (KhTroca; chave 'pericia.<id>', 'cd',
+ *                            'recurso.<r>'): padrão o maior, '' volta ao padrão; grava onde o
+ *                            KhTroca diz (periciasAttr ou o 'identidade.escolhas' inteiro)
  *   'migracao.oficio'        a pendência do Ofício(X) da v2: o grau vai para o Ofício escolhido
  *                            e a pendência fecha, no mesmo passo
  *
@@ -7642,6 +7722,7 @@
   var KhEstado = emNode ? require('./kh-estado.js') : raiz.KhEstado;
   var KhAjustes = emNode ? require('./kh-ajustes.js') : raiz.KhAjustes;
   var KhRegras = emNode ? require('./kh-regras.js') : raiz.KhRegras;
+  var KhTroca = emNode ? require('./kh-troca.js') : raiz.KhTroca;
 
   var KhEdicao = (function () {
     var NOME_AT = { FOR: 'Força', DES: 'Destreza', CON: 'Constituição', INT: 'Inteligência', SAB: 'Sabedoria' };
@@ -7649,8 +7730,6 @@
     var REFS = { raca: 'Raça', variante: 'Variante', subespecie: 'Subespécie', classe: 'Classe', ramo: 'Ramo', origem: 'Origem' };
     // o tipo do catálogo de cada referência da identidade (classe e ramo vêm dos blocos de data/classes)
     var TIPO_REF = { raca: 'raca', variante: 'variante', subespecie: 'subespecie', origem: 'origem' };
-    // a escolha do atributo (03 §10): a chave de identidade.escolhas -> o rótulo
-    var ESCOLHA_ATTR = { 'attr.cd': 'Atributo da CD', 'attr.recurso.stamina': 'Atributo da Stamina', 'attr.recurso.eter': 'Atributo do Éter' };
     // o que é da raça e o que é da classe nas entradas (o campo do catálogo que diz de quem é)
     var RESTO = { raca: { tipos: ['traco', 'tecnologia', 'variante', 'subespecie', 'corrupcao'], campo: 'raca', pre: 'raca-', artigo: 'da raça' },
       classe: { tipos: ['tecnica', 'marca', 'ultimate'], campo: 'classe', pre: 'classe-', artigo: 'da classe' } };
@@ -7696,14 +7775,18 @@
     function D() { return KhRegras && KhRegras.dados ? KhRegras.dados() || {} : {}; }
     function periciaD(id) { return lista(D().pericias).filter(function (x) { return x.id === id; })[0] || null; }
     function nomePericia(id) { var p = periciaD(id); return p ? str(p.nome) : id; }
-    // os atributos da escolha 'maior' de uma fórmula (o nó 'esc' da AST do motor):
-    // 'attr.cd' (a CD da classe da ficha) e 'attr.recurso.<r>' (o máximo do recurso)
-    function attrsEscolha(ficha, chave) {
+    // os atributos de uma troca (chave do KhTroca): a perícia de dois atributos, ou
+    // o nó 'esc' da fórmula da CD da classe da ficha / do máximo do recurso
+    function attrsTroca(ficha, chave) {
       var d = D(), ast = null, m;
-      if (chave === 'attr.cd') {
+      if ((m = /^pericia\.([a-z-]+)$/.exec(str(chave)))) {
+        var pa = periciaD(m[1]);
+        return pa && pa.modo === 'maior' ? lista(pa.atributos).slice() : [];
+      }
+      if (chave === 'cd') {
         var cl = chaveDe(refDe(ficha, 'classe').id, 'classe-');
         ast = cl && obj(d.classes) && d.classes[cl] && d.classes[cl].cd ? d.classes[cl].cd.ast : null;
-      } else if ((m = /^attr\.recurso\.(saude|stamina|eter)$/.exec(str(chave)))) {
+      } else if ((m = /^recurso\.(saude|stamina|eter)$/.exec(str(chave)))) {
         ast = obj(d.recursos) && d.recursos[m[1]] ? d.recursos[m[1]].max : null;
       }
       function acha(n) {
@@ -7751,11 +7834,12 @@
       if (c === 'meta.nivel') return d({ tipo: 'inteiro', rotulo: 'Nível', min: 1, max: 5 });
       if (c === 'meta.xp') return d({ tipo: 'inteiro', rotulo: 'XP', min: 0, max: MAX_XP });
       if ((m = /^identidade\.(raca|variante|subespecie|classe|ramo|origem)$/.exec(c))) return d({ tipo: 'ref', ref: m[1], rotulo: REFS[m[1]] });
-      if ((m = /^periciasAttr\.([a-z-]+)$/.exec(c))) {
-        var pa = periciaD(m[1]);
-        return pa && pa.modo === 'maior' ? d({ tipo: 'attr', rotulo: 'Atributo de ' + str(pa.nome), pericia: m[1], opcoes: lista(pa.atributos).slice() }) : null;
+      if ((m = /^troca\.(.+)$/.exec(c)) && KhTroca.valida(m[1])) {
+        // perícia: só a de dois atributos; CD e recurso: os atributos dependem da ficha (attrsTroca)
+        var pm = /^pericia\.(.+)$/.exec(m[1]), pa = pm ? periciaD(pm[1]) : null;
+        if (pm && !(pa && pa.modo === 'maior')) return null;
+        return d({ tipo: 'troca', chave: m[1], rotulo: KhTroca.rotulo(m[1], pa ? str(pa.nome) : '') });
       }
-      if ((m = /^escolha\.(attr\.(?:cd|recurso\.(?:stamina|eter)))$/.exec(c))) return d({ tipo: 'escolhaAttr', chave: m[1], rotulo: ESCOLHA_ATTR[m[1]] });
       if (c === 'migracao.oficio') return d({ tipo: 'oficio', rotulo: 'Ofício(X) da ficha atual' });
       if ((m = /^atributos\.base\.(FOR|DES|CON|INT|SAB)$/.exec(c))) {
         return d({ tipo: 'inteiro', rotulo: NOME_AT[m[1]] + ' (base)', min: 1, max: 30, atributo: m[1] });
@@ -7969,16 +8053,12 @@
     }
 
     // ---------------- a escolha do atributo (03 §10) e a pendência do Ofício ----------------
-    function mudancasAttr(ficha, cp, bruto) {
+    function mudancasTroca(ficha, cp, bruto) {
       var v = str(bruto).trim().toUpperCase();
-      var ops = cp.tipo === 'attr' ? cp.opcoes : attrsEscolha(ficha, cp.chave);
+      var ops = attrsTroca(ficha, cp.chave);
       if (!ops.length) return { ok: false, erro: cp.rotulo + ': não há escolha de atributo aqui.' };
       if (v && ops.indexOf(v) < 0) return { ok: false, erro: cp.rotulo + ': escolha ' + ops.join(' ou ') + '.' };
-      var rot = cp.rotulo + ': ' + (v ? v + ' (escolhido)' : 'o maior');
-      if (cp.tipo === 'attr') return { ok: true, mudancas: [{ caminho: 'periciasAttr.' + cp.pericia, valor: v || undefined }], rotulo: rot };
-      var esc = obj(ficha) && obj(ficha.identidade) && obj(ficha.identidade.escolhas) ? clone(ficha.identidade.escolhas) : {};
-      if (v) esc[cp.chave] = v; else delete esc[cp.chave];
-      return { ok: true, mudancas: [{ caminho: 'identidade.escolhas', valor: esc }], rotulo: rot };
+      return { ok: true, mudancas: KhTroca.mudancas(ficha, cp.chave, v), rotulo: cp.rotulo + ': ' + (v ? v + ' (escolhido)' : 'o maior') };
     }
     // a pendência do Ofício(X) genérico da v2 (a migração não escolhe qual dos três recebe o grau)
     function pendenciaOficio(ficha) {
@@ -8007,7 +8087,7 @@
       var cp = campo(caminho);
       if (!cp) return { ok: false, erro: 'Este campo não se edita aqui.' };
       if (cp.tipo === 'ref') return mudancasRef(ficha, cp, bruto, op.contexto);
-      if (cp.tipo === 'attr' || cp.tipo === 'escolhaAttr') return mudancasAttr(ficha, cp, bruto);
+      if (cp.tipo === 'troca') return mudancasTroca(ficha, cp, bruto);
       if (cp.tipo === 'oficio') return mudancasOficio(ficha, cp, bruto);
       if (cp.tipo === 'conjunto') {
         var b = obj(bruto) ? bruto : {}, k = str(b.valor);
@@ -8104,8 +8184,8 @@
         rotulo: fora.length === 1 ? 'Remover o ajuste de ' + (semEmoji(rotuloNo) || fora[0]) : 'Remover ' + fora.length + ' ajustes' };
     }
 
-    return { NOME_AT: NOME_AT, RECURSOS: RECURSOS, REFS: REFS, MANTER: MANTER, MODOS: MODOS, MAX_MOTIVO: MAX_MOTIVO, ESCOLHA_ATTR: ESCOLHA_ATTR,
-      attrsEscolha: attrsEscolha, restos: restos, mudancaRestos: mudancaRestos, pendenciaOficio: pendenciaOficio, oficios: oficios,
+    return { NOME_AT: NOME_AT, RECURSOS: RECURSOS, REFS: REFS, MANTER: MANTER, MODOS: MODOS, MAX_MOTIVO: MAX_MOTIVO,
+      attrsTroca: attrsTroca, restos: restos, mudancaRestos: mudancaRestos, pendenciaOficio: pendenciaOficio, oficios: oficios,
       MAX_TEXTO: MAX_TEXTO, MAX_LISTA: MAX_LISTA, MAX_LORE: MAX_LORE,
       lerNumero: lerNumero, lerInteiro: lerInteiro, campo: campo, ler: ler, mudancas: mudancas, passo: passo,
       grauClicado: grauClicado, rotuloGrau: rotuloGrau, opcoesRef: opcoesRef, opcoesCondicao: opcoesCondicao, chaveItem: chaveItem,
@@ -9293,10 +9373,7 @@
           var atTit = p.modo === 'maior' ? (no && no.escolha && no.escolha.motivo ? no.escolha.motivo :
             'usa o maior entre ' + p.atributos.map(function (a) { return 'Mod.' + a; }).join(' e ')) : p.modo === 'porArma' ? 'o atributo da arma' :
             p.modo === 'dado' ? 'só o dado, sem atributo (D8a)' : NOME_ATRIBUTO[at] || '';
-          var atHTML = edP && p.modo === 'maior'
-            ? edAttr('periciasAttr.' + p.id, 'Atributo de ' + p.nome, p.atributos, f.periciasAttr && f.periciasAttr[p.id],
-              no && no.escolha && !no.escolha.trocado ? no.escolha.usado : maiorAttr(nos, p.atributos))
-            : esc(at);
+          var atHTML = p.modo === 'maior' && no && no.escolha ? troca(no) : esc(at);
           var circ = '';
           for (var i = 1; i <= 4; i++) {
             var tit = (bonus[i] != null ? '+' + bonus[i] + ' ' : '') + (graus[i] || '');
@@ -9346,13 +9423,20 @@
           var pc = typeof max === 'number' && max > 0 && typeof atual === 'number' ? Math.max(0, Math.min(1, atual / max)) * 100 : 0;
           return '<span class="' + P + '-barra ' + cls + '" aria-hidden="true"><span class="' + P + '-barra-fill" style="width:' + fmtPc(pc) + '%"></span></span>';
         }
-        // o seletor do atributo de um número com escolha (CD, Stamina e Éter; 03 §10), só no Ensaio
-        var escolhas = obj(idt.escolhas) ? idt.escolhas : {};
-        function attrDe(no) {
-          var e = edP && no && no.escolha && KhEdicao.ESCOLHA_ATTR[no.escolha.chave] ? no.escolha : null;
-          if (!e) return '';
-          return '<span class="' + P + '-par ke-ed-attr-l"><span class="' + P + '-rot">Atributo</span>' +
-            edAttr('escolha.' + e.chave, KhEdicao.ESCOLHA_ATTR[e.chave], e.atributos, escolhas[e.chave], e.trocado ? maiorAttr(nos, e.atributos) : e.usado) + '</span>';
+        // a troca manual do atributo (KhTroca: perícia de dois atributos, CD, Stamina e
+        // Éter; 03 §11): o MESMO componente em todo lugar. Leitura: a sigla usada, com
+        // "escolhido" quando o jogador fixou e o motivo na dica; Ensaio: o seletor,
+        // padrão "maior (X)". comRotulo: "Atributo" antes (recursos e CD)
+        function troca(no, comRotulo) {
+          var e = no && no.escolha;
+          if (!e || !e.chave) return '';
+          var corpo = edP
+            ? edAttr('troca.' + e.chave, (KhEdicao.campo('troca.' + e.chave) || {}).rotulo || 'Atributo', e.atributos,
+              e.trocado ? e.usado : '', e.trocado ? maiorAttr(nos, e.atributos) : e.usado)
+            : esc(e.usado) + (e.trocado ? ' <span class="kh-troca-marca">escolhido</span>' : '');
+          var t = '<span class="kh-troca' + (e.trocado ? ' kh-troca-fixa' : '') + '" data-troca="' + esc(e.chave) + '"' +
+            (edP ? '' : ' title="' + esc(e.motivo) + '"') + '>' + corpo + '</span>';
+          return comRotulo ? '<span class="' + P + '-par kh-troca-l"><span class="' + P + '-rot">Atributo</span>' + t + '</span>' : t;
         }
         function recurso(id, nome, icone, extra) {
           var x = rc[id] || {}, no = nos['recurso.' + id + '.max'];
@@ -9367,7 +9451,7 @@
         if (noCl && noCl.semContador) {
           // D105: o recurso da classe não é contador (Espadachim, Teurgo): as características, sem número
           recClasse = '<div class="' + P + '-rec ' + P + '-rec-classe ' + P + '-rec-sem" data-campo="recurso-classe"><span class="' + P + '-rec-ico">' + SVG_ACOES + '</span>' +
-            '<span class="' + P + '-rec-nome">Recurso de Classe <span class="' + P + '-sub">sem contador (D105)</span></span>' +
+            '<span class="' + P + '-rec-nome">Recurso de Classe <span class="' + P + '-sub">sem contador</span></span>' +
             '<span class="' + P + '-rec-txt">' + conta('recurso.classe.max', { texto: lista(noCl.itens).map(semEmoji).join(' · ') }) + '</span></div>';
         } else {
           var nomeCl = noCl ? semEmoji(str(noCl.rotulo).replace(/\s*máx\.?$/i, '')) : '';
@@ -9386,8 +9470,8 @@
           recurso('saude', 'Saúde', 'saude', sau.temporaria ? '<span class="' + P + '-rec-extra"><span class="' + P + '-rot">Temporária</span>' + nEstado('recursos.saude.temporaria', sau.temporaria) + '</span>' : '') +
           recurso('stamina', 'Stamina', 'stamina', '<span class="' + P + '-rec-extra">' +
             (sta.comprometida ? '<span class="' + P + '-rot">Comprometida</span>' + nEstado('recursos.stamina.comprometida', sta.comprometida) + ' ' : '') +
-            '<span class="' + P + '-rot">Disponível</span>' + conta('recurso.stamina.disponivel') + attrDe(nos['recurso.stamina.max']) + '</span>') +
-          recurso('eter', 'Éter', 'eter', attrDe(nos['recurso.eter.max']) ? '<span class="' + P + '-rec-extra">' + attrDe(nos['recurso.eter.max']) + '</span>' : '') + recClasse +
+            '<span class="' + P + '-rot">Disponível</span>' + conta('recurso.stamina.disponivel') + troca(nos['recurso.stamina.max'], true) + '</span>') +
+          recurso('eter', 'Éter', 'eter', troca(nos['recurso.eter.max']) ? '<span class="' + P + '-rec-extra">' + troca(nos['recurso.eter.max'], true) + '</span>' : '') + recClasse +
           alertasRecurso(res));
 
         // ---- derivados: Evasão, CD, Movimento, Ações, Sins
@@ -9398,7 +9482,7 @@
           tile('evasao', 'Evasão', img(ctx, 'evasao', P + '-der-img'),
             '<span class="' + P + '-par"><span class="' + P + '-rot">Passiva</span>' + conta('evasao.passiva') + '</span>' +
             '<span class="' + P + '-par"><span class="' + P + '-rot">Ativa</span>' + conta('evasao.ativa') + '</span>') +
-          tile('cd', 'CD', img(ctx, 'cd', P + '-der-img'), conta('cd') + attrDe(nos.cd)) +
+          tile('cd', 'CD', img(ctx, 'cd', P + '-der-img'), conta('cd') + troca(nos.cd, true)) +
           tile('movimento', 'Movimento', img(ctx, 'movimento', P + '-der-img'), conta('movimento', { un: ' m' })) +
           tile('acoes', 'Ações', '<span class="' + P + '-der-ico">' + SVG_ACOES + '</span>', conta('acoes')) +
           tile('sins', 'Sins', img(ctx, 'sins', P + '-der-img'), num('inventario.sins', f.inventario ? f.inventario.sins || 0 : 0, 'Sins', 0, 999999999)) +

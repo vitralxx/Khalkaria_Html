@@ -104,7 +104,7 @@ test('ouro da página: cobre os ramos (cada variante desenhou o que devia)', () 
   const h = fs.readFileSync(GOLDEN, 'utf8');
   [
     'data-rara', 'Efeito oculto até a carta ser revelada.', 'Foco Primordial', 'data-orfa', 'destrava no nível 4',
-    'sem contador (D105)', 'Marcas da Vhelor', 'em abstinência', 'Imunidade a condição', 'Idiomas', 'Cartas queimadas',
+    'sem contador', 'Marcas da Vhelor', 'em abstinência', 'Imunidade a condição', 'Idiomas', 'Cartas queimadas',
     'grau a escolher', 'Avisos do motor e da migração', 'http://site.test/images/ficha/', '(sem ficha)',
     'não pôde ser lida', 'não carregou', 'O motor falhou ao calcular: rede', 'Não carregou: data/catalogo/carta.json'
   ].forEach((s) => assert.ok(h.includes(s), 'o ouro devia conter "' + s + '"'));

@@ -474,10 +474,7 @@
           var atTit = p.modo === 'maior' ? (no && no.escolha && no.escolha.motivo ? no.escolha.motivo :
             'usa o maior entre ' + p.atributos.map(function (a) { return 'Mod.' + a; }).join(' e ')) : p.modo === 'porArma' ? 'o atributo da arma' :
             p.modo === 'dado' ? 'só o dado, sem atributo (D8a)' : NOME_ATRIBUTO[at] || '';
-          var atHTML = edP && p.modo === 'maior'
-            ? edAttr('periciasAttr.' + p.id, 'Atributo de ' + p.nome, p.atributos, f.periciasAttr && f.periciasAttr[p.id],
-              no && no.escolha && !no.escolha.trocado ? no.escolha.usado : maiorAttr(nos, p.atributos))
-            : esc(at);
+          var atHTML = p.modo === 'maior' && no && no.escolha ? troca(no) : esc(at);
           var circ = '';
           for (var i = 1; i <= 4; i++) {
             var tit = (bonus[i] != null ? '+' + bonus[i] + ' ' : '') + (graus[i] || '');
@@ -527,13 +524,20 @@
           var pc = typeof max === 'number' && max > 0 && typeof atual === 'number' ? Math.max(0, Math.min(1, atual / max)) * 100 : 0;
           return '<span class="' + P + '-barra ' + cls + '" aria-hidden="true"><span class="' + P + '-barra-fill" style="width:' + fmtPc(pc) + '%"></span></span>';
         }
-        // o seletor do atributo de um número com escolha (CD, Stamina e Éter; 03 §10), só no Ensaio
-        var escolhas = obj(idt.escolhas) ? idt.escolhas : {};
-        function attrDe(no) {
-          var e = edP && no && no.escolha && KhEdicao.ESCOLHA_ATTR[no.escolha.chave] ? no.escolha : null;
-          if (!e) return '';
-          return '<span class="' + P + '-par ke-ed-attr-l"><span class="' + P + '-rot">Atributo</span>' +
-            edAttr('escolha.' + e.chave, KhEdicao.ESCOLHA_ATTR[e.chave], e.atributos, escolhas[e.chave], e.trocado ? maiorAttr(nos, e.atributos) : e.usado) + '</span>';
+        // a troca manual do atributo (KhTroca: perícia de dois atributos, CD, Stamina e
+        // Éter; 03 §11): o MESMO componente em todo lugar. Leitura: a sigla usada, com
+        // "escolhido" quando o jogador fixou e o motivo na dica; Ensaio: o seletor,
+        // padrão "maior (X)". comRotulo: "Atributo" antes (recursos e CD)
+        function troca(no, comRotulo) {
+          var e = no && no.escolha;
+          if (!e || !e.chave) return '';
+          var corpo = edP
+            ? edAttr('troca.' + e.chave, (KhEdicao.campo('troca.' + e.chave) || {}).rotulo || 'Atributo', e.atributos,
+              e.trocado ? e.usado : '', e.trocado ? maiorAttr(nos, e.atributos) : e.usado)
+            : esc(e.usado) + (e.trocado ? ' <span class="kh-troca-marca">escolhido</span>' : '');
+          var t = '<span class="kh-troca' + (e.trocado ? ' kh-troca-fixa' : '') + '" data-troca="' + esc(e.chave) + '"' +
+            (edP ? '' : ' title="' + esc(e.motivo) + '"') + '>' + corpo + '</span>';
+          return comRotulo ? '<span class="' + P + '-par kh-troca-l"><span class="' + P + '-rot">Atributo</span>' + t + '</span>' : t;
         }
         function recurso(id, nome, icone, extra) {
           var x = rc[id] || {}, no = nos['recurso.' + id + '.max'];
@@ -548,7 +552,7 @@
         if (noCl && noCl.semContador) {
           // D105: o recurso da classe não é contador (Espadachim, Teurgo): as características, sem número
           recClasse = '<div class="' + P + '-rec ' + P + '-rec-classe ' + P + '-rec-sem" data-campo="recurso-classe"><span class="' + P + '-rec-ico">' + SVG_ACOES + '</span>' +
-            '<span class="' + P + '-rec-nome">Recurso de Classe <span class="' + P + '-sub">sem contador (D105)</span></span>' +
+            '<span class="' + P + '-rec-nome">Recurso de Classe <span class="' + P + '-sub">sem contador</span></span>' +
             '<span class="' + P + '-rec-txt">' + conta('recurso.classe.max', { texto: lista(noCl.itens).map(semEmoji).join(' · ') }) + '</span></div>';
         } else {
           var nomeCl = noCl ? semEmoji(str(noCl.rotulo).replace(/\s*máx\.?$/i, '')) : '';
@@ -567,8 +571,8 @@
           recurso('saude', 'Saúde', 'saude', sau.temporaria ? '<span class="' + P + '-rec-extra"><span class="' + P + '-rot">Temporária</span>' + nEstado('recursos.saude.temporaria', sau.temporaria) + '</span>' : '') +
           recurso('stamina', 'Stamina', 'stamina', '<span class="' + P + '-rec-extra">' +
             (sta.comprometida ? '<span class="' + P + '-rot">Comprometida</span>' + nEstado('recursos.stamina.comprometida', sta.comprometida) + ' ' : '') +
-            '<span class="' + P + '-rot">Disponível</span>' + conta('recurso.stamina.disponivel') + attrDe(nos['recurso.stamina.max']) + '</span>') +
-          recurso('eter', 'Éter', 'eter', attrDe(nos['recurso.eter.max']) ? '<span class="' + P + '-rec-extra">' + attrDe(nos['recurso.eter.max']) + '</span>' : '') + recClasse +
+            '<span class="' + P + '-rot">Disponível</span>' + conta('recurso.stamina.disponivel') + troca(nos['recurso.stamina.max'], true) + '</span>') +
+          recurso('eter', 'Éter', 'eter', troca(nos['recurso.eter.max']) ? '<span class="' + P + '-rec-extra">' + troca(nos['recurso.eter.max'], true) + '</span>' : '') + recClasse +
           alertasRecurso(res));
 
         // ---- derivados: Evasão, CD, Movimento, Ações, Sins
@@ -579,7 +583,7 @@
           tile('evasao', 'Evasão', img(ctx, 'evasao', P + '-der-img'),
             '<span class="' + P + '-par"><span class="' + P + '-rot">Passiva</span>' + conta('evasao.passiva') + '</span>' +
             '<span class="' + P + '-par"><span class="' + P + '-rot">Ativa</span>' + conta('evasao.ativa') + '</span>') +
-          tile('cd', 'CD', img(ctx, 'cd', P + '-der-img'), conta('cd') + attrDe(nos.cd)) +
+          tile('cd', 'CD', img(ctx, 'cd', P + '-der-img'), conta('cd') + troca(nos.cd, true)) +
           tile('movimento', 'Movimento', img(ctx, 'movimento', P + '-der-img'), conta('movimento', { un: ' m' })) +
           tile('acoes', 'Ações', '<span class="' + P + '-der-ico">' + SVG_ACOES + '</span>', conta('acoes')) +
           tile('sins', 'Sins', img(ctx, 'sins', P + '-der-img'), num('inventario.sins', f.inventario ? f.inventario.sins || 0 : 0, 'Sins', 0, 999999999)) +

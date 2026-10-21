@@ -64,13 +64,15 @@ test('campo: o tipo, o rótulo e a faixa de cada campo de estado; o resto não s
   assert.deepEqual(t('lore.historia'), ['textoLongo', 'História', undefined, 20000]);
   // 03 §10 e auditoria B: a subespécie (Inseto), o atributo das escolhas 'maior' e a pendência do Ofício
   assert.deepEqual(t('identidade.subespecie'), ['ref', 'Subespécie', undefined, undefined]);
-  assert.deepEqual([ED.campo('periciasAttr.movimento').tipo, ED.campo('periciasAttr.movimento').opcoes], ['attr', ['FOR', 'DES']]);
-  assert.equal(ED.campo('periciasAttr.movimento').rotulo, 'Atributo de Movimento');
-  assert.deepEqual([ED.campo('escolha.attr.cd').tipo, ED.campo('escolha.attr.cd').chave], ['escolhaAttr', 'attr.cd']);
-  assert.equal(ED.campo('escolha.attr.recurso.eter').rotulo, 'Atributo do Éter');
+  // a troca de atributo (KhTroca, 03 §11): um caminho só para perícia, CD, Stamina e Éter
+  assert.deepEqual([ED.campo('troca.pericia.movimento').tipo, ED.campo('troca.pericia.movimento').chave], ['troca', 'pericia.movimento']);
+  assert.equal(ED.campo('troca.pericia.movimento').rotulo, 'Atributo de Movimento');
+  assert.deepEqual([ED.campo('troca.cd').tipo, ED.campo('troca.cd').chave], ['troca', 'cd']);
+  assert.equal(ED.campo('troca.recurso.eter').rotulo, 'Atributo do Éter');
   assert.equal(ED.campo('migracao.oficio').tipo, 'oficio');
   ['id', 'rev', 'ajustes', 'recursos.saude.max', 'atributo.FOR.total', 'pericias.inexistente', 'atributos.base.CAR',
-    'periciasAttr.atacar', 'periciasAttr.percepcao', 'escolha.attr.recurso.saude', 'escolha.raca.atributos.0', 'identidade.escolhas']
+    'troca.pericia.atacar', 'troca.pericia.percepcao', 'troca.recurso.classe', 'troca.attr.cd', 'periciasAttr.movimento',
+    'escolha.attr.cd', 'escolha.raca.atributos.0', 'identidade.escolhas']
     .forEach((c) => assert.equal(ED.campo(c), null, c));
 });
 

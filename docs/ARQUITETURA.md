@@ -231,6 +231,9 @@ js/ficha/kh-efeitos.js           KhEfeitos (F3b), PURO: coleta os Mods com a tri
                                  (raça, fontes do contrato, entradas, nível, condições,
                                  itens pelo "quando", ajustes) e resolve o acúmulo
 js/ficha/kh-ajustes.js           KhAjustes (F3b), PURO: ajuste manual aplicado por nó (M2)
+js/ficha/kh-troca.js             KhTroca: a troca manual do atributo (perícia de dois
+                                 atributos, CD, Stamina, Éter): resolver, motivo, onde
+                                 grava (guardado/mudancas), rótulo do seletor
 js/ficha/kh-regras.js            KhRegras (F3b), PURO: grafo de derivados em ordem
                                  topológica; cada nó com termos, status, selos e a
                                  fórmula do tooltip. MODO SOMBRA: nada chama no site
@@ -285,8 +288,8 @@ js/ficha/kh-edicao.js            KhEdicao (F4.6b), PURO: o que a edição muda. 
                                  (Valor fixo ou Diferença, motivo, calculadoEm),
                                  mudancaAjuste, mudancaRemover (em lote), motivoNaoAjuste.
                                  Revisão de 2026-10-19 (03 §10, auditoria B): o atributo
-                                 das escolhas 'maior' (periciasAttr.<id>, escolha.attr.cd,
-                                 escolha.attr.recurso.<r>; attrsEscolha), a subespécie
+                                 das escolhas 'maior' (troca.<chave> do KhTroca;
+                                 attrsTroca), a subespécie
                                  (identidade.subespecie), a pendência do Ofício(X)
                                  (migracao.oficio, pendenciaOficio) e o que ficou da raça
                                  ou classe anterior (restos, mudancaRestos: avisa; remove
@@ -1014,7 +1017,8 @@ carregados (nada os chama até a F4). No node, carregados sozinhos, exportam por
 - Escolhas lidas de `identidade.escolhas` (livre até a F4c): `raca.atributos`
   (`'alternativo'`), `raca.atributos.<i>` (atributo ou lista, nos bônus com "ou"
   ou "qualquer"), `attr.recurso.stamina|eter` e `attr.cd` (troca do "maior", D7);
-  as 4 perícias "maior" usam `periciasAttr`. Carta especial: `estado.pontos`;
+  as 4 perícias "maior" usam `periciasAttr`. Quem lê e grava essas trocas é o
+  `KhTroca` (abaixo). Carta especial: `estado.pontos`;
   bônus rolado: `estado.valorRolado`; técnica só vale com `estado.ativo`.
 - `KhRegras.calculados(ficha, op)` é o `calculado` que o `KhEstado` usa para
   podar os ajustes migrados; `KhRegras.custoMagia(p)` e `resolverTeste(fontes)`
@@ -1190,7 +1194,21 @@ Revisão do Pedro e auditoria (2026-10-19, `03 §10` e `08 §B`; "Como ficou" no
 Espadachim, Stamina e Éter) é regra fechada, sem selo (o `gerar_regras_ficha.py`
 põe `canonico` no nó `esc`), e a dica diz "usa o maior entre Mod.X e Mod.Y" ou
 "usa Mod.X (escolhido)"; no Ensaio, um seletor troca o atributo à mão
-(`periciasAttr` e `identidade.escolhas`). O box da variante mostra as
+(`periciasAttr` e `identidade.escolhas`).
+
+**Troca de atributo, um componente só (`js/ficha/kh-troca.js`, 2026-10-21, 03 §11).**
+Todo número que usa "o maior entre dois atributos" passa pelo `KhTroca`:
+perícias de dois atributos (`pericia.<id>`), CD com escolha (`cd`), Stamina e
+Éter (`recurso.<r>`). Ele resolve (padrão o maior, empate o primeiro; o
+fixado à mão vale se for um dos atributos), escreve o motivo ("usa o maior
+entre Mod.X e Mod.Y" / "usa Mod.X (escolhido)") e diz onde gravar (perícia em
+`periciasAttr`, o resto em `identidade.escolhas['attr.<chave>']`; o schema não
+mudou). O motor (nó da perícia e nó `esc` das fórmulas) devolve a mesma forma de
+`no.escolha` {chave, atributos, usado, trocado, motivo}; a edição usa um caminho
+só, `troca.<chave>`; o desenho usa um componente só, `.kh-troca`
+(componentes.css): a sigla, com a marca "escolhido" quando fixada, e no Ensaio
+o seletor dentro. A flag `trocavel` do contrato não é lida (D154 em revisão com o
+balanceamento; o Pedro escolheu manter a troca). O box da variante mostra as
 subespécies do Inseto; Autômato e Corrompido dizem que não têm. Núcleo em duas
 colunas (Perícias e Capacidade | Recursos e Evasão, CD e Movimento); o drawer
 mantém a ordem dele pelo CSS. Marcas da Vhelor ocultas em todo modo até haver 1.

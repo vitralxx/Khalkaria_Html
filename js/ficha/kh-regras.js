@@ -27,6 +27,7 @@
   var KhInv = emNode ? require('./kh-inv.js') : raiz.KhInv;
   var KhEfeitos = emNode ? require('./kh-efeitos.js') : raiz.KhEfeitos;
   var KhAjustes = emNode ? require('./kh-ajustes.js') : raiz.KhAjustes;
+  var KhTroca = emNode ? require('./kh-troca.js') : raiz.KhTroca;
   function dadosPadrao() { return (raiz && raiz.KhRegrasDados) || (emNode ? require('./00-regras-dados.js') : null); }
 
   var KhRegras = (function () {
@@ -60,7 +61,7 @@
     }
 
     // ---------------- AST ----------------
-    // amb.ref(nome) -> {v, rot, fonte, st}; amb.escolha(noEsc, candidatos) -> índice ou null
+    // amb.ref(nome) -> {v, rot, fonte, st}; amb.troca(atributos) -> {chave, g} (KhTroca: o atributo fixado)
     function aval(no, amb, D) {
       var r;
       switch (no.t) {
@@ -105,33 +106,31 @@
             num: nome + '(' + args.map(function (x) { return x.num; }).join(', ') + ')', p: 3, st: st, fontes: fo, escolha: escA };
         }
         case 'esc': {
+          // o maior entre atributos, com a troca manual (KhTroca: a mesma regra das perícias)
           var cs = no.args.map(function (x) { return aval(x, amb, D); });
-          var i = amb.escolha ? amb.escolha(no, cs) : null, trocado = i != null && cs[i];
-          if (!trocado) {
-            i = 0;
-            cs.forEach(function (c, j) { if (c.v != null && (cs[i].v == null || c.v > cs[i].v)) i = j; });
-          }
-          var c = cs[i];
-          // a escolha sobe pela conta (o termo e o nó dizem qual atributo valeu, 03 §10)
           var ats = no.args.map(function (x) { var m = x.t === 'ref' && /^mod\.(\w+)$/.exec(x.ref); return m ? m[1] : null; });
-          return { v: c.v, sim: trocado ? c.sim + ' (escolhido)' : 'maior(' + cs.map(function (x) { return x.sim; }).join(', ') + ')',
-            num: c.num, p: 3, st: pior(D, no.st, c.st), fontes: c.fontes,
-            escolha: { i: i, trocado: !!trocado, opcoes: cs.map(function (x) { return x.sim; }), usado: c.sim,
-              atributos: ats.every(Boolean) ? ats : null } };
+          var soAttr = ats.every(Boolean), tr = soAttr && amb.troca ? amb.troca(ats) : null;
+          var e = KhTroca.resolver(tr ? tr.chave : null, soAttr ? ats : cs.map(function (x) { return x.sim; }), tr ? tr.g : null,
+            cs.map(function (x) { return x.v; }));
+          if (!soAttr) e = { i: e.i, trocado: false, atributos: null, motivo: 'usa o maior entre ' + entre(cs.map(function (x) { return x.sim; })) };
+          var c = cs[e.i];
+          // a escolha sobe pela conta (o termo e o nó dizem qual atributo valeu, 03 §10)
+          return { v: c.v, sim: e.trocado ? c.sim + ' (escolhido)' : 'maior(' + cs.map(function (x) { return x.sim; }).join(', ') + ')',
+            num: c.num, p: 3, st: pior(D, no.st, c.st), fontes: c.fontes, escolha: e };
         }
         default:
           throw new Error('KhRegras: nó de fórmula "' + no.t + '" sem avaliação aqui');
       }
     }
-    // o texto da escolha 'maior' entre atributos (D7, sem selo desde o 03 §10):
+    // o texto da escolha 'maior' entre atributos (D7, sem selo desde o 03 §10; o KhTroca):
     // "usa o maior entre Mod.FOR e Mod.DES" ou, trocado à mão, "usa Mod.FOR (escolhido)"
     function entre(l) { return l.length < 2 ? l.join('') : l.slice(0, -1).join(', ') + ' e ' + l[l.length - 1]; }
-    function motivoEscolha(e) { return !e ? '' : e.trocado ? 'usa ' + e.usado + ' (escolhido)' : 'usa o maior entre ' + entre(e.opcoes); }
-    // a escolha no nó (CD, Stamina e Éter): a chave de identidade.escolhas e os atributos
-    function escolhaDoNo(r, chave) {
-      var e = r && r.escolha;
-      if (!e || !e.atributos) return null;
-      return { chave: chave, atributos: e.atributos.slice(), usado: e.atributos[e.i], trocado: e.trocado, motivo: motivoEscolha(e) };
+    function motivoEscolha(e) { return e ? e.motivo || '' : ''; }
+    // a escolha no nó: a mesma forma em perícia, CD, Stamina e Éter
+    // {chave (KhTroca), atributos, usado, trocado, motivo}
+    function escolhaDoNo(e) {
+      if (!e || !e.atributos || !e.chave) return null;
+      return { chave: e.chave, atributos: e.atributos.slice(), usado: e.usado, trocado: e.trocado, motivo: e.motivo };
     }
     // "= <conta> = <valor>", sem repetir quando a conta já é o valor
     function conta(num, v) { var fv = fmt(v); return num === fv || num === numTxt(v) ? '= ' + fv : '= ' + num + ' = ' + fv; }
@@ -195,7 +194,6 @@
         nivel: Math.max(1, Math.min(5, inteiro(ficha.meta && ficha.meta.nivel, 1))),
         classe: classeCh && D.classes[classeCh] ? D.classes[classeCh] : null,
         raca: racaCh && D.racas[racaCh] ? D.racas[racaCh] : null,
-        escolhas: obj(ficha.identidade && ficha.identidade.escolhas) ? ficha.identidade.escolhas : {},
         sobrepeso: [], condicoes: ef.condicoes.slice()
       };
       ctx.v = function (c) { var n = ctx.nos[c]; return n ? n.valor : null; };
@@ -349,14 +347,9 @@
         return { v: null, rot: n, st: 'semStatus' };
       };
     }
-    function escolhaAttr(ctx, chave) {
-      var e = ctx.escolhas[chave];
-      return function (no, cs) {
-        if (!e) return null;
-        var i = -1;
-        no.args.forEach(function (a, j) { if (a.t === 'ref' && a.ref === 'mod.' + e) i = j; });
-        return i >= 0 ? i : null;
-      };
+    // amb.troca de uma fórmula com escolha (chave do KhTroca: 'cd', 'recurso.<r>')
+    function trocaDe(ctx, chave) {
+      return function (ats) { return { chave: chave, g: KhTroca.guardado(ctx.ficha, chave, ats) }; };
     }
 
     function noPericia(ctx, p) {
@@ -365,12 +358,10 @@
       var sim = [], num = [], total = 0, attr = null;
       if (p.modo === 'fixo') attr = p.atributos[0];
       else if (p.modo === 'maior') {
-        var esc = f.periciasAttr && f.periciasAttr[p.id];
-        if (p.atributos.indexOf(esc) >= 0) attr = esc;
-        else p.atributos.forEach(function (a) { if (attr === null || ctx.v('atributo.' + a + '.mod') > ctx.v('atributo.' + attr + '.mod')) attr = a; });
-        no.escolha = { chave: 'periciasAttr.' + p.id, atributos: p.atributos.slice(), usado: attr, trocado: attr === esc };
-        no.escolha.motivo = motivoEscolha({ trocado: no.escolha.trocado, usado: 'Mod.' + attr,
-          opcoes: p.atributos.map(function (a) { return 'Mod.' + a; }) });
+        var ch = 'pericia.' + p.id;
+        no.escolha = escolhaDoNo(KhTroca.resolver(ch, p.atributos, KhTroca.guardado(f, ch, p.atributos),
+          p.atributos.map(function (a) { return ctx.v('atributo.' + a + '.mod'); })));
+        attr = no.escolha.usado;
       }
       if (attr) {
         var m = ctx.v('atributo.' + attr + '.mod');
@@ -378,7 +369,8 @@
           op: 'soma', valor: m, ativo: true, motivo: p.modo === 'maior' ? no.escolha.motivo : '',
           status: pior(D, p.modo === 'maior' ? p.stEscolha : p.st, stNo(ctx, 'atributo.' + attr + '.mod')) });
         total += m;
-        sim.push({ op: '', t: p.modo === 'maior' && !no.escolha.trocado ? 'maior(' + p.atributos.map(function (a) { return 'Mod.' + a; }).join(', ') + ')' : 'Mod.' + attr });
+        sim.push({ op: '', t: p.modo !== 'maior' ? 'Mod.' + attr : no.escolha.trocado ? 'Mod.' + attr + ' (escolhido)'
+          : 'maior(' + p.atributos.map(function (a) { return 'Mod.' + a; }).join(', ') + ')' });
         num.push({ op: '', t: fmt(m) });
       } else if (p.modo === 'porArma') {
         no.termos.push({ rotulo: 'Atributo da arma', fonte: { tipo: 'regra', id: p.fo, nome: 'porArma' }, op: 'soma', valor: null,
@@ -465,9 +457,9 @@
         x['classe.' + k] = { v: cl[k] + coefBonus, rot: NOME_COEF[k], st: cl.st,
           fonte: { tipo: 'classe', id: cl.id, nome: cl.nome + ' (' + NOME_COEF[k] + ' ' + cl[k] + (coefBonus ? (coefBonus > 0 ? ' + ' : ' − ') + fmt(Math.abs(coefBonus)) : '') + ')' } };
         return x;
-      })() : null), escolha: escolhaAttr(ctx, 'attr.recurso.' + r) };
+      })() : null), troca: trocaDe(ctx, 'recurso.' + r) };
       var a = aval(rec.max, amb, D);
-      var escR = escolhaDoNo(a, 'attr.recurso.' + r);
+      var escR = escolhaDoNo(a.escolha);
       if (escR) no.escolha = escR;
       if (!cl) {
         no.termos.push({ rotulo: NOME_COEF[k] + ' × Nível', fonte: { tipo: 'regra', id: rec.fo, nome: 'classe' }, op: 'soma', valor: null,
@@ -629,8 +621,8 @@
     function noCD(ctx) {
       var D = ctx.D, no = novoNo('cd', 'CD'), cl = ctx.classe;
       if (!cl) { no.formula = { simbolica: 'CD da classe', numerica: '= ? (classe não definida)' }; return no; }
-      var amb = { ref: ambBase(ctx), escolha: escolhaAttr(ctx, 'attr.cd') }, a = aval(cl.cd.ast, amb, D);
-      var escC = escolhaDoNo(a, 'attr.cd');
+      var amb = { ref: ambBase(ctx), troca: trocaDe(ctx, 'cd') }, a = aval(cl.cd.ast, amb, D);
+      var escC = escolhaDoNo(a.escolha);
       if (escC) no.escolha = escC;
       termosDaFormula(cl.cd.ast, amb, D).forEach(function (t) { no.termos.push(t); });
       var txt = { sim: [], num: [] }, mods = ctx.mods(['cd']);
