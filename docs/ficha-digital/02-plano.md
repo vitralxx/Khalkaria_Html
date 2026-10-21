@@ -331,7 +331,7 @@ A barra do topo tem o **seletor de ficha** (D36, §3.1), **Ficha | Mesa**, Expor
 - um modelo de ação só (`KhAcao`), um executor (`KhMesa`), estado do turno dentro da ficha (`ficha.mesa`, um desfazer só), temporários em `ficha.temporarios[]`.
 O texto anterior deste bloco está no histórico do git.
 
-**Fase:** página e abas na F4; Mesa nas fases Mesa 0–4 (`10-mesa.md` §8).
+**Fase:** página e abas na F4; Mesa nas fases Mesa 0–5 (`10-mesa.md` §12).
 
 **Testes:** snapshot de estrutura das 5 abas (campos da física presentes por conjunto); os da Mesa estão no `10-mesa.md` §7.
 
@@ -489,7 +489,7 @@ A mesma estética de ramo serve à tela por ramo do M3 (travada na criação, se
   - o site mostra quanto o comerciante paga, com a conta: "Incomum 4d10+45 (49–85, média 67) × 50% (nível 1) = 24–42, média 33";
   - rola, ou aceita "rolei __", e desconta do estoque;
   - **Sins insuficientes** (Pedro, `03 §8`): o comerciante oferece o que tem. O jogador aceita, e o estoque zera e o log registra a oferta menor, ou recusa, e não há troca;
-  - todo comerciante compra dos jogadores (Pedro, `03 §8`); se cada um compra só a própria categoria é **PENDENTE C3**, e até lá o balcão avisa sem bloquear. O Sucateiro compra tudo.
+  - todo comerciante compra dos jogadores (Pedro, `03 §8`); cada um compra só a própria categoria e o Sucateiro compra tudo (**C3 fechada**, Pedro em 2026-10-21, `03 §14`).
 - **Tabela "quanto rende"** em cada card do Bazar no modo loja: o que o item rende nos níveis 1, 2 e 3, em faixa e média, a porcentagem sendo o que o comerciante paga ao comprar do jogador (Pedro, `03 §8`); a base (valor rolado ou média da faixa) e o arredondamento são **PENDENTE C2**. É o cálculo automático por nível que o Pedro pediu.
 - **Vitrine para os jogadores ("mostrar na tela"):**
   - tela cheia com o nome, tipo e nível do comerciante e os cards grandes com o preço final;
@@ -584,7 +584,7 @@ Regra geral: cada fase é publicável sozinha, com `python tools/build.py` verde
 | F4b | Bazar com a ficha aberta (M4) | F4 | — |
 | F4c | Assistente de criação e subida de nível (M3) | F4 | rodada 3, dúvidas 1 e 5 (faixa); rodada 4 (magias do Teurgo); tudo sai com selo |
 | F6 (partes 1–2) | **Feito em 2026-10-21.** Efeitos de item pela tabela por gatilho (rev. 11), interruptor do situacional, botão do evento de recurso, Saúde abaixo da metade | F4, F1d | — |
-| Mesa 0–4 | A Mesa (`10-mesa.md` rev. 2): prova de estética, motor, a aba, itens e magias, técnicas e cartas. Absorve a F5, a F5b, as partes 3–4 da F6 (consumir, usar, temporários, Vhelor no consumo) e a parte da F4.6d que ela usa (condições ativas, Saúde temporária, quantidade) | F4, F6 partes 1–2 | Mesa 4 espera a tabela de técnicas do balanceamento (`10-mesa.md` §9.B) |
+| Mesa 0–5 | A Mesa (`10-mesa.md` rev. 3): prova de estética, motor (com o catálogo de uso conferido no build, o `KhConta` por parcelas e o benefício do mestre), a aba com a confirmação, itens e magias, técnicas e cartas por classe, e a caça aos bugs. Absorve a F5, a F5b, as partes 3–4 da F6 (consumir, usar, temporários, Vhelor no consumo) e a parte da F4.6d que ela usa (condições ativas, Saúde temporária, quantidade) | F4, F6 partes 1–2 | Mesa 4 espera o catálogo de uso do balanceamento, por classe (`10-mesa.md` §13.H) |
 | F7 | Refino por família, páginas de classe (M7), lei de cor | F1a, F1b, F1c, F1e, F2; interativos depois da F4/F5 | aprovação da prova de estética (M7) |
 
 F1a–F1f correm em paralelo. F4b, F4c e a Mesa correm em paralelo depois da F4. F7 corre em paralelo a F3–F6 e à Mesa.
@@ -699,7 +699,7 @@ Na migração, o id `brutalista-investida` (renomeado para `brutalista-atropelar
 **Entrega e testes:** M3.
 **Pronto quando:** um personagem nível 1 sai do zero à ficha pronta só pelo assistente, indo e voltando entre passos sem perda, como ficha **nova** no índice e sem tocar as outras (D36); a tela por ramo mostra tiers e Marcas travados com o nível que destrava (D34); uma subida 1→2 fecha com +2 atributos, mão do Limiar registrada (carta grátis, compras e a queimada, D35), técnica nova e Tier 1 destravado, num passo só de desfazer; contagens do contrato como teto com aviso; o que o contrato não cobre sai com selo PENDENTE (balanceamento).
 
-### F5, F5b e F6 · agora fases Mesa 0–4
+### F5, F5b e F6 · agora fases Mesa 0–5
 
 Substituídas em 2026-10-21 pelo `10-mesa.md` §8. A F6 partes 1 e 2 (efeitos de item pela tabela por gatilho, interruptor do situacional, botão do evento) estão feitas. O que faltava da F6 (consumir, usar e ativar, temporários com duração, D23, `soParaRaca`, a Vhelor revelada no consumo, `weapons[]` completo) entra na Mesa 3. Os usos de técnica (F5b) entram na Mesa 4, pelo custo lido do texto até o bloco C.
 
@@ -738,7 +738,7 @@ Substituídas em 2026-10-21 pelo `10-mesa.md` §8. A F6 partes 1 e 2 (efeitos de
 
 **Com o balanceamento — rodada 5 (a enviar):** lista em `tools/pendentes_balanceamento.json` (§10). Os campos ficam `null` e o `[blocos]` FALHA se um deles perder a pergunta.
 
-**Com o balanceamento — rodada 6, Comerciantes (enviada em 2026-09-28, §10):** C1–C11. O Pedro respondeu direto a C1, a C6 e parte da C2 e da C3 (`03 §8`). Resposta do balanceamento em `d0c411b` (`references/20-tabela-efeitos-resposta.md` §4): **C7 fechada**, quem paga a subida (125/250 Sins) são os jogadores, pela D151; **C3 por dedução**, cada comerciante compra só a própria categoria e o Sucateiro compra tudo (falta o ok do Pedro); **C4 em parte**, "Equipamentos" = Arma, Armadura e Escudo. Continuam com o Pedro: se o investimento entra no estoque e se o estoque se mantém quando o teto sobe, e C2, C5, C6, C8–C11. Enquanto isso: selo PENDENTE, e o mestre decide à mão no balcão.
+**Com o balanceamento — rodada 6, Comerciantes (enviada em 2026-09-28, §10):** C1–C11. O Pedro respondeu direto a C1, a C6 e parte da C2 e da C3 (`03 §8`). Resposta do balanceamento em `d0c411b` (`references/20-tabela-efeitos-resposta.md` §4): **C7 fechada**, quem paga a subida (125/250 Sins) são os jogadores, pela D151; **C3 fechada**, cada comerciante compra só a própria categoria e o Sucateiro compra tudo (dedução do balanceamento confirmada pelo Pedro em 2026-10-21, `03 §14`); **C4 em parte**, "Equipamentos" = Arma, Armadura e Escudo (confirmado pelo Pedro no mesmo dia; Munição e Lixo seguem abertos). Continuam com o Pedro: se o investimento entra no estoque e se o estoque se mantém quando o teto sobe, e C2, C5, C6, C8–C11. Enquanto isso: selo PENDENTE, e o mestre decide à mão no balcão.
 
 **Com o Pedro**
 - **Editar o CSV** (D26b: acrescentar "Empilhável: pesa 1 bugiganga a cada 10 unidades." ao `Efeito_Jogador` de Casca de Raiz e Seiva da Vhelor; D25: "Saude" → "Saúde" na Erva Medicinal e "Armas Leves." como requisito do Anel do Esgrimista). Aprovado, mas a permissão da sessão bloqueou: **fica com ele**. Depois, `ESPERADO['empilhavel']` sobe para 87 e o AVISO some.

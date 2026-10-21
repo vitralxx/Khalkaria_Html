@@ -286,3 +286,30 @@ Quatro perguntas, todas respondidas com a opção recomendada.
   - custo de técnica: "Isso vale uma tabela feita pelo agente de balanceamento para não errar nenhum custo, o fluxo é um requisito, a concentração do artilheiro já não chega a ser, é gasta sempre que usada. e quando no custo tem virgulas é complementar não opcional".
 - **Ordem do trabalho:** revisar o plano e ver se algo agendado é mais importante que a Mesa. Nada é: a F4.6d (condições ativas, Saúde temporária, quantidade) entra na Mesa 1–2, que precisa dela; a F4.7 depende do ok dele; a FC e o Batedor esperam o balanceamento.
 - Especificação: `10-mesa.md` rev. 2. Prova: `tools/artefatos/prova-mesa.html` (2ª versão).
+
+## 14. A Mesa, críticas à 2ª prova (2026-10-21)
+
+- **Comerciantes:** C3 confirmada (cada comerciante compra só a própria categoria; o Sucateiro compra tudo). C4: "equipamentos são compostos por arma armadura e escudo".
+- **Linha curta e caixa da conta:** a linha montada só de campos está aprovada, mas ele teme a quantidade de técnicas; o ideal é valer para todos os assets. A caixa da conta do ataque desarmado (Ataque, Dano, Crítico, Fluxo) é "exatamente o propósito da mesa": trazer o implícito da técnica, magia ou carta ("quando a técnica fala você tem nível+3 usos, essa caixa deve mostrar coisas assim"). Ele mesmo aponta que automatizar isso por script pode ser inviável e que acertar a caixa em todo asset é um desafio.
+- **Fórmulas:** nenhum campo da Mesa mostra a fórmula. As fórmulas da ficha às vezes têm informação demais. O ideal: a origem de cada coeficiente e constante, **sem texto corrido**, com exceção para regras específicas ("Escolher o maior", Vitalidade, Vigor e Ressonância referenciando a classe…).
+- **Visual:** aprovou a mesa de rolagem e a pilha compacta, as cores, formatos, ícones, fonte e brilho. Falta **design por camadas**: contraste e seções (o avatar, o bloco dos atributos), e ergonomia na posição de cada recurso e campo. Hoje tudo está sobre o mesmo fundo e fica aglomerado.
+- **Trilho:** cresce com o uso e estica a página toda; a caixa das rodadas está "feia e simplória".
+- **Favoritos:** a lógica (requisitos, fora do turno) está boa; o visual das caixas é feio; a barra fica espremida pela coluna do avatar. Reorganizar os tamanhos.
+- **Registro completo:** abre esticando a página, só na coluna do meio.
+- **Defeito:** qualquer clique dispara de novo a animação dos dados.
+- **Condições:** aplicou Atordoado e nem as ações nem a Evasão caíram. "Suponho que as outras condições possam ter outras interações delicadas."
+- **Inteligência da Mesa:** a descrição e as consequências de cada asset "é incrível"; expandir a inteligência e atacar os bugs ao finalizar as features ("tenho medo dos bugs").
+- **Confirmação:** não achou o "Novo alvo". Proposta dele: uma fase de **confirmação** no uso de qualquer asset, com todas as informações e as consequências na ficha; num ataque, os dados, os modificadores e a PMA, com um botão simples para recomeçar a PMA ao lado dela (omitido no primeiro ataque). Com desfazer e confirmação a Mesa fica "oficialmente segura" e os bugs ficam visíveis ("se não aplicou uma consequência que prometeu"). "cada asset difere no modo de usar, mesmo de categorias iguais, uma magia pode rolar místico como acerto, ou exigir teste de resistência, ter opção de intensidade contida, ou não [...] não há escapatória, se não verificar individualmente as ações possíveis e consequências de cada interação ficha->mesa e mesa->ficha."
+- **Travas:** alguns campos não são alteráveis (treino de perícia), e uma trava assim prende o asset para sempre. "na sessão eu posso só decidir presentear meus jogadores com um benefício e a ficha deve poder aceitar essas adições, deixando registrado onde o cálculo sem as alterações por fora está."
+- **Reação (corrige a resposta do §13):** "ela volta no seu turno. Reação sempre volta no inicio do seu turno."
+- **Chip do Acelerar:** "Trabalhe com o agente de balanceamento para não alucinar."
+- **Ações e manobras (texto dele):**
+  - "Pular(2 Ações) -> 1/3 do seu movimento."
+  - "Acelerar(1 ação) → +3 m de movimento nesta rodada. (Só utilizável após movimentar-se)"
+  - "Defender (1 ação) → +2 Defender até seu próximo turno. Utilizável mais de uma vez por turno."
+  - Empurrar, Desarmar e Agarrar com "(2 ações)" cada; os textos batem com o Notion.
+  - Investida (2 ações): o texto do Notion ("em caso de sucesso você realiza ação livre para Atacar ele e segue para o próximo alvo na trajetória, em caso de falha você é interceptado e para antes do alvo contra qual falhou e realiza como ação livre a ação Atacar contra ele"). A prova não deixava atacar mais de uma vez: tem de ser uma sequência de testes de Movimento (sucesso = ataque e próximo teste; falha = ataque e para).
+  - Retaliação: o texto do Sistema, mais "Em caso de empate, o atacante sempre ganha."
+- **Conferido no Notion em 2026-10-21:** o "Só utilizável após movimentar-se" do Acelerar, o "Utilizável mais de uma vez por turno" do Defender e o "(2 ações)" das três manobras **não estão** no Notion. O Defender do Notion diz "Não acumula com ela mesma.", o que contradiz o "mais de uma vez por turno" se o bônus somar. A Investida do Notion já diz "ação livre", e o site ainda mostra "realiza 1 ação: Atacar" (sync do Sistema pendente). Tudo foi ao balanceamento.
+- **Alvo:** a PMA por sequência não é robusta, porque outras técnicas também dependem do alvo ("como o motor checaria se o agarrão é pra aplicar o bonus ou não?"). Ele prefere calcular automaticamente para cada alvo, sem que os jogadores cadastrem alvos na Mesa.
+- **Ordem:** "Continue com o planejamento, vamos tentar minimizar os bugs nesse aumento de escopo, garantindo um funcionamento real." Especificação: `10-mesa.md` rev. 3.
