@@ -153,3 +153,23 @@ Nos checadores de efeitos, o resultado é este:
     vantagem se a regra geral for essa. Falta o ok do Pedro.
   - **C4, em parte:** "Equipamentos" é Arma, Armadura e Escudo. É o que diz o Ofício(Ferraria) no Notion.
   - O resto da rodada (C2, C5, C6, C8–C11) foi ao Pedro com recomendação. A resposta vem na próxima entrega.
+
+## 5. Rodada de 2026-10-21 (03 §11 e 10-mesa.md §9 da main)
+
+- **D155 corrige a D154:** o maior vale por padrão, **com troca manual**, nas perícias de dois atributos, na CD e nos
+  status. A linha do Notion foi refeita (diff conferido). O contrato está na rev. 12, com `trocavel: true` e
+  `modoEscolhaTrocavel: true` canônicos para as 4 perícias, a CD do Espadachim, a Stamina e o Éter. O teste 390 volta
+  a valer como estava.
+- **Marcas da Vhelor:** a seção continua visível depois da 1ª Marca, mesmo que o contador volte a 0. Isso confirma a
+  leitura da rev. 11.
+- **C3:** confirmado. Cada comerciante compra só a própria categoria, e o Sucateiro compra tudo.
+- **Mesa §9:**
+  1. **Cura de Stamina e Éter:** confirmado. *"A cura não passa do máximo"* está em Sistema > Status > Regras dos
+     status, que vale para os três status.
+  2. **Reação:** confirmado. Sistema > Atacando: *"Ao final do seu turno, ela considera a reação gasta e não pode mais
+     usá-la até o início do próximo."* O turno que gasta a reação é o do atacante. Encerrar o próprio turno não gasta.
+  3. **Custo lido do texto:**
+     - "Passiva • N recurso" é custo por uso (G12), e nunca reserva.
+     - "A ou B" é escolha de quem usa a técnica, um dos dois por uso.
+     - Custo variável ("2+ Stamina", "1 Éter para cada…") se escolhe dentro do único uso por turno (D126).
+     - Fora disso, a leitura do texto está certa até o bloco C.

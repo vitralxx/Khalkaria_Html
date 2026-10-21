@@ -217,6 +217,7 @@ Tudo o que mudou no Notion desde o último sync do site. Regerar `data/*.json` e
 - **2026-10-20, Sistema: D154 (D7 revista)**: página `2b76e3a4…`. Conferido por fetch e diff; só entrou uma linha, abaixo da Lista de Perícias:
   - *"Perícias com dois atributos (Movimento, Convencimento, Intimidação e Enganação) usam sempre o maior dos dois modificadores, sem troca manual. O mesmo vale para a CD de classe que oferece dois atributos: o maior sempre prevalece no cálculo."*
   - **Regerar:** `sistema.html`. **Contrato:** rev. 11 (`trocavel: false`, canônico).
+- **2026-10-21, Sistema: D155 corrige a D154**: mesma linha, conferida por fetch e diff. Agora: *"…usam por padrão o maior dos dois modificadores, e o jogador pode trocar para o outro. O mesmo vale para a CD de classe e para os status (Stamina, Éter) que oferecem dois atributos."* Contrato rev. 12 (`trocavel: true`, canônico).
 - **Pendente, ainda não gravado (D153, 2026-10-19): duração do *Desprevenido*.** Regra do Pedro: a condição sempre expira em 1 rodada/turno; a rodada inteira sem reação; só o 1º acerto é crítico, porque o *Exposto* sai ao acertar.
   - Hoje o card não tem duração, nem no Notion (Condições) nem no `data/condicoes.json`.
   - Vai ao Notion com o aceite do Pedro. Depois, regerar `condicoes.html` e o contrato da ficha (se o *Desprevenido* tiver duração lá).

@@ -971,6 +971,13 @@ Texto verbatim em `18-batedor-rework.md` §0 e as lições em `19-gabarito-de-cl
   - Mesmo pedido: a tabela de efeitos dos itens por gatilho (`20-tabela-efeitos-resposta.md`). *"tabela essa que deve
     ser feita pelo agente 'khalkaria bazar balanceamento'"*.
   - A seção das Marcas da Vhelor fica **oculta** na ficha até um item dar a primeira Marca.
+- **D155** (2026-10-21, `03-respostas-pedro.md` §11 da main) **corrige a D154:** o maior vale por padrão e **o jogador
+  pode trocar** o atributo à mão, nas perícias de dois atributos, na CD com escolha e nos status (Stamina, Éter). O
+  "sem troca manual" da D154 foi uma leitura errada da frase relayada. Notion e contrato (rev. 12) refeitos.
+  - Marcas da Vhelor: a seção **continua visível** se o Elixir da Expurgação levar o contador a 0.
+  - Comerciantes, C3: cada um compra só a própria categoria; o Sucateiro compra tudo.
+  - Pedro: *"pode deixar a opção de troca manual no cálculo dos status, padronizando como uma classe esse tipo de
+    troca manual em cálculo"*.
 
 ## D68 — O andar de Nível 1 (truques)
 Todas as magias existentes **sobem 1 nível**: as antigas 1–4 viram 2–5. O novo Nível 1 são os
