@@ -4368,7 +4368,7 @@
           pior(D, lim.st, r.st), { formula: { simbolica: x[2] + ' atual < ' + r.sim, numerica: '= ' + fmt(atual) + ' < ' + r.num + ' = ' + fmt(r.v) } });
       });
       lista(M.estadosFinais).forEach(function (e) {
-        if (DETECTORES_FINAIS.indexOf(e.id) < 0) ctx.avisos.push({ tipo: 'estado-final-sem-detector', id: e.id, msg: 'estado final "' + e.id + '" do contrato sem detector no KhRegras' });
+        if (DETECTORES_FINAIS.indexOf(e.id) < 0) ctx.avisos.push({ tipo: 'estado-final-sem-detector', id: e.id, msg: 'A regra de estado final "' + e.id + '" ainda não é conferida pela ficha' });
       });
       return vistos;
     }

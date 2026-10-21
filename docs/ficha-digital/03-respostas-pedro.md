@@ -268,3 +268,21 @@ Quatro perguntas, todas respondidas com a opção recomendada.
   - **Mão:** sim, até 8 atalhos fixados pelo jogador, guardados na ficha;
   - **drawer:** sim, a Mesa compacta (barra do turno, Mão e registro).
 - Especificação: `10-mesa.md`.
+
+## 13. A Mesa, críticas à 1ª prova (2026-10-21)
+
+- **Turnos e modos:** "ela não rastreia alvos, porém rastreia turnos, atacar duas vezes sem passar o turno conta o pma -5 no segundo ataque, isso vale um modo combate e um modo exploração para dividir essas regras". A divisão das mecânicas foi pedida ao balanceamento (`10-mesa.md` §9.C).
+- **Registro:** "Sugiro que o registro deixe de ser uma lista de log e passe a ser a seção centro da tela que tem a arte estética de uma mesa de rpg, quando rola dados eles aparecem." Sem custar utilidade.
+- **Equipamento:** um painel com um boneco: 1 item em cada mão, 1 armadura pesada, 2 leves, 3 itens mágicos sintonizados; o resto no inventário. Ele mesmo apontou o risco de pôr 2 itens de duas mãos, um em cada mão (pergunta 9.E ao balanceamento).
+- **Painel do jogador:** Saúde, Stamina, Éter e o recurso de classe ao lado do boneco; abaixo, ações em losango (gastar deixa amarelo-escuro), reação em losango oco, ação livre compacta, magia (pode ou não conjurar: Foco numa das mãos e Treinado em Místico) e movimento; condições numa barra abaixo do boneco, com "+ condição".
+- **Turno:** "Encerrar meu turno" na mesa; "sair do combate" vira um interruptor Combate | Exploração em cima, à esquerda; ao começar o combate, a ficha fica a uma aba de distância, não no drawer, mas o drawer também existe e funciona.
+- **Tempo:** o botão não abria nada. As rodadas viram um trilho acima da mesa, com um resumo do que aconteceu com o personagem em cada rodada.
+- **Favoritos:** favoritar qualquer coisa continua; sem o requisito, fica obscurecido, não clicável e sempre com o motivo. Consumir item não exige pô-lo na mão: a ação de consumir já inclui pegar e guardar.
+- **Habilidades:** a seção mais trabalhada, com as abas Combate, Técnicas, Magias, Itens, Perícias e Cartas; favoritar, usar, arremessar, aplicar, ativar; quantas ações custa, toda a informação e link para a regra. Os filtros Ação, Reação e Livre ficam.
+- **Textos:** cuidado com o que vai para o site, que pode vazar ponderação interna. Ele gostou da duração no chip ("até o fim do seu turno") e do resumo nos chips. Perguntou se as frases-resumo das técnicas da prova foram escritas pelo agente: **foram**, à mão. A 2ª prova tirou essas frases, e a Mesa real monta a linha curta só dos campos da tabela do balanceamento (`10-mesa.md` §3.7). O chip do Acelerar passou a dizer "nesta rodada", que é o texto do Sistema.
+- **Respostas às 3 perguntas da rev. 1:**
+  - "nenhum status passa seu valor máximo na cura";
+  - "Acabar seu turno não gasta reação, certas técnicas, retalhar e defender gastam reação. Então, no inicio da próxima rodada você sempre ganha +1 reação, limite sempre 1 por padrão, tem técnicas que aumentam isso";
+  - custo de técnica: "Isso vale uma tabela feita pelo agente de balanceamento para não errar nenhum custo, o fluxo é um requisito, a concentração do artilheiro já não chega a ser, é gasta sempre que usada. e quando no custo tem virgulas é complementar não opcional".
+- **Ordem do trabalho:** revisar o plano e ver se algo agendado é mais importante que a Mesa. Nada é: a F4.6d (condições ativas, Saúde temporária, quantidade) entra na Mesa 1–2, que precisa dela; a F4.7 depende do ok dele; a FC e o Batedor esperam o balanceamento.
+- Especificação: `10-mesa.md` rev. 2. Prova: `tools/artefatos/prova-mesa.html` (2ª versão).

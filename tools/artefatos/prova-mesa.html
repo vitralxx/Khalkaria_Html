@@ -4,983 +4,1441 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=UnifrakturMaguntia&display=swap">
 <style>
-/* Layout: a Mesa em três zonas. Barra do turno fixa no topo da aba, a Mão logo
-   abaixo, as ações em seis grupos no centro e o registro numa coluna à direita.
-   Cores e fontes são os tokens do site (css/tokens.css, css/style.css): tema
-   escuro único, como o site. */
+/* Layout: três colunas. À esquerda o personagem (boneco com o equipamento, recursos,
+   recursos do turno e condições); no centro a mesa (trilho das rodadas, o pano onde os
+   dados caem com a pilha do que já aconteceu, a borda com o turno, os favoritos); à
+   direita as habilidades. Abaixo de 1180 px as habilidades descem; abaixo de 760 px
+   (o drawer, o celular) tudo vira uma coluna. Tema escuro único, como o site. */
 :root {
   color-scheme: dark;
-  --pedra: #0a0a0c;
-  --mesa: linear-gradient(180deg, #13111a, #0c0b10);
+  --fundo: #0a0a0c;
   --placa: #15151f;
-  --placa-alta: #1a1a24;
+  --placa-alta: #1b1a25;
+  --placa-funda: #100f16;
   --fio: #2a2a35;
   --fio-forte: #3a3845;
   --texto: #e8e6e3;
-  --texto-2: #a09c94;
-  --texto-3: #8a8580;
+  --texto-2: #aaa59c;
+  --texto-3: #87827b;
   --ouro: #d4af37;
   --ambar: #e08b2c;
-  --ambar-dim: #8a5518;
   --ambar-fundo: #1d1408;
+  --ambar-dim: #8a5518;
+  --losango: #f2c94c;
+  --losango-gasto: #5f4b12;
   --saude: #ef4444;
   --stamina: #fbbf24;
   --eter: #8b5cf6;
-  --fluxo: #ff6b35;          /* recurso do Monge na cor do Ramo do Punho */
+  --fluxo: #ff6b35;
   --rubro: #b3261e;
-  --rubro-fundo: #2a1212;
-  --verde: #6ee7a0;
-  --verde-fundo: #13261c;
-  --escola-destruicao: #f97316;
+  --rubro-claro: #ff8a7a;
+  --rubro-fundo: #2a0f0d;
+  --verde: #4fb39a;
+  --verde-fundo: #0e2420;
+  --madeira-1: #3d2817;
+  --madeira-2: #1d130b;
+  --madeira-veio: rgba(0, 0, 0, .2);
+  --feltro-1: #16302a;
+  --feltro-2: #08110f;
+  --feltro-texto: #dfe8e3;
+  --feltro-texto-2: #a9bab2;
+  --feltro-fio: rgba(212, 175, 55, .3);
+  --osso: #ece2c8;
+  --osso-fio: #8d7c56;
+  --osso-tinta: #1d160e;
+  --dano: #7d1d1a;
+  --dano-fio: #d0473b;
+  --cura: #1d5a4b;
+  --cura-fio: #58c2a6;
+  --reduz: #4d3410;
+  --reduz-fio: #e08b2c;
   --rar-ordinario: #b8b5ad;
   --rar-incomum: #6ee7a0;
   --rar-exotico: #c084fc;
-  --canto: #8a551866;
-  --cantos:
-    linear-gradient(var(--canto), var(--canto)) left top / 10px 1px no-repeat,
-    linear-gradient(var(--canto), var(--canto)) left top / 1px 10px no-repeat,
-    linear-gradient(var(--canto), var(--canto)) right top / 10px 1px no-repeat,
-    linear-gradient(var(--canto), var(--canto)) right top / 1px 10px no-repeat,
-    linear-gradient(var(--canto), var(--canto)) left bottom / 10px 1px no-repeat,
-    linear-gradient(var(--canto), var(--canto)) left bottom / 1px 10px no-repeat,
-    linear-gradient(var(--canto), var(--canto)) right bottom / 10px 1px no-repeat,
-    linear-gradient(var(--canto), var(--canto)) right bottom / 1px 10px no-repeat;
+  --f-tit: 'Cinzel', 'Trajan Pro', Georgia, serif;
+  --f-corpo: 'Crimson Text', 'Iowan Old Style', Georgia, serif;
   --f-gotica: 'UnifrakturMaguntia', 'Cinzel', Georgia, serif;
-  --f-rotulo: 'Cinzel', Georgia, serif;
-  --f-corpo: 'Crimson Text', Georgia, serif;
-  --raio: 6px;
 }
 * { box-sizing: border-box; }
-body {
-  background: var(--pedra);
-  color: var(--texto);
-  font-family: var(--f-corpo);
-  font-size: 17px;
-  line-height: 1.45;
-  padding-left: max(16px, env(safe-area-inset-left, 0px));
-  padding-right: max(16px, env(safe-area-inset-right, 0px));
-  padding-block: 20px 40px;
-}
-button, input, select { font: inherit; color: inherit; }
-button { cursor: pointer; }
-:focus-visible { outline: 2px solid var(--ambar); outline-offset: 2px; }
-.pg { max-width: 1320px; margin: 0 auto; display: grid; gap: 18px; }
+html { background: var(--fundo); }
+body { background: var(--fundo); color: var(--texto); font: 16px/1.45 var(--f-corpo); }
+button { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--ouro); outline-offset: 2px; }
+a { color: var(--ouro); }
 
-/* ---------------------------------------------------------------- cabeçalho */
-.cab { display: grid; gap: 10px; }
-.cab-sobre {
-  margin: 0; font-family: var(--f-rotulo); font-size: .72rem; letter-spacing: .14em;
-  text-transform: uppercase; color: var(--ambar);
-}
-.cab-linha { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 18px; }
-.cab-tit { margin: 0; font-family: var(--f-gotica); font-weight: 400; font-size: 2.6rem; line-height: 1; color: var(--ouro); }
-.cab-id { margin: 0; color: var(--texto-2); font-size: 1.05rem; }
-.cab-id b { color: var(--texto); font-weight: 600; }
-.abas-ficha { display: flex; flex-wrap: wrap; gap: 4px; border-bottom: 1px solid var(--fio); }
-.abas-ficha span {
-  padding: 6px 12px; font-family: var(--f-rotulo); font-size: .78rem; letter-spacing: .06em;
-  color: var(--texto-3); border: 1px solid transparent; border-bottom: 0; border-radius: var(--raio) var(--raio) 0 0;
-}
-.abas-ficha span[aria-current] { color: var(--ouro); border-color: var(--fio); background: var(--placa); margin-bottom: -1px; }
+.pg { max-width: 1720px; margin-inline: auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 14px 48px; }
 
-/* ---------------------------------------------------------------- a mesa */
-.mesa {
-  display: grid; gap: 14px;
-  grid-template-columns: minmax(0, 1fr) 300px;
-  grid-template-areas: "turno registro" "mao registro" "acoes registro";
-  align-items: start;
-}
-.zona { background: var(--mesa); background-color: #0f0e14; border: 1px solid var(--fio); border-radius: var(--raio); position: relative; }
-.zona::before { content: ""; position: absolute; inset: 0; background: var(--cantos); pointer-events: none; border-radius: inherit; }
-.rot {
-  font-family: var(--f-rotulo); font-size: .68rem; letter-spacing: .14em; text-transform: uppercase; color: var(--texto-3);
-}
+/* ---------- cabeçalho da ficha ---------- */
+.cab { display: grid; gap: 6px; margin-bottom: 14px; }
+.cab-sobre { margin: 0; font: 600 .7rem/1.3 var(--f-tit); letter-spacing: .14em; text-transform: uppercase; color: var(--texto-3); }
+.cab-linha { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 14px; }
+.cab-tit { margin: 0; font: 400 2.2rem/1 var(--f-gotica); color: var(--ouro); }
+.cab-id { margin: 0; color: var(--texto-2); }
+.abas-ficha { display: flex; flex-wrap: wrap; gap: 2px; border-bottom: 1px solid var(--fio); }
+.abas-ficha span { padding: 8px 12px; font: 600 .72rem/1 var(--f-tit); letter-spacing: .09em; text-transform: uppercase; color: var(--texto-3); border-bottom: 2px solid transparent; margin-bottom: -1px; }
+.abas-ficha [aria-current] { color: var(--ouro); border-bottom-color: var(--ouro); }
 
-/* ---- barra do turno */
-.turno { grid-area: turno; padding: 14px 16px; display: grid; gap: 12px; position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; }
-.recursos { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
-.rec { display: grid; gap: 4px; min-width: 0; }
-.rec-topo { display: flex; align-items: baseline; justify-content: space-between; gap: 6px; }
-.rec-num { font-family: var(--f-rotulo); font-weight: 700; font-size: 1.35rem; font-variant-numeric: tabular-nums; }
-.rec-num small { font-size: .8rem; font-weight: 400; color: var(--texto-3); }
-.rec-barra { height: 6px; border-radius: 3px; background: #ffffff10; overflow: hidden; }
-.rec-barra i { display: block; height: 100%; border-radius: inherit; background: var(--c); box-shadow: 0 0 10px -2px var(--c); }
-.rec-pm { display: flex; gap: 4px; }
-.rec-pm button {
-  width: 26px; height: 22px; border-radius: 4px; border: 1px solid var(--fio-forte); background: #ffffff06;
-  font-family: var(--f-rotulo); font-size: .85rem; line-height: 1; color: var(--texto-2);
-}
+/* ---------- topo da mesa ---------- */
+.app { container: app / inline-size; }
+.app.drawer { max-width: 440px; margin-inline: auto; padding: 12px; border: 1px solid var(--fio-forte); border-radius: 14px; background: var(--placa-funda); }
+.topo { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-bottom: 12px; }
+.topo-dir { margin-left: auto; display: flex; flex-wrap: wrap; gap: 6px; }
+.modo { display: inline-flex; padding: 3px; gap: 2px; border: 1px solid var(--fio-forte); border-radius: 999px; background: var(--placa); }
+.modo button { border: 0; background: none; padding: 8px 16px; border-radius: 999px; font: 700 .74rem/1 var(--f-tit); letter-spacing: .12em; text-transform: uppercase; color: var(--texto-3); cursor: pointer; }
+.modo [data-modo="combate"][aria-checked="true"] { background: var(--rubro-fundo); color: var(--texto); box-shadow: inset 0 0 0 1px var(--rubro); }
+.modo [data-modo="exploracao"][aria-checked="true"] { background: var(--verde-fundo); color: var(--texto); box-shadow: inset 0 0 0 1px var(--verde); }
+.aviso { font: italic .95rem/1.2 var(--f-corpo); color: var(--ambar); min-height: 1.2em; }
+
+.bt { border: 1px solid var(--fio-forte); background: var(--placa-alta); padding: 7px 12px; border-radius: 7px; font: 600 .7rem/1.1 var(--f-tit); letter-spacing: .09em; text-transform: uppercase; cursor: pointer; }
+.bt:hover:not(:disabled) { border-color: var(--ouro); }
+.bt:disabled { opacity: .4; cursor: not-allowed; }
+.bt[aria-pressed="true"] { border-color: var(--ouro); color: var(--ouro); }
+
+/* ---------- grade ---------- */
+.grade { display: grid; grid-template-columns: 352px minmax(0, 1fr) 420px; gap: 16px; align-items: start; }
+.painel { background: var(--placa); border: 1px solid var(--fio); border-radius: 12px; }
+.rot { font: 600 .64rem/1.1 var(--f-tit); letter-spacing: .13em; text-transform: uppercase; color: var(--texto-3); }
+
+/* ---------- personagem ---------- */
+.pers { padding: 14px; display: grid; gap: 14px; }
+.boneco { display: grid; grid-template-columns: minmax(0, 1fr) 124px; gap: 14px; align-items: start; }
+.doll { display: grid; grid-template-columns: 44px minmax(0, 1fr) 44px; grid-template-rows: 44px 44px 44px auto; gap: 10px 6px; }
+.av { grid-column: 2; grid-row: 1 / 4; position: relative; display: grid; place-items: center; }
+.av svg { width: 100%; max-width: 92px; height: 100%; }
+.av-anel { fill: none; stroke: var(--ouro); stroke-opacity: .14; }
+.av-corpo { fill: #23212c; stroke: var(--fio-forte); stroke-width: 1.2; }
+.av .slot { position: absolute; left: 50%; top: 44%; transform: translate(-50%, -50%); }
+.s-leve1 { grid-column: 1; grid-row: 1; } .s-leve2 { grid-column: 3; grid-row: 1; }
+.s-maoEsq { grid-column: 1; grid-row: 3; } .s-maoDir { grid-column: 3; grid-row: 3; }
+.sints { grid-column: 1 / -1; display: flex; justify-content: center; gap: 8px; }
+.slot { width: 44px; height: 44px; border-radius: 9px; border: 1px dashed var(--fio-forte); background: var(--placa-funda); display: grid; place-items: center; cursor: pointer; padding: 0; position: relative; color: var(--texto-3); }
+.slot small { font: 600 .5rem/1.05 var(--f-tit); letter-spacing: .06em; text-transform: uppercase; text-align: center; }
+.slot.cheio { border-style: solid; border-color: var(--r); color: var(--r); background: var(--placa-alta); box-shadow: inset 0 0 14px rgba(0, 0, 0, .55); }
+.slot svg { width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linejoin: round; stroke-linecap: round; }
+.slot.alerta::after { content: '!'; position: absolute; top: -7px; right: -7px; width: 17px; height: 17px; border-radius: 50%; background: var(--ambar); color: var(--osso-tinta); font: 700 11px/17px var(--f-tit); text-align: center; }
+
+.barras { display: grid; gap: 11px; }
+.rec { display: grid; gap: 4px; }
+.rec-topo { display: flex; align-items: baseline; gap: 4px; }
+.rec-topo .rot { flex: 1; color: var(--c); opacity: .9; }
+.rec-num { font: 700 1.02rem/1 var(--f-tit); font-variant-numeric: tabular-nums; }
+.rec-num small { color: var(--texto-3); font-weight: 400; font-size: .74rem; }
+.rec-barra { height: 6px; border-radius: 3px; background: var(--placa-funda); box-shadow: inset 0 0 0 1px var(--fio); overflow: hidden; }
+.rec-barra i { display: block; height: 100%; background: var(--c); transition: width .35s ease; }
+.rec-pm { display: flex; gap: 3px; }
+.rec-pm button { width: 22px; height: 20px; border: 1px solid var(--fio-forte); background: var(--placa-alta); border-radius: 5px; padding: 0; font: 600 .8rem/1 var(--f-tit); cursor: pointer; color: var(--texto-2); }
 .rec-pm button:hover { border-color: var(--c); color: var(--texto); }
+.pips { display: flex; gap: 7px; padding-left: 2px; }
+.pip { width: 11px; height: 11px; transform: rotate(45deg); border: 1.5px solid var(--fluxo); }
+.pip.on { background: var(--fluxo); box-shadow: 0 0 7px rgba(255, 107, 53, .6); }
 
-.estado { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 20px; padding-top: 10px; border-top: 1px solid var(--fio); }
-.mostrador { display: flex; align-items: center; gap: 8px; }
-.mostrador .val { font-family: var(--f-rotulo); font-weight: 600; font-size: .95rem; font-variant-numeric: tabular-nums; }
-.gemas { display: inline-flex; gap: 5px; align-items: center; }
-.g { display: inline-block; width: 11px; height: 11px; transform: rotate(45deg); border-radius: 1px; flex: none; }
-.g-acao { background: var(--ambar); box-shadow: 0 0 8px -1px var(--ambar); }
-.g-reacao { border: 1.5px solid var(--ambar); }
-.g-livre { width: 9px; height: 9px; transform: none; border-radius: 50%; border: 1.5px solid var(--texto-2); }
-.g-magia { width: 10px; height: 10px; transform: none; border-radius: 50%; border: 1.5px solid var(--eter); }
-.g.gasta { opacity: .28; box-shadow: none; }
+.rapidos { display: flex; flex-wrap: wrap; gap: 6px; }
+.stats { display: flex; flex-wrap: wrap; gap: 4px 16px; font: .95rem/1.2 var(--f-corpo); color: var(--texto-2); }
+.stats b { font: 700 1rem/1 var(--f-tit); color: var(--texto); font-variant-numeric: tabular-nums; margin-right: 3px; }
 
-.chips { display: flex; flex-wrap: wrap; gap: 6px; }
-.chip {
-  display: inline-flex; align-items: center; gap: 6px; padding: 3px 10px; border-radius: 20px;
-  border: 1px solid var(--fio-forte); background: #ffffff05; font-size: .9rem; color: var(--texto-2);
-}
-.chip b { color: var(--texto); font-weight: 600; }
-.chip-cond { border-color: #6b1f1a; background: var(--rubro-fundo); }
-.chip-cond b { color: #f2a19a; }
-.chip-temp { border-color: var(--ambar-dim); background: var(--ambar-fundo); }
-.chip-sit { border-color: #2d5a3d; background: var(--verde-fundo); }
-.chip-mais { border-style: dashed; color: var(--texto-3); background: transparent; }
+.eco { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 4px; padding-block: 12px; border-block: 1px solid var(--fio); }
+.eco-c { display: grid; gap: 7px; justify-items: center; align-content: start; text-align: center; min-width: 0; }
+.eco-v { display: flex; gap: 6px; align-items: center; justify-content: center; min-height: 20px; flex-wrap: wrap; }
+.eco-t { font: .8rem/1.15 var(--f-corpo); color: var(--texto-2); }
+.eco-t.nao { color: var(--rubro-claro); }
+.eco-c.apagado { opacity: .45; }
+.los { width: 15px; height: 15px; padding: 0; transform: rotate(45deg); border: 2px solid var(--losango); background: var(--losango); border-radius: 2px; cursor: pointer; box-shadow: 0 0 6px rgba(242, 201, 76, .35); }
+.los.gasto { background: var(--losango-gasto); border-color: var(--losango-gasto); box-shadow: none; }
+.los.oco { background: transparent; }
+.los.oco.gasto { background: transparent; border-color: var(--losango-gasto); }
+.los.perdida { background: transparent; border-style: dotted; border-color: var(--fio-forte); box-shadow: none; cursor: default; }
+.infinito { font: 700 1.2rem/1 var(--f-tit); color: var(--texto-2); }
+.magia-ic { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.6; }
 
-.relogio { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; }
-.relogio-est { font-family: var(--f-rotulo); font-size: .8rem; letter-spacing: .06em; color: var(--texto-2); margin-right: auto; }
-.relogio-est b { color: var(--ambar); font-weight: 600; }
-.bt {
-  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
-  min-height: 30px; padding: 3px 12px; border-radius: 4px;
-  border: 1px solid var(--ambar-dim); background: var(--ambar-fundo); color: #f0c27a;
-  font-family: var(--f-rotulo); font-size: .78rem; font-weight: 600; letter-spacing: .05em;
-  transition: border-color .15s, box-shadow .15s, color .15s;
-}
-.bt:hover { border-color: var(--ambar); color: #ffd9a0; box-shadow: 0 0 14px -4px var(--ambar); }
-.bt-forte { border-color: var(--ambar); background: linear-gradient(180deg, #3a240a, #241505); color: #ffd9a0; padding-inline: 16px; }
-.bt-calmo { border-color: var(--fio-forte); background: transparent; color: var(--texto-2); }
-.bt-calmo:hover { border-color: var(--texto-3); color: var(--texto); box-shadow: none; }
-.bt-mini { min-height: 26px; padding: 2px 9px; font-size: .74rem; }
+.conds { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip { display: inline-flex; align-items: baseline; gap: 6px; padding: 4px 11px; border-radius: 999px; border: 1px solid var(--fio-forte); background: var(--placa-alta); font: .9rem/1.25 var(--f-corpo); cursor: pointer; text-align: left; }
+.chip b { font-weight: 600; }
+.chip small { color: var(--texto-3); font-size: .8rem; }
+.chip-cond { border-color: #7a2a24; background: var(--rubro-fundo); }
+.chip-temp { border-style: dashed; border-color: var(--ambar-dim); background: var(--ambar-fundo); }
+.chip-mais { border-style: dashed; background: transparent; color: var(--texto-2); }
 
-/* ---- Mão */
-.mao { grid-area: mao; padding: 10px 14px; display: grid; gap: 8px; }
-.mao-lista { display: grid; grid-template-columns: repeat(auto-fill, minmax(118px, 1fr)); gap: 8px; }
-.ficha-mao {
-  display: grid; gap: 3px; align-content: start; min-width: 0; padding: 7px 8px 8px; border-radius: 5px;
-  border: 1px solid var(--fio-forte); background: var(--placa); border-top: 2px solid var(--fonte, var(--fio-forte));
-  text-align: left;
-}
-.ficha-mao:hover { border-color: var(--ambar-dim); border-top-color: var(--fonte, var(--ambar)); }
-.ficha-mao .nome { font-size: .92rem; line-height: 1.15; color: var(--texto); overflow-wrap: break-word; }
-.ficha-mao .sub { font-family: var(--f-rotulo); font-size: .68rem; color: var(--texto-3); font-variant-numeric: tabular-nums; }
-.ficha-vazia { border-style: dashed; border-top-width: 1px; background: transparent; color: var(--texto-3); font-size: .82rem; place-content: center; text-align: center; min-height: 56px; }
+/* ---------- centro: trilho, mesa, favoritos ---------- */
+.centro { min-width: 0; display: grid; gap: 14px; }
+.trilho { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 2px; scrollbar-width: thin; }
+.rod { flex: 0 0 auto; width: 176px; border: 1px solid var(--fio); border-radius: 9px; background: var(--placa); padding: 8px 10px; text-align: left; cursor: pointer; display: grid; gap: 3px; align-content: start; }
+.rod b { font: 700 .68rem/1.1 var(--f-tit); letter-spacing: .13em; text-transform: uppercase; color: var(--texto-2); }
+.rod span { font: .84rem/1.25 var(--f-corpo); color: var(--texto-3); }
+.rod .dl { color: var(--texto-2); }
+.rod.agora { border-color: var(--ouro); background: linear-gradient(180deg, #211b0c, var(--placa) 70%); }
+.rod.agora b { color: var(--ouro); }
+.rod[aria-pressed="true"] { box-shadow: 0 0 0 1px var(--texto-2); }
+.rod-nova { flex: 0 0 auto; align-self: stretch; border: 1px dashed var(--fio-forte); background: transparent; border-radius: 9px; padding: 8px 12px; cursor: pointer; font: 600 .68rem/1.2 var(--f-tit); letter-spacing: .1em; text-transform: uppercase; color: var(--texto-2); }
+.trilho-fora { padding: 10px 12px; border: 1px dashed var(--fio); border-radius: 9px; color: var(--texto-3); font-style: italic; }
 
-/* ---- ações */
-.acoes { grid-area: acoes; padding: 0 0 14px; min-width: 0; }
-.grupos { display: flex; overflow-x: auto; border-bottom: 1px solid var(--fio); padding: 0 8px; }
-.grupo {
-  flex: none; padding: 12px 14px 10px; border: 0; background: none; border-bottom: 2px solid transparent;
-  font-family: var(--f-rotulo); font-size: .82rem; letter-spacing: .06em; color: var(--texto-3);
-}
-.grupo:hover { color: var(--texto-2); }
-.grupo[aria-selected="true"] { color: var(--ouro); border-bottom-color: var(--ouro); }
-.grupo .n { margin-left: 4px; font-size: .7rem; color: var(--texto-3); }
-.filtros { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; padding: 12px 16px 4px; }
-.filtro {
-  display: inline-flex; align-items: center; gap: 6px; padding: 3px 10px; border-radius: 20px;
-  border: 1px solid var(--fio-forte); background: transparent; font-size: .88rem; color: var(--texto-2);
-}
-.filtro[aria-pressed="true"] { border-color: var(--ambar-dim); background: var(--ambar-fundo); color: var(--texto); }
-.busca {
-  margin-left: auto; width: 200px; max-width: 100%; padding: 4px 10px; border-radius: 4px;
-  border: 1px solid var(--fio-forte); background: #0b0a10; color: var(--texto);
-}
-.busca::placeholder { color: var(--texto-3); }
-.painel { padding: 8px 16px 0; display: grid; gap: 6px; }
-.sub-tit { margin: 10px 0 2px; display: flex; align-items: baseline; gap: 10px; }
-.sub-tit::after { content: ""; flex: 1; height: 1px; background: linear-gradient(90deg, var(--fio-forte), transparent); }
+.mesa { border-radius: 18px; padding: 14px; background:
+    linear-gradient(180deg, rgba(255, 226, 170, .07), transparent 26%),
+    repeating-linear-gradient(90deg, var(--madeira-veio) 0 2px, transparent 2px 19px, var(--madeira-veio) 19px 20px, transparent 20px 41px),
+    linear-gradient(180deg, var(--madeira-1), var(--madeira-2));
+  box-shadow: inset 0 1px 0 rgba(255, 220, 160, .14), inset 0 -3px 0 rgba(0, 0, 0, .5), 0 20px 44px rgba(0, 0, 0, .5); }
+.feltro { position: relative; min-height: 340px; border-radius: 11px; overflow: hidden; display: grid; grid-template-columns: minmax(0, 1fr) 196px;
+  background: radial-gradient(ellipse at 42% 46%, var(--feltro-1), var(--feltro-2) 78%);
+  box-shadow: inset 0 0 0 1px var(--feltro-fio), inset 0 0 0 6px rgba(0, 0, 0, .3), inset 0 0 70px rgba(0, 0, 0, .7); color: var(--feltro-texto); }
+.palco { position: relative; display: grid; align-content: center; justify-items: center; gap: 12px; padding: 26px 18px 22px; min-width: 0; }
+.palco::before { content: ''; position: absolute; left: 50%; top: 50%; width: 300px; height: 300px; transform: translate(-50%, -50%); border-radius: 50%; pointer-events: none;
+  background: repeating-radial-gradient(circle, transparent 0 62px, rgba(212, 175, 55, .07) 62px 63px, transparent 63px 104px, rgba(212, 175, 55, .05) 104px 105px, transparent 105px 150px); }
+.dados { position: relative; display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 12px; min-height: 66px; }
+.dado { width: 78px; height: 78px; overflow: visible; filter: drop-shadow(0 7px 6px rgba(0, 0, 0, .6)); animation: cair .72s cubic-bezier(.2, .75, .3, 1.18) both; animation-delay: var(--atraso, 0s); }
+.dado text { font-family: var(--f-tit); font-weight: 700; }
+.dado .ar { fill: none; stroke-opacity: .45; stroke-width: 1.4; }
+.dado.teste polygon, .dado.teste rect { fill: var(--osso); stroke: var(--osso-fio); stroke-width: 2.5; } .dado.teste text { fill: var(--osso-tinta); } .dado.teste .ar { stroke: var(--osso-fio); fill: none; }
+.dado.dano polygon, .dado.dano rect { fill: var(--dano); stroke: var(--dano-fio); stroke-width: 2.5; } .dado.dano text { fill: var(--osso); } .dado.dano .ar { stroke: var(--dano-fio); fill: none; }
+.dado.cura polygon, .dado.cura rect { fill: var(--cura); stroke: var(--cura-fio); stroke-width: 2.5; } .dado.cura text { fill: var(--osso); } .dado.cura .ar { stroke: var(--cura-fio); fill: none; }
+.dado.reduz polygon, .dado.reduz rect { fill: var(--reduz); stroke: var(--reduz-fio); stroke-width: 2.5; } .dado.reduz text { fill: var(--osso); } .dado.reduz .ar { stroke: var(--reduz-fio); fill: none; }
+.dado.fora { opacity: .3; filter: none; }
+.dado.crit { filter: drop-shadow(0 0 10px rgba(212, 175, 55, .8)); }
+@keyframes cair { 0% { transform: translate(var(--dx, -40px), -110px) rotate(-460deg) scale(.5); opacity: 0; } 55% { opacity: 1; } 100% { transform: none; opacity: 1; } }
+.placa { position: relative; display: grid; gap: 6px; justify-items: center; text-align: center; max-width: 48ch; }
+.placa-rot { font: 600 .74rem/1.3 var(--f-tit); letter-spacing: .14em; text-transform: uppercase; color: #d8cba3; text-wrap: balance; }
+.placa-total { font: 700 3.8rem/1 var(--f-tit); color: var(--osso); font-variant-numeric: tabular-nums; text-shadow: 0 3px 0 rgba(0, 0, 0, .55), 0 0 26px rgba(236, 226, 200, .14); }
+.placa-total.crit { color: var(--ouro); text-shadow: 0 0 20px rgba(212, 175, 55, .6); }
+.placa-total.falha { color: var(--rubro-claro); }
+.placa-total.perde { color: var(--rubro-claro); }
+.placa-total.ganha { color: #8fe3c8; }
+.placa-total.texto { font-size: 2rem; }
+.placa-sel { font: 700 .7rem/1 var(--f-tit); letter-spacing: .16em; text-transform: uppercase; color: var(--ouro); }
+.placa-sel.falha { color: var(--rubro-claro); }
+.placa-conta { font: 1rem/1.35 var(--f-corpo); color: var(--feltro-texto-2); font-variant-numeric: tabular-nums; }
+.placa-nota { margin: 0; font: 1rem/1.4 var(--f-corpo); color: var(--feltro-texto); }
+.placa-nota.cita { color: var(--feltro-texto-2); font-style: italic; }
+.placa-mud { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; }
+.mud { padding: 3px 10px; border-radius: 999px; background: rgba(0, 0, 0, .38); border: 1px solid rgba(255, 255, 255, .09); font: .9rem/1.25 var(--f-corpo); color: var(--feltro-texto); }
+.placa-bts { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; margin-top: 2px; }
+.bt-feltro { border: 1px solid rgba(236, 226, 200, .3); background: rgba(8, 17, 15, .75); color: var(--feltro-texto); }
+.bt-feltro.sim { border-color: var(--cura-fio); }
+.bt-feltro.nao { border-color: var(--dano-fio); }
+.pilha { border-left: 1px solid rgba(212, 175, 55, .16); background: rgba(0, 0, 0, .2); padding: 10px; display: flex; flex-direction: column; gap: 6px; min-width: 0; overflow: auto; max-height: 420px; }
+.pilha .rot { color: #b9ad8a; }
+.pe { display: grid; gap: 2px; text-align: left; border: 1px solid rgba(255, 255, 255, .07); background: rgba(6, 12, 10, .72); border-radius: 7px; padding: 6px 8px; cursor: pointer; color: var(--feltro-texto); }
+.pe:hover { border-color: rgba(212, 175, 55, .4); }
+.pe-l { display: flex; justify-content: space-between; gap: 6px; align-items: baseline; }
+.pe-l b { font: 600 .84rem/1.2 var(--f-corpo); min-width: 0; }
+.pe-l em { font: 700 .86rem/1 var(--f-tit); font-style: normal; color: var(--osso); }
+.pe span { font: .78rem/1.25 var(--f-corpo); color: var(--feltro-texto-2); }
+.pe-vazio { font-style: italic; color: var(--feltro-texto-2); font-size: .9rem; }
+.borda { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; padding-top: 13px; }
+.borda-est { font: 600 .74rem/1.2 var(--f-tit); letter-spacing: .12em; text-transform: uppercase; color: #d8c6a0; }
+.borda-est b { color: var(--ouro); }
+.borda-bts { margin-left: auto; display: flex; flex-wrap: wrap; gap: 6px; }
+.bt-latao { border: 1px solid #f0d58a; background: linear-gradient(180deg, #e3c26b, #a5802c); color: var(--osso-tinta); box-shadow: 0 2px 0 #5a4314, inset 0 1px 0 rgba(255, 255, 255, .45); padding: 10px 18px; }
+.bt-latao:hover:not(:disabled) { border-color: #fff0c0; }
+.bt-madeira { border: 1px solid rgba(240, 213, 138, .35); background: rgba(20, 12, 6, .6); color: #e9d8b0; }
 
-/* o cartão de ação: uma linha fechado */
-.ac {
-  border: 1px solid var(--fio); border-left: 3px solid var(--fonte, var(--fio-forte)); border-radius: 5px;
-  background: var(--placa); transition: border-color .15s;
-}
-.ac:hover { border-color: var(--fio-forte); border-left-color: var(--fonte, var(--fio-forte)); }
-.ac-linha { display: grid; grid-template-columns: 34px minmax(0, 1fr) auto auto 26px; align-items: center; gap: 10px; padding: 7px 10px 7px 8px; }
-.ac-gemas { display: flex; gap: 4px; justify-content: center; }
-.ac-abre { display: grid; gap: 1px; min-width: 0; padding: 0; border: 0; background: none; text-align: left; }
-.ac-nome { font-size: 1.04rem; font-weight: 600; color: var(--texto); }
-.ac-sub { font-size: .86rem; color: var(--texto-3); }
-.ac-custo { display: flex; flex-wrap: wrap; gap: 5px; justify-content: flex-end; }
-.custo { padding: 1px 7px; border-radius: 3px; font-family: var(--f-rotulo); font-size: .7rem; font-weight: 600; letter-spacing: .03em; white-space: nowrap; border: 1px solid; font-variant-numeric: tabular-nums; }
-.c-sta { color: var(--stamina); border-color: #fbbf2440; background: #fbbf240d; }
-.c-eter { color: #c4b5fd; border-color: #8b5cf650; background: #8b5cf612; }
-.c-sau { color: #fca5a5; border-color: #ef444445; background: #ef44440f; }
-.c-flu { color: #ffb08f; border-color: #ff6b3550; background: #ff6b3512; }
-.c-uso { color: var(--texto-2); border-color: var(--fio-forte); background: transparent; }
-.c-req { color: #ffb08f; border-color: #ff6b3550; border-style: dashed; background: transparent; }
-.ac-bts { display: flex; gap: 5px; align-items: center; }
-.estrela { width: 26px; height: 26px; border: 0; background: none; color: var(--texto-3); font-size: 1rem; line-height: 1; border-radius: 4px; }
+.favs-cab { display: flex; align-items: baseline; gap: 10px; margin-bottom: 8px; }
+.favs-cab .rot { font-size: .7rem; color: var(--texto-2); }
+.favs-cab span:last-child { font: italic .9rem/1 var(--f-corpo); color: var(--texto-3); }
+.favs { display: grid; grid-template-columns: repeat(auto-fill, minmax(118px, 1fr)); gap: 8px; }
+.fav { display: grid; gap: 4px; align-content: start; text-align: left; padding: 8px 10px 9px; border-radius: 9px; border: 1px solid var(--fio-forte); background: var(--placa); cursor: pointer; min-height: 72px; min-width: 0; }
+.fav:hover:not(.off) { border-color: var(--ouro); }
+.fav-g { display: flex; gap: 3px; min-height: 11px; }
+.fav b { font: 600 .74rem/1.2 var(--f-tit); letter-spacing: .03em; overflow-wrap: break-word; }
+.fav span { font: .86rem/1.15 var(--f-corpo); color: var(--texto-2); }
+.fav.off { cursor: not-allowed; background: var(--placa-funda); }
+.fav.off > :not(.fav-mot) { opacity: .42; }
+.fav-mot { color: var(--ambar) !important; font-size: .8rem !important; line-height: 1.2 !important; }
+.fav.vazio { border-style: dashed; background: transparent; cursor: default; color: var(--texto-3); font: italic .9rem/1.2 var(--f-corpo); place-content: center; text-align: center; }
+
+.reg { border: 1px solid var(--fio); border-radius: 12px; background: var(--placa); padding: 12px 14px; }
+.reg h2 { margin: 0 0 8px; }
+.reg-r { margin: 10px 0 4px; }
+.reg ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; }
+.reg li { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 2px 10px; padding: 5px 0; border-bottom: 1px solid var(--fio); }
+.reg li b { font-weight: 600; }
+.reg li em { font: 700 .9rem/1.2 var(--f-tit); font-style: normal; }
+.reg li span { grid-column: 1 / -1; color: var(--texto-2); font-size: .9rem; }
+
+/* ---------- habilidades ---------- */
+.hab { position: sticky; top: 12px; max-height: calc(100vh - 24px); display: flex; flex-direction: column; min-height: 0; overflow: hidden; }
+.hab-cab { padding: 14px 14px 0; }
+.hab-tit { margin: 0 0 10px; font: 700 .86rem/1 var(--f-tit); letter-spacing: .18em; text-transform: uppercase; color: var(--ouro); }
+.abas { display: flex; border-bottom: 1px solid var(--fio); }
+.aba { flex: 1 1 auto; display: grid; justify-items: center; gap: 4px; border: 0; background: none; padding: 8px 3px 9px; margin-bottom: -1px; font: 600 .62rem/1 var(--f-tit); letter-spacing: .05em; text-transform: uppercase; color: var(--texto-3); border-bottom: 2px solid transparent; cursor: pointer; }
+.aba[aria-selected="true"] { color: var(--texto); border-bottom-color: var(--ouro); }
+.aba .n { color: var(--texto-3); font: 400 .82rem/1 var(--f-corpo); letter-spacing: 0; }
+.ferr { display: grid; gap: 8px; padding: 10px 14px; border-bottom: 1px solid var(--fio); }
+.ferr input[type="search"] { width: 100%; padding: 8px 10px; border-radius: 7px; border: 1px solid var(--fio-forte); background: var(--placa-funda); color: var(--texto); font: 1rem/1.2 var(--f-corpo); }
+.filtros { display: flex; flex-wrap: wrap; gap: 5px; align-items: center; }
+.filtro { display: inline-flex; align-items: center; gap: 6px; border: 1px solid var(--fio-forte); background: transparent; border-radius: 999px; padding: 5px 11px; font: 600 .66rem/1 var(--f-tit); letter-spacing: .08em; text-transform: uppercase; color: var(--texto-2); cursor: pointer; }
+.filtro[aria-pressed="true"] { border-color: var(--ouro); color: var(--texto); background: #221d10; }
+.filtro.usar { margin-left: auto; }
+.lista { overflow: auto; padding: 4px 14px 18px; min-height: 0; flex: 1; }
+.sec { margin: 16px 0 7px; display: flex; align-items: center; gap: 8px; }
+.sec::after { content: ''; flex: 1; height: 1px; background: var(--fio); }
+.sem { color: var(--texto-3); font-style: italic; padding: 16px 0; }
+.gm { display: inline-block; width: 10px; height: 10px; transform: rotate(45deg); border: 1.5px solid var(--losango); background: var(--losango); border-radius: 1px; flex: none; }
+.gm.oca { background: transparent; }
+.gm.livre { transform: none; border-radius: 50%; background: transparent; border-color: var(--texto-2); }
+.gm.txt { transform: none; border: 0; background: none; width: auto; height: auto; font: 700 .8rem/1 var(--f-tit); color: var(--texto-3); }
+
+.ac { border: 1px solid var(--fio); border-radius: 9px; background: var(--placa-alta); margin-bottom: 6px; }
+.ac:has(.ac-abre[aria-expanded="true"]) { border-color: var(--fio-forte); }
+.ac-linha { display: grid; grid-template-columns: 30px minmax(0, 1fr) auto auto; align-items: center; gap: 8px; padding: 8px 6px 8px 8px; }
+.ac-g { display: flex; flex-wrap: wrap; gap: 3px; justify-content: center; }
+.ac-abre { border: 0; background: none; text-align: left; padding: 0; cursor: pointer; display: grid; gap: 2px; min-width: 0; }
+.ac-nome { font: 600 .9rem/1.2 var(--f-tit); }
+.ac-nome small { font: 400 .8rem var(--f-corpo); color: var(--texto-3); }
+.ac-meta { font: .92rem/1.3 var(--f-corpo); color: var(--texto-2); }
+.ac-meta .req { color: #ffb08f; }
+.ac-meta .prox { color: var(--texto); }
+.ac-mot { font: .86rem/1.25 var(--f-corpo); color: var(--ambar); }
+.ac.off .ac-nome, .ac.off .ac-meta, .ac.off .ac-g { opacity: .45; }
+.verbo { border: 1px solid var(--fio-forte); background: #23212d; padding: 7px 10px; border-radius: 7px; font: 700 .64rem/1 var(--f-tit); letter-spacing: .1em; text-transform: uppercase; cursor: pointer; }
+.verbo:hover:not(:disabled) { border-color: var(--ouro); color: var(--ouro); }
+.verbo:disabled { opacity: .3; cursor: not-allowed; }
+.estrela { border: 0; background: none; color: var(--texto-3); font-size: 1.1rem; line-height: 1; cursor: pointer; padding: 4px 3px; }
 .estrela[aria-pressed="true"] { color: var(--ouro); }
-.estrela:hover { color: var(--ouro); }
-.ac-corpo { padding: 2px 14px 12px 52px; display: grid; gap: 8px; }
-.ac-texto { margin: 0; max-width: 68ch; color: var(--texto-2); }
-.ac-texto em { color: var(--texto); }
-.conta { display: grid; gap: 3px; padding: 8px 10px; border-radius: 4px; background: #0b0a10; border: 1px solid var(--fio); font-size: .95rem; }
-.conta .sim { color: var(--texto-3); }
-.conta .num { font-variant-numeric: tabular-nums; }
-.conta .num b { color: var(--ouro); font-weight: 600; }
-.nota { margin: 0; font-size: .9rem; color: var(--texto-3); max-width: 70ch; }
-.nota b { color: var(--texto-2); font-weight: 600; }
-.mesa-so { border-left: 2px solid var(--fio-forte); padding-left: 10px; }
-.rolei { display: inline-flex; align-items: center; gap: 6px; font-size: .9rem; color: var(--texto-3); }
-.rolei input { width: 64px; padding: 2px 6px; border-radius: 4px; border: 1px solid var(--fio-forte); background: #0b0a10; font-variant-numeric: tabular-nums; }
-.linha-bts { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
-.seg { display: inline-flex; border: 1px solid var(--fio-forte); border-radius: 4px; overflow: hidden; }
-.seg button { padding: 3px 10px; border: 0; background: transparent; font-size: .88rem; color: var(--texto-2); }
+.ac-corpo { padding: 0 12px 12px 46px; display: grid; gap: 9px; }
+.ac-fonte { margin: 0; font: 600 .66rem/1.3 var(--f-tit); letter-spacing: .08em; text-transform: uppercase; color: var(--texto-3); }
+.ac-fonte a { letter-spacing: .04em; }
+.ac-texto { margin: 0; font: 1.02rem/1.5 var(--f-corpo); max-width: 62ch; }
+.conta { margin: 0; display: grid; gap: 4px; padding: 8px 10px; border-radius: 7px; background: var(--placa-funda); border: 1px solid var(--fio); }
+.conta div { display: grid; grid-template-columns: 74px minmax(0, 1fr); gap: 8px; }
+.conta dt { font: 600 .62rem/1.6 var(--f-tit); letter-spacing: .1em; text-transform: uppercase; color: var(--texto-3); }
+.conta dd { margin: 0; font: .95rem/1.35 var(--f-corpo); color: var(--texto-2); font-variant-numeric: tabular-nums; }
+.pma { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
+.pma i { font-style: normal; padding: 3px 9px; border-radius: 999px; border: 1px solid var(--fio); font: 700 .78rem/1.2 var(--f-tit); color: var(--texto-3); }
+.pma i.prox { border-color: var(--ouro); color: var(--ouro); }
+.pma i.foi { text-decoration: line-through; opacity: .6; }
+.seg { display: inline-flex; border: 1px solid var(--fio-forte); border-radius: 7px; overflow: hidden; }
+.seg button { border: 0; background: transparent; padding: 6px 10px; font: 600 .64rem/1 var(--f-tit); letter-spacing: .08em; text-transform: uppercase; color: var(--texto-3); cursor: pointer; }
 .seg button + button { border-left: 1px solid var(--fio-forte); }
-.seg button[aria-pressed="true"] { background: #8b5cf61f; color: var(--texto); }
+.seg [aria-pressed="true"] { background: #2a2414; color: var(--ouro); }
+.ac-mais { display: flex; flex-wrap: wrap; gap: 6px; }
+.item-l { display: grid; grid-template-columns: 30px minmax(0, 1fr) auto; gap: 8px; align-items: start; padding: 9px 8px; border: 1px solid var(--fio); border-radius: 9px; background: var(--placa-alta); margin-bottom: 6px; }
+.item-l .ic { width: 26px; height: 26px; color: var(--r); fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linejoin: round; stroke-linecap: round; margin-top: 2px; }
+.item-l b { font: 600 .88rem/1.2 var(--f-tit); }
+.item-l p { margin: 2px 0 0; font: .95rem/1.35 var(--f-corpo); color: var(--texto-2); }
+.item-l .onde { font: 600 .6rem/1 var(--f-tit); letter-spacing: .1em; text-transform: uppercase; color: var(--texto-3); }
+.item-l .alerta-t { color: var(--ambar); }
+.item-bts { display: grid; gap: 5px; justify-items: end; }
+.per-grade { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px; }
+.per { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 3px 6px; padding: 7px 26px 7px 9px; border: 1px solid var(--fio); border-radius: 8px; background: var(--placa-alta); cursor: pointer; text-align: left; }
+.per:hover:not(.off) { border-color: var(--ouro); }
+.per b { font: 600 .74rem/1.2 var(--f-tit); overflow-wrap: anywhere; }
+.per .tot { font: 700 1.02rem/1 var(--f-tit); font-variant-numeric: tabular-nums; }
+.per .gr { display: flex; gap: 3px; align-items: center; }
+.per .gr i { width: 6px; height: 6px; border-radius: 50%; background: var(--fio-forte); }
+.per .gr i.on { background: var(--ouro); }
+.per .gr small { margin-left: 4px; font-size: .78rem; color: var(--texto-3); }
+.per.off { cursor: not-allowed; }
+.per.off > :not(.per-mot) { opacity: .45; }
+.per-mot { grid-column: 1 / -1; font-size: .8rem; color: var(--ambar); }
+.per .estrela { position: absolute; right: 2px; top: 4px; font-size: .95rem; }
+.per-sit { grid-column: 1 / -1; font-size: .8rem; color: var(--verde); }
+details.sempre { margin-top: 14px; border: 1px solid var(--fio); border-radius: 9px; padding: 8px 10px; }
+details.sempre summary { cursor: pointer; font: 600 .7rem/1.3 var(--f-tit); letter-spacing: .1em; text-transform: uppercase; color: var(--texto-2); }
+details.sempre p { margin: 8px 0 0; font: .98rem/1.45 var(--f-corpo); }
+details.sempre p b { font-family: var(--f-tit); font-size: .82rem; }
 
-/* fora de hora: esmaecido, com o motivo, e continua clicável */
-.ac.fora .ac-nome, .ac.fora .ac-gemas, .ac.fora .ac-custo { opacity: .55; }
-.motivo { font-family: var(--f-rotulo); font-size: .68rem; letter-spacing: .04em; color: #f2a19a; }
+/* ---------- popover ---------- */
+.pop { position: absolute; z-index: 40; width: min(330px, calc(100vw - 32px)); background: #1e1d28; border: 1px solid var(--fio-forte); border-radius: 11px; padding: 13px; box-shadow: 0 20px 44px rgba(0, 0, 0, .65); display: grid; gap: 9px; }
+.pop h3 { margin: 0; font: 700 .82rem/1.2 var(--f-tit); letter-spacing: .08em; }
+.pop p { margin: 0; font: .98rem/1.4 var(--f-corpo); color: var(--texto-2); }
+.pop label { display: grid; gap: 4px; font: 600 .62rem/1 var(--f-tit); letter-spacing: .1em; text-transform: uppercase; color: var(--texto-3); }
+.pop label.ck { display: flex; align-items: center; gap: 8px; font: 1rem/1.2 var(--f-corpo); letter-spacing: 0; text-transform: none; color: var(--texto); }
+.pop input[type="number"], .pop select { padding: 7px 9px; border-radius: 7px; border: 1px solid var(--fio-forte); background: var(--placa-funda); color: var(--texto); font: 1rem/1.2 var(--f-corpo); width: 100%; }
+.pop-l { display: flex; flex-wrap: wrap; gap: 6px; }
+.pop .ops { display: grid; gap: 5px; }
+.pop .op { display: grid; text-align: left; gap: 1px; padding: 7px 9px; border-radius: 7px; border: 1px solid var(--fio); background: var(--placa-alta); cursor: pointer; }
+.pop .op:hover { border-color: var(--ouro); }
+.pop .op b { font: 600 .82rem/1.2 var(--f-tit); }
+.pop .op span { font: .9rem/1.3 var(--f-corpo); color: var(--texto-2); }
+.pop .alerta-t { color: var(--ambar); }
 
-.sempre { border: 1px dashed var(--fio-forte); border-radius: 5px; padding: 0; }
-.sempre summary { list-style: none; padding: 8px 12px; cursor: pointer; display: flex; gap: 8px; align-items: baseline; }
-.sempre summary::-webkit-details-marker { display: none; }
-.sempre summary::before { content: "▸"; color: var(--texto-3); }
-.sempre[open] summary::before { content: "▾"; }
-.sempre ul { margin: 0; padding: 0 14px 10px 30px; display: grid; gap: 4px; color: var(--texto-2); font-size: .95rem; }
-.sempre li b { color: var(--texto); font-weight: 600; }
+.sobre { margin-top: 28px; max-width: 76ch; color: var(--texto-2); }
+.sobre h2 { font: 700 .8rem/1 var(--f-tit); letter-spacing: .16em; text-transform: uppercase; color: var(--texto-3); }
+.sobre ul { padding-left: 1.1em; display: grid; gap: 4px; }
 
-.dano-form { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
-.dano-form input, .dano-form select { padding: 3px 8px; border-radius: 4px; border: 1px solid var(--fio-forte); background: #0b0a10; }
-.dano-form input { width: 70px; font-variant-numeric: tabular-nums; }
-
-/* perícias: grade */
-.pers { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4px 18px; }
-.per { display: grid; grid-template-columns: minmax(0, 1fr) 44px 52px auto; align-items: center; gap: 8px; padding: 4px 6px; border-bottom: 1px solid #ffffff08; }
-.per .at { font-family: var(--f-rotulo); font-size: .66rem; color: var(--texto-3); text-align: right; }
-.per .tot { font-family: var(--f-rotulo); font-weight: 700; text-align: right; font-variant-numeric: tabular-nums; }
-.per .sit { font-family: var(--f-rotulo); font-size: .62rem; color: var(--verde); margin-left: 6px; letter-spacing: .03em; }
-
-/* ---- registro */
-.registro { grid-area: registro; padding: 14px; display: grid; gap: 12px; position: sticky; top: env(safe-area-inset-top, 0px); max-height: calc(100vh - 20px); overflow: auto; }
-.ultima { display: grid; gap: 2px; justify-items: center; text-align: center; padding: 14px 10px 12px; border-radius: 5px; border: 1px solid var(--fio-forte); background: radial-gradient(circle at 50% 30%, #1d1709 0, #0e0d12 70%); }
-.ultima .o-que { font-family: var(--f-rotulo); font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; color: var(--texto-2); }
-.ultima .total { font-family: var(--f-rotulo); font-weight: 700; font-size: 3.1rem; line-height: 1.05; font-variant-numeric: tabular-nums; color: var(--texto); }
-.ultima .conta-r { font-size: .95rem; color: var(--texto-3); font-variant-numeric: tabular-nums; }
-.ultima.nat20 .total { color: #ffd9a0; text-shadow: 0 0 18px #e08b2c, 0 0 2px #e08b2c; }
-.ultima.nat20 { border-color: var(--ambar); }
-.ultima.nat1 .total { color: #f2a19a; text-shadow: 0 0 14px #b3261e; }
-.ultima.nat1 { border-color: var(--rubro); }
-.ultima .selo { font-family: var(--f-rotulo); font-size: .7rem; letter-spacing: .12em; text-transform: uppercase; }
-.ultima.nat20 .selo { color: var(--ambar); }
-.ultima.nat1 .selo { color: #f2a19a; }
-.dado { display: inline-block; min-width: 1.6em; padding: 0 3px; border-radius: 3px; background: #ffffff0d; border: 1px solid var(--fio-forte); color: var(--texto); text-align: center; }
-.dado.fora { text-decoration: line-through; opacity: .5; }
-.log { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
-.log li { display: grid; gap: 2px; padding: 8px 10px; border-radius: 4px; background: #ffffff04; border: 1px solid var(--fio); font-size: .93rem; }
-.log li.desfeito { opacity: .45; }
-.log li.desfeito .o-que { text-decoration: line-through; }
-.log .topo { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
-.log .o-que { color: var(--texto); font-weight: 600; }
-.log .res { font-family: var(--f-rotulo); font-weight: 700; font-variant-numeric: tabular-nums; }
-.log .det { color: var(--texto-3); font-variant-numeric: tabular-nums; }
-.log .mud { color: var(--texto-2); }
-.log .acoes-log { display: flex; gap: 6px; margin-top: 2px; }
-.log .lk { border: 0; background: none; padding: 0; font-size: .82rem; color: var(--ambar); text-decoration: underline; text-underline-offset: 2px; }
-.log .lk[disabled] { color: var(--texto-3); text-decoration: none; cursor: default; }
-
-/* ---- notas da prova */
-.notas { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
-.notas section { padding: 14px 16px; border: 1px solid var(--fio); border-radius: var(--raio); background: #0e0d12; }
-.notas h2 { margin: 0 0 8px; font-family: var(--f-rotulo); font-size: .9rem; letter-spacing: .08em; color: var(--ouro); font-weight: 600; }
-.notas ul { margin: 0; padding-left: 18px; display: grid; gap: 4px; color: var(--texto-2); }
-
-@media (max-width: 1000px) {
-  .mesa { grid-template-columns: minmax(0, 1fr); grid-template-areas: "turno" "mao" "acoes" "registro"; }
-  .registro { position: static; max-height: none; }
-
+/* ---------- larguras menores ---------- */
+@container app (max-width: 1180px) {
+  .grade { grid-template-columns: 340px minmax(0, 1fr); }
+  .hab { grid-column: 1 / -1; position: static; max-height: none; }
 }
-@media (max-width: 640px) {
-  .recursos { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .turno { position: static; }
-
-  .ac-linha { grid-template-columns: 28px minmax(0, 1fr) 26px; }
-  .ac-custo, .ac-bts { grid-column: 2 / 4; justify-content: flex-start; }
-  .ac-corpo { padding-left: 14px; }
-  .pers { grid-template-columns: minmax(0, 1fr); }
-  .notas { grid-template-columns: minmax(0, 1fr); }
-  .busca { margin-left: 0; width: 100%; }
+@container app (max-width: 760px) {
+  .grade { grid-template-columns: minmax(0, 1fr); }
+  .feltro { grid-template-columns: minmax(0, 1fr); min-height: 0; }
+  .pilha { border-left: 0; border-top: 1px solid rgba(212, 175, 55, .16); max-height: 190px; }
+  .dado { width: 56px; height: 56px; }
+  .placa-total { font-size: 3rem; }
+  .palco::before { width: 220px; height: 220px; }
+  .boneco { grid-template-columns: minmax(0, 1fr) 118px; }
+  .per-grade { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .rod { width: 150px; }
 }
-@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+@container app (max-width: 380px) {
+  .boneco { grid-template-columns: minmax(0, 1fr); }
+  .eco { grid-template-columns: repeat(3, minmax(0, 1fr)); row-gap: 12px; }
+  .per-grade { grid-template-columns: minmax(0, 1fr); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .dado { animation: none; }
+  .rec-barra i { transition: none; }
+}
 </style>
 
 <div class="pg">
   <header class="cab">
-    <p class="cab-sobre">Prova de estética · Mesa 0 · personagem de exemplo, nada é gravado</p>
+    <p class="cab-sobre">Prova de estética · Mesa 0, 2ª versão · personagem de exemplo, nada é gravado</p>
     <div class="cab-linha">
-      <h1 class="cab-tit">Mesa</h1>
-      <p class="cab-id"><b>Ravek</b> · Humano · Monge, Ramo do Punho · Nível 3</p>
+      <h1 class="cab-tit">Ravek</h1>
+      <p class="cab-id">Humano · Monge, Ramo do Punho · Nível 3</p>
     </div>
-    <div class="abas-ficha" aria-label="Abas da ficha">
+    <nav class="abas-ficha" aria-label="Abas da ficha">
       <span>Núcleo</span><span>Técnicas &amp; Marcas</span><span>Cartas, Lore &amp; Outros</span><span>O Bazar</span><span>Grimório</span><span aria-current="page">Mesa</span>
-    </div>
+    </nav>
   </header>
 
-  <div class="mesa">
-    <!-- ============================================================ barra do turno -->
-    <section class="zona turno" aria-label="Barra do turno">
-      <div class="recursos">
-        <div class="rec" style="--c: var(--saude)">
-          <div class="rec-topo"><span class="rot">Saúde</span><span class="rec-num" id="n-saude">24 <small>/ 31</small></span></div>
-          <div class="rec-barra"><i id="b-saude" style="width: 77%"></i></div>
-          <div class="rec-pm"><button type="button" data-rec="saude" data-d="-1" aria-label="Saúde menos 1">−</button><button type="button" data-rec="saude" data-d="1" aria-label="Saúde mais 1">+</button></div>
+  <div class="app" id="app">
+    <div class="topo">
+      <div class="modo" role="radiogroup" aria-label="Modo da mesa">
+        <button type="button" role="radio" data-modo="combate" aria-checked="true">Combate</button>
+        <button type="button" role="radio" data-modo="exploracao" aria-checked="false">Exploração</button>
+      </div>
+      <span class="aviso" id="aviso" aria-live="polite"></span>
+      <div class="topo-dir">
+        <button type="button" class="bt" id="bt-desfazer">Desfazer</button>
+        <button type="button" class="bt" id="bt-drawer" aria-pressed="false">Ver como no drawer</button>
+      </div>
+    </div>
+
+    <div class="grade">
+      <aside class="painel pers" aria-label="Personagem">
+        <div class="boneco">
+          <div class="doll" id="doll"></div>
+          <div class="barras" id="barras"></div>
         </div>
-        <div class="rec" style="--c: var(--stamina)">
-          <div class="rec-topo"><span class="rot">Stamina</span><span class="rec-num" id="n-stamina">9 <small>/ 18</small></span></div>
-          <div class="rec-barra"><i id="b-stamina" style="width: 50%"></i></div>
-          <div class="rec-pm"><button type="button" data-rec="stamina" data-d="-1" aria-label="Stamina menos 1">−</button><button type="button" data-rec="stamina" data-d="1" aria-label="Stamina mais 1">+</button></div>
+        <div class="rapidos">
+          <button type="button" class="bt" id="bt-dano">Recebi dano</button>
+          <button type="button" class="bt" id="bt-cura">Curar</button>
         </div>
-        <div class="rec" style="--c: var(--eter)">
-          <div class="rec-topo"><span class="rot">Éter</span><span class="rec-num" id="n-eter">2 <small>/ 6</small></span></div>
-          <div class="rec-barra"><i id="b-eter" style="width: 33%"></i></div>
-          <div class="rec-pm"><button type="button" data-rec="eter" data-d="-1" aria-label="Éter menos 1">−</button><button type="button" data-rec="eter" data-d="1" aria-label="Éter mais 1">+</button></div>
+        <div class="stats" id="stats"></div>
+        <div class="eco" id="eco" aria-label="Recursos do turno"></div>
+        <div>
+          <div class="rot" style="margin-bottom: 7px">Condições</div>
+          <div class="conds" id="conds"></div>
         </div>
-        <div class="rec" style="--c: var(--fluxo)">
-          <div class="rec-topo"><span class="rot">Fluxo</span><span class="rec-num" id="n-fluxo">3 <small>/ 5</small></span></div>
-          <div class="rec-barra"><i id="b-fluxo" style="width: 60%"></i></div>
-          <div class="rec-pm"><button type="button" data-rec="fluxo" data-d="-1" aria-label="Fluxo menos 1">−</button><button type="button" data-rec="fluxo" data-d="1" aria-label="Fluxo mais 1">+</button></div>
+      </aside>
+
+      <main class="centro">
+        <div class="trilho" id="trilho" aria-label="Rodadas"></div>
+        <section class="mesa" aria-label="Mesa">
+          <div class="feltro">
+            <div class="palco" id="palco" aria-live="polite"></div>
+            <div class="pilha" id="pilha" aria-label="O que já aconteceu"></div>
+          </div>
+          <div class="borda" id="borda"></div>
+        </section>
+        <section aria-label="Favoritos">
+          <div class="favs-cab"><span class="rot">Favoritos</span><span id="favs-n"></span></div>
+          <div class="favs" id="favs"></div>
+        </section>
+        <section class="reg" id="reg" hidden aria-label="Registro completo"></section>
+      </main>
+
+      <section class="painel hab" aria-label="Habilidades">
+        <div class="hab-cab">
+          <h2 class="hab-tit">Habilidades</h2>
+          <div class="abas" role="tablist" id="abas"></div>
         </div>
-      </div>
-
-      <div class="estado">
-        <div class="mostrador" title="3 ações por turno; 1 gasta (Dança do Monge). Mostrador, não trava."><span class="rot">Ações</span><span class="gemas"><i class="g g-acao gasta"></i><i class="g g-acao"></i><i class="g g-acao"></i></span><span class="val">2 de 3</span></div>
-        <div class="mostrador" title="1 reação; volta ao começar o seu turno"><span class="rot">Reação</span><span class="gemas"><i class="g g-reacao"></i></span><span class="val">livre</span></div>
-        <div class="mostrador" title="No máximo 1 magia conjurada por turno"><span class="rot">Magia</span><span class="gemas"><i class="g g-magia"></i></span><span class="val">livre</span></div>
-        <div class="mostrador" title="Movimento = 9 m base + 3 m Acelerar (até o fim do turno)"><span class="rot">Movimento</span><span class="val">12 m</span></div>
-      </div>
-
-      <div class="chips" aria-label="Condições, temporários e situações">
-        <span class="chip chip-cond" title="Ao ser acertado: +2d4 biológico e o Sangramento cai 1. Sai em 0 ou com Medicina/Atadura."><b>Sangramento 2</b> ao ser acertado</span>
-        <span class="chip chip-temp" title="Acelerar (1 ação): +3 m de movimento nesta rodada"><b>Acelerar +3 m</b> até o fim do seu turno</span>
-        <span class="chip chip-sit" title="Capa de Obscurecimento: +2 Furtividade em penumbra ou escuridão (ligado)"><b>Penumbra</b> Capa +2 Furtividade</span>
-        <button type="button" class="chip chip-mais">+ condição</button>
-      </div>
-
-      <div class="relogio">
-        <span class="relogio-est">Em combate · <b>seu turno 3</b></span>
-        <button type="button" class="bt bt-forte" id="bt-turno">Encerrar meu turno</button>
-        <button type="button" class="bt bt-calmo">Sair do combate</button>
-        <button type="button" class="bt bt-calmo" title="Fim da cena, Descanso curto, Descanso longo, Novo dia">Tempo ▾</button>
-      </div>
-    </section>
-
-    <!-- ============================================================ Mão -->
-    <section class="zona mao" aria-label="Mão: atalhos fixados">
-      <span class="rot">Mão · 6 de 8</span>
-      <div class="mao-lista">
-        <button type="button" class="ficha-mao" style="--fonte: var(--fluxo)" data-rola="1d20+7" data-rot="Atacar 1º · Desarmado"><span class="nome">Atacar 1º</span><span class="sub">◆ +7 · Desarmado</span></button>
-        <button type="button" class="ficha-mao" style="--fonte: var(--fluxo)" data-rot="Dança do Monge" data-usa="−5 Stamina · Fluxo 3 é requisito, não gasta"><span class="nome">Dança do Monge</span><span class="sub">◆ 5 Sta · req. 3 Flu</span></button>
-        <button type="button" class="ficha-mao" style="--fonte: var(--ambar)" data-rola="1d6+13" data-rot="Defender (reação) · Evasão Ativa"><span class="nome">Defender</span><span class="sub">◇ Ativa 13 + 1d6</span></button>
-        <button type="button" class="ficha-mao" style="--fonte: var(--fluxo)" data-rola="3d10+3" data-rot="Apanhar Projétil · redução"><span class="nome">Apanhar Projétil</span><span class="sub">◇ reduz 3d10 + 3</span></button>
-        <button type="button" class="ficha-mao" style="--fonte: var(--rar-ordinario)" data-rola="2d4+2" data-rot="Poção de Cura Menor · cura"><span class="nome">Poção de Cura Menor</span><span class="sub">◆ 2d4 + 2 · ×1</span></button>
-        <button type="button" class="ficha-mao" style="--fonte: var(--ouro)" data-rola="1d4" data-rot="Persistência Humana · soma ao teste"><span class="nome">Persistência Humana</span><span class="sub">○ +1d4 · 3/3</span></button>
-        <span class="ficha-mao ficha-vazia">fixe com ★</span>
-        <span class="ficha-mao ficha-vazia">fixe com ★</span>
-      </div>
-    </section>
-
-    <!-- ============================================================ ações -->
-    <section class="zona acoes" aria-label="Ações">
-      <div class="grupos" role="tablist" aria-label="Grupos de ações">
-        <button type="button" class="grupo" role="tab" id="t-combate" aria-controls="p-combate" aria-selected="true">Combate<span class="n">14</span></button>
-        <button type="button" class="grupo" role="tab" id="t-tecnicas" aria-controls="p-tecnicas" aria-selected="false">Técnicas<span class="n">5</span></button>
-        <button type="button" class="grupo" role="tab" id="t-magias" aria-controls="p-magias" aria-selected="false">Magias<span class="n">1</span></button>
-        <button type="button" class="grupo" role="tab" id="t-itens" aria-controls="p-itens" aria-selected="false">Itens<span class="n">5</span></button>
-        <button type="button" class="grupo" role="tab" id="t-pericias" aria-controls="p-pericias" aria-selected="false">Perícias<span class="n">24</span></button>
-        <button type="button" class="grupo" role="tab" id="t-cartas" aria-controls="p-cartas" aria-selected="false">Cartas<span class="n">2</span></button>
-      </div>
-      <div class="filtros">
-        <button type="button" class="filtro" data-f="acao" aria-pressed="false"><i class="g g-acao"></i>Ação</button>
-        <button type="button" class="filtro" data-f="reacao" aria-pressed="false"><i class="g g-reacao"></i>Reação</button>
-        <button type="button" class="filtro" data-f="livre" aria-pressed="false"><i class="g g-livre"></i>Livre</button>
-        <input type="search" class="busca" id="busca" placeholder="Buscar em todos os grupos" aria-label="Buscar ação">
-      </div>
-
-      <!-- ---------------- Combate -->
-      <div class="painel" role="tabpanel" id="p-combate" aria-labelledby="t-combate">
-        <article class="ac" data-custo="acao" style="--fonte: var(--fluxo)">
-          <div class="ac-linha">
-            <span class="ac-gemas"><i class="g g-acao"></i></span>
-            <button type="button" class="ac-abre" aria-expanded="true"><span class="ac-nome">Atacar · Desarmado</span><span class="ac-sub">1d8 + 1d6 + 3 contundente · +7 · +2 · −3</span></button>
-            <span class="ac-custo"></span>
-            <span class="ac-bts">
-              <button type="button" class="bt bt-mini" data-rola="1d20+7" data-rot="Atacar 1º · Desarmado">1º +7</button>
-              <button type="button" class="bt bt-mini" data-rola="1d20+2" data-rot="Atacar 2º · Desarmado">2º +2</button>
-              <button type="button" class="bt bt-mini" data-rola="1d20-3" data-rot="Atacar 3º · Desarmado" title="Com vantagem se os dois primeiros acertaram o mesmo alvo (Fluxo Marcial)">3º −3</button>
-              <button type="button" class="bt bt-mini bt-calmo" data-rola="1d8+1d6+3" data-rot="Dano · Desarmado">Dano</button>
-            </span>
-            <button type="button" class="estrela" aria-pressed="true" aria-label="Tirar da Mão">★</button>
-          </div>
-          <div class="ac-corpo">
-            <div class="conta">
-              <span class="sim">Atacar = 1d20 + Mod.DES + proficiência</span>
-              <span class="num">= 1d20 + 3 DES + 4 Experiente (Punho Perfeito) = <b>1d20 + 7</b></span>
-              <span class="sim">Dano = 1d8 (Arma Humana) + 1d6 (Punho Perfeito) + Mod.DES = <b>1d8 + 1d6 + 3</b> contundente · crítico no 20: <b>2d8 + 1d6 + 3</b></span>
-            </div>
-            <p class="nota mesa-so"><b>PMA:</b> −5 a cada ataque no mesmo alvo neste turno. A ficha mostra a progressão; quem conta o alvo é você. <b>Fluxo Marcial:</b> o 3º ataque no mesmo alvo tem vantagem se os dois primeiros acertaram.</p>
-            <div class="linha-bts">
-              <button type="button" class="bt bt-mini bt-calmo" data-rola="2d8+1d6+3" data-rot="Dano crítico · Desarmado">Dano crítico</button>
-              <label class="rolei">rolei <input type="text" inputmode="numeric" data-rolei="7" data-rot="Atacar · Desarmado" aria-label="Valor do d20 rolado na mesa"></label>
-            </div>
-          </div>
-        </article>
-
-        <article class="ac" data-custo="acao">
-          <div class="ac-linha">
-            <span class="ac-gemas"><i class="g g-acao"></i></span>
-            <button type="button" class="ac-abre" aria-expanded="false"><span class="ac-nome">Defender</span><span class="ac-sub">+2 Defender até o seu próximo turno</span></button>
-            <span class="ac-custo"></span>
-            <span class="ac-bts"><button type="button" class="bt bt-mini" data-rot="Defender (ação)" data-usa="+2 Defender até o seu próximo turno">Usar</button></span>
-            <button type="button" class="estrela" aria-pressed="false" aria-label="Fixar na Mão">☆</button>
-          </div>
-          <div class="ac-corpo" hidden><p class="ac-texto">Defender (1 ação): +2 Defender até seu próximo turno. Não acumula com ela mesma.</p></div>
-        </article>
-
-        <article class="ac" data-custo="reacao">
-          <div class="ac-linha">
-            <span class="ac-gemas"><i class="g g-reacao"></i></span>
-            <button type="button" class="ac-abre" aria-expanded="false"><span class="ac-nome">Defender (reação)</span><span class="ac-sub">Evasão Ativa = 13 + 1d6</span></button>
-            <span class="ac-custo"></span>
-            <span class="ac-bts"><button type="button" class="bt bt-mini" data-rola="1d6+13" data-rot="Defender (reação) · Evasão Ativa">Rolar</button></span>
-            <button type="button" class="estrela" aria-pressed="true" aria-label="Tirar da Mão">★</button>
-          </div>
-          <div class="ac-corpo" hidden>
-            <div class="conta"><span class="sim">Ativa = Passiva + dado de Defender</span><span class="num">= 13 (10 + 3 DES) + 1d6 (Treinado) = <b>13 + 1d6</b></span></div>
-            <p class="nota mesa-so">Vale contra todos os ataques do agressor neste turno. Os outros agressores continuam contra a sua Passiva 13. O dado não soma atributo.</p>
-          </div>
-        </article>
-
-        <article class="ac" data-custo="reacao">
-          <div class="ac-linha">
-            <span class="ac-gemas"><i class="g g-reacao"></i></span>
-            <button type="button" class="ac-abre" aria-expanded="false"><span class="ac-nome">Retaliar</span><span class="ac-sub">Atacar +7 com a arma empunhada</span></button>
-            <span class="ac-custo"></span>
-            <span class="ac-bts"><button type="button" class="bt bt-mini" data-rola="1d20+7" data-rot="Retaliar · Desarmado">Rolar</button></span>
-            <button type="button" class="estrela" aria-pressed="false" aria-label="Fixar na Mão">☆</button>
-          </div>
-          <div class="ac-corpo" hidden><p class="ac-texto">Se ultrapassar o ataque, você ataca com a arma empunhada e também recebe o dano dele. Acerto crítico nega o dano dele; falha crítica torna o ataque dele crítico. Não se retalia à distância. Empate: o atacante ganha.</p></div>
-        </article>
-
-        <article class="ac" data-custo="acao">
-          <div class="ac-linha">
-            <span class="ac-gemas"><i class="g g-acao"></i></span>
-            <button type="button" class="ac-abre" aria-expanded="false"><span class="ac-nome">Mover</span><span class="ac-sub">12 m (9 m + 3 m Acelerar) · 1 vez por turno</span></button>
-            <span class="ac-custo"></span>
-            <span class="ac-bts"><button type="button" class="bt bt-mini" data-rot="Mover" data-usa="12 m">Usar</button></span>
-            <button type="button" class="estrela" aria-pressed="false" aria-label="Fixar na Mão">☆</button>
-          </div>
-          <div class="ac-corpo" hidden><p class="ac-texto">Efeitos que fixam o Movimento (Caído 1,5 m, Enraizado 0 m) vencem somas e multiplicações. O resultado arredonda para baixo, em múltiplos de 1,5 m.</p></div>
-        </article>
-
-        <article class="ac" data-custo="acao">
-          <div class="ac-linha">
-            <span class="ac-gemas"><i class="g g-acao"></i><i class="g g-acao"></i></span>
-            <button type="button" class="ac-abre" aria-expanded="false"><span class="ac-nome">Pular</span><span class="ac-sub">1/3 do Movimento: 3 m</span></button>
-            <span class="ac-custo"></span>
-            <span class="ac-bts"><button type="button" class="bt bt-mini" data-rot="Pular" data-usa="3 m">Usar</button></span>
-            <button type="button" class="estrela" aria-pressed="false" aria-label="Fixar na Mão">☆</button>
-          </div>
-          <div class="ac-corpo" hidden><p class="ac-texto">Pular (2 ações): pula 1/3 do seu Movimento.</p></div>
-        </article>
-
-        <h3 class="sub-tit rot">Manobras</h3>
-        <article class="ac" data-custo="acao">
-          <div class="ac-linha">
-            <span class="ac-gemas"><i class="g g-acao"></i></span>
-            <button type="button" class="ac-abre" aria-expanded="false"><span class="ac-nome">Empurrar</span><span class="ac-sub">Movimento +5 contra a Fortitude do alvo</span></button>
-            <span class="ac-custo"></span>
-            <span class="ac-bts"><button type="button" class="bt bt-mini" data-rola="1d20+5" data-rot="Empurrar · Movimento">Rolar</button></span>
-            <button type="button" class="estrela" aria-pressed="false" aria-label="Fixar na Mão">☆</button>
-          </div>
-          <div class="ac-corpo" hidden><p class="ac-texto">Se ganhar, você empurra o alvo até 3 m, mais 1,5 m para cada 5 pontos sobrepujantes. Ao empurrar com sucesso, o alvo fica <em>Caído</em>.</p></div>
-        </article>
-        <article class="ac" data-custo="acao">
-          <div class="ac-linha">
-            <span class="ac-gemas"><i class="g g-acao"></i></span>
-            <button type="button" class="ac-abre" aria-expanded="false"><span class="ac-nome">Agarrar</span><span class="ac-sub">Movimento +5 contra o Movimento do alvo</span></button>
-            <span class="ac-custo"></span>
-            <span class="ac-bts"><button type="button" class="bt bt-mini" data-rola="1d20+5" data-rot="Agarrar · Movimento">Rolar</button></span>
-            <button type="button" class="estrela" aria-pressed="false" aria-label="Fixar na Mão">☆</button>
-          </div>
-          <div class="ac-corpo" hidden><p class="ac-texto">Se ganhar, você domina o alvo com no mínimo 1 mão. Atacar contra o alvo tem +2 e o alvo recebe −2 ao Atacar. O alvo fica <em>Enraizado</em> até se livrar do agarrão.</p></div>
-        </article>
-        <article class="ac" data-custo="acao">
-          <div class="ac-linha">
-            <span class="ac-gemas"><i class="g g-acao"></i><i class="g g-acao"></i></span>
-            <button type="button" class="ac-abre" aria-expanded="false"><span class="ac-nome">Investida</span><span class="ac-sub">Movimento +5 por inimigo na linha · conta como Mover</span></button>
-            <span class="ac-custo"></span>
-            <span class="ac-bts"><button type="button" class="bt bt-mini" data-rola="1d20+5" data-rot="Investida · Movimento">Rolar</button></span>
-            <button type="button" class="estrela" aria-pressed="false" aria-label="Fixar na Mão">☆</button>
-          </div>
-          <div class="ac-corpo" hidden><p class="ac-texto">Você se move até seu Movimento em linha reta. A cada inimigo colidido, teste de Movimento contra ele: no sucesso, 1 ação Atacar e segue; na falha, para antes dele e faz 1 ação Atacar. Ultrapassar inimigos na Investida não provoca ataques de oportunidade.</p></div>
-        </article>
-
-        <h3 class="sub-tit rot">Quando te acertam</h3>
-        <article class="ac" data-custo="nenhum" style="--fonte: var(--saude)">
-          <div class="ac-linha">
-            <span class="ac-gemas"></span>
-            <button type="button" class="ac-abre" aria-expanded="true"><span class="ac-nome">Recebi dano</span><span class="ac-sub">a conta da sua defesa, com Ar e resistências</span></button>
-            <span class="ac-custo"></span>
-            <span class="ac-bts"></span>
-            <span></span>
-          </div>
-          <div class="ac-corpo">
-            <div class="dano-form">
-              <input type="text" inputmode="numeric" id="dano-v" value="12" aria-label="Dano recebido">
-              <select id="dano-t" aria-label="Tipo de dano">
-                <option value="cortante">Cortante</option><option value="contundente">Contundente</option><option value="perfurante">Perfurante</option>
-                <option value="fogo">Fogo</option><option value="frio">Frio</option><option value="eletrico">Elétrico</option>
-                <option value="veneno">Veneno</option><option value="acido">Ácido</option><option value="psiquico">Psíquico</option>
-                <option value="radiante">Radiante</option><option value="trovejante">Trovejante</option><option value="necrotico">Necrótico</option>
-                <option value="forca">Força</option><option value="primordial">Primordial</option>
-              </select>
-              <button type="button" class="bt bt-mini" id="dano-ap">Aplicar</button>
-            </div>
-            <div class="conta" id="dano-conta"></div>
-            <p class="nota">No mesmo passo: Saúde temporária gasta primeiro; o Sangramento consome antes (+2d4 biológico e cai para 1); Exposto sai; e o Fluxo vai a 0 (o Monge perde todo o Fluxo ao receber dano).</p>
-          </div>
-        </article>
-
-        <details class="sempre">
-          <summary><span class="rot">Sempre valendo</span><span class="nota">2 regras já nas contas</span></summary>
-          <ul>
-            <li><b>Punho Perfeito</b> · Experiente em Atacar; +1d6 contundente nos desarmados</li>
-            <li><b>Fluxo Marcial</b> · o 3º ataque no mesmo alvo com vantagem; +1 Fluxo ao acertar desarmado</li>
-          </ul>
-        </details>
-      </div>
-
-      <!-- ---------------- Técnicas -->
-      <div class="painel" role="tabpanel" id="p-tecnicas" aria-labelledby="t-tecnicas" hidden>
-        <h3 class="sub-tit rot">Classe · Monge</h3>
-        <article class="ac" data-custo="acao" style="--fonte: var(--fluxo)">
-          <div class="ac-linha">
-            <span class="ac-gemas"><i class="g g-acao"></i></span>
-            <button type="button" class="ac-abre" aria-expanded="false"><span class="ac-nome">Dança do Monge</span><span class="ac-sub">3 ataques desarmados contra um ou mais alvos</span></button>
-            <span class="ac-custo"><span class="custo c-sta">5 Stamina</span><span class="custo c-req">requer 3 Fluxo</span><span class="custo c-uso">1x/rodada · usada</span></span>
-            <span class="ac-bts"><button type="button" class="bt bt-mini" data-rot="Dança do Monge" data-usa="−5 Stamina · Fluxo 3 é requisito, não gasta">Usar</button></span>
-            <button type="button" class="estrela" aria-pressed="true" aria-label="Tirar da Mão">★</button>
-          </div>
-          <div class="ac-corpo" hidden><p class="ac-texto">Faça 3 ataques desarmados contra um ou mais alvos em alcance. 1x/Rodada</p><p class="nota">O Fluxo do Monge é requisito: a técnica confere se você tem 3, e ele não é gasto. Os 3 ataques usam a linha do Desarmado (+7 · +2 · −3).</p></div>
-        </article>
-        <article class="ac" data-custo="acao" style="--fonte: var(--fluxo)">
-          <div class="ac-linha">
-            <span class="ac-gemas"><i class="g g-acao"></i></span>
-            <button type="button" class="ac-abre" aria-expanded="false"><span class="ac-nome">Golpe das Mazelas</span><span class="ac-sub">o próximo desarmado exige Fortitude contra CD 15</span></button>
-            <span class="ac-custo"><span class="custo c-sta">3 Stamina</span></span>
-            <span class="ac-bts"><button type="button" class="bt bt-mini" data-rot="Golpe das Mazelas" data-usa="−3 Stamina">Usar</button></span>
-            <button type="button" class="estrela" aria-pressed="false" aria-label="Fixar na Mão">☆</button>
-          </div>
-          <div class="ac-corpo" hidden><p class="ac-texto">O seu próximo ataque desarmado exige Fortitude ao alvo ou <em>Atordoado</em> até o fim do seu próximo turno.</p><p class="nota mesa-so">Para a mesa: o alvo faz Fortitude contra a sua CD 15 (10 + 3 DES + 2 SAB).</p></div>
-        </article>
-        <article class="ac" data-custo="reacao" style="--fonte: var(--fluxo)">
-          <div class="ac-linha">
-            <span class="ac-gemas"><i class="g g-reacao"></i></span>
-            <button type="button" class="ac-abre" aria-expanded="false"><span class="ac-nome">Apanhar Projétil</span><span class="ac-sub">reduz o dano à distância em 3d10 + 3</span></button>
-            <span class="ac-custo"></span>
-            <span class="ac-bts"><button type="button" class="bt bt-mini" data-rola="3d10+3" data-rot="Apanhar Projétil · redução">Rolar</button></span>
-            <button type="button" class="estrela" aria-pressed="true" aria-label="Tirar da Mão">★</button>
-          </div>
-          <div class="ac-corpo" hidden><p class="ac-texto">Ao ser atingido por um ataque à distância, reduza o dano em Níveld10 + Mod. Des. Se reduzir a 0, você pegou o projétil.</p><div class="conta"><span class="sim">Redução = Nível d10 + Mod.DES</span><span class="num">= 3d10 + 3</span></div></div>
-        </article>
-        <article class="ac" data-custo="livre" style="--fonte: var(--fluxo)">
-          <div class="ac-linha">
-            <span class="ac-gemas"><i class="g g-livre"></i></span>
-            <button type="button" class="ac-abre" aria-expanded="false"><span class="ac-nome">Transcendência</span><span class="ac-sub">nesta rodada, a PMA não se aplica a você</span></button>
-            <span class="ac-custo"><span class="custo c-sta">5 Stamina</span><span class="custo c-sau">5 Saúde</span></span>
-            <span class="ac-bts"><button type="button" class="bt bt-mini" data-rot="Transcendência" data-usa="−5 Stamina · −5 Saúde">Usar</button></span>
-            <button type="button" class="estrela" aria-pressed="false" aria-label="Fixar na Mão">☆</button>
-          </div>
-          <div class="ac-corpo" hidden><p class="ac-texto">Como ação livre, gaste 5 de Stamina e 5 de Saúde, durante essa rodada a regra de Penalidade de Multi-Ataque (PMA) não se aplica a você.</p></div>
-        </article>
-        <h3 class="sub-tit rot">Raça · Humano</h3>
-        <article class="ac" data-custo="livre" style="--fonte: var(--ouro)">
-          <div class="ac-linha">
-            <span class="ac-gemas"><i class="g g-livre"></i></span>
-            <button type="button" class="ac-abre" aria-expanded="false"><span class="ac-nome">Persistência Humana</span><span class="ac-sub">ao falhar num teste, +1d4 nele</span></button>
-            <span class="ac-custo"><span class="custo c-uso">3/3 · descanso longo</span></span>
-            <span class="ac-bts"><button type="button" class="bt bt-mini" data-rola="1d4" data-rot="Persistência Humana · soma ao teste">Rolar</button></span>
-            <button type="button" class="estrela" aria-pressed="true" aria-label="Tirar da Mão">★</button>
-          </div>
-          <div class="ac-corpo" hidden><p class="ac-texto">Humanos são persistentes, ao falhar em um teste qualquer, como ação livre, pode rolar 1d4 e somar ao teste. (Usos: 1+mod. Sabedoria/descanso longo)</p><div class="conta"><span class="sim">Usos = 1 + Mod.SAB por descanso longo</span><span class="num">= 1 + 2 = <b>3</b></span></div></div>
-        </article>
-        <details class="sempre">
-          <summary><span class="rot">Sempre valendo</span><span class="nota">2 passivas já nas contas</span></summary>
-          <ul>
-            <li><b>Punho Perfeito</b> · Experiente em Atacar; +1d6 contundente nos desarmados</li>
-            <li><b>Fluxo Marcial</b> · o 3º ataque no mesmo alvo com vantagem; +1 Fluxo ao acertar desarmado</li>
-          </ul>
-        </details>
-      </div>
-
-      <!-- ---------------- Magias -->
-      <div class="painel" role="tabpanel" id="p-magias" aria-labelledby="t-magias" hidden>
-        <h3 class="sub-tit rot">Nível 1</h3>
-        <article class="ac fora" data-custo="acao" style="--fonte: var(--escola-destruicao)">
-          <div class="ac-linha">
-            <span class="ac-gemas"><i class="g g-acao"></i></span>
-            <button type="button" class="ac-abre" aria-expanded="true"><span class="ac-nome">Fagulha</span><span class="ac-sub">Destruição · Místico contra a Evasão do alvo · <span class="motivo">exige Treinado em Místico</span></span></button>
-            <span class="ac-custo"><span class="custo c-eter" id="fag-custo">0 Éter</span></span>
-            <span class="ac-bts"><button type="button" class="bt bt-mini" data-rola="1d20+0" data-rot="Fagulha · Místico">Conjurar</button></span>
-            <button type="button" class="estrela" aria-pressed="false" aria-label="Fixar na Mão">☆</button>
-          </div>
-          <div class="ac-corpo">
-            <div class="linha-bts">
-              <span class="seg" role="group" aria-label="Intensidade">
-                <button type="button" aria-pressed="true" data-int="0" data-dano="1d4" data-alc="4,5 m">Normal</button>
-                <button type="button" aria-pressed="false" data-int="2" data-dano="2d4" data-alc="6 m">Forçada</button>
-                <button type="button" aria-pressed="false" data-int="4" data-dano="3d4" data-alc="9 m">Transbordante</button>
-              </span>
-              <span class="nota" id="fag-st">Dano 1d4 fogo · alcance 4,5 m · 1 criatura</span>
-              <button type="button" class="bt bt-mini bt-calmo" id="fag-dano" data-rola="1d4" data-rot="Fagulha · dano (fogo)">Dano</button>
-            </div>
-            <p class="ac-texto">Você estala os dedos e arremessa uma fagulha. Faça um teste de Místico contra a Evasão do alvo. A fagulha acende objetos inflamáveis desatendidos (tocha, estopa, óleo derramado) sem precisar de teste.</p>
-            <p class="nota">Nível 1 não tem Contida. Conjurar marca a magia do turno; a segunda no mesmo turno avisa e fica no registro, sem travar.</p>
-          </div>
-        </article>
-      </div>
-
-      <!-- ---------------- Itens -->
-      <div class="painel" role="tabpanel" id="p-itens" aria-labelledby="t-itens" hidden>
-        <h3 class="sub-tit rot">Consumíveis</h3>
-        <article class="ac" data-custo="acao" style="--fonte: var(--rar-ordinario)">
-          <div class="ac-linha">
-            <span class="ac-gemas"><i class="g g-acao"></i></span>
-            <button type="button" class="ac-abre" aria-expanded="false"><span class="ac-nome">Poção de Cura Menor <span class="ac-sub">×1</span></span><span class="ac-sub">recupera 2d4 + 2 de Saúde</span></button>
-            <span class="ac-custo"></span>
-            <span class="ac-bts"><button type="button" class="bt bt-mini" data-rola="2d4+2" data-rot="Poção de Cura Menor · em si">Em si</button><button type="button" class="bt bt-mini bt-calmo" data-rola="2d4+2" data-rot="Poção de Cura Menor · em outro (para a mesa)">Em outro</button></span>
-            <button type="button" class="estrela" aria-pressed="true" aria-label="Tirar da Mão">★</button>
-          </div>
-          <div class="ac-corpo" hidden><p class="ac-texto">Recupera 2d4+Int de Saúde. O "+Int" é a Inteligência de quem fabricou: aqui, +2.</p><p class="nota">Em si: baixa 1, cura e para no máximo. Em outro: baixa 1 e o registro mostra a cura rolada para o outro jogador.</p></div>
-        </article>
-        <article class="ac" data-custo="acao" style="--fonte: var(--rar-ordinario)">
-          <div class="ac-linha">
-            <span class="ac-gemas"><i class="g g-acao"></i></span>
-            <button type="button" class="ac-abre" aria-expanded="false"><span class="ac-nome">Atadura Limpa <span class="ac-sub">×3</span></span><span class="ac-sub">retira Sangramento</span></button>
-            <span class="ac-custo"></span>
-            <span class="ac-bts"><button type="button" class="bt bt-mini" data-rot="Atadura Limpa · em si" data-usa="Sangramento removido · ×2">Em si</button></span>
-            <button type="button" class="estrela" aria-pressed="false" aria-label="Fixar na Mão">☆</button>
-          </div>
-          <div class="ac-corpo" hidden><p class="ac-texto">Retira a condição Sangramento como 1 ação. Empilhável: pesa 1 bugiganga a cada 10 unidades.</p></div>
-        </article>
-        <article class="ac" data-custo="acao" style="--fonte: var(--rar-ordinario)">
-          <div class="ac-linha">
-            <span class="ac-gemas"><i class="g g-acao"></i></span>
-            <button type="button" class="ac-abre" aria-expanded="false"><span class="ac-nome">Bomba de Luz <span class="ac-sub">×2</span></span><span class="ac-sub">arremesso 9 m · flash em 6 m</span></button>
-            <span class="ac-custo"></span>
-            <span class="ac-bts"><button type="button" class="bt bt-mini" data-rot="Bomba de Luz · arremesso" data-usa="×1 · Reflexo ou Cego por 1 rodada (para a mesa)">Arremessar</button></span>
-            <button type="button" class="estrela" aria-pressed="false" aria-label="Fixar na Mão">☆</button>
-          </div>
-          <div class="ac-corpo" hidden><p class="ac-texto">Arremesso 9 m. Flash em 6 m. Reflexo ou <em>Cego</em> por 1 rodada.</p><p class="nota mesa-so">Para a mesa: quem está no flash faz Reflexo. A ficha só baixa a bomba.</p></div>
-        </article>
-        <h3 class="sub-tit rot">Equipados com efeito</h3>
-        <article class="ac" data-custo="nenhum" style="--fonte: var(--rar-exotico)">
-          <div class="ac-linha">
-            <span class="ac-gemas"></span>
-            <button type="button" class="ac-abre" aria-expanded="false"><span class="ac-nome">Colar da Sanguessuga</span><span class="ac-sub">ao causar dano corpo a corpo: +1 Saúde</span></button>
-            <span class="ac-custo"></span>
-            <span class="ac-bts"><button type="button" class="bt bt-mini" data-rot="Colar da Sanguessuga" data-usa="+1 Saúde">Aplicar +1</button></span>
-            <button type="button" class="estrela" aria-pressed="false" aria-label="Fixar na Mão">☆</button>
-          </div>
-          <div class="ac-corpo" hidden><p class="ac-texto">Ao causar dano corpo a corpo: cura 1 de Saúde. Passiva.</p></div>
-        </article>
-        <article class="ac" data-custo="nenhum" style="--fonte: var(--rar-incomum)">
-          <div class="ac-linha">
-            <span class="ac-gemas"></span>
-            <button type="button" class="ac-abre" aria-expanded="false"><span class="ac-nome">Capa de Obscurecimento</span><span class="ac-sub">+2 Furtividade em penumbra ou escuridão</span></button>
-            <span class="ac-custo"><span class="custo c-uso" style="color: var(--verde); border-color: #2d5a3d">ligado</span></span>
-            <span class="ac-bts"><button type="button" class="bt bt-mini bt-calmo" data-rot="Capa de Obscurecimento" data-usa="situação desligada">Desligar</button></span>
-            <button type="button" class="estrela" aria-pressed="false" aria-label="Fixar na Mão">☆</button>
-          </div>
-          <div class="ac-corpo" hidden><p class="ac-texto">Ligada, a Furtividade soma +2 (aparece também ao lado da perícia, na grade).</p></div>
-        </article>
-      </div>
-
-      <!-- ---------------- Perícias -->
-      <div class="painel" role="tabpanel" id="p-pericias" aria-labelledby="t-pericias" hidden>
-        <div class="pers" id="pers"></div>
-      </div>
-
-      <!-- ---------------- Cartas -->
-      <div class="painel" role="tabpanel" id="p-cartas" aria-labelledby="t-cartas" hidden>
-        <h3 class="sub-tit rot">Do Limiar</h3>
-        <article class="ac" data-custo="reacao" style="--fonte: var(--verde)">
-          <div class="ac-linha">
-            <span class="ac-gemas"><i class="g g-reacao"></i></span>
-            <button type="button" class="ac-abre" aria-expanded="false"><span class="ac-nome">Reflexos de Serpente</span><span class="ac-sub">um ataque que te acertaria causa metade do dano</span></button>
-            <span class="ac-custo"><span class="custo c-uso">1/1 · descanso curto</span></span>
-            <span class="ac-bts"><button type="button" class="bt bt-mini" data-rot="Reflexos de Serpente" data-usa="metade do dano deste ataque · 0/1">Usar</button></span>
-            <button type="button" class="estrela" aria-pressed="false" aria-label="Fixar na Mão">☆</button>
-          </div>
-          <div class="ac-corpo" hidden><p class="ac-texto">1x/Curto: force um ataque que te acertaria a causar metade do dano (pode ser declarado após a rolagem).</p></div>
-        </article>
-        <article class="ac fora" data-custo="livre" style="--fonte: var(--verde)">
-          <div class="ac-linha">
-            <span class="ac-gemas"><i class="g g-livre"></i></span>
-            <button type="button" class="ac-abre" aria-expanded="false"><span class="ac-nome">Esquiva Abissal</span><span class="ac-sub">recupera a sua reação · <span class="motivo">Stamina 9 de 10</span></span></button>
-            <span class="ac-custo"><span class="custo c-sta">10 Stamina</span><span class="custo c-uso">1/1 · descanso curto</span></span>
-            <span class="ac-bts"><button type="button" class="bt bt-mini" data-rot="Esquiva Abissal" data-usa="−10 Stamina (faltou 1: a mesa decide)">Usar</button></span>
-            <button type="button" class="estrela" aria-pressed="false" aria-label="Fixar na Mão">☆</button>
-          </div>
-          <div class="ac-corpo" hidden><p class="ac-texto">+1 nível de treinamento em Defender. Você pode gastar 10 de Stamina como ação livre para recuperar sua reação. 1x/curto.</p><p class="nota">Sem Stamina bastante: o cartão avisa, mas não trava. Quem decide é a mesa.</p></div>
-        </article>
-        <details class="sempre">
-          <summary><span class="rot">Sempre valendo</span><span class="nota">1 carta já nas contas</span></summary>
-          <ul><li><b>Esquiva Abissal</b> · +1 grau em Defender (Treinado: 1d6)</li></ul>
-        </details>
-      </div>
-    </section>
-
-    <!-- ============================================================ registro -->
-    <aside class="zona registro" aria-label="Registro da sessão">
-      <span class="rot">Registro</span>
-      <div class="ultima" id="ultima" aria-live="polite">
-        <span class="o-que" id="u-oque">Atacar 1º · Desarmado</span>
-        <span class="total" id="u-total">21</span>
-        <span class="conta-r" id="u-conta"><span class="dado">14</span> + 7</span>
-        <span class="selo" id="u-selo"></span>
-      </div>
-      <ol class="log" id="log">
-        <li><div class="topo"><span class="o-que">Dança do Monge</span><span class="res">◆</span></div><span class="mud">−5 Stamina (14 → 9) · Fluxo 3 é requisito, não gasta</span><div class="acoes-log"><button type="button" class="lk" data-desfaz>Desfazer</button><button type="button" class="lk" data-copia>Copiar</button></div></li>
-        <li><div class="topo"><span class="o-que">Começar meu turno (3)</span><span class="res"></span></div><span class="mud">ações 3 · reação de volta · Defender +2 expirou</span><div class="acoes-log"><button type="button" class="lk" disabled>desfazer até aqui</button></div></li>
-        <li><div class="topo"><span class="o-que">Poção de Cura Menor · em si</span><span class="res">6</span></div><span class="det"><span class="dado">3</span> <span class="dado">1</span> + 2</span><span class="mud">Saúde 18 → 24 · Poção ×2 → ×1</span></li>
-        <li><div class="topo"><span class="o-que">Recebi dano · 9 perfurante</span><span class="res">−7</span></div><span class="det">9 − 2 Ar = 7</span><span class="mud">Saúde 25 → 18</span></li>
-      </ol>
-    </aside>
+        <div class="ferr">
+          <input type="search" id="busca" placeholder="Buscar em tudo" aria-label="Buscar habilidade">
+          <div class="filtros" id="filtros"></div>
+        </div>
+        <div class="lista" id="lista"></div>
+      </section>
+    </div>
   </div>
 
-  <footer class="notas">
-    <section>
-      <h2>O que esta prova mostra</h2>
-      <ul>
-        <li>A barra do turno: recursos, ações, reação, magia do turno, condições, temporários e o relógio do personagem.</li>
-        <li>A Mão de atalhos e os seis grupos, com o filtro Ação/Reação/Livre e a busca.</li>
-        <li>O cartão fechado em uma linha e aberto com a regra, a conta e o "rolei".</li>
-        <li>O registro com a última rolagem em destaque. 20 natural brilha em âmbar; 1 natural, em vermelho.</li>
-      </ul>
-    </section>
-    <section>
-      <h2>O que ela não faz</h2>
-      <ul>
-        <li>Os botões rolam de verdade e mexem nos números desta página, mas nada é gravado em ficha nenhuma.</li>
-        <li>Ravek é um personagem de exemplo; os nomes, custos e textos vêm do catálogo do site.</li>
-        <li>Inimigos e aliados não aparecem: o que cai neles sai como texto para a mesa.</li>
-      </ul>
-    </section>
-  </footer>
+  <section class="sobre">
+    <h2>Sobre esta prova</h2>
+    <ul>
+      <li>Ravek é um personagem de exemplo. Os textos de técnicas, itens, cartas, condições e regras foram copiados do site. A linha curta embaixo de cada nome mostra só custo, rolagem e números calculados.</li>
+      <li>Os dados rolam de verdade. Nada é gravado: recarregar a página volta ao começo.</li>
+      <li>Para experimentar: o interruptor Combate / Exploração, Encerrar meu turno, ★ para fixar nos Favoritos, os espaços do boneco e Ver como no drawer.</li>
+    </ul>
+  </section>
 </div>
+<div class="pop" id="pop" hidden></div>
 
 <script>
-(function () {
-  'use strict';
-  var $ = function (s, r) { return (r || document).querySelector(s); };
-  var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
+(() => {
+'use strict';
+const $ = (s, r = document) => r.querySelector(s);
+const esc = t => String(t).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+const sinal = n => (n < 0 ? '−' : '+') + Math.abs(n);
+const metros = n => String(n).replace('.', ',') + ' m';
+const SITE = 'https://vitralxx.github.io/Khalkaria_Html/pages/';
+const NOME_REC = { saude: 'Saúde', stamina: 'Stamina', eter: 'Éter', fluxo: 'Fluxo' };
+const COR_REC = { saude: 'var(--saude)', stamina: 'var(--stamina)', eter: 'var(--eter)', fluxo: 'var(--fluxo)' };
+const reduzMov = matchMedia('(prefers-reduced-motion: reduce)');
 
-  // ---- dados: NdX(+NdX)(+K)
-  function d(n) {
-    var a = new Uint32Array(1);
-    window.crypto.getRandomValues(a);
-    return 1 + (a[0] % n);
+/* ---------- textos copiados do site ---------- */
+const TXT = {
+  pma: 'Ataques consecutivos contra o mesmo alvo somam −5 a cada ataque no mesmo turno. Essa é a Penalidade de Multi-Ataque (PMA): vale em todo ataque, inclusive de técnica, salvo quando a técnica diz o contrário. Técnicas que fazem vários ataques "como 1 ação" pagam, juntos, o custo de ataque da arma.',
+  humana: 'Seus ataques desarmados causam 1d8 de dano (ao invés de 1d4). Cartas do Limiar e itens podem, recorrentemente, substituir isso.',
+  critico: 'Dano Crítico = Role o dobro de dados da arma + Mod. Atributo da arma; os dados de dano extra escritos na própria arma também dobram.',
+  defender: 'Defender (1 ação) → +2 Defender até seu próximo turno. Não acumula com ela mesma.',
+  defReacao: 'Defender fora do seu turno (Reação) → Soma o dado da perícia Defender à sua evasão contra todos os ataques do agressor neste turno.',
+  retaliar: 'Atacar (Retaliar): O alvo tenta te retaliar: Caso o alvo ultrapasse seu valor, ele te ataca com a arma que estiver empunhando, também recebendo seu dano. Caso ele acerte criticamente, ele nega seu dano, ainda sim, te retaliando. Caso ele falhe criticamente, seu ataque contra ele é crítico. Você não pode retaliar à distância.',
+  oport: 'Ao estar a 1,5 m de uma criatura e se afastar dela, ela pode gastar sua reação para realizar um ataque de oportunidade contra você.',
+  mover: 'Mover (1 ação) — Max. 1 vez por turno. Efeitos que fixam o Movimento (Caído 1,5 m, Enraizado 0 m) vencem somas e multiplicações; se dois fixam, vale o menor. O resultado arredonda para baixo, em múltiplos de 1,5 m.',
+  pular: 'Pular (2 ações) → Pula 1/3 do seu Movimento.',
+  acelerar: 'Acelerar (1 ação) → +3 m de movimento nesta rodada.',
+  empurrar: 'Se ganhar você empurra o alvo até 3 m + 1,5 m para cada 5 pontos sobrepujantes. Ao empurrar com sucesso, o alvo fica Caído.',
+  desarmar: 'Se ganhar você derruba a arma do alvo no chão.',
+  agarrar: 'Se ganhar você domina o alvo com no mínimo 1 mão. Atacar contra o alvo possui +2 e o alvo recebe -2 ao Atacar. O alvo fica Enraizado até se livrar do agarrão.',
+  investida: 'Você gasta duas ações para se movimentar até seu Movimento em linha reta. A cada inimigo colidido no seu caminho, faça um teste de Movimento contra ele: em caso de sucesso, você realiza 1 ação: Atacar contra ele e segue para o próximo alvo na trajetória; em caso de falha, você é interceptado, para antes do alvo contra o qual falhou e realiza 1 ação: Atacar contra ele. A Investida conta como a sua ação de Mover do turno. Ultrapassar inimigos durante a Investida não provoca ataques de oportunidade.',
+  danca: 'Faça 3 ataques desarmados contra um ou mais alvos em alcance. 1x/Rodada',
+  golpe: 'O seu próximo ataque desarmado exige Fortitude ao alvo ou Atordoado até o fim do seu próximo turno.',
+  apanhar: 'Ao ser atingido por um ataque à distância, reduza o dano em Níveld10 + Mod. Des. Se reduzir a 0, você pegou o projétil. Pode arremessar de volta ao atacante em um mesmo movimento. Você pode utilizar essa técnica qualquer projétil, porém arremessá-lo de volta depende que seja sólido e leve o suficiente.',
+  transc: 'Como ação livre, gaste 5 de Stamina e 5 de Saúde, durante essa rodada a regra de Penalidade de Multi-Ataque (PMA) não se aplica a você.',
+  persist: 'Humanos são persistentes, ao falhar em um teste qualquer, como ação livre, pode rolar 1d4 e somar ao teste. (Usos: 1+mod. Sabedoria/descanso longo)',
+  punho: 'Você se torna Treinado em Atacar. Se já for Treinado, se torna Experiente e assim por diante. Seus ataques desarmados causam +1d6 de dano Contundente.',
+  marcial: 'Ao acertar dois ataques desarmados no mesmo turno contra o mesmo alvo, o terceiro ataque neste turno tem Vantagem. Você ganha +1 Fluxo adicional ao acertar um ataque desarmado.',
+  fluxoGanho: 'Acerto: Acertar um ataque corpo a corpo → +1 Fluxo : Max 2x por rodada. Defender-se: Esquivar ou Bloquear um ataque → +1 Fluxo : Max 1x por rodada. Mover-se: → +1 Fluxo : Max 1x por rodada.',
+  fluxoPerde: 'Você perde todo o seu Fluxo ao receber dano, ao passar 1 rodada sem ganhar Fluxo e ao fim do combate.',
+  fluxoFora: 'Fora de combate, você pode utilizar técnicas que exigem fluxo livremente com 1 minuto de preparo.',
+  fagulha: 'Você estala os dedos e arremessa uma fagulha. Faça um teste de Místico contra a Evasão do alvo. A fagulha acende objetos inflamáveis desatendidos (tocha, estopa, óleo derramado) sem precisar de teste.',
+  pocao: 'Recupera 2d4+Int de Saúde. Consumível.',
+  atadura: 'Retira a condição Sangramento como 1 ação. Empilhável: pesa 1 bugiganga a cada 10 unidades.',
+  bomba: 'Arremesso 9m. Flash em 6m. Reflexo ou Cego por 1 rodada.',
+  consumivel: 'Usar item consumível (1 ação) → em você ou em outra criatura. Se o item for arremessado, siga o que ele diz.',
+  reflexos: '1x/Curto: Force um ataque que te acertaria a causar metade do dano (pode ser declarado após a rolagem)',
+  esquiva: '+1 nível de treinamento em Defender. Você pode gastar 10 de Stamina como ação livre para recuperar sua reação. 1x/curto',
+  guiar: 'Ao suceder soma +2 ao sucesso do grupo e +1 para cada 5 pontos sobrepujantes.',
+  apoio: 'Ao suceder soma +1 ao sucesso do grupo e +1 para cada 5 pontos sobrepujantes.',
+  outros: 'Se a ação for apropriada, ao suceder soma +1 ao sucesso do grupo e +1 para cada 5 pontos sobrepujantes.',
+  tratar: 'Você passa seu tempo de descanso fechando suas feridas, +1d6 Saúde.',
+  meditar: 'Você tenta relaxar e espairecer a mente, +1d6 Éter.',
+  relaxar: 'Você descansa e se preserva pras próximas horas, +1d6 Stamina.',
+  comer: 'Você se alimenta recuperando suas forças, +2d6 de qualquer status.',
+  curto: 'O grupo descansa por no mínimo 30 minutos em um lugar seguro, e recupera 2d6 de 2 Status a escolha de cada jogador.',
+  longo: 'O grupo dorme por no mínimo 8 horas, e recupera Xd8 de 2 Status a escolha de cada jogador, sendo X o nível de comodidade do descanso. Role Xd8 separadamente para cada um dos 2 status.',
+  sintonia: 'Você pode equipar e se beneficiar de até 3 itens mágicos, alteráveis a cada descanso longo.'
+};
+const CONDS = {
+  sangramento: { nome: 'Sangramento', x: true, texto: ['Se o alvo puder sangrar, qualquer ataque contra ele causa +Xd4 de dano Biológico, sendo X o seu Sangramento atual.', 'Ao acertar um ataque em um alvo com essa condição, ela reduz em 1. Por exemplo: um alvo com Sangramento 3 recebe +3d4 no próximo acerto e fica com Sangramento 2.', 'Se o acerto também aplicar Sangramento, o dano e a redução acontecem antes da nova aplicação.'] },
+  exposto: { nome: 'Exposto', texto: ['O primeiro ataque que acertar essa criatura é crítico. Remove ao acertar.'] },
+  caido: { nome: 'Caído', texto: ['Você está prostrado e seu movimento se torna 1,5 m.', 'Ao ser atacado, não pode retaliar e defende com -2.', 'Encerra ao gastar 1 ação para se levantar.'] },
+  atordoado: { nome: 'Atordoado', texto: ['−2 Ações e −2 de Evasão até o início do seu próximo turno.'] },
+  cego: { nome: 'Cego', texto: ['Você está cego e tem -5 em percepção e desvantagem em ataques.', 'Além disso, você falha automaticamente em todos os testes que dependem da sua visão.'] },
+  desprevenido: { nome: 'Desprevenido', texto: ['Você foi pego de surpresa e não pode reagir a ataques.', 'Além disso, você também está Exposto.'] },
+  lento: { nome: 'Lento', x: true, texto: ['−3 m de Movimento e −1 Ação para cada ponto de X.'] },
+  amedrontado: { nome: 'Amedrontado', texto: ['Gaste seu turno correndo da criatura/objeto que te colocou nessa condição da forma mais eficiente possível.'] }
+};
+const TIPOS = ['cortante', 'contundente', 'perfurante', 'fogo', 'frio', 'eletrico', 'veneno', 'acido', 'psiquico', 'radiante', 'trovejante', 'necrotico', 'forca', 'primordial'];
+const NOME_TIPO = { cortante: 'Cortante', contundente: 'Contundente', perfurante: 'Perfurante', fogo: 'Fogo', frio: 'Frio', eletrico: 'Elétrico', veneno: 'Veneno', acido: 'Ácido', psiquico: 'Psíquico', radiante: 'Radiante', trovejante: 'Trovejante', necrotico: 'Necrótico', forca: 'Força', primordial: 'Primordial' };
+const ORDINARIO = ['cortante', 'contundente', 'perfurante'];
+
+/* ---------- equipamento (itens do Bazar, texto copiado) ---------- */
+const IC = {
+  foco: '<path d="M12 2.5l2.4 7.1 7.1 2.4-7.1 2.4L12 21.5l-2.4-7.1L2.5 12l7.1-2.4z"/>',
+  escudo: '<path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/>',
+  pesada: '<path d="M7 4h10l3 4-2 3v9H6v-9L4 8z"/><path d="M12 5v15"/>',
+  leve: '<rect x="6" y="5" width="12" height="14" rx="3"/><path d="M6 10h12M6 14h12"/>',
+  elmo: '<path d="M5 16a7 7 0 0 1 14 0v3H5z"/><path d="M12 9v10M9 16h6"/>',
+  capa: '<path d="M8 3h8l4 18H4z"/><path d="M12 3v18"/>',
+  colar: '<path d="M5 4c0 6 3 9 7 9s7-3 7-9"/><circle cx="12" cy="17.5" r="3"/>'
+};
+const svgIc = (k, cls = '') => `<svg viewBox="0 0 24 24" class="${cls}" aria-hidden="true">${IC[k]}</svg>`;
+const ITENS = {
+  'foco-destruicao': { nome: 'Foco de Destruição', tipo: 'mao', ic: 'foco', rar: 'ordinario', escola: 'destruicao', texto: 'Foco Místico (Destruição). Permite canalizar magias da escola de Destruição. Sem bônus. Requisito: Inteligência ≥ 12 e Treinado em Místico.', alerta: 'Requisito: Treinado em Místico (Ravek é Leigo)' },
+  'escudo-madeira': { nome: 'Escudo de Madeira', tipo: 'mao', ic: 'escudo', rar: 'ordinario', texto: '+1 Defender ao usar a reação Defender. -1,5 m Movimento.' },
+  'armadura-couro': { nome: 'Armadura de Couro', tipo: 'pesada', ic: 'pesada', rar: 'ordinario', texto: '[Pesada] Ar 1. Sem penalidade.' },
+  'bracadeiras': { nome: 'Braçadeiras de Couro', tipo: 'leve', ic: 'leve', rar: 'ordinario', texto: '[Leve] Ae(Cortante, 3).' },
+  'capacete': { nome: 'Capacete de Ferro', tipo: 'leve', ic: 'elmo', rar: 'ordinario', texto: '[Leve] Ae(Contundente, 3).' },
+  'capa': { nome: 'Capa de Obscurecimento', tipo: 'sint', ic: 'capa', rar: 'incomum', texto: '+2 Furtividade em penumbra ou escuridão.' },
+  'colar': { nome: 'Colar da Sanguessuga', tipo: 'sint', ic: 'colar', rar: 'exotico', texto: 'Ao causar dano corpo a corpo: cura 1 de Saúde. Passiva.' }
+};
+const SLOTS = {
+  leve1: { rot: 'Armadura leve', curto: 'Leve', tipo: 'leve' }, leve2: { rot: 'Armadura leve', curto: 'Leve', tipo: 'leve' },
+  pesada: { rot: 'Armadura pesada', curto: 'Pesada', tipo: 'pesada' },
+  maoEsq: { rot: 'Mão esquerda', curto: 'Mão esq.', tipo: 'mao' }, maoDir: { rot: 'Mão direita', curto: 'Mão dir.', tipo: 'mao' },
+  sint1: { rot: 'Sintonia', curto: 'Sint.', tipo: 'sint' }, sint2: { rot: 'Sintonia', curto: 'Sint.', tipo: 'sint' }, sint3: { rot: 'Sintonia', curto: 'Sint.', tipo: 'sint' }
+};
+
+/* ---------- estado (o que o Desfazer volta) ---------- */
+const inicial = () => ({
+  modo: 'combate', combate: 1, rodada: 3, noTurno: true, turnoNaRodada: 3,
+  acoesGastas: 1, reacaoMax: 1, reacaoGasta: 1, magiaNoTurno: false, moveu: false,
+  livres: {}, naRodada: { danca: true }, seq: { n: 1, acertos: 0, crit: false }, dancaRestam: 2, vant: 'normal',
+  fluxo: { acertos: 0, defender: true, mover: false, ganhou: true },
+  rec: { saude: { v: 24, max: 31 }, stamina: { v: 10, max: 18 }, eter: { v: 6, max: 6 }, fluxo: { v: 4, max: 5 } },
+  conds: [{ id: 'sangramento', x: 2 }], temps: [],
+  usos: { persist: 0, reflexos: 1, esquiva: 0 }, curtos: 0,
+  qtd: { pocao: 2, atadura: 3, bomba: 1 },
+  equip: { leve1: 'capacete', leve2: 'bracadeiras', pesada: 'armadura-couro', maoEsq: 'foco-destruicao', maoDir: null, sint1: 'capa', sint2: 'colar', sint3: null },
+  mochila: ['escudo-madeira'], penumbra: false, intens: 'normal',
+  fav: ['atacar', 'danca', 'golpe', 'defender-reacao', 'pocao', 'persist', 'esquiva', 'fagulha']
+});
+let S = inicial();
+const UI = { aba: 'combate', filtro: 'todas', usaveis: false, busca: '', abertos: { atacar: true }, rodSel: null, regAberto: false };
+const DESF = [];
+let REG = [], PLACA = null, DELTA = {};
+
+/* ---------- regras do personagem ---------- */
+const MOD = { FOR: 0, DES: 3, CON: 1, INT: 2, SAB: 2 };
+const CD = 15, NIVEL = 3, GRAU_MISTICO = 0;
+const cond = id => S.conds.find(c => c.id === id);
+const temp = id => S.temps.find(t => t.id === id);
+const tiraTemp = id => { S.temps = S.temps.filter(t => t.id !== id); };
+const poeTemp = t => { tiraTemp(t.id); S.temps.push(t); };
+const maos = () => [S.equip.maoEsq, S.equip.maoDir].filter(Boolean);
+const temEscudo = () => maos().includes('escudo-madeira');
+const sintonizado = id => ['sint1', 'sint2', 'sint3'].some(k => S.equip[k] === id);
+const comb = () => S.modo === 'combate';
+const ar = () => (S.equip.pesada === 'armadura-couro' ? 1 : 0);
+function ae(tipo) {
+  let v = 0;
+  ['leve1', 'leve2'].forEach(k => {
+    if (S.equip[k] === 'capacete' && tipo === 'contundente') v += 3;
+    if (S.equip[k] === 'bracadeiras' && tipo === 'cortante') v += 3;
+  });
+  return v;
+}
+function movimento() {
+  if (cond('caido')) return 1.5;
+  let m = 9;
+  if (temEscudo()) m -= 1.5;
+  if (temp('acelerar')) m += 3;
+  const l = cond('lento'); if (l) m -= 3 * l.x;
+  return Math.max(0, Math.floor(m / 1.5) * 1.5);
+}
+const acoesMax = () => Math.max(0, 3 - (cond('lento') ? cond('lento').x : 0));
+function ativa() { const b = 13 + (temEscudo() ? 1 : 0) + (temp('defender') ? 2 : 0) - (cond('caido') ? 2 : 0); return { base: b, txt: `${b} + 1d8` }; }
+const pmaLigada = () => !temp('transc');
+const bonusAtaque = n => 7 + (pmaLigada() ? -5 * (n - 1) : 0);
+function magiaMotivo(escola) {
+  if (GRAU_MISTICO < 1) return 'Exige Treinado em Místico';
+  if (!maos().some(id => ITENS[id].escola === escola)) return 'Sem Foco de Destruição na mão';
+  if (comb() && S.magiaNoTurno) return 'Já conjurou uma magia neste turno';
+  return '';
+}
+
+/* ---------- dados ---------- */
+function d(l) {
+  if (window.crypto && crypto.getRandomValues) {
+    const lim = Math.floor(4294967296 / l) * l, b = new Uint32Array(1);
+    do { crypto.getRandomValues(b); } while (b[0] >= lim);
+    return (b[0] % l) + 1;
   }
-  function rola(expr) {
-    var dados = [], fixo = 0, primeiroD20 = null;
-    String(expr).replace(/\s+/g, '').replace(/([+-]?)(\d*)d(\d+)|([+-]?\d+)/g, function (m, s, n, x, k) {
-      if (k) { fixo += Number(k); return m; }
-      var sinal = s === '-' ? -1 : 1, q = Number(n || 1), f = Number(x);
-      for (var i = 0; i < q; i++) {
-        var v = d(f);
-        if (f === 20 && primeiroD20 == null) primeiroD20 = v;
-        dados.push({ v: v, sinal: sinal });
+  return 1 + Math.floor(Math.random() * l);
+}
+function rolar(formula, papel, modo) {
+  const termos = formula.replace(/\s+/g, '').match(/[+-]?[^+-]+/g) || [];
+  const dados = [], partes = []; let total = 0, nat = null;
+  termos.forEach(t => {
+    const s = t[0] === '-' ? -1 : 1, x = t.replace(/^[+-]/, ''), m = /^(\d*)d(\d+)$/.exec(x);
+    if (!m) { total += s * Number(x); partes.push({ s, t: x }); return; }
+    const n = Number(m[1] || 1), l = Number(m[2]), vs = [];
+    for (let i = 0; i < n; i++) {
+      if (l === 20 && n === 1 && modo && modo !== 'normal') {
+        const a = d(20), b = d(20), fica = modo === 'vantagem' ? Math.max(a, b) : Math.min(a, b);
+        dados.push({ l, v: fica, papel }, { l, v: fica === a ? b : a, papel, fora: true });
+        vs.push(fica); nat = fica;
+      } else {
+        const v = d(l); vs.push(v); dados.push({ l, v, papel });
+        if (l === 20 && n === 1) nat = v;
       }
-      return m;
-    });
-    var total = dados.reduce(function (t, x) { return t + x.sinal * x.v; }, 0) + fixo;
-    return { dados: dados, fixo: fixo, total: total, d20: primeiroD20 };
-  }
-  function fixoTxt(k) { return k ? (k > 0 ? ' + ' + k : ' − ' + Math.abs(k)) : ''; }
-  function dadosHTML(r) { return r.dados.map(function (x) { return '<span class="dado">' + x.v + '</span>'; }).join(' '); }
-
-  // ---- registro
-  var log = $('#log');
-  function destaque(oque, total, contaHTML, d20) {
-    var u = $('#ultima');
-    u.classList.remove('nat20', 'nat1');
-    $('#u-oque').textContent = oque;
-    $('#u-total').textContent = total;
-    $('#u-conta').innerHTML = contaHTML;
-    var selo = '';
-    if (d20 === 20) { u.classList.add('nat20'); selo = 'crítico'; }
-    else if (d20 === 1) { u.classList.add('nat1'); selo = 'falha crítica'; }
-    $('#u-selo').textContent = selo;
-  }
-  function entrada(oque, res, det, mud, desfaz) {
-    var li = document.createElement('li');
-    li.innerHTML = '<div class="topo"><span class="o-que"></span><span class="res"></span></div>' +
-      (det ? '<span class="det"></span>' : '') + (mud ? '<span class="mud"></span>' : '') +
-      '<div class="acoes-log">' + (desfaz ? '<button type="button" class="lk" data-desfaz>Desfazer</button>' : '') +
-      '<button type="button" class="lk" data-copia>Copiar</button></div>';
-    $('.o-que', li).textContent = oque;
-    $('.res', li).textContent = res;
-    if (det) $('.det', li).innerHTML = det;
-    if (mud) $('.mud', li).textContent = mud;
-    // um Desfazer só: o da ação mais recente
-    $$('[data-desfaz]', log).forEach(function (b) { b.textContent = 'desfazer até aqui'; b.disabled = true; });
-    log.insertBefore(li, log.firstChild);
-  }
-  function rolar(expr, rot) {
-    var r = rola(expr), conta = dadosHTML(r) + fixoTxt(r.fixo);
-    destaque(rot, r.total, conta, r.d20);
-    entrada(rot, String(r.total), conta, '', false);
-  }
-
-  // ---- cliques
-  document.addEventListener('click', function (e) {
-    var t = e.target.closest ? e.target.closest('button') : null;
-    if (!t) return;
-    if (t.hasAttribute('data-rola')) { rolar(t.getAttribute('data-rola'), t.getAttribute('data-rot')); return; }
-    if (t.hasAttribute('data-usa')) {
-      entrada(t.getAttribute('data-rot'), '', '', t.getAttribute('data-usa'), true);
-      destaque(t.getAttribute('data-rot'), '✓', t.getAttribute('data-usa'), null);
-      return;
     }
-    if (t.classList.contains('ac-abre')) {
-      var corpo = t.closest('.ac').querySelector('.ac-corpo');
-      if (!corpo) return;
-      var abrir = corpo.hidden;
-      corpo.hidden = !abrir;
-      t.setAttribute('aria-expanded', abrir ? 'true' : 'false');
-      return;
-    }
-    if (t.classList.contains('estrela')) {
-      var on = t.getAttribute('aria-pressed') !== 'true';
-      t.setAttribute('aria-pressed', on ? 'true' : 'false');
-      t.textContent = on ? '★' : '☆';
-      t.setAttribute('aria-label', on ? 'Tirar da Mão' : 'Fixar na Mão');
-      return;
-    }
-    if (t.hasAttribute('data-desfaz')) { t.closest('li').classList.add('desfeito'); t.disabled = true; t.textContent = 'desfeito'; return; }
-    if (t.hasAttribute('data-copia')) {
-      var li = t.closest('li'), txt = 'Ravek · ' + $('.o-que', li).textContent + ' ' + $('.res', li).textContent;
-      var ok = function () { t.textContent = 'copiado'; };
-      try { navigator.clipboard.writeText(txt).then(ok, ok); } catch (err) { ok(); }
-      return;
-    }
-    if (t.hasAttribute('data-rec')) {
-      var k = t.getAttribute('data-rec');
-      REC[k].v = Math.max(0, Math.min(REC[k].max, REC[k].v + Number(t.getAttribute('data-d'))));
-      desenhaRec(k);
-      return;
-    }
-    if (t.id === 'bt-turno') {
-      var noTurno = t.textContent === 'Encerrar meu turno';
-      t.textContent = noTurno ? 'Começar meu turno' : 'Encerrar meu turno';
-      $('.relogio-est').innerHTML = noTurno ? 'Em combate · <b>esperando o seu turno</b>' : 'Em combate · <b>seu turno 4</b>';
-      entrada(noTurno ? 'Encerrar meu turno (3)' : 'Começar meu turno (4)', '', '', noTurno ? 'Acelerar +3 m expirou' : 'ações 3 · reação de volta · magia do turno livre', true);
-      return;
-    }
-    if (t.classList.contains('grupo')) {
-      $$('.grupo').forEach(function (g) {
-        var sel = g === t;
-        g.setAttribute('aria-selected', sel ? 'true' : 'false');
-        $('#' + g.getAttribute('aria-controls')).hidden = !sel;
-      });
-      return;
-    }
-    if (t.classList.contains('filtro')) {
-      t.setAttribute('aria-pressed', t.getAttribute('aria-pressed') === 'true' ? 'false' : 'true');
-      filtra();
-      return;
-    }
-    if (t.hasAttribute('data-int')) {
-      $$('[data-int]').forEach(function (b) { b.setAttribute('aria-pressed', b === t ? 'true' : 'false'); });
-      $('#fag-custo').textContent = t.getAttribute('data-int') + ' Éter';
-      $('#fag-st').textContent = 'Dano ' + t.getAttribute('data-dano') + ' fogo · alcance ' + t.getAttribute('data-alc') + ' · 1 criatura';
-      $('#fag-dano').setAttribute('data-rola', t.getAttribute('data-dano'));
-      return;
-    }
-    if (t.id === 'dano-ap') {
-      var c = contaDano();
-      if (!c) return;
-      var antes = REC.saude.v, flu = REC.fluxo.v;
-      REC.saude.v = Math.max(-99, REC.saude.v - c.final);
-      if (c.final > 0) REC.fluxo.v = 0;
-      desenhaRec('saude');
-      desenhaRec('fluxo');
-      entrada('Recebi dano · ' + c.valor + ' ' + c.nome, '−' + c.final, c.txt, 'Saúde ' + antes + ' → ' + REC.saude.v +
-        (c.final > 0 && flu ? ' · Fluxo ' + flu + ' → 0' : ''), true);
-      destaque('Recebi dano', '−' + c.final, c.txt, null);
-    }
+    total += s * vs.reduce((a, b) => a + b, 0);
+    partes.push({ s, t: `${n}d${l} [${vs.join(', ')}]` });
   });
-  // "rolei": o d20 da mesa, com o bônus do cartão
-  document.addEventListener('keydown', function (e) {
-    var i = e.target;
-    if (e.key !== 'Enter' || !i.hasAttribute || !i.hasAttribute('data-rolei')) return;
-    var v = parseInt(i.value, 10);
-    if (!(v >= 1 && v <= 20)) return;
-    var k = Number(i.getAttribute('data-rolei'));
-    var conta = '<span class="dado">' + v + '</span>' + fixoTxt(k);
-    destaque(i.getAttribute('data-rot') + ' · rolei', v + k, conta, v);
-    entrada(i.getAttribute('data-rot') + ' · rolei', String(v + k), conta, '', false);
-    i.value = '';
-  });
+  dados.forEach(x => { if (x.l === 20 && !x.fora && nat === 20) x.crit = true; });
+  const conta = partes.map((p, i) => (i ? (p.s < 0 ? ' − ' : ' + ') : (p.s < 0 ? '−' : '')) + p.t).join('');
+  return { total, dados, conta, crit: nat === 20, falha: nat === 1, modo: modo || 'normal' };
+}
+const pts = (n, r, a0) => Array.from({ length: n }, (_, i) => { const a = a0 + (i * 2 * Math.PI) / n; return (50 + r * Math.cos(a)).toFixed(1) + ',' + (50 + r * Math.sin(a)).toFixed(1); }).join(' ');
+const FORMA = {
+  4: '<polygon points="50,6 95,90 5,90"/>',
+  6: '<rect x="10" y="10" width="80" height="80" rx="14"/>',
+  8: '<polygon points="50,3 96,50 50,97 4,50"/><polyline class="ar" points="4,50 96,50"/>',
+  10: '<polygon points="50,3 95,40 50,97 5,40"/><polyline class="ar" points="5,40 50,58 95,40"/><polyline class="ar" points="50,58 50,97"/>',
+  12: `<polygon points="${pts(5, 47, -Math.PI / 2)}"/><polygon class="ar" points="${pts(5, 26, Math.PI / 2)}"/>`,
+  20: `<polygon points="${pts(6, 48, -Math.PI / 2)}"/><polygon class="ar" points="50,19 80,69 20,69"/>`
+};
+function dadoSVG(x, i) {
+  const y = x.l === 4 ? 66 : 53, fs = x.v >= 10 ? 31 : 37;
+  const dx = (i % 2 ? 1 : -1) * (28 + ((i * 23) % 60));
+  return `<svg class="dado ${x.papel}${x.fora ? ' fora' : ''}${x.crit ? ' crit' : ''}" viewBox="0 0 100 100" style="--dx:${dx}px;--atraso:${(i * 0.07).toFixed(2)}s" role="img" aria-label="d${x.l}: ${x.v}${x.fora ? ' (descartado)' : ''}">${FORMA[x.l] || FORMA[6]}<text x="50" y="${y}" font-size="${fs}" text-anchor="middle" dominant-baseline="middle">${x.v}</text></svg>`;
+}
 
-  // ---- filtro de custo e busca
-  function filtra() {
-    var on = $$('.filtro[aria-pressed="true"]').map(function (b) { return b.getAttribute('data-f'); });
-    var q = $('#busca').value.trim().toLowerCase();
-    $$('.ac').forEach(function (a) {
-      var porCusto = !on.length || on.indexOf(a.getAttribute('data-custo')) >= 0;
-      var porNome = !q || $('.ac-nome', a).textContent.toLowerCase().indexOf(q) >= 0;
-      a.hidden = !(porCusto && porNome);
+/* ---------- mudanças de recurso ---------- */
+function muda(rec, delta) {
+  const r = S.rec[rec], antes = r.v;
+  let novo = antes + delta;
+  if (delta > 0 && novo > r.max) novo = Math.max(r.max, antes);
+  if (rec === 'fluxo' || rec === 'stamina') novo = Math.max(0, novo);
+  r.v = novo;
+  DELTA[rec] = (DELTA[rec] || 0) + (novo - antes);
+  return `${NOME_REC[rec]} ${antes} → ${novo}` + (delta > 0 && antes + delta > novo ? ' (no máximo)' : '');
+}
+function ganhaFluxo(n) { if (!comb() || n <= 0) return null; S.fluxo.ganhou = true; return muda('fluxo', n); }
+function perdeFluxo(motivo) { if (S.rec.fluxo.v <= 0) return null; return muda('fluxo', -S.rec.fluxo.v) + ` (${motivo})`; }
+function guarda(rot) { DESF.push({ s: JSON.stringify(S), rot }); if (DESF.length > 40) DESF.shift(); }
+
+/* ---------- a mesa: mostrar um resultado ---------- */
+function mostra(p, opts = {}) {
+  const e = {
+    c: S.combate, r: comb() ? S.rodada : null, rot: p.rot, curto: p.curto || p.rot.split(' · ')[0],
+    roll: p.roll || null, total: p.total != null ? p.total : (p.roll ? p.roll.total : null), totalCls: p.totalCls || '',
+    conta: p.conta || (p.roll ? p.roll.conta : ''), nota: p.nota || [], cita: p.cita || [], mud: (p.mud || []).filter(Boolean),
+    bts: p.bts || [], sis: !!p.sis, delta: DELTA
+  };
+  DELTA = {};
+  REG.push(e); PLACA = e;
+  tudo(true);
+  return e;
+}
+function desenhaPlaca(anim) {
+  const e = PLACA, palco = $('#palco');
+  if (!e) { palco.innerHTML = '<div class="placa"><p class="placa-nota cita">A mesa está pronta.</p></div>'; return; }
+  const r = e.roll;
+  let h = '';
+  if (r && r.dados.length) h += `<div class="dados">${r.dados.map(dadoSVG).join('')}</div>`;
+  h += `<div class="placa"><span class="placa-rot">${esc(e.rot)}</span>`;
+  if (e.total != null) {
+    const cls = r && r.crit ? 'crit' : r && r.falha ? 'falha' : e.totalCls;
+    h += `<span class="placa-total ${cls}">${esc(e.total)}</span>`;
+    if (r && r.crit) h += '<span class="placa-sel">20 natural · crítico</span>';
+    if (r && r.falha) h += '<span class="placa-sel falha">1 natural · falha crítica</span>';
+    if (r && r.modo !== 'normal') h += `<span class="placa-sel">${r.modo === 'vantagem' ? 'com Vantagem' : 'com Desvantagem'}</span>`;
+  }
+  if (e.conta) h += `<span class="placa-conta">${esc(e.conta)}</span>`;
+  e.nota.forEach(t => { h += `<p class="placa-nota">${esc(t)}</p>`; });
+  e.cita.forEach(t => { h += `<p class="placa-nota cita">${esc(t)}</p>`; });
+  if (e.mud.length) h += `<div class="placa-mud">${e.mud.map(m => `<span class="mud">${esc(m)}</span>`).join('')}</div>`;
+  const bts = e.bts.filter(b => !b.se || b.se());
+  if (bts.length) h += `<div class="placa-bts">${bts.map((b, i) => `<button type="button" class="bt bt-feltro ${b.cls || ''}" data-pb="${e.bts.indexOf(b)}">${esc(typeof b.rot === 'function' ? b.rot() : b.rot)}</button>`).join('')}</div>`;
+  h += '</div>';
+  palco.innerHTML = h;
+  if (anim && !reduzMov.matches) {
+    palco.querySelectorAll('.dado:not(.fora) text').forEach(t => {
+      const final = t.textContent, l = Number(t.closest('svg').getAttribute('aria-label').slice(1).split(':')[0]);
+      let k = 0;
+      const iv = setInterval(() => { t.textContent = d(l); if (++k > 7) { clearInterval(iv); t.textContent = final; } }, 55);
     });
-    // a busca procura em todos os grupos: mostra os painéis com resultado
-    if (q) $$('.painel').forEach(function (p) { p.hidden = !$$('.ac', p).some(function (a) { return !a.hidden; }); });
-    else $$('.grupo').forEach(function (g) { $('#' + g.getAttribute('aria-controls')).hidden = g.getAttribute('aria-selected') !== 'true'; });
   }
-  $('#busca').addEventListener('input', filtra);
+}
 
-  // ---- recursos
-  var REC = { saude: { v: 24, max: 31 }, stamina: { v: 9, max: 18 }, eter: { v: 2, max: 6 }, fluxo: { v: 3, max: 5 } };
-  function desenhaRec(k) {
-    var r = REC[k];
-    $('#n-' + k).innerHTML = r.v + ' <small>/ ' + r.max + '</small>';
-    $('#b-' + k).style.width = Math.max(0, Math.min(100, r.v / r.max * 100)) + '%';
-  }
+/* ---------- ações: o que existe e o que faz ---------- */
+const A = [];
+const POR_ID = {};
+function acao(o) { A.push(o); POR_ID[o.id] = o; return o; }
+const sobre = (rot, link) => ({ fonte: rot, link: link ? SITE + link : null });
 
-  // ---- Recebi dano: a ordem de mitigação do contrato (Ar 2 no ordinário; sem R/I/V/Ae neste exemplo)
-  var NOMES = { cortante: 'cortante', contundente: 'contundente', perfurante: 'perfurante', fogo: 'fogo', frio: 'frio', eletrico: 'elétrico',
-    veneno: 'veneno', acido: 'ácido', psiquico: 'psíquico', radiante: 'radiante', trovejante: 'trovejante', necrotico: 'necrótico', forca: 'força', primordial: 'primordial' };
-  var ORD = ['cortante', 'contundente', 'perfurante'];
-  function contaDano() {
-    var valor = parseInt($('#dano-v').value, 10), tipo = $('#dano-t').value;
-    if (!(valor >= 0)) { $('#dano-conta').innerHTML = '<span class="sim">Escreva o dano em número inteiro.</span>'; return null; }
-    var ar = ORD.indexOf(tipo) >= 0 ? 2 : 0, final = Math.max(0, Math.floor(valor - ar));
-    var txt = valor + ' ' + NOMES[tipo] + (ar ? ' − ' + ar + ' Ar' : ' (sem Ar: não é ordinário)') + ' = ' + final;
-    $('#dano-conta').innerHTML = '<span class="sim">imunidade → vulnerabilidade/resistência → Ar (só ordinário) e Ae → arredonda para baixo → mínimo 0</span>' +
-      '<span class="num">' + txt + ' · Saúde ' + REC.saude.v + ' → <b>' + (REC.saude.v - final) + '</b></span>';
-    return { valor: valor, nome: NOMES[tipo], final: final, txt: txt };
-  }
-  $('#dano-v').addEventListener('input', contaDano);
-  $('#dano-t').addEventListener('change', contaDano);
-  contaDano();
-
-  // ---- perícias (Ravek: FOR +1, DES +3, CON +2, INT 0, SAB +2)
-  var PER = [
-    ['Atacar', 'arma', '+7'], ['Defender', 'dado', '1d6'], ['Movimento', 'DES', '+5'], ['Fortitude', 'CON', '+2'],
-    ['Vontade', 'SAB', '+2'], ['Reflexos', 'DES', '+5'], ['Percepção', 'SAB', '+4'], ['Sobrevivência', 'SAB', '+2'],
-    ['Furtividade', 'DES', '+7', 'Capa +2'], ['Crime', 'DES', '+3'], ['Iniciativa', 'DES', '+3'], ['Conhecimento', 'INT', '+0'],
-    ['Medicina', 'INT', '+0'], ['Investigação', 'INT', '+0'], ['Religião', 'SAB', '+2'], ['Místico', 'INT', '+0'],
-    ['Convencimento', 'DES', '+3'], ['Intimidação', 'CON', '+2'], ['Intuição', 'SAB', '+4'], ['Enganação', 'DES', '+3'],
-    ['Motivar', 'SAB', '+2'], ['Ofício (Engenharia)', 'INT', '+0'], ['Ofício (Ferraria)', 'INT', '+0'], ['Ofício (Alquimia)', 'INT', '+0']
+function ataque(o = {}) {
+  const n = S.seq.n + 1, b = bonusAtaque(n), nota = [];
+  let modo = S.vant;
+  if (n === 3 && S.seq.acertos >= 2) { if (modo === 'desvantagem') modo = 'normal'; else modo = 'vantagem'; nota.push('Fluxo Marcial: o terceiro ataque tem Vantagem.'); }
+  if (cond('cego')) { modo = modo === 'vantagem' ? 'normal' : 'desvantagem'; nota.push('Cego: desvantagem em ataques.'); }
+  const roll = rolar('1d20' + (b < 0 ? '' : '+') + b, 'teste', modo);
+  S.seq.n = n; S.seq.crit = roll.crit;
+  if (n > 1) nota.unshift(pmaLigada() ? `PMA: ${n}º ataque seguido, ${sinal(-5 * (n - 1))}.` : 'Transcendência: a PMA não se aplica nesta rodada.');
+  if (temp('golpe')) { tiraTemp('golpe'); nota.push(`Golpe das Mazelas: Fortitude contra CD ${CD}.`); }
+  if (o.danca) S.dancaRestam = Math.max(0, S.dancaRestam - 1);
+  return {
+    rot: o.danca ? `Dança do Monge · ataque ${3 - S.dancaRestam} de 3` : 'Atacar · Desarmado', curto: 'Atacar', roll, nota,
+    conta: roll.conta + ` (DES 3, Experiente 4${n > 1 && pmaLigada() ? `, PMA ${sinal(-5 * (n - 1))}` : ''})`,
+    bts: btsAtaque()
+  };
+}
+function btsAtaque() {
+  return [
+    { rot: 'Acertou', cls: 'sim', fn: e => { guarda('Acertou'); S.seq.acertos++; e.mud.push('acertou'); if (comb()) { let g = 0; if (S.fluxo.acertos < 2) { S.fluxo.acertos++; g++; } g++; const m = ganhaFluxo(g); if (m) e.mud.push(m); } e.bts = e.bts.filter(b => b.cls !== 'sim' && b.cls !== 'nao'); } },
+    { rot: 'Errou', cls: 'nao', fn: e => { e.mud.push('errou'); e.bts = e.bts.filter(b => b.cls !== 'sim' && b.cls !== 'nao'); } },
+    { rot: () => (S.seq.crit ? 'Dano crítico' : 'Dano'), fn: () => dano(S.seq.crit) },
+    ...btsSeguir()
   ];
-  $('#pers').innerHTML = PER.map(function (p) {
-    var expr = p[1] === 'dado' ? p[2] : '1d20' + (p[2] === '+0' ? '' : p[2]);
-    return '<div class="per"><span>' + p[0] + (p[3] ? '<span class="sit">' + p[3] + '</span>' : '') + '</span>' +
-      '<span class="at">' + (p[1] === 'arma' ? 'ARMA' : p[1] === 'dado' ? 'DADO' : p[1]) + '</span>' +
-      '<span class="tot">' + p[2] + '</span>' +
-      '<button type="button" class="bt bt-mini" data-rola="' + expr + '" data-rot="' + p[0] + '">Rolar</button></div>';
+}
+function btsSeguir() {
+  return [
+    { rot: () => `Ataque ${4 - S.dancaRestam} de 3 · ${sinal(bonusAtaque(S.seq.n + 1))}`, se: () => S.dancaRestam > 0, fn: () => { guarda('Ataque da Dança'); mostra(ataque({ danca: true })); } },
+    { rot: () => `Atacar de novo · ${sinal(bonusAtaque(S.seq.n + 1))}`, se: () => S.dancaRestam === 0 && !motivo(POR_ID.atacar), fn: () => executar('atacar') }
+  ];
+}
+function dano(crit) {
+  guarda('Dano');
+  const roll = rolar(crit ? '2d8+1d6+3' : '1d8+1d6+3', 'dano'), mud = [];
+  if (sintonizado('colar')) mud.push('Colar da Sanguessuga: ' + muda('saude', 1));
+  mostra({ rot: crit ? 'Dano crítico · Desarmado' : 'Dano · Desarmado', curto: 'Dano', roll, conta: roll.conta + ' contundente', mud, bts: btsSeguir() });
+}
+
+acao({ id: 'atacar', g: 'combate', sec: 'Ataque', nome: 'Atacar · Desarmado', c: { a: 1 }, verbo: 'Rolar', ...sobre('Sistema · Sua Rodada · Monge, Arma Humana', 'sistema.html#sua-rodada'),
+  meta: () => [`Atacar ${sinal(bonusAtaque(S.seq.n + 1))}`, '1d8 + 1d6 + 3 contundente'],
+  chave: () => sinal(bonusAtaque(S.seq.n + 1)), texto: [TXT.pma, TXT.humana], pma: true, vant: true,
+  conta: () => [['Ataque', '1d20 + 3 (DES) + 4 (Experiente, Punho Perfeito) = 1d20 + 7'], ['Dano', '1d8 (Arma Humana) + 1d6 (Punho Perfeito) + 3 (DES)'], ['Crítico', '2d8 + 1d6 + 3, no 20 natural'], ['Fluxo', 'acertar: +1 (máx. 2x por rodada) e +1 do Fluxo Marcial']],
+  mais: [{ rot: 'Dano', fn: () => dano(false) }, { rot: 'Dano crítico', fn: () => dano(true) }, { rot: 'Novo alvo', fn: () => { guarda('Novo alvo'); S.seq = { n: 0, acertos: 0, crit: false }; avisa('A sequência da PMA recomeçou.'); tudo(); } }],
+  faz: () => ataque() });
+acao({ id: 'defender', g: 'combate', sec: 'Ações', nome: 'Defender', c: { a: 1 }, verbo: 'Usar', ...sobre('Sistema · Sua Rodada', 'sistema.html#sua-rodada'),
+  meta: () => ['+2 Defender até o seu próximo turno'], chave: () => '+2', texto: [TXT.defender], pre: () => (temp('defender') ? 'Já ativo' : ''),
+  faz: () => { poeTemp({ id: 'defender', rot: 'Defender +2', dur: 'até o seu próximo turno', ate: 'inicioTurno', texto: TXT.defender }); return { rot: 'Defender', total: '+2', totalCls: 'texto', cita: [TXT.defender], mud: ['Evasão Ativa: ' + ativa().txt] }; } });
+acao({ id: 'mover', g: 'combate', sec: 'Ações', nome: 'Mover', c: { a: 1 }, verbo: 'Usar', mover: true, ...sobre('Sistema · Sua Rodada', 'sistema.html#sua-rodada'),
+  meta: () => [metros(movimento()), '1x por turno'], chave: () => metros(movimento()), texto: [TXT.mover],
+  faz: () => { S.moveu = true; let m = null; if (comb() && !S.fluxo.mover) { S.fluxo.mover = true; m = ganhaFluxo(1); } return { rot: 'Mover', total: metros(movimento()), totalCls: 'texto', mud: [m] }; } });
+acao({ id: 'acelerar', g: 'combate', sec: 'Ações', nome: 'Acelerar', c: { a: 1 }, verbo: 'Usar', ...sobre('Sistema · Sua Rodada', 'sistema.html#sua-rodada'),
+  meta: () => ['+3 m nesta rodada'], chave: () => '+3 m', texto: [TXT.acelerar], pre: () => (temp('acelerar') ? 'Já ativo nesta rodada' : ''),
+  faz: () => { poeTemp({ id: 'acelerar', rot: 'Acelerar +3 m', dur: 'nesta rodada', ate: 'fimRodada', texto: TXT.acelerar }); return { rot: 'Acelerar', total: metros(movimento()), totalCls: 'texto', mud: ['Movimento ' + metros(movimento() - 3) + ' → ' + metros(movimento())] }; } });
+acao({ id: 'pular', g: 'combate', sec: 'Ações', nome: 'Pular', c: { a: 2 }, verbo: 'Usar', ...sobre('Sistema · Sua Rodada', 'sistema.html#sua-rodada'),
+  meta: () => ['até ' + metros(Math.floor(movimento() / 3 / 1.5) * 1.5)], chave: () => metros(Math.floor(movimento() / 3 / 1.5) * 1.5), texto: [TXT.pular],
+  faz: () => ({ rot: 'Pular', total: metros(Math.floor(movimento() / 3 / 1.5) * 1.5), totalCls: 'texto', conta: `1/3 de ${metros(movimento())}` }) });
+acao({ id: 'defender-reacao', g: 'combate', sec: 'Reações', nome: 'Defender (reação)', c: { r: 1 }, verbo: 'Rolar', reacao: true, ...sobre('Sistema · Sua Rodada', 'sistema.html#sua-rodada'),
+  meta: () => ['Evasão Ativa ' + ativa().txt], chave: () => ativa().txt, texto: [TXT.defReacao],
+  conta: () => [['Evasão', '10 + 3 (DES) = 13 Passiva'], ['Dado', 'Defender Treinado (Leigo + 1 nível da Esquiva Abissal) = 1d8'], ['Ativa', '13 + 1d8' + (temEscudo() ? ' + 1 (Escudo)' : '') + (temp('defender') ? ' + 2 (Defender)' : '')]],
+  faz: () => ({ rot: 'Defender (reação) · Evasão Ativa', curto: 'Defender', roll: rolar(ativa().base + '+1d8', 'teste'), cita: [TXT.defReacao],
+    bts: [{ rot: 'Esquivei', cls: 'sim', fn: e => { guarda('Esquivei'); e.mud.push('esquivou'); if (comb() && !S.fluxo.defender) { S.fluxo.defender = true; const m = ganhaFluxo(1); if (m) e.mud.push(m); } e.bts = []; } },
+      { rot: 'Fui atingido', cls: 'nao', fn: (e, alvo) => { e.bts = []; abreDano(alvo); } }] }) });
+acao({ id: 'retaliar', g: 'combate', sec: 'Reações', nome: 'Retaliar', c: { r: 1 }, verbo: 'Rolar', reacao: true, ...sobre('Sistema · Atacando & Retaliação', 'sistema.html#combate-atacando-retaliacao'),
+  meta: () => ['Atacar +7 · corpo a corpo'], chave: () => '+7', texto: [TXT.retaliar],
+  faz: () => ({ rot: 'Retaliar · Desarmado', curto: 'Retaliar', roll: rolar('1d20+7', 'teste'), bts: [{ rot: 'Dano', fn: () => dano(false) }] }) });
+acao({ id: 'oportunidade', g: 'combate', sec: 'Reações', nome: 'Ataque de oportunidade', c: { r: 1 }, verbo: 'Rolar', reacao: true, ...sobre('Sistema · Atacando & Retaliação', 'sistema.html#combate-atacando-retaliacao'),
+  meta: () => ['Atacar +7'], chave: () => '+7', texto: [TXT.oport],
+  faz: () => ({ rot: 'Ataque de oportunidade', curto: 'Oportunidade', roll: rolar('1d20+7', 'teste'), bts: [{ rot: 'Dano', fn: () => dano(false) }] }) });
+[['empurrar', 'Empurrar', 'Fortitude', TXT.empurrar], ['desarmar', 'Desarmar', 'Movimento', TXT.desarmar], ['agarrar', 'Agarrar', 'Movimento', TXT.agarrar]].forEach(([id, nome, contra, t]) => acao({
+  id, g: 'combate', sec: 'Manobras', nome, c: { q: 1 }, verbo: 'Rolar', ...sobre('Sistema · Manobras', 'sistema.html#combate-manobras'),
+  meta: () => [`Movimento +5 contra ${contra} do alvo`], chave: () => '+5', texto: [t],
+  faz: () => ({ rot: `${nome} · Movimento`, curto: nome, roll: rolar('1d20+5', 'teste'), nota: [`Contra ${contra} do alvo.`], cita: [t] }) }));
+acao({ id: 'investida', g: 'combate', sec: 'Manobras', nome: 'Investida', c: { a: 2 }, verbo: 'Usar', mover: true, ...sobre('Sistema · Manobras', 'sistema.html#combate-manobras'),
+  meta: () => [metros(movimento()) + ' em linha reta', 'Movimento +5 contra cada inimigo', 'conta como Mover'], chave: () => metros(movimento()), texto: [TXT.investida],
+  faz: () => {
+    S.moveu = true; let m = null; if (comb() && !S.fluxo.mover) { S.fluxo.mover = true; m = ganhaFluxo(1); }
+    const teste = () => mostra({ rot: 'Investida · teste de Movimento', curto: 'Investida', roll: rolar('1d20+5', 'teste'), nota: ['Contra Movimento do inimigo colidido.'],
+      bts: [{ rot: 'Atacar · +7', fn: () => { guarda('Ataque da Investida'); mostra(ataque()); } }, { rot: 'Próximo inimigo', fn: () => teste() }] });
+    return { rot: 'Investida', total: metros(movimento()), totalCls: 'texto', cita: [TXT.investida], mud: [m], bts: [{ rot: 'Teste de Movimento · +5', fn: teste }] };
+  } });
+
+/* exploração */
+function testeExp(rot, bonus, base, t, apos) {
+  const roll = rolar('1d20+' + bonus, 'teste'), ok = roll.total >= 15;
+  const pontos = ok && base ? base + Math.floor((roll.total - 15) / 5) : 0;
+  return { rot, roll, nota: [ok ? (base ? `Sucesso: +${pontos} ao sucesso do grupo.` : 'Sucesso.') : 'Falha.'], cita: [t], bts: ok && apos ? [apos] : [] };
+}
+const recupera = (rec, f, rot) => ({ rot, cls: 'sim', fn: () => { guarda(rot); const r = rolar(f, 'cura'); mostra({ rot, curto: 'Descanso', roll: r, mud: [muda(rec, r.total)] }); } });
+acao({ id: 'guiar', g: 'exploracao', sec: 'Jornada', nome: 'Guiar', c: { p: 1 }, verbo: 'Rolar', ...sobre('Sistema · Exploração · Jornada', 'sistema.html#exploracao-jornada'),
+  meta: () => ['Sobrevivência +2 contra CD 15', 'máx. 1 por grupo'], chave: () => '+2', texto: [TXT.guiar], faz: () => testeExp('Guiar · Sobrevivência', 2, 2, TXT.guiar) });
+acao({ id: 'motivar-j', g: 'exploracao', sec: 'Jornada', nome: 'Motivar', c: { p: 1 }, verbo: 'Rolar', ...sobre('Sistema · Exploração · Jornada', 'sistema.html#exploracao-jornada'),
+  meta: () => ['Motivar +2 contra CD 15'], chave: () => '+2', texto: [TXT.apoio], faz: () => testeExp('Motivar · Jornada', 2, 1, TXT.apoio) });
+acao({ id: 'vigiar', g: 'exploracao', sec: 'Jornada', nome: 'Vigiar', c: { p: 1 }, verbo: 'Rolar', ...sobre('Sistema · Exploração · Jornada', 'sistema.html#exploracao-jornada'),
+  meta: () => ['Percepção +4 contra CD 15'], chave: () => '+4', texto: [TXT.apoio], faz: () => testeExp('Vigiar · Percepção', 4, 1, TXT.apoio) });
+acao({ id: 'outros-j', g: 'exploracao', sec: 'Jornada', nome: 'Outros…', c: { p: 1 }, ...sobre('Sistema · Exploração · Jornada', 'sistema.html#exploracao-jornada'),
+  meta: () => ['perícia apropriada contra CD 15'], texto: [TXT.outros] });
+acao({ id: 'tratar', g: 'exploracao', sec: 'Descanso curto', nome: 'Tratar Ferimentos', c: { p: 1 }, verbo: 'Rolar', ...sobre('Sistema · Sobrevivência · Descanso', 'sistema.html#sobrevivencia-descanso'),
+  meta: () => ['Medicina +2 contra CD 15', '+1d6 Saúde'], chave: () => '+2', texto: [TXT.tratar], faz: () => testeExp('Tratar Ferimentos · Medicina', 2, 0, TXT.tratar, recupera('saude', '1d6', 'Recuperar 1d6 Saúde')) });
+acao({ id: 'meditar', g: 'exploracao', sec: 'Descanso curto', nome: 'Meditar', c: { p: 1 }, verbo: 'Rolar', ...sobre('Sistema · Sobrevivência · Descanso', 'sistema.html#sobrevivencia-descanso'),
+  meta: () => ['Vontade +4 contra CD 15', '+1d6 Éter'], chave: () => '+4', texto: [TXT.meditar], faz: () => testeExp('Meditar · Vontade', 4, 0, TXT.meditar, recupera('eter', '1d6', 'Recuperar 1d6 Éter')) });
+acao({ id: 'relaxar', g: 'exploracao', sec: 'Descanso curto', nome: 'Relaxar', c: { p: 1 }, verbo: 'Usar', ...sobre('Sistema · Sobrevivência · Descanso', 'sistema.html#sobrevivencia-descanso'),
+  meta: () => ['sem teste', '+1d6 Stamina'], chave: () => '1d6', texto: [TXT.relaxar], faz: () => { const r = rolar('1d6', 'cura'); return { rot: 'Relaxar', roll: r, mud: [muda('stamina', r.total)] }; } });
+acao({ id: 'comer', g: 'exploracao', sec: 'Descanso curto', nome: 'Comer Refeição', c: { p: 1 }, verbo: 'Usar', ...sobre('Sistema · Sobrevivência · Descanso', 'sistema.html#sobrevivencia-descanso'),
+  meta: () => ['+2d6 de qualquer status'], texto: [TXT.comer], pre: () => 'Requer Comida no inventário' });
+
+/* técnicas */
+acao({ id: 'danca', g: 'tecnicas', sec: 'Monge · Técnicas', tec: true, nome: 'Dança do Monge', c: { a: 1 }, verbo: 'Usar', ...sobre('Monge · Técnica geral', 'classes/monge.html#monge-danca-do-monge'),
+  gasta: [{ rec: 'stamina', v: 5 }], reqFluxo: 3, umaRodada: true,
+  meta: () => ['5 Stamina', { t: comb() ? 'requer 3 Fluxo' : 'Fluxo livre fora de combate', cls: 'req' }, '1x/rodada'], chave: () => '5 Sta · 3 Flu', texto: [TXT.danca],
+  conta: () => [['Ataques', '+7 · +2 · −3 (PMA), linha do Desarmado'], ['Fluxo', comb() ? 'requisito: confere 3 e não gasta' : TXT.fluxoFora]],
+  faz: () => { S.dancaRestam = 3; return { rot: 'Dança do Monge', cita: [TXT.danca], bts: btsSeguir() }; } });
+acao({ id: 'golpe', g: 'tecnicas', sec: 'Monge · Técnicas', tec: true, nome: 'Golpe das Mazelas', c: { a: 1 }, verbo: 'Usar', ...sobre('Monge · Técnica geral', 'classes/monge.html#monge-golpe-das-mazelas'),
+  gasta: [{ rec: 'stamina', v: 3 }], meta: () => ['3 Stamina', `Fortitude contra CD ${CD}`], chave: () => 'CD ' + CD, texto: [TXT.golpe],
+  conta: () => [['CD', '10 + 3 (DES) + 2 (SAB) = 15']], pre: () => (temp('golpe') ? 'Já preparado' : ''),
+  faz: () => { poeTemp({ id: 'golpe', rot: 'Golpe das Mazelas', dur: 'no próximo ataque desarmado', ate: 'ataque', texto: TXT.golpe }); return { rot: 'Golpe das Mazelas', total: 'CD ' + CD, totalCls: 'texto', cita: [TXT.golpe] }; } });
+acao({ id: 'apanhar', g: 'tecnicas', sec: 'Monge · Técnicas', tec: true, nome: 'Apanhar Projétil', c: { r: 1 }, verbo: 'Usar', reacao: true, ...sobre('Monge · Técnica geral', 'classes/monge.html#monge-apanhar-projetil'),
+  meta: () => ['reduz 3d10 + 3'], chave: () => '3d10+3', texto: [TXT.apanhar], conta: () => [['Redução', 'Nível 3 → 3d10 + 3 (DES)']],
+  faz: () => ({ rot: 'Apanhar Projétil · redução', curto: 'Apanhar Projétil', roll: rolar('3d10+3', 'reduz'), cita: [TXT.apanhar] }) });
+acao({ id: 'transc', g: 'tecnicas', sec: 'Monge · Técnicas', tec: true, nome: 'Transcendência', c: { l: 1 }, verbo: 'Usar', ...sobre('Monge · Técnica geral', 'classes/monge.html#monge-transcendencia'),
+  gasta: [{ rec: 'stamina', v: 5 }, { rec: 'saude', v: 5 }], meta: () => ['5 Stamina', '5 Saúde', 'sem PMA nesta rodada'], chave: () => '5 Sta · 5 Saú', texto: [TXT.transc],
+  pre: () => (temp('transc') ? 'Já ativa nesta rodada' : ''),
+  faz: () => { poeTemp({ id: 'transc', rot: 'Transcendência', dur: 'nesta rodada', ate: 'fimRodada', texto: TXT.transc }); return { rot: 'Transcendência', total: 'sem PMA', totalCls: 'texto', cita: [TXT.transc] }; } });
+acao({ id: 'persist', g: 'tecnicas', sec: 'Humano · Raça', tec: true, nome: 'Persistência Humana', c: { l: 1 }, verbo: 'Usar', ...sobre('Humano · Traço', 'racas/humano.html#humano-persistencia-humana'),
+  usos: { max: 3, msg: 'Sem usos · voltam no descanso longo' }, meta: () => ['+1d4 no teste', `${3 - S.usos.persist}/3 usos`], chave: () => `1d4 · ${3 - S.usos.persist}/3`, texto: [TXT.persist],
+  conta: () => [['Usos', '1 + 2 (SAB) = 3 por descanso longo']],
+  faz: () => ({ rot: 'Persistência Humana', roll: rolar('1d4', 'reduz'), nota: ['Some ao teste que falhou.'], mud: [`usos ${3 - S.usos.persist}/3`] }) });
+
+/* magia */
+const INTENS = { normal: { rot: 'Normal', eter: 0, dano: '1d4', alc: '4,5 m' }, forcada: { rot: 'Forçada', eter: 2, dano: '2d4', alc: '6 m' }, transbordante: { rot: 'Transbordante', eter: 4, dano: '3d4', alc: '9 m' } };
+acao({ id: 'fagulha', g: 'magias', sec: 'Nível 1 · Destruição', nome: 'Fagulha', c: { a: 1 }, verbo: 'Conjurar', magia: true, ...sobre('Magias · Nível 1 · Destruição', 'magias.html#magia-fagulha'),
+  gasta: () => (INTENS[S.intens].eter ? [{ rec: 'eter', v: INTENS[S.intens].eter }] : []), pre: () => magiaMotivo('destruicao'), intens: true,
+  meta: () => [`${INTENS[S.intens].eter} Éter`, `Místico +2 contra Evasão`, `${INTENS[S.intens].dano} Fogo`, INTENS[S.intens].alc], chave: () => `${INTENS[S.intens].dano} Fogo`, texto: [TXT.fagulha],
+  faz: () => ({ rot: 'Fagulha · Místico', curto: 'Fagulha', roll: rolar('1d20+2', 'teste'), nota: ['Contra a Evasão do alvo.'], bts: [{ rot: `Dano ${INTENS[S.intens].dano} Fogo`, fn: () => mostra({ rot: 'Dano · Fagulha', curto: 'Dano', roll: rolar(INTENS[S.intens].dano, 'dano') }) }] }) });
+
+/* itens */
+acao({ id: 'pocao', g: 'itens', sec: 'Consumíveis', nome: 'Poção de Cura Menor', c: { a: 1 }, verbo: 'Consumir', qtd: 'pocao', ...sobre('Bazar · Consumível · Ordinário', 'bazar.html'),
+  meta: () => ['cura 2d4 + 2 Saúde'], chave: () => `2d4+2 · ×${S.qtd.pocao}`, texto: [TXT.pocao, TXT.consumivel], conta: () => [['Cura', '2d4 + 2 (INT)']],
+  faz: () => { const r = rolar('2d4+2', 'cura'); return { rot: 'Poção de Cura Menor', roll: r, mud: [muda('saude', r.total), `restam ${S.qtd.pocao}`] }; } });
+acao({ id: 'atadura', g: 'itens', sec: 'Consumíveis', nome: 'Atadura Limpa', c: { a: 1 }, verbo: 'Aplicar', qtd: 'atadura', ...sobre('Bazar · Consumível · Ordinário', 'bazar.html'),
+  meta: () => ['retira Sangramento'], chave: () => `×${S.qtd.atadura}`, texto: [TXT.atadura, TXT.consumivel],
+  faz: () => ({ rot: 'Atadura Limpa', cita: [TXT.atadura], mud: [`restam ${S.qtd.atadura}`], bts: [
+    { rot: 'Em mim', cls: 'sim', fn: e => { const tinha = cond('sangramento'); S.conds = S.conds.filter(c => c.id !== 'sangramento'); e.mud.push(tinha ? 'Sangramento retirado' : 'sem Sangramento'); e.bts = []; } },
+    { rot: 'Em outra criatura', fn: e => { e.mud.push('em outra criatura'); e.bts = []; } }] }) });
+acao({ id: 'bomba', g: 'itens', sec: 'Consumíveis', nome: 'Bomba de Luz', c: { a: 1 }, verbo: 'Arremessar', qtd: 'bomba', ...sobre('Bazar · Consumível · Ordinário', 'bazar.html'),
+  meta: () => ['9 m', 'flash em 6 m'], chave: () => `9 m · ×${S.qtd.bomba}`, texto: [TXT.bomba, TXT.consumivel],
+  faz: () => ({ rot: 'Bomba de Luz', total: '9 m', totalCls: 'texto', cita: [TXT.bomba], mud: [`restam ${S.qtd.bomba}`] }) });
+
+/* cartas */
+acao({ id: 'reflexos', g: 'cartas', sec: 'Destreza · DES 16+', nome: 'Reflexos de Serpente', c: { p: 1 }, verbo: 'Usar', ...sobre('Limiar · Destreza', 'limiar.html#limiar-reflexos-de-serpente'),
+  usos: { max: 1, msg: 'Usada · volta no descanso curto' }, meta: () => ['metade do dano', '1x/curto'], chave: () => '½ dano', texto: [TXT.reflexos],
+  faz: () => ({ rot: 'Reflexos de Serpente', total: '½', totalCls: 'texto', cita: [TXT.reflexos] }) });
+acao({ id: 'esquiva', g: 'cartas', sec: 'Destreza · DES 16+', tec: true, nome: 'Esquiva Abissal', c: { l: 1 }, verbo: 'Usar', ...sobre('Limiar · Destreza', 'limiar.html#limiar-esquiva-abissal'),
+  gasta: [{ rec: 'stamina', v: 10 }], usos: { max: 1, msg: 'Usada · volta no descanso curto' }, meta: () => ['10 Stamina', 'recupera a reação', '1x/curto'], chave: () => '10 Sta', texto: [TXT.esquiva],
+  pre: () => (!comb() ? 'Só em combate' : S.reacaoGasta === 0 ? 'A reação não está gasta' : ''),
+  faz: () => { S.reacaoGasta = Math.max(0, S.reacaoGasta - 1); return { rot: 'Esquiva Abissal', total: '◇', totalCls: 'texto', mud: ['reação recuperada'], cita: [TXT.esquiva] }; } });
+
+/* perícias */
+const PERICIAS = [
+  ['Atacar', 'DES (arma)', 3, 2, 'atacar'], ['Defender', 'dado', 0, 1, 'defender'], ['Movimento', 'FOR/DES', 3, 1], ['Fortitude', 'CON', 1, 0], ['Vontade', 'SAB', 2, 1], ['Reflexos', 'DES', 3, 1],
+  ['Percepção', 'SAB', 2, 1], ['Sobrevivência', 'SAB', 2, 0], ['Furtividade', 'DES', 3, 1], ['Crime', 'DES', 3, 0], ['Iniciativa', 'DES', 3, 0], ['Conhecimento', 'INT', 2, 0],
+  ['Medicina', 'INT', 2, 0], ['Investigação', 'INT', 2, 0], ['Religião', 'SAB', 2, 0], ['Místico', 'INT', 2, 0], ['Convencimento', 'DES/INT', 3, 0], ['Intimidação', 'CON/FOR', 1, 0],
+  ['Intuição', 'SAB', 2, 1], ['Enganação', 'DES/INT', 3, 0], ['Motivar', 'SAB', 2, 0], ['Ofício(Engenharia)', 'INT', 2, 0, 'oficio'], ['Ofício(Ferraria)', 'INT', 2, 0, 'oficio'], ['Ofício(Alquimia)', 'INT', 2, 0, 'oficio']
+];
+const GRAUS = ['Leigo', 'Treinado', 'Experiente', 'Mestre', 'Lendário'];
+const slug = t => t.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/-$/, '');
+PERICIAS.forEach(([nome, attr, mod, grau, esp]) => {
+  const id = 'per-' + slug(nome);
+  const tot = () => {
+    if (esp === 'atacar') return 7;
+    let t = mod + 2 * grau;
+    if (nome === 'Furtividade' && S.penumbra && sintonizado('capa')) t += 2;
+    if (nome === 'Percepção' && cond('cego')) t -= 5;
+    return t;
+  };
+  acao({ id, g: 'pericias', nome, per: true, attr, grau, esp, c: { p: 1 }, tot, fonte: 'Perícia', link: SITE + 'sistema.html#fundamentos',
+    pre: () => (esp === 'oficio' ? 'Exige Treinado' : ''),
+    chave: () => (esp === 'defender' ? '1d8' : sinal(tot())),
+    faz: () => {
+      if (esp === 'defender') return { rot: 'Defender · dado', curto: 'Defender', roll: rolar('1d8', 'teste') };
+      const nota = [];
+      if (nome === 'Furtividade' && S.penumbra && sintonizado('capa')) nota.push('Capa de Obscurecimento: +2 em penumbra ou escuridão.');
+      if (nome === 'Percepção' && cond('cego')) nota.push('Cego: −5 em percepção.');
+      return { rot: nome + (esp === 'atacar' ? ' · Desarmado' : ''), curto: nome, roll: rolar('1d20' + (tot() < 0 ? '' : '+') + tot(), 'teste'), nota };
+    } });
+});
+
+/* ---------- disponibilidade: o motivo aparece sempre ---------- */
+function gastosDe(a) { return typeof a.gasta === 'function' ? a.gasta() : a.gasta || []; }
+function motivo(a) {
+  if (a.pre) { const m = a.pre(); if (m) return m; }
+  if (a.usos && S.usos[a.id] >= a.usos.max) return a.usos.msg;
+  if (a.qtd && S.qtd[a.qtd] <= 0) return 'Acabou';
+  if (comb()) {
+    if (a.umaRodada && S.naRodada[a.id]) return 'Já usada nesta rodada';
+    if (a.c.l && a.tec && S.livres[a.id]) return 'Já usada neste turno';
+    if (a.c.r && cond('desprevenido')) return 'Desprevenido: não pode reagir';
+    if (a.c.r && S.reacaoGasta >= S.reacaoMax) return 'Reação gasta · volta na próxima rodada';
+    if (a.c.a) {
+      if (!S.noTurno) return 'Fora do seu turno';
+      const resto = acoesMax() - S.acoesGastas;
+      if (resto < a.c.a) return a.c.a === 1 ? 'Sem ações neste turno' : `Faltam ações (${Math.max(0, resto)} de ${a.c.a})`;
+    }
+    if (a.mover && S.moveu) return 'Já moveu neste turno';
+  }
+  for (const g of gastosDe(a)) if (S.rec[g.rec].v < g.v) return `${NOME_REC[g.rec]} ${S.rec[g.rec].v} de ${g.v}`;
+  if (a.reqFluxo && comb() && S.rec.fluxo.v < a.reqFluxo) return `Requer ${a.reqFluxo} Fluxo (tem ${S.rec.fluxo.v})`;
+  return '';
+}
+function paga(a) {
+  const mud = [];
+  if (comb()) {
+    if (a.c.a) S.acoesGastas += a.c.a;
+    if (a.c.r) { S.reacaoGasta++; mud.push('reação gasta'); }
+    if (a.c.l && a.tec) S.livres[a.id] = true;
+    if (a.umaRodada) S.naRodada[a.id] = true;
+    if (a.magia) S.magiaNoTurno = true;
+  }
+  gastosDe(a).forEach(g => mud.push(muda(g.rec, -g.v)));
+  if (a.reqFluxo && comb()) mud.push(`requer 3 Fluxo: tem ${S.rec.fluxo.v}`);
+  if (a.usos) S.usos[a.id]++;
+  if (a.qtd) S.qtd[a.qtd]--;
+  return mud;
+}
+function executar(id, alvo) {
+  const a = POR_ID[id]; if (!a || !a.faz) return;
+  const m = motivo(a); if (m) { avisa(`${a.nome}: ${m}`); return; }
+  guarda(a.nome);
+  const mud = paga(a), p = a.faz(alvo) || {};
+  p.rot = p.rot || a.nome; p.curto = p.curto || a.nome;
+  p.mud = mud.concat(p.mud || []);
+  mostra(p);
+}
+
+/* ---------- turno, rodada, combate ---------- */
+function novaRodada(viaTurno) {
+  guarda('Nova rodada');
+  const mud = [];
+  if (!S.fluxo.ganhou) { const m = perdeFluxo('uma rodada sem ganhar Fluxo'); if (m) mud.push(m); }
+  S.temps.filter(t => t.ate === 'fimRodada').forEach(t => mud.push(t.rot + ' acabou'));
+  S.temps = S.temps.filter(t => t.ate !== 'fimRodada');
+  S.rodada++; S.reacaoGasta = 0; S.naRodada = {}; S.fluxo = { acertos: 0, defender: false, mover: false, ganhou: false };
+  mud.unshift('reação de volta');
+  if (!viaTurno) mostra({ rot: `Rodada ${S.rodada}`, curto: 'Rodada', sis: true, total: 'Rodada ' + S.rodada, totalCls: 'texto', mud });
+  return mud;
+}
+function comecarTurno() {
+  let mud = [];
+  if (S.turnoNaRodada === S.rodada) mud = novaRodada(true); else guarda('Começar meu turno');
+  S.noTurno = true; S.turnoNaRodada = S.rodada; S.acoesGastas = 0; S.magiaNoTurno = false; S.moveu = false; S.livres = {}; S.seq = { n: 0, acertos: 0, crit: false }; S.dancaRestam = 0;
+  S.temps.filter(t => t.ate === 'inicioTurno').forEach(t => mud.push(t.rot + ' acabou'));
+  S.temps = S.temps.filter(t => t.ate !== 'inicioTurno');
+  if (cond('atordoado')) { S.conds = S.conds.filter(c => c.id !== 'atordoado'); mud.push('Atordoado acabou'); }
+  mostra({ rot: `Rodada ${S.rodada} · seu turno`, curto: 'Turno', sis: true, total: 'Seu turno', totalCls: 'texto', mud: [`${acoesMax()} ações`].concat(mud) });
+}
+function encerrarTurno() {
+  guarda('Encerrar meu turno');
+  const mud = [];
+  S.temps.filter(t => t.ate === 'fimTurno').forEach(t => mud.push(t.rot + ' acabou'));
+  S.temps = S.temps.filter(t => t.ate !== 'fimTurno');
+  S.noTurno = false; S.dancaRestam = 0;
+  const sobra = acoesMax() - S.acoesGastas;
+  if (sobra > 0) mud.push(`${sobra} ${sobra === 1 ? 'ação não usada' : 'ações não usadas'}`);
+  mud.push(S.reacaoGasta < S.reacaoMax ? 'reação disponível' : 'reação gasta');
+  mostra({ rot: `Rodada ${S.rodada} · fim do seu turno`, curto: 'Fim do turno', sis: true, total: 'Turno encerrado', totalCls: 'texto', mud });
+}
+function trocaModo(modo) {
+  if (modo === S.modo) return;
+  guarda(modo === 'combate' ? 'Começar combate' : 'Sair do combate');
+  if (modo === 'exploracao') {
+    const mud = [];
+    const m = perdeFluxo('fim do combate'); if (m) mud.push(m);
+    S.temps.filter(t => t.ate !== 'cena').forEach(t => mud.push(t.rot + ' acabou'));
+    S.temps = S.temps.filter(t => t.ate === 'cena');
+    S.modo = 'exploracao'; S.noTurno = false; S.dancaRestam = 0;
+    mostra({ rot: 'Combate encerrado', curto: 'Fim do combate', sis: true, total: 'Exploração', totalCls: 'texto', mud });
+  } else {
+    S.modo = 'combate'; S.combate++; S.rodada = 1; S.turnoNaRodada = 0; S.noTurno = false; S.acoesGastas = 0; S.reacaoGasta = 0;
+    S.naRodada = {}; S.livres = {}; S.seq = { n: 0, acertos: 0, crit: false }; S.fluxo = { acertos: 0, defender: false, mover: false, ganhou: false };
+    const mud = []; if (S.rec.fluxo.v) mud.push(muda('fluxo', -S.rec.fluxo.v) + ' (começo do combate)'); else mud.push('Fluxo 0');
+    UI.rodSel = null;
+    mostra({ rot: 'Combate começou · rodada 1', curto: 'Combate', sis: true, total: 'Combate', totalCls: 'texto', mud,
+      bts: [{ rot: 'Rolar Iniciativa · +3', cls: 'sim', fn: () => mostra({ rot: 'Iniciativa', curto: 'Iniciativa', roll: rolar('1d20+3', 'teste') }) }] });
+  }
+}
+
+/* ---------- desenho: personagem ---------- */
+function desenhaDoll() {
+  const slot = k => {
+    const id = S.equip[k], it = id ? ITENS[id] : null, s = SLOTS[k];
+    if (!it) return `<button type="button" class="slot s-${k}" data-slot="${k}" aria-label="${s.rot}: vazio"><small>${s.curto}</small></button>`;
+    const alerta = it.alerta ? ' alerta' : '';
+    return `<button type="button" class="slot cheio s-${k}${alerta}" style="--r: var(--rar-${it.rar})" data-slot="${k}" aria-label="${s.rot}: ${esc(it.nome)}" title="${esc(it.nome)}">${svgIc(it.ic)}</button>`;
+  };
+  $('#doll').innerHTML = slot('leve1') + slot('leve2') +
+    `<div class="av"><svg viewBox="0 0 100 170" aria-hidden="true"><circle class="av-anel" cx="50" cy="84" r="47"/><circle class="av-anel" cx="50" cy="84" r="39"/><g class="av-corpo"><circle cx="50" cy="21" r="12"/><path d="M31 41 Q50 33 69 41 L73 90 L62 97 L38 97 L27 90 Z"/><path d="M31 42 L19 82 L22 103 L28 101 L27 85 L36 58 Z"/><path d="M69 42 L81 82 L78 103 L72 101 L73 85 L64 58 Z"/><path d="M38 97 L36 162 L46 162 L49 103 Z"/><path d="M62 97 L64 162 L54 162 L51 103 Z"/></g></svg>${slot('pesada')}</div>` +
+    slot('maoEsq') + slot('maoDir') + `<div class="sints">${slot('sint1')}${slot('sint2')}${slot('sint3')}</div>`;
+}
+function desenhaBarras() {
+  const barra = k => {
+    const r = S.rec[k];
+    if (k === 'fluxo') return `<div class="rec" style="--c:${COR_REC[k]}"><div class="rec-topo"><span class="rot">Fluxo</span><span class="rec-num">${r.v} <small>/ ${r.max}</small></span></div><div class="pips">${Array.from({ length: r.max }, (_, i) => `<i class="pip${i < r.v ? ' on' : ''}"></i>`).join('')}</div><div class="rec-pm"><button type="button" data-rec="fluxo" data-d="-1" aria-label="Fluxo menos 1">−</button><button type="button" data-rec="fluxo" data-d="1" aria-label="Fluxo mais 1">+</button></div></div>`;
+    const pct = Math.max(0, Math.min(100, (r.v / r.max) * 100));
+    return `<div class="rec" style="--c:${COR_REC[k]}"><div class="rec-topo"><span class="rot">${NOME_REC[k]}</span><span class="rec-num">${r.v} <small>/ ${r.max}</small></span></div><div class="rec-barra"><i style="width:${pct}%"></i></div><div class="rec-pm"><button type="button" data-rec="${k}" data-d="-1" aria-label="${NOME_REC[k]} menos 1">−</button><button type="button" data-rec="${k}" data-d="1" aria-label="${NOME_REC[k]} mais 1">+</button></div></div>`;
+  };
+  $('#barras').innerHTML = ['saude', 'stamina', 'eter', 'fluxo'].map(barra).join('');
+  const aeTxt = [['cortante', ae('cortante')], ['contundente', ae('contundente')]].filter(x => x[1]).map(x => `${NOME_TIPO[x[0]]} ${x[1]}`).join(', ');
+  $('#stats').innerHTML = `<span><b>13</b>Evasão</span><span><b>${ativa().txt}</b>Ativa</span><span><b>${ar()}</b>Ar</span><span><b>${CD}</b>CD</span>` + (aeTxt ? `<span>Ae ${aeTxt}</span>` : '');
+}
+function desenhaEco() {
+  const c = comb();
+  const max = acoesMax();
+  const acoes = Array.from({ length: 3 }, (_, i) => i >= max ? '<i class="los perdida" title="Ação perdida por condição"></i>' :
+    `<button type="button" class="los${i < S.acoesGastas ? ' gasto' : ''}" data-acao="${i}" aria-label="Ação ${i + 1}: ${i < S.acoesGastas ? 'gasta' : 'disponível'}"></button>`).join('');
+  const reac = Array.from({ length: S.reacaoMax }, (_, i) => `<button type="button" class="los oco${i < S.reacaoGasta ? ' gasto' : ''}" data-reacao="${i}" aria-label="Reação: ${i < S.reacaoGasta ? 'gasta' : 'disponível'}"></button>`).join('');
+  const mm = magiaMotivo('destruicao');
+  const restam = Math.max(0, max - S.acoesGastas);
+  $('#eco').innerHTML = c ? `
+    <div class="eco-c"><span class="rot">Ações</span><span class="eco-v">${acoes}</span><span class="eco-t">${restam} de ${max}</span></div>
+    <div class="eco-c"><span class="rot">Reação</span><span class="eco-v">${reac}</span><span class="eco-t">${S.reacaoGasta >= S.reacaoMax ? 'gasta' : 'pronta'}</span></div>
+    <div class="eco-c" title="Ações livres não têm limite por turno, mas cada técnica usada como ação livre só pode ser usada 1 vez por turno, salvo quando o texto dela diz outra coisa."><span class="rot">Livre</span><span class="eco-v"><span class="infinito">∞</span></span><span class="eco-t">técnica 1x/turno</span></div>
+    <div class="eco-c" title="${esc(mm || 'Pode conjurar: Treinado em Místico, Foco na mão, nenhuma magia neste turno.')}"><span class="rot">Magia</span><span class="eco-v"><svg class="magia-ic" viewBox="0 0 24 24" aria-hidden="true">${IC.foco}</svg></span><span class="eco-t${mm ? ' nao' : ''}">${mm ? 'não pode' : 'pode'}</span></div>
+    <div class="eco-c"><span class="rot">Mover</span><span class="eco-v"><b>${metros(movimento())}</b></span><span class="eco-t">${S.moveu ? 'já moveu' : '1x/turno'}</span></div>`
+    : `<div class="eco-c" style="grid-column: 1 / -1"><span class="rot">Exploração</span><span class="eco-t">Fora de combate as ações não são contadas. Movimento ${metros(movimento())}.</span></div>`;
+}
+function desenhaConds() {
+  const cs = S.conds.map(c => `<button type="button" class="chip chip-cond" data-cond="${c.id}"><b>${CONDS[c.id].nome}${CONDS[c.id].x ? ' ' + c.x : ''}</b></button>`);
+  const ts = S.temps.map(t => `<button type="button" class="chip chip-temp" data-temp="${t.id}"><b>${esc(t.rot)}</b><small>${esc(t.dur)}</small></button>`);
+  $('#conds').innerHTML = cs.concat(ts).join('') + '<button type="button" class="chip chip-mais" id="bt-cond">+ condição</button>';
+}
+
+/* ---------- desenho: centro ---------- */
+function resumoRodada(r) {
+  const es = REG.filter(e => e.c === S.combate && e.r === r && !e.sis);
+  const nomes = [];
+  es.forEach(e => { const u = nomes.find(x => x.n === e.curto); if (u) u.k++; else nomes.push({ n: e.curto, k: 1 }); });
+  const lista = nomes.slice(0, 4).map(x => x.n + (x.k > 1 ? ' ×' + x.k : '')).join(' · ') + (nomes.length > 4 ? ` e mais ${nomes.length - 4}` : '');
+  const tot = {};
+  REG.filter(e => e.c === S.combate && e.r === r).forEach(e => Object.keys(e.delta || {}).forEach(k => { tot[k] = (tot[k] || 0) + e.delta[k]; }));
+  const dl = ['saude', 'stamina', 'eter', 'fluxo'].filter(k => tot[k]).map(k => `${NOME_REC[k]} ${sinal(tot[k])}`).join(' · ');
+  return { lista: lista || 'nada ainda', dl };
+}
+function desenhaTrilho() {
+  const t = $('#trilho');
+  if (!comb()) { t.innerHTML = '<div class="trilho-fora">Exploração. O trilho das rodadas volta quando um combate começa.</div>'; return; }
+  let h = '';
+  for (let r = 1; r <= S.rodada; r++) {
+    const x = resumoRodada(r), agora = r === S.rodada;
+    h += `<button type="button" class="rod${agora ? ' agora' : ''}" data-rod="${r}" aria-pressed="${UI.rodSel === r}"><b>Rodada ${r}${agora ? (S.noTurno ? ' · seu turno' : ' · agora') : ''}</b><span>${esc(x.lista)}</span>${x.dl ? `<span class="dl">${esc(x.dl)}</span>` : ''}</button>`;
+  }
+  h += '<button type="button" class="rod-nova" id="bt-rodada" title="Quando o mestre passar para a próxima rodada antes do seu turno">Nova rodada ▸</button>';
+  t.innerHTML = h;
+  const ag = t.querySelector('.agora'); if (ag && !UI.rodSel) t.scrollLeft = t.scrollWidth;
+}
+function desenhaPilha() {
+  let es = REG.filter(e => e !== PLACA && e.c === S.combate);
+  if (UI.rodSel) es = es.filter(e => e.r === UI.rodSel);
+  es = es.slice(-8).reverse();
+  const tit = UI.rodSel ? `Rodada ${UI.rodSel}` : 'Antes';
+  $('#pilha').innerHTML = `<span class="rot">${tit}</span>` + (es.length ? es.map(e => `<button type="button" class="pe" data-pe="${REG.indexOf(e)}"><span class="pe-l"><b>${esc(e.rot)}</b>${e.total != null && !e.totalCls ? `<em>${esc(e.total)}</em>` : ''}</span>${e.mud.length ? `<span>${esc(e.mud.join(' · '))}</span>` : ''}</button>`).join('') : '<span class="pe-vazio">Nada ainda.</span>');
+}
+function desenhaBorda() {
+  const b = $('#borda');
+  if (comb()) {
+    b.innerHTML = `<span class="borda-est">Combate · <b>rodada ${S.rodada}</b> · ${S.noTurno ? 'seu turno' : 'turno de outro'}</span>
+      <span class="borda-bts"><button type="button" class="bt bt-madeira" id="bt-reg" aria-pressed="${UI.regAberto}">Registro completo</button>
+      <button type="button" class="bt bt-latao" id="bt-turno">${S.noTurno ? 'Encerrar meu turno' : 'Começar meu turno'}</button></span>`;
+  } else {
+    b.innerHTML = `<span class="borda-est">Exploração · descansos curtos hoje: <b>${S.curtos} de 2</b></span>
+      <span class="borda-bts"><button type="button" class="bt bt-madeira" id="bt-reg" aria-pressed="${UI.regAberto}">Registro completo</button>
+      <button type="button" class="bt bt-madeira" id="bt-cena">Fim da cena</button>
+      <button type="button" class="bt bt-latao" id="bt-curto" ${S.curtos >= 2 ? 'disabled title="Máx. 2 por dia"' : ''}>Descanso curto</button>
+      <button type="button" class="bt bt-latao" id="bt-longo">Descanso longo</button></span>`;
+  }
+}
+function desenhaFavs() {
+  $('#favs-n').textContent = `${S.fav.length} de 8 · ★ nas habilidades para fixar`;
+  let h = S.fav.map(id => {
+    const a = POR_ID[id]; if (!a) return '';
+    const m = motivo(a), vis = a.g === 'combate' && !comb() ? 'Só em combate' : a.g === 'exploracao' && comb() ? 'Só em exploração' : '';
+    const mot = vis || m;
+    return `<button type="button" class="fav${mot ? ' off' : ''}" data-fazfav="${id}" ${mot ? 'aria-disabled="true"' : ''}><span class="fav-g">${gemas(a.c)}</span><b>${esc(a.nome)}</b><span>${esc(a.chave ? a.chave() : '')}</span>${mot ? `<span class="fav-mot">${esc(mot)}</span>` : ''}</button>`;
   }).join('');
+  for (let i = S.fav.length; i < 8; i++) h += '<span class="fav vazio">vazio</span>';
+  $('#favs').innerHTML = h;
+}
+function desenhaReg() {
+  const r = $('#reg'); r.hidden = !UI.regAberto;
+  if (!UI.regAberto) return;
+  const es = REG.filter(e => e.c === S.combate || e.r == null);
+  const grupos = [];
+  es.forEach(e => { const k = e.r == null ? 'Fora de combate' : 'Rodada ' + e.r; let g = grupos.find(x => x.k === k); if (!g) grupos.push(g = { k, es: [] }); g.es.push(e); });
+  r.innerHTML = '<h2 class="rot">Registro completo</h2>' + grupos.map(g => `<div class="rot reg-r">${g.k}</div><ol>${g.es.map(e => `<li><b>${esc(e.rot)}</b><em>${e.total != null ? esc(e.total) : ''}</em>${e.conta || e.mud.length ? `<span>${esc([e.conta].concat(e.mud).filter(Boolean).join(' · '))}</span>` : ''}</li>`).join('')}</ol>`).join('');
+}
+
+/* ---------- desenho: habilidades ---------- */
+function gemas(c) {
+  if (c.a) return '<i class="gm"></i>'.repeat(c.a);
+  if (c.r) return '<i class="gm oca"></i>';
+  if (c.l) return '<i class="gm livre"></i>';
+  if (c.q) return '<i class="gm txt" title="O Sistema não dá o custo em ações desta manobra">?</i>';
+  return '<i class="gm txt">—</i>';
+}
+const custoTit = c => (c.a ? `${c.a} ${c.a > 1 ? 'ações' : 'ação'}` : c.r ? 'Reação' : c.l ? 'Ação livre' : c.q ? 'Custo não definido no Sistema' : 'Sem custo de ação');
+const ABAS = [['combate', 'Combate'], ['tecnicas', 'Técnicas'], ['magias', 'Magias'], ['itens', 'Itens'], ['pericias', 'Perícias'], ['cartas', 'Cartas']];
+const grupoDa = aba => (aba === 'combate' && !comb() ? 'exploracao' : aba);
+function passaFiltro(a) {
+  if (UI.filtro === 'acao' && !a.c.a) return false;
+  if (UI.filtro === 'reacao' && !a.c.r) return false;
+  if (UI.filtro === 'livre' && !a.c.l) return false;
+  if (UI.usaveis && motivo(a)) return false;
+  if (UI.busca) { const q = slug(UI.busca); if (!slug(a.nome + ' ' + (a.texto || []).join(' ')).includes(q)) return false; }
+  return true;
+}
+function desenhaAbas() {
+  $('#abas').innerHTML = ABAS.map(([k, nome]) => {
+    const g = grupoDa(k), n = A.filter(a => a.g === g).length + (k === 'itens' ? Object.values(S.equip).filter(Boolean).length + S.mochila.length : 0);
+    return `<button type="button" class="aba" role="tab" data-aba="${k}" aria-selected="${UI.aba === k}">${k === 'combate' && !comb() ? 'Exploração' : nome}<span class="n">${n}</span></button>`;
+  }).join('');
+  const f = [['todas', 'Todas', ''], ['acao', 'Ação', '<i class="gm"></i>'], ['reacao', 'Reação', '<i class="gm oca"></i>'], ['livre', 'Livre', '<i class="gm livre"></i>']];
+  $('#filtros').innerHTML = f.map(([k, r, g]) => `<button type="button" class="filtro" data-filtro="${k}" aria-pressed="${UI.filtro === k}">${g}${r}</button>`).join('') +
+    `<button type="button" class="filtro usar" id="bt-usaveis" aria-pressed="${UI.usaveis}">Só o que posso usar</button>`;
+}
+function cartao(a) {
+  const mot = motivo(a), aberto = !!UI.abertos[a.id], fav = S.fav.includes(a.id);
+  const meta = (a.meta ? a.meta() : []).filter(Boolean).map(m => (typeof m === 'string' ? esc(m) : `<span class="${m.cls}">${esc(m.t)}</span>`)).join(' · ');
+  return `<article class="ac${mot ? ' off' : ''}">
+    <div class="ac-linha">
+      <span class="ac-g" title="${custoTit(a.c)}">${gemas(a.c)}</span>
+      <button type="button" class="ac-abre" aria-expanded="${aberto}" data-abre="${a.id}"><span class="ac-nome">${esc(a.nome)}${a.qtd ? ` <small>×${S.qtd[a.qtd]}</small>` : ''}</span>${meta ? `<span class="ac-meta">${meta}</span>` : ''}${mot ? `<span class="ac-mot">${esc(mot)}</span>` : ''}</button>
+      ${a.verbo ? `<button type="button" class="verbo" data-faz="${a.id}"${mot ? ' disabled' : ''}>${a.verbo}</button>` : '<span></span>'}
+      <button type="button" class="estrela" data-fav="${a.id}" aria-pressed="${fav}" aria-label="${fav ? 'Tirar dos favoritos' : 'Fixar nos favoritos'}: ${esc(a.nome)}">${fav ? '★' : '☆'}</button>
+    </div>
+    ${aberto ? `<div class="ac-corpo">${corpo(a, mot)}</div>` : ''}
+  </article>`;
+}
+function corpo(a, mot) {
+  let h = `<p class="ac-fonte">${esc(a.fonte)}${a.link ? ` · <a href="${a.link}" target="_blank" rel="noopener">Abrir no site ↗</a>` : ''}</p>`;
+  (a.texto || []).forEach(t => { h += `<p class="ac-texto">${esc(t)}</p>`; });
+  if (a.pma) {
+    const ns = [1, 2, 3].map(n => `<i class="${n === S.seq.n + 1 ? 'prox' : n <= S.seq.n ? 'foi' : ''}">${n}º ${sinal(bonusAtaque(n))}</i>`).join('');
+    h += `<div class="pma"><span class="rot">Sequência</span>${ns}${pmaLigada() ? '' : '<span class="ac-meta">Transcendência: sem PMA nesta rodada</span>'}</div>`;
+  }
+  if (a.vant) h += `<div class="seg" role="group" aria-label="Vantagem">${[['normal', 'Normal'], ['vantagem', 'Vantagem'], ['desvantagem', 'Desvantagem']].map(([k, r]) => `<button type="button" data-vant="${k}" aria-pressed="${S.vant === k}">${r}</button>`).join('')}</div>`;
+  if (a.intens) h += `<div class="seg" role="group" aria-label="Intensidade">${Object.entries(INTENS).map(([k, v]) => `<button type="button" data-intens="${k}" aria-pressed="${S.intens === k}">${v.rot} · ${v.eter}</button>`).join('')}</div>`;
+  const ct = a.conta ? a.conta() : [];
+  if (ct.length) h += `<dl class="conta">${ct.map(([k, v]) => `<div><dt>${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join('')}</dl>`;
+  if (a.mais) h += `<div class="ac-mais">${a.mais.map((m, i) => `<button type="button" class="bt" data-mais="${a.id}:${i}">${esc(m.rot)}</button>`).join('')}</div>`;
+  return h;
+}
+function itemLinha(k) {
+  const id = S.equip[k], it = ITENS[id], s = SLOTS[k];
+  if (UI.busca && !slug(it.nome).includes(slug(UI.busca))) return '';
+  let bt = `<button type="button" class="verbo" data-desequipa="${k}">${it.tipo === 'sint' ? 'Ver' : 'Desequipar'}</button>`;
+  let extra = '';
+  if (id === 'capa') { bt = `<button type="button" class="verbo" data-penumbra aria-pressed="${S.penumbra}">${S.penumbra ? 'Desligar' : 'Ativar'}</button>`; extra = `<p>${S.penumbra ? 'Ligado: em penumbra ou escuridão, Furtividade +2.' : 'Desligado. Ative quando estiver em penumbra ou escuridão.'}</p>`; }
+  return `<div class="item-l" style="--r: var(--rar-${it.rar})">${svgIc(it.ic, 'ic')}<div><span class="onde">${s.rot}</span><br><b>${esc(it.nome)}</b><p>${esc(it.texto)}</p>${extra}${it.alerta ? `<p class="alerta-t">${esc(it.alerta)}</p>` : ''}</div><div class="item-bts">${bt}</div></div>`;
+}
+function desenhaLista() {
+  const g = grupoDa(UI.aba), L = $('#lista');
+  let h = '';
+  if (g === 'pericias') {
+    const ps = A.filter(a => a.g === 'pericias' && (!UI.busca || slug(a.nome).includes(slug(UI.busca))) && (!UI.usaveis || !motivo(a)));
+    h = UI.filtro !== 'todas' ? '<p class="sem">Perícias não têm custo de ação próprio: o filtro de custo as esconde.</p>' :
+      `<div class="per-grade" style="margin-top: 10px">${ps.map(a => {
+        const m = motivo(a), fav = S.fav.includes(a.id), sit = a.nome === 'Furtividade' && S.penumbra && sintonizado('capa');
+        return `<div class="per${m ? ' off' : ''}" role="button" tabindex="${m ? -1 : 0}" data-faz="${m ? '' : a.id}" ${m ? 'aria-disabled="true"' : ''}><b>${esc(a.nome)}</b><span class="tot">${esc(a.chave())}</span><span class="gr">${[0, 1, 2, 3].map(i => `<i class="${i < a.grau ? 'on' : ''}"></i>`).join('')}<small>${a.attr}</small></span>${sit ? '<span class="per-sit">+2 da Capa, em penumbra</span>' : ''}${m ? `<span class="per-mot">${esc(m)}</span>` : ''}<button type="button" class="estrela" data-fav="${a.id}" aria-pressed="${fav}" aria-label="${fav ? 'Tirar dos favoritos' : 'Fixar nos favoritos'}: ${esc(a.nome)}">${fav ? '★' : '☆'}</button></div>`;
+      }).join('')}</div>`;
+    L.innerHTML = h; return;
+  }
+  const lista = A.filter(a => a.g === g && passaFiltro(a));
+  const secs = [];
+  lista.forEach(a => { let s = secs.find(x => x.k === a.sec); if (!s) secs.push(s = { k: a.sec, as: [] }); s.as.push(a); });
+  secs.forEach(s => { h += `<div class="sec"><span class="rot">${esc(s.k)}</span></div>` + s.as.map(cartao).join(''); });
+  if (g === 'itens' && UI.filtro === 'todas' && !UI.usaveis) {
+    const eq = ['maoEsq', 'maoDir', 'pesada', 'leve1', 'leve2'].filter(k => S.equip[k]).map(itemLinha).join('');
+    const si = ['sint1', 'sint2', 'sint3'].filter(k => S.equip[k]).map(itemLinha).join('');
+    if (eq) h += '<div class="sec"><span class="rot">Equipado</span></div>' + eq;
+    if (si) h += `<div class="sec"><span class="rot">Sintonizados · ${['sint1', 'sint2', 'sint3'].filter(k => S.equip[k]).length} de 3</span></div>` + si;
+    const mo = S.mochila.filter(id => !UI.busca || slug(ITENS[id].nome).includes(slug(UI.busca)));
+    if (mo.length) h += '<div class="sec"><span class="rot">Mochila</span></div>' + mo.map(id => { const it = ITENS[id]; return `<div class="item-l" style="--r: var(--rar-${it.rar})">${svgIc(it.ic, 'ic')}<div><b>${esc(it.nome)}</b><p>${esc(it.texto)}</p></div><div class="item-bts"><button type="button" class="verbo" data-equipa="${id}">Equipar</button></div></div>`; }).join('');
+  }
+  if (g === 'tecnicas' && !UI.busca && UI.filtro === 'todas' && !UI.usaveis) {
+    h += `<details class="sempre"><summary>Sempre valendo · 4 passivas nas contas</summary>
+      <p><b>Arma Humana</b> · ${esc(TXT.humana)}</p><p><b>Punho Perfeito</b> · ${esc(TXT.punho)}</p><p><b>Fluxo Marcial</b> · ${esc(TXT.marcial)}</p><p><b>Fluxo</b> · ${esc(TXT.fluxoGanho)} ${esc(TXT.fluxoPerde)}</p></details>`;
+  }
+  L.innerHTML = h || '<p class="sem">Nada com esse filtro.</p>';
+}
+function tudo(anim) {
+  desenhaDoll(); desenhaBarras(); desenhaEco(); desenhaConds();
+  desenhaTrilho(); desenhaPilha(); desenhaBorda(); desenhaFavs(); desenhaReg();
+  desenhaAbas(); desenhaLista();
+  document.querySelectorAll('.modo button').forEach(b => b.setAttribute('aria-checked', String(b.dataset.modo === S.modo)));
+  $('#bt-desfazer').disabled = !DESF.length;
+  $('#bt-desfazer').textContent = DESF.length ? `Desfazer: ${DESF[DESF.length - 1].rot}` : 'Desfazer';
+  desenhaPlaca(!!anim);
+}
+let avisoT = 0;
+function avisa(t) { const a = $('#aviso'); a.textContent = t; clearTimeout(avisoT); avisoT = setTimeout(() => { a.textContent = ''; }, 4200); }
+
+/* ---------- popovers ---------- */
+const pop = $('#pop');
+let popDe = null;
+function abre(alvo, html, liga) {
+  pop.innerHTML = html; pop.hidden = false; popDe = alvo;
+  const r = alvo.getBoundingClientRect(), w = pop.offsetWidth;
+  let x = r.left + window.scrollX, y = r.bottom + window.scrollY + 6;
+  x = Math.max(16 + window.scrollX, Math.min(x, window.scrollX + document.documentElement.clientWidth - w - 16));
+  pop.style.left = x + 'px'; pop.style.top = y + 'px';
+  if (liga) liga(pop);
+  const f = pop.querySelector('input, select, button'); if (f) f.focus();
+}
+function fecha() { pop.hidden = true; if (popDe && document.body.contains(popDe)) popDe.focus(); popDe = null; }
+function abreDano(alvo) {
+  alvo = alvo && document.body.contains(alvo) ? alvo : $('#bt-dano');
+  abre(alvo, `<h3>Recebi dano</h3>
+    <label>Valor<input type="number" id="pd-valor" min="0" value="6"></label>
+    <label>Tipo<select id="pd-tipo">${TIPOS.map(t => `<option value="${t}"${t === 'cortante' ? ' selected' : ''}>${NOME_TIPO[t]}</option>`).join('')}</select></label>
+    <label class="ck"><input type="checkbox" id="pd-ataque" ${comb() ? 'checked' : ''}> Foi um ataque</label>
+    <p id="pd-prev"></p>
+    <div class="pop-l"><button type="button" class="bt" id="pd-ok">Aplicar</button><button type="button" class="bt" data-fecha>Cancelar</button></div>`, p => {
+    const prev = () => { const c = calcDano(); $('#pd-prev', p).textContent = c.txt; };
+    ['input', 'change'].forEach(ev => p.addEventListener(ev, prev)); prev();
+    $('#pd-ok', p).addEventListener('click', aplicaDano);
+    $('#pd-valor', p).addEventListener('keydown', e => { if (e.key === 'Enter') aplicaDano(); });
+  });
+}
+function calcDano() {
+  const v = Math.max(0, Math.floor(Number($('#pd-valor').value) || 0)), t = $('#pd-tipo').value;
+  const a = ORDINARIO.includes(t) ? ar() : 0, e = ae(t), f = Math.max(0, v - a - e);
+  const partes = [`${v} ${NOME_TIPO[t]}`]; if (a) partes.push(`Ar ${a}`); if (e) partes.push(`Ae ${e}`);
+  return { v, t, f, txt: partes.join(' − ') + ` = ${f}` };
+}
+function aplicaDano() {
+  const c = calcDano(), ataque = $('#pd-ataque').checked;
+  fecha(); guarda('Recebi dano');
+  const mud = [muda('saude', -c.f)], nota = [];
+  if (c.f > 0) { const m = perdeFluxo('recebeu dano'); if (m) mud.push(m); }
+  if (ataque) {
+    const sg = cond('sangramento');
+    if (sg) { nota.push(`Sangramento ${sg.x}: o ataque causa +${sg.x}d4 de dano Biológico.`); sg.x--; if (sg.x <= 0) S.conds = S.conds.filter(x => x.id !== 'sangramento'); mud.push(sg.x > 0 ? `Sangramento ${sg.x + 1} → ${sg.x}` : 'Sangramento acabou'); }
+    if (cond('exposto')) { S.conds = S.conds.filter(x => x.id !== 'exposto'); mud.push('Exposto saiu'); }
+  }
+  const sg2 = cond('sangramento');
+  mostra({ rot: `Recebi dano · ${NOME_TIPO[c.t]}`, curto: 'Recebi dano', total: '−' + c.f, totalCls: 'perde', conta: c.txt, nota, mud,
+    bts: ataque && nota.length ? [{ rot: `Somar ${sg2 ? sg2.x + 1 : 1}d4 Biológico`, fn: e => { guarda('Sangramento'); const r = rolar(`${sg2 ? sg2.x + 1 : 1}d4`, 'dano'); e.bts = []; mostra({ rot: 'Sangramento · dano Biológico', curto: 'Sangramento', roll: r, mud: [muda('saude', -r.total)] }); } }] : [] });
+}
+function abreCura(alvo) {
+  abre(alvo, `<h3>Curar</h3>
+    <label>Valor<input type="number" id="pc-valor" min="0" value="5"></label>
+    <label>Status<select id="pc-rec">${['saude', 'stamina', 'eter', 'fluxo'].map(k => `<option value="${k}">${NOME_REC[k]}</option>`).join('')}</select></label>
+    <p>Nenhum status passa do máximo ao ser curado.</p>
+    <div class="pop-l"><button type="button" class="bt" id="pc-ok">Aplicar</button><button type="button" class="bt" data-fecha>Cancelar</button></div>`, p => {
+    const ok = () => { const v = Math.max(0, Math.floor(Number($('#pc-valor').value) || 0)), k = $('#pc-rec').value; fecha(); guarda('Curar'); mostra({ rot: `Cura · ${NOME_REC[k]}`, curto: 'Cura', total: '+' + v, totalCls: 'ganha', mud: [muda(k, v)] }); };
+    $('#pc-ok', p).addEventListener('click', ok);
+    $('#pc-valor', p).addEventListener('keydown', e => { if (e.key === 'Enter') ok(); });
+  });
+}
+function abreDescanso(alvo, longo) {
+  abre(alvo, `<h3>${longo ? 'Descanso longo' : 'Descanso curto'}</h3><p>${esc(longo ? TXT.longo : TXT.curto)}</p>
+    ${longo ? `<label>Comodidade<select id="dl-x">${['Precário', 'Ruim', 'Normal', 'Bom', 'Luxuoso'].map((n, i) => `<option value="${i + 1}"${i === 2 ? ' selected' : ''}>${i + 1} · Descanso ${n} (${i + 1}d8)</option>`).join('')}</select></label>` : ''}
+    <span class="rot">Escolha 2 status</span>
+    ${['saude', 'stamina', 'eter'].map(k => `<label class="ck"><input type="checkbox" data-st="${k}" ${k !== 'eter' ? 'checked' : ''}> ${NOME_REC[k]}</label>`).join('')}
+    <div class="pop-l"><button type="button" class="bt" id="ds-ok">Descansar</button><button type="button" class="bt" data-fecha>Cancelar</button></div>`, p => {
+    $('#ds-ok', p).addEventListener('click', () => {
+      const sts = [...p.querySelectorAll('[data-st]:checked')].map(i => i.dataset.st);
+      if (sts.length !== 2) { avisa('Escolha exatamente 2 status.'); return; }
+      const x = longo ? Number($('#dl-x').value) : 0;
+      fecha(); guarda(longo ? 'Descanso longo' : 'Descanso curto');
+      const f = longo ? x + 'd8' : '2d6', dados = [], mud = [], contas = [];
+      sts.forEach(k => { const r = rolar(f, 'cura'); dados.push(...r.dados); contas.push(`${NOME_REC[k]} ${r.conta} = ${r.total}`); mud.push(muda(k, r.total)); });
+      const volta = ['reflexos', 'esquiva'].filter(k => S.usos[k]); volta.forEach(k => { S.usos[k] = 0; });
+      if (volta.length) mud.push(volta.map(k => POR_ID[k].nome).join(' e ') + ' voltam');
+      if (longo) { if (S.usos.persist) mud.push('Persistência Humana: usos de volta'); S.usos.persist = 0; S.curtos = 0; } else S.curtos++;
+      mostra({ rot: longo ? 'Descanso longo' : 'Descanso curto', curto: 'Descanso', roll: { dados, total: null, conta: contas.join(' · '), crit: false, falha: false, modo: 'normal' }, mud });
+    });
+  });
+}
+function abreSlot(alvo, k) {
+  const id = S.equip[k], it = id ? ITENS[id] : null, s = SLOTS[k];
+  let h = `<h3>${s.rot}${it ? ' · ' + esc(it.nome) : ''}</h3>`;
+  if (it) h += `<p>${esc(it.texto)}</p>` + (it.alerta ? `<p class="alerta-t">${esc(it.alerta)}</p>` : '');
+  if (s.tipo === 'sint') { h += `<p>${esc(TXT.sintonia)}</p>`; pop.dataset.slot = k; abre(alvo, h + '<div class="pop-l"><button type="button" class="bt" data-fecha>Fechar</button></div>'); return; }
+  const opcoes = Object.keys(ITENS).filter(i => ITENS[i].tipo === s.tipo && i !== id && (S.mochila.includes(i) || (s.tipo === 'mao' && maos().includes(i))));
+  h += '<div class="ops">' + opcoes.map(i => `<button type="button" class="op" data-poe="${k}:${i}"><b>${esc(ITENS[i].nome)}</b><span>${esc(ITENS[i].texto)}</span></button>`).join('') +
+    (it ? `<button type="button" class="op" data-poe="${k}:"><b>Tirar</b><span>vai para a mochila</span></button>` : '') + '</div>';
+  if (s.tipo === 'mao') h += '<p>O consumível não precisa estar na mão: a ação de consumir já inclui pegar e guardar.</p>';
+  abre(alvo, h);
+}
+function poe(k, id) {
+  guarda('Equipamento');
+  const antes = S.equip[k], mud = [];
+  if (id && SLOTS[k].tipo === 'mao') ['maoEsq', 'maoDir'].forEach(m => { if (m !== k && S.equip[m] === id) S.equip[m] = null; });
+  S.mochila = S.mochila.filter(i => i !== id);
+  if (antes && !Object.values(S.equip).filter((v, i) => Object.keys(S.equip)[i] !== k).includes(antes)) S.mochila.push(antes);
+  S.equip[k] = id || null;
+  if (antes) mud.push(ITENS[antes].nome + ' saiu');
+  if (id) mud.push(ITENS[id].nome + ' em ' + SLOTS[k].rot.toLowerCase());
+  mud.push('Movimento ' + metros(movimento()), 'Ativa ' + ativa().txt);
+  fecha();
+  mostra({ rot: 'Equipamento', curto: 'Equipamento', total: id ? ITENS[id].nome : 'Mão vazia', totalCls: 'texto', mud });
+}
+function abreCond(alvo, cid) {
+  const c = cond(cid), def = CONDS[cid];
+  abre(alvo, `<h3>${def.nome}${def.x ? ' ' + c.x : ''}</h3>${def.texto.map(t => `<p>${esc(t)}</p>`).join('')}
+    <p><a href="${SITE}condicoes.html#${cid}" target="_blank" rel="noopener">Abrir em Condições ↗</a></p>
+    <div class="pop-l">${def.x ? `<button type="button" class="bt" data-cx="-1">− 1</button><button type="button" class="bt" data-cx="1">+ 1</button>` : ''}${cid === 'caido' ? '<button type="button" class="bt" data-levanta>Levantar (1 ação)</button>' : ''}<button type="button" class="bt" data-tira-cond>Remover</button></div>`, p => {
+    p.dataset.cond = cid;
+  });
+}
+function abreTemp(alvo, tid) {
+  const t = temp(tid);
+  abre(alvo, `<h3>${esc(t.rot)}</h3><p>${esc(t.dur)}</p><p>${esc(t.texto)}</p><div class="pop-l"><button type="button" class="bt" data-tira-temp="${tid}">Encerrar agora</button></div>`);
+}
+function abreNovaCond(alvo) {
+  abre(alvo, '<h3>Adicionar condição</h3><div class="ops">' + Object.entries(CONDS).filter(([k]) => !cond(k)).map(([k, c]) => `<button type="button" class="op" data-nova-cond="${k}"><b>${c.nome}${c.x ? ' 1' : ''}</b><span>${esc(c.texto[0])}</span></button>`).join('') + '</div>');
+}
+
+/* ---------- eventos ---------- */
+document.addEventListener('click', ev => {
+  const t = ev.target.closest('button, [data-faz], [role="button"]');
+  if (!pop.hidden && !ev.target.closest('#pop') && t !== popDe) { pop.hidden = true; popDe = null; }
+  if (!t) return;
+  const ds = t.dataset;
+  if (ds.modo) return trocaModo(ds.modo);
+  if (ds.pb != null && PLACA) { const e = PLACA, b = e.bts[Number(ds.pb)]; if (b) { b.fn(e, t); Object.keys(DELTA).forEach(k => { e.delta[k] = (e.delta[k] || 0) + DELTA[k]; }); DELTA = {}; tudo(false); } return; }
+  if (ds.faz) return executar(ds.faz);
+  if (ds.fazfav) { if (t.getAttribute('aria-disabled') === 'true') { avisa(t.querySelector('.fav-mot').textContent); return; } return executar(ds.fazfav); }
+  if (ds.abre) { UI.abertos[ds.abre] = !UI.abertos[ds.abre]; desenhaLista(); const b = document.querySelector(`[data-abre="${ds.abre}"]`); if (b) b.focus(); return; }
+  if (ds.fav) {
+    const i = S.fav.indexOf(ds.fav);
+    if (i >= 0) S.fav.splice(i, 1);
+    else if (S.fav.length >= 8) { avisa('Favoritos cheios (8). Tire um para fixar outro.'); return; }
+    else S.fav.push(ds.fav);
+    desenhaFavs(); desenhaLista(); return;
+  }
+  if (ds.aba) { UI.aba = ds.aba; desenhaAbas(); desenhaLista(); return; }
+  if (ds.filtro) { UI.filtro = ds.filtro; desenhaAbas(); desenhaLista(); return; }
+  if (ds.vant) { S.vant = ds.vant; desenhaLista(); return; }
+  if (ds.intens) { S.intens = ds.intens; desenhaLista(); desenhaFavs(); return; }
+  if (ds.mais) { const [id, i] = ds.mais.split(':'); POR_ID[id].mais[Number(i)].fn(); return; }
+  if (ds.rec) { guarda('Ajuste à mão'); const k = ds.rec, dlt = Number(ds.d), r = S.rec[k]; r.v = Math.max(k === 'fluxo' ? 0 : -99, Math.min(r.max, r.v + dlt)); if (k === 'fluxo' && dlt > 0) S.fluxo.ganhou = true; tudo(false); return; }
+  if (ds.acao != null) { guarda('Ação à mão'); const i = Number(ds.acao); S.acoesGastas = i < S.acoesGastas ? i : i + 1; tudo(false); return; }
+  if (ds.reacao != null) { guarda('Reação à mão'); S.reacaoGasta = S.reacaoGasta > 0 ? S.reacaoGasta - 1 : 1; tudo(false); return; }
+  if (ds.slot) return abreSlot(t, ds.slot);
+  if (ds.poe) { const [k, id] = ds.poe.split(':'); return poe(k, id); }
+  if (ds.equipa) { const livre = !S.equip.maoDir ? 'maoDir' : !S.equip.maoEsq ? 'maoEsq' : 'maoDir'; return poe(livre, ds.equipa); }
+  if (ds.desequipa) return abreSlot(t, ds.desequipa);
+  if ('penumbra' in ds) { guarda('Capa'); S.penumbra = !S.penumbra; tudo(false); return; }
+  if (ds.cond) return abreCond(t, ds.cond);
+  if (ds.temp) return abreTemp(t, ds.temp);
+  if (ds.novaCond) { guarda('Condição'); S.conds.push({ id: ds.novaCond, x: 1 }); fecha(); mostra({ rot: 'Condição', curto: CONDS[ds.novaCond].nome, total: CONDS[ds.novaCond].nome, totalCls: 'texto', cita: CONDS[ds.novaCond].texto }); return; }
+  if (ds.cx) { const c = cond(pop.dataset.cond); guarda('Condição'); c.x = Math.max(1, c.x + Number(ds.cx)); abreCond(popDe || $('#bt-cond'), c.id); tudo(false); return; }
+  if ('tiraCond' in ds) { guarda('Condição'); const id = pop.dataset.cond; S.conds = S.conds.filter(c => c.id !== id); fecha(); tudo(false); avisa(CONDS[id].nome + ' removida.'); return; }
+  if ('levanta' in ds) { if (comb() && acoesMax() - S.acoesGastas < 1) { avisa('Sem ações para levantar.'); return; } guarda('Levantar'); if (comb()) S.acoesGastas++; S.conds = S.conds.filter(c => c.id !== 'caido'); fecha(); mostra({ rot: 'Levantar', total: 'de pé', totalCls: 'texto', mud: ['Caído acabou', 'Movimento ' + metros(movimento())] }); return; }
+  if (ds.tiraTemp) { guarda('Temporário'); const tt = temp(ds.tiraTemp); tiraTemp(ds.tiraTemp); fecha(); tudo(false); avisa(tt.rot + ' encerrado.'); return; }
+  if ('fecha' in ds) return fecha();
+  if (ds.pe != null) { PLACA = REG[Number(ds.pe)]; tudo(false); return; }
+  if (ds.rod) { const r = Number(ds.rod); UI.rodSel = UI.rodSel === r ? null : r; desenhaTrilho(); desenhaPilha(); return; }
+  switch (t.id) {
+    case 'bt-turno': return S.noTurno ? encerrarTurno() : comecarTurno();
+    case 'bt-rodada': return novaRodada(false);
+    case 'bt-dano': return abreDano(t);
+    case 'bt-cura': return abreCura(t);
+    case 'bt-cond': return abreNovaCond(t);
+    case 'bt-curto': return abreDescanso(t, false);
+    case 'bt-longo': return abreDescanso(t, true);
+    case 'bt-cena': { guarda('Fim da cena'); const fim = S.temps.filter(x => x.ate === 'cena'); S.temps = S.temps.filter(x => x.ate !== 'cena'); mostra({ rot: 'Fim da cena', curto: 'Cena', sis: true, total: 'Fim da cena', totalCls: 'texto', mud: fim.length ? fim.map(x => x.rot + ' acabou') : ['nada com duração de cena'] }); return; }
+    case 'bt-reg': UI.regAberto = !UI.regAberto; desenhaBorda(); desenhaReg(); return;
+    case 'bt-usaveis': UI.usaveis = !UI.usaveis; desenhaAbas(); desenhaLista(); return;
+    case 'bt-drawer': { const on = $('#app').classList.toggle('drawer'); t.setAttribute('aria-pressed', String(on)); t.textContent = on ? 'Ver a Mesa inteira' : 'Ver como no drawer'; return; }
+    case 'bt-desfazer': {
+      const u = DESF.pop(); if (!u) return;
+      S = JSON.parse(u.s);
+      mostra({ rot: 'Desfeito: ' + u.rot, curto: 'Desfeito', sis: true, total: '↶', totalCls: 'texto', nota: ['A ficha voltou ao estado de antes. As rolagens ficam no registro.'] });
+      return;
+    }
+  }
+});
+document.addEventListener('keydown', ev => {
+  if (ev.key === 'Escape' && !pop.hidden) { fecha(); return; }
+  const t = ev.target;
+  if ((ev.key === 'Enter' || ev.key === ' ') && t.matches('.per[role="button"]')) { ev.preventDefault(); if (t.dataset.faz) executar(t.dataset.faz); }
+});
+$('#busca').addEventListener('input', e => { UI.busca = e.target.value.trim(); desenhaLista(); });
+
+/* ---------- o combate até aqui (exemplo) ---------- */
+const ent = (r, rot, curto, o = {}) => REG.push(Object.assign({ c: 1, r, rot, curto, roll: null, total: null, totalCls: '', conta: '', nota: [], cita: [], mud: [], bts: [], sis: false, delta: {} }, o));
+ent(1, 'Combate começou · rodada 1', 'Combate', { sis: true, mud: ['Fluxo 0'] });
+ent(1, 'Iniciativa', 'Iniciativa', { total: 17, conta: '1d20 [14] + 3' });
+ent(1, 'Golpe das Mazelas', 'Golpe das Mazelas', { mud: ['Stamina 18 → 15'], delta: { stamina: -3 } });
+ent(1, 'Atacar · Desarmado', 'Atacar', { total: 19, conta: '1d20 [12] + 7', nota: ['Golpe das Mazelas: Fortitude contra CD 15.'], mud: ['acertou', 'Fluxo 0 → 2'], delta: { fluxo: 2 } });
+ent(1, 'Dano · Desarmado', 'Dano', { total: 13, conta: '1d8 [6] + 1d6 [4] + 3 contundente', mud: ['Colar da Sanguessuga: Saúde 31 → 31 (no máximo)'] });
+ent(1, 'Mover', 'Mover', { total: '9 m', totalCls: 'texto', mud: ['Fluxo 2 → 3'], delta: { fluxo: 1 } });
+ent(2, 'Recebi dano · Contundente', 'Recebi dano', { total: '−5', totalCls: 'perde', conta: '9 Contundente − Ar 1 − Ae 3 = 5', mud: ['Saúde 31 → 26', 'Fluxo 3 → 0 (recebeu dano)'], delta: { saude: -5, fluxo: -3 } });
+ent(2, 'Reflexos de Serpente', 'Reflexos de Serpente', { total: '½', totalCls: 'texto' });
+ent(2, 'Recebi dano · Cortante', 'Recebi dano', { total: '−3', totalCls: 'perde', conta: '7 Cortante − Ar 1 − Ae 3 = 3', mud: ['Saúde 26 → 23'], delta: { saude: -3 } });
+ent(2, 'Condição', 'Sangramento', { total: 'Sangramento 2', totalCls: 'texto' });
+ent(2, 'Mover', 'Mover', { total: '9 m', totalCls: 'texto', mud: ['Fluxo 0 → 1'], delta: { fluxo: 1 } });
+ent(2, 'Atacar · Desarmado', 'Atacar', { total: 18, conta: '1d20 [11] + 7', mud: ['acertou', 'Fluxo 1 → 3'], delta: { fluxo: 2 } });
+ent(2, 'Dano · Desarmado', 'Dano', { total: 12, conta: '1d8 [5] + 1d6 [4] + 3 contundente', mud: ['Colar da Sanguessuga: Saúde 23 → 24'], delta: { saude: 1 } });
+ent(3, 'Defender (reação) · Evasão Ativa', 'Defender', { total: 19, conta: '13 + 1d8 [6]', mud: ['reação gasta', 'esquivou', 'Fluxo 3 → 4'], delta: { fluxo: 1 } });
+ent(3, 'Rodada 3 · seu turno', 'Turno', { sis: true, mud: ['3 ações'] });
+ent(3, 'Dança do Monge', 'Dança do Monge', { mud: ['Stamina 15 → 10', 'requer 3 Fluxo: tem 4'], cita: [TXT.danca], delta: { stamina: -5 } });
+PLACA = {
+  c: 1, r: 3, rot: 'Dança do Monge · ataque 1 de 3', curto: 'Atacar', total: 21, totalCls: '', conta: '1d20 [14] + 7 (DES 3, Experiente 4)', nota: [], cita: [], mud: [], sis: false, delta: {},
+  roll: { total: 21, dados: [{ l: 20, v: 14, papel: 'teste' }], conta: '1d20 [14] + 7', crit: false, falha: false, modo: 'normal' }, bts: btsAtaque()
+};
+REG.push(PLACA);
+tudo(true);
 })();
 </script>

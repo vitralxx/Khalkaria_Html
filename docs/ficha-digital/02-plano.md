@@ -584,7 +584,7 @@ Regra geral: cada fase é publicável sozinha, com `python tools/build.py` verde
 | F4b | Bazar com a ficha aberta (M4) | F4 | — |
 | F4c | Assistente de criação e subida de nível (M3) | F4 | rodada 3, dúvidas 1 e 5 (faixa); rodada 4 (magias do Teurgo); tudo sai com selo |
 | F6 (partes 1–2) | **Feito em 2026-10-21.** Efeitos de item pela tabela por gatilho (rev. 11), interruptor do situacional, botão do evento de recurso, Saúde abaixo da metade | F4, F1d | — |
-| Mesa 0–4 | A Mesa (`10-mesa.md`): prova de estética, motor, a aba, itens e magias, técnicas e cartas. Absorve a F5, a F5b e as partes 3–4 da F6 (consumir, usar, temporários, Vhelor no consumo) | F4, F6 partes 1–2 | perguntas do `10-mesa.md` §9, com selo até a resposta |
+| Mesa 0–4 | A Mesa (`10-mesa.md` rev. 2): prova de estética, motor, a aba, itens e magias, técnicas e cartas. Absorve a F5, a F5b, as partes 3–4 da F6 (consumir, usar, temporários, Vhelor no consumo) e a parte da F4.6d que ela usa (condições ativas, Saúde temporária, quantidade) | F4, F6 partes 1–2 | Mesa 4 espera a tabela de técnicas do balanceamento (`10-mesa.md` §9.B) |
 | F7 | Refino por família, páginas de classe (M7), lei de cor | F1a, F1b, F1c, F1e, F2; interativos depois da F4/F5 | aprovação da prova de estética (M7) |
 
 F1a–F1f correm em paralelo. F4b, F4c e a Mesa correm em paralelo depois da F4. F7 corre em paralelo a F3–F6 e à Mesa.
@@ -738,7 +738,7 @@ Substituídas em 2026-10-21 pelo `10-mesa.md` §8. A F6 partes 1 e 2 (efeitos de
 
 **Com o balanceamento — rodada 5 (a enviar):** lista em `tools/pendentes_balanceamento.json` (§10). Os campos ficam `null` e o `[blocos]` FALHA se um deles perder a pergunta.
 
-**Com o balanceamento — rodada 6, Comerciantes (enviada em 2026-09-28, §10):** C1–C11. O Pedro respondeu direto a C1, a C6 e parte da C2 e da C3 (`03 §8`). Seguem abertas: base e arredondamento da %, categoria de compra, C4, C5, o teto do estoque, C7–C11. Enquanto isso: selo PENDENTE, e o mestre decide à mão no balcão.
+**Com o balanceamento — rodada 6, Comerciantes (enviada em 2026-09-28, §10):** C1–C11. O Pedro respondeu direto a C1, a C6 e parte da C2 e da C3 (`03 §8`). Resposta do balanceamento em `d0c411b` (`references/20-tabela-efeitos-resposta.md` §4): **C7 fechada**, quem paga a subida (125/250 Sins) são os jogadores, pela D151; **C3 por dedução**, cada comerciante compra só a própria categoria e o Sucateiro compra tudo (falta o ok do Pedro); **C4 em parte**, "Equipamentos" = Arma, Armadura e Escudo. Continuam com o Pedro: se o investimento entra no estoque e se o estoque se mantém quando o teto sobe, e C2, C5, C6, C8–C11. Enquanto isso: selo PENDENTE, e o mestre decide à mão no balcão.
 
 **Com o Pedro**
 - **Editar o CSV** (D26b: acrescentar "Empilhável: pesa 1 bugiganga a cada 10 unidades." ao `Efeito_Jogador` de Casca de Raiz e Seiva da Vhelor; D25: "Saude" → "Saúde" na Erva Medicinal e "Armas Leves." como requisito do Anel do Esgrimista). Aprovado, mas a permissão da sessão bloqueou: **fica com ele**. Depois, `ESPERADO['empilhavel']` sobe para 87 e o AVISO some.
