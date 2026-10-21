@@ -41,10 +41,14 @@ def path(slug, kind):
 
 def norm(t):
     """Normaliza p/ diff estável: tira o que muda a cada busca sem o conteúdo ter
-    mudado — timestamp, URLs S3, o verbo da ferramenta MCP, metadados de ícone e
-    variação tipográfica de aspas. Preserva integralmente texto e valores."""
+    mudado — timestamp, URLs S3, o verbo da ferramenta MCP, metadados de ícone,
+    variação tipográfica de aspas e o dialeto do corpo (markdown ou HTML, ver
+    _dialeto). Preserva integralmente texto e valores."""
+    try:
+        t = json.loads(t)['text']          # snapshot = resposta crua do notion-fetch
+    except (ValueError, TypeError, KeyError):
+        t = t.replace('\\n', '\n').replace('\\t', ' ').replace('\\"', '"')
     t = re.sub(r'as of \d{4}-\d\d-\d\dT[0-9:.\-]+Z?', 'as of <ts>', t)
-    t = t.replace('\\n', '\n').replace('\\t', ' ').replace('\\"', '"')
     t = re.sub(r'https://prod-files-secure\.s3[^\s")]+', '<img-s3>', t)
     # o preâmbulo já veio como 'view' e como 'fetch' conforme a versão do MCP
     t = re.sub(r'(Here is the result of )"\w+"', r'\1"<op>"', t)
@@ -52,8 +56,87 @@ def norm(t):
     t = re.sub(r'<iconMetadata>.*?</iconMetadata>\s*', '', t, flags=re.S)
     # aspas/apóstrofos curvos vs retos não são divergência (CLAUDE.md §6)
     t = t.translate(str.maketrans({'‘': "'", '’': "'", '“': '"', '”': '"'}))
+    t = _dialeto(t)
     t = re.sub(r'[ \t]+', ' ', t)
     return '\n'.join(l.strip() for l in t.splitlines() if l.strip())
+
+# ---------------------------------------------------------------------------
+# Dialeto do corpo. Até 2026-09 o notion-fetch devolvia markdown indentado por
+# tab (**x**, *x*, <span underline="true">, célula <td>x</td> numa linha só,
+# <empty-block/>, citação com ">"); em 2026-10 passou a devolver HTML (<b>, <i>,
+# <u>, <td> quebrado em linhas, <p />, <quote>, <ul><li>). As duas formas viram
+# uma só: estrutura reescrita para a forma do markdown e a ênfase recalculada
+# como conjunto de estilos por caractere, emitida numa ordem fixa — assim
+# "<span underline>**x**</span>" e "<b><u>x</u></b>" saem idênticos.
+# ---------------------------------------------------------------------------
+_ORDEM_ESTILO = ('cor', 'u', 'b', 'i', 's', 'code')
+_TAG_ESTILO = {'b': 'b', 'strong': 'b', 'i': 'i', 'em': 'i', 'u': 'u', 's': 's', 'code': 'code'}
+
+def _dialeto(t):
+    t = re.sub(r'\$`([^`\n]*)`\$', r'$\1$', t)                 # LaTeX inline: $`x`$ -> $x$
+    t = re.sub(r'<empty-block\s*/>|<p\s*/>', '\n', t)            # bloco vazio
+    t = re.sub(r'</?(?:quote|ul|ol|p)>', '\n', t)                 # contêineres sem texto próprio
+    t = re.sub(r'(?m)^[ \t]*>[ \t]?', '', t)                      # citação markdown
+    t = re.sub(r'<li>\s*', '- ', t)
+    t = re.sub(r'\s*</li>', '', t)
+    t = re.sub(r'<(td|th|page)((?:\s[^>]*)?)>\s*', r'<\1\2>', t)  # célula/subpágina quebrada em linhas
+    t = re.sub(r'\s*</(td|th|page)>', r'</\1>', t)
+    t = re.sub(r'<(?!/)(?!(?:span|b|strong|i|em|u|s|code)\b)([\w-]+)([^<>]*?)\s*/?>', _tag, t)
+    return '\n'.join(_enfase(l) for l in t.split('\n'))
+
+def _tag(m):
+    """Tag estrutural canônica: atributos em ordem alfabética, sem '/>'."""
+    attrs = sorted(re.findall(r'[\w-]+="[^"]*"', m.group(2)))
+    return '<' + ' '.join([m.group(1)] + attrs) + '>'
+
+def _enfase(linha):
+    """Reemite a ênfase da linha em forma canônica. Espaço e tag estrutural são
+    neutros (a ênfase só muda antes de caractere visível; o fechamento vem antes
+    do espaço, a abertura depois). Estado zera a cada linha: um bloco do Notion
+    é uma linha, e marcador desbalanceado não contamina o resto da página."""
+    pilha, md = [], set()          # pilha: (tag, estilos) do HTML; md: ** e * abertos
+    aberto, saida, neutro = [], [], ''
+    for tok in re.findall(r'\\.|\*\*|\*|<[^<>]+>|\s+|[^\\*<\s]+|.', linha):
+        m = re.match(r'<(/?)(span|b|strong|i|em|u|s|code)\b([^>]*)>$', tok)
+        if m:
+            fecha, nome, attrs = m.groups()
+            if fecha:
+                for k in range(len(pilha) - 1, -1, -1):
+                    if pilha[k][0] == nome:
+                        del pilha[k]
+                        break
+            elif nome == 'span':
+                est = {'cor=' + c for c in re.findall(r'color="([^"]*)"', attrs)}
+                if 'underline="true"' in attrs:
+                    est.add('u')
+                pilha.append(('span', est))
+            else:
+                pilha.append((nome, {_TAG_ESTILO[nome]}))
+            continue
+        if tok in ('**', '*'):
+            md ^= {'b' if tok == '**' else 'i'}
+            continue
+        if tok.isspace() or tok.startswith('<'):
+            neutro += tok
+            continue
+        if tok.startswith('\\'):
+            tok = tok[1:]          # escape do markdown (\* \< \>): o HTML só escapa parte deles
+        quer = set(md).union(*(e for _, e in pilha))
+        quer = sorted(quer, key=lambda e: (_ORDEM_ESTILO.index(e.split('=')[0] if '=' not in e else 'cor'), e))
+        comum = 0
+        while comum < min(len(aberto), len(quer)) and aberto[comum] == quer[comum]:
+            comum += 1
+        saida += [_fecha(e) for e in reversed(aberto[comum:])] + [neutro] + [_abre(e) for e in quer[comum:]]
+        aberto, neutro = quer, ''
+        saida.append(tok)
+    saida += [_fecha(e) for e in reversed(aberto)] + [neutro]
+    return ''.join(saida)
+
+def _abre(e):
+    return f'<span color="{e[4:]}">' if e.startswith('cor=') else f'<{e}>'
+
+def _fecha(e):
+    return '</span>' if e.startswith('cor=') else f'</{e}>'
 
 def read(slug, kind):
     p = path(slug, kind)
@@ -151,10 +234,12 @@ def fragmentos(slug):
         p = path(slug, 'base')
     t = open(p, encoding='utf-8').read()
     t = t.replace('\\n', '\n').replace('\\t', '\t').replace('\\"', '"')
-    t = t.split('<content>', 1)[-1]
+    t = t.split('<content>', 1)[-1].split('</content>', 1)[0]
     for ini, fim in FORA.get(slug, []):
         t = re.sub(ini + r'.*?(?=' + fim + ')', '', t, flags=re.S | re.M)
-    t = re.sub(r'<(td|/td|tr[^>]*|/tr|br|summary|/summary|details|/details|li|/li|p|/p)>', '\n', t)
+    t = re.sub(r'<(td|/td|tr[^>]*|/tr|br|summary|/summary|details|/details|li|/li|p|/p)\s*/?>', '\n', t)
+    # ênfase do dialeto HTML (2026-10) cai sem espaço: "<b>F</b>urtividade" é uma palavra
+    t = re.sub(r'</?(?:b|i|u|s|strong|em|code|span)\b[^>]*>', '', t)
     t = re.sub(r'<[^>]+>', ' ', t)
     out = []
     for linha in t.split('\n'):
