@@ -1,0 +1,776 @@
+﻿id,nome,categoria,raridade,gatilho,detalhes,efeitos na ficha,lembretes (alvo/regra/utilidade),n mods,,status
+item-agulha-torta,Agulha Torta,Lixo,Lixo,—,sem efeito: lixo,,,,,canonico
+item-anzol-partido,Anzol Partido,Lixo,Lixo,—,sem efeito: lixo,,,,,canonico
+item-bandagem-usada,Bandagem Usada,Lixo,Lixo,—,sem efeito: lixo,,,,,canonico
+item-bexiga-de-animal,Bexiga de Animal,Lixo,Lixo,—,sem efeito: lixo,,,,,canonico
+item-bico-de-ave,Bico de Ave,Lixo,Lixo,—,sem efeito: lixo,,,,,canonico
+item-bola-de-lama-seca,Bola de Lama Seca,Lixo,Lixo,—,sem efeito: lixo,,,,,canonico
+item-bolsa-rasgada,Bolsa Rasgada,Lixo,Lixo,—,sem efeito: lixo,,,,,canonico
+item-botao-de-osso,Botão de Osso,Lixo,Lixo,—,sem efeito: lixo,,,,,canonico
+item-casca-de-ovo,Casca de Ovo,Lixo,Lixo,—,sem efeito: lixo,,,,,canonico
+item-cascalho-brilhante,Cascalho Brilhante,Lixo,Lixo,—,sem efeito: lixo,,,,,canonico
+item-chifre-partido,Chifre Partido,Lixo,Lixo,—,sem efeito: lixo,,,,,canonico
+item-comida-estragada,Comida Estragada,Lixo,Lixo,—,sem efeito: lixo,,,,,canonico
+item-concha-rachada,Concha Rachada,Lixo,Lixo,—,sem efeito: lixo,,,,,canonico
+item-corda-podre-1m,Corda Podre (1m),Lixo,Lixo,—,sem efeito: lixo,,,,,canonico
+item-couro-cru-tira,Couro Cru (tira),Lixo,Lixo,—,sem efeito: lixo,,,,,canonico
+item-dente-quebrado,Dente Quebrado,Lixo,Lixo,—,sem efeito: lixo,,,,,canonico
+item-escama-opaca,Escama Opaca,Lixo,Lixo,—,sem efeito: lixo,,,,,canonico
+item-fivela-enferrujada,Fivela Enferrujada,Lixo,Lixo,—,sem efeito: lixo,,,,,canonico
+item-frasco-rachado,Frasco Rachado,Lixo,Lixo,—,sem efeito: lixo,,,,,canonico
+item-fungo-desidratado,Fungo Desidratado,Lixo,Lixo,—,sem efeito: lixo,,,,,canonico
+item-garra-lascada,Garra Lascada,Lixo,Lixo,—,sem efeito: lixo,,,,,canonico
+item-graveto-afiado,Graveto Afiado,Lixo,Lixo,—,sem efeito: lixo,,,,,canonico
+item-inseto-esmagado,Inseto Esmagado,Lixo,Lixo,—,sem efeito: lixo,,,,,canonico
+item-lenha-molhada,Lenha Molhada,Lixo,Lixo,—,sem efeito: lixo,,,,,canonico
+item-linha-de-costura,Linha de Costura,Lixo,Lixo,—,sem efeito: lixo,,,,,canonico
+item-mandibula-de-inseto,Mandíbula de Inseto,Lixo,Lixo,—,sem efeito: lixo,,,,,canonico
+item-moeda-falsa,Moeda Falsa,Lixo,Lixo,—,sem efeito: lixo,,,,,canonico
+item-musgo-grudento,Musgo Grudento,Lixo,Lixo,—,sem efeito: lixo,,,,,canonico
+item-ninho-vazio,Ninho Vazio,Lixo,Lixo,—,sem efeito: lixo,,,,,canonico
+item-olho-de-vidro-rachado,Olho de Vidro Rachado,Lixo,Lixo,—,sem efeito: lixo,,,,,canonico
+item-osso-roido,Osso Roído,Lixo,Lixo,—,sem efeito: lixo,,,,,canonico
+item-papel-umido,Papel Úmido,Lixo,Lixo,—,sem efeito: lixo,,,,,canonico
+item-pavio-curto,Pavio Curto,Lixo,Lixo,—,sem efeito: lixo,,,,,canonico
+item-pedaco-de-carvao,Pedaço de Carvão,Lixo,Lixo,—,sem efeito: lixo,,,,,canonico
+item-pedra-manchada-de-sangue,Pedra Manchada de Sangue,Lixo,Lixo,—,sem efeito: lixo,,,,,canonico
+item-pedra-de-amolar-gasta,Pedra de Amolar Gasta,Lixo,Lixo,—,sem efeito: lixo,,,,,canonico
+item-pelo-seboso,Pelo Seboso,Lixo,Lixo,—,sem efeito: lixo,,,,,canonico
+item-pena-suja,Pena Suja,Lixo,Lixo,—,sem efeito: lixo,,,,,canonico
+item-prego-torto,Prego Torto,Lixo,Lixo,—,sem efeito: lixo,,,,,canonico
+item-racao-mofada,Ração Mofada,Lixo,Lixo,—,sem efeito: lixo,,,,,canonico
+item-rolha-de-cortica,Rolha de Cortiça,Lixo,Lixo,—,sem efeito: lixo,,,,,canonico
+item-saco-furado,Saco Furado,Lixo,Lixo,—,sem efeito: lixo,,,,,canonico
+item-saco-de-areia-suja,Saco de Areia Suja,Lixo,Lixo,—,sem efeito: lixo,,,,,canonico
+item-sebo-animal,Sebo Animal,Lixo,Lixo,—,sem efeito: lixo,,,,,canonico
+item-trapo-sujo,Trapo Sujo,Lixo,Lixo,—,sem efeito: lixo,,,,,canonico
+item-vela-derretida,Vela Derretida,Lixo,Lixo,—,sem efeito: lixo,,,,,canonico
+item-vertebra-pequena,Vértebra Pequena,Lixo,Lixo,—,sem efeito: lixo,,,,,canonico
+item-agua-suja-cantil,Água Suja (cantil),Lixo,Lixo,—,sem efeito: lixo,,,,,canonico
+item-arma-arremesso,Arma Arremesso,Arma,Ordinário,equipar,slot arma,arma 1d8 perfurante (DES) Atacar(1),,0,,canonico
+item-arma-distancia-pesada,Arma Distância Pesada,Arma,Ordinário,equipar,slot arma,arma 1d12 perfurante (DES) Atacar(2),,0,,canonico
+item-arma-distancia-simples,Arma Distância Simples,Arma,Ordinário,equipar,slot arma,arma 1d6 perfurante (DES) Atacar(1),,0,,canonico
+item-arma-leve-contundente,Arma Leve Contundente,Arma,Ordinário,equipar,slot arma,arma 1d6 contundente (DES) Atacar(1),,0,,canonico
+item-arma-leve-cortante,Arma Leve Cortante,Arma,Ordinário,equipar,slot arma,arma 1d6 cortante (DES) Atacar(1),,0,,canonico
+item-arma-leve-perfurante,Arma Leve Perfurante,Arma,Ordinário,equipar,slot arma,arma 1d6 perfurante (DES) Atacar(1),,0,,canonico
+item-arma-leve-agil,Arma Leve Ágil,Arma,Ordinário,equipar,slot arma,arma 1d8 cortante/perfurante/contundente (DES) Atacar(1),,0,,canonico
+item-arma-marcial-longa,Arma Marcial Longa,Arma,Ordinário,equipar,slot arma,arma 2d10 perfurante (FOR) Atacar(2),,0,,canonico
+item-arma-marcial-pesada,Arma Marcial Pesada,Arma,Ordinário,equipar,slot arma,arma 2d10 contundente (FOR) Atacar(2),,0,,canonico
+item-arma-marcial-precisa,Arma Marcial Precisa,Arma,Ordinário,equipar,slot arma,arma 1d8 cortante (DES) Atacar(1),,0,,canonico
+item-arma-marcial-versatil,Arma Marcial Versátil,Arma,Ordinário,equipar,slot arma,arma 1d8 cortante/perfurante/contundente (DES) Atacar(1),,0,,canonico
+item-arma-pesada-brutal,Arma Pesada Brutal,Arma,Ordinário,equipar,slot arma,arma 2d12 cortante/perfurante/contundente (FOR) Atacar(3),,0,,canonico
+item-arma-pesada-contundente,Arma Pesada Contundente,Arma,Ordinário,equipar,slot arma,arma 1d12 contundente (FOR) Atacar(2),,0,,canonico
+item-arma-pesada-cortante,Arma Pesada Cortante,Arma,Ordinário,equipar,slot arma,arma 1d12 cortante (FOR) Atacar(2),,0,,canonico
+item-arma-pesada-perfurante,Arma Pesada Perfurante,Arma,Ordinário,equipar,slot arma,arma 1d12 perfurante (FOR) Atacar(2),,0,,canonico
+item-foco-de-abjuracao,Foco de Abjuração,Arma,Ordinário,equipar,slot arma (foco),,,0,,canonico
+item-foco-de-alteracao,Foco de Alteração,Arma,Ordinário,equipar,slot arma (foco),,,0,,canonico
+item-foco-de-conhecimento,Foco de Conhecimento,Arma,Ordinário,equipar,slot arma (foco),,,0,,canonico
+item-foco-de-destruicao,Foco de Destruição,Arma,Ordinário,equipar,slot arma (foco),,,0,,canonico
+item-armadura-de-couro,Armadura de Couro,Armadura,Ordinário,equipar,slot armaduraPesada,ar +1,,1,,canonico
+item-bracadeiras-de-couro,Braçadeiras de Couro,Armadura,Ordinário,equipar,slot armaduraLeve,ae.cortante +3,,1,,canonico
+item-capacete-de-ferro,Capacete de Ferro,Armadura,Ordinário,equipar,slot armaduraLeve,ae.contundente +3,,1,,canonico
+item-cota-de-malha,Cota de Malha,Armadura,Ordinário,equipar,slot armaduraPesada,ar +2 | movimento -1.5 | pericia.furtividade -1,,3,,canonico
+item-gambeson,Gambeson,Armadura,Ordinário,equipar,slot armaduraPesada,ar +2 | ae.contundente +3 | movimento -1.5,,3,,canonico
+item-peitoral-de-ferro,Peitoral de Ferro,Armadura,Ordinário,equipar,slot armaduraPesada,ar +3 | movimento -3 | pericia.furtividade -2 | pericia.reflexos -1,,4,,canonico
+item-agasalho-de-pele,Agasalho de Pele,Bugiganga,Ordinário,—,sem efeito: utilitario,,,,,canonico
+item-anzol-linha,Anzol + Linha,Bugiganga,Ordinário,—,sem efeito: utilitario,,,,,canonico
+item-apito,Apito,Bugiganga,Ordinário,—,sem efeito: utilitario,,,,,canonico
+item-bolsa-de-couro,Bolsa de Couro,Bugiganga,Ordinário,carregar,,capacidade.bugigangas +2,[regra] Não é empilhável e não ocupa espaço de bugiganga,1,,canonico
+item-chave-simples,Chave Simples,Bugiganga,Ordinário,—,sem efeito: utilitario,,,,,canonico
+item-conta-gotas-de-purificacao,Conta-gotas de Purificação,Bugiganga,Ordinário,usar,3x/longo,,[utilidade] Purifica 1 litro de água,0,,canonico
+item-corda-5m,Corda (5m),Bugiganga,Ordinário,—,sem efeito: utilitario,,,,,canonico
+item-espelho-comunicante-quebrado,Espelho Comunicante (Quebrado),Bugiganga,Ordinário,—,sem efeito: utilitario,,,,,canonico
+item-espelho-pequeno,Espelho Pequeno,Bugiganga,Ordinário,—,sem efeito: utilitario,,,,,canonico
+item-ferramentas-de-escoteiro,Ferramentas de Escoteiro,Bugiganga,Ordinário,consumir,"consome {""unidades"": 1} · ações acaoDeDescansoLongo · 1x/total",,,0,,decisao
+item-frasco-vazio,Frasco Vazio,Bugiganga,Ordinário,—,sem efeito: utilitario,,,,,canonico
+item-giz,Giz,Bugiganga,Ordinário,—,sem efeito: utilitario,,,,,canonico
+item-giz-luminescente,Giz Luminescente,Bugiganga,Ordinário,—,sem efeito: utilitario,,,,,canonico
+item-isqueiro-de-pedra,Isqueiro de Pedra,Bugiganga,Ordinário,—,sem efeito: utilitario,,,,,canonico
+item-kit-de-ferramentas-basico,Kit de Ferramentas Básico,Bugiganga,Ordinário,consumir,"consome {""cargas"": 3}",permiteSemTreino.oficio-engenharia = True | permiteSemTreino.oficio-ferraria = True,,2,,decisao
+item-mapa,Mapa,Bugiganga,Ordinário,—,sem efeito: utilitario,,,,,canonico
+item-pedra-aquecedora,Pedra Aquecedora,Bugiganga,Ordinário,—,sem efeito: utilitario,,,,,canonico
+item-pena-auto-escrevente,Pena Auto-Escrevente,Bugiganga,Ordinário,—,sem efeito: utilitario,,,,,canonico
+item-saco-de-dormir,Saco de Dormir,Bugiganga,Ordinário,carregar,,descanso.comodidade +1 (se: descansoAoArLivre),,1,,decisao
+item-selo-simples,Selo Simples,Bugiganga,Ordinário,—,sem efeito: utilitario,,,,,canonico
+item-sino-pequeno,Sino Pequeno,Bugiganga,Ordinário,—,sem efeito: utilitario,,,,,canonico
+item-tinta-pena,Tinta + Pena,Bugiganga,Ordinário,—,sem efeito: utilitario,,,,,canonico
+item-tocha-x2,Tocha (x2),Bugiganga,Ordinário,—,sem efeito: utilitario,,,,,canonico
+item-vela-de-sebo,Vela de Sebo,Bugiganga,Ordinário,—,sem efeito: utilitario,,,,,canonico
+item-oleo-comum,Óleo Comum,Bugiganga,Ordinário,—,sem efeito: utilitario,,,,,canonico
+item-atadura-limpa,Atadura Limpa,Consumível,Ordinário,consumir,"consome {""unidades"": 1} · ações 1",remove sangramento,,0,,canonico
+item-bandagem-encharcada,Bandagem Encharcada,Consumível,Ordinário,consumir,"consome {""unidades"": 1}",saude.atual +1d4 (para quemRecebe),,1,,canonico
+item-bomba-de-fumaca-caseira,Bomba de Fumaça Caseira,Consumível,Ordinário,consumir,"consome {""unidades"": 1}",,[alvo] Cria nuvem de 3m de obscurecimento por 3 rodadas,0,,canonico
+item-cantil,Cantil,Consumível,Ordinário,consumir,"consome {""unidades"": 1}",,[utilidade] Armazena água limpa para 1 dia de hidratação | [utilidade] Necessária em viagens longas,0,,canonico
+item-casca-de-raiz,Casca de Raiz,Consumível,Ordinário,consumir,"consome {""unidades"": 1}",marcaVhelor +1 (para quemRecebe),[regra] Uso repetido cria vínculo onírico permanente (ver Substâncias da Grande Árvore),1,,canonico
+item-cha-de-ervas-amargas,Chá de Ervas Amargas,Consumível,Ordinário,consumir,"consome {""unidades"": 1}",remove enjoado | remove envenenamento,,0,,decisao
+item-comida-1-porcao,Comida (1 porção),Consumível,Ordinário,consumir,"consome {""unidades"": 1}",,[utilidade] Alimenta 1 pessoa por 1 dia,0,,canonico
+item-coquetel-incendiario,Coquetel Incendiário,Consumível,Ordinário,consumir,"consome {""unidades"": 1}",,[alvo] Arremesso 6m | [alvo] 1d6 Fogo em alvo único | [alvo] 25% de chance de aplicar Em Chamas,0,,canonico
+item-erva-medicinal,Erva Medicinal,Consumível,Ordinário,consumir,"consome {""unidades"": 1}",saude.atual +1d4+2 (para quemRecebe),,1,,decisao
+item-frasco-de-vitriolo,Frasco de Vitríolo,Consumível,Ordinário,consumir,"consome {""unidades"": 1}",,[alvo] Arremesso 6m | [alvo] 1d6 Ácido | [alvo] Ignora 1 de Armadura(Ar),0,,canonico
+item-pergaminho-alarme,Pergaminho — Alarme,Consumível,Ordinário,consumir,"consome {""unidades"": 1} · ações daMagia · 1x/total",conjura Alarme,,0,,canonico
+item-pergaminho-armadura-do-oblivio,Pergaminho — Armadura do Oblívio,Consumível,Ordinário,consumir,"consome {""unidades"": 1} · ações daMagia · 1x/total",conjura Armadura do Oblívio,,0,,canonico
+item-pergaminho-dardo-arcano,Pergaminho — Dardo Arcano,Consumível,Ordinário,consumir,"consome {""unidades"": 1} · ações daMagia · 1x/total",conjura Dardo Arcano,,0,,canonico
+item-pergaminho-detectar-magia,Pergaminho — Detectar Magia,Consumível,Ordinário,consumir,"consome {""unidades"": 1} · ações daMagia · 1x/total",conjura Detectar Magia,,0,,canonico
+item-pergaminho-disfarce-ilusorio,Pergaminho — Disfarce Ilusório,Consumível,Ordinário,consumir,"consome {""unidades"": 1} · ações daMagia · 1x/total",conjura Disfarce Ilusório,,0,,canonico
+item-pergaminho-entender-ser,Pergaminho — Entender Ser,Consumível,Ordinário,consumir,"consome {""unidades"": 1} · ações daMagia · 1x/total",conjura Entender Ser,,0,,canonico
+item-pergaminho-escudo-telecinetico,Pergaminho — Escudo Telecinético,Consumível,Ordinário,consumir,"consome {""unidades"": 1} · ações daMagia · 1x/total",conjura Escudo Telecinético,,0,,canonico
+item-pergaminho-estimulante-mistico,Pergaminho — Estimulante Místico,Consumível,Ordinário,consumir,"consome {""unidades"": 1} · ações daMagia · 1x/total",conjura Estimulante Místico,,0,,canonico
+item-pergaminho-incinerar-area,Pergaminho — Incinerar Área,Consumível,Ordinário,consumir,"consome {""unidades"": 1} · ações daMagia · 1x/total",conjura Incinerar Área,,0,,canonico
+item-pergaminho-lingua-mistica,Pergaminho — Língua Mística,Consumível,Ordinário,consumir,"consome {""unidades"": 1} · ações daMagia · 1x/total",conjura Língua Mística,,0,,canonico
+item-pergaminho-maldicao-do-peso,Pergaminho — Maldição do Peso,Consumível,Ordinário,consumir,"consome {""unidades"": 1} · ações daMagia · 1x/total",conjura Maldição do Peso,,0,,canonico
+item-pergaminho-mensagem,Pergaminho — Mensagem,Consumível,Ordinário,consumir,"consome {""unidades"": 1} · ações daMagia · 1x/total",conjura Mensagem,,0,,canonico
+item-pergaminho-mao-magica,Pergaminho — Mão Mágica,Consumível,Ordinário,consumir,"consome {""unidades"": 1} · ações daMagia · 1x/total",conjura Mão Mágica,,0,,canonico
+item-pergaminho-onda-gravitacional,Pergaminho — Onda Gravitacional,Consumível,Ordinário,consumir,"consome {""unidades"": 1} · ações daMagia · 1x/total",conjura Onda Gravitacional,,0,,canonico
+item-pergaminho-purificacao-mistica,Pergaminho — Purificação Mística,Consumível,Ordinário,consumir,"consome {""unidades"": 1} · ações daMagia · 1x/total",conjura Purificação Mística,,0,,canonico
+item-pergaminho-queda-suave,Pergaminho — Queda Suave,Consumível,Ordinário,consumir,"consome {""unidades"": 1} · ações daMagia · 1x/total",conjura Queda Suave,,0,,canonico
+item-pergaminho-raio-eletrico,Pergaminho — Raio Elétrico,Consumível,Ordinário,consumir,"consome {""unidades"": 1} · ações daMagia · 1x/total",conjura Raio Elétrico,,0,,canonico
+item-pergaminho-santuario-menor,Pergaminho — Santuário Menor,Consumível,Ordinário,consumir,"consome {""unidades"": 1} · ações daMagia · 1x/total",conjura Santuário Menor,,0,,canonico
+item-pergaminho-solo-sagrado,Pergaminho — Solo Sagrado,Consumível,Ordinário,consumir,"consome {""unidades"": 1} · ações daMagia · 1x/total",conjura Solo Sagrado,,0,,canonico
+item-pergaminho-toque-gelido,Pergaminho — Toque Gélido,Consumível,Ordinário,consumir,"consome {""unidades"": 1} · ações daMagia · 1x/total",conjura Toque Gélido,,0,,canonico
+item-peconha-de-cacador,Peçonha de Caçador,Consumível,Ordinário,consumir,"consome {""unidades"": 1} · 1x/total",ataque.danoExtra +1d4 veneno (1 ataque(s); para quemRecebe),,1,,canonico
+item-pao-de-viagem-reforcado,Pão de Viagem Reforçado,Consumível,Ordinário,consumir,"consome {""unidades"": 1}",stamina.atual +1d4 (para quemRecebe),,1,,decisao
+item-saco-de-cal,Saco de Cal,Consumível,Ordinário,consumir,"consome {""unidades"": 1}",,"[alvo] Arremesso 4,5m | [alvo] Reflexos ou Cego por 1 rodada",0,,canonico
+item-sonifero-rustico,Sonífero Rústico,Consumível,Ordinário,consumir,"consome {""unidades"": 1}",,[alvo] Fortitude ou Enjoado por 1 rodada,0,,canonico
+item-escudo-de-ferro,Escudo de Ferro,Escudo,Ordinário,equipar,slot escudo,pericia.defender +1 (se: reacaoDefender) | ae.cortante +1 | movimento -1.5,,3,,canonico
+item-escudo-de-madeira,Escudo de Madeira,Escudo,Ordinário,equipar,slot escudo,pericia.defender +1 (se: reacaoDefender) | movimento -1.5,,2,,canonico
+item-lingote-de-ferro,Lingote de Ferro,Material,Ordinário,—,sem efeito: material,,,,,canonico
+item-couro-de-caca,Couro de Caça,Material,Ordinário,—,sem efeito: material,,,,,canonico
+item-gema-bruta,Gema Bruta,Material,Ordinário,—,sem efeito: material,,,,,canonico
+item-madeira-comum,Madeira Comum,Material,Ordinário,—,sem efeito: material,,,,,canonico
+item-peca-mecanica,Peça Mecânica,Material,Ordinário,—,sem efeito: material,,,,,canonico
+item-reagente-alquimico-x1,Reagente Alquímico (x1),Material,Ordinário,—,sem efeito: material,,,,,canonico
+item-tecido-resistente,Tecido Resistente,Material,Ordinário,—,sem efeito: material,,,,,canonico
+item-conjunto-de-arremesso,Conjunto de Arremesso,Munição,Ordinário,consumir,"consome {""unidades"": 1, ""por"": ""cena de combate""}",,,0,,canonico
+item-municao-de-fogo,Munição de Fogo,Munição,Ordinário,consumir,"consome {""unidades"": 1, ""por"": ""cena de combate""}",,,0,,canonico
+item-virotes-flechas,Virotes/Flechas,Munição,Ordinário,consumir,"consome {""unidades"": 1, ""por"": ""cena de combate""}",,,0,,canonico
+item-lanca-venenosa,Lança Venenosa,Arma,Incomum,equipar,slot arma,arma 2d6 perfurante (DES) Atacar(1) +1d4 veneno,[alvo] Crítico: Fortitude ou Enjoado,0,,canonico
+item-arco-eletrico,Arco Elétrico,Arma,Incomum,equipar,slot arma,arma 2d6 perfurante (DES) Atacar(1) +1d4 eletrico,[alvo] Crítico: Fortitude ou Atordoado,0,,canonico
+item-arma-arremesso-1,Arma Arremesso +1,Arma,Incomum,equipar,slot arma,arma 2d8 perfurante (DES) Atacar(1),,0,,canonico
+item-arma-distancia-pesada-1,Arma Distância Pesada +1,Arma,Incomum,equipar,slot arma,arma 2d12 perfurante (DES) Atacar(2),,0,,canonico
+item-arma-distancia-simples-1,Arma Distância Simples +1,Arma,Incomum,equipar,slot arma,arma 2d6 perfurante (DES) Atacar(1),,0,,canonico
+item-arma-leve-contundente-1,Arma Leve Contundente +1,Arma,Incomum,equipar,slot arma,arma 2d6 contundente (DES) Atacar(1),,0,,canonico
+item-arma-leve-cortante-1,Arma Leve Cortante +1,Arma,Incomum,equipar,slot arma,arma 2d6 cortante (DES) Atacar(1),,0,,canonico
+item-arma-leve-perfurante-1,Arma Leve Perfurante +1,Arma,Incomum,equipar,slot arma,arma 2d6 perfurante (DES) Atacar(1),,0,,canonico
+item-arma-leve-agil-1,Arma Leve Ágil +1,Arma,Incomum,equipar,slot arma,arma 2d8 cortante/perfurante/contundente (DES) Atacar(1),,0,,canonico
+item-arma-marcial-longa-1,Arma Marcial Longa +1,Arma,Incomum,equipar,slot arma,arma 3d10 perfurante (FOR) Atacar(2),,0,,canonico
+item-arma-marcial-pesada-1,Arma Marcial Pesada +1,Arma,Incomum,equipar,slot arma,arma 3d10 contundente (FOR) Atacar(2),,0,,canonico
+item-arma-marcial-precisa-1,Arma Marcial Precisa +1,Arma,Incomum,equipar,slot arma,arma 2d8 cortante (DES) Atacar(1),,0,,canonico
+item-arma-marcial-versatil-1,Arma Marcial Versátil +1,Arma,Incomum,equipar,slot arma,arma 2d8 cortante/perfurante/contundente (DES) Atacar(1),,0,,canonico
+item-arma-pesada-brutal-1,Arma Pesada Brutal +1,Arma,Incomum,equipar,slot arma,arma 3d12 cortante/perfurante/contundente (FOR) Atacar(3),,0,,canonico
+item-arma-pesada-contundente-1,Arma Pesada Contundente +1,Arma,Incomum,equipar,slot arma,arma 2d12 contundente (FOR) Atacar(2),,0,,canonico
+item-arma-pesada-cortante-1,Arma Pesada Cortante +1,Arma,Incomum,equipar,slot arma,arma 2d12 cortante (FOR) Atacar(2),,0,,canonico
+item-arma-pesada-perfurante-1,Arma Pesada Perfurante +1,Arma,Incomum,equipar,slot arma,arma 2d12 perfurante (FOR) Atacar(2),,0,,canonico
+item-adaga-flamejante,Adaga Flamejante,Arma,Incomum,equipar,slot arma,arma 2d6 cortante (DES) Atacar(1) +1d4 fogo,[alvo] Crítico: Reflexos ou Em Chamas,0,,canonico
+item-adagas-duplas,Adagas Duplas,Arma,Incomum,equipar,slot arma,arma 2d8 cortante/perfurante/contundente (DES) Atacar(1),,0,,canonico
+item-foco-da-egide,Foco da Égide,Arma,Incomum,equipar,slot arma (foco),pericia.mistico +1 | eter.max +5,"[alvo] Ao conjurar uma magia de Abjuração, remova 1 condição do alvo como ação livre",2,,canonico
+item-foco-de-abjuracao-1,Foco de Abjuração +1,Arma,Incomum,equipar,slot arma (foco),pericia.mistico +1 | eter.max +5,,2,,canonico
+item-foco-de-alteracao-1,Foco de Alteração +1,Arma,Incomum,equipar,slot arma (foco),pericia.mistico +1 | eter.max +5,,2,,canonico
+item-foco-de-conhecimento-1,Foco de Conhecimento +1,Arma,Incomum,equipar,slot arma (foco),pericia.mistico +1 | eter.max +5,,2,,canonico
+item-foco-de-destruicao-1,Foco de Destruição +1,Arma,Incomum,equipar,slot arma (foco),pericia.mistico +1 | eter.max +5,,2,,canonico
+item-foco-do-estilhaco,Foco do Estilhaço,Arma,Incomum,equipar,slot arma (foco),pericia.mistico +1 | eter.max +5,[alvo] Suas magias de Destruição de alvo único causam +1d6 de dano de Força a alvos adjacentes,2,,canonico
+item-foco-do-fluxo,Foco do Fluxo,Arma,Incomum,equipar,slot arma (foco),pericia.mistico +1 | eter.max +5 | movimento +3 (se: suas magias de Alteração canalizadas sobre o aliado; para aliados),,3,,decisao
+item-foco-do-vidente,Foco do Vidente,Arma,Incomum,equipar,slot arma (foco),pericia.mistico +1 | eter.max +5 | pericia.investigacao +2 | pericia.conhecimento +2,,4,,canonico
+item-lanca-de-casca-seiva,Lança de Casca-Seiva,Arma,Incomum,equipar,slot arma,arma 3d10 perfurante (FOR) Atacar(2) +1d8 veneno,"[alvo] Ao acertar, Fortitude ou Envenenado",0,,canonico
+item-lamina-de-hyven,Lâmina de Hyven,Arma,Incomum,equipar,slot arma,arma 2d8 cortante (DES) Atacar(1) +1d4 eletrico | movimento +3 (1 rodada; no crítico),,1,,decisao
+item-machado-da-fornalha,Machado da Fornalha,Arma,Incomum,equipar,slot arma,arma 2d12 cortante (FOR) Atacar(2) +1d8 fogo,[alvo] Crítico: Reflexos ou Em Chamas,0,,canonico
+item-martelo-glacial,Martelo Glacial,Arma,Incomum,equipar,slot arma,arma 2d12 contundente (FOR) Atacar(2) +1d8 frio,[alvo] Crítico: Fortitude ou Lento 1 até o fim da próxima rodada,0,,canonico
+item-maca-acida,Maça Ácida,Arma,Incomum,equipar,slot arma,arma 2d12 contundente (FOR) Atacar(2) +1d8 acido,"[alvo] Ao acertar, alvos adjacentes ao alvo recebem 1d6 de dano Ácido",0,,canonico
+item-presa-gelida,Presa Gélida,Arma,Incomum,equipar,slot arma,arma 2d6 perfurante (DES) Atacar(1) +1d4 frio,[alvo] Crítico: Fortitude ou Lento 1,0,,canonico
+item-shuriken-retornante,Shuriken Retornante,Arma,Incomum,equipar,slot arma,arma 2d8 perfurante (DES) Atacar(1),[regra] Retorna à mão após o ataque,0,,canonico
+item-amuleto-antitoxico,Amuleto Antitóxico,Armadura,Incomum,equipar,slot armaduraLeve,ae.veneno +5,,1,,canonico
+item-armadura-ignifuga,Armadura Ignífuga,Armadura,Incomum,equipar,slot armaduraPesada,ar +3 | resistencia.fogo = True | movimento -1.5,,3,,canonico
+item-armadura-de-escamas,Armadura de Escamas,Armadura,Incomum,equipar,slot armaduraPesada,ar +3 | resistencia.acido = True | movimento -1.5,,3,,canonico
+item-broche-corrosivo,Broche Corrosivo,Armadura,Incomum,equipar,slot armaduraLeve,ae.acido +5,,1,,canonico
+item-broche-tempestuoso,Broche Tempestuoso,Armadura,Incomum,equipar,slot armaduraLeve,ae.eletrico +5,,1,,canonico
+item-broche-da-salamandra,Broche da Salamandra,Armadura,Incomum,equipar,slot armaduraLeve,ae.fogo +5,,1,,canonico
+item-broche-do-inverno,Broche do Inverno,Armadura,Incomum,equipar,slot armaduraLeve,ae.frio +5,,1,,canonico
+item-capa-defensiva,Capa Defensiva,Armadura,Incomum,equipar,slot armaduraLeve,ae.todos +1,,1,,canonico
+item-capacete-reforcado,Capacete Reforçado,Armadura,Incomum,equipar,slot armaduraLeve,ae.contundente +5,,1,,canonico
+item-cota-de-malha-superior,Cota de Malha Superior,Armadura,Incomum,equipar,slot armaduraPesada,ar +4 | movimento -1.5 | pericia.furtividade -1,,3,,canonico
+item-couro-batido,Couro Batido,Armadura,Incomum,equipar,slot armaduraPesada,ar +3,,1,,canonico
+item-grevas-de-aco,Grevas de Aço,Armadura,Incomum,equipar,slot armaduraLeve,ae.perfurante +5,,1,,canonico
+item-peitoral-de-aco,Peitoral de Aço,Armadura,Incomum,equipar,slot armaduraPesada,ar +5 | movimento -3 | pericia.furtividade -2 | pericia.reflexos -1,,4,,canonico
+item-algemas-de-ferro,Algemas de Ferro,Bugiganga,Incomum,—,sem efeito: utilitario,,,,,canonico
+item-armadilha-de-pregos,Armadilha de Pregos,Bugiganga,Incomum,—,sem efeito: utilitario,,,,,canonico
+item-bussola-de-eter,Bússola de Éter,Bugiganga,Incomum,—,sem efeito: utilitario,,,,,canonico
+item-caixa-harmonica,Caixa Harmônica,Bugiganga,Incomum,usar,1x/longo,pericia.vontade +2 (1 cena; para aliados),,1,,decisao
+item-calcados-de-mola,Calçados de Mola,Item Mágico,Exótico,sintonizar,,salto +3,[regra] Anula todo dano de queda,1,,decisao
+item-corda-reforcada-15m,Corda Reforçada (15m),Bugiganga,Incomum,—,sem efeito: utilitario,,,,,canonico
+item-ferramentas-de-artesao,Ferramentas de Artesão,Bugiganga,Incomum,carregar,,permiteSemTreino.oficio-engenharia = True | pericia.oficio-engenharia +1,,2,,canonico
+item-cerveja-de-taverna,Cerveja de Taverna,Consumível,Ordinário,consumir,"consome {""unidades"": 1}",stamina.atual +2d6 (para quemRecebe) | aplica bebado fimCena,,1,,canonico
+item-vinho-aguado,Vinho Aguado,Consumível,Ordinário,consumir,"consome {""unidades"": 1}",imunidade.condicao.amedrontado = True (enquanto condicao:bebado; para quemRecebe) | aplica bebado fimCena,,1,,canonico
+item-aguardente-de-raiz,Aguardente de Raiz,Consumível,Incomum,consumir,"consome {""unidades"": 1}",saude.atual +1d8 (para quemRecebe) | stamina.atual +1d8 (para quemRecebe) | aplica bebado fimCena,,2,,canonico
+item-destilado-de-arremesso,Destilado de Arremesso,Consumível,Incomum,consumir,"consome {""unidades"": 1}",,[alvo] Arremesso 6 m | [alvo] O alvo faz Fortitude ou fica Bêbado até o fim da cena,0,,canonico
+item-licor-de-ferro,Licor de Ferro,Consumível,Exótico,consumir,"consome {""unidades"": 1}",pericia.fortitude +4 (enquanto condicao:bebado; para quemRecebe) | pericia.vontade +4 (enquanto condicao:bebado; para quemRecebe) | aplica bebado fimCena,,2,,canonico
+item-cafe-preto,Café Preto,Consumível,Exótico,consumir,"consome {""unidades"": 1} · requisito {""condicao"": ""bebado""}",saude.atual +3d6 (para quemRecebe) | stamina.atual +3d6 (para quemRecebe) | remove bebado,,2,,canonico
+item-fermentado-do-abismo,Fermentado do Abismo,Consumível,Luxária,consumir,"consome {""unidades"": 1}",aplica bebado fimCena,"[regra] Enquanto estiver Bêbado, o 2 natural deixa de ser falha crítica e passa a contar como acerto crítico",0,,canonico
+item-ultima-rodada,Última Rodada,Consumível,Luxária,consumir,"consome {""unidades"": 1}",acoes +1 (enquanto condicao:bebado; para quemRecebe) | aplica bebado descansoLongo,,1,,canonico
+item-kit-de-crime,Kit de Crime,Bugiganga,Incomum,consumir,"consome {""cargas"": 3}",pericia.crime +4 (1 cena),,1,,canonico
+item-kit-de-disfarce,Kit de Disfarce,Bugiganga,Incomum,consumir,"consome {""cargas"": 3}",pericia.enganacao +4 (1 cena; se: para se disfarçar),,1,,decisao
+item-kit-de-medicina,Kit de Medicina,Bugiganga,Incomum,consumir,"consome {""cargas"": 3}",pericia.medicina +4 (1 cena),,1,,canonico
+item-lanterna-arcana,Lanterna Arcana,Bugiganga,Exótico,—,sem efeito: utilitario,,,,,canonico
+item-lanterna-de-oleo,Lanterna de Óleo,Bugiganga,Incomum,—,sem efeito: utilitario,,,,,canonico
+item-lanca-gancho,Lança-Gancho,Bugiganga,Incomum,carregar,,pericia.movimento +1 (se: ao escalar com ele),[utilidade] Dispara gancho a 9 m | [regra] Permite escalar ou puxar-se até o ponto como 1 ação,1,,decisao
+item-lente-do-escriba,Lente do Escriba,Bugiganga,Incomum,carregar,,pericia.investigacao +1,[utilidade] Armazena textos dentro de uma esfera mágica; chamar um documento reproduz o texto em sua superfície,1,,canonico
+item-lente-do-teurgo,Lente do Teurgo,Bugiganga,Incomum,carregar,,pericia.mistico +1,[utilidade] Registra um momento visto através dela e o reproduz depois,1,,canonico
+item-luneta,Luneta,Bugiganga,Incomum,carregar,,pericia.percepcao +1 (se: a longa distância),,1,,decisao
+item-mochila-reforcada,Mochila Reforçada,Bugiganga,Incomum,carregar,,capacidade.bugigangas +3 | capacidade.equipamentos +1,,2,,canonico
+item-pedra-de-mensagem,Pedra de Mensagem,Bugiganga,Incomum,usar,1x/longo,,[utilidade] Envia 1 mensagem telepática a até 1km,0,,canonico
+item-sino-de-alerta,Sino de Alerta,Bugiganga,Incomum,—,sem efeito: utilitario,,,,,canonico
+item-vela-eterna,Vela Eterna,Bugiganga,Exótico,—,sem efeito: utilitario,,,,,canonico
+item-antidoto-simples,Antídoto Simples,Consumível,Ordinário,consumir,"consome {""unidades"": 1}",remove envenenamento,,0,,canonico
+item-antidoto-universal,Antídoto Universal,Consumível,Incomum,consumir,"consome {""unidades"": 1}","remove envenenamento,enjoado",,0,,canonico
+item-bastao-de-luz,Bastão de Luz,Consumível,Ordinário,consumir,"consome {""unidades"": 1}",,[utilidade] Bastonete que emite luz brilhante 6m + fraca 6m por 4 horas,0,,canonico
+item-bola-de-eletricidade,Bola de Eletricidade,Consumível,Incomum,consumir,"consome {""unidades"": 1}",,[alvo] 2d6 Elétrico | [alvo] Contra alvo de metal: +1d6 e Atordoado,0,,canonico
+item-bomba-de-concussao,Bomba de Concussão,Consumível,Incomum,consumir,"consome {""unidades"": 1}",,[alvo] 1d6 Contundente em 3m | [alvo] Fort ou Surdo por 1 min,0,,canonico
+item-bomba-de-luz,Bomba de Luz,Consumível,Ordinário,consumir,"consome {""unidades"": 1}",,[alvo] Arremesso 9m | [alvo] Flash em 6m | [alvo] Reflexo ou Cego por 1 rodada,0,,canonico
+item-balsamo-estabilizador,Bálsamo Estabilizador,Consumível,Ordinário,consumir,"consome {""unidades"": 1}",saude.atual +1 (para quemRecebe) | remove morrendo,,1,,decisao
+item-cafe-concentrado,Café Concentrado,Consumível,Incomum,consumir,"consome {""unidades"": 1}",pericia.iniciativa +2 (proximoCombate; para quemRecebe),,1,,canonico
+item-catalisador-termico,Catalisador Térmico,Consumível,Ordinário,consumir,"consome {""unidades"": 1}",,[utilidade] Mantém a temperatura de um objeto/local fixa por 24h,0,,canonico
+item-cola-universal,Cola Universal,Consumível,Incomum,consumir,"consome {""unidades"": 1}",,[utilidade] Gruda superfícies | [utilidade] CD 20 de Força para separar,0,,canonico
+item-comida-alquimica,Comida Alquímica,Consumível,Incomum,consumir,"consome {""unidades"": 1}",descanso.longoDados +1d8 (proximoDescansoLongo; para quemRecebe),,1,,decisao
+item-corda-liquida,Corda Líquida,Consumível,Incomum,consumir,"consome {""unidades"": 1}",,[utilidade] Enrijece em 6 segundos formando uma corda de 9m,0,,canonico
+item-couro-liquido,Couro Líquido,Consumível,Incomum,consumir,"consome {""unidades"": 1}",ar +2 (10 min; para quemRecebe),,1,,canonico
+item-elixir-de-agilidade,Elixir de Agilidade,Consumível,Incomum,consumir,"consome {""unidades"": 1}",testes.DES +2 (10 min; para quemRecebe) | movimento +1.5 (10 min; para quemRecebe),,2,,canonico
+item-elixir-de-forca,Elixir de Força,Consumível,Incomum,consumir,"consome {""unidades"": 1}",testes.FOR +2 (10 min; para quemRecebe) | dano.corpoACorpo +2 (10 min; para quemRecebe),,2,,canonico
+item-elixir-de-resistencia,Elixir de Resistência,Consumível,Incomum,consumir,"consome {""unidades"": 1}",pericia.fortitude +2 (10 min; para quemRecebe) | saude.temporaria +5 (10 min; para quemRecebe),,2,,canonico
+item-elixir-de-eter-menor,Elíxir de Éter Menor,Consumível,Incomum,consumir,"consome {""unidades"": 1}",eter.atual +1d6+mod.INT (para quemRecebe),,1,,canonico
+item-emplastro-de-regeneracao,Emplastro de Regeneração,Consumível,Incomum,consumir,"consome {""unidades"": 1} · 1x/combate",regeneracao.saude +1d4 (3 rodadas; para quemRecebe),,1,,decisao
+item-espuma-seladora,Espuma Seladora,Consumível,Incomum,consumir,"consome {""unidades"": 1}",,[utilidade] Sela buracos até 50cm | [utilidade] Cria cobertura improvisada,0,,canonico
+item-fogo-alquimico,Fogo Alquímico,Consumível,Ordinário,consumir,"consome {""unidades"": 1}",,"[alvo] Arremesso 9m | [alvo] 2d6 Fogo em área de 1,5m | [alvo] Reflexo para metade | [alvo] Queima +1d6 na próxima rodada",0,,canonico
+item-frasco-congelante,Frasco Congelante,Consumível,Ordinário,consumir,"consome {""unidades"": 1}",,"[alvo] Arremesso 9m | [alvo] 2d6 Frio | [alvo] Cria superfície Escorregadia em 1,5m",0,,canonico
+item-fumaca-densa,Fumaça Densa,Consumível,Ordinário,consumir,"consome {""unidades"": 1}",,"[alvo] Nuvem de 4,5m | [alvo] Obscurecimento total por 1 min",0,,canonico
+item-kit-de-manutencao,Kit de Manutenção,Consumível,Incomum,consumir,"consome {""unidades"": 1}",saude.atual +4d6+mod.INT (para quemRecebe),[utilidade] Pode consertar invenções ou bugigangas,1,,decisao
+item-pedra-de-amolar,Pedra de Amolar,Consumível,Incomum,consumir,"consome {""unidades"": 1} · 1x/total",ataque.bonusAtacar +1 (proximoCombate; para quemRecebe),,1,,canonico
+item-pergaminho-aumentar-diminuir-criatura,Pergaminho — Aumentar / Diminuir Criatura,Consumível,Incomum,consumir,"consome {""unidades"": 1} · ações daMagia · 1x/total",conjura Aumentar / Diminuir Criatura,,0,,canonico
+item-pergaminho-barreira-de-energia,Pergaminho — Barreira de Energia,Consumível,Incomum,consumir,"consome {""unidades"": 1} · ações daMagia · 1x/total",conjura Barreira de Energia,,0,,canonico
+item-pergaminho-caveiras-explosivas,Pergaminho — Caveiras Explosivas,Consumível,Incomum,consumir,"consome {""unidades"": 1} · ações daMagia · 1x/total",conjura Caveiras Explosivas,,0,,canonico
+item-pergaminho-confundir-sentidos,Pergaminho — Confundir Sentidos,Consumível,Incomum,consumir,"consome {""unidades"": 1} · ações daMagia · 1x/total",conjura Confundir Sentidos,,0,,canonico
+item-pergaminho-dissipar-magia,Pergaminho — Dissipar Magia,Consumível,Incomum,consumir,"consome {""unidades"": 1} · ações daMagia · 1x/total",conjura Dissipar Magia,,0,,canonico
+item-pergaminho-emprestimo-natural,Pergaminho — Empréstimo Natural,Consumível,Incomum,consumir,"consome {""unidades"": 1} · ações daMagia · 1x/total",conjura Empréstimo Natural,,0,,canonico
+item-pergaminho-enraizar,Pergaminho — Enraizar,Consumível,Incomum,consumir,"consome {""unidades"": 1} · ações daMagia · 1x/total",conjura Enraizar,,0,,canonico
+item-pergaminho-historia-do-eter,Pergaminho — História do Éter,Consumível,Incomum,consumir,"consome {""unidades"": 1} · ações daMagia · 1x/total",conjura História do Éter,,0,,canonico
+item-pergaminho-impulso-instintivo,Pergaminho — Impulso Instintivo,Consumível,Incomum,consumir,"consome {""unidades"": 1} · ações daMagia · 1x/total",conjura Impulso Instintivo,,0,,canonico
+item-pergaminho-invocar-tempestade,Pergaminho — Invocar Tempestade,Consumível,Incomum,consumir,"consome {""unidades"": 1} · ações daMagia · 1x/total",conjura Invocar Tempestade,,0,,canonico
+item-pergaminho-lanca-de-gelo,Pergaminho — Lança de Gelo,Consumível,Incomum,consumir,"consome {""unidades"": 1} · ações daMagia · 1x/total",conjura Lança de Gelo,,0,,canonico
+item-pergaminho-pele-de-pedra,Pergaminho — Pele de Pedra,Consumível,Incomum,consumir,"consome {""unidades"": 1} · ações daMagia · 1x/total",conjura Pele de Pedra,,0,,canonico
+item-pergaminho-personificar-elemento,Pergaminho — Personificar Elemento,Consumível,Incomum,consumir,"consome {""unidades"": 1} · ações daMagia · 1x/total",conjura Personificar Elemento,,0,,canonico
+item-pergaminho-panico,Pergaminho — Pânico,Consumível,Incomum,consumir,"consome {""unidades"": 1} · ações daMagia · 1x/total",conjura Pânico,,0,,canonico
+item-pergaminho-sussurro-do-ambiente,Pergaminho — Sussurro do Ambiente,Consumível,Incomum,consumir,"consome {""unidades"": 1} · ações daMagia · 1x/total",conjura Sussurro do Ambiente,,0,,canonico
+item-pergaminho-telepatia,Pergaminho — Telepatia,Consumível,Incomum,consumir,"consome {""unidades"": 1} · ações daMagia · 1x/total",conjura Telepatia,,0,,canonico
+item-pergaminho-transfigurar-arma,Pergaminho — Transfigurar Arma,Consumível,Incomum,consumir,"consome {""unidades"": 1} · ações daMagia · 1x/total",conjura Transfigurar Arma,,0,,canonico
+item-pergaminho-translocacao-arcana,Pergaminho — Translocação Arcana,Consumível,Incomum,consumir,"consome {""unidades"": 1} · ações daMagia · 1x/total",conjura Translocação Arcana,,0,,canonico
+item-pergaminho-ventania-bizarra,Pergaminho — Ventania Bizarra,Consumível,Incomum,consumir,"consome {""unidades"": 1} · ações daMagia · 1x/total",conjura Ventania Bizarra,,0,,canonico
+item-pergaminho-verdades-dolorosas,Pergaminho — Verdades Dolorosas,Consumível,Incomum,consumir,"consome {""unidades"": 1} · ações daMagia · 1x/total",conjura Verdades Dolorosas,,0,,canonico
+item-pocao-de-cura-menor,Poção de Cura Menor,Consumível,Ordinário,consumir,"consome {""unidades"": 1}",saude.atual +2d4+mod.INT (para quemRecebe),,1,,canonico
+item-pocao-de-vigor,Poção de Vigor,Consumível,Ordinário,consumir,"consome {""unidades"": 1}",stamina.atual +1d6 (para quemRecebe),,1,,canonico
+item-pocao-de-vigor-moderada,Poção de Vigor Moderada,Consumível,Incomum,consumir,"consome {""unidades"": 1}",stamina.atual +2d6 (para quemRecebe),,1,,canonico
+item-po-revelador,Pó Revelador,Consumível,Ordinário,consumir,"consome {""unidades"": 1}",,[utilidade] Revela magia remanescente em uma área por 1h,0,,canonico
+item-po-de-espirro,Pó de Espirro,Consumível,Ordinário,consumir,"consome {""unidades"": 1}",,[alvo] Arremesso 3m | [alvo] Fort ou Desorientado por 1 rodada,0,,canonico
+item-sal-revigorante,Sal Revigorante,Consumível,Ordinário,consumir,"consome {""unidades"": 1}","remove atordoado,adormecido | remove inconsciente",,0,,decisao
+item-seiva-da-vhelor,Seiva da Vhelor,Consumível,Exótico,consumir,"consome {""unidades"": 1}","saude.atual +2d6 (para quemRecebe) | stamina.atual +2d6 (para quemRecebe) | marcaVhelor +1 (para quemRecebe) | remove desorientado,atordoado",,3,,canonico
+item-solvente-universal,Solvente Universal,Consumível,Incomum,consumir,"consome {""unidades"": 1}",remove enraizado,[alvo] Dissolve cola/resina,0,,canonico
+item-tinta-de-cegueira,Tinta de Cegueira,Consumível,Incomum,consumir,"consome {""unidades"": 1}",,"[alvo] Arremesso 4,5m | [alvo] Reflexo ou Cego por 2 rodadas",0,,canonico
+item-tonico-anti-exaustao,Tônico Anti-Exaustão,Consumível,Incomum,consumir,"consome {""unidades"": 1} · 1x/longo",condicao.exaustao -1 (para quemRecebe),,1,,canonico
+item-veneno-fraco,Veneno Fraco,Consumível,Ordinário,consumir,"consome {""unidades"": 1}",ataque.danoExtra +1d4 veneno (3 ataque(s); para quemRecebe),[alvo] Fort ou Enjoado,1,,canonico
+item-veneno-de-lamina-comum,Veneno de Lâmina Comum,Consumível,Incomum,consumir,"consome {""unidades"": 1}",ataque.danoExtra +1d4 veneno (2 ataque(s); para quemRecebe),,1,,canonico
+item-acido-corrosivo,Ácido Corrosivo,Consumível,Ordinário,consumir,"consome {""unidades"": 1}",,"[alvo] Arremesso 9m | [alvo] 2d8 Ácido, ignora 2 de Armadura",0,,canonico
+item-agua-regia,Água-Régia,Consumível,Incomum,consumir,"consome {""unidades"": 1}",,[alvo] Dissolve metal mundano | [utilidade] Abre fechaduras de metal,0,,canonico
+item-oleo-congelante,Óleo Congelante,Consumível,Incomum,consumir,"consome {""unidades"": 1}",ataque.danoExtra +1d6 frio (3 ataque(s); para quemRecebe),[alvo] Crítico = Lento 1,1,,canonico
+item-oleo-flamejante,Óleo Flamejante,Consumível,Incomum,consumir,"consome {""unidades"": 1}",ataque.danoExtra +1d6 fogo (1 min; 3 ataque(s); para quemRecebe),,1,,canonico
+item-oleo-sagrado,Óleo Sagrado,Consumível,Incomum,consumir,"consome {""unidades"": 1}",ataque.danoExtra +1d6 radiante (3 ataque(s); para quemRecebe) | ataque.danoExtra +1d6 radiante (3 ataque(s); se: contra Corrompidos e Mortos-Vivos; para quemRecebe),,2,,decisao
+item-escudo-reforcado,Escudo Reforçado,Escudo,Incomum,equipar,slot escudo,pericia.defender +2 (se: reacaoDefender) | ae.contundente +2 | movimento -1.5,,3,,canonico
+item-escudo-de-aco,Escudo de Aço,Escudo,Incomum,equipar,slot escudo,pericia.defender +2 (se: reacaoDefender) | ae.cortante +2 | movimento -1.5,,3,,canonico
+item-escudo-do-espinho,Escudo do Espinho,Escudo,Incomum,equipar,slot escudo,pericia.defender +2 (se: reacaoDefender) | movimento -1.5,[alvo] Atacantes corpo a corpo sofrem 1d4-1 ao acertar você,2,,canonico
+item-amuleto-de-visao-noturna,Amuleto de Visão Noturna,Item Mágico,Incomum,sintonizar,,sentido.visaoNoEscuro máx 12,,1,,decisao
+item-amuleto-do-vinculo,Amuleto do Vínculo,Item Mágico,Incomum,sintonizar,,,,0,,decisao
+item-amuleto-do-vinculo,Amuleto do Vínculo,Item Mágico,Incomum,usar,requer sintonizar · ações 1 · 1x/longo,saude.atual +até -10 | saude.atual +até 10 (para aliados),,2,,decisao
+item-anel-da-carapaca,Anel da Carapaça,Item Mágico,Incomum,sintonizar,,ar +2 | ar +1 (enquanto saudeAbaixoDaMetade),,2,,decisao
+item-anel-das-brasas,Anel das Brasas,Item Mágico,Incomum,sintonizar,,dano.porDado +1 fogo,,1,,decisao
+item-anel-de-calor-menor,Anel de Calor Menor,Item Mágico,Incomum,sintonizar,,ae.frio +2,,1,,canonico
+item-anel-de-centelha,Anel de Centelha,Item Mágico,Incomum,sintonizar,,ae.eletrico +2,,1,,canonico
+item-bracadeira-anti-veneno,Braçadeira Anti-Veneno,Item Mágico,Incomum,sintonizar,,ae.veneno +2,,1,,canonico
+item-broche-do-mercante,Broche do Mercante,Item Mágico,Incomum,sintonizar,,"pericia.convencimento +2 (se: em negociações, enquanto exibido)",,1,,decisao
+item-capa-de-obscurecimento,Capa de Obscurecimento,Item Mágico,Incomum,sintonizar,,pericia.furtividade +2 (se: em penumbra ou escuridão),,1,,decisao
+item-cinturao-de-resistencia,Cinturão de Resistência,Item Mágico,Incomum,sintonizar,,saude.max +5,,1,,canonico
+item-dedal-do-ladrao,Dedal do Ladrão,Item Mágico,Incomum,sintonizar,,pericia.crime +3 (se: para abrir fechaduras e desarmar armadilhas),[regra] Silencia o som das mãos,1,,decisao
+item-diadema-do-foco,Diadema do Foco,Item Mágico,Incomum,sintonizar,,pericia.vontade +1,,1,,canonico
+item-garras-do-predador,Garras do Predador,Item Mágico,Incomum,sintonizar,,desarmado.dano = 1d6 cortante,[alvo] Ataques desarmados aplicam Sangramento 1 no crítico,1,,decisao
+item-luvas-de-aderencia,Luvas de Aderência,Item Mágico,Incomum,sintonizar,,pericia.movimento vantagem (se: para escalar),,1,,decisao
+item-mascara-da-coragem,Máscara da Coragem,Item Mágico,Incomum,sintonizar,,imunidade.condicao.amedrontado = True,,1,,canonico
+item-pulseira-de-alertas,Pulseira de Alertas,Item Mágico,Incomum,sintonizar,,imunidade.condicao.desprevenido = True,,1,,canonico
+item-sandalias-do-vento,Sandálias do Vento,Item Mágico,Incomum,sintonizar,,movimento +1.5,[regra] Ignora a primeira casa de Terreno Difícil por turno,1,,canonico
+item-sigilo-do-carrasco,Sigilo do Carrasco,Item Mágico,Incomum,sintonizar,,"ataque.danoFixo +2 (se: contra alvo Exposto, Caído ou Atordoado)",,1,,decisao
+item-tornozeleira-de-velocidade,Tornozeleira de Velocidade,Item Mágico,Incomum,sintonizar,,movimento +1.5,,1,,canonico
+item-aco-temperado,Aço Temperado,Material,Incomum,—,sem efeito: material,,,,,canonico
+item-couro-refinado,Couro Refinado,Material,Incomum,—,sem efeito: material,,,,,canonico
+item-engrenagem,Engrenagem,Material,Incomum,—,sem efeito: material,,,,,canonico
+item-fibra-sintetica,Fibra Sintética,Material,Incomum,—,sem efeito: material,,,,,canonico
+item-madeira-nobre,Madeira Nobre,Material,Incomum,—,sem efeito: material,,,,,canonico
+item-flechas-eletricas,Flechas Elétricas,Munição,Incomum,consumir,"consome {""unidades"": 1, ""por"": ""cena de combate""}",ataque.danoExtra +1d4 eletrico,[alvo] Crítico: Desorientado,1,,canonico
+item-flechas-gelidas,Flechas Gélidas,Munição,Incomum,consumir,"consome {""unidades"": 1, ""por"": ""cena de combate""}",ataque.danoExtra +1d4 frio,[alvo] Crítico: Lento 1,1,,canonico
+item-flechas-incendiarias,Flechas Incendiárias,Munição,Incomum,consumir,"consome {""unidades"": 1, ""por"": ""cena de combate""}",ataque.danoExtra +1d4 fogo,[alvo] Crítico: alvo fica Em Chamas,1,,canonico
+item-oleo-inflamavel,Óleo Inflamável,Munição,Incomum,consumir,"consome {""unidades"": 1, ""por"": ""cena de combate""}",ataque.danoExtra +1d4 fogo,[alvo] Crítico: Em Chamas,1,,canonico
+item-municao-incendiaria,Munição Incendiária,Munição,Incomum,consumir,"consome {""unidades"": 1, ""por"": ""cena de combate""}",ataque.danoExtra +1d8 fogo,[alvo] Crítico: Em Chamas,1,,canonico
+item-municao-perfurante,Munição Perfurante,Munição,Incomum,consumir,"consome {""unidades"": 1, ""por"": ""cena de combate""}",ataque.ignoraAr +3,,1,,canonico
+item-virotes-perfurantes,Virotes Perfurantes,Munição,Incomum,consumir,"consome {""unidades"": 1, ""por"": ""cena de combate""}",ataque.ignoraAr +3,,1,,canonico
+item-virotes-venenosos,Virotes Venenosos,Munição,Incomum,consumir,"consome {""unidades"": 1, ""por"": ""cena de combate""}",ataque.danoExtra +1d4 veneno,[alvo] Fort ou Envenenado,1,,canonico
+item-adaga-dimensional,Adaga Dimensional,Arma,Exótico,equipar,slot arma,arma 3d6 perfurante (DES) Atacar(1) +1d6 mistico [tipo escolhido no descanso curto],[regra] O ataque ignora resistência ao tipo escolhido,0,,canonico
+item-arco-do-vento,Arco do Vento,Arma,Exótico,equipar,slot arma,arma 3d6 perfurante (DES) Atacar(1) +1d6 forca | movimento +1.5 (1 rodada; quando: ao acertar um ataque),,1,,decisao
+item-arma-arremesso-2,Arma Arremesso +2,Arma,Exótico,equipar,slot arma,arma 3d8 perfurante (DES) Atacar(1),,0,,canonico
+item-arma-distancia-pesada-2,Arma Distância Pesada +2,Arma,Exótico,equipar,slot arma,arma 3d12 perfurante (DES) Atacar(2),,0,,canonico
+item-arma-distancia-simples-2,Arma Distância Simples +2,Arma,Exótico,equipar,slot arma,arma 3d6 perfurante (DES) Atacar(1),,0,,canonico
+item-arma-leve-contundente-2,Arma Leve Contundente +2,Arma,Exótico,equipar,slot arma,arma 3d6 contundente (DES) Atacar(1),,0,,canonico
+item-arma-leve-cortante-2,Arma Leve Cortante +2,Arma,Exótico,equipar,slot arma,arma 3d6 cortante (DES) Atacar(1),,0,,canonico
+item-arma-leve-perfurante-2,Arma Leve Perfurante +2,Arma,Exótico,equipar,slot arma,arma 3d6 perfurante (DES) Atacar(1),,0,,canonico
+item-arma-leve-agil-2,Arma Leve Ágil +2,Arma,Exótico,equipar,slot arma,arma 3d8 cortante/perfurante/contundente (DES) Atacar(1),,0,,canonico
+item-arma-marcial-longa-2,Arma Marcial Longa +2,Arma,Exótico,equipar,slot arma,arma 4d10 perfurante (FOR) Atacar(2),,0,,canonico
+item-arma-marcial-pesada-2,Arma Marcial Pesada +2,Arma,Exótico,equipar,slot arma,arma 4d10 contundente (FOR) Atacar(2),,0,,canonico
+item-arma-marcial-precisa-2,Arma Marcial Precisa +2,Arma,Exótico,equipar,slot arma,arma 3d8 cortante (DES) Atacar(1),,0,,canonico
+item-arma-marcial-versatil-2,Arma Marcial Versátil +2,Arma,Exótico,equipar,slot arma,arma 3d8 cortante/perfurante/contundente (DES) Atacar(1),,0,,canonico
+item-arma-pesada-brutal-2,Arma Pesada Brutal +2,Arma,Exótico,equipar,slot arma,arma 4d12 cortante/perfurante/contundente (FOR) Atacar(3),,0,,canonico
+item-arma-pesada-contundente-2,Arma Pesada Contundente +2,Arma,Exótico,equipar,slot arma,arma 3d12 contundente (FOR) Atacar(2),,0,,canonico
+item-arma-pesada-cortante-2,Arma Pesada Cortante +2,Arma,Exótico,equipar,slot arma,arma 3d12 cortante (FOR) Atacar(2),,0,,canonico
+item-arma-pesada-perfurante-2,Arma Pesada Perfurante +2,Arma,Exótico,equipar,slot arma,arma 3d12 perfurante (FOR) Atacar(2),,0,,canonico
+item-bastao-de-karmath,Bastão de Karmath,Arma,Exótico,equipar,slot arma,"arma 3d8 cortante/perfurante/contundente (DES) Atacar(1) +1d6 radiante [contra Teurgos, Corrompidos e Mortos-Vivos]",,0,,canonico
+item-besta-incendiaria,Besta Incendiária,Arma,Exótico,equipar,slot arma,arma 3d12 perfurante (DES) Atacar(2) +1d8 fogo,"[alvo] Crítico: cria uma área Em Chamas de 1,5 m de raio",0,,canonico
+item-cimitarra-do-cacador,Cimitarra do Caçador,Arma,Exótico,equipar,slot arma,arma 3d6 cortante (DES) Atacar(1) | ataque.danoExtra +(tamanhoAlvo-tamanho)d6 necrotico (se: por categoria de tamanho do alvo acima da sua),,1,,decisao
+item-raizes-do-sonhador,Raízes do Sonhador,Arma,Exótico,equipar,slot arma,arma 3d6 perfurante (DES) Atacar(1) +1d6 psiquico | stamina.atual +10 (no crítico),[alvo] Crítico: o alvo fica Confuso e perde 10 de Stamina,1,,decisao
+item-estilhacos-do-abismo,Estilhaços do Abismo,Arma,Exótico,equipar,slot arma,arma 3d8 perfurante (DES) Atacar(1) +1d10 primordial,,0,,canonico
+item-foco-da-conflagracao,Foco da Conflagração,Arma,Exótico,equipar,slot arma (foco),pericia.mistico +2 | eter.max +10,"[regra] Ao conjurar magia de Destruição em área, rerole os resultados 1 nos dados de dano",2,,canonico
+item-foco-da-mare,Foco da Maré,Arma,Exótico,equipar,slot arma (foco),pericia.mistico +2 | eter.max +10,,2,,canonico
+item-foco-da-mare,Foco da Maré,Arma,Exótico,usar,requer equipar · 1x/combate,,"[alvo] 1x por combate: ao conjurar Alteração, desloca um alvo em 3m (Vontade resiste)",0,,canonico
+item-foco-da-premonicao,Foco da Premonição,Arma,Exótico,equipar,slot arma (foco),pericia.mistico +2 | eter.max +10,,2,,canonico
+item-foco-da-premonicao,Foco da Premonição,Arma,Exótico,usar,requer equipar · ações reacao · 1x/combate,,"[alvo] Como reação, 1x por combate: força uma criatura a repetir um teste de ataque ou resistência contra você, ficando com o pior resultado",0,,canonico
+item-foco-de-abjuracao-2,Foco de Abjuração +2,Arma,Exótico,equipar,slot arma (foco),pericia.mistico +2 | eter.max +10,,2,,canonico
+item-foco-de-alteracao-2,Foco de Alteração +2,Arma,Exótico,equipar,slot arma (foco),pericia.mistico +2 | eter.max +10,,2,,canonico
+item-foco-de-conhecimento-2,Foco de Conhecimento +2,Arma,Exótico,equipar,slot arma (foco),pericia.mistico +2 | eter.max +10,,2,,canonico
+item-foco-de-destruicao-2,Foco de Destruição +2,Arma,Exótico,equipar,slot arma (foco),pericia.mistico +2 | eter.max +10,,2,,canonico
+item-foco-do-baluarte,Foco do Baluarte,Arma,Exótico,equipar,slot arma (foco),pericia.mistico +2 | eter.max +10,"[regra] A barreira não pode ser destruída por meios materiais, apenas sob seu comando ao gastar 1 ação para dissipá-la | [regra] A barreira dura 3 rodadas, porém você deve sustentá-la em cada uma dessas rodadas gastando 3 ações, ou ao final do seu turno em que você negligenciou esse custo, ela se dissipa imediatamente | [regra] A barreira bloqueia movimento, ataques e magias em ambos os sentidos",2,,canonico
+item-foco-do-baluarte,Foco do Baluarte,Arma,Exótico,usar,requer equipar · ações 3,,"[regra] Com 3 ações, você pode canalizar uma barreira mística em formato de domo impenetrável com 3 m de raio",0,,canonico
+item-foice-da-praga,Foice da Praga,Arma,Exótico,equipar,slot arma,arma 3d12 cortante (FOR) Atacar(2) +1d12 necrotico,"[alvo] Ao acertar, a cura recebida pelo alvo é reduzida à metade por 1 rodada",0,,canonico
+item-foice-curta-necrotica,Foice Curta Necrótica,Arma,Exótico,equipar,slot arma,arma 3d6 cortante (DES) Atacar(1) +1d6 necrotico | saude.atual +1d6 (quando: ao reduzir uma criatura a 0 de Saúde),,1,,decisao
+item-machado-da-furia,Machado da Fúria,Arma,Exótico,equipar,slot arma,arma 3d12 cortante (FOR) Atacar(2) +2d8 trovejante [1x/alvo],,0,,canonico
+item-marreta-volkrestiana,Marreta Volkrestiana,Arma,Exótico,equipar,slot arma,arma 4d12 cortante/perfurante/contundente (FOR) Atacar(3) +1d12 trovejante,[alvo] Crítico: Fortitude ou empurrado 3 m e Caído,0,,canonico
+item-martelo-trovejante,Martelo Trovejante,Arma,Exótico,equipar,slot arma,arma 3d12 contundente (FOR) Atacar(2) +1d12 trovejante,,0,,canonico
+item-maca-de-karmath,Maça de Karmath,Arma,Exótico,equipar,slot arma,arma 3d12 contundente (FOR) Atacar(2) +1d12 radiante,,0,,canonico
+item-maca-de-karmath,Maça de Karmath,Arma,Exótico,usar,requer equipar · ações 1 · 1x/longo,,"[alvo] Com 1 ação, exija um teste de Vontade para todos os alvos escolhidos por você em até 6 m ou ganham Amedrontado por 1 turno",0,,canonico
+item-armadura-anti-magia,Armadura Anti-Magia,Armadura,Exótico,equipar,slot armaduraPesada,ar +5 | resistencia.radiante = True | resistencia.trovejante = True | resistencia.necrotico = True | movimento -3,,5,,canonico
+item-armadura-galvanica,Armadura Galvânica,Armadura,Exótico,equipar,slot armaduraPesada,ar +5 | resistencia.eletrico = True | movimento -1.5,"[alvo] Ao ser atingido, descarrega 1d6 Elétrico no agressor",3,,canonico
+item-armadura-simbiotica,Armadura Simbiótica,Armadura,Exótico,equipar,slot armaduraPesada,ar +5 | saude.max +5 | regeneracao.saude +1 | movimento -1.5,,4,,canonico
+item-armadura-viva,Armadura Viva,Armadura,Luxária,equipar,slot armaduraPesada,ar +7 | movimento -1.5 | ar +2 (descansoLongo; quando: na primeira vez que você recebe dano em cada combate; não acumula),,3,,decisao
+item-armadura-vulcanica,Armadura Vulcânica,Armadura,Exótico,equipar,slot armaduraPesada,ar +5 | resistencia.fogo = True | movimento -1.5,[alvo] Atacantes corpo a corpo recebem 1d6 de Fogo,3,,canonico
+item-armadura-da-morte-suspensa,Armadura da Morte Suspensa,Armadura,Exótico,equipar,slot armaduraPesada,ar +5 | resistencia.necrotico = True | imunidade.condicao.sangramento = True | movimento -1.5,,4,,canonico
+item-armadura-de-permafrost,Armadura de Permafrost,Armadura,Exótico,equipar,slot armaduraPesada,ar +5 | resistencia.frio = True | movimento -1.5,[alvo] Atacantes corpo a corpo fazem Fortitude contra sua CD ou ficam Lento 1 até o fim da próxima rodada,3,,canonico
+item-armadura-de-placas,Armadura de Placas,Armadura,Exótico,equipar,slot armaduraPesada,ar +6 | movimento -3 | pericia.furtividade -2 | pericia.reflexos -1,,4,,canonico
+item-armadura-do-julgamento,Armadura do Julgamento,Armadura,Exótico,equipar,slot armaduraPesada,ar +5 | resistencia.radiante = True | pericia.vontade +2 | movimento -1.5,,4,,canonico
+item-armadura-do-pantaneiro,Armadura do Pantaneiro,Armadura,Exótico,equipar,slot armaduraPesada,ar +5 | resistencia.veneno = True | imunidade.condicao.envenenamento = True | movimento -1.5,,4,,canonico
+item-armadura-do-sentinela,Armadura do Sentinela,Armadura,Exótico,equipar,slot armaduraPesada,ar +5 | pericia.percepcao +2 | imunidade.condicao.desprevenido = True | movimento -1.5,,4,,canonico
+item-capacete-do-tirano,Capacete do Tirano,Armadura,Exótico,equipar,slot armaduraLeve,ae.biologico +4 | pericia.intimidacao +2,,2,,canonico
+item-cota-elfica,Cota Élfica,Armadura,Exótico,equipar,slot armaduraPesada,ar +4 | pericia.furtividade +2,,2,,canonico
+item-elmo-do-silencioso,Elmo do Silencioso,Armadura,Exótico,equipar,slot armaduraLeve,ae.psiquico +7 | imunidade.condicao.confuso = True | imunidade.condicao.enfeiticado = True,,3,,canonico
+item-grevas-trovejantes,Grevas Trovejantes,Armadura,Exótico,equipar,slot armaduraLeve,ae.trovejante +7 | ataque.danoExtra +1d6 (se: investida),,2,,canonico
+item-grevas-do-corredor,Grevas do Corredor,Armadura,Exótico,equipar,slot armaduraLeve,ae.perfurante +7 | movimento +3,,2,,canonico
+item-lente-radiante,Lente Radiante,Armadura,Exótico,equipar,slot armaduraLeve,ae.radiante +7,,1,,canonico
+item-peitoral-runico,Peitoral Rúnico,Armadura,Exótico,equipar,slot armaduraPesada,ar +5 | ae.mistico +4 | movimento -1.5,,3,,canonico
+item-selo-necrotico,Selo Necrótico,Armadura,Exótico,equipar,slot armaduraLeve,ae.necrotico +7,,1,,canonico
+item-arpeu-mecanico,Arpéu Mecânico,Bugiganga,Exótico,usar,ações reacao · 1x/combate,,"[alvo] 1x por combate: como reação, agarra um alvo em 4,5 m e o puxa para perto de você (Movimento contra sua CD para resistir)",0,,canonico
+item-botas-aracnideas,Botas Aracnídeas,Bugiganga,Exótico,usar,2x/longo,,"[regra] Escala qualquer superfície (inclusive teto) à velocidade normal por 10 min, 2x por descanso longo",0,,canonico
+item-gazua-fantasma,Gazua Fantasma,Bugiganga,Exótico,carregar,,pericia.crime +2,[utilidade] Gazua que não quebra,1,,canonico
+item-kit-de-trauma,Kit de Trauma,Consumível,Exótico,consumir,"consome {""unidades"": 1}","saude.atual +2d6+mod.INT (para quemRecebe) | remove {""condicoes"": [], ""escolha"": 1, ""de"": ""tag:fisica""} | remove morrendo",,1,,decisao
+item-lanterna-solar,Lanterna Solar,Bugiganga,Exótico,—,sem efeito: utilitario,,,,,canonico
+item-mochila-do-contrabandista,Mochila do Contrabandista,Bugiganga,Exótico,carregar,,capacidade.bugigangas +5,[utilidade] Compartimento oculto (Investigação contra sua CD para achar) que esconde até 3 itens de revistas,1,,canonico
+item-mascara-de-respiro,Máscara de Respiro,Bugiganga,Exótico,usar,ações 1,imunidade.condicao.envenenamento = True (10 min),[regra] Respiração debaixo d'água enquanto usada,1,,decisao
+item-regulador-temporal,Regulador Temporal,Bugiganga,Exótico,usar,ações 1 · 3x/longo,acoes +1 (1 rodada),,1,,decisao
+item-torreta-portatil,Torreta Portátil,Bugiganga,Exótico,—,sem efeito: utilitario,,,,,canonico
+item-oculos-do-vidente,Óculos do Vidente,Bugiganga,Exótico,usar,1x/cena,sentido.visaoVerdadeira = True (3 rodadas),,1,,decisao
+item-adrenalina-de-campo,Adrenalina de Campo,Consumível,Exótico,consumir,"consome {""unidades"": 1}",saude.atual = saude.max/2 (para quemRecebe) | condicao.exaustao +1 (para quemRecebe) | remove inconsciente,,2,,decisao
+item-bomba-de-fragmentacao,Bomba de Fragmentação,Consumível,Exótico,consumir,"consome {""unidades"": 1}",,"[alvo] 4d6 Perfurante em 4,5m | [alvo] Reflexo para metade",0,,canonico
+item-bomba-de-vacuo,Bomba de Vácuo,Consumível,Exótico,consumir,"consome {""unidades"": 1}",,[alvo] 2d10 Força em 3m | [alvo] Puxa alvos 3m para o centro,0,,canonico
+item-bomba-de-eter,Bomba de Éter,Consumível,Exótico,consumir,"consome {""unidades"": 1}",eter.atual +drenado/2 (quando: quando a bomba drena Éter),[alvo] Drena 1d6 Éter de alvos em 3m,1,,decisao
+item-detector-de-magia,Detector de Magia,Consumível,Incomum,consumir,"consome {""unidades"": 1}",,[utilidade] Frasco brilha azul perto de magia,0,,canonico
+item-elixir-aranha,Elixir Aranha,Consumível,Exótico,consumir,"consome {""unidades"": 1}",,[regra] Escala superfícies como aranha por 10 min,0,,canonico
+item-elixir-da-expurgacao,Elixir da Expurgação,Consumível,Exótico,consumir,"consome {""unidades"": 1}",marcaVhelor -1 (enquanto marcaVhelor<=4; para quemRecebe),,1,,canonico
+item-elixir-da-visao-verdadeira,Elixir da Visão Verdadeira,Consumível,Exótico,consumir,"consome {""unidades"": 1}",sentido.visaoVerdadeira = True (1 min; para quemRecebe),,1,,decisao
+item-elixir-das-guelras,Elixir das Guelras,Consumível,Exótico,consumir,"consome {""unidades"": 1}",,[regra] Respira debaixo d'água por 30 min,0,,canonico
+item-elixir-das-linguas,Elixir das Línguas,Consumível,Exótico,consumir,"consome {""unidades"": 1}",,[regra] Entende qualquer idioma falado por 1h,0,,canonico
+item-elixir-do-crescimento,Elixir do Crescimento,Consumível,Exótico,consumir,"consome {""unidades"": 1}",tamanho +1 (1 min; para quemRecebe) | ataque.danoExtra +1d4 (1 min; para quemRecebe) | atributo.FOR +2 (1 min; para quemRecebe),,3,,aprovado
+item-elixir-do-encolhimento,Elixir do Encolhimento,Consumível,Exótico,consumir,"consome {""unidades"": 1}",tamanho -1 (1 min; para quemRecebe) | pericia.furtividade +2 (1 min; para quemRecebe) | atributo.DES +2 (1 min; para quemRecebe),,3,,aprovado
+item-elixir-de-eter-moderado,Elíxir de Éter Moderado,Consumível,Exótico,consumir,"consome {""unidades"": 1}",eter.atual +2d6+mod.INT (para quemRecebe),,1,,canonico
+item-extrato-de-velocidade,Extrato de Velocidade,Consumível,Exótico,consumir,"consome {""unidades"": 1}",acoes +1 (3 turnos; para quemRecebe) | aplica exaustao,,1,,decisao
+item-frasco-do-raio,Frasco do Raio,Consumível,Exótico,consumir,"consome {""unidades"": 1}",,[alvo] 3d8 Elétrico | [alvo] Salta para 2 alvos próximos (2d8 cada),0,,canonico
+item-granada-toxica,Granada Tóxica,Consumível,Incomum,consumir,"consome {""unidades"": 1}",,[alvo] Arremesso 9m | [alvo] Nuvem 3m: 1d8 Veneno por turno + Enjoado,0,,canonico
+item-gas-necrotico,Gás Necrótico,Consumível,Exótico,consumir,"consome {""unidades"": 1}",,[alvo] Nuvem 6m | [alvo] 2d8 Necrótico por turno | [alvo] Impede cura na área,0,,canonico
+item-marcador-rastreavel,Marcador Rastreável,Consumível,Incomum,consumir,"consome {""unidades"": 1}",,[utilidade] Detectável a 100m por 24h,0,,canonico
+item-mutagenico-menor,Mutagênico Menor,Consumível,Exótico,consumir,"consome {""unidades"": 1}","atributo escolha {""bonus"": {""n"": 1, ""valor"": 4}, ""penalidade"": {""n"": 1, ""valor"": -2}, ""distintos"": true} (10 min; para quemRecebe)",,1,,decisao
+item-napalm-alquimico,Napalm Alquímico,Consumível,Exótico,consumir,"consome {""unidades"": 1}",,"[alvo] Arremesso 9m | [alvo] 3d6 Fogo em área 3m, Reflexo para metade | [alvo] Queima 2d6/turno por 3 rodadas | [alvo] Água não apaga",0,,canonico
+item-pergaminho-absorver-contusao,Pergaminho — Absorver Contusão,Consumível,Exótico,consumir,"consome {""unidades"": 1} · ações daMagia · 1x/total",conjura Absorver Contusão,,0,,canonico
+item-pergaminho-armadura-de-espinhos,Pergaminho — Armadura de Espinhos,Consumível,Exótico,consumir,"consome {""unidades"": 1} · ações daMagia · 1x/total",conjura Armadura de Espinhos,,0,,canonico
+item-pergaminho-caco-esquecido,Pergaminho — Caco Esquecido,Consumível,Exótico,consumir,"consome {""unidades"": 1} · ações daMagia · 1x/total",conjura Caco Esquecido,,0,,canonico
+item-pergaminho-confissao-do-eter,Pergaminho — Confissão do Éter,Consumível,Exótico,consumir,"consome {""unidades"": 1} · ações daMagia · 1x/total",conjura Confissão do Éter,,0,,canonico
+item-pergaminho-contramedida,Pergaminho — Contramedida,Consumível,Exótico,consumir,"consome {""unidades"": 1} · ações daMagia · 1x/total",conjura Contramedida,,0,,canonico
+item-pergaminho-disparo-veloz,Pergaminho — Disparo Veloz,Consumível,Exótico,consumir,"consome {""unidades"": 1} · ações daMagia · 1x/total",conjura Disparo Veloz,,0,,canonico
+item-pergaminho-fragmento-estelar,Pergaminho — Fragmento Estelar,Consumível,Exótico,consumir,"consome {""unidades"": 1} · ações daMagia · 1x/total",conjura Fragmento Estelar,,0,,canonico
+item-pergaminho-laco-da-uniao,Pergaminho — Laço da União,Consumível,Exótico,consumir,"consome {""unidades"": 1} · ações daMagia · 1x/total",conjura Laço da União,,0,,canonico
+item-pergaminho-limiar-perfurante,Pergaminho — Limiar Perfurante,Consumível,Exótico,consumir,"consome {""unidades"": 1} · ações daMagia · 1x/total",conjura Limiar Perfurante,,0,,canonico
+item-pergaminho-pele-de-camaleao,Pergaminho — Pele de Camaleão,Consumível,Exótico,consumir,"consome {""unidades"": 1} · ações daMagia · 1x/total",conjura Pele de Camaleão,,0,,canonico
+item-pergaminho-pestilencia,Pergaminho — Pestilência,Consumível,Exótico,consumir,"consome {""unidades"": 1} · ações daMagia · 1x/total",conjura Pestilência,,0,,canonico
+item-pergaminho-plasmar-terreno,Pergaminho — Plasmar Terreno,Consumível,Exótico,consumir,"consome {""unidades"": 1} · ações daMagia · 1x/total",conjura Plasmar Terreno,,0,,canonico
+item-pergaminho-projecao-astral,Pergaminho — Projeção Astral,Consumível,Exótico,consumir,"consome {""unidades"": 1} · ações daMagia · 1x/total",conjura Projeção Astral,,0,,canonico
+item-pergaminho-purgatorio,Pergaminho — Purgatório,Consumível,Exótico,consumir,"consome {""unidades"": 1} · ações daMagia · 1x/total",conjura Purgatório,,0,,canonico
+item-pergaminho-refugio-dos-perdidos,Pergaminho — Refúgio dos Perdidos,Consumível,Exótico,consumir,"consome {""unidades"": 1} · ações daMagia · 1x/total",conjura Refúgio dos Perdidos,,0,,canonico
+item-pergaminho-reversao-umbral,Pergaminho — Reversão Umbral,Consumível,Exótico,consumir,"consome {""unidades"": 1} · ações daMagia · 1x/total",conjura Reversão Umbral,,0,,canonico
+item-pergaminho-ruido-anti-magia,Pergaminho — Ruído Anti-Magia,Consumível,Exótico,consumir,"consome {""unidades"": 1} · ações daMagia · 1x/total",conjura Ruído Anti-Magia,,0,,canonico
+item-pergaminho-sinapsia-coletiva,Pergaminho — Sinapsia Coletiva,Consumível,Exótico,consumir,"consome {""unidades"": 1} · ações daMagia · 1x/total",conjura Sinapsia Coletiva,,0,,canonico
+item-pergaminho-transferir-condicao,Pergaminho — Transferir Condição,Consumível,Exótico,consumir,"consome {""unidades"": 1} · ações daMagia · 1x/total",conjura Transferir Condição,,0,,canonico
+item-pergaminho-xadrez,Pergaminho — Xadrez,Consumível,Exótico,consumir,"consome {""unidades"": 1} · ações daMagia · 1x/total",conjura Xadrez,,0,,canonico
+item-pocao-de-cura-moderada,Poção de Cura Moderada,Consumível,Incomum,consumir,"consome {""unidades"": 1}",saude.atual +3d6+mod.INT (para quemRecebe),,1,,canonico
+item-pocao-de-vigor-maior,Poção de Vigor Maior,Consumível,Exótico,consumir,"consome {""unidades"": 1}",stamina.atual +3d8 (para quemRecebe),,1,,canonico
+item-po-explosivo,Pó Explosivo,Consumível,Incomum,consumir,"consome {""unidades"": 1}",,[alvo] 3m de área | [alvo] 3d6 Fogo | [alvo] Pode ser usado como armadilha,0,,canonico
+item-sangue-falso,Sangue Falso,Consumível,Ordinário,consumir,"consome {""unidades"": 1}",,[utilidade] Finge morte de forma convincente | [utilidade] Medicina CD 18 para perceber a farsa,0,,canonico
+item-sonifero,Sonífero,Consumível,Incomum,consumir,"consome {""unidades"": 1}",,[alvo] Vontade ou Adormecido por 1h,0,,canonico
+item-soro-da-verdade,Soro da Verdade,Consumível,Exótico,consumir,"consome {""unidades"": 1}",,[alvo] Vontade ou não consegue mentir por 10 min,0,,canonico
+item-tintura-fantasma,Tintura Fantasma,Consumível,Exótico,consumir,"consome {""unidades"": 1}",pericia.furtividade +4 (1 min; para quemRecebe),,1,,canonico
+item-toxina-mental,Toxina Mental,Consumível,Exótico,consumir,"consome {""unidades"": 1}",,[alvo] Vontade ou Confuso por 1 min,0,,canonico
+item-veneno-hemorragico,Veneno Hemorrágico,Consumível,Exótico,consumir,"consome {""unidades"": 1}",ataque.danoExtra +1d6 biologico (3 ataque(s); para quemRecebe),[alvo] Alvo recebe Sangramento 3 no terceiro ataque,1,,decisao
+item-veneno-padrao,Veneno Padrão,Consumível,Incomum,consumir,"consome {""unidades"": 1}",ataque.danoExtra +1d6 veneno (3 ataque(s); para quemRecebe),[alvo] Fort ou Envenenado,1,,canonico
+item-veneno-paralisante,Veneno Paralisante,Consumível,Exótico,consumir,"consome {""unidades"": 1}",,[alvo] Fort ou Paralisado por 2 rodadas,0,,canonico
+item-acido-dimensional,Ácido Dimensional,Consumível,Exótico,consumir,"consome {""unidades"": 1}",,[alvo] Corrói barreiras mágicas | [alvo] Anula 1 barreira de magia,0,,canonico
+item-oleo-corrosivo,Óleo Corrosivo,Consumível,Incomum,consumir,"consome {""unidades"": 1}",ataque.ignoraAr +3 (3 ataque(s); para quemRecebe),,1,,canonico
+item-oleo-do-cacador,Óleo do Caçador,Consumível,Exótico,consumir,"consome {""unidades"": 1}",ataque.bonusAtacar +2 (1 h; se: contra 1 criatura escolhida; para quemRecebe) | ataque.danoExtra +2d6 (1 h; se: contra 1 criatura escolhida; para quemRecebe),,2,,decisao
+item-escudo-espelhado,Escudo Espelhado,Escudo,Exótico,equipar,slot escudo,pericia.defender +3 (se: reacaoDefender) | movimento -1.5,,2,,canonico
+item-escudo-espelhado,Escudo Espelhado,Escudo,Exótico,usar,requer equipar · 1x/combate,,[regra] 1x por combate: reflete um projétil mágico de volta,0,,canonico
+item-escudo-runico,Escudo Rúnico,Escudo,Exótico,equipar,slot escudo,pericia.defender +3 (se: reacaoDefender) | movimento -1.5,,2,,canonico
+item-escudo-runico,Escudo Rúnico,Escudo,Exótico,usar,requer equipar · 1x/combate,,[regra] 1x por combate: absorve completamente 1 magia,0,,canonico
+item-escudo-runico-de-guerra,Escudo Rúnico de Guerra,Escudo,Exótico,equipar,slot escudo,pericia.defender +3 (se: reacaoDefender) | ar +2 | movimento -1.5,,3,,canonico
+item-adaga-espelhada,Adaga Espelhada,Item Mágico,Exótico,sintonizar,,,"[alvo] Quando você causa dano crítico, repete metade do dano (arredondado para baixo) a um inimigo adjacente ao alvo",0,,canonico
+item-amuleto-de-retorno,Amuleto de Retorno,Item Mágico,Exótico,sintonizar,,,,0,,canonico
+item-amuleto-de-retorno,Amuleto de Retorno,Item Mágico,Exótico,usar,requer sintonizar · 1x/longo,,[regra] 1x por descanso longo: teleporta para um ponto definido previamente em até 10 km,0,,canonico
+item-anel-de-protecao-elemental,Anel de Proteção Elemental,Item Mágico,Exótico,sintonizar,,ae.elemental +4,,1,,canonico
+item-anel-do-esgrimista,Anel do Esgrimista,Item Mágico,Exótico,sintonizar,"requisito {""arma"": ""leve"", ""status"": ""aprovado"", ""fonte"": ""PD25""}",,"[alvo] Ao acertar um alvo com 3 ou mais acúmulos de Sangramento, você pode consumir todos os acúmulos de uma só vez como ação livre",0,,aprovado
+item-anel-do-ultimo-suspiro,Anel do Último Suspiro,Item Mágico,Exótico,sintonizar,,,,0,,decisao
+item-anel-do-ultimo-suspiro,Anel do Último Suspiro,Item Mágico,Exótico,usar,requer sintonizar · 1x/longo,saude.atual = 1 (quando: ao cair a 0 de Saúde (em vez de Morrendo)),,1,,decisao
+item-botas-de-escalada,Botas de Escalada,Item Mágico,Exótico,sintonizar,,pericia.movimento vantagem (se: para escalar),,1,,decisao
+item-botas-do-silencio,Botas do Silêncio,Item Mágico,Exótico,sintonizar,,pericia.furtividade +4,[regra] Passos completamente silenciosos,1,,canonico
+item-botas-do-vento,Botas do Vento,Item Mágico,Exótico,sintonizar,,movimento +3,[regra] Não ativa Terreno Difícil,1,,canonico
+item-bracelete-do-escudo,Bracelete do Escudo,Item Mágico,Exótico,sintonizar,,,,0,,canonico
+item-bracelete-do-escudo,Bracelete do Escudo,Item Mágico,Exótico,usar,requer sintonizar · ações 0 · 1x/longo,evasao.passiva +5 (1 rodada),,1,,canonico
+item-capa-de-deslocamento,Capa de Deslocamento,Item Mágico,Exótico,sintonizar,,,,0,,canonico
+item-capa-de-deslocamento,Capa de Deslocamento,Item Mágico,Exótico,usar,requer sintonizar · 1x/longo,,[regra] 1x por descanso longo: um ataque contra você erra automaticamente,0,,canonico
+item-capa-do-salto,Capa do Salto,Item Mágico,Exótico,sintonizar,,salto × 3,,1,,decisao
+item-capa-do-salto,Capa do Salto,Item Mágico,Exótico,usar,requer sintonizar · 1x/longo,,[regra] 1x por descanso longo: cai de qualquer altura sem dano e em pé,0,,decisao
+item-cinto-da-vitalidade,Cinto da Vitalidade,Item Mágico,Exótico,sintonizar,,saude.max +10,,1,,canonico
+item-cinturao-do-colosso,Cinturão do Colosso,Item Mágico,Exótico,sintonizar,,atributo.FOR +2 | tamanho +1 (se: para manobras),,2,,decisao
+item-colar-da-sanguessuga,Colar da Sanguessuga,Item Mágico,Exótico,sintonizar,,saude.atual +1 (quando: ao causar dano corpo a corpo),,1,,decisao
+item-corrente-da-alma,Corrente da Alma,Item Mágico,Exótico,sintonizar,,eter.atual +1d4 (quando: ao derrubar um inimigo),,1,,decisao
+item-calice-da-partilha,Cálice da Partilha,Item Mágico,Exótico,sintonizar,,saude.atual +curaRecebida/2 (quando: quando você se cura; para aliados),,1,,decisao
+item-elmo-da-clareza,Elmo da Clareza,Item Mágico,Exótico,sintonizar,,imunidade.condicao.confuso = True | imunidade.condicao.desorientado = True,,2,,canonico
+item-estandarte-de-bolso,Estandarte de Bolso,Item Mágico,Exótico,sintonizar,,pericia.fortitude +1 (enquanto portadorNaoCaido; para aliados) | pericia.reflexos +1 (enquanto portadorNaoCaido; para aliados) | pericia.vontade +1 (enquanto portadorNaoCaido; para aliados),,3,,decisao
+item-luvas-da-chama,Luvas da Chama,Item Mágico,Exótico,sintonizar,,desarmado.danoExtra +1d4 fogo,,1,,decisao
+item-luvas-do-artesao,Luvas do Artesão,Bugiganga,Exótico,carregar,,pericia.oficio-engenharia +2,,1,,canonico
+item-manopla-trovejante,Manopla Trovejante,Item Mágico,Exótico,sintonizar,,,,0,,decisao
+item-manopla-trovejante,Manopla Trovejante,Item Mágico,Exótico,usar,requer sintonizar · 1x/longo,ataque.danoExtra +2d6 trovejante (1 ataque(s); se: próximo ataque corpo a corpo),[alvo] Empurra o alvo 3 m (Fortitude resiste),1,,decisao
+item-manopla-do-trovao,Manopla do Trovão,Item Mágico,Exótico,sintonizar,,,[alvo] Fort ou Caído,0,,canonico
+item-manopla-do-trovao,Manopla do Trovão,Item Mágico,Exótico,usar,requer sintonizar · 1x/curto,,[alvo] 1x por descanso curto: empurrão mágico 6m,0,,canonico
+item-manto-do-espinho,Manto do Espinho,Item Mágico,Exótico,sintonizar,,,[alvo] Atacantes corpo a corpo recebem 1d4 Perfurante,0,,canonico
+item-mascara-dos-mil-rostos,Máscara dos Mil Rostos,Item Mágico,Exótico,sintonizar,,,,0,,decisao
+item-mascara-dos-mil-rostos,Máscara dos Mil Rostos,Item Mágico,Exótico,usar,requer sintonizar · 1x/longo,conjura Disfarce Ilusório,,0,,decisao
+item-olho-do-tirano,Olho do Tirano,Item Mágico,Exótico,sintonizar,,,,0,,decisao
+item-olho-do-tirano,Olho do Tirano,Item Mágico,Exótico,usar,requer sintonizar · 1x/longo,ataque.danoMaximo = True (1 ataque(s); quando: ao reduzir um inimigo a 0 de Saúde),,1,,decisao
+item-talisma-da-seiva,Talismã da Seiva,Item Mágico,Exótico,sintonizar,"requisito {""marcaVhelorMin"": 2, ""status"": ""aprovado"", ""fonte"": ""PD26a""}",regeneracao.saude +2 | imunidade.condicao.sangramento = True,,2,,canonico
+item-talisma-da-vontade,Talismã da Vontade,Item Mágico,Exótico,sintonizar,,pericia.vontade +2 | resistirCondicao.enfeiticado vantagem,,2,,decisao
+item-oculos-do-investigador,Óculos do Investigador,Item Mágico,Exótico,sintonizar,,pericia.investigacao +4 | sentido.verIlusoesSimples = True,,2,,decisao
+item-couro-bestial,Couro Bestial,Material,Exótico,—,sem efeito: material,,,,,canonico
+item-liga-runica,Liga Rúnica,Material,Exótico,—,sem efeito: material,,,,,canonico
+item-madeira-mistica,Madeira Mística,Material,Exótico,—,sem efeito: material,,,,,canonico
+item-mecanismo-arcano,Mecanismo Arcano,Material,Exótico,—,sem efeito: material,,,,,canonico
+item-trama-eterea,Trama Etérea,Material,Exótico,—,sem efeito: material,,,,,canonico
+item-arremessos-do-veu,Arremessos do Véu,Munição,Exótico,consumir,"consome {""unidades"": 1, ""por"": ""cena de combate""}",ataque.ignoraAr = todo,,1,,canonico
+item-conjunto-explosivo,Conjunto Explosivo,Munição,Exótico,consumir,"consome {""unidades"": 1, ""por"": ""cena de combate""}",ataque.danoExtra +1d6 fogo,,1,,decisao
+item-flechas-da-praga,Flechas da Praga,Munição,Exótico,consumir,"consome {""unidades"": 1, ""por"": ""cena de combate""}",ataque.danoExtra +1d6 necrotico,[alvo] Reduz cura do alvo pela metade por 1 rodada,1,,canonico
+item-flechas-de-nafta,Flechas de Nafta,Munição,Exótico,consumir,"consome {""unidades"": 1, ""por"": ""cena de combate""}",ataque.danoExtra +1d6 fogo,"[alvo] Crítico: Em Chamas + área 1,5m fica Em Chamas",1,,canonico
+item-municao-fragmentadora,Munição Fragmentadora,Munição,Exótico,consumir,"consome {""unidades"": 1, ""por"": ""cena de combate""}",ataque.danoExtra +1d12 cortante,"[alvo] No acerto, estilhaça: 1d6 Cortante a alvos em até 1,5 m do alvo principal",1,,canonico
+item-municao-de-kali,Munição de Kali,Munição,Exótico,consumir,"consome {""unidades"": 1, ""por"": ""cena de combate""}",ataque.danoExtra +1d12 radiante | ataque.danoMaximo = True (no crítico),,2,,decisao
+item-virotes-de-casca-seiva,Virotes de Casca-Seiva,Munição,Exótico,consumir,"consome {""unidades"": 1, ""por"": ""cena de combate""}",ataque.danoExtra +1d6 veneno,[alvo] Crítico: Fortitude ou Paralisado 1 rodada,1,,canonico
+item-virotes-do-relampago,Virotes do Relâmpago,Munição,Exótico,consumir,"consome {""unidades"": 1, ""por"": ""cena de combate""}",ataque.danoExtra +1d6 eletrico,"[alvo] O dano elétrico adicional salta para alvos adjacentes em 1,5 m",1,,canonico
+item-arma-arremesso-3,Arma Arremesso +3,Arma,Luxária,equipar,slot arma,arma 4d8 perfurante (DES) Atacar(1),,0,,canonico
+item-arma-distancia-pesada-3,Arma Distância Pesada +3,Arma,Luxária,equipar,slot arma,arma 4d12 perfurante (DES) Atacar(2),,0,,canonico
+item-arma-distancia-simples-3,Arma Distância Simples +3,Arma,Luxária,equipar,slot arma,arma 4d6 perfurante (DES) Atacar(1),,0,,canonico
+item-arma-leve-contundente-3,Arma Leve Contundente +3,Arma,Luxária,equipar,slot arma,arma 4d6 contundente (DES) Atacar(1),,0,,canonico
+item-arma-leve-cortante-3,Arma Leve Cortante +3,Arma,Luxária,equipar,slot arma,arma 4d6 cortante (DES) Atacar(1),,0,,canonico
+item-arma-leve-perfurante-3,Arma Leve Perfurante +3,Arma,Luxária,equipar,slot arma,arma 4d6 perfurante (DES) Atacar(1),,0,,canonico
+item-arma-leve-agil-3,Arma Leve Ágil +3,Arma,Luxária,equipar,slot arma,arma 4d8 cortante/perfurante/contundente (DES) Atacar(1),,0,,canonico
+item-arma-marcial-longa-3,Arma Marcial Longa +3,Arma,Luxária,equipar,slot arma,arma 5d10 perfurante (FOR) Atacar(2),,0,,canonico
+item-arma-marcial-pesada-3,Arma Marcial Pesada +3,Arma,Luxária,equipar,slot arma,arma 5d10 contundente (FOR) Atacar(2),,0,,canonico
+item-arma-marcial-precisa-3,Arma Marcial Precisa +3,Arma,Luxária,equipar,slot arma,arma 4d8 cortante (DES) Atacar(1),,0,,canonico
+item-arma-marcial-versatil-3,Arma Marcial Versátil +3,Arma,Luxária,equipar,slot arma,arma 4d8 cortante/perfurante/contundente (DES) Atacar(1),,0,,canonico
+item-arma-pesada-brutal-3,Arma Pesada Brutal +3,Arma,Luxária,equipar,slot arma,arma 5d12 cortante/perfurante/contundente (FOR) Atacar(3),,0,,canonico
+item-arma-pesada-contundente-3,Arma Pesada Contundente +3,Arma,Luxária,equipar,slot arma,arma 4d12 contundente (FOR) Atacar(2),,0,,canonico
+item-arma-pesada-cortante-3,Arma Pesada Cortante +3,Arma,Luxária,equipar,slot arma,arma 4d12 cortante (FOR) Atacar(2),,0,,canonico
+item-arma-pesada-perfurante-3,Arma Pesada Perfurante +3,Arma,Luxária,equipar,slot arma,arma 4d12 perfurante (FOR) Atacar(2),,0,,canonico
+item-cajado-do-vilao,Cajado do Vilão,Arma,Luxária,equipar,slot arma (foco),pericia.mistico +3 | eter.max +15,,2,,decisao
+item-cajado-do-vilao,Cajado do Vilão,Arma,Luxária,usar,requer equipar · 1x/longo,conjura Destruição,,0,,decisao
+item-foco-primordial,Foco Primordial,Arma,Luxária,equipar,slot arma (foco),pericia.mistico +3 | eter.max +15,,2,,canonico
+item-foco-de-abjuracao-3,Foco de Abjuração +3,Arma,Luxária,equipar,slot arma (foco),pericia.mistico +3 | eter.max +15,,2,,canonico
+item-foco-de-alteracao-3,Foco de Alteração +3,Arma,Luxária,equipar,slot arma (foco),pericia.mistico +3 | eter.max +15,,2,,canonico
+item-foco-de-conhecimento-3,Foco de Conhecimento +3,Arma,Luxária,equipar,slot arma (foco),pericia.mistico +3 | eter.max +15,,2,,canonico
+item-foco-de-destruicao-3,Foco de Destruição +3,Arma,Luxária,equipar,slot arma (foco),pericia.mistico +3 | eter.max +15,,2,,canonico
+item-foco-do-demiurgo,Foco do Demiurgo,Arma,Luxária,equipar,slot arma (foco),pericia.mistico +3 | eter.max +15,,2,,decisao
+item-foco-do-demiurgo,Foco do Demiurgo,Arma,Luxária,usar,requer equipar · ações 1 · 3x/longo,conjura Plasmar Terreno,,0,,decisao
+item-foco-do-inquebravel,Foco do Inquebrável,Arma,Luxária,equipar,slot arma (foco),pericia.mistico +3 | eter.max +15,,2,,decisao
+item-foco-do-inquebravel,Foco do Inquebrável,Arma,Luxária,usar,requer equipar · ações reacao · 1x/longo,saude.atual +2d10+mod.CON | stamina.atual +2d8+mod.DES | eter.atual +2d6+mod.INT|SAB,"[regra] Se quiser, teletransporta-se a até 9 m",3,,decisao
+item-foco-do-oraculo,Foco do Oráculo,Arma,Luxária,equipar,slot arma (foco),pericia.mistico +3 | eter.max +15,,2,,canonico
+item-foco-do-oraculo,Foco do Oráculo,Arma,Luxária,usar,requer equipar · 1x/longo,,"[utilidade] 1x por descanso longo: faça uma pergunta ao Mestre sobre o futuro próximo; a resposta é vaga, mas verdadeira",0,,canonico
+item-grilhoes-de-osh-kar,Grilhões de Osh'Kar,Arma,Luxária,equipar,slot arma,arma 5d10 perfurante (FOR) Atacar(2) +2d8 primordial,,0,,canonico
+item-grilhoes-de-osh-kar,Grilhões de Osh'Kar,Arma,Luxária,usar,requer equipar · 1x/longo,,"[utilidade] Habilidade: 1x por descanso longo, converse com o espírito de uma criatura morta há menos de 1 dia",0,,canonico
+item-lamina-eterea,Lâmina Etérea,Arma,Luxária,equipar,slot arma,arma 4d6 cortante (DES) Atacar(1) +1d8 primordial,,0,,canonico
+item-lamina-eterea,Lâmina Etérea,Arma,Luxária,usar,requer equipar · ações 1 · 3x/longo,,"[regra] Como 1 ação, teletransporte-se em até 9 m, 3x/Descanso Longo",0,,canonico
+item-lamina-de-vytalia,Lâmina de Vytália,Arma,Luxária,equipar,slot arma,arma 4d8 cortante (DES) Atacar(1) +1d8 primordial | saude.atual +2d8 (no crítico) | stamina.atual +2d8 (no crítico),,2,,decisao
+item-martelo-de-mundarak,Martelo de Mundarak,Arma,Luxária,equipar,slot arma,arma 5d12 cortante/perfurante/contundente (FOR) Atacar(3) +2d8 trovejante | ataque.danoExtra +3d6 forca (no crítico),[alvo] Crítico: Fortitude ou Paralisado até suceder no teste no fim do turno do alvo,1,,decisao
+item-veu-de-veluria,Véu de Velúria,Arma,Luxária,equipar,slot arma (foco),pericia.mistico +3 | eter.max +15,,2,,decisao
+item-veu-de-veluria,Véu de Velúria,Arma,Luxária,usar,requer equipar · 1x/longo,conjura uma magia Primordial,,0,,decisao
+item-anel-do-baluarte,Anel do Baluarte,Armadura,Luxária,equipar,slot armaduraLeve,ae.todos +3,,1,,canonico
+item-armadura-primordial,Armadura Primordial,Armadura,Luxária,equipar,slot armaduraPesada,"ar +7 | movimento -3 | pericia.furtividade -2 | imunidade escolha {""n"": 1, ""de"": [""cortante"", ""contundente"", ""perfurante"", ""fogo"", ""frio"", ""eletrico"", ""veneno"", ""acido"", ""psiquico"", ""radiante"", ""trovejante"", ""necrotico""], ""momento"": ""ao vestir""}",,4,,decisao
+item-armadura-da-grande-arvore,Armadura da Grande Árvore,Armadura,Luxária,equipar,slot armaduraPesada,ar +7 | regeneracao.saude +2 | imunidade.veneno = True | vulnerabilidade.fogo = True | movimento -1.5,,5,,canonico
+item-armadura-do-imperador,Armadura do Imperador,Armadura,Luxária,equipar,slot armaduraPesada,"ar +8 | movimento -3 | pericia.furtividade -2 | pericia.reflexos -1 | resistencia escolha {""n"": 2, ""de"": ""todosOsTipos""}",,5,,decisao
+item-armadura-do-imperador,Armadura do Imperador,Armadura,Luxária,usar,requer equipar · 1x/longo,resistencia = True (1 rodada),,1,,decisao
+item-carapaca-do-vazio,Carapaça do Vazio,Armadura,Luxária,equipar,slot armaduraPesada,ar +7 | imunidade.necrotico = True | imunidade.psiquico = True | imunidade.condicao.amedrontado = True | vulnerabilidade.radiante = True | movimento -3,,6,,canonico
+item-coroa-da-clarividencia,Coroa da Clarividência,Armadura,Luxária,equipar,slot armaduraLeve,ae.psiquico +10 | sentido.verInvisivel máx 9,,2,,decisao
+item-egide-dos-elementos,Égide dos Elementos,Armadura,Luxária,equipar,slot armaduraPesada,ar +7 | imunidade.fogo = True | imunidade.frio = True | imunidade.eletrico = True | vulnerabilidade.primordial = True | movimento -3,,6,,canonico
+item-automato-de-bolso,Autômato de Bolso,Bugiganga,Luxária,—,sem efeito: utilitario,,,,,canonico
+item-bolsa-dimensional,Bolsa Dimensional,Bugiganga,Luxária,carregar,,recipiente.bugigangas = 50 | acao.sacarItem = 0,[regra] Itens vivos não podem entrar,2,,decisao
+item-bussola-do-desejo,Bússola do Desejo,Bugiganga,Luxária,—,sem efeito: utilitario,,,,,canonico
+item-cronometro-estagnante,Cronômetro Estagnante,Bugiganga,Luxária,usar,1x/longo,,"[alvo] 1x por descanso longo: congela o tempo de um alvo a 9 m por 1 rodada (Vontade resiste) | [alvo] O alvo fica imaterial: não pode agir, ser movido, nem ser afetado por nada",0,,canonico
+item-capsula-de-reanimacao,Cápsula de Reanimação,Bugiganga,Luxária,consumir,"consome {""cargas"": 3} · ações 1",,"[alvo] Com 1 ação, revive uma criatura que morreu na última rodada com 25% da Saúde máxima",0,,canonico
+item-kit-de-mestre-artifice,Kit de Mestre-Artífice,Bugiganga,Luxária,carregar,,pericia.oficio-engenharia +4,"[regra] Ao fabricar qualquer item com Ofício(Engenharia) você rola um d20; se o resultado for 20, você fabrica 1 cópia adicional do item",1,,canonico
+item-nucleo-de-sobrecarga,Núcleo de Sobrecarga,Bugiganga,Luxária,consumir,"consome {""cargas"": 3} · ações 3",,"[alvo] Com 3 ações, sobrecarregue um alvo com este núcleo | [alvo] Durante o próximo turno dele, o alvo causa dano máximo em todos os dados de dano | [alvo] Após o efeito, o alvo ganha Exaustão 1",0,,canonico
+item-coracao-bestial,Coração Bestial,Consumível,Luxária,consumir,"consome {""unidades"": 1} · 1x/total","atributo escolha {""de"": [""FOR"", ""CON""], ""n"": 1, ""valor"": 2} (para quemRecebe) | eter.max +-(2d6+2) (para quemRecebe)",,2,,decisao
+item-cristal-da-ressurreicao,Cristal da Ressurreição,Consumível,Luxária,consumir,"consome {""unidades"": 1} · 1x/total",saude.atual = 1 (para quemRecebe),"[regra] Uma criatura só pode ser ressuscitada uma vez — depois disso, nenhum revive funciona nela",1,,decisao
+item-elixir-da-perfeicao,Elixir da Perfeição,Consumível,Luxária,consumir,"consome {""unidades"": 1}",atributo.FOR +2 (10 min; para quemRecebe) | atributo.DES +2 (10 min; para quemRecebe) | atributo.CON +2 (10 min; para quemRecebe) | atributo.INT +2 (10 min; para quemRecebe) | atributo.SAB +2 (10 min; para quemRecebe),,5,,canonico
+item-elixir-de-restauracao,Elixir de Restauração,Consumível,Exótico,consumir,"consome {""unidades"": 1}","remove cego,surdo,paralisado,atordoado",,0,,canonico
+item-estilhaco-do-cataclismo,Estilhaço do Cataclismo,Consumível,Luxária,consumir,"consome {""unidades"": 1} · 1x/total",,"[alvo] Arremesso 9m | [alvo] 5d6 Fogo + 2d6 Trovejante em área de 4,5m | [alvo] Reflexos para metade",0,,canonico
+item-folha-amarela,Folha Amarela,Consumível,Luxária,consumir,"consome {""unidades"": 1}","atributo escolha {""de"": ""todos"", ""n"": 1, ""valor"": 1} (para quemRecebe) | marcaVhelor +1 (para quemRecebe)",,2,,aprovado
+item-mutagenico-maior,Mutagênico Maior,Consumível,Luxária,consumir,"consome {""unidades"": 1}","atributo escolha {""bonus"": {""n"": 1, ""valor"": 6}, ""penalidade"": {""n"": 2, ""valor"": -2}, ""distintos"": true} (1 h; para quemRecebe)",,1,,decisao
+item-pergaminho-acme,Pergaminho — Acme,Consumível,Luxária,consumir,"consome {""unidades"": 1} · ações daMagia · 1x/total",conjura Acme,,0,,canonico
+item-pergaminho-apoteose-genetica,Pergaminho — Apoteose Genética,Consumível,Luxária,consumir,"consome {""unidades"": 1} · ações daMagia · 1x/total",conjura Apoteose Genética,,0,,canonico
+item-pergaminho-aprendiz-caotico,Pergaminho — Aprendiz Caótico,Consumível,Luxária,consumir,"consome {""unidades"": 1} · ações daMagia · 1x/total",conjura Aprendiz Caótico,,0,,canonico
+item-pergaminho-armadura-de-kha,Pergaminho — Armadura de Kha,Consumível,Luxária,consumir,"consome {""unidades"": 1} · ações daMagia · 1x/total",conjura Armadura de Kha,,0,,canonico
+item-pergaminho-cometa-do-martir,Pergaminho — Cometa do Mártir,Consumível,Luxária,consumir,"consome {""unidades"": 1} · ações daMagia · 1x/total",conjura Cometa do Mártir,,0,,canonico
+item-pergaminho-dadiva-de-kha,Pergaminho — Dádiva de Kha,Consumível,Luxária,consumir,"consome {""unidades"": 1} · ações daMagia · 1x/total",conjura Dádiva de Kha,,0,,canonico
+item-pergaminho-eco-do-apocalipse,Pergaminho — Eco do Apocalipse,Consumível,Luxária,consumir,"consome {""unidades"": 1} · ações daMagia · 1x/total",conjura Eco do Apocalipse,,0,,canonico
+item-pergaminho-exilio-existencial,Pergaminho — Exílio Existencial,Consumível,Luxária,consumir,"consome {""unidades"": 1} · ações daMagia · 1x/total",conjura Exílio Existencial,,0,,canonico
+item-pergaminho-fissura-da-alma,Pergaminho — Fissura da Alma,Consumível,Luxária,consumir,"consome {""unidades"": 1} · ações daMagia · 1x/total",conjura Fissura da Alma,,0,,canonico
+item-pergaminho-fusao-de-corpos,Pergaminho — Fusão de Corpos,Consumível,Luxária,consumir,"consome {""unidades"": 1} · ações daMagia · 1x/total",conjura Fusão de Corpos,,0,,canonico
+item-pergaminho-julgamento-de-kha,Pergaminho — Julgamento de Kha,Consumível,Luxária,consumir,"consome {""unidades"": 1} · ações daMagia · 1x/total",conjura Julgamento de Kha,,0,,canonico
+item-pergaminho-necropsia-primordial,Pergaminho — Necropsia Primordial,Consumível,Luxária,consumir,"consome {""unidades"": 1} · ações daMagia · 1x/total",conjura Necropsia Primordial,,0,,canonico
+item-pergaminho-olhos-de-malkhor,Pergaminho — Olhos de Malkhor,Consumível,Luxária,consumir,"consome {""unidades"": 1} · ações daMagia · 1x/total",conjura Olhos de Malkhor,,0,,canonico
+item-pergaminho-pestilencia-primordial,Pergaminho — Pestilência Primordial,Consumível,Luxária,consumir,"consome {""unidades"": 1} · ações daMagia · 1x/total",conjura Pestilência Primordial,,0,,canonico
+item-pergaminho-possessao-carnal,Pergaminho — Possessão Carnal,Consumível,Luxária,consumir,"consome {""unidades"": 1} · ações daMagia · 1x/total",conjura Possessão Carnal,,0,,canonico
+item-pergaminho-reversao-primordial,Pergaminho — Reversão Primordial,Consumível,Luxária,consumir,"consome {""unidades"": 1} · ações daMagia · 1x/total",conjura Reversão Primordial,,0,,canonico
+item-pergaminho-selo-do-oblivio,Pergaminho — Selo do Oblívio,Consumível,Luxária,consumir,"consome {""unidades"": 1} · ações daMagia · 1x/total",conjura Selo do Oblívio,,0,,canonico
+item-pergaminho-tecido-de-vytalia,Pergaminho — Tecido de Vytália,Consumível,Luxária,consumir,"consome {""unidades"": 1} · ações daMagia · 1x/total",conjura Tecido de Vytália,,0,,canonico
+item-pergaminho-tempestade-primordial,Pergaminho — Tempestade Primordial,Consumível,Luxária,consumir,"consome {""unidades"": 1} · ações daMagia · 1x/total",conjura Tempestade Primordial,,0,,canonico
+item-pergaminho-vytalia,Pergaminho — Vytália,Consumível,Luxária,consumir,"consome {""unidades"": 1} · ações daMagia · 1x/total",conjura Vytália,,0,,canonico
+item-pergaminho-fagulha,Pergaminho — Fagulha,Consumível,Lixo,consumir,"consome {""unidades"": 1} · ações daMagia · 1x/total",conjura Fagulha,,0,,canonico
+item-pergaminho-centelha,Pergaminho — Centelha,Consumível,Lixo,consumir,"consome {""unidades"": 1} · ações daMagia · 1x/total",conjura Centelha,,0,,canonico
+item-pergaminho-rajada-prismatica,Pergaminho — Rajada Prismática,Consumível,Lixo,consumir,"consome {""unidades"": 1} · ações daMagia · 1x/total",conjura Rajada Prismática,,0,,canonico
+item-pergaminho-toque-caustico,Pergaminho — Toque Cáustico,Consumível,Lixo,consumir,"consome {""unidades"": 1} · ações daMagia · 1x/total",conjura Toque Cáustico,,0,,canonico
+item-pergaminho-presas-de-gelo,Pergaminho — Presas de Gelo,Consumível,Lixo,consumir,"consome {""unidades"": 1} · ações daMagia · 1x/total",conjura Presas de Gelo,,0,,canonico
+item-pergaminho-verniz-do-eter,Pergaminho — Verniz do Éter,Consumível,Lixo,consumir,"consome {""unidades"": 1} · ações daMagia · 1x/total",conjura Verniz do Éter,,0,,canonico
+item-pergaminho-pressagio,Pergaminho — Presságio,Consumível,Lixo,consumir,"consome {""unidades"": 1} · ações daMagia · 1x/total",conjura Presságio,,0,,canonico
+item-pergaminho-anteparo-eterico,Pergaminho — Anteparo Etérico,Consumível,Lixo,consumir,"consome {""unidades"": 1} · ações daMagia · 1x/total",conjura Anteparo Etérico,,0,,canonico
+item-pergaminho-rescaldo,Pergaminho — Rescaldo,Consumível,Lixo,consumir,"consome {""unidades"": 1} · ações daMagia · 1x/total",conjura Rescaldo,,0,,canonico
+item-pergaminho-vinculo-cosmico,Pergaminho — Vínculo Cósmico,Consumível,Lixo,consumir,"consome {""unidades"": 1} · ações daMagia · 1x/total",conjura Vínculo Cósmico,,0,,canonico
+item-pergaminho-dedo-mistico,Pergaminho — Dedo Místico,Consumível,Lixo,consumir,"consome {""unidades"": 1} · ações daMagia · 1x/total",conjura Dedo Místico,,0,,canonico
+item-pergaminho-labia,Pergaminho — Lábia,Consumível,Lixo,consumir,"consome {""unidades"": 1} · ações daMagia · 1x/total",conjura Lábia,,0,,canonico
+item-pergaminho-lastro,Pergaminho — Lastro,Consumível,Lixo,consumir,"consome {""unidades"": 1} · ações daMagia · 1x/total",conjura Lastro,,0,,canonico
+item-pergaminho-tempera,Pergaminho — Têmpera,Consumível,Lixo,consumir,"consome {""unidades"": 1} · ações daMagia · 1x/total",conjura Têmpera,,0,,canonico
+item-pergaminho-rosto-emprestado,Pergaminho — Rosto Emprestado,Consumível,Lixo,consumir,"consome {""unidades"": 1} · ações daMagia · 1x/total",conjura Rosto Emprestado,,0,,canonico
+item-pergaminho-farejar-elemento,Pergaminho — Farejar Elemento,Consumível,Lixo,consumir,"consome {""unidades"": 1} · ações daMagia · 1x/total",conjura Farejar Elemento,,0,,canonico
+item-pergaminho-ponto-cego,Pergaminho — Ponto Cego,Consumível,Lixo,consumir,"consome {""unidades"": 1} · ações daMagia · 1x/total",conjura Ponto Cego,,0,,canonico
+item-pergaminho-sina,Pergaminho — Sina,Consumível,Lixo,consumir,"consome {""unidades"": 1} · ações daMagia · 1x/total",conjura Sina,,0,,canonico
+item-pergaminho-vislumbre,Pergaminho — Vislumbre,Consumível,Lixo,consumir,"consome {""unidades"": 1} · ações daMagia · 1x/total",conjura Vislumbre,,0,,canonico
+item-pergaminho-presciencia,Pergaminho — Presciência,Consumível,Lixo,consumir,"consome {""unidades"": 1} · ações daMagia · 1x/total",conjura Presciência,,0,,canonico
+item-pocao-de-cura-maior,Poção de Cura Maior,Consumível,Exótico,consumir,"consome {""unidades"": 1}",saude.atual +5d8+mod.INT (para quemRecebe),,1,,canonico
+item-sangue-do-dragao,Sangue do Dragão,Consumível,Luxária,consumir,"consome {""unidades"": 1}",resistencia.fogo = True (1 h; para quemRecebe) | resistencia.frio = True (1 h; para quemRecebe) | resistencia.eletrico = True (1 h; para quemRecebe),[alvo] Ataque de Sopro 4d6,3,,decisao
+item-semente-da-vhelor,Semente da Vhelor,Consumível,Luxária,consumir,"consome {""unidades"": 1}","atributo escolha {""de"": ""todos"", ""n"": 1, ""valor"": 1} (para quemRecebe)",[regra] Consumi-la instantaneamente te transforma em um ser pecaminoso,1,,aprovado
+item-soro-da-guerra,Soro da Guerra,Consumível,Luxária,consumir,"consome {""unidades"": 1}",pericia.atacar +2 (1 min; para quemRecebe) | pericia.defender +2 (1 min; para quemRecebe) | ataque.danoExtra +2d6 (1 min; para quemRecebe) | movimento +3 (1 min; para quemRecebe) | pericia.fortitude vantagem (1 min; para quemRecebe),,5,,decisao
+item-toxina-do-esquecimento,Toxina do Esquecimento,Consumível,Luxária,consumir,"consome {""unidades"": 1}",,[alvo] Vontade ou a criatura esquece os últimos 10 minutos e fica Confusa por 1 min,0,,canonico
+item-veneno-da-viuva-palida,Veneno da Viúva Pálida,Consumível,Luxária,consumir,"consome {""unidades"": 1}",ataque.danoExtra +3d6 veneno (3 ataque(s); para quemRecebe),[alvo] Cada acerto: Fortitude ou Paralisado 1 rodada,1,,canonico
+item-escudo-primordial,Escudo Primordial,Escudo,Luxária,equipar,slot escudo,pericia.defender +4 (se: reacaoDefender) | movimento -1.5,,2,,canonico
+item-escudo-primordial,Escudo Primordial,Escudo,Luxária,usar,requer equipar · ações reacao · 1x/combate,,[regra] 1x por combate: anula completamente o dano de um ataque (reação),0,,canonico
+item-escudo-de-karmath,Escudo de Karmath,Escudo,Luxária,equipar,slot escudo,pericia.defender +4 (se: reacaoDefender) | saude.max +10 | imunidade.condicao.amedrontado = True | movimento -1.5,,4,,canonico
+item-amuleto-de-malkhor,Amuleto de Malkhor,Item Mágico,Luxária,sintonizar,sintonia 2 descansos,pericia.enganacao +5,"[regra] você ignora todos os efeitos adversos das Substâncias da Árvore | [regra] Ao suceder em um teste de Enganação, a rolagem conta como crítica",1,,decisao
+item-amuleto-de-malkhor,Amuleto de Malkhor,Item Mágico,Luxária,usar,requer sintonizar,conjura Disfarce Ilusório,,0,,decisao
+item-anel-da-imortalidade,Anel da Imortalidade,Item Mágico,Luxária,sintonizar,,,,0,,decisao
+item-anel-da-imortalidade,Anel da Imortalidade,Item Mágico,Luxária,usar,requer sintonizar · 1x/longo,saude.atual = 1 (quando: ao morrer: ressuscita),,1,,decisao
+item-anel-do-deslize,Anel do Deslize,Item Mágico,Luxária,sintonizar,,,,0,,canonico
+item-anel-do-deslize,Anel do Deslize,Item Mágico,Luxária,usar,requer sintonizar · ações 0 · 3x/longo,,[regra] 3x por descanso longo: move-se até 3m como ação livre sem provocar ataques de oportunidade,0,,canonico
+item-botas-da-dimensao,Botas da Dimensão,Item Mágico,Luxária,sintonizar,,,,0,,decisao
+item-botas-da-dimensao,Botas da Dimensão,Item Mágico,Luxária,usar,requer sintonizar · ações 1 · 3x/longo,conjura Translocação Arcana,,0,,decisao
+item-capa-do-vazio,Capa do Vazio,Item Mágico,Luxária,sintonizar,,ae.todos +3,,1,,decisao
+item-capa-do-vazio,Capa do Vazio,Item Mágico,Luxária,usar,requer sintonizar · 1x/longo,aplica invisivel 1 rodada,,0,,decisao
+item-coroa-da-conflagracao,Coroa da Conflagração,Item Mágico,Luxária,sintonizar,,magia.dadosDano +1 (se: magias de área),[alvo] Inimigos que terminam o turno na área ficam Em Chamas,1,,decisao
+item-coroa-de-kha,Coroa de Kha,Item Mágico,Luxária,sintonizar,sintonia 2 descansos,atributo.FOR +1 | atributo.DES +1 | atributo.CON +1 | atributo.INT +1 | atributo.SAB +1 | classe.V +1 | classe.G +1 | classe.R +1,,8,,decisao
+item-coroa-do-eco-mental,Coroa do Eco Mental,Item Mágico,Luxária,sintonizar,,pericia.vontade +4,,1,,canonico
+item-coroa-do-eco-mental,Coroa do Eco Mental,Item Mágico,Luxária,usar,requer sintonizar · 1x/longo,,[utilidade] 1x por descanso longo: lê o pensamento superficial de um alvo,0,,canonico
+item-coroa-do-maestro,Coroa do Maestro,Item Mágico,Luxária,sintonizar,,pericia.fortitude +5 (fimDoCombate; quando: ao começar um combate; para aliados) | pericia.reflexos +5 (fimDoCombate; quando: ao começar um combate; para aliados) | pericia.vontade +5 (fimDoCombate; quando: ao começar um combate; para aliados),"[alvo] Aliados e inimigos não podem atacar você sem antes sucederem em um teste de Vontade contra a sua CD; caso suceda, fica imune a esse efeito por 24h",3,,decisao
+item-luva-do-primordio,Luva do Primórdio,Item Mágico,Luxária,sintonizar,,desarmado.danoExtra +2d6 primordial,,1,,decisao
+item-olho-de-vytalia,Olho de Vytália,Item Mágico,Luxária,sintonizar,,pericia.percepcao +6,[utilidade] Vê o verdadeiro nome de criaturas,1,,canonico
+item-punho-de-mundarak,Punho de Mundarak,Item Mágico,Luxária,sintonizar,,desarmado.danoExtra +2d6 contundente,,1,,decisao
+item-punho-de-mundarak,Punho de Mundarak,Item Mágico,Luxária,usar,requer sintonizar · 1x/longo,,[alvo] 1x por descanso longo: um acerto aplica Atordoado (Fortitude resiste),0,,decisao
+item-selo-de-veluria,Selo de Velúria,Item Mágico,Luxária,sintonizar,,,,0,,decisao
+item-selo-de-veluria,Selo de Velúria,Item Mágico,Luxária,usar,requer sintonizar · 1x/longo,eter.atual = eter.max,,1,,decisao
+item-egide-de-karmath,Égide de Karmath,Item Mágico,Luxária,sintonizar,,resistencia.radiante = True | resistencia.trovejante = True | resistencia.necrotico = True | eter.max -2,,4,,canonico
+item-lagrima-de-veluria,Lágrima de Velúria,"Material, Consumível",Luxária,consumir,"consome {""unidades"": 1}",eter.atual = eter.max (para quemRecebe) | limiar.maos +1 (para quemRecebe),,2,,decisao
+item-coracao-mecanico,Coração Mecânico,Material,Luxária,—,sem efeito: material,,,,,canonico
+item-petala-do-sonhador,Pétala do Sonhador,"Material, Consumível",Luxária,consumir,"consome {""unidades"": 1}",,"[regra] Adentra a consciência de uma criatura por tempo indefinido | [regra] Você pode explorar as memórias, intenções e capacidades da criatura de maneira absoluta, mas não pode controlá-la | [regra] Caso a criatura morra enquanto você estiver dentro da consciência dela, você morre junto",0,,canonico
+item-fio-do-destino,Fio do Destino,Material,Luxária,—,sem efeito: material,,,,,canonico
+item-grilhoes-do-abismo,Grilhões do Abismo,Material,Luxária,—,sem efeito: material,,,,,canonico
+item-liga-primordial,Liga Primordial,Material,Luxária,—,sem efeito: material,,,,,canonico
+item-madeira-da-vhelor,Madeira da Vhelor,Material,Luxária,—,sem efeito: material,,,,,canonico
+item-pele-de-dragao,Pele de Dragão,Material,Luxária,—,sem efeito: material,,,,,canonico
+item-sangue-primordial,Sangue Primordial,Material,Luxária,—,sem efeito: material,,,,,canonico
+item-flecha-de-osh-kar,Flecha de Osh'Kar,Munição,Luxária,consumir,"consome {""unidades"": 1, ""por"": ""cena de combate""}",ataque.danoExtra +2d6 necrotico,[alvo] Crítico: Fortitude ou o alvo não pode ser curado por todo o combate,1,,canonico
+item-laminas-do-vazio,Lâminas do Vazio,Munição,Luxária,consumir,"consome {""unidades"": 1, ""por"": ""cena de combate""}",ataque.danoExtra +2d6 primordial,[alvo] Crítico: alvo fica Exposto e Sangramento 2,1,,canonico
+item-municao-do-executor,Munição do Executor,Munição,Luxária,consumir,"consome {""unidades"": 1, ""por"": ""cena de combate""}",ataque.danoExtra +2d12 perfurante | ataque.ignoraAr = todo | ataque.ignoraAe = todo | ataque.danoExtra +2d8 primordial (no crítico),,4,,decisao
+item-virote-dimensional,Virote Dimensional,Munição,Luxária,consumir,"consome {""unidades"": 1, ""por"": ""cena de combate""}",ataque.danoExtra +2d6 forca,[regra] Ignora qualquer cobertura,1,,canonico
+item-lamina-corrosiva,Lâmina Corrosiva,Arma,Incomum,equipar,slot arma,arma 2d6 cortante (DES) Atacar(1) +1d4 acido,[alvo] Crítico: reduz 2 de Armadura (Ar) do alvo até o fim do combate,0,,canonico
+item-agulha-do-vazio,Agulha do Vazio,Arma,Luxária,equipar,slot arma,arma 4d6 perfurante (DES) Atacar(1) +1d8 primordial,,0,,canonico
+item-agulha-do-vazio,Agulha do Vazio,Arma,Luxária,usar,requer equipar · ações 0 · 3x/longo,,"[regra] Como ação livre, seu próximo ataque nesta rodada não pode ser retaliado e o alvo não soma o dado de Defender à Evasão contra ele",0,,canonico
+item-maca-do-ecoante,Maça do Ecoante,Arma,Incomum,equipar,slot arma,arma 2d6 contundente (DES) Atacar(1) +1d4 trovejante,[alvo] Crítico: Fortitude ou Surdo até o fim da próxima rodada,0,,canonico
+item-punhal-de-marmore,Punhal de Mármore,Arma,Incomum,equipar,slot arma,arma 2d6 contundente (DES) Atacar(1) +1d4 forca,[alvo] Crítico: Fortitude ou Caído,0,,canonico
+item-manoplas-eletricas,Manoplas Elétricas,Arma,Exótico,equipar,slot arma,arma 3d6 contundente (DES) Atacar(1) +1d6 eletrico,"[alvo] Ao aplicar Desorientado, o efeito salta para uma criatura a até 3 m do alvo, que também recebe 1d6 de dano Elétrico e fica Desorientada",0,,canonico
+item-martelo-do-juizo,Martelo do Juízo,Arma,Exótico,equipar,slot arma,arma 3d6 contundente (DES) Atacar(1) +1d6 radiante,[alvo] Crítico: Fortitude ou Atordoado,0,,canonico
+item-badalo-de-kharavel,Badalo de Kharavel,Arma,Luxária,equipar,slot arma,arma 4d6 contundente (DES) Atacar(1) +1d8 trovejante,,0,,canonico
+item-badalo-de-kharavel,Badalo de Kharavel,Arma,Luxária,usar,requer equipar · ações 1 · 3x/longo,,"[alvo] Como 1 ação, criaturas em até 3 m fazem Fortitude ou ficam Atordoadas até o fim da próxima rodada; no sucesso ficam Desorientadas",0,,canonico
+item-florete-instavel,Florete Instável,Arma,Incomum,equipar,slot arma,arma 2d8 cortante/perfurante/contundente (DES) Atacar(1) +1d4 eletrico,[alvo] Crítico: Reflexos ou Lento 1 até o fim da próxima rodada,0,,canonico
+item-lamina-do-duelista,Lâmina do Duelista,Arma,Exótico,equipar,slot arma,arma 3d8 cortante/perfurante/contundente (DES) Atacar(1) +1d6 cortante | saude.atual +1d6 (quando: ao reduzir uma criatura a 0 de Saúde) | stamina.atual +1d6 (quando: ao reduzir uma criatura a 0 de Saúde),,2,,decisao
+item-fio-dissonante,Fio Dissonante,Arma,Exótico,equipar,slot arma,arma 3d8 cortante/perfurante/contundente (DES) Atacar(1) +1d6 psiquico,[alvo] Crítico: Vontade ou o alvo perde sua reação até o fim da rodada,0,,canonico
+item-fragmento-primordial,Fragmento Primordial,Arma,Luxária,equipar,slot arma,arma 4d8 cortante/perfurante/contundente (DES) Atacar(1) +1d8 primordial,[regra] Os ataques dessa arma não podem ser retaliados,0,,canonico
+item-machado-dentado,Machado Dentado,Arma,Incomum,equipar,slot arma,arma 2d12 cortante (FOR) Atacar(2) +1d8 cortante,[alvo] Crítico: o alvo recebe Sangramento 2,0,,canonico
+item-guilhotina-do-ocaso,Guilhotina do Ocaso,Arma,Luxária,equipar,slot arma,arma 4d12 cortante (FOR) Atacar(2) +2d8 necrotico,,0,,canonico
+item-guilhotina-do-ocaso,Guilhotina do Ocaso,Arma,Luxária,usar,requer equipar · ações 1 · 3x/longo,,"[alvo] Com 1 ação, seu próximo ataque estoura todas as marcas de Sangramento e dobra a quantidade de dados dessa condição ao causar dano",0,,canonico
+item-lanca-de-raizes,Lança de Raízes,Arma,Incomum,equipar,slot arma,arma 2d12 perfurante (FOR) Atacar(2) +1d8 perfurante,[alvo] Crítico: Fortitude ou Enraizado até o fim da próxima rodada,0,,canonico
+item-alabarda-farpada,Alabarda Farpada,Arma,Incomum,equipar,slot arma,arma 2d12 perfurante (FOR) Atacar(2) +1d8 veneno,[alvo] Crítico: Fortitude ou Envenenado,0,,canonico
+item-alabarda-impostora,Alabarda Impostora,Arma,Exótico,equipar,slot arma,arma 3d12 perfurante (FOR) Atacar(2) +1d12 perfurante,[regra] Você pode realizar ataques de oportunidade contra criaturas que entrem no seu alcance a 3 m de você,0,,canonico
+item-lanca-do-trespasse,Lança do Trespasse,Arma,Exótico,equipar,slot arma,arma 3d12 perfurante (FOR) Atacar(2) +1d12 perfurante,"[alvo] Ao acertar um alvo a 1,5 m à sua frente, uma criatura a até 3 m diretamente atrás dele também recebe o dano",0,,canonico
+item-lanca-do-horizonte-primordial,Lança do Horizonte Primordial,Arma,Luxária,equipar,slot arma,arma 4d12 perfurante (FOR) Atacar(2) +2d8 primordial,,0,,decisao
+item-lanca-do-horizonte-primordial,Lança do Horizonte Primordial,Arma,Luxária,usar,requer equipar · ações 1 · 3x/longo,ataque.alcance = 18 (1 ataque(s)),[regra] O próximo ataque nesta rodada não pode ser retaliado e ignora resistências,1,,decisao
+item-sino-mistico-de-revavena,Sino Místico de Revavena,Arma,Luxária,equipar,slot arma,arma 4d12 contundente (FOR) Atacar(2) +2d8 trovejante,,0,,canonico
+item-sino-mistico-de-revavena,Sino Místico de Revavena,Arma,Luxária,usar,requer equipar · ações 1 · 3x/longo,,"[alvo] Com 1 ação, todas as criaturas em até 6 m que estejam Desorientadas ficam Atordoadas até o fim da próxima rodada",0,,canonico
+item-machado-de-duas-cabecas,Machado de Duas Cabeças,Arma,Incomum,equipar,slot arma,arma 3d12 cortante/perfurante/contundente (FOR) Atacar(3) +1d8 cortante,"[alvo] Ao acertar, uma segunda criatura a até 1,5 m do alvo recebe metade do dano",0,,canonico
+item-marreta-desfragmentadora,Marreta Desfragmentadora,Arma,Incomum,equipar,slot arma,arma 3d12 cortante/perfurante/contundente (FOR) Atacar(3) +1d8 contundente,[alvo] Crítico: o alvo perde 3 de Armadura (Ar) até o fim do combate,0,,canonico
+item-executor-de-ossos,Executor de Ossos,Arma,Exótico,equipar,slot arma,arma 4d12 cortante/perfurante/contundente (FOR) Atacar(3) +1d12 necrotico | ataque.dados +1 (se: contra alvos abaixo de 50% da Saúde máxima),,1,,decisao
+item-malho-de-casca-raiz,Malho de Casca-Raiz,Arma,Incomum,equipar,slot arma,arma 3d10 contundente (FOR) Atacar(2) +1d8 contundente | ataque.danoExtra +1d4 contundente (se: contra alvo Desorientado),"[alvo] Ao acertar um alvo Desorientado, empurre-o 3 m",1,,decisao
+item-marreta-violenta,Marreta Violenta,Arma,Incomum,equipar,slot arma,arma 3d10 contundente (FOR) Atacar(2) +1d8 contundente,"[alvo] Crítico: empurre o alvo 4,5 m; se ele colidir com parede ou criatura, ambos recebem 2d6 Contundente e ficam Caídos",0,,canonico
+item-martelo-grande-do-carcereiro,Martelo Grande do Carcereiro,Arma,Exótico,equipar,slot arma,arma 4d10 contundente (FOR) Atacar(2) +1d12 contundente,[alvo] Alvos Desorientados por você não podem se afastar de você voluntariamente sem antes suceder em Movimento contra sua CD,0,,canonico
+item-bordao-da-sentenca,Bordão da Sentença,Arma,Exótico,equipar,slot arma,arma 4d10 contundente (FOR) Atacar(2) +1d12 contundente,"[alvo] Ao acertar um alvo Desorientado, ele fica Atordoado até o fim da próxima rodada, o alvo perde a condição Desorientado depois desse efeito",0,,canonico
+item-juizo-primordial,Juízo Primordial,Arma,Luxária,equipar,slot arma,arma 5d10 contundente (FOR) Atacar(2) +2d8 trovejante,[alvo] Criaturas empurradas contra obstáculos recebem 3d6 Contundente,0,,canonico
+item-juizo-primordial,Juízo Primordial,Arma,Luxária,usar,requer equipar · ações 1 · 3x/longo,,"[alvo] Com 1 ação, criaturas em até 6 m fazem Fortitude ou são empurradas 6 m para longe de você e ficam Caídas",0,,canonico
+item-lanca-tectonica,Lança Tectônica,Arma,Incomum,equipar,slot arma,arma 3d10 perfurante (FOR) Atacar(2) +1d8 perfurante | ataque.danoExtra +1d6 (se: contra criaturas a 3 m de você),,1,,decisao
+item-alabarda-de-hyven-danificada,Alabarda de Hyven Danificada,Arma,Exótico,equipar,slot arma,arma 4d10 perfurante (FOR) Atacar(2) +1d12 perfurante,,0,,canonico
+item-alabarda-de-hyven-danificada,Alabarda de Hyven Danificada,Arma,Exótico,usar,requer equipar · ações reacao,,"[alvo] Como reação, quando uma criatura entrar a 3 m de você ela recebe 2d8 de dano Elétrico, o movimento dela se esgota imediatamente e ela permanece a 3 m de você",0,,canonico
+item-guisarma,Guisarma,Arma,Exótico,equipar,slot arma,arma 4d10 perfurante (FOR) Atacar(2) +1d12 perfurante | ataque.danoExtra +1d6 cortante (se: contra criaturas a exatamente 3 m de você),"[alvo] Criaturas a exatamente 3 m de você não podem usar a reação Defender contra o seu ataque | [alvo] Ao acertar um alvo a menos de 3 m, exija Fortitude, em caso de falha empurre-o de volta para 3 m",1,,decisao
+item-sabre-do-esgrimista,Sabre do Esgrimista,Arma,Incomum,equipar,slot arma,arma 2d8 cortante (DES) Atacar(1) +1d4 cortante,[regra] A primeira retaliação que você sofrer em cada rodada causa metade do dano,0,,canonico
+item-glaive-do-artista-marcial,Glaive do Artista Marcial,Arma,Exótico,equipar,slot arma,arma 3d8 cortante (DES) Atacar(1) +1d6 cortante,"[regra] Ao acertar dois ataques no mesmo turno, você imediatamente após o segundo ataque fica imune a ataques de oportunidade e retaliações até o fim do seu turno",0,,canonico
+item-bordao-contra-tempo,Bordão Contra-Tempo,Arma,Exótico,equipar,slot arma,arma 3d8 cortante (DES) Atacar(1) +1d6 cortante | ataque.danoExtra +2d6 cortante (1 ataque(s); quando: quando uma retaliação contra você errar),,1,,decisao
+item-fragmento-do-oblivio,Fragmento do Oblívio,Arma,Luxária,equipar,slot arma,arma 4d8 cortante (DES) Atacar(1) +1d8 forca,[alvo] Acertar 3 ataques em uma criatura no mesmo turno replica o dano dos 3 ataques como dano de Força,0,,canonico
+item-garra-serrilhada,Garra Serrilhada,Arma,Incomum,equipar,slot arma,arma 2d8 cortante/perfurante/contundente (DES) Atacar(1) +1d4 cortante,"[regra] Uma vez por turno, seu ataque contra um alvo sob Sangramento não remove a condição",0,,canonico
+item-gancho-do-carniceiro,Gancho do Carniceiro,Arma,Incomum,equipar,slot arma,arma 2d8 cortante/perfurante/contundente (DES) Atacar(1) +1d4 cortante | ataque.danoExtra +(sangramento-1)d4 (se: alvo sob Sangramento: +1d4 por marca além da primeira),,1,,decisao
+item-foices-abissais,Foices Abissais,Arma,Exótico,equipar,slot arma,arma 3d8 cortante/perfurante/contundente (DES) Atacar(1) +1d6 cortante | saude.atual +danoDeSangramento (quando: quando o Sangramento causado por você causa dano),[alvo] Criaturas sob Sangramento causado por você não podem recuperar Saúde,1,,decisao
+item-ceifadora,Ceifadora,Arma,Luxária,equipar,slot arma,arma 4d8 cortante/perfurante/contundente (DES) Atacar(1) +1d8 cortante,,0,,decisao
+item-ceifadora,Ceifadora,Arma,Luxária,usar,requer equipar · ações 0 · 3x/longo,saude.atual +danoCausado/2 (quando: depois do dano da Ceifadora),[alvo] Todas as criaturas em até 6 m sob Sangramento recebem 1d4 de dano Cortante por marca de Sangramento e a condição é reduzida em 1 em cada alvo,1,,decisao
+item-arco-de-caca,Arco de Caça,Arma,Incomum,equipar,slot arma,arma 2d6 perfurante (DES) Atacar(1) +1d4 perfurante | ataque.danoExtra +1d6 perfurante (se: contra criaturas a mais de 9 m),,1,,decisao
+item-arco-do-enxame,Arco do Enxame,Arma,Exótico,equipar,slot arma,arma 3d6 perfurante (DES) Atacar(1) +1d6 perfurante,"[alvo] Ao acertar ataques em três criaturas diferentes no mesmo turno, todas ficam sob Sangramento 1",0,,canonico
+item-arco-prismatico,Arco Prismático,Arma,Luxária,equipar,slot arma,arma 4d6 perfurante (DES) Atacar(1) +1d8 perfurante,,0,,canonico
+item-arco-prismatico,Arco Prismático,Arma,Luxária,usar,requer equipar · ações 0 · 3x/longo,,"[regra] Como ação livre, seu próximo ataque nesta rodada ignora cobertura e você pode alterar o tipo de dano dele livremente (exceto Força e Primordial)",0,,canonico
+item-bacamarte-de-cano-curto,Bacamarte de Cano Curto,Arma,Incomum,equipar,slot arma,arma 2d12 perfurante (DES) Atacar(2) +1d8 perfurante | ataque.danoExtra +1d8 (se: contra alvo a 9 m ou menos),,1,,decisao
+item-balestra-do-assediador,Balestra do Assediador,Arma,Incomum,equipar,slot arma,arma 2d12 perfurante (DES) Atacar(2) +1d8 perfurante | margemAmeaca +1 (se: se você não se moveu neste turno),,1,,decisao
+item-canhao-de-mao,Canhão de Mão,Arma,Exótico,equipar,slot arma,arma 3d12 perfurante (DES) Atacar(2) +1d12 perfurante,,0,,canonico
+item-canhao-de-mao,Canhão de Mão,Arma,Exótico,usar,requer equipar · ações 1,,"[alvo] Com 1 ação, seu próximo ataque nesta rodada atinge todas as criaturas em uma linha de 9 m",0,,canonico
+item-expurgador-eterico-de-hyven,Expurgador Etérico de Hyven,Arma,Luxária,equipar,slot arma,arma 4d12 perfurante (DES) Atacar(2) +2d8 forca,,0,,decisao
+item-expurgador-eterico-de-hyven,Expurgador Etérico de Hyven,Arma,Luxária,usar,requer equipar · ações 1 · 3x/longo,ataque.ignoraAr = todo (1 ataque(s)) | ataque.ignoraAe = todo (1 ataque(s)),[regra] O próximo ataque nesta rodada ignora resistências,2,,decisao
+item-facas-de-lancamento,Facas de Lançamento,Arma,Incomum,equipar,slot arma,"arma 2d8 perfurante (DES) Atacar(1) +1d4 cortante | ataque.danoExtra +1d4 cortante (se: contra inimigo a até 3 m, 1x por alvo por rodada)",,1,,decisao
+item-machadinhas-gemeas-incandescentes,Machadinhas Gêmeas Incandescentes,Arma,Exótico,equipar,slot arma,arma 3d8 perfurante (DES) Atacar(1) +1d6 cortante,"[alvo] Ao acertar o mesmo alvo duas vezes no mesmo turno, o segundo ataque aplica Sangramento 2 | [alvo] Ao atingir um alvo sob Sangramento, exija um teste de Fortitude ou o alvo fica Em Chamas",0,,canonico
+item-fio-do-oblivio,Fio do Oblívio,Arma,Luxária,equipar,slot arma,arma 4d8 perfurante (DES) Atacar(1) +1d8 cortante,"[regra] Na sua rodada, como ação livre, faça um ataque contra todas as criaturas em até 6 m para cada marca de Sangramento aplicada a elas | [regra] A PMA é contada separadamente para cada alvo: o segundo ataque contra a mesma criatura sofre −5, o terceiro −10, e assim por diante; ao trocar de alvo a PMA zera",0,,canonico
+item-kali,Kali,Material,Exótico,—,sem efeito: material,,,,,canonico
+item-adaga-de-kali,Adaga de Kali,Arma,Exótico,equipar,slot arma,arma 3d6 cortante (DES) Atacar(1),[alvo] Crítico: o alvo fica Exposto | [alvo] Seus ataques contra uma criatura Exposta aplicam Sangramento 1 no acerto,0,,canonico
+item-agulhao-de-kali,Agulhão de Kali,Arma,Exótico,equipar,slot arma,arma 3d6 perfurante (DES) Atacar(1),[alvo] Crítico: o alvo fica Exposto | [alvo] Ataques desta arma contra criatura Exposta não podem ser retaliados,0,,canonico
+item-maca-de-kali,Maça de Kali,Arma,Exótico,equipar,slot arma,arma 3d6 contundente (DES) Atacar(1),[alvo] Crítico: o alvo fica Exposto e Confuso,0,,canonico
+item-lasca-de-kali,Lasca de Kali,Arma,Exótico,equipar,slot arma,arma 3d8 cortante/perfurante/contundente (DES) Atacar(1) | ataque.efeitoChassi.stamina = 0 (se: Executar contra criatura Exposta),[alvo] Crítico: o alvo fica Exposto,1,,decisao
+item-alabarda-de-kali,Alabarda de Kali,Arma,Exótico,equipar,slot arma,arma 3d12 cortante (FOR) Atacar(2),"[alvo] Crítico: o alvo fica Exposto | [alvo] Ao acertar criatura Exposta, ela fica com Sangramento 1",0,,canonico
+item-picareta-de-kali,Picareta de Kali,Arma,Exótico,equipar,slot arma,arma 3d12 perfurante (FOR) Atacar(2),[alvo] Crítico: o alvo fica Exposto,0,,decisao
+item-picareta-de-kali,Picareta de Kali,Arma,Exótico,usar,requer equipar · ações 1,ataque.multiplicadorCritico +1 (1 ataque(s)),,1,,decisao
+item-malho-de-kali,Malho de Kali,Arma,Exótico,equipar,slot arma,arma 3d12 contundente (FOR) Atacar(2),"[alvo] Crítico: o alvo fica Exposto | [alvo] Ao aplicar Desorientado o alvo também fica Exposto, 1x/combate",0,,canonico
+item-decepador-de-kali,Decepador de Kali,Arma,Exótico,equipar,slot arma,arma 4d12 cortante/perfurante/contundente (FOR) Atacar(3),"[alvo] Ao reduzir uma criatura a 0 de Saúde, todas as criaturas em até 3 m do alvo ficam Expostas | [regra] Esta arma nunca consome Exposto: seus ataques só são críticos por margem de ameaça",0,,canonico
+item-mangual-de-kali,Mangual de Kali,Arma,Exótico,equipar,slot arma,arma 4d10 contundente (FOR) Atacar(2),[alvo] Crítico: o alvo fica Exposto,0,,canonico
+item-mangual-de-kali,Mangual de Kali,Arma,Exótico,usar,requer equipar · ações 1 · 1x/combate,,"[alvo] Como 1 ação, gire a corrente: cada criatura em até 3 m deve passar em Reflexos contra sua CD ou ficar Exposta",0,,canonico
+item-bordao-de-kali,Bordão de Kali,Arma,Exótico,equipar,slot arma,arma 4d10 perfurante (FOR) Atacar(2),[alvo] Crítico: o alvo fica Exposto,0,,decisao
+item-bordao-de-kali,Bordão de Kali,Arma,Exótico,usar,requer equipar · 1x/combate,ataque.efeitoChassi.alcance = 3 (1 ataque(s)),[alvo] Alcançar deixa o alvo Exposto no acerto,1,,decisao
+item-rapieira-de-kali,Rapieira de Kali,Arma,Exótico,equipar,slot arma,arma 3d8 cortante (DES) Atacar(1) | margemAmeaca +1 (se: apenas uma criatura em até 3 m de você),[alvo] Crítico: o alvo fica Exposto,1,,decisao
+item-sabre-de-kali,Sabre de Kali,Arma,Exótico,equipar,slot arma,arma 3d8 cortante/perfurante/contundente (DES) Atacar(1),"[alvo] Crítico: o alvo fica Exposto | [regra] Ao acertar criatura Exposta, você ignora resistência a dano ordinário",0,,canonico
+item-arco-de-kali,Arco de Kali,Arma,Exótico,equipar,slot arma,arma 3d6 perfurante (DES) Atacar(1),"[alvo] Crítico: o alvo fica Exposto | [alvo] Enquanto o alvo estiver Exposto, seus ataques com esta arma ignoram cobertura e aplicam Sangramento 1 no acerto",0,,canonico
+item-balestra-de-kali,Balestra de Kali,Arma,Exótico,equipar,slot arma,arma 3d12 perfurante (DES) Atacar(2),[alvo] Crítico: o alvo fica Exposto,0,,canonico
+item-balestra-de-kali,Balestra de Kali,Arma,Exótico,usar,requer equipar · ações 1 · 1x/combate,,"[alvo] Como 1 ação, mire: o próximo ataque desta arma neste turno aplica Exposto ao alvo antes de resolver o acerto",0,,canonico
+item-dardos-de-kali,Dardos de Kali,Arma,Exótico,equipar,slot arma,arma 3d8 perfurante (DES) Atacar(1),"[alvo] Crítico: o alvo e a criatura viva mais próxima dele em até 3 m ficam Expostos | [alvo] Ao consumir Exposto com esta arma, o alvo sofre Sangramento 1",0,,canonico
+item-elixir-da-imortalidade,Elixir da Imortalidade,Consumível,Luxária,consumir,"consome {""unidades"": 1}",saude.atual = 1 (quando: ao morrer nos 10 anos (1x); para quemRecebe),[regra] Não envelhece por 10 anos,1,,decisao
+item-nucleo-abissal,Núcleo Abissal,Consumível,Luxária,consumir,"consome {""unidades"": 1}",,[alvo] 10d10 Força em 9 m de raio | [alvo] Reflexos ou Morte Instantânea no centro da bomba | [alvo] Tudo é empurrado para o centro e comprimido,0,,canonico
+item-soro-do-homunculo,Soro do Homúnculo,Consumível,Luxária,consumir,"consome {""unidades"": 1}",,"[alvo] Ao injetar, transforma uma criatura em servo alquímico leal para sempre",0,,canonico
+item-lagrima-do-tempo,Lágrima do Tempo,Consumível,Luxária,consumir,"consome {""unidades"": 1} · 1x/total",,"[alvo] Reverte objeto, criatura ou local ao estado de até 1000 anos atrás",0,,canonico
+item-tinta-invisivel,Tinta Invisível,Consumível,Ordinário,consumir,"consome {""unidades"": 1}",,[utilidade] Só aparece com calor ou reagente específico,0,,canonico
+item-carga-de-implosao,Carga de Implosão,Consumível,Exótico,consumir,"consome {""unidades"": 1}",,[alvo] Destrói até 3 m³ de material não-mágico | [alvo] 6d6 em criaturas adjacentes,0,,canonico
+item-bomba-de-plasma,Bomba de Plasma,Consumível,Luxária,consumir,"consome {""unidades"": 1}",,[alvo] Arremesso 12 m | [alvo] 6d6 Fogo + 6d6 Elétrico em 6 m de raio | [alvo] Reflexo para metade | [alvo] Ignora Resistência a Fogo,0,,canonico
+item-praga-alquimica,Praga Alquímica,Consumível,Luxária,consumir,"consome {""unidades"": 1}",,"[alvo] Arremesso 9 m | [alvo] Fortitude ou 3d8 Biológico em 4,5 m | [alvo] Criaturas afetadas espalham a praga (1d8/turno) ao tocar outros por 1 min",0,,canonico
+item-bomba-gravitacional,Bomba Gravitacional,Consumível,Luxária,consumir,"consome {""unidades"": 1}",,"[alvo] Arremesso 9 m | [alvo] Cria zona de gravidade intensa de 6 m de raio por 3 rodadas | [alvo] Criaturas na área: Movimento reduzido pela metade, -4 Reflexo, voar impossível, 2d6 Contundente por turno",0,,canonico
+item-fogo-negro,Fogo Negro,Consumível,Luxária,consumir,"consome {""unidades"": 1}",,[alvo] Arremesso 9 m | [alvo] 4d10 Fogo + 4d10 Necrótico em 3 m | [alvo] Reflexo para metade | [alvo] Cura é impossível na área por 1 min,0,,canonico
+item-dissolucao-total,Dissolução Total,Consumível,Luxária,consumir,"consome {""unidades"": 1}",,[alvo] 8d6 Biológico | [alvo] Ignora toda Armadura | [alvo] Desintegra matéria morta,0,,canonico
+item-pocao-de-cura-suprema,Poção de Cura Suprema,Consumível,Luxária,consumir,"consome {""unidades"": 1}","saude.atual +8d10+mod.INT (para quemRecebe) | remove {""condicoes"": [], ""escolha"": 1, ""de"": ""qualquer""}",,1,,canonico
+item-pocao-de-vigor-suprema,Poção de Vigor Suprema,Consumível,Luxária,consumir,"consome {""unidades"": 1}","stamina.atual +5d10 (para quemRecebe) | remove {""condicoes"": [], ""todas"": true, ""incluiMagicas"": true}",,1,,canonico
+item-elixir-da-fenix,Elixir da Fênix,Consumível,Luxária,consumir,"consome {""unidades"": 1}",saude.atual = 1 (para quemRecebe),,1,,decisao
+item-regeneracao-alquimica,Regeneração Alquímica,Consumível,Luxária,consumir,"consome {""unidades"": 1}",,"[utilidade] Regenera membro perdido há até 1 hora, em 24 horas",0,,canonico
+item-elixir-da-forma-bestial,Elixir da Forma Bestial,Consumível,Luxária,consumir,"consome {""unidades"": 1}",,[regra] Transforma em besta de CR igual ao seu nível | [regra] Mantém a mente,0,,canonico
+item-essencia-eterea,Essência Etérea,Consumível,Luxária,consumir,"consome {""unidades"": 1}",,[regra] Torna-se Incorpóreo por 1 minuto | [regra] Atravessa paredes | [regra] Não pode interagir fisicamente,0,,canonico
+item-pocao-da-invisibilidade,Poção da Invisibilidade,Consumível,Luxária,consumir,"consome {""unidades"": 1}",aplica invisivel 10 min,"[regra] Atacar, receber dano ou conjurar cancela",0,,decisao
+item-bomba-temporal,Bomba Temporal,Consumível,Luxária,consumir,"consome {""unidades"": 1}",,"[alvo] Área de 6 m | [alvo] Criaturas afetadas ficam Lento 2 (1 Ação por turno, -6 m de movimento, sem reação, -4 Reflexo) por 3 rodadas | [alvo] Vontade nega",0,,canonico
+item-extrato-de-clarividencia,Extrato de Clarividência,Consumível,Luxária,consumir,"consome {""unidades"": 1}",,[utilidade] Vê e ouve local que você conhece a até 1 km por 10 min,0,,canonico
+item-tinta-do-destino,Tinta do Destino,Consumível,Luxária,consumir,"consome {""unidades"": 1}",,[utilidade] Escreva um evento simples | [utilidade] 50% de chance de acontecer nas próximas 24 h | [utilidade] O Mestre rola os dados,0,,canonico
+item-veneno-letal,Veneno Letal,Consumível,Luxária,consumir,"consome {""unidades"": 1}",,[alvo] 6d6 Biológico | [alvo] Fortitude ou +6d6 e Inconsciente,0,,canonico
+item-veneno-da-alma,Veneno da Alma,Consumível,Luxária,consumir,"consome {""unidades"": 1}",,[alvo] 4d6 Necrótico | [alvo] Vontade ou Éter máximo reduzido pela metade por 24 h,0,,canonico
+item-paralisia-total,Paralisia Total,Consumível,Luxária,consumir,"consome {""unidades"": 1}",,[alvo] Fortitude ou Paralisado por 1 hora,0,,canonico
+item-amnesia-liquida,Amnésia Líquida,Consumível,Luxária,consumir,"consome {""unidades"": 1}",,[alvo] Vontade ou perde as memórias das últimas 24 h,0,,canonico
+item-gema-refinada,Gema Refinada,Material,Incomum,—,sem efeito: material,,,,,canonico
+item-gema-mistica,Gema Mística,Material,Exótico,—,sem efeito: material,,,,,canonico
+item-gema-primordial,Gema Primordial,Material,Luxária,—,sem efeito: material,,,,,canonico
+item-fogo,Fogo,Material,Ordinário,—,sem efeito: material,,,,,canonico
+item-eletricidade,Eletricidade,Material,Incomum,—,sem efeito: material,,,,,canonico
+item-eter,Éter,Material,Exótico,—,sem efeito: material,,,,,canonico
+item-energia-primordial,Energia Primordial,Material,Luxária,—,sem efeito: material,,,,,canonico
+item-cobre,Cobre,Material,Ordinário,—,sem efeito: material,,,,,canonico
+item-ferro,Ferro,Material,Incomum,—,sem efeito: material,,,,,canonico
+item-ouro,Ouro,Material,Luxária,—,sem efeito: material,,,,,canonico
+item-municao-trovejante,Munição Trovejante,Munição,Incomum,consumir,"consome {""unidades"": 1, ""por"": ""cena de combate""}",ataque.danoExtra +1d8 trovejante,[alvo] Crítico: Surdo até o fim da próxima rodada,1,,canonico
+item-municao-acida,Munição Ácida,Munição,Incomum,consumir,"consome {""unidades"": 1, ""por"": ""cena de combate""}",ataque.danoExtra +1d8 acido,[alvo] Crítico: o alvo perde 2 de Armadura(Ar) por todo o combate,1,,canonico
+item-municao-gelida,Munição Gélida,Munição,Incomum,consumir,"consome {""unidades"": 1, ""por"": ""cena de combate""}",ataque.danoExtra +1d8 frio,[alvo] Crítico: Lento 1 até o fim da próxima rodada,1,,canonico
+item-municao-de-concussao,Munição de Concussão,Munição,Exótico,consumir,"consome {""unidades"": 1, ""por"": ""cena de combate""}",ataque.danoExtra +1d12 contundente,[alvo] Crítico: o alvo é empurrado 3 m e fica Caído,1,,canonico
+item-municao-de-mira-longa,Munição de Mira Longa,Munição,Exótico,consumir,"consome {""unidades"": 1, ""por"": ""cena de combate""}",ataque.danoExtra +1d12 perfurante | ataque.bonusAtacar +2 (se: contra alvo a 9 m ou mais),,2,,decisao
+item-municao-atomica,Munição Atómica,Munição,Luxária,consumir,"consome {""unidades"": 1, ""por"": ""cena de combate""}",ataque.danoExtra +2d12 forca,"[alvo] Criaturas em até 3 m do alvo sofrem metade do dano adicional, Reflexos para metade | [alvo] Cobertura e estruturas na área são destruídas",1,,canonico
+item-laminas-serrilhadas,Lâminas Serrilhadas,Munição,Incomum,consumir,"consome {""unidades"": 1, ""por"": ""cena de combate""}",ataque.danoExtra +1d4 cortante,[alvo] Crítico: Sangramento 1,1,,canonico
+item-dardos-entorpecentes,Dardos Entorpecentes,Munição,Incomum,consumir,"consome {""unidades"": 1, ""por"": ""cena de combate""}",ataque.danoExtra +1d4 veneno,[alvo] Crítico: Fortitude ou Lento 1 até o fim da próxima rodada,1,,canonico
+item-pesos-de-arremesso,Pesos de Arremesso,Munição,Incomum,consumir,"consome {""unidades"": 1, ""por"": ""cena de combate""}",ataque.danoExtra +1d4 contundente,[alvo] Crítico: o alvo é empurrado 3 m,1,,canonico
+item-farinha-de-trigo,Farinha de Trigo,Munição,Incomum,consumir,"consome {""unidades"": 1, ""por"": ""cena de combate""}",ataque.danoExtra +1d4 cortante,[alvo] Crítico: o alvo fica sujo de farinha e não pode ficar Invisível nem se esconder até o fim da próxima rodada,1,,canonico
+item-conjunto-ricochete,Conjunto Ricochete,Munição,Exótico,consumir,"consome {""unidades"": 1, ""por"": ""cena de combate""}",ataque.danoExtra +1d6 cortante,"[alvo] Ao errar, o projétil ricocheteia e causa 1d6 Cortante a outra criatura em até 3 m do alvo",1,,canonico
+item-correntes-de-arremesso,Correntes de Arremesso,Munição,Exótico,consumir,"consome {""unidades"": 1, ""por"": ""cena de combate""}",ataque.danoExtra +1d6 contundente,[alvo] Crítico: Enraizado até o fim da próxima rodada,1,,canonico
+item-conjunto-do-predador,Conjunto do Predador,Munição,Luxária,consumir,"consome {""unidades"": 1, ""por"": ""cena de combate""}",ataque.danoExtra +2d6 perfurante | ataque.danoExtra +1d6 (se: contra alvo diferente do anterior),,2,,decisao
+item-kit-de-manutencao-enferrujado,Kit de Manutenção Enferrujado,Consumível,Ordinário,consumir,"consome {""unidades"": 1}",saude.atual +2d6+mod.INT (para quemRecebe),[utilidade] Pode consertar invenções ou bugigangas,1,,decisao
+item-kit-de-manutencao-de-qualidade,Kit de Manutenção de Qualidade,Consumível,Exótico,consumir,"consome {""unidades"": 1}",saude.atual +5d8+mod.INT (para quemRecebe),[utilidade] Pode consertar invenções ou bugigangas,1,,decisao
+item-kit-de-manutencao-impecavel,Kit de Manutenção Impecável,Consumível,Luxária,consumir,"consome {""unidades"": 1}","saude.atual +8d8+mod.INT (para quemRecebe) | remove {""condicoes"": [], ""escolha"": 1, ""de"": ""qualquer""}",[utilidade] Pode consertar invenções ou bugigangas,1,,decisao
+item-bigorna-portatil,Bigorna Portátil,Bugiganga,Incomum,carregar,,permiteSemTreino.oficio-ferraria = True | pericia.oficio-ferraria +1,,2,,canonico
+item-bigorna-runica,Bigorna Rúnica,Bugiganga,Exótico,carregar,,pericia.oficio-ferraria +2,,1,,canonico
+item-forja-de-bolso,Forja de Bolso,Bugiganga,Luxária,carregar,,pericia.oficio-ferraria +4,"[regra] Ao fabricar qualquer item com Ofício(Ferraria) você rola um d20; se o resultado for 20, você fabrica 1 cópia adicional do item",1,,canonico
+item-cirio-do-alvorecer,Círio do Alvorecer,Bugiganga,Luxária,—,sem efeito: utilitario,,,,,canonico
+item-grevas-de-couro,Grevas de Couro,Armadura,Ordinário,equipar,slot armaduraLeve,ae.perfurante +3,,1,,canonico
+item-manto-elemental,Manto Elemental,Armadura,Exótico,equipar,slot armaduraLeve,ae.elemental +4,,1,,canonico
+item-talisma-runico,Talismã Rúnico,Armadura,Exótico,equipar,slot armaduraLeve,ae.mistico +4,,1,,canonico
+item-manopla-do-impacto,Manopla do Impacto,Armadura,Luxária,equipar,slot armaduraLeve,ae.forca +10,,1,,canonico
+item-selo-do-primordio,Selo do Primórdio,Armadura,Luxária,equipar,slot armaduraLeve,ae.primordial +10,,1,,canonico
