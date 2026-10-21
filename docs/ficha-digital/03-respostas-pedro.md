@@ -259,3 +259,12 @@ Quatro perguntas, todas respondidas com a opção recomendada.
 - **Marcas da Vhelor:** a seção continua visível quando o Elixir da Expurgação leva o contador de volta a 0. Ela só fica oculta até a primeira Marca.
 - **Comerciantes (C3):** cada comerciante compra só a própria categoria, e o Sucateiro compra tudo. Fica coerente com a marca Homem de Negócios do Pecador.
 - **Troca manual padronizada (2026-10-21):** "pode deixar a opção de troca manual no cálculo dos status, padronizando como uma classe esse tipo de troca manual em cálculo, outras partes da ficha já utilizam isso também." Feito com o `KhTroca` (`js/ficha/kh-troca.js`), que é a mesma regra, o mesmo caminho de edição (`troca.<chave>`) e o mesmo componente visual (`.kh-troca`) para as perícias de dois atributos, a CD com escolha, a Stamina e o Éter. Fora do Ensaio, Stamina, Éter e CD agora mostram o atributo usado, como as perícias.
+
+## 12. A Mesa, 2026-10-21
+
+- **O pedido:** "A aba da mesa é destinada para o jogador utilizar: Técnicas (de raça, classe, origem e outros...), Perícias, Itens, Cartas do Limiar, manobras de combate, e basicamente tudo que está no sistema." Sem flood, com um estilo próprio para a aba. "A aba da mesa, NÃO trackeia inimigos ou outros aliados [...] o alvo é selecionado no tabuleiro real, a mesa serve apenas para esclarecimento de regras, rolagens de dado e cálculo automático de atributos, status e perícias, além de outros itens no inventário." Alguns itens só fazem sentido em combate, e por isso a Mesa também simula o combate, sem ser a única função.
+- **Três perguntas, todas na opção recomendada:**
+  - **organização:** por grupo (Combate, Técnicas, Magias, Itens, Perícias, Cartas), com filtro Ação/Reação/Livre e as passivas recolhidas em "Sempre valendo";
+  - **Mão:** sim, até 8 atalhos fixados pelo jogador, guardados na ficha;
+  - **drawer:** sim, a Mesa compacta (barra do turno, Mão e registro).
+- Especificação: `10-mesa.md`.

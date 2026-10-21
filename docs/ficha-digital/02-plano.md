@@ -174,9 +174,9 @@ Sem ESM e sem SPA; o Bazar exige `KF` síncrono. Fontes em `js/ficha/*.js`, cada
 | `ui-drawer`, `ui-pagina`, `ui-nucleo`, `ui-tecnicas`, `ui-cartas`, `ui-inventario` (componente único, também no Bazar), `ui-grimorio`, `ui-mesa`, `ui-criacao`, `ui-nivel`, `ui-vhelor` | Render; todo derivado usa o componente "conta" com edição (M2) | não |
 | `js/kh-ui.js` (fora do bundle; o shell injeta antes do primeiro `<script src>` local) | `KhPrever`, `KhTeclas`, `KhFiltros`, `KhBusca`, `KhToast`, `KhPainel`, `KhLevar`, `KhDados` | — |
 
-**API `KF` v3.** Contrato fechado: os 23 membros da `KF` v2 (`ficha-v2.js`, `raiz.KF`) com a semântica preservada; a referência é `tools/testes/kf-contrato.test.js`. Pontos sensíveis: `versao:'3'` e `bazar.js:179` passam a `>=2` no mesmo commit; `desfazer()` sem argumento continua só-inventário (a Mesa usa `desfazer({partes})`); `abrir()` mantém os aliases `inventario` e `atributos`; `exportar()` devolve Promise. Os 23 membros agem sobre a **ficha ativa da aba** (D36).
+**API `KF` v3.** Contrato fechado: os 23 membros da `KF` v2 (`ficha-v2.js`, `raiz.KF`) com a semântica preservada; a referência é `tools/testes/kf-contrato.test.js`. Pontos sensíveis: `versao:'3'` e `bazar.js:179` passam a `>=2` no mesmo commit; `desfazer()` sem argumento continua só-inventário (a Mesa grava o turno dentro da ficha e usa o desfazer comum, `10-mesa.md` §2); `abrir()` mantém os aliases `inventario` e `atributos`; `exportar()` devolve Promise. Os 23 membros agem sobre a **ficha ativa da aba** (D36).
 
-Novos: `levar(ref, opcoes)`, `remover(ref|uid)`, `tem(ref)`, `decorar(raiz)`, `derivados()`, `ajustar(caminho, ajuste)`, `desajustar(caminho)`, `rolar(expressao, contexto)`, `aplicarCondicao(id, {x, duracao})`, `recurso(nome, delta)`, `evento(nome)`, `fuiAtacado(agressor)`, `fuiAcertado()`, `usar(uid)`, `ativar(uid)`, `modo('ficha'|'mesa')`, `fichas()`, `trocar(id)`, `criarFicha(dados)`, `duplicar(id)`, `excluir(id)`, `exportarTodas()`, `REGRAS`, `colunaCanonica`, `pesoTexto`.
+Novos: `levar(ref, opcoes)`, `remover(ref|uid)`, `tem(ref)`, `decorar(raiz)`, `derivados()`, `ajustar(caminho, ajuste)`, `desajustar(caminho)`, `rolar(expressao, contexto)`, `aplicarCondicao(id, {x, duracao})`, `recurso(nome, delta)`, `evento(nome)`, `receberDano({valor, tipo})`, `usar(uid)`, `ativar(uid)`, `fichas()`, `trocar(id)`, `criarFicha(dados)`, `duplicar(id)`, `excluir(id)`, `exportarTodas()`, `REGRAS`, `colunaCanonica`, `pesoTexto`.
 
 `kf:mudou.partes` ganha `identidade|atributos|pericias|recursos|condicoes|entidades|ajustes|sessao|ficha` (`ficha` = troca da ficha ativa: drawer, página e Bazar re-renderizam tudo).
 
@@ -324,36 +324,16 @@ Cada módulo: UX, dados, fase e testes. As fases estão no §7.
 
 A barra do topo tem o **seletor de ficha** (D36, §3.1), **Ficha | Mesa**, Exportar (esta ficha ou todas), Importar, Ajustes (lista de M2), Criar/Subir de nível (M3). O drawer em todas as páginas (D1): docked à direita, 380px (460px a partir de 1800px), empurra o conteúdo, esconde a right-bar; fechado vira trilho de 48px com minirréguas de Saúde/Stamina/Éter; acende em `dragstart`, abre em `dragenter`; mostra o seletor de ficha, resumo, faixa da Mesa e alvo de soltura.
 
-**UX — Modo Mesa.** Visão de jogo, montada a partir do que o personagem tem (Pedro: "modular conforme os itens no seu inventário"). Layout em três faixas:
+**UX — Mesa.** Substituído em 2026-10-21 pela especificação `10-mesa.md` (pedido do Pedro: a Mesa usa tudo o que o personagem tem, sem flood, com estilo próprio, e **não** rastreia inimigos nem aliados). Resumo:
+- sexta aba da página da ficha, com versão compacta no drawer (barra do turno, Mão e registro);
+- barra do turno (recursos, ações, reação, magia do turno, condições, temporários, relógio do personagem), Mão de até 8 atalhos, ações em seis grupos (Combate, Técnicas, Magias, Itens, Perícias, Cartas) com filtro Ação/Reação/Livre, registro com desfazer;
+- sem agressor, sem alvo, sem PMA por alvo: o que cai em outra criatura sai como texto com os números calculados;
+- um modelo de ação só (`KhAcao`), um executor (`KhMesa`), estado do turno dentro da ficha (`ficha.mesa`, um desfazer só), temporários em `ficha.temporarios[]`.
+O texto anterior deste bloco está no histórico do git.
 
-1. **Topo fixo:** recursos com ± e régua; ações do turno (3 base, com a conta: Atordoado −2, Lento −1, Confuso −1, Lenda Viva +1, alvo `acoes` de itens); reação (1); "magia do turno" (D18: 1 por turno, acende ao conjurar); ações livres sem contador; condições ativas como chips com X e duração em turnos seus; botões de evento: Início do combate, Início do turno, Fim do turno, Fim do combate, **Fim da cena** (executa `eventos.fimCena`, `regras.json:3240-3244`: reseta usos 'cena', zera Instinto, limpa a munição da cena), Descanso curto, Descanso longo, Novo dia.
-2. **Ações possíveis** (cartões gerados, agrupados e filtráveis; o cartão some quando a entrada sai da ficha):
-   - **Arma equipada:** Atacar com a progressão da PMA ("Atacar (Adaga) +7 = +3 DES +4 prof → 1º +7 · 2º +2 · 3º −3"; linha = total + (i−1)×pma; n = floor(ações / `armas[].acoes`), n com selo); cada ataque é um botão que rola; Dano rola os dados da arma + atributo (crítico: `margemAmeaca` e `multiplicadorCritico`, só no dado usado); munição em uso como contador manual na F5 (a ligação por `compativel`/`municaoAtiva` é da F6). Focos místicos sem linha de ataque.
-   - **Consumível:** Usar (custo D18: 1 ação em si, 1 em outro, arremesso segue o item). **Na F5:** baixa 1, rola a cura com dados e mostra o `texto` e os lembretes do `consumo`, com o selo "efeito automático na F6". **Na F6:** o mesmo botão passa a aplicar Mods e condição do bloco `consumo` e abre o pop-up de cura em Autômato (D23).
-   - **Magia do grimório:** Conjurar com seletor de intensidade (só as permitidas), custo com a conta, desconta Éter, marca a magia do turno; rola dano/efeito da intensidade; sustentada: 1 ativa (D16), custo por turno cobrado no `inicioTurno`.
-   - **Técnica:** Usar com custo e usos (manual até o bloco C, depois automático na F5b).
-   - **Perícias:** grade das 24 com botão de rolar cada uma.
-   - **Defesa:** "Fui atacado" → Passiva (sem rolagem) ou Ativa (gasta a reação, rola o dado de Defender; vale só contra aquele agressor no turno dele, D8c); "Fui acertado" (Sangramento, Exposto sai, D17a).
-   - **Condições:** "Aplicar" com busca nas 29 + Agarrado; o `empilhamento` do contrato vale inteiro (lote D20; selo "decisão do Pedro, falta Notion"): entre condições diferentes as penalidades somam, a mesma condição renova a duração, a mesma condição com X soma X (Sangramento empilha, confirmado pelo Pedro).
-3. **Log da sessão** (lateral, em `khalkaria_ficha_v3_sessao:<id>`, um por ficha, §3.1): cada rolagem com expressão, dados individuais e total; cada ação com o que mudou; Desfazer só na ação mais recente ainda desfazível, "desfazer até aqui" (em ordem, com confirmação) nas anteriores, "não desfazível" quando o passo saiu do teto; rolagens são registro, não se desfazem e não invalidam o desfazer. Linha de mesa copiável (`regras.json:3278-3283`).
+**Fase:** página e abas na F4; Mesa nas fases Mesa 0–4 (`10-mesa.md` §8).
 
-**Rolador ligado, expressão sempre visível.** Antes de rolar, o botão mostra a expressão ("1d20 + 3 DES + 4 prof · desvantagem (Cego)"); depois, o log mostra "[14, 6] → 6 + 7 = 13" com o dado descartado riscado e "crítico" só se o dado usado cair na margem. Todo botão de rolar tem ao lado "rolei __" para dado físico. Vantagem/desvantagem vem das fontes (condições, itens) com trilha e pode ser forçada à mão. A forma canônica da expressão de teste é a dúvida 6 da rodada 3: até a resposta, a expressão exibida é a do `regras.json` (teste), com selo PENDENTE (balanceamento) só no que ela não cobrir. `KhDados` usa `crypto.getRandomValues`.
-
-**Eventos:**
-- `inicioTurno`: tique de Morrendo = floor(0,1 × Saúde máx efetiva), biológico, ignorando Ar, Ae e Resistência (D86); Em Chamas e Envenenamento também no início do turno **do afetado** (D31c; selo "falta Notion" até a rodada 3); `regeneracao.saude`; custo da sustentada; duração das condições em turnos seus.
-- "Fui acertado": Sangramento X mostra "+Xd4 biológico" e faz X−1, removendo em 0; num acerto que também aplica Sangramento, **consome antes** (D14a); Exposto é removido (D17a).
-- `inicioCombate`: desconta 1 da munição em uso de cada arma de distância equipada.
-- `descansoCurto`/`descansoLongo`: recupera primeiro e libera estresse depois, sem opção de pular (D84); curto −1 por 1d6 Stamina + 1d6 Éter; longo tudo; Saúde temporária some no longo (D15); a troca de técnicas reatribuíveis aparece no descanso da dúvida 1 (curto × longo) com selo até a resposta; no longo, oferece o consumo de **1 item de comida** do inventário (`KF.usar`, índice `alimento`) e pergunta pela luz (índice `fonteDeLuz`); sem comida consumida ou sem luz, aplica **+1 em Desnutrido X** (`porNoite`, `regras.json:2828`; acumula por dia, D17). Como o Desnutrido **diminui** não tem regra (`decrementa: null`, pendência n=10 em `:3349`): só lembrete, sem decremento automático, até a resposta (§8).
-- `fimCena`: executa a lista do contrato (usos 'cena', Instinto a 0, munição da cena).
-- Exaurido/Oco saem ao deixar os negativos (D17c); se Stamina pode ficar negativa é rodada 4.
-
-**Automático × lembrete:** automático com trilha: modificadores, máximos, Evasão, CD, Ar/Ae, capacidade, Movimento, **condições nos números** (D9, exceto as de julgamento do mestre, `regras.json:3190`), custo de magia, efeitos de item pelo `quando`, `pma −2` da `artilheiro-maos-velozes`, progressão como display. Botão: recurso de classe, aplicar/remover condição, as outras 11 fontes de pma, consumível. Nunca automático: estados finais (morte, Sucumbência da Vhelor): só alerta.
-
-**Dados:** `sessao:{modo, turno, acoesGastas, reacaoGasta, magiaDoTurno, sustentando, agressorAtual, log:[{t, tipo:'rolagem'|'acao', texto, expressao?, dados?, total?, passo?}] (teto 200)}` na chave `khalkaria_ficha_v3_sessao:<id>` da ficha, fora dela e fora do `rev` (§3.1); vai no `estadoSessao` do export nativo, nunca no Bestiário (D5b).
-
-**Fase:** página e abas na F4; Mesa na F5; rolador puro na F2.
-
-**Testes:** snapshot de estrutura das 5 abas (campos da física presentes por conjunto); `KhDados` com semente (4d6dl1, kh1/kl1, crítico só no dado usado, V+D = normal); cartões da Mesa gerados de um inventário fixture (arma, consumível, magia, técnica) e sumindo ao remover a entrada; a 2ª conjuração no mesmo turno mostra aviso (D18) e registra no log, **sem bloquear**; Ativa só contra o agressor atual; Sangramento com consumo antes da aplicação; empilhamento (mesma com X soma X, sem X renova duração); Morrendo ignorando Ar/Ae/R; descanso sem pular estresse; descanso longo sem comida → Desnutrido +1, com comida consumida → baixa 1 do item e nada; `fimCena` zera o Instinto; log/desfazer multi-parte; rolar e depois desfazer a ação anterior funciona; desfazer fora de ordem é recusado; a sessão sobrevive a reload e troca de página, e é separada por ficha (trocar de ficha troca o log e o turno); rodada simulada completa **só com arma e magia** até a F6 (atacar com progressão, conjurar, ser acertado com Sangramento, Morrendo no início do turno, fim da cena, fim do combate, descanso curto).
+**Testes:** snapshot de estrutura das 5 abas (campos da física presentes por conjunto); os da Mesa estão no `10-mesa.md` §7.
 
 ### M2 · Edição manual de todo campo
 
@@ -603,12 +583,11 @@ Regra geral: cada fase é publicável sozinha, com `python tools/build.py` verde
 | F4 | Página da ficha (M1, abas), drawer, seletor de fichas (D36), protocolo, UI de ajuste, migração real | F1a, F3 | — |
 | F4b | Bazar com a ficha aberta (M4) | F4 | — |
 | F4c | Assistente de criação e subida de nível (M3) | F4 | rodada 3, dúvidas 1 e 5 (faixa); rodada 4 (magias do Teurgo); tudo sai com selo |
-| F5 | Modo Mesa (M1): Usar consumível só baixa, rola e mostra o texto | F4, F1d | rodada 3 (tique D31, D17); D17(b) com selo |
-| F5b | Usos de técnica automáticos | F5 | bloco C |
-| F6 | Efeitos de itens + Marcas da Vhelor (M5); estende o botão Usar da F5, se ele existir | F4, F1d | rodada 3 (D26a) para ligar a Marca ao consumo |
+| F6 (partes 1–2) | **Feito em 2026-10-21.** Efeitos de item pela tabela por gatilho (rev. 11), interruptor do situacional, botão do evento de recurso, Saúde abaixo da metade | F4, F1d | — |
+| Mesa 0–4 | A Mesa (`10-mesa.md`): prova de estética, motor, a aba, itens e magias, técnicas e cartas. Absorve a F5, a F5b e as partes 3–4 da F6 (consumir, usar, temporários, Vhelor no consumo) | F4, F6 partes 1–2 | perguntas do `10-mesa.md` §9, com selo até a resposta |
 | F7 | Refino por família, páginas de classe (M7), lei de cor | F1a, F1b, F1c, F1e, F2; interativos depois da F4/F5 | aprovação da prova de estética (M7) |
 
-F1a–F1f correm em paralelo. F4b, F4c, F5 e F6 correm em paralelo depois da F4. F7 corre em paralelo a F3–F6.
+F1a–F1f correm em paralelo. F4b, F4c e a Mesa correm em paralelo depois da F4. F7 corre em paralelo a F3–F6 e à Mesa.
 
 ### F0 · Correções, guarda e sync (v2.1) — em andamento
 
@@ -720,22 +699,9 @@ Na migração, o id `brutalista-investida` (renomeado para `brutalista-atropelar
 **Entrega e testes:** M3.
 **Pronto quando:** um personagem nível 1 sai do zero à ficha pronta só pelo assistente, indo e voltando entre passos sem perda, como ficha **nova** no índice e sem tocar as outras (D36); a tela por ramo mostra tiers e Marcas travados com o nível que destrava (D34); uma subida 1→2 fecha com +2 atributos, mão do Limiar registrada (carta grátis, compras e a queimada, D35), técnica nova e Tier 1 destravado, num passo só de desfazer; contagens do contrato como teto com aviso; o que o contrato não cobre sai com selo PENDENTE (balanceamento).
 
-### F5 · Modo Mesa
+### F5, F5b e F6 · agora fases Mesa 0–4
 
-**Entrega:** M1 (Mesa): cartões de ação gerados do inventário, grimório, técnicas e perícias; rolador ligado com expressão; ações do turno, reação, magia do turno; condições com X, duração e empilhamento (lote D20); eventos, inclusive `fimCena`; progressão de ataques; usos por recarga como contador genérico; munição em uso como contador manual; consumível: Usar baixa 1, rola a cura e mostra o texto (efeito automático na F6); descansos com estresse e consumo de comida; Desnutrido/Exposto/Exaurido/Oco pelas regras do D17 (decremento do Desnutrido só lembrete, D17(b)); log da sessão com desfazer, um por ficha (D36); linha de mesa; `estadoSessao` no nativo.
-**Pronto quando:** a rodada simulada do M1 (só arma e magia) fecha só com a ficha.
-**Testes:** os do M1.
-
-### F5b · Usos de técnica automáticos
-
-**Entrega:** usos, recarga e custo de técnica a partir do bloco C (P44).
-**Pronto quando:** toda técnica com recarga no dado chega com o contador preenchido; nenhum valor inventado.
-
-### F6 · Efeitos de itens e Marcas da Vhelor
-
-**Entrega:** liga Mods, condições, `municaoAtiva` e a D23 ao botão Usar da F5 (ou cria o botão, se a F6 sair antes); `quando` no `KhEfeitos` (equipado com limites de slot, sintonizado máx. 3 com troca no descanso longo e `sintoniaDescansos` 2 na Coroa de Kha e no Amuleto de Malkhor, `municaoAtiva` por `compativel`, ativado); `KF.usar`/`ativar` pelo rolador ou "rolei __"; temporários com as 8 durações e fim manual; permanentes com trilha; aplicar/remover condição; `conjura` abre a magia; `gera` cria entrada; aviso de `soParaRaca` e pop-up de cura em Autômato (D23); `armaComBeneficio`; capacidade pelos Mods (FALHA se divergir de `inv.capacidade` até a migração); export `weapons[]` completo; M5.
-**Pronto quando:** Mochila, armaduras (Ar/Ae), escudos, consumíveis e armas refletem nos campos com trilha; nenhum número entra duas vezes; a tela da Vhelor abre pelo contador e, com a rodada 3 entregue, pelo consumo.
-**Testes:** um fixture por op, `quando`, opcional e família de alvo; Reforçada + Contrabandista = +8 bugigangas e +1 equipamento; 2 Reforçadas com aviso de cópia; usar + desfazer; `weapons[]`; os do M5.
+Substituídas em 2026-10-21 pelo `10-mesa.md` §8. A F6 partes 1 e 2 (efeitos de item pela tabela por gatilho, interruptor do situacional, botão do evento) estão feitas. O que faltava da F6 (consumir, usar e ativar, temporários com duração, D23, `soParaRaca`, a Vhelor revelada no consumo, `weapons[]` completo) entra na Mesa 3. Os usos de técnica (F5b) entram na Mesa 4, pelo custo lido do texto até o bloco C.
 
 ### F7 · Refino de páginas
 
