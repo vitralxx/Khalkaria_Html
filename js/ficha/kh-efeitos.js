@@ -39,11 +39,21 @@
       municaoAtiva: 'só com a munição em uso (ligação automática na F6)',
       ativado: 'só quando ativado (F6)'
     };
-    // 'enquanto' da tabela que a ficha ainda não confere sozinha
-    var TEXTO_ENQUANTO = {
-      saudeAbaixoDaMetade: 'com a Saúde abaixo da metade',
-      portadorNaoCaido: 'enquanto o portador não estiver caído'
+    // 'enquanto' da tabela (rev. 11), conferido num lugar só. A Saúde abaixo da metade
+    // pede a Saúde máx.: quem confere é o KhRegras (ctx.mods). O que a ficha não confere
+    // fica desligado com o texto (a 'marcaVhelor<=N' do consumo, que é da Mesa).
+    function temCondicao(ficha, id) { return lista(ficha.condicoes).some(function (c) { return obj(c) && c.id === id; }); }
+    var ENQUANTO = {
+      portadorNaoCaido: { vale: function (f) { return !temCondicao(f, 'caido'); }, texto: 'enquanto o portador não estiver caído' }
     };
+    // '' = vale; senão, o motivo de não valer
+    function enquantoFalha(ficha, e) {
+      var ce = /^condicao:(.+)$/.exec(e);
+      if (ce) return temCondicao(ficha, ce[1]) ? '' : 'só enquanto ' + ce[1];
+      if (e === 'saudeAbaixoDaMetade') return '';
+      var x = ENQUANTO[e];
+      return x ? (x.vale(ficha) ? '' : 'só ' + x.texto) : 'só ' + e;
+    }
 
     function obj(x) { return !!x && typeof x === 'object' && !Array.isArray(x); }
     function lista(x) { return Array.isArray(x) ? x : []; }
@@ -299,12 +309,8 @@
             }
             else if (m.aplica === 'evento') desliga(m, 'no evento: ' + (m.evento || 'quando acontece'));
             else if (m.aplica === 'critico') desliga(m, 'só no crítico');
-            if (m.ativo && m.enquanto) {
-              var ce = /^condicao:(.+)$/.exec(m.enquanto);
-              if (ce) { if (!lista(ficha.condicoes).some(function (c) { return obj(c) && c.id === ce[1]; })) desliga(m, 'só enquanto ' + ce[1]); }
-              // a Saúde abaixo da metade pede a Saúde máx.: o KhRegras confere (ctx.mods)
-              else if (m.enquanto !== 'saudeAbaixoDaMetade') desliga(m, 'só ' + (TEXTO_ENQUANTO[m.enquanto] || m.enquanto));
-            }
+            var nao = m.ativo && m.enquanto ? enquantoFalha(ficha, m.enquanto) : '';
+            if (nao) desliga(m, nao);
             var k = e.id + '|' + m0.alvo + '|' + m0.op;
             if (m.ativo && ef.acumulaCopia === false && vistos[k]) desliga(m, 'não acumula com outra cópia deste item');
             if (m.ativo) vistos[k] = true;

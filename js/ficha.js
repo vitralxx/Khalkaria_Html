@@ -2488,11 +2488,21 @@
       municaoAtiva: 'só com a munição em uso (ligação automática na F6)',
       ativado: 'só quando ativado (F6)'
     };
-    // 'enquanto' da tabela que a ficha ainda não confere sozinha
-    var TEXTO_ENQUANTO = {
-      saudeAbaixoDaMetade: 'com a Saúde abaixo da metade',
-      portadorNaoCaido: 'enquanto o portador não estiver caído'
+    // 'enquanto' da tabela (rev. 11), conferido num lugar só. A Saúde abaixo da metade
+    // pede a Saúde máx.: quem confere é o KhRegras (ctx.mods). O que a ficha não confere
+    // fica desligado com o texto (a 'marcaVhelor<=N' do consumo, que é da Mesa).
+    function temCondicao(ficha, id) { return lista(ficha.condicoes).some(function (c) { return obj(c) && c.id === id; }); }
+    var ENQUANTO = {
+      portadorNaoCaido: { vale: function (f) { return !temCondicao(f, 'caido'); }, texto: 'enquanto o portador não estiver caído' }
     };
+    // '' = vale; senão, o motivo de não valer
+    function enquantoFalha(ficha, e) {
+      var ce = /^condicao:(.+)$/.exec(e);
+      if (ce) return temCondicao(ficha, ce[1]) ? '' : 'só enquanto ' + ce[1];
+      if (e === 'saudeAbaixoDaMetade') return '';
+      var x = ENQUANTO[e];
+      return x ? (x.vale(ficha) ? '' : 'só ' + x.texto) : 'só ' + e;
+    }
 
     function obj(x) { return !!x && typeof x === 'object' && !Array.isArray(x); }
     function lista(x) { return Array.isArray(x) ? x : []; }
@@ -2748,12 +2758,8 @@
             }
             else if (m.aplica === 'evento') desliga(m, 'no evento: ' + (m.evento || 'quando acontece'));
             else if (m.aplica === 'critico') desliga(m, 'só no crítico');
-            if (m.ativo && m.enquanto) {
-              var ce = /^condicao:(.+)$/.exec(m.enquanto);
-              if (ce) { if (!lista(ficha.condicoes).some(function (c) { return obj(c) && c.id === ce[1]; })) desliga(m, 'só enquanto ' + ce[1]); }
-              // a Saúde abaixo da metade pede a Saúde máx.: o KhRegras confere (ctx.mods)
-              else if (m.enquanto !== 'saudeAbaixoDaMetade') desliga(m, 'só ' + (TEXTO_ENQUANTO[m.enquanto] || m.enquanto));
-            }
+            var nao = m.ativo && m.enquanto ? enquantoFalha(ficha, m.enquanto) : '';
+            if (nao) desliga(m, nao);
             var k = e.id + '|' + m0.alvo + '|' + m0.op;
             if (m.ativo && ef.acumulaCopia === false && vistos[k]) desliga(m, 'não acumula com outra cópia deste item');
             if (m.ativo) vistos[k] = true;
@@ -3054,13 +3060,16 @@
       if (!e) return '';
       return e.trocado ? 'usa Mod.' + e.usado + ' (escolhido)' : 'usa o maior entre ' + entre(e.atributos.map(function (a) { return 'Mod.' + a; }));
     }
+    // o índice do maior valor (null = sem valor; no empate, o primeiro)
+    function maior(valores) {
+      var i = 0;
+      lista(valores).forEach(function (v, j) { if (v != null && (valores[i] == null || v > valores[i])) i = j; });
+      return i;
+    }
     // valores[j] = Mod. de atributos[j] (null = sem valor) -> a escolha resolvida
     function resolver(chave, atributos, g, valores) {
       var i = g ? atributos.indexOf(g) : -1, trocado = i >= 0;
-      if (!trocado) {
-        i = 0;
-        lista(valores).forEach(function (v, j) { if (v != null && (valores[i] == null || v > valores[i])) i = j; });
-      }
+      if (!trocado) i = maior(valores);
       var e = { chave: chave, atributos: atributos.slice(), i: i, usado: atributos[i], trocado: trocado };
       e.motivo = motivo(e);
       return e;
@@ -3082,7 +3091,7 @@
       return [{ caminho: 'identidade.escolhas', valor: esc }];
     }
 
-    return { valida: valida, lugar: lugar, guardado: guardado, resolver: resolver, motivo: motivo, rotulo: rotulo, mudancas: mudancas };
+    return { valida: valida, lugar: lugar, guardado: guardado, maior: maior, entre: entre, resolver: resolver, motivo: motivo, rotulo: rotulo, mudancas: mudancas };
   })();
 
   if (emNode) { module.exports = KhTroca; return; }
@@ -3201,13 +3210,13 @@
           // o maior entre atributos, com a troca manual (KhTroca: a mesma regra das perícias)
           var cs = no.args.map(function (x) { return aval(x, amb, D); });
           var ats = no.args.map(function (x) { var m = x.t === 'ref' && /^mod\.(\w+)$/.exec(x.ref); return m ? m[1] : null; });
+          var vs = cs.map(function (x) { return x.v; }), sims = cs.map(function (x) { return x.sim; });
           var soAttr = ats.every(Boolean), tr = soAttr && amb.troca ? amb.troca(ats) : null;
-          var e = KhTroca.resolver(tr ? tr.chave : null, soAttr ? ats : cs.map(function (x) { return x.sim; }), tr ? tr.g : null,
-            cs.map(function (x) { return x.v; }));
-          if (!soAttr) e = { i: e.i, trocado: false, atributos: null, motivo: 'usa o maior entre ' + entre(cs.map(function (x) { return x.sim; })) };
+          var e = soAttr ? KhTroca.resolver(tr ? tr.chave : null, ats, tr ? tr.g : null, vs)
+            : { i: KhTroca.maior(vs), trocado: false, atributos: null, motivo: 'usa o maior entre ' + entre(sims) };
           var c = cs[e.i];
           // a escolha sobe pela conta (o termo e o nó dizem qual atributo valeu, 03 §10)
-          return { v: c.v, sim: e.trocado ? c.sim + ' (escolhido)' : 'maior(' + cs.map(function (x) { return x.sim; }).join(', ') + ')',
+          return { v: c.v, sim: e.trocado ? c.sim + ' (escolhido)' : 'maior(' + sims.join(', ') + ')',
             num: c.num, p: 3, st: pior(D, no.st, c.st), fontes: c.fontes, escolha: e };
         }
         default:
@@ -3216,7 +3225,7 @@
     }
     // o texto da escolha 'maior' entre atributos (D7, sem selo desde o 03 §10; o KhTroca):
     // "usa o maior entre Mod.FOR e Mod.DES" ou, trocado à mão, "usa Mod.FOR (escolhido)"
-    function entre(l) { return l.length < 2 ? l.join('') : l.slice(0, -1).join(', ') + ' e ' + l[l.length - 1]; }
+    var entre = KhTroca.entre;
     function motivoEscolha(e) { return e ? e.motivo || '' : ''; }
     // a escolha no nó: a mesma forma em perícia, CD, Stamina e Éter
     // {chave (KhTroca), atributos, usado, trocado, motivo}
@@ -8178,10 +8187,17 @@
       if (!/^recursos\.(saude|stamina|eter)\.atual$/.test(str(caminho))) return { ok: false, erro: 'Este evento não mexe num recurso.' };
       var n = lerInteiro(bruto);
       if (n == null) return { ok: false, erro: 'Escreva o valor (o que rolou) em número inteiro.' };
-      var atual = pega(ficha, caminho);
-      var novo = op === 'fixa' ? n : (typeof atual === 'number' ? atual : 0) + n;
+      var atual = pega(ficha, caminho), rec = /^recursos\.(\w+)/.exec(caminho)[1];
+      atual = typeof atual === 'number' ? atual : 0;
+      var pedido = op === 'fixa' ? n : atual + n, novo = pedido;
+      // "A cura não passa do máximo" (Sistema > Status): o ganho para no máximo; o que já
+      // estava acima (digitado à mão) fica onde está
+      var noMax = n > 0 && KhRegras && KhRegras.avaliar ? KhRegras.avaliar(ficha).nos['recurso.' + rec + '.max'] : null;
+      var max = noMax ? noMax.valor : null;
+      if (typeof max === 'number' && novo > max) novo = Math.max(max, op === 'fixa' ? 0 : atual);
       var r = mudancas(ficha, caminho, novo);
-      if (r.ok) r.rotulo = (rotulo ? rotulo + ': ' : '') + (op === 'fixa' ? '= ' + fmt(n) : sinal(n)) + ' ' + RECURSOS[/^recursos\.(\w+)/.exec(caminho)[1]];
+      if (r.ok) r.rotulo = (rotulo ? rotulo + ': ' : '') + (op === 'fixa' ? '= ' + fmt(n) : sinal(n)) + ' ' + RECURSOS[rec] +
+        (novo < pedido ? ' (até o máximo, ' + fmt(novo) + ')' : '');
       return r;
     }
     // o interruptor do situacional (F6): liga/desliga a chave 'alvo#n' na entrada do
@@ -10706,6 +10722,13 @@
         else abrePop(k);
       });
       raizEl.addEventListener('keydown', function (e) {
+        // Enter na caixa do valor do evento de item = o botão Aplicar ao lado
+        var cx = e.key === 'Enter' && e.target && e.target.classList && e.target.classList.contains('kh-ev-n') ? e.target : null;
+        if (cx) {
+          var bt = cx.parentNode && cx.parentNode.querySelector ? cx.parentNode.querySelector('[data-ed-evento]') : null;
+          if (bt) { if (e.preventDefault) e.preventDefault(); bt.click(); }
+          return;
+        }
         if (modo !== 'pagina' || !ligado() || (e.key !== 'Enter' && e.key !== ' ')) return;
         if (e.ctrlKey || e.metaKey || e.altKey) return;
         var k = perto(e.target, '.kh-conta[data-ajustavel]');

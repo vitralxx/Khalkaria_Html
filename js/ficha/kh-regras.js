@@ -109,13 +109,13 @@
           // o maior entre atributos, com a troca manual (KhTroca: a mesma regra das perícias)
           var cs = no.args.map(function (x) { return aval(x, amb, D); });
           var ats = no.args.map(function (x) { var m = x.t === 'ref' && /^mod\.(\w+)$/.exec(x.ref); return m ? m[1] : null; });
+          var vs = cs.map(function (x) { return x.v; }), sims = cs.map(function (x) { return x.sim; });
           var soAttr = ats.every(Boolean), tr = soAttr && amb.troca ? amb.troca(ats) : null;
-          var e = KhTroca.resolver(tr ? tr.chave : null, soAttr ? ats : cs.map(function (x) { return x.sim; }), tr ? tr.g : null,
-            cs.map(function (x) { return x.v; }));
-          if (!soAttr) e = { i: e.i, trocado: false, atributos: null, motivo: 'usa o maior entre ' + entre(cs.map(function (x) { return x.sim; })) };
+          var e = soAttr ? KhTroca.resolver(tr ? tr.chave : null, ats, tr ? tr.g : null, vs)
+            : { i: KhTroca.maior(vs), trocado: false, atributos: null, motivo: 'usa o maior entre ' + entre(sims) };
           var c = cs[e.i];
           // a escolha sobe pela conta (o termo e o nó dizem qual atributo valeu, 03 §10)
-          return { v: c.v, sim: e.trocado ? c.sim + ' (escolhido)' : 'maior(' + cs.map(function (x) { return x.sim; }).join(', ') + ')',
+          return { v: c.v, sim: e.trocado ? c.sim + ' (escolhido)' : 'maior(' + sims.join(', ') + ')',
             num: c.num, p: 3, st: pior(D, no.st, c.st), fontes: c.fontes, escolha: e };
         }
         default:
@@ -124,7 +124,7 @@
     }
     // o texto da escolha 'maior' entre atributos (D7, sem selo desde o 03 §10; o KhTroca):
     // "usa o maior entre Mod.FOR e Mod.DES" ou, trocado à mão, "usa Mod.FOR (escolhido)"
-    function entre(l) { return l.length < 2 ? l.join('') : l.slice(0, -1).join(', ') + ' e ' + l[l.length - 1]; }
+    var entre = KhTroca.entre;
     function motivoEscolha(e) { return e ? e.motivo || '' : ''; }
     // a escolha no nó: a mesma forma em perícia, CD, Stamina e Éter
     // {chave (KhTroca), atributos, usado, trocado, motivo}

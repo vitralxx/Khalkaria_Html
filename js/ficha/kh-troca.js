@@ -50,13 +50,16 @@
       if (!e) return '';
       return e.trocado ? 'usa Mod.' + e.usado + ' (escolhido)' : 'usa o maior entre ' + entre(e.atributos.map(function (a) { return 'Mod.' + a; }));
     }
+    // o índice do maior valor (null = sem valor; no empate, o primeiro)
+    function maior(valores) {
+      var i = 0;
+      lista(valores).forEach(function (v, j) { if (v != null && (valores[i] == null || v > valores[i])) i = j; });
+      return i;
+    }
     // valores[j] = Mod. de atributos[j] (null = sem valor) -> a escolha resolvida
     function resolver(chave, atributos, g, valores) {
       var i = g ? atributos.indexOf(g) : -1, trocado = i >= 0;
-      if (!trocado) {
-        i = 0;
-        lista(valores).forEach(function (v, j) { if (v != null && (valores[i] == null || v > valores[i])) i = j; });
-      }
+      if (!trocado) i = maior(valores);
       var e = { chave: chave, atributos: atributos.slice(), i: i, usado: atributos[i], trocado: trocado };
       e.motivo = motivo(e);
       return e;
@@ -78,7 +81,7 @@
       return [{ caminho: 'identidade.escolhas', valor: esc }];
     }
 
-    return { valida: valida, lugar: lugar, guardado: guardado, resolver: resolver, motivo: motivo, rotulo: rotulo, mudancas: mudancas };
+    return { valida: valida, lugar: lugar, guardado: guardado, maior: maior, entre: entre, resolver: resolver, motivo: motivo, rotulo: rotulo, mudancas: mudancas };
   })();
 
   if (emNode) { module.exports = KhTroca; return; }

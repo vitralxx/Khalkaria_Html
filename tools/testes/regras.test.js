@@ -485,6 +485,15 @@ test('F6 parte 2: KhEdicao.evento soma (ou troca) o recurso atual pelo valor do 
   assert.deepEqual([r.mudancas[0].valor, r.rotulo], [1, 'Anel do Último Suspiro: = 1 Saúde']);
   assert.equal(ED.evento(f, 'recursos.saude.atual', 'soma', '', 'X').erro, 'Escreva o valor (o que rolou) em número inteiro.');
   assert.equal(ED.evento(f, 'movimento', 'soma', 1, 'X').ok, false);
+  // a cura não passa do máximo (Sistema > Status); o que já estava acima fica
+  const g = ficha({ classe: 'brutalista', raca: 'humano', attrs: { CON: 14 } });
+  const max = R.avaliar(g).nos['recurso.saude.max'].valor;
+  g.recursos.saude.atual = max - 1;
+  r = ED.evento(g, 'recursos.saude.atual', 'soma', 3, 'Colar');
+  assert.deepEqual([r.mudancas[0].valor, r.rotulo], [max, 'Colar: +3 Saúde (até o máximo, ' + max + ')']);
+  g.recursos.saude.atual = max + 2;
+  assert.equal(ED.evento(g, 'recursos.saude.atual', 'soma', 3, 'Colar').mudancas[0].valor, max + 2);
+  assert.equal(ED.evento(g, 'recursos.saude.atual', 'soma', -3, 'Colar').mudancas[0].valor, max - 1);
 });
 
 test('F6 parte 2 (dados reais): escudo soma no Defender pela condicao reacaoDefender; situacional com interruptor; Saúde abaixo da metade', () => {

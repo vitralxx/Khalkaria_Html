@@ -516,6 +516,13 @@
         else abrePop(k);
       });
       raizEl.addEventListener('keydown', function (e) {
+        // Enter na caixa do valor do evento de item = o botão Aplicar ao lado
+        var cx = e.key === 'Enter' && e.target && e.target.classList && e.target.classList.contains('kh-ev-n') ? e.target : null;
+        if (cx) {
+          var bt = cx.parentNode && cx.parentNode.querySelector ? cx.parentNode.querySelector('[data-ed-evento]') : null;
+          if (bt) { if (e.preventDefault) e.preventDefault(); bt.click(); }
+          return;
+        }
         if (modo !== 'pagina' || !ligado() || (e.key !== 'Enter' && e.key !== ' ')) return;
         if (e.ctrlKey || e.metaKey || e.altKey) return;
         var k = perto(e.target, '.kh-conta[data-ajustavel]');

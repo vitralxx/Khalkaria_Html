@@ -395,10 +395,17 @@
       if (!/^recursos\.(saude|stamina|eter)\.atual$/.test(str(caminho))) return { ok: false, erro: 'Este evento não mexe num recurso.' };
       var n = lerInteiro(bruto);
       if (n == null) return { ok: false, erro: 'Escreva o valor (o que rolou) em número inteiro.' };
-      var atual = pega(ficha, caminho);
-      var novo = op === 'fixa' ? n : (typeof atual === 'number' ? atual : 0) + n;
+      var atual = pega(ficha, caminho), rec = /^recursos\.(\w+)/.exec(caminho)[1];
+      atual = typeof atual === 'number' ? atual : 0;
+      var pedido = op === 'fixa' ? n : atual + n, novo = pedido;
+      // "A cura não passa do máximo" (Sistema > Status): o ganho para no máximo; o que já
+      // estava acima (digitado à mão) fica onde está
+      var noMax = n > 0 && KhRegras && KhRegras.avaliar ? KhRegras.avaliar(ficha).nos['recurso.' + rec + '.max'] : null;
+      var max = noMax ? noMax.valor : null;
+      if (typeof max === 'number' && novo > max) novo = Math.max(max, op === 'fixa' ? 0 : atual);
       var r = mudancas(ficha, caminho, novo);
-      if (r.ok) r.rotulo = (rotulo ? rotulo + ': ' : '') + (op === 'fixa' ? '= ' + fmt(n) : sinal(n)) + ' ' + RECURSOS[/^recursos\.(\w+)/.exec(caminho)[1]];
+      if (r.ok) r.rotulo = (rotulo ? rotulo + ': ' : '') + (op === 'fixa' ? '= ' + fmt(n) : sinal(n)) + ' ' + RECURSOS[rec] +
+        (novo < pedido ? ' (até o máximo, ' + fmt(novo) + ')' : '');
       return r;
     }
     // o interruptor do situacional (F6): liga/desliga a chave 'alvo#n' na entrada do
