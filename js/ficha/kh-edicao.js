@@ -30,6 +30,9 @@
  *   'troca.<chave>'          a troca manual do atributo (KhTroca; chave 'pericia.<id>', 'cd',
  *                            'recurso.<r>'): padrão o maior, '' volta ao padrão; grava onde o
  *                            KhTroca diz (periciasAttr ou o 'identidade.escolhas' inteiro)
+ *   'situacao.<uid>'         o interruptor do situacional de um item (F6): {valor: 'alvo#n',
+ *                            marcado}; grava a coluna do inventário inteira com a
+ *                            entrada.situacoes nova
  *   'migracao.oficio'        a pendência do Ofício(X) da v2: o grau vai para o Ofício escolhido
  *                            e a pendência fecha, no mesmo passo
  *
@@ -164,6 +167,7 @@
         if (pm && !(pa && pa.modo === 'maior')) return null;
         return d({ tipo: 'troca', chave: m[1], rotulo: KhTroca.rotulo(m[1], pa ? str(pa.nome) : '') });
       }
+      if ((m = /^situacao\.([A-Za-z0-9_-]+)$/.exec(c))) return d({ tipo: 'situacao', uid: m[1], rotulo: 'Situação do item' });
       if (c === 'migracao.oficio') return d({ tipo: 'oficio', rotulo: 'Ofício(X) da ficha atual' });
       if ((m = /^atributos\.base\.(FOR|DES|CON|INT|SAB)$/.exec(c))) {
         return d({ tipo: 'inteiro', rotulo: NOME_AT[m[1]] + ' (base)', min: 1, max: 30, atributo: m[1] });
@@ -384,6 +388,36 @@
       if (v && ops.indexOf(v) < 0) return { ok: false, erro: cp.rotulo + ': escolha ' + ops.join(' ou ') + '.' };
       return { ok: true, mudancas: KhTroca.mudancas(ficha, cp.chave, v), rotulo: cp.rotulo + ': ' + (v ? v + ' (escolhido)' : 'o maior') };
     }
+    // o botão de um evento de item (F6, tabela rev. 11) que mexe num recurso atual:
+    // "ao derrubar um inimigo: +1d4 Éter". bruto = o valor (já rolado, ou o número do
+    // item); op 'soma' soma no atual, 'fixa' troca. Valida pelo campo do atual.
+    function evento(ficha, caminho, op, bruto, rotulo) {
+      if (!/^recursos\.(saude|stamina|eter)\.atual$/.test(str(caminho))) return { ok: false, erro: 'Este evento não mexe num recurso.' };
+      var n = lerInteiro(bruto);
+      if (n == null) return { ok: false, erro: 'Escreva o valor (o que rolou) em número inteiro.' };
+      var atual = pega(ficha, caminho);
+      var novo = op === 'fixa' ? n : (typeof atual === 'number' ? atual : 0) + n;
+      var r = mudancas(ficha, caminho, novo);
+      if (r.ok) r.rotulo = (rotulo ? rotulo + ': ' : '') + (op === 'fixa' ? '= ' + fmt(n) : sinal(n)) + ' ' + RECURSOS[/^recursos\.(\w+)/.exec(caminho)[1]];
+      return r;
+    }
+    // o interruptor do situacional (F6): liga/desliga a chave 'alvo#n' na entrada do
+    // inventário (a coluna inteira é a mudança: o caminho do armazém não indexa lista)
+    function mudancasSituacao(ficha, cp, bruto) {
+      var b = obj(bruto) ? bruto : {}, k = str(b.valor);
+      if (!/^[A-Za-z][A-Za-z0-9._-]*#\d+$/.test(k)) return { ok: false, erro: 'Situação inválida.' };
+      var inv = obj(ficha) && obj(ficha.inventario) ? ficha.inventario : {}, col = null, i = -1;
+      ['equipamentos', 'bugigangas'].some(function (cl) {
+        return lista(inv[cl]).some(function (e, j) { if (obj(e) && e.uid === cp.uid) { col = cl; i = j; return true; } return false; });
+      });
+      if (!col) return { ok: false, erro: 'Este item não está mais no inventário.' };
+      var nova = clone(inv[col]), e = nova[i];
+      var l = lista(e.situacoes).filter(function (x) { return x !== k; });
+      if (b.marcado) l.push(k);
+      if (l.length) e.situacoes = l; else delete e.situacoes;
+      return { ok: true, mudancas: [{ caminho: 'inventario.' + col, valor: nova }],
+        rotulo: (semEmoji(e.nome) || 'Item') + ': situação ' + (b.marcado ? 'ligada' : 'desligada') };
+    }
     // a pendência do Ofício(X) genérico da v2 (a migração não escolhe qual dos três recebe o grau)
     function pendenciaOficio(ficha) {
       var l = lista(obj(ficha) && obj(ficha.migracao) ? ficha.migracao.pendencias : null);
@@ -413,6 +447,7 @@
       if (cp.tipo === 'ref') return mudancasRef(ficha, cp, bruto, op.contexto);
       if (cp.tipo === 'troca') return mudancasTroca(ficha, cp, bruto);
       if (cp.tipo === 'oficio') return mudancasOficio(ficha, cp, bruto);
+      if (cp.tipo === 'situacao') return mudancasSituacao(ficha, cp, bruto);
       if (cp.tipo === 'conjunto') {
         var b = obj(bruto) ? bruto : {}, k = str(b.valor);
         if (!k) return { ok: false, erro: cp.rotulo + ': nada marcado.' };
@@ -509,7 +544,7 @@
     }
 
     return { NOME_AT: NOME_AT, RECURSOS: RECURSOS, REFS: REFS, MANTER: MANTER, MODOS: MODOS, MAX_MOTIVO: MAX_MOTIVO,
-      attrsTroca: attrsTroca, restos: restos, mudancaRestos: mudancaRestos, pendenciaOficio: pendenciaOficio, oficios: oficios,
+      attrsTroca: attrsTroca, evento: evento, restos: restos, mudancaRestos: mudancaRestos, pendenciaOficio: pendenciaOficio, oficios: oficios,
       MAX_TEXTO: MAX_TEXTO, MAX_LISTA: MAX_LISTA, MAX_LORE: MAX_LORE,
       lerNumero: lerNumero, lerInteiro: lerInteiro, campo: campo, ler: ler, mudancas: mudancas, passo: passo,
       grauClicado: grauClicado, rotuloGrau: rotuloGrau, opcoesRef: opcoesRef, opcoesCondicao: opcoesCondicao, chaveItem: chaveItem,

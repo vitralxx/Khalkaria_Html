@@ -2719,26 +2719,40 @@
           if (!ef) return;
           var qtd = Math.max(1, inteiro(e.qtd, 1));
           var fonte = { tipo: 'item', id: e.id, nome: str(e.nome) || e.id, uid: e.uid };
-          var noTotal = [];
+          var noTotal = [], nAlvo = {};
           lista(ef.mods).forEach(function (m0) {
             var quando = m0.quando || ef.quando || 'carregado';
             var m = mod(Object.assign({}, m0, { fonte: fonte, status: m0.status || ef.status, quando: quando,
               copias: ef.acumulaCopia === false ? 1 : qtd, uid: e.uid }));
-            var teste = QUANDO_ITEM[quando];
+            // a chave do Mod no item (alvo#ordem entre os do mesmo alvo): o que o
+            // interruptor do situacional guarda em entrada.situacoes
+            var ord = nAlvo[m0.alvo] || 0;
+            nAlvo[m0.alvo] = ord + 1;
+            var chaveSit = m0.alvo + '#' + ord;
+            var teste = QUANDO_ITEM[quando], vale = !!teste && teste(e);
+            m.gatilhoVale = vale;     // o card do item lista os condicionais só com o gatilho valendo
             if (!teste) desliga(m, 'quando "' + quando + '" fora do vocabulário');
-            else if (!teste(e)) desliga(m, MOTIVO_QUANDO[quando] || 'inativo');
+            else if (!vale) desliga(m, MOTIVO_QUANDO[quando] || 'inativo');
             if (/^capacidade\./.test(m.alvo)) desliga(m, 'capacidade vem do KhInv (inv.capacidade do registro) até a F6');
             if (m.op === 'escolha' || m.escolha) desliga(m, 'escolha do jogador (F6)');
             if (m.duracao) desliga(m, 'temporário (' + m.duracao + '): ativação na F6');
             // tabela por gatilho (rev. 11): só 'sempre' no portador soma sozinho
             if (m.para === 'aliados') desliga(m, 'vale nos aliados' + (m.alcance ? ' a até ' + m.alcance : '') + ': cada aliado aplica na ficha dele');
-            else if (m.aplica === 'situacional') desliga(m, 'situacional: ' + (m.situacao || 'quando a situação vale'));
+            // situacional com 'condicao' do vocabulário (reacaoDefender dos escudos,
+            // investida, descanso ao ar livre): quem decide é o nó do KhRegras (aceita)
+            else if (m.aplica === 'situacional' && !m.condicao) {
+              // o jogador liga quando a situação vale (interruptor ao lado do campo, F6)
+              var lig = lista(e.situacoes).indexOf(chaveSit) >= 0;
+              if (vale) m.situacional = { uid: e.uid, chave: chaveSit, texto: str(m.situacao), ligado: lig };
+              if (!lig) desliga(m, 'situacional: ' + (m.situacao || 'quando a situação vale') + ' (desligado)');
+            }
             else if (m.aplica === 'evento') desliga(m, 'no evento: ' + (m.evento || 'quando acontece'));
             else if (m.aplica === 'critico') desliga(m, 'só no crítico');
             if (m.ativo && m.enquanto) {
               var ce = /^condicao:(.+)$/.exec(m.enquanto);
               if (ce) { if (!lista(ficha.condicoes).some(function (c) { return obj(c) && c.id === ce[1]; })) desliga(m, 'só enquanto ' + ce[1]); }
-              else desliga(m, 'só ' + (TEXTO_ENQUANTO[m.enquanto] || m.enquanto));
+              // a Saúde abaixo da metade pede a Saúde máx.: o KhRegras confere (ctx.mods)
+              else if (m.enquanto !== 'saudeAbaixoDaMetade') desliga(m, 'só ' + (TEXTO_ENQUANTO[m.enquanto] || m.enquanto));
             }
             var k = e.id + '|' + m0.alvo + '|' + m0.op;
             if (m.ativo && ef.acumulaCopia === false && vistos[k]) desliga(m, 'não acumula com outra cópia deste item');
@@ -3278,9 +3292,21 @@
       // Mods do alvo (fora os ajustes, que o KhAjustes aplica no fechamento), já com os do Sobrepeso
       ctx.mods = function (alvos) {
         alvos = [].concat(alvos);
-        return ef.mods.concat(ctx.sobrepeso).filter(function (m) { return !m.noFechamento && alvos.indexOf(m.alvo) >= 0; });
+        return ef.mods.concat(ctx.sobrepeso).filter(function (m) { return !m.noFechamento && alvos.indexOf(m.alvo) >= 0; })
+          .map(function (m) { return m.ativo && m.enquanto === 'saudeAbaixoDaMetade' ? enquantoSaude(ctx, m) : m; });
       };
+      // há Mod "enquanto a Saúde estiver abaixo da metade"? (o grafo põe a Saúde máx. antes)
+      ctx.pedeSaudeMax = ef.mods.some(function (m) { return m.enquanto === 'saudeAbaixoDaMetade'; });
       return ctx;
+    }
+    // "enquanto a Saúde estiver abaixo da metade" (tabela rev. 11, Anel da Carapaça):
+    // Saúde atual < Saúde máx. / 2; sem a atual na ficha, não vale
+    function enquantoSaude(ctx, m) {
+      var rs = ctx.ficha.recursos && ctx.ficha.recursos.saude, atual = rs && typeof rs.atual === 'number' ? rs.atual : null;
+      var max = ctx.v('recurso.saude.max');
+      if (atual != null && typeof max === 'number' && atual < max / 2) return Object.assign({}, m, { motivo: 'Saúde abaixo da metade (' + fmt(atual) + ' de ' + fmt(max) + ')' });
+      return Object.assign({}, m, { ativo: false, motivo: 'só com a Saúde abaixo da metade' +
+        (atual != null && typeof max === 'number' ? ' (agora ' + fmt(atual) + ' de ' + fmt(max) + ')' : '') });
     }
     // valor numérico de um Mod: número × cópias, ou a AST com o X da condição
     function valorMod(m, ctx) {
@@ -4179,10 +4205,63 @@
       return no;
     }
 
+    // ---------------- Mod em palavras (F6: interruptor, item) ----------------
+    var ROTULO_ALVO = { ar: 'Armadura', movimento: 'Movimento', acoes: 'Ações', cd: 'CD', 'evasao.passiva': 'Evasão',
+      margemAmeaca: 'margem de ameaça', 'ataque.bonusAtacar': 'Atacar', 'ataque.danoExtra': 'dano extra',
+      'ataque.dados': 'dado de dano', 'ataque.danoFixo': 'dano', 'ataque.danoMaximo': 'dano máximo',
+      'ataque.efeitoChassi.stamina': 'Stamina do efeito da arma', tamanho: 'tamanho', 'magia.dadosDano': 'dado de dano das magias',
+      'descanso.comodidade': 'comodidade do descanso', 'recurso.saude.atual': 'Saúde', 'recurso.stamina.atual': 'Stamina',
+      'recurso.eter.atual': 'Éter', 'recurso.saude.max': 'Saúde máx.', 'recurso.stamina.max': 'Stamina máx.', 'recurso.eter.max': 'Éter máx.' };
+    function rotuloAlvo(alvo, D) {
+      var a = str(alvo), m;
+      if (ROTULO_ALVO[a]) return ROTULO_ALVO[a];
+      if ((m = /^pericia\.(.+)$/.exec(a))) {
+        var p = lista(D && D.pericias).filter(function (x) { return x.id === m[1]; })[0];
+        return p ? p.nome : m[1];
+      }
+      if ((m = /^ae\.(.+)$/.exec(a))) return 'Ae ' + (NOME_TIPO[m[1]] || m[1]);
+      if ((m = /^(resistencia|imunidade|vulnerabilidade)\.(.+)$/.exec(a))) return { resistencia: 'Resistência', imunidade: 'Imunidade', vulnerabilidade: 'Vulnerabilidade' }[m[1]] + ' a ' + (NOME_TIPO[m[2]] || m[2]);
+      return a;
+    }
+    // "+2 Furtividade", "vantagem em Movimento", "+1d6 dano extra"
+    function textoMod(m, D) {
+      var r = rotuloAlvo(m.alvo, D), v = m.valor;
+      if (m.op === 'vantagem' || m.op === 'desvantagem') return m.op + ' em ' + r;
+      if (m.op === 'fixa') return r + ' = ' + (v === true ? 'sim' : str(v));
+      if (m.op === 'multiplica') return r + ' × ' + str(v);
+      if (typeof v === 'number') return (v < 0 ? '−' + fmt(-v) : '+' + fmt(v)) + ' ' + r;
+      return '+' + str(v) + ' ' + r;
+    }
+    // o valor sem o alvo, para o interruptor ao lado do campo: "+2", "+1d6", "vantagem"
+    function curtoMod(m, D) {
+      var v = m.valor;
+      if (m.op === 'vantagem' || m.op === 'desvantagem') return m.op;
+      if (m.op === 'soma') return typeof v === 'number' ? (v < 0 ? '−' + fmt(-v) : '+' + fmt(v)) : '+' + str(v);
+      return textoMod(m, D);
+    }
+    function situacionalDe(m, D) {
+      return { uid: m.situacional.uid, chave: m.situacional.chave, texto: m.situacional.texto, ligado: m.situacional.ligado,
+        item: nomeFonte(m), efeito: textoMod(m, D), curto: curtoMod(m, D) };
+    }
+    // o nó que mostra o Mod (o interruptor fica ao lado dele); sem nó, só no card do item
+    function noDoAlvo(ctx, m) {
+      var a = str(m.alvo), u = m.fonte && m.fonte.uid, c = null;
+      if (/^pericia\./.test(a)) c = a + '.total';
+      else if (a === 'margemAmeaca' || a === 'ataque.bonusAtacar') c = u ? 'ataque.' + u + '.atacar' : null;
+      else if (/^ataque\.(danoExtra|dados|danoFixo|danoMaximo)$/.test(a)) c = u ? 'ataque.' + u + '.dano' : null;
+      else c = a;
+      return c && ctx.nos[c] ? c : null;
+    }
+
     // ---------------- grafo ----------------
     function grafo(ctx) {
       var D = ctx.D, g = [];
-      function add(c, deps, f) { g.push({ c: c, d: deps, f: f }); }
+      function add(c, deps, f) {
+        // Mod "enquanto a Saúde estiver abaixo da metade": a Saúde máx. vem antes (ela só
+        // depende dos atributos, então não há ciclo)
+        if (ctx.pedeSaudeMax && !/^atributo\./.test(c) && c !== 'recurso.saude.max') deps = deps.concat(['recurso.saude.max']);
+        g.push({ c: c, d: deps, f: f });
+      }
       var MODS = ATRIBUTOS.map(function (A) { return 'atributo.' + A + '.mod'; });
       ATRIBUTOS.forEach(function (A) {
         add('atributo.' + A + '.total', [], function () { return noAtributoTotal(ctx, A); });
@@ -4305,6 +4384,13 @@
         if (no.progressao) fechaProgressao(no, D);
         fechaStatus(no, D);
         ctx.nos[x.c] = no;
+      });
+      // o interruptor do situacional fica ao lado do número que ele muda (F6)
+      ctx.ef.mods.forEach(function (m) {
+        if (!m.situacional) return;
+        var c = noDoAlvo(ctx, m);
+        if (!c) return;
+        (ctx.nos[c].situacionais = ctx.nos[c].situacionais || []).push(situacionalDe(m, ctx.D));
       });
       // ajuste de caminho sem nó (magia ou arma que saiu da ficha): fica listado
       Object.keys(ajustes).forEach(function (c) {
@@ -4587,7 +4673,8 @@
       avaliar: avaliar, calculados: calculados, custoMagia: custoMagia, resolverTeste: resolverTeste,
       maximos: maximos, acompanharMaximos: acompanharMaximos, lembreteForaDasContas: lembreteForaDasContas,
       temporaria: temporaria, aval: function (ast, amb, D) { return aval(ast, amb, D || dadosPadrao()); },
-      fmt: fmt, dados: dadosPadrao
+      fmt: fmt, dados: dadosPadrao,
+      textoMod: function (m, D) { return textoMod(m, D || dadosPadrao()); }
     };
   })();
 
@@ -6607,6 +6694,8 @@
       // a edição (F4.6b, só a página com o Ensaio): {ajustavel(caminho, o, no) -> bool,
       // motivo(caminho) -> texto}. Sem ela, o HTML é o de sempre, byte a byte.
       var ed = obj(op.editar) && typeof op.editar.ajustavel === 'function' ? op.editar : null;
+      // op.interruptores: o situacional vira caixa de marcar (Ensaio, página e drawer)
+      var inter = !!op.interruptores;
       var n = 0, caminhos = [];
 
       function rotuloSelo(k) { return str(D.rotulosSelo && D.rotulosSelo[k]) || k; }
@@ -6665,7 +6754,24 @@
             '<svg aria-hidden="true"><use href="#g-selo"/></svg>' + es(SELO_CURTO[s] || s) + '</span>';
         }).join('');
       }
-      // o número com a conta. o: {un, texto (troca o valor mostrado), semSelos, no (nó fora do grafo)}
+      // o interruptor do situacional (F6, tabela rev. 11): o Mod que só vale numa
+      // situação ("+2 · em penumbra ou escuridão"), ao lado do número que ele muda.
+      // Com interruptores, caixa de marcar (data-ed-lista situacao.<uid>, o KhEditor
+      // grava); sem, o estado à vista. Ligado = soma na conta.
+      function situacionaisHTML(no) {
+        return lista(no && no.situacionais).map(function (x) {
+          var tit = es(se(x.item) + ': ' + x.efeito + (x.texto ? ', ' + x.texto : '') + (x.ligado ? ' (ligado: soma na conta)' : ' (desligado)'));
+          var corpo = '<span class="kh-sit-v">' + es(x.curto || x.efeito) + '</span>' + (x.texto ? '<span class="kh-sit-t">' + es(x.texto) + '</span>' : '');
+          if (inter) {
+            return '<label class="kh-sit' + (x.ligado ? ' kh-sit-on' : '') + '" title="' + tit + '"><input type="checkbox" class="kh-sit-cx"' +
+              ' data-ed-lista="situacao.' + es(x.uid) + '" value="' + es(x.chave) + '"' + (x.ligado ? ' checked' : '') +
+              ' aria-label="' + tit + '">' + corpo + '</label>';
+          }
+          return '<span class="kh-sit' + (x.ligado ? ' kh-sit-on' : '') + '" title="' + tit + '">' + corpo + '</span>';
+        }).join('');
+      }
+      // o número com a conta. o: {un, texto (troca o valor mostrado), semSelos,
+      // semSituacoes (o interruptor vai em outro lugar), no (nó fora do grafo)}
       function conta(caminho, o) {
         o = o || {};
         var no = o.no || (nos && nos[caminho]);
@@ -6709,10 +6815,11 @@
           // número com aviso do motor (dado faltando, valor fora da conta): marca à vista, o texto vai em Avisos
           (lista(no.avisos).length ? ' <span class="' + p + '-aviso ' + p + '-marca-aviso" title="' +
             es(lista(no.avisos).map(function (a) { return a.msg || a.tipo; }).join(' · ')) + '">aviso</span>' : '') +
-          (o.semSelos ? '' : selosHTML(no.selos, no.notaSelo));
+          (o.semSelos ? '' : selosHTML(no.selos, no.notaSelo)) +
+          (o.semSituacoes ? '' : situacionaisHTML(no));
       }
 
-      return { prefixo: p, caminhos: caminhos, conta: conta, termoHTML: termoHTML, selosHTML: selosHTML,
+      return { prefixo: p, caminhos: caminhos, conta: conta, termoHTML: termoHTML, selosHTML: selosHTML, situacionaisHTML: situacionaisHTML,
         fonteTxt: fonteTxt, valorTermo: valorTermo, valorNo: valorNo, rotuloSelo: rotuloSelo, seloDoStatus: seloDoStatus };
     }
 
@@ -7706,6 +7813,9 @@
  *   'troca.<chave>'          a troca manual do atributo (KhTroca; chave 'pericia.<id>', 'cd',
  *                            'recurso.<r>'): padrão o maior, '' volta ao padrão; grava onde o
  *                            KhTroca diz (periciasAttr ou o 'identidade.escolhas' inteiro)
+ *   'situacao.<uid>'         o interruptor do situacional de um item (F6): {valor: 'alvo#n',
+ *                            marcado}; grava a coluna do inventário inteira com a
+ *                            entrada.situacoes nova
  *   'migracao.oficio'        a pendência do Ofício(X) da v2: o grau vai para o Ofício escolhido
  *                            e a pendência fecha, no mesmo passo
  *
@@ -7840,6 +7950,7 @@
         if (pm && !(pa && pa.modo === 'maior')) return null;
         return d({ tipo: 'troca', chave: m[1], rotulo: KhTroca.rotulo(m[1], pa ? str(pa.nome) : '') });
       }
+      if ((m = /^situacao\.([A-Za-z0-9_-]+)$/.exec(c))) return d({ tipo: 'situacao', uid: m[1], rotulo: 'Situação do item' });
       if (c === 'migracao.oficio') return d({ tipo: 'oficio', rotulo: 'Ofício(X) da ficha atual' });
       if ((m = /^atributos\.base\.(FOR|DES|CON|INT|SAB)$/.exec(c))) {
         return d({ tipo: 'inteiro', rotulo: NOME_AT[m[1]] + ' (base)', min: 1, max: 30, atributo: m[1] });
@@ -8060,6 +8171,36 @@
       if (v && ops.indexOf(v) < 0) return { ok: false, erro: cp.rotulo + ': escolha ' + ops.join(' ou ') + '.' };
       return { ok: true, mudancas: KhTroca.mudancas(ficha, cp.chave, v), rotulo: cp.rotulo + ': ' + (v ? v + ' (escolhido)' : 'o maior') };
     }
+    // o botão de um evento de item (F6, tabela rev. 11) que mexe num recurso atual:
+    // "ao derrubar um inimigo: +1d4 Éter". bruto = o valor (já rolado, ou o número do
+    // item); op 'soma' soma no atual, 'fixa' troca. Valida pelo campo do atual.
+    function evento(ficha, caminho, op, bruto, rotulo) {
+      if (!/^recursos\.(saude|stamina|eter)\.atual$/.test(str(caminho))) return { ok: false, erro: 'Este evento não mexe num recurso.' };
+      var n = lerInteiro(bruto);
+      if (n == null) return { ok: false, erro: 'Escreva o valor (o que rolou) em número inteiro.' };
+      var atual = pega(ficha, caminho);
+      var novo = op === 'fixa' ? n : (typeof atual === 'number' ? atual : 0) + n;
+      var r = mudancas(ficha, caminho, novo);
+      if (r.ok) r.rotulo = (rotulo ? rotulo + ': ' : '') + (op === 'fixa' ? '= ' + fmt(n) : sinal(n)) + ' ' + RECURSOS[/^recursos\.(\w+)/.exec(caminho)[1]];
+      return r;
+    }
+    // o interruptor do situacional (F6): liga/desliga a chave 'alvo#n' na entrada do
+    // inventário (a coluna inteira é a mudança: o caminho do armazém não indexa lista)
+    function mudancasSituacao(ficha, cp, bruto) {
+      var b = obj(bruto) ? bruto : {}, k = str(b.valor);
+      if (!/^[A-Za-z][A-Za-z0-9._-]*#\d+$/.test(k)) return { ok: false, erro: 'Situação inválida.' };
+      var inv = obj(ficha) && obj(ficha.inventario) ? ficha.inventario : {}, col = null, i = -1;
+      ['equipamentos', 'bugigangas'].some(function (cl) {
+        return lista(inv[cl]).some(function (e, j) { if (obj(e) && e.uid === cp.uid) { col = cl; i = j; return true; } return false; });
+      });
+      if (!col) return { ok: false, erro: 'Este item não está mais no inventário.' };
+      var nova = clone(inv[col]), e = nova[i];
+      var l = lista(e.situacoes).filter(function (x) { return x !== k; });
+      if (b.marcado) l.push(k);
+      if (l.length) e.situacoes = l; else delete e.situacoes;
+      return { ok: true, mudancas: [{ caminho: 'inventario.' + col, valor: nova }],
+        rotulo: (semEmoji(e.nome) || 'Item') + ': situação ' + (b.marcado ? 'ligada' : 'desligada') };
+    }
     // a pendência do Ofício(X) genérico da v2 (a migração não escolhe qual dos três recebe o grau)
     function pendenciaOficio(ficha) {
       var l = lista(obj(ficha) && obj(ficha.migracao) ? ficha.migracao.pendencias : null);
@@ -8089,6 +8230,7 @@
       if (cp.tipo === 'ref') return mudancasRef(ficha, cp, bruto, op.contexto);
       if (cp.tipo === 'troca') return mudancasTroca(ficha, cp, bruto);
       if (cp.tipo === 'oficio') return mudancasOficio(ficha, cp, bruto);
+      if (cp.tipo === 'situacao') return mudancasSituacao(ficha, cp, bruto);
       if (cp.tipo === 'conjunto') {
         var b = obj(bruto) ? bruto : {}, k = str(b.valor);
         if (!k) return { ok: false, erro: cp.rotulo + ': nada marcado.' };
@@ -8185,7 +8327,7 @@
     }
 
     return { NOME_AT: NOME_AT, RECURSOS: RECURSOS, REFS: REFS, MANTER: MANTER, MODOS: MODOS, MAX_MOTIVO: MAX_MOTIVO,
-      attrsTroca: attrsTroca, restos: restos, mudancaRestos: mudancaRestos, pendenciaOficio: pendenciaOficio, oficios: oficios,
+      attrsTroca: attrsTroca, evento: evento, restos: restos, mudancaRestos: mudancaRestos, pendenciaOficio: pendenciaOficio, oficios: oficios,
       MAX_TEXTO: MAX_TEXTO, MAX_LISTA: MAX_LISTA, MAX_LORE: MAX_LORE,
       lerNumero: lerNumero, lerInteiro: lerInteiro, campo: campo, ler: ler, mudancas: mudancas, passo: passo,
       grauClicado: grauClicado, rotuloGrau: rotuloGrau, opcoesRef: opcoesRef, opcoesCondicao: opcoesCondicao, chaveItem: chaveItem,
@@ -9387,9 +9529,10 @@
           return '<div class="' + P + '-per" data-campo="pericia-' + p.id + '">' +
             '<span class="' + P + '-per-graus" role="' + (edP ? 'group' : 'img') + '" aria-label="' + esc((edP ? p.nome + ': grau ' : 'Grau ') + g + ' de 4' + (graus[g] ? ': ' + graus[g] : '')) + '">' + circ + '</span>' +
             // o selo (decisão, pendente…) vai junto do nome; a caixa de total fica só com o número
-            '<span class="' + P + '-per-nome">' + esc(p.nome) + (no ? C.selosHTML(no.selos) : '') + (/^oficio-/.test(p.id) ? seloOf : '') + '</span>' +
+            '<span class="' + P + '-per-nome">' + esc(p.nome) + (no ? C.selosHTML(no.selos) : '') + (/^oficio-/.test(p.id) ? seloOf : '') +
+              (no ? C.situacionaisHTML(no) : '') + '</span>' +
             '<span class="' + P + '-per-at" title="' + esc(atTit) + '">' + atHTML + '</span>' +
-            '<span class="' + P + '-per-total">' + conta('pericia.' + p.id + '.total', { texto: no && typeof no.valor === 'number' ? modTxt(no) : null, semSelos: true }) + '</span></div>';
+            '<span class="' + P + '-per-total">' + conta('pericia.' + p.id + '.total', { texto: no && typeof no.valor === 'number' ? modTxt(no) : null, semSelos: true, semSituacoes: true }) + '</span></div>';
         }
         var pers = lista(D.pericias);
         // a pendência do Ofício(X) no Ensaio: o seletor dos 3 Ofícios aplica o grau e
@@ -9819,6 +9962,44 @@
       // ======================================================================
       // 4. O Bazar (A4 pág. 4): o inventário da ficha, só leitura
       // ======================================================================
+      // os efeitos do item que pedem a mesa (F6, tabela rev. 11): o situacional com o
+      // interruptor (o mesmo do campo), o de evento, o do crítico e o dos aliados.
+      // Só com o gatilho do item valendo (equipado, sintonizado...). O "sempre" já está
+      // nas contas dos campos.
+      var ROT_APLICA = { evento: 'No evento', critico: 'No crítico' };
+      function efeitosItem(x, C, ctx) {
+        var ms = lista(ctx.modsItens).filter(function (m) {
+          return m.fonte && m.fonte.uid === x.uid && m.gatilhoVale && (m.situacional || m.aplica === 'evento' || m.aplica === 'critico' || m.para === 'aliados');
+        });
+        if (!ms.length) return '';
+        var tx = function (m) { return KhRegras && KhRegras.textoMod ? KhRegras.textoMod(m, ctx.D) : str(m.alvo); };
+        return '<ul class="' + P + '-item-efs" data-campo="efeitos">' + ms.map(function (m) {
+          if (m.situacional) {
+            return '<li class="kh-ef kh-ef-sit">' + C.situacionaisHTML({ situacionais: [{ uid: m.situacional.uid, chave: m.situacional.chave,
+              texto: m.situacional.texto, ligado: m.situacional.ligado, item: m.fonte.nome, efeito: tx(m), curto: tx(m) }] }) + '</li>';
+          }
+          var quando = m.para === 'aliados' ? 'Nos aliados' + (m.alcance ? ' a até ' + m.alcance : '') : ROT_APLICA[m.aplica];
+          var det = m.aplica === 'evento' ? m.evento : m.situacao;
+          return '<li class="kh-ef kh-ef-' + esc(m.para === 'aliados' ? 'aliados' : m.aplica) + '"><span class="kh-ef-q">' + esc(quando) +
+            (det ? ' (' + esc(det) + ')' : '') + ':</span> ' + esc(tx(m)) + (m.duracao ? ' <span class="kh-ef-d">por ' + esc(DURACAO[m.duracao] || m.duracao) + '</span>' : '') +
+            botaoEvento(m, ctx) + '</li>';
+        }).join('') + '</ul>';
+      }
+      // o evento que mexe na Saúde, Stamina ou Éter atual ganha o botão no Ensaio: a caixa
+      // vem com o número do item, ou vazia para o que rolou (dado ou conta da mesa).
+      // Evento com duração (temporário) espera os temporários da F6.
+      function botaoEvento(m, ctx) {
+        var r = /^recurso\.(saude|stamina|eter)\.atual$/.exec(str(m.alvo));
+        if (!ctx.editar || !KhEdicao || m.aplica !== 'evento' || m.para !== 'portador' || !r || m.duracao || (m.op !== 'soma' && m.op !== 'fixa')) return '';
+        var n = typeof m.valor === 'number' ? String(m.valor) : '';
+        var rot = semEmoji(m.fonte && m.fonte.nome) || 'Item';
+        return ' <span class="kh-ev"><input type="text" inputmode="numeric" class="ke-ed kh-ev-n" value="' + esc(n) + '"' +
+          (n ? '' : ' placeholder="rolei"') + ' aria-label="' + esc(rot + ': valor do evento' + (n ? '' : ' (' + str(m.valor) + ')')) + '">' +
+          '<button type="button" class="kh-btn kh-ev-bt" data-ed-evento="recursos.' + r[1] + '.atual" data-ed-op="' + esc(m.op) + '"' +
+          ' data-ed-rotulo="' + esc(rot) + '">Aplicar</button></span>';
+      }
+      var DURACAO = { fimDoCombate: 'até o fim do combate', descansoLongo: 'até o próximo descanso longo', proximoDescansoLongo: 'no próximo descanso longo',
+        proximoCombate: 'no próximo combate' };
       function itemHTML(x, C, nos, ctx) {
         var qtd = qtdDe(x);
         var marcas = (x.equipado ? selo('equipado', 'Equipado') : '') + (x.sintonizado ? selo('sintonizado', 'Sintonizado') : '') +
@@ -9839,7 +10020,7 @@
           '<span data-campo="raridade">' + raridade(x.raridade) + '</span>' +
           '<span class="' + P + '-item-qtd" data-campo="qtd"><span class="' + P + '-rot">Qtd</span>' + nEstado('inventario.' + x.uid + '.qtd', qtd) + '</span>' + marcas + '</div>' +
           (x.categoria ? '<span class="' + P + '-item-cat">' + esc(x.categoria) + '</span>' : '') +
-          (x.efeito ? '<p class="' + P + '-item-ef">' + textoRico(x.efeito) + '</p>' : '') + atq + '</li>';
+          (x.efeito ? '<p class="' + P + '-item-ef">' + textoRico(x.efeito) + '</p>' : '') + efeitosItem(x, C, ctx) + atq + '</li>';
       }
       function itens(lst, minimo, C, nos, ctx) {
         var h = lst.map(function (x) { return itemHTML(x, C, nos, ctx); }).join('');
@@ -9848,6 +10029,7 @@
       }
       RENDER.bazar = function (res, C, ctx) {
         var f = res.ficha, nos = res.av.nos, inv = f.inventario || {}, h = '';
+        ctx.modsItens = res.av.efeitos ? res.av.efeitos.mods : [];
         var bug = lista(inv.bugigangas).filter(obj), eq = lista(inv.equipamentos).filter(obj);
         var mats = bug.concat(eq).filter(ehMaterial);
         var bugs = bug.filter(function (x) { return !ehMaterial(x); });
@@ -9974,7 +10156,7 @@
         var edConta = ed === 'pagina' ? { motivo: KhEdicao.motivoNaoAjuste,
           ajustavel: function (c, oo) { return !(oo && oo.no) && KhEdicao.ajustavel(c); } } : undefined;
         var C = ok && KhConta ? KhConta.criar({ D: D, nos: res.av ? res.av.nos : null,
-          prefixo: P, esc: esc, fmt: KhRegras ? KhRegras.fmt : undefined, semEmoji: semEmoji, editar: edConta }) : null;
+          prefixo: P, esc: esc, fmt: KhRegras ? KhRegras.fmt : undefined, semEmoji: semEmoji, editar: edConta, interruptores: !!ed }) : null;
         var ctx = ok ? contexto(o.dados, D, o.base) : null;
         if (ctx) ctx.editar = ed;
         var out = {};
@@ -10475,7 +10657,7 @@
       }
       // um controle da edição (a barra, um campo, um círculo, o stepper, um número ajustável)?
       function controle(t) {
-        var c = perto(t, '[data-ked], [data-ed-grau], [data-ed-delta]') ||
+        var c = perto(t, '[data-ked], [data-ed-grau], [data-ed-delta], [data-ed-evento]') ||
           (modo === 'pagina' ? perto(t, '.kh-conta[data-ajustavel]') : null);
         return c && dentro(c) ? c : null;
       }
@@ -10494,6 +10676,19 @@
           if (!x || !x.ficha) return;
           var p = g.getAttribute('data-ed-grau');
           grava(KhEdicao.mudancas(x.ficha, 'pericias.' + p, KhEdicao.grauClicado(x.ficha, p, Number(g.getAttribute('data-grau')))));
+          return;
+        }
+        // o botão do evento de item (F6): o valor vem da caixa ao lado (o número do item ou o que rolou)
+        var ev = perto(t, '[data-ed-evento]');
+        if (ev && dentro(ev)) {
+          if (fora()) return;
+          var z = ativa();
+          if (!z || !z.ficha) return;
+          var caixa = perto(ev, '.kh-ev');
+          var inp = caixa && caixa.querySelector ? caixa.querySelector('.kh-ev-n') : null;
+          var vi = !inp ? '' : inp.value != null ? inp.value : inp.getAttribute('value');
+          grava(KhEdicao.evento(z.ficha, ev.getAttribute('data-ed-evento'), ev.getAttribute('data-ed-op'), vi,
+            ev.getAttribute('data-ed-rotulo')));
           return;
         }
         var d = perto(t, '[data-ed-delta]');

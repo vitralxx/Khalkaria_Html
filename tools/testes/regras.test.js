@@ -476,6 +476,77 @@ test('custo de magia por intensidade (F3c): as 4 colunas com a mesma conta, Nv1 
 });
 
 // ---------------- ataque e PMA ----------------
+test('F6 parte 2: KhEdicao.evento soma (ou troca) o recurso atual pelo valor do item ou o rolado', () => {
+  const ED = require('../../js/ficha/kh-edicao.js');
+  const f = { recursos: { saude: { atual: 10 }, eter: { atual: 3 } } };
+  let r = ED.evento(f, 'recursos.eter.atual', 'soma', '4', 'Corrente da Alma');
+  assert.deepEqual([r.ok, r.mudancas[0].valor, r.rotulo], [true, 7, 'Corrente da Alma: +4 Éter']);
+  r = ED.evento(f, 'recursos.saude.atual', 'fixa', 1, 'Anel do Último Suspiro');
+  assert.deepEqual([r.mudancas[0].valor, r.rotulo], [1, 'Anel do Último Suspiro: = 1 Saúde']);
+  assert.equal(ED.evento(f, 'recursos.saude.atual', 'soma', '', 'X').erro, 'Escreva o valor (o que rolou) em número inteiro.');
+  assert.equal(ED.evento(f, 'movimento', 'soma', 1, 'X').ok, false);
+});
+
+test('F6 parte 2 (dados reais): escudo soma no Defender pela condicao reacaoDefender; situacional com interruptor; Saúde abaixo da metade', () => {
+  const real = (f) => R.avaliar(f, { efeitos: EFEITOS });
+  const termoDe = (no, id) => no.termos.find((t) => t.fonte && t.fonte.id === id);
+  // escudo: "situacional" com condicao do vocabulário -> o nó do Defender aceita (não é interruptor)
+  let f = ficha({});
+  f.inventario.equipamentos.push(item('item-escudo-de-aco', { equipado: true }));
+  let r = real(f);
+  assert.equal(termoDe(r.nos['pericia.defender.total'], 'item-escudo-de-aco').ativo, true, 'o escudo volta a somar no Defender');
+  assert.equal(r.nos['pericia.defender.total'].situacionais, undefined);
+  // Capa de Obscurecimento sintonizada: +2 Furtividade desligado, interruptor ao lado do campo
+  f = ficha({});
+  const capa = item('item-capa-de-obscurecimento', { sintonizado: true });
+  f.inventario.bugigangas.push(capa);
+  r = real(f);
+  const fu = r.nos['pericia.furtividade.total'];
+  assert.equal(termoDe(fu, 'item-capa-de-obscurecimento').ativo, false);
+  assert.deepEqual(fu.situacionais.map((x) => [x.uid, x.chave, x.ligado, x.curto, x.texto]),
+    [[capa.uid, 'pericia.furtividade#0', false, '+2', 'em penumbra ou escuridão']]);
+  const antes = fu.valor;
+  capa.situacoes = ['pericia.furtividade#0'];
+  r = real(f);
+  assert.equal(r.nos['pericia.furtividade.total'].valor, antes + 2, 'ligado: soma');
+  assert.equal(r.nos['pericia.furtividade.total'].situacionais[0].ligado, true);
+  // sem sintonizar: nem interruptor
+  capa.sintonizado = false;
+  assert.equal(real(f).nos['pericia.furtividade.total'].situacionais, undefined);
+  // Anel da Carapaça: +1 Ar só com a Saúde abaixo da metade
+  f = ficha({ classe: 'monge', nivel: 2 });
+  f.inventario.bugigangas.push(item('item-anel-da-carapaca', { sintonizado: true }));
+  const max = real(f).nos['recurso.saude.max'].valor;
+  f.recursos.saude = { atual: max };
+  const ar = (x) => x.nos.ar.termos.filter((t) => t.fonte && t.fonte.id === 'item-anel-da-carapaca');
+  r = real(f);
+  assert.deepEqual(ar(r).map((t) => t.ativo), [true, false]);
+  assert.match(ar(r)[1].motivo, /só com a Saúde abaixo da metade \(agora/);
+  f.recursos.saude.atual = Math.floor(max / 2) - 1;
+  r = real(f);
+  assert.deepEqual(ar(r).map((t) => t.ativo), [true, true]);
+});
+
+test('F6 parte 2: o interruptor no KhConta (caixa no Ensaio, estado à vista fora dele) e o KhEdicao grava entrada.situacoes', () => {
+  const KC = require('../../js/ficha/kh-conta.js');
+  const ED = require('../../js/ficha/kh-edicao.js');
+  const no = { rotulo: 'Furtividade', valor: 3, formula: { simbolica: 'x', numerica: '= 3' }, termos: [],
+    situacionais: [{ uid: 'u1', chave: 'pericia.furtividade#0', ligado: false, item: 'Capa', efeito: '+2 Furtividade', curto: '+2', texto: 'em penumbra' }] };
+  const so = KC.criar({ D: D, nos: { p: no }, prefixo: 'fp' }).conta('p');
+  assert.match(so, /<span class="kh-sit" title="Capa: \+2 Furtividade, em penumbra \(desligado\)"><span class="kh-sit-v">\+2<\/span><span class="kh-sit-t">em penumbra<\/span><\/span>$/);
+  const ed = KC.criar({ D: D, nos: { p: no }, prefixo: 'fp', interruptores: true }).conta('p');
+  assert.match(ed, /<label class="kh-sit"[^>]*><input type="checkbox" class="kh-sit-cx" data-ed-lista="situacao\.u1" value="pericia\.furtividade#0"/);
+  assert.doesNotMatch(KC.criar({ D: D, nos: { p: no }, prefixo: 'fp' }).conta('p', { semSituacoes: true }), /kh-sit/);
+  const f = { inventario: { equipamentos: [], bugigangas: [{ uid: 'u1', id: 'item-capa-de-obscurecimento', nome: 'Capa', qtd: 1, sintonizado: true }] } };
+  let m = ED.mudancas(f, 'situacao.u1', { valor: 'pericia.furtividade#0', marcado: true });
+  assert.deepEqual([m.ok, m.mudancas[0].caminho, m.mudancas[0].valor[0].situacoes, m.rotulo], [true, 'inventario.bugigangas', ['pericia.furtividade#0'], 'Capa: situação ligada']);
+  f.inventario.bugigangas = m.mudancas[0].valor;
+  m = ED.mudancas(f, 'situacao.u1', { valor: 'pericia.furtividade#0', marcado: false });
+  assert.equal('situacoes' in m.mudancas[0].valor[0], false, 'desligar o último apaga a chave');
+  assert.equal(ED.mudancas(f, 'situacao.u9', { valor: 'pericia.furtividade#0', marcado: true }).erro, 'Este item não está mais no inventário.');
+  assert.equal(ED.mudancas(f, 'situacao.u1', { valor: 'x', marcado: true }).erro, 'Situação inválida.');
+});
+
 test('KhTroca (03 §11): uma regra para perícia, CD, Stamina e Éter; a perícia trocada diz "(escolhido)" na conta como a CD', () => {
   const T = require('../../js/ficha/kh-troca.js');
   assert.deepEqual(['pericia.movimento', 'cd', 'recurso.stamina', 'recurso.eter'].map(T.valida), [true, true, true, true]);

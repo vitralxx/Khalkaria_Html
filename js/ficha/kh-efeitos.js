@@ -270,26 +270,40 @@
           if (!ef) return;
           var qtd = Math.max(1, inteiro(e.qtd, 1));
           var fonte = { tipo: 'item', id: e.id, nome: str(e.nome) || e.id, uid: e.uid };
-          var noTotal = [];
+          var noTotal = [], nAlvo = {};
           lista(ef.mods).forEach(function (m0) {
             var quando = m0.quando || ef.quando || 'carregado';
             var m = mod(Object.assign({}, m0, { fonte: fonte, status: m0.status || ef.status, quando: quando,
               copias: ef.acumulaCopia === false ? 1 : qtd, uid: e.uid }));
-            var teste = QUANDO_ITEM[quando];
+            // a chave do Mod no item (alvo#ordem entre os do mesmo alvo): o que o
+            // interruptor do situacional guarda em entrada.situacoes
+            var ord = nAlvo[m0.alvo] || 0;
+            nAlvo[m0.alvo] = ord + 1;
+            var chaveSit = m0.alvo + '#' + ord;
+            var teste = QUANDO_ITEM[quando], vale = !!teste && teste(e);
+            m.gatilhoVale = vale;     // o card do item lista os condicionais só com o gatilho valendo
             if (!teste) desliga(m, 'quando "' + quando + '" fora do vocabulário');
-            else if (!teste(e)) desliga(m, MOTIVO_QUANDO[quando] || 'inativo');
+            else if (!vale) desliga(m, MOTIVO_QUANDO[quando] || 'inativo');
             if (/^capacidade\./.test(m.alvo)) desliga(m, 'capacidade vem do KhInv (inv.capacidade do registro) até a F6');
             if (m.op === 'escolha' || m.escolha) desliga(m, 'escolha do jogador (F6)');
             if (m.duracao) desliga(m, 'temporário (' + m.duracao + '): ativação na F6');
             // tabela por gatilho (rev. 11): só 'sempre' no portador soma sozinho
             if (m.para === 'aliados') desliga(m, 'vale nos aliados' + (m.alcance ? ' a até ' + m.alcance : '') + ': cada aliado aplica na ficha dele');
-            else if (m.aplica === 'situacional') desliga(m, 'situacional: ' + (m.situacao || 'quando a situação vale'));
+            // situacional com 'condicao' do vocabulário (reacaoDefender dos escudos,
+            // investida, descanso ao ar livre): quem decide é o nó do KhRegras (aceita)
+            else if (m.aplica === 'situacional' && !m.condicao) {
+              // o jogador liga quando a situação vale (interruptor ao lado do campo, F6)
+              var lig = lista(e.situacoes).indexOf(chaveSit) >= 0;
+              if (vale) m.situacional = { uid: e.uid, chave: chaveSit, texto: str(m.situacao), ligado: lig };
+              if (!lig) desliga(m, 'situacional: ' + (m.situacao || 'quando a situação vale') + ' (desligado)');
+            }
             else if (m.aplica === 'evento') desliga(m, 'no evento: ' + (m.evento || 'quando acontece'));
             else if (m.aplica === 'critico') desliga(m, 'só no crítico');
             if (m.ativo && m.enquanto) {
               var ce = /^condicao:(.+)$/.exec(m.enquanto);
               if (ce) { if (!lista(ficha.condicoes).some(function (c) { return obj(c) && c.id === ce[1]; })) desliga(m, 'só enquanto ' + ce[1]); }
-              else desliga(m, 'só ' + (TEXTO_ENQUANTO[m.enquanto] || m.enquanto));
+              // a Saúde abaixo da metade pede a Saúde máx.: o KhRegras confere (ctx.mods)
+              else if (m.enquanto !== 'saudeAbaixoDaMetade') desliga(m, 'só ' + (TEXTO_ENQUANTO[m.enquanto] || m.enquanto));
             }
             var k = e.id + '|' + m0.alvo + '|' + m0.op;
             if (m.ativo && ef.acumulaCopia === false && vistos[k]) desliga(m, 'não acumula com outra cópia deste item');

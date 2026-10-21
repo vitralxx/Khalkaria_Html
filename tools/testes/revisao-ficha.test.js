@@ -380,3 +380,28 @@ test('auditoria B: o schema exige "depois" no passoLog (o editar sempre grava an
   const l = JSON.parse(x.ss.getItem(PRE + 'khalkaria_ficha_v3_log:' + x.id));
   l.passos.forEach((p) => sc.$defs.passoLog.required.forEach((k) => assert.ok(k in p, k)));
 });
+
+// ---------------------------------------------------------------- F6 parte 2
+test('F6 parte 2: no Ensaio, o interruptor do situacional ao lado da perícia e no card do item; marcar grava, soma e desfaz', () => {
+  const x = ensaio();
+  const bazar = (ed) => FA.criar({ prefixo: 'fp' }).paineis(x.res(), { dados: DADOS, editar: ed || null }).paineis.bazar;
+  const col = () => x.ficha().inventario.bugigangas;
+  // a Capa entra sintonizada (a coluna inteira, como a edição grava)
+  const capa = { uid: 'capa1', id: 'item-capa-de-obscurecimento', nome: 'Capa de Obscurecimento', qtd: 1, empilhavel: false, equipado: false, sintonizado: true, avulso: false };
+  assert.ok(x.arm.editar(x.id, [{ caminho: 'inventario.bugigangas', valor: col().concat([capa]) }], { rotulo: 'teste' }).ok);
+  let h = nucleo(x, 'pagina');
+  const per = () => { const i = h.indexOf('data-campo="pericia-furtividade"'); return h.slice(i, h.indexOf('</div>', i)); };
+  assert.match(per(), /<label class="kh-sit"[^>]*><input type="checkbox" class="kh-sit-cx" data-ed-lista="situacao\.capa1" value="pericia\.furtividade#0"/);
+  assert.match(bazar('pagina'), /<ul class="fp-item-efs" data-campo="efeitos"><li class="kh-ef kh-ef-sit"><label class="kh-sit"/);
+  const v0 = x.nos()['pericia.furtividade.total'].valor;
+  const g = edita(x, 'situacao.capa1', { valor: 'pericia.furtividade#0', marcado: true });
+  assert.equal(g.rotulo, 'Capa de Obscurecimento: situação ligada');
+  assert.equal(x.nos()['pericia.furtividade.total'].valor, v0 + 2);
+  h = nucleo(x, 'pagina');
+  assert.match(per(), /<label class="kh-sit kh-sit-on"[^>]*><input[^>]*checked/);
+  // fora do Ensaio: o estado à vista, sem caixa
+  h = nucleo(x);
+  assert.match(per(), /<span class="kh-sit kh-sit-on" title="Capa de Obscurecimento: \+2 Furtividade, em penumbra ou escuridão \(ligado: soma na conta\)">/);
+  assert.ok(x.arm.desfazer(x.id).ok);
+  assert.equal(x.nos()['pericia.furtividade.total'].valor, v0);
+});

@@ -150,6 +150,33 @@
     letter-spacing: 0; text-transform: none; color: var(--amber);
 }
 
+/* ---------------------------------------------------------- interruptor do situacional
+   F6 (tabela rev. 11): o Mod do item que só vale numa situação ("+2 · em penumbra
+   ou escuridão"), ao lado do número que ele muda e no card do item. Tracejado =
+   desligado (fora da conta); cheio em âmbar = ligado (soma). No Ensaio é uma
+   caixa de marcar (o KhEditor grava em entrada.situacoes). */
+.kh-sit {
+    display: inline-flex; align-items: center; gap: .3em; max-width: 100%;
+    margin-left: .35em; padding: 0 .4em; vertical-align: middle;
+    border: 1px dashed var(--amber-dim); border-radius: 3px;
+    font-family: var(--font-body); font-size: max(.8em, 11px); font-weight: 400; letter-spacing: 0; text-transform: none;
+    line-height: 1.5; color: var(--text-muted-forte); white-space: nowrap; cursor: help;
+}
+label.kh-sit { cursor: pointer; }
+.kh-sit-on { border-style: solid; border-color: var(--amber); color: var(--amber); }
+.kh-sit-cx { width: 13px; height: 13px; margin: 0; accent-color: var(--amber); cursor: pointer; }
+.kh-sit-v { font-variant-numeric: tabular-nums; font-weight: 600; }
+.kh-sit-t { min-width: 0; overflow: hidden; text-overflow: ellipsis; font-style: italic; }
+.kh-sit:focus-within { outline: 2px solid var(--amber); outline-offset: 1px; }
+/* os efeitos do item que pedem a mesa (situacional, evento, crítico, aliados) */
+.kh-ef { list-style: none; margin: .15rem 0 0; font-size: .85em; line-height: 1.35; color: var(--text-secondary); }
+.kh-ef .kh-sit { margin-left: 0; }
+.kh-ef-q { font-weight: 600; color: var(--text-muted-forte); }
+.kh-ef-d { font-style: italic; color: var(--text-muted-forte); }
+/* o botão do evento (Ensaio): a caixa do valor e "Aplicar" */
+.kh-ev { display: inline-flex; align-items: center; gap: .3rem; margin-left: .3rem; }
+.kh-ev-n { width: 6ch; min-height: 24px; padding: 0 .3rem; font-variant-numeric: tabular-nums; }
+
 /* ---------------------------------------------------------- régua de carga
    0 a 2×max: dourado até o max (-ok), âmbar hachurado até 2×max (-exc);
    passou de 2×max, [data-estado="extremo"]: listrado em brasa e o "+N" (-mais).

@@ -70,6 +70,8 @@
       // a edição (F4.6b, só a página com o Ensaio): {ajustavel(caminho, o, no) -> bool,
       // motivo(caminho) -> texto}. Sem ela, o HTML é o de sempre, byte a byte.
       var ed = obj(op.editar) && typeof op.editar.ajustavel === 'function' ? op.editar : null;
+      // op.interruptores: o situacional vira caixa de marcar (Ensaio, página e drawer)
+      var inter = !!op.interruptores;
       var n = 0, caminhos = [];
 
       function rotuloSelo(k) { return str(D.rotulosSelo && D.rotulosSelo[k]) || k; }
@@ -128,7 +130,24 @@
             '<svg aria-hidden="true"><use href="#g-selo"/></svg>' + es(SELO_CURTO[s] || s) + '</span>';
         }).join('');
       }
-      // o número com a conta. o: {un, texto (troca o valor mostrado), semSelos, no (nó fora do grafo)}
+      // o interruptor do situacional (F6, tabela rev. 11): o Mod que só vale numa
+      // situação ("+2 · em penumbra ou escuridão"), ao lado do número que ele muda.
+      // Com interruptores, caixa de marcar (data-ed-lista situacao.<uid>, o KhEditor
+      // grava); sem, o estado à vista. Ligado = soma na conta.
+      function situacionaisHTML(no) {
+        return lista(no && no.situacionais).map(function (x) {
+          var tit = es(se(x.item) + ': ' + x.efeito + (x.texto ? ', ' + x.texto : '') + (x.ligado ? ' (ligado: soma na conta)' : ' (desligado)'));
+          var corpo = '<span class="kh-sit-v">' + es(x.curto || x.efeito) + '</span>' + (x.texto ? '<span class="kh-sit-t">' + es(x.texto) + '</span>' : '');
+          if (inter) {
+            return '<label class="kh-sit' + (x.ligado ? ' kh-sit-on' : '') + '" title="' + tit + '"><input type="checkbox" class="kh-sit-cx"' +
+              ' data-ed-lista="situacao.' + es(x.uid) + '" value="' + es(x.chave) + '"' + (x.ligado ? ' checked' : '') +
+              ' aria-label="' + tit + '">' + corpo + '</label>';
+          }
+          return '<span class="kh-sit' + (x.ligado ? ' kh-sit-on' : '') + '" title="' + tit + '">' + corpo + '</span>';
+        }).join('');
+      }
+      // o número com a conta. o: {un, texto (troca o valor mostrado), semSelos,
+      // semSituacoes (o interruptor vai em outro lugar), no (nó fora do grafo)}
       function conta(caminho, o) {
         o = o || {};
         var no = o.no || (nos && nos[caminho]);
@@ -172,10 +191,11 @@
           // número com aviso do motor (dado faltando, valor fora da conta): marca à vista, o texto vai em Avisos
           (lista(no.avisos).length ? ' <span class="' + p + '-aviso ' + p + '-marca-aviso" title="' +
             es(lista(no.avisos).map(function (a) { return a.msg || a.tipo; }).join(' · ')) + '">aviso</span>' : '') +
-          (o.semSelos ? '' : selosHTML(no.selos, no.notaSelo));
+          (o.semSelos ? '' : selosHTML(no.selos, no.notaSelo)) +
+          (o.semSituacoes ? '' : situacionaisHTML(no));
       }
 
-      return { prefixo: p, caminhos: caminhos, conta: conta, termoHTML: termoHTML, selosHTML: selosHTML,
+      return { prefixo: p, caminhos: caminhos, conta: conta, termoHTML: termoHTML, selosHTML: selosHTML, situacionaisHTML: situacionaisHTML,
         fonteTxt: fonteTxt, valorTermo: valorTermo, valorNo: valorNo, rotuloSelo: rotuloSelo, seloDoStatus: seloDoStatus };
     }
 

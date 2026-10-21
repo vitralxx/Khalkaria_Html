@@ -488,9 +488,10 @@
           return '<div class="' + P + '-per" data-campo="pericia-' + p.id + '">' +
             '<span class="' + P + '-per-graus" role="' + (edP ? 'group' : 'img') + '" aria-label="' + esc((edP ? p.nome + ': grau ' : 'Grau ') + g + ' de 4' + (graus[g] ? ': ' + graus[g] : '')) + '">' + circ + '</span>' +
             // o selo (decisão, pendente…) vai junto do nome; a caixa de total fica só com o número
-            '<span class="' + P + '-per-nome">' + esc(p.nome) + (no ? C.selosHTML(no.selos) : '') + (/^oficio-/.test(p.id) ? seloOf : '') + '</span>' +
+            '<span class="' + P + '-per-nome">' + esc(p.nome) + (no ? C.selosHTML(no.selos) : '') + (/^oficio-/.test(p.id) ? seloOf : '') +
+              (no ? C.situacionaisHTML(no) : '') + '</span>' +
             '<span class="' + P + '-per-at" title="' + esc(atTit) + '">' + atHTML + '</span>' +
-            '<span class="' + P + '-per-total">' + conta('pericia.' + p.id + '.total', { texto: no && typeof no.valor === 'number' ? modTxt(no) : null, semSelos: true }) + '</span></div>';
+            '<span class="' + P + '-per-total">' + conta('pericia.' + p.id + '.total', { texto: no && typeof no.valor === 'number' ? modTxt(no) : null, semSelos: true, semSituacoes: true }) + '</span></div>';
         }
         var pers = lista(D.pericias);
         // a pendência do Ofício(X) no Ensaio: o seletor dos 3 Ofícios aplica o grau e
@@ -920,6 +921,44 @@
       // ======================================================================
       // 4. O Bazar (A4 pág. 4): o inventário da ficha, só leitura
       // ======================================================================
+      // os efeitos do item que pedem a mesa (F6, tabela rev. 11): o situacional com o
+      // interruptor (o mesmo do campo), o de evento, o do crítico e o dos aliados.
+      // Só com o gatilho do item valendo (equipado, sintonizado...). O "sempre" já está
+      // nas contas dos campos.
+      var ROT_APLICA = { evento: 'No evento', critico: 'No crítico' };
+      function efeitosItem(x, C, ctx) {
+        var ms = lista(ctx.modsItens).filter(function (m) {
+          return m.fonte && m.fonte.uid === x.uid && m.gatilhoVale && (m.situacional || m.aplica === 'evento' || m.aplica === 'critico' || m.para === 'aliados');
+        });
+        if (!ms.length) return '';
+        var tx = function (m) { return KhRegras && KhRegras.textoMod ? KhRegras.textoMod(m, ctx.D) : str(m.alvo); };
+        return '<ul class="' + P + '-item-efs" data-campo="efeitos">' + ms.map(function (m) {
+          if (m.situacional) {
+            return '<li class="kh-ef kh-ef-sit">' + C.situacionaisHTML({ situacionais: [{ uid: m.situacional.uid, chave: m.situacional.chave,
+              texto: m.situacional.texto, ligado: m.situacional.ligado, item: m.fonte.nome, efeito: tx(m), curto: tx(m) }] }) + '</li>';
+          }
+          var quando = m.para === 'aliados' ? 'Nos aliados' + (m.alcance ? ' a até ' + m.alcance : '') : ROT_APLICA[m.aplica];
+          var det = m.aplica === 'evento' ? m.evento : m.situacao;
+          return '<li class="kh-ef kh-ef-' + esc(m.para === 'aliados' ? 'aliados' : m.aplica) + '"><span class="kh-ef-q">' + esc(quando) +
+            (det ? ' (' + esc(det) + ')' : '') + ':</span> ' + esc(tx(m)) + (m.duracao ? ' <span class="kh-ef-d">por ' + esc(DURACAO[m.duracao] || m.duracao) + '</span>' : '') +
+            botaoEvento(m, ctx) + '</li>';
+        }).join('') + '</ul>';
+      }
+      // o evento que mexe na Saúde, Stamina ou Éter atual ganha o botão no Ensaio: a caixa
+      // vem com o número do item, ou vazia para o que rolou (dado ou conta da mesa).
+      // Evento com duração (temporário) espera os temporários da F6.
+      function botaoEvento(m, ctx) {
+        var r = /^recurso\.(saude|stamina|eter)\.atual$/.exec(str(m.alvo));
+        if (!ctx.editar || !KhEdicao || m.aplica !== 'evento' || m.para !== 'portador' || !r || m.duracao || (m.op !== 'soma' && m.op !== 'fixa')) return '';
+        var n = typeof m.valor === 'number' ? String(m.valor) : '';
+        var rot = semEmoji(m.fonte && m.fonte.nome) || 'Item';
+        return ' <span class="kh-ev"><input type="text" inputmode="numeric" class="ke-ed kh-ev-n" value="' + esc(n) + '"' +
+          (n ? '' : ' placeholder="rolei"') + ' aria-label="' + esc(rot + ': valor do evento' + (n ? '' : ' (' + str(m.valor) + ')')) + '">' +
+          '<button type="button" class="kh-btn kh-ev-bt" data-ed-evento="recursos.' + r[1] + '.atual" data-ed-op="' + esc(m.op) + '"' +
+          ' data-ed-rotulo="' + esc(rot) + '">Aplicar</button></span>';
+      }
+      var DURACAO = { fimDoCombate: 'até o fim do combate', descansoLongo: 'até o próximo descanso longo', proximoDescansoLongo: 'no próximo descanso longo',
+        proximoCombate: 'no próximo combate' };
       function itemHTML(x, C, nos, ctx) {
         var qtd = qtdDe(x);
         var marcas = (x.equipado ? selo('equipado', 'Equipado') : '') + (x.sintonizado ? selo('sintonizado', 'Sintonizado') : '') +
@@ -940,7 +979,7 @@
           '<span data-campo="raridade">' + raridade(x.raridade) + '</span>' +
           '<span class="' + P + '-item-qtd" data-campo="qtd"><span class="' + P + '-rot">Qtd</span>' + nEstado('inventario.' + x.uid + '.qtd', qtd) + '</span>' + marcas + '</div>' +
           (x.categoria ? '<span class="' + P + '-item-cat">' + esc(x.categoria) + '</span>' : '') +
-          (x.efeito ? '<p class="' + P + '-item-ef">' + textoRico(x.efeito) + '</p>' : '') + atq + '</li>';
+          (x.efeito ? '<p class="' + P + '-item-ef">' + textoRico(x.efeito) + '</p>' : '') + efeitosItem(x, C, ctx) + atq + '</li>';
       }
       function itens(lst, minimo, C, nos, ctx) {
         var h = lst.map(function (x) { return itemHTML(x, C, nos, ctx); }).join('');
@@ -949,6 +988,7 @@
       }
       RENDER.bazar = function (res, C, ctx) {
         var f = res.ficha, nos = res.av.nos, inv = f.inventario || {}, h = '';
+        ctx.modsItens = res.av.efeitos ? res.av.efeitos.mods : [];
         var bug = lista(inv.bugigangas).filter(obj), eq = lista(inv.equipamentos).filter(obj);
         var mats = bug.concat(eq).filter(ehMaterial);
         var bugs = bug.filter(function (x) { return !ehMaterial(x); });
@@ -1075,7 +1115,7 @@
         var edConta = ed === 'pagina' ? { motivo: KhEdicao.motivoNaoAjuste,
           ajustavel: function (c, oo) { return !(oo && oo.no) && KhEdicao.ajustavel(c); } } : undefined;
         var C = ok && KhConta ? KhConta.criar({ D: D, nos: res.av ? res.av.nos : null,
-          prefixo: P, esc: esc, fmt: KhRegras ? KhRegras.fmt : undefined, semEmoji: semEmoji, editar: edConta }) : null;
+          prefixo: P, esc: esc, fmt: KhRegras ? KhRegras.fmt : undefined, semEmoji: semEmoji, editar: edConta, interruptores: !!ed }) : null;
         var ctx = ok ? contexto(o.dados, D, o.base) : null;
         if (ctx) ctx.editar = ed;
         var out = {};

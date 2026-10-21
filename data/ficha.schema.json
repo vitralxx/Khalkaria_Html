@@ -367,7 +367,12 @@
         "empilhavel": { "type": "boolean" },
         "equipado": { "type": "boolean" },
         "sintonizado": { "type": "boolean" },
-        "avulso": { "type": "boolean" }
+        "avulso": { "type": "boolean" },
+        "situacoes": {
+          "type": "array", "uniqueItems": true,
+          "items": { "type": "string", "pattern": "^[A-Za-z][A-Za-z0-9._-]*#\\d+$" },
+          "description": "F6 (tabela rev. 11): os situacionais ligados deste item, pela chave 'alvo#n' (n = ordem entre os Mods do mesmo alvo no item). Ausente = todos desligados."
+        }
       }
     },
 

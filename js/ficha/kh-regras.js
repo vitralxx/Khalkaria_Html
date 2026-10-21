@@ -200,9 +200,21 @@
       // Mods do alvo (fora os ajustes, que o KhAjustes aplica no fechamento), já com os do Sobrepeso
       ctx.mods = function (alvos) {
         alvos = [].concat(alvos);
-        return ef.mods.concat(ctx.sobrepeso).filter(function (m) { return !m.noFechamento && alvos.indexOf(m.alvo) >= 0; });
+        return ef.mods.concat(ctx.sobrepeso).filter(function (m) { return !m.noFechamento && alvos.indexOf(m.alvo) >= 0; })
+          .map(function (m) { return m.ativo && m.enquanto === 'saudeAbaixoDaMetade' ? enquantoSaude(ctx, m) : m; });
       };
+      // há Mod "enquanto a Saúde estiver abaixo da metade"? (o grafo põe a Saúde máx. antes)
+      ctx.pedeSaudeMax = ef.mods.some(function (m) { return m.enquanto === 'saudeAbaixoDaMetade'; });
       return ctx;
+    }
+    // "enquanto a Saúde estiver abaixo da metade" (tabela rev. 11, Anel da Carapaça):
+    // Saúde atual < Saúde máx. / 2; sem a atual na ficha, não vale
+    function enquantoSaude(ctx, m) {
+      var rs = ctx.ficha.recursos && ctx.ficha.recursos.saude, atual = rs && typeof rs.atual === 'number' ? rs.atual : null;
+      var max = ctx.v('recurso.saude.max');
+      if (atual != null && typeof max === 'number' && atual < max / 2) return Object.assign({}, m, { motivo: 'Saúde abaixo da metade (' + fmt(atual) + ' de ' + fmt(max) + ')' });
+      return Object.assign({}, m, { ativo: false, motivo: 'só com a Saúde abaixo da metade' +
+        (atual != null && typeof max === 'number' ? ' (agora ' + fmt(atual) + ' de ' + fmt(max) + ')' : '') });
     }
     // valor numérico de um Mod: número × cópias, ou a AST com o X da condição
     function valorMod(m, ctx) {
@@ -1101,10 +1113,63 @@
       return no;
     }
 
+    // ---------------- Mod em palavras (F6: interruptor, item) ----------------
+    var ROTULO_ALVO = { ar: 'Armadura', movimento: 'Movimento', acoes: 'Ações', cd: 'CD', 'evasao.passiva': 'Evasão',
+      margemAmeaca: 'margem de ameaça', 'ataque.bonusAtacar': 'Atacar', 'ataque.danoExtra': 'dano extra',
+      'ataque.dados': 'dado de dano', 'ataque.danoFixo': 'dano', 'ataque.danoMaximo': 'dano máximo',
+      'ataque.efeitoChassi.stamina': 'Stamina do efeito da arma', tamanho: 'tamanho', 'magia.dadosDano': 'dado de dano das magias',
+      'descanso.comodidade': 'comodidade do descanso', 'recurso.saude.atual': 'Saúde', 'recurso.stamina.atual': 'Stamina',
+      'recurso.eter.atual': 'Éter', 'recurso.saude.max': 'Saúde máx.', 'recurso.stamina.max': 'Stamina máx.', 'recurso.eter.max': 'Éter máx.' };
+    function rotuloAlvo(alvo, D) {
+      var a = str(alvo), m;
+      if (ROTULO_ALVO[a]) return ROTULO_ALVO[a];
+      if ((m = /^pericia\.(.+)$/.exec(a))) {
+        var p = lista(D && D.pericias).filter(function (x) { return x.id === m[1]; })[0];
+        return p ? p.nome : m[1];
+      }
+      if ((m = /^ae\.(.+)$/.exec(a))) return 'Ae ' + (NOME_TIPO[m[1]] || m[1]);
+      if ((m = /^(resistencia|imunidade|vulnerabilidade)\.(.+)$/.exec(a))) return { resistencia: 'Resistência', imunidade: 'Imunidade', vulnerabilidade: 'Vulnerabilidade' }[m[1]] + ' a ' + (NOME_TIPO[m[2]] || m[2]);
+      return a;
+    }
+    // "+2 Furtividade", "vantagem em Movimento", "+1d6 dano extra"
+    function textoMod(m, D) {
+      var r = rotuloAlvo(m.alvo, D), v = m.valor;
+      if (m.op === 'vantagem' || m.op === 'desvantagem') return m.op + ' em ' + r;
+      if (m.op === 'fixa') return r + ' = ' + (v === true ? 'sim' : str(v));
+      if (m.op === 'multiplica') return r + ' × ' + str(v);
+      if (typeof v === 'number') return (v < 0 ? '−' + fmt(-v) : '+' + fmt(v)) + ' ' + r;
+      return '+' + str(v) + ' ' + r;
+    }
+    // o valor sem o alvo, para o interruptor ao lado do campo: "+2", "+1d6", "vantagem"
+    function curtoMod(m, D) {
+      var v = m.valor;
+      if (m.op === 'vantagem' || m.op === 'desvantagem') return m.op;
+      if (m.op === 'soma') return typeof v === 'number' ? (v < 0 ? '−' + fmt(-v) : '+' + fmt(v)) : '+' + str(v);
+      return textoMod(m, D);
+    }
+    function situacionalDe(m, D) {
+      return { uid: m.situacional.uid, chave: m.situacional.chave, texto: m.situacional.texto, ligado: m.situacional.ligado,
+        item: nomeFonte(m), efeito: textoMod(m, D), curto: curtoMod(m, D) };
+    }
+    // o nó que mostra o Mod (o interruptor fica ao lado dele); sem nó, só no card do item
+    function noDoAlvo(ctx, m) {
+      var a = str(m.alvo), u = m.fonte && m.fonte.uid, c = null;
+      if (/^pericia\./.test(a)) c = a + '.total';
+      else if (a === 'margemAmeaca' || a === 'ataque.bonusAtacar') c = u ? 'ataque.' + u + '.atacar' : null;
+      else if (/^ataque\.(danoExtra|dados|danoFixo|danoMaximo)$/.test(a)) c = u ? 'ataque.' + u + '.dano' : null;
+      else c = a;
+      return c && ctx.nos[c] ? c : null;
+    }
+
     // ---------------- grafo ----------------
     function grafo(ctx) {
       var D = ctx.D, g = [];
-      function add(c, deps, f) { g.push({ c: c, d: deps, f: f }); }
+      function add(c, deps, f) {
+        // Mod "enquanto a Saúde estiver abaixo da metade": a Saúde máx. vem antes (ela só
+        // depende dos atributos, então não há ciclo)
+        if (ctx.pedeSaudeMax && !/^atributo\./.test(c) && c !== 'recurso.saude.max') deps = deps.concat(['recurso.saude.max']);
+        g.push({ c: c, d: deps, f: f });
+      }
       var MODS = ATRIBUTOS.map(function (A) { return 'atributo.' + A + '.mod'; });
       ATRIBUTOS.forEach(function (A) {
         add('atributo.' + A + '.total', [], function () { return noAtributoTotal(ctx, A); });
@@ -1227,6 +1292,13 @@
         if (no.progressao) fechaProgressao(no, D);
         fechaStatus(no, D);
         ctx.nos[x.c] = no;
+      });
+      // o interruptor do situacional fica ao lado do número que ele muda (F6)
+      ctx.ef.mods.forEach(function (m) {
+        if (!m.situacional) return;
+        var c = noDoAlvo(ctx, m);
+        if (!c) return;
+        (ctx.nos[c].situacionais = ctx.nos[c].situacionais || []).push(situacionalDe(m, ctx.D));
       });
       // ajuste de caminho sem nó (magia ou arma que saiu da ficha): fica listado
       Object.keys(ajustes).forEach(function (c) {
@@ -1509,7 +1581,8 @@
       avaliar: avaliar, calculados: calculados, custoMagia: custoMagia, resolverTeste: resolverTeste,
       maximos: maximos, acompanharMaximos: acompanharMaximos, lembreteForaDasContas: lembreteForaDasContas,
       temporaria: temporaria, aval: function (ast, amb, D) { return aval(ast, amb, D || dadosPadrao()); },
-      fmt: fmt, dados: dadosPadrao
+      fmt: fmt, dados: dadosPadrao,
+      textoMod: function (m, D) { return textoMod(m, D || dadosPadrao()); }
     };
   })();
 

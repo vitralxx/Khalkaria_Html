@@ -467,7 +467,7 @@
       }
       // um controle da edição (a barra, um campo, um círculo, o stepper, um número ajustável)?
       function controle(t) {
-        var c = perto(t, '[data-ked], [data-ed-grau], [data-ed-delta]') ||
+        var c = perto(t, '[data-ked], [data-ed-grau], [data-ed-delta], [data-ed-evento]') ||
           (modo === 'pagina' ? perto(t, '.kh-conta[data-ajustavel]') : null);
         return c && dentro(c) ? c : null;
       }
@@ -486,6 +486,19 @@
           if (!x || !x.ficha) return;
           var p = g.getAttribute('data-ed-grau');
           grava(KhEdicao.mudancas(x.ficha, 'pericias.' + p, KhEdicao.grauClicado(x.ficha, p, Number(g.getAttribute('data-grau')))));
+          return;
+        }
+        // o botão do evento de item (F6): o valor vem da caixa ao lado (o número do item ou o que rolou)
+        var ev = perto(t, '[data-ed-evento]');
+        if (ev && dentro(ev)) {
+          if (fora()) return;
+          var z = ativa();
+          if (!z || !z.ficha) return;
+          var caixa = perto(ev, '.kh-ev');
+          var inp = caixa && caixa.querySelector ? caixa.querySelector('.kh-ev-n') : null;
+          var vi = !inp ? '' : inp.value != null ? inp.value : inp.getAttribute('value');
+          grava(KhEdicao.evento(z.ficha, ev.getAttribute('data-ed-evento'), ev.getAttribute('data-ed-op'), vi,
+            ev.getAttribute('data-ed-rotulo')));
           return;
         }
         var d = perto(t, '[data-ed-delta]');

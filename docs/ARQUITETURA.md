@@ -719,7 +719,23 @@ kit com cargas `ativado` (`ativacao.cargas`), o resto do consumir vai para
 resto entra na trilha desligado com o motivo; `enquanto: 'condicao:<id>'` é
 conferido na ficha. Os alvos novos da tabela estão no grupo `daTabela` do
 `tools/alvos_destino.json` (por ora lembrete com número). Lembrete de natureza
-`alvo` vai para `lembretesNoAlvo`; `estrutural` sai. O `[vhelor]` exige as 7
+`alvo` vai para `lembretesNoAlvo`; `estrutural` sai.
+
+**F6 parte 2 (2026-10-21).** Situacional com `condicao` do vocabulário (escudos com
+`reacaoDefender`, Investida, descanso ao ar livre) segue para o nó do `KhRegras`, que
+aceita ou não (o `aceita` do nó). Situacional sem `condicao` tem interruptor: o
+`KhEfeitos` dá ao Mod `situacional` {uid, chave 'alvo#n', texto, ligado} e só o liga
+se a chave estiver em `entrada.situacoes`; o `KhRegras` pendura o interruptor no nó
+que o Mod muda (`no.situacionais`; perícia, Ar, Ae, recurso, linha de ataque do
+próprio item) e o `KhConta.conta` o desenha ao lado do número (`.kh-sit`; na perícia,
+junto do nome). No Ensaio é caixa de marcar (`data-ed-lista="situacao.<uid>"`,
+`KhEdicao` grava a coluna do inventário). `enquanto: 'saudeAbaixoDaMetade'` é
+conferido no `ctx.mods` (Saúde atual < máx./2); com um Mod desses, o grafo põe a
+Saúde máx. antes de todo nó que não é atributo. O card do item (aba Bazar) lista os
+efeitos que pedem a mesa (situacional, evento, crítico, aliados) com o gatilho
+valendo (`m.gatilhoVale`); o evento que mexe na Saúde/Stamina/Éter atual ganha a
+caixa do valor e o botão Aplicar (`data-ed-evento`, `KhEdicao.evento`). Evento com
+duração espera os temporários. O `[vhelor]` exige as 7
 Marcas iguais ao texto do Pedro (03 §3.1) e numa fonte só.
 
 Os índices "Navegação Rápida" de Condições e Sistema saem do gerador

@@ -1438,3 +1438,38 @@ test('auditoria B e 03 §10 pela interface: o 1º clique em Desfazer depois de d
   assert.equal(j.ls.foto(), fotoLs);
   soEnsaio(j.ss, 'revisão pela interface');
 });
+
+test('F6 parte 2 pela interface: o interruptor do situacional (Capa) e o botão do evento (Colar da Sanguessuga) no Ensaio; desfazer volta', async () => {
+  const v2 = copia(V2);
+  const ent = (id, nome, uid) => Object.assign({}, v2.inventario.bugigangas[0], { id, nome, categoria: 'Item Mágico', raridade: 'Incomum',
+    efeito: '', valor: '', qtd: 1, empilhavel: false, empilhavelRegistro: false, sintonizado: true, uid });
+  v2.inventario.bugigangas.push(ent('item-capa-de-obscurecimento', 'Capa de Obscurecimento', 'eCapa'),
+    ent('item-colar-da-sanguessuga', 'Colar da Sanguessuga', 'eColar'));
+  const ls = A.armazenamento(comPrevia({ khalkaria_ficha: JSON.stringify(v2) }));
+  const ss = A.armazenamento({ khalkaria_ficha_aba: 'nucleo' });
+  const j = await carrega(janela({ pagina: true, ls, ss }));
+  j.clica(j.doc.querySelector('[data-ke="entrar"]'));
+  await carrega(j);
+  const fp = j.el('fp');
+  const arm = j.sb.KhEnsaio.armazem(j.ss), id = arm.ativa();
+  const ficha = () => copia(arm.ler(id));
+  const capa = () => ficha().inventario.bugigangas.find((e) => e.uid === 'eCapa');
+  // o interruptor ao lado da Furtividade
+  const cx = fp.querySelector('[data-campo="pericia-furtividade"] .kh-sit-cx');
+  assert.ok(cx, 'a caixa do situacional ao lado da perícia');
+  j.muda(cx, { checked: true, value: 'pericia.furtividade#0' });
+  assert.deepEqual(capa().situacoes, ['pericia.furtividade#0']);
+  rodaTimers(j);
+  // o botão do evento: +1 Saúde (o número do item já na caixa)
+  const s0 = ficha().recursos.saude.atual;
+  const bt = fp.querySelector('[data-ed-evento="recursos.saude.atual"]');
+  assert.ok(bt, 'o botão do evento no card do Colar');
+  j.clica(bt);
+  assert.equal(ficha().recursos.saude.atual, s0 + 1);
+  assert.equal(j.el('fp-ked').querySelector('.ke-ed-msg').textContent, '');
+  rodaTimers(j);
+  j.clica(j.el('fp-ked').querySelector('[data-ked="desfazer"]'));
+  assert.equal(ficha().recursos.saude.atual, s0);
+  j.clica(j.el('fp-ked').querySelector('[data-ked="desfazer"]'));
+  assert.equal(capa().situacoes, undefined);
+});
