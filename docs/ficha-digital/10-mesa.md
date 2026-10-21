@@ -362,7 +362,7 @@ Cada fase: build verde, `[estilo]` recapturado quando o CSS muda, conferida no n
 
 | Fase | Entrega | Depende de |
 |---|---|---|
-| **Mesa 0** | Prova de estética. 2ª versão aprovada em parte. **3ª versão:** camadas, altura fixa, trilho em medalhões, cinto de favoritos, registro sobre o pano, confirmação, alvos por relação, condições pelo contrato, Investida e retaliação, contas por parcelas | aprovação do Pedro |
+| **Mesa 0** | Prova de estética. 2ª versão aprovada em parte. **3ª versão publicada em 2026-10-21:** camadas, altura fixa, trilho em medalhões, cinto de favoritos, registro sobre o pano, confirmação, alvos por relação, condições pelo contrato, Investida e retaliação, contas por parcelas | aprovação do Pedro |
 | **Mesa 1** | Motor puro e as bases:<br>• `KhDados`, `KhUso` (schema, gates, cobertura, manual), `KhMesa` (prévia, executar, eventos, alvos, condições pelo contrato, Recebi dano, ganhos)<br>• benefício (schema 3.1)<br>• `KhConta` por parcelas na ficha toda<br>• catálogo de ações básicas e manobras<br>Testes e gates | o balanceamento conferir as básicas (G) |
 | **Mesa 2** | A aba: layout rev. 3, confirmação, combate básico (armas, Desarmado, básicas, manobras, Investida, retaliação), perícias, condições, exploração e descansos. A rodada simulada fecha | Mesa 0 e 1 |
 | **Mesa 3** | Itens (catálogo gerado da tabela de efeitos) e magias (gerado dos campos, com as exceções do L), boneco e mãos | Mesa 2 |
