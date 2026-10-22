@@ -982,6 +982,21 @@ Texto verbatim em `18-batedor-rework.md` §0 e as lições em `19-gabarito-de-cl
   - Khaskavel e Revavena ficam fora das regiões, com mapas próprios que não são hexagonais.
   - O CSV do Bazar ainda conhece só 8 regiões.
   - Proposta dos mapas hexagonais em `21-mapas-hexagonais.md`, esperando as decisões do Pedro.
+- **D156** (2026-10-22) Mapas hexagonais, primeiras regras do Pedro (detalhe em `21`):
+  - **Grade:** 30 colunas, hex de topo pontudo, com coordenada. Os 9 mapas são gerados por programa a partir do
+    esqueleto e da arte de cada tipo de hex (*"450 hexes não da pra fazer na mão"*).
+  - **Movimento:** o orçamento do dia é o menor Movimento do grupo (16 h de viagem). O hex custa 4,5 m; a trilha,
+    3 m; a estrada, 1,5 m. O custo de cada hex é ajustável e tem de ser fácil de tabelar. A navegação é a mais
+    rápida, mas exige embarcação, e cada uma tem sua velocidade.
+  - **Rios nas arestas,** bloqueando. Estradas e trilhas passam pelo centro do hex. Atravessar fora de ponte é teste
+    individual de Movimento contra CD 10/15/20; quem falha recebe 2d6+3 de dano e é levado 1d6 hexes rio abaixo.
+  - **Paradas:** a regra proposta foi aceita (fim de período, acampamento ou quando o grupo escolhe).
+  - **Jornada:** o teste decide a complicação. A tabela de consequências passa a ser **d100 por região**, criativa e
+    temática. A consequência se resolve ao parar, salvo em hex de conflito. A emboscada no descanso fica.
+  - **Hexes:** os neutros rolam d100 na tabela do tipo e ficam definidos para sempre; o sorteado sai da tabela. O hex
+    de recurso sempre deixa extrair. Os personalizados dão riqueza.
+  - **Templo da Profecia** fica no Bosque Corrompido.
+  - **Objetivo:** cada rio e cada estrada têm o propósito de levar os jogadores mais perto de objetivos.
   - Pedro: *"pode deixar a opção de troca manual no cálculo dos status, padronizando como uma classe esse tipo de
     troca manual em cálculo"*.
 
