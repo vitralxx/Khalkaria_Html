@@ -976,6 +976,12 @@ Texto verbatim em `18-batedor-rework.md` §0 e as lições em `19-gabarito-de-cl
   "sem troca manual" da D154 foi uma leitura errada da frase relayada. Notion e contrato (rev. 12) refeitos.
   - Marcas da Vhelor: a seção **continua visível** se o Elixir da Expurgação levar o contador a 0.
   - Comerciantes, C3: cada um compra só a própria categoria; o Sucateiro compra tudo.
+- **Fato (2026-10-22, mapa do continente enviado pelo Pedro):** Kharavel tem **9 regiões**: Emaranhado de Raízes,
+  Bosque Corrompido, Cinturão Silencioso, **Bacia Acidentada** (a que faltava; o lago central), Deserto do Abismo,
+  Terras Livres, Cordilheira Cristalina, Costas Rochosas e Ermo das Cinzas.
+  - Khaskavel e Revavena ficam fora das regiões, com mapas próprios que não são hexagonais.
+  - O CSV do Bazar ainda conhece só 8 regiões.
+  - Proposta dos mapas hexagonais em `21-mapas-hexagonais.md`, esperando as decisões do Pedro.
   - Pedro: *"pode deixar a opção de troca manual no cálculo dos status, padronizando como uma classe esse tipo de
     troca manual em cálculo"*.
 
