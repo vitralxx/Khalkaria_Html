@@ -1,222 +1,241 @@
-# Mapas hexagonais de Kharavel: regras e catálogo de hexes (rodada 2, 2026-10-22)
+# Hexcrawl de Kharavel: regras (rodada 3, 2026-10-22)
 
-Pedido do Pedro: separar o continente em 9 mapas regionais de grade hexagonal.
-- A cor do hexágono define a região.
-- Ruas, trilhas e rios têm propósito de design.
-- Todo hex em que o grupo para tem algo.
-- Os 9 mapas juntos refazem o continente.
-- Khaskavel e Revavena ficam fora das regiões, com mapas próprios que não são hexagonais.
+Regras que a aplicação de hexcrawl implementa. O plano da aplicação está no `22-hexcrawl-app-plano.md`.
 
-**Objetivo do Pedro:** *"fazer os jogadores visualizarem melhor por onde eles podem ir, o mapa como é gerado por ia,
-não tem caminhos e game design intencional, isso que eu quero mudar, cada rio e estrada terá um proposito em levar
-os jogadores mais perto de objetivos."*
+**Origem:** `[Pedro]` decidido por ele · `[proposta]` minha, precisa de aceite · `[Sistema]` texto canônico do Notion.
 
-**Origem de cada parte:** `[Pedro]` decidido por ele · `[proposta]` minha, precisa de aceite.
+**Objetivo do Pedro:** *"fazer os jogadores visualizarem melhor por onde eles podem ir [...] cada rio e estrada terá
+um proposito em levar os jogadores mais perto de objetivos."*
 
 ---
 
-## 0. As 9 regiões `[Pedro]`
+## 1. Regiões
 
-| Região | Cor da legenda | Marcos no mapa |
-|---|---|---|
-| Emaranhado de Raízes | magenta | a Grande Árvore |
-| Bosque Corrompido | vermelho | Vilarejo Skarv, **Templo da Profecia** |
-| Cinturão Silencioso | ciano | (Revavena dentro do contorno, mas é cidade) |
-| Bacia Acidentada | cinza | o lago central, o Castelo em Ruínas |
-| Deserto do Abismo | roxo | a cratera, O Oasis |
-| Terras Livres | amarelo-oliva | Kurian |
-| Cordilheira Cristalina | azul | a cordilheira |
-| Costas Rochosas | verde | Minas dos Krichama |
-| Ermo das Cinzas | preto | a fortaleza do sudeste |
+### 1.1 As 9 regiões e a escala de dificuldade
+A escala vem do CR de drop dos Materiais no CSV do Bazar (`Obtenção`). A Bacia entra como a 4ª mais fácil `[Pedro]`.
 
-⚠️ O CSV do Bazar conhece 8 regiões e não tem a Bacia Acidentada.
-
-## 1. A grade
-
-- **30 colunas** de hex **de topo pontudo**, com coordenada em cada hex `[Pedro]`.
-- Na mesa, a coordenada global vira `CCLL` (coluna e linha). Uma grade mestra cobre o continente, e os 9 mapas são
-  recortes dela `[proposta, rodada 1]`.
-- **Gerar os 9 mapas por programa** `[Pedro]`: *"antes vamos definir o esqueleto e todos os hex possíveis, assim,
-  basta pegar a arte de cada hex e gerar o mapa, 450 hexes não da pra fazer na mão."*
-  - Uma arte por tipo de hex (§4) basta.
-  - A cor da região entra como tinta ou contorno do hex, não como arte nova.
-  - Com isso, os ~450 hexes saem de uns 15 tipos de arte.
-
-## 2. Movimento `[Pedro, com a tabela de custo proposta]`
-
-**Orçamento do dia = o menor Movimento do grupo, em metros.** O dia de viagem tem 16 h. Cada hex cobra um custo, e o
-grupo anda enquanto o orçamento paga.
-- Fora de via, o custo é o do terreno (tabela da §4).
-- **Trilha: 3 m.**
-- **Estrada: 1,5 m.**
-
-Exemplo do Pedro, com Movimento de 9 m: 2 hexes por dia em terreno aberto (4,5 m cada), 3 em trilha e 6 em estrada.
-
-`[proposta]` Três complementos para a conta fechar sempre:
-- **A via manda no custo.** Estrada custa 1,5 m e trilha 3 m em qualquer terreno, porque a via existe para isso. O
-  terreno só vale fora de via. O Pedro pode mudar o custo de um hex específico.
-- **A sobra do orçamento se perde** no fim do dia.
-- **Hex mais caro que o orçamento inteiro** (ex.: Montanha de 9 m para um grupo de 6 m) **leva 2 dias.**
-- **Navegação:**
-  - A embarcação tem velocidade própria (o Pedro sugeriu ~9 numa embarcação grande).
-  - Um **trecho** é uma aresta de rio ou um hex de água (lago, mar).
-  - A velocidade é dada em trechos por dia.
-
-## 3. Rios, paradas, Jornada e eventos
-
-### Rios `[Pedro]`
-- **Rios passam pelas arestas** e bloqueiam o caminho.
-- **Estradas e trilhas passam pelo centro** e saem perpendiculares às arestas.
-- **Atravessar fora de ponte:** cada um rola *Movimento* contra CD 10, 15 ou 20, conforme o rio. **Quem falha recebe
-  2d6+3 de dano e é levado 1d6 hexes rio abaixo.**
-
-`[proposta]` Toda estrada ou trilha que cruza um rio tem **ponte** naquela aresta. Assim, a ponte é um ponto de
-controle de design: é por ali que o grupo passa.
-
-### Parada `[Pedro]`
-O grupo para no fim de cada período, no acampamento, ou quando escolhe parar. Um hex com conteúdo preparado
-substitui a rolagem na primeira visita.
-
-`[proposta]` Com o orçamento por metros, o **fim de período** acontece no primeiro hex em que o gasto acumulado do
-dia chega à metade do orçamento.
-
-### Jornada e eventos adversos `[Pedro]`
-- O **teste de Jornada** (Sistema) decide se há complicação no trecho.
-- **O que muda é a tabela de consequências.** Ela deixa de ser "dano em Saúde e Stamina" genérico e vira **uma
-  tabela d100 por região**, criativa, com eventos adversos temáticos e preestabelecidos.
-- A consequência se resolve **ao parar**, a menos que o hex seja um hex de conflito.
-- A emboscada no descanso continua como está.
-
-`[proposta]` A Hostilidade do trecho é a maior entre os hexes atravessados. A região dá o padrão, e o hex pode ter a
-sua.
-
-### Orçamento de severidade das tabelas regionais `[proposta: régua de balanceamento]`
-As 7 faixas da tabela atual ficam com a **mesma probabilidade** e o **mesmo peso**. Muda só o conteúdo. Assim, o
-perigo de uma Jornada fracassada não muda de região para região; muda só a história.
-
-| d100 | Faixa | Custo-base atual (em cada membro) | O evento temático tem de custar |
-|---|---|---|---|
-| 1 | Catástrofe | 4d6+H de Saúde e Stamina | o mesmo, mais uma consequência que dura até o descanso longo |
-| 2–19 | Grave | 2d8+H de Saúde e Stamina | ≈ o mesmo |
-| 20–39 | Sério | 2d6+H de Saúde e Stamina | ≈ o mesmo |
-| 40–59 | Moderado | 1d6+H de Stamina | ≈ o mesmo |
-| 60–79 | Leve | 1d4+H de Stamina | ≈ o mesmo |
-| 80–99 | Mínimo | H de Stamina | ≈ o mesmo |
-| 100 | Escapa | nada | nada (pode haver um ganho pequeno temático) |
-
-**Regras de troca, para o evento criativo caber na faixa:**
-- **O termo "+H" fica sempre.** É ele que faz a região hostil machucar mais.
-- **Até metade do custo-base pode virar efeito no lugar de dano:** uma condição até o fim do dia, perda de tempo
-  (meio orçamento do dia seguinte), um item consumível perdido ou um membro separado do grupo.
-- **Câmbio:** 2 de Saúde = 1 de Stamina; 1 de Éter ≈ 1 de Stamina (régua do sistema).
-
-### Hexes: o que há em cada um `[Pedro]`
-- A maioria é **neutra**: na primeira parada, rola-se **d100 na tabela do tipo de hex**, e o resultado **fica
-  definido para sempre**.
-- O evento sorteado **sai da tabela** para os outros hexes.
-- O **hex de recurso** sempre deixa extrair um recurso disponível na região.
-- Os **hexes personalizados** dão riqueza ao mapa.
-
-**Ordem na parada** `[proposta]`:
-1. A consequência da Jornada, se o grupo falhou (salvo hex de conflito).
-2. O conteúdo do hex: rolar a tabela, se o hex ainda não foi definido, ou aplicar o que ele já é.
-
-## 4. Catálogo de hexes gerais `[proposta]`
-
-### 4.1 Terrenos neutros (rolam d100 na primeira parada)
-O custo é em metros, a pé e fora de via. A coluna "Regiões" diz onde o tipo domina; a arte mostra em quais regiões
-ele aparece.
-
-| # | Tipo | Custo | Regiões | O que cobre |
+| # | Região | CR (Bazar) | Hostilidade-base `[proposta]` | Cor |
 |---|---|---|---|---|
-| T1 | **Campos** | 4,5 | Terras Livres, Cinturão, Bosque | planície, pradaria, plantação, estepe |
-| T2 | **Floresta** | 6 | Cinturão, Bosque, Terras Livres, Costas | mata aberta, bosque comum |
-| T3 | **Mata Fechada** | 7,5 | Bosque Corrompido, Emaranhado | floresta densa, corrompida, de raízes gigantes |
-| T4 | **Colinas** | 6 | Costas Rochosas, Bacia, Cinturão | morros, pedregal, terreno acidentado |
-| T5 | **Montanha** | 9 | Cordilheira | encosta, pico, neve, cristal |
-| T6 | **Alagado** | 7,5 | Bacia Acidentada, Bosque | pântano, charco, várzea, margem de lago |
-| T7 | **Areal** | 6 | Deserto do Abismo | dunas, deserto, chão de cânion |
-| T8 | **Ermo** | 4,5 | Ermo das Cinzas, Deserto | cinzas, terra morta, árido, escória |
-| T9 | **Litoral** | 4,5 | todas as costas | praia, costão, falésia, mangue |
+| 1 | Bosque Corrompido | 1 | 5 | vermelho |
+| 2 | Cinturão Silencioso | 1 | 5 | ciano |
+| 3 | Emaranhado de Raízes | 2 | 10 | magenta |
+| 4 | **Bacia Acidentada** | 2 `[Pedro: 4ª]` | 10 | cinza |
+| 5 | Costas Rochosas | 2 | 10 | verde |
+| 6 | Terras Livres | 3 | 15 | amarelo-oliva |
+| 7 | Cordilheira Cristalina | 3 | 15 | azul |
+| 8 | Deserto do Abismo | 4+ | 20 | roxo |
+| 9 | Ermo das Cinzas | 4+ | 20 | preto |
 
-São 9 tipos e 9 tabelas d100. A tabela é do **tipo**, não da região. Cada entrada traz um **encaixe regional**, para
-uma tabela servir a qualquer região com o tema certo. Exemplo de Floresta:
-- "Covil de [fera da região]";
-- "Árvore marcada por [facção da região]";
-- "[Material da região] exposto".
+- A ordem dentro de cada CR é leitura minha.
+- ⚠️ O CSV do Bazar não tem itens nem Materiais da Bacia Acidentada.
+- Fora das regiões: **Khaskavel** e **Revavena**, com mapas próprios que não são hexagonais.
+- O **Templo da Profecia** fica no Bosque Corrompido `[Pedro]`.
 
-**Faixas de cada tabela d100:**
+### 1.2 Cada região guarda `[Pedro]`
+- a **cor do solo**, que vai na textura dos tiles dela;
+- a **tabela de consequências da Jornada** (§4);
+- a **tabela global de eventos**, de onde os hexes montam as suas (§5);
+- os **parâmetros de montagem** dessas tabelas, conforme a dificuldade (§5.3).
 
-| Faixa | O que tem | Repete? |
+## 2. Grade e hexes
+
+### 2.1 Grade
+- **30 colunas**, hex **de topo pontudo**, com coordenada em cada hex `[Pedro]`.
+- A coordenada é global: o continente é uma grade só, e as regiões são recortes dela.
+- Pela estimativa da captura, 30 colunas de topo pontudo dão **~600 hexes de terra** (a conta de 450 era para topo
+  chato). O Pedro sugeriu "talvez diminuir a quantidade total de hexes": 24 colunas dão ~380 (§7, decisão 1).
+- **Anel vizinho** `[Pedro]`: cada mapa regional mostra 1 anel de hexes da região vizinha, com o texto
+  "→ Para [região]".
+
+### 2.2 Tipos de hex gerais `[Pedro]`
+O tipo **não define a cor do tile**: ele define o **ícone**, que mostra quanto custa andar. A cor e a textura do solo
+vêm da região.
+
+| # | Tipo | Custo (fora de via) |
 |---|---|---|
-| **Comuns** (cerca de 60%) | paisagem sem nada; trilha de caça; água potável; ervas comuns; marcas de passagem | **sim**: nunca saem da tabela, porque a maioria dos ~450 hexes cai aqui |
-| **Notáveis** (cerca de 30%) | clareira de descanso (+1 comodidade); ninho ou covil (combate ao parar); ruína pequena; viajante acampado; carcaça com loot; mirante (revela os hexes vizinhos) | **não**: saem da tabela daquela região |
-| **Raros** (cerca de 10%) | achado (item Incomum+); segredo ou lore; entrada de masmorra; fenômeno místico | **não**: saem da tabela daquela região |
+| 1 | Campos | 4,5 m |
+| 2 | Floresta | 6 m |
+| 3 | Floresta Densa | 7,5 m |
+| 4 | Colinas | 6 m |
+| 5 | Montanha | 9 m |
+| 6 | Pântano | 7,5 m |
+| 7 | Deserto | 6 m |
+| 8 | Ermo | 4,5 m |
+| 9 | Água | 1,5 m, só com embarcação |
+| 10 | Litoral | 4,5 m |
 
-Se a rolagem cair numa entrada que já saiu, vale a próxima entrada livre abaixo.
+### 2.3 Hexes neutros e especiais `[Pedro]`
+- **Neutro:** tem tabela de eventos (§5). É a maioria.
+- **Especial:** não tem tabela. Serve a um propósito narrativo predefinido, sem aleatoriedade. Exemplos: os marcos do
+  Pedro, as vilas pré-feitas fixas e os portões das cidades.
 
-### 4.2 Hexes especiais (definidos à mão, não rolam)
-
-| # | Tipo | Custo | O que faz |
-|---|---|---|---|
-| E1 | **Recurso** | terreno | extrai 1 Material da região (§5, decisão 4); a arte é o terreno com o marcador do recurso |
-| E2 | **Povoado** | 4,5 | vila, posto ou acampamento nômade: comerciante, descanso no mínimo Normal, rumores; em geral numa estrada |
-| E3 | **Marco** | terreno | os marcos do Pedro: Templo da Profecia, Grande Árvore, Castelo em Ruínas, O Oasis, Kurian, Minas dos Krichama… |
-| E4 | **Covil** | terreno | **hex de conflito**: combate ou masmorra garantidos; a consequência da Jornada não se aplica aqui |
-| E5 | **Refúgio** | terreno | abrigo seguro (caverna, ruína firme, santuário): descanso sem emboscada |
-| E6 | **Portão** | 4,5 | entrada de Khaskavel ou Revavena, que levam ao mapa próprio de cada cidade |
-
-### 4.3 Água (não se anda; navega-se)
-
-| # | Tipo | O que é |
-|---|---|---|
-| A1 | **Lago** | a Bacia Acidentada; ilhas são hexes de terreno dentro dele |
-| A2 | **Mar** | a orla do continente |
-
-### 4.4 Arestas (não são hex: correm nas bordas)
-
-| Aresta | Efeito |
+### 2.4 Arestas `[Pedro]`
+| Aresta | Regra |
 |---|---|
-| **Rio** | bloqueia; atravessa com *Movimento* contra CD 10/15/20 ou pela ponte; navega-se com embarcação |
-| **Ponte** | aresta de rio onde a via cruza; atravessa sem teste |
-| **Penhasco** `[proposta]` | bloqueia como o rio, mas não se navega; sobe-se com *Movimento* (escalar) contra CD 15/20 ou pela trilha. Desenha as paredes da cratera do Deserto e as encostas da Cordilheira |
+| **Rio** | Bloqueia. Atravessar sem ponte é teste **individual** de *Movimento*, com CD que escala com a Hostilidade. Quem falha recebe **2d6+3** de dano e é levado **1d6 hexes rio abaixo**; o mestre decide onde ele sai. Atravessar não custa metros extras. |
+| **Ponte** | Travessia segura. Fica perpendicular ao rio, entre 2 hexes. |
+| **Penhasco** | Bloqueia a passagem. Um lado bloqueia a visão; do outro, a névoa se revela. |
 
-**Arte necessária:** 9 terrenos + 6 especiais (o especial usa o terreno de base com um ícone por cima) + 2 de água +
-3 arestas. São cerca de 20 peças, mais a tinta de 9 cores.
+`[proposta]` **CD do rio = 10 + Hostilidade/2.** Dá 10, 15 e 20 em Hostilidade 0, 10 e 20, os mesmos valores da
+rodada anterior.
 
-## 5. Gramática das vias `[proposta]`
-É o que dá intenção ao mapa:
-- **A rede é um grafo.** Os nós são os hexes especiais (Povoado, Marco, Portão, Recurso, Covil, Refúgio). As vias são
-  as ligações entre eles.
-- **Estrada** liga Povoado, Portão e Marco grande entre si, e cruza fronteiras de região (é o eixo da campanha).
-- **Trilha** sai de uma estrada e leva a 1 objetivo: Recurso, Covil, Refúgio ou Marco menor.
-- **Rio** bloqueia e força a ponte. Ao mesmo tempo, liga lago e mar a um Povoado, e quem tem barco atalha.
-- **Penhasco** fecha uma área e deixa 1 ou 2 entradas.
-- **Regra de desenho:**
-  - todo hex especial fica a até 2 hexes de uma via;
-  - toda via termina num especial ou numa fronteira;
-  - não há via que não leve a nada.
+### 2.5 Vias e territórios `[Pedro]`
+- **Estrada** e **trilha** passam pelo centro do hex e saem perpendiculares às arestas.
+- **A via manda no custo:** estrada 1,5 m e trilha 3 m em qualquer terreno.
+- **Território de cidade:** um contorno nas bordas dos hexes, pintado com um pincel de borda.
 
-## 6. Decisões para o Pedro (a recomendação vem primeiro)
+## 3. Movimento e tempo
 
-1. **"Sai da tabela": em que escopo?**
-   - Recomendação: por região, e só para as faixas Notáveis e Raras.
-   - As Comuns repetem, senão uma tabela de 100 se esgota em ~30 hexes do mesmo tipo.
-2. **Tabela d100 por tipo de hex**, com encaixe regional (9 tabelas), **ou por tipo × região** (até 81 tabelas)?
-3. **Rio, na falha:** quem é levado sai **na mesma margem de onde partiu**, 1d6 hexes rio abaixo. Se o rio deságua
-   antes disso, sai na foz. Atravessar não custa metros extras: a CD é o custo.
-4. **Hex de Recurso:**
-   - 1 extração por personagem por dia;
-   - teste de *Sobrevivência* (ou do Ofício do material) contra a CD de craft da raridade (10/13/16/20);
-   - 1 unidade de um Material da tabela da região.
-   - Sem limite, ele vira fonte infinita de Sins. O teto natural seria o estoque do Fornecedor (250/500/1000 por
-     dia).
-5. **Cores das regiões vizinhas:** quando falei de "orla", não era o litoral. Era o anel de hexes da região vizinha
-   que aparece na borda de cada mapa regional, com a cor dela. Você descreveu isso: *"aparecem nos mapas adjacentes
-   nas bordas"*. **Mostro 1 anel de hexes vizinhos** em cada mapa (recomendado, porque é o que mostra as cores e as
-   vias que continuam), ou nenhum?
-6. **A via manda no custo?** Estrada 1,5 m e trilha 3 m em qualquer terreno, inclusive na Montanha.
-7. **Penhasco** como aresta que bloqueia, para desenhar a cratera e a cordilheira?
-8. **Navegação** em trechos (1 aresta de rio ou 1 hex de água) por dia, e as embarcações como itens do Bazar, com a
-   velocidade no texto?
-9. **Fim de período** = o primeiro hex em que o gasto do dia chega à metade do orçamento?
+### 3.1 Orçamento do dia `[Pedro]`
+- O orçamento do dia é **o menor Movimento do grupo, em metros**, para 16 h de viagem.
+- Cada hex cobra o custo do tipo, ou o da via.
+- O mestre pode mudar o custo de qualquer hex.
+- Exemplo com 9 m: 2 hexes de Campos, 3 de trilha ou 6 de estrada.
+
+`[proposta, aceita na rodada 2]`
+- A sobra do orçamento se perde no fim do dia.
+- Um hex mais caro que o orçamento inteiro leva 2 dias.
+
+### 3.2 Navegação `[Pedro]`
+- **Embarcação é serviço**: contrata-se, e ela não vai para o inventário.
+- O barco anda **pelas arestas do rio, a 1,5 m cada**, o que dá 2 movimentos por hex. Hex de Água custa 1,5 m.
+
+### 3.3 Períodos e paradas
+- **Períodos** `[Pedro]`: manhã, tarde e noite.
+- **Gatilho** `[proposta]`: cada período fecha quando o gasto acumulado do dia passa de 1/3 e de 2/3 do orçamento. O fim
+  da noite é o acampamento (descanso longo, 8 h).
+- **Uma parada por hex, no máximo.** Se dois fins de período caem no mesmo hex, vale uma parada.
+- **Paradas** `[Pedro]`: fim de período, acampamento, ou quando o grupo escolhe parar.
+- O conteúdo preparado de um hex substitui a rolagem na primeira visita.
+- **Na parada** (ordem):
+  1. Resolve-se a consequência da Jornada, se houver, a menos que o hex seja de conflito.
+  2. Rola-se a tabela do hex (§5).
+- **Emboscada no descanso** `[Sistema]`: continua como está. Quem fica de vigia tira o *Desprevenido*.
+
+## 4. Jornada `[Sistema + Pedro]`
+
+### 4.1 O teste
+- O teste acontece **na locomoção, não ao pisar no hex** `[Pedro]`.
+- As ações e as CDs são as do Sistema:
+  - Guiar (no máximo 1): *Sobrevivência* CD 15, +2 ao sucesso do grupo, +1 a cada 5 pontos acima;
+  - Motivar, Vigiar e Outros: CD 15, +1, +1 a cada 5 pontos acima.
+- A meta é 3 + Hostilidade/5 pontos.
+
+`[proposta]` **1 teste de Jornada por dia de viagem**, com a maior Hostilidade dos hexes andados no dia. Um teste por
+período (3 por dia) dobraria ou triplicaria o desgaste.
+- Chance de fracasso (simulação, grupo de 5; bônus do guia / dos outros):
+
+  | Hostilidade | +4 / +2 | +6 / +4 | +8 / +6 |
+  |---|---|---|---|
+  | 5 | 52% | 31% | 14% |
+  | 10 | 70% | 48% | 25% |
+  | 15 | 85% | 65% | 39% |
+  | 20 | 93% | 79% | 54% |
+- Conta em Hostilidade 10, grupo médio (+6 / +4): o fracasso fica perto de 50%.
+- A faixa média de dano é 2d6+10 ≈ 17 de Saúde e de Stamina.
+- Com 3 testes por dia, o grupo perderia ~25 de Saúde por dia só de desgaste.
+
+### 4.2 Consequências `[Pedro]`
+- **Uma tabela d100 por região.**
+- É o desgaste contínuo da região: só dano de Saúde e Stamina, **sem condições**.
+- **Sempre com o "+Hostilidade", salvo no 100**, que livra o grupo.
+- Os números ficam os do Sistema. O que muda por região é o **texto temático** de cada faixa (o que causou o dano).
+
+| d100 | Dano em cada integrante |
+|---|---|
+| 1 | 4d6 + H de Saúde e Stamina |
+| 2–19 | 2d8 + H de Saúde e Stamina |
+| 20–39 | 2d6 + H de Saúde e Stamina |
+| 40–59 | 1d6 + H de Stamina |
+| 60–79 | 1d4 + H de Stamina |
+| 80–99 | H de Stamina |
+| 100 | evita todas as consequências |
+
+(As "7 faixas" da rodada anterior eram estas 7 linhas do d100, não as regiões.)
+
+## 5. Tabelas de eventos dos hexes `[Pedro]`
+
+### 5.1 Princípio
+- Cada região tem uma **tabela global de eventos**.
+- Cada hex neutro monta **a sua tabela** a partir dela, com eventos adversos e favoráveis **nem sempre na mesma
+  proporção**.
+- A tabela do hex é **oculta aos jogadores**.
+- A região garante eventos exclusivos dela e segrega os que destoam. Por isso, a tabela global é por região, e não
+  por tipo de hex.
+
+### 5.2 Categorias de evento
+| Categoria | Raridade típica | Marca o mapa? |
+|---|---|---|
+| Sítio de extração de materiais | comum | não |
+| Combate (criaturas de Kharavel) | comum | não |
+| Encontro de interação (NPC hostil, neutro ou amigável da região) | comum | não |
+| Comerciante ambulante (estoque aleatório, mostrado no app) | comum | não |
+| Ruína (masmorra pré-feita) | notável | **sim** |
+| Assentamento (serviços, comerciantes, taverna, side quest; vilas pré-feitas, algumas por região) | notável | **sim** |
+| Covil (inclui assentamento de facção hostil) | notável | **sim** |
+| `[proposta]` Abrigo (o próximo descanso sobe 1 nível de comodidade) | comum | não |
+| `[proposta]` Mirante (revela a névoa num raio maior) | notável | sim |
+| `[proposta]` Achado (lore, item, segredo) | raro | sim |
+
+**Regras de raridade** `[Pedro]`:
+- **Notáveis e raros** saem de **todas** as tabelas da região quando sorteados e ficam marcados no mapa para sempre.
+  Em geral são estruturas mais trabalhadas.
+- **Comuns** continuam nas tabelas e não marcam o mapa.
+- **Nenhum evento trava a narrativa principal**: quase sempre é lore local e isolada. A exceção possível são os mais
+  raros.
+
+### 5.3 Montagem da tabela do hex `[proposta]`
+1. **Filtra** a tabela global da região pelo **tipo do hex**: cada evento lista os tipos em que pode aparecer.
+2. **Sorteia de 8 a 12 entradas**, respeitando a **mistura de polaridade da região**, com ±10% de variação por hex:
+
+   | Rank da região | Favorável | Neutro | Adverso |
+   |---|---|---|---|
+   | 1–2 | 40% | 35% | 25% |
+   | 3–5 | 33% | 34% | 33% |
+   | 6–7 | 27% | 33% | 40% |
+   | 8–9 | 20% | 30% | 50% |
+
+3. **Peso por raridade:** comum 10, notável 3, raro 1. A tabela é guardada como pesos, e as faixas do d100 saem deles
+   na hora.
+4. Quando um notável ou raro sai, ele some de todas as tabelas, e as faixas se recalculam.
+5. O mestre pode **revisar e travar** a tabela de cada hex antes da sessão. É a verificação manual que o Pedro quer
+   para a coerência.
+
+### 5.4 Extração de recursos `[Pedro]`
+- **Viés da rolagem:** depois que um sítio de extração sai no dia, a chance de outro cai **exponencialmente**.
+  `[proposta]` O peso da categoria é multiplicado por **0,5ᵏ**, onde k é o número de sítios do dia. A função
+  **Descanso** (longo) zera o k.
+- **Quantidade** `[Pedro: depende do sucesso em Sobrevivência e da raridade]`. `[proposta]`
+  - CD de *Sobrevivência* = a CD de craft da raridade do Material: 10 Ordinário, 13 Incomum, 16 Exótico, 20 Luxária.
+  - Unidades = 1 + ⌊(resultado − CD) / 5⌋ no sucesso, e 0 na falha.
+  - Cada personagem extrai uma vez por sítio.
+- O Material sai da lista da região, que vem do CSV do Bazar (`Obtenção` com o nome da região).
+
+### 5.5 Comerciante ambulante `[Sistema + proposta]`
+- Usa a regra de Comerciantes: nível 1, estoque de 250 Sins, preço **rolado** na faixa da raridade.
+- O estoque é aleatório e sai dos itens do Bazar daquela região. A raridade tem um teto pelo rank da região
+  `[proposta]`.
+
+## 6. Névoa e visão
+
+- **Névoa** `[Pedro]`: o mapa não começa revelado. A tabela de eventos é sempre oculta.
+- **Penhasco:** um lado bloqueia a visão; do outro, a névoa se revela.
+- `[proposta]` Cada hex tem 3 estados:
+  - **oculto:** só névoa;
+  - **avistado:** textura, ícone, vias e arestas;
+  - **visitado:** o hex já foi rolado e, se o evento foi notável ou raro, ganha a marca.
+- `[proposta]` **Raio de visão** a partir do hex do grupo, medido em linha reta: 1 hex como padrão; 2 em Colinas e
+  Litoral; 3 em Montanha; 0 em Floresta Densa (só o próprio hex). O penhasco corta a linha de visão vista do lado
+  baixo.
+
+## 7. Decisões para o Pedro (a recomendação vem primeiro)
+
+1. **Tamanho:** manter 30 colunas (~600 hexes) ou ir a 24 (~380)?
+2. **Escala de dificuldade:** a ordem dentro de cada CR e a Hostilidade-base de 5/10/15/20 por CR (§1.1) estão certas?
+3. **1 teste de Jornada por dia** (recomendado), ou 1 por período?
+4. **O que a névoa mostra:** os 3 estados da §6? Ou o hex sob névoa já mostra textura e ícone, e a névoa esconde só as
+   vias, os rios e o recorte do litoral?
+5. **Raio de visão** por tipo de hex (§6)?
+6. **Hex comum re-rola** a cada parada nova ali? E o hex que ganhou um notável **vira** aquele lugar, sem rolar
+   mais?
+7. **Montagem:** de 8 a 12 entradas por hex, a mistura por rank e os pesos 10/3/1 (§5.3)?

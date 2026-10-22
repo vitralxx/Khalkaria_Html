@@ -997,6 +997,46 @@ Texto verbatim em `18-batedor-rework.md` §0 e as lições em `19-gabarito-de-cl
     de recurso sempre deixa extrair. Os personalizados dão riqueza.
   - **Templo da Profecia** fica no Bosque Corrompido.
   - **Objetivo:** cada rio e cada estrada têm o propósito de levar os jogadores mais perto de objetivos.
+- **D157** (2026-10-22) Hexcrawl, rodada 3 (detalhe em `21`; o plano da aplicação está em `22`):
+  - **Aplicação própria**, provavelmente em Python, com um agente exclusivo. Ela terá:
+    - tilemap com textura;
+    - pincéis ancorados no hex para vias, rios e bordas de território;
+    - cálculo de jornada;
+    - banco de hexes e tabelas;
+    - estrutura JSON ou SQL que um agente possa preencher.
+  - **Bacia Acidentada** é a 4ª região mais fácil. A escala vem do CR de drop no Bazar: CR 1 Bosque e Cinturão; CR 2
+    Emaranhado, Bacia e Costas; CR 3 Terras Livres e Cordilheira; CR 4+ Deserto e Ermo.
+  - **Névoa:** a tabela de cada hex é oculta. Cada hex monta a sua a partir da tabela global da região, com eventos
+    adversos e favoráveis em proporção variável e parâmetros pela dificuldade. O evento sorteado sai de todas as
+    tabelas.
+  - **Jornada:** o teste é na locomoção. A falha rola o d100 da região: só dano em Saúde e Stamina, com +H salvo no
+    100, sem condições.
+  - **Os 10 tipos de hex e seus custos:**
+    - Campos 4,5; Floresta 6; Floresta Densa 7,5;
+    - Colinas 6; Montanha 9; Pântano 7,5;
+    - Deserto 6; Ermo 4,5; Litoral 4,5;
+    - Água 1,5, só com embarcação.
+
+    O tipo dá o ícone, não a cor.
+  - **Categorias de evento:** extração, combate, interação, ruína, comerciante ambulante, assentamento, covil.
+    - Notáveis e raros saem das tabelas e marcam o mapa para sempre.
+    - Comuns repetem e não marcam.
+    - Nenhum evento trava a narrativa principal.
+  - **Especiais:** sem tabela, narrativos.
+  - **Arestas:**
+    - rio: o teste escala com a Hostilidade; na falha, 2d6+3 e 1d6 hexes rio abaixo, com o mestre decidindo onde a
+      pessoa sai; atravessar não custa metros;
+    - ponte;
+    - penhasco: um lado bloqueia a visão.
+  - **Extração:** viés exponencial depois de cada sítio no dia, zerado pelo descanso. A quantidade depende da
+    Sobrevivência e da raridade.
+  - **Mapas e movimento:**
+    - anel vizinho com "→ Para [região]";
+    - a via manda no custo;
+    - o penhasco existe;
+    - a navegação é por arestas, a 1,5 m cada;
+    - a embarcação é serviço;
+    - os períodos são manhã, tarde e noite.
   - Pedro: *"pode deixar a opção de troca manual no cálculo dos status, padronizando como uma classe esse tipo de
     troca manual em cálculo"*.
 
