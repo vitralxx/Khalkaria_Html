@@ -1115,6 +1115,18 @@ Texto verbatim em `18-batedor-rework.md` §0 e as lições em `19-gabarito-de-cl
       navegação é a mais rápida" da D156.
   - **Observação de balanceamento** (`docs/10` §3): a Jornada por parada triplica o desgaste. Em H10, um grupo médio
     perde de ~7 a ~10 de Saúde e de ~14 a ~20 de Stamina por pessoa por dia.
+- **Canal com o agente do hexcrawl** (2026-10-23): a issue #2 de `vitralxx/khalkaria_hexcrawl`. Cada mensagem
+  começa com **[programador]** ou **[balanceamento]**, e o Pedro avisa cada um. A F0 está no `main` (PR #1):
+  - o núcleo mudou para `hexcrawl/nucleo/` e os vetores são 250;
+  - **não recriar `referencia/`**: o espelho `hexcrawl-pack/` deste branch fica só de documentação, e o deles é a
+    fonte;
+  - fluxo aceito: eu atualizo `docs/01-regras.md` no repo deles e mando a mudança com casos de entrada → saída na
+    issue; ele porta.
+- **⚠️ Divergência a levar ao Pedro:** as páginas de lore das 9 regiões (Notion, Locais, 🟠 Rascunho, junho) dão outra
+  dificuldade e outro CR. No lore: Cinturão 1, Terras Livres 2, Bosque 3, Bacia 4, Emaranhado 5, Costas 6,
+  Cordilheira 7, Ermo 8, Deserto 9. As cores também diferem: Bacia branca e Ermo cinza.
+  - O `docs/01` segue o CR de drop do Bazar, com a ordem confirmada pelo Pedro na D158.
+  - Até ele decidir, vale o `docs/01`.
 
 ## D68 — O andar de Nível 1 (truques)
 Todas as magias existentes **sobem 1 nível**: as antigas 1–4 viram 2–5. O novo Nível 1 são os
