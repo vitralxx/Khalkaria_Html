@@ -1126,7 +1126,13 @@ Texto verbatim em `18-batedor-rework.md` §0 e as lições em `19-gabarito-de-cl
   dificuldade e outro CR. No lore: Cinturão 1, Terras Livres 2, Bosque 3, Bacia 4, Emaranhado 5, Costas 6,
   Cordilheira 7, Ermo 8, Deserto 9. As cores também diferem: Bacia branca e Ermo cinza.
   - O `docs/01` segue o CR de drop do Bazar, com a ordem confirmada pelo Pedro na D158.
-  - Até ele decidir, vale o `docs/01`.
+  - **Resolvido (D160, 2026-10-23):** *"vale a ordem do D158, atualiza o lore no Notion"*. Atualizei as 9 páginas de
+    lore (Dificuldade e Faixa de CR) e avisei o agente na issue #2.
+  - Ficaram para o Pedro, sem eu mexer:
+    - frases narrativas que contradizem a nova escala: Cinturão *"Região mais segura do continente"* (agora 2/9),
+      Deserto *"A região mais letal do continente"* (agora 8/9), Terras Livres *"Risco moderado-baixo"* (agora 6/9,
+      H15);
+    - as cores no lore: Bacia "Branco" e Ermo "Cinza", contra cinza e preto na legenda do mapa.
 
 ## D68 — O andar de Nível 1 (truques)
 Todas as magias existentes **sobem 1 nível**: as antigas 1–4 viram 2–5. O novo Nível 1 são os
