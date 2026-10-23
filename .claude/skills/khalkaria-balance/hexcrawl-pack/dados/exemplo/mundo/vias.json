@@ -1,0 +1,29 @@
+{
+ "schemaVersion": "hexcrawl-vias/1",
+ "vias": [
+  {
+   "id": "estrada-exemplo",
+   "tipo": "estrada",
+   "nome": "Estrada de Exemplo",
+   "hexes": [
+    "0404",
+    "0504",
+    "0603",
+    "0704",
+    "0804",
+    "0905",
+    "1005"
+   ]
+  },
+  {
+   "id": "trilha-exemplo",
+   "tipo": "trilha",
+   "nome": "Trilha de Exemplo",
+   "hexes": [
+    "1005",
+    "1106",
+    "1206"
+   ]
+  }
+ ]
+}

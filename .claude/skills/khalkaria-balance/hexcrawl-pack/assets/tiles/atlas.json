@@ -1,0 +1,1380 @@
+{
+ "schemaVersion": "hexcrawl-atlas/1",
+ "_doc": "Gerado por referencia/gera_atlas.py. Significados = proposta (docs/06-arte.md, docs/10-pendencias.md).",
+ "folhas": {
+  "terreno": {
+   "arquivo": "assets/tiles/terreno.png",
+   "celula": [
+    32,
+    48
+   ],
+   "colunas": 8,
+   "linhas": 6
+  },
+  "vias": {
+   "arquivo": "assets/tiles/vias.png",
+   "celula": [
+    32,
+    48
+   ],
+   "colunas": 8,
+   "linhas": 5
+  }
+ },
+ "face": {
+  "x": 0,
+  "y": 18,
+  "largura": 32,
+  "altura": 28,
+  "espessura": 2,
+  "vertices": [
+   [
+    8,
+    0
+   ],
+   [
+    24,
+    0
+   ],
+   [
+    32,
+    14
+   ],
+   [
+    24,
+    28
+   ],
+   [
+    8,
+    28
+   ],
+   [
+    0,
+    14
+   ]
+  ]
+ },
+ "tiles": [
+  {
+   "id": "campos-verde",
+   "folha": "terreno",
+   "lin": 0,
+   "col": 0,
+   "uso": "terreno",
+   "tipo": "campos",
+   "bioma": "verde",
+   "caixa": [
+    0,
+    18,
+    32,
+    48
+   ],
+   "acimaDaFace": 0,
+   "espelhavel": true,
+   "nota": ""
+  },
+  {
+   "id": "floresta-verde",
+   "folha": "terreno",
+   "lin": 0,
+   "col": 1,
+   "uso": "terreno",
+   "tipo": "floresta",
+   "bioma": "verde",
+   "caixa": [
+    0,
+    15,
+    32,
+    48
+   ],
+   "acimaDaFace": 3,
+   "espelhavel": true,
+   "nota": ""
+  },
+  {
+   "id": "floresta-densa-verde",
+   "folha": "terreno",
+   "lin": 0,
+   "col": 2,
+   "uso": "terreno",
+   "tipo": "floresta-densa",
+   "bioma": "verde",
+   "caixa": [
+    0,
+    17,
+    32,
+    48
+   ],
+   "acimaDaFace": 1,
+   "espelhavel": true,
+   "nota": ""
+  },
+  {
+   "id": "colinas-verde",
+   "folha": "terreno",
+   "lin": 0,
+   "col": 3,
+   "uso": "terreno",
+   "tipo": "colinas",
+   "bioma": "verde",
+   "caixa": [
+    0,
+    14,
+    32,
+    48
+   ],
+   "acimaDaFace": 4,
+   "espelhavel": true,
+   "nota": ""
+  },
+  {
+   "id": "serra-pinheiros-verde",
+   "folha": "terreno",
+   "lin": 0,
+   "col": 4,
+   "uso": "variante",
+   "tipo": "montanha",
+   "bioma": "verde",
+   "caixa": [
+    0,
+    1,
+    32,
+    48
+   ],
+   "acimaDaFace": 17,
+   "espelhavel": true,
+   "nota": "rochas altas com pinheiros"
+  },
+  {
+   "id": "montanha-pico",
+   "folha": "terreno",
+   "lin": 0,
+   "col": 5,
+   "uso": "terreno",
+   "tipo": "montanha",
+   "bioma": "verde",
+   "caixa": [
+    0,
+    10,
+    32,
+    48
+   ],
+   "acimaDaFace": 8,
+   "espelhavel": true,
+   "nota": "pico nevado; serve para verde e neve"
+  },
+  {
+   "id": "agua-rasa",
+   "folha": "terreno",
+   "lin": 0,
+   "col": 6,
+   "uso": "terreno",
+   "tipo": "agua",
+   "bioma": null,
+   "caixa": [
+    0,
+    19,
+    32,
+    48
+   ],
+   "acimaDaFace": 0,
+   "espelhavel": true,
+   "nota": "água que encosta em terra"
+  },
+  {
+   "id": "agua-funda",
+   "folha": "terreno",
+   "lin": 0,
+   "col": 7,
+   "uso": "terreno",
+   "tipo": "agua",
+   "bioma": null,
+   "caixa": [
+    0,
+    19,
+    32,
+    48
+   ],
+   "acimaDaFace": 0,
+   "espelhavel": true,
+   "nota": "água sem terra vizinha"
+  },
+  {
+   "id": "vila-verde",
+   "folha": "terreno",
+   "lin": 1,
+   "col": 0,
+   "uso": "assentamento",
+   "tipo": null,
+   "bioma": "verde",
+   "caixa": [
+    0,
+    11,
+    32,
+    48
+   ],
+   "acimaDaFace": 7,
+   "espelhavel": false,
+   "nota": ""
+  },
+  {
+   "id": "vila-terra",
+   "folha": "terreno",
+   "lin": 1,
+   "col": 1,
+   "uso": "assentamento",
+   "tipo": null,
+   "bioma": "verde",
+   "caixa": [
+    0,
+    11,
+    32,
+    48
+   ],
+   "acimaDaFace": 7,
+   "espelhavel": false,
+   "nota": "vila em chão de terra"
+  },
+  {
+   "id": "castelo",
+   "folha": "terreno",
+   "lin": 1,
+   "col": 2,
+   "uso": "assentamento",
+   "tipo": null,
+   "bioma": "verde",
+   "caixa": [
+    0,
+    9,
+    32,
+    48
+   ],
+   "acimaDaFace": 9,
+   "espelhavel": false,
+   "nota": "castelo de pedra cinza"
+  },
+  {
+   "id": "campo-laranja",
+   "folha": "terreno",
+   "lin": 1,
+   "col": 3,
+   "uso": "variante",
+   "tipo": "campos",
+   "bioma": "verde",
+   "caixa": [
+    0,
+    17,
+    32,
+    48
+   ],
+   "acimaDaFace": 1,
+   "espelhavel": true,
+   "nota": "listrado: plantação? candidato a Ermo (P8)"
+  },
+  {
+   "id": "floresta-clareira",
+   "folha": "terreno",
+   "lin": 1,
+   "col": 4,
+   "uso": "variante",
+   "tipo": "floresta",
+   "bioma": "verde",
+   "caixa": [
+    0,
+    13,
+    32,
+    48
+   ],
+   "acimaDaFace": 5,
+   "espelhavel": true,
+   "nota": "floresta mista com clareira"
+  },
+  {
+   "id": "pantano",
+   "folha": "terreno",
+   "lin": 1,
+   "col": 5,
+   "uso": "terreno",
+   "tipo": "pantano",
+   "bioma": "verde",
+   "caixa": [
+    0,
+    18,
+    32,
+    48
+   ],
+   "acimaDaFace": 0,
+   "espelhavel": true,
+   "nota": ""
+  },
+  {
+   "id": "campos-claro",
+   "folha": "terreno",
+   "lin": 1,
+   "col": 6,
+   "uso": "variante",
+   "tipo": "campos",
+   "bioma": "verde",
+   "caixa": [
+    0,
+    18,
+    32,
+    48
+   ],
+   "acimaDaFace": 0,
+   "espelhavel": true,
+   "nota": "estepe pálida"
+  },
+  {
+   "id": "campos-floridos",
+   "folha": "terreno",
+   "lin": 1,
+   "col": 7,
+   "uso": "variante",
+   "tipo": "campos",
+   "bioma": "verde",
+   "caixa": [
+    0,
+    18,
+    32,
+    48
+   ],
+   "acimaDaFace": 0,
+   "espelhavel": true,
+   "nota": ""
+  },
+  {
+   "id": "campos-neve",
+   "folha": "terreno",
+   "lin": 2,
+   "col": 0,
+   "uso": "terreno",
+   "tipo": "campos",
+   "bioma": "neve",
+   "caixa": [
+    0,
+    18,
+    32,
+    48
+   ],
+   "acimaDaFace": 0,
+   "espelhavel": true,
+   "nota": ""
+  },
+  {
+   "id": "floresta-neve",
+   "folha": "terreno",
+   "lin": 2,
+   "col": 1,
+   "uso": "terreno",
+   "tipo": "floresta",
+   "bioma": "neve",
+   "caixa": [
+    0,
+    13,
+    32,
+    48
+   ],
+   "acimaDaFace": 5,
+   "espelhavel": true,
+   "nota": ""
+  },
+  {
+   "id": "floresta-densa-neve",
+   "folha": "terreno",
+   "lin": 2,
+   "col": 2,
+   "uso": "terreno",
+   "tipo": "floresta-densa",
+   "bioma": "neve",
+   "caixa": [
+    0,
+    13,
+    32,
+    48
+   ],
+   "acimaDaFace": 5,
+   "espelhavel": true,
+   "nota": ""
+  },
+  {
+   "id": "colinas-neve",
+   "folha": "terreno",
+   "lin": 2,
+   "col": 3,
+   "uso": "terreno",
+   "tipo": "colinas",
+   "bioma": "neve",
+   "caixa": [
+    0,
+    14,
+    32,
+    48
+   ],
+   "acimaDaFace": 4,
+   "espelhavel": true,
+   "nota": ""
+  },
+  {
+   "id": "serra-pinheiros-neve",
+   "folha": "terreno",
+   "lin": 2,
+   "col": 4,
+   "uso": "terreno",
+   "tipo": "montanha",
+   "bioma": "neve",
+   "caixa": [
+    0,
+    1,
+    32,
+    48
+   ],
+   "acimaDaFace": 17,
+   "espelhavel": true,
+   "nota": ""
+  },
+  {
+   "id": "agua-gelo",
+   "folha": "terreno",
+   "lin": 2,
+   "col": 5,
+   "uso": "terreno",
+   "tipo": "agua",
+   "bioma": "neve",
+   "caixa": [
+    0,
+    19,
+    32,
+    48
+   ],
+   "acimaDaFace": 0,
+   "espelhavel": true,
+   "nota": "água com placas de gelo"
+  },
+  {
+   "id": "vila-neve",
+   "folha": "terreno",
+   "lin": 2,
+   "col": 6,
+   "uso": "assentamento",
+   "tipo": null,
+   "bioma": "neve",
+   "caixa": [
+    0,
+    11,
+    32,
+    48
+   ],
+   "acimaDaFace": 7,
+   "espelhavel": false,
+   "nota": ""
+  },
+  {
+   "id": "fortaleza-neve",
+   "folha": "terreno",
+   "lin": 2,
+   "col": 7,
+   "uso": "assentamento",
+   "tipo": null,
+   "bioma": "neve",
+   "caixa": [
+    0,
+    6,
+    32,
+    48
+   ],
+   "acimaDaFace": 12,
+   "espelhavel": false,
+   "nota": "telhados vermelhos"
+  },
+  {
+   "id": "areia",
+   "folha": "terreno",
+   "lin": 3,
+   "col": 0,
+   "uso": "terreno",
+   "tipo": "deserto",
+   "bioma": "deserto",
+   "caixa": [
+    0,
+    18,
+    32,
+    48
+   ],
+   "acimaDaFace": 0,
+   "espelhavel": true,
+   "nota": ""
+  },
+  {
+   "id": "areia-rochas",
+   "folha": "terreno",
+   "lin": 3,
+   "col": 1,
+   "uso": "terreno",
+   "tipo": "colinas",
+   "bioma": "deserto",
+   "caixa": [
+    0,
+    14,
+    32,
+    48
+   ],
+   "acimaDaFace": 4,
+   "espelhavel": true,
+   "nota": ""
+  },
+  {
+   "id": "dunas",
+   "folha": "terreno",
+   "lin": 3,
+   "col": 2,
+   "uso": "variante",
+   "tipo": "deserto",
+   "bioma": "deserto",
+   "caixa": [
+    0,
+    18,
+    32,
+    48
+   ],
+   "acimaDaFace": 0,
+   "espelhavel": true,
+   "nota": ""
+  },
+  {
+   "id": "meseta",
+   "folha": "terreno",
+   "lin": 3,
+   "col": 3,
+   "uso": "terreno",
+   "tipo": "montanha",
+   "bioma": "deserto",
+   "caixa": [
+    0,
+    12,
+    32,
+    48
+   ],
+   "acimaDaFace": 6,
+   "espelhavel": true,
+   "nota": ""
+  },
+  {
+   "id": "oasis",
+   "folha": "terreno",
+   "lin": 3,
+   "col": 4,
+   "uso": "especial",
+   "tipo": null,
+   "bioma": "deserto",
+   "caixa": [
+    0,
+    18,
+    32,
+    48
+   ],
+   "acimaDaFace": 0,
+   "espelhavel": false,
+   "nota": ""
+  },
+  {
+   "id": "acampamento-deserto",
+   "folha": "terreno",
+   "lin": 3,
+   "col": 5,
+   "uso": "especial",
+   "tipo": null,
+   "bioma": "deserto",
+   "caixa": [
+    0,
+    18,
+    32,
+    48
+   ],
+   "acimaDaFace": 0,
+   "espelhavel": false,
+   "nota": "tendas e fardos"
+  },
+  {
+   "id": "vila-deserto",
+   "folha": "terreno",
+   "lin": 3,
+   "col": 6,
+   "uso": "assentamento",
+   "tipo": null,
+   "bioma": "deserto",
+   "caixa": [
+    0,
+    13,
+    32,
+    48
+   ],
+   "acimaDaFace": 5,
+   "espelhavel": false,
+   "nota": ""
+  },
+  {
+   "id": "palacio-deserto",
+   "folha": "terreno",
+   "lin": 3,
+   "col": 7,
+   "uso": "assentamento",
+   "tipo": null,
+   "bioma": "deserto",
+   "caixa": [
+    0,
+    8,
+    32,
+    48
+   ],
+   "acimaDaFace": 10,
+   "espelhavel": false,
+   "nota": ""
+  },
+  {
+   "id": "arvore-gigante",
+   "folha": "terreno",
+   "lin": 4,
+   "col": 0,
+   "uso": "especial",
+   "tipo": null,
+   "bioma": "verde",
+   "caixa": [
+    0,
+    7,
+    32,
+    48
+   ],
+   "acimaDaFace": 11,
+   "espelhavel": false,
+   "nota": "o tile mais alto da folha"
+  },
+  {
+   "id": "prop-rocha-musgo",
+   "folha": "terreno",
+   "lin": 4,
+   "col": 1,
+   "uso": "prop",
+   "tipo": null,
+   "bioma": null,
+   "caixa": [
+    8,
+    30,
+    25,
+    45
+   ],
+   "acimaDaFace": 0,
+   "espelhavel": false,
+   "nota": "sem hex: decoração ou marcador"
+  },
+  {
+   "id": "prop-cristal",
+   "folha": "terreno",
+   "lin": 4,
+   "col": 2,
+   "uso": "prop",
+   "tipo": null,
+   "bioma": null,
+   "caixa": [
+    8,
+    31,
+    25,
+    44
+   ],
+   "acimaDaFace": 0,
+   "espelhavel": false,
+   "nota": "sem hex: decoração ou marcador"
+  },
+  {
+   "id": "prop-minerio",
+   "folha": "terreno",
+   "lin": 4,
+   "col": 3,
+   "uso": "prop",
+   "tipo": null,
+   "bioma": null,
+   "caixa": [
+    8,
+    30,
+    25,
+    45
+   ],
+   "acimaDaFace": 0,
+   "espelhavel": false,
+   "nota": "sem hex: decoração ou marcador"
+  },
+  {
+   "id": "porto-a",
+   "folha": "terreno",
+   "lin": 4,
+   "col": 4,
+   "uso": "assentamento",
+   "tipo": null,
+   "bioma": null,
+   "caixa": [
+    0,
+    13,
+    32,
+    48
+   ],
+   "acimaDaFace": 5,
+   "espelhavel": false,
+   "nota": "cais sobre água"
+  },
+  {
+   "id": "porto-b",
+   "folha": "terreno",
+   "lin": 4,
+   "col": 5,
+   "uso": "assentamento",
+   "tipo": null,
+   "bioma": null,
+   "caixa": [
+    0,
+    13,
+    32,
+    48
+   ],
+   "acimaDaFace": 5,
+   "espelhavel": false,
+   "nota": "cais sobre água; não é espelho do porto-a"
+  },
+  {
+   "id": "farol",
+   "folha": "terreno",
+   "lin": 4,
+   "col": 6,
+   "uso": "especial",
+   "tipo": null,
+   "bioma": null,
+   "caixa": [
+    0,
+    2,
+    32,
+    48
+   ],
+   "acimaDaFace": 16,
+   "espelhavel": false,
+   "nota": "farol sobre água"
+  },
+  {
+   "id": "torre-sombria",
+   "folha": "terreno",
+   "lin": 4,
+   "col": 7,
+   "uso": "especial",
+   "tipo": null,
+   "bioma": "verde",
+   "caixa": [
+    0,
+    14,
+    32,
+    48
+   ],
+   "acimaDaFace": 4,
+   "espelhavel": false,
+   "nota": ""
+  },
+  {
+   "id": "ruinas",
+   "folha": "terreno",
+   "lin": 5,
+   "col": 0,
+   "uso": "especial",
+   "tipo": null,
+   "bioma": null,
+   "caixa": [
+    0,
+    18,
+    32,
+    48
+   ],
+   "acimaDaFace": 0,
+   "espelhavel": false,
+   "nota": ""
+  }
+ ],
+ "variantes": {
+  "campos": {
+   "verde": [
+    {
+     "tile": "campos-verde",
+     "peso": 6
+    },
+    {
+     "tile": "campos-claro",
+     "peso": 2
+    },
+    {
+     "tile": "campos-floridos",
+     "peso": 2
+    }
+   ],
+   "neve": [
+    {
+     "tile": "campos-neve",
+     "peso": 1
+    }
+   ],
+   "deserto": [
+    {
+     "tile": "areia",
+     "peso": 1
+    }
+   ]
+  },
+  "floresta": {
+   "verde": [
+    {
+     "tile": "floresta-verde",
+     "peso": 3
+    },
+    {
+     "tile": "floresta-clareira",
+     "peso": 1
+    }
+   ],
+   "neve": [
+    {
+     "tile": "floresta-neve",
+     "peso": 1
+    }
+   ],
+   "deserto": [
+    {
+     "tile": "floresta-verde",
+     "peso": 1
+    }
+   ]
+  },
+  "floresta-densa": {
+   "verde": [
+    {
+     "tile": "floresta-densa-verde",
+     "peso": 1
+    }
+   ],
+   "neve": [
+    {
+     "tile": "floresta-densa-neve",
+     "peso": 1
+    }
+   ],
+   "deserto": [
+    {
+     "tile": "floresta-densa-verde",
+     "peso": 1
+    }
+   ]
+  },
+  "colinas": {
+   "verde": [
+    {
+     "tile": "colinas-verde",
+     "peso": 1
+    }
+   ],
+   "neve": [
+    {
+     "tile": "colinas-neve",
+     "peso": 1
+    }
+   ],
+   "deserto": [
+    {
+     "tile": "areia-rochas",
+     "peso": 1
+    }
+   ]
+  },
+  "montanha": {
+   "verde": [
+    {
+     "tile": "montanha-pico",
+     "peso": 3
+    },
+    {
+     "tile": "serra-pinheiros-verde",
+     "peso": 1
+    }
+   ],
+   "neve": [
+    {
+     "tile": "serra-pinheiros-neve",
+     "peso": 2
+    },
+    {
+     "tile": "montanha-pico",
+     "peso": 1
+    }
+   ],
+   "deserto": [
+    {
+     "tile": "meseta",
+     "peso": 1
+    }
+   ]
+  },
+  "pantano": {
+   "*": [
+    {
+     "tile": "pantano",
+     "peso": 1
+    }
+   ]
+  },
+  "deserto": {
+   "*": [
+    {
+     "tile": "areia",
+     "peso": 3
+    },
+    {
+     "tile": "dunas",
+     "peso": 2
+    }
+   ]
+  },
+  "ermo": {
+   "*": [
+    {
+     "tile": "areia",
+     "peso": 2
+    },
+    {
+     "tile": "areia-rochas",
+     "peso": 1
+    }
+   ]
+  },
+  "agua": {
+   "*": [
+    {
+     "tile": "agua-funda",
+     "peso": 1
+    }
+   ]
+  },
+  "litoral": {
+   "verde": [
+    {
+     "tile": "campos-verde",
+     "peso": 1
+    }
+   ],
+   "neve": [
+    {
+     "tile": "campos-neve",
+     "peso": 1
+    }
+   ],
+   "deserto": [
+    {
+     "tile": "areia",
+     "peso": 1
+    }
+   ]
+  }
+ },
+ "agua": {
+  "rasa": "agua-rasa",
+  "funda": "agua-funda",
+  "gelo": "agua-gelo",
+  "regra": "água com vizinho de terra usa \"rasa\" (bioma neve: \"gelo\"); as demais, \"funda\""
+ },
+ "litoral": {
+  "regra": "tile de campos do bioma + orla desenhada por código nas arestas que encostam em água"
+ },
+ "vias": {
+  "pecas": [
+   {
+    "lin": 0,
+    "col": 0,
+    "cor": "cinza",
+    "liga": [
+     "NE",
+     "SE",
+     "SO",
+     "NO"
+    ],
+    "caixa": [
+     3,
+     22,
+     29,
+     40
+    ]
+   },
+   {
+    "lin": 0,
+    "col": 1,
+    "cor": "cinza",
+    "liga": [
+     "NE",
+     "SO"
+    ],
+    "caixa": [
+     3,
+     22,
+     28,
+     40
+    ]
+   },
+   {
+    "lin": 0,
+    "col": 2,
+    "cor": "cinza",
+    "liga": [
+     "SE",
+     "NO"
+    ],
+    "caixa": [
+     4,
+     22,
+     29,
+     40
+    ]
+   },
+   {
+    "lin": 0,
+    "col": 3,
+    "cor": "cinza",
+    "liga": [
+     "SO",
+     "NO"
+    ],
+    "caixa": [
+     3,
+     22,
+     14,
+     40
+    ]
+   },
+   {
+    "lin": 0,
+    "col": 4,
+    "cor": "cinza",
+    "liga": [
+     "NE",
+     "SE"
+    ],
+    "caixa": [
+     17,
+     22,
+     29,
+     40
+    ]
+   },
+   {
+    "lin": 0,
+    "col": 5,
+    "cor": "cinza",
+    "liga": [
+     "SE",
+     "SO"
+    ],
+    "caixa": [
+     3,
+     33,
+     29,
+     40
+    ]
+   },
+   {
+    "lin": 0,
+    "col": 6,
+    "cor": "cinza",
+    "liga": [
+     "NE",
+     "NO"
+    ],
+    "caixa": [
+     4,
+     22,
+     28,
+     29
+    ]
+   },
+   {
+    "lin": 1,
+    "col": 0,
+    "cor": "cinza",
+    "liga": [
+     "SE",
+     "SO",
+     "NO"
+    ],
+    "caixa": [
+     3,
+     22,
+     29,
+     40
+    ]
+   },
+   {
+    "lin": 1,
+    "col": 1,
+    "cor": "cinza",
+    "liga": [
+     "NE",
+     "SE",
+     "SO"
+    ],
+    "caixa": [
+     3,
+     22,
+     29,
+     40
+    ]
+   },
+   {
+    "lin": 1,
+    "col": 2,
+    "cor": "cinza",
+    "liga": [
+     "NE",
+     "SO",
+     "NO"
+    ],
+    "caixa": [
+     3,
+     22,
+     28,
+     40
+    ]
+   },
+   {
+    "lin": 1,
+    "col": 3,
+    "cor": "cinza",
+    "liga": [
+     "NE",
+     "SE",
+     "NO"
+    ],
+    "caixa": [
+     2,
+     22,
+     29,
+     40
+    ]
+   },
+   {
+    "lin": 2,
+    "col": 0,
+    "cor": "verde",
+    "liga": [
+     "NE",
+     "SE",
+     "SO",
+     "NO"
+    ],
+    "caixa": [
+     3,
+     22,
+     29,
+     40
+    ]
+   },
+   {
+    "lin": 2,
+    "col": 1,
+    "cor": "verde",
+    "liga": [
+     "NE",
+     "SO"
+    ],
+    "caixa": [
+     3,
+     21,
+     28,
+     40
+    ]
+   },
+   {
+    "lin": 2,
+    "col": 2,
+    "cor": "verde",
+    "liga": [
+     "SE",
+     "NO"
+    ],
+    "caixa": [
+     4,
+     22,
+     29,
+     40
+    ]
+   },
+   {
+    "lin": 2,
+    "col": 3,
+    "cor": "verde",
+    "liga": [
+     "SO",
+     "NO"
+    ],
+    "caixa": [
+     3,
+     22,
+     14,
+     42
+    ]
+   },
+   {
+    "lin": 2,
+    "col": 4,
+    "cor": "verde",
+    "liga": [
+     "NE",
+     "SE"
+    ],
+    "caixa": [
+     19,
+     21,
+     29,
+     40
+    ]
+   },
+   {
+    "lin": 2,
+    "col": 5,
+    "cor": "verde",
+    "liga": [
+     "SE",
+     "SO"
+    ],
+    "caixa": [
+     3,
+     32,
+     29,
+     40
+    ]
+   },
+   {
+    "lin": 2,
+    "col": 6,
+    "cor": "verde",
+    "liga": [
+     "NE",
+     "NO"
+    ],
+    "caixa": [
+     4,
+     21,
+     28,
+     31
+    ]
+   },
+   {
+    "lin": 3,
+    "col": 0,
+    "cor": "verde",
+    "liga": [
+     "SE",
+     "SO",
+     "NO"
+    ],
+    "caixa": [
+     3,
+     22,
+     29,
+     40
+    ]
+   },
+   {
+    "lin": 3,
+    "col": 1,
+    "cor": "verde",
+    "liga": [
+     "NE",
+     "SE",
+     "SO"
+    ],
+    "caixa": [
+     3,
+     22,
+     29,
+     41
+    ]
+   },
+   {
+    "lin": 3,
+    "col": 2,
+    "cor": "verde",
+    "liga": [
+     "NE",
+     "SO",
+     "NO"
+    ],
+    "caixa": [
+     3,
+     22,
+     28,
+     40
+    ]
+   },
+   {
+    "lin": 3,
+    "col": 3,
+    "cor": "verde",
+    "liga": [
+     "NE",
+     "SE",
+     "NO"
+    ],
+    "caixa": [
+     3,
+     21,
+     29,
+     40
+    ]
+   }
+  ],
+  "observacao": "as peças só ligam as diagonais (NE, SE, SO, NO): não há N/S nem pontas. Vias são desenhadas por código; a folha é referência de estilo e paleta.",
+  "paletas": {
+   "cinza": [
+    "#414141",
+    "#61584f",
+    "#6e665d",
+    "#29701f",
+    "#278219",
+    "#612910"
+   ],
+   "verde": [
+    "#29945f",
+    "#178041",
+    "#914504",
+    "#29701f",
+    "#84d119",
+    "#278219",
+    "#af5211",
+    "#fbe7a2"
+   ]
+  }
+ },
+ "paletaAgua": {
+  "rasa": [
+   "#18aee4",
+   "#0b589e",
+   "#29c0f6"
+  ],
+  "funda": [
+   "#0b589e",
+   "#292721",
+   "#084983"
+  ],
+  "gelo": [
+   "#18aee4",
+   "#d0ecf7",
+   "#0b589e",
+   "#138ab6",
+   "#a6d9f3",
+   "#29c0f6"
+  ]
+ },
+ "paletaBorda": [
+  "#69c127",
+  "#914504",
+  "#af5211"
+ ]
+}

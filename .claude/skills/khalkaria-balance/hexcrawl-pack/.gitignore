@@ -1,0 +1,20 @@
+# mapas originais do Pedro (~50 MB cada; ficam no Google Drive)
+arte/referencia/*.png
+
+# Python
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+venv/
+build/
+dist/
+
+# Node
+node_modules/
+web/dist/
+
+# sistema
+.DS_Store
+__MACOSX/
+Thumbs.db

@@ -1,0 +1,144 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://khalkaria/hexcrawl/hexes.schema.json",
+ "title": "Hexes do mundo (um registro por célula da grade)",
+ "type": "object",
+ "properties": {
+  "schemaVersion": {
+   "type": "string"
+  },
+  "_doc": {
+   "type": "string"
+  },
+  "exemplo": {
+   "type": "boolean"
+  },
+  "hexes": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+     "id",
+     "tipo",
+     "regiao",
+     "cidade"
+    ],
+    "properties": {
+     "id": {
+      "type": "string",
+      "pattern": "^[0-9]{4}$",
+      "description": "CCLL: coluna e linha 1-based, 2 dígitos cada"
+     },
+     "tipo": {
+      "enum": [
+       "campos",
+       "floresta",
+       "floresta-densa",
+       "colinas",
+       "montanha",
+       "pantano",
+       "deserto",
+       "ermo",
+       "agua",
+       "litoral"
+      ]
+     },
+     "regiao": {
+      "type": [
+       "string",
+       "null"
+      ]
+     },
+     "cidade": {
+      "type": [
+       "string",
+       "null"
+      ]
+     },
+     "custo": {
+      "type": [
+       "number",
+       "null"
+      ],
+      "exclusiveMinimum": 0,
+      "multipleOf": 1.5,
+      "description": "null = custo do tipo"
+     },
+     "hostilidade": {
+      "enum": [
+       null,
+       0,
+       5,
+       10,
+       15,
+       20
+      ],
+      "description": "null = a da região"
+     },
+     "variante": {
+      "type": [
+       "integer",
+       "null"
+      ],
+      "minimum": 0
+     },
+     "especial": {
+      "type": [
+       "object",
+       "null"
+      ],
+      "additionalProperties": false,
+      "required": [
+       "id",
+       "nome",
+       "icone",
+       "conflito"
+      ],
+      "properties": {
+       "id": {
+        "type": "string",
+        "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"
+       },
+       "nome": {
+        "type": "string"
+       },
+       "icone": {
+        "type": "string"
+       },
+       "categoria": {
+        "enum": [
+         "marco",
+         "assentamento",
+         "ruina",
+         "covil",
+         "refugio",
+         "portao",
+         "achado"
+        ]
+       },
+       "conflito": {
+        "type": "boolean",
+        "description": "hex de conflito: a consequência da Jornada não se resolve aqui"
+       },
+       "textoMestre": {
+        "type": "string"
+       },
+       "textoJogadores": {
+        "type": "string"
+       }
+      }
+     },
+     "notas": {
+      "type": "string"
+     }
+    }
+   }
+  }
+ },
+ "required": [
+  "schemaVersion",
+  "hexes"
+ ],
+ "additionalProperties": false
+}

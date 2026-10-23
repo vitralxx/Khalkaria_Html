@@ -1,0 +1,67 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://khalkaria/hexcrawl/arestas.schema.json",
+ "title": "Pontes e penhascos (os rios ficam em rios.json)",
+ "type": "object",
+ "properties": {
+  "schemaVersion": {
+   "type": "string"
+  },
+  "_doc": {
+   "type": "string"
+  },
+  "exemplo": {
+   "type": "boolean"
+  },
+  "arestas": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+     "aresta",
+     "tipo"
+    ],
+    "properties": {
+     "aresta": {
+      "type": "string",
+      "pattern": "^[0-9]{4}:(N|NE|SE)$",
+      "description": "aresta canônica: hex dono + N, NE ou SE"
+     },
+     "tipo": {
+      "enum": [
+       "ponte",
+       "penhasco"
+      ]
+     },
+     "ladoAlto": {
+      "type": "string",
+      "pattern": "^[0-9]{4}$",
+      "description": "CCLL: coluna e linha 1-based, 2 dígitos cada"
+     }
+    },
+    "allOf": [
+     {
+      "if": {
+       "properties": {
+        "tipo": {
+         "const": "penhasco"
+        }
+       }
+      },
+      "then": {
+       "required": [
+        "ladoAlto"
+       ]
+      }
+     }
+    ]
+   }
+  }
+ },
+ "required": [
+  "schemaVersion",
+  "arestas"
+ ],
+ "additionalProperties": false
+}

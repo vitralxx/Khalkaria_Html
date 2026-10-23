@@ -1,0 +1,262 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://khalkaria/hexcrawl/campanha.schema.json",
+ "title": "Estado da campanha (muda a cada sessão)",
+ "type": "object",
+ "properties": {
+  "schemaVersion": {
+   "type": "string"
+  },
+  "_doc": {
+   "type": "string"
+  },
+  "exemplo": {
+   "type": "boolean"
+  },
+  "semente": {
+   "type": "integer"
+  },
+  "tempo": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "dia",
+    "periodo"
+   ],
+   "properties": {
+    "dia": {
+     "type": "integer",
+     "minimum": 1
+    },
+    "periodo": {
+     "enum": [
+      "manha",
+      "tarde",
+      "noite",
+      "descanso"
+     ]
+    }
+   }
+  },
+  "grupo": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "hex",
+    "membros"
+   ],
+   "properties": {
+    "hex": {
+     "type": "string",
+     "pattern": "^[0-9]{4}$",
+     "description": "CCLL: coluna e linha 1-based, 2 dígitos cada"
+    },
+    "aresta": {
+     "type": [
+      "string",
+      "null"
+     ],
+     "description": "embarcado: a aresta de rio onde o barco está"
+    },
+    "membros": {
+     "type": "array",
+     "items": {
+      "type": "object",
+      "required": [
+       "nome",
+       "movimento"
+      ],
+      "properties": {
+       "nome": {
+        "type": "string"
+       },
+       "movimento": {
+        "type": "number",
+        "minimum": 0
+       },
+       "ficha": {
+        "type": "string"
+       }
+      }
+     }
+    },
+    "embarcacao": {
+     "type": [
+      "object",
+      "null"
+     ],
+     "properties": {
+      "nome": {
+       "type": "string"
+      },
+      "orcamento": {
+       "type": "number",
+       "minimum": 0
+      }
+     }
+    }
+   }
+  },
+  "dia": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "orcamento",
+    "restante"
+   ],
+   "properties": {
+    "orcamento": {
+     "type": "number",
+     "minimum": 0
+    },
+    "restante": {
+     "type": "number",
+     "minimum": 0
+    },
+    "divida": {
+     "type": "number",
+     "minimum": 0
+    },
+    "andados": {
+     "type": "array",
+     "items": {
+      "type": "string",
+      "pattern": "^[0-9]{4}$",
+      "description": "CCLL: coluna e linha 1-based, 2 dígitos cada"
+     }
+    },
+    "explorados": {
+     "type": "array",
+     "items": {
+      "type": "string",
+      "pattern": "^[0-9]{4}$",
+      "description": "CCLL: coluna e linha 1-based, 2 dígitos cada"
+     }
+    }
+   }
+  },
+  "vistos": {
+   "type": "array",
+   "items": {
+    "type": "string",
+    "pattern": "^[0-9]{4}$",
+    "description": "CCLL: coluna e linha 1-based, 2 dígitos cada"
+   },
+   "description": "hexes que já estiveram no campo de visão (a névoa preta sai)"
+  },
+  "tabelas": {
+   "type": "object",
+   "propertyNames": {
+    "pattern": "^[0-9]{4}$"
+   },
+   "additionalProperties": {
+    "type": "object",
+    "required": [
+     "entradas"
+    ],
+    "properties": {
+     "entradas": {
+      "type": "array",
+      "items": {
+       "type": "object",
+       "required": [
+        "evento",
+        "peso"
+       ],
+       "properties": {
+        "evento": {
+         "type": "string",
+         "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"
+        },
+        "peso": {
+         "type": "number",
+         "minimum": 0
+        }
+       }
+      }
+     },
+     "travada": {
+      "type": "boolean"
+     }
+    }
+   }
+  },
+  "definidos": {
+   "type": "object",
+   "propertyNames": {
+    "pattern": "^[0-9]{4}$"
+   },
+   "additionalProperties": {
+    "type": "string",
+    "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"
+   }
+  },
+  "revelados": {
+   "type": "object",
+   "propertyNames": {
+    "pattern": "^[0-9]{4}$"
+   },
+   "additionalProperties": {
+    "type": "array",
+    "items": {
+     "type": "string",
+     "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"
+    }
+   }
+  },
+  "consumidos": {
+   "type": "array",
+   "items": {
+    "type": "string",
+    "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"
+   }
+  },
+  "extracoesNoDia": {
+   "type": "integer",
+   "minimum": 0
+  },
+  "diario": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "required": [
+     "dia",
+     "tipo"
+    ],
+    "properties": {
+     "dia": {
+      "type": "integer"
+     },
+     "periodo": {
+      "type": "string"
+     },
+     "hex": {
+      "type": "string",
+      "pattern": "^[0-9]{4}$",
+      "description": "CCLL: coluna e linha 1-based, 2 dígitos cada"
+     },
+     "tipo": {
+      "type": "string"
+     },
+     "texto": {
+      "type": "string"
+     },
+     "rolagem": {
+      "type": "object"
+     }
+    }
+   }
+  }
+ },
+ "required": [
+  "schemaVersion",
+  "tempo",
+  "grupo",
+  "dia",
+  "vistos",
+  "tabelas",
+  "definidos",
+  "consumidos"
+ ],
+ "additionalProperties": false
+}

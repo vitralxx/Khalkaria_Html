@@ -1,0 +1,19 @@
+{
+ "schemaVersion": "hexcrawl-arestas/1",
+ "arestas": [
+  {
+   "aresta": "0905:SE",
+   "tipo": "ponte"
+  },
+  {
+   "aresta": "1105:N",
+   "tipo": "penhasco",
+   "ladoAlto": "1104"
+  },
+  {
+   "aresta": "1004:NE",
+   "tipo": "penhasco",
+   "ladoAlto": "1104"
+  }
+ ]
+}

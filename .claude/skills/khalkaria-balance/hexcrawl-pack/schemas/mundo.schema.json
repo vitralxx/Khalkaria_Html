@@ -1,0 +1,353 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://khalkaria/hexcrawl/mundo.schema.json",
+ "title": "Mundo do hexcrawl (grade, tipos, regiões, cidades)",
+ "type": "object",
+ "properties": {
+  "schemaVersion": {
+   "type": "string"
+  },
+  "_doc": {
+   "type": "string"
+  },
+  "exemplo": {
+   "type": "boolean"
+  },
+  "grade": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "orientacao",
+    "offset",
+    "colunas",
+    "linhas"
+   ],
+   "properties": {
+    "orientacao": {
+     "const": "chato"
+    },
+    "offset": {
+     "const": "odd-q"
+    },
+    "colunas": {
+     "type": "integer",
+     "minimum": 1,
+     "maximum": 99
+    },
+    "linhas": {
+     "type": "integer",
+     "minimum": 1,
+     "maximum": 99
+    },
+    "referencia": {
+     "type": [
+      "object",
+      "null"
+     ]
+    }
+   }
+  },
+  "tipos": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+     "id",
+     "nome",
+     "custo",
+     "visao"
+    ],
+    "properties": {
+     "id": {
+      "enum": [
+       "campos",
+       "floresta",
+       "floresta-densa",
+       "colinas",
+       "montanha",
+       "pantano",
+       "deserto",
+       "ermo",
+       "agua",
+       "litoral"
+      ]
+     },
+     "nome": {
+      "type": "string"
+     },
+     "custo": {
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "multipleOf": 1.5
+     },
+     "visao": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 6
+     },
+     "soEmbarcacao": {
+      "type": "boolean"
+     }
+    }
+   }
+  },
+  "regioes": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+     "id",
+     "nome",
+     "rank",
+     "cr",
+     "hostilidade",
+     "cor",
+     "tinta",
+     "bioma",
+     "montagem",
+     "materiais"
+    ],
+    "properties": {
+     "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"
+     },
+     "nome": {
+      "type": "string"
+     },
+     "rank": {
+      "type": "integer",
+      "minimum": 1
+     },
+     "cr": {
+      "type": "string"
+     },
+     "hostilidade": {
+      "enum": [
+       0,
+       5,
+       10,
+       15,
+       20
+      ]
+     },
+     "cor": {
+      "type": "string",
+      "pattern": "^#[0-9a-fA-F]{6}$"
+     },
+     "tinta": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+       "cor",
+       "forca"
+      ],
+      "properties": {
+       "cor": {
+        "type": "string",
+        "pattern": "^#[0-9a-fA-F]{6}$"
+       },
+       "forca": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 1
+       },
+       "dessaturar": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 1
+       }
+      }
+     },
+     "bioma": {
+      "enum": [
+       "verde",
+       "neve",
+       "deserto"
+      ]
+     },
+     "paletaUI": {
+      "type": "string",
+      "pattern": "^[0-9]{2}$"
+     },
+     "montagem": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+       "entradas",
+       "mistura",
+       "variacao",
+       "pesos"
+      ],
+      "properties": {
+       "entradas": {
+        "type": "array",
+        "items": {
+         "type": "integer",
+         "minimum": 1
+        },
+        "minItems": 2,
+        "maxItems": 2
+       },
+       "mistura": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+         "favoravel",
+         "neutro",
+         "adverso"
+        ],
+        "properties": {
+         "favoravel": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+         },
+         "neutro": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+         },
+         "adverso": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+         }
+        }
+       },
+       "variacao": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 0.5
+       },
+       "pesos": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+         "comum",
+         "notavel",
+         "raro"
+        ],
+        "properties": {
+         "comum": {
+          "type": "number",
+          "minimum": 0
+         },
+         "notavel": {
+          "type": "number",
+          "minimum": 0
+         },
+         "raro": {
+          "type": "number",
+          "minimum": 0
+         }
+        }
+       }
+      }
+     },
+     "materiais": {
+      "type": "array",
+      "maxItems": 4,
+      "items": {
+       "type": "object",
+       "additionalProperties": false,
+       "required": [
+        "nome",
+        "raridade",
+        "familia",
+        "tipos"
+       ],
+       "properties": {
+        "nome": {
+         "type": "string"
+        },
+        "raridade": {
+         "enum": [
+          "Ordinário",
+          "Incomum",
+          "Exótico",
+          "Luxária"
+         ]
+        },
+        "familia": {
+         "enum": [
+          "gema",
+          "madeira",
+          "mecanica",
+          "tecido",
+          "energia",
+          "mineral",
+          "metal",
+          "couro"
+         ]
+        },
+        "tipos": {
+         "type": "array",
+         "minItems": 1,
+         "items": {
+          "enum": [
+           "campos",
+           "floresta",
+           "floresta-densa",
+           "colinas",
+           "montanha",
+           "pantano",
+           "deserto",
+           "ermo",
+           "agua",
+           "litoral"
+          ]
+         }
+        }
+       }
+      }
+     },
+     "materiaisStatus": {
+      "enum": [
+       "proposta",
+       "aprovado"
+      ]
+     }
+    }
+   }
+  },
+  "cidades": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+     "id",
+     "nome"
+    ],
+    "properties": {
+     "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"
+     },
+     "nome": {
+      "type": "string"
+     },
+     "mapaProprio": {
+      "type": "string"
+     }
+    }
+   }
+  },
+  "foraDaExtracao": {
+   "type": "array",
+   "items": {
+    "type": "string"
+   }
+  }
+ },
+ "required": [
+  "schemaVersion",
+  "grade",
+  "tipos",
+  "regioes"
+ ],
+ "additionalProperties": false
+}

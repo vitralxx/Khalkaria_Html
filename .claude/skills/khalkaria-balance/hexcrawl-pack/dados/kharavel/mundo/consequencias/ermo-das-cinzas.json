@@ -1,0 +1,42 @@
+{
+ "schemaVersion": "hexcrawl-consequencias/1",
+ "regiao": "ermo-das-cinzas",
+ "status": "a escrever",
+ "faixas": [
+  {
+   "de": 1,
+   "ate": 1,
+   "texto": ""
+  },
+  {
+   "de": 2,
+   "ate": 19,
+   "texto": ""
+  },
+  {
+   "de": 20,
+   "ate": 39,
+   "texto": ""
+  },
+  {
+   "de": 40,
+   "ate": 59,
+   "texto": ""
+  },
+  {
+   "de": 60,
+   "ate": 79,
+   "texto": ""
+  },
+  {
+   "de": 80,
+   "ate": 99,
+   "texto": ""
+  },
+  {
+   "de": 100,
+   "ate": 100,
+   "texto": ""
+  }
+ ]
+}

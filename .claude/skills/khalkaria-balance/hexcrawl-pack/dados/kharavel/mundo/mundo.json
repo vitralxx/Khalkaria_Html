@@ -1,0 +1,702 @@
+{
+ "schemaVersion": "hexcrawl-mundo/1",
+ "_doc": "Mundo de Kharavel: grade, tipos de hex, regiões e cidades. Fonte das regras: docs/01-regras.md. Os hexes (hexes.json) saem da geografia inicial (docs/07).",
+ "grade": {
+  "orientacao": "chato",
+  "offset": "odd-q",
+  "colunas": 30,
+  "linhas": 26,
+  "referencia": {
+   "oficial": {
+    "arquivo": "arte/referencia/kharavel-oficial.webp",
+    "original": "Kharavel Versão 2 abismo OFICIAL.png",
+    "driveId": "1OYiQz6ZYbkO7hHhnHML3DBmtWRW31DMA"
+   },
+   "ilusao": {
+    "arquivo": "arte/referencia/kharavel-ilusao.webp",
+    "original": "Kharavel Versão 2.png",
+    "driveId": "13tDdJH1wwq-jJYYQBcvtoh7HRzr5emTW"
+   },
+   "calibracao": null
+  }
+ },
+ "tipos": [
+  {
+   "id": "campos",
+   "nome": "Campos",
+   "custo": 4.5,
+   "visao": 1
+  },
+  {
+   "id": "floresta",
+   "nome": "Floresta",
+   "custo": 6,
+   "visao": 1
+  },
+  {
+   "id": "floresta-densa",
+   "nome": "Floresta Densa",
+   "custo": 7.5,
+   "visao": 0
+  },
+  {
+   "id": "colinas",
+   "nome": "Colinas",
+   "custo": 6,
+   "visao": 2
+  },
+  {
+   "id": "montanha",
+   "nome": "Montanha",
+   "custo": 9,
+   "visao": 3
+  },
+  {
+   "id": "pantano",
+   "nome": "Pântano",
+   "custo": 7.5,
+   "visao": 1
+  },
+  {
+   "id": "deserto",
+   "nome": "Deserto",
+   "custo": 6,
+   "visao": 1
+  },
+  {
+   "id": "ermo",
+   "nome": "Ermo",
+   "custo": 4.5,
+   "visao": 1
+  },
+  {
+   "id": "agua",
+   "nome": "Água",
+   "custo": 1.5,
+   "visao": 1,
+   "soEmbarcacao": true
+  },
+  {
+   "id": "litoral",
+   "nome": "Litoral",
+   "custo": 4.5,
+   "visao": 2
+  }
+ ],
+ "regioes": [
+  {
+   "id": "bosque-corrompido",
+   "nome": "Bosque Corrompido",
+   "rank": 1,
+   "cr": "1",
+   "hostilidade": 5,
+   "cor": "#8c0000",
+   "tinta": {
+    "cor": "#8c0000",
+    "forca": 0.18
+   },
+   "bioma": "verde",
+   "paletaUI": "10",
+   "montagem": {
+    "entradas": [
+     8,
+     12
+    ],
+    "mistura": {
+     "favoravel": 0.4,
+     "neutro": 0.35,
+     "adverso": 0.25
+    },
+    "variacao": 0.1,
+    "pesos": {
+     "comum": 5,
+     "notavel": 3,
+     "raro": 1
+    }
+   },
+   "materiais": [
+    {
+     "nome": "Madeira Comum",
+     "raridade": "Ordinário",
+     "familia": "madeira",
+     "tipos": [
+      "floresta",
+      "floresta-densa"
+     ]
+    },
+    {
+     "nome": "Fogo",
+     "raridade": "Ordinário",
+     "familia": "energia",
+     "tipos": [
+      "floresta-densa",
+      "pantano"
+     ]
+    },
+    {
+     "nome": "Gema Bruta",
+     "raridade": "Ordinário",
+     "familia": "gema",
+     "tipos": [
+      "colinas",
+      "litoral"
+     ]
+    },
+    {
+     "nome": "Cobre",
+     "raridade": "Ordinário",
+     "familia": "mineral",
+     "tipos": [
+      "colinas",
+      "montanha"
+     ]
+    }
+   ],
+   "materiaisStatus": "proposta"
+  },
+  {
+   "id": "cinturao-silencioso",
+   "nome": "Cinturão Silencioso",
+   "rank": 2,
+   "cr": "1",
+   "hostilidade": 5,
+   "cor": "#008b8c",
+   "tinta": {
+    "cor": "#008b8c",
+    "forca": 0.18
+   },
+   "bioma": "verde",
+   "paletaUI": "06",
+   "montagem": {
+    "entradas": [
+     8,
+     12
+    ],
+    "mistura": {
+     "favoravel": 0.4,
+     "neutro": 0.35,
+     "adverso": 0.25
+    },
+    "variacao": 0.1,
+    "pesos": {
+     "comum": 5,
+     "notavel": 3,
+     "raro": 1
+    }
+   },
+   "materiais": [
+    {
+     "nome": "Lingote de Ferro",
+     "raridade": "Ordinário",
+     "familia": "metal",
+     "tipos": [
+      "colinas"
+     ]
+    },
+    {
+     "nome": "Couro de Caça",
+     "raridade": "Ordinário",
+     "familia": "couro",
+     "tipos": [
+      "campos",
+      "floresta"
+     ]
+    },
+    {
+     "nome": "Peça Mecânica",
+     "raridade": "Ordinário",
+     "familia": "mecanica",
+     "tipos": [
+      "litoral",
+      "colinas"
+     ]
+    },
+    {
+     "nome": "Tecido Resistente",
+     "raridade": "Ordinário",
+     "familia": "tecido",
+     "tipos": [
+      "campos",
+      "pantano"
+     ]
+    }
+   ],
+   "materiaisStatus": "proposta"
+  },
+  {
+   "id": "emaranhado-de-raizes",
+   "nome": "Emaranhado de Raízes",
+   "rank": 3,
+   "cr": "2",
+   "hostilidade": 10,
+   "cor": "#8d008c",
+   "tinta": {
+    "cor": "#8d008c",
+    "forca": 0.18
+   },
+   "bioma": "verde",
+   "paletaUI": "04",
+   "montagem": {
+    "entradas": [
+     8,
+     12
+    ],
+    "mistura": {
+     "favoravel": 0.33,
+     "neutro": 0.34,
+     "adverso": 0.33
+    },
+    "variacao": 0.1,
+    "pesos": {
+     "comum": 5,
+     "notavel": 3,
+     "raro": 1
+    }
+   },
+   "materiais": [
+    {
+     "nome": "Madeira Nobre",
+     "raridade": "Incomum",
+     "familia": "madeira",
+     "tipos": [
+      "floresta",
+      "floresta-densa"
+     ]
+    },
+    {
+     "nome": "Couro Refinado",
+     "raridade": "Incomum",
+     "familia": "couro",
+     "tipos": [
+      "floresta",
+      "campos"
+     ]
+    },
+    {
+     "nome": "Eletricidade",
+     "raridade": "Incomum",
+     "familia": "energia",
+     "tipos": [
+      "floresta-densa",
+      "colinas"
+     ]
+    }
+   ],
+   "materiaisStatus": "proposta"
+  },
+  {
+   "id": "bacia-acidentada",
+   "nome": "Bacia Acidentada",
+   "rank": 4,
+   "cr": "2",
+   "hostilidade": 10,
+   "cor": "#8c8c8c",
+   "tinta": {
+    "cor": "#8c8c8c",
+    "forca": 0.18
+   },
+   "bioma": "verde",
+   "paletaUI": "09",
+   "montagem": {
+    "entradas": [
+     8,
+     12
+    ],
+    "mistura": {
+     "favoravel": 0.33,
+     "neutro": 0.34,
+     "adverso": 0.33
+    },
+    "variacao": 0.1,
+    "pesos": {
+     "comum": 5,
+     "notavel": 3,
+     "raro": 1
+    }
+   },
+   "materiais": [
+    {
+     "nome": "Gema Refinada",
+     "raridade": "Incomum",
+     "familia": "gema",
+     "tipos": [
+      "colinas",
+      "litoral"
+     ]
+    },
+    {
+     "nome": "Fibra Sintética",
+     "raridade": "Incomum",
+     "familia": "tecido",
+     "tipos": [
+      "pantano",
+      "campos"
+     ]
+    }
+   ],
+   "materiaisStatus": "proposta"
+  },
+  {
+   "id": "costas-rochosas",
+   "nome": "Costas Rochosas",
+   "rank": 5,
+   "cr": "2",
+   "hostilidade": 10,
+   "cor": "#008d00",
+   "tinta": {
+    "cor": "#008d00",
+    "forca": 0.18
+   },
+   "bioma": "verde",
+   "paletaUI": "15",
+   "montagem": {
+    "entradas": [
+     8,
+     12
+    ],
+    "mistura": {
+     "favoravel": 0.33,
+     "neutro": 0.34,
+     "adverso": 0.33
+    },
+    "variacao": 0.1,
+    "pesos": {
+     "comum": 5,
+     "notavel": 3,
+     "raro": 1
+    }
+   },
+   "materiais": [
+    {
+     "nome": "Ferro",
+     "raridade": "Incomum",
+     "familia": "mineral",
+     "tipos": [
+      "colinas",
+      "montanha"
+     ]
+    },
+    {
+     "nome": "Engrenagem",
+     "raridade": "Incomum",
+     "familia": "mecanica",
+     "tipos": [
+      "litoral",
+      "colinas"
+     ]
+    },
+    {
+     "nome": "Aço Temperado",
+     "raridade": "Incomum",
+     "familia": "metal",
+     "tipos": [
+      "colinas",
+      "montanha"
+     ]
+    }
+   ],
+   "materiaisStatus": "proposta"
+  },
+  {
+   "id": "terras-livres",
+   "nome": "Terras Livres",
+   "rank": 6,
+   "cr": "3",
+   "hostilidade": 15,
+   "cor": "#8d8c00",
+   "tinta": {
+    "cor": "#8d8c00",
+    "forca": 0.18
+   },
+   "bioma": "verde",
+   "paletaUI": "01",
+   "montagem": {
+    "entradas": [
+     8,
+     12
+    ],
+    "mistura": {
+     "favoravel": 0.27,
+     "neutro": 0.33,
+     "adverso": 0.4
+    },
+    "variacao": 0.1,
+    "pesos": {
+     "comum": 5,
+     "notavel": 3,
+     "raro": 1
+    }
+   },
+   "materiais": [
+    {
+     "nome": "Couro Bestial",
+     "raridade": "Exótico",
+     "familia": "couro",
+     "tipos": [
+      "campos",
+      "floresta"
+     ]
+    },
+    {
+     "nome": "Madeira Mística",
+     "raridade": "Exótico",
+     "familia": "madeira",
+     "tipos": [
+      "floresta",
+      "floresta-densa"
+     ]
+    },
+    {
+     "nome": "Mecanismo Arcano",
+     "raridade": "Exótico",
+     "familia": "mecanica",
+     "tipos": [
+      "colinas",
+      "campos"
+     ]
+    },
+    {
+     "nome": "Éter",
+     "raridade": "Exótico",
+     "familia": "energia",
+     "tipos": [
+      "campos",
+      "pantano"
+     ]
+    }
+   ],
+   "materiaisStatus": "proposta"
+  },
+  {
+   "id": "cordilheira-cristalina",
+   "nome": "Cordilheira Cristalina",
+   "rank": 7,
+   "cr": "3",
+   "hostilidade": 15,
+   "cor": "#00008d",
+   "tinta": {
+    "cor": "#00008d",
+    "forca": 0.18
+   },
+   "bioma": "neve",
+   "paletaUI": "08",
+   "montagem": {
+    "entradas": [
+     8,
+     12
+    ],
+    "mistura": {
+     "favoravel": 0.27,
+     "neutro": 0.33,
+     "adverso": 0.4
+    },
+    "variacao": 0.1,
+    "pesos": {
+     "comum": 5,
+     "notavel": 3,
+     "raro": 1
+    }
+   },
+   "materiais": [
+    {
+     "nome": "Liga Rúnica",
+     "raridade": "Exótico",
+     "familia": "metal",
+     "tipos": [
+      "montanha",
+      "colinas"
+     ]
+    },
+    {
+     "nome": "Trama Etérea",
+     "raridade": "Exótico",
+     "familia": "tecido",
+     "tipos": [
+      "colinas",
+      "floresta"
+     ]
+    },
+    {
+     "nome": "Gema Mística",
+     "raridade": "Exótico",
+     "familia": "gema",
+     "tipos": [
+      "montanha"
+     ]
+    },
+    {
+     "nome": "Kali",
+     "raridade": "Exótico",
+     "familia": "mineral",
+     "tipos": [
+      "montanha",
+      "colinas"
+     ]
+    }
+   ],
+   "materiaisStatus": "proposta"
+  },
+  {
+   "id": "deserto-do-abismo",
+   "nome": "Deserto do Abismo",
+   "rank": 8,
+   "cr": "4+",
+   "hostilidade": 20,
+   "cor": "#392a5c",
+   "tinta": {
+    "cor": "#392a5c",
+    "forca": 0.15
+   },
+   "bioma": "deserto",
+   "paletaUI": "12",
+   "montagem": {
+    "entradas": [
+     8,
+     12
+    ],
+    "mistura": {
+     "favoravel": 0.2,
+     "neutro": 0.3,
+     "adverso": 0.5
+    },
+    "variacao": 0.1,
+    "pesos": {
+     "comum": 5,
+     "notavel": 3,
+     "raro": 1
+    }
+   },
+   "materiais": [
+    {
+     "nome": "Coração Mecânico",
+     "raridade": "Luxária",
+     "familia": "mecanica",
+     "tipos": [
+      "deserto",
+      "ermo"
+     ]
+    },
+    {
+     "nome": "Fio do Destino",
+     "raridade": "Luxária",
+     "familia": "tecido",
+     "tipos": [
+      "deserto",
+      "pantano"
+     ]
+    },
+    {
+     "nome": "Gema Primordial",
+     "raridade": "Luxária",
+     "familia": "gema",
+     "tipos": [
+      "deserto",
+      "colinas",
+      "montanha"
+     ]
+    },
+    {
+     "nome": "Energia Primordial",
+     "raridade": "Luxária",
+     "familia": "energia",
+     "tipos": [
+      "deserto",
+      "ermo"
+     ]
+    }
+   ],
+   "materiaisStatus": "proposta"
+  },
+  {
+   "id": "ermo-das-cinzas",
+   "nome": "Ermo das Cinzas",
+   "rank": 9,
+   "cr": "4+",
+   "hostilidade": 20,
+   "cor": "#000000",
+   "tinta": {
+    "cor": "#3a3a3a",
+    "forca": 0.3,
+    "dessaturar": 0.45
+   },
+   "bioma": "deserto",
+   "paletaUI": "17",
+   "montagem": {
+    "entradas": [
+     8,
+     12
+    ],
+    "mistura": {
+     "favoravel": 0.2,
+     "neutro": 0.3,
+     "adverso": 0.5
+    },
+    "variacao": 0.1,
+    "pesos": {
+     "comum": 5,
+     "notavel": 3,
+     "raro": 1
+    }
+   },
+   "materiais": [
+    {
+     "nome": "Liga Primordial",
+     "raridade": "Luxária",
+     "familia": "metal",
+     "tipos": [
+      "ermo",
+      "colinas"
+     ]
+    },
+    {
+     "nome": "Madeira da Vhelor",
+     "raridade": "Luxária",
+     "familia": "madeira",
+     "tipos": [
+      "ermo",
+      "floresta"
+     ]
+    },
+    {
+     "nome": "Ouro",
+     "raridade": "Luxária",
+     "familia": "mineral",
+     "tipos": [
+      "colinas",
+      "montanha",
+      "ermo"
+     ]
+    },
+    {
+     "nome": "Pele de Dragão",
+     "raridade": "Luxária",
+     "familia": "couro",
+     "tipos": [
+      "ermo",
+      "montanha"
+     ]
+    }
+   ],
+   "materiaisStatus": "proposta"
+  }
+ ],
+ "cidades": [
+  {
+   "id": "khaskavel",
+   "nome": "Khaskavel",
+   "mapaProprio": "cidades/khaskavel"
+  },
+  {
+   "id": "revavena",
+   "nome": "Revavena",
+   "mapaProprio": "cidades/revavena"
+  }
+ ],
+ "foraDaExtracao": [
+  "Reagente Alquímico (x1)",
+  "Lágrima de Velúria",
+  "Pétala do Sonhador",
+  "Grilhões do Abismo",
+  "Sangue Primordial"
+ ]
+}

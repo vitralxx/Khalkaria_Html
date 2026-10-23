@@ -1,0 +1,2285 @@
+{
+ "schemaVersion": "hexcrawl-vetores/1",
+ "_doc": "Gerado por referencia/gera_vetores.py a partir de referencia/hexcrawl_ref. Não editar à mão.",
+ "vizinhos": [
+  {
+   "hex": "0101",
+   "dir": "N",
+   "esperado": null
+  },
+  {
+   "hex": "0101",
+   "dir": "NE",
+   "esperado": null
+  },
+  {
+   "hex": "0101",
+   "dir": "SE",
+   "esperado": "0201"
+  },
+  {
+   "hex": "0101",
+   "dir": "S",
+   "esperado": "0102"
+  },
+  {
+   "hex": "0101",
+   "dir": "SO",
+   "esperado": null
+  },
+  {
+   "hex": "0101",
+   "dir": "NO",
+   "esperado": null
+  },
+  {
+   "hex": "0201",
+   "dir": "N",
+   "esperado": null
+  },
+  {
+   "hex": "0201",
+   "dir": "NE",
+   "esperado": "0301"
+  },
+  {
+   "hex": "0201",
+   "dir": "SE",
+   "esperado": "0302"
+  },
+  {
+   "hex": "0201",
+   "dir": "S",
+   "esperado": "0202"
+  },
+  {
+   "hex": "0201",
+   "dir": "SO",
+   "esperado": "0102"
+  },
+  {
+   "hex": "0201",
+   "dir": "NO",
+   "esperado": "0101"
+  },
+  {
+   "hex": "0102",
+   "dir": "N",
+   "esperado": "0101"
+  },
+  {
+   "hex": "0102",
+   "dir": "NE",
+   "esperado": "0201"
+  },
+  {
+   "hex": "0102",
+   "dir": "SE",
+   "esperado": "0202"
+  },
+  {
+   "hex": "0102",
+   "dir": "S",
+   "esperado": "0103"
+  },
+  {
+   "hex": "0102",
+   "dir": "SO",
+   "esperado": null
+  },
+  {
+   "hex": "0102",
+   "dir": "NO",
+   "esperado": null
+  },
+  {
+   "hex": "0505",
+   "dir": "N",
+   "esperado": "0504"
+  },
+  {
+   "hex": "0505",
+   "dir": "NE",
+   "esperado": "0604"
+  },
+  {
+   "hex": "0505",
+   "dir": "SE",
+   "esperado": "0605"
+  },
+  {
+   "hex": "0505",
+   "dir": "S",
+   "esperado": "0506"
+  },
+  {
+   "hex": "0505",
+   "dir": "SO",
+   "esperado": "0405"
+  },
+  {
+   "hex": "0505",
+   "dir": "NO",
+   "esperado": "0404"
+  },
+  {
+   "hex": "1010",
+   "dir": "N",
+   "esperado": "1009"
+  },
+  {
+   "hex": "1010",
+   "dir": "NE",
+   "esperado": "1110"
+  },
+  {
+   "hex": "1010",
+   "dir": "SE",
+   "esperado": "1111"
+  },
+  {
+   "hex": "1010",
+   "dir": "S",
+   "esperado": "1011"
+  },
+  {
+   "hex": "1010",
+   "dir": "SO",
+   "esperado": "0911"
+  },
+  {
+   "hex": "1010",
+   "dir": "NO",
+   "esperado": "0910"
+  },
+  {
+   "hex": "3026",
+   "dir": "N",
+   "esperado": "3025"
+  },
+  {
+   "hex": "3026",
+   "dir": "NE",
+   "esperado": "3126"
+  },
+  {
+   "hex": "3026",
+   "dir": "SE",
+   "esperado": "3127"
+  },
+  {
+   "hex": "3026",
+   "dir": "S",
+   "esperado": "3027"
+  },
+  {
+   "hex": "3026",
+   "dir": "SO",
+   "esperado": "2927"
+  },
+  {
+   "hex": "3026",
+   "dir": "NO",
+   "esperado": "2926"
+  }
+ ],
+ "arestaCanonica": [
+  {
+   "hex": "0505",
+   "dir": "N",
+   "esperado": "0505:N"
+  },
+  {
+   "hex": "0505",
+   "dir": "NE",
+   "esperado": "0505:NE"
+  },
+  {
+   "hex": "0505",
+   "dir": "SE",
+   "esperado": "0505:SE"
+  },
+  {
+   "hex": "0505",
+   "dir": "S",
+   "esperado": "0506:N"
+  },
+  {
+   "hex": "0505",
+   "dir": "SO",
+   "esperado": "0405:NE"
+  },
+  {
+   "hex": "0505",
+   "dir": "NO",
+   "esperado": "0404:SE"
+  },
+  {
+   "hex": "0606",
+   "dir": "N",
+   "esperado": "0606:N"
+  },
+  {
+   "hex": "0606",
+   "dir": "NE",
+   "esperado": "0606:NE"
+  },
+  {
+   "hex": "0606",
+   "dir": "SE",
+   "esperado": "0606:SE"
+  },
+  {
+   "hex": "0606",
+   "dir": "S",
+   "esperado": "0607:N"
+  },
+  {
+   "hex": "0606",
+   "dir": "SO",
+   "esperado": "0507:NE"
+  },
+  {
+   "hex": "0606",
+   "dir": "NO",
+   "esperado": "0506:SE"
+  },
+  {
+   "hex": "1010",
+   "dir": "N",
+   "esperado": "1010:N"
+  },
+  {
+   "hex": "1010",
+   "dir": "NE",
+   "esperado": "1010:NE"
+  },
+  {
+   "hex": "1010",
+   "dir": "SE",
+   "esperado": "1010:SE"
+  },
+  {
+   "hex": "1010",
+   "dir": "S",
+   "esperado": "1011:N"
+  },
+  {
+   "hex": "1010",
+   "dir": "SO",
+   "esperado": "0911:NE"
+  },
+  {
+   "hex": "1010",
+   "dir": "NO",
+   "esperado": "0910:SE"
+  }
+ ],
+ "extremosAresta": [
+  {
+   "hex": "0101",
+   "dir": "N",
+   "esperado": [
+    [
+     8,
+     0
+    ],
+    [
+     24,
+     0
+    ]
+   ]
+  },
+  {
+   "hex": "0101",
+   "dir": "NE",
+   "esperado": [
+    [
+     24,
+     0
+    ],
+    [
+     32,
+     14
+    ]
+   ]
+  },
+  {
+   "hex": "0101",
+   "dir": "SE",
+   "esperado": [
+    [
+     32,
+     14
+    ],
+    [
+     24,
+     28
+    ]
+   ]
+  },
+  {
+   "hex": "0101",
+   "dir": "S",
+   "esperado": [
+    [
+     24,
+     28
+    ],
+    [
+     8,
+     28
+    ]
+   ]
+  },
+  {
+   "hex": "0101",
+   "dir": "SO",
+   "esperado": [
+    [
+     8,
+     28
+    ],
+    [
+     0,
+     14
+    ]
+   ]
+  },
+  {
+   "hex": "0101",
+   "dir": "NO",
+   "esperado": [
+    [
+     0,
+     14
+    ],
+    [
+     8,
+     0
+    ]
+   ]
+  },
+  {
+   "hex": "0201",
+   "dir": "N",
+   "esperado": [
+    [
+     32,
+     14
+    ],
+    [
+     48,
+     14
+    ]
+   ]
+  },
+  {
+   "hex": "0201",
+   "dir": "NE",
+   "esperado": [
+    [
+     48,
+     14
+    ],
+    [
+     56,
+     28
+    ]
+   ]
+  },
+  {
+   "hex": "0201",
+   "dir": "SE",
+   "esperado": [
+    [
+     56,
+     28
+    ],
+    [
+     48,
+     42
+    ]
+   ]
+  },
+  {
+   "hex": "0201",
+   "dir": "S",
+   "esperado": [
+    [
+     48,
+     42
+    ],
+    [
+     32,
+     42
+    ]
+   ]
+  },
+  {
+   "hex": "0201",
+   "dir": "SO",
+   "esperado": [
+    [
+     32,
+     42
+    ],
+    [
+     24,
+     28
+    ]
+   ]
+  },
+  {
+   "hex": "0201",
+   "dir": "NO",
+   "esperado": [
+    [
+     24,
+     28
+    ],
+    [
+     32,
+     14
+    ]
+   ]
+  },
+  {
+   "hex": "0505",
+   "dir": "N",
+   "esperado": [
+    [
+     104,
+     112
+    ],
+    [
+     120,
+     112
+    ]
+   ]
+  },
+  {
+   "hex": "0505",
+   "dir": "NE",
+   "esperado": [
+    [
+     120,
+     112
+    ],
+    [
+     128,
+     126
+    ]
+   ]
+  },
+  {
+   "hex": "0505",
+   "dir": "SE",
+   "esperado": [
+    [
+     128,
+     126
+    ],
+    [
+     120,
+     140
+    ]
+   ]
+  },
+  {
+   "hex": "0505",
+   "dir": "S",
+   "esperado": [
+    [
+     120,
+     140
+    ],
+    [
+     104,
+     140
+    ]
+   ]
+  },
+  {
+   "hex": "0505",
+   "dir": "SO",
+   "esperado": [
+    [
+     104,
+     140
+    ],
+    [
+     96,
+     126
+    ]
+   ]
+  },
+  {
+   "hex": "0505",
+   "dir": "NO",
+   "esperado": [
+    [
+     96,
+     126
+    ],
+    [
+     104,
+     112
+    ]
+   ]
+  }
+ ],
+ "geometria": [
+  {
+   "hex": "0101",
+   "origemFace": [
+    0,
+    0
+   ],
+   "centro": [
+    16,
+    14
+   ],
+   "origemCelula": [
+    0,
+    -18
+   ]
+  },
+  {
+   "hex": "0201",
+   "origemFace": [
+    24,
+    14
+   ],
+   "centro": [
+    40,
+    28
+   ],
+   "origemCelula": [
+    24,
+    -4
+   ]
+  },
+  {
+   "hex": "0102",
+   "origemFace": [
+    0,
+    28
+   ],
+   "centro": [
+    16,
+    42
+   ],
+   "origemCelula": [
+    0,
+    10
+   ]
+  },
+  {
+   "hex": "0505",
+   "origemFace": [
+    96,
+    112
+   ],
+   "centro": [
+    112,
+    126
+   ],
+   "origemCelula": [
+    96,
+    94
+   ]
+  },
+  {
+   "hex": "1010",
+   "origemFace": [
+    216,
+    266
+   ],
+   "centro": [
+    232,
+    280
+   ],
+   "origemCelula": [
+    216,
+    248
+   ]
+  },
+  {
+   "hex": "3026",
+   "origemFace": [
+    696,
+    714
+   ],
+   "centro": [
+    712,
+    728
+   ],
+   "origemCelula": [
+    696,
+    696
+   ]
+  }
+ ],
+ "distancia": [
+  {
+   "a": "0101",
+   "b": "0301",
+   "esperado": 2
+  },
+  {
+   "a": "0101",
+   "b": "0907",
+   "esperado": 10
+  },
+  {
+   "a": "1010",
+   "b": "1014",
+   "esperado": 4
+  },
+  {
+   "a": "0505",
+   "b": "1203",
+   "esperado": 7
+  }
+ ],
+ "linha": [
+  {
+   "a": "0101",
+   "b": "0907",
+   "esperado": [
+    "0101",
+    "0201",
+    "0302",
+    "0303",
+    "0403",
+    "0504",
+    "0604",
+    "0705",
+    "0706",
+    "0806",
+    "0907"
+   ]
+  },
+  {
+   "a": "1010",
+   "b": "1504",
+   "esperado": [
+    "1010",
+    "1110",
+    "1109",
+    "1208",
+    "1207",
+    "1307",
+    "1306",
+    "1405",
+    "1404",
+    "1504"
+   ]
+  }
+ ],
+ "alcance": [
+  {
+   "hex": "1010",
+   "raio": 0,
+   "colunas": 30,
+   "linhas": 26,
+   "quantos": 1
+  },
+  {
+   "hex": "1010",
+   "raio": 1,
+   "colunas": 30,
+   "linhas": 26,
+   "quantos": 7
+  },
+  {
+   "hex": "1010",
+   "raio": 2,
+   "colunas": 30,
+   "linhas": 26,
+   "quantos": 19
+  },
+  {
+   "hex": "1010",
+   "raio": 3,
+   "colunas": 30,
+   "linhas": 26,
+   "quantos": 37
+  }
+ ],
+ "periodo": [
+  {
+   "restante": 9,
+   "orcamento": 9,
+   "esperado": "manha"
+  },
+  {
+   "restante": 7.5,
+   "orcamento": 9,
+   "esperado": "manha"
+  },
+  {
+   "restante": 6.0,
+   "orcamento": 9,
+   "esperado": "tarde"
+  },
+  {
+   "restante": 3.0,
+   "orcamento": 9,
+   "esperado": "noite"
+  },
+  {
+   "restante": 1.5,
+   "orcamento": 9,
+   "esperado": "noite"
+  },
+  {
+   "restante": 0,
+   "orcamento": 9,
+   "esperado": "descanso"
+  },
+  {
+   "restante": 7.5,
+   "orcamento": 7.5,
+   "esperado": "manha"
+  },
+  {
+   "restante": 6.0,
+   "orcamento": 7.5,
+   "esperado": "manha"
+  },
+  {
+   "restante": 5.0,
+   "orcamento": 7.5,
+   "esperado": "tarde"
+  },
+  {
+   "restante": 2.5,
+   "orcamento": 7.5,
+   "esperado": "noite"
+  },
+  {
+   "restante": 1.5,
+   "orcamento": 7.5,
+   "esperado": "noite"
+  },
+  {
+   "restante": 0,
+   "orcamento": 7.5,
+   "esperado": "descanso"
+  },
+  {
+   "restante": 10.5,
+   "orcamento": 10.5,
+   "esperado": "manha"
+  },
+  {
+   "restante": 9.0,
+   "orcamento": 10.5,
+   "esperado": "manha"
+  },
+  {
+   "restante": 7.0,
+   "orcamento": 10.5,
+   "esperado": "tarde"
+  },
+  {
+   "restante": 3.5,
+   "orcamento": 10.5,
+   "esperado": "noite"
+  },
+  {
+   "restante": 1.5,
+   "orcamento": 10.5,
+   "esperado": "noite"
+  },
+  {
+   "restante": 0,
+   "orcamento": 10.5,
+   "esperado": "descanso"
+  }
+ ],
+ "roteirosDoDia": [
+  {
+   "orcamento": 9,
+   "dividaInicial": 0,
+   "passos": [
+    {
+     "acao": "entrar",
+     "custo": 4.5,
+     "pode": true,
+     "restante": 4.5,
+     "periodo": "tarde",
+     "divida": 0.0
+    },
+    {
+     "acao": "entrar",
+     "custo": 4.5,
+     "pode": true,
+     "restante": 0.0,
+     "periodo": "descanso",
+     "divida": 0.0
+    }
+   ]
+  },
+  {
+   "orcamento": 9,
+   "dividaInicial": 0,
+   "passos": [
+    {
+     "acao": "entrar",
+     "custo": 3,
+     "pode": true,
+     "restante": 6.0,
+     "periodo": "tarde",
+     "divida": 0.0
+    },
+    {
+     "acao": "entrar",
+     "custo": 3,
+     "pode": true,
+     "restante": 3.0,
+     "periodo": "noite",
+     "divida": 0.0
+    },
+    {
+     "acao": "entrar",
+     "custo": 3,
+     "pode": true,
+     "restante": 0.0,
+     "periodo": "descanso",
+     "divida": 0.0
+    }
+   ]
+  },
+  {
+   "orcamento": 9,
+   "dividaInicial": 0,
+   "passos": [
+    {
+     "acao": "entrar",
+     "custo": 1.5,
+     "pode": true,
+     "restante": 7.5,
+     "periodo": "manha",
+     "divida": 0.0
+    },
+    {
+     "acao": "entrar",
+     "custo": 1.5,
+     "pode": true,
+     "restante": 6.0,
+     "periodo": "tarde",
+     "divida": 0.0
+    },
+    {
+     "acao": "entrar",
+     "custo": 1.5,
+     "pode": true,
+     "restante": 4.5,
+     "periodo": "tarde",
+     "divida": 0.0
+    },
+    {
+     "acao": "entrar",
+     "custo": 1.5,
+     "pode": true,
+     "restante": 3.0,
+     "periodo": "noite",
+     "divida": 0.0
+    },
+    {
+     "acao": "entrar",
+     "custo": 1.5,
+     "pode": true,
+     "restante": 1.5,
+     "periodo": "noite",
+     "divida": 0.0
+    },
+    {
+     "acao": "entrar",
+     "custo": 1.5,
+     "pode": true,
+     "restante": 0.0,
+     "periodo": "descanso",
+     "divida": 0.0
+    },
+    {
+     "acao": "entrar",
+     "custo": 1.5,
+     "pode": false,
+     "restante": 0.0,
+     "periodo": "descanso",
+     "divida": 0.0
+    }
+   ]
+  },
+  {
+   "orcamento": 9,
+   "dividaInicial": 0,
+   "passos": [
+    {
+     "acao": "explorar",
+     "restante": 6.0,
+     "periodo": "tarde"
+    },
+    {
+     "acao": "entrar",
+     "custo": 4.5,
+     "pode": true,
+     "restante": 1.5,
+     "periodo": "noite",
+     "divida": 0.0
+    },
+    {
+     "acao": "explorar",
+     "restante": 0.0,
+     "periodo": "descanso"
+    }
+   ]
+  },
+  {
+   "orcamento": 9,
+   "dividaInicial": 0,
+   "passos": [
+    {
+     "acao": "entrar",
+     "custo": 6,
+     "pode": true,
+     "restante": 3.0,
+     "periodo": "noite",
+     "divida": 0.0
+    },
+    {
+     "acao": "entrar",
+     "custo": 6,
+     "pode": false,
+     "restante": 3.0,
+     "periodo": "noite",
+     "divida": 0.0
+    },
+    {
+     "acao": "explorar",
+     "restante": 0.0,
+     "periodo": "descanso"
+    }
+   ]
+  },
+  {
+   "orcamento": 6,
+   "dividaInicial": 0,
+   "passos": [
+    {
+     "acao": "entrar",
+     "custo": 9,
+     "pode": true,
+     "restante": 0.0,
+     "periodo": "descanso",
+     "divida": 3.0
+    }
+   ]
+  },
+  {
+   "orcamento": 6,
+   "dividaInicial": 0,
+   "passos": [
+    {
+     "acao": "entrar",
+     "custo": 1.5,
+     "pode": true,
+     "restante": 4.5,
+     "periodo": "manha",
+     "divida": 0.0
+    },
+    {
+     "acao": "entrar",
+     "custo": 9,
+     "pode": false,
+     "restante": 4.5,
+     "periodo": "manha",
+     "divida": 0.0
+    }
+   ]
+  },
+  {
+   "orcamento": 6,
+   "dividaInicial": 3,
+   "passos": [
+    {
+     "acao": "entrar",
+     "custo": 4.5,
+     "pode": false,
+     "restante": 3.0,
+     "periodo": "tarde",
+     "divida": 0.0
+    }
+   ]
+  },
+  {
+   "orcamento": 10.5,
+   "dividaInicial": 0,
+   "passos": [
+    {
+     "acao": "entrar",
+     "custo": 7.5,
+     "pode": true,
+     "restante": 3.0,
+     "periodo": "noite",
+     "divida": 0.0
+    },
+    {
+     "acao": "acampar",
+     "restante": 0.0,
+     "periodo": "descanso"
+    }
+   ]
+  }
+ ],
+ "custoDoPasso": [
+  {
+   "custoHex": 4.5,
+   "via": null,
+   "esperado": 4.5
+  },
+  {
+   "custoHex": 4.5,
+   "via": "estrada",
+   "esperado": 1.5
+  },
+  {
+   "custoHex": 4.5,
+   "via": "trilha",
+   "esperado": 3.0
+  },
+  {
+   "custoHex": 9,
+   "via": null,
+   "esperado": 9.0
+  },
+  {
+   "custoHex": 9,
+   "via": "estrada",
+   "esperado": 1.5
+  },
+  {
+   "custoHex": 9,
+   "via": "trilha",
+   "esperado": 3.0
+  }
+ ],
+ "metaJornada": [
+  {
+   "hostilidade": 0,
+   "esperado": 3
+  },
+  {
+   "hostilidade": 5,
+   "esperado": 4
+  },
+  {
+   "hostilidade": 10,
+   "esperado": 5
+  },
+  {
+   "hostilidade": 15,
+   "esperado": 6
+  },
+  {
+   "hostilidade": 20,
+   "esperado": 7
+  }
+ ],
+ "pontosDaAcao": [
+  {
+   "resultado": 14,
+   "guiar": true,
+   "esperado": 0
+  },
+  {
+   "resultado": 14,
+   "guiar": false,
+   "esperado": 0
+  },
+  {
+   "resultado": 15,
+   "guiar": true,
+   "esperado": 2
+  },
+  {
+   "resultado": 15,
+   "guiar": false,
+   "esperado": 1
+  },
+  {
+   "resultado": 19,
+   "guiar": true,
+   "esperado": 2
+  },
+  {
+   "resultado": 19,
+   "guiar": false,
+   "esperado": 1
+  },
+  {
+   "resultado": 20,
+   "guiar": true,
+   "esperado": 3
+  },
+  {
+   "resultado": 20,
+   "guiar": false,
+   "esperado": 2
+  },
+  {
+   "resultado": 25,
+   "guiar": true,
+   "esperado": 4
+  },
+  {
+   "resultado": 25,
+   "guiar": false,
+   "esperado": 3
+  },
+  {
+   "resultado": 31,
+   "guiar": true,
+   "esperado": 5
+  },
+  {
+   "resultado": 31,
+   "guiar": false,
+   "esperado": 4
+  }
+ ],
+ "consequencia": [
+  {
+   "d100": 1,
+   "hostilidade": 5,
+   "esperado": {
+    "faixa": 0,
+    "saude": "4d6+5",
+    "stamina": "4d6+5"
+   }
+  },
+  {
+   "d100": 2,
+   "hostilidade": 5,
+   "esperado": {
+    "faixa": 1,
+    "saude": "2d8+5",
+    "stamina": "2d8+5"
+   }
+  },
+  {
+   "d100": 19,
+   "hostilidade": 5,
+   "esperado": {
+    "faixa": 1,
+    "saude": "2d8+5",
+    "stamina": "2d8+5"
+   }
+  },
+  {
+   "d100": 20,
+   "hostilidade": 5,
+   "esperado": {
+    "faixa": 2,
+    "saude": "2d6+5",
+    "stamina": "2d6+5"
+   }
+  },
+  {
+   "d100": 39,
+   "hostilidade": 5,
+   "esperado": {
+    "faixa": 2,
+    "saude": "2d6+5",
+    "stamina": "2d6+5"
+   }
+  },
+  {
+   "d100": 40,
+   "hostilidade": 5,
+   "esperado": {
+    "faixa": 3,
+    "saude": null,
+    "stamina": "1d6+5"
+   }
+  },
+  {
+   "d100": 59,
+   "hostilidade": 5,
+   "esperado": {
+    "faixa": 3,
+    "saude": null,
+    "stamina": "1d6+5"
+   }
+  },
+  {
+   "d100": 60,
+   "hostilidade": 5,
+   "esperado": {
+    "faixa": 4,
+    "saude": null,
+    "stamina": "1d4+5"
+   }
+  },
+  {
+   "d100": 79,
+   "hostilidade": 5,
+   "esperado": {
+    "faixa": 4,
+    "saude": null,
+    "stamina": "1d4+5"
+   }
+  },
+  {
+   "d100": 80,
+   "hostilidade": 5,
+   "esperado": {
+    "faixa": 5,
+    "saude": null,
+    "stamina": "5"
+   }
+  },
+  {
+   "d100": 99,
+   "hostilidade": 5,
+   "esperado": {
+    "faixa": 5,
+    "saude": null,
+    "stamina": "5"
+   }
+  },
+  {
+   "d100": 100,
+   "hostilidade": 5,
+   "esperado": {
+    "faixa": 6,
+    "saude": null,
+    "stamina": null
+   }
+  },
+  {
+   "d100": 1,
+   "hostilidade": 20,
+   "esperado": {
+    "faixa": 0,
+    "saude": "4d6+20",
+    "stamina": "4d6+20"
+   }
+  },
+  {
+   "d100": 2,
+   "hostilidade": 20,
+   "esperado": {
+    "faixa": 1,
+    "saude": "2d8+20",
+    "stamina": "2d8+20"
+   }
+  },
+  {
+   "d100": 19,
+   "hostilidade": 20,
+   "esperado": {
+    "faixa": 1,
+    "saude": "2d8+20",
+    "stamina": "2d8+20"
+   }
+  },
+  {
+   "d100": 20,
+   "hostilidade": 20,
+   "esperado": {
+    "faixa": 2,
+    "saude": "2d6+20",
+    "stamina": "2d6+20"
+   }
+  },
+  {
+   "d100": 39,
+   "hostilidade": 20,
+   "esperado": {
+    "faixa": 2,
+    "saude": "2d6+20",
+    "stamina": "2d6+20"
+   }
+  },
+  {
+   "d100": 40,
+   "hostilidade": 20,
+   "esperado": {
+    "faixa": 3,
+    "saude": null,
+    "stamina": "1d6+20"
+   }
+  },
+  {
+   "d100": 59,
+   "hostilidade": 20,
+   "esperado": {
+    "faixa": 3,
+    "saude": null,
+    "stamina": "1d6+20"
+   }
+  },
+  {
+   "d100": 60,
+   "hostilidade": 20,
+   "esperado": {
+    "faixa": 4,
+    "saude": null,
+    "stamina": "1d4+20"
+   }
+  },
+  {
+   "d100": 79,
+   "hostilidade": 20,
+   "esperado": {
+    "faixa": 4,
+    "saude": null,
+    "stamina": "1d4+20"
+   }
+  },
+  {
+   "d100": 80,
+   "hostilidade": 20,
+   "esperado": {
+    "faixa": 5,
+    "saude": null,
+    "stamina": "20"
+   }
+  },
+  {
+   "d100": 99,
+   "hostilidade": 20,
+   "esperado": {
+    "faixa": 5,
+    "saude": null,
+    "stamina": "20"
+   }
+  },
+  {
+   "d100": 100,
+   "hostilidade": 20,
+   "esperado": {
+    "faixa": 6,
+    "saude": null,
+    "stamina": null
+   }
+  }
+ ],
+ "cdRio": [
+  {
+   "hostilidade": 5,
+   "esperado": 12
+  },
+  {
+   "hostilidade": 10,
+   "esperado": 15
+  },
+  {
+   "hostilidade": 15,
+   "esperado": 17
+  },
+  {
+   "hostilidade": 20,
+   "esperado": 20
+  }
+ ],
+ "unidadesExtraidas": [
+  {
+   "resultado": 9,
+   "raridade": "Ordinário",
+   "esperado": 0
+  },
+  {
+   "resultado": 13,
+   "raridade": "Ordinário",
+   "esperado": 1
+  },
+  {
+   "resultado": 16,
+   "raridade": "Ordinário",
+   "esperado": 2
+  },
+  {
+   "resultado": 20,
+   "raridade": "Ordinário",
+   "esperado": 3
+  },
+  {
+   "resultado": 21,
+   "raridade": "Ordinário",
+   "esperado": 3
+  },
+  {
+   "resultado": 26,
+   "raridade": "Ordinário",
+   "esperado": 4
+  },
+  {
+   "resultado": 30,
+   "raridade": "Ordinário",
+   "esperado": 5
+  },
+  {
+   "resultado": 9,
+   "raridade": "Incomum",
+   "esperado": 0
+  },
+  {
+   "resultado": 13,
+   "raridade": "Incomum",
+   "esperado": 1
+  },
+  {
+   "resultado": 16,
+   "raridade": "Incomum",
+   "esperado": 1
+  },
+  {
+   "resultado": 20,
+   "raridade": "Incomum",
+   "esperado": 2
+  },
+  {
+   "resultado": 21,
+   "raridade": "Incomum",
+   "esperado": 2
+  },
+  {
+   "resultado": 26,
+   "raridade": "Incomum",
+   "esperado": 3
+  },
+  {
+   "resultado": 30,
+   "raridade": "Incomum",
+   "esperado": 4
+  },
+  {
+   "resultado": 9,
+   "raridade": "Exótico",
+   "esperado": 0
+  },
+  {
+   "resultado": 13,
+   "raridade": "Exótico",
+   "esperado": 0
+  },
+  {
+   "resultado": 16,
+   "raridade": "Exótico",
+   "esperado": 1
+  },
+  {
+   "resultado": 20,
+   "raridade": "Exótico",
+   "esperado": 1
+  },
+  {
+   "resultado": 21,
+   "raridade": "Exótico",
+   "esperado": 2
+  },
+  {
+   "resultado": 26,
+   "raridade": "Exótico",
+   "esperado": 3
+  },
+  {
+   "resultado": 30,
+   "raridade": "Exótico",
+   "esperado": 3
+  },
+  {
+   "resultado": 9,
+   "raridade": "Luxária",
+   "esperado": 0
+  },
+  {
+   "resultado": 13,
+   "raridade": "Luxária",
+   "esperado": 0
+  },
+  {
+   "resultado": 16,
+   "raridade": "Luxária",
+   "esperado": 0
+  },
+  {
+   "resultado": 20,
+   "raridade": "Luxária",
+   "esperado": 1
+  },
+  {
+   "resultado": 21,
+   "raridade": "Luxária",
+   "esperado": 1
+  },
+  {
+   "resultado": 26,
+   "raridade": "Luxária",
+   "esperado": 2
+  },
+  {
+   "resultado": 30,
+   "raridade": "Luxária",
+   "esperado": 3
+  }
+ ],
+ "comodidade": [
+  {
+   "melhorSobrevivencia": 10,
+   "bonus": 0,
+   "esperado": 1
+  },
+  {
+   "melhorSobrevivencia": 10,
+   "bonus": 1,
+   "esperado": 2
+  },
+  {
+   "melhorSobrevivencia": 15,
+   "bonus": 0,
+   "esperado": 2
+  },
+  {
+   "melhorSobrevivencia": 15,
+   "bonus": 1,
+   "esperado": 3
+  },
+  {
+   "melhorSobrevivencia": 19,
+   "bonus": 0,
+   "esperado": 2
+  },
+  {
+   "melhorSobrevivencia": 19,
+   "bonus": 1,
+   "esperado": 3
+  },
+  {
+   "melhorSobrevivencia": 20,
+   "bonus": 0,
+   "esperado": 3
+  },
+  {
+   "melhorSobrevivencia": 20,
+   "bonus": 1,
+   "esperado": 4
+  },
+  {
+   "melhorSobrevivencia": 25,
+   "bonus": 0,
+   "esperado": 4
+  },
+  {
+   "melhorSobrevivencia": 25,
+   "bonus": 1,
+   "esperado": 5
+  },
+  {
+   "melhorSobrevivencia": 30,
+   "bonus": 0,
+   "esperado": 5
+  },
+  {
+   "melhorSobrevivencia": 30,
+   "bonus": 1,
+   "esperado": 5
+  },
+  {
+   "melhorSobrevivencia": 35,
+   "bonus": 0,
+   "esperado": 5
+  },
+  {
+   "melhorSobrevivencia": 35,
+   "bonus": 1,
+   "esperado": 5
+  }
+ ],
+ "faixasD100": {
+  "eventos": [
+   {
+    "id": "e0",
+    "categoria": "extracao",
+    "raridade": "comum",
+    "polaridade": "favoravel",
+    "tipos": [
+     "campos"
+    ]
+   },
+   {
+    "id": "e1",
+    "categoria": "combate",
+    "raridade": "comum",
+    "polaridade": "adverso",
+    "tipos": [
+     "campos"
+    ]
+   },
+   {
+    "id": "e2",
+    "categoria": "interacao",
+    "raridade": "comum",
+    "polaridade": "neutro",
+    "tipos": [
+     "campos"
+    ]
+   },
+   {
+    "id": "e3",
+    "categoria": "ruina",
+    "raridade": "notavel",
+    "polaridade": "neutro",
+    "tipos": [
+     "campos"
+    ]
+   },
+   {
+    "id": "e4",
+    "categoria": "covil",
+    "raridade": "notavel",
+    "polaridade": "adverso",
+    "tipos": [
+     "campos"
+    ]
+   },
+   {
+    "id": "e5",
+    "categoria": "achado",
+    "raridade": "raro",
+    "polaridade": "favoravel",
+    "tipos": [
+     "campos"
+    ]
+   }
+  ],
+  "tabela": [
+   {
+    "evento": "e0",
+    "peso": 5
+   },
+   {
+    "evento": "e1",
+    "peso": 5
+   },
+   {
+    "evento": "e2",
+    "peso": 5
+   },
+   {
+    "evento": "e3",
+    "peso": 3
+   },
+   {
+    "evento": "e4",
+    "peso": 3
+   },
+   {
+    "evento": "e5",
+    "peso": 1
+   }
+  ],
+  "casos": [
+   {
+    "extracoesNoDia": 0,
+    "esperado": [
+     {
+      "evento": "e0",
+      "de": 1,
+      "ate": 23
+     },
+     {
+      "evento": "e1",
+      "de": 24,
+      "ate": 45
+     },
+     {
+      "evento": "e2",
+      "de": 46,
+      "ate": 67
+     },
+     {
+      "evento": "e3",
+      "de": 68,
+      "ate": 81
+     },
+     {
+      "evento": "e4",
+      "de": 82,
+      "ate": 95
+     },
+     {
+      "evento": "e5",
+      "de": 96,
+      "ate": 100
+     }
+    ]
+   },
+   {
+    "extracoesNoDia": 1,
+    "esperado": [
+     {
+      "evento": "e0",
+      "de": 1,
+      "ate": 13
+     },
+     {
+      "evento": "e1",
+      "de": 14,
+      "ate": 38
+     },
+     {
+      "evento": "e2",
+      "de": 39,
+      "ate": 63
+     },
+     {
+      "evento": "e3",
+      "de": 64,
+      "ate": 79
+     },
+     {
+      "evento": "e4",
+      "de": 80,
+      "ate": 94
+     },
+     {
+      "evento": "e5",
+      "de": 95,
+      "ate": 100
+     }
+    ]
+   },
+   {
+    "extracoesNoDia": 3,
+    "esperado": [
+     {
+      "evento": "e0",
+      "de": 1,
+      "ate": 4
+     },
+     {
+      "evento": "e1",
+      "de": 5,
+      "ate": 32
+     },
+     {
+      "evento": "e2",
+      "de": 33,
+      "ate": 60
+     },
+     {
+      "evento": "e3",
+      "de": 61,
+      "ate": 77
+     },
+     {
+      "evento": "e4",
+      "de": 78,
+      "ate": 94
+     },
+     {
+      "evento": "e5",
+      "de": 95,
+      "ate": 100
+     }
+    ]
+   }
+  ]
+ },
+ "montagemPython": {
+  "_doc": "só vale com random.Random(semente) do Python",
+  "pool": [
+   {
+    "id": "p00",
+    "categoria": "combate",
+    "raridade": "comum",
+    "polaridade": "favoravel",
+    "tipos": [
+     "campos",
+     "floresta"
+    ]
+   },
+   {
+    "id": "p01",
+    "categoria": "combate",
+    "raridade": "notavel",
+    "polaridade": "favoravel",
+    "tipos": [
+     "campos",
+     "floresta"
+    ]
+   },
+   {
+    "id": "p02",
+    "categoria": "combate",
+    "raridade": "raro",
+    "polaridade": "favoravel",
+    "tipos": [
+     "campos",
+     "floresta"
+    ]
+   },
+   {
+    "id": "p03",
+    "categoria": "combate",
+    "raridade": "comum",
+    "polaridade": "neutro",
+    "tipos": [
+     "campos",
+     "floresta"
+    ]
+   },
+   {
+    "id": "p04",
+    "categoria": "combate",
+    "raridade": "notavel",
+    "polaridade": "neutro",
+    "tipos": [
+     "campos",
+     "floresta"
+    ]
+   },
+   {
+    "id": "p05",
+    "categoria": "combate",
+    "raridade": "raro",
+    "polaridade": "neutro",
+    "tipos": [
+     "campos",
+     "floresta"
+    ]
+   },
+   {
+    "id": "p06",
+    "categoria": "combate",
+    "raridade": "comum",
+    "polaridade": "adverso",
+    "tipos": [
+     "campos",
+     "floresta"
+    ]
+   },
+   {
+    "id": "p07",
+    "categoria": "combate",
+    "raridade": "notavel",
+    "polaridade": "adverso",
+    "tipos": [
+     "campos",
+     "floresta"
+    ]
+   },
+   {
+    "id": "p08",
+    "categoria": "combate",
+    "raridade": "raro",
+    "polaridade": "adverso",
+    "tipos": [
+     "campos",
+     "floresta"
+    ]
+   },
+   {
+    "id": "p09",
+    "categoria": "combate",
+    "raridade": "comum",
+    "polaridade": "favoravel",
+    "tipos": [
+     "campos",
+     "floresta"
+    ]
+   },
+   {
+    "id": "p10",
+    "categoria": "combate",
+    "raridade": "notavel",
+    "polaridade": "favoravel",
+    "tipos": [
+     "campos",
+     "floresta"
+    ]
+   },
+   {
+    "id": "p11",
+    "categoria": "combate",
+    "raridade": "raro",
+    "polaridade": "favoravel",
+    "tipos": [
+     "campos",
+     "floresta"
+    ]
+   },
+   {
+    "id": "p12",
+    "categoria": "combate",
+    "raridade": "comum",
+    "polaridade": "neutro",
+    "tipos": [
+     "campos",
+     "floresta"
+    ]
+   },
+   {
+    "id": "p13",
+    "categoria": "combate",
+    "raridade": "notavel",
+    "polaridade": "neutro",
+    "tipos": [
+     "campos",
+     "floresta"
+    ]
+   },
+   {
+    "id": "p14",
+    "categoria": "combate",
+    "raridade": "raro",
+    "polaridade": "neutro",
+    "tipos": [
+     "campos",
+     "floresta"
+    ]
+   },
+   {
+    "id": "p15",
+    "categoria": "combate",
+    "raridade": "comum",
+    "polaridade": "adverso",
+    "tipos": [
+     "campos",
+     "floresta"
+    ]
+   },
+   {
+    "id": "p16",
+    "categoria": "combate",
+    "raridade": "notavel",
+    "polaridade": "adverso",
+    "tipos": [
+     "campos",
+     "floresta"
+    ]
+   },
+   {
+    "id": "p17",
+    "categoria": "combate",
+    "raridade": "raro",
+    "polaridade": "adverso",
+    "tipos": [
+     "campos",
+     "floresta"
+    ]
+   },
+   {
+    "id": "p18",
+    "categoria": "combate",
+    "raridade": "comum",
+    "polaridade": "favoravel",
+    "tipos": [
+     "campos",
+     "floresta"
+    ]
+   },
+   {
+    "id": "p19",
+    "categoria": "combate",
+    "raridade": "notavel",
+    "polaridade": "favoravel",
+    "tipos": [
+     "campos",
+     "floresta"
+    ]
+   },
+   {
+    "id": "p20",
+    "categoria": "combate",
+    "raridade": "raro",
+    "polaridade": "favoravel",
+    "tipos": [
+     "campos",
+     "floresta"
+    ]
+   },
+   {
+    "id": "p21",
+    "categoria": "combate",
+    "raridade": "comum",
+    "polaridade": "neutro",
+    "tipos": [
+     "campos",
+     "floresta"
+    ]
+   },
+   {
+    "id": "p22",
+    "categoria": "combate",
+    "raridade": "notavel",
+    "polaridade": "neutro",
+    "tipos": [
+     "campos",
+     "floresta"
+    ]
+   },
+   {
+    "id": "p23",
+    "categoria": "combate",
+    "raridade": "raro",
+    "polaridade": "neutro",
+    "tipos": [
+     "campos",
+     "floresta"
+    ]
+   },
+   {
+    "id": "p24",
+    "categoria": "combate",
+    "raridade": "comum",
+    "polaridade": "adverso",
+    "tipos": [
+     "campos",
+     "floresta"
+    ]
+   },
+   {
+    "id": "p25",
+    "categoria": "combate",
+    "raridade": "notavel",
+    "polaridade": "adverso",
+    "tipos": [
+     "campos",
+     "floresta"
+    ]
+   },
+   {
+    "id": "p26",
+    "categoria": "combate",
+    "raridade": "raro",
+    "polaridade": "adverso",
+    "tipos": [
+     "campos",
+     "floresta"
+    ]
+   }
+  ],
+  "montagem": {
+   "entradas": [
+    8,
+    12
+   ],
+   "mistura": {
+    "favoravel": 0.33,
+    "neutro": 0.34,
+    "adverso": 0.33
+   },
+   "variacao": 0.1,
+   "pesos": {
+    "comum": 5,
+    "notavel": 3,
+    "raro": 1
+   }
+  },
+  "casos": [
+   {
+    "semente": 1,
+    "tipo": "campos",
+    "esperado": [
+     {
+      "evento": "p01",
+      "peso": 3
+     },
+     {
+      "evento": "p07",
+      "peso": 3
+     },
+     {
+      "evento": "p12",
+      "peso": 5
+     },
+     {
+      "evento": "p14",
+      "peso": 1
+     },
+     {
+      "evento": "p15",
+      "peso": 5
+     },
+     {
+      "evento": "p18",
+      "peso": 5
+     },
+     {
+      "evento": "p19",
+      "peso": 3
+     },
+     {
+      "evento": "p22",
+      "peso": 3
+     },
+     {
+      "evento": "p23",
+      "peso": 1
+     }
+    ]
+   },
+   {
+    "semente": 2,
+    "tipo": "campos",
+    "esperado": [
+     {
+      "evento": "p03",
+      "peso": 5
+     },
+     {
+      "evento": "p08",
+      "peso": 1
+     },
+     {
+      "evento": "p10",
+      "peso": 3
+     },
+     {
+      "evento": "p12",
+      "peso": 5
+     },
+     {
+      "evento": "p13",
+      "peso": 3
+     },
+     {
+      "evento": "p17",
+      "peso": 1
+     },
+     {
+      "evento": "p20",
+      "peso": 1
+     },
+     {
+      "evento": "p24",
+      "peso": 5
+     }
+    ]
+   },
+   {
+    "semente": 3,
+    "tipo": "campos",
+    "esperado": [
+     {
+      "evento": "p01",
+      "peso": 3
+     },
+     {
+      "evento": "p03",
+      "peso": 5
+     },
+     {
+      "evento": "p07",
+      "peso": 3
+     },
+     {
+      "evento": "p10",
+      "peso": 3
+     },
+     {
+      "evento": "p15",
+      "peso": 5
+     },
+     {
+      "evento": "p16",
+      "peso": 3
+     },
+     {
+      "evento": "p17",
+      "peso": 1
+     },
+     {
+      "evento": "p19",
+      "peso": 3
+     },
+     {
+      "evento": "p22",
+      "peso": 3
+     }
+    ]
+   }
+  ]
+ },
+ "visao": [
+  {
+   "origem": "1010",
+   "raio": 1,
+   "penhascos": {},
+   "esperado": [
+    "0910",
+    "0911",
+    "1009",
+    "1010",
+    "1011",
+    "1110",
+    "1111"
+   ]
+  },
+  {
+   "origem": "1010",
+   "raio": 1,
+   "penhascos": {
+    "1010:N": "1009"
+   },
+   "esperado": [
+    "0910",
+    "0911",
+    "1010",
+    "1011",
+    "1110",
+    "1111"
+   ]
+  },
+  {
+   "origem": "1009",
+   "raio": 1,
+   "penhascos": {
+    "1010:N": "1009"
+   },
+   "esperado": [
+    "0909",
+    "0910",
+    "1008",
+    "1009",
+    "1010",
+    "1109",
+    "1110"
+   ]
+  },
+  {
+   "origem": "1010",
+   "raio": 2,
+   "penhascos": {
+    "1010:N": "1009"
+   },
+   "esperado": [
+    "0809",
+    "0810",
+    "0811",
+    "0909",
+    "0910",
+    "0911",
+    "0912",
+    "1010",
+    "1011",
+    "1012",
+    "1109",
+    "1110",
+    "1111",
+    "1112",
+    "1209",
+    "1210",
+    "1211"
+   ]
+  }
+ ]
+}

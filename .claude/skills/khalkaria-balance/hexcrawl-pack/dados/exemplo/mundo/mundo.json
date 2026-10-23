@@ -1,0 +1,147 @@
+{
+ "schemaVersion": "hexcrawl-mundo/1",
+ "exemplo": true,
+ "grade": {
+  "orientacao": "chato",
+  "offset": "odd-q",
+  "colunas": 12,
+  "linhas": 9,
+  "referencia": null
+ },
+ "tipos": [
+  {
+   "id": "campos",
+   "nome": "Campos",
+   "custo": 4.5,
+   "visao": 1
+  },
+  {
+   "id": "floresta",
+   "nome": "Floresta",
+   "custo": 6,
+   "visao": 1
+  },
+  {
+   "id": "floresta-densa",
+   "nome": "Floresta Densa",
+   "custo": 7.5,
+   "visao": 0
+  },
+  {
+   "id": "colinas",
+   "nome": "Colinas",
+   "custo": 6,
+   "visao": 2
+  },
+  {
+   "id": "montanha",
+   "nome": "Montanha",
+   "custo": 9,
+   "visao": 3
+  },
+  {
+   "id": "pantano",
+   "nome": "Pântano",
+   "custo": 7.5,
+   "visao": 1
+  },
+  {
+   "id": "deserto",
+   "nome": "Deserto",
+   "custo": 6,
+   "visao": 1
+  },
+  {
+   "id": "ermo",
+   "nome": "Ermo",
+   "custo": 4.5,
+   "visao": 1
+  },
+  {
+   "id": "agua",
+   "nome": "Água",
+   "custo": 1.5,
+   "visao": 1,
+   "soEmbarcacao": true
+  },
+  {
+   "id": "litoral",
+   "nome": "Litoral",
+   "custo": 4.5,
+   "visao": 2
+  }
+ ],
+ "regioes": [
+  {
+   "id": "exemplo-campos",
+   "nome": "Campos de Exemplo",
+   "rank": 1,
+   "cr": "1",
+   "hostilidade": 5,
+   "cor": "#8c0000",
+   "tinta": {
+    "cor": "#8c0000",
+    "forca": 0.18
+   },
+   "bioma": "verde",
+   "paletaUI": "10",
+   "montagem": {
+    "entradas": [
+     8,
+     12
+    ],
+    "mistura": {
+     "favoravel": 0.4,
+     "neutro": 0.35,
+     "adverso": 0.25
+    },
+    "variacao": 0.1,
+    "pesos": {
+     "comum": 5,
+     "notavel": 3,
+     "raro": 1
+    }
+   },
+   "materiais": []
+  },
+  {
+   "id": "exemplo-serra",
+   "nome": "Serra de Exemplo",
+   "rank": 7,
+   "cr": "3",
+   "hostilidade": 15,
+   "cor": "#00008d",
+   "tinta": {
+    "cor": "#00008d",
+    "forca": 0.18
+   },
+   "bioma": "neve",
+   "paletaUI": "08",
+   "montagem": {
+    "entradas": [
+     8,
+     12
+    ],
+    "mistura": {
+     "favoravel": 0.27,
+     "neutro": 0.33,
+     "adverso": 0.4
+    },
+    "variacao": 0.1,
+    "pesos": {
+     "comum": 5,
+     "notavel": 3,
+     "raro": 1
+    }
+   },
+   "materiais": []
+  }
+ ],
+ "cidades": [
+  {
+   "id": "cidade-exemplo",
+   "nome": "Cidade de Exemplo",
+   "mapaProprio": "cidades/cidade-exemplo"
+  }
+ ]
+}

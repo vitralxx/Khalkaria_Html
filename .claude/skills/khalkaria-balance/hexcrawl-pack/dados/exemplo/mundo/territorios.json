@@ -1,0 +1,19 @@
+{
+ "schemaVersion": "hexcrawl-territorios/1",
+ "territorios": [
+  {
+   "id": "territorio-cidade-exemplo",
+   "nome": "Arredores da Cidade de Exemplo",
+   "cor": "#c9a227",
+   "cidade": "cidade-exemplo",
+   "hexes": [
+    "0408",
+    "0508",
+    "0407",
+    "0507",
+    "0409",
+    "0509"
+   ]
+  }
+ ]
+}

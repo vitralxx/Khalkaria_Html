@@ -1039,6 +1039,48 @@ Texto verbatim em `18-batedor-rework.md` §0 e as lições em `19-gabarito-de-cl
     - os períodos são manhã, tarde e noite.
   - Pedro: *"pode deixar a opção de troca manual no cálculo dos status, padronizando como uma classe esse tipo de
     troca manual em cálculo"*.
+- **D158** (2026-10-23) Hexcrawl, rodada 4. Pedro pediu o **pack de inicialização do agente programador** para um
+  repositório separado. O pack está em `hexcrawl-pack/`, e as regras consolidadas em `hexcrawl-pack/docs/01-regras.md`,
+  que substitui o `21` e o `22`.
+  - **Janela dos jogadores:** no modo sessão abre outra janela, só com o token e o mapa sob **névoa preta**.
+    - Explorado e fora do alcance fica **cinza**, não preto. O que está à vista fica vívido.
+    - Hex nunca visto não mostra nem a grade.
+    - Hex visitado mostra aos jogadores **só o que foi rolado** ali (*"hex iguais ficam mais previsíveis assim"*).
+  - **Tooltip** ao parar o mouse: o mestre vê tudo, até a tabela; os jogadores, só o básico.
+  - **Dados em JSON**, com a separação `mundo/` e `campanha/`.
+  - **Arte:** os assets dele.
+    - Folha de tiles, peças de via, kit de UI (`.rar`) e DungeonFont.
+    - Os ícones de floresta, colina e montanha vêm dentro do tile: **cor por região no tile inteiro**, com a
+      repetição tratada esteticamente.
+    - **Rios por código**, *"bonitos com alguma transição de sobreposição"*.
+  - **Aprovados:** CD do rio 10 + ⌊H/2⌋ e **Jornada 1 vez por dia**.
+  - **Categorias de evento:**
+    - **Abrigo** entra: sobe a comodidade do descanso naquele hex e *"pode até marcar"*.
+    - **Mirante** sai: vira mecânica de terreno (Colinas +1 de visão, *"a montanha +3 pode ser"*).
+    - **Achado** fica; costuma morar em especiais.
+  - **Pesos 5/3/1** (*"10:1 em relação ao comum é brutal"*).
+  - **Extração:** sólida, mas *"no máximo 4 materiais"* por região, para não virar grind.
+  - **Tecnologia:** quer UI refinada e sensação de roguelike; quer unificar Bestiário e site depois; pensou em
+    desktop pela customização: *"mas você que sabe"*.
+    - Recomendei Python (FastAPI) com janelas nativas pywebview (Mestre e Jogadores), mapa em PixiJS e painéis em
+      Svelte. O mesmo frontend roda num navegador.
+  - **Mapas no Drive:** "Kharavel Versão 2.png" é a ilusão do Oásis; "Kharavel Versão 2 abismo OFICIAL.png" é o
+    continente verdadeiro.
+  - **Tamanho da grade:** *"testarmos vários tamanhos"*.
+  - **Regiões:** a ordem está certa, e a Hostilidade é 5/10/15/20.
+  - **Raios de visão** confirmados: 1 por padrão, 2 em Colinas e Litoral, 3 em Montanha, 0 em Floresta Densa.
+  - **Modelo do dia (Pedro):**
+    - começa de manhã com o Movimento cheio;
+    - explorar um hex pula um período na hora (manhã → tarde → noite → descanso forçado ali);
+    - andar também avança o período: tarde a 2/3, noite a 1/3, e com 0 o grupo descansa onde está.
+  - **Hex comum** rola de novo quando explorado de novo, se não houver nada marcado.
+  - **Bestiário:** não é necessário no app.
+  - **Achados meus no pack:**
+    - os tiles são de **topo chato** (o Pedro tinha pedido pontudo);
+    - as peças de via só ligam diagonais, então as vias também vão por código;
+    - a DungeonFont não tinha ã/õ (criei a DungeonFont-PT) e ainda não tem → … –.
+
+    As perguntas abertas são P1–P15, em `hexcrawl-pack/docs/10-pendencias.md`.
 
 ## D68 — O andar de Nível 1 (truques)
 Todas as magias existentes **sobem 1 nível**: as antigas 1–4 viram 2–5. O novo Nível 1 são os

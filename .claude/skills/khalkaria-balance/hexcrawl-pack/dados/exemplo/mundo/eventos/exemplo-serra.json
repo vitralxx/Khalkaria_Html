@@ -1,0 +1,299 @@
+{
+ "schemaVersion": "hexcrawl-eventos/1",
+ "regiao": "exemplo-serra",
+ "exemplo": true,
+ "eventos": [
+  {
+   "id": "exemplo-serra-01",
+   "nome": "Sítio de extração",
+   "categoria": "extracao",
+   "raridade": "comum",
+   "polaridade": "favoravel",
+   "tipos": [
+    "campos",
+    "floresta",
+    "floresta-densa",
+    "colinas",
+    "montanha",
+    "pantano",
+    "deserto",
+    "ermo",
+    "litoral"
+   ],
+   "marca": false,
+   "icone": null,
+   "textoMestre": "Exemplo de extracao (comum).",
+   "textoJogadores": "",
+   "mecanica": {
+    "materiais": "auto"
+   },
+   "travaNarrativa": false,
+   "exemplo": true
+  },
+  {
+   "id": "exemplo-serra-02",
+   "nome": "Bando de criaturas",
+   "categoria": "combate",
+   "raridade": "comum",
+   "polaridade": "adverso",
+   "tipos": [
+    "campos",
+    "floresta",
+    "floresta-densa",
+    "colinas",
+    "montanha",
+    "pantano",
+    "deserto",
+    "ermo",
+    "litoral"
+   ],
+   "marca": false,
+   "icone": null,
+   "textoMestre": "Exemplo de combate (comum).",
+   "textoJogadores": "",
+   "mecanica": {
+    "cr": 1,
+    "criaturas": []
+   },
+   "travaNarrativa": false,
+   "exemplo": true
+  },
+  {
+   "id": "exemplo-serra-03",
+   "nome": "Fera solitária",
+   "categoria": "combate",
+   "raridade": "comum",
+   "polaridade": "adverso",
+   "tipos": [
+    "floresta",
+    "floresta-densa",
+    "colinas"
+   ],
+   "marca": false,
+   "icone": null,
+   "textoMestre": "Exemplo de combate (comum).",
+   "textoJogadores": "",
+   "mecanica": {},
+   "travaNarrativa": false,
+   "exemplo": true
+  },
+  {
+   "id": "exemplo-serra-04",
+   "nome": "Viajante perdido",
+   "categoria": "interacao",
+   "raridade": "comum",
+   "polaridade": "neutro",
+   "tipos": [
+    "campos",
+    "floresta",
+    "floresta-densa",
+    "colinas",
+    "montanha",
+    "pantano",
+    "deserto",
+    "ermo",
+    "litoral"
+   ],
+   "marca": false,
+   "icone": null,
+   "textoMestre": "Exemplo de interacao (comum).",
+   "textoJogadores": "",
+   "mecanica": {
+    "atitude": "neutra"
+   },
+   "travaNarrativa": false,
+   "exemplo": true
+  },
+  {
+   "id": "exemplo-serra-05",
+   "nome": "Patrulha hostil",
+   "categoria": "interacao",
+   "raridade": "comum",
+   "polaridade": "adverso",
+   "tipos": [
+    "campos",
+    "floresta",
+    "floresta-densa",
+    "colinas",
+    "montanha",
+    "pantano",
+    "deserto",
+    "ermo",
+    "litoral"
+   ],
+   "marca": false,
+   "icone": null,
+   "textoMestre": "Exemplo de interacao (comum).",
+   "textoJogadores": "",
+   "mecanica": {
+    "atitude": "hostil"
+   },
+   "travaNarrativa": false,
+   "exemplo": true
+  },
+  {
+   "id": "exemplo-serra-06",
+   "nome": "Mascate na estrada",
+   "categoria": "comerciante",
+   "raridade": "comum",
+   "polaridade": "favoravel",
+   "tipos": [
+    "campos",
+    "litoral",
+    "colinas"
+   ],
+   "marca": false,
+   "icone": null,
+   "textoMestre": "Exemplo de comerciante (comum).",
+   "textoJogadores": "",
+   "mecanica": {
+    "nivel": 1,
+    "itens": "2d4"
+   },
+   "travaNarrativa": false,
+   "exemplo": true
+  },
+  {
+   "id": "exemplo-serra-07",
+   "nome": "Clareira abrigada",
+   "categoria": "abrigo",
+   "raridade": "comum",
+   "polaridade": "favoravel",
+   "tipos": [
+    "floresta",
+    "colinas",
+    "campos"
+   ],
+   "marca": true,
+   "icone": "abrigo",
+   "textoMestre": "Exemplo de abrigo (comum).",
+   "textoJogadores": "",
+   "mecanica": {
+    "comodidade": 1
+   },
+   "travaNarrativa": false,
+   "exemplo": true
+  },
+  {
+   "id": "exemplo-serra-08",
+   "nome": "Torre afundada",
+   "categoria": "ruina",
+   "raridade": "notavel",
+   "polaridade": "neutro",
+   "tipos": [
+    "pantano",
+    "litoral",
+    "campos"
+   ],
+   "marca": true,
+   "icone": "ruinas",
+   "textoMestre": "Exemplo de ruina (notavel).",
+   "textoJogadores": "",
+   "mecanica": {
+    "masmorra": null
+   },
+   "travaNarrativa": false,
+   "exemplo": true
+  },
+  {
+   "id": "exemplo-serra-09",
+   "nome": "Aldeia escondida",
+   "categoria": "assentamento",
+   "raridade": "notavel",
+   "polaridade": "favoravel",
+   "tipos": [
+    "floresta",
+    "campos",
+    "colinas"
+   ],
+   "marca": true,
+   "icone": "povoado-verde",
+   "textoMestre": "Exemplo de assentamento (notavel).",
+   "textoJogadores": "",
+   "mecanica": {
+    "servicos": [
+     "taverna"
+    ],
+    "comerciantes": [
+     "artesao"
+    ]
+   },
+   "travaNarrativa": false,
+   "exemplo": true
+  },
+  {
+   "id": "exemplo-serra-10",
+   "nome": "Covil de bandidos",
+   "categoria": "covil",
+   "raridade": "notavel",
+   "polaridade": "adverso",
+   "tipos": [
+    "campos",
+    "floresta",
+    "floresta-densa",
+    "colinas",
+    "montanha",
+    "pantano",
+    "deserto",
+    "ermo",
+    "litoral"
+   ],
+   "marca": true,
+   "icone": "torre-sombria",
+   "textoMestre": "Exemplo de covil (notavel).",
+   "textoJogadores": "",
+   "mecanica": {
+    "faccao": null,
+    "cr": 2
+   },
+   "travaNarrativa": false,
+   "exemplo": true
+  },
+  {
+   "id": "exemplo-serra-11",
+   "nome": "Relíquia esquecida",
+   "categoria": "achado",
+   "raridade": "raro",
+   "polaridade": "favoravel",
+   "tipos": [
+    "campos",
+    "floresta",
+    "floresta-densa",
+    "colinas",
+    "montanha",
+    "pantano",
+    "deserto",
+    "ermo",
+    "litoral"
+   ],
+   "marca": true,
+   "icone": "ruinas",
+   "textoMestre": "Exemplo de achado (raro).",
+   "textoJogadores": "",
+   "mecanica": {
+    "item": null
+   },
+   "travaNarrativa": false,
+   "exemplo": true
+  },
+  {
+   "id": "exemplo-serra-12",
+   "nome": "Ninho antigo",
+   "categoria": "covil",
+   "raridade": "raro",
+   "polaridade": "adverso",
+   "tipos": [
+    "montanha",
+    "colinas",
+    "floresta-densa"
+   ],
+   "marca": true,
+   "icone": "torre-sombria",
+   "textoMestre": "Exemplo de covil (raro).",
+   "textoJogadores": "",
+   "mecanica": {},
+   "travaNarrativa": false,
+   "exemplo": true
+  }
+ ]
+}

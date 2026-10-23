@@ -1,0 +1,58 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://khalkaria/hexcrawl/rios.schema.json",
+ "title": "Rios: arestas em ordem, da nascente à foz",
+ "type": "object",
+ "properties": {
+  "schemaVersion": {
+   "type": "string"
+  },
+  "_doc": {
+   "type": "string"
+  },
+  "exemplo": {
+   "type": "boolean"
+  },
+  "rios": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+     "id",
+     "arestas"
+    ],
+    "properties": {
+     "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"
+     },
+     "nome": {
+      "type": "string"
+     },
+     "tamanho": {
+      "enum": [
+       "riacho",
+       "rio",
+       "rio-grande"
+      ]
+     },
+     "arestas": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+       "type": "string",
+       "pattern": "^[0-9]{4}:(N|NE|SE)$",
+       "description": "aresta canônica: hex dono + N, NE ou SE"
+      }
+     }
+    }
+   }
+  }
+ },
+ "required": [
+  "schemaVersion",
+  "rios"
+ ],
+ "additionalProperties": false
+}

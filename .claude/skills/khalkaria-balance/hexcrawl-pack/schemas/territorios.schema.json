@@ -1,0 +1,63 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://khalkaria/hexcrawl/territorios.schema.json",
+ "title": "Territórios (contorno pelas bordas dos hexes)",
+ "type": "object",
+ "properties": {
+  "schemaVersion": {
+   "type": "string"
+  },
+  "_doc": {
+   "type": "string"
+  },
+  "exemplo": {
+   "type": "boolean"
+  },
+  "territorios": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+     "id",
+     "nome",
+     "cor",
+     "hexes"
+    ],
+    "properties": {
+     "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"
+     },
+     "nome": {
+      "type": "string"
+     },
+     "cor": {
+      "type": "string",
+      "pattern": "^#[0-9a-fA-F]{6}$"
+     },
+     "cidade": {
+      "type": [
+       "string",
+       "null"
+      ]
+     },
+     "hexes": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+       "type": "string",
+       "pattern": "^[0-9]{4}$",
+       "description": "CCLL: coluna e linha 1-based, 2 dígitos cada"
+      }
+     }
+    }
+   }
+  }
+ },
+ "required": [
+  "schemaVersion",
+  "territorios"
+ ],
+ "additionalProperties": false
+}

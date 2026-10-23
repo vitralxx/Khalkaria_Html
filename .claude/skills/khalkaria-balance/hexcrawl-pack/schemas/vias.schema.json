@@ -1,0 +1,58 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://khalkaria/hexcrawl/vias.schema.json",
+ "title": "Estradas e trilhas (hexes vizinhos em sequência)",
+ "type": "object",
+ "properties": {
+  "schemaVersion": {
+   "type": "string"
+  },
+  "_doc": {
+   "type": "string"
+  },
+  "exemplo": {
+   "type": "boolean"
+  },
+  "vias": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+     "id",
+     "tipo",
+     "hexes"
+    ],
+    "properties": {
+     "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"
+     },
+     "tipo": {
+      "enum": [
+       "estrada",
+       "trilha"
+      ]
+     },
+     "nome": {
+      "type": "string"
+     },
+     "hexes": {
+      "type": "array",
+      "minItems": 2,
+      "items": {
+       "type": "string",
+       "pattern": "^[0-9]{4}$",
+       "description": "CCLL: coluna e linha 1-based, 2 dígitos cada"
+      }
+     }
+    }
+   }
+  }
+ },
+ "required": [
+  "schemaVersion",
+  "vias"
+ ],
+ "additionalProperties": false
+}

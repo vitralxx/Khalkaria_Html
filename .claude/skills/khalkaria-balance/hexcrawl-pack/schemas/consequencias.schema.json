@@ -1,0 +1,55 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://khalkaria/hexcrawl/consequencias.schema.json",
+ "title": "Consequências da Jornada de uma região (só o texto; os números são do Sistema)",
+ "type": "object",
+ "properties": {
+  "schemaVersion": {
+   "type": "string"
+  },
+  "_doc": {
+   "type": "string"
+  },
+  "exemplo": {
+   "type": "boolean"
+  },
+  "regiao": {
+   "type": "string",
+   "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"
+  },
+  "status": {
+   "type": "string"
+  },
+  "faixas": {
+   "type": "array",
+   "minItems": 7,
+   "maxItems": 7,
+   "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+     "de",
+     "ate",
+     "texto"
+    ],
+    "properties": {
+     "de": {
+      "type": "integer"
+     },
+     "ate": {
+      "type": "integer"
+     },
+     "texto": {
+      "type": "string"
+     }
+    }
+   }
+  }
+ },
+ "required": [
+  "schemaVersion",
+  "regiao",
+  "faixas"
+ ],
+ "additionalProperties": false
+}

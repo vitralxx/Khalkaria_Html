@@ -1,5 +1,8 @@
 # Aplicação de hexcrawl de Kharavel: plano para o agente programador (2026-10-22)
 
+> ⚠️ **Superado pela D158 (2026-10-23).** O plano vigente é o pack de inicialização, em `../hexcrawl-pack/`:
+> `CLAUDE.agente.md`, `INICIO.md` e `docs/00–10`. Este arquivo fica como histórico.
+
 O que é: uma ferramenta do mestre para preparar e rodar a exploração de Kharavel em grade hexagonal. Ela faz quatro
 coisas:
 - **edita** o mapa: um tilemap com pincéis;

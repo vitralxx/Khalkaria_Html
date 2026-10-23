@@ -1,0 +1,124 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://khalkaria/hexcrawl/eventos.schema.json",
+ "title": "Tabela global de eventos de uma região",
+ "type": "object",
+ "properties": {
+  "schemaVersion": {
+   "type": "string"
+  },
+  "_doc": {
+   "type": "string"
+  },
+  "exemplo": {
+   "type": "boolean"
+  },
+  "regiao": {
+   "type": "string",
+   "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"
+  },
+  "status": {
+   "type": "string"
+  },
+  "eventos": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+     "id",
+     "nome",
+     "categoria",
+     "raridade",
+     "polaridade",
+     "tipos"
+    ],
+    "properties": {
+     "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"
+     },
+     "nome": {
+      "type": "string"
+     },
+     "categoria": {
+      "enum": [
+       "extracao",
+       "combate",
+       "interacao",
+       "comerciante",
+       "abrigo",
+       "ruina",
+       "assentamento",
+       "covil",
+       "achado"
+      ]
+     },
+     "raridade": {
+      "enum": [
+       "comum",
+       "notavel",
+       "raro"
+      ]
+     },
+     "polaridade": {
+      "enum": [
+       "favoravel",
+       "neutro",
+       "adverso"
+      ]
+     },
+     "tipos": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+       "enum": [
+        "campos",
+        "floresta",
+        "floresta-densa",
+        "colinas",
+        "montanha",
+        "pantano",
+        "deserto",
+        "ermo",
+        "agua",
+        "litoral"
+       ]
+      }
+     },
+     "marca": {
+      "type": "boolean",
+      "description": "marca o hex no mapa (notável e raro sempre; comum só se true, como o Abrigo)"
+     },
+     "icone": {
+      "type": [
+       "string",
+       "null"
+      ]
+     },
+     "textoMestre": {
+      "type": "string"
+     },
+     "textoJogadores": {
+      "type": "string"
+     },
+     "mecanica": {
+      "type": "object"
+     },
+     "travaNarrativa": {
+      "type": "boolean"
+     },
+     "exemplo": {
+      "type": "boolean"
+     }
+    }
+   }
+  }
+ },
+ "required": [
+  "schemaVersion",
+  "regiao",
+  "eventos"
+ ],
+ "additionalProperties": false
+}

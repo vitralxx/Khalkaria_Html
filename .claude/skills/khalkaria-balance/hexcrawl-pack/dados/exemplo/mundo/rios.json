@@ -1,0 +1,19 @@
+{
+ "schemaVersion": "hexcrawl-rios/1",
+ "rios": [
+  {
+   "id": "rio-exemplo",
+   "nome": "Rio de Exemplo",
+   "tamanho": "rio",
+   "arestas": [
+    "0902:SE",
+    "0903:NE",
+    "0903:SE",
+    "0904:NE",
+    "0904:SE",
+    "0905:NE",
+    "0905:SE"
+   ]
+  }
+ ]
+}

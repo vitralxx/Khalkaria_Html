@@ -1,5 +1,9 @@
 # Hexcrawl de Kharavel: regras (rodada 3, 2026-10-22)
 
+> ⚠️ **Superado pela D158 (2026-10-23).** As regras vigentes estão em `../hexcrawl-pack/docs/01-regras.md`. Este
+> arquivo fica como histórico das rodadas 1–3. Ele ainda diz topo pontudo, pesos 10/3/1, Mirante como evento e
+> paradas que rolam a tabela, e tudo isso mudou.
+
 Regras que a aplicação de hexcrawl implementa. O plano da aplicação está no `22-hexcrawl-app-plano.md`.
 
 **Origem:** `[Pedro]` decidido por ele · `[proposta]` minha, precisa de aceite · `[Sistema]` texto canônico do Notion.
