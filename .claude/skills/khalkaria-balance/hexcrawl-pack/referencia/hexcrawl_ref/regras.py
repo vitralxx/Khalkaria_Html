@@ -12,10 +12,9 @@ from fractions import Fraction
 # ---------------------------------------------------------------- custos (docs/01 §2 e §3)
 CUSTO_ESTRADA = Fraction(3, 2)      # 1,5 m
 CUSTO_TRILHA = Fraction(3)          # 3 m
-CUSTO_ARESTA_RIO = Fraction(3, 2)   # navegação: 1,5 m por aresta
-CUSTO_AGUA = Fraction(3, 2)         # hex de Água, só com embarcação
 
 PERIODOS = ('manha', 'tarde', 'noite')
+ORDEM_DO_DIA = ('manha', 'tarde', 'noite', 'descanso')
 
 
 def m(valor) -> Fraction:
@@ -33,6 +32,12 @@ def custo_do_passo(custo_hex_destino, via_no_passo: str | None) -> Fraction:
     return m(custo_hex_destino)
 
 
+def custo_embarcado(embarcacao: dict, na_agua: bool) -> Fraction:
+    """Custo de um passo embarcado (docs/01 §3.2): uma aresta de rio, ou um hex de Água.
+    `embarcacao` é um item de mundo.json > embarcacoes. O orçamento continua o do grupo."""
+    return m(embarcacao['custoAgua'] if na_agua else embarcacao['custoAresta'])
+
+
 # ---------------------------------------------------------------- relógio do dia (docs/01 §3.3, modelo do Pedro)
 def periodo(restante, orcamento) -> str:
     """manhã enquanto restante > 2/3 do orçamento; tarde enquanto > 1/3; noite enquanto > 0; 0 = descanso."""
@@ -46,14 +51,22 @@ def periodo(restante, orcamento) -> str:
     return 'descanso'
 
 
+def periodos_encerrados(antes: str, depois: str) -> list[str]:
+    """Períodos que terminaram entre dois momentos do dia: 'manha' -> 'noite' encerra manhã e tarde."""
+    i, j = ORDEM_DO_DIA.index(antes), ORDEM_DO_DIA.index(depois)
+    return list(ORDEM_DO_DIA[i:j]) if j > i else []
+
+
 @dataclass
 class Dia:
     """Estado de um dia de viagem. Criado por `novo_dia`."""
-    orcamento: Fraction                 # menor Movimento do grupo (ou o da embarcação)
+    orcamento: Fraction                 # menor Movimento do grupo
     restante: Fraction
     divida: Fraction = Fraction(0)      # metros que passam para o dia seguinte (hex mais caro que o orçamento)
-    andados: list = field(default_factory=list)   # hexes em que o grupo ENTROU hoje (para a Jornada)
+    andados: list = field(default_factory=list)   # hexes em que o grupo ENTROU hoje
+    trecho: list = field(default_factory=list)    # hexes em que entrou desde a última parada (H da Jornada)
     explorados: list = field(default_factory=list)
+    explorou_aqui: bool = False         # já explorou o hex atual desde que chegou nele
 
     @property
     def periodo(self) -> str:
@@ -94,6 +107,8 @@ def entrar(dia: Dia, hid: str, custo) -> Dia:
         dia.divida = -dia.restante
         dia.restante = Fraction(0)
     dia.andados.append(hid)
+    dia.trecho.append(hid)
+    dia.explorou_aqui = False
     return dia
 
 
@@ -107,13 +122,34 @@ def explorar(dia: Dia, hid: str) -> Dia:
     alvo = {'manha': 2 * b / 3, 'tarde': b / 3, 'noite': Fraction(0)}[p]
     dia.restante = min(dia.restante, alvo)
     dia.explorados.append(hid)
+    dia.explorou_aqui = True
     return dia
 
 
-def acampar(dia: Dia) -> Dia:
-    """O grupo escolhe parar o dia ali mesmo."""
+def encerrar_dia(dia: Dia) -> Dia:
+    """O mestre encerra o dia onde o grupo está (ex.: numa vila). Segue o protocolo da parada de fim de dia."""
     dia.restante = Fraction(0)
     return dia
+
+
+def fechar_parada(dia: Dia) -> list[str]:
+    """Fecha uma parada: devolve os hexes do trecho (para o H da Jornada) e zera o trecho."""
+    trecho = list(dia.trecho)
+    dia.trecho.clear()
+    return trecho
+
+
+def andar(dia: Dia, hid: str, custo) -> dict:
+    """Um passo com o protocolo de paradas (docs/01 §3.3 e §4.1).
+
+    - 'encerrados': os períodos que o passo encerrou.
+    - 'parada': o passo terminou um período, e o grupo para no hex (lembrete da Jornada).
+    - 'fimDoDia': acabou o movimento; o grupo explora o hex onde está e só então descansa.
+    """
+    antes = dia.periodo
+    entrar(dia, hid, custo)
+    enc = periodos_encerrados(antes, dia.periodo)
+    return {'encerrados': enc, 'parada': bool(enc), 'fimDoDia': dia.periodo == 'descanso'}
 
 
 # ---------------------------------------------------------------- Jornada (docs/01 §4)
@@ -121,9 +157,10 @@ def meta_jornada(hostilidade: int) -> int:
     return 3 + hostilidade // 5
 
 
-def hostilidade_do_dia(hostilidades_dos_andados: list[int]) -> int | None:
-    """A maior Hostilidade entre os hexes em que o grupo entrou no dia; None = não andou, não há teste."""
-    return max(hostilidades_dos_andados) if hostilidades_dos_andados else None
+def hostilidade_da_parada(hostilidades_do_trecho: list[int], hostilidade_do_hex_atual: int) -> int:
+    """H da Jornada numa parada: a maior entre os hexes em que o grupo entrou desde a última parada;
+    sem movimento, a do hex atual."""
+    return max(hostilidades_do_trecho) if hostilidades_do_trecho else hostilidade_do_hex_atual
 
 
 def pontos_da_acao(resultado: int, guiar: bool, cd: int = 15) -> int:

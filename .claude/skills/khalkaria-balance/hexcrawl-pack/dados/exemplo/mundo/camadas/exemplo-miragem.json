@@ -1,0 +1,51 @@
+{
+ "schemaVersion": "hexcrawl-hexes/1",
+ "camada": "exemplo-miragem",
+ "exemplo": true,
+ "hexes": [
+  {
+   "id": "0808",
+   "tipo": "floresta",
+   "regiao": "exemplo-miragem",
+   "cidade": null,
+   "custo": null,
+   "hostilidade": null,
+   "variante": null,
+   "especial": null,
+   "notas": ""
+  },
+  {
+   "id": "0908",
+   "tipo": "floresta",
+   "regiao": "exemplo-miragem",
+   "cidade": null,
+   "custo": null,
+   "hostilidade": null,
+   "variante": null,
+   "especial": null,
+   "notas": ""
+  },
+  {
+   "id": "0809",
+   "tipo": "floresta",
+   "regiao": "exemplo-miragem",
+   "cidade": null,
+   "custo": null,
+   "hostilidade": null,
+   "variante": null,
+   "especial": null,
+   "notas": ""
+  },
+  {
+   "id": "0909",
+   "tipo": "floresta",
+   "regiao": "exemplo-miragem",
+   "cidade": null,
+   "custo": null,
+   "hostilidade": null,
+   "variante": null,
+   "especial": null,
+   "notas": ""
+  }
+ ]
+}

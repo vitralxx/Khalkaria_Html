@@ -36,9 +36,11 @@ O app faz quatro coisas:
 | território | contorno de cidade desenhado pelas bordas dos hexes |
 | H | Hostilidade (0/5/10/15/20), da região ou do hex |
 | orçamento | metros de viagem do dia, igual ao menor Movimento do grupo |
+| parada | fim de período andando, explorar ou fim do movimento; cada parada lembra a Jornada |
+| camada | uma região como camada do mapa, que liga e desliga; a alternativa (a ilusão) ocupa as células de outra |
 | período | manhã, tarde e noite, contados pelo orçamento restante |
-| explorar | parar no hex atual para explorá-lo: rola a tabela do hex e pula um período |
-| Jornada | o teste de grupo do Sistema, uma vez por dia de viagem |
+| explorar | parar no hex atual para explorá-lo: Jornada, tabela do hex e um período pulado |
+| Jornada | o teste de grupo do Sistema, a cada parada, uma vez por período; os jogadores rolam |
 | consequência | o d100 da região quando a Jornada falha |
 | tabela do hex | os eventos possíveis daquele hex, montados da tabela global da região, com pesos |
 | marcado | hex que ganhou um notável, um raro ou um Abrigo; não rola mais |

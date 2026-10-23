@@ -254,7 +254,7 @@
    "nota": "castelo de pedra cinza"
   },
   {
-   "id": "campo-laranja",
+   "id": "plantacao",
    "folha": "terreno",
    "lin": 1,
    "col": 3,
@@ -269,7 +269,7 @@
    ],
    "acimaDaFace": 1,
    "espelhavel": true,
-   "nota": "listrado: plantação? candidato a Ermo (P8)"
+   "nota": "plantação: só em Campos vizinho de assentamento"
   },
   {
    "id": "floresta-clareira",
@@ -976,6 +976,16 @@
    ]
   }
  },
+ "pertoDeAssentamento": {
+  "campos": {
+   "verde": [
+    {
+     "tile": "plantacao",
+     "peso": 3
+    }
+   ]
+  }
+ },
  "agua": {
   "rasa": "agua-rasa",
   "funda": "agua-funda",
@@ -1330,7 +1340,7 @@
     ]
    }
   ],
-  "observacao": "as peças só ligam as diagonais (NE, SE, SO, NO): não há N/S nem pontas. Vias são desenhadas por código; a folha é referência de estilo e paleta.",
+  "observacao": "as peças só ligam as diagonais (NE, SE, SO, NO): não há N/S nem pontas. Vias são desenhadas por código: estrada de tijolo cinza (paleta cinza), trilha cavada no terreno. A folha é referência de estilo e paleta.",
   "paletas": {
    "cinza": [
     "#414141",

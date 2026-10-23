@@ -1,7 +1,7 @@
 """Gera assets/tiles/atlas.json: o que é cada célula das folhas de arte do Pedro e qual tile cada tipo de hex usa.
 
 As medidas (caixa opaca, altura acima da face, ligações das peças de via) saem das imagens; o significado de cada
-célula está em TILES e VIAS abaixo (proposta do agente de balanceamento, a confirmar com o Pedro: docs/10).
+célula está em TILES e VIAS abaixo (confirmado pelo Pedro na D159).
 Requer Pillow. Uso: python referencia/gera_atlas.py <pasta-do-pack>
 """
 import json
@@ -28,7 +28,7 @@ TILES = {
     (1, 0): ('vila-verde', 'assentamento', None, 'verde', ''),
     (1, 1): ('vila-terra', 'assentamento', None, 'verde', 'vila em chão de terra'),
     (1, 2): ('castelo', 'assentamento', None, 'verde', 'castelo de pedra cinza'),
-    (1, 3): ('campo-laranja', 'variante', 'campos', 'verde', 'listrado: plantação? candidato a Ermo (P8)'),
+    (1, 3): ('plantacao', 'variante', 'campos', 'verde', 'plantação: só em Campos vizinho de assentamento'),
     (1, 4): ('floresta-clareira', 'variante', 'floresta', 'verde', 'floresta mista com clareira'),
     (1, 5): ('pantano', 'terreno', 'pantano', 'verde', ''),
     (1, 6): ('campos-claro', 'variante', 'campos', 'verde', 'estepe pálida'),
@@ -73,10 +73,13 @@ VARIANTES = {
                  'neve': [('serra-pinheiros-neve', 2), ('montanha-pico', 1)], 'deserto': [('meseta', 1)]},
     'pantano': {'*': [('pantano', 1)]},
     'deserto': {'*': [('areia', 3), ('dunas', 2)]},
-    'ermo': {'*': [('areia', 2), ('areia-rochas', 1)]},
+    'ermo': {'*': [('areia', 2), ('areia-rochas', 1)]},          # com a tinta cinza dessaturada do Ermo
     'agua': {'*': [('agua-funda', 1)]},
     'litoral': {'verde': [('campos-verde', 1)], 'neve': [('campos-neve', 1)], 'deserto': [('areia', 1)]},
 }
+
+# Campos vizinho de um assentamento (especial ou evento marcado) soma estas variantes às do bioma
+PERTO_DE_ASSENTAMENTO = {'campos': {'verde': [('plantacao', 3)]}}
 
 VIAS_COR = {0: 'cinza', 1: 'cinza', 2: 'verde', 3: 'verde'}   # linha da folha de vias -> cor
 
@@ -114,10 +117,11 @@ def main():
     if sobra:
         raise SystemExit(f'células com arte e sem significado em TILES: {sobra}')
     ids = {t['id'] for t in tiles}
-    for tipo, por_bioma in VARIANTES.items():
-        for lista in por_bioma.values():
-            for tid, _ in lista:
-                assert tid in ids, (tipo, tid)
+    for tabela in (VARIANTES, PERTO_DE_ASSENTAMENTO):
+        for tipo, por_bioma in tabela.items():
+            for lista in por_bioma.values():
+                for tid, _ in lista:
+                    assert tid in ids, (tipo, tid)
     pecas = []
     px = via.load()
     for lin in range(via.height // CEL_A):
@@ -147,12 +151,15 @@ def main():
         'tiles': tiles,
         'variantes': {t: {b: [{'tile': tid, 'peso': p} for tid, p in l] for b, l in pb.items()}
                       for t, pb in VARIANTES.items()},
+        'pertoDeAssentamento': {t: {b: [{'tile': tid, 'peso': p} for tid, p in l] for b, l in pb.items()}
+                                for t, pb in PERTO_DE_ASSENTAMENTO.items()},
         'agua': {'rasa': 'agua-rasa', 'funda': 'agua-funda', 'gelo': 'agua-gelo',
                  'regra': 'água com vizinho de terra usa "rasa" (bioma neve: "gelo"); as demais, "funda"'},
         'litoral': {'regra': 'tile de campos do bioma + orla desenhada por código nas arestas que encostam em água'},
         'vias': {'pecas': pecas,
                  'observacao': 'as peças só ligam as diagonais (NE, SE, SO, NO): não há N/S nem pontas. '
-                               'Vias são desenhadas por código; a folha é referência de estilo e paleta.',
+                               'Vias são desenhadas por código: estrada de tijolo cinza (paleta cinza), '
+                               'trilha cavada no terreno. A folha é referência de estilo e paleta.',
                  'paletas': {'cinza': paleta(via.crop((0, 0, via.width, 96)), 6),
                              'verde': paleta(via.crop((0, 96, via.width, 192)), 8)}},
         'paletaAgua': {'rasa': paleta(celula(ter, 0, 6), 3), 'funda': paleta(celula(ter, 0, 7), 3),

@@ -42,21 +42,29 @@ v['periodo'] = [{'restante': r, 'orcamento': b, 'esperado': rg.periodo(r, b)}
 
 
 def roteiro(orcamento, passos, divida=0):
+    """Cada passo registra o relógio e o protocolo de paradas (docs/01 §3.3 e §4.1)."""
     d = rg.novo_dia(orcamento, divida)
     saida = []
     for p in passos:
+        antes = d.periodo
         if p[0] == 'entrar':
             ok = rg.pode_entrar(d, p[1])
             if ok:
-                rg.entrar(d, 'x', p[1])
+                r = rg.andar(d, 'x', p[1])
+            else:
+                r = {'encerrados': [], 'parada': False, 'fimDoDia': False}
             saida.append({'acao': 'entrar', 'custo': p[1], 'pode': ok, 'restante': num(d.restante),
-                          'periodo': d.periodo, 'divida': num(d.divida)})
+                          'periodo': d.periodo, 'divida': num(d.divida), **r})
         elif p[0] == 'explorar':
             rg.explorar(d, 'x')
-            saida.append({'acao': 'explorar', 'restante': num(d.restante), 'periodo': d.periodo})
-        elif p[0] == 'acampar':
-            rg.acampar(d)
-            saida.append({'acao': 'acampar', 'restante': num(d.restante), 'periodo': d.periodo})
+            saida.append({'acao': 'explorar', 'restante': num(d.restante), 'periodo': d.periodo,
+                          'encerrados': rg.periodos_encerrados(antes, d.periodo), 'parada': True,
+                          'fimDoDia': d.periodo == 'descanso'})
+        elif p[0] == 'encerrar':
+            rg.encerrar_dia(d)
+            saida.append({'acao': 'encerrar', 'restante': num(d.restante), 'periodo': d.periodo,
+                          'encerrados': rg.periodos_encerrados(antes, d.periodo), 'parada': True,
+                          'fimDoDia': True})
     return {'orcamento': orcamento, 'dividaInicial': divida, 'passos': saida}
 
 
@@ -69,10 +77,20 @@ v['roteirosDoDia'] = [
     roteiro(6, [('entrar', 9)]),
     roteiro(6, [('entrar', 1.5), ('entrar', 9)]),
     roteiro(6, [('entrar', 4.5)], divida=3),
-    roteiro(10.5, [('entrar', 7.5), ('acampar',)]),
+    roteiro(10.5, [('entrar', 7.5), ('encerrar',)]),
+    roteiro(9, [('entrar', 1.5), ('entrar', 1.5), ('entrar', 1.5), ('explorar',), ('entrar', 1.5), ('entrar', 1.5)]),
 ]
+v['periodosEncerrados'] = [{'antes': a, 'depois': b, 'esperado': rg.periodos_encerrados(a, b)}
+                           for a in rg.ORDEM_DO_DIA for b in rg.ORDEM_DO_DIA]
+v['hostilidadeDaParada'] = [{'trecho': tr, 'hexAtual': h, 'esperado': rg.hostilidade_da_parada(tr, h)}
+                            for tr, h in (([], 10), ([5], 10), ([5, 15, 10], 5), ([20, 20], 0))]
 v['custoDoPasso'] = [{'custoHex': c, 'via': via, 'esperado': num(rg.custo_do_passo(c, via))}
                      for c in (4.5, 9) for via in (None, 'estrada', 'trilha')]
+
+# embarcações (custos do mundo de Kharavel)
+mundo_kh = json.load(open(os.path.join(PACK, 'dados', 'kharavel', 'mundo', 'mundo.json'), encoding='utf-8'))
+v['custoEmbarcado'] = [{'embarcacao': b['id'], 'naAgua': agua, 'esperado': num(rg.custo_embarcado(b, agua))}
+                       for b in mundo_kh['embarcacoes'] for agua in (False, True)]
 
 # Jornada, rio, extração, descanso, consequências
 v['metaJornada'] = [{'hostilidade': h, 'esperado': rg.meta_jornada(h)} for h in (0, 5, 10, 15, 20)]
@@ -113,6 +131,8 @@ v['visao'] = [
     {'origem': '1009', 'raio': 1, 'penhascos': pen, 'esperado': sorted(visao.visiveis('1009', 1, 30, 26, pen))},
     {'origem': '1010', 'raio': 2, 'penhascos': pen, 'esperado': sorted(visao.visiveis('1010', 2, 30, 26, pen))},
 ]
+v['visaoNaAresta'] = [{'aresta': k, 'colunas': 30, 'linhas': 26, 'esperado': sorted(visao.visiveis_na_aresta(k, 30, 26))}
+                      for k in ('1010:N', '1010:NE', '1010:SE', '0101:N', '3026:SE')]
 
 saida = os.path.join(PACK, 'testes', 'vetores-regras.json')
 with open(saida, 'w', encoding='utf-8', newline='\n') as fh:

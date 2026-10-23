@@ -54,7 +54,7 @@ na mão"*.
    - Templo da Profecia (Bosque Corrompido, *[Pedro]*);
    - Vilarejo Skarv;
    - Castelo em Ruínas;
-   - O Oásis;
+   - O Oásis (veja a camada da ilusão, no passo 7);
    - Kurtam;
    - Minas dos Krichama;
    - a fortaleza desenhada no Ermo das Cinzas, sem nome na arte.
@@ -66,8 +66,12 @@ na mão"*.
    - **O desenho final das vias é do Pedro**, porque ali está o game design. Cada rio e cada estrada levam a um
      objetivo.
    - A conferência ajuda a revisar: via sem destino, via que cruza rio sem ponte, foz solta.
-7. **Revisão no editor.** A lista de baixa confiança, depois as conferências (`03-dados.md` §5) até zerar as falhas.
-8. **Recortes por região.** Os 9 recortes com o anel vizinho devem fechar o continente sem buraco.
+7. **Camada da ilusão** `[Pedro, D159]`. Sobre a referência da ilusão, pinte a região alternativa nas células do
+   Deserto do Abismo onde a arte muda. O resultado vai para `camadas/<regiao-da-ilusao>.json` (`03-dados.md` §3).
+   - Antes, o Pedro precisa dar os dados da região da ilusão (`[P17]`).
+   - Use a diferença entre as duas referências, pixel a pixel, para achar as células que mudam.
+8. **Revisão no editor.** A lista de baixa confiança, depois as conferências (`03-dados.md` §5) até zerar as falhas.
+9. **Recortes por região.** Os 9 recortes com o anel vizinho devem fechar o continente sem buraco.
 
 ## 4. Se o tamanho mudar depois
 Há uma ferramenta de **reamostragem**:

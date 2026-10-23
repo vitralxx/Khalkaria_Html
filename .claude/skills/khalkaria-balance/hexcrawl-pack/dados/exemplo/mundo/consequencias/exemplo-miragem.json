@@ -1,0 +1,42 @@
+{
+ "schemaVersion": "hexcrawl-consequencias/1",
+ "regiao": "exemplo-miragem",
+ "exemplo": true,
+ "faixas": [
+  {
+   "de": 1,
+   "ate": 1,
+   "texto": "Exemplo: desgaste da faixa 1-1."
+  },
+  {
+   "de": 2,
+   "ate": 19,
+   "texto": "Exemplo: desgaste da faixa 2-19."
+  },
+  {
+   "de": 20,
+   "ate": 39,
+   "texto": "Exemplo: desgaste da faixa 20-39."
+  },
+  {
+   "de": 40,
+   "ate": 59,
+   "texto": "Exemplo: desgaste da faixa 40-59."
+  },
+  {
+   "de": 60,
+   "ate": 79,
+   "texto": "Exemplo: desgaste da faixa 60-79."
+  },
+  {
+   "de": 80,
+   "ate": 99,
+   "texto": "Exemplo: desgaste da faixa 80-99."
+  },
+  {
+   "de": 100,
+   "ate": 100,
+   "texto": "Exemplo: desgaste da faixa 100-100."
+  }
+ ]
+}

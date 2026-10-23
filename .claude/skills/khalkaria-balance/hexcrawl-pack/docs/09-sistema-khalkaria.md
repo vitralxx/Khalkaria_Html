@@ -42,7 +42,7 @@ Ao falhar em acumular os pontos necessários, o grupo rola 1d100, o resultado de
 | 100 | O grupo evita todas as ameaças e consequências do fracasso. |
 
 > **Decisões do Pedro sobre a Jornada no hexcrawl:**
-> - 1 teste por dia;
+> - a cada parada num hex, uma vez por período (D159); os jogadores rolam, e o app só lembra;
 > - a tabela d100 é por região, com texto temático e os mesmos números;
 > - sem condições.
 >

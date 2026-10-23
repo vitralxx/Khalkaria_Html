@@ -14,6 +14,9 @@ Você escreve o app de **hexcrawl** de Kharavel, o continente do RPG **Khalkaria
   - nunca escolha em silêncio.
 - **Nunca invente regra nem número.** O que faltar vira pergunta em `docs/10-pendencias.md`. Toda `[proposta]` fica
   numa constante nomeada, fácil de trocar.
+- **Números de regra são dados configuráveis** (`mundo.json`, painel de configuração), nunca fixos no código.
+- **O app nunca rola os dados dos jogadores.** Ele lembra a mesa de rolar e recebe o resultado. Os dados do mestre o
+  app rola ou recebe digitados (`docs/01-regras.md` §8).
 - **Conteúdo criativo** (textos de evento, consequências, nomes, lore):
   - você pode **rascunhar**, sempre com `status: "rascunho"`;
   - só o Pedro aprova;
@@ -61,12 +64,14 @@ Você escreve o app de **hexcrawl** de Kharavel, o continente do RPG **Khalkaria
 | `docs/07-geografia.md` | da arte do Pedro à grade; o teste de tamanhos |
 | `docs/08-fases.md` | fases F0–F7 com critério de pronto |
 | `docs/09-sistema-khalkaria.md` | trechos verbatim do Sistema |
-| `docs/10-pendencias.md` | perguntas abertas (P1–P15) e conteúdo do Pedro |
+| `docs/10-pendencias.md` | perguntas abertas (P16–P18), respostas já dadas, observações e conteúdo do Pedro |
 
 ## 4. Referência rápida
 - **Grade:** topo chato, *odd-q*, id `CCLL` (1-based). Direções N, NE, SE, S, SO, NO; arestas canônicas N, NE e SE.
   Tile 32 × 48, face 32 × 28 em y = 18.
 - **9 regiões**, com H 5/5/10/10/10/15/15/20/20 em ordem de rank.
+- **As regiões são camadas** que ligam e desligam. Uma região alternativa (a ilusão do Oásis) ocupa as células de
+  outra. O estado por hex usa a chave `CCLL@camada`; a névoa é por lugar.
 - **10 tipos** (custo em m; raio de visão):
 
   | Tipo | Custo | Visão |
@@ -79,21 +84,25 @@ Você escreve o app de **hexcrawl** de Kharavel, o continente do RPG **Khalkaria
   | Pântano | 7,5 | 1 |
   | Deserto | 6 | 1 |
   | Ermo | 4,5 | 1 |
-  | Água | 1,5, só com barco | 1 |
+  | Água | o do barco | 2 |
   | Litoral | 4,5 | 2 |
 
 - **Vias:** estrada 1,5 m e trilha 3 m, só no passo que segue a via.
-- **Rio:** CD 10 + ⌊H/2⌋; na falha, 2d6+3 e 1d6 hexes rio abaixo.
-- **Dia:** o orçamento é o menor Movimento. A manhã vai até 2/3, a tarde até 1/3, a noite até 0; com 0, o grupo
-  descansa. Explorar pula um período.
-- **Jornada:** 1 vez por dia, com o maior H do dia e meta 3 + H/5. Na falha, d100 da região: só dano, +H salvo no
-  100.
+- **Barcos** (orçamento do grupo): Galeão 1,5 m, Fragata 3 m e Canoa 4,5 m, por aresta de rio e por hex de Água.
+- **Rio:** CD 10 + ⌊H/2⌋, com o maior H dos dois hexes; na falha, 2d6+3 e 1d6 hexes rio abaixo.
+- **Dia:** o orçamento é o menor Movimento. A manhã vai até 2/3, a tarde até 1/3, a noite até 0.
+  - Explorar pula um período.
+  - **Paradas:** fim de período andando, explorar e fim do movimento.
+  - No fim do movimento, o grupo explora o hex e só então descansa.
+- **Jornada:** a cada parada, uma vez por período, com meta 3 + H/5. Na falha, d100 da região (o grupo rola): só
+  dano, +H salvo no 100.
 - **Tabelas:** 8–12 entradas por hex, mistura de polaridade por rank, pesos 5/3/1, d100 pelo maior resto com piso 1.
   - Notável e raro marcam o hex e saem de todas as tabelas.
   - Comum re-rola se o hex não estiver marcado.
   - O Abrigo marca o hex.
 - **Extração:** no máximo 4 Materiais por região; peso × 0,5ᵏ, zerado pelo descanso; CD 10/13/16/20; unidades
   1 + ⌊(r − CD)/5⌋.
+- **Visão:** pelo tipo, configurável. Embarcado num rio, só os 2 hexes da aresta; num hex de Água, raio 2.
 - **Névoa:** oculto (preto, sem grade), visto (cinza), visível (vívido).
 
 ## 5. Método de trabalho

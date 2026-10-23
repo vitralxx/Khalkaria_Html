@@ -114,6 +114,55 @@ def test_hex_mais_caro_que_o_orcamento():
     assert not rg.pode_entrar(d3, 9)            # sem o orçamento cheio, não começa
 
 
+def test_paradas_e_periodos_encerrados():
+    assert rg.periodos_encerrados('manha', 'tarde') == ['manha']
+    assert rg.periodos_encerrados('manha', 'noite') == ['manha', 'tarde']
+    assert rg.periodos_encerrados('tarde', 'descanso') == ['tarde', 'noite']
+    assert rg.periodos_encerrados('noite', 'noite') == []
+    # Campos com 9 m: 2 paradas; a 2ª é o fim do dia (explora o hex e só então descansa)
+    d = rg.novo_dia(9)
+    assert rg.andar(d, 'a', 4.5) == {'encerrados': ['manha'], 'parada': True, 'fimDoDia': False}
+    assert rg.fechar_parada(d) == ['a'] and d.trecho == []
+    assert rg.andar(d, 'b', 4.5) == {'encerrados': ['tarde', 'noite'], 'parada': True, 'fimDoDia': True}
+    assert not d.explorou_aqui
+    # estrada: andar dentro do período não para
+    d = rg.novo_dia(9)
+    assert rg.andar(d, 'a', 1.5)['parada'] is False and d.trecho == ['a']
+    # explorar à noite leva ao descanso com o hex já explorado
+    d = rg.novo_dia(9); rg.entrar(d, 'a', 4.5); rg.entrar(d, 'b', 1.5)
+    assert d.periodo == 'noite'
+    rg.explorar(d, 'b')
+    assert d.periodo == 'descanso' and d.explorou_aqui
+    d = rg.novo_dia(9); rg.entrar(d, 'a', 1.5); rg.encerrar_dia(d)
+    assert d.periodo == 'descanso' and not d.explorou_aqui
+
+
+def test_embarcacoes():
+    import json
+    m = json.load(open(os.path.join(PACK, 'dados', 'kharavel', 'mundo', 'mundo.json'), encoding='utf-8'))
+    barcos = {b['id']: b for b in m['embarcacoes']}
+    for na_agua in (False, True):
+        assert [rg.custo_embarcado(barcos[b], na_agua) for b in ('galeao', 'fragata', 'canoa')] == [1.5, 3, 4.5]
+    d, n = rg.novo_dia(9), 0
+    custo = rg.custo_embarcado(barcos['galeao'], False)
+    while rg.pode_entrar(d, custo):
+        rg.entrar(d, 'aresta', custo)
+        n += 1
+    assert n == 6     # Galeão com 9 m: 6 arestas de rio por dia
+
+
+def test_mundo_kharavel():
+    import json
+    m = json.load(open(os.path.join(PACK, 'dados', 'kharavel', 'mundo', 'mundo.json'), encoding='utf-8'))
+    rs = sorted(m['regioes'], key=lambda r: r['rank'])
+    assert [r['hostilidade'] for r in rs] == [5, 5, 10, 10, 10, 15, 15, 20, 20]
+    assert all(len(r['materiais']) <= 4 for r in rs)
+    visao_por_tipo = {t['id']: t['visao'] for t in m['tipos']}
+    assert visao_por_tipo == {'campos': 1, 'floresta': 1, 'floresta-densa': 0, 'colinas': 2, 'montanha': 3,
+                              'pantano': 1, 'deserto': 1, 'ermo': 1, 'agua': 2, 'litoral': 2}
+    assert {b['id'] for b in m['embarcacoes']} == {'galeao', 'fragata', 'canoa'}
+
+
 def test_contas_exatas_em_fracao():
     d = rg.novo_dia(7.5)
     assert d.orcamento * 2 / 3 == Fraction(5) and d.orcamento / 3 == Fraction(5, 2)
@@ -122,7 +171,7 @@ def test_contas_exatas_em_fracao():
 # ---------------------------------------------------------------- Jornada, rio, extração, descanso
 def test_jornada():
     assert [rg.meta_jornada(h) for h in (5, 10, 15, 20)] == [4, 5, 6, 7]
-    assert rg.hostilidade_do_dia([]) is None and rg.hostilidade_do_dia([5, 15, 10]) == 15
+    assert rg.hostilidade_da_parada([], 10) == 10 and rg.hostilidade_da_parada([5, 15, 10], 5) == 15
     assert rg.pontos_da_acao(15, True) == 2 and rg.pontos_da_acao(20, True) == 3
     assert rg.pontos_da_acao(14, False) == 0 and rg.pontos_da_acao(19, False) == 1
 
@@ -237,6 +286,29 @@ def test_visao_raio_e_penhasco():
     assert visao.estado_nevoa('a', set(), set()) == 'oculto'
 
 
+def test_visao_embarcado_no_rio():
+    assert visao.visiveis_na_aresta('1010:N', C, L) == {'1010', '1009'}
+    assert visao.visiveis_na_aresta('0101:N', C, L) == {'0101'}     # borda: o vizinho cai fora da grade
+
+
+# ---------------------------------------------------------------- camadas
+def test_camadas_compor():
+    from hexcrawl_ref import camadas as cm
+    m = validador.carregar(os.path.join(PACK, 'dados', 'exemplo', 'mundo'))
+    regioes = {r['id']: r for r in m['mundo']['regioes']}
+    base = m['hexes']['hexes']
+    cam = {k: v['hexes'] for k, v in m['camadas'].items()}
+    ligado = cm.compor(base, cam, regioes, {'exemplo-miragem': True})
+    assert ligado['0808']['tipo'] == 'floresta' and ligado['0808']['_chave'] == '0808@exemplo-miragem'
+    desligado = cm.compor(base, cam, regioes, {'exemplo-miragem': False})
+    assert desligado['0808']['regiao'] == 'exemplo-serra' and desligado['0808']['_chave'] == '0808'
+    assert cm.compor(base, cam, regioes, {})['0808']['_camada'] == 'exemplo-miragem'   # ativaPorPadrao
+    sem_serra = cm.compor(base, cam, regioes, {'exemplo-serra': False, 'exemplo-miragem': False})
+    assert '1005' not in sem_serra and '0101' in sem_serra      # o mar fica
+    estado = {'definidos': {'0808@exemplo-miragem': 'exemplo-miragem-03'}}
+    assert not tb.pode_rolar('0808@exemplo-miragem', estado, {}) and tb.pode_rolar('0808', estado, {})
+
+
 # ---------------------------------------------------------------- mundo de exemplo
 def test_mundo_de_exemplo_valido():
     m = validador.carregar(os.path.join(PACK, 'dados', 'exemplo', 'mundo'))
@@ -260,3 +332,9 @@ def test_validador_pega_erros():
         lambda m: m['arestas']['arestas'].append({'aresta': '0303:N', 'tipo': 'ponte'})))
     assert any('exatamente um' in f for f in falhas_com(
         lambda m: m['hexes']['hexes'][30].update(regiao=None, cidade=None)))
+    assert any('[camada]' in f and 'regiao' in f for f in falhas_com(
+        lambda m: m['camadas']['exemplo-miragem']['hexes'][0].update(regiao='exemplo-serra')))
+    assert any('alternativaDe' in f for f in falhas_com(
+        lambda m: next(r for r in m['mundo']['regioes'] if r['id'] == 'exemplo-miragem').update(alternativaDe='nada')))
+    assert any('só entra por camadas' in f for f in falhas_com(
+        lambda m: m['hexes']['hexes'][100].update(regiao='exemplo-miragem')))

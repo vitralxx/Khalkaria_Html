@@ -22,7 +22,7 @@ def carregar(pasta: str) -> dict:
         return json.load(open(os.path.join(pasta, *p), encoding='utf-8'))
     m = {'mundo': j('mundo.json'), 'hexes': j('hexes.json'), 'arestas': j('arestas.json'),
          'rios': j('rios.json'), 'vias': j('vias.json'), 'territorios': j('territorios.json'),
-         'eventos': {}, 'consequencias': {}}
+         'eventos': {}, 'consequencias': {}, 'camadas': {}}
     for sub in ('eventos', 'consequencias'):
         d = os.path.join(pasta, sub)
         if os.path.isdir(d):
@@ -30,6 +30,12 @@ def carregar(pasta: str) -> dict:
                 if f.endswith('.json'):
                     doc = j(sub, f)
                     m[sub][doc['regiao']] = doc
+    d = os.path.join(pasta, 'camadas')
+    if os.path.isdir(d):
+        for f in sorted(os.listdir(d)):
+            if f.endswith('.json'):
+                doc = j('camadas', f)
+                m['camadas'][doc.get('camada')] = doc
     return m
 
 
@@ -40,6 +46,17 @@ def validar(m: dict) -> tuple[list[str], list[str], dict]:
     tipos = {t['id']: t for t in m['mundo']['tipos']}
     regioes = {r['id']: r for r in m['mundo']['regioes']}
     cidades = {c['id']: c for c in m['mundo'].get('cidades', [])}
+    for r in regioes.values():
+        alt = r.get('alternativaDe')
+        if alt is not None and (alt not in regioes or regioes[alt].get('alternativaDe') is not None):
+            falhas.append(f'[regiao] {r["id"]}: alternativaDe {alt!r} tem de ser uma região da base')
+    for t in tipos.values():
+        if t.get('soEmbarcacao') and t.get('custo') is not None:
+            avisos.append(f'[tipo] {t["id"]}: o custo vem da embarcação; o custo do tipo é ignorado')
+    ids_barco = Counter(b['id'] for b in m['mundo'].get('embarcacoes', []))
+    for b, n in ids_barco.items():
+        if n > 1:
+            falhas.append(f'[embarcacao] id repetido {b}')
     hexes = {}
     for h in m['hexes']['hexes']:
         if h['id'] in hexes:
@@ -55,6 +72,8 @@ def validar(m: dict) -> tuple[list[str], list[str], dict]:
             falhas.append(f'[hex] {hid}: tipo {h["tipo"]!r} fora de mundo.tipos')
         if h.get('regiao') is not None and h['regiao'] not in regioes:
             falhas.append(f'[hex] {hid}: região {h["regiao"]!r} inexistente')
+        elif h.get('regiao') is not None and regioes[h['regiao']].get('alternativaDe') is not None:
+            falhas.append(f'[hex] {hid}: a região alternativa {h["regiao"]!r} só entra por camadas/')
         if h.get('cidade') is not None and h['cidade'] not in cidades:
             falhas.append(f'[hex] {hid}: cidade {h["cidade"]!r} inexistente')
         terra = h['tipo'] != 'agua'
@@ -149,6 +168,29 @@ def validar(m: dict) -> tuple[list[str], list[str], dict]:
         for hid in t['hexes']:
             if hid not in hexes:
                 falhas.append(f'[territorio] {t["id"]}: hex {hid} fora da grade')
+    # 5b. camadas alternativas
+    em_camada = {}   # id do hex -> {camada: registro}
+    for cid, doc in m['camadas'].items():
+        reg = regioes.get(cid)
+        if reg is None or reg.get('alternativaDe') is None:
+            falhas.append(f'[camada] {cid!r}: tem de ser uma região com alternativaDe')
+            continue
+        vistos_c = Counter(h['id'] for h in doc['hexes'])
+        for hid, n in vistos_c.items():
+            if n > 1:
+                falhas.append(f'[camada] {cid}: hex {hid} repetido')
+        for h in doc['hexes']:
+            hid = h['id']
+            if hid not in hexes:
+                falhas.append(f'[camada] {cid}: hex {hid} fora da grade')
+                continue
+            if h['tipo'] not in tipos:
+                falhas.append(f'[camada] {cid}: {hid} com tipo {h["tipo"]!r} fora de mundo.tipos')
+            if h.get('regiao') != cid or h.get('cidade') is not None:
+                falhas.append(f'[camada] {cid}: {hid} tem de ter regiao = {cid} e nenhuma cidade')
+            if hexes[hid].get('regiao') != reg['alternativaDe']:
+                avisos.append(f'[camada] {cid}: {hid} cobre um hex que não é de {reg["alternativaDe"]}')
+            em_camada.setdefault(hid, {})[cid] = h
     # 6. eventos
     ids = Counter()
     for rid, doc in m['eventos'].items():
@@ -175,6 +217,13 @@ def validar(m: dict) -> tuple[list[str], list[str], dict]:
         pool = m['eventos'].get(h['regiao'], {}).get('eventos', [])
         if not any(h['tipo'] in e['tipos'] for e in pool):
             sem_tabela[(h['regiao'], h['tipo'])] += 1
+    for por_camada in em_camada.values():
+        for cid, h in por_camada.items():
+            if h.get('especial') or h['tipo'] == 'agua':
+                continue
+            pool = m['eventos'].get(cid, {}).get('eventos', [])
+            if not any(h['tipo'] in e['tipos'] for e in pool):
+                sem_tabela[(cid, h['tipo'])] += 1
     for (rid, t), n in sorted(sem_tabela.items()):
         avisos.append(f'[evento] {n} hex(es) de {t} em {rid} sem nenhum evento possível')
     # 7. consequências
@@ -187,6 +236,7 @@ def validar(m: dict) -> tuple[list[str], list[str], dict]:
               'porTipo': dict(Counter(h['tipo'] for h in hexes.values())),
               'porRegiao': dict(Counter(h.get('regiao') or h.get('cidade') or 'mar' for h in hexes.values())),
               'vias': len(m['vias']['vias']), 'rios': len(m['rios']['rios']),
+              'camadas': {cid: len(doc['hexes']) for cid, doc in m['camadas'].items()},
               'eventos': sum(ids.values())}
     return falhas, avisos, resumo
 

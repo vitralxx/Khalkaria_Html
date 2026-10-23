@@ -14,11 +14,13 @@ dados/<mundo>/mundo/        o que é PREPARADO; muda pouco
   territorios.json          contornos de cidade
   eventos/<regiao>.json     tabela global de eventos da região
   consequencias/<regiao>.json  textos das 7 faixas da Jornada
+  camadas/<regiao>.json     hexes de uma região alternativa (ex.: a ilusão do Oásis)
 dados/<mundo>/campanha/     o ESTADO do jogo; muda a cada sessão
   estado.json
 ```
-- `dados/exemplo/` é um mundo pequeno (12 × 9) e válido, que usa todos os recursos do formato. Ele é gerado por
-  `referencia/gera_exemplo.py` e serve de fixture dos testes. Tudo nele tem `"exemplo": true`.
+- `dados/exemplo/` é um mundo pequeno (12 × 9) e válido, que usa todos os recursos do formato, inclusive uma camada
+  alternativa (`exemplo-miragem`). Ele é gerado por `referencia/gera_exemplo.py` e serve de fixture dos testes. Tudo
+  nele tem `"exemplo": true`.
 - `dados/kharavel/mundo/` tem, por ora, só `mundo.json` e `consequencias/`. O resto sai da geografia inicial
   (`07-geografia.md`).
 
@@ -49,13 +51,17 @@ dados/<mundo>/campanha/     o ESTADO do jogo; muda a cada sessão
   - `orientacao: "chato"`, `offset: "odd-q"`, `colunas`, `linhas`;
   - `referencia`: os mapas do Pedro e a calibração (origem e escala sobre a arte). Ver `07-geografia.md`.
 - **`tipos[]`**: `id`, `nome`, `custo` (m), `visao` (raio), `soEmbarcacao`.
+  - A Água tem `custo: null` e `soEmbarcacao: true`: o custo vem da embarcação.
+- **`embarcacoes[]`**: `id`, `nome`, `custoAresta` (m por aresta de rio), `custoAgua` (m por hex de Água).
+  - Galeão 1,5/1,5; Fragata 3/3; Canoa 4,5/4,5.
 - **`regioes[]`**:
   - `id`, `nome`, `rank`, `cr`, `hostilidade`;
   - `cor` (legenda do mapa) e `tinta` (`cor`, `forca`, `dessaturar`);
   - `bioma` (`verde` | `neve` | `deserto`) e `paletaUI` (o kit de UI, `"01"`–`"18"`);
   - `montagem` (`entradas`, `mistura`, `variacao`, `pesos`);
   - `materiais[]` (no máximo 4: `nome`, `raridade`, `familia`, `tipos`) e `materiaisStatus` (`proposta` |
-    `aprovado`).
+    `aprovado`);
+  - `alternativaDe` (só nas regiões alternativas: a região da base cujas células ela ocupa) e `ativaPorPadrao`.
 - **`cidades[]`**: `id`, `nome`, `mapaProprio`.
 - **`foraDaExtracao`**: os Materiais que nunca saem de sítio de extração.
 
@@ -72,6 +78,17 @@ dados/<mundo>/campanha/     o ESTADO do jogo; muda a cada sessão
 - **`especial`**: `{"id", "nome", "icone", "categoria", "conflito", "textoMestre", "textoJogadores"}`.
   - As categorias são `marco`, `assentamento`, `ruina`, `covil`, `refugio`, `portao` e `achado`.
   - `conflito: true` liga a exceção da Jornada.
+
+### `camadas/<regiao>.json`
+```json
+{"schemaVersion": "hexcrawl-hexes/1", "camada": "exemplo-miragem",
+ "hexes": [{"id": "0808", "tipo": "floresta", "regiao": "exemplo-miragem", "cidade": null, ...}]}
+```
+- Tem o mesmo formato de `hexes.json`, mais o campo `camada`.
+- Só cobre as células que a região alternativa ocupa. Todo registro tem `regiao` igual à camada.
+- O mapa em jogo é composto por `hexcrawl_ref/camadas.py` (`compor`):
+  - a região da base desligada sai;
+  - a camada alternativa ligada entra por cima.
 
 ### `arestas.json`
 ```json
@@ -129,10 +146,11 @@ dados/<mundo>/campanha/     o ESTADO do jogo; muda a cada sessão
 |---|---|
 | `semente` | semente das rolagens e das montagens |
 | `tempo` | `{"dia", "periodo"}` |
-| `grupo` | `{"hex", "aresta", "membros": [{"nome", "movimento"}], "embarcacao": null \| {"nome", "orcamento"}}` |
-| `dia` | `{"orcamento", "restante", "divida", "andados", "explorados"}` |
+| `grupo` | `{"hex", "aresta", "membros": [{"nome", "movimento"}], "embarcacao": null \| {"id", "nome"}}`. `aresta` é a aresta de rio onde o barco está |
+| `dia` | `{"orcamento", "restante", "divida", "andados", "trecho", "explorados", "explorouAqui"}`. `trecho` são os hexes desde a última parada (H da Jornada) |
+| `camadas` | `{"<regiao>": true \| false}`: camadas ligadas e desligadas. Sem chave, vale `ativaPorPadrao` |
 | `vistos` | hexes que já estiveram no campo de visão (a névoa preta sai). "Visível agora" é recalculado, não salvo |
-| `tabelas` | `{"CCLL": {"entradas": [{"evento", "peso"}], "travada"}}`: só os hexes já montados |
+| `tabelas` | `{"CCLL": {"entradas": [{"evento", "peso"}], "travada"}}`: só os hexes já montados. Num hex de camada alternativa, a chave é `"CCLL@<camada>"` (vale para `definidos` e `revelados` também) |
 | `definidos` | `{"CCLL": evento}`: hexes marcados (notável, raro ou Abrigo) |
 | `revelados` | `{"CCLL": [eventos]}`: o que os jogadores já viram em cada hex |
 | `consumidos` | notáveis e raros que já saíram |
@@ -156,6 +174,10 @@ dados/<mundo>/campanha/     o ESTADO do jogo; muda a cada sessão
 | 10 | Os ids de evento são únicos no mundo; categoria, raridade, polaridade e tipos são válidos | falha |
 | 11 | Hex neutro sem nenhum evento possível na região | aviso |
 | 12 | As faixas de consequência são iguais às do Sistema | falha |
+| 13 | A região alternativa aponta para uma região da base; a base não usa região alternativa | falha |
+| 14 | O arquivo de camada é de uma região alternativa; os hexes dele existem, não se repetem, têm tipo válido e `regiao` igual à camada | falha |
+| 15 | O hex da camada cobre uma célula de outra região que não a `alternativaDe` | aviso |
+| 16 | Os ids de embarcação não se repetem; o tipo só de embarcação não tem custo próprio | falha / aviso |
 
 - Uso: `python -m hexcrawl_ref.validador dados/exemplo/mundo`. O resumo traz a contagem por tipo e por região.
 - No app, o validador roda **ao vivo no editor** e no CI.

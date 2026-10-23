@@ -77,9 +77,13 @@
       "type": "string"
      },
      "custo": {
-      "type": "number",
+      "type": [
+       "number",
+       "null"
+      ],
       "exclusiveMinimum": 0,
-      "multipleOf": 1.5
+      "multipleOf": 1.5,
+      "description": "null nos tipos só de embarcação: o custo vem da embarcação"
      },
      "visao": {
       "type": "integer",
@@ -309,6 +313,18 @@
        "proposta",
        "aprovado"
       ]
+     },
+     "alternativaDe": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$",
+      "description": "região alternativa (camada): ocupa células desta região da base enquanto ligada"
+     },
+     "ativaPorPadrao": {
+      "type": "boolean",
+      "description": "estado inicial da camada; a campanha manda (estado.camadas)"
      }
     }
    }
@@ -340,6 +356,40 @@
    "type": "array",
    "items": {
     "type": "string"
+   }
+  },
+  "embarcacoes": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+     "id",
+     "nome",
+     "custoAresta",
+     "custoAgua"
+    ],
+    "properties": {
+     "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"
+     },
+     "nome": {
+      "type": "string"
+     },
+     "custoAresta": {
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "multipleOf": 1.5,
+      "description": "metros por aresta de rio"
+     },
+     "custoAgua": {
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "multipleOf": 1.5,
+      "description": "metros por hex de Água"
+     }
+    }
    }
   }
  },

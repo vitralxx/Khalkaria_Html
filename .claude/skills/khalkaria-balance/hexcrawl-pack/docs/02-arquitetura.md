@@ -11,7 +11,7 @@ O Pedro deixou a escolha com o agente de balanceamento (*"mas você que sabe"*).
 
 | Peça | Escolha | Por quê |
 |---|---|---|
-| Núcleo de regras | Python 3.12, puro, testado | Já existe: é `referencia/hexcrawl_ref`, com 40 testes e 216 vetores |
+| Núcleo de regras | Python 3.12, puro, testado | Já existe: é `referencia/hexcrawl_ref`, com 45 testes e 248 vetores |
 | Servidor local | FastAPI + uvicorn | Serve a API, o WebSocket e o frontend. Mais tarde, pode hospedar o Bestiário também |
 | Janelas | **pywebview** (≥ 5) | Janelas nativas sem barra de navegador. Abre as janelas *Mestre* e *Jogadores*; a dos jogadores vai para o 2º monitor (`webview.screens`), em tela cheia |
 | Mapa | TypeScript + **PixiJS v8** (WebGL) | Sprites, filtros e render textures. Escala *nearest* e zoom inteiro para pixel art nítida |
@@ -73,8 +73,8 @@ dados/*.json ──carga+schema──▶ núcleo (Python) ◀── ações do m
          janela Mestre                        janela Jogadores
          (mundo inteiro)                (só a projeção dos jogadores)
 ```
-- **O servidor é a autoridade.** As janelas só desenham e mandam intenções: "andar até 0712", "explorar", "rolar
-  Jornada", "pintar 0712 de floresta".
+- **O servidor é a autoridade.** As janelas só desenham e mandam intenções: "andar até 0712", "explorar",
+  "registrar a Jornada", "pintar 0712 de floresta".
 - **Projeção dos jogadores, montada no servidor.** A janela dos jogadores nunca recebe o mundo inteiro. Ela recebe:
   - o token;
   - os hexes vistos, com tipo, tile, vias, rios e marcas;

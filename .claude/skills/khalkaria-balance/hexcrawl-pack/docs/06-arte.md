@@ -24,11 +24,11 @@ ponte e penhasco são **desenhados por código** na mesma linguagem visual.
 - Os 18 px de cima são folga: montanha, árvore e torre sobem até 17 px acima da face (`acimaDaFace` no atlas).
 - A **silhueta é simétrica**: espelhar na horizontal não muda nenhum pixel do contorno (medido). O espelho é seguro.
 
-## 2. O que cada tile é (proposta, `atlas.json`)
+## 2. O que cada tile é (`atlas.json`, confirmado na D159)
 | Linha | Conteúdo |
 |---|---|
 | 0 | campos, floresta, floresta densa, colinas, serra com pinheiros, pico nevado, água rasa, água funda |
-| 1 | vila verde, vila de terra, castelo, campo laranja listrado `[P8]`, floresta com clareira, pântano, campos claros, campos floridos |
+| 1 | vila verde, vila de terra, castelo, plantação, floresta com clareira, pântano, campos claros, campos floridos |
 | 2 (neve) | campos, floresta, floresta densa, colinas, serra com pinheiros, água com gelo, vila, fortaleza |
 | 3 (deserto) | areia, areia com rochas, dunas, meseta, oásis, acampamento, vila, palácio |
 | 4 | árvore gigante; 3 *props* sem hex (rocha com musgo, cristal, minério); 2 portos sobre água; farol; torre sombria |
@@ -45,11 +45,13 @@ ponte e penhasco são **desenhados por código** na mesma linguagem visual.
 | montanha | montanha-pico 3, serra-pinheiros-verde 1 | serra-pinheiros-neve 2, montanha-pico 1 | meseta |
 | pantano | pantano | pantano | pantano |
 | deserto | areia 3, dunas 2 | areia 3, dunas 2 | areia 3, dunas 2 |
-| ermo | areia 2, areia-rochas 1 `[P8]` | idem | idem |
+| ermo | areia 2, areia-rochas 1, com a tinta cinza dessaturada do Ermo | idem | idem |
 | agua | rasa ou funda pela regra da §4 | gelo (rasa), funda | rasa ou funda |
 | litoral | campos do bioma + orla por código (§4) | idem | idem |
 
 - O bioma vem da região: Cordilheira é neve; Deserto e Ermo são deserto; o resto é verde.
+- **Plantação** `[Pedro]`: Campos vizinho de um assentamento (especial ou evento marcado) soma `plantacao` (peso 3)
+  às variantes (`atlas.json > pertoDeAssentamento`).
 - Os especiais usam os tiles de `uso: "assentamento"` e `"especial"`, escolhidos no carimbo.
 
 ## 3. Repetição
@@ -82,8 +84,8 @@ Não gire os tiles: a perspectiva é fixa.
 
 ## 5. Rios, vias, ponte e penhasco, por código
 A folha `vias.png` só tem peças que ligam as **diagonais** (NE, SE, SO, NO): não há N e S, nem pontas. Isso foi medido
-e está em `atlas.json > vias.pecas`. Por isso **as vias são desenhadas por código**, e a folha serve de referência de
-estilo e de paleta.
+e está em `atlas.json > vias.pecas`. Por isso **as vias são desenhadas por código** `[Pedro]`, e a folha serve de
+referência de estilo e de paleta. A paleta verde da folha não é usada.
 
 **Rio** (o Pedro quer *"bonitos com alguma transição de sobreposição"*)
 - **Traçado.** Para cada aresta do rio, um segmento entre os 2 vértices. Arestas seguidas dividem vértice, então o
@@ -102,16 +104,30 @@ estilo e de paleta.
 - **Profundidade.** O segmento fica entre o hex de cima e o de baixo: z = profundidade do hex de baixo − 0,5. Assim, a
   copa e o pico do hex da frente cobrem o rio.
 
-**Via**
+**Estrada: tijolo cinza** `[Pedro]`
+O Pedro quer: *"não pode ser textura plana, tem que ser bonita com definição e variação"*.
 - **Traçado.** Em cada hex da via, uma curva do meio da aresta de entrada até o meio da aresta de saída, com controle
   no centro (quadrática). As pontas terminam no centro.
-- **Estrada:** 3 px com contorno de 1 px, na paleta cinza da folha:
-  - contorno `#414141`;
-  - corpo `#61584f` e `#6e665d`;
-  - musgo `#29701f`.
-- **Trilha:** 2 px tracejada (2 cheios, 1 vazio), em terra (`#914504`, `#af5211`). A paleta verde da folha é a
-  alternativa `[P7]`.
+- **Textura ao longo da curva.** Rasterize a 1x. Para cada pixel da faixa (5 px), calcule:
+  - `u`, o comprimento de arco até o ponto mais próximo do traçado;
+  - `v`, a distância lateral com sinal.
+
+  A cor sai de uma função de tijolo em `(u, v)`, e assim os tijolos acompanham a curva.
+  - Fileiras de tijolos de 2–3 × 1 px, deslocadas meia peça a cada fileira, com junta de 1 px em `#414141`.
+  - Cada tijolo sorteia um tom estável entre `#61584f` e `#6e665d`, ±1 degrau de brilho.
+  - De 5 a 10% dos tijolos ganham musgo (`#29701f`, `#278219`) ou ficam faltando, mostrando a terra.
+  - Meio-fio de 1 px mais claro nas duas bordas, com falhas ocasionais.
 - **Profundidade:** logo acima do tile do próprio hex.
+
+**Trilha: cavada no terreno** `[Pedro]`
+O Pedro quer: *"as trilhas carvam um caminho no terreno"*. Não é uma linha pintada por cima.
+- **Máscara.** Uma faixa de 2–3 px ao longo do mesmo traçado, com borda irregular (±1 px de ruído estável).
+- **Cavar.**
+  - Os pixels do tile sob a máscara escurecem ~25% e puxam para a terra (`#914504`, `#af5211`).
+  - A borda de cima ganha 1 px de sombra; a de baixo, 1 px de luz. Lê como um sulco.
+  - Pedrinhas e tufos esparsos na borda.
+- **É assado** na textura do hex, junto com a tinta. Em floresta com trilha, use a variante `floresta-clareira`.
+- **Por fases:** uma faixa escurecida simples na F1; o sulco completo na F7.
 
 **Ponte e penhasco**
 - **Ponte:** tábuas perpendiculares à aresta, 6 × 4 px, em marrom da espessura, desenhadas sobre o rio.

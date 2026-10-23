@@ -134,6 +134,11 @@
      }
     }
    }
+  },
+  "camada": {
+   "type": "string",
+   "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$",
+   "description": "só em camadas/<id>.json: a região alternativa dona destes hexes"
   }
  },
  "required": [

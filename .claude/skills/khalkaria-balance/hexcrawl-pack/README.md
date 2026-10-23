@@ -17,7 +17,7 @@ O pack de inicialização está pronto. O app começa na fase F0 (`docs/08-fases
 O núcleo de referência já roda e é testado:
 ```
 cd referencia
-python -m pytest -q tests                                  # 40 testes
+python -m pytest -q tests                                  # 45 testes
 python -m hexcrawl_ref.validador ../dados/exemplo/mundo    # 0 falhas, 0 avisos
 python gera_vetores.py ..                                  # regenera testes/vetores-regras.json
 python gera_exemplo.py ..                                  # regenera dados/exemplo

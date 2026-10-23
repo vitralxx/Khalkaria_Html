@@ -3,81 +3,267 @@
  "$id": "https://khalkaria/hexcrawl/atlas.schema.json",
  "title": "Atlas das folhas de arte (tiles de terreno e peças de via)",
  "type": "object",
- "required": ["schemaVersion", "folhas", "face", "tiles", "variantes", "agua", "vias"],
+ "required": [
+  "schemaVersion",
+  "folhas",
+  "face",
+  "tiles",
+  "variantes",
+  "agua",
+  "vias"
+ ],
  "properties": {
-  "schemaVersion": {"const": "hexcrawl-atlas/1"},
-  "_doc": {"type": "string"},
+  "schemaVersion": {
+   "const": "hexcrawl-atlas/1"
+  },
+  "_doc": {
+   "type": "string"
+  },
   "folhas": {
    "type": "object",
    "additionalProperties": {
     "type": "object",
-    "required": ["arquivo", "celula", "colunas", "linhas"],
+    "required": [
+     "arquivo",
+     "celula",
+     "colunas",
+     "linhas"
+    ],
     "properties": {
-     "arquivo": {"type": "string"},
-     "celula": {"type": "array", "items": {"type": "integer", "minimum": 1}, "minItems": 2, "maxItems": 2},
-     "colunas": {"type": "integer", "minimum": 1},
-     "linhas": {"type": "integer", "minimum": 1}
+     "arquivo": {
+      "type": "string"
+     },
+     "celula": {
+      "type": "array",
+      "items": {
+       "type": "integer",
+       "minimum": 1
+      },
+      "minItems": 2,
+      "maxItems": 2
+     },
+     "colunas": {
+      "type": "integer",
+      "minimum": 1
+     },
+     "linhas": {
+      "type": "integer",
+      "minimum": 1
+     }
     }
    }
   },
-  "face": {"type": "object", "required": ["x", "y", "largura", "altura", "espessura", "vertices"]},
+  "face": {
+   "type": "object",
+   "required": [
+    "x",
+    "y",
+    "largura",
+    "altura",
+    "espessura",
+    "vertices"
+   ]
+  },
   "tiles": {
    "type": "array",
    "items": {
     "type": "object",
     "additionalProperties": false,
-    "required": ["id", "folha", "lin", "col", "uso", "caixa", "acimaDaFace", "espelhavel"],
+    "required": [
+     "id",
+     "folha",
+     "lin",
+     "col",
+     "uso",
+     "caixa",
+     "acimaDaFace",
+     "espelhavel"
+    ],
     "properties": {
-     "id": {"type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"},
-     "folha": {"type": "string"},
-     "lin": {"type": "integer", "minimum": 0},
-     "col": {"type": "integer", "minimum": 0},
-     "uso": {"enum": ["terreno", "variante", "assentamento", "especial", "prop"]},
-     "tipo": {"enum": ["campos", "floresta", "floresta-densa", "colinas", "montanha", "pantano", "deserto", "ermo", "agua", "litoral", null]},
-     "bioma": {"enum": ["verde", "neve", "deserto", null]},
-     "caixa": {"type": "array", "items": {"type": "integer"}, "minItems": 4, "maxItems": 4},
-     "acimaDaFace": {"type": "integer", "minimum": 0},
-     "espelhavel": {"type": "boolean"},
-     "nota": {"type": "string"}
+     "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"
+     },
+     "folha": {
+      "type": "string"
+     },
+     "lin": {
+      "type": "integer",
+      "minimum": 0
+     },
+     "col": {
+      "type": "integer",
+      "minimum": 0
+     },
+     "uso": {
+      "enum": [
+       "terreno",
+       "variante",
+       "assentamento",
+       "especial",
+       "prop"
+      ]
+     },
+     "tipo": {
+      "enum": [
+       "campos",
+       "floresta",
+       "floresta-densa",
+       "colinas",
+       "montanha",
+       "pantano",
+       "deserto",
+       "ermo",
+       "agua",
+       "litoral",
+       null
+      ]
+     },
+     "bioma": {
+      "enum": [
+       "verde",
+       "neve",
+       "deserto",
+       null
+      ]
+     },
+     "caixa": {
+      "type": "array",
+      "items": {
+       "type": "integer"
+      },
+      "minItems": 4,
+      "maxItems": 4
+     },
+     "acimaDaFace": {
+      "type": "integer",
+      "minimum": 0
+     },
+     "espelhavel": {
+      "type": "boolean"
+     },
+     "nota": {
+      "type": "string"
+     }
     }
    }
   },
   "variantes": {
    "type": "object",
-   "propertyNames": {"enum": ["campos", "floresta", "floresta-densa", "colinas", "montanha", "pantano", "deserto", "ermo", "agua", "litoral"]},
+   "propertyNames": {
+    "enum": [
+     "campos",
+     "floresta",
+     "floresta-densa",
+     "colinas",
+     "montanha",
+     "pantano",
+     "deserto",
+     "ermo",
+     "agua",
+     "litoral"
+    ]
+   },
    "additionalProperties": {
     "type": "object",
-    "propertyNames": {"enum": ["verde", "neve", "deserto", "*"]},
+    "propertyNames": {
+     "enum": [
+      "verde",
+      "neve",
+      "deserto",
+      "*"
+     ]
+    },
     "additionalProperties": {
      "type": "array",
      "minItems": 1,
-     "items": {"type": "object", "required": ["tile", "peso"], "properties": {"tile": {"type": "string"}, "peso": {"type": "number", "exclusiveMinimum": 0}}}
+     "items": {
+      "type": "object",
+      "required": [
+       "tile",
+       "peso"
+      ],
+      "properties": {
+       "tile": {
+        "type": "string"
+       },
+       "peso": {
+        "type": "number",
+        "exclusiveMinimum": 0
+       }
+      }
+     }
     }
    }
   },
-  "agua": {"type": "object"},
-  "litoral": {"type": "object"},
+  "agua": {
+   "type": "object"
+  },
+  "litoral": {
+   "type": "object"
+  },
   "vias": {
    "type": "object",
-   "required": ["pecas"],
+   "required": [
+    "pecas"
+   ],
    "properties": {
     "pecas": {
      "type": "array",
      "items": {
       "type": "object",
-      "required": ["lin", "col", "cor", "liga"],
+      "required": [
+       "lin",
+       "col",
+       "cor",
+       "liga"
+      ],
       "properties": {
-       "lin": {"type": "integer"}, "col": {"type": "integer"}, "cor": {"type": "string"},
-       "liga": {"type": "array", "items": {"enum": ["N", "NE", "SE", "S", "SO", "NO"]}},
-       "caixa": {"type": "array"}
+       "lin": {
+        "type": "integer"
+       },
+       "col": {
+        "type": "integer"
+       },
+       "cor": {
+        "type": "string"
+       },
+       "liga": {
+        "type": "array",
+        "items": {
+         "enum": [
+          "N",
+          "NE",
+          "SE",
+          "S",
+          "SO",
+          "NO"
+         ]
+        }
+       },
+       "caixa": {
+        "type": "array"
+       }
       }
      }
     },
-    "observacao": {"type": "string"},
-    "paletas": {"type": "object"}
+    "observacao": {
+     "type": "string"
+    },
+    "paletas": {
+     "type": "object"
+    }
    }
   },
-  "paletaAgua": {"type": "object"},
-  "paletaBorda": {"type": "array"}
+  "paletaAgua": {
+   "type": "object"
+  },
+  "paletaBorda": {
+   "type": "array"
+  },
+  "pertoDeAssentamento": {
+   "$ref": "#/properties/variantes",
+   "description": "variantes somadas às do bioma em Campos vizinho de assentamento"
+  }
  }
 }

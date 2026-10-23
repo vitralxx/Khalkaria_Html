@@ -1,0 +1,58 @@
+{
+ "schemaVersion": "hexcrawl-eventos/1",
+ "regiao": "exemplo-miragem",
+ "exemplo": true,
+ "eventos": [
+  {
+   "id": "exemplo-miragem-01",
+   "nome": "Eco de passos",
+   "categoria": "interacao",
+   "raridade": "comum",
+   "polaridade": "neutro",
+   "tipos": [
+    "floresta"
+   ],
+   "marca": false,
+   "icone": null,
+   "textoMestre": "Exemplo de interacao (comum).",
+   "textoJogadores": "",
+   "mecanica": {},
+   "travaNarrativa": false,
+   "exemplo": true
+  },
+  {
+   "id": "exemplo-miragem-02",
+   "nome": "Sombra que morde",
+   "categoria": "combate",
+   "raridade": "comum",
+   "polaridade": "adverso",
+   "tipos": [
+    "floresta"
+   ],
+   "marca": false,
+   "icone": null,
+   "textoMestre": "Exemplo de combate (comum).",
+   "textoJogadores": "",
+   "mecanica": {},
+   "travaNarrativa": false,
+   "exemplo": true
+  },
+  {
+   "id": "exemplo-miragem-03",
+   "nome": "Fonte que não existe",
+   "categoria": "achado",
+   "raridade": "raro",
+   "polaridade": "favoravel",
+   "tipos": [
+    "floresta"
+   ],
+   "marca": true,
+   "icone": "ruinas",
+   "textoMestre": "Exemplo de achado (raro).",
+   "textoJogadores": "",
+   "mecanica": {},
+   "travaNarrativa": false,
+   "exemplo": true
+  }
+ ]
+}

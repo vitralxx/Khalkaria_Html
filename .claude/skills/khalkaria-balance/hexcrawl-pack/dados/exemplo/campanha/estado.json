@@ -26,7 +26,12 @@
   "restante": 9,
   "divida": 0,
   "andados": [],
-  "explorados": []
+  "trecho": [],
+  "explorados": [],
+  "explorouAqui": false
+ },
+ "camadas": {
+  "exemplo-miragem": true
  },
  "vistos": [
   "0304",

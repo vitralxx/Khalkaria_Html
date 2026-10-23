@@ -72,8 +72,8 @@
   {
    "id": "agua",
    "nome": "Água",
-   "custo": 1.5,
-   "visao": 1,
+   "custo": null,
+   "visao": 2,
    "soEmbarcacao": true
   },
   {
@@ -81,6 +81,26 @@
    "nome": "Litoral",
    "custo": 4.5,
    "visao": 2
+  }
+ ],
+ "embarcacoes": [
+  {
+   "id": "galeao",
+   "nome": "Galeão",
+   "custoAresta": 1.5,
+   "custoAgua": 1.5
+  },
+  {
+   "id": "fragata",
+   "nome": "Fragata",
+   "custoAresta": 3,
+   "custoAgua": 3
+  },
+  {
+   "id": "canoa",
+   "nome": "Canoa",
+   "custoAresta": 4.5,
+   "custoAgua": 4.5
   }
  ],
  "regioes": [
@@ -152,7 +172,7 @@
      ]
     }
    ],
-   "materiaisStatus": "proposta"
+   "materiaisStatus": "aprovado"
   },
   {
    "id": "cinturao-silencioso",
@@ -221,7 +241,7 @@
      ]
     }
    ],
-   "materiaisStatus": "proposta"
+   "materiaisStatus": "aprovado"
   },
   {
    "id": "emaranhado-de-raizes",
@@ -282,7 +302,7 @@
      ]
     }
    ],
-   "materiaisStatus": "proposta"
+   "materiaisStatus": "aprovado"
   },
   {
    "id": "bacia-acidentada",
@@ -334,7 +354,7 @@
      ]
     }
    ],
-   "materiaisStatus": "proposta"
+   "materiaisStatus": "aprovado"
   },
   {
    "id": "costas-rochosas",
@@ -395,7 +415,7 @@
      ]
     }
    ],
-   "materiaisStatus": "proposta"
+   "materiaisStatus": "aprovado"
   },
   {
    "id": "terras-livres",
@@ -465,7 +485,7 @@
      ]
     }
    ],
-   "materiaisStatus": "proposta"
+   "materiaisStatus": "aprovado"
   },
   {
    "id": "cordilheira-cristalina",
@@ -534,7 +554,7 @@
      ]
     }
    ],
-   "materiaisStatus": "proposta"
+   "materiaisStatus": "aprovado"
   },
   {
    "id": "deserto-do-abismo",
@@ -605,7 +625,7 @@
      ]
     }
    ],
-   "materiaisStatus": "proposta"
+   "materiaisStatus": "aprovado"
   },
   {
    "id": "ermo-das-cinzas",
@@ -677,7 +697,7 @@
      ]
     }
    ],
-   "materiaisStatus": "proposta"
+   "materiaisStatus": "aprovado"
   }
  ],
  "cidades": [

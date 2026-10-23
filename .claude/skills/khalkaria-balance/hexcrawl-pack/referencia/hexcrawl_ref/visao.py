@@ -1,7 +1,8 @@
 """Visão e névoa (docs/01 §6).
 
-- O raio sai do tipo do hex onde o grupo está (mundo.json > tipos[].visao): padrão 1, Colinas 2, Litoral 2,
-  Montanha 3, Floresta Densa 0.
+- O raio sai do tipo do hex onde o grupo está (mundo.json > tipos[].visao, configurável no app): padrão 1,
+  Colinas 2, Litoral 2, Montanha 3, Floresta Densa 0, Água 2 (embarcado num hex de Água).
+- Embarcado num RIO, o barco está numa aresta: o grupo vê só os 2 hexes dessa aresta (`visiveis_na_aresta`).
 - Um hex no raio é visível se a linha reta até ele não atravessa um penhasco do lado BAIXO para o lado ALTO.
   Do alto, a visão desce; de baixo, o penhasco tapa.
 - Névoa, por hex, na tela dos jogadores:
@@ -39,6 +40,12 @@ def visiveis(origem: str, raio: int, colunas: int, linhas: int, penhascos: dict[
         if not bloqueado:
             out.add(alvo)
     return out
+
+
+def visiveis_na_aresta(chave_aresta: str, colunas: int, linhas: int) -> set[str]:
+    """Embarcado num rio: só os 2 hexes da aresta onde o barco está."""
+    a, b = hm.hexes_da_aresta(chave_aresta)
+    return {h for h in (a, b) if hm.dentro_da_grade(h, colunas, linhas)}
 
 
 def estado_nevoa(hid: str, vistos: set[str], visiveis_agora: set[str]) -> str:

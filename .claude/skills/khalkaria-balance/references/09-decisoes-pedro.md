@@ -1081,6 +1081,40 @@ Texto verbatim em `18-batedor-rework.md` §0 e as lições em `19-gabarito-de-cl
     - a DungeonFont não tinha ã/õ (criei a DungeonFont-PT) e ainda não tem → … –.
 
     As perguntas abertas são P1–P15, em `hexcrawl-pack/docs/10-pendencias.md`.
+- **D159** (2026-10-23) Hexcrawl, respostas P1–P15. Aplicadas no pack: regras em `docs/01`, núcleo, dados e
+  schemas.
+  - **Repositório do app:** `vitralxx/khalkaria_hexcrawl`. O pack subiu para o `main`, com `CLAUDE.agente.md` virando
+    `CLAUDE.md`. O pack continua espelhado em `hexcrawl-pack/` neste branch.
+  - **Respostas:**
+    1. Topo chato.
+    2. Explorar leva o restante ao limiar seguinte.
+    3. Só explorar rola a tabela, **mas quando o movimento acaba o grupo explora o hex onde está e só então
+       descansa**.
+    4. Montanha 3, e **os números ficam configuráveis no app**.
+    5. As regiões formam o mapa **como camadas** que ligam e desligam. A ilusão do Oásis e o Abismo são duas regiões
+       que o mestre alterna. No pack: `regioes[].alternativaDe`, `camadas/<id>.json`, chave de estado `CCLL@camada`
+       e névoa por lugar.
+    6. Os 4 materiais por região e a regra do sítio estão aprovados.
+    7. **Estrada de tijolo cinza**, *"não pode ser textura plana, tem que ser bonita com definição e variação"*;
+       **trilha cavada** no terreno.
+    8. Ermo com areia e rochas tingidas; o laranja listrado é plantação.
+    9. **Jornada a cada parada num hex, uma vez por período** (fim de período ou explorar). *"O app deve lembrar os
+       jogadores de rolarem os dados, nunca rolar por eles."* Isso substitui o 1 por dia da D158.
+    10. Bacia: provisoriamente, os itens do CR 2 (Emaranhado e Costas). *"O ideal era adicionar a bacia como região
+        no bazar e nos itens"*: tarefa minha com o Pedro, no CSV.
+    11. Comerciante com 2d4 itens e teto pelo CR.
+    12. Embarcado num rio, só os hexes da aresta; num hex de Água, visão 2.
+    13. Galeão, Fragata e Canoa: 1,5, 3 e 4,5 m por aresta de rio e por hex de Água, no orçamento do grupo.
+    14. O repositório (acima).
+    15. CD do rio com o maior H dos dois hexes.
+  - **Perguntas novas** (`docs/10`):
+    - P16: detalhes da Jornada por parada (H do trecho, um passo que encerra 2 períodos, texto da consequência, o hex
+      de conflito da D156);
+    - P17: os dados da região da ilusão;
+    - P18: os barcos nunca correm mais que estrada, e a Canoa no rio é mais lenta que Campos a pé, contra "a
+      navegação é a mais rápida" da D156.
+  - **Observação de balanceamento** (`docs/10` §3): a Jornada por parada triplica o desgaste. Em H10, um grupo médio
+    perde de ~7 a ~10 de Saúde e de ~14 a ~20 de Stamina por pessoa por dia.
 
 ## D68 — O andar de Nível 1 (truques)
 Todas as magias existentes **sobem 1 nível**: as antigas 1–4 viram 2–5. O novo Nível 1 são os

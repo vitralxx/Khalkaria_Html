@@ -85,13 +85,18 @@
       "object",
       "null"
      ],
+     "additionalProperties": false,
+     "required": [
+      "id"
+     ],
      "properties": {
+      "id": {
+       "type": "string",
+       "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$",
+       "description": "mundo.json > embarcacoes[].id"
+      },
       "nome": {
        "type": "string"
-      },
-      "orcamento": {
-       "type": "number",
-       "minimum": 0
       }
      }
     }
@@ -132,6 +137,18 @@
       "pattern": "^[0-9]{4}$",
       "description": "CCLL: coluna e linha 1-based, 2 dígitos cada"
      }
+    },
+    "trecho": {
+     "type": "array",
+     "items": {
+      "type": "string",
+      "pattern": "^[0-9]{4}$"
+     },
+     "description": "hexes em que o grupo entrou desde a última parada (H da Jornada)"
+    },
+    "explorouAqui": {
+     "type": "boolean",
+     "description": "já explorou o hex atual desde que chegou nele"
     }
    }
   },
@@ -147,7 +164,7 @@
   "tabelas": {
    "type": "object",
    "propertyNames": {
-    "pattern": "^[0-9]{4}$"
+    "pattern": "^[0-9]{4}(@[a-z0-9]+(-[a-z0-9]+)*)?$"
    },
    "additionalProperties": {
     "type": "object",
@@ -184,7 +201,7 @@
   "definidos": {
    "type": "object",
    "propertyNames": {
-    "pattern": "^[0-9]{4}$"
+    "pattern": "^[0-9]{4}(@[a-z0-9]+(-[a-z0-9]+)*)?$"
    },
    "additionalProperties": {
     "type": "string",
@@ -194,7 +211,7 @@
   "revelados": {
    "type": "object",
    "propertyNames": {
-    "pattern": "^[0-9]{4}$"
+    "pattern": "^[0-9]{4}(@[a-z0-9]+(-[a-z0-9]+)*)?$"
    },
    "additionalProperties": {
     "type": "array",
@@ -246,6 +263,16 @@
      }
     }
    }
+  },
+  "camadas": {
+   "type": "object",
+   "propertyNames": {
+    "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"
+   },
+   "additionalProperties": {
+    "type": "boolean"
+   },
+   "description": "camadas de região ligadas (true) ou desligadas (false); sem chave vale ativaPorPadrao"
   }
  },
  "required": [

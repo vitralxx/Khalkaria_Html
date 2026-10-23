@@ -22,6 +22,7 @@ mundo = {
     'exemplo': True,
     'grade': {'orientacao': 'chato', 'offset': 'odd-q', 'colunas': C, 'linhas': L, 'referencia': None},
     'tipos': mundo_real['tipos'],
+    'embarcacoes': mundo_real['embarcacoes'],
     'regioes': [
         {'id': 'exemplo-campos', 'nome': 'Campos de Exemplo', 'rank': 1, 'cr': '1', 'hostilidade': 5,
          'cor': '#8c0000', 'tinta': {'cor': '#8c0000', 'forca': 0.18}, 'bioma': 'verde', 'paletaUI': '10',
@@ -29,6 +30,11 @@ mundo = {
         {'id': 'exemplo-serra', 'nome': 'Serra de Exemplo', 'rank': 7, 'cr': '3', 'hostilidade': 15,
          'cor': '#00008d', 'tinta': {'cor': '#00008d', 'forca': 0.18}, 'bioma': 'neve', 'paletaUI': '08',
          'montagem': mundo_real['regioes'][6]['montagem'], 'materiais': []},
+        # camada alternativa: ocupa células da serra enquanto ligada (como a ilusão do Oásis sobre o Abismo)
+        {'id': 'exemplo-miragem', 'nome': 'Miragem de Exemplo', 'rank': 7, 'cr': '3', 'hostilidade': 15,
+         'cor': '#3c8c5a', 'tinta': {'cor': '#3c8c5a', 'forca': 0.18}, 'bioma': 'verde', 'paletaUI': '15',
+         'montagem': mundo_real['regioes'][6]['montagem'], 'materiais': [],
+         'alternativaDe': 'exemplo-serra', 'ativaPorPadrao': True},
     ],
     'cidades': [{'id': 'cidade-exemplo', 'nome': 'Cidade de Exemplo', 'mapaProprio': 'cidades/cidade-exemplo'}],
 }
@@ -84,6 +90,10 @@ for c in range(1, C + 1):
                 h['especial'] = especiais[(c, l)]
         hexes.append(h)
 por_id = {h['id']: h for h in hexes}
+miragem = [{'id': hm.id_de(c, l), 'tipo': 'floresta', 'regiao': 'exemplo-miragem', 'cidade': None, 'custo': None,
+            'hostilidade': None, 'variante': None, 'especial': None, 'notas': ''}
+           for c, l in ((8, 8), (9, 8), (8, 9), (9, 9))]
+assert all(por_id[h['id']]['regiao'] == 'exemplo-serra' for h in miragem)
 
 # ---- rio: caminho mínimo na rede de vértices, do alto da serra até o lago
 grafo = {}
@@ -207,6 +217,12 @@ for rid in ('exemplo-campos', 'exemplo-serra'):
            icone='torre-sombria'),
     ]
     eventos[rid] = {'schemaVersion': 'hexcrawl-eventos/1', 'regiao': rid, 'exemplo': True, 'eventos': lst}
+eventos['exemplo-miragem'] = {'schemaVersion': 'hexcrawl-eventos/1', 'regiao': 'exemplo-miragem', 'exemplo': True,
+                              'eventos': [
+    ev('exemplo-miragem', 1, 'Eco de passos', 'interacao', 'comum', 'neutro', ['floresta']),
+    ev('exemplo-miragem', 2, 'Sombra que morde', 'combate', 'comum', 'adverso', ['floresta']),
+    ev('exemplo-miragem', 3, 'Fonte que não existe', 'achado', 'raro', 'favoravel', ['floresta'], icone='ruinas'),
+]}
 
 consequencias = {}
 for rid in eventos:
@@ -224,7 +240,9 @@ estado = {
     'grupo': {'hex': '0404', 'aresta': None,
               'membros': [{'nome': 'Exemplo A', 'movimento': 9}, {'nome': 'Exemplo B', 'movimento': 10.5}],
               'embarcacao': None},
-    'dia': {'orcamento': 9, 'restante': 9, 'divida': 0, 'andados': [], 'explorados': []},
+    'dia': {'orcamento': 9, 'restante': 9, 'divida': 0, 'andados': [], 'trecho': [], 'explorados': [],
+            'explorouAqui': False},
+    'camadas': {'exemplo-miragem': True},
     'vistos': sorted(vis),
     'tabelas': {}, 'definidos': {}, 'revelados': {}, 'consumidos': [], 'extracoesNoDia': 0,
     'diario': [{'dia': 1, 'periodo': 'manha', 'hex': '0404', 'tipo': 'inicio', 'texto': 'O grupo parte do povoado.'}],
@@ -249,6 +267,8 @@ for rid, doc in eventos.items():
     grava(f'mundo/eventos/{rid}.json', doc)
 for rid, doc in consequencias.items():
     grava(f'mundo/consequencias/{rid}.json', doc)
+grava('mundo/camadas/exemplo-miragem.json', {'schemaVersion': 'hexcrawl-hexes/1', 'camada': 'exemplo-miragem',
+                                             'exemplo': True, 'hexes': miragem})
 grava('campanha/estado.json', estado)
 print('rio:', arestas_rio)
 print('estrada:', estrada, '| trilha:', trilha, '| pontes:', [a['aresta'] for a in arestas if a['tipo'] == 'ponte'])

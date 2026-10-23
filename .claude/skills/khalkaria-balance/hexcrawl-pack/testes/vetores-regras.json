@@ -811,7 +811,12 @@
      "pode": true,
      "restante": 4.5,
      "periodo": "tarde",
-     "divida": 0.0
+     "divida": 0.0,
+     "encerrados": [
+      "manha"
+     ],
+     "parada": true,
+     "fimDoDia": false
     },
     {
      "acao": "entrar",
@@ -819,7 +824,13 @@
      "pode": true,
      "restante": 0.0,
      "periodo": "descanso",
-     "divida": 0.0
+     "divida": 0.0,
+     "encerrados": [
+      "tarde",
+      "noite"
+     ],
+     "parada": true,
+     "fimDoDia": true
     }
    ]
   },
@@ -833,7 +844,12 @@
      "pode": true,
      "restante": 6.0,
      "periodo": "tarde",
-     "divida": 0.0
+     "divida": 0.0,
+     "encerrados": [
+      "manha"
+     ],
+     "parada": true,
+     "fimDoDia": false
     },
     {
      "acao": "entrar",
@@ -841,7 +857,12 @@
      "pode": true,
      "restante": 3.0,
      "periodo": "noite",
-     "divida": 0.0
+     "divida": 0.0,
+     "encerrados": [
+      "tarde"
+     ],
+     "parada": true,
+     "fimDoDia": false
     },
     {
      "acao": "entrar",
@@ -849,7 +870,12 @@
      "pode": true,
      "restante": 0.0,
      "periodo": "descanso",
-     "divida": 0.0
+     "divida": 0.0,
+     "encerrados": [
+      "noite"
+     ],
+     "parada": true,
+     "fimDoDia": true
     }
    ]
   },
@@ -863,7 +889,10 @@
      "pode": true,
      "restante": 7.5,
      "periodo": "manha",
-     "divida": 0.0
+     "divida": 0.0,
+     "encerrados": [],
+     "parada": false,
+     "fimDoDia": false
     },
     {
      "acao": "entrar",
@@ -871,7 +900,12 @@
      "pode": true,
      "restante": 6.0,
      "periodo": "tarde",
-     "divida": 0.0
+     "divida": 0.0,
+     "encerrados": [
+      "manha"
+     ],
+     "parada": true,
+     "fimDoDia": false
     },
     {
      "acao": "entrar",
@@ -879,7 +913,10 @@
      "pode": true,
      "restante": 4.5,
      "periodo": "tarde",
-     "divida": 0.0
+     "divida": 0.0,
+     "encerrados": [],
+     "parada": false,
+     "fimDoDia": false
     },
     {
      "acao": "entrar",
@@ -887,7 +924,12 @@
      "pode": true,
      "restante": 3.0,
      "periodo": "noite",
-     "divida": 0.0
+     "divida": 0.0,
+     "encerrados": [
+      "tarde"
+     ],
+     "parada": true,
+     "fimDoDia": false
     },
     {
      "acao": "entrar",
@@ -895,7 +937,10 @@
      "pode": true,
      "restante": 1.5,
      "periodo": "noite",
-     "divida": 0.0
+     "divida": 0.0,
+     "encerrados": [],
+     "parada": false,
+     "fimDoDia": false
     },
     {
      "acao": "entrar",
@@ -903,7 +948,12 @@
      "pode": true,
      "restante": 0.0,
      "periodo": "descanso",
-     "divida": 0.0
+     "divida": 0.0,
+     "encerrados": [
+      "noite"
+     ],
+     "parada": true,
+     "fimDoDia": true
     },
     {
      "acao": "entrar",
@@ -911,7 +961,10 @@
      "pode": false,
      "restante": 0.0,
      "periodo": "descanso",
-     "divida": 0.0
+     "divida": 0.0,
+     "encerrados": [],
+     "parada": false,
+     "fimDoDia": false
     }
    ]
   },
@@ -922,7 +975,12 @@
     {
      "acao": "explorar",
      "restante": 6.0,
-     "periodo": "tarde"
+     "periodo": "tarde",
+     "encerrados": [
+      "manha"
+     ],
+     "parada": true,
+     "fimDoDia": false
     },
     {
      "acao": "entrar",
@@ -930,12 +988,22 @@
      "pode": true,
      "restante": 1.5,
      "periodo": "noite",
-     "divida": 0.0
+     "divida": 0.0,
+     "encerrados": [
+      "tarde"
+     ],
+     "parada": true,
+     "fimDoDia": false
     },
     {
      "acao": "explorar",
      "restante": 0.0,
-     "periodo": "descanso"
+     "periodo": "descanso",
+     "encerrados": [
+      "noite"
+     ],
+     "parada": true,
+     "fimDoDia": true
     }
    ]
   },
@@ -949,7 +1017,13 @@
      "pode": true,
      "restante": 3.0,
      "periodo": "noite",
-     "divida": 0.0
+     "divida": 0.0,
+     "encerrados": [
+      "manha",
+      "tarde"
+     ],
+     "parada": true,
+     "fimDoDia": false
     },
     {
      "acao": "entrar",
@@ -957,12 +1031,20 @@
      "pode": false,
      "restante": 3.0,
      "periodo": "noite",
-     "divida": 0.0
+     "divida": 0.0,
+     "encerrados": [],
+     "parada": false,
+     "fimDoDia": false
     },
     {
      "acao": "explorar",
      "restante": 0.0,
-     "periodo": "descanso"
+     "periodo": "descanso",
+     "encerrados": [
+      "noite"
+     ],
+     "parada": true,
+     "fimDoDia": true
     }
    ]
   },
@@ -976,7 +1058,14 @@
      "pode": true,
      "restante": 0.0,
      "periodo": "descanso",
-     "divida": 3.0
+     "divida": 3.0,
+     "encerrados": [
+      "manha",
+      "tarde",
+      "noite"
+     ],
+     "parada": true,
+     "fimDoDia": true
     }
    ]
   },
@@ -990,7 +1079,10 @@
      "pode": true,
      "restante": 4.5,
      "periodo": "manha",
-     "divida": 0.0
+     "divida": 0.0,
+     "encerrados": [],
+     "parada": false,
+     "fimDoDia": false
     },
     {
      "acao": "entrar",
@@ -998,7 +1090,10 @@
      "pode": false,
      "restante": 4.5,
      "periodo": "manha",
-     "divida": 0.0
+     "divida": 0.0,
+     "encerrados": [],
+     "parada": false,
+     "fimDoDia": false
     }
    ]
   },
@@ -1012,7 +1107,10 @@
      "pode": false,
      "restante": 3.0,
      "periodo": "tarde",
-     "divida": 0.0
+     "divida": 0.0,
+     "encerrados": [],
+     "parada": false,
+     "fimDoDia": false
     }
    ]
   },
@@ -1026,14 +1124,229 @@
      "pode": true,
      "restante": 3.0,
      "periodo": "noite",
-     "divida": 0.0
+     "divida": 0.0,
+     "encerrados": [
+      "manha",
+      "tarde"
+     ],
+     "parada": true,
+     "fimDoDia": false
     },
     {
-     "acao": "acampar",
+     "acao": "encerrar",
      "restante": 0.0,
-     "periodo": "descanso"
+     "periodo": "descanso",
+     "encerrados": [
+      "noite"
+     ],
+     "parada": true,
+     "fimDoDia": true
     }
    ]
+  },
+  {
+   "orcamento": 9,
+   "dividaInicial": 0,
+   "passos": [
+    {
+     "acao": "entrar",
+     "custo": 1.5,
+     "pode": true,
+     "restante": 7.5,
+     "periodo": "manha",
+     "divida": 0.0,
+     "encerrados": [],
+     "parada": false,
+     "fimDoDia": false
+    },
+    {
+     "acao": "entrar",
+     "custo": 1.5,
+     "pode": true,
+     "restante": 6.0,
+     "periodo": "tarde",
+     "divida": 0.0,
+     "encerrados": [
+      "manha"
+     ],
+     "parada": true,
+     "fimDoDia": false
+    },
+    {
+     "acao": "entrar",
+     "custo": 1.5,
+     "pode": true,
+     "restante": 4.5,
+     "periodo": "tarde",
+     "divida": 0.0,
+     "encerrados": [],
+     "parada": false,
+     "fimDoDia": false
+    },
+    {
+     "acao": "explorar",
+     "restante": 3.0,
+     "periodo": "noite",
+     "encerrados": [
+      "tarde"
+     ],
+     "parada": true,
+     "fimDoDia": false
+    },
+    {
+     "acao": "entrar",
+     "custo": 1.5,
+     "pode": true,
+     "restante": 1.5,
+     "periodo": "noite",
+     "divida": 0.0,
+     "encerrados": [],
+     "parada": false,
+     "fimDoDia": false
+    },
+    {
+     "acao": "entrar",
+     "custo": 1.5,
+     "pode": true,
+     "restante": 0.0,
+     "periodo": "descanso",
+     "divida": 0.0,
+     "encerrados": [
+      "noite"
+     ],
+     "parada": true,
+     "fimDoDia": true
+    }
+   ]
+  }
+ ],
+ "periodosEncerrados": [
+  {
+   "antes": "manha",
+   "depois": "manha",
+   "esperado": []
+  },
+  {
+   "antes": "manha",
+   "depois": "tarde",
+   "esperado": [
+    "manha"
+   ]
+  },
+  {
+   "antes": "manha",
+   "depois": "noite",
+   "esperado": [
+    "manha",
+    "tarde"
+   ]
+  },
+  {
+   "antes": "manha",
+   "depois": "descanso",
+   "esperado": [
+    "manha",
+    "tarde",
+    "noite"
+   ]
+  },
+  {
+   "antes": "tarde",
+   "depois": "manha",
+   "esperado": []
+  },
+  {
+   "antes": "tarde",
+   "depois": "tarde",
+   "esperado": []
+  },
+  {
+   "antes": "tarde",
+   "depois": "noite",
+   "esperado": [
+    "tarde"
+   ]
+  },
+  {
+   "antes": "tarde",
+   "depois": "descanso",
+   "esperado": [
+    "tarde",
+    "noite"
+   ]
+  },
+  {
+   "antes": "noite",
+   "depois": "manha",
+   "esperado": []
+  },
+  {
+   "antes": "noite",
+   "depois": "tarde",
+   "esperado": []
+  },
+  {
+   "antes": "noite",
+   "depois": "noite",
+   "esperado": []
+  },
+  {
+   "antes": "noite",
+   "depois": "descanso",
+   "esperado": [
+    "noite"
+   ]
+  },
+  {
+   "antes": "descanso",
+   "depois": "manha",
+   "esperado": []
+  },
+  {
+   "antes": "descanso",
+   "depois": "tarde",
+   "esperado": []
+  },
+  {
+   "antes": "descanso",
+   "depois": "noite",
+   "esperado": []
+  },
+  {
+   "antes": "descanso",
+   "depois": "descanso",
+   "esperado": []
+  }
+ ],
+ "hostilidadeDaParada": [
+  {
+   "trecho": [],
+   "hexAtual": 10,
+   "esperado": 10
+  },
+  {
+   "trecho": [
+    5
+   ],
+   "hexAtual": 10,
+   "esperado": 5
+  },
+  {
+   "trecho": [
+    5,
+    15,
+    10
+   ],
+   "hexAtual": 5,
+   "esperado": 15
+  },
+  {
+   "trecho": [
+    20,
+    20
+   ],
+   "hexAtual": 0,
+   "esperado": 20
   }
  ],
  "custoDoPasso": [
@@ -1066,6 +1379,38 @@
    "custoHex": 9,
    "via": "trilha",
    "esperado": 3.0
+  }
+ ],
+ "custoEmbarcado": [
+  {
+   "embarcacao": "galeao",
+   "naAgua": false,
+   "esperado": 1.5
+  },
+  {
+   "embarcacao": "galeao",
+   "naAgua": true,
+   "esperado": 1.5
+  },
+  {
+   "embarcacao": "fragata",
+   "naAgua": false,
+   "esperado": 3.0
+  },
+  {
+   "embarcacao": "fragata",
+   "naAgua": true,
+   "esperado": 3.0
+  },
+  {
+   "embarcacao": "canoa",
+   "naAgua": false,
+   "esperado": 4.5
+  },
+  {
+   "embarcacao": "canoa",
+   "naAgua": true,
+   "esperado": 4.5
   }
  ],
  "metaJornada": [
@@ -2279,6 +2624,51 @@
     "1209",
     "1210",
     "1211"
+   ]
+  }
+ ],
+ "visaoNaAresta": [
+  {
+   "aresta": "1010:N",
+   "colunas": 30,
+   "linhas": 26,
+   "esperado": [
+    "1009",
+    "1010"
+   ]
+  },
+  {
+   "aresta": "1010:NE",
+   "colunas": 30,
+   "linhas": 26,
+   "esperado": [
+    "1010",
+    "1110"
+   ]
+  },
+  {
+   "aresta": "1010:SE",
+   "colunas": 30,
+   "linhas": 26,
+   "esperado": [
+    "1010",
+    "1111"
+   ]
+  },
+  {
+   "aresta": "0101:N",
+   "colunas": 30,
+   "linhas": 26,
+   "esperado": [
+    "0101"
+   ]
+  },
+  {
+   "aresta": "3026:SE",
+   "colunas": 30,
+   "linhas": 26,
+   "esperado": [
+    "3026"
    ]
   }
  ]
