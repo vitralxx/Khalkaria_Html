@@ -106,15 +106,19 @@ O mestre pode mudar o custo e a Hostilidade de qualquer hex `[Pedro]`. No dado, 
 | **Penhasco** | Bloqueia a passagem. Visto do lado baixo, tapa a visão; do lado alto, a visão desce (§6). |
 
 - Com H 5/10/15/20, a CD do rio fica em 12/15/17/20.
+- **Hex sem H** (mar, cidade): a CD usa o H do outro hex da aresta. Se nenhum dos dois tem H, o app não mostra
+  CD, e o mestre decide.
 - **Arrasto rio abaixo:** o rio guarda as arestas em ordem, da nascente à foz. O app sugere o ponto de saída
   andando **2 arestas por hex** a partir da aresta da travessia. O mestre confirma ou move.
 
 ### 2.5 Vias e territórios `[Pedro]`
 - **Estrada** (tijolo cinza) e **trilha** (cavada no terreno) passam pelo centro do hex e saem pelo meio da aresta.
   A arte está em `06-arte.md` §5.
-- **A via manda no custo:** estrada 1,5 m e trilha 3 m, em qualquer terreno.
+- **A via manda no custo:** estrada 1,5 m e trilha 3 m, em qualquer terreno. Os dois valores ficam em
+  `mundo.json > vias`, configuráveis.
   - Isso só vale no passo que **segue a via**: os dois hexes do passo são seguidos na mesma via.
   - Atravessar uma via não dá o desconto.
+  - Se duas vias ligam os mesmos dois hexes (ex.: uma estrada e uma trilha), vale a mais barata.
 - **Território de cidade:** um contorno pelas bordas dos hexes, pintado com o pincel de borda.
 - **Propósito:** cada rio e cada estrada levam os jogadores para mais perto de um objetivo `[Pedro]`. A conferência
   avisa quando uma via termina sem levar a um especial, a uma cidade ou a uma fronteira.
