@@ -52,7 +52,12 @@ A escala de dificuldade vem do CR de drop dos Materiais no Bazar. A Hostilidade 
 - **Região alternativa:** uma camada que ocupa as células de outra região enquanto está ligada. O uso que motivou a
   regra é a **ilusão do Oásis** sobre o Deserto do Abismo: o mestre liga a ilusão e, quando chegar a hora, desliga
   e mostra o Abismo.
-  - Os dados da região da ilusão (nome, H, CR, tinta, tabelas) ainda não existem `[P17]`.
+  - **O Oásis** `[Pedro, P24]`: *"região deserta com natureza sútil, coqueiros e um grande oásis em seu cerne,
+    interpretando o enorme abismo fora da ilusão"*.
+    - Usa o rank, o H, o CR e os eventos do Deserto do Abismo, mascarados: cada evento do Abismo ganha um texto da
+      ilusão.
+    - A tinta ainda não foi definida.
+  - O mestre desliga a ilusão à mão, na hora `[Pedro, P23]`.
 - **No editor**, ligar e desligar é só visualização.
 - **Na sessão**, as camadas ligadas são o mapa em jogo, nas duas janelas.
   - O estado das camadas é da campanha: a ilusão vale até o mestre desligá-la.
@@ -104,6 +109,7 @@ O mestre pode mudar o custo e a Hostilidade de qualquer hex `[Pedro]`. No dado, 
 | **Rio** | Bloqueia. Atravessar fora de ponte é um teste **individual** de *Movimento* contra a **CD 10 + ⌊H/2⌋**, com o **maior H entre os dois hexes da aresta**. Quem falha recebe **2d6+3** de dano e é levado **1d6 hexes rio abaixo**; o mestre decide onde a pessoa sai. A travessia não custa metros. |
 | **Ponte** | Travessia segura, sem teste. Só existe sobre aresta de rio. |
 | **Penhasco** | Bloqueia a passagem. Visto do lado baixo, tapa a visão; do lado alto, a visão desce (§6). |
+| **Raízes** (Emaranhado) | **Só visuais**, com parâmetros ajustáveis `[Pedro, P20]`. Onde precisar bloquear, o mestre pinta penhasco. Os jogadores **queimam** as raízes, sem regra mecânica (roleplay); o mestre tira a aresta no editor, durante a sessão `[Pedro, P22]`. |
 
 - Com H 5/10/15/20, a CD do rio fica em 12/15/17/20.
 - **Hex sem H** (mar, cidade): a CD usa o H do outro hex da aresta. Se nenhum dos dois tem H, o app não mostra
@@ -180,7 +186,7 @@ O dia começa **de manhã**, com o orçamento cheio (menos a dívida, se houver)
 
 - Todo lembrete pode ser **dispensado pelo mestre**. O app lembra; quem decide é a mesa.
 
-A implementação de referência está em `referencia/hexcrawl_ref/regras.py` (`andar`, `explorar`, `encerrar_dia`,
+A implementação de referência está em `hexcrawl/nucleo/regras.py` (`andar`, `explorar`, `encerrar_dia`,
 `periodos_encerrados`, `fechar_parada`). Os roteiros testados estão em `testes/vetores-regras.json`
 (`roteirosDoDia`).
 
@@ -199,6 +205,11 @@ A implementação de referência está em `referencia/hexcrawl_ref/regras.py` (`
 - **Recuperação** `[Sistema]`: cada jogador recupera **Xd8** em 2 status à escolha, sendo X a comodidade.
   - Exige fonte de luz e alimento.
   - O app só **mostra** o X; a ficha de cada um não está no app.
+- **Comida** `[Pedro, P26]`: cada jogador precisa de **1 comida para descansar**. A fonte de luz é assumida sempre.
+  - O app acompanha *"de forma não invasiva e não impeditiva"*: se a contagem estiver desatualizada, nada é afetado,
+    e o app nunca trava o descanso.
+  - As consequências de quem não come (não recupera; Desnutrição) são do Sistema e ficam com a mesa
+    (`09-sistema-khalkaria.md`).
 - **Abrigo** `[Pedro]`: descansar num hex com Abrigo marcado sobe 1 nível de comodidade, até o máximo de 5. Como o
   grupo explora o hex antes de descansar, um Abrigo achado nessa exploração já vale para a noite.
 - **Emboscada** `[Sistema]`: em ambiente hostil, o grupo pode ser emboscado enquanto descansa e começa o combate
@@ -206,6 +217,14 @@ A implementação de referência está em `referencia/hexcrawl_ref/regras.py` (`
   - O Sistema não dá uma chance de emboscada. Por isso o app **lembra** a regra e pergunta quem vigia, mas não
     sorteia a emboscada.
 - O descanso longo **zera o contador de extração** (§5.4).
+
+### 3.5 Grupos `[Pedro, P21]`
+- Cada jogador é cadastrado individualmente. Os jogadores se juntam em **grupos dinâmicos**, e cada grupo é um token
+  que anda sozinho, até em regiões diferentes.
+- **O relógio é um só para a mesa:** dia e período são comuns.
+- **Cada grupo tem o próprio orçamento**, igual ao menor Movimento dos membros.
+- **Jornada, explorar e descanso são por grupo.**
+- **A névoa é da mesa:** a união do que todos os grupos viram.
 
 ## 4. Jornada `[Sistema + Pedro]`
 
@@ -364,6 +383,10 @@ A implementação de referência está em `referencia/hexcrawl_ref/regras.py` (`
     seus;
   - **num hex de Água**, o raio é 2.
 - Um hex no raio é visível se a linha reta até ele **não sobe um penhasco do lado baixo para o alto**.
+- Os raios estão certos, mas o Pedro quer mudá-los tipo a tipo no painel do mundo `[Pedro, P19]`.
+- **O vento forte no norte da Cordilheira é só visual:** o raio de visão não muda `[Pedro, P25]`.
+- **O Pico Cristalino** (especial) revela o mapa todo como **visto** (cinza, sem eventos) `[Pedro, P23]`. A ilusão do
+  Oásis continua até o mestre desligá-la.
 
 ### 6.2 Os 3 estados de cada hex na tela dos jogadores
 | Estado | Quando | Como aparece |

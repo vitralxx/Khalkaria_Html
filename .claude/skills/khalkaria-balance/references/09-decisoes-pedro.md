@@ -1133,6 +1133,17 @@ Texto verbatim em `18-batedor-rework.md` §0 e as lições em `19-gabarito-de-cl
       Deserto *"A região mais letal do continente"* (agora 8/9), Terras Livres *"Risco moderado-baixo"* (agora 6/9,
       H15);
     - as cores no lore: Bacia "Branco" e Ermo "Cinza", contra cinza e preto na legenda do mapa.
+- **D161** (2026-10-24 a 27, respondidas pelo Pedro direto ao agente do hexcrawl; texto em `docs/10` do repo dele):
+  - P19: raios de visão editáveis no painel;
+  - P20 e P22: raízes só visuais, queimadas em roleplay;
+  - P21: grupos dinâmicos com relógio comum e orçamento por grupo;
+  - P23: o Pico revela o mapa em cinza;
+  - P24: O Oásis = rank, H, CR e eventos do Abismo, mascarados;
+  - P25: vento só visual;
+  - P26: 1 comida por jogador para descansar.
+
+  Escrevi isso no `docs/01` (commit `c43780e` no `main` dele; espelho aqui). Respondi a P27 (cidades seguem sem H).
+  Seguem abertas a P16 e a P18.
 
 ## D68 — O andar de Nível 1 (truques)
 Todas as magias existentes **sobem 1 nível**: as antigas 1–4 viram 2–5. O novo Nível 1 são os
