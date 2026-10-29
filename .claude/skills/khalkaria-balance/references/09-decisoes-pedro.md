@@ -1144,6 +1144,25 @@ Texto verbatim em `18-batedor-rework.md` §0 e as lições em `19-gabarito-de-cl
 
   Escrevi isso no `docs/01` (commit `c43780e` no `main` dele; espelho aqui). Respondi a P27 (cidades seguem sem H).
   Seguem abertas a P16 e a P18.
+- **D162** (2026-10-29) **Clones de seiva para o Bestiário.**
+  - **O pedido:** na campanha 1, Malkhor replica os 5 da equipe desfloreio (inclusive o Vorn) como clones de seiva, e
+    os PCs derrotam cada um. Cada clone é chefe CR 4, contra PCs de nível 4 *"muito fortes, não subestime"*.
+  - **O Vorn:** *"manoplas de ferro que são pesada brutal +2"*, Atacar de no mínimo +10, FOR 22 ou mais. *"Não faça
+    uma cópia literal de cada técnica e carta, preserve o característico e útil para lutar contra 5 players."* O
+    Pedro também anexou o Bestiário v10.
+  - **Arquivos:**
+    - `23-bestiario-v10.md`: contrato de import do v10;
+    - `24-clones-de-seiva.md`: receita, orçamentos, checklist e o Vorn resolvido com as contas;
+    - `../bestiario/vorn-clone-de-seiva.json`: validado contra o import, 0 chaves ignoradas.
+  - **O Vorn clone em uma linha:** Saúde 240, Ev 12, Ar 4, Atacar +12, manoplas 4d12+6 Atacar(3), três fases (Soldado
+    → Frenesi de Seiva a 50% → Ignorar Dor), regra de alvo Ódio Cego, fraqueza a Fogo.
+  - **Pendências** (no relatório do fork):
+    - o Bestiário soma +2N de Acerto por nível de arma; o Notion soma +N;
+    - o contragolpe reduzido (2d12) e a regra de alvo;
+    - o Corpo de Seiva e o Fogo como regra comum dos clones;
+    - o XP 300;
+    - o Sinikko clone ser ou não desta série;
+    - a ficha antiga do Vorn com números velhos.
 
 ## D68 — O andar de Nível 1 (truques)
 Todas as magias existentes **sobem 1 nível**: as antigas 1–4 viram 2–5. O novo Nível 1 são os
