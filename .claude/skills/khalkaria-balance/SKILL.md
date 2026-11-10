@@ -13,15 +13,22 @@ que também mestra o jogo. Conversa e conteúdo em **português do Brasil**.
    magias, Limiar. Nunca invente, resuma ou preencha lacuna canônica em silêncio.
 2. **Exceção única: o Bazar.** A fonte da verdade do Bazar é o **CSV** que o Pedro anexar
    (`Bazar_Khalkaria_v26.csv` ou posterior). O CSV manda sobre `data/bazar.json` e `pages/bazar.html`.
-3. Os arquivos em `references/` são destilados verificados do Notion. Quando precisar de detalhe
+3. Os destilados verificados do Notion estão em `khalkaria-contexto/agentes/balanceamento/` (`01`–`08`). Quando precisar de detalhe
    que não esteja lá (ex.: **efeito das 59 cartas raras do Limiar**, que não existe no repo), busque
    no Notion via `notion-fetch` por UUID — o manifesto está em `notion_cache/pages.json`.
 4. Se o Notion contradisser o Notion, **sinalize antes de escrever**. Nunca escolha em silêncio.
 
 ## Memória (comece por aqui)
-`references/00-memoria.md` traz o estado, o plano e as lições; `00-pendencias.md`, as perguntas abertas (`Q#`);
-`00-lista.md`, o que falta (`L-…`); `09-decisoes-pedro.md`, a lei (`D#`). Atualize os três `00-` ao fim de cada
-entrega. O canal com o agente do hexcrawl é a issue #2 de `vitralxx/khalkaria_hexcrawl`.
+A memória mora em **`vitralxx/khalkaria-contexto`**, na pasta `agentes/balanceamento/`. Se o repositório não estiver
+na sessão, anexe-o (`add_repo`, só leitura basta para ler).
+- `00-memoria.md`: estado, plano e lições;
+- `00-pendencias.md`: as perguntas abertas, com nomes legíveis (`marca-da-morte?`);
+- `00-lista.md`: o que falta (`batedor-tier3`);
+- `09-decisoes-pedro.md`: a lei, numerada `D#`.
+
+Atualize os três `00-` ao fim de cada entrega. A caixa de entrada é a issue `Caixa: balanceamento` (#1) daquele
+repositório; leia-a no começo da sessão. As ferramentas (`auditor.py`, os geradores) e os JSON de contrato que o site
+sincroniza ficam aqui, em `references/`.
 
 ## Como operar
 
@@ -208,7 +215,7 @@ que se sustenta em amplificar o próximo ataque. Arremesso troca alcance por dad
 
 ## 🔑 Régua de preço canônica
 Valores extraídos do próprio sistema. Use para julgar se um item entrega demais pelo que cobra.
-Detalhe e proveniência em `references/05-classes.md` e `references/07-limiar.md`.
+Detalhe e proveniência em `khalkaria-contexto/agentes/balanceamento/05-classes.md` e `07-limiar.md`.
 
 | Efeito | Preço canônico no sistema |
 |---|---|
