@@ -1171,6 +1171,20 @@ Texto verbatim em `18-batedor-rework.md` §0 e as lições em `19-gabarito-de-cl
     e a numeração cruzada.
   - Na mesma entrega respondi P17, P64–P82, P120, P121 e P127–P136 (comentário `6780514997`). Os trechos verbatim de
     raça e origem foram para o `docs/09` de lá (`b27473d`). Levei ao Pedro a P64, a P73 e a P121 (Q21–Q23).
+- **D164** (2026-11-11) Respostas do Pedro, memória legível e o repositório central.
+  - **Hexcrawl:**
+    - P64: o token selecionado na janela dos jogadores assume a visão dele, e *"o horário do dia poderia mudar à se
+      adequar conforme o movimento de cada token"*;
+    - P73: *"Sim, certo"* (Jornada a bordo);
+    - P121: *"o megahex funciona como um só token grande, porém entrar e sair dele zera o movimento"*.
+
+    Repassei na issue #2.
+  - **Identificadores legíveis:** *"eu não consigo identificar o que o código significa sem encontrar sua fonte"*.
+    Perguntas e tarefas viraram nomes em kebab-case; o `D#` fica.
+  - **A parada aos 60%** do hexcrawl foi pessoal e temporária. O objetivo do Pedro é *"maior economia de tokens e
+    produtividade"*.
+  - **Proposta do Pedro:** um repositório só para universalizar o contexto e os arquivos de Khalkaria para os agentes,
+    com issues recorrentes e talvez sync automático com cada repo. Recomendação dada; aguarda o sim e o nome.
 
 ## D68 — O andar de Nível 1 (truques)
 Todas as magias existentes **sobem 1 nível**: as antigas 1–4 viram 2–5. O novo Nível 1 são os
