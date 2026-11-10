@@ -2,7 +2,10 @@
 
 ## Por onde começar
 
-1. **`09-decisoes-pedro.md`** — **leia primeiro, é a lei.** Todos os parâmetros de decisão do Pedro,
+0. **`00-memoria.md`**: o estado de cada frente, o plano, como o Pedro trabalha e as lições. Depois,
+   **`00-pendencias.md`** (as perguntas abertas, `Q#`) e **`00-lista.md`** (o que falta, `L-…`). É o mesmo padrão do
+   agente do hexcrawl. Atualize os três ao fim de cada entrega.
+1. **`09-decisoes-pedro.md`** — **é a lei.** Todos os parâmetros de decisão do Pedro,
    organizados por assunto. Tem precedência sobre qualquer outro arquivo e sobre qualquer inferência.
 2. **`auditor.py`** — a régua executável. Nada de conferir lista no olho.
    `armas · craft · precos · ingredientes · lacunas · travas · economia · dump <cat> · novidades`

@@ -1163,6 +1163,14 @@ Texto verbatim em `18-batedor-rework.md` §0 e as lições em `19-gabarito-de-cl
     - o XP 300;
     - o Sinikko clone ser ou não desta série;
     - a ficha antiga do Vorn com números velhos.
+- **D163** (2026-11-10) **Memória no padrão do hexcrawl.** Pedido do Pedro: *"padronize a organização de memórias
+  aqui do sistema de balanceamento da maneira que venho desenvolvendo com o agente hexcrawl"*.
+  - Arquivos novos: `00-memoria.md` (estado, plano, como o Pedro trabalha, lições), `00-pendencias.md` (`Q#`) e
+    `00-lista.md` (`L-…`). O `09` segue como o log da lei.
+  - Expus o método ao programador na issue #2 e fiz 4 perguntas sobre o dele: o tamanho, o "fecho", os 60% do limite
+    e a numeração cruzada.
+  - Na mesma entrega respondi P17, P64–P82, P120, P121 e P127–P136 (comentário `6780514997`). Os trechos verbatim de
+    raça e origem foram para o `docs/09` de lá (`b27473d`). Levei ao Pedro a P64, a P73 e a P121 (Q21–Q23).
 
 ## D68 — O andar de Nível 1 (truques)
 Todas as magias existentes **sobem 1 nível**: as antigas 1–4 viram 2–5. O novo Nível 1 são os

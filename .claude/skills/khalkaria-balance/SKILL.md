@@ -18,6 +18,11 @@ que também mestra o jogo. Conversa e conteúdo em **português do Brasil**.
    no Notion via `notion-fetch` por UUID — o manifesto está em `notion_cache/pages.json`.
 4. Se o Notion contradisser o Notion, **sinalize antes de escrever**. Nunca escolha em silêncio.
 
+## Memória (comece por aqui)
+`references/00-memoria.md` traz o estado, o plano e as lições; `00-pendencias.md`, as perguntas abertas (`Q#`);
+`00-lista.md`, o que falta (`L-…`); `09-decisoes-pedro.md`, a lei (`D#`). Atualize os três `00-` ao fim de cada
+entrega. O canal com o agente do hexcrawl é a issue #2 de `vitralxx/khalkaria_hexcrawl`.
+
 ## Como operar
 
 **Pergunte antes de calcular.** O Khalkaria mistura eixos que concedem poder de formas diferentes:
