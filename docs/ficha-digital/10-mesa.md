@@ -93,6 +93,8 @@ Clicar no verbo (Rolar, Usar, Conjurar, Consumir, Aplicar, Arremessar, Ativar, E
 
 ## 4. Alvos por relação (sem cadastrar alvo)
 
+**Aprovado pelo Pedro em 2026-11-10** (`03 §15`).
+
 O jogador nunca cadastra alvo. A Mesa cria **alvos anônimos** a partir das ações do próprio personagem e os nomeia pela relação:
 - **o alvo dos ataques:** nasce no 1º ataque do turno. "Novo alvo ↺" cria outro, e a PMA conta **por alvo**, como manda a D29 (`turno.pmaEscopo: porAlvo`);
 - **o alvo agarrado:** nasce quando o Agarrar vence. Atacar contra ele tem +2 (texto do Agarrar). Termina com "Soltou-se", com "Soltar" ou no fim do combate;
@@ -263,7 +265,7 @@ Texto do Notion. O que o Pedro disse no chat e ainda não está no Notion fica m
 | Mover | 1 ação, 1x por turno | marca "moveu" |
 | Pular | 2 ações | 1/3 do Movimento |
 | Acelerar | 1 ação | +3 m nesta rodada. "Só utilizável após movimentar-se" (Pedro, falta no Notion) |
-| Defender | 1 ação | +2 Defender até seu próximo turno. Notion: "Não acumula com ela mesma". Pedro: "Utilizável mais de uma vez por turno". **Contradição, perguntada** |
+| Defender | 1 ação | +2 Defender até seu próximo turno. "Utilizável mais de uma vez por turno": **soma** (Pedro, 2026-11-10; Notion atualizado) |
 | Defender (reação) | reação | dado de Defender na Evasão contra o agressor neste turno |
 | Retaliar | reação | o texto da Retaliação (9.4) |
 | Empurrar · Desarmar · Agarrar | 2 ações cada (Pedro, falta no Notion) | disputa Movimento×Fortitude ou Movimento×Movimento. O Agarrar vencido cria a relação "o alvo agarrado" (§4) e ocupa 1 mão |
@@ -387,7 +389,7 @@ A virada (F4.7) vem depois da Mesa 5 e só com o ok do Pedro.
 **Pedidos da rev. 3:**
 - **G. Notion:**
   - gravar o que o Pedro disse no chat (`03 §14`): Acelerar só após mover; manobras com 2 ações; a reação volta no início do **seu** turno (conferir com "até o início do próximo");
-  - perguntar ao Pedro a contradição do Defender (1 ação): "Não acumula com ela mesma" × "Utilizável mais de uma vez por turno";
+  - Defender (1 ação): resolvido. Soma a cada uso, e o Notion já diz "Utilizável mais de uma vez por turno" (`03 §15`);
   - conferir o catálogo de ações básicas e manobras que o site vai escrever.
 - **H. Catálogo de uso** (substitui o B), no schema do §5, com `trechos` verbatim em todo campo:
   - técnicas de classe e de ramo, raça e origem, e cartas ativas;

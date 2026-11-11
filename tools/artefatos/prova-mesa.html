@@ -546,7 +546,7 @@ details.sempre p b { font-family: var(--f-tit); font-size: .8rem; }
     <ul>
       <li>Ravek é um personagem de exemplo. Textos de técnicas, itens, cartas, condições e regras copiados do site e do Notion; os efeitos das condições vêm do contrato do balanceamento. Os máximos saem das fórmulas da classe (Saúde 28, Stamina 32, Éter 27).</li>
       <li>Todo uso passa pela confirmação. O que ela mostra em "Na ficha" é calculado aplicando o uso numa cópia da ficha; confirmar aplica a mesma coisa. Os números com sublinhado pontilhado mostram a conta ao passar o mouse.</li>
-      <li>Regras ditas no chat e ainda fora do Notion, aplicadas aqui: Empurrar, Desarmar e Agarrar com 2 ações; Acelerar só depois de Mover. O Defender (1 ação) segue o Notion ("Não acumula com ela mesma").</li>
+      <li>Regras ditas no chat e ainda fora do Notion, aplicadas aqui: Empurrar, Desarmar e Agarrar com 2 ações; Acelerar só depois de Mover. O Defender (1 ação) soma a cada uso, como o Notion diz desde 2026-11-10.</li>
       <li>Para experimentar: ↺ ao lado da PMA; Agarrar e depois atacar; a Investida; "Retaliou…" na placa do ataque; + condição Atordoado ou Em Chamas e começar o turno; a Fagulha e o Benefício do mestre; Registro completo; Ver como no drawer.</li>
     </ul>
   </section>
@@ -572,7 +572,7 @@ const reduzMov = matchMedia('(prefers-reduced-motion: reduce)');
 const TXT = {
   pma: 'Ataques consecutivos contra o mesmo alvo somam −5 a cada ataque no mesmo turno. Essa é a Penalidade de Multi-Ataque (PMA): vale em todo ataque, inclusive de técnica, salvo quando a técnica diz o contrário. Técnicas que fazem vários ataques "como 1 ação" pagam, juntos, o custo de ataque da arma.',
   humana: 'Seus ataques desarmados causam 1d8 de dano (ao invés de 1d4). Cartas do Limiar e itens podem, recorrentemente, substituir isso.',
-  defender: 'Defender (1 ação) → +2 Defender até seu próximo turno. Não acumula com ela mesma.',
+  defender: 'Defender (1 ação) → +2 Defender até seu próximo turno. Utilizável mais de uma vez por turno.',
   defReacao: 'Defender fora do seu turno (Reação) → Soma o dado da perícia Defender à sua evasão contra todos os ataques do agressor neste turno.',
   retaliar: 'Atacar (Retaliar): O alvo tenta te retaliar: Caso o alvo ultrapasse seu valor, ele te ataca com a arma que estiver empunhando, também recebendo seu dano. Caso ele acerte criticamente, ele nega seu dano, ainda sim, te retaliando. Caso ele falhe criticamente, seu ataque contra ele é crítico. Você não pode retaliar à distância.',
   empate: 'Em caso de empate, o atacante sempre ganha.',
@@ -796,7 +796,7 @@ function cAtiva() {
   const g = grauEf('defender'), parc = cEvasao().parc.slice();
   parc.push([DADO_DEF[g], `Defender ${GRAUS[g]} · ${PERI.defender.org}`]);
   if (temEscudo()) parc.push([1, 'Escudo de Madeira']);
-  if (temp('defender')) parc.push([2, 'Defender (1 ação)']);
+  if (temp('defender')) parc.push([2 * temp('defender').n, `Defender (1 ação) × ${temp('defender').n}`]);
   efeitos('pericia.defender').forEach(e => { if (e.op === 'soma') parc.push([e.v, e.o]); });
   return mk('Evasão Ativa', parc, { tags: ['o dado não soma atributo'] });
 }
@@ -952,7 +952,7 @@ function difS(a, b) {
   const ca = {}, cb = {}; a.conds.forEach(c => { ca[c.id] = c.x; }); b.conds.forEach(c => { cb[c.id] = c.x; });
   Object.keys(cb).forEach(id => { if (!(id in ca)) L.push(`+ ${nomeC(id, cb[id])}`); else if (ca[id] !== cb[id]) L.push(`${CONDS[id].nome.replace(/ X$/, '')} ${ca[id]} → ${cb[id]}`); });
   Object.keys(ca).forEach(id => { if (!(id in cb)) L.push(`${nomeC(id, ca[id])} saiu`); });
-  b.temps.forEach(t => { if (!a.temps.some(x => x.id === t.id)) L.push(`+ ${t.rot} (${t.dur})`); });
+  b.temps.forEach(t => { const o = a.temps.find(x => x.id === t.id); if (!o) L.push(`+ ${t.rot} (${t.dur})`); else if (o.rot !== t.rot) L.push(`${o.rot} → ${t.rot.replace(/^.* /, '')}`); });
   a.temps.forEach(t => { if (!b.temps.some(x => x.id === t.id)) L.push(`${t.rot} acabou`); });
   b.alvos.forEach(t => { const o = a.alvos.find(x => x.uid === t.uid); if (!o) L.push(`Alvo ${t.uid}: novo`); if (t.agarrado && !(o && o.agarrado)) L.push(`Alvo ${t.uid}: agarrado`); });
   a.alvos.forEach(t => { const o = b.alvos.find(x => x.uid === t.uid); if (t.agarrado && (!o || !o.agarrado)) L.push(`Alvo ${t.uid}: solto`); });
@@ -1101,10 +1101,9 @@ acao({ id: 'atacar', g: 'combate', sec: 'Ataque', nome: 'Atacar · Desarmado', c
   implicito: () => [['Dano', cDano(false)], ['Crítico', cDano(true)], ['Fluxo', 'acertar: +1 (máx. 2x por rodada) e +1 do Fluxo Marcial']],
   depois: rs => { S.ultimo.crit = rs[0].res.crit; const p = placaAtaque(`Atacar · Desarmado · Alvo ${S.ultimo.alvo}`, { notas: [], parc: rs[0].parc }, rs[0].res); p.rolls = rs; return p; } });
 acao({ id: 'defender', g: 'combate', sec: 'Ações', nome: 'Defender', c: { a: 1 }, verbo: 'Usar', ...sobre('Sistema · Sua Rodada', 'sistema.html#sua-rodada'),
-  texto: [TXT.defender], linha: () => ['+2 Defender até o seu próximo turno'], chave: () => '+2',
-  pre: () => (temp('defender') ? 'Já ativo' : ''),
-  efeito: () => { poeTemp({ id: 'defender', rot: 'Defender +2', dur: 'até o seu próximo turno', ate: 'inicioTurno', texto: TXT.defender }); },
-  depois: () => ({ total: '+2', totalCls: 'texto', cita: [TXT.defender] }) });
+  texto: [TXT.defender], linha: () => ['+2 Defender até o seu próximo turno', 'soma a cada uso'], chave: () => '+2',
+  efeito: () => { const t = temp('defender'), n = t ? t.n + 1 : 1; poeTemp({ id: 'defender', n, rot: `Defender +${2 * n}`, dur: 'até o seu próximo turno', ate: 'inicioTurno', texto: TXT.defender }); },
+  depois: () => ({ total: `+${2 * temp('defender').n}`, totalCls: 'texto', cita: [TXT.defender] }) });
 acao({ id: 'mover', g: 'combate', sec: 'Ações', nome: 'Mover', c: { a: 1 }, verbo: 'Usar', mover: true, ...sobre('Sistema · Sua Rodada', 'sistema.html#sua-rodada'),
   texto: [TXT.mover], linha: () => [cMov().total, '1x por turno'], chave: () => cMov().total,
   efeito: () => { if (comb() && !S.fluxo.mover) { S.fluxo.mover = true; ganhaFluxo(1); } },

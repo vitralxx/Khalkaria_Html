@@ -313,3 +313,9 @@ Quatro perguntas, todas respondidas com a opção recomendada.
 - **Conferido no Notion em 2026-10-21:** o "Só utilizável após movimentar-se" do Acelerar, o "Utilizável mais de uma vez por turno" do Defender e o "(2 ações)" das três manobras **não estão** no Notion. O Defender do Notion diz "Não acumula com ela mesma.", o que contradiz o "mais de uma vez por turno" se o bônus somar. A Investida do Notion já diz "ação livre", e o site ainda mostra "realiza 1 ação: Atacar" (sync do Sistema pendente). Tudo foi ao balanceamento.
 - **Alvo:** a PMA por sequência não é robusta, porque outras técnicas também dependem do alvo ("como o motor checaria se o agarrão é pra aplicar o bonus ou não?"). Ele prefere calcular automaticamente para cada alvo, sem que os jogadores cadastrem alvos na Mesa.
 - **Ordem:** "Continue com o planejamento, vamos tentar minimizar os bugs nesse aumento de escopo, garantindo um funcionamento real." Especificação: `10-mesa.md` rev. 3.
+
+## 15. Respostas sobre a 3ª prova da Mesa, 2026-11-10
+
+- **Defender (1 ação):** usar duas vezes **soma** ("Soma, mudei no notion"). O Sistema do Notion passou a dizer "+2 Defender até seu próximo turno. Utilizável mais de uma vez por turno." (sincronizado no site no mesmo dia).
+- **Alvos por relação** (`10-mesa.md` §4): aprovados ("Sim").
+- **Contexto comum:** os agentes passam a conversar pelo repositório `vitralxx/khalkaria-contexto` (caixa do site: issue #3). A memória do site segue o padrão de lá (`agentes/PADRAO.md`).
