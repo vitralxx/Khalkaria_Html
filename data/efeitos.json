@@ -2,7 +2,7 @@
  "schemaVersion": "efeitos/1",
  "_doc": "ARTEFATO de tools/gerar_efeitos.py (F1d): não editar à mão. Fonte: data/balanceamento/ficha-efeitos-itens.json (projeção publicada da entrega do balanceamento) + data/bazar.json. Vocabulário e destino dos alvos: tools/alvos_destino.json. Texto das Marcas da Vhelor: data/balanceamento/marcas-vhelor.json.",
  "fonte": {
-  "shaBalanceamento": "d0c411bec70d3cd87de8d14e043b312a4b0a34ca",
+  "shaBalanceamento": "626dd789c6f2e347481dcfc98775fe86fde7f27c",
   "efeitosItens": "efeitos-itens/1.2",
   "shaBazar": "70390413015c9bec",
   "shaBazarDoBalanceamento": "70390413015c9bec"
