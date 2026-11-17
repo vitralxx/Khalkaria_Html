@@ -7,10 +7,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400&family=UnifrakturMaguntia&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../css/tokens.css?v=25958762" data-tokens>
-    <link rel="stylesheet" href="../../css/style.css?v=25958762">
-    <link rel="stylesheet" href="../../css/componentes.css?v=25958762" data-componentes>
-    <link rel="stylesheet" href="../../css/classes.css?v=25958762">
+    <link rel="stylesheet" href="../../css/tokens.css?v=6ee6a69c" data-tokens>
+    <link rel="stylesheet" href="../../css/style.css?v=6ee6a69c">
+    <link rel="stylesheet" href="../../css/componentes.css?v=6ee6a69c" data-componentes>
+    <link rel="stylesheet" href="../../css/classes.css?v=6ee6a69c">
     <style>
         :root { --ramo-vendaval: #06b6d4; --ramo-vendaval-dark: #164e63; --ramo-polvora: #f97316; --ramo-polvora-dark: #7c2d12; --ramo-predador: #22c55e; --ramo-predador-dark: #14532d; }
         .class-title { font-family: var(--font-gothic); font-size: 4rem; color: var(--gold); margin-bottom: 1.5rem; text-shadow: 2px 2px 8px rgba(0,0,0,0.8), 0 0 30px rgba(212,175,55,0.3); }
@@ -24,7 +24,7 @@
         .technique-name { color: var(--gold-light); font-weight: 600; }
         .concentracao-box { background: linear-gradient(135deg, rgba(249,115,22,0.1), rgba(6,182,212,0.05)); border: 2px solid var(--ramo-polvora); border-radius: 12px; padding: 1.5rem; margin: 2rem 0; }
         .concentracao-box h3 { color: var(--ramo-polvora); font-family: var(--font-heading); margin-bottom: 1rem; }
-        .concentracao-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; }
+        .concentracao-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr)); gap: 1rem; }
         .concentracao-item { background: rgba(0,0,0,0.3); border-radius: 8px; padding: 1rem; }
         .concentracao-item h4 { font-size: 0.95rem; margin-bottom: 0.5rem; }
         .concentracao-item ul { margin: 0; padding-left: 1.25rem; font-size: 0.9rem; color: var(--text-secondary); }
@@ -32,7 +32,7 @@
         .conc-lose { color: #ef4444; }
         .ramos-intro { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem; }
         .ramos-intro p { color: var(--text-secondary); line-height: 1.7; margin-bottom: 1rem; }
-        .ramos-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin: 2rem 0; }
+        .ramos-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); gap: 1.5rem; margin: 2rem 0; }
         .ramo-card { background: var(--bg-card); border: 2px solid var(--border-color); border-radius: 12px; padding: 1.5rem; transition: all 0.3s; }
         .ramo-card:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(0,0,0,0.3); }
         .ramo-card.vendaval { border-color: var(--ramo-vendaval); }
@@ -62,7 +62,7 @@
         .tier-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; padding-bottom: 0.5rem; border-bottom: 2px solid var(--gold-dark); }
         .tier-header h3 { font-family: var(--font-heading); font-size: 1.5rem; color: var(--gold); }
         .tier-badge { background: var(--gold-dark); color: var(--bg-primary); font-weight: 700; padding: 0.25rem 0.75rem; border-radius: 4px; font-size: 0.8rem; }
-        .tech-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; }
+        .tech-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr)); gap: 1.5rem; }
         .tech-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; overflow: hidden; }
         .tech-card-header { padding: 1rem 1.25rem; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center; }
         .tech-card-header.vendaval { background: linear-gradient(135deg, var(--ramo-vendaval-dark), transparent); }
@@ -95,13 +95,13 @@
         .class-nav { display: flex; justify-content: space-between; margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border-color); }
         .class-nav a { color: var(--gold); text-decoration: none; padding: 0.75rem 1.5rem; border: 1px solid var(--gold-dark); border-radius: 8px; transition: all 0.3s; }
         .class-nav a:hover { background: var(--gold-dark); color: var(--bg-primary); }
-        .techniques-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
+        .techniques-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); gap: 1rem; margin: 1.5rem 0; }
         .technique-card h4 { color: var(--gold); font-family: var(--font-heading); font-size: 1rem; margin-bottom: 0.25rem; }
         .technique-card .tech-meta { display: block; font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.5rem; }
         .technique-card p { color: var(--text-secondary); font-size: 0.9rem; line-height: 1.5; margin: 0; }
     </style>
     <script data-nav-boot>(function(){try{var s=JSON.parse(localStorage.getItem('khalkaria_nav')||'{}'),h=document.documentElement;if(s.trilho)h.setAttribute('data-nav','trilho');if(s.fechados&&s.fechados.length)h.setAttribute('data-nav-fechados',s.fechados.join(' '))}catch(e){}var m='',r=false;try{m=localStorage.getItem('khalkaria_movimento')}catch(e){}r=m==='reduzido';if(!r&&m!=='normal')try{r=matchMedia('(prefers-reduced-motion: reduce)').matches}catch(e){}document.documentElement.setAttribute('data-movimento',r?'reduzido':'normal');var p=false;try{p=localStorage.getItem('khalkaria_ficha_previa')==='1'}catch(e){}if(!p)try{var q=/[?&]ficha=([^&#]*)/.exec(location.search);p=!!q&&decodeURIComponent(q[1])==='v3'}catch(e){}if(p){var d='trilho';document.documentElement.setAttribute('data-ficha-previa','');try{if(localStorage.getItem('khalkaria_ficha3_dock')==='aberto')d='aberto'}catch(e){}document.documentElement.setAttribute('data-ficha3',d)}})()</script>
-    <link rel="stylesheet" href="../../css/ficha.css?v=25958762" data-ficha-css>
+    <link rel="stylesheet" href="../../css/ficha.css?v=6ee6a69c" data-ficha-css>
 </head>
 <body>
     <button class="menu-toggle">☰ Menu</button>
@@ -345,9 +345,9 @@
             </div>
         </main>
     </div>
-    <script src="../../js/kh-ui.js?v=25958762" data-kh-ui></script>
-    <script src="../../js/main.js?v=25958762"></script>
-    <script src="../../js/utils.js?v=25958762"></script>
-    <script src="../../js/nav.js?v=25958762" data-nav-js></script>
+    <script src="../../js/kh-ui.js?v=6ee6a69c" data-kh-ui></script>
+    <script src="../../js/main.js?v=6ee6a69c"></script>
+    <script src="../../js/utils.js?v=6ee6a69c"></script>
+    <script src="../../js/nav.js?v=6ee6a69c" data-nav-js></script>
 </body>
 </html>

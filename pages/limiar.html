@@ -7,9 +7,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400&family=UnifrakturMaguntia&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../css/tokens.css?v=25958762" data-tokens>
-    <link rel="stylesheet" href="../css/style.css?v=25958762">
-    <link rel="stylesheet" href="../css/componentes.css?v=25958762" data-componentes>
+    <link rel="stylesheet" href="../css/tokens.css?v=6ee6a69c" data-tokens>
+    <link rel="stylesheet" href="../css/style.css?v=6ee6a69c">
+    <link rel="stylesheet" href="../css/componentes.css?v=6ee6a69c" data-componentes>
     <style>
         /* ============================================
            LIMIAR - ESTILOS ESPECIAIS
@@ -189,7 +189,7 @@
         /* Cards de benefício do Limiar */
         .limiar-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
             gap: 1.5rem;
             margin: 2rem 0;
         }
@@ -401,7 +401,7 @@
         
         .abismo-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
             gap: 1.25rem;
             margin: 1.5rem 0;
         }
@@ -542,7 +542,7 @@
         .mechanics-card strong { color: var(--limiar-gold); }
         .mechanics-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr));
             gap: 1rem;
             margin: 1rem 0;
         }
@@ -603,7 +603,7 @@
         .catalog-section-desc { font-size: 0.82rem; color: var(--text-muted); margin: 0.2rem 0 0; }
         .catalog-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(min(210px, 100%), 1fr));
             gap: 1px;
             border: 1px solid rgba(255,255,255,0.08);
             border-radius: 0 0 10px 10px;
@@ -649,7 +649,7 @@
 
         </style>
     <script data-nav-boot>(function(){try{var s=JSON.parse(localStorage.getItem('khalkaria_nav')||'{}'),h=document.documentElement;if(s.trilho)h.setAttribute('data-nav','trilho');if(s.fechados&&s.fechados.length)h.setAttribute('data-nav-fechados',s.fechados.join(' '))}catch(e){}var m='',r=false;try{m=localStorage.getItem('khalkaria_movimento')}catch(e){}r=m==='reduzido';if(!r&&m!=='normal')try{r=matchMedia('(prefers-reduced-motion: reduce)').matches}catch(e){}document.documentElement.setAttribute('data-movimento',r?'reduzido':'normal');var p=false;try{p=localStorage.getItem('khalkaria_ficha_previa')==='1'}catch(e){}if(!p)try{var q=/[?&]ficha=([^&#]*)/.exec(location.search);p=!!q&&decodeURIComponent(q[1])==='v3'}catch(e){}if(p){var d='trilho';document.documentElement.setAttribute('data-ficha-previa','');try{if(localStorage.getItem('khalkaria_ficha3_dock')==='aberto')d='aberto'}catch(e){}document.documentElement.setAttribute('data-ficha3',d)}})()</script>
-    <link rel="stylesheet" href="../css/ficha.css?v=25958762" data-ficha-css>
+    <link rel="stylesheet" href="../css/ficha.css?v=6ee6a69c" data-ficha-css>
 </head>
 <body>
     <!-- Efeitos de corrupção -->
@@ -2155,8 +2155,8 @@
     
     <button class="back-to-top" id="backToTop" title="Voltar ao topo">↑</button>
     
-    <script src="../js/kh-ui.js?v=25958762" data-kh-ui></script>
-    <script src="../js/main.js?v=25958762"></script>
+    <script src="../js/kh-ui.js?v=6ee6a69c" data-kh-ui></script>
+    <script src="../js/main.js?v=6ee6a69c"></script>
     <script>
         // Botão voltar ao topo
         const backToTop = document.getElementById('backToTop');
@@ -2224,7 +2224,7 @@
         }
         animateTree();
     </script>
-    <script src="../js/utils.js?v=25958762"></script>
-    <script src="../js/nav.js?v=25958762" data-nav-js></script>
+    <script src="../js/utils.js?v=6ee6a69c"></script>
+    <script src="../js/nav.js?v=6ee6a69c" data-nav-js></script>
 </body>
 </html>

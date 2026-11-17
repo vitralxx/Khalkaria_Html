@@ -187,7 +187,7 @@
         /* Cards de benefício do Limiar */
         .limiar-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
             gap: 1.5rem;
             margin: 2rem 0;
         }
@@ -399,7 +399,7 @@
         
         .abismo-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
             gap: 1.25rem;
             margin: 1.5rem 0;
         }
@@ -540,7 +540,7 @@
         .mechanics-card strong { color: var(--limiar-gold); }
         .mechanics-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr));
             gap: 1rem;
             margin: 1rem 0;
         }
@@ -601,7 +601,7 @@
         .catalog-section-desc { font-size: 0.82rem; color: var(--text-muted); margin: 0.2rem 0 0; }
         .catalog-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(min(210px, 100%), 1fr));
             gap: 1px;
             border: 1px solid rgba(255,255,255,0.08);
             border-radius: 0 0 10px 10px;

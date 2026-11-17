@@ -679,14 +679,14 @@ hr { border: none; border-top: 1px solid var(--border-color); margin: 2rem 0; }
 
 .card-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
     gap: 1.5rem;
 }
 
 /* Status Grid */
 .status-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr));
     gap: 1rem;
     margin: 1.5rem 0;
 }
@@ -862,7 +862,7 @@ table.compact th { padding: 0.75rem; font-size: 0.8rem; }
 /* Status da Classe */
 .class-stats-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr));
     gap: 1.5rem;
     margin: 2rem 0;
 }
@@ -1094,7 +1094,7 @@ table.compact th { padding: 0.75rem; font-size: 0.8rem; }
 
 .index-nav-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
     gap: 1.5rem;
     margin: 2rem 0;
 }
@@ -1335,7 +1335,7 @@ table.compact th { padding: 0.75rem; font-size: 0.8rem; }
 }
 .index-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr));
     gap: 1rem;
 }
 .index-category {
@@ -1669,7 +1669,7 @@ html[data-ficha3="aberto"] body:not([data-ficha-pagina]) .back-to-top { right: c
 /* Dano Types Grid */
 .damage-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(150px, 100%), 1fr));
     gap: 1rem;
     margin: 1rem 0;
 }
@@ -1859,6 +1859,20 @@ html[data-ficha3="aberto"] body:not([data-bazar]):not([data-ficha-pagina]) .main
     display: block; max-width: 100%;
     overflow-x: auto !important; overflow-y: hidden;
 }
+/* a mesma rolagem sem o drawer: no celular e na janela estreita, a tabela mais
+   larga que a coluna (Perícias do Sistema, Efeito por Intensidade das Magias)
+   rola ela mesma, em vez de alargar a página (o celular afastava o zoom para
+   ~700 px). O js/main.js marca [data-larga] e a tira quando volta a caber. */
+body:not([data-bazar]):not([data-ficha-pagina]) .main-content table[data-larga] {
+    display: block; max-width: 100%;
+    overflow-x: auto !important; overflow-y: hidden;
+}
+/* no celular e no tablet o conteúdo não alarga a página: o que passa da coluna
+   fica cortado até o js/main.js marcar a tabela, que então rola. Sem o corte, o
+   navegador alargava a página para caber a tabela, e ela nunca era "larga". */
+@media (max-width: 900px) {
+    body:not([data-bazar]):not([data-ficha-pagina]) .main-content { overflow-x: clip; }
+}
 }
 
 @layer componentes {
@@ -1918,7 +1932,7 @@ html[data-ficha3="aberto"] body:not([data-bazar]):not([data-ficha-pagina]) .main
 /* nav horizontal melhorada */
 .index-nav-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr));
     gap: 1rem;
     margin-top: 1.5rem;
 }

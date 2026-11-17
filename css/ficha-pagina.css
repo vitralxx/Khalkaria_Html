@@ -470,7 +470,7 @@ html[data-ficha-previa] .fp [data-sem-previa] { display: none; }
 /* ======================================================================
    2. Técnicas & Marcas (e as cartas do Abismo, que usam o mesmo card)
    ====================================================================== */
-.fp-tecs { display: grid; grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr)); gap: var(--esp-3); align-items: start; }
+.fp-tecs { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(17rem, 100%), 1fr)); gap: var(--esp-3); align-items: start; }
 .fp-tec {
     position: relative;
     padding: .7rem .9rem .8rem;
@@ -617,7 +617,7 @@ html[data-ficha-previa] .fp [data-sem-previa] { display: none; }
    5. Grimório
    ====================================================================== */
 .fp-mg-req { margin: 0 0 var(--esp-4); font-family: var(--font-heading); font-size: .72rem; font-weight: 600; letter-spacing: .05em; }
-.fp-mgs { display: grid; grid-template-columns: repeat(auto-fill, minmax(23rem, 1fr)); gap: var(--esp-3); align-items: start; }
+.fp-mgs { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(23rem, 100%), 1fr)); gap: var(--esp-3); align-items: start; }
 .fp-mg {
     position: relative;
     padding: .75rem .9rem .85rem;
@@ -649,6 +649,47 @@ html[data-ficha-previa] .fp [data-sem-previa] { display: none; }
 @media (max-width: 1100px) {
     .fp-ats { grid-template-columns: repeat(3, minmax(0, 1fr)); }
     .fp-lores { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* ---------------------------------------------------------- celular (03 §16: na mesa, os jogadores usam o celular)
+   O mesmo conteúdo, mais enxuto: menos moldura e menos respiro, as abas numa
+   fileira que rola de lado, os atributos em linhas (como no drawer), a
+   resistência sem a coluna do tipo em largura fixa. */
+@media (max-width: 600px) {
+    /* o botão Menu (fixo no canto) não cobre o seletor de ficha */
+    .fp-topo { padding-top: 2.75rem; }
+    .fp-nome { font-size: 1.8rem; }
+    .fp-ident { gap: var(--esp-2) var(--esp-4); }
+    .fp-ident dd { font-size: 1rem; }
+    .fp-campo { min-width: 0; }
+    .fp-ro { font-size: .9rem; }
+    .fp-ro > * { min-width: 0; }
+    /* contain: a fileira rola por dentro e não empresta a sua largura (a soma das
+       5 abas) ao conteúdo, que senão alargava a página inteira */
+    .fp-abas-barra { overflow-x: auto; scrollbar-width: none; contain: inline-size; }
+    .fp-selo { max-width: 100%; white-space: normal; }
+    .fp-abas-barra::-webkit-scrollbar { display: none; }
+    .fp-abas { flex-wrap: nowrap; }
+    .fp-aba { flex: 0 0 auto; padding: var(--esp-2) var(--esp-3); font-size: .72rem; white-space: nowrap; }
+    .fp-painel { padding: var(--esp-4) var(--esp-2) var(--esp-3); }
+    .fp-bloco { margin-bottom: var(--esp-4); padding: var(--esp-4) var(--esp-3) var(--esp-3); }
+    .fp-canto { width: 30px; height: 30px; }
+    .fp-bloco-tit { margin-bottom: var(--esp-3); font-size: 1.35rem; }
+    /* atributos: uma linha cada (medalhão, nome, total, modificador) */
+    .fp-ats { grid-template-columns: minmax(0, 1fr); gap: var(--esp-1); }
+    .fp-at {
+        grid-template-columns: 40px minmax(0, 1fr) auto auto;
+        justify-items: start; align-items: center; gap: var(--esp-2);
+        padding: var(--esp-1) var(--esp-2);
+        text-align: left;
+    }
+    .fp-at-img { width: 40px; height: 40px; padding: 5px; box-shadow: 0 0 0 1px var(--amber-dim), 0 0 0 3px #0c0b10; }
+    .fp-at-nome { margin: 0; font-size: .72rem; letter-spacing: .06em; }
+    .fp-at-total { flex-direction: row; align-items: baseline; gap: .35rem; }
+    .fp-at-total .fp-v { font-size: 1.35rem; }
+    .fp-at-mod { padding: 0 .5rem; }
+    .fp-per { gap: .4rem; padding: .2rem 0; }
+    .fp-res-tab { grid-template-columns: minmax(0, 1fr) repeat(3, 1.5rem) 2.1rem 2.3rem; }
 }
 
 }

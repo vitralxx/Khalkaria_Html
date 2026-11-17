@@ -22,7 +22,7 @@
         .technique-name { color: var(--gold-light); font-weight: 600; }
         .concentracao-box { background: linear-gradient(135deg, rgba(249,115,22,0.1), rgba(6,182,212,0.05)); border: 2px solid var(--ramo-polvora); border-radius: 12px; padding: 1.5rem; margin: 2rem 0; }
         .concentracao-box h3 { color: var(--ramo-polvora); font-family: var(--font-heading); margin-bottom: 1rem; }
-        .concentracao-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; }
+        .concentracao-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr)); gap: 1rem; }
         .concentracao-item { background: rgba(0,0,0,0.3); border-radius: 8px; padding: 1rem; }
         .concentracao-item h4 { font-size: 0.95rem; margin-bottom: 0.5rem; }
         .concentracao-item ul { margin: 0; padding-left: 1.25rem; font-size: 0.9rem; color: var(--text-secondary); }
@@ -30,7 +30,7 @@
         .conc-lose { color: #ef4444; }
         .ramos-intro { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem; }
         .ramos-intro p { color: var(--text-secondary); line-height: 1.7; margin-bottom: 1rem; }
-        .ramos-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin: 2rem 0; }
+        .ramos-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); gap: 1.5rem; margin: 2rem 0; }
         .ramo-card { background: var(--bg-card); border: 2px solid var(--border-color); border-radius: 12px; padding: 1.5rem; transition: all 0.3s; }
         .ramo-card:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(0,0,0,0.3); }
         .ramo-card.vendaval { border-color: var(--ramo-vendaval); }
@@ -60,7 +60,7 @@
         .tier-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; padding-bottom: 0.5rem; border-bottom: 2px solid var(--gold-dark); }
         .tier-header h3 { font-family: var(--font-heading); font-size: 1.5rem; color: var(--gold); }
         .tier-badge { background: var(--gold-dark); color: var(--bg-primary); font-weight: 700; padding: 0.25rem 0.75rem; border-radius: 4px; font-size: 0.8rem; }
-        .tech-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; }
+        .tech-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr)); gap: 1.5rem; }
         .tech-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; overflow: hidden; }
         .tech-card-header { padding: 1rem 1.25rem; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center; }
         .tech-card-header.vendaval { background: linear-gradient(135deg, var(--ramo-vendaval-dark), transparent); }
@@ -93,7 +93,7 @@
         .class-nav { display: flex; justify-content: space-between; margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border-color); }
         .class-nav a { color: var(--gold); text-decoration: none; padding: 0.75rem 1.5rem; border: 1px solid var(--gold-dark); border-radius: 8px; transition: all 0.3s; }
         .class-nav a:hover { background: var(--gold-dark); color: var(--bg-primary); }
-        .techniques-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
+        .techniques-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); gap: 1rem; margin: 1.5rem 0; }
         .technique-card h4 { color: var(--gold); font-family: var(--font-heading); font-size: 1rem; margin-bottom: 0.25rem; }
         .technique-card .tech-meta { display: block; font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.5rem; }
         .technique-card p { color: var(--text-secondary); font-size: 0.9rem; line-height: 1.5; margin: 0; }

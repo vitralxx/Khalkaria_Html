@@ -137,4 +137,8 @@
 @media (min-width: 1800px) {
     :root { --esq-w: 400px; --ficha3-w: 460px; }
 }
+/* no celular, o drawer aberto é a tela inteira (03 §16) */
+@media (max-width: 600px) {
+    :root { --ficha3-w: 100vw; }
+}
 }

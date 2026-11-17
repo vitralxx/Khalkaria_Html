@@ -73,3 +73,31 @@ document.addEventListener('DOMContentLoaded', function() {
     
     cards.forEach(card => observer.observe(card));
 });
+
+/* Tabela mais larga que a coluna rola ela mesma (celular, janela estreita):
+   marca [data-larga] (css/style.css) e tira quando volta a caber. Remede ao
+   redimensionar e depois de um clique (aba que mostra tabela escondida). O
+   Bazar e a página da ficha têm layout próprio e ficam de fora. */
+(function () {
+  var pedido = 0;
+  function mede() {
+    pedido = 0;
+    var b = document.body;
+    if (!b || b.hasAttribute('data-bazar') || b.hasAttribute('data-ficha-pagina')) return;
+    var ts = document.querySelectorAll('.main-content table');
+    for (var i = 0; i < ts.length; i++) {
+      var t = ts[i], pai = t.parentElement;
+      if (!pai || !t.offsetWidth) continue;
+      var larga = t.hasAttribute('data-larga') ? t.scrollWidth > t.clientWidth + 1 : t.offsetWidth > pai.clientWidth + 1;
+      if (larga) t.setAttribute('data-larga', '');
+      else t.removeAttribute('data-larga');
+    }
+  }
+  // setTimeout, não requestAnimationFrame: o rAF não roda em aba que não desenha
+  function agenda() { if (!pedido) pedido = setTimeout(mede, 60); }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', agenda);
+  else agenda();
+  window.addEventListener('load', agenda);
+  window.addEventListener('resize', agenda);
+  document.addEventListener('click', agenda);
+})();
