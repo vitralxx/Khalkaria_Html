@@ -85,7 +85,7 @@ VOID = {'area', 'base', 'br', 'col', 'embed', 'hr', 'img', 'input', 'link',
 # páginas geradas por gerador -> script que as produz (para o round-trip)
 GERADORES = ['gerar_sistema.py', 'gerar_magias.py', 'gerar_condicoes.py', 'gerar_limiar.py',
              'gerar_classes.py', 'gerar_racas.py', 'gerar_origens.py', 'gerar_ficha.py', 'gerar_efeitos.py',
-             'gerar_catalogo.py', 'gerar_regras_ficha.py']
+             'gerar_catalogo.py', 'gerar_regras_ficha.py', 'gerar_usos.py']
 # O Bazar entra no build padrão, mas não no round-trip: o gerador dele lê o CSV
 # e grava data/bazar.json na raiz do repo (não recebe repo_root), então
 # regenerá-lo aqui sobrescreveria o artefato real. A integridade do bazar.json
@@ -94,7 +94,8 @@ FORA_ROUNDTRIP = {'pages/bazar.html'}
 # data/ (e js/) que um gerador escreve (fora de data/catalogo/): nasce do zero no round-trip.
 # js/ficha/00-regras-dados.js (F3b) vem do gerar_regras_ficha.py, que lê o data/pericias.json
 # do gerar_catalogo.py: por isso roda depois dele na lista GERADORES.
-ARTEFATOS_DATA = ['data/pericias.json', 'data/efeitos.json', 'js/ficha/00-regras-dados.js']
+ARTEFATOS_DATA = ['data/pericias.json', 'data/efeitos.json', 'js/ficha/00-regras-dados.js',
+                  'data/usos.json', 'docs/ficha-digital/12-usos-revisao.md']
 FONTES_DOCS = ['docs/ficha-digital/03-respostas-pedro.md']
 
 falhas = []

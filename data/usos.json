@@ -1,0 +1,775 @@
+{
+ "_doc": "ARTEFATO de tools/gerar_usos.py: não editar à mão",
+ "contagem": {
+  "foraDoCatalogo": 2,
+  "lidos": 48,
+  "naoParseados": 13,
+  "porFormula": {
+   "comMod": 1,
+   "comNivel": 0,
+   "constante": 47
+  },
+  "porPeriodo": {
+   "cena": 1,
+   "combate": 5,
+   "curto": 6,
+   "dia": 2,
+   "longo": 24,
+   "rodada": 4,
+   "turno": 6
+  },
+  "porTipo": {
+   "beneficio": 3,
+   "carta": 7,
+   "corrupcao": 2,
+   "magia": 1,
+   "marca": 4,
+   "origem": 3,
+   "subespecie": 2,
+   "tecnica": 14,
+   "tecnologia": 1,
+   "traco": 3,
+   "ultimate": 5,
+   "variante": 3
+  }
+ },
+ "foraDoCatalogo": [
+  {
+   "classe": "batedor",
+   "id": "batedor-recurso-instinto",
+   "motivo": "limites de GANHO do recurso (por rodada/cena), não contador de habilidade",
+   "tipo": "recurso-de-classe",
+   "trecho": "2x por rodada",
+   "trechos": [
+    "2x por rodada",
+    "1x/perícia",
+    "1x/rodada",
+    "1x/Rodada"
+   ]
+  },
+  {
+   "classe": "monge",
+   "id": "monge-recurso-fluxo",
+   "motivo": "limites de GANHO do recurso (por rodada/cena), não contador de habilidade",
+   "tipo": "recurso-de-classe",
+   "trecho": "2x por rodada",
+   "trechos": [
+    "2x por rodada",
+    "1x por rodada",
+    "1x por rodada"
+   ]
+  }
+ ],
+ "naoParseados": [
+  {
+   "id": "abismo-desejo-sombrio",
+   "motivo": "período fora do conjunto: \"Campanha\"",
+   "tipo": "beneficio",
+   "trecho": "1x/Campanha"
+  },
+  {
+   "id": "artilheiro-municao-especial",
+   "motivo": "cita limite de uso em forma não lida",
+   "tipo": "tecnica",
+   "trecho": "As munições são de uso único (Ao invés de uso por cena): Explosiva → Criaturas em 1,5 m do alvo sofrem o dano original da flecha."
+  },
+  {
+   "id": "artilheiro-projetil-envenenado",
+   "motivo": "período fora do conjunto: \"Alvo\"",
+   "tipo": "tecnica",
+   "trecho": "1x/Alvo"
+  },
+  {
+   "id": "automato-auto-reparador",
+   "motivo": "cita limite de uso em forma não lida",
+   "tipo": "tecnologia",
+   "trecho": "Cria 1 Kit de Manutenção por descanso longo."
+  },
+  {
+   "id": "batedor-cobra",
+   "motivo": "cita limite de uso em forma não lida",
+   "tipo": "tecnica",
+   "trecho": "Você pode criar até 2 venenos por descanso curto e 5 Venenos por descanso longo."
+  },
+  {
+   "id": "batedor-conexoes-duvidosas",
+   "motivo": "período fora do conjunto: \"localização\"",
+   "tipo": "tecnica",
+   "trecho": "1 vez por localização"
+  },
+  {
+   "id": "brutalista-fortaleza-de-aco",
+   "motivo": "cita limite de uso em forma não lida",
+   "tipo": "tecnica",
+   "trecho": "Você pode usar esta habilidade um número de vezes igual ao seu mod. de Constituição (mínimo 1) por combate."
+  },
+  {
+   "id": "brutalista-frenesi",
+   "motivo": "qualificador logo depois do uso: no nível 2 e 2 vezes no nível",
+   "tipo": "tecnica",
+   "trecho": "1 vez por descanso longo"
+  },
+  {
+   "id": "limiar-coracao-imortal",
+   "motivo": "período fora do conjunto: \"Semana\"",
+   "tipo": "carta",
+   "trecho": "1x/Semana"
+  },
+  {
+   "id": "limiar-maos-abencoadas",
+   "motivo": "cita limite de uso em forma não lida",
+   "tipo": "carta",
+   "trecho": "Você pode fazer isso em até 3 aliados por descanso longo"
+  },
+  {
+   "id": "limiar-premonicao-de-batalha",
+   "motivo": "período fora do conjunto: \"sessão\"",
+   "tipo": "carta",
+   "trecho": "1x/sessão"
+  },
+  {
+   "id": "limiar-vidente",
+   "motivo": "período fora do conjunto: \"sessão\"",
+   "tipo": "carta",
+   "trecho": "1x/sessão"
+  },
+  {
+   "id": "teurgo-eterno-aprendiz",
+   "motivo": "cita limite de uso em forma não lida",
+   "tipo": "tecnica",
+   "trecho": "Você só pode aprender 1 magia por descanso longo."
+  }
+ ],
+ "porId": {
+  "abismo-guardiao-da-morte": {
+   "max": {
+    "termos": [
+     {
+      "const": 1
+     }
+    ],
+    "texto": "1"
+   },
+   "periodo": "longo",
+   "tipo": "beneficio",
+   "trecho": "1x/descanso longo"
+  },
+  "abismo-olhar-do-vazio": {
+   "max": {
+    "termos": [
+     {
+      "const": 1
+     }
+    ],
+    "texto": "1"
+   },
+   "periodo": "longo",
+   "tipo": "beneficio",
+   "trecho": "1x/Descanso Longo"
+  },
+  "abismo-translocacao": {
+   "max": {
+    "termos": [
+     {
+      "const": 1
+     }
+    ],
+    "texto": "1"
+   },
+   "periodo": "longo",
+   "tipo": "beneficio",
+   "trecho": "1x/Descanso Longo"
+  },
+  "alquimista-constructo-de-combate": {
+   "max": {
+    "termos": [
+     {
+      "const": 2
+     }
+    ],
+    "texto": "2"
+   },
+   "periodo": "curto",
+   "tipo": "tecnica",
+   "trecho": "2x por descanso curto"
+  },
+  "alquimista-preciosismo": {
+   "max": {
+    "termos": [
+     {
+      "const": 1
+     }
+    ],
+    "texto": "Uma"
+   },
+   "periodo": "longo",
+   "tipo": "marca",
+   "trecho": "Uma vez por descanso longo"
+  },
+  "anao-resiliencia-ana": {
+   "max": {
+    "termos": [
+     {
+      "const": 1
+     }
+    ],
+    "texto": "Uma"
+   },
+   "periodo": "longo",
+   "tipo": "traco",
+   "trecho": "Uma vez por descanso longo"
+  },
+  "automato-nucleo-duplo": {
+   "max": {
+    "termos": [
+     {
+      "const": 1
+     }
+    ],
+    "texto": "uma"
+   },
+   "periodo": "longo",
+   "tipo": "tecnologia",
+   "trecho": "uma vez por descanso longo"
+  },
+  "batedor-olho-no-lance": {
+   "max": {
+    "termos": [
+     {
+      "const": 1
+     }
+    ],
+    "texto": "1"
+   },
+   "periodo": "cena",
+   "tipo": "tecnica",
+   "trecho": "1x/cena"
+  },
+  "brutalista-a-ultima-parede": {
+   "max": {
+    "termos": [
+     {
+      "const": 1
+     }
+    ],
+    "texto": "Uma"
+   },
+   "periodo": "combate",
+   "tipo": "ultimate",
+   "trecho": "Uma vez por combate"
+  },
+  "brutalista-comando-tatico": {
+   "max": {
+    "termos": [
+     {
+      "const": 2
+     }
+    ],
+    "texto": "2"
+   },
+   "periodo": "rodada",
+   "tipo": "tecnica",
+   "trecho": "2 vezes por rodada"
+  },
+  "brutalista-hoje-nao": {
+   "max": {
+    "termos": [
+     {
+      "const": 1
+     }
+    ],
+    "texto": "Uma"
+   },
+   "periodo": "longo",
+   "tipo": "tecnica",
+   "trecho": "Uma vez por descanso longo"
+  },
+  "brutalista-ignorar-dor": {
+   "max": {
+    "termos": [
+     {
+      "const": 1
+     }
+    ],
+    "texto": "1"
+   },
+   "periodo": "longo",
+   "tipo": "tecnica",
+   "trecho": "1 vez por descanso longo"
+  },
+  "brutalista-o-experiente": {
+   "max": {
+    "termos": [
+     {
+      "const": 1
+     }
+    ],
+    "texto": "Uma"
+   },
+   "periodo": "turno",
+   "tipo": "tecnica",
+   "trecho": "Uma vez por turno"
+  },
+  "corrompido-morto": {
+   "max": {
+    "termos": [
+     {
+      "const": 1
+     }
+    ],
+    "texto": "1"
+   },
+   "periodo": "longo",
+   "tipo": "corrupcao",
+   "trecho": "1x/descanso longo"
+  },
+  "corrompido-reservatorio-de-eter": {
+   "max": {
+    "termos": [
+     {
+      "const": 1
+     }
+    ],
+    "texto": "1"
+   },
+   "periodo": "curto",
+   "tipo": "corrupcao",
+   "trecho": "1x/Descanso curto"
+  },
+  "corrompido-sussurros-1x-descanso-curto": {
+   "max": {
+    "termos": [
+     {
+      "const": 1
+     }
+    ],
+    "texto": "1"
+   },
+   "periodo": "curto",
+   "tipo": "traco",
+   "trecho": "1x/Descanso Curto"
+  },
+  "espadachim-brecha": {
+   "max": {
+    "termos": [
+     {
+      "const": 1
+     }
+    ],
+    "texto": "1"
+   },
+   "periodo": "turno",
+   "tipo": "tecnica",
+   "trecho": "1 vez por turno"
+  },
+  "espadachim-cicatrizes": {
+   "max": {
+    "termos": [
+     {
+      "const": 1
+     }
+    ],
+    "texto": "1"
+   },
+   "periodo": "longo",
+   "tipo": "ultimate",
+   "trecho": "1x/Descanso Longo"
+  },
+  "espadachim-coragem-liquida": {
+   "max": {
+    "termos": [
+     {
+      "const": 1
+     }
+    ],
+    "texto": "Uma"
+   },
+   "periodo": "rodada",
+   "tipo": "marca",
+   "trecho": "Uma vez por rodada"
+  },
+  "espadachim-epifania": {
+   "max": {
+    "termos": [
+     {
+      "const": 1
+     }
+    ],
+    "texto": "1"
+   },
+   "periodo": "longo",
+   "tipo": "ultimate",
+   "trecho": "1x/Descanso Longo"
+  },
+  "espadachim-respiro-do-espadachim": {
+   "max": {
+    "termos": [
+     {
+      "const": 1
+     }
+    ],
+    "texto": "1"
+   },
+   "periodo": "turno",
+   "tipo": "tecnica",
+   "trecho": "1 vez por turno"
+  },
+  "espadachim-sentenca-final": {
+   "max": {
+    "termos": [
+     {
+      "const": 1
+     }
+    ],
+    "texto": "1"
+   },
+   "periodo": "longo",
+   "tipo": "ultimate",
+   "trecho": "1x/Descanso Longo"
+  },
+  "espadachim-trebado": {
+   "max": {
+    "termos": [
+     {
+      "const": 3
+     }
+    ],
+    "texto": "3"
+   },
+   "periodo": "longo",
+   "tipo": "tecnica",
+   "trecho": "3x/descanso longo"
+  },
+  "humano-estudioso": {
+   "max": {
+    "termos": [
+     {
+      "const": 1
+     }
+    ],
+    "texto": "1"
+   },
+   "periodo": "longo",
+   "tipo": "variante",
+   "trecho": "1 vez por descanso longo"
+  },
+  "humano-persistencia-humana": {
+   "max": {
+    "termos": [
+     {
+      "const": 1
+     },
+     {
+      "fator": 1,
+      "mod": "SAB"
+     }
+    ],
+    "texto": "1+mod. Sabedoria"
+   },
+   "periodo": "longo",
+   "tipo": "traco",
+   "trecho": "Usos: 1+mod. Sabedoria/descanso longo"
+  },
+  "humano-popular": {
+   "max": {
+    "termos": [
+     {
+      "const": 1
+     }
+    ],
+    "texto": "Uma"
+   },
+   "periodo": "longo",
+   "tipo": "variante",
+   "trecho": "Uma vez por descanso longo"
+  },
+  "humano-rebelde": {
+   "max": {
+    "termos": [
+     {
+      "const": 1
+     }
+    ],
+    "texto": "1"
+   },
+   "periodo": "longo",
+   "tipo": "variante",
+   "trecho": "1 vez por descanso longo"
+  },
+  "inseto-barata": {
+   "max": {
+    "termos": [
+     {
+      "const": 1
+     }
+    ],
+    "texto": "1"
+   },
+   "periodo": "longo",
+   "tipo": "subespecie",
+   "trecho": "1x/Descanso Longo"
+  },
+  "inseto-louva-a-deus": {
+   "max": {
+    "termos": [
+     {
+      "const": 1
+     }
+    ],
+    "texto": "1"
+   },
+   "periodo": "combate",
+   "tipo": "subespecie",
+   "trecho": "1 vez por combate"
+  },
+  "limiar-comandante-de-guerra": {
+   "max": {
+    "termos": [
+     {
+      "const": 1
+     }
+    ],
+    "texto": "1"
+   },
+   "periodo": "rodada",
+   "tipo": "carta",
+   "trecho": "1x/rodada"
+  },
+  "limiar-comunhao-primordial": {
+   "max": {
+    "termos": [
+     {
+      "const": 1
+     }
+    ],
+    "texto": "1"
+   },
+   "periodo": "dia",
+   "tipo": "carta",
+   "trecho": "1x/dia"
+  },
+  "limiar-esquiva-abissal": {
+   "max": {
+    "termos": [
+     {
+      "const": 1
+     }
+    ],
+    "texto": "1"
+   },
+   "periodo": "curto",
+   "tipo": "carta",
+   "trecho": "1x/curto"
+  },
+  "limiar-olhos-analiticos": {
+   "max": {
+    "termos": [
+     {
+      "const": 1
+     }
+    ],
+    "texto": "1"
+   },
+   "periodo": "combate",
+   "tipo": "carta",
+   "trecho": "1x/combate"
+  },
+  "limiar-pacto-sanguinario": {
+   "max": {
+    "termos": [
+     {
+      "const": 1
+     }
+    ],
+    "texto": "1"
+   },
+   "periodo": "dia",
+   "tipo": "carta",
+   "trecho": "1x/dia"
+  },
+  "limiar-reflexos-de-serpente": {
+   "max": {
+    "termos": [
+     {
+      "const": 1
+     }
+    ],
+    "texto": "1"
+   },
+   "periodo": "curto",
+   "tipo": "carta",
+   "trecho": "1x/Curto"
+  },
+  "limiar-sexto-sentido": {
+   "max": {
+    "termos": [
+     {
+      "const": 1
+     }
+    ],
+    "texto": "1"
+   },
+   "periodo": "longo",
+   "tipo": "carta",
+   "trecho": "1x/Descanso Longo"
+  },
+  "magia-reversao-umbral": {
+   "max": {
+    "termos": [
+     {
+      "const": 1
+     }
+    ],
+    "texto": "uma"
+   },
+   "periodo": "combate",
+   "tipo": "magia",
+   "trecho": "uma vez por combate"
+  },
+  "monge-cadeia-de-golpes": {
+   "max": {
+    "termos": [
+     {
+      "const": 2
+     }
+    ],
+    "texto": "2"
+   },
+   "periodo": "turno",
+   "tipo": "tecnica",
+   "trecho": "2 vezes por turno"
+  },
+  "monge-danca-do-monge": {
+   "max": {
+    "termos": [
+     {
+      "const": 1
+     }
+    ],
+    "texto": "1"
+   },
+   "periodo": "rodada",
+   "tipo": "tecnica",
+   "trecho": "1x/Rodada"
+  },
+  "monge-insurgencia": {
+   "max": {
+    "termos": [
+     {
+      "const": 1
+     }
+    ],
+    "texto": "1"
+   },
+   "periodo": "turno",
+   "tipo": "ultimate",
+   "trecho": "1x/Turno"
+  },
+  "monge-sussurros-constantes": {
+   "max": {
+    "termos": [
+     {
+      "const": 1
+     }
+    ],
+    "texto": "Uma"
+   },
+   "periodo": "longo",
+   "tipo": "marca",
+   "trecho": "Uma vez por descanso longo"
+  },
+  "origem-cultista": {
+   "max": {
+    "termos": [
+     {
+      "const": 1
+     }
+    ],
+    "texto": "Uma"
+   },
+   "periodo": "longo",
+   "tipo": "origem",
+   "trecho": "Uma vez por descanso longo"
+  },
+  "origem-lenhador": {
+   "max": {
+    "termos": [
+     {
+      "const": 1
+     }
+    ],
+    "texto": "1"
+   },
+   "periodo": "combate",
+   "tipo": "origem",
+   "trecho": "1x/Combate"
+  },
+  "origem-mineiro": {
+   "max": {
+    "termos": [
+     {
+      "const": 1
+     }
+    ],
+    "texto": "1"
+   },
+   "periodo": "turno",
+   "tipo": "origem",
+   "trecho": "1x/Turno"
+  },
+  "teurgo-barganha-primordial": {
+   "max": {
+    "termos": [
+     {
+      "const": 1
+     }
+    ],
+    "texto": "Uma"
+   },
+   "periodo": "longo",
+   "tipo": "tecnica",
+   "trecho": "Uma vez por descanso longo"
+  },
+  "teurgo-patrono-primordial": {
+   "max": {
+    "termos": [
+     {
+      "const": 1
+     }
+    ],
+    "texto": "Uma"
+   },
+   "ocorrencias": 3,
+   "periodo": "longo",
+   "tipo": "tecnica",
+   "trecho": "Uma vez por descanso longo"
+  },
+  "teurgo-porta-voz": {
+   "max": {
+    "termos": [
+     {
+      "const": 1
+     }
+    ],
+    "texto": "Uma"
+   },
+   "periodo": "longo",
+   "tipo": "marca",
+   "trecho": "Uma vez por descanso longo"
+  },
+  "teurgo-respiracao-primordial": {
+   "max": {
+    "termos": [
+     {
+      "const": 1
+     }
+    ],
+    "texto": "1"
+   },
+   "periodo": "curto",
+   "tipo": "tecnica",
+   "trecho": "1x/Descanso Curto"
+  }
+ },
+ "schema": "usos/1"
+}

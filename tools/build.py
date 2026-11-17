@@ -39,6 +39,8 @@ ALVOS = [
     ('efeitos',   'gerar_efeitos.py'),
     # catálogo por tipo (F1a): lê os data/*.json de conteúdo, vem por último
     ('catalogo',  'gerar_catalogo.py'),
+    # limites de uso lidos do texto do catálogo (data/usos.json + docs/ficha-digital/12-usos-revisao.md)
+    ('usos',      'gerar_usos.py'),
 ]
 TESTES = os.path.join(TOOLS, 'testes')
 
