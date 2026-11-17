@@ -13,7 +13,8 @@ const lerJSON = (...p) => JSON.parse(fs.readFileSync(path.join(RAIZ, ...p), 'utf
 function dadosCatalogo() {
   const pasta = (d) => fs.readdirSync(path.join(RAIZ, 'data', d)).filter((n) => n.endsWith('.json')).sort()
     .map((n) => lerJSON('data', d, n));
-  return { catalogos: pasta('catalogo'), classes: pasta('classes'), racas: pasta('racas') };
+  // e os limites de uso lidos do texto (data/usos.json): a página carrega os quatro
+  return { catalogos: pasta('catalogo'), classes: pasta('classes'), racas: pasta('racas'), usos: lerJSON('data', 'usos.json') };
 }
 // As entradas vêm do código de PRODUÇÃO (KhEstado.entradasDeCatalogo): os
 // ramos com os apelidos que a v2 gravava e as corrupções do Corrompido.

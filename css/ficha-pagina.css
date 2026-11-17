@@ -691,5 +691,91 @@ html[data-ficha-previa] .fp [data-sem-previa] { display: none; }
     .fp-per { gap: .4rem; padding: .2rem 0; }
     .fp-res-tab { grid-template-columns: minmax(0, 1fr) repeat(3, 1.5rem) 2.1rem 2.3rem; }
 }
+    /* ---------------------------------------------------------------------------
+       Em jogo (03 §16, passo 3): a faixa sobre as abas, a mesma em todas.
+       rec = os recursos (no celular, presa no topo); cond = condições e descansos.
+       O chip aberto ocupa a linha inteira (nada sobra para fora da página).
+       --------------------------------------------------------------------------- */
+    .fp-jogo-rec {
+        margin-top: var(--esp-3);
+        padding: .5rem .8rem;
+        background: var(--grao), linear-gradient(180deg, #16131d, #0e0d13);
+        border: 1px solid var(--fp-fio);
+        border-bottom: 0;
+    }
+    .fp-jogo-recs { display: flex; flex-wrap: wrap; align-items: center; gap: .45rem 1.4rem; }
+    .fp-jogo-r { display: inline-flex; flex-wrap: wrap; align-items: center; gap: .3rem; }
+    .fp-jogo-rot {
+        font-family: var(--font-heading);
+        font-size: .66rem; font-weight: 600;
+        letter-spacing: .08em; text-transform: uppercase;
+        color: var(--text-muted-forte);
+    }
+    .fp-jogo-r .fp-n, .fp-jogo-r .fp-v { font-size: 1.05rem; }
+    .fp-jogo-temp { font-size: .82rem; color: var(--gold-light); }
+    .fp-jogo-img, .fp-jogo-ico { width: 1.3rem; height: 1.3rem; flex: none; }
+    .fp-jogo-ico { display: inline-flex; color: var(--amber); }
+    .fp-jogo-ico svg { width: 100%; height: 100%; }
+    /* na faixa, só o número: o calculado antes do ajuste e os selos ficam na dica e no Núcleo */
+    .fp-jogo-rec .fp-calc, .fp-jogo-rec .fp-marca-aviso { display: none; }
+    .fp-jogo-cond {
+        display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: space-between;
+        gap: .4rem 1rem;
+        padding: .45rem .8rem;
+        border: 1px solid var(--fp-fio);
+        background: #0e0d13;
+    }
+    .fp-jogo-conds { display: flex; flex-wrap: wrap; align-items: center; gap: .35rem; flex: 1 1 20rem; min-width: 0; }
+    .fp-cond > summary, .fp-cond-nova > summary, .fp-jogo-longo > summary {
+        list-style: none; cursor: pointer;
+        padding: .12rem .6rem;
+        border: 1px solid var(--amber-dim); border-radius: 999px;
+        font-size: .88rem; color: var(--text-primary);
+        background: #e08b2c12;
+    }
+    .fp-cond > summary::-webkit-details-marker, .fp-cond-nova > summary::-webkit-details-marker,
+    .fp-jogo-longo > summary::-webkit-details-marker { display: none; }
+    .fp-cond[open], .fp-cond-nova[open] { flex-basis: 100%; }
+    .fp-cond[open] > summary, .fp-cond-nova[open] > summary, .fp-jogo-longo[open] > summary { border-color: var(--amber); }
+    .fp-cond-imune > summary { border-style: dashed; color: var(--text-secondary); }
+    .fp-cond-nova > summary { border-style: dashed; background: transparent; color: var(--amber); }
+    .fp-cond-corpo { margin: .4rem 0 .2rem; padding: .5rem .7rem; border-left: 2px solid var(--amber-dim); background: #12121a; }
+    .fp-cond-txt { margin: 0; font-size: .92rem; line-height: 1.5; color: var(--text-secondary); max-width: 70ch; }
+    .fp-cond-acoes { display: flex; flex-wrap: wrap; gap: .35rem; margin-top: .45rem; }
+    .fp-cond-cats { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(15rem, 100%), 1fr)); gap: .5rem 1rem; margin-top: .45rem; }
+    .fp-cond-cat { display: flex; flex-wrap: wrap; align-items: center; gap: .3rem; }
+    .fp-cond-cat > .fp-rot { flex-basis: 100%; }
+    .fp-cond-op { padding: .1rem .5rem; font-size: .82rem; }
+    .fp-jogo-desc { display: flex; flex-wrap: wrap; align-items: center; gap: .35rem; }
+    .fp-jogo-longo { display: inline-flex; flex-wrap: wrap; align-items: center; gap: .35rem; }
+    .fp-jogo-longo-ops { display: inline-flex; flex-wrap: wrap; gap: .35rem; }
+
+    /* usos (data/usos.json): bolinhas cheias = usos que restam */
+    .fp-usos { display: flex; flex-wrap: wrap; align-items: center; gap: .3rem .5rem; margin: .35rem 0 .15rem; font-size: .9rem; }
+    .fp-usos-pips { display: inline-flex; gap: 3px; }
+    .fp-usos-pip { width: .62rem; height: .62rem; border-radius: 50%; border: 1px solid var(--amber-dim); }
+    .fp-usos-tem { background: var(--amber); border-color: var(--amber); }
+    .fp-usos-n { font-variant-numeric: tabular-nums; color: var(--gold-light); }
+    .fp-usos .kh-btn, .fp-item-consumir { padding: .1rem .55rem; font-size: .8rem; }
+    .fp-item-consumir { margin-left: auto; }
+
+    @media (max-width: 600px) {
+        /* presa logo abaixo do botão do menu (fixo: 1rem do topo, 2.3rem de altura) */
+        .fp-jogo-rec {
+            position: sticky; top: 3.6rem; z-index: 150;
+            padding: .4rem .5rem;
+            background: var(--bg-primary);
+            border: 0; border-bottom: 1px solid var(--amber-dim);
+        }
+        .fp-jogo-recs { gap: .3rem .8rem; }
+        .fp-jogo-r { gap: .2rem; }
+        /* o nome por clip (nunca display:none: o leitor de tela o lê); o ícone fica */
+        .fp-jogo-rec .fp-jogo-rot { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+        /* o campo abre o teclado numérico; o − e o + ficam no Núcleo */
+        .fp-jogo-rec .ke-ed-menos, .fp-jogo-rec .ke-ed-mais { display: none; }
+        .fp-jogo-rec .kh-stepper input { width: 3.6ch; }
+        .fp-jogo-cond { padding: .4rem .5rem; }
+        .fp-jogo-temp-rot { display: none; }
+    }
 
 }

@@ -76,18 +76,20 @@
       CLASSES.forEach(function (c) { out.push({ grupo: 'classes', caminho: 'data/classes/' + c + '.json' }); });
       RACAS.forEach(function (r) { out.push({ grupo: 'racas', caminho: 'data/racas/' + r + '.json' }); });
       out.push({ grupo: 'efeitos', caminho: 'data/efeitos.json' });
+      out.push({ grupo: 'usos', caminho: 'data/usos.json' });
       out.push({ grupo: 'glifos', caminho: 'partials/glifos.html', texto: true });
       return out;
     }
     // baixa tudo em paralelo; o que falha fica em erros (a prévia segue sem)
     function carregar(fetchFn, base, versao) {
-      var dados = { catalogos: [], classes: [], racas: [], efeitos: null, glifos: '', erros: [] };
+      var dados = { catalogos: [], classes: [], racas: [], efeitos: null, usos: null, glifos: '', erros: [] };
       return Promise.all(arquivos().map(function (a) {
         return fetchFn(base + a.caminho + (versao || '')).then(function (r) {
           if (!r || !r.ok) throw new Error('HTTP ' + (r && r.status));
           return a.texto ? r.text() : r.json();
         }).then(function (x) {
           if (a.grupo === 'efeitos') dados.efeitos = x;
+          else if (a.grupo === 'usos') dados.usos = x;
           else if (a.grupo === 'glifos') dados.glifos = str(x);
           else dados[a.grupo].push(x);
         }, function () { dados.erros.push(a.caminho); });

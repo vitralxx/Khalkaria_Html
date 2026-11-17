@@ -54,7 +54,9 @@ html[data-ficha3="aberto"] body:not([data-ficha-pagina]) .ke-faixa { right: var(
 /* ---------------------------------------------------------- o seletor de fichas
    O mesmo HTML na página (densidade "pagina", acima do topo) e no cabeçalho
    do drawer (densidade "compacta", 380/460 px). */
-.fp-ke { margin-bottom: var(--esp-4); }
+/* contain: o select de fichas mede a opção mais longa; sem isso, a largura mínima
+   dele sobe até a página e a alarga no celular (03 §16) */
+.fp-ke { margin-bottom: var(--esp-4); contain: inline-size; }
 .fp-ke[hidden] { display: none; }
 .ke-seletor {
     display: flex; flex-direction: column; gap: var(--esp-2);

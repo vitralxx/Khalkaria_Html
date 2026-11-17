@@ -442,6 +442,9 @@
       }
 
       // ---- os ouvintes (delegados na raiz: o redesenho não os perde)
+      // os usos de cada técnica (data/usos.json, no contexto do catálogo) e os nós do
+      // motor (o Mod da fórmula de usos, o máximo do Reagentes no descanso longo)
+      function opAcao() { var c = ctx(); return { usos: c && c.usos ? c.usos : null, nos: nos() }; }
       function perto(t, sel) { try { return t && t.closest ? t.closest(sel) : null; } catch (e) { return null; } }
       function dentro(el) { return !!el && raizEl.contains(el); }
       function acaoBarra(a, b) {
@@ -486,6 +489,15 @@
           if (!x || !x.ficha) return;
           var p = g.getAttribute('data-ed-grau');
           grava(KhEdicao.mudancas(x.ficha, 'pericias.' + p, KhEdicao.grauClicado(x.ficha, p, Number(g.getAttribute('data-grau')))));
+          return;
+        }
+        // as ações de um clique do estado de jogo (KhEdicao.acao): condições, descansos e consumir
+        var ac = perto(t, '[data-ed-acao]');
+        if (ac && dentro(ac)) {
+          if (fora()) return;
+          var w = ativa();
+          if (!w || !w.ficha) return;
+          grava(KhEdicao.acao(w.ficha, ac.getAttribute('data-ed-acao'), ac.getAttribute('data-ed-arg'), opAcao()));
           return;
         }
         // o botão do evento de item (F6): o valor vem da caixa ao lado (o número do item ou o que rolou)

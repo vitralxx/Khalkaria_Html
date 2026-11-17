@@ -178,6 +178,8 @@
       if ((m = /^recursos\.(saude|stamina|eter|classe)\.atual$/.exec(c))) {
         return d({ tipo: 'inteiro', rotulo: RECURSOS[m[1]] + ' atual', min: MIN_REC, max: MAX_REC, passo: true });
       }
+      // D15: não soma (fica a maior), gasta primeiro, some no descanso longo
+      if (c === 'recursos.saude.temporaria') return d({ tipo: 'inteiro', rotulo: 'Saúde temporária', min: 0, max: MAX_REC, passo: true });
       if (c === 'inventario.sins') return d({ tipo: 'inteiro', rotulo: 'Sins', min: 0, max: MAX_SINS, passo: true });
       if (c === 'vhelor.marcas') return d({ tipo: 'inteiro', rotulo: 'Marcas da Vhelor', min: 0, max: 7, passo: true });
       if (c === 'idiomas') return d({ tipo: 'lista', rotulo: 'Idiomas', max: MAX_LISTA });
@@ -550,8 +552,193 @@
         rotulo: fora.length === 1 ? 'Remover o ajuste de ' + (semEmoji(rotuloNo) || fora[0]) : 'Remover ' + fora.length + ' ajustes' };
     }
 
+    // ---------------- ações de um clique: o estado de jogo (plano vigente, passo 3; 03 §16) ----------------
+    // data-ed-acao="<nome>" data-ed-arg="<arg>" (o KhEditor chama): cada ação é UM passo do desfazer.
+    //   condicao.nova <id>                a condição (X começa no inicial); de novo: +1 no X, ou recusa
+    //   condicao.mais|menos|remover <uid> o X (1 até o máximo do contrato) ou tirar
+    //   descanso.curto|longo              acabam as durações que o descanso vence; no longo, a Saúde
+    //                                     temporária zera e a condição com x.decrementa 'descansoLongo'
+    //                                     (Exaustão) desce 1; os usos do período voltam (op.usos, o
+    //                                     porId do data/usos.json). A cura do descanso fica à mão.
+    //   consumir <uid>                    baixa 1 da quantidade; o último sai do inventário
+    // op: {D (KhRegras.dados()), usos (porId), aleatorio (testes)}
+    // usos: o contrato (descanso.curto/longo.efeitos e recargas): o curto devolve os
+    // usos 'curto'; o longo, os 'longo' e os 'dia' ("1x/dia vale o mesmo", L29).
+    // ate: as durações que já acabaram quando se descansa (não se descansa em combate)
+    var POR_DESCANSO = {
+      curto: { ate: ['fimTurno', 'fimCombate', 'fimCena', 'descansoCurto'], usos: ['curto'] },
+      longo: { ate: ['fimTurno', 'fimCombate', 'fimCena', 'descansoCurto', 'descansoLongo', 'novoDia'], usos: ['longo', 'dia'] }
+    };
+    // os períodos que a ficha conta (um descanso devolve) -> onde o uso volta; os de
+    // turno, rodada, combate e cena ficam para a Mesa, que tem o relógio do combate
+    var USOS_DA_FICHA = { curto: 'descanso curto', longo: 'descanso longo', dia: 'descanso longo' };
+    // o máximo de usos pela fórmula lida do texto (data/usos.json, usos/1):
+    // {valor, partes:[{rotulo, valor}]}; null se falta um número (o Mod sem nó)
+    function maxUsos(reg, ficha, nos) {
+      if (!obj(reg) || !obj(reg.max) || !Array.isArray(reg.max.termos) || !reg.max.termos.length) return null;
+      var nivel = Number(pega(ficha, 'meta.nivel')) || 1, partes = [], soma = 0, ok = true;
+      reg.max.termos.forEach(function (t) {
+        var v = null, rot = '';
+        if (!obj(t)) ok = false;
+        else if (typeof t.const === 'number') v = t.const;
+        else if (typeof t.nivel === 'number') { v = t.nivel * nivel; rot = (t.nivel === 1 ? '' : t.nivel + '× ') + 'Nível'; }
+        else if (t.mod) {
+          var no = obj(nos) ? nos['atributo.' + t.mod + '.mod'] : null, fa = Number(t.fator) || 1;
+          v = no && typeof no.valor === 'number' ? fa * no.valor : null;
+          rot = (fa === 1 ? '' : fa + '× ') + 'Mod.' + t.mod;
+        }
+        if (typeof v !== 'number') { ok = false; return; }
+        soma += v;
+        partes.push({ rotulo: rot, valor: v });
+      });
+      return ok ? { valor: Math.max(0, soma), partes: partes } : null;
+    }
+    function gastosDe(e) {
+      var u = obj(e) && obj(e.estado) && obj(e.estado.usos) ? e.estado.usos : null;
+      return u ? Math.max(0, parseInt(u.gastos, 10) || 0) : 0;
+    }
+    function defCond(D, id) { return obj(D) && obj(D.condicoes) && obj(D.condicoes[id]) ? D.condicoes[id] : null; }
+    // "Lento X" e "Exaustão 1-5": o X no lugar (ou sem ele)
+    function nomeCond(def, x) { return semEmoji(def.nome).replace(/ (?:X|\d+\s*-\s*\d+)$/, x != null ? ' ' + x : ''); }
+    function xInicial(def) {
+      var x = def.x || {};
+      return typeof x.inicial === 'number' ? x.inicial : typeof x.inicialPadrao === 'number' ? x.inicialPadrao : 1;
+    }
+    function uidCond(usados, op) {
+      var al = typeof op.aleatorio === 'function' ? op.aleatorio : Math.random, u;
+      do {
+        u = 'c';
+        while (u.length < 11) u += Math.floor(al() * 36).toString(36);
+      } while (usados[u]);
+      usados[u] = true;
+      return u;
+    }
+    function acao(ficha, nome, arg, op) {
+      op = obj(op) ? op : {};
+      var D = op.D || (KhRegras ? KhRegras.dados() : {});
+      var f = obj(ficha) ? ficha : {};
+      var cs = clone(lista(f.condicoes)), usados = {}, m;
+      cs.forEach(function (c) { if (obj(c) && c.uid) usados[c.uid] = true; });
+      function so(mud, rot, aviso) { return { ok: true, mudancas: mud, rotulo: rot, aviso: aviso }; }
+      if (nome === 'condicao.nova') {
+        var def = defCond(D, arg);
+        // as que o motor deriva dos números (Morrendo, Exaurido, Oco, Sobrepeso) não entram à mão
+        if (!def || def.entra) return { ok: false, erro: 'Condição que a ficha não aplica à mão: ' + str(arg) + '.' };
+        var ja = cs.filter(function (c) { return obj(c) && c.id === arg; })[0];
+        if (ja) {
+          if (!def.x) return { ok: false, erro: nomeCond(def, null) + ' já está ativa.' };
+          var max = typeof def.x.max === 'number' ? def.x.max : 99, nx0 = (Number(ja.x) || 1) + 1;
+          if (nx0 > max) return { ok: false, erro: nomeCond(def, ja.x) + ': já está no máximo.' };
+          ja.x = nx0;
+          return so([{ caminho: 'condicoes', valor: cs }], nomeCond(def, nx0));
+        }
+        var x0 = def.x ? xInicial(def) : null;
+        cs.push({ uid: uidCond(usados, op), id: arg, x: x0, duracao: null });
+        return so([{ caminho: 'condicoes', valor: cs }], '+ ' + nomeCond(def, x0));
+      }
+      if ((m = /^condicao\.(mais|menos|remover)$/.exec(nome))) {
+        var i = cs.map(function (c) { return obj(c) ? c.uid : null; }).indexOf(arg);
+        if (i < 0) return { ok: false, erro: 'Essa condição não está mais na ficha.' };
+        var c = cs[i], dc = defCond(D, c.id), nc = dc ? nomeCond(dc, null) : str(c.id);
+        if (m[1] === 'remover') { cs.splice(i, 1); return so([{ caminho: 'condicoes', valor: cs }], 'Remover ' + nc); }
+        if (!dc || !dc.x) return { ok: false, erro: nc + ' não tem intensidade.' };
+        var mx = typeof dc.x.max === 'number' ? dc.x.max : 99, nx = (Number(c.x) || 1) + (m[1] === 'mais' ? 1 : -1);
+        if (nx < 1) return { ok: false, erro: nc + ': o mínimo é 1. Para tirar, use Remover.' };
+        if (nx > mx) return { ok: false, erro: nc + ': o máximo é ' + mx + '.' };
+        c.x = nx;
+        return so([{ caminho: 'condicoes', valor: cs }], nomeCond(dc, nx));
+      }
+      if ((m = /^descanso\.(curto|longo)$/.exec(nome))) {
+        // o longo sem comida ou sem luz (arg 'sem'; L30): "nenhuma condição que exige
+        // descanso longo para sair é removida", e o Desnutrido sobe 1 ("Você ganha 1 de
+        // Desnutrido para cada dia em que descansou sem se alimentar ... ou sem luz");
+        // com os dois, a Exaustão e o Desnutrido descem 1 ("Se alimentar ao descansar
+        // em um dia remove 1 de Desnutrido"). O dia termina e os usos voltam nos dois.
+        var regra = POR_DESCANSO[m[1]], longo = m[1] === 'longo', sem = longo && arg === 'sem';
+        var feitos = [], mud = [], resto = [], mexeu = false;
+        cs.forEach(function (c2) {
+          if (!obj(c2)) return;
+          var d2 = defCond(D, c2.id), n2 = d2 ? nomeCond(d2, d2.x ? c2.x : null) : str(c2.id), du = c2.duracao;
+          var acaba = obj(du) && ((du.ate && regra.ate.indexOf(du.ate) >= 0) || typeof du.turnosSeus === 'number');
+          if (acaba && !(sem && du.ate === 'descansoLongo')) { feitos.push(n2 + ' acabou'); mexeu = true; return; }
+          var dec = d2 && d2.x ? d2.x.decrementa : null;
+          if (longo && !sem && (dec === 'descansoLongo' || dec === 'alimentarAoDescansar')) {
+            var x2 = (Number(c2.x) || 1) - 1;
+            mexeu = true;
+            if (x2 <= 0) { feitos.push(n2 + ' acabou'); return; }
+            feitos.push(nomeCond(d2, null) + ' ' + c2.x + ' → ' + x2);
+            c2 = Object.assign({}, c2, { x: x2 });
+          }
+          resto.push(c2);
+        });
+        if (sem && defCond(D, 'desnutrido')) {
+          var dd = defCond(D, 'desnutrido'), dn = resto.filter(function (c3) { return obj(c3) && c3.id === 'desnutrido'; })[0];
+          if (dn) {
+            var x3 = (Number(dn.x) || 1) + 1;
+            resto[resto.indexOf(dn)] = Object.assign({}, dn, { x: x3 });
+            feitos.push(nomeCond(dd, null) + ' ' + (Number(dn.x) || 1) + ' → ' + x3);
+          } else {
+            resto.push({ uid: uidCond(usados, op), id: 'desnutrido', x: xInicial(dd), duracao: null });
+            feitos.push('+ ' + nomeCond(dd, xInicial(dd)));
+          }
+          mexeu = true;
+        }
+        if (mexeu) mud.push({ caminho: 'condicoes', valor: resto });
+        // o Reagentes do Alquimista volta ao máximo no longo (descanso.longo.efeitos: recurso.reagentes)
+        var nc = longo && obj(op.nos) ? op.nos['recurso.classe.max'] : null;
+        if (nc && nc.medidor === 'reagentes' && typeof nc.valor === 'number' && Number(pega(f, 'recursos.classe.atual')) !== nc.valor) {
+          mud.push({ caminho: 'recursos.classe.atual', valor: nc.valor });
+          feitos.push('Reagentes → ' + fmt(nc.valor));
+        }
+        var tmp = Number(pega(f, 'recursos.saude.temporaria')) || 0;
+        if (longo && tmp > 0) { mud.push({ caminho: 'recursos.saude.temporaria', valor: 0 }); feitos.push('Saúde temporária ' + fmt(tmp) + ' → 0'); }
+        var U = obj(op.usos) ? op.usos : {}, es = clone(lista(f.entradas)), nus = 0;
+        es.forEach(function (e) {
+          var u = obj(e) && obj(e.estado) && obj(e.estado.usos) ? e.estado.usos : null;
+          var per = obj(e) && obj(U[e.id]) ? U[e.id].periodo : null;
+          if (u && Number(u.gastos) > 0 && per && regra.usos.indexOf(per) >= 0) { u.gastos = 0; nus++; }
+        });
+        if (nus) { mud.push({ caminho: 'entradas', valor: es }); feitos.push(nus + (nus === 1 ? ' técnica com usos de volta' : ' técnicas com usos de volta')); }
+        var rot = longo ? (sem ? 'Descanso longo sem comida ou luz' : 'Descanso longo') : 'Descanso curto';
+        if (!mud.length) return { ok: false, erro: rot + ': nada volta sozinho nesta ficha. A recuperação (os dados) é à mão.' };
+        return so(mud, rot, rot + ': ' + feitos.join(' · ') + '. A recuperação (os dados) é à mão.');
+      }
+      if ((m = /^uso\.(gastar|devolver)$/.exec(nome))) {
+        var es2 = clone(lista(f.entradas)), k2 = es2.map(function (e) { return obj(e) ? e.uid : null; }).indexOf(arg);
+        if (k2 < 0) return { ok: false, erro: 'Essa técnica não está mais na ficha.' };
+        var en = es2[k2], reg = obj(op.usos) && en.id ? op.usos[en.id] : null;
+        var nm = semEmoji(en.cache && en.cache.nome) || 'Técnica';
+        if (!obj(reg) || !USOS_DA_FICHA[reg.periodo]) return { ok: false, erro: nm + ': sem contador de usos na ficha.' };
+        var mxu = maxUsos(reg, f, op.nos), g = gastosDe(en);
+        if (m[1] === 'gastar') {
+          if (!mxu) return { ok: false, erro: nm + ': o máximo de usos depende de um número que a ficha não tem.' };
+          if (g >= mxu.valor) return { ok: false, erro: nm + ': sem usos até o ' + USOS_DA_FICHA[reg.periodo] + '.' };
+          g++;
+        } else {
+          if (g <= 0) return { ok: false, erro: nm + ': nenhum uso gasto.' };
+          g--;
+        }
+        en.estado = Object.assign({}, obj(en.estado) ? en.estado : {}, { usos: { gastos: g } });
+        return so([{ caminho: 'entradas', valor: es2 }], (m[1] === 'gastar' ? 'Usar ' : 'Devolver um uso de ') + nm);
+      }
+      if (nome === 'consumir') {
+        var inv = obj(f.inventario) ? f.inventario : {}, achou = null;
+        ['bugigangas', 'equipamentos'].forEach(function (col) {
+          if (achou) return;
+          var l = clone(lista(inv[col])), j = l.map(function (e) { return obj(e) ? e.uid : null; }).indexOf(arg);
+          if (j >= 0) achou = { col: col, l: l, j: j };
+        });
+        if (!achou) return { ok: false, erro: 'Esse item não está mais no inventário.' };
+        var it = achou.l[achou.j], q = Math.max(1, parseInt(it.qtd, 10) || 1), ni = semEmoji(it.nome) || 'Item';
+        if (q > 1) it.qtd = q - 1; else achou.l.splice(achou.j, 1);
+        return so([{ caminho: 'inventario.' + achou.col, valor: achou.l }], 'Consumir ' + ni,
+          q > 1 ? ni + ': ×' + q + ' → ×' + (q - 1) : ni + ': o último saiu do inventário.');
+      }
+      return { ok: false, erro: 'Ação desconhecida: ' + str(nome) + '.' };
+    }
+
     return { NOME_AT: NOME_AT, RECURSOS: RECURSOS, REFS: REFS, MANTER: MANTER, MODOS: MODOS, MAX_MOTIVO: MAX_MOTIVO,
-      attrsTroca: attrsTroca, evento: evento, restos: restos, mudancaRestos: mudancaRestos, pendenciaOficio: pendenciaOficio, oficios: oficios,
+      acao: acao, POR_DESCANSO: POR_DESCANSO, USOS_DA_FICHA: USOS_DA_FICHA, maxUsos: maxUsos, gastosDe: gastosDe, attrsTroca: attrsTroca, evento: evento, restos: restos, mudancaRestos: mudancaRestos, pendenciaOficio: pendenciaOficio, oficios: oficios,
       MAX_TEXTO: MAX_TEXTO, MAX_LISTA: MAX_LISTA, MAX_LORE: MAX_LORE,
       lerNumero: lerNumero, lerInteiro: lerInteiro, campo: campo, ler: ler, mudancas: mudancas, passo: passo,
       grauClicado: grauClicado, rotuloGrau: rotuloGrau, opcoesRef: opcoesRef, opcoesCondicao: opcoesCondicao, chaveItem: chaveItem,

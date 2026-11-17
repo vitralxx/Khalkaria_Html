@@ -339,3 +339,14 @@ Quatro perguntas, todas respondidas com a opção recomendada.
      - alvo: só a PMA com ↺, e o "+2 contra o alvo agarrado" vira marcação manual;
      - saem do escopo: o catálogo de uso por técnica, os alvos por relação e as sequências. Viram extensões, só se o núcleo funcionar numa sessão real.
   4. **Contrato rev. 12 aplicado** (a troca manual vira canônica).
+
+## 17. O estado de jogo na ficha, 2026-11-17
+
+- **Faixa "Em jogo" no topo,** a mesma em todas as abas. No celular, os recursos ficam presos no topo.
+- **Descanso curto e longo:** um botão cada. O longo pergunta se houve comida e luz (L30).
+- **Consumir:** botão nos consumíveis e na munição.
+- **Usos:** "Quando o texto diz '1x/curto' ou '2x por dia', a ficha monta o contador sozinha, até por que a função de descanso que sempre reseta essas recargas; quando é fórmula ('Nível+3', '1+Mod.SAB'), o motor calcula automaticamente pois são informações já no laço, basta parsear bem cada fórmula em cada técnica, isso exige cuidado."
+- **Como ficou:**
+  - o leitor está em `tools/gerar_usos.py` e a revisão em `12-usos-revisao.md`: 48 limites lidos, 13 não lidos;
+  - o contador entra só nos períodos que um descanso devolve (curto, longo, dia);
+  - turno, rodada, combate e cena ficam para a Mesa, que tem o relógio do combate.

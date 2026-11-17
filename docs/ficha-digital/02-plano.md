@@ -16,7 +16,7 @@ Passos pontuais, cada um visível no site. Diagnóstico de base: https://claude.
    - o contrato do balanceamento na rev. 12;
    - o diagnóstico dos itens vira teste do build (item que deixar de chegar ao número derruba o build).
 2. **Ficha no celular:** a ficha nova (5 abas e drawer) usável no celular.
-3. **Estado de jogo na ficha:** as 30 condições ativas, Saúde temporária, usos e recarga, quantidade e consumo à mão.
+3. **Estado de jogo na ficha:** as 30 condições ativas, Saúde temporária, usos e recarga, quantidade e consumo à mão. **Feito na página (03 §17):** faixa Em jogo, descansos, Consumir e o contador de usos (`tools/gerar_usos.py`). Falta a faixa no drawer.
 4. **Virada:** a ficha nova vira a dos jogadores (migração da v2.1, export e import), depois do teste do Pedro no Ensaio.
 5. **Mesa núcleo** (`10-mesa.md`, rev. 4), celular primeiro.
 6. **Extensões da Mesa**, só se o núcleo funcionar numa sessão real.

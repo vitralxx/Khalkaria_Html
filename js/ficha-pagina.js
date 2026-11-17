@@ -162,6 +162,9 @@
       aberta = abas.some(function (a) { return a.id === aberta; }) ? aberta : abas[0].id;
       return '<div class="fp-ke" id="fp-ke" hidden></div>' +
         '<header class="fp-topo" id="fp-topo">' + htmlTopo(null, opTopo) + '</header>' +
+        // a faixa Em jogo (03 §16): recursos (no celular, presa no topo), condições e descansos
+        '<section class="fp-jogo fp-jogo-rec" id="fp-jogo-rec" aria-label="Em jogo: recursos"></section>' +
+        '<section class="fp-jogo fp-jogo-cond" id="fp-jogo-cond" aria-label="Em jogo: condições e descanso"></section>' +
         '<div class="fp-abas-barra">' +
         '<div class="fp-abas" id="fp-abas" role="tablist" aria-label="Partes da ficha">' +
         abas.map(function (a) {
@@ -233,7 +236,7 @@
     function render(res, op) {
       var r = DESENHO.paineis(res, op);
       var ensaio = obj(op) && typeof op.ensaio === 'boolean' ? { ensaio: op.ensaio } : undefined;
-      return { topo: htmlTopo(res, ensaio), paineis: r.paineis, caminhos: r.caminhos };
+      return { topo: htmlTopo(res, ensaio), paineis: r.paineis, jogo: r.jogo || { rec: '', cond: '' }, caminhos: r.caminhos };
     }
 
 
@@ -419,6 +422,7 @@
         if (op.ensaio && editor) op.editar = 'pagina';
         var r = render(r0, op);
         trocaHTML(doc, el('fp-topo'), r.topo, el('fp-aba-' + aberta), raizEl, win);
+        ['rec', 'cond'].forEach(function (k) { var j = el('fp-jogo-' + k); if (j) trocaHTML(doc, j, r.jogo[k], j, raizEl, win); });
         ABAS.forEach(function (a) {
           var p = el('fp-painel-' + a.id);
           if (!p) return;

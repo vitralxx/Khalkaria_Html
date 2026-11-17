@@ -538,7 +538,8 @@ function tira(html, abre) {
 
 test('todo número calculado sai com a conta: tooltip ligado por aria-describedby, fórmula simbólica e numérica', () => {
   const { res, r } = desenha();
-  const html = r.topo + Object.values(r.paineis).join('');
+  // a faixa Em jogo (03 §16) também: os máximos dos recursos com a conta
+  const html = r.topo + Object.values(r.paineis).join('') + r.jogo.rec + r.jogo.cond;
   const caminhos = r.caminhos;
   const esperados = [];
   ['FOR', 'DES', 'CON', 'INT', 'SAB'].forEach((a) => esperados.push('atributo.' + a + '.total', 'atributo.' + a + '.mod'));

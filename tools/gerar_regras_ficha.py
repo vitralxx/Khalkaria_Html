@@ -743,7 +743,7 @@ class Compilador:
                 x['cumulativa'] = bool(c.get('cumulativa'))
             if c.get('x'):
                 xx = c['x']
-                x['x'] = {k: xx[k] for k in ('tipo', 'inicial', 'max', 'inicialPadrao') if k in xx}
+                x['x'] = {k: xx[k] for k in ('tipo', 'inicial', 'max', 'inicialPadrao', 'decrementa') if k in xx}
                 if xx.get('padraoStatus'):
                     x['x']['stPadrao'] = normaliza_status(xx['padraoStatus'], c['id'] + '.x')
             if c.get('implica'):

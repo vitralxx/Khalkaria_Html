@@ -201,7 +201,9 @@
           if (obj(r) && r.id) ramos[r.id] = { classe: chave, chave: str(r.chave), nome: semEmoji(r.nome) };
         });
       });
-      return { porId: porId, porNome: porNome, classes: classes, ramos: ramos, racas: racas,
+      // os limites de uso lidos do texto (data/usos.json, usos/1), por id do catálogo
+      var usos = obj(dados.usos) && obj(dados.usos.porId) ? dados.usos.porId : null;
+      return { porId: porId, porNome: porNome, classes: classes, ramos: ramos, racas: racas, usos: usos,
         D: D || (KhRegras ? KhRegras.dados() : {}), base: base == null ? '../' : str(base) };
     }
     // a entrada do catálogo de uma entrada da ficha: pelo id; sem id, pelo nome
@@ -569,7 +571,9 @@
         }
         var sau = rc.saude || {}, sta = rc.stamina || {};
         h += moldura('recursos', 'Recursos',
-          recurso('saude', 'Saúde', 'saude', sau.temporaria ? '<span class="' + P + '-rec-extra"><span class="' + P + '-rot">Temporária</span>' + nEstado('recursos.saude.temporaria', sau.temporaria) + '</span>' : '') +
+          // D15: a temporária (não soma, fica a maior; gasta primeiro; some no descanso longo): na página com o Ensaio, o passo (o drawer segue só com os atuais e Sins)
+          recurso('saude', 'Saúde', 'saude', edP || sau.temporaria ? '<span class="' + P + '-rec-extra"><span class="' + P + '-rot">Temporária</span>' +
+            (edP ? edPasso('recursos.saude.temporaria', 'Saúde temporária', Number(sau.temporaria) || 0, 0, 9999) : nEstado('recursos.saude.temporaria', sau.temporaria)) + '</span>' : '') +
           recurso('stamina', 'Stamina', 'stamina', '<span class="' + P + '-rec-extra">' +
             (sta.comprometida ? '<span class="' + P + '-rot">Comprometida</span>' + nEstado('recursos.stamina.comprometida', sta.comprometida) + ' ' : '') +
             '<span class="' + P + '-rot">Disponível</span>' + conta('recurso.stamina.disponivel') + troca(nos['recurso.stamina.max'], true) + '</span>') +
@@ -717,6 +721,38 @@
           '<svg class="' + P + '-svg" aria-hidden="true" focusable="false"><use href="' + PREFIXO_GLIFO_RAMO + esc(ramo.chave) + '"/></svg>' +
           esc(ramo.nome) + '</span>';
       }
+      // o contador de usos (data/usos.json): só nos períodos que um descanso devolve
+      // (KhEdicao.USOS_DA_FICHA) e só em entrada da ficha (o estado mora nela). O
+      // máximo sai da fórmula lida do texto; a conta e o trecho vão na dica.
+      function usosHTML(e, ctx) {
+        var reg = ctx.usos && obj(e) && e.id && e.uid ? ctx.usos[e.id] : null;
+        if (!obj(reg) || !KhEdicao || !KhEdicao.USOS_DA_FICHA[reg.periodo]) return '';
+        var volta = KhEdicao.USOS_DA_FICHA[reg.periodo], por = reg.periodo === 'dia' ? 'por dia' : 'por ' + volta;
+        var mx = KhEdicao.maxUsos(reg, ctx.ficha, ctx.nos), g = KhEdicao.gastosDe(e);
+        if (!mx || !ctx.C) {
+          return '<div class="' + P + '-usos" data-campo="usos"><span class="' + P + '-rot">Usos</span><span class="' + P + '-sub">' +
+            esc(reg.max.texto + ' ' + por) + ': falta um número na ficha</span></div>';
+        }
+        var resta = Math.max(0, mx.valor - g);
+        // o máximo com a conta (o mesmo componente dos outros números): as parcelas e o trecho do texto
+        var no = { rotulo: 'Usos máx.', valor: mx.valor,
+          formula: { simbolica: mx.partes.map(function (x) { return x.rotulo || fmt(x.valor); }).join(' + '),
+            numerica: '= ' + (mx.partes.length > 1 ? mx.partes.map(function (x) { return fmt(x.valor); }).join(' + ') + ' = ' : '') + fmt(mx.valor) },
+          termos: mx.partes.length > 1 ? mx.partes.map(function (x) { return { rotulo: x.rotulo || 'do texto', valor: x.valor, op: 'soma', ativo: true }; }) : [],
+          lembretes: [{ msg: '«' + reg.trecho + '», volta no ' + volta }] };
+        var pips = '';
+        for (var i = 0; i < Math.min(mx.valor, 12); i++) pips += '<span class="' + P + '-usos-pip' + (i < resta ? ' ' + P + '-usos-tem' : '') + '"></span>';
+        var bts = '';
+        if (ctx.editar) {
+          bts = '<button type="button" class="kh-btn ' + P + '-usos-usar" data-ed-acao="uso.gastar" data-ed-arg="' + esc(e.uid) + '"' + (resta <= 0 ? ' disabled' : '') + '>Usar</button>' +
+            '<button type="button" class="kh-btn ' + P + '-usos-volta" data-ed-acao="uso.devolver" data-ed-arg="' + esc(e.uid) + '"' + (g <= 0 ? ' disabled' : '') +
+            ' title="Devolver um uso" aria-label="Devolver um uso">↺</button>';
+        }
+        return '<div class="' + P + '-usos" data-campo="usos"><span class="' + P + '-rot">Usos</span>' +
+          '<span class="' + P + '-usos-pips" role="img" aria-label="' + esc(resta + ' de ' + mx.valor + ' restantes') + '">' + pips + '</span>' +
+          '<span class="' + P + '-sub">de</span>' + ctx.C.conta('usos.' + e.id, { no: no, semSelos: true }) +
+          '<span class="' + P + '-sub">' + esc(por) + '</span>' + bts + '</div>';
+      }
       function cardTecnica(it, ctx, op) {
         op = op || {};
         var e = it.e, c = it.c;
@@ -745,7 +781,7 @@
           ' data-moldura data-tipo="' + esc(e.tipo) + '"' + (e.id ? ' data-id="' + esc(e.id) + '"' : '') + (!c ? ' data-orfa' : '') + estilo + '>' +
           '<header class="' + P + '-tec-cab"><h4 class="' + P + '-tec-nome">' + esc(nome) + '</h4>' +
           (custo ? '<span class="' + P + '-tec-custo" data-campo="custo">' + esc(custo) + '</span>' : '') + '</header>' +
-          (meta ? '<div class="' + P + '-tec-meta">' + meta + '</div>' : '') +
+          (meta ? '<div class="' + P + '-tec-meta">' + meta + '</div>' : '') + usosHTML(e, ctx) +
           '<p class="' + P + '-tec-txt">' + (texto ? textoRico(texto) : vazio()) + '</p></article>';
       }
       function molduraVazia(nivelDestrava, nivel, cls) {
@@ -881,7 +917,7 @@
           (e.id ? ' data-id="' + esc(e.id) + '"' : '') + (rara ? ' data-rara' : '') + (!c ? ' data-orfa' : '') + '>' +
           '<div class="' + P + '-carta-cab">' + ico + '<span class="' + P + '-carta-cat">' + esc(CARTA_CATEGORIA[cat] || 'Carta') + '</span>' +
           (!c ? selo('orfa', 'órfã', 'Sem par no catálogo. Mostra o texto salvo na ficha.') : '') + foraHTML + '</div>' +
-          reqHTML + '<h4 class="' + P + '-carta-nome">' + esc(nome) + '</h4>' + corpo +
+          reqHTML + '<h4 class="' + P + '-carta-nome">' + esc(nome) + '</h4>' + corpo + (rara ? '' : usosHTML(e, ctx)) +
           (metaE.length ? '<p class="' + P + '-carta-meta">' + metaE.join(' · ') + '</p>' : '') + '</article>';
       }
       RENDER.cartas = function (res, C, ctx) {
@@ -974,6 +1010,9 @@
             '<span class="' + P + '-par"><span class="' + P + '-rot">Dano</span>' + C.conta('ataque.' + x.uid + '.dano') + '</span></div>';
         }
         var rar = rarDe(x.raridade);
+        // Consumir (03 §16): consumível e munição, um clique tira 1 (o último sai do inventário)
+        var consome = ctx.editar && KhEdicao && x.uid && tokens(x.categoria).some(function (t) { var n = norm(t); return n === 'consumivel' || n === 'municao'; });
+        if (consome) marcas += '<button type="button" class="kh-btn ' + P + '-item-consumir" data-ed-acao="consumir" data-ed-arg="' + esc(x.uid) + '">Consumir</button>';
         return '<li class="' + P + '-item' + (rar ? ' ' + P + '-item-' + rar[1] : '') + '" data-moldura data-uid="' + esc(x.uid) + '">' +
           '<div class="' + P + '-item-cab"><span class="' + P + '-item-nome" data-campo="nome">' + esc(semEmoji(x.nome) || '(sem nome)') + '</span>' +
           '<span data-campo="raridade">' + raridade(x.raridade) + '</span>' +
@@ -1101,6 +1140,92 @@
         return '<p class="' + P + '-nota ' + P + '-nota-topo">' + esc(nota) + '</p>' + h;
       };
 
+      // ======================================================================
+      // Em jogo (03 §16, passo 3): a faixa sobre as abas, a mesma em todas.
+      // rec: os recursos (no celular, presa no topo); cond: as condições ativas,
+      // "+ Condição" e os descansos. Desenhada DEPOIS das abas, na mesma passada do
+      // KhConta: os ids das abas não mudam.
+      // ======================================================================
+      var CAT_COND = [['combate', 'Combate'], ['fisicas', 'Físicas'], ['mentais', 'Mentais'], ['movimento', 'Movimento'],
+        ['sensoriais', 'Sensoriais'], ['criticas', 'Críticas'], ['', 'Outras']];
+      // "Lento X" e "Exaustão 1-5": o X no lugar (ou sem ele)
+      function nomeX(nome, x) { return semEmoji(nome).replace(/ (?:X|\d+\s*-\s*\d+)$/, x != null ? ' ' + x : ''); }
+      function emJogo(res, C, ctx) {
+        var f = res.ficha, nos = res.av.nos, rc = f.recursos || {}, D = ctx.D || {}, dc = D.condicoes || {};
+        var ed = !!ctx.editar && !!KhEdicao;
+        // o ícone do recurso (o mesmo do Núcleo; no celular, só ele: o nome fica para o leitor de tela)
+        function rec(id, nome, caminho, atual, maxCaminho, extra) {
+          var ico = id === 'classe' ? '<span class="' + P + '-jogo-ico" aria-hidden="true">' + SVG_ACOES + '</span>' : img(ctx, id, P + '-jogo-img');
+          return '<div class="' + P + '-jogo-r ' + P + '-jogo-r-' + id + '" data-campo="jogo-' + id + '">' + ico + '<span class="' + P + '-jogo-rot">' + esc(nome) + '</span>' +
+            (ed ? edPasso(caminho, nome + ' atual', atual, -9999, 9999) : nEstado(caminho, atual)) +
+            '<span class="' + P + '-barra-sep">/</span>' + C.conta(maxCaminho, { semSelos: true }) + (extra || '') + '</div>';
+        }
+        var sau = rc.saude || {}, tmp = Number(sau.temporaria) || 0;
+        // D15: a temporária, quando há, vai junto da Saúde (o passo dela fica no Núcleo)
+        var h = rec('saude', 'Saúde', 'recursos.saude.atual', sau.atual, 'recurso.saude.max',
+          tmp > 0 ? '<span class="' + P + '-jogo-temp" title="Saúde temporária: gasta primeiro, some no descanso longo">+' + fmt(tmp) + '<span class="' + P + '-jogo-temp-rot"> temporária</span></span>' : '');
+        h += rec('stamina', 'Stamina', 'recursos.stamina.atual', (rc.stamina || {}).atual, 'recurso.stamina.max');
+        var noE = nos['recurso.eter.max'], eAt = (rc.eter || {}).atual;
+        if ((noE && typeof noE.valor === 'number' && noE.valor > 0) || Number(eAt) > 0) h += rec('eter', 'Éter', 'recursos.eter.atual', eAt, 'recurso.eter.max');
+        var noCl = nos['recurso.classe.max'];
+        if (noCl && !noCl.semContador && typeof noCl.valor === 'number' && noCl.valor > 0) {
+          h += rec('classe', semEmoji(str(noCl.rotulo).replace(/\s*máx\.?$/i, '')) || 'Recurso de Classe', 'recursos.classe.atual',
+            obj(rc.classe) ? rc.classe.atual : null, 'recurso.classe.max');
+        }
+
+        // ---- condições ativas: o texto do site no chip; − +1 e Remover nas da ficha
+        function chip(id, nome, x, origem, imune, uid) {
+          var def = dc[id], cat = ctx.porId['condicao:' + id], acoes = '';
+          if (ed && uid) {
+            if (def && def.x) {
+              acoes += '<button type="button" class="kh-btn" data-ed-acao="condicao.menos" data-ed-arg="' + esc(uid) + '" aria-label="' + esc(nomeX(nome, null) + ' −1') + '">−1</button>' +
+                '<button type="button" class="kh-btn" data-ed-acao="condicao.mais" data-ed-arg="' + esc(uid) + '" aria-label="' + esc(nomeX(nome, null) + ' +1') + '">+1</button>';
+            }
+            acoes += '<button type="button" class="kh-btn" data-ed-acao="condicao.remover" data-ed-arg="' + esc(uid) + '">Remover</button>';
+          }
+          return '<details class="' + P + '-cond' + (imune ? ' ' + P + '-cond-imune' : '') + '" data-campo="cond-' + esc(id) + '"><summary>' + esc(nomeX(nome, x)) +
+            (origem ? ' <span class="' + P + '-sub">' + esc(origem) + '</span>' : '') + (imune ? ' ' + selo('imune', 'imune') : '') + '</summary>' +
+            '<div class="' + P + '-cond-corpo">' + (cat && cat.resumo ? '<p class="' + P + '-cond-txt">' + textoRico(semEmoji(cat.resumo)) + '</p>' : '') +
+            (acoes ? '<div class="' + P + '-cond-acoes">' + acoes + '</div>' : '') + '</div></details>';
+        }
+        var chips = lista(res.av.condicoes).map(function (c) {
+          var origem = c.origem === 'implicada' && dc[c.de] ? 'por ' + nomeX(dc[c.de].nome, null) : c.origem === 'carga' ? 'pela carga' : '';
+          return chip(c.id, c.nome, c.x, origem, !!c.imune, c.origem === 'ficha' ? lista(c.uids)[0] : null);
+        }).join('');
+        // as que o motor liga pelos recursos (Morrendo, Exaurido, Oco)
+        var NOME_REC = { saude: 'Saúde', stamina: 'Stamina', eter: 'Éter' };
+        lista(res.av.alertas).forEach(function (a) {
+          if (a.tipo === 'condicao-automatica' && dc[a.id]) chips += chip(a.id, dc[a.id].nome, null, (NOME_REC[a.recurso] || 'recurso') + ' em 0', false, null);
+        });
+        var novo = '';
+        if (ed) {
+          var ativas = {};
+          lista(f.condicoes).forEach(function (c) { if (obj(c) && c.id) ativas[c.id] = true; });
+          var ids = Object.keys(dc).filter(function (id) { return !dc[id].entra; });
+          novo = '<details class="' + P + '-cond-nova" data-campo="cond-nova"><summary>+ Condição</summary><div class="' + P + '-cond-cats">' +
+            CAT_COND.map(function (k) {
+              var ls = ids.filter(function (id) { var e = ctx.porId['condicao:' + id]; return (e ? str(e.categoria) : '') === k[0]; });
+              if (!ls.length) return '';
+              return '<div class="' + P + '-cond-cat"><span class="' + P + '-rot">' + esc(k[1]) + '</span>' + ls.map(function (id) {
+                var d = dc[id], ja = !!ativas[id];
+                // com X, de novo soma 1; sem X, a já ativa não entra outra vez
+                return '<button type="button" class="kh-btn ' + P + '-cond-op" data-ed-acao="condicao.nova" data-ed-arg="' + esc(id) + '"' +
+                  (ja && !d.x ? ' disabled title="Já está ativa"' : '') + '>' + esc(nomeX(d.nome, null)) + (ja && d.x ? ' +1' : '') + '</button>';
+              }).join('') + '</div>';
+            }).join('') + '</div></details>';
+        }
+        var desc = !ed ? '' : '<div class="' + P + '-jogo-desc" data-campo="descansos">' +
+          '<button type="button" class="kh-btn" data-ed-acao="descanso.curto">Descanso curto</button>' +
+          '<details class="' + P + '-jogo-longo"><summary>Descanso longo</summary><div class="' + P + '-jogo-longo-ops">' +
+          '<button type="button" class="kh-btn" data-ed-acao="descanso.longo" data-ed-arg="completo">Com comida e luz</button>' +
+          '<button type="button" class="kh-btn" data-ed-acao="descanso.longo" data-ed-arg="sem">Sem comida ou luz</button></div></details></div>';
+        return {
+          rec: '<div class="' + P + '-jogo-recs">' + h + '</div>',
+          cond: '<div class="' + P + '-jogo-conds" data-campo="condicoes"><span class="' + P + '-jogo-rot">Condições</span>' +
+            (chips || '<span class="' + P + '-sub">nenhuma</span>') + novo + '</div>' + desc
+        };
+      }
+
       // a passada inteira: um html por aba, com UMA instância do KhConta (ids
       // <p>-d-1, <p>-d-2… únicos no HTML todo); res fora de 'ok' vira a mensagem
       // do estado em todas as abas.
@@ -1117,7 +1242,7 @@
         var C = ok && KhConta ? KhConta.criar({ D: D, nos: res.av ? res.av.nos : null,
           prefixo: P, esc: esc, fmt: KhRegras ? KhRegras.fmt : undefined, semEmoji: semEmoji, editar: edConta, interruptores: !!ed }) : null;
         var ctx = ok ? contexto(o.dados, D, o.base) : null;
-        if (ctx) ctx.editar = ed;
+        if (ctx) { ctx.editar = ed; ctx.ficha = res.ficha; ctx.nos = res.av ? res.av.nos : {}; ctx.C = C; }
         var out = {};
         ABAS.forEach(function (a) {
           var corpo;
@@ -1130,7 +1255,14 @@
           } else corpo = '<p class="' + P + '-nota">' + esc(EM_CONSTRUCAO) + '</p>';
           out[a.id] = corpo;
         });
-        return { paineis: out, caminhos: C ? C.caminhos : [] };
+        // a faixa Em jogo: depois das abas (os ids delas ficam como eram)
+        var jogo = { rec: '', cond: '' };
+        if (ok && C) {
+          try { jogo = emJogo(res, C, ctx); } catch (e) {
+            jogo = { rec: '<p class="' + P + '-estado ' + P + '-estado-aviso">A faixa Em jogo falhou ao desenhar: ' + esc(e && e.message) + '</p>', cond: '' };
+          }
+        }
+        return { paineis: out, jogo: jogo, caminhos: C ? C.caminhos : [] };
       }
 
       return { prefixo: P, densidade: densidade, RENDER: RENDER, paineis: paineis, contexto: contexto };

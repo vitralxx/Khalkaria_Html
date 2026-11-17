@@ -747,3 +747,12 @@
    novo até o mouse mexer ou o foco sair */
 .fd-gaveta .kh-conta[data-fd-dica] .kh-conta-dica, .fd-gaveta .kh-conta[data-fd-foco] .kh-conta-dica { display: block; }
 .fd-gaveta [data-fd-foco] { outline: 2px solid var(--amber); outline-offset: 2px; }
+
+/* usos (data/usos.json) e Consumir, no drawer: os mesmos da página (03 §16) */
+.fd-usos { display: flex; flex-wrap: wrap; align-items: center; gap: .25rem .45rem; margin: .3rem 0 .1rem; font-size: .84rem; }
+.fd-usos-pips { display: inline-flex; gap: 3px; }
+.fd-usos-pip { width: .55rem; height: .55rem; border-radius: 50%; border: 1px solid var(--amber-dim); }
+.fd-usos-tem { background: var(--amber); border-color: var(--amber); }
+.fd-usos-n { font-variant-numeric: tabular-nums; color: var(--gold-light); }
+.fd-usos .kh-btn, .fd-item-consumir { padding: .05rem .5rem; font-size: .78rem; }
+.fd-item-consumir { margin-left: auto; }
