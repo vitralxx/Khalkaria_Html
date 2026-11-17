@@ -350,3 +350,24 @@ Quatro perguntas, todas respondidas com a opção recomendada.
   - o leitor está em `tools/gerar_usos.py` e a revisão em `12-usos-revisao.md`: 48 limites lidos, 13 não lidos;
   - o contador entra só nos períodos que um descanso devolve (curto, longo, dia);
   - turno, rodada, combate e cena ficam para a Mesa, que tem o relógio do combate.
+
+## 18. Os usos que o leitor não decidiu, 2026-11-17
+
+- **Contador só nos usos que um descanso devolve** (turno, rodada, combate e cena ficam para a Mesa): "Ok".
+- **Descanso longo:** "os descansos longos, eles também devolvem recargas por descanso curto."
+- **Abismo:** "Para o abismo, releve, no futuro eu darei um rework nesse eixo do sistema, o limiar, no entanto, continua valendo." O Desejo Sombrio (1x/Campanha) fica sem contador.
+- **Munição Especial (Artilheiro):** "essa munição ela gasta no ataque e não na cena de combate. Em um descanso curto, você pode criar uma munição especial como ação de descanso curto. [...] Então, é um ou outro. Durante um descanso longo, você pode criar duas munições especiais, sempre. E elas são um item empilhável. Acho interessante talvez botar no bazar isso." Vira lembrete no descanso. Os itens foram pedidos ao balanceamento.
+- **Projétil Envenenado (Artilheiro):** "não entra na lógica de recarga."
+- **Auto-Reparador (Autômato):** "basicamente cria um item. Kit de manutenção por descanso longo. Simples assim." O Kit existe no Bazar. O descanso longo soma 1 à pilha; sem pilha, lembra de adicionar.
+- **Batedor:** as duas técnicas não se aplicam. "a característica de classe instinto não existe mais. O batedor está passando por um rework agora." Pedido ao balanceamento: tirar o Instinto do contrato.
+- **Fortaleza de Aço (Brutalista):** "é por combate. Você pode usar igual ao seu modificador de constituição, vezes." O texto diz "mínimo 1".
+- **Frenesi (Brutalista):** "uma vez por descanso longo. E duas vezes no nível 4."
+- **Mãos Abençoadas (Limiar):** "basicamente 3 vezes por descanso longo."
+- **Coração Imortal, Premonição de Batalha e Vidente:** fora do conjunto (semana e sessão). São marcados à mão.
+- **Eterno Aprendiz (Teurgo):** "permite que você aprenda magias permanentemente, mas apenas uma por descanso longo". Vira lembrete no descanso longo.
+- **Variante:** "A ficha deve mostrar o campo de subespécie ou variante conforme a raça selecionada. [...] também tem variante que seria a linhagem nos dríades, tem a linhagem dos anões, tem a linhagem dos grutos também, que é a mais subespécie para os grutos." O campo usa o título do bloco na página de cada raça:
+  - Humano: "Estilo de Vida";
+  - Anão: "Clãs Ancestrais";
+  - Dríade: "Subespécie";
+  - Gruto: "Linhagem Réptil";
+  - Inseto: "Subespécie".

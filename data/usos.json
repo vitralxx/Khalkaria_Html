@@ -1,38 +1,104 @@
 {
  "_doc": "ARTEFATO de tools/gerar_usos.py: não editar à mão",
+ "aoDescansar": {
+  "artilheiro-municao-especial": {
+   "curto": "Durante um descanso curto, você pode criar 1 Munição Especial como ação de descanso curto",
+   "decisao": "03 §18",
+   "longo": "durante um descanso longo, você pode criar 2 munições Especiais",
+   "tipo": "tecnica"
+  },
+  "automato-auto-reparador": {
+   "decisao": "03 §18",
+   "item": "Kit de Manutenção",
+   "longo": "Cria 1 Kit de Manutenção por descanso longo.",
+   "tipo": "tecnologia"
+  },
+  "teurgo-eterno-aprendiz": {
+   "decisao": "03 §18",
+   "longo": "Você só pode aprender 1 magia por descanso longo.",
+   "tipo": "tecnica"
+  }
+ },
  "contagem": {
+  "aoDescansar": 3,
+  "decididos": 7,
   "foraDoCatalogo": 2,
-  "lidos": 48,
-  "naoParseados": 13,
+  "lidos": 51,
+  "naoParseados": 0,
   "porFormula": {
-   "comMod": 1,
+   "comMod": 2,
    "comNivel": 0,
-   "constante": 47
+   "constante": 48,
+   "porNivel": 1
   },
   "porPeriodo": {
    "cena": 1,
-   "combate": 5,
+   "combate": 6,
    "curto": 6,
    "dia": 2,
-   "longo": 24,
+   "longo": 26,
    "rodada": 4,
    "turno": 6
   },
   "porTipo": {
    "beneficio": 3,
-   "carta": 7,
+   "carta": 8,
    "corrupcao": 2,
    "magia": 1,
    "marca": 4,
    "origem": 3,
    "subespecie": 2,
-   "tecnica": 14,
+   "tecnica": 16,
    "tecnologia": 1,
    "traco": 3,
    "ultimate": 5,
    "variante": 3
   }
  },
+ "decididos": [
+  {
+   "decisao": "03 §18",
+   "id": "abismo-desejo-sombrio",
+   "motivo": "o Abismo terá um rework; o Limiar continua valendo",
+   "tipo": "beneficio"
+  },
+  {
+   "decisao": "03 §18",
+   "id": "artilheiro-projetil-envenenado",
+   "motivo": "não entra na lógica de recarga",
+   "tipo": "tecnica"
+  },
+  {
+   "decisao": "03 §18",
+   "id": "batedor-cobra",
+   "motivo": "não se aplica (o Batedor está em rework)",
+   "tipo": "tecnica"
+  },
+  {
+   "decisao": "03 §18",
+   "id": "batedor-conexoes-duvidosas",
+   "motivo": "não se aplica (o Batedor está em rework)",
+   "tipo": "tecnica"
+  },
+  {
+   "decisao": "03 §18",
+   "id": "limiar-coracao-imortal",
+   "motivo": "fora do conjunto (1x/Semana): marcado à mão",
+   "tipo": "carta"
+  },
+  {
+   "decisao": "03 §18",
+   "id": "limiar-premonicao-de-batalha",
+   "motivo": "fora do conjunto (1x/sessão): marcado à mão",
+   "tipo": "carta"
+  },
+  {
+   "decisao": "03 §18",
+   "id": "limiar-vidente",
+   "motivo": "fora do conjunto (1x/sessão): marcado à mão",
+   "tipo": "carta"
+  }
+ ],
  "foraDoCatalogo": [
   {
    "classe": "batedor",
@@ -60,86 +126,7 @@
    ]
   }
  ],
- "naoParseados": [
-  {
-   "id": "abismo-desejo-sombrio",
-   "motivo": "período fora do conjunto: \"Campanha\"",
-   "tipo": "beneficio",
-   "trecho": "1x/Campanha"
-  },
-  {
-   "id": "artilheiro-municao-especial",
-   "motivo": "cita limite de uso em forma não lida",
-   "tipo": "tecnica",
-   "trecho": "As munições são de uso único (Ao invés de uso por cena): Explosiva → Criaturas em 1,5 m do alvo sofrem o dano original da flecha."
-  },
-  {
-   "id": "artilheiro-projetil-envenenado",
-   "motivo": "período fora do conjunto: \"Alvo\"",
-   "tipo": "tecnica",
-   "trecho": "1x/Alvo"
-  },
-  {
-   "id": "automato-auto-reparador",
-   "motivo": "cita limite de uso em forma não lida",
-   "tipo": "tecnologia",
-   "trecho": "Cria 1 Kit de Manutenção por descanso longo."
-  },
-  {
-   "id": "batedor-cobra",
-   "motivo": "cita limite de uso em forma não lida",
-   "tipo": "tecnica",
-   "trecho": "Você pode criar até 2 venenos por descanso curto e 5 Venenos por descanso longo."
-  },
-  {
-   "id": "batedor-conexoes-duvidosas",
-   "motivo": "período fora do conjunto: \"localização\"",
-   "tipo": "tecnica",
-   "trecho": "1 vez por localização"
-  },
-  {
-   "id": "brutalista-fortaleza-de-aco",
-   "motivo": "cita limite de uso em forma não lida",
-   "tipo": "tecnica",
-   "trecho": "Você pode usar esta habilidade um número de vezes igual ao seu mod. de Constituição (mínimo 1) por combate."
-  },
-  {
-   "id": "brutalista-frenesi",
-   "motivo": "qualificador logo depois do uso: no nível 2 e 2 vezes no nível",
-   "tipo": "tecnica",
-   "trecho": "1 vez por descanso longo"
-  },
-  {
-   "id": "limiar-coracao-imortal",
-   "motivo": "período fora do conjunto: \"Semana\"",
-   "tipo": "carta",
-   "trecho": "1x/Semana"
-  },
-  {
-   "id": "limiar-maos-abencoadas",
-   "motivo": "cita limite de uso em forma não lida",
-   "tipo": "carta",
-   "trecho": "Você pode fazer isso em até 3 aliados por descanso longo"
-  },
-  {
-   "id": "limiar-premonicao-de-batalha",
-   "motivo": "período fora do conjunto: \"sessão\"",
-   "tipo": "carta",
-   "trecho": "1x/sessão"
-  },
-  {
-   "id": "limiar-vidente",
-   "motivo": "período fora do conjunto: \"sessão\"",
-   "tipo": "carta",
-   "trecho": "1x/sessão"
-  },
-  {
-   "id": "teurgo-eterno-aprendiz",
-   "motivo": "cita limite de uso em forma não lida",
-   "tipo": "tecnica",
-   "trecho": "Você só pode aprender 1 magia por descanso longo."
-  }
- ],
+ "naoParseados": [],
  "porId": {
   "abismo-guardiao-da-morte": {
    "max": {
@@ -270,6 +257,35 @@
    "periodo": "rodada",
    "tipo": "tecnica",
    "trecho": "2 vezes por rodada"
+  },
+  "brutalista-fortaleza-de-aco": {
+   "decisao": "03 §18",
+   "max": {
+    "minimo": 1,
+    "termos": [
+     {
+      "fator": 1,
+      "mod": "CON"
+     }
+    ],
+    "texto": "mod. de Constituição (mínimo 1)"
+   },
+   "periodo": "combate",
+   "tipo": "tecnica",
+   "trecho": "um número de vezes igual ao seu mod. de Constituição (mínimo 1) por combate"
+  },
+  "brutalista-frenesi": {
+   "decisao": "03 §18",
+   "max": {
+    "porNivel": {
+     "1": 1,
+     "4": 2
+    },
+    "texto": "1; 2 no nível 4"
+   },
+   "periodo": "longo",
+   "tipo": "tecnica",
+   "trecho": "Você pode usar Frenesi 1 vez por descanso longo no nível 2 e 2 vezes no nível 4."
   },
   "brutalista-hoje-nao": {
    "max": {
@@ -560,6 +576,20 @@
    "periodo": "curto",
    "tipo": "carta",
    "trecho": "1x/curto"
+  },
+  "limiar-maos-abencoadas": {
+   "decisao": "03 §18",
+   "max": {
+    "termos": [
+     {
+      "const": 3
+     }
+    ],
+    "texto": "3"
+   },
+   "periodo": "longo",
+   "tipo": "carta",
+   "trecho": "em até 3 aliados por descanso longo"
   },
   "limiar-olhos-analiticos": {
    "max": {

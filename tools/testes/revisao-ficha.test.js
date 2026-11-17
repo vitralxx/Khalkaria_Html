@@ -163,9 +163,9 @@ test('03 §10: Inseto mostra as 3 subespécies no box (seletor, com desfazer); o
   assert.doesNotMatch(h, /data-ed="identidade\.(variante|subespecie)"/);
   edita(x, 'identidade.raca', 'raca-corrompido');
   assert.match(nucleo(x, 'pagina'), /Corrompido não tem variante/);
-  // raça com variantes: o seletor de sempre
+  // raça com variantes: o seletor de sempre, com o nome do bloco na página da raça (03 §18)
   edita(x, 'identidade.raca', 'raca-anao');
-  assert.match(nucleo(x, 'pagina'), /data-campo="variante"><dt>Variante<\/dt><dd><select class="ke-ed ke-ed-sel" data-ed="identidade\.variante"/);
+  assert.match(nucleo(x, 'pagina'), /data-campo="variante"><dt>Clãs Ancestrais<\/dt><dd><select class="ke-ed ke-ed-sel" data-ed="identidade\.variante"/);
   soPrefixo(x.ss, 'subespécie');
 });
 

@@ -61,6 +61,43 @@ ATRIBUTOS = {
 }
 NUM_PALAVRA = {'um': 1, 'uma': 1, 'duas': 2, 'dois': 2, 'tres': 3}
 
+# ---------------------------------------------------------------------------
+# Decisões do Pedro sobre o que o leitor não decide sozinho (03 §18, 2026-11-17).
+# Cada trecho é substring EXATA do texto do catálogo: se o texto mudar, o build
+# para aqui (nada fica valendo em silêncio).
+DECISAO = '03 §18'
+# lidas: o período e o máximo que o Pedro deu
+DECISOES = {
+    'brutalista-fortaleza-de-aco': {
+        'periodo': 'combate', 'trecho': 'um número de vezes igual ao seu mod. de Constituição (mínimo 1) por combate',
+        'max': {'texto': 'mod. de Constituição (mínimo 1)', 'termos': [{'mod': 'CON', 'fator': 1}], 'minimo': 1}},
+    'brutalista-frenesi': {
+        'periodo': 'longo', 'trecho': 'Você pode usar Frenesi 1 vez por descanso longo no nível 2 e 2 vezes no nível 4.',
+        'max': {'texto': '1; 2 no nível 4', 'porNivel': {'1': 1, '4': 2}}},
+    'limiar-maos-abencoadas': {
+        'periodo': 'longo', 'trecho': 'em até 3 aliados por descanso longo',
+        'max': {'texto': '3', 'termos': [{'const': 3}]}},
+}
+# sem contador: o motivo, com as palavras do Pedro
+SEM_CONTADOR = {
+    'abismo-desejo-sombrio': 'o Abismo terá um rework; o Limiar continua valendo',
+    'artilheiro-projetil-envenenado': 'não entra na lógica de recarga',
+    'batedor-cobra': 'não se aplica (o Batedor está em rework)',
+    'batedor-conexoes-duvidosas': 'não se aplica (o Batedor está em rework)',
+    'limiar-coracao-imortal': 'fora do conjunto (1x/Semana): marcado à mão',
+    'limiar-premonicao-de-batalha': 'fora do conjunto (1x/sessão): marcado à mão',
+    'limiar-vidente': 'fora do conjunto (1x/sessão): marcado à mão',
+}
+# o que a técnica faz no descanso: lembrete no botão de descanso (o trecho, por
+# descanso). item: a ficha soma 1 à pilha desse item no inventário, se houver.
+AO_DESCANSAR = {
+    'artilheiro-municao-especial': {
+        'curto': 'Durante um descanso curto, você pode criar 1 Munição Especial como ação de descanso curto',
+        'longo': 'durante um descanso longo, você pode criar 2 munições Especiais'},
+    'automato-auto-reparador': {'longo': 'Cria 1 Kit de Manutenção por descanso longo.', 'item': 'Kit de Manutenção'},
+    'teurgo-eterno-aprendiz': {'longo': 'Você só pode aprender 1 magia por descanso longo.'},
+}
+
 _PER = r'(?P<p>descanso(?:\s+(?:curto|longo))?|[a-zà-ÿ]+)'
 _FLAGS = re.I
 R_USOS = re.compile(r'\busos?\s*:\s*(?P<f>[^/;|]{1,60}?)\s*/\s*' + _PER, _FLAGS)
@@ -281,26 +318,53 @@ def gerar(root=None):
             item['motivo'] = 'mais de um limite de uso no mesmo texto; decide o Pedro. ' + '; '.join(
                 f'«{x["trecho"]}» ({x["motivo"]})' for x in itens)
         nao_parseados.append(item)
+    # as decisões do Pedro (03 §18): cada id existe e cada trecho está no texto
+    cat = {e['id']: e for e in carrega_catalogo(root)}
+
+    def confere(i, trecho):
+        if i not in cat:
+            raise SystemExit(f'FALHA gerar_usos: decisão para id fora do catálogo: {i}')
+        if trecho is not None and trecho not in ' '.join(cat[i].get(c) or '' for c in CAMPOS):
+            raise SystemExit(f'FALHA gerar_usos: o trecho da decisão não está no texto de {i}: «{trecho}»')
+    for i, d in DECISOES.items():
+        confere(i, d['trecho'])
+        por_id[i] = {'tipo': cat[i]['tipo'], 'periodo': d['periodo'], 'max': d['max'], 'trecho': d['trecho'], 'decisao': DECISAO}
+    decididos = []
+    for i, motivo in sorted(SEM_CONTADOR.items()):
+        confere(i, None)
+        decididos.append({'id': i, 'tipo': cat[i]['tipo'], 'motivo': motivo, 'decisao': DECISAO})
+    ao_descansar = {}
+    for i, d in sorted(AO_DESCANSAR.items()):
+        for k in ('curto', 'longo'):
+            if k in d:
+                confere(i, d[k])
+        ao_descansar[i] = dict(d, tipo=cat[i]['tipo'], decisao=DECISAO)
+    tirar = set(DECISOES) | set(SEM_CONTADOR) | set(AO_DESCANSAR)
+    nao_parseados = [x for x in nao_parseados if x['id'] not in tirar]
     nao_parseados.sort(key=lambda x: x['id'])
     fora = le_recursos_de_classe(root)
 
     c_periodo, c_tipo = {}, {}
-    c_forma = {'constante': 0, 'comNivel': 0, 'comMod': 0}
+    c_forma = {'constante': 0, 'comNivel': 0, 'comMod': 0, 'porNivel': 0}
     for r in por_id.values():
         c_periodo[r['periodo']] = c_periodo.get(r['periodo'], 0) + 1
         c_tipo[r['tipo']] = c_tipo.get(r['tipo'], 0) + 1
-        ks = {k for t in r['max']['termos'] for k in t}
+        ks = {k for t in r['max'].get('termos', []) for k in t}
         c_forma['comNivel'] += 'nivel' in ks
         c_forma['comMod'] += 'mod' in ks
         c_forma['constante'] += ks == {'const'}
+        c_forma['porNivel'] += 'porNivel' in r['max']
     doc = {
         'schema': SCHEMA,
         '_doc': 'ARTEFATO de tools/gerar_usos.py: não editar à mão',
         'porId': dict(sorted(por_id.items())),
         'naoParseados': nao_parseados,
+        'decididos': decididos,
+        'aoDescansar': ao_descansar,
         'foraDoCatalogo': fora,
         'contagem': {
             'lidos': len(por_id), 'naoParseados': len(nao_parseados), 'foraDoCatalogo': len(fora),
+            'decididos': len(decididos), 'aoDescansar': len(ao_descansar),
             'porPeriodo': dict(sorted(c_periodo.items())), 'porTipo': dict(sorted(c_tipo.items())),
             'porFormula': c_forma,
         },
@@ -317,11 +381,13 @@ def grava_json(doc, root):
 
 
 def formula_txt(mx):
-    return ' + '.join(
+    if 'porNivel' in mx:
+        return ', '.join(f'{v} (nível {k}+)' for k, v in sorted(mx['porNivel'].items(), key=lambda kv: int(kv[0])))
+    return (' + '.join(
         str(t['const']) if 'const' in t else
         ('Nível' if t['nivel'] == 1 else f'{t["nivel"]}×Nível') if 'nivel' in t else
         (f'Mod.{t["mod"]}' if t['fator'] == 1 else f'{t["fator"]}×Mod.{t["mod"]}')
-        for t in mx['termos'])
+        for t in mx['termos']) + (f' (mínimo {mx["minimo"]})' if 'minimo' in mx else ''))
 
 
 def cel(s):
@@ -352,7 +418,7 @@ def grava_md(doc, nomes, root):
             tipo_atual = tipo
         L += [f'### {tipo} · {dono}', '', '| Nome | Trecho | Período | Máximo |', '|---|---|---|---|']
         for i, nome, r in sorted(grupos[(tipo, dono)]):
-            extra = f' ({r["ocorrencias"]}× no texto)' if r.get('ocorrencias') else ''
+            extra = (f' ({r["ocorrencias"]}× no texto)' if r.get('ocorrencias') else '') + (f' · decisão {r["decisao"]}' if r.get('decisao') else '')
             L.append(f'| {cel(nome)} | {cel(r["trecho"])} | {r["periodo"]} | {cel(formula_txt(r["max"]))}{extra} |')
         L.append('')
     L += ['## Não lidos', '',
@@ -361,6 +427,14 @@ def grava_md(doc, nomes, root):
           '| Id | Tipo | Trecho | Motivo |', '|---|---|---|---|']
     for x in doc['naoParseados']:
         L.append(f'| {x["id"]} | {x["tipo"]} | {cel(x["trecho"])} | {cel(x["motivo"])} |')
+    L += ['', f'## Sem contador (decisão {DECISAO})', '', '| Id | Tipo | Motivo |', '|---|---|---|']
+    for x in doc['decididos']:
+        L.append(f'| {x["id"]} | {x["tipo"]} | {cel(x["motivo"])} |')
+    L += ['', f'## No descanso (decisão {DECISAO})', '',
+          'Lembrete no botão de descanso; com `item`, a ficha soma 1 à pilha desse item no inventário.', '',
+          '| Id | Descanso curto | Descanso longo | Item |', '|---|---|---|---|']
+    for i, x in doc['aoDescansar'].items():
+        L.append(f'| {i} | {cel(x.get("curto", "—"))} | {cel(x.get("longo", "—"))} | {cel(x.get("item", "—"))} |')
     L += ['', '## Recursos de classe (fora do catálogo)', '',
           '| Id | Trechos | Motivo |', '|---|---|---|']
     for x in doc['foraDoCatalogo']:

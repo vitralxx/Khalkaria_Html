@@ -58,7 +58,7 @@ test('condição: nova, +1 até o máximo, −1 até 1, remover; derivada não e
   });
 });
 
-test('descanso longo com comida e luz: Exaustão e Desnutrido −1, temporária some, usos longo e dia voltam, curto não', () => {
+test('descanso longo com comida e luz: Exaustão e Desnutrido −1, temporária some, usos curto, longo e dia voltam', () => {
   const f = ficha();
   f.condicoes = [{ uid: 'c1', id: 'exaustao', x: 2, duracao: null }, { uid: 'c2', id: 'desnutrido', x: 1, duracao: null },
     { uid: 'c3', id: 'lento', x: 1, duracao: null }];
@@ -77,7 +77,7 @@ test('descanso longo com comida e luz: Exaustão e Desnutrido −1, temporária 
   assert.equal(g.recursos.saude.temporaria, 0);
   assert.equal(g.entradas[0].estado.usos.gastos, 0);
   assert.equal(g.entradas[1].estado.usos.gastos, 0);
-  assert.equal(g.entradas[2].estado.usos.gastos, 1, 'o contrato só devolve longo e dia no longo');
+  assert.equal(g.entradas[2].estado.usos.gastos, 0, 'o longo devolve também os curtos (03 §18)');
   assert.match(r.aviso, /Exaustão 2 → 1/);
 });
 
@@ -175,4 +175,38 @@ test('faixa Em jogo: recursos, condições com origem, + Condição sem as deriv
   const ids = (s) => (s.match(/id="fp-d-\d+"/g) || []);
   assert.ok(ids(sem).length > 0);
   assert.ok(ids(ed.jogo.rec).every((i) => ids(sem).indexOf(i) < 0), 'ids da faixa são novos');
+});
+
+test('usos por decisão do Pedro (03 §18): Frenesi por nível e Fortaleza de Aço com mínimo 1', () => {
+  const f = ficha();
+  const fr = USOS.porId['brutalista-frenesi'];
+  f.meta.nivel = 2;
+  assert.equal(ED.maxUsos(fr, f, {}).valor, 1);
+  f.meta.nivel = 4;
+  assert.equal(ED.maxUsos(fr, f, {}).valor, 2);
+  const fo = USOS.porId['brutalista-fortaleza-de-aco'];
+  assert.equal(fo.periodo, 'combate', 'por combate: a Mesa conta');
+  const m = ED.maxUsos(fo, f, { 'atributo.CON.mod': { valor: -1 } });
+  assert.deepEqual([m.valor, m.minimo], [1, 1]);
+  assert.equal(ED.maxUsos(fo, f, { 'atributo.CON.mod': { valor: 3 } }).valor, 3);
+});
+
+test('no descanso: lembretes do texto e o Kit de Manutenção soma na pilha (Auto-Reparador)', () => {
+  const f = ficha();
+  f.entradas = [{ uid: 'e1', tipo: 'tecnologia', id: 'automato-auto-reparador', cache: { nome: 'Auto-Reparador' }, estado: {} },
+    { uid: 'e2', tipo: 'tecnica', id: 'artilheiro-municao-especial', cache: { nome: 'Munição Especial' }, estado: {} }];
+  const op = { usos: USOS.porId, aoDescansar: USOS.aoDescansar };
+  // sem a pilha: só lembretes (e o curto, sem nada a mudar, avisa sem gravar)
+  const c = ED.acao(f, 'descanso.curto', null, op);
+  assert.equal(c.ok, false);
+  assert.match(c.erro, /Munição Especial: Durante um descanso curto, você pode criar 1 Munição Especial como ação de descanso curto/);
+  const l0 = ED.acao(f, 'descanso.longo', 'completo', op);
+  assert.match(l0.erro || l0.aviso, /Auto-Reparador: Cria 1 Kit de Manutenção por descanso longo \(adicione pelo Bazar\)/);
+  // com a pilha: +1
+  f.inventario.bugigangas = [{ uid: 'i1', nome: 'Kit de Manutenção', categoria: 'Consumível', qtd: 2 }];
+  const r = ED.acao(f, 'descanso.longo', 'completo', op);
+  const g = aplica(f, r);
+  assert.equal(g.inventario.bugigangas[0].qtd, 3);
+  assert.match(r.aviso, /Kit de Manutenção ×2 → ×3 \(Auto-Reparador\)/);
+  assert.match(r.aviso, /Munição Especial: durante um descanso longo, você pode criar 2 munições Especiais/);
 });

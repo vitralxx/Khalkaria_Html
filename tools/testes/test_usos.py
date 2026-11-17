@@ -42,6 +42,9 @@ class Usos(unittest.TestCase):
         for i, r in self.doc['porId'].items():
             self.assertIn(r['periodo'], PERIODOS, i)
             self.assertEqual(r['tipo'], self.cat[i]['tipo'], i)
+            if 'porNivel' in r['max']:                    # decisão do Pedro (03 §18): o Frenesi
+                self.assertEqual(r.get('decisao'), '03 §18', i)
+                continue
             self.assertTrue(r['max']['termos'], i)
             for t in r['max']['termos']:
                 self.assertIn(set(t), ({'const'}, {'nivel'}, {'mod', 'fator'}), i)
@@ -63,16 +66,25 @@ class Usos(unittest.TestCase):
             self.assertIn(x['id'], self.cat)
             self.assertEqual(x['tipo'], self.cat[x['id']]['tipo'])
 
+    def vistos(self):
+        return (set(self.doc['porId']) | {x['id'] for x in self.doc['naoParseados']} |
+                {x['id'] for x in self.doc['decididos']} | set(self.doc['aoDescansar']))
+
     def test_sem_duplicata(self):
         ids = [x['id'] for x in self.doc['naoParseados']]
         self.assertEqual(len(ids), len(set(ids)))
         self.assertFalse(set(ids) & set(self.doc['porId']), 'id em porId e em naoParseados')
+        grupos = [set(self.doc['porId']), {x['id'] for x in self.doc['naoParseados']},
+                  {x['id'] for x in self.doc['decididos']}, set(self.doc['aoDescansar'])]
+        for a in range(len(grupos)):
+            for b in range(a + 1, len(grupos)):
+                self.assertFalse(grupos[a] & grupos[b], f'id em dois grupos: {grupos[a] & grupos[b]}')
         fora = [x['id'] for x in self.doc['foraDoCatalogo']]
         self.assertEqual(len(fora), len(set(fora)))
 
     def test_portao_nada_some_calado(self):
         """Todo texto que cita limite de uso está em porId ou em naoParseados."""
-        lidos = set(self.doc['porId']) | {x['id'] for x in self.doc['naoParseados']}
+        lidos = self.vistos()
         sumiram = [i for i in self.cat if any(PADRAO_USO.search(t) for t in self.textos(i)) and i not in lidos]
         self.assertEqual(sumiram, [], 'texto com padrão de uso fora de porId/naoParseados')
 
@@ -80,7 +92,7 @@ class Usos(unittest.TestCase):
         log = ler('docs/ficha-digital/log-tecnicas.json')['tecnicas']
         com_recarga = [t['id'] for t in log if t['recarga']['status'] != 'semRecarga']
         self.assertGreaterEqual(len(com_recarga), 41)
-        lidos = set(self.doc['porId']) | {x['id'] for x in self.doc['naoParseados']}
+        lidos = self.vistos()
         fora = {x['id'] for x in self.doc['foraDoCatalogo']}
         faltam = []
         for i in com_recarga:
@@ -125,14 +137,22 @@ class Usos(unittest.TestCase):
             r = self.doc['porId'][i]
             self.assertEqual((r['periodo'], r['max']['termos']), (esperado[0], [{'const': esperado[1]}]), i)
 
-    def test_recusas(self):
-        nao = {x['id'] for x in self.doc['naoParseados']}
-        for i in ('brutalista-frenesi',            # "no nível 2 e 2 vezes no nível 4"
-                  'batedor-conexoes-duvidosas',    # "por localização"
-                  'artilheiro-projetil-envenenado',  # "1x/Alvo"
-                  'brutalista-fortaleza-de-aco',   # "número de vezes igual ao mod. (mínimo 1)"
-                  'limiar-vidente'):               # "1x/sessão"
-            self.assertIn(i, nao)
+    def test_recusas_viram_decisao_do_pedro(self):
+        # o leitor sozinho recusa estes; as respostas do Pedro (03 §18) os resolvem
+        doc, _ = gerar_usos.gerar(RAIZ)
+        self.assertEqual(doc['naoParseados'], [], 'sobrou texto sem decisão')
+        dec = {x['id']: x for x in doc['decididos']}
+        for i in ('batedor-conexoes-duvidosas', 'artilheiro-projetil-envenenado', 'limiar-vidente', 'abismo-desejo-sombrio'):
+            self.assertIn(i, dec)
+        self.assertEqual(doc['porId']['brutalista-frenesi']['max']['porNivel'], {'1': 1, '4': 2})
+        f = doc['porId']['brutalista-fortaleza-de-aco']
+        self.assertEqual((f['periodo'], f['max']['termos'], f['max']['minimo']), ('combate', [{'mod': 'CON', 'fator': 1}], 1))
+        self.assertEqual(doc['porId']['limiar-maos-abencoadas']['max']['termos'], [{'const': 3}])
+        self.assertEqual(doc['aoDescansar']['automato-auto-reparador']['item'], 'Kit de Manutenção')
+        for i, x in doc['aoDescansar'].items():
+            for k in ('curto', 'longo'):
+                if k in x:
+                    self.assertTrue(any(x[k] in t for t in self.textos(i)), f'{i}/{k}: {x[k]!r}')
 
     # ---- o leitor, isolado
     def test_le_formula(self):

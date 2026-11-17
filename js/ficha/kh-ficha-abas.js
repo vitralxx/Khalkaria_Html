@@ -203,7 +203,8 @@
       });
       // os limites de uso lidos do texto (data/usos.json, usos/1), por id do catálogo
       var usos = obj(dados.usos) && obj(dados.usos.porId) ? dados.usos.porId : null;
-      return { porId: porId, porNome: porNome, classes: classes, ramos: ramos, racas: racas, usos: usos,
+      var usosDescanso = obj(dados.usos) && obj(dados.usos.aoDescansar) ? dados.usos.aoDescansar : null;
+      return { porId: porId, porNome: porNome, classes: classes, ramos: ramos, racas: racas, usos: usos, usosDescanso: usosDescanso,
         D: D || (KhRegras ? KhRegras.dados() : {}), base: base == null ? '../' : str(base) };
     }
     // a entrada do catálogo de uma entrada da ficha: pelo id; sem id, pelo nome
@@ -421,12 +422,13 @@
         function selVariante() {
           function tem(r) { return obj(r) && !!(r.id || str(r.nome).trim()); }
           var opsSub = KhEdicao.opcoesRef(ctx, f, 'subespecie'), opsVar = KhEdicao.opcoesRef(ctx, f, 'variante');
-          if (opsSub.length) return idCampo('variante', 'Subespécie', edSel('subespecie', 'Subespécie', opsSub, idt.subespecie)) + (tem(idt.variante) ? selRef('variante') : '');
+          var rSub = rotuloVariante(ctx, idt, 'Subespécie'), rVar = rotuloVariante(ctx, idt, 'Variante');
+          if (opsSub.length) return idCampo('variante', rSub, edSel('subespecie', rSub, opsSub, idt.subespecie)) + (tem(idt.variante) ? selRef('variante') : '');
           if (obj(idt.raca) && idt.raca.id && !opsVar.length && !tem(idt.variante)) {
             return idCampo('variante', 'Variante', '<span class="' + P + '-sub">' + esc((refNome(idt.raca) || 'Esta raça') + ' não tem variante') + '</span>') +
               idRef('subespecie', 'Subespécie', idt.subespecie);
           }
-          return selRef('variante') + idRef('subespecie', 'Subespécie', idt.subespecie);
+          return idCampo('variante', rVar, edSel('variante', rVar, KhEdicao.opcoesRef(ctx, f, 'variante'), idt.variante)) + idRef('subespecie', 'Subespécie', idt.subespecie);
         }
         if (edP) {
           h += moldura('identidade', 'Identidade', '<dl class="' + P + '-ident-grade">' +
@@ -442,7 +444,8 @@
           idCampo('jogador', 'Jogador', esc(semEmoji(meta.jogador))) +
           idCampo('nivel', 'Nível', nEstado('meta.nivel', meta.nivel)) +
           idCampo('xp', 'XP', nEstado('meta.xp', meta.xp)) +
-          idRef('raca', 'Raça', idt.raca) + idRef('variante', 'Variante', idt.variante) + idRef('subespecie', 'Subespécie', idt.subespecie) +
+          idRef('raca', 'Raça', idt.raca) + idRef('variante', rotuloVariante(ctx, idt, 'Variante'), idt.variante) +
+          idRef('subespecie', rotuloVariante(ctx, idt, 'Subespécie'), idt.subespecie) +
           idRef('classe', 'Classe', idt.classe) + idRef('ramo', 'Ramo', idt.ramo) + idRef('origem', 'Origem', idt.origem) +
           '</dl>', { cls: P + '-bloco-ident' });
 
@@ -753,6 +756,13 @@
           '<span class="' + P + '-sub">de</span>' + ctx.C.conta('usos.' + e.id, { no: no, semSelos: true }) +
           '<span class="' + P + '-sub">' + esc(por) + '</span>' + bts + '</div>';
       }
+      // o nome do campo da variante na raça: o título do bloco na página dela (Estilo de
+      // Vida, Clãs Ancestrais, Subespécie, Linhagem Réptil); sem ele, o genérico
+      function rotuloVariante(ctx, idt, padrao) {
+        var r = obj(idt) && obj(idt.raca) && idt.raca.id ? ctx.racas[idt.raca.id] : null;
+        var t = r && obj(r.variantes) ? semEmoji(r.variantes.titulo).replace(/^Escolha (?:uma?|o|a)\s+/i, '').trim() : '';
+        return t ? t.charAt(0).toUpperCase() + t.slice(1) : padrao;
+      }
       function cardTecnica(it, ctx, op) {
         op = op || {};
         var e = it.e, c = it.c;
@@ -870,8 +880,9 @@
         h += moldura('tecnicas-ramo', 'Técnicas de Ramo', '<div class="' + P + '-tiers">' + tiers + '</div>',
           { extra: ramo && ramo.chave ? rotuloRamo(ramo, true) : '' });
         h += moldura('marcas', 'Marcas', grade(g.marcas, dv.nMarcas || MOLDURAS.marcas, { destravaDe: function (i) { return dv.marcas[i] || null; } }));
-        h += moldura('tecnicas-diversas', 'Técnicas Diversas', grade(g.diversas, MOLDURAS.diversas, { tipo: function (it) { return NOME_DIVERSA[it.e.tipo] || ''; } }),
-          { nota: 'Traços, variante, tecnologias, corrupções e técnica de origem.' });
+        h += moldura('tecnicas-diversas', 'Técnicas Diversas', grade(g.diversas, MOLDURAS.diversas, { tipo: function (it) {
+          return it.e.tipo === 'variante' || it.e.tipo === 'subespecie' ? rotuloVariante(ctx, idt, NOME_DIVERSA[it.e.tipo] || '') : NOME_DIVERSA[it.e.tipo] || ''; } }),
+          { nota: 'Traços, ' + rotuloVariante(ctx, idt, 'variante').toLowerCase() + ', tecnologias, corrupções e técnica de origem.' });
         if (daRaca) h += (daRaca.tipo === 'corrupcao' ? blocoCorrupcao : blocoTecnologias)(g.raca, daRaca.r, nivel, ctx);
         return h;
       };

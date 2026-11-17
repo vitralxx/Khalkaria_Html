@@ -444,7 +444,7 @@
       // ---- os ouvintes (delegados na raiz: o redesenho não os perde)
       // os usos de cada técnica (data/usos.json, no contexto do catálogo) e os nós do
       // motor (o Mod da fórmula de usos, o máximo do Reagentes no descanso longo)
-      function opAcao() { var c = ctx(); return { usos: c && c.usos ? c.usos : null, nos: nos() }; }
+      function opAcao() { var c = ctx(); return { usos: c && c.usos ? c.usos : null, aoDescansar: c && c.usosDescanso ? c.usosDescanso : null, nos: nos() }; }
       function perto(t, sel) { try { return t && t.closest ? t.closest(sel) : null; } catch (e) { return null; } }
       function dentro(el) { return !!el && raizEl.contains(el); }
       function acaoBarra(a, b) {

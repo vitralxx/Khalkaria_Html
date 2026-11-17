@@ -8357,20 +8357,31 @@
     //   consumir <uid>                    baixa 1 da quantidade; o último sai do inventário
     // op: {D (KhRegras.dados()), usos (porId), aleatorio (testes)}
     // usos: o contrato (descanso.curto/longo.efeitos e recargas): o curto devolve os
-    // usos 'curto'; o longo, os 'longo' e os 'dia' ("1x/dia vale o mesmo", L29).
+    // usos 'curto'; o longo, os 'longo' e os 'dia' ("1x/dia vale o mesmo", L29) e
+    // também os 'curto' (o Pedro, 03 §18: "os descansos longos, eles também devolvem
+    // recargas por descanso curto").
     // ate: as durações que já acabaram quando se descansa (não se descansa em combate)
     var POR_DESCANSO = {
       curto: { ate: ['fimTurno', 'fimCombate', 'fimCena', 'descansoCurto'], usos: ['curto'] },
-      longo: { ate: ['fimTurno', 'fimCombate', 'fimCena', 'descansoCurto', 'descansoLongo', 'novoDia'], usos: ['longo', 'dia'] }
+      longo: { ate: ['fimTurno', 'fimCombate', 'fimCena', 'descansoCurto', 'descansoLongo', 'novoDia'], usos: ['curto', 'longo', 'dia'] }
     };
     // os períodos que a ficha conta (um descanso devolve) -> onde o uso volta; os de
     // turno, rodada, combate e cena ficam para a Mesa, que tem o relógio do combate
     var USOS_DA_FICHA = { curto: 'descanso curto', longo: 'descanso longo', dia: 'descanso longo' };
     // o máximo de usos pela fórmula lida do texto (data/usos.json, usos/1):
     // {valor, partes:[{rotulo, valor}]}; null se falta um número (o Mod sem nó)
+    // porNivel (o Frenesi: 1, e 2 no nível 4): o valor da maior chave até o nível;
+    // minimo (a Fortaleza de Aço: "mínimo 1") vale depois da soma
     function maxUsos(reg, ficha, nos) {
-      if (!obj(reg) || !obj(reg.max) || !Array.isArray(reg.max.termos) || !reg.max.termos.length) return null;
+      if (!obj(reg) || !obj(reg.max)) return null;
       var nivel = Number(pega(ficha, 'meta.nivel')) || 1, partes = [], soma = 0, ok = true;
+      if (obj(reg.max.porNivel)) {
+        var ate = null;
+        Object.keys(reg.max.porNivel).forEach(function (k) { var n = Number(k); if (n <= nivel && (ate === null || n > ate)) ate = n; });
+        if (ate === null || typeof reg.max.porNivel[ate] !== 'number') return null;
+        return { valor: reg.max.porNivel[ate], partes: [{ rotulo: 'nível ' + ate + '+', valor: reg.max.porNivel[ate] }] };
+      }
+      if (!Array.isArray(reg.max.termos) || !reg.max.termos.length) return null;
       reg.max.termos.forEach(function (t) {
         var v = null, rot = '';
         if (!obj(t)) ok = false;
@@ -8385,7 +8396,9 @@
         soma += v;
         partes.push({ rotulo: rot, valor: v });
       });
-      return ok ? { valor: Math.max(0, soma), partes: partes } : null;
+      if (!ok) return null;
+      var mn = typeof reg.max.minimo === 'number' ? reg.max.minimo : 0;
+      return mn > 0 && soma < mn ? { valor: mn, partes: partes, minimo: mn } : { valor: Math.max(0, soma), partes: partes };
     }
     function gastosDe(e) {
       var u = obj(e) && obj(e.estado) && obj(e.estado.usos) ? e.estado.usos : null;
@@ -8493,9 +8506,33 @@
           if (u && Number(u.gastos) > 0 && per && regra.usos.indexOf(per) >= 0) { u.gastos = 0; nus++; }
         });
         if (nus) { mud.push({ caminho: 'entradas', valor: es }); feitos.push(nus + (nus === 1 ? ' técnica com usos de volta' : ' técnicas com usos de volta')); }
+        // o que a técnica faz no descanso (data/usos.json aoDescansar, 03 §18): o
+        // lembrete; o item criado (Kit de Manutenção) soma 1 à pilha que já existe
+        var AD = obj(op.aoDescansar) ? op.aoDescansar : {}, temId = {}, lembra = [];
+        lista(f.entradas).forEach(function (e) { if (obj(e) && e.id) temId[e.id] = semEmoji(e.cache && e.cache.nome) || e.id; });
+        Object.keys(AD).forEach(function (id) {
+          var a = AD[id], t = obj(a) ? str(a[m[1]]).replace(/\.\s*$/, '') : '';
+          if (!temId[id] || !t) return;
+          var pilha = null;
+          if (a.item) {
+            ['bugigangas', 'equipamentos'].forEach(function (col) {
+              if (pilha) return;
+              var l = clone(lista(pega(f, 'inventario.' + col))), j = -1;
+              l.forEach(function (x, k) { if (j < 0 && obj(x) && KhEstado.normaliza(x.nome) === KhEstado.normaliza(a.item)) j = k; });
+              if (j >= 0) pilha = { col: col, l: l, j: j };
+            });
+          }
+          if (pilha) {
+            var it2 = pilha.l[pilha.j], q2 = Math.max(1, parseInt(it2.qtd, 10) || 1);
+            it2.qtd = q2 + 1;
+            mud.push({ caminho: 'inventario.' + pilha.col, valor: pilha.l });
+            feitos.push(semEmoji(it2.nome) + ' ×' + q2 + ' → ×' + (q2 + 1) + ' (' + temId[id] + ')');
+          } else lembra.push(temId[id] + ': ' + t + (a.item ? ' (adicione pelo Bazar)' : ''));
+        });
         var rot = longo ? (sem ? 'Descanso longo sem comida ou luz' : 'Descanso longo') : 'Descanso curto';
-        if (!mud.length) return { ok: false, erro: rot + ': nada volta sozinho nesta ficha. A recuperação (os dados) é à mão.' };
-        return so(mud, rot, rot + ': ' + feitos.join(' · ') + '. A recuperação (os dados) é à mão.');
+        var lem = lembra.length ? ' Lembrete: ' + lembra.join(' · ') + '.' : '';
+        if (!mud.length) return { ok: false, erro: rot + ': nada muda sozinho nesta ficha.' + lem + ' A recuperação (os dados) é à mão.' };
+        return so(mud, rot, rot + ': ' + feitos.join(' · ') + '.' + lem + ' A recuperação (os dados) é à mão.');
       }
       if ((m = /^uso\.(gastar|devolver)$/.exec(nome))) {
         var es2 = clone(lista(f.entradas)), k2 = es2.map(function (e) { return obj(e) ? e.uid : null; }).indexOf(arg);
@@ -9449,7 +9486,8 @@
       });
       // os limites de uso lidos do texto (data/usos.json, usos/1), por id do catálogo
       var usos = obj(dados.usos) && obj(dados.usos.porId) ? dados.usos.porId : null;
-      return { porId: porId, porNome: porNome, classes: classes, ramos: ramos, racas: racas, usos: usos,
+      var usosDescanso = obj(dados.usos) && obj(dados.usos.aoDescansar) ? dados.usos.aoDescansar : null;
+      return { porId: porId, porNome: porNome, classes: classes, ramos: ramos, racas: racas, usos: usos, usosDescanso: usosDescanso,
         D: D || (KhRegras ? KhRegras.dados() : {}), base: base == null ? '../' : str(base) };
     }
     // a entrada do catálogo de uma entrada da ficha: pelo id; sem id, pelo nome
@@ -9667,12 +9705,13 @@
         function selVariante() {
           function tem(r) { return obj(r) && !!(r.id || str(r.nome).trim()); }
           var opsSub = KhEdicao.opcoesRef(ctx, f, 'subespecie'), opsVar = KhEdicao.opcoesRef(ctx, f, 'variante');
-          if (opsSub.length) return idCampo('variante', 'Subespécie', edSel('subespecie', 'Subespécie', opsSub, idt.subespecie)) + (tem(idt.variante) ? selRef('variante') : '');
+          var rSub = rotuloVariante(ctx, idt, 'Subespécie'), rVar = rotuloVariante(ctx, idt, 'Variante');
+          if (opsSub.length) return idCampo('variante', rSub, edSel('subespecie', rSub, opsSub, idt.subespecie)) + (tem(idt.variante) ? selRef('variante') : '');
           if (obj(idt.raca) && idt.raca.id && !opsVar.length && !tem(idt.variante)) {
             return idCampo('variante', 'Variante', '<span class="' + P + '-sub">' + esc((refNome(idt.raca) || 'Esta raça') + ' não tem variante') + '</span>') +
               idRef('subespecie', 'Subespécie', idt.subespecie);
           }
-          return selRef('variante') + idRef('subespecie', 'Subespécie', idt.subespecie);
+          return idCampo('variante', rVar, edSel('variante', rVar, KhEdicao.opcoesRef(ctx, f, 'variante'), idt.variante)) + idRef('subespecie', 'Subespécie', idt.subespecie);
         }
         if (edP) {
           h += moldura('identidade', 'Identidade', '<dl class="' + P + '-ident-grade">' +
@@ -9688,7 +9727,8 @@
           idCampo('jogador', 'Jogador', esc(semEmoji(meta.jogador))) +
           idCampo('nivel', 'Nível', nEstado('meta.nivel', meta.nivel)) +
           idCampo('xp', 'XP', nEstado('meta.xp', meta.xp)) +
-          idRef('raca', 'Raça', idt.raca) + idRef('variante', 'Variante', idt.variante) + idRef('subespecie', 'Subespécie', idt.subespecie) +
+          idRef('raca', 'Raça', idt.raca) + idRef('variante', rotuloVariante(ctx, idt, 'Variante'), idt.variante) +
+          idRef('subespecie', rotuloVariante(ctx, idt, 'Subespécie'), idt.subespecie) +
           idRef('classe', 'Classe', idt.classe) + idRef('ramo', 'Ramo', idt.ramo) + idRef('origem', 'Origem', idt.origem) +
           '</dl>', { cls: P + '-bloco-ident' });
 
@@ -9999,6 +10039,13 @@
           '<span class="' + P + '-sub">de</span>' + ctx.C.conta('usos.' + e.id, { no: no, semSelos: true }) +
           '<span class="' + P + '-sub">' + esc(por) + '</span>' + bts + '</div>';
       }
+      // o nome do campo da variante na raça: o título do bloco na página dela (Estilo de
+      // Vida, Clãs Ancestrais, Subespécie, Linhagem Réptil); sem ele, o genérico
+      function rotuloVariante(ctx, idt, padrao) {
+        var r = obj(idt) && obj(idt.raca) && idt.raca.id ? ctx.racas[idt.raca.id] : null;
+        var t = r && obj(r.variantes) ? semEmoji(r.variantes.titulo).replace(/^Escolha (?:uma?|o|a)\s+/i, '').trim() : '';
+        return t ? t.charAt(0).toUpperCase() + t.slice(1) : padrao;
+      }
       function cardTecnica(it, ctx, op) {
         op = op || {};
         var e = it.e, c = it.c;
@@ -10116,8 +10163,9 @@
         h += moldura('tecnicas-ramo', 'Técnicas de Ramo', '<div class="' + P + '-tiers">' + tiers + '</div>',
           { extra: ramo && ramo.chave ? rotuloRamo(ramo, true) : '' });
         h += moldura('marcas', 'Marcas', grade(g.marcas, dv.nMarcas || MOLDURAS.marcas, { destravaDe: function (i) { return dv.marcas[i] || null; } }));
-        h += moldura('tecnicas-diversas', 'Técnicas Diversas', grade(g.diversas, MOLDURAS.diversas, { tipo: function (it) { return NOME_DIVERSA[it.e.tipo] || ''; } }),
-          { nota: 'Traços, variante, tecnologias, corrupções e técnica de origem.' });
+        h += moldura('tecnicas-diversas', 'Técnicas Diversas', grade(g.diversas, MOLDURAS.diversas, { tipo: function (it) {
+          return it.e.tipo === 'variante' || it.e.tipo === 'subespecie' ? rotuloVariante(ctx, idt, NOME_DIVERSA[it.e.tipo] || '') : NOME_DIVERSA[it.e.tipo] || ''; } }),
+          { nota: 'Traços, ' + rotuloVariante(ctx, idt, 'variante').toLowerCase() + ', tecnologias, corrupções e técnica de origem.' });
         if (daRaca) h += (daRaca.tipo === 'corrupcao' ? blocoCorrupcao : blocoTecnologias)(g.raca, daRaca.r, nivel, ctx);
         return h;
       };
@@ -10971,7 +11019,7 @@
       // ---- os ouvintes (delegados na raiz: o redesenho não os perde)
       // os usos de cada técnica (data/usos.json, no contexto do catálogo) e os nós do
       // motor (o Mod da fórmula de usos, o máximo do Reagentes no descanso longo)
-      function opAcao() { var c = ctx(); return { usos: c && c.usos ? c.usos : null, nos: nos() }; }
+      function opAcao() { var c = ctx(); return { usos: c && c.usos ? c.usos : null, aoDescansar: c && c.usosDescanso ? c.usosDescanso : null, nos: nos() }; }
       function perto(t, sel) { try { return t && t.closest ? t.closest(sel) : null; } catch (e) { return null; } }
       function dentro(el) { return !!el && raizEl.contains(el); }
       function acaoBarra(a, b) {

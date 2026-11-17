@@ -2,7 +2,7 @@
 
 ARTEFATO de `tools/gerar_usos.py` (a partir de `data/usos.json`): não editar à mão. Cada linha é a leitura de um limite de uso no texto verbatim do catálogo; o trecho é a substring exata. Revisar: período e fórmula batem com o que o texto quer dizer? O que o leitor não entendeu está no fim, sem palpite.
 
-Lidos: **48** · não lidos: **13** · recursos de classe: **2**. Períodos: cena 1, combate 5, curto 6, dia 2, longo 24, rodada 4, turno 6. Fórmulas: constante 47, com Nível 0, com Mod 1.
+Lidos: **51** · não lidos: **0** · recursos de classe: **2**. Períodos: cena 1, combate 6, curto 6, dia 2, longo 26, rodada 4, turno 6. Fórmulas: constante 48, com Nível 0, com Mod 2.
 
 ## beneficio
 
@@ -23,6 +23,7 @@ Lidos: **48** · não lidos: **13** · recursos de classe: **2**. Períodos: cen
 | Comandante de Guerra | 1x/rodada | rodada | 1 |
 | Comunhão | 1x/dia | dia | 1 |
 | Esquiva Abissal | 1x/curto | curto | 1 |
+| Mãos Abençoadas | em até 3 aliados por descanso longo | longo | 3 · decisão 03 §18 |
 | Olhos Analíticos | 1x/combate | combate | 1 |
 | Pacto Sanguinário | 1x/dia | dia | 1 |
 | Reflexos de Serpente | 1x/Curto | curto | 1 |
@@ -109,6 +110,8 @@ Lidos: **48** · não lidos: **13** · recursos de classe: **2**. Períodos: cen
 | Nome | Trecho | Período | Máximo |
 |---|---|---|---|
 | Comando Tático | 2 vezes por rodada | rodada | 2 |
+| Fortaleza de Aço | um número de vezes igual ao seu mod. de Constituição (mínimo 1) por combate | combate | Mod.CON (mínimo 1) · decisão 03 §18 |
+| Frenesi | Você pode usar Frenesi 1 vez por descanso longo no nível 2 e 2 vezes no nível 4. | longo | 1 (nível 1+), 2 (nível 4+) · decisão 03 §18 |
 | Hoje Não | Uma vez por descanso longo | longo | 1 |
 | Ignorar Dor | 1 vez por descanso longo | longo | 1 |
 | O Experiente | Uma vez por turno | turno | 1 |
@@ -202,19 +205,28 @@ Citam limite de uso, mas o leitor não decide sozinho (período fora do conjunto
 
 | Id | Tipo | Trecho | Motivo |
 |---|---|---|---|
-| abismo-desejo-sombrio | beneficio | 1x/Campanha | período fora do conjunto: "Campanha" |
-| artilheiro-municao-especial | tecnica | As munições são de uso único (Ao invés de uso por cena): Explosiva → Criaturas em 1,5 m do alvo sofrem o dano original da flecha. | cita limite de uso em forma não lida |
-| artilheiro-projetil-envenenado | tecnica | 1x/Alvo | período fora do conjunto: "Alvo" |
-| automato-auto-reparador | tecnologia | Cria 1 Kit de Manutenção por descanso longo. | cita limite de uso em forma não lida |
-| batedor-cobra | tecnica | Você pode criar até 2 venenos por descanso curto e 5 Venenos por descanso longo. | cita limite de uso em forma não lida |
-| batedor-conexoes-duvidosas | tecnica | 1 vez por localização | período fora do conjunto: "localização" |
-| brutalista-fortaleza-de-aco | tecnica | Você pode usar esta habilidade um número de vezes igual ao seu mod. de Constituição (mínimo 1) por combate. | cita limite de uso em forma não lida |
-| brutalista-frenesi | tecnica | 1 vez por descanso longo | qualificador logo depois do uso: no nível 2 e 2 vezes no nível |
-| limiar-coracao-imortal | carta | 1x/Semana | período fora do conjunto: "Semana" |
-| limiar-maos-abencoadas | carta | Você pode fazer isso em até 3 aliados por descanso longo | cita limite de uso em forma não lida |
-| limiar-premonicao-de-batalha | carta | 1x/sessão | período fora do conjunto: "sessão" |
-| limiar-vidente | carta | 1x/sessão | período fora do conjunto: "sessão" |
-| teurgo-eterno-aprendiz | tecnica | Você só pode aprender 1 magia por descanso longo. | cita limite de uso em forma não lida |
+
+## Sem contador (decisão 03 §18)
+
+| Id | Tipo | Motivo |
+|---|---|---|
+| abismo-desejo-sombrio | beneficio | o Abismo terá um rework; o Limiar continua valendo |
+| artilheiro-projetil-envenenado | tecnica | não entra na lógica de recarga |
+| batedor-cobra | tecnica | não se aplica (o Batedor está em rework) |
+| batedor-conexoes-duvidosas | tecnica | não se aplica (o Batedor está em rework) |
+| limiar-coracao-imortal | carta | fora do conjunto (1x/Semana): marcado à mão |
+| limiar-premonicao-de-batalha | carta | fora do conjunto (1x/sessão): marcado à mão |
+| limiar-vidente | carta | fora do conjunto (1x/sessão): marcado à mão |
+
+## No descanso (decisão 03 §18)
+
+Lembrete no botão de descanso; com `item`, a ficha soma 1 à pilha desse item no inventário.
+
+| Id | Descanso curto | Descanso longo | Item |
+|---|---|---|---|
+| artilheiro-municao-especial | Durante um descanso curto, você pode criar 1 Munição Especial como ação de descanso curto | durante um descanso longo, você pode criar 2 munições Especiais | — |
+| automato-auto-reparador | — | Cria 1 Kit de Manutenção por descanso longo. | Kit de Manutenção |
+| teurgo-eterno-aprendiz | — | Você só pode aprender 1 magia por descanso longo. | — |
 
 ## Recursos de classe (fora do catálogo)
 
