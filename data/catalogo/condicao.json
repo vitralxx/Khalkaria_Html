@@ -91,7 +91,7 @@
    "tipo": "condicao",
    "nome": "Desprevenido",
    "icone": null,
-   "resumo": "Você foi pego de surpresa e não pode reagir a ataques. Além disso, você também está Exposto.",
+   "resumo": "Você foi pego de surpresa e não pode reagir a ataques com a reação defender ou retaliar, porém ainda tem sua reação. Além disso, você também está Exposto. Essa condição expira em 1 turno.",
    "categoria": "combate"
   },
   {

@@ -65,7 +65,7 @@
         {
           "id": "desprevenido",
           "nome": "Desprevenido",
-          "corpo": "<ul>\n                            <li>Você foi pego de surpresa e não pode reagir a ataques.</li>\n                            <li>Além disso, você também está <a href=\"#exposto\" class=\"keyword-link\">Exposto</a>.</li>\n                        </ul>"
+          "corpo": "<ul>\n                            <li>Você foi pego de surpresa e não pode reagir a ataques com a reação defender ou retaliar, porém ainda tem sua reação.</li>\n                            <li>Além disso, você também está <a href=\"#exposto\" class=\"keyword-link\">Exposto</a>.</li>\n                            <li>Essa condição expira em 1 turno.</li>\n                        </ul>"
         },
         {
           "id": "descontrolado",
