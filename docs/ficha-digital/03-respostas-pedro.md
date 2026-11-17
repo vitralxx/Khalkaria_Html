@@ -319,3 +319,23 @@ Quatro perguntas, todas respondidas com a opção recomendada.
 - **Defender (1 ação):** usar duas vezes **soma** ("Soma, mudei no notion"). O Sistema do Notion passou a dizer "+2 Defender até seu próximo turno. Utilizável mais de uma vez por turno." (sincronizado no site no mesmo dia).
 - **Alvos por relação** (`10-mesa.md` §4): aprovados ("Sim").
 - **Contexto comum:** os agentes passam a conversar pelo repositório `vitralxx/khalkaria-contexto` (caixa do site: issue #3). A memória do site segue o padrão de lá (`agentes/PADRAO.md`).
+
+## 16. Retomada da modernização, 2026-11-16
+
+- **Prioridade:** "essa atualização do site é essencial. A modernização da ficha. De forma com que todo o site fique integrado". A Mesa "é interessante também".
+- **Celular:** "Em uma situação real, os jogadores eles provavelmente não vão ter 5 tablets ou 5 laptops, mas sim os celulares deles para ver a ficha de cada um." A prova estava "muito carregada de informações. Tem texto para todo lado".
+- **Informação:** o Atacar desarmado cita a PMA inteira, e isso se repetiria em toda arma. A regra vai para um hover ("bota esse ataque conta PMA [...] quando bota o mouse em cima, você mostra o que que é a regra"). "Esse tipo de organização de informação é vital". A confirmação mostra o necessário, mas "de uma forma mais organizada, em vez de só listar todas"; o dano numa indentação a mais fica espremido.
+- **Registro:** a coluna "Antes" ao lado do Registro completo sobra. O registro pode ficar guardado, embaixo das Condições, fora da mesa, "você consegue deixar a grid quadrada".
+- **Condições:** listar todas (o Descontrolado faltava na prova).
+- **Escala:** "Eu acho que você não vai conseguir modelar todas, porque tem muitas interações [...] a gente tem que simplificar um pouquinho. Assumir a nossa ignorância e voltar um passo atrás. E diagnosticar o que a gente consegue fazer bem feito." Pediu a lista dos itens do Bazar (funcionando e testados, não trabalhados, não aplicáveis) e de tudo o que a ficha aplica hoje. Diagnóstico: `tools/diagnostico/relatorio.py`, publicado em https://claude.ai/artifact/CWTLcTyerVv2wKEKySM4yg.
+- **Elogios:** os requisitos de cada item e as formas de resolver; as habilidades com os valores do personagem.
+- **Trabalho:** planos pontuais e tangíveis; o agente pode coordenar subagentes, com cuidado no custo: "nesses próximos 4 dias, você tem 50% de limite" (até 2026-11-19).
+- **Decisões (as quatro recomendadas):**
+  1. **Ficha primeiro:** celular, estado de jogo e virada; a Mesa depois.
+  2. **Celular é requisito da ficha inteira e da Mesa.** Nas páginas de regra, só conferir que não quebram.
+  3. **Mesa núcleo:**
+     - faz: rolar com a conta certa, pagar, contar, condições e consumíveis com efeito estruturado;
+     - técnica ativa assistida (custo e usos);
+     - alvo: só a PMA com ↺, e o "+2 contra o alvo agarrado" vira marcação manual;
+     - saem do escopo: o catálogo de uso por técnica, os alvos por relação e as sequências. Viram extensões, só se o núcleo funcionar numa sessão real.
+  4. **Contrato rev. 12 aplicado** (a troca manual vira canônica).

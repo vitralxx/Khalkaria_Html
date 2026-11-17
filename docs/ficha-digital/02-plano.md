@@ -7,6 +7,22 @@
 
 ---
 
+## Plano vigente (2026-11-16, `03 §16`)
+
+Passos pontuais, cada um visível no site. Diagnóstico de base: https://claude.ai/artifact/CWTLcTyerVv2wKEKySM4yg (`tools/diagnostico/relatorio.py`).
+
+1. **Limpeza:**
+   - o Desprevenido sincronizado com o Notion (a sessão de sync aplica);
+   - o contrato do balanceamento na rev. 12;
+   - o diagnóstico dos itens vira teste do build (item que deixar de chegar ao número derruba o build).
+2. **Ficha no celular:** a ficha nova (5 abas e drawer) usável no celular.
+3. **Estado de jogo na ficha:** as 30 condições ativas, Saúde temporária, usos e recarga, quantidade e consumo à mão.
+4. **Virada:** a ficha nova vira a dos jogadores (migração da v2.1, export e import), depois do teste do Pedro no Ensaio.
+5. **Mesa núcleo** (`10-mesa.md`, rev. 4), celular primeiro.
+6. **Extensões da Mesa**, só se o núcleo funcionar numa sessão real.
+
+As fases F0–F7 abaixo ficam como histórico e referência.
+
 ## 0. O que mudou
 
 ### 0.0 Pedido do Pedro em 2026-09-28: Comerciantes

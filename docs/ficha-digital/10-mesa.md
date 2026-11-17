@@ -1,4 +1,27 @@
-# A Mesa (especificação, rev. 3, 2026-10-21)
+# A Mesa (especificação, rev. 3, 2026-10-21; escopo da rev. 4, 2026-11-16)
+
+> **Rev. 4 (Pedro, `03 §16`): Mesa núcleo, celular primeiro.** A Mesa faz o que a ficha já sabe e faz bem. Vale por cima do texto da rev. 3 abaixo.
+>
+> **Faz:**
+> - rola com a conta certa: perícias, ataques, Defender e magias;
+> - paga o custo e conta ações, reação, Mover, usos e quantidade;
+> - aplica as 30 condições (efeitos do contrato e o tique no turno);
+> - automatiza os consumíveis com efeito estruturado ou temporário.
+>
+> **Para o resto:** o texto, um botão de rolar os dados do campo e um de gastar o recurso. A técnica ativa é "assistida": custo e contador de usos, e o efeito o jogador aplica.
+>
+> **Alvo:** só a PMA do turno com ↺. O "+2 contra o alvo agarrado" é uma marcação manual na confirmação.
+>
+> **Sai do escopo (vira extensão):** o catálogo de uso por técnica (§5), os alvos por relação (§4) e as sequências (§9.3).
+>
+> **Tela:**
+> - regra inteira vira chip com dica (PMA, Vantagem, Retaliação);
+> - confirmação curta: a rolagem grande, os chips de custo e de "ao acertar", e "Detalhes" recolhido;
+> - o implícito em uma linha, com as parcelas na dica;
+> - o registro sai da mesa, para um bloco recolhido embaixo das Condições;
+> - no celular: barra fixa com recursos e ações, abas Mesa / Habilidades / Personagem, confirmação que sobe de baixo.
+>
+> **Ordem:** a Mesa vem depois da virada da ficha (`02-plano.md`, plano vigente).
 
 Base:
 - plano `02` (M1, §3.1, F5, F5b, F6);

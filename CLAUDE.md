@@ -129,7 +129,7 @@ Ficha de personagem jogável no site, com drag-and-drop de conteúdo das página
 
 **Fora de escopo (arquivado):** aba de feedback / sistema de flags. GitHub Pages é estático e o Pedro não quer exigir conta GitHub dos jogadores.
 
-**Sem preocupação com mobile** — os jogadores usam PC.
+**Celular é requisito da ficha inteira (abas, drawer) e da Mesa** (Pedro, 2026-11-16: na mesa, os jogadores usam o celular). Páginas de regra: conferir que não quebram.
 
 **Layout de referência:** ficha física de 5 páginas usada na Sessão 0 —
 1. Núcleo (identidade, atributos, perícias, recursos, derivados, inventário, resistências)
