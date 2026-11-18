@@ -210,3 +210,26 @@ test('no descanso: lembretes do texto e o Kit de Manutenção soma na pilha (Aut
   assert.match(r.aviso, /Kit de Manutenção ×2 → ×3 \(Auto-Reparador\)/);
   assert.match(r.aviso, /Munição Especial: durante um descanso longo, você pode criar 2 munições Especiais/);
 });
+
+test('usos da variante (03 §18): guardados na referência da identidade, zerados no descanso e na troca', () => {
+  const f = ficha();
+  f.identidade.raca = { id: 'raca-humano', nome: 'Humano' };
+  f.identidade.variante = { id: 'humano-estudioso', nome: 'Estudioso' };
+  assert.equal(USOS.porId['humano-estudioso'].periodo, 'longo');
+  const op = { usos: USOS.porId };
+  let g = aplica(f, ED.acao(f, 'uso.gastar', 'identidade.variante', op));
+  assert.deepEqual(g.identidade.variante, { id: 'humano-estudioso', nome: 'Estudioso', estado: { usos: { gastos: 1 } } });
+  const sem = ED.acao(g, 'uso.gastar', 'identidade.variante', op);
+  assert.equal(sem.ok, false);
+  assert.match(sem.erro, /Estudioso: sem usos até o descanso longo/);
+  assert.equal(ED.acao(g, 'uso.gastar', 'identidade.classe', op).ok, false, 'só variante e subespécie');
+  g = aplica(g, ED.acao(g, 'descanso.longo', 'completo', op));
+  assert.equal(g.identidade.variante.estado.usos.gastos, 0);
+  // o desenho: o card da variante em Diversas leva o contador da referência
+  g.identidade.variante.estado.usos.gastos = 1;
+  const res = { estado: 'ok', ficha: g, av: RG.avaliar(g, {}) };
+  const dados = { catalogos: ['variante'].map((t) => JSON.parse(fs.readFileSync(path.join(RAIZ, 'data', 'catalogo', t + '.json'), 'utf8'))), usos: USOS };
+  const h = FA.criar({ prefixo: 'fp' }).paineis(res, { dados, D, base: '../', editar: 'pagina' }).paineis.tecnicas;
+  assert.match(h, /aria-label="0 de 1 restantes"/);
+  assert.match(h, /data-ed-acao="uso.devolver" data-ed-arg="identidade.variante"/);
+});

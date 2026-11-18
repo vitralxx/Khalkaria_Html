@@ -728,7 +728,8 @@
       // (KhEdicao.USOS_DA_FICHA) e só em entrada da ficha (o estado mora nela). O
       // máximo sai da fórmula lida do texto; a conta e o trecho vão na dica.
       function usosHTML(e, ctx) {
-        var reg = ctx.usos && obj(e) && e.id && e.uid ? ctx.usos[e.id] : null;
+        var dono = obj(e) ? e.uid || e.ident : null;
+        var reg = ctx.usos && dono && e.id ? ctx.usos[e.id] : null;
         if (!obj(reg) || !KhEdicao || !KhEdicao.USOS_DA_FICHA[reg.periodo]) return '';
         var volta = KhEdicao.USOS_DA_FICHA[reg.periodo], por = reg.periodo === 'dia' ? 'por dia' : 'por ' + volta;
         var mx = KhEdicao.maxUsos(reg, ctx.ficha, ctx.nos), g = KhEdicao.gastosDe(e);
@@ -747,8 +748,8 @@
         for (var i = 0; i < Math.min(mx.valor, 12); i++) pips += '<span class="' + P + '-usos-pip' + (i < resta ? ' ' + P + '-usos-tem' : '') + '"></span>';
         var bts = '';
         if (ctx.editar) {
-          bts = '<button type="button" class="kh-btn ' + P + '-usos-usar" data-ed-acao="uso.gastar" data-ed-arg="' + esc(e.uid) + '"' + (resta <= 0 ? ' disabled' : '') + '>Usar</button>' +
-            '<button type="button" class="kh-btn ' + P + '-usos-volta" data-ed-acao="uso.devolver" data-ed-arg="' + esc(e.uid) + '"' + (g <= 0 ? ' disabled' : '') +
+          bts = '<button type="button" class="kh-btn ' + P + '-usos-usar" data-ed-acao="uso.gastar" data-ed-arg="' + esc(dono) + '"' + (resta <= 0 ? ' disabled' : '') + '>Usar</button>' +
+            '<button type="button" class="kh-btn ' + P + '-usos-volta" data-ed-acao="uso.devolver" data-ed-arg="' + esc(dono) + '"' + (g <= 0 ? ' disabled' : '') +
             ' title="Devolver um uso" aria-label="Devolver um uso">↺</button>';
         }
         return '<div class="' + P + '-usos" data-campo="usos"><span class="' + P + '-rot">Usos</span>' +
@@ -847,7 +848,8 @@
           if (!obj(r) || !r.id) return;
           var c = ctx.porId[k + ':' + r.id];
           vistos[k + ':' + r.id] = 1;
-          g.diversas.push({ e: { tipo: k, id: r.id, cache: { nome: r.nome } }, c: c || null });
+          // ident: o contador de usos mora na referência (03 §18)
+          g.diversas.push({ e: { tipo: k, id: r.id, cache: { nome: r.nome }, ident: 'identidade.' + k, estado: r.estado }, c: c || null });
         });
         lista(f.entradas).forEach(function (e) {
           if (!obj(e) || TIPOS_TECNICA.indexOf(e.tipo) < 0) return;

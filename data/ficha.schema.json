@@ -246,7 +246,11 @@
       "type": "object",
       "required": ["id", "nome"],
       "additionalProperties": false,
-      "properties": { "id": { "type": ["string", "null"] }, "nome": { "type": "string" } }
+      "properties": {
+        "id": { "type": ["string", "null"] }, "nome": { "type": "string" },
+        "estado": { "type": "object", "additionalProperties": false, "description": "Estado de jogo da escolha (03 §18): os usos gastos da variante e da subespécie com limite por descanso (data/usos.json). Opcional; trocar a escolha grava uma referência nova, sem ele.",
+          "properties": { "usos": { "type": ["object", "null"], "additionalProperties": false, "properties": { "gastos": { "type": "integer", "minimum": 0 } } } } }
+      }
     },
 
     "cache": {
@@ -278,7 +282,7 @@
         "uid": { "type": "string", "minLength": 1 },
         "tipo": { "enum": ["magia", "tecnica", "marca", "ultimate", "traco", "variante", "subespecie", "tecnologia", "corrupcao", "origem", "raca", "classe", "carta", "dor", "beneficio"] },
         "id": { "type": ["string", "null"], "description": "Id do catálogo (convenção do plano §3.2); null na órfã da migração." },
-        "estado": { "type": "object", "description": "Por tipo (plano §4): magia {intensidade, sustentando}; tecnica/marca/ultimate {usos}; carta {nivelAquisicao, posicaoNaMao, especial}; dor/beneficio/corrupcao {nivelAquisicao}." },
+        "estado": { "type": "object", "description": "Por tipo (plano §4): magia {intensidade, sustentando}; tecnica/marca/ultimate {usos}; carta {nivelAquisicao, posicaoNaMao, especial}; dor/beneficio/corrupcao {nivelAquisicao}. usos {gastos}: em toda entrada com contador (data/usos.json; 03 §17-18)." },
         "cache": { "$ref": "#/$defs/cache" },
         "mods": { "type": "array", "items": { "$ref": "#/$defs/mod" }, "description": "Snapshot dos Mods (o derivado calcula síncrono sem o catálogo). Quem preenche: a migração, o reassociar e o reconciliar copiam os 'mods' da entrada do catálogo quando ela os tem; sem Mods no catálogo, fica como está (hoje data/catalogo não traz Mods de carta, técnica etc.: nasce [])." },
         "adicionadoEm": { "type": "string" },

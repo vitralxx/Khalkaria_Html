@@ -8368,6 +8368,8 @@
     // os períodos que a ficha conta (um descanso devolve) -> onde o uso volta; os de
     // turno, rodada, combate e cena ficam para a Mesa, que tem o relógio do combate
     var USOS_DA_FICHA = { curto: 'descanso curto', longo: 'descanso longo', dia: 'descanso longo' };
+    // as escolhas da identidade que guardam usos na própria referência (03 §18)
+    var REFS_COM_USOS = ['variante', 'subespecie'];
     // o máximo de usos pela fórmula lida do texto (data/usos.json, usos/1):
     // {valor, partes:[{rotulo, valor}]}; null se falta um número (o Mod sem nó)
     // porNivel (o Frenesi: 1, e 2 no nível 4): o valor da maior chave até o nível;
@@ -8499,13 +8501,24 @@
         }
         var tmp = Number(pega(f, 'recursos.saude.temporaria')) || 0;
         if (longo && tmp > 0) { mud.push({ caminho: 'recursos.saude.temporaria', valor: 0 }); feitos.push('Saúde temporária ' + fmt(tmp) + ' → 0'); }
-        var U = obj(op.usos) ? op.usos : {}, es = clone(lista(f.entradas)), nus = 0;
+        var U = obj(op.usos) ? op.usos : {}, es = clone(lista(f.entradas)), nus = 0, mudouEs = false;
         es.forEach(function (e) {
           var u = obj(e) && obj(e.estado) && obj(e.estado.usos) ? e.estado.usos : null;
           var per = obj(e) && obj(U[e.id]) ? U[e.id].periodo : null;
-          if (u && Number(u.gastos) > 0 && per && regra.usos.indexOf(per) >= 0) { u.gastos = 0; nus++; }
+          if (u && Number(u.gastos) > 0 && per && regra.usos.indexOf(per) >= 0) { u.gastos = 0; nus++; mudouEs = true; }
         });
-        if (nus) { mud.push({ caminho: 'entradas', valor: es }); feitos.push(nus + (nus === 1 ? ' técnica com usos de volta' : ' técnicas com usos de volta')); }
+        if (mudouEs) mud.push({ caminho: 'entradas', valor: es });
+        // a variante e a subespécie guardam os usos na própria referência (03 §18)
+        REFS_COM_USOS.forEach(function (k) {
+          var rf = pega(f, 'identidade.' + k), per = obj(rf) && rf.id && obj(U[rf.id]) ? U[rf.id].periodo : null;
+          if (gastosDe(rf) > 0 && per && regra.usos.indexOf(per) >= 0) {
+            var nr = clone(rf);
+            nr.estado.usos.gastos = 0;
+            mud.push({ caminho: 'identidade.' + k, valor: nr });
+            nus++;
+          }
+        });
+        if (nus) feitos.push(nus + (nus === 1 ? ' técnica com usos de volta' : ' técnicas com usos de volta'));
         // o que a técnica faz no descanso (data/usos.json aoDescansar, 03 §18): o
         // lembrete; o item criado (Kit de Manutenção) soma 1 à pilha que já existe
         var AD = obj(op.aoDescansar) ? op.aoDescansar : {}, temId = {}, lembra = [];
@@ -8535,10 +8548,21 @@
         return so(mud, rot, rot + ': ' + feitos.join(' · ') + '.' + lem + ' A recuperação (os dados) é à mão.');
       }
       if ((m = /^uso\.(gastar|devolver)$/.exec(nome))) {
-        var es2 = clone(lista(f.entradas)), k2 = es2.map(function (e) { return obj(e) ? e.uid : null; }).indexOf(arg);
-        if (k2 < 0) return { ok: false, erro: 'Essa técnica não está mais na ficha.' };
-        var en = es2[k2], reg = obj(op.usos) && en.id ? op.usos[en.id] : null;
-        var nm = semEmoji(en.cache && en.cache.nome) || 'Técnica';
+        // o dono do contador: a entrada (arg = uid) ou a variante/subespécie da
+        // identidade (arg = 'identidade.variante'), que guarda os usos na referência (03 §18)
+        var mi = /^identidade\.([a-z]+)$/.exec(str(arg)), es2 = null, k2 = -1, en = null;
+        if (mi) {
+          if (REFS_COM_USOS.indexOf(mi[1]) < 0) return { ok: false, erro: 'Essa escolha não tem contador de usos.' };
+          en = obj(pega(f, arg)) ? clone(pega(f, arg)) : null;
+          if (!en || !en.id) return { ok: false, erro: 'Essa escolha não está mais na ficha.' };
+        } else {
+          es2 = clone(lista(f.entradas));
+          k2 = es2.map(function (e) { return obj(e) ? e.uid : null; }).indexOf(arg);
+          if (k2 < 0) return { ok: false, erro: 'Essa técnica não está mais na ficha.' };
+          en = es2[k2];
+        }
+        var reg = obj(op.usos) && en.id ? op.usos[en.id] : null;
+        var nm = semEmoji(mi ? en.nome : en.cache && en.cache.nome) || 'Técnica';
         if (!obj(reg) || !USOS_DA_FICHA[reg.periodo]) return { ok: false, erro: nm + ': sem contador de usos na ficha.' };
         var mxu = maxUsos(reg, f, op.nos), g = gastosDe(en);
         if (m[1] === 'gastar') {
@@ -8550,7 +8574,7 @@
           g--;
         }
         en.estado = Object.assign({}, obj(en.estado) ? en.estado : {}, { usos: { gastos: g } });
-        return so([{ caminho: 'entradas', valor: es2 }], (m[1] === 'gastar' ? 'Usar ' : 'Devolver um uso de ') + nm);
+        return so([mi ? { caminho: arg, valor: en } : { caminho: 'entradas', valor: es2 }], (m[1] === 'gastar' ? 'Usar ' : 'Devolver um uso de ') + nm);
       }
       if (nome === 'consumir') {
         var inv = obj(f.inventario) ? f.inventario : {}, achou = null;
@@ -10011,7 +10035,8 @@
       // (KhEdicao.USOS_DA_FICHA) e só em entrada da ficha (o estado mora nela). O
       // máximo sai da fórmula lida do texto; a conta e o trecho vão na dica.
       function usosHTML(e, ctx) {
-        var reg = ctx.usos && obj(e) && e.id && e.uid ? ctx.usos[e.id] : null;
+        var dono = obj(e) ? e.uid || e.ident : null;
+        var reg = ctx.usos && dono && e.id ? ctx.usos[e.id] : null;
         if (!obj(reg) || !KhEdicao || !KhEdicao.USOS_DA_FICHA[reg.periodo]) return '';
         var volta = KhEdicao.USOS_DA_FICHA[reg.periodo], por = reg.periodo === 'dia' ? 'por dia' : 'por ' + volta;
         var mx = KhEdicao.maxUsos(reg, ctx.ficha, ctx.nos), g = KhEdicao.gastosDe(e);
@@ -10030,8 +10055,8 @@
         for (var i = 0; i < Math.min(mx.valor, 12); i++) pips += '<span class="' + P + '-usos-pip' + (i < resta ? ' ' + P + '-usos-tem' : '') + '"></span>';
         var bts = '';
         if (ctx.editar) {
-          bts = '<button type="button" class="kh-btn ' + P + '-usos-usar" data-ed-acao="uso.gastar" data-ed-arg="' + esc(e.uid) + '"' + (resta <= 0 ? ' disabled' : '') + '>Usar</button>' +
-            '<button type="button" class="kh-btn ' + P + '-usos-volta" data-ed-acao="uso.devolver" data-ed-arg="' + esc(e.uid) + '"' + (g <= 0 ? ' disabled' : '') +
+          bts = '<button type="button" class="kh-btn ' + P + '-usos-usar" data-ed-acao="uso.gastar" data-ed-arg="' + esc(dono) + '"' + (resta <= 0 ? ' disabled' : '') + '>Usar</button>' +
+            '<button type="button" class="kh-btn ' + P + '-usos-volta" data-ed-acao="uso.devolver" data-ed-arg="' + esc(dono) + '"' + (g <= 0 ? ' disabled' : '') +
             ' title="Devolver um uso" aria-label="Devolver um uso">↺</button>';
         }
         return '<div class="' + P + '-usos" data-campo="usos"><span class="' + P + '-rot">Usos</span>' +
@@ -10130,7 +10155,8 @@
           if (!obj(r) || !r.id) return;
           var c = ctx.porId[k + ':' + r.id];
           vistos[k + ':' + r.id] = 1;
-          g.diversas.push({ e: { tipo: k, id: r.id, cache: { nome: r.nome } }, c: c || null });
+          // ident: o contador de usos mora na referência (03 §18)
+          g.diversas.push({ e: { tipo: k, id: r.id, cache: { nome: r.nome }, ident: 'identidade.' + k, estado: r.estado }, c: c || null });
         });
         lista(f.entradas).forEach(function (e) {
           if (!obj(e) || TIPOS_TECNICA.indexOf(e.tipo) < 0) return;

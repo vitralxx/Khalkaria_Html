@@ -371,3 +371,11 @@ Quatro perguntas, todas respondidas com a opção recomendada.
   - Dríade: "Subespécie";
   - Gruto: "Linhagem Réptil";
   - Inseto: "Subespécie".
+
+## 19. Usos em todo lugar, 2026-11-18
+
+- **Variante e subespécie:** os usos ficam guardados na própria escolha (`identidade.variante.estado`), aprovado ("Sim").
+- **Escopo:** "essa contagem de usos aparece em varios lugares, não só em algumas variantes, você está considerando isso?" O catálogo inteiro já era lido. Faltavam os itens do Bazar: cerca de 200 dos 727 citam limite de uso.
+- **Itens com limite por descanso:** o contador fica no card do item, igual ao das técnicas, gravado no próprio item.
+- **Itens com cargas sem período** ("3 usos.", "~10 usos"): a carga só desce; "no 0 o item fica como Quebrado/Esgotado".
+- **Drawer:** a faixa Em jogo leva os recursos e as condições. Os descansos e o "+ Condição" ficam na página da ficha.
