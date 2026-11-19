@@ -8,7 +8,7 @@ O modelo antigo (Atacar +5 contra Evasão 14, 60/35/10%) só vale no nível 1. E
 - o PMA (-5 por ataque) e o crítico no 20 natural (dobra os dados).
 
 Regras opcionais (o pacote proposto ao Pedro): --gate (grau máximo por nível), --a18 (acima de 18 o atributo
-custa 2 pontos por +1), --d2 (Defender 1d6/1d10/2d6/2d8/2d10).
+custa 2 pontos por +1), --d2 (Defender 1d6/1d8/2d6/2d8/2d10, a D2').
 
 Uso:
   python3 modelo.py tabela [--gate] [--a18] [--d2] [--regua]
@@ -23,7 +23,7 @@ PERFIS = {  # atributo no N1, usa a 6ª carta, grau por nível (1..5), nível da
 }
 GATE = [2, 2, 3, 3, 4]                      # Experiente no N1, Mestre no N3, Lendário no N5
 DEFENDER = {'atual': [(1, 6), (1, 8), (1, 10), (1, 12), (2, 8)],
-            'd2': [(1, 6), (1, 10), (2, 6), (2, 8), (2, 10)]}
+            'd2': [(1, 6), (1, 8), (2, 6), (2, 8), (2, 10)]}   # D2' (o Treinado fica 1d8)
 CRIATURA = {  # grau de Defender por CR (1..5)
     'bestiario': [1, 1, 2, 2, 3],           # suposição: o que o Bestiário parece usar hoje
     'regua': [1, 2, 3, 3, 4],               # proposta: o Defender sobe com o CR
