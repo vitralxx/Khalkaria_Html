@@ -16,7 +16,7 @@ Uso:
   python3 auditor.py cobertura       Quais itens não beneficiam nenhum arquétipo
   python3 auditor.py ingredientes    Uso dos materiais: órfãos, subutilizados, cobertura de receita
 
-CSV: references/bazar-v26.csv (cabeçalho na ÚLTIMA linha).
+CSV: references/bazar-v26.csv (727 itens, cabeçalho na linha 1).
 """
 import csv, sys, re, os, collections
 

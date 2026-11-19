@@ -53,7 +53,7 @@ ativamente: qual classe, raça, origem e carta do Limiar transformam isto em alg
 
 ## Ferramenta — `auditor.py` (use isto, não olhômetro)
 
-O CSV do Bazar tem 582 itens e o **cabeçalho está na última linha**. Nunca revise a olho:
+O CSV do Bazar (v26) tem 727 itens, com o cabeçalho na linha 1. Nunca revise a olho:
 toda extração e comparação passa pelo auditor, que carrega o cânone do Notion embutido.
 
 ```bash
@@ -74,7 +74,7 @@ python3 auditor.py dpr 2d10 2             # DPR de um chassi qualquer
 verbatim**, que é exatamente o que o Pedro opina antes de reinserir no CSV.
 
 **Fatos que o auditor já estabeleceu (não re-derive):**
-- **0 de 582 itens** têm preço fora da faixa da raridade. **A raridade é a única alavanca de preço
+- **2 de 727 itens** têm preço fora da faixa da raridade (Lágrima de Velúria e Pétala do Sonhador: Luxária com preço de Exótico, 2026-11-19). **A raridade é a única alavanca de preço
   do Bazar** — "o preço combina com o valor" é sempre a pergunta "a raridade está certa".
 - A categoria **Arma tem 3 famílias**: 60 genéricas (craftáveis), 58 únicas (não-craftáveis),
   e **30 Focos Místicos** — que não têm dado de dano e não entram no modelo de DPR.
