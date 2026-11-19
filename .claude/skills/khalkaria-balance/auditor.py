@@ -16,12 +16,12 @@ Uso:
   python3 auditor.py cobertura       Quais itens não beneficiam nenhum arquétipo
   python3 auditor.py ingredientes    Uso dos materiais: órfãos, subutilizados, cobertura de receita
 
-CSV: references/bazar-v26.csv (727 itens, cabeçalho na linha 1).
+CSV: references/bazar-v27.csv (727 itens, cabeçalho na linha 1, coluna Comerciante).
 """
 import csv, sys, re, os, collections
 
 BASE = os.path.dirname(os.path.abspath(__file__))
-CSV = os.path.join(BASE, 'references', 'bazar-v26.csv')
+CSV = os.path.join(BASE, 'references', 'bazar-v27.csv')
 
 COLS = ['Nome','Categoria','Raridade','Efeito','Efeito_Jogador','Valor (Sins)',
         'Obtenção','Tipo de Craft','Ingredientes','Tags','Lore/Notas']
@@ -405,7 +405,7 @@ def cmd_dump(cat=None, familia=None, raridade=None):
 
 def cmd_armas():
     rows = [r for r in load() if r['Categoria'] == 'Arma']
-    print("AUDITORIA DE ARMAS — CSV v26 x cânone do Notion\n")
+    print("AUDITORIA DE ARMAS — CSV v27 x cânone do Notion\n")
     print(f"{'CHASSI':22} {'NOTION':11} {'CSV base':11} STATUS")
     problemas, sem_efeito, sem_marcial = [], [], []
     porchassi = collections.defaultdict(list)

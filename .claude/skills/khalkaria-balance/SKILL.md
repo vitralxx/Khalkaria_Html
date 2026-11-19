@@ -53,7 +53,7 @@ ativamente: qual classe, raça, origem e carta do Limiar transformam isto em alg
 
 ## Ferramenta — `auditor.py` (use isto, não olhômetro)
 
-O CSV do Bazar (v26) tem 727 itens, com o cabeçalho na linha 1. Nunca revise a olho:
+O CSV do Bazar (v27) tem 727 itens, com o cabeçalho na linha 1 e a coluna binária `Comerciante`. Nunca revise a olho:
 toda extração e comparação passa pelo auditor, que carrega o cânone do Notion embutido.
 
 ```bash
