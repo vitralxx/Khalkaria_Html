@@ -92,26 +92,53 @@ verbatim**, que é exatamente o que o Pedro opina antes de reinserir no CSV.
   Fontes **empilham**: dois "Treinado em X" viram Experiente.
 - Moeda: **Sins**. Raridade: Lixo → Ordinário → Incomum → Exótico → Luxária.
 
-## Modelo de cálculo (use este, sempre)
+## Modelo de cálculo (v2, 2026-11-19, D176) — use `modelo.py`
 
-Referência de nível 1: **Atacar +5** (mod +3 + Treinado +2), alvo com **Evasão 14**, **mod de dano +3**.
-A arma ganha +1 Atacar por nível e a Evasão dos inimigos sobe junto, então as taxas ficam estáveis:
-**60% no 1º ataque, 35% no 2º, 10% no 3º.**
+O modelo antigo ("Atacar +5 contra Evasão 14, 60/35/10% em todo nível") **só vale no nível 1**. As regras reais:
 
-| Custo da arma | Ataques/turno | Acertos/turno | Sobra |
+**O atributo principal cresce.** O Limiar dá **+2 de atributo por nível** (2 a 5), e a **6ª carta** dá +2 por
+2 pontos, 1x por mão. Na criação, o maior dos 5 valores tem média 15,5 (52% chegam a 16; 8% tiram 18).
+Somando a troca de 1 ponto e a raça (+2), o atributo principal fica assim:
+
+| Perfil | N1 | N3 | N5 | Treino (graus) | Arma |
+|---|---|---|---|---|---|
+| Típico (16 rolado + raça) | 18 (+4) | 22 (+6) | 26 (+8) | 1 / 2 / 2 | +0 / +1 / +2 |
+| Focado (17 + 1 + raça) | 20 (+5) | 24 (+7) | 28 (+9) | 2 / 3 / 4 | +0 / +2 / +3 |
+| Máximo (18 + 1 + raça + a 6ª carta) | 21 (+5) | 29 (+9) | 30 (+10) | 3 / 4 / 4 | +0 / +2 / +3 |
+
+**A defesa da criatura:**
+- A **Evasão passiva é baixa por design**: 10 + Mod.DES, cerca de 13 no CR 3 (o Pedro).
+- **O freio é a Evasão Ativa:** passiva + dado de Defender pelo grau (1d6/1d8/1d10/1d12/2d8).
+- A reação é 1 por rodada. O Defender vale contra todos os ataques **de um** agressor no turno; os outros atacam a
+  passiva.
+- O que o `modelo.py` supõe para o Defender da criatura: Treinado no CR 1–2, Experiente no 3–4, Mestre no 5.
+
+**As taxas atuais** (Atacar; 1º ataque contra a Ativa; acertos por turno com 3 ataques contra a Ativa / a Passiva):
+
+| Perfil | N1 | N3 | N5 |
 |---|---|---|---|
-| Atacar(1) | 3 | **1,05** | 0 ações |
-| Atacar(2) | 1 | **0,60** | 1 ação |
-| Atacar(3) | 1 | **0,60** | não se move |
+| Típico | +6 · 48% · 0,77 / 1,35 | +11 · 68% · 1,29 / 2,10 | +14 · 76% · 1,57 / 2,40 |
+| Focado | +9 · 62% · 1,14 / 1,80 | +15 · 84% · 1,84 / 2,50 | +20 · 93% · 2,30 / 2,80 |
+| Máximo | +11 · 72% · 1,43 / 2,10 | +19 · 94% · 2,32 / 2,75 | +21 · 94% · 2,40 / 2,85 |
 
-Sendo **D** a média dos dados de dano da arma:
-- **DPR de arma de 1 ação = 1,20 × D + 3,15**
-- **DPR de arma de 2 ou 3 ações = 0,65 × D + 1,80**
+**Como usar:**
+- `python3 modelo.py tabela` dá a tabela acima.
+- `python3 modelo.py dpr 1d6 1 --nivel 3 --perfil focado` dá o acerto por ataque e o DPR.
+- O DPR soma os dados do nível da arma, o mod de dano = mod do atributo e o crítico no 20.
+- Os flags `--gate --a18 --d2 --regua` simulam o pacote proposto (`pacote-de-pericias?`).
 
-**Consequência estrutural:** uma arma de 2 ações precisaria de **1,75×** o dano por acerto de uma de
-1 ação para empatar em DPR. **Ela não deve empatar.** O que recebe em troca é exposição menor, uma
-ação livre por turno, imunidade ao PMA e o maior dano por acerto — a moeda que técnicas
-multiplicadoras usam.
+**O DPR do nível 1** (Típico com mod +3 contra Evasão 14) continua no `auditor.py dpr`:
+- arma de 1 ação: **1,20 × D + 3,15**;
+- arma de 2 ou 3 ações: **0,65 × D + 1,80**.
+
+**Consequência estrutural:**
+- No N1, uma arma de 2 ações precisaria de **1,75×** o dano por acerto de uma de 1 ação para empatar em DPR. **Ela
+  não deve empatar.**
+- O que ela recebe em troca é exposição menor, uma ação livre por turno, imunidade ao PMA e o maior dano por acerto,
+  que é a moeda das técnicas multiplicadoras.
+- 🔴 **Com as regras atuais, essa razão cresce com o nível:** a leve faz 2,5× os acertos da pesada no N5 (Focado
+  contra a Ativa). O PMA perde o freio porque o Atacar sobe uns +3 por nível contra uma Evasão quase plana. Leia o
+  `26-stack-de-pericias.md` da memória antes de julgar qualquer bônus de Atacar.
 
 **Progressão de arma:** cada nível (+1/+2/+3) dá **+N ao Atacar e +N dados do mesmo tipo**.
 Uma arma com N dados na base cresce a uma taxa de **1/N** — **armas que começam com mais dados
