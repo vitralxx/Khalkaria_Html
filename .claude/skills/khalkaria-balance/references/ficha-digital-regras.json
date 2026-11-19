@@ -1,6 +1,6 @@
 {
   "schemaVersion": "regras-ficha/1.1",
-  "geradoEm": "2026-10-21 (rev. 12: D155 corrige a D154 — o maior por padrão, COM troca manual, nas perícias de dois atributos, na CD e nos status (Notion e contrato). rev. 11: D154, o maior modificador sempre prevalece nas perícias de dois atributos, na CD e nos status, sem troca manual (Notion, Sistema > Lista de Perícias); rótulo \"Lendário\". rev. 10: ação livre de custo variável, D126; ver 17-respostas-T-e-sync.md §1c. rev. 9: segunda leva de respostas do Pedro, D118–D123: média da raridade, condições mentais, requisitos de conjuração; ver 17-respostas-T-e-sync.md §1b. rev. 8: respostas do Pedro às T1–T19, D98–D117, gravadas no Notion; ver 17-respostas-T-e-sync.md. rev. 7: lote L respondido pelo Pedro e gravado no Notion; correções do Log de Técnicas, ver 16-log-tecnicas.md)",
+  "geradoEm": "2026-11-19 (rev. 13: o Defender soma a cada uso; o Desprevenido trava so o Defender e o Retaliar, mantem a reacao e dura ate o inicio do proximo turno do afetado; o descanso longo devolve os usos curtos; sai o recurso Instinto do Batedor. rev. 12: D155 corrige a D154 — o maior por padrão, COM troca manual, nas perícias de dois atributos, na CD e nos status (Notion e contrato). rev. 11: D154, o maior modificador sempre prevalece nas perícias de dois atributos, na CD e nos status, sem troca manual (Notion, Sistema > Lista de Perícias); rótulo \"Lendário\". rev. 10: ação livre de custo variável, D126; ver 17-respostas-T-e-sync.md §1c. rev. 9: segunda leva de respostas do Pedro, D118–D123: média da raridade, condições mentais, requisitos de conjuração; ver 17-respostas-T-e-sync.md §1b. rev. 8: respostas do Pedro às T1–T19, D98–D117, gravadas no Notion; ver 17-respostas-T-e-sync.md. rev. 7: lote L respondido pelo Pedro e gravado no Notion; correções do Log de Técnicas, ver 16-log-tecnicas.md)",
   "_doc": "Resposta do agente de balanceamento ao pedido docs/ficha-digital/01-pedido-ao-balanceamento.md. O texto com a justificativa de cada regra esta em 14-ficha-digital.md, na mesma numeracao P/C. Nada aqui e canonico so porque esta escrito: leia o campo 'status'.",
   "_status": {
     "canonico": "Esta no Notion ou numa decisao registrada em 09-decisoes-pedro.md. Pode ir para o site.",
@@ -399,66 +399,8 @@
         "sobrevivencia",
         "percepcao"
       ],
-      "recursos": [
-        {
-          "id": "instinto",
-          "nome": "Instinto",
-          "max": "5",
-          "inicio": {
-            "evento": "inicioCena",
-            "valor": 0
-          },
-          "ganhos": [
-            {
-              "gatilho": "sucessoEmPericia",
-              "valor": 1,
-              "limite": {
-                "n": 2,
-                "por": "novaRodada"
-              },
-              "limite2": {
-                "n": 1,
-                "por": "cena",
-                "escopo": "porPericia"
-              }
-            },
-            {
-              "gatilho": "acerto",
-              "valor": 1,
-              "limite": {
-                "n": 1,
-                "por": "novaRodada"
-              }
-            },
-            {
-              "gatilho": "esquiva",
-              "valor": 1,
-              "limite": {
-                "n": 1,
-                "por": "novaRodada"
-              }
-            }
-          ],
-          "zeraEm": [
-            "danoMaiorQueMetadeDaVidaMax",
-            "condicao:atordoado",
-            "condicao:desorientado",
-            "condicao:desprevenido",
-            "falhaEmPericia",
-            "10minSemGanhar"
-          ],
-          "custoEmTecnicas": "gasto",
-          "gastos": {
-            "pressentimento": "X",
-            "sexto-sentido": 2,
-            "segundo-folego": 3,
-            "golpe-instinto": 4,
-            "instinto-reativo": 5
-          },
-          "_alertaDeDesenho": "BUG CONHECIDO, em correcao. 'Ao falhar qualquer pericia -> zera' e Atacar E pericia. Com 3 ataques a 60/35/10%, a chance de nao falhar nenhum e 0,60*0,35*0,10 = 2,1%: o Instinto zera em 97,9% dos turnos em que o Batedor ataca. Chegar ao teto 5 exige ~3 rodadas limpas = 0,0009%. Diagnostico completo em 13-batedor-diagnostico.md. O rework (D79) vai mudar este bloco.",
-          "status": "canonico-mas-em-rework"
-        }
-      ]
+      "recursos": [],
+      "recursosNota": "O Instinto saiu com o rework do Batedor (Pedro, 2026-11-17: \"a característica de classe instinto não existe mais\"). O Batedor novo (Mapa e Pontapé, sem contador de recurso) entra no contrato quando a classe fechar."
     },
     "brutalista": {
       "V": 8,
@@ -761,12 +703,12 @@
         "valor": 2,
         "custo": "1 acao",
         "duracao": "inicioProximoTurnoProprio",
-        "acumula": false,
+        "acumula": true,
         "status": "canonico",
         "acumulaStatus": "canonico",
         "fonte": "notion-sistema > Sua Rodada: 'Defender (1 acao) -> +2 Defender ate seu proximo turno'",
-        "nota": "P15 - o alvo e a PERICIA (a rolagem), nao a Evasao: somar direto na Evasao seria buff incondicional. 'acumula: false' porque a acao ja e fraca (1 de 3 acoes por +2 numa reacao que talvez nem aconteca); deixar acumular convidaria a gastar 2 ou 3 acoes nisso.",
-        "acumulaFonte": "L24, notion-sistema > Sua Rodada: \"Defender (1 ação) → +2 Defender até seu próximo turno. Não acumula com ela mesma.\" (gravado no Notion em 2026-09-27 (diff conferido))"
+        "nota": "P15 - o alvo e a PERICIA (a rolagem), nao a Evasao: somar direto na Evasao seria buff incondicional. Cada uso soma +2 (rev. 13); o \"acumula: false\" de antes caiu com a mudanca do Pedro no Notion.",
+        "acumulaFonte": "notion-sistema > Sua Rodada (Pedro, 2026-11-10): \"Defender (1 ação) → +2 Defender até seu próximo turno. Utilizável mais de uma vez por turno.\" (\"Soma, mudei no notion.\"). Antes (L24): \"Não acumula com ela mesma.\""
       },
       "modificadores": [
         {
@@ -1895,7 +1837,11 @@
       "tags": [],
       "efeitos": [
         {
-          "alvo": "reagirAAtaques",
+          "alvo": "defender",
+          "op": "semReacao"
+        },
+        {
+          "alvo": "retaliar",
           "op": "semReacao"
         }
       ],
@@ -1904,7 +1850,13 @@
       ],
       "implicaModo": "separada",
       "vemDe": "Furtividade",
-      "status": "canonico"
+      "status": "canonico",
+      "reacaoMantida": true,
+      "duracao": {
+        "ate": "inicioProximoTurnoAfetado"
+      },
+      "fonte": "notion-condicoes (2026-10-14): \"não pode reagir a ataques com a reação defender ou retaliar, porém ainda tem sua reação. Além disso, você também está exposto. Essa condição expira em 1 turno.\"",
+      "nota": "A reacao nao e gasta: segue livre para outros usos (Margem de Seguranca, Assassinato, magias de reacao). Duracao: leitura de \"expira em 1 turno\" como ate o inicio do proximo turno do afetado, quando a reacao volta. O Ataque Furtivo do Ladrao e que faz o alvo perder a reacao."
     },
     {
       "id": "paralisado",
@@ -2466,7 +2418,8 @@
       },
       "defender": {
         "custo": 1,
-        "efeito": "+2 Defender ate seu proximo turno"
+        "efeito": "+2 Defender ate seu proximo turno; soma a cada uso (utilizavel mais de uma vez por turno)",
+        "fonte": "notion-sistema > Sua Rodada (2026-11-10)"
       },
       "conjurar": {
         "custo": "1-3, pelo campo Acao da magia"
@@ -2892,7 +2845,7 @@
     "status": "canonico",
     "notas": {
       "dia": "CANONICO: 'O grupo pode fazer ate dois descansos curtos e UM DESCANSO LONGO QUE FINALIZA O DIA'. Mas mantenha 'dia' e 'longo' como enums SEPARADOS, porque o inverso nao e verdade: um dia pode passar SEM descanso longo, e e assim que se ganha Exaustao ('1 dia sem descansar e tolerado; o segundo -> Exausto 1').",
-      "cena": "cena != combate. Municao gasta por cena de combate (D2) e ai coincidem, mas o Instinto do Batedor tem '1x por pericia por cena', que cobre pericia fora de combate. Uma cena pode conter a aproximacao furtiva, a negociacao e a briga.",
+      "cena": "cena != combate. Municao gasta por cena de combate (D2) e ai coincidem (uma cena pode cobrir pericia fora de combate). Uma cena pode conter a aproximacao furtiva, a negociacao e a briga.",
       "rodada": "rodada != turno. '2x/rodada' (Fluxo) conta tambem os ganhos no turno dos outros (esquivar, ser acertado). '1x/turno' e so o seu. Nao unifique."
     },
     "fonte": "L29, notion-sistema > Descanso > Usos por descanso: \"A notação oficial é \\\"1x/Descanso Longo\\\". Onde estiver \\\"1x/dia\\\", vale o mesmo: o uso volta no descanso longo. \\\"1x/sessão\\\", \\\"1x/semana\\\" e \\\"1x/campanha\\\" também existem e são marcados à mão.\" (gravado no Notion em 2026-09-27 (diff conferido))"
@@ -3149,6 +3102,12 @@
           "alvo": "recurso.reagentes",
           "op": "fixa",
           "valor": "max"
+        },
+        {
+          "alvo": "usos.curto",
+          "op": "fixa",
+          "valor": "max",
+          "fonte": "Pedro, 2026-11-17 (03 §18 do site): \"os descansos longos, eles também devolvem recargas por descanso curto.\""
         },
         {
           "alvo": "usos.longo",
