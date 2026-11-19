@@ -7,11 +7,12 @@ O modelo antigo (Atacar +5 contra Evasão 14, 60/35/10%) só vale no nível 1. E
 - a criatura: Evasão passiva baixa (13 no CR 3) e a Ativa = passiva + dado de Defender pelo grau;
 - o PMA (-5 por ataque) e o crítico no 20 natural (dobra os dados).
 
-Regras opcionais (o pacote proposto ao Pedro): --gate (grau máximo por nível), --a18 (acima de 18 o atributo
-custa 2 pontos por +1), --d2 (Defender 1d6/1d8/2d6/2d8/2d10, a D2').
+Regras opcionais: --a20 (acima de 20 o atributo custa 2 pontos por +1; aprovada na D177, falta o Notion).
+Recusadas na D177, mantidas para comparação: --gate (grau máximo por nível), --a18 (o corte em 18),
+--d2 (Defender 1d6/1d8/2d6/2d8/2d10).
 
 Uso:
-  python3 modelo.py tabela [--gate] [--a18] [--d2] [--regua]
+  python3 modelo.py tabela [--a20] [--regua] [--gate] [--a18] [--d2]
   python3 modelo.py dpr 1d6 1 --nivel 3 --perfil focado [--alvo passiva] [--gate --a18 --d2] [--regua]
 """
 import argparse, itertools
@@ -34,20 +35,22 @@ def mod(a):
     return (int(a) - 10) // 2
 
 
-def atributo(perfil, nivel, a18=False):
+def atributo(perfil, nivel, a18=False, limite=None):
+    """a18=True: acima de 18 cada +1 custa 2 pontos (proposta antiga). limite=20: a regra aprovada na D177."""
     p = PERFIS[perfil]
     a = float(p['a0'])
+    corte = limite if limite else (18 if a18 else None)
     for _ in range(2 * (nivel - 1) * (2 if p['sexta'] else 1)):
-        a += 0.5 if (a18 and a >= 18) else 1
+        a += 0.5 if (corte and a >= corte) else 1
     return min(30, int(a))
 
 
-def atacar(perfil, nivel, gate=False, a18=False):
+def atacar(perfil, nivel, gate=False, a18=False, a20=False):
     p = PERFIS[perfil]
     grau = p['grau'][nivel - 1]
     if gate:
         grau = min(grau, GATE[nivel - 1])
-    return mod(atributo(perfil, nivel, a18)) + 2 * grau + p['arma'][nivel - 1]
+    return mod(atributo(perfil, nivel, a18, 20 if a20 else None)) + 2 * grau + p['arma'][nivel - 1]
 
 
 def dados(n, f):
@@ -74,12 +77,12 @@ def taxas(A, E, dado, ataques=3):
     return [p_acerto(A - 5 * i, E, dado) for i in range(ataques)]
 
 
-def dpr(arma, acoes, nivel, perfil, alvo='ativa', gate=False, a18=False, d2=False, regua=False):
+def dpr(arma, acoes, nivel, perfil, alvo='ativa', gate=False, a18=False, d2=False, regua=False, a20=False):
     n, f = (int(x) for x in arma.lower().split('d'))
     nd = n + PERFIS[perfil]['arma'][nivel - 1]
     D = nd * (f + 1) / 2
-    m = mod(atributo(perfil, nivel, a18))
-    A = atacar(perfil, nivel, gate, a18)
+    m = mod(atributo(perfil, nivel, a18, 20 if a20 else None))
+    A = atacar(perfil, nivel, gate, a18, a20)
     E, dado = defesa(nivel, alvo, d2, regua)
     ts = taxas(A, E, dado, 3 if acoes == 1 else 1)
     return sum(t * (D + m) + 0.05 * D for t in ts), ts, A
@@ -93,16 +96,16 @@ def main():
     ap.add_argument('--nivel', type=int, default=1)
     ap.add_argument('--perfil', default='tipico', choices=list(PERFIS))
     ap.add_argument('--alvo', default='ativa', choices=['ativa', 'passiva'])
-    for flag in ('gate', 'a18', 'd2', 'regua'):
+    for flag in ('gate', 'a18', 'a20', 'd2', 'regua'):
         ap.add_argument('--' + flag, action='store_true')
     a = ap.parse_args()
-    o = dict(gate=a.gate, a18=a.a18, d2=a.d2, regua=a.regua)
+    o = dict(gate=a.gate, a18=a.a18, d2=a.d2, regua=a.regua, a20=a.a20)
     if a.cmd == 'tabela':
         print('Perfil | N1 | N3 | N5   (Atacar, 1º ataque contra a Ativa, acertos/turno Ativa/Passiva)')
         for pf in PERFIS:
             cel = []
             for nv in (1, 3, 5):
-                A = atacar(pf, nv, a.gate, a.a18)
+                A = atacar(pf, nv, a.gate, a.a18, a.a20)
                 E, dado = defesa(nv, 'ativa', a.d2, a.regua)
                 ta, tp = taxas(A, E, dado), taxas(A, E, (0,))
                 cel.append(f'+{A} {ta[0]*100:.0f}% {sum(ta):.2f}/{sum(tp):.2f}')
