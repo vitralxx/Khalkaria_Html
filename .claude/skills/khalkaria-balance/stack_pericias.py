@@ -4,7 +4,6 @@ Uso: git archive origin/main data | tar -x -C <dir>; python3 -I stack_pericias.p
 Resultado: as fontes com o trecho (técnicas, marcas, ultimates, raças, origens, Limiar, magias) e os mods de item.
 A classificação (permanente, por uso, de grupo) é manual: ver `26-stack-de-pericias.md` na memória.
 """
-"""
 import json, re, sys, collections, unicodedata
 
 D = sys.argv[1]
